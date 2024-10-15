@@ -4,115 +4,9 @@
 //
 
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
-#include "dol2asm.h"
-
-//
-// Forward References:
-//
-
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void checkPass__12J3DFrameCtrlFf();
-extern "C" void update__12J3DFrameCtrlFv();
-extern "C" void __ct__15J3DAnmTransformFsPfPsPf();
-extern "C" void getTransform__19J3DAnmTransformFullCFUsP16J3DTransformInfo();
-extern "C" void getTransform__27J3DAnmTransformFullWithLerpCFUsP16J3DTransformInfo();
-extern "C" void calcTransform__18J3DAnmTransformKeyCFfUsP16J3DTransformInfo();
-extern "C" void __ct__19J3DAnmTextureSRTKeyFv();
-extern "C" void calcTransform__19J3DAnmTextureSRTKeyCFfUsP17J3DTextureSRTInfo();
-extern "C" void getWeight__17J3DAnmClusterFullCFUs();
-extern "C" void getWeight__16J3DAnmClusterKeyCFUs();
-extern "C" void __ct__14J3DAnmVtxColorFv();
-extern "C" void __ct__18J3DAnmVtxColorFullFv();
-extern "C" void getColor__18J3DAnmVtxColorFullCFUcUsP8_GXColor();
-extern "C" void __ct__17J3DAnmVtxColorKeyFv();
-extern "C" void getColor__17J3DAnmVtxColorKeyCFUcUsP8_GXColor();
-extern "C" void __ct__11J3DAnmColorFv();
-extern "C" void searchUpdateMaterialID__11J3DAnmColorFP16J3DMaterialTable();
-extern "C" void __ct__15J3DAnmColorFullFv();
-extern "C" void getColor__15J3DAnmColorFullCFUsP8_GXColor();
-extern "C" void __ct__14J3DAnmColorKeyFv();
-extern "C" void getColor__14J3DAnmColorKeyCFUsP8_GXColor();
-extern "C" void __ct__15J3DAnmTevRegKeyFv();
-extern "C" void __ct__16J3DAnmTexPatternFv();
-extern "C" void getTexNo__16J3DAnmTexPatternCFUsPUs();
-extern "C" void searchUpdateMaterialID__16J3DAnmTexPatternFP16J3DMaterialTable();
-extern "C" void searchUpdateMaterialID__16J3DAnmTexPatternFP12J3DModelData();
-extern "C" void searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP16J3DMaterialTable();
-extern "C" void searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP12J3DModelData();
-extern "C" void getTevColorReg__15J3DAnmTevRegKeyCFUsP11_GXColorS10();
-extern "C" void getTevKonstReg__15J3DAnmTevRegKeyCFUsP8_GXColor();
-extern "C" void searchUpdateMaterialID__15J3DAnmTevRegKeyFP16J3DMaterialTable();
-extern "C" void searchUpdateMaterialID__15J3DAnmTevRegKeyFP12J3DModelData();
-extern "C" void func_8032B8A0(void* _this, f32, J3DAnmKeyTableBase*, s16*);
-extern "C" void func_8032BAD4(void* _this, f32, J3DAnmKeyTableBase*, f32*);
-extern "C" void __dt__14J3DAnmVtxColorFv();
-extern "C" void __dt__11J3DAnmColorFv();
-extern "C" void __dt__16J3DAnmTexPatternFv();
-extern "C" s32 getKind__16J3DAnmTexPatternCFv();
-extern "C" void __dt__15J3DAnmTevRegKeyFv();
-extern "C" s32 getKind__15J3DAnmTevRegKeyCFv();
-extern "C" void __dt__14J3DAnmColorKeyFv();
-extern "C" s32 getKind__14J3DAnmColorKeyCFv();
-extern "C" void __dt__15J3DAnmColorFullFv();
-extern "C" s32 getKind__15J3DAnmColorFullCFv();
-extern "C" bool getKind__11J3DAnmColorCFv();
-extern "C" void getColor__11J3DAnmColorCFUsP8_GXColor();
-extern "C" void __dt__17J3DAnmVtxColorKeyFv();
-extern "C" s32 getKind__17J3DAnmVtxColorKeyCFv();
-extern "C" void __dt__18J3DAnmVtxColorFullFv();
-extern "C" s32 getKind__18J3DAnmVtxColorFullCFv();
-extern "C" s32 getKind__14J3DAnmVtxColorCFv();
-extern "C" void getColor__14J3DAnmVtxColorCFUcUsP8_GXColor();
-extern "C" void __dt__16J3DAnmClusterKeyFv();
-extern "C" s32 getKind__16J3DAnmClusterKeyCFv();
-extern "C" void __dt__13J3DAnmClusterFv();
-extern "C" s32 getKind__13J3DAnmClusterCFv();
-extern "C" void getWeight__13J3DAnmClusterCFUs();
-extern "C" void __dt__17J3DAnmClusterFullFv();
-extern "C" s32 getKind__17J3DAnmClusterFullCFv();
-extern "C" void __dt__19J3DAnmTextureSRTKeyFv();
-extern "C" s32 getKind__19J3DAnmTextureSRTKeyCFv();
-extern "C" void __dt__27J3DAnmTransformFullWithLerpFv();
-extern "C" s32 getKind__27J3DAnmTransformFullWithLerpCFv();
-extern "C" void __dt__19J3DAnmTransformFullFv();
-extern "C" s32 getKind__19J3DAnmTransformFullCFv();
-
-//
-// External References:
-//
-
-extern "C" void __dl__FPv();
-extern "C" void __ct__10JUTNameTabFv();
-extern "C" void getIndex__10JUTNameTabCFPCc();
-extern "C" void getName__10JUTNameTabCFUs();
-extern "C" void __cvt_fp2unsigned();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__10J3DAnmBase[4];
-extern "C" extern void* __vt__15J3DAnmTransform[5];
-extern "C" extern void* __vt__10JUTNameTab[3];
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 80456430-80456434 004A30 0004+00 6/6 0/0 0/0 .sdata2          @852 */
-SECTION_SDATA2 static f32 lit_852 = 1.0f;
-
-/* 80456434-80456438 004A34 0004+00 20/20 0/0 0/0 .sdata2          @853 */
-SECTION_SDATA2 static u8 lit_853[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
+#include "JSystem/J3DGraphBase/J3DStruct.h"
+#include "JSystem/JMath/JMath.h"
+#include "dolphin/os.h"
 
 /* 803283FC-8032842C 322D3C 0030+00 0/0 25/25 285/285 .text            init__12J3DFrameCtrlFs */
 void J3DFrameCtrl::init(s16 i_end) {
@@ -121,20 +15,9 @@ void J3DFrameCtrl::init(s16 i_end) {
     mStart = 0;
     mEnd = i_end;
     mLoop = 0;
-    mRate = lit_852;
-    mFrame = FLOAT_LABEL(lit_853);
+    mRate = 1.0f;
+    mFrame = 0.0f;
 }
-
-/* ############################################################################################## */
-/* 80456438-80456440 004A38 0004+04 2/2 0/0 0/0 .sdata2          @973 */
-SECTION_SDATA2 static f32 lit_973[1 + 1 /* padding */] = {
-    0.0010000000474974513f,
-    /* padding */
-    0.0f,
-};
-
-/* 80456440-80456448 004A40 0008+00 4/4 0/0 0/0 .sdata2          @975 */
-SECTION_SDATA2 static f64 lit_975 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8032842C-803289CC 322D6C 05A0+00 0/0 92/92 382/382 .text            checkPass__12J3DFrameCtrlFf
  */
@@ -340,143 +223,457 @@ J3DAnmTransform::J3DAnmTransform(s16 param_0, f32* param_1, s16* param_2, f32* p
     field_0x1e = 0;
 }
 
-
-/* ############################################################################################## */
-/* 80456448-80456450 004A48 0004+04 4/4 0/0 0/0 .sdata2          @1092 */
-SECTION_SDATA2 static f32 lit_1092[1 + 1 /* padding */] = {
-    0.5f,
-    /* padding */
-    0.0f,
-};
-
 /* 80328E90-803291F0 3237D0 0360+00 1/0 0/0 0/0 .text
  * getTransform__19J3DAnmTransformFullCFUsP16J3DTransformInfo   */
-void J3DAnmTransformFull::getTransform(u16 param_0, J3DTransformInfo* param_1) const {
-    // NONMATCHING
+void J3DAnmTransformFull::getTransform(u16 i_index, J3DTransformInfo* o_transform) const {
+    u16 idx = i_index * 3;
+    J3DAnmTransformFullTable* entryX = &mAnmTable[idx];
+    J3DAnmTransformFullTable* entryY = &mAnmTable[idx + 1];
+    J3DAnmTransformFullTable* entryZ = &mAnmTable[idx + 2];
+    if (mFrame < 0.0f) {
+        o_transform->mScale.x = mScaleData[entryX->mScaleOffset];
+        o_transform->mScale.y = mScaleData[entryY->mScaleOffset];
+        o_transform->mScale.z = mScaleData[entryZ->mScaleOffset];
+        o_transform->mRotation.x = mRotData[entryX->mRotationOffset];
+        o_transform->mRotation.y = mRotData[entryY->mRotationOffset];
+        o_transform->mRotation.z = mRotData[entryZ->mRotationOffset];
+        o_transform->mTranslate.x = mTransData[entryX->mTranslateOffset];
+        o_transform->mTranslate.y = mTransData[entryY->mTranslateOffset];
+        o_transform->mTranslate.z = mTransData[entryZ->mTranslateOffset];
+    } else {
+        u32 frame = (int)(mFrame + 0.5f);
+        if (frame >= entryX->mScaleMaxFrame) {
+            o_transform->mScale.x = mScaleData[entryX->mScaleOffset + (entryX->mScaleMaxFrame - 1)];
+        } else {
+            o_transform->mScale.x = mScaleData[entryX->mScaleOffset + frame];
+        }
+        if (frame >= entryX->mRotationMaxFrame) {
+            o_transform->mRotation.x =
+                mRotData[entryX->mRotationOffset + (entryX->mRotationMaxFrame - 1)];
+        } else {
+            o_transform->mRotation.x = mRotData[entryX->mRotationOffset + frame];
+        }
+        if (frame >= entryX->mTranslateMaxFrame) {
+            o_transform->mTranslate.x =
+                mTransData[entryX->mTranslateOffset + (entryX->mTranslateMaxFrame - 1)];
+        } else {
+            o_transform->mTranslate.x = mTransData[entryX->mTranslateOffset + frame];
+        }
+        if (frame >= entryY->mScaleMaxFrame) {
+            o_transform->mScale.y = mScaleData[entryY->mScaleOffset + (entryY->mScaleMaxFrame - 1)];
+        } else {
+            o_transform->mScale.y = mScaleData[entryY->mScaleOffset + frame];
+        }
+        if (frame >= entryY->mRotationMaxFrame) {
+            o_transform->mRotation.y =
+                mRotData[entryY->mRotationOffset + (entryY->mRotationMaxFrame - 1)];
+        } else {
+            o_transform->mRotation.y = mRotData[entryY->mRotationOffset + frame];
+        }
+        if (frame >= entryY->mTranslateMaxFrame) {
+            o_transform->mTranslate.y =
+                mTransData[entryY->mTranslateOffset + (entryY->mTranslateMaxFrame - 1)];
+        } else {
+            o_transform->mTranslate.y = mTransData[entryY->mTranslateOffset + frame];
+        }
+        if (frame >= entryZ->mScaleMaxFrame) {
+            o_transform->mScale.z = mScaleData[entryZ->mScaleOffset + (entryZ->mScaleMaxFrame - 1)];
+        } else {
+            o_transform->mScale.z = mScaleData[entryZ->mScaleOffset + frame];
+        }
+        if (frame >= entryZ->mRotationMaxFrame) {
+            o_transform->mRotation.z =
+                mRotData[entryZ->mRotationOffset + (entryZ->mRotationMaxFrame - 1)];
+        } else {
+            o_transform->mRotation.z = mRotData[entryZ->mRotationOffset + frame];
+        }
+        if (frame >= entryZ->mTranslateMaxFrame) {
+            o_transform->mTranslate.z =
+                mTransData[entryZ->mTranslateOffset + (entryZ->mTranslateMaxFrame - 1)];
+        } else {
+            o_transform->mTranslate.z = mTransData[entryZ->mTranslateOffset + frame];
+        }
+    }
 }
-
-/* ############################################################################################## */
-/* 80456450-80456458 004A50 0008+00 2/2 0/0 0/0 .sdata2          @1223 */
-SECTION_SDATA2 static f64 lit_1223 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 803291F0-80329A34 323B30 0844+00 1/0 0/0 0/0 .text
  * getTransform__27J3DAnmTransformFullWithLerpCFUsP16J3DTransformInfo */
-void J3DAnmTransformFullWithLerp::getTransform(u16 param_0, J3DTransformInfo* param_1) const {
-    // NONMATCHING
+void J3DAnmTransformFullWithLerp::getTransform(u16 i_index, J3DTransformInfo* o_transform) const {
+    u16 idx = i_index * 3;
+    J3DAnmTransformFullTable* entryX = &mAnmTable[idx];
+    J3DAnmTransformFullTable* entryY = &mAnmTable[idx + 1];
+    J3DAnmTransformFullTable* entryZ = &mAnmTable[idx + 2];
+    if (mFrame < 0.0f) {
+        o_transform->mScale.x = mScaleData[entryX->mScaleOffset];
+        o_transform->mScale.y = mScaleData[entryY->mScaleOffset];
+        o_transform->mScale.z = mScaleData[entryZ->mScaleOffset];
+        o_transform->mRotation.x = mRotData[entryX->mRotationOffset];
+        o_transform->mRotation.y = mRotData[entryY->mRotationOffset];
+        o_transform->mRotation.z = mRotData[entryZ->mRotationOffset];
+        o_transform->mTranslate.x = mTransData[entryX->mTranslateOffset];
+        o_transform->mTranslate.y = mTransData[entryY->mTranslateOffset];
+        o_transform->mTranslate.z = mTransData[entryZ->mTranslateOffset];
+    } else {
+        int frame_ = (int)mFrame;
+        u32 frame = frame_;
+        if (frame_ == mFrame) {
+            if (frame >= entryX->mScaleMaxFrame) {
+                o_transform->mScale.x =
+                    mScaleData[entryX->mScaleOffset + (entryX->mScaleMaxFrame - 1)];
+            } else {
+                o_transform->mScale.x = mScaleData[entryX->mScaleOffset + frame];
+            }
+            if (frame >= entryX->mRotationMaxFrame) {
+                o_transform->mRotation.x =
+                    mRotData[entryX->mRotationOffset + (entryX->mRotationMaxFrame - 1)];
+            } else {
+                o_transform->mRotation.x = mRotData[entryX->mRotationOffset + frame];
+            }
+            if (frame >= entryX->mTranslateMaxFrame) {
+                o_transform->mTranslate.x =
+                    mTransData[entryX->mTranslateOffset + (entryX->mTranslateMaxFrame - 1)];
+            } else {
+                o_transform->mTranslate.x = mTransData[entryX->mTranslateOffset + frame];
+            }
+            if (frame >= entryY->mScaleMaxFrame) {
+                o_transform->mScale.y =
+                    mScaleData[entryY->mScaleOffset + (entryY->mScaleMaxFrame - 1)];
+            } else {
+                o_transform->mScale.y = mScaleData[entryY->mScaleOffset + frame];
+            }
+            if (frame >= entryY->mRotationMaxFrame) {
+                o_transform->mRotation.y =
+                    mRotData[entryY->mRotationOffset + (entryY->mRotationMaxFrame - 1)];
+            } else {
+                o_transform->mRotation.y = mRotData[entryY->mRotationOffset + frame];
+            }
+            if (frame >= entryY->mTranslateMaxFrame) {
+                o_transform->mTranslate.y =
+                    mTransData[entryY->mTranslateOffset + (entryY->mTranslateMaxFrame - 1)];
+            } else {
+                o_transform->mTranslate.y = mTransData[entryY->mTranslateOffset + frame];
+            }
+            if (frame >= entryZ->mScaleMaxFrame) {
+                o_transform->mScale.z =
+                    mScaleData[entryZ->mScaleOffset + (entryZ->mScaleMaxFrame - 1)];
+            } else {
+                o_transform->mScale.z = mScaleData[entryZ->mScaleOffset + frame];
+            }
+            if (frame >= entryZ->mRotationMaxFrame) {
+                o_transform->mRotation.z =
+                    mRotData[entryZ->mRotationOffset + (entryZ->mRotationMaxFrame - 1)];
+            } else {
+                o_transform->mRotation.z = mRotData[entryZ->mRotationOffset + frame];
+            }
+            if (frame >= entryZ->mTranslateMaxFrame) {
+                o_transform->mTranslate.z =
+                    mTransData[entryZ->mTranslateOffset + (entryZ->mTranslateMaxFrame - 1)];
+            } else {
+                o_transform->mTranslate.z = mTransData[entryZ->mTranslateOffset + frame];
+            }
+        } else {
+            f32 rate = mFrame - frame_;
+            u32 frame2 = frame + 1;
+            if (frame2 >= entryX->mScaleMaxFrame) {
+                o_transform->mScale.x =
+                    mScaleData[entryX->mScaleOffset + (entryX->mScaleMaxFrame - 1)];
+            } else {
+                o_transform->mScale.x = mScaleData[entryX->mScaleOffset + frame]
+                    + rate * (mScaleData[entryX->mScaleOffset + frame2]
+                            - mScaleData[entryX->mScaleOffset + frame]);
+            }
+            if (frame2 >= entryX->mRotationMaxFrame) {
+                o_transform->mRotation.x =
+                    mRotData[entryX->mRotationOffset + (entryX->mRotationMaxFrame - 1)];
+            } else {
+                u32 rot1 = (u16)mRotData[entryX->mRotationOffset + frame];
+                u32 rot2 = (u16)mRotData[entryX->mRotationOffset + frame2];
+                int delta = rot2 - rot1;
+                if (delta > 0x8000) {
+                    rot1 += 0x10000;
+                    delta -= 0x10000;
+                } else if (-delta > 0x8000) {
+                    delta += 0x10000;
+                }
+                o_transform->mRotation.x = (u32)((f32)rot1 + rate * (f32)delta);
+            }
+            if (frame2 >= entryX->mTranslateMaxFrame) {
+                o_transform->mTranslate.x =
+                    mTransData[entryX->mTranslateOffset + (entryX->mTranslateMaxFrame - 1)];
+            } else {
+                o_transform->mTranslate.x = mTransData[entryX->mTranslateOffset + frame]
+                    + rate * (mTransData[entryX->mTranslateOffset + frame2]
+                            - mTransData[entryX->mTranslateOffset + frame]);
+            }
+            if (frame2 >= entryY->mScaleMaxFrame) {
+                o_transform->mScale.y =
+                    mScaleData[entryY->mScaleOffset + (entryY->mScaleMaxFrame - 1)];
+            } else {
+                o_transform->mScale.y = mScaleData[entryY->mScaleOffset + frame]
+                    + rate * (mScaleData[entryY->mScaleOffset + frame2]
+                            - mScaleData[entryY->mScaleOffset + frame]);
+            }
+            if (frame2 >= entryY->mRotationMaxFrame) {
+                o_transform->mRotation.y =
+                    mRotData[entryY->mRotationOffset + (entryY->mRotationMaxFrame - 1)];
+            } else {
+                u32 rot1 = (u16)mRotData[entryY->mRotationOffset + frame];
+                u32 rot2 = (u16)mRotData[entryY->mRotationOffset + frame2];
+                int delta = rot2 - rot1;
+                if (delta > 0x8000) {
+                    rot1 += 0x10000;
+                    delta -= 0x10000;
+                } else if (-delta > 0x8000) {
+                    delta += 0x10000;
+                }
+                o_transform->mRotation.y = (u32)((f32)rot1 + rate * (f32)delta);
+            }
+            if (frame2 >= entryY->mTranslateMaxFrame) {
+                o_transform->mTranslate.y =
+                    mTransData[entryY->mTranslateOffset + (entryY->mTranslateMaxFrame - 1)];
+            } else {
+                o_transform->mTranslate.y = mTransData[entryY->mTranslateOffset + frame]
+                    + rate * (mTransData[entryY->mTranslateOffset + frame2]
+                            - mTransData[entryY->mTranslateOffset + frame]);
+            }
+            if (frame2 >= entryZ->mScaleMaxFrame) {
+                o_transform->mScale.z =
+                    mScaleData[entryZ->mScaleOffset + (entryZ->mScaleMaxFrame - 1)];
+            } else {
+                o_transform->mScale.z = mScaleData[entryZ->mScaleOffset + frame]
+                    + rate * (mScaleData[entryZ->mScaleOffset + frame2]
+                            - mScaleData[entryZ->mScaleOffset + frame]);
+            }
+            if (frame2 >= entryZ->mRotationMaxFrame) {
+                o_transform->mRotation.z =
+                    mRotData[entryZ->mRotationOffset + (entryZ->mRotationMaxFrame - 1)];
+            } else {
+                u32 rot1 = (u16)mRotData[entryZ->mRotationOffset + frame];
+                u32 rot2 = (u16)mRotData[entryZ->mRotationOffset + frame2];
+                int delta = rot2 - rot1;
+                if (delta > 0x8000) {
+                    rot1 += 0x10000;
+                    delta -= 0x10000;
+                } else if (-delta > 0x8000) {
+                    delta += 0x10000;
+                }
+                o_transform->mRotation.z = (u32)((f32)rot1 + rate * (f32)delta);
+            }
+            if (frame2 >= entryZ->mTranslateMaxFrame) {
+                o_transform->mTranslate.z =
+                    mTransData[entryZ->mTranslateOffset + (entryZ->mTranslateMaxFrame - 1)];
+            } else {
+                o_transform->mTranslate.z = mTransData[entryZ->mTranslateOffset + frame]
+                    + rate * (mTransData[entryZ->mTranslateOffset + frame2]
+                            - mTransData[entryZ->mTranslateOffset + frame]);
+            }
+        }
+    }
+}
+
+inline f32 J3DHermiteInterpolation(f32 p1, f32 const* p2, f32 const* p3, f32 const* p4,
+                                   f32 const* p5, f32 const* p6, f32 const* p7) {
+    return JMAHermiteInterpolation(p1, *p2, *p3, *p4, *p5, *p6, *p7);
+}
+
+inline f32 J3DHermiteInterpolation(register f32 pp1, register s16 const* pp2,
+                                   register s16 const* pp3, register s16 const* pp4,
+                                   register s16 const* pp5, register s16 const* pp6,
+                                   register s16 const* pp7) {
+    register f32 p1 = pp1;
+    register f32 ff8;
+    register f32 ff7;
+    register f32 ff6;
+    register f32 ff5;
+    register f32 ff4;
+    register f32 ff3;
+    register f32 ff2;
+    register f32 ff0;
+    register f32 fout;
+    register s16 const* p2 = pp2;
+    register s16 const* p3 = pp3;
+    register s16 const* p4 = pp4;
+    register s16 const* p5 = pp5;
+    register s16 const* p6 = pp6;
+    register s16 const* p7 = pp7;
+    // clang-format off
+    asm {
+        psq_l ff2, 0(p2), 0x1, 5
+        psq_l ff0, 0(p5), 0x1, 5
+        psq_l ff7, 0(p3), 0x1, 5
+        fsubs ff5, ff0, ff2
+        psq_l ff6, 0(p6), 0x1, 5
+        fsubs ff3, p1, ff2
+        psq_l ff0, 0(p7), 0x1, 5
+        fsubs ff4, ff6, ff7
+        fdivs ff3, ff3, ff5
+        psq_l fout, 0(p4), 0x1, 5
+        fmadds ff0, ff0, ff5, ff7
+        fmuls ff2, ff3, ff3
+        fnmsubs ff4, ff5, fout, ff4
+        fsubs ff0, ff0, ff6
+        fsubs ff0, ff0, ff4
+        fmuls ff0, ff2, ff0
+        fmadds fout, ff5, fout, ff0
+        fmadds fout, fout, ff3, ff7
+        fmadds fout, ff4, ff2, fout
+        fsubs fout, fout, ff0
+    }
+    // clang-format on
+    return fout;
+}
+
+template<typename T>
+f32 J3DGetKeyFrameInterpolation(f32 i_frame, J3DAnmKeyTableBase* i_entry, T* i_data) {
+    if (i_frame < i_data[0]) {
+        return i_data[1];
+    }
+    if (i_entry->mType == 0) {
+        u32 idx = i_entry->mMaxFrame - 1;
+        if (i_data[idx * 3] <= i_frame) {
+            return i_data[idx * 3 + 1];
+        }
+        u32 uVar7 = i_entry->mMaxFrame;
+        while (uVar7 > 1) {
+            u32 uVar2 = uVar7 >> 1;
+            u32 tmp = uVar2 * 3;
+            if (i_frame >= i_data[tmp]) {
+                i_data += tmp;
+                uVar7 = uVar7 - uVar2;
+            } else {
+                uVar7 = uVar2;
+            }
+        }
+        return J3DHermiteInterpolation(i_frame, &i_data[0], &i_data[1], &i_data[2],
+                                       &i_data[3], &i_data[4], &i_data[5]);
+    } else {
+        u32 idx = i_entry->mMaxFrame - 1;
+        if (i_data[idx * 4] <= i_frame) {
+            return i_data[idx * 4 + 1];
+        }
+        u32 uVar7 = i_entry->mMaxFrame;
+        while (uVar7 > 1) {
+            u32 uVar2 = uVar7 >> 1;
+            if (i_frame >= i_data[uVar2 * 4]) {
+                i_data += uVar2 * 4;
+                uVar7 = uVar7 - uVar2;
+            } else {
+                uVar7 = uVar2;
+            }
+        }
+        return J3DHermiteInterpolation(i_frame, &i_data[0], &i_data[1], &i_data[3],
+                                       &i_data[4], &i_data[5], &i_data[6]);
+    }
 }
 
 /* 80329A34-80329E5C 324374 0428+00 0/0 1/1 0/0 .text
  * calcTransform__18J3DAnmTransformKeyCFfUsP16J3DTransformInfo  */
-void J3DAnmTransformKey::calcTransform(f32 param_0, u16 param_1,
-                                           J3DTransformInfo* param_2) const {
-    // NONMATCHING
+void J3DAnmTransformKey::calcTransform(f32 i_frame, u16 i_index,
+                                       J3DTransformInfo* o_transform) const {
+    u16 idx = i_index * 3;
+    J3DAnmTransformKeyTable* entryX = &mAnmTable[idx];
+    J3DAnmTransformKeyTable* entryY = &mAnmTable[idx + 1];
+    J3DAnmTransformKeyTable* entryZ = &mAnmTable[idx + 2];
+    switch (entryX->mScaleInfo.mMaxFrame) {
+    case 0:
+        o_transform->mScale.x = 1.0f;
+        break;
+    case 1:
+        o_transform->mScale.x = mScaleData[entryX->mScaleInfo.mOffset];
+        break;
+    default:
+        o_transform->mScale.x = J3DGetKeyFrameInterpolation(i_frame, &entryX->mScaleInfo,
+                                                &mScaleData[entryX->mScaleInfo.mOffset]);
+    }
+    switch (entryY->mScaleInfo.mMaxFrame) {
+    case 0:
+        o_transform->mScale.y = 1.0f;
+        break;
+    case 1:
+        o_transform->mScale.y = mScaleData[entryY->mScaleInfo.mOffset];
+        break;
+    default:
+        o_transform->mScale.y = J3DGetKeyFrameInterpolation(i_frame, &entryY->mScaleInfo,
+                                                &mScaleData[entryY->mScaleInfo.mOffset]);
+    }
+    switch (entryZ->mScaleInfo.mMaxFrame) {
+    case 0:
+        o_transform->mScale.z = 1.0f;
+        break;
+    case 1:
+        o_transform->mScale.z = mScaleData[entryZ->mScaleInfo.mOffset];
+        break;
+    default:
+        o_transform->mScale.z = J3DGetKeyFrameInterpolation(i_frame, &entryZ->mScaleInfo,
+                                                &mScaleData[entryZ->mScaleInfo.mOffset]);
+    }
+    switch (entryX->mRotationInfo.mMaxFrame) {
+    case 0:
+        o_transform->mRotation.x = 0;
+        break;
+    case 1:
+        o_transform->mRotation.x = mRotData[entryX->mRotationInfo.mOffset] << mDecShift;
+        break;
+    default:
+        o_transform->mRotation.x = (int)J3DGetKeyFrameInterpolation(i_frame, &entryX->mRotationInfo,
+                                            &mRotData[entryX->mRotationInfo.mOffset]) << mDecShift;
+    }
+    switch (entryY->mRotationInfo.mMaxFrame) {
+    case 0:
+        o_transform->mRotation.y = 0;
+        break;
+    case 1:
+        o_transform->mRotation.y = mRotData[entryY->mRotationInfo.mOffset] << mDecShift;
+        break;
+    default:
+        o_transform->mRotation.y = (int)J3DGetKeyFrameInterpolation(i_frame, &entryY->mRotationInfo,
+                                            &mRotData[entryY->mRotationInfo.mOffset]) << mDecShift;
+    }
+    switch (entryZ->mRotationInfo.mMaxFrame) {
+    case 0:
+        o_transform->mRotation.z = 0;
+        break;
+    case 1:
+        o_transform->mRotation.z = mRotData[entryZ->mRotationInfo.mOffset] << mDecShift;
+        break;
+    default:
+        o_transform->mRotation.z = (int)J3DGetKeyFrameInterpolation(i_frame, &entryZ->mRotationInfo,
+                                            &mRotData[entryZ->mRotationInfo.mOffset]) << mDecShift;
+    }
+    switch (entryX->mTranslateInfo.mMaxFrame) {
+    case 0:
+        o_transform->mTranslate.x = 0.0f;
+        break;
+    case 1:
+        o_transform->mTranslate.x = mTransData[entryX->mTranslateInfo.mOffset];
+        break;
+    default:
+        o_transform->mTranslate.x = J3DGetKeyFrameInterpolation(i_frame, &entryX->mTranslateInfo,
+                                                    &mTransData[entryX->mTranslateInfo.mOffset]);
+    }
+    switch (entryY->mTranslateInfo.mMaxFrame) {
+    case 0:
+        o_transform->mTranslate.y = 0.0f;
+        break;
+    case 1:
+        o_transform->mTranslate.y = mTransData[entryY->mTranslateInfo.mOffset];
+        break;
+    default:
+        o_transform->mTranslate.y = J3DGetKeyFrameInterpolation(i_frame, &entryY->mTranslateInfo,
+                                                    &mTransData[entryY->mTranslateInfo.mOffset]);
+    }
+    switch (entryZ->mTranslateInfo.mMaxFrame) {
+    case 0:
+        o_transform->mTranslate.z = 0.0f;
+        break;
+    case 1:
+        o_transform->mTranslate.z = mTransData[entryZ->mTranslateInfo.mOffset];
+        break;
+    default:
+        o_transform->mTranslate.z = J3DGetKeyFrameInterpolation(i_frame, &entryZ->mTranslateInfo,
+                                                    &mTransData[entryZ->mTranslateInfo.mOffset]);
+    }
 }
-
-/* ############################################################################################## */
-/* 803CED50-803CED60 02BE70 0010+00 2/2 0/0 0/0 .data            __vt__16J3DAnmTexPattern */
-SECTION_DATA extern void* __vt__16J3DAnmTexPattern[4] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__16J3DAnmTexPatternFv,
-    (void*)getKind__16J3DAnmTexPatternCFv,
-};
-
-/* 803CED60-803CED70 02BE80 0010+00 2/2 0/0 0/0 .data            __vt__15J3DAnmTevRegKey */
-SECTION_DATA extern void* __vt__15J3DAnmTevRegKey[4] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__15J3DAnmTevRegKeyFv,
-    (void*)getKind__15J3DAnmTevRegKeyCFv,
-};
-
-/* 803CED70-803CED84 02BE90 0014+00 2/2 0/0 0/0 .data            __vt__14J3DAnmColorKey */
-SECTION_DATA extern void* __vt__14J3DAnmColorKey[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__14J3DAnmColorKeyFv,
-    (void*)getKind__14J3DAnmColorKeyCFv,
-    (void*)getColor__14J3DAnmColorKeyCFUsP8_GXColor,
-};
-
-/* 803CED84-803CED98 02BEA4 0014+00 2/2 0/0 0/0 .data            __vt__15J3DAnmColorFull */
-SECTION_DATA extern void* __vt__15J3DAnmColorFull[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__15J3DAnmColorFullFv,
-    (void*)getKind__15J3DAnmColorFullCFv,
-    (void*)getColor__15J3DAnmColorFullCFUsP8_GXColor,
-};
-
-/* 803CED98-803CEDAC 02BEB8 0014+00 4/4 0/0 0/0 .data            __vt__11J3DAnmColor */
-SECTION_DATA extern void* __vt__11J3DAnmColor[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__11J3DAnmColorFv,
-    (void*)getKind__11J3DAnmColorCFv,
-    (void*)getColor__11J3DAnmColorCFUsP8_GXColor,
-};
-
-/* 803CEDAC-803CEDC0 02BECC 0014+00 2/2 0/0 0/0 .data            __vt__17J3DAnmVtxColorKey */
-SECTION_DATA extern void* __vt__17J3DAnmVtxColorKey[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__17J3DAnmVtxColorKeyFv,
-    (void*)getKind__17J3DAnmVtxColorKeyCFv,
-    (void*)getColor__17J3DAnmVtxColorKeyCFUcUsP8_GXColor,
-};
-
-/* 803CEDC0-803CEDD4 02BEE0 0014+00 2/2 0/0 0/0 .data            __vt__18J3DAnmVtxColorFull */
-SECTION_DATA extern void* __vt__18J3DAnmVtxColorFull[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__18J3DAnmVtxColorFullFv,
-    (void*)getKind__18J3DAnmVtxColorFullCFv,
-    (void*)getColor__18J3DAnmVtxColorFullCFUcUsP8_GXColor,
-};
-
-/* 803CEDD4-803CEDE8 02BEF4 0014+00 4/4 0/0 0/0 .data            __vt__14J3DAnmVtxColor */
-SECTION_DATA extern void* __vt__14J3DAnmVtxColor[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__14J3DAnmVtxColorFv,
-    (void*)getKind__14J3DAnmVtxColorCFv,
-    (void*)getColor__14J3DAnmVtxColorCFUcUsP8_GXColor,
-};
-
-/* 803CEDE8-803CEDFC 02BF08 0014+00 1/1 1/1 0/0 .data            __vt__16J3DAnmClusterKey */
-SECTION_DATA extern void* __vt__16J3DAnmClusterKey[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__16J3DAnmClusterKeyFv,
-    (void*)getKind__16J3DAnmClusterKeyCFv,
-    (void*)getWeight__16J3DAnmClusterKeyCFUs,
-};
-
-/* 803CEDFC-803CEE10 02BF1C 0014+00 3/3 1/1 0/0 .data            __vt__13J3DAnmCluster */
-SECTION_DATA extern void* __vt__13J3DAnmCluster[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__13J3DAnmClusterFv,
-    (void*)getKind__13J3DAnmClusterCFv,
-    (void*)getWeight__13J3DAnmClusterCFUs,
-};
-
-/* 803CEE10-803CEE24 02BF30 0014+00 1/1 1/1 0/0 .data            __vt__17J3DAnmClusterFull */
-SECTION_DATA extern void* __vt__17J3DAnmClusterFull[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__17J3DAnmClusterFullFv,
-    (void*)getKind__17J3DAnmClusterFullCFv,
-    (void*)getWeight__17J3DAnmClusterFullCFUs,
-};
-
-/* 803CEE24-803CEE34 02BF44 0010+00 2/2 0/0 0/0 .data            __vt__19J3DAnmTextureSRTKey */
-SECTION_DATA extern void* __vt__19J3DAnmTextureSRTKey[4] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__19J3DAnmTextureSRTKeyFv,
-    (void*)getKind__19J3DAnmTextureSRTKeyCFv,
-};
 
 /* 80329E5C-80329F14 32479C 00B8+00 0/0 2/2 0/0 .text            __ct__19J3DAnmTextureSRTKeyFv */
 J3DAnmTextureSRTKey::J3DAnmTextureSRTKey() : J3DAnmBase(0) {
@@ -485,39 +682,113 @@ J3DAnmTextureSRTKey::J3DAnmTextureSRTKey() : J3DAnmBase(0) {
     mRotNum = 0;
     mScaleNum = 0;
     mTrackNum = 0;
-    mAnmTable = 0;
-    mTransData = 0;
-    mScaleData = 0;
-    mRotData = 0;
+    mAnmTable = NULL;
+    mTransData = NULL;
+    mScaleData = NULL;
+    mRotData = NULL;
     field_0x48 = 0;
     field_0x46 = 0;
     field_0x44 = 0;
     field_0x4a = 0;
-    field_0x58 = 0;
-    field_0x54 = 0;
-    field_0x4c = 0;
-    field_0x50 = 0;
+    field_0x58 = NULL;
+    field_0x54 = NULL;
+    field_0x4c = NULL;
+    field_0x50 = NULL;
     mTexMtxCalcType = 0;
 }
 
 
 /* 80329F14-8032A184 324854 0270+00 0/0 1/1 0/0 .text
  * calcTransform__19J3DAnmTextureSRTKeyCFfUsP17J3DTextureSRTInfo */
-void J3DAnmTextureSRTKey::calcTransform(f32 param_0, u16 param_1,
-                                            J3DTextureSRTInfo* param_2) const {
-    // NONMATCHING
+void J3DAnmTextureSRTKey::calcTransform(f32 i_frame, u16 i_index,
+                                        J3DTextureSRTInfo* o_texinfo) const {
+    u16 idx = i_index * 3;
+    J3DAnmTransformKeyTable* entryX = &mAnmTable[idx];
+    J3DAnmTransformKeyTable* entryY = &mAnmTable[idx + 1];
+    J3DAnmTransformKeyTable* entryRot = &mAnmTable[idx + 2];
+    switch (entryX->mScaleInfo.mMaxFrame) {
+    case 0:
+        o_texinfo->mScaleX = 1.0f;
+        break;
+    case 1:
+        o_texinfo->mScaleX = mScaleData[entryX->mScaleInfo.mOffset];
+        break;
+    default:
+        o_texinfo->mScaleX = J3DGetKeyFrameInterpolation(i_frame, &entryX->mScaleInfo,
+                                                &mScaleData[entryX->mScaleInfo.mOffset]);
+    }
+    switch (entryY->mScaleInfo.mMaxFrame) {
+    case 0:
+        o_texinfo->mScaleY = 1.0f;
+        break;
+    case 1:
+        o_texinfo->mScaleY = mScaleData[entryY->mScaleInfo.mOffset];
+        break;
+    default:
+        o_texinfo->mScaleY = J3DGetKeyFrameInterpolation(i_frame, &entryY->mScaleInfo,
+                                                &mScaleData[entryY->mScaleInfo.mOffset]);
+    }
+    switch (entryRot->mRotationInfo.mMaxFrame) {
+    case 0:
+        o_texinfo->mRotation = 0;
+        break;
+    case 1:
+        o_texinfo->mRotation = mRotData[entryRot->mRotationInfo.mOffset] << mDecShift;
+        break;
+    default:
+        o_texinfo->mRotation = (int)J3DGetKeyFrameInterpolation(i_frame, &entryRot->mRotationInfo,
+                                        &mRotData[entryRot->mRotationInfo.mOffset]) << mDecShift;
+    }
+    switch (entryX->mTranslateInfo.mMaxFrame) {
+    case 0:
+        o_texinfo->mTranslationX = 0.0f;
+        break;
+    case 1:
+        o_texinfo->mTranslationX = mTransData[entryX->mTranslateInfo.mOffset];
+        break;
+    default:
+        o_texinfo->mTranslationX = J3DGetKeyFrameInterpolation(i_frame, &entryX->mTranslateInfo,
+                                                    &mTransData[entryX->mTranslateInfo.mOffset]);
+    }
+    switch (entryY->mTranslateInfo.mMaxFrame) {
+    case 0:
+        o_texinfo->mTranslationY = 0.0f;
+        break;
+    case 1:
+        o_texinfo->mTranslationY = mTransData[entryY->mTranslateInfo.mOffset];
+        break;
+    default:
+        o_texinfo->mTranslationY = J3DGetKeyFrameInterpolation(i_frame, &entryY->mTranslateInfo,
+                                                    &mTransData[entryY->mTranslateInfo.mOffset]);
+    }
 }
 
 /* 8032A184-8032A218 324AC4 0094+00 1/0 0/0 0/0 .text            getWeight__17J3DAnmClusterFullCFUs
  */
-f32 J3DAnmClusterFull::getWeight(u16 param_0) const {
-    // NONMATCHING
+f32 J3DAnmClusterFull::getWeight(u16 i_index) const {
+    int maxFrame = mAnmTable[i_index].mMaxFrame;
+    int frame = (int)(mFrame + 0.5f);
+    if (mFrame < 0.0f) {
+        return mWeight[mAnmTable[i_index].mOffset];
+    } else if (frame >= maxFrame) {
+        return mWeight[mAnmTable[i_index].mOffset + (maxFrame - 1)];
+    } else {
+        return mWeight[mAnmTable[i_index].mOffset + frame];
+    }
 }
 
 /* 8032A218-8032A29C 324B58 0084+00 1/0 0/0 0/0 .text            getWeight__16J3DAnmClusterKeyCFUs
  */
-f32 J3DAnmClusterKey::getWeight(u16 param_0) const {
-    // NONMATCHING
+f32 J3DAnmClusterKey::getWeight(u16 i_index) const {
+    switch (mAnmTable[i_index].mWeightTable.mMaxFrame) {
+    case 0:
+        return 1.0f;
+    case 1:
+        return mWeight[mAnmTable[i_index].mWeightTable.mOffset];
+    default:
+        return J3DGetKeyFrameInterpolation(mFrame, &mAnmTable[i_index].mWeightTable,
+                                           &mWeight[mAnmTable[i_index].mWeightTable.mOffset]);
+    }
 }
 
 /* 8032A29C-8032A30C 324BDC 0070+00 2/2 0/0 0/0 .text            __ct__14J3DAnmVtxColorFv */
@@ -526,7 +797,7 @@ J3DAnmVtxColor::J3DAnmVtxColor() : J3DAnmBase(0) {
         mAnmTableNum[i] = 0;
     }
     for (int i = 0; i < 2; i++) {
-        mAnmVtxColorIndexData[i] = 0;
+        mAnmVtxColorIndexData[i] = NULL;
     }
 }
 
@@ -534,14 +805,42 @@ J3DAnmVtxColor::J3DAnmVtxColor() : J3DAnmBase(0) {
 /* 8032A30C-8032A368 324C4C 005C+00 0/0 1/1 0/0 .text            __ct__18J3DAnmVtxColorFullFv */
 J3DAnmVtxColorFull::J3DAnmVtxColorFull() {
     for (int i = 0; i < 2; i++) {
-        mpTable[i] = 0;
+        mpTable[i] = NULL;
     }
 }
 
 /* 8032A368-8032A4E0 324CA8 0178+00 1/0 0/0 0/0 .text
  * getColor__18J3DAnmVtxColorFullCFUcUsP8_GXColor               */
-void J3DAnmVtxColorFull::getColor(u8 param_0, u16 param_1, _GXColor* param_2) const {
-    // NONMATCHING
+void J3DAnmVtxColorFull::getColor(u8 i_table, u16 i_index, GXColor* o_color) const {
+    J3DAnmColorFullTable* entry = &mpTable[i_table][i_index];
+    if (mFrame < 0.0f) {
+        o_color->r = mColorR[entry->mROffset];
+        o_color->g = mColorG[entry->mGOffset];
+        o_color->b = mColorB[entry->mBOffset];
+        o_color->a = mColorA[entry->mAOffset];
+    } else {
+        int frame = (int)(mFrame + 0.5f);
+        if (frame >= entry->mRMaxFrame) {
+            o_color->r = mColorR[entry->mROffset + (entry->mRMaxFrame - 1)];
+        } else {
+            o_color->r = mColorR[entry->mROffset + frame];
+        }
+        if (frame >= entry->mGMaxFrame) {
+            o_color->g = mColorG[entry->mGOffset + (entry->mGMaxFrame - 1)];
+        } else {
+            o_color->g = mColorG[entry->mGOffset + frame];
+        }
+        if (frame >= entry->mBMaxFrame) {
+            o_color->b = mColorB[entry->mBOffset + (entry->mBMaxFrame - 1)];
+        } else {
+            o_color->b = mColorB[entry->mBOffset + frame];
+        }
+        if (frame >= entry->mAMaxFrame) {
+            o_color->a = mColorA[entry->mAOffset + (entry->mAMaxFrame - 1)];
+        } else {
+            o_color->a = mColorA[entry->mAOffset + frame];
+        }
+    }
 }
 
 /* 8032A4E0-8032A53C 324E20 005C+00 0/0 1/1 0/0 .text            __ct__17J3DAnmVtxColorKeyFv */
@@ -551,52 +850,230 @@ J3DAnmVtxColorKey::J3DAnmVtxColorKey() {
     }
 }
 
-/* ############################################################################################## */
-/* 80456458-8045645C 004A58 0004+00 3/3 0/0 0/0 .sdata2          @1499 */
-SECTION_SDATA2 static f32 lit_1499 = 255.0f;
-
 /* 8032A53C-8032A828 324E7C 02EC+00 1/0 0/0 0/0 .text
  * getColor__17J3DAnmVtxColorKeyCFUcUsP8_GXColor                */
-void J3DAnmVtxColorKey::getColor(u8 param_0, u16 param_1, _GXColor* param_2) const {
-    // NONMATCHING
+void J3DAnmVtxColorKey::getColor(u8 i_table, u16 i_index, GXColor* o_color) const {
+    J3DAnmColorKeyTable* entry = &mpTable[i_table][i_index];
+    f32 col;
+    switch (entry->mRInfo.mMaxFrame) {
+    case 0:
+        o_color->r = 0;
+        break;
+    case 1:
+        o_color->r = mColorR[entry->mRInfo.mOffset];
+        break;
+    default:
+        col = J3DGetKeyFrameInterpolation(mFrame, &entry->mRInfo,
+                                          &mColorR[entry->mRInfo.mOffset]);
+        if (col <= 0.0f) {
+            o_color->r = 0;
+        } else if (col <= 255.0f) {
+            OSf32tou8(&col, &o_color->r);
+        } else {
+            o_color->r = 255;
+        }
+    }
+    switch (entry->mGInfo.mMaxFrame) {
+    case 0:
+        o_color->g = 0;
+        break;
+    case 1:
+        o_color->g = mColorG[entry->mGInfo.mOffset];
+        break;
+    default:
+        col = J3DGetKeyFrameInterpolation(mFrame, &entry->mGInfo,
+                                          &mColorG[entry->mGInfo.mOffset]);
+        if (col <= 0.0f) {
+            o_color->g = 0;
+        } else if (col <= 255.0f) {
+            OSf32tou8(&col, &o_color->g);
+        } else {
+            o_color->g = 255;
+        }
+    }
+    switch (entry->mBInfo.mMaxFrame) {
+    case 0:
+        o_color->b = 0;
+        break;
+    case 1:
+        o_color->b = mColorB[entry->mBInfo.mOffset];
+        break;
+    default:
+        col = J3DGetKeyFrameInterpolation(mFrame, &entry->mBInfo,
+                                          &mColorB[entry->mBInfo.mOffset]);
+        if (col <= 0.0f) {
+            o_color->b = 0;
+        } else if (col <= 255.0f) {
+            OSf32tou8(&col, &o_color->b);
+        } else {
+            o_color->b = 255;
+        }
+    }
+    switch (entry->mAInfo.mMaxFrame) {
+    case 0:
+        o_color->a = 0;
+        break;
+    case 1:
+        o_color->a = mColorA[entry->mAInfo.mOffset];
+        break;
+    default:
+        col = J3DGetKeyFrameInterpolation(mFrame, &entry->mAInfo,
+                                          &mColorA[entry->mAInfo.mOffset]);
+        if (col <= 0.0f) {
+            o_color->a = 0;
+        } else if (col <= 255.0f) {
+            OSf32tou8(&col, &o_color->a);
+        } else {
+            o_color->a = 255;
+        }
+    }
 }
 
 /* 8032A828-8032A8A4 325168 007C+00 2/2 0/0 0/0 .text            __ct__11J3DAnmColorFv */
-J3DAnmColor::J3DAnmColor() : J3DAnmBase(0), field_0xc(0), field_0xe(0), field_0x10(0), field_0x12(0), mUpdateMaterialNum(0), mUpdateMaterialID(NULL) {}
+J3DAnmColor::J3DAnmColor() : J3DAnmBase(0), field_0xc(0), field_0xe(0), field_0x10(0),
+    field_0x12(0), mUpdateMaterialNum(0), mUpdateMaterialID(NULL) {}
 
 
 /* 8032A8A4-8032A93C 3251E4 0098+00 0/0 1/1 0/0 .text
  * searchUpdateMaterialID__11J3DAnmColorFP16J3DMaterialTable    */
-void J3DAnmColor::searchUpdateMaterialID(J3DMaterialTable* param_0) {
-    // NONMATCHING
+void J3DAnmColor::searchUpdateMaterialID(J3DMaterialTable* i_materialTable) {
+    for (u16 i = 0; i < mUpdateMaterialNum; i++) {
+        int index = i_materialTable->getMaterialName()->getIndex(mUpdateMaterialName.getName(i));
+        if (index != -1) {
+            mUpdateMaterialID[i] = index;
+        } else {
+            mUpdateMaterialID[i] = 0xffff;
+        }
+    }
 }
 
 /* 8032A93C-8032A990 32527C 0054+00 0/0 1/1 0/0 .text            __ct__15J3DAnmColorFullFv */
 J3DAnmColorFull::J3DAnmColorFull() {
-    mColorR = 0;
-    mColorG = 0;
-    mColorB = 0;
-    mColorA = 0;
-    mAnmTable = 0;
+    mColorR = NULL;
+    mColorG = NULL;
+    mColorB = NULL;
+    mColorA = NULL;
+    mAnmTable = NULL;
 }
 
 /* 8032A990-8032AB00 3252D0 0170+00 1/0 0/0 0/0 .text getColor__15J3DAnmColorFullCFUsP8_GXColor */
-void J3DAnmColorFull::getColor(u16 param_0, _GXColor* param_1) const {
-    // NONMATCHING
+void J3DAnmColorFull::getColor(u16 i_index, GXColor* o_color) const {
+    J3DAnmColorFullTable* entry = &mAnmTable[i_index];
+    if (mFrame < 0.0f) {
+        o_color->r = mColorR[entry->mROffset];
+        o_color->g = mColorG[entry->mGOffset];
+        o_color->b = mColorB[entry->mBOffset];
+        o_color->a = mColorA[entry->mAOffset];
+    } else {
+        int frame = (int)(mFrame + 0.5f);
+        if (frame >= entry->mRMaxFrame) {
+            o_color->r = mColorR[entry->mROffset + (entry->mRMaxFrame - 1)];
+        } else {
+            o_color->r = mColorR[entry->mROffset + frame];
+        }
+        if (frame >= entry->mGMaxFrame) {
+            o_color->g = mColorG[entry->mGOffset + (entry->mGMaxFrame - 1)];
+        } else {
+            o_color->g = mColorG[entry->mGOffset + frame];
+        }
+        if (frame >= entry->mBMaxFrame) {
+            o_color->b = mColorB[entry->mBOffset + (entry->mBMaxFrame - 1)];
+        } else {
+            o_color->b = mColorB[entry->mBOffset + frame];
+        }
+        if (frame >= entry->mAMaxFrame) {
+            o_color->a = mColorA[entry->mAOffset + (entry->mAMaxFrame - 1)];
+        } else {
+            o_color->a = mColorA[entry->mAOffset + frame];
+        }
+    }
 }
 
 /* 8032AB00-8032AB54 325440 0054+00 0/0 1/1 0/0 .text            __ct__14J3DAnmColorKeyFv */
 J3DAnmColorKey::J3DAnmColorKey() {
-    field_0x2c = 0;
-    field_0x30 = 0;
-    field_0x34 = 0;
-    field_0x38 = 0;
-    field_0x3c = 0;
+    mColorR = NULL;
+    mColorG = NULL;
+    mColorB = NULL;
+    mColorA = NULL;
+    mAnmTable = NULL;
 }
 
 /* 8032AB54-8032AE18 325494 02C4+00 1/0 0/0 0/0 .text getColor__14J3DAnmColorKeyCFUsP8_GXColor */
-void J3DAnmColorKey::getColor(u16 param_0, _GXColor* param_1) const {
-    // NONMATCHING
+void J3DAnmColorKey::getColor(u16 i_index, GXColor* o_color) const {
+    J3DAnmColorKeyTable* entry = &mAnmTable[i_index];
+    f32 col;
+    switch (entry->mRInfo.mMaxFrame) {
+    case 0:
+        o_color->r = 0;
+        break;
+    case 1:
+        o_color->r = mColorR[entry->mRInfo.mOffset];
+        break;
+    default:
+        col = J3DGetKeyFrameInterpolation(mFrame, &entry->mRInfo,
+                                          &mColorR[entry->mRInfo.mOffset]);
+        if (col < 0.0f) {
+            o_color->r = 0;
+        } else if (col > 255.0f) {
+            o_color->r = 255;
+        } else {
+            OSf32tou8(&col, &o_color->r);
+        }
+    }
+    switch (entry->mGInfo.mMaxFrame) {
+    case 0:
+        o_color->g = 0;
+        break;
+    case 1:
+        o_color->g = mColorG[entry->mGInfo.mOffset];
+        break;
+    default:
+        col = J3DGetKeyFrameInterpolation(mFrame, &entry->mGInfo,
+                                          &mColorG[entry->mGInfo.mOffset]);
+        if (col < 0.0f) {
+            o_color->g = 0;
+        } else if (col > 255.0f) {
+            o_color->g = 255;
+        } else {
+            OSf32tou8(&col, &o_color->g);
+        }
+    }
+    switch (entry->mBInfo.mMaxFrame) {
+    case 0:
+        o_color->b = 0;
+        break;
+    case 1:
+        o_color->b = mColorB[entry->mBInfo.mOffset];
+        break;
+    default:
+        col = J3DGetKeyFrameInterpolation(mFrame, &entry->mBInfo,
+                                          &mColorB[entry->mBInfo.mOffset]);
+        if (col < 0.0f) {
+            o_color->b = 0;
+        } else if (col > 255.0f) {
+            o_color->b = 255;
+        } else {
+            OSf32tou8(&col, &o_color->b);
+        }
+    }
+    switch (entry->mAInfo.mMaxFrame) {
+    case 0:
+        o_color->a = 0;
+        break;
+    case 1:
+        o_color->a = mColorA[entry->mAInfo.mOffset];
+        break;
+    default:
+        col = J3DGetKeyFrameInterpolation(mFrame, &entry->mAInfo,
+                                          &mColorA[entry->mAInfo.mOffset]);
+        if (col < 0.0f) {
+            o_color->a = 0;
+        } else if (col > 255.0f) {
+            o_color->a = 255;
+        } else {
+            OSf32tou8(&col, &o_color->a);
+        }
+    }
 }
 
 /* 8032AE18-8032AED8 325758 00C0+00 0/0 1/1 0/0 .text            __ct__15J3DAnmTevRegKeyFv */
@@ -611,34 +1088,42 @@ J3DAnmTevRegKey::J3DAnmTevRegKey() : J3DAnmBase(0) {
     mKRegDataCountB = 0;
     mKRegDataCountG = 0;
     mKRegDataCountR = 0;
-    mKRegUpdateMaterialID = 0;
-    mCRegUpdateMaterialID = 0;
-    mAnmCRegDataA = 0;
-    mAnmCRegDataB = 0;
-    mAnmCRegDataG = 0;
-    mAnmCRegDataR = 0;
-    mAnmKRegDataA = 0;
-    mAnmKRegDataB = 0;
-    mAnmKRegDataG = 0;
-    mAnmKRegDataR = 0;
+    mKRegUpdateMaterialID = NULL;
+    mCRegUpdateMaterialID = NULL;
+    mAnmCRegDataA = NULL;
+    mAnmCRegDataB = NULL;
+    mAnmCRegDataG = NULL;
+    mAnmCRegDataR = NULL;
+    mAnmKRegDataA = NULL;
+    mAnmKRegDataB = NULL;
+    mAnmKRegDataG = NULL;
+    mAnmKRegDataR = NULL;
 }
 
 
 /* 8032AED8-8032AF50 325818 0078+00 0/0 2/2 0/0 .text            __ct__16J3DAnmTexPatternFv */
-J3DAnmTexPattern::J3DAnmTexPattern() : J3DAnmBase(0), mTextureIndex(NULL), mAnmTable(NULL), field_0x14(0), mUpdateMaterialNum(0), mUpdateMaterialID(NULL) {}
+J3DAnmTexPattern::J3DAnmTexPattern() : J3DAnmBase(0), mTextureIndex(NULL), mAnmTable(NULL),
+    field_0x14(0), mUpdateMaterialNum(0), mUpdateMaterialID(NULL) {}
 
 /* 8032AF50-8032B004 325890 00B4+00 0/0 1/1 72/72 .text getTexNo__16J3DAnmTexPatternCFUsPUs */
-void J3DAnmTexPattern::getTexNo(u16 param_0, u16* param_1) const {
-    // NONMATCHING
+void J3DAnmTexPattern::getTexNo(u16 i_index, u16* o_texNo) const {
+    u32 maxFrame = mAnmTable[i_index].mMaxFrame;
+    if (mFrame < 0.0f) {
+        *o_texNo = mTextureIndex[mAnmTable[i_index].mOffset];
+    } else if (mFrame >= maxFrame) {
+        *o_texNo = mTextureIndex[mAnmTable[i_index].mOffset + (maxFrame - 1)];
+    } else {
+        *o_texNo = mTextureIndex[mAnmTable[i_index].mOffset + (int)mFrame];
+    }
 }
 
 /* 8032B004-8032B09C 325944 0098+00 1/1 1/1 0/0 .text
  * searchUpdateMaterialID__16J3DAnmTexPatternFP16J3DMaterialTable */
-void J3DAnmTexPattern::searchUpdateMaterialID(J3DMaterialTable* param_0) {
+void J3DAnmTexPattern::searchUpdateMaterialID(J3DMaterialTable* i_materialTable) {
     for (u16 i = 0; i < mUpdateMaterialNum; i++) {
-        s32 r3 = param_0->getMaterialName()->getIndex(mUpdateMaterialName.getName(i));
-        if (r3 != -1) {
-            mUpdateMaterialID[i] = r3;
+        s32 index = i_materialTable->getMaterialName()->getIndex(mUpdateMaterialName.getName(i));
+        if (index != -1) {
+            mUpdateMaterialID[i] = index;
         } else {
             mUpdateMaterialID[i] = -1;
         }
@@ -647,25 +1132,25 @@ void J3DAnmTexPattern::searchUpdateMaterialID(J3DMaterialTable* param_0) {
 
 /* 8032B09C-8032B0C0 3259DC 0024+00 0/0 4/4 1/1 .text
  * searchUpdateMaterialID__16J3DAnmTexPatternFP12J3DModelData   */
-void J3DAnmTexPattern::searchUpdateMaterialID(J3DModelData* param_0) {
-    searchUpdateMaterialID(&param_0->getMaterialTable());
+void J3DAnmTexPattern::searchUpdateMaterialID(J3DModelData* i_modelData) {
+    searchUpdateMaterialID(&i_modelData->getMaterialTable());
 }
 
 /* 8032B0C0-8032B1D4 325A00 0114+00 1/1 1/1 0/0 .text
  * searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP16J3DMaterialTable */
-void J3DAnmTextureSRTKey::searchUpdateMaterialID(J3DMaterialTable* param_0) {
+void J3DAnmTextureSRTKey::searchUpdateMaterialID(J3DMaterialTable* i_materialTable) {
     for (u16 i = 0; i < u16(mTrackNum / 3); i++) {
-        s32 r3 = param_0->getMaterialName()->getIndex(mUpdateMaterialName.getName(i));
-        if (r3 != -1) {
-            mUpdateMaterialID[i] = r3;
+        s32 index = i_materialTable->getMaterialName()->getIndex(mUpdateMaterialName.getName(i));
+        if (index != -1) {
+            mUpdateMaterialID[i] = index;
         } else {
             mUpdateMaterialID[i] = -1;
         }
     }
     for (u16 i = 0; i < u16(field_0x4a / 3); i++) {
-        s32 r3 = param_0->getMaterialName()->getIndex(mPostUpdateMaterialName.getName(i));
-        if (r3 != -1) {
-            mPostUpdateMaterialID[i] = r3;
+        s32 index = i_materialTable->getMaterialName()->getIndex(mPostUpdateMaterialName.getName(i));
+        if (index != -1) {
+            mPostUpdateMaterialID[i] = index;
         } else {
             mPostUpdateMaterialID[i] = -1;
         }
@@ -674,249 +1159,191 @@ void J3DAnmTextureSRTKey::searchUpdateMaterialID(J3DMaterialTable* param_0) {
 
 /* 8032B1D4-8032B1F8 325B14 0024+00 0/0 8/8 6/6 .text
  * searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP12J3DModelData */
-void J3DAnmTextureSRTKey::searchUpdateMaterialID(J3DModelData* param_0) {
-    searchUpdateMaterialID(&param_0->getMaterialTable());
+void J3DAnmTextureSRTKey::searchUpdateMaterialID(J3DModelData* i_modelData) {
+    searchUpdateMaterialID(&i_modelData->getMaterialTable());
 }
-
-/* ############################################################################################## */
-/* 8045645C-80456460 004A5C 0004+00 1/1 0/0 0/0 .sdata2          @1817 */
-SECTION_SDATA2 static f32 lit_1817 = -1024.0f;
-
-/* 80456460-80456468 004A60 0004+04 1/1 0/0 0/0 .sdata2          @1818 */
-SECTION_SDATA2 static f32 lit_1818[1 + 1 /* padding */] = {
-    1023.0f,
-    /* padding */
-    0.0f,
-};
 
 /* 8032B1F8-8032B4BC 325B38 02C4+00 0/0 2/2 1/1 .text
  * getTevColorReg__15J3DAnmTevRegKeyCFUsP11_GXColorS10          */
-void J3DAnmTevRegKey::getTevColorReg(u16 param_0, _GXColorS10* param_1) const {
-    // NONMATCHING
+void J3DAnmTevRegKey::getTevColorReg(u16 i_index, GXColorS10* o_color) const {
+    J3DAnmCRegKeyTable* entry = &mAnmCRegKeyTable[i_index];
+    f32 col;
+    switch (entry->mRTable.mMaxFrame) {
+    case 0:
+        o_color->r = 0;
+        break;
+    case 1:
+        o_color->r = mAnmCRegDataR[entry->mRTable.mOffset];
+        break;
+    default:
+        col = J3DGetKeyFrameInterpolation(mFrame, &entry->mRTable,
+                                          &mAnmCRegDataR[entry->mRTable.mOffset]);
+        if (col < -0x400) {
+            o_color->r = -0x400;
+        } else if (col > 0x3FF) {
+            o_color->r = 0x3FF;
+        } else {
+            OSf32tos16(&col, &o_color->r);
+        }
+    }
+    switch (entry->mGTable.mMaxFrame) {
+    case 0:
+        o_color->g = 0;
+        break;
+    case 1:
+        o_color->g = mAnmCRegDataG[entry->mGTable.mOffset];
+        break;
+    default:
+        col = J3DGetKeyFrameInterpolation(mFrame, &entry->mGTable,
+                                          &mAnmCRegDataG[entry->mGTable.mOffset]);
+        if (col < -0x400) {
+            o_color->g = -0x400;
+        } else if (col > 0x3FF) {
+            o_color->g = 0x3FF;
+        } else {
+            OSf32tos16(&col, &o_color->g);
+        }
+    }
+    switch (entry->mBTable.mMaxFrame) {
+    case 0:
+        o_color->b = 0;
+        break;
+    case 1:
+        o_color->b = mAnmCRegDataB[entry->mBTable.mOffset];
+        break;
+    default:
+        col = J3DGetKeyFrameInterpolation(mFrame, &entry->mBTable,
+                                          &mAnmCRegDataB[entry->mBTable.mOffset]);
+        if (col < -0x400) {
+            o_color->b = -0x400;
+        } else if (col > 0x3FF) {
+            o_color->b = 0x3FF;
+        } else {
+            OSf32tos16(&col, &o_color->b);
+        }
+    }
+    switch (entry->mATable.mMaxFrame) {
+    case 0:
+        o_color->a = 0;
+        break;
+    case 1:
+        o_color->a = mAnmCRegDataA[entry->mATable.mOffset];
+        break;
+    default:
+        col = J3DGetKeyFrameInterpolation(mFrame, &entry->mATable,
+                                          &mAnmCRegDataA[entry->mATable.mOffset]);
+        if (col < -0x400) {
+            o_color->a = -0x400;
+        } else if (col > 0x3FF) {
+            o_color->a = 0x3FF;
+        } else {
+            OSf32tos16(&col, &o_color->a);
+        }
+    }
 }
 
 /* 8032B4BC-8032B780 325DFC 02C4+00 0/0 1/1 1/1 .text
  * getTevKonstReg__15J3DAnmTevRegKeyCFUsP8_GXColor              */
-void J3DAnmTevRegKey::getTevKonstReg(u16 param_0, _GXColor* param_1) const {
-    // NONMATCHING
+void J3DAnmTevRegKey::getTevKonstReg(u16 i_index, GXColor* o_color) const {
+    J3DAnmKRegKeyTable* entry = &mAnmKRegKeyTable[i_index];
+    f32 col;
+    switch (entry->mRTable.mMaxFrame) {
+    case 0:
+        o_color->r = 0;
+        break;
+    case 1:
+        o_color->r = mAnmKRegDataR[entry->mRTable.mOffset];
+        break;
+    default:
+        col = J3DGetKeyFrameInterpolation(mFrame, &entry->mRTable,
+                                          &mAnmKRegDataR[entry->mRTable.mOffset]);
+        if (col < 0) {
+            o_color->r = 0;
+        } else if (col > 0xFF) {
+            o_color->r = 0xFF;
+        } else {
+            OSf32tou8(&col, &o_color->r);
+        }
+    }
+    switch (entry->mGTable.mMaxFrame) {
+    case 0:
+        o_color->g = 0;
+        break;
+    case 1:
+        o_color->g = mAnmKRegDataG[entry->mGTable.mOffset];
+        break;
+    default:
+        col = J3DGetKeyFrameInterpolation(mFrame, &entry->mGTable,
+                                          &mAnmKRegDataG[entry->mGTable.mOffset]);
+        if (col < 0) {
+            o_color->g = 0;
+        } else if (col > 0xFF) {
+            o_color->g = 0xFF;
+        } else {
+            OSf32tou8(&col, &o_color->g);
+        }
+    }
+    switch (entry->mBTable.mMaxFrame) {
+    case 0:
+        o_color->b = 0;
+        break;
+    case 1:
+        o_color->b = mAnmKRegDataB[entry->mBTable.mOffset];
+        break;
+    default:
+        col = J3DGetKeyFrameInterpolation(mFrame, &entry->mBTable,
+                                          &mAnmKRegDataB[entry->mBTable.mOffset]);
+        if (col < 0) {
+            o_color->b = 0;
+        } else if (col > 0xFF) {
+            o_color->b = 0xFF;
+        } else {
+            OSf32tou8(&col, &o_color->b);
+        }
+    }
+    switch (entry->mATable.mMaxFrame) {
+    case 0:
+        o_color->a = 0;
+        break;
+    case 1:
+        o_color->a = mAnmKRegDataA[entry->mATable.mOffset];
+        break;
+    default:
+        col = J3DGetKeyFrameInterpolation(mFrame, &entry->mATable,
+                                          &mAnmKRegDataA[entry->mATable.mOffset]);
+        if (col < 0) {
+            o_color->a = 0;
+        } else if (col > 0xFF) {
+            o_color->a = 0xFF;
+        } else {
+            OSf32tou8(&col, &o_color->a);
+        }
+    }
 }
 
 /* 8032B780-8032B87C 3260C0 00FC+00 1/1 1/1 0/0 .text
  * searchUpdateMaterialID__15J3DAnmTevRegKeyFP16J3DMaterialTable */
-void J3DAnmTevRegKey::searchUpdateMaterialID(J3DMaterialTable* param_0) {
-    // NONMATCHING
+void J3DAnmTevRegKey::searchUpdateMaterialID(J3DMaterialTable* i_materialTable) {
+    for (u16 i = 0; i < mCRegUpdateMaterialNum; i++) {
+        s32 index = i_materialTable->getMaterialName()->getIndex(mCRegUpdateMaterialName.getName(i));
+        if (index != -1) {
+            mCRegUpdateMaterialID[i] = index;
+        } else {
+            mCRegUpdateMaterialID[i] = -1;
+        }
+    }
+    for (u16 i = 0; i < mKRegUpdateMaterialNum; i++) {
+        s32 index = i_materialTable->getMaterialName()->getIndex(mKRegUpdateMaterialName.getName(i));
+        if (index != -1) {
+            mKRegUpdateMaterialID[i] = index;
+        } else {
+            mKRegUpdateMaterialID[i] = -1;
+        }
+    }
 }
 
 /* 8032B87C-8032B8A0 3261BC 0024+00 0/0 9/9 4/4 .text
  * searchUpdateMaterialID__15J3DAnmTevRegKeyFP12J3DModelData    */
-void J3DAnmTevRegKey::searchUpdateMaterialID(J3DModelData* param_0) {
-    searchUpdateMaterialID(&param_0->getMaterialTable());
-}
-
-/* 8032B8A0-8032BAD4 3261E0 0234+00 6/6 0/0 0/0 .text
- * J3DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs    */
-extern "C" void func_8032B8A0(void* _this, f32 param_0, J3DAnmKeyTableBase* param_1,
-                                  s16* param_2) {
-    // NONMATCHING
-}
-
-/* 8032BAD4-8032BC50 326414 017C+00 3/3 0/0 0/0 .text
- * J3DGetKeyFrameInterpolation<f>__FfP18J3DAnmKeyTableBasePf    */
-extern "C" void func_8032BAD4(void* _this, f32 param_0, J3DAnmKeyTableBase* param_1,
-                                  f32* param_2) {
-    // NONMATCHING
-}
-
-/* 8032BC50-8032BCAC 326590 005C+00 1/0 0/0 0/0 .text            __dt__14J3DAnmVtxColorFv */
-extern "C" void __dt__14J3DAnmVtxColorFv() {
-    // asm J3DAnmVtxColor::~J3DAnmVtxColor() {
-    // NONMATCHING
-}
-
-/* 8032BCAC-8032BD20 3265EC 0074+00 1/0 0/0 0/0 .text            __dt__11J3DAnmColorFv */
-extern "C" void __dt__11J3DAnmColorFv() {
-    // asm J3DAnmColor::~J3DAnmColor() {
-    // NONMATCHING
-}
-
-/* 8032BD20-8032BD94 326660 0074+00 1/0 0/0 0/0 .text            __dt__16J3DAnmTexPatternFv */
-extern "C" void __dt__16J3DAnmTexPatternFv() {
-    // asm J3DAnmTexPattern::~J3DAnmTexPattern() {
-    // NONMATCHING
-}
-
-/* 8032BD94-8032BD9C 3266D4 0008+00 1/0 0/0 0/0 .text            getKind__16J3DAnmTexPatternCFv */
-s32 J3DAnmTexPattern::getKind() const {
-    return 2;
-}
-
-/* 8032BD9C-8032BE24 3266DC 0088+00 1/0 0/0 0/0 .text            __dt__15J3DAnmTevRegKeyFv */
-extern "C" void __dt__15J3DAnmTevRegKeyFv() {
-    // asm J3DAnmTevRegKey::~J3DAnmTevRegKey() {
-    // NONMATCHING
-}
-
-/* 8032BE24-8032BE2C 326764 0008+00 1/0 0/0 0/0 .text            getKind__15J3DAnmTevRegKeyCFv */
-s32 J3DAnmTevRegKey::getKind() const {
-    return 5;
-}
-
-/* 8032BE2C-8032BEB0 32676C 0084+00 1/0 0/0 0/0 .text            __dt__14J3DAnmColorKeyFv */
-extern "C" void __dt__14J3DAnmColorKeyFv() {
-    // asm J3DAnmColorKey::~J3DAnmColorKey() {
-    // NONMATCHING
-}
-
-/* 8032BEB0-8032BEB8 3267F0 0008+00 1/0 0/0 0/0 .text            getKind__14J3DAnmColorKeyCFv */
-s32 J3DAnmColorKey::getKind() const {
-    return 11;
-}
-
-/* 8032BEB8-8032BF3C 3267F8 0084+00 1/0 0/0 0/0 .text            __dt__15J3DAnmColorFullFv */
-extern "C" void __dt__15J3DAnmColorFullFv() {
-    // asm J3DAnmColorFull::~J3DAnmColorFull() {
-    // NONMATCHING
-}
-
-/* 8032BF3C-8032BF44 32687C 0008+00 1/0 0/0 0/0 .text            getKind__15J3DAnmColorFullCFv */
-s32 J3DAnmColorFull::getKind() const {
-    return 10;
-}
-
-/* 8032BF44-8032BF4C 326884 0008+00 1/0 0/0 0/0 .text            getKind__11J3DAnmColorCFv */
-s32 J3DAnmColor::getKind() const {
-    return 1;
-}
-
-/* 8032BF4C-8032BF50 32688C 0004+00 1/0 0/0 0/0 .text getColor__11J3DAnmColorCFUsP8_GXColor */
-void J3DAnmColor::getColor(u16 param_0, _GXColor* param_1) const {
-    /* empty function */
-}
-
-/* 8032BF50-8032BFBC 326890 006C+00 1/0 0/0 0/0 .text            __dt__17J3DAnmVtxColorKeyFv */
-extern "C" void __dt__17J3DAnmVtxColorKeyFv() {
-    // asm J3DAnmVtxColorKey::~J3DAnmVtxColorKey() {
-    // NONMATCHING
-}
-
-/* 8032BFBC-8032BFC4 3268FC 0008+00 1/0 0/0 0/0 .text            getKind__17J3DAnmVtxColorKeyCFv */
-s32 J3DAnmVtxColorKey::getKind() const {
-    return 15;
-}
-
-/* 8032BFC4-8032C030 326904 006C+00 1/0 0/0 0/0 .text            __dt__18J3DAnmVtxColorFullFv */
-extern "C" void __dt__18J3DAnmVtxColorFullFv() {
-    // asm J3DAnmVtxColorFull::~J3DAnmVtxColorFull() {
-    // NONMATCHING
-}
-
-/* 8032C030-8032C038 326970 0008+00 1/0 0/0 0/0 .text            getKind__18J3DAnmVtxColorFullCFv */
-s32 J3DAnmVtxColorFull::getKind() const {
-    return 14;
-}
-
-/* 8032C038-8032C040 326978 0008+00 1/0 0/0 0/0 .text            getKind__14J3DAnmVtxColorCFv */
-s32 J3DAnmVtxColor::getKind() const {
-    return 7;
-}
-
-/* 8032C040-8032C044 326980 0004+00 1/0 0/0 0/0 .text getColor__14J3DAnmVtxColorCFUcUsP8_GXColor
- */
-void J3DAnmVtxColor::getColor(u8 param_0, u16 param_1, _GXColor* param_2) const {
-    /* empty function */
-}
-
-/* 8032C044-8032C0B0 326984 006C+00 1/0 0/0 0/0 .text            __dt__16J3DAnmClusterKeyFv */
-extern "C" void __dt__16J3DAnmClusterKeyFv() {
-    // asm J3DAnmClusterKey::~J3DAnmClusterKey() {
-    // NONMATCHING
-}
-
-/* 8032C0B0-8032C0B8 3269F0 0008+00 1/0 0/0 0/0 .text            getKind__16J3DAnmClusterKeyCFv */
-s32 J3DAnmClusterKey::getKind() const {
-    return 13;
-}
-
-/* 8032C0B8-8032C114 3269F8 005C+00 1/0 0/0 0/0 .text            __dt__13J3DAnmClusterFv */
-extern "C" void __dt__13J3DAnmClusterFv() {
-    // asm J3DAnmCluster::~J3DAnmCluster() {
-    // NONMATCHING
-}
-
-/* 8032C114-8032C11C 326A54 0008+00 1/0 0/0 0/0 .text            getKind__13J3DAnmClusterCFv */
-s32 J3DAnmCluster::getKind() const {
-    return 3;
-}
-
-/* 8032C11C-8032C124 326A5C 0008+00 1/0 0/0 0/0 .text            getWeight__13J3DAnmClusterCFUs */
-f32 J3DAnmCluster::getWeight(u16 param_0) const {
-    return lit_852;
-}
-
-/* 8032C124-8032C190 326A64 006C+00 1/0 0/0 0/0 .text            __dt__17J3DAnmClusterFullFv */
-extern "C" void __dt__17J3DAnmClusterFullFv() {
-    // asm J3DAnmClusterFull::~J3DAnmClusterFull() {
-    // NONMATCHING
-}
-
-/* 8032C190-8032C198 326AD0 0008+00 1/0 0/0 0/0 .text            getKind__17J3DAnmClusterFullCFv */
-s32 J3DAnmClusterFull::getKind() const {
-    return 12;
-}
-
-/* 8032C198-8032C220 326AD8 0088+00 1/0 0/0 0/0 .text            __dt__19J3DAnmTextureSRTKeyFv */
-extern "C" void __dt__19J3DAnmTextureSRTKeyFv() {
-    // asm J3DAnmTextureSRTKey::~J3DAnmTextureSRTKey() {
-    // NONMATCHING
-}
-
-/* 8032C220-8032C228 326B60 0008+00 1/0 0/0 0/0 .text            getKind__19J3DAnmTextureSRTKeyCFv
- */
-s32 J3DAnmTextureSRTKey::getKind() const {
-    return 4;
-}
-
-/* ############################################################################################## */
-/* 803CEE34-803CEE48 02BF54 0014+00 1/1 1/1 0/0 .data            __vt__27J3DAnmTransformFullWithLerp
- */
-SECTION_DATA extern void* __vt__27J3DAnmTransformFullWithLerp[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__27J3DAnmTransformFullWithLerpFv,
-    (void*)getKind__27J3DAnmTransformFullWithLerpCFv,
-    (void*)getTransform__27J3DAnmTransformFullWithLerpCFUsP16J3DTransformInfo,
-};
-
-/* 803CEE48-803CEE60 02BF68 0014+04 2/2 1/1 0/0 .data            __vt__19J3DAnmTransformFull */
-SECTION_DATA extern void* __vt__19J3DAnmTransformFull[5 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__19J3DAnmTransformFullFv,
-    (void*)getKind__19J3DAnmTransformFullCFv,
-    (void*)getTransform__19J3DAnmTransformFullCFUsP16J3DTransformInfo,
-    /* padding */
-    NULL,
-};
-
-/* 8032C228-8032C2A4 326B68 007C+00 1/0 0/0 0/0 .text __dt__27J3DAnmTransformFullWithLerpFv */
-extern "C" void __dt__27J3DAnmTransformFullWithLerpFv() {
-    // asm J3DAnmTransformFullWithLerp::~J3DAnmTransformFullWithLerp() {
-    // NONMATCHING
-}
-
-/* 8032C2A4-8032C2AC 326BE4 0008+00 1/0 0/0 0/0 .text getKind__27J3DAnmTransformFullWithLerpCFv */
-s32 J3DAnmTransformFullWithLerp::getKind() const {
-    return 16;
-}
-
-/* 8032C2AC-8032C318 326BEC 006C+00 1/0 0/0 0/0 .text            __dt__19J3DAnmTransformFullFv */
-extern "C" void __dt__19J3DAnmTransformFullFv() {
-    // asm J3DAnmTransformFull::~J3DAnmTransformFull() {
-    // NONMATCHING
-}
-
-/* 8032C318-8032C320 326C58 0008+00 1/0 0/0 0/0 .text            getKind__19J3DAnmTransformFullCFv
- */
-s32 J3DAnmTransformFull::getKind() const {
-    return 9;
+void J3DAnmTevRegKey::searchUpdateMaterialID(J3DModelData* i_modelData) {
+    searchUpdateMaterialID(&i_modelData->getMaterialTable());
 }

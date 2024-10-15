@@ -6,46 +6,7 @@
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
-#include "dol2asm.h"
 #include "dolphin/os.h"
-
-//
-// Forward References:
-//
-
-extern "C" void clear__12J3DModelDataFv();
-extern "C" void __ct__12J3DModelDataFv();
-extern "C" void newSharedDisplayList__12J3DModelDataFUl();
-extern "C" void indexToPtr__12J3DModelDataFv();
-extern "C" void makeSharedDL__12J3DModelDataFv();
-extern "C" void simpleCalcMaterial__12J3DModelDataFUsPA4_f();
-extern "C" void syncJ3DSysPointers__12J3DModelDataCFv();
-extern "C" void syncJ3DSysFlags__12J3DModelDataCFv();
-extern "C" void __dt__13J3DShapeTableFv();
-extern "C" void __dt__12J3DModelDataFv();
-
-//
-// External References:
-//
-
-extern "C" void __dl__FPv();
-extern "C" void __ct__13J3DVertexDataFv();
-extern "C" void __dt__14J3DDrawMtxDataFv();
-extern "C" void countDLSize__11J3DMaterialFv();
-extern "C" void newSharedDisplayList__11J3DMaterialFUl();
-extern "C" void newSingleSharedDisplayList__11J3DMaterialFUl();
-extern "C" void __ct__12J3DJointTreeFv();
-extern "C" void __ct__16J3DMaterialTableFv();
-extern "C" void __dt__16J3DMaterialTableFv();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__12J3DJointTree[4 + 1 /* padding */];
-
-//
-// Declarations:
-//
 
 /* 80325D88-80325DA0 3206C8 0018+00 1/1 2/2 0/0 .text            clear__12J3DModelDataFv */
 void J3DModelData::clear() {
@@ -54,21 +15,6 @@ void J3DModelData::clear() {
     mbHasBumpArray = 0;
     mbHasBillboard = 0;
 }
-
-/* ############################################################################################## */
-/* 803CED08-803CED14 02BE28 000C+00 3/3 0/0 0/0 .data            __vt__13J3DShapeTable */
-SECTION_DATA extern void* __vt__13J3DShapeTable[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__13J3DShapeTableFv,
-};
-
-/* 803CED14-803CED20 02BE34 000C+00 2/2 0/0 0/0 .data            __vt__12J3DModelData */
-SECTION_DATA extern void* __vt__12J3DModelData[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12J3DModelDataFv,
-};
 
 /* 80325DA0-80325E14 3206E0 0074+00 0/0 2/2 0/0 .text            __ct__12J3DModelDataFv */
 J3DModelData::J3DModelData() {
@@ -168,15 +114,4 @@ void J3DModelData::syncJ3DSysFlags() const {
     } else {
         j3dSys.offFlag(J3DSysFlag_PostTexMtx);
     }
-}
-
-/* 80326134-8032617C 320A74 0048+00 1/0 0/0 0/0 .text            __dt__13J3DShapeTableFv */
-extern "C" void __dt__13J3DShapeTableFv() {
-    // asm J3DShapeTable::~J3DShapeTable() {
-    // NONMATCHING
-}
-
-/* 8032617C-80326214 320ABC 0098+00 1/0 0/0 0/0 .text            __dt__12J3DModelDataFv */
-J3DModelData::~J3DModelData() {
-    // NONMATCHING
 }

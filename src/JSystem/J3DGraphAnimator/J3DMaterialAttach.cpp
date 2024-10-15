@@ -7,46 +7,6 @@
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/JUtility/JUTAssert.h"
-#include "dolphin/types.h"
-
-//
-// Forward References:
-//
-
-extern "C" void clear__16J3DMaterialTableFv();
-extern "C" void __ct__16J3DMaterialTableFv();
-extern "C" void __dt__16J3DMaterialTableFv();
-extern "C" void removeMatColorAnimator__16J3DMaterialTableFP11J3DAnmColor();
-extern "C" void removeTexNoAnimator__16J3DMaterialTableFP16J3DAnmTexPattern();
-extern "C" void removeTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey();
-extern "C" void removeTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
-extern "C" void createTexMtxForAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey();
-extern "C" void entryMatColorAnimator__16J3DMaterialTableFP11J3DAnmColor();
-extern "C" void entryTexNoAnimator__16J3DMaterialTableFP16J3DAnmTexPattern();
-extern "C" void entryTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey();
-extern "C" void entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
-
-//
-// External References:
-//
-
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void __as__13J3DTexMtxInfoFRC13J3DTexMtxInfo();
-extern "C" void setMatColorAnm__14J3DMaterialAnmFiP14J3DMatColorAnm();
-extern "C" void setTexMtxAnm__14J3DMaterialAnmFiP12J3DTexMtxAnm();
-extern "C" void setTexNoAnm__14J3DMaterialAnmFiP11J3DTexNoAnm();
-extern "C" void setTevColorAnm__14J3DMaterialAnmFiP14J3DTevColorAnm();
-extern "C" void setTevKColorAnm__14J3DMaterialAnmFiP15J3DTevKColorAnm();
-extern "C" void _savegpr_22();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _restgpr_22();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" extern void* __vt__11J3DTexNoAnm[3];
 
 /* 8032F5A8-8032F5D0 329EE8 0028+00 0/0 1/1 0/0 .text            clear__16J3DMaterialTableFv */
 void J3DMaterialTable::clear() {
@@ -250,8 +210,7 @@ int J3DMaterialTable::entryTexNoAnimator(J3DAnmTexPattern* param_1) {
 
 /* 8032FCC4-8032FE70 32A604 01AC+00 0/0 14/14 6/6 .text
  * entryTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey */
-// getUpdateTexMtxID u8 issue / getSRTCenter
-#ifdef NONMATCHING
+// NONMATCHING getUpdateTexMtxID u8 issue
 int J3DMaterialTable::entryTexMtxAnimator(J3DAnmTextureSRTKey* param_1) {
     int rv = 0;
     u16 materialNum = param_1->getUpdateMaterialNum();
@@ -275,10 +234,13 @@ int J3DMaterialTable::entryTexMtxAnimator(J3DAnmTextureSRTKey* param_1) {
                         material->getTexCoord(texMtxID)->setTexGenMtx(texMtxID * 3 + 30);
                     }
                     J3DTexMtxInfo& iVar3 = material->getTexMtx(texMtxID)->getTexMtxInfo();
-                    iVar3.mInfo = (iVar3.mInfo & 0x3f)| (param_1->getTexMtxCalcType() << 7);
-                    iVar3.mCenter.x = param_1->getSRTCenter(i)->x;
-                    iVar3.mCenter.y = param_1->getSRTCenter(i)->y;
-                    iVar3.mCenter.z = param_1->getSRTCenter(i)->z;
+                    iVar3.mInfo = (iVar3.mInfo & 0x3f) | (param_1->getTexMtxCalcType() << 7);
+                    Vec* vec = param_1->getSRTCenter(i);
+                    iVar3.mCenter.x = vec->x;
+                    vec = param_1->getSRTCenter(i);
+                    iVar3.mCenter.y = vec->y;
+                    vec = param_1->getSRTCenter(i);
+                    iVar3.mCenter.z = vec->z;
                     J3DTexMtxAnm texMtxAnm(i, param_1);
                     materialAnm->setTexMtxAnm(texMtxID, &texMtxAnm);
                 }
@@ -287,11 +249,6 @@ int J3DMaterialTable::entryTexMtxAnimator(J3DAnmTextureSRTKey* param_1) {
     }
     return rv;
 }
-#else
-int J3DMaterialTable::entryTexMtxAnimator(J3DAnmTextureSRTKey* param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 8032FE70-8032FFEC 32A7B0 017C+00 0/0 10/10 4/4 .text
  * entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey   */

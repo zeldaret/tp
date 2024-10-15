@@ -15,6 +15,7 @@ public:
     Mtx& getMtx(u16 idx) { return mpTexMtx[idx]; }
     Mtx44& getEffectMtx(u16 idx) { return mpEffectMtx[idx]; }
     u16 getNumTexMtx() { return mTexMtxNum; }
+    void setMtx(u16 idx, Mtx const* mtx) { MTXCopy(*mtx, mpTexMtx[idx]); }
 
     /* 0x00 */ Mtx* mpTexMtx;
     /* 0x04 */ Mtx44* mpEffectMtx;

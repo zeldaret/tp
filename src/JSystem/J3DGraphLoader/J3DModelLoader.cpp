@@ -3,8 +3,6 @@
 // Translation Unit: J3DModelLoader
 //
 
-#define NON_VIRTUAL_J3DModelLoader
-
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "JSystem/J3DGraphLoader/J3DJointFactory.h"
 #include "JSystem/J3DGraphLoader/J3DMaterialFactory.h"
@@ -16,251 +14,8 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JSupport/JSupport.h"
 #include "dolphin/os.h"
-#include "dol2asm.h"
-
-//
-// Types:
-//
-
-struct J3DAnmTransform {};
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__14J3DModelLoaderFv();
-extern "C" void load__22J3DModelLoaderDataBaseFPCvUl();
-extern "C" void load__14J3DModelLoaderFPCvUl();
-extern "C" void loadMaterialTable__14J3DModelLoaderFPCv();
-extern "C" void loadBinaryDisplayList__14J3DModelLoaderFPCvUl();
-extern "C" void setupBBoardInfo__14J3DModelLoaderFv();
-extern "C" void readInformation__14J3DModelLoaderFPC17J3DModelInfoBlockUl();
-extern "C" static void getFmtType__FP17_GXVtxAttrFmtList7_GXAttr();
-extern "C" void readVertex__14J3DModelLoaderFPC14J3DVertexBlock();
-extern "C" void readEnvelop__14J3DModelLoaderFPC16J3DEnvelopeBlock();
-extern "C" void readDraw__14J3DModelLoaderFPC12J3DDrawBlock();
-extern "C" void readJoint__14J3DModelLoaderFPC13J3DJointBlock();
-extern "C" void readMaterial__18J3DModelLoader_v26FPC16J3DMaterialBlockUl();
-extern "C" void readMaterial_v21__18J3DModelLoader_v21FPC20J3DMaterialBlock_v21Ul();
-extern "C" void readShape__14J3DModelLoaderFPC13J3DShapeBlockUl();
-extern "C" void readTexture__14J3DModelLoaderFPC15J3DTextureBlock();
-extern "C" void readMaterialTable__18J3DModelLoader_v26FPC16J3DMaterialBlockUl();
-extern "C" void readMaterialTable_v21__18J3DModelLoader_v21FPC20J3DMaterialBlock_v21Ul();
-extern "C" void readTextureTable__14J3DModelLoaderFPC15J3DTextureBlock();
-extern "C" void readPatchedMaterial__14J3DModelLoaderFPC16J3DMaterialBlockUl();
-extern "C" void readMaterialDL__14J3DModelLoaderFPC18J3DMaterialDLBlockUl();
-extern "C" void modifyMaterial__14J3DModelLoaderFUl();
-extern "C" void __dt__18J3DModelLoader_v26Fv();
-extern "C" void __dt__18J3DModelLoader_v21Fv();
-extern "C" void __dt__14J3DModelLoaderFv();
-extern "C" void readMaterial_v21__14J3DModelLoaderFPC20J3DMaterialBlock_v21Ul();
-extern "C" void readMaterial__14J3DModelLoaderFPC16J3DMaterialBlockUl();
-extern "C" void readMaterialTable_v21__14J3DModelLoaderFPC20J3DMaterialBlock_v21Ul();
-extern "C" void readMaterialTable__14J3DModelLoaderFPC16J3DMaterialBlockUl();
-extern "C" bool calcSizeMaterial__14J3DModelLoaderFPC16J3DMaterialBlockUl();
-extern "C" bool calcSizeMaterialTable__14J3DModelLoaderFPC16J3DMaterialBlockUl();
-extern "C" void func_803364B8(void* _this);
-extern "C" void func_80336524(void* _this, Vec const&, f32 const (&)[3][4]);
-extern "C" void func_8033656C(void* _this);
-extern "C" void func_80336594(void* _this);
-extern "C" void func_80336600(void* _this, Vec const&, f32 const (&)[3][4]);
-extern "C" void func_80336628(void* _this);
-extern "C" void __ct__11J3DMaterialFv();
-extern "C" void __dt__10J3DTextureFv();
-extern "C" ResTIMG* func_803366EC(void const*, void const*);
-extern "C" Mtx* func_80336704(void const*, void const*);
-extern "C" void* func_8033671C(void const*, void const*);
-extern "C" _GXVtxAttrFmtList* func_80336734(void const*, void const*);
-extern "C" J3DModelHierarchy* func_8033674C(void const*, void const*);
-extern "C" J3DShapeInitData* func_80336764(void const*, void const*);
-extern "C" u16* func_8033677C(void const*, void const*);
-extern "C" extern char const* const J3DModelLoader__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform();
-extern "C" void setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform();
-extern "C" bool getAnmTransform__10J3DMtxCalcFUc();
-extern "C" bool getAnmTransform__10J3DMtxCalcFv();
-extern "C" void setWeight__10J3DMtxCalcFUcf();
-extern "C" void getWeight__10J3DMtxCalcCFUc();
-extern "C" void getTotalFreeSize__7JKRHeapFv();
-extern "C" void* __nw__FUl();
-extern "C" void* __nwa__FUl();
-extern "C" void* __nwa__FUli();
-extern "C" void __dl__FPv();
-extern "C" void __ct__10JUTNameTabFPC7ResNTAB();
-extern "C" u8* func_802F4260(void const*, void const*);
-extern "C" u16* func_802F42C0(void const*, void const*);
-extern "C" ResNTAB* func_8030A530(void const*, void const*);
-extern "C" f32* func_8030A560(void const*, void const*);
-extern "C" void initialize__11J3DMaterialFv();
-extern "C" void initShapeNodes__13J3DShapeTableFP14J3DDrawMtxDataP13J3DVertexData();
-extern "C" void sortVcdVatCmd__13J3DShapeTableFv();
-extern "C" void
-makeHierarchy__12J3DJointTreeFP8J3DJointPPC17J3DModelHierarchyP16J3DMaterialTableP13J3DShapeTable();
-extern "C" void findImportantMtxIndex__12J3DJointTreeFv();
-extern "C" void clear__12J3DModelDataFv();
-extern "C" void __ct__12J3DModelDataFv();
-extern "C" void indexToPtr__12J3DModelDataFv();
-extern "C" void init__25J3DMtxCalcJ3DSysInitBasicFRC3VecRA3_A4_Cf();
-extern "C" void calcTransform__28J3DMtxCalcCalcTransformBasicFRC16J3DTransformInfo();
-extern "C" void calcTransform__32J3DMtxCalcCalcTransformSoftimageFRC16J3DTransformInfo();
-extern "C" void clear__16J3DMaterialTableFv();
-extern "C" void __ct__16J3DMaterialTableFv();
-extern "C" void __ct__18J3DMaterialFactoryFRC16J3DMaterialBlock();
-extern "C" void __ct__18J3DMaterialFactoryFRC18J3DMaterialDLBlock();
-extern "C" void countUniqueMaterials__18J3DMaterialFactoryFv();
-extern "C" void
-create__18J3DMaterialFactoryCFP11J3DMaterialQ218J3DMaterialFactory12MaterialTypeiUl();
-extern "C" void modifyPatchedCurrentMtx__18J3DMaterialFactoryCFP11J3DMateriali();
-extern "C" void __dt__11J3DMaterialFv();
-extern "C" void __ct__22J3DMaterialFactory_v21FRC20J3DMaterialBlock_v21();
-extern "C" void countUniqueMaterials__22J3DMaterialFactory_v21Fv();
-extern "C" void create__22J3DMaterialFactory_v21CFP11J3DMaterialiUl();
-extern "C" void countMaterialNum__14J3DModelLoaderFPCv();
-extern "C" void calcLoadSize__14J3DModelLoaderFPCvUl();
-extern "C" void calcLoadMaterialTableSize__14J3DModelLoaderFPCv();
-extern "C" void calcLoadBinaryDisplayListSize__14J3DModelLoaderFPCvUl();
-extern "C" void calcSizeMaterial__18J3DModelLoader_v26FPC16J3DMaterialBlockUl();
-extern "C" void calcSizeMaterialTable__18J3DModelLoader_v26FPC16J3DMaterialBlockUl();
-extern "C" void __ct__15J3DJointFactoryFRC13J3DJointBlock();
-extern "C" void create__15J3DJointFactoryFi();
-extern "C" void __ct__15J3DShapeFactoryFRC13J3DShapeBlock();
-extern "C" void create__15J3DShapeFactoryFiUlP14_GXVtxDescList();
-extern "C" void allocVcdVatCmdBuffer__15J3DShapeFactoryFUl();
-extern "C" void __construct_new_array();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* data_803A3360[11];
-extern "C" extern void* __vt__19J3DMtxCalcNoAnmBase[11];
-extern "C" extern void* __vt__10J3DMtxCalc[11 + 1 /* padding */];
-extern "C" extern void* __vt__11J3DMaterial[12];
-extern "C" u8 mCurrentMtx__6J3DSys[48];
-extern "C" f32 mCurrentS__6J3DSys[3];
-extern "C" u8 sCurrentHeap__7JKRHeap[4];
-extern "C" u8 mJoint__10J3DMtxCalc[4];
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 803CF108-803CF14C 02C228 0044+00 2/2 0/0 0/0 .data            __vt__18J3DModelLoader_v21 */
-SECTION_DATA extern void* __vt__18J3DModelLoader_v21[17] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)load__14J3DModelLoaderFPCvUl,
-    (void*)loadMaterialTable__14J3DModelLoaderFPCv,
-    (void*)loadBinaryDisplayList__14J3DModelLoaderFPCvUl,
-    (void*)calcLoadSize__14J3DModelLoaderFPCvUl,
-    (void*)calcLoadMaterialTableSize__14J3DModelLoaderFPCv,
-    (void*)calcLoadBinaryDisplayListSize__14J3DModelLoaderFPCvUl,
-    (void*)countMaterialNum__14J3DModelLoaderFPCv,
-    (void*)setupBBoardInfo__14J3DModelLoaderFv,
-    (void*)__dt__18J3DModelLoader_v21Fv,
-    (void*)readMaterial__14J3DModelLoaderFPC16J3DMaterialBlockUl,
-    (void*)readMaterial_v21__18J3DModelLoader_v21FPC20J3DMaterialBlock_v21Ul,
-    (void*)readMaterialTable__14J3DModelLoaderFPC16J3DMaterialBlockUl,
-    (void*)readMaterialTable_v21__18J3DModelLoader_v21FPC20J3DMaterialBlock_v21Ul,
-    (void*)calcSizeMaterial__14J3DModelLoaderFPC16J3DMaterialBlockUl,
-    (void*)calcSizeMaterialTable__14J3DModelLoaderFPC16J3DMaterialBlockUl,
-};
-
-/* 803CF14C-803CF190 02C26C 0044+00 2/2 0/0 0/0 .data            __vt__18J3DModelLoader_v26 */
-SECTION_DATA extern void* __vt__18J3DModelLoader_v26[17] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)load__14J3DModelLoaderFPCvUl,
-    (void*)loadMaterialTable__14J3DModelLoaderFPCv,
-    (void*)loadBinaryDisplayList__14J3DModelLoaderFPCvUl,
-    (void*)calcLoadSize__14J3DModelLoaderFPCvUl,
-    (void*)calcLoadMaterialTableSize__14J3DModelLoaderFPCv,
-    (void*)calcLoadBinaryDisplayListSize__14J3DModelLoaderFPCvUl,
-    (void*)countMaterialNum__14J3DModelLoaderFPCv,
-    (void*)setupBBoardInfo__14J3DModelLoaderFv,
-    (void*)__dt__18J3DModelLoader_v26Fv,
-    (void*)readMaterial__18J3DModelLoader_v26FPC16J3DMaterialBlockUl,
-    (void*)readMaterial_v21__14J3DModelLoaderFPC20J3DMaterialBlock_v21Ul,
-    (void*)readMaterialTable__18J3DModelLoader_v26FPC16J3DMaterialBlockUl,
-    (void*)readMaterialTable_v21__14J3DModelLoaderFPC20J3DMaterialBlock_v21Ul,
-    (void*)calcSizeMaterial__18J3DModelLoader_v26FPC16J3DMaterialBlockUl,
-    (void*)calcSizeMaterialTable__18J3DModelLoader_v26FPC16J3DMaterialBlockUl,
-};
-
-/* 803CF190-803CF1BC 02C2B0 002C+00 2/2 0/0 0/0 .data
- * __vt__83J3DMtxCalcNoAnm<32J3DMtxCalcCalcTransformSoftimage,29J3DMtxCalcJ3DSysInitSoftimage> */
-SECTION_DATA extern void* data_803CF190[11] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)func_803364B8,
-    (void*)setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform,
-    (void*)getAnmTransform__10J3DMtxCalcFv,
-    (void*)setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform,
-    (void*)getAnmTransform__10J3DMtxCalcFUc,
-    (void*)setWeight__10J3DMtxCalcFUcf,
-    (void*)getWeight__10J3DMtxCalcCFUc,
-    (void*)func_80336524,
-    (void*)func_8033656C,
-};
-
-/* 803CF1BC-803CF1E8 02C2DC 002C+00 2/2 0/0 0/0 .data
- * __vt__75J3DMtxCalcNoAnm<28J3DMtxCalcCalcTransformBasic,25J3DMtxCalcJ3DSysInitBasic> */
-SECTION_DATA extern void* data_803CF1BC[11] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)func_80336594,
-    (void*)setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform,
-    (void*)getAnmTransform__10J3DMtxCalcFv,
-    (void*)setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform,
-    (void*)getAnmTransform__10J3DMtxCalcFUc,
-    (void*)setWeight__10J3DMtxCalcFUcf,
-    (void*)getWeight__10J3DMtxCalcCFUc,
-    (void*)func_80336600,
-    (void*)func_80336628,
-};
-
-/* 803CF1E8-803CF1F4 02C308 000C+00 4/4 0/0 0/0 .data            __vt__10J3DTexture */
-SECTION_DATA extern void* __vt__10J3DTexture[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10J3DTextureFv,
-};
-
-/* 803CF1F4-803CF238 02C314 0044+00 5/5 0/0 0/0 .data            __vt__14J3DModelLoader */
-SECTION_DATA extern void* __vt__14J3DModelLoader[17] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)load__14J3DModelLoaderFPCvUl,
-    (void*)loadMaterialTable__14J3DModelLoaderFPCv,
-    (void*)loadBinaryDisplayList__14J3DModelLoaderFPCvUl,
-    (void*)calcLoadSize__14J3DModelLoaderFPCvUl,
-    (void*)calcLoadMaterialTableSize__14J3DModelLoaderFPCv,
-    (void*)calcLoadBinaryDisplayListSize__14J3DModelLoaderFPCvUl,
-    (void*)countMaterialNum__14J3DModelLoaderFPCv,
-    (void*)setupBBoardInfo__14J3DModelLoaderFv,
-    (void*)__dt__14J3DModelLoaderFv,
-    (void*)readMaterial__14J3DModelLoaderFPC16J3DMaterialBlockUl,
-    (void*)readMaterial_v21__14J3DModelLoaderFPC20J3DMaterialBlock_v21Ul,
-    (void*)readMaterialTable__14J3DModelLoaderFPC16J3DMaterialBlockUl,
-    (void*)readMaterialTable_v21__14J3DModelLoaderFPC20J3DMaterialBlock_v21Ul,
-    (void*)calcSizeMaterial__14J3DModelLoaderFPC16J3DMaterialBlockUl,
-    (void*)calcSizeMaterialTable__14J3DModelLoaderFPC16J3DMaterialBlockUl,
-};
 
 /* 8033468C-803346BC 32EFCC 0030+00 1/1 0/0 0/0 .text            __ct__14J3DModelLoaderFv */
-#ifdef NONMATCHING
-// matches once vtable ordering is correct
 J3DModelLoader::J3DModelLoader() :
                 mpModelData(NULL),
                 mpMaterialTable(NULL),
@@ -271,15 +26,8 @@ J3DModelLoader::J3DModelLoader() :
                 mEnvelopeSize(0) {
     /* empty function */
 }
-#else
-J3DModelLoader::J3DModelLoader() {
-    // NONMATCHING
-}
-#endif
 
 /* 803346BC-803347E0 32EFFC 0124+00 0/0 4/4 0/0 .text load__22J3DModelLoaderDataBaseFPCvUl */
-#ifdef NONMATCHING
-// matches once vtable ordering is correct
 J3DModelData* J3DModelLoaderDataBase::load(void const* i_data, u32 i_flags) {
     if (i_data == NULL) {
         return NULL;
@@ -297,18 +45,6 @@ J3DModelData* J3DModelLoaderDataBase::load(void const* i_data, u32 i_flags) {
     }
     return NULL;
 }
-#else
-J3DModelData* J3DModelLoaderDataBase::load(void const* param_0, u32 param_1) {
-    // NONMATCHING
-}
-#endif
-
-/* ############################################################################################## */
-/* 803A20B0-803A20B0 02E710 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803A20B0 = "Unknown data block\n";
-#pragma pop
 
 /* 803347E0-80334ABC 32F120 02DC+00 4/1 0/0 0/0 .text            load__14J3DModelLoaderFPCvUl */
 J3DModelData* J3DModelLoader::load(void const* i_data, u32 i_flags) {
@@ -370,8 +106,6 @@ J3DModelData* J3DModelLoader::load(void const* i_data, u32 i_flags) {
 
 
 /* 80334ABC-80334C20 32F3FC 0164+00 3/0 0/0 0/0 .text loadMaterialTable__14J3DModelLoaderFPCv */
-#ifdef NONMATCHING
-// weak fn ordering
 J3DMaterialTable* J3DModelLoader::loadMaterialTable(void const* i_data) {
     mpMaterialTable = new J3DMaterialTable();
     mpMaterialTable->clear();
@@ -399,11 +133,6 @@ J3DMaterialTable* J3DModelLoader::loadMaterialTable(void const* i_data) {
     }
     return mpMaterialTable;
 }
-#else
-J3DMaterialTable* J3DModelLoader::loadMaterialTable(void const* param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 80334C20-80334EE0 32F560 02C0+00 3/0 0/0 0/0 .text
  * loadBinaryDisplayList__14J3DModelLoaderFPCvUl                */
@@ -416,10 +145,11 @@ J3DModelData* J3DModelLoader::loadBinaryDisplayList(void const* i_data, u32 i_fl
     J3DModelFileData const* data = (J3DModelFileData*)i_data;
     J3DModelBlock const* block = data->mBlocks;
     for (u32 block_no = 0; block_no < data->mBlockNum; block_no++) {
+        s32 flags;
         switch (block->mBlockType) {
             case 'INF1':
-                s32 flags2 = i_flags;
-                readInformation((J3DModelInfoBlock*)block, flags2);
+                flags = i_flags;
+                readInformation((J3DModelInfoBlock*)block, flags);
                 break;
             case 'VTX1':
                 readVertex((J3DVertexBlock*)block);
@@ -444,7 +174,7 @@ J3DModelData* J3DModelLoader::loadBinaryDisplayList(void const* i_data, u32 i_fl
                 modifyMaterial(i_flags);
                 break;
             case 'MAT3':
-                s32 flags = 0x50100000;
+                flags = 0x50100000;
                 flags |= (i_flags & 0x3000000);
                 mpMaterialBlock = (J3DMaterialBlock*)block;
                 if (((u32)i_flags & 0x3000) == 0) {
@@ -468,14 +198,6 @@ J3DModelData* J3DModelLoader::loadBinaryDisplayList(void const* i_data, u32 i_fl
     return mpModelData;
 }
 
-
-/* ############################################################################################## */
-/* 803A20B0-803A20B0 02E710 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803A20C4 = "WRONG SHAPE MATRIX TYPE (__FILE__)\n";
-#pragma pop
-
 /* 80334EE0-80335048 32F820 0168+00 3/0 0/0 0/0 .text            setupBBoardInfo__14J3DModelLoaderFv
  */
 void J3DModelLoader::setupBBoardInfo() {
@@ -483,12 +205,11 @@ void J3DModelLoader::setupBBoardInfo() {
         J3DMaterial* mesh = mpModelData->getJointNodePointer(i)->getMesh();
         if (mesh != NULL) {
             u16 shape_index = mesh->getShape()->getIndex();
-            // u16* index_table = JSUConvertOffsetToPtr<u16>(mpShapeBlock, mpShapeBlock->mpIndexTable);
-            u16* index_table = func_8033677C(mpShapeBlock, mpShapeBlock->mpIndexTable);
+            u16* index_table = JSUConvertOffsetToPtr<u16>(mpShapeBlock,
+                                                          (u32)mpShapeBlock->mpIndexTable);
             J3DShapeInitData* shape_init_data =
-                // JSUConvertOffsetToPtr<J3DShapeInitData>(mpShapeBlock,
-                //                                         mpShapeBlock->mpShapeInitData);
-                func_80336764(mpShapeBlock, mpShapeBlock->mpShapeInitData);
+                JSUConvertOffsetToPtr<J3DShapeInitData>(mpShapeBlock,
+                                                        (u32)mpShapeBlock->mpShapeInitData);
             J3DJoint* joint;
             switch (shape_init_data[index_table[shape_index]].mShapeMtxType) {
                 case 0:
@@ -519,8 +240,6 @@ void J3DModelLoader::setupBBoardInfo() {
 
 /* 80335048-803351A4 32F988 015C+00 2/2 0/0 0/0 .text
  * readInformation__14J3DModelLoaderFPC17J3DModelInfoBlockUl    */
-#ifdef NONMATCHING
-// will match once generics located correctly
 void J3DModelLoader::readInformation(J3DModelInfoBlock const* i_block, u32 i_flags) {
     mpModelData->mFlags = i_flags | i_block->mFlags;
     mpModelData->getJointTree().setFlag(mpModelData->mFlags);
@@ -541,11 +260,6 @@ void J3DModelLoader::readInformation(J3DModelInfoBlock const* i_block, u32 i_fla
     mpModelData->getVertexData().mVtxNum = i_block->mVtxNum;
     mpModelData->setHierarchy(JSUConvertOffsetToPtr<J3DModelHierarchy>(i_block, i_block->mpHierarchy));
 }
-#else
-void J3DModelLoader::readInformation(J3DModelInfoBlock const* i_block, u32 i_flags) {
-    // NONMATCHING
-}
-#endif
 
 /* 803351A4-803351D0 32FAE4 002C+00 1/1 0/0 0/0 .text getFmtType__FP17_GXVtxAttrFmtList7_GXAttr */
 static _GXCompType getFmtType(_GXVtxAttrFmtList* i_fmtList, _GXAttr i_attr) {
@@ -562,23 +276,17 @@ static _GXCompType getFmtType(_GXVtxAttrFmtList* i_fmtList, _GXAttr i_attr) {
 void J3DModelLoader::readVertex(J3DVertexBlock const* i_block) {
     J3DVertexData& vertex_data = mpModelData->getVertexData();
     vertex_data.mVtxAttrFmtList =
-        // JSUConvertOffsetToPtr<GXVtxAttrFmtList>(i_block, i_block->mpVtxAttrFmtList);
-        func_80336734(i_block, i_block->mpVtxAttrFmtList);
-    // vertex_data.mVtxPosArray = JSUConvertOffsetToPtr<void>(i_block, i_block->mpVtxPosArray);
-    vertex_data.mVtxPosArray = func_8033671C(i_block, i_block->mpVtxPosArray);
-    // vertex_data.mVtxNrmArray = JSUConvertOffsetToPtr<void>(i_block, i_block->mpVtxNrmArray);
-    vertex_data.mVtxNrmArray = func_8033671C(i_block, i_block->mpVtxNrmArray);
-    // vertex_data.mVtxNBTArray = JSUConvertOffsetToPtr<void>(i_block, i_block->mpVtxNBTArray);
-    vertex_data.mVtxNBTArray = func_8033671C(i_block, i_block->mpVtxNBTArray);
+        JSUConvertOffsetToPtr<GXVtxAttrFmtList>(i_block, i_block->mpVtxAttrFmtList);
+    vertex_data.mVtxPosArray = JSUConvertOffsetToPtr<void>(i_block, i_block->mpVtxPosArray);
+    vertex_data.mVtxNrmArray = JSUConvertOffsetToPtr<void>(i_block, i_block->mpVtxNrmArray);
+    vertex_data.mVtxNBTArray = JSUConvertOffsetToPtr<void>(i_block, i_block->mpVtxNBTArray);
     for (int i = 0; i < 2; i++) {
         vertex_data.mVtxColorArray[i] =
-            // (GXColor*)JSUConvertOffsetToPtr<void>(i_block, i_block->mpVtxColorArray[i]);
-            (GXColor*)func_8033671C(i_block, i_block->mpVtxColorArray[i]);
+            (GXColor*)JSUConvertOffsetToPtr<void>(i_block, i_block->mpVtxColorArray[i]);
     }
     for (int i = 0; i < 8; i++) {
         vertex_data.mVtxTexCoordArray[i] =
-            // JSUConvertOffsetToPtr<void>(i_block, i_block->mpVtxTexCoordArray[i]);
-            func_8033671C(i_block, i_block->mpVtxTexCoordArray[i]);
+            JSUConvertOffsetToPtr<void>(i_block, i_block->mpVtxTexCoordArray[i]);
     }
 
     _GXCompType nrm_type = getFmtType(vertex_data.mVtxAttrFmtList, GX_VA_NRM);
@@ -629,14 +337,12 @@ void J3DModelLoader::readEnvelop(J3DEnvelopeBlock const* i_block) {
     mpModelData->getJointTree().mWEvlpMtxNum = i_block->mWEvlpMtxNum;
     mpModelData->getJointTree().mWEvlpMixMtxNum =
         JSUConvertOffsetToPtr<u8>(i_block, i_block->mpWEvlpMixMtxNum);
-    mpModelData->getJointTree().mWEvlpMixIndex =
+    mpModelData->getJointTree().mWEvlpMixMtxIndex =
         JSUConvertOffsetToPtr<u16>(i_block, i_block->mpWEvlpMixIndex);
     mpModelData->getJointTree().mWEvlpMixWeight =
-        // JSUConvertOffsetToPtr<f32>(i_block, i_block->mpWEvlpMixWeight);
-        func_8030A560(i_block, i_block->mpWEvlpMixWeight);
+        JSUConvertOffsetToPtr<f32>(i_block, i_block->mpWEvlpMixWeight);
     mpModelData->getJointTree().mInvJointMtx =
-        // JSUConvertOffsetToPtr<Mtx>(i_block, i_block->mpInvJointMtx);
-        func_80336704(i_block, i_block->mpInvJointMtx);
+        JSUConvertOffsetToPtr<Mtx>(i_block, i_block->mpInvJointMtx);
 }
 
 /* 80335480-80335530 32FDC0 00B0+00 2/2 0/0 0/0 .text readDraw__14J3DModelLoaderFPC12J3DDrawBlock
@@ -664,8 +370,7 @@ void J3DModelLoader::readJoint(J3DJointBlock const* i_block) {
     mpModelData->getJointTree().mJointNum = i_block->mJointNum;
     if (i_block->mpNameTable != NULL) {
         mpModelData->getJointTree().mJointName =
-            // new JUTNameTab(JSUConvertOffsetToPtr<ResNTAB>(i_block, i_block->mpNameTable));
-            new JUTNameTab(func_8030A530(i_block, i_block->mpNameTable));
+            new JUTNameTab(JSUConvertOffsetToPtr<ResNTAB>(i_block, i_block->mpNameTable));
     } else {
         mpModelData->getJointTree().mJointName = NULL;
     }
@@ -684,8 +389,7 @@ void J3DModelLoader_v26::readMaterial(J3DMaterialBlock const* i_block, u32 i_fla
     mpMaterialTable->mUniqueMatNum = factory.countUniqueMaterials();
     if (i_block->mpNameTable != NULL) {
         mpMaterialTable->mMaterialName =
-            // new JUTNameTab(JSUConvertOffsetToPtr<ResNTAB>(i_block, i_block->mpNameTable));
-            new JUTNameTab(func_8030A530(i_block, i_block->mpNameTable));
+            new JUTNameTab(JSUConvertOffsetToPtr<ResNTAB>(i_block, i_block->mpNameTable));
     } else {
         mpMaterialTable->mMaterialName = NULL;
     }
@@ -729,8 +433,7 @@ void J3DModelLoader_v21::readMaterial_v21(J3DMaterialBlock_v21 const* i_block, u
     mpMaterialTable->mUniqueMatNum = factory.countUniqueMaterials();
     if (i_block->mpNameTable != NULL) {
         mpMaterialTable->mMaterialName =
-            // new JUTNameTab(JSUConvertOffsetToPtr<ResNTAB>(i_block, i_block->mpNameTable));
-            new JUTNameTab(func_8030A530(i_block, i_block->mpNameTable));
+            new JUTNameTab(JSUConvertOffsetToPtr<ResNTAB>(i_block, i_block->mpNameTable));
     } else {
         mpMaterialTable->mMaterialName = NULL;
     }
@@ -772,8 +475,7 @@ void J3DModelLoader::readShape(J3DShapeBlock const* i_block, u32 i_flags) {
     shape_table->mShapeNum = i_block->mShapeNum;
     if (i_block->mpNameTable != NULL) {
         shape_table->mShapeName =
-            // new JUTNameTab(JSUConvertOffsetToPtr<ResNTAB>(i_block, i_block->mpNameTable));
-            new JUTNameTab(func_8030A530(i_block, i_block->mpNameTable));
+            new JUTNameTab(JSUConvertOffsetToPtr<ResNTAB>(i_block, i_block->mpNameTable));
     } else {
         shape_table->mShapeName = NULL;
     }
@@ -792,26 +494,17 @@ void J3DModelLoader::readShape(J3DShapeBlock const* i_block, u32 i_flags) {
 
 /* 80335C18-80335CE4 330558 00CC+00 2/2 0/0 0/0 .text
  * readTexture__14J3DModelLoaderFPC15J3DTextureBlock            */
-#ifdef NONMATCHING
-// weak fn ordering
 void J3DModelLoader::readTexture(J3DTextureBlock const* i_block) {
     u16 texture_num = i_block->mTextureNum;
-    // ResTIMG* texture_res = JSUConvertOffsetToPtr<ResTIMG>(i_block, i_block->mpTextureRes);
-    ResTIMG* texture_res = func_803366EC(i_block, i_block->mpTextureRes);
+    ResTIMG* texture_res = JSUConvertOffsetToPtr<ResTIMG>(i_block, i_block->mpTextureRes);
     if (i_block->mpNameTable != NULL) {
         mpMaterialTable->mTextureName =
-            // new JUTNameTab(JSUConvertOffsetToPtr<ResNTAB>(i_block, i_block->mpNameTable));
-            new JUTNameTab(func_8030A530(i_block, i_block->mpNameTable));
+            new JUTNameTab(JSUConvertOffsetToPtr<ResNTAB>(i_block, i_block->mpNameTable));
     } else {
         mpMaterialTable->mTextureName = NULL;
     }
     mpMaterialTable->mTexture = new J3DTexture(texture_num, texture_res);
 }
-#else
-void J3DModelLoader::readTexture(J3DTextureBlock const* param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 80335CE4-80335E20 330624 013C+00 1/0 0/0 0/0 .text
  * readMaterialTable__18J3DModelLoader_v26FPC16J3DMaterialBlockUl */
@@ -820,8 +513,7 @@ void J3DModelLoader_v26::readMaterialTable(J3DMaterialBlock const* i_block, u32 
     mpMaterialTable->mMaterialNum = i_block->mMaterialNum;
     if (i_block->mpNameTable != NULL) {
         mpMaterialTable->mMaterialName =
-            // new JUTNameTab(JSUConvertOffsetToPtr<ResNTAB>(i_block, i_block->mpNameTable));
-            new JUTNameTab(func_8030A530(i_block, i_block->mpNameTable));
+            new JUTNameTab(JSUConvertOffsetToPtr<ResNTAB>(i_block, i_block->mpNameTable));
     } else {
         mpMaterialTable->mMaterialName = NULL;
     }
@@ -843,8 +535,7 @@ void J3DModelLoader_v21::readMaterialTable_v21(J3DMaterialBlock_v21 const* i_blo
     mpMaterialTable->mMaterialNum = i_block->mMaterialNum;
     if (i_block->mpNameTable != NULL) {
         mpMaterialTable->mMaterialName =
-            // new JUTNameTab(JSUConvertOffsetToPtr<ResNTAB>(i_block, i_block->mpNameTable));
-            new JUTNameTab(func_8030A530(i_block, i_block->mpNameTable));
+            new JUTNameTab(JSUConvertOffsetToPtr<ResNTAB>(i_block, i_block->mpNameTable));
     } else {
         mpMaterialTable->mMaterialName = NULL;
     }
@@ -861,26 +552,17 @@ void J3DModelLoader_v21::readMaterialTable_v21(J3DMaterialBlock_v21 const* i_blo
 
 /* 80335F5C-80336028 33089C 00CC+00 1/1 0/0 0/0 .text
  * readTextureTable__14J3DModelLoaderFPC15J3DTextureBlock       */
-#ifdef NONMATCHING
-// weak fn ordering
 void J3DModelLoader::readTextureTable(J3DTextureBlock const* i_block) {
     u16 texture_num = i_block->mTextureNum;
-    // ResTIMG* texture_res = JSUConvertOffsetToPtr<ResTIMG>(i_block, i_block->mpTextureRes);
-    ResTIMG* texture_res = func_803366EC(i_block, i_block->mpTextureRes);
+    ResTIMG* texture_res = JSUConvertOffsetToPtr<ResTIMG>(i_block, i_block->mpTextureRes);
     if (i_block->mpNameTable != NULL) {
         mpMaterialTable->mTextureName =
-            // new JUTNameTab(JSUConvertOffsetToPtr<ResNTAB>(i_block, i_block->mpNameTable));
-            new JUTNameTab(func_8030A530(i_block, i_block->mpNameTable));
+            new JUTNameTab(JSUConvertOffsetToPtr<ResNTAB>(i_block, i_block->mpNameTable));
     } else {
         mpMaterialTable->mTextureName = NULL;
     }
     mpMaterialTable->mTexture = new J3DTexture(texture_num, texture_res);
 }
-#else
-void J3DModelLoader::readTextureTable(J3DTextureBlock const* param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 80336028-80336168 330968 0140+00 1/1 0/0 0/0 .text
  * readPatchedMaterial__14J3DModelLoaderFPC16J3DMaterialBlockUl */
@@ -890,8 +572,7 @@ void J3DModelLoader::readPatchedMaterial(J3DMaterialBlock const* i_block, u32 i_
     mpMaterialTable->mUniqueMatNum = factory.countUniqueMaterials();
     if (i_block->mpNameTable != NULL) {
         mpMaterialTable->mMaterialName =
-            // new JUTNameTab(JSUConvertOffsetToPtr<ResNTAB>(i_block, i_block->mpNameTable));
-            new JUTNameTab(func_8030A530(i_block, i_block->mpNameTable));
+            new JUTNameTab(JSUConvertOffsetToPtr<ResNTAB>(i_block, i_block->mpNameTable));
     } else {
         mpMaterialTable->mMaterialName = NULL;
     }
@@ -916,8 +597,7 @@ void J3DModelLoader::readMaterialDL(J3DMaterialDLBlock const* i_block, u32 i_fla
         mpMaterialTable->mUniqueMatNum = i_block->mMaterialNum;
         if (i_block->mpNameTable != NULL) {
             mpMaterialTable->mMaterialName =
-                // new JUTNameTab(JSUConvertOffsetToPtr<ResNTAB>(i_block, i_block->mpNameTable));
-                new JUTNameTab(func_8030A530(i_block, i_block->mpNameTable));
+                new JUTNameTab(JSUConvertOffsetToPtr<ResNTAB>(i_block, i_block->mpNameTable));
         } else {
             mpMaterialTable->mMaterialName = NULL;
         }
@@ -951,148 +631,3 @@ void J3DModelLoader::modifyMaterial(u32 i_flags) {
         }
     }
 }
-
-/* 80336398-803363F4 330CD8 005C+00 1/0 0/0 0/0 .text            __dt__18J3DModelLoader_v26Fv */
-// J3DModelLoader_v26::~J3DModelLoader_v26() {
-extern "C" void __dt__18J3DModelLoader_v26Fv() {
-    // NONMATCHING
-}
-
-/* 803363F4-80336450 330D34 005C+00 1/0 0/0 0/0 .text            __dt__18J3DModelLoader_v21Fv */
-// J3DModelLoader_v21::~J3DModelLoader_v21() {
-extern "C" void __dt__18J3DModelLoader_v21Fv() {
-    // NONMATCHING
-}
-
-/* 80336450-80336498 330D90 0048+00 1/0 0/0 0/0 .text            __dt__14J3DModelLoaderFv */
-J3DModelLoader::~J3DModelLoader() {
-    // NONMATCHING
-}
-
-/* 80336498-8033649C 330DD8 0004+00 2/0 0/0 0/0 .text
- * readMaterial_v21__14J3DModelLoaderFPC20J3DMaterialBlock_v21Ul */
-void J3DModelLoader::readMaterial_v21(J3DMaterialBlock_v21 const* param_0, u32 param_1) {
-    /* empty function */
-}
-
-/* 8033649C-803364A0 330DDC 0004+00 2/0 0/0 0/0 .text
- * readMaterial__14J3DModelLoaderFPC16J3DMaterialBlockUl        */
-void J3DModelLoader::readMaterial(J3DMaterialBlock const* param_0, u32 param_1) {
-    /* empty function */
-}
-
-/* 803364A0-803364A4 330DE0 0004+00 2/0 0/0 0/0 .text
- * readMaterialTable_v21__14J3DModelLoaderFPC20J3DMaterialBlock_v21Ul */
-void J3DModelLoader::readMaterialTable_v21(J3DMaterialBlock_v21 const* param_0, u32 param_1) {
-    /* empty function */
-}
-
-/* 803364A4-803364A8 330DE4 0004+00 2/0 0/0 0/0 .text
- * readMaterialTable__14J3DModelLoaderFPC16J3DMaterialBlockUl   */
-void J3DModelLoader::readMaterialTable(J3DMaterialBlock const* param_0, u32 param_1) {
-    /* empty function */
-}
-
-/* 803364A8-803364B0 330DE8 0008+00 2/0 0/0 0/0 .text
- * calcSizeMaterial__14J3DModelLoaderFPC16J3DMaterialBlockUl    */
-u32 J3DModelLoader::calcSizeMaterial(J3DMaterialBlock const* param_0, u32 param_1) {
-    return false;
-}
-
-/* 803364B0-803364B8 330DF0 0008+00 2/0 0/0 0/0 .text
- * calcSizeMaterialTable__14J3DModelLoaderFPC16J3DMaterialBlockUl */
-u32 J3DModelLoader::calcSizeMaterialTable(J3DMaterialBlock const* param_0, u32 param_1) {
-    return false;
-}
-
-/* 803364B8-80336524 330DF8 006C+00 1/0 0/0 0/0 .text
- * __dt__83J3DMtxCalcNoAnm<32J3DMtxCalcCalcTransformSoftimage,29J3DMtxCalcJ3DSysInitSoftimage>Fv */
-extern "C" void func_803364B8(void* _this) {
-    // NONMATCHING
-}
-
-/* 80336524-8033656C 330E64 0048+00 1/0 0/0 0/0 .text
- * init__83J3DMtxCalcNoAnm<32J3DMtxCalcCalcTransformSoftimage,29J3DMtxCalcJ3DSysInitSoftimage>FRC3VecRA3_A4_Cf
- */
-extern "C" void func_80336524(void* _this, Vec const& param_0, f32 const (&param_1)[3][4]) {
-    // NONMATCHING
-}
-
-/* 8033656C-80336594 330EAC 0028+00 1/0 0/0 0/0 .text
- * calc__83J3DMtxCalcNoAnm<32J3DMtxCalcCalcTransformSoftimage,29J3DMtxCalcJ3DSysInitSoftimage>Fv */
-extern "C" void func_8033656C(void* _this) {
-    // NONMATCHING
-}
-
-/* 80336594-80336600 330ED4 006C+00 1/0 0/0 0/0 .text
- * __dt__75J3DMtxCalcNoAnm<28J3DMtxCalcCalcTransformBasic,25J3DMtxCalcJ3DSysInitBasic>Fv */
-extern "C" void func_80336594(void* _this) {
-    // NONMATCHING
-}
-
-/* 80336600-80336628 330F40 0028+00 1/0 0/0 0/0 .text
- * init__75J3DMtxCalcNoAnm<28J3DMtxCalcCalcTransformBasic,25J3DMtxCalcJ3DSysInitBasic>FRC3VecRA3_A4_Cf
- */
-extern "C" void func_80336600(void* _this, Vec const& param_0, f32 const (&param_1)[3][4]) {
-    // NONMATCHING
-}
-
-/* 80336628-80336650 330F68 0028+00 1/0 0/0 0/0 .text
- * calc__75J3DMtxCalcNoAnm<28J3DMtxCalcCalcTransformBasic,25J3DMtxCalcJ3DSysInitBasic>Fv */
-extern "C" void func_80336628(void* _this) {
-    // NONMATCHING
-}
-
-/* 80336650-803366A4 330F90 0054+00 2/2 0/0 0/0 .text            __ct__11J3DMaterialFv */
-// J3DMaterial::J3DMaterial() {
-extern "C" void __ct__11J3DMaterialFv() {
-    // NONMATCHING
-}
-
-/* 803366A4-803366EC 330FE4 0048+00 1/0 0/0 0/0 .text            __dt__10J3DTextureFv */
-// J3DTexture::~J3DTexture() {
-extern "C" void __dt__10J3DTextureFv() {
-    // NONMATCHING
-}
-
-/* 803366EC-80336704 33102C 0018+00 2/2 0/0 0/0 .text JSUConvertOffsetToPtr<7ResTIMG>__FPCvPCv */
-extern "C" ResTIMG* func_803366EC(void const* param_0, void const* param_1) {
-    // NONMATCHING
-}
-
-/* 80336704-8033671C 331044 0018+00 1/1 0/0 0/0 .text JSUConvertOffsetToPtr<A3_A4_f>__FPCvPCv */
-extern "C" Mtx* func_80336704(void const* param_0, void const* param_1) {
-    // NONMATCHING
-}
-
-/* 8033671C-80336734 33105C 0018+00 1/1 0/0 0/0 .text            JSUConvertOffsetToPtr<v>__FPCvPCv
- */
-extern "C" void* func_8033671C(void const* param_0, void const* param_1) {
-    // NONMATCHING
-}
-
-/* 80336734-8033674C 331074 0018+00 1/1 0/0 0/0 .text
- * JSUConvertOffsetToPtr<17_GXVtxAttrFmtList>__FPCvPCv          */
-extern "C" _GXVtxAttrFmtList* func_80336734(void const* param_0, void const* param_1) {
-    // NONMATCHING
-}
-
-/* 8033674C-80336764 33108C 0018+00 1/1 1/1 0/0 .text
- * JSUConvertOffsetToPtr<17J3DModelHierarchy>__FPCvPCv          */
-extern "C" J3DModelHierarchy* func_8033674C(void const* param_0, void const* param_1) {
-    // NONMATCHING
-}
-
-/* 80336764-8033677C 3310A4 0018+00 1/1 1/1 0/0 .text
- * JSUConvertOffsetToPtr<16J3DShapeInitData>__FPCvUl            */
-extern "C" J3DShapeInitData* func_80336764(void const* param_0, void const* param_1) {
-    // NONMATCHING
-}
-
-/* 8033677C-80336794 3310BC 0018+00 1/1 2/2 0/0 .text            JSUConvertOffsetToPtr<Us>__FPCvUl
- */
-extern "C" u16* func_8033677C(void const* param_0, void const* param_1) {
-    // NONMATCHING
-}
-
-/* 803A20B0-803A20B0 02E710 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
