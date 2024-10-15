@@ -132,6 +132,7 @@ int daAlink_c::checkReinRideBgCheck() {
 #else
 int daAlink_c::checkReinRideBgCheck() {
     // NONMATCHING
+    return 0;
 }
 #endif
 
@@ -742,6 +743,7 @@ int daAlink_c::setSyncBoar(int param_0) {
 #else
 int daAlink_c::setSyncBoar(int param_0) {
     // NONMATCHING
+    return 0;
 }
 #endif
 
@@ -832,6 +834,7 @@ void daAlink_c::setHorseSwordUp(int param_0) {
  */
 int daAlink_c::setRideSubjectAngle(s16 param_0) {
     // NONMATCHING
+    return 0;
 }
 
 /* 800EF050-800EF0E8 0E9990 0098+00 7/7 0/0 0/0 .text setBodyAngleRideReadyAnime__9daAlink_cFv */
@@ -1003,6 +1006,7 @@ BOOL daAlink_c::checkHorseGetOff() {
 #else
 BOOL daAlink_c::checkHorseGetOff() {
     // NONMATCHING
+    return 0;
 }
 #endif
 
@@ -1032,33 +1036,39 @@ int daAlink_c::setHorseGetOff(int param_0) {
 /* 800EF95C-800EFDC4 0EA29C 0468+00 1/1 0/0 0/0 .text            procHorseRideInit__9daAlink_cFv */
 int daAlink_c::procHorseRideInit() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800EFDC4-800F038C 0EA704 05C8+00 1/0 0/0 0/0 .text            procHorseRide__9daAlink_cFv */
 int daAlink_c::procHorseRide() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800F038C-800F0620 0EACCC 0294+00 1/1 0/0 0/0 .text            procHorseGetOffInit__9daAlink_cFi
  */
 int daAlink_c::procHorseGetOffInit(int param_0) {
     // NONMATCHING
+    return 0;
 }
 
 /* 800F0620-800F0980 0EAF60 0360+00 1/0 0/0 0/0 .text            procHorseGetOff__9daAlink_cFv */
 int daAlink_c::procHorseGetOff() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800F0980-800F0AA4 0EB2C0 0124+00 16/16 0/0 0/0 .text            procHorseWaitInit__9daAlink_cFv
  */
 int daAlink_c::procHorseWaitInit() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800F0AA4-800F0C6C 0EB3E4 01C8+00 1/0 0/0 0/0 .text            procHorseWait__9daAlink_cFv */
 int daAlink_c::procHorseWait() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800F0C6C-800F0CE4 0EB5AC 0078+00 1/1 0/0 0/0 .text            procHorseTurnInit__9daAlink_cFv */
@@ -1078,6 +1088,7 @@ int daAlink_c::procHorseTurnInit() {
 /* 800F0CE4-800F1060 0EB624 037C+00 1/0 0/0 0/0 .text            procHorseTurn__9daAlink_cFv */
 int daAlink_c::procHorseTurn() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800F1060-800F10F8 0EB9A0 0098+00 1/1 0/0 0/0 .text            procHorseJumpInit__9daAlink_cFv */
@@ -1190,11 +1201,13 @@ int daAlink_c::procHorseSubjectivity() {
 /* 800F13D8-800F1688 0EBD18 02B0+00 1/1 0/0 0/0 .text            procHorseCutInit__9daAlink_cFv */
 int daAlink_c::procHorseCutInit() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800F1688-800F1894 0EBFC8 020C+00 1/0 0/0 0/0 .text            procHorseCut__9daAlink_cFv */
 int daAlink_c::procHorseCut() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800F1894-800F194C 0EC1D4 00B8+00 3/3 0/0 0/0 .text procHorseCutChargeReadyInit__9daAlink_cFv */
@@ -1218,6 +1231,7 @@ int daAlink_c::procHorseCutChargeReadyInit() {
 /* 800F194C-800F1AAC 0EC28C 0160+00 1/0 0/0 0/0 .text procHorseCutChargeReady__9daAlink_cFv */
 int daAlink_c::procHorseCutChargeReady() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800F1AAC-800F1BA4 0EC3EC 00F8+00 3/3 0/0 0/0 .text            procHorseCutTurnInit__9daAlink_cFv
@@ -1245,17 +1259,20 @@ int daAlink_c::procHorseCutTurnInit() {
 /* 800F1BA4-800F1D18 0EC4E4 0174+00 1/0 0/0 0/0 .text            procHorseCutTurn__9daAlink_cFv */
 int daAlink_c::procHorseCutTurn() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800F1D18-800F2028 0EC658 0310+00 2/2 0/0 0/0 .text
  * procHorseDamageInit__9daAlink_cFP12dCcD_GObjInf              */
 int daAlink_c::procHorseDamageInit(dCcD_GObjInf* param_0) {
     // NONMATCHING
+    return 0;
 }
 
 /* 800F2028-800F2150 0EC968 0128+00 1/0 0/0 0/0 .text            procHorseDamage__9daAlink_cFv */
 int daAlink_c::procHorseDamage() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800F2150-800F21B4 0ECA90 0064+00 1/1 0/0 0/0 .text procHorseBowSubjectInit__9daAlink_cFv */
@@ -1537,6 +1554,7 @@ int daAlink_c::procHorseHookshotMove() {
 /* 800F2934-800F2AD8 0ED274 01A4+00 1/1 0/0 0/0 .text procHorseBottleDrinkInit__9daAlink_cFUs */
 int daAlink_c::procHorseBottleDrinkInit(u16 param_0) {
     // NONMATCHING
+    return 0;
 }
 
 /* 800F2AD8-800F2B4C 0ED418 0074+00 1/0 0/0 0/0 .text            procHorseBottleDrink__9daAlink_cFv
@@ -1559,11 +1577,13 @@ int daAlink_c::procHorseBottleDrink() {
 /* 800F2B4C-800F2C78 0ED48C 012C+00 1/1 0/0 0/0 .text procHorseKandelaarPourInit__9daAlink_cFv */
 int daAlink_c::procHorseKandelaarPourInit() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800F2C78-800F2D84 0ED5B8 010C+00 1/0 0/0 0/0 .text procHorseKandelaarPour__9daAlink_cFv */
 int daAlink_c::procHorseKandelaarPour() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800F2D84-800F2DE4 0ED6C4 0060+00 2/2 0/0 0/0 .text            procHorseComebackInit__9daAlink_cFv
@@ -1626,17 +1646,20 @@ int daAlink_c::procHorseRunInit() {
 /* 800F2F98-800F3430 0ED8D8 0498+00 1/0 0/0 0/0 .text            procHorseRun__9daAlink_cFv */
 int daAlink_c::procHorseRun() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800F3430-800F3580 0EDD70 0150+00 1/1 0/0 0/0 .text
  * procHorseHangInit__9daAlink_cFP12dCcD_GObjInfi               */
 int daAlink_c::procHorseHangInit(dCcD_GObjInf* param_0, int param_1) {
     // NONMATCHING
+    return 0;
 }
 
 /* 800F3580-800F36E4 0EDEC0 0164+00 1/0 0/0 0/0 .text            procHorseHang__9daAlink_cFv */
 int daAlink_c::procHorseHang() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800F36E4-800F3754 0EE024 0070+00 1/0 0/0 0/0 .text            procHorseGetKeyInit__9daAlink_cFv
@@ -1722,4 +1745,5 @@ int daAlink_c::procBoarRunInit() {
 /* 800F3998-800F3BB0 0EE2D8 0218+00 1/0 0/0 0/0 .text            procBoarRun__9daAlink_cFv */
 int daAlink_c::procBoarRun() {
     // NONMATCHING
+    return 0;
 }

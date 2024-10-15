@@ -41,6 +41,7 @@ public:
     f32 getRodStickX() { return mRodStickX; }
     f32 getRodStickY() { return mRodStickY; }
     bool checkRodEquipPermission() { return field_0x1514 == 0; }
+    bool checkReelSpin() { return field_0x14f0 != 0; }
 
     /* 0x0568 */ u8 field_0x568[0x5A4 - 0x568];
     /* 0x05A4 */ mg_rod_s field_0x5a4;
@@ -82,7 +83,9 @@ public:
     /* 0x14C0 */ u8 field_0x14c0[0x14C8 - 0x14C0];
     /* 0x14C8 */ f32 mRodStickX;
     /* 0x14CC */ f32 mRodStickY;
-    /* 0x14D0 */ u8 field_0x14d0[0x1514 - 0x14D0];
+    /* 0x14D0 */ u8 field_0x14d0[0x14F0 - 0x14D0];
+    /* 0x14F0 */ int field_0x14f0;
+    /* 0x14F4 */ u8 field_0x14f4[0x1514 - 0x14F4];
     /* 0x1514 */ u8 field_0x1514;
     /* 0x1515 */ u8 field_0x1515[0x1518 - 0x1515];
     /* 0x1518 */ dCcD_Stts field_0x1518;

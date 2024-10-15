@@ -753,10 +753,9 @@ int daAlink_c::procSlideLand() {
 }
 
 /* 800C494C-800C4B40 0BF28C 01F4+00 4/3 0/0 0/0 .text            procFrontRollInit__9daAlink_cFv */
-// some issue with daAlinkHIO_frontRoll_c0::m not being saved into r31
-#ifdef NONMATCHING
 int daAlink_c::procFrontRollInit() {
     BOOL is_guard_anime = checkUpperGuardAnime();
+
     if (mProcID == PROC_FRONT_ROLL && mDemo.getDemoMode() == 0x28) {
         return 0;
     }
@@ -764,20 +763,18 @@ int daAlink_c::procFrontRollInit() {
     BOOL is_dive_jump = mProcID == PROC_DIVE_JUMP;
     commonProcInit(PROC_FRONT_ROLL);
 
-    f32 roll_anm_speed;
-    if (!is_dive_jump) {
-        roll_anm_speed = daAlinkHIO_frontRoll_c0::m.mRollAnm.mSpeed;
-    } else {
-        roll_anm_speed = 6.0f;
-    }
+    f32 roll_anm_speed = is_dive_jump ? 6.0f : daAlinkHIO_frontRoll_c0::m.mRollAnm.mStartFrame;
+
     setSingleAnime(ANM_FRONT_ROLL, daAlinkHIO_frontRoll_c0::m.mRollAnm.mSpeed, roll_anm_speed,
                    daAlinkHIO_frontRoll_c0::m.mRollAnm.mEndFrame,
                    daAlinkHIO_frontRoll_c0::m.mRollAnm.mInterpolation);
 
     mNormalSpeed =
-        speedF * daAlinkHIO_frontRoll_c0::m.mInitSpeed + daAlinkHIO_frontRoll_c0::m.mSpeedRate;
-    if (mNormalSpeed > daAlinkHIO_frontRoll_c0::m.mCrashHitAnm.mStartFrame) {
-        mNormalSpeed = daAlinkHIO_frontRoll_c0::m.mCrashHitAnm.mStartFrame;
+        speedF * daAlinkHIO_frontRoll_c0::m.mSpeedRate + daAlinkHIO_frontRoll_c0::m.mInitSpeed;
+
+    f32 var_f30 = daAlinkHIO_frontRoll_c0::m.mInitSpeed + daAlinkHIO_move_c0::m.mMaxSpeed * daAlinkHIO_frontRoll_c0::m.mSpeedRate;
+    if (mNormalSpeed > var_f30) {
+        mNormalSpeed = var_f30;
     }
 
     if (mNormalSpeed < daAlinkHIO_frontRoll_c0::m.mMinSpeed) {
@@ -794,8 +791,9 @@ int daAlink_c::procFrontRollInit() {
     voiceStart(Z2SE_AL_V_BACKTEN);
     mProcVar2.field_0x300c = 0;
     setFootEffectProcType(0);
+
     if (is_guard_anime) {
-        onNoResetFlg0(2);
+        onNoResetFlg0(FLG0_UNK_2);
     }
 
     if (checkEquipHeavyBoots()) {
@@ -808,13 +806,9 @@ int daAlink_c::procFrontRollInit() {
         field_0xFB8.SetR(daAlinkHIO_frontRoll_c0::m.mBootsAttackRadius);
         field_0xFB8.OnAtSetBit();
     }
+
     return 1;
 }
-#else
-int daAlink_c::procFrontRollInit() {
-    // NONMATCHING
-}
-#endif
 
 /* 800C4B40-800C4F14 0BF480 03D4+00 1/0 0/0 0/0 .text            procFrontRoll__9daAlink_cFv */
 int daAlink_c::procFrontRoll() {
@@ -1905,8 +1899,7 @@ int daAlink_c::procSmallJumpInit(int param_0) {
 
 
 /* 800C72D4-800C74D4 0C1C14 0200+00 1/0 0/0 0/0 .text            procSmallJump__9daAlink_cFv */
-// one out of order block with sqrt
-#ifdef NONMATCHING
+// NONMATCHING - one out of order block with sqrt
 int daAlink_c::procSmallJump() {
     if (checkModeFlg(2)) {
         if (checkCanoeJumpRide()) {
@@ -1948,11 +1941,6 @@ int daAlink_c::procSmallJump() {
 
     return 1;
 }
-#else
-int daAlink_c::procSmallJump() {
-    // NONMATCHING
-}
-#endif
 
 /* 800C74D4-800C755C 0C1E14 0088+00 1/1 0/0 0/0 .text            procStepMoveInit__9daAlink_cFv */
 int daAlink_c::procStepMoveInit() {
@@ -1968,11 +1956,10 @@ int daAlink_c::procStepMoveInit() {
 }
 
 /* 800C755C-800C7690 0C1E9C 0134+00 1/0 0/0 0/0 .text            procStepMove__9daAlink_cFv */
-#ifdef NONMATCHING
 int daAlink_c::procStepMove() {
     daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
 
-    if (mProcVar2.field_0x300c == 0) {
+    if (mProcVar2.field_0x300c != 0) {
         field_0x2f99 = 4;
 
         if (frameCtrl->checkAnmEnd()) {
@@ -1998,11 +1985,6 @@ int daAlink_c::procStepMove() {
 
     return 1;
 }
-#else
-int daAlink_c::procStepMove() {
-    // NONMATCHING
-}
-#endif
 
 /* 800C7690-800C76F8 0C1FD0 0068+00 1/0 0/0 0/0 .text            procCrouchInit__9daAlink_cFv */
 int daAlink_c::procCrouchInit() {
@@ -2035,27 +2017,11 @@ int daAlink_c::procCrouch() {
     return 1;
 }
 
-/* ############################################################################################## */
-/* 804255F8-80425604 052318 000C+00 0/1 0/0 0/0 .bss             @4419 */
-#pragma push
-#pragma force_active on
-static u8 lit_4419[12];
-#pragma pop
-
 /* 80425604-80425610 052324 000C+00 0/1 0/0 0/0 .bss             l_sumouBaseAnimeSp */
-#pragma push
-#pragma force_active on
-static Vec l_sumouBaseAnimeSp;  // change to cXyz later
-#pragma pop
-
-/* 80425610-8042561C 052330 000C+00 0/1 0/0 0/0 .bss             @4420 */
-#pragma push
-#pragma force_active on
-static u8 lit_4420[12];
-#pragma pop
+static cXyz l_sumouBaseAnimeSp;
 
 /* 8042561C-80425628 05233C 000C+00 37/39 0/0 0/0 .bss             l_wolfBaseAnime */
-static Vec l_wolfBaseAnime;  // change to cXyz later
+static cXyz l_wolfBaseAnime;
 
 BOOL daMidna_c::checkMidnaRealBody() {
     return dKy_darkworld_check() == 1 || dComIfGs_isTransformLV(3);
@@ -2180,19 +2146,161 @@ int daAlink_c::procCoMetamorphoseInit() {
 }
 
 
-/* ############################################################################################## */
-/* 80392070-8039207C 01E6D0 000C+00 0/1 0/0 0/0 .rodata          @74273 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_74273[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80392070, &lit_74273);
-#pragma pop
-
 /* 800C7C64-800C82E8 0C25A4 0684+00 1/0 0/0 0/0 .text            procCoMetamorphose__9daAlink_cFv */
 int daAlink_c::procCoMetamorphose() {
-    // NONMATCHING
+    if (mProcVar1.field_0x300a != 0) {
+        if (!checkEventRun()) {
+            checkWaitAction();
+        } else {
+            dComIfGp_evmng_cutEnd(field_0x3184);
+        }
+        return 1;
+    }
+
+    daPy_frameCtrl_c* temp_r29 = mUnderFrameCtrl;
+    if (!mLinkAcch.i_ChkGroundHit()) {
+        current.pos.y = field_0x3484;
+        speed.y = 0.0f;
+    } else {
+        field_0x3484 = current.pos.y;
+    }
+
+    field_0x2f99 = 4;
+
+    if (mProcVar0.field_0x3008 != 0 && mProcVar3.field_0x300e.z == 0) {
+        if (mClothesChangeWaitTimer == 0) {
+            mProcVar3.field_0x300e.z = 1;
+
+            if (mDemo.getParam0() == 1 && (mDemo.getDemoMode() == 0x39 || mDemo.getDemoMode() == 0x3A)) {
+                dComIfGp_evmng_cutEnd(field_0x3184);
+
+                if (checkWolf()) {
+                    setSingleAnimeWolfBaseSpeed(WANM_WAIT, daAlinkHIO_wlMoveNoP_c0::m.field_0x14, -1.0f);
+                } else {
+                    setSingleAnimeBaseSpeed(ANM_WAIT, daAlinkHIO_move_c0::m.mWaitAnmSpeed, -1.0f);
+                }
+
+                field_0x2f99 = 0xC;
+                mProcVar1.field_0x300a = 1;
+                return 1;
+            }
+
+            Vec sp8 = {0.0f, 0.0f, 0.0f};
+            sp8.z = l_wolfBaseAnime.z - l_waitBaseAnime.z;
+
+            if (!checkWolf()) {
+                setSingleAnimeBaseMorf(ANM_TRANSFORM_TO_HUMAN, -1.0f);
+                setMetamorphoseModel(0);
+                field_0x3588 = l_waitBaseAnime;
+            } else {
+                setSingleAnimeWolfBaseMorf(WANM_TRANSFORM_TO_WOLF, -1.0f);
+                field_0x3588 = l_wolfBaseAnime;
+                sp8.z *= -1.0f;
+                offModeFlg(0x8000);
+            }
+
+            mDoMtx_stack_c::transS(current.pos);
+            mDoMtx_stack_c::ZXYrotM(shape_angle);
+            mDoMtx_stack_c::multVec(&sp8, &current.pos);
+
+            field_0x2f99 = 0xC;
+            if (mDemo.getDemoType() == 3) {
+                mFallVoiceInit = 1;
+            }
+
+        }
+    } else if (checkAnmEnd(temp_r29) || ((mDemo.getParam0() == 1) && (mDemo.getDemoMode() == 0x39 || mDemo.getDemoMode() == 0x3A)) || (mProcVar3.field_0x300e.z != 0 && temp_r29->getFrame() > field_0x3480 && (checkInputOnR() || doTrigger() || grassCancelTrigger()))) {
+        if (mProcVar3.field_0x300e.z != 0) {
+            deleteEquipItem(0, 0);
+
+            if (field_0x3198 != 0) {
+                resetSpecialEvent();
+                return checkWaitAction();
+            }
+
+            dComIfGp_evmng_cutEnd(field_0x3184);
+
+            if (checkWolf()) {
+                setSingleAnimeWolfBaseSpeed(WANM_WAIT, daAlinkHIO_wlMoveNoP_c0::m.field_0x14, -1.0f);
+            } else {
+                setSingleAnimeBaseSpeed(ANM_WAIT, daAlinkHIO_move_c0::m.mWaitAnmSpeed, -1.0f);
+            }
+
+            field_0x2f99 = 0xC;
+            mProcVar1.field_0x300a = 1;
+            return 1;
+        }
+
+        mClothesChangeWaitTimer = 4;
+        mpWlMidnaModel = NULL;
+        mProcVar0.field_0x3008 = 1;
+
+        if (mProcVar3.field_0x300e.y != 0) {
+            dComIfGs_onEventBit(0x5E40);
+        }
+    }
+
+    field_0x33dc = temp_r29->getFrame();
+
+    if (mProcVar3.field_0x300e.z != 0) {
+        if (checkWolf()) {
+            f32 var_f31 = 1.0f - (0.03846154f * field_0x33dc);
+            if (var_f31 < 0.0f) {
+                var_f31 = 0.0f;
+            }
+
+            mProcVar3.field_0x300e.x = -64.0f * var_f31;
+        } else if (field_0x33dc < 14.0f) {
+            mProcVar3.field_0x300e.x = 15.0 + (49.0 * (1.0 - (0.07142857142857142 * field_0x33dc)));
+        } else {
+            f32 var_f31_2 = 1.0f - (0.2f * (field_0x33dc - 14.0f));
+            if (var_f31_2 < 0.0f) {
+                var_f31_2 = 0.0f;
+            }
+
+            mProcVar3.field_0x300e.x = 15.0f * var_f31_2;
+        }
+    } else if (checkWolf() != 0) {
+        mProcVar3.field_0x300e.x = -64.0 * (0.07142857142857142 * field_0x33dc);
+    } else if (field_0x33dc < 9.0f) {
+        mProcVar3.field_0x300e.x = -15.0 * (0.1111111111111111 * field_0x33dc);
+    } else {
+        f32 var_f31_3 = 0.2f * (field_0x33dc - 9.0f);
+        if (var_f31_3 > 1.0f) {
+            var_f31_3 = 1.0f;
+        }
+
+        mProcVar3.field_0x300e.x = -(15.0f + (49.0f * var_f31_3));
+    }
+
+    if (!checkWolf()) {
+        f32 var_f30;
+        if (mProcVar3.field_0x300e.z != 0) {
+            var_f30 = (field_0x33dc - 13.0f) / 4.0f;
+        } else {
+            var_f30 = (field_0x33dc - 8.0f) / 5.0f;
+        }
+
+        var_f30 = cLib_minMaxLimit<f32>(var_f30, 0.0f, 1.0f);
+
+        if (mProcVar3.field_0x300e.z != 0) {
+            field_0x347c = 0.5f + (0.027777778f * field_0x33dc);
+            var_f30 = 1.0f - var_f30;
+        } else {
+            field_0x347c = 1.0f - (0.033333335f * (field_0x33dc - 9.0f));
+            if (var_f30 > 0.0f) {
+                swimBgCheck(150.0f * var_f30);
+            }
+        }
+
+        if (field_0x347c > 1.0f) {
+            field_0x347c = 1.0f;
+        }
+
+        shape_angle.x = var_f30 * mProcVar2.field_0x300c;
+    }
+
+    return 1;
 }
 
 /* 800C82E8-800C83A0 0C2C28 00B8+00 2/0 0/0 0/0 .text procCoMetamorphoseOnlyInit__9daAlink_cFv */
@@ -2212,10 +2320,9 @@ int daAlink_c::procCoMetamorphoseOnlyInit() {
         mProcVar3.field_0x300e.x = 0;
     }
 
-    f32 tmp_0 = 0.0f;
-    mNormalSpeed = tmp_0;
-    speed.y = tmp_0;
-    setSpecialGravity(tmp_0, maxFallSpeed, 0);
+    mNormalSpeed = 0.0f;
+    speed.y = 0.0f;
+    setSpecialGravity(0.0f, maxFallSpeed, 0);
 
     return 1;
 }
@@ -2289,6 +2396,7 @@ int daAlink_c::procGoronRideWaitInit(fopAc_ac_c* param_0) {
 /* 800C85D8-800C8700 0C2F18 0128+00 1/0 0/0 0/0 .text            procGoronRideWait__9daAlink_cFv */
 int daAlink_c::procGoronRideWait() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800C8700-800CAFA8 0C3040 28A8+00 1/1 0/0 0/0 .text            execute__9daAlink_cFv */
@@ -3364,18 +3472,10 @@ void daAlink_c::modelDraw(J3DModel* i_model, int param_1) {
     daMirror_c::entry(i_model);
 }
 
-/* ############################################################################################## */
-/* 8045333C-80453344 00193C 0008+00 1/1 0/0 0/0 .sdata2          notColor0$76211 */
-SECTION_SDATA2 static GXColorS10 notColor0 = {
-    0x0000,
-    0x0000,
-    0x0000,
-    0x00FF,
-};
-
 /* 800CC364-800CC7DC 0C6CA4 0478+00 2/2 0/0 0/0 .text
  * setWaterDropColor__9daAlink_cFPC13J3DGXColorS10              */
-void daAlink_c::setWaterDropColor(J3DGXColorS10 const* i_color) {
+void daAlink_c::setWaterDropColor(const J3DGXColorS10* i_color) {
+    static const GXColorS10 notColor0 = {0x00, 0x00, 0x00, 0xFF};
     J3DGXColorS10* var_r31;
 
     if (&field_0x32a0[0] == i_color) {
@@ -3884,6 +3984,7 @@ bool daAlink_c::checkNoSubjectModeCamera() {
 /* 800CE468-800CE628 0C8DA8 01C0+00 2/2 0/0 0/0 .text acceptSubjectModeChange__9daAlink_cFv */
 bool daAlink_c::acceptSubjectModeChange() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800CE628-800CE728 0C8F68 0100+00 5/5 0/0 0/0 .text            checkSubjectAction__9daAlink_cFv */
@@ -3925,6 +4026,7 @@ void daAlink_c::checkBodyAngleX(s16 param_0) {
 /* 800CE8A0-800CEAF4 0C91E0 0254+00 15/15 0/0 0/0 .text setBodyAngleToCamera__9daAlink_cFv */
 BOOL daAlink_c::setBodyAngleToCamera() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800CEAF4-800CEB58 0C9434 0064+00 9/9 0/0 0/0 .text            setSubjectMode__9daAlink_cFv */
@@ -3932,7 +4034,6 @@ void daAlink_c::setSubjectMode() {
     dComIfGp_setPlayerStatus0(0, 0x2000);
     seStartSystem(Z2SE_SUBJ_VIEW_IN);
 }
-
 
 /* 800CEB58-800CEBD8 0C9498 0080+00 2/2 0/0 0/0 .text            subjectCancelTrigger__9daAlink_cFv
  */
@@ -3947,18 +4048,35 @@ BOOL daAlink_c::subjectCancelTrigger() {
 }
 
 /* 800CEBD8-800CECE4 0C9518 010C+00 9/9 0/0 0/0 .text            checkSubjectEnd__9daAlink_cFi */
-int daAlink_c::checkSubjectEnd(int param_0) {
-    // NONMATCHING
+int daAlink_c::checkSubjectEnd(BOOL i_playSound) {
+    setDoStatus(0x12);
+
+    if (checkEventRun() || checkEquipAnime() || doTrigger() || checkSetItemTrigger(HAWK_EYE) || subjectCancelTrigger() || checkEndResetFlg0(ERFLG0_UNK_80000000) || dComIfGp_checkCameraAttentionStatus(field_0x317c, 0x2000)) {
+        if (i_playSound) {
+            seStartSystem(Z2SE_SUBJ_VIEW_OUT);
+        }
+
+        onResetFlg0(RFLG0_UNK_10000000);
+        return true;
+    }
+
+    return false;
 }
 
 /* 800CECE4-800CED48 0C9624 0064+00 1/1 0/0 0/0 .text searchPeepObj__9daAlink_cFP10fopAc_ac_cPv */
-void daAlink_c::searchPeepObj(fopAc_ac_c* param_0, void* param_1) {
-    // NONMATCHING
+void daAlink_c::searchPeepObj(fopAc_ac_c* i_actor, void* i_data) {
+    if (fopAcM_GetName(i_actor) == PROC_KYTAG05) {
+        f32 var_f31 = current.pos.abs2(i_actor->current.pos);
+        if (var_f31 < field_0x3478) {
+            field_0x3478 = var_f31;
+            *(fopAc_ac_c**)i_data = i_actor;
+        }
+    }
 }
 
 /* 800CED48-800CED84 0C9688 003C+00 1/1 0/0 0/0 .text daAlink_searchPeepObj__FP10fopAc_ac_cPv */
-static int daAlink_searchPeepObj(fopAc_ac_c* param_0, void* param_1) {
-    daAlink_getAlinkActorClass()->searchPeepObj(param_0, param_1);
+static int daAlink_searchPeepObj(fopAc_ac_c* i_actor, void* i_data) {
+    daAlink_getAlinkActorClass()->searchPeepObj(i_actor, i_data);
     return 0;
 }
 
@@ -3981,7 +4099,31 @@ int daAlink_c::procCoSubjectivityInit() {
 
 /* 800CEE08-800CEF70 0C9748 0168+00 1/0 0/0 0/0 .text            procCoSubjectivity__9daAlink_cFv */
 int daAlink_c::procCoSubjectivity() {
-    // NONMATCHING
+    onResetFlg0(RFLG0_UNK_4000000);
+    setTalkStatus();
+
+    if (orderTalk(1)) {
+        return 1;
+    }
+
+    if ((checkWolf() && checkWolfGroundSpecialMode()) || (!checkWolf() && checkGroundSpecialMode())) {
+        return 1;
+    }
+
+    if (checkSubjectEnd(FALSE) || (dComIfGp_checkPlayerStatus0(0, 0x200000) && checkSetItemTrigger(HAWK_EYE))) {
+        seStartSystem(Z2SE_SUBJ_VIEW_OUT);
+        checkWaitAction();
+    } else if (!checkWolf() && (checkItemAction() || checkItemChangeFromButton())) {
+        if (checkUpperReadyThrowAnime()) {
+            field_0x310a = mBodyAngle.x;
+        }
+
+        return 1;
+    } else {
+        setBodyAngleToCamera();
+    }
+
+    return 1;
 }
 
 /* 800CEF70-800CF018 0C98B0 00A8+00 1/1 0/0 0/0 .text procCoSwimSubjectivityInit__9daAlink_cFv */
@@ -4007,7 +4149,6 @@ int daAlink_c::procCoSwimSubjectivityInit() {
 
 /* 800CF018-800CF100 0C9958 00E8+00 1/0 0/0 0/0 .text procCoSwimSubjectivity__9daAlink_cFv */
 int daAlink_c::procCoSwimSubjectivity() {
-    // NONMATCHING
     onResetFlg0(RFLG0_UNK_4000000);
     setTalkStatus();
 
@@ -4019,7 +4160,7 @@ int daAlink_c::procCoSwimSubjectivity() {
         setSwimUpDownOffset();
     }
 
-    if (checkSubjectEnd(0)) {
+    if (checkSubjectEnd(FALSE)) {
         seStartSystem(Z2SE_SUBJ_VIEW_OUT);
 
         if (checkWolf()) {
@@ -4191,6 +4332,7 @@ extern "C" BOOL checkRideOn__9daAlink_cCFv(daAlink_c* this_) {
 /* 800CFEC4-800CFEF4 0CA804 0030+00 1/1 0/0 0/0 .text            dComIfGp_att_getCatghTarget__Fv */
 extern "C" dAttCatch_c* dComIfGp_att_getCatghTarget__Fv() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800CFEF4-800CFF2C 0CA834 0038+00 1/1 0/0 0/0 .text            mDoAud_setLinkHp__Fll */

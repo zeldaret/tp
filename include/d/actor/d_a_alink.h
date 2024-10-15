@@ -2171,7 +2171,7 @@ public:
     /* 800F4490 */ void setFishGetFace();
     /* 800F4564 */ void setRideCanoeBasePos(fopAc_ac_c*);
     /* 800F459C */ void setSyncCanoePos();
-    /* 800F47D8 */ void canoeCommon();
+    /* 800F47D8 */ int canoeCommon();
     /* 800F4924 */ int checkNextActionCanoe();
     /* 800F4A50 */ int procCanoeRideInit();
     /* 800F4B90 */ int procCanoeRide();
@@ -2523,7 +2523,7 @@ public:
     /* 801126F8 */ void setIronBallReturn(int);
     /* 80112768 */ void setIronBallBgCheckPos();
     /* 801127F0 */ void setIronBallModel();
-    /* 80112C84 */ void setIronBallGroundVec(cXyz const*, cXyz*);
+    /* 80112C84 */ int setIronBallGroundVec(cXyz const*, cXyz*);
     /* 80112E7C */ void setIronBallChainPos();
     /* 80113CA0 */ BOOL checkIronBallReturnChange();
     /* 80113D58 */ void setIronBallPos();
@@ -3201,6 +3201,7 @@ public:
     BOOL checkCanoeFishingWaitAnime() const { return checkUpperAnime(0x5D) || checkUpperAnime(0x260); }
     BOOL checkCopyRodControllAnime() const { return checkUpperAnime(0x202); }
     BOOL checkWolfHeadDamageAnime() const { return checkUpperAnime(0x2A7); }
+    BOOL checkExchangeRodAnime() const { return checkUpperAnime(0x68); }
 
     int checkWolfEyeUp() const { return mWolfEyeUp; }
     void onModeFlg(u32 flag) { mModeFlg |= flag; }
@@ -3286,6 +3287,10 @@ public:
         }
 
         return var_r4;
+    }
+
+    bool checkFisingRodJewl() const {
+        return (mEquipItem == 0x5C || mEquipItem == 0x5F) || mEquipItem == 0x5E;
     }
 
     MtxP getCopyRodMtx() {
@@ -3492,10 +3497,10 @@ public:
     /* 0x00768 */ J3DModelData* mpHookKusariModelData;
     /* 0x0076C */ Z2SoundObjSimple* mpHookSound;
     /* 0x00770 */ hsChainShape_c* mpHookChain;
-    /* 0x00774 */ void* field_0x0774;
-    /* 0x00778 */ void* field_0x0778;
+    /* 0x00774 */ dBgS_AcchCir* field_0x0774;
+    /* 0x00778 */ dBgS_ObjAcch* field_0x0778;
     /* 0x0077C */ dBgS_ObjLinChk* mpHookshotLinChk;
-    /* 0x00780 */ void* field_0x780;
+    /* 0x00780 */ dBgS_ObjLinChk* field_0x780;
     /* 0x00784 */ J3DModel* mpLinkBootModels[2];
     /* 0x0078C */ J3DModel* mpWlChainModels[4];
     /* 0x0079C */ J3DModel* mpWlMidnaModel;
@@ -3734,7 +3739,7 @@ public:
         s16 mPuzzleAimAngle;
     } /* 0x0300C */ mProcVar2;
     union {
-        csXyz field_0x300e;
+        SVec field_0x300e;
     } /* 0x0300E */ mProcVar3;
     /* 0x03014 */ s16 mFallVoiceInit;
     /* 0x03016 */ u8 field_0x3016[2];
@@ -4035,7 +4040,7 @@ public:
     /* 0x03834 */ cXyz field_0x3834;
     /* 0x03840 */ cXyz* mIronBallChainPos;
     /* 0x03844 */ csXyz* mIronBallChainAngle;
-    /* 0x03848 */ void* field_0x3848;
+    /* 0x03848 */ cXyz* field_0x3848;
     /* 0x0384C */ cXyz* field_0x384c;
     /* 0x03850 */ daAlink_procFunc mpProcFunc;
 };  // Size: 0x385C
@@ -4990,21 +4995,21 @@ public:
 
 class daAlinkHIO_canoe_c1 {
 public:
-    /* 0x00 */ daAlinkHIO_anm_c field_0x0;
-    /* 0x14 */ s16 field_0x14;
-    /* 0x16 */ s16 field_0x16;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1C;
-    /* 0x20 */ f32 field_0x20;
-    /* 0x24 */ f32 field_0x24;
-    /* 0x28 */ f32 field_0x28;
-    /* 0x2C */ f32 field_0x2C;
-    /* 0x30 */ f32 field_0x30;
-    /* 0x34 */ f32 field_0x34;
+    /* 0x00 */ daAlinkHIO_anm_c mLeftRightChangeAnm;
+    /* 0x14 */ s16 mMaxTurnAngle;
+    /* 0x16 */ s16 mMaxTurnAngle_RiverRide;
+    /* 0x18 */ f32 mStickRowAnmSpeed;
+    /* 0x1C */ f32 mBtnRowAnmSpeed;
+    /* 0x20 */ f32 mSpeedRate;
+    /* 0x24 */ f32 mMaxSpeed;
+    /* 0x28 */ f32 mDeceleration;
+    /* 0x2C */ f32 mStickRowStartAnmSpeed;
+    /* 0x30 */ f32 mBtnRowStartAnmSpeed;
+    /* 0x34 */ f32 mBackSpeedRate;
     /* 0x38 */ f32 mBackMaxSpeed;
-    /* 0x3C */ f32 field_0x3C;
-    /* 0x40 */ f32 field_0x40;
-    /* 0x44 */ f32 field_0x44;
+    /* 0x3C */ f32 mMaxSpeed_RiverRide;
+    /* 0x40 */ f32 mSpeedRate_RiverRide;
+    /* 0x44 */ f32 mDeceleration_RiverRide;
 };  // Size: 0x48
 
 class daAlinkHIO_canoe_c0 {

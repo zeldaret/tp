@@ -367,6 +367,7 @@ bool daAlink_c::checkCutReverseAt(dCcD_GObjInf* param_0) {
  * changeCutReverseProc__9daAlink_cFQ29daAlink_c11daAlink_ANM   */
 BOOL daAlink_c::changeCutReverseProc(daAlink_c::daAlink_ANM param_0) {
     // NONMATCHING
+    return 0;
 }
 
 /* 800D1E1C-800D20B4 0CC75C 0298+00 4/4 0/0 0/0 .text            setCutDash__9daAlink_cFii */
@@ -1565,6 +1566,7 @@ int daAlink_c::procCutTurnInit(int param_0, int param_1) {
 #else
 int daAlink_c::procCutTurnInit(int param_0, int param_1) {
     // NONMATCHING
+    return 0;
 }
 #endif
 
@@ -2067,6 +2069,7 @@ int daAlink_c::procCutHeadInit() {
 #else
 int daAlink_c::procCutHeadInit() {
     // NONMATCHING
+    return 0;
 }
 #endif
 

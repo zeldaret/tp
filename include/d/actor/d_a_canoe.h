@@ -39,11 +39,30 @@ public:
     void incShapeAngleZ(s16 incZ) { shape_angle.z += incZ; }
     void onRodID(fpc_ProcID i_rodID) { mRodID = i_rodID; }
     void setWaterFallDownSe() { field_0x141c.startSound(Z2SE_AL_CANOE_FALL_DW, 0, -1); }
+    bool checkPaddleChangeWater() { return mPaddleWaterType == 3; }
+    void startInitPaddleWater() { mPaddleWaterType = 4; }
+    fpc_ProcID getRodID() { return mRodID; }
+
+    void setAimSpeed(f32 i_speed) { mAimSpeed = i_speed; }
+    void setAimAngle(s16 i_angle) {
+        mAimAngle = i_angle;
+        field_0x1442 = 1;
+    }
 
     void setPosAndAngle(cXyz const* i_pos, s16 i_angle) {
         field_0x14d0 = *i_pos;
         field_0x144a = i_angle;
         field_0x1446 = 1;
+    }
+
+    void setPaddleOffsetRight() {
+        field_0x1454 = 0x40;
+        field_0x1456 = 0xF;
+    }
+
+    void setPaddleOffsetLeft() {
+        field_0x1454 = -0x40;
+        field_0x1456 = 0xF;
     }
 
 private:
@@ -78,7 +97,7 @@ private:
     /* 0x145C */ s16 field_0x145c;
     /* 0x145E */ s16 field_0x145e;
     /* 0x1460 */ s16 field_0x1460;
-    /* 0x1464 */ u32 mRodID;
+    /* 0x1464 */ fpc_ProcID mRodID;
     /* 0x1468 */ f32 mAimSpeed;
     /* 0x146C */ f32 mShapeOffsetY;
     /* 0x1470 */ f32 field_0x1470;

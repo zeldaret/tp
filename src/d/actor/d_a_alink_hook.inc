@@ -573,6 +573,7 @@ void daAlink_c::setHookshotReturnEnd() {
  */
 int daAlink_c::setHookshotHangMoveBGCollect() {
     // NONMATCHING
+    return 0;
 }
 
 /* 80109AAC-80109BDC 1043EC 0130+00 2/2 0/0 0/0 .text            setHookshotTopPosFly__9daAlink_cFv

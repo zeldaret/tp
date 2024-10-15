@@ -273,6 +273,7 @@ int daAlink_c::procGrassWhistleWait() {
 #else
 int daAlink_c::procGrassWhistleWait() {
     // NONMATCHING
+    return 0;
 }
 #endif
 
@@ -303,6 +304,7 @@ int daAlink_c::procCoHorseCallWaitInit(int param_0) {
  */
 int daAlink_c::procCoHorseCallWait() {
     // NONMATCHING
+    return 0;
 }
 
 /* 801121B4-80112220 10CAF4 006C+00 1/0 0/0 0/0 .text            procHawkCatchInit__9daAlink_cFv */
@@ -349,4 +351,5 @@ int daAlink_c::procHawkSubjectInit() {
 /* 80112304-8011243C 10CC44 0138+00 1/0 0/0 0/0 .text            procHawkSubject__9daAlink_cFv */
 int daAlink_c::procHawkSubject() {
     // NONMATCHING
+    return 0;
 }

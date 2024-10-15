@@ -507,6 +507,7 @@ public:
     void OnAtVsPlayerBit() { mObjAt.OnSPrmBit(0xC); }
     void OnCoSPrmBit(u32 flag) { mObjCo.OnSPrmBit(flag); }
     void SetCoVsGrp(u32 grp) { mObjCo.SetVsGrp(grp); }
+    void SetCoIGrp(u32 grp) { mObjCo.SetIGrp(grp); }
     void SetAtSPrm(u32 prm) { mObjAt.SetSPrm(prm); }
     void SetTgSPrm(u32 prm) { mObjTg.SetSPrm(prm); }
     void SetCoSPrm(u32 prm) { mObjCo.SetSPrm(prm); }

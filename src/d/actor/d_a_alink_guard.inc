@@ -53,6 +53,7 @@ BOOL daAlink_c::checkShieldAttackEmphasys() {
 
 BOOL daAlink_c::checkGuardActionChange() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800DC79C-800DC8C4 0D70DC 0128+00 3/3 0/0 0/0 .text            stickArrowIncrement__9daAlink_cFi
@@ -273,40 +274,48 @@ void daAlink_c::setSmallGuard(dCcD_GObjInf* param_0) {
  * procGuardSlipInit__9daAlink_cFiP12dCcD_GObjInf               */
 int daAlink_c::procGuardSlipInit(int param_0, dCcD_GObjInf* param_1) {
     // NONMATCHING
+    return 0;
 }
 
 /* 800DD894-800DDA10 0D81D4 017C+00 1/0 0/0 0/0 .text            procGuardSlip__9daAlink_cFv */
 int daAlink_c::procGuardSlip() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800DDA10-800DDBA8 0D8350 0198+00 2/1 0/0 0/0 .text            procGuardAttackInit__9daAlink_cFv
  */
 int daAlink_c::procGuardAttackInit() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800DDBA8-800DDE58 0D84E8 02B0+00 1/0 0/0 0/0 .text            procGuardAttack__9daAlink_cFv */
 int daAlink_c::procGuardAttack() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800DDE58-800DDF2C 0D8798 00D4+00 2/2 0/0 0/0 .text            procGuardBreakInit__9daAlink_cFv */
 int daAlink_c::procGuardBreakInit() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800DDF2C-800DE008 0D886C 00DC+00 1/0 0/0 0/0 .text            procGuardBreak__9daAlink_cFv */
 int daAlink_c::procGuardBreak() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800DE008-800DE380 0D8948 0378+00 2/2 0/0 0/0 .text            procTurnMoveInit__9daAlink_cFi */
 int daAlink_c::procTurnMoveInit(int param_0) {
     // NONMATCHING
+    return 0;
 }
 
 /* 800DE380-800DE64C 0D8CC0 02CC+00 1/0 0/0 0/0 .text            procTurnMove__9daAlink_cFv */
 int daAlink_c::procTurnMove() {
     // NONMATCHING
+    return 0;
 }

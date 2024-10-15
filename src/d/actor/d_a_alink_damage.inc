@@ -929,27 +929,32 @@ int daAlink_c::procDamage() {
 int daAlink_c::procCoLargeDamageInit(int param_0, int param_1, s16 param_2, s16 param_3,
                                          dCcD_GObjInf* param_4, int param_5) {
     // NONMATCHING
+    return 0;
 }
 
 /* 800D9E88-800DA180 0D47C8 02F8+00 1/0 0/0 0/0 .text            procCoLargeDamage__9daAlink_cFv */
 int daAlink_c::procCoLargeDamage() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800DA180-800DA554 0D4AC0 03D4+00 2/2 0/0 0/0 .text procLargeDamageUpInit__9daAlink_cFiiss */
 int daAlink_c::procLargeDamageUpInit(int param_0, int param_1, s16 param_2, s16 param_3) {
     // NONMATCHING
+    return 0;
 }
 
 /* 800DA554-800DA82C 0D4E94 02D8+00 1/0 0/0 0/0 .text            procLargeDamageUp__9daAlink_cFv */
 int daAlink_c::procLargeDamageUp() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800DA82C-800DAC28 0D516C 03FC+00 1/1 0/0 0/0 .text procCoLargeDamageWallInit__9daAlink_cFiiss
  */
 int daAlink_c::procCoLargeDamageWallInit(int param_0, int param_1, s16 param_2, s16 param_3) {
     // NONMATCHING
+    return 0;
 }
 
 /* 800DAC28-800DAC84 0D5568 005C+00 1/0 0/0 0/0 .text            procCoLargeDamageWall__9daAlink_cFv
@@ -1008,6 +1013,7 @@ int daAlink_c::procCoPolyDamage() {
 /* 800DAE10-800DB060 0D5750 0250+00 2/2 0/0 0/0 .text            procLandDamageInit__9daAlink_cFi */
 int daAlink_c::procLandDamageInit(int param_0) {
     // NONMATCHING
+    return 0;
 }
 
 /* 800DB060-800DB140 0D59A0 00E0+00 1/0 0/0 0/0 .text            procLandDamage__9daAlink_cFv */
@@ -1039,11 +1045,13 @@ int daAlink_c::procLandDamage() {
  * procCoElecDamageInit__9daAlink_cFP10fopAc_ac_cP12dCcD_GObjInfi */
 int daAlink_c::procCoElecDamageInit(fopAc_ac_c* param_0, dCcD_GObjInf* param_1, int param_2) {
     // NONMATCHING
+    return 0;
 }
 
 /* 800DB418-800DB5B0 0D5D58 0198+00 1/0 0/0 0/0 .text            procCoElecDamage__9daAlink_cFv */
 int daAlink_c::procCoElecDamage() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800DB5B0-800DB610 0D5EF0 0060+00 2/2 0/0 0/0 .text            procStEscapeInit__9daAlink_cFv */
@@ -1076,11 +1084,13 @@ int daAlink_c::procStEscape() {
 /* 800DB6A4-800DB860 0D5FE4 01BC+00 1/1 0/0 0/0 .text            procDkCaughtInit__9daAlink_cFUi */
 int daAlink_c::procDkCaughtInit(unsigned int param_0) {
     // NONMATCHING
+    return 0;
 }
 
 /* 800DB860-800DBC98 0D61A0 0438+00 1/0 0/0 0/0 .text            procDkCaught__9daAlink_cFv */
 int daAlink_c::procDkCaught() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800DBC98-800DBD1C 0D65D8 0084+00 2/2 0/0 0/0 .text            setScreamWaitAnime__9daAlink_cFv */
