@@ -96,15 +96,4 @@ private:
 
 STATIC_ASSERT(sizeof(daObjLadder::Act_c) == 0x620);
 
-// struct daObj {
-// public:
-//     /* 800373C0 */ void posMoveF_stream(fopAc_ac_c*, cXyz const*, cXyz const*, f32, f32);
-//     template <typename A1>
-//     void PrmAbstract(/* ... */);
-//     /* 8058DD14 */ /* daObj::PrmAbstract<daObjLadder::Act_c::Prm_e> */
-//     void func_8058DD14(void* _this, fopAc_ac_c const*, daObjLadder::Act_c::Prm_e,
-//                        daObjLadder::Act_c::Prm_e);
-// };
-
-
 #endif /* D_A_OBJ_LADDER_H */
