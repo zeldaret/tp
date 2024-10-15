@@ -89,7 +89,9 @@ public:
     /* 8032EBCC */ void normalizeWeight(int, f32*);
 
     void offFlag(u32 i_flag) { mFlags &= ~i_flag; }
+    bool checkFlag(u32 i_flag) { return mFlags & i_flag; }
     void setAnmCluster(J3DAnmCluster* anm) { mAnmCluster = anm; }
+    void normalize(f32* i_vec) { VECNormalize((Vec*)i_vec, (Vec*)i_vec); }
 
     /* 0x00 */ J3DDeformData* mDeformData;
     /* 0x04 */ J3DAnmCluster* mAnmCluster;

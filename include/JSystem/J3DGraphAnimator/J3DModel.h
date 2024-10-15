@@ -72,7 +72,7 @@ public:
     /* 803276EC */ virtual void calcMaterial();
     /* 80327858 */ virtual void calcDiffTexMtx();
     /* 80327F40 */ virtual void viewCalc();
-    /* 80328350 */ virtual ~J3DModel();
+    /* 80328350 */ virtual ~J3DModel() {}
 
     J3DModelData* getModelData() { return mModelData; }
 

@@ -6,105 +6,7 @@
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
-#include "dol2asm.h"
 #include "dolphin/os.h"
-
-//
-// Forward References:
-//
-
-extern "C" void initialize__8J3DModelFv();
-extern "C" void entryModelData__8J3DModelFP12J3DModelDataUlUl();
-extern "C" void createShapePacket__8J3DModelFP12J3DModelData();
-extern "C" void createMatPacket__8J3DModelFP12J3DModelDataUl();
-extern "C" void newDifferedDisplayList__8J3DModelFUl();
-extern "C" void lock__8J3DModelFv();
-extern "C" void unlock__8J3DModelFv();
-extern "C" void calcMaterial__8J3DModelFv();
-extern "C" void calcDiffTexMtx__8J3DModelFv();
-extern "C" void diff__8J3DModelFv();
-extern "C" void setDeformData__8J3DModelFP13J3DDeformDataUl();
-extern "C" void setSkinDeform__8J3DModelFP13J3DSkinDeformUl();
-extern "C" void calcAnmMtx__8J3DModelFv();
-extern "C" void calcWeightEnvelopeMtx__8J3DModelFv();
-extern "C" void update__8J3DModelFv();
-extern "C" void calc__8J3DModelFv();
-extern "C" void entry__8J3DModelFv();
-extern "C" void viewCalc__8J3DModelFv();
-extern "C" void calcNrmMtx__8J3DModelFv();
-extern "C" void calcBumpMtx__8J3DModelFv();
-extern "C" void calcBBoardMtx__8J3DModelFv();
-extern "C" void prepareShapePackets__8J3DModelFv();
-extern "C" void __dt__8J3DModelFv();
-extern "C" void __dt__12J3DMtxBufferFv();
-
-//
-// External References:
-//
-
-extern "C" void* __nw__FUl();
-extern "C" void* __nwa__FUl();
-extern "C" void __dl__FPv();
-extern "C" void setVertexData__15J3DVertexBufferFP13J3DVertexData();
-extern "C" void __dt__15J3DVertexBufferFv();
-extern "C" void copyLocalVtxArray__15J3DVertexBufferFUl();
-extern "C" void allocTransformedVtxPosArray__15J3DVertexBufferFv();
-extern "C" void allocTransformedVtxNrmArray__15J3DVertexBufferFv();
-extern "C" void single_To_Double__17J3DDisplayListObjFv();
-extern "C" void newDisplayList__13J3DDrawPacketFUl();
-extern "C" void newSingleDisplayList__13J3DDrawPacketFUl();
-extern "C" void __ct__12J3DMatPacketFv();
-extern "C" void __dt__12J3DMatPacketFv();
-extern "C" void addShapePacket__12J3DMatPacketFP14J3DShapePacket();
-extern "C" void __ct__14J3DShapePacketFv();
-extern "C" void __dt__14J3DShapePacketFv();
-extern "C" void newDifferedDisplayList__14J3DShapePacketFUl();
-extern "C" void calcNBTScale__8J3DShapeFRC3VecPA3_A3_fPA3_A3_f();
-extern "C" void countDLSize__11J3DMaterialFv();
-extern "C" void newSharedDisplayList__11J3DMaterialFUl();
-extern "C" void newSingleSharedDisplayList__11J3DMaterialFUl();
-extern "C" void syncJ3DSysFlags__12J3DModelDataCFv();
-extern "C" void initialize__12J3DMtxBufferFv();
-extern "C" void create__12J3DMtxBufferFP12J3DModelDataUl();
-extern "C" void calcWeightEnvelopeMtx__12J3DMtxBufferFv();
-extern "C" void calcDrawMtx__12J3DMtxBufferFUlRC3VecRA3_A4_Cf();
-extern "C" void calcNrmMtx__12J3DMtxBufferFv();
-extern "C" void calcBBoardMtx__12J3DMtxBufferFv();
-extern "C" void J3DCalcViewBaseMtx__FPA4_fRC3VecRA3_A4_CfPA4_f();
-extern "C" void initSkinInfo__13J3DSkinDeformFP12J3DModelData();
-extern "C" void initMtxIndexArray__13J3DSkinDeformFP12J3DModelData();
-extern "C" void changeFastSkinDL__13J3DSkinDeformFP12J3DModelData();
-extern "C" void transformVtxPosNrm__13J3DSkinDeformFP12J3DModelData();
-extern "C" void deform__13J3DSkinDeformFP8J3DModel();
-extern "C" void calc__15J3DVtxColorCalcFP8J3DModel();
-extern "C" void offAllFlag__13J3DDeformDataFUl();
-extern "C" void deform__13J3DDeformDataFP8J3DModel();
-extern "C" void entryIn__8J3DJointFv();
-extern "C" void __construct_new_array();
-extern "C" void _savegpr_23();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_23();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 80456428-80456430 004A28 0004+04 1/1 0/0 0/0 .sdata2          @896 */
-SECTION_SDATA2 static f32 lit_896[1 + 1 /* padding */] = {
-    1.0f,
-    /* padding */
-    0.0f,
-};
 
 /* 80327100-80327184 321A40 0084+00 0/0 3/3 0/0 .text            initialize__8J3DModelFv */
 void J3DModel::initialize() {
@@ -130,27 +32,6 @@ void J3DModel::initialize() {
     mUnkCalc1 = NULL;
     mUnkCalc2 = NULL;
 }
-
-/* ############################################################################################## */
-/* 803CED20-803CED44 02BE40 0024+00 1/1 3/3 0/0 .data            __vt__8J3DModel */
-SECTION_DATA extern void* __vt__8J3DModel[9] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)update__8J3DModelFv,
-    (void*)entry__8J3DModelFv,
-    (void*)calc__8J3DModelFv,
-    (void*)calcMaterial__8J3DModelFv,
-    (void*)calcDiffTexMtx__8J3DModelFv,
-    (void*)viewCalc__8J3DModelFv,
-    (void*)__dt__8J3DModelFv,
-};
-
-/* 803CED44-803CED50 02BE64 000C+00 2/2 0/0 0/0 .data            __vt__12J3DMtxBuffer */
-SECTION_DATA extern void* __vt__12J3DMtxBuffer[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12J3DMtxBufferFv,
-};
 
 /* 80327184-80327300 321AC4 017C+00 0/0 3/3 0/0 .text
  * entryModelData__8J3DModelFP12J3DModelDataUlUl                */
@@ -373,38 +254,29 @@ void J3DModel::calcMaterial() {
 }
 
 /* 80327858-803279A0 322198 0148+00 1/0 0/0 0/0 .text            calcDiffTexMtx__8J3DModelFv */
-#if defined NON_MATCHING
+// NONMATCHING regalloc
 void J3DModel::calcDiffTexMtx() {
-    // regalloc
     j3dSys.setModel(this);
 
-    u16 num;
-    num = getModelData()->getMaterialNum();
-    for (u16 i = 0; i < num; i++) {
-        j3dSys.setMatPacket(getMatPacket(i));
-        J3DMaterial* materialNode = getModelData()->getMaterialNodePointer(i);
+    for (u16 num = mModelData->getMaterialNum(), i = 0; i < num; i++) {
+        j3dSys.setMatPacket(&mMatPacket[i]);
+        J3DMaterial* materialNode = mModelData->getMaterialNodePointer(i);
         materialNode->calcDiffTexMtx(getAnmMtx(materialNode->getJoint()->getJntNo()));
     }
 
-    num = getModelData()->getShapeNum();
-    for (u16 i = 0; i < num; i++) {
+    for (u16 num = mModelData->getShapeNum(), i = 0; i < num; i++) {
         J3DShapePacket* shapePacket = getShapePacket(i);
         J3DTexGenBlock* texGenBlock =
-            getModelData()->getShapeNodePointer(i)->getMaterial()->getTexGenBlock();
+            mModelData->getShapeNodePointer(i)->getMaterial()->getTexGenBlock();
         for (u16 j = 0; (int)j < 8; j++) {
             J3DTexMtx* texMtxNode = texGenBlock->getTexMtx(j);
             J3DTexMtxObj* texMtxObj = shapePacket->getTexMtxObj();
             if (texMtxNode != NULL && texMtxObj != NULL) {
-                MTXCopy(texMtxNode->getMtx(), texMtxObj->getMtx(j));
+                texMtxObj->setMtx(j, &texMtxNode->getMtx());
             }
         }
     }
 }
-#else
-void J3DModel::calcDiffTexMtx() {
-    // NONMATCHING
-}
-#endif
 
 /* 803279A0-80327A2C 3222E0 008C+00 0/0 2/2 0/0 .text            diff__8J3DModelFv */
 void J3DModel::diff() {
@@ -667,13 +539,4 @@ void J3DModel::prepareShapePackets() {
             pkt->setBaseMtxPtr(&j3dSys.mViewMtx);
         }
     }
-}
-
-/* 80328350-803283B4 322C90 0064+00 1/0 0/0 0/0 .text            __dt__8J3DModelFv */
-J3DModel::~J3DModel() {}
-
-/* 803283B4-803283FC 322CF4 0048+00 1/0 0/0 0/0 .text            __dt__12J3DMtxBufferFv */
-extern "C" void __dt__12J3DMtxBufferFv() {
-    // asm J3DMtxBuffer::~J3DMtxBuffer() {
-    // NONMATCHING
 }

@@ -13,7 +13,10 @@ struct TAngleConstant_;
  */
 template<>
 struct TAngleConstant_<f32> {
-    static inline f32 RADIAN_DEG360() { return 6.2831855f; }
+    static f32 RADIAN_DEG090() { return 1.5707964f; }
+    static f32 RADIAN_DEG180() { return 3.1415927f; }
+    static f32 RADIAN_DEG360() { return 6.2831855f; }
+    static f32 RADIAN_TO_DEGREE_FACTOR() { return 180.0f / RADIAN_DEG180(); }
 };
 
 /**
@@ -72,12 +75,32 @@ struct TAtanTable {
 struct TAsinAcosTable {
     f32 table[1025];
     u8 pad[0x1C];
+
+    f32 acos_(f32 x) {
+        if (x >= 1.0f) {
+            return 0.0f;
+        } else if (x <= -1.0f) {
+            return TAngleConstant_<f32>::RADIAN_DEG180();
+        } else if (x < 0.0f) {
+            return table[(u32)(-x * 1023.5f)] + TAngleConstant_<f32>::RADIAN_DEG090();
+        } else {
+            return TAngleConstant_<f32>::RADIAN_DEG090() - table[(u32)(x * 1023.5f)];
+        }
+    }
+
+    f32 acosDegree(f32 x) {
+        return acos_(x) * TAngleConstant_<f32>::RADIAN_TO_DEGREE_FACTOR();
+    }
 };
 
 namespace JMath {
 extern TSinCosTable<13, f32> sincosTable_;
 extern TAtanTable atanTable_;
 extern TAsinAcosTable asinAcosTable_;
+
+inline f32 acosDegree(f32 x) {
+    return asinAcosTable_.acosDegree(x);
+}
 };  // namespace JMath
 
 inline f32 JMASCosShort(s16 v) {

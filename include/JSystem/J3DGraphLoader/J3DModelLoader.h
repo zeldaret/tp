@@ -268,8 +268,7 @@ public:
     /* 80337010 */ u32 calcSizePatchedMaterial(J3DMaterialBlock const*, u32);
     /* 803370A0 */ u32 calcSizeMaterialDL(J3DMaterialDLBlock const*, u32);
 
-    // Remove when J3DModelLoader.cc is ok
-    #ifndef NON_VIRTUAL_J3DModelLoader
+
     /* 803347E0 */ virtual J3DModelData* load(void const*, u32);
     /* 80334ABC */ virtual J3DMaterialTable* loadMaterialTable(void const*);
     /* 80334C20 */ virtual J3DModelData* loadBinaryDisplayList(void const*, u32);
@@ -278,32 +277,13 @@ public:
     /* 80336A98 */ virtual u32 calcLoadBinaryDisplayListSize(void const*, u32);
     /* 80336794 */ virtual u16 countMaterialNum(void const*);
     /* 80334EE0 */ virtual void setupBBoardInfo();
-    /* 80336450 */ virtual ~J3DModelLoader();
-    /* 8033649C */ virtual void readMaterial(J3DMaterialBlock const*, u32);
-    /* 80336498 */ virtual void readMaterial_v21(J3DMaterialBlock_v21 const*, u32);
-    /* 803364A4 */ virtual void readMaterialTable(J3DMaterialBlock const*, u32);
-    /* 803364A0 */ virtual void readMaterialTable_v21(J3DMaterialBlock_v21 const*, u32);
-    /* 803364A8 */ virtual u32 calcSizeMaterial(J3DMaterialBlock const*, u32);
-    /* 803364B0 */ virtual u32 calcSizeMaterialTable(J3DMaterialBlock const*, u32);
-    #else
-    /* 803347E0 */ J3DModelData* load(void const*, u32);
-    /* 80334ABC */ J3DMaterialTable* loadMaterialTable(void const*);
-    /* 80334C20 */ J3DModelData* loadBinaryDisplayList(void const*, u32);
-    /* 803367D4 */ u32 calcLoadSize(void const*, u32);
-    /* 803369A0 */ u32 calcLoadMaterialTableSize(void const*);
-    /* 80336A98 */ u32 calcLoadBinaryDisplayListSize(void const*, u32);
-    /* 80336794 */ u16 countMaterialNum(void const*);
-    /* 80334EE0 */ void setupBBoardInfo();
-    /* 80336450 */ ~J3DModelLoader();
-    /* 8033649C */ void readMaterial(J3DMaterialBlock const*, u32);
-    /* 80336498 */ void readMaterial_v21(J3DMaterialBlock_v21 const*, u32);
-    /* 803364A4 */ void readMaterialTable(J3DMaterialBlock const*, u32);
-    /* 803364A0 */ void readMaterialTable_v21(J3DMaterialBlock_v21 const*, u32);
-    /* 803364A8 */ u32 calcSizeMaterial(J3DMaterialBlock const*, u32);
-    /* 803364B0 */ u32 calcSizeMaterialTable(J3DMaterialBlock const*, u32);
-    
-    /* 0x00 */ void* _vtable;
-    #endif
+    /* 80336450 */ virtual ~J3DModelLoader() {}
+    /* 8033649C */ virtual void readMaterial(J3DMaterialBlock const*, u32) {}
+    /* 80336498 */ virtual void readMaterial_v21(J3DMaterialBlock_v21 const*, u32) {}
+    /* 803364A4 */ virtual void readMaterialTable(J3DMaterialBlock const*, u32) {}
+    /* 803364A0 */ virtual void readMaterialTable_v21(J3DMaterialBlock_v21 const*, u32) {}
+    /* 803364A8 */ virtual u32 calcSizeMaterial(J3DMaterialBlock const*, u32) { return false; }
+    /* 803364B0 */ virtual u32 calcSizeMaterialTable(J3DMaterialBlock const*, u32) { return false; }
 
     /* 0x04 */ J3DModelData* mpModelData;
     /* 0x08 */ J3DMaterialTable* mpMaterialTable;
@@ -319,44 +299,24 @@ public:
  * @ingroup jsystem-j3d
  * 
  */
-class J3DModelLoader_v21 { // : public J3DModelLoader {
+class J3DModelLoader_v21 : public J3DModelLoader {
 public:
     /* 803363F4 */ ~J3DModelLoader_v21() {}
     /* 80335890 */ void readMaterial_v21(J3DMaterialBlock_v21 const*, u32);
     /* 80335E20 */ void readMaterialTable_v21(J3DMaterialBlock_v21 const*, u32);
-
-    /* 0x00 */ void* _vtable;
-    /* 0x04 */ J3DModelData* mpModelData;
-    /* 0x08 */ J3DMaterialTable* mpMaterialTable;
-    /* 0x0C */ J3DShapeBlock const* mpShapeBlock;
-    /* 0x10 */ J3DMaterialBlock const* mpMaterialBlock;
-    /* 0x14 */ J3DModelHierarchy* mpModelHierarchy;
-    /* 0x18 */ u8 field_0x18;
-    /* 0x19 */ u8 field_0x19;
-    /* 0x1A */ u16 mEnvelopeSize;
 };
 
 /**
  * @ingroup jsystem-j3d
  * 
  */
-class J3DModelLoader_v26 { // : public J3DModelLoader {
+class J3DModelLoader_v26 : public J3DModelLoader {
 public:
     /* 80336398 */ ~J3DModelLoader_v26() {}
     /* 80335614 */ void readMaterial(J3DMaterialBlock const*, u32);
     /* 80335CE4 */ void readMaterialTable(J3DMaterialBlock const*, u32);
     /* 80336DB4 */ u32 calcSizeMaterial(J3DMaterialBlock const*, u32);
     /* 80336F60 */ u32 calcSizeMaterialTable(J3DMaterialBlock const*, u32);
-
-    /* 0x00 */ void* _vtable;
-    /* 0x04 */ J3DModelData* mpModelData;
-    /* 0x08 */ J3DMaterialTable* mpMaterialTable;
-    /* 0x0C */ J3DShapeBlock const* mpShapeBlock;
-    /* 0x10 */ J3DMaterialBlock const* mpMaterialBlock;
-    /* 0x14 */ J3DModelHierarchy* mpModelHierarchy;
-    /* 0x18 */ u8 field_0x18;
-    /* 0x19 */ u8 field_0x19;
-    /* 0x1A */ u16 mEnvelopeSize;
 };
 
 /**

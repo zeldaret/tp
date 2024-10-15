@@ -6,9 +6,9 @@
 /* 80325A18-80325A9C 320358 0084+00 0/0 1/1 0/0 .text            __ct__12J3DJointTreeFv */
 J3DJointTree::J3DJointTree()
     : mHierarchy(NULL), mFlags(0), mModelDataType(0), mRootNode(NULL), mBasicMtxCalc(NULL),
-      mJointNodePointer(NULL), mJointNum(0), mWEvlpMtxNum(0), mWEvlpMixMtxNum(0), mWEvlpMixIndex(0),
-      mWEvlpMixWeight(0), mInvJointMtx(NULL), mWEvlpImportantMtxIdx(0), field_0x40(0),
-      mJointName(NULL) {}
+      mJointNodePointer(NULL), mJointNum(0), mWEvlpMtxNum(0), mWEvlpMixMtxNum(0),
+      mWEvlpMixMtxIndex(0), mWEvlpMixWeight(0), mInvJointMtx(NULL), mWEvlpImportantMtxIdx(0),
+      field_0x40(0), mJointName(NULL) {}
 
 /* 80325A9C-80325C00 3203DC 0164+00 1/0 2/2 0/0 .text
  * makeHierarchy__12J3DJointTreeFP8J3DJointPPC17J3DModelHierarchyP16J3DMaterialTableP13J3DShapeTable
@@ -86,7 +86,7 @@ void J3DJointTree::findImportantMtxIndex() {
     const s32 wEvlpMtxNum = getWEvlpMtxNum();
     u32 tableIdx = 0;
     const u16 drawFullWgtMtxNum = getDrawFullWgtMtxNum();
-    const u16 * wEvlpMixIndex = getWEvlpMixIndex();
+    const u16 * wEvlpMixIndex = getWEvlpMixMtxIndex();
     const f32 * wEvlpMixWeight = getWEvlpMixWeight();
     u16 * wEvlpImportantMtxIdx = getWEvlpImportantMtxIndex();
 
@@ -132,6 +132,3 @@ void J3DJointTree::calc(J3DMtxBuffer* pMtxBuffer, Vec const& scale, f32 const (&
 void J3DMtxCalc::setMtxBuffer(J3DMtxBuffer* mtxBuffer) {
     J3DMtxCalc::mMtxBuffer = mtxBuffer;
 }
-
-/* 80325D24-80325D88 320664 0064+00 1/0 0/0 0/0 .text            __dt__12J3DJointTreeFv */
-J3DJointTree::~J3DJointTree() {}

@@ -6,7 +6,8 @@
 #include "JSystem/J3DGraphAnimator/J3DCluster.h"
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
-#include "dol2asm.h"
+#include "JSystem/JMath/JMATrigonometric.h"
+#include "dolphin/base/PPCArch.h"
 #include "dolphin/os.h"
 
 #ifdef DEBUG
@@ -19,42 +20,6 @@
 #else
 #define J3D_ASSERT(COND)
 #endif
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__13J3DDeformDataFv();
-extern "C" void offAllFlag__13J3DDeformDataFUl();
-extern "C" void deform__13J3DDeformDataFP8J3DModel();
-extern "C" void deform__13J3DDeformDataFP15J3DVertexBuffer();
-extern "C" void setAnm__13J3DDeformDataFP13J3DAnmCluster();
-extern "C" void __ct__11J3DDeformerFP13J3DDeformData();
-extern "C" void deform__11J3DDeformerFP15J3DVertexBufferUs();
-extern "C" void deform_VtxPosF32__11J3DDeformerFP15J3DVertexBufferP10J3DClusterP13J3DClusterKeyPf();
-extern "C" void deform_VtxNrmF32__11J3DDeformerFP15J3DVertexBufferP10J3DClusterP13J3DClusterKeyPf();
-extern "C" void deform__11J3DDeformerFP15J3DVertexBufferUsPf();
-extern "C" void normalizeWeight__11J3DDeformerFiPf();
-
-//
-// External References:
-//
-
-extern "C" void PPCSync();
-extern "C" void __cvt_fp2unsigned();
-extern "C" void _savegpr_21();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_21();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_29();
-extern "C" f32 asinAcosTable___5JMath[1032];
-
-//
-// Declarations:
-//
 
 /* 8032E1F8-8032E230 328B38 0038+00 0/0 1/1 0/0 .text            __ct__13J3DDeformDataFv */
 J3DDeformData::J3DDeformData() {
@@ -145,68 +110,169 @@ void J3DDeformer::deform(J3DVertexBuffer* buffer, u16 param_1) {
     }
 }
 
-/* ############################################################################################## */
-/* 80456470-80456474 004A70 0004+00 2/2 0/0 0/0 .sdata2          @830 */
-SECTION_SDATA2 static f32 lit_830 = 1.0f;
-
-/* 80456474-80456478 004A74 0004+00 1/1 0/0 0/0 .sdata2          @840 */
-SECTION_SDATA2 static f32 lit_840 = 1.0f;
-
-/* 80456478-8045647C 004A78 0004+00 1/1 0/0 0/0 .sdata2          None */
-SECTION_SDATA2 static f32 data_80456478 = -1.0f;
-
-/* 8045647C-80456480 004A7C 0004+00 3/3 0/0 0/0 .sdata2          @866 */
-SECTION_SDATA2 static u8 lit_866[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
 /* 8032E4A4-8032E60C 328DE4 0168+00 1/1 0/0 0/0 .text
  * deform_VtxPosF32__11J3DDeformerFP15J3DVertexBufferP10J3DClusterP13J3DClusterKeyPf */
-void J3DDeformer::deform_VtxPosF32(J3DVertexBuffer* param_0, J3DCluster* param_1,
-                                       J3DClusterKey* param_2, f32* param_3) {
-    // NONMATCHING
+void J3DDeformer::deform_VtxPosF32(J3DVertexBuffer* i_buffer, J3DCluster* i_cluster,
+                                   J3DClusterKey* i_key, f32* i_weights) {
+    int posNum = i_cluster->mPosNum;
+    int keyNum = i_cluster->mKeyNum;
+    f32* vtxPosArray = (f32*)i_buffer->getVtxPosArrayPointer(0);
+    f32* deformVtxPos = mDeformData->getVtxPos();
+    u16* iVar9 = i_cluster->field_0x18;
+
+    for (int i = 0; i < posNum; i++) {
+        int index = iVar9[i] * 3;
+        vtxPosArray[index] = 0.0f;
+        vtxPosArray[index + 1] = 0.0f;
+        vtxPosArray[index + 2] = 0.0f;
+    }
+
+    f32 local_58[2] = {1.0f, -1.0f};
+
+    for (u16 i = 0; i < posNum; i++) {
+        int index = i_cluster->field_0x18[i] * 3;
+        for (u16 j = 0; j < keyNum; j++) {
+            int uVar7 = ((u16*)i_key[j].field_0x4)[i];
+            f32* deform = &deformVtxPos[(uVar7 & ~0xE000) * 3];
+            f32 deform0 = deform[0];
+            f32 deform1 = deform[1];
+            f32 deform2 = deform[2];
+            deform0 *= local_58[((uVar7 & 0x8000) >> 0xF)];
+            deform1 *= local_58[((uVar7 & 0x4000) >> 0xE)];
+            deform2 *= local_58[((uVar7 & 0x2000) >> 0xD)];
+            vtxPosArray[index] += deform0 * i_weights[j];
+            vtxPosArray[index + 1] += deform1 * i_weights[j];
+            vtxPosArray[index + 2] += deform2 * i_weights[j];
+        }
+    }
 }
-
-/* ############################################################################################## */
-/* 80456480-80456484 004A80 0004+00 1/1 0/0 0/0 .sdata2          @1020 */
-SECTION_SDATA2 static f32 lit_1020 = -1.0f;
-
-/* 80456484-80456488 004A84 0004+00 1/1 0/0 0/0 .sdata2          @1021 */
-SECTION_SDATA2 static f32 lit_1021 = 3.1415927410125732f;
-
-/* 80456488-8045648C 004A88 0004+00 1/1 0/0 0/0 .sdata2          @1022 */
-SECTION_SDATA2 static f32 lit_1022 = 1023.5f;
-
-/* 8045648C-80456490 004A8C 0004+00 1/1 0/0 0/0 .sdata2          @1023 */
-SECTION_SDATA2 static f32 lit_1023 = 1.5707963705062866f;
-
-/* 80456490-80456494 004A90 0004+00 1/1 0/0 0/0 .sdata2          @1024 */
-SECTION_SDATA2 static f32 lit_1024 = 57.2957763671875f;
-
-/* 80456494-80456498 004A94 0004+00 1/1 0/0 0/0 .sdata2          @1025 */
-SECTION_SDATA2 static f32 lit_1025 = 180.0f;
-
-/* 80456498-804564A0 004A98 0008+00 1/1 0/0 0/0 .sdata2          @1027 */
-SECTION_SDATA2 static f64 lit_1027 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8032E60C-8032EAB4 328F4C 04A8+00 1/1 0/0 0/0 .text
  * deform_VtxNrmF32__11J3DDeformerFP15J3DVertexBufferP10J3DClusterP13J3DClusterKeyPf */
-void J3DDeformer::deform_VtxNrmF32(J3DVertexBuffer* param_0, J3DCluster* param_1,
-                                       J3DClusterKey* param_2, f32* param_3) {
-    // NONMATCHING
+// NONMATCHING one missing mr
+void J3DDeformer::deform_VtxNrmF32(J3DVertexBuffer* i_buffer, J3DCluster* i_cluster,
+                                   J3DClusterKey* i_key, f32* i_weights) {
+    f32* vtxNrmArray = (f32*)i_buffer->getVtxNrmArrayPointer(0);
+    f32* deformVtxNrm = mDeformData->getVtxNrm();
+    f32* iVar13 = field_0xc;
+    u16 keyNum = i_cluster->mKeyNum;
+    int uVar2 = i_cluster->field_0x16;
+
+    for (u16 i = 0; i < i_cluster->field_0x14; i++) {
+        int index = i * 3;
+        iVar13[index] = 0.0f;
+        iVar13[index + 1] = 0.0f;
+        iVar13[index + 2] = 0.0f;
+        for (u16 j = 0; j < keyNum; j++) {
+            int uVar3 = ((u16*)i_key[j].field_0x8)[i];
+            f32 deform0, deform1, deform2;
+            if (uVar3 & 0x8000) {
+                deform0 = -deformVtxNrm[(uVar3 & ~0xE000) * 3];
+            } else {
+                deform0 = deformVtxNrm[(uVar3 & ~0xE000) * 3];
+            }
+            if (uVar3 & 0x4000) {
+                deform1 = -deformVtxNrm[(uVar3 & ~0xE000) * 3 + 1];
+            } else {
+                deform1 = deformVtxNrm[(uVar3 & ~0xE000) * 3 + 1];
+            }
+            if (uVar3 & 0x2000) {
+                deform2 = -deformVtxNrm[(uVar3 & ~0xE000) * 3 + 2];
+            } else {
+                deform2 = deformVtxNrm[(uVar3 & ~0xE000) * 3 + 2];
+            }
+            iVar13[index] += deform0 * i_weights[j];
+            iVar13[index + 1] += deform1 * i_weights[j];
+            iVar13[index + 2] += deform2 * i_weights[j];
+        }
+        normalize(&iVar13[index]);
+    }
+
+    for (u16 i = 0; i < uVar2; i++) {
+        J3DClusterVertex* clusterVtx = &i_cluster->mClusterVertex[i];
+        Vec vec;
+        vec.x = 0.0f;
+        vec.y = 0.0f;
+        vec.z = 0.0f;
+        f32 scale = 1.0f / clusterVtx->mNum;
+        for (u16 j = 0; j < clusterVtx->mNum; j++) {
+            int index = clusterVtx->field_0x4[j] * 3;
+            vec.x += scale * iVar13[index];
+            vec.y += scale * iVar13[index + 1];
+            vec.z += scale * iVar13[index + 2];
+        }
+        normalize((f32*)&vec);
+
+        for (u16 j = 0; j < clusterVtx->mNum; j++) {
+            u16 tmp = clusterVtx->field_0x8[j];
+            if (tmp == 0xffff) {
+                continue;
+            }
+            int index = tmp * 3;
+            int index2 = clusterVtx->field_0x4[j] * 3;
+            
+            f32 dot = vec.x * iVar13[index2] + vec.y * iVar13[index2 + 1]
+                                             + vec.z * iVar13[index2 + 2];
+            f32 angle;
+            if (dot >= 1.0f) {
+                angle = 0.0f;
+            } else if (dot > -1.0f) {
+                angle = JMath::acosDegree(dot);
+            } else {
+                angle = 180.0f;
+            }
+
+            if (angle <= i_cluster->mMinAngle) {
+                vtxNrmArray[index] = vec.x;
+                vtxNrmArray[index + 1] = vec.y;
+                vtxNrmArray[index + 2] = vec.z;
+            } else if (angle > i_cluster->mMaxAngle) {
+                int index3 = clusterVtx->field_0x4[j];
+                Vec* iVar13a = (Vec*)iVar13;
+                vtxNrmArray[index] = iVar13a[index3].x;
+                vtxNrmArray[index + 1] = iVar13a[index3].y;
+                vtxNrmArray[index + 2] = iVar13a[index3].z;
+            } else {
+                f32 weight1 = (angle - i_cluster->mMinAngle)
+                    / (i_cluster->mMaxAngle - i_cluster->mMinAngle);
+                f32 weight2 = 1.0f - weight1;
+                vtxNrmArray[index] = weight1 * iVar13[index2] + weight2 * vec.x;
+                vtxNrmArray[index + 1] = weight1 * iVar13[index2 + 1] + weight2 * vec.y;
+                vtxNrmArray[index + 2] = weight1 * iVar13[index2 + 2] + weight2 * vec.z;
+            }
+        }
+    }
 }
 
 /* 8032EAB4-8032EBCC 3293F4 0118+00 1/1 0/0 0/0 .text deform__11J3DDeformerFP15J3DVertexBufferUsPf
  */
-void J3DDeformer::deform(J3DVertexBuffer* param_0, u16 param_1, f32* param_2) {
-    // NONMATCHING
+void J3DDeformer::deform(J3DVertexBuffer* i_buffer, u16 param_1, f32* i_weights) {
+    if (checkFlag(2) && i_buffer->getVertexData()->getVtxPosType() == 4) {
+        J3DCluster* cluster = mDeformData->getClusterPointer(param_1);
+        u16 offset = 0;
+        for (u16 i = 0; i < param_1; i++) {
+            offset += mDeformData->getClusterPointer(i)->mKeyNum + 1;
+        }
+        J3DClusterKey* clusterKey = mDeformData->getClusterKeyPointer(offset);
+        
+        normalizeWeight(cluster->mKeyNum, i_weights);
+        deform_VtxPosF32(i_buffer, cluster, clusterKey, i_weights);
+        if (checkFlag(1) && cluster->mFlags != 0 && i_buffer->getVertexData()->getVtxNrmType() == 4)
+        {
+            deform_VtxNrmF32(i_buffer, cluster, clusterKey, i_weights);
+        }
+    }
 }
 
 /* 8032EBCC-8032EC28 32950C 005C+00 1/1 0/0 0/0 .text            normalizeWeight__11J3DDeformerFiPf
  */
-void J3DDeformer::normalizeWeight(int param_0, f32* param_1) {
-    // NONMATCHING
+void J3DDeformer::normalizeWeight(int i_keyNum, f32* i_weights) {
+    f32 totalWeight = 0.0f;
+    for (u16 i = 0; i < i_keyNum; i++) {
+        totalWeight += i_weights[i];
+    }
+    f32 scale = 1.0f / totalWeight;
+    for (u16 i = 0; i < i_keyNum; i++) {
+        i_weights[i] *= scale;
+    }
 }

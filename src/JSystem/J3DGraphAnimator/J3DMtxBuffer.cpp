@@ -4,55 +4,8 @@
 //
 
 #include "JSystem/J3DGraphAnimator/J3DMtxBuffer.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "dol2asm.h"
-
-//
-// Forward References:
-//
-
-extern "C" void initialize__12J3DMtxBufferFv();
-extern "C" void create__12J3DMtxBufferFP12J3DModelDataUl();
-extern "C" void createAnmMtx__12J3DMtxBufferFP12J3DModelData();
-extern "C" void createWeightEnvelopeMtx__12J3DMtxBufferFP12J3DModelData();
-extern "C" void setNoUseDrawMtx__12J3DMtxBufferFv();
-extern "C" void createDoubleDrawMtx__12J3DMtxBufferFP12J3DModelDataUl();
-extern "C" void createBumpMtxArray__12J3DMtxBufferFP12J3DModelDataUl();
-extern "C" void calcWeightEnvelopeMtx__12J3DMtxBufferFv();
-extern "C" void calcDrawMtx__12J3DMtxBufferFUlRC3VecRA3_A4_Cf();
-extern "C" void calcNrmMtx__12J3DMtxBufferFv();
-extern "C" void calcBBoardMtx__12J3DMtxBufferFv();
-extern "C" void J3DCalcViewBaseMtx__FPA4_fRC3VecRA3_A4_CfPA4_f();
-extern "C" u8 sNoUseDrawMtx__12J3DMtxBuffer[48];
-extern "C" u8 sNoUseNrmMtx__12J3DMtxBuffer[36 + 4 /* padding */];
-extern "C" void* sNoUseDrawMtxPtr__12J3DMtxBuffer;
-extern "C" void* sNoUseNrmMtxPtr__12J3DMtxBuffer;
-
-//
-// External References:
-//
-
-extern "C" void* __nwa__FUl();
-extern "C" void* __nwa__FUli();
-extern "C" void J3DCalcBBoardMtx__FPA4_f();
-extern "C" void J3DCalcYBBoardMtx__FPA4_f();
-extern "C" void J3DPSCalcInverseTranspose__FPA4_fPA3_f();
-extern "C" void J3DPSMtxArrayConcat__FPA4_fPA4_fPA4_fUl();
-extern "C" void countBumpMtxNum__8J3DShapeCFv();
-extern "C" void _savegpr_19();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_19();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-
-//
-// Declarations:
-//
 
 /* 80326214-80326258 320B54 0044+00 0/0 1/1 0/0 .text            initialize__12J3DMtxBufferFv */
 void J3DMtxBuffer::initialize() {
@@ -156,7 +109,6 @@ s32 J3DMtxBuffer::createWeightEnvelopeMtx(J3DModelData* p_modelData) {
     return kJ3DError_Success;
 }
 
-/* ############################################################################################## */
 /* 804371C0-804371F0 063EE0 0030+00 1/0 0/0 0/0 .bss             sNoUseDrawMtx__12J3DMtxBuffer */
 Mtx J3DMtxBuffer::sNoUseDrawMtx;
 
@@ -226,13 +178,71 @@ s32 J3DMtxBuffer::createDoubleDrawMtx(J3DModelData* p_modelData, u32 num) {
 
 /* 80326664-803268D4 320FA4 0270+00 1/1 0/0 0/0 .text
  * createBumpMtxArray__12J3DMtxBufferFP12J3DModelDataUl         */
-s32 J3DMtxBuffer::createBumpMtxArray(J3DModelData* param_0, u32 param_1) {
-    // NONMATCHING
+s32 J3DMtxBuffer::createBumpMtxArray(J3DModelData* i_modelData, u32 param_1) {
+    if (i_modelData->getModelDataType() == 0) {
+        u32 bumpMtxNum = 0;
+        u16 materialCount = 0;
+        u16 materialNum = i_modelData->getMaterialNum();
+        for (u16 j = 0; j < materialNum; j++) {
+            J3DMaterial* material = i_modelData->getMaterialNodePointer(j);
+            if (material->getNBTScale()->mbHasScale == true) {
+                bumpMtxNum += material->getShape()->countBumpMtxNum();
+                materialCount++;
+            }
+        }
+
+        if ((u16)bumpMtxNum != 0 && param_1 != 0) {
+            for (int i = 0; i < 2; i++) {
+                mpBumpMtxArr[i] = new Mtx33**[(u16)materialCount];
+                if (mpBumpMtxArr[i] == NULL) {
+                    return kJ3DError_Alloc;
+                }
+            }
+        }
+
+        for (int i = 0; i < 2; i++) {
+            u32 offset = 0;
+            u16 materialNum = i_modelData->getMaterialNum();
+            for (u16 j = 0; j < materialNum; j++) {
+                J3DMaterial* material = i_modelData->getMaterialNodePointer(j);
+                if (material->getNBTScale()->mbHasScale == true) {
+                    mpBumpMtxArr[i][offset] = new Mtx33*[param_1];
+                    if (mpBumpMtxArr[i][offset] == NULL) {
+                        return kJ3DError_Alloc;
+                    }
+                    material->getShape()->setBumpMtxOffset(offset);
+                    offset++;
+                }
+            }
+        }
+
+        for (int i = 0; i < 2; i++) {
+            u32 offset = 0;
+            u16 materialNum = i_modelData->getMaterialNum();
+            for (u16 j = 0; j < materialNum; j++) {
+                J3DMaterial* material = i_modelData->getMaterialNodePointer(j);
+                if (material->getNBTScale()->mbHasScale == true) {
+                    for (int k = 0; k < param_1; k++) {
+                        mpBumpMtxArr[i][offset][k] = new (0x20) Mtx33[i_modelData->getDrawMtxNum()];
+                        if (mpBumpMtxArr[i][offset][k] == NULL) {
+                            return kJ3DError_Alloc;
+                        }
+                    }
+                    offset++;
+                }
+            }
+        }
+
+        if (materialCount != 0) {
+            i_modelData->setBumpFlag(1);
+        }
+    }
+
+    return kJ3DError_Success;
 }
 
-/* ############################################################################################## */
 /* 80450978-80450980 0003F8 0008+00 1/1 0/0 0/0 .sdata           J3DUnit01 */
-SECTION_SDATA static u8 J3DUnit01[8] = {
+static u8 J3DUnit01[8] = {
     0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
 };
 
@@ -243,32 +253,99 @@ void J3DMtxBuffer::calcWeightEnvelopeMtx() {
 
 /* 80326ACC-80326D3C 32140C 0270+00 0/0 1/1 0/0 .text
  * calcDrawMtx__12J3DMtxBufferFUlRC3VecRA3_A4_Cf                */
-void J3DMtxBuffer::calcDrawMtx(u32 param_0, Vec const& param_1, f32 const (&param_2)[3][4]) {
-    // NONMATCHING
+void J3DMtxBuffer::calcDrawMtx(u32 param_0, Vec const& param_1, Mtx const& param_2) {
+    MtxP viewMtx;
+    Mtx viewBaseMtx;
+    u16 fullWgtNum;
+
+    switch (param_0) {
+    case 0:
+        viewMtx = j3dSys.getViewMtx();
+        fullWgtNum = mJointTree->getDrawFullWgtMtxNum();
+        for (u16 i = 0; i < fullWgtNum; i++) {
+            MTXConcat(viewMtx, getAnmMtx(mJointTree->getDrawMtxIndex(i)), *getDrawMtx(i));
+        }
+        if (mJointTree->getDrawMtxNum() > fullWgtNum) {
+            J3DPSMtxArrayConcat(viewMtx, *mpWeightEvlpMtx, *getDrawMtx(fullWgtNum),
+                                mJointTree->getWEvlpMtxNum());
+        }
+        break;
+
+    case 1:
+        fullWgtNum = mJointTree->getDrawFullWgtMtxNum();
+        for (u16 i = 0; i < fullWgtNum; i++) {
+            MTXCopy(getAnmMtx(mJointTree->getDrawMtxIndex(i)), *getDrawMtx(i));
+        }
+        fullWgtNum = mJointTree->getDrawFullWgtMtxNum();
+        for (u16 i = 0; i < fullWgtNum; i++) {
+            MTXCopy(getWeightAnmMtx(i), *getDrawMtx(mJointTree->getDrawFullWgtMtxNum() + i));
+        }
+        break;
+
+    case 2:
+        J3DCalcViewBaseMtx(j3dSys.getViewMtx(), param_1, param_2, viewBaseMtx);
+        fullWgtNum = mJointTree->getDrawFullWgtMtxNum();
+        for (u16 i = 0; i < fullWgtNum; i++) {
+            MTXConcat(viewBaseMtx, getAnmMtx(mJointTree->getDrawMtxIndex(i)), *getDrawMtx(i));
+        }
+        if (mJointTree->getDrawMtxNum() > mJointTree->getDrawFullWgtMtxNum()) {
+            J3DPSMtxArrayConcat(viewBaseMtx, *mpWeightEvlpMtx,
+                                *getDrawMtx(mJointTree->getDrawFullWgtMtxNum()),
+                                mJointTree->getWEvlpMtxNum());
+        }
+        break;
+    }
 }
 
 extern void J3DPSCalcInverseTranspose(Mtx p1, Mtx33 p2);
 
 /* 80326D3C-80326EF0 32167C 01B4+00 0/0 1/1 0/0 .text            calcNrmMtx__12J3DMtxBufferFv */
 void J3DMtxBuffer::calcNrmMtx() {
-    // NONMATCHING
+    u16 drawMtxNum = mJointTree->getDrawMtxNum();
+    for (u16 i = 0; i < drawMtxNum; i++) {
+        if (mJointTree->getDrawMtxFlag(i) == 0) {
+            if (getScaleFlag(mJointTree->getDrawMtxIndex(i)) == 1) {
+                setNrmMtx(i, getDrawMtx(i));
+            } else {
+                J3DPSCalcInverseTranspose(*getDrawMtx(i), *getNrmMtx(i));
+            }
+        } else {
+            if (getEnvScaleFlag(mJointTree->getDrawMtxIndex(i)) == 1) {
+                setNrmMtx(i, getDrawMtx(i));
+            } else {
+                J3DPSCalcInverseTranspose(*getDrawMtx(i), *getNrmMtx(i));
+            }
+        }
+    }
 }
-
-/* ############################################################################################## */
-/* 80456420-80456424 004A20 0004+00 1/1 0/0 0/0 .sdata2          @1320 */
-SECTION_SDATA2 static f32 lit_1320 = 1.0f;
-
-/* 80456424-80456428 004A24 0004+00 1/1 0/0 0/0 .sdata2          @1321 */
-SECTION_SDATA2 static u8 lit_1321[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
 
 /* 80326EF0-80327048 321830 0158+00 0/0 1/1 0/0 .text            calcBBoardMtx__12J3DMtxBufferFv */
 void J3DMtxBuffer::calcBBoardMtx() {
-    // NONMATCHING
+    u16 drawMtxNum = mJointTree->getDrawMtxNum();
+    for (u16 i = 0; i < drawMtxNum; i++) {
+        if (mJointTree->getDrawMtxFlag(i) == 0) {
+            u16 index = mJointTree->getDrawMtxIndex(i);
+            if (mJointTree->getJointNodePointer(index)->getMtxType() == 1) {
+                MtxP drawMtx = *getDrawMtx(i);
+                J3DCalcBBoardMtx(drawMtx);
+                Mtx33* nrmMtx = getNrmMtx(i);
+                (*nrmMtx)[0][0] = 1.0f / drawMtx[0][0];
+                (*nrmMtx)[0][1] = 0.0f;
+                (*nrmMtx)[0][2] = 0.0f;
+                (*nrmMtx)[1][0] = 0.0f;
+                (*nrmMtx)[1][1] = 1.0f / drawMtx[1][1];
+                (*nrmMtx)[1][2] = 0.0f;
+                (*nrmMtx)[2][0] = 0.0f;
+                (*nrmMtx)[2][1] = 0.0f;
+                (*nrmMtx)[2][2] = 1.0f / drawMtx[2][2];
+            } else if (mJointTree->getJointNodePointer(index)->getMtxType() == 2) {
+                MtxP drawMtx = *getDrawMtx(i);
+                J3DCalcYBBoardMtx(drawMtx);
+                Mtx33* nrmMtx = getNrmMtx(i);
+                J3DPSCalcInverseTranspose(drawMtx, *nrmMtx);
+            }
+        }
+    }
 }
 
 /* 80327048-80327100 321988 00B8+00 1/1 1/1 0/0 .text

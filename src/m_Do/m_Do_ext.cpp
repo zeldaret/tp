@@ -1414,11 +1414,6 @@ J3DMtxCalcAnmBase::~J3DMtxCalcAnmBase() {
     // NONMATCHING
 }
 
-/* 8000D948-8000D990 008288 0048+00 1/0 0/0 0/0 .text            __dt__10J3DMtxCalcFv */
-J3DMtxCalc::~J3DMtxCalc() {
-    // NONMATCHING
-}
-
 /* 8000D990-8000D9CC 0082D0 003C+00 0/0 5/5 31/31 .text
  * changeBckOnly__13mDoExt_bckAnmFP15J3DAnmTransform            */
 void mDoExt_bckAnm::changeBckOnly(J3DAnmTransform* i_bck) {

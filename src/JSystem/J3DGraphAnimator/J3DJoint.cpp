@@ -4,7 +4,6 @@
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/JMath/JMath.h"
-#include "dol2asm.h"
 #include "m_Do/m_Do_mtx.h"
 
 /* 8032EC28-8032ECAC 329568 0084+00 0/0 1/1 0/0 .text

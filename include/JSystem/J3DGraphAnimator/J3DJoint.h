@@ -2,6 +2,7 @@
 #define J3DJOINT_H
 
 #include "JSystem/J3DGraphBase/J3DTransform.h"
+#include "JSystem/J3DGraphBase/J3DSys.h"
 
 class J3DAnmTransform;
 class J3DJoint;
@@ -16,7 +17,7 @@ class J3DMtxCalc {
 public:
     /* 80325D1C */ static void setMtxBuffer(J3DMtxBuffer*);
 
-    /* 8000D948 */ virtual ~J3DMtxCalc();
+    /* 8000D948 */ virtual ~J3DMtxCalc() {}
     /* 80014E90 */ virtual void setAnmTransform(J3DAnmTransform*);
     /* 80014E9C */ virtual J3DAnmTransform* getAnmTransform();
     /* 80014E8C */ virtual void setAnmTransform(u8, J3DAnmTransform*);
@@ -34,29 +35,6 @@ public:
     static J3DJoint* mJoint;
 };  // Size: 0x4
 
-/**
- * @ingroup jsystem-j3d
- * 
- */
-class J3DMtxCalcNoAnmBase : public J3DMtxCalc {
-public:
-    /* 8000FA8C */ virtual ~J3DMtxCalcNoAnmBase();
-};
-
-/**
- * @ingroup jsystem-j3d
- * 
- */
-template <class A, class B>
-class J3DMtxCalcNoAnm : public J3DMtxCalcNoAnmBase {
-public:
-    J3DMtxCalcNoAnm() {}
-    virtual ~J3DMtxCalcNoAnm() {}
-    virtual void init(const Vec& param_0, const Mtx& param_1);
-    virtual void calc();
-};
-
-class J3DJoint;
 typedef int (*J3DJointCallBack)(J3DJoint*, int);
 
 /**
@@ -85,6 +63,7 @@ public:
     J3DMtxCalc* getMtxCalc() { return mMtxCalc; }
     J3DMtxCalc* getCurrentMtxCalc() { return mCurrentMtxCalc; };
     J3DJoint* getChild() { return mChild; }
+    u8 getMtxType() { return (mKind & 0xf0) >> 4; }
     void setMtxType(u8 type) { mKind = (mKind & ~0xf0) | (type << 4); }
 
     static J3DMtxCalc* mCurrentMtxCalc;
@@ -108,6 +87,39 @@ private:
     /* 0x54 */ J3DMtxCalc* mMtxCalc;
     /* 0x58 */ J3DMaterial* mMesh;
 };  // Size: 0x5C
+
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
+class J3DMtxCalcNoAnmBase : public J3DMtxCalc {
+public:
+    /* 8000FA8C */ virtual ~J3DMtxCalcNoAnmBase() {}
+};
+
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
+template <class A, class B>
+class J3DMtxCalcNoAnm : public J3DMtxCalcNoAnmBase {
+public:
+    J3DMtxCalcNoAnm() {}
+    virtual ~J3DMtxCalcNoAnm() {}
+    virtual void init(const Vec& param_0, const Mtx& param_1) { B::init(param_0, param_1); }
+    virtual void calc() { A::calcTransform(mJoint->getTransformInfo()); }
+};
+
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
+struct J3DMtxCalcJ3DSysInitSoftimage {
+    /* 8032ECAC */ static void init(const Vec& param_0, const Mtx& param_1) {
+        J3DSys::mCurrentS = param_0;
+        MTXCopy(param_1, J3DSys::mCurrentMtx);
+    }
+};
 
 /**
  * @ingroup jsystem-j3d
