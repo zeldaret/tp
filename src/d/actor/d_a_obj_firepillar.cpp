@@ -5,101 +5,30 @@
 
 #include "d/actor/d_a_obj_firepillar.h"
 #include "d/d_cc_d.h"
-#include "dol2asm.h"
-
-
-//
-// Forward References:
-//
-
-extern "C" void initBaseMtx__14daObjFPillar_cFv();
-extern "C" void setBaseMtx__14daObjFPillar_cFv();
-extern "C" void Create__14daObjFPillar_cFv();
-extern "C" void create__14daObjFPillar_cFv();
-extern "C" void __dt__8cM3dGAabFv();
-extern "C" void __dt__10dCcD_GSttsFv();
-extern "C" void __dt__12dBgS_AcchCirFv();
-extern "C" void __dt__12dBgS_ObjAcchFv();
-extern "C" void execute__14daObjFPillar_cFv();
-extern "C" void action__14daObjFPillar_cFv();
-extern "C" void actionOffInit__14daObjFPillar_cFv();
-extern "C" void actionOff__14daObjFPillar_cFv();
-extern "C" void actionOnWaitInit__14daObjFPillar_cFv();
-extern "C" void actionOnWait__14daObjFPillar_cFv();
-extern "C" void actionOnInit__14daObjFPillar_cFv();
-extern "C" void actionOn__14daObjFPillar_cFv();
-extern "C" static void drawCylinder__FP4cXyzP4cXyzP5csXyz();
-extern "C" void draw__14daObjFPillar_cFv();
-extern "C" bool _delete__14daObjFPillar_cFv();
-extern "C" static void daObjFPillar_Draw__FP14daObjFPillar_c();
-extern "C" static void daObjFPillar_Execute__FP14daObjFPillar_c();
-extern "C" static void daObjFPillar_Delete__FP14daObjFPillar_c();
-extern "C" static void daObjFPillar_Create__FP10fopAc_ac_c();
-extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" static void func_80BE9A88();
-extern "C" static void func_80BE9A90();
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_ZXYrotS__FPA4_fsss();
-extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void __ct__12dBgS_AcchCirFv();
-extern "C" void __dt__9dBgS_AcchFv();
-extern "C" void __ct__9dBgS_AcchFv();
-extern "C" void SetObj__16dBgS_PolyPassChkFv();
-extern "C" void __ct__10dCcD_GSttsFv();
-extern "C" void Init__9dCcD_SttsFiiP10fopAc_ac_c();
-extern "C" void __ct__12dCcD_GObjInfFv();
-extern "C" void Set__8dCcD_CpsFRC11dCcD_SrcCps();
-extern "C" void Set__4cCcSFP8cCcD_Obj();
-extern "C" void __pl__4cXyzCFRC3Vec();
-extern "C" void __dt__13cBgS_PolyInfoFv();
-extern "C" void __dt__8cM3dGCirFv();
-extern "C" void __ct__8cM3dGCpsFv();
-extern "C" void Set__8cM3dGCpsFRC9cM3dGCpsS();
-extern "C" void cLib_chaseF__FPfff();
-extern "C" void __dl__FPv();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__8dCcD_Cps[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CpsAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 data_80BE9C30[4];
-
-//
-// Declarations:
-//
+#include "d/d_com_inf_game.h"
+#include "f_op/f_op_actor_mng.h"
 
 /* 80BE9118-80BE9138 000078 0020+00 1/1 0/0 0/0 .text            initBaseMtx__14daObjFPillar_cFv */
 void daObjFPillar_c::initBaseMtx() {
-    // NONMATCHING
+    setBaseMtx();
 }
 
 /* 80BE9138-80BE9190 000098 0058+00 1/1 0/0 0/0 .text            setBaseMtx__14daObjFPillar_cFv */
 void daObjFPillar_c::setBaseMtx() {
-    // NONMATCHING
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
 }
 
 /* ############################################################################################## */
 /* 80BE9ABC-80BE9AC8 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
+static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 80BE9AC8-80BE9ADC 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
+static u32 lit_1787[1 + 4 /* padding */] = {
     0x02000201,
     /* padding */
     0x40080000,
@@ -110,9 +39,9 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 #pragma pop
 
 /* 80BE9ADC-80BE9AF4 000020 0018+00 1/1 0/0 0/0 .data            l_cull_box */
-SECTION_DATA static u8 l_cull_box[24] = {
-    0xC1, 0xF0, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00, 0xC1, 0xF0, 0x00, 0x00,
-    0x41, 0xF0, 0x00, 0x00, 0x42, 0x70, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00,
+static f32 l_cull_box[6] = {
+    -30.0f, -10.0f, -30.0f,
+    30.0f, 60.0f, 30.0f,
 };
 
 /* 80BE9AF4-80BE9B40 000038 004C+00 1/1 0/0 0/0 .data            l_cps_src */
@@ -129,58 +58,208 @@ static dCcD_SrcCps l_cps_src = {
 };
 
 /* 80BE9190-80BE9230 0000F0 00A0+00 1/1 0/0 0/0 .text            Create__14daObjFPillar_cFv */
-void daObjFPillar_c::Create() {
-    // NONMATCHING
+int daObjFPillar_c::Create() {
+    initBaseMtx();
+    mStts.Init(0, 0xff, this);
+    mCps.Set(l_cps_src);
+    mCps.SetStts(&mStts);
+    f32 maxy = l_cull_box[4] * scale.y;
+    fopAcM_setCullSizeBox(this,
+        (l_cull_box[0] * scale.x),
+        (l_cull_box[1] * scale.y),
+        (l_cull_box[2] * scale.x),
+        (l_cull_box[3] * scale.x),
+        maxy,
+        maxy);
+    return 1;
 }
 
-/* ############################################################################################## */
-/* 80BE9B40-80BE9B4C -00001 000C+00 0/1 0/0 0/0 .data            @3789 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3789[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionOff__14daObjFPillar_cFv,
-};
-#pragma pop
+/* 80BE9230-80BE9360 000190 0130+00 1/1 0/0 0/0 .text            create__14daObjFPillar_cFv */
+int daObjFPillar_c::create() {
+    fopAcM_SetupActor(this, daObjFPillar_c);
+    int rv = Create();
+    if (rv == 0) {
+        return cPhs_ERROR_e;
+    }
+    return cPhs_COMPLEATE_e;
+}
 
-/* 80BE9B4C-80BE9B58 -00001 000C+00 0/1 0/0 0/0 .data            @3790 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3790[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionOnWait__14daObjFPillar_cFv,
-};
-#pragma pop
+/* 80BE94E4-80BE9610 000444 012C+00 1/1 0/0 0/0 .text            execute__14daObjFPillar_cFv */
+int daObjFPillar_c::execute() {
+    action();
+    mCylScale.x = scale.x;
+    mCylScale.z = scale.z;
+    cXyz cStack_1c(0.0f, 1.0f, 0.0f);
+    cStack_1c.y *= mCylScale.y * 100.0f;
+    mDoMtx_stack_c::ZXYrotS(current.angle.x, current.angle.y, current.angle.z);
+    mDoMtx_stack_c::multVec(&cStack_1c, &cStack_1c);
+    field_0x954.mStart = current.pos;
+    field_0x954.mEnd = cStack_1c + current.pos;
+    field_0x954.mRadius = scale.x * 50.0f;
+    if (mCylScale.y > scale.y * 0.1f) {
+        mCps.cM3dGCps::Set(field_0x954);
+        dComIfG_Ccsp()->Set(&mCps);
+    }
+    return 1;
+}
 
-/* 80BE9B58-80BE9B64 -00001 000C+00 0/1 0/0 0/0 .data            @3791 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3791[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionOn__14daObjFPillar_cFv,
-};
-#pragma pop
+/* 80BE9610-80BE96B4 000570 00A4+00 1/1 0/0 0/0 .text            action__14daObjFPillar_cFv */
+void daObjFPillar_c::action() {
+    static daObjFPillar_c::actionFunc l_func[3] = {
+        &daObjFPillar_c::actionOff,
+        &daObjFPillar_c::actionOnWait,
+        &daObjFPillar_c::actionOn,
+    };
+    (this->*(l_func[mAction]))();
+}
 
-/* 80BE9B64-80BE9B88 0000A8 0024+00 0/1 0/0 0/0 .data            l_func$3788 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_func[36] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-#pragma pop
+/* 80BE96B4-80BE96E0 000614 002C+00 2/2 0/0 0/0 .text            actionOffInit__14daObjFPillar_cFv
+ */
+void daObjFPillar_c::actionOffInit() {
+    u8 bVar1 = daObjFPillar_prm::getArg0(this);
+    if (bVar1 == 0xff) {
+        bVar1 = 1;
+    }
+    mActionTimer = bVar1 * 15;
+    mAction = ACTION_OFF;
+}
+
+/* 80BE96E0-80BE9784 000640 00A4+00 1/0 0/0 0/0 .text            actionOff__14daObjFPillar_cFv */
+void daObjFPillar_c::actionOff() {
+    cLib_chaseF(&mCylScale.y, 0.0f, scale.y * 0.1f);
+    if (mActionTimer == 0) {
+        actionOnWaitInit();
+    } else {
+        if (daObjFPillar_prm::getSwNo(this) != 0xff) {
+            if (fopAcM_isSwitch(this, daObjFPillar_prm::getSwNo(this))) {
+                mActionTimer--;
+            }
+        } else {
+            mActionTimer--;
+        }
+    }
+}
+
+/* 80BE9784-80BE97B8 0006E4 0034+00 1/1 0/0 0/0 .text actionOnWaitInit__14daObjFPillar_cFv */
+void daObjFPillar_c::actionOnWaitInit() {
+    u8 bVar1 = daObjFPillar_prm::getArg1(this);
+    if (bVar1 == 0xff) {
+        bVar1 = 1;
+    }
+    mActionTimer = bVar1 * 15;
+    mActionTimer = 30;
+    mAction = ACTION_ON_WAIT;
+}
+
+/* 80BE97B8-80BE986C 000718 00B4+00 1/0 0/0 0/0 .text            actionOnWait__14daObjFPillar_cFv */
+void daObjFPillar_c::actionOnWait() {
+    cLib_chaseF(&mCylScale.y, scale.y * 0.1f, scale.y * 0.02f);
+    if (mActionTimer == 0) {
+        actionOnInit();
+    } else {
+        if (daObjFPillar_prm::getSwNo(this) != 0xff) {
+            if (fopAcM_isSwitch(this, daObjFPillar_prm::getSwNo(this))) {
+                mActionTimer--;
+            } else {
+                actionOffInit();
+            }
+        } else {
+            mActionTimer--;
+        }
+    }
+}
+
+/* 80BE986C-80BE98A0 0007CC 0034+00 1/1 0/0 0/0 .text            actionOnInit__14daObjFPillar_cFv */
+void daObjFPillar_c::actionOnInit() {
+    u8 bVar1 = daObjFPillar_prm::getArg2(this);
+    if (bVar1 == 0xff) {
+        bVar1 = 1;
+    }
+    mActionTimer = bVar1 * 15;
+    mActionTimer = 30;
+    mAction = ACTION_ON;
+}
+
+/* 80BE98A0-80BE9980 000800 00E0+00 1/0 0/0 0/0 .text            actionOn__14daObjFPillar_cFv */
+void daObjFPillar_c::actionOn() {
+    f32 target = scale.y;
+    if (mActionTimer == 0) {
+        target = 0.0;
+    } else {
+        if (daObjFPillar_prm::getSwNo(this) != 0xff) {
+            if (fopAcM_isSwitch(this, daObjFPillar_prm::getSwNo(this))) {
+                mActionTimer--;
+            } else {
+                target = 0.0;
+            }
+        } else {
+            mActionTimer--;
+        }
+    }
+    int reachedTarget = cLib_chaseF(&mCylScale.y, target, scale.y * 0.1f);
+    if (reachedTarget && target == 0.0f) {
+        actionOffInit();
+    }
+}
+
+/* 80BE9980-80BE9984 0008E0 0004+00 1/1 0/0 0/0 .text            drawCylinder__FP4cXyzP4cXyzP5csXyz
+ */
+static void drawCylinder(cXyz* pos, cXyz* scale, csXyz* angle) {
+    static GXColor const color = {0xFF,00,00,0x60};
+
+    #if DEBUG
+    mDoMtx_stack_c::transS(pos->x, pos->y, pos->z);
+    mDoMtx_stack_c::ZXYrotM(angle->x, angle->y, angle->z);
+    mDoMtx_stack_c::scaleM(scale.x * 50.0f, scale.y * 50.0f, scale.x * 50.0f);
+    mDoMtx_stack_c::transM(0.0f, 1.0f, 0.0f);
+    mDoMtx_stack_c::XrotM(0x4000);
+    Mtx mtx;
+    MTXCopy(mDoMtx_stack_c::get(), mtx);
+    dDbVw_drawCylinderMXlu(mtx, color, 1);
+    #endif
+}
+
+/* 80BE9984-80BE99B8 0008E4 0034+00 1/1 0/0 0/0 .text            draw__14daObjFPillar_cFv */
+int daObjFPillar_c::draw() {
+    drawCylinder(&current.pos, &mCylScale, &current.angle);
+    return 1;
+}
+
+/* 80BE99B8-80BE99C0 000918 0008+00 1/1 0/0 0/0 .text            _delete__14daObjFPillar_cFv */
+int daObjFPillar_c::_delete() {
+    return 1;
+}
+
+/* 80BE99C0-80BE99E0 000920 0020+00 1/0 0/0 0/0 .text daObjFPillar_Draw__FP14daObjFPillar_c */
+static int daObjFPillar_Draw(daObjFPillar_c* i_this) {
+    return i_this->draw();
+}
+
+/* 80BE99E0-80BE9A00 000940 0020+00 1/0 0/0 0/0 .text daObjFPillar_Execute__FP14daObjFPillar_c */
+static int daObjFPillar_Execute(daObjFPillar_c* i_this) {
+    return i_this->execute();
+}
+
+/* 80BE9A00-80BE9A20 000960 0020+00 1/0 0/0 0/0 .text daObjFPillar_Delete__FP14daObjFPillar_c */
+static int daObjFPillar_Delete(daObjFPillar_c* i_this) {
+    fopAcM_GetID(i_this);
+    return i_this->_delete();
+}
+
+/* 80BE9A20-80BE9A40 000980 0020+00 1/0 0/0 0/0 .text            daObjFPillar_Create__FP10fopAc_ac_c
+ */
+static int daObjFPillar_Create(fopAc_ac_c* i_this) {
+    fopAcM_GetID(i_this);
+    return static_cast<daObjFPillar_c*>(i_this)->create();
+}
 
 /* 80BE9B88-80BE9BA8 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjFPillar_Method */
 static actor_method_class l_daObjFPillar_Method = {
-    (process_method_func)daObjFPillar_Create__FP10fopAc_ac_c,
-    (process_method_func)daObjFPillar_Delete__FP14daObjFPillar_c,
-    (process_method_func)daObjFPillar_Execute__FP14daObjFPillar_c,
-    0,
-    (process_method_func)daObjFPillar_Draw__FP14daObjFPillar_c,
+    (process_method_func)daObjFPillar_Create,
+    (process_method_func)daObjFPillar_Delete,
+    (process_method_func)daObjFPillar_Execute,
+    NULL,
+    (process_method_func)daObjFPillar_Draw,
 };
 
 /* 80BE9BA8-80BE9BD8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_FirePillar */
@@ -200,215 +279,3 @@ extern actor_process_profile_definition g_profile_Obj_FirePillar = {
   fopAc_ACTOR_e,          // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 80BE9BD8-80BE9BE4 00011C 000C+00 1/1 0/0 0/0 .data            __vt__12dBgS_AcchCir */
-SECTION_DATA extern void* __vt__12dBgS_AcchCir[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_AcchCirFv,
-};
-
-/* 80BE9BE4-80BE9BF0 000128 000C+00 2/2 0/0 0/0 .data            __vt__10cCcD_GStts */
-SECTION_DATA extern void* __vt__10cCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10cCcD_GSttsFv,
-};
-
-/* 80BE9BF0-80BE9BFC 000134 000C+00 1/1 0/0 0/0 .data            __vt__10dCcD_GStts */
-SECTION_DATA extern void* __vt__10dCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10dCcD_GSttsFv,
-};
-
-/* 80BE9BFC-80BE9C08 000140 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGAab */
-SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGAabFv,
-};
-
-/* 80BE9C08-80BE9C2C 00014C 0024+00 2/2 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
-SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_ObjAcchFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80BE9A90,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80BE9A88,
-};
-
-/* 80BE9230-80BE9360 000190 0130+00 1/1 0/0 0/0 .text            create__14daObjFPillar_cFv */
-void daObjFPillar_c::create() {
-    // NONMATCHING
-}
-
-/* 80BE9360-80BE93A8 0002C0 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
-// cM3dGAab::~cM3dGAab() {
-extern "C" void __dt__8cM3dGAabFv() {
-    // NONMATCHING
-}
-
-/* 80BE93A8-80BE9404 000308 005C+00 1/0 0/0 0/0 .text            __dt__10dCcD_GSttsFv */
-// dCcD_GStts::~dCcD_GStts() {
-extern "C" void __dt__10dCcD_GSttsFv() {
-    // NONMATCHING
-}
-
-/* 80BE9404-80BE9474 000364 0070+00 1/0 0/0 0/0 .text            __dt__12dBgS_AcchCirFv */
-// dBgS_AcchCir::~dBgS_AcchCir() {
-extern "C" void __dt__12dBgS_AcchCirFv() {
-    // NONMATCHING
-}
-
-/* 80BE9474-80BE94E4 0003D4 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
-// dBgS_ObjAcch::~dBgS_ObjAcch() {
-extern "C" void __dt__12dBgS_ObjAcchFv() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80BE9AA0-80BE9AA4 000000 0004+00 3/3 0/0 0/0 .rodata          @3780 */
-SECTION_RODATA static u8 const lit_3780[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80BE9AA0, &lit_3780);
-
-/* 80BE9AA4-80BE9AA8 000004 0004+00 0/1 0/0 0/0 .rodata          @3781 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3781 = 1.0f;
-COMPILER_STRIP_GATE(0x80BE9AA4, &lit_3781);
-#pragma pop
-
-/* 80BE9AA8-80BE9AAC 000008 0004+00 0/1 0/0 0/0 .rodata          @3782 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3782 = 100.0f;
-COMPILER_STRIP_GATE(0x80BE9AA8, &lit_3782);
-#pragma pop
-
-/* 80BE9AAC-80BE9AB0 00000C 0004+00 0/1 0/0 0/0 .rodata          @3783 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3783 = 50.0f;
-COMPILER_STRIP_GATE(0x80BE9AAC, &lit_3783);
-#pragma pop
-
-/* 80BE9AB0-80BE9AB4 000010 0004+00 3/4 0/0 0/0 .rodata          @3784 */
-SECTION_RODATA static f32 const lit_3784 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(0x80BE9AB0, &lit_3784);
-
-/* 80BE94E4-80BE9610 000444 012C+00 1/1 0/0 0/0 .text            execute__14daObjFPillar_cFv */
-void daObjFPillar_c::execute() {
-    // NONMATCHING
-}
-
-/* 80BE9610-80BE96B4 000570 00A4+00 1/1 0/0 0/0 .text            action__14daObjFPillar_cFv */
-void daObjFPillar_c::action() {
-    // NONMATCHING
-}
-
-/* 80BE96B4-80BE96E0 000614 002C+00 2/2 0/0 0/0 .text            actionOffInit__14daObjFPillar_cFv
- */
-void daObjFPillar_c::actionOffInit() {
-    // NONMATCHING
-}
-
-/* 80BE96E0-80BE9784 000640 00A4+00 1/0 0/0 0/0 .text            actionOff__14daObjFPillar_cFv */
-void daObjFPillar_c::actionOff() {
-    // NONMATCHING
-}
-
-/* 80BE9784-80BE97B8 0006E4 0034+00 1/1 0/0 0/0 .text actionOnWaitInit__14daObjFPillar_cFv */
-void daObjFPillar_c::actionOnWaitInit() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80BE9AB4-80BE9AB8 000014 0004+00 1/1 0/0 0/0 .rodata          @3853 */
-SECTION_RODATA static f32 const lit_3853 = 1.0f / 50.0f;
-COMPILER_STRIP_GATE(0x80BE9AB4, &lit_3853);
-
-/* 80BE97B8-80BE986C 000718 00B4+00 1/0 0/0 0/0 .text            actionOnWait__14daObjFPillar_cFv */
-void daObjFPillar_c::actionOnWait() {
-    // NONMATCHING
-}
-
-/* 80BE986C-80BE98A0 0007CC 0034+00 1/1 0/0 0/0 .text            actionOnInit__14daObjFPillar_cFv */
-void daObjFPillar_c::actionOnInit() {
-    // NONMATCHING
-}
-
-/* 80BE98A0-80BE9980 000800 00E0+00 1/0 0/0 0/0 .text            actionOn__14daObjFPillar_cFv */
-void daObjFPillar_c::actionOn() {
-    // NONMATCHING
-}
-
-/* 80BE9980-80BE9984 0008E0 0004+00 1/1 0/0 0/0 .text            drawCylinder__FP4cXyzP4cXyzP5csXyz
- */
-static void drawCylinder(cXyz* param_0, cXyz* param_1, csXyz* param_2) {
-    /* empty function */
-}
-
-/* 80BE9984-80BE99B8 0008E4 0034+00 1/1 0/0 0/0 .text            draw__14daObjFPillar_cFv */
-void daObjFPillar_c::draw() {
-    // NONMATCHING
-}
-
-/* 80BE99B8-80BE99C0 000918 0008+00 1/1 0/0 0/0 .text            _delete__14daObjFPillar_cFv */
-bool daObjFPillar_c::_delete() {
-    return true;
-}
-
-/* 80BE99C0-80BE99E0 000920 0020+00 1/0 0/0 0/0 .text daObjFPillar_Draw__FP14daObjFPillar_c */
-static void daObjFPillar_Draw(daObjFPillar_c* param_0) {
-    // NONMATCHING
-}
-
-/* 80BE99E0-80BE9A00 000940 0020+00 1/0 0/0 0/0 .text daObjFPillar_Execute__FP14daObjFPillar_c */
-static void daObjFPillar_Execute(daObjFPillar_c* param_0) {
-    // NONMATCHING
-}
-
-/* 80BE9A00-80BE9A20 000960 0020+00 1/0 0/0 0/0 .text daObjFPillar_Delete__FP14daObjFPillar_c */
-static void daObjFPillar_Delete(daObjFPillar_c* param_0) {
-    // NONMATCHING
-}
-
-/* 80BE9A20-80BE9A40 000980 0020+00 1/0 0/0 0/0 .text            daObjFPillar_Create__FP10fopAc_ac_c
- */
-static void daObjFPillar_Create(fopAc_ac_c* param_0) {
-    // NONMATCHING
-}
-
-/* 80BE9A40-80BE9A88 0009A0 0048+00 1/0 0/0 0/0 .text            __dt__10cCcD_GSttsFv */
-// cCcD_GStts::~cCcD_GStts() {
-extern "C" void __dt__10cCcD_GSttsFv() {
-    // NONMATCHING
-}
-
-/* 80BE9A88-80BE9A90 0009E8 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
-static void func_80BE9A88() {
-    // NONMATCHING
-}
-
-/* 80BE9A90-80BE9A98 0009F0 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
-static void func_80BE9A90() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80BE9AB8-80BE9ABC 000018 0004+00 0/0 0/0 0/0 .rodata          @3895 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_3895 = 0xFF000060;
-COMPILER_STRIP_GATE(0x80BE9AB8, &lit_3895);
-#pragma pop

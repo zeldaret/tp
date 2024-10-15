@@ -109,6 +109,7 @@ public:
 
     bool WaterChk(dBgS_SplGrpChk* chk) { return SplGrpChk(chk); }
     u32 GetMtrlSndId(const cBgS_PolyInfo& param_0) { return dKy_pol_sound_get(&param_0); }
+    void DebugDrawPoly(dBgW_Base *param_1) {}
 };  // Size: 0x1404
 
 bool dBgS_CheckBGroundPoly(cBgS_PolyInfo const&);
