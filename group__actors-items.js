@@ -139,6 +139,7 @@ var group__actors_items =
     ] ],
     [ "dmg_rod_class", "classdmg__rod__class.html", [
       [ "dmg_rod_class", "classdmg__rod__class.html#a253422736800ab6fdccc4e3e840633dd", null ],
+      [ "checkReelSpin", "classdmg__rod__class.html#ac4d56bb9c0eaf217bd95cb11bbf2e0fb", null ],
       [ "checkRodEquipPermission", "classdmg__rod__class.html#a6e5122eff7e475d4539718b6a902aea4", null ],
       [ "getRodStickX", "classdmg__rod__class.html#a812795c3c60316f4bf4bb32e806c96e3", null ],
       [ "getRodStickY", "classdmg__rod__class.html#a6983b64ec77761c7a87a7dc1a6e3ff72", null ],
@@ -155,7 +156,9 @@ var group__actors_items =
       [ "field_0x13b4", "classdmg__rod__class.html#a60c744bed8459254c64b2a68714774f5", null ],
       [ "field_0x13b6", "classdmg__rod__class.html#a67ad8901d83f52569a04cd174dbe374a", null ],
       [ "field_0x14c0", "classdmg__rod__class.html#a756980860686bc368e776c94eb390164", null ],
-      [ "field_0x14d0", "classdmg__rod__class.html#a24d08b52f8c96841b996cef8c8d560b3", null ],
+      [ "field_0x14d0", "classdmg__rod__class.html#a9d75cca2f1dfda6e24943186b223e737", null ],
+      [ "field_0x14f0", "classdmg__rod__class.html#a0d4677dc95faef4cb7308b358fa62840", null ],
+      [ "field_0x14f4", "classdmg__rod__class.html#a4db5d2d7723ea4026ab48c898c318abc", null ],
       [ "field_0x1514", "classdmg__rod__class.html#afb1a5fea5cc94eb6951608a622822e9c", null ],
       [ "field_0x1515", "classdmg__rod__class.html#ad673535d3db82fe548c0ea677226693d", null ],
       [ "field_0x1518", "classdmg__rod__class.html#ae691b2ec0c1b8f95b3fe4c505812af7e", null ],

@@ -1,18 +1,18 @@
 var classdaAlinkHIO__canoe__c1 =
 [
-    [ "field_0x0", "classdaAlinkHIO__canoe__c1.html#a2061ba6baa7e9a1278da945fd07df118", null ],
-    [ "field_0x14", "classdaAlinkHIO__canoe__c1.html#ac80e4611996c397d43778b9c34a51cb0", null ],
-    [ "field_0x16", "classdaAlinkHIO__canoe__c1.html#afe2ff940e41a52a423f9292f4a6fa74c", null ],
-    [ "field_0x18", "classdaAlinkHIO__canoe__c1.html#a27d0d3dddd45a109bf9be77773c77d0b", null ],
-    [ "field_0x1C", "classdaAlinkHIO__canoe__c1.html#a6cb5f34cdafbdbc7c3a6be64a9fc3c9b", null ],
-    [ "field_0x20", "classdaAlinkHIO__canoe__c1.html#a674b709c2e5fa9ff05655aae19d3c872", null ],
-    [ "field_0x24", "classdaAlinkHIO__canoe__c1.html#a287ae2d4a1dc7324ca75f5223d551e13", null ],
-    [ "field_0x28", "classdaAlinkHIO__canoe__c1.html#a657e93fecdbf2d42174a25ef629cf61a", null ],
-    [ "field_0x2C", "classdaAlinkHIO__canoe__c1.html#a8c2eb0e5b8ef12ee0b405896d25d0407", null ],
-    [ "field_0x30", "classdaAlinkHIO__canoe__c1.html#a934fb864dd7f9364d3deeafcbae94d61", null ],
-    [ "field_0x34", "classdaAlinkHIO__canoe__c1.html#a3da9a551ba92e4d1506789bf65dced5f", null ],
-    [ "field_0x3C", "classdaAlinkHIO__canoe__c1.html#a85fefe311f194389fcd5dd3be370d0d2", null ],
-    [ "field_0x40", "classdaAlinkHIO__canoe__c1.html#a3a3efce9202d055e471eb830f0761508", null ],
-    [ "field_0x44", "classdaAlinkHIO__canoe__c1.html#adb966dc6e7ae3e330511c931155143af", null ],
-    [ "mBackMaxSpeed", "classdaAlinkHIO__canoe__c1.html#a3ea3b0e058971e0303eaf4bd419e495e", null ]
+    [ "mBackMaxSpeed", "classdaAlinkHIO__canoe__c1.html#a3ea3b0e058971e0303eaf4bd419e495e", null ],
+    [ "mBackSpeedRate", "classdaAlinkHIO__canoe__c1.html#a6d38b5371288f082bb1b578c649722e8", null ],
+    [ "mBtnRowAnmSpeed", "classdaAlinkHIO__canoe__c1.html#a3c689757a8ab06f11fc996652412add2", null ],
+    [ "mBtnRowStartAnmSpeed", "classdaAlinkHIO__canoe__c1.html#ac3fddd9d62af25647fac523153c7c6eb", null ],
+    [ "mDeceleration", "classdaAlinkHIO__canoe__c1.html#ac53df1f9e5cc067250f87a0d819dddc9", null ],
+    [ "mDeceleration_RiverRide", "classdaAlinkHIO__canoe__c1.html#aea93f0109147c26296830cf2c4325e45", null ],
+    [ "mLeftRightChangeAnm", "classdaAlinkHIO__canoe__c1.html#afe8bca0f8268b0754ce6140819d273dc", null ],
+    [ "mMaxSpeed", "classdaAlinkHIO__canoe__c1.html#a7e1105614e36bf217da254f96cbc7247", null ],
+    [ "mMaxSpeed_RiverRide", "classdaAlinkHIO__canoe__c1.html#aa960af9f55fac39bc9d5acabf75198fc", null ],
+    [ "mMaxTurnAngle", "classdaAlinkHIO__canoe__c1.html#a5e7dec62aee0b50b5bbc48f3441760c2", null ],
+    [ "mMaxTurnAngle_RiverRide", "classdaAlinkHIO__canoe__c1.html#a0cc28f671c6083d9e1fc98a0184b7a0a", null ],
+    [ "mSpeedRate", "classdaAlinkHIO__canoe__c1.html#a904d232864c25e9bae8ee64ef849553a", null ],
+    [ "mSpeedRate_RiverRide", "classdaAlinkHIO__canoe__c1.html#a1a3d91604078d4547496a25f9a04fbb2", null ],
+    [ "mStickRowAnmSpeed", "classdaAlinkHIO__canoe__c1.html#acf3161483a46e8523c45c8d46f74bde0", null ],
+    [ "mStickRowStartAnmSpeed", "classdaAlinkHIO__canoe__c1.html#a4ab39aab114d6419346f32376ab3dd2a", null ]
 ];

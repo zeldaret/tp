@@ -3,6 +3,9 @@ var annotated_dup =
     [ "daObjEff", "namespacedaObjEff.html", [
       [ "Act_c", "classdaObjEff_1_1Act__c.html", "classdaObjEff_1_1Act__c" ]
     ] ],
+    [ "daObjLadder", "namespacedaObjLadder.html", [
+      [ "Act_c", "classdaObjLadder_1_1Act__c.html", "classdaObjLadder_1_1Act__c" ]
+    ] ],
     [ "daObjMovebox", "namespacedaObjMovebox.html", [
       [ "Act_c", "classdaObjMovebox_1_1Act__c.html", "classdaObjMovebox_1_1Act__c" ],
       [ "Bgc_c", "classdaObjMovebox_1_1Bgc__c.html", "classdaObjMovebox_1_1Bgc__c" ],
@@ -278,6 +281,8 @@ var annotated_dup =
     [ "actor_process_profile_definition2", "structactor__process__profile__definition2.html", "structactor__process__profile__definition2" ],
     [ "AppLoaderStruct", "structAppLoaderStruct.html", "structAppLoaderStruct" ],
     [ "ARQRequest", "structARQRequest.html", "structARQRequest" ],
+    [ "Attr", "structAttr.html", "structAttr" ],
+    [ "AttrType", "structAttrType.html", "structAttrType" ],
     [ "b_bh_class", "classb__bh__class.html", "classb__bh__class" ],
     [ "b_bq_class", "classb__bq__class.html", "classb__bq__class" ],
     [ "b_gm_class", "classb__gm__class.html", "classb__gm__class" ],
@@ -1378,7 +1383,7 @@ var annotated_dup =
     [ "daObjKznkarm_c", "classdaObjKznkarm__c.html", "classdaObjKznkarm__c" ],
     [ "daObjL4DigSand_c", "classdaObjL4DigSand__c.html", "classdaObjL4DigSand__c" ],
     [ "daObjL6Bm_c", "classdaObjL6Bm__c.html", "classdaObjL6Bm__c" ],
-    [ "daObjLadder", "classdaObjLadder.html", "classdaObjLadder" ],
+    [ "daObjLadder", "classdaObjLadder.html", null ],
     [ "daObjLdy_c", "classdaObjLdy__c.html", "classdaObjLdy__c" ],
     [ "daObjLife_c", "classdaObjLife__c.html", "classdaObjLife__c" ],
     [ "daObjLndRope_c", "classdaObjLndRope__c.html", "classdaObjLndRope__c" ],

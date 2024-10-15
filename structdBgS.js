@@ -9,6 +9,7 @@ var structdBgS =
     [ "ChkPolyHSStick", "structdBgS.html#a1c7a78b370fb9633f29075c193d075a1", null ],
     [ "ClrMoveFlag", "structdBgS.html#aae3b5fc731483f742102efc50a1311ce", null ],
     [ "Ct", "structdBgS.html#a14eb588f33f289d298112353e80088f6", null ],
+    [ "DebugDrawPoly", "structdBgS.html#a755f595df0ffb7ee15f757377ef6bbc1", null ],
     [ "Dt", "structdBgS.html#a1d102f0cdd1269934b2f5c6b0ad2fbf0", null ],
     [ "GetCamMoveBG", "structdBgS.html#a4c67da1ec7b49f7182dcf21df859c5dd", null ],
     [ "GetExitId", "structdBgS.html#a6a19ab66c50992b1caa3adf9f6bed4a5", null ],

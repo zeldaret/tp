@@ -60,16 +60,21 @@ var structdaPy__py__c =
       [ "CUT_TYPE_WOLF_JUMP", "structdaPy__py__c.html#a020d44aa8d44e132f8511d7741121a1caee8a3f2ccc9f938b3aa7690a1d6093c6", null ]
     ] ],
     [ "daPy_ERFLG0", "structdaPy__py__c.html#a4953bb86a496faa991c75c48a6564d0a", [
+      [ "ERFLG0_UNK_80000000", "structdaPy__py__c.html#a4953bb86a496faa991c75c48a6564d0aa5b22bb03732aad16c5970d32eb2fe1ae", null ],
       [ "ERFLG0_UNK_40000000", "structdaPy__py__c.html#a4953bb86a496faa991c75c48a6564d0aaf678092cff605eed5db1d9b56b01cc8e", null ],
       [ "ERFLG0_UNK_20000000", "structdaPy__py__c.html#a4953bb86a496faa991c75c48a6564d0aa24f8ab4d25c80454778a2f4bf6f61594", null ],
       [ "ERFLG0_UNK_10000000", "structdaPy__py__c.html#a4953bb86a496faa991c75c48a6564d0aa43d6372697ddcfcab17af0cd31621a21", null ],
       [ "ERFLG0_UNK_8000000", "structdaPy__py__c.html#a4953bb86a496faa991c75c48a6564d0aac8a8cf34b1ce83dd113f95d70b605d0e", null ],
+      [ "ERFLG0_UNK_4000000", "structdaPy__py__c.html#a4953bb86a496faa991c75c48a6564d0aa361a8cb8031168d31cb33214dc452aee", null ],
       [ "ERFLG0_BOSS_ROOM_WAIT", "structdaPy__py__c.html#a4953bb86a496faa991c75c48a6564d0aa0812f801073cf8c74717fbcd39ed2569", null ],
       [ "ERFLG0_UNK_1000000", "structdaPy__py__c.html#a4953bb86a496faa991c75c48a6564d0aa76197ffd311365b8cd96f955d0519d85", null ],
       [ "ERFLG0_UNK_800000", "structdaPy__py__c.html#a4953bb86a496faa991c75c48a6564d0aa758649460eab4b2f4bdde0066f9599c8", null ],
       [ "ERFLG0_BEE_FOLLOW", "structdaPy__py__c.html#a4953bb86a496faa991c75c48a6564d0aa508715da7f7d775508ee8b571ae1cc2b", null ],
       [ "ERFLG0_UNK_200000", "structdaPy__py__c.html#a4953bb86a496faa991c75c48a6564d0aa9e264bf23766bd76d20007a08b36f431", null ],
       [ "ERFLG0_UNK_100000", "structdaPy__py__c.html#a4953bb86a496faa991c75c48a6564d0aabf759448193377d9fd223d4ac241df8e", null ],
+      [ "ERFLG0_UNK_40000", "structdaPy__py__c.html#a4953bb86a496faa991c75c48a6564d0aa080cf021af690ce23e692b5f2aaf4868", null ],
+      [ "ERFLG0_UNK_20000", "structdaPy__py__c.html#a4953bb86a496faa991c75c48a6564d0aac34a883d07ff4ed19ea0e1905fc3badc", null ],
+      [ "ERFLG0_UNK_10000", "structdaPy__py__c.html#a4953bb86a496faa991c75c48a6564d0aaa3f2bd24cbae7b6dccda0ae834cceb7c", null ],
       [ "ERFLG0_UNK_2000", "structdaPy__py__c.html#a4953bb86a496faa991c75c48a6564d0aa0065413f205fe2148e6d7998004efdd9", null ],
       [ "ERFLG0_UNK_1000", "structdaPy__py__c.html#a4953bb86a496faa991c75c48a6564d0aaaa5d0c6f85b7b1b83c343ee0bfe2d702", null ],
       [ "ERFLG0_UNK_400", "structdaPy__py__c.html#a4953bb86a496faa991c75c48a6564d0aaaad198f9536d4b73c8fe4305debd1d97", null ],
@@ -117,7 +122,8 @@ var structdaPy__py__c =
       [ "ERFLG2_UNK_40", "structdaPy__py__c.html#aaa88576210ca5dfd006110018985781dab3112e3ac63cef7b7cc8e257a1154bc6", null ],
       [ "ERFLG2_UNK_20", "structdaPy__py__c.html#aaa88576210ca5dfd006110018985781daa1ca73c68a520e3e3bda6d4dfb3970ea", null ],
       [ "ERFLG2_UNK_10", "structdaPy__py__c.html#aaa88576210ca5dfd006110018985781da2081f3357a8fc7999765ccf918c39806", null ],
-      [ "ERFLG2_UNK_2", "structdaPy__py__c.html#aaa88576210ca5dfd006110018985781dad4f20b8d87b107e141c344f61930b4fe", null ]
+      [ "ERFLG2_UNK_2", "structdaPy__py__c.html#aaa88576210ca5dfd006110018985781dad4f20b8d87b107e141c344f61930b4fe", null ],
+      [ "ERFLG2_UNK_1", "structdaPy__py__c.html#aaa88576210ca5dfd006110018985781da13f7ce1c7b2afc2314d27748481b4e28", null ]
     ] ],
     [ "daPy_FLG0", "structdaPy__py__c.html#ae31e40b486e08a4375979902714bd2c0", [
       [ "FLG0_UNK_40000000", "structdaPy__py__c.html#ae31e40b486e08a4375979902714bd2c0a4c2a7d4f3d8f8343aa545e057661ec92", null ],
@@ -246,9 +252,11 @@ var structdaPy__py__c =
     [ "daPy_RFLG0", "structdaPy__py__c.html#aae52cea617087a937ba59045e1b4994d", [
       [ "RFLG0_UNK_40000000", "structdaPy__py__c.html#aae52cea617087a937ba59045e1b4994daa4c16d4d648097b09a2726a5f2c88413", null ],
       [ "RFLG0_UNK_20000000", "structdaPy__py__c.html#aae52cea617087a937ba59045e1b4994da73785cbde945e3b4024914721861f945", null ],
+      [ "RFLG0_UNK_10000000", "structdaPy__py__c.html#aae52cea617087a937ba59045e1b4994da19af8a71dce6765daadf3d9803367084", null ],
       [ "RFLG0_UNK_8000000", "structdaPy__py__c.html#aae52cea617087a937ba59045e1b4994dab9e208089335d194af97a6fc786a9fd6", null ],
       [ "RFLG0_UNK_4000000", "structdaPy__py__c.html#aae52cea617087a937ba59045e1b4994da6614a7cd8fac393a540798ff87ee9af5", null ],
       [ "RFLG0_GRAB_PUT_START", "structdaPy__py__c.html#aae52cea617087a937ba59045e1b4994da428bd763d7a9bb0cfe7d3ad579d4a426", null ],
+      [ "RFLG0_UNK_80000", "structdaPy__py__c.html#aae52cea617087a937ba59045e1b4994da7f4f65e790fbb42aea7eb5a4fbcf28d1", null ],
       [ "RFLG0_UNK_40000", "structdaPy__py__c.html#aae52cea617087a937ba59045e1b4994da6631a342a2f753e08eec132cdc985c76", null ],
       [ "RFLG0_UNK_20000", "structdaPy__py__c.html#aae52cea617087a937ba59045e1b4994da111808049fa858366aebb52614d2a1d0", null ],
       [ "RFLG0_UNK_10000", "structdaPy__py__c.html#aae52cea617087a937ba59045e1b4994dafaf032b1e0f93ba4afad33870ed18c79", null ],

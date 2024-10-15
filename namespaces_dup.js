@@ -43,6 +43,7 @@ var namespaces_dup =
       [ "quat_rotBaseY", "namespacedaObj.html#a214cdfc1c7c65b0c72887aaa2ca67b73", null ]
     ] ],
     [ "daObjEff", "namespacedaObjEff.html", "namespacedaObjEff" ],
+    [ "daObjLadder", "namespacedaObjLadder.html", "namespacedaObjLadder" ],
     [ "daObjMovebox", "namespacedaObjMovebox.html", "namespacedaObjMovebox" ],
     [ "daShopItem_prm", "namespacedaShopItem__prm.html", [
       [ "getGroup", "namespacedaShopItem__prm.html#a0c44ffee834169391f8c65f7911e9cf3", null ],

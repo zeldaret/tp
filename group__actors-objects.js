@@ -1781,7 +1781,19 @@ var group__actors_objects =
       [ "field_0x568", "classdaObjFchain__c.html#a712ccec8b6b6796cf6ec3978fe7c9a02", null ]
     ] ],
     [ "daObjFPillar_c", "classdaObjFPillar__c.html", [
-      [ "_delete", "classdaObjFPillar__c.html#a7af5f9555d6e2430d3ca3abc8e8ac78f", null ],
+      [ "daObjFPillar_prm", "classdaObjFPillar__c_1_1daObjFPillar__prm.html", [
+        [ "getArg0", "classdaObjFPillar__c_1_1daObjFPillar__prm.html#ae255c2a48d850820fdf705fd6939a733", null ],
+        [ "getArg1", "classdaObjFPillar__c_1_1daObjFPillar__prm.html#a813b647d2af56d57cb9b87875b333111", null ],
+        [ "getArg2", "classdaObjFPillar__c_1_1daObjFPillar__prm.html#aad80967c70e1008934c4f27d6caf7778", null ],
+        [ "getSwNo", "classdaObjFPillar__c_1_1daObjFPillar__prm.html#a194e6565a54338c364402390cb0d74a0", null ]
+      ] ],
+      [ "actionFunc", "classdaObjFPillar__c.html#abfd58c9577b531fcf3ffedc96a3fe478", null ],
+      [ "Action", "classdaObjFPillar__c.html#a694ba222ba8d4736485d6bc69371699d", [
+        [ "ACTION_OFF", "classdaObjFPillar__c.html#a694ba222ba8d4736485d6bc69371699daaacc91bb3ad3eea3549538886ebdc327", null ],
+        [ "ACTION_ON_WAIT", "classdaObjFPillar__c.html#a694ba222ba8d4736485d6bc69371699daf0459aa9b9b84632820cb459f0416939", null ],
+        [ "ACTION_ON", "classdaObjFPillar__c.html#a694ba222ba8d4736485d6bc69371699dabdfb5adb0b939752aae62f79c451cc23", null ]
+      ] ],
+      [ "_delete", "classdaObjFPillar__c.html#a36f653fce2ecaff052562fcb2477359a", null ],
       [ "action", "classdaObjFPillar__c.html#a27e25ee226aae19cc9b8cdd44e2f38b8", null ],
       [ "actionOff", "classdaObjFPillar__c.html#acf7c4098dcb9d438548bfa304ae6cfa8", null ],
       [ "actionOffInit", "classdaObjFPillar__c.html#a087653f22b5de915c16fb402d2ef627a", null ],
@@ -1789,13 +1801,24 @@ var group__actors_objects =
       [ "actionOnInit", "classdaObjFPillar__c.html#a24fb22f4cb0e158c67d8e979b95e3080", null ],
       [ "actionOnWait", "classdaObjFPillar__c.html#a90651b09dcb1a4f1eea541c201939319", null ],
       [ "actionOnWaitInit", "classdaObjFPillar__c.html#a3666b208f4a65c50f079008d52dbc32d", null ],
-      [ "Create", "classdaObjFPillar__c.html#a8cc41344068e3534d30c6aa413e06782", null ],
-      [ "create", "classdaObjFPillar__c.html#ace14af442ec112d90649dd163f821bf6", null ],
-      [ "draw", "classdaObjFPillar__c.html#aa30b7efe7419c17b2dfb000ddbbebaef", null ],
-      [ "execute", "classdaObjFPillar__c.html#aadfab9b80aa534ad295567764ae77526", null ],
+      [ "Create", "classdaObjFPillar__c.html#a24a76965192de8053a3a8c883c8e5267", null ],
+      [ "create", "classdaObjFPillar__c.html#abf9dee7330a85906f3815f9aed99fe42", null ],
+      [ "draw", "classdaObjFPillar__c.html#a7a7c406da816f71709a2eb1bf7e186b5", null ],
+      [ "execute", "classdaObjFPillar__c.html#a9551b17efcbbdc7ef27bf1752267c7c0", null ],
       [ "initBaseMtx", "classdaObjFPillar__c.html#a33337e157ac57cf6aab4d3349ef25f84", null ],
       [ "setBaseMtx", "classdaObjFPillar__c.html#ab4d972af8b255787a80b7f94c83a3b7d", null ],
-      [ "field_0x568", "classdaObjFPillar__c.html#aaf672b2cbd1eb94a99fe5ef69211f89c", null ]
+      [ "field_0x570", "classdaObjFPillar__c.html#ae36e5538a1de4c692447f671c63421c2", null ],
+      [ "field_0x90c", "classdaObjFPillar__c.html#aa6609e738b06f60c5bd74b85e7e96a11", null ],
+      [ "field_0x948", "classdaObjFPillar__c.html#a073e96a32a0334283c2026c028265b29", null ],
+      [ "field_0x954", "classdaObjFPillar__c.html#ae2cff7228df9f38ff03012f6eae830ff", null ],
+      [ "mAcch", "classdaObjFPillar__c.html#affa57b8b323af46c25a2f0694cf918df", null ],
+      [ "mAcchCir", "classdaObjFPillar__c.html#a1309d68b7dcb63fc71afa76f129e4051", null ],
+      [ "mAction", "classdaObjFPillar__c.html#a2f33553cb2fce3d4d3514050d4773628", null ],
+      [ "mActionTimer", "classdaObjFPillar__c.html#aeed4e990515407048fbe33fccfda105b", null ],
+      [ "mCps", "classdaObjFPillar__c.html#a3bb0031f80afd6651380dff7558777f7", null ],
+      [ "mCylScale", "classdaObjFPillar__c.html#a109ef75951553e09004f7ab378d89124", null ],
+      [ "mPhase", "classdaObjFPillar__c.html#a5522fc0ef0d7aa130fc2701042f97f1a", null ],
+      [ "mStts", "classdaObjFPillar__c.html#a7c51aafcda0f78c3d7f31f8f7798c982", null ]
     ] ],
     [ "daObjFPillar2_c", "classdaObjFPillar2__c.html", [
       [ "_delete", "classdaObjFPillar2__c.html#ae411a312143365590e30c6d9b6b7b885", null ],
@@ -2774,6 +2797,7 @@ var group__actors_objects =
       [ "Create", "classdaObjIceLeaf__c.html#a258531b703c4c99fb8565371eed61c0f", null ],
       [ "create", "classdaObjIceLeaf__c.html#ab97ad8750b816f76b5249778ed9c3019", null ],
       [ "CreateHeap", "classdaObjIceLeaf__c.html#a8822c838f9cbc9c51e17dc64c9e4b72a", null ],
+      [ "deleteActor", "classdaObjIceLeaf__c.html#abf337e05523f7c74ef48582c480ef898", null ],
       [ "draw", "classdaObjIceLeaf__c.html#a3b3173419e3e57088c9c78c54b2b66d6", null ],
       [ "event_proc_call", "classdaObjIceLeaf__c.html#ab22ffc9232d05ae39c7c70b0c8af7d01", null ],
       [ "execute", "classdaObjIceLeaf__c.html#a39f7310d4e393b293e1648f75e9c34b9", null ],
@@ -2783,6 +2807,7 @@ var group__actors_objects =
       [ "modePlayerWait", "classdaObjIceLeaf__c.html#aa5af1cea330af094426278874923db87", null ],
       [ "modeRide", "classdaObjIceLeaf__c.html#ac6f3d7d8f5d6a8826c8c966980b9fb8b", null ],
       [ "offRide", "classdaObjIceLeaf__c.html#aa47e81e716fdef9c429ef0a81ebefc8e", null ],
+      [ "onRide", "classdaObjIceLeaf__c.html#a169672d5024174adb6481a5b66ad8062", null ],
       [ "setAnmPos", "classdaObjIceLeaf__c.html#a51c65b1ea7c141c97501d28715fdfdc3", null ],
       [ "setBaseMtx", "classdaObjIceLeaf__c.html#a2220ba9c9a83189dd2a373a7c14fbfdc", null ],
       [ "setBreakEffect", "classdaObjIceLeaf__c.html#a07da75aebde0c84523a50298c360ad2e", null ],
@@ -3467,34 +3492,7 @@ var group__actors_objects =
       [ "field_0x568", "classdaObjKznkarm__c.html#af74b971b72eae615425c155e1104ee6d", null ],
       [ "M_attr", "classdaObjKznkarm__c.html#ac21ddd42d4e327fe40bc7f7aa1886ce9", null ]
     ] ],
-    [ "daObjLadder", "classdaObjLadder.html", [
-      [ "Act_c", "classdaObjLadder_1_1Act__c.html", [
-        [ "Prm_e", "structdaObjLadder_1_1Act__c_1_1Prm__e.html", null ],
-        [ "Create", "classdaObjLadder_1_1Act__c.html#a6155af492f33c02e6aec9ea98f944d33", null ],
-        [ "CreateHeap", "classdaObjLadder_1_1Act__c.html#adb68d56c327bde0d47cc326ed20cc2f6", null ],
-        [ "Delete", "classdaObjLadder_1_1Act__c.html#aaf13c6f99119a7d908dc4fe40c9b9835", null ],
-        [ "demo_end_reset", "classdaObjLadder_1_1Act__c.html#aa5de4695a5c4d252b05263c59273eca6", null ],
-        [ "Draw", "classdaObjLadder_1_1Act__c.html#aa5213fc74f4378b867fa6003bbc069c6", null ],
-        [ "Execute", "classdaObjLadder_1_1Act__c.html#acb4a4baea41e287f6a314437bb4e409a", null ],
-        [ "init_mtx", "classdaObjLadder_1_1Act__c.html#a27d3c4ca572756dc9cd4e9e9122874d8", null ],
-        [ "mode_demoreq", "classdaObjLadder_1_1Act__c.html#a5377570c354b6474aa096fb7a335bfb8", null ],
-        [ "mode_demoreq_init", "classdaObjLadder_1_1Act__c.html#ab08958b4757a84165a6848f4246b0827", null ],
-        [ "mode_drop", "classdaObjLadder_1_1Act__c.html#a807909e748c1f92bbc1658d08245c208", null ],
-        [ "mode_drop_init", "classdaObjLadder_1_1Act__c.html#a0c619c48e7e85ce19eec8de3ca1113cb", null ],
-        [ "mode_fell", "classdaObjLadder_1_1Act__c.html#a2b8ff17d71512dc712d5cceb580eee96", null ],
-        [ "mode_fell_init", "classdaObjLadder_1_1Act__c.html#a48db4675879991ba243325d90c689c59", null ],
-        [ "mode_vib", "classdaObjLadder_1_1Act__c.html#ae905e0e2a357ec3ded4c37f8fcee6116", null ],
-        [ "mode_vib_init", "classdaObjLadder_1_1Act__c.html#a11f3820f4694591b2cff1639c806c721", null ],
-        [ "mode_wait", "classdaObjLadder_1_1Act__c.html#aea2e430a234f23c26d146490ba47d5d4", null ],
-        [ "mode_wait_init", "classdaObjLadder_1_1Act__c.html#a914e0f782d9ab4bdc7bcf45e8fa63978", null ],
-        [ "Mthd_Create", "classdaObjLadder_1_1Act__c.html#a42cd9fd2ea475ce286074efc7c6ea198", null ],
-        [ "Mthd_Delete", "classdaObjLadder_1_1Act__c.html#aeb9bdeff678b1c06c33b590cd35a5bbe", null ],
-        [ "set_mtx", "classdaObjLadder_1_1Act__c.html#a37aab309c0982e463a0b3df8a7b2b5f9", null ],
-        [ "M_arcname", "classdaObjLadder_1_1Act__c.html#a43dca7ddaa243dae2378d6e986252664", null ],
-        [ "M_tmp_mtx", "classdaObjLadder_1_1Act__c.html#a2ed9af752345c3c7b1c8df3b09357dbe", null ]
-      ] ],
-      [ "field_0x568", "classdaObjLadder.html#ad12caad94dc9ee9a36b620d5c247417f", null ]
-    ] ],
+    [ "daObjLadder", "classdaObjLadder.html", null ],
     [ "daObjLdy_c", "classdaObjLdy__c.html", [
       [ "calcJointAngle", "classdaObjLdy__c.html#ae3772be8ff2c924a50c1d744d81d9f02", null ],
       [ "create_init", "classdaObjLdy__c.html#a0569d83d23257b98c542b12c962e04b5", null ],

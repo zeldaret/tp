@@ -54,6 +54,7 @@ var classcCcD__ObjHitInf =
     [ "SetAtSPrm", "classcCcD__ObjHitInf.html#afcf4c49ca4a631151a58b7962d13bf12", null ],
     [ "SetAtType", "classcCcD__ObjHitInf.html#a8f4d13910541750ed1e79d44a91c231d", null ],
     [ "SetCoHit", "classcCcD__ObjHitInf.html#a9fb2dcb125b9870114a34948033672b2", null ],
+    [ "SetCoIGrp", "classcCcD__ObjHitInf.html#a439ce2ae1feb6884493086abc6a70623", null ],
     [ "SetCoSPrm", "classcCcD__ObjHitInf.html#a32857f8ac6f396c7d2f23396cedbefdd", null ],
     [ "SetCoVsGrp", "classcCcD__ObjHitInf.html#a310386d066500f98ff6c2a4b1a72739c", null ],
     [ "SetTgHit", "classcCcD__ObjHitInf.html#a9c02ce4e93e2063978953137252b4ef3", null ],

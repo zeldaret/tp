@@ -788,6 +788,7 @@ var d__com__inf__game_8h =
     [ "dComIfGs_sense_type_change_Set", "d__com__inf__game_8h.html#a247c7f4ef88ae9be25fd2a62a60c4902", null ],
     [ "dComIfGs_setArrowMax", "d__com__inf__game_8h.html#ab550c50907a7ec3531ee945cb4a5b2c0", null ],
     [ "dComIfGs_setArrowNum", "d__com__inf__game_8h.html#a97f95dabbcb842a73ffeb6c005f9b08e", null ],
+    [ "dComIfGs_setBaitItem", "d__com__inf__game_8h.html#aab1513ea084b81d61eb3475a8d192f3b", null ],
     [ "dComIfGs_setBButtonItemKey", "d__com__inf__game_8h.html#a88adb4b7a20ae953ad52dfc32cf4bafd", null ],
     [ "dComIfGs_setBombNum", "d__com__inf__game_8h.html#ab9f1b0d8c27328c3e5be03ba49e47537", null ],
     [ "dComIfGs_setBottleItemIn", "d__com__inf__game_8h.html#a71be27a6f90f0990e17f7cc67b288bcf", null ],
