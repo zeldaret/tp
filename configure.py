@@ -1451,7 +1451,7 @@ config.libs = [
     ActorRel(Matching, "d_a_obj_kgate"),
     ActorRel(NonMatching, "d_a_obj_klift00"),
     ActorRel(NonMatching, "d_a_obj_ktOnFire"),
-    ActorRel(NonMatching, "d_a_obj_ladder"),
+    ActorRel(Matching, "d_a_obj_ladder"),
     ActorRel(Matching, "d_a_obj_lv2Candle"),
     ActorRel(NonMatching, "d_a_obj_magne_arm"),
     ActorRel(NonMatching, "d_a_obj_metalbox"),
