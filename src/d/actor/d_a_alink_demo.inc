@@ -3395,6 +3395,7 @@ int daAlink_c::procZoraMoveInit() {
 /* 8011DB9C-8011DDD4 1184DC 0238+00 1/0 0/0 0/0 .text            procZoraMove__9daAlink_cFv */
 int daAlink_c::procZoraMove() {
     // NONMATCHING
+    return 0;
 }
 
 /* 8011DDD4-8011DED8 118714 0104+00 1/0 0/0 0/0 .text procLookAroundTurnInit__9daAlink_cFv */
@@ -3878,6 +3879,7 @@ int daAlink_c::procDungeonWarpReadyInit() {
  */
 int daAlink_c::procDungeonWarpReady() {
     // NONMATCHING
+    return 0;
 }
 
 /* 8011F084-8011F0F4 1199C4 0070+00 1/0 0/0 0/0 .text            procDungeonWarpInit__9daAlink_cFv
@@ -4136,6 +4138,7 @@ void daAlink_c::checkWarpStart() {
 /* 8011FBC0-8011FD4C 11A500 018C+00 3/3 0/0 0/0 .text            warpModelTexScroll__9daAlink_cFv */
 int daAlink_c::warpModelTexScroll() {
     // NONMATCHING
+    return 0;
 }
 
 /* 8011FD4C-80120124 11A68C 03D8+00 2/2 0/0 0/0 .text            procCoWarpInit__9daAlink_cFii */

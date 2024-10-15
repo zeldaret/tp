@@ -88,6 +88,7 @@ void daAlink_c::changeCrawlAutoMoveProc(cXyz* param_0) {
 int daAlink_c::getCrawlMoveVec(cXyz* param_0, cXyz* param_1, cXyz* param_2, int param_3,
                                    int param_4, u8* param_5) {
     // NONMATCHING
+    return 0;
 }
 
 /* 800F85C0-800F8700 0F2F00 0140+00 2/2 0/0 0/0 .text crawlBgCheck__9daAlink_cFP4cXyzP4cXyzi */
@@ -245,6 +246,7 @@ void daAlink_c::setCrawlAutoMoveAimPos() {
 /* 800F9210-800F9384 0F3B50 0174+00 2/2 0/0 0/0 .text            procCrawlStartInit__9daAlink_cFv */
 int daAlink_c::procCrawlStartInit() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800F9384-800F9474 0F3CC4 00F0+00 1/0 0/0 0/0 .text            procCrawlStart__9daAlink_cFv */
@@ -275,11 +277,13 @@ int daAlink_c::procCrawlStart() {
 /* 800F9474-800F95B8 0F3DB4 0144+00 3/3 0/0 0/0 .text            procCrawlMoveInit__9daAlink_cFss */
 int daAlink_c::procCrawlMoveInit(s16 param_0, s16 param_1) {
     // NONMATCHING
+    return 0;
 }
 
 /* 800F95B8-800F99FC 0F3EF8 0444+00 1/0 0/0 0/0 .text            procCrawlMove__9daAlink_cFv */
 int daAlink_c::procCrawlMove() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800F99FC-800F9ABC 0F433C 00C0+00 1/1 0/0 0/0 .text procCrawlAutoMoveInit__9daAlink_cFiP4cXyz */
@@ -308,17 +312,20 @@ int daAlink_c::procCrawlAutoMoveInit(int param_0, cXyz* param_1) {
 #else
 int daAlink_c::procCrawlAutoMoveInit(int param_0, cXyz* param_1) {
     // NONMATCHING
+    return 0;
 }
 #endif
 
 /* 800F9ABC-800F9D7C 0F43FC 02C0+00 1/0 0/0 0/0 .text            procCrawlAutoMove__9daAlink_cFv */
 int daAlink_c::procCrawlAutoMove() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800F9D7C-800F9F30 0F46BC 01B4+00 1/1 0/0 0/0 .text            procCrawlEndInit__9daAlink_cFiss */
 int daAlink_c::procCrawlEndInit(int param_0, s16 param_1, s16 param_2) {
     // NONMATCHING
+    return 0;
 }
 
 /* 800F9F30-800F9FDC 0F4870 00AC+00 1/0 0/0 0/0 .text            procCrawlEnd__9daAlink_cFv */

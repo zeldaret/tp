@@ -32,6 +32,7 @@ bool daAlink_c::checkBoardRestart() {
 /* 80105B58-80106534 100498 09DC+00 7/7 0/0 0/0 .text            boardCommon__9daAlink_cFi */
 int daAlink_c::boardCommon(int param_0) {
     // NONMATCHING
+    return 0;
 }
 
 /* 80106534-8010658C 100E74 0058+00 6/6 0/0 0/0 .text            setCommonBoardAnime__9daAlink_cFi
@@ -100,6 +101,7 @@ void daAlink_c::setBoardLandAnime() {
 /* 80106774-801069D0 1010B4 025C+00 1/1 0/0 0/0 .text            procBoardRideInit__9daAlink_cFv */
 int daAlink_c::procBoardRideInit() {
     // NONMATCHING
+    return 0;
 }
 
 /* 801069D0-80106A38 101310 0068+00 1/0 0/0 0/0 .text            procBoardRide__9daAlink_cFv */
@@ -123,11 +125,13 @@ int daAlink_c::procBoardRide() {
  * procBoardWaitInit__9daAlink_cFP10fopAc_ac_c                  */
 int daAlink_c::procBoardWaitInit(fopAc_ac_c* param_0) {
     // NONMATCHING
+    return 0;
 }
 
 /* 80106BCC-80106E88 10150C 02BC+00 1/0 0/0 0/0 .text            procBoardWait__9daAlink_cFv */
 int daAlink_c::procBoardWait() {
     // NONMATCHING
+    return 0;
 }
 
 /* 80106E88-80106F00 1017C8 0078+00 1/1 0/0 0/0 .text            procBoardRowInit__9daAlink_cFv */
@@ -145,6 +149,7 @@ int daAlink_c::procBoardRowInit() {
 /* 80106F00-80107060 101840 0160+00 1/0 0/0 0/0 .text            procBoardRow__9daAlink_cFv */
 int daAlink_c::procBoardRow() {
     // NONMATCHING
+    return 0;
 }
 
 /* 80107060-801070DC 1019A0 007C+00 1/1 0/0 0/0 .text            procBoardTurnInit__9daAlink_cFv */
@@ -162,6 +167,7 @@ int daAlink_c::procBoardTurnInit() {
 /* 801070DC-80107218 101A1C 013C+00 1/0 0/0 0/0 .text            procBoardTurn__9daAlink_cFv */
 int daAlink_c::procBoardTurn() {
     // NONMATCHING
+    return 0;
 }
 
 /* 80107218-80107300 101B58 00E8+00 4/4 0/0 0/0 .text            procBoardJumpInit__9daAlink_cFfi */
@@ -187,6 +193,7 @@ int daAlink_c::procBoardJumpInit(f32 param_0, int param_1) {
 #else
 int daAlink_c::procBoardJumpInit(f32 param_0, int param_1) {
     // NONMATCHING
+    return 0;
 }
 #endif
 
@@ -280,9 +287,11 @@ int daAlink_c::procBoardCut() {
  */
 int daAlink_c::procBoardCutTurnInit() {
     // NONMATCHING
+    return 0;
 }
 
 /* 80107744-80107900 102084 01BC+00 1/0 0/0 0/0 .text            procBoardCutTurn__9daAlink_cFv */
 int daAlink_c::procBoardCutTurn() {
     // NONMATCHING
+    return 0;
 }

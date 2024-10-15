@@ -1251,6 +1251,7 @@ int daAlink_c::procWolfServiceWaitInit(int param_0) {
  */
 int daAlink_c::procWolfServiceWait() {
     // NONMATCHING
+    return 0;
 }
 
 /* 8012CF68-8012CFEC 1278A8 0084+00 1/1 0/0 0/0 .text            procWolfTiredWaitInit__9daAlink_cFv
@@ -3199,6 +3200,7 @@ int daAlink_c::setWolfRopePosY() {
 #else
 int daAlink_c::setWolfRopePosY() {
     // NONMATCHING
+    return 0;
 }
 #endif
 
@@ -3313,6 +3315,7 @@ int daAlink_c::procWolfRopeMoveInit(int param_0, int param_1) {
 /* 80131DA0-80132738 12C6E0 0998+00 1/0 0/0 0/0 .text            procWolfRopeMove__9daAlink_cFv */
 int daAlink_c::procWolfRopeMove() {
     // NONMATCHING
+    return 0;
 }
 
 /* 80132738-80132914 12D078 01DC+00 5/5 0/0 0/0 .text            procWolfRopeHangInit__9daAlink_cFi
@@ -3375,6 +3378,7 @@ int daAlink_c::procWolfRopeHangInit(int param_0) {
 /* 80132914-80132D68 12D254 0454+00 1/0 0/0 0/0 .text            procWolfRopeHang__9daAlink_cFv */
 int daAlink_c::procWolfRopeHang() {
     // NONMATCHING
+    return 0;
 }
 
 /* 80132D68-80132E88 12D6A8 0120+00 1/1 0/0 0/0 .text            procWolfRopeTurnInit__9daAlink_cFv
@@ -3402,6 +3406,7 @@ int daAlink_c::procWolfRopeTurnInit() {
 /* 80132E88-80133054 12D7C8 01CC+00 1/0 0/0 0/0 .text            procWolfRopeTurn__9daAlink_cFv */
 int daAlink_c::procWolfRopeTurn() {
     // NONMATCHING
+    return 0;
 }
 
 /* 80133054-80133164 12D994 0110+00 1/1 0/0 0/0 .text procWolfRopeStaggerInit__9daAlink_cFi */
@@ -3439,6 +3444,7 @@ int daAlink_c::procWolfRopeStaggerInit(int param_0) {
  */
 int daAlink_c::procWolfRopeStagger() {
     // NONMATCHING
+    return 0;
 }
 
 /* 8013384C-80133930 12E18C 00E4+00 1/1 0/0 0/0 .text procWolfRopeSubjectivityInit__9daAlink_cFv
@@ -3473,6 +3479,7 @@ int daAlink_c::procWolfRopeSubjectivityInit() {
 /* 80133930-80133D6C 12E270 043C+00 1/0 0/0 0/0 .text procWolfRopeSubjectivity__9daAlink_cFv */
 int daAlink_c::procWolfRopeSubjectivity() {
     // NONMATCHING
+    return 0;
 }
 
 /* 80133D6C-80133EF0 12E6AC 0184+00 0/0 0/0 1/1 .text            getWolfTagJumpTime__9daAlink_cCFv
@@ -3532,11 +3539,13 @@ const cXyz* daAlink_c::checkMidnaLockJumpPoint() const {
  * procWolfTagJumpInit__9daAlink_cFP10fopAc_ac_c                */
 int daAlink_c::procWolfTagJumpInit(fopAc_ac_c* param_0) {
     // NONMATCHING
+    return 0;
 }
 
 /* 80134838-80134DB8 12F178 0580+00 1/0 0/0 0/0 .text            procWolfTagJump__9daAlink_cFv */
 int daAlink_c::procWolfTagJump() {
     // NONMATCHING
+    return 0;
 }
 
 /* 80134DB8-80134EBC 12F6F8 0104+00 1/1 0/0 0/0 .text
@@ -3792,6 +3801,7 @@ int daAlink_c::procWolfHangReady() {
 /* 801356F0-80135AF4 130030 0404+00 3/3 0/0 0/0 .text procWolfHangWallCatchInit__9daAlink_cFi */
 int daAlink_c::procWolfHangWallCatchInit(int param_0) {
     // NONMATCHING
+    return 0;
 }
 
 /* 80135AF4-80135CD8 130434 01E4+00 1/0 0/0 0/0 .text            procWolfHangWallCatch__9daAlink_cFv
@@ -3946,6 +3956,7 @@ void daAlink_c::setWolfHeadDamage() {
  * procWolfDamageInit__9daAlink_cFP12dCcD_GObjInf               */
 int daAlink_c::procWolfDamageInit(dCcD_GObjInf* param_0) {
     // NONMATCHING
+    return 0;
 }
 
 /* 80136508-80136624 130E48 011C+00 1/0 0/0 0/0 .text            procWolfDamage__9daAlink_cFv */
@@ -3984,12 +3995,14 @@ int daAlink_c::procWolfDamage() {
  */
 int daAlink_c::procWolfLargeDamageUpInit(int param_0, int param_1, s16 param_2, s16 param_3) {
     // NONMATCHING
+    return 0;
 }
 
 /* 801369E4-80136C18 131324 0234+00 1/0 0/0 0/0 .text            procWolfLargeDamageUp__9daAlink_cFv
  */
 int daAlink_c::procWolfLargeDamageUp() {
     // NONMATCHING
+    return 0;
 }
 
 /* 80136C18-80136DE4 131558 01CC+00 1/1 0/0 0/0 .text procWolfLandDamageInit__9daAlink_cFi */
@@ -4317,12 +4330,14 @@ int daAlink_c::procWolfLieMoveInit(int param_0) {
 #else
 int daAlink_c::procWolfLieMoveInit(int param_0) {
     // NONMATCHING
+    return 0;
 }
 #endif
 
 /* 801377F0-80137C90 132130 04A0+00 1/0 0/0 0/0 .text            procWolfLieMove__9daAlink_cFv */
 int daAlink_c::procWolfLieMove() {
     // NONMATCHING
+    return 0;
 }
 
 /* 80137C90-80137D4C 1325D0 00BC+00 1/1 0/0 0/0 .text procWolfLieAutoMoveInit__9daAlink_cFiP4cXyz
@@ -4353,6 +4368,7 @@ int daAlink_c::procWolfLieAutoMoveInit(int param_0, cXyz* param_1) {
 #else
 int daAlink_c::procWolfLieAutoMoveInit(int param_0, cXyz* param_1) {
     // NONMATCHING
+    return 0;
 }
 #endif
 
@@ -4360,6 +4376,7 @@ int daAlink_c::procWolfLieAutoMoveInit(int param_0, cXyz* param_1) {
  */
 int daAlink_c::procWolfLieAutoMove() {
     // NONMATCHING
+    return 0;
 }
 
 /* 80138000-80138188 132940 0188+00 2/2 0/0 0/0 .text setSpeedAndAngleSwimWolf__9daAlink_cFv */
@@ -5184,6 +5201,7 @@ int daAlink_c::procWolfRollAttackMove() {
 /* 80139DE0-8013A4F8 134720 0718+00 5/5 0/0 0/0 .text procWolfJumpAttackInit__9daAlink_cFi */
 int daAlink_c::procWolfJumpAttackInit(int param_0) {
     // NONMATCHING
+    return 0;
 }
 
 /* 8013A4F8-8013A7EC 134E38 02F4+00 1/0 0/0 0/0 .text            procWolfJumpAttack__9daAlink_cFv */
@@ -5874,6 +5892,7 @@ int daAlink_c::procWolfLockAttackInit(int param_0) {
 #else
 int daAlink_c::procWolfLockAttackInit(int param_0) {
     // NONMATCHING
+    return 0;
 }
 #endif
 
@@ -6866,16 +6885,19 @@ int daAlink_c::procWolfChainWait() {
 /* 8013ED44-8013F1F0 139684 04AC+00 1/1 0/0 0/0 .text            procWolfDigInit__9daAlink_cFv */
 int daAlink_c::procWolfDigInit() {
     // NONMATCHING
+    return 0;
 }
 
 /* 8013F1F0-8013F4A8 139B30 02B8+00 1/0 0/0 0/0 .text            procWolfDig__9daAlink_cFv */
 int daAlink_c::procWolfDig() {
     // NONMATCHING
+    return 0;
 }
 
 /* 8013F4A8-8013F7C4 139DE8 031C+00 2/2 0/0 0/0 .text procWolfDigThroughInit__9daAlink_cFi */
 int daAlink_c::procWolfDigThroughInit(int param_0) {
     // NONMATCHING
+    return 0;
 }
 
 /* 8013F7C4-8013F90C 13A104 0148+00 1/0 0/0 0/0 .text            procWolfDigThrough__9daAlink_cFv */

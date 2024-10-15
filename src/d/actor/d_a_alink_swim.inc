@@ -255,11 +255,13 @@ int daAlink_c::checkNextActionSwim() {
 /* 80102B1C-80103058 0FD45C 053C+00 3/3 0/0 0/0 .text            checkSwimAction__9daAlink_cFi */
 int daAlink_c::checkSwimAction(int param_0) {
     // NONMATCHING
+    return 0;
 }
 
 /* 80103058-801032C8 0FD998 0270+00 7/7 0/0 0/0 .text            checkSwimUpAction__9daAlink_cFv */
 int daAlink_c::checkSwimUpAction() {
     // NONMATCHING
+    return 0;
 }
 
 /* 801032C8-80103398 0FDC08 00D0+00 8/8 0/0 0/0 .text            swimOutAfter__9daAlink_cFi */
@@ -922,6 +924,7 @@ int daAlink_c::procSwimDamageInit(dCcD_GObjInf* param_0) {
 #else
 int daAlink_c::procSwimDamageInit(dCcD_GObjInf* param_0) {
     // NONMATCHING
+    return 0;
 }
 #endif
 

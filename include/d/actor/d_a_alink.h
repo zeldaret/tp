@@ -2523,7 +2523,7 @@ public:
     /* 801126F8 */ void setIronBallReturn(int);
     /* 80112768 */ void setIronBallBgCheckPos();
     /* 801127F0 */ void setIronBallModel();
-    /* 80112C84 */ void setIronBallGroundVec(cXyz const*, cXyz*);
+    /* 80112C84 */ int setIronBallGroundVec(cXyz const*, cXyz*);
     /* 80112E7C */ void setIronBallChainPos();
     /* 80113CA0 */ BOOL checkIronBallReturnChange();
     /* 80113D58 */ void setIronBallPos();
@@ -3497,10 +3497,10 @@ public:
     /* 0x00768 */ J3DModelData* mpHookKusariModelData;
     /* 0x0076C */ Z2SoundObjSimple* mpHookSound;
     /* 0x00770 */ hsChainShape_c* mpHookChain;
-    /* 0x00774 */ void* field_0x0774;
-    /* 0x00778 */ void* field_0x0778;
+    /* 0x00774 */ dBgS_AcchCir* field_0x0774;
+    /* 0x00778 */ dBgS_ObjAcch* field_0x0778;
     /* 0x0077C */ dBgS_ObjLinChk* mpHookshotLinChk;
-    /* 0x00780 */ void* field_0x780;
+    /* 0x00780 */ dBgS_ObjLinChk* field_0x780;
     /* 0x00784 */ J3DModel* mpLinkBootModels[2];
     /* 0x0078C */ J3DModel* mpWlChainModels[4];
     /* 0x0079C */ J3DModel* mpWlMidnaModel;
@@ -4040,7 +4040,7 @@ public:
     /* 0x03834 */ cXyz field_0x3834;
     /* 0x03840 */ cXyz* mIronBallChainPos;
     /* 0x03844 */ csXyz* mIronBallChainAngle;
-    /* 0x03848 */ void* field_0x3848;
+    /* 0x03848 */ cXyz* field_0x3848;
     /* 0x0384C */ cXyz* field_0x384c;
     /* 0x03850 */ daAlink_procFunc mpProcFunc;
 };  // Size: 0x385C

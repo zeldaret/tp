@@ -3865,10 +3865,9 @@ COMPILER_STRIP_GATE(0x8038FB38, &l_swordTopLocalM);
 #pragma pop
 
 /* 8038FB44-8038FB50 01C1A4 000C+00 1/2 0/0 0/0 .rodata          l_ironBallChainVec */
-SECTION_RODATA static u8 const l_ironBallChainVec[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00,
+static const Vec l_ironBallChainVec = {
+    0.0f, 0.0f, 10.0f  
 };
-COMPILER_STRIP_GATE(0x8038FB44, &l_ironBallChainVec);
 
 /* 8038FB50-8038FB5C 01C1B0 000C+00 1/2 0/0 0/0 .rodata          l_ironBallCenterVec */
 SECTION_RODATA static Vec const l_ironBallCenterVec = {
@@ -4835,22 +4834,14 @@ SECTION_RODATA static u8 const lit_33690[12] = {
 COMPILER_STRIP_GATE(0x80391A2C, &lit_33690);
 
 /* 80391A38-80391A44 01E098 000C+00 0/1 0/0 0/0 .rodata          ironBallPosVec$34212 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const ironBallPosVec[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC2, 0x28, 0x00, 0x00,
+static Vec const ironBallPosVec = {
+    0.0f, 0.0f, -42.0f
 };
-COMPILER_STRIP_GATE(0x80391A38, &ironBallPosVec);
-#pragma pop
 
 /* 80391A44-80391A50 01E0A4 000C+00 0/1 0/0 0/0 .rodata          handCenterOffsetVec$34213 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const handCenterOffsetVec[12] = {
-    0x40, 0x00, 0x00, 0x00, 0xC1, 0xC8, 0x00, 0x00, 0x41, 0x48, 0x00, 0x00,
+static Vec const handCenterOffsetVec = {
+    2.0f, -25.0f, 12.5f
 };
-COMPILER_STRIP_GATE(0x80391A44, &handCenterOffsetVec);
-#pragma pop
 
 /* 80391A50-80391A5C 01E0B0 000C+00 1/1 0/0 0/0 .rodata          @34968 */
 SECTION_RODATA static u8 const lit_34968[12] = {
@@ -9611,6 +9602,7 @@ void daAlink_c::setUnderAnimeMorf(f32 param_0) {
 int daAlink_c::setUnderAnime(u16 param_0, daAlink_c::daAlink_UNDER param_1, f32 param_2,
                                  f32 param_3, s16 param_4, f32 param_5) {
     // NONMATCHING
+    return 0;
 }
 
 /* 800ADAB8-800ADAEC 0A83F8 0034+00 2/2 0/0 0/0 .text
@@ -9871,6 +9863,7 @@ s16 daAlink_c::getRoofAngle(cBgS_PolyInfo* param_0, s16 param_1) {
 BOOL daAlink_c::getWallEdgePos(cXyz const& param_0, cM3dGPla* param_1, cM3dGPla* param_2,
                                    cXyz* param_3, int param_4) {
     // NONMATCHING
+    return 0;
 }
 
 /* 800B02BC-800B146C 0AABFC 11B0+00 9/9 0/0 0/0 .text            setFrontWallType__9daAlink_cFv */
@@ -10041,6 +10034,7 @@ bool daAlink_c::checkLv2MiddleBossBgRide(s16 i_procName) {
 /* 800B1FD8-800B21EC 0AC918 0214+00 11/11 0/0 0/0 .text getSlidePolygon__9daAlink_cFP8cM3dGPla */
 bool daAlink_c::getSlidePolygon(cM3dGPla* param_0) {
     // NONMATCHING
+    return 0;
 }
 
 /* 800B21EC-800B221C 0ACB2C 0030+00 4/4 0/0 0/0 .text            checkSlope__9daAlink_cCFv */
@@ -10903,6 +10897,7 @@ int daAlink_c::checkRequestTalkActor(dAttList_c* param_0, fopAc_ac_c* param_1) {
  */
 bool daAlink_c::checkServiceWaitMode() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800B48D0-800B4908 0AF210 0038+00 18/18 0/0 0/0 .text            setJumpMode__9daAlink_cFv */
@@ -11289,6 +11284,7 @@ void daAlink_c::decideDoStatus() {
 /* 800B58EC-800B5BC0 0B022C 02D4+00 25/25 0/0 0/0 .text            checkWaitAction__9daAlink_cFv */
 BOOL daAlink_c::checkWaitAction() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800B5BC0-800B5C34 0B0500 0074+00 3/3 0/0 0/0 .text            setFallVoice__9daAlink_cFv */
@@ -13266,6 +13262,7 @@ void daAlink_c::getBodyAngleXBasePos(cXyz* o_pos) {
  */
 s16 daAlink_c::getBodyAngleXAtnActor(int param_0) {
     // NONMATCHING
+    return 0;
 }
 
 /* 800BB2B0-800BB324 0B5BF0 0074+00 13/13 0/0 0/0 .text setBodyAngleXReadyAnime__9daAlink_cFi */
@@ -14295,6 +14292,7 @@ void daAlink_c::resetBasAnime() {
  */
 BOOL daAlink_c::checkSightLine(f32 param_0, cXyz* param_1) {
     // NONMATCHING
+    return 0;
 }
 
 /* 800BF79C-800BF854 0BA0DC 00B8+00 2/2 0/0 0/0 .text            setMetamorphoseModel__9daAlink_cFi

@@ -2772,6 +2772,7 @@ int daAlink_c::procRoofHangStart() {
  */
 int daAlink_c::procRoofHangWaitInit(int param_0) {
     // NONMATCHING
+    return 0;
 }
 
 /* 80100D38-80100DA4 0FB678 006C+00 1/0 0/0 0/0 .text            procRoofHangWait__9daAlink_cFv */

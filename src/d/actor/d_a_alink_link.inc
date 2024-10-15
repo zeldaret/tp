@@ -2396,6 +2396,7 @@ int daAlink_c::procGoronRideWaitInit(fopAc_ac_c* param_0) {
 /* 800C85D8-800C8700 0C2F18 0128+00 1/0 0/0 0/0 .text            procGoronRideWait__9daAlink_cFv */
 int daAlink_c::procGoronRideWait() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800C8700-800CAFA8 0C3040 28A8+00 1/1 0/0 0/0 .text            execute__9daAlink_cFv */
@@ -3474,7 +3475,7 @@ void daAlink_c::modelDraw(J3DModel* i_model, int param_1) {
 /* 800CC364-800CC7DC 0C6CA4 0478+00 2/2 0/0 0/0 .text
  * setWaterDropColor__9daAlink_cFPC13J3DGXColorS10              */
 void daAlink_c::setWaterDropColor(const J3DGXColorS10* i_color) {
-    static GXColorS10 notColor0 = {0x00, 0x00, 0x00, 0xFF};
+    static const GXColorS10 notColor0 = {0x00, 0x00, 0x00, 0xFF};
     J3DGXColorS10* var_r31;
 
     if (&field_0x32a0[0] == i_color) {
@@ -3983,6 +3984,7 @@ bool daAlink_c::checkNoSubjectModeCamera() {
 /* 800CE468-800CE628 0C8DA8 01C0+00 2/2 0/0 0/0 .text acceptSubjectModeChange__9daAlink_cFv */
 bool daAlink_c::acceptSubjectModeChange() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800CE628-800CE728 0C8F68 0100+00 5/5 0/0 0/0 .text            checkSubjectAction__9daAlink_cFv */
@@ -4024,6 +4026,7 @@ void daAlink_c::checkBodyAngleX(s16 param_0) {
 /* 800CE8A0-800CEAF4 0C91E0 0254+00 15/15 0/0 0/0 .text setBodyAngleToCamera__9daAlink_cFv */
 BOOL daAlink_c::setBodyAngleToCamera() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800CEAF4-800CEB58 0C9434 0064+00 9/9 0/0 0/0 .text            setSubjectMode__9daAlink_cFv */
@@ -4329,6 +4332,7 @@ extern "C" BOOL checkRideOn__9daAlink_cCFv(daAlink_c* this_) {
 /* 800CFEC4-800CFEF4 0CA804 0030+00 1/1 0/0 0/0 .text            dComIfGp_att_getCatghTarget__Fv */
 extern "C" dAttCatch_c* dComIfGp_att_getCatghTarget__Fv() {
     // NONMATCHING
+    return 0;
 }
 
 /* 800CFEF4-800CFF2C 0CA834 0038+00 1/1 0/0 0/0 .text            mDoAud_setLinkHp__Fll */
