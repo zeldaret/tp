@@ -11,6 +11,7 @@ var structJ3DJoint =
     [ "getMesh", "structJ3DJoint.html#a96653c1607795af89d6ff9398eb72390", null ],
     [ "getMin", "structJ3DJoint.html#a05b2b9c0c9101e7be427b2a357383b0f", null ],
     [ "getMtxCalc", "structJ3DJoint.html#abc825982b93f6e6bc9122c3bd1a645e6", null ],
+    [ "getMtxType", "structJ3DJoint.html#ad1836ac51ed2260ea2763187415c12de", null ],
     [ "getScaleCompensate", "structJ3DJoint.html#ac6d0d88af57e8b1c8b74621174dccce5", null ],
     [ "getTransformInfo", "structJ3DJoint.html#a99fd3af47471b2a514a18845bf665f68", null ],
     [ "getYounger", "structJ3DJoint.html#a168d238f76633a426629b63bb34b3831", null ],

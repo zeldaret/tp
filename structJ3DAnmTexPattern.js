@@ -3,7 +3,7 @@ var structJ3DAnmTexPattern =
     [ "J3DAnmTexPattern", "structJ3DAnmTexPattern.html#ad2fd38bb36d7d359cfb7450d0ba0d0c1", null ],
     [ "~J3DAnmTexPattern", "structJ3DAnmTexPattern.html#a74d7bf4c1875036b4d465af61c8affd4", null ],
     [ "getAnmTable", "structJ3DAnmTexPattern.html#ad3eb14bda53e86210a165b85d67f77da", null ],
-    [ "getKind", "structJ3DAnmTexPattern.html#ab4ab7feaa0a1f2b09862f60be84cdc91", null ],
+    [ "getKind", "structJ3DAnmTexPattern.html#af6417ed892acf22e7e7ea89e4400f3e5", null ],
     [ "getTexNo", "structJ3DAnmTexPattern.html#a39d94c6400ca0401d433bb36bf9ddb75", null ],
     [ "getTexNo", "structJ3DAnmTexPattern.html#a39d94c6400ca0401d433bb36bf9ddb75", null ],
     [ "getUpdateMaterialID", "structJ3DAnmTexPattern.html#a8c292b27f42a3361ac988122402a91a0", null ],

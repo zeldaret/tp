@@ -2,7 +2,7 @@ var structJ3DModel =
 [
     [ "J3DModel", "structJ3DModel.html#acb6f563a825926b423da7715fb8fe563", null ],
     [ "J3DModel", "structJ3DModel.html#a5f401eccd14372bdf43151ecd808a4f4", null ],
-    [ "~J3DModel", "structJ3DModel.html#a18b75ba1b0f246f3aa659c40d593d73f", null ],
+    [ "~J3DModel", "structJ3DModel.html#a98bb2e1aeae4895777fff485791e8eb5", null ],
     [ "calc", "structJ3DModel.html#a585c74908a6090736b5d0c22f0d879dd", null ],
     [ "calcAnmMtx", "structJ3DModel.html#aa74d42bfa8471ea9f43c5c61430272c2", null ],
     [ "calcBBoardMtx", "structJ3DModel.html#a415fe6fcff95e08894ce7b1dbfe92308", null ],

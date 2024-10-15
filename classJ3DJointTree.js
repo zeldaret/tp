@@ -1,7 +1,7 @@
 var classJ3DJointTree =
 [
     [ "J3DJointTree", "classJ3DJointTree.html#a33dd346309d5ae49795ae3abd8aad069", null ],
-    [ "~J3DJointTree", "classJ3DJointTree.html#a933ec3b36fc396c4892e686c0b3901c6", null ],
+    [ "~J3DJointTree", "classJ3DJointTree.html#aef61f46f4e4ae773004767dfb18ff3b0", null ],
     [ "calc", "classJ3DJointTree.html#a8c5a6f1e3684b5321900f9b516ff4f18", null ],
     [ "checkFlag", "classJ3DJointTree.html#a9e1c293d12c9a1512f781d2952b8a2b0", null ],
     [ "findImportantMtxIndex", "classJ3DJointTree.html#a5b5bf0077e1184123bec0eacdb660f80", null ],
@@ -19,7 +19,7 @@ var classJ3DJointTree =
     [ "getModelDataType", "classJ3DJointTree.html#a60c665a37d11a717a10a2983ced9eddd", null ],
     [ "getRootNode", "classJ3DJointTree.html#af6ec7887cbdbdb465d5da9472e86c300", null ],
     [ "getWEvlpImportantMtxIndex", "classJ3DJointTree.html#a3da4b57697b26f95eff492349bf83f36", null ],
-    [ "getWEvlpMixIndex", "classJ3DJointTree.html#a2d952da0d8e1d51d752da82009775f80", null ],
+    [ "getWEvlpMixMtxIndex", "classJ3DJointTree.html#af0bcf834acabd2b6c66de74455968750", null ],
     [ "getWEvlpMixMtxNum", "classJ3DJointTree.html#a7fdb2d308b5a25f0b4e1718f8713c21d", null ],
     [ "getWEvlpMixWeight", "classJ3DJointTree.html#a8470d4aec96ca28bc734f11a1db3fbed", null ],
     [ "getWEvlpMtxNum", "classJ3DJointTree.html#a599c829a1549ea6c25aa7b77f5c721b6", null ],
@@ -41,7 +41,7 @@ var classJ3DJointTree =
     [ "mModelDataType", "classJ3DJointTree.html#a99c138f3f78c48b43520da2c9a700488", null ],
     [ "mRootNode", "classJ3DJointTree.html#af17cb937aa4af9bca3d818e4f94f9f9f", null ],
     [ "mWEvlpImportantMtxIdx", "classJ3DJointTree.html#a96b4d998cd95995c21e61736028e44c5", null ],
-    [ "mWEvlpMixIndex", "classJ3DJointTree.html#aa2831ed89d5cdd002e084ef96ff78b1c", null ],
+    [ "mWEvlpMixMtxIndex", "classJ3DJointTree.html#aa7dd7546ce499b26b5cff35b4413c2e3", null ],
     [ "mWEvlpMixMtxNum", "classJ3DJointTree.html#a8eb4e2900d0f4d60c08b0f6169f4ef7d", null ],
     [ "mWEvlpMixWeight", "classJ3DJointTree.html#aaee2328d74b2b6e035266f5f29a9c5e9", null ],
     [ "mWEvlpMtxNum", "classJ3DJointTree.html#a1c16c1cf0c7ad104086f71cd1889a5ab", null ]

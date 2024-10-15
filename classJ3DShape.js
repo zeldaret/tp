@@ -32,6 +32,7 @@ var classJ3DShape =
     [ "onFlag", "classJ3DShape.html#a4233e534f5dc18421116b09bee3041b1", null ],
     [ "resetVcdVatCache", "classJ3DShape.html#ae70d58d50a5dce329f5586a59c14e7d1", null ],
     [ "setArrayAndBindPipeline", "classJ3DShape.html#aaab0748f91ddd53ca811f653738bdc08", null ],
+    [ "setBumpMtxOffset", "classJ3DShape.html#a2786bf544d4f79e8e6e2b7ec0d454369", null ],
     [ "setCurrentMtx", "classJ3DShape.html#ac920802f6762bed8aeb273bdeb1d2c4d", null ],
     [ "setCurrentViewNoPtr", "classJ3DShape.html#ad9a7c935b7a8eb4f959c6765a4f5db5e", null ],
     [ "setDrawMtx", "classJ3DShape.html#afcf32b0f89e2e68b690f209d4f84e796", null ],

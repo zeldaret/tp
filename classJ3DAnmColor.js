@@ -2,8 +2,8 @@ var classJ3DAnmColor =
 [
     [ "J3DAnmColor", "classJ3DAnmColor.html#aeeb34bc14defd3804669173488a2ddfa", null ],
     [ "~J3DAnmColor", "classJ3DAnmColor.html#a0560add5d4f292a22448807559e29554", null ],
-    [ "getColor", "classJ3DAnmColor.html#a8f521d65448f56f86a88fdfec000ad80", null ],
-    [ "getKind", "classJ3DAnmColor.html#a4123a400716505d432ea538d27c0584e", null ],
+    [ "getColor", "classJ3DAnmColor.html#a3498d8043189143d1bf8205d0df30264", null ],
+    [ "getKind", "classJ3DAnmColor.html#a420dac303b892e949d62712550491227", null ],
     [ "getUpdateMaterialID", "classJ3DAnmColor.html#ad14e5fdd90571290c833d2eb2dda5c2d", null ],
     [ "getUpdateMaterialNum", "classJ3DAnmColor.html#ac5982f096e1a5630b9b5d973a992545f", null ],
     [ "isValidUpdateMaterialID", "classJ3DAnmColor.html#a022cbcc85476b0359b48adc8a819392b", null ],

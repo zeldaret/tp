@@ -1,7 +1,10 @@
 var group__jsystem_jmath =
 [
     [ "TAngleConstant_< f32 >", "structTAngleConstant___3_01f32_01_4.html", [
-      [ "RADIAN_DEG360", "structTAngleConstant___3_01f32_01_4.html#a92381236c31061017993b358afdbdee3", null ]
+      [ "RADIAN_DEG090", "structTAngleConstant___3_01f32_01_4.html#a7a747efc56685678a670f36ecb8fe7fc", null ],
+      [ "RADIAN_DEG180", "structTAngleConstant___3_01f32_01_4.html#a468571125601b2309b6a1a2978116640", null ],
+      [ "RADIAN_DEG360", "structTAngleConstant___3_01f32_01_4.html#a92381236c31061017993b358afdbdee3", null ],
+      [ "RADIAN_TO_DEGREE_FACTOR", "structTAngleConstant___3_01f32_01_4.html#abd606da67eb593899f833dd8aa1f116c", null ]
     ] ],
     [ "TSinCosTable< N, T >", "structTSinCosTable.html", [
       [ "TSinCosTable", "structTSinCosTable.html#a8815fe2ad1689c6fe034d70cc60175a8", null ],
@@ -20,6 +23,8 @@ var group__jsystem_jmath =
     ] ],
     [ "TAsinAcosTable", "structTAsinAcosTable.html", [
       [ "TAsinAcosTable", "structTAsinAcosTable.html#aa4f2c82ab08eef05abff09aae5b81fcc", null ],
+      [ "acos_", "structTAsinAcosTable.html#adf8f476a365dc97f5d3957dbe5479696", null ],
+      [ "acosDegree", "structTAsinAcosTable.html#a1eb23369c7c8cf736778a39f689520b4", null ],
       [ "pad", "structTAsinAcosTable.html#a6d30cf623f4a15f0e56651c7d153a488", null ],
       [ "table", "structTAsinAcosTable.html#ae996ee7d29545b7968cd0f1afe24fd9d", null ]
     ] ],

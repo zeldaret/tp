@@ -3,7 +3,7 @@ var structJ3DAnmTextureSRTKey =
     [ "J3DAnmTextureSRTKey", "structJ3DAnmTextureSRTKey.html#a2d1388e82b5bd87104270108dbfcbb1f", null ],
     [ "~J3DAnmTextureSRTKey", "structJ3DAnmTextureSRTKey.html#a90df84d14c13a0b948c236321b3a6da5", null ],
     [ "calcTransform", "structJ3DAnmTextureSRTKey.html#a38fd9f6f958396560f5f45dee8df901e", null ],
-    [ "getKind", "structJ3DAnmTextureSRTKey.html#af1257a14cc53d44386148df66418d661", null ],
+    [ "getKind", "structJ3DAnmTextureSRTKey.html#a3b0408086d70edda761fec9d81f142ca", null ],
     [ "getSRTCenter", "structJ3DAnmTextureSRTKey.html#a866f86adbe7c04efc3ff1a334afa3ddc", null ],
     [ "getTexMtxCalcType", "structJ3DAnmTextureSRTKey.html#ad2c7a463431fe794c9f0ab818d67241f", null ],
     [ "getTransform", "structJ3DAnmTextureSRTKey.html#a73e73a0e4e2a9acc3465a67e115f829b", null ],

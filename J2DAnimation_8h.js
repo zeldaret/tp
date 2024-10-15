@@ -14,6 +14,5 @@ var J2DAnimation_8h =
     ] ],
     [ "J2DHermiteInterpolation", "J2DAnimation_8h.html#ab0f93f30e3ba625936842a958e3eaee0", null ],
     [ "J2DHermiteInterpolation< f32 >", "J2DAnimation_8h.html#acec7007cbe55155cdacccf3d2527dd87", null ],
-    [ "J2DHermiteInterpolation< s16 >", "J2DAnimation_8h.html#ae4211708bdea58941a164c71270142b1", null ],
-    [ "JMAHermiteInterpolation", "J2DAnimation_8h.html#ab4889a67b7e8100639cce36eff7b1ddb", null ]
+    [ "J2DHermiteInterpolation< s16 >", "J2DAnimation_8h.html#ae4211708bdea58941a164c71270142b1", null ]
 ];

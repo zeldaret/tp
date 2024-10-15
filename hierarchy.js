@@ -1022,8 +1022,8 @@ var hierarchy =
     [ "dDemo_c", "structdDemo__c.html", null ],
     [ "dDemo_object_c", "structdDemo__object__c.html", null ],
     [ "dDemo_prm_c", "classdDemo__prm__c.html", null ],
-    [ "dDlst_2Dm_c", "classdDlst__2Dm__c.html", null ],
     [ "dDlst_2DM_c", "classdDlst__2DM__c.html", null ],
+    [ "dDlst_2Dm_c", "classdDlst__2Dm__c.html", null ],
     [ "dDlst_2DMt_c", "classdDlst__2DMt__c.html", null ],
     [ "dDlst_2DMt_tex_c", "classdDlst__2DMt__tex__c.html", null ],
     [ "dDlst_2DPoint_c", "classdDlst__2DPoint__c.html", null ],
@@ -1783,9 +1783,10 @@ var hierarchy =
     [ "J3DModelData", "structJ3DModelData.html", null ],
     [ "J3DModelFileData", "structJ3DModelFileData.html", null ],
     [ "J3DModelHierarchy", "structJ3DModelHierarchy.html", null ],
-    [ "J3DModelLoader", "classJ3DModelLoader.html", null ],
-    [ "J3DModelLoader_v21", "classJ3DModelLoader__v21.html", null ],
-    [ "J3DModelLoader_v26", "classJ3DModelLoader__v26.html", null ],
+    [ "J3DModelLoader", "classJ3DModelLoader.html", [
+      [ "J3DModelLoader_v21", "classJ3DModelLoader__v21.html", null ],
+      [ "J3DModelLoader_v26", "classJ3DModelLoader__v26.html", null ]
+    ] ],
     [ "J3DModelLoaderDataBase", "classJ3DModelLoaderDataBase.html", null ],
     [ "J3DMtxBuffer", "classJ3DMtxBuffer.html", null ],
     [ "J3DMtxCalc", "structJ3DMtxCalc.html", [
@@ -1815,6 +1816,7 @@ var hierarchy =
     [ "J3DMtxCalcCalcTransformSoftimage", "structJ3DMtxCalcCalcTransformSoftimage.html", null ],
     [ "J3DMtxCalcJ3DSysInitBasic", "structJ3DMtxCalcJ3DSysInitBasic.html", null ],
     [ "J3DMtxCalcJ3DSysInitMaya", "structJ3DMtxCalcJ3DSysInitMaya.html", null ],
+    [ "J3DMtxCalcJ3DSysInitSoftimage", "structJ3DMtxCalcJ3DSysInitSoftimage.html", null ],
     [ "J3DMtxCalcNoAnm__template0", "structJ3DMtxCalcNoAnm____template0.html", null ],
     [ "J3DNBTScaleInfo", "structJ3DNBTScaleInfo.html", [
       [ "J3DNBTScale", "structJ3DNBTScale.html", null ]

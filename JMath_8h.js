@@ -10,6 +10,7 @@ var JMath_8h =
     [ "JMAFastReciprocal", "JMath_8h.html#a68e6580e820a34bc8b43294f6769615e", null ],
     [ "JMAFastSqrt", "JMath_8h.html#a286260dd64be4ef2dce58c19de8cf08c", null ],
     [ "JMAFastVECNormalize", "JMath_8h.html#adf2cfb725287fe442bbcc44f28f2aba0", null ],
+    [ "JMAHermiteInterpolation", "JMath_8h.html#ab4889a67b7e8100639cce36eff7b1ddb", null ],
     [ "JMAMTXApplyScale", "JMath_8h.html#aedd3628b5c263d6dbb63ce5dcd153435", null ],
     [ "JMAQuatLerp", "JMath_8h.html#a8d1e2e96bb9db36d18c9df57a9157a41", null ]
 ];

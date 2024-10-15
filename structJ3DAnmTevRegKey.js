@@ -6,7 +6,7 @@ var structJ3DAnmTevRegKey =
     [ "getAnmKRegKeyTable", "structJ3DAnmTevRegKey.html#a81983a9d49cfae57820019ff8dc5281c", null ],
     [ "getCRegUpdateMaterialID", "structJ3DAnmTevRegKey.html#ab82469538501feb22b0f773c79be6615", null ],
     [ "getCRegUpdateMaterialNum", "structJ3DAnmTevRegKey.html#a0f232134d47066a0fcf959c74a83b0cb", null ],
-    [ "getKind", "structJ3DAnmTevRegKey.html#ab3b0bad8829f5e645b87551f1c0b09c8", null ],
+    [ "getKind", "structJ3DAnmTevRegKey.html#a6f4d116642035426dc53d9bf021e68f2", null ],
     [ "getKRegUpdateMaterialID", "structJ3DAnmTevRegKey.html#aa3fc907d2e962406155c329d7ee5e85a", null ],
     [ "getKRegUpdateMaterialNum", "structJ3DAnmTevRegKey.html#aa6b3efcfac0dc00c1cffa6c6752f3385", null ],
     [ "getTevColorReg", "structJ3DAnmTevRegKey.html#a8db265decd050251949574970b600bf6", null ],
