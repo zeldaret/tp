@@ -8,7 +8,7 @@
 struct Z2SpeechStarter : public Z2SoundStarter {
     /* 802CCFB8 */ Z2SpeechStarter();
 
-    /* 802CBCEC */ virtual ~Z2SpeechStarter();
+    /* 802CBCEC */ virtual ~Z2SpeechStarter() {}
     /* 802CCFF8 */ virtual bool startSound(JAISoundID, JAISoundHandle*,
                                            JGeometry::TVec3<f32> const*, u32, f32, f32, f32, f32,
                                            f32, u32);
@@ -20,6 +20,7 @@ struct Z2SpeechMgr : public JASGlobalInstance<Z2SpeechMgr> {
 
 struct Z2SpeechMgr2 : public JASGlobalInstance<Z2SpeechMgr2> {
     /* 802CBC60 */ Z2SpeechMgr2();
+    ~Z2SpeechMgr2() {}
     /* 802CBD88 */ void setString(u16 const*, s16, u8, u16);
     /* 802CBF60 */ void setTextCount(s16);
     /* 802CC190 */ void speakOneWord(bool);
