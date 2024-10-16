@@ -20,6 +20,8 @@
 #include "d/d_msg_object.h"
 #include "d/d_msg_string.h"
 #include "d/d_pane_class.h"
+#include "d/d_item.h"
+#include "d/d_lib.h"
 #include "dol2asm.h"
 #include "dolphin/os.h"
 #include "dolphin/types.h"
@@ -389,69 +391,6 @@ SECTION_DATA static void* brk_name_7688[4] = {
     (void*)(((char*)&d_menu_d_menu_collect__stringBase0) + 0x1B2),
 };
 
-/* 803BC75C-803BC768 01987C 000C+00 2/2 0/0 0/0 .data            __vt__15dMenu_Collect_c */
-SECTION_DATA extern void* __vt__15dMenu_Collect_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__15dMenu_Collect_cFv,
-};
-
-/* 803BC768-803BC790 019888 0010+18 2/2 0/0 0/0 .data            __vt__20dMenu_Collect2DTop_c */
-SECTION_DATA extern void* __vt__20dMenu_Collect2DTop_c[4 + 6 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__20dMenu_Collect2DTop_cFv,
-    (void*)__dt__20dMenu_Collect2DTop_cFv,
-    /* padding */
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-};
-
-/* 803BC790-803BC7C4 0198B0 000C+28 2/2 0/0 0/0 .data            __vt__17dMenu_Collect3D_c */
-SECTION_DATA extern void* __vt__17dMenu_Collect3D_c[3 + 10 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__17dMenu_Collect3D_cFv,
-    /* padding */
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-};
-
-/* 803BC7C4-803BC7E0 0198E4 0010+0C 2/2 0/0 0/0 .data            __vt__17dMenu_Collect2D_c */
-SECTION_DATA extern void* __vt__17dMenu_Collect2D_c[4 + 3 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__17dMenu_Collect2D_cFv,
-    (void*)__dt__17dMenu_Collect2D_cFv,
-    /* padding */
-    NULL,
-    NULL,
-    NULL,
-};
-
-/* 80453F28-80453F2C 002528 0004+00 14/14 0/0 0/0 .sdata2          @4481 */
-SECTION_SDATA2 static u8 lit_4481[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80453F2C-80453F30 00252C 0004+00 15/15 0/0 0/0 .sdata2          @4482 */
-SECTION_SDATA2 static f32 lit_4482 = 1.0f;
-
 /* 801AFD48-801AFE34 1AA688 00EC+00 1/1 0/0 0/0 .text
  * __ct__17dMenu_Collect2D_cFP10JKRExpHeapP9STControlP10CSTControl */
 dMenu_Collect2D_c::dMenu_Collect2D_c(JKRExpHeap* param_0, STControl* param_1, CSTControl* param_2) {
@@ -507,7 +446,7 @@ void dMenu_Collect2D_c::_create() {
     mpBlackTex = new J2DPicture(image);
     mpBlackTex->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(0, 0, 0, 255));
     mpBlackTex->setAlpha(0);
-    mpDrawCursor = new dSelect_cursor_c(2, lit_4482, NULL);
+    mpDrawCursor = new dSelect_cursor_c(2, 1.0f, NULL);
     mpString = new dMsgString_c();
     mpSaveScrn = NULL;
     mpOptionScrn = NULL;
@@ -723,15 +662,7 @@ static const u64 text_b_tag_4778[5] = {
 };
 #pragma pop
 
-/* 80453F30-80453F34 002530 0004+00 2/2 0/0 0/0 .sdata2          @5173 */
-SECTION_SDATA2 static f32 lit_5173 = 0.5f;
-
-/* 80453F34-80453F38 002534 0004+00 2/2 0/0 0/0 .sdata2          @5174 */
-SECTION_SDATA2 static f32 lit_5174 = -1000.0f;
-
 /* 801B074C-801B1C3C 1AB08C 14F0+00 1/1 0/0 0/0 .text            screenSet__17dMenu_Collect2D_cFv */
-// issues with addi instructions
-#ifdef NONMATCHING
 void dMenu_Collect2D_c::screenSet() {
     static_cast<J2DTextBox*>(mpScreen->search('f_t00'))->setFont(mDoExt_getRubyFont());
     static_cast<J2DTextBox*>(mpScreen->search('f_t00'))->setString(0x20, "");
@@ -748,8 +679,8 @@ void dMenu_Collect2D_c::screenSet() {
             0x60, static_cast<J2DTextBox*>(mpScreen->search(ftext_sv[i]))->getStringPtr(), NULL);
         dMeter2Info_getStringKanji(
             0x5F, static_cast<J2DTextBox*>(mpScreen->search(ftext_op[i]))->getStringPtr(), NULL);
-        mpScreen->search(ftext_sv[i])->hide();
-        mpScreen->search(ftext_op[i])->hide();
+        mpScreen->search(text_sv[i])->hide();
+        mpScreen->search(text_op[i])->hide();
     }
 
     for (int i = 0; i < 5; i++) {
@@ -1005,8 +936,8 @@ void dMenu_Collect2D_c::screenSet() {
     field_0x1d8[0][3] = field_0x184[0][3] + 0x100;
     field_0x1d8[1][3] = field_0x184[1][3] + 0x100;
     field_0x1d8[2][3] = 0x5b9;
-    field_0x1d8[2][3] = 0x5b1;
-    field_0x1d8[3][3] = 0;
+    field_0x1d8[3][3] = 0x5b1;
+    field_0x1d8[4][3] = 0;
     field_0x1d8[5][3] = 0;
     field_0x1d8[6][3] = 0;
     field_0x1d8[0][4] = dMsgObject_getSmellTypeMessageID() + 0x100;
@@ -1103,11 +1034,6 @@ void dMenu_Collect2D_c::screenSet() {
     setHeartPiece();
     setPohMaxNum(dComIfGs_getPohSpiritNum());
 }
-#else
-void dMenu_Collect2D_c::screenSet() {
-    // NONMATCHING
-}
-#endif
 
 /* 801B1C3C-801B1CE0 1AC57C 00A4+00 1/1 0/0 0/0 .text            animationSet__17dMenu_Collect2D_cFv
  */
@@ -1121,11 +1047,6 @@ void dMenu_Collect2D_c::animationSet() {
     mFrame = 0.0f;
     field_0x3c = 0.0f;
 }
-
-
-/* ############################################################################################## */
-/* 80453F38-80453F40 002538 0008+00 2/2 0/0 0/0 .sdata2          @5199 */
-SECTION_SDATA2 static f64 lit_5199 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 801B1CE0-801B1EDC 1AC620 01FC+00 1/1 0/0 0/0 .text
  * btkAnimeLoop0__17dMenu_Collect2D_cFP19J2DAnmTextureSRTKey    */
@@ -1146,17 +1067,6 @@ void dMenu_Collect2D_c::btkAnimeLoop0(J2DAnmTextureSRTKey* i_SRTKey) {
     static_cast<J2DTextBox*>(mpScreen->search('modelbg4'))->setAnimation(i_SRTKey);
     static_cast<J2DTextBox*>(mpScreen->search('modelbg5'))->setAnimation(i_SRTKey);
 }
-
-
-/* ############################################################################################## */
-/* 80453F40-80453F44 002540 0004+00 1/1 0/0 0/0 .sdata2          @5268 */
-SECTION_SDATA2 static f32 lit_5268 = 150.0f;
-
-/* 80453F44-80453F48 002544 0004+00 1/1 0/0 0/0 .sdata2          @5269 */
-SECTION_SDATA2 static f32 lit_5269 = 1.0f / 5.0f;
-
-/* 80453F48-80453F50 002548 0008+00 1/1 0/0 0/0 .sdata2          @5271 */
-SECTION_SDATA2 static f64 lit_5271 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 801B1EDC-801B1FAC 1AC81C 00D0+00 1/1 0/0 0/0 .text            setBackAlpha__17dMenu_Collect2D_cFv
  */
@@ -1258,8 +1168,225 @@ SECTION_SDATA2 static f32 lit_5531 = -1.0f;
 
 /* 801B1FAC-801B27EC 1AC8EC 0840+00 1/1 0/0 0/0 .text            cursorMove__17dMenu_Collect2D_cFv
  */
+// NONMATCHING
+// goto logic is wrong
 void dMenu_Collect2D_c::cursorMove() {
-    // NONMATCHING
+    u8 dVar1 = mCursorX;
+    u8 dVar2 = mCursorY;
+    mpStick->checkTrigger();
+    if (mpStick->checkRightTrigger()) {
+        if (mCursorX < 6) {
+            if (mCursorX == 0 && mCursorY == 0 &&
+                field_0x259 >= 3 && field_0x25a < 3)
+            {
+                mCursorX = field_0x259;
+                mCursorY = field_0x25a;
+            } else {
+                do {
+                    mCursorX++;
+                    if (mCursorX == 6 && mCursorY < 3) {
+                        if (field_0x22d[6][0] != 0) {
+                            if (getItemTag(6, 0, false) && field_0x22d[6][0] != 0) {
+                                mCursorX = 6;
+                                mCursorY = 0;
+                            }
+                        } else {
+                            mCursorX = dVar1;
+                            mCursorY = dVar2;
+                            goto LAB_802ba744;
+                        }
+                    }
+                    if (dVar1 == 4 && dVar2 == 1) {
+                        mCursorX = 5;
+                        mCursorY = 0;
+                        goto LAB_802ba744;
+                    }
+                    if (getItemTag(mCursorX, mCursorY, true)) {
+                        goto LAB_802ba744;
+                    }
+                } while (mCursorX < 6);
+                mCursorX = dVar1;
+            }
+        }
+    } else {
+        if (mpStick->checkLeftTrigger() && mCursorX != 0) {
+            if (mCursorX == 6 &&
+                mCursorY == 0 && field_0x259 >= 3 &&
+                  field_0x25a < 3)
+            {
+                mCursorX = field_0x259;
+                mCursorY = field_0x25a;
+            } else if (dVar1 == 5 && dVar2 == 0 &&
+                        field_0x259 == 4 &&
+                       field_0x25a == 1)
+            {
+                mCursorX = field_0x259;
+                mCursorY = field_0x25a;
+            } else {
+                do {
+                    mCursorX--;
+                    if (getItemTag(mCursorX, mCursorY, true)) {
+                        goto LAB_802ba744;
+                    }
+                } while (mCursorX != 0);
+                mCursorX = dVar1;
+            }
+        }
+    }
+LAB_802ba744:
+    if (mpStick->checkUpTrigger()) {
+        if (mCursorY != 0) {
+            bool bVar3;
+            restart_loop:
+            do {
+                mCursorY--;
+                if (mCursorY == 2) {
+                    u8 local_3c[9] = {3,3,4,3,4,5,4,5,5};
+                    u8 local_48[9] = {2,1,2,0,1,2,0,1,0};
+                    for (int i = 0; i < 9; i++) {
+                        if (getItemTag(local_3c[i], local_48[i], true)) {
+                            mCursorX = local_3c[i];
+                            mCursorY = local_48[i];
+                            break;
+                        }
+                    }
+                }
+                if (dVar2 == 5) {
+
+                    if (dVar1 == 0) {
+                        if (field_0x25a < 5) {
+                            mCursorX = field_0x259;
+                            mCursorY = field_0x25a;
+                            break;
+                        }
+                        bVar3 = false;
+                        for (int i = 0; i < 4; i++) {
+                            if (getItemTag(i, mCursorY, true)) {
+                                mCursorX = i;
+                                bVar3 = true;
+                                break;
+                            }
+                        }
+                        if (mCursorY == 0) {
+                            mCursorX = dVar1;
+                            mCursorY = dVar2;
+                            bVar3 = true;
+                        }
+                        if (bVar3) {
+                            break;
+                        }
+                        goto restart_loop;
+                    }
+                    if (field_0x25a < 5) {
+                        mCursorX = field_0x259;
+                        mCursorY = field_0x25a;
+                        break;
+                    }
+                    bVar3 = false;
+                    for (int i = 3; i < 7; i++) {
+                        if (getItemTag(i, mCursorY, true)) {
+                            mCursorX = i;
+                            bVar3 = true;
+                            break;
+                        }
+                    }
+                    if (mCursorY == 0) {
+                        mCursorX = dVar1;
+                        mCursorY = dVar2;
+                        bVar3 = true;
+                    }
+                }
+            } while (!bVar3);
+            if (!getItemTag(mCursorX, mCursorY, true)) {
+                if (mCursorY != 0) {
+                    goto restart_loop;
+                }
+            }
+            mCursorY = dVar2;
+        }
+    } else {
+        if (mpStick->checkDownTrigger()) {
+            if (mCursorY < 4) {
+                do {
+                    mCursorY++;
+                    if (mCursorY == 3) {
+                        u8 local_50[8] = {3, 2, 3, 1, 2, 0, 1, 0};
+                        u8 local_58[8] = {3, 3, 4, 3, 4, 3, 4, 4};
+                        for (int i = 0; i < 8; i++) {
+                            if (getItemTag(local_50[i], local_58[i], true)) {
+                                mCursorX = local_50[i];
+                                mCursorY = local_58[i];
+                                break;
+                            }
+                        }
+                    }
+                    if (getItemTag(mCursorX, mCursorY, true)) {
+                        goto LAB_802bab54;
+                    }
+                } while (mCursorY < 4);
+                mCursorY = 5;
+                if (mCursorX <= 2) {
+                    mCursorX = 0;
+                } else {
+                    mCursorX = 1;
+                }
+            } else if (mCursorY == 4) {
+                mCursorY = 5;
+                if (mCursorX <= 3) {
+                    mCursorX = 0;
+                } else {
+                    mCursorX = 1;
+                }
+            }
+        }
+    }
+LAB_802bab54:
+    if (mCursorX != dVar1 || mCursorY != dVar2) {
+        field_0x259 = dVar1;
+        field_0x25a = dVar2;
+        if ((mCursorX == 1 && mCursorY == 5) || (mCursorX == 0 && mCursorY == 5)) {
+            Z2GetAudioMgr()->seStart(Z2SE_SY_CURSOR_OPTION, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                     0);
+        } else {
+            Z2GetAudioMgr()->seStart(Z2SE_SY_CURSOR_ITEM, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        }
+        cursorPosSet();
+        setItemNameString(mCursorX, mCursorY);
+    }
+    if (field_0x44[0] != g_drawHIO.mCollectScreen.mUnselectItemScale ||
+        field_0x44[1] != g_drawHIO.mCollectScreen.mSelectItemScale ||
+        field_0x4c[0] != g_drawHIO.mCollectScreen.mUnselectSaveOptionScale ||
+        field_0x4c[1] != g_drawHIO.mCollectScreen.mSelectSaveOptionScale)
+    {
+        field_0x44[0] = g_drawHIO.mCollectScreen.mUnselectItemScale;
+        field_0x44[1] = g_drawHIO.mCollectScreen.mSelectItemScale;
+        field_0x4c[0] = g_drawHIO.mCollectScreen.mUnselectSaveOptionScale;
+        field_0x4c[1] = g_drawHIO.mCollectScreen.mSelectSaveOptionScale;
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 6; j++) {
+                if (getItemTag(i, j, true)) {
+                    J2DPane* pane = mpScreen->search(getItemTag(i, j, true));
+                    if ((i != 0 || j != 0) && (i != 6 || j != 0)) {
+                        if (j == 5) {
+                            if (i == mCursorX && j == mCursorY) {
+                                pane->scale(g_drawHIO.mCollectScreen.mSelectSaveOptionScale,
+                                            g_drawHIO.mCollectScreen.mSelectSaveOptionScale);
+                            } else {
+                                pane->scale(g_drawHIO.mCollectScreen.mUnselectSaveOptionScale,
+                                            g_drawHIO.mCollectScreen.mUnselectSaveOptionScale);
+                            }
+                        } else if (i == mCursorX && j == mCursorY) {
+                            pane->scale(g_drawHIO.mCollectScreen.mSelectItemScale,
+                                        g_drawHIO.mCollectScreen.mSelectItemScale);
+                        } else {
+                            pane->scale(g_drawHIO.mCollectScreen.mUnselectItemScale,
+                                        g_drawHIO.mCollectScreen.mUnselectItemScale);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 /* ############################################################################################## */
@@ -2765,19 +2892,6 @@ void dMenu_Collect3D_c::setJ3D(const char* param_0, const char* param_1, const c
     // NONMATCHING
 }
 #endif
-
-/* ############################################################################################## */
-/* 80453FB4-80453FB8 0025B4 0004+00 1/1 0/0 0/0 .sdata2          @7505 */
-SECTION_SDATA2 static f32 lit_7505 = -1.0f / 10.0f;
-
-/* 80453FB8-80453FBC 0025B8 0004+00 1/1 0/0 0/0 .sdata2          @7506 */
-SECTION_SDATA2 static f32 lit_7506 = -3.0f / 5.0f;
-
-/* 80453FBC-80453FC0 0025BC 0004+00 1/1 0/0 0/0 .sdata2          @7507 */
-SECTION_SDATA2 static f32 lit_7507 = -2.0f / 5.0f;
-
-/* 80453FC0-80453FC4 0025C0 0004+00 1/1 0/0 0/0 .sdata2          @7508 */
-SECTION_SDATA2 static f32 lit_7508 = -3.0f / 10.0f;
 
 /* 801B6D30-801B6E70 1B1670 0140+00 2/2 0/0 0/0 .text            set_mtx__17dMenu_Collect3D_cFv */
 void dMenu_Collect3D_c::set_mtx() {
