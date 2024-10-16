@@ -2944,7 +2944,7 @@ int daAlink_c::execute() {
             field_0x2ff0 = 0;
             field_0x2fbb = 16;
             field_0x2fbd = 0;
-            field_0x2fa8 = 0;
+            mGndPolySpecialCode = dBgW_SPCODE_NORMAL;
 
             if (checkModeFlg(MODE_SWIMMING) && dComIfG_Bgsp().ChkPolySafe(mLinkAcch.m_wtr)) {
                 mPolySound = dKy_pol_sound_get(&mLinkAcch.m_wtr);
@@ -2967,14 +2967,14 @@ int daAlink_c::execute() {
                 field_0x2ff0 = 0;
                 field_0x3174 = dComIfG_Bgsp().GetGroundCode(mMagneLineChk);
                 field_0x2fbb = dComIfG_Bgsp().GetPolyAtt0(mMagneLineChk);
-                field_0x2fa8 = dComIfG_Bgsp().GetSpecialCode(mMagneLineChk);
+                mGndPolySpecialCode = dComIfG_Bgsp().GetSpecialCode(mMagneLineChk);
                 setMagneBootsMtx(&mMagneLineChk, 0);
             } else {
                 mPolySound = 0;
                 field_0x2ff0 = 0;
                 field_0x3174 = -1;
                 field_0x2fbb = 16;
-                field_0x2fa8 = 0;
+                mGndPolySpecialCode = dBgW_SPCODE_NORMAL;
             }
         } else {
             field_0x2f5c.mPow = 0.0f;
@@ -3983,8 +3983,14 @@ bool daAlink_c::checkNoSubjectModeCamera() {
 
 /* 800CE468-800CE628 0C8DA8 01C0+00 2/2 0/0 0/0 .text acceptSubjectModeChange__9daAlink_cFv */
 bool daAlink_c::acceptSubjectModeChange() {
-    // NONMATCHING
-    return 0;
+    return dCam_getBody()->ChangeModeOK(4) &&
+           !checkNoSubjectModeCamera() &&
+           !checkAttentionLock() &&
+           !checkHorseLieAnime() &&
+           !checkEventRun() &&
+           !checkModeFlg(0x310040) &&
+           (checkNoUpperAnime() || checkHorseTiredAnime() || checkGrabAnime() || checkWolfGrabAnime()) &&
+           !(checkWolf() && checkWolfWaitSlipPolygon() && mLinkAcch.i_ChkGroundHit());
 }
 
 /* 800CE628-800CE728 0C8F68 0100+00 5/5 0/0 0/0 .text            checkSubjectAction__9daAlink_cFv */

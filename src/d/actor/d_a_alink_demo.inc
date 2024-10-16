@@ -210,7 +210,7 @@ int daAlink_c::checkDemoAction() {
                         fopAc_ac_c* board_p = (fopAc_ac_c*)fopAcIt_Judge(
                             (fopAcIt_JudgeFunc)daAlink_searchIceLeaf, NULL);
                         if (board_p != NULL) {
-                            field_0x2fa8 = 5;
+                            mGndPolySpecialCode = dBgW_SPCODE_LIGHT_SNOW;
                             return procBoardWaitInit(board_p);
                         }
                     } else {

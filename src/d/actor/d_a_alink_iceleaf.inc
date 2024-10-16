@@ -8,7 +8,7 @@
 #include "SSystem/SComponent/c_math.h"
 
 /* 80105A84-80105A98 1003C4 0014+00 1/1 0/0 0/0 .text daAlink_searchIceLeaf__FP10fopAc_ac_cPv */
-static fopAc_ac_c* daAlink_searchIceLeaf(fopAc_ac_c* i_actor, void* param_1) {
+static fopAc_ac_c* daAlink_searchIceLeaf(fopAc_ac_c* i_actor, void* i_data) {
     if (fopAcM_GetName(i_actor) == PROC_Obj_IceLeaf) {
         return i_actor;
     }
@@ -18,14 +18,14 @@ static fopAc_ac_c* daAlink_searchIceLeaf(fopAc_ac_c* i_actor, void* param_1) {
 
 /* 80105A98-80105ABC 1003D8 0024+00 3/3 0/0 0/0 .text            checkSnowCode__9daAlink_cCFv */
 bool daAlink_c::checkSnowCode() const {
-    return field_0x2fa8 == 6 || field_0x2fa8 == 5;
+    return mGndPolySpecialCode == dBgW_SPCODE_HEAVY_SNOW || mGndPolySpecialCode == dBgW_SPCODE_LIGHT_SNOW;
 }
 
 /* 80105ABC-80105B10 1003FC 0054+00 1/1 0/0 1/1 .text
  * checkSnowCodePolygon__9daAlink_cFR13cBgS_PolyInfo            */
 bool daAlink_c::checkSnowCodePolygon(cBgS_PolyInfo& i_poly) {
     int code = dComIfG_Bgsp().GetSpecialCode(i_poly);
-    return code == 6 || code == 5;
+    return code == dBgW_SPCODE_HEAVY_SNOW || code == dBgW_SPCODE_LIGHT_SNOW;
 }
 
 /* 80105B10-80105B58 100450 0048+00 2/2 0/0 0/0 .text            checkBoardRestart__9daAlink_cFv */
@@ -34,7 +34,7 @@ bool daAlink_c::checkBoardRestart() {
 }
 
 /* 80105B58-80106534 100498 09DC+00 7/7 0/0 0/0 .text            boardCommon__9daAlink_cFi */
-int daAlink_c::boardCommon(int param_0) {
+int daAlink_c::boardCommon(BOOL i_canMove) {
     int sp18 = abs(shape_angle.x);
     int var_r25 = abs(shape_angle.z);
     if (sp18 > var_r25) {
@@ -72,14 +72,14 @@ int daAlink_c::boardCommon(int param_0) {
 
     s16 var_r27;
     if (mLinkAcch.i_ChkGroundHit() && dComIfG_Bgsp().ChkPolySafe(mLinkAcch.m_gnd)) {
-        cM3dGPla sp1C;
-        dComIfG_Bgsp().GetTriPla(mLinkAcch.m_gnd, &sp1C);
+        cM3dGPla poly;
+        dComIfG_Bgsp().GetTriPla(mLinkAcch.m_gnd, &poly);
 
-        mProcVar3.field_0x300e.x = cM_atan2s(sp1C.mNormal.absXZ(), sp1C.mNormal.y);
+        mProcVar3.field_0x300e.x = cM_atan2s(poly.mNormal.absXZ(), poly.mNormal.y);
         if (mProcVar3.field_0x300e.x == 0) {
             var_r27 = shape_angle.y;
         } else {
-            var_r27 = sp1C.mNormal.atan2sX_Z();
+            var_r27 = poly.mNormal.atan2sX_Z();
         }
     } else {
         mProcVar3.field_0x300e.x = 0;
@@ -95,18 +95,18 @@ int daAlink_c::boardCommon(int param_0) {
     int temp_r26 = abs(mStickAngle);
 
     s16 var_r24;
-    if (checkInputOnR() && param_0) {
+    if (checkInputOnR() && i_canMove) {
         var_r24 = 1024.0f * field_0x33ac * cM_ssin(mStickAngle);
 
         if (temp_r26 > 0x6000 && field_0x2f8c == 0xB && mProcID == PROC_BOARD_WAIT) {
             f32 temp_f29 = field_0x33ac * cM_scos((0x8000 - temp_r26) * 2);
-            f32 var_f28 = temp_f29;
+            f32 speed_step = temp_f29;
 
-            if (var_f28 < 0.15f) {
-                var_f28 = 0.15f;
+            if (speed_step < 0.15f) {
+                speed_step = 0.15f;
             }
 
-            cLib_addCalc(&mNormalSpeed, 0.0f, 0.5f, var_f28, 0.1f);
+            cLib_addCalc(&mNormalSpeed, 0.0f, 0.5f, speed_step, 0.1f);
 
             if (mNormalSpeed > 5.0f) {
                 var_f30 = temp_f29;
@@ -128,25 +128,25 @@ int daAlink_c::boardCommon(int param_0) {
         var_r24 = 0;
     }
 
-    u32 sp10 = Z2SE_AL_SNOBO_RIDE;
+    u32 sound = Z2SE_AL_SNOBO_RIDE;
     if (field_0x2f8c == 0xB) {
         f32 spC = mNowAnmPackUnder[1].getRatio();
         cLib_addCalc(&spC, var_f30, 0.5f, 0.35f, 0.1f);
         setDoubleAnimeBlendRatio(spC);
 
         if (spC > 0.8f) {
-            sp10 = Z2SE_AL_SNOBO_BREAK;
+            sound = Z2SE_AL_SNOBO_BREAK;
         }
     }
 
     if (!checkModeFlg(2)) {
-        seStartOnlyReverbLevel(sp10);
+        seStartOnlyReverbLevel(sound);
     }
 
     if (mProcID == PROC_BOARD_TURN) {
         mProcVar2.field_0x300c = 0;
     } else {
-        cLib_addCalcAngleS(&mProcVar2.field_0x300c, var_r24, 0x1E, 0x800, 0x10);
+        cLib_addCalcAngleS(&mProcVar2.field_0x300c, var_r24, 30, 0x800, 0x10);
 
         if (!checkModeFlg(2)) {
             current.angle.y += mProcVar2.field_0x300c;
@@ -155,7 +155,7 @@ int daAlink_c::boardCommon(int param_0) {
         shape_angle.y = current.angle.y;
     }
 
-    cLib_addCalcAngleS(&field_0x2fee, -var_r24 * 6, 0xA, 0x800, 0x40);
+    cLib_addCalcAngleS(&field_0x2fee, -var_r24 * 6, 10, 0x800, 0x40);
     shape_angle.z = field_0x2fee >> 1;
     mBodyAngle.z = shape_angle.z;
 
@@ -200,13 +200,13 @@ int daAlink_c::boardCommon(int param_0) {
             }
         }
 
-        if (checkInputOnR() && param_0 && temp_r26 < 0x2800) {
+        if (checkInputOnR() && i_canMove && temp_r26 < 0x2800) {
             if (checkUnderMove0BckNoArc(ANM_RIDE_WAIT)) {
-                setCommonBoardAnime(1);
+                setCommonBoardAnime(TRUE);
             }
         } else {
             if (checkUnderMove0BckNoArc(ANM_RIDE_FRONT)) {
-                setCommonBoardAnime(0);
+                setCommonBoardAnime(FALSE);
             }
 
             if (mNormalSpeed > (0.7f * field_0x594)) {
@@ -220,12 +220,12 @@ int daAlink_c::boardCommon(int param_0) {
             field_0x2f9d = 4;
         }
     } else if (!checkModeFlg(2)) {
-        f32 var_f24 = mNormalSpeed * -cM_ssin(shape_angle.x);
-        if (var_f24 < 0.0f) {
-            var_f24 = 0.0f;
+        f32 jump_speed = mNormalSpeed * -cM_ssin(shape_angle.x);
+        if (jump_speed < 0.0f) {
+            jump_speed = 0.0f;
         }
 
-        return procBoardJumpInit(var_f24, 0);
+        return procBoardJumpInit(jump_speed, FALSE);
     } else {
         cLib_addCalcAngleS(&shape_angle.x, 0, 4, 100, 10);
     }
@@ -235,9 +235,9 @@ int daAlink_c::boardCommon(int param_0) {
 
 /* 80106534-8010658C 100E74 0058+00 6/6 0/0 0/0 .text            setCommonBoardAnime__9daAlink_cFi
  */
-void daAlink_c::setCommonBoardAnime(int param_0) {
+void daAlink_c::setCommonBoardAnime(BOOL i_is_ride_front) {
     setDoubleAnime(0.0f, daAlinkHIO_board_c0::m.mStandAnmSpeed, 1.0f,
-                   param_0 != 0 ? ANM_RIDE_FRONT : ANM_RIDE_WAIT, ANM_RIDE_STOP,
+                   i_is_ride_front ? ANM_RIDE_FRONT : ANM_RIDE_WAIT, ANM_RIDE_STOP,
                    11, daAlinkHIO_board_c0::m.mStandInterpolation);
 }
 
@@ -347,7 +347,7 @@ int daAlink_c::procBoardRide() {
 
 /* 80106A38-80106BCC 101378 0194+00 13/13 0/0 0/0 .text
  * procBoardWaitInit__9daAlink_cFP10fopAc_ac_c                  */
-int daAlink_c::procBoardWaitInit(fopAc_ac_c* param_0) {
+int daAlink_c::procBoardWaitInit(fopAc_ac_c* i_board) {
     if (mEquipItem != 0x103) {
         deleteEquipItem(TRUE, TRUE);
     } else {
@@ -360,28 +360,28 @@ int daAlink_c::procBoardWaitInit(fopAc_ac_c* param_0) {
         resetUpperAnime(UPPER_2, -1.0f);
     }
 
-    if (checkModeFlg(2) && param_0 == NULL) {
-        return procBoardJumpInit(0.0f, 1);
+    if (checkModeFlg(2) && i_board == NULL) {
+        return procBoardJumpInit(0.0f, TRUE);
     }
 
-    BOOL temp_r28 = mProcID == PROC_BOARD_RIDE;
+    BOOL prev_ride = mProcID == PROC_BOARD_RIDE;
     if (!commonProcInitNotSameProc(PROC_BOARD_WAIT)) {
         return 0;
     }
 
     current.angle.y = shape_angle.y;
 
-    if (param_0 != NULL) {
-        mRideAcKeep.setData(param_0);
-        ((daObjIceLeaf_c*)param_0)->onRide();
+    if (i_board != NULL) {
+        mRideAcKeep.setData(i_board);
+        ((daObjIceLeaf_c*)i_board)->onRide();
 
-        if (temp_r28 != 0) {
-            f32 var_f31 = mNormalSpeed / daAlinkHIO_move_c0::m.mMaxSpeed;
-            if (var_f31 > 1.0f) {
-                var_f31 = 1.0f;
+        if (prev_ride) {
+            f32 speed_ratio = mNormalSpeed / daAlinkHIO_move_c0::m.mMaxSpeed;
+            if (speed_ratio > 1.0f) {
+                speed_ratio = 1.0f;
             }
 
-            mNormalSpeed = daAlinkHIO_board_c0::m.mStartMinSpeed + (daAlinkHIO_board_c0::m.mStartAddSpeed * var_f31);
+            mNormalSpeed = daAlinkHIO_board_c0::m.mStartMinSpeed + (daAlinkHIO_board_c0::m.mStartAddSpeed * speed_ratio);
         } else {
             mNormalSpeed = 0.0f;
         }
@@ -389,7 +389,7 @@ int daAlink_c::procBoardWaitInit(fopAc_ac_c* param_0) {
         field_0x594 = daAlinkHIO_move_c0::m.mMinWalkRate;
         mProcVar2.field_0x300c = 0;
         mProcVar3.field_0x300e.x = 0;
-        setCommonBoardAnime(0);
+        setCommonBoardAnime(FALSE);
     }
 
     mRideStatus = 4;
@@ -400,37 +400,37 @@ int daAlink_c::procBoardWaitInit(fopAc_ac_c* param_0) {
 
 /* 80106BCC-80106E88 10150C 02BC+00 1/0 0/0 0/0 .text            procBoardWait__9daAlink_cFv */
 int daAlink_c::procBoardWait() {
-    if (boardCommon(1)) {
+    if (boardCommon(TRUE)) {
         return 1;
     }
 
     if (checkAnmEnd(&mUnderFrameCtrl[0]) && !checkUnderMove0BckNoArc(ANM_RIDE_CUT_TURN_CHARGE)) {
-        setCommonBoardAnime(0);
+        setCommonBoardAnime(FALSE);
     }
 
     if (!checkNextActionBoard()) {
         if (mEquipItem == 0x103 && swordButton()) {
-            if (mProcVar1.field_0x300a == 0) {
+            if (mProcVar1.mBoardSwordChargeTime == 0) {
                 setSingleAnimeBase(ANM_RIDE_CUT_TURN_CHARGE);
             }
 
-            mProcVar1.field_0x300a++;
+            mProcVar1.mBoardSwordChargeTime++;
 
-            if (mProcVar1.field_0x300a == daAlinkHIO_cut_c0::m.mNormalSwingDuration) {
+            if (mProcVar1.mBoardSwordChargeTime == daAlinkHIO_cut_c0::m.mNormalSwingDuration) {
                 setSwordVoiceSe(Z2SE_AL_V_TAME);
             }
 
             if (!checkAnmEnd(&mUnderFrameCtrl[0])) {
-                mProcVar1.field_0x300a = 1;
+                mProcVar1.mBoardSwordChargeTime = 1;
             } else {
                 simpleAnmPlay(m_nSwordBtk);
 
-                if (mProcVar1.field_0x300a >= 14.0f) {
-                    mProcVar1.field_0x300a = 0x18;
+                if (mProcVar1.mBoardSwordChargeTime >= 14.0f) {
+                    mProcVar1.mBoardSwordChargeTime = 24;
                 }
             }
-        } else if (mProcVar1.field_0x300a != 0) {
-            if (mProcVar1.field_0x300a >= 14.0f) {
+        } else if (mProcVar1.mBoardSwordChargeTime != 0) {
+            if (mProcVar1.mBoardSwordChargeTime >= 14.0f) {
                 return procBoardCutTurnInit();
             }
             return procBoardCutInit();
@@ -439,15 +439,15 @@ int daAlink_c::procBoardWait() {
                 setDoStatus(0xA);
 
                 if (doButton()) {
-                    f32 var_f31;
+                    f32 blend_ratio;
                     if (field_0x2f8c == 0xB) {
-                        var_f31 = mNowAnmPackUnder[1].getRatio();
+                        blend_ratio = mNowAnmPackUnder[1].getRatio();
                     } else {
-                        var_f31 = 0.0f;
+                        blend_ratio = 0.0f;
                     }
 
                     setDoubleAnime(0.0f, daAlinkHIO_board_c0::m.mSitAnmSpeed, 1.0f, ANM_RIDE_CROUCH, ANM_RIDE_STOP, 0xB, daAlinkHIO_board_c0::m.mSitInterpolation);
-                    setDoubleAnimeBlendRatio(var_f31);
+                    setDoubleAnimeBlendRatio(blend_ratio);
                     mProcVar3.field_0x300e.z = 1;
                 }
             }
@@ -460,10 +460,10 @@ int daAlink_c::procBoardWait() {
                 mProcVar3.field_0x300e.z = 0;
 
                 if (mNormalSpeed > 15.0f) {
-                    procBoardJumpInit(mNormalSpeed, 0);
+                    procBoardJumpInit(mNormalSpeed, FALSE);
                 } else {
                     f32 temp_f30 = mNowAnmPackUnder[1].getRatio();
-                    setCommonBoardAnime(0);
+                    setCommonBoardAnime(FALSE);
                     setDoubleAnimeBlendRatio(temp_f30);
                 }
             }
@@ -486,7 +486,7 @@ int daAlink_c::procBoardRowInit() {
 
 /* 80106F00-80107060 101840 0160+00 1/0 0/0 0/0 .text            procBoardRow__9daAlink_cFv */
 int daAlink_c::procBoardRow() {
-    if (boardCommon(1)) {
+    if (boardCommon(TRUE)) {
         return 1;
     }
 
@@ -496,16 +496,16 @@ int daAlink_c::procBoardRow() {
     }
 
     if (!checkNextActionBoard()) {
-        daPy_frameCtrl_c* temp_r29 = &mUnderFrameCtrl[0];
+        daPy_frameCtrl_c* frame_ctrl = &mUnderFrameCtrl[0];
 
-        if (temp_r29->checkPass(0.0f)) {
+        if (frame_ctrl->checkPass(0.0f)) {
             if (checkInputOnR() && abs(mStickAngle) < 0x2000 && !checkModeFlg(2) && mLinkAcch.i_ChkGroundHit() && mProcVar3.field_0x300e.x < field_0x3122 && mNormalSpeed <= daAlinkHIO_board_c0::m.mMaxPushSpeed) {
                 mProcVar3.field_0x300e.z = 0;
             } else {
-                setCommonBoardAnime(0);
+                setCommonBoardAnime(FALSE);
                 procBoardWaitInit(NULL);
             }
-        } else if (temp_r29->checkPass(7.0f)) {
+        } else if (frame_ctrl->checkPass(7.0f)) {
             mNormalSpeed += daAlinkHIO_board_c0::m.mPushAccel;
 
             if (mNormalSpeed > daAlinkHIO_board_c0::m.mMaxPushSpeed) {
@@ -531,7 +531,7 @@ int daAlink_c::procBoardTurnInit() {
 
 /* 801070DC-80107218 101A1C 013C+00 1/0 0/0 0/0 .text            procBoardTurn__9daAlink_cFv */
 int daAlink_c::procBoardTurn() {
-    if (boardCommon(0)) {
+    if (boardCommon(FALSE)) {
         return 1;
     }
 
@@ -562,7 +562,7 @@ int daAlink_c::procBoardTurn() {
 }
 
 /* 80107218-80107300 101B58 00E8+00 4/4 0/0 0/0 .text            procBoardJumpInit__9daAlink_cFfi */
-int daAlink_c::procBoardJumpInit(f32 param_0, int param_1) {
+int daAlink_c::procBoardJumpInit(f32 i_jump_speed, BOOL i_no_speed_set) {
     commonProcInit(PROC_BOARD_JUMP);
     mProcVar0.field_0x3008 = 0;
     mProcVar3.field_0x300e.z = 1;
@@ -572,8 +572,8 @@ int daAlink_c::procBoardJumpInit(f32 param_0, int param_1) {
                    daAlinkHIO_board_c0::m.mAirborneAnm.mEndFrame,
                    daAlinkHIO_board_c0::m.mAirborneAnm.mInterpolation);
 
-    if (param_1 == 0) {
-        speed.y = cLib_minMaxLimit(param_0, daAlinkHIO_board_c0::m.mMinJumpSpeedY, daAlinkHIO_board_c0::m.mMaxJumpSpeedY);
+    if (!i_no_speed_set) {
+        speed.y = cLib_minMaxLimit(i_jump_speed, daAlinkHIO_board_c0::m.mMinJumpSpeedY, daAlinkHIO_board_c0::m.mMaxJumpSpeedY);
     }
 
     mProcVar3.field_0x300e.y = 0;
@@ -583,7 +583,7 @@ int daAlink_c::procBoardJumpInit(f32 param_0, int param_1) {
 
 /* 80107300-801073D0 101C40 00D0+00 1/0 0/0 0/0 .text            procBoardJump__9daAlink_cFv */
 int daAlink_c::procBoardJump() {
-    if (boardCommon(1)) {
+    if (boardCommon(TRUE)) {
         return 1;
     }
 
@@ -607,7 +607,7 @@ int daAlink_c::procBoardJump() {
 int daAlink_c::procBoardSubjectivityInit() {
     commonProcBoardInit(PROC_BOARD_SUBJECTIVITY);
     setSubjectMode();
-    setCommonBoardAnime(0);
+    setCommonBoardAnime(FALSE);
 
     return 1;
 }
@@ -619,7 +619,7 @@ int daAlink_c::procBoardSubjectivity() {
     s16 old_shape_angle = shape_angle.y;
     s16 old_angle = current.angle.y;
 
-    if (boardCommon(0)) {
+    if (boardCommon(FALSE)) {
         return 1;
     }
 
@@ -638,15 +638,15 @@ int daAlink_c::procBoardSubjectivity() {
 int daAlink_c::procBoardCutInit() {
     commonProcBoardInit(PROC_BOARD_CUT);
 
-    bool var_r31 = false;
+    bool cut_charge = false;
     if (checkUnderMove0BckNoArc(ANM_RIDE_CUT_TURN_CHARGE)) {
         if (mUnderFrameCtrl[0].getFrame() > daAlinkHIO_cut_c0::m.mNormalSwingDuration) {
-            var_r31 = true;
+            cut_charge = true;
         }
     }
 
-    setCommonBoardAnime(0);
-    setCutDash(1, var_r31);
+    setCommonBoardAnime(FALSE);
+    setCutDash(1, cut_charge);
     mProcVar3.field_0x300e.z = 0;
 
     return 1;
@@ -654,7 +654,7 @@ int daAlink_c::procBoardCutInit() {
 
 /* 8010755C-801075D4 101E9C 0078+00 1/0 0/0 0/0 .text            procBoardCut__9daAlink_cFv */
 int daAlink_c::procBoardCut() {
-    if (boardCommon(1)) {
+    if (boardCommon(TRUE)) {
         return 1;
     }
 
@@ -700,13 +700,13 @@ int daAlink_c::procBoardCutTurnInit() {
 
 /* 80107744-80107900 102084 01BC+00 1/0 0/0 0/0 .text            procBoardCutTurn__9daAlink_cFv */
 int daAlink_c::procBoardCutTurn() {
-    if (boardCommon(1)) {
+    if (boardCommon(TRUE)) {
         return 1;
     }
 
-    daPy_frameCtrl_c* temp_r30 = &mUnderFrameCtrl[0];
+    daPy_frameCtrl_c* frame_ctrl = &mUnderFrameCtrl[0];
 
-    if (temp_r30->getFrame() >= 4.0f && temp_r30->getFrame() < 14.0f) {
+    if (frame_ctrl->getFrame() >= 4.0f && frame_ctrl->getFrame() < 14.0f) {
         if (!checkNoResetFlg0(FLG0_UNK_40)) {
             seStartSwordCut(Z2SE_AL_KAITENGIRI);
         }
@@ -724,7 +724,7 @@ int daAlink_c::procBoardCutTurn() {
             setBoardLandAnime();
             procBoardWaitInit(NULL);
         } else {
-            if (temp_r30->getFrame() >= 3.0f) {
+            if (frame_ctrl->getFrame() >= 3.0f) {
                 speed.y = mNormalSpeed * -cM_ssin(shape_angle.x);
 
                 if (speed.y < daAlinkHIO_board_c0::m.mSpinMinJumpSpeedY) {
@@ -740,8 +740,8 @@ int daAlink_c::procBoardCutTurn() {
         }
     } else {
         field_0x3198 = 1;
-        if (checkAnmEnd(temp_r30)) {
-            procBoardJumpInit(0.0f, 1);
+        if (checkAnmEnd(frame_ctrl)) {
+            procBoardJumpInit(0.0f, TRUE);
         }
     }
 

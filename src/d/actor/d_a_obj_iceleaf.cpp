@@ -1,170 +1,34 @@
 /**
  * @file d_a_obj_iceleaf.cpp
- * 
-*/
+ *
+ */
 
 #include "d/actor/d_a_obj_iceleaf.h"
-#include "d/d_cc_d.h"
-#include "dol2asm.h"
-
-
-//
-// Forward References:
-//
-
-extern "C" static void CheckCreateHeap__FP10fopAc_ac_c();
-extern "C" void initBaseMtx__14daObjIceLeaf_cFv();
-extern "C" void setBaseMtx__14daObjIceLeaf_cFv();
-extern "C" void Create__14daObjIceLeaf_cFv();
-extern "C" void setAnmPos__14daObjIceLeaf_cFv();
-extern "C" void CreateHeap__14daObjIceLeaf_cFv();
-extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" void create__14daObjIceLeaf_cFv();
-extern "C" void __dt__8cM3dGCylFv();
-extern "C" void __dt__8cM3dGAabFv();
-extern "C" void __dt__10dCcD_GSttsFv();
-extern "C" void __dt__12dBgS_AcchCirFv();
-extern "C" void __dt__12dBgS_ObjAcchFv();
-extern "C" void execute__14daObjIceLeaf_cFv();
-extern "C" void action__14daObjIceLeaf_cFv();
-extern "C" void modeDropWait__14daObjIceLeaf_cFv();
-extern "C" void modeDrop__14daObjIceLeaf_cFv();
-extern "C" void modePlayerWait__14daObjIceLeaf_cFv();
-extern "C" void modeRide__14daObjIceLeaf_cFv();
-extern "C" void event_proc_call__14daObjIceLeaf_cFv();
-extern "C" void actionWait__14daObjIceLeaf_cFv();
-extern "C" void actionOrderEvent__14daObjIceLeaf_cFv();
-extern "C" void actionEvent__14daObjIceLeaf_cFv();
-extern "C" void actionDead__14daObjIceLeaf_cFv();
-extern "C" void setFallSE__14daObjIceLeaf_cFv();
-extern "C" void draw__14daObjIceLeaf_cFv();
-extern "C" void _delete__14daObjIceLeaf_cFv();
-extern "C" static void daObjIceLeaf_Draw__FP14daObjIceLeaf_c();
-extern "C" static void daObjIceLeaf_Execute__FP14daObjIceLeaf_c();
-extern "C" static void daObjIceLeaf_Delete__FP14daObjIceLeaf_c();
-extern "C" static void daObjIceLeaf_Create__FP14daObjIceLeaf_c();
-extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" static void func_80C25D4C();
-extern "C" static void func_80C25D54();
-extern "C" extern char const* const d_a_obj_iceleaf__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void transM__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();
-extern "C" void play__14mDoExt_baseAnmFv();
-extern "C" void init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb();
-extern "C" void entry__13mDoExt_bckAnmFP12J3DModelDataf();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void fopAcM_delete__FP10fopAc_ac_c();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData();
-extern "C" void fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs();
-extern "C" void gndCheck__11fopAcM_gc_cFPC4cXyz();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void isEventBit__11dSv_event_cCFUs();
-extern "C" void onSwitch__10dSv_info_cFii();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void reset__14dEvt_control_cFv();
-extern "C" void getEventIdx__16dEvent_manager_cFP10fopAc_ac_cUc();
-extern "C" void endCheck__16dEvent_manager_cFs();
-extern "C" void
-set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf();
-extern "C" void
-setPoly__13dPa_control_cFUsR13cBgS_PolyInfoPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyziP18dPa_levelEcallBackScPC4cXyz();
-extern "C" void __ct__12dBgS_AcchCirFv();
-extern "C" void SetWall__12dBgS_AcchCirFff();
-extern "C" void __dt__9dBgS_AcchFv();
-extern "C" void __ct__9dBgS_AcchFv();
-extern "C" void Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz();
-extern "C" void SetObj__16dBgS_PolyPassChkFv();
-extern "C" void __ct__10dCcD_GSttsFv();
-extern "C" void Init__9dCcD_SttsFiiP10fopAc_ac_c();
-extern "C" void __ct__12dCcD_GObjInfFv();
-extern "C" void ChkTgHit__12dCcD_GObjInfFv();
-extern "C" void GetTgHitObj__12dCcD_GObjInfFv();
-extern "C" void Set__8dCcD_CylFRC11dCcD_SrcCyl();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void Set__4cCcSFP8cCcD_Obj();
-extern "C" void cM_atan2s__Fff();
-extern "C" void __dt__13cBgS_PolyInfoFv();
-extern "C" void __dt__8cM3dGCirFv();
-extern "C" void SetC__8cM3dGCylFRC4cXyz();
-extern "C" void SetH__8cM3dGCylFf();
-extern "C" void SetR__8cM3dGCylFf();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mGndCheck__11fopAcM_gc_c[84];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 struct_80C25F98[4];
-
-//
-// Declarations:
-//
+#include "SSystem/SComponent/c_math.h"
+#include "d/actor/d_a_player.h"
+#include "d/d_com_inf_game.h"
+#include "d/d_s_play.h"
 
 /* 80C24718-80C24738 000078 0020+00 1/1 0/0 0/0 .text            CheckCreateHeap__FP10fopAc_ac_c */
-static void CheckCreateHeap(fopAc_ac_c* param_0) {
-    // NONMATCHING
+static int CheckCreateHeap(fopAc_ac_c* i_this) {
+    return ((daObjIceLeaf_c*)i_this)->CreateHeap();
 }
 
 /* 80C24738-80C24774 000098 003C+00 1/1 0/0 0/0 .text            initBaseMtx__14daObjIceLeaf_cFv */
 void daObjIceLeaf_c::initBaseMtx() {
-    // NONMATCHING
+    mpModel->setBaseScale(scale);
+    setBaseMtx();
 }
 
-/* ############################################################################################## */
-/* 80C25D64-80C25D68 000000 0004+00 5/5 0/0 0/0 .rodata          @3703 */
-SECTION_RODATA static u8 const lit_3703[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80C25D64, &lit_3703);
-
-/* 80C25D68-80C25D6C 000004 0004+00 1/1 0/0 0/0 .rodata          @3704 */
-SECTION_RODATA static f32 const lit_3704 = -9.0f;
-COMPILER_STRIP_GATE(0x80C25D68, &lit_3704);
-
-/* 80C25DA4-80C25DA4 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80C25DA4 = "V_IceLeaf";
-#pragma pop
-
 /* 80C25DB0-80C25DBC 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
+static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 80C25DBC-80C25DD0 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
+static u32 lit_1787[1 + 4 /* padding */] = {
     0x02000201,
     /* padding */
     0x40080000,
@@ -175,453 +39,437 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 #pragma pop
 
 /* 80C25DD0-80C25DD4 -00001 0004+00 7/7 0/0 0/0 .data            l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&d_a_obj_iceleaf__stringBase0;
+static char* l_arcName = "V_IceLeaf";
 
 /* 80C24774-80C249E4 0000D4 0270+00 2/2 0/0 0/0 .text            setBaseMtx__14daObjIceLeaf_cFv */
 void daObjIceLeaf_c::setBaseMtx() {
-    // NONMATCHING
+    if (mRide) {
+        daPy_py_c* player = dComIfGp_getLinkPlayer();
+        s16 foot_angle = 0;
+
+        if (!player->checkBoardNoFootAngle()) {
+            Vec left_vec;
+            Vec right_vec;
+            mDoMtx_multVec(player->getInvMtx(), player->getRightFootPosP(), &right_vec);
+            mDoMtx_multVec(player->getInvMtx(), player->getLeftFootPosP(), &left_vec);
+
+            foot_angle = cM_atan2s(left_vec.y - right_vec.y, right_vec.z - left_vec.z);
+        }
+
+        cXyz sp44(KREG_F(15), -9.0f, 0.0f);
+
+        mDoMtx_stack_c::copy(player->getModelMtx());
+        mDoMtx_stack_c::ZXYrotM(foot_angle, player->getBoardCutTurnOffsetAngleY(), 0);
+        mDoMtx_stack_c::YrotM(0x4000);
+        mDoMtx_stack_c::transM(sp44);
+        mDoMtx_stack_c::multVecZero(&eyePos);
+    } else {
+        mDoMtx_stack_c::transS(current.pos);
+        mDoMtx_stack_c::ZXYrotM(shape_angle);
+    }
+
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
+
+    if (mpBck == NULL) {
+        mDoMtx_stack_c::transS(current.pos);
+        mDoMtx_stack_c::ZXYrotM(shape_angle);
+    } else {
+        J3DAnmTransform* pbck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 4);
+        JUT_ASSERT(0x106, pbck != 0);
+        pbck->getTransform(0, &mTransformInfo);
+
+        cXyz pos;
+        csXyz angle;
+        mDoMtx_stack_c::transS(mTransformInfo.mTranslate.x, mTransformInfo.mTranslate.y,
+                               mTransformInfo.mTranslate.z);
+        mDoMtx_stack_c::transM(current.pos);
+        mDoMtx_stack_c::multVecZero(&pos);
+
+        angle.x = shape_angle.x + mTransformInfo.mRotation.x;
+        angle.y = shape_angle.y + mTransformInfo.mRotation.y;
+        angle.z = shape_angle.z + mTransformInfo.mRotation.z;
+        mDoMtx_stack_c::transS(pos);
+        mDoMtx_stack_c::ZXYrotM(angle);
+    }
+
+    MTXCopy(mDoMtx_stack_c::get(), mMtx);
 }
-
-/* ############################################################################################## */
-/* 80C25D6C-80C25D70 000008 0004+00 0/1 0/0 0/0 .rodata          @3757 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3757 = 30.0f;
-COMPILER_STRIP_GATE(0x80C25D6C, &lit_3757);
-#pragma pop
-
-/* 80C25D70-80C25D74 00000C 0004+00 0/1 0/0 0/0 .rodata          @3758 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3758 = 100.0f;
-COMPILER_STRIP_GATE(0x80C25D70, &lit_3758);
-#pragma pop
-
-/* 80C25D74-80C25D78 000010 0004+00 0/1 0/0 0/0 .rodata          @3759 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3759 = 500.0f;
-COMPILER_STRIP_GATE(0x80C25D74, &lit_3759);
-#pragma pop
 
 /* 80C25DD4-80C25E18 000024 0044+00 1/1 0/0 0/0 .data            l_cyl_src */
 static dCcD_SrcCyl l_cyl_src = {
     {
-        {0x0, {{0x0, 0x0, 0x1f}, {0x400000, 0x11}, 0x78}}, // mObj
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x6}, // mGObjTg
-        {0x0}, // mGObjCo
-    }, // mObjInf
+        {0x0, {{0x0, 0x0, 0x1f}, {0x400000, 0x11}, 0x78}},  // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},                 // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x6},                 // mGObjTg
+        {0x0},                                              // mGObjCo
+    },                                                      // mObjInf
     {
-        {0.0f, 0.0f, 0.0f}, // mCenter
-        50.0f, // mRadius
-        100.0f // mHeight
-    } // mCyl
+        {0.0f, 0.0f, 0.0f},  // mCenter
+        50.0f,               // mRadius
+        100.0f               // mHeight
+    }  // mCyl
 };
 
 /* 80C249E4-80C24BC4 000344 01E0+00 1/1 0/0 0/0 .text            Create__14daObjIceLeaf_cFv */
-void daObjIceLeaf_c::Create() {
-    // NONMATCHING
+// NONMATCHING - J3DTransformInfo operator= seems to be inline asm, needs work
+int daObjIceLeaf_c::Create() {
+    J3DJoint* joint = mpModel->getModelData()->getJointNodePointer(0);
+    mTransformInfo = joint->getTransformInfo();
+
+    J3DTransformInfo trans_info;
+    trans_info.mTranslate = mTransformInfo.mTranslate;
+    trans_info.mRotation.x = 0;
+    trans_info.mRotation.y = 0;
+    trans_info.mRotation.z = trans_info.mRotation.y;
+    trans_info.mScale.x = 0.0f;
+    trans_info.mScale.y = 0.0f;
+    trans_info.mScale.z = 0.0f;
+    joint->setTransformInfo(trans_info);
+
+    initBaseMtx();
+    fopAcM_SetMtx(this, mMtx);
+
+    mAcchCir.SetWall(30.0f, 30.0f);
+    mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
+              fopAcM_GetSpeed_p(this), NULL, NULL);
+
+    mStts.Init(0, 0xFF, this);
+    mCyl.Set(l_cyl_src);
+    mCyl.SetStts(&mStts);
+    mCyl.SetR(100.0f);
+    mCyl.SetH(500.0f);
+
+    fopAcM_setCullSizeBox2(this, mpModel->getModelData());
+
+    mEvId = getEvId();
+    mEventID = dComIfGp_getEventManager().getEventIdx(this, mEvId);
+
+    if (checkRideStatus() == 1) {
+        mRide = true;
+        mpBck = NULL;
+        setAnmPos();
+    }
+
+    return 1;
 }
 
 /* 80C24BC4-80C24C9C 000524 00D8+00 2/2 0/0 0/0 .text            setAnmPos__14daObjIceLeaf_cFv */
 void daObjIceLeaf_c::setAnmPos() {
-    // NONMATCHING
+    J3DAnmTransform* pbck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 4);
+    JUT_ASSERT(0x168, pbck != 0);
+    pbck->getTransform(0, &mTransformInfo);
+
+    mDoMtx_stack_c::transS(mTransformInfo.mTranslate.x, mTransformInfo.mTranslate.y,
+                           mTransformInfo.mTranslate.z);
+    mDoMtx_stack_c::transM(current.pos);
+    mDoMtx_stack_c::multVecZero(&current.pos);
+
+    shape_angle.x += mTransformInfo.mRotation.x;
+    shape_angle.y += mTransformInfo.mRotation.y;
+    shape_angle.z += mTransformInfo.mRotation.z;
 }
-
-/* ############################################################################################## */
-/* 80C25D78-80C25D7C 000014 0004+00 4/5 0/0 0/0 .rodata          @3806 */
-SECTION_RODATA static f32 const lit_3806 = 1.0f;
-COMPILER_STRIP_GATE(0x80C25D78, &lit_3806);
-
-/* 80C25E18-80C25E24 -00001 000C+00 0/1 0/0 0/0 .data            @3975 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3975[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeDropWait__14daObjIceLeaf_cFv,
-};
-#pragma pop
-
-/* 80C25E24-80C25E30 -00001 000C+00 0/1 0/0 0/0 .data            @3976 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3976[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeDrop__14daObjIceLeaf_cFv,
-};
-#pragma pop
-
-/* 80C25E30-80C25E3C -00001 000C+00 0/1 0/0 0/0 .data            @3977 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3977[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modePlayerWait__14daObjIceLeaf_cFv,
-};
-#pragma pop
-
-/* 80C25E3C-80C25E48 -00001 000C+00 0/1 0/0 0/0 .data            @3978 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3978[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeRide__14daObjIceLeaf_cFv,
-};
-#pragma pop
-
-/* 80C25E48-80C25E78 000098 0030+00 0/1 0/0 0/0 .data            l_func$3974 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_func_3974[48] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-#pragma pop
-
-/* 80C25E78-80C25E84 -00001 000C+00 0/1 0/0 0/0 .data            @4108 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4108[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionWait__14daObjIceLeaf_cFv,
-};
-#pragma pop
-
-/* 80C25E84-80C25E90 -00001 000C+00 0/1 0/0 0/0 .data            @4109 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4109[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionOrderEvent__14daObjIceLeaf_cFv,
-};
-#pragma pop
-
-/* 80C25E90-80C25E9C -00001 000C+00 0/1 0/0 0/0 .data            @4110 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4110[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionEvent__14daObjIceLeaf_cFv,
-};
-#pragma pop
-
-/* 80C25E9C-80C25EA8 -00001 000C+00 0/1 0/0 0/0 .data            @4111 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4111[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionDead__14daObjIceLeaf_cFv,
-};
-#pragma pop
-
-/* 80C25EA8-80C25ED8 0000F8 0030+00 0/1 0/0 0/0 .data            l_func$4107 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_func_4107[48] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-#pragma pop
-
-/* 80C25ED8-80C25EF8 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjIceLeaf_Method */
-static actor_method_class l_daObjIceLeaf_Method = {
-    (process_method_func)daObjIceLeaf_Create__FP14daObjIceLeaf_c,
-    (process_method_func)daObjIceLeaf_Delete__FP14daObjIceLeaf_c,
-    (process_method_func)daObjIceLeaf_Execute__FP14daObjIceLeaf_c,
-    0,
-    (process_method_func)daObjIceLeaf_Draw__FP14daObjIceLeaf_c,
-};
-
-/* 80C25EF8-80C25F28 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_IceLeaf */
-extern actor_process_profile_definition g_profile_Obj_IceLeaf = {
-  fpcLy_CURRENT_e,        // mLayerID
-  7,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_Obj_IceLeaf,       // mProcName
-  &g_fpcLf_Method.mBase,  // sub_method
-  sizeof(daObjIceLeaf_c), // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  567,                    // mPriority
-  &l_daObjIceLeaf_Method, // sub_method
-  0x00060000,             // mStatus
-  fopAc_ACTOR_e,          // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
-};
-
-/* 80C25F28-80C25F34 000178 000C+00 1/1 0/0 0/0 .data            __vt__12dBgS_AcchCir */
-SECTION_DATA extern void* __vt__12dBgS_AcchCir[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_AcchCirFv,
-};
-
-/* 80C25F34-80C25F40 000184 000C+00 2/2 0/0 0/0 .data            __vt__10cCcD_GStts */
-SECTION_DATA extern void* __vt__10cCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10cCcD_GSttsFv,
-};
-
-/* 80C25F40-80C25F4C 000190 000C+00 1/1 0/0 0/0 .data            __vt__10dCcD_GStts */
-SECTION_DATA extern void* __vt__10dCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10dCcD_GSttsFv,
-};
-
-/* 80C25F4C-80C25F58 00019C 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGCyl */
-SECTION_DATA extern void* __vt__8cM3dGCyl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGCylFv,
-};
-
-/* 80C25F58-80C25F64 0001A8 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGAab */
-SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGAabFv,
-};
-
-/* 80C25F64-80C25F88 0001B4 0024+00 2/2 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
-SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_ObjAcchFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80C25D54,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80C25D4C,
-};
-
-/* 80C25F88-80C25F94 0001D8 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */
-SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12J3DFrameCtrlFv,
-};
 
 /* 80C24C9C-80C24DCC 0005FC 0130+00 1/1 0/0 0/0 .text            CreateHeap__14daObjIceLeaf_cFv */
-void daObjIceLeaf_c::CreateHeap() {
-    // NONMATCHING
-}
+int daObjIceLeaf_c::CreateHeap() {
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 7);
+    JUT_ASSERT(0x189, modelData != 0);
+    mpModel = mDoExt_J3DModel__create(modelData, 0, 0x11000084);
+    if (mpModel == NULL) {
+        return 0;
+    }
 
-/* 80C24DCC-80C24E14 00072C 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
-// J3DFrameCtrl::~J3DFrameCtrl() {
-extern "C" void __dt__12J3DFrameCtrlFv() {
-    // NONMATCHING
+    J3DAnmTransform* pbck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 4);
+    JUT_ASSERT(0x196, pbck != 0);
+
+    mpBck = new mDoExt_bckAnm();
+    if (mpBck == NULL || !mpBck->init(pbck, TRUE, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1, false)) {
+        return 0;
+    }
+
+    mpBck->setPlaySpeed(0.0f);
+    mpBck->setFrame(0.0f);
+    return 1;
 }
 
 /* 80C24E14-80C24F8C 000774 0178+00 1/1 0/0 0/0 .text            create__14daObjIceLeaf_cFv */
-void daObjIceLeaf_c::create() {
-    // NONMATCHING
-}
+int daObjIceLeaf_c::create() {
+    fopAcM_SetupActor(this, daObjIceLeaf_c);
 
-/* 80C24F8C-80C24FD4 0008EC 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGCylFv */
-// cM3dGCyl::~cM3dGCyl() {
-extern "C" void __dt__8cM3dGCylFv() {
-    // NONMATCHING
-}
+    int phase_state = dComIfG_resLoad(&mPhase, l_arcName);
+    if (phase_state == cPhs_COMPLEATE_e) {
+        if (!fopAcM_entrySolidHeap(this, CheckCreateHeap, 0xDA0)) {
+            return cPhs_ERROR_e;
+        }
 
-/* 80C24FD4-80C2501C 000934 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
-// cM3dGAab::~cM3dGAab() {
-extern "C" void __dt__8cM3dGAabFv() {
-    // NONMATCHING
-}
+        if (!Create()) {
+            return cPhs_ERROR_e;
+        }
+    }
 
-/* 80C2501C-80C25078 00097C 005C+00 1/0 0/0 0/0 .text            __dt__10dCcD_GSttsFv */
-// dCcD_GStts::~dCcD_GStts() {
-extern "C" void __dt__10dCcD_GSttsFv() {
-    // NONMATCHING
-}
-
-/* 80C25078-80C250E8 0009D8 0070+00 1/0 0/0 0/0 .text            __dt__12dBgS_AcchCirFv */
-// dBgS_AcchCir::~dBgS_AcchCir() {
-extern "C" void __dt__12dBgS_AcchCirFv() {
-    // NONMATCHING
-}
-
-/* 80C250E8-80C25158 000A48 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
-// dBgS_ObjAcch::~dBgS_ObjAcch() {
-extern "C" void __dt__12dBgS_ObjAcchFv() {
-    // NONMATCHING
+    return phase_state;
 }
 
 /* 80C25158-80C25360 000AB8 0208+00 1/1 0/0 0/0 .text            execute__14daObjIceLeaf_cFv */
-void daObjIceLeaf_c::execute() {
-    // NONMATCHING
+int daObjIceLeaf_c::execute() {
+    daPy_py_c* player = daPy_getPlayerActorClass();
+
+    event_proc_call();
+    action();
+
+    if (mDeleteActor) {
+        if (field_0x92b == 0) {
+            dComIfGp_particle_set(0x8C12, &eyePos, NULL, NULL);
+            dComIfGp_particle_set(0x8C13, &eyePos, NULL, NULL);
+
+            field_0x92b = 1;
+            player->seStartOnlyReverb(Z2SE_AL_SNOBO_ICEBREAK);
+        }
+
+        fopAcM_delete(this);
+        // "Ice Leaf: Deleted\n"
+        OS_REPORT("氷の葉：削除されました\n");
+    }
+
+    if (mBreakEffect) {
+        dComIfGp_particle_set(0x8C12, &eyePos, NULL, NULL);
+        dComIfGp_particle_set(0x8C13, &eyePos, NULL, NULL);
+
+        mBreakEffect = false;
+        player->seStartOnlyReverb(Z2SE_AL_SNOBO_ICEBREAK);
+    }
+
+    setBaseMtx();
+    return 1;
 }
 
 /* 80C25360-80C2541C 000CC0 00BC+00 1/1 0/0 0/0 .text            action__14daObjIceLeaf_cFv */
 void daObjIceLeaf_c::action() {
-    // NONMATCHING
+    typedef void (daObjIceLeaf_c::*mode_func)();
+    static mode_func l_func[] = {
+        &daObjIceLeaf_c::modeDropWait,
+        &daObjIceLeaf_c::modeDrop,
+        &daObjIceLeaf_c::modePlayerWait,
+        &daObjIceLeaf_c::modeRide,
+    };
+
+    (this->*l_func[mMode])();
 }
-
-/* ############################################################################################## */
-/* 80C25D7C-80C25D84 000018 0008+00 0/1 0/0 0/0 .rodata          @4030 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4030[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80C25D7C, &lit_4030);
-#pragma pop
-
-/* 80C25D84-80C25D8C 000020 0008+00 0/1 0/0 0/0 .rodata          @4031 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4031[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80C25D84, &lit_4031);
-#pragma pop
-
-/* 80C25D8C-80C25D94 000028 0008+00 0/1 0/0 0/0 .rodata          @4032 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4032[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80C25D8C, &lit_4032);
-#pragma pop
-
-/* 80C25D94-80C25D98 000030 0004+00 0/1 0/0 0/0 .rodata          @4033 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4033 = 250.0f;
-COMPILER_STRIP_GATE(0x80C25D94, &lit_4033);
-#pragma pop
 
 /* 80C2541C-80C25614 000D7C 01F8+00 1/0 0/0 0/0 .text            modeDropWait__14daObjIceLeaf_cFv */
 void daObjIceLeaf_c::modeDropWait() {
-    // NONMATCHING
+    daPy_py_c* player = daPy_getPlayerActorClass();
+
+    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x134])) {
+        bool start_drop = false;
+        if (player->current.pos.abs(current.pos) < 250.0f &&
+            (player->checkFrontRollCrash() || player->checkWolfAttackReverse()))
+        {
+            start_drop = true;
+        }
+
+        if (mCyl.ChkTgHit()) {
+            cCcD_Obj* hit_obj = mCyl.GetTgHitObj();
+            if (hit_obj != NULL && hit_obj->ChkAtType(AT_TYPE_IRON_BALL)) {
+                start_drop = true;
+            }
+        }
+
+        if (start_drop) {
+            setAction(ACT_ORDER_EVENT_e);
+        }
+    }
+
+    if (mRide) {
+        mpBck = NULL;
+        setAnmPos();
+    }
+
+    mCyl.SetC(current.pos);
+    dComIfG_Ccsp()->Set(&mCyl);
 }
-
-/* ############################################################################################## */
-/* 80C25D98-80C25D9C 000034 0004+00 0/1 0/0 0/0 .rodata          @4093 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4093 = 12.0f;
-COMPILER_STRIP_GATE(0x80C25D98, &lit_4093);
-#pragma pop
-
-/* 80C25D9C-80C25DA0 000038 0004+00 0/1 0/0 0/0 .rodata          @4094 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4094 = 5.0f;
-COMPILER_STRIP_GATE(0x80C25D9C, &lit_4094);
-#pragma pop
-
-/* 80C25DA0-80C25DA4 00003C 0004+00 1/2 0/0 0/0 .rodata          @4095 */
-SECTION_RODATA static f32 const lit_4095 = -1.0f;
-COMPILER_STRIP_GATE(0x80C25DA0, &lit_4095);
 
 /* 80C25614-80C258F8 000F74 02E4+00 1/0 0/0 0/0 .text            modeDrop__14daObjIceLeaf_cFv */
 void daObjIceLeaf_c::modeDrop() {
-    // NONMATCHING
+    if (mpBck->play()) {
+        J3DAnmTransform* pbck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 4);
+        JUT_ASSERT(0x2C8, pbck != 0);
+        pbck->getTransform(0, &mTransformInfo);
+
+        mDoMtx_stack_c::transS(mTransformInfo.mTranslate.x, mTransformInfo.mTranslate.y,
+                               mTransformInfo.mTranslate.z);
+        mDoMtx_stack_c::transM(current.pos);
+        mDoMtx_stack_c::multVecZero(&current.pos);
+
+        shape_angle.x += mTransformInfo.mRotation.x;
+        shape_angle.y += mTransformInfo.mRotation.y;
+        shape_angle.z += mTransformInfo.mRotation.z;
+
+        attention_info.position = current.pos;
+        eyePos = current.pos;
+
+        mpBck = NULL;
+        setMode(MODE_PLAYER_WAIT_e);
+    }
+
+    if (mpBck != NULL && mpBck->getFrame() == 12) {
+        cXyz sp24(KREG_F(10) + 1.0f, KREG_F(10) + 1.0f, KREG_F(10) + 1.0f);
+
+        J3DAnmTransform* pbck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 4);
+        JUT_ASSERT(0x2EB, pbck != 0);
+        pbck->getTransform(0, &mTransformInfo);
+
+        cXyz sp30;
+        mDoMtx_stack_c::transS(mTransformInfo.mTranslate.x, mTransformInfo.mTranslate.y,
+                               mTransformInfo.mTranslate.z);
+        mDoMtx_stack_c::transM(current.pos);
+        mDoMtx_stack_c::multVecZero(&sp30);
+        sp30.y += 5.0f;
+
+        if (fopAcM_gc_c::gndCheck(&sp30)) {
+            dComIfGp_particle_setPolyColor(0x881F, *fopAcM_gc_c::getGroundCheck(), &sp30, &tevStr,
+                                           &current.angle, &sp24, 0, NULL, -1, NULL);
+            dComIfGp_particle_setPolyColor(0x8820, *fopAcM_gc_c::getGroundCheck(), &sp30, &tevStr,
+                                           &current.angle, &sp24, 0, NULL, -1, NULL);
+
+            mFallSEPos = sp30;
+            mDoAud_seStart(Z2SE_OBJ_LEAF_FALL_DOWN, &mFallSEPos, 0, 0);
+            // "Ice Leaf: Falling SE\n"
+            OS_REPORT("氷の葉：落下ＳＥ\n");
+        }
+    }
 }
 
 /* 80C258F8-80C25904 001258 000C+00 1/0 0/0 0/0 .text            modePlayerWait__14daObjIceLeaf_cFv
  */
 void daObjIceLeaf_c::modePlayerWait() {
-    // NONMATCHING
+    attention_info.flags = 0x80;
 }
 
 /* 80C25904-80C25908 001264 0004+00 1/0 0/0 0/0 .text            modeRide__14daObjIceLeaf_cFv */
-void daObjIceLeaf_c::modeRide() {
-    /* empty function */
-}
+void daObjIceLeaf_c::modeRide() {}
 
 /* 80C25908-80C259C4 001268 00BC+00 1/1 0/0 0/0 .text            event_proc_call__14daObjIceLeaf_cFv
  */
 void daObjIceLeaf_c::event_proc_call() {
-    // NONMATCHING
+    typedef void (daObjIceLeaf_c::*action_func)();
+    static action_func l_func[] = {
+        &daObjIceLeaf_c::actionWait,
+        &daObjIceLeaf_c::actionOrderEvent,
+        &daObjIceLeaf_c::actionEvent,
+        &daObjIceLeaf_c::actionDead,
+    };
+
+    (this->*l_func[mAction])();
 }
 
 /* 80C259C4-80C259C8 001324 0004+00 1/0 0/0 0/0 .text            actionWait__14daObjIceLeaf_cFv */
-void daObjIceLeaf_c::actionWait() {
-    /* empty function */
-}
+void daObjIceLeaf_c::actionWait() {}
 
 /* 80C259C8-80C25A68 001328 00A0+00 1/0 0/0 0/0 .text actionOrderEvent__14daObjIceLeaf_cFv */
 void daObjIceLeaf_c::actionOrderEvent() {
-    // NONMATCHING
+    if (eventInfo.i_checkCommandDemoAccrpt()) {
+        setAction(ACT_EVENT_e);
+        mpBck->setPlaySpeed(1.0f);
+        setMode(MODE_DROP_e);
+        setFallSE();
+
+        fopAcM_onSwitch(this, getSwbit());
+    } else {
+        fopAcM_orderOtherEventId(this, mEventID, mEvId, 0xFFFF, 0, 1);
+        eventInfo.i_onCondition(2);
+    }
 }
 
 /* 80C25A68-80C25AC4 0013C8 005C+00 1/0 0/0 0/0 .text            actionEvent__14daObjIceLeaf_cFv */
 void daObjIceLeaf_c::actionEvent() {
-    // NONMATCHING
+    if (dComIfGp_evmng_endCheck(mEventID)) {
+        setAction(ACT_DEAD_e);
+        dComIfGp_event_reset();
+    }
 }
 
 /* 80C25AC4-80C25AC8 001424 0004+00 1/0 0/0 0/0 .text            actionDead__14daObjIceLeaf_cFv */
-void daObjIceLeaf_c::actionDead() {
-    /* empty function */
-}
+void daObjIceLeaf_c::actionDead() {}
 
 /* 80C25AC8-80C25BB8 001428 00F0+00 1/1 0/0 0/0 .text            setFallSE__14daObjIceLeaf_cFv */
 void daObjIceLeaf_c::setFallSE() {
-    // NONMATCHING
+    J3DAnmTransform* pbck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 4);
+    JUT_ASSERT(0x36C, pbck != 0);
+    pbck->getTransform(0, &mTransformInfo);
+
+    mDoMtx_stack_c::transS(mTransformInfo.mTranslate.x, mTransformInfo.mTranslate.y,
+                           mTransformInfo.mTranslate.z);
+    mDoMtx_stack_c::transM(current.pos);
+    mDoMtx_stack_c::multVecZero(&mFallStartSEPos);
+
+    mDoAud_seStart(Z2SE_OBJ_LEAF_BEGIN_FALL, &mFallStartSEPos, 0, 0);
+    // "Ice Leaf: Fall start SE(%.2f,%.2f,%.2f)\n"
+    OS_REPORT("氷の葉：落下開始ＳＥ(%.2f,%.2f,%.2f)\n", mFallStartSEPos.x, mFallStartSEPos.y,
+              mFallStartSEPos.z);
 }
 
 /* 80C25BB8-80C25C50 001518 0098+00 1/1 0/0 0/0 .text            draw__14daObjIceLeaf_cFv */
-void daObjIceLeaf_c::draw() {
-    // NONMATCHING
+int daObjIceLeaf_c::draw() {
+    g_env_light.settingTevStruct(0, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
+
+    if (mpBck != NULL) {
+        mpBck->entry(mpModel->getModelData());
+    }
+
+    mDoExt_modelUpdateDL(mpModel);
+    mDoExt_bckAnmRemove(mpModel->getModelData());
+
+    return 1;
 }
 
 /* 80C25C50-80C25C84 0015B0 0034+00 1/1 0/0 0/0 .text            _delete__14daObjIceLeaf_cFv */
-void daObjIceLeaf_c::_delete() {
-    // NONMATCHING
+int daObjIceLeaf_c::_delete() {
+    dComIfG_resDelete(&mPhase, l_arcName);
+    return 1;
 }
 
 /* 80C25C84-80C25CA4 0015E4 0020+00 1/0 0/0 0/0 .text daObjIceLeaf_Draw__FP14daObjIceLeaf_c */
-static void daObjIceLeaf_Draw(daObjIceLeaf_c* param_0) {
-    // NONMATCHING
+static int daObjIceLeaf_Draw(daObjIceLeaf_c* i_this) {
+    return i_this->draw();
 }
 
 /* 80C25CA4-80C25CC4 001604 0020+00 1/0 0/0 0/0 .text daObjIceLeaf_Execute__FP14daObjIceLeaf_c */
-static void daObjIceLeaf_Execute(daObjIceLeaf_c* param_0) {
-    // NONMATCHING
+static int daObjIceLeaf_Execute(daObjIceLeaf_c* i_this) {
+    return i_this->execute();
 }
 
 /* 80C25CC4-80C25CE4 001624 0020+00 1/0 0/0 0/0 .text daObjIceLeaf_Delete__FP14daObjIceLeaf_c */
-static void daObjIceLeaf_Delete(daObjIceLeaf_c* param_0) {
-    // NONMATCHING
+static int daObjIceLeaf_Delete(daObjIceLeaf_c* i_this) {
+    return i_this->_delete();
 }
 
 /* 80C25CE4-80C25D04 001644 0020+00 1/0 0/0 0/0 .text daObjIceLeaf_Create__FP14daObjIceLeaf_c */
-static void daObjIceLeaf_Create(daObjIceLeaf_c* param_0) {
-    // NONMATCHING
+static int daObjIceLeaf_Create(daObjIceLeaf_c* i_this) {
+    return i_this->create();
 }
 
-/* 80C25D04-80C25D4C 001664 0048+00 1/0 0/0 0/0 .text            __dt__10cCcD_GSttsFv */
-// cCcD_GStts::~cCcD_GStts() {
-extern "C" void __dt__10cCcD_GSttsFv() {
-    // NONMATCHING
-}
+/* 80C25ED8-80C25EF8 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjIceLeaf_Method */
+static actor_method_class l_daObjIceLeaf_Method = {
+    (process_method_func)daObjIceLeaf_Create,  (process_method_func)daObjIceLeaf_Delete,
+    (process_method_func)daObjIceLeaf_Execute, (process_method_func)NULL,
+    (process_method_func)daObjIceLeaf_Draw,
+};
 
-/* 80C25D4C-80C25D54 0016AC 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
-static void func_80C25D4C() {
-    // NONMATCHING
-}
-
-/* 80C25D54-80C25D5C 0016B4 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
-static void func_80C25D54() {
-    // NONMATCHING
-}
-
-/* 80C25DA4-80C25DA4 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+/* 80C25EF8-80C25F28 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_IceLeaf */
+extern actor_process_profile_definition g_profile_Obj_IceLeaf = {
+    fpcLy_CURRENT_e,         // mLayerID
+    7,                       // mListID
+    fpcPi_CURRENT_e,         // mListPrio
+    PROC_Obj_IceLeaf,        // mProcName
+    &g_fpcLf_Method.mBase,   // sub_method
+    sizeof(daObjIceLeaf_c),  // mSize
+    0,                       // mSizeOther
+    0,                       // mParameters
+    &g_fopAc_Method.base,    // sub_method
+    567,                     // mPriority
+    &l_daObjIceLeaf_Method,  // sub_method
+    0x00060000,              // mStatus
+    fopAc_ACTOR_e,           // mActorType
+    fopAc_CULLBOX_CUSTOM_e,  // cullType
+};

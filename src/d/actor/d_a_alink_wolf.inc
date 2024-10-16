@@ -1008,7 +1008,7 @@ int daAlink_c::checkNextActionWolf(int param_0) {
             } else {
                 var_r30 = checkWaitAction();
             }
-        } else if (checkInputOnR() && field_0x2fa8 != 8 && abs(field_0x3180) < 0x5000 &&
+        } else if (checkInputOnR() && mGndPolySpecialCode != dBgW_SPCODE_ICE && abs(field_0x3180) < 0x5000 &&
                    cLib_distanceAngleS(field_0x2fe2, current.angle.y) > 0x7000 &&
                    ((checkWolfDashMode() &&
                      speedF / field_0x594 > daAlinkHIO_wlMove_c0::m.field_0xA0) ||
@@ -3554,7 +3554,7 @@ int daAlink_c::procWolfTagJumpLandInit(fopAc_ac_c* param_0) {
     commonProcInit(PROC_WOLF_TAG_JUMP_LAND);
     setSingleAnimeWolfParam(WANM_ATTACK_A_END_FRONT, &daAlinkHIO_wlPoint_c0::m.field_0x3C);
 
-    if (field_0x2fa8 == 8) {
+    if (mGndPolySpecialCode == dBgW_SPCODE_ICE) {
         mNormalSpeed = daAlinkHIO_wlPoint_c0::m.field_0x6C;
     } else {
         mNormalSpeed = 0.0f;
@@ -4215,7 +4215,7 @@ void daAlink_c::setWolfLieMoveVoice(int param_0) {
 
 /* 801373F8-80137420 131D38 0028+00 2/2 0/0 0/0 .text            checkWolfLieCode__9daAlink_cFv */
 bool daAlink_c::checkWolfLieCode() {
-    if (mLinkAcch.ChkGroundHit() && field_0x2fa8 == 4) {
+    if (mLinkAcch.ChkGroundHit() && mGndPolySpecialCode == 4) {
         return true;
     }
 

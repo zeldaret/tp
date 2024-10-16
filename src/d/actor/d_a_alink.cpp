@@ -8195,10 +8195,10 @@ s32 daAlink_c::setRoomInfo() {
     tevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mLinkAcch.m_gnd);
     field_0x3174 = dComIfG_Bgsp().GetGroundCode(mLinkAcch.m_gnd);
     field_0x2fbb = dComIfG_Bgsp().GetPolyAtt0(mLinkAcch.m_gnd);
-    field_0x2fa8 = dComIfG_Bgsp().GetSpecialCode(mLinkAcch.m_gnd);
+    mGndPolySpecialCode = dComIfG_Bgsp().GetSpecialCode(mLinkAcch.m_gnd);
 
-    if (field_0x2fa8 == 6 && checkWolf()) {
-        field_0x2fa8 = 5;
+    if (mGndPolySpecialCode == dBgW_SPCODE_HEAVY_SNOW && checkWolf()) {
+        mGndPolySpecialCode = dBgW_SPCODE_LIGHT_SNOW;
     }
 
     if (field_0x2fbd != 0xFF) {
@@ -8266,7 +8266,7 @@ void daAlink_c::iceSlipBgCheck() {
 void daAlink_c::setIceSlipSpeed() {
     field_0x35d0 = field_0x35c4;
 
-    if (!checkModeFlg(0x1210C52) && !checkEventRun() && !checkHeavyStateOn(1, 1) && field_0x2fa8 == 8 && !mLinkAcch.ChkWallHit() && mLinkAcch.i_ChkGroundHit()) {
+    if (!checkModeFlg(0x1210C52) && !checkEventRun() && !checkHeavyStateOn(1, 1) && mGndPolySpecialCode == dBgW_SPCODE_ICE && !mLinkAcch.ChkWallHit() && mLinkAcch.i_ChkGroundHit()) {
         f32 var_f31, var_f30, var_f29;
         if (checkWolf()) {
             var_f31 = 0.1f;
@@ -11113,7 +11113,7 @@ void daAlink_c::decideCommonDoStatus() {
                    dComIfGp_getDoStatus() == 0x30 || dComIfGp_getDoStatus() == 0x77 ||
                    dComIfGp_getDoStatus() == 0x19)) ||
                  (dComIfGp_getDoStatus() == 0x79 &&
-                  (checkKandelaarSwingAnime() || field_0x2fa8 == 6 || checkCopyRodThrowAnime() ||
+                  (checkKandelaarSwingAnime() || mGndPolySpecialCode == dBgW_SPCODE_HEAVY_SNOW || checkCopyRodThrowAnime() ||
                    checkBoomerangThrowAnime()))) &&
                 (!checkMagneBootsOn() || dComIfGp_getDoStatus() != 0x79 ||
                  !cBgW_CheckBGround(mMagneBootsTopVec.y)))
@@ -13006,7 +13006,7 @@ int daAlink_c::checkNextAction(int param_0) {
             ret = procMoveTurnInit(0);
         } else if (checkInputOnR() && cLib_distanceAngleS(field_0x2fe2, current.angle.y) > 0x7800) {
             if (speedF / field_0x594 > daAlinkHIO_move_c0::m.mSlideThresholdSpeed &&
-                field_0x2fa8 != 8 && !checkGrabAnime() &&
+                mGndPolySpecialCode != dBgW_SPCODE_ICE && !checkGrabAnime() &&
                 getDirectionFromAngle(mPrevStickAngle - mStickAngle) == DIR_BACKWARD)
             {
                 ret = procSlipInit();
@@ -14796,7 +14796,7 @@ int daAlink_c::checkNewItemChange(u8 param_0) {
         (checkModeFlg(0x400) &&
          (sel_item == EMPTY_BOTTLE || sel_item == POKE_BOMB || sel_item == IRONBALL ||
           sel_item == COPY_ROD || checkFishingRodItem(sel_item))) ||
-        ((field_0x2fa8 == 6 || field_0x2fbd == 1 || field_0x2fbd == 2 ||
+        ((mGndPolySpecialCode == dBgW_SPCODE_HEAVY_SNOW || field_0x2fbd == 1 || field_0x2fbd == 2 ||
           mWaterY - current.pos.y > 45.0f ||
           (field_0x2fbc == 6 && mWaterY - current.pos.y >= 0.0f) || field_0x2fbd == 3) &&
          sel_item == SPINNER) ||

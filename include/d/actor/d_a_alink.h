@@ -3173,7 +3173,7 @@ public:
     BOOL checkBarkAnime() const { return 0; }
     bool checkWolfGrabAnimeObj() const { return checkUpperAnime(0x2DA); }
     bool checkWolfGrabAnimeStick() const { return checkUpperAnime(0x2DB); }
-    bool checkWolfGrabAnime() const { return checkWolfGrabAnimeObj() || checkWolfGrabAnimeStick(); }
+    BOOL checkWolfGrabAnime() const { return checkWolfGrabAnimeObj() || checkWolfGrabAnimeStick(); }
     bool checkWolfSwimDashAnime() const { return checkUnderMove0BckNoArcWolf(WANM_SWIM_DASH); }
     bool checkKandelaarSwingAnime() const { return false; }
     bool checkBowChargeWaitAnime() const { return checkUpperAnime(0xA); }
@@ -3652,7 +3652,7 @@ public:
     /* 0x02FA5 */ u8 mPolySound;
     /* 0x02FA6 */ u8 field_0x2fa6;
     /* 0x02FA7 */ u8 field_0x2fa7;
-    /* 0x02FA8 */ u8 field_0x2fa8;
+    /* 0x02FA8 */ u8 mGndPolySpecialCode;
     /* 0x02FA9 */ u8 mWolfEyeUpTimer;
     /* 0x02FAA */ u8 mRideStatus;
     /* 0x02FAB */ u8 field_0x2fab;
@@ -3733,6 +3733,7 @@ public:
     } /* 0x03008 */ mProcVar0;
     union {
         s16 field_0x300a;
+        s16 mBoardSwordChargeTime;
     } /* 0x0300A */ mProcVar1;
     union {
         s16 field_0x300c;
