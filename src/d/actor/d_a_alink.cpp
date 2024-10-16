@@ -8290,7 +8290,7 @@ void daAlink_c::setIceSlipSpeed() {
         field_0x35c4 += sp58 * var_f29;
         speed += sp58 * (1.0f - var_f29);
 
-        if (mProcVar3.field_0x300e.y != 0 && (mProcID == PROC_LARGE_DAMAGE_UP || mProcID == PROC_WOLF_LARGE_DAMAGE_UP)) {
+        if (mProcVar4.field_0x3010 != 0 && (mProcID == PROC_LARGE_DAMAGE_UP || mProcID == PROC_WOLF_LARGE_DAMAGE_UP)) {
             sp58.normalizeZP();
             field_0x35c4 += sp58 * 20.0f;
         }
@@ -11417,7 +11417,7 @@ BOOL daAlink_c::checkAutoJumpAction() {
         return 1;
     }
 
-    if ((mProcID == PROC_WOLF_LOCK_ATTACK || mProcID == PROC_WOLF_LOCK_ATTACK_TURN) && mProcVar3.field_0x300e.z != 0) {
+    if ((mProcID == PROC_WOLF_LOCK_ATTACK || mProcID == PROC_WOLF_LOCK_ATTACK_TURN) && mProcVar5.field_0x3012 != 0) {
         return 0;
     }
 
@@ -13028,7 +13028,7 @@ int daAlink_c::checkNextAction(int param_0) {
 
 /* 800BA6A0-800BA914 0B4FE0 0274+00 3/3 0/0 0/0 .text            commonChangeItem__9daAlink_cFv */
 void daAlink_c::commonChangeItem() {
-    if (mEquipItem == KANTERA && field_0x2fde == 0xFF && (mProcID != PROC_PREACTION_UNEQUIP || mProcVar3.field_0x300e.y != 0)) {
+    if (mEquipItem == KANTERA && field_0x2fde == 0xFF && (mProcID != PROC_PREACTION_UNEQUIP || mProcVar4.field_0x3010 != 0)) {
         offKandelaarModel();
     }
 
@@ -13687,7 +13687,7 @@ void daAlink_c::posMove() {
 
     if (checkRootTransClearMode()) {
         cXyz sp78 = field_0x34d4 - sp108;
-        if (mProcID == PROC_CLIMB_UP_START && mProcVar3.field_0x300e.z != 0) {
+        if (mProcID == PROC_CLIMB_UP_START && mProcVar5.field_0x3012 != 0) {
             sp78 = cXyz::Zero;
         }
 
@@ -15120,7 +15120,7 @@ void daAlink_c::setLight() {
 
     f32 var_f30 = 1.0f;
     f32 var_f29;
-    if (mProcID == PROC_METAMORPHOSE && mProcVar3.field_0x300e.z != 0) {
+    if (mProcID == PROC_METAMORPHOSE && mProcVar5.field_0x3012 != 0) {
         var_f29 = 0.05f;
     } else if (checkEndResetFlg2(ERFLG2_UNK_10)) {
         var_f30 = 0.28f;

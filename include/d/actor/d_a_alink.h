@@ -3395,7 +3395,7 @@ public:
     bool checkRootTransZClearMode() { return field_0x2f99 & 4; }
     bool checkRootTransXClearMode() { return field_0x2f99 & 1; }
     bool checkRootTransYClearMode() { return field_0x2f99 & 2; }
-    s16 checkWindStoneHowl() {return mProcVar3.field_0x300e.y; }
+    s16 checkWindStoneHowl() {return mProcVar4.field_0x3010; }
     u8 getCorrectCurveID() { return mZ2WolfHowlMgr.getCorrectCurveID(); }
     u8 getCorrectLineNum() { return mZ2WolfHowlMgr.getCorrectLineNum(); }
     u32 getWolfHowlTimer() { return mZ2WolfHowlMgr.getTimer(); }
@@ -3740,8 +3740,14 @@ public:
         s16 mPuzzleAimAngle;
     } /* 0x0300C */ mProcVar2;
     union {
-        SVec field_0x300e;
+        s16 field_0x300e;
     } /* 0x0300E */ mProcVar3;
+    union {
+        s16 field_0x3010;
+    } /* 0x03010 */ mProcVar4;
+    union {
+        s16 field_0x3012;
+    } /* 0x03012 */ mProcVar5;
     /* 0x03014 */ s16 mFallVoiceInit;
     /* 0x03016 */ u8 field_0x3016[2];
     union {

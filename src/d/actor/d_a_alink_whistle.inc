@@ -75,9 +75,9 @@ int daAlink_c::procGrassWhistleGetInit() {
 
     daObjYobikusa_c* yobikusa_p = (daObjYobikusa_c*)field_0x27f4;
     mProcVar2.field_0x300c = yobikusa_p->getType();
-    mProcVar3.field_0x300e.x = yobikusa_p->getPathID();
-    mProcVar3.field_0x300e.y = yobikusa_p->isPlayerCorrect();
-    mProcVar3.field_0x300e.z = yobikusa_p->shape_angle.y + 0x8000;
+    mProcVar3.field_0x300e = yobikusa_p->getPathID();
+    mProcVar4.field_0x3010 = yobikusa_p->isPlayerCorrect();
+    mProcVar5.field_0x3012 = yobikusa_p->shape_angle.y + 0x8000;
     field_0x37c8.set(yobikusa_p->current.pos.x + cM_ssin(yobikusa_p->shape_angle.y) * 50.0f,
                      yobikusa_p->current.pos.y + 50.0f,
                      yobikusa_p->current.pos.z + cM_scos(yobikusa_p->shape_angle.y) * 50.0f);
@@ -92,8 +92,8 @@ int daAlink_c::procGrassWhistleGet() {
     daPy_frameCtrl_c* frameCtrl_p = mUnderFrameCtrl;
 
     if (frameCtrl_p->checkAnmEnd()) {
-        procGrassWhistleWaitInit(mProcVar2.field_0x300c, mProcVar3.field_0x300e.x,
-                                 mProcVar3.field_0x300e.y, mProcVar3.field_0x300e.z, &field_0x37c8);
+        procGrassWhistleWaitInit(mProcVar2.field_0x300c, mProcVar3.field_0x300e,
+                                 mProcVar4.field_0x3010, mProcVar5.field_0x3012, &field_0x37c8);
     } else if (mEquipItem == NO_ITEM && frameCtrl_p->getFrame() >= 9.0f) {
         setGrassWhistleModel(mProcVar2.field_0x300c);
 
@@ -146,12 +146,12 @@ int daAlink_c::procGrassWhistleWaitInit(int param_0, int param_1, int param_2, s
     setUpperAnimeBaseMorf(getMainBckData(ANM_GRASS_WHISTLE_START)->m_underID, -1.0f);
     setFacePriAnime(ANM_GRASS_WHISTLE_START);
     mProcVar2.field_0x300c = param_0;
-    mProcVar3.field_0x300e.x = param_1;
+    mProcVar3.field_0x300e = param_1;
 
     dCam_getBody()->StartEventCamera(12, fopAcM_GetID(this), 0);
     mProcVar0.field_0x3008 = 0;
-    mProcVar3.field_0x300e.y = 0;
-    mProcVar3.field_0x300e.z = 0;
+    mProcVar4.field_0x3010 = 0;
+    mProcVar5.field_0x3012 = 0;
     mMsgClassID = -1;
     mNormalSpeed = 0.0f;
     current.angle.y = shape_angle.y;
@@ -179,7 +179,7 @@ int daAlink_c::procGrassWhistleWaitInit(int param_0, int param_1, int param_2, s
 // small regalloc
 #ifdef NONMATCHING
 int daAlink_c::procGrassWhistleWait() {
-    if (mProcVar3.field_0x300e.z != 0) {
+    if (mProcVar5.field_0x3012 != 0) {
         if (checkEndMessage(field_0x32cc)) {
             resetSpecialEvent();
             return procWaitInit();
@@ -206,7 +206,7 @@ int daAlink_c::procGrassWhistleWait() {
 
                 if (field_0x3198 == 0x100) {
                     tk_p->setEvent();
-                    tk_p->setHawkPath(mProcVar3.field_0x300e.x);
+                    tk_p->setHawkPath(mProcVar3.field_0x300e);
                 }
 
                 mProcVar0.field_0x3008--;
@@ -227,7 +227,7 @@ int daAlink_c::procGrassWhistleWait() {
                 }
 
                 setFaceBasicTexture(FTANM_UNK_0);
-                mProcVar3.field_0x300e.z = 1;
+                mProcVar5.field_0x3012 = 1;
                 return 1;
             }
 
@@ -282,11 +282,11 @@ int daAlink_c::procCoHorseCallWaitInit(int param_0) {
     commonProcInit(PROC_HORSE_CALL_WAIT);
 
     if (param_0 == 4) {
-        mProcVar3.field_0x300e.y = 2;
+        mProcVar4.field_0x3010 = 2;
     } else if (param_0 == 1) {
-        mProcVar3.field_0x300e.y = 0x3D;
+        mProcVar4.field_0x3010 = 0x3D;
     } else {
-        mProcVar3.field_0x300e.y = 0x10;
+        mProcVar4.field_0x3010 = 0x10;
     }
 
     if (checkWolf()) {

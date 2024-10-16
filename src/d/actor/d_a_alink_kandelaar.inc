@@ -220,7 +220,7 @@ void daAlink_c::setKandelaarModel() {
 void daAlink_c::resetOilBottleModel() {
     deleteEquipItem(FALSE, TRUE);
 
-    if (mProcVar3.field_0x300e.x != 0) {
+    if (mProcVar3.field_0x300e != 0) {
         setKandelaarModel();
         mEquipItem = KANTERA;
     }
@@ -231,9 +231,9 @@ void daAlink_c::resetOilBottleModel() {
 /* 80110FE0-801110B8 10B920 00D8+00 3/3 0/0 0/0 .text commonKandelaarPourInit__9daAlink_cFv */
 void daAlink_c::commonKandelaarPourInit() {
     if (checkNoResetFlg2(FLG2_UNK_1)) {
-        mProcVar3.field_0x300e.x = 1;
+        mProcVar3.field_0x300e = 1;
     } else {
-        mProcVar3.field_0x300e.x = 0;
+        mProcVar3.field_0x300e = 0;
     }
 
     keepItemData();

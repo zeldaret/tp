@@ -1013,10 +1013,10 @@ int daAlink_c::procBossBodyHangInit(fopAc_ac_c* param_0) {
     speed.y = 0.0f;
 
     mProcVar2.field_0x300c = 0;
-    mProcVar3.field_0x300e.x = 0;
-    mProcVar3.field_0x300e.y = 0;
+    mProcVar3.field_0x300e = 0;
+    mProcVar4.field_0x3010 = 0;
     mProcVar0.field_0x3008 = 0;
-    mProcVar3.field_0x300e.z = 0;
+    mProcVar5.field_0x3012 = 0;
     field_0x3080 = 0;
 
     field_0x280c.setData(param_0);
@@ -1034,9 +1034,9 @@ int daAlink_c::procBossBodyHang() {
         setJumpMode();
     }
 
-    if (mProcVar3.field_0x300e.x != 0 || !setBossBodyHangPos()) {
+    if (mProcVar3.field_0x300e != 0 || !setBossBodyHangPos()) {
         if (field_0x32cc != 0) {
-            if (mProcVar3.field_0x300e.x < 0) {
+            if (mProcVar3.field_0x300e < 0) {
                 return procBackJumpInit(0);
             } else {
                 field_0x3102 = shape_angle.y;
@@ -1084,9 +1084,9 @@ int daAlink_c::procBossBodyHang() {
             mProcVar2.field_0x300c = 0;
 
             if (mEquipItem == 0x103) {
-                mProcVar3.field_0x300e.y = 2;
+                mProcVar4.field_0x3010 = 2;
             } else {
-                mProcVar3.field_0x300e.y = 0xFE;
+                mProcVar4.field_0x3010 = 0xFE;
             }
         }
 
@@ -1105,16 +1105,16 @@ int daAlink_c::procBossBodyHang() {
                 }
 
                 field_0x3198 = 0x16E;
-                mProcVar3.field_0x300e.y = 0;
+                mProcVar4.field_0x3010 = 0;
                 field_0x3478 = 10000.0f;
                 field_0x347c = 61.0f;
                 setCutType(CUT_TYPE_FINISH_STAB);
                 mProcVar1.field_0x300a = 3;
             } else {
                 setCutType(CUT_TYPE_NM_STAB);
-                mProcVar3.field_0x300e.z++;
+                mProcVar5.field_0x3012++;
 
-                if (mProcVar3.field_0x300e.z == 4) {
+                if (mProcVar5.field_0x3012 == 4) {
                     if (field_0x32cc != 0) {
                         setSingleAnimeBase(ANM_DRAGON_CUT_B);
                     } else {
@@ -1124,7 +1124,7 @@ int daAlink_c::procBossBodyHang() {
                     field_0x3198 = 0x16D;
                     field_0x3478 = 10000.0f;
                     field_0x347c = 12.0f;
-                    mProcVar3.field_0x300e.y = 2;
+                    mProcVar4.field_0x3010 = 2;
                     mProcVar1.field_0x300a = 3;
                 } else {
                     if (field_0x32cc != 0) {
@@ -1136,7 +1136,7 @@ int daAlink_c::procBossBodyHang() {
                     field_0x3198 = 0x16C;
                     field_0x3478 = daAlinkHIO_cut_c0::m.mStabAnm.mCheckFrame;
                     field_0x347c = 10.0f;
-                    mProcVar3.field_0x300e.y = 0;
+                    mProcVar4.field_0x3010 = 0;
                     mProcVar1.field_0x300a = 1;
                 }
             }
@@ -1174,11 +1174,11 @@ int daAlink_c::procBossBodyHang() {
                 }
 
                 if (frameCtrl->getFrame() >= 117.0f) {
-                    mProcVar3.field_0x300e.y = 0;
+                    mProcVar4.field_0x3010 = 0;
                 } else if (frameCtrl->getFrame() >= 105.0f) {
-                    mProcVar3.field_0x300e.y = 0xFE;
+                    mProcVar4.field_0x3010 = 0xFE;
                 } else {
-                    mProcVar3.field_0x300e.y = 0;
+                    mProcVar4.field_0x3010 = 0;
                 }
             }
         }
@@ -1404,7 +1404,7 @@ int daAlink_c::procLadderUpStartInit() {
     field_0x37c8.z = field_0x34ec.z + var_f30 * 38.0f;
 
     mProcVar2.field_0x300c = 1;
-    mProcVar3.field_0x300e.y = 1;
+    mProcVar4.field_0x3010 = 1;
     return 1;
 }
 
@@ -1443,7 +1443,7 @@ int daAlink_c::procLadderUpEndInit(int param_0) {
     field_0x30a0 = -0x0800;
     field_0x33f4 = -1.0f;
     mProcVar2.field_0x300c = 1;
-    mProcVar3.field_0x300e.y = 1;
+    mProcVar4.field_0x3010 = 1;
     dComIfGp_setPlayerStatus0(0, 0x2000000);
     return 1;
 }
@@ -1463,7 +1463,7 @@ int daAlink_c::procLadderUpEnd() {
     {
         if (frame_ctrl->getFrame() >= 23.0f) {
             mProcVar2.field_0x300c = 0;
-            mProcVar3.field_0x300e.y = 0;
+            mProcVar4.field_0x3010 = 0;
         } else if (frame_ctrl->getFrame() >= 11.0f) {
             field_0x30a0 = 0;
             field_0x33f4 = 0.0f;
@@ -1514,7 +1514,7 @@ int daAlink_c::procLadderDownStartInit() {
     field_0x37c8.z = field_0x34ec.z - var_f30 * 48.0f;
 
     mProcVar2.field_0x300c = 0;
-    mProcVar3.field_0x300e.y = 0;
+    mProcVar4.field_0x3010 = 0;
     return 1;
 }
 
@@ -1535,7 +1535,7 @@ int daAlink_c::procLadderDownStart() {
         }
     } else if (frame_ctrl->getFrame() >= 19.0f) {
         mProcVar2.field_0x300c = 1;
-        mProcVar3.field_0x300e.y = 1;
+        mProcVar4.field_0x3010 = 1;
     }
 
     return 1;
@@ -1555,7 +1555,7 @@ int daAlink_c::procLadderDownEndInit(int param_0) {
     field_0x30a0 = 0x2800;
     field_0x33f4 = 1.0f;
     mProcVar2.field_0x300c = 0;
-    mProcVar3.field_0x300e.y = 0;
+    mProcVar4.field_0x3010 = 0;
     dComIfGp_setPlayerStatus0(0, 0x2000000);
     return 1;
 }
@@ -1645,7 +1645,7 @@ int daAlink_c::procLadderMoveInit(int param_0, int param_1, cXyz* param_2) {
     mNormalSpeed = 0.0f;
     speedF = 0.0f;
     mProcVar2.field_0x300c = 1;
-    mProcVar3.field_0x300e.y = 1;
+    mProcVar4.field_0x3010 = 1;
     dComIfGp_setPlayerStatus0(0, 0x2000000);
     return 1;
 }
@@ -2161,7 +2161,7 @@ int daAlink_c::procClimbUpStartInit(int param_0) {
     }
 
     field_0x2f99 = 2;
-    mProcVar3.field_0x300e.z = 1;
+    mProcVar5.field_0x3012 = 1;
 
     field_0x37c8.set(l_waitBaseAnime.x, l_ladderAnmBaseTransY, l_waitBaseAnime.z);
     J3DTransformInfo* trans_info = field_0x2060->getOldFrameTransInfo(0);
@@ -2181,7 +2181,7 @@ int daAlink_c::procClimbUpStartInit(int param_0) {
     shape_angle.y = field_0x306e + 0x8000;
     current.angle.y = shape_angle.y;
     mProcVar2.field_0x300c = 1;
-    mProcVar3.field_0x300e.y = 0;
+    mProcVar4.field_0x3010 = 0;
     setClimbShapeOffset();
     return 1;
 }
@@ -2196,7 +2196,7 @@ int daAlink_c::procClimbUpStart() {
     daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
 
     field_0x2f99 = 2;
-    mProcVar3.field_0x300e.z = 0;
+    mProcVar5.field_0x3012 = 0;
 
     field_0x3588 = (field_0x3588 * field_0x2060->getOldFrameRate()) +
                    (field_0x37c8 * (1.0f - field_0x2060->getOldFrameRate()));
@@ -2244,8 +2244,8 @@ int daAlink_c::procClimbDownStartInit(s16 param_0) {
     field_0x3588 = l_waitBaseAnime;
     field_0x33b0 = l_ladderAnmBaseTransY;
     mProcVar2.field_0x300c = 1;
-    mProcVar3.field_0x300e.y = 0;
-    mProcVar3.field_0x300e.x = 0;
+    mProcVar4.field_0x3010 = 0;
+    mProcVar3.field_0x300e = 0;
     return 1;
 }
 
@@ -2258,11 +2258,11 @@ int daAlink_c::procClimbDownStart() {
 
     daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
 
-    if (mProcVar3.field_0x300e.x != 0) {
+    if (mProcVar3.field_0x300e != 0) {
         field_0x2f99 = 2;
     } else {
         field_0x2f99 = 0x50;
-        mProcVar3.field_0x300e.x = 1;
+        mProcVar3.field_0x300e = 1;
     }
 
     if (field_0x33a8 < 0.2f) {
@@ -2334,7 +2334,7 @@ int daAlink_c::procClimbMoveUpDownInit(int param_0) {
     mNormalSpeed = 0.0f;
     speedF = 0.0f;
     mProcVar2.field_0x300c = 1;
-    mProcVar3.field_0x300e.y = 1;
+    mProcVar4.field_0x3010 = 1;
 
     voiceStart(Z2SE_AL_V_CLIMB_WALL);
     dComIfGp_setPlayerStatus0(0, 8);
@@ -2421,7 +2421,7 @@ int daAlink_c::procClimbMoveSideInit() {
     speed.y = 0.0f;
     mNormalSpeed = 0.0f;
     mProcVar2.field_0x300c = 1;
-    mProcVar3.field_0x300e.y = 1;
+    mProcVar4.field_0x3010 = 1;
     field_0x3478 = M_PI / (f32)mUnderFrameCtrl[0].getEnd();
     field_0x347c = current.pos.y + 150.0f;
 
@@ -2498,7 +2498,7 @@ int daAlink_c::procClimbWaitInit(int param_0, int param_1) {
 
     field_0x2f99 = 10;
     mProcVar2.field_0x300c = 1;
-    mProcVar3.field_0x300e.y = 0;
+    mProcVar4.field_0x3010 = 0;
 
     if (param_0) {
         if (field_0x2f98 == 0) {

@@ -73,7 +73,7 @@ BOOL daAlink_c::checkForestOldCentury() {
 /* 800E145C-800E1530 0DBD9C 00D4+00 1/0 0/0 0/0 .text            checkCopyRodTopUse__9daAlink_cFv */
 BOOL daAlink_c::checkCopyRodTopUse() {
     // Event flag 0x2580: Dominion Rod power restored
-    return (dComIfGs_isEventBit(0x2580) && !(mProcID == PROC_UNEQUIP && mProcVar3.field_0x300e.x != 0)) ||
+    return (dComIfGs_isEventBit(0x2580) && !(mProcID == PROC_UNEQUIP && mProcVar3.field_0x300e != 0)) ||
            i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 0x15 ||
            checkForestOldCentury();
 }
@@ -372,7 +372,7 @@ int daAlink_c::procCopyRodSwingInit() {
     mNormalSpeed = 0.0f;
     current.angle.y = shape_angle.y;
     mProcVar2.field_0x300c = 1;
-    mProcVar3.field_0x300e.x = 0;
+    mProcVar3.field_0x300e = 0;
 
     voiceStart(Z2SE_AL_V_ATTACK_S);
     mAtCps[0].SetR(40.0f);
@@ -394,16 +394,16 @@ int daAlink_c::procCopyRodSwing() {
             setCopyRodControllAnime();
         }
     } else if (frameCtrl->getFrame() >= field_0x3478 && frameCtrl->getFrame() < field_0x347c) {
-        if (mProcVar3.field_0x300e.x == 0) {
+        if (mProcVar3.field_0x300e == 0) {
             seStartSwordCut(Z2SE_AL_COPYROD_SWING);
         }
 
-        mProcVar3.field_0x300e.x = 1;
+        mProcVar3.field_0x300e = 1;
         if (changeCutReverseProc(ANM_CUT_RECOIL_A)) {
             return 1;
         }
     } else {
-        mProcVar3.field_0x300e.x = 0;
+        mProcVar3.field_0x300e = 0;
     }
 
     return 1;

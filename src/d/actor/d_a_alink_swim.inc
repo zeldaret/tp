@@ -369,7 +369,7 @@ int daAlink_c::procSwimUpInit() {
     setSingleAnimeParam(ANM_SWIM_RESURFACE, &daAlinkHIO_swim_c0::m.mResurfaceAnm);
     dComIfGp_setPlayerStatus0(0, 0x100000);
     mProcVar0.field_0x3008 = 0;
-    mProcVar3.field_0x300e.y = 0;
+    mProcVar4.field_0x3010 = 0;
     field_0x3480 = daAlinkHIO_swim_c0::m.mInitHeight;
     field_0x3000 = 0;
 
@@ -422,10 +422,10 @@ int daAlink_c::procSwimWaitInit(int param_0) {
 
     if (param_0) {
         seStartMapInfo(Z2SE_AL_INTO_WATER);
-        mProcVar3.field_0x300e.y = 0;
+        mProcVar4.field_0x3010 = 0;
         field_0x3480 = daAlinkHIO_swim_c0::m.mInitHeight;
     } else if (!mode_40000) {
-        mProcVar3.field_0x300e.y = 0;
+        mProcVar4.field_0x3010 = 0;
         field_0x3480 = daAlinkHIO_swim_c0::m.mInitHeight;
     }
 
@@ -526,7 +526,7 @@ int daAlink_c::procSwimMoveInit() {
 
     if (!mode_40000) {
         field_0x3480 = daAlinkHIO_swim_c0::m.mInitHeight;
-        mProcVar3.field_0x300e.y = 0;
+        mProcVar4.field_0x3010 = 0;
     }
 
     if (proc_swim_dive || proc_dive_jump) {
@@ -534,8 +534,8 @@ int daAlink_c::procSwimMoveInit() {
 
         if (proc_dive_jump) {
             field_0x3080 = 0x2800;
-            mProcVar3.field_0x300e.x = field_0x3080;
-            mProcVar3.field_0x300e.y = 1;
+            mProcVar3.field_0x300e = field_0x3080;
+            mProcVar4.field_0x3010 = 1;
             setOldRootQuaternion(-field_0x3080, 0, 0);
         }
     } else {
@@ -613,7 +613,7 @@ int daAlink_c::procSwimDiveInit() {
     field_0x2f99 = 0x10;
     field_0x3588 = l_waitBaseAnime;
     field_0x3480 = daAlinkHIO_swim_c0::m.mInitHeight;
-    mProcVar3.field_0x300e.y = 0;
+    mProcVar4.field_0x3010 = 0;
 
     dComIfGp_setPlayerStatus0(0, 0x100000);
     field_0x3000 = 30;
@@ -657,8 +657,8 @@ int daAlink_c::procSwimDive() {
 
         if (mProcVar2.field_0x300c != 0) {
             field_0x3080 = 0x2800;
-            mProcVar3.field_0x300e.x = field_0x3080;
-            mProcVar3.field_0x300e.y = 1;
+            mProcVar3.field_0x300e = field_0x3080;
+            mProcVar4.field_0x3010 = 1;
         }
 
         setOldRootQuaternion(-field_0x3080, 0, 0);
@@ -700,7 +700,7 @@ int daAlink_c::procSwimHookshotSubjectInit() {
     field_0x594 = getSwimFrontMaxSpeed();
 
     field_0x3480 = daAlinkHIO_swim_c0::m.mInitHeight;
-    mProcVar3.field_0x300e.y = 0;
+    mProcVar4.field_0x3010 = 0;
     field_0x30d0 = 0;
 
     setHookshotReadyMaterial();
@@ -778,7 +778,7 @@ int daAlink_c::procSwimHookshotMoveInit() {
     }
 
     field_0x3480 = daAlinkHIO_swim_c0::m.mInitHeight;
-    mProcVar3.field_0x300e.y = 0;
+    mProcVar4.field_0x3010 = 0;
     field_0x30d0 = 0;
 
     dComIfGp_setPlayerStatus0(0, 0x104000);

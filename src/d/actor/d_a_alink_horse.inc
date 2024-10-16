@@ -439,7 +439,7 @@ int daAlink_c::setSyncBoarRunPos() {
     shape_angle.z = sp28.x;
     current.angle.y = shape_angle.y;
 
-    if (mProcID == PROC_BOAR_RUN && mProcVar3.field_0x300e.x != 0) {
+    if (mProcID == PROC_BOAR_RUN && mProcVar3.field_0x300e != 0) {
         mUnderFrameCtrl[0].setFrame(e_wb_p->nowAnimeFrame());
         getNowAnmPackUnder(UNDER_0)->setFrame(e_wb_p->nowAnimeFrame());
     }
@@ -1248,7 +1248,7 @@ int daAlink_c::procHorseCutTurnInit() {
     setSyncRide(1);
     field_0x3478 = daAlinkHIO_hoCutCharge_c0::m.field_0x50;
     setCylAtParam(getSwordAtType(), dCcG_At_Spl_UNK_1, 3, 1, 3, field_0x3478 * 0.5f, 200.0f);
-    mProcVar3.field_0x300e.y = daAlinkHIO_hoCutCharge_c0::m.field_0x3E;
+    mProcVar4.field_0x3010 = daAlinkHIO_hoCutCharge_c0::m.field_0x3E;
     voiceStart(Z2SE_AL_V_KAITEN);
     setCutWaterDropEffect();
     setHorseZeldaDamage();
@@ -1629,12 +1629,12 @@ int daAlink_c::procHorseRunInit() {
     setSingleAnimeBaseMorf(ANM_HORSE_TAME_WAIT_B, -1.0f);
     setSyncHorsePos();
     field_0x2fab = 0;
-    mProcVar3.field_0x300e.y = 0;
-    mProcVar3.field_0x300e.z = 0;
+    mProcVar4.field_0x3010 = 0;
+    mProcVar5.field_0x3012 = 0;
 
     field_0x3478 = 1000.0f - cM_rndF(500.0f);
     mProcVar2.field_0x300c = 0;
-    mProcVar3.field_0x300e.x = 30;
+    mProcVar3.field_0x300e = 30;
     field_0x3004 = 0;
     field_0x3002 = 0;
     mDoAud_changeSubBgmStatus(2);
@@ -1729,11 +1729,11 @@ int daAlink_c::procBoarRunInit() {
     resetUpperAnime(UPPER_2, -1.0f);
     resetUnderAnime(UNDER_2, -1.0f);
 
-    mProcVar3.field_0x300e.y = 0;
-    mProcVar3.field_0x300e.z = 0;
+    mProcVar4.field_0x3010 = 0;
+    mProcVar5.field_0x3012 = 0;
     field_0x3478 = 3000.0f - cM_rndF(1500.0f);
     setSingleAnimeBaseSpeed(ANM_HORSE_TAME_WAIT_A_TO_B, 1.0f, 4.0f);
-    mProcVar3.field_0x300e.x = 0;
+    mProcVar3.field_0x300e = 0;
 
     setSyncBoarPos();
     mProcVar2.field_0x300c = 0;
