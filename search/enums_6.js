@@ -1,7 +1,7 @@
 var searchData=
 [
   ['fdversion_0',['fdversion',['../fdlibm_8h.html#ae15fd6df5a9fbcbedffca4294b04188a',1,'fdlibm.h']]],
-  ['flag_5fe_1',['Flag_e',['../structdaItem__c.html#acd34ba4ce91204962227c9aae8b2e035',1,'daItem_c']]],
+  ['flag_5fe_1',['Flag_e',['../classdaItem__c.html#acd34ba4ce91204962227c9aae8b2e035',1,'daItem_c']]],
   ['flags_5fe_2',['Flags_e',['../classcBgW.html#a42938bf74683806ca89731e935eed652',1,'cBgW']]],
   ['fmtmngaction_3',['FmtMngAction',['../d__a__formation__mng_8h.html#a346fe1331d9a6685537189639aa38dda',1,'d_a_formation_mng.h']]],
   ['fopac_5fattention_5ftype_4',['fopAc_attention_type',['../f__op__actor_8h.html#a508deab8aa28791ed8d34c2304095e0a',1,'f_op_actor.h']]],

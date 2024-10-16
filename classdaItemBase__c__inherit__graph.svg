@@ -48,7 +48,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="structdaItem__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000005"><a xlink:href="classdaItem__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="164.38,-19.25 107.88,-19.25 107.88,0 164.38,0 164.38,-19.25"/>
 <text text-anchor="middle" x="136.12" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">daItem_c</text>
 </a>

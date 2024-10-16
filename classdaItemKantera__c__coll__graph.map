@@ -1,6 +1,6 @@
 <map id="daItemKantera_c" name="daItemKantera_c">
 <area shape="rect" id="Node000001" title="Lantern." alt="" coords="1860,461,1980,487"/>
-<area shape="rect" id="Node000002" href="$structdaItemBase__c.html" title=" " alt="" coords="1705,953,1811,979"/>
+<area shape="rect" id="Node000002" href="$classdaItemBase__c.html" title=" " alt="" coords="1705,953,1811,979"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1766,937,1912,486,1917,488,1771,939"/>
 <area shape="rect" id="Node000003" href="$structfopAc__ac__c.html" title=" " alt="" coords="854,525,944,551"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="957,553,1140,619,1267,673,1365,718,1587,825,1637,844,1658,853,1683,870,1724,912,1751,951,1747,954,1720,916,1680,874,1656,858,1635,849,1585,829,1363,723,1265,678,1138,624,955,558"/>

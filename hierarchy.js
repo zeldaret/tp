@@ -942,7 +942,6 @@ var hierarchy =
     [ "daTag_Lantern_Param_c", "classdaTag__Lantern__Param__c.html", null ],
     [ "daTag_Msg_HIO_Param_c", "classdaTag__Msg__HIO__Param__c.html", null ],
     [ "daTag_Msg_Param_c", "classdaTag__Msg__Param__c.html", null ],
-    [ "daTagQs_c", "structdaTagQs__c.html", null ],
     [ "daTagTWGate_zevParam", "structdaTagTWGate__zevParam.html", null ],
     [ "daTagWaterFall_HIO_c", "structdaTagWaterFall__HIO__c.html", null ],
     [ "daTbox_ModelInfo", "structdaTbox__ModelInfo.html", null ],
@@ -2957,9 +2956,9 @@ var hierarchy =
         [ "daGuardMng_c", "classdaGuardMng__c.html", null ],
         [ "daHoZelda_c", "structdaHoZelda__c.html", null ],
         [ "daHorse_c", "classdaHorse__c.html", null ],
-        [ "daItemBase_c", "structdaItemBase__c.html", [
+        [ "daItemBase_c", "classdaItemBase__c.html", [
           [ "daItemKantera_c", "classdaItemKantera__c.html", null ],
-          [ "daItem_c", "structdaItem__c.html", null ],
+          [ "daItem_c", "classdaItem__c.html", null ],
           [ "daObjZCloth_c", "classdaObjZCloth__c.html", null ],
           [ "daShopItem_c", "classdaShopItem__c.html", null ]
         ] ],
@@ -3350,6 +3349,7 @@ var hierarchy =
         [ "daTagMyna2_c", "classdaTagMyna2__c.html", null ],
         [ "daTagPati_c", "classdaTagPati__c.html", null ],
         [ "daTagPoFire_c", "classdaTagPoFire__c.html", null ],
+        [ "daTagQs_c", "classdaTagQs__c.html", null ],
         [ "daTagRestart_c", "classdaTagRestart__c.html", null ],
         [ "daTagRetRm_c", "classdaTagRetRm__c.html", null ],
         [ "daTagRiverBack_c", "classdaTagRiverBack__c.html", null ],

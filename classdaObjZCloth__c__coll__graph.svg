@@ -66,7 +66,7 @@ var sectionId = 'dynsection-1';
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="structdaItemBase__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="classdaItemBase__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1354,-283.25 1275,-283.25 1275,-264 1354,-264 1354,-283.25"/>
 <text text-anchor="middle" x="1314.5" y="-269.75" font-family="Helvetica,sans-Serif" font-size="10.00">daItemBase_c</text>
 </a>

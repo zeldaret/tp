@@ -64,7 +64,7 @@ var searchData=
   ['indtexscale1_61',['IndTexScale1',['../struct__GXData.html#a806343fe1c118adc069db6ec7e7c93b6',1,'_GXData']]],
   ['info_62',['info',['../structSTRUCT__DSP__TASK.html#a3a3a8becac419639ed37c924c2b2d8cf',1,'STRUCT_DSP_TASK::info'],['../structOSModuleHeader.html#a13e764d9ae6973d07151006b6125568d',1,'OSModuleHeader::info'],['../classdComIfG__inf__c.html#a93faeb7c4404fd5175e7eb412fc0dd16',1,'dComIfG_inf_c::info']]],
   ['ingame_63',['inGame',['../classZ2SceneMgr.html#a011d76b851388a986a8d072a8db6e9d5',1,'Z2SceneMgr']]],
-  ['init_64',['init',['../d__menu__option_8cpp.html#a7511d7176f8ff04f2ccc5749ae83f43c',1,'init:&#160;d_menu_option.cpp'],['../d__menu__collect_8cpp.html#a1850889e50a7fcba0a821d982e3fe397',1,'init:&#160;d_menu_collect.cpp'],['../structaction__class.html#a8f512790ee105dfbc7c11a70c970c760',1,'action_class::init']]],
+  ['init_64',['init',['../d__menu__option_8cpp.html#a1850889e50a7fcba0a821d982e3fe397',1,'init:&#160;d_menu_option.cpp'],['../d__menu__collect_8cpp.html#a1850889e50a7fcba0a821d982e3fe397',1,'init:&#160;d_menu_collect.cpp'],['../structaction__class.html#a8f512790ee105dfbc7c11a70c970c760',1,'action_class::init']]],
   ['init_5fcb_65',['init_cb',['../structDSPTaskInfo.html#a96861af66adbf63798cbedfc6c24bfcf',1,'DSPTaskInfo']]],
   ['init_5fhio_66',['init_hio',['../d__a__e__vt_8cpp.html#ad7e54d45d267383d1ce5e83c195d7b22',1,'d_a_e_vt.cpp']]],
   ['init_5finterrupts_5ffunc_67',['init_interrupts_func',['../structDBCommTable.html#a42df62b918c09698df210a28f48b1f98',1,'DBCommTable']]],

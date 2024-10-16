@@ -1,6 +1,6 @@
 <map id="daShopItem_c" name="daShopItem_c">
 <area shape="rect" id="Node000001" title=" " alt="" coords="1833,213,1938,239"/>
-<area shape="rect" id="Node000002" href="$structdaItemBase__c.html" title=" " alt="" coords="1678,681,1783,707"/>
+<area shape="rect" id="Node000002" href="$classdaItemBase__c.html" title=" " alt="" coords="1678,681,1783,707"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1738,666,1877,238,1882,240,1743,667"/>
 <area shape="rect" id="Node000003" href="$structfopAc__ac__c.html" title=" " alt="" coords="897,609,988,635"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1003,631,1020,634,1198,654,1337,664,1476,672,1654,684,1678,686,1677,692,1654,690,1475,677,1336,670,1197,660,1020,639,1003,636"/>

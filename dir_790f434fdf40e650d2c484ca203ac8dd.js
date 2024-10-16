@@ -732,7 +732,7 @@ var dir_790f434fdf40e650d2c484ca203ac8dd =
     [ "d_a_tag_pachi.h", "d__a__tag__pachi_8h.html", "d__a__tag__pachi_8h" ],
     [ "d_a_tag_poFire.h", "d__a__tag__poFire_8h.html", "d__a__tag__poFire_8h" ],
     [ "d_a_tag_push.h", "d__a__tag__push_8h.html", "d__a__tag__push_8h" ],
-    [ "d_a_tag_qs.h", "d__a__tag__qs_8h.html", null ],
+    [ "d_a_tag_qs.h", "d__a__tag__qs_8h.html", "d__a__tag__qs_8h" ],
     [ "d_a_tag_ret_room.h", "d__a__tag__ret__room_8h.html", "d__a__tag__ret__room_8h" ],
     [ "d_a_tag_river_back.h", "d__a__tag__river__back_8h.html", "d__a__tag__river__back_8h" ],
     [ "d_a_tag_rmbit_sw.h", "d__a__tag__rmbit__sw_8h.html", "d__a__tag__rmbit__sw_8h" ],

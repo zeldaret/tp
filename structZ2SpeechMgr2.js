@@ -1,6 +1,7 @@
 var structZ2SpeechMgr2 =
 [
     [ "Z2SpeechMgr2", "structZ2SpeechMgr2.html#af6fe2423f05e55e2dc735b2292711ef8", null ],
+    [ "~Z2SpeechMgr2", "structZ2SpeechMgr2.html#aa20cc84a57a15302d4b722c832ca9b9a", null ],
     [ "framework", "structZ2SpeechMgr2.html#a33cd19c00951977aaf043d4d5bbdb772", null ],
     [ "isMidnaSpeak", "structZ2SpeechMgr2.html#a5865fbee0be2abe5efb9fe70c2b6a5d3", null ],
     [ "isNonVerbal", "structZ2SpeechMgr2.html#ab5986938174ffc36d0ff6f3db7ac4bd0", null ],

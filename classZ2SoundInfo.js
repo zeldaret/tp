@@ -1,7 +1,7 @@
 var classZ2SoundInfo =
 [
     [ "Z2SoundInfo", "classZ2SoundInfo.html#a5c9ff5f4466c27f8a12b53ea39343dc3", null ],
-    [ "~Z2SoundInfo", "classZ2SoundInfo.html#a68b1861ed4ac0631ba2e50eed5dc50d5", null ],
+    [ "~Z2SoundInfo", "classZ2SoundInfo.html#a204dc2e8515e7fbd09126ae80e109dea", null ],
     [ "getAudibleSw", "classZ2SoundInfo.html#ab73dfa565870c030543e4b02c16c0f5d", null ],
     [ "getAudibleSwFull", "classZ2SoundInfo.html#a62d082367caf6390f443b949f5d84662", null ],
     [ "getBgmSeqResourceID", "classZ2SoundInfo.html#a05bae2ddd1dcf7bbbafc5fc152df7a9c", null ],
