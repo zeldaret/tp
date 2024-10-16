@@ -430,7 +430,7 @@ void Z2SoundInfo::getSoundInfo_(JAISoundID param_1, JAISound* param_2) const {
 
 
 /* 802BBBE0-802BBCBC 2B6520 00DC+00 2/1 0/0 0/0 .text            __dt__11Z2SoundInfoFv */
-Z2SoundInfo::~Z2SoundInfo() {}
+// Z2SoundInfo::~Z2SoundInfo() {}
 
 /* 802BBCBC-802BBCC4 2B65FC 0008+00 1/0 0/0 0/0 .text
  * @4@getBgmSeqResourceID__11Z2SoundInfoCF10JAISoundID          */

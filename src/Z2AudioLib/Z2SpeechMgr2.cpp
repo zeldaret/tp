@@ -316,7 +316,7 @@ SECTION_DATA extern void* __vt__15Z2SpeechStarter[5] = {
 };
 
 /* 802CBCEC-802CBD88 2C662C 009C+00 1/0 0/0 0/0 .text            __dt__15Z2SpeechStarterFv */
-Z2SpeechStarter::~Z2SpeechStarter() {}
+//Z2SpeechStarter::~Z2SpeechStarter() {}
 
 /* 802CBD88-802CBF60 2C66C8 01D8+00 1/0 1/1 0/0 .text            setString__12Z2SpeechMgr2FPCUssUcUs
  */

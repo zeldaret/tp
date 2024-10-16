@@ -331,7 +331,7 @@ config.libs = [
         "objects": [
             Object(Matching, "m_Do/m_Do_main.cpp"),
             Object(NonMatching, "m_Do/m_Do_printf.cpp"),
-            Object(NonMatching, "m_Do/m_Do_audio.cpp"),
+            Object(Matching, "m_Do/m_Do_audio.cpp"),
             Object(Matching, "m_Do/m_Do_controller_pad.cpp"),
             Object(NonMatching, "m_Do/m_Do_graphic.cpp"),
             Object(NonMatching, "m_Do/m_Do_machine.cpp"),

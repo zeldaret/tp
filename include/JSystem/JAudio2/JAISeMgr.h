@@ -95,7 +95,7 @@ public:
     /* 802A0768 */ bool startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
     /* 802A08D0 */ int getNumActiveSe() const;
 
-    /* 802A08FC */ virtual ~JAISeMgr();  // inline?
+    /* 802A08FC */ virtual ~JAISeMgr() {}
     /* 802A0168 */ virtual bool isUsingSeqData(JAISeqDataRegion const&);
     /* 802A01D8 */ virtual int releaseSeqData(JAISeqDataRegion const&);
 
