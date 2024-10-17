@@ -291,22 +291,22 @@ def DolphinLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
 
 
 # Helper function for REL script objects
-def Rel(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+def Rel(lib_name: str, objects: List[Object], no_sym_inline: bool=True) -> Dict[str, Any]:
     return {
         "lib": lib_name,
         "mw_version": "GC/2.7",
-        "cflags": [*cflags_rel, '-pragma "nosyminline on"'],
+        "cflags": [*cflags_rel, '-pragma "nosyminline on"' if no_sym_inline else ''],
         "progress_category": "game",
         "objects": objects,
     }
 
 # Helper function for actor RELs
-def ActorRel(status, rel_name, extra_cflags=[]):
-    return Rel(rel_name, [Object(status, f"d/actor/{rel_name}.cpp", extra_cflags=extra_cflags)])
+def ActorRel(status: bool, rel_name: str, extra_cflags: List[str]=[], no_sym_inline: bool=True) -> Dict[str, Any]:
+    return Rel(rel_name, [Object(status, f"d/actor/{rel_name}.cpp", extra_cflags=extra_cflags)], no_sym_inline=no_sym_inline)
 
 
 # Helper function for JSystem libraries
-def JSystemLib(lib_name, objects, progress_category="third_party"):
+def JSystemLib(lib_name: str, objects: List[Object], progress_category: str="third_party") -> Dict[str, Any]:
     return {
         "lib": lib_name,
         "mw_version": "GC/2.7",
@@ -2101,7 +2101,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_tag_watchge"),
     ActorRel(NonMatching, "d_a_tag_waterfall"),
     ActorRel(NonMatching, "d_a_tag_wljump"),
-    ActorRel(NonMatching, "d_a_tag_yami"),
+    ActorRel(Matching, "d_a_tag_yami", no_sym_inline=False),
     ActorRel(Matching, "d_a_talk"),
     ActorRel(Matching, "d_a_tboxSw"),
     ActorRel(NonMatching, "d_a_title"),
