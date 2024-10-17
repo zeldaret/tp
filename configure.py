@@ -2048,7 +2048,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_zrTurara"),
     ActorRel(Matching, "d_a_obj_zrTuraraRock"),
     ActorRel(NonMatching, "d_a_obj_zraMark"),
-    ActorRel(NonMatching, "d_a_obj_zra_freeze"),
+    ActorRel(Matching, "d_a_obj_zra_freeze"),
     ActorRel(NonMatching, "d_a_obj_zra_rock"),
     ActorRel(NonMatching, "d_a_passer_mng"),
     ActorRel(NonMatching, "d_a_peru"),
