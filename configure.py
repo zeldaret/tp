@@ -2097,7 +2097,7 @@ config.libs = [
     ActorRel(Matching, "d_a_tag_ss_drink"),
     ActorRel(Matching, "d_a_tag_stream"),
     ActorRel(NonMatching, "d_a_tag_theB_hint"),
-    ActorRel(NonMatching, "d_a_tag_wara_howl"),
+    ActorRel(Matching, "d_a_tag_wara_howl"),
     ActorRel(Matching, "d_a_tag_watchge"),
     ActorRel(NonMatching, "d_a_tag_waterfall"),
     ActorRel(NonMatching, "d_a_tag_wljump"),
