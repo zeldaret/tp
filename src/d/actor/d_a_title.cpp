@@ -3,7 +3,12 @@
 // Translation Unit: d_a_title
 //
 
+//
+// Issues with ~dDlst_daTitle_c appearing after create rather than end of TU
+//
+
 #include "d/actor/d_a_title.h"
+#include "d/d_demo.h"
 #include "d/d_pane_class_alpha.h"
 #include "d/d_menu_collect.h"
 #include "m_Do/m_Do_Reset.h"
@@ -17,145 +22,28 @@
 #include "JSystem/JKernel/JKRMemArchive.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "m_Do/m_Do_graphic.h"
-#include "dol2asm.h"
-
-//
-// Types:
-//
-
-struct dDemo_object_c {
-    /* 80039088 */ void getActor(u8);
-};
-
-struct dDemo_c {
-    static u8 m_object[4];
-};
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__11daTit_HIO_cFv();
-extern "C" void CreateHeap__9daTitle_cFv();
-extern "C" void create__9daTitle_cFv();
-extern "C" void createHeapCallBack__9daTitle_cFP10fopAc_ac_c();
-extern "C" void Execute__9daTitle_cFv();
-extern "C" void KeyWaitAnm__9daTitle_cFv();
-extern "C" void loadWait_init__9daTitle_cFv();
-extern "C" void loadWait_proc__9daTitle_cFv();
-extern "C" void logoDispWaitInit__9daTitle_cFv();
-extern "C" void logoDispWait__9daTitle_cFv();
-extern "C" void logoDispAnmInit__9daTitle_cFv();
-extern "C" void logoDispAnm__9daTitle_cFv();
-extern "C" void keyWaitInit__9daTitle_cFv();
-extern "C" void keyWait__9daTitle_cFv();
-extern "C" void nextScene_init__9daTitle_cFv();
-extern "C" void nextScene_proc__9daTitle_cFv();
-extern "C" void fastLogoDispInit__9daTitle_cFv();
-extern "C" void fastLogoDisp__9daTitle_cFv();
-extern "C" void getDemoPrm__9daTitle_cFv();
-extern "C" void Draw__9daTitle_cFv();
-extern "C" void Delete__9daTitle_cFv();
-extern "C" static void daTitle_Draw__FP9daTitle_c();
-extern "C" static void daTitle_Execute__FP9daTitle_c();
-extern "C" static void daTitle_Delete__FP9daTitle_c();
-extern "C" static void daTitle_Create__FP10fopAc_ac_c();
-extern "C" void draw__15dDlst_daTitle_cFv();
-extern "C" void draw__12dDlst_base_cFv();
-extern "C" void __dt__11daTit_HIO_cFv();
-extern "C" void __sinit_d_a_title_cpp();
-extern "C" void __dt__15dDlst_daTitle_cFv();
-extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" extern char const* const d_a_title__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void play__14mDoExt_baseAnmFv();
-extern "C" void init__13mDoExt_bpkAnmFP16J3DMaterialTableP11J3DAnmColoriifss();
-extern "C" void entry__13mDoExt_bpkAnmFP16J3DMaterialTablef();
-extern "C" void init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss();
-extern "C" void entry__13mDoExt_btkAnmFP16J3DMaterialTablef();
-extern "C" void init__13mDoExt_brkAnmFP16J3DMaterialTableP15J3DAnmTevRegKeyiifss();
-extern "C" void entry__13mDoExt_brkAnmFP16J3DMaterialTablef();
-extern "C" void init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb();
-extern "C" void entry__13mDoExt_bckAnmFP12J3DModelDataf();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_getGameHeap__Fv();
-extern "C" void mDoExt_setCurrentHeap__FP7JKRHeap();
-extern "C" void mDoExt_getMesgFont__Fv();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void create__24mDoDvdThd_mountArchive_cFPCcUcP7JKRHeap();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopOvlpM_IsPeek__Fv();
-extern "C" void fopScnM_SearchByID__FUi();
-extern "C" void fopScnM_ChangeReq__FP11scene_classssUs();
-extern "C" void fopMsgM_messageGet__FPcUl();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void getActor__14dDemo_object_cFUc();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c();
-extern "C" void __ct__13CPaneMgrAlphaFP9J2DScreenUxUcP10JKRExpHeap();
-extern "C" void alphaAnime__13CPaneMgrAlphaFsUcUcUc();
-extern "C" void alphaAnimeLoop__13CPaneMgrAlphaFsUcUcUc();
-extern "C" void
-getData__Q47JStudio3stb4data22TParse_TParagraph_dataCFPQ57JStudio3stb4data22TParse_TParagraph_data5TData();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void becomeCurrentHeap__7JKRHeapFv();
-extern "C" void destroy__7JKRHeapFv();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void create__10JKRExpHeapFUlP7JKRHeapb();
-extern "C" void __ct__9J2DScreenFv();
-extern "C" void setPriority__9J2DScreenFPCcUlP10JKRArchive();
-extern "C" void draw__9J2DScreenFffPC14J2DGrafContext();
-extern "C" void getStringPtr__10J2DTextBoxCFv();
-extern "C" void setString__10J2DTextBoxFsPCce();
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_29();
-extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" f32 mViewOffsetY__17dMenu_Collect3D_c[1 + 1 /* padding */];
-extern "C" u8 mFader__13mDoGph_gInf_c[4];
-extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" u8 mProcID__20dStage_roomControl_c[4];
-extern "C" u8 m_object__7dDemo_c[4];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" void __register_global_object();
-
-//
-// Declarations:
-//
 
 /* 80D67D8C-80D67DA8 000014 001C+00 4/4 0/0 0/0 .bss             g_daTitHIO */
 static daTit_HIO_c g_daTitHIO;
 
 /* ############################################################################################## */
 /* 80D67BD4-80D67BE0 000000 000C+00 2/2 0/0 0/0 .rodata          @3772 */
-SECTION_RODATA static u8 const lit_3772[12] = {
+static u8 const lit_3772[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(0x80D67BD4, &lit_3772);
 
 /* 80D67BE0-80D67BE8 00000C 0006+02 3/3 0/0 0/0 .rodata          l_arcName */
-SECTION_RODATA static char const l_arcName[6] = "Title";
-COMPILER_STRIP_GATE(0x80D67BE0, &l_arcName);
+static char const l_arcName[6] = "Title";
 
 /* 80D67C40-80D67C4C 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
+static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 80D67C4C-80D67C60 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
+static u32 lit_1787[1 + 4 /* padding */] = {
     0x02000201,
     /* padding */
     0x40080000,
@@ -165,31 +53,9 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 };
 #pragma pop
 
-SECTION_DATA static procFunc daTitleProc[6] = {
+static procFunc daTitleProc[6] = {
     &daTitle_c::loadWait_proc, &daTitle_c::logoDispWait, &daTitle_c::logoDispAnm,
     &daTitle_c::keyWait, &daTitle_c::nextScene_proc, &daTitle_c::fastLogoDisp,
-};
-
-/* 80D67CF0-80D67D10 -00001 0020+00 1/0 0/0 0/0 .data            l_daTitle_Method */
-SECTION_DATA static void* l_daTitle_Method[8] = {
-    (void*)daTitle_Create__FP10fopAc_ac_c,
-    (void*)daTitle_Delete__FP9daTitle_c,
-    (void*)daTitle_Execute__FP9daTitle_c,
-    (void*)NULL,
-    (void*)daTitle_Draw__FP9daTitle_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-};
-
-/* 80D67D10-80D67D40 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_TITLE */
-SECTION_DATA extern void* g_profile_TITLE[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0007FFFD,
-    (void*)0x02E10000, (void*)&g_fpcLf_Method,
-    (void*)0x00000608, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x000A0000, (void*)&l_daTitle_Method,
-    (void*)0x00044000, (void*)0x000E0000,
 };
 
 /* 80D66B0C-80D66B54 0000EC 0048+00 1/1 0/0 0/0 .text            __ct__11daTit_HIO_cFv */
@@ -435,6 +301,17 @@ void daTitle_c::fastLogoDisp() {
 /* 80D676F4-80D67768 000CD4 0074+00 1/1 0/0 0/0 .text            getDemoPrm__9daTitle_cFv */
 int daTitle_c::getDemoPrm() {
     // NONMATCHING
+    dDemo_actor_c* demoActor = dDemo_c::getActor(demoActorID);
+    dDemo_prm_c* prm;
+    if (demoActor != NULL && demoActor->checkEnable(1) &&
+        (prm = demoActor->getPrm()))
+    {
+        void* data = (void*)prm->getData();
+        JStudio::stb::TParseData_fixed<49> aTStack_30(data);
+        TValueIterator_raw<u8> iter = aTStack_30.begin();
+        return *iter & 0xff;
+    }
+    return -1;
 }
 
 /* 80D67768-80D6786C 000D48 0104+00 1/1 0/0 0/0 .text            Draw__9daTitle_cFv */
@@ -477,23 +354,23 @@ int daTitle_c::Delete() {
 }
 
 /* 80D67948-80D67968 000F28 0020+00 1/0 0/0 0/0 .text            daTitle_Draw__FP9daTitle_c */
-static void daTitle_Draw(daTitle_c* param_0) {
-    // NONMATCHING
+static int daTitle_Draw(daTitle_c* i_this) {
+    return i_this->Draw();
 }
 
 /* 80D67968-80D67988 000F48 0020+00 1/0 0/0 0/0 .text            daTitle_Execute__FP9daTitle_c */
-static void daTitle_Execute(daTitle_c* param_0) {
-    // NONMATCHING
+static int daTitle_Execute(daTitle_c* i_this) {
+    return i_this->Execute();
 }
 
 /* 80D67988-80D679A8 000F68 0020+00 1/0 0/0 0/0 .text            daTitle_Delete__FP9daTitle_c */
-static void daTitle_Delete(daTitle_c* param_0) {
-    // NONMATCHING
+static int daTitle_Delete(daTitle_c* i_this) {
+    return i_this->Delete();
 }
 
 /* 80D679A8-80D679C8 000F88 0020+00 1/0 0/0 0/0 .text            daTitle_Create__FP10fopAc_ac_c */
-static void daTitle_Create(fopAc_ac_c* param_0) {
-    // NONMATCHING
+static int daTitle_Create(fopAc_ac_c* i_this) {
+    return static_cast<daTitle_c*>(i_this)->create();
 }
 
 /* 80D679C8-80D67A04 000FA8 003C+00 1/0 0/0 0/0 .text            draw__15dDlst_daTitle_cFv */
@@ -502,5 +379,29 @@ void dDlst_daTitle_c::draw() {
     Scr->draw(0.0f, 0.0f, ctx);
 }
 
-/* 80D67A08-80D67A50 000FE8 0048+00 2/1 0/0 0/0 .text            __dt__11daTit_HIO_cFv */
-daTit_HIO_c::~daTit_HIO_c() {}
+/* 80D67CF0-80D67D10 -00001 0020+00 1/0 0/0 0/0 .data            l_daTitle_Method */
+static actor_method_class l_daTitle_Method = {
+    (process_method_func)daTitle_Create,
+    (process_method_func)daTitle_Delete,
+    (process_method_func)daTitle_Execute,
+    (process_method_func)NULL,
+    (process_method_func)daTitle_Draw,
+};
+
+/* 80D67D10-80D67D40 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_TITLE */
+extern actor_process_profile_definition g_profile_TITLE = {
+  fpcLy_CURRENT_e,         // mLayerID
+  7,                       // mListID
+  fpcPi_CURRENT_e,         // mListPrio
+  PROC_TITLE,              // mProcName
+  &g_fpcLf_Method.mBase,   // sub_method
+  sizeof(daTitle_c),       // mSize
+  0,                       // mSizeOther
+  0,                       // mParameters
+  &g_fopAc_Method.base,    // sub_method
+  0xa,                     // mPriority
+  &l_daTitle_Method, // sub_method
+  0x00044000,              // mStatus
+  fopAc_ACTOR_e,           // mActorType
+  fopAc_CULLBOX_CUSTOM_e,  // cullType
+};
