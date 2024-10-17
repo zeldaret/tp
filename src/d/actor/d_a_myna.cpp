@@ -7,246 +7,76 @@
 #include "d/actor/d_a_player.h"
 #include "d/d_kankyo.h"
 #include "d/d_msg_object.h"
-#include "dol2asm.h"
 #include "d/actor/d_a_obj_ss_item.h"
 #include "d/actor/d_a_tag_myna_light.h"
 #include "SSystem/SComponent/c_math.h"
 
-//
-// Forward References:
-//
+/* 8094B360-8094B36C 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
+static u8 cNullVec__6Z2Calc[12] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
 
-extern "C" static void createHeapCallBack__FP10fopAc_ac_c();
-extern "C" static void jntNodeCallBack__FP8J3DJointi();
-extern "C" static void daMyna_searchSSItem__FPvPv();
-extern "C" static void daMyna_searchLight__FPvPv();
-extern "C" static void daMyna_searchEvtTag__FPvPv();
-extern "C" void baseMotion00__8daMyna_cFi();
-extern "C" void baseMotion01__8daMyna_cFi();
-extern "C" void baseMotion02__8daMyna_cFi();
-extern "C" void baseMotion03__8daMyna_cFi();
-extern "C" void baseMotion04__8daMyna_cFi();
-extern "C" void baseMotion05__8daMyna_cFi();
-extern "C" void baseMotion06__8daMyna_cFi();
-extern "C" void create__8daMyna_cFv();
-extern "C" void __dt__8cM3dGSphFv();
-extern "C" void __dt__8cM3dGAabFv();
-extern "C" void __dt__10dCcD_GSttsFv();
-extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" void destroy__8daMyna_cFv();
-extern "C" void draw__8daMyna_cFv();
-extern "C" void execute__8daMyna_cFv();
-extern "C" void createHeap__8daMyna_cFv();
-extern "C" void jntNodeCB__8daMyna_cFP8J3DJointP8J3DModel();
-extern "C" void attack_wait_init__8daMyna_cFv();
-extern "C" void attack_wait_move__8daMyna_cFv();
-extern "C" void attack_before_talk_init__8daMyna_cFv();
-extern "C" void attack_before_talk_move__8daMyna_cFv();
-extern "C" void attack_fly_init__8daMyna_cFv();
-extern "C" void attack_fly_move__8daMyna_cFv();
-extern "C" void attack_init__8daMyna_cFv();
-extern "C" void attack_move__8daMyna_cFv();
-extern "C" void attack_after_talk_init__8daMyna_cFv();
-extern "C" void attack_after_talk_move__8daMyna_cFv();
-extern "C" void greet_wait_init__8daMyna_cFv();
-extern "C" void greet_wait_move__8daMyna_cFv();
-extern "C" void greet_talk_init__8daMyna_cFv();
-extern "C" void greet_talk_move__8daMyna_cFv();
-extern "C" void shopping_wait_init__8daMyna_cFv();
-extern "C" void shopping_wait_move__8daMyna_cFv();
-extern "C" void shopping_talk_init__8daMyna_cFv();
-extern "C" void shopping_talk_move__8daMyna_cFv();
-extern "C" void thanks_talk_init__8daMyna_cFv();
-extern "C" void thanks_talk_move__8daMyna_cFv();
-extern "C" void byebye_talk_init__8daMyna_cFv();
-extern "C" void byebye_talk_move__8daMyna_cFv();
-extern "C" void turn_on_start_init__8daMyna_cFv();
-extern "C" void turn_on_start_move__8daMyna_cFv();
-extern "C" void turn_on_init__8daMyna_cFv();
-extern "C" void turn_on_move__8daMyna_cFv();
-extern "C" void turn_on_end1_init__8daMyna_cFv();
-extern "C" void turn_on_end1_move__8daMyna_cFv();
-extern "C" void turn_on_end2_init__8daMyna_cFv();
-extern "C" void turn_on_end2_move__8daMyna_cFv();
-extern "C" void turn_on_end3_init__8daMyna_cFv();
-extern "C" void turn_on_end3_move__8daMyna_cFv();
-extern "C" void wolf_talk_init__8daMyna_cFv();
-extern "C" void wolf_talk_move__8daMyna_cFv();
-extern "C" void attack_wait2_init__8daMyna_cFv();
-extern "C" void attack_wait2_move__8daMyna_cFv();
-extern "C" void attack_before_talk2_init__8daMyna_cFv();
-extern "C" void attack_before_talk2_move__8daMyna_cFv();
-extern "C" void attack_fly2_init__8daMyna_cFv();
-extern "C" void attack_fly2_move__8daMyna_cFv();
-extern "C" void attack2_init__8daMyna_cFv();
-extern "C" void attack2_move__8daMyna_cFv();
-extern "C" void attack2_talk_init__8daMyna_cFv();
-extern "C" void attack2_talk_move__8daMyna_cFv();
-extern "C" void soldoutItem__8daMyna_cFUi();
-extern "C" void fly_attack_move__8daMyna_cFv();
-extern "C" void fly_return_move__8daMyna_cFv();
-extern "C" void fly_body_wave__8daMyna_cFv();
-extern "C" void talkAnime__8daMyna_cFP9msg_class();
-extern "C" void chkEvent__8daMyna_cFv();
-extern "C" void orderEvent__8daMyna_cFv();
-extern "C" void deleteItem__8daMyna_cFi();
-extern "C" void deleteItem__8daMyna_cFUi();
-extern "C" void initiate__8daMyna_cFv();
-extern "C" void setItemInfo__8daMyna_cFv();
-extern "C" void setRoomNo__8daMyna_cFv();
-extern "C" void setCollision__8daMyna_cFv();
-extern "C" void set_mtx__8daMyna_cFv();
-extern "C" void animePlay__8daMyna_cFv();
-extern "C" void setMcaMorfAnm__8daMyna_cFP18J3DAnmTransformKeyffiii();
-extern "C" void setBtpAnm__8daMyna_cFP16J3DAnmTexPatternP12J3DModelDatafi();
-extern "C" void getTrnsfrmKeyAnm__8daMyna_cFPc();
-extern "C" void getTexPtrnAnm__8daMyna_cFPc();
-extern "C" void checkEndAnm__8daMyna_cFf();
-extern "C" void checkEndAnm__8daMyna_cFP12J3DFrameCtrl();
-extern "C" void getItemNumMax__8daMyna_cFv();
-extern "C" void getItemType__8daMyna_cFPv();
-extern "C" void getFlowNodeNum__8daMyna_cFv();
-extern "C" void checkDead__8daMyna_cFv();
-extern "C" void chkPlayerInEvtArea__8daMyna_cFP10fopAc_ac_c4cXyz();
-extern "C" void animeControl__8daMyna_cFv();
-extern "C" void setAnimeType__8daMyna_cFUcf();
-extern "C" void playDefaultWaitAnime__8daMyna_cFv();
-extern "C" void setDefaultWaitAnime__8daMyna_cFUc();
-extern "C" static void daMyna_Create__FPv();
-extern "C" static void daMyna_Delete__FPv();
-extern "C" static void daMyna_Execute__FPv();
-extern "C" static void daMyna_Draw__FPv();
-extern "C" static bool daMyna_IsDelete__FPv();
-extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" void __dt__12daMyna_HIO_cFv();
-extern "C" void __dt__14mDoHIO_entry_cFv();
-extern "C" void getHeadTopPos__9daPy_py_cCFv();
-extern "C" void __dt__8daMyna_cFv();
-extern "C" void func_8094ABAC(void* _this, s16*);
-extern "C" void func_8094ABC8(void* _this, int, int);
-extern "C" void __sinit_d_a_myna_cpp();
-extern "C" u8 const mCcDSph__8daMyna_c[64];
-extern "C" extern char const* const d_a_myna__stringBase0;
-extern "C" u8 mBaseMotionTBL__8daMyna_c[84];
-extern "C" void* __vt__8daMyna_c[3];
-extern "C" void* __vt__12J3DFrameCtrl[3];
-extern "C" void* __vt__8cM3dGAab[3];
-extern "C" void* __vt__8cM3dGSph[3];
-extern "C" void* __vt__10cCcD_GStts[3];
-extern "C" void* __vt__10dCcD_GStts[3];
+/* 8094B36C-8094B380 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
+static u32 lit_1787[1 + 4 /* padding */] = {
+    0x02000201,
+    /* padding */
+    0x40080000,
+    0x00000000,
+    0x3FE00000,
+    0x00000000,
+};
 
-//
-// External References:
-//
+/* 8094B488-8094B590 000128 0108+00 2/3 0/0 0/0 .data            init_proc */
+static daMyna_c::ProcFunc init_proc[] = {
+    &daMyna_c::attack_wait_init,
+    &daMyna_c::attack_before_talk_init,
+    &daMyna_c::attack_fly_init,
+    &daMyna_c::attack_init,
+    &daMyna_c::attack_after_talk_init,
+    &daMyna_c::greet_wait_init,
+    &daMyna_c::greet_talk_init,
+    &daMyna_c::shopping_wait_init,
+    &daMyna_c::shopping_talk_init,
+    &daMyna_c::thanks_talk_init,
+    &daMyna_c::byebye_talk_init,
+    &daMyna_c::turn_on_start_init,
+    &daMyna_c::turn_on_init,
+    &daMyna_c::turn_on_end1_init,
+    &daMyna_c::turn_on_end2_init,
+    &daMyna_c::turn_on_end3_init,
+    &daMyna_c::wolf_talk_init,
+    &daMyna_c::attack_wait2_init,
+    &daMyna_c::attack_before_talk2_init,
+    &daMyna_c::attack_fly2_init,
+    &daMyna_c::attack2_init,
+    &daMyna_c::attack2_talk_init,
+};
 
-extern "C" void mDoMtx_YrotS__FPA4_fs();
-extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void transM__14mDoMtx_stack_cFfff();
-extern "C" void scaleM__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();
-extern "C" void play__14mDoExt_baseAnmFv();
-extern "C" void init__13mDoExt_btpAnmFP16J3DMaterialTableP16J3DAnmTexPatterniifss();
-extern "C" void entry__13mDoExt_btpAnmFP16J3DMaterialTables();
-extern "C" void
-__ct__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl();
-extern "C" void setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff();
-extern "C" void play__16mDoExt_McaMorfSOFUlSc();
-extern "C" void entryDL__16mDoExt_McaMorfSOFv();
-extern "C" void modelCalc__16mDoExt_McaMorfSOFv();
-extern "C" void stopZelAnime__16mDoExt_McaMorfSOFv();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void __dt__10fopAc_ac_cFv();
-extern "C" void fopAc_IsActor__FPv();
-extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
-extern "C" void fopAcM_delete__FUi();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_searchActorDistanceXZ__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_orderSpeakEvent__FP10fopAc_ac_cUsUs();
-extern "C" void fopAcM_setEffectMtx__FPC10fopAc_ac_cPC12J3DModelData();
-extern "C" void fpcEx_Search__FPFPvPv_PvPv();
-extern "C" void fpcEx_IsExist__FUi();
-extern "C" void fpcSch_JudgeByID__FPvPv();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void isSwitch__12dSv_memBit_cCFi();
-extern "C" void onEventBit__11dSv_event_cFUs();
-extern "C" void offEventBit__11dSv_event_cFUs();
-extern "C" void isEventBit__11dSv_event_cCFUs();
-extern "C" void getRes__14dRes_control_cFPCcPCcP11dRes_info_ci();
-extern "C" void reset__14dEvt_control_cFv();
-extern "C" void convPId__14dEvt_control_cFUi();
-extern "C" void ChkPresentEnd__16dEvent_manager_cFv();
-extern "C" void GetRoomId__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void __ct__10dCcD_GSttsFv();
-extern "C" void Move__10dCcD_GSttsFv();
-extern "C" void Init__9dCcD_SttsFiiP10fopAc_ac_c();
-extern "C" void __ct__12dCcD_GObjInfFv();
-extern "C" void __dt__12dCcD_GObjInfFv();
-extern "C" void ChkAtHit__12dCcD_GObjInfFv();
-extern "C" void Set__8dCcD_SphFRC11dCcD_SrcSph();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void getStatus__12dMsgObject_cFv();
-extern "C" void dMsgObject_getTotalPrice__Fv();
-extern "C" void dMsgObject_setTotalPrice__FUs();
-extern "C" void dMsgObject_addTotalPrice__Fs();
-extern "C" void dMsgObject_getTotalPayment__Fv();
-extern "C" void dMsgObject_setTotalPayment__FUs();
-extern "C" void __ct__10dMsgFlow_cFv();
-extern "C" void __dt__10dMsgFlow_cFv();
-extern "C" void init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c();
-extern "C" void doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci();
-extern "C" void getMsg__10dMsgFlow_cFv();
-extern "C" void Set__4cCcSFP8cCcD_Obj();
-extern "C" void __pl__4cXyzCFRC3Vec();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void cM_atan2s__Fff();
-extern "C" void cM_rnd__Fv();
-extern "C" void cM_rndF__Ff();
-extern "C" void __ct__11cBgS_GndChkFv();
-extern "C" void __dt__11cBgS_GndChkFv();
-extern "C" void SetC__8cM3dGSphFRC4cXyz();
-extern "C" void SetR__8cM3dGSphFf();
-extern "C" void cLib_addCalcPos2__FP4cXyzRC4cXyzff();
-extern "C" void cLib_addCalcAngleS__FPsssss();
-extern "C" void cLib_offsetPos__FP4cXyzPC4cXyzsPC4cXyz();
-extern "C" void __ct__10Z2CreatureFv();
-extern "C" void __dt__10Z2CreatureFv();
-extern "C" void init__10Z2CreatureFP3VecP3VecUcUc();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void removeTexNoAnimator__16J3DMaterialTableFP16J3DAnmTexPattern();
-extern "C" void __ptmf_test();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_23();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_23();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mCurrentMtx__6J3DSys[48];
-extern "C" u8 sincosTable___5JMath[65536];
-extern "C" void __register_global_object();
-extern "C" void getExchangeItemPtr__14daObj_SSItem_cFv();
-extern "C" void setTurnOnOffChange__17daTag_MynaLight_cFv();
-
-//
-// Declarations:
-//
+/* 8094B698-8094B7A0 000338 0108+00 2/3 0/0 0/0 .data            move_proc */
+static daMyna_c::ProcFunc move_proc[] = {
+    &daMyna_c::attack_wait_move,
+    &daMyna_c::attack_before_talk_move,
+    &daMyna_c::attack_fly_move,
+    &daMyna_c::attack_move,
+    &daMyna_c::attack_after_talk_move,
+    &daMyna_c::greet_wait_move,
+    &daMyna_c::greet_talk_move,
+    &daMyna_c::shopping_wait_move,
+    &daMyna_c::shopping_talk_move,
+    &daMyna_c::thanks_talk_move,
+    &daMyna_c::byebye_talk_move,
+    &daMyna_c::turn_on_start_move,
+    &daMyna_c::turn_on_move,
+    &daMyna_c::turn_on_end1_move,
+    &daMyna_c::turn_on_end2_move,
+    &daMyna_c::turn_on_end3_move,
+    &daMyna_c::wolf_talk_move,
+    &daMyna_c::attack_wait2_move,
+    &daMyna_c::attack_before_talk2_move,
+    &daMyna_c::attack_fly2_move,
+    &daMyna_c::attack2_move,
+    &daMyna_c::attack2_talk_move,
+};
 
 /* 80945C6C-80945C8C 0000EC 0020+00 1/1 0/0 0/0 .text            createHeapCallBack__FP10fopAc_ac_c
  */
@@ -264,7 +94,6 @@ static int jntNodeCallBack(J3DJoint* i_jnt, int param_1) {
     return 1;
 }
 
-/* ############################################################################################## */
 /* 8094B9F0-8094B9F4 000008 0001+03 2/2 0/0 0/0 .bss             @1109 */
 static u8 lit_1109[1 + 3 /* padding */];
 
@@ -358,9 +187,6 @@ static u8 lit_1010[1 + 3 /* padding */];
 static u8 lit_1009[1 + 3 /* padding */];
 #pragma pop
 
-/* 8094BA30-8094BA3C 000048 000C+00 1/1 0/0 0/0 .bss             @3847 */
-static u8 lit_3847[12];
-
 /* 8094BA3C-8094BA70 000054 0034+00 15/15 0/0 0/0 .bss             l_HOSTIO */
 static daMyna_HIO_c l_HOSTIO;
 
@@ -413,7 +239,6 @@ static void* daMyna_searchLight(void* i_mynaLightTagActor, void* param_1) {
     return 0;
 }
 
-/* ############################################################################################## */
 /* 8094BAC8-8094BACC 0000E0 0004+00 8/9 0/0 0/0 .bss             daMyna_evtTagActor0 */
 static fopAc_ac_c* daMyna_evtTagActor0;
 
@@ -433,21 +258,10 @@ static void* daMyna_searchEvtTag(void* i_evtTagActor, void* param_1) {
     return 0;
 }
 
-/* ############################################################################################## */
 /* 8094B1B0-8094B1F0 000000 0040+00 7/7 0/0 0/0 .rodata          mCcDSph__8daMyna_c */
-SECTION_RODATA dCcD_SrcSph const daMyna_c::mCcDSph = {
+dCcD_SrcSph const daMyna_c::mCcDSph = {
     0, 0x400, 1, 0x1F, 0, 0, 0x79, 0xA, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0.0f, 0.0f, 0.0f, 15.0f,
 };
-COMPILER_STRIP_GATE(0x8094B1B0, &daMyna_c::mCcDSph);
-
-/* 8094B1F0-8094B1F4 000040 0004+00 25/32 0/0 0/0 .rodata          @3926 */
-SECTION_RODATA static u8 const lit_3926[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x8094B1F0, &lit_3926);
 
 /* 80945E80-80945EC0 000300 0040+00 1/0 0/0 0/0 .text            baseMotion00__8daMyna_cFi */
 int daMyna_c::baseMotion00(int param_0) {
@@ -458,7 +272,6 @@ int daMyna_c::baseMotion00(int param_0) {
     return 1;
 }
 
-
 /* 80945EC0-80945F00 000340 0040+00 1/0 0/0 0/0 .text            baseMotion01__8daMyna_cFi */
 int daMyna_c::baseMotion01(int param_0) {
     if (param_0 != 0) {
@@ -468,7 +281,6 @@ int daMyna_c::baseMotion01(int param_0) {
     return 1;
 }
 
-
 /* 80945F00-80945F40 000380 0040+00 1/0 0/0 0/0 .text            baseMotion02__8daMyna_cFi */
 int daMyna_c::baseMotion02(int param_0) {
     if (param_0 != 0) {
@@ -477,7 +289,6 @@ int daMyna_c::baseMotion02(int param_0) {
     }
     return 1;
 }
-
 
 /* 80945F40-80945FA0 0003C0 0060+00 1/0 0/0 0/0 .text            baseMotion03__8daMyna_cFi */
 int daMyna_c::baseMotion03(int param_0) {
@@ -492,7 +303,6 @@ int daMyna_c::baseMotion03(int param_0) {
     return 1;
 }
 
-
 /* 80945FA0-80946000 000420 0060+00 1/0 0/0 0/0 .text            baseMotion04__8daMyna_cFi */
 int daMyna_c::baseMotion04(int param_0) {
     if (param_0 != 0) {
@@ -505,7 +315,6 @@ int daMyna_c::baseMotion04(int param_0) {
     }
     return 1;
 }
-
 
 /* 80946000-80946060 000480 0060+00 1/0 0/0 0/0 .text            baseMotion05__8daMyna_cFi */
 int daMyna_c::baseMotion05(int param_0) {
@@ -520,7 +329,6 @@ int daMyna_c::baseMotion05(int param_0) {
     return 1;
 }
 
-
 /* 80946060-809460A0 0004E0 0040+00 1/0 0/0 0/0 .text            baseMotion06__8daMyna_cFi */
 int daMyna_c::baseMotion06(int param_0) {
     if (param_0 != 0) {
@@ -529,100 +337,6 @@ int daMyna_c::baseMotion06(int param_0) {
     }
     return 1;
 }
-
-
-/* ############################################################################################## */
-/* 8094B24C-8094B24C 00009C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8094B24C = "MYNA_hovering.bck";
-SECTION_DEAD static char const* const stringBase_8094B25E = "MYNA_wait_a.bck";
-SECTION_DEAD static char const* const stringBase_8094B26E = "MYNA_pick_a.bck";
-SECTION_DEAD static char const* const stringBase_8094B27E = "MYNA_pick_b.bck";
-SECTION_DEAD static char const* const stringBase_8094B28E = "MYNA_jump.bck";
-SECTION_DEAD static char const* const stringBase_8094B29C = "MYNA_sidestepL.bck";
-SECTION_DEAD static char const* const stringBase_8094B2AF = "MYNA_sidestepR.bck";
-SECTION_DEAD static char const* const stringBase_8094B2C2 = "MYNA_lightup.bck";
-SECTION_DEAD static char const* const stringBase_8094B2D3 = "MYNA_attack.bck";
-SECTION_DEAD static char const* const stringBase_8094B2E3 = "MYNA_talk_a.bck";
-SECTION_DEAD static char const* const stringBase_8094B2F3 = "MYNA_talk_b.bck";
-SECTION_DEAD static char const* const stringBase_8094B303 = "MYNA_wait_b.bck";
-SECTION_DEAD static char const* const stringBase_8094B313 = "MYNA_wait_c.bck";
-SECTION_DEAD static char const* const stringBase_8094B323 = "MYNA_talk_c.bck";
-SECTION_DEAD static char const* const stringBase_8094B333 = "MYNA_wait_d.bck";
-SECTION_DEAD static char const* const stringBase_8094B343 = "MYNA.btp";
-SECTION_DEAD static char const* const stringBase_8094B34C = "Npc_myna";
-#pragma pop
-
-/* 8094B360-8094B36C 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 8094B36C-8094B380 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
-
-/* 8094B488-8094B590 000128 0108+00 2/3 0/0 0/0 .data            init_proc */
-static daMyna_c::ProcFunc init_proc[] = {
-    &daMyna_c::attack_wait_init,
-    &daMyna_c::attack_before_talk_init,
-    &daMyna_c::attack_fly_init,
-    &daMyna_c::attack_init,
-    &daMyna_c::attack_after_talk_init,
-    &daMyna_c::greet_wait_init,
-    &daMyna_c::greet_talk_init,
-    &daMyna_c::shopping_wait_init,
-    &daMyna_c::shopping_talk_init,
-    &daMyna_c::thanks_talk_init,
-    &daMyna_c::byebye_talk_init,
-    &daMyna_c::turn_on_start_init,
-    &daMyna_c::turn_on_init,
-    &daMyna_c::turn_on_end1_init,
-    &daMyna_c::turn_on_end2_init,
-    &daMyna_c::turn_on_end3_init,
-    &daMyna_c::wolf_talk_init,
-    &daMyna_c::attack_wait2_init,
-    &daMyna_c::attack_before_talk2_init,
-    &daMyna_c::attack_fly2_init,
-    &daMyna_c::attack2_init,
-    &daMyna_c::attack2_talk_init,
-};
-
-/* 8094B698-8094B7A0 000338 0108+00 2/3 0/0 0/0 .data            move_proc */
-static daMyna_c::ProcFunc move_proc[] = {
-    &daMyna_c::attack_wait_move,
-    &daMyna_c::attack_before_talk_move,
-    &daMyna_c::attack_fly_move,
-    &daMyna_c::attack_move,
-    &daMyna_c::attack_after_talk_move,
-    &daMyna_c::greet_wait_move,
-    &daMyna_c::greet_talk_move,
-    &daMyna_c::shopping_wait_move,
-    &daMyna_c::shopping_talk_move,
-    &daMyna_c::thanks_talk_move,
-    &daMyna_c::byebye_talk_move,
-    &daMyna_c::turn_on_start_move,
-    &daMyna_c::turn_on_move,
-    &daMyna_c::turn_on_end1_move,
-    &daMyna_c::turn_on_end2_move,
-    &daMyna_c::turn_on_end3_move,
-    &daMyna_c::wolf_talk_move,
-    &daMyna_c::attack_wait2_move,
-    &daMyna_c::attack_before_talk2_move,
-    &daMyna_c::attack_fly2_move,
-    &daMyna_c::attack2_move,
-    &daMyna_c::attack2_talk_move,
-};
 
 /* 8094B7A0-8094B7DC -00001 003C+00 2/2 0/0 0/0 .data            l_bckFileNameTBL */
 static char* l_bckFileNameTBL[] = {
@@ -637,8 +351,6 @@ static char* l_btpFileNameTBL[] = {"MYNA.btp"};
 
 /* 8094B7E0-8094B810 000480 0030+00 1/1 0/0 0/0 .data aParam$localstatic3$__ct__12daMyna_HIO_cFv
  */
-// sinit matches, but with incorrect weak function ordering
-#ifdef NONMATCHING
 daMyna_HIO_c::daMyna_HIO_c() {
     // This could probably be cleaned up a bit. Equivalent to:
     /*
@@ -666,102 +378,13 @@ daMyna_HIO_c::daMyna_HIO_c() {
     };
     memcpy(&field_0x04, data_8094B7E0, 0x30);
 }
-#else
-SECTION_DATA static u8 data_8094B7E0[48] = {
-    0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3D, 0xA3, 0xD7, 0x0A, 0x3E, 0xCC, 0xCC, 0xCD,
-    0x41, 0xF0, 0x00, 0x00, 0x42, 0x34, 0x00, 0x00, 0x42, 0x28, 0x00, 0x00, 0x40, 0x00, 0x00, 0x00,
-    0x00, 0x4B, 0x00, 0x04, 0x7F, 0xFF, 0x05, 0xDC, 0x00, 0x05, 0x20, 0x00, 0x00, 0x1E, 0x00, 0x00,
-};
-#endif
-
-/* 8094B810-8094B81C -00001 000C+00 0/1 0/0 0/0 .data            @3913 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3913[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)baseMotion00__8daMyna_cFi,
-};
-#pragma pop
-
-/* 8094B81C-8094B828 -00001 000C+00 0/1 0/0 0/0 .data            @3914 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3914[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)baseMotion01__8daMyna_cFi,
-};
-#pragma pop
-
-/* 8094B828-8094B834 -00001 000C+00 0/1 0/0 0/0 .data            @3915 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3915[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)baseMotion02__8daMyna_cFi,
-};
-#pragma pop
-
-/* 8094B834-8094B840 -00001 000C+00 0/1 0/0 0/0 .data            @3916 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3916[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)baseMotion03__8daMyna_cFi,
-};
-#pragma pop
-
-/* 8094B840-8094B84C -00001 000C+00 0/1 0/0 0/0 .data            @3917 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3917[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)baseMotion04__8daMyna_cFi,
-};
-#pragma pop
-
-/* 8094B84C-8094B858 -00001 000C+00 0/1 0/0 0/0 .data            @3918 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3918[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)baseMotion05__8daMyna_cFi,
-};
-#pragma pop
-
-/* 8094B858-8094B864 -00001 000C+00 0/1 0/0 0/0 .data            @3919 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3919[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)baseMotion06__8daMyna_cFi,
-};
-#pragma pop
 
 /* 8094B864-8094B8B8 000504 0054+00 1/2 0/0 0/0 .data            mBaseMotionTBL__8daMyna_c */
-// sinit matches, but with incorrect weak function ordering
-#ifdef NONMATCHING
 daMyna_c::BaseMotionFunc daMyna_c::mBaseMotionTBL[] = {
     &daMyna_c::baseMotion00, &daMyna_c::baseMotion01, &daMyna_c::baseMotion02,
     &daMyna_c::baseMotion03, &daMyna_c::baseMotion04, &daMyna_c::baseMotion05,
     &daMyna_c::baseMotion06,
 };
-#else
-SECTION_DATA u8 daMyna_c::mBaseMotionTBL[84] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-#endif
 
 /* 809460A0-80946284 000520 01E4+00 1/1 0/0 0/0 .text            create__8daMyna_cFv */
 int daMyna_c::create() {
@@ -783,31 +406,6 @@ int daMyna_c::create() {
             return phase;
         }
     }
-}
-
-
-/* 80946284-809462CC 000704 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGSphFv */
-// cM3dGSph::~cM3dGSph() {
-extern "C" void __dt__8cM3dGSphFv() {
-    // NONMATCHING
-}
-
-/* 809462CC-80946314 00074C 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
-// cM3dGAab::~cM3dGAab() {
-extern "C" void __dt__8cM3dGAabFv() {
-    // NONMATCHING
-}
-
-/* 80946314-80946370 000794 005C+00 1/0 0/0 0/0 .text            __dt__10dCcD_GSttsFv */
-// dCcD_GStts::~dCcD_GStts() {
-extern "C" void __dt__10dCcD_GSttsFv() {
-    // NONMATCHING
-}
-
-/* 80946370-809463B8 0007F0 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
-// J3DFrameCtrl::~J3DFrameCtrl() {
-extern "C" void __dt__12J3DFrameCtrlFv() {
-    // NONMATCHING
 }
 
 /* 809463B8-8094640C 000838 0054+00 1/1 0/0 0/0 .text            destroy__8daMyna_cFv */
@@ -835,15 +433,6 @@ int daMyna_c::draw() {
     }
     return 1;
 }
-
-/* ############################################################################################## */
-/* 8094B1F4-8094B1F8 000044 0004+00 1/1 0/0 0/0 .rodata          @4207 */
-SECTION_RODATA static f32 const lit_4207 = 40.0f;
-COMPILER_STRIP_GATE(0x8094B1F4, &lit_4207);
-
-/* 8094B1F8-8094B1FC 000048 0004+00 1/3 0/0 0/0 .rodata          @4208 */
-SECTION_RODATA static f32 const lit_4208 = 100.0f;
-COMPILER_STRIP_GATE(0x8094B1F8, &lit_4208);
 
 /* 809464CC-809466D8 00094C 020C+00 2/2 0/0 0/0 .text            execute__8daMyna_cFv */
 int daMyna_c::execute() {
@@ -892,18 +481,6 @@ int daMyna_c::execute() {
     return 1;
 }
 
-
-/* ############################################################################################## */
-/* 8094B1FC-8094B200 00004C 0004+00 11/12 0/0 0/0 .rodata          @4270 */
-SECTION_RODATA static f32 const lit_4270 = 1.0f;
-COMPILER_STRIP_GATE(0x8094B1FC, &lit_4270);
-
-/* 8094B24C-8094B24C 00009C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8094B355 = "MYNA.bmd";
-#pragma pop
-
 /* 809466D8-8094686C 000B58 0194+00 1/1 0/0 0/0 .text            createHeap__8daMyna_cFv */
 int daMyna_c::createHeap() {
     J3DModelData* modelData =
@@ -934,7 +511,6 @@ int daMyna_c::createHeap() {
     }
 }
 
-
 /* 8094686C-809468EC 000CEC 0080+00 1/1 0/0 0/0 .text jntNodeCB__8daMyna_cFP8J3DJointP8J3DModel */
 int daMyna_c::jntNodeCB(J3DJoint* i_jnt, J3DModel* i_model) {
     u16 jntNo = i_jnt->getJntNo();
@@ -949,7 +525,6 @@ void daMyna_c::attack_wait_init() {
     setAnimeType(1, 0.0f);
     field_0x92A = 0;
 }
-
 
 /* 8094692C-80946AEC 000DAC 01C0+00 1/0 0/0 0/0 .text            attack_wait_move__8daMyna_cFv */
 void daMyna_c::attack_wait_move() {
@@ -986,13 +561,11 @@ void daMyna_c::attack_wait_move() {
     }
 }
 
-
 /* 80946AEC-80946B40 000F6C 0054+00 1/0 0/0 0/0 .text attack_before_talk_init__8daMyna_cFv */
 void daMyna_c::attack_before_talk_init() {
     mMsgFlow.init(this, field_0x91C, 0, NULL);
     setAnimeType(10, 0.0f);
 }
-
 
 /* 80946B40-80946BB4 000FC0 0074+00 1/0 0/0 0/0 .text attack_before_talk_move__8daMyna_cFv */
 void daMyna_c::attack_before_talk_move() {
@@ -1009,10 +582,8 @@ void daMyna_c::attack_fly_init() {
     field_0x91A = 0;
 }
 
-
 /* 80946BF4-80946D20 001074 012C+00 1/0 0/0 0/0 .text            attack_fly_move__8daMyna_cFv */
-// regswap
-#ifdef NONMATCHING
+// NONMATCHING regswap
 void daMyna_c::attack_fly_move() {
     if (daMyna_evtTagActor0 != NULL) {
         cXyz var1(1.0f, 1.0f, 1.0f);
@@ -1032,11 +603,6 @@ void daMyna_c::attack_fly_move() {
         }
     }
 }
-#else
-void daMyna_c::attack_fly_move() {
-    // NONMATCHING
-}
-#endif
 
 /* 80946D20-80946D64 0011A0 0044+00 1/0 0/0 0/0 .text            attack_init__8daMyna_cFv */
 void daMyna_c::attack_init() {
@@ -1044,10 +610,7 @@ void daMyna_c::attack_init() {
     mSph.OnAtVsPlayerBit();
 }
 
-
 /* 80946D64-80946DD4 0011E4 0070+00 1/0 0/0 0/0 .text            attack_move__8daMyna_cFv */
-// Matches when l_HOSTIO is the correct type
-#ifdef NONMATCHING
 void daMyna_c::attack_move() {
     mStatus.Move();
     if (field_0x91E != 0) {
@@ -1058,11 +621,6 @@ void daMyna_c::attack_move() {
         mSph.OffAtVsPlayerBit();
     }
 }
-#else
-void daMyna_c::attack_move() {
-    // NONMATCHING
-}
-#endif
 
 /* 80946DD4-80946E08 001254 0034+00 1/0 0/0 0/0 .text            attack_after_talk_init__8daMyna_cFv
  */
@@ -1085,12 +643,6 @@ void daMyna_c::attack_after_talk_move() {
 void daMyna_c::greet_wait_init() {
     setAnimeType(1, 0.0f);
 }
-
-
-/* ############################################################################################## */
-/* 8094B200-8094B204 000050 0004+00 1/1 0/0 0/0 .rodata          @4481 */
-SECTION_RODATA static f32 const lit_4481 = 350.0f;
-COMPILER_STRIP_GATE(0x8094B200, &lit_4481);
 
 /* 80946EB0-80947030 001330 0180+00 1/0 0/0 0/0 .text            greet_wait_move__8daMyna_cFv */
 void daMyna_c::greet_wait_move() {
@@ -1131,7 +683,6 @@ void daMyna_c::greet_wait_move() {
     }
 }
 
-
 /* 80947030-8094711C 0014B0 00EC+00 1/0 0/0 0/0 .text            greet_talk_init__8daMyna_cFv */
 void daMyna_c::greet_talk_init() {
     dMsgObject_setTotalPayment(0);
@@ -1157,7 +708,6 @@ void daMyna_c::greet_talk_init() {
     mMsgFlow.init(this, field_0x91C, 0, NULL);
 }
 
-
 /* 8094711C-809471BC 00159C 00A0+00 1/0 0/0 0/0 .text            greet_talk_move__8daMyna_cFv */
 void daMyna_c::greet_talk_move() {
     if (eventInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
@@ -1176,15 +726,8 @@ void daMyna_c::shopping_wait_init() {
     setAnimeType(1, 0.0f);
 }
 
-
-/* ############################################################################################## */
-/* 8094B204-8094B208 000054 0004+00 1/1 0/0 0/0 .rodata          @4655 */
-SECTION_RODATA static f32 const lit_4655 = 450.0f;
-COMPILER_STRIP_GATE(0x8094B204, &lit_4655);
-
 /* 809471E8-809475B4 001668 03CC+00 1/0 0/0 0/0 .text            shopping_wait_move__8daMyna_cFv */
-// regswap
-#ifdef NONMATCHING
+// NONMATCHING regswap
 void daMyna_c::shopping_wait_move() {
     if (!daPy_py_c::i_checkNowWolf()) {
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[802])) {
@@ -1276,11 +819,6 @@ void daMyna_c::shopping_wait_move() {
         }
     }
 }
-#else
-void daMyna_c::shopping_wait_move() {
-    // NONMATCHING
-}
-#endif
 
 /* 809475B4-80947630 001A34 007C+00 1/0 0/0 0/0 .text            shopping_talk_init__8daMyna_cFv */
 void daMyna_c::shopping_talk_init() {
@@ -1395,46 +933,6 @@ void daMyna_c::turn_on_start_init() {
     }
 }
 
-
-/* ############################################################################################## */
-/* 8094B208-8094B210 000058 0004+04 0/5 0/0 0/0 .rodata          @4828 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4828[1 + 1 /* padding */] = {
-    0.5f,
-    /* padding */
-    0.0f,
-};
-COMPILER_STRIP_GATE(0x8094B208, &lit_4828);
-#pragma pop
-
-/* 8094B210-8094B218 000060 0008+00 0/6 0/0 0/0 .rodata          @4829 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4829[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8094B210, &lit_4829);
-#pragma pop
-
-/* 8094B218-8094B220 000068 0008+00 0/6 0/0 0/0 .rodata          @4830 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4830[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8094B218, &lit_4830);
-#pragma pop
-
-/* 8094B220-8094B228 000070 0008+00 0/6 0/0 0/0 .rodata          @4831 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4831[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8094B220, &lit_4831);
-#pragma pop
-
 /* 80947AA4-80947CD0 001F24 022C+00 1/0 0/0 0/0 .text            turn_on_start_move__8daMyna_cFv */
 void daMyna_c::turn_on_start_move() {
     cXyz stack_28;
@@ -1464,12 +962,10 @@ void daMyna_c::turn_on_start_move() {
     }
 }
 
-
 /* 80947CD0-80947CFC 002150 002C+00 1/0 0/0 0/0 .text            turn_on_init__8daMyna_cFv */
 void daMyna_c::turn_on_init() {
     setAnimeType(7, 0.0f);
 }
-
 
 /* 80947CFC-80947D48 00217C 004C+00 1/0 0/0 0/0 .text            turn_on_move__8daMyna_cFv */
 void daMyna_c::turn_on_move() {
@@ -1484,10 +980,7 @@ void daMyna_c::turn_on_end1_init() {
     setAnimeType(4, 0.0f);
 }
 
-
 /* 80947D74-80947E18 0021F4 00A4+00 1/0 0/0 0/0 .text            turn_on_end1_move__8daMyna_cFv */
-// Matches when l_HOSTIO is the correct type
-#ifdef NONMATCHING
 void daMyna_c::turn_on_end1_move() {
     cXyz local_18 = home.pos - current.pos;
     s16 sVar2 = cM_atan2s(local_18.x, local_18.z);
@@ -1499,11 +992,6 @@ void daMyna_c::turn_on_end1_move() {
         field_0x92C = 14;
     }
 }
-#else
-void daMyna_c::turn_on_end1_move() {
-    // NONMATCHING
-}
-#endif
 
 /* 80947E18-80947E50 002298 0038+00 1/0 0/0 0/0 .text            turn_on_end2_init__8daMyna_cFv */
 void daMyna_c::turn_on_end2_init() {
@@ -1511,7 +999,6 @@ void daMyna_c::turn_on_end2_init() {
         setAnimeType(4, 0.0f);
     }
 }
-
 
 /* 80947E50-80948070 0022D0 0220+00 1/0 0/0 0/0 .text            turn_on_end2_move__8daMyna_cFv */
 void daMyna_c::turn_on_end2_move() {
@@ -1537,15 +1024,12 @@ void daMyna_c::turn_on_end2_move() {
     }
 }
 
-
 /* 80948070-80948074 0024F0 0004+00 1/0 0/0 0/0 .text            turn_on_end3_init__8daMyna_cFv */
 void daMyna_c::turn_on_end3_init() {
     /* empty function */
 }
 
 /* 80948074-809480E4 0024F4 0070+00 1/0 0/0 0/0 .text            turn_on_end3_move__8daMyna_cFv */
-// Matches when l_HOSTIO is the correct type
-#ifdef NONMATCHING
 void daMyna_c::turn_on_end3_move() {
     cLib_addCalcAngleS(&current.angle.y, home.angle.y, l_HOSTIO.field_0x26, l_HOSTIO.field_0x28,
                        l_HOSTIO.field_0x2A);
@@ -1555,11 +1039,6 @@ void daMyna_c::turn_on_end3_move() {
         field_0x92C = field_0x92D;
     }
 }
-#else
-void daMyna_c::turn_on_end3_move() {
-    // NONMATCHING
-}
-#endif
 
 /* 809480E4-80948118 002564 0034+00 1/0 0/0 0/0 .text            wolf_talk_init__8daMyna_cFv */
 void daMyna_c::wolf_talk_init() {
@@ -1626,7 +1105,6 @@ void daMyna_c::attack_before_talk2_init() {
     setAnimeType(10, 0.0f);
 }
 
-
 /* 809483DC-80948444 00285C 0068+00 1/0 0/0 0/0 .text attack_before_talk2_move__8daMyna_cFv */
 void daMyna_c::attack_before_talk2_move() {
     if (eventInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
@@ -1640,7 +1118,6 @@ void daMyna_c::attack_fly2_init() {
     setAnimeType(0, 0.0f);
     field_0x91A = 0;
 }
-
 
 /* 80948484-80948600 002904 017C+00 1/0 0/0 0/0 .text            attack_fly2_move__8daMyna_cFv */
 void daMyna_c::attack_fly2_move() {
@@ -1674,17 +1151,13 @@ void daMyna_c::attack_fly2_move() {
     }
 }
 
-
 /* 80948600-80948644 002A80 0044+00 1/0 0/0 0/0 .text            attack2_init__8daMyna_cFv */
 void daMyna_c::attack2_init() {
     setAnimeType(8, 0.0f);
     mSph.OnAtVsPlayerBit();
 }
 
-
 /* 80948644-809486F8 002AC4 00B4+00 1/0 0/0 0/0 .text            attack2_move__8daMyna_cFv */
-// Matches when l_HOSTIO is the correct type
-#ifdef NONMATCHING
 void daMyna_c::attack2_move() {
     mStatus.Move();
     if (field_0x91E != 0) {
@@ -1703,11 +1176,6 @@ void daMyna_c::attack2_move() {
         }
     }
 }
-#else
-void daMyna_c::attack2_move() {
-    // NONMATCHING
-}
-#endif
 
 /* 809486F8-80948734 002B78 003C+00 1/0 0/0 0/0 .text            attack2_talk_init__8daMyna_cFv */
 void daMyna_c::attack2_talk_init() {
@@ -1741,11 +1209,6 @@ void daMyna_c::soldoutItem(fpc_ProcID i_itemId) {
     }
 }
 
-/* ############################################################################################## */
-/* 8094B228-8094B22C 000078 0004+00 1/2 0/0 0/0 .rodata          @5221 */
-SECTION_RODATA static f32 const lit_5221 = 15.0f;
-COMPILER_STRIP_GATE(0x8094B228, &lit_5221);
-
 /* 80948828-80948ADC 002CA8 02B4+00 2/2 0/0 0/0 .text            fly_attack_move__8daMyna_cFv */
 bool daMyna_c::fly_attack_move() {
     daPy_py_c* playerActorClass = daPy_getPlayerActorClass();
@@ -1772,39 +1235,14 @@ bool daMyna_c::fly_attack_move() {
     return stack_58.abs() < l_HOSTIO.field_0x18;
 }
 
-
-/* ############################################################################################## */
-/* 8094B22C-8094B230 00007C 0004+00 0/1 0/0 0/0 .rodata          @5317 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_5317 = 0x3A83126F;
-COMPILER_STRIP_GATE(0x8094B22C, &lit_5317);
-#pragma pop
-
-/* 8094B230-8094B234 000080 0004+00 0/1 0/0 0/0 .rodata          @5318 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5318 = 25.0f;
-COMPILER_STRIP_GATE(0x8094B230, &lit_5318);
-#pragma pop
-
-/* 8094B234-8094B238 000084 0004+00 0/1 0/0 0/0 .rodata          @5319 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5319 = 3.0f;
-COMPILER_STRIP_GATE(0x8094B234, &lit_5319);
-#pragma pop
-
 /* 80948ADC-80948DFC 002F5C 0320+00 2/2 0/0 0/0 .text            fly_return_move__8daMyna_cFv */
-// Possibly matches with literals? Will need to double check
-#ifdef NONMATCHING
 bool daMyna_c::fly_return_move() {
+    cXyz local_30, stack_3c;
     if (field_0x926 > 0) {
         daPy_py_c* playerActorClass = daPy_getPlayerActorClass();
-        cXyz stack_3c;
         stack_3c.set(playerActorClass->getHeadTopPos());
 
-        cXyz local_30 = stack_3c - current.pos;
+        local_30 = stack_3c - current.pos;
         f32 fVar4 = JMAFastSqrt(local_30.x * local_30.x + local_30.z * local_30.z);
         s16 sVar1 = -cM_atan2s(local_30.y, fVar4);
         s16 sVar2 = cM_atan2s(local_30.x, local_30.z);
@@ -1815,7 +1253,7 @@ bool daMyna_c::fly_return_move() {
 
     } else {
         cXyz stack_48 = home.pos;
-        cXyz local_30 = stack_48 - current.pos;
+        local_30 = stack_48 - current.pos;
         f32 fVar4 = JMAFastSqrt(local_30.x * local_30.x + local_30.z * local_30.z);
         s16 sVar1 = -cM_atan2s(local_30.y, fVar4);
         s16 sVar2 = cM_atan2s(local_30.x, local_30.z);
@@ -1832,18 +1270,6 @@ bool daMyna_c::fly_return_move() {
     }
     return false;
 }
-#else
-bool daMyna_c::fly_return_move() {
-    // NONMATCHING
-}
-#endif
-
-/* ############################################################################################## */
-/* 8094B238-8094B240 000088 0008+00 3/3 0/0 0/0 .rodata          @5332 */
-SECTION_RODATA static u8 const lit_5332[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8094B238, &lit_5332);
 
 /* 80948DFC-80948E84 00327C 0088+00 2/2 0/0 0/0 .text            fly_body_wave__8daMyna_cFv */
 void daMyna_c::fly_body_wave() {
@@ -1855,10 +1281,7 @@ void daMyna_c::fly_body_wave() {
     }
 }
 
-
 /* 80948E84-80948FAC 003304 0128+00 1/1 0/0 0/0 .text            talkAnime__8daMyna_cFP9msg_class */
-// Matches when mBaseMotionTBL is the correct type
-#ifdef NONMATCHING
 void daMyna_c::talkAnime(msg_class* param_0) {
     u32 uVar4 = 0;
     if (param_0 != NULL && this == dComIfGp_event_getTalkPartner()) {
@@ -1886,11 +1309,6 @@ void daMyna_c::talkAnime(msg_class* param_0) {
         (this->*mBaseMotionTBL[field_0x820])(uVar4);
     }
 }
-#else
-void daMyna_c::talkAnime(msg_class* param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 80948FAC-809490B8 00342C 010C+00 1/1 0/0 0/0 .text            chkEvent__8daMyna_cFv */
 int daMyna_c::chkEvent() {
@@ -1916,7 +1334,6 @@ int daMyna_c::chkEvent() {
     return retVal;
 }
 
-
 /* 809490B8-80949128 003538 0070+00 2/1 0/0 0/0 .text            orderEvent__8daMyna_cFv */
 int daMyna_c::orderEvent() {
     if (daPy_py_c::i_checkNowWolf()) {
@@ -1940,25 +1357,6 @@ int daMyna_c::orderEvent() {
     return 1;
 }
 
-/* 8094B8F8-8094B934 -00001 003C+00 1/1 0/0 0/0 .data            @5890 */
-SECTION_DATA static void* lit_5890[15] = {
-    (void*)(((char*)animeControl__8daMyna_cFv) + 0xB0),
-    (void*)(((char*)animeControl__8daMyna_cFv) + 0x5C),
-    (void*)(((char*)animeControl__8daMyna_cFv) + 0x74),
-    (void*)(((char*)animeControl__8daMyna_cFv) + 0x7C),
-    (void*)(((char*)animeControl__8daMyna_cFv) + 0x84),
-    (void*)(((char*)animeControl__8daMyna_cFv) + 0xB0),
-    (void*)(((char*)animeControl__8daMyna_cFv) + 0xB0),
-    (void*)(((char*)animeControl__8daMyna_cFv) + 0x94),
-    (void*)(((char*)animeControl__8daMyna_cFv) + 0xA4),
-    (void*)(((char*)animeControl__8daMyna_cFv) + 0xB0),
-    (void*)(((char*)animeControl__8daMyna_cFv) + 0xB0),
-    (void*)(((char*)animeControl__8daMyna_cFv) + 0xB0),
-    (void*)(((char*)animeControl__8daMyna_cFv) + 0xB0),
-    (void*)(((char*)animeControl__8daMyna_cFv) + 0xAC),
-    (void*)(((char*)animeControl__8daMyna_cFv) + 0xB0),
-};
-
 /* 80949128-80949144 0035A8 001C+00 1/1 0/0 0/0 .text            deleteItem__8daMyna_cFi */
 void daMyna_c::deleteItem(int i_itemIndex) {
     mShopItems[i_itemIndex].mTargetActorID = -1;
@@ -1967,7 +1365,6 @@ void daMyna_c::deleteItem(int i_itemIndex) {
 
 /* 80949144-80949190 0035C4 004C+00 0/0 0/0 0/0 .text            deleteItem__8daMyna_cFUi */
 // Nonmatching, no clue what's going on here
-#ifdef NONMATCHING
 void daMyna_c::deleteItem(fpc_ProcID i_itemId) {
     for (int i = 0; i < mNumShopItems; i++) {
         if (i_itemId == mShopItems[i].mTargetActorID) {
@@ -1976,19 +1373,6 @@ void daMyna_c::deleteItem(fpc_ProcID i_itemId) {
         }
     }
 }
-#else
-void daMyna_c::deleteItem(fpc_ProcID param_0) {
-    // NONMATCHING
-}
-#endif
-
-/* ############################################################################################## */
-/* 8094B240-8094B244 000090 0004+00 0/1 0/0 0/0 .rodata          @5455 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5455 = 200.0f;
-COMPILER_STRIP_GATE(0x8094B240, &lit_5455);
-#pragma pop
 
 /* 80949190-80949408 003610 0278+00 1/1 0/0 0/0 .text            initiate__8daMyna_cFv */
 void daMyna_c::initiate() {
@@ -2052,7 +1436,6 @@ void daMyna_c::initiate() {
     setMcaMorfAnm(getTrnsfrmKeyAnm(l_bckFileNameTBL[1]), 1.0f, 0.0f, 2, 0, -1);
 }
 
-
 /* 80949408-80949544 003888 013C+00 1/1 0/0 0/0 .text            setItemInfo__8daMyna_cFv */
 void daMyna_c::setItemInfo() {
     if (daMyna_actor_count != -1 && mNumShopItems > daMyna_actor_count) {
@@ -2091,10 +1474,7 @@ void daMyna_c::setCollision() {
     dComIfG_Ccsp()->Set(&mSph);
 }
 
-
 /* 809495E0-80949744 003A60 0164+00 1/1 0/0 0/0 .text            set_mtx__8daMyna_cFv */
-// Matches when l_HOSTIO is the correct type
-#ifdef NONMATCHING
 void daMyna_c::set_mtx() {
     J3DModel* model = mpMorf->getModel();
     cXyz local_18(current.pos);
@@ -2113,16 +1493,8 @@ void daMyna_c::set_mtx() {
     field_0x82C -= current.pos;
     field_0x838 -= current.pos;
 }
-#else
-void daMyna_c::set_mtx() {
-    // NONMATCHING
-}
-#endif
 
 /* 80949744-8094983C 003BC4 00F8+00 1/1 0/0 0/0 .text            animePlay__8daMyna_cFv */
-// Function matches with literals, but the weak functions "cLib_getRndValue" and "cLib_calcTimer"
-// are generated in the wrong order
-#ifdef NONMATCHING
 void daMyna_c::animePlay() {
     f32 speed = mpMorf->getPlaySpeed();
     mpMorf->play(0, 0);
@@ -2146,11 +1518,6 @@ void daMyna_c::animePlay() {
     }
     cLib_offBit<u16>(field_0x914, 0xF);
 }
-#else
-void daMyna_c::animePlay() {
-    // NONMATCHING
-}
-#endif
 
 /* 8094983C-809498B8 003CBC 007C+00 2/2 0/0 0/0 .text
  * setMcaMorfAnm__8daMyna_cFP18J3DAnmTransformKeyffiii          */
@@ -2192,8 +1559,6 @@ J3DAnmTexPattern* daMyna_c::getTexPtrnAnm(char* i_resName) {
 }
 
 /* 80949998-80949A70 003E18 00D8+00 1/1 0/0 0/0 .text            checkEndAnm__8daMyna_cFf */
-// regswap
-#ifdef NONMATCHING
 int daMyna_c::checkEndAnm(f32 param_0) {
     bool retVal;
     switch (mpMorf->getPlayMode()) {
@@ -2201,27 +1566,14 @@ int daMyna_c::checkEndAnm(f32 param_0) {
         return mpMorf->isLoop();
     case 0:
     case 1:
-        retVal = false;
-        if (mpMorf->isStop() && mpMorf->getPlaySpeed() != param_0) {
-            retVal = true;
-        }
-        return retVal;
+        return mpMorf->isStop() && mpMorf->getPlaySpeed() != param_0;
     case 3:
     case 4:
-        retVal = false;
-        if (mpMorf->isStop() && mpMorf->getPlaySpeed() != param_0) {
-            retVal = true;
-        }
-        return retVal;
+        return mpMorf->isStop() && mpMorf->getPlaySpeed() != param_0;
     default:
         return false;
     }
 }
-#else
-int daMyna_c::checkEndAnm(f32 param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 80949A70-80949AD4 003EF0 0064+00 1/1 0/0 0/0 .text checkEndAnm__8daMyna_cFP12J3DFrameCtrl */
 int daMyna_c::checkEndAnm(J3DFrameCtrl* param_0) {
@@ -2240,7 +1592,6 @@ int daMyna_c::checkEndAnm(J3DFrameCtrl* param_0) {
         return 0;
     }
 }
-
 
 /* 80949AD4-80949AE0 003F54 000C+00 1/1 0/0 0/0 .text            getItemNumMax__8daMyna_cFv */
 int daMyna_c::getItemNumMax() {
@@ -2378,60 +1729,48 @@ int daMyna_c::chkPlayerInEvtArea(fopAc_ac_c* param_0, cXyz param_1) {
     return retVal;
 }
 
-
-/* ############################################################################################## */
-/* 8094B244-8094B248 000094 0004+00 2/3 0/0 0/0 .rodata          @5889 */
-SECTION_RODATA static f32 const lit_5889 = 6.0f;
-COMPILER_STRIP_GATE(0x8094B244, &lit_5889);
-
 /* 80949EE8-8094A054 004368 016C+00 2/1 0/0 0/0 .text            animeControl__8daMyna_cFv */
-// regswap
-#ifdef NONMATCHING
+// NONMATCHING regswap
 void daMyna_c::animeControl() {
-    f32 fVar1 = 1.0f;
-    int iVar5 = 2;
-    f32 fVar2 = field_0x90C;
+    f32 rate = 1.0f;
+    int attr = J3DFrameCtrl::LOOP_REPEAT_e;
+    f32 morf = field_0x90C;
     switch (field_0x935) {
     case 1:
         if (field_0x934 == 4) {
-            fVar2 = 6.0f;
+            morf = 6.0f;
         }
         break;
     case 2:
-        iVar5 = 0;
+        attr = J3DFrameCtrl::LOOP_ONCE_e;
         break;
     case 3:
-        iVar5 = 0;
+        attr = J3DFrameCtrl::LOOP_ONCE_e;
         break;
     case 4:
-        fVar1 = l_HOSTIO.field_0x08;
+        rate = l_HOSTIO.field_0x08;
         break;
     case 7:
-        iVar5 = 0;
-        fVar2 = 6.0f;
+        attr = J3DFrameCtrl::LOOP_ONCE_e;
+        morf = 6.0f;
         break;
     case 8:
-        iVar5 = 0;
+        attr = J3DFrameCtrl::LOOP_ONCE_e;
         break;
     case 14:
-        iVar5 = 0;
+        attr = J3DFrameCtrl::LOOP_ONCE_e;
         break;
     }
 
-    setMcaMorfAnm(getTrnsfrmKeyAnm(l_bckFileNameTBL[field_0x935]), fVar1, fVar2, iVar5, 0, -1);
+    setMcaMorfAnm(getTrnsfrmKeyAnm(l_bckFileNameTBL[field_0x935]), rate, morf, attr, 0, -1);
     if (cLib_checkBit<u16>(field_0x914, 0x40) == 0) {
-        J3DAnmTexPattern* btk = getTexPtrnAnm(l_btpFileNameTBL[field_0x936]);
-        if (btk != NULL) {
-            setBtpAnm(btk, mpMorf->getModel()->getModelData(), 1.0f, 2);
+        J3DAnmTexPattern* btp = getTexPtrnAnm(l_btpFileNameTBL[field_0x936]);
+        if (btp != NULL) {
+            setBtpAnm(btp, mpMorf->getModel()->getModelData(), 1.0f, 2);
             cLib_onBit<u16>(field_0x914, 0x44);
         }
     }
 }
-#else
-void daMyna_c::animeControl() {
-    // NONMATCHING
-}
-#endif
 
 /* 8094A054-8094A098 0044D4 0044+00 24/24 0/0 0/0 .text            setAnimeType__8daMyna_cFUcf */
 void daMyna_c::setAnimeType(u8 param_0, f32 param_1) {
@@ -2446,8 +1785,6 @@ void daMyna_c::setAnimeType(u8 param_0, f32 param_1) {
 
 /* 8094A098-8094A608 004518 0570+00 1/1 0/0 0/0 .text            playDefaultWaitAnime__8daMyna_cFv
  */
-// Mostly matching, still has a few issues that need to be fixed
-#ifdef NONMATCHING
 void daMyna_c::playDefaultWaitAnime() {
     switch (field_0x935) {
     case 2:
@@ -2468,7 +1805,7 @@ void daMyna_c::playDefaultWaitAnime() {
         cXyz stack_7c = local_58 - home.pos;
 
         s16 sVar42 = cM_atan2s(stack_7c.x, stack_7c.z);
-        f32 fVar7 = stack_7c.abs();
+        f32 fVar7 = field_0x910 * stack_7c.abs();
         f32 fVar3 = ((field_0x82C.y - field_0x844.y) + (field_0x838.y - field_0x850.y)) * 0.5f;
 
         local_64.x = 0.0f;
@@ -2479,7 +1816,7 @@ void daMyna_c::playDefaultWaitAnime() {
         current.pos = stack_70;
 
         cXyz stack_88 = current.pos - home.pos;
-        if (fVar7 > field_0x910 * stack_88.abs()) {
+        if (stack_88.abs() > fVar7) {
             setAnimeType(1, 6.0f);
         }
         break;
@@ -2507,19 +1844,6 @@ void daMyna_c::playDefaultWaitAnime() {
         break;
     }
 }
-#else
-void daMyna_c::playDefaultWaitAnime() {
-    // NONMATCHING
-}
-#endif
-
-/* ############################################################################################## */
-/* 8094B248-8094B24C 000098 0004+00 0/1 0/0 0/0 .rodata          @6108 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6108 = 0.25f;
-COMPILER_STRIP_GATE(0x8094B248, &lit_6108);
-#pragma pop
 
 /* 8094A608-8094A890 004A88 0288+00 1/1 0/0 0/0 .text            setDefaultWaitAnime__8daMyna_cFUc
  */
@@ -2558,7 +1882,6 @@ void daMyna_c::setDefaultWaitAnime(u8 param_0) {
     }
 }
 
-
 /* 8094A890-8094A8B0 004D10 0020+00 1/0 0/0 0/0 .text            daMyna_Create__FPv */
 static int daMyna_Create(void* i_this) {
     return static_cast<daMyna_c*>(i_this)->create();
@@ -2592,127 +1915,23 @@ static actor_method_class daMyna_MethodTable = {
 };
 
 /* 8094B954-8094B984 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_MYNA */
-extern actor_process_profile_definition g_profile_MYNA = {fpcLy_CURRENT_e,
-                                                          7,
-                                                          fpcLy_CURRENT_e,
-                                                          PROC_MYNA,
-                                                          &g_fpcLf_Method.mBase,
-                                                          sizeof(daMyna_c),
-                                                          0,
-                                                          0,
-                                                          &g_fopAc_Method.base,
-                                                          0x0130,
-                                                          &daMyna_MethodTable,
-                                                          0x40000,
-                                                          0,
-                                                          fopAc_CULLBOX_0_e};
-
-/* 8094B984-8094B990 000624 000C+00 3/3 0/0 0/0 .data            __vt__10cCcD_GStts */
-SECTION_DATA extern void* __vt__10cCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10cCcD_GSttsFv,
+extern actor_process_profile_definition g_profile_MYNA = {
+    fpcLy_CURRENT_e,
+    7,
+    fpcPi_CURRENT_e,
+    PROC_MYNA,
+    &g_fpcLf_Method.mBase,
+    sizeof(daMyna_c),
+    0,
+    0,
+    &g_fopAc_Method.base,
+    0x0130,
+    &daMyna_MethodTable,
+    0x40000,
+    0,
+    fopAc_CULLBOX_0_e
 };
 
-/* 8094B990-8094B99C 000630 000C+00 2/2 0/0 0/0 .data            __vt__10dCcD_GStts */
-SECTION_DATA extern void* __vt__10dCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10dCcD_GSttsFv,
-};
-
-/* 8094B99C-8094B9A8 00063C 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGSph */
-SECTION_DATA extern void* __vt__8cM3dGSph[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGSphFv,
-};
-
-/* 8094B9A8-8094B9B4 000648 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGAab */
-SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGAabFv,
-};
-
-/* 8094B9B4-8094B9C0 000654 000C+00 3/3 0/0 0/0 .data            __vt__12J3DFrameCtrl */
-SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12J3DFrameCtrlFv,
-};
-
-/* 8094B9C0-8094B9CC 000660 000C+00 2/2 0/0 0/0 .data            __vt__8daMyna_c */
-SECTION_DATA extern void* __vt__8daMyna_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8daMyna_cFv,
-};
-
-/* 8094A918-8094A960 004D98 0048+00 1/0 0/0 0/0 .text            __dt__10cCcD_GSttsFv */
-// cCcD_GStts::~cCcD_GStts() {
-extern "C" void __dt__10cCcD_GSttsFv() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 8094B9CC-8094B9D8 00066C 000C+00 2/2 0/0 0/0 .data            __vt__12daMyna_HIO_c */
-SECTION_DATA extern void* __vt__12daMyna_HIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12daMyna_HIO_cFv,
-};
-
-/* 8094B9D8-8094B9E4 000678 000C+00 3/3 0/0 0/0 .data            __vt__14mDoHIO_entry_c */
-SECTION_DATA extern void* __vt__14mDoHIO_entry_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__14mDoHIO_entry_cFv,
-};
-
-/* 8094A960-8094A9BC 004DE0 005C+00 2/1 0/0 0/0 .text            __dt__12daMyna_HIO_cFv */
-// daMyna_HIO_c::~daMyna_HIO_c() {
-extern "C" void __dt__12daMyna_HIO_cFv() {
-    // NONMATCHING
-}
-
-/* 8094A9BC-8094AA04 004E3C 0048+00 1/0 0/0 0/0 .text            __dt__14mDoHIO_entry_cFv */
-// mDoHIO_entry_c::~mDoHIO_entry_c() {
-extern "C" void __dt__14mDoHIO_entry_cFv() {
-    // NONMATCHING
-}
-
-/* 8094AA04-8094AA20 004E84 001C+00 2/2 0/0 0/0 .text            getHeadTopPos__9daPy_py_cCFv */
-cXyz daPy_py_c::getHeadTopPos() const {
-    return mHeadTopPos;
-}
-
-/* 8094AA20-8094ABAC 004EA0 018C+00 1/0 0/0 0/0 .text            __dt__8daMyna_cFv */
-// daMyna_c::~daMyna_c() {
-extern "C" void __dt__8daMyna_cFv() {
-    // NONMATCHING
-}
-
-/* 8094ABAC-8094ABC8 00502C 001C+00 1/1 0/0 0/0 .text            cLib_calcTimer<s>__FPs */
-extern "C" void func_8094ABAC(void* _this, s16* param_0) {
-    // NONMATCHING
-}
-
-/* 8094ABC8-8094AC44 005048 007C+00 1/1 0/0 0/0 .text            cLib_getRndValue<i>__Fii */
-extern "C" void func_8094ABC8(void* _this, int param_0, int param_1) {
-    // NONMATCHING
-}
-
-/* 8094AC44-8094B19C 0050C4 0558+00 0/0 1/0 0/0 .text            __sinit_d_a_myna_cpp */
-void __sinit_d_a_myna_cpp(){// NONMATCHING
-}
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x8094AC44, __sinit_d_a_myna_cpp);
-#pragma pop
-
-/* ############################################################################################## */
 /* 8094BAD0-8094BAD4 0000E8 0004+00 0/0 0/0 0/0 .bss
  * sInstance__40JASGlobalInstance<19JASDefaultBankTable>        */
 #pragma push

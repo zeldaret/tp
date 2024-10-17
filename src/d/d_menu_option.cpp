@@ -22,7 +22,6 @@
 #include "m_Do/m_Do_graphic.h"
 #include "string.h"
 
-/* ############################################################################################## */
 /* 803BDBA8-803BDBB4 01ACC8 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -87,54 +86,17 @@ dMenu_Option_c::~dMenu_Option_c() {}
 /* 80396EA8-80396EB8 023508 000C+04 4/4 0/0 0/0 .rodata          dMo_soundMode */
 static const u32 dMo_soundMode[3] = {0, 1, 2};
 
-/* 80396EB8-80396EE0 023518 0028+00 0/1 0/0 0/0 .rodata          text_a_tag$3904 */
-static const u64 text_a_tag_3904[5] = {
-    'atext1_1', 'atext1_2', 'atext1_3', 'atext1_4', 'atext1_5',
-};
-
-/* 80396EE0-80396F08 023540 0028+00 0/1 0/0 0/0 .rodata          text_b_tag$3905 */
-static const u64 text_b_tag_3905[5] = {
-    'btext1_1', 'btext1_2', 'btext1_3', 'btext1_4', 'btext1_5',
-};
-
-/* 80396F08-80396F18 023568 0010+00 0/1 0/0 0/0 .rodata          l_tagName012$3918 */
-static const u64 l_tagName012[2] = {
-    'w_no_n',
-    'w_yes_n',
-};
-
-/* 80396F18-80396F28 023578 0010+00 0/1 0/0 0/0 .rodata          l_tagName013$3919 */
-static const u64 l_tagName013[2] = {
-    'w_no_t',
-    'w_yes_t',
-};
-
-/* 80396F28-80396F38 023588 0010+00 0/1 0/0 0/0 .rodata          l_tagName9$3928 */
-static const u64 l_tagName9[2] = {
-    'w_no_m',
-    'w_yes_m',
-};
-
-/* 80396F38-80396F48 023598 0010+00 0/1 0/0 0/0 .rodata          l_tagName10$3929 */
-static const u64 l_tagName10[2] = {
-    'w_no_g',
-    'w_yes_g',
-};
-
-/* 80396F48-80396F58 0235A8 0010+00 0/1 0/0 0/0 .rodata          l_tagName11$3930 */
-static const u64 l_tagName11[2] = {
-    'w_no_gr',
-    'w_yes_gr',
-};
-
-/* 80454328-8045432C 002928 0002+02 1/1 0/0 0/0 .sdata2          l_msgNum2$3920 */
-static const u8 l_msgNum2[2] = {
-    0x08,
-    0x07,
-};
-
 /* 801E205C-801E2C1C 1DC99C 0BC0+00 1/1 0/0 0/0 .text            _create__14dMenu_Option_cFv */
 void dMenu_Option_c::_create() {
+    static const u64 text_a_tag[5] = {'atext1_1', 'atext1_2', 'atext1_3', 'atext1_4', 'atext1_5'};
+    static const u64 text_b_tag[5] = {'btext1_1', 'btext1_2', 'btext1_3', 'btext1_4', 'btext1_5'};
+    static const u64 l_tagName012[2] = {'w_no_n', 'w_yes_n'};
+    static const u64 l_tagName013[2] = {'w_no_t', 'w_yes_t'};
+    static const u64 l_tagName9[2] = {'w_no_m', 'w_yes_m'};
+    static const u64 l_tagName10[2] = {'w_no_g', 'w_yes_g'};
+    static const u64 l_tagName11[2] = {'w_no_gr', 'w_yes_gr'};
+    static const u8 l_msgNum2[2] = {8, 7};
+
     mpFont = mDoExt_getMesgFont();
     mpString = new dMsgString_c();
     mpMeterHaihai = new dMeterHaihai_c(3);
@@ -181,11 +143,11 @@ void dMenu_Option_c::_create() {
     field_0x3dc = 0;
     field_0x3de = 0;
     for (int i = 0; i < 5; i++) {
-        ((J2DTextBox*)(mpScreenIcon->search(text_a_tag_3904[i])))->setFont(mDoExt_getMesgFont());
-        ((J2DTextBox*)(mpScreenIcon->search(text_b_tag_3905[i])))->setFont(mDoExt_getMesgFont());
+        ((J2DTextBox*)(mpScreenIcon->search(text_a_tag[i])))->setFont(mDoExt_getMesgFont());
+        ((J2DTextBox*)(mpScreenIcon->search(text_b_tag[i])))->setFont(mDoExt_getMesgFont());
 
-        ((J2DTextBox*)(mpScreenIcon->search(text_a_tag_3904[i])))->setString(0x20, "");
-        ((J2DTextBox*)(mpScreenIcon->search(text_b_tag_3905[i])))->setString(0x20, "");
+        ((J2DTextBox*)(mpScreenIcon->search(text_a_tag[i])))->setString(0x20, "");
+        ((J2DTextBox*)(mpScreenIcon->search(text_b_tag[i])))->setString(0x20, "");
     }
     setAButtonString(0x40C);
     setBButtonString(0x3F9);
@@ -1234,227 +1196,109 @@ void dMenu_Option_c::menuHide(int index) {
     }
 }
 
-/* ############################################################################################## */
-/* 80396F58-80396F88 0235B8 0030+00 0/1 0/0 0/0 .rodata          tag_frame$5201 */
-static const u64 tag_frame[6] = {
-    'flame_00', 'flame_01', 'flame_02', 'flame_03', 'flame_04', 'flame_05',
-};
-
-/* 80396F88-80396FB8 0235E8 0030+00 0/1 0/0 0/0 .rodata          tag_menu0$5202 */
-static const u64 tag_menu0[6] = {
-    'fenu_t0', 'fenu_t1', 'fenu_t2', 'fenu_t3', 'fenu_t4', 'fenu_t5',
-};
-
-/* 80396FB8-80396FE8 023618 0030+00 0/1 0/0 0/0 .rodata          let_n$5214 */
-static const u64 let_n[6] = {
-    'let_00_n', 'let_01_n', 'let_02_n', 'let_03_n', 'let_04_n', 'let_05_n',
-};
-
-/* 80396FE8-80397018 023648 0030+00 0/1 0/0 0/0 .rodata          let2_n$5215 */
-static const u64 let2_n[6] = {
-    'let_00_n', 'let_01_n', 'let_02_n', 'let_03_n', 'let_04_n',
-};
-
-/* 80397018-80397048 023678 0030+00 0/1 0/0 0/0 .rodata          menu_n$5216 */
-static const u64 menu_n[6] = {
-    'menu_n0', 'menu_n1', 'menu_n2', 'menu_n3', 'menu_n4', 'menu_n5',
-};
-
-/* 80397048-80397078 0236A8 0030+00 0/1 0/0 0/0 .rodata          menu2_n$5217 */
-static const u64 menu2_n[6] = {
-    'mw_n_0', 'mw_n_1', 'mw_n_2', 'mw_n_3', 'mw_n_4',
-};
-
-/* 80397078-803970A8 0236D8 0030+00 0/1 0/0 0/0 .rodata          al0_n$5218 */
-static const u64 al0_n[6] = {
-    's_grr_00', 's_grr_01', 's_grr_02', 's_grr_03', 's_grr_04', 's_grr_05',
-};
-
-/* 803970A8-803970D8 023708 0030+00 0/1 0/0 0/0 .rodata          al1_n$5219 */
-static const u64 al1_n[6] = {
-    'c_grr_00', 'c_grr_01', 'c_grr_02', 'c_grr_03', 'c_grr_04', 'c_grr_05',
-};
-
-/* 803970D8-80397108 023738 0030+00 0/1 0/0 0/0 .rodata          al2_n$5220 */
-static const u64 al2_n[6] = {
-    's_grl_00', 's_grl_01', 's_grl_02', 's_grl_03', 's_grl_04', 's_grl_05',
-};
-
-/* 80397108-80397138 023768 0030+00 0/1 0/0 0/0 .rodata          al3_n$5221 */
-static const u64 al3_n[6] = {
-    'c_grl_00', 'c_grl_01', 'c_grl_02', 'c_grl_03', 'c_grl_04', 'c_grl_05',
-};
-
-/* 80397138-80397160 023798 0028+00 0/1 0/0 0/0 .rodata          haihail_n$5238 */
-static const u64 haihail_n[5] = {
-    'y_set_l0', 'y_set_l1', 'y_set_l2', 'y_set_l3', 'y_set_l4',
-};
-
-/* 80397160-80397188 0237C0 0028+00 0/1 0/0 0/0 .rodata          haihair_n$5239 */
-static const u64 haihair_n[5] = {
-    'y_set_r0', 'y_set_r1', 'y_set_r2', 'y_set_r3', 'y_set_r4',
-};
-
-/* 80397188-803971B8 0237E8 0030+00 0/1 0/0 0/0 .rodata          menu3_n$5256 */
-static const u64 menu3_n[6] = {
-    'menuapn0', 'menuapn1', 'menuapn2', 'menuapn3', 'menuapn4',
-};
-
-/* 803971B8-803971E0 023818 0028+00 0/1 0/0 0/0 .rodata          tv_btnA$5275 */
-static const u64 tv_btnA[5] = {
-    'cont_at1', 'cont_at2', 'cont_at3', 'cont_at4', 'cont_at',
-};
-
-/* 803971E0-80397208 023840 0028+00 0/1 0/0 0/0 .rodata          ftv_btnA$5276 */
-static const u64 ftv_btnA[5] = {
-    'font_a1', 'font_at2', 'font_at3', 'font_at4', 'font_at',
-};
-
-/* 80397208-80397218 023868 0010+00 0/1 0/0 0/0 .rodata          fenu_t0$5282 */
-static const u64 fenu_t0[2] = {
-    'fenu_t0s',
-    'fenu_t0',
-};
-
-/* 80397218-80397228 023878 0010+00 0/1 0/0 0/0 .rodata          menu_t0$5283 */
-static const u64 menu_t0[2] = {
-    'menu_t0s',
-    'menu_t0',
-};
-
-/* 80397228-80397238 023888 0010+00 0/1 0/0 0/0 .rodata          fenu_t2$5289 */
-static const u64 fenu_t2[2] = {
-    'fenu_t1s',
-    'fenu_t1',
-};
-
-/* 80397238-80397248 023898 0010+00 0/1 0/0 0/0 .rodata          menu_t2$5290 */
-static const u64 menu_t2[2] = {
-    'menu_t1s',
-    'menu_t1',
-};
-
-/* 80397248-80397258 0238A8 0010+00 0/1 0/0 0/0 .rodata          fenu_t3$5296 */
-static const u64 fenu_t3[2] = {'fenu_t2s', 'fenu_t2'};
-
-/* 80397258-80397268 0238B8 0010+00 0/1 0/0 0/0 .rodata          menu_t3$5297 */
-static const u64 menu_t3[2] = {
-    'menu_t2s',
-    'menu_t2',
-};
-
-/* 80397268-80397278 0238C8 0010+00 0/1 0/0 0/0 .rodata          fenu_t4$5303 */
-static const u64 fenu_t4[2] = {
-    'fenu_t3s',
-    'fenu_t3',
-};
-
-/* 80397278-80397288 0238D8 0010+00 0/1 0/0 0/0 .rodata          menu_t4$5304 */
-static const u64 menu_t4[2] = {
-    'menu_t3s',
-    'menu_t3',
-};
-
-/* 80397288-80397298 0238E8 0010+00 0/1 0/0 0/0 .rodata          fenu_t1$5310 */
-static const u64 fenu_t1[2] = {
-    'fenu_t4s',
-    'fenu_t4',
-};
-
-/* 80397298-803972A8 0238F8 0010+00 0/1 0/0 0/0 .rodata          menu_t1$5311 */
-static const u64 menu_t1[2] = {
-    'menu_t4s',
-    'menu_t4',
-};
-
-/* 803972A8-803972B8 023908 0010+00 0/1 0/0 0/0 .rodata          fenu_t5$5317 */
-static const u64 fenu_t5[2] = {
-    'fenu_t5s',
-    'fenu_t5',
-};
-
-/* 803972B8-803972C8 023918 0010+00 0/1 0/0 0/0 .rodata          menu_t5$5318 */
-static const u64 menu_t5[2] = {
-    'menu_t5s',
-    'menu_t5',
-};
-
-/* 803972C8-803972F8 023928 0030+00 0/1 0/0 0/0 .rodata          menut_0$5324 */
-static const u64 menut_0[6] = {
-    'menut0as', 'menut0a', 'menut0a2', 'menut0a1', 'menut0a4', 'menut0a3',
-};
-
-/* 803972F8-80397328 023958 0030+00 0/1 0/0 0/0 .rodata          fenut_0$5325 */
-static const u64 fenut_0[6] = {
-    'menut010', 'menut0a9', 'menut0a8', 'menut0a7', 'menut0a6', 'menut0a5',
-};
-
-/* 80397328-80397358 023988 0030+00 0/1 0/0 0/0 .rodata          menut_1$5332 */
-static const u64 menut_1[6] = {
-    'menut1as', 'menut1a', 'menut1a2', 'menut1a1', 'menut1a4', 'menut1a3',
-};
-
-/* 80397358-80397388 0239B8 0030+00 0/1 0/0 0/0 .rodata          fenut_1$5333 */
-static const u64 fenut_1[6] = {
-    'menut110', 'menut1a9', 'menut1a8', 'menut1a7', 'menut1a6', 'menut1a5',
-};
-
-/* 80397388-803973B8 0239E8 0030+00 0/1 0/0 0/0 .rodata          menut_2$5340 */
-static const u64 menut_2[6] = {
-    'menut2as', 'menut2a', 'menut2a2', 'menut2a1', 'menut2a4', 'menut2a3',
-};
-
-/* 803973B8-803973E8 023A18 0030+00 0/1 0/0 0/0 .rodata          fenut_2$5341 */
-static const u64 fenut_2[6] = {
-    'menut210', 'menut2a9', 'menut2a8', 'menut2a7', 'menut2a6', 'menut2a5',
-};
-
-/* 803973E8-80397418 023A48 0030+00 0/1 0/0 0/0 .rodata          menut_3$5348 */
-static const u64 menut_3[6] = {
-    'menut3a5', 'menut3a6', 'menut3a7', 'menut3a8', 'menut3a9', 'menut310',
-};
-
-/* 80397418-80397448 023A78 0030+00 0/1 0/0 0/0 .rodata          fenut_3$5349 */
-static const u64 fenut_3[6] = {
-    'menut315', 'menut314', 'menut313', 'menut312', 'menut311', 'menut001',
-};
-
-/* 80397448-80397478 023AA8 0030+00 0/1 0/0 0/0 .rodata          menut_4$5356 */
-static const u64 menut_4[6] = {
-    'menut3as', 'menut3a', 'menut3a2', 'menut3a1', 'menut3a4', 'menut3a3',
-};
-
-/* 80397478-803974A8 023AD8 0030+00 0/1 0/0 0/0 .rodata          fenut_4$5357 */
-static const u64 fenut_4[6] = {
-    'menut321', 'menut320', 'menut319', 'menut318', 'menut317', 'menut316',
-};
-
-/* 803974A8-803974D8 023B08 0030+00 0/1 0/0 0/0 .rodata          tx$5381 */
-static const u64 tx[6] = {
-    'w_p_tex5', 'w_p_tex6', 'w_p_tex3', 'w_p_tex4', 'fps_tex1', 'f_p_tex1',
-};
-
-/* 803974D8-803974F8 023B38 0020+00 0/0 0/0 0/0 .rodata          op_tx$5393 */
-static const u64 op_tx[4] = {
-    'w_text_n',
-    'w_btn_n',
-    'w_k_t_n',
-    'w_abtn_n',
-};
-
-/* 803974F8-80397510 023B58 0018+00 0/1 0/0 0/0 .rodata          z_tx$5399 */
-static const u64 z_tx[3] = {
-    'z_gc_n',
-};
-
-/* 80397510-80397560 023B70 0050+00 0/1 0/0 0/0 .rodata          txTV$5409 */
-static const u64 txTV[10] = {
-    'menu_t61', 'menu_t2',  'menu_t91', 'menu_t1',  'menut101',
-    'menu_t01', 'menu_t71', 'menu_t3',  'menu_t81', 'menu_t4',
-};
-
 /* 801E5678-801E6FBC 1DFFB8 1944+00 1/1 0/0 0/0 .text            screenSet__14dMenu_Option_cFv */
 void dMenu_Option_c::screenSet() {
+    static const u64 tag_frame[6] = {
+        'flame_00', 'flame_01', 'flame_02', 'flame_03', 'flame_04', 'flame_05',
+    };
+    static const u64 tag_menu0[6] = {
+        'fenu_t0', 'fenu_t1', 'fenu_t2', 'fenu_t3', 'fenu_t4', 'fenu_t5',
+    };
+    static const u64 let_n[6] = {
+        'let_00_n', 'let_01_n', 'let_02_n', 'let_03_n', 'let_04_n', 'let_05_n',
+    };
+    static const u64 let2_n[6] = {
+        'let_00_n', 'let_01_n', 'let_02_n', 'let_03_n', 'let_04_n',
+    };
+    static const u64 menu_n[6] = {
+        'menu_n0', 'menu_n1', 'menu_n2', 'menu_n3', 'menu_n4', 'menu_n5',
+    };
+    static const u64 menu2_n[6] = {
+        'mw_n_0', 'mw_n_1', 'mw_n_2', 'mw_n_3', 'mw_n_4',
+    };
+    static const u64 al0_n[6] = {
+        's_grr_00', 's_grr_01', 's_grr_02', 's_grr_03', 's_grr_04', 's_grr_05',
+    };
+    static const u64 al1_n[6] = {
+        'c_grr_00', 'c_grr_01', 'c_grr_02', 'c_grr_03', 'c_grr_04', 'c_grr_05',
+    };
+    static const u64 al2_n[6] = {
+        's_grl_00', 's_grl_01', 's_grl_02', 's_grl_03', 's_grl_04', 's_grl_05',
+    };
+    static const u64 al3_n[6] = {
+        'c_grl_00', 'c_grl_01', 'c_grl_02', 'c_grl_03', 'c_grl_04', 'c_grl_05',
+    };
+    static const u64 haihail_n[5] = {
+        'y_set_l0', 'y_set_l1', 'y_set_l2', 'y_set_l3', 'y_set_l4',
+    };
+    static const u64 haihair_n[5] = {
+        'y_set_r0', 'y_set_r1', 'y_set_r2', 'y_set_r3', 'y_set_r4',
+    };
+    static const u64 menu3_n[6] = {
+        'menuapn0', 'menuapn1', 'menuapn2', 'menuapn3', 'menuapn4',
+    };
+    static const u64 tv_btnA[5] = {
+        'cont_at1', 'cont_at2', 'cont_at3', 'cont_at4', 'cont_at',
+    };
+    static const u64 ftv_btnA[5] = {
+        'font_a1', 'font_at2', 'font_at3', 'font_at4', 'font_at',
+    };
+    static const u64 fenu_t0[2] = {'fenu_t0s', 'fenu_t0'};
+    static const u64 menu_t0[2] = {'menu_t0s', 'menu_t0'};
+    static const u64 fenu_t2[2] = {'fenu_t1s', 'fenu_t1'};
+    static const u64 menu_t2[2] = {'menu_t1s', 'menu_t1'};
+    static const u64 fenu_t3[2] = {'fenu_t2s', 'fenu_t2'};
+    static const u64 menu_t3[2] = {'menu_t2s', 'menu_t2'};
+    static const u64 fenu_t4[2] = {'fenu_t3s', 'fenu_t3'};
+    static const u64 menu_t4[2] = {'menu_t3s', 'menu_t3'};
+    static const u64 fenu_t1[2] = {'fenu_t4s', 'fenu_t4'};
+    static const u64 menu_t1[2] = {'menu_t4s', 'menu_t4'};
+    static const u64 fenu_t5[2] = {'fenu_t5s', 'fenu_t5'};
+    static const u64 menu_t5[2] = {'menu_t5s', 'menu_t5'};
+    static const u64 menut_0[6] = {
+        'menut0as', 'menut0a', 'menut0a2', 'menut0a1', 'menut0a4', 'menut0a3',
+    };
+    static const u64 fenut_0[6] = {
+        'menut010', 'menut0a9', 'menut0a8', 'menut0a7', 'menut0a6', 'menut0a5',
+    };
+    static const u64 menut_1[6] = {
+        'menut1as', 'menut1a', 'menut1a2', 'menut1a1', 'menut1a4', 'menut1a3',
+    };
+    static const u64 fenut_1[6] = {
+        'menut110', 'menut1a9', 'menut1a8', 'menut1a7', 'menut1a6', 'menut1a5',
+    };
+    static const u64 menut_2[6] = {
+        'menut2as', 'menut2a', 'menut2a2', 'menut2a1', 'menut2a4', 'menut2a3',
+    };
+    static const u64 fenut_2[6] = {
+        'menut210', 'menut2a9', 'menut2a8', 'menut2a7', 'menut2a6', 'menut2a5',
+    };
+    static const u64 menut_3[6] = {
+        'menut3a5', 'menut3a6', 'menut3a7', 'menut3a8', 'menut3a9', 'menut310',
+    };
+    static const u64 fenut_3[6] = {
+        'menut315', 'menut314', 'menut313', 'menut312', 'menut311', 'menut001',
+    };
+    static const u64 menut_4[6] = {
+        'menut3as', 'menut3a', 'menut3a2', 'menut3a1', 'menut3a4', 'menut3a3',
+    };
+    static const u64 fenut_4[6] = {
+        'menut321', 'menut320', 'menut319', 'menut318', 'menut317', 'menut316',
+    };
+    static const u64 tx[6] = {
+        'w_p_tex5', 'w_p_tex6', 'w_p_tex3', 'w_p_tex4', 'fps_tex1', 'f_p_tex1',
+    };
+    static const u64 op_tx[4] = {
+        'w_text_n', 'w_btn_n', 'w_k_t_n', 'w_abtn_n',
+    };
+    static const u64 z_tx[3] = {
+        'z_gc_n', 0, 0,
+    };
+    static const u64 txTV[10] = {
+        'menu_t61', 'menu_t2',  'menu_t91', 'menu_t1',  'menut101',
+        'menu_t01', 'menu_t71', 'menu_t3',  'menu_t81', 'menu_t4',
+    };
+
     mpTitle = new CPaneMgr(mpBackScreen, 'title_n', 0, NULL);
     Vec pos = mpTitle->getGlobalVtxCenter(mpTitle->mPane, false, 0);
     mpWarning->mPosY = pos.y + g_drawHIO.mOptionScreen.mBackgroundPosY;
@@ -1996,54 +1840,45 @@ void dMenu_Option_c::changeTVCheck() {
     }
 }
 
-/* 80397560-80397588 023BC0 0028+00 0/0 0/0 0/0 .rodata          txTVhide$5410 */
-static const u64 txTVhide[5] = {
-    'menu_6n', 'menu_9n', 'menu_10n', 'menu_7n', 'menu_8n',
-};
-
-/* 80397588-803975B0 023BE8 0028+00 1/1 0/0 0/0 .rodata          text_a_tag$6194 */
-static const u64 text_a_tag_6194[5] = {
-    'atext1_1', 'atext1_2', 'atext1_3', 'atext1_4', 'atext1_5',
-};
+static void dummy() {
+    static const u64 txTVhide[5] = {'menu_6n', 'menu_9n', 'menu_10n', 'menu_7n', 'menu_8n'};
+}
 
 /* 801E7E98-801E7F9C 1E27D8 0104+00 11/11 0/0 0/0 .text setAButtonString__14dMenu_Option_cFUs */
 void dMenu_Option_c::setAButtonString(u16 i_stringID) {
+    static const u64 text_a_tag[5] = {'atext1_1', 'atext1_2', 'atext1_3', 'atext1_4', 'atext1_5'};
     u32 stringId = i_stringID;
     if (stringId != field_0x3dc) {
         field_0x3dc = i_stringID;
         if (stringId == 0) {
             for (int i = 0; i < 5; i++) {
-                J2DTextBox* textBox = (J2DTextBox*)mpScreenIcon->search(text_a_tag_6194[i]);
+                J2DTextBox* textBox = (J2DTextBox*)mpScreenIcon->search(text_a_tag[i]);
                 strcpy(textBox->getStringPtr(), "");
             }
         } else {
             for (int i = 0; i < 5; i++) {
-                J2DTextBox* textBox = (J2DTextBox*)mpScreenIcon->search(text_a_tag_6194[i]);
+                J2DTextBox* textBox = (J2DTextBox*)mpScreenIcon->search(text_a_tag[i]);
                 dMeter2Info_getStringKanji(stringId, textBox->getStringPtr(), NULL);
             }
         }
     }
 }
 
-/* 803975B0-803975D8 023C10 0028+00 1/1 0/0 0/0 .rodata          text_b_tag$6217 */
-static const u64 text_b_tag_6217[5] = {
-    'btext1_1', 'btext1_2', 'btext1_3', 'btext1_4', 'btext1_5',
-};
-
 /* 801E7F9C-801E80A0 1E28DC 0104+00 11/11 0/0 0/0 .text setBButtonString__14dMenu_Option_cFUs */
 void dMenu_Option_c::setBButtonString(u16 i_stringID) {
+    static const u64 text_b_tag[5] = {'btext1_1', 'btext1_2', 'btext1_3', 'btext1_4', 'btext1_5'};
     u32 stringId = i_stringID;
     if (stringId != field_0x3de) {
         field_0x3de = i_stringID;
 
         if (stringId == 0) {
             for (int i = 0; i < 5; i++) {
-                J2DTextBox* textBox = (J2DTextBox*)mpScreenIcon->search(text_b_tag_6217[i]);
+                J2DTextBox* textBox = (J2DTextBox*)mpScreenIcon->search(text_b_tag[i]);
                 strcpy(textBox->getStringPtr(), "");
             }
         } else {
             for (int i = 0; i < 5; i++) {
-                J2DTextBox* textBox = (J2DTextBox*)mpScreenIcon->search(text_b_tag_6217[i]);
+                J2DTextBox* textBox = (J2DTextBox*)mpScreenIcon->search(text_b_tag[i]);
                 dMeter2Info_getStringKanji(stringId, textBox->getStringPtr(), NULL);
             }
         }
@@ -2059,10 +1894,6 @@ bool dMenu_Option_c::isRumbleSupported() {
 bool dMenu_Option_c::dpdMenuMove() {
     return false;
 }
-
-/* ############################################################################################## */
-/* 80454378-8045437C 002978 0004+00 1/1 0/0 0/0 .sdata2          @6256 */
-// SECTION_SDATA2 static f32 lit_6256 = 10.0f;
 
 /* 801E80B4-801E8210 1E29F4 015C+00 1/1 0/0 0/0 .text            paneResize__14dMenu_Option_cFUx */
 void dMenu_Option_c::paneResize(u64 i_tag) {

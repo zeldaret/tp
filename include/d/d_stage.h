@@ -10,7 +10,12 @@
 class JKRExpHeap;
 
 struct stage_vrboxcol_info_class {
-    // VRB
+    /* 0x00 */ color_RGB_class field_0x0;
+    /* 0x03 */ color_RGB_class field_0x3;
+    /* 0x06 */ color_RGB_class field_0x6;
+    /* 0x09 */ GXColor field_0x9;
+    /* 0x0D */ GXColor field_0xd;
+    /* 0x11 */ GXColor field_0x11;
 };  // Size: 0x18
 
 // Virt
@@ -813,7 +818,7 @@ public:
     /* 80024954 */ static bool resetArchiveBank(int);
     /* 80024DB0 */ static void SetTimePass(int);
     /* 8025BAAC */ static void setZoneNo(int, int);
-    static s8 GetTimePass();
+    static s8 GetTimePass() { return m_time_pass; }
 
     static s8 getStayNo() { return mStayNo; }
     static u8 getRegionNo(int i_roomNo) { return mStatus[i_roomNo].mRegionNo; }

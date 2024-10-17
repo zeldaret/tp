@@ -103,13 +103,8 @@ public:
     /* 809596E0 */ bool setExpressionBtp(int);
     /* 809597C0 */ void setMotionAnm(int i_idx, f32 i_morf);
     /* 80959910 */ void reset();
-#ifdef NONMATCHING
     /* 80959B28 */ inline bool setAction(ActionFn);
     /* 80959BD0 */ inline bool isSneaking();
-#else
-    /* 80959B28 */ bool setAction(ActionFn);
-    /* 80959BD0 */ bool isSneaking();
-#endif
     /* 80959C40 */ bool wait_type0(void*);
     /* 8095A67C */ void setMotion(int, f32, int);
     /* 8095A6C0 */ void setExpression(int, f32);
@@ -123,11 +118,7 @@ public:
     /* 8095BA80 */ BOOL EvCut_WiretapEntrant(int i_staffID);
     /* 8095BCF0 */ void setParam();
     /* 8095BF6C */ BOOL main();
-#ifdef NONMATCHING
-    /* 8095C200 */ inline void playMotion();
-#else
     /* 8095C200 */ void playMotion();
-#endif
     /* 8095C520 */ BOOL ctrlBtk();
     /* 8095C5C4 */ void setAttnPos();
     /* 8095C9BC */ void lookat();
@@ -142,18 +133,14 @@ public:
     inline bool step(s16, bool);
     inline void playExpression();
 
-#ifdef NONMATCHING
     static EventFn mEvtSeqList[6];
-#else
-    static u8 mEvtSeqList[72];
-#endif
 };
 
 STATIC_ASSERT(sizeof(daNpcAsh_c) == 0xF64);
 
 class daNpcAsh_Param_c {
 public:
-    /* 8095D5D4 */ virtual ~daNpcAsh_Param_c();
+    /* 8095D5D4 */ virtual ~daNpcAsh_Param_c() {}
 
     struct param {
         /* 0x00 */ f32 mAttnOffsetY;

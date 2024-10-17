@@ -89,10 +89,10 @@ public:
     /* 801CE93C */ bool getNextRegion();
     /* 801CE9A4 */ room_class* getNextRoomPointer();
 
-    /* 801CF4D0 */ ~renderingFmap_c();  // {}
-    /* 801CF55C */ bool isRenderingFloor(int);  // { return true; }
-    /* 801CF564 */ void beforeDrawPath();  // {}
-    /* 801CF568 */ void afterDrawPath();  // {}
+    /* 801CF4D0 */ ~renderingFmap_c() {}
+    /* 801CF55C */ bool isRenderingFloor(int) { return true; }
+    /* 801CF564 */ void beforeDrawPath() {}
+    /* 801CF568 */ void afterDrawPath() {}
     int getNowDrawRegionNo() { return mRegionNo; }
     bool isDrawEnable() { return mDrawEnable; }
 

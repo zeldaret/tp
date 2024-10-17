@@ -22,7 +22,7 @@ class dMenu_ItemExplain_c;
 class J2DPictureEx;
 
 struct renderingDmap_c {
-    /* 801C0380 */ ~renderingDmap_c();
+    /* 801C0380 */ virtual ~renderingDmap_c() {}
     /* 801C051C */ renderingDmap_c();
 };
 

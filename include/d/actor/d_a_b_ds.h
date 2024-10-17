@@ -326,15 +326,8 @@ STATIC_ASSERT(sizeof(daB_DS_c) == 0x2F28);
 class daB_DS_HIO_c {
 public:
     /* 805CB22C */ daB_DS_HIO_c();
-#ifdef NONMATCHING
     /* 805DC89C */ virtual ~daB_DS_HIO_c() {}
-#else
-    /* 805DC89C */ ~daB_DS_HIO_c();
-#endif
 
-#ifndef NONMATCHING
-    /* 0x00 */ void* _vtable;
-#endif
     /* 0x04 */ s8 field_0x04;
     /* 0x08 */ f32 mModelSize;
     /* 0x0C */ f32 mHandRange;

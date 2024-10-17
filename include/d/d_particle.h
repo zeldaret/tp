@@ -18,7 +18,7 @@ class dPa_levelEcallBack : public JPAEmitterCallBack {
 public:
     /* 8004FB18 */ virtual ~dPa_levelEcallBack() { cleanup(); }
     virtual void setup(JPABaseEmitter*, const cXyz*, const csXyz*, s8) = 0;
-    /* 8004FB8C */ virtual void cleanup();
+    /* 8004FB8C */ virtual void cleanup() {}
 };
 
 class dPa_hermiteEcallBack_c : public dPa_levelEcallBack {
@@ -56,7 +56,7 @@ public:
     /* 8004B168 */ u32 set(cXyz const*, dKy_tevstr_c const*, u8, _GXColor const&, _GXColor const&,
                             int, f32);
 
-    /* 8004FC08 */ virtual ~dPa_simpleEcallBack();
+    /* 8004FC08 */ virtual ~dPa_simpleEcallBack() {}
     /* 8004AE1C */ virtual void executeAfter(JPABaseEmitter*);
     /* 8004AF94 */ virtual void draw(JPABaseEmitter*);
 
@@ -75,11 +75,11 @@ class dPa_followEcallBack : public dPa_levelEcallBack {
 public:
     /* 80049580 */ dPa_followEcallBack(u8 param_0 = 0, u8 param_1 = 0);
 
-    /* 80050200 */ virtual ~dPa_followEcallBack();
+    /* 80050200 */ virtual ~dPa_followEcallBack() {}
     /* 800495BC */ virtual void execute(JPABaseEmitter*);
     /* 800496B0 */ virtual void draw(JPABaseEmitter*);
     /* 800496B4 */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
-    /* 80050284 */ virtual void cleanup();
+    /* 80050284 */ virtual void cleanup() { end(); }
     /* 8004974C */ virtual void end();
 
     void remove() { end(); }
@@ -99,13 +99,13 @@ public:
 
 class dPa_windPcallBack : public JPAParticleCallBack {
 public:
-    /* 8004FF2C */ virtual ~dPa_windPcallBack();
+    /* 8004FF2C */ virtual ~dPa_windPcallBack() {}
     /* 8004B4E0 */ virtual void execute(JPABaseEmitter*, JPABaseParticle*);
 };
 
 class dPa_wbPcallBack_c : public JPAParticleCallBack {
 public:
-    /* 8004FECC */ virtual ~dPa_wbPcallBack_c();
+    /* 8004FECC */ virtual ~dPa_wbPcallBack_c() {}
     /* 8004DC28 */ virtual void execute(JPABaseEmitter*, JPABaseParticle*);
 };
 
@@ -113,7 +113,7 @@ class dPa_setColorEcallBack : public dPa_levelEcallBack {
 public:
     dPa_setColorEcallBack(const GXColor& color) { mColor = color; }
 
-    /* 800502E4 */ virtual ~dPa_setColorEcallBack();
+    /* 800502E4 */ virtual ~dPa_setColorEcallBack() {}
     /* 800502B0 */ virtual void draw(JPABaseEmitter*);
     /* 800502E0 */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
 
@@ -124,7 +124,7 @@ class dPa_selectTexEcallBack : public dPa_levelEcallBack {
 public:
     dPa_selectTexEcallBack(u8 param_0) { field_0x4 = param_0; }
 
-    /* 8004FF8C */ virtual ~dPa_selectTexEcallBack();
+    /* 8004FF8C */ virtual ~dPa_selectTexEcallBack() {}
     /* 8004ADC4 */ virtual void draw(JPABaseEmitter*);
     /* 80050010 */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
 
@@ -133,13 +133,13 @@ public:
 
 class dPa_particleTracePcallBack_c : public JPAParticleCallBack {
 public:
-    /* 8004FC68 */ virtual ~dPa_particleTracePcallBack_c();
+    /* 8004FC68 */ virtual ~dPa_particleTracePcallBack_c() {}
     /* 8004FAD4 */ virtual void execute(JPABaseEmitter*, JPABaseParticle*);
 };
 
 class dPa_modelPcallBack : public JPAParticleCallBack {
 public:
-    /* 80050038 */ virtual ~dPa_modelPcallBack();
+    /* 80050038 */ virtual ~dPa_modelPcallBack() {}
     /* 8004A460 */ virtual void draw(JPABaseEmitter*, JPABaseParticle*);
 };
 
@@ -151,10 +151,10 @@ public:
         /* 8004A88C */ void cleanup();
         /* 8004A8DC */ void draw(f32 (*)[4]);
         /* 8004AB88 */ ~model_c();
-        /* 8004FB90 */ model_c();
+        /* 8004FB90 */ model_c() { field_0x0 = NULL; }
 
         void reset() {
-            field_0x0 = 0;
+            field_0x0 = NULL;
         }
 
         u8 getRotAxis() { return mRotAxis; }
@@ -182,7 +182,7 @@ public:
     /* 8004AD58 */ static model_c* getModel(JPABaseEmitter*);
     /* 8004AD90 */ static u8 getRotAxis(JPABaseEmitter*);
 
-    /* 80050378 */ virtual ~dPa_modelEcallBack();
+    /* 80050378 */ virtual ~dPa_modelEcallBack() {}
     /* 8004AA34 */ virtual void draw(JPABaseEmitter*);
     /* 80050014 */ virtual void drawAfter(JPABaseEmitter*);
     /* 8004AAA8 */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
@@ -202,14 +202,14 @@ public:
 
 class dPa_light8PcallBack : public JPAParticleCallBack {
 public:
-    /* 8004FE0C */ virtual ~dPa_light8PcallBack();
+    /* 8004FE0C */ virtual ~dPa_light8PcallBack() {}
     /* 8004DD10 */ virtual void execute(JPABaseEmitter*, JPABaseParticle*);
     /* 8004DD1C */ virtual void draw(JPABaseEmitter*, JPABaseParticle*);
 };
 
 class dPa_light8EcallBack : public dPa_levelEcallBack {
 public:
-    /* 8005015C */ virtual ~dPa_light8EcallBack();
+    /* 8005015C */ virtual ~dPa_light8EcallBack() {}
     /* 8004A340 */ virtual void draw(JPABaseEmitter*);
     /* 800501E0 */ virtual void drawAfter(JPABaseEmitter*);
     /* 8004979C */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
@@ -217,14 +217,14 @@ public:
 
 class dPa_gen_d_light8PcallBack : public JPAParticleCallBack {
 public:
-    /* 8004FD4C */ virtual ~dPa_gen_d_light8PcallBack();
+    /* 8004FD4C */ virtual ~dPa_gen_d_light8PcallBack() {}
     /* 8004DD18 */ virtual void execute(JPABaseEmitter*, JPABaseParticle*);
     /* 8004ED44 */ virtual void draw(JPABaseEmitter*, JPABaseParticle*);
 };
 
 class dPa_gen_d_light8EcallBack : public dPa_levelEcallBack {
 public:
-    /* 800503FC */ virtual ~dPa_gen_d_light8EcallBack();
+    /* 800503FC */ virtual ~dPa_gen_d_light8EcallBack() {}
     /* 8004A388 */ virtual void draw(JPABaseEmitter*);
     /* 80050098 */ virtual void drawAfter(JPABaseEmitter*);
     /* 800497CC */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
@@ -232,14 +232,14 @@ public:
 
 class dPa_gen_b_light8PcallBack : public JPAParticleCallBack {
 public:
-    /* 8004FDAC */ virtual ~dPa_gen_b_light8PcallBack();
+    /* 8004FDAC */ virtual ~dPa_gen_b_light8PcallBack() {}
     /* 8004DD14 */ virtual void execute(JPABaseEmitter*, JPABaseParticle*);
     /* 8004E6A8 */ virtual void draw(JPABaseEmitter*, JPABaseParticle*);
 };
 
 class dPa_gen_b_light8EcallBack : public dPa_levelEcallBack {
 public:
-    /* 800500B8 */ virtual ~dPa_gen_b_light8EcallBack();
+    /* 800500B8 */ virtual ~dPa_gen_b_light8EcallBack() {}
     /* 8004A364 */ virtual void draw(JPABaseEmitter*);
     /* 8005013C */ virtual void drawAfter(JPABaseEmitter*);
     /* 800497B0 */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
@@ -247,7 +247,7 @@ public:
 
 class dPa_fsenthPcallBack : public JPAParticleCallBack {
 public:
-    /* 8004FE6C */ virtual ~dPa_fsenthPcallBack();
+    /* 8004FE6C */ virtual ~dPa_fsenthPcallBack() {}
     /* 8004DCA0 */ virtual void execute(JPABaseEmitter*, JPABaseParticle*);
     /* 8004DD0C */ virtual void draw(JPABaseEmitter*, JPABaseParticle*);
 };
@@ -271,7 +271,7 @@ public:
             /* 8004B504 */ void onActive();
             /* 8004B544 */ void entry(u32, u16, JPABaseEmitter*, dPa_levelEcallBack*);
             /* 8004B5AC */ void cleanup();
-            /* 8004FBFC */ emitter_c();
+            /* 8004FBFC */ emitter_c() { mId = 0; }
 
             JPABaseEmitter* getEmitter() { return mEmitter; }
             emitter_c* getPre() { return mPre; }
@@ -410,56 +410,48 @@ public:
     static bool isStatus(u8 status) { return mStatus & status; }
 
     static dPa_selectTexEcallBack* getTsuboSelectTexEcallBack(int idx) {
-        return ((dPa_selectTexEcallBack*)mTsubo) + idx;
+        return &mTsubo[idx];
     }
 
     static JPAEmitterManager* getEmitterManager() { return mEmitterMng; }
     static JPAParticleCallBack* getLight8PcallBack() { 
-        return (JPAParticleCallBack*)mLight8PcallBack;
-        //return &mLight8PcallBack; 
+        return &mLight8PcallBack; 
     }
     static JPAParticleCallBack* getGen_b_Light8PcallBack() {
-        return (JPAParticleCallBack*)m_b_Light8PcallBack;
-        //return &m_b_Light8PcallBack; 
+        return &m_b_Light8PcallBack; 
     }
     static JPAParticleCallBack* getGen_d_Light8PcallBack() {
-        return (JPAParticleCallBack*)m_d_Light8PcallBack;
-        //return &m_d_Light8PcallBack; 
+        return &m_d_Light8PcallBack; 
     }
     static dPa_gen_b_light8EcallBack* getGen_b_Light8EcallBack() {
-        return (dPa_gen_b_light8EcallBack*)m_b_Light8EcallBack;
-        //return &m_b_Light8EcallBack; 
+        return &m_b_Light8EcallBack; 
     }
     static dPa_gen_d_light8EcallBack* getGen_d_Light8EcallBack() {
-        return (dPa_gen_d_light8EcallBack*)m_d_Light8EcallBack;
-        //return &m_d_Light8PcallBack; 
+        return &m_d_Light8EcallBack; 
     }
     static dPa_light8EcallBack* getLight8EcallBack() {
-        return (dPa_light8EcallBack*)mLight8EcallBack;
-        //return &mLight8EcallBack; 
+        return &mLight8EcallBack; 
     }
     static JPAParticleCallBack* getParticleTracePCB() {
-        return (JPAParticleCallBack*)mParticleTracePCB;
-        //return &mParticleTracePCB; 
+        return &mParticleTracePCB; 
     }
     static JPAParticleCallBack* getFsenthPcallBack() {
-        return (JPAParticleCallBack*)mFsenthPcallBack;
-        //return &mFsenthPcallBack; 
+        return &mFsenthPcallBack; 
     }
 
-    static u8 mTsubo[64];
+    static dPa_selectTexEcallBack mTsubo[8];
     static u8 mLifeBall[24];
     static Mtx mWindViewMatrix;
     static JPAEmitterManager* mEmitterMng;
     static u8 mWaterBubblePcallBack[4];
-    static u8 mFsenthPcallBack[4];
-    static u8 mLight8EcallBack[4];
-    static u8 mLight8PcallBack[4];
-    static u8 m_b_Light8EcallBack[4];
-    static u8 m_b_Light8PcallBack[4];
-    static u8 m_d_Light8EcallBack[4];
-    static u8 m_d_Light8PcallBack[4];
-    static u8 mParticleTracePCB[4 + 4 /* padding */];
+    static JPAParticleCallBack mFsenthPcallBack;
+    static dPa_light8EcallBack mLight8EcallBack;
+    static JPAParticleCallBack mLight8PcallBack;
+    static dPa_gen_b_light8EcallBack m_b_Light8EcallBack;
+    static JPAParticleCallBack m_b_Light8PcallBack;
+    static dPa_gen_d_light8EcallBack m_d_Light8EcallBack;
+    static JPAParticleCallBack m_d_Light8PcallBack;
+    static JPAParticleCallBack mParticleTracePCB;
     static u8 mStatus;
 
 private:

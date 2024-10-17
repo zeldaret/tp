@@ -9,120 +9,6 @@
 #include "Z2AudioLib/Z2Creature.h"
 #include "d/d_save.h"
 #include "d/d_com_inf_game.h"
-#include "dol2asm.h"
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__11Z2EnvSeBaseFP3Vec();
-extern "C" void __dt__11Z2EnvSeBaseFv();
-extern "C" void startEnvSe__11Z2EnvSeBaseF10JAISoundIDfffffUl();
-extern "C" void startEnvSeLevel__11Z2EnvSeBaseF10JAISoundIDfffffUl();
-extern "C" void __ct__10Z2EnvSeDirFP3Vec();
-extern "C" void __dt__10Z2EnvSeDirFv();
-extern "C" void setPanDir__10Z2EnvSeDirFP3Vec();
-extern "C" void calcPan__10Z2EnvSeDirFf();
-extern "C" void startEnvSeDirLevel__10Z2EnvSeDirF10JAISoundIDff();
-extern "C" void __ct__14Z2EnvSeAutoPanFv();
-extern "C" void __dt__14Z2EnvSeAutoPanFv();
-extern "C" void setPanParam__14Z2EnvSeAutoPanFffbbff();
-extern "C" void calcPan__14Z2EnvSeAutoPanFv();
-extern "C" void startEnvSeAutoPanLevel__14Z2EnvSeAutoPanF10JAISoundIDfff();
-extern "C" void __ct__10Z2EnvSeMgrFv();
-extern "C" void __dt__10Z2EnvSeMgrFv();
-extern "C" void framework__10Z2EnvSeMgrFv();
-extern "C" void resetScene__10Z2EnvSeMgrFv();
-extern "C" void resetSceneInner__10Z2EnvSeMgrFv();
-extern "C" void initSceneEnvSe__10Z2EnvSeMgrFlScf();
-extern "C" void playSceneEnvSe__10Z2EnvSeMgrFv();
-extern "C" void initStaticEnvSe__10Z2EnvSeMgrFUcUcUcUcP3Vec();
-extern "C" void startStaticEnvSe__10Z2EnvSeMgrFSc();
-extern "C" void registWindowPos__10Z2EnvSeMgrFP3Vec();
-extern "C" void startRainSe__10Z2EnvSeMgrFlSc();
-extern "C" void startNearThunderSe__10Z2EnvSeMgrFSc();
-extern "C" void startFarThunderSe__10Z2EnvSeMgrFP3VecSc();
-extern "C" void setSnowPower__10Z2EnvSeMgrFSc();
-extern "C" void initStrongWindSe__10Z2EnvSeMgrFv();
-extern "C" void setWindDirection__10Z2EnvSeMgrFP3Vec();
-extern "C" void startStrongWindSe__10Z2EnvSeMgrFSc();
-extern "C" void initRiverSe__10Z2EnvSeMgrFUcUcUcUc();
-extern "C" void registRiverSePos__10Z2EnvSeMgrFP3Vec();
-extern "C" void setHyrulSewerOpen__10Z2EnvSeMgrFb();
-extern "C" void startRiverSe__10Z2EnvSeMgrFSc();
-extern "C" void initFallSe__10Z2EnvSeMgrFUcUcUcUc();
-extern "C" void registFallSePos__10Z2EnvSeMgrFP3Vec();
-extern "C" void startFallSe__10Z2EnvSeMgrFSc();
-extern "C" void initEtcSe__10Z2EnvSeMgrFUcUcUcUc();
-extern "C" void registEtcSePos__10Z2EnvSeMgrFP3Vec();
-extern "C" void startEtcSe__10Z2EnvSeMgrFSc();
-extern "C" void registWolfSmellSePos__10Z2EnvSeMgrFP3Vec();
-extern "C" void startFogWipeTrigger__10Z2EnvSeMgrFP3Vec();
-extern "C" void setFogWipeWidth__10Z2EnvSeMgrFf();
-extern "C" void getFogDensity__10Z2EnvSeMgrFv();
-extern "C" void startFogSe__10Z2EnvSeMgrFv();
-extern "C" void initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc();
-extern "C" void registLv3WaterSePos__10Z2EnvSeMgrFUcP3Vec();
-extern "C" void startLv3WaterSe__10Z2EnvSeMgrFSc();
-
-//
-// External References:
-//
-
-extern "C" void dComIfGp_getReverb__Fi();
-extern "C" void isSwitch__12dSv_memBit_cCFi();
-extern "C" void isEventBit__11dSv_event_cCFUs();
-extern "C" void releaseSound__14JAISoundHandleFv();
-extern "C" void releaseHandle__8JAISoundFv();
-extern "C" void stop__8JAISoundFUl();
-extern "C" void moveVolume__18JAISoundParamsMoveFfUl();
-extern "C" void movePitch__18JAISoundParamsMoveFfUl();
-extern "C" void moveFxMix__18JAISoundParamsMoveFfUl();
-extern "C" void movePan__18JAISoundParamsMoveFfUl();
-extern "C" void moveDolby__18JAISoundParamsMoveFfUl();
-extern "C" void func_802A2FEC();
-extern "C" void linearTransform__6Z2CalcFfffffb();
-extern "C" void getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign();
-extern "C" void getRandom__6Z2CalcFfff();
-extern "C" void setParam__Q26Z2Calc8FNoise1fFfff();
-extern "C" void calcNoise1f__Q26Z2Calc8FNoise1fFv();
-extern "C" void setIIR__10Z2SoundMgrFP8JAISoundPCs();
-extern "C" void setPortData__14Z2SoundStarterFP14JAISoundHandleUlUsSc();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void __ct__12Z2MultiSeMgrFv();
-extern "C" void __dt__12Z2MultiSeMgrFv();
-extern "C" void registMultiSePos__12Z2MultiSeMgrFP3Vec();
-extern "C" void resetMultiSePos__12Z2MultiSeMgrFv();
-extern "C" void getPanPower__12Z2MultiSeMgrFv();
-extern "C" void getDolbyPower__12Z2MultiSeMgrFv();
-extern "C" void convertAbsToRel__10Z2AudienceFR3VecP3Veci();
-extern "C" void calcRelPosVolume__10Z2AudienceFRC3Vecfi();
-extern "C" void calcRelPosPan__10Z2AudienceFRC3Veci();
-extern "C" void calcRelPosDolby__10Z2AudienceFRC3Veci();
-extern "C" void __dl__FPv();
-extern "C" void JMAFastVECNormalize__FPC3VecP3Vec();
-extern "C" void __cvt_fp2unsigned();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" u8 const CUTOFF_TO_IIR_TABLE__7JASCalc[1024];
-extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 data_80450B44[4];
-extern "C" extern u8 data_80450B60[4];
-extern "C" extern u8 data_80450B74[4];
-extern "C" extern u8 data_80450B7C[4];
-extern "C" extern u8 data_80450B80[4];
-extern "C" u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
-extern "C" f32 cEqualCSlope__6Z2Calc;
-extern "C" f32 cEqualPSlope__6Z2Calc;
-extern "C" extern u8 __OSReport_disable;
-
-//
-// Declarations:
-//
 
 /* 802C589C-802C58AC 2C01DC 0010+00 3/3 0/0 0/0 .text            __ct__11Z2EnvSeBaseFP3Vec */
 Z2EnvSeBase::Z2EnvSeBase(Vec* param_0) {
@@ -131,34 +17,6 @@ Z2EnvSeBase::Z2EnvSeBase(Vec* param_0) {
 
 /* 802C58AC-802C5908 2C01EC 005C+00 3/3 0/0 0/0 .text            __dt__11Z2EnvSeBaseFv */
 Z2EnvSeBase::~Z2EnvSeBase() {}
-
-/* ############################################################################################## */
-/* 80455D40-80455D44 004340 0004+00 2/2 0/0 0/0 .sdata2          @3501 */
-SECTION_SDATA2 static f32 lit_3501 = 0.33f;
-
-/* 80455D44-80455D48 004344 0004+00 24/24 0/0 0/0 .sdata2          @3502 */
-SECTION_SDATA2 static f32 lit_3502 = 1.0f;
-
-/* 80455D48-80455D4C 004348 0004+00 19/19 0/0 0/0 .sdata2          @3503 */
-SECTION_SDATA2 static u8 lit_3503[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80455D4C-80455D50 00434C 0004+00 2/2 0/0 0/0 .sdata2          @3504 */
-SECTION_SDATA2 static f32 lit_3504 = 1500.0f;
-
-/* 80455D50-80455D58 004350 0004+04 9/9 0/0 0/0 .sdata2          @3505 */
-SECTION_SDATA2 static f32 lit_3505[1 + 1 /* padding */] = {
-    1.0f / 10.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 80455D58-80455D60 004358 0008+00 8/8 0/0 0/0 .sdata2          @3508 */
-SECTION_SDATA2 static f64 lit_3508 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802C5908-802C5AB4 2C0248 01AC+00 2/2 0/0 0/0 .text
  * startEnvSe__11Z2EnvSeBaseF10JAISoundIDfffffUl                */
@@ -222,13 +80,8 @@ bool Z2EnvSeBase::startEnvSeLevel(JAISoundID param_1, f32 param_2, f32 param_3, 
     return rv;
 }
 
-/* ############################################################################################## */
 /* 8039C250-8039C260 0288B0 000C+04 2/2 0/0 0/0 .rodata          cNullVec__6Z2Calc */
-SECTION_RODATA static Vec const cNullVec__6Z2Calc = {0.0f, 0.0f, 0.0f};
-COMPILER_STRIP_GATE(0x8039C250, &cNullVec__6Z2Calc);
-
-/* 80455D60-80455D64 004360 0004+00 10/10 0/0 0/0 .sdata2          @3574 */
-SECTION_SDATA2 static f32 lit_3574 = 0.5f;
+static Vec const cNullVec__6Z2Calc = {0.0f, 0.0f, 0.0f};
 
 /* 802C5C9C-802C5D1C 2C05DC 0080+00 1/1 0/0 0/0 .text            __ct__10Z2EnvSeDirFP3Vec */
 Z2EnvSeDir::Z2EnvSeDir(Vec* param_0) {
@@ -241,13 +94,8 @@ Z2EnvSeDir::Z2EnvSeDir(Vec* param_0) {
     }
 }
 
-
 /* 802C5D1C-802C5D70 2C065C 0054+00 1/1 0/0 0/0 .text            __dt__10Z2EnvSeDirFv */
 Z2EnvSeDir::~Z2EnvSeDir() {}
-
-/* ############################################################################################## */
-/* 80455D64-80455D68 004364 0004+00 1/1 0/0 0/0 .sdata2          @3585 */
-SECTION_SDATA2 static f32 lit_3585 = -1000.0f;
 
 /* 802C5D70-802C5D9C 2C06B0 002C+00 2/2 0/0 0/0 .text            setPanDir__10Z2EnvSeDirFP3Vec */
 void Z2EnvSeDir::setPanDir(Vec* dir) {
@@ -255,7 +103,6 @@ void Z2EnvSeDir::setPanDir(Vec* dir) {
     mPanDir.y = dir->y * -1000.0f;
     mPanDir.z = dir->z * -1000.0f;
 }
-
 
 /* 802C5D9C-802C5E90 2C06DC 00F4+00 1/1 0/0 0/0 .text            calcPan__10Z2EnvSeDirFf */
 void Z2EnvSeDir::calcPan(f32 param_0) {
@@ -274,19 +121,11 @@ void Z2EnvSeDir::calcPan(f32 param_0) {
     }
 }
 
-
 /* 802C5E90-802C5ECC 2C07D0 003C+00 1/1 0/0 0/0 .text
  * startEnvSeDirLevel__10Z2EnvSeDirF10JAISoundIDff              */
 bool Z2EnvSeDir::startEnvSeDirLevel(JAISoundID param_1, f32 param_2, f32 param_3) {
     return Z2EnvSeBase::startEnvSeLevel(param_1, param_2, param_3, field_0x8, field_0xc, 1.0f, 0);
 }
-
-/* ############################################################################################## */
-/* 80455D68-80455D6C 004368 0004+00 3/3 0/0 0/0 .sdata2          @3654 */
-SECTION_SDATA2 static f32 lit_3654 = 0.0018554000416770577f;
-
-/* 80455D6C-80455D70 00436C 0004+00 3/3 0/0 0/0 .sdata2          @3655 */
-SECTION_SDATA2 static f32 lit_3655 = 0.0008553999941796064f;
 
 /* 802C5ECC-802C5F28 2C080C 005C+00 1/1 0/0 0/0 .text            __ct__14Z2EnvSeAutoPanFv */
 Z2EnvSeAutoPan::Z2EnvSeAutoPan() {
@@ -297,7 +136,6 @@ Z2EnvSeAutoPan::Z2EnvSeAutoPan() {
     field_0x18 = 1;
     field_0x19 = 1;
 }
-
 
 /* 802C5F28-802C5F7C 2C0868 0054+00 1/1 0/0 0/0 .text            __dt__14Z2EnvSeAutoPanFv */
 Z2EnvSeAutoPan::~Z2EnvSeAutoPan() {}
@@ -312,13 +150,6 @@ void Z2EnvSeAutoPan::setPanParam(f32 param_1, f32 param_2, bool param_3, bool pa
     field_0x18 = param_3;
     field_0x19 = param_4;
 }
-
-/* ############################################################################################## */
-/* 80455D70-80455D74 004370 0004+00 4/4 0/0 0/0 .sdata2          @3704 */
-SECTION_SDATA2 static f32 lit_3704 = 2.0f;
-
-/* 80455D74-80455D78 004374 0004+00 7/7 0/0 0/0 .sdata2          @3705 */
-SECTION_SDATA2 static f32 lit_3705 = -1.0f;
 
 /* 802C5F98-802C60E0 2C08D8 0148+00 2/2 0/0 0/0 .text            calcPan__14Z2EnvSeAutoPanFv */
 void Z2EnvSeAutoPan::calcPan() {
@@ -354,7 +185,6 @@ void Z2EnvSeAutoPan::calcPan() {
     }
 }
 
-
 /* 802C60E0-802C611C 2C0A20 003C+00 2/2 0/0 0/0 .text
  * startEnvSeAutoPanLevel__14Z2EnvSeAutoPanF10JAISoundIDfff     */
 bool Z2EnvSeAutoPan::startEnvSeAutoPanLevel(JAISoundID param_1, f32 param_2, f32 param_3,
@@ -362,94 +192,6 @@ bool Z2EnvSeAutoPan::startEnvSeAutoPanLevel(JAISoundID param_1, f32 param_2, f32
     return Z2EnvSeBase::startEnvSeLevel(param_1, param_2, param_3, field_0x8, field_0xc, param_4,
                                         0);
 }
-
-/* ############################################################################################## */
-/* 80455D78-80455D7C 004378 0004+00 8/8 0/0 0/0 .sdata2          @3749 */
-SECTION_SDATA2 static f32 lit_3749 = 1.0f / 100.0f;
-
-/* 80455D7C-80455D80 00437C 0004+00 1/1 0/0 0/0 .sdata2          @3750 */
-SECTION_SDATA2 static f32 lit_3750 = 0.007823764346539974f;
-
-/* 80455D80-80455D84 004380 0004+00 1/1 0/0 0/0 .sdata2          @3751 */
-SECTION_SDATA2 static f32 lit_3751 = 3.0f / 50.0f;
-
-/* 80455D84-80455D88 004384 0004+00 4/4 0/0 0/0 .sdata2          @3752 */
-SECTION_SDATA2 static f32 lit_3752 = 1.0f / 5.0f;
-
-/* 80455D88-80455D8C 004388 0004+00 1/1 0/0 0/0 .sdata2          @3753 */
-SECTION_SDATA2 static f32 lit_3753 = 0.026302523910999298f;
-
-/* 80455D8C-80455D90 00438C 0004+00 1/1 0/0 0/0 .sdata2          @3754 */
-SECTION_SDATA2 static f32 lit_3754 = 0.004999999888241291f;
-
-/* 80455D90-80455D94 004390 0004+00 2/2 0/0 0/0 .sdata2          @3755 */
-SECTION_SDATA2 static f32 lit_3755 = 9.0f / 10.0f;
-
-/* 80455D94-80455D98 004394 0004+00 1/1 0/0 0/0 .sdata2          @3756 */
-SECTION_SDATA2 static f32 lit_3756 = 0.023310113698244095f;
-
-/* 80455D98-80455D9C 004398 0004+00 1/1 0/0 0/0 .sdata2          @3757 */
-SECTION_SDATA2 static f32 lit_3757 = 0.003000000026077032f;
-
-/* 80455D9C-80455DA0 00439C 0004+00 1/1 0/0 0/0 .sdata2          @3758 */
-SECTION_SDATA2 static f32 lit_3758 = 0.006385157350450754f;
-
-/* 80455DA0-80455DA4 0043A0 0004+00 1/1 0/0 0/0 .sdata2          @3759 */
-SECTION_SDATA2 static f32 lit_3759 = 0.004000000189989805f;
-
-/* 80455DA4-80455DA8 0043A4 0004+00 6/6 0/0 0/0 .sdata2          @3760 */
-SECTION_SDATA2 static f32 lit_3760 = 4.0f / 5.0f;
-
-/* 80455DA8-80455DAC 0043A8 0004+00 1/1 0/0 0/0 .sdata2          @3761 */
-SECTION_SDATA2 static f32 lit_3761 = 0.006188805215060711f;
-
-/* 80455DAC-80455DB0 0043AC 0004+00 1/1 0/0 0/0 .sdata2          @3762 */
-SECTION_SDATA2 static f32 lit_3762 = 0.0044999998062849045f;
-
-/* 80455DB0-80455DB4 0043B0 0004+00 6/6 0/0 0/0 .sdata2          @3763 */
-SECTION_SDATA2 static f32 lit_3763 = 3.0f / 10.0f;
-
-/* 80455DB4-80455DB8 0043B4 0004+00 1/1 0/0 0/0 .sdata2          @3764 */
-SECTION_SDATA2 static f32 lit_3764 = 0.05343298241496086f;
-
-/* 80455DB8-80455DBC 0043B8 0004+00 1/1 0/0 0/0 .sdata2          @3765 */
-SECTION_SDATA2 static f32 lit_3765 = 0.0020000000949949026f;
-
-/* 80455DBC-80455DC0 0043BC 0004+00 7/7 0/0 0/0 .sdata2          @3766 */
-SECTION_SDATA2 static f32 lit_3766 = 7.0f / 10.0f;
-
-/* 80455DC0-80455DC4 0043C0 0004+00 1/1 0/0 0/0 .sdata2          @3767 */
-SECTION_SDATA2 static f32 lit_3767 = 0.04256627336144447f;
-
-/* 80455DC4-80455DC8 0043C4 0004+00 1/1 0/0 0/0 .sdata2          @3768 */
-SECTION_SDATA2 static f32 lit_3768 = 0.0024999999441206455f;
-
-/* 80455DC8-80455DCC 0043C8 0004+00 5/5 0/0 0/0 .sdata2          @3769 */
-SECTION_SDATA2 static f32 lit_3769 = 2.0f / 5.0f;
-
-/* 80455DCC-80455DD0 0043CC 0004+00 1/1 0/0 0/0 .sdata2          @3770 */
-SECTION_SDATA2 static f32 lit_3770 = 0.01293395459651947f;
-
-/* 80455DD0-80455DD4 0043D0 0004+00 1/1 0/0 0/0 .sdata2          @3771 */
-SECTION_SDATA2 static f32 lit_3771 = 0.006000000052154064f;
-
-/* 80455DD4-80455DD8 0043D4 0004+00 3/3 0/0 0/0 .sdata2          @3772 */
-SECTION_SDATA2 static f32 lit_3772 = 3.0f / 5.0f;
-
-/* 80455DD8-80455DDC 0043D8 0004+00 1/1 0/0 0/0 .sdata2          @3773 */
-SECTION_SDATA2 static f32 lit_3773 = 0.012157413177192211f;
-
-/* 80455DDC-80455DE0 0043DC 0004+00 1/1 0/0 0/0 .sdata2          @3774 */
-SECTION_SDATA2 static f32 lit_3774 = 0.006500000134110451f;
-
-/* 80455DE0-80455DE4 0043E0 0004+00 1/1 0/0 0/0 .sdata2          @3775 */
-SECTION_SDATA2 static f32 lit_3775 = 0.020923573523759842f;
-
-/* 80455DE4-80455DE8 0043E4 0004+00 1/1 0/0 0/0 .sdata2          @3776 */
-SECTION_SDATA2 static f32 lit_3776 = 0.0010000000474974513f;
-
-/* 80455DE8-80455DEC 0043E8 0004+00 1/1 0/0 0/0 .sdata2          @3777 */
-SECTION_SDATA2 static f32 lit_3777 = 0.0037908784579485655f;
 
 /* 802C611C-802C6540 2C0A5C 0424+00 0/0 1/1 0/0 .text            __ct__10Z2EnvSeMgrFv */
 Z2EnvSeMgr::Z2EnvSeMgr()
@@ -487,10 +229,6 @@ Z2EnvSeMgr::Z2EnvSeMgr()
 
 /* 802C6540-802C66B0 2C0E80 0170+00 0/0 1/1 0/0 .text            __dt__10Z2EnvSeMgrFv */
 Z2EnvSeMgr::~Z2EnvSeMgr() {}
-
-/* ############################################################################################## */
-/* 80455DEC-80455DF0 0043EC 0004+00 1/1 0/0 0/0 .sdata2          @3928 */
-SECTION_SDATA2 static f32 lit_3928 = 30.0f;
 
 /* 802C66B0-802C6998 2C0FF0 02E8+00 0/0 1/1 0/0 .text            framework__10Z2EnvSeMgrFv */
 void Z2EnvSeMgr::framework() {
@@ -559,14 +297,12 @@ void Z2EnvSeMgr::framework() {
     }
 }
 
-
 /* 802C6998-802C699C 2C12D8 0004+00 0/0 1/1 0/0 .text            resetScene__10Z2EnvSeMgrFv */
 void Z2EnvSeMgr::resetScene() {
     /* empty function */
 }
 
 /* 802C699C-802C6AC0 2C12DC 0124+00 0/0 1/1 0/0 .text            resetSceneInner__10Z2EnvSeMgrFv */
-#ifdef NONMATCHING
 void Z2EnvSeMgr::resetSceneInner() {
     if (-1.0f == field_0x60) {
         field_0x38 = 0;
@@ -577,9 +313,9 @@ void Z2EnvSeMgr::resetSceneInner() {
         field_0x58 = 0.0f;
         field_0x5c = 0.0f;
         field_0x39 = 0;
-        field_0x3c = 0.0f;
-        field_0x40 = 0.0f;
-        field_0x44 = 0.0f;
+        field_0x3c.x = 0.0f;
+        field_0x3c.y = 0.0f;
+        field_0x3c.z = 0.0f;
     }
     field_0x140 = 0;
     mWindType = WIND_TYPE_0;
@@ -617,15 +353,6 @@ void Z2EnvSeMgr::resetSceneInner() {
     mWolfSmellSeMgr.resetMultiSePos();
     field_0x64.resetMultiSePos();
 }
-#else
-void Z2EnvSeMgr::resetSceneInner() {
-    // NONMATCHING
-}
-#endif
-
-/* ############################################################################################## */
-/* 80455DF0-80455DF4 0043F0 0004+00 2/2 0/0 0/0 .sdata2          @3963 */
-SECTION_SDATA2 static f32 lit_3963 = 100.0f;
 
 /* 802C6AC0-802C6C1C 2C1400 015C+00 0/0 1/1 0/0 .text            initSceneEnvSe__10Z2EnvSeMgrFlScf
  */
@@ -681,7 +408,6 @@ void Z2EnvSeMgr::initSceneEnvSe(s32 param_1, s8 param_2, f32 param_3) {
     field_0x60 = param_3;
 }
 
-
 /* 802C6C1C-802C6C84 2C155C 0068+00 1/1 0/0 0/0 .text            playSceneEnvSe__10Z2EnvSeMgrFv */
 void Z2EnvSeMgr::playSceneEnvSe() {
     if (-1.0f != field_0x60) {
@@ -691,24 +417,6 @@ void Z2EnvSeMgr::playSceneEnvSe() {
         field_0x1b8 = 0;
     }
 }
-
-
-/* ############################################################################################## */
-/* 803CB9C8-803CB9F8 -00001 0030+00 1/1 0/0 0/0 .data            @4025 */
-SECTION_DATA static void* lit_4025[12] = {
-    (void*)(((char*)initStaticEnvSe__10Z2EnvSeMgrFUcUcUcUcP3Vec) + 0x428),
-    (void*)(((char*)initStaticEnvSe__10Z2EnvSeMgrFUcUcUcUcP3Vec) + 0x1C8),
-    (void*)(((char*)initStaticEnvSe__10Z2EnvSeMgrFUcUcUcUcP3Vec) + 0x20C),
-    (void*)(((char*)initStaticEnvSe__10Z2EnvSeMgrFUcUcUcUcP3Vec) + 0x250),
-    (void*)(((char*)initStaticEnvSe__10Z2EnvSeMgrFUcUcUcUcP3Vec) + 0x294),
-    (void*)(((char*)initStaticEnvSe__10Z2EnvSeMgrFUcUcUcUcP3Vec) + 0x2D8),
-    (void*)(((char*)initStaticEnvSe__10Z2EnvSeMgrFUcUcUcUcP3Vec) + 0x31C),
-    (void*)(((char*)initStaticEnvSe__10Z2EnvSeMgrFUcUcUcUcP3Vec) + 0x360),
-    (void*)(((char*)initStaticEnvSe__10Z2EnvSeMgrFUcUcUcUcP3Vec) + 0x3A4),
-    (void*)(((char*)initStaticEnvSe__10Z2EnvSeMgrFUcUcUcUcP3Vec) + 0x3E8),
-    (void*)(((char*)initStaticEnvSe__10Z2EnvSeMgrFUcUcUcUcP3Vec) + 0x31C),
-    (void*)(((char*)initStaticEnvSe__10Z2EnvSeMgrFUcUcUcUcP3Vec) + 0x2D8),
-};
 
 /* 802C6C84-802C70C8 2C15C4 0444+00 2/1 1/1 0/0 .text initStaticEnvSe__10Z2EnvSeMgrFUcUcUcUcP3Vec
  */
@@ -851,61 +559,6 @@ void Z2EnvSeMgr::initStaticEnvSe(u8 param_1, u8 param_2, u8 param_3, u8 param_4,
         field_0x38 = param_1;
     }
 }
-
-
-/* ############################################################################################## */
-/* 803CB9F8-803CBA28 -00001 0030+00 1/1 0/0 0/0 .data            @4272 */
-SECTION_DATA static void* lit_4272[12] = {
-    (void*)(((char*)startStaticEnvSe__10Z2EnvSeMgrFSc) + 0x168),
-    (void*)(((char*)startStaticEnvSe__10Z2EnvSeMgrFSc) + 0x170),
-    (void*)(((char*)startStaticEnvSe__10Z2EnvSeMgrFSc) + 0x1C4),
-    (void*)(((char*)startStaticEnvSe__10Z2EnvSeMgrFSc) + 0x204),
-    (void*)(((char*)startStaticEnvSe__10Z2EnvSeMgrFSc) + 0x220),
-    (void*)(((char*)startStaticEnvSe__10Z2EnvSeMgrFSc) + 0x46C),
-    (void*)(((char*)startStaticEnvSe__10Z2EnvSeMgrFSc) + 0x48C),
-    (void*)(((char*)startStaticEnvSe__10Z2EnvSeMgrFSc) + 0x528),
-    (void*)(((char*)startStaticEnvSe__10Z2EnvSeMgrFSc) + 0x558),
-    (void*)(((char*)startStaticEnvSe__10Z2EnvSeMgrFSc) + 0x578),
-    (void*)(((char*)startStaticEnvSe__10Z2EnvSeMgrFSc) + 0x4DC),
-    (void*)(((char*)startStaticEnvSe__10Z2EnvSeMgrFSc) + 0x464),
-};
-
-/* 80455DF4-80455DF8 0043F4 0004+00 9/9 0/0 0/0 .sdata2          @4260 */
-SECTION_SDATA2 static f32 lit_4260 = 127.0f;
-
-/* 80455DF8-80455DFC 0043F8 0004+00 1/1 0/0 0/0 .sdata2          @4261 */
-SECTION_SDATA2 static f32 lit_4261 = 21.0f / 10.0f;
-
-/* 80455DFC-80455E00 0043FC 0004+00 1/1 0/0 0/0 .sdata2          @4262 */
-SECTION_SDATA2 static f32 lit_4262 = 64.0f;
-
-/* 80455E00-80455E04 004400 0004+00 1/1 0/0 0/0 .sdata2          @4263 */
-SECTION_SDATA2 static f32 lit_4263 = 7.0f / 20.0f;
-
-/* 80455E04-80455E08 004404 0004+00 1/1 0/0 0/0 .sdata2          @4264 */
-SECTION_SDATA2 static f32 lit_4264 = 23.0f / 20.0f;
-
-/* 80455E08-80455E0C 004408 0004+00 1/1 0/0 0/0 .sdata2          @4265 */
-SECTION_SDATA2 static f32 lit_4265 = 8.0f / 5.0f;
-
-/* 80455E0C-80455E10 00440C 0004+00 1/1 0/0 0/0 .sdata2          @4266 */
-SECTION_SDATA2 static f32 lit_4266 = 13.0f / 20.0f;
-
-/* 80455E10-80455E14 004410 0004+00 1/1 0/0 0/0 .sdata2          @4267 */
-SECTION_SDATA2 static f32 lit_4267 = 3.0f / 25.0f;
-
-/* 80455E14-80455E18 004414 0004+00 1/1 0/0 0/0 .sdata2          @4268 */
-SECTION_SDATA2 static f32 lit_4268 = 17.0f / 20.0f;
-
-/* 80455E18-80455E20 004418 0004+04 3/3 0/0 0/0 .sdata2          @4269 */
-SECTION_SDATA2 static f32 lit_4269[1 + 1 /* padding */] = {
-    0.75f,
-    /* padding */
-    0.0f,
-};
-
-/* 80455E20-80455E28 004420 0008+00 9/9 0/0 0/0 .sdata2          @4271 */
-SECTION_SDATA2 static f64 lit_4271 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 802C70C8-802C780C 2C1A08 0744+00 2/1 1/1 0/0 .text            startStaticEnvSe__10Z2EnvSeMgrFSc
  */
@@ -1090,16 +743,11 @@ bool Z2EnvSeMgr::startStaticEnvSe(s8 param_1) {
     return rv;
 }
 
-
 /* 802C780C-802C7830 2C214C 0024+00 0/0 1/1 0/0 .text            registWindowPos__10Z2EnvSeMgrFP3Vec
  */
 void Z2EnvSeMgr::registWindowPos(Vec* param_0) {
     field_0x64.registMultiSePos(param_0);
 }
-
-/* ############################################################################################## */
-/* 80455E28-80455E2C 004428 0004+00 3/3 0/0 0/0 .sdata2          @4400 */
-SECTION_SDATA2 static f32 lit_4400 = 11.0f / 10.0f;
 
 /* 802C7830-802C7CF4 2C2170 04C4+00 1/1 1/1 0/0 .text            startRainSe__10Z2EnvSeMgrFlSc */
 bool Z2EnvSeMgr::startRainSe(s32 param_1, s8 param_2) {
@@ -1197,11 +845,6 @@ bool Z2EnvSeMgr::startRainSe(s32 param_1, s8 param_2) {
                                       0);
 }
 
-
-/* ############################################################################################## */
-/* 80455E2C-80455E30 00442C 0004+00 1/1 0/0 0/0 .sdata2          @4422 */
-SECTION_SDATA2 static f32 lit_4422 = 0.25f;
-
 /* 802C7CF4-802C7E68 2C2634 0174+00 0/0 1/1 0/0 .text            startNearThunderSe__10Z2EnvSeMgrFSc
  */
 void Z2EnvSeMgr::startNearThunderSe(s8 param_1) {
@@ -1219,7 +862,6 @@ void Z2EnvSeMgr::startNearThunderSe(s8 param_1) {
     }
 }
 
-
 /* 802C7E68-802C7FB4 2C27A8 014C+00 0/0 2/2 0/0 .text startFarThunderSe__10Z2EnvSeMgrFP3VecSc */
 void Z2EnvSeMgr::startFarThunderSe(Vec* param_1, s8 param_2) {
     if (field_0x64.getPosCount() < 0) {
@@ -1231,7 +873,6 @@ void Z2EnvSeMgr::startFarThunderSe(Vec* param_1, s8 param_2) {
                                field_0x64.getPanPower(), field_0x64.getDolbyPower(), 1.0f, 0);
     }
 }
-
 
 /* 802C7FB4-802C7FBC -00001 0008+00 0/0 0/0 0/0 .text            setSnowPower__10Z2EnvSeMgrFSc */
 void Z2EnvSeMgr::setSnowPower(s8 param_0) {
@@ -1274,14 +915,6 @@ bool Z2EnvSeMgr::startStrongWindSe(s8 param_1) {
     return field_0x144.startEnvSeDirLevel(aJStack_24, param_1 / 127.0f, 1.0f);
 }
 
-
-/* ############################################################################################## */
-/* 80455E30-80455E34 004430 0004+00 3/3 0/0 0/0 .sdata2          @4510 */
-SECTION_SDATA2 static f32 lit_4510 = 1.5f;
-
-/* 80455E34-80455E38 004434 0004+00 3/3 0/0 0/0 .sdata2          @4511 */
-SECTION_SDATA2 static f32 lit_4511 = 3.0f;
-
 /* 802C80F8-802C8234 2C2A38 013C+00 0/0 1/1 0/0 .text            initRiverSe__10Z2EnvSeMgrFUcUcUcUc
  */
 void Z2EnvSeMgr::initRiverSe(u8 param_1, u8 param_2, u8 param_3, u8 param_4) {
@@ -1317,7 +950,6 @@ void Z2EnvSeMgr::initRiverSe(u8 param_1, u8 param_2, u8 param_3, u8 param_4) {
     }
 }
 
-
 /* 802C8234-802C8258 2C2B74 0024+00 1/1 1/1 0/0 .text registRiverSePos__10Z2EnvSeMgrFP3Vec */
 void Z2EnvSeMgr::registRiverSePos(Vec* param_0) {
     mRiverSeMgr.registMultiSePos(param_0);
@@ -1335,63 +967,8 @@ void Z2EnvSeMgr::setHyrulSewerOpen(bool param_0) {
     }
 }
 
-
-/* ############################################################################################## */
-/* 803CBA28-803CBAD0 -00001 00A8+00 1/1 0/0 0/0 .data            @4622 */
-SECTION_DATA static void* lit_4622[42] = {
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0x80),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0x9C),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0x8C),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xAC),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xAC),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xAC),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
-    (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xAC),
-};
-
-/* 80455E38-80455E3C 004438 0004+00 2/2 0/0 0/0 .sdata2          @4619 */
-SECTION_SDATA2 static f32 lit_4619 = -14500.0f;
-
-/* 80455E3C-80455E40 00443C 0004+00 1/1 0/0 0/0 .sdata2          @4621 */
-SECTION_SDATA2 static f32 lit_4621 = 150.0f;
-
 /* 802C8300-802C8730 2C2C40 0430+00 2/1 1/1 0/0 .text            startRiverSe__10Z2EnvSeMgrFSc */
-// missing branch and JAISound stack issues
-#ifdef NONMATCHING
+// NONMATCHING missing branch and JAISound stack issues
 bool Z2EnvSeMgr::startRiverSe(s8 param_1) {
     if (Z2GetStatusMgr()->mCameraMapInfo == 6) {
         switch (Z2GetSceneMgr()->getCurrentSceneNum()) {
@@ -1400,7 +977,7 @@ bool Z2EnvSeMgr::startRiverSe(s8 param_1) {
                 break;
             }
         case 0x10:
-            if (Z2GetStatusMgr()->mPolygonPosition.y < 14500.0f) {
+            if (Z2GetStatusMgr()->mPolygonPosition.y < -14500.0f) {
                 break;
             } 
         case 8:
@@ -1454,18 +1031,14 @@ bool Z2EnvSeMgr::startRiverSe(s8 param_1) {
             }
         }
         aJStack_742 = Z2SE_ENV_SEWER;
-        dVar18 *= linearTransform(field_0x18c.calcNoise1f(), 0.0f, 1.0f, 0.6f, 1.0f,
-                                  true);
-        dVar17 *= Z2Calc::linearTransform(field_0x19c.calcNoise1f(), 0.0f, 1.0f, 0.8f, 1.0f,
-                                          true);
+        dVar18 *= Z2Calc::linearTransform(field_0x18c.calcNoise1f(), 0.0f, 1.0f, 0.6f, 1.0f, true);
+        dVar17 *= Z2Calc::linearTransform(field_0x19c.calcNoise1f(), 0.0f, 1.0f, 0.8f, 1.0f, true);
         uVar8 = field_0x180.startEnvSeLevel(aJStack_742, dVar16, dVar18, dVar13, dVar14, dVar17, 0);
         break;
     case 5:
         aJStack_742 = Z2SE_ENV_SPIRIT_FOUNTAIN;
-        dVar18 *= Z2Calc::linearTransform(field_0x18c.calcNoise1f(), 0.0f, 1.0f, 0.6f, 1.0f,
-                                          true);
-        dVar17 *= Z2Calc::linearTransform(field_0x19c.calcNoise1f(), 0.0f, 1.0f, 0.8f, 1.0f,
-                                          true);
+        dVar18 *= Z2Calc::linearTransform(field_0x18c.calcNoise1f(), 0.0f, 1.0f, 0.6f, 1.0f, true);
+        dVar17 *= Z2Calc::linearTransform(field_0x19c.calcNoise1f(), 0.0f, 1.0f, 0.8f, 1.0f, true);
         uVar8 = field_0x180.startEnvSeLevel(aJStack_742, dVar16, dVar18, dVar13, dVar14, dVar17, 0);
         break;
     }
@@ -1473,11 +1046,6 @@ bool Z2EnvSeMgr::startRiverSe(s8 param_1) {
     mRiverSeMgr.resetMultiSePos();
     return uVar8;
 }
-#else
-bool Z2EnvSeMgr::startRiverSe(s8 param_1) {
-    // NONMATCHING
-}
-#endif
 
 /* 802C8730-802C886C 2C3070 013C+00 1/1 1/1 0/0 .text            initFallSe__10Z2EnvSeMgrFUcUcUcUc
  */
@@ -1513,7 +1081,6 @@ void Z2EnvSeMgr::initFallSe(u8 param_1, u8 param_2, u8 param_3, u8 param_4) {
         break;
     }
 }
-
 
 /* 802C886C-802C8890 2C31AC 0024+00 0/0 1/1 0/0 .text            registFallSePos__10Z2EnvSeMgrFP3Vec
  */
@@ -1554,31 +1121,6 @@ bool Z2EnvSeMgr::startFallSe(s8 param_1) {
     mFallSeMgr.resetMultiSePos();
     return rv;
 }
-
-
-/* ############################################################################################## */
-/* 803CBAD0-803CBB10 -00001 0040+00 1/1 0/0 0/0 .data            @4734 */
-SECTION_DATA static void* lit_4734[16] = {
-    (void*)(((char*)initEtcSe__10Z2EnvSeMgrFUcUcUcUc) + 0x15C),
-    (void*)(((char*)initEtcSe__10Z2EnvSeMgrFUcUcUcUc) + 0xF4),
-    (void*)(((char*)initEtcSe__10Z2EnvSeMgrFUcUcUcUc) + 0x108),
-    (void*)(((char*)initEtcSe__10Z2EnvSeMgrFUcUcUcUc) + 0x180),
-    (void*)(((char*)initEtcSe__10Z2EnvSeMgrFUcUcUcUc) + 0x150),
-    (void*)(((char*)initEtcSe__10Z2EnvSeMgrFUcUcUcUc) + 0x180),
-    (void*)(((char*)initEtcSe__10Z2EnvSeMgrFUcUcUcUc) + 0x180),
-    (void*)(((char*)initEtcSe__10Z2EnvSeMgrFUcUcUcUc) + 0x180),
-    (void*)(((char*)initEtcSe__10Z2EnvSeMgrFUcUcUcUc) + 0x170),
-    (void*)(((char*)initEtcSe__10Z2EnvSeMgrFUcUcUcUc) + 0x11C),
-    (void*)(((char*)initEtcSe__10Z2EnvSeMgrFUcUcUcUc) + 0x13C),
-    (void*)(((char*)initEtcSe__10Z2EnvSeMgrFUcUcUcUc) + 0x180),
-    (void*)(((char*)initEtcSe__10Z2EnvSeMgrFUcUcUcUc) + 0x180),
-    (void*)(((char*)initEtcSe__10Z2EnvSeMgrFUcUcUcUc) + 0x180),
-    (void*)(((char*)initEtcSe__10Z2EnvSeMgrFUcUcUcUc) + 0x13C),
-    (void*)(((char*)initEtcSe__10Z2EnvSeMgrFUcUcUcUc) + 0x13C),
-};
-
-/* 80455E40-80455E44 004440 0004+00 1/1 0/0 0/0 .sdata2          @4732 */
-SECTION_SDATA2 static f32 lit_4732 = 4.0f;
 
 /* 802C8A90-802C8C24 2C33D0 0194+00 2/1 1/1 0/0 .text            initEtcSe__10Z2EnvSeMgrFUcUcUcUc */
 void Z2EnvSeMgr::initEtcSe(u8 param_1, u8 param_2, u8 param_3, u8 param_4) {
@@ -1625,64 +1167,11 @@ void Z2EnvSeMgr::initEtcSe(u8 param_1, u8 param_2, u8 param_3, u8 param_4) {
     }
 }
 
-
 /* 802C8C24-802C8C48 2C3564 0024+00 1/1 1/1 0/0 .text            registEtcSePos__10Z2EnvSeMgrFP3Vec
  */
 void Z2EnvSeMgr::registEtcSePos(Vec* param_0) {
     mEtcSeMgr.registMultiSePos(param_0);
 }
-
-/* ############################################################################################## */
-/* 803CBB10-803CBB90 -00001 0080+00 1/1 0/0 0/0 .data            @4839 */
-SECTION_DATA static void* lit_4839[32] = {
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x62C),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x624),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x624),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x624),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x624),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x624),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x624),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x624),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x624),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x624),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x624),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x624),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x624),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x624),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x624),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x624),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x518),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0xE4),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x20C),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x624),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x498),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x624),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x624),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x624),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x28C),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x374),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x2D8),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x624),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x624),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x624),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x2D8),
-    (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x324),
-};
-
-/* 80455E44-80455E48 004444 0004+00 1/1 0/0 0/0 .sdata2          @4833 */
-SECTION_SDATA2 static f32 lit_4833 = 6.0f / 5.0f;
-
-/* 80455E48-80455E4C 004448 0004+00 1/1 0/0 0/0 .sdata2          @4834 */
-SECTION_SDATA2 static f32 lit_4834 = 13.0f / 10.0f;
-
-/* 80455E4C-80455E50 00444C 0004+00 1/1 0/0 0/0 .sdata2          @4835 */
-SECTION_SDATA2 static f32 lit_4835 = 89.0f / 100.0f;
-
-/* 80455E50-80455E54 004450 0004+00 2/2 0/0 0/0 .sdata2          @4836 */
-SECTION_SDATA2 static f32 lit_4836 = 0.332f;
-
-/* 80455E54-80455E58 004454 0004+00 2/2 0/0 0/0 .sdata2          @4837 */
-SECTION_SDATA2 static f32 lit_4837 = 0.668f;
 
 /* 802C8C48-802C92C8 2C3588 0680+00 2/1 1/1 0/0 .text            startEtcSe__10Z2EnvSeMgrFSc */
 bool Z2EnvSeMgr::startEtcSe(s8 param_1) {
@@ -1796,15 +1285,10 @@ bool Z2EnvSeMgr::startEtcSe(s8 param_1) {
     return rv;
 }
 
-
 /* 802C92C8-802C92EC 2C3C08 0024+00 0/0 0/0 1/1 .text registWolfSmellSePos__10Z2EnvSeMgrFP3Vec */
 void Z2EnvSeMgr::registWolfSmellSePos(Vec* param_0) {
     mWolfSmellSeMgr.registMultiSePos(param_0);
 }
-
-/* ############################################################################################## */
-/* 80455E58-80455E5C 004458 0004+00 1/1 0/0 0/0 .sdata2          @4856 */
-SECTION_SDATA2 static f32 lit_4856 = 340.0f;
 
 /* 802C92EC-802C93A0 2C3C2C 00B4+00 0/0 0/0 1/1 .text startFogWipeTrigger__10Z2EnvSeMgrFP3Vec */
 bool Z2EnvSeMgr::startFogWipeTrigger(Vec* param_0) {
@@ -1817,12 +1301,10 @@ bool Z2EnvSeMgr::startFogWipeTrigger(Vec* param_0) {
     }
 }
 
-
 /* 802C93A0-802C93E4 2C3CE0 0044+00 0/0 0/0 1/1 .text            setFogWipeWidth__10Z2EnvSeMgrFf */
 void Z2EnvSeMgr::setFogWipeWidth(f32 param_0) {
     mFogDensity = Z2Calc::linearTransform(param_0, 0.0f, 1.0f, 1.0f, 0.4f, true);
 }
-
 
 /* 802C93E4-802C9400 2C3D24 001C+00 3/3 2/2 0/0 .text            getFogDensity__10Z2EnvSeMgrFv */
 f32 Z2EnvSeMgr::getFogDensity() {
@@ -1832,14 +1314,8 @@ f32 Z2EnvSeMgr::getFogDensity() {
     return 0.0f;
 }
 
-
-/* ############################################################################################## */
-/* 80455E5C-80455E60 00445C 0004+00 1/1 0/0 0/0 .sdata2          @4879 */
-SECTION_SDATA2 static f32 lit_4879 = 20.0f;
-
 /* 802C9400-802C950C 2C3D40 010C+00 0/0 0/0 1/1 .text            startFogSe__10Z2EnvSeMgrFv */
-// fmuls reg order
-#ifdef NONMATCHING
+// NONMATCHING fmuls reg order
 bool Z2EnvSeMgr::startFogSe() { 
     f32 dVar10 = field_0x2e8.calcNoise1f();
     f32 dVar14 = 0.332f + (0.668f * dVar10);
@@ -1859,44 +1335,6 @@ bool Z2EnvSeMgr::startFogSe() {
     }
     return uVar8;
 }
-#else
-bool Z2EnvSeMgr::startFogSe() {
-    // NONMATCHING
-}
-#endif
-
-/* ############################################################################################## */
-/* 803CBB90-803CBBC8 -00001 0038+00 1/1 0/0 0/0 .data            @5076 */
-SECTION_DATA static void* lit_5076[14] = {
-    (void*)(((char*)initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc) + 0x640),
-    (void*)(((char*)initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc) + 0x61C),
-    (void*)(((char*)initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc) + 0x668),
-    (void*)(((char*)initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc) + 0x6C4),
-    (void*)(((char*)initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc) + 0xA34),
-    (void*)(((char*)initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc) + 0x640),
-    (void*)(((char*)initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc) + 0x640),
-    (void*)(((char*)initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc) + 0x780),
-    (void*)(((char*)initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc) + 0x7CC),
-    (void*)(((char*)initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc) + 0x640),
-    (void*)(((char*)initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc) + 0x844),
-    (void*)(((char*)initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc) + 0x8D8),
-    (void*)(((char*)initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc) + 0x950),
-    (void*)(((char*)initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc) + 0x99C),
-};
-
-/* 803CBBC8-803CBBF0 -00001 0028+00 1/1 0/0 0/0 .data            @5074 */
-SECTION_DATA static void* lit_5074[10] = {
-    (void*)(((char*)initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc) + 0x50),
-    (void*)(((char*)initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc) + 0x1E8),
-    (void*)(((char*)initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc) + 0x380),
-    (void*)(((char*)initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc) + 0x5E4),
-    (void*)(((char*)initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc) + 0x5E4),
-    (void*)(((char*)initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc) + 0x11C),
-    (void*)(((char*)initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc) + 0x2B4),
-    (void*)(((char*)initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc) + 0x44C),
-    (void*)(((char*)initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc) + 0x5E4),
-    (void*)(((char*)initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc) + 0x518),
-};
 
 /* 802C950C-802C9F58 2C3E4C 0A4C+00 2/0 1/1 0/0 .text initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc */
 void Z2EnvSeMgr::initLv3WaterSe(u8 param_1, u8 param_2, u8 param_3, u8 param_4) {
@@ -2130,7 +1568,6 @@ void Z2EnvSeMgr::initLv3WaterSe(u8 param_1, u8 param_2, u8 param_3, u8 param_4) 
         break;
     }
 }
-
 
 /* 802C9F58-802CA794 2C4898 083C+00 2/0 1/1 0/0 .text registLv3WaterSePos__10Z2EnvSeMgrFUcP3Vec */
 void Z2EnvSeMgr::registLv3WaterSePos(u8 param_1, Vec* param_2) {

@@ -27,8 +27,8 @@ public:
     };
 
     struct vball_s {
-        /* 80D21FA8 */ ~vball_s();
-        /* 80D2214C */ vball_s();
+        /* 80D21FA8 */ ~vball_s() {}
+        /* 80D2214C */ vball_s() {}
 
         /* 0x000 */ J3DModel* mpModel;
         /* 0x004 */ cXyz field_0x4;
@@ -107,7 +107,7 @@ public:
     /* 80D23904 */ int draw();
     /* 80D23A0C */ int _delete();
 
-    /* 80D23B24 */ virtual ~daObjVolcBall_c();
+    /* 80D23B24 */ virtual ~daObjVolcBall_c() {}
     /* 80D22DDC */ virtual BOOL eventStart();
 
     u8 getSwBit() { return fopAcM_GetParamBit(this, 0, 8); }

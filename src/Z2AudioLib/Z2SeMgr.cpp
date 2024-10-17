@@ -5,6 +5,7 @@
 
 #include "Z2AudioLib/Z2SeMgr.h"
 #include "Z2AudioLib/Z2Audience.h"
+#include "Z2AudioLib/Z2Calc.h"
 #include "Z2AudioLib/Z2SoundMgr.h"
 #include "Z2AudioLib/Z2SceneMgr.h"
 #include "Z2AudioLib/Z2SpeechMgr2.h"
@@ -13,14 +14,6 @@
 #include "Z2AudioLib/Z2SeqMgr.h"
 #include "dol2asm.h"
 #include "global.h"
-
-//
-// Types:
-//
-
-struct Z2CreatureLink {
-    static u8 mLinkPtr[4 + 4 /* padding */];
-};
 
 //
 // Forward References:
@@ -53,81 +46,6 @@ extern "C" void registMultiSePos__12Z2MultiSeMgrFP3Vec();
 extern "C" void resetMultiSePos__12Z2MultiSeMgrFv();
 extern "C" void getPanPower__12Z2MultiSeMgrFv();
 extern "C" void getDolbyPower__12Z2MultiSeMgrFv();
-
-//
-// External References:
-//
-
-extern "C" void __dt__14JAISoundHandleFv();
-extern "C" void __dt__12Z2MultiSeObjFv();
-extern "C" void stop__16JAISeCategoryMgrFUl();
-extern "C" void releaseSound__14JAISoundHandleFv();
-extern "C" void stop__8JAISoundFUl();
-extern "C" void getHandleSoundID__15JAISoundHandlesF10JAISoundID();
-extern "C" void getFreeHandle__15JAISoundHandlesFv();
-extern "C" void moveVolume__18JAISoundParamsMoveFfUl();
-extern "C" void movePitch__18JAISoundParamsMoveFfUl();
-extern "C" void moveFxMix__18JAISoundParamsMoveFfUl();
-extern "C" void movePan__18JAISoundParamsMoveFfUl();
-extern "C" void moveDolby__18JAISoundParamsMoveFfUl();
-extern "C" void __ct__14JAISoundHandleFv();
-extern "C" void linearTransform__6Z2CalcFfffffb();
-extern "C" void getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign();
-extern "C" void stopSoundID__10Z2SoundMgrF10JAISoundID();
-extern "C" void multiVolumeSoundID__10Z2SoundMgrF10JAISoundIDf();
-extern "C" void setPortData__14Z2SoundStarterFP14JAISoundHandleUlUsSc();
-extern "C" void bgmStart__8Z2SeqMgrFUlUll();
-extern "C" void menuIn__11Z2StatusMgrFv();
-extern "C" void menuOut__11Z2StatusMgrFv();
-extern "C" void isMovieDemo__11Z2StatusMgrFv();
-extern "C" void calcOffMicSound__10Z2AudienceFf();
-extern "C" void convertAbsToRel__10Z2AudienceFR3VecP3Veci();
-extern "C" void calcRelPosVolume__10Z2AudienceFRC3Vecfi();
-extern "C" void calcRelPosPan__10Z2AudienceFRC3Veci();
-extern "C" void calcRelPosDolby__10Z2AudienceFRC3Veci();
-extern "C" void playOneShotVoice__12Z2SpeechMgr2FUcUsP3VecSc();
-extern "C" void __dl__FPv();
-extern "C" void __construct_array();
-extern "C" void __cvt_fp2unsigned();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_29();
-extern "C" f32 VOL_SE_SYSTEM_DEFAULT__7Z2Param;
-extern "C" f32 VOL_SE_LINK_VOICE_DEFAULT__7Z2Param;
-extern "C" f32 VOL_SE_LINK_MOTION_DEFAULT__7Z2Param;
-extern "C" f32 VOL_SE_LINK_FOOTNOTE_DEFAULT__7Z2Param;
-extern "C" f32 VOL_SE_CHAR_VOICE_DEFAULT__7Z2Param;
-extern "C" f32 VOL_SE_CHAR_MOVE_DEFAULT__7Z2Param;
-extern "C" f32 VOL_SE_OBJECT_DEFAULT__7Z2Param;
-extern "C" f32 VOL_SE_ATMOSPHERE_DEFAULT__7Z2Param;
-extern "C" f32 VOL_SE_SYSTEM_TALKING__7Z2Param;
-extern "C" f32 VOL_SE_LINK_VOICE_TALKING__7Z2Param;
-extern "C" f32 VOL_SE_LINK_MOTION_TALKING__7Z2Param;
-extern "C" f32 VOL_SE_LINK_FOOTNOTE_TALKING__7Z2Param;
-extern "C" f32 VOL_SE_CHAR_VOICE_TALKING__7Z2Param;
-extern "C" f32 VOL_SE_CHAR_MOVE_TALKING__7Z2Param;
-extern "C" f32 VOL_SE_OBJECT_TALKING__7Z2Param;
-extern "C" f32 VOL_SE_ATMOSPHERE_TALKING__7Z2Param;
-extern "C" f32 VOL_SE_SYSTEM_PAUSING__7Z2Param;
-extern "C" f32 VOL_SE_LINK_VOICE_PAUSING__7Z2Param;
-extern "C" f32 VOL_SE_LINK_MOTION_PAUSING__7Z2Param;
-extern "C" f32 VOL_SE_LINK_FOOTNOTE_PAUSING__7Z2Param;
-extern "C" f32 VOL_SE_CHAR_VOICE_PAUSING__7Z2Param;
-extern "C" f32 VOL_SE_CHAR_MOVE_PAUSING__7Z2Param;
-extern "C" f32 VOL_SE_OBJECT_PAUSING__7Z2Param;
-extern "C" f32 VOL_SE_ATMOSPHERE_PAUSING__7Z2Param;
-extern "C" extern u8 data_80450B44[4];
-extern "C" extern u8 data_80450B60[4];
-extern "C" extern u8 data_80450B70[4];
-extern "C" extern u8 data_80450B74[4];
-extern "C" extern u8 data_80450B7C[4];
-extern "C" extern u8 data_80450B80[4];
-extern "C" extern u8 data_80450B84[4];
-extern "C" u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
-extern "C" extern u8 __OSReport_disable;
 
 //
 // Declarations:
@@ -226,100 +144,9 @@ void Z2SeMgr::decrCrowdSize() {
         mCrowdSize = 0;
 }
 
-/* ############################################################################################## */
-/* 80455870-80455874 003E70 0004+00 1/1 0/0 0/0 .sdata2          @4038 */
-SECTION_SDATA2 static f32 lit_4038 = 10000.0f;
-
-/* 80455874-80455878 003E74 0004+00 2/2 0/0 0/0 .sdata2          @4039 */
-SECTION_SDATA2 static f32 lit_4039 = 100.0f;
-
-/* 80455878-8045587C 003E78 0004+00 11/11 0/0 0/0 .sdata2          @4040 */
-SECTION_SDATA2 static u8 lit_4040[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 8045587C-80455880 003E7C 0004+00 2/2 0/0 0/0 .sdata2          @4041 */
-SECTION_SDATA2 static f32 lit_4041 = 1.0f / 5.0f;
-
-/* 80455880-80455884 003E80 0004+00 8/8 0/0 0/0 .sdata2          @4042 */
-SECTION_SDATA2 static f32 lit_4042 = 1.0f;
-
-/* 80455884-80455888 003E84 0004+00 3/3 0/0 0/0 .sdata2          @4043 */
-SECTION_SDATA2 static f32 lit_4043 = 7.0f / 10.0f;
-
-/* 80455888-8045588C 003E88 0004+00 1/1 0/0 0/0 .sdata2          @4044 */
-SECTION_SDATA2 static f32 lit_4044 = 1.25f;
-
-/* 8045588C-80455890 003E8C 0004+00 2/2 0/0 0/0 .sdata2          @4045 */
-SECTION_SDATA2 static f32 lit_4045 = 2.0f / 5.0f;
-
-/* 80455890-80455894 003E90 0004+00 1/1 0/0 0/0 .sdata2          @4046 */
-SECTION_SDATA2 static f32 lit_4046 = 1.5f;
-
-/* 80455894-80455898 003E94 0004+00 1/1 0/0 0/0 .sdata2          @4047 */
-SECTION_SDATA2 static f32 lit_4047 = 35.0f;
-
-/* 80455898-8045589C 003E98 0004+00 1/1 0/0 0/0 .sdata2          @4048 */
-SECTION_SDATA2 static f32 lit_4048 = 261.0f;
-
-/* 8045589C-804558A0 003E9C 0004+00 1/1 0/0 0/0 .sdata2          @4049 */
-SECTION_SDATA2 static f32 lit_4049 = 1.0f / 20.0f;
-
-/* 804558A0-804558A4 003EA0 0004+00 1/1 0/0 0/0 .sdata2          @4050 */
-SECTION_SDATA2 static f32 lit_4050 = 7.0f / 5.0f;
-
-/* 804558A4-804558A8 003EA4 0004+00 1/1 0/0 0/0 .sdata2          @4051 */
-SECTION_SDATA2 static f32 lit_4051 = 47.0f;
-
-/* 804558A8-804558AC 003EA8 0004+00 5/5 0/0 0/0 .sdata2          @4052 */
-SECTION_SDATA2 static f32 lit_4052 = 0.5f;
-
-/* 804558AC-804558B0 003EAC 0004+00 2/2 0/0 0/0 .sdata2          @4053 */
-SECTION_SDATA2 static f32 lit_4053 = 9.0f / 10.0f;
-
-/* 804558B0-804558B4 003EB0 0004+00 1/1 0/0 0/0 .sdata2          @4054 */
-SECTION_SDATA2 static f32 lit_4054 = 41.0f;
-
-/* 804558B4-804558B8 003EB4 0004+00 2/2 0/0 0/0 .sdata2          @4055 */
-SECTION_SDATA2 static f32 lit_4055 = 3.0f / 10.0f;
-
-/* 804558B8-804558BC 003EB8 0004+00 3/3 0/0 0/0 .sdata2          @4056 */
-SECTION_SDATA2 static f32 lit_4056 = -1.0f;
-
-/* 804558BC-804558C0 003EBC 0004+00 2/2 0/0 0/0 .sdata2          @4057 */
-SECTION_SDATA2 static f32 lit_4057 = 400.0f;
-
-/* 804558C0-804558C4 003EC0 0004+00 2/2 0/0 0/0 .sdata2          @4058 */
-SECTION_SDATA2 static f32 lit_4058 = 4.0f / 5.0f;
-
-/* 804558C4-804558C8 003EC4 0004+00 2/2 0/0 0/0 .sdata2          @4059 */
-SECTION_SDATA2 static f32 lit_4059 = 11.0f / 10.0f;
-
-/* 804558C8-804558CC 003EC8 0004+00 1/1 0/0 0/0 .sdata2          @4060 */
-SECTION_SDATA2 static f32 lit_4060 = 15.0f;
-
-/* 804558CC-804558D0 003ECC 0004+00 1/1 0/0 0/0 .sdata2          @4061 */
-SECTION_SDATA2 static f32 lit_4061 = 60.0f;
-
-/* 804558D0-804558D4 003ED0 0004+00 2/2 0/0 0/0 .sdata2          @4062 */
-SECTION_SDATA2 static f32 lit_4062 = 127.0f;
-
-/* 804558D4-804558D8 003ED4 0004+00 2/2 0/0 0/0 .sdata2          @4063 */
-SECTION_SDATA2 static f32 lit_4063 = 6.0f / 5.0f;
-
-/* 804558D8-804558E0 003ED8 0008+00 2/2 0/0 0/0 .sdata2          @4067 */
-SECTION_SDATA2 static f64 lit_4067 = 4503599627370496.0 /* cast u32 to float */;
-
-/* 804558E0-804558E8 003EE0 0008+00 2/2 0/0 0/0 .sdata2          @4070 */
-SECTION_SDATA2 static f64 lit_4070 = 4503601774854144.0 /* cast s32 to float */;
-
 /* 802AB984-802AC50C 2A62C4 0B88+00 1/1 196/196 549/549 .text
  * seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc               */
-#ifdef NONMATCHING
-// something is wrong with the switch, also isMovieDemo needs to not get inlined
+// NONMATCHING something is wrong with the switch, also isMovieDemo needs to not get inlined
 bool Z2SeMgr::seStart(JAISoundID i_soundID, Vec const* i_pos, u32 param_2, s8 i_reverb,
                       f32 i_pitch, f32 i_volume, f32 i_pan, f32 i_dolby, u8 param_8) {
     if (i_soundID == 0xffffffff) {
@@ -541,12 +368,6 @@ bool Z2SeMgr::seStart(JAISoundID i_soundID, Vec const* i_pos, u32 param_2, s8 i_
                                            param_2, i_reverb / 127.0f,
                                            i_pitch, i_volume, i_pan, i_dolby, 0);
 }
-#else
-bool Z2SeMgr::seStart(JAISoundID param_0, Vec const* param_1, u32 param_2, s8 param_3,
-                          f32 param_4, f32 param_5, f32 param_6, f32 param_7, u8 param_8) {
-    // NONMATCHING
-}
-#endif
 
 /* ############################################################################################## */
 /* 803C9D98-803C9DF8 -00001 0060+00 1/1 0/0 0/0 .data            @4619 */
@@ -739,7 +560,6 @@ void Z2SeMgr::seMoveVolumeAll(f32 i_volume, u32 i_count) {
     }
 }
 
-
 /* 802ADB14-802ADB50 2A8454 003C+00 0/0 1/1 0/0 .text            messageSePlay__7Z2SeMgrFUsP3VecSc
  */
 void Z2SeMgr::messageSePlay(u16 param_0, Vec* param_1, s8 param_2) {
@@ -768,7 +588,6 @@ void Z2SeMgr::talkInSe() {
     }
 }
 
-
 /* 802ADC54-802ADD58 2A8594 0104+00 0/0 2/2 0/0 .text            talkOutSe__7Z2SeMgrFv */
 void Z2SeMgr::talkOutSe() {
     if (Z2GetSceneMgr()->isInGame()) {
@@ -791,7 +610,6 @@ void Z2SeMgr::talkOutSe() {
     }
 }
 
-
 /* 802ADD58-802ADE5C 2A8698 0104+00 0/0 1/1 0/0 .text            menuInSe__7Z2SeMgrFv */
 void Z2SeMgr::menuInSe() {
     if (Z2GetSceneMgr()->isInGame()) {
@@ -813,17 +631,6 @@ void Z2SeMgr::menuInSe() {
         }
     }
 }
-
-
-/* ############################################################################################## */
-/* 8039B9F0-8039B9FC 028050 000C+00 1/1 0/0 0/0 .rodata          @5054 */
-SECTION_RODATA static u8 const lit_5054[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC2, 0x48, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8039B9F0, &lit_5054);
-
-/* 80455990-80455994 003F90 0004+00 1/1 0/0 0/0 .sdata2          @5085 */
-SECTION_SDATA2 static f32 lit_5085 = 4.0f;
 
 /* 802ADE5C-802ADFF4 2A879C 0198+00 1/1 0/0 0/0 .text            setLevObjSE__7Z2SeMgrFUlP3VecSc */
 void Z2SeMgr::setLevObjSE(u32 i_soundID, Vec* i_pos, s8 param_2) {
@@ -867,17 +674,6 @@ void Z2SeMgr::setLevObjSE(u32 i_soundID, Vec* i_pos, s8 param_2) {
         mLevelObjSe[i].field_0x20 = param_2;
     }
 }
-
-
-/* ############################################################################################## */
-/* 8039B9FC-8039BA08 02805C 000C+00 1/1 0/0 0/0 .rodata          @5100 */
-SECTION_RODATA static u8 const lit_5100[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC2, 0x48, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8039B9FC, &lit_5100);
-
-/* 80455994-80455998 003F94 0004+00 1/1 0/0 0/0 .sdata2          @5134 */
-SECTION_SDATA2 static f32 lit_5134 = 3.0f;
 
 /* 802ADFF4-802AE184 2A8934 0190+00 1/1 0/0 0/0 .text setMultiTriggerSE__7Z2SeMgrFUlP3VecSc */
 void Z2SeMgr::setMultiTriggerSE(u32 i_soundID, Vec* i_pos, s8 param_2) {
@@ -924,7 +720,6 @@ void Z2SeMgr::setMultiTriggerSE(u32 i_soundID, Vec* i_pos, s8 param_2) {
     }
 }
 
-
 /* 802AE184-802AE524 2A8AC4 03A0+00 0/0 1/1 0/0 .text            processSeFramework__7Z2SeMgrFv */
 void Z2SeMgr::processSeFramework() {
     if (Z2GetSceneMgr()->isSceneExist() && mCrowdSize != 0) {
@@ -943,9 +738,9 @@ void Z2SeMgr::processSeFramework() {
     mLevelObjectSeCount = 0;
     for (u8 i = 0; i < mMultiTriggerSeCount; i++) {
         f32 volume = mMultiTriggerSe[i].getMaxVolume();
-        seStartLevel(mMultiTriggerSe[i].mSoundID, NULL, 0, mMultiTriggerSe[i].field_0x20, 1.0f,
-                     volume, mMultiTriggerSe[i].getPanPower(),
-                     mMultiTriggerSe[i].getDolbyPower(), 1);
+        seStart(mMultiTriggerSe[i].mSoundID, NULL, 0, mMultiTriggerSe[i].field_0x20, 1.0f,
+                volume, mMultiTriggerSe[i].getPanPower(),
+                mMultiTriggerSe[i].getDolbyPower(), 1);
     }
     for (u8 i = 0; i < 10; i++) {
         mMultiTriggerSe[i].resetMultiSePos();
@@ -1217,12 +1012,11 @@ s8 Z2MultiSeMgr::registMultiSePos(Vec* i_pos) {
 
 void Z2MultiSeMgr::resetMultiSePos(void) {
     mPosCount = -1;
-    f32 _0 = FLOAT_LABEL(lit_4040);
-    mMaxPowL = _0;
-    mMaxPowR = _0;
-    mMaxPowF = _0;
-    mMaxPowB = _0;
-    mMaxVolume = _0;
+    mMaxPowL = 0.0f;
+    mMaxPowR = 0.0f;
+    mMaxPowF = 0.0f;
+    mMaxPowB = 0.0f;
+    mMaxVolume = 0.0f;
 }
 
 /* 802AECE0-802AEDC0 2A9620 00E0+00 1/1 8/8 0/0 .text            getPanPower__12Z2MultiSeMgrFv */

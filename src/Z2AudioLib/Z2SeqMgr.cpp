@@ -15,122 +15,6 @@
 #include "JSystem/JAudio2/JAISeq.h"
 #include "dol2asm.h"
 
-//
-// Forward References:
-//
-
-extern "C" void __ct__8Z2SeqMgrFv();
-extern "C" void bgmStart__8Z2SeqMgrFUlUll();
-extern "C" void bgmStop__8Z2SeqMgrFUll();
-extern "C" void subBgmStart__8Z2SeqMgrFUl();
-extern "C" void subBgmStop__8Z2SeqMgrFv();
-extern "C" void subBgmStopInner__8Z2SeqMgrFv();
-extern "C" void bgmStreamPrepare__8Z2SeqMgrFUl();
-extern "C" void bgmStreamCheckReady__8Z2SeqMgrFv();
-extern "C" void bgmStreamPlay__8Z2SeqMgrFv();
-extern "C" void bgmStreamStop__8Z2SeqMgrFUl();
-extern "C" void changeBgmStatus__8Z2SeqMgrFl();
-extern "C" void changeSubBgmStatus__8Z2SeqMgrFl();
-extern "C" void onVariantBgmJumpEnd__8Z2SeqMgrFb();
-extern "C" void changeFishingBgm__8Z2SeqMgrFl();
-extern "C" void talkInBgm__8Z2SeqMgrFv();
-extern "C" void talkOutBgm__8Z2SeqMgrFv();
-extern "C" void menuInBgm__8Z2SeqMgrFv();
-extern "C" void menuOutBgm__8Z2SeqMgrFv();
-extern "C" void fanfareFramework__8Z2SeqMgrFv();
-extern "C" void stopWolfHowlSong__8Z2SeqMgrFv();
-extern "C" void setHeightVolMod__8Z2SeqMgrFbUl();
-extern "C" void setTimeProcVolMod__8Z2SeqMgrFbUl();
-extern "C" void processBgmFramework__8Z2SeqMgrFv();
-extern "C" void checkBgmIDPlaying__8Z2SeqMgrFUl();
-extern "C" void getChildTrackVolume__8Z2SeqMgrFP14JAISoundHandlei();
-extern "C" void setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff();
-extern "C" void resetBattleBgmParams__8Z2SeqMgrFv();
-extern "C" void setBattleBgmOff__8Z2SeqMgrFb();
-extern "C" void setBattleSearched__8Z2SeqMgrFb();
-extern "C" void setBattleDistIgnore__8Z2SeqMgrFb();
-extern "C" void setBattleGhostMute__8Z2SeqMgrFb();
-extern "C" void setBattleDistState__8Z2SeqMgrFUc();
-extern "C" void setBattleSeqState__8Z2SeqMgrFUc();
-extern "C" void setBattleLastHit__8Z2SeqMgrFUc();
-extern "C" void battleBgmFramework__8Z2SeqMgrFv();
-extern "C" void startBattleBgm__8Z2SeqMgrFb();
-extern "C" void stopBattleBgm__8Z2SeqMgrFUcUc();
-extern "C" void fieldBgmStart__8Z2SeqMgrFv();
-extern "C" void fieldRidingMute__8Z2SeqMgrFv();
-extern "C" void onFieldBgmJumpStart__8Z2SeqMgrFv();
-extern "C" void onFieldBgmJumpEnd__8Z2SeqMgrFv();
-extern "C" void fieldBgmFramework__8Z2SeqMgrFv();
-extern "C" void mbossBgmMuteProcess__8Z2SeqMgrFv();
-extern "C" void bgmSetSwordUsing__8Z2SeqMgrFl();
-extern "C" void bgmNowBattle__8Z2SeqMgrFf();
-extern "C" void taktModeMute__8Z2SeqMgrFv();
-extern "C" void taktModeMuteOff__8Z2SeqMgrFv();
-extern "C" extern char const* const Z2SeqMgr__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void calc__9JAISeqMgrFv();
-extern "C" void stop__9JAISeqMgrFUl();
-extern "C" void mixOut__9JAISeqMgrFv();
-extern "C" void releaseSound__14JAISoundHandleFv();
-extern "C" void releaseHandle__8JAISoundFv();
-extern "C" void lockWhenPrepared__15JAISoundStatus_Fv();
-extern "C" void unlockIfLocked__15JAISoundStatus_Fv();
-extern "C" void stop__8JAISoundFUl();
-extern "C" void stop__8JAISoundFv();
-extern "C" void moveVolume__18JAISoundParamsMoveFfUl();
-extern "C" void movePan__18JAISoundParamsMoveFfUl();
-extern "C" void moveDolby__18JAISoundParamsMoveFfUl();
-extern "C" void stop__12JAIStreamMgrFUl();
-extern "C" void linearTransform__6Z2CalcFfffffb();
-extern "C" void getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign();
-extern "C" void setPortData__14Z2SoundStarterFP14JAISoundHandleUlUsSc();
-extern "C" void getPortData__14Z2SoundStarterFP14JAISoundHandleUlSc();
-extern "C" void setDemoName__11Z2StatusMgrFPc();
-extern "C" void checkDayTime__11Z2StatusMgrFv();
-extern "C" void setSceneExist__10Z2SceneMgrFb();
-extern "C" void setForceBattleArea__13Z2SoundObjMgrFbUsUsUs();
-extern "C" void searchEnemy__13Z2SoundObjMgrFv();
-extern "C" void setBattleInit__13Z2SoundObjMgrFv();
-extern "C" void checkBattleFinish__13Z2SoundObjMgrFv();
-extern "C" void isTwilightBattle__13Z2SoundObjMgrFv();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" f32 VOL_BGM_DEFAULT__7Z2Param;
-extern "C" f32 VOL_BGM_TALKING__7Z2Param;
-extern "C" f32 VOL_BGM_PAUSING__7Z2Param;
-extern "C" extern u8 data_80450B48[4];
-extern "C" extern u8 data_80450B60[4];
-extern "C" extern u8 data_80450B74[4];
-extern "C" extern u8 data_80450B7C[4];
-extern "C" extern u8 data_80450B80[4];
-extern "C" f32 ENEMY_LASTHIT_MUTE_VOLUME__7Z2Param;
-extern "C" u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
-extern "C" extern u8 __OSReport_disable;
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 80455998-8045599C 003F98 0004+00 23/23 0/0 0/0 .sdata2          @3372 */
-SECTION_SDATA2 static f32 lit_3372 = 1.0f;
-
-/* 8045599C-804559A0 003F9C 0004+00 23/23 0/0 0/0 .sdata2          @3373 */
-SECTION_SDATA2 static u8 lit_3373[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
 /* 802AEEA0-802AF010 2A97E0 0170+00 0/0 1/1 0/0 .text            __ct__8Z2SeqMgrFv */
 Z2SeqMgr::Z2SeqMgr() : JASGlobalInstance<Z2SeqMgr>(this) {
     mMainBgmMaster.forceIn();
@@ -161,18 +45,6 @@ Z2SeqMgr::Z2SeqMgr() : JASGlobalInstance<Z2SeqMgr>(this) {
     mFlags.flag6 = false;
     mFlags.flag7 = false;
 }
-
-
-/* ############################################################################################## */
-/* 804559A0-804559A8 003FA0 0004+04 1/1 0/0 0/0 .sdata2          @3559 */
-SECTION_SDATA2 static f32 lit_3559[1 + 1 /* padding */] = {
-    -10000.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 804559A8-804559B0 003FA8 0008+00 22/22 0/0 0/0 .sdata2          @3561 */
-SECTION_SDATA2 static f64 lit_3561 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802AF010-802AF408 2A9950 03F8+00 3/3 5/5 38/38 .text            bgmStart__8Z2SeqMgrFUlUll */
 void Z2SeqMgr::bgmStart(u32 i_bgmID, u32 i_count, s32 param_2) {
@@ -208,7 +80,7 @@ void Z2SeqMgr::bgmStart(u32 i_bgmID, u32 i_count, s32 param_2) {
         break;
     case Z2BGM_VS_GANON_01:
         bgmAllUnMute(0);
-        // no break
+        // fallthrough
     case Z2BGM_VS_GANON_02:
     case Z2BGM_VS_GANON_04:
     case Z2BGM_GOMA_BTL02:
@@ -255,7 +127,6 @@ void Z2SeqMgr::bgmStart(u32 i_bgmID, u32 i_count, s32 param_2) {
         field_0xa4.forceIn();
     }
 }
-
 
 /* 802AF408-802AF49C 2A9D48 0094+00 3/3 5/5 30/30 .text            bgmStop__8Z2SeqMgrFUll */
 void Z2SeqMgr::bgmStop(u32 i_count, s32 param_1) {
@@ -362,175 +233,6 @@ SECTION_DEAD static char const* const stringBase_8039BC6B = "D_SB10";
 SECTION_DEAD static char const* const stringBase_8039BC72 = "force_start";
 #pragma pop
 
-/* 803C9DF8-803CA08C -00001 0294+00 1/1 0/0 0/0 .data            @3900 */
-SECTION_DATA static void* lit_3900[165] = {
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x14C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xFC),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x8C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x138),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x50),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x50),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xF0),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xF0),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x50),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x50),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xF0),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x50),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xF0),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x174),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xF0),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xF0),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xF0),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x174),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xF0),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xF0),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xF0),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xF0),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xF0),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x8C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x138),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x50),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x50),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x50),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x50),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x98),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xE4),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xE4),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x50),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x50),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x50),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x50),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xF0),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x98),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xF0),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x180),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x50),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x50),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x50),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x138),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xD0),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xE4),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xF0),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x50),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x50),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x50),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x50),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xF0),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x50),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x50),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x50),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x50),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x50),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x50),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x50),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x180),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x138),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xF0),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xF0),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xF0),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x8C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xF0),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xF0),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xF0),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x8C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x8C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x124),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x124),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xF0),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xF0),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xD0),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x50),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xB8),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x50),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0xE4),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x18C),
-    (void*)(((char*)subBgmStart__8Z2SeqMgrFUl) + 0x14C),
-};
-
 /* 802AF49C-802AF884 2A9DDC 03E8+00 3/2 6/6 65/65 .text            subBgmStart__8Z2SeqMgrFUl */
 void Z2SeqMgr::subBgmStart(u32 i_bgmID) {
     if (i_bgmID == -1) {
@@ -597,13 +299,13 @@ void Z2SeqMgr::subBgmStart(u32 i_bgmID) {
         if (mSubBgmHandle) {
             mSubBgmHandle->stop(0);
         }
-        // no break
+        // fallthrough
     case Z2BGM_FISHING_HIT:
     case Z2BGM_SNOW_BOARD:
     case Z2BGM_RIVER_GAME:
     case Z2BGM_RIVER_GAME_00:
         setBattleBgmOff(true);
-        // no break
+        // fallthrough
     case Z2BGM_BOSSBABA_0:
     case Z2BGM_WILD_GOAT:
     case Z2BGM_EVENT01:
@@ -641,7 +343,7 @@ void Z2SeqMgr::subBgmStart(u32 i_bgmID) {
         if (mSubBgmHandle) {
             mSubBgmHandle->stop(0);
         }
-        // no break
+        // fallthrough
     case Z2BGM_BOOMERAMG_MONKEY:
     case Z2BGM_VARIANT:
     case Z2BGM_TN_MBOSS:
@@ -649,7 +351,7 @@ void Z2SeqMgr::subBgmStart(u32 i_bgmID) {
         if (mStreamBgmHandle) {
             mStreamBgmHandle->stop(0);
         }
-        // no break
+        // fallthrough
     case Z2BGM_HORSE_BATTLE:
     case Z2BGM_TN_MBOSS_LV9:
         mStreamBgmMaster.forceIn();
@@ -696,10 +398,10 @@ void Z2SeqMgr::subBgmStart(u32 i_bgmID) {
     case Z2BGM_VARIANT:
     case Z2BGM_TN_MBOSS:
         bgmStreamStop(0);
-        // no break
+        // fallthrough
     case Z2BGM_TN_MBOSS_LV9:
         mStreamBgmMaster.forceIn();
-        // no break
+        // fallthrough
     case Z2BGM_RODEO:
         changeSubBgmStatus(1);
         break;
@@ -717,177 +419,6 @@ void Z2SeqMgr::subBgmStart(u32 i_bgmID) {
 
     field_0xb8 = -1;
 }
-
-
-/* ############################################################################################## */
-/* 8039BA08-8039BA08 028068 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039BC7E = "force_end";
-#pragma pop
-
-/* 803CA08C-803CA308 -00001 027C+00 1/1 0/0 0/0 .data            @3988 */
-SECTION_DATA static void* lit_3988[159] = {
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x58),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x58),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x94),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x58),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x58),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x58),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x94),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x94),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x94),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x94),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x94),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x94),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x94),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x94),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x94),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x94),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x94),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x58),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x58),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x58),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x58),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x5C),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0xA0),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x94),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x7C),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x5C),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0xC4),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x94),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x94),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0xDC),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x124),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x94),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x10C),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x58),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x58),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x58),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x94),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x10C),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x94),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x94),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x94),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x94),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x94),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x94),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x94),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x58),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x58),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x58),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x58),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x124),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x58),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x58),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x94),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0x130),
-    (void*)(((char*)subBgmStop__8Z2SeqMgrFv) + 0xF4),
-};
 
 /* 802AF884-802AF9D0 2AA1C4 014C+00 4/3 4/4 42/42 .text            subBgmStop__8Z2SeqMgrFv */
 void Z2SeqMgr::subBgmStop() {
@@ -918,7 +449,7 @@ void Z2SeqMgr::subBgmStop() {
             break;
         case Z2BGM_HIDDEN_VIL_D1:
             bgmStart(Z2BGM_HIDDEN_VILLAGE, 0, 0);
-            // no break
+            // fallthrough
         case Z2BGM_BOSSBABA_0:
         case Z2BGM_MAGNE_GORON:
         case Z2BGM_MAGNE_GORON_D01:
@@ -971,7 +502,7 @@ void Z2SeqMgr::subBgmStop() {
         case Z2BGM_OBACHAN:
         case Z2BGM_POSTMAN:
             setBattleBgmOff(false);
-            // no break
+            // fallthrough
         default:
             field_0xb8 = 15;
             break;
@@ -980,8 +511,7 @@ void Z2SeqMgr::subBgmStop() {
 
 
 /* 802AF9D0-802AFB94 2AA310 01C4+00 2/2 0/0 0/0 .text            subBgmStopInner__8Z2SeqMgrFv */
-#ifdef NONMATCHING
-// regalloc
+// NONMATCHING regalloc
 void Z2SeqMgr::subBgmStopInner() {
     if (field_0xb8 == -1) {
         return;
@@ -1020,11 +550,6 @@ void Z2SeqMgr::subBgmStopInner() {
     mMainBgmMaster.fadeIn(struct_80450862);
     field_0xb8 = -1;
 }
-#else
-void Z2SeqMgr::subBgmStopInner() {
-    // NONMATCHING
-}
-#endif
 
 /* 802AFB94-802AFDEC 2AA4D4 0258+00 1/1 3/3 46/46 .text            bgmStreamPrepare__8Z2SeqMgrFUl */
 void Z2SeqMgr::bgmStreamPrepare(u32 i_bgmID) {
@@ -1037,7 +562,7 @@ void Z2SeqMgr::bgmStreamPrepare(u32 i_bgmID) {
     switch (i_bgmID) {
     case 0x2000010:
         mAllBgmMaster.forceIn();
-        // no break
+        // fallthrough
     case 0x200000f:
         return;
     case 0x2000014:
@@ -1052,7 +577,7 @@ void Z2SeqMgr::bgmStreamPrepare(u32 i_bgmID) {
         if (mMainBgmHandle) {
             mMainBgmHandle->stop(0);
         }
-        // no break
+        // fallthrough
     case 0x2000003:
     case 0x2000047:
     case 0x200005f:
@@ -1108,70 +633,6 @@ void Z2SeqMgr::bgmStreamStop(u32 i_count) {
     mStreamBgmHandle.releaseSound();
 }
 
-/* ############################################################################################## */
-/* 803CA308-803CA33C -00001 0034+00 1/1 0/0 0/0 .data            @4739 */
-SECTION_DATA static void* lit_4739[13] = {
-    (void*)(((char*)changeBgmStatus__8Z2SeqMgrFl) + 0x440),
-    (void*)(((char*)changeBgmStatus__8Z2SeqMgrFl) + 0x440),
-    (void*)(((char*)changeBgmStatus__8Z2SeqMgrFl) + 0x428),
-    (void*)(((char*)changeBgmStatus__8Z2SeqMgrFl) + 0x440),
-    (void*)(((char*)changeBgmStatus__8Z2SeqMgrFl) + 0x3C0),
-    (void*)(((char*)changeBgmStatus__8Z2SeqMgrFl) + 0x440),
-    (void*)(((char*)changeBgmStatus__8Z2SeqMgrFl) + 0x440),
-    (void*)(((char*)changeBgmStatus__8Z2SeqMgrFl) + 0x420),
-    (void*)(((char*)changeBgmStatus__8Z2SeqMgrFl) + 0x440),
-    (void*)(((char*)changeBgmStatus__8Z2SeqMgrFl) + 0x440),
-    (void*)(((char*)changeBgmStatus__8Z2SeqMgrFl) + 0x440),
-    (void*)(((char*)changeBgmStatus__8Z2SeqMgrFl) + 0x440),
-    (void*)(((char*)changeBgmStatus__8Z2SeqMgrFl) + 0x3C0),
-};
-
-/* 804559B0-804559B4 003FB0 0004+00 1/1 0/0 0/0 .sdata2          @4726 */
-SECTION_SDATA2 static f32 lit_4726 = 13.0f / 20.0f;
-
-/* 804559B4-804559B8 003FB4 0004+00 10/10 0/0 0/0 .sdata2          @4727 */
-SECTION_SDATA2 static f32 lit_4727 = -1.0f;
-
-/* 804559B8-804559BC 003FB8 0004+00 1/1 0/0 0/0 .sdata2          @4728 */
-SECTION_SDATA2 static f32 lit_4728 = 29.0f / 100.0f;
-
-/* 804559BC-804559C0 003FBC 0004+00 1/1 0/0 0/0 .sdata2          @4729 */
-SECTION_SDATA2 static f32 lit_4729 = 7.0f / 20.0f;
-
-/* 804559C0-804559C4 003FC0 0004+00 1/1 0/0 0/0 .sdata2          @4730 */
-SECTION_SDATA2 static f32 lit_4730 = 3.0f / 5.0f;
-
-/* 804559C4-804559C8 003FC4 0004+00 2/2 0/0 0/0 .sdata2          @4731 */
-SECTION_SDATA2 static f32 lit_4731 = 0.5f;
-
-/* 804559C8-804559CC 003FC8 0004+00 3/3 0/0 0/0 .sdata2          @4732 */
-SECTION_SDATA2 static f32 lit_4732 = 3.0f / 10.0f;
-
-/* 804559CC-804559D0 003FCC 0004+00 1/1 0/0 0/0 .sdata2          @4733 */
-SECTION_SDATA2 static f32 lit_4733 = 3100.0f;
-
-/* 804559D0-804559D4 003FD0 0004+00 1/1 0/0 0/0 .sdata2          @4734 */
-SECTION_SDATA2 static f32 lit_4734 = 200.0f;
-
-/* 804559D4-804559D8 003FD4 0004+00 1/1 0/0 0/0 .sdata2          @4735 */
-SECTION_SDATA2 static f32 lit_4735 = 1600.0f;
-
-/* 804559D8-804559DC 003FD8 0004+00 1/1 0/0 0/0 .sdata2          @4736 */
-SECTION_SDATA2 static f32 lit_4736 = 4.0f / 5.0f;
-
-/* 804559DC-804559E0 003FDC 0004+00 1/1 0/0 0/0 .sdata2          @4737 */
-SECTION_SDATA2 static f32 lit_4737 = 3150.0f;
-
-/* 804559E0-804559E8 003FE0 0004+04 1/1 0/0 0/0 .sdata2          @4738 */
-SECTION_SDATA2 static f32 lit_4738[1 + 1 /* padding */] = {
-    6150.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 804559E8-804559F0 003FE8 0008+00 1/1 0/0 0/0 .sdata2          @4741 */
-SECTION_SDATA2 static f64 lit_4741 = 4503601774854144.0 /* cast s32 to float */;
-
 /* 802AFF8C-802B1DF4 2AA8CC 1E68+00 5/4 8/7 26/26 .text            changeBgmStatus__8Z2SeqMgrFl */
 void Z2SeqMgr::changeBgmStatus(s32 param_0) {
     if (!mMainBgmHandle) {
@@ -1190,13 +651,13 @@ void Z2SeqMgr::changeBgmStatus(s32 param_0) {
         }
         if (param_0 == 1) {
             volume1 = 0.65f;
-            volume2 = 1.0f;
-            volume3 = 0.0f;
-            count = 30;
-        } else {
-            volume1 = 0.0f;
             volume2 = 0.0f;
             volume3 = 1.0f;
+            count = 30;
+        } else {
+            volume1 = 1.0f;
+            volume2 = 1.0f;
+            volume3 = 0.0f;
         }
         setChildTrackVolume(&mMainBgmHandle, 0, volume1, count, -1.0f, -1.0f);
         setChildTrackVolume(&mMainBgmHandle, 1, volume1, count, -1.0f, -1.0f);
@@ -1206,9 +667,9 @@ void Z2SeqMgr::changeBgmStatus(s32 param_0) {
         setChildTrackVolume(&mMainBgmHandle, 5, volume1, count, -1.0f, -1.0f);
         setChildTrackVolume(&mMainBgmHandle, 6, volume1, count, -1.0f, -1.0f);
         setChildTrackVolume(&mMainBgmHandle, 7, volume1, count, -1.0f, -1.0f);
-        setChildTrackVolume(&mMainBgmHandle, 8, volume3, count, -1.0f, -1.0f);
-        setChildTrackVolume(&mMainBgmHandle, 9, volume2, count, -1.0f, -1.0f);
-        setChildTrackVolume(&mMainBgmHandle, 10, volume2, count, -1.0f, -1.0f);
+        setChildTrackVolume(&mMainBgmHandle, 8, volume2, count, -1.0f, -1.0f);
+        setChildTrackVolume(&mMainBgmHandle, 9, volume3, count, -1.0f, -1.0f);
+        setChildTrackVolume(&mMainBgmHandle, 10, volume3, count, -1.0f, -1.0f);
         break;
     case Z2BGM_HORSE_BATTLE:
         setChildTrackVolume(&mMainBgmHandle, 11, 0.0f, 0, -1.0f, -1.0f);
@@ -1221,7 +682,7 @@ void Z2SeqMgr::changeBgmStatus(s32 param_0) {
         case 4:
         case 0xc:
             i_muteSceneBgm(struct_80450860, 0.0f);
-            // no break
+            // fallthrough
         case 7:
             mute = true;
             break;
@@ -1402,7 +863,7 @@ void Z2SeqMgr::changeBgmStatus(s32 param_0) {
             setChildTrackVolume(&mMainBgmHandle, 1, 0.3f, 143, -1.0f, -1.0f);
             setChildTrackVolume(&mMainBgmHandle, 2, 0.6f, 143, -1.0f, -1.0f);
             setChildTrackVolume(&mMainBgmHandle, 3, 0.6f, 143, -1.0f, -1.0f);
-            setChildTrackVolume(&mMainBgmHandle, 4, 0.6f, 143, -1.0f, -1.0f);
+            setChildTrackVolume(&mMainBgmHandle, 4, 0.0f, 143, -1.0f, -1.0f);
             setChildTrackVolume(&mMainBgmHandle, 5, 1.0f, 143, -1.0f, -1.0f);
             setChildTrackVolume(&mMainBgmHandle, 6, 1.0f, 143, -1.0f, -1.0f);
             setChildTrackVolume(&mMainBgmHandle, 7, 1.0f, 143, -1.0f, -1.0f);
@@ -1601,7 +1062,6 @@ void Z2SeqMgr::changeBgmStatus(s32 param_0) {
     mBgmStatus = param_0 & 0xff;
 }
 
-
 /* 802B1DF4-802B299C 2AC734 0BA8+00 2/2 3/3 31/31 .text            changeSubBgmStatus__8Z2SeqMgrFl
  */
 void Z2SeqMgr::changeSubBgmStatus(s32 param_0) {
@@ -1772,7 +1232,6 @@ void Z2SeqMgr::changeSubBgmStatus(s32 param_0) {
     mSubBgmStatus = param_0 & 0xff;
 }
 
-
 /* 802B299C-802B2A88 2AD2DC 00EC+00 0/0 1/1 0/0 .text            onVariantBgmJumpEnd__8Z2SeqMgrFb */
 void Z2SeqMgr::onVariantBgmJumpEnd(bool param_0) {
     if (param_0) {
@@ -1790,7 +1249,6 @@ void Z2SeqMgr::onVariantBgmJumpEnd(bool param_0) {
     Z2GetSoundMgr()->getSeqMgr()->calc();
     Z2GetSoundMgr()->getSeqMgr()->mixOut();
 }
-
 
 /* 802B2A88-802B2CA4 2AD3C8 021C+00 1/1 0/0 9/9 .text            changeFishingBgm__8Z2SeqMgrFl */
 void Z2SeqMgr::changeFishingBgm(s32 param_0) {
@@ -1820,7 +1278,6 @@ void Z2SeqMgr::changeFishingBgm(s32 param_0) {
     }
 }
 
-
 /* 802B2CA4-802B2D64 2AD5E4 00C0+00 0/0 1/1 0/0 .text            talkInBgm__8Z2SeqMgrFv */
 void Z2SeqMgr::talkInBgm() {
     if (getStreamBgmID() == 0x2000038 || getStreamBgmID() == 0x200007c
@@ -1831,31 +1288,28 @@ void Z2SeqMgr::talkInBgm() {
     mBgmPause.move(Z2Param::VOL_BGM_TALKING, 2);
 }
 
-
 /* 802B2D64-802B2DAC 2AD6A4 0048+00 0/0 1/1 0/0 .text            talkOutBgm__8Z2SeqMgrFv */
 void Z2SeqMgr::talkOutBgm() {
     mBgmPause.move(Z2Param::VOL_BGM_DEFAULT, 2);
 }
-
 
 /* 802B2DAC-802B2DF4 2AD6EC 0048+00 0/0 1/1 0/0 .text            menuInBgm__8Z2SeqMgrFv */
 void Z2SeqMgr::menuInBgm() {
     mBgmPause.move(Z2Param::VOL_BGM_PAUSING, 2);
 }
 
-
 /* 802B2DF4-802B2E3C 2AD734 0048+00 0/0 1/1 0/0 .text            menuOutBgm__8Z2SeqMgrFv */
 void Z2SeqMgr::menuOutBgm() {
     mBgmPause.move(Z2Param::VOL_BGM_DEFAULT, 2);
 }
 
-
 /* 802B2E3C-802B327C 2AD77C 0440+00 1/1 0/0 0/0 .text            fanfareFramework__8Z2SeqMgrFv */
+// NONMATCHING extra load
 void Z2SeqMgr::fanfareFramework() {
     switch (mFanfareID) {
     case Z2BGM_OPEN_BOX:
         mFanfareCount = 150;
-        // no break
+        // fallthrough
     case Z2BGM_KOMONJO_GET_INTRO:
         Z2GetSoundMgr()->startSound(mFanfareID, &mFanfareHandle, 0);
         mFanfareMute.fadeOut(1);
@@ -1877,7 +1331,7 @@ void Z2SeqMgr::fanfareFramework() {
     case Z2BGM_FISHING_GET2:
     case Z2BGM_FISHING_GET3:
         changeFishingBgm(0);
-        // no break
+        // fallthrough
     case Z2BGM_ITEM_GET:
     case Z2BGM_ITEM_GET_MINI:
     case Z2BGM_HEART_GET:
@@ -1924,110 +1378,6 @@ void Z2SeqMgr::fanfareFramework() {
     }
 }
 
-
-/* ############################################################################################## */
-/* 803CA33C-803CA3F8 -00001 00BC+00 1/1 0/0 0/0 .data            @5219 */
-SECTION_DATA static void* lit_5219[47] = {
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x84),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x84),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x84),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x84),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x84),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x84),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x84),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x84),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x84),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x84),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x84),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x84),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x84),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x8C),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x84),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x84),
-};
-
-/* 803CA3F8-803CA4B4 -00001 00BC+00 1/1 0/0 0/0 .data            @5218 */
-SECTION_DATA static void* lit_5218[47] = {
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x38),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x38),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x38),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x38),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x38),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x38),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x38),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x38),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x38),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x38),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x38),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x38),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x38),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x48),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x38),
-    (void*)(((char*)stopWolfHowlSong__8Z2SeqMgrFv) + 0x38),
-};
-
 /* 802B327C-802B3318 2ADBBC 009C+00 2/0 1/1 0/0 .text            stopWolfHowlSong__8Z2SeqMgrFv */
 void Z2SeqMgr::stopWolfHowlSong() {
     switch (mFanfareID) {
@@ -2073,7 +1423,6 @@ void Z2SeqMgr::stopWolfHowlSong() {
     }
 }
 
-
 /* 802B3318-802B3398 2ADC58 0080+00 0/0 1/1 0/0 .text            setHeightVolMod__8Z2SeqMgrFbUl */
 void Z2SeqMgr::setHeightVolMod(bool param_0, u32 i_count) {
     mFlags.flag6 = param_0;
@@ -2082,13 +1431,11 @@ void Z2SeqMgr::setHeightVolMod(bool param_0, u32 i_count) {
     }
 }
 
-
 /* 802B3398-802B33A8 2ADCD8 0010+00 0/0 1/1 0/0 .text            setTimeProcVolMod__8Z2SeqMgrFbUl */
 void Z2SeqMgr::setTimeProcVolMod(bool param_0, u32 i_count) {
     mFlags.flag7 = param_0;
 }
 
-/* ############################################################################################## */
 /* 80450870-80450874 0002F0 0004+00 1/1 0/0 0/0 .sdata           sDeathMtBottom */
 SECTION_SDATA static f32 sDeathMtBottom = -1000.0f;
 
@@ -2097,34 +1444,6 @@ SECTION_SDATA static f32 sDeathMtTop = 3650.0f;
 
 /* 80450878-80450880 0002F8 0004+04 1/1 0/0 0/0 .sdata           sUnderWaterDepthMax */
 SECTION_SDATA static f32 sUnderWaterDepthMax = 3500.0f;
-SECTION_SDATA static f32 pad = 0.0f;
-
-/* 804559F0-804559F4 003FF0 0004+00 1/1 0/0 0/0 .sdata2          @5673 */
-SECTION_SDATA2 static f32 lit_5673 = -10500.0f;
-
-/* 804559F4-804559F8 003FF4 0004+00 1/1 0/0 0/0 .sdata2          @5674 */
-SECTION_SDATA2 static f32 lit_5674 = -7500.0f;
-
-/* 804559F8-804559FC 003FF8 0004+00 1/1 0/0 0/0 .sdata2          @5675 */
-SECTION_SDATA2 static f32 lit_5675 = 1.0f / 10.0f;
-
-/* 804559FC-80455A00 003FFC 0004+00 1/1 0/0 0/0 .sdata2          @5676 */
-SECTION_SDATA2 static f32 lit_5676 = -1500.0f;
-
-/* 80455A00-80455A04 004000 0004+00 1/1 0/0 0/0 .sdata2          @5677 */
-SECTION_SDATA2 static f32 lit_5677 = -13000.0f;
-
-/* 80455A04-80455A08 004004 0004+00 1/1 0/0 0/0 .sdata2          @5678 */
-SECTION_SDATA2 static f32 lit_5678 = -4500.0f;
-
-/* 80455A08-80455A0C 004008 0004+00 1/1 0/0 0/0 .sdata2          @5679 */
-SECTION_SDATA2 static f32 lit_5679 = -45000.0f;
-
-/* 80455A0C-80455A10 00400C 0004+00 1/1 0/0 0/0 .sdata2          @5680 */
-SECTION_SDATA2 static f32 lit_5680 = -3000.0f;
-
-/* 80455A10-80455A14 004010 0004+00 1/1 0/0 0/0 .sdata2          @5681 */
-SECTION_SDATA2 static f32 lit_5681 = 900.0f;
 
 /* 802B33A8-802B3EAC 2ADCE8 0B04+00 0/0 1/1 0/0 .text            processBgmFramework__8Z2SeqMgrFv */
 void Z2SeqMgr::processBgmFramework() {
@@ -2173,7 +1492,7 @@ void Z2SeqMgr::processBgmFramework() {
                 field_0x84.forceIn();
             } else if (link_y < -7500.0f) {
                 volume = Z2Calc::getParamByExp(link_y, -10500.0f, -7500.0f, 0.3f, 0.0f, 1.0f,
-                                               Z2Calc::CURVE_SIGN_0);
+                                               Z2Calc::CURVE_SIGN_1);
                 field_0x84.move(volume, 0);
             }
             break;
@@ -2187,7 +1506,7 @@ void Z2SeqMgr::processBgmFramework() {
                 field_0x84.forceOut();
             } else if (depth > 0.0f) {
                 volume = Z2Calc::getParamByExp(depth, sUnderWaterDepthMax, 0.0f, 0.3f, 0.1f, 1.0f,
-                                               Z2Calc::CURVE_SIGN_0);
+                                               Z2Calc::CURVE_SIGN_1);
                 field_0x84.move(volume, 0);
             } else if (field_0x84.getDest() != 1.0f) {
                 field_0x84.fadeIn(30);
@@ -2276,7 +1595,6 @@ void Z2SeqMgr::processBgmFramework() {
     i_setWindStoneVol(1.0f, 30);
 }
 
-
 /* 802B3EAC-802B3F40 2AE7EC 0094+00 0/0 2/2 0/0 .text            checkBgmIDPlaying__8Z2SeqMgrFUl */
 bool Z2SeqMgr::checkBgmIDPlaying(u32 i_bgmID) {
     if (getMainBgmID() == i_bgmID) {
@@ -2306,7 +1624,6 @@ f32 Z2SeqMgr::getChildTrackVolume(JAISoundHandle* i_handle, int i_track) {
     }
     return volume;
 }
-
 
 /* 802B3FEC-802B4128 2AE92C 013C+00 9/9 2/2 0/0 .text
  * setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff       */
@@ -2339,7 +1656,6 @@ void Z2SeqMgr::setChildTrackVolume(JAISoundHandle* i_handle, int i_track, f32 i_
         child->mMove.moveDolby(i_dolby, i_count);
     }
 }
-
 
 /* 802B4128-802B4164 2AEA68 003C+00 1/1 1/1 0/0 .text            resetBattleBgmParams__8Z2SeqMgrFv
  */
@@ -2381,15 +1697,10 @@ void Z2SeqMgr::setBattleSearched(bool i_value) {
     }
 }
 
-
 /* 802B43D0-802B43E0 2AED10 0010+00 3/3 0/0 0/0 .text            setBattleDistIgnore__8Z2SeqMgrFb */
 void Z2SeqMgr::setBattleDistIgnore(bool i_value) {
     mFlags.mBattleDistIgnore = i_value;
 }
-
-/* ############################################################################################## */
-/* 80455A14-80455A18 004014 0004+00 1/1 0/0 0/0 .sdata2          @5913 */
-SECTION_SDATA2 static f32 lit_5913 = 2.0f / 5.0f;
 
 /* 802B43E0-802B4498 2AED20 00B8+00 0/0 2/2 0/0 .text            setBattleGhostMute__8Z2SeqMgrFb */
 void Z2SeqMgr::setBattleGhostMute(bool i_value) {
@@ -2401,7 +1712,6 @@ void Z2SeqMgr::setBattleGhostMute(bool i_value) {
         }
     }
 }
-
 
 /* 802B4498-802B4844 2AEDD8 03AC+00 0/0 1/1 0/0 .text            setBattleDistState__8Z2SeqMgrFUc */
 void Z2SeqMgr::setBattleDistState(u8 i_state) {
@@ -2473,7 +1783,6 @@ void Z2SeqMgr::setBattleDistState(u8 i_state) {
     }
 }
 
-
 /* 802B4844-802B4AFC 2AF184 02B8+00 1/1 3/3 1/1 .text            setBattleSeqState__8Z2SeqMgrFUc */
 void Z2SeqMgr::setBattleSeqState(u8 i_state) {
     if (!mFlags.mBattleBgmOff && Z2GetSceneMgr()->isSceneExist() && mBattleSeqState != i_state) {
@@ -2513,17 +1822,15 @@ void Z2SeqMgr::setBattleSeqState(u8 i_state) {
     }
 }
 
-
 /* 802B4AFC-802B4BD0 2AF43C 00D4+00 0/0 4/4 0/0 .text            setBattleLastHit__8Z2SeqMgrFUc */
 void Z2SeqMgr::setBattleLastHit(u8 param_0) {
     if (getSubBgmID() == Z2BGM_BATTLE_NORMAL) {
         setBattleDistIgnore(true);
         mSubBgmMaster.move(Z2Param::ENEMY_LASTHIT_MUTE_VOLUME, struct_80450868);
-        field_0xc1 = struct_80450863;
+        field_0xc1 = struct_8045086B;
         mBattleLastHit = param_0;
     }
 }
-
 
 /* 802B4BD0-802B4EB0 2AF510 02E0+00 1/1 0/0 0/0 .text            battleBgmFramework__8Z2SeqMgrFv */
 void Z2SeqMgr::battleBgmFramework() {
@@ -2569,7 +1876,6 @@ void Z2SeqMgr::battleBgmFramework() {
         }
     }
 }
-
 
 /* 802B4EB0-802B5204 2AF7F0 0354+00 1/1 0/0 0/0 .text            startBattleBgm__8Z2SeqMgrFb */
 void Z2SeqMgr::startBattleBgm(bool i_fade) {
@@ -2625,10 +1931,8 @@ void Z2SeqMgr::startBattleBgm(bool i_fade) {
     }
 }
 
-
 /* 802B5204-802B545C 2AFB44 0258+00 3/3 1/1 0/0 .text            stopBattleBgm__8Z2SeqMgrFUcUc */
-#ifdef NONMATCHING
-// regalloc
+// NONMATCHING regalloc
 void Z2SeqMgr::stopBattleBgm(u8 param_0, u8 param_1) {
     if (mBattleSeqCount == 0) {
         u8 count;
@@ -2662,11 +1966,6 @@ void Z2SeqMgr::stopBattleBgm(u8 param_0, u8 param_1) {
         mFlags.mBattleSearched = false;
     }
 }
-#else
-void Z2SeqMgr::stopBattleBgm(u8 param_0, u8 param_1) {
-    // NONMATCHING
-}
-#endif
 
 /* 802B545C-802B556C 2AFD9C 0110+00 1/1 0/0 0/0 .text            fieldBgmStart__8Z2SeqMgrFv */
 void Z2SeqMgr::fieldBgmStart() {
@@ -2716,7 +2015,6 @@ void Z2SeqMgr::fieldRidingMute() {
     }
 }
 
-
 /* 802B5750-802B579C 2B0090 004C+00 0/0 1/1 0/0 .text            onFieldBgmJumpStart__8Z2SeqMgrFv */
 void Z2SeqMgr::onFieldBgmJumpStart() {
     field_0xc8 = getChildTrackVolume(&mMainBgmHandle, 5);
@@ -2743,36 +2041,7 @@ void Z2SeqMgr::onFieldBgmJumpEnd() {
     }
 }
 
-
-/* ############################################################################################## */
-/* 803CA4B4-803CA508 -00001 0054+00 1/1 0/0 0/0 .data            @6877 */
-SECTION_DATA static void* lit_6877[21] = {
-    (void*)(((char*)fieldBgmFramework__8Z2SeqMgrFv) + 0x1F8),
-    (void*)(((char*)fieldBgmFramework__8Z2SeqMgrFv) + 0x1F8),
-    (void*)(((char*)fieldBgmFramework__8Z2SeqMgrFv) + 0x1C8),
-    (void*)(((char*)fieldBgmFramework__8Z2SeqMgrFv) + 0x1D8),
-    (void*)(((char*)fieldBgmFramework__8Z2SeqMgrFv) + 0x1E8),
-    (void*)(((char*)fieldBgmFramework__8Z2SeqMgrFv) + 0x1F8),
-    (void*)(((char*)fieldBgmFramework__8Z2SeqMgrFv) + 0x1F8),
-    (void*)(((char*)fieldBgmFramework__8Z2SeqMgrFv) + 0x1F8),
-    (void*)(((char*)fieldBgmFramework__8Z2SeqMgrFv) + 0x1F8),
-    (void*)(((char*)fieldBgmFramework__8Z2SeqMgrFv) + 0x1F8),
-    (void*)(((char*)fieldBgmFramework__8Z2SeqMgrFv) + 0x1F8),
-    (void*)(((char*)fieldBgmFramework__8Z2SeqMgrFv) + 0x1F8),
-    (void*)(((char*)fieldBgmFramework__8Z2SeqMgrFv) + 0x1F8),
-    (void*)(((char*)fieldBgmFramework__8Z2SeqMgrFv) + 0x1F8),
-    (void*)(((char*)fieldBgmFramework__8Z2SeqMgrFv) + 0x1F8),
-    (void*)(((char*)fieldBgmFramework__8Z2SeqMgrFv) + 0x1F8),
-    (void*)(((char*)fieldBgmFramework__8Z2SeqMgrFv) + 0x1F8),
-    (void*)(((char*)fieldBgmFramework__8Z2SeqMgrFv) + 0x1F8),
-    (void*)(((char*)fieldBgmFramework__8Z2SeqMgrFv) + 0x1F8),
-    (void*)(((char*)fieldBgmFramework__8Z2SeqMgrFv) + 0x1F8),
-    (void*)(((char*)fieldBgmFramework__8Z2SeqMgrFv) + 0x1F8),
-};
-
 /* 802B594C-802B5E80 2B028C 0534+00 2/1 0/0 0/0 .text            fieldBgmFramework__8Z2SeqMgrFv */
-// Switch table needs to be verified
-#ifdef NONMATCHING
 void Z2SeqMgr::fieldBgmFramework() {
     if (Z2GetSceneMgr()->isSceneExist() && !Z2GetSceneMgr()->isInDarkness()
         && (Z2GetSceneMgr()->getCurrentSceneNum() == 0x1e
@@ -2939,11 +2208,6 @@ void Z2SeqMgr::fieldBgmFramework() {
         }
     }
 }
-#else
-void Z2SeqMgr::fieldBgmFramework() {
-    // NONMATCHING
-}
-#endif
 
 /* 802B5E80-802B5E84 2B07C0 0004+00 1/1 0/0 0/0 .text            mbossBgmMuteProcess__8Z2SeqMgrFv */
 void Z2SeqMgr::mbossBgmMuteProcess() {
@@ -2970,6 +2234,3 @@ void Z2SeqMgr::taktModeMute() {
 void Z2SeqMgr::taktModeMuteOff() {
     mBgmPause.fadeIn(10);
 }
-
-
-/* 8039BA08-8039BA08 028068 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

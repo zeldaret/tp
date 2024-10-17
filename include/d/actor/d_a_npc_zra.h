@@ -316,7 +316,7 @@ public:
     /* 80B8B420 */ BOOL waitSearch(void*);
     /* 80B8B530 */ BOOL ECut_searchPrince1(int);
     /* 80B8BCE8 */ BOOL ECut_searchPrince2(int);
-    /* 80B8C3E8 */ void adjustShapeAngle();
+    /* 80B8C3E8 */ void adjustShapeAngle() {}
     int getType() { return mType; }
     u32 getAngleNoFromParam() { return (u8)(fopAcM_GetParam(this) >> 8); }
     void setBlastFlag(u8 i_flag) { mBlastFlag = i_flag; }
@@ -393,13 +393,8 @@ public:
     /* 0x15C0 */ u8 field_0x15c0;
     /* 0x15C1 */ bool mBlastFlag;
 
-#ifdef NONMATCHING
     static char* mEvtCutNameList[11];
     static EventFn mEvtCutList[11];
-#else
-    static void* mEvtCutNameList[11];
-    static u8 mEvtCutList[132];
-#endif
 };
 
 STATIC_ASSERT(sizeof(daNpc_zrA_c) == 0x15C4);
@@ -459,7 +454,7 @@ public:
         /* 0xAC */ f32 field_0xac;
      };
 
-    /* 80B8C3EC */ virtual ~daNpc_zrA_Param_c();
+    /* 80B8C3EC */ virtual ~daNpc_zrA_Param_c() {}
 
     static param const m;
 };

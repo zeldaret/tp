@@ -227,7 +227,7 @@ class dKyd_lightSchejule;
 class stage_palette_info_class;
 class stage_pselect_info_class;
 class stage_envr_info_class;
-class stage_vrbox_info_class;
+class stage_vrboxcol_info_class;
 class stage_plight_info_class;
 class kytag08_class;
 
@@ -278,7 +278,7 @@ public:
     /* 801A5288 */ void exeKankyo();
     /* 801A56DC */ void drawKankyo();
 
-    /* 801ADBBC */ virtual ~dScnKy_env_light_c();
+    /* 801ADBBC */ virtual ~dScnKy_env_light_c() {}
 
     void setLightTevColorType(J3DModel* i_model, dKy_tevstr_c* tevstr) {
         setLightTevColorType(i_model->getModelData(), tevstr);
@@ -292,7 +292,7 @@ public:
     /* 0x0004 */ stage_palette_info_class* mpDmPalet;
     /* 0x0008 */ stage_pselect_info_class* mpDmPselect;
     /* 0x000C */ stage_envr_info_class* mpDmEnvr;
-    /* 0x0010 */ stage_vrbox_info_class* mpDmVrbox;
+    /* 0x0010 */ stage_vrboxcol_info_class* mpDmVrbox;
     /* 0x0014 */ dKyd_lightSchejule* mpSchedule;
     /* 0x0018 */ LIGHT_INFLUENCE mBaseLightInfluence;
     /* 0x0038 */ LIGHT_INFLUENCE mLightInfluence[30];
