@@ -2098,7 +2098,7 @@ config.libs = [
     ActorRel(Matching, "d_a_tag_stream"),
     ActorRel(NonMatching, "d_a_tag_theB_hint"),
     ActorRel(NonMatching, "d_a_tag_wara_howl"),
-    ActorRel(NonMatching, "d_a_tag_watchge"),
+    ActorRel(Matching, "d_a_tag_watchge"),
     ActorRel(NonMatching, "d_a_tag_waterfall"),
     ActorRel(NonMatching, "d_a_tag_wljump"),
     ActorRel(Matching, "d_a_tag_yami", no_sym_inline=False),
