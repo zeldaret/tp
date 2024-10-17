@@ -1020,8 +1020,8 @@ var hierarchy =
     [ "dComIfG_resLoader_c", "classdComIfG__resLoader__c.html", null ],
     [ "dComIfGoat_info_c", "classdComIfGoat__info__c.html", null ],
     [ "dCstick_c", "classdCstick__c.html", null ],
-    [ "dDemo_c", "structdDemo__c.html", null ],
-    [ "dDemo_object_c", "structdDemo__object__c.html", null ],
+    [ "dDemo_c", "classdDemo__c.html", null ],
+    [ "dDemo_object_c", "classdDemo__object__c.html", null ],
     [ "dDemo_prm_c", "classdDemo__prm__c.html", null ],
     [ "dDlst_2DM_c", "classdDlst__2DM__c.html", null ],
     [ "dDlst_2Dm_c", "classdDlst__2Dm__c.html", null ],
@@ -2291,6 +2291,7 @@ var hierarchy =
     [ "JGadget::binary::TParseValue_raw_< T >", "structJGadget_1_1binary_1_1TParseValue__raw__.html", [
       [ "JGadget::binary::TParseValue_endian_big_< T >", "structJGadget_1_1binary_1_1TParseValue__endian__big__.html", null ]
     ] ],
+    [ "JGadget::binary::TValueIterator< Parser, size >", "structJGadget_1_1binary_1_1TValueIterator.html", null ],
     [ "JGadget::TAllocator< T >", "structJGadget_1_1TAllocator.html", null ],
     [ "JGadget::TAllocator__template0", "structJGadget_1_1TAllocator____template0.html", null ],
     [ "JGadget::TEnumerator< T >", "structJGadget_1_1TEnumerator.html", null ],
@@ -2568,16 +2569,17 @@ var hierarchy =
     [ "JStudio::stb::data::THeader::Target", "structJStudio_1_1stb_1_1data_1_1THeader_1_1Target.html", null ],
     [ "JStudio::stb::data::TParagraph", "structJStudio_1_1stb_1_1data_1_1TParagraph.html", null ],
     [ "JStudio::stb::data::TParse_TParagraph::TData", "structJStudio_1_1stb_1_1data_1_1TParse__TParagraph_1_1TData.html", null ],
-    [ "JStudio::stb::data::TParse_TParagraph_data::TData", "structJStudio_1_1stb_1_1data_1_1TParse__TParagraph__data_1_1TData.html", null ],
+    [ "JStudio::stb::data::TParse_TParagraph_data::TData", "structJStudio_1_1stb_1_1data_1_1TParse__TParagraph__data_1_1TData.html", [
+      [ "JStudio::stb::TParseData< T >", "structJStudio_1_1stb_1_1TParseData.html", [
+        [ "JStudio::stb::TParseData_fixed< T, Iterator >", "structJStudio_1_1stb_1_1TParseData__fixed.html", null ]
+      ] ]
+    ] ],
     [ "JStudio::stb::data::TParse_TSequence::TData", "structJStudio_1_1stb_1_1data_1_1TParse__TSequence_1_1TData.html", null ],
     [ "JStudio::stb::TControl", "classJStudio_1_1stb_1_1TControl.html", [
       [ "JStudio::TControl", "classJStudio_1_1TControl.html", null ]
     ] ],
     [ "JStudio::stb::TFactory", "classJStudio_1_1stb_1_1TFactory.html", [
       [ "JStudio::TFactory", "structJStudio_1_1TFactory.html", null ]
-    ] ],
-    [ "JStudio::stb::TParseData< T >", "structJStudio_1_1stb_1_1TParseData.html", [
-      [ "JStudio::stb::TParseData_fixed< T >", "structJStudio_1_1stb_1_1TParseData__fixed.html", null ]
     ] ],
     [ "JStudio::TAdaptor", "structJStudio_1_1TAdaptor.html", [
       [ "JStudio::TAdaptor_actor", "structJStudio_1_1TAdaptor__actor.html", [
@@ -3991,6 +3993,9 @@ var hierarchy =
     [ "TRKStepStatus", "structTRKStepStatus.html", null ],
     [ "TSinCosTable< N, T >", "structTSinCosTable.html", null ],
     [ "TSinCosTable< 13, f32 >", "structTSinCosTable.html", null ],
+    [ "JGadget::binary::TValueIterator< TParseValue_raw_< u8 >, 1 >", "structJGadget_1_1binary_1_1TValueIterator.html", [
+      [ "JGadget::binary::TValueIterator_raw< T >", "structJGadget_1_1binary_1_1TValueIterator__raw.html", null ]
+    ] ],
     [ "JGeometry::TVec2< f32 >", "structJGeometry_1_1TVec2.html", null ],
     [ "JGeometry::TVec2< s16 >", "structJGeometry_1_1TVec2.html", null ],
     [ "JGeometry::TVec3< float >", "structJGeometry_1_1TVec3.html", null ],

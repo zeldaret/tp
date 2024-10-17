@@ -177,7 +177,7 @@ var searchData=
   ['boot_5fcode_174',['boot_code',['../structOSBootInfo.html#a7a72cb311b5188e45258b3f73cc19c46',1,'OSBootInfo']]],
   ['bootdol_175',['bootDol',['../structOSExecParams.html#afafe99d07d53ba2947856b136d0c0342',1,'OSExecParams']]],
   ['bootfileposition_176',['bootFilePosition',['../structDVDBB2.html#a65feb4955390dc04cdecde2de1a30f37',1,'DVDBB2']]],
-  ['bootinfo_177',['bootinfo',['../dvd_8c.html#ae01eb00e7e44cc8852fedb9d075b90e5',1,'bootInfo:&#160;dvd.c'],['../dvdfs_8c.html#a543da2d195a8f0576fe4a625c4d15f39',1,'BootInfo:&#160;dvdfs.c'],['../OS_8c.html#a543da2d195a8f0576fe4a625c4d15f39',1,'BootInfo:&#160;OS.c']]],
+  ['bootinfo_177',['bootinfo',['../dvdfs_8c.html#a543da2d195a8f0576fe4a625c4d15f39',1,'BootInfo:&#160;dvdfs.c'],['../OS_8c.html#a543da2d195a8f0576fe4a625c4d15f39',1,'BootInfo:&#160;OS.c'],['../dvd_8c.html#ae01eb00e7e44cc8852fedb9d075b90e5',1,'bootInfo:&#160;dvd.c']]],
   ['bootthisdol_178',['bootThisDol',['../OSReset_8c.html#ab44038914dc7d78a3ad7c538162ade39',1,'OSReset.c']]],
   ['boss_179',['boss',['../d__a__e__sm2_8cpp.html#a6b66cafc175e7079ec67c14655d5823e',1,'boss:&#160;d_a_e_sm2.cpp'],['../d__a__e__rdy_8cpp.html#a6b66cafc175e7079ec67c14655d5823e',1,'boss:&#160;d_a_e_rdy.cpp'],['../d__a__e__rd_8cpp.html#a6b66cafc175e7079ec67c14655d5823e',1,'boss:&#160;d_a_e_rd.cpp'],['../d__a__b__oh_8cpp.html#a6dd0a06eb9f764a9cd2f25a24320f561',1,'boss:&#160;d_a_b_oh.cpp'],['../d__a__b__gos_8cpp.html#a320eb2b1c01456bf9cc1c1a4c8a1ff7e',1,'boss:&#160;d_a_b_gos.cpp'],['../d__a__b__oh2_8cpp.html#a6dd0a06eb9f764a9cd2f25a24320f561',1,'boss:&#160;d_a_b_oh2.cpp']]],
   ['boss_5fpart_5fbmd_180',['boss_part_bmd',['../d__a__e__rd_8cpp.html#a85ccf3508998e80b016866175eac570d',1,'d_a_e_rd.cpp']]],

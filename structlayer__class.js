@@ -1,6 +1,6 @@
 var structlayer__class =
 [
-    [ "counts", "structlayer__class.html#a37fc6ff8662d0b532ea882e99ef38ea7", null ],
+    [ "counts", "structlayer__class.html#abdb165d58883b4e783126827abf99fd5", null ],
     [ "mCancelList", "structlayer__class.html#a52f1fb436f8259ce72d6d8140c4ab81c", null ],
     [ "mCreatingCount", "structlayer__class.html#a51c93af8eee4d82a9e53d78e2eed198f", null ],
     [ "mDeletingCount", "structlayer__class.html#a4b400fc770b99a175ce461ea0852478e", null ],

@@ -8,6 +8,7 @@ var classdDemo__actor__c =
     [ "getAnmId", "classdDemo__actor__c.html#adb01d022dc7412b252f354a50ce87674", null ],
     [ "getDemoIDData", "classdDemo__actor__c.html#a96115b96bbbe57734a55bcbccbdeaf02", null ],
     [ "getOldAnmId", "classdDemo__actor__c.html#ab82d04c4a206c2169a62c3267651a215", null ],
+    [ "getPrm", "classdDemo__actor__c.html#a0534ac930afba01059df6353672a9ffd", null ],
     [ "getPrm_Morf", "classdDemo__actor__c.html#a2fe038c2586e12c6e051e0eed8765d85", null ],
     [ "getRatate", "classdDemo__actor__c.html#a78d3ef6be92e8eb6b3028a1fd7fdb506", null ],
     [ "getScale", "classdDemo__actor__c.html#ac9e00afe5a675a91e5e6188e6652c5e2", null ],
