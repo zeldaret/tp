@@ -15,7 +15,7 @@ var structdVibration__c =
     [ "CQ_patt", "structdVibration__c.html#a1d27d928cf160e40baf2f62b3d2bdd12", null ],
     [ "CS_patt", "structdVibration__c.html#ae31fd69d217bf89752d35c4c6abf5295", null ],
     [ "field_0x0", "structdVibration__c.html#ad52b669ebafe230d03d658b4d178cbb9", null ],
-    [ "field_0x0", "structdVibration__c.html#a8a2e31fed0fb7a3e015b3e7470292fca", null ],
+    [ "field_0x0", "structdVibration__c.html#a5091c3c85a2443703270b491daa8da6f", null ],
     [ "field_0x10", "structdVibration__c.html#a3121ea0d48e61e9f8c17d4c23c6ea952", null ],
     [ "field_0x14", "structdVibration__c.html#afae81ddd1b3c50c59a98676b8502be42", null ],
     [ "field_0x18", "structdVibration__c.html#aeda010ae57acca69b99c0c0becccd5bd", null ],
@@ -40,7 +40,7 @@ var structdVibration__c =
     [ "field_0x8c", "structdVibration__c.html#a78e3480acd90fb2aafa4eb0db9064932", null ],
     [ "field_0xc", "structdVibration__c.html#a1a5b621f82d744ec0a7a27cf714260d9", null ],
     [ "MQ_patt", "structdVibration__c.html#af7a5c81b4f4505f4a6542b658808581f", null ],
-    [ "mQuake", "structdVibration__c.html#a8aaa8c3afb5be0be729f5881255c4b65", null ],
+    [ "mQuake", "structdVibration__c.html#afd8f80d43163f54def9997f6f9e4e231", null ],
     [ "MS_patt", "structdVibration__c.html#aa0f32fe1de3249d6c310beac9bc8fd02", null ],
-    [ "mShock", "structdVibration__c.html#abc116cb5aaf2f2370019ba6b2f81ed73", null ]
+    [ "mShock", "structdVibration__c.html#a500c2ab510f306f6db7da1a6def41a63", null ]
 ];
