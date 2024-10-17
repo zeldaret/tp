@@ -77,7 +77,7 @@ class daTit_HIO_c {
 public:
     /* 80D66B0C */ daTit_HIO_c();
 
-    /* 80D67A08 */ virtual ~daTit_HIO_c();
+    /* 80D67A08 */ virtual ~daTit_HIO_c() {}
 
     /* 0x04 */ s8 field_0x4;
     /* 0x08 */ f32 mPSScaleX;
