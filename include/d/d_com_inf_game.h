@@ -2606,8 +2606,8 @@ inline stage_pselect_info_class* dComIfGp_getStagePselectInfo() {
     return g_dComIfG_gameInfo.play.getStage().getPselectInfo();
 }
 
-inline stage_vrbox_info_class* dComIfGp_getStageVrboxcolInfo() {
-    return g_dComIfG_gameInfo.play.getStage().getVrboxInfo();
+inline stage_vrboxcol_info_class* dComIfGp_getStageVrboxcolInfo() {
+    return g_dComIfG_gameInfo.play.getStage().getVrboxcolInfo();
 }
 
 inline stage_plight_info_class* dComIfGp_getStagePlightInfo() {

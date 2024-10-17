@@ -68,10 +68,10 @@ struct JPAEmitterWorkData {
 class JPAEmitterCallBack {
 public:
     virtual ~JPAEmitterCallBack() = 0;
-    /* 80050368 */ virtual void execute(JPABaseEmitter*);
-    /* 80050374 */ virtual void executeAfter(JPABaseEmitter*);
-    /* 8005036C */ virtual void draw(JPABaseEmitter*);
-    /* 80050370 */ virtual void drawAfter(JPABaseEmitter*);
+    /* 80050368 */ virtual void execute(JPABaseEmitter*) {}
+    /* 80050374 */ virtual void executeAfter(JPABaseEmitter*) {}
+    /* 8005036C */ virtual void draw(JPABaseEmitter*) {}
+    /* 80050370 */ virtual void drawAfter(JPABaseEmitter*) {}
     
     /* 8027E6A4 */ //~JPAEmitterCallBack();
 };

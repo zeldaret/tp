@@ -10,10 +10,7 @@ class daNpc_Hoz_c;
 
 class _ZraMark_Hahen_c {
 public:
-    _ZraMark_Hahen_c() {
-        mpModel = NULL;
-        setColor(0);
-    }
+    inline _ZraMark_Hahen_c();
 
     /* 80D4347C */ int create(cXyz const&, s8, s8, s8, s8);
     /* 80D434F8 */ BOOL loadModel();
@@ -22,7 +19,7 @@ public:
     /* 80D43864 */ void setMtx();
     /* 80D438C8 */ void draw();
 
-    void setColor(const s8& i_color) { mColor = i_color; }
+    inline void setColor(const s8& i_color) { mColor = i_color; }
     s8 getColor() { return mColor; }
     void setPos(const cXyz& i_pos) { mPos = i_pos; }
     void setSpeed(const cXyz& i_speed) { mSpeed = i_speed; }

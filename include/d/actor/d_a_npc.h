@@ -492,8 +492,40 @@ public:
 };
 
 class daBaseNpc_c : public fopAc_ac_c {
+public:
+    /* 8014E6C8 */ daBaseNpc_c();
+    /* 8014EE44 */ J3DAnmTransform* getTrnsfrmKeyAnmP(char*, int);
+    /* 8014EE80 */ void setMcaMorfAnm(J3DAnmTransformKey*, f32, f32, int, int, int);
+    /* 8014EEE4 */ void setBckAnm(J3DAnmTransform*, f32, int, int, int, bool);
+    /* 8014EF28 */ J3DAnmTransform* getTexPtrnAnmP(char*, int);
+    /* 8014EF64 */ void setBtpAnm(J3DAnmTexPattern*, J3DModelData*, f32, int);
+    /* 8014EFF4 */ void orderEvent(int, char*);
+    /* 8014F0A0 */ void setEnvTevColor();
+    /* 8014F0FC */ void setRoomNo();
+    /* 8014F148 */ int checkEndAnm(f32);
+    /* 8014F1C8 */ int checkEndAnm(J3DFrameCtrl*);
+
+    /* 8014E89C */ virtual ~daBaseNpc_c();
+    /* 8014EAD0 */ virtual void execute();
+    /* 8014EC50 */ virtual void draw(f32);
+    /* 8014EE3C */ virtual bool getResName();
+    /* 8014EFA4 */ virtual void attnSttsOn(int, int);
+    /* 8014EFF0 */ virtual void setParam();
+    /* 8014F09C */ virtual void mainProc();
+    /* 8014F140 */ virtual bool btkCtrl();
+    /* 8014F228 */ virtual void allAnmPlay();
+    /* 8014F38C */ virtual void adjustShapeAngle();
+    /* 8014F390 */ virtual void setMtx(int);
+    /* 8014F4A0 */ virtual void setCollisions();
+    /* 8014F4A4 */ virtual void setAttnPos();
+    /* 8014F4A8 */ virtual void drawOtherMdls();
+    /* 8014F4AC */ virtual bool dbgDraw();
+
+    static u8 const mCcDObj[48];
+    static dCcD_SrcCyl mCcDCyl;
+    static dCcD_SrcSph mCcDSph;
+
 private:
-    /* 0x568 */ void* vtable;
     /* 0x56C */ dBgS_Acch field_0x56c;
     /* 0x744 */ u8 field_0x744[16];
     /* 0x754 */ mDoExt_McaMorfSO* mpMorf[2];
@@ -527,40 +559,6 @@ private:
     /* 0x9A2 */ u8 field_0x9a2[70];
     /* 0x9E8 */ const cBgS_PolyInfo mBgSPolyInfo;
     /* 0x9F9 */ u8 field_0x9f9[27];
-
-public:
-    /* 8014E6C8 */ daBaseNpc_c();
-    /* 8014E89C */ ~daBaseNpc_c();
-    /* 8014EAD0 */ void execute();
-    /* 8014EC50 */ void draw(f32);
-    /* 8014EE3C */ bool getResName();
-    /* 8014EE44 */ J3DAnmTransform* getTrnsfrmKeyAnmP(char*, int);
-    /* 8014EE80 */ void setMcaMorfAnm(J3DAnmTransformKey*, f32, f32, int, int, int);
-    /* 8014EEE4 */ void setBckAnm(J3DAnmTransform*, f32, int, int, int, bool);
-    /* 8014EF28 */ J3DAnmTransform* getTexPtrnAnmP(char*, int);
-    /* 8014EF64 */ void setBtpAnm(J3DAnmTexPattern*, J3DModelData*, f32, int);
-    /* 8014EFA4 */ void attnSttsOn(int, int);
-    /* 8014EFF0 */ void setParam();
-    /* 8014EFF4 */ void orderEvent(int, char*);
-    /* 8014F09C */ void mainProc();
-    /* 8014F0A0 */ void setEnvTevColor();
-    /* 8014F0FC */ void setRoomNo();
-    /* 8014F140 */ bool btkCtrl();
-    /* 8014F148 */ int checkEndAnm(f32);
-    /* 8014F1C8 */ int checkEndAnm(J3DFrameCtrl*);
-    /* 8014F228 */ void allAnmPlay();
-    /* 8014F38C */ void adjustShapeAngle();
-    /* 8014F390 */ void setMtx(int);
-    /* 8014F4A0 */ void setCollisions();
-    /* 8014F4A4 */ void setAttnPos();
-    /* 8014F4A8 */ void drawOtherMdls();
-    /* 8014F4AC */ bool dbgDraw();
-
-    void setVtable(void* table) { vtable = table; }
-
-    static u8 const mCcDObj[48];
-    static dCcD_SrcCyl mCcDCyl;
-    static dCcD_SrcSph mCcDSph;
 };
 
 class daBaseNpc_moveBgActor_c : public daBaseNpc_c {
@@ -603,7 +601,7 @@ public:
     /* 801506E0 */ void remove();
     /* 801506EC */ fopAc_ac_c* getActorP();
 
-    /* 80155E40 */ virtual ~daNpcF_ActorMngr_c();
+    /* 80155E40 */ virtual ~daNpcF_ActorMngr_c() {}
 };
 
 class daNpcF_c : public fopAc_ac_c {
@@ -793,7 +791,7 @@ public:
     /* 801549E0 */ BOOL chkFindPlayer2(BOOL, s16);
     /* 80154BD8 */ void setHitodamaPrtcl();
 
-    /* 80155BF4 */ virtual ~daNpcF_c();
+    /* 80155BF4 */ virtual ~daNpcF_c() {}
     /* 80155BC8 */ virtual void setParam();
     /* 80155BC0 */ virtual BOOL main();
     /* 80155BD8 */ virtual BOOL ctrlBtk();
@@ -961,18 +959,18 @@ public:
     void setAttnPos(cXyz* i_attnPos) { mAttnPos = i_attnPos; }
 };
 
-class daNpcF_MoveBgActor_c {
+class daNpcF_MoveBgActor_c : public daNpcF_c {
 private:
 public:
     /* 80155B54 */ ~daNpcF_MoveBgActor_c();
-    /* 80155E88 */ bool CreateHeap();
-    /* 80155E90 */ bool Create();
-    /* 80155E98 */ bool Delete();
-    /* 80155EA0 */ bool Execute(f32 (**)[3][4]);
-    /* 80155EA8 */ bool Draw();
-    /* 80155EB0 */ bool IsDelete();
-    /* 80155EB8 */ bool ToFore();
-    /* 80155EC0 */ bool ToBack();
+    /* 80155E88 */ virtual bool CreateHeap();
+    /* 80155E90 */ virtual bool Create();
+    /* 80155EA0 */ virtual bool Execute(f32 (**)[3][4]);
+    /* 80155EA8 */ virtual bool Draw();
+    /* 80155E98 */ virtual bool Delete();
+    /* 80155EB0 */ virtual bool IsDelete();
+    /* 80155EB8 */ virtual bool ToFore();
+    /* 80155EC0 */ virtual bool ToBack();
 };
 
 #endif /* D_A_D_A_NPC_H */

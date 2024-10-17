@@ -197,12 +197,7 @@ STATIC_ASSERT(sizeof(npc_ne_class) == 0xCC4);
 class daNpc_Ne_HIO_c {
 public:
     /* 80A88CCC */ daNpc_Ne_HIO_c();
-#ifdef NONMATCHING
     /* 80A92374 */ virtual ~daNpc_Ne_HIO_c() {}
-#else
-    /* 80A92374 */ ~daNpc_Ne_HIO_c();
-    /* 0x00 */ void* vtable;
-#endif
 
     /* 0x04 */ s8 field_0x04;
     /* 0x08 */ f32 mScale;

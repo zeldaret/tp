@@ -4,6 +4,8 @@
 //
 
 #include "d/d_menu_dmap.h"
+#include "d/actor/d_a_player.h"
+#include "d/d_item.h"
 #include "d/d_menu_item_explain.h"
 #include "d/d_msg_object.h"
 #include "d/d_meter_HIO.h"
@@ -275,13 +277,6 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 80395760-80395760 021DC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80395760 = "/res/FieldMap/D_MN10.arc";
-#pragma pop
-
 /* 803BC7E0-803BC7EC 019900 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -290,7 +285,6 @@ SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
 typedef void (dMenu_Dmap_c::*ProcFunc)();
 
 /* 803BC7EC-803BC7F8 -00001 000C+00 0/1 0/0 0/0 .data            @4861 */
-#ifdef NONMATCHING
 static ProcFunc init_process[5] = {
     &dMenu_Dmap_c::itemInfo_init_proc,
     &dMenu_Dmap_c::mapMode_init_proc,
@@ -299,67 +293,7 @@ static ProcFunc init_process[5] = {
     &dMenu_Dmap_c::lv5_talk_init_proc,
 };
 
-#else
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4861[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)itemInfo_init_proc__12dMenu_Dmap_cFv,
-};
-#pragma pop
-
-/* 803BC7F8-803BC804 -00001 000C+00 0/1 0/0 0/0 .data            @4862 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4862[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)mapMode_init_proc__12dMenu_Dmap_cFv,
-};
-#pragma pop
-
-/* 803BC804-803BC810 -00001 000C+00 0/1 0/0 0/0 .data            @4863 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4863[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)infoModeChange_init_proc__12dMenu_Dmap_cFv,
-};
-#pragma pop
-
-/* 803BC810-803BC81C -00001 000C+00 0/1 0/0 0/0 .data            @4864 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4864[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)mapModeChange_init_proc__12dMenu_Dmap_cFv,
-};
-#pragma pop
-
-/* 803BC81C-803BC828 -00001 000C+00 0/1 0/0 0/0 .data            @4865 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4865[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)lv5_talk_init_proc__12dMenu_Dmap_cFv,
-};
-#pragma pop
-
-/* 803BC828-803BC864 019948 003C+00 2/3 0/0 0/0 .data            init_process */
-SECTION_DATA static u8 init_process[60] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-#endif
-
 /* 803BC864-803BC870 -00001 000C+00 0/1 0/0 0/0 .data            @4866 */
-#ifdef NONMATCHING
 static ProcFunc move_process[5] = {
     &dMenu_Dmap_c::itemInfo_proc,
     &dMenu_Dmap_c::mapMode_proc,
@@ -367,66 +301,7 @@ static ProcFunc move_process[5] = {
     &dMenu_Dmap_c::mapModeChange_proc,
     &dMenu_Dmap_c::lv5_talk_proc,
 };
-#else
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4866[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)itemInfo_proc__12dMenu_Dmap_cFv,
-};
-#pragma pop
 
-/* 803BC870-803BC87C -00001 000C+00 0/1 0/0 0/0 .data            @4867 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4867[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)mapMode_proc__12dMenu_Dmap_cFv,
-};
-#pragma pop
-
-/* 803BC87C-803BC888 -00001 000C+00 0/1 0/0 0/0 .data            @4868 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4868[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)infoModeChange_proc__12dMenu_Dmap_cFv,
-};
-#pragma pop
-
-/* 803BC888-803BC894 -00001 000C+00 0/1 0/0 0/0 .data            @4869 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4869[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)mapModeChange_proc__12dMenu_Dmap_cFv,
-};
-#pragma pop
-
-/* 803BC894-803BC8A0 -00001 000C+00 0/1 0/0 0/0 .data            @4870 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4870[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)lv5_talk_proc__12dMenu_Dmap_cFv,
-};
-#pragma pop
-
-/* 803BC8A0-803BC8DC 0199C0 003C+00 1/2 0/0 0/0 .data            move_process */
-SECTION_DATA static u8 move_process[60] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-#endif
-
-#ifdef NONMATCHING
 static ProcFunc itemInfo_subProcess[5] = {
     &dMenu_Dmap_c::itemSelect,
     &dMenu_Dmap_c::itemSelectAnm,
@@ -434,472 +309,28 @@ static ProcFunc itemInfo_subProcess[5] = {
     &dMenu_Dmap_c::itemInfoWait,
     &dMenu_Dmap_c::itemInfoCloseAnm,
 };
-#else
-/* 803BC8DC-803BC8E8 -00001 000C+00 0/1 0/0 0/0 .data            @4871 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4871[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)itemSelect__12dMenu_Dmap_cFv,
-};
-#pragma pop
 
-/* 803BC8E8-803BC8F4 -00001 000C+00 0/1 0/0 0/0 .data            @4872 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4872[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)itemSelectAnm__12dMenu_Dmap_cFv,
-};
-#pragma pop
-
-/* 803BC8F4-803BC900 -00001 000C+00 0/1 0/0 0/0 .data            @4873 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4873[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)itemInfoOpenAnm__12dMenu_Dmap_cFv,
-};
-#pragma pop
-
-/* 803BC900-803BC90C -00001 000C+00 0/1 0/0 0/0 .data            @4874 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4874[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)itemInfoWait__12dMenu_Dmap_cFv,
-};
-#pragma pop
-
-/* 803BC90C-803BC918 -00001 000C+00 0/1 0/0 0/0 .data            @4875 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4875[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)itemInfoCloseAnm__12dMenu_Dmap_cFv,
-};
-#pragma pop
-
-/* 803BC918-803BC954 019A38 003C+00 1/2 0/0 0/0 .data            itemInfo_subProcess */
-SECTION_DATA static u8 itemInfo_subProcess[60] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-#endif
-
-#ifdef NONMATCHING
 static ProcFunc floor_init_process[2] = {
     &dMenu_Dmap_c::floorSelect_init_proc,
     &dMenu_Dmap_c::floorChange_init_proc,
 };
-#else
-/* 803BC954-803BC960 -00001 000C+00 0/1 0/0 0/0 .data            @4876 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4876[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)floorSelect_init_proc__12dMenu_Dmap_cFv,
-};
-#pragma pop
 
-/* 803BC960-803BC96C -00001 000C+00 0/1 0/0 0/0 .data            @4877 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4877[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)floorChange_init_proc__12dMenu_Dmap_cFv,
-};
-#pragma pop
-
-/* 803BC96C-803BC984 019A8C 0018+00 1/2 0/0 0/0 .data            floor_init_process */
-SECTION_DATA static u8 floor_init_process[24] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-#endif
-
-#ifdef NONMATCHING
 static ProcFunc floor_move_process[2] = {
     &dMenu_Dmap_c::floorSelect_proc,
     &dMenu_Dmap_c::floorChange_proc,
 };
-#else
-/* 803BC984-803BC990 -00001 000C+00 0/1 0/0 0/0 .data            @4878 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4878[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)floorSelect_proc__12dMenu_Dmap_cFv,
-};
-#pragma pop
 
-/* 803BC990-803BC99C -00001 000C+00 0/1 0/0 0/0 .data            @4879 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4879[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)floorChange_proc__12dMenu_Dmap_cFv,
-};
-#pragma pop
-
-/* 803BC99C-803BC9B4 019ABC 0018+00 1/2 0/0 0/0 .data            floor_move_process */
-SECTION_DATA static u8 floor_move_process[24] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-#endif
-
-#ifdef NONMATCHING
 static ProcFunc map_init_process[3] = {
     &dMenu_Dmap_c::zoomWait_init_proc,
     &dMenu_Dmap_c::zoomIn_init_proc,
     &dMenu_Dmap_c::zoomOut_init_proc,
 };
-#else
-/* 803BC9B4-803BC9C0 -00001 000C+00 0/1 0/0 0/0 .data            @4880 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4880[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)zoomWait_init_proc__12dMenu_Dmap_cFv,
-};
-#pragma pop
 
-/* 803BC9C0-803BC9CC -00001 000C+00 0/1 0/0 0/0 .data            @4881 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4881[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)zoomIn_init_proc__12dMenu_Dmap_cFv,
-};
-#pragma pop
-
-/* 803BC9CC-803BC9D8 -00001 000C+00 0/1 0/0 0/0 .data            @4882 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4882[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)zoomOut_init_proc__12dMenu_Dmap_cFv,
-};
-#pragma pop
-
-/* 803BC9D8-803BC9FC 019AF8 0024+00 3/4 0/0 0/0 .data            map_init_process */
-SECTION_DATA static u8 map_init_process[36] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-#endif
-
-#ifdef NONMATCHING
 static ProcFunc map_move_process[3] = {
     &dMenu_Dmap_c::zoomWait_proc,
     &dMenu_Dmap_c::zoomIn_proc,
     &dMenu_Dmap_c::zoomOut_proc,
 };
-#else
-/* 803BC9FC-803BCA08 -00001 000C+00 0/1 0/0 0/0 .data            @4883 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4883[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)zoomWait_proc__12dMenu_Dmap_cFv,
-};
-#pragma pop
-
-/* 803BCA08-803BCA14 -00001 000C+00 0/1 0/0 0/0 .data            @4884 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4884[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)zoomIn_proc__12dMenu_Dmap_cFv,
-};
-#pragma pop
-
-/* 803BCA14-803BCA20 -00001 000C+00 0/1 0/0 0/0 .data            @4885 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4885[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)zoomOut_proc__12dMenu_Dmap_cFv,
-};
-#pragma pop
-
-/* 803BCA20-803BCAE0 019B40 0024+9C 1/2 0/0 0/0 .data            map_move_process */
-SECTION_DATA static u8 map_move_process[36 + 156 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-#endif
-
-/* 803BCAE0-803BCAEC 019C00 000C+00 4/4 0/0 0/0 .data            __vt__15dMenu_DmapMap_c */
-SECTION_DATA extern void* __vt__15dMenu_DmapMap_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__15dMenu_DmapMap_cFv,
-};
-
-/* 803BCAEC-803BCB10 019C0C 0024+00 3/3 0/0 0/0 .data            __vt__20dMenu_StageMapCtrl_c */
-SECTION_DATA extern void* __vt__20dMenu_StageMapCtrl_c[9] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__20dMenu_StageMapCtrl_cFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-};
-
-/* 803BCB10-803BCB38 019C30 000C+1C 2/2 0/0 0/0 .data            __vt__12dMenu_Dmap_c */
-SECTION_DATA extern void* __vt__12dMenu_Dmap_c[3 + 7 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dMenu_Dmap_cFv,
-    /* padding */
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-};
-
-/* 803BCB38-803BCB60 019C58 001C+0C 2/2 0/0 0/0 .data            __vt__14dMenu_DmapBg_c */
-SECTION_DATA extern void* __vt__14dMenu_DmapBg_c[7 + 3 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__14dMenu_DmapBg_cFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_801C0844,
-    (void*)__dt__14dMenu_DmapBg_cFv,
-    /* padding */
-    NULL,
-    NULL,
-    NULL,
-};
-
-/* 80453FE8-80453FEC 0025E8 0004+00 20/20 0/0 0/0 .sdata2          @3962 */
-SECTION_SDATA2 static u8 lit_3962[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80453FEC-80453FF0 0025EC 0004+00 26/26 0/0 0/0 .sdata2          @3963 */
-SECTION_SDATA2 static f32 lit_3963 = 1.0f;
 
 /* 801B7F20-801B8110 1B2860 01F0+00 1/1 0/0 0/0 .text
  * __ct__14dMenu_DmapBg_cFP10JKRExpHeapP9STControl              */
@@ -943,22 +374,10 @@ dMenu_DmapBg_c::dMenu_DmapBg_c(JKRExpHeap* param_1, STControl* param_2) {
     field_0xd20 = 0;
     mpBackTexture = 0;
     field_0xdbc = 0.0f;
-    memset(field_0xd80, 0, sizeof(field_0xd80));
+    memset(field_0xd80, 0, 0x14);
     buttonIconScreenInit();
     field_0xdd0 = 0;
 }
-
-
-/* ############################################################################################## */
-/* 80395760-80395760 021DC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80395779 = "zelda_dungeon_map_map.blo";
-SECTION_DEAD static char const* const stringBase_80395793 = "zelda_dungeon_map_map.btk";
-#pragma pop
-
-/* 80453FF0-80453FF4 0025F0 0004+00 1/1 0/0 0/0 .sdata2          @4073 */
-SECTION_SDATA2 static f32 lit_4073 = -15.0f;
 
 /* 801B8110-801B884C 1B2A50 073C+00 1/1 0/0 0/0 .text            mapScreenInit__14dMenu_DmapBg_cFv
  */
@@ -1034,13 +453,6 @@ void dMenu_DmapBg_c::mapScreenInit() {
     }
 }
 
-/* ############################################################################################## */
-/* 80453FF4-80453FF8 0025F4 0004+00 2/2 0/0 0/0 .sdata2          @4106 */
-SECTION_SDATA2 static f32 lit_4106 = 2.0f / 5.0f;
-
-/* 80453FF8-80454000 0025F8 0008+00 8/8 0/0 0/0 .sdata2          @4108 */
-SECTION_SDATA2 static f64 lit_4108 = 4503601774854144.0 /* cast s32 to float */;
-
 /* 801B884C-801B88F4 1B318C 00A8+00 1/1 0/0 0/0 .text            mapScreenAnime__14dMenu_DmapBg_cFv
  */
 void dMenu_DmapBg_c::mapScreenAnime() {
@@ -1056,7 +468,6 @@ void dMenu_DmapBg_c::mapScreenAnime() {
     }
 }
 
-
 /* 801B88F4-801B893C 1B3234 0048+00 1/1 0/0 0/0 .text mapIconScaleSet__14dMenu_DmapBg_cFUc */
 void dMenu_DmapBg_c::mapIconScaleSet(u8 param_1) {
     f32 fVar1;
@@ -1071,7 +482,6 @@ void dMenu_DmapBg_c::mapIconScaleSet(u8 param_1) {
     iconScale(1, fVar1, fVar1, fVar2);
 }
 
-
 /* 801B893C-801B8954 1B327C 0018+00 2/2 0/0 0/0 .text iconScaleAnmInit__14dMenu_DmapBg_cFffUc */
 void dMenu_DmapBg_c::iconScaleAnmInit(f32 param_0, f32 param_1, u8 param_2) {
     field_0xdac = param_0;
@@ -1079,10 +489,6 @@ void dMenu_DmapBg_c::iconScaleAnmInit(f32 param_0, f32 param_1, u8 param_2) {
     field_0xdd1 = param_2;
     field_0xdd2 = 0;
 }
-
-/* ############################################################################################## */
-/* 80454000-80454004 002600 0004+00 1/1 0/0 0/0 .sdata2          @4133 */
-SECTION_SDATA2 static f32 lit_4133 = 1.0f / 20.0f;
 
 /* 801B8954-801B8A0C 1B3294 00B8+00 2/2 0/0 0/0 .text            iconScaleAnm__14dMenu_DmapBg_cFv */
 bool dMenu_DmapBg_c::iconScaleAnm() {
@@ -1109,68 +515,17 @@ bool dMenu_DmapBg_c::iconScaleAnm() {
     return rv;
 }
 
-
-/* ############################################################################################## */
-/* 80395518-80395540 021B78 0028+00 2/2 0/0 0/0 .rodata          cont_at$4145 */
-SECTION_RODATA static u64 const cont_at_4145[5] = {
-    'cont_at', 'cont_at1', 'cont_at2', 'cont_at3', 'cont_at4',
-};
-COMPILER_STRIP_GATE(0x80395518, &cont_at_4145);
-
-/* 80395540-80395568 021BA0 0028+00 0/1 0/0 0/0 .rodata          cont_bt$4146 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u64 const cont_bt_4146[5] = {
-    'cont_bt', 'cont_bt1', 'cont_bt2', 'cont_bt3', 'cont_bt4',
-};
-COMPILER_STRIP_GATE(0x80395540, &cont_bt_4146);
-#pragma pop
-
-/* 80395568-80395590 021BC8 0028+00 0/1 0/0 0/0 .rodata          font_at$4147 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u64 const font_at[5] = {
-    'font_at', 'font_at1', 'font_at2', 'font_at3', 'font_at4',
-};
-COMPILER_STRIP_GATE(0x80395568, &font_at);
-#pragma pop
-
-/* 80395590-803955B8 021BF0 0028+00 0/1 0/0 0/0 .rodata          font_bt$4148 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u64 const font_bt[5] = {
-    'font_bt', 'font_bt1', 'font_bt2', 'font_bt3', 'font_bt4',
-};
-COMPILER_STRIP_GATE(0x80395590, &font_bt);
-#pragma pop
-
-/* 803955B8-803955C8 021C18 0010+00 0/1 0/0 0/0 .rodata          c_tag$4155 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u64 const c_tag_4155[2] = {
-    'f_text_s', 'f_text',
-};
-COMPILER_STRIP_GATE(0x803955B8, &c_tag_4155);
-#pragma pop
-
-/* 80395760-80395760 021DC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803957AD = "zelda_dungeon_map_spot_button.blo";
-SECTION_DEAD static char const* const stringBase_803957CF = "";
-#pragma pop
-
-/* 80454004-80454008 002604 0004+00 1/1 0/0 0/0 .sdata2          @4191 */
-SECTION_SDATA2 static f32 lit_4191 = 160.0f;
-
-/* 80454008-8045400C 002608 0004+00 1/1 0/0 0/0 .sdata2          @4192 */
-SECTION_SDATA2 static f32 lit_4192 = 321.0f;
-
 /* 801B8A0C-801B8DE4 1B334C 03D8+00 1/1 0/0 0/0 .text buttonIconScreenInit__14dMenu_DmapBg_cFv */
 void dMenu_DmapBg_c::buttonIconScreenInit() {
+    static u64 const cont_at[5] = {'cont_at', 'cont_at1', 'cont_at2', 'cont_at3', 'cont_at4'};
+    static u64 const cont_bt[5] = {'cont_bt', 'cont_bt1', 'cont_bt2', 'cont_bt3', 'cont_bt4'};
+    static u64 const font_at[5] = {'font_at', 'font_at1', 'font_at2', 'font_at3', 'font_at4'};
+    static u64 const font_bt[5] = {'font_bt', 'font_bt1', 'font_bt2', 'font_bt3', 'font_bt4'};
+    static u64 const c_tag[2] = {'f_text_s', 'f_text'};
+
     mButtonScreen = new J2DScreen();
     JUT_ASSERT(916, mButtonScreen != 0);
-    bool fg = mButtonScreen->setPriority("zelda_dungeon_map_spot_button_revo.blo", 0x20000, dComIfGp_getDmapResArchive());
+    bool fg = mButtonScreen->setPriority("zelda_dungeon_map_spot_button.blo", 0x20000, dComIfGp_getDmapResArchive());
     JUT_ASSERT(922, fg != false);
     dPaneClass_showNullPane(mButtonScreen);
 
@@ -1206,14 +561,14 @@ void dMenu_DmapBg_c::buttonIconScreenInit() {
         ((J2DTextBox*)mButtonScreen->search(font_bt[i]))->setFont(mDoExt_getMesgFont());
         ((J2DTextBox*)mButtonScreen->search(font_at[i]))->setString(32, "");
         ((J2DTextBox*)mButtonScreen->search(font_bt[i]))->setString(32, "");
-        ((J2DTextBox*)mButtonScreen->search(cont_at_4145[i]))->hide();
-        ((J2DTextBox*)mButtonScreen->search(cont_bt_4146[i]))->hide();
+        ((J2DTextBox*)mButtonScreen->search(cont_at[i]))->hide();
+        ((J2DTextBox*)mButtonScreen->search(cont_bt[i]))->hide();
     }
     field_0xcf4 = new CPaneMgr(mButtonScreen, 'c_n', 2, NULL);
     field_0xcf8 = NULL;
     J2DTextBox* textBox;
     for (int i = 0; i < 2; i++) {
-        textBox = ((J2DTextBox*)mButtonScreen->search(c_tag_4155[i]));
+        textBox = ((J2DTextBox*)mButtonScreen->search(c_tag[i]));
         textBox->setFont(mDoExt_getMesgFont());
         textBox->setString(32, "");
     }
@@ -1226,46 +581,29 @@ void dMenu_DmapBg_c::buttonIconScreenInit() {
     field_0xcf4->paneTrans(321.0f, 0.0f);
 }
 
-/* ############################################################################################## */
-/* 803955C8-803955F0 021C28 0028+00 1/1 0/0 0/0 .rodata          cont_at$4196 */
-static u64 const cont_at_4196[5] = {
-    'font_at', 'font_at1', 'font_at2', 'font_at3', 'font_at4',
-};
-
 /* 801B8DE4-801B8EBC 1B3724 00D8+00 7/7 0/0 0/0 .text setAButtonString__14dMenu_DmapBg_cFUl */
 void dMenu_DmapBg_c::setAButtonString(u32 param_1) {
+    static u64 const cont_at[5] = {'font_at', 'font_at1', 'font_at2', 'font_at3', 'font_at4'};
     for (int i = 0; i < 5; i++) {
         if (param_1 == 0) {
-            strcpy(((J2DTextBox*)mButtonScreen->search(cont_at_4196[i]))->getStringPtr(), "");
+            strcpy(((J2DTextBox*)mButtonScreen->search(cont_at[i]))->getStringPtr(), "");
         } else {
-            dMeter2Info_getStringKanji(param_1, ((J2DTextBox*)mButtonScreen->search(cont_at_4196[i]))->getStringPtr(), NULL);
+            dMeter2Info_getStringKanji(param_1, ((J2DTextBox*)mButtonScreen->search(cont_at[i]))->getStringPtr(), NULL);
         }
     }
 }
-
-/* ############################################################################################## */
-/* 803955F0-80395618 021C50 0028+00 1/1 0/0 0/0 .rodata          cont_bt$4211 */
-static u64 const cont_bt_4211[5] = {
-    'font_bt', 'font_bt1', 'font_bt2', 'font_bt3', 'font_bt4',
-};
 
 /* 801B8EBC-801B8F94 1B37FC 00D8+00 8/8 0/0 0/0 .text setBButtonString__14dMenu_DmapBg_cFUl */
 void dMenu_DmapBg_c::setBButtonString(u32 param_1) {
+    static u64 const cont_bt[5] = {'font_bt', 'font_bt1', 'font_bt2', 'font_bt3', 'font_bt4'};
     for (int i = 0; i < 5; i++) {
         if (param_1 == 0) {
-            strcpy(((J2DTextBox*)mButtonScreen->search(cont_bt_4211[i]))->getStringPtr(), "");
+            strcpy(((J2DTextBox*)mButtonScreen->search(cont_bt[i]))->getStringPtr(), "");
         } else {
-            dMeter2Info_getStringKanji(param_1, ((J2DTextBox*)mButtonScreen->search(cont_bt_4211[i]))->getStringPtr(), NULL);
+            dMeter2Info_getStringKanji(param_1, ((J2DTextBox*)mButtonScreen->search(cont_bt[i]))->getStringPtr(), NULL);
         }
     }
 }
-
-/* ############################################################################################## */
-/* 80395618-80395628 021C78 0010+00 1/1 0/0 0/0 .rodata          c_tag$4229 */
-SECTION_RODATA static u64 const c_tag_4229[2] = {
-    'f_text_s', 'f_text',
-};
-COMPILER_STRIP_GATE(0x80395618, &c_tag_4229);
 
 /* 80451078-8045107C 000578 0004+00 1/1 0/0 0/0 .sbss            player_px */
 static f32 player_px;
@@ -1276,11 +614,9 @@ static f32 player_py;
 /* 80451080-80451088 000580 0004+04 6/6 0/0 0/0 .sbss            myclass__12dMenu_Dmap_c */
 dMenu_Dmap_c* dMenu_Dmap_c::myclass;
 
-/* 8045400C-80454010 00260C 0004+00 7/7 0/0 0/0 .sdata2          @4249 */
-SECTION_SDATA2 static f32 lit_4249 = 0.5f;
-
 /* 801B8F94-801B90BC 1B38D4 0128+00 1/1 0/0 0/0 .text setCButtonString__14dMenu_DmapBg_cFUl */
 void dMenu_DmapBg_c::setCButtonString(u32 param_1) {
+    static u64 const c_tag[2] = {'f_text_s', 'f_text'};
     int i;
     u32 r26;
     if (!dMenu_Dmap_c::myclass->isMapMoveState()) {
@@ -1290,17 +626,16 @@ void dMenu_DmapBg_c::setCButtonString(u32 param_1) {
     }
     if (r26 == 0) {
         for (i = 0; i < 2; i++) {
-            strcpy(((J2DTextBox*)mButtonScreen->search(c_tag_4229[i]))->getStringPtr(), "");
+            strcpy(((J2DTextBox*)mButtonScreen->search(c_tag[i]))->getStringPtr(), "");
         }
         mpCButton->setAlphaRate(0.5f);
     } else {
         for (i = 0; i < 2; i++) {
-            dMeter2Info_getStringKanji(r26, ((J2DTextBox*)mButtonScreen->search(c_tag_4229[i]))->getStringPtr(), NULL);
+            dMeter2Info_getStringKanji(r26, ((J2DTextBox*)mButtonScreen->search(c_tag[i]))->getStringPtr(), NULL);
         }
         mpCButton->setAlphaRate(1.0f);
     }
 }
-
 
 /* 801B90BC-801B90E0 1B39FC 0024+00 1/1 0/0 0/0 .text setJButtonString__14dMenu_DmapBg_cFUl */
 void dMenu_DmapBg_c::setJButtonString(u32 param_0) {
@@ -1329,37 +664,17 @@ void dMenu_DmapBg_c::deleteExplain() {
     }
 }
 
-/* ############################################################################################## */
-/* 80395760-80395760 021DC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803957D0 = "zelda_dungeon_map_base.blo";
-SECTION_DEAD static char const* const stringBase_803957EB = "zelda_dungeon_map_floor_parts.blo";
-#pragma pop
-
-/* 80454010-80454014 002610 0004+00 1/1 0/0 0/0 .sdata2          @4312 */
-SECTION_SDATA2 static f32 lit_4312 = 19.0f / 20.0f;
-
-/* 80454014-80454018 002614 0004+00 7/7 0/0 0/0 .sdata2          @4313 */
-SECTION_SDATA2 static f32 lit_4313 = 9.0f / 10.0f;
-
-/* 80454018-8045401C 002618 0004+00 1/1 0/0 0/0 .sdata2          @4314 */
-SECTION_SDATA2 static f32 lit_4314 = 1.0f / 10.0f;
-
-/* 8045401C-80454020 00261C 0004+00 1/1 0/0 0/0 .sdata2          @4315 */
-SECTION_SDATA2 static f32 lit_4315 = 3.0f / 5.0f;
-
 /* 801B91DC-801B944C 1B3B1C 0270+00 1/1 0/0 0/0 .text            baseScreenInit__14dMenu_DmapBg_cFv
  */
 void dMenu_DmapBg_c::baseScreenInit() {
     mBaseScreen = new J2DScreen();
     JUT_ASSERT(1336, mBaseScreen != 0);
-    bool fg = mBaseScreen->setPriority("zelda_dungeon_map_base_revo.blo", 0x20000, dComIfGp_getDmapResArchive());
+    bool fg = mBaseScreen->setPriority("zelda_dungeon_map_base.blo", 0x20000, dComIfGp_getDmapResArchive());
     JUT_ASSERT(1347, fg != false);
     dPaneClass_showNullPane(mBaseScreen);
     mFloorScreen = new J2DScreen();
     JUT_ASSERT(1351, mFloorScreen != 0);
-    fg = mFloorScreen->setPriority("zelda_dungeon_map_floor_parts_revo.blo", 0x20000,
+    fg = mFloorScreen->setPriority("zelda_dungeon_map_floor_parts.blo", 0x20000,
                                    dComIfGp_getDmapResArchive());
     JUT_ASSERT(1362, fg != false);
     dPaneClass_showNullPane(mFloorScreen);
@@ -1383,46 +698,6 @@ void dMenu_DmapBg_c::baseScreenInit() {
         JUT_WARN(1426, "stage title message index zero!");
     }
 }
-
-
-/* ############################################################################################## */
-/* 80395628-80395648 021C88 001A+06 1/1 0/0 0/0 .rodata          @4325 */
-SECTION_RODATA static u8 const lit_4325[26 + 6 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x03,
-    0xDB,
-    0x03,
-    0xDA,
-    0x03,
-    0x6B,
-    0x03,
-    0x6C,
-    0x03,
-    0x6D,
-    0x03,
-    0x6E,
-    0x03,
-    0x6F,
-    0x03,
-    0xDC,
-    0x03,
-    0xDD,
-    0x03,
-    0xD9,
-    0x03,
-    0xD8,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80395628, &lit_4325);
 
 /* 801B944C-801BA0B4 1B3D8C 0C68+00 1/1 0/0 0/0 .text            setFloorMessage__14dMenu_DmapBg_cFv
  */
@@ -1542,7 +817,6 @@ void dMenu_DmapBg_c::setFloorMessage() {
     }
 }
 
-
 /* 801BA0B4-801BA0BC 1B49F4 0008+00 1/1 0/0 0/0 .text dpdMove__14dMenu_DmapBg_cFScScScPUcUc */
 bool dMenu_DmapBg_c::dpdMove(s8 param_0, s8 param_1, s8 param_2, u8* param_3, u8 param_4) {
     return false;
@@ -1647,7 +921,6 @@ dMenu_DmapBg_c::~dMenu_DmapBg_c() {
     }
 }
 
-
 /* 801BA60C-801BA700 1B4F4C 00F4+00 2/2 0/0 0/0 .text setAllAlphaRate__14dMenu_DmapBg_cFfb */
 void dMenu_DmapBg_c::setAllAlphaRate(f32 param_1, bool param_2) {
     field_0xd9c = param_1;
@@ -1686,10 +959,6 @@ void dMenu_DmapBg_c::setGoldAnimation(bool param_1) {
     }
 }
 
-/* ############################################################################################## */
-/* 80454020-80454024 002620 0004+00 3/3 0/0 0/0 .sdata2          @4643 */
-SECTION_SDATA2 static f32 lit_4643 = 255.0f;
-
 /* 801BA7F0-801BA974 1B5130 0184+00 3/3 0/0 0/0 .text setGoldFrameAlphaRate__14dMenu_DmapBg_cFf */
 void dMenu_DmapBg_c::setGoldFrameAlphaRate(f32 param_1) {
     if (0.0f == param_1) {
@@ -1702,7 +971,6 @@ void dMenu_DmapBg_c::setGoldFrameAlphaRate(f32 param_1) {
         mMapScreen[0]->search('gold00_1')->setAlpha(param_1 * 255.0f);
     }
 }
-
 
 /* 801BA974-801BAA4C 1B52B4 00D8+00 1/1 0/0 0/0 .text addGoldFrameAlphaRate__14dMenu_DmapBg_cFv */
 void dMenu_DmapBg_c::addGoldFrameAlphaRate() {
@@ -1719,7 +987,6 @@ void dMenu_DmapBg_c::addGoldFrameAlphaRate() {
     }
     setGoldFrameAlphaRate(dVar4);
 }
-
 
 /* 801BAA4C-801BAB10 1B538C 00C4+00 1/1 0/0 0/0 .text decGoldFrameAlphaRate__14dMenu_DmapBg_cFv */
 void dMenu_DmapBg_c::decGoldFrameAlphaRate() {
@@ -1738,26 +1005,6 @@ void dMenu_DmapBg_c::decGoldFrameAlphaRate() {
     
     setGoldFrameAlphaRate(dVar4);
 }
-
-
-/* ############################################################################################## */
-/* 80454024-80454028 002624 0004+00 4/4 0/0 0/0 .sdata2          @4784 */
-SECTION_SDATA2 static f32 lit_4784 = 608.0f;
-
-/* 80454028-8045402C 002628 0004+00 4/4 0/0 0/0 .sdata2          @4785 */
-SECTION_SDATA2 static f32 lit_4785 = 448.0f;
-
-/* 8045402C-80454030 00262C 0004+00 1/1 0/0 0/0 .sdata2          @4786 */
-SECTION_SDATA2 static f32 lit_4786 = 2.0f;
-
-/* 80454030-80454034 002630 0004+00 1/1 0/0 0/0 .sdata2          @4787 */
-SECTION_SDATA2 static f32 lit_4787 = 7.0f / 10.0f;
-
-/* 80454034-80454038 002634 0004+00 1/1 0/0 0/0 .sdata2          @4788 */
-SECTION_SDATA2 static f32 lit_4788 = -35.0f;
-
-/* 80454038-80454040 002638 0008+00 2/2 0/0 0/0 .sdata2          @4790 */
-SECTION_SDATA2 static f64 lit_4790 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 801BAB10-801BB334 1B5450 0824+00 1/0 0/0 0/0 .text            draw__14dMenu_DmapBg_cFv */
 void dMenu_DmapBg_c::draw() {
@@ -1854,18 +1101,6 @@ void dMenu_DmapBg_c::draw() {
     grafContext->setup2D();
 }
 
-
-/* ############################################################################################## */
-/* 80395760-80395760 021DC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039580D = "tex/bg.bti";
-SECTION_DEAD static char const* const stringBase_80395818 = "spec/spec.dat";
-#pragma pop
-
-/* 80454040-80454044 002640 0004+00 1/1 0/0 0/0 .sdata2          @4848 */
-SECTION_SDATA2 static f32 lit_4848 = 25.5f;
-
 /* 801BB334-801BB464 1B5C74 0130+00 1/1 0/0 0/0 .text            update__14dMenu_DmapBg_cFv */
 void dMenu_DmapBg_c::update() {
     if (field_0xd1c !=NULL) {
@@ -1890,7 +1125,6 @@ void dMenu_DmapBg_c::update() {
     }
 }
 
-
 /* 801BB464-801BB468 1B5DA4 0004+00 1/1 0/0 0/0 .text            calcCursor__14dMenu_DmapBg_cFv */
 void dMenu_DmapBg_c::calcCursor() {
     /* empty function */
@@ -1900,13 +1134,6 @@ void dMenu_DmapBg_c::calcCursor() {
 void dMenu_DmapBg_c::drawCursor() {
     mpDrawCursor->draw();
 }
-
-/* ############################################################################################## */
-/* 80454044-80454048 002644 0004+00 3/3 0/0 0/0 .sdata2          @4926 */
-SECTION_SDATA2 static f32 lit_4926 = -608.0f;
-
-/* 80454048-8045404C 002648 0004+00 3/3 0/0 0/0 .sdata2          @4927 */
-SECTION_SDATA2 static f32 lit_4927 = -448.0f;
 
 /* 801BB498-801BB634 1B5DD8 019C+00 0/0 1/1 0/0 .text
  * __ct__12dMenu_Dmap_cFP10JKRExpHeapP9STControlP10CSTControlUcUc */
@@ -1976,78 +1203,20 @@ dMenu_Dmap_c::dMenu_Dmap_c(JKRExpHeap* param_1, STControl* param_2, CSTControl* 
     field_0xe4 = 0;
 }
 
-
-/* ############################################################################################## */
-/* 80395648-80395688 021CA8 0040+00 0/1 0/0 0/0 .rodata          floor_tag$4932 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u64 const floor_tag[8] = {
-    'floor7_n', 'floor0_n', 'floor1_n', 'floor2_n', 'floor3_n', 'floor4_n', 'floor5_n', 'floor6_n',
-};
-COMPILER_STRIP_GATE(0x80395648, &floor_tag);
-#pragma pop
-
-/* 80395688-803956C8 021CE8 0040+00 0/1 0/0 0/0 .rodata          icon_tag$4933 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u64 const icon_tag[8] = {
-    'ico_set7', 'ico_set0', 'ico_set1', 'ico_set2', 'ico_set3', 'ico_set4', 'ico_set5', 'ico_set6',
-};
-COMPILER_STRIP_GATE(0x80395688, &icon_tag);
-#pragma pop
-
-/* 803956C8-80395708 021D28 0040+00 0/1 0/0 0/0 .rodata          boss_tag$4934 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u64 const boss_tag[8] = {
-    'ic_st_b7', 'ic_st_b0', 'ic_st_b1', 'ic_st_b2', 'ic_st_b3', 'ic_st_b4', 'ic_st_b5', 'ic_st_b6',
-};
-COMPILER_STRIP_GATE(0x803956C8, &boss_tag);
-#pragma pop
-
-/* 80395708-80395718 021D68 0010+00 0/1 0/0 0/0 .rodata          stay_tag$4935 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u64 const stay_tag[2] = {
-    'rink_nul', 'boss_nul',
-};
-COMPILER_STRIP_GATE(0x80395708, &stay_tag);
-#pragma pop
-
-/* 80395718-80395730 021D78 0018+00 0/1 0/0 0/0 .rodata          waku_tag$4973 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u64 const waku_tag[3] = {
-    'gray_map', 'gray_con', 'gray_key',
-};
-COMPILER_STRIP_GATE(0x80395718, &waku_tag);
-#pragma pop
-
-/* 80395730-80395748 021D90 0018+00 0/1 0/0 0/0 .rodata          key_tag$5002 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u64 const key_tag[3] = {
-    'key_00', 'key_01', 'key_02',
-};
-COMPILER_STRIP_GATE(0x80395730, &key_tag);
-#pragma pop
-
-/* 80395748-80395760 021DA8 0018+00 0/1 0/0 0/0 .rodata          item_tag$5040 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u64 const item_tag[3] = {
-    'map000', 'con000', 'i_key_n',
-};
-COMPILER_STRIP_GATE(0x80395748, &item_tag);
-#pragma pop
-
-/* 8045404C-80454050 00264C 0004+00 1/1 0/0 0/0 .sdata2          @5277 */
-SECTION_SDATA2 static f32 lit_5277 = 7.0f;
-
 /* 801BB634-801BC788 1B5F74 1154+00 1/1 0/0 0/0 .text            screenInit__12dMenu_Dmap_cFv */
-// float reg issues
-#ifdef NONMATCHING
+// NONMATCHING float reg issues
 void dMenu_Dmap_c::screenInit() {
+    static u64 const floor_tag[8] = {'floor7_n', 'floor0_n', 'floor1_n', 'floor2_n',
+                                     'floor3_n', 'floor4_n', 'floor5_n', 'floor6_n'};
+    static u64 const icon_tag[8] = {'ico_set7', 'ico_set0', 'ico_set1', 'ico_set2',
+                                    'ico_set3', 'ico_set4', 'ico_set5', 'ico_set6'};
+    static u64 const boss_tag[8] = {'ic_st_b7', 'ic_st_b0', 'ic_st_b1', 'ic_st_b2',
+                                    'ic_st_b3', 'ic_st_b4', 'ic_st_b5', 'ic_st_b6'};
+    static u64 const stay_tag[2] = {'rink_nul', 'boss_nul'};
+    static u64 const waku_tag[3] = {'gray_map', 'gray_con', 'gray_key'};
+    static u64 const key_tag[3] = {'key_00', 'key_01', 'key_02'};
+    static u64 const item_tag[3] = {'map000', 'con000', 'i_key_n'};
+
     field_0x10 = new CPaneMgr(mpDrawBg[0]->mBaseScreen, 'floo_s_n', 0, NULL);
     for (int i = 0; i < 8; i++) {
         field_0x114[i] = 0.0f;
@@ -2226,15 +1395,6 @@ void dMenu_Dmap_c::screenInit() {
     field_0x98 = new CPaneMgr(mpDrawBg[0]->mBaseScreen, 'so_s_n', 0, NULL);
     field_0x98->hide();
 }
-#else
-void dMenu_Dmap_c::screenInit() {
-    // NONMATCHING
-}
-#endif
-
-/* ############################################################################################## */
-/* 80454050-80454054 002650 0004+00 2/2 0/0 0/0 .sdata2          @5288 */
-SECTION_SDATA2 static f32 lit_5288 = 0.0054931640625f;
 
 /* 801BC788-801BC848 1B70C8 00C0+00 1/1 0/0 0/0 .text getPlayerIconPos__12dMenu_Dmap_cFScf */
 void dMenu_Dmap_c::getPlayerIconPos(s8 param_1, f32 param_2) {
@@ -2248,7 +1408,6 @@ void dMenu_Dmap_c::getPlayerIconPos(s8 param_1, f32 param_2) {
         player_py = local_1c;
     }
 }
-
 
 /* 801BC848-801BCDF4 1B7188 05AC+00 2/2 0/0 0/0 .text            getIconPos__12dMenu_Dmap_cFScf */
 void dMenu_Dmap_c::getIconPos(s8 param_1, f32 param_2) {
@@ -2354,7 +1513,6 @@ void dMenu_Dmap_c::getIconPos(s8 param_1, f32 param_2) {
     getPlayerIconPos(param_1, param_2);
 }
 
-
 /* 801BCDF4-801BD144 1B7734 0350+00 1/0 0/0 0/0 .text            __dt__12dMenu_Dmap_cFv */
 dMenu_Dmap_c::~dMenu_Dmap_c() {
     s32 iVar2 = field_0xe8->getTotalFreeSize();
@@ -2432,12 +1590,6 @@ dMenu_Dmap_c::~dMenu_Dmap_c() {
     OS_REPORT("MenuDmap free ==================> %d bytes use,  %d bytes remain\n",
               field_0xe8->getTotalFreeSize() - iVar2, field_0xe8->getTotalFreeSize());
     dMenu_Dmap_c::myclass = NULL;
-}
-
-
-/* 801BD144-801BD1D4 1B7A84 0090+00 0/0 1/0 0/0 .text            __dt__19dMenu_DmapMapCtrl_cFv */
-dMenu_DmapMapCtrl_c::~dMenu_DmapMapCtrl_c() {
-    // NONMATCHING
 }
 
 /* 801BD1D4-801BD1E8 1B7B14 0014+00 10/10 0/0 0/0 .text            getCurFloorPos__12dMenu_Dmap_cFv
@@ -2812,40 +1964,3 @@ void dMenu_Dmap_c::zoomOut_init_proc() {
 void dMenu_Dmap_c::zoomOut_proc() {
     // NONMATCHING
 }
-
-/* 801C0380-801C042C 1BACC0 00AC+00 4/4 1/0 0/0 .text            __dt__15renderingDmap_cFv */
-renderingDmap_c::~renderingDmap_c() {
-    // NONMATCHING
-}
-
-/* 801C042C-801C04AC 1BAD6C 0080+00 1/0 0/0 0/0 .text            __dt__20dMenu_StageMapCtrl_cFv */
-dMenu_StageMapCtrl_c::~dMenu_StageMapCtrl_c() {
-    // NONMATCHING
-}
-
-/* 801C04AC-801C051C 1BADEC 0070+00 1/0 0/0 0/0 .text            __dt__15dMenu_DmapMap_cFv */
-dMenu_DmapMap_c::~dMenu_DmapMap_c() {
-    // NONMATCHING
-}
-
-/* 801C051C-801C05C4 1BAE5C 00A8+00 1/1 0/0 0/0 .text            __ct__15renderingDmap_cFv */
-renderingDmap_c::renderingDmap_c() {
-    // NONMATCHING
-}
-
-/* 801C05C4-801C0844 1BAF04 0280+00 0/0 1/0 0/0 .text            __sinit_d_menu_dmap_cpp */
-void __sinit_d_menu_dmap_cpp() {
-    // NONMATCHING
-}
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x801C05C4, __sinit_d_menu_dmap_cpp);
-#pragma pop
-
-/* 801C0844-801C084C 1BB184 0008+00 1/0 0/0 0/0 .text            @4@__dt__14dMenu_DmapBg_cFv */
-static void func_801C0844() {
-    // NONMATCHING
-}
-
-/* 80395760-80395760 021DC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

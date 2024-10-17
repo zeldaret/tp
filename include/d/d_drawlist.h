@@ -167,8 +167,8 @@ public:
 
 class dDlst_shadowRealPoly_c : public dDlst_shadowPoly_c {
 public:
-    /* 800569A0 */ virtual dDlst_shadowTri_c* getTri();
-    /* 800569A8 */ virtual s32 getTriMax();
+    /* 800569A0 */ virtual dDlst_shadowTri_c* getTri() { return mShadowTri; }
+    /* 800569A8 */ virtual s32 getTriMax() { return ARRAY_SIZE(mShadowTri); }
 
     /* 0x8 */ dDlst_shadowTri_c mShadowTri[256];
 };
@@ -257,8 +257,6 @@ private:
 };
 
 STATIC_ASSERT(sizeof(dDlst_window_c) == 0x2C);
-
-extern u8 mWipe__12dDlst_list_c;  // Wipe
 
 struct view_port_class;
 struct view_class;

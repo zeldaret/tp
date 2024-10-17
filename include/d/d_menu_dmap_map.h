@@ -4,7 +4,7 @@
 #include "dolphin/types.h"
 
 struct dMenu_StageMapCtrl_c {
-    /* 801C042C */ ~dMenu_StageMapCtrl_c();
+    /* 801C042C */ virtual ~dMenu_StageMapCtrl_c() {}
     /* 801C0EE0 */ f32 getMapBlendPer() const;
     /* 801C0F24 */ void getPixelStageSizeX() const;
     /* 801C0F3C */ void getPixelStageSizeZ() const;
@@ -48,7 +48,7 @@ struct dMenu_StageMapCtrl_c {
 };
 
 struct dMenu_DmapMapCtrl_c : public dMenu_StageMapCtrl_c {
-    /* 801BD144 */ ~dMenu_DmapMapCtrl_c();
+    /* 801BD144 */ virtual ~dMenu_DmapMapCtrl_c() {}
     /* 801C18C0 */ void getZoomMinMaxCheck(f32*, f32*, f32*, f32*, bool*, bool*);
     /* 801C1B14 */ void calcZoomCenter(f32*, f32*);
     /* 801C1BA4 */ void getZoomCmPerPixel();
