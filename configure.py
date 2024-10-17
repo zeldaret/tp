@@ -1796,7 +1796,7 @@ config.libs = [
     ActorRel(Matching, "d_a_obj_fireWood"),
     ActorRel(Matching, "d_a_obj_fireWood2"),
     ActorRel(Matching, "d_a_obj_firepillar"),
-    ActorRel(NonMatching, "d_a_obj_firepillar2"),
+    ActorRel(Matching, "d_a_obj_firepillar2"),
     ActorRel(NonMatching, "d_a_obj_flag"),
     ActorRel(NonMatching, "d_a_obj_flag2"),
     ActorRel(NonMatching, "d_a_obj_flag3"),
