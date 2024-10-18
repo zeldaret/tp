@@ -565,7 +565,7 @@ public:
     static BOOL checkShieldGet();
     static BOOL checkSwordGet();
     void changeDemoParam2(s16);
-    cXyz getHeadTopPos() const;
+    cXyz getHeadTopPos() const { return mHeadTopPos; }
     BOOL checkThrowDamage() const { return checkNoResetFlg1(FLG1_THROW_DAMAGE); }
     BOOL checkGoronSideMove() const { return mSpecialMode == 0x2B; }
     cXyz* getRightFootPosP() { return &mRightFootPos; }

@@ -17,7 +17,7 @@ public:
     /* 802BB6DC */ virtual void getSeInfo(JAISoundID, JAISe*) const;
     /* 802BB8B4 */ virtual void getSeqInfo(JAISoundID, JAISeq*) const;
     /* 802BB8E0 */ virtual void getStreamInfo(JAISoundID, JAIStream*) const;
-    /* 802BBBE0 */ virtual ~Z2SoundInfo();
+    /* 802BBBE0 */ virtual ~Z2SoundInfo() {}
 
     /* 802BB158 */ JAUAudibleParam getAudibleSwFull(JAISoundID);
     /* 802BBA10 */ const char* getStreamFilePath(JAISoundID);

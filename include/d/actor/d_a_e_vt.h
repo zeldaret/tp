@@ -285,7 +285,7 @@ private:
 class daE_VA_HIO_c {
 public:
     /* 807C25EC */ daE_VA_HIO_c();
-    /* 807CE2AC */ virtual ~daE_VA_HIO_c();
+    /* 807CE2AC */ virtual ~daE_VA_HIO_c() {}
 
     /* 0x04 */ s8 field_0x04;
     /* 0x08 */ f32 mModelSize;

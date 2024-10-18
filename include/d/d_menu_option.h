@@ -87,7 +87,7 @@ public:
     /* 801E8CB0 */ void yesnoWakuAlpahAnmInit(u8, u8, u8, u8);
     /* 801E8CFC */ u8 yesnoWakuAlpahAnm(u8);
 
-    /* 801E8E6C */ virtual void draw();
+    /* 801E8E6C */ virtual void draw() { _draw(); }
     /* 801E2014 */ virtual ~dMenu_Option_c();
 
     u8 getQuitStatus() { return mQuitStatus; }

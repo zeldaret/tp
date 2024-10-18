@@ -35,28 +35,13 @@ enum daE_YK_Action {
 };
 
 /**
- * @brief Temporary HIO struct to get a match. Remove later. 
- * 
- */
-struct daE_YK_HIO_c_tmp {
-    void* vtable;
-    /* 0x04 */ s8 field_0x04;
-    /* 0x08 */ f32 field_0x08;
-    /* 0x0C */ f32 field_0x0c;
-    /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-};
-
-
-/**
  * @brief Shadow Keese Host Input Output class
  * 
  */
 class daE_YK_HIO_c {
 public:
     /* 8080482C */ daE_YK_HIO_c();
-    /* 808077E0 */ virtual ~daE_YK_HIO_c();
+    /* 808077E0 */ virtual ~daE_YK_HIO_c() {}
 
     /* 0x00 */ // vtable
     /* 0x04 */ s8 field_0x04; // padding after this

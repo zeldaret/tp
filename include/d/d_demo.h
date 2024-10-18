@@ -42,6 +42,7 @@ public:
 class dDemo_prm_c {
 public:
     dDemo_prm_c() { mData = 0; }
+    u32 getData() { return mData; }
 
     /* 0x0 */ u32 field_0x0;
     /* 0x4 */ u32 mData;
@@ -85,6 +86,7 @@ public:
     void setOldAnmId(u32 id) { mOldAnmId = id; }
     void setAnmFrameMax(f32 max) { mAnmFrameMax = max; }
     f32 getAnmFrame() { return mAnmFrame; }
+    dDemo_prm_c* getPrm() { return &mPrm; }
 
 private:
     /* 0x04 */ u16 mFlags;

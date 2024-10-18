@@ -76,7 +76,7 @@ public:
     /* 80B9A0EC */ BOOL talk(void*);
     /* 80B9A29C */ BOOL test(void*);
     /* 80B9A380 */ void himoCalc();
-    /* 80B9AF7C */ void adjustShapeAngle();
+    /* 80B9AF7C */ void adjustShapeAngle() {}
 
 private:
     /* 0x0B48 */ Z2Creature mCreatureSound;

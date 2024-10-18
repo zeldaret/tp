@@ -203,11 +203,7 @@ private:
     /* 0xE1E */ u8 mType;
 
     static char* mEvtCutNameList[4];
-#ifdef NONMATCHING
     static EventFn mEvtCutList[4];
-#else
-    static u8 mEvtCutList[48];
-#endif
 };
 
 STATIC_ASSERT(sizeof(daNpcThe_c) == 0xE20);
@@ -249,7 +245,7 @@ public:
         /* 0x6A */ bool mTest;
     };
 
-    /* 80AFBDA0 */ virtual ~daNpcThe_Param_c();
+    /* 80AFBDA0 */ virtual ~daNpcThe_Param_c() {}
 
     static daNpcThe_Param_c::param const m;
 };

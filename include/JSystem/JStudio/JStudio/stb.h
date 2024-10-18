@@ -157,42 +157,43 @@ private:
 };
 
 template <int T>
-struct TParseData {
+struct TParseData : public data::TParse_TParagraph_data::TData {
     TParseData(const void* pContent) {
         data::TParse_TParagraph_data data(pContent);
         set(data);
     }
 
     void set(const data::TParse_TParagraph_data& data) {
-        //data::TParse_TParagraph_data::TData* p = (data::TParse_TParagraph_data::TData*)this;
-        data.getData(m_data);
+        data.getData(this);
     }
 
     bool isEnd() const {
-        return m_data->_0 == 0;
+        return _0 == 0;
     }
 
     bool empty() const {
-        return m_data->_c == NULL;
+        return _c == NULL;
     }
 
     bool isValid() const {
-        return !empty() && m_data->_0 == 50;
+        return !empty() && _0 == 50;
     }
-
-    data::TParse_TParagraph_data::TData* m_data;
 };
 
-template <int T>
+template <int T, class Iterator=JGadget::binary::TValueIterator_raw<u8> >
 struct TParseData_fixed : public TParseData<T> {
-    TParseData_fixed(const void* pContent) : TParseData(pContent) {}
+    TParseData_fixed(const void* pContent) : TParseData<T>(pContent) {}
 
     const void* getNext() const {
-        return m_data->_c;
+        return fileCount;
     }
 
     bool isValid() const {
         return TParseData::isValid() && getNext() != NULL;
+    }
+
+    Iterator begin() {
+        return Iterator(fileCount);
     }
 };
 

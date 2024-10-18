@@ -1,0 +1,2 @@
+CompileFlags:
+  Add: [-Wno-c++11-compat-deprecated-writable-strings, -Wno-extern-initializer]

@@ -4,13 +4,14 @@
 */
 
 #include "d/actor/d_a_mg_fshop.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "d/actor/d_a_npc_henna.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_bg_w.h"
 #include "d/d_kankyo.h"
 #include "f_op/f_op_actor_mng.h"
 #include "d/d_timer.h"
 #include "dol2asm.h"
-#include "f_pc/f_pc_executor.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "SSystem/SComponent/c_math.h"
 
@@ -200,25 +201,6 @@ static int Reel_CallBack(J3DJoint* param_0, int param_1) {
     return 1;
 }
 
-/* ############################################################################################## */
-/* 80870094-80870098 000000 0004+00 13/13 0/0 0/0 .rodata          @3829 */
-SECTION_RODATA static f32 const lit_3829 = 2.0f;
-COMPILER_STRIP_GATE(0x80870094, &lit_3829);
-
-/* 80870098-8087009C 000004 0004+00 0/7 0/0 0/0 .rodata          @3830 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3830 = 1.0f;
-COMPILER_STRIP_GATE(0x80870098, &lit_3830);
-#pragma pop
-
-/* 8087009C-808700A0 000008 0004+00 0/2 0/0 0/0 .rodata          @3831 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3831 = 1.5f;
-COMPILER_STRIP_GATE(0x8087009C, &lit_3831);
-#pragma pop
-
 /* 8086C140-8086C214 0001C0 00D4+00 1/1 0/0 0/0 .text            frog_CallBack__FP8J3DJointi */
 static int frog_CallBack(J3DJoint* param_0, int param_1) {
     if (param_1 == 0) {
@@ -236,12 +218,6 @@ static int frog_CallBack(J3DJoint* param_0, int param_1) {
     }
     return 1;
 }
-
-
-/* ############################################################################################## */
-/* 808700A0-808700A4 00000C 0004+00 2/3 0/0 0/0 .rodata          @3871 */
-SECTION_RODATA static f32 const lit_3871 = 5.0f;
-COMPILER_STRIP_GATE(0x808700A0, &lit_3871);
 
 /* 80870958-8087095C 000008 0001+03 2/2 0/0 0/0 .bss             @1109 */
 static u8 lit_1109[1 + 3 /* padding */];
@@ -336,23 +312,11 @@ static u8 lit_1010[1 + 3 /* padding */];
 static u8 lit_1009[1 + 3 /* padding */];
 #pragma pop
 
-/* 80870998-808709A4 000048 000C+00 0/1 0/0 0/0 .bss             @3770 */
-#pragma push
-#pragma force_active on
-static u8 lit_3770[12];
-#pragma pop
-
 /* 808709A4-808709B0 000054 000C+00 2/3 0/0 0/0 .bss             BallStartPos */
-static Vec BallStartPos;
-
-/* 808709B0-808709BC 000060 000C+00 0/1 0/0 0/0 .bss             @3771 */
-#pragma push
-#pragma force_active on
-static u8 lit_3771[12];
-#pragma pop
+static cXyz BallStartPos;
 
 /* 808709BC-808709C8 00006C 000C+00 2/3 0/0 0/0 .bss             BallEndPos */
-static Vec BallEndPos;
+static cXyz BallEndPos;
 
 /* 808709C8-808709CC 000078 0004+00 2/3 0/0 0/0 .bss             ArcIX_A_crwaku_model */
 static J3DModel* ArcIX_A_crwaku_model[1];
@@ -374,65 +338,13 @@ static void koro2_draw(fshop_class* param_1) {
     dComIfGd_setList();
 }
 
-
-/* ############################################################################################## */
-/* 808709CC-808709D0 00007C 0004+00 1/1 0/0 0/0 .bss             ArcIX_A_crstart_model */
-extern J3DModel* ArcIX_A_crstart_model[1];
-
-/* 808709D0-808709D4 000080 0004+00 1/1 0/0 0/0 .bss             ArcIX_A_crgoal_model */
-extern J3DModel* ArcIX_A_crgoal_model[1];
-
-/* 808709D4-80870A50 000084 007C+00 1/1 0/0 0/0 .bss             ArcIX_A_crbox_model */
-extern J3DModel* ArcIX_A_crbox_model[31];
-
-/* 80870A50-80870A90 000100 0040+00 1/1 0/0 0/0 .bss             ArcIX_A_crcurve_a_model */
-extern J3DModel* ArcIX_A_crcurve_a_model[16];
-
-/* 80870A90-80870AA0 000140 0010+00 1/1 0/0 0/0 .bss             ArcIX_A_crcurve_b_model */
-extern J3DModel* ArcIX_A_crcurve_b_model[4];
-
-/* 80870AA0-80870AC0 000150 0020+00 1/1 0/0 0/0 .bss             ArcIX_A_crsaka_model */
-extern J3DModel* ArcIX_A_crsaka_model[8];
-
-/* 808700A4-808700A8 000010 0004+00 0/1 0/0 0/0 .rodata          @3977 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3977 = 66.6f;
-COMPILER_STRIP_GATE(0x808700A4, &lit_3977);
-#pragma pop
-
-/* 808700A8-808700AC 000014 0004+00 0/2 0/0 0/0 .rodata          @3978 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3978 = 1200.0f;
-COMPILER_STRIP_GATE(0x808700A8, &lit_3978);
-#pragma pop
-
-/* 808700AC-808700B0 000018 0004+00 0/2 0/0 0/0 .rodata          @3979 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3979 = 6.0f / 5.0f;
-COMPILER_STRIP_GATE(0x808700AC, &lit_3979);
-#pragma pop
-
-/* 808700B0-808700B4 00001C 0004+00 1/11 0/0 0/0 .rodata          @3980 */
-SECTION_RODATA static u8 const lit_3980[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x808700B0, &lit_3980);
-
 /* 80870284-80870290 000000 000C+00 3/3 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
+static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 80870290-808702A4 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
+static u32 lit_1787[1 + 4 /* padding */] = {
     0x02000201,
     /* padding */
     0x40080000,
@@ -440,10 +352,9 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
     0x3FE00000,
     0x00000000,
 };
-#pragma pop
 
 /* 808702A4-8087032C 000020 0087+01 1/1 0/0 0/0 .data            koro2_map_LV1 */
-SECTION_DATA static u8 koro2_map_LV1[135 + 1 /* padding */] = {
+static s8 koro2_map_LV1[135] = {
     0x00,
     0x00,
     0x00,
@@ -578,13 +489,11 @@ SECTION_DATA static u8 koro2_map_LV1[135 + 1 /* padding */] = {
     0x00,
     0x00,
     0x00,
-    0x00,
-    /* padding */
     0x00,
 };
 
 /* 8087032C-808703B4 0000A8 0087+01 1/0 0/0 0/0 .data            koro2_map_LV2 */
-SECTION_DATA static u8 koro2_map_LV2[135 + 1 /* padding */] = {
+static s8 koro2_map_LV2[135] = {
     0x00,
     0x00,
     0x00,
@@ -719,13 +628,11 @@ SECTION_DATA static u8 koro2_map_LV2[135 + 1 /* padding */] = {
     0x00,
     0x00,
     0x00,
-    0x00,
-    /* padding */
     0x00,
 };
 
 /* 808703B4-8087043C 000130 0087+01 1/0 0/0 0/0 .data            koro2_map_LV3 */
-SECTION_DATA static u8 koro2_map_LV3[135 + 1 /* padding */] = {
+static s8 koro2_map_LV3[135] = {
     0x00,
     0x00,
     0x00,
@@ -860,13 +767,11 @@ SECTION_DATA static u8 koro2_map_LV3[135 + 1 /* padding */] = {
     0x00,
     0x00,
     0x00,
-    0x00,
-    /* padding */
     0x00,
 };
 
 /* 8087043C-808704C4 0001B8 0087+01 1/0 0/0 0/0 .data            koro2_map_LV4 */
-SECTION_DATA static u8 koro2_map_LV4[135 + 1 /* padding */] = {
+static s8 koro2_map_LV4[135] = {
     0x00,
     0x00,
     0x00,
@@ -1002,12 +907,10 @@ SECTION_DATA static u8 koro2_map_LV4[135 + 1 /* padding */] = {
     0x00,
     0x00,
     0x00,
-    /* padding */
-    0x00,
 };
 
 /* 808704C4-8087054C 000240 0087+01 1/0 0/0 0/0 .data            koro2_map_LV5 */
-SECTION_DATA static u8 koro2_map_LV5[135 + 1 /* padding */] = {
+static s8 koro2_map_LV5[135] = {
     0x00,
     0x00,
     0x00,
@@ -1143,12 +1046,10 @@ SECTION_DATA static u8 koro2_map_LV5[135 + 1 /* padding */] = {
     0x00,
     0x00,
     0x00,
-    /* padding */
-    0x00,
 };
 
 /* 8087054C-808705D4 0002C8 0087+01 1/0 0/0 0/0 .data            koro2_map_LV7 */
-SECTION_DATA static u8 koro2_map_LV7[135 + 1 /* padding */] = {
+static s8 koro2_map_LV7[135] = {
     0x00,
     0x00,
     0x00,
@@ -1284,199 +1185,50 @@ SECTION_DATA static u8 koro2_map_LV7[135 + 1 /* padding */] = {
     0x00,
     0x00,
     0x00,
-    /* padding */
-    0x00,
 };
 
 /* 808705D4-8087065C 000350 0087+01 1/0 0/0 0/0 .data            koro2_map_LV6 */
-SECTION_DATA static u8 koro2_map_LV6[135 + 1 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x07,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x03,
-    0x04,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x03,
-    0x01,
-    0x04,
-    0x00,
-    0x03,
-    0x01,
-    0x02,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x03,
-    0x01,
-    0x04,
-    0x00,
-    0x0C,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x05,
-    0x01,
-    0x04,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x0D,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x06,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    /* padding */
-    0x00,
+static s8 koro2_map_LV6[135] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x03, 0x04, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x03, 0x01, 0x04, 0x00, 0x03, 0x01, 0x02, 0x00,
+    0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x01, 0x00,
+    0x00, 0x01, 0x00, 0x03, 0x01, 0x04, 0x00, 0x0C, 0x00,
+    0x00, 0x01, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x05, 0x01, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0D, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 8087065C-808706E4 0003D8 0087+01 1/0 0/0 0/0 .data            koro2_map_LV8 */
-SECTION_DATA static u8 koro2_map_LV8[15][9] = {
-    {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
-    {0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
-    {0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
-    {0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
-    {0x00, 0x00, 0x05, 0x0E, 0x00, 0x00, 0x0F, 0x02, 0x00},
-    {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00},
-    {0x00, 0x03, 0x01, 0x01, 0x02, 0x00, 0x00, 0x01, 0x00},
-    {0x00, 0x01, 0x00, 0x00, 0x01, 0x00, 0x00, 0x01, 0x00},
-    {0x00, 0x0C, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x0C, 0x00},
-    {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
-    {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
-    {0x00, 0x0D, 0x00, 0x00, 0x0D, 0x00, 0x00, 0x0D, 0x00},
-    {0x00, 0x01, 0x00, 0x00, 0x01, 0x00, 0x00, 0x01, 0x00},
-    {0x00, 0x06, 0x00, 0x00, 0x05, 0x01, 0x01, 0x04, 0x00},
-    {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
+static s8 koro2_map_LV8[135] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x05, 0x0E, 0x00, 0x00, 0x0F, 0x02, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00,
+    0x00, 0x03, 0x01, 0x01, 0x02, 0x00, 0x00, 0x01, 0x00,
+    0x00, 0x01, 0x00, 0x00, 0x01, 0x00, 0x00, 0x01, 0x00,
+    0x00, 0x0C, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x0C, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x0D, 0x00, 0x00, 0x0D, 0x00, 0x00, 0x0D, 0x00,
+    0x00, 0x01, 0x00, 0x00, 0x01, 0x00, 0x00, 0x01, 0x00,
+    0x00, 0x06, 0x00, 0x00, 0x05, 0x01, 0x01, 0x04, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 808706E4-80870704 -00001 0020+00 0/1 0/0 0/0 .data            koro2_map_d */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* koro2_map_d[8] = {
-    (void*)&koro2_map_LV1, (void*)&koro2_map_LV2, (void*)&koro2_map_LV3, (void*)&koro2_map_LV4,
-    (void*)&koro2_map_LV5, (void*)&koro2_map_LV6, (void*)&koro2_map_LV7, (void*)&koro2_map_LV8,
-};
-#pragma pop
-
-/* 80870704-8087071C -00001 0018+00 0/1 0/0 0/0 .data            koro2_union_model */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* koro2_union_model[6] = {
-    (void*)&ArcIX_A_crstart_model,   (void*)&ArcIX_A_crgoal_model,    (void*)&ArcIX_A_crbox_model,
-    (void*)&ArcIX_A_crcurve_a_model, (void*)&ArcIX_A_crcurve_b_model, (void*)&ArcIX_A_crsaka_model,
-};
-#pragma pop
-
-/* 8087071C-80870728 000498 000C+00 1/1 0/0 0/0 .data            rod_color$3900 */
-SECTION_DATA static GXColor rod_color[3] = {
-    {0x96, 0x50, 0x14, 0xFF}, {0x64, 0x96, 0x14, 0xFF}, {0x96, 0x14, 0x14, 0xFF},
-};
-
-/* 80870728-8087072C 0004A4 0004+00 1/1 0/0 0/0 .data            l_color$3912 */
-SECTION_DATA static GXColor l_color = {
-    0x32,
-    0x64,
-    0x1E,
-    0xFF,
+static s8* koro2_map_d[8] = {
+    koro2_map_LV1, koro2_map_LV2, koro2_map_LV3, koro2_map_LV4,
+    koro2_map_LV5, koro2_map_LV6, koro2_map_LV7, koro2_map_LV8,
 };
 
 /* 808709CC-808709D0 00007C 0004+00 1/1 0/0 0/0 .bss             ArcIX_A_crstart_model */
@@ -1497,9 +1249,27 @@ static J3DModel* ArcIX_A_crcurve_b_model[4];
 /* 80870AA0-80870AC0 000150 0020+00 1/1 0/0 0/0 .bss             ArcIX_A_crsaka_model */
 static J3DModel* ArcIX_A_crsaka_model[8];
 
+/* 80870704-8087071C -00001 0018+00 0/1 0/0 0/0 .data            koro2_union_model */
+static void* koro2_union_model[6] = {
+    (void*)&ArcIX_A_crstart_model,   (void*)&ArcIX_A_crgoal_model,    (void*)&ArcIX_A_crbox_model,
+    (void*)&ArcIX_A_crcurve_a_model, (void*)&ArcIX_A_crcurve_b_model, (void*)&ArcIX_A_crsaka_model,
+};
+
+/* 8087071C-80870728 000498 000C+00 1/1 0/0 0/0 .data            rod_color$3900 */
+static GXColor rod_color[3] = {
+    {0x96, 0x50, 0x14, 0xFF}, {0x64, 0x96, 0x14, 0xFF}, {0x96, 0x14, 0x14, 0xFF},
+};
+
+/* 80870728-8087072C 0004A4 0004+00 1/1 0/0 0/0 .data            l_color$3912 */
+static GXColor l_color = {
+    0x32,
+    0x64,
+    0x1E,
+    0xFF,
+};
+
 /* 8086C310-8086C6E4 000390 03D4+00 1/0 0/0 0/0 .text            daFshop_Draw__FP11fshop_class */
-// regalloc
-#ifdef NONMATCHING
+// NONMATCHING regalloc
 static int daFshop_Draw(fshop_class* param_0) {
     g_env_light.settingTevStruct(0x10, &param_0->current.pos, &param_0->tevStr);
 
@@ -1567,112 +1337,35 @@ static int daFshop_Draw(fshop_class* param_0) {
     }
     return 1;
 }
-#else
-static int daFshop_Draw(fshop_class* param_0) {
-    // NONMATCHING
-}
-#endif
-
-/* ############################################################################################## */
-/* 808700B4-808700B8 000020 0004+00 0/5 0/0 0/0 .rodata          @4049 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4049 = 65536.0f;
-COMPILER_STRIP_GATE(0x808700B4, &lit_4049);
-#pragma pop
-
-/* 808700B8-808700BC 000024 0004+00 0/1 0/0 0/0 .rodata          @4050 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4050 = 500.0f;
-COMPILER_STRIP_GATE(0x808700B8, &lit_4050);
-#pragma pop
-
-/* 808700BC-808700C0 000028 0004+00 0/1 0/0 0/0 .rodata          @4051 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4051 = 1000.0f;
-COMPILER_STRIP_GATE(0x808700BC, &lit_4051);
-#pragma pop
-
-/* 808700C0-808700C4 00002C 0004+00 0/3 0/0 0/0 .rodata          @4052 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4052 = 40.0f;
-COMPILER_STRIP_GATE(0x808700C0, &lit_4052);
-#pragma pop
-
-/* 808700C4-808700C8 000030 0004+00 0/2 0/0 0/0 .rodata          @4053 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4053 = 25.0f;
-COMPILER_STRIP_GATE(0x808700C4, &lit_4053);
-#pragma pop
-
-/* 808700C8-808700CC 000034 0004+00 0/2 0/0 0/0 .rodata          @4054 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4054 = 13.0f;
-COMPILER_STRIP_GATE(0x808700C8, &lit_4054);
-#pragma pop
-
-/* 808700CC-808700D0 000038 0004+00 0/1 0/0 0/0 .rodata          @4055 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4055 = 12.0f;
-COMPILER_STRIP_GATE(0x808700CC, &lit_4055);
-#pragma pop
 
 /* 8087072C-80870738 0004A8 000C+00 0/0 0/0 0/0 .data            lure_scale */
-#pragma push
-#pragma force_active on
-SECTION_DATA static f32 lure_scale[3] = {
+static f32 lure_scale[3] = {
     0.75f, 0.75f, 0.6f,
 };
-#pragma pop
 
 /* 80870738-80870744 0004B4 000C+00 0/0 0/0 0/0 .data            lure_eye_off */
-#pragma push
-#pragma force_active on
-SECTION_DATA static f32 lure_eye_off[3] = {
+static f32 lure_eye_off[3] = {
     17.0f, 11.0f, 16.5f,
 };
-#pragma pop
 
 /* 80870744-80870750 0004C0 000C+00 0/1 0/0 0/0 .data            hook_1_offy */
-#pragma push
-#pragma force_active on
-SECTION_DATA static f32 hook_1_offy[3] = {
+static f32 hook_1_offy[3] = {
     -3.5f, -3.5f, -5.0f,
 };
-#pragma pop
 
 /* 80870750-8087075C 0004CC 000C+00 0/1 0/0 0/0 .data            hook_2_offz */
-#pragma push
-#pragma force_active on
-SECTION_DATA static f32 hook_2_offz[3] = {
+static f32 hook_2_offz[3] = {
     -19.0f, -16.0f, -21.0f,
 };
-#pragma pop
 
 /* 8087075C-80870768 0004D8 000C+00 0/1 0/0 0/0 .data            hook_2_offy */
-#pragma push
-#pragma force_active on
-SECTION_DATA static f32 hook_2_offy[3] = {
+static f32 hook_2_offy[3] = {
     -1.0f, 0.0f, 0.0f,
 };
-#pragma pop
-
-/* 80870768-80870774 0004E4 000C+00 0/1 0/0 0/0 .data            lure_ofy$3993 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static f32 lure_ofy[3] = {
-    -12.0f, -10.0f, -14.0f,
-};
-#pragma pop
 
 /* 8086C6E4-8086C9D0 000764 02EC+00 1/1 0/0 0/0 .text            lure_set__FP11fshop_class */
 static void lure_set(fshop_class* param_0) {
+    static f32 lure_ofy[3] = {-12.0f, -10.0f, -14.0f};
     fs_lure_s* pLure = param_0->mLure;
     for (int i = 0; i < 48; i++, pLure++) {
         if (daPy_getPlayerActorClass()->checkFrontRollCrash()) {
@@ -1723,41 +1416,6 @@ static void lure_set(fshop_class* param_0) {
     }
 }
 
-
-/* ############################################################################################## */
-/* 808700D0-808700D4 00003C 0004+00 0/2 0/0 0/0 .rodata          @4164 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4164 = 15.0f;
-COMPILER_STRIP_GATE(0x808700D0, &lit_4164);
-#pragma pop
-
-/* 808700D4-808700D8 000040 0004+00 0/2 0/0 0/0 .rodata          @4165 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4165 = -4.0f / 5.0f;
-COMPILER_STRIP_GATE(0x808700D4, &lit_4165);
-#pragma pop
-
-/* 808700D8-808700DC 000044 0004+00 0/2 0/0 0/0 .rodata          @4166 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4166 = 4.0f;
-COMPILER_STRIP_GATE(0x808700D8, &lit_4166);
-#pragma pop
-
-/* 80870774-8087078C 0004F0 0018+00 1/1 0/0 0/0 .data            guide_p$4084 */
-SECTION_DATA static f32 guide_p[6] = {
-    0.0f, 0.1f, 0.22f,
-    0.36f, 0.52f, 0.7f,
-};
-
-/* 8087078C-808707A4 000508 0018+00 1/1 0/0 0/0 .data            guide_s$4085 */
-SECTION_DATA static f32 guide_s[6] = {
-    0.5f, 0.5f, 0.55f,
-    0.6f, 0.65f, 0.8f,
-};
-
 /* 8086C9D0-8086CC30 000A50 0260+00 1/1 0/0 0/0 .text            rod_set__FP11fshop_class */
 static void rod_set(fshop_class* param_0) {
     fs_rod_s* pRod = param_0->mRod;
@@ -1794,6 +1452,8 @@ static void rod_set(fshop_class* param_0) {
             local_64++;
         }
 
+        static f32 guide_p[6] = {0.0f, 0.1f, 0.22f, 0.36f, 0.52f, 0.7f};
+        static f32 guide_s[6] = {0.5f, 0.5f, 0.55f, 0.6f, 0.65f, 0.8f};
         for (s32 local_6c = 0; local_6c < 6; local_6c++) {
             cXyz local_34 = cStack_28 + (cStack_1c - cStack_28) * guide_p[local_6c];
             mDoMtx_stack_c::transS(local_34.x, local_34.y, local_34.z);
@@ -1804,49 +1464,6 @@ static void rod_set(fshop_class* param_0) {
         }
     }
 }
-
-
-/* 8086CC30-8086CC6C 000CB0 003C+00 3/3 0/0 0/0 .text            __dt__4cXyzFv */
-// cXyz::~cXyz() {
-extern "C" void __dt__4cXyzFv() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 808700DC-808700E0 000048 0004+00 0/3 0/0 0/0 .rodata          @4190 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4190 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(0x808700DC, &lit_4190);
-#pragma pop
-
-/* 808700E0-808700E4 00004C 0004+00 0/1 0/0 0/0 .rodata          @4191 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4191 = 7.0f / 10.0f;
-COMPILER_STRIP_GATE(0x808700E0, &lit_4191);
-#pragma pop
-
-/* 808700E4-808700E8 000050 0004+00 0/1 0/0 0/0 .rodata          @4192 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4192 = 60.0f;
-COMPILER_STRIP_GATE(0x808700E4, &lit_4192);
-#pragma pop
-
-/* 808700E8-808700EC 000054 0004+00 0/1 0/0 0/0 .rodata          @4193 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4193 = 35.0f;
-COMPILER_STRIP_GATE(0x808700E8, &lit_4193);
-#pragma pop
-
-/* 808700EC-808700F0 000058 0004+00 0/3 0/0 0/0 .rodata          @4194 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4194 = 1.0f / 20.0f;
-COMPILER_STRIP_GATE(0x808700EC, &lit_4194);
-#pragma pop
 
 /* 8086CC6C-8086CD70 000CEC 0104+00 1/1 0/0 0/0 .text            s_fish_sub__FPvPv */
 static void* s_fish_sub(void* param_1, void* param_2) {
@@ -1870,29 +1487,6 @@ static void* s_fish_sub(void* param_1, void* param_2) {
     return NULL;
 }
 
-
-/* ############################################################################################## */
-/* 808700F0-808700F4 00005C 0004+00 0/2 0/0 0/0 .rodata          @4248 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4248 = 150.0f;
-COMPILER_STRIP_GATE(0x808700F0, &lit_4248);
-#pragma pop
-
-/* 808700F4-808700F8 000060 0004+00 0/1 0/0 0/0 .rodata          @4249 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4249 = 1800.0f;
-COMPILER_STRIP_GATE(0x808700F4, &lit_4249);
-#pragma pop
-
-/* 808700F8-808700FC 000064 0004+00 0/1 0/0 0/0 .rodata          @4250 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4250 = 50.0f;
-COMPILER_STRIP_GATE(0x808700F8, &lit_4250);
-#pragma pop
-
 /* 8086CD70-8086CF8C 000DF0 021C+00 1/1 0/0 0/0 .text            tsubo_set__FP11fshop_class */
 static void tsubo_set(fshop_class* param_1) {
     fopAc_ac_c* pfVar5 = dComIfGp_getPlayer(0);
@@ -1915,10 +1509,9 @@ static void tsubo_set(fshop_class* param_1) {
             }
             pTsubo->field_0x20 = cM_rndF(65536.0f);
             pTsubo->field_0x22 = cM_rndF(65536.0f);
-            fopAc_ac_c* henna = fopAcM_SearchByName(PROC_NPC_HENNA);
+            npc_henna_class* henna = (npc_henna_class*)fopAcM_SearchByName(PROC_NPC_HENNA);
             if (henna != NULL) {
-                // TODO: include henna header file
-                ((u8*)henna)[0x7b5] = 0x3c;
+                henna->field_0x7b5 = 0x3c;
             }
         }
         xrot = cM_ssin(pTsubo->field_0x20) * pTsubo->field_0x1c;
@@ -1934,43 +1527,6 @@ static void tsubo_set(fshop_class* param_1) {
         cLib_addCalc0(&pTsubo->field_0x1c, 1.0f, 50.0f);
     }
 }
-
-
-/* ############################################################################################## */
-/* 808700FC-80870100 000068 0004+00 0/2 0/0 0/0 .rodata          @4289 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4289 = 0.5f;
-COMPILER_STRIP_GATE(0x808700FC, &lit_4289);
-#pragma pop
-
-/* 80870100-80870104 00006C 0004+00 0/1 0/0 0/0 .rodata          @4290 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4290 = 200.0f;
-COMPILER_STRIP_GATE(0x80870100, &lit_4290);
-#pragma pop
-
-/* 80870104-80870108 000070 0004+00 0/2 0/0 0/0 .rodata          @4291 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4291 = 600.0f;
-COMPILER_STRIP_GATE(0x80870104, &lit_4291);
-#pragma pop
-
-/* 80870108-8087010C 000074 0004+00 0/1 0/0 0/0 .rodata          @4292 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4292 = 0.02f;
-COMPILER_STRIP_GATE(0x80870108, &lit_4292);
-#pragma pop
-
-/* 8087010C-80870110 000078 0004+00 0/1 0/0 0/0 .rodata          @4293 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4293 = 3.0f;
-COMPILER_STRIP_GATE(0x8087010C, &lit_4293);
-#pragma pop
 
 /* 8086CF8C-8086D1A0 00100C 0214+00 1/1 0/0 0/0 .text weed_control__FP11fshop_classP9fs_weed_s */
 static void weed_control(fshop_class* param_1, fs_weed_s* param_2) {
@@ -1999,7 +1555,6 @@ static void weed_control(fshop_class* param_1, fs_weed_s* param_2) {
     }
 }
 
-
 /* 8086D1A0-8086D1EC 001220 004C+00 1/1 0/0 0/0 .text stage_copy__FP11fshop_classP11fshop_class */
 static void stage_copy(fshop_class* param_0, fshop_class* param_1) {
     param_0->field_0x4014 = param_1->field_0x4014;
@@ -2007,49 +1562,8 @@ static void stage_copy(fshop_class* param_0, fshop_class* param_1) {
     param_0->scale = param_1->scale;
 }
 
-/* ############################################################################################## */
-/* 80870110-80870114 00007C 0004+00 0/1 0/0 0/0 .rodata          @4376 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4376 = -10000.0f;
-COMPILER_STRIP_GATE(0x80870110, &lit_4376);
-#pragma pop
-
-/* 80870114-80870118 000080 0004+00 0/1 0/0 0/0 .rodata          @4377 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4377 = 1.0f / 100.0f;
-COMPILER_STRIP_GATE(0x80870114, &lit_4377);
-#pragma pop
-
-/* 80870118-8087011C 000084 0004+00 0/2 0/0 0/0 .rodata          @4378 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4378 = -10.0f;
-COMPILER_STRIP_GATE(0x80870118, &lit_4378);
-#pragma pop
-
-/* 8087011C-80870120 000088 0004+00 0/1 0/0 0/0 .rodata          @4379 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4379 = -18.0f;
-COMPILER_STRIP_GATE(0x8087011C, &lit_4379);
-#pragma pop
-
-/* 80870120-80870124 00008C 0004+00 1/4 0/0 0/0 .rodata          @4380 */
-SECTION_RODATA static f32 const lit_4380 = 2.5f;
-COMPILER_STRIP_GATE(0x80870120, &lit_4380);
-
-/* 80870124-80870128 000090 0004+00 0/1 0/0 0/0 .rodata          @4381 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4381 = -2.0f;
-COMPILER_STRIP_GATE(0x80870124, &lit_4381);
-#pragma pop
-
 /* 8086D1EC-8086D48C 00126C 02A0+00 1/1 0/0 0/0 .text            koro2_mtx_set__FP11fshop_class */
-// float load order
-#ifdef NONMATCHING
+// NONMATCHING float load order
 static void koro2_mtx_set(fshop_class* param_1) {
     cXyz cStack_44;
     cXyz cStack_50;
@@ -2105,11 +1619,6 @@ static void koro2_mtx_set(fshop_class* param_1) {
         }
     }
 }
-#else
-static void koro2_mtx_set(fshop_class* param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 8086D48C-8086D500 00150C 0074+00 1/1 0/0 0/0 .text            s_sel_sub__FPvPv */
 static void* s_sel_sub(void* param_1, void* param_2) {
@@ -2133,90 +1642,6 @@ static void* s_ball_sub(void* param_1, void* param_2) {
 
     return NULL;
 }
-
-/* ############################################################################################## */
-/* 80870128-8087012C 000094 0004+00 0/1 0/0 0/0 .rodata          @4459 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4459 = 284.0f;
-COMPILER_STRIP_GATE(0x80870128, &lit_4459);
-#pragma pop
-
-/* 8087012C-80870130 000098 0004+00 0/1 0/0 0/0 .rodata          @4460 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_4460 = 0x42AF999A;
-COMPILER_STRIP_GATE(0x8087012C, &lit_4460);
-#pragma pop
-
-/* 80870130-80870134 00009C 0004+00 0/1 0/0 0/0 .rodata          @4461 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4461 = 432.0f;
-COMPILER_STRIP_GATE(0x80870130, &lit_4461);
-#pragma pop
-
-/* 80870134-80870138 0000A0 0004+00 0/1 0/0 0/0 .rodata          @4462 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4462 = 204.0f;
-COMPILER_STRIP_GATE(0x80870134, &lit_4462);
-#pragma pop
-
-/* 80870138-8087013C 0000A4 0004+00 0/1 0/0 0/0 .rodata          @4463 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_4463 = 0xC4A90666;
-COMPILER_STRIP_GATE(0x80870138, &lit_4463);
-#pragma pop
-
-/* 8087013C-80870140 0000A8 0004+00 0/1 0/0 0/0 .rodata          @4464 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4464 = 430.0f;
-COMPILER_STRIP_GATE(0x8087013C, &lit_4464);
-#pragma pop
-
-/* 80870140-80870144 0000AC 0004+00 0/2 0/0 0/0 .rodata          @4465 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4465 = 10.0f;
-COMPILER_STRIP_GATE(0x80870140, &lit_4465);
-#pragma pop
-
-/* 80870144-80870148 0000B0 0004+00 0/2 0/0 0/0 .rodata          @4466 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4466 = 4.0f / 5.0f;
-COMPILER_STRIP_GATE(0x80870144, &lit_4466);
-#pragma pop
-
-/* 80870148-8087014C 0000B4 0004+00 0/2 0/0 0/0 .rodata          @4467 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4467 = 3.0f / 20.0f;
-COMPILER_STRIP_GATE(0x80870148, &lit_4467);
-#pragma pop
-
-/* 8087014C-80870150 0000B8 0004+00 0/1 0/0 0/0 .rodata          @4468 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4468 = -3.0f / 20.0f;
-COMPILER_STRIP_GATE(0x8087014C, &lit_4468);
-#pragma pop
-
-/* 80870150-80870154 0000BC 0004+00 0/1 0/0 0/0 .rodata          @4469 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4469 = -6000.0f;
-COMPILER_STRIP_GATE(0x80870150, &lit_4469);
-#pragma pop
-
-/* 80870AC0-80870AC4 000170 0004+00 1/1 0/0 0/0 .bss             old_stick_x$4410 */
-static u8 old_stick_x[4];
-
-/* 80870AC4-80870AC8 000174 0004+00 1/1 0/0 0/0 .bss             None */
-static u8 data_80870AC4[4];
 
 /* 8086D55C-8086D854 0015DC 02F8+00 1/1 0/0 0/0 .text            koro2_game__FP11fshop_class */
 static void koro2_game(fshop_class* i_this) {
@@ -2302,6 +1727,8 @@ static void koro2_game(fshop_class* i_this) {
     }
 }
 
+/* 80870AC4-80870AC8 000174 0004+00 1/1 0/0 0/0 .bss             None */
+static u8 data_80870AC4[4];
 
 /* 8086D854-8086DA00 0018D4 01AC+00 1/1 0/0 0/0 .text            ball_wall_check__FP11fshop_class */
 static int ball_wall_check(fshop_class* param_1) {
@@ -2340,206 +1767,8 @@ static int ball_wall_check(fshop_class* param_1) {
     return 0;
 }
 
-
-/* ############################################################################################## */
-/* 80870154-80870158 0000C0 0004+00 0/1 0/0 0/0 .rodata          @4838 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4838 = 3.0f / 125.0f;
-COMPILER_STRIP_GATE(0x80870154, &lit_4838);
-#pragma pop
-
-/* 80870158-8087015C 0000C4 0004+00 0/1 0/0 0/0 .rodata          @4839 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_4839 = 0x3E75C290;
-COMPILER_STRIP_GATE(0x80870158, &lit_4839);
-#pragma pop
-
-/* 8087015C-80870160 0000C8 0004+00 0/1 0/0 0/0 .rodata          @4840 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4840 = 3.5f;
-COMPILER_STRIP_GATE(0x8087015C, &lit_4840);
-#pragma pop
-
-/* 80870160-80870164 0000CC 0004+00 0/1 0/0 0/0 .rodata          @4841 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4841 = -15.0f;
-COMPILER_STRIP_GATE(0x80870160, &lit_4841);
-#pragma pop
-
-/* 80870164-8087016C 0000D0 0004+04 0/1 0/0 0/0 .rodata          @4842 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4842[1 + 1 /* padding */] = {
-    -2500.0f,
-    /* padding */
-    0.0f,
-};
-COMPILER_STRIP_GATE(0x80870164, &lit_4842);
-#pragma pop
-
-/* 8087016C-80870174 0000D8 0008+00 0/1 0/0 0/0 .rodata          @4843 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4843[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8087016C, &lit_4843);
-#pragma pop
-
-/* 80870174-8087017C 0000E0 0008+00 0/1 0/0 0/0 .rodata          @4844 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4844[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80870174, &lit_4844);
-#pragma pop
-
-/* 8087017C-80870184 0000E8 0008+00 0/1 0/0 0/0 .rodata          @4845 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4845[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8087017C, &lit_4845);
-#pragma pop
-
-/* 80870184-80870188 0000F0 0004+00 0/1 0/0 0/0 .rodata          @4846 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4846 = 65.0f;
-COMPILER_STRIP_GATE(0x80870184, &lit_4846);
-#pragma pop
-
-/* 80870188-8087018C 0000F4 0004+00 0/1 0/0 0/0 .rodata          @4847 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4847 = 7.0f;
-COMPILER_STRIP_GATE(0x80870188, &lit_4847);
-#pragma pop
-
-/* 8087018C-80870190 0000F8 0004+00 0/1 0/0 0/0 .rodata          @4848 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4848 = -5.0f;
-COMPILER_STRIP_GATE(0x8087018C, &lit_4848);
-#pragma pop
-
-/* 80870190-80870194 0000FC 0004+00 0/2 0/0 0/0 .rodata          @4849 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4849 = 30.0f;
-COMPILER_STRIP_GATE(0x80870190, &lit_4849);
-#pragma pop
-
-/* 80870194-80870198 000100 0004+00 0/1 0/0 0/0 .rodata          @4850 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4850 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(0x80870194, &lit_4850);
-#pragma pop
-
-/* 80870198-8087019C 000104 0004+00 0/1 0/0 0/0 .rodata          @4851 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4851 = 190.0f;
-COMPILER_STRIP_GATE(0x80870198, &lit_4851);
-#pragma pop
-
-/* 8087019C-808701A0 000108 0004+00 0/2 0/0 0/0 .rodata          @4852 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4852 = -720.0f;
-COMPILER_STRIP_GATE(0x8087019C, &lit_4852);
-#pragma pop
-
-/* 808701A0-808701A4 00010C 0004+00 0/1 0/0 0/0 .rodata          @4853 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4853 = 70.0f;
-COMPILER_STRIP_GATE(0x808701A0, &lit_4853);
-#pragma pop
-
-/* 808701A4-808701A8 000110 0004+00 0/2 0/0 0/0 .rodata          @4854 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4854 = -30.0f;
-COMPILER_STRIP_GATE(0x808701A4, &lit_4854);
-#pragma pop
-
-/* 808701A8-808701AC 000114 0004+00 0/2 0/0 0/0 .rodata          @4855 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4855 = 220.0f;
-COMPILER_STRIP_GATE(0x808701A8, &lit_4855);
-#pragma pop
-
-/* 808701AC-808701B0 000118 0004+00 0/2 0/0 0/0 .rodata          @4856 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4856 = -450.0f;
-COMPILER_STRIP_GATE(0x808701AC, &lit_4856);
-#pragma pop
-
-/* 808701B0-808701B4 00011C 0004+00 0/1 0/0 0/0 .rodata          @4857 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4857 = -250.0f;
-COMPILER_STRIP_GATE(0x808701B0, &lit_4857);
-#pragma pop
-
-/* 808701B4-808701B8 000120 0004+00 0/1 0/0 0/0 .rodata          @4858 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4858 = 325.0f;
-COMPILER_STRIP_GATE(0x808701B4, &lit_4858);
-#pragma pop
-
-/* 808701B8-808701BC 000124 0004+00 0/1 0/0 0/0 .rodata          @4859 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4859 = 237.0f;
-COMPILER_STRIP_GATE(0x808701B8, &lit_4859);
-#pragma pop
-
-/* 808701BC-808701C0 000128 0004+00 0/1 0/0 0/0 .rodata          @4860 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4860 = 1300.0f;
-COMPILER_STRIP_GATE(0x808701BC, &lit_4860);
-#pragma pop
-
-/* 808701C0-808701C4 00012C 0004+00 0/1 0/0 0/0 .rodata          @4861 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4861 = 140.0f;
-COMPILER_STRIP_GATE(0x808701C0, &lit_4861);
-#pragma pop
-
-/* 808701C4-808701CC 000130 0004+04 0/1 0/0 0/0 .rodata          @4862 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4862[1 + 1 /* padding */] = {
-    -7.0f,
-    /* padding */
-    0.0f,
-};
-COMPILER_STRIP_GATE(0x808701C4, &lit_4862);
-#pragma pop
-
-/* 808701CC-808701D4 000138 0008+00 1/3 0/0 0/0 .rodata          @4864 */
-SECTION_RODATA static u8 const lit_4864[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x808701CC, &lit_4864);
-
 /* 8086DA00-8086E6C4 001A80 0CC4+00 2/1 0/0 0/0 .text            daFshop_Execute__FP11fshop_class */
-// Regalloc, instruction order issues
-#ifdef NONMATCHING
+// NONMATCHING Regalloc, instruction order issues
 static int daFshop_Execute(fshop_class* param_1) {
     fopAc_ac_c* pPlayer = dComIfGp_getPlayer(0);
     cXyz local_c0;
@@ -2549,7 +1778,7 @@ static int daFshop_Execute(fshop_class* param_1) {
             param_1->field_0x428d--;
         }
         koro2_mtx_set(param_1);
-        return;
+        return 1;
     }
     if (param_1->field_0x4070 != NULL) {
         param_1->scale.x = 0.024f;
@@ -2612,9 +1841,8 @@ static int daFshop_Execute(fshop_class* param_1) {
                 param_1->field_0x567 = 1;
             }
             
-            // TODO: include henna npc header
-            fopAc_ac_c* iVar9 = fopAcM_SearchByName(PROC_NPC_HENNA);
-            if (iVar9 != NULL && ((u8*)iVar9)[0x7b9] != 0 &&
+            npc_henna_class* henna = (npc_henna_class*)fopAcM_SearchByName(PROC_NPC_HENNA);
+            if (henna != NULL && henna->field_0x7b9 != 0 &&
                 (param_1->field_0x567 == 1 || dTimer_getRestTimeMs() == 0))
             {
                 BOOL bVar5 = FALSE;
@@ -2625,24 +1853,23 @@ static int daFshop_Execute(fshop_class* param_1) {
                     }
                 }
                 if (!bVar5) {
-                    iVar9->health = 1;
+                    henna->health = 1;
                 } else if (param_1->field_0x567 == 1) {
-                    iVar9->health = 0;
+                    henna->health = 0;
                 } else {
-                    iVar9->health = 2;
+                    henna->health = 2;
                 }
                 
-                *(u16*)((u8*)iVar9 + 0x752) = 0x49;
-                *(u16*)((u8*)iVar9 + 0x754) = 0;
-                ((u8*)iVar9)[0x7b9] = 0;
+                henna->field_0x752 = 0x49;
+                henna->field_0x754 = 0;
+                henna->field_0x7b9 = 0;
                 param_1->field_0x567 = 2;
             } else {
                 if (param_1->field_0x567 == 0) {
-                    local_cc = *(cXyz*)&BallEndPos - param_1->current.pos;
+                    local_cc = BallEndPos - param_1->current.pos;
                     if (local_cc.abs() < 65.0f) {
-                        // TODO: include henna npc header
-                        fopAc_ac_c* uVar19 = fopAcM_SearchByName(PROC_NPC_HENNA);
-                        if (uVar19 != NULL) {
+                        npc_henna_class* henna = (npc_henna_class*)fopAcM_SearchByName(PROC_NPC_HENNA);
+                        if (henna != NULL) {
                             BOOL bVar5 = FALSE;
                             for (int local_13c = 0; local_13c < 100; local_13c++) {
                                 if (iVar6->mKoro2[local_13c].mpModel != NULL && iVar6->mKoro2[local_13c].field_0x60) {
@@ -2652,13 +1879,13 @@ static int daFshop_Execute(fshop_class* param_1) {
                             }
 
                             if (bVar5) {
-                                uVar19->health = 3;
-                                *(u16*)((u8*)uVar19 + 0x752) = 0x49;
+                                henna->health = 3;
+                                henna->field_0x752 = 0x49;
                             } else {
-                                *(u16*)((u8*)uVar19 + 0x752) = 0x4c;
+                                henna->field_0x752 = 0x4c;
                             }
-                            *(u16*)((u8*)uVar19 + 0x754) = 0;
-                            ((u8*)uVar19)[0x7b9] = 0;
+                            henna->field_0x754 = 0;
+                            henna->field_0x7b9 = 0;
                             param_1->field_0x567 = 2;
                         }
                     }
@@ -2683,7 +1910,7 @@ static int daFshop_Execute(fshop_class* param_1) {
                 adStack_b4.SetPos(&local_e4);
                 local_e4.y = dComIfG_Bgsp().GroundCross(&adStack_b4);
                 s16 local_160 = -cM_atan2s(local_e4.y - param_1->current.pos.y,
-                                          local_e4.z - param_1->current.pos.z);
+                                           local_e4.z - param_1->current.pos.z);
                 if (local_160 > 0x3000) {
                     local_160 = 0x3000;
                 } else if (local_160 < -0x3000) {
@@ -2694,8 +1921,8 @@ static int daFshop_Execute(fshop_class* param_1) {
                 local_e4.x += 1.0f;
                 adStack_b4.SetPos(&local_e4);
                 local_e4.y = dComIfG_Bgsp().GroundCross(&adStack_b4);
-                s16 local_162 = cM_atan2s(local_e4.y - param_1->current.pos.y,
-                                          local_e4.x - param_1->current.pos.x);
+                s16 local_162 = (s16)cM_atan2s(local_e4.y - param_1->current.pos.y,
+                                               local_e4.x - param_1->current.pos.x);
                 if (local_162 > 0x3000) {
                     local_162 = 0x3000;
                 } else if (local_162 < -0x3000) {
@@ -2729,13 +1956,13 @@ static int daFshop_Execute(fshop_class* param_1) {
         rod_set(param_1);
         tsubo_set(param_1);
         fs_weed_s* pWeed = param_1->mWeed;
-        for (s32 local_14c = 0; local_14c < 60; local_14c++) {
-            weed_control(param_1, &pWeed[local_14c]);
+        for (s32 local_14c = 0; local_14c < 60; local_14c++, pWeed++) {
+            weed_control(param_1, pWeed);
             cXyz* local_148 = param_1->field_0x3f88.getPos(local_14c);
             for (s32 local_150 = 0; local_150 < 15; local_150++, local_148++) {
-                *local_148 = pWeed[local_14c].field_0x00[local_150];
+                *local_148 = pWeed->field_0x00[local_150];
             }
-            fpcM_Search(s_fish_sub, &pWeed[local_14c]);
+            fpcM_Search(s_fish_sub, pWeed);
         }
         cXyz cStack_f0(-720.0f, 30.0f, 70.0f);
         cXyz cStack_fc(0.5f, 0.5f, 0.5f);
@@ -2751,7 +1978,7 @@ static int daFshop_Execute(fshop_class* param_1) {
         if (daPy_getPlayerActorClass()->checkFrontRollCrash()) {
             param_1->field_0x6b34 = 0x1e;
         }
-        s16 iVar6 = 30.0f * param_1->field_0x6b34 * cM_ssin(param_1->field_0x6b34 * 5000);
+        s16 iVar6 = param_1->field_0x6b34 * cM_ssin(param_1->field_0x6b34 * 5000) * 30.0f;
         if (param_1->field_0x6b34 != 0) {
             param_1->field_0x6b34--;
         }
@@ -2766,38 +1993,33 @@ static int daFshop_Execute(fshop_class* param_1) {
         local_c0.x = 325.0f - pPlayer->current.pos.x;
         local_c0.z = 237.0f - pPlayer->current.pos.z;
         if (daPy_getPlayerActorClass()->checkFrontRollCrash() &&
-            JMAFastSqrt((local_c0.x * local_c0.x + local_c0.z * local_c0.z)) < 150.0)
+            JMAFastSqrt((local_c0.x * local_c0.x + local_c0.z * local_c0.z)) < 150.0f)
         {
             param_1->field_0x3ff8 = cM_rndF(65536.0f);
             param_1->field_0x3ffa = cM_rndF(65536.0f);
-            param_1->field_0x3ffc = cM_rndF(600.0) + 1300.0f;
-            param_1->field_0x4000 = cM_rndF(600.0) + 1300.0f;
+            param_1->field_0x3ffc = cM_rndF(600.0f) + 1300.0f;
+            param_1->field_0x4000 = cM_rndF(600.0f) + 1300.0f;
         }
         param_1->field_0x3ff8 += 4000;
         param_1->field_0x3ffa += 4000;
-        s16 iVar10 = param_1->field_0x3ffc * cM_ssin(param_1->field_0x3ff8);
-        s16 iVar11 = param_1->field_0x4000 * cM_ssin(param_1->field_0x3ffa);
+        s16 iVar10 = param_1->field_0x4000 * cM_ssin(param_1->field_0x3ffa);
+        s16 iVar11 = param_1->field_0x3ffc * cM_ssin(param_1->field_0x3ff8);
         cLib_addCalc0(&param_1->field_0x3ffc, 1.0f, 40.0f);
         cLib_addCalc0(&param_1->field_0x4000, 1.0f, 40.0f);
         mDoMtx_stack_c::transS(325.0f, 140.0f, 237.0f);
-        mDoMtx_stack_c::XrotM(iVar10);
-        mDoMtx_stack_c::ZrotM(iVar11);
-        mDoMtx_stack_c::transM(-10.0f, -7.0f, 65.0f);
+        mDoMtx_stack_c::XrotM((s16)iVar10);
+        mDoMtx_stack_c::ZrotM(iVar11 + 15000);
+        mDoMtx_stack_c::transM(-10.0f, -7.0f, 0.0f);
         param_1->field_0x3ff4->setBaseTRMtx(mDoMtx_stack_c::get());
         koro2_game(param_1);
     }
     return 1;
 }
-#else
-static int daFshop_Execute(fshop_class* param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 8086E6C4-8086E6CC 002744 0008+00 1/0 0/0 0/0 .text            daFshop_IsDelete__FP11fshop_class
  */
-static bool daFshop_IsDelete(fshop_class* param_0) {
-    return true;
+static int daFshop_IsDelete(fshop_class* param_0) {
+    return 1;
 }
 
 /* 8086E6CC-8086E7F0 00274C 0124+00 1/0 0/0 0/0 .text            daFshop_Delete__FP11fshop_class */
@@ -2822,43 +2044,22 @@ static int daFshop_Delete(fshop_class* param_1) {
     return 1;
 }
 
-/* ############################################################################################## */
-/* 808707C4-80870800 000540 003C+00 0/1 0/0 0/0 .data            koro2_bmd$4909 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static s32 koro2_bmd[15] = {
-    {0x0A}, {0x0B}, {0x0B},
-    {0x0B}, {0x0B}, {0x0F},
-    {0x0D}, {0x0C}, {0x0C},
-    {0x0C}, {0x0C}, {0x0E},
-    {0x0E}, {0x0E}, {0x0E},
-};
-#pragma pop
-
-/* 80870800-8087083C 00057C 003C+00 0/1 0/0 0/0 .data            koro2_dzb$4910 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 koro2_dzb[15] = {
-    {0x1F}, {0x20}, {0x20},
-    {0x20}, {0x20}, {0x24},
-    {0x22}, {0x21}, {0x21},
-    {0x21}, {0x21}, {0x23},
-    {0x23}, {0x23}, {0x23},
-};
-#pragma pop
-
-/* 8087083C-8087084C 0005B8 0010+00 0/1 0/0 0/0 .data            pande_d$4911 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 pande_d[16] = {
-    0x00, 0x01, 0x03, 0x02, 0x05, 0x04, 0x06, 0x07, 0x09, 0x08, 0x0B, 0x0A, 0x0C, 0x0D, 0x0F, 0x0E,
-};
-#pragma pop
-
 /* 8086E7F0-8086ECC8 002870 04D8+00 1/1 0/0 0/0 .text            koro2_heapinit__FP10fopAc_ac_c */
-// mapPtr definition and stack issue
-#ifdef NONMATCHING
+// NONMATCHING mapPtr definition and stack issue
 static int koro2_heapinit(fopAc_ac_c* param_1) {
+    static s32 koro2_bmd[15] = {
+        0x0A, 0x0B, 0x0B, 0x0B, 0x0B, 0x0F, 0x0D, 0x0C,
+        0x0C, 0x0C, 0x0C, 0x0E, 0x0E, 0x0E, 0x0E,
+    };
+    static u32 koro2_dzb[15] = {
+        0x1F, 0x20, 0x20, 0x20, 0x20, 0x24, 0x22, 0x21,
+        0x21, 0x21, 0x21, 0x23, 0x23, 0x23, 0x23,
+    };
+    static u8 pande_d[16] = {
+        0x00, 0x01, 0x03, 0x02, 0x05, 0x04, 0x06, 0x07,
+        0x09, 0x08, 0x0B, 0x0A, 0x0C, 0x0D, 0x0F, 0x0E,
+    };
+
     fshop_class* pShop = (fshop_class*) param_1;
     pShop->field_0x402c = new dBgW();
     if (pShop->field_0x402c == NULL) {
@@ -2880,15 +2081,16 @@ static int koro2_heapinit(fopAc_ac_c* param_1) {
     int r27 = 0;
     int r26 = 0;
     int r25 = 0;
-    s8 (*mapPtr)[9] = (s8(*)[9])koro2_map_d[pShop->field_0x567 & 7];
+    s8* mapPtr = koro2_map_d[pShop->field_0x567 & 7];
     for (int local_5c = 0; local_5c < 9; local_5c++) {
         for (int local_60 = 0; local_60 < 15; local_60++) {
-            if (mapPtr[local_60][local_5c] != 0) {
+            int index = local_60 * 9 + local_5c;
+            if (mapPtr[index] != 0) {
                 if (flag567 != 0) {
-                    pShop->mKoro2[local_30].field_0x34 = pande_d[mapPtr[local_60][local_5c]];
+                    pShop->mKoro2[local_30].field_0x34 = pande_d[mapPtr[index]];
                     pShop->mKoro2[local_30].field_0x38.x = 2.5f * (8 - local_5c);
                 } else {
-                    pShop->mKoro2[local_30].field_0x34 = mapPtr[local_60][local_5c];
+                    pShop->mKoro2[local_30].field_0x34 = mapPtr[index];
                     pShop->mKoro2[local_30].field_0x38.x = 2.5f * local_5c;
                 }
                 pShop->mKoro2[local_30].field_0x38.y = 2.0f;
@@ -2965,11 +2167,6 @@ static int koro2_heapinit(fopAc_ac_c* param_1) {
     }
     return 1;
 }
-#else
-static int koro2_heapinit(fopAc_ac_c* param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* ############################################################################################## */
 /* 808701D4-808701D8 000140 0004+00 0/1 0/0 0/0 .rodata          @5206 */
@@ -3301,31 +2498,6 @@ extern actor_process_profile_definition g_profile_FSHOP = {
   fopAc_CULLBOX_0_e,     // cullType
 };
 
-/* 8087090C-80870918 000688 000C+00 1/1 0/0 0/0 .data            __vt__12dBgS_AcchCir */
-SECTION_DATA extern void* __vt__12dBgS_AcchCir[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_AcchCirFv,
-};
-
-/* 80870918-8087093C 000694 0024+00 2/2 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
-SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_ObjAcchFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80870078,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80870070,
-};
-
-/* 8087093C-80870950 0006B8 0014+00 2/2 0/0 0/0 .data            __vt__18mDoExt_3DlineMat_c */
-SECTION_DATA extern void* __vt__18mDoExt_3DlineMat_c[5] = {
-    (void*)NULL /* RTTI */, (void*)NULL, (void*)NULL, (void*)NULL, (void*)NULL,
-};
-
 /* 8086F634-8086FD78 0036B4 0744+00 1/0 0/0 0/0 .text            daFshop_Create__FP10fopAc_ac_c */
 static void daFshop_Create(fopAc_ac_c* param_0) {
     // NONMATCHING
@@ -3402,25 +2574,6 @@ fs_lure_s::~fs_lure_s() {
 // fs_lure_s::fs_lure_s() {
 extern "C" void __ct__9fs_lure_sFv() {
     /* empty function */
-}
-
-/* 8087001C-80870070 00409C 0054+00 0/0 1/0 0/0 .text            __sinit_d_a_mg_fshop_cpp */
-void __sinit_d_a_mg_fshop_cpp(){// NONMATCHING
-}
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x8087001C, __sinit_d_a_mg_fshop_cpp);
-#pragma pop
-
-/* 80870070-80870078 0040F0 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
-static void func_80870070() {
-    // NONMATCHING
-}
-
-/* 80870078-80870080 0040F8 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
-static void func_80870078() {
-    // NONMATCHING
 }
 
 /* ############################################################################################## */

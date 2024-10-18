@@ -3,7 +3,6 @@
 
 #include "d/actor/d_a_itembase.h"
 
-#ifdef NONMATCHING
 /**
  * @ingroup actors-objects
  * @class daItemKantera_c
@@ -45,27 +44,5 @@ private:
 };
 
 STATIC_ASSERT(sizeof(daItemKantera_c) == 0x948);
-#else
-struct daItemKantera_c {
-    /* 80C389BC */ void initBaseMtx();
-    /* 80C389F8 */ void setBaseMtx();
-    /* 80C38A64 */ int Create();
-    /* 80C38BA8 */ int __CreateHeap();
-    /* 80C38BB0 */ int create();
-    /* 80C38F78 */ void bg_check();
-    /* 80C39068 */ int actionInit();
-    /* 80C390A0 */ int actionWaitInit();
-    /* 80C3911C */ int actionWait();
-    /* 80C39234 */ int initActionOrderGetDemo();
-    /* 80C392D0 */ int actionOrderGetDemo();
-    /* 80C3934C */ int actionGetDemo();
-    /* 80C393B0 */ int execute();
-    /* 80C394DC */ int draw();
-    /* 80C39530 */ int _delete();
-
-private:
-    /* 0x000 */ u8 field_0x0[0x948];
-};
-#endif
 
 #endif /* D_A_OBJ_KANTERA_H */

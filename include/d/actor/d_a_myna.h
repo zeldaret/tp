@@ -129,12 +129,7 @@ public:
     typedef int (daMyna_c::*BaseMotionFunc)(int);
 
     static dCcD_SrcSph const mCcDSph;
-// sinit matches, but with incorrect weak function ordering
-#ifdef NONMATCHING
     static daMyna_c::BaseMotionFunc mBaseMotionTBL[7];
-#else
-    static u8 mBaseMotionTBL[84];
-#endif
 
     /* 0x56C */ request_of_phase_process_class mPhase;
     /* 0x574 */ mDoExt_McaMorfSO* mpMorf;

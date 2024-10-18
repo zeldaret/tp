@@ -7,105 +7,14 @@
 #include "d/d_com_inf_game.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_procname.h"
-#include "dol2asm.h"
 #include "SSystem/SComponent/c_math.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
-
-//
-// Forward References:
-//
-
-extern "C" void createHeap__13daObjWchain_cFv();
-extern "C" static void daObjWchain_createHeap__FP10fopAc_ac_c();
-extern "C" void create__13daObjWchain_cFv();
-extern "C" void __dt__5csXyzFv();
-extern "C" void __ct__5csXyzFv();
-extern "C" void __ct__4cXyzFv();
-extern "C" void __dt__4cXyzFv();
-extern "C" static void daObjWchain_Create__FP10fopAc_ac_c();
-extern "C" void __dt__13daObjWchain_cFv();
-extern "C" static void daObjWchain_Delete__FP13daObjWchain_c();
-extern "C" void setMatrix__13daObjWchain_cFv();
-extern "C" void getChainAngleZ__13daObjWchain_cFP4cXyzi();
-extern "C" void setChainPos__13daObjWchain_cFv();
-extern "C" void execute__13daObjWchain_cFv();
-extern "C" static void daObjWchain_Execute__FP13daObjWchain_c();
-extern "C" void draw__19daObjWchain_shape_cFv();
-extern "C" void draw__13daObjWchain_cFv();
-extern "C" static void daObjWchain_Draw__FP13daObjWchain_c();
-extern "C" void __dt__19daObjWchain_shape_cFv();
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
-extern "C" void mDoMtx_YrotS__FPA4_fs();
-extern "C" void mDoMtx_ZrotM__FPA4_fs();
-extern "C" void transM__14mDoMtx_stack_cFfff();
-extern "C" void transM__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void __dt__10fopAc_ac_cFv();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_SetMin__FP10fopAc_ac_cfff();
-extern "C" void fopAcM_SetMax__FP10fopAc_ac_cfff();
-extern "C" void roofCheck__11fopAcM_rc_cFPC4cXyz();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfGp_getReverb__Fi();
-extern "C" void onSwitch__10dSv_info_cFii();
-extern "C" void offSwitch__10dSv_info_cFii();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void dKy_setLight_again__Fv();
-extern "C" void dKy_GxFog_tevstr_set__FP12dKy_tevstr_c();
-extern "C" void __pl__4cXyzCFRC3Vec();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void __ml__4cXyzCFf();
-extern "C" void normalizeZP__4cXyzFv();
-extern "C" void atan2sY_XZ__4cXyzCFv();
-extern "C" void __ct__5csXyzFsss();
-extern "C" void cM_rad2s__Ff();
-extern "C" void cM_atan2s__Fff();
-extern "C" void cM_rnd__Fv();
-extern "C" void cM_rndF__Ff();
-extern "C" void cM_rndFX__Ff();
-extern "C" void cLib_chaseF__FPfff();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void __dl__FPv();
-extern "C" bool entry__9J3DPacketFP13J3DDrawBuffer();
-extern "C" void loadPreDrawSetting__8J3DShapeCFv();
-extern "C" void entryImm__13J3DDrawBufferFP9J3DPacketUs();
-extern "C" void __destroy_arr();
-extern "C" void __construct_array();
-extern "C" void _savegpr_20();
-extern "C" void _savegpr_22();
-extern "C" void _restgpr_20();
-extern "C" void _restgpr_22();
-extern "C" extern void* __vt__9J3DPacket[5];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" f32 Zero__4cXyz[3];
-extern "C" u8 sincosTable___5JMath[65536];
-extern "C" f32 mRoofY__11fopAcM_rc_c;
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
-
-//
-// Declarations:
-//
+#include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 
 /* 80D31924-80D3192C 000000 0007+01 8/8 0/0 0/0 .rodata          l_arcName */
 static char const l_arcName[7] = "Wchain";
 
 /* 80D2FEF8-80D2FF9C 000078 00A4+00 1/1 0/0 0/0 .text            createHeap__13daObjWchain_cFv */
-#ifdef NONMATCHING
-// matches once daObjWchain_shape_c inheritance is resolved
 int daObjWchain_c::createHeap() {
     J3DModelData* handle_model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 4);
     mpHandleModel = mDoExt_J3DModel__create(handle_model_data, 0x80000, 0x11000084);
@@ -116,169 +25,13 @@ int daObjWchain_c::createHeap() {
     mShape.setUserArea((u32)this);
     return 1;
 }
-#else
-int daObjWchain_c::createHeap() {
-    // NONMATCHING
-}
-#endif
 
 /* 80D2FF9C-80D2FFBC 00011C 0020+00 1/1 0/0 0/0 .text daObjWchain_createHeap__FP10fopAc_ac_c */
 static int daObjWchain_createHeap(fopAc_ac_c* i_this) {
     return static_cast<daObjWchain_c*>(i_this)->createHeap();
 }
 
-/* ############################################################################################## */
-/* 80D3192C-80D31930 000008 0004+00 0/1 0/0 0/0 .rodata          @3744 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3744 = -200.0f;
-COMPILER_STRIP_GATE(0x80D3192C, &lit_3744);
-#pragma pop
-
-/* 80D31930-80D31934 00000C 0004+00 0/1 0/0 0/0 .rodata          @3745 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3745 = -45.0f;
-COMPILER_STRIP_GATE(0x80D31930, &lit_3745);
-#pragma pop
-
-/* 80D31934-80D31938 000010 0004+00 0/1 0/0 0/0 .rodata          @3746 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3746 = 200.0f;
-COMPILER_STRIP_GATE(0x80D31934, &lit_3746);
-#pragma pop
-
-/* 80D31938-80D3193C 000014 0004+00 0/1 0/0 0/0 .rodata          @3747 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3747 = 800.0f;
-COMPILER_STRIP_GATE(0x80D31938, &lit_3747);
-#pragma pop
-
-/* 80D3193C-80D31940 000018 0004+00 0/2 0/0 0/0 .rodata          @3748 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3748 = 53.75f;
-COMPILER_STRIP_GATE(0x80D3193C, &lit_3748);
-#pragma pop
-
-/* 80D31940-80D31944 00001C 0004+00 0/1 0/0 0/0 .rodata          @3749 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3749 = 280.0f;
-COMPILER_STRIP_GATE(0x80D31940, &lit_3749);
-#pragma pop
-
-/* 80D31944-80D31948 000020 0004+00 0/2 0/0 0/0 .rodata          @3750 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3750 = 100.0f;
-COMPILER_STRIP_GATE(0x80D31944, &lit_3750);
-#pragma pop
-
-/* 80D31948-80D3194C 000024 0004+00 0/2 0/0 0/0 .rodata          @3751 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3751 = 250.0f;
-COMPILER_STRIP_GATE(0x80D31948, &lit_3751);
-#pragma pop
-
-/* 80D3194C-80D31950 000028 0004+00 0/2 0/0 0/0 .rodata          @3752 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3752 = 600.0f;
-COMPILER_STRIP_GATE(0x80D3194C, &lit_3752);
-#pragma pop
-
-/* 80D31950-80D31954 00002C 0004+00 0/5 0/0 0/0 .rodata          @3753 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3753[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80D31950, &lit_3753);
-#pragma pop
-
-/* 80D31954-80D31958 000030 0004+00 0/1 0/0 0/0 .rodata          @3754 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3754 = -7.0f;
-COMPILER_STRIP_GATE(0x80D31954, &lit_3754);
-#pragma pop
-
-/* 80D31958-80D3195C 000034 0004+00 0/1 0/0 0/0 .rodata          @3755 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3755 = 16384.0f;
-COMPILER_STRIP_GATE(0x80D31958, &lit_3755);
-#pragma pop
-
-/* 80D3195C-80D31960 000038 0004+00 0/1 0/0 0/0 .rodata          @3756 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3756 = 2048.0f;
-COMPILER_STRIP_GATE(0x80D3195C, &lit_3756);
-#pragma pop
-
-/* 80D31960-80D31964 00003C 0004+00 0/3 0/0 0/0 .rodata          @3757 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3757 = 17.5f;
-COMPILER_STRIP_GATE(0x80D31960, &lit_3757);
-#pragma pop
-
-/* 80D31964-80D3196C 000040 0008+00 0/2 0/0 0/0 .rodata          @3759 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3759[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D31964, &lit_3759);
-#pragma pop
-
-/* 80D319E4-80D31A04 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjWchain_Method */
-static actor_method_class l_daObjWchain_Method = {
-    (process_method_func)daObjWchain_Create__FP10fopAc_ac_c,
-    (process_method_func)daObjWchain_Delete__FP13daObjWchain_c,
-    (process_method_func)daObjWchain_Execute__FP13daObjWchain_c,
-    0,
-    (process_method_func)daObjWchain_Draw__FP13daObjWchain_c,
-};
-
-/* 80D31A04-80D31A34 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Wchain */
-extern actor_process_profile_definition g_profile_Obj_Wchain = {
-  fpcLy_CURRENT_e,        // mLayerID
-  7,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_Obj_Wchain,        // mProcName
-  &g_fpcLf_Method.mBase,  // sub_method
-  0x000007BC,             // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  247,                    // mPriority
-  &l_daObjWchain_Method,  // sub_method
-  0x00060100,             // mStatus
-  fopAc_ENV_e,            // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
-};
-
-/* 80D31A34-80D31A48 000050 0014+00 3/3 0/0 0/0 .data            __vt__19daObjWchain_shape_c */
-SECTION_DATA extern void* __vt__19daObjWchain_shape_c[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)entry__9J3DPacketFP13J3DDrawBuffer,
-    (void*)draw__19daObjWchain_shape_cFv,
-    (void*)__dt__19daObjWchain_shape_cFv,
-};
-
 /* 80D2FFBC-80D30394 00013C 03D8+00 1/1 0/0 0/0 .text            create__13daObjWchain_cFv */
-#ifdef NONMATCHING
-// matches once daObjWchain_shape_c inheritance is resolved
 cPhs__Step daObjWchain_c::create() {
     fopAcM_SetupActor(this, daObjWchain_c);
     mSw = fopAcM_GetParam(this) & 0xff;
@@ -330,35 +83,6 @@ cPhs__Step daObjWchain_c::create() {
     }
     return step;
 }
-#else
-cPhs__Step daObjWchain_c::create() {
-    // NONMATCHING
-}
-#endif
-
-/* 80D30394-80D303D0 000514 003C+00 2/2 0/0 0/0 .text            __dt__5csXyzFv */
-// csXyz::~csXyz() {
-extern "C" void __dt__5csXyzFv() {
-    // NONMATCHING
-}
-
-/* 80D303D0-80D303D4 000550 0004+00 1/1 0/0 0/0 .text            __ct__5csXyzFv */
-// csXyz::csXyz() {
-extern "C" void __ct__5csXyzFv() {
-    /* empty function */
-}
-
-/* 80D303D4-80D303D8 000554 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
-// cXyz::cXyz() {
-extern "C" void __ct__4cXyzFv() {
-    /* empty function */
-}
-
-/* 80D303D8-80D30414 000558 003C+00 2/2 0/0 0/0 .text            __dt__4cXyzFv */
-// cXyz::~cXyz() {
-extern "C" void __dt__4cXyzFv() {
-    // NONMATCHING
-}
 
 /* 80D30414-80D30434 000594 0020+00 1/0 0/0 0/0 .text            daObjWchain_Create__FP10fopAc_ac_c
  */
@@ -367,39 +91,15 @@ static cPhs__Step daObjWchain_Create(fopAc_ac_c* i_this) {
 }
 
 /* 80D30434-80D3050C 0005B4 00D8+00 1/1 0/0 0/0 .text            __dt__13daObjWchain_cFv */
-#ifdef NONMATCHING
-// matches once daObjWchain_shape_c inheritance is resolved
 daObjWchain_c::~daObjWchain_c() {
     dComIfG_resDelete(&mPhaseReq, l_arcName);
 }
-#else
-daObjWchain_c::~daObjWchain_c() {
-    // NONMATCHING
-}
-#endif
 
 /* 80D3050C-80D30534 00068C 0028+00 1/0 0/0 0/0 .text daObjWchain_Delete__FP13daObjWchain_c */
 static int daObjWchain_Delete(daObjWchain_c* i_this) {
     i_this->~daObjWchain_c();
     return 1;
 }
-
-/* ############################################################################################## */
-/* 80D3196C-80D31978 000048 000C+00 0/1 0/0 0/0 .rodata          eyeOffset$3803 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const eyeOffset[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x57, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D3196C, &eyeOffset);
-#pragma pop
-
-/* 80D31978-80D3197C 000054 0004+00 0/2 0/0 0/0 .rodata          @3819 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3819 = 8.75f;
-COMPILER_STRIP_GATE(0x80D31978, &lit_3819);
-#pragma pop
 
 /* 80D30534-80D305E4 0006B4 00B0+00 2/2 0/0 0/0 .text            setMatrix__13daObjWchain_cFv */
 void daObjWchain_c::setMatrix() {
@@ -411,49 +111,6 @@ void daObjWchain_c::setMatrix() {
     static Vec const eyeOffset = {0.0f, 0.0f, 53.75f};
     mDoMtx_stack_c::multVec(&eyeOffset, &eyePos);
 }
-
-
-/* ############################################################################################## */
-/* 80D3197C-80D31984 000058 0008+00 0/2 0/0 0/0 .rodata          @3863 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3863[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D3197C, &lit_3863);
-#pragma pop
-
-/* 80D31984-80D3198C 000060 0008+00 0/2 0/0 0/0 .rodata          @3864 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3864[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D31984, &lit_3864);
-#pragma pop
-
-/* 80D3198C-80D31994 000068 0008+00 0/2 0/0 0/0 .rodata          @3865 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3865[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D3198C, &lit_3865);
-#pragma pop
-
-/* 80D31994-80D31998 000070 0004+00 0/1 0/0 0/0 .rodata          @3866 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3866 = 512.0f;
-COMPILER_STRIP_GATE(0x80D31994, &lit_3866);
-#pragma pop
-
-/* 80D31998-80D3199C 000074 0004+00 0/2 0/0 0/0 .rodata          @3867 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3867 = 0.5f;
-COMPILER_STRIP_GATE(0x80D31998, &lit_3867);
-#pragma pop
 
 /* 80D305E4-80D3080C 000764 0228+00 1/1 0/0 0/0 .text getChainAngleZ__13daObjWchain_cFP4cXyzi */
 s16 daObjWchain_c::getChainAngleZ(cXyz* param_0, int param_1) {
@@ -470,85 +127,8 @@ s16 daObjWchain_c::getChainAngleZ(cXyz* param_0, int param_1) {
     }
 }
 
-
-/* ############################################################################################## */
-/* 80D3199C-80D319A8 000078 000C+00 0/1 0/0 0/0 .rodata          currentOffset$3872 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const currentOffset[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC2, 0x57, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D3199C, &currentOffset);
-#pragma pop
-
-/* 80D319A8-80D319B4 000084 000C+00 0/1 0/0 0/0 .rodata          chainOffset$3873 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const chainOffset[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC1, 0x8C, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D319A8, &chainOffset);
-#pragma pop
-
-/* 80D319B4-80D319B8 000090 0004+00 0/1 0/0 0/0 .rodata          @4154 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4154 = 0.75f;
-COMPILER_STRIP_GATE(0x80D319B4, &lit_4154);
-#pragma pop
-
-/* 80D319B8-80D319BC 000094 0004+00 0/2 0/0 0/0 .rodata          @4155 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4155 = 1.0f;
-COMPILER_STRIP_GATE(0x80D319B8, &lit_4155);
-#pragma pop
-
-/* 80D319BC-80D319C0 000098 0004+00 0/1 0/0 0/0 .rodata          @4156 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4156 = 5.0f;
-COMPILER_STRIP_GATE(0x80D319BC, &lit_4156);
-#pragma pop
-
-/* 80D319C0-80D319C4 00009C 0004+00 0/1 0/0 0/0 .rodata          @4157 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4157 = 30.0f;
-COMPILER_STRIP_GATE(0x80D319C0, &lit_4157);
-#pragma pop
-
-/* 80D319C4-80D319C8 0000A0 0004+00 0/1 0/0 0/0 .rodata          @4158 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4158 = 2.0f / 35.0f;
-COMPILER_STRIP_GATE(0x80D319C4, &lit_4158);
-#pragma pop
-
-/* 80D319C8-80D319CC 0000A4 0004+00 0/1 0/0 0/0 .rodata          @4159 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4159 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(0x80D319C8, &lit_4159);
-#pragma pop
-
-/* 80D319CC-80D319D0 0000A8 0004+00 0/1 0/0 0/0 .rodata          @4160 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_4160 = 0x40C90FDB;
-COMPILER_STRIP_GATE(0x80D319CC, &lit_4160);
-#pragma pop
-
-/* 80D319D0-80D319D4 0000AC 0004+00 0/1 0/0 0/0 .rodata          @4161 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4161 = 1.0f / 25.0f;
-COMPILER_STRIP_GATE(0x80D319D0, &lit_4161);
-#pragma pop
-
 /* 80D3080C-80D310AC 00098C 08A0+00 1/1 0/0 0/0 .text            setChainPos__13daObjWchain_cFv */
-#ifdef NONMATCHING
-// regalloc, instruction ordering
+// NONMATCHING regalloc, instruction ordering
 void daObjWchain_c::setChainPos() {
     cXyz prev_pos, vec1;
     if (mRide) {
@@ -659,33 +239,6 @@ void daObjWchain_c::setChainPos() {
         mHandleRotation = cM_atan2s(vec1.x, JMAFastSqrt(vec1.y * vec1.y + vec1.z * vec1.z));
     }
 }
-#else
-void daObjWchain_c::setChainPos() {
-    // NONMATCHING
-}
-#endif
-
-/* ############################################################################################## */
-/* 80D319D4-80D319D8 0000B0 0004+00 0/1 0/0 0/0 .rodata          @4252 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4252 = -1.0f;
-COMPILER_STRIP_GATE(0x80D319D4, &lit_4252);
-#pragma pop
-
-/* 80D319D8-80D319DC 0000B4 0004+00 0/1 0/0 0/0 .rodata          @4253 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4253 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(0x80D319D8, &lit_4253);
-#pragma pop
-
-/* 80D319DC-80D319E0 0000B8 0004+00 0/1 0/0 0/0 .rodata          @4254 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4254 = 15.0f;
-COMPILER_STRIP_GATE(0x80D319DC, &lit_4254);
-#pragma pop
 
 /* 80D310AC-80D313F8 00122C 034C+00 1/1 0/0 0/0 .text            execute__13daObjWchain_cFv */
 int daObjWchain_c::execute() {
@@ -748,14 +301,6 @@ static int daObjWchain_Execute(daObjWchain_c* i_this) {
     return i_this->execute();
 }
 
-/* ############################################################################################## */
-/* 80D319E0-80D319E4 0000BC 0004+00 0/1 0/0 0/0 .rodata          @4364 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4364 = -8.75f;
-COMPILER_STRIP_GATE(0x80D319E0, &lit_4364);
-#pragma pop
-
 /* 80D31418-80D31810 001598 03F8+00 1/0 0/0 0/0 .text            draw__19daObjWchain_shape_cFv */
 void daObjWchain_shape_c::draw() {
     daObjWchain_c* chain = (daObjWchain_c*)getUserArea();
@@ -816,8 +361,6 @@ void daObjWchain_shape_c::draw() {
 
 
 /* 80D31810-80D318A0 001990 0090+00 1/1 0/0 0/0 .text            draw__13daObjWchain_cFv */
-#ifdef NONMATCHING
-// matches once daObjWchain_shape_c inheritance is resolved
 int daObjWchain_c::draw() {
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(mpHandleModel, &tevStr);
@@ -826,14 +369,36 @@ int daObjWchain_c::draw() {
     dComIfGd_getOpaList()->entryImm(&mShape, 0);
     return 1;
 }
-#else
-int daObjWchain_c::draw() {
-    // NONMATCHING
-}
-#endif
 
 /* 80D318A0-80D318C0 001A20 0020+00 1/0 0/0 0/0 .text            daObjWchain_Draw__FP13daObjWchain_c
  */
 static int daObjWchain_Draw(daObjWchain_c* i_this) {
     return i_this->draw();
 }
+
+/* 80D319E4-80D31A04 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjWchain_Method */
+static actor_method_class l_daObjWchain_Method = {
+    (process_method_func)daObjWchain_Create,
+    (process_method_func)daObjWchain_Delete,
+    (process_method_func)daObjWchain_Execute,
+    NULL,
+    (process_method_func)daObjWchain_Draw,
+};
+
+/* 80D31A04-80D31A34 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Wchain */
+extern actor_process_profile_definition g_profile_Obj_Wchain = {
+  fpcLy_CURRENT_e,        // mLayerID
+  7,                      // mListID
+  fpcPi_CURRENT_e,        // mListPrio
+  PROC_Obj_Wchain,        // mProcName
+  &g_fpcLf_Method.mBase,  // sub_method
+  0x000007BC,             // mSize
+  0,                      // mSizeOther
+  0,                      // mParameters
+  &g_fopAc_Method.base,   // sub_method
+  247,                    // mPriority
+  &l_daObjWchain_Method,  // sub_method
+  0x00060100,             // mStatus
+  fopAc_ENV_e,            // mActorType
+  fopAc_CULLBOX_CUSTOM_e, // cullType
+};

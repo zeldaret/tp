@@ -62,6 +62,7 @@ struct TParse_header_block {
 
 template <typename T>
 struct TParseValue_raw_ {
+    typedef T ParseType;
     static T parse(const void* data) { return *(T*)data; }
 };
 
@@ -81,6 +82,24 @@ struct TParseValue : public Parser<T> {
     static const void* advance(const void* data, s32 advanceNum) {
         return (char*)data + (advanceNum * sizeof(T));
     }
+};
+
+template<class Parser, int size>
+struct TValueIterator {
+    TValueIterator(const void* begin) {
+        mBegin = begin;
+    }
+
+    typename Parser::ParseType operator*() {
+        return *(typename Parser::ParseType*)mBegin;
+    }
+
+    const void* mBegin;
+};
+
+template<typename T>
+struct TValueIterator_raw : public TValueIterator<TParseValue_raw_<u8>, 1> {
+    TValueIterator_raw(const void* begin) : TValueIterator<TParseValue_raw_<u8>, 1>(begin) {}
 };
 
 }  // namespace binary
