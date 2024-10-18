@@ -6,6 +6,7 @@
 #include "d/actor/d_a_alink.h"
 #include "d/d_com_inf_game.h"
 #include "d/actor/d_a_arrow.h"
+#include "d/actor/d_a_horse.h"
 
 /* 800DE64C-800DE740 0D8F8C 00F4+00 1/1 0/0 2/2 .text            getArrowFlyData__9daAlink_cCFPfPfi
  */

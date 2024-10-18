@@ -12,6 +12,7 @@
 #include "d/d_timer.h"
 #include "d/d_map_path_dmap.h"
 #include "d/d_menu_fmap.h"
+#include "d/d_meter2_info.h"
 #include "f_op/f_op_scene_mng.h"
 #include "m_Do/m_Do_Reset.h"
 #include "m_Do/m_Do_controller_pad.h"

@@ -8,6 +8,7 @@
 #include "d/actor/d_a_hozelda.h"
 #include "d/actor/d_a_e_wb.h"
 #include "d/actor/d_a_obj_iceleaf.h"
+#include "d/actor/d_a_spinner.h"
 
 /* 800EC724-800EC758 0E7064 0034+00 3/3 0/0 0/0 .text daAlink_searchBoar__FP10fopAc_ac_cPv */
 static void* daAlink_searchBoar(fopAc_ac_c* i_actor, void*) {
@@ -80,8 +81,7 @@ int daAlink_c::getReinRideDirection() {
 
 /* 800EC8F8-800ECA3C 0E7238 0144+00 1/1 0/0 0/0 .text            checkReinRideBgCheck__9daAlink_cFv
  */
-// issue with sp38 member setting
-#ifdef NONMATCHING
+// NONMATCHING - issue with sp38 member setting
 int daAlink_c::checkReinRideBgCheck() {
     int direction = getReinRideDirection();
 
@@ -129,12 +129,6 @@ int daAlink_c::checkReinRideBgCheck() {
 
     return 1;
 }
-#else
-int daAlink_c::checkReinRideBgCheck() {
-    // NONMATCHING
-    return 0;
-}
-#endif
 
 /* 800ECA3C-800ECAAC 0E737C 0070+00 3/3 0/0 0/0 .text commonInitForceRideRein__9daAlink_cFv */
 void daAlink_c::commonInitForceRideRein() {
@@ -439,7 +433,7 @@ int daAlink_c::setSyncBoarRunPos() {
     shape_angle.z = sp28.x;
     current.angle.y = shape_angle.y;
 
-    if (mProcID == PROC_BOAR_RUN && mProcVar3.field_0x300e.x != 0) {
+    if (mProcID == PROC_BOAR_RUN && mProcVar3.field_0x300e != 0) {
         mUnderFrameCtrl[0].setFrame(e_wb_p->nowAnimeFrame());
         getNowAnmPackUnder(UNDER_0)->setFrame(e_wb_p->nowAnimeFrame());
     }
@@ -678,8 +672,7 @@ int daAlink_c::setSyncHorse(int param_0) {
 
 
 /* 800EE64C-800EE918 0E8F8C 02CC+00 1/1 0/0 0/0 .text            setSyncBoar__9daAlink_cFi */
-// regalloc, equivalent?
-#ifdef NONMATCHING
+// NONMATCHING - regalloc, equivalent? NONMATCHING
 int daAlink_c::setSyncBoar(int param_0) {
     e_wb_class* e_wb_p = static_cast<e_wb_class*>(mRideAcKeep.getActor());
     BOOL mode_1 = checkModeFlg(1);
@@ -740,12 +733,6 @@ int daAlink_c::setSyncBoar(int param_0) {
 
     return 1;
 }
-#else
-int daAlink_c::setSyncBoar(int param_0) {
-    // NONMATCHING
-    return 0;
-}
-#endif
 
 /* 800EE918-800EEAE8 0E9258 01D0+00 12/12 0/0 0/0 .text            setSyncRide__9daAlink_cFi */
 int daAlink_c::setSyncRide(int param_0) {
@@ -838,8 +825,7 @@ int daAlink_c::setRideSubjectAngle(s16 param_0) {
 }
 
 /* 800EF050-800EF0E8 0E9990 0098+00 7/7 0/0 0/0 .text setBodyAngleRideReadyAnime__9daAlink_cFv */
-// missing mr, probably issue with cLib_minMaxLimit implementation
-#ifdef NONMATCHING
+// NONMATCHING - missing mr, probably issue with cLib_minMaxLimit implementation
 void daAlink_c::setBodyAngleRideReadyAnime() {
     setBodyAngleXReadyAnime(0);
 
@@ -854,11 +840,6 @@ void daAlink_c::setBodyAngleRideReadyAnime() {
 
     daPy_addCalcShort(&mBodyAngle.y, angle, 4, 0xC00, 0x180);
 }
-#else
-void daAlink_c::setBodyAngleRideReadyAnime() {
-    // NONMATCHING
-}
-#endif
 
 /* 800EF0E8-800EF198 0E9A28 00B0+00 1/1 0/0 0/0 .text
  * checkHorseGetOffWallCheck__9daAlink_cFP4cXyzP4cXyzs          */
@@ -995,20 +976,13 @@ int daAlink_c::checkNextActionHorse() {
 }
 
 /* 800EF598-800EF6B0 0E9ED8 0118+00 2/2 0/0 0/0 .text            checkHorseGetOff__9daAlink_cFv */
-// regalloc
-#ifdef NONMATCHING
+// NONMATCHING - regalloc
 BOOL daAlink_c::checkHorseGetOff() {
     return (checkHorseRide() && dComIfGp_getHorseActor() != NULL &&
             dComIfGp_getHorseActor()->checkGetOff()) ||
            (checkBoarRide() && static_cast<e_wb_class*>(mRideAcKeep.getActor()) != NULL &&
             static_cast<e_wb_class*>(mRideAcKeep.getActor())->checkGetOff());
 }
-#else
-BOOL daAlink_c::checkHorseGetOff() {
-    // NONMATCHING
-    return 0;
-}
-#endif
 
 /* 800EF6B0-800EF884 0E9FF0 01D4+00 3/3 0/0 0/0 .text checkHorseGetOffAndSetDoStatus__9daAlink_cFv
  */
@@ -1248,7 +1222,7 @@ int daAlink_c::procHorseCutTurnInit() {
     setSyncRide(1);
     field_0x3478 = daAlinkHIO_hoCutCharge_c0::m.field_0x50;
     setCylAtParam(getSwordAtType(), dCcG_At_Spl_UNK_1, 3, 1, 3, field_0x3478 * 0.5f, 200.0f);
-    mProcVar3.field_0x300e.y = daAlinkHIO_hoCutCharge_c0::m.field_0x3E;
+    mProcVar4.field_0x3010 = daAlinkHIO_hoCutCharge_c0::m.field_0x3E;
     voiceStart(Z2SE_AL_V_KAITEN);
     setCutWaterDropEffect();
     setHorseZeldaDamage();
@@ -1629,12 +1603,12 @@ int daAlink_c::procHorseRunInit() {
     setSingleAnimeBaseMorf(ANM_HORSE_TAME_WAIT_B, -1.0f);
     setSyncHorsePos();
     field_0x2fab = 0;
-    mProcVar3.field_0x300e.y = 0;
-    mProcVar3.field_0x300e.z = 0;
+    mProcVar4.field_0x3010 = 0;
+    mProcVar5.field_0x3012 = 0;
 
     field_0x3478 = 1000.0f - cM_rndF(500.0f);
     mProcVar2.field_0x300c = 0;
-    mProcVar3.field_0x300e.x = 30;
+    mProcVar3.field_0x300e = 30;
     field_0x3004 = 0;
     field_0x3002 = 0;
     mDoAud_changeSubBgmStatus(2);
@@ -1729,11 +1703,11 @@ int daAlink_c::procBoarRunInit() {
     resetUpperAnime(UPPER_2, -1.0f);
     resetUnderAnime(UNDER_2, -1.0f);
 
-    mProcVar3.field_0x300e.y = 0;
-    mProcVar3.field_0x300e.z = 0;
+    mProcVar4.field_0x3010 = 0;
+    mProcVar5.field_0x3012 = 0;
     field_0x3478 = 3000.0f - cM_rndF(1500.0f);
     setSingleAnimeBaseSpeed(ANM_HORSE_TAME_WAIT_A_TO_B, 1.0f, 4.0f);
-    mProcVar3.field_0x300e.x = 0;
+    mProcVar3.field_0x300e = 0;
 
     setSyncBoarPos();
     mProcVar2.field_0x300c = 0;

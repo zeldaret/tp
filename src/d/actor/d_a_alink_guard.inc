@@ -246,7 +246,7 @@ void daAlink_c::setGuardSe(dCcD_GObjInf* i_objinf) {
 }
 
 /* 800DD1D4-800DD3E4 0D7B14 0210+00 1/1 0/0 0/0 .text setSmallGuard__9daAlink_cFP12dCcD_GObjInf */
-#ifdef NONMATCHING
+// NONMATCHING
 void daAlink_c::setSmallGuard(dCcD_GObjInf* i_objinf) {
     setUpperAnimeBase(0x16);
     cXyz* dmg_vec = (cXyz*)getDamageVec(i_objinf);
@@ -264,11 +264,6 @@ void daAlink_c::setSmallGuard(dCcD_GObjInf* i_objinf) {
     s16 min = -max;
     mBodyAngle.x = cLib_minMaxLimit<s16>(cM_atan2s(dmg_vec->y, dmg_vec->absXZ()), min, max);
 }
-#else
-void daAlink_c::setSmallGuard(dCcD_GObjInf* param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 800DD3E4-800DD894 0D7D24 04B0+00 1/1 0/0 0/0 .text
  * procGuardSlipInit__9daAlink_cFiP12dCcD_GObjInf               */

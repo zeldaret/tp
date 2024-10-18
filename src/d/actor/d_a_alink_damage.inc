@@ -4,6 +4,7 @@
  */
 
 #include "d/actor/d_a_alink.h"
+#include "d/actor/d_a_horse.h"
 
 /* 800D6D94-800D6DA4 0D16D4 0010+00 0/0 0/0 2/2 .text            getFreezeR__9daAlink_cCFv */
 s16 daAlink_c::getFreezeR() const {
@@ -830,7 +831,7 @@ int daAlink_c::procDamageInit(dCcD_GObjInf* param_0, int param_1) {
                 var_r29->z * var_f29 + var_r29->x * var_f30);
     
     mProcVar2.field_0x300c = cLib_minMaxLimit<s16>(cM_atan2s(sp88.z, sp88.y), -daAlinkHIO_damNormal_c0::m.field_0x50, daAlinkHIO_damNormal_c0::m.field_0x50);
-    mProcVar3.field_0x300e.x = cLib_minMaxLimit<s16>(cM_atan2s(sp88.x, -JMAFastSqrt(sp88.y * sp88.y + sp88.z * sp88.z)), -daAlinkHIO_damNormal_c0::m.field_0x52, daAlinkHIO_damNormal_c0::m.field_0x52);
+    mProcVar3.field_0x300e = cLib_minMaxLimit<s16>(cM_atan2s(sp88.x, -JMAFastSqrt(sp88.y * sp88.y + sp88.z * sp88.z)), -daAlinkHIO_damNormal_c0::m.field_0x52, daAlinkHIO_damNormal_c0::m.field_0x52);
 
     if (freeze_player) {
         var_f31 = 0.0f;
@@ -862,7 +863,7 @@ int daAlink_c::procDamageInit(dCcD_GObjInf* param_0, int param_1) {
     }
 
     current.angle.y = var_r29->atan2sX_Z();
-    mProcVar3.field_0x300e.y = current.angle.y;
+    mProcVar4.field_0x3010 = current.angle.y;
 
     mNormalSpeed = var_r29->absXZ() * daAlinkHIO_damNormal_c0::m.field_0x58 + daAlinkHIO_damNormal_c0::m.field_0x54;
     if (mNormalSpeed > daAlinkHIO_move_c0::m.mMaxSpeed) {
@@ -893,7 +894,7 @@ int daAlink_c::procDamage() {
     f32 var_f31 = cM_fsin(field_0x347c * var_f30);
 
     mBodyAngle.x = mProcVar2.field_0x300c * var_f31;
-    mBodyAngle.z = -mProcVar3.field_0x300e.x * var_f31;
+    mBodyAngle.z = -mProcVar3.field_0x300e * var_f31;
     mBodyAngle.y = 0;
 
     cLib_chaseF(&mNormalSpeed, 0.0f, daAlinkHIO_damNormal_c0::m.field_0x5C);
@@ -917,7 +918,7 @@ int daAlink_c::procDamage() {
         onModeFlg(4);
 
         if (!checkNextAction(1)) {
-            current.angle.y = mProcVar3.field_0x300e.y;
+            current.angle.y = mProcVar4.field_0x3010;
         }
     }
 

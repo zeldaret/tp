@@ -14,6 +14,7 @@
 #include "d/d_item_data.h"
 #include "d/d_kantera_icon_meter.h"
 #include "d/d_meter_HIO.h"
+#include "d/d_meter2_info.h"
 #include "d/d_msg_class.h"
 #include "d/d_msg_object.h"
 #include "d/d_pane_class.h"

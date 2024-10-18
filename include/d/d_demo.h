@@ -116,7 +116,7 @@ public:
     dDemo_system_c() { mpObject = NULL; }
 
     /* 80039AAC */ virtual ~dDemo_system_c();
-    /* 80039528 */ virtual bool JSGFindObject(JStage::TObject**, char const*,
+    /* 80039528 */ virtual int JSGFindObject(JStage::TObject**, char const*,
                                               JStage::TEObject) const;
     
     void setObject(dDemo_object_c* i_object) { mpObject = i_object; }
@@ -131,7 +131,7 @@ public:
         : JStudio_JParticle::TCreateObject(p_emitMgr, p_system) {}
 
     /* 80039F9C */ virtual ~dDemo_particle_c();
-    /* 80039F1C */ virtual void emitter_create(u32);
+    /* 80039F1C */ virtual JPABaseEmitter* emitter_create(u32);
 };
 
 class dDemo_light_c : public JStage::TLight {
