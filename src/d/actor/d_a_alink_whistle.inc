@@ -176,8 +176,7 @@ int daAlink_c::procGrassWhistleWaitInit(int param_0, int param_1, int param_2, s
 
 /* 80111CA4-80111FF0 10C5E4 034C+00 1/0 0/0 0/0 .text            procGrassWhistleWait__9daAlink_cFv
  */
-// small regalloc
-#ifdef NONMATCHING
+// NONMATCHING - small regalloc
 int daAlink_c::procGrassWhistleWait() {
     if (mProcVar5.field_0x3012 != 0) {
         if (checkEndMessage(field_0x32cc)) {
@@ -270,12 +269,6 @@ int daAlink_c::procGrassWhistleWait() {
 
     return 1;
 }
-#else
-int daAlink_c::procGrassWhistleWait() {
-    // NONMATCHING
-    return 0;
-}
-#endif
 
 /* 80111FF0-801120C8 10C930 00D8+00 2/2 0/0 0/0 .text procCoHorseCallWaitInit__9daAlink_cFi */
 int daAlink_c::procCoHorseCallWaitInit(int param_0) {

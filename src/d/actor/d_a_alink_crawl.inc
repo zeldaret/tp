@@ -287,8 +287,7 @@ int daAlink_c::procCrawlMove() {
 }
 
 /* 800F99FC-800F9ABC 0F433C 00C0+00 1/1 0/0 0/0 .text procCrawlAutoMoveInit__9daAlink_cFiP4cXyz */
-// r30 / r31 swap
-#ifdef NONMATCHING
+// NONMATCHING - r30 / r31 swap
 int daAlink_c::procCrawlAutoMoveInit(int param_0, cXyz* param_1) {
     BOOL var_r30 = dComIfGp_checkPlayerStatus0(0, 0x2000);
     commonProcInit(PROC_CRAWL_AUTO_MOVE);
@@ -309,12 +308,6 @@ int daAlink_c::procCrawlAutoMoveInit(int param_0, cXyz* param_1) {
 
     return 1;
 }
-#else
-int daAlink_c::procCrawlAutoMoveInit(int param_0, cXyz* param_1) {
-    // NONMATCHING
-    return 0;
-}
-#endif
 
 /* 800F9ABC-800F9D7C 0F43FC 02C0+00 1/0 0/0 0/0 .text            procCrawlAutoMove__9daAlink_cFv */
 int daAlink_c::procCrawlAutoMove() {

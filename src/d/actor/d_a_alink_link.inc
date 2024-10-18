@@ -3881,41 +3881,6 @@ static int daAlink_Draw(daAlink_c* i_this) {
     return i_this->draw();
 }
 
-/* ############################################################################################## */
-/* 803B3580-803B3590 0106A0 0010+00 3/3 0/0 0/0 .data            __vt__15daAlink_sight_c */
-SECTION_DATA extern void* __vt__15daAlink_sight_c[4] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__15daAlink_sight_cFv,
-    (void*)__dt__15daAlink_sight_cFv,
-};
-
-/* 803B3590-803B35A0 0106B0 0010+00 4/4 0/0 0/0 .data            __vt__20daAlink_lockCursor_c */
-SECTION_DATA extern void* __vt__20daAlink_lockCursor_c[4] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__20daAlink_lockCursor_cFv,
-    (void*)__dt__20daAlink_lockCursor_cFv,
-};
-
-/* 803B35A0-803B35B4 0106C0 0014+00 3/3 0/0 0/0 .data            __vt__14daAlink_blur_c */
-SECTION_DATA extern void* __vt__14daAlink_blur_c[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)entry__9J3DPacketFP13J3DDrawBuffer,
-    (void*)draw__14daAlink_blur_cFv,
-    (void*)__dt__14daAlink_blur_cFv,
-};
-
-/* 803B35B4-803B35C8 0106D4 0014+00 3/3 0/0 0/0 .data __vt__29dAlink_bottleWaterPcallBack_c */
-SECTION_DATA extern void* __vt__29dAlink_bottleWaterPcallBack_c[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__29dAlink_bottleWaterPcallBack_cFv,
-    (void*)execute__29dAlink_bottleWaterPcallBack_cFP14JPABaseEmitterP15JPABaseParticle,
-    (void*)draw__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle,
-};
-
 /* 800CD7AC-800CE208 0C80EC 0A5C+00 1/1 0/0 0/0 .text            __dt__9daAlink_cFv */
 daAlink_c::~daAlink_c() {
     dComIfGp_clearPlayerStatus0(0, ~0x400030);
@@ -5021,41 +4986,11 @@ extern "C" void __dt__16daAlink_matAnm_cFv() {
     // NONMATCHING
 }
 
-/* ############################################################################################## */
-/* 803B35C8-803B35EC 0106E8 0024+00 2/2 5/5 0/0 .data            __vt__12dBgS_ObjAcch */
-SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_ObjAcchFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_801446DC,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_801446D4,
-};
-
 /* 800D0C6C-800D0CDC 0CB5AC 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
 // dBgS_ObjAcch::~dBgS_ObjAcch() {
 extern "C" void __dt__12dBgS_ObjAcchFv() {
     // NONMATCHING
 }
-
-/* ############################################################################################## */
-/* 803B35EC-803B3610 01070C 0014+10 3/3 0/0 0/0 .data            __vt__Q29daAlink_c14hsChainShape_c
- */
-SECTION_DATA extern void* __vt__Q29daAlink_c14hsChainShape_c[5 + 4 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)entry__9J3DPacketFP13J3DDrawBuffer,
-    (void*)draw__Q29daAlink_c14hsChainShape_cFv,
-    (void*)__dt__Q29daAlink_c14hsChainShape_cFv,
-    /* padding */
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-};
 
 /* 800D0CDC-800D0D38 0CB61C 005C+00 1/0 0/0 0/0 .text __dt__Q29daAlink_c14hsChainShape_cFv */
 extern "C" void __dt__Q29daAlink_c14hsChainShape_cFv() {

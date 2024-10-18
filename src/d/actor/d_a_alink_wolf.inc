@@ -104,8 +104,7 @@ void daAlink_c::changeCommon() {
 
 
 /* 80126928-80126F3C 121268 0614+00 2/2 0/0 0/0 .text            changeWolf__9daAlink_cFv */
-// small regalloc, equivalent?
-#ifdef NONMATCHING
+// NONMATCHING - small regalloc, equivalent?
 void daAlink_c::changeWolf() {
     JKRHeap* current_heap = mAnmHeap3.setAnimeHeap();
 
@@ -242,18 +241,12 @@ void daAlink_c::changeWolf() {
 
     field_0x2fc7 = dStage_stagInfo_GetWolfDashType(dComIfGp_getStage()->getStagInfo());
 }
-#else
-void daAlink_c::changeWolf() {
-    // NONMATCHING
-}
-#endif
 
 /* 80126F3C-80127C54 12187C 0D18+00 2/2 0/0 0/0 .text            changeLink__9daAlink_cFi */
-// almost, small regalloc
-#ifdef NONMATCHING
+// NONMATCHING - almost, small regalloc
 void daAlink_c::changeLink(int param_0) {
     JKRHeap* current_heap = mAnmHeap3.setAnimeHeap();
-    offNoResetFlg2(0x180000);
+    offNoResetFlg2(daPy_FLG2(FLG2_UNK_100000 | FLG2_UNK_80000));
     mMagicArmorBodyBrk = NULL;
     mMagicArmorHeadBrk = NULL;
 
@@ -528,11 +521,6 @@ void daAlink_c::changeLink(int param_0) {
         mpWlMidnaHairModel = NULL;
     }
 }
-#else
-void daAlink_c::changeLink(int param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 80127C54-80127CAC 122594 0058+00 2/2 0/0 0/0 .text            onWolfEyeUp__9daAlink_cFv */
 void daAlink_c::onWolfEyeUp() {
@@ -1187,7 +1175,7 @@ void daAlink_c::setWolfChainPos() {
 }
 
 /* 8012CB0C-8012CBE4 12744C 00D8+00 1/1 0/0 0/0 .text            setWolfAnmVoice__9daAlink_cFv */
-#ifdef NONMATCHING
+// NONMATCHING - wrong block order
 void daAlink_c::setWolfAnmVoice() {
     s8* var_r30 = field_0x2160;
 
@@ -1203,11 +1191,6 @@ void daAlink_c::setWolfAnmVoice() {
         var_r30++;
     }
 }
-#else
-void daAlink_c::setWolfAnmVoice() {
-    // NONMATCHING
-}
-#endif
 
 /* 8012CBE4-8012CD28 127524 0144+00 4/4 0/0 0/0 .text procWolfServiceWaitInit__9daAlink_cFi */
 int daAlink_c::procWolfServiceWaitInit(int param_0) {
@@ -3161,7 +3144,7 @@ f32 daAlink_c::getWolfRopeMoveSpeed() {
 
 
 /* 80131718-801319F0 12C058 02D8+00 6/6 0/0 0/0 .text            setWolfRopePosY__9daAlink_cFv */
-#ifdef NONMATCHING
+// NONMATCHING
 int daAlink_c::setWolfRopePosY() {
     daObjCrope_c* temp_r3 = (daObjCrope_c*)field_0x280c.getActor();
     cXyz* temp_r28 = temp_r3->getRopeStartPos();
@@ -3197,12 +3180,6 @@ int daAlink_c::setWolfRopePosY() {
         return 0;
     }
 }
-#else
-int daAlink_c::setWolfRopePosY() {
-    // NONMATCHING
-    return 0;
-}
-#endif
 
 /* 801319F0-80131A6C 12C330 007C+00 5/5 0/0 0/0 .text initWolfRopeShapeAngle__9daAlink_cFv */
 s16 daAlink_c::initWolfRopeShapeAngle() {
@@ -4275,8 +4252,7 @@ int daAlink_c::procWolfLieStart() {
 
 /* 80137634-801377F0 131F74 01BC+00 5/5 0/0 0/0 .text            procWolfLieMoveInit__9daAlink_cFi
  */
-// regalloc
-#ifdef NONMATCHING
+// NONMATCHING - regalloc
 int daAlink_c::procWolfLieMoveInit(int param_0) {
     BOOL var_r30 = mProcID == PROC_TALK;
     BOOL var_r29 = checkUnderMove0BckNoArcWolf(WANM_CROUCH_WALK) == FALSE;
@@ -4327,12 +4303,6 @@ int daAlink_c::procWolfLieMoveInit(int param_0) {
 
     return 1;
 }
-#else
-int daAlink_c::procWolfLieMoveInit(int param_0) {
-    // NONMATCHING
-    return 0;
-}
-#endif
 
 /* 801377F0-80137C90 132130 04A0+00 1/0 0/0 0/0 .text            procWolfLieMove__9daAlink_cFv */
 int daAlink_c::procWolfLieMove() {
@@ -4342,8 +4312,7 @@ int daAlink_c::procWolfLieMove() {
 
 /* 80137C90-80137D4C 1325D0 00BC+00 1/1 0/0 0/0 .text procWolfLieAutoMoveInit__9daAlink_cFiP4cXyz
  */
-// regalloc
-#ifdef NONMATCHING
+// NONMATCHING - regalloc
 int daAlink_c::procWolfLieAutoMoveInit(int param_0, cXyz* param_1) {
     BOOL var_r30 = dComIfGp_checkPlayerStatus0(0, 0x2000);
     commonProcInit(PROC_WOLF_LIE_AUTO_MOVE);
@@ -4365,12 +4334,6 @@ int daAlink_c::procWolfLieAutoMoveInit(int param_0, cXyz* param_1) {
     mProcVar5.field_0x3012 = 30;
     return 1;
 }
-#else
-int daAlink_c::procWolfLieAutoMoveInit(int param_0, cXyz* param_1) {
-    // NONMATCHING
-    return 0;
-}
-#endif
 
 /* 80137D4C-80138000 13268C 02B4+00 1/0 0/0 0/0 .text            procWolfLieAutoMove__9daAlink_cFv
  */
@@ -4826,7 +4789,7 @@ void daAlink_c::resetWolfBallGrab() {
 
 
 /* 80139048-8013911C 133988 00D4+00 1/1 0/0 0/0 .text            checkWolfLockData__9daAlink_cFv */
-#ifdef NONMATCHING
+// NONMATCHING
 void daAlink_c::checkWolfLockData() {
     for (int i = 0; i < 10; i++) {
         mWolfLockAcKeep[i].setActor();
@@ -4846,11 +4809,6 @@ void daAlink_c::checkWolfLockData() {
         }
     }
 }
-#else
-void daAlink_c::checkWolfLockData() {
-    // NONMATCHING
-}
-#endif
 
 /* 8013911C-8013916C 133A5C 0050+00 1/0 0/0 0/0 .text checkWolfLock__9daAlink_cCFP10fopAc_ac_c */
 BOOL daAlink_c::checkWolfLock(fopAc_ac_c* i_actor) const {
@@ -5827,8 +5785,7 @@ int daAlink_c::procWolfDownAtMissLand() {
 }
 
 /* 8013BE24-8013C3E4 136764 05C0+00 2/2 0/0 0/0 .text procWolfLockAttackInit__9daAlink_cFi */
-#ifdef NONMATCHING
-// wrong float regist + float literals
+// NONMATCHING - wrong float regist + float literals
 int daAlink_c::procWolfLockAttackInit(int param_0) {
     commonProcInit(PROC_WOLF_LOCK_ATTACK);
     setSingleAnimeWolfParam(WANM_ATTACK_A_START, &daAlinkHIO_wlAtLock_c0::m.field_0x0);
@@ -5889,12 +5846,6 @@ int daAlink_c::procWolfLockAttackInit(int param_0) {
     dComIfGp_particle_set(0x247,&current.pos,&current.angle,0);
     return 1;
 }
-#else
-int daAlink_c::procWolfLockAttackInit(int param_0) {
-    // NONMATCHING
-    return 0;
-}
-#endif
 
 /* 8013C3E4-8013C630 136D24 024C+00 1/0 0/0 0/0 .text            procWolfLockAttack__9daAlink_cFv */
 int daAlink_c::procWolfLockAttack() {

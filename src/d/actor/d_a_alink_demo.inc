@@ -828,8 +828,7 @@ void daAlink_c::resetSpecialEvent() {
 }
 
 /* 80117CF8-801180EC 112638 03F4+00 4/4 0/0 0/0 .text            endDemoMode__9daAlink_cFv */
-// one wrong branch
-#ifdef NONMATCHING
+// NONMATCHING - one wrong branch
 void daAlink_c::endDemoMode() {
     BOOL temp_r30 = checkFlyAtnWait();
     endHighModel();
@@ -925,15 +924,9 @@ void daAlink_c::endDemoMode() {
         }
     }
 }
-#else
-void daAlink_c::endDemoMode() {
-    // NONMATCHING
-}
-#endif
 
 /* 801180EC-80118170 112A2C 0084+00 2/2 0/0 0/0 .text            getDemoLookActor__9daAlink_cFv */
-// weird gameinfo load
-#ifdef NONMATCHING
+// NONMATCHING - weird gameinfo load
 fopAc_ac_c* daAlink_c::getDemoLookActor() {
     if (mDemo.getParam0() == 1) {
         return dComIfGp_event_getPt1();
@@ -947,11 +940,6 @@ fopAc_ac_c* daAlink_c::getDemoLookActor() {
 
     return NULL;
 }
-#else
-fopAc_ac_c* daAlink_c::getDemoLookActor() {
-    // NONMATCHING
-}
-#endif
 
 /* 80118170-801181A0 112AB0 0030+00 4/4 0/0 0/0 .text            checkFlyAtnWait__9daAlink_cFv */
 BOOL daAlink_c::checkFlyAtnWait() {
@@ -1261,8 +1249,7 @@ void daAlink_c::setHighModelBck(mDoExt_bckAnm* i_bck, u16 i_anmID) {
 
 /* 801190A4-80119134 1139E4 0090+00 1/1 0/0 0/0 .text            setHighModelFaceBtk__9daAlink_cFUs
  */
-// extra mr
-#ifdef NONMATCHING
+// NONMATCHING - extra mr
 void daAlink_c::setHighModelFaceBtk(u16 i_anmID) {
     J3DAnmTextureSRTKey* btk = (J3DAnmTextureSRTKey*)dComIfG_getObjectIDRes(
         dStage_roomControl_c::getDemoArcName(), i_anmID);
@@ -1275,16 +1262,10 @@ void daAlink_c::setHighModelFaceBtk(u16 i_anmID) {
         field_0x068c = btk;
     }
 }
-#else
-void daAlink_c::setHighModelFaceBtk(u16 param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 80119134-801191C4 113A74 0090+00 1/1 0/0 0/0 .text
  * setDemoBrk__9daAlink_cFPP15J3DAnmTevRegKeyP8J3DModelUs       */
-// extra mr
-#ifdef NONMATCHING
+// NONMATCHING - extra mr
 void daAlink_c::setDemoBrk(J3DAnmTevRegKey** param_0, J3DModel* param_1, u16 i_anmID) {
     J3DAnmTevRegKey* brk =
         (J3DAnmTevRegKey*)dComIfG_getObjectIDRes(dStage_roomControl_c::getDemoArcName(), i_anmID);
@@ -1297,11 +1278,6 @@ void daAlink_c::setDemoBrk(J3DAnmTevRegKey** param_0, J3DModel* param_1, u16 i_a
         *param_0 = brk;
     }
 }
-#else
-void daAlink_c::setDemoBrk(J3DAnmTevRegKey** param_0, J3DModel* param_1, u16 param_2) {
-    // NONMATCHING
-}
-#endif
 
 /* 801191C4-80119464 113B04 02A0+00 1/1 0/0 0/0 .text
  * setStickAnmData__9daAlink_cFP10J3DAnmBaseiiUsi               */

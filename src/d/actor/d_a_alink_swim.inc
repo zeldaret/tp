@@ -129,7 +129,7 @@ void daAlink_c::setWaterInAnmRate(daPy_frameCtrl_c* i_frameCtrl, f32 i_rate) {
 }
 
 /* 80101D70-801023E4 0FC6B0 0674+00 2/2 0/0 0/0 .text            swimBgCheck__9daAlink_cFf */
-#ifdef NONMATCHING
+// NONMATCHING
 void daAlink_c::swimBgCheck(f32 param_0) {
     offNoResetFlg1(FLG1_UNK_20000000);
 
@@ -205,11 +205,6 @@ void daAlink_c::swimBgCheck(f32 param_0) {
         field_0x3092 = cM_atan2s(-fvar14, -fvar15);
     }
 }
-#else
-void daAlink_c::swimBgCheck(f32 param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 801023E4-801029C8 0FCD24 05E4+00 3/3 0/0 0/0 .text            setSpeedAndAngleSwim__9daAlink_cFv
  */
@@ -841,8 +836,7 @@ int daAlink_c::procSwimHookshotMove() {
 
 /* 8010519C-80105728 0FFADC 058C+00 1/1 0/0 0/0 .text
  * procSwimDamageInit__9daAlink_cFP12dCcD_GObjInf               */
-// instruction block order issue
-#ifdef NONMATCHING
+// NONMATCHING - instruction block order issue
 int daAlink_c::procSwimDamageInit(dCcD_GObjInf* param_0) {
     seStartOnlyReverb(Z2SE_AL_DAMAGE_NORMAL);
     dComIfGp_getVibration().StartShock(2, 31, cXyz(0.0f, 1.0f, 0.0f));
@@ -921,12 +915,6 @@ int daAlink_c::procSwimDamageInit(dCcD_GObjInf* param_0) {
 
     return 1;
 }
-#else
-int daAlink_c::procSwimDamageInit(dCcD_GObjInf* param_0) {
-    // NONMATCHING
-    return 0;
-}
-#endif
 
 /* 80105728-801058A0 100068 0178+00 1/0 0/0 0/0 .text            procSwimDamage__9daAlink_cFv */
 int daAlink_c::procSwimDamage() {
