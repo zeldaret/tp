@@ -4,6 +4,7 @@
  */
 
 #include "d/actor/d_a_alink.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
 
 /* 8013FF28-8013FF90 13A868 0068+00 2/2 0/0 0/0 .text            setArcName__9daAlink_cFi */
 void daAlink_c::setArcName(BOOL i_isWolf) {

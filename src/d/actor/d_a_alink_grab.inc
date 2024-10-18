@@ -1,5 +1,8 @@
 #include "d/actor/d_a_alink.h"
 #include "d/d_com_inf_game.h"
+#include "d/actor/d_a_obj_carry.h"
+#include "d/d_bg_w.h"
+#include "d/actor/d_a_cow.h"
 
 /* 800E3830-800E3858 0DE170 0028+00 2/2 0/0 0/0 .text daAlink_checkLightBallA__FP10fopAc_ac_c */
 static bool daAlink_checkLightBallA(fopAc_ac_c* p_actor) {

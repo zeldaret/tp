@@ -3,6 +3,7 @@
  * Player Boomerang action handling
  */
 
+#include "d/actor/d_a_alink.h"
 #include "d/actor/d_a_boomerang.h"
 
 /* 800DFFE0-800E0010 0DA920 0030+00 0/0 0/0 1/1 .text checkBoomerangLockAccept__9daAlink_cFv */

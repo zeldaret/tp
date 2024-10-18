@@ -6,6 +6,8 @@
 #include "d/actor/d_a_alink.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_k_wmark.h"
+#include "JSystem/J2DGraph/J2DAnimation.h"
+#include "JSystem/J2DGraph/J2DScreen.h"
 
 /* 80120580-80120634 11AEC0 00B4+00 21/21 0/0 0/0 .text
  * setEmitter__9daAlink_cFPUlUsPC4cXyzPC5csXyz                  */
@@ -407,7 +409,7 @@ void daAlink_blur_c::traceBlur(cXyz const* param_0, cXyz const* param_1, s16 par
 static u8 texObj[32];
 
 /* 804506A4-804506A8 000124 0004+00 1/1 0/0 0/0 .sdata           nColor0$42525 */
-SECTION_SDATA static u8 nColor0[4] = {
+static u8 nColor0[4] = {
     0xFF,
     0xFF,
     0xFF,

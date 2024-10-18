@@ -2,18 +2,17 @@
 #define D_A_D_A_ALINK_H
 
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/J3DGraphBase/J3DMatBlock.h"
 #include "Z2AudioLib/Z2Creature.h"
 #include "Z2AudioLib/Z2WolfHowlMgr.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_eye_hl.h"
 #include "d/d_jnt_col.h"
-#include "d/d_meter2_info.h"
 #include "d/d_msg_flow.h"
 #include "d/d_particle_copoly.h"
 #include "d/d_save.h"
 #include "f_op/f_op_actor_mng.h"
-#include "d/actor/d_a_kytag05.h"
 #include "d/actor/d_a_tag_mmsg.h"
 
 class J2DAnmColorKey;
@@ -4072,6 +4071,16 @@ public:
 static bool daAlink_checkLightBallA(fopAc_ac_c* p_actor);
 static bool daAlink_checkLightBallB(fopAc_ac_c* p_actor);
 static fopAc_ac_c* daAlink_searchCoach(fopAc_ac_c* param_0, void* param_1);
+
+struct daAlink_cutParamTbl {
+    /* 0x0 */ daAlink_c::daAlink_ANM m_anmID;
+    /* 0x4 */ int field_0x4;
+    /* 0x8 */ u8 m_cutType;
+    /* 0x9 */ u8 m_atSe;
+    /* 0xA */ u8 field_0xa;
+    /* 0xB */ u8 field_0xb;
+    /* 0xC */ f32 m_morf;
+};  // Size: 0x10
 
 struct daAlinkHIO_anm_c {
     /* 0x00 */ s16 mEndFrame;

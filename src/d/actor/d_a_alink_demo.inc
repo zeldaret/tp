@@ -9,12 +9,15 @@
 #include "d/d_gameover.h"
 #include "f_op/f_op_msg_mng.h"
 #include "f_op/f_op_overlap_mng.h"
-#include "m_Do/m_Do_controller_pad.h"
 #include "d/actor/d_a_kytag04.h"
 #include "d/actor/d_a_tag_mhint.h"
 #include "d/actor/d_a_tag_mist.h"
 #include "d/actor/d_a_tag_mstop.h"
 #include "d/actor/d_a_tag_mwait.h"
+#include "d/actor/d_a_canoe.h"
+#include "d/actor/d_a_horse.h"
+#include "d/actor/d_a_midna.h"
+#include "d/actor/d_a_e_wb.h"
 
 /* 80115C20-80115C50 110560 0030+00 72/72 0/0 0/0 .text            checkEventRun__9daAlink_cCFv */
 BOOL daAlink_c::checkEventRun() const {

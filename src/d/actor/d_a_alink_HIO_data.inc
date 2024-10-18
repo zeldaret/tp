@@ -1,3 +1,5 @@
+#include "d/actor/d_a_alink.h"
+
 // clang-format off
 /* 8038D664-8038D6BC 019CC4 0058+00 41/50 0/0 0/0 .rodata          m__19daAlinkHIO_basic_c0 */
 const daAlinkHIO_basic_c1 daAlinkHIO_basic_c0::m = {
@@ -2036,8 +2038,6 @@ const daAlinkHIO_copyRod_c1 daAlinkHIO_copyRod_c0::m = {
 };
 
 /* 8038EB34-8038EB50 01B194 001C+00 0/0 0/0 0/0 .rodata          m__21daAlinkHIO_zwLight_c0 */
-#pragma push
-#pragma force_active on
 const daAlinkHIO_zwLight_c1 daAlinkHIO_zwLight_c0::m = {
     771,
 	0,
@@ -2050,9 +2050,6 @@ const daAlinkHIO_zwLight_c1 daAlinkHIO_zwLight_c0::m = {
 	131.83594f,
 	0.0f,
 };
-COMPILER_STRIP_GATE(0x8038EB34,
-	&daAlinkHIO_zwLight_c0::m);
-#pragma pop
 
 /* 8038EB50-8038EB8C 01B1B0 003C+00 3/3 0/0 0/0 .rodata          m__18daAlinkHIO_item_c0 */
 const daAlinkHIO_item_c1 daAlinkHIO_item_c0::m = {

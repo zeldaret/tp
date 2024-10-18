@@ -40,6 +40,8 @@
 #include "d/actor/d_a_tag_lantern.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "d/d_bomb.h"
+#include "d/d_meter2_info.h"
+#include "d/actor/d_a_kytag05.h"
 
 //
 // Forward References:
@@ -4524,16 +4526,6 @@ static int const normalType3[5] = {4, 0, 1, 2, 1};
 #pragma force_active on
 static int const finishType[5] = {2, 0, 0, 5, 1};
 #pragma pop
-
-struct daAlink_cutParamTbl {
-    /* 0x0 */ daAlink_c::daAlink_ANM m_anmID;
-    /* 0x4 */ int field_0x4;
-    /* 0x8 */ u8 m_cutType;
-    /* 0x9 */ u8 m_atSe;
-    /* 0xA */ u8 field_0xa;
-    /* 0xB */ u8 field_0xb;
-    /* 0xC */ f32 m_morf;
-};  // Size: 0x10
 
 /* 80391808-80391858 01DE68 0050+00 0/1 0/0 0/0 .rodata          cutParamTable$7312 */
 #pragma push

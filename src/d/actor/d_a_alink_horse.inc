@@ -8,6 +8,7 @@
 #include "d/actor/d_a_hozelda.h"
 #include "d/actor/d_a_e_wb.h"
 #include "d/actor/d_a_obj_iceleaf.h"
+#include "d/actor/d_a_spinner.h"
 
 /* 800EC724-800EC758 0E7064 0034+00 3/3 0/0 0/0 .text daAlink_searchBoar__FP10fopAc_ac_cPv */
 static void* daAlink_searchBoar(fopAc_ac_c* i_actor, void*) {

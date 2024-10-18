@@ -6,6 +6,7 @@
 #include "d/actor/d_a_alink.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_insect.h"
+#include "SSystem/SComponent/c_math.h"
 
 /* 8010E48C-8010E52C 108DCC 00A0+00 1/1 0/0 0/0 .text            bottleModelCallBack__9daAlink_cFv
  */

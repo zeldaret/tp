@@ -3,6 +3,9 @@
  * Player Iron Boots action handling
  */
 
+#include "d/actor/d_a_alink.h"
+#include "d/actor/d_a_tag_magne.h"
+
 /* 800E23FC-800E243C 0DCD3C 0040+00 6/6 0/0 0/0 .text            concatMagneBootMtx__9daAlink_cFv */
 void daAlink_c::concatMagneBootMtx() {
     if (checkMagneBootsOn()) {

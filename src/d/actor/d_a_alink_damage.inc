@@ -4,6 +4,7 @@
  */
 
 #include "d/actor/d_a_alink.h"
+#include "d/actor/d_a_horse.h"
 
 /* 800D6D94-800D6DA4 0D16D4 0010+00 0/0 0/0 2/2 .text            getFreezeR__9daAlink_cCFv */
 s16 daAlink_c::getFreezeR() const {

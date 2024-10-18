@@ -8,6 +8,7 @@
 #include "d/actor/d_a_e_sm2.h"
 #include "d/actor/d_a_tag_ss_drink.h"
 #include "m_Do/m_Do_lib.h"
+#include "SSystem/SComponent/c_math.h"
 
 /* 80110654-80110668 10AF94 0014+00 1/1 0/0 0/0 .text daAlink_searchTagKandelaar__FP10fopAc_ac_cPv
  */

@@ -6,6 +6,7 @@
 #include "d/actor/d_a_alink.h"
 #include "d/d_com_inf_game.h"
 #include "d/actor/d_a_npc_wrestler.h"
+#include "d/actor/d_a_boomerang.h"
 
 /* 800EA844-800EA8D0 0E5184 008C+00 5/5 0/0 0/0 .text            checkSumouVsActor__9daAlink_cFv */
 BOOL daAlink_c::checkSumouVsActor() {

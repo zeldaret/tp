@@ -1282,7 +1282,7 @@ extern "C" void __dt__15dDemo_ambient_cFv() {
 
 /* 80039528-80039678 033E68 0150+00 1/0 0/0 0/0 .text
  * JSGFindObject__14dDemo_system_cCFPPQ26JStage7TObjectPCcQ26JStage8TEObject */
-bool dDemo_system_c::JSGFindObject(JStage::TObject** p_TObj, char const* actorName,
+int dDemo_system_c::JSGFindObject(JStage::TObject** p_TObj, char const* actorName,
                                    JStage::TEObject objType) const {
     if (mpObject == NULL) {
         return true;
@@ -1491,10 +1491,10 @@ void dDemo_c::reset() {
 }
 
 /* 80039F1C-80039F9C 03485C 0080+00 1/0 0/0 0/0 .text emitter_create__16dDemo_particle_cFUl */
-void dDemo_particle_c::emitter_create(u32 param_0) {
+JPABaseEmitter* dDemo_particle_c::emitter_create(u32 param_0) {
     cXyz tmp(0.0f, 0.0f, 0.0f);
     int stayNo = dComIfGp_roomControl_getStayNo();
-    dComIfGp_particle_set(param_0, &tmp, NULL, NULL, 0xFF, NULL, stayNo, NULL, NULL, NULL);
+    return dComIfGp_particle_set(param_0, &tmp, NULL, NULL, 0xFF, NULL, stayNo, NULL, NULL, NULL);
 }
 
 

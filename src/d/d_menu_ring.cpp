@@ -19,6 +19,7 @@
 #include "d/d_meter2.h"
 #include "d/d_meter2_draw.h"
 #include "d/d_meter_HIO.h"
+#include "d/d_meter2_info.h"
 #include "d/d_msg_string.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
