@@ -301,12 +301,12 @@ def Rel(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     }
 
 # Helper function for actor RELs
-def ActorRel(status, rel_name, extra_cflags=[]):
+def ActorRel(status: bool, rel_name: str, extra_cflags: List[str]=[]) -> Dict[str, Any]:
     return Rel(rel_name, [Object(status, f"d/actor/{rel_name}.cpp", extra_cflags=extra_cflags)])
 
 
 # Helper function for JSystem libraries
-def JSystemLib(lib_name, objects, progress_category="third_party"):
+def JSystemLib(lib_name: str, objects: List[Object], progress_category: str="third_party") -> Dict[str, Any]:
     return {
         "lib": lib_name,
         "mw_version": "GC/2.7",
@@ -2017,7 +2017,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_tombo"),
     ActorRel(Matching, "d_a_obj_tornado"),
     ActorRel(Matching, "d_a_obj_tornado2"),
-    ActorRel(NonMatching, "d_a_obj_tp"),
+    ActorRel(Matching, "d_a_obj_tp"),
     ActorRel(NonMatching, "d_a_obj_treesh"),
     ActorRel(NonMatching, "d_a_obj_twGate"),
     ActorRel(NonMatching, "d_a_obj_udoor"),
@@ -2048,7 +2048,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_zrTurara"),
     ActorRel(Matching, "d_a_obj_zrTuraraRock"),
     ActorRel(NonMatching, "d_a_obj_zraMark"),
-    ActorRel(NonMatching, "d_a_obj_zra_freeze"),
+    ActorRel(Matching, "d_a_obj_zra_freeze"),
     ActorRel(NonMatching, "d_a_obj_zra_rock"),
     ActorRel(NonMatching, "d_a_passer_mng"),
     ActorRel(NonMatching, "d_a_peru"),
@@ -2096,12 +2096,12 @@ config.libs = [
     ActorRel(Matching, "d_a_tag_sppath"),
     ActorRel(Matching, "d_a_tag_ss_drink"),
     ActorRel(Matching, "d_a_tag_stream"),
-    ActorRel(NonMatching, "d_a_tag_theB_hint"),
-    ActorRel(NonMatching, "d_a_tag_wara_howl"),
-    ActorRel(NonMatching, "d_a_tag_watchge"),
-    ActorRel(NonMatching, "d_a_tag_waterfall"),
+    ActorRel(Matching, "d_a_tag_theB_hint"),
+    ActorRel(Matching, "d_a_tag_wara_howl"),
+    ActorRel(Matching, "d_a_tag_watchge"),
+    ActorRel(Matching, "d_a_tag_waterfall"),
     ActorRel(NonMatching, "d_a_tag_wljump"),
-    ActorRel(NonMatching, "d_a_tag_yami"),
+    ActorRel(Matching, "d_a_tag_yami", extra_cflags=['-pragma "nosyminline off"']),
     ActorRel(Matching, "d_a_talk"),
     ActorRel(Matching, "d_a_tboxSw"),
     ActorRel(NonMatching, "d_a_title"),

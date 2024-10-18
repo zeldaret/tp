@@ -7,44 +7,8 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_procname.h"
 
-//
-// Forward References:
-//
-
-static int daTagWaterFall_Draw(daTagWaterFall_c*);
-static void* s_waterfall(void*, void*);
-static int daTagWaterFall_Execute(daTagWaterFall_c*);
-static int daTagWaterFall_IsDelete(daTagWaterFall_c*);
-static int daTagWaterFall_Delete(daTagWaterFall_c*);
-static int daTagWaterFall_Create(daTagWaterFall_c*);
-
 /* 80D64D94-80D64D98 000000 0004+00 2/2 0/0 0/0 .data            m_master_id */
 static u32 m_master_id = static_cast<u32>(0xFFFFFFFF);
-
-/* 80D64D98-80D64DB8 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagWaterFall_Method */
-static actor_method_class l_daTagWaterFall_Method = {
-    (process_method_func)daTagWaterFall_Create,  (process_method_func)daTagWaterFall_Delete,
-    (process_method_func)daTagWaterFall_Execute, (process_method_func)daTagWaterFall_IsDelete,
-    (process_method_func)daTagWaterFall_Draw,
-};
-
-/* 80D64DB8-80D64DE8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_WaterFall */
-extern actor_process_profile_definition g_profile_Tag_WaterFall = {
-    fpcLy_CURRENT_e,
-    7,
-    fpcPi_CURRENT_e,
-    PROC_Tag_WaterFall,
-    &g_fpcLf_Method.mBase,
-    sizeof(daTagWaterFall_c),
-    0,
-    0,
-    &g_fopAc_Method.base,
-    198,
-    &l_daTagWaterFall_Method,
-    0x44000,
-    fopAc_ACTOR_e,
-    fopAc_CULLBOX_0_e,
-};
 
 /* 80D6462C-80D64680 0000EC 0054+00 1/1 0/0 0/0 .text            __ct__20daTagWaterFall_HIO_cFv */
 daTagWaterFall_HIO_c::daTagWaterFall_HIO_c() {
@@ -291,3 +255,28 @@ static int daTagWaterFall_Create(daTagWaterFall_c* i_this) {
 
 /* 80D64CDC-80D64D24 00079C 0048+00 2/1 0/0 0/0 .text            __dt__20daTagWaterFall_HIO_cFv */
 daTagWaterFall_HIO_c::~daTagWaterFall_HIO_c() {}
+
+/* 80D64D98-80D64DB8 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagWaterFall_Method */
+static actor_method_class l_daTagWaterFall_Method = {
+    (process_method_func)daTagWaterFall_Create,  (process_method_func)daTagWaterFall_Delete,
+    (process_method_func)daTagWaterFall_Execute, (process_method_func)daTagWaterFall_IsDelete,
+    (process_method_func)daTagWaterFall_Draw,
+};
+
+/* 80D64DB8-80D64DE8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_WaterFall */
+extern actor_process_profile_definition g_profile_Tag_WaterFall = {
+    fpcLy_CURRENT_e,
+    7,
+    fpcPi_CURRENT_e,
+    PROC_Tag_WaterFall,
+    &g_fpcLf_Method.mBase,
+    sizeof(daTagWaterFall_c),
+    0,
+    0,
+    &g_fopAc_Method.base,
+    198,
+    &l_daTagWaterFall_Method,
+    0x44000,
+    fopAc_ACTOR_e,
+    fopAc_CULLBOX_0_e,
+};

@@ -102,6 +102,7 @@ public:
     static GXTexObj* getFrameBufferTexObj() { return &mFrameBufferTexObj; }
     static f32 getInvScale() { return 1.0f; }
     static f32 getScale() { return 1.0f; }
+    static void setWideZoomLightProjection(Mtx m) {}
 
     static GXTexObj mFrameBufferTexObj;
     static GXTexObj mZbufferTexObj;

@@ -3980,6 +3980,11 @@ inline J3DDrawBuffer* dComIfGd_getXluListBG() {
     return g_dComIfG_gameInfo.drawlist.getXluListBG();
 }
 
+inline void dComIfGd_setListFilter() {
+    g_dComIfG_gameInfo.drawlist.setOpaListFilter();
+    g_dComIfG_gameInfo.drawlist.setXluListFilter();
+}
+
 inline void dComIfGd_init() {
     g_dComIfG_gameInfo.drawlist.init();
 }

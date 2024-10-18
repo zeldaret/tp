@@ -342,6 +342,8 @@ public:
     void setOpaListMiddle() { setOpaDrawList(mDrawBuffers[DB_LIST_MIDDLE]); }
     void setOpaListZxlu() { setOpaDrawList(mDrawBuffers[DB_LIST_Z_XLU]); }
     void setXluListZxlu() { setXluDrawList(mDrawBuffers[DB_LIST_Z_XLU]); }
+    void setOpaListFilter() { setOpaDrawList(mDrawBuffers[DB_LIST_FILTER]); }
+    void setXluListFilter() { setXluDrawList(mDrawBuffers[DB_LIST_FILTER]); }
     void set3DlineMat(mDoExt_3DlineMat_c *param_1) { 
         #ifndef NON_VIRTUAL_3DLINEMAT
         m3DLineMatSortPacket[param_1->getMaterialID()].setMat(param_1);
