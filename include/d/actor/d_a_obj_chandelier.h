@@ -47,6 +47,8 @@ public:
     u8 getSW_0() { return fopAcM_GetParamBit(this, 4, 8); }
     s32 getArg_0() { return fopAcM_GetParamBit(this, 0, 4); }
 
+    void moveHookOn() { field_0x60a = 1; }
+
 private:
     /* 0x5A8 */ cXyz field_0x5a8;
     /* 0x5B4 */ Mtx mMtx;

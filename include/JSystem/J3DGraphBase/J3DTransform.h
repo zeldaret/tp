@@ -16,35 +16,36 @@ struct J3DTransformInfo {
     /* 0x0C */ SVec mRotation;
     /* 0x14 */ Vec mTranslate;
 
-    inline J3DTransformInfo& operator=(const J3DTransformInfo& b) {
+    /* inline J3DTransformInfo& operator=(const J3DTransformInfo& b) {
         mScale = b.mScale;
         mRotation = b.mRotation;
         mTranslate = b.mTranslate;
         return *this;
-    }
+    } */
 
-    /* inline J3DTransformInfo& operator=(const register J3DTransformInfo& b) {
+    inline J3DTransformInfo& operator=(const register J3DTransformInfo& b) {
         register const J3DTransformInfo& var_r31 = b;
         register J3DTransformInfo& var_r30 = *this;
 
         register f32 var_f31;
+        register f32 var_f0;
+        register int var_r0;
         asm {
             psq_l var_f31, 0x0(var_r31), 0, 0
             psq_st var_f31, 0x0(var_r30), 0, 0
-            lfs f0, 0x8(var_r31)
-            stfs f0, 0x8(var_r30)
-            lwz r0, 0xc(var_r31)
-            stw r0, 0xc(var_r30)
-            lha r0, 0x10(var_r31)
-            extsh r0, r0
-            sth r0, 0x10(var_r30)
+            lfs var_f0, 0x8(var_r31)
+            stfs var_f0, 0x8(var_r30)
+            lwz var_r0, 0xc(var_r31)
+            stw var_r0, 0xc(var_r30)
+            lha var_r0, 0x10(var_r31)
+            sth var_r0, 0x10(var_r30)
             psq_l var_f31, 0x14(var_r31), 0, 0
             psq_st var_f31, 0x14(var_r30), 0, 0
-            lfs f0, 0x1c(var_r31)
-            stfs f0, 0x1c(var_r30)
+            lfs var_f0, 0x1c(var_r31)
+            stfs var_f0, 0x1c(var_r30)
         }
         return *this;
-    } */
+    }
 };  // Size: 0x20
 
 extern J3DTransformInfo const j3dDefaultTransformInfo;

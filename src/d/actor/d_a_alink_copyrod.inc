@@ -3,6 +3,8 @@
  * Player Dominion Rod action handling
  */
 
+#include "d/actor/d_a_alink.h"
+#include "d/actor/d_a_crod.h"
 #include "d/actor/d_a_cstatue.h"
 
 /* 800E12E0-800E1310 0DBC20 0030+00 1/1 0/0 0/0 .text            checkLv6BossRoom__9daAlink_cFv */
@@ -34,7 +36,7 @@ f32 daAlink_c::getCopyRodBallDisMax() const {
 /* 800E1374-800E1390 0DBCB4 001C+00 6/6 0/0 7/7 .text getCopyRodControllActor__9daAlink_cFv */
 fopAc_ac_c* daAlink_c::getCopyRodControllActor() {
     if (mCopyRodAcKeep.getActor() != NULL) {
-        return static_cast<daCrod_c*>(mCopyRodAcKeep.getActor())->getControllActor();
+        return ((daCrod_c*)mCopyRodAcKeep.getActor())->getControllActor();
     }
 
     return NULL;
@@ -44,7 +46,7 @@ fopAc_ac_c* daAlink_c::getCopyRodControllActor() {
  */
 fopAc_ac_c* daAlink_c::getCopyRodCameraActor() {
     if (mCopyRodAcKeep.getActor() != NULL) {
-        return static_cast<daCrod_c*>(mCopyRodAcKeep.getActor())->getCameraActor();
+        return ((daCrod_c*)mCopyRodAcKeep.getActor())->getCameraActor();
     }
 
     return NULL;
@@ -54,10 +56,9 @@ fopAc_ac_c* daAlink_c::getCopyRodCameraActor() {
 void daAlink_c::initCopyRodUpperAnimeSpeed(int param_0) {
     if (!checkCopyRodThrowAnime()) {
         if (param_0) {
-            f32 tmp_0 = 0.0f;
-            mUpperFrameCtrl[2].setRate(tmp_0);
-            mUpperFrameCtrl[2].setFrame(tmp_0);
-            getNowAnmPackUpper(UPPER_2)->setFrame(tmp_0);
+            mUpperFrameCtrl[2].setRate(0.0f);
+            mUpperFrameCtrl[2].setFrame(0.0f);
+            getNowAnmPackUpper(UPPER_2)->setFrame(0.0f);
         } else {
             mUpperFrameCtrl[2].setRate(daAlinkHIO_boom_c0::m.mIdleAnmSpeed);
         }
@@ -96,7 +97,30 @@ void daAlink_c::setCopyRodControllAnime() {
 /* 800E15FC-800E1748 0DBF3C 014C+00 1/1 0/0 0/0 .text
  * setCopyRodControllUpperSpeedRate__9daAlink_cFv               */
 void daAlink_c::setCopyRodControllUpperSpeedRate() {
-    // NONMATCHING
+    f32 var_f31;
+    if (checkAttentionLock()) {
+        var_f31 = 1.0f;
+    } else {
+        if (mProcID == PROC_STEP_MOVE) {
+            var_f31 = fabsf(field_0x3478 / daAlinkHIO_move_c0::m.mMaxSpeed);
+        } else {
+            var_f31 = fabsf(mNormalSpeed / daAlinkHIO_move_c0::m.mMaxSpeed);
+        }
+
+        if (checkHeavyStateOn(1, 1)) {
+            var_f31 *= 1.0f / (mHeavySpeedMultiplier * mHeavySpeedMultiplier);
+        }
+    }
+
+    if (var_f31 > 1.0f) {
+        var_f31 = 1.0f;
+    }
+
+    cLib_chaseF(&field_0x33e8, var_f31, 0.15f);
+
+    daPy_frameCtrl_c* frame_ctrl = &mUpperFrameCtrl[2];
+    frame_ctrl->setFrame(field_0x33e8 * frame_ctrl->getEnd());
+    getNowAnmPackUpper(UPPER_2)->setFrame(frame_ctrl->getFrame());
 }
 
 /* 800E1748-800E1840 0DC088 00F8+00 2/2 0/0 0/0 .text            setCopyRodModel__9daAlink_cFv */
@@ -106,8 +130,10 @@ void daAlink_c::setCopyRodModel() {
     mHeldItemModel = initModel(mdl_data, 0x80000, 0x1000000);
     field_0x0724 = loadAramItemBrk(0x323, mHeldItemModel);
     mDoExt_setCurrentHeap(heap);
+
     field_0x0724->setFrame(0.0f);
     field_0x2f94 = 2;
+
     mAtCps[0].SetAtSpl(dCcG_At_Spl_UNK_0);
     mAtCps[0].SetAtAtp(0);
     mAtCps[0].SetAtSe(20);
@@ -115,6 +141,7 @@ void daAlink_c::setCopyRodModel() {
     mAtCps[0].OnAtSetBit();
     mAtCps[0].SetAtHitCallback(NULL);
     mAtCps[0].SetAtMtrl(dCcD_MTRL_NONE);
+
     mHeldItemModel->setBaseTRMtx(mpLinkModel->getAnmMtx(field_0x30c0));
     mHeldItemModel->calc();
 }
@@ -144,7 +171,7 @@ void daAlink_c::setCopyRodReadyAnime() {
 
 /* 800E191C-800E1A30 0DC25C 0114+00 1/1 0/0 0/0 .text            throwCopyRod__9daAlink_cFv */
 void daAlink_c::throwCopyRod() {
-    daCrod_c* copy_rod = static_cast<daCrod_c*>(mItemAcKeep.getActor());
+    daCrod_c* copy_rod = ((daCrod_c*)mItemAcKeep.getActor());
     onNoResetFlg1(FLG1_UNK_10000);
 
     if (checkCopyRodTopUse()) {

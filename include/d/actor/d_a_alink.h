@@ -157,6 +157,12 @@ public:
     /* 0x104 */ int mSetFlag;
 };
 
+// this class is mostly a complete guess
+class daAlink_hsChainLight_c : public dKy_tevstr_c {
+public:
+    GXLightObj* getLightObj() { return &mLightObj.mLightObj; }
+};
+
 struct daAlink_BckData {
     /* 0x0 */ u16 m_underID;
     /* 0x2 */ u16 m_upperID;
@@ -1704,7 +1710,7 @@ public:
     /* 800D1788 */ static BOOL notSwordHitVibActor(fopAc_ac_c*);
     /* 800D17EC */ BOOL setSwordHitVibration(dCcD_GObjInf*);
     /* 800D1920 */ BOOL checkAtShieldHit(dCcD_GObjInf&);
-    /* 800D1978 */ bool checkCutReverseAt(dCcD_GObjInf*);
+    /* 800D1978 */ BOOL checkCutReverseAt(dCcD_GObjInf*);
     /* 800D19C8 */ BOOL changeCutReverseProc(daAlink_c::daAlink_ANM);
     /* 800D1E1C */ void setCutDash(int, int);
     /* 800D20B4 */ BOOL checkForceSwordSwing();
@@ -2492,7 +2498,7 @@ public:
     /* 8011078C */ BOOL checkWaterInKandelaarOffset(f32);
     /* 801107BC */ void checkWaterInKandelaar(f32);
     /* 80110840 */ void offKandelaarModel();
-    /* 801108EC */ void kandelaarModelCallBack();
+    /* 801108EC */ int kandelaarModelCallBack();
     /* 80110C6C */ BOOL checkKandelaarEquipAnime() const;
     /* 80110C94 */ void preKandelaarDraw();
     /* 80110E84 */ void setKandelaarModel();
@@ -3386,6 +3392,11 @@ public:
     }
 
     const cXyz& getHsChainTopPos() const { return mHookshotTopPos; }
+    const cXyz& getHsChainRootPos() const { return mHeldItemRootPos; }
+
+    const cXyz& getHsSubChainRootPos() const { return field_0x3810; }
+
+    s16 getHookshotStopTime() const { return field_0x3026; }
 
     static int getBallModelIdx() { return 0x25; }
     static int getBallBtkIdx() { return 0x49; }
@@ -3401,6 +3412,12 @@ public:
     u32 getWolfHowlTimer() { return mZ2WolfHowlMgr.getTimer(); }
     s8 getOnLineNum() { return mZ2WolfHowlMgr.getOnLineNum(); }
     SongNote getCorrectLine(u8 param_0) { return mZ2WolfHowlMgr.getCorrectLine(param_0); }
+    J3DModelData* getItemModelData() { return mpItemModelData; }
+
+    cXyz* getIronBallChainPos() const { return mIronBallChainPos; }
+    csXyz* getIronBallChainAngle() const { return mIronBallChainAngle; }
+    int getIronBallHandChainNum() const { return mItemMode; }
+    const cXyz& getIronBallChainHandRootPos() const { return mHookshotTopPos; }
 
     void itemHitSE(u32 param_1, u32 param_2, Z2SoundObjBase* param_3) { mZ2Link.startHitItemSE(param_1, param_2, param_3, -1.0f); }
 
@@ -3494,7 +3511,7 @@ public:
     /* 0x0072C */ J3DAnmTexPattern* field_0x072c;
     /* 0x00730 */ mDoExt_bckAnm mItemBck;
     /* 0x0074C */ mDoExt_bckAnm mHookTipBck;
-    /* 0x00768 */ J3DModelData* mpHookKusariModelData;
+    /* 0x00768 */ J3DModelData* mpItemModelData;
     /* 0x0076C */ Z2SoundObjSimple* mpHookSound;
     /* 0x00770 */ hsChainShape_c* mpHookChain;
     /* 0x00774 */ dBgS_AcchCir* field_0x0774;

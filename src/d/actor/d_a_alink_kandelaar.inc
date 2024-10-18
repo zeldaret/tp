@@ -107,8 +107,47 @@ bool daAlink_c::checkKandelaarSwing(int param_0) const {
 }
 
 /* 801108EC-80110BEC 10B22C 0300+00 1/1 0/0 0/0 .text kandelaarModelCallBack__9daAlink_cFv */
-void daAlink_c::kandelaarModelCallBack() {
-    // NONMATCHING
+// NONMATCHING - regalloc from cLib_minMaxLimit
+int daAlink_c::kandelaarModelCallBack() {
+    cXyz sp44;
+    mDoMtx_multVecZero(J3DSys::mCurrentMtx, &sp44);
+
+    field_0x3630 = field_0x3624;
+    field_0x3624 = mKandelaarFlamePos;
+
+    cXyz sp38 = (mKandelaarFlamePos - sp44) + field_0x3618;
+    sp38.y -= 3.0f;
+
+    cXyz sp2C;
+    mDoMtx_multVec(J3DSys::mCurrentMtx, &cXyz::BaseZ, &sp2C);
+
+    s16 var_r29 = sp2C.atan2sX_Z();
+    mDoMtx_stack_c::YrotS(-var_r29);
+    mDoMtx_stack_c::multVec(&sp38, &sp38);
+
+    s16 var_r28 = cLib_minMaxLimit<s16>(cM_atan2s(-sp38.z, -sp38.y), -0x1800, 0x1800);
+    s16 var_r27 = cLib_minMaxLimit<s16>(cM_atan2s(sp38.x, JMAFastSqrt((sp38.y * sp38.y) + (sp38.z * sp38.z))), -0x1800, 0x1800);
+
+    mDoMtx_stack_c::transS(sp44);
+    if (mProcID != PROC_OPEN_TREASURE && (mProcID != PROC_GET_ITEM || mProcVar4.field_0x3010 == 0)) {
+        mDoMtx_stack_c::ZXYrotM(var_r28, var_r29, var_r27);
+    }
+
+    mDoMtx_stack_c::multVec(&kandelaarOffset, &mKandelaarFlamePos);
+
+    field_0x3618 = (mKandelaarFlamePos - field_0x3624) * 0.9f;
+
+    if (!checkEndResetFlg1(ERFLG1_UNK_8)) {
+        f32 temp_f31 = JMAFastSqrt((J3DSys::mCurrentMtx[0][0] * J3DSys::mCurrentMtx[0][0]) + (J3DSys::mCurrentMtx[1][0] * J3DSys::mCurrentMtx[1][0]) + (J3DSys::mCurrentMtx[2][0] * J3DSys::mCurrentMtx[2][0]));
+        mDoMtx_stack_c::transS(J3DSys::mCurrentMtx[0][3], J3DSys::mCurrentMtx[1][3], J3DSys::mCurrentMtx[2][3]);
+        mDoMtx_stack_c::ZXYrotM(var_r28, var_r29, var_r27);
+        mDoMtx_stack_c::scaleM(temp_f31, temp_f31, temp_f31);
+
+        mpKanteraModel->setAnmMtx(1, mDoMtx_stack_c::get());
+        cMtx_copy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
+    }
+
+    return 1;
 }
 
 /* 80110BEC-80110C28 10B52C 003C+00 1/1 0/0 0/0 .text daAlink_kandelaarModelCallBack__FP8J3DJointi

@@ -116,14 +116,13 @@ int daObjIceLeaf_c::Create() {
     J3DJoint* joint = mpModel->getModelData()->getJointNodePointer(0);
     mTransformInfo = joint->getTransformInfo();
 
-    J3DTransformInfo trans_info;
-    trans_info.mTranslate = mTransformInfo.mTranslate;
+    J3DTransformInfo trans_info(mTransformInfo);
     trans_info.mRotation.x = 0;
     trans_info.mRotation.y = 0;
-    trans_info.mRotation.z = trans_info.mRotation.y;
-    trans_info.mScale.x = 0.0f;
-    trans_info.mScale.y = 0.0f;
-    trans_info.mScale.z = 0.0f;
+    trans_info.mRotation.z = 0;
+    trans_info.mTranslate.x = 0.0f;
+    trans_info.mTranslate.y = 0.0f;
+    trans_info.mTranslate.z = 0.0f;
     joint->setTransformInfo(trans_info);
 
     initBaseMtx();

@@ -2771,8 +2771,33 @@ int daAlink_c::procRoofHangStart() {
 /* 80100BB4-80100D38 0FB4F4 0184+00 4/4 0/0 0/0 .text            procRoofHangWaitInit__9daAlink_cFi
  */
 int daAlink_c::procRoofHangWaitInit(int param_0) {
-    // NONMATCHING
-    return 0;
+    if (!commonProcInitNotSameProc(PROC_ROOF_HANG_WAIT)) {
+        return 0;
+    }
+
+    if (field_0x2f98 == 0 || field_0x2f98 == 1) {
+        if (field_0x2f98 == 0) {
+            current.pos.x += 25.0f * cM_ssin(this->shape_angle.y);
+            current.pos.z += 25.0f * cM_scos(this->shape_angle.y);
+
+            field_0x2060->getOldFrameTransInfo(0)->mTranslate.z -= 25.0f;
+        } else {
+            current.pos.x -= 25.0f * cM_ssin(this->shape_angle.y);
+            current.pos.z -= 25.0f * cM_scos(this->shape_angle.y);
+
+            field_0x2060->getOldFrameTransInfo(0)->mTranslate.z += 25.0f;
+        }
+    }
+
+    setSingleAnimeBaseSpeed(ANM_ROOF_HANG_WAIT, daAlinkHIO_roofHang_c0::m.field_0x1C, daAlinkHIO_roofHang_c0::m.field_0x20);
+
+    current.angle.y = shape_angle.y;
+    setSpecialGravity(0.0f, maxFallSpeed, 0);
+    mNormalSpeed = 0.0f;
+    speed.y = 0.0f;
+    dComIfGp_setPlayerStatus1(0, 0x100000);
+    mProcVar0.field_0x3008 = param_0;
+    return 1;
 }
 
 /* 80100D38-80100DA4 0FB678 006C+00 1/0 0/0 0/0 .text            procRoofHangWait__9daAlink_cFv */

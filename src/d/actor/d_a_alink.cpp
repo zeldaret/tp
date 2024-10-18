@@ -4822,8 +4822,8 @@ SECTION_RODATA static Vec const bottleTop = {
 COMPILER_STRIP_GATE(0x80391A14, &bottleTop);
 
 /* 80391A20-80391A2C 01E080 000C+00 1/1 0/0 0/0 .rodata          kandelaarOffset$32655 */
-SECTION_RODATA static u8 const kandelaarOffset[12] = {
-    0x00, 0x00, 0x00, 0x00, 0xC1, 0x88, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+SECTION_RODATA static Vec const kandelaarOffset = {
+    0.0f, -17.0f, 0.0f
 };
 COMPILER_STRIP_GATE(0x80391A20, &kandelaarOffset);
 
@@ -15008,7 +15008,7 @@ void daAlink_c::deleteEquipItem(BOOL i_playSound, BOOL i_deleteKantera) {
     field_0x0724 = NULL;
     field_0x0728 = NULL;
     field_0x072c = NULL;
-    mpHookKusariModelData = NULL;
+    mpItemModelData = NULL;
     mpHookChain = NULL;
     mIronBallChainPos = NULL;
     mIronBallChainAngle = NULL;

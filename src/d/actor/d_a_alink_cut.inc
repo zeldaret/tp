@@ -3,7 +3,9 @@
  * Player Sword action handling
  */
 
+#include "d/actor/d_a_alink.h"
 #include "d/actor/d_a_b_gnd.h"
+#include "SSystem/SComponent/c_math.h"
 
 /* 800D0D38-800D0E08 0CB678 00D0+00 1/1 0/0 0/0 .text daAlink_searchNightStalker__FP10fopAc_ac_cPv
  */
@@ -23,7 +25,6 @@ static fopAc_ac_c* daAlink_searchNightStalker(fopAc_ac_c* i_actor, void*) {
 
     return NULL;
 }
-
 
 /* 800D0E08-800D0E98 0CB748 0090+00 1/1 0/0 0/0 .text            checkLightSwordMtrl__9daAlink_cFv
  */
@@ -342,8 +343,7 @@ BOOL daAlink_c::setSwordHitVibration(dCcD_GObjInf* i_gobj) {
             var_r4 = 2;
         }
 
-        f32 tmp_0 = 0.0f;
-        dComIfGp_getVibration().StartShock(var_r4, 31, cXyz(tmp_0, 1.0f, tmp_0));
+        dComIfGp_getVibration().StartShock(var_r4, 31, cXyz(0.0f, 1.0f, 0.0f));
         return true;
     }
 
@@ -358,15 +358,79 @@ BOOL daAlink_c::checkAtShieldHit(dCcD_GObjInf& param_0) {
 
 /* 800D1978-800D19C8 0CC2B8 0050+00 1/1 0/0 0/0 .text
  * checkCutReverseAt__9daAlink_cFP12dCcD_GObjInf                */
-bool daAlink_c::checkCutReverseAt(dCcD_GObjInf* param_0) {
+BOOL daAlink_c::checkCutReverseAt(dCcD_GObjInf* param_0) {
     param_0->GetAtHitAc();
-    return checkAtShieldHit(*param_0) ? true : false;
+    return checkAtShieldHit(*param_0) ? TRUE : FALSE;
 }
 
 /* 800D19C8-800D1E1C 0CC308 0454+00 5/5 0/0 0/0 .text
  * changeCutReverseProc__9daAlink_cFQ29daAlink_c11daAlink_ANM   */
 BOOL daAlink_c::changeCutReverseProc(daAlink_c::daAlink_ANM param_0) {
-    // NONMATCHING
+    if (checkCutReverseAt(&mAtCps[0]) || (mEquipItem != COPY_ROD && (checkCutReverseAt(&mAtCps[1]) || checkCutReverseAt(&mAtCps[2])))) {
+        return procCutReverseInit(param_0);
+    }
+
+    if (checkNoResetFlg0(FLG0_UNK_40) || mEquipItem == COPY_ROD) {
+        cXyz sp28;
+        Vec sp1C;
+
+        if (checkMagneBootsOn()) {
+            sp1C.x = 0.0f;
+            sp1C.y = 30.0f;
+            sp1C.z = 0.0f;
+            mDoMtx_multVecSR(mMagneBootMtx, &sp1C, &sp28);
+
+            sp28 += current.pos;
+        } else {
+            sp28.x = current.pos.x;
+            sp28.y = current.pos.y + 30.0f;
+            sp28.z = current.pos.z;
+        }
+
+        if (commonLineCheck(&sp28, &field_0x3720) && !dComIfG_Bgsp().GetPolyAttackThrough(mLinkLinChk) && dComIfG_Bgsp().GetWallCode(mLinkLinChk) != 7) {
+            cM3dGPla sp34;
+            dComIfG_Bgsp().GetTriPla(mLinkLinChk, &sp34);
+
+            f32 var_f31;
+            if (checkMagneBootsOn()) {
+                mDoMtx_multVecSR(mMagneBootInvMtx, &sp34.mNormal, &sp1C);
+                var_f31 = sp1C.y;
+            } else {
+                var_f31 = sp34.mNormal.y;
+            }
+
+            if (!cBgW_CheckBGround(var_f31) && !checkCutDashAnime()) {
+                int temp_r3 = dComIfG_Bgsp().GetPolyAtt0(mLinkLinChk);
+
+                if (!checkWoodSwordEquip() && (temp_r3 == 2 || temp_r3 == 5 || temp_r3 == 0xE || temp_r3 == 8 || temp_r3 == 0xA)) {
+                    csXyz sp8(cM_atan2s(sp34.mNormal.y, sp34.mNormal.absXZ()), cM_atan2s(-sp34.mNormal.x, -sp34.mNormal.z), 0);
+    
+                    u16 var_r28;
+                    if (temp_r3 == 5 || temp_r3 == 0xE) {
+                        var_r28 = 0x752;
+                    } else if (temp_r3 == 8) {
+                        var_r28 = 0xAE3;
+                    } else {
+                        var_r28 = 0x32E;
+                        dKy_SordFlush_set(*mLinkLinChk.GetCrossP(), 2);
+                    }
+
+                    dComIfGp_particle_set(var_r28, mLinkLinChk.GetCrossP(), &sp8, NULL);
+                }
+
+                u32 var_r27;
+                if (mAtCps[0].GetAtSe() == 14) {
+                    var_r27 = 0x40000;
+                } else {
+                    var_r27 = dCcD_GObjInf::getHitSeID(mAtCps[0].GetAtSe(), 0);
+                }
+
+                mZ2Link.startHitItemSE(var_r27, dKy_pol_sound_get(&mLinkLinChk), NULL, -1.0f);
+                return procCutReverseInit(param_0);
+            }
+        }
+    }
+
     return 0;
 }
 
@@ -1462,8 +1526,7 @@ int daAlink_c::procCutJumpLand() {
 }
 
 /* 800D47DC-800D4A74 0CF11C 0298+00 7/7 0/0 0/0 .text            procCutTurnInit__9daAlink_cFii */
-// regalloc
-#ifdef NONMATCHING
+// NONMATCHING - regalloc
 int daAlink_c::procCutTurnInit(int param_0, int param_1) {
     const daAlinkHIO_cutTurn_c1* cutData = &daAlinkHIO_cutTurn_c0::m;
     const daAlinkHIO_anm_c* anm_data;
@@ -1506,7 +1569,7 @@ int daAlink_c::procCutTurnInit(int param_0, int param_1) {
         mProcVar1.field_0x300a = 8;
     }
 
-    field_0x3480 = anm_data->->mCheckFrame;
+    field_0x3480 = anm_data->mCheckFrame;
     resetCombo(1);
 
     f32 morf;
@@ -1563,12 +1626,6 @@ int daAlink_c::procCutTurnInit(int param_0, int param_1) {
     initCutTurnAt(field_0x347c, var_r29_3);
     return 1;
 }
-#else
-int daAlink_c::procCutTurnInit(int param_0, int param_1) {
-    // NONMATCHING
-    return 0;
-}
-#endif
 
 /* 800D4A74-800D4C68 0CF3B4 01F4+00 1/0 0/0 0/0 .text            procCutTurn__9daAlink_cFv */
 int daAlink_c::procCutTurn() {
@@ -2019,8 +2076,6 @@ int daAlink_c::procCutDownLand() {
 
 
 /* 800D5C88-800D5FC8 0D05C8 0340+00 2/1 0/0 0/0 .text            procCutHeadInit__9daAlink_cFv */
-// small regalloc
-#ifdef NONMATCHING
 int daAlink_c::procCutHeadInit() {
     fopEn_enemy_c* enemy_p = (fopEn_enemy_c*)mTargetedActor;
 
@@ -2043,7 +2098,7 @@ int daAlink_c::procCutHeadInit() {
         field_0x280c.clearData();
     }
 
-    f32 fvar9 = cLib_minMaxLimit(sp2C.y, 30.0f, daAlinkHIO_cutHead_c0::m.mMaxHeight);
+    f32 fvar9 = cLib_minMaxLimit<f32>(sp2C.y, 30.0f, daAlinkHIO_cutHead_c0::m.mMaxHeight);
     f32 fvar10 = JMAFastSqrt((fvar9 * -2.0f) / gravity);
     speed.y = fvar10 * -gravity;
 
@@ -2066,12 +2121,6 @@ int daAlink_c::procCutHeadInit() {
 
     return 1;
 }
-#else
-int daAlink_c::procCutHeadInit() {
-    // NONMATCHING
-    return 0;
-}
-#endif
 
 /* 800D5FC8-800D6130 0D0908 0168+00 1/0 0/0 0/0 .text            procCutHead__9daAlink_cFv */
 int daAlink_c::procCutHead() {
