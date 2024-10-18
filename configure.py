@@ -2017,7 +2017,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_tombo"),
     ActorRel(Matching, "d_a_obj_tornado"),
     ActorRel(Matching, "d_a_obj_tornado2"),
-    ActorRel(NonMatching, "d_a_obj_tp"),
+    ActorRel(Matching, "d_a_obj_tp"),
     ActorRel(NonMatching, "d_a_obj_treesh"),
     ActorRel(NonMatching, "d_a_obj_twGate"),
     ActorRel(NonMatching, "d_a_obj_udoor"),
