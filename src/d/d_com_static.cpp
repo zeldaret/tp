@@ -502,13 +502,13 @@ int daMirror_c::entry(J3DModel* param_0) {
 }
 
 /* 80031990-800319C8 02C2D0 0038+00 0/0 0/0 2/2 .text            remove__10daMirror_cFv */
-int daMirror_c::remove() {
+bool daMirror_c::remove() {
     if (m_myObj == NULL) {
-        return 0;
+        return false;
     }
 
     fopAcM_delete(m_myObj);
-    return 1;
+    return true;
 }
 
 /* ############################################################################################## */

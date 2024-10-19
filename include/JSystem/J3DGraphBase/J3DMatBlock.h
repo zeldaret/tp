@@ -654,6 +654,10 @@ struct J3DZMode {
         mZModeID = calcZModeID(i_compare, j3dZModeTable[mZModeID * 3 + 1], j3dZModeTable[mZModeID * 3 + 2]);
     }
 
+    void setFunc(u8 i_func) {
+        mZModeID = calcZModeID(j3dZModeTable[mZModeID * 3], i_func, j3dZModeTable[mZModeID * 3 + 2]);
+    }
+
     void setUpdateEnable(u8 i_enable) {
         mZModeID = calcZModeID(j3dZModeTable[mZModeID * 3], j3dZModeTable[mZModeID * 3 + 1], i_enable);
     }
@@ -693,6 +697,7 @@ struct J3DBlend : public J3DBlendInfo {
     J3DBlend() : J3DBlendInfo(j3dDefaultBlendInfo) {}
     J3DBlend(J3DBlendInfo const& info) : J3DBlendInfo(info) {}
 
+    void setType(u8 i_type) { mType = i_type; }
     void setDstFactor(u8 i_factor) { mDstFactor = i_factor; }
 
     GXBlendMode getBlendMode() const { return (GXBlendMode)mType; }

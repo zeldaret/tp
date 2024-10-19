@@ -18,6 +18,14 @@ public:
         current.pos = i_pos;
     }
 
+    void setShapeAngle(csXyz i_angle) {
+        shape_angle = i_angle;
+    }
+
+    void setScale(f32 i_scale) {
+        mScaleF = i_scale;
+    }
+
     void setBaseMtx(MtxP i_mtx) {
         field_0x598 = 1;
         if (mLevel < 3) {

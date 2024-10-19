@@ -14,26 +14,101 @@
 #include "d/actor/d_a_midna.h"
 #include "SSystem/SComponent/c_math.h"
 #include "SSystem/SComponent/c_xyz.h"
-#include "dol2asm.h"
 
-/* 806C1A20-806C1A28 000020 0008+00 0/1 0/0 0/0 .data            e_prim$3682 */
-static GXColor e_prim[2] = {
-    {0xFF, 0x78, 0x00, 0x00}, 
-    {0xFF, 0x64, 0x78, 0x00},
+static u8 cNullVec__6Z2Calc[12] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 806C1A28-806C1A30 000028 0008+00 0/1 0/0 0/0 .data            e_env$3683 */
-static GXColor e_env[2] = {
-    {0x5A, 0x2D, 0x2D, 0x00}, 
-    {0x3C, 0x1E, 0x1E, 0x00},
+static u32 lit_1787[1 + 4 /* padding */] = {
+    0x02000201,
+    /* padding */
+    0x40080000,
+    0x00000000,
+    0x3FE00000,
+    0x00000000,
 };
 
-/* 806C1A30-806C1A38 000030 0006+02 0/1 0/0 0/0 .data            eff_id$3691 */
-static u16 eff_id[3] = {
-    0x029D,
-    0x029E,
-    0x029F,
-};
+/* 806C14D4-806C18E8 002C74 0414+00 1/1 0/0 0/0 .text
+ * setMidnaBindEffect__FP13fopEn_enemy_cP15Z2CreatureEnemyP4cXyzP4cXyz */
+// NONMATCHING
+// gave up on this one, it's a mess. 
+// it appears to be actually defined in f_op_actor header and is in ~60 enemy actor TUs
+// so needs to be solved eventually
+// bind_id issue + regalloc (could be related)
+static int setMidnaBindEffect(fopEn_enemy_c* i_actorP, Z2CreatureEnemy* i_creatureP, cXyz* i_pos,
+                              cXyz* i_scale) {
+    static GXColor e_prim[2] = {
+        {0xFF, 0x78, 0x00, 0x00}, 
+        {0xFF, 0x64, 0x78, 0x00},
+    };
+    static GXColor e_env[2] = {
+        {0x5A, 0x2D, 0x2D, 0x00}, 
+        {0x3C, 0x1E, 0x1E, 0x00},
+    };
+
+    int darkworld_check;
+    daPy_py_c* player_actor = daPy_getPlayerActorClass();
+
+    if (player_actor->getMidnaActor() && player_actor->checkWolfLock(i_actorP)) {
+        cXyz pos3;
+        if (dKy_darkworld_check()) {
+            darkworld_check = 1;
+        } else {
+            darkworld_check = 0;
+        }
+
+        if (i_actorP->getMidnaBindMode() == 0) {
+            i_actorP->setMidnaBindMode(1);
+
+            csXyz angle;
+            PSMTXCopy(player_actor->getMidnaActor()->getMtxHairTop(), mDoMtx_stack_c::get());
+            cXyz cStack_54(100.0f, 0.0f, 0.0f);
+            mDoMtx_stack_c::multVec(&cStack_54, &pos3);
+
+            cXyz pos = pos3 - *i_pos;
+
+            angle.y = cM_atan2s(pos.x, pos.z);
+            angle.x = -cM_atan2s(pos.y, JMAFastSqrt(pos.x * pos.x + pos.z * pos.z));
+            angle.z = 0;
+
+            s32 room_no = fopAcM_GetRoomNo(i_actorP);
+
+            JPABaseEmitter* emitter = dComIfGp_particle_set(
+                0x29b, i_pos, &i_actorP->tevStr, &angle, i_scale, 0xff, 0, room_no,
+                &e_prim[darkworld_check], &e_env[darkworld_check], 0);
+
+            if (emitter) {
+                emitter->setGlobalParticleHeightScale(0.01f * pos.abs());
+            }
+
+            room_no = fopAcM_GetRoomNo(i_actorP);
+
+            dComIfGp_particle_set(0x29c, i_pos, &i_actorP->tevStr, &i_actorP->shape_angle,
+                                  i_scale, 0xff, 0, room_no, &e_prim[darkworld_check],
+                                  &e_env[darkworld_check], 0);
+
+            i_creatureP->startCreatureSound(Z2SE_MIDNA_BIND_LOCK_ON, 0, -1);
+        }
+
+        static u16 eff_id[3] = {0x029D, 0x029E, 0x029F};
+        for (int i = 0; i < 3; i++) {
+            u32* bind_id = i_actorP->getMidnaBindID(i);
+            s32 room_no = fopAcM_GetRoomNo(i_actorP);
+            *bind_id = dComIfGp_particle_set(*bind_id, eff_id[i], i_pos, &i_actorP->tevStr,
+                                             &i_actorP->shape_angle, i_scale, 0xff, 0, room_no,
+                                             &e_prim[darkworld_check], &e_env[darkworld_check], 0);
+
+        }
+
+        i_creatureP->startCreatureSound(Z2SE_MIDNA_BIND_LOCK_SUS, 0, -1);
+        return 1;
+    }
+
+    i_actorP->setMidnaBindMode(0);
+    return 0;
+}
+
+namespace {
 
 /* 806C1A38-806C1A78 000038 0040+00 1/1 0/0 0/0 .data            cc_fz_src__22@unnamed@d_a_e_fz_cpp@
  */
@@ -62,28 +137,7 @@ static dCcD_SrcSph cc_fz_at_src = {
     } // mSphAttr
 };
 
-/* 806C1AD4-806C1ADC 0000D4 0006+02 1/1 0/0 0/0 .data            ice_name$4578 */
-static u16 ice_name[3] = {
-    0x8221,
-    0x8222,
-    0x8223,
-};
-
-/* 806C1ADC-806C1AFC -00001 0020+00 1/0 0/0 0/0 .data            l_daE_FZ_Method */
-// forward references
-static void daE_FZ_Create(daE_FZ_c* i_this);
-static void daE_FZ_Delete(daE_FZ_c* i_this);
-static void daE_FZ_Execute(daE_FZ_c* i_this);
-static bool daE_FZ_IsDelete(daE_FZ_c* i_this);
-static void daE_FZ_Draw(daE_FZ_c* i_this);
-
-static actor_method_class l_daE_FZ_Method = {
-    (process_method_func)daE_FZ_Create,
-    (process_method_func)daE_FZ_Delete,
-    (process_method_func)daE_FZ_Execute,
-    (process_method_func)daE_FZ_IsDelete,
-    (process_method_func)daE_FZ_Draw,
-};
+}  // namespace
 
 /* 806BE94C-806BE9D4 0000EC 0088+00 1/1 0/0 0/0 .text            __ct__12daE_FZ_HIO_cFv */
 daE_FZ_HIO_c::daE_FZ_HIO_c() {
@@ -120,9 +174,9 @@ s32 daE_FZ_c::draw() {
     cXyz pos;
 
     pos.set(current.pos.x, current.pos.y + 10.0f, current.pos.z);
-    field_0x70c = dComIfGd_setShadow(field_0x70c, 1, model, &pos, 0.0f, 1.0f, current.pos.y,
+    field_0x70c = dComIfGd_setShadow(field_0x70c, 1, model, &pos, 300.0f, 0.0f, current.pos.y,
                                      mObjAcch.GetGroundH(), mObjAcch.m_gnd, &tevStr,
-                                     0, 2.0f, &dDlst_shadowControl_c::mSimpleTexObj);
+                                     0, 1.0f, &dDlst_shadowControl_c::mSimpleTexObj);
     return 1;
 }
 
@@ -190,19 +244,12 @@ void daE_FZ_c::deadnextSet(bool param_0) {
 }
 
 /* 806C1BA0-806C1BA4 000008 0004+00 2/2 0/0 0/0 .bss             None */
-static u8 data_806C1BA0[4];
-
-/* 806C1BA4-806C1BB0 00000C 000C+00 1/1 0/0 0/0 .bss             @3819 */
-static u8 lit_3819[12];
+static u8 data_806C1BA0;
 
 /* 806C1BB0-806C1BE8 000018 0038+00 8/8 0/0 0/0 .bss             l_HIO */
 static daE_FZ_HIO_c l_HIO;
 
 /* 806BED34-806BF444 0004D4 0710+00 1/1 0/0 0/0 .text            damage_check__8daE_FZ_cFv */
-// fwd ref to function at bottom of TU
-static int setMidnaBindEffect(fopEn_enemy_c* param_0, Z2CreatureEnemy* param_1, cXyz* param_2,
-                                   cXyz* param_3);
-
 void daE_FZ_c::damage_check() {
   csXyz s_pos;
   cXyz pos;
@@ -400,12 +447,10 @@ bool daE_FZ_c::way_gake_check() {
     gnd_chk.SetPos(&field_0x6e8);
     
     field_0x6e8.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
-    f32 tmp = field_0x6e8.y;
-    
-    if (tmp == -1e+09f) {
+    if (field_0x6e8.y == -1e+09f) {
         field_0x6e8.y = current.pos.y;
         return true;
-    } else if (current.pos.y - tmp > 100.0f) {
+    } else if (current.pos.y - field_0x6e8.y > 100.0f) {
         return true;
     }
 
@@ -502,7 +547,7 @@ void daE_FZ_c::executeMove() {
             cLib_addCalcAngleS2(&current.angle.y,mAngleFromPlayer,8,256);
             cLib_addCalc2(&speedF,l_HIO.field_0x1c,1.0f,3.0f);
             
-            if (fopAcM_wayBgCheck(this, 200.0f,500.0f) != 0 || field_0x710 == 0) {
+            if (fopAcM_wayBgCheck(this, 200.0f,50.0f) != 0 || field_0x710 == 0) {
                 setActionMode(ACT_WAIT,0);
             }
         default:
@@ -571,9 +616,9 @@ void daE_FZ_c::executeDamage() {
     mActionPhase = 2;
   case 2:
     if (mObjAcch.ChkGroundHit() && dComIfG_Bgsp().GetPolyAtt0(mObjAcch.m_gnd) == 8) {
-      tmp = 1.0f;
+      tmp = 0.2f;
     } else {
-      tmp = 0.3f;
+      tmp = 1.0f;
     }
 
     cLib_addCalc0(&speedF,0.1f,tmp);
@@ -670,7 +715,7 @@ void daE_FZ_c::executeRollMove() {
         field_0x710 = (20 - field_0x715) * 2;
     case 1:
         if (field_0x710 == 0) {
-            cLib_chaseF(&mRadiusBase,0.0f,0.03f);
+            cLib_chaseF(&mRadiusBase,1.0f,0.03f);
         }
 
         cLib_chaseAngleS(&field_0x704,1024,16);
@@ -867,7 +912,7 @@ void daE_FZ_c::cc_set() {
     mDoMtx_stack_c::multVec(&pos,&pos2);
 
     mAtSph.SetC(pos2);
-    mAtSph.SetR(mRadiusBase * 0.05f);
+    mAtSph.SetR(mRadiusBase * 40.0f);
 
     dComIfG_Ccsp()->Set(&mAtSph);
 }
@@ -904,9 +949,10 @@ s32 daE_FZ_c::execute() {
 
     mCreature.framework(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
 
-    mUserWork = current.pos - home.pos;
-    mUserWork *= 8000.0f;
+    mUserWork = current.pos - old.pos;
+    mUserWork *= 0.8f;
 
+    static u16 ice_name[3] = {0x8221, 0x8222, 0x8223};
     for (int i = 0; i < 3; i++) {
         mParticleSet[i] = dComIfGp_particle_set(mParticleSet[i], ice_name[i], &current.pos, 0, 0);
         JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(mParticleSet[i]);
@@ -947,7 +993,7 @@ s32 daE_FZ_c::_delete() {
     dComIfG_resDelete(&mPhaseReq,"E_FZ");
 
     if (field_0xc21 != 0) {
-        data_806C1BA0[0] = 0;
+        data_806C1BA0 = 0;
     }
 
     if (heap) {
@@ -988,8 +1034,8 @@ s32 daE_FZ_c::create() {
     if (!fopAcM_entrySolidHeap(this,useHeapInit,6480)) {
       return cPhs_ERROR_e;
     }
-    if (data_806C1BA0[0] == 0) {
-      data_806C1BA0[0] = 1;
+    if (data_806C1BA0 == 0) {
+      data_806C1BA0 = 1;
       field_0xc21 = 1;
       l_HIO.field_0x04 = -1;
     }
@@ -1089,77 +1135,27 @@ static void daE_FZ_Create(daE_FZ_c* i_this) {
     i_this->create();
 }
 
-/* 806C14D4-806C18E8 002C74 0414+00 1/1 0/0 0/0 .text
- * setMidnaBindEffect__FP13fopEn_enemy_cP15Z2CreatureEnemyP4cXyzP4cXyz */
-#ifndef NONMATCHING
-// gave up on this one, it's a mess. 
-// it appears to be actually defined in f_op_actor header and is in ~60 enemy actor TUs
-// so needs to be solved eventually
-// bind_id issue + regalloc (could be related)
-static int setMidnaBindEffect(fopEn_enemy_c* i_actorP, Z2CreatureEnemy* i_creatureP, cXyz* param_2,
-                              cXyz* param_3) {
-    int darkworld_check;
-    daPy_py_c* player_actor = daPy_getPlayerActorClass();
+static actor_method_class l_daE_FZ_Method = {
+    (process_method_func)daE_FZ_Create,
+    (process_method_func)daE_FZ_Delete,
+    (process_method_func)daE_FZ_Execute,
+    (process_method_func)daE_FZ_IsDelete,
+    (process_method_func)daE_FZ_Draw,
+};
 
-    if (player_actor->getMidnaActor() && player_actor->checkWolfLock(i_actorP)) {
-        cXyz pos3;
-        if (dKy_darkworld_check()) {
-            darkworld_check = 1;
-        } else {
-            darkworld_check = 0;
-        }
-
-        if (i_actorP->getMidnaBindMode() == 0) {
-            i_actorP->setMidnaBindMode(1);
-
-            csXyz s_pos;
-            PSMTXCopy(player_actor->getMidnaActor()->getMtxHairTop(), mDoMtx_stack_c::get());
-            cXyz cStack_54(100.0f, 0.0f, 0.0f);
-            mDoMtx_stack_c::multVec(&cStack_54, &pos3);
-
-            cXyz pos = pos3 - *param_2;
-
-            s_pos.y = cM_atan2s(pos.x, pos.z);
-            s_pos.x = -cM_atan2s(pos.y, JMAFastSqrt(pos.x * pos.x + pos.z * pos.z));
-            s_pos.z = 0;
-
-            s32 room_no = fopAcM_GetRoomNo(i_actorP);
-
-            JPABaseEmitter* emitter = dComIfGp_particle_set(
-                0x29b, param_3, &i_actorP->tevStr, &s_pos, param_3, 0xff, 0, room_no,
-                &e_prim[darkworld_check], &e_env[darkworld_check], 0);
-
-            if (emitter) {
-                emitter->setGlobalParticleHeightScale(0.01f * pos.abs());
-            }
-
-            room_no = fopAcM_GetRoomNo(i_actorP);
-
-            dComIfGp_particle_set(0x29c, param_3, &i_actorP->tevStr, &i_actorP->shape_angle,
-                                  param_3, 0xff, 0, room_no, &e_prim[darkworld_check],
-                                  &e_env[darkworld_check], 0);
-
-            i_creatureP->startCreatureSound(Z2SE_MIDNA_BIND_LOCK_ON, 0, -1);
-        }
-        for (int i = 0; i < 3; i++) {
-            u32* bind_id = i_actorP->getMidnaBindID(i);
-            s32 room_no = fopAcM_GetRoomNo(i_actorP);
-            *bind_id = dComIfGp_particle_set(*bind_id, eff_id[i], param_2, &i_actorP->tevStr,
-                                             &i_actorP->shape_angle, param_3, 0xff, 0, room_no,
-                                             &e_prim[darkworld_check], &e_env[darkworld_check], 0);
-
-        }
-
-        i_creatureP->startCreatureSound(Z2SE_MIDNA_BIND_LOCK_SUS, 0, -1);
-        return 1;
-    }
-
-    i_actorP->setMidnaBindMode(0);
-    return 0;
-}
-#else
-static int setMidnaBindEffect(fopEn_enemy_c* param_0, Z2CreatureEnemy* param_1, cXyz* param_2,
-                                   cXyz* param_3) {
-    // NONMATCHING
-}
-#endif
+extern actor_process_profile_definition g_profile_E_FZ = {
+  fpcLy_CURRENT_e,        // mLayerID
+  7,                      // mListID
+  fpcPi_CURRENT_e,        // mListPrio
+  PROC_E_FZ,              // mProcName
+  &g_fpcLf_Method.mBase,  // sub_method
+  sizeof(daE_FZ_c),       // mSize
+  0,                      // mSizeOther
+  0,                      // mParameters
+  &g_fopAc_Method.base,   // sub_method
+  169,                    // mPriority
+  &l_daE_FZ_Method,       // sub_method
+  0x00040120,             // mStatus
+  fopAc_ENEMY_e,          // mActorType
+  fopAc_CULLBOX_0_e,      // cullType
+};

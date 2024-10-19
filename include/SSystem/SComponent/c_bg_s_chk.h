@@ -18,7 +18,7 @@ public:
     /* 0x0 */ cBgS_PolyPassChk* mPolyPassChk;
     /* 0x4 */ cBgS_GrpPassChk* mGrpPassChk;
     /* 0x8 */ fpc_ProcID mActorPid;
-    /* 0xC */ u8 unk_0x0C;
+    /* 0xC */ bool mSameActorChk;
     /* 0x10 */  // __vtable__
 
 public:
@@ -32,6 +32,7 @@ public:
     void SetGrpPassChk(cBgS_GrpPassChk* p_chk) { mGrpPassChk = p_chk; }
     cBgS_PolyPassChk* GetPolyPassChk() const { return mPolyPassChk; }
     cBgS_GrpPassChk* GetGrpPassChk() const { return mGrpPassChk; }
+    void OffSameActorChk() { mSameActorChk = false; }
 
     virtual ~cBgS_Chk(void);
 };  // Size: 0x14

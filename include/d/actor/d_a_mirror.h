@@ -44,7 +44,7 @@ public:
     /* 808723E4 */ int execute();
     /* 80872560 */ int entryModel(J3DModel*);
     /* 8003194C */ static int entry(J3DModel*);
-    /* 80031990 */ static int remove();
+    /* 80031990 */ static bool remove();
 
     inline int Delete();
     inline int draw();
