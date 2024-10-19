@@ -1,5 +1,8 @@
 #include "d/actor/d_a_alink.h"
 #include "d/d_com_inf_game.h"
+#include "d/actor/d_a_obj_carry.h"
+#include "d/d_bg_w.h"
+#include "d/actor/d_a_cow.h"
 
 /* 800E3830-800E3858 0DE170 0028+00 2/2 0/0 0/0 .text daAlink_checkLightBallA__FP10fopAc_ac_c */
 static bool daAlink_checkLightBallA(fopAc_ac_c* p_actor) {
@@ -557,10 +560,10 @@ int daAlink_c::setPushPullKeepData(dBgW_Base::PushPullLabel i_label, int param_1
     if (i_label != dBgW::PPLABEL_NONE || param_1) {
         if (pp_actor->shape_angle.y != mProcVar2.field_0x300c) {
             s16 var_r28 = pp_actor->shape_angle.y - mProcVar2.field_0x300c;
-            mProcVar3.field_0x300e.x += var_r28;
+            mProcVar3.field_0x300e += var_r28;
 
-            current.pos.x = field_0x37c8.x + field_0x347c * cM_ssin(mProcVar3.field_0x300e.x);
-            current.pos.z = field_0x37c8.z + field_0x347c * cM_scos(mProcVar3.field_0x300e.x);
+            current.pos.x = field_0x37c8.x + field_0x347c * cM_ssin(mProcVar3.field_0x300e);
+            current.pos.z = field_0x37c8.z + field_0x347c * cM_scos(mProcVar3.field_0x300e);
             shape_angle.y += var_r28;
             current.angle.y += var_r28;
         }
@@ -672,8 +675,8 @@ static fopAc_ac_c* daAlink_searchGoat(fopAc_ac_c* i_actor, void*) {
 /* 800E91C4-800E9210 0E3B04 004C+00 1/0 0/0 0/0 .text            cancelGoronThrowEvent__9daAlink_cFv
  */
 void daAlink_c::cancelGoronThrowEvent() {
-    if (mProcID == PROC_GOAT_CATCH && mProcVar3.field_0x300e.z == 0) {
-        mProcVar3.field_0x300e.z = 1;
+    if (mProcID == PROC_GOAT_CATCH && mProcVar5.field_0x3012 == 0) {
+        mProcVar5.field_0x3012 = 1;
         dComIfGp_event_reset();
     }
 }
@@ -708,7 +711,7 @@ int daAlink_c::procGoatMoveInit() {
         field_0x280c.setData(goat_p);
     }
 
-    mProcVar3.field_0x300e.x = 0;
+    mProcVar3.field_0x300e = 0;
     deleteEquipItem(FALSE, FALSE);
     return 1;
 }
@@ -789,7 +792,7 @@ int daAlink_c::procGoronMoveInit() {
     field_0x594 = daAlinkHIO_atnMove_c0::m.mMaxSpeed;
     setSingleAnimeBase(ANM_ATN_RIGHT);
     mProcVar2.field_0x300c = 1;
-    mProcVar3.field_0x300e.x = 0;
+    mProcVar3.field_0x300e = 0;
     return 1;
 }
 

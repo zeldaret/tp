@@ -9,6 +9,7 @@
 #include "d/d_bomb.h"
 #include "d/d_item.h"
 #include "d/d_meter2.h"
+#include "d/d_meter2_info.h"
 #include "d/d_msg_object.h"
 #include "d/d_s_play.h"
 

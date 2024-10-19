@@ -3,6 +3,8 @@
  * Player Bomb action handling
  */
 
+#include "d/actor/d_a_alink.h"
+
 /* 800E3760-800E3770 0DE0A0 0010+00 0/0 0/0 7/7 .text            getBombExplodeTime__9daAlink_cCFv
  */
 s16 daAlink_c::getBombExplodeTime() const {

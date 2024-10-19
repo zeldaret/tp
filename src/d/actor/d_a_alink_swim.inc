@@ -129,7 +129,7 @@ void daAlink_c::setWaterInAnmRate(daPy_frameCtrl_c* i_frameCtrl, f32 i_rate) {
 }
 
 /* 80101D70-801023E4 0FC6B0 0674+00 2/2 0/0 0/0 .text            swimBgCheck__9daAlink_cFf */
-#ifdef NONMATCHING
+// NONMATCHING
 void daAlink_c::swimBgCheck(f32 param_0) {
     offNoResetFlg1(FLG1_UNK_20000000);
 
@@ -205,11 +205,6 @@ void daAlink_c::swimBgCheck(f32 param_0) {
         field_0x3092 = cM_atan2s(-fvar14, -fvar15);
     }
 }
-#else
-void daAlink_c::swimBgCheck(f32 param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 801023E4-801029C8 0FCD24 05E4+00 3/3 0/0 0/0 .text            setSpeedAndAngleSwim__9daAlink_cFv
  */
@@ -369,7 +364,7 @@ int daAlink_c::procSwimUpInit() {
     setSingleAnimeParam(ANM_SWIM_RESURFACE, &daAlinkHIO_swim_c0::m.mResurfaceAnm);
     dComIfGp_setPlayerStatus0(0, 0x100000);
     mProcVar0.field_0x3008 = 0;
-    mProcVar3.field_0x300e.y = 0;
+    mProcVar4.field_0x3010 = 0;
     field_0x3480 = daAlinkHIO_swim_c0::m.mInitHeight;
     field_0x3000 = 0;
 
@@ -422,10 +417,10 @@ int daAlink_c::procSwimWaitInit(int param_0) {
 
     if (param_0) {
         seStartMapInfo(Z2SE_AL_INTO_WATER);
-        mProcVar3.field_0x300e.y = 0;
+        mProcVar4.field_0x3010 = 0;
         field_0x3480 = daAlinkHIO_swim_c0::m.mInitHeight;
     } else if (!mode_40000) {
-        mProcVar3.field_0x300e.y = 0;
+        mProcVar4.field_0x3010 = 0;
         field_0x3480 = daAlinkHIO_swim_c0::m.mInitHeight;
     }
 
@@ -526,7 +521,7 @@ int daAlink_c::procSwimMoveInit() {
 
     if (!mode_40000) {
         field_0x3480 = daAlinkHIO_swim_c0::m.mInitHeight;
-        mProcVar3.field_0x300e.y = 0;
+        mProcVar4.field_0x3010 = 0;
     }
 
     if (proc_swim_dive || proc_dive_jump) {
@@ -534,8 +529,8 @@ int daAlink_c::procSwimMoveInit() {
 
         if (proc_dive_jump) {
             field_0x3080 = 0x2800;
-            mProcVar3.field_0x300e.x = field_0x3080;
-            mProcVar3.field_0x300e.y = 1;
+            mProcVar3.field_0x300e = field_0x3080;
+            mProcVar4.field_0x3010 = 1;
             setOldRootQuaternion(-field_0x3080, 0, 0);
         }
     } else {
@@ -613,7 +608,7 @@ int daAlink_c::procSwimDiveInit() {
     field_0x2f99 = 0x10;
     field_0x3588 = l_waitBaseAnime;
     field_0x3480 = daAlinkHIO_swim_c0::m.mInitHeight;
-    mProcVar3.field_0x300e.y = 0;
+    mProcVar4.field_0x3010 = 0;
 
     dComIfGp_setPlayerStatus0(0, 0x100000);
     field_0x3000 = 30;
@@ -657,8 +652,8 @@ int daAlink_c::procSwimDive() {
 
         if (mProcVar2.field_0x300c != 0) {
             field_0x3080 = 0x2800;
-            mProcVar3.field_0x300e.x = field_0x3080;
-            mProcVar3.field_0x300e.y = 1;
+            mProcVar3.field_0x300e = field_0x3080;
+            mProcVar4.field_0x3010 = 1;
         }
 
         setOldRootQuaternion(-field_0x3080, 0, 0);
@@ -700,7 +695,7 @@ int daAlink_c::procSwimHookshotSubjectInit() {
     field_0x594 = getSwimFrontMaxSpeed();
 
     field_0x3480 = daAlinkHIO_swim_c0::m.mInitHeight;
-    mProcVar3.field_0x300e.y = 0;
+    mProcVar4.field_0x3010 = 0;
     field_0x30d0 = 0;
 
     setHookshotReadyMaterial();
@@ -778,7 +773,7 @@ int daAlink_c::procSwimHookshotMoveInit() {
     }
 
     field_0x3480 = daAlinkHIO_swim_c0::m.mInitHeight;
-    mProcVar3.field_0x300e.y = 0;
+    mProcVar4.field_0x3010 = 0;
     field_0x30d0 = 0;
 
     dComIfGp_setPlayerStatus0(0, 0x104000);
@@ -841,8 +836,7 @@ int daAlink_c::procSwimHookshotMove() {
 
 /* 8010519C-80105728 0FFADC 058C+00 1/1 0/0 0/0 .text
  * procSwimDamageInit__9daAlink_cFP12dCcD_GObjInf               */
-// instruction block order issue
-#ifdef NONMATCHING
+// NONMATCHING - instruction block order issue
 int daAlink_c::procSwimDamageInit(dCcD_GObjInf* param_0) {
     seStartOnlyReverb(Z2SE_AL_DAMAGE_NORMAL);
     dComIfGp_getVibration().StartShock(2, 31, cXyz(0.0f, 1.0f, 0.0f));
@@ -921,12 +915,6 @@ int daAlink_c::procSwimDamageInit(dCcD_GObjInf* param_0) {
 
     return 1;
 }
-#else
-int daAlink_c::procSwimDamageInit(dCcD_GObjInf* param_0) {
-    // NONMATCHING
-    return 0;
-}
-#endif
 
 /* 80105728-801058A0 100068 0178+00 1/0 0/0 0/0 .text            procSwimDamage__9daAlink_cFv */
 int daAlink_c::procSwimDamage() {

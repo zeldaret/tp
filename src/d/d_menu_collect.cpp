@@ -22,6 +22,7 @@
 #include "d/d_pane_class.h"
 #include "d/d_item.h"
 #include "d/d_lib.h"
+#include "d/d_meter2_info.h"
 #include "dol2asm.h"
 #include "dolphin/os.h"
 #include "dolphin/types.h"

@@ -2,18 +2,17 @@
 #define D_A_D_A_ALINK_H
 
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/J3DGraphBase/J3DMatBlock.h"
 #include "Z2AudioLib/Z2Creature.h"
 #include "Z2AudioLib/Z2WolfHowlMgr.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_eye_hl.h"
 #include "d/d_jnt_col.h"
-#include "d/d_meter2_info.h"
 #include "d/d_msg_flow.h"
 #include "d/d_particle_copoly.h"
 #include "d/d_save.h"
 #include "f_op/f_op_actor_mng.h"
-#include "d/actor/d_a_kytag05.h"
 #include "d/actor/d_a_tag_mmsg.h"
 
 class J2DAnmColorKey;
@@ -155,6 +154,12 @@ public:
     /* 0x0FC */ f32 mNowOffsetX;
     /* 0x100 */ f32 mNowOffsetY;
     /* 0x104 */ int mSetFlag;
+};
+
+// this class is mostly a complete guess
+class daAlink_hsChainLight_c : public dKy_tevstr_c {
+public:
+    GXLightObj* getLightObj() { return &mLightObj.mLightObj; }
 };
 
 struct daAlink_BckData {
@@ -1704,7 +1709,7 @@ public:
     /* 800D1788 */ static BOOL notSwordHitVibActor(fopAc_ac_c*);
     /* 800D17EC */ BOOL setSwordHitVibration(dCcD_GObjInf*);
     /* 800D1920 */ BOOL checkAtShieldHit(dCcD_GObjInf&);
-    /* 800D1978 */ bool checkCutReverseAt(dCcD_GObjInf*);
+    /* 800D1978 */ BOOL checkCutReverseAt(dCcD_GObjInf*);
     /* 800D19C8 */ BOOL changeCutReverseProc(daAlink_c::daAlink_ANM);
     /* 800D1E1C */ void setCutDash(int, int);
     /* 800D20B4 */ BOOL checkForceSwordSwing();
@@ -2492,7 +2497,7 @@ public:
     /* 8011078C */ BOOL checkWaterInKandelaarOffset(f32);
     /* 801107BC */ void checkWaterInKandelaar(f32);
     /* 80110840 */ void offKandelaarModel();
-    /* 801108EC */ void kandelaarModelCallBack();
+    /* 801108EC */ int kandelaarModelCallBack();
     /* 80110C6C */ BOOL checkKandelaarEquipAnime() const;
     /* 80110C94 */ void preKandelaarDraw();
     /* 80110E84 */ void setKandelaarModel();
@@ -3173,7 +3178,7 @@ public:
     BOOL checkBarkAnime() const { return 0; }
     bool checkWolfGrabAnimeObj() const { return checkUpperAnime(0x2DA); }
     bool checkWolfGrabAnimeStick() const { return checkUpperAnime(0x2DB); }
-    bool checkWolfGrabAnime() const { return checkWolfGrabAnimeObj() || checkWolfGrabAnimeStick(); }
+    BOOL checkWolfGrabAnime() const { return checkWolfGrabAnimeObj() || checkWolfGrabAnimeStick(); }
     bool checkWolfSwimDashAnime() const { return checkUnderMove0BckNoArcWolf(WANM_SWIM_DASH); }
     bool checkKandelaarSwingAnime() const { return false; }
     bool checkBowChargeWaitAnime() const { return checkUpperAnime(0xA); }
@@ -3386,6 +3391,11 @@ public:
     }
 
     const cXyz& getHsChainTopPos() const { return mHookshotTopPos; }
+    const cXyz& getHsChainRootPos() const { return mHeldItemRootPos; }
+
+    const cXyz& getHsSubChainRootPos() const { return field_0x3810; }
+
+    s16 getHookshotStopTime() const { return field_0x3026; }
 
     static int getBallModelIdx() { return 0x25; }
     static int getBallBtkIdx() { return 0x49; }
@@ -3395,12 +3405,18 @@ public:
     bool checkRootTransZClearMode() { return field_0x2f99 & 4; }
     bool checkRootTransXClearMode() { return field_0x2f99 & 1; }
     bool checkRootTransYClearMode() { return field_0x2f99 & 2; }
-    s16 checkWindStoneHowl() {return mProcVar3.field_0x300e.y; }
+    s16 checkWindStoneHowl() {return mProcVar4.field_0x3010; }
     u8 getCorrectCurveID() { return mZ2WolfHowlMgr.getCorrectCurveID(); }
     u8 getCorrectLineNum() { return mZ2WolfHowlMgr.getCorrectLineNum(); }
     u32 getWolfHowlTimer() { return mZ2WolfHowlMgr.getTimer(); }
     s8 getOnLineNum() { return mZ2WolfHowlMgr.getOnLineNum(); }
     SongNote getCorrectLine(u8 param_0) { return mZ2WolfHowlMgr.getCorrectLine(param_0); }
+    J3DModelData* getItemModelData() { return mpItemModelData; }
+
+    cXyz* getIronBallChainPos() const { return mIronBallChainPos; }
+    csXyz* getIronBallChainAngle() const { return mIronBallChainAngle; }
+    int getIronBallHandChainNum() const { return mItemMode; }
+    const cXyz& getIronBallChainHandRootPos() const { return mHookshotTopPos; }
 
     void itemHitSE(u32 param_1, u32 param_2, Z2SoundObjBase* param_3) { mZ2Link.startHitItemSE(param_1, param_2, param_3, -1.0f); }
 
@@ -3494,7 +3510,7 @@ public:
     /* 0x0072C */ J3DAnmTexPattern* field_0x072c;
     /* 0x00730 */ mDoExt_bckAnm mItemBck;
     /* 0x0074C */ mDoExt_bckAnm mHookTipBck;
-    /* 0x00768 */ J3DModelData* mpHookKusariModelData;
+    /* 0x00768 */ J3DModelData* mpItemModelData;
     /* 0x0076C */ Z2SoundObjSimple* mpHookSound;
     /* 0x00770 */ hsChainShape_c* mpHookChain;
     /* 0x00774 */ dBgS_AcchCir* field_0x0774;
@@ -3652,7 +3668,7 @@ public:
     /* 0x02FA5 */ u8 mPolySound;
     /* 0x02FA6 */ u8 field_0x2fa6;
     /* 0x02FA7 */ u8 field_0x2fa7;
-    /* 0x02FA8 */ u8 field_0x2fa8;
+    /* 0x02FA8 */ u8 mGndPolySpecialCode;
     /* 0x02FA9 */ u8 mWolfEyeUpTimer;
     /* 0x02FAA */ u8 mRideStatus;
     /* 0x02FAB */ u8 field_0x2fab;
@@ -3733,14 +3749,21 @@ public:
     } /* 0x03008 */ mProcVar0;
     union {
         s16 field_0x300a;
+        s16 mBoardSwordChargeTime;
     } /* 0x0300A */ mProcVar1;
     union {
         s16 field_0x300c;
         s16 mPuzzleAimAngle;
     } /* 0x0300C */ mProcVar2;
     union {
-        SVec field_0x300e;
+        s16 field_0x300e;
     } /* 0x0300E */ mProcVar3;
+    union {
+        s16 field_0x3010;
+    } /* 0x03010 */ mProcVar4;
+    union {
+        s16 field_0x3012;
+    } /* 0x03012 */ mProcVar5;
     /* 0x03014 */ s16 mFallVoiceInit;
     /* 0x03016 */ u8 field_0x3016[2];
     union {
@@ -4048,6 +4071,16 @@ public:
 static bool daAlink_checkLightBallA(fopAc_ac_c* p_actor);
 static bool daAlink_checkLightBallB(fopAc_ac_c* p_actor);
 static fopAc_ac_c* daAlink_searchCoach(fopAc_ac_c* param_0, void* param_1);
+
+struct daAlink_cutParamTbl {
+    /* 0x0 */ daAlink_c::daAlink_ANM m_anmID;
+    /* 0x4 */ int field_0x4;
+    /* 0x8 */ u8 m_cutType;
+    /* 0x9 */ u8 m_atSe;
+    /* 0xA */ u8 field_0xa;
+    /* 0xB */ u8 field_0xb;
+    /* 0xC */ f32 m_morf;
+};  // Size: 0x10
 
 struct daAlinkHIO_anm_c {
     /* 0x00 */ s16 mEndFrame;

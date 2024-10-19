@@ -10,6 +10,7 @@
 #include "d/actor/d_a_alink.h"
 #include "d/d_meter2.h"
 #include "d/d_meter2_draw.h"
+#include "d/d_meter2_info.h"
 #include "JSystem/JUtility/JUTTexture.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"

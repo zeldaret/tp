@@ -106,7 +106,7 @@ void daAlink_c::setIronBallModel() {
     JKRHeap* prev_heap = setItemHeap();
 
     mHeldItemModel = initModelEnv(loadAramBmd(0x311, 0x2800), 0);
-    mpHookKusariModelData = loadAramBmd(0x317, 0x1000);
+    mpItemModelData = loadAramBmd(0x317, 0x1000);
     mpHookChain = new hsChainShape_c();
 
     mIronBallChainPos = new cXyz[102];

@@ -16,6 +16,13 @@ class dBgS_SphChk;
 class dBgS_SplGrpChk;
 class fopAc_ac_c;
 
+enum dBgW_SpecialCode {
+    dBgW_SPCODE_NORMAL,
+    dBgW_SPCODE_LIGHT_SNOW = 5,
+    dBgW_SPCODE_HEAVY_SNOW = 6,
+    dBgW_SPCODE_ICE = 8,
+};
+
 class dBgW_Base : public cBgW_BgId {
 public:
     enum PushPullLabel {

@@ -9,6 +9,7 @@
 #include "d/d_item.h"
 #include "d/d_msg_object.h"
 #include "d/d_shop_system.h"
+#include "d/d_meter2_info.h"
 #include "dol2asm.h"
 #include "f_op/f_op_msg_mng.h"
 #include "m_Do/m_Do_graphic.h"

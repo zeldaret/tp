@@ -784,6 +784,7 @@ public:
     bool checkSwimUp() const { return checkNoResetFlg0(FLG0_SWIM_UP); }
     BOOL checkHorseZelda() const { return checkNoResetFlg2(FLG2_HORSE_ZELDA); }
     BOOL checkSpecialHorseRide() { return checkNoResetFlg2(daPy_FLG2(FLG2_HORSE_ZELDA | FLG2_UNK_1000000 | FLG2_UNK_800000)); }
+    BOOL checkBoardNoFootAngle() const { return checkResetFlg1(RFLG1_UNK_40); }
 
     void onBossRoomWait() { onEndResetFlg0(ERFLG0_BOSS_ROOM_WAIT); }
     void onBeeFollow() { onEndResetFlg0(ERFLG0_BEE_FOLLOW); }

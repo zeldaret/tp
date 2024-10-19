@@ -192,11 +192,11 @@ int daAlink_c::procSpinnerWaitInit() {
     mNormalSpeed = 0.0f;
     mProcVar2.field_0x300c = 0;
 
-    mProcVar3.field_0x300e.x = shape_angle.y;
-    mProcVar3.field_0x300e.y = 0;
+    mProcVar3.field_0x300e = shape_angle.y;
+    mProcVar4.field_0x3010 = 0;
     field_0x3198 = ANM_RIDE_CROUCH;
     field_0x33b0 = 70.0f;
-    mProcVar3.field_0x300e.z = 0;
+    mProcVar5.field_0x3012 = 0;
     field_0x37a4 = mRideAcKeep.getActor()->current.pos;
 
     return 1;
@@ -235,7 +235,7 @@ int daAlink_c::procSpinnerWait() {
             }
 
             current.angle.y = shape_angle.y;
-            mProcVar3.field_0x300e.x = shape_angle.y;
+            mProcVar3.field_0x300e = shape_angle.y;
         }
     } else {
         if (checkSetItemTrigger(SPINNER) || swordSwingTrigger() || itemSetBtn == 2) {
@@ -262,7 +262,7 @@ int daAlink_c::procSpinnerWait() {
         current.angle.y = spinner->current.angle.y;
 
         if (spinner->checkSpinnerTagIntoIncRot()) {
-            mProcVar3.field_0x300e.z = 1;
+            mProcVar5.field_0x3012 = 1;
             setSpinnerStatus(ACTION_STR_SPIN, ACTION_FLG_CONTINUATION);
 
             if (field_0x3198 != ANM_RIDE_KICK && field_0x2060->getOldFrameRate() < 0.01f) {
@@ -272,7 +272,7 @@ int daAlink_c::procSpinnerWait() {
                 fopAcM_seStartCurrent(spinner, Z2SE_OBJ_SPNR_SW_PUSH, 0);
             }
         } else if (spinner->checkSpinnerTagInto()) {
-            if (mProcVar3.field_0x300e.z != 0) {
+            if (mProcVar5.field_0x3012 != 0) {
                 setSpinnerStatus(ACTION_STR_SPIN, ACTION_FLG_CONTINUATION);
             } else {
                 setSpinnerStatus(ACTION_STR_SPIN, ACTION_FLG_DEFAULT);
@@ -289,18 +289,18 @@ int daAlink_c::procSpinnerWait() {
             setSingleAnime(ANM_RIDE_JUMP, 0.0f, daAlinkHIO_board_c0::m.mAirborneAnm.mStartFrame,
                            daAlinkHIO_board_c0::m.mAirborneAnm.mEndFrame,
                            daAlinkHIO_board_c0::m.mAirborneAnm.mInterpolation);
-            mProcVar3.field_0x300e.y = 0;
+            mProcVar4.field_0x3010 = 0;
         } else if (field_0x3198 == ANM_RIDE_JUMP) {
             if (!spinner->getJumpFlg()) {
                 setSingleAnime(ANM_RIDE_JUMP_LAND, daAlinkHIO_board_c0::m.mLandAnm.mSpeed,
                                daAlinkHIO_board_c0::m.mLandAnm.mStartFrame, 16,
                                daAlinkHIO_board_c0::m.mLandAnm.mInterpolation);
                 field_0x3198 = ANM_RIDE_JUMP_LAND;
-            } else if (mProcVar3.field_0x300e.y == 0 && field_0x2060->getOldFrameRate() < 0.01f) {
+            } else if (mProcVar4.field_0x3010 == 0 && field_0x2060->getOldFrameRate() < 0.01f) {
                 setSingleAnime(ANM_RIDE_JUMP, daAlinkHIO_board_c0::m.mAirborneAnm.mSpeed,
                                daAlinkHIO_board_c0::m.mAirborneAnm.mStartFrame,
                                daAlinkHIO_board_c0::m.mAirborneAnm.mEndFrame, -1.0f);
-                mProcVar3.field_0x300e.y = 1;
+                mProcVar4.field_0x3010 = 1;
             }
         } else if ((field_0x3198 == ANM_RIDE_JUMP_LAND && frameCtrl->checkAnmEnd()) ||
                    (field_0x3198 != ANM_RIDE_JUMP_LAND && field_0x3198 != ANM_RIDE_CROUCH)) {
@@ -311,7 +311,7 @@ int daAlink_c::procSpinnerWait() {
     }
 
     setSpinnerSyncPos();
-    shape_angle.y = mProcVar3.field_0x300e.x;
+    shape_angle.y = mProcVar3.field_0x300e;
 
     return 1;
 }
