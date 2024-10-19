@@ -361,7 +361,7 @@ public:
     /* 80181278 */ void SetBlureActor(fopAc_ac_c*);
     /* 80181280 */ void blureCamera();
     /* 80181490 */ void onHorseDush();
-    /* 80181500 */ void GetForceLockOnActor();
+    /* 80181500 */ fopAc_ac_c* GetForceLockOnActor();
     /* 80181534 */ void ForceLockOn(fopAc_ac_c*);
     /* 80181560 */ void ForceLockOff(fpc_ProcID);
     /* 8018159C */ void ForceLockOff(fopAc_ac_c*);

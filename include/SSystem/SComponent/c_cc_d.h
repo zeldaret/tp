@@ -494,6 +494,8 @@ public:
     void OffCoSPrmBit(u32 flag) { mObjCo.OffSPrmBit(flag); }
     void SetAtType(u32 type) { mObjAt.SetType(type); }
     void OnAtSetBit() { mObjAt.OnSPrmBit(1); }
+    void OnAtNoTgHitInfSet() { mObjAt.OnSPrmBit(0x20); }
+    void OffAtNoTgHitInfSet() { mObjAt.OffSPrmBit(0x20); }
     u32 MskTgSPrm(u32 mask) const { return mObjTg.MskSPrm(mask); }
     void SetAtAtp(int atp) { mObjAt.SetAtp(atp); }
     void OffCoSetBit() { mObjCo.ClrSet(); }

@@ -4284,7 +4284,7 @@ void dCamera_c::onHorseDush() {
 
 /* 80181500-80181534 17BE40 0034+00 1/1 1/1 5/5 .text            GetForceLockOnActor__9dCamera_cFv
  */
-void dCamera_c::GetForceLockOnActor() {
+fopAc_ac_c* dCamera_c::GetForceLockOnActor() {
     // NONMATCHING
 }
 
