@@ -224,7 +224,7 @@ var d__a__e__dk_8cpp =
     [ "elect_effect_name", "d__a__e__dk_8cpp.html#ac814ffa174ecbc177df9e695fa5718c4", null ],
     [ "g_dComIfG_gameInfo", "d__a__e__dk_8cpp.html#a50ad47c26bcc2867f2c14d349753f58e", null ],
     [ "g_profile_E_DK", "d__a__e__dk_8cpp.html#a3c73d82190f53f7ff1039fb8e21ca77d", null ],
-    [ "j3dZModeTable", "d__a__e__dk_8cpp.html#a3e04db0947b1ec8954d0993d0f4b67ca", null ],
+    [ "j3dZModeTable", "d__a__e__dk_8cpp.html#aeefcfe5f0f1f9f4c51d832619666f6d9", null ],
     [ "l_daE_DK_Method", "d__a__e__dk_8cpp.html#aa3c3306e5456613109e89f6cc3c4e355", null ],
     [ "l_HIO", "d__a__e__dk_8cpp.html#a5ed722af87d7db0c5057a73792221d9e", null ],
     [ "lit_1787", "d__a__e__dk_8cpp.html#a5bb5d6a82c2f4d4bb43dbf4d11e60387", null ],

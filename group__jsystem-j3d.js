@@ -658,6 +658,7 @@ var group__jsystem_j3d =
       [ "setCurrentMtxCalc", "structJ3DJoint.html#a58321020bf05d754346f1ab56da56220", null ],
       [ "setMtxCalc", "structJ3DJoint.html#a5bb8f8e2ef738e9691d31097a1cfb0a3", null ],
       [ "setMtxType", "structJ3DJoint.html#a03875606a3acb330c14fa88ac09e2286", null ],
+      [ "setTransformInfo", "structJ3DJoint.html#aca2c06e00529fd7848de75068fc2376c", null ],
       [ "setYounger", "structJ3DJoint.html#adf313d311beb4e3bcc90a89f20ba2864", null ],
       [ "J3DJointFactory", "structJ3DJoint.html#a19784d8ab35c9536075c61200577c3b6", null ],
       [ "J3DJointTree", "structJ3DJoint.html#a942e6e39be57ad8fe8641bfd87306fb1", null ],
@@ -1686,6 +1687,7 @@ var group__jsystem_j3d =
       [ "getUpdateEnable", "structJ3DZMode.html#a20ade4d5fff7be6a958e2a5c8c434667", null ],
       [ "load", "structJ3DZMode.html#a65cbb4ef5b6ea7a7dc5875cb7a561f67", null ],
       [ "setCompareEnable", "structJ3DZMode.html#adc10e4143ba6af21569329924cf09c8d", null ],
+      [ "setFunc", "structJ3DZMode.html#a08338af5949d958ee86beb96f75b1e66", null ],
       [ "setUpdateEnable", "structJ3DZMode.html#ab882d9ea54e5235773d60b4d8d8923bb", null ],
       [ "setZModeInfo", "structJ3DZMode.html#a28620290859c10a7b2be3e1da4cfe1a1", null ],
       [ "mZModeID", "structJ3DZMode.html#aefbebc9ff7f040406039fc7bceb24e2d", null ]
@@ -1705,7 +1707,8 @@ var group__jsystem_j3d =
       [ "getLogicOp", "structJ3DBlend.html#a8cd27482ae7e5c2ccf0d9b4f82fbe003", null ],
       [ "getSrcFactor", "structJ3DBlend.html#abe762c8da7f360ddb40718134743e20e", null ],
       [ "load", "structJ3DBlend.html#aab1ec97846419682f0cfb23fcc421dab", null ],
-      [ "setDstFactor", "structJ3DBlend.html#a144aaa49ac37b4e2593fd9ad5f7c7165", null ]
+      [ "setDstFactor", "structJ3DBlend.html#a144aaa49ac37b4e2593fd9ad5f7c7165", null ],
+      [ "setType", "structJ3DBlend.html#a5a9dfc595cf116f36a425de1a50207a7", null ]
     ] ],
     [ "J3DFog", "structJ3DFog.html", [
       [ "J3DFog", "structJ3DFog.html#a0e754d3c498c4c333c1bbabb1c78ca02", null ],
@@ -2795,7 +2798,7 @@ var group__jsystem_j3d =
       [ "mTexMtxReg", "structJ3DTexCoord.html#a872b99007c8ded31902d7bdd30e7f277", null ]
     ] ],
     [ "J3DTransformInfo", "structJ3DTransformInfo.html", [
-      [ "operator=", "structJ3DTransformInfo.html#a762eadb4d32b75ae26939fbc9999f0c7", null ],
+      [ "operator=", "structJ3DTransformInfo.html#a4cc6607d6671f67faa152970cea61f79", null ],
       [ "mRotation", "structJ3DTransformInfo.html#ae2bfa65398bccd919fbaf6a1c4c26b7a", null ],
       [ "mScale", "structJ3DTransformInfo.html#a266cd452a37a8300efeac02933bdefa7", null ],
       [ "mTranslate", "structJ3DTransformInfo.html#a402a8d9f3133b7b8a1a3ba8cbef9fd8a", null ]

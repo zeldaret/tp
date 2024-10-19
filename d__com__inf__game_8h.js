@@ -341,7 +341,7 @@ var d__com__inf__game_8h =
     [ "dComIfGp_getStageRoom", "d__com__inf__game_8h.html#a5eb28d83d439c14b4622adfdc0dbb219", null ],
     [ "dComIfGp_getStageSclsInfo", "d__com__inf__game_8h.html#a200f111e9b5e427daa13d69303cac1f1", null ],
     [ "dComIfGp_getStageStagInfo", "d__com__inf__game_8h.html#a8c556b24c9a46679a2a448286ba140e4", null ],
-    [ "dComIfGp_getStageVrboxcolInfo", "d__com__inf__game_8h.html#a4f26d98d6d37c4ebe8ffe01c491db218", null ],
+    [ "dComIfGp_getStageVrboxcolInfo", "d__com__inf__game_8h.html#a845c4e55cf485f6fffa2e76417d0910e", null ],
     [ "dComIfGp_getStartStage", "d__com__inf__game_8h.html#a2dfe47a8a09a5c910a025c595d1e190b", null ],
     [ "dComIfGp_getStartStageDarkArea", "d__com__inf__game_8h.html#ab99bfdd210843481908192c849b5e4a7", null ],
     [ "dComIfGp_getStartStageLayer", "d__com__inf__game_8h.html#aa5c9126a9261bc3a98e4ebd7871e8ee8", null ],

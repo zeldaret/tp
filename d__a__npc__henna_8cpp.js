@@ -263,7 +263,7 @@ var d__a__npc__henna_8cpp =
     [ "dComIfGp_setItemRupeeCount__Fl", "d__a__npc__henna_8cpp.html#a8334aa2f7380c296d84047a06332d346", null ],
     [ "dComIfGp_setMessageCountNumber__Fl", "d__a__npc__henna_8cpp.html#ad40712bd3d8f18824fa8946dfbe9c117", null ],
     [ "dComIfGs_getEventReg__FUs", "d__a__npc__henna_8cpp.html#ae708eecd871b19ff56d41583108ed0ab", null ],
-    [ "dComIfGs_getRupee__Fv", "d__a__npc__henna_8cpp.html#a7f5404efaa4f0eb93ba03d9072d7088d", null ],
+    [ "dComIfGs_getRupee__Fv", "d__a__npc__henna_8cpp.html#a615d289eb4c3ab4c05b8eb76a0d2849b", null ],
     [ "dComIfGs_isEventBit__FUs", "d__a__npc__henna_8cpp.html#a08715d50d0717e64aea3116a9a11999b", null ],
     [ "dComIfGs_onEventBit__FUs", "d__a__npc__henna_8cpp.html#a29a879499d8331443d48622a6198bd8a", null ],
     [ "dComIfGs_setEventReg__FUsUc", "d__a__npc__henna_8cpp.html#a4b8a57a6e6fc653a6139242157c71fca", null ],

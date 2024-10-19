@@ -21,7 +21,7 @@ var structfopAc__ac__c =
     [ "attention_info", "structfopAc__ac__c.html#a43a1cc117c5c246a15e5d158fc876867", null ],
     [ "box", "structfopAc__ac__c.html#a1b34cc3303e51b8f7dcbc09529cd2c4d", null ],
     [ "carryType", "structfopAc__ac__c.html#a72a83125fd11e6e8935ff25575d7987d", null ],
-    [ "cull", "structfopAc__ac__c.html#aa5678f0ccc58adbc050650bca8b35441", null ],
+    [ "cull", "structfopAc__ac__c.html#a248926f96d6ad150da156335882697f2", null ],
     [ "cullMtx", "structfopAc__ac__c.html#a0f04b782f3ce7e005ae60b0686a687eb", null ],
     [ "cullSizeFar", "structfopAc__ac__c.html#acfbc5c1d74e14a9e75dea859c8a9bf82", null ],
     [ "cullType", "structfopAc__ac__c.html#a5a3cc7bb04b3c13433fd9a1513147b58", null ],

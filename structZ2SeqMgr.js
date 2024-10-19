@@ -95,7 +95,7 @@ var structZ2SeqMgr =
     [ "mFanfareHandle", "structZ2SeqMgr.html#a7ae7450402adfb4a4464522cf81e470f", null ],
     [ "mFanfareID", "structZ2SeqMgr.html#aa53b8787dc1d789e1542184714392ba3", null ],
     [ "mFanfareMute", "structZ2SeqMgr.html#a1e80536b95331ece5e1d8389f8cac6c2", null ],
-    [ "mFlags", "structZ2SeqMgr.html#a603e35a36966210dadeb4b9857465705", null ],
+    [ "mFlags", "structZ2SeqMgr.html#a131fbfc90e0e6b26d0022c231bde33d0", null ],
     [ "mMainBgmHandle", "structZ2SeqMgr.html#a170d7cc6cd41678d5186df2acb9c7d85", null ],
     [ "mMainBgmMaster", "structZ2SeqMgr.html#a1e3b87debac3c45b95865a8764022fbb", null ],
     [ "mRideCount", "structZ2SeqMgr.html#adbef02eb052a45481ec5d61871ff0d23", null ],

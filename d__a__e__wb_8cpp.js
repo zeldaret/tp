@@ -485,7 +485,7 @@ var d__a__e__wb_8cpp =
     [ "dComIfGp_event_reset__Fv", "d__a__e__wb_8cpp.html#addbdd737e69969a1e063622639f45255", null ],
     [ "dComIfGp_getCamera__Fi", "d__a__e__wb_8cpp.html#a727440673782563d20f9ea618ed1ac04", null ],
     [ "dComIfGp_getEvent__Fv", "d__a__e__wb_8cpp.html#a8a733c074d986d509f4b0949c38fb0c0", null ],
-    [ "dComIfGp_getHorseActor__Fv", "d__a__e__wb_8cpp.html#ac3112f4a9d42c2b6d6a5c09074553d05", null ],
+    [ "dComIfGp_getHorseActor__Fv", "d__a__e__wb_8cpp.html#a06ac88a3a0348a2a0f84c5cb56994377", null ],
     [ "dComIfGp_getPlayer__Fi", "d__a__e__wb_8cpp.html#aee1dd88151c826c213a8a7454bf55ae1", null ],
     [ "dComIfGp_getPlayerCameraID__Fi", "d__a__e__wb_8cpp.html#ab3d9d8579325988916deb6fade69b610", null ],
     [ "dComIfGp_getReverb__Fi", "d__a__e__wb_8cpp.html#a627e1ce812aa5a4c18c3536413c28baa", null ],

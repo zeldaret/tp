@@ -25,7 +25,7 @@ var structdStage__roomControl__c =
     [ "getStatusRoomDt", "structdStage__roomControl__c.html#a6ec207cdcc404092dcb437fd437ac139", null ],
     [ "getStayNo", "structdStage__roomControl__c.html#a5ba46685a25efe22c6d4fdf35baf8b9b", null ],
     [ "getTevStr", "structdStage__roomControl__c.html#aabcfaf3e3c197f3ec19aa78a234093c8", null ],
-    [ "GetTimePass", "structdStage__roomControl__c.html#aa4b1010cf35f8326e71bb2dc0921ca80", null ],
+    [ "GetTimePass", "structdStage__roomControl__c.html#a0f1313d63f245fbf1d6e6adfc9984d78", null ],
     [ "getZoneNo", "structdStage__roomControl__c.html#a3177498de96125bfebd823f9a56219d7", null ],
     [ "init", "structdStage__roomControl__c.html#a3cf24feeefd8acb701890f98b667dd2c", null ],
     [ "initZone", "structdStage__roomControl__c.html#a16b55f660ab8e517a0e47db4e49a1bfe", null ],

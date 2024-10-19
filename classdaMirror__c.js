@@ -12,7 +12,7 @@ var classdaMirror__c =
     [ "getMirrorRoomPrm", "classdaMirror__c.html#ae75ebccf8ddef88bb27a4b342fd06a4c", null ],
     [ "getSw", "classdaMirror__c.html#af48d9f10a4420e63e8b5e57423c46192", null ],
     [ "getType", "classdaMirror__c.html#aaf98e7306778a36d50d984930af62278", null ],
-    [ "remove", "classdaMirror__c.html#a4ef74f9fd336e0910a58277456a3ee41", null ],
+    [ "remove", "classdaMirror__c.html#a6d20b42f6490e61b78146089a48222cf", null ],
     [ "setModelMtx", "classdaMirror__c.html#ac9bc57e0e0b9c7447fc288c852945d47", null ],
     [ "m_entryModel", "classdaMirror__c.html#a4e6afc862461c1717f6726b8d248e7e6", null ],
     [ "m_myObj", "classdaMirror__c.html#a9265998c2709dbd29881d0b00bdd59e7", null ],

@@ -20,6 +20,7 @@ var structJ3DJoint =
     [ "setCurrentMtxCalc", "structJ3DJoint.html#a58321020bf05d754346f1ab56da56220", null ],
     [ "setMtxCalc", "structJ3DJoint.html#a5bb8f8e2ef738e9691d31097a1cfb0a3", null ],
     [ "setMtxType", "structJ3DJoint.html#a03875606a3acb330c14fa88ac09e2286", null ],
+    [ "setTransformInfo", "structJ3DJoint.html#aca2c06e00529fd7848de75068fc2376c", null ],
     [ "setYounger", "structJ3DJoint.html#adf313d311beb4e3bcc90a89f20ba2864", null ],
     [ "J3DJointFactory", "structJ3DJoint.html#a19784d8ab35c9536075c61200577c3b6", null ],
     [ "J3DJointTree", "structJ3DJoint.html#a942e6e39be57ad8fe8641bfd87306fb1", null ],

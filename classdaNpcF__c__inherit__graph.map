@@ -1,15 +1,17 @@
 <map id="daNpcF_c" name="daNpcF_c">
-<area shape="rect" id="Node000001" title=" " alt="" coords="193,153,274,178"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="325,153,406,178"/>
 <area shape="rect" id="Node000004" href="$classdaNpcAsh__c.html" title="Ashei." alt="" coords="5,226,102,252"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="190,187,85,228,83,223,188,182"/>
-<area shape="rect" id="Node000005" href="$classdaNpcThe__c.html" title="Telma." alt="" coords="126,226,221,252"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="216,192,186,228,182,224,212,188"/>
-<area shape="rect" id="Node000006" href="$classdaNpc__zrA__c.html" title=" " alt="" coords="245,226,345,252"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="256,188,287,224,282,228,251,192"/>
-<area shape="rect" id="Node000007" href="$classdaNpc__zrZ__c.html" title="Rutela." alt="" coords="368,226,467,252"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="280,182,387,223,385,228,278,187"/>
-<area shape="rect" id="Node000002" href="$structfopAc__ac__c.html" title=" " alt="" coords="188,79,279,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="236,120,236,152,231,152,231,120"/>
-<area shape="rect" id="Node000003" href="$structleafdraw__class.html" title=" " alt="" coords="179,5,288,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="236,46,236,79,231,79,231,46"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="311,182,103,229,101,224,309,177"/>
+<area shape="rect" id="Node000005" href="$classdaNpcF__MoveBgActor__c.html" title=" " alt="" coords="126,226,293,252"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="326,188,237,228,235,223,324,183"/>
+<area shape="rect" id="Node000006" href="$classdaNpcThe__c.html" title="Telma." alt="" coords="318,226,413,252"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="368,194,368,226,363,226,363,194"/>
+<area shape="rect" id="Node000007" href="$classdaNpc__zrA__c.html" title=" " alt="" coords="437,226,537,252"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="401,184,467,223,465,228,398,189"/>
+<area shape="rect" id="Node000008" href="$classdaNpc__zrZ__c.html" title="Rutela." alt="" coords="560,226,659,252"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="421,180,568,223,567,228,420,185"/>
+<area shape="rect" id="Node000002" href="$structfopAc__ac__c.html" title=" " alt="" coords="320,79,411,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="368,120,368,152,363,152,363,120"/>
+<area shape="rect" id="Node000003" href="$structleafdraw__class.html" title=" " alt="" coords="311,5,420,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="368,46,368,79,363,79,363,46"/>
 </map>

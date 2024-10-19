@@ -1,6 +1,6 @@
 <map id="Z2LinkSoundStarter" name="Z2LinkSoundStarter">
 <area shape="rect" id="Node000001" title=" " alt="" coords="83,256,221,282"/>
-<area shape="rect" id="Node000006" href="$structZ2CreatureLink.html" title=" " alt="" coords="97,330,207,356"/>
+<area shape="rect" id="Node000006" href="$classZ2CreatureLink.html" title=" " alt="" coords="97,330,207,356"/>
 <area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="155,297,155,330,149,330,149,297"/>
 <area shape="rect" id="Node000002" href="$structZ2SoundStarter.html" title=" " alt="" coords="96,183,208,208"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="155,224,155,256,149,256,149,224"/>

@@ -26,7 +26,6 @@ var classdaBaseNpc__c =
     [ "setMtx", "classdaBaseNpc__c.html#a88056a3bea8aa795ba6e09bc21ab07f2", null ],
     [ "setParam", "classdaBaseNpc__c.html#a14c6c305fcf63d4bc48dc6383116adc1", null ],
     [ "setRoomNo", "classdaBaseNpc__c.html#a881eae4df53869ec2089247b1354aa59", null ],
-    [ "setVtable", "classdaBaseNpc__c.html#ae4956c9cae85af1d10105779773de67f", null ],
     [ "field_0x56c", "classdaBaseNpc__c.html#adae188c8b66486c7ca21b2da32c58579", null ],
     [ "field_0x744", "classdaBaseNpc__c.html#a1209ee84ff36ea9913a60d648dd575c8", null ],
     [ "field_0x83c", "classdaBaseNpc__c.html#a803f4b8bcea26f541690415ad137e729", null ],
@@ -62,6 +61,5 @@ var classdaBaseNpc__c =
     [ "mpMorf", "classdaBaseNpc__c.html#a2337e54dfddf3a26f975265a31a7ac05", null ],
     [ "mRoomId", "classdaBaseNpc__c.html#a8563f307d840a28f89fb829f89bf76bd", null ],
     [ "mUnk", "classdaBaseNpc__c.html#a8d2712daad30a9789d179df05a0c54f7", null ],
-    [ "tmp2", "classdaBaseNpc__c.html#a9ae01427856358b9dfd4c8f30458d9da", null ],
-    [ "vtable", "classdaBaseNpc__c.html#a599cd547111637f8baa15b6bc5323a40", null ]
+    [ "tmp2", "classdaBaseNpc__c.html#a9ae01427856358b9dfd4c8f30458d9da", null ]
 ];

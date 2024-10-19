@@ -17,6 +17,5 @@ var d__drawlist_8h =
     [ "dDlst_window_c", "classdDlst__window__c.html", "classdDlst__window__c" ],
     [ "dDlst_list_c", "classdDlst__list__c.html", "classdDlst__list__c" ],
     [ "STATIC_ASSERT", "d__drawlist_8h.html#a3532dd6455961e8e557a597c4f5a8841", null ],
-    [ "STATIC_ASSERT", "d__drawlist_8h.html#a8896f785f04e4e614021053986dc4446", null ],
-    [ "mWipe__12dDlst_list_c", "d__drawlist_8h.html#a4461dce8d1e8178a4314ff4e319c9d60", null ]
+    [ "STATIC_ASSERT", "d__drawlist_8h.html#a8896f785f04e4e614021053986dc4446", null ]
 ];

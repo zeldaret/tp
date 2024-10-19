@@ -7,5 +7,6 @@ var structJ3DBlend =
     [ "getLogicOp", "structJ3DBlend.html#a8cd27482ae7e5c2ccf0d9b4f82fbe003", null ],
     [ "getSrcFactor", "structJ3DBlend.html#abe762c8da7f360ddb40718134743e20e", null ],
     [ "load", "structJ3DBlend.html#aab1ec97846419682f0cfb23fcc421dab", null ],
-    [ "setDstFactor", "structJ3DBlend.html#a144aaa49ac37b4e2593fd9ad5f7c7165", null ]
+    [ "setDstFactor", "structJ3DBlend.html#a144aaa49ac37b4e2593fd9ad5f7c7165", null ],
+    [ "setType", "structJ3DBlend.html#a5a9dfc595cf116f36a425de1a50207a7", null ]
 ];

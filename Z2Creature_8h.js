@@ -2,7 +2,7 @@ var Z2Creature_8h =
 [
     [ "Z2Creature", "structZ2Creature.html", "structZ2Creature" ],
     [ "Z2LinkSoundStarter", "structZ2LinkSoundStarter.html", "structZ2LinkSoundStarter" ],
-    [ "Z2CreatureLink", "structZ2CreatureLink.html", "structZ2CreatureLink" ],
+    [ "Z2CreatureLink", "classZ2CreatureLink.html", "classZ2CreatureLink" ],
     [ "Z2RideSoundStarter", "structZ2RideSoundStarter.html", "structZ2RideSoundStarter" ],
     [ "Z2CreatureRide", "classZ2CreatureRide.html", "classZ2CreatureRide" ],
     [ "Z2CreatureEnemy", "classZ2CreatureEnemy.html", "classZ2CreatureEnemy" ],

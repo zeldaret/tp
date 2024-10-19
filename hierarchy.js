@@ -527,7 +527,7 @@ var hierarchy =
     [ "daB_OB_HIO_c", "classdaB__OB__HIO__c.html", null ],
     [ "daB_OH_HIO_c", "classdaB__OH__HIO__c.html", null ],
     [ "daB_TN_HIO_c", "classdaB__TN__HIO__c.html", null ],
-    [ "daB_YO_HIO_c", "structdaB__YO__HIO__c.html", null ],
+    [ "daB_YO_HIO_c", "classdaB__YO__HIO__c.html", null ],
     [ "daB_YOI_HIO_c", "classdaB__YOI__HIO__c.html", null ],
     [ "daB_ZANT_HIO_c", "classdaB__ZANT__HIO__c.html", null ],
     [ "daB_ZANTZ_HIO_c", "classdaB__ZANTZ__HIO__c.html", null ],
@@ -631,7 +631,6 @@ var hierarchy =
     [ "daE_YG_HIO_c", "classdaE__YG__HIO__c.html", null ],
     [ "daE_YH_HIO_c", "classdaE__YH__HIO__c.html", null ],
     [ "daE_YK_HIO_c", "classdaE__YK__HIO__c.html", null ],
-    [ "daE_YK_HIO_c_tmp", "structdaE__YK__HIO__c__tmp.html", null ],
     [ "daE_YM_HIO_c", "classdaE__YM__HIO__c.html", null ],
     [ "daE_YMB_HIO_c", "structdaE__YMB__HIO__c.html", null ],
     [ "daE_ZH_HIO_c", "classdaE__ZH__HIO__c.html", null ],
@@ -788,7 +787,6 @@ var hierarchy =
     [ "daNpcF_ActorMngr_c", "classdaNpcF__ActorMngr__c.html", null ],
     [ "daNpcF_c::daNpcF_anmPlayData", "structdaNpcF__c_1_1daNpcF__anmPlayData.html", null ],
     [ "daNpcF_Lookat_c", "classdaNpcF__Lookat__c.html", null ],
-    [ "daNpcF_MoveBgActor_c", "classdaNpcF__MoveBgActor__c.html", null ],
     [ "daNpcF_Path_c", "classdaNpcF__Path__c.html", [
       [ "daNpc_zrA_Path_c", "classdaNpc__zrA__Path__c.html", null ],
       [ "daStartAndGoal_Path_c", "classdaStartAndGoal__Path__c.html", null ]
@@ -1023,8 +1021,8 @@ var hierarchy =
     [ "dDemo_c", "classdDemo__c.html", null ],
     [ "dDemo_object_c", "classdDemo__object__c.html", null ],
     [ "dDemo_prm_c", "classdDemo__prm__c.html", null ],
-    [ "dDlst_2DM_c", "classdDlst__2DM__c.html", null ],
     [ "dDlst_2Dm_c", "classdDlst__2Dm__c.html", null ],
+    [ "dDlst_2DM_c", "classdDlst__2DM__c.html", null ],
     [ "dDlst_2DMt_c", "classdDlst__2DMt__c.html", null ],
     [ "dDlst_2DMt_tex_c", "classdDlst__2DMt__tex__c.html", null ],
     [ "dDlst_2DPoint_c", "classdDlst__2DPoint__c.html", null ],
@@ -1201,7 +1199,9 @@ var hierarchy =
     [ "dKy_pol_effcol_struct", "structdKy__pol__effcol__struct.html", null ],
     [ "dKy_pol_efftbl_struct", "structdKy__pol__efftbl__struct.html", null ],
     [ "dKy_pol_sound_struct", "structdKy__pol__sound__struct.html", null ],
-    [ "dKy_tevstr_c", "structdKy__tevstr__c.html", null ],
+    [ "dKy_tevstr_c", "structdKy__tevstr__c.html", [
+      [ "daAlink_hsChainLight_c", "classdaAlink__hsChainLight__c.html", null ]
+    ] ],
     [ "dKyd_l_vr_box_data_struct", "structdKyd__l__vr__box__data__struct.html", null ],
     [ "dKyd_lightSchejule", "structdKyd__lightSchejule.html", null ],
     [ "dkydata_bloomInfo_info_class", "classdkydata__bloomInfo__info__class.html", null ],
@@ -2047,7 +2047,7 @@ var hierarchy =
       [ "JAISoundStarter", "structJAISoundStarter.html", [
         [ "Z2SoundStarter", "structZ2SoundStarter.html", [
           [ "Z2LinkSoundStarter", "structZ2LinkSoundStarter.html", [
-            [ "Z2CreatureLink", "structZ2CreatureLink.html", null ]
+            [ "Z2CreatureLink", "classZ2CreatureLink.html", null ]
           ] ],
           [ "Z2RideSoundStarter", "structZ2RideSoundStarter.html", [
             [ "Z2CreatureRide", "classZ2CreatureRide.html", null ]
@@ -3015,6 +3015,7 @@ var hierarchy =
         [ "daNpcDrSol_c", "classdaNpcDrSol__c.html", null ],
         [ "daNpcF_c", "classdaNpcF__c.html", [
           [ "daNpcAsh_c", "classdaNpcAsh__c.html", null ],
+          [ "daNpcF_MoveBgActor_c", "classdaNpcF__MoveBgActor__c.html", null ],
           [ "daNpcThe_c", "classdaNpcThe__c.html", null ],
           [ "daNpc_zrA_c", "classdaNpc__zrA__c.html", null ],
           [ "daNpc_zrZ_c", "classdaNpc__zrZ__c.html", null ]
@@ -3434,7 +3435,7 @@ var hierarchy =
           [ "daB_GG_c", "classdaB__GG__c.html", null ],
           [ "daB_MGN_c", "classdaB__MGN__c.html", null ],
           [ "daB_TN_c", "classdaB__TN__c.html", null ],
-          [ "daB_YOI_c", "structdaB__YOI__c.html", null ],
+          [ "daB_YOI_c", "classdaB__YOI__c.html", null ],
           [ "daB_YO_c", "classdaB__YO__c.html", null ],
           [ "daB_ZANTM_c", "classdaB__ZANTM__c.html", null ],
           [ "daB_ZANTZ_c", "classdaB__ZANTZ__c.html", null ],
@@ -4047,7 +4048,7 @@ var hierarchy =
       [ "Z2CreatureCitizen", "structZ2CreatureCitizen.html", null ],
       [ "Z2CreatureEnemy", "classZ2CreatureEnemy.html", null ],
       [ "Z2CreatureGob", "classZ2CreatureGob.html", null ],
-      [ "Z2CreatureLink", "structZ2CreatureLink.html", null ],
+      [ "Z2CreatureLink", "classZ2CreatureLink.html", null ],
       [ "Z2CreatureRide", "classZ2CreatureRide.html", null ],
       [ "Z2CreatureSumomo", "classZ2CreatureSumomo.html", null ]
     ] ],

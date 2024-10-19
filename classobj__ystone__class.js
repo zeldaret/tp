@@ -4,6 +4,8 @@ var classobj__ystone__class =
     [ "setBaseMtx", "classobj__ystone__class.html#a81ed372d96c1bf723883be2789878426", null ],
     [ "setCurrentPos", "classobj__ystone__class.html#a7600c4abfdb3af374c5dec56fab1f6cd", null ],
     [ "setMirrorMode", "classobj__ystone__class.html#af7f16e07f9057a234105012352fbbd4d", null ],
+    [ "setScale", "classobj__ystone__class.html#a620da0d9d1eb7e1de54d6ecf31d5d1a0", null ],
+    [ "setShapeAngle", "classobj__ystone__class.html#af51fbbbc6ab76bf56680f28520397a43", null ],
     [ "field_0x584", "classobj__ystone__class.html#a7662ed6dd623eb3353a3cc48753f0637", null ],
     [ "field_0x588", "classobj__ystone__class.html#a2731a326c84b5b77e700e7479507920e", null ],
     [ "field_0x598", "classobj__ystone__class.html#ae26da885d000d3ae9547cad5fa860593", null ],

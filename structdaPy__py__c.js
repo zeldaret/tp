@@ -306,6 +306,7 @@ var structdaPy__py__c =
     [ "checkArrowChargeEnd", "structdaPy__py__c.html#aee9ef8ec4f1269e102e2a30554105880", null ],
     [ "checkAutoJump", "structdaPy__py__c.html#ae4afd2922f3a80dacd3804697a5badff", null ],
     [ "checkBeeChildDrink", "structdaPy__py__c.html#a576462ac7ffb1e1aeeff7748c4a8cafd", null ],
+    [ "checkBoardNoFootAngle", "structdaPy__py__c.html#abcf28f11240088ac39d91fa4defeecaf", null ],
     [ "checkBoardRide", "structdaPy__py__c.html#ab0a01428378f546b69b494bdf5877b41", null ],
     [ "checkBoarRide", "structdaPy__py__c.html#ac2f002a48e45ff2f031fc6f481c5e88b", null ],
     [ "checkBoarRun", "structdaPy__py__c.html#a8b47843c23414185e91715c708996727", null ],

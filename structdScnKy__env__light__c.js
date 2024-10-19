@@ -196,7 +196,7 @@ var structdScnKy__env__light__c =
     [ "mpDmEnvr", "structdScnKy__env__light__c.html#ae28592e60e8746e71d196d818d1ed308", null ],
     [ "mpDmPalet", "structdScnKy__env__light__c.html#aab850670a432b31719a1437e8bbebe6f", null ],
     [ "mpDmPselect", "structdScnKy__env__light__c.html#a5facc1bfad7204344ca7226fd0fdad9d", null ],
-    [ "mpDmVrbox", "structdScnKy__env__light__c.html#ac168fc89da1e473c7e261feed2f2e5f5", null ],
+    [ "mpDmVrbox", "structdScnKy__env__light__c.html#a3b28d9147b1f52908a1d6178a53afa10", null ],
     [ "mpEvilPacket", "structdScnKy__env__light__c.html#a2991427216df612ae2f1634f97e2067e", null ],
     [ "mpHousiPacket", "structdScnKy__env__light__c.html#ae83858c5bebdb2ad01c3980c2db8fa22", null ],
     [ "mPlayerEfLightIdx", "structdScnKy__env__light__c.html#ad370f6f277a884268cad7e2eae136541", null ],

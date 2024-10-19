@@ -23,6 +23,7 @@ var classdaObjChandelier__c =
     [ "getSW_0", "classdaObjChandelier__c.html#a3263fe6dfd53dd78d47d9c5a495d3797", null ],
     [ "hookSwingInitParm", "classdaObjChandelier__c.html#a378493f949d9f6cef036150824645602", null ],
     [ "init", "classdaObjChandelier__c.html#ad90d8b298e5f62ff42d8cec7bf87c249", null ],
+    [ "moveHookOn", "classdaObjChandelier__c.html#a346f3f68720e2bdaae5c86b7d36fa289", null ],
     [ "moveSwing", "classdaObjChandelier__c.html#a24e0f219e32573f3cb2ecc175960b69b", null ],
     [ "moveSwingFall", "classdaObjChandelier__c.html#aee89c895e002915a087804c5a3a73e01", null ],
     [ "setModelMtx", "classdaObjChandelier__c.html#aac4408595768746e1247945d54c262d0", null ],

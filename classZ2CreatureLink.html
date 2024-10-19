@@ -1,0 +1,2051 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Twilight Princess Decompilation" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Documentation for the Twilight Princess codebase" />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Twilight Princess Decompilation" />
+<meta name="twitter:description" content="Documentation for the Twilight Princess codebase" />
+<!-- END twitter metadata -->
+<title>Twilight Princess: Z2CreatureLink Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="overrides.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeInteractiveToc.init()
+</script>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/jothepro/doxygen-awesome-css" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="midna.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Twilight Princess
+   </div>
+   <div id="projectbrief">Decompilation of The Legend of Zelda: Twilight Princess</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('classZ2CreatureLink.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classZ2CreatureLink-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Z2CreatureLink Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="Z2Creature_8h_source.html">Z2Creature.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Z2CreatureLink:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classZ2CreatureLink__inherit__graph.svg" width="338" height="362"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for Z2CreatureLink:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classZ2CreatureLink__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:afd0f444260c28ab500be6a589fc8a647" id="r_afd0f444260c28ab500be6a589fc8a647"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#afd0f444260c28ab500be6a589fc8a647">Z2CreatureLink</a> ()</td></tr>
+<tr class="separator:afd0f444260c28ab500be6a589fc8a647"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef54cef198a9eb9a105732033c9bfc6a" id="r_aef54cef198a9eb9a105732033c9bfc6a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#aef54cef198a9eb9a105732033c9bfc6a">~Z2CreatureLink</a> ()</td></tr>
+<tr class="separator:aef54cef198a9eb9a105732033c9bfc6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaefe083ddb176be039755682a98fa098" id="r_aaefe083ddb176be039755682a98fa098"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#aaefe083ddb176be039755682a98fa098">setLinkState</a> (<a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>)</td></tr>
+<tr class="separator:aaefe083ddb176be039755682a98fa098"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1656143eee96d41a6a55d5937f6007e0" id="r_a1656143eee96d41a6a55d5937f6007e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a1656143eee96d41a6a55d5937f6007e0">setLinkGroupInfo</a> (<a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>)</td></tr>
+<tr class="separator:a1656143eee96d41a6a55d5937f6007e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a465f24b8852401da381f1b73c3f60126" id="r_a465f24b8852401da381f1b73c3f60126"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a465f24b8852401da381f1b73c3f60126">setLinkHp</a> (<a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>, <a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>)</td></tr>
+<tr class="separator:a465f24b8852401da381f1b73c3f60126"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4f03f480172e47fc5d51b2fbc353de0" id="r_ac4f03f480172e47fc5d51b2fbc353de0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#ac4f03f480172e47fc5d51b2fbc353de0">setLinkSwordType</a> (<a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>, <a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>)</td></tr>
+<tr class="separator:ac4f03f480172e47fc5d51b2fbc353de0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa59a7f616450b3ad899b13bff4ea3be4" id="r_aa59a7f616450b3ad899b13bff4ea3be4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#aa59a7f616450b3ad899b13bff4ea3be4">setLinkShieldType</a> (<a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>, <a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>)</td></tr>
+<tr class="separator:aa59a7f616450b3ad899b13bff4ea3be4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfa5bcbecdf03d1e5ae42ddb63f2239d" id="r_adfa5bcbecdf03d1e5ae42ddb63f2239d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#adfa5bcbecdf03d1e5ae42ddb63f2239d">setLinkBootsType</a> (<a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>)</td></tr>
+<tr class="separator:adfa5bcbecdf03d1e5ae42ddb63f2239d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f7597b614968566bce1459adf049c56" id="r_a9f7597b614968566bce1459adf049c56"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a9f7597b614968566bce1459adf049c56">deleteObject</a> ()</td></tr>
+<tr class="separator:a9f7597b614968566bce1459adf049c56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6e6b361e8e3821be83410a213392e0f" id="r_ab6e6b361e8e3821be83410a213392e0f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#ab6e6b361e8e3821be83410a213392e0f">init</a> (<a class="el" href="structVec.html">Vec</a> *, <a class="el" href="structVec.html">Vec</a> *, <a class="el" href="structVec.html">Vec</a> *)</td></tr>
+<tr class="separator:ab6e6b361e8e3821be83410a213392e0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82e9dc064fef8fe301db88c8c4ac55e2" id="r_a82e9dc064fef8fe301db88c8c4ac55e2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a82e9dc064fef8fe301db88c8c4ac55e2">initKantera</a> (<a class="el" href="structVec.html">Vec</a> *)</td></tr>
+<tr class="separator:a82e9dc064fef8fe301db88c8c4ac55e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7419f1e3f2ed00a10b4ca67096fe38ea" id="r_a7419f1e3f2ed00a10b4ca67096fe38ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a7419f1e3f2ed00a10b4ca67096fe38ea">deleteKantera</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>)</td></tr>
+<tr class="separator:a7419f1e3f2ed00a10b4ca67096fe38ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5bf79c036fa36032a9e4e6aa64d01a3" id="r_af5bf79c036fa36032a9e4e6aa64d01a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#af5bf79c036fa36032a9e4e6aa64d01a3">setKanteraState</a> (<a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>)</td></tr>
+<tr class="separator:af5bf79c036fa36032a9e4e6aa64d01a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa076416d366fa7f59ef484ca4758299d" id="r_aa076416d366fa7f59ef484ca4758299d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#aa076416d366fa7f59ef484ca4758299d">framework</a> (<a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="types_8h.html#a151f780fb455885061d3b77ec1c90c03">s8</a>)</td></tr>
+<tr class="separator:aa076416d366fa7f59ef484ca4758299d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9895109c296d18dc5ec785493a795e0e" id="r_a9895109c296d18dc5ec785493a795e0e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a9895109c296d18dc5ec785493a795e0e">setSinkDepth</a> (<a class="el" href="types_8h.html#a151f780fb455885061d3b77ec1c90c03">s8</a>)</td></tr>
+<tr class="separator:a9895109c296d18dc5ec785493a795e0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad05b758caf4918fa64564534cac07eb9" id="r_ad05b758caf4918fa64564534cac07eb9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#ad05b758caf4918fa64564534cac07eb9">setRiding</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>)</td></tr>
+<tr class="separator:ad05b758caf4918fa64564534cac07eb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f03fedadae033c92cbd7b1dbb7acc07" id="r_a2f03fedadae033c92cbd7b1dbb7acc07"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a2f03fedadae033c92cbd7b1dbb7acc07">setMagnetized</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>)</td></tr>
+<tr class="separator:a2f03fedadae033c92cbd7b1dbb7acc07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60f2e40501250771e0ef03b65247f328" id="r_a60f2e40501250771e0ef03b65247f328"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a60f2e40501250771e0ef03b65247f328">setWolfEyeOpen</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>)</td></tr>
+<tr class="separator:a60f2e40501250771e0ef03b65247f328"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ce7130f3fc941b40a630d0bf7baf857" id="r_a6ce7130f3fc941b40a630d0bf7baf857"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a6ce7130f3fc941b40a630d0bf7baf857">startLinkSound</a> (<a class="el" href="structJAISoundID.html">JAISoundID</a>, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="types_8h.html#a151f780fb455885061d3b77ec1c90c03">s8</a>)</td></tr>
+<tr class="separator:a6ce7130f3fc941b40a630d0bf7baf857"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5a92bb585bf22af9c97481aec18d809" id="r_ac5a92bb585bf22af9c97481aec18d809"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#ac5a92bb585bf22af9c97481aec18d809">startLinkSoundLevel</a> (<a class="el" href="structJAISoundID.html">JAISoundID</a>, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="types_8h.html#a151f780fb455885061d3b77ec1c90c03">s8</a>)</td></tr>
+<tr class="separator:ac5a92bb585bf22af9c97481aec18d809"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18ef915cd5332c29421f00d564dd2a53" id="r_a18ef915cd5332c29421f00d564dd2a53"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a18ef915cd5332c29421f00d564dd2a53">startLinkVoice</a> (<a class="el" href="structJAISoundID.html">JAISoundID</a>, <a class="el" href="types_8h.html#a151f780fb455885061d3b77ec1c90c03">s8</a>)</td></tr>
+<tr class="separator:a18ef915cd5332c29421f00d564dd2a53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac18b9df62d78b36624915440d8d0af23" id="r_ac18b9df62d78b36624915440d8d0af23"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#ac18b9df62d78b36624915440d8d0af23">startLinkVoiceLevel</a> (<a class="el" href="structJAISoundID.html">JAISoundID</a>, <a class="el" href="types_8h.html#a151f780fb455885061d3b77ec1c90c03">s8</a>)</td></tr>
+<tr class="separator:ac18b9df62d78b36624915440d8d0af23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff2f9e6945a5237cee231ead6c86c9a8" id="r_aff2f9e6945a5237cee231ead6c86c9a8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#aff2f9e6945a5237cee231ead6c86c9a8">startLinkSwordSound</a> (<a class="el" href="structJAISoundID.html">JAISoundID</a>, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="types_8h.html#a151f780fb455885061d3b77ec1c90c03">s8</a>)</td></tr>
+<tr class="separator:aff2f9e6945a5237cee231ead6c86c9a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76695d4f43c11bf929f1339f0d58cd6a" id="r_a76695d4f43c11bf929f1339f0d58cd6a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="classZ2SoundHandlePool.html">Z2SoundHandlePool</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a76695d4f43c11bf929f1339f0d58cd6a">startCollisionSE</a> (<a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>)</td></tr>
+<tr class="separator:a76695d4f43c11bf929f1339f0d58cd6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada4f6d652396ecf619f77f5afd3eb153" id="r_ada4f6d652396ecf619f77f5afd3eb153"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#ada4f6d652396ecf619f77f5afd3eb153">startHitItemSE</a> (<a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="classZ2SoundObjBase.html">Z2SoundObjBase</a> *, <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">float</a>)</td></tr>
+<tr class="separator:ada4f6d652396ecf619f77f5afd3eb153"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a171b349cc71e52451c76b8a0be1ea738" id="r_a171b349cc71e52451c76b8a0be1ea738"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a171b349cc71e52451c76b8a0be1ea738">setResumeAttack</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>)</td></tr>
+<tr class="separator:a171b349cc71e52451c76b8a0be1ea738"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afea65679847144a6f19d50f9774894b6" id="r_afea65679847144a6f19d50f9774894b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#afea65679847144a6f19d50f9774894b6">setInWater</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> <a class="el" href="fstload_8c.html#a7dd63b23746a64a9a58ba770d86359e3">status</a>)</td></tr>
+<tr class="separator:afea65679847144a6f19d50f9774894b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab86bf1e66f0bc8621d23408f7f438651" id="r_ab86bf1e66f0bc8621d23408f7f438651"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#ab86bf1e66f0bc8621d23408f7f438651">isInWater</a> ()</td></tr>
+<tr class="separator:ab86bf1e66f0bc8621d23408f7f438651"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f36653a81a447663e996ec1ddcacbef" id="r_a6f36653a81a447663e996ec1ddcacbef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a6f36653a81a447663e996ec1ddcacbef">getLinkState</a> () <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a6f36653a81a447663e996ec1ddcacbef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7a2b17ea81ab9eeb675cb99b588ca2d" id="r_ab7a2b17ea81ab9eeb675cb99b588ca2d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#ab7a2b17ea81ab9eeb675cb99b588ca2d">getMoveSpeed</a> () <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:ab7a2b17ea81ab9eeb675cb99b588ca2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a542415b97523d14f156b8084a2530c2a" id="r_a542415b97523d14f156b8084a2530c2a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a542415b97523d14f156b8084a2530c2a">isRiding</a> () <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a542415b97523d14f156b8084a2530c2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6229313de32e9e2c38091105172f27bf" id="r_a6229313de32e9e2c38091105172f27bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a6229313de32e9e2c38091105172f27bf">i_setLinkState</a> (<a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">i_state</a>)</td></tr>
+<tr class="separator:a6229313de32e9e2c38091105172f27bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01b3b48e2d78f3560613bd4f69e10330" id="r_a01b3b48e2d78f3560613bd4f69e10330"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classZ2SoundObjSimple.html">Z2SoundObjSimple</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a01b3b48e2d78f3560613bd4f69e10330">getKantera</a> ()</td></tr>
+<tr class="separator:a01b3b48e2d78f3560613bd4f69e10330"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa993f82add85e0b666c086bf77cf6701" id="r_aa993f82add85e0b666c086bf77cf6701"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#aa993f82add85e0b666c086bf77cf6701">getLinkHp</a> () <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:aa993f82add85e0b666c086bf77cf6701"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06801be4a4461d4c844fbf0241fd7718" id="r_a06801be4a4461d4c844fbf0241fd7718"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a06801be4a4461d4c844fbf0241fd7718">getMovingTime</a> ()</td></tr>
+<tr class="separator:a06801be4a4461d4c844fbf0241fd7718"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbdc9de9b303bb4be6c9389827cb6b04" id="r_acbdc9de9b303bb4be6c9389827cb6b04"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#acbdc9de9b303bb4be6c9389827cb6b04">isWolfSmellOpen</a> () <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:acbdc9de9b303bb4be6c9389827cb6b04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6da46aab3e0954ff05f31f6557196cc2" id="r_a6da46aab3e0954ff05f31f6557196cc2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a6da46aab3e0954ff05f31f6557196cc2">setUsingIronBall</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">i_using</a>)</td></tr>
+<tr class="separator:a6da46aab3e0954ff05f31f6557196cc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a760de577d7d1b4555254cf8019720a91" id="r_a760de577d7d1b4555254cf8019720a91"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a760de577d7d1b4555254cf8019720a91">setMarkState</a> (<a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">i_state</a>)</td></tr>
+<tr class="separator:a760de577d7d1b4555254cf8019720a91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_structZ2Creature"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_structZ2Creature')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="structZ2Creature.html">Z2Creature</a></td></tr>
+<tr class="memitem:afff1cb78d7fffef78fdf54b3908924ac inherit pub_methods_structZ2Creature" id="r_afff1cb78d7fffef78fdf54b3908924ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2Creature.html#afff1cb78d7fffef78fdf54b3908924ac">Z2Creature</a> ()</td></tr>
+<tr class="separator:afff1cb78d7fffef78fdf54b3908924ac inherit pub_methods_structZ2Creature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af633a348dd6de19c82443a665e04b38a inherit pub_methods_structZ2Creature" id="r_af633a348dd6de19c82443a665e04b38a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2Creature.html#af633a348dd6de19c82443a665e04b38a">~Z2Creature</a> ()</td></tr>
+<tr class="separator:af633a348dd6de19c82443a665e04b38a inherit pub_methods_structZ2Creature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a501c85513836d34043a9532188631929 inherit pub_methods_structZ2Creature" id="r_a501c85513836d34043a9532188631929"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2Creature.html#a501c85513836d34043a9532188631929">init</a> (<a class="el" href="structVec.html">Vec</a> *, <a class="el" href="structVec.html">Vec</a> *, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>)</td></tr>
+<tr class="separator:a501c85513836d34043a9532188631929 inherit pub_methods_structZ2Creature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afff1cb78d7fffef78fdf54b3908924ac inherit pub_methods_structZ2Creature" id="r_afff1cb78d7fffef78fdf54b3908924ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2Creature.html#afff1cb78d7fffef78fdf54b3908924ac">Z2Creature</a> ()</td></tr>
+<tr class="separator:afff1cb78d7fffef78fdf54b3908924ac inherit pub_methods_structZ2Creature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af633a348dd6de19c82443a665e04b38a inherit pub_methods_structZ2Creature" id="r_af633a348dd6de19c82443a665e04b38a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2Creature.html#af633a348dd6de19c82443a665e04b38a">~Z2Creature</a> ()</td></tr>
+<tr class="separator:af633a348dd6de19c82443a665e04b38a inherit pub_methods_structZ2Creature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a501c85513836d34043a9532188631929 inherit pub_methods_structZ2Creature" id="r_a501c85513836d34043a9532188631929"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2Creature.html#a501c85513836d34043a9532188631929">init</a> (<a class="el" href="structVec.html">Vec</a> *, <a class="el" href="structVec.html">Vec</a> *, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>)</td></tr>
+<tr class="separator:a501c85513836d34043a9532188631929 inherit pub_methods_structZ2Creature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afff1cb78d7fffef78fdf54b3908924ac inherit pub_methods_structZ2Creature" id="r_afff1cb78d7fffef78fdf54b3908924ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2Creature.html#afff1cb78d7fffef78fdf54b3908924ac">Z2Creature</a> ()</td></tr>
+<tr class="separator:afff1cb78d7fffef78fdf54b3908924ac inherit pub_methods_structZ2Creature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af633a348dd6de19c82443a665e04b38a inherit pub_methods_structZ2Creature" id="r_af633a348dd6de19c82443a665e04b38a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2Creature.html#af633a348dd6de19c82443a665e04b38a">~Z2Creature</a> ()</td></tr>
+<tr class="separator:af633a348dd6de19c82443a665e04b38a inherit pub_methods_structZ2Creature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a501c85513836d34043a9532188631929 inherit pub_methods_structZ2Creature" id="r_a501c85513836d34043a9532188631929"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2Creature.html#a501c85513836d34043a9532188631929">init</a> (<a class="el" href="structVec.html">Vec</a> *, <a class="el" href="structVec.html">Vec</a> *, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>)</td></tr>
+<tr class="separator:a501c85513836d34043a9532188631929 inherit pub_methods_structZ2Creature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad14276ddc877ec100a683a25aede8c5f inherit pub_methods_structZ2Creature" id="r_ad14276ddc877ec100a683a25aede8c5f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2Creature.html#ad14276ddc877ec100a683a25aede8c5f">init</a> (<a class="el" href="structVec.html">Vec</a> *, <a class="el" href="structVec.html">Vec</a> *, <a class="el" href="structVec.html">Vec</a> *, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>, <a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>)</td></tr>
+<tr class="separator:ad14276ddc877ec100a683a25aede8c5f inherit pub_methods_structZ2Creature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c23aec3aeb846ebed4bc5eaccd6df67 inherit pub_methods_structZ2Creature" id="r_a0c23aec3aeb846ebed4bc5eaccd6df67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2Creature.html#a0c23aec3aeb846ebed4bc5eaccd6df67">initAnime</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *, <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>)</td></tr>
+<tr class="separator:a0c23aec3aeb846ebed4bc5eaccd6df67 inherit pub_methods_structZ2Creature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cb01144c08f24943f1ef0cf1997b4e0 inherit pub_methods_structZ2Creature" id="r_a2cb01144c08f24943f1ef0cf1997b4e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2Creature.html#a2cb01144c08f24943f1ef0cf1997b4e0">updateAnime</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>)</td></tr>
+<tr class="separator:a2cb01144c08f24943f1ef0cf1997b4e0 inherit pub_methods_structZ2Creature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ebfbec24b6ef5d0239d8e6a077090a3 inherit pub_methods_structZ2Creature" id="r_a9ebfbec24b6ef5d0239d8e6a077090a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2Creature.html#a9ebfbec24b6ef5d0239d8e6a077090a3">stopAnime</a> ()</td></tr>
+<tr class="separator:a9ebfbec24b6ef5d0239d8e6a077090a3 inherit pub_methods_structZ2Creature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a449b7f51342d375d70eb9073b63ce50f inherit pub_methods_structZ2Creature" id="r_a449b7f51342d375d70eb9073b63ce50f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2Creature.html#a449b7f51342d375d70eb9073b63ce50f">setSoundStarter</a> (<a class="el" href="structZ2SoundStarter.html">Z2SoundStarter</a> *)</td></tr>
+<tr class="separator:a449b7f51342d375d70eb9073b63ce50f inherit pub_methods_structZ2Creature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae87ad2ec57d91daf16d6cf723c361882 inherit pub_methods_structZ2Creature" id="r_ae87ad2ec57d91daf16d6cf723c361882"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="classZ2SoundHandlePool.html">Z2SoundHandlePool</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2Creature.html#ae87ad2ec57d91daf16d6cf723c361882">startCreatureSound</a> (<a class="el" href="structJAISoundID.html">JAISoundID</a>, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="types_8h.html#a151f780fb455885061d3b77ec1c90c03">s8</a>)</td></tr>
+<tr class="separator:ae87ad2ec57d91daf16d6cf723c361882 inherit pub_methods_structZ2Creature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af52a75d45be3c3c4856693f474899b3f inherit pub_methods_structZ2Creature" id="r_af52a75d45be3c3c4856693f474899b3f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="classZ2SoundHandlePool.html">Z2SoundHandlePool</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2Creature.html#af52a75d45be3c3c4856693f474899b3f">startCreatureSoundLevel</a> (<a class="el" href="structJAISoundID.html">JAISoundID</a>, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="types_8h.html#a151f780fb455885061d3b77ec1c90c03">s8</a>)</td></tr>
+<tr class="separator:af52a75d45be3c3c4856693f474899b3f inherit pub_methods_structZ2Creature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaaabaae21f3af59f3c168c3ab7fc869b inherit pub_methods_structZ2Creature" id="r_aaaabaae21f3af59f3c168c3ab7fc869b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="classZ2SoundHandlePool.html">Z2SoundHandlePool</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2Creature.html#aaaabaae21f3af59f3c168c3ab7fc869b">startCreatureVoice</a> (<a class="el" href="structJAISoundID.html">JAISoundID</a>, <a class="el" href="types_8h.html#a151f780fb455885061d3b77ec1c90c03">s8</a>)</td></tr>
+<tr class="separator:aaaabaae21f3af59f3c168c3ab7fc869b inherit pub_methods_structZ2Creature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2368bfe06fbc5286ef4f22704ed86d8 inherit pub_methods_structZ2Creature" id="r_ab2368bfe06fbc5286ef4f22704ed86d8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="classZ2SoundHandlePool.html">Z2SoundHandlePool</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2Creature.html#ab2368bfe06fbc5286ef4f22704ed86d8">startCreatureVoiceLevel</a> (<a class="el" href="structJAISoundID.html">JAISoundID</a>, <a class="el" href="types_8h.html#a151f780fb455885061d3b77ec1c90c03">s8</a>)</td></tr>
+<tr class="separator:ab2368bfe06fbc5286ef4f22704ed86d8 inherit pub_methods_structZ2Creature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade17306335d364c550349071ae2479d8 inherit pub_methods_structZ2Creature" id="r_ade17306335d364c550349071ae2479d8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="classZ2SoundHandlePool.html">Z2SoundHandlePool</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2Creature.html#ade17306335d364c550349071ae2479d8">startCreatureExtraSound</a> (<a class="el" href="structJAISoundID.html">JAISoundID</a>, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="types_8h.html#a151f780fb455885061d3b77ec1c90c03">s8</a>)</td></tr>
+<tr class="separator:ade17306335d364c550349071ae2479d8 inherit pub_methods_structZ2Creature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb8dcb2f3fbd6f149324df5d4ae4b402 inherit pub_methods_structZ2Creature" id="r_adb8dcb2f3fbd6f149324df5d4ae4b402"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="classZ2SoundHandlePool.html">Z2SoundHandlePool</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2Creature.html#adb8dcb2f3fbd6f149324df5d4ae4b402">startCreatureExtraSoundLevel</a> (<a class="el" href="structJAISoundID.html">JAISoundID</a>, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="types_8h.html#a151f780fb455885061d3b77ec1c90c03">s8</a>)</td></tr>
+<tr class="separator:adb8dcb2f3fbd6f149324df5d4ae4b402 inherit pub_methods_structZ2Creature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a092fb9c1c4e3ac26b63d8c4eec4c8127 inherit pub_methods_structZ2Creature" id="r_a092fb9c1c4e3ac26b63d8c4eec4c8127"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVec.html">Vec</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2Creature.html#a092fb9c1c4e3ac26b63d8c4eec4c8127">getCurrentPos</a> () <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a092fb9c1c4e3ac26b63d8c4eec4c8127 inherit pub_methods_structZ2Creature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_structZ2LinkSoundStarter"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_structZ2LinkSoundStarter')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="structZ2LinkSoundStarter.html">Z2LinkSoundStarter</a></td></tr>
+<tr class="memitem:ac1b5f626a682ee362ca1d58666efb673 inherit pub_methods_structZ2LinkSoundStarter" id="r_ac1b5f626a682ee362ca1d58666efb673"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2LinkSoundStarter.html#ac1b5f626a682ee362ca1d58666efb673">Z2LinkSoundStarter</a> ()</td></tr>
+<tr class="separator:ac1b5f626a682ee362ca1d58666efb673 inherit pub_methods_structZ2LinkSoundStarter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae46a27521242a0cc52454b35463dfb19 inherit pub_methods_structZ2LinkSoundStarter" id="r_ae46a27521242a0cc52454b35463dfb19"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2LinkSoundStarter.html#ae46a27521242a0cc52454b35463dfb19">~Z2LinkSoundStarter</a> ()</td></tr>
+<tr class="separator:ae46a27521242a0cc52454b35463dfb19 inherit pub_methods_structZ2LinkSoundStarter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25288fc00e1222d2c0ccc60272a317da inherit pub_methods_structZ2LinkSoundStarter" id="r_a25288fc00e1222d2c0ccc60272a317da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2LinkSoundStarter.html#a25288fc00e1222d2c0ccc60272a317da">startSound</a> (<a class="el" href="structJAISoundID.html">JAISoundID</a>, <a class="el" href="classJAISoundHandle.html">JAISoundHandle</a> *, <a class="el" href="structJGeometry_1_1TVec3.html">JGeometry::TVec3</a>&lt; <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> &gt; <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> *, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>)</td></tr>
+<tr class="separator:a25288fc00e1222d2c0ccc60272a317da inherit pub_methods_structZ2LinkSoundStarter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_structZ2SoundStarter"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_structZ2SoundStarter')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="structZ2SoundStarter.html">Z2SoundStarter</a></td></tr>
+<tr class="memitem:afd09e941731c00d692746aba422b010a inherit pub_methods_structZ2SoundStarter" id="r_afd09e941731c00d692746aba422b010a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2SoundStarter.html#afd09e941731c00d692746aba422b010a">Z2SoundStarter</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>)</td></tr>
+<tr class="separator:afd09e941731c00d692746aba422b010a inherit pub_methods_structZ2SoundStarter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4f092c87ad914583ac91a38f54705e2 inherit pub_methods_structZ2SoundStarter" id="r_ae4f092c87ad914583ac91a38f54705e2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2SoundStarter.html#ae4f092c87ad914583ac91a38f54705e2">setPortData</a> (<a class="el" href="classJAISoundHandle.html">JAISoundHandle</a> *, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>, <a class="el" href="types_8h.html#a151f780fb455885061d3b77ec1c90c03">s8</a>)</td></tr>
+<tr class="separator:ae4f092c87ad914583ac91a38f54705e2 inherit pub_methods_structZ2SoundStarter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2475a0fda3bb84d291d17d84093d8ce9 inherit pub_methods_structZ2SoundStarter" id="r_a2475a0fda3bb84d291d17d84093d8ce9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2SoundStarter.html#a2475a0fda3bb84d291d17d84093d8ce9">getPortData</a> (<a class="el" href="classJAISoundHandle.html">JAISoundHandle</a> *, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="types_8h.html#a151f780fb455885061d3b77ec1c90c03">s8</a>)</td></tr>
+<tr class="separator:a2475a0fda3bb84d291d17d84093d8ce9 inherit pub_methods_structZ2SoundStarter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a468cf3ca35503e3b6a44c9007624e8cd inherit pub_methods_structZ2SoundStarter" id="r_a468cf3ca35503e3b6a44c9007624e8cd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2SoundStarter.html#a468cf3ca35503e3b6a44c9007624e8cd">~Z2SoundStarter</a> ()</td></tr>
+<tr class="separator:a468cf3ca35503e3b6a44c9007624e8cd inherit pub_methods_structZ2SoundStarter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54a26c1a520cb3e89660649704dc85b6 inherit pub_methods_structZ2SoundStarter" id="r_a54a26c1a520cb3e89660649704dc85b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2SoundStarter.html#a54a26c1a520cb3e89660649704dc85b6">startSound</a> (<a class="el" href="structJAISoundID.html">JAISoundID</a>, <a class="el" href="classJAISoundHandle.html">JAISoundHandle</a> *, <a class="el" href="structJGeometry_1_1TVec3.html">JGeometry::TVec3</a>&lt; <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> &gt; <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> *)</td></tr>
+<tr class="separator:a54a26c1a520cb3e89660649704dc85b6 inherit pub_methods_structZ2SoundStarter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_structJAISoundStarter"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_structJAISoundStarter')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="structJAISoundStarter.html">JAISoundStarter</a></td></tr>
+<tr class="memitem:a610d92f38113629d1f40f0687f1c0d3d inherit pub_methods_structJAISoundStarter" id="r_a610d92f38113629d1f40f0687f1c0d3d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJAISoundStarter.html#a610d92f38113629d1f40f0687f1c0d3d">JAISoundStarter</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>)</td></tr>
+<tr class="separator:a610d92f38113629d1f40f0687f1c0d3d inherit pub_methods_structJAISoundStarter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbac5d4e71b773c29090850c61337194 inherit pub_methods_structJAISoundStarter" id="r_afbac5d4e71b773c29090850c61337194"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJAISoundStarter.html#afbac5d4e71b773c29090850c61337194">~JAISoundStarter</a> ()</td></tr>
+<tr class="separator:afbac5d4e71b773c29090850c61337194 inherit pub_methods_structJAISoundStarter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fc00b5c11f49ceac7c4831114a57aed inherit pub_methods_structJAISoundStarter" id="r_a3fc00b5c11f49ceac7c4831114a57aed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJAISoundStarter.html#a3fc00b5c11f49ceac7c4831114a57aed">startLevelSound</a> (<a class="el" href="structJAISoundID.html">JAISoundID</a>, <a class="el" href="classJAISoundHandle.html">JAISoundHandle</a> *, <a class="el" href="structJGeometry_1_1TVec3.html">JGeometry::TVec3</a>&lt; <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> &gt; <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> *)</td></tr>
+<tr class="separator:a3fc00b5c11f49ceac7c4831114a57aed inherit pub_methods_structJAISoundStarter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classJASGlobalInstance"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classJASGlobalInstance')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classJASGlobalInstance.html">JASGlobalInstance&lt; JAISoundStarter &gt;</a></td></tr>
+<tr class="memitem:a9fa6d71afdc09c41c1f308101d081523 inherit pub_methods_classJASGlobalInstance" id="r_a9fa6d71afdc09c41c1f308101d081523"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASGlobalInstance.html#a9fa6d71afdc09c41c1f308101d081523">JASGlobalInstance</a> (<a class="el" href="structJAISoundStarter.html">JAISoundStarter</a> *<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">inst</a>)</td></tr>
+<tr class="separator:a9fa6d71afdc09c41c1f308101d081523 inherit pub_methods_classJASGlobalInstance"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82f3ac9a2cb8e2e4821191dcd089fd20 inherit pub_methods_classJASGlobalInstance" id="r_a82f3ac9a2cb8e2e4821191dcd089fd20"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASGlobalInstance.html#a82f3ac9a2cb8e2e4821191dcd089fd20">JASGlobalInstance</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_1</a>)</td></tr>
+<tr class="separator:a82f3ac9a2cb8e2e4821191dcd089fd20 inherit pub_methods_classJASGlobalInstance"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86cb58ba5aa6fd25cfa3bf108fdd0fbb inherit pub_methods_classJASGlobalInstance" id="r_a86cb58ba5aa6fd25cfa3bf108fdd0fbb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASGlobalInstance.html#a86cb58ba5aa6fd25cfa3bf108fdd0fbb">~JASGlobalInstance</a> ()</td></tr>
+<tr class="separator:a86cb58ba5aa6fd25cfa3bf108fdd0fbb inherit pub_methods_classJASGlobalInstance"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classJASGlobalInstance"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classJASGlobalInstance')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classJASGlobalInstance.html">JASGlobalInstance&lt; Z2SoundStarter &gt;</a></td></tr>
+<tr class="memitem:a9fa6d71afdc09c41c1f308101d081523 inherit pub_methods_classJASGlobalInstance" id="r_a9fa6d71afdc09c41c1f308101d081523"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASGlobalInstance.html#a9fa6d71afdc09c41c1f308101d081523">JASGlobalInstance</a> (<a class="el" href="structZ2SoundStarter.html">Z2SoundStarter</a> *<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">inst</a>)</td></tr>
+<tr class="separator:a9fa6d71afdc09c41c1f308101d081523 inherit pub_methods_classJASGlobalInstance"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82f3ac9a2cb8e2e4821191dcd089fd20 inherit pub_methods_classJASGlobalInstance" id="r_a82f3ac9a2cb8e2e4821191dcd089fd20"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASGlobalInstance.html#a82f3ac9a2cb8e2e4821191dcd089fd20">JASGlobalInstance</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_1</a>)</td></tr>
+<tr class="separator:a82f3ac9a2cb8e2e4821191dcd089fd20 inherit pub_methods_classJASGlobalInstance"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86cb58ba5aa6fd25cfa3bf108fdd0fbb inherit pub_methods_classJASGlobalInstance" id="r_a86cb58ba5aa6fd25cfa3bf108fdd0fbb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASGlobalInstance.html#a86cb58ba5aa6fd25cfa3bf108fdd0fbb">~JASGlobalInstance</a> ()</td></tr>
+<tr class="separator:a86cb58ba5aa6fd25cfa3bf108fdd0fbb inherit pub_methods_classJASGlobalInstance"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:ae942a2506d9935d4017200d5c6f8caff" id="r_ae942a2506d9935d4017200d5c6f8caff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="classZ2CreatureLink.html">Z2CreatureLink</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#ae942a2506d9935d4017200d5c6f8caff">mLinkPtr</a></td></tr>
+<tr class="separator:ae942a2506d9935d4017200d5c6f8caff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_static_attribs_classJASGlobalInstance"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_classJASGlobalInstance')"><img src="closed.png" alt="-"/>&#160;Static Public Attributes inherited from <a class="el" href="classJASGlobalInstance.html">JASGlobalInstance&lt; JAISoundStarter &gt;</a></td></tr>
+<tr class="memitem:a0a3566576d480f8814720a9dd634d835 inherit pub_static_attribs_classJASGlobalInstance" id="r_a0a3566576d480f8814720a9dd634d835"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="structJAISoundStarter.html">JAISoundStarter</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASGlobalInstance.html#a0a3566576d480f8814720a9dd634d835">sInstance</a></td></tr>
+<tr class="separator:a0a3566576d480f8814720a9dd634d835 inherit pub_static_attribs_classJASGlobalInstance"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_static_attribs_classJASGlobalInstance"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_classJASGlobalInstance')"><img src="closed.png" alt="-"/>&#160;Static Public Attributes inherited from <a class="el" href="classJASGlobalInstance.html">JASGlobalInstance&lt; Z2SoundStarter &gt;</a></td></tr>
+<tr class="memitem:a0a3566576d480f8814720a9dd634d835 inherit pub_static_attribs_classJASGlobalInstance" id="r_a0a3566576d480f8814720a9dd634d835"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="structZ2SoundStarter.html">Z2SoundStarter</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASGlobalInstance.html#a0a3566576d480f8814720a9dd634d835">sInstance</a></td></tr>
+<tr class="separator:a0a3566576d480f8814720a9dd634d835 inherit pub_static_attribs_classJASGlobalInstance"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a63e6fc608d1ee40e84e7b73458c3d49b" id="r_a63e6fc608d1ee40e84e7b73458c3d49b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classZ2SoundObjSimple.html">Z2SoundObjSimple</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a63e6fc608d1ee40e84e7b73458c3d49b">mKantera</a></td></tr>
+<tr class="separator:a63e6fc608d1ee40e84e7b73458c3d49b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af42ae9c499f1ae2f2a31a8182e335066" id="r_af42ae9c499f1ae2f2a31a8182e335066"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcXyz.html">cXyz</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#af42ae9c499f1ae2f2a31a8182e335066">field_0xb4</a></td></tr>
+<tr class="separator:af42ae9c499f1ae2f2a31a8182e335066"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbf455e1df7d57e14fe82a54c6ab42b9" id="r_adbf455e1df7d57e14fe82a54c6ab42b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#adbf455e1df7d57e14fe82a54c6ab42b9">mLinkState</a></td></tr>
+<tr class="separator:adbf455e1df7d57e14fe82a54c6ab42b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7821e189b495cb120dc5858301789117" id="r_a7821e189b495cb120dc5858301789117"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a7821e189b495cb120dc5858301789117">field_0xc1</a></td></tr>
+<tr class="separator:a7821e189b495cb120dc5858301789117"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af19cef2d8accb7bf1e78b91eda8a596f" id="r_af19cef2d8accb7bf1e78b91eda8a596f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#af19cef2d8accb7bf1e78b91eda8a596f">mMarkState</a></td></tr>
+<tr class="separator:af19cef2d8accb7bf1e78b91eda8a596f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a238010fce78a7e0e66577c42d284078b" id="r_a238010fce78a7e0e66577c42d284078b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a238010fce78a7e0e66577c42d284078b">mLinkHp</a></td></tr>
+<tr class="separator:a238010fce78a7e0e66577c42d284078b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31bc6d65bb775ac860ce8a99ce8fd029" id="r_a31bc6d65bb775ac860ce8a99ce8fd029"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a31bc6d65bb775ac860ce8a99ce8fd029">mLinkBootsType</a></td></tr>
+<tr class="separator:a31bc6d65bb775ac860ce8a99ce8fd029"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7a997661e78384fa31a72734165a987" id="r_af7a997661e78384fa31a72734165a987"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#af7a997661e78384fa31a72734165a987">mKanteraState</a></td></tr>
+<tr class="separator:af7a997661e78384fa31a72734165a987"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16c16a1b22f450dad36c066b8d773d4f" id="r_a16c16a1b22f450dad36c066b8d773d4f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a16c16a1b22f450dad36c066b8d773d4f">mLinkSwordType</a></td></tr>
+<tr class="separator:a16c16a1b22f450dad36c066b8d773d4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a36cc16751879607ca06a67aa3d5576" id="r_a7a36cc16751879607ca06a67aa3d5576"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a7a36cc16751879607ca06a67aa3d5576">mLinkShieldType</a></td></tr>
+<tr class="separator:a7a36cc16751879607ca06a67aa3d5576"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b8ddaf7443067f79aa39fc64d9f5aec" id="r_a1b8ddaf7443067f79aa39fc64d9f5aec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a1b8ddaf7443067f79aa39fc64d9f5aec">mMoveSpeed</a></td></tr>
+<tr class="separator:a1b8ddaf7443067f79aa39fc64d9f5aec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a020201ec25c9221acb610b691c35ae79" id="r_a020201ec25c9221acb610b691c35ae79"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a020201ec25c9221acb610b691c35ae79">mMovingTime</a></td></tr>
+<tr class="separator:a020201ec25c9221acb610b691c35ae79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30e5f432ed855173fe38c290803f1237" id="r_a30e5f432ed855173fe38c290803f1237"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a151f780fb455885061d3b77ec1c90c03">s8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a30e5f432ed855173fe38c290803f1237">mSinkDepth</a></td></tr>
+<tr class="separator:a30e5f432ed855173fe38c290803f1237"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74473d8f402ed8e70b976883fa1cc1c4" id="r_a74473d8f402ed8e70b976883fa1cc1c4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a74473d8f402ed8e70b976883fa1cc1c4">mWolfEyeOpen</a>: 1</td></tr>
+<tr class="separator:a74473d8f402ed8e70b976883fa1cc1c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accf46818bf7c2eceb4bcccfe22eb2bc2" id="r_accf46818bf7c2eceb4bcccfe22eb2bc2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#accf46818bf7c2eceb4bcccfe22eb2bc2">mInWater</a>: 1</td></tr>
+<tr class="separator:accf46818bf7c2eceb4bcccfe22eb2bc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06dc01bc855084a22a3794ee56c9fa01" id="r_a06dc01bc855084a22a3794ee56c9fa01"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a06dc01bc855084a22a3794ee56c9fa01">mResumeAttack</a>: 1</td></tr>
+<tr class="separator:a06dc01bc855084a22a3794ee56c9fa01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bfc82bce2ad5709386e02ff847e76c8" id="r_a4bfc82bce2ad5709386e02ff847e76c8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a4bfc82bce2ad5709386e02ff847e76c8">mFlag3</a>: 1</td></tr>
+<tr class="separator:a4bfc82bce2ad5709386e02ff847e76c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abee3b6dc17d543f40f4ed2fc9e09e9d8" id="r_abee3b6dc17d543f40f4ed2fc9e09e9d8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#abee3b6dc17d543f40f4ed2fc9e09e9d8">mFlag4</a>: 1</td></tr>
+<tr class="separator:abee3b6dc17d543f40f4ed2fc9e09e9d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3431911807e38ba6b8a70e22c0e6dc25" id="r_a3431911807e38ba6b8a70e22c0e6dc25"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a3431911807e38ba6b8a70e22c0e6dc25">mFlag5</a>: 1</td></tr>
+<tr class="separator:a3431911807e38ba6b8a70e22c0e6dc25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac7e1075c7dab522fa1eaa373eea26c8" id="r_aac7e1075c7dab522fa1eaa373eea26c8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#aac7e1075c7dab522fa1eaa373eea26c8">mRiding</a>: 1</td></tr>
+<tr class="separator:aac7e1075c7dab522fa1eaa373eea26c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40c00d712ba80b5adf260a9191191933" id="r_a40c00d712ba80b5adf260a9191191933"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a40c00d712ba80b5adf260a9191191933">mMagnetized</a>: 1</td></tr>
+<tr class="separator:a40c00d712ba80b5adf260a9191191933"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d32438b1b34da2c0e1188c422fdc17d" id="r_a8d32438b1b34da2c0e1188c422fdc17d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a8d32438b1b34da2c0e1188c422fdc17d">mFlag8</a>: 1</td></tr>
+<tr class="separator:a8d32438b1b34da2c0e1188c422fdc17d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a787fd7adc068b6316c6fa72a8e1990ba" id="r_a787fd7adc068b6316c6fa72a8e1990ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a787fd7adc068b6316c6fa72a8e1990ba">mUsingIronBall</a>: 1</td></tr>
+<tr class="separator:a787fd7adc068b6316c6fa72a8e1990ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32178511905d7a48d479211a58e3d065" id="r_a32178511905d7a48d479211a58e3d065"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a32178511905d7a48d479211a58e3d065">mFlag10</a>: 1</td></tr>
+<tr class="separator:a32178511905d7a48d479211a58e3d065"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9da8d5a2a5f6d47754e264cfcc24bf43" id="r_a9da8d5a2a5f6d47754e264cfcc24bf43"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a9da8d5a2a5f6d47754e264cfcc24bf43">mFlag11</a>: 1</td></tr>
+<tr class="separator:a9da8d5a2a5f6d47754e264cfcc24bf43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ba0981e3af9e71dc4dcbcdcb96c90b7" id="r_a7ba0981e3af9e71dc4dcbcdcb96c90b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a7ba0981e3af9e71dc4dcbcdcb96c90b7">mFlag12</a>: 1</td></tr>
+<tr class="separator:a7ba0981e3af9e71dc4dcbcdcb96c90b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c6c48edd4a70d3df4f398ff35e1266a" id="r_a0c6c48edd4a70d3df4f398ff35e1266a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a0c6c48edd4a70d3df4f398ff35e1266a">mFlag13</a>: 1</td></tr>
+<tr class="separator:a0c6c48edd4a70d3df4f398ff35e1266a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3a480ffce9acdcece0fd5ec610c5507" id="r_ac3a480ffce9acdcece0fd5ec610c5507"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#ac3a480ffce9acdcece0fd5ec610c5507">mFlag14</a>: 1</td></tr>
+<tr class="separator:ac3a480ffce9acdcece0fd5ec610c5507"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b5e58a6e3b7b9ba5127589c7faec0b5" id="r_a1b5e58a6e3b7b9ba5127589c7faec0b5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZ2CreatureLink.html#a1b5e58a6e3b7b9ba5127589c7faec0b5">mFlag15</a>: 1</td></tr>
+<tr class="separator:a1b5e58a6e3b7b9ba5127589c7faec0b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_static_methods_classJASGlobalInstance"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classJASGlobalInstance')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classJASGlobalInstance.html">JASGlobalInstance&lt; JAISoundStarter &gt;</a></td></tr>
+<tr class="memitem:a57f4a347f48fb3a4c4577b99e36942f1 inherit pub_static_methods_classJASGlobalInstance" id="r_a57f4a347f48fb3a4c4577b99e36942f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="structJAISoundStarter.html">JAISoundStarter</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASGlobalInstance.html#a57f4a347f48fb3a4c4577b99e36942f1">getInstance</a> ()</td></tr>
+<tr class="separator:a57f4a347f48fb3a4c4577b99e36942f1 inherit pub_static_methods_classJASGlobalInstance"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_static_methods_classJASGlobalInstance"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classJASGlobalInstance')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classJASGlobalInstance.html">JASGlobalInstance&lt; Z2SoundStarter &gt;</a></td></tr>
+<tr class="memitem:a57f4a347f48fb3a4c4577b99e36942f1 inherit pub_static_methods_classJASGlobalInstance" id="r_a57f4a347f48fb3a4c4577b99e36942f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="structZ2SoundStarter.html">Z2SoundStarter</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASGlobalInstance.html#a57f4a347f48fb3a4c4577b99e36942f1">getInstance</a> ()</td></tr>
+<tr class="separator:a57f4a347f48fb3a4c4577b99e36942f1 inherit pub_static_methods_classJASGlobalInstance"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_structZ2Creature"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_structZ2Creature')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="structZ2Creature.html">Z2Creature</a></td></tr>
+<tr class="memitem:a684f7c1cc03c3ee2b2e21d0c224462d8 inherit pub_attribs_structZ2Creature" id="r_a684f7c1cc03c3ee2b2e21d0c224462d8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structVec.html">Vec</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2Creature.html#a684f7c1cc03c3ee2b2e21d0c224462d8">mpPos</a></td></tr>
+<tr class="separator:a684f7c1cc03c3ee2b2e21d0c224462d8 inherit pub_attribs_structZ2Creature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab90047a50eef5dc501736a5f0cc09c76 inherit pub_attribs_structZ2Creature" id="r_ab90047a50eef5dc501736a5f0cc09c76"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classZ2SoundObjAnime.html">Z2SoundObjAnime</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2Creature.html#ab90047a50eef5dc501736a5f0cc09c76">mSoundObjAnime</a></td></tr>
+<tr class="separator:ab90047a50eef5dc501736a5f0cc09c76 inherit pub_attribs_structZ2Creature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5256f83e475c3700d4b3fe88b5a8970 inherit pub_attribs_structZ2Creature" id="r_ad5256f83e475c3700d4b3fe88b5a8970"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classZ2SoundObjSimple.html">Z2SoundObjSimple</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2Creature.html#ad5256f83e475c3700d4b3fe88b5a8970">mSoundObjSimple1</a></td></tr>
+<tr class="separator:ad5256f83e475c3700d4b3fe88b5a8970 inherit pub_attribs_structZ2Creature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50418001508116da50181239c6094a00 inherit pub_attribs_structZ2Creature" id="r_a50418001508116da50181239c6094a00"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classZ2SoundObjSimple.html">Z2SoundObjSimple</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structZ2Creature.html#a50418001508116da50181239c6094a00">mSoundObjSimple2</a></td></tr>
+<tr class="separator:a50418001508116da50181239c6094a00 inherit pub_attribs_structZ2Creature"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="afd0f444260c28ab500be6a589fc8a647" name="afd0f444260c28ab500be6a589fc8a647"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd0f444260c28ab500be6a589fc8a647">&#9670;&#160;</a></span>Z2CreatureLink()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Z2CreatureLink::Z2CreatureLink </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aef54cef198a9eb9a105732033c9bfc6a" name="aef54cef198a9eb9a105732033c9bfc6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef54cef198a9eb9a105732033c9bfc6a">&#9670;&#160;</a></span>~Z2CreatureLink()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Z2CreatureLink::~Z2CreatureLink </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a7419f1e3f2ed00a10b4ca67096fe38ea" name="a7419f1e3f2ed00a10b4ca67096fe38ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7419f1e3f2ed00a10b4ca67096fe38ea">&#9670;&#160;</a></span>deleteKantera()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> Z2CreatureLink::deleteKantera </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9f7597b614968566bce1459adf049c56" name="a9f7597b614968566bce1459adf049c56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f7597b614968566bce1459adf049c56">&#9670;&#160;</a></span>deleteObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> Z2CreatureLink::deleteObject </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="structZ2Creature.html#a2bda248bad622037db0b79b335306614">Z2Creature</a>.</p>
+
+</div>
+</div>
+<a id="aa076416d366fa7f59ef484ca4758299d" name="aa076416d366fa7f59ef484ca4758299d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa076416d366fa7f59ef484ca4758299d">&#9670;&#160;</a></span>framework()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> Z2CreatureLink::framework </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>param_0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a151f780fb455885061d3b77ec1c90c03">s8</a>&#160;</td>
+          <td class="paramname"><em>param_1</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="structZ2Creature.html#a59bbbf72fe61d3ef81e1e5e8428c5e4e">Z2Creature</a>.</p>
+
+</div>
+</div>
+<a id="a01b3b48e2d78f3560613bd4f69e10330" name="a01b3b48e2d78f3560613bd4f69e10330"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01b3b48e2d78f3560613bd4f69e10330">&#9670;&#160;</a></span>getKantera()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classZ2SoundObjSimple.html">Z2SoundObjSimple</a> &amp; Z2CreatureLink::getKantera </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa993f82add85e0b666c086bf77cf6701" name="aa993f82add85e0b666c086bf77cf6701"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa993f82add85e0b666c086bf77cf6701">&#9670;&#160;</a></span>getLinkHp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> Z2CreatureLink::getLinkHp </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6f36653a81a447663e996ec1ddcacbef" name="a6f36653a81a447663e996ec1ddcacbef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f36653a81a447663e996ec1ddcacbef">&#9670;&#160;</a></span>getLinkState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> Z2CreatureLink::getLinkState </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab7a2b17ea81ab9eeb675cb99b588ca2d" name="ab7a2b17ea81ab9eeb675cb99b588ca2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7a2b17ea81ab9eeb675cb99b588ca2d">&#9670;&#160;</a></span>getMoveSpeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> Z2CreatureLink::getMoveSpeed </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a06801be4a4461d4c844fbf0241fd7718" name="a06801be4a4461d4c844fbf0241fd7718"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06801be4a4461d4c844fbf0241fd7718">&#9670;&#160;</a></span>getMovingTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> Z2CreatureLink::getMovingTime </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6229313de32e9e2c38091105172f27bf" name="a6229313de32e9e2c38091105172f27bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6229313de32e9e2c38091105172f27bf">&#9670;&#160;</a></span>i_setLinkState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> Z2CreatureLink::i_setLinkState </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td>
+          <td class="paramname"><em>i_state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab6e6b361e8e3821be83410a213392e0f" name="ab6e6b361e8e3821be83410a213392e0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6e6b361e8e3821be83410a213392e0f">&#9670;&#160;</a></span>init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> Z2CreatureLink::init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVec.html">Vec</a> *&#160;</td>
+          <td class="paramname"><em>param_0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVec.html">Vec</a> *&#160;</td>
+          <td class="paramname"><em>param_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structVec.html">Vec</a> *&#160;</td>
+          <td class="paramname"><em>param_2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a82e9dc064fef8fe301db88c8c4ac55e2" name="a82e9dc064fef8fe301db88c8c4ac55e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82e9dc064fef8fe301db88c8c4ac55e2">&#9670;&#160;</a></span>initKantera()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> Z2CreatureLink::initKantera </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structVec.html">Vec</a> *&#160;</td>
+          <td class="paramname"><em>i_pos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab86bf1e66f0bc8621d23408f7f438651" name="ab86bf1e66f0bc8621d23408f7f438651"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab86bf1e66f0bc8621d23408f7f438651">&#9670;&#160;</a></span>isInWater()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> Z2CreatureLink::isInWater </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a542415b97523d14f156b8084a2530c2a" name="a542415b97523d14f156b8084a2530c2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a542415b97523d14f156b8084a2530c2a">&#9670;&#160;</a></span>isRiding()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> Z2CreatureLink::isRiding </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acbdc9de9b303bb4be6c9389827cb6b04" name="acbdc9de9b303bb4be6c9389827cb6b04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbdc9de9b303bb4be6c9389827cb6b04">&#9670;&#160;</a></span>isWolfSmellOpen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> Z2CreatureLink::isWolfSmellOpen </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afea65679847144a6f19d50f9774894b6" name="afea65679847144a6f19d50f9774894b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afea65679847144a6f19d50f9774894b6">&#9670;&#160;</a></span>setInWater()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> Z2CreatureLink::setInWater </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td>
+          <td class="paramname"><em>status</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af5bf79c036fa36032a9e4e6aa64d01a3" name="af5bf79c036fa36032a9e4e6aa64d01a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5bf79c036fa36032a9e4e6aa64d01a3">&#9670;&#160;</a></span>setKanteraState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> Z2CreatureLink::setKanteraState </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td>
+          <td class="paramname"><em>i_state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adfa5bcbecdf03d1e5ae42ddb63f2239d" name="adfa5bcbecdf03d1e5ae42ddb63f2239d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfa5bcbecdf03d1e5ae42ddb63f2239d">&#9670;&#160;</a></span>setLinkBootsType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> Z2CreatureLink::setLinkBootsType </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td>
+          <td class="paramname"><em>i_bootsType</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1656143eee96d41a6a55d5937f6007e0" name="a1656143eee96d41a6a55d5937f6007e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1656143eee96d41a6a55d5937f6007e0">&#9670;&#160;</a></span>setLinkGroupInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> Z2CreatureLink::setLinkGroupInfo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a465f24b8852401da381f1b73c3f60126" name="a465f24b8852401da381f1b73c3f60126"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a465f24b8852401da381f1b73c3f60126">&#9670;&#160;</a></span>setLinkHp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> Z2CreatureLink::setLinkHp </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td>
+          <td class="paramname"><em>hp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa59a7f616450b3ad899b13bff4ea3be4" name="aa59a7f616450b3ad899b13bff4ea3be4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa59a7f616450b3ad899b13bff4ea3be4">&#9670;&#160;</a></span>setLinkShieldType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> Z2CreatureLink::setLinkShieldType </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td>
+          <td class="paramname"><em>i_shieldType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td>
+          <td class="paramname"><em>param_1</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaefe083ddb176be039755682a98fa098" name="aaefe083ddb176be039755682a98fa098"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaefe083ddb176be039755682a98fa098">&#9670;&#160;</a></span>setLinkState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> Z2CreatureLink::setLinkState </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac4f03f480172e47fc5d51b2fbc353de0" name="ac4f03f480172e47fc5d51b2fbc353de0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4f03f480172e47fc5d51b2fbc353de0">&#9670;&#160;</a></span>setLinkSwordType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> Z2CreatureLink::setLinkSwordType </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td>
+          <td class="paramname"><em>i_swordType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td>
+          <td class="paramname"><em>param_1</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2f03fedadae033c92cbd7b1dbb7acc07" name="a2f03fedadae033c92cbd7b1dbb7acc07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f03fedadae033c92cbd7b1dbb7acc07">&#9670;&#160;</a></span>setMagnetized()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> Z2CreatureLink::setMagnetized </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td>
+          <td class="paramname"><em>i_isMagnetized</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a760de577d7d1b4555254cf8019720a91" name="a760de577d7d1b4555254cf8019720a91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a760de577d7d1b4555254cf8019720a91">&#9670;&#160;</a></span>setMarkState()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> Z2CreatureLink::setMarkState </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td>
+          <td class="paramname"><em>i_state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a171b349cc71e52451c76b8a0be1ea738" name="a171b349cc71e52451c76b8a0be1ea738"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a171b349cc71e52451c76b8a0be1ea738">&#9670;&#160;</a></span>setResumeAttack()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> Z2CreatureLink::setResumeAttack </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td>
+          <td class="paramname"><em>i_resumeAttack</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad05b758caf4918fa64564534cac07eb9" name="ad05b758caf4918fa64564534cac07eb9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad05b758caf4918fa64564534cac07eb9">&#9670;&#160;</a></span>setRiding()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> Z2CreatureLink::setRiding </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td>
+          <td class="paramname"><em>i_isRiding</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9895109c296d18dc5ec785493a795e0e" name="a9895109c296d18dc5ec785493a795e0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9895109c296d18dc5ec785493a795e0e">&#9670;&#160;</a></span>setSinkDepth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> Z2CreatureLink::setSinkDepth </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a151f780fb455885061d3b77ec1c90c03">s8</a>&#160;</td>
+          <td class="paramname"><em>i_sinkDepth</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6da46aab3e0954ff05f31f6557196cc2" name="a6da46aab3e0954ff05f31f6557196cc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6da46aab3e0954ff05f31f6557196cc2">&#9670;&#160;</a></span>setUsingIronBall()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> Z2CreatureLink::setUsingIronBall </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td>
+          <td class="paramname"><em>i_using</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a60f2e40501250771e0ef03b65247f328" name="a60f2e40501250771e0ef03b65247f328"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60f2e40501250771e0ef03b65247f328">&#9670;&#160;</a></span>setWolfEyeOpen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> Z2CreatureLink::setWolfEyeOpen </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td>
+          <td class="paramname"><em>i_wolfEyeOpen</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a76695d4f43c11bf929f1339f0d58cd6a" name="a76695d4f43c11bf929f1339f0d58cd6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76695d4f43c11bf929f1339f0d58cd6a">&#9670;&#160;</a></span>startCollisionSE()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classZ2SoundHandlePool.html">Z2SoundHandlePool</a> * Z2CreatureLink::startCollisionSE </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>hitID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>mapinfo</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplemented from <a class="el" href="structZ2Creature.html#af13d015d6371eb8af1a9d1a5d65781e4">Z2Creature</a>.</p>
+
+</div>
+</div>
+<a id="ada4f6d652396ecf619f77f5afd3eb153" name="ada4f6d652396ecf619f77f5afd3eb153"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada4f6d652396ecf619f77f5afd3eb153">&#9670;&#160;</a></span>startHitItemSE()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a> Z2CreatureLink::startHitItemSE </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>param_0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>param_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classZ2SoundObjBase.html">Z2SoundObjBase</a> *&#160;</td>
+          <td class="paramname"><em>param_2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">float</a>&#160;</td>
+          <td class="paramname"><em>speed</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6ce7130f3fc941b40a630d0bf7baf857" name="a6ce7130f3fc941b40a630d0bf7baf857"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ce7130f3fc941b40a630d0bf7baf857">&#9670;&#160;</a></span>startLinkSound()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> Z2CreatureLink::startLinkSound </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJAISoundID.html">JAISoundID</a>&#160;</td>
+          <td class="paramname"><em>param_0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>param_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a151f780fb455885061d3b77ec1c90c03">s8</a>&#160;</td>
+          <td class="paramname"><em>param_2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac5a92bb585bf22af9c97481aec18d809" name="ac5a92bb585bf22af9c97481aec18d809"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5a92bb585bf22af9c97481aec18d809">&#9670;&#160;</a></span>startLinkSoundLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> Z2CreatureLink::startLinkSoundLevel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJAISoundID.html">JAISoundID</a>&#160;</td>
+          <td class="paramname"><em>param_0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>param_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a151f780fb455885061d3b77ec1c90c03">s8</a>&#160;</td>
+          <td class="paramname"><em>param_2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aff2f9e6945a5237cee231ead6c86c9a8" name="aff2f9e6945a5237cee231ead6c86c9a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff2f9e6945a5237cee231ead6c86c9a8">&#9670;&#160;</a></span>startLinkSwordSound()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> Z2CreatureLink::startLinkSwordSound </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJAISoundID.html">JAISoundID</a>&#160;</td>
+          <td class="paramname"><em>i_soundID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a151f780fb455885061d3b77ec1c90c03">s8</a>&#160;</td>
+          <td class="paramname"><em>ch</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a18ef915cd5332c29421f00d564dd2a53" name="a18ef915cd5332c29421f00d564dd2a53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18ef915cd5332c29421f00d564dd2a53">&#9670;&#160;</a></span>startLinkVoice()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> Z2CreatureLink::startLinkVoice </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJAISoundID.html">JAISoundID</a>&#160;</td>
+          <td class="paramname"><em>param_0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a151f780fb455885061d3b77ec1c90c03">s8</a>&#160;</td>
+          <td class="paramname"><em>param_1</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac18b9df62d78b36624915440d8d0af23" name="ac18b9df62d78b36624915440d8d0af23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac18b9df62d78b36624915440d8d0af23">&#9670;&#160;</a></span>startLinkVoiceLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> Z2CreatureLink::startLinkVoiceLevel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJAISoundID.html">JAISoundID</a>&#160;</td>
+          <td class="paramname"><em>param_0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a151f780fb455885061d3b77ec1c90c03">s8</a>&#160;</td>
+          <td class="paramname"><em>param_1</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="af42ae9c499f1ae2f2a31a8182e335066" name="af42ae9c499f1ae2f2a31a8182e335066"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af42ae9c499f1ae2f2a31a8182e335066">&#9670;&#160;</a></span>field_0xb4</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structcXyz.html">cXyz</a> Z2CreatureLink::field_0xb4</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7821e189b495cb120dc5858301789117" name="a7821e189b495cb120dc5858301789117"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7821e189b495cb120dc5858301789117">&#9670;&#160;</a></span>field_0xc1</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> Z2CreatureLink::field_0xc1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a32178511905d7a48d479211a58e3d065" name="a32178511905d7a48d479211a58e3d065"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32178511905d7a48d479211a58e3d065">&#9670;&#160;</a></span>mFlag10</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> Z2CreatureLink::mFlag10</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9da8d5a2a5f6d47754e264cfcc24bf43" name="a9da8d5a2a5f6d47754e264cfcc24bf43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9da8d5a2a5f6d47754e264cfcc24bf43">&#9670;&#160;</a></span>mFlag11</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> Z2CreatureLink::mFlag11</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7ba0981e3af9e71dc4dcbcdcb96c90b7" name="a7ba0981e3af9e71dc4dcbcdcb96c90b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ba0981e3af9e71dc4dcbcdcb96c90b7">&#9670;&#160;</a></span>mFlag12</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> Z2CreatureLink::mFlag12</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0c6c48edd4a70d3df4f398ff35e1266a" name="a0c6c48edd4a70d3df4f398ff35e1266a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c6c48edd4a70d3df4f398ff35e1266a">&#9670;&#160;</a></span>mFlag13</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> Z2CreatureLink::mFlag13</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac3a480ffce9acdcece0fd5ec610c5507" name="ac3a480ffce9acdcece0fd5ec610c5507"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3a480ffce9acdcece0fd5ec610c5507">&#9670;&#160;</a></span>mFlag14</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> Z2CreatureLink::mFlag14</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1b5e58a6e3b7b9ba5127589c7faec0b5" name="a1b5e58a6e3b7b9ba5127589c7faec0b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b5e58a6e3b7b9ba5127589c7faec0b5">&#9670;&#160;</a></span>mFlag15</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> Z2CreatureLink::mFlag15</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4bfc82bce2ad5709386e02ff847e76c8" name="a4bfc82bce2ad5709386e02ff847e76c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4bfc82bce2ad5709386e02ff847e76c8">&#9670;&#160;</a></span>mFlag3</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> Z2CreatureLink::mFlag3</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abee3b6dc17d543f40f4ed2fc9e09e9d8" name="abee3b6dc17d543f40f4ed2fc9e09e9d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abee3b6dc17d543f40f4ed2fc9e09e9d8">&#9670;&#160;</a></span>mFlag4</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> Z2CreatureLink::mFlag4</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3431911807e38ba6b8a70e22c0e6dc25" name="a3431911807e38ba6b8a70e22c0e6dc25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3431911807e38ba6b8a70e22c0e6dc25">&#9670;&#160;</a></span>mFlag5</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> Z2CreatureLink::mFlag5</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8d32438b1b34da2c0e1188c422fdc17d" name="a8d32438b1b34da2c0e1188c422fdc17d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d32438b1b34da2c0e1188c422fdc17d">&#9670;&#160;</a></span>mFlag8</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> Z2CreatureLink::mFlag8</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="accf46818bf7c2eceb4bcccfe22eb2bc2" name="accf46818bf7c2eceb4bcccfe22eb2bc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#accf46818bf7c2eceb4bcccfe22eb2bc2">&#9670;&#160;</a></span>mInWater</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> Z2CreatureLink::mInWater</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a63e6fc608d1ee40e84e7b73458c3d49b" name="a63e6fc608d1ee40e84e7b73458c3d49b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63e6fc608d1ee40e84e7b73458c3d49b">&#9670;&#160;</a></span>mKantera</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classZ2SoundObjSimple.html">Z2SoundObjSimple</a> Z2CreatureLink::mKantera</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af7a997661e78384fa31a72734165a987" name="af7a997661e78384fa31a72734165a987"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7a997661e78384fa31a72734165a987">&#9670;&#160;</a></span>mKanteraState</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> Z2CreatureLink::mKanteraState</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a31bc6d65bb775ac860ce8a99ce8fd029" name="a31bc6d65bb775ac860ce8a99ce8fd029"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31bc6d65bb775ac860ce8a99ce8fd029">&#9670;&#160;</a></span>mLinkBootsType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> Z2CreatureLink::mLinkBootsType</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a238010fce78a7e0e66577c42d284078b" name="a238010fce78a7e0e66577c42d284078b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a238010fce78a7e0e66577c42d284078b">&#9670;&#160;</a></span>mLinkHp</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> Z2CreatureLink::mLinkHp</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae942a2506d9935d4017200d5c6f8caff" name="ae942a2506d9935d4017200d5c6f8caff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae942a2506d9935d4017200d5c6f8caff">&#9670;&#160;</a></span>mLinkPtr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classZ2CreatureLink.html">Z2CreatureLink</a> * Z2CreatureLink::mLinkPtr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7a36cc16751879607ca06a67aa3d5576" name="a7a36cc16751879607ca06a67aa3d5576"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a36cc16751879607ca06a67aa3d5576">&#9670;&#160;</a></span>mLinkShieldType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> Z2CreatureLink::mLinkShieldType</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adbf455e1df7d57e14fe82a54c6ab42b9" name="adbf455e1df7d57e14fe82a54c6ab42b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbf455e1df7d57e14fe82a54c6ab42b9">&#9670;&#160;</a></span>mLinkState</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> Z2CreatureLink::mLinkState</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a16c16a1b22f450dad36c066b8d773d4f" name="a16c16a1b22f450dad36c066b8d773d4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16c16a1b22f450dad36c066b8d773d4f">&#9670;&#160;</a></span>mLinkSwordType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> Z2CreatureLink::mLinkSwordType</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a40c00d712ba80b5adf260a9191191933" name="a40c00d712ba80b5adf260a9191191933"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40c00d712ba80b5adf260a9191191933">&#9670;&#160;</a></span>mMagnetized</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> Z2CreatureLink::mMagnetized</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af19cef2d8accb7bf1e78b91eda8a596f" name="af19cef2d8accb7bf1e78b91eda8a596f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af19cef2d8accb7bf1e78b91eda8a596f">&#9670;&#160;</a></span>mMarkState</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> Z2CreatureLink::mMarkState</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1b8ddaf7443067f79aa39fc64d9f5aec" name="a1b8ddaf7443067f79aa39fc64d9f5aec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b8ddaf7443067f79aa39fc64d9f5aec">&#9670;&#160;</a></span>mMoveSpeed</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> Z2CreatureLink::mMoveSpeed</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a020201ec25c9221acb610b691c35ae79" name="a020201ec25c9221acb610b691c35ae79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a020201ec25c9221acb610b691c35ae79">&#9670;&#160;</a></span>mMovingTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> Z2CreatureLink::mMovingTime</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a06dc01bc855084a22a3794ee56c9fa01" name="a06dc01bc855084a22a3794ee56c9fa01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06dc01bc855084a22a3794ee56c9fa01">&#9670;&#160;</a></span>mResumeAttack</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> Z2CreatureLink::mResumeAttack</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aac7e1075c7dab522fa1eaa373eea26c8" name="aac7e1075c7dab522fa1eaa373eea26c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac7e1075c7dab522fa1eaa373eea26c8">&#9670;&#160;</a></span>mRiding</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> Z2CreatureLink::mRiding</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a30e5f432ed855173fe38c290803f1237" name="a30e5f432ed855173fe38c290803f1237"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30e5f432ed855173fe38c290803f1237">&#9670;&#160;</a></span>mSinkDepth</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a151f780fb455885061d3b77ec1c90c03">s8</a> Z2CreatureLink::mSinkDepth</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a787fd7adc068b6316c6fa72a8e1990ba" name="a787fd7adc068b6316c6fa72a8e1990ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a787fd7adc068b6316c6fa72a8e1990ba">&#9670;&#160;</a></span>mUsingIronBall</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> Z2CreatureLink::mUsingIronBall</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a74473d8f402ed8e70b976883fa1cc1c4" name="a74473d8f402ed8e70b976883fa1cc1c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74473d8f402ed8e70b976883fa1cc1c4">&#9670;&#160;</a></span>mWolfEyeOpen</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> Z2CreatureLink::mWolfEyeOpen</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>include/Z2AudioLib/<a class="el" href="Z2Creature_8h_source.html">Z2Creature.h</a></li>
+<li>src/Z2AudioLib/<a class="el" href="Z2LinkMgr_8cpp.html">Z2LinkMgr.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classZ2CreatureLink.html">Z2CreatureLink</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

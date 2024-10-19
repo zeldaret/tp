@@ -48,7 +48,7 @@ var classdaNpcF__c =
     [ "chkPointInArea", "classdaNpcF__c.html#a60672a1c2a5a6049637bc364986d61b7", null ],
     [ "ctrlBtk", "classdaNpcF__c.html#a53672e920a8f32a93a9b29557b4a1eb7", null ],
     [ "ctrlMsgAnm", "classdaNpcF__c.html#a053fe59eca6ec8d7da8471ed07f9d104", null ],
-    [ "draw", "classdaNpcF__c.html#a19753047ae026ad8cffc69c051c2e95a", null ],
+    [ "draw", "classdaNpcF__c.html#ad155a6c3777702a22ab97496d28171d3", null ],
     [ "drawDbgInfo", "classdaNpcF__c.html#acd1ab43f70eff935809a65d1d25a5db6", null ],
     [ "drawOtherMdls", "classdaNpcF__c.html#a99f91ead37aa3b8c1afed3ad01c91354", null ],
     [ "execute", "classdaNpcF__c.html#a52b03bacf99aad5503d21c3e2d54f8bf", null ],

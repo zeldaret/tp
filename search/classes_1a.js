@@ -15,7 +15,7 @@ var searchData=
   ['z2creatureenemy_12',['Z2CreatureEnemy',['../classZ2CreatureEnemy.html',1,'']]],
   ['z2creaturefm_13',['Z2CreatureFM',['../classZ2CreatureFM.html',1,'']]],
   ['z2creaturegob_14',['Z2CreatureGob',['../classZ2CreatureGob.html',1,'']]],
-  ['z2creaturelink_15',['Z2CreatureLink',['../structZ2CreatureLink.html',1,'']]],
+  ['z2creaturelink_15',['Z2CreatureLink',['../classZ2CreatureLink.html',1,'']]],
   ['z2creatureoi_16',['Z2CreatureOI',['../classZ2CreatureOI.html',1,'']]],
   ['z2creatureride_17',['Z2CreatureRide',['../classZ2CreatureRide.html',1,'']]],
   ['z2creaturesumomo_18',['Z2CreatureSumomo',['../classZ2CreatureSumomo.html',1,'']]],

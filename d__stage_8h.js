@@ -1,6 +1,6 @@
 var d__stage_8h =
 [
-    [ "stage_vrboxcol_info_class", "structstage__vrboxcol__info__class.html", null ],
+    [ "stage_vrboxcol_info_class", "structstage__vrboxcol__info__class.html", "structstage__vrboxcol__info__class" ],
     [ "stage_vrbox_info_class", "structstage__vrbox__info__class.html", "structstage__vrbox__info__class" ],
     [ "stage_tresure_class", "classstage__tresure__class.html", "classstage__tresure__class" ],
     [ "stage_stag_info_class", "structstage__stag__info__class.html", "structstage__stag__info__class" ],

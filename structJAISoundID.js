@@ -10,10 +10,10 @@ var structJAISoundID =
     [ "b1", "structJAISoundID.html#ad8090b693242908359f1b987ada56a6f", null ],
     [ "b2", "structJAISoundID.html#a2c1591401bada6e58f3a1bf6ae2d40c5", null ],
     [ "b3", "structJAISoundID.html#a7e997d3f4235cd999696ff96df5cb8c3", null ],
-    [ "mAdvancedId", "structJAISoundID.html#a1c13e5692aa39ed2a45fd38a3f832868", null ],
-    [ "mBytes", "structJAISoundID.html#a4e1eb962f05b3db41f6cafffbb0f5067", null ],
+    [ "mAdvancedId", "structJAISoundID.html#aa3c53098109075e684ebb5b980798513", null ],
+    [ "mBytes", "structJAISoundID.html#a7d879cadfa682eba4b074137c01a4603", null ],
     [ "mFullId", "structJAISoundID.html#abfd52935157640224e4f7f00233a42b4", null ],
-    [ "mId", "structJAISoundID.html#ade5b41a2743bca1f2708029f5cfaa986", null ],
+    [ "mId", "structJAISoundID.html#a5ea4dd6ea4aed8bce55af53d2df3c601", null ],
     [ "mShortId", "structJAISoundID.html#a75210bb9b79742da8e97a6f5a71474a5", null ],
     [ "mSoundType", "structJAISoundID.html#a0bd7c9219e0de290673ba752582fa8e8", null ]
 ];

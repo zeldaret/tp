@@ -7,7 +7,6 @@ var structmDoLib__clipper =
     [ "getFovyRate", "structmDoLib__clipper.html#a80c86d2100e8d38d4a20edd447c1f481", null ],
     [ "resetFar", "structmDoLib__clipper.html#a062d0aee0788fbba3b55afc75182057c", null ],
     [ "setup", "structmDoLib__clipper.html#a0e21f6843825c13186273d6076bed9c8", null ],
-    [ "setup", "structmDoLib__clipper.html#aaf9309992c52091dc81c9aba667329a5", null ],
     [ "mClipper", "structmDoLib__clipper.html#a9c08a7c40bb4960ae84cee3a10f90c69", null ],
     [ "mClipper", "structmDoLib__clipper.html#a5113262ab16f25a6f29371b7371451fb", null ],
     [ "mFovyRate", "structmDoLib__clipper.html#a13f17fb08ba53efc08d7b4bd95208997", null ],

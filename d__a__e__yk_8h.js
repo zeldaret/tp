@@ -1,6 +1,5 @@
 var d__a__e__yk_8h =
 [
-    [ "daE_YK_HIO_c_tmp", "structdaE__YK__HIO__c__tmp.html", "structdaE__YK__HIO__c__tmp" ],
     [ "daE_YK_HIO_c", "classdaE__YK__HIO__c.html", "classdaE__YK__HIO__c" ],
     [ "daE_YK_Action", "d__a__e__yk_8h.html#a0e5d98ac3e0e449fc4953f17b0f832e0", [
       [ "ACT_ROOF", "d__a__e__yk_8h.html#a0e5d98ac3e0e449fc4953f17b0f832e0aa6e1fdb388d7ebb62ed274b37f752d94", null ],
