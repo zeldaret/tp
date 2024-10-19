@@ -113,6 +113,7 @@ var d__com__inf__game_8h =
     [ "dComIfGd_setListBG", "d__com__inf__game_8h.html#ace95c11cff398fa21a901e037b5ad133", null ],
     [ "dComIfGd_setListDark", "d__com__inf__game_8h.html#a6e7b3b6a799d60b2823fbdb6f492e9dc", null ],
     [ "dComIfGd_setListDarkBG", "d__com__inf__game_8h.html#a177f3ffd457a618ef98e13dc655117e0", null ],
+    [ "dComIfGd_setListFilter", "d__com__inf__game_8h.html#a3b243d47e764ad9f36e93ffebf281fac", null ],
     [ "dComIfGd_setListIndScreen", "d__com__inf__game_8h.html#ae3ed8eb887ba59a406b378448f2e82b6", null ],
     [ "dComIfGd_setListInvisisble", "d__com__inf__game_8h.html#a7efbb6fb9f9fa3edd055db13a5e5587b", null ],
     [ "dComIfGd_setListItem3D", "d__com__inf__game_8h.html#a509064342ff05cc99341cb8d0d616e18", null ],

@@ -54,6 +54,7 @@ var structmDoGph__gInf__c =
     [ "setFader", "structmDoGph__gInf__c.html#a69114d2e8e197061858b9530592ea181", null ],
     [ "setFadeRate", "structmDoGph__gInf__c.html#a10cacdf949aa33da01f0128ae0e4a87f", null ],
     [ "setTickRate", "structmDoGph__gInf__c.html#a73ab1b9f2bae14166dd362c85cbe004f", null ],
+    [ "setWideZoomLightProjection", "structmDoGph__gInf__c.html#a549fc3f435cc40f4400ce25bc2bed867", null ],
     [ "startFadeIn", "structmDoGph__gInf__c.html#a321f191da4d5b2bf4fc9a3f99aeaa3c8", null ],
     [ "startFadeOut", "structmDoGph__gInf__c.html#a52a18e7b3cbbf3afb5c1fb9e6188a1fe", null ],
     [ "waitBlanking", "structmDoGph__gInf__c.html#a5ddf031531c17e16454fc41d63b751cb", null ],

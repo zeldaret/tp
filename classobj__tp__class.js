@@ -1,4 +1,32 @@
 var classobj__tp__class =
 [
-    [ "field_0x568", "classobj__tp__class.html#a476542d28dbc0e1799e0bbd49800db19", null ]
+    [ "field_0x574", "classobj__tp__class.html#a9a42392ea21debffd63fb36b9346d6da", null ],
+    [ "field_0x594", "classobj__tp__class.html#adcc5da2fbc22a48b019c5aaeacc08423", null ],
+    [ "field_0x595", "classobj__tp__class.html#a9b910f00e206a184d39cfa1f84f02587", null ],
+    [ "field_0x596", "classobj__tp__class.html#a3e0bf4a3121f4e3323ba42995e08ae41", null ],
+    [ "field_0x597", "classobj__tp__class.html#a06b05c8b921e980252140dab3970f1ac", null ],
+    [ "field_0x598", "classobj__tp__class.html#a1f90c6296ecdb5ed250f945fcdf7ef7d", null ],
+    [ "field_0x59c", "classobj__tp__class.html#ada4ebc1ddbcd20a28f5ba0a049f0f2f5", null ],
+    [ "field_0x5a0", "classobj__tp__class.html#aa6a95402cf7072fe718473efaffcbedc", null ],
+    [ "field_0x5a4", "classobj__tp__class.html#ab248966815a210bd3c58c482a1c98f4d", null ],
+    [ "field_0x5a5", "classobj__tp__class.html#aebcad875420ca623b97de52732a179e6", null ],
+    [ "field_0x5a6", "classobj__tp__class.html#aeb502b24c748477fb32d16e92c3f1b5c", null ],
+    [ "field_0x5a8", "classobj__tp__class.html#a1b246a3a78477e0690ecc7fc03c6da4f", null ],
+    [ "field_0x5ac", "classobj__tp__class.html#a742048aa58ae4ec941a6c1fc350a3b71", null ],
+    [ "field_0x5b8", "classobj__tp__class.html#acd8ab573576c8115657d44fef6c7197e", null ],
+    [ "field_0x5bc", "classobj__tp__class.html#a835833e888cb40e4670519b4bfa79ad0", null ],
+    [ "field_0x5c0", "classobj__tp__class.html#a680f67f898179f208efcfb090bba5154", null ],
+    [ "field_0x5cc", "classobj__tp__class.html#a777e44a259da318c49c494c983bfde45", null ],
+    [ "field_0x5d0", "classobj__tp__class.html#acdd5a58bfa5ab004a82868a97d5adb89", null ],
+    [ "field_0x5d4", "classobj__tp__class.html#a240d17d2f5a0a7b34b1c7707f3993fb2", null ],
+    [ "field_0x780", "classobj__tp__class.html#a5b0a84b93b8c9eb26cebd01ba4be2bc8", null ],
+    [ "mBgw", "classobj__tp__class.html#a1568d10e976161309a01d9289d0a4fa2", null ],
+    [ "mBrk", "classobj__tp__class.html#a1a7066949868a958ade75d5b0ef40f77", null ],
+    [ "mBrks", "classobj__tp__class.html#a95fac967fb6dc37d53ad0129e72966c8", null ],
+    [ "mBtks", "classobj__tp__class.html#a22e296b5a16f73c69d01c270b8799346", null ],
+    [ "mCyl", "classobj__tp__class.html#a79a8ae101a7be529ee40da6a862fcdaf", null ],
+    [ "mModels", "classobj__tp__class.html#a75caef049d788aa3d30773bbeb3be5c8", null ],
+    [ "mMorf", "classobj__tp__class.html#a21d3a5c068da7137e845c0188dc53989", null ],
+    [ "mPhase", "classobj__tp__class.html#a0e3c2dcc14e65325f1095a593ba71247", null ],
+    [ "mStts", "classobj__tp__class.html#aff3b9507509b136ff9dd9a1fa008518e", null ]
 ];

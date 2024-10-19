@@ -1,5 +1,7 @@
 var NAVTREEINDEX199 =
 {
+"classdaNpcKasiKyu__c.html#a18a8cb0e4574891196e2e9becc4d0ab6":[1,0,3,47,48],
+"classdaNpcKasiKyu__c.html#a1c652fcfcd255a86671d701c33d5a60c":[1,0,3,47,42],
 "classdaNpcKasiKyu__c.html#a27edea55a172a2ab354d05b4f723a242":[1,0,3,47,40],
 "classdaNpcKasiKyu__c.html#a2808b5cda124207142a18feeaf384d85":[1,0,3,47,20],
 "classdaNpcKasiKyu__c.html#a2fb8b19b4f21ae573c2172e3b4a1542c":[1,0,3,47,6],
@@ -247,7 +249,5 @@ var NAVTREEINDEX199 =
 "classdaNpcPasser__c.html#aa4655156c11a84f13c45823376504549":[1,0,3,69,16],
 "classdaNpcPasser__c.html#aa80b2ceefb456d257b4c486ad45721b0":[1,0,3,69,56],
 "classdaNpcPasser__c.html#aaac3470773d0af0d7470d759628707af":[1,0,3,69,24],
-"classdaNpcPasser__c.html#ab32d4d15496303e0c5df1583a039c631":[1,0,3,69,39],
-"classdaNpcPasser__c.html#ab51f2f29310dc2a1b4a5354144ece757":[1,0,3,69,22],
-"classdaNpcPasser__c.html#ab8d6e3378660df7ee7299a3b0acc1245":[1,0,3,69,3]
+"classdaNpcPasser__c.html#ab32d4d15496303e0c5df1583a039c631":[1,0,3,69,39]
 };

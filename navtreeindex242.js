@@ -1,5 +1,7 @@
 var NAVTREEINDEX242 =
 {
+"classdaObj__Bed__c.html#ad54b4d3ee4d8fd9a2ce6fcd82242980a":[1,0,4,9,0],
+"classdaObj__Bed__c.html#ae35367cf6f53a40aac5335b3e6a2e19d":[1,0,4,9,5],
 "classdaObj__Bed__c.html#af1363860993cff25334c8588e82c3ae2":[1,0,4,9,16],
 "classdaObj__BouMato__Param__c.html":[3,0,1003],
 "classdaObj__BouMato__Param__c.html#ae5071f461d14cba843da5c6fac44120f":[3,0,1003,0],
@@ -247,7 +249,5 @@ var NAVTREEINDEX242 =
 "classdaObj__Kago__c.html#ae3250f26e2fbb7e396677962dd821268":[1,0,4,105,7],
 "classdaObj__Kago__c.html#aea59aed16d84c00373b05a7f62d74c5c":[1,0,4,105,6],
 "classdaObj__KamHIO__c.html":[3,0,1023],
-"classdaObj__KamHIO__c.html#a3d10831316b8680bfcbcb39c0c7f7b9d":[3,0,1023,0],
-"classdaObj__KamHIO__c.html#a4cc7b73b043b4b1f2e27f1ab54656580":[3,0,1023,1],
-"classdaObj__Kanban2__HIO__c.html":[3,0,1025]
+"classdaObj__KamHIO__c.html#a3d10831316b8680bfcbcb39c0c7f7b9d":[3,0,1023,0]
 };

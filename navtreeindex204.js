@@ -1,5 +1,7 @@
 var NAVTREEINDEX204 =
 {
+"classdaNpc__Fairy__c.html#aba29e3fc30c657c08456167ebb0b5479":[1,0,3,21,67],
+"classdaNpc__Fairy__c.html#aba37ed58e845bf0fb67a1d0a707c3301":[1,0,3,21,50],
 "classdaNpc__Fairy__c.html#abf032e30bff5c40064fdc956ff621e9f":[1,0,3,21,79],
 "classdaNpc__Fairy__c.html#abf813f1ad63102fb80cd507b3cfec689":[1,0,3,21,1],
 "classdaNpc__Fairy__c.html#ac1c28f0f5fbd5d05e8bd89042d6ef241":[1,0,3,21,72],
@@ -247,7 +249,5 @@ var NAVTREEINDEX204 =
 "classdaNpc__Hanjo__c.html":[1,0,3,37],
 "classdaNpc__Hanjo__c.html#a04ac7aace284f96043bc9d50f8aa2d88":[1,0,3,37,10],
 "classdaNpc__Hanjo__c.html#a06c76a4b1629c6f5d27b8a0e705133b3":[1,0,3,37,11],
-"classdaNpc__Hanjo__c.html#a06d66defe1f3659158dfdc0976cb6449":[1,0,3,37,37],
-"classdaNpc__Hanjo__c.html#a0b47d32af0665612564582665deff6be":[1,0,3,37,33],
-"classdaNpc__Hanjo__c.html#a12f97b9e0dc46ccdfe23a94854b05cba":[1,0,3,37,5]
+"classdaNpc__Hanjo__c.html#a06d66defe1f3659158dfdc0976cb6449":[1,0,3,37,37]
 };

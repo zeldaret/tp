@@ -1,5 +1,7 @@
 var NAVTREEINDEX243 =
 {
+"classdaObj__KamHIO__c.html#a4cc7b73b043b4b1f2e27f1ab54656580":[3,0,1023,1],
+"classdaObj__Kanban2__HIO__c.html":[3,0,1025],
 "classdaObj__Kanban2__HIO__c.html#a34ba644aa2982dfff17e5833108d36bf":[3,0,1025,1],
 "classdaObj__Kanban2__HIO__c.html#a7bc17668b130028689418dde9208065c":[3,0,1025,0],
 "classdaObj__Kanban2__c.html":[1,0,4,108],
@@ -247,7 +249,5 @@ var NAVTREEINDEX243 =
 "classdaObj__SSBase__c.html#aa218095f8761268b35f375d017a725f0":[3,0,1060,0],
 "classdaObj__SSBase__c.html#ab2d89a1bd163069751cc3fa54be89c20":[3,0,1060,6],
 "classdaObj__SSBase__c.html#ab51d8e2ef6c9a56269bcf715a8073a5b":[3,0,1060,4],
-"classdaObj__SSBase__c.html#abbf2f0d3f4b7107d01f02759c5e480bb":[3,0,1060,5],
-"classdaObj__SSBase__c.html#abc6cdda83c6dc2d95373666580c981c1":[3,0,1060,13],
-"classdaObj__SSBase__c.html#accc6b9da56f27b8dbb8541a59298ba9f":[3,0,1060,12]
+"classdaObj__SSBase__c.html#abbf2f0d3f4b7107d01f02759c5e480bb":[3,0,1060,5]
 };
