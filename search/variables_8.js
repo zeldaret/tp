@@ -7,7 +7,7 @@ var searchData=
   ['h_5fpower_4',['h_power',['../d__a__e__fm_8cpp.html#a49ab9752ee5779ff6d025e3211c8f352',1,'d_a_e_fm.cpp']]],
   ['h_5frange_5',['h_range',['../d__a__e__fm_8cpp.html#afd1cf0d184f59530d612a2d9b8657b95',1,'d_a_e_fm.cpp']]],
   ['hairoffset_6',['hairOffset',['../d__a__midna_8cpp.html#aa0eb3f129be0f6e0ce5d38e6ac3f19f4',1,'d_a_midna.cpp']]],
-  ['half_7',['half',['../k__sin_8c.html#a62733fd4ae48f0acbc2c91d0e9410bb8',1,'half:&#160;k_sin.c'],['../e__exp_8c.html#a3a80f6d59916252074ea7423bac6ea30',1,'halF:&#160;e_exp.c'],['../structJAUAudibleParam.html#aa3460873adef243f1e5eb7fab7a3de47',1,'JAUAudibleParam::half']]],
+  ['half_7',['half',['../e__exp_8c.html#a3a80f6d59916252074ea7423bac6ea30',1,'halF:&#160;e_exp.c'],['../k__sin_8c.html#a62733fd4ae48f0acbc2c91d0e9410bb8',1,'half:&#160;k_sin.c'],['../structJAUAudibleParam.html#a3904fae78ffe51a15403ee5d26c2abb6',1,'JAUAudibleParam::half']]],
   ['halftofull_8',['halftofull',['../JUTResFont_8cpp.html#af3aa67215dc49f2f7be50046cd0b3f82',1,'JUTResFont.cpp']]],
   ['hammerside0_9',['hammerSide0',['../d__a__cstatue_8cpp.html#a6a2649abbaba56056f608b730c342ba1',1,'d_a_cstatue.cpp']]],
   ['hammerside1_10',['hammerSide1',['../d__a__cstatue_8cpp.html#a4dd01536421cb38404530eb137193862',1,'d_a_cstatue.cpp']]],

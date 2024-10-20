@@ -1,7 +1,7 @@
 var structstage__camera2__data__class =
 [
     [ "field_0x0", "structstage__camera2__data__class.html#a9c27c3f4a6d83790c4dbb2f1b452fb3e", null ],
-    [ "field_0x0", "structstage__camera2__data__class.html#a8ff4b0498eba479d0f3d2fcafdaaab58", null ],
+    [ "field_0x0", "structstage__camera2__data__class.html#a63556aa3e2b73f15ae053e7b557b43ff", null ],
     [ "field_0x10", "structstage__camera2__data__class.html#a82dd7f726c4f34b341deedb570459c57", null ],
     [ "field_0x11", "structstage__camera2__data__class.html#ad6977714b698b3f196634c55544d0364", null ],
     [ "field_0x12", "structstage__camera2__data__class.html#a8dfaafe2b5a002a43a7c616aeb5c4ca8", null ],
