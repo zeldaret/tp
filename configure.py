@@ -2056,7 +2056,7 @@ config.libs = [
     ActorRel(Matching, "d_a_skip_2D"),
     ActorRel(Matching, "d_a_startAndGoal", extra_cflags=['-pragma "nosyminline off"']),
     ActorRel(NonMatching, "d_a_swBall"),
-    ActorRel(NonMatching, "d_a_swLBall"),
+    ActorRel(Matching, "d_a_swLBall"),
     ActorRel(Matching, "d_a_swTime"),
     ActorRel(NonMatching, "d_a_tag_Lv6Gate"),
     ActorRel(Matching, "d_a_tag_Lv7Gate"),
