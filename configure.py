@@ -151,8 +151,8 @@ if not config.non_matching:
 # Tool versions
 config.binutils_tag = "2.42-1"
 config.compilers_tag = "20240706"
-config.dtk_tag = "v1.1.1"
-config.objdiff_tag = "v2.3.0"
+config.dtk_tag = "v1.1.2"
+config.objdiff_tag = "v2.3.2"
 config.sjiswrap_tag = "v1.1.1"
 config.wibo_tag = "0.6.11"
 
@@ -315,9 +315,16 @@ def JSystemLib(lib_name: str, objects: List[Object], progress_category: str="thi
         "objects": objects,
     }
 
+
 Matching = True                   # Object matches and should be linked
 NonMatching = False               # Object does not match and should not be linked
 Equivalent = config.non_matching  # Object should be linked when configured with --non-matching
+
+
+# Object is only matching for specific versions
+def MatchingFor(*versions):
+    return config.version in versions
+
 
 config.warn_missing_config = True
 config.warn_missing_source = False
