@@ -14,7 +14,11 @@ class cM3dGTri;
 class csXyz;
 class cXyz;
 
-struct cM3d_Range;
+struct cM3d_Range {
+    /* 0x0 */ f32 mMin;
+    /* 0x4 */ f32 mMax;
+};
+
 struct Vec;
 
 extern const f32 G_CM3D_F_ABS_MIN;
@@ -73,7 +77,7 @@ static int cM3d_Cross_CylPntPnt(const cM3dGCyl*, const Vec*, const Vec*, Vec*, V
 static bool cM3d_Cross_CylPnt(const cM3dGCyl*, const Vec*);
 bool cM3d_Cross_CpsCps(const cM3dGCps&, const cM3dGCps&, Vec*);
 bool cM3d_Cross_CpsCyl(const cM3dGCps&, const cM3dGCyl&, Vec*);
-static bool cM3d_Cross_CpsSph_CrossPos(const cM3dGCps&, const cM3dGSph&, const Vec&, Vec*);
+static void cM3d_Cross_CpsSph_CrossPos(const cM3dGCps&, const cM3dGSph&, const Vec&, Vec*);
 bool cM3d_Cross_CpsSph(const cM3dGCps&, const cM3dGSph&, Vec*);
 bool cM3d_Cross_TriTri(const cM3dGTri&, const cM3dGTri&, Vec*);
 bool cM3d_Cross_CpsTri(const cM3dGCps&, cM3dGTri, Vec*);
