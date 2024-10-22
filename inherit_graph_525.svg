@@ -11,9 +11,9 @@
 <!-- Node0 -->
 <g id="Node000000" class="node">
 <title>Node0</title>
-<g id="a_Node000000"><a xlink:href="structdaNpc__GetParam2.html" target="_top" xlink:title=" ">
+<g id="a_Node000000"><a xlink:href="structdaNpc__GetParam1.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="99.25,-19.25 0,-19.25 0,0 99.25,0 99.25,-19.25"/>
-<text text-anchor="middle" x="49.62" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">daNpc_GetParam2</text>
+<text text-anchor="middle" x="49.62" y="-5.75" font-family="Helvetica,sans-Serif" font-size="10.00">daNpc_GetParam1</text>
 </a>
 </g>
 </g>

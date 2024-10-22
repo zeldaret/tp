@@ -4,6 +4,7 @@ var structcM3dGPla =
     [ "cM3dGPla", "structcM3dGPla.html#a9b5de7821529a61f222509603dae65b8", null ],
     [ "cM3dGPla", "structcM3dGPla.html#a4c46dc7dcd09ddb66ba083b5ba910d3c", null ],
     [ "~cM3dGPla", "structcM3dGPla.html#a38059fde1623da6938ccdb9a305bdf2c", null ],
+    [ "cross", "structcM3dGPla.html#a1e64a770513d70f345576dc0947f1a8b", null ],
     [ "crossInfLin", "structcM3dGPla.html#ab786eb8d7ec9b1f7bcdfccce36849c9c", null ],
     [ "getCrossY", "structcM3dGPla.html#a5d60f5fb75bf915b97703a126d5f9ef0", null ],
     [ "getCrossY_NonIsZero", "structcM3dGPla.html#acaebe362f6608b45d11ada447e4c34fd", null ],

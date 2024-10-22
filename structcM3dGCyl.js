@@ -13,6 +13,7 @@ var structcM3dGCyl =
     [ "Cross", "structcM3dGCyl.html#aab35e7a65d25d90a973caa1625901eab", null ],
     [ "Cross", "structcM3dGCyl.html#a3f9ed7879e044fa0bac7cab737d6e4dc", null ],
     [ "GetC", "structcM3dGCyl.html#aa3f2b45356ec3351319e459993114356", null ],
+    [ "GetC", "structcM3dGCyl.html#a6858898eb57a69cb0721549adb774491", null ],
     [ "GetCP", "structcM3dGCyl.html#a37f0dd9924077de300a2ba2b74f260ba", null ],
     [ "GetCP", "structcM3dGCyl.html#ad36d07ae5b424d1ec8f16eacfb5d8587", null ],
     [ "GetH", "structcM3dGCyl.html#a106ca034525c1f4cfab18debff8b1181", null ],

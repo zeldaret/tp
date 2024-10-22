@@ -1,5 +1,6 @@
 var c__m3d_8h =
 [
+    [ "cM3d_Range", "structcM3d__Range.html", "structcM3d__Range" ],
     [ "cM3d_2PlaneCrossLine", "c__m3d_8h.html#a93abfd50e16e4873918735820fd4cb15", null ],
     [ "cM3d_2PlaneLinePosNearPos", "c__m3d_8h.html#ac110640911eaffafe11c35ef5da8de85", null ],
     [ "cM3d_3PlaneCrossPos", "c__m3d_8h.html#a22a1099ce6f0d207161f9b1f59c2a555", null ],
@@ -15,7 +16,7 @@ var c__m3d_8h =
     [ "cM3d_Cross_CpsCps", "c__m3d_8h.html#a19dee23608a68195e0be93c7448cd216", null ],
     [ "cM3d_Cross_CpsCyl", "c__m3d_8h.html#a232bb6dc27cc0af56eb0eed68c9949f3", null ],
     [ "cM3d_Cross_CpsSph", "c__m3d_8h.html#acce1e352afbb9c3819470192d714d8a1", null ],
-    [ "cM3d_Cross_CpsSph_CrossPos", "c__m3d_8h.html#ab6191089b3a2c50013d3586e9b1e7129", null ],
+    [ "cM3d_Cross_CpsSph_CrossPos", "c__m3d_8h.html#abdf910272fe08741b64d80d884aa4c2c", null ],
     [ "cM3d_Cross_CpsTri", "c__m3d_8h.html#a74596639764cef40a61c25e1747019fa", null ],
     [ "cM3d_Cross_CylCyl", "c__m3d_8h.html#a8c3a74b26ada584653b26fbbae587a2a", null ],
     [ "cM3d_Cross_CylCyl", "c__m3d_8h.html#a94f07d1575a38f14927d529fb5d9437d", null ],

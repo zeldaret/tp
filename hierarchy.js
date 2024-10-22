@@ -244,6 +244,7 @@ var hierarchy =
     [ "cM2dGCir", "classcM2dGCir.html", [
       [ "cM3dGCir", "structcM3dGCir.html", null ]
     ] ],
+    [ "cM3d_Range", "structcM3d__Range.html", null ],
     [ "cM3dGAab", "structcM3dGAab.html", [
       [ "cBgW_NodeTree", "classcBgW__NodeTree.html", null ],
       [ "cCcD_DivideArea", "classcCcD__DivideArea.html", null ]
@@ -1021,8 +1022,8 @@ var hierarchy =
     [ "dDemo_c", "classdDemo__c.html", null ],
     [ "dDemo_object_c", "classdDemo__object__c.html", null ],
     [ "dDemo_prm_c", "classdDemo__prm__c.html", null ],
-    [ "dDlst_2Dm_c", "classdDlst__2Dm__c.html", null ],
     [ "dDlst_2DM_c", "classdDlst__2DM__c.html", null ],
+    [ "dDlst_2Dm_c", "classdDlst__2Dm__c.html", null ],
     [ "dDlst_2DMt_c", "classdDlst__2DMt__c.html", null ],
     [ "dDlst_2DMt_tex_c", "classdDlst__2DMt__tex__c.html", null ],
     [ "dDlst_2DPoint_c", "classdDlst__2DPoint__c.html", null ],
