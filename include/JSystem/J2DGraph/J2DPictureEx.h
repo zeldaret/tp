@@ -3,10 +3,13 @@
 
 #include "JSystem/J2DGraph/J2DPicture.h"
 #include "JSystem/J2DGraph/J2DTevs.h"
-#include "dolphin/types.h"
 
 class J2DMaterial;
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DPictureEx : public J2DPicture {
 public:
     enum stage_enum {};
@@ -34,7 +37,7 @@ public:
     /* 803071A4 */ virtual void isUsed(ResFONT const*);
     /* 80306A0C */ virtual void rewriteAlpha();
     /* 803071C4 */ virtual void setAnimation(J2DAnmBase*);
-    /* 80256064 */ virtual void setAnimation(J2DAnmTransform*);
+    /* 80256064 */ virtual void setAnimation(J2DAnmTransform* transform) { J2DPane::setAnimation(transform); }
     /* 80306AC4 */ virtual void setAnimation(J2DAnmColor*);
     /* 80306B1C */ virtual void setAnimation(J2DAnmTexPattern*);
     /* 80306AF0 */ virtual void setAnimation(J2DAnmTextureSRTKey*);
@@ -83,7 +86,7 @@ public:
     /* 80306480 */ virtual bool setBlackWhite(JUtility::TColor, JUtility::TColor);
     /* 803068F8 */ virtual void getBlack() const;
     /* 80306958 */ virtual void getWhite() const;
-    /* 80256034 */ virtual void getMaterial() const;
+    /* 80256034 */ virtual J2DMaterial* getMaterial() const { return mMaterial; }
     /* 80303B80 */ virtual void drawFullSet(f32, f32, f32, f32, f32 (*)[3][4]);
     /* 80303BDC */ virtual void drawTexCoord(f32, f32, f32, f32, s16, s16, s16, s16, s16, s16, s16,
                                              s16, f32 (*)[3][4]);

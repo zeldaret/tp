@@ -4,6 +4,11 @@
 #include "JSystem/JKernel/JKRArchive.h"
 
 class JKRDvdFile;
+
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRDvdArchive : public JKRArchive {
 public:
     JKRDvdArchive(s32, JKRArchive::EMountDirection);

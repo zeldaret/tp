@@ -4,11 +4,14 @@
 #include "JSystem/JAudio2/JAISeqDataMgr.h"
 #include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JSupport/JSUList.h"
-#include "JSystem/JUtility/JUTAssert.h"
 
 struct JAIAudience;
 class JAISeq;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAISeqMgr : public JASGlobalInstance<JAISeqMgr>, public JAISeqDataUser {
 public:
     enum ReleaseSeqResult {
@@ -26,7 +29,7 @@ public:
     /* 802A1F58 */ JAISeq* beginStartSeq_();
     /* 802A1FE8 */ bool endStartSeq_(JAISeq*, JAISoundHandle*);
 
-    /* 802A20F0 */ virtual ~JAISeqMgr();  // inline?
+    /* 802A20F0 */ virtual ~JAISeqMgr() {}
     /* 802A1804 */ virtual bool isUsingSeqData(JAISeqDataRegion const&);
     /* 802A1870 */ virtual int releaseSeqData(JAISeqDataRegion const&);
 

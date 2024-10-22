@@ -98,6 +98,8 @@ inline void mDoAud_sceneBgmStart() {
     Z2AudioMgr::getInterface()->sceneBgmStart();
 }
 
+inline void mDoAud_seDeleteObject(Vec*) {}
+
 inline void mDoAud_load2ndDynamicWave() {
     Z2AudioMgr::getInterface()->load2ndDynamicWave();
 }
@@ -140,6 +142,14 @@ inline void mDoAud_taktModeMute() {
 
 inline void mDoAud_taktModeMuteOff() {
     Z2AudioMgr::getInterface()->taktModeMuteOff();
+}
+
+inline void mDoAud_getCameraMapInfo(u32 param_0) {
+    Z2AudioMgr::getInterface()->getCameraMapInfo(param_0);
+}
+
+inline void mDoAud_setCameraGroupInfo(u8 param_0) {
+    Z2AudioMgr::getInterface()->setCameraGroupInfo(param_0);
 }
 
 inline void mDoAud_mEnvse_framework() {
@@ -218,6 +228,10 @@ inline void mDoAud_mEnvse_registWindowPos(const Vec* i_pos) {
     g_mEnvSeMgr.registWindowPos((Vec*)i_pos);
 }
 
+inline void mDoAud_mEnvse_registWolfSmellSePos(const Vec* i_pos) {
+    g_mEnvSeMgr.registWolfSmellSePos((Vec*)i_pos);
+}
+
 inline void mDoAud_initLv3WaterSe(u8 param_0, u8 param_1, u8 param_2, u8 param_3) {
     g_mEnvSeMgr.initLv3WaterSe(param_0, param_1, param_2, param_3);
 }
@@ -232,6 +246,18 @@ inline void mDoAud_startLv3WaterSe(s8 i_reverb) {
 
 inline void mDoAud_setHyrulSewerOpen(bool i_close) {
     g_mEnvSeMgr.setHyrulSewerOpen(i_close);
+}
+
+inline void mDoAud_startFogSe() {
+    g_mEnvSeMgr.startFogSe();
+}
+
+inline void mDoAud_talkOut() {
+    Z2AudioMgr::getInterface()->talkOut();
+}
+
+inline void mDoAud_talkIn() {
+    Z2AudioMgr::getInterface()->talkIn();
 }
 
 #endif /* M_DO_M_DO_AUDIO_H */

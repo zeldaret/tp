@@ -3,7 +3,10 @@
 
 #include "dolphin/types.h"
 
-
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JASOscillator {
 	struct Point {
 		/* 0x0 */ s16 _0;

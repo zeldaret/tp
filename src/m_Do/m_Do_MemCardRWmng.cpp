@@ -6,7 +6,7 @@
 #include "m_Do/m_Do_MemCardRWmng.h"
 #include "JSystem/JUtility/JUTTexture.h"
 #include "stdio.h"
-#include "d/com/d_com_inf_game.h"
+#include "d/d_com_inf_game.h"
 #include "dolphin/card.h"
 #include "m_Do/m_Do_MemCard.h"
 
@@ -104,25 +104,15 @@ s32 mDoMemCdRWm_Store(CARDFileInfo* file, void* data, u32 length) {
     return card_state;
 }
 #else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 mDoMemCdRWm_Store(CARDFileInfo* param_0, void* param_1, u32 param_2) {
-    nofralloc
-#include "asm/m_Do/m_Do_MemCardRWmng/mDoMemCdRWm_Store__FP12CARDFileInfoPvUl.s"
+s32 mDoMemCdRWm_Store(CARDFileInfo* param_0, void* param_1, u32 param_2) {
+    // NONMATCHING
 }
-#pragma pop
 #endif
 
 /* 8001769C-8001787C 011FDC 01E0+00 0/0 1/1 0/0 .text mDoMemCdRWm_Restore__FP12CARDFileInfoPvUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm s32 mDoMemCdRWm_Restore(CARDFileInfo* param_0, void* param_1, u32 param_2) {
-    nofralloc
-#include "asm/m_Do/m_Do_MemCardRWmng/mDoMemCdRWm_Restore__FP12CARDFileInfoPvUl.s"
+s32 mDoMemCdRWm_Restore(CARDFileInfo* param_0, void* param_1, u32 param_2) {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8001787C-800179E4 0121BC 0168+00 1/1 0/0 0/0 .text
  * mDoMemCdRWm_BuildHeader__FP22mDoMemCdRWm_HeaderData          */
@@ -151,25 +141,15 @@ static void mDoMemCdRWm_BuildHeader(mDoMemCdRWm_HeaderData* header) {
 }
 
 /* 800179E4-80017B4C 012324 0168+00 1/1 0/0 0/0 .text mDoMemCdRWm_SetCardStat__FP12CARDFileInfo */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void mDoMemCdRWm_SetCardStat(CARDFileInfo* param_0) {
-    nofralloc
-#include "asm/m_Do/m_Do_MemCardRWmng/mDoMemCdRWm_SetCardStat__FP12CARDFileInfo.s"
+static void mDoMemCdRWm_SetCardStat(CARDFileInfo* param_0) {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80017B4C-80017C74 01248C 0128+00 2/2 0/0 0/0 .text mDoMemCdRWm_CheckCardStat__FP12CARDFileInfo
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm BOOL mDoMemCdRWm_CheckCardStat(CARDFileInfo* param_0) {
-    nofralloc
-#include "asm/m_Do/m_Do_MemCardRWmng/mDoMemCdRWm_CheckCardStat__FP12CARDFileInfo.s"
+static BOOL mDoMemCdRWm_CheckCardStat(CARDFileInfo* param_0) {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80017C74-80017CB4 0125B4 0040+00 1/1 0/0 0/0 .text            mDoMemCdRWm_CalcCheckSum__FPvUl */
 static u32 mDoMemCdRWm_CalcCheckSum(void* data, u32 size) {

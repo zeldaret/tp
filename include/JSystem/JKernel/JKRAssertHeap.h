@@ -3,6 +3,10 @@
 
 #include "JSystem/JKernel/JKRHeap.h"
 
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRAssertHeap : public JKRHeap {
 protected:
     JKRAssertHeap(void*, u32, JKRHeap*, bool);

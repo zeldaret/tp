@@ -1,7 +1,6 @@
 #ifndef METROTRK_PORTABLE_MSGHNDLR_H
 #define METROTRK_PORTABLE_MSGHNDLR_H
 
-#include "TRK_MINNOW_DOLPHIN/MetroTRK/Portable/msgbuf.h"
 #include "trk.h"
 
 void SetTRKConnected(BOOL);

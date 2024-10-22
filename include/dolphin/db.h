@@ -1,7 +1,6 @@
 #ifndef DB_H
 #define DB_H
 
-#include "dolphin/types.h"
 #include "amcstubs/AmcExi2Stubs.h"
 
 #ifdef __cplusplus

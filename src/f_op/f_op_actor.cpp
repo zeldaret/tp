@@ -4,12 +4,11 @@
  */
 
 #include "f_op/f_op_actor.h"
-#include "d/a/d_a_alink.h"
-#include "d/com/d_com_inf_actor.h"
-#include "d/com/d_com_inf_game.h"
-#include "d/com/d_com_static.h"
+#include "d/actor/d_a_alink.h"
+#include "d/d_com_inf_actor.h"
+#include "d/d_com_static.h"
 #include "d/d_demo.h"
-#include "d/s/d_s_play.h"
+#include "d/d_s_play.h"
 #include "f_op/f_op_actor_tag.h"
 #include "f_op/f_op_draw_tag.h"
 #include "f_pc/f_pc_manager.h"
@@ -165,15 +164,15 @@ static int fopAc_Create(void* i_this) {
         a_this->current = a_this->home;
         a_this->eyePos = a_this->home.pos;
         a_this->maxFallSpeed = -100.0f;
-        a_this->attention_info.field_0x0[0] = 1;
-        a_this->attention_info.field_0x0[1] = 2;
-        a_this->attention_info.field_0x0[2] = 3;
-        a_this->attention_info.field_0x0[3] = 5;
-        a_this->attention_info.field_0x0[4] = 6;
-        a_this->attention_info.field_0x0[7] = 14;
-        a_this->attention_info.field_0x0[5] = 15;
-        a_this->attention_info.field_0x0[6] = 15;
-        a_this->attention_info.field_0x0[8] = 51;
+        a_this->attention_info.distances[fopAc_attn_LOCK_e] = 1;
+        a_this->attention_info.distances[fopAc_attn_TALK_e] = 2;
+        a_this->attention_info.distances[fopAc_attn_BATTLE_e] = 3;
+        a_this->attention_info.distances[fopAc_attn_SPEAK_e] = 5;
+        a_this->attention_info.distances[fopAc_attn_CARRY_e] = 6;
+        a_this->attention_info.distances[fopAc_attn_ETC_e] = 14;
+        a_this->attention_info.distances[fopAc_attn_DOOR_e] = 15;
+        a_this->attention_info.distances[fopAc_attn_JUEL_e] = 15;
+        a_this->attention_info.distances[fopAc_attn_CHECK_e] = 51;
         a_this->attention_info.position = a_this->home.pos;
         a_this->attention_info.field_0xa = 30;
         dKy_tevstr_init(&a_this->tevStr, a_this->home.roomNo, -1);
@@ -318,5 +317,5 @@ extern actor_method_class g_fopAc_Method = {
 /* ############################################################################################## */
 /* 80450CC0-80450CC8 0001C0 0004+04 0/0 9/9 0/0 .sbss
  * sInstance__35JASGlobalInstance<14JAUSectionHeap>             */
-extern u8 data_80450CC0[4 + 4 /* padding */];
-u8 data_80450CC0[4 + 4 /* padding */];
+class JAUSectionHeap;
+JAUSectionHeap* JASGlobalInstance<JAUSectionHeap>::sInstance;

@@ -10,6 +10,10 @@
 typedef struct _GXColor GXColor;
 class JUTNameTab;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DModelData {
 public:
     /* 80325D88 */ void clear();
@@ -21,7 +25,7 @@ public:
     /* 803260CC */ void syncJ3DSysPointers() const;
     /* 803260F8 */ void syncJ3DSysFlags() const;
 
-    /* 8032617C */ virtual ~J3DModelData();
+    /* 8032617C */ virtual ~J3DModelData() {}
 
     J3DMaterialTable& getMaterialTable() { return mMaterialTable; }
     JUTNameTab* getMaterialName() const { return mMaterialTable.getMaterialName(); }
@@ -50,7 +54,7 @@ public:
     J3DTexture* getTexture() const { return mMaterialTable.getTexture(); }
     JUTNameTab* getTextureName() const { return mMaterialTable.getTextureName(); }
     u16 getWEvlpMtxNum() const { return mJointTree.getWEvlpMtxNum(); }
-    u16* getWEvlpMixMtxIndex() const { return mJointTree.getWEvlpMixIndex(); }
+    u16* getWEvlpMixMtxIndex() const { return mJointTree.getWEvlpMixMtxIndex(); }
     f32* getWEvlpMixWeight() const { return mJointTree.getWEvlpMixWeight(); }
     u8 getWEvlpMixMtxNum(u16 idx) const { return mJointTree.getWEvlpMixMtxNum(idx); }
     u16* getWEvlpImportantMtxIndex() const { return mJointTree.getWEvlpImportantMtxIndex(); }
@@ -67,7 +71,7 @@ public:
     bool checkBBoardFlag() const { return mbHasBillboard == 1; }
     bool isLocked() { return mMaterialTable.isLocked(); }
     void entryTexMtxAnimator(J3DAnmTextureSRTKey* anm) { mMaterialTable.entryTexMtxAnimator(anm); }
-    void entryTevRegAnimator(J3DAnmTevRegKey* anm) { mMaterialTable.entryTevRegAnimator(anm); }
+    int entryTevRegAnimator(J3DAnmTevRegKey* anm) { return mMaterialTable.entryTevRegAnimator(anm); }
     void entryTexNoAnimator(J3DAnmTexPattern* anm) { mMaterialTable.entryTexNoAnimator(anm); }
     int removeTexNoAnimator(J3DAnmTexPattern* anm) {
         return mMaterialTable.removeTexNoAnimator(anm);

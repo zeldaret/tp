@@ -6,16 +6,15 @@
 #define NO_INLINE_DLSTBASE_DRAW
 
 #include "d/d_name.h"
-#include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
-#include "d/com/d_com_inf_game.h"
+#include "d/d_com_inf_game.h"
 #include "d/d_lib.h"
 #include "dol2asm.h"
-#include "f_op/f_op_msg_mng.h"
-#include "global.h"
 #include "m_Do/m_Do_audio.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "stdio.h"
+#include "JSystem/J2DGraph/J2DAnmLoader.h"
+#include "f_op/f_op_msg_mng.h"
 
 //
 // Forward References:
@@ -222,8 +221,6 @@ dName_c::dName_c(J2DPane* pane) {
 }
 
 /* 8024E468-8024E62C 248DA8 01C4+00 1/0 0/0 0/0 .text            __dt__7dName_cFv */
-// matches with vtable data
-#ifdef NONMATCHING
 dName_c::~dName_c() {
     delete stick;
     delete nameIn.NameInScr;
@@ -248,17 +245,7 @@ dName_c::~dName_c() {
     delete mSelIcon;
     archive->removeResourceAll();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dName_c::~dName_c() {
-extern "C" asm void __dt__7dName_cFv() {
-    nofralloc
-#include "asm/d/d_name/__dt__7dName_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 8024E62C-8024E6D4 248F6C 00A8+00 1/1 0/0 0/0 .text            _create__7dName_cFv */
 void dName_c::_create() {
@@ -351,8 +338,6 @@ void dName_c::showIcon() {
 SECTION_SDATA2 static f32 lit_3886 = -1.0f;
 
 /* 8024E9A0-8024EC10 2492E0 0270+00 0/0 2/2 0/0 .text            _move__7dName_cFv */
-// matches with literals
-#ifdef NONMATCHING
 void dName_c::_move() {
     stick->checkTrigger();
     (this->*SelProc[mSelProc])();
@@ -408,16 +393,7 @@ void dName_c::_move() {
 
     cursorAnm();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::_move() {
-    nofralloc
-#include "asm/d/d_name/_move__7dName_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 8024EC10-8024EC4C 249550 003C+00 3/3 0/0 0/0 .text            nameCheck__7dName_cFv */
 int dName_c::nameCheck() {
@@ -464,8 +440,6 @@ void dName_c::cursorAnm() {
 void dName_c::Wait() {}
 
 /* 8024ED4C-8024F034 24968C 02E8+00 1/0 0/0 0/0 .text            MojiSelect__7dName_cFv */
-// matches with literals
-#ifdef NONMATCHING
 void dName_c::MojiSelect() {
     if (mDoCPd_c::getTrigA(PAD_1)) {
         selectMojiSet();
@@ -523,16 +497,7 @@ void dName_c::MojiSelect() {
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::MojiSelect() {
-    nofralloc
-#include "asm/d/d_name/MojiSelect__7dName_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* ############################################################################################## */
 /* 80454DD0-80454DD4 0033D0 0004+00 5/5 0/0 0/0 .sdata2          @4009 */
@@ -718,8 +683,6 @@ int dName_c::getMoji() {
 }
 
 /* 8024F634-8024F88C 249F74 0258+00 1/1 0/0 0/0 .text            setMoji__7dName_cFi */
-// matches with literals
-#ifdef NONMATCHING
 void dName_c::setMoji(int moji) {
     if (mCurPos == 8 || nameCheck() == 8) {
         mDoAud_seStart(Z2SE_SYS_ERROR, NULL, 0, 0);
@@ -767,16 +730,7 @@ void dName_c::setMoji(int moji) {
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::setMoji(int param_0) {
-    nofralloc
-#include "asm/d/d_name/setMoji__7dName_cFi.s"
-}
-#pragma pop
-#endif
+
 
 /* 8024F88C-8024F914 24A1CC 0088+00 4/4 0/0 0/0 .text            setNameText__7dName_cFv */
 void dName_c::setNameText() {
@@ -833,8 +787,6 @@ void dName_c::menuCursorPosSet() {
 }
 
 /* 8024FB08-8024FDA0 24A448 0298+00 1/0 0/0 0/0 .text            MenuSelect__7dName_cFv */
-// matches with literals
-#ifdef NONMATCHING
 void dName_c::MenuSelect() {
     if (!stick->checkRightTrigger() && !stick->checkLeftTrigger()) {
         if (stick->checkUpTrigger()) {
@@ -872,16 +824,7 @@ void dName_c::MenuSelect() {
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::MenuSelect() {
-    nofralloc
-#include "asm/d/d_name/MenuSelect__7dName_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 8024FDA0-8024FDF4 24A6E0 0054+00 2/2 0/0 0/0 .text            MenuSelectAnmInit__7dName_cFv */
 void dName_c::MenuSelectAnmInit() {
@@ -927,8 +870,6 @@ void dName_c::MenuSelectAnm2() {
 void dName_c::MenuSelectAnm3() {}
 
 /* 8024FFA4-80250074 24A8E4 00D0+00 1/1 0/0 0/0 .text            menuAbtnSelect__7dName_cFv */
-// matches with literals
-#ifdef NONMATCHING
 void dName_c::menuAbtnSelect() {
     switch (mSelMenu) {
     case MENU_HIRA:
@@ -954,20 +895,9 @@ void dName_c::menuAbtnSelect() {
         break;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::menuAbtnSelect() {
-    nofralloc
-#include "asm/d/d_name/menuAbtnSelect__7dName_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 80250074-802501B0 24A9B4 013C+00 1/1 0/0 0/0 .text            backSpace__7dName_cFv */
-// matches with literals
-#ifdef NONMATCHING
 void dName_c::backSpace() {
     if (mCurPos != 0) {
         mDoAud_seStart(Z2SE_SY_NAME_DELETE, NULL, 0, 0);
@@ -995,16 +925,7 @@ void dName_c::backSpace() {
         nameCursorMove();
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::backSpace() {
-    nofralloc
-#include "asm/d/d_name/backSpace__7dName_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 802501B0-80250284 24AAF0 00D4+00 2/2 0/0 0/0 .text            mojiListChange__7dName_cFv */
 void dName_c::mojiListChange() {
@@ -1238,8 +1159,6 @@ SECTION_DATA extern void* __vt__7dName_c[3 + 3 /* padding */] = {
 };
 
 /* 802505CC-80250CEC 24AF0C 0720+00 1/1 0/0 0/0 .text            screenSet__7dName_cFv */
-// matches with literals
-#ifdef NONMATCHING
 void dName_c::screenSet() {
     nameIn.NameInScr = new J2DScreen();
     JUT_ASSERT(nameIn.NameInScr != 0);
@@ -1336,16 +1255,7 @@ void dName_c::screenSet() {
     mSelIcon->setPos(pos.x, pos.y, mMojiIcon[mCharRow + mCharColumn * 5]->getPanePtr(), true);
     mSelIcon->setAlphaRate(0.0f);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dName_c::screenSet() {
-    nofralloc
-#include "asm/d/d_name/screenSet__7dName_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 80250CEC-80250E54 24B62C 0168+00 2/2 0/0 0/0 .text            displayInit__7dName_cFv */
 void dName_c::displayInit() {
@@ -1452,8 +1362,6 @@ s32 dName_c::getMenuPosIdx(u8 selPos) {
 }
 
 /* 80251094-8025115C 24B9D4 00C8+00 1/0 0/0 0/0 .text            draw__14dDlst_NameIN_cFv */
-// matches with literals / vtable data
-#ifdef NONMATCHING
 void dDlst_NameIN_c::draw() {
     if (field_0xc != NULL) {
         Mtx m;
@@ -1468,17 +1376,7 @@ void dDlst_NameIN_c::draw() {
     J2DGrafContext* graf_ctx = dComIfGp_getCurrentGrafPort();
     NameInScr->draw(0.0f, 0.0f, graf_ctx);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dDlst_NameIN_c::draw() {
-extern "C" asm void draw__14dDlst_NameIN_cFv() {
-    nofralloc
-#include "asm/d/d_name/draw__14dDlst_NameIN_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 8025115C-802511A4 24BA9C 0048+00 1/0 0/0 0/0 .text            __dt__14dDlst_NameIN_cFv */
 dDlst_NameIN_c::~dDlst_NameIN_c() {}

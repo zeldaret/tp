@@ -4,13 +4,11 @@
 //
 
 #include "d/d_attention.h"
-#include "JSystem/J3DGraphBase/J3DMatBlock.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
-#include "d/a/d_a_player.h"
-#include "d/com/d_com_inf_game.h"
-#include "d/d_procname.h"
+#include "JSystem/JKernel/JKRSolidHeap.h"
+#include "d/actor/d_a_player.h"
+#include "d/d_com_inf_game.h"
 #include "dol2asm.h"
-#include "dolphin/os/OSCache.h"
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_controller_pad.h"
 
@@ -288,8 +286,6 @@ extern bool on_final_boss_stg;
 bool on_final_boss_stg;
 
 /* 80070038-80070110 06A978 00D8+00 1/1 0/0 0/0 .text            __ct__11dAttParam_cFl */
-// matches with literals
-#ifdef NONMATCHING
 dAttParam_c::dAttParam_c(s32 param_0) {
     field_0x4 = 45.0f;
     field_0x8 = 30.0f;
@@ -317,16 +313,7 @@ dAttParam_c::dAttParam_c(s32 param_0) {
 
     on_final_boss_stg = strcmp(dComIfGp_getStartStageName(), "D_MN09B") == 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dAttParam_c::dAttParam_c(s32 param_0) {
-    nofralloc
-#include "asm/d/d_attention/__ct__11dAttParam_cFl.s"
-}
-#pragma pop
-#endif
+
 
 /* 80070110-80070158 06AA50 0048+00 2/1 0/0 0/0 .text            __dt__11dAttParam_cFv */
 dAttParam_c::~dAttParam_c() {}
@@ -353,15 +340,10 @@ int dAttDraw_CallBack_c::execute(u16 param_0, J3DTransformInfo* param_1) {
     return 1;
 }
 #else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dAttDraw_CallBack_c::execute(u16 param_0, J3DTransformInfo* param_1) {
-extern "C" asm void execute__19dAttDraw_CallBack_cFUsP16J3DTransformInfo() {
-    nofralloc
-#include "asm/d/d_attention/execute__19dAttDraw_CallBack_cFUsP16J3DTransformInfo.s"
+// void dAttDraw_CallBack_c::execute(u16 param_0, J3DTransformInfo* param_1) {
+extern "C" void execute__19dAttDraw_CallBack_cFUsP16J3DTransformInfo() {
+    // NONMATCHING
 }
-#pragma pop
 #endif
 
 /* ############################################################################################## */
@@ -377,8 +359,6 @@ SECTION_DEAD static char const* const pad_8037A77F = "";
 static dAttDrawParam_c g_AttDwHIO;
 
 /* 80070198-80070774 06AAD8 05DC+00 0/0 1/1 0/0 .text __ct__12dAttention_cFP10fopAc_ac_cUl */
-// matches with literals
-#ifdef NONMATCHING
 dAttention_c::dAttention_c(fopAc_ac_c* i_player, u32 i_padNo) {
     mpPlayer = i_player;
     mPadNo = i_padNo;
@@ -475,16 +455,7 @@ dAttention_c::dAttention_c(fopAc_ac_c* i_player, u32 i_padNo) {
 
     g_AttDwHIO.field_0x4 = -1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dAttention_c::dAttention_c(fopAc_ac_c* param_0, u32 param_1) {
-    nofralloc
-#include "asm/d/d_attention/__ct__12dAttention_cFP10fopAc_ac_cUl.s"
-}
-#pragma pop
-#endif
+
 
 /* 80070774-80070844 06B0B4 00D0+00 0/0 2/2 0/0 .text            __dt__12dAttention_cFv */
 dAttention_c::~dAttention_c() {
@@ -662,26 +633,13 @@ SECTION_SDATA2 static f32 lit_4448[1 + 1 /* padding */] = {
 SECTION_SDATA2 static f64 lit_4450 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80070BF4-80070C40 06B534 004C+00 2/2 0/0 0/0 .text            distace_weight__Ffsf */
-// matches with literals
-#ifdef NONMATCHING
 static f32 distace_weight(f32 param_0, s16 param_1, f32 param_2) {
     f32 tmp = param_1 / 32768.0f;
     return param_0 * ((1.0f - param_2) + (param_2 * (tmp * tmp)));
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm f32 distace_weight(f32 param_0, s16 param_1, f32 param_2) {
-    nofralloc
-#include "asm/d/d_attention/distace_weight__Ffsf.s"
-}
-#pragma pop
-#endif
+
 
 /* 80070C40-80070CA0 06B580 0060+00 2/2 0/0 0/0 .text            distace_angle_adjust__Ffsf */
-// matches with literals
-#ifdef NONMATCHING
 static f32 distace_angle_adjust(f32 param_0, s16 param_1, f32 param_2) {
     f32 tmp = param_1 / 32768.0f;
     if (tmp < 0.0f) {
@@ -690,16 +648,7 @@ static f32 distace_angle_adjust(f32 param_0, s16 param_1, f32 param_2) {
 
     return param_0 * ((1.0f - param_2) + (param_2 * ((1.0f - tmp) * (1.0f - tmp))));
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm f32 distace_angle_adjust(f32 param_0, s16 param_1, f32 param_2) {
-    nofralloc
-#include "asm/d/d_attention/distace_angle_adjust__Ffsf.s"
-}
-#pragma pop
-#endif
+
 
 /* ############################################################################################## */
 /* 80452678-80452680 000C78 0008+00 3/3 0/0 0/0 .sdata2          @4514 */
@@ -715,8 +664,6 @@ SECTION_SDATA2 static u8 lit_4516[8] = {
 
 /* 80070CA0-80070E90 06B5E0 01F0+00 3/3 0/0 0/0 .text            check_distace__FP4cXyzsP4cXyzffff
  */
-// matches with literals
-#ifdef NONMATCHING
 static bool check_distace(cXyz* param_0, s16 param_1, cXyz* param_2, f32 param_3, f32 param_4,
                           f32 param_5, f32 param_6) {
     cXyz tmp = *param_2 - *param_0;
@@ -732,17 +679,7 @@ static bool check_distace(cXyz* param_0, s16 param_1, cXyz* param_2, f32 param_3
 
     return true;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int check_distace(cXyz* param_0, s16 param_1, cXyz* param_2, f32 param_3, f32 param_4,
-                             f32 param_5, f32 param_6) {
-    nofralloc
-#include "asm/d/d_attention/check_distace__FP4cXyzsP4cXyzffff.s"
-}
-#pragma pop
-#endif
+
 
 /* ############################################################################################## */
 /* 80452690-80452694 000C90 0004+00 3/3 0/0 0/0 .sdata2          @4562 */
@@ -753,8 +690,6 @@ SECTION_SDATA2 static f32 lit_4563 = 0.5f;
 
 /* 80070E90-800710C0 06B7D0 0230+00 2/2 0/0 0/0 .text
  * calcWeight__12dAttention_cFiP10fopAc_ac_cfssPUl              */
-// matches with literals
-#ifdef NONMATCHING
 f32 dAttention_c::calcWeight(int param_0, fopAc_ac_c* param_1, f32 param_2, s16 param_3,
                              s16 param_4, u32* param_5) {
     int i;
@@ -796,23 +731,23 @@ f32 dAttention_c::calcWeight(int param_0, fopAc_ac_c* param_1, f32 param_2, s16 
         type_tbl_entry* entry = &table[i];
 
         if (mPlayerAttentionFlags & entry->field_0x2 & param_1->attention_info.flags) {
-            u8 index = param_1->attention_info.field_0x0[entry->field_0x0];
+            u8 index = param_1->attention_info.distances[entry->field_0x0];
             dist_entry* d_entry = &dist_table[index];
 
             if (fopAcM_checkStatus(param_1, 0x20000000) ||
                 check_event_condition(entry->field_0x0, param_1->eventInfo.getCondition())) {
                 dvar12 = 0.0f;
-            } else if (check_flontofplayer(d_entry->field_0x18, param_3, param_4)) {
+            } else if (check_flontofplayer(d_entry->mAngleSelect, param_3, param_4)) {
                 dvar12 = 0.0f;
             } else if (!check_distace(&mOwnerAttnPos, param_3, &param_1->attention_info.position,
-                                      d_entry->field_0x0, d_entry->field_0x8, d_entry->field_0xc,
-                                      d_entry->field_0x10)) {
+                                      d_entry->mDistMax, d_entry->mDistanceAdjust, d_entry->mUpperY,
+                                      d_entry->mLowerY)) {
                 dvar12 = 0.0f;
             } else {
                 dvar12 = distace_weight(param_2, param_3, 0.5f);
             }
 
-            f32 dvar13 = d_entry->field_0x14;
+            f32 dvar13 = d_entry->mWeight;
             if (dvar12 > 0.0f && dvar13 > dvar14) {
                 dvar14 = dvar13;
                 weight = dvar12 / dvar13;
@@ -823,22 +758,10 @@ f32 dAttention_c::calcWeight(int param_0, fopAc_ac_c* param_1, f32 param_2, s16 
 
     return weight;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 dAttention_c::calcWeight(int param_0, fopAc_ac_c* param_1, f32 param_2, s16 param_3,
-                                 s16 param_4, u32* param_5) {
-    nofralloc
-#include "asm/d/d_attention/calcWeight__12dAttention_cFiP10fopAc_ac_cfssPUl.s"
-}
-#pragma pop
-#endif
+
 
 /* 800710C0-80071240 06BA00 0180+00 1/1 0/0 0/0 .text
  * setList__12dAttention_cFiP10fopAc_ac_cff7cSAngleUl           */
-// Matches with literals
-#ifdef NONMATCHING
 void dAttention_c::setList(int param_0, fopAc_ac_c* param_1, f32 param_2, f32 param_3,
                            cSAngle param_4, u32 param_5) {
     int max;
@@ -896,21 +819,9 @@ void dAttention_c::setList(int param_0, fopAc_ac_c* param_1, f32 param_2, f32 pa
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttention_c::setList(int param_0, fopAc_ac_c* param_1, f32 param_2, f32 param_3,
-                               cSAngle param_4, u32 param_5) {
-    nofralloc
-#include "asm/d/d_attention/setList__12dAttention_cFiP10fopAc_ac_cff7cSAngleUl.s"
-}
-#pragma pop
-#endif
+
 
 /* 80071240-8007138C 06BB80 014C+00 6/6 0/0 0/0 .text            initList__12dAttention_cFUl */
-// Matches with literals
-#ifdef NONMATCHING
 void dAttention_c::initList(u32 flags) {
     mPlayerAttentionFlags = flags;
     if (chkFlag(0x4000) == 0) {
@@ -939,16 +850,7 @@ void dAttention_c::initList(u32 flags) {
     }
     setFlag(0x1000);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttention_c::initList(u32 param_0) {
-    nofralloc
-#include "asm/d/d_attention/initList__12dAttention_cFUl.s"
-}
-#pragma pop
-#endif
+
 
 /* 8007138C-800713CC 06BCCC 0040+00 1/1 0/0 0/0 .text            select_attention__FP10fopAc_ac_cPv
  */
@@ -1006,14 +908,9 @@ int dAttention_c::SelectAttention(fopAc_ac_c* param_0) {
 }
 
 /* 8007167C-800716B8 06BFBC 003C+00 0/0 9/9 0/0 .text            __dt__7cSGlobeFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void __dt__7cSGlobeFv() {
-    nofralloc
-#include "asm/d/d_attention/__dt__7cSGlobeFv.s"
+extern "C" void __dt__7cSGlobeFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 
 /* 800716B8-800718A4 06BFF8 01EC+00 4/4 0/0 0/0 .text            sortList__12dAttention_cFv */
@@ -1123,8 +1020,6 @@ int dAttention_c::freeAttention() {
 }
 
 /* 80071A98-80071CC0 06C3D8 0228+00 2/2 0/0 0/0 .text            chaseAttention__12dAttention_cFv */
-// Matches with literals
-#ifdef NONMATCHING
 bool dAttention_c::chaseAttention() {
     int offset = mLockOnOffset;
     fopAc_ac_c* actor = mLockOnList[offset].getActor();
@@ -1146,18 +1041,18 @@ bool dAttention_c::chaseAttention() {
         f32 weight = calcWeight(0x4C, actor, g1.R(), a1.Val(), a2.Val(), &type);
         if (weight <= 0.0f) {
             type = mLockOnList[offset].mType;
-            int tbl_idx = actor->attention_info.field_0x0[type];
+            int tbl_idx = actor->attention_info.distances[type];
 
             if (!chkAttMask(type, actor->attention_info.flags)) {
                 return false;
             } else if (check_event_condition(type, actor->eventInfo.getCondition())) {
                 return false;
-            } else if (check_flontofplayer(dist_table[tbl_idx].field_0x18, a1.Val(), a2.Val())) {
+            } else if (check_flontofplayer(dist_table[tbl_idx].mAngleSelect, a1.Val(), a2.Val())) {
                 return false;
             } else if (check_distace(&mOwnerAttnPos, a1.Val(), &actor->attention_info.position,
-                                     dist_table[tbl_idx].field_0x4, dist_table[tbl_idx].field_0x8,
-                                     dist_table[tbl_idx].field_0xc,
-                                     dist_table[tbl_idx].field_0x10)) {
+                                     dist_table[tbl_idx].mDistMaxRelease,
+                                     dist_table[tbl_idx].mDistanceAdjust,
+                                     dist_table[tbl_idx].mUpperY, dist_table[tbl_idx].mLowerY)) {
                 mLockOnList[offset].mWeight = distace_weight(g1.R(), a1.Val(), 0.5f);
                 return true;
             }
@@ -1174,21 +1069,10 @@ bool dAttention_c::chaseAttention() {
 
     return (actor->attention_info.flags & 7) != false;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool dAttention_c::chaseAttention() {
-    nofralloc
-#include "asm/d/d_attention/chaseAttention__12dAttention_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 80071CC0-80071D6C 06C600 00AC+00 1/1 0/0 0/0 .text EnemyDistance__12dAttention_cFP10fopAc_ac_c
  */
-// matches with literals
-#ifdef NONMATCHING
 f32 dAttention_c::EnemyDistance(fopAc_ac_c* i_actor) {
     f32 distance;
 
@@ -1201,9 +1085,9 @@ f32 dAttention_c::EnemyDistance(fopAc_ac_c* i_actor) {
         distance = -1.0f;
     } else {
         distance = fopAcM_searchActorDistance(mpPlayer, i_actor);
-        u8 tmp = i_actor->attention_info.field_0x0[2];
+        u8 tmp = i_actor->attention_info.distances[fopAc_attn_BATTLE_e];
 
-        if (distance < dist_table[tmp].field_0x0 + dist_table[tmp].field_0x8) {
+        if (distance < dist_table[tmp].mDistMax + dist_table[tmp].mDistanceAdjust) {
             return distance;
         }
 
@@ -1212,21 +1096,10 @@ f32 dAttention_c::EnemyDistance(fopAc_ac_c* i_actor) {
 
     return distance;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 dAttention_c::EnemyDistance(fopAc_ac_c* param_0) {
-    nofralloc
-#include "asm/d/d_attention/EnemyDistance__12dAttention_cFP10fopAc_ac_c.s"
-}
-#pragma pop
-#endif
+
 
 /* 80071D6C-80071DEC 06C6AC 0080+00 1/1 0/0 0/0 .text            sound_attention__FP10fopAc_ac_cPv
  */
-// matches with literals
-#ifdef NONMATCHING
 static int sound_attention(fopAc_ac_c* param_0, void* i_attention) {
     f32 dist = ((dAttention_c*)i_attention)->EnemyDistance(param_0);
 
@@ -1241,16 +1114,7 @@ static int sound_attention(fopAc_ac_c* param_0, void* i_attention) {
 
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm int sound_attention(fopAc_ac_c* param_0, void* param_1) {
-    nofralloc
-#include "asm/d/d_attention/sound_attention__FP10fopAc_ac_cPv.s"
-}
-#pragma pop
-#endif
+
 
 /* 80071DEC-80071E84 06C72C 0098+00 1/1 0/0 0/0 .text            runSoundProc__12dAttention_cFv */
 void dAttention_c::runSoundProc() {
@@ -1730,27 +1594,14 @@ void dAttention_c::Draw() {
 
 /* 80072D80-80072DD8 06D6C0 0058+00 2/2 0/0 0/0 .text            lockSoundStart__12dAttention_cFUl
  */
-// matches with literals
-#ifdef NONMATCHING
 void dAttention_c::lockSoundStart(u32 i_sfxID) {
     if (!chkFlag(0x400000)) {
         mDoAud_seStart(i_sfxID, NULL, 0, 0);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttention_c::lockSoundStart(u32 param_0) {
-    nofralloc
-#include "asm/d/d_attention/lockSoundStart__12dAttention_cFUl.s"
-}
-#pragma pop
-#endif
+
 
 /* 80072DD8-80072FE8 06D718 0210+00 1/1 0/0 0/0 .text            setAnm__10dAttDraw_cFUcf */
-// Matches with literals
-#ifdef NONMATCHING
 void dAttDraw_c::setAnm(u8 param_0, f32 param_1) {
     field_0x170 = param_0;
     mNoticeCursorBck[field_0x170].reset();
@@ -1771,16 +1622,7 @@ void dAttDraw_c::setAnm(u8 param_0, f32 param_1) {
         mImpactBtk.reset();
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttDraw_c::setAnm(u8 param_0, f32 param_1) {
-    nofralloc
-#include "asm/d/d_attention/setAnm__10dAttDraw_cFUcf.s"
-}
-#pragma pop
-#endif
+
 
 /* 80072FE8-80073004 06D928 001C+00 1/1 0/0 0/0 .text            setAlphaAnm__10dAttDraw_cFUcUc */
 void dAttDraw_c::setAlphaAnm(u8 param_0, u8 param_1) {
@@ -1802,8 +1644,6 @@ SECTION_SDATA2 static f32 lit_5668[1 + 1 /* padding */] = {
 SECTION_SDATA2 static f64 lit_5670 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80073004-800732AC 06D944 02A8+00 1/1 0/0 0/0 .text            alphaAnm__10dAttDraw_cFv */
-// Matches with literals
-#ifdef NONMATCHING
 void dAttDraw_c::alphaAnm() {
     f32 dVar9 = (f32)field_0x172 / (f32)field_0x171;
     f32 dVar8;
@@ -1845,16 +1685,7 @@ void dAttDraw_c::alphaAnm() {
         mImpactBtk.play();
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttDraw_c::alphaAnm() {
-    nofralloc
-#include "asm/d/d_attention/alphaAnm__10dAttDraw_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 800732AC-800732B0 06DBEC 0004+00 0/0 3/0 0/0 .text setTevKColor__11J3DTevBlockFUlPC10J3DGXColor
  */
@@ -1870,8 +1701,6 @@ SECTION_SDATA2 static f32 lit_5784 = 0.01745329238474369f;
 SECTION_SDATA2 static f32 lit_5785 = -100.0f;
 
 /* 800732B0-8007353C 06DBF0 028C+00 1/1 0/0 0/0 .text            draw__10dAttDraw_cFR4cXyzPA4_f */
-// matches with literals
-#ifdef NONMATCHING
 void dAttDraw_c::draw(cXyz& param_0, Mtx param_1) {
     J3DModelData* modelData = mModel[field_0x170]->getModelData();
 
@@ -1913,16 +1742,7 @@ void dAttDraw_c::draw(cXyz& param_0, Mtx param_1) {
     mDoExt_modelUpdateDL(mModel[field_0x170]);
     dComIfGd_setList();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dAttDraw_c::draw(cXyz& param_0, Mtx param_1) {
-    nofralloc
-#include "asm/d/d_attention/draw__10dAttDraw_cFR4cXyzPA4_f.s"
-}
-#pragma pop
-#endif
+
 
 /* 8007353C-800735DC 06DE7C 00A0+00 8/8 13/13 21/21 .text            LockonTarget__12dAttention_cFl
  */
@@ -1949,8 +1769,6 @@ fopAc_ac_c* dAttention_c::LockonTarget(s32 param_0) {
 }
 
 /* 800735DC-800736CC 06DF1C 00F0+00 0/0 1/1 0/0 .text LockonReleaseDistanse__12dAttention_cFv */
-// Matches with literals
-#ifdef NONMATCHING
 f32 dAttention_c::LockonReleaseDistanse() {
     if (!LockonTruth()) {
         return 0.0f;
@@ -1961,32 +1779,23 @@ f32 dAttention_c::LockonReleaseDistanse() {
         return 0.0f;
     }
 
-    int idx =  actor->attention_info.field_0x0[mLockOnList[mLockOnOffset].mType];
+    int idx =  actor->attention_info.distances[mLockOnList[mLockOnOffset].mType];
     cSGlobe tmp_g(actor->attention_info.position - mOwnerAttnPos);
     cSAngle tmp_a(tmp_g.U() - fopAcM_GetShapeAngle_p(mpPlayer)->y);
 
-    return distace_angle_adjust(dist_table[idx].field_0x8, tmp_a, 1.0f) + dist_table[idx].field_0x4;
+    return distace_angle_adjust(dist_table[idx].mDistanceAdjust, tmp_a, 1.0f) + dist_table[idx].mDistMaxRelease;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 dAttention_c::LockonReleaseDistanse() {
-    nofralloc
-#include "asm/d/d_attention/LockonReleaseDistanse__12dAttention_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 800736CC-80073734 06E00C 0068+00 2/2 0/0 0/0 .text            LockonTargetPId__12dAttention_cFl
  */
-u32 dAttention_c::LockonTargetPId(s32 param_0) {
+fpc_ProcID dAttention_c::LockonTargetPId(s32 param_0) {
     if (dComIfGp_checkPlayerStatus0(0, 0x36A02311) || dComIfGp_checkPlayerStatus1(0, 0x11)) {
-        return -1;
+        return fpcM_ERROR_PROCESS_ID_e;
     }
 
     if (param_0 >= mLockonCount) {
-        return -1;
+        return fpcM_ERROR_PROCESS_ID_e;
     }
 
     int listIdx = mLockOnOffset + param_0;
@@ -2050,12 +1859,12 @@ void dAttList_c::setActor(fopAc_ac_c* i_actor) {
 }
 
 /* 800738B4-800738CC 06E1F4 0018+00 1/1 0/0 0/0 .text            getPId__10dAttHint_cFPv */
-u32 dAttHint_c::getPId(void* i_actor) {
+fpc_ProcID dAttHint_c::getPId(void* i_actor) {
     return fopAcM_GetID(i_actor);
 }
 
 /* 800738CC-800738FC 06E20C 0030+00 0/0 1/1 0/0 .text            convPId__10dAttHint_cFUi */
-fopAc_ac_c* dAttHint_c::convPId(unsigned int i_id) {
+fopAc_ac_c* dAttHint_c::convPId(fpc_ProcID i_id) {
     return fopAcM_SearchByID(i_id);
 }
 
@@ -2088,7 +1897,7 @@ void dAttHint_c::proc() {
 }
 
 /* 8007398C-800739BC 06E2CC 0030+00 0/0 4/4 0/0 .text            convPId__11dAttCatch_cFUi */
-fopAc_ac_c* dAttCatch_c::convPId(unsigned int i_id) {
+fopAc_ac_c* dAttCatch_c::convPId(fpc_ProcID i_id) {
     return fopAcM_SearchByID(i_id);
 }
 
@@ -2153,19 +1962,14 @@ int dAttCatch_c::request(fopAc_ac_c* param_1, u8 param_2, f32 param_3, f32 param
     return 0;
 }
 #else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dAttCatch_c::request(fopAc_ac_c* param_0, u8 param_1, f32 param_2, f32 param_3,
+int dAttCatch_c::request(fopAc_ac_c* param_0, u8 param_1, f32 param_2, f32 param_3,
                               f32 param_4, s16 param_5, int param_6) {
-    nofralloc
-#include "asm/d/d_attention/request__11dAttCatch_cFP10fopAc_ac_cUcfffsi.s"
+    // NONMATCHING
 }
-#pragma pop
 #endif
 
 /* 80073CA4-80073CD4 06E5E4 0030+00 0/0 1/1 0/0 .text            convPId__10dAttLook_cFUi */
-fopAc_ac_c* dAttLook_c::convPId(unsigned int i_id) {
+fopAc_ac_c* dAttLook_c::convPId(fpc_ProcID i_id) {
     return fopAcM_SearchByID(i_id);
 }
 
@@ -2184,8 +1988,6 @@ void dAttLook_c::proc() {
 }
 
 /* 80073D08-80073FC4 06E648 02BC+00 0/0 0/0 7/7 .text request__10dAttLook_cFP10fopAc_ac_cfffsi */
-// Matches with literals
-#ifdef NONMATCHING 
 int dAttLook_c::request(fopAc_ac_c* param_1, f32 param_2, f32 param_3, f32 param_4,
                              s16 param_5, int param_6) {
     fopAc_ac_c* player = (fopAc_ac_c*)dComIfGp_getPlayer(0);
@@ -2222,17 +2024,6 @@ int dAttLook_c::request(fopAc_ac_c* param_1, f32 param_2, f32 param_3, f32 param
     }
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dAttLook_c::request(fopAc_ac_c* param_0, f32 param_1, f32 param_2, f32 param_3,
-                             s16 param_4, int param_5) {
-    nofralloc
-#include "asm/d/d_attention/request__10dAttLook_cFP10fopAc_ac_cfffsi.s"
-}
-#pragma pop
-#endif
 
 /* 80073FC4-8007400C 06E904 0048+00 2/1 0/0 0/0 .text            __dt__15dAttDrawParam_cFv */
 dAttDrawParam_c::~dAttDrawParam_c() {}

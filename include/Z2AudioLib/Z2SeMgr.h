@@ -3,7 +3,6 @@
 
 #include "JSystem/JAudio2/JAISoundHandles.h"
 #include "JSystem/JAudio2/JASGadget.h"
-#include "dolphin/mtx/vec.h"
 
 struct Z2MultiSeMgr {
     Z2MultiSeMgr();

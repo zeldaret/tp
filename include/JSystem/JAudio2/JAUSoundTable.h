@@ -4,6 +4,10 @@
 #include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JASGadget.h"
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAUSoundTableItem {
     u8 mPriority;
     u8 field_0x1;
@@ -12,6 +16,10 @@ struct JAUSoundTableItem {
     f32 field_0x8;
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 template<typename Root, typename Section, typename Group, typename Typename_0>
 struct JAUSoundTable_ {
     JAUSoundTable_() {
@@ -71,11 +79,20 @@ struct JAUSoundTable_ {
     u32 field_0xc;
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAUSoundTableRoot {
     static inline u32 magicNumber() { return 0x5420; }
     u32 mSectionNumber;
     u32 mSectionOffsets[0];
 };
+
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAUSoundTableSection {
     int getGroupOffset(int index) const {
         if (index < 0) {
@@ -91,6 +108,10 @@ struct JAUSoundTableSection {
     u32 mGroupOffsets[0];
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAUSoundTableGroup {
     u8 getTypeID(int index) const {
         if (index < 0) {
@@ -117,6 +138,10 @@ struct JAUSoundTableGroup {
     u8 mTypeIds[0];
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAUSoundTable : public JASGlobalInstance<JAUSoundTable> {
     JAUSoundTable(bool param_0) : JASGlobalInstance<JAUSoundTable>(param_0) {
     }
@@ -139,14 +164,31 @@ struct JAUSoundTable : public JASGlobalInstance<JAUSoundTable> {
     JAUSoundTable_<JAUSoundTableRoot,JAUSoundTableSection,JAUSoundTableGroup,void> field_0x0;
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAUSoundNameTableRoot {
     static inline u32 magicNumber() { return 0x544e; }
     u32 mSectionNumber;
     u32 mSectionOffsets[0];
 };
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAUSoundNameTableSection {};
+
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAUSoundNameTableGroup {};
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAUSoundNameTable : public JASGlobalInstance<JAUSoundNameTable> {
     JAUSoundNameTable(bool param_0) : JASGlobalInstance<JAUSoundNameTable>(param_0) {
     }

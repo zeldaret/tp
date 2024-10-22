@@ -7,7 +7,7 @@
 extern "C" {
 #endif
 
-vu32 __PIRegs[12] : 0xCC003000;
+vu32 __PIRegs[12] AT_ADDRESS(0xCC003000);
 
 #define OS_RESETCODE_RESTART 0x80000000
 #define OS_RESETCODE_SYSTEM 0x40000000

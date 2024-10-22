@@ -3,9 +3,6 @@
 
 #include "JSystem/JAudio2/JASBankTable.h"
 #include "JSystem/JAudio2/JASChannel.h"
-#include "JSystem/JAudio2/JASGadget.h"
-#include "JSystem/JAudio2/JASHeapCtrl.h"
-#include "JSystem/JAudio2/JASOscillator.h"
 #include "JSystem/JAudio2/JASRegisterParam.h"
 #include "JSystem/JAudio2/JASSeqCtrl.h"
 #include "JSystem/JAudio2/JASTrackPort.h"
@@ -19,6 +16,10 @@ namespace JASDsp {
     extern u32 FILTER_MODE_IIR;
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JASTrack : public JASPoolAllocObject_MultiThreaded<JASTrack> {
     enum Status {
         STATUS_FREE,
@@ -115,13 +116,9 @@ struct JASTrack : public JASPoolAllocObject_MultiThreaded<JASTrack> {
     static JASOscillator::Point const sAdsTable[4];
     static JASOscillator::Data const sEnvOsc;
     static JASOscillator::Data const sPitchEnvOsc;
-#ifdef NONMATCHING
+
     static JASDefaultBankTable sDefaultBankTable;
     static TList sTrackList;
-#else
-    static u8 sDefaultBankTable[1036];
-    static u8 sTrackList[16];
-#endif
 
     JASSeqCtrl* getSeqCtrl() { return &mSeqCtrl; }
     u16 getPort(u32 param_0) { return mTrackPort.get(param_0); }

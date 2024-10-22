@@ -5,9 +5,7 @@
 
 #include "m_Do/m_Do_printf.h"
 #include "stdio.h"
-#include "dol2asm.h"
 #include "dolphin/base/PPCArch.h"
-#include "dolphin/os.h"
 #include "m_Do/m_Do_ext.h"
 
 /* 80450B98-80450B9C -00001 0004+00 0/0 6/6 0/0 .sbss            None */
@@ -23,15 +21,10 @@ u8 __OSReport_System_disable;
 u8 __OSReport_enable;
 
 /* 80006798-800067C8 0010D8 0030+00 1/1 0/0 0/0 .text            OSSwitchFiberEx__FUlUlUlUlUlUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSSwitchFiberEx(u32 param_0, u32 param_1, u32 param_2, u32 param_3, u32 param_4,
+void OSSwitchFiberEx(u32 param_0, u32 param_1, u32 param_2, u32 param_3, u32 param_4,
                          u32 param_5) {
-    nofralloc
-#include "asm/m_Do/m_Do_printf/OSSwitchFiberEx__FUlUlUlUlUlUl.s"
+    // NONMATCHING
 }
-#pragma pop
 
 /* 800067C8-800067F4 001108 002C+00 3/3 0/0 0/0 .text            my_PutString__FPCc */
 void my_PutString(const char* string) {

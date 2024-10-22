@@ -4,6 +4,10 @@
 #include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JASGadget.h"
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAISoundInfo : public JASGlobalInstance<JAISoundInfo> {
     /* 802A2D34 */ JAISoundInfo(bool);
     virtual int getSoundType(JAISoundID) const = 0;

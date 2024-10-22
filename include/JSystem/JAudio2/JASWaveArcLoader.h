@@ -2,13 +2,16 @@
 #define JASWAVEARCLOADER_H
 
 #include "JSystem/JAudio2/JASHeapCtrl.h"
-#include "JSystem/JSupport/JSUList.h"
 #include "dol2asm.h"
 #include "dolphin/os/OSMutex.h"
 
 class JKRHeap;
 class JKRSolidHeap;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JASDisposer {
     JASDisposer() {}
     /* 8029A7B8 */ virtual ~JASDisposer() {}
@@ -16,6 +19,11 @@ struct JASDisposer {
 };
 
 #define DIR_MAX 64
+
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JASWaveArcLoader {
     /* 8029A0A0 */ static JASHeap* getRootHeap();
     /* 8029A0D0 */ static void setCurrentDir(char const*);
@@ -25,6 +33,10 @@ struct JASWaveArcLoader {
     static JASHeap* sAramHeap;
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JASWaveArc : JASDisposer {
     /* 8029A13C */ JASWaveArc();
     /* 8029A258 */ bool loadSetup(u32);

@@ -5,12 +5,10 @@
 
 #include "m_Do/m_Do_Reset.h"
 #include "JSystem/JAudio2/JASDvdThread.h"
-#include "JSystem/JAudio2/JASTaskThread.h"
 #include "JSystem/JUtility/JUTGamePad.h"
 #include "JSystem/JUtility/JUTXfb.h"
 #include "SSystem/SComponent/c_API_controller_pad.h"
 #include "dolphin/gx.h"
-#include "dolphin/os.h"
 #include "m_Do/m_Do_audio.h"
 #include "m_Do/m_Do_DVDError.h"
 #include "m_Do/m_Do_MemCard.h"

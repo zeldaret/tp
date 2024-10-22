@@ -10,17 +10,16 @@
 #include "f_pc/f_pc_deletor.h"
 #include "f_pc/f_pc_executor.h"
 #include "f_pc/f_pc_layer.h"
-#include "f_pc/f_pc_layer_iter.h"
 
 /* 80020ACC-80020AE8 001C+00 s=1 e=0 z=0  None .text      fpcCtRq_isCreatingByID__FP10create_tagPUi
  */
-bool fpcCtRq_isCreatingByID(create_tag* i_createTag, unsigned int* i_procID) {
+bool fpcCtRq_isCreatingByID(create_tag* i_createTag, fpc_ProcID* i_procID) {
     create_request* pReq = static_cast<create_request*>(i_createTag->mBase.mpTagData);
     return pReq->mBsPcId == *i_procID;
 }
 
 /* 80020AE8-80020B20 0038+00 s=0 e=2 z=0  None .text      fpcCtRq_IsCreatingByID__FUi */
-BOOL fpcCtRq_IsCreatingByID(unsigned int i_id) {
+BOOL fpcCtRq_IsCreatingByID(fpc_ProcID i_id) {
     return fpcCtIt_Judge((fpcLyIt_JudgeFunc)fpcCtRq_isCreatingByID, &i_id) != NULL ? TRUE : FALSE;
 }
 

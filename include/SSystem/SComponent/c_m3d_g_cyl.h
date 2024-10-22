@@ -30,10 +30,11 @@ public:
     bool cross(const cM3dGSph*, cXyz*) const;
     bool cross(const cM3dGCyl*, cXyz*) const;
     void calcMinMax(cXyz*, cXyz*);
-    const cXyz* GetCP(void) const { return &mCenter; }
-    f32 GetR(void) const { return mRadius; }
+    const cXyz* GetCP() const { return &mCenter; }
+    cXyz* GetCP() { return &mCenter; }
+    f32 GetR() const { return mRadius; }
     f32* GetRP() { return &mRadius; }
-    f32 GetH(void) const { return mHeight; }
+    f32 GetH() const { return mHeight; }
     cXyz& GetC() { return mCenter; }
 
     bool Cross(const cM3dGCps* cps, cXyz* xyz) const { return cM3d_Cross_CpsCyl(*cps, *this, xyz); }

@@ -1,7 +1,6 @@
 #ifndef JPAEMITTER_H
 #define JPAEMITTER_H
 
-#include "dolphin/gx/GXEnum.h"
 #include "dolphin/gx/GXStruct.h"
 #include "JSystem/JParticle/JPAResource.h"
 #include "JSystem/JParticle/JPAList.h"
@@ -15,6 +14,10 @@ class JPABaseEmitter;
 class JPAEmitterManager;
 class JPAParticleCallBack;
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 struct JPAEmitterWorkData {
     /* 0x00 */ JPABaseEmitter* mpEmtr;
     /* 0x04 */ JPAResource* mpRes;
@@ -58,14 +61,19 @@ struct JPAEmitterWorkData {
     /* 0x216 */ u8 mDrawCount;
 };
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 class JPAEmitterCallBack {
 public:
-    /* 80050368 */ virtual void execute(JPABaseEmitter*);
-    /* 80050374 */ virtual void executeAfter(JPABaseEmitter*);
-    /* 8005036C */ virtual void draw(JPABaseEmitter*);
-    /* 80050370 */ virtual void drawAfter(JPABaseEmitter*);
+    virtual ~JPAEmitterCallBack() = 0;
+    /* 80050368 */ virtual void execute(JPABaseEmitter*) {}
+    /* 80050374 */ virtual void executeAfter(JPABaseEmitter*) {}
+    /* 8005036C */ virtual void draw(JPABaseEmitter*) {}
+    /* 80050370 */ virtual void drawAfter(JPABaseEmitter*) {}
     
-    /* 8027E6A4 */ ~JPAEmitterCallBack();
+    /* 8027E6A4 */ //~JPAEmitterCallBack();
 };
 
 enum {
@@ -76,8 +84,13 @@ enum {
     JPAEmtrStts_FirstEmit = 0x10,
     JPAEmtrStts_RateStepEmit = 0x20,
     JPAEmtrStts_Immortal = 0x40,
+    JPAEmtrStts_Delete = 0x100,
 };
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 class JPABaseEmitter {
 public:
     /* 8027E5EC */ ~JPABaseEmitter();
@@ -103,14 +116,23 @@ public:
     u8 getDrawTimes() const { return mDrawTimes; }
     void setRate(f32 rate) { mRate = rate; }
     void setDirectionalSpeed(f32 i_speed) { mDirSpeed = i_speed; }
+    void setRandomDirectionSpeed(f32 i_speed) { mRndmDirSpeed = i_speed; }
     void setEmitterCallBackPtr(JPAEmitterCallBack* ptr) { mpEmtrCallBack = ptr; }
     void setGlobalRTMatrix(const Mtx m) { JPASetRMtxTVecfromMtx(m, mGlobalRot, &mGlobalTrs); }
+    void setGlobalSRTMatrix(const Mtx m) { 
+        JPASetRMtxSTVecfromMtx(m, mGlobalRot, &mGlobalScl, &mGlobalTrs);
+
+        // set is actually used here in debug
+        mGlobalPScl.x = mGlobalScl.x;
+        mGlobalPScl.y = mGlobalScl.y;
+    }
     void setGlobalTranslation(f32 x, f32 y, f32 z) { mGlobalTrs.set(x, y, z); }
     void setGlobalTranslation(const JGeometry::TVec3<f32>& trs) { mGlobalTrs.set(trs); }
     void getLocalTranslation(JGeometry::TVec3<f32>& vec) { vec.set(mLocalTrs); }
     void setGlobalRotation(const JGeometry::TVec3<s16>& rot) {
         JPAGetXYZRotateMtx(rot.x, rot.y, rot.z, mGlobalRot); 
     }
+    void setGlobalDynamicsScale(const JGeometry::TVec3<f32>& i_scale) { mGlobalScl.set(i_scale); }
     void setGlobalAlpha(u8 alpha) { mGlobalPrmClr.a = alpha; }
     u8 getGlobalAlpha() { return mGlobalPrmClr.a; }
     void getGlobalPrmColor(GXColor& color) { color = mGlobalPrmClr; }
@@ -119,6 +141,9 @@ public:
     void setVolumeSize(u16 size) { mVolumeSize = size; }
     void setLifeTime(s16 lifetime) { mLifeTime = lifetime; }
 
+    void setGlobalParticleHeightScale(f32 height) {
+        mGlobalPScl.y = height;
+    }
     void setGlobalParticleScale(const JGeometry::TVec3<f32>& scale) {
         mGlobalPScl.set(scale.x, scale.y);
     }
@@ -137,6 +162,10 @@ public:
         mGlobalPScl.set(mGlobalScl.x, mGlobalScl.y);
     }
 
+    void setLocalScale(const JGeometry::TVec3<f32>& scale) {
+        mLocalScl.set(scale);
+    }
+
     f32 get_r_f() { return mRndm.get_rndm_f(); }
     f32 get_r_zp() { return mRndm.get_rndm_zp(); }
     f32 get_r_zh() { return mRndm.get_rndm_zh(); }
@@ -146,6 +175,7 @@ public:
     void playCreateParticle() { clearStatus(JPAEmtrStts_StopEmit); }
     void becomeImmortalEmitter() { setStatus(JPAEmtrStts_Immortal); }
     void becomeContinuousParticle() { mMaxFrame = 0; }
+    void becomeDeleteEmitter() { setStatus(JPAEmtrStts_Delete); }
     void becomeInvalidEmitter() {
         stopCreateParticle();
         mMaxFrame = 1;

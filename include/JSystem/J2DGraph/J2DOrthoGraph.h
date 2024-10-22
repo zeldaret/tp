@@ -3,6 +3,10 @@
 
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DOrthoGraph : public J2DGrafContext {
 public:
     /* 802E9670 */ J2DOrthoGraph();

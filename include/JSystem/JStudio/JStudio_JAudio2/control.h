@@ -8,6 +8,9 @@
 
 namespace JStudio_JAudio2 {
 struct TCreateObject : public JStudio::TCreateObject {
+    typedef JStudio::TObject* (*CreateFunc)(JStudio::stb::data::TParse_TBlock_object const&,
+                                            JStudio_JAudio2::TCreateObject*);
+
     TCreateObject(JAISoundStarter* p_soundStarter, const JStage::TSystem* p_system) {
         pJAISoundStarter_ = p_soundStarter;
         pJSGSystem_ = p_system;
@@ -17,8 +20,12 @@ struct TCreateObject : public JStudio::TCreateObject {
     /* 8028D550 */ virtual ~TCreateObject();
     /* 8028D5B0 */ virtual bool create(JStudio::TObject**,
                                        JStudio::stb::data::TParse_TBlock_object const&);
-    /* 8028D624 */ void createObject_JAI_SOUND_(JStudio::stb::data::TParse_TBlock_object const&,
-                                                JStudio_JAudio2::TCreateObject*);
+    /* 8028D624 */ static JStudio::TObject*
+    createObject_JAI_SOUND_(JStudio::stb::data::TParse_TBlock_object const&,
+                            JStudio_JAudio2::TCreateObject*);
+    JAISoundStarter* get_pJAISoundStarter_() { return pJAISoundStarter_; }
+    const JStage::TSystem* get_pJSGSystem_() { return pJSGSystem_; }
+    bool isPermit_onExit_notEnd() { return mPermit_onExit_notEnd; }
 
     /* 0x0C */ JAISoundStarter* pJAISoundStarter_;
     /* 0x10 */ const JStage::TSystem* pJSGSystem_;
@@ -26,9 +33,26 @@ struct TCreateObject : public JStudio::TCreateObject {
 };
 
 struct TAdaptor_sound : public JStudio::TAdaptor_sound {
-    struct TVVOSetValue_ {
-        /* 8028DECC */ void operator()(f32, JStudio::TAdaptor*) const;
-        /* 8028E094 */ ~TVVOSetValue_();
+    typedef void (*TVVOSoundSetFunc)(JAISound*, f32);
+    typedef JStudio::TObject_sound ObjectType;
+
+    enum TEVariableValue {
+        UNK_7 = 7,
+        UNK_8 = 8,
+        UNK_9 = 9,
+        UNK_10 = 10,
+        UNK_11 = 11,
+        UNK_NONE = -1,
+    };
+
+    struct TVVOSetValue_ : public JStudio::TVariableValue::TOutput {
+        TVVOSetValue_(TEVariableValue param_1, TVVOSoundSetFunc param_2)
+            : field_0x04(param_1), field_0x08(param_2) {}
+        /* 8028DECC */ virtual void operator()(f32, JStudio::TAdaptor*) const;
+        /* 8028E094 */ virtual ~TVVOSetValue_() {}
+
+        /* 0x04 */ TEVariableValue field_0x04;
+        /* 0x08 */ TVVOSoundSetFunc field_0x08;
     };
 
     /* 8028D828 */ TAdaptor_sound(JStudio_JAudio2::TCreateObject*);
@@ -58,20 +82,43 @@ struct TAdaptor_sound : public JStudio::TAdaptor_sound {
     /* 8028DEB0 */ virtual void adaptor_do_ON_EXIT_NOT_END(JStudio::data::TEOperationData, void const*,
                                                     u32);
 
+    void beginSound_fadeIn_(u32 param_1) {
+        field_0x128 = param_1;
+        beginSound_fadeIn_();
+    }
+    
+    void beginSound_() {
+        beginSound_fadeIn_(0);
+    }
+
+    void endSound_() {
+        endSound_fadeOut_(0);
+    }
+
+    void opJAISoundHandle_stop_() {
+        opJAISoundHandle_->stop();
+    }
+
+    void set_bPermit_onExit_notEnd_(bool param_1) { field_0x11c = param_1; }
+
+    #ifndef NONMATCHING
+    static TVVOSetValue_ saoVVOSetValue_[6];
+    #else
     static u8 saoVVOSetValue_[72];
+    #endif
 
     /* 0x114 */ TCreateObject* pCreateObject_;
     /* 0x118 */ JAISoundHandle opJAISoundHandle_;
-    /* 0x11C */ u8 field_0x11c;
+    /* 0x11C */ bool field_0x11c;
     /* 0x11D */ u8 field_0x11d;
     /* 0x11E */ u8 field_0x11e;
     /* 0x11F */ u8 field_0x11f;
     /* 0x120 */ u8 field_0x120;
     /* 0x124 */ u32 field_0x124;
     /* 0x128 */ u32 field_0x128;
-    /* 0x12C */ u32 field_0x12c;
+    /* 0x12C */ JGeometry::TVec3<f32>* field_0x12c;
     /* 0x130 */ JGeometry::TVec3<f32> field_0x130;
-    /* 0x13C */ u32 field_0x13c;
+    /* 0x13C */ JStage::TObject* field_0x13c;
     /* 0x140 */ u32 field_0x140;
     /* 0x144 */ u8 field_0x144;
 };

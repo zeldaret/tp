@@ -3,6 +3,10 @@
 
 #include "dolphin/gx/GXStruct.h"
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 struct JPAChildShapeData {
     // Common header.
     /* 0x00 */ u8 mMagic[4];
@@ -29,6 +33,10 @@ struct JPAChildShapeData {
     /* 0x46 */ s16 mRotSpeed;
 };
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 class JPAChildShape {
 public:
     /* 8027B038 */ JPAChildShape(u8 const*);

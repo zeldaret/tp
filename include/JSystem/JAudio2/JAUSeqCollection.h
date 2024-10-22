@@ -6,6 +6,10 @@
 class JAISeqData;
 class JAISeqDataRegion;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAUSeqCollectionData {
     s8 field_0x0;
     s8 field_0x1;
@@ -14,6 +18,10 @@ struct JAUSeqCollectionData {
     u32 field_0x8;
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAUSeqCollection {
 public:
     /* 802A66A0 */ JAUSeqCollection();
@@ -29,6 +37,10 @@ public:
     /* 0x0C */ int field_0xc;
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAUSeqDataMgr_SeqCollection : public JAISeqDataMgr, public JAUSeqCollection {
 public:
     /* 802A677C */ JAUSeqDataMgr_SeqCollection();

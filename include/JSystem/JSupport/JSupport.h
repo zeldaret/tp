@@ -1,6 +1,12 @@
 #ifndef JSUPPORT_H
 #define JSUPPORT_H
 
+#include <dolphin.h>
+
+/**
+* @ingroup jsystem-jsupport
+* 
+*/
 template <typename T>
 T* JSUConvertOffsetToPtr(const void* ptr, u32 offset) {
     if (offset == 0) {
@@ -10,6 +16,10 @@ T* JSUConvertOffsetToPtr(const void* ptr, u32 offset) {
     }
 }
 
+/**
+* @ingroup jsystem-jsupport
+* 
+*/
 template <typename T>
 T* JSUConvertOffsetToPtr(const void* ptr, const void* offset) {
     if (offset == NULL) {

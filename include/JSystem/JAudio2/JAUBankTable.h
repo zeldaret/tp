@@ -2,10 +2,14 @@
 #define JAUBANKTABLE_H
 
 #include "JSystem/JAudio2/JASGadget.h"
-#include "JSystem/JAudio2/JASBankList.h"
 #include "JSystem/JSupport/JSUList.h"
 
 class JASBank;
+
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAUBankTable /* : public JASBankList */ {
 public:
     JAUBankTable(u32 param_0, JASBank** param_1, u32 param_2) : mBankPtrTable(param_1, param_2) {
@@ -21,16 +25,29 @@ public:
     /* 0xC */ u32 field_0xc;
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAUBankTableLink : public JSULink<JAUBankTable>, public JAUBankTable {
 public:
     JAUBankTableLink(u32 param_0, JASBank** param_1, u32 param_2) : JSULink<JAUBankTable>(this), JAUBankTable(param_0, param_1, param_2) {}
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAUBankTableDictionary : JSUList<JAUBankTable> {
     /* 802A4A80 */ void appendBankTable(JSULink<JAUBankTable>*);
 };
 
 class JASWaveBank;
+
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAUWaveBankTable : private JASPtrArray<JASWaveBank,255> {
 public:
     JASWaveBank* getWaveBank(u32 index) { return get(index); }

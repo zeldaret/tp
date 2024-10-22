@@ -5,10 +5,6 @@
 
 #include "m_Do/m_Do_DVDError.h"
 #include "JSystem/JKernel/JKRAssertHeap.h"
-#include "JSystem/JKernel/JKRThread.h"
-#include "dol2asm.h"
-#include "dolphin/dvd.h"
-#include "dolphin/os/OSAlarm.h"
 #include "dolphin/os/OSInterrupt.h"
 #include "m_Do/m_Do_dvd_thread.h"
 #include "m_Do/m_Do_ext.h"

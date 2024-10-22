@@ -1,7 +1,7 @@
 #ifndef GDBASE_H
 #define GDBASE_H
 
-#include "gx.h"
+#include "dolphin/gx.h"
 
 #ifdef __cplusplus
 extern "C" {

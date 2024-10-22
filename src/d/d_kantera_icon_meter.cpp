@@ -6,10 +6,9 @@
 #include "d/d_kantera_icon_meter.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
-#include "d/com/d_com_inf_game.h"
-#include "d/meter/d_meter_HIO.h"
-#include "d/pane/d_pane_class.h"
-#include "dolphin/types.h"
+#include "d/d_com_inf_game.h"
+#include "d/d_meter_HIO.h"
+#include "d/d_pane_class.h"
 
 /* 801AE938-801AE974 1A9278 003C+00 0/0 3/3 0/0 .text            __ct__15dKantera_icon_cFv */
 dKantera_icon_c::dKantera_icon_c() {

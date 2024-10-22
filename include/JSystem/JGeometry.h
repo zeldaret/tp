@@ -45,6 +45,12 @@ template <>
 struct TVec3<s16> {
     s16 x, y, z;
 
+    TVec3() {}
+
+    TVec3(s16 x, s16 y, s16 z) {
+        set(x, y, z);
+    }
+
     TVec3& operator=(const TVec3& b) {
         // Force copies to use lwz/lha
         *((s32*)this) = *((s32*)&b);
@@ -85,20 +91,20 @@ inline float fsqrt_step(float mag) {
 }
 
 template <>
-struct TVec3<f32> {
-    f32 x;
-    f32 y;
-    f32 z;
+struct TVec3<f32> : public Vec {
+    inline TVec3(const Vec& i_vec) {
+        setTVec3f(&i_vec.x, &x);
+    }
 
-    // inline TVec3(const Vec& i_vec) {
-    //     setTVec3f(&i_vec.x, &x);
-    // }
+    inline TVec3(const TVec3<f32>& i_vec) {
+        setTVec3f(&i_vec.x, &x);
+    }
 
-    // inline TVec3(const TVec3<f32>& i_vec) {
-    //     setTVec3f(&i_vec.x, &x);
-    // }
+    TVec3(f32 x, f32 y, f32 z) {
+        set(x, y, z);
+    }
 
-    // TVec3() {}
+    TVec3() {}
 
     operator Vec*() { return (Vec*)&x; }
     operator const Vec*() const { return (Vec*)&x; }
@@ -148,14 +154,18 @@ struct TVec3<f32> {
         return *this;
     }
 
-    // inline TVec3<f32>& operator=(const TVec3<f32>& b) {
-    //     setTVec3f(&b.x, &this->x);
-    //     return *this;
-    // }
+    inline TVec3<f32>& operator=(const TVec3<f32>& b) {
+        set(b.x, b.y, b.z);
+        return *this;
+    }    
 
     inline TVec3<f32>& operator+=(const TVec3<f32>& b) {
         add(b);
         return *this;
+    }
+
+    inline TVec3<f32> operator+(const TVec3<f32>& b) {
+        return *this += b;
     }
 
     // inline TVec3<f32> operator+(const TVec3<f32>& b) {
@@ -163,20 +173,6 @@ struct TVec3<f32> {
     //     res += b;
     //     return res;
     // }
-
-    inline TVec3<f32>& operator=(const TVec3<f32>& b) {
-        register f32* dst = &x;
-        const register f32* src = &b.x;
-        register f32 x_y;
-        register f32 z;
-        asm {
-            psq_l  x_y, 0(src), 0, 0
-            psq_st x_y, 0(dst), 0, 0
-            lfs    z,   8(src)
-            stfs   z,   8(dst)
-        };
-        return *this;
-    }
 
     f32 squared() const {
         return C_VECSquareMag((Vec*)&x);
@@ -313,6 +309,19 @@ struct TVec3<f32> {
         };
         return res;
     }
+
+    void cubic(const TVec3<f32>& param_1, const TVec3<f32>& param_2, const TVec3<f32>& param_3,
+               const TVec3<f32>& param_4, f32 param_5) {
+        f32 fVar5 = param_5 * param_5;
+        f32 fVar6 = fVar5 * param_5;
+        f32 fVar8 = 1.0f + (2.0f * fVar6 - 3.0f * fVar5);
+        f32 fVar9 = -2.0f * fVar6 + 3.0f * fVar5;
+        f32 fVar7 = param_5 + (fVar6 - 2.0f * fVar5);
+        f32 fVar4 = fVar6 - fVar5;
+        x = fVar8 * param_1.x + fVar9 * param_4.x + fVar7 * param_2.x + fVar4 * param_3.x;
+        y = fVar8 * param_1.y + fVar9 * param_4.y + fVar7 * param_2.y + fVar4 * param_3.y;
+        z = fVar8 * param_1.z + fVar9 * param_4.z + fVar7 * param_2.z + fVar4 * param_3.z;
+    }
 };
 
 template <typename T>
@@ -447,6 +456,16 @@ struct TUtil {
 template<>
 struct TUtil<f32> {
     static inline f32 PI() { return 3.1415927f; }
+
+    static inline f32 clamp(f32 v, f32 min, f32 max) {
+        if (v < min) {
+            return min;
+        }
+        if (v > max) {
+            return max;
+        }
+        return v;
+    }
 };
 
 template<>

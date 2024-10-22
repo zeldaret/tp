@@ -3,7 +3,6 @@
 
 #include "JSystem/JFramework/JFWDisplay.h"
 #include "dolphin/mtx.h"
-#include "dolphin/types.h"
 
 class JUTFader;
 
@@ -69,6 +68,7 @@ public:
     static u8 isFade() { return mFade; }
     static void offBlure() { mBlureFlag = false; }
     static bool isBlure() { return mBlureFlag; }
+    static void setBlureRate(u8 i_rate) { mBlureRate = i_rate; }
     static u8 getBlureRate() { return mBlureRate; }
     static MtxP getBlureMtx() { return mBlureMtx; }
     static void offAutoForcus() { data_80450BE7 = 0; }
@@ -102,6 +102,7 @@ public:
     static GXTexObj* getFrameBufferTexObj() { return &mFrameBufferTexObj; }
     static f32 getInvScale() { return 1.0f; }
     static f32 getScale() { return 1.0f; }
+    static void setWideZoomLightProjection(Mtx m) {}
 
     static GXTexObj mFrameBufferTexObj;
     static GXTexObj mZbufferTexObj;

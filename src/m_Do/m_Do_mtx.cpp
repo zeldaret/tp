@@ -5,7 +5,6 @@
 
 #include "m_Do/m_Do_mtx.h"
 #include "JSystem/JGeometry.h"
-#include "JSystem/JMath/JMATrigonometric.h"
 #include "JSystem/JMath/JMath.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "SSystem/SComponent/c_m3d.h"

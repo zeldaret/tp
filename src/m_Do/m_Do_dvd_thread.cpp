@@ -5,14 +5,11 @@
 
 #include "m_Do/m_Do_dvd_thread.h"
 #include "JSystem/JAudio2/JASDvdThread.h"
-#include "JSystem/JAudio2/JASTaskThread.h"
 #include "JSystem/JKernel/JKRAssertHeap.h"
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRMemArchive.h"
 #include "dol2asm.h"
-#include "dolphin/os.h"
-#include "dolphin/types.h"
 #include "m_Do/m_Do_Reset.h"
 #include "m_Do/m_Do_ext.h"
 
@@ -349,33 +346,8 @@ s32 mDoDvdThd_toMainRam_c::execute() {
     return mData != NULL;
 }
 
-/* 80374357-8037438B 0009B7 0034+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80374357 =
-    "mDoDvdThd_getResource_c::create() クラス生成に失敗\n";
-#pragma pop
-
-/* 8037438B-803743C1 0009EB 0036+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-// MWCC ignores mapping of some japanese characters using the
-// byte 0x5C (ASCII '\'). This is why this string is hex-encoded.
-SECTION_DEAD static char const* const stringBase_8037438B =
-    "\x6D\x44\x6F\x44\x76\x64\x54\x68\x64\x5F\x67\x65\x74\x52\x65\x73\x6F\x75\x72\x63\x65\x5F\x63"
-    "\x3A\x3A\x63\x72\x65\x61\x74\x65\x28\x29\x20\x83\x8A\x83\x5C\x81\x5B\x83\x58\x8E\xE6\x93\xBE"
-    "\x82\xC9"
-    "\x8E\xB8\x94\x73\x0A";
-#pragma pop
-
-/* 803743C1-803743F8 000A21 0037+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-// MWCC ignores mapping of some japanese characters using the
-// byte 0x5C (ASCII '\'). This is why this string is hex-encoded.
-SECTION_DEAD static char const* const stringBase_803743C1 =
-    "\x6D\x44\x6F\x44\x76\x64\x54\x68\x64\x5F\x67\x65\x74\x52\x65\x73\x6F\x75\x72\x63\x65\x5F\x63"
-    "\x3A\x3A\x65\x78\x65\x63\x75\x74\x65\x28\x29\x20\x83\x8A\x83\x5C\x81\x5B\x83\x58\x8E\xE6\x93"
-    "\xBE\x82"
-    "\xC9\x8E\xB8\x94\x73\x0A";
-#pragma pop
+static void dummy() {
+    OSReport("mDoDvdThd_getResource_c::create() クラス生成に失敗\n");
+    OSReport("mDoDvdThd_getResource_c::create() リソース取得に失敗\n");
+    OSReport("mDoDvdThd_getResource_c::execute() リソース取得に失敗\n");
+}

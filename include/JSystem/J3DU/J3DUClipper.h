@@ -2,8 +2,11 @@
 #define J3DUCLIPPER_H
 
 #include "dolphin/mtx.h"
-#include "dolphin/types.h"
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DUClipper {
 public:
     J3DUClipper() { init(); }

@@ -5,6 +5,11 @@
 #include "JSystem/JAudio2/JASSoundParams.h"
 
 struct JKRHeap;
+
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JASInstParam : public JASSoundParams {
     JASInstParam() {
         field_0x14 = NULL;
@@ -23,12 +28,20 @@ struct JASInstParam : public JASSoundParams {
     u8 field_0x1e;
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JASInst {
     virtual ~JASInst() {}
 	virtual bool getParam(int, int, JASInstParam*) const = 0;
 	virtual u32 getType() const                          = 0;
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JASBasicInst : public JASInst {
     struct TKeymap {
         /* 80298250 */ ~TKeymap();

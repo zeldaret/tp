@@ -4,7 +4,6 @@
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/mtx.h"
-#include "dolphin/types.h"
 
 void mDoMtx_XYZrotS(Mtx, s16, s16, s16);
 void mDoMtx_XYZrotM(Mtx, s16, s16, s16);
@@ -137,6 +136,10 @@ inline void mDoMtx_quat(Mtx m, const Quaternion* q) {
 
 inline void cMtx_inverse(const Mtx a, Mtx b) {
     mDoMtx_inverse(a, b);
+}
+
+inline void cMtx_concatProjView(const Mtx a, const Mtx b, Mtx c) {
+    mDoMtx_concatProjView(a, b, c);
 }
 
 class mDoMtx_stack_c {
@@ -344,6 +347,10 @@ extern Mtx g_mDoMtx_identity;
 
 inline MtxP mDoMtx_getIdentity() {
     return g_mDoMtx_identity;
+}
+
+inline MtxP cMtx_getIdentity() {
+    return mDoMtx_getIdentity();
 }
 
 class mDoMtx_quatStack_c {

@@ -1,0 +1,36 @@
+{
+  "[c]": {
+    "files.encoding": "utf8",
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+  },
+  "[cpp]": {
+    "files.encoding": "utf8",
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "editor.tabSize": 4,
+  // "files.autoSave": "onFocusChange",
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.associations": {
+    "*.inc": "cpp",
+    ".clangd": "yaml",
+  },
+  // Disable C/C++ IntelliSense, use clangd instead
+  "C_Cpp.intelliSenseEngine": "disabled",
+  "search.useIgnoreFiles": false,
+  "search.exclude": {
+    "build/*/config.json": true,
+    "build/**/*.MAP": true,
+    "build.ninja": true,
+    ".ninja_*": true,
+    "objdiff.json": true,
+    ".cache/**": true,
+  },
+  "clangd.arguments": [
+      "--function-arg-placeholders=0",
+      "-header-insertion=never",
+  ],
+}

@@ -24,6 +24,9 @@ public:
     void set(const Vec& i_start, const Vec& i_end) { SetStartEnd(i_start, i_end); }
     const cXyz& GetStartP(void) const { return mStart; }
     cXyz& GetStartP(void) { return mStart; }
+    cXyz& GetStart() { return mStart; }
+    const cXyz& GetStart() const { return mStart; }
+
     const cXyz& GetEndP(void) const { return mEnd; }
     cXyz& GetEndP(void) { return mEnd; }
     cXyz& GetEnd() { return mEnd; }

@@ -6,10 +6,14 @@
 typedef struct _GXColor GXColor;
 typedef struct _GXColorS10 GXColorS10;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DMatColorAnm {
 public:
     /* 8003B2B8 */ ~J3DMatColorAnm() {};
-    /* 8003B2F4 */ J3DMatColorAnm() {};
+    /* 8003B2F4 */ J3DMatColorAnm() : field_0x0(0), mAnmFlag(1), mAnmColor(NULL) {};
     J3DMatColorAnm(u16 param_1, J3DAnmColor* param_2) {
         field_0x0 = param_1;
         mAnmFlag = 1;
@@ -32,10 +36,14 @@ private:
     /* 0x4 */ J3DAnmColor* mAnmColor;
 };  // Size: 0x8
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DTexNoAnm {
 public:
     /* 8003B1F8 */ ~J3DTexNoAnm() {};
-    /* 8003B240 */ J3DTexNoAnm() {};
+    /* 8003B240 */ J3DTexNoAnm() : field_0x4(0), mAnmFlag(1), mAnmTexPattern(NULL) {};
     J3DTexNoAnm(u16 param_1, J3DAnmTexPattern* param_2) {
         field_0x4 = param_1;
         mAnmFlag = 1;
@@ -59,10 +67,14 @@ private:
     /* 0x8 */ J3DAnmTexPattern* mAnmTexPattern;
 };  // Size: 0xC
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DTexMtxAnm {
 public:
     /* 8003B264 */ ~J3DTexMtxAnm() {};
-    /* 8003B2A0 */ J3DTexMtxAnm() {};
+    /* 8003B2A0 */ J3DTexMtxAnm() : field_0x0(0), mAnmFlag(1), mAnmTransform(NULL) {};
     J3DTexMtxAnm(u16 param_1, J3DAnmTextureSRTKey* param_2) {
         field_0x0 = param_1;
         mAnmFlag = 1;
@@ -87,10 +99,14 @@ private:
     /* 0x4 */ J3DAnmTextureSRTKey* mAnmTransform;
 };  // Size: 0x8
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DTevKColorAnm {
 public:
     /* 8003B150 */ ~J3DTevKColorAnm() {}
-    /* 8003B18C */ J3DTevKColorAnm() {}
+    /* 8003B18C */ J3DTevKColorAnm() : field_0x0(0), mAnmFlag(1), mAnmTevReg(NULL) {}
     J3DTevKColorAnm(u16 param_1, J3DAnmTevRegKey* param_2) {
         field_0x0 = param_1;
         mAnmFlag = 1;
@@ -113,10 +129,14 @@ private:
     /* 0x4 */ J3DAnmTevRegKey* mAnmTevReg;
 };  // Size: 0x8
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DTevColorAnm {
 public:
     /* 8003B1A4 */ ~J3DTevColorAnm() {}
-    /* 8003B1E0 */ J3DTevColorAnm() {}
+    /* 8003B1E0 */ J3DTevColorAnm() : field_0x0(0), mAnmFlag(1), mAnmTevReg(NULL) {}
     J3DTevColorAnm(u16 param_1, J3DAnmTevRegKey* param_2) {
         field_0x0 = param_1;
         mAnmFlag = 1;
@@ -139,6 +159,10 @@ private:
     /* 0x4 */ J3DAnmTevRegKey* mAnmTevReg;
 };  // Size: 0x8
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DMaterialAnm {
 public:
     J3DMaterialAnm() { initialize(); }

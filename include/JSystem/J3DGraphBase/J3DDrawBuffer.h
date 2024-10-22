@@ -2,7 +2,6 @@
 #define J3DDRAWBUFFER_H
 
 #include "JSystem/J3DGraphBase/J3DSys.h"
-#include "dolphin/types.h"
 
 // matches debug
 inline f32 J3DCalcZValue(register MtxP m, register Vec v) {
@@ -37,6 +36,10 @@ class J3DShapePacket;
 typedef int (J3DDrawBuffer::*sortFunc)(J3DMatPacket*);
 typedef void (J3DDrawBuffer::*drawFunc)() const;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DDrawBuffer {
 public:
     enum EDrawType {

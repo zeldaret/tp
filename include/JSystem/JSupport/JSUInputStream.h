@@ -9,6 +9,10 @@ enum JSUStreamSeekFrom {
     JSUStreamSeekFrom_END = 2,  // relative to end
 };
 
+/**
+* @ingroup jsystem-jsupport
+* 
+*/
 class JSUInputStream : public JSUIosBase {
 public:
     JSUInputStream() {}
@@ -71,6 +75,10 @@ public:
 };  // Size = 0x8
 
 // move?
+/**
+* @ingroup jsystem-jsupport
+* 
+*/
 template <typename T>
 T* JSUConvertOffsetToPtr(const void*, const void*);
 

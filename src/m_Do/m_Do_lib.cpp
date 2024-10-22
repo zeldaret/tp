@@ -5,9 +5,8 @@
 
 #include "m_Do/m_Do_lib.h"
 #include "JSystem/J3DGraphBase/J3DMatBlock.h"
-#include "JSystem/JUtility/JUTTexture.h"
 #include "SSystem/SComponent/c_math.h"
-#include "d/com/d_com_inf_game.h"
+#include "d/d_com_inf_game.h"
 #include "dolphin/types.h"
 
 /* 8001513C-8001528C 00FA7C 0150+00 0/0 3/3 2/2 .text
@@ -124,9 +123,4 @@ void mDoLib_pos2camera(Vec* src, Vec* dst) {
         return;
     }
     cMtx_multVec(dComIfGd_getView()->mViewMtx, src, dst);
-}
-
-// Fake function to make the weak function calcAlphaCmpID appear in this TU
-u32 mDoLib_calcAlphaCmpID(u8 param_0, u8 param_1, u8 param_2) {
-    return calcAlphaCmpID(param_0, param_1, param_2);
 }

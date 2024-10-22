@@ -5,6 +5,10 @@
 
 struct JKRHeap;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JASDrumSet : public JASInst {
     struct TPerc {
         /* 802984C4 */ TPerc();

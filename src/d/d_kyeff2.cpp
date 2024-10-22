@@ -5,8 +5,7 @@
 
 #include "SSystem/SComponent/c_phase.h"
 #include "d/d_kyeff2.h"
-#include "d/d_procname.h"
-#include "d/kankyo/d_kankyo_wether.h"
+#include "d/d_kankyo_wether.h"
 
 static int dKyeff2_Draw(dKyeff2_c* i_this) {
     dKyw_wether_draw2();

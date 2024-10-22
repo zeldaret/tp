@@ -3,6 +3,10 @@
 
 #include "dolphin/types.h"
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JASSeqReader {
 public:
     /* 80296108 */ void init();

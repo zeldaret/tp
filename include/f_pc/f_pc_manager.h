@@ -9,15 +9,15 @@
 #include "f_pc/f_pc_searcher.h"
 
 enum {
-    fpcM_ERROR_PROCESS_ID_e = -1,
+    fpcM_ERROR_PROCESS_ID_e = 0xFFFFFFFF
 };
 
 typedef int (*FastCreateReqFunc)(void*);
 typedef void (*fpcM_ManagementFunc)(void);
 typedef int (*fpcM_DrawIteraterFunc)(void*, void*);
 
-inline u32 fpcM_GetID(const void* pProc) {
-    return pProc != NULL ? ((base_process_class*)pProc)->mBsPcId : 0xFFFFFFFF;
+inline fpc_ProcID fpcM_GetID(const void* pProc) {
+    return pProc != NULL ? ((base_process_class*)pProc)->mBsPcId : fpcM_ERROR_PROCESS_ID_e;
 }
 inline s16 fpcM_GetName(const void* pActor) {
     return ((base_process_class*)pActor)->mProcName;
@@ -63,7 +63,7 @@ inline void* fpcM_GetAppend(const void* proc) {
     return ((base_process_class*)proc)->mpUserData;
 }
 
-inline BOOL fpcM_IsExecuting(unsigned int id) {
+inline BOOL fpcM_IsExecuting(fpc_ProcID id) {
     return fpcEx_IsExist(id);
 }
 
@@ -83,7 +83,7 @@ void fpcM_Draw(void* pProc);
 s32 fpcM_DrawIterater(fpcM_DrawIteraterFunc pFunc);
 s32 fpcM_Execute(void* pProc);
 s32 fpcM_Delete(void* pProc);
-BOOL fpcM_IsCreating(unsigned int pID);
+BOOL fpcM_IsCreating(fpc_ProcID pID);
 void fpcM_Management(fpcM_ManagementFunc pFunc1, fpcM_ManagementFunc pFunc2);
 void fpcM_Init();
 base_process_class* fpcM_FastCreate(s16 pProcTypeID, FastCreateReqFunc param_2, void* param_3,
@@ -91,6 +91,6 @@ base_process_class* fpcM_FastCreate(s16 pProcTypeID, FastCreateReqFunc param_2, 
 s32 fpcM_IsPause(void* pProc, u8 param_2);
 void fpcM_PauseEnable(void* pProc, u8 param_2);
 void fpcM_PauseDisable(void* pProc, u8 param_2);
-void* fpcM_JudgeInLayer(unsigned int pLayerID, fpcCtIt_JudgeFunc pFunc, void* pUserData);
+void* fpcM_JudgeInLayer(fpc_ProcID pLayerID, fpcCtIt_JudgeFunc pFunc, void* pUserData);
 
 #endif

@@ -4,7 +4,7 @@
  */
 
 #include "d/d_path.h"
-#include "d/com/d_com_inf_game.h"
+#include "d/d_com_inf_game.h"
 
 /* 800517B0-800517EC 04C0F0 003C+00 0/0 7/7 63/63 .text            dPath_GetPnt__FPC5dPathi */
 dStage_dPnt_c* dPath_GetPnt(dPath const* path, int pnt_index) {

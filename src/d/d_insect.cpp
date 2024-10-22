@@ -4,10 +4,26 @@
  */
 
 #include "d/d_insect.h"
-#include "d/com/d_com_inf_game.h"
-#include "d/menu/d_menu_insect.h"
-#include "f_op/f_op_actor_mng.h"
+#include "d/d_com_inf_game.h"
+#include "d/d_menu_insect.h"
 #include "m_Do/m_Do_lib.h"
+#include "dol2asm.h"
+
+// This is a HACK to get d_insect data at correct address due to
+// issues with the d_a_obj_item vtable. TODO: fix daItem_c vtable
+#pragma push
+#pragma force_active on
+SECTION_DATA extern void* __vt__8daItem_c__HACK[] = {
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+};
+#pragma pop
 
 /* 8015E010-8015E078 158950 0068+00 0/0 0/0 13/13 .text            __ct__9dInsect_cFv */
 dInsect_c::dInsect_c() {

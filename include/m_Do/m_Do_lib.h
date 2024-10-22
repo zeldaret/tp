@@ -9,7 +9,7 @@ typedef struct Vec Vec;
 struct ResTIMG;
 
 struct mDoLib_clipper {
-    /* 8001528C */ void setup(f32, f32, f32, f32);
+    /* 8001528C */ static void setup(f32, f32, f32, f32);
 
     static void changeFar(f32 far) {
         mClipper.setFar(far);
@@ -31,8 +31,6 @@ struct mDoLib_clipper {
         mClipper.setFar(mSystemFar);
         mClipper.calcViewFrustum();
     }
-
-    static void setup(f32, f32, f32, f32);
 
     static J3DUClipper mClipper;
     static f32 mSystemFar;

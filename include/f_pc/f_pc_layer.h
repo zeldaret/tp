@@ -5,7 +5,7 @@
 #include "SSystem/SComponent/c_list.h"
 #include "SSystem/SComponent/c_node.h"
 #include "SSystem/SComponent/c_tree.h"
-#include "dolphin/types.h"
+#include "f_pc/f_pc_base.h"
 
 typedef struct create_tag_class create_tag_class;
 typedef struct process_method_tag_class process_method_tag_class;
@@ -26,8 +26,8 @@ typedef struct layer_class {
 void fpcLy_SetCurrentLayer(layer_class* pLayer);
 layer_class* fpcLy_CurrentLayer(void);
 layer_class* fpcLy_RootLayer(void);
-layer_class* fpcLy_Layer(unsigned int id);
-layer_class* fpcLy_Search(unsigned int id);
+layer_class* fpcLy_Layer(fpc_ProcID id);
+layer_class* fpcLy_Search(fpc_ProcID id);
 void fpcLy_Regist(layer_class* pLayer);
 
 void fpcLy_CreatedMesg(layer_class* pLayer);

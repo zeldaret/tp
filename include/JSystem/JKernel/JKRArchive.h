@@ -7,6 +7,10 @@
 
 class JKRHeap;
 
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 struct SArcHeader {
     /* 0x00 */ u32 signature;
     /* 0x04 */ u32 file_length;
@@ -18,6 +22,10 @@ struct SArcHeader {
     /* 0x1C */ u32 field_0x1c;
 };
 
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 struct SArcDataInfo {
     /* 0x00 */ u32 num_nodes;
     /* 0x04 */ u32 node_offset;
@@ -42,6 +50,10 @@ inline u16 read_big_endian_u16(void* ptr) {
 
 extern u32 sCurrentDirID__10JKRArchive;  // JKRArchive::sCurrentDirID
 
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRArchive : public JKRFileLoader {
 public:
     struct SDirEntry {
@@ -150,7 +162,7 @@ public:
     /* vt[12] */ virtual u32 getResSize(const void*) const;              /* override */
     /* vt[13] */ virtual u32 countFile(const char*) const;               /* override */
     /* vt[14] */ virtual JKRFileFinder* getFirstFile(const char*) const; /* override */
-    /* vt[15] */ virtual u32 getExpandedResSize(const void*) const;
+    /* vt[15] */ virtual u32 getExpandedResSize(const void* res) const { return getResSize(res); }
     /* vt[16] */ virtual void* fetchResource(SDIFileEntry*, u32*) = 0;
     /* vt[17] */ virtual void* fetchResource(void*, u32, SDIFileEntry*, u32*) = 0;
     /* vt[18] */ virtual void setExpandSize(SDIFileEntry*, u32);
@@ -228,6 +240,10 @@ inline bool JKRRemoveResource(void* resource, JKRFileLoader* fileLoader) {
 
 inline void JKRUnmountArchive(JKRArchive* arc) {
     arc->unmount();
+}
+
+inline void JKRReadIdxResource(void* param_1, u32 param_2, u32 param_3, JKRArchive* param_4) {
+    param_4->readIdxResource(param_1, param_2, param_3);
 }
 
 #endif

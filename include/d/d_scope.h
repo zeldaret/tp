@@ -1,8 +1,8 @@
 #ifndef D_D_SCOPE_H
 #define D_D_SCOPE_H
 
-#include "d/pane/d_pane_class.h"
-#include "d/meter/d_meter2.h"
+#include "d/d_pane_class.h"
+#include "d/d_meter2.h"
 
 class dScope_c : public dMeterSub_c {
 public:

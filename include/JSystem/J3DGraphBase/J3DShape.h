@@ -4,8 +4,11 @@
 #include "JSystem/J3DGraphBase/J3DShapeDraw.h"
 #include "JSystem/J3DGraphBase/J3DShapeMtx.h"
 #include "dolphin/gx.h"
-#include "dolphin/types.h"
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DCurrentMtxInfo {
 public:
     u32 mMtxIdxRegA;
@@ -24,6 +27,10 @@ static inline void J3DFifoWriteXFCmd(u16 cmd, u16 len) {
     GXWGFifo.u16 = cmd;
 }
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DCurrentMtx : public J3DCurrentMtxInfo {
 public:
     J3DCurrentMtx() {
@@ -68,6 +75,10 @@ enum J3DShpFlag {
     J3DShpFlag_NoMtx = 0x0200,
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DShape {
 public:
     J3DShape() {
@@ -112,6 +123,7 @@ public:
     void setTexMtxLoadType(u32 type) { mFlags = (mFlags & 0xFFFF0FFF) | type; }
     bool getNBTFlag() const { return mHasNBT; }
     u32 getBumpMtxOffset() const { return mBumpMtxOffset; }
+    void setBumpMtxOffset(u32 offset) { mBumpMtxOffset = offset; }
     GXVtxDescList* getVtxDesc() const { return mVtxDesc; }
 
     J3DMaterial* getMaterial() const { return mMaterial; }

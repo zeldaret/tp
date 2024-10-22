@@ -5,10 +5,8 @@
 
 #include "d/d_eye_hl.h"
 #include "JSystem/J3DGraphBase/J3DTexture.h"
-#include "d/com/d_com_inf_game.h"
-#include "dol2asm.h"
-#include "dolphin/os.h"
-#include "d/s/d_s_play.h"
+#include "d/d_com_inf_game.h"
+#include "d/d_s_play.h"
 
 /* 8009C964-8009CA28 0972A4 00C4+00 0/0 2/2 0/0 .text            entry__8dEyeHL_cFP12J3DModelDataPCc
  */
@@ -54,7 +52,7 @@ void dEyeHL_mng_c::update() {
         for (; obj != NULL; obj = obj->m_next) {
             ResTIMG* timg = obj->m_timg;
             timg->LODBias = obj->m_lodBias + tmp;
-            timg->LODBias = (s16)cLib_minMaxLimit((s16)timg->LODBias, (s16)-400, (s16)399);
+            timg->LODBias = cLib_minMaxLimit<s16>(timg->LODBias, -400, 399);
         }
     }
 }

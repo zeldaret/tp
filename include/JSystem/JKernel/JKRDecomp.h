@@ -5,6 +5,11 @@
 #include "JSystem/JKernel/JKRThread.h"
 
 class JKRAMCommand;
+
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRDecompCommand {
 public:
     typedef void (*AsyncCallback)(u32);
@@ -30,6 +35,10 @@ public:
 #define JKRDECOMP_SYNC_BLOCKING 0
 #define JKRDECOMP_SYNC_NON_BLOCKING 1
 
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRDecomp : public JKRThread {
 private:
     JKRDecomp(s32);

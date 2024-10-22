@@ -1,8 +1,7 @@
 #ifndef D_D_NPC_LIB_H
 #define D_D_NPC_LIB_H
 
-#include "d/com/d_com_inf_game.h"
-#include "dolphin/types.h"
+#include "d/d_com_inf_game.h"
 
 class dNpcLib_lookat_c {
 public:

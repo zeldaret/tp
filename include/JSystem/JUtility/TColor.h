@@ -4,6 +4,11 @@
 #include "dolphin/gx/GXStruct.h"
 
 namespace JUtility {
+    
+/**
+* @ingroup jsystem-jutility
+*
+*/
 struct TColor : public GXColor {
     TColor(u8 r, u8 g, u8 b, u8 a) { set(r, g, b, a); }
     TColor() { set(0xffffffff); }

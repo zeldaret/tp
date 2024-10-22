@@ -5,9 +5,8 @@
 
 #include "c/c_damagereaction.h"
 #include "dol2asm.h"
-#include "d/a/d_a_player.h"
-#include "d/com/d_com_inf_game.h"
-#include "d/d_procname.h"
+#include "d/actor/d_a_player.h"
+#include "d/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
 
 //
@@ -70,8 +69,6 @@ SECTION_SDATA2 static f64 lit_3736 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8001817C-800182A4 012ABC 0128+00 1/0 0/0 0/0 .text
  * execute__24JPTraceParticleCallBack4FP14JPABaseEmitterP15JPABaseParticle */
-// Matches with TVec3<f32> ctors
-#ifdef NONMATCHING
 void JPTraceParticleCallBack4::execute(JPABaseEmitter* param_0, JPABaseParticle* param_1) {
     u32 age = param_1->getAge();
     if (age != 0) {
@@ -91,16 +88,7 @@ void JPTraceParticleCallBack4::execute(JPABaseEmitter* param_0, JPABaseParticle*
         param_1->setOffsetPosition(vec3);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JPTraceParticleCallBack4::execute(JPABaseEmitter* param_0, JPABaseParticle* param_1) {
-    nofralloc
-#include "asm/c/c_damagereaction/execute__24JPTraceParticleCallBack4FP14JPABaseEmitterP15JPABaseParticle.s"
-}
-#pragma pop
-#endif
+
 
 /* 800182A4-800182A8 012BE4 0004+00 1/0 0/0 0/0 .text
  * draw__24JPTraceParticleCallBack4FP14JPABaseEmitterP15JPABaseParticle */
@@ -140,14 +128,9 @@ SECTION_DATA extern void* __vt__24JPTraceParticleCallBack4[5] = {
 #ifdef NONMATCHING
 JPTraceParticleCallBack4::~JPTraceParticleCallBack4() {}
 #else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JPTraceParticleCallBack4::~JPTraceParticleCallBack4() {
-    nofralloc
-#include "asm/c/c_damagereaction/__dt__24JPTraceParticleCallBack4Fv.s"
+JPTraceParticleCallBack4::~JPTraceParticleCallBack4() {
+    // NONMATCHING
 }
-#pragma pop
 #endif
 /* ############################################################################################## */
 /* 803A357C-803A3590 00069C 0014+00 1/1 3/3 0/0 .data            __vt__19JPAParticleCallBack */
@@ -171,14 +154,9 @@ extern u8 JPTracePCB4[4];
 u8 JPTracePCB4[4];
 
 /* 80018388-800183D4 012CC8 004C+00 0/0 1/0 0/0 .text            __sinit_c_damagereaction_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_c_damagereaction_cpp() {
-    nofralloc
-#include "asm/c/c_damagereaction/__sinit_c_damagereaction_cpp.s"
+void __sinit_c_damagereaction_cpp() {
+    // NONMATCHING
 }
-#pragma pop
 
 #pragma push
 #pragma force_active on

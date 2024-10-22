@@ -1,8 +1,7 @@
 #ifndef F_OP_ACTOR_H_
 #define F_OP_ACTOR_H_
 
-#include "JSystem/JKernel/JKRHeap.h"
-#include "d/kankyo/d_kankyo.h"
+#include "d/d_kankyo.h"
 #include "f_pc/f_pc_leaf.h"
 #include "global.h"
 
@@ -83,6 +82,18 @@ enum fopAc_Cull_e {
     fopAc_CULLSPHERE_CUSTOM_e,
 };
 
+enum fopAc_attention_type {
+    fopAc_attn_LOCK_e,
+    fopAc_attn_TALK_e,
+    fopAc_attn_BATTLE_e,
+    fopAc_attn_SPEAK_e,
+    fopAc_attn_CARRY_e,
+    fopAc_attn_DOOR_e,
+    fopAc_attn_JUEL_e,
+    fopAc_attn_ETC_e,
+    fopAc_attn_CHECK_e,
+};
+
 class JKRSolidHeap;
 
 enum dEvt_Command_e {
@@ -114,7 +125,7 @@ public:
     void beforeProc();
     void onCondition(u16);
     void offCondition(u16);
-    bool checkCommandCatch();
+    BOOL checkCommandCatch();
     BOOL checkCommandDoor();
     BOOL checkCommandDemoAccrpt() { return mCommand == dEvtCmd_INDEMO_e; }
 
@@ -163,7 +174,7 @@ struct actor_place {
 };
 
 struct actor_attention_types {
-    /* 0x00 */ u8 field_0x0[9];
+    /* 0x00 */ u8 distances[9];
     /* 0x0A */ s16 field_0xa;
     /* 0x0C */ cXyz position;
     /* 0x18 */ u32 flags;
@@ -198,7 +209,7 @@ public:
     /* 0x49A */ u8 carryType;
     /* 0x49C */ u32 actor_status;
     /* 0x4A0 */ u32 actor_condition;
-    /* 0x4A4 */ u32 parentActorID;
+    /* 0x4A4 */ fpc_ProcID parentActorID;
     /* 0x4A8 */ actor_place home;
     /* 0x4BC */ actor_place old;
     /* 0x4D0 */ actor_place current;
@@ -228,6 +239,8 @@ public:
     fopAc_ac_c();
     ~fopAc_ac_c();
 
+    static void setStopStatus(u32 status) { stopStatus = status; }
+
     static u32 stopStatus;
 };  // Size: 0x568
 
@@ -242,8 +255,13 @@ public:
 
     bool checkWolfNoLock() const { return mFlags & 0x200; }
     bool checkHeadLockFlg() const { return mFlags & 0x80; }
+    bool checkWolfBiteDamage() const { return mFlags & 0x40; }
     bool checkDownFlg() const { return mFlags & 0x1; }
+    bool checkCutDownHitFlg() const { return mFlags & 0x2; }
     bool checkDeadFlg() const { return mFlags & 0x8; }
+
+    u32* getMidnaBindID(int i_idx) { return mMidnaBindID + i_idx; }
+    u8 getMidnaBindMode() { return mMidnaBindMode; }
     cXyz& getDownPos() { return mDownPos; }
     cXyz& getHeadLockPos() { return mHeadLockPos; }
 
@@ -252,11 +270,21 @@ public:
     void onWolfDownStartFlg() { mFlags |= 0x14; }
     void onWolfDownPullEndFlg() { mFlags |= 0x20; }
     void onWolfNoLock() { mFlags |= 0x200; }
+    void onDownFlg() { mFlags |= 1; }
 
+    void offWolfBiteDamage() { mFlags &= ~0x40; }
+    void offCutDownHitFlg() { mFlags &= ~0x2; }
+    void offWolfDownPullFlg() { mFlags &= ~0x10; }
+    void offDownFlg() { mFlags &= ~0x17; }
+    void offWolfNoLock() { mFlags &= ~0x200; }
+
+    void setMidnaBindMode(u8 i_bindMode) { mMidnaBindMode = i_bindMode; }
+    void setMidnaBindID(u8 i_idx, u32 i_bindID) { mMidnaBindID[i_idx] = i_bindID; }
     void setThrowModeCatch() { mThrowMode |= 2; }
     void setThrowModeDash() { mThrowMode |= 4; }
     void setThrowModeThrowRight() { mThrowMode |= 0x10; }
     void setThrowModeThrowLeft() { mThrowMode |= 8; }
+    void setDownPos(const cXyz* i_pos) { mDownPos = *i_pos; }
 
     /* 0x568 */ cXyz mDownPos;
     /* 0x574 */ cXyz mHeadLockPos;
@@ -270,7 +298,7 @@ public:
     /* 0x594 */ u32 mEffectID1;
     /* 0x598 */ u32 mEffectID2;
     /* 0x59C */ u32 mMidnaBindID[3];
-    /* 0x5A8 */ u8 field_0x5a8;
+    /* 0x5A8 */ u8 mMidnaBindMode;
 };  // Size: 0x5AC
 
 s32 fopAc_IsActor(void* actor);

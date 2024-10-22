@@ -2,16 +2,20 @@
 #define D_D_STAGE_H
 
 #include "SSystem/SComponent/c_lib.h"
-#include "d/kankyo/d_kankyo.h"
-#include "d/kankyo/d_kankyo_data.h"
-#include "d/save/d_save.h"
-#include "f_pc/f_pc_priority.h"
+#include "d/d_kankyo.h"
+#include "d/d_kankyo_data.h"
+#include "d/d_save.h"
 #include "global.h"
 
 class JKRExpHeap;
 
 struct stage_vrboxcol_info_class {
-    // VRB
+    /* 0x00 */ color_RGB_class field_0x0;
+    /* 0x03 */ color_RGB_class field_0x3;
+    /* 0x06 */ color_RGB_class field_0x6;
+    /* 0x09 */ GXColor field_0x9;
+    /* 0x0D */ GXColor field_0xd;
+    /* 0x11 */ GXColor field_0x11;
 };  // Size: 0x18
 
 // Virt
@@ -146,10 +150,10 @@ struct stage_envr_info_class {
 };  // Size: 0x41
 
 struct stage_camera2_data_class {
-    /* 0x00 */ int field_0x0;
-    /* 0x04 */ f32 field_0x4;
-    /* 0x08 */ f32 field_0x8;
-    /* 0x0C */ f32 field_0xc;
+    struct {
+        int field_0x0;
+        Vec field_0x4;
+    } /* 0x00 */ field_0x0;
     /* 0x10 */ u8 field_0x10;
     /* 0x11 */ u8 field_0x11;
     /* 0x12 */ u8 field_0x12;
@@ -166,6 +170,7 @@ struct stage_camera_class {
 struct stage_arrow_data_class {
     /* 0x00 */ cXyz mPosition;
     /* 0x0C */ csXyz mAngle;
+    /* 0x12 */ s16 field_0x12;
 };  // Size: 0x14
 
 struct stage_arrow_class {
@@ -192,8 +197,7 @@ struct stage_tgsc_data_class : public stage_actor_data_class {
     /* 8002847C */ ~stage_tgsc_data_class() {}
     /* 800284B8 */ stage_tgsc_data_class() {}
 
-    /* 0x20 */ u8 field_0x20;
-    /* 0x21 */ u8 field_0x21;
+    /* 0x20 */ u8 field_0x20[2];
     /* 0x22 */ u8 field_0x22;
 };  // Size: 0x24
 
@@ -291,7 +295,7 @@ struct dStage_dPnt_c {
     /* 0x0 */ u8 field_0x0;
     /* 0x1 */ u8 field_0x1;
     /* 0x2 */ u8 field_0x2;
-    /* 0x3 */ u8 field_0x3;
+    /* 0x3 */ u8 mArg0;
     /* 0x4 */ Vec m_position;
 };  // Size: 0x10
 
@@ -798,7 +802,7 @@ public:
 
     dStage_roomControl_c() {}
     void init(void);
-    static int getZoneNo(int room);
+    static int getZoneNo(int i_roomNo) { return mStatus[i_roomNo].getZoneNo(); }
     /* 80024338 */ void initZone();
     /* 80024384 */ dStage_roomStatus_c* getStatusRoomDt(int);
     /* 800243B0 */ static JKRExpHeap* getMemoryBlock(int);
@@ -814,7 +818,7 @@ public:
     /* 80024954 */ static bool resetArchiveBank(int);
     /* 80024DB0 */ static void SetTimePass(int);
     /* 8025BAAC */ static void setZoneNo(int, int);
-    static s8 GetTimePass();
+    static s8 GetTimePass() { return m_time_pass; }
 
     static s8 getStayNo() { return mStayNo; }
     static u8 getRegionNo(int i_roomNo) { return mStatus[i_roomNo].mRegionNo; }
@@ -834,9 +838,10 @@ public:
     static void onNoChangeRoom() { mNoChangeRoom = true; }
     static void setProcID(u32 id) { mProcID = id; }
     static u32 getProcID() { return mProcID; }
-    static void setStatusProcID(int i_roomNo, unsigned int i_id) { mStatus[i_roomNo].mProcID = i_id; }
+    static void setStatusProcID(int i_roomNo, fpc_ProcID i_id) { mStatus[i_roomNo].mProcID = i_id; }
     static int getStatusProcID(int i_roomNo) { return mStatus[i_roomNo].mProcID; }
     static void setRegionNo(int i_roomNo, u8 i_regionNo) { mStatus[i_roomNo].mRegionNo = i_regionNo; }
+    static void setZoneCount(int i_roomNo, int count) { mStatus[i_roomNo].mZoneCount = count; }
 
     static void setMemoryBlockID(int i_roomNo, int i_blockID) {
         mStatus[i_roomNo].mMemBlockID = i_blockID;
@@ -926,8 +931,8 @@ struct dStage_objectNameInf {
 class dStage_KeepDoorInfo {
 public:
     /* 80028418 */ ~dStage_KeepDoorInfo() {}
-    /* 0x000 */ int unk_0x0;
-    /* 0x004 */ stage_tgsc_data_class unk_0x4[0x40];
+    /* 0x000 */ int mNum;
+    /* 0x004 */ stage_tgsc_data_class mDrTgData[0x40];
 };  // Size = 0x904
 
 typedef int (*dStage_Func)(dStage_dt_c*, void*, int, void*);
@@ -1014,6 +1019,7 @@ void dStage_dt_c_roomReLoader(void* i_data, dStage_dt_c* stageDt, int param_2);
 void dStage_dt_c_roomLoader(void* i_data, dStage_dt_c* stageDt, int param_2);
 dStage_KeepDoorInfo* dStage_GetKeepDoorInfo();
 dStage_KeepDoorInfo* dStage_GetRoomKeepDoorInfo();
+void dStage_dt_c_fieldMapLoader(void* i_data, dStage_dt_c* i_stage);
 
 inline bool dStage_roomRead_dt_c_ChkBg(u8 param_0) {
     return param_0 & 0x80;
@@ -1099,6 +1105,10 @@ inline u16 dStage_stagInfo_GetStageTitleNo(stage_stag_info_class* pstag) {
     return pstag->mStageTitleNo;
 }
 
+inline u8 dStage_stagInfo_DefaultCameraType(stage_stag_info_class* pstag) {
+    return pstag->mCameraType;
+}
+
 inline u32 dStage_sclsInfo_getSceneLayer(stage_scls_info_class* p_info) {
     return p_info->field_0xb & 0xF;
 }
@@ -1137,6 +1147,10 @@ inline int dStage_FileList_dt_GlobalWindLevel(dStage_FileList_dt_c* i_fili) {
 
 inline int dStage_FileList_dt_GlobalWindDir(dStage_FileList_dt_c* i_fili) {
     return (i_fili->mParameters >> 0xF) & 7;
+}
+
+inline u8 dStage_FileList_dt_GetDefaultCamera(dStage_FileList_dt_c* p_fList) {
+    return p_fList->mDefaultCamera;
 }
 
 inline f32 dStage_FileList2_dt_GetLeftRmX(dStage_FileList2_dt_c* p_fList2) {

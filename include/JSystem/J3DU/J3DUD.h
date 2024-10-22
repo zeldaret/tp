@@ -1,7 +1,6 @@
 #ifndef J3DUD_H
 #define J3DUD_H
 
-#include "math.h"
 #include "dolphin/types.h"
 
 namespace J3DUD {

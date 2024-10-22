@@ -6,19 +6,17 @@
 #define NO_INLINE_DLSTBASE_DRAW
 
 #include "d/d_drawlist.h"
-#include "d/s/d_s_play.h"
+#include "d/d_s_play.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
-#include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "SSystem/SComponent/c_bg_s_shdw_draw.h"
-#include "d/com/d_com_inf_game.h"
+#include "SSystem/SComponent/c_math.h"
+#include "d/d_com_inf_game.h"
 #include "dol2asm.h"
-#include "dolphin/gx.h"
-#include "dolphin/mtx/mtx44.h"
-#include "dolphin/mtx.h"
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_lib.h"
 #include "m_Do/m_Do_mtx.h"
+#include "JSystem/J2DGraph/J2DGrafContext.h"
 
 //
 // Types:
@@ -381,8 +379,6 @@ void dDlst_window_c::setScissor(f32 xOrig, f32 yOrig, f32 width, f32 height) {
 }
 
 /* 80051AF0-80051CF0 04C430 0200+00 1/0 0/0 0/0 .text            draw__13dDlst_2DTri_cFv */
-// vtable data
-#ifdef NONMATCHING
 void dDlst_2DTri_c::draw() {
     f32 f2 = cM_scos(field_0xc);
     f32 f3 = cM_ssin(field_0xc);
@@ -416,21 +412,8 @@ void dDlst_2DTri_c::draw() {
     GXEnd();
     dComIfGp_getCurrentGrafPort()->setup2D();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dDlst_2DTri_c::draw() {
-extern "C" asm void draw__13dDlst_2DTri_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/draw__13dDlst_2DTri_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80051CF0-80051E5C 04C630 016C+00 1/0 0/0 0/0 .text            draw__14dDlst_2DQuad_cFv */
-// vtable
-#ifdef NONMATCHING
 void dDlst_2DQuad_c::draw() {
     GXClearVtxDesc();
     GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
@@ -453,21 +436,8 @@ void dDlst_2DQuad_c::draw() {
     GXEnd();
     dComIfGp_getCurrentGrafPort()->setup2D();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dDlst_2DQuad_c::draw() {
-extern "C" asm void draw__14dDlst_2DQuad_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/draw__14dDlst_2DQuad_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80051E5C-80051F98 04C79C 013C+00 1/0 0/0 0/0 .text            draw__15dDlst_2DPoint_cFv */
-// vtable data
-#ifdef NONMATCHING
 void dDlst_2DPoint_c::draw() {
     GXClearVtxDesc();
     GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
@@ -488,50 +458,10 @@ void dDlst_2DPoint_c::draw() {
     GXEnd();
     dComIfGp_getCurrentGrafPort()->setup2D();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dDlst_2DPoint_c::draw() {
-extern "C" asm void draw__15dDlst_2DPoint_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/draw__15dDlst_2DPoint_cFv.s"
-}
-#pragma pop
-#endif
-
-/* ############################################################################################## */
-/* 80450648-8045064C 0000C8 0004+00 1/1 0/0 0/0 .sdata           l_color$4033 */
-SECTION_SDATA static _GXColor l_color_4033 = {
-    0xFF,
-    0xFF,
-    0xFF,
-    0xE0,
-};
-
-/* 80452008-8045200C 000608 0004+00 4/4 0/0 0/0 .sdata2          @4072 */
-SECTION_SDATA2 static f32 lit_4072 = 0.5f;
-
-/* 8045200C-80452010 00060C 0004+00 1/1 0/0 0/0 .sdata2          @4073 */
-SECTION_SDATA2 static f32 lit_4073 = 32768.0f;
-
-/* 80452010-80452018 000610 0004+04 10/10 0/0 0/0 .sdata2          @4074 */
-SECTION_SDATA2 static f32 lit_4074[1 + 1 /* padding */] = {
-    0.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 80452018-80452020 000618 0008+00 8/8 0/0 0/0 .sdata2          @4076 */
-SECTION_SDATA2 static f64 lit_4076 = 4503599627370496.0 /* cast u32 to float */;
-
-/* 80452020-80452028 000620 0008+00 5/5 0/0 0/0 .sdata2          @4079 */
-SECTION_SDATA2 static f64 lit_4079 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80051F98-80052354 04C8D8 03BC+00 1/0 0/0 0/0 .text            draw__11dDlst_2DT_cFv */
-// Matches with literals
-#ifdef NONMATCHING
 void dDlst_2DT_c::draw() {
+    static GXColor l_color = {0xFF, 0xFF, 0xFF, 0xE0};
     f32 var5 = field_0xe;
     f32 var6 = field_0x10;
     f32 var11 = (field_0x16 - field_0x12) * 0.5f / field_0x24;
@@ -554,7 +484,7 @@ void dDlst_2DT_c::draw() {
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGBX8, 0xf);
     GXSetNumChans(1);
     GXSetChanCtrl(GX_COLOR0A0, GX_DISABLE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
-    l_color_4033.a = field_0xd;
+    l_color.a = field_0xd;
     GXSetNumTexGens(1);
     GXSetNumTevStages(1);
     GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
@@ -567,7 +497,7 @@ void dDlst_2DT_c::draw() {
     GXSetCullMode(GX_CULL_NONE);
     GXSetDither(GX_TRUE);
     GXLoadPosMtxImm(mDoMtx_getIdentity(), GX_PNMTX0);
-    GXSetChanMatColor(GX_COLOR0A0, l_color_4033);
+    GXSetChanMatColor(GX_COLOR0A0, l_color);
     GXSetClipMode(GX_CLIP_DISABLE);
     GXSetCurrentMtx(GX_PNMTX0);
     GXBegin(GX_QUADS, GX_VTXFMT0, 4);
@@ -587,25 +517,8 @@ void dDlst_2DT_c::draw() {
     GXSetClipMode(GX_CLIP_ENABLE);
     dComIfGp_getCurrentGrafPort()->setup2D();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dDlst_2DT_c::draw() {
-extern "C" asm void draw__11dDlst_2DT_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/draw__11dDlst_2DT_cFv.s"
-}
-#pragma pop
-#endif
-
-/* ############################################################################################## */
-/* 80452028-8045202C 000628 0004+00 10/10 0/0 0/0 .sdata2          @4270 */
-SECTION_SDATA2 static f32 lit_4270 = 1.0f;
 
 /* 80052354-80052B00 04CC94 07AC+00 1/0 0/0 0/0 .text            draw__12dDlst_2DT2_cFv */
-// vtable data
-#ifdef NONMATCHING
 void dDlst_2DT2_c::draw() {
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XY, GX_F32, 0);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGBA6, 0);
@@ -801,17 +714,6 @@ void dDlst_2DT2_c::draw() {
     GXSetClipMode(GX_CLIP_ENABLE);
     dComIfGp_getCurrentGrafPort()->setup2D();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dDlst_2DT2_c::draw() {
-extern "C" asm void draw__12dDlst_2DT2_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/draw__12dDlst_2DT2_cFv.s"
-}
-#pragma pop
-#endif
 
 /* ############################################################################################## */
 /* 803A87A0-803A87C0 0058C0 000C+14 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
@@ -877,7 +779,7 @@ SECTION_DATA static u8 l_shadowVolMat[] ALIGN_DECL(32) = {
     0x61, 0x28, 0x38, 0x00, 0x00, 0x61, 0xC0, 0x08, 0xFF, 0xFC, 0x61, 0xC1, 0x08, 0xFF, 0x90,
     0x61, 0x43, 0x00, 0x00, 0x41, 0x61, 0x40, 0x00, 0x00, 0x0D, 0x61, 0x41, 0x00, 0x01, 0x35,
     0x61, 0xF3, 0x7F, 0x00, 0x00, 0x10, 0x00, 0x00, 0x10, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x10,
-    0x00, 0x00, 0x10, 0x09, 0x00, 0x00, 0x00, 0x01, 0x61, 0x00, 0x00, 0x80, 0x10, 0x00, 0x00,
+    0x00, 0x00, 0x10, 0x09, 0x00, 0x00, 0x00, 0x01, 0x61, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -1025,90 +927,6 @@ SECTION_DATA static Mtx mtx_adj = {
 };
 #pragma pop
 
-/* 803A8DCC-803A8DDC 005EEC 0010+00 1/1 0/0 0/0 .data            __vt__18dDlst_shadowPoly_c */
-SECTION_DATA extern void* __vt__18dDlst_shadowPoly_c[4] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-};
-
-/* 803A8DDC-803A8DEC 005EFC 0010+00 2/2 0/0 0/0 .data            __vt__22dDlst_shadowRealPoly_c */
-SECTION_DATA extern void* __vt__22dDlst_shadowRealPoly_c[4] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)getTri__22dDlst_shadowRealPoly_cFv,
-    (void*)getTriMax__22dDlst_shadowRealPoly_cFv,
-};
-
-/* 803A8DEC-803A8DF8 005F0C 000C+00 2/2 0/0 0/0 .data            __vt__14ShdwDrawPoly_c */
-SECTION_DATA extern void* __vt__14ShdwDrawPoly_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__14ShdwDrawPoly_cFv,
-};
-
-/* 803A8DF8-803A8E04 005F18 000C+00 0/0 2/2 0/0 .data            __vt__18dDlst_effectLine_c */
-SECTION_DATA extern void* __vt__18dDlst_effectLine_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__18dDlst_effectLine_cFv,
-};
-
-/* 803A8E04-803A8E14 005F24 0010+00 1/1 14/14 0/0 .data            __vt__10J2DAnmBase */
-SECTION_DATA extern void* __vt__10J2DAnmBase[4] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10J2DAnmBaseFv,
-    (void*)searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen,
-};
-
-/* 803A8E14-803A8E20 005F34 000C+00 0/0 0/0 0/0 .data            __vt__11dDlst_blo_c */
-SECTION_DATA extern void* __vt__11dDlst_blo_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__11dDlst_blo_cFv,
-};
-
-/* 803A8E20-803A8E2C 005F40 000C+00 1/1 1/1 0/0 .data            __vt__10dDlst_2D_c */
-SECTION_DATA extern void* __vt__10dDlst_2D_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__10dDlst_2D_cFv,
-};
-
-/* 803A8E2C-803A8E38 005F4C 000C+00 0/0 0/0 0/0 .data            __vt__12dDlst_2DMt_c */
-SECTION_DATA extern void* __vt__12dDlst_2DMt_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__12dDlst_2DMt_cFv,
-};
-
-/* 803A8E38-803A8E44 005F58 000C+00 0/0 0/0 0/0 .data            __vt__11dDlst_2Dm_c */
-SECTION_DATA extern void* __vt__11dDlst_2Dm_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__11dDlst_2Dm_cFv,
-};
-
-/* 803A8E44-803A8E5C 005F64 000C+0C 0/0 0/0 0/0 .data            __vt__11dDlst_2DM_c */
-SECTION_DATA extern void* __vt__11dDlst_2DM_c[3 + 3 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__11dDlst_2DM_cFv,
-    /* padding */
-    NULL,
-    NULL,
-    NULL,
-};
-
-/* 803A8E5C-803A8E68 005F7C 000C+00 1/1 0/0 0/0 .data            __vt__12dDlst_2DT2_c */
-SECTION_DATA extern void* __vt__12dDlst_2DT2_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__12dDlst_2DT2_cFv,
-};
-
 /* 80052B00-80052B4C 04D440 004C+00 1/1 0/0 0/0 .text            __ct__12dDlst_2DT2_cFv */
 dDlst_2DT2_c::dDlst_2DT2_c() {
     field_0x40 = (GXColor){0, 0, 0, 0};
@@ -1140,13 +958,7 @@ void dDlst_2DT2_c::init(ResTIMG* i_timg, f32 param_1, f32 param_2, f32 param_3, 
     field_0x46 = param_5;
 }
 
-/* ############################################################################################## */
-/* 80452030-80452034 000630 0004+00 2/2 0/0 0/0 .sdata2          @4360 */
-SECTION_SDATA2 static f32 lit_4360 = 256.0f;
-
 /* 80052C58-8005312C 04D598 04D4+00 1/0 0/0 0/0 .text            draw__11dDlst_2DM_cFv */
-// Matches with literals
-#ifdef NONMATCHING
 void dDlst_2DM_c::draw() {
     s16 r31 = field_0x22;
     s16 r30 = field_0x24;
@@ -1207,21 +1019,9 @@ void dDlst_2DM_c::draw() {
     GXEnd();
     dComIfGp_getCurrentGrafPort()->setup2D();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dDlst_2DM_c::draw() {
-extern "C" asm void draw__11dDlst_2DM_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/draw__11dDlst_2DM_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 8005312C-8005364C 04DA6C 0520+00 1/0 0/0 0/0 .text            draw__11dDlst_2Dm_cFv */
-// Matches with literals
-#ifdef NONMATCHING
 void dDlst_2Dm_c::draw() {
     s16 r31 = field_0x48;
     s16 r30 = field_0x4a;
@@ -1285,21 +1085,9 @@ void dDlst_2Dm_c::draw() {
     GXEnd();
     dComIfGp_getCurrentGrafPort()->setup2D();
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dDlst_2Dm_c::draw() {
-extern "C" asm void draw__11dDlst_2Dm_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/func_8005312C.s"
-}
-#pragma pop
-#endif
+
 
 /* 8005364C-800539DC 04DF8C 0390+00 1/0 0/0 0/0 .text            draw__12dDlst_2DMt_cFv */
-// vtable
-#ifdef NONMATCHING
 void dDlst_2DMt_c::draw() {
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
     GXClearVtxDesc();
@@ -1370,17 +1158,6 @@ void dDlst_2DMt_c::draw() {
         dComIfGp_getCurrentGrafPort()->setup2D();
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dDlst_2DMt_c::draw() {
-extern "C" asm void draw__12dDlst_2DMt_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/draw__12dDlst_2DMt_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 800539DC-80053A00 04E31C 0024+00 0/0 1/0 0/0 .text            getTexture__10J2DPictureCFUc */
 // Should be inline
@@ -1404,71 +1181,32 @@ dDlst_2D_c::dDlst_2D_c(ResTIMG* i_timg, s16 i_posX, s16 i_posY, s16 i_sizeX, s16
 }
 
 /* 80053A9C-80053B64 04E3DC 00C8+00 1/0 0/0 0/0 .text            draw__10dDlst_2D_cFv */
-// matches with vtable data
-#ifdef NONMATCHING
 void dDlst_2D_c::draw() {
     mpPicture.setAlpha(mAlpha);
     mpPicture.draw(mPosX, mPosY, mSizeX, mSizeY, false, false, false);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dDlst_2D_c::draw() {
-extern "C" asm void draw__10dDlst_2D_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/draw__10dDlst_2D_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 80053B64-80053BA0 04E4A4 003C+00 1/0 0/0 0/0 .text            draw__11dDlst_blo_cFv */
-// matches with vtable data
-#ifdef NONMATCHING
 void dDlst_blo_c::draw() {
     mScreen.draw(field_0x120, field_0x124, dComIfGp_getCurrentGrafPort());
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dDlst_blo_c::draw() {
-extern "C" asm void draw__11dDlst_blo_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/draw__11dDlst_blo_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 80053BA0-80053BC0 04E4E0 0020+00 0/0 1/0 0/0 .text            clearAnmTransform__9J2DScreenFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DScreen::clearAnmTransform() {
-    nofralloc
-#include "asm/d/d_drawlist/clearAnmTransform__9J2DScreenFv.s"
+void J2DScreen::clearAnmTransform() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80053BC0-80053C00 04E500 0040+00 0/0 7/0 0/0 .text            calcMtx__7J2DPaneFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPane::calcMtx() {
-    nofralloc
-#include "asm/d/d_drawlist/calcMtx__7J2DPaneFv.s"
+void J2DPane::calcMtx() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80053C00-80053C3C 04E540 003C+00 0/0 8/0 0/0 .text            makeMatrix__7J2DPaneFff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPane::makeMatrix(f32 param_0, f32 param_1) {
-    nofralloc
-#include "asm/d/d_drawlist/makeMatrix__7J2DPaneFff.s"
+void J2DPane::makeMatrix(f32 param_0, f32 param_1) {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80053C3C-80053C44 04E57C 0008+00 0/0 1/0 0/0 .text            getTypeID__7J2DPaneCFv */
 // s32 J2DPane::getTypeID() const {
@@ -1477,35 +1215,20 @@ extern "C" s32 getTypeID__7J2DPaneCFv() {
 }
 
 /* 80053C44-80053C6C 04E584 0028+00 0/0 1/0 0/0 .text setWhite__10J2DPictureFQ28JUtility6TColor */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DPicture::setWhite(JUtility::TColor param_0) {
-    nofralloc
-#include "asm/d/d_drawlist/setWhite__10J2DPictureFQ28JUtility6TColor.s"
+bool J2DPicture::setWhite(JUtility::TColor param_0) {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80053C6C-80053C94 04E5AC 0028+00 0/0 1/0 0/0 .text setBlack__10J2DPictureFQ28JUtility6TColor */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm bool J2DPicture::setBlack(JUtility::TColor param_0) {
-    nofralloc
-#include "asm/d/d_drawlist/setBlack__10J2DPictureFQ28JUtility6TColor.s"
+bool J2DPicture::setBlack(JUtility::TColor param_0) {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80053C94-80053CDC 04E5D4 0048+00 1/0 0/0 0/0 .text            __dt__10J2DAnmBaseFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm J2DAnmBase::~J2DAnmBase() {
-extern "C" asm void __dt__10J2DAnmBaseFv() {
-    nofralloc
-#include "asm/d/d_drawlist/__dt__10J2DAnmBaseFv.s"
+// J2DAnmBase::~J2DAnmBase() {
+extern "C" void __dt__10J2DAnmBaseFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80053CDC-80053CEC 04E61C 0010+00 0/0 2/2 0/0 .text            init__8cM_rnd_cFiii */
 void cM_rnd_c::init(int s0, int s1, int s2) {
@@ -1514,22 +1237,7 @@ void cM_rnd_c::init(int s0, int s1, int s2) {
     seed2 = s2;
 }
 
-/* ############################################################################################## */
-/* 80452034-80452038 000634 0004+00 1/1 0/0 0/0 .sdata2          @4791 */
-SECTION_SDATA2 static f32 lit_4791 = 30323.0f;
-
-/* 80452038-8045203C 000638 0004+00 1/1 0/0 0/0 .sdata2          @4792 */
-SECTION_SDATA2 static f32 lit_4792 = 30269.0f;
-
-/* 8045203C-80452040 00063C 0004+00 1/1 0/0 0/0 .sdata2          @4793 */
-SECTION_SDATA2 static f32 lit_4793 = 30307.0f;
-
-/* 80452040-80452048 000640 0008+00 1/1 0/0 0/0 .sdata2          @4794 */
-SECTION_SDATA2 static f64 lit_4794 = 1.0;
-
 /* 80053CEC-80053DE0 04E62C 00F4+00 2/2 0/0 0/0 .text            get__8cM_rnd_cFv */
-// matches with literals
-#ifdef NONMATCHING
 f32 cM_rnd_c::get() {
     seed0 = seed0 * 171 % 30269;
     seed1 = seed1 * 172 % 30307;
@@ -1538,29 +1246,16 @@ f32 cM_rnd_c::get() {
 
     return fabsf(rm);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm f32 cM_rnd_c::get() {
-    nofralloc
-#include "asm/d/d_drawlist/get__8cM_rnd_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 80053DE0-80053E18 04E720 0038+00 1/1 0/0 0/0 .text            getF__8cM_rnd_cFf */
 f32 cM_rnd_c::getF(f32 param_0) {
     return get() * param_0;
 }
 
-/* ############################################################################################## */
-/* 80452048-8045204C 000648 0004+00 5/5 0/0 0/0 .sdata2          @4806 */
-SECTION_SDATA2 static f32 lit_4806 = 2.0f;
-
 /* 80053E18-80053E60 04E758 0048+00 1/1 0/0 0/0 .text            getFX__8cM_rnd_cFf */
 f32 cM_rnd_c::getFX(f32 param_0) {
-    return ((get() - lit_4072) * param_0) * lit_4806;
+    return ((get() - 0.5f) * param_0) * 2.0f;
 }
 
 /* 80053E60-80053E9C 04E7A0 003C+00 1/1 0/0 0/0 .text            getValue__8cM_rnd_cFff */
@@ -1568,13 +1263,7 @@ f32 cM_rnd_c::getValue(f32 param_0, f32 param_1) {
     return param_0 + getF(param_1);
 }
 
-/* ############################################################################################## */
-/* 8045204C-80452050 00064C 0004+00 1/1 0/0 0/0 .sdata2          @4876 */
-SECTION_SDATA2 static f32 lit_4876 = 32767.0f;
-
 /* 80053E9C-800541F4 04E7DC 0358+00 1/0 0/0 0/0 .text            draw__18dDlst_effectLine_cFv */
-// vtable data
-#ifdef NONMATCHING
 void dDlst_effectLine_c::draw() {
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
     GXClearVtxDesc();
@@ -1618,17 +1307,6 @@ void dDlst_effectLine_c::draw() {
         GXEnd();
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dDlst_effectLine_c::draw() {
-extern "C" asm void draw__18dDlst_effectLine_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/draw__18dDlst_effectLine_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 800541F4-80054288 04EB34 0094+00 0/0 1/1 0/0 .text
  * update__18dDlst_effectLine_cFR4cXyzR8_GXColorUsUsUsUsffff    */
@@ -1651,8 +1329,6 @@ void dDlst_effectLine_c::update(cXyz& param_0, _GXColor& i_lineColor, u16 param_
 
 /* 80054288-800543B4 04EBC8 012C+00 1/1 0/0 0/0 .text
  * set__18dDlst_shadowPoly_cFP10cBgD_Vtx_tUsUsUsP8cM3dGPla      */
-// matches with literals
-#ifdef NONMATCHING
 int dDlst_shadowPoly_c::set(cBgD_Vtx_t* i_vtx, u16 param_1, u16 param_2, u16 param_3,
                             cM3dGPla* i_plane) {
     if (mCount >= getTriMax()) {
@@ -1661,7 +1337,7 @@ int dDlst_shadowPoly_c::set(cBgD_Vtx_t* i_vtx, u16 param_1, u16 param_2, u16 par
 
     dDlst_shadowTri_c* dst = getTri() + mCount;
 
-    cXyz b(i_plane->i_GetNP());
+    cXyz b(*i_plane->GetNP());
     f32 temp_f3 = (1.0f - fabsf(b.y));
     temp_f3 *= temp_f3;
 
@@ -1675,17 +1351,7 @@ int dDlst_shadowPoly_c::set(cBgD_Vtx_t* i_vtx, u16 param_1, u16 param_2, u16 par
     mCount++;
     return 1;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dDlst_shadowPoly_c::set(cBgD_Vtx_t* param_0, u16 param_1, u16 param_2, u16 param_3,
-                                cM3dGPla* param_4) {
-    nofralloc
-#include "asm/d/d_drawlist/set__18dDlst_shadowPoly_cFP10cBgD_Vtx_tUsUsUsP8cM3dGPla.s"
-}
-#pragma pop
-#endif
+
 
 /* 800543B4-80054478 04ECF4 00C4+00 1/1 0/0 0/0 .text            draw__18dDlst_shadowPoly_cFv */
 void dDlst_shadowPoly_c::draw() {
@@ -1759,19 +1425,12 @@ void dDlst_shadowReal_c::draw() {
     mShadowRealPoly.draw();
 }
 
-/* ############################################################################################## */
-/* 80452050-80452054 000650 0004+00 1/1 0/0 0/0 .sdata2          @5061 */
-SECTION_SDATA2 static f32 lit_5061 = -1.0f / 5.0f;
-
-/* 80452054-80452058 000654 0004+00 1/1 0/0 0/0 .sdata2          @5062 */
-SECTION_SDATA2 static f32 lit_5062 = -90.0f;
-
 /* 80054688-80054854 04EFC8 01CC+00 1/1 0/0 0/0 .text
  * psdRealCallBack__FP13cBgS_ShdwDrawP10cBgD_Vtx_tiiiP8cM3dGPla */
 static int psdRealCallBack(cBgS_ShdwDraw* param_0, cBgD_Vtx_t* param_1, int param_2,
                                int param_3, int param_4, cM3dGPla* param_5) {
     ShdwDrawPoly_c* shdwDrawPoly = (ShdwDrawPoly_c*)param_0;
-    const cXyz* normal = param_5->i_GetNP();
+    const cXyz* normal = param_5->GetNP();
     if (shdwDrawPoly->getLightVec()->inprod(*normal) < -0.2f) {
         cXyz* center = shdwDrawPoly->getCenter();
         if (normal->x * center->x + normal->y * center->y + normal->z * center->z + param_5->GetD() > -90.f) {
@@ -1795,29 +1454,16 @@ static int psdRealCallBack(cBgS_ShdwDraw* param_0, cBgD_Vtx_t* param_1, int para
     return 1;
 }
 
-/* ############################################################################################## */
-/* 80452058-8045205C 000658 0004+00 1/1 0/0 0/0 .sdata2          @5127 */
-SECTION_SDATA2 static f32 lit_5127 = 0.0020000000949949026f;
-
-/* 8045205C-80452060 00065C 0004+00 1/1 0/0 0/0 .sdata2          @5128 */
-SECTION_SDATA2 static f32 lit_5128 = 120.0f;
-
-/* 80452060-80452064 000660 0004+00 1/1 0/0 0/0 .sdata2          @5129 */
-SECTION_SDATA2 static f32 lit_5129 = 3.0f / 20.0f;
-
-/* 80452064-80452068 000664 0004+00 3/3 0/0 0/0 .sdata2          @5130 */
-SECTION_SDATA2 static f32 lit_5130 = 10000.0f;
-
 /* 80054854-80054A6C 04F194 0218+00 1/1 0/0 0/0 .text
  * realPolygonCheck__FP4cXyzffP4cXyzP18dDlst_shadowPoly_c       */
-// vtable data
-#ifdef NONMATCHING
 static BOOL realPolygonCheck(cXyz* param_0, f32 param_1, f32 param_2, cXyz* param_3,
                                  dDlst_shadowPoly_c* param_4) {
     ShdwDrawPoly_c shdwDrawPoly;
     cXyz local_8c;
     cXyz local_98;
-    f32 var1 = param_1 + param_2 - cLib_maxLimit(param_1 * param_1 * 0.002f, 120.0f);
+    f32 tmp1 = param_1 * param_1 * 0.002f;
+    f32 tmp2 = cLib_maxLimit(tmp1, 120.0f);
+    f32 var1 = param_1 + param_2 - tmp2;
     local_8c.y = param_0->y - var1;
     local_98.y = param_0->y + param_1 * 0.15f;
     local_98.x = param_0->x + param_3->x * var1;
@@ -1853,40 +1499,9 @@ static BOOL realPolygonCheck(cXyz* param_0, f32 param_1, f32 param_2, cXyz* para
     dComIfG_Bgsp().ShdwDraw(&shdwDrawPoly);
     return TRUE;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm BOOL realPolygonCheck(cXyz* param_0, f32 param_1, f32 param_2, cXyz* param_3,
-                                 dDlst_shadowPoly_c* param_4) {
-    nofralloc
-#include "asm/d/d_drawlist/realPolygonCheck__FP4cXyzffP4cXyzP18dDlst_shadowPoly_c.s"
-}
-#pragma pop
-#endif
-
-/* 80054A6C-80054ACC 04F3AC 0060+00 1/0 0/0 0/0 .text            __dt__14ShdwDrawPoly_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm ShdwDrawPoly_c::~ShdwDrawPoly_c() {
-extern "C" asm void __dt__14ShdwDrawPoly_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/__dt__14ShdwDrawPoly_cFv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80452068-8045206C 000668 0004+00 1/1 0/0 0/0 .sdata2          @5155 */
-SECTION_SDATA2 static f32 lit_5155 = 15.0f;
-
-/* 8045206C-80452070 00066C 0004+00 1/1 0/0 0/0 .sdata2          @5156 */
-SECTION_SDATA2 static f32 lit_5156 = 13.0f / 20.0f;
 
 /* 80054ACC-80054BD0 04F40C 0104+00 2/2 0/0 0/0 .text            setkankyoShadow__FP12dKy_tevstr_cPf
  */
-// matches with literals
-#ifdef NONMATCHING
 static void setkankyoShadow(dKy_tevstr_c* param_0, f32* param_1) {
     dScnKy_env_light_c* env_light = dKy_getEnvlight();
 
@@ -1917,55 +1532,9 @@ static void setkankyoShadow(dKy_tevstr_c* param_0, f32* param_1) {
         *param_1 = 1.0f;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void setkankyoShadow(dKy_tevstr_c* param_0, f32* param_1) {
-    nofralloc
-#include "asm/d/d_drawlist/setkankyoShadow__FP12dKy_tevstr_cPf.s"
-}
-#pragma pop
-#endif
-
-/* ############################################################################################## */
-/* 80452070-80452074 000670 0004+00 1/1 0/0 0/0 .sdata2          @5267 */
-SECTION_SDATA2 static f32 lit_5267 = 50.0f;
-
-/* 80452074-80452078 000674 0004+00 1/1 0/0 0/0 .sdata2          @5268 */
-SECTION_SDATA2 static f32 lit_5268 = 4.0f / 5.0f;
-
-/* 80452078-80452080 000678 0004+04 1/1 0/0 0/0 .sdata2          @5269 */
-SECTION_SDATA2 static f32 lit_5269[1 + 1 /* padding */] = {
-    255.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 80452080-80452088 000680 0008+00 1/1 0/0 0/0 .sdata2          @5270 */
-SECTION_SDATA2 static f64 lit_5270 = 0.5;
-
-/* 80452088-80452090 000688 0008+00 1/1 0/0 0/0 .sdata2          @5271 */
-SECTION_SDATA2 static f64 lit_5271 = 3.0;
-
-/* 80452090-80452098 000690 0008+00 1/1 0/0 0/0 .sdata2          @5272 */
-SECTION_SDATA2 static u8 lit_5272[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80452098-8045209C 000698 0004+00 1/1 0/0 0/0 .sdata2          @5273 */
-SECTION_SDATA2 static f32 lit_5273 = 2.0f / 5.0f;
-
-/* 8045209C-804520A0 00069C 0004+00 1/1 0/0 0/0 .sdata2          @5274 */
-SECTION_SDATA2 static f32 lit_5274 = -1.0f;
-
-/* 804520A0-804520A4 0006A0 0004+00 1/1 0/0 0/0 .sdata2          @5275 */
-SECTION_SDATA2 static f32 lit_5275 = -0.5f;
 
 /* 80054BD0-80055028 04F510 0458+00 1/1 0/0 0/0 .text
  * setShadowRealMtx__18dDlst_shadowReal_cFP4cXyzP4cXyzfffP12dKy_tevstr_c */
-// Matches with literals
-#ifdef NONMATCHING
 u8 dDlst_shadowReal_c::setShadowRealMtx(cXyz* param_0, cXyz* param_1, f32 param_2, f32 param_3,
                                             f32 param_4, dKy_tevstr_c* param_5) {
     mShadowRealPoly.reset();
@@ -2021,17 +1590,7 @@ u8 dDlst_shadowReal_c::setShadowRealMtx(cXyz* param_0, cXyz* param_1, f32 param_
     cMtx_concat(mReceiverProjMtx, mViewMtx, mReceiverProjMtx);
     return r29;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm u8 dDlst_shadowReal_c::setShadowRealMtx(cXyz* param_0, cXyz* param_1, f32 param_2, f32 param_3,
-                                            f32 param_4, dKy_tevstr_c* param_5) {
-    nofralloc
-#include "asm/d/d_drawlist/setShadowRealMtx__18dDlst_shadowReal_cFP4cXyzP4cXyzfffP12dKy_tevstr_c.s"
-}
-#pragma pop
-#endif
+
 
 /* 80055028-800551D4 04F968 01AC+00 1/1 0/0 0/0 .text
  * set__18dDlst_shadowReal_cFUlP8J3DModelP4cXyzffP12dKy_tevstr_cff */
@@ -2131,23 +1690,8 @@ void dDlst_shadowSimple_c::draw() {
     GXCallDisplayList(l_shadowVolumeDL, 0x40);
 }
 
-/* ############################################################################################## */
-/* 804520A4-804520A8 0006A4 0004+00 1/1 0/0 0/0 .sdata2          @5375 */
-SECTION_SDATA2 static f32 lit_5375 = -255.0f;
-
-/* 804520A8-804520AC 0006A8 0004+00 1/1 0/0 0/0 .sdata2          @5376 */
-SECTION_SDATA2 static f32 lit_5376 = 0.000699999975040555f;
-
-/* 804520AC-804520B0 0006AC 0004+00 1/1 0/0 0/0 .sdata2          @5377 */
-SECTION_SDATA2 static f32 lit_5377 = 7.0f / 5.0f;
-
-/* 804520B0-804520B4 0006B0 0004+00 1/1 0/0 0/0 .sdata2          @5378 */
-SECTION_SDATA2 static f32 lit_5378 = 16.0f;
-
 /* 800553EC-80055684 04FD2C 0298+00 1/1 0/0 0/0 .text
  * set__20dDlst_shadowSimple_cFP4cXyzffP4cXyzsfP9_GXTexObj      */
-// Matches with literals
-#ifdef NONMATCHING
 void dDlst_shadowSimple_c::set(cXyz* param_0, f32 param_1, f32 param_2, cXyz* param_3,
                                    s16 param_4, f32 param_5, _GXTexObj* param_6) {
     if (param_5 < 0.0f) {
@@ -2199,47 +1743,22 @@ void dDlst_shadowSimple_c::set(cXyz* param_0, f32 param_1, f32 param_2, cXyz* pa
     cMtx_concat(j3dSys.getViewMtx(), mDoMtx_stack_c::get(), mMtx);
     mpTexObj = param_6;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDlst_shadowSimple_c::set(cXyz* param_0, f32 param_1, f32 param_2, cXyz* param_3,
-                                   s16 param_4, f32 param_5, _GXTexObj* param_6) {
-    nofralloc
-#include "asm/d/d_drawlist/set__20dDlst_shadowSimple_cFP4cXyzffP4cXyzsfP9_GXTexObj.s"
-}
-#pragma pop
-#endif
-
-/* ############################################################################################## */
-/* 80450654-80450658 0000D4 0004+00 1/1 0/0 0/0 .sdata           l_realImageSize$5383 */
-SECTION_SDATA static u16 l_realImageSize[2] = {192, 64};
 
 /* 80055684-80055768 04FFC4 00E4+00 1/1 0/0 0/0 .text            init__21dDlst_shadowControl_cFv */
-// matches with literals
-#ifdef NONMATCHING
 void dDlst_shadowControl_c::init() {
+    static u16 l_realImageSize[2] = {192, 64};
     for (int i = 0; i < 2; i++) {
         u16 size = l_realImageSize[i];
 
         u32 buffer_size = GXGetTexBufferSize(size, size, 5, GX_DISABLE, 0);
         field_0x15ef0[i] = new (0x20) u8[buffer_size];
-        GXInitTexObj(&field_0x15eb0[i], field_0x15ef0[i], size, size, GX_TF_TGB5A3, GX_CLAMP,
+        GXInitTexObj(&field_0x15eb0[i], field_0x15ef0[i], size, size, GX_TF_RGB5A3, GX_CLAMP,
                      GX_CLAMP, GX_DISABLE);
         GXInitTexObjLOD(&field_0x15eb0[i], GX_LINEAR, GX_LINEAR, 0.0f, 0.0f, 0.0f, GX_FALSE,
                         GX_FALSE, GX_ANISO_1);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDlst_shadowControl_c::init() {
-    nofralloc
-#include "asm/d/d_drawlist/init__21dDlst_shadowControl_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 80055768-800557C8 0500A8 0060+00 1/1 0/0 0/0 .text            reset__21dDlst_shadowControl_cFv */
 void dDlst_shadowControl_c::reset() {
@@ -2256,8 +1775,6 @@ void dDlst_shadowControl_c::reset() {
 }
 
 /* 800557C8-80055A14 050108 024C+00 0/0 1/1 0/0 .text imageDraw__21dDlst_shadowControl_cFPA4_f */
-// matches with literals
-#ifdef NONMATCHING
 void dDlst_shadowControl_c::imageDraw(Mtx param_0) {
     GXCallDisplayList(l_matDL, 0x60);
     GXSetZMode(GX_DISABLE, GX_LEQUAL, GX_DISABLE);
@@ -2288,7 +1805,7 @@ void dDlst_shadowControl_c::imageDraw(Mtx param_0) {
             r29 = (r29 + 1) % 4;
             if (r29 == 0) {
                 GXSetTexCopySrc(0, 0, r26, r26);
-                GXSetTexCopyDst(r27, r27, GX_TF_TGB5A3, GX_TRUE);
+                GXSetTexCopyDst(r27, r27, GX_TF_RGB5A3, GX_TRUE);
                 GXSetColorUpdate(GX_ENABLE);
                 GXCopyTex(field_0x15ef0[tex++], GX_TRUE);
                 GXPixModeSync();
@@ -2298,7 +1815,7 @@ void dDlst_shadowControl_c::imageDraw(Mtx param_0) {
     }
     if (r29) {
         GXSetTexCopySrc(0, 0, r26, r26);
-        GXSetTexCopyDst(r27, r27, GX_TF_TGB5A3, GX_TRUE);
+        GXSetTexCopyDst(r27, r27, GX_TF_RGB5A3, GX_TRUE);
         GXCopyTex(field_0x15ef0[tex], GX_TRUE);
         GXPixModeSync();
         GXSetAlphaUpdate(GX_DISABLE);
@@ -2306,28 +1823,9 @@ void dDlst_shadowControl_c::imageDraw(Mtx param_0) {
     GXSetClipMode(GX_CLIP_ENABLE);
     GXSetDither(GX_TRUE);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDlst_shadowControl_c::imageDraw(Mtx param_0) {
-    nofralloc
-#include "asm/d/d_drawlist/imageDraw__21dDlst_shadowControl_cFPA4_f.s"
-}
-#pragma pop
-#endif
-
-/* ############################################################################################## */
-/* 80450658-8045065C 0000D8 0004+00 1/1 0/0 0/0 .sdata           clearColor$5435 */
-SECTION_SDATA static GXColor clearColor = {0x00, 0x00, 0x00, 0x40};
-
-/* 804520B4-804520B8 0006B4 0004+00 1/1 0/0 0/0 .sdata2          @5433 */
-SECTION_SDATA2 static u32 lit_5433 = 0x00000020;
 
 /* 80055A14-80055C74 050354 0260+00 0/0 1/1 0/0 .text            draw__21dDlst_shadowControl_cFPA4_f
  */
-// Matches with literals
-#ifdef NONMATCHING
 void dDlst_shadowControl_c::draw(Mtx param_0) {
     j3dSys.reinitGX();
     GXSetNumIndStages(0);
@@ -2342,6 +1840,7 @@ void dDlst_shadowControl_c::draw(Mtx param_0) {
     GXColor matColor = {0, 0, 0, 0x20};
     GXSetChanMatColor(GX_ALPHA0, matColor);
 
+    static GXColor clearColor = {0x00, 0x00, 0x00, 0x40};
     clearColor.a = mDoGph_gInf_c::getBackColor().a;
     GXSetTevColor(GX_TEVREG1, clearColor);
     GXSetTevColor(GX_TEVREG2, g_whiteColor);
@@ -2379,31 +1878,9 @@ void dDlst_shadowControl_c::draw(Mtx param_0) {
     GXSetColorUpdate(GX_ENABLE);
     GXSetAlphaUpdate(GX_DISABLE);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDlst_shadowControl_c::draw(Mtx param_0) {
-    nofralloc
-#include "asm/d/d_drawlist/draw__21dDlst_shadowControl_cFPA4_f.s"
-}
-#pragma pop
-#endif
-
-/* ############################################################################################## */
-/* 804520B8-804520BC 0006B8 0004+00 1/1 0/0 0/0 .sdata2          @5551 */
-SECTION_SDATA2 static f32 lit_5551 = 0.003000000026077032f;
-
-/* 804520BC-804520C0 0006BC 0004+00 1/1 0/0 0/0 .sdata2          @5552 */
-SECTION_SDATA2 static f32 lit_5552 = -1000.0f;
-
-/* 804520C0-804520C4 0006C0 0004+00 1/1 0/0 0/0 .sdata2          @5553 */
-SECTION_SDATA2 static f32 lit_5553 = 0.0010000000474974513f;
 
 /* 80055C74-80055F1C 0505B4 02A8+00 0/0 1/1 1/1 .text
  * setReal__21dDlst_shadowControl_cFUlScP8J3DModelP4cXyzffP12dKy_tevstr_c */
-// Matches with literals
-#ifdef NONMATCHING
 int dDlst_shadowControl_c::setReal(u32 param_1, s8 param_2, J3DModel* param_3, cXyz* param_4,
                                        f32 param_5, f32 param_6, dKy_tevstr_c* param_7) {
     f32 fVar1;
@@ -2495,17 +1972,6 @@ int dDlst_shadowControl_c::setReal(u32 param_1, s8 param_2, J3DModel* param_3, c
     }
     return rv;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dDlst_shadowControl_c::setReal(u32 param_0, s8 param_1, J3DModel* param_2, cXyz* param_3,
-                                       f32 param_4, f32 param_5, dKy_tevstr_c* param_6) {
-    nofralloc
-#include "asm/d/d_drawlist/setReal__21dDlst_shadowControl_cFUlScP8J3DModelP4cXyzffP12dKy_tevstr_c.s"
-}
-#pragma pop
-#endif
 
 /* 80055F1C-80055F84 05085C 0068+00 0/0 1/1 45/45 .text
  * addReal__21dDlst_shadowControl_cFUlP8J3DModel                */
@@ -2536,7 +2002,6 @@ int dDlst_shadowControl_c::setSimple(cXyz* param_0, f32 param_1, f32 param_2, cX
     return 1;
 }
 
-/* ############################################################################################## */
 /* 804248D0-804248F0 0515F0 0020+00 1/1 6/6 173/173 .bss mSimpleTexObj__21dDlst_shadowControl_c */
 GXTexObj dDlst_shadowControl_c::mSimpleTexObj;
 
@@ -2573,8 +2038,6 @@ void dDlst_peekZ_c::peekData() {
 }
 
 /* 800560F0-800561C8 050A30 00D8+00 0/0 1/1 0/0 .text            __ct__12dDlst_list_cFv */
-// TU vtable data order has to be fixed
-#ifdef NONMATCHING
 dDlst_list_c::dDlst_list_c() {
     mpCopy2DEnd = &mpCopy2DDrawLists[4];
     mp2DOpaTopEnd = &mp2DOpaTopDrawLists[16];
@@ -2587,71 +2050,6 @@ dDlst_list_c::dDlst_list_c() {
         buffer++;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dDlst_list_c::dDlst_list_c() {
-    nofralloc
-#include "asm/d/d_drawlist/__ct__12dDlst_list_cFv.s"
-}
-#pragma pop
-#endif
-
-/* 800561C8-800561F8 050B08 0030+00 1/1 0/0 0/0 .text __ct__26mDoExt_3DlineMatSortPacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm mDoExt_3DlineMatSortPacket::mDoExt_3DlineMatSortPacket() {
-extern "C" asm void __ct__26mDoExt_3DlineMatSortPacketFv() {
-    nofralloc
-#include "asm/d/d_drawlist/__ct__26mDoExt_3DlineMatSortPacketFv.s"
-}
-#pragma pop
-
-/* 800561F8-80056270 050B38 0078+00 2/2 0/0 0/0 .text            __dt__18dDlst_shadowReal_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dDlst_shadowReal_c::~dDlst_shadowReal_c() {
-extern "C" asm void __dt__18dDlst_shadowReal_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/__dt__18dDlst_shadowReal_cFv.s"
-}
-#pragma pop
-
-/* 80056270-800562D0 050BB0 0060+00 2/2 0/0 0/0 .text            __dt__17dDlst_shadowTri_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dDlst_shadowTri_c::~dDlst_shadowTri_c() {
-extern "C" asm void __dt__17dDlst_shadowTri_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/__dt__17dDlst_shadowTri_cFv.s"
-}
-#pragma pop
-
-/* 800562D0-80056344 050C10 0074+00 1/1 0/0 0/0 .text            __ct__18dDlst_shadowReal_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dDlst_shadowReal_c::dDlst_shadowReal_c() {
-extern "C" asm void __ct__18dDlst_shadowReal_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/__ct__18dDlst_shadowReal_cFv.s"
-}
-#pragma pop
-
-/* 80056344-8005638C 050C84 0048+00 1/1 0/0 0/0 .text            __ct__17dDlst_shadowTri_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dDlst_shadowTri_c::dDlst_shadowTri_c() {
-extern "C" asm void __ct__17dDlst_shadowTri_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/__ct__17dDlst_shadowTri_cFv.s"
-}
-#pragma pop
 
 /* 8005638C-80056390 050CCC 0004+00 1/1 0/0 0/0 .text            __ct__20dDlst_shadowSimple_cFv */
 dDlst_shadowSimple_c::dDlst_shadowSimple_c() {}
@@ -2704,8 +2102,6 @@ void dDlst_list_c::init() {
 }
 
 /* 8005648C-80056538 050DCC 00AC+00 0/0 1/1 0/0 .text            __dt__12dDlst_list_cFv */
-// TU vtable data order has to be fixed
-#ifdef NONMATCHING
 dDlst_list_c::~dDlst_list_c() {
     J3DDrawBuffer** buffer = mDrawBuffers;
     for (int i = 0; i < 21; i++) {
@@ -2715,16 +2111,6 @@ dDlst_list_c::~dDlst_list_c() {
         delete tmp;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dDlst_list_c::~dDlst_list_c() {
-    nofralloc
-#include "asm/d/d_drawlist/__dt__12dDlst_list_cFv.s"
-}
-#pragma pop
-#endif
 
 /* 80056538-800565EC 050E78 00B4+00 0/0 1/1 0/0 .text            reset__12dDlst_list_cFv */
 void dDlst_list_c::reset() {
@@ -2750,14 +2136,8 @@ void dDlst_list_c::reset() {
     }
 }
 
-/* ############################################################################################## */
-/* 804520CC-804520D0 0006CC 0004+00 1/1 0/0 0/0 .sdata2          @5747 */
-SECTION_SDATA2 static f32 lit_5747 = 9999.0f;
-
 /* 800565EC-800566D4 050F2C 00E8+00 0/0 2/2 0/0 .text
  * entryZSortXluDrawList__12dDlst_list_cFP13J3DDrawBufferP9J3DPacketR4cXyz */
-// Matches with literals
-#ifdef NONMATCHING
 void dDlst_list_c::entryZSortXluDrawList(J3DDrawBuffer* param_0, J3DPacket* param_1,
                                          cXyz& param_2) {
     f32 z_value = -J3DCalcZValue(j3dSys.getViewMtx(), param_2);
@@ -2779,17 +2159,7 @@ void dDlst_list_c::entryZSortXluDrawList(J3DDrawBuffer* param_0, J3DPacket* para
     var_r0 = (size - 1) - var_r0;
     param_0->entryImm(param_1, var_r0);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDlst_list_c::entryZSortXluDrawList(J3DDrawBuffer* param_0, J3DPacket* param_1,
-                                             cXyz& param_2) {
-    nofralloc
-#include "asm/d/d_drawlist/entryZSortXluDrawList__12dDlst_list_cFP13J3DDrawBufferP9J3DPacketR4cXyz.s"
-}
-#pragma pop
-#endif
+
 
 /* 800566D4-80056710 051014 003C+00 1/1 1/1 0/0 .text
  * drawOpaDrawList__12dDlst_list_cFP13J3DDrawBuffer             */
@@ -2839,15 +2209,6 @@ void dDlst_list_c::draw(dDlst_base_c** p_start, dDlst_base_c** p_end) {
     }
 }
 
-/* ############################################################################################## */
-/* 8037A1B0-8037A1B0 006810 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8037A1B0 = "wipe_00.bti";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8037A1BC = "\0\0\0";
-#pragma pop
-
 /* 804248F0-80424938 051610 0048+00 3/3 0/0 0/0 .bss             mWipeDlst__12dDlst_list_c */
 dDlst_2DT2_c dDlst_list_c::mWipeDlst;
 
@@ -2863,19 +2224,8 @@ f32 dDlst_list_c::mWipeRate;
 /* 80450ED8-80450EE0 0003D8 0004+04 2/2 0/0 0/0 .sbss            mWipeSpeed__12dDlst_list_c */
 f32 dDlst_list_c::mWipeSpeed;
 
-/* 804520D0-804520D4 0006D0 0004+00 1/1 0/0 0/0 .sdata2          @5809 */
-SECTION_SDATA2 static f32 lit_5809 = 608.0f;
-
-/* 804520D4-804520D8 0006D4 0004+00 1/1 0/0 0/0 .sdata2          @5810 */
-SECTION_SDATA2 static f32 lit_5810 = 448.0f;
-
-/* 804520D8-804520DC 0006D8 0004+00 1/1 0/0 0/0 .sdata2          @5811 */
-SECTION_SDATA2 static f32 lit_5811 = 2.436000108718872f;
-
 /* 8005681C-800568D8 05115C 00BC+00 1/1 0/0 0/0 .text            wipeIn__12dDlst_list_cFfR8_GXColor
  */
-// matches with literals
-#ifdef NONMATCHING
 void dDlst_list_c::wipeIn(f32 i_wipeSpeed, GXColor& i_wipeColor) {
     mWipe = true;
     mWipeSpeed = i_wipeSpeed;
@@ -2888,29 +2238,14 @@ void dDlst_list_c::wipeIn(f32 i_wipeSpeed, GXColor& i_wipeColor) {
     mWipeDlst.init(texture, mDoGph_gInf_c::getMinX(), mDoGph_gInf_c::getMinY(),
                    mDoGph_gInf_c::getWidth(), mDoGph_gInf_c::getHeight(), 0, 1, 1, 2.0f, 2.436f);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDlst_list_c::wipeIn(f32 i_wipeSpeed, GXColor& i_wipeColor) {
-    nofralloc
-#include "asm/d/d_drawlist/wipeIn__12dDlst_list_cFfR8_GXColor.s"
-}
-#pragma pop
-#endif
+
 
 /* 800568D8-80056900 051218 0028+00 0/0 1/1 0/0 .text            wipeIn__12dDlst_list_cFf */
 void dDlst_list_c::wipeIn(f32 i_wipeSpeed) {
     wipeIn(-i_wipeSpeed, g_blackColor);
 }
 
-/* ############################################################################################## */
-/* 804520DC-804520E0 0006DC 0004+00 1/1 0/0 0/0 .sdata2          @5838 */
-SECTION_SDATA2 static f32 lit_5838 = 1.218000054359436f;
-
 /* 80056900-800569A0 051240 00A0+00 0/0 1/1 0/0 .text            calcWipe__12dDlst_list_cFv */
-// matches with literals
-#ifdef NONMATCHING
 void dDlst_list_c::calcWipe() {
     if (mWipe) {
         mWipeRate += mWipeSpeed;
@@ -2925,40 +2260,6 @@ void dDlst_list_c::calcWipe() {
         dComIfGd_set2DXlu(&mWipeDlst);
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dDlst_list_c::calcWipe() {
-    nofralloc
-#include "asm/d/d_drawlist/calcWipe__12dDlst_list_cFv.s"
-}
-#pragma pop
-#endif
-
-/* 800569A0-800569A8 0512E0 0008+00 1/0 0/0 0/0 .text            getTri__22dDlst_shadowRealPoly_cFv
- */
-// vtable data
-#ifdef NONMATCHING
-dDlst_shadowTri_c * dDlst_shadowRealPoly_c::getTri() {
-    return mShadowTri;
-}
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dDlst_shadowTri_c * dDlst_shadowRealPoly_c::getTri() {
-extern "C" asm dDlst_shadowTri_c * getTri__22dDlst_shadowRealPoly_cFv() {
-    nofralloc
-#include "asm/d/d_drawlist/getTri__22dDlst_shadowRealPoly_cFv.s"
-}
-#pragma pop
-#endif
-
-/* 800569A8-800569B0 0512E8 0008+00 1/0 0/0 0/0 .text getTriMax__22dDlst_shadowRealPoly_cFv */
-s32 dDlst_shadowRealPoly_c::getTriMax() {
-    return 256;
-}
 
 /* 800569B0-800569B4 0512F0 0004+00 1/0 7/0 0/0 .text
  * searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen             */
@@ -2966,32 +2267,3 @@ s32 dDlst_shadowRealPoly_c::getTriMax() {
 extern "C" void searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen() {
     /* empty function */
 }
-
-/* ############################################################################################## */
-/* 803A8E68-803A8E74 005F88 000C+00 0/0 0/0 0/0 .data            __vt__11dDlst_2DT_c */
-SECTION_DATA extern void* __vt__11dDlst_2DT_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__11dDlst_2DT_cFv,
-};
-
-/* 803A8E74-803A8E80 005F94 000C+00 0/0 0/0 0/0 .data            __vt__15dDlst_2DPoint_c */
-SECTION_DATA extern void* __vt__15dDlst_2DPoint_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__15dDlst_2DPoint_cFv,
-};
-
-/* 803A8E80-803A8E8C 005FA0 000C+00 0/0 0/0 0/0 .data            __vt__14dDlst_2DQuad_c */
-SECTION_DATA extern void* __vt__14dDlst_2DQuad_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__14dDlst_2DQuad_cFv,
-};
-
-/* 803A8E8C-803A8E98 005FAC 000C+00 0/0 0/0 0/0 .data            __vt__13dDlst_2DTri_c */
-SECTION_DATA extern void* __vt__13dDlst_2DTri_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__13dDlst_2DTri_cFv,
-};

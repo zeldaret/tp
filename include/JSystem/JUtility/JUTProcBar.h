@@ -6,6 +6,10 @@
 
 class JKRHeap;
 
+/**
+* @ingroup jsystem-jutility
+* 
+*/
 class JUTProcBar {
 public:
     class CTime {

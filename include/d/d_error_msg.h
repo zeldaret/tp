@@ -1,7 +1,7 @@
 #ifndef D_D_ERROR_MSG_H
 #define D_D_ERROR_MSG_H
 
-#include "d/com/d_com_inf_game.h"
+#include "d/d_com_inf_game.h"
 
 struct dShutdownErrorMsg_c {
     /* 8009D790 */ static bool execute();

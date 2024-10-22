@@ -3,7 +3,6 @@
 
 #include "JSystem/J2DGraph/J2DPicture.h"
 #include "SSystem/SComponent/c_m3d_g_pla.h"
-#include "dolphin/types.h"
 #include "f_op/f_op_view.h"
 #include "m_Do/m_Do_ext.h"
 #include "global.h"
@@ -16,6 +15,8 @@ class dKy_tevstr_c;
 
 class cM_rnd_c {
 public:
+    cM_rnd_c() { init(100, 100, 100); }
+
     /* 80053CDC */ void init(int, int, int);
     /* 80053CEC */ f32 get();
     /* 80053DE0 */ f32 getF(f32);
@@ -166,8 +167,8 @@ public:
 
 class dDlst_shadowRealPoly_c : public dDlst_shadowPoly_c {
 public:
-    /* 800569A0 */ virtual dDlst_shadowTri_c* getTri();
-    /* 800569A8 */ virtual s32 getTriMax();
+    /* 800569A0 */ virtual dDlst_shadowTri_c* getTri() { return mShadowTri; }
+    /* 800569A8 */ virtual s32 getTriMax() { return ARRAY_SIZE(mShadowTri); }
 
     /* 0x8 */ dDlst_shadowTri_c mShadowTri[256];
 };
@@ -257,8 +258,6 @@ private:
 
 STATIC_ASSERT(sizeof(dDlst_window_c) == 0x2C);
 
-extern u8 mWipe__12dDlst_list_c;  // Wipe
-
 struct view_port_class;
 struct view_class;
 
@@ -343,9 +342,17 @@ public:
     void setOpaListMiddle() { setOpaDrawList(mDrawBuffers[DB_LIST_MIDDLE]); }
     void setOpaListZxlu() { setOpaDrawList(mDrawBuffers[DB_LIST_Z_XLU]); }
     void setXluListZxlu() { setXluDrawList(mDrawBuffers[DB_LIST_Z_XLU]); }
+    void setOpaListFilter() { setOpaDrawList(mDrawBuffers[DB_LIST_FILTER]); }
+    void setXluListFilter() { setXluDrawList(mDrawBuffers[DB_LIST_FILTER]); }
     void set3DlineMat(mDoExt_3DlineMat_c *param_1) { 
         #ifndef NON_VIRTUAL_3DLINEMAT
         m3DLineMatSortPacket[param_1->getMaterialID()].setMat(param_1);
+        #endif
+    }
+
+    void set3DlineMatDark(mDoExt_3DlineMat_c *param_1) { 
+        #ifndef NON_VIRTUAL_3DLINEMAT
+        m3DLineMatSortPacket[param_1->getMaterialID()].setMatDark(param_1);
         #endif
     }
 
@@ -368,6 +375,10 @@ public:
                       f32 param_5, dKy_tevstr_c* param_6) {
         return mShadowControl.setReal(param_0, param_1, param_2, param_3, param_4, param_5,
                                       param_6);
+    }
+
+    bool addRealShadow(u32 key, J3DModel* model) {
+        return mShadowControl.addReal(key, model);
     }
 
     void newPeekZdata(s16 param_0, s16 param_1, u32* param_2) {

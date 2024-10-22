@@ -234,6 +234,7 @@ struct TLinkList : public TNodeLinkList {
     const_iterator end() const { return const_iterator(const_cast<TLinkList*>(this)->end()); }
     T& front() { return *begin(); }
     T& back() { return *--end(); }
+    void pop_front() { erase(TNodeLinkList::begin()); }
     void Push_front(T* element) { Insert(begin(), element); }
     void Push_back(T* element) { Insert(end(), element); }
     iterator Find(const T* element) {
@@ -248,9 +249,9 @@ struct TLinkList_factory : public TLinkList<T, I> {
     virtual T* Do_create() = 0;
     virtual void Do_destroy(T*) = 0;
     void Clear_destroy() {
-        while (!empty()) {
-            T* item = &front();
-            pop_front();
+        while (!this->empty()) {
+            T* item = &this->front();
+            this->pop_front();
             Do_destroy(item);
         }
     }
@@ -297,16 +298,16 @@ struct TEnumerator2 {
 };
 
 template <typename T, int I>
-struct TContainerEnumerator : public TEnumerator2<TLinkList<T, I>::iterator, T> {
+struct TContainerEnumerator : public TEnumerator2<typename TLinkList<T, I>::iterator, T> {
     inline TContainerEnumerator(TLinkList<T, I>* param_0)
-        : TEnumerator2<TLinkList<T, I>::iterator, T>(param_0->begin(), param_0->end()) {}
+        : TEnumerator2<typename TLinkList<T, I>::iterator, T>(param_0->begin(), param_0->end()) {}
 };
 
 
 template <typename T, int I>
-struct TContainerEnumerator_const : public TEnumerator2<TLinkList<T, I>::const_iterator, const T> {
+struct TContainerEnumerator_const : public TEnumerator2<typename TLinkList<T, I>::const_iterator, const T> {
     inline TContainerEnumerator_const(const TLinkList<T, I>* param_0)
-        : TEnumerator2<TLinkList<T, I>::const_iterator, const T>(param_0->begin(), param_0->end()) {}
+        : TEnumerator2<typename TLinkList<T, I>::const_iterator, const T>(param_0->begin(), param_0->end()) {}
 };
 
 };  // namespace JGadget

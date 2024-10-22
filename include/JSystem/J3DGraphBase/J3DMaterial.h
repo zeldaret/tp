@@ -4,12 +4,15 @@
 #include "JSystem/J3DGraphBase/J3DMatBlock.h"
 #include "JSystem/J3DGraphBase/J3DPacket.h"
 #include "JSystem/J3DGraphBase/J3DShape.h"
-#include "JSystem/J3DGraphBase/J3DTexture.h"
 #include "dolphin/types.h"
 
 class J3DJoint;
 class J3DMaterialAnm;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DMaterial {
 public:
     /* 803157A0 */ static J3DColorBlock* createColorBlock(u32);
@@ -62,8 +65,8 @@ public:
     }
     J3DNBTScale* getNBTScale() const { return mTexGenBlock->getNBTScale(); }
     u16 getTexNo(u32 idx) const { return mTevBlock->getTexNo(idx); }
-    GXColor* getTevKColor(u32 param_0) { return mTevBlock->getTevKColor(param_0); }
-    GXColorS10* getTevColor(u32 param_0) { return mTevBlock->getTevColor(param_0); }
+    J3DGXColor* getTevKColor(u32 param_0) { return mTevBlock->getTevKColor(param_0); }
+    J3DGXColorS10* getTevColor(u32 param_0) { return mTevBlock->getTevColor(param_0); }
     J3DFog* getFog() { return mPEBlock->getFog(); }
     J3DTexMtx* getTexMtx(u32 idx) { return mTexGenBlock->getTexMtx(idx); }
     u16 getIndex() { return mIndex; }
@@ -73,12 +76,16 @@ public:
     u32 getTexGenNum() const { return mTexGenBlock->getTexGenNum(); }
     u8 getTevStageNum() const { return mTevBlock->getTevStageNum(); }
     J3DTexCoord* getTexCoord(u32 idx) { return mTexGenBlock->getTexCoord(idx); }
+    J3DZMode* getZMode() { return mPEBlock->getZMode(); }
+    J3DBlend* getBlend() { return mPEBlock->getBlend(); }
 
     void setTevColor(u32 i, const J3DGXColorS10* i_color) { mTevBlock->setTevColor(i, i_color); }
     void setTevKColor(u32 i, const J3DGXColor* i_color) { mTevBlock->setTevKColor(i, i_color); }
     void setMaterialAnm(J3DMaterialAnm* i_anm) { mMaterialAnm = i_anm; }
     void setCullMode(u8 i_mode) { mColorBlock->setCullMode(i_mode); }
     void setTexMtx(u32 idx, J3DTexMtx* mtx) { mTexGenBlock->setTexMtx(idx, mtx); }
+    void setZCompLoc(u8 i_comploc) { mPEBlock->setZCompLoc(i_comploc); }
+    void setMaterialMode(u32 i_mode) { mMaterialMode = i_mode; }
 
 public:
     /* 0x04 */ J3DMaterial* mNext;
@@ -100,6 +107,10 @@ public:
     /* 0x48 */ J3DDisplayListObj* mSharedDLObj;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DPatchedMaterial : public J3DMaterial {
 public:
     /* 80316FB8 */ void initialize();
@@ -112,6 +123,10 @@ public:
     /* 80317040 */ virtual void change();
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DLockedMaterial : public J3DMaterial {
 public:
     J3DLockedMaterial() { initialize(); }

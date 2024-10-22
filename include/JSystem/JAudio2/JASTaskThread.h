@@ -4,6 +4,10 @@
 #include "JSystem/JKernel/JKRThread.h"
 #include "JSystem/JAudio2/JASHeapCtrl.h"
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JASTaskThread : public JKRThread {
 private:
     struct JASThreadCallStack {

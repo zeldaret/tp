@@ -2,9 +2,13 @@
 #define JMESSAGE_CONTROL_H
 
 #include "JSystem/JMessage/processor.h"
-#include "dolphin/types.h"
 
 namespace JMessage {
+
+/**
+ * @ingroup jsystem-jmessage
+ * 
+ */
 struct TControl {
     /* 802A7548 */ TControl();
     /* 802A758C */ virtual ~TControl();
@@ -22,6 +26,10 @@ struct TControl {
     TProcessor* getProcessor() const {
         return pSequenceProcessor_ != NULL ? (TProcessor*)pSequenceProcessor_ :
                                              (TProcessor*)pRenderingProcessor_;
+    }
+
+    int setMessageCode(u32 code) {
+        return setMessageCode(code >> 16, code);
     }
 
     int setMessageCode_inReset_(TProcessor* pProcessor, u16 param_1, u16 param_2) {
@@ -53,6 +61,13 @@ struct TControl {
         pResourceCache_ = NULL;
     }
 
+    void render_synchronize() {
+        if (isReady_render_()) {
+            field_0x20 = pszText_update_current_;
+            oStack_renderingProcessor_ = pRenderingProcessor_->oStack_;
+        }
+    }
+
     /* 0x04 */ TSequenceProcessor* pSequenceProcessor_;
     /* 0x08 */ TRenderingProcessor* pRenderingProcessor_;
     /* 0x0C */ u16 messageCode_;
@@ -66,6 +81,10 @@ struct TControl {
 };
 };  // namespace JMessage
 
+/**
+ * @ingroup jsystem-jmessage
+ * 
+ */
 struct jmessage_tControl : public JMessage::TControl {
     /* 802299EC */ jmessage_tControl();
 

@@ -2,8 +2,11 @@
 #define JPATEXTURE_H
 
 #include "JSystem/JUtility/JUTTexture.h"
-#include "dolphin/types.h"
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 struct JPATextureData {
     // Probably magic / size / flags up top here, but they're unused.
     /* 0x00 */ char field_0x00[0x0C];
@@ -11,6 +14,10 @@ struct JPATextureData {
     /* 0x20 */ ResTIMG mResTIMG;
 };
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 class JPATexture {
 public:
     JPATexture(u8 const*);

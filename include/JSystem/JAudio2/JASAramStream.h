@@ -2,7 +2,6 @@
 #define JASARAMSTREAM_H
 
 #include "JSystem/JAudio2/JASTaskThread.h"
-#include "dolphin/os/OSMessage.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "dolphin/dvd.h"
 
@@ -14,6 +13,10 @@ namespace JASDsp {
 
 #define CHANNEL_MAX 6
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JASAramStream {
 public:
     typedef void (*StreamCallback)(u32, JASAramStream*, void*);

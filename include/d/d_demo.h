@@ -6,8 +6,6 @@
 #include "JSystem/JStudio/JStudio_JStage/object.h"
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/gx/GXEnum.h"
-#include "dolphin/gx/GXStruct.h"
 #include "Z2AudioLib/Z2SoundStarter.h"
 
 class J3DModel;
@@ -26,7 +24,7 @@ public:
     /* 80038FC0 */ JStage::TObject* appendActor(fopAc_ac_c*);
     /* 80039088 */ dDemo_actor_c* getActor(u8);
     /* 800390AC */ JStage::TObject* createCamera();
-    /* 80039128 */ JStage::TObject* getActiveCamera();
+    /* 80039128 */ dDemo_camera_c* getActiveCamera();
     /* 8003913C */ JStage::TObject* createAmbient();
     /* 800391B8 */ JStage::TObject* appendLight();
     /* 80039258 */ JStage::TObject* createFog();
@@ -39,12 +37,12 @@ public:
     /* 0x88 */ dDemo_ambient_c* mpAmbient;
     /* 0x8C */ dDemo_light_c* mpLights[8];
     /* 0xAC */ dDemo_fog_c* mpFog;
-    /* 0xB0 */ dDemo_camera_c* mpEditorCamera;
 };
 
 class dDemo_prm_c {
 public:
     dDemo_prm_c() { mData = 0; }
+    u32 getData() { return mData; }
 
     /* 0x0 */ u32 field_0x0;
     /* 0x4 */ u32 mData;
@@ -61,7 +59,7 @@ public:
     /* 80038098 */ virtual ~dDemo_actor_c();
     /* 800387EC */ virtual void JSGSetData(u32, void const*, u32);
     /* 8003A05C */ virtual s32 JSGFindNodeID(char const*) const;
-    /* 8003A088 */ virtual int JSGGetNodeTransformation(u32, f32 (*)[4]) const;
+    /* 8003A088 */ virtual bool JSGGetNodeTransformation(u32, f32 (*)[4]) const;
     /* 8003A0D8 */ virtual void JSGGetTranslation(Vec*) const;
     /* 80038920 */ virtual void JSGSetTranslation(Vec const&);
     /* 8003A0F4 */ virtual void JSGGetScaling(Vec*) const;
@@ -88,6 +86,7 @@ public:
     void setOldAnmId(u32 id) { mOldAnmId = id; }
     void setAnmFrameMax(f32 max) { mAnmFrameMax = max; }
     f32 getAnmFrame() { return mAnmFrame; }
+    dDemo_prm_c* getPrm() { return &mPrm; }
 
 private:
     /* 0x04 */ u16 mFlags;
@@ -117,7 +116,7 @@ public:
     dDemo_system_c() { mpObject = NULL; }
 
     /* 80039AAC */ virtual ~dDemo_system_c();
-    /* 80039528 */ virtual bool JSGFindObject(JStage::TObject**, char const*,
+    /* 80039528 */ virtual int JSGFindObject(JStage::TObject**, char const*,
                                               JStage::TEObject) const;
     
     void setObject(dDemo_object_c* i_object) { mpObject = i_object; }
@@ -132,7 +131,7 @@ public:
         : JStudio_JParticle::TCreateObject(p_emitMgr, p_system) {}
 
     /* 80039F9C */ virtual ~dDemo_particle_c();
-    /* 80039F1C */ virtual void emitter_create(u32);
+    /* 80039F1C */ virtual JPABaseEmitter* emitter_create(u32);
 };
 
 class dDemo_light_c : public JStage::TLight {
@@ -211,6 +210,13 @@ public:
     /* 80038DDC */ virtual void JSGSetViewRoll(f32);
 
     void onEnable(u8 flag) { mFlags |= flag; }
+    bool checkEnable(u8 flag) { return mFlags & flag; }
+
+    cXyz& getTarget() { return mViewTargetVector; }
+    cXyz& getTrans() { return mViewPos; }
+    cXyz& getUp() { return mViewUpVector; }
+    f32 getFovy() { return mProjFovy; }
+    f32 getRoll() { return mViewRoll; }
 
 private:
     /* 0x04 */ u8 mFlags;
@@ -281,6 +287,12 @@ public:
     static void offStatus(u32 status) { m_status &= ~status; }
     static void setBranchData(const u8* p_data) { m_branchData = p_data; }
     static s16 getBranchId() { return m_branchId; }
+    static jmessage_tControl* getMesgControl() { return m_mesgControl; }
+
+    static dDemo_camera_c* getCamera() {
+        JUT_ASSERT(m_object != 0);
+        return m_object->getActiveCamera();
+    }
 
     static s16 m_branchId;
     static dDemo_system_c* m_system;

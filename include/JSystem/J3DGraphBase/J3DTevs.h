@@ -2,7 +2,13 @@
 #define J3DTEVS_H
 
 #include "dolphin/types.h"
+#include "dolphin/gx/GXStruct.h"
+#include "JSystem/J3DGraphBase/J3DGD.h"
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DTevStageInfo {
     /* 0x0 */ u8 field_0x0;
     /* 0x1 */ u8 mTevColorOp;
@@ -28,6 +34,10 @@ struct J3DTevStageInfo {
 
 extern J3DTevStageInfo const j3dDefaultTevStageInfo;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DTevSwapModeTableInfo {
     /* 0x0 */ u8 field_0x0;
     /* 0x1 */ u8 field_0x1;
@@ -37,6 +47,10 @@ struct J3DTevSwapModeTableInfo {
 
 extern const J3DTevSwapModeTableInfo j3dDefaultTevSwapModeTable;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DTevSwapModeInfo {
     /* 0x0 */ u8 mRasSel;
     /* 0x1 */ u8 mTexSel;
@@ -46,6 +60,10 @@ struct J3DTevSwapModeInfo {
 
 extern J3DTevSwapModeInfo const j3dDefaultTevSwapMode;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DTevStage {
     /* 8000E230 */ J3DTevStage();
     void setTevColorOp(u8 param_1, u8 param_2, u8 param_3, u8 param_4, u8 param_5) {
@@ -110,6 +128,21 @@ struct J3DTevStage {
     void setRasSel(u8 ras_sel) { mTevSwapModeInfo = (mTevSwapModeInfo & ~3) | ras_sel; }
     void setTexSel(u8 tex_sel) { mTevSwapModeInfo = (mTevSwapModeInfo & ~0xc) | (tex_sel << 2); }
 
+    void load(u32 param_1) {
+        J3DGDWriteBPCmd(*(u32*)&field_0x0);
+        J3DGDWriteBPCmd(*(u32*)&field_0x4);
+    }
+
+    J3DTevStage& operator=(const J3DTevStage& other) {
+        mTevColorOp = other.mTevColorOp;
+        mTevColorAB = other.mTevColorAB;
+        mTevColorCD = other.mTevColorCD;
+        mTevAlphaOp = other.mTevAlphaOp;
+        mTevAlphaAB = other.mTevAlphaAB;
+        mTevSwapModeInfo = other.mTevSwapModeInfo;
+        return *this;
+    }
+
     /* 0x0 */ u8 field_0x0;
     /* 0x1 */ u8 mTevColorOp;
     /* 0x2 */ u8 mTevColorAB;
@@ -120,6 +153,10 @@ struct J3DTevStage {
     /* 0x7 */ u8 mTevSwapModeInfo;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DIndTevStageInfo {
     /* 0x0 */ u8 mIndStage;
     /* 0x1 */ u8 mIndFormat;
@@ -135,6 +172,10 @@ struct J3DIndTevStageInfo {
 
 extern J3DIndTevStageInfo const j3dDefaultIndTevStageInfo;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DIndTevStage {
     /* 8000E14C */ J3DIndTevStage() : mInfo(0) { setIndTevStageInfo(j3dDefaultIndTevStageInfo); }
     J3DIndTevStage(J3DIndTevStageInfo const& info) : mInfo(0) { setIndTevStageInfo(info); }
@@ -159,44 +200,78 @@ struct J3DIndTevStage {
     void setLod(u8 lod) { mInfo = (mInfo & ~0x80000) | (lod << 19); }
     void setAlphaSel(u8 alphaSel) { mInfo = (mInfo & ~0x180) | (alphaSel << 7); }
 
+    void load(u32 param_1) {
+        J3DGDWriteBPCmd(mInfo | (param_1 + 0x10) * 0x1000000);
+    }
+
     /* 0x0 */ u32 mInfo;
 };
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DTevOrderInfo {
     void operator=(const J3DTevOrderInfo& other) {
         *(u32*) this = *(u32*)&other;
     }
 
-    /* 0x0 */ u8 field_0x0;
+    /* 0x0 */ u8 mTexCoord;
     /* 0x1 */ u8 mTexMap;
-    /* 0x2 */ u8 field_0x2;
+    /* 0x2 */ u8 mColorChan;
     /* 0x3 */ u8 field_0x3; // Maybe padding
 };
 
 extern const J3DTevOrderInfo j3dDefaultTevOrderInfoNull;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DTevOrder : public J3DTevOrderInfo {
     /* 8000E140 */ J3DTevOrder() : J3DTevOrderInfo(j3dDefaultTevOrderInfoNull) {}
     J3DTevOrder(const J3DTevOrderInfo& info) : J3DTevOrderInfo(info) {}
+    J3DTevOrderInfo& getTevOrderInfo() { return *this; }
 
     u8 getTexMap() { return mTexMap; }
 };
 
+extern u8 j3dTevSwapTableTable[1024];
+
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 struct J3DTevSwapModeTable {
     /* 8000E134 */ J3DTevSwapModeTable();
     J3DTevSwapModeTable(J3DTevSwapModeTableInfo const& info) {
-        field_0x0 = calcTevSwapTableID(info.field_0x0, info.field_0x1, info.field_0x2, info.field_0x3);
+        mIdx = calcTevSwapTableID(info.field_0x0, info.field_0x1, info.field_0x2, info.field_0x3);
     }
     u8 calcTevSwapTableID(u8 param_0, u8 param_1, u8 param_2, u8 param_3) {
         return 0x40 * param_0 + 0x10 * param_1 + 4 * param_2 + param_3;
     }
 
-    /* 0x0 */ u8 field_0x0;
+    u8 getR() { return j3dTevSwapTableTable[mIdx * 4]; }
+    u8 getG() { return j3dTevSwapTableTable[mIdx * 4 + 1]; }
+    u8 getB() { return j3dTevSwapTableTable[mIdx * 4 + 2]; }
+    u8 getA() { return j3dTevSwapTableTable[mIdx * 4 + 3]; }
+
+    /* 0x0 */ u8 mIdx;
 };  // Size: 0x1
+
+extern const GXColor j3dDefaultColInfo;
+extern const GXColor j3dDefaultAmbInfo;
+extern const GXColorS10 j3dDefaultTevColor;
+extern const GXColor j3dDefaultTevKColor;
+extern u8 j3dAlphaCmpTable[768];
 
 struct J3DNBTScale;
 struct J3DTexCoord;
 void loadNBTScale(J3DNBTScale& param_0);
 void loadTexCoordGens(u32 param_0, J3DTexCoord* param_1);
+void loadTexNo(u32 param_0, u16 const& param_1);
+void patchTexNo_PtrToIdx(u32 texID, u16 const& idx);
+bool isTexNoReg(void* param_0);
+u16 getTexNoReg(void* param_0);
 
 #endif /* J3DTEVS_H */

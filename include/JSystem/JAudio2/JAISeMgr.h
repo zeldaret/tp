@@ -2,28 +2,42 @@
 #define JAISEMGR_H
 
 #include "JSystem/JAudio2/JAISe.h"
-#include "JSystem/JAudio2/JASHeapCtrl.h"
-#include "JSystem/JSupport/JSUList.h"
 #include "global.h"
 
 struct JAIAudience;
 struct JASSoundParams;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JASNonCopyable {
     /* 0x0 */ int field_0x0;
 };  // Size: 0x4
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAISeCategoryArrangementItem {
     u8 mMaxActiveSe;
     u8 mMaxInactiveSe;
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAISeCategoryArrangement {
     JAISeCategoryArrangementItem mItems[16];
 };
 
 class JAISeMgr;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAISeCategoryMgr : public JAISeqDataUser {
 public:
     /* 8029F9C4 */ void JAISeMgr_calc_();
@@ -59,6 +73,10 @@ public:
     /* 0x68 */ int mMaxActiveSe;
 };  // Size: 0x6C
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAISeMgr : public JASGlobalInstance<JAISeMgr>,
                  public JAISeqDataUser,
                  public JAISoundActivity {
@@ -77,7 +95,7 @@ public:
     /* 802A0768 */ bool startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
     /* 802A08D0 */ int getNumActiveSe() const;
 
-    /* 802A08FC */ virtual ~JAISeMgr();  // inline?
+    /* 802A08FC */ virtual ~JAISeMgr() {}
     /* 802A0168 */ virtual bool isUsingSeqData(JAISeqDataRegion const&);
     /* 802A01D8 */ virtual int releaseSeqData(JAISeqDataRegion const&);
 

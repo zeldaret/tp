@@ -1,8 +1,8 @@
 #ifndef J2DANIMATION_H
 #define J2DANIMATION_H
 
+#include "JSystem/JMath/JMath.h"
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
-#include "global.h"
 
 typedef struct _GXColor GXColor;
 typedef struct _GXColorS10 GXColorS10;
@@ -20,6 +20,10 @@ enum J2DAnmKind {
     KIND_VTX_COLOR = 7
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmBase {
 public:
     J2DAnmBase() {
@@ -42,6 +46,10 @@ public:
     /* 0xC */ J2DAnmKind mKind;
 };  // Size: 0x10
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmVtxColor : public J2DAnmBase {
 public:
     J2DAnmVtxColor() {
@@ -67,6 +75,10 @@ public:
 struct J3DTransformInfo;
 struct J3DTextureSRTInfo;
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmVtxColorKey : public J2DAnmVtxColor {
 public:
     J2DAnmVtxColorKey() {
@@ -84,6 +96,10 @@ public:
     /* 0x38 */ s16* mAValues;
 };  // Size: 0x3C
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmVtxColorFull : public J2DAnmVtxColor {
 public:
     J2DAnmVtxColorFull() {
@@ -101,6 +117,10 @@ public:
     /* 0x38 */ u8* mAValues;
 };  // Size: 0x3C
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmVisibilityFull : public J2DAnmBase {
 public:
     J2DAnmVisibilityFull() {
@@ -119,6 +139,10 @@ public:
     /* 0x18 */ u8* mValues;
 };  // Size: 0x1C
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmTransform : public J2DAnmBase {
 public:
     J2DAnmTransform(f32* pScaleValues, s16* pRotationValues, f32* pTranslateValues) {
@@ -139,6 +163,10 @@ public:
     /* 0x18 */ f32* mTranslateValues;
 };  // Size: 0x1C
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmTransformKey : public J2DAnmTransform {
 public:
     J2DAnmTransformKey() : J2DAnmTransform(NULL, NULL, NULL) {
@@ -157,6 +185,10 @@ public:
     /* 0x28 */ J3DAnmTransformKeyTable* mInfoTable;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmTransformFull : public J2DAnmTransform {
 public:
     J2DAnmTransformFull() : J2DAnmTransform(NULL, NULL, NULL) { mTableInfo = NULL; }
@@ -168,6 +200,10 @@ public:
     /* 0x24 */ J3DAnmTransformFullTable* mTableInfo;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmTextureSRTKey : public J2DAnmBase {
 public:
     J2DAnmTextureSRTKey() {
@@ -227,6 +263,10 @@ public:
     /* 0x7C */ int field_0x7c;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmTexPattern : public J2DAnmBase {
 public:
     struct J2DAnmTexPatternTIMGPointer {
@@ -265,6 +305,10 @@ public:
     /* 0x30 */ J2DAnmTexPatternTIMGPointer* mTIMGPtrArray;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmTevRegKey : public J2DAnmBase {
 public:
     J2DAnmTevRegKey() {
@@ -331,6 +375,10 @@ public:
     /* 0x70 */ s16* mKAValues;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmColor : public J2DAnmBase {
 public:
     J2DAnmColor() {
@@ -357,6 +405,10 @@ public:
     /* 0x20 */ JUTNameTab field_0x20;
 };  // Size: 0x30
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmColorKey : public J2DAnmColor {
 public:
     J2DAnmColorKey() {
@@ -376,6 +428,10 @@ public:
     /* 0x40 */ J3DAnmColorKeyTable* mInfoTable;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DAnmColorFullInfo {
     /* 0x00 */ u16 mRMaxFrame;
     /* 0x02 */ u16 mROffset;
@@ -387,6 +443,10 @@ struct J2DAnmColorFullInfo {
     /* 0x0E */ u16 mAOffset;
 };  // Size = 0x10
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DAnmColorFull : public J2DAnmColor {
 public:
     J2DAnmColorFull() {
@@ -408,37 +468,6 @@ public:
 
 template <typename T>
 inline f32 J2DHermiteInterpolation(f32, T*, T*, T*, T*, T*, T*);
-
-inline f32 JMAHermiteInterpolation(register f32 p1, register f32 p2, register f32 p3,
-                                   register f32 p4, register f32 p5, register f32 p6,
-                                   register f32 p7) {
-    register f32 ff25;
-    register f32 ff31;
-    register f32 ff30;
-    register f32 ff29;
-    register f32 ff28;
-    register f32 ff27;
-    register f32 ff26;
-    // clang-format off
-    asm {
-        fsubs   ff31, p1, p2
-        fsubs   ff30, p5, p2
-        fdivs   ff29, ff31, ff30
-        fmuls   ff28,ff29,ff29
-        fadds   ff25,ff29,ff29
-        fsubs   ff27,ff28,ff29
-        fsubs   ff30, p3, p6
-        fmsubs  ff26,ff25,ff27,ff28
-        fmadds  ff25,p4,ff27,p4
-        fmadds  ff26,ff26,ff30,p3
-        fmadds  ff25,p7,ff27,ff25
-        fmsubs  ff25,ff29,p4,ff25
-        fnmsubs ff25,ff31,ff25,ff26
-
-    }
-    // clang-format on
-    return ff25;
-}
 
 template <>
 inline f32 J2DHermiteInterpolation<f32>(f32 f1, f32* f2, f32* f3, f32* f4, f32* f5, f32* f6,

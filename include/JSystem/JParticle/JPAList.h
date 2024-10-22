@@ -1,7 +1,10 @@
 #ifndef JPALIST_H
 #define JPALIST_H
 
-
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 template <class T>
 struct JPANode {
     JPANode() {
@@ -17,6 +20,10 @@ struct JPANode {
     T mData;
 };
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 template <class T>
 struct JPAList {
     JPANode<T>* mpFirst;

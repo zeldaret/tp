@@ -3,6 +3,10 @@
 
 #include "dolphin/types.h"
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 struct JPAExtraShapeData {
     // Common header.
     /* 0x00 */ u8 mMagic[4];
@@ -33,6 +37,10 @@ struct JPAExtraShapeData {
     /* 0x5C */ f32 mRotateDirection;
 };
 
+/**
+ * @ingroup jsystem-jparticle
+ * 
+ */
 class JPAExtraShape {
 public:
     /* 8027AD88 */ JPAExtraShape(u8 const*);

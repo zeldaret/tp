@@ -35,11 +35,19 @@ enum J2DBasePosition {
     J2DBasePosition_4,
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DPaneHeader {
     /* 0x0 */ u32 mKind;
     /* 0x4 */ u32 mSize;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DPane {
 public:
     J2DPane();
@@ -61,7 +69,7 @@ public:
     void clip(const JGeometry::TBox2<f32>& bounds);
     void setBasePosition(J2DBasePosition position);
     void setInfluencedAlpha(bool arg1, bool arg2);
-    JGeometry::TVec3<f32> getGlbVtx(u8 arg1) const;
+    Vec getGlbVtx(u8 arg1) const;
     J2DPane* getFirstChildPane();
     J2DPane* getNextChildPane();
     J2DPane* getParentPane();
@@ -129,6 +137,8 @@ public:
     f32 getRotOffsetY() const { return mRotateOffsetY; }
 
     MtxP getGlbMtx() { return mGlobalMtx; }
+
+    JGeometry::TBox2<f32>& getGlbBounds() { return mGlobalBounds; }
 
     void setMtx(Mtx m) { MTXCopy(m, mPositionMtx); }
 

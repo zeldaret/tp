@@ -7,14 +7,10 @@
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
-#include "JSystem/J3DGraphLoader/J3DClusterLoader.h"
-#include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
 #include "JSystem/JKernel/JKRMemArchive.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
-#include "d/bg/d_bg_w_kcol.h"
-#include "d/com/d_com_inf_game.h"
+#include "d/d_com_inf_game.h"
 #include "dol2asm.h"
-#include "dolphin/mtx.h"
 #include "dolphin/os.h"
 #include "dolphin/types.h"
 #include "global.h"
@@ -302,7 +298,7 @@ static void addWarpMaterial(J3DModelData* param_1) {
         texGenBlock->setTexMtx(texGenNum, texMtxInfo);
         J3DTevBlock* tevBlock = pMaterial->getTevBlock();
         u8 tevStageNum = tevBlock->getTevStageNum();
-        l_tevOrderInfo.field_0x0 = texGenNum;
+        l_tevOrderInfo.mTexCoord = texGenNum;
         tevBlock->setTexNo(3, textureNum);
         tevBlock->setTevOrder(tevStageNum, l_tevOrderInfo);
         tevBlock->setTevStage(tevStageNum, l_tevStageInfo);
@@ -399,7 +395,7 @@ J3DModelData* dRes_info_c::loaderBasicBmd(u32 i_type, void* i_data) {
         flags ^= 0x60020;
     }
 
-    modelData = (J3DModelData*)J3DModelLoaderDataBase::load(i_data, flags);
+    modelData = J3DModelLoaderDataBase::load(i_data, flags);
     if (modelData == NULL) {
         return NULL;
     }
@@ -453,70 +449,45 @@ J3DModelData* dRes_info_c::loaderBasicBmd(u32 i_type, void* i_data) {
     }
 
     if (i_type == 'BMDR' || i_type == 'BMWR') {
-        if (modelData->newSharedDisplayList(0x40000) == 0) {
+        if (modelData->newSharedDisplayList(0x40000) != 0) {
+            return NULL;
+        } else {
             modelData->simpleCalcMaterial(0, (MtxP)j3dDefaultMtx);
             modelData->makeSharedDL();
-        } else {
-            modelData = NULL;
         }
     }
 
     return modelData;
 }
 #else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J3DModelData* dRes_info_c::loaderBasicBmd(u32 param_0, void* param_1) {
-    nofralloc
-#include "asm/d/d_resorce/loaderBasicBmd__11dRes_info_cFUlPv.s"
+J3DModelData* dRes_info_c::loaderBasicBmd(u32 param_0, void* param_1) {
+    // NONMATCHING
 }
-#pragma pop
 #endif
 
 /* 8003B150-8003B18C 035A90 003C+00 2/2 8/8 0/0 .text            __dt__15J3DTevKColorAnmFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm J3DTevKColorAnm::~J3DTevKColorAnm() {
-extern "C" asm void __dt__15J3DTevKColorAnmFv() {
-    nofralloc
-#include "asm/d/d_resorce/__dt__15J3DTevKColorAnmFv.s"
+// J3DTevKColorAnm::~J3DTevKColorAnm() {
+extern "C" void __dt__15J3DTevKColorAnmFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8003B18C-8003B1A4 035ACC 0018+00 2/2 3/3 0/0 .text            __ct__15J3DTevKColorAnmFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm J3DTevKColorAnm::J3DTevKColorAnm() {
-extern "C" asm void __ct__15J3DTevKColorAnmFv() {
-    nofralloc
-#include "asm/d/d_resorce/__ct__15J3DTevKColorAnmFv.s"
+// J3DTevKColorAnm::J3DTevKColorAnm() {
+extern "C" void __ct__15J3DTevKColorAnmFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8003B1A4-8003B1E0 035AE4 003C+00 2/2 8/8 0/0 .text            __dt__14J3DTevColorAnmFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm J3DTevColorAnm::~J3DTevColorAnm() {
-extern "C" asm void __dt__14J3DTevColorAnmFv() {
-    nofralloc
-#include "asm/d/d_resorce/__dt__14J3DTevColorAnmFv.s"
+// J3DTevColorAnm::~J3DTevColorAnm() {
+extern "C" void __dt__14J3DTevColorAnmFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8003B1E0-8003B1F8 035B20 0018+00 2/2 3/3 0/0 .text            __ct__14J3DTevColorAnmFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm J3DTevColorAnm::J3DTevColorAnm() {
-extern "C" asm void __ct__14J3DTevColorAnmFv() {
-    nofralloc
-#include "asm/d/d_resorce/__ct__14J3DTevColorAnmFv.s"
+// J3DTevColorAnm::J3DTevColorAnm() {
+extern "C" void __ct__14J3DTevColorAnmFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803A7C38-803A7C48 004D58 0010+00 4/4 22/22 0/0 .data            __vt__10J3DAnmBase */
@@ -562,70 +533,40 @@ SECTION_DATA extern void* __vt__11J3DTexNoAnm[3] = {
 };
 
 /* 8003B1F8-8003B240 035B38 0048+00 2/2 8/8 0/0 .text            __dt__11J3DTexNoAnmFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm J3DTexNoAnm::~J3DTexNoAnm() {
-extern "C" asm void __dt__11J3DTexNoAnmFv() {
-    nofralloc
-#include "asm/d/d_resorce/__dt__11J3DTexNoAnmFv.s"
+// J3DTexNoAnm::~J3DTexNoAnm() {
+extern "C" void __dt__11J3DTexNoAnmFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8003B240-8003B264 035B80 0024+00 2/2 3/3 0/0 .text            __ct__11J3DTexNoAnmFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm J3DTexNoAnm::J3DTexNoAnm() {
-extern "C" asm void __ct__11J3DTexNoAnmFv() {
-    nofralloc
-#include "asm/d/d_resorce/__ct__11J3DTexNoAnmFv.s"
+// J3DTexNoAnm::J3DTexNoAnm() {
+extern "C" void __ct__11J3DTexNoAnmFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8003B264-8003B2A0 035BA4 003C+00 2/2 8/8 0/0 .text            __dt__12J3DTexMtxAnmFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm J3DTexMtxAnm::~J3DTexMtxAnm() {
-extern "C" asm void __dt__12J3DTexMtxAnmFv() {
-    nofralloc
-#include "asm/d/d_resorce/__dt__12J3DTexMtxAnmFv.s"
+// J3DTexMtxAnm::~J3DTexMtxAnm() {
+extern "C" void __dt__12J3DTexMtxAnmFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8003B2A0-8003B2B8 035BE0 0018+00 2/2 3/3 0/0 .text            __ct__12J3DTexMtxAnmFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm J3DTexMtxAnm::J3DTexMtxAnm() {
-extern "C" asm void __ct__12J3DTexMtxAnmFv() {
-    nofralloc
-#include "asm/d/d_resorce/__ct__12J3DTexMtxAnmFv.s"
+// J3DTexMtxAnm::J3DTexMtxAnm() {
+extern "C" void __ct__12J3DTexMtxAnmFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8003B2B8-8003B2F4 035BF8 003C+00 2/2 8/8 0/0 .text            __dt__14J3DMatColorAnmFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm J3DMatColorAnm::~J3DMatColorAnm() {
-extern "C" asm void __dt__14J3DMatColorAnmFv() {
-    nofralloc
-#include "asm/d/d_resorce/__dt__14J3DMatColorAnmFv.s"
+// J3DMatColorAnm::~J3DMatColorAnm() {
+extern "C" void __dt__14J3DMatColorAnmFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8003B2F4-8003B30C 035C34 0018+00 2/2 3/3 0/0 .text            __ct__14J3DMatColorAnmFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm J3DMatColorAnm::J3DMatColorAnm() {
-extern "C" asm void __ct__14J3DMatColorAnmFv() {
-    nofralloc
-#include "asm/d/d_resorce/__ct__14J3DMatColorAnmFv.s"
+// J3DMatColorAnm::J3DMatColorAnm() {
+extern "C" void __ct__14J3DMatColorAnmFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -784,37 +725,22 @@ int dRes_info_c::loadResource() {
     return 0;
 }
 #else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dRes_info_c::loadResource() {
-    nofralloc
-#include "asm/d/d_resorce/loadResource__11dRes_info_cFv.s"
+int dRes_info_c::loadResource() {
+    // NONMATCHING
 }
-#pragma pop
 #endif
 
 /* 8003B8D0-8003B93C 036210 006C+00 1/0 0/0 0/0 .text            __dt__18J3DAnmTransformKeyFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void __dt__18J3DAnmTransformKeyFv() {
+extern "C" void __dt__18J3DAnmTransformKeyFv() {
     // asm J3DAnmTransformKey::~J3DAnmTransformKey() {
-    nofralloc
-#include "asm/d/d_resorce/__dt__18J3DAnmTransformKeyFv.s"
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8003B93C-8003B998 03627C 005C+00 1/0 0/0 0/0 .text            __dt__15J3DAnmTransformFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void __dt__15J3DAnmTransformFv() {
+extern "C" void __dt__15J3DAnmTransformFv() {
     // asm J3DAnmTransform::~J3DAnmTransform() {
-    nofralloc
-#include "asm/d/d_resorce/__dt__15J3DAnmTransformFv.s"
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8003B998-8003BA9C 0362D8 0104+00 1/1 0/0 0/0 .text            deleteArchiveRes__11dRes_info_cFv
  */
@@ -1037,14 +963,9 @@ void dRes_info_c::dump(dRes_info_c* param_0, int param_1) {
         totalArcHeaderSize / 1024.0f, totalArcHeaderSize, totalHeapSize / 1024.0f, totalHeapSize);
 }
 #else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dRes_info_c::dump(dRes_info_c* param_0, int param_1) {
-    nofralloc
-#include "asm/d/d_resorce/dump__11dRes_info_cFP11dRes_info_ci.s"
+void dRes_info_c::dump(dRes_info_c* param_0, int param_1) {
+    // NONMATCHING
 }
-#pragma pop
 #endif
 
 /* 8003BFB0-8003C078 0368F0 00C8+00 0/0 1/1 0/0 .text            __dt__14dRes_control_cFv */
@@ -1297,15 +1218,10 @@ int dRes_control_c::getObjectResName2Index(char const* arcName, char const* para
 }
 
 /* 8003C734-8003C77C 037074 0048+00 1/0 0/0 0/0 .text            __dt__10J3DAnmBaseFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void __dt__10J3DAnmBaseFv() {
+extern "C" void __dt__10J3DAnmBaseFv() {
     // asm J3DAnmBase::~J3DAnmBase() {
-    nofralloc
-#include "asm/d/d_resorce/__dt__10J3DAnmBaseFv.s"
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8003C77C-8003C784 0370BC 0008+00 1/0 0/0 0/0 .text            getKind__15J3DAnmTransformCFv */
 s32 J3DAnmTransform::getKind() const {
@@ -1313,15 +1229,10 @@ s32 J3DAnmTransform::getKind() const {
 }
 
 /* 8003C784-8003C800 0370C4 007C+00 1/0 0/0 0/0 .text            __dt__18mDoExt_transAnmBasFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm mDoExt_transAnmBas::~mDoExt_transAnmBas() {
-extern "C" asm void __dt__18mDoExt_transAnmBasFv() {
-    nofralloc
-#include "asm/d/d_resorce/__dt__18mDoExt_transAnmBasFv.s"
+// mDoExt_transAnmBas::~mDoExt_transAnmBas() {
+extern "C" void __dt__18mDoExt_transAnmBasFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8003C800-8003C808 037140 0008+00 2/0 0/0 0/0 .text            getKind__18J3DAnmTransformKeyCFv */
 s32 J3DAnmTransformKey::getKind() const {
@@ -1330,24 +1241,14 @@ s32 J3DAnmTransformKey::getKind() const {
 
 /* 8003C808-8003C82C 037148 0024+00 2/0 0/0 0/0 .text
  * getTransform__18J3DAnmTransformKeyCFUsP16J3DTransformInfo    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DAnmTransformKey::getTransform(u16 param_0, J3DTransformInfo* param_1) const {
-    nofralloc
-#include "asm/d/d_resorce/getTransform__18J3DAnmTransformKeyCFUsP16J3DTransformInfo.s"
+void J3DAnmTransformKey::getTransform(u16 param_0, J3DTransformInfo* param_1) const {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 8003C82C-8003C85C 03716C 0030+00 1/0 0/0 0/0 .text            calc__11J3DTexNoAnmCFPUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void J3DTexNoAnm::calc(u16* param_0) const {
-extern "C" asm void calc__11J3DTexNoAnmCFPUs() {
-    nofralloc
-#include "asm/d/d_resorce/calc__11J3DTexNoAnmCFPUs.s"
+// void J3DTexNoAnm::calc(u16* param_0) const {
+extern "C" void calc__11J3DTexNoAnmCFPUs() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -5,6 +5,10 @@
 
 class JSUFileInputStream;
 
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRAramStreamCommand {
 public:
     enum Type {
@@ -35,6 +39,10 @@ public:
     /* 0x58 */ u32 field_0x58;
 };
 
+/**
+ * @ingroup jsystem-jkernel
+ * 
+ */
 class JKRAramStream : public JKRThread {
 private:
     JKRAramStream(s32);

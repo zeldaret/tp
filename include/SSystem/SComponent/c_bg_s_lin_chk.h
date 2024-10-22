@@ -4,7 +4,6 @@
 #include "SSystem/SComponent/c_bg_s_chk.h"
 #include "SSystem/SComponent/c_bg_s_poly_info.h"
 #include "SSystem/SComponent/c_m3d_g_lin.h"
-#include "dolphin/types.h"
 
 class cBgS_LinChk : public cBgS_Chk, public cBgS_PolyInfo {
 public:
@@ -34,12 +33,15 @@ public:
     cXyz* GetCrossP() { return &mLin.GetEndP(); }
     cM3dGLin* GetLinP() { return &mLin; }
     bool ChkBackFlag() const { return mBackFlag; }
+    void onBackFlag() { mBackFlag = true; }
     bool ChkFrontFlag() const { return mFrontFlag; }
+    void onFrontFlag() { mFrontFlag = true; }
     bool GetPreWallChk() const { return mPreWallChk; }
     bool GetPreGroundChk() const { return mPreGroundChk; }
     bool GetPreRoofChk() const { return mPreRoofChk; }
     cXyz* GetStartP() { return &mLin.GetStartP(); }
     void ClrSttsRoofOff() { field_0x4c &= ~0x20000000; }
+    void ClrSttsWallOff() { field_0x4c &= ~0x40000000; }
 };
 
 #endif /* C_BG_S_LIN_CHK_H */

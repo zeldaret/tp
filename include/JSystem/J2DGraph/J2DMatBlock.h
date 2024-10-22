@@ -3,7 +3,6 @@
 
 #include "JSystem/J2DGraph/J2DTevs.h"
 #include "JSystem/JUtility/TColor.h"
-#include "dolphin/types.h"
 
 class JUTFont;
 class JUTPalette;
@@ -13,6 +12,10 @@ struct ResFONT;
 struct ResTIMG;
 struct ResTLUT;
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DGXColorS10 : public GXColorS10 {
     /* 802F1B90 */ J2DGXColorS10() {}
     J2DGXColorS10(const J2DGXColorS10& other) {
@@ -39,6 +42,10 @@ struct J2DGXColorS10 : public GXColorS10 {
 
 struct J2DTevSwapModeInfo;
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DTevBlock {
 public:
     /* 802F2A40 */ virtual void initialize();
@@ -88,6 +95,10 @@ public:
     /* 802EB184 */ virtual ~J2DTevBlock() {}
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DTevBlock1 : public J2DTevBlock {
 public:
     /* 802EB88C */ J2DTevBlock1();
@@ -155,6 +166,10 @@ private:
     /* 0x05C */ u8 mUndeleteFlag;
 };  // Size: 0x60
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DTevBlock2 : public J2DTevBlock {
 public:
     /* 802EC5B8 */ J2DTevBlock2();
@@ -224,6 +239,10 @@ private:
     /* 0x078 */ u8 mUndeleteFlag;
 };  // Size: 0x7C
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DTevBlock4 : public J2DTevBlock {
 public:
     /* 802ED8BC */ J2DTevBlock4();
@@ -293,6 +312,10 @@ private:
     /* 0x0B0 */ u8 mUndeleteFlag;
 };  // Size: 0xB4
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DTevBlock8 : public J2DTevBlock {
 public:
     /* 802EED64 */ J2DTevBlock8();
@@ -363,6 +386,10 @@ private:
     /* 0x121 */ bool mFontUndeleteFlag;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DTevBlock16 : public J2DTevBlock {
 public:
     /* 802F01E4 */ J2DTevBlock16();
@@ -433,6 +460,10 @@ public:
     /* 0x1B1 */ bool mFontUndeleteFlag;
 };  // Size: 0x1B4
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DAlphaCompInfo {
     /* 0x0 */ u8 field_0x0;
     /* 0x1 */ u8 field_0x1;
@@ -448,6 +479,10 @@ inline u16 J2DCalcAlphaCmp(s32 param_1, u32 param_2, u32 param_3) {
     return ((param_1) << 5) | ((param_2 & 0xff) << 3) | (param_3 & 0xff);
 }
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DAlphaComp {
     J2DAlphaComp() {
         mAlphaCmp = j2dDefaultAlphaCmp;
@@ -470,6 +505,10 @@ struct J2DAlphaComp {
     /* 0x3 */ u8 mRef1;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DBlendInfo {
     void operator=(J2DBlendInfo const& other) {
         mType = other.mType;
@@ -486,6 +525,10 @@ struct J2DBlendInfo {
 
 extern const J2DBlendInfo j2dDefaultBlendInfo;
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DBlend {
     J2DBlend() { mBlendInfo = j2dDefaultBlendInfo; }
     J2DBlend(const J2DBlendInfo& info) { mBlendInfo = info; }
@@ -498,6 +541,10 @@ struct J2DBlend {
     /* 0x0 */ J2DBlendInfo mBlendInfo;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DPEBlock {
 public:
     J2DPEBlock() { initialize(); }
@@ -514,6 +561,10 @@ private:
     /* 0x8 */ u8 mDither;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DIndBlock {
 public:
     /* 802EB24C */ virtual void initialize();
@@ -530,6 +581,10 @@ public:
     /* 802EB13C */ virtual ~J2DIndBlock() {}
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DIndBlockFull : public J2DIndBlock {
 public:
     J2DIndBlockFull() { initialize(); }
@@ -554,6 +609,10 @@ private:
     /* 0x64 */ J2DIndTexCoordScale mTexCoordScale[4];
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DIndBlockNull : public J2DIndBlock {
 public:
     J2DIndBlockNull() {}
@@ -563,6 +622,10 @@ public:
     /* 802EB1F0 */ virtual ~J2DIndBlockNull();
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DTexGenBlock {
 private:
     /* 0x00 */ u32 mTexGenNum;
@@ -585,6 +648,10 @@ public:
     /* 802EB620 */ virtual ~J2DTexGenBlock();
 };  // Size: 0x48
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DColorChanInfo {
     /* 0x0 */ u8 field_0x0;
     /* 0x0 */ u8 field_0x1;
@@ -595,6 +662,10 @@ struct J2DColorChanInfo {
 inline u8 J2DCalcColorChanID(u8 param_1) { return param_1; }
 extern const J2DColorChanInfo j2dDefaultColorChanInfo;
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DColorChan {
 public:
     /* 802EB280 */ J2DColorChan() {
@@ -613,6 +684,10 @@ private:
     /* 0x0 */ u16 mColorChan;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DColorBlock {
 private:
     /* 0x00 */ JUtility::TColor mMatColor[2];

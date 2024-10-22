@@ -4,6 +4,11 @@
 #include "JSystem/JStage/JSGObject.h"
 
 namespace JStage {
+    
+    /**
+    * @ingroup jsystem-jstage
+    * 
+    */
     struct TActor : public TObject {
         /* 80280A48 */ virtual ~TActor() = 0;
         /* 80280AA8 */ virtual s32 JSGFGetType() const;

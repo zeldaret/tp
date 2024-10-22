@@ -5,8 +5,8 @@
 
 #include "d/d_cam_param.h"
 #include "SSystem/SComponent/c_math.h"
-#include "d/a/d_a_player.h"
-#include "d/com/d_com_inf_game.h"
+#include "d/actor/d_a_player.h"
+#include "d/d_com_inf_game.h"
 #include "dol2asm.h"
 
 //
@@ -188,15 +188,10 @@ dCamParam_c::dCamParam_c(s32 i_styleID) {
 }
 
 /* 8008858C-800885D4 082ECC 0048+00 1/0 1/1 0/0 .text            __dt__11dCamParam_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dCamParam_c::~dCamParam_c() {
-extern "C" asm void __dt__11dCamParam_cFv() {
-    nofralloc
-#include "asm/d/d_cam_param/__dt__11dCamParam_cFv.s"
+// dCamParam_c::~dCamParam_c() {
+extern "C" void __dt__11dCamParam_cFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 800885D4-80088620 082F14 004C+00 1/1 7/7 0/0 .text            Change__11dCamParam_cFl */
 int dCamParam_c::Change(s32 i_styleID) {
@@ -313,15 +308,10 @@ dCamSetup_c::dCamSetup_c() {
 }
 
 /* 800888B8-80088918 0831F8 0060+00 1/0 1/1 0/0 .text            __dt__11dCamSetup_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm dCamSetup_c::~dCamSetup_c() {
-extern "C" asm void __dt__11dCamSetup_cFv() {
-    nofralloc
-#include "asm/d/d_cam_param/__dt__11dCamSetup_cFv.s"
+// dCamSetup_c::~dCamSetup_c() {
+extern "C" void __dt__11dCamSetup_cFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80088918-80088988 083258 0070+00 0/0 1/1 0/0 .text CheckLatitudeRange__11dCamSetup_cFPs */
 bool dCamSetup_c::CheckLatitudeRange(s16* param_0) {

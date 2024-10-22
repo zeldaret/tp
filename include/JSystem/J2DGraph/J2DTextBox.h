@@ -19,11 +19,19 @@ enum J2DTextBoxHBinding {
     /* 0x2 */ HBIND_LEFT
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DTbxBlockHeader {
     /* 0x00 */ u32 mTag;
     /* 0x04 */ s32 mSize;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DTextBoxInfo {
     /* 0x00 */ u16 field_0x0;
     /* 0x02 */ u16 field_0x2;
@@ -42,6 +50,10 @@ struct J2DTextBoxInfo {
     /* 0x1E */ u16 field_0x1e;
 };  // Size: 0x20
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DTextBox : public J2DPane {
 public:
     struct TFontSize {
@@ -61,13 +73,13 @@ public:
     /* 803002E8 */ virtual void draw(f32, f32);
     /* 80300490 */ virtual void draw(f32, f32, f32, J2DTextBoxHBinding);
     /* 80300278 */ virtual void setFont(JUTFont*);
-    /* 8021C7F4 */ virtual JUTFont* getFont() const;
+    /* 8021C7F4 */ virtual JUTFont* getFont() const { return mFont; }
     /* 80254408 */ virtual bool setBlack(JUtility::TColor);
     /* 80186C84 */ virtual bool setWhite(JUtility::TColor);
     /* 8019230C */ virtual bool setBlackWhite(JUtility::TColor, JUtility::TColor);
     /* 801DFA34 */ virtual JUtility::TColor getBlack() const;
     /* 801DFA28 */ virtual JUtility::TColor getWhite() const;
-    /* 8025602C */ virtual bool getMaterial() const;
+    /* 8025602C */ virtual J2DMaterial* getMaterial() const { return NULL; }
 
     /* 802FFBC4 */ J2DTextBox(u64, JGeometry::TBox2<f32> const&, ResFONT const*, char const*, s16,
                               J2DTextBoxHBinding, J2DTextBoxVBinding);
@@ -125,6 +137,7 @@ public:
 
     JUtility::TColor getCharColor() { return mCharColor; }
     JUtility::TColor getGradColor() { return mGradientColor; }
+    u16 getStringAllocByte() const { return mStringLength; }
 
 // private:
     /* 0x0100 */ JUTFont* mFont;
@@ -141,7 +154,7 @@ public:
     /* 0x012C */ JUtility::TColor mBlackColor;
     /* 0x0130 */ u8 mFlags;
     /* 0x0131 */ bool mTextFontOwned;
-    /* 0x0132 */ s16 mStringLength;
+    /* 0x0132 */ u16 mStringLength;
     /* 0x0134 */ u8 field_0x134[4];
 };  // Size: 0x138
 

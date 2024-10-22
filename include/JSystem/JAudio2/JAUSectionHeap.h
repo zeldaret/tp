@@ -1,8 +1,6 @@
 #ifndef JAUSECTIONHEAP_H
 #define JAUSECTIONHEAP_H
 
-#include "JSystem/JAudio2/JAISeqDataMgr.h"
-#include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JAudio2/JAUBankTable.h"
 #include "JSystem/JAudio2/JAUSeqDataBlockMgr.h"
 #include "JSystem/JKernel/JKRDisposer.h"
@@ -21,6 +19,10 @@ class JAUSoundNameTable;
 class JKRArchive;
 class JKRSolidHeap;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAUSection /* : public JKRDisposer, protected JSULink<JAUSection> */ {
 public:
     struct TSectionData {
@@ -75,6 +77,10 @@ public:
     /* 0x38 */ TSectionData data_;
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAUSectionHeap /* : public JAUSection, JASGlobalInstance<JAUSectionHeap>, JAISeqDataMgr */ {
 public:
     struct TSectionHeapData {

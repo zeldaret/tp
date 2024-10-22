@@ -4,6 +4,10 @@
 #include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JASGadget.h"
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 struct JAISoundStarter : public JASGlobalInstance<JAISoundStarter> {
     /* 802A2F6C */ JAISoundStarter(bool);
 

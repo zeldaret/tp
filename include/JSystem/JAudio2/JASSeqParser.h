@@ -5,6 +5,10 @@
 
 class JASTrack;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JASSeqParser {
 public:
     enum BranchCondition {};

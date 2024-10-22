@@ -7,6 +7,10 @@
 class JAISound;
 class JAISoundID;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAISoundHandle {
 public:
     JAISoundHandle() {sound_ = NULL;};
@@ -28,6 +32,10 @@ public:
     JAISound* sound_;  // member from assert in operator->()
 };
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAISoundHandles {
 public:
     JAISoundHandles(JAISoundHandle* pHandle, int param_1) {

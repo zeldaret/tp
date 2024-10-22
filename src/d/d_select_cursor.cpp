@@ -4,10 +4,10 @@
 //
 
 #include "d/d_select_cursor.h"
-#include "d/com/d_com_inf_game.h"
+#include "d/d_com_inf_game.h"
 #include "JSystem/J2DGraph/J2DAnimation.h"
+#include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "dol2asm.h"
-#include "dolphin/os.h"
 #include "global.h"
 
 //
@@ -188,8 +188,6 @@ SECTION_SDATA2 static f32 lit_3673 = 1.0f;
 SECTION_SDATA2 static f32 lit_3674 = 3.0f / 10.0f;
 
 /* 801941E4-80194220 18EB24 003C+00 1/1 0/0 0/0 .text            __ct__19dSelect_cursorHIO_cFv */
-// matches with literals
-#ifdef NONMATCHING
 dSelect_cursorHIO_c::dSelect_cursorHIO_c() {
     field_0x8 = 1.0f;
     mXAxisExpansion = 1.0f;
@@ -200,16 +198,7 @@ dSelect_cursorHIO_c::dSelect_cursorHIO_c() {
     mRatioY = 1.0f;
     mDebugON = false;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dSelect_cursorHIO_c::dSelect_cursorHIO_c() {
-    nofralloc
-#include "asm/d/d_select_cursor/__ct__19dSelect_cursorHIO_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* ############################################################################################## */
 /* 80394A10-80394A30 021070 0020+00 1/1 0/0 0/0 .rodata          corner_tag$3707 */
@@ -228,8 +217,6 @@ SECTION_SDATA2 static u8 lit_3808[4] = {
 
 /* 80194220-801949EC 18EB60 07CC+00 0/0 14/14 0/0 .text __ct__16dSelect_cursor_cFUcfP10JKRArchive
  */
-// Matches with literals
-#ifdef NONMATCHING
 dSelect_cursor_c::dSelect_cursor_c(u8 param_0, f32 param_1, JKRArchive* param_2) {
     mpCursorHIO = new dSelect_cursorHIO_c();
     mpCursorHIO->field_0x4 = -1;
@@ -371,16 +358,7 @@ dSelect_cursor_c::dSelect_cursor_c(u8 param_0, f32 param_1, JKRArchive* param_2)
     mPositionY = 0.0f;
     mPositionX = 0.0f;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm dSelect_cursor_c::dSelect_cursor_c(u8 param_0, f32 param_1, JKRArchive* param_2) {
-    nofralloc
-#include "asm/d/d_select_cursor/__ct__16dSelect_cursor_cFUcfP10JKRArchive.s"
-}
-#pragma pop
-#endif
+
 
 /* 801949EC-80194C30 18F32C 0244+00 1/0 0/0 0/0 .text            __dt__16dSelect_cursor_cFv */
 dSelect_cursor_c::~dSelect_cursor_c() {
@@ -441,15 +419,10 @@ void dSelect_cursor_c::draw() {
     }
 }
 #else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm void dSelect_cursor_c::draw() {
-extern "C" asm void draw__16dSelect_cursor_cFv() {
-    nofralloc
-#include "asm/d/d_select_cursor/draw__16dSelect_cursor_cFv.s"
+// void dSelect_cursor_c::draw() {
+extern "C" void draw__16dSelect_cursor_cFv() {
+    // NONMATCHING
 }
-#pragma pop
 #endif
 
 /* ############################################################################################## */
@@ -460,8 +433,6 @@ SECTION_SDATA2 static f32 lit_4062 = 0.5f;
 SECTION_SDATA2 static f64 lit_4064 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80194CC0-801950F4 18F600 0434+00 1/1 0/0 0/0 .text            update__16dSelect_cursor_cFv */
-// matches with literals
-#ifdef NONMATCHING
 void dSelect_cursor_c::update() {
     f32 fVar1 = 1.0f;
     if (field_0xb6 == 3) {
@@ -553,24 +524,13 @@ void dSelect_cursor_c::update() {
         }
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSelect_cursor_c::update() {
-    nofralloc
-#include "asm/d/d_select_cursor/update__16dSelect_cursor_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* ############################################################################################## */
 /* 80453A60-80453A64 002060 0004+00 1/1 0/0 0/0 .sdata2          @4089 */
 SECTION_SDATA2 static f32 lit_4089 = -1.0f;
 
 /* 801950F4-801951B0 18FA34 00BC+00 0/0 30/30 0/0 .text setPos__16dSelect_cursor_cFffP7J2DPaneb */
-// matches with literals
-#ifdef NONMATCHING
 void dSelect_cursor_c::setPos(f32 i_posX, f32 i_posY, J2DPane* i_pane, bool i_scaleBounds) {
     mpPane = i_pane;
     setPos(i_posX,i_posY);
@@ -605,16 +565,7 @@ void dSelect_cursor_c::setPos(f32 i_posX, f32 i_posY, J2DPane* i_pane, bool i_sc
     }
 
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSelect_cursor_c::setPos(f32 param_0, f32 param_1, J2DPane* param_2, bool param_3) {
-    nofralloc
-#include "asm/d/d_select_cursor/setPos__16dSelect_cursor_cFffP7J2DPaneb.s"
-}
-#pragma pop
-#endif
+
 
 /* 801951B0-801951C8 18FAF0 0018+00 0/0 24/24 0/0 .text setParam__16dSelect_cursor_cFfffff */
 void dSelect_cursor_c::setParam(f32 i_param1, f32 i_param2, f32 i_param3, f32 i_param4,
@@ -627,8 +578,6 @@ void dSelect_cursor_c::setParam(f32 i_param1, f32 i_param2, f32 i_param3, f32 i_
 }
 
 /* 801951C8-801952A0 18FB08 00D8+00 0/0 14/14 0/0 .text            setScale__16dSelect_cursor_cFf */
-// matches with literals
-#ifdef NONMATCHING
 void dSelect_cursor_c::setScale(f32 i_scale) {
     J2DPane* pane = mpPaneMgr->getPanePtr();
     pane->scale(i_scale,i_scale);
@@ -646,16 +595,7 @@ void dSelect_cursor_c::setScale(f32 i_scale) {
         break;
     }
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSelect_cursor_c::setScale(f32 param_0) {
-    nofralloc
-#include "asm/d/d_select_cursor/setScale__16dSelect_cursor_cFf.s"
-}
-#pragma pop
-#endif
+
 
 /* 801952A0-80195330 18FBE0 0090+00 0/0 77/77 0/0 .text setAlphaRate__16dSelect_cursor_cFf */
 void dSelect_cursor_c::setAlphaRate(f32 i_alphaRate) {
@@ -678,8 +618,6 @@ void dSelect_cursor_c::setAlphaRate(f32 i_alphaRate) {
 SECTION_SDATA2 static f32 lit_4157 = 5.0f;
 
 /* 80195330-801953CC 18FC70 009C+00 0/0 1/1 0/0 .text            addAlpha__16dSelect_cursor_cFv */
-// matches with literals
-#ifdef NONMATCHING
 int dSelect_cursor_c::addAlpha() {
     s16 alpha_timer = mpPaneMgr->getAlphaTimer();
 
@@ -697,20 +635,9 @@ int dSelect_cursor_c::addAlpha() {
 
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dSelect_cursor_c::addAlpha() {
-    nofralloc
-#include "asm/d/d_select_cursor/addAlpha__16dSelect_cursor_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 801953CC-80195460 18FD0C 0094+00 0/0 1/1 0/0 .text            decAlpha__16dSelect_cursor_cFv */
-// matches with literals
-#ifdef NONMATCHING
 int dSelect_cursor_c::decAlpha() {
     s16 alpha_timer = mpPaneMgr->getAlphaTimer();
 
@@ -727,16 +654,7 @@ int dSelect_cursor_c::decAlpha() {
 
     return 0;
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm int dSelect_cursor_c::decAlpha() {
-    nofralloc
-#include "asm/d/d_select_cursor/decAlpha__16dSelect_cursor_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* ############################################################################################## */
 /* 80394A30-80394A50 021090 0020+00 1/1 0/0 0/0 .rodata          tag$4181 */
@@ -805,8 +723,6 @@ SECTION_SDATA2 static f32 lit_4237 = 20.0f;
 SECTION_SDATA2 static f32 lit_4238 = 10.0f;
 
 /* 80195724-801958E0 190064 01BC+00 1/1 0/0 0/0 .text setCursorAnimation__16dSelect_cursor_cFv */
-// Matches without literals
-#ifdef NONMATCHING
 void dSelect_cursor_c::setCursorAnimation() {
     f32 fVar1 = 1.0f;
     if (field_0xb6 == 3) {
@@ -836,16 +752,7 @@ void dSelect_cursor_c::setCursorAnimation() {
     moveCenter(mpScreen->search('r_u_null'), field_0x74[2], field_0x84[2]);
     moveCenter(mpScreen->search('r_d_null'), field_0x74[3], field_0x84[3]);
 }
-#else
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSelect_cursor_c::setCursorAnimation() {
-    nofralloc
-#include "asm/d/d_select_cursor/setCursorAnimation__16dSelect_cursor_cFv.s"
-}
-#pragma pop
-#endif
+
 
 /* 801958E0-80195940 190220 0060+00 1/1 0/0 0/0 .text
  * setBckAnimation__16dSelect_cursor_cFP18J2DAnmTransformKey    */
@@ -864,14 +771,9 @@ dSelect_cursorHIO_c::~dSelect_cursorHIO_c() {
 }
 
 /* 801959C0-80195A2C 190300 006C+00 0/0 1/0 0/0 .text            __dt__18J2DAnmTransformKeyFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-// asm J2DAnmTransformKey::~J2DAnmTransformKey() {
-extern "C" asm void __dt__18J2DAnmTransformKeyFv() {
-    nofralloc
-#include "asm/d/d_select_cursor/__dt__18J2DAnmTransformKeyFv.s"
+// J2DAnmTransformKey::~J2DAnmTransformKey() {
+extern "C" void __dt__18J2DAnmTransformKeyFv() {
+    // NONMATCHING
 }
-#pragma pop
 
 /* 80394AA0-80394AA0 021100 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

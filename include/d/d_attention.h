@@ -3,28 +3,31 @@
 
 #include "SSystem/SComponent/c_angle.h"
 #include "m_Do/m_Do_ext.h"
+#include "f_pc/f_pc_base.h"
 
 class fopAc_ac_c;
 
 class dAttHint_c {
 public:
     dAttHint_c() {}
-    /* 800738B4 */ u32 getPId(void*);
-    /* 800738CC */ fopAc_ac_c* convPId(unsigned int);
+    /* 800738B4 */ fpc_ProcID getPId(void*);
+    /* 800738CC */ fopAc_ac_c* convPId(fpc_ProcID);
     /* 800738FC */ int request(fopAc_ac_c*, int);
     /* 80073958 */ void init();
     /* 80073970 */ void proc();
 
+    fopAc_ac_c* getZHintTarget() { return convPId(field_0x8); }
+
 private:
-    /* 0x0 */ u32 mHintActorID;
+    /* 0x0 */ fpc_ProcID mHintActorID;
     /* 0x4 */ int mPriority;
-    /* 0x8 */ u32 field_0x8;
+    /* 0x8 */ fpc_ProcID field_0x8;
 };
 
 class dAttCatch_c {
 public:
     dAttCatch_c() {}
-    fopAc_ac_c* convPId(unsigned int);
+    fopAc_ac_c* convPId(fpc_ProcID);
     void init();
     void proc();
     int request(fopAc_ac_c*, u8, f32, f32, f32, s16, int);
@@ -40,7 +43,7 @@ private:
     /* 0x0D */ u8 field_0xd;
     /* 0x0E */ u8 field_0xe;
     /* 0x0F */ u8 field_0xf;
-    /* 0x10 */ u32 mCatghTargetID;
+    /* 0x10 */ fpc_ProcID mCatghTargetID;
     /* 0x14 */ u8 mChangeItem;
 };  // Size: 0x18
 
@@ -77,7 +80,7 @@ public:
 
 class dAttLook_c {
 public:
-    /* 80073CA4 */ fopAc_ac_c* convPId(unsigned int);
+    /* 80073CA4 */ fopAc_ac_c* convPId(fpc_ProcID);
     /* 80073CD4 */ void init();
     /* 80073CEC */ void proc();
     /* 80073D08 */ int request(fopAc_ac_c*, f32, f32, f32, s16, int);
@@ -86,7 +89,7 @@ private:
     u32 field_0x0;
     s32 field_0x4;
     f32 field_0x8;
-    u32 mLookTargetID;
+    fpc_ProcID mLookTargetID;
 };  // Size: 0x10
 
 class dAttList_c {
@@ -96,13 +99,13 @@ public:
     /* 80073864 */ fopAc_ac_c* getActor();
     /* 80073898 */ void setActor(fopAc_ac_c*);
 
-    u32 getPid() { return mActorID; }
+    fpc_ProcID getPid() { return mActorID; }
 
     /* 0x00 */ f32 mWeight;
     /* 0x04 */ f32 mDistance;
     /* 0x08 */ cSAngle mAngle;
     /* 0x0C */ u32 mType;
-    /* 0x10 */ u32 mActorID;
+    /* 0x10 */ fpc_ProcID mActorID;
 };  // Size: 0x14
 
 class dAttDraw_c {
@@ -141,13 +144,13 @@ public:
 };
 
 struct dist_entry {
-    f32 field_0x0;
-    f32 field_0x4;
-    f32 field_0x8;
-    f32 field_0xc;
-    f32 field_0x10;
-    f32 field_0x14;
-    u32 field_0x18;
+    /* 0x00 */ f32 mDistMax;
+    /* 0x04 */ f32 mDistMaxRelease;
+    /* 0x08 */ f32 mDistanceAdjust;
+    /* 0x0C */ f32 mUpperY;
+    /* 0x10 */ f32 mLowerY;
+    /* 0x14 */ f32 mWeight;
+    /* 0x18 */ u32 mAngleSelect;
 };  // Size: 0x1C
 
 struct type_tbl_entry {
@@ -195,7 +198,7 @@ public:
     /* 80072D80 */ void lockSoundStart(u32);
     /* 8007353C */ fopAc_ac_c* LockonTarget(s32);
     /* 800735DC */ f32 LockonReleaseDistanse();
-    /* 800736CC */ u32 LockonTargetPId(s32);
+    /* 800736CC */ fpc_ProcID LockonTargetPId(s32);
     /* 80073734 */ fopAc_ac_c* ActionTarget(s32);
     /* 8007378C */ fopAc_ac_c* CheckObjectTarget(s32);
     /* 800737E4 */ bool LockonTruth();
@@ -206,6 +209,7 @@ public:
     /* 8014B010 */ static dist_entry& getDistTable(int);
 
     fopAc_ac_c* getCatghTarget() { return mCatghTarget.getCatghTarget(); }
+    fopAc_ac_c* getZHintTarget() { return mZHintTarget.getZHintTarget(); }
     u8 getCatchChgItem() { return mCatghTarget.getChangeItem(); }
     BOOL chkFlag(u32 flag) { return (mFlags & flag) ? TRUE : FALSE; }
     void setFlag(u32 flag) { mFlags |= flag; }
@@ -228,6 +232,11 @@ public:
                              param_5);
     }
 
+    void Init(fopAc_ac_c* param_0, u32 i_padNo) {
+        mpPlayer = param_0;
+        mPadNo = i_padNo;
+    }
+
     static dist_entry& i_getDistTable(int i_no) { return dist_table[i_no]; }
 
     static type_tbl_entry loc_type_tbl[3];
@@ -240,7 +249,7 @@ public:
 
 public:
     /* 0x000 */ fopAc_ac_c* mpPlayer;
-    /* 0x004 */ u32 mLockTargetID;
+    /* 0x004 */ fpc_ProcID mLockTargetID;
     /* 0x008 */ dAttDraw_CallBack_c mpDrawCallback;
     /* 0x00C */ u32 mPadNo;
     /* 0x010 */ u32 mPlayerAttentionFlags;
@@ -248,7 +257,7 @@ public:
     /* 0x018 */ JKRSolidHeap* heap;
     /* 0x01C */ cXyz mDrawAttnPos;
     /* 0x028 */ dAttDraw_c draw[2];
-    /* 0x318 */ u32 mTargetActorID;
+    /* 0x318 */ fpc_ProcID mTargetActorID;
     /* 0x31C */ cXyz mOwnerAttnPos;
     /* 0x328 */ s8 field_0x328;
     /* 0x329 */ u8 mAttnStatus;
@@ -278,7 +287,7 @@ public:
     /* 0x4C4 */ int mAttnBlockTimer;
     /* 0x4C8 */ dAttParam_c mAttParam;
     /* 0x50C */ u8 field_0x50c[0x514 - 0x50c];
-    /* 0x514 */ u32 mEnemyActorID;
+    /* 0x514 */ fpc_ProcID mEnemyActorID;
     /* 0x518 */ f32 mEnemyDist;
 };  // Size: 0x51C
 

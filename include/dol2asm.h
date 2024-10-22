@@ -2,7 +2,7 @@
 #define DOL2ASM
 
 // this helps remove useless error from the linter when using vscode.
-#ifndef IN_VSCODE_EDITOR
+#ifdef __MWERKS__
 
 #ifdef __cplusplus
 #define SECTION_INIT extern "C" __declspec(section ".init")

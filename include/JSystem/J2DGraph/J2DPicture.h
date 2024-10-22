@@ -3,7 +3,6 @@
 
 #include "JSystem/J2DGraph/J2DPane.h"
 #include "JSystem/JUtility/TColor.h"
-#include "dolphin/types.h"
 
 class J2DMaterial;
 class JUTPalette;
@@ -26,11 +25,19 @@ enum J2DBinding {
     /* 0xF */ BIND15 = 15,  // temp, figure out later
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DPicHeader {
     /* 0x0 */ u32 mTag;
     /* 0x4 */ u32 mSize;
 };
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 struct J2DScrnBlockPictureParameter {
     /* 0x00 */ u16 field_0x0;
     /* 0x02 */ u16 mMaterialNum;
@@ -41,6 +48,10 @@ struct J2DScrnBlockPictureParameter {
     /* 0x20 */ u32 mCornerColor[4];
 };  // Size: 0x30
 
+/**
+ * @ingroup jsystem-j2d
+ * 
+ */
 class J2DPicture : public J2DPane {
 public:
     /* 802FCFF0 */ virtual ~J2DPicture();
@@ -97,14 +108,10 @@ public:
     /* 802FF634 */ virtual u8 getTextureCount() const;
     /* 80053C6C */ virtual bool setBlack(JUtility::TColor);
     /* 80053C44 */ virtual bool setWhite(JUtility::TColor);
-    /* 8018BEE0 */ virtual bool setBlackWhite(JUtility::TColor i_black, JUtility::TColor i_white) {
-        mBlack = i_black;
-        mWhite = i_white;
-        return 1;
-    }
+    /* 8018BEE0 */ virtual bool setBlackWhite(JUtility::TColor i_black, JUtility::TColor i_white);
     /* 801DFA4C */ virtual JUtility::TColor getBlack() const;
     /* 801DFA40 */ virtual JUtility::TColor getWhite() const;
-    /* 8025603C */ virtual bool getMaterial() const;
+    /* 8025603C */ virtual J2DMaterial* getMaterial() const { return NULL; }
     /* 802FDBFC */ virtual void drawFullSet(f32, f32, f32, f32, Mtx*);
     /* 802FE380 */ virtual void drawTexCoord(f32, f32, f32, f32, s16, s16, s16, s16, s16, s16, s16,
                                              s16, Mtx*);

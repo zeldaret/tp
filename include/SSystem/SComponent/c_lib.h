@@ -37,21 +37,27 @@ s32 cLib_distanceAngleS(s16 x, s16 y);
 
 template <typename T>
 inline void cLib_offBit(T& value, T bit) {
-    value &= ~bit;
+    value = (T)(value & ~bit);
 }
 
 template <typename T>
 inline void cLib_onBit(T& value, T bit) {
-    value |= bit;
+    value = (T)(value | bit);
 }
 
 template <typename T>
-inline T cLib_checkBit(T& value, T bit) {
+inline T cLib_checkBit(T value, T bit) {
     return (T)(value & bit);
 }
 
 template <typename T>
 inline T cLib_minMaxLimit(T val, T min, T max) {
+    return (T)((T)val < (T)min ? (T)min : ((T)val > (T)max ? (T)max : (T)val));
+}
+
+// fake function, replace usages with cLib_minMaxLimit when possible
+template <typename T>
+inline T cLib_minMaxLimit2(T val, T min, T max) {
     T ret;
     T var_r30;
 
@@ -87,8 +93,7 @@ inline T cLib_maxLimit(T val, T max) {
 
 template <typename T>
 T cLib_calcTimer(T* value) {
-    // Casting 0 to u16 may not be correct, but is matching for now
-    if (*value != (u16)0) {
+    if (*(T*)value != 0) {
         *value = *value - 1;
     }
     return *value;

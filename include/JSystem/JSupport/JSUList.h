@@ -11,6 +11,11 @@ class JSUList;
 //
 
 class JSUPtrList;
+
+/**
+* @ingroup jsystem-jsupport
+* 
+*/
 class JSUPtrLink {
 public:
     JSUPtrLink(void* object);
@@ -31,6 +36,10 @@ public:
     JSUPtrLink* mNext;
 };
 
+/**
+* @ingroup jsystem-jsupport
+* 
+*/
 template <typename T>
 class JSULink : public JSUPtrLink {
 public:
@@ -49,6 +58,10 @@ public:
 // List
 //
 
+/**
+* @ingroup jsystem-jsupport
+* 
+*/
 class JSUPtrList {
 public:
     JSUPtrList() { this->initiate(); }
@@ -75,6 +88,10 @@ private:
     u32 mLength;
 };
 
+/**
+* @ingroup jsystem-jsupport
+* 
+*/
 template <typename T>
 class JSUList : public JSUPtrList {
 public:
@@ -104,6 +121,10 @@ public:
     u32 getNumLinks() const { return this->JSUPtrList::getNumLinks(); }
 };
 
+/**
+* @ingroup jsystem-jsupport
+* 
+*/
 template <typename T>
 class JSUListIterator {
 public:
@@ -157,6 +178,10 @@ public:
 // Tree
 //
 
+/**
+* @ingroup jsystem-jsupport
+* 
+*/
 template <typename T>
 class JSUTree : public JSUList<T>, public JSULink<T> {
 public:
@@ -186,6 +211,10 @@ public:
     JSUTree<T>* getParent() const { return (JSUTree<T>*)this->getList(); }
 };
 
+/**
+* @ingroup jsystem-jsupport
+* 
+*/
 template <typename T>
 class JSUTreeIterator {
 public:

@@ -5,6 +5,10 @@
 
 struct JASSoundParams;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAIAudible {
 public:
     virtual ~JAIAudible();

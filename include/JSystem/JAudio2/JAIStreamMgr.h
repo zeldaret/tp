@@ -1,15 +1,17 @@
 #ifndef JAISTREAMMGR_H
 #define JAISTREAMMGR_H
 
-#include "JSystem/JAudio2/JAISound.h"
 #include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JAudio2/JAIStream.h"
-#include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JUtility/JUTAssert.h"
 
 class JAIStreamAramMgr;
 class JAIStreamDataMgr;
 
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
 class JAIStreamMgr : public JASGlobalInstance<JAIStreamMgr> {
 public:
     /* 802A3B68 */ JAIStreamMgr(bool);

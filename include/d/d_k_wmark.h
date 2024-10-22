@@ -2,8 +2,7 @@
 #define D_D_K_WMARK_H
 
 #include "f_op/f_op_kankyo_mng.h"
-#include "d/kankyo/d_kankyo.h"
-#include "d/d_procname.h"
+#include "d/d_kankyo.h"
 
 class dkWmark_c : public kankyo_class {
 public:

@@ -1,0 +1,12 @@
+CompileFlags:
+  Add: [-Wno-c++11-compat-deprecated-writable-strings, -Wno-extern-initializer]
+---
+If:
+  PathMatch: .*/*.inc
+Diagnostics:
+  Suppress:
+    - "undeclared_var_use"
+    - "undeclared_var_use_suggest"
+    - "bound_member_function"
+    - "typecheck_subscript_value"
+    - "unknown_typename"

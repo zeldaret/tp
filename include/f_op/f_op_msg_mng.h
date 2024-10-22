@@ -41,14 +41,14 @@ s32 fopMsgM_create(s16 param_0, fopAc_ac_c* param_1, cXyz* param_2, u32* param_3
                    fopMsgCreateFunc createFunc);
 void fopMsgM_Delete(void* process);
 fopMsg_prm_class* fopMsgM_GetAppend(void* msg);
-void fopMsgM_setMessageID(unsigned int);
+void fopMsgM_setMessageID(fpc_ProcID);
 void fopMsgM_destroyExpHeap(JKRExpHeap*);
 f32 fopMsgM_valueIncrease(int param_0, int param_1, u8 param_2);
 s32 fopMsgM_setStageLayer(void*);
 int fopMsgM_messageSet(u32 i_msgIdx, fopAc_ac_c* i_actorP, u32 param_2);
 int fopMsgM_messageSet(u32 param_0, u32 param_1);
 int fopMsgM_messageSetDemo(u32 param_0);
-msg_class* fopMsgM_SearchByID(unsigned int param_0);
+msg_class* fopMsgM_SearchByID(fpc_ProcID param_0);
 char* fopMsgM_messageGet(char* msg, u32 string_id);
 s32 fop_Timer_create(s16 param_0, u8 param_1, u32 param_2, u8 param_3, u8 param_4, f32 param_5,
                      f32 param_6, f32 param_7, f32 param_8, fopMsgCreateFunc createFunc);

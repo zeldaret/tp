@@ -12,6 +12,9 @@
 #define IS_ALIGNED(X, N) (((X) & ((N)-1)) == 0)
 #define IS_NOT_ALIGNED(X, N) (((X) & ((N)-1)) != 0)
 
+#define ROUND(n, a) (((u32)(n) + (a)-1) & ~((a)-1))
+#define TRUNC(n, a) (((u32)(n)) & ~((a)-1))
+
 #define JUT_EXPECT(...)
 #define FLAG_ON(V, F) (((V) & (F)) == 0)
 
@@ -21,7 +24,7 @@
 #define _SDA_BASE_(dummy) 0
 #define _SDA2_BASE_(dummy) 0
 
-#ifndef IN_VSCODE_EDITOR
+#ifdef __MWERKS__
 #define GLUE(a, b) a##b
 #define GLUE2(a, b) GLUE(a, b)
 #define STATIC_ASSERT(cond) typedef char GLUE2(static_assertion_failed, __LINE__)[(cond) ? 1 : -1]
@@ -36,5 +39,8 @@ inline BOOL checkEqual(s32 a, s32 b) {
 }
 
 #define FAST_DIV(x, n) (x >> (n / 2))
+
+// hack to make strings with no references compile properly
+#define DEAD_STRING(s) OSReport(s)
 
 #endif

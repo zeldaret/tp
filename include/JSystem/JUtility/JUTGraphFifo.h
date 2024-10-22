@@ -3,6 +3,10 @@
 
 #include "dolphin/gx.h"
 
+/**
+* @ingroup jsystem-jutility
+* 
+*/
 class JUTGraphFifo {
 public:
     /* 802DEB58 */ JUTGraphFifo(u32);

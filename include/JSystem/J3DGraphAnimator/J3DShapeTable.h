@@ -2,10 +2,13 @@
 #define J3DSHAPETABLE_H
 
 #include "JSystem/J3DGraphBase/J3DShape.h"
-#include "dolphin/types.h"
 
 class JUTNameTab;
 
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
 class J3DShapeTable {
 public:
     J3DShapeTable() {
@@ -19,7 +22,7 @@ public:
     /* 80325910 */ void initShapeNodes(J3DDrawMtxData*, J3DVertexData*);
     /* 8032597C */ void sortVcdVatCmd();
 
-    virtual ~J3DShapeTable();
+    virtual ~J3DShapeTable() {}
 
     u16 getShapeNum() const { return mShapeNum; }
     J3DShape* getShapeNodePointer(u16 idx) const { return mShapeNodePointer[idx]; }

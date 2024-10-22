@@ -78,7 +78,7 @@ s32 fpcBs_Delete(base_process_class* i_proc) {
 }
 
 /* 80020820-8002091C 00FC+00 s=0 e=2 z=0  None .text      fpcBs_Create__FsUiPv */
-base_process_class* fpcBs_Create(s16 i_procTypeID, unsigned int i_procID, void* i_data) {
+base_process_class* fpcBs_Create(s16 i_procTypeID, fpc_ProcID i_procID, void* i_data) {
     process_profile_definition* procProfDef;
     base_process_class* procClass;
     u32 size;
