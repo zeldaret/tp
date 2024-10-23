@@ -1908,17 +1908,9 @@ void Z2SceneMgr::_load1stWaveInner_2() {
 
 /* 802BA09C-802BA120 2B49DC 0084+00 0/0 1/1 0/0 .text            check1stDynamicWave__10Z2SceneMgrFv
  */
-// NONMATCHING li instead of mr
 bool Z2SceneMgr::check1stDynamicWave() {
-    bool ret = true;
-    bool tmp = true;
-    if (load1stWait == 0 && getSeLoadStatus(requestSeWave_1) != 1) {
-        tmp = false;
-    }
-    if (!tmp && getBgmLoadStatus(requestBgmWave_1) != 1) {
-        ret = false;
-    }
-    return ret;
+    return load1stWait != 0 || getSeLoadStatus(requestSeWave_1) == 1
+        || getBgmLoadStatus(requestBgmWave_1) == 1;
 }
 
 /* 802BA120-802BA294 2B4A60 0174+00 0/0 2/2 0/0 .text            load2ndDynamicWave__10Z2SceneMgrFv
