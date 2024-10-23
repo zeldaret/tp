@@ -9,42 +9,6 @@
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "dolphin/os.h"
 
-//
-// Forward References:
-//
-
-extern "C" void __ct__13JASTaskThreadFiiUl();
-extern "C" void __dt__13JASTaskThreadFv();
-extern "C" void allocCallStack__13JASTaskThreadFPFPv_vPCvUl();
-extern "C" void allocCallStack__13JASTaskThreadFPFPv_vPv();
-extern "C" void sendCmdMsg__13JASTaskThreadFPFPv_vPCvUl();
-extern "C" void sendCmdMsg__13JASTaskThreadFPFPv_vPv();
-extern "C" void run__13JASTaskThreadFv();
-extern "C" void pause__13JASTaskThreadFb();
-
-//
-// External References:
-//
-
-extern "C" void bcopy__7JASCalcFPCvPvUl();
-extern "C" void getSystemHeap__9JASKernelFv();
-extern "C" void getCommandHeap__9JASKernelFv();
-extern "C" void* __nw__FUlP7JKRHeapi();
-extern "C" void __dl__FPv();
-extern "C" void __ct__9JKRThreadFP7JKRHeapUlii();
-extern "C" void __dt__9JKRThreadFv();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" u8 sSystemHeap__7JKRHeap[4];
-
-//
-// Declarations:
-//
-
 /* 8028F6C4-8028F724 28A004 0060+00 0/0 1/1 0/0 .text            __ct__13JASTaskThreadFiiUl */
 JASTaskThread::JASTaskThread(int param_0, int param_1, u32 param_2) : JKRThread(JASDram, param_2, param_1, param_0) {
     field_0x84 = false;
@@ -129,8 +93,7 @@ int JASTaskThread::sendCmdMsg(void (*param_0)(void*), void* param_1) {
 }
 
 /* 8028FD4C-8028FE88 28A68C 013C+00 1/0 0/0 0/0 .text            run__13JASTaskThreadFv */
-// Regalloc
-#ifdef NONMATCHING
+// NONMATCHING Regalloc
 void* JASTaskThread::run() {
     OSInitFastCast();
     do {
@@ -147,11 +110,6 @@ void* JASTaskThread::run() {
         heap->free(ppcVar1);
     } while (true);
 }
-#else
-void* JASTaskThread::run() {
-    // NONMATCHING
-}
-#endif
 
 /* 8028FE88-8028FEFC 28A7C8 0074+00 0/0 1/1 0/0 .text            pause__13JASTaskThreadFb */
 void JASTaskThread::pause(bool param_0) {

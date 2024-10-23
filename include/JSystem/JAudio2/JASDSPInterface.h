@@ -120,4 +120,6 @@ namespace JASDsp {
     extern f32 sDSPVolume;
 };
 
+u16 DSP_CreateMap2(u32 msg);
+
 #endif /* JASDSPINTERFACE_H */

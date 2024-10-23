@@ -7,88 +7,6 @@
 #include "JSystem/JAudio2/JAISoundHandles.h"
 #include "JSystem/JAudio2/JAISoundInfo.h"
 #include "JSystem/JAudio2/JASReport.h"
-#include "dol2asm.h"
-
-//
-// Forward References:
-//
-
-extern "C" void isUsingSeqData__16JAISeCategoryMgrFRC16JAISeqDataRegion();
-extern "C" void releaseSeqData__16JAISeCategoryMgrFRC16JAISeqDataRegion();
-extern "C" void JAISeMgr_calc___16JAISeCategoryMgrFv();
-extern "C" void JAISeMgr_freeDeadSe___16JAISeCategoryMgrFv();
-extern "C" void func_8029FC34(void* _this);
-extern "C" void JAISeMgr_acceptsNewSe___16JAISeCategoryMgrCFUl();
-extern "C" void sortByPriority___16JAISeCategoryMgrFv();
-extern "C" void stop__16JAISeCategoryMgrFUl();
-extern "C" void stop__16JAISeCategoryMgrFv();
-extern "C" void stopSoundID__16JAISeCategoryMgrF10JAISoundID();
-extern "C" void pause__16JAISeCategoryMgrFb();
-extern "C" void JAISeMgr_mixOut___16JAISeCategoryMgrFRC18JAISoundParamsMove16JAISoundActivity();
-extern "C" void __ct__8JAISeMgrFb();
-extern "C" void isUsingSeqData__8JAISeMgrFRC16JAISeqDataRegion();
-extern "C" void releaseSeqData__8JAISeMgrFRC16JAISeqDataRegion();
-extern "C" void setCategoryArrangement__8JAISeMgrFRC24JAISeCategoryArrangement();
-extern "C" void stop__8JAISeMgrFv();
-extern "C" void stopSoundID__8JAISeMgrF10JAISoundID();
-extern "C" void initParams__8JAISeMgrFv();
-extern "C" void setAudience__8JAISeMgrFP11JAIAudience();
-extern "C" void setSeqDataMgr__8JAISeMgrFP13JAISeqDataMgr();
-extern "C" void resetSeqDataMgr__8JAISeMgrFv();
-extern "C" void newSe___8JAISeMgrFiUl();
-extern "C" void calc__8JAISeMgrFv();
-extern "C" void mixOut__8JAISeMgrFv();
-extern "C" void func_802A0768();
-extern "C" void getNumActiveSe__8JAISeMgrCFv();
-extern "C" void __dt__8JAISeMgrFv();
-extern "C" void __ct__16JAISeCategoryMgrFv();
-extern "C" extern char const* const JAISeMgr__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void __dt__16JAISeCategoryMgrFv();
-extern "C" void __ct__17JASGenericMemPoolFv();
-extern "C" void __dt__17JASGenericMemPoolFv();
-extern "C" void alloc__17JASGenericMemPoolFUl();
-extern "C" void free__17JASGenericMemPoolFPvUl();
-extern "C" void JASReport__FPCce();
-extern "C" void __dt__8JASTrackFv();
-extern "C" void combine__14JASSoundParamsFRC14JASSoundParamsRC14JASSoundParams();
-extern "C" void func_8029F03C();
-extern "C" void JAISeCategoryMgr_mixOut___5JAISeFbRC14JASSoundParams16JAISoundActivity();
-extern "C" void JAISeCategoryMgr_calc___5JAISeFv();
-extern "C" void func_8029F650();
-extern "C" void __dt__14JAISeqDataUserFv();
-extern "C" void attachHandle__8JAISoundFP14JAISoundHandle();
-extern "C" void stop__8JAISoundFUl();
-extern "C" void stop__8JAISoundFv();
-extern "C" void __dl__FPv();
-extern "C" void __dt__10JSUPtrLinkFv();
-extern "C" void initiate__10JSUPtrListFv();
-extern "C" void append__10JSUPtrListFP10JSUPtrLink();
-extern "C" void remove__10JSUPtrListFP10JSUPtrLink();
-extern "C" void __register_global_object();
-extern "C" void __destroy_arr();
-extern "C" void __construct_array();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__5JAISe[22];
-extern "C" extern void* __vt__14JAISeqDataUser[5 + 1 /* padding */];
-extern "C" extern u8 data_80450B5C[4];
-extern "C" extern u8 data_80451310[8];
-extern "C" extern u8 __OSReport_disable;
-
-//
-// Declarations:
-//
 
 /* 8029F8B0-8029F91C 29A1F0 006C+00 2/1 0/0 0/0 .text
  * isUsingSeqData__16JAISeCategoryMgrFRC16JAISeqDataRegion      */
@@ -135,19 +53,9 @@ void JAISeCategoryMgr::JAISeMgr_calc_() {
     sortByPriority_();
 }
 
-/* ############################################################################################## */
-/* 80434078-80434084 060D98 000C+00 2/2 0/0 0/0 .bss             @744 */
-static u8 lit_744[12];
-
-/* 80434084-80434098 060DA4 0010+04 2/2 1/1 0/0 .bss
- * memPool_$localstatic3$getMemPool___26JASPoolAllocObject<5JAISe>Fv */
-extern u8 data_80434084[16 + 4 /* padding */];
-u8 data_80434084[16 + 4 /* padding */];
-
 /* 8029FB30-8029FC34 29A470 0104+00 1/1 0/0 0/0 .text JAISeMgr_freeDeadSe___16JAISeCategoryMgrFv
  */
-// Need to setup JAISe dtor
-#ifdef NONMATCHING
+// JASPoolAllocObject<_> locations
 void JAISeCategoryMgr::JAISeMgr_freeDeadSe_() {
     JSULink<JAISe>* link = mSeList.getFirst();
     while (link != NULL) {
@@ -159,22 +67,10 @@ void JAISeCategoryMgr::JAISeMgr_freeDeadSe_() {
         link = link_next;
     }
 }
-#else
-void JAISeCategoryMgr::JAISeMgr_freeDeadSe_() {
-    // NONMATCHING
-}
-#endif
-
-/* 8029FC34-8029FC88 29A574 0054+00 2/2 1/1 0/0 .text            __dt__18JASMemPool<5JAISe>Fv */
-extern "C" void func_8029FC34(void* _this) {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
 
 /* 8029FC88-8029FD40 29A5C8 00B8+00 1/1 0/0 0/0 .text
  * JAISeMgr_acceptsNewSe___16JAISeCategoryMgrCFUl               */
-u32 JAISeCategoryMgr::JAISeMgr_acceptsNewSe_(u32 param_0) const {
+bool JAISeCategoryMgr::JAISeMgr_acceptsNewSe_(u32 param_0) const {
     s32 maxSe = getMaxSe();
     if (maxSe <= 0) {
         return 1;
@@ -244,25 +140,10 @@ void JAISeCategoryMgr::pause(bool param_0) {
     }
 }
 
-/* ############################################################################################## */
-/* 8045578C-80455790 003D8C 0004+00 4/4 0/0 0/0 .sdata2          @1040 */
-SECTION_SDATA2 static f32 lit_1040 = 1.0f;
-
-/* 80455790-80455794 003D90 0004+00 4/4 0/0 0/0 .sdata2          @1041 */
-SECTION_SDATA2 static u8 lit_1041[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80455794-80455798 003D94 0004+00 4/4 0/0 0/0 .sdata2          @1042 */
-SECTION_SDATA2 static f32 lit_1042 = 0.5f;
-
 /* 8029FF18-802A0074 29A858 015C+00 1/1 0/0 0/0 .text
  * JAISeMgr_mixOut___16JAISeCategoryMgrFRC18JAISoundParamsMove16JAISoundActivity */
 void JAISeCategoryMgr::JAISeMgr_mixOut_(JAISoundParamsMove const& param_0,
-                                            JAISoundActivity param_1) {
+                                        JAISoundActivity param_1) {
     JASSoundParams aJStack_30;
     aJStack_30.combine(param_0.mParams, mParams.mParams);
     JSULink<JAISe>* this_00 = mSeList.getFirst();
@@ -288,26 +169,14 @@ void JAISeCategoryMgr::JAISeMgr_mixOut_(JAISoundParamsMove const& param_0,
     }
 }
 
-
-/* ############################################################################################## */
-/* 803C98B0-803C98C4 0269D0 0014+00 2/2 1/1 0/0 .data            __vt__8JAISeMgr */
-SECTION_DATA extern void* __vt__8JAISeMgr[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8JAISeMgrFv,
-    (void*)isUsingSeqData__8JAISeMgrFRC16JAISeqDataRegion,
-    (void*)releaseSeqData__8JAISeMgrFRC16JAISeqDataRegion,
-};
-
 /* 802A0074-802A0168 29A9B4 00F4+00 0/0 1/1 0/0 .text            __ct__8JAISeMgrFb */
 JAISeMgr::JAISeMgr(bool param_0) : JASGlobalInstance<JAISeMgr>(param_0) {
     mAudience = NULL;
     mSeqDataMgr = NULL;
-    field_0x10 = 0;
+    mStrategyMgr = NULL;
     mParams.init();
     JAISoundActivity::init();
 }
-
 
 /* 802A0168-802A01D8 29AAA8 0070+00 1/0 0/0 0/0 .text
  * isUsingSeqData__8JAISeMgrFRC16JAISeqDataRegion               */
@@ -389,8 +258,23 @@ void JAISeMgr::resetSeqDataMgr() {
 }
 
 /* 802A0484-802A0574 29ADC4 00F0+00 1/1 0/0 0/0 .text            newSe___8JAISeMgrFiUl */
-JAISe* JAISeMgr::newSe_(int param_0, u32 param_1) {
-    // NONMATCHING
+// NONMATCHING JASPollAllocObject<_> locations
+JAISe* JAISeMgr::newSe_(int i_category, u32 param_1) {
+    if (i_category < 0) {
+        i_category = 0;
+    }
+
+    if (!mCategoryMgrs[i_category].JAISeMgr_acceptsNewSe_(param_1)) {
+        return NULL;
+    }
+
+    JAISe* se = new JAISe(this, mStrategyMgr, param_1);
+    if (se == NULL) {
+        return NULL;
+    }
+
+    mCategoryMgrs[i_category].JAISeMgr_appendSe_(se);
+    return se;
 }
 
 /* 802A0574-802A0704 29AEB4 0190+00 0/0 1/1 0/0 .text            calc__8JAISeMgrFv */
@@ -410,8 +294,6 @@ void JAISeMgr::mixOut() {
         mCategoryMgrs[i].JAISeMgr_mixOut_(mParams, *this);
     }
 }
-
-/* ############################################################################################## */
 
 /* 802A0768-802A08D0 29B0A8 0168+00 0/0 1/1 0/0 .text
  * startSound__8JAISeMgrF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3<f> */
@@ -456,25 +338,10 @@ int JAISeMgr::getNumActiveSe() const {
     return sum;
 }
 
-/* 802A08FC-802A0994 29B23C 0098+00 1/0 0/0 0/0 .text            __dt__8JAISeMgrFv */
-extern "C" void __dt__8JAISeMgrFv() {
-    // asm JAISeMgr::~JAISeMgr() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 803C98C4-803C98D8 0269E4 0014+00 1/1 1/1 0/0 .data            __vt__16JAISeCategoryMgr */
-SECTION_DATA extern void* __vt__16JAISeCategoryMgr[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__16JAISeCategoryMgrFv,
-    (void*)isUsingSeqData__16JAISeCategoryMgrFRC16JAISeqDataRegion,
-    (void*)releaseSeqData__16JAISeCategoryMgrFRC16JAISeqDataRegion,
-};
-
 /* 802A0994-802A0A6C 29B2D4 00D8+00 1/1 0/0 0/0 .text            __ct__16JAISeCategoryMgrFv */
 JAISeCategoryMgr::JAISeCategoryMgr() {
-    // NONMATCHING
+    mParams.init();
+    mMaxActiveSe = 0;
+    mMaxInactiveSe = 0;
+    field_0x4.field_0x0 = 0;
 }
-
-/* 8039B8F8-8039B8F8 027F58 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

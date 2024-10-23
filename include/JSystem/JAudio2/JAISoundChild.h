@@ -2,6 +2,7 @@
 #define JAISOUNDCHILD_H
 
 #include "JSystem/JAudio2/JAISoundParams.h"
+#include "JSystem/JAudio2/JASHeapCtrl.h"
 
 struct JASTrack;
 
@@ -9,7 +10,7 @@ struct JASTrack;
  * @ingroup jsystem-jaudio
  * 
  */
-struct JAISoundChild {
+struct JAISoundChild : JASPoolAllocObject<JAISoundChild> {
     /* 802A2AB0 */ void init();
     /* 802A2B28 */ void mixOut(JASTrack*);
     /* 802A2B7C */ void calc();

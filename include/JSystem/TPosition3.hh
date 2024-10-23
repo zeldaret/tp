@@ -20,7 +20,7 @@ struct SMatrix34C<f32> {
 
     typedef f32 ArrType[4];
     void set(const ArrType* src) {  
-
+        JMath::gekko_ps_copy12(data, src);
     }
 
     operator ArrType*() { return data; }

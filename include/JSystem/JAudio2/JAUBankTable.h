@@ -1,6 +1,7 @@
 #ifndef JAUBANKTABLE_H
 #define JAUBANKTABLE_H
 
+#include "JSystem/JAudio2/JASBankList.h"
 #include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JSupport/JSUList.h"
 
@@ -10,17 +11,15 @@ class JASBank;
  * @ingroup jsystem-jaudio
  * 
  */
-class JAUBankTable /* : public JASBankList */ {
+class JAUBankTable : public JASBankList {
 public:
     JAUBankTable(u32 param_0, JASBank** param_1, u32 param_2) : mBankPtrTable(param_1, param_2) {
         field_0xc = param_0;
     }
-    /* 802A4AA0 */ JASBank* getBank(u32) const;
+    /* 802A4AA0 */ JASBank* getBank(u32 bank) const { return mBankPtrTable.get(bank); }
 
-    JASBank* getBank(u32 param_0) { return mBankPtrTable.get(param_0); }
     void registBank(u32 param_0, JASBank* param_1) { mBankPtrTable.set(param_0, param_1); }
 
-    /* 0x0 */ void* vtable;
     /* 0x4 */ JASPtrTable<JASBank> mBankPtrTable;
     /* 0xC */ u32 field_0xc;
 };

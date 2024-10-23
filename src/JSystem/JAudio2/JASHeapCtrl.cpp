@@ -5,78 +5,10 @@
 
 #include "JSystem/JAudio2/JASHeapCtrl.h"
 #include "JSystem/JAudio2/JASMutex.h"
+#include "JSystem/JAudio2/JASWaveArcLoader.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
+#include "JSystem/JKernel/JKRSolidHeap.h"
 #include "JSystem/JUtility/JUTAssert.h"
-#include "dol2asm.h"
-
-//
-// Types:
-//
-
-struct JASDisposer {
-    virtual ~JASDisposer();
-    /* 80290BCC */ virtual void onDispose();
-};
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__7JASHeapFP11JASDisposer();
-extern "C" void initRootHeap__7JASHeapFPvUl();
-extern "C" void alloc__7JASHeapFP7JASHeapUl();
-extern "C" void allocTail__7JASHeapFP7JASHeapUl();
-extern "C" void free__7JASHeapFv();
-extern "C" void insertChild__7JASHeapFP7JASHeapP7JASHeapPvUlb();
-extern "C" void getTailHeap__7JASHeapFv();
-extern "C" void getTailOffset__7JASHeapFv();
-extern "C" void getCurOffset__7JASHeapFv();
-extern "C" void __ct__17JASGenericMemPoolFv();
-extern "C" void __dt__17JASGenericMemPoolFv();
-extern "C" void newMemPool__17JASGenericMemPoolFUli();
-extern "C" void alloc__17JASGenericMemPoolFUl();
-extern "C" void free__17JASGenericMemPoolFPvUl();
-extern "C" void setupRootHeap__9JASKernelFP12JKRSolidHeapUl();
-extern "C" u32 getSystemHeap__9JASKernelFv();
-extern "C" u32 getCommandHeap__9JASKernelFv();
-extern "C" void setupAramHeap__9JASKernelFUlUl();
-extern "C" void getAramHeap__9JASKernelFv();
-extern "C" void __sinit_JASHeapCtrl_cpp();
-extern "C" void __dt__7JASHeapFv();
-extern "C" void onDispose__11JASDisposerFv();
-extern "C" u8 audioAramHeap__9JASKernel[68];
-extern "C" u8 sAramBase__9JASKernel[4];
-extern "C" u8 sSystemHeap__9JASKernel[4];
-extern "C" u8 sCommandHeap__9JASKernel[4];
-
-//
-// External References:
-//
-
-extern "C" void* __nw__FUlP7JKRHeapi();
-extern "C" void* __nwa__FUlP7JKRHeapi();
-extern "C" void __dl__FPv();
-extern "C" void __dla__FPv();
-extern "C" void create__10JKRExpHeapFUlP7JKRHeapb();
-extern "C" void __ct__10JSUPtrLinkFPv();
-extern "C" void __dt__10JSUPtrLinkFv();
-extern "C" void __dt__10JSUPtrListFv();
-extern "C" void initiate__10JSUPtrListFv();
-extern "C" void insert__10JSUPtrListFP10JSUPtrLinkP10JSUPtrLink();
-extern "C" void remove__10JSUPtrListFP10JSUPtrLink();
-extern "C" void __register_global_object();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" u8 sSystemHeap__7JKRHeap[4];
-
-//
-// Declarations:
-//
 
 /* 80290140-802901AC 28AA80 006C+00 1/1 2/2 0/0 .text            __ct__7JASHeapFP11JASDisposer */
 JASHeap::JASHeap(JASDisposer* disposer) : mTree(this) {
@@ -155,13 +87,27 @@ bool JASHeap::alloc(JASHeap* mother, u32 param_1) {
 }
 
 /* 802903F4-802904E4 28AD34 00F0+00 0/0 1/1 0/0 .text            allocTail__7JASHeapFP7JASHeapUl */
-bool JASHeap::allocTail(JASHeap* param_0, u32 param_1) {
-    // NONMATCHING
+bool JASHeap::allocTail(JASHeap* mother, u32 size) {
+    JASMutexLock lock(&mMutex);
+    if (isAllocated()) {
+        return false;
+    }
+    if (!mother->isAllocated()) {
+        return false;
+    }
+    u32 aligned_size = (size + 0x1f) & ~0x1f;
+    u32 cur_offset = mother->getCurOffset();
+    u32 tail_offset = mother->getTailOffset();
+    if (cur_offset + aligned_size > tail_offset) {
+        return false;
+    }
+    mother->insertChild(this, mother->getTailHeap(), mother->mBase + tail_offset - aligned_size,
+                        aligned_size, true);
+    return true;
 }
 
 /* 802904E4-80290608 28AE24 0124+00 0/0 4/4 0/0 .text            free__7JASHeapFv */
-// regswap
-#ifdef NONMATCHING
+// NONMATCHING regswap
 bool JASHeap::free() {
     JASMutexLock lock(&mMutex);
     if (!isAllocated()) {
@@ -194,16 +140,10 @@ bool JASHeap::free() {
     }
     return true;
 }
-#else
-bool JASHeap::free() {
-    // NONMATCHING
-}
-#endif
 
 /* 80290608-802906F0 28AF48 00E8+00 2/2 0/0 0/0 .text
  * insertChild__7JASHeapFP7JASHeapP7JASHeapPvUlb                */
-// regalloc
-#ifdef NONMATCHING
+// NONMATCHING regalloc
 void JASHeap::insertChild(JASHeap* heap, JASHeap* next, void* param_2, u32 param_3, bool param_4) {
     JUT_ASSERT(537, heap != 0);
     JUT_ASSERT(538, next == 0 || &mTree == next->mTree.getParent());
@@ -225,12 +165,6 @@ void JASHeap::insertChild(JASHeap* heap, JASHeap* next, void* param_2, u32 param
     heap->field_0x40 = NULL;
     mTree.insertChild(&next->mTree, &heap->mTree);
 }
-#else
-void JASHeap::insertChild(JASHeap* param_0, JASHeap* param_1, void* param_2, u32 param_3,
-                              bool param_4) {
-    // NONMATCHING
-}
-#endif
 
 /* 802906F0-8029077C 28B030 008C+00 3/3 0/0 0/0 .text            getTailHeap__7JASHeapFv */
 JASHeap* JASHeap::getTailHeap() {
@@ -267,35 +201,57 @@ JASGenericMemPool::JASGenericMemPool() {
     field_0x0 = NULL;
     freeMemCount = 0;
     totalMemCount = 0;
-    field_0xc = 0;
+    usedMemCount = 0;
 }
 
 /* 80290860-802908C8 28B1A0 0068+00 0/0 9/9 0/0 .text            __dt__17JASGenericMemPoolFv */
 JASGenericMemPool::~JASGenericMemPool() {
-    // NONMATCHING
+    void* chunk = field_0x0;
+    while (chunk != NULL) {
+        void* next_chunk = *(void**)chunk;
+        delete[] chunk;
+        chunk = next_chunk;
+    }
 }
 
-/* ############################################################################################## */
 /* 80451210-80451214 000710 0004+00 2/2 15/15 0/0 .sbss            JASDram */
 JKRSolidHeap* JASDram;
 
 /* 802908C8-80290948 28B208 0080+00 0/0 4/4 0/0 .text            newMemPool__17JASGenericMemPoolFUli
  */
-void JASGenericMemPool::newMemPool(u32 param_0, int param_1) {
-    // NONMATCHING
+void JASGenericMemPool::newMemPool(u32 size, int param_1) {
+    for (int i = 0; i < param_1; i++) {
+        void* chunk = new (JASDram, 0) u8[size];
+        *(void**)chunk = field_0x0;
+        field_0x0 = chunk;
+    }
+    freeMemCount += param_1;
+    totalMemCount += param_1;
 }
 
 /* 80290948-80290994 28B288 004C+00 0/0 13/13 0/0 .text            alloc__17JASGenericMemPoolFUl */
 void* JASGenericMemPool::alloc(u32 param_0) {
-    // NONMATCHING
+    void* chunk = field_0x0;
+    if (chunk == NULL) {
+        return NULL;
+    }
+    field_0x0 = *(void**)chunk;
+    freeMemCount--;
+    if (usedMemCount < totalMemCount - freeMemCount) {
+        usedMemCount = totalMemCount - freeMemCount;
+    }
+    return chunk;
 }
 
 /* 80290994-802909B8 28B2D4 0024+00 0/0 15/15 0/0 .text            free__17JASGenericMemPoolFPvUl */
-void JASGenericMemPool::free(void* param_0, u32 param_1) {
-    // NONMATCHING
+void JASGenericMemPool::free(void* ptr, u32 param_1) {
+    if (ptr != NULL) {
+        *(void**)ptr = field_0x0;
+        field_0x0 = ptr;
+        freeMemCount++;
+    }
 }
 
-/* ############################################################################################## */
 /* 80451214-80451218 000714 0004+00 1/1 0/0 0/0 .sbss            sAramBase__9JASKernel */
 u32 JASKernel::sAramBase;
 
@@ -307,21 +263,14 @@ JASMemChunkPool<1024, JASThreadingModel::ObjectLevelLockable>* JASKernel::sComma
 
 /* 802909B8-80290AC0 28B2F8 0108+00 0/0 1/1 0/0 .text setupRootHeap__9JASKernelFP12JKRSolidHeapUl
  */
-// implement JASMemChunkPool
-#ifdef NONMATCHING
 void JASKernel::setupRootHeap(JKRSolidHeap* heap, u32 size) {
     JUT_ASSERT(784, heap);
     sSystemHeap = JKRExpHeap::create(size, heap, false);
     JUT_ASSERT(787, sSystemHeap);
-    sCommandHeap = new JASMemChunkPool();
+    sCommandHeap = new (heap, 0) JASMemChunkPool<1024, JASThreadingModel::ObjectLevelLockable>();
     JUT_ASSERT(790, sCommandHeap);
     JASDram = heap;
 }
-#else
-void JASKernel::setupRootHeap(JKRSolidHeap* param_0, u32 param_1) {
-    // NONMATCHING
-}
-#endif
 
 /* 80290AC0-80290AC8 -00001 0008+00 0/0 0/0 0/0 .text            getSystemHeap__9JASKernelFv */
 JKRHeap* JASKernel::getSystemHeap() {
@@ -333,41 +282,16 @@ JASMemChunkPool<1024, JASThreadingModel::ObjectLevelLockable>* JASKernel::getCom
     return JASKernel::sCommandHeap;
 }
 
-/* ############################################################################################## */
-/* 804315D0-804315DC 05E2F0 000C+00 1/1 0/0 0/0 .bss             @313 */
-static u8 lit_313[12];
-
 /* 804315DC-80431620 05E2FC 0044+00 3/3 0/0 0/0 .bss             audioAramHeap__9JASKernel */
-u8 JASKernel::audioAramHeap[68];
+JASHeap JASKernel::audioAramHeap;
 
 /* 80290AD0-80290B08 28B410 0038+00 0/0 1/1 0/0 .text            setupAramHeap__9JASKernelFUlUl */
 void JASKernel::setupAramHeap(u32 param_0, u32 param_1) {
     sAramBase = param_0;
-    (*(JASHeap*)audioAramHeap).initRootHeap((void*)sAramBase, param_1);
+    audioAramHeap.initRootHeap((void*)sAramBase, param_1);
 }
 
 /* 80290B08-80290B14 28B448 000C+00 0/0 3/2 0/0 .text            getAramHeap__9JASKernelFv */
 JASHeap* JASKernel::getAramHeap() {
-    return (JASHeap*)audioAramHeap;
-}
-
-/* 80290B14-80290B54 28B454 0040+00 0/0 1/0 0/0 .text            __sinit_JASHeapCtrl_cpp */
-void __sinit_JASHeapCtrl_cpp() {
-    // NONMATCHING
-}
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80290B14, __sinit_JASHeapCtrl_cpp);
-#pragma pop
-
-/* 80290B54-80290BCC 28B494 0078+00 1/1 3/3 0/0 .text            __dt__7JASHeapFv */
-//JASHeap::~JASHeap() {
-void __dt__7JASHeapFv() {
-    // NONMATCHING
-}
-
-/* 80290BCC-80290BD0 28B50C 0004+00 0/0 1/0 0/0 .text            onDispose__11JASDisposerFv */
-void JASDisposer::onDispose() {
-    /* empty function */
+    return &audioAramHeap;
 }

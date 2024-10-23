@@ -81,7 +81,7 @@ public:
     /* 802AE184 */ void processSeFramework();
     /* 802AE524 */ bool isLevelSe(JAISoundID);
     /* 802AE5B0 */ bool isSoundCulling(JAISoundID);
-    /* 802B9AC4 */ void resetCrowdSize();
+    /* 802B9AC4 */ void resetCrowdSize() { mCrowdSize = 0; }
 
 private:
     /* 0x000 */ JAISoundHandle mSoundHandle[24];

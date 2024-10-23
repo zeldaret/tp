@@ -19,8 +19,8 @@ void JASSeqReader::init() {
 
 /* 80296148-8029618C 290A88 0044+00 0/0 1/1 0/0 .text            init__12JASSeqReaderFPv */
 void JASSeqReader::init(void* param_0) {
-    field_0x00 = (u32*)param_0;
-    field_0x04 = (u8*)field_0x00;
+    field_0x00 = (u8*)param_0;
+    field_0x04 = field_0x00;
     field_0x08 = 0;
 
     for (int i = 0; i < 8; i++) {
@@ -37,7 +37,7 @@ bool JASSeqReader::call(u32 param_0) {
     }
 
     field_0x0c[field_0x08++] = (u16*)field_0x04;
-    field_0x04 = (u8*)((int)field_0x00 + param_0);
+    field_0x04 = field_0x00 + param_0;
 
     return true;
 }

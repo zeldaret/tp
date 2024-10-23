@@ -38,7 +38,7 @@ void __fill(ForwardIt first, ForwardIt last, const T& value, std::random_access_
 */
 
 template<class ForwardIt, class T>
-void fill(ForwardIt first, ForwardIt last, const T& value) {
+inline void fill(ForwardIt first, ForwardIt last, const T& value) {
     for (; first != last; ++first){
         *first = value;
     }

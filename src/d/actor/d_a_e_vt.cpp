@@ -3158,7 +3158,7 @@ void daE_VA_c::executeOpaciDeath() {
         }
 
         Z2GetAudioMgr()->subBgmStop();
-        Z2GetAudioMgr()->i_muteSceneBgm(0, 0.0f);
+        Z2GetAudioMgr()->muteSceneBgm(0, 0.0f);
 
         dComIfGs_onStageMiddleBoss();
         field_0x1364 = 0;
@@ -3275,7 +3275,7 @@ void daE_VA_c::executeOpaciDeath() {
                 dComIfGs_onSwitch(mSwNo, fopAcM_GetRoomNo(this));
             }
 
-            Z2GetAudioMgr()->i_unMuteSceneBgm(45);
+            Z2GetAudioMgr()->unMuteSceneBgm(45);
             fopAcM_delete(this);
             return;
         }

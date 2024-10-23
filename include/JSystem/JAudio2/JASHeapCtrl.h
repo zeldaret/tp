@@ -1,6 +1,7 @@
 #ifndef JASHEAPCTRL_H
 #define JASHEAPCTRL_H
 
+#include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "dolphin/os/OSInterrupt.h"
 #include "dolphin/os/OSMutex.h"
@@ -28,12 +29,13 @@ public:
 
     void* getBase() { return mBase; }
     bool isAllocated() { return mBase; }
+    u32 getSize() { return mSize; }
 
     /* 0x00 */ JSUTree<JASHeap> mTree;
     /* 0x1C */ OSMutex mMutex;
     /* 0x34 */ JASDisposer* mDisposer;
     /* 0x38 */ u8* mBase;
-    /* 0x3c */ u32 mSize;
+    /* 0x3C */ u32 mSize;
     /* 0x40 */ JASHeap* field_0x40;
 };
 
@@ -49,9 +51,9 @@ struct JASGenericMemPool {
     /* 80290994 */ void free(void*, u32);
 
     /* 0x00 */ void* field_0x0;
-    /* 0x04 */ int freeMemCount;
-    /* 0x08 */ int totalMemCount;
-    /* 0x0C */ int field_0xc;
+    /* 0x04 */ u32 freeMemCount;
+    /* 0x08 */ u32 totalMemCount;
+    /* 0x0C */ u32 usedMemCount;
 
 };
 
@@ -151,6 +153,12 @@ class JASMemChunkPool {
         u8 mBuffer[ChunkSize];
     };
 public:
+    JASMemChunkPool() {
+        OSInitMutex(&mMutex);
+        field_0x18 = NULL;
+        createNewChunk();
+    }
+
     bool createNewChunk() {
         bool uVar2;
         if (field_0x18 != NULL && field_0x18->isEmpty()) {
@@ -217,7 +225,7 @@ namespace JASKernel {
     /* 80290AD0 */ void setupAramHeap(u32, u32);
     /* 80290B08 */ JASHeap* getAramHeap();
 
-    extern u8 audioAramHeap[68];
+    extern JASHeap audioAramHeap;
     extern u32 sAramBase;
     extern JKRHeap* sSystemHeap;
     extern JASMemChunkPool<1024, JASThreadingModel::ObjectLevelLockable>* sCommandHeap;

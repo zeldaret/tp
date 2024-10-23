@@ -12,9 +12,42 @@
 #include "Z2AudioLib/Z2Audience.h"
 #include "d/d_demo.h"
 
-/* ############################################################################################## */
+/* 80450880-80450884 000300 0004+00 2/2 0/0 0/0 .sdata           cPitchDown */
+static f32 cPitchDown = 0.8909000158309937f;
+
+/* 80450884-80450888 000304 0004+00 4/4 0/0 0/0 .sdata           cPitchCenter */
+static f32 cPitchCenter = 1.0f;
+
+/* 80450888-8045088C 000308 0004+00 2/2 0/0 0/0 .sdata           cPitchUp */
+static f32 cPitchUp = 1.1892000436782837f;
+
+static u8 struct_8045088C = 7;
+static u8 struct_8045088D = 7;
+
+/* 8045088E-80450890 00030E 0002+00 4/4 0/0 0/0 .sdata           None */
+static u8 data_8045088E = 0x1E;
+static u8 data_8045088F = 0x00;
+
+/* 80450890-80450894 000310 0004+00 1/1 0/0 0/0 .sdata           cR_FlatWidth */
+static f32 cR_FlatWidth = 0.9438700079917908f;
+
+/* 80450894-80450898 -00001 0004+00 3/3 0/0 0/0 .sdata           None */
+static u8 struct_80450894 = 0x05;
+static u8 struct_80450895 = 0x1E;
+
+/* 80450898-8045089C 000318 0004+00 1/1 0/0 0/0 .sdata           sStickHigh */
+static f32 sStickHigh = 0.5f;
+
+/* 8045089C-804508A0 00031C 0004+00 1/1 0/0 0/0 .sdata           sStickCenter */
+static f32 sStickCenter = 1.0f / 5.0f;
+
 /* 804508A0-804508A8 000320 0008+00 1/0 0/0 0/0 .sdata           sHowlTobikusa */
-extern SongNote sHowlTobikusa[4];
+static SongNote sHowlTobikusa[4] = {
+    {0x01, 0x1E},
+    {0x03, 0x1E},
+    {0x01, 0x1E},
+    {0x03, 0x1E},
+};
 
 /* 803CBC50-803CBC5C 028D70 000C+00 1/0 0/0 0/0 .data            sHowlUmakusa */
 static SongNote sHowlUmakusa[6] = {
@@ -61,43 +94,6 @@ static Z2WolfHowlData sGuideData[9] = {
     {4, sHowlTobikusa}, {6, sHowlUmakusa},     {6, sHowlZeldaSong},
     {6, sHealingSong},  {6, sHowlSoulRequiem}, {6, sHowlLightPrelude},
     {7, sNewSong1},     {8, sNewSong2},        {9, sNewSong3},
-};
-
-/* 80450880-80450884 000300 0004+00 2/2 0/0 0/0 .sdata           cPitchDown */
-static f32 cPitchDown = 0.8909000158309937f;
-
-/* 80450884-80450888 000304 0004+00 4/4 0/0 0/0 .sdata           cPitchCenter */
-static f32 cPitchCenter = 1.0f;
-
-/* 80450888-8045088C 000308 0004+00 2/2 0/0 0/0 .sdata           cPitchUp */
-static f32 cPitchUp = 1.1892000436782837f;
-
-static u8 struct_8045088C = 7;
-static u8 struct_8045088D = 7;
-
-/* 8045088E-80450890 00030E 0002+00 4/4 0/0 0/0 .sdata           None */
-static u8 data_8045088E = 0x1E;
-static u8 data_8045088F = 0x00;
-
-/* 80450890-80450894 000310 0004+00 1/1 0/0 0/0 .sdata           cR_FlatWidth */
-static f32 cR_FlatWidth = 0.9438700079917908f;
-
-/* 80450894-80450898 -00001 0004+00 3/3 0/0 0/0 .sdata           None */
-static u8 struct_80450894 = 0x05;
-static u8 struct_80450895 = 0x1E;
-
-/* 80450898-8045089C 000318 0004+00 1/1 0/0 0/0 .sdata           sStickHigh */
-static f32 sStickHigh = 0.5f;
-
-/* 8045089C-804508A0 00031C 0004+00 1/1 0/0 0/0 .sdata           sStickCenter */
-static f32 sStickCenter = 1.0f / 5.0f;
-
-/* 804508A0-804508A8 000320 0008+00 1/0 0/0 0/0 .sdata           sHowlTobikusa */
-static SongNote sHowlTobikusa[4] = {
-    {0x01, 0x1E},
-    {0x03, 0x1E},
-    {0x01, 0x1E},
-    {0x03, 0x1E},
 };
 
 /* 802CAAC0-802CAB8C 2C5400 00CC+00 0/0 1/1 0/0 .text            __ct__13Z2WolfHowlMgrFv */
@@ -228,7 +224,7 @@ void Z2WolfHowlMgr::calcPitchMod(f32 param_0, f32 param_1) {
 /* 802CAED4-802CB100 2C5814 022C+00 0/0 1/1 0/0 .text startWolfHowlSound__13Z2WolfHowlMgrFffbf */
 s8 Z2WolfHowlMgr::startWolfHowlSound(f32 param_0, f32 param_1, bool param_2, f32 param_3) {
     if (mCorrectCurveID > 1) {
-        Z2GetSeqMgr()->i_setWindStoneVol(0.0f, 0);
+        Z2GetSeqMgr()->setWindStoneVol(0.0f, 0);
     }
 
     if (Z2GetSeqMgr()->isItemGetDemo() || (mReleaseTimer != 0)) {
@@ -486,7 +482,7 @@ void Z2WolfHowlMgr::startWindStoneSound(s8 param_0, Vec* param_1) {
                 dVar13 = Z2Calc::getParamByExp(fVar14, 150.0f, 2000.0f, 
                     0.45f, 0.05f, dVar13, Z2Calc::CURVE_SIGN_0);
             }
-            Z2GetSeqMgr()->i_setWindStoneVol(dVar13, 0);
+            Z2GetSeqMgr()->setWindStoneVol(dVar13, 0);
             field_0x04->getAuxiliary().moveVolume(0.4f, 0);
         } else {
             field_0x04->getAuxiliary().moveVolume(0.04f, 0);
@@ -497,7 +493,7 @@ void Z2WolfHowlMgr::startWindStoneSound(s8 param_0, Vec* param_1) {
 /* 802CBA88-802CBB58 2C63C8 00D0+00 0/0 1/1 0/0 .text            startGuideMelody__13Z2WolfHowlMgrFb
  */
 int Z2WolfHowlMgr::startGuideMelody(bool param_0) {
-    Z2GetSeqMgr()->i_setWindStoneVol(0.0f, 0);
+    Z2GetSeqMgr()->setWindStoneVol(0.0f, 0);
     if (param_0) {
         Z2GetSoundMgr()->startSound(sWindStoneSound[mCorrectCurveID], &field_0x08, NULL);
     }

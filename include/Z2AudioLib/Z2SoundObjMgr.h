@@ -7,7 +7,7 @@
 class Z2CreatureEnemy;
 
 struct Z2EnemyArea {
-    /* 0x00 */ u8 field_0x0;
+    /* 0x00 */ bool field_0x0;
     /* 0x02 */ u16 field_0x2;
     /* 0x04 */ u16 field_0x4;
     /* 0x06 */ u16 field_0x6;

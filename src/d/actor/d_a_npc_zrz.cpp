@@ -1476,7 +1476,7 @@ BOOL daNpc_zrZ_c::ECut_helpPrince(int i_staffID) {
         case 11:
             initTalk(0x3e9, NULL);
             setLookMode(LOOK_NONE);
-            Z2GetAudioMgr()->i_muteSceneBgm(90, 0.0f);
+            Z2GetAudioMgr()->muteSceneBgm(90, 0.0f);
             mIsLeading = true;
             daNpcF_offTmpBit(0xb);
             daNpcF_offTmpBit(0xc);
@@ -1559,7 +1559,7 @@ BOOL daNpc_zrZ_c::ECut_helpPrince(int i_staffID) {
         case 103:
             mEventTimer = timer;
             Z2GetAudioMgr()->subBgmStop();
-            Z2GetAudioMgr()->i_unMuteSceneBgm(90);
+            Z2GetAudioMgr()->unMuteSceneBgm(90);
             break;
 
         case 110:

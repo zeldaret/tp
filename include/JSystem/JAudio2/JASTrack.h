@@ -13,7 +13,7 @@ struct JASSoundParams;
 namespace JASDsp {
     class TChannel;
 
-    extern u32 FILTER_MODE_IIR;
+    extern const u32 FILTER_MODE_IIR;
 };
 
 /**

@@ -32,7 +32,7 @@ bool JASBasicInst::getParam(int param_0, int param_1, JASInstParam* param_2) con
 
     TKeymap* keyMap = NULL;
     for (int i = 0; i < mKeymapCount; i++) {
-        if (param_0 <= mKeymap[i].field_0x0) {
+        if (param_0 <= mKeymap[i].mHighKey) {
             keyMap = &mKeymap[i];
             break;
         }

@@ -39,16 +39,16 @@ struct TSinCosTable {
 
     inline T sinDegree(T degree) {
         if (degree < (T)0.0) {
-            return -table[(u16)(((T)(1 << N) / 360.0) * degree) & ((1 << N) - 1)].first;
+            return -table[(u16)(-((T)(1 << N) / (T)360.0) * degree) & ((1 << N) - 1)].first;
         } 
-        return table[(u16)(((T)(1 << N) / 360.0) * degree) & ((1 << N) - 1)].first;
+        return table[(u16)(((T)(1 << N) / (T)360.0) * degree) & ((1 << N) - 1)].first;
     }
 
     inline T cosDegree(T degree) {
         if (degree < (T)0.0) {
             degree = -degree;
         } 
-        return table[(u16)(((T)(1 << N) / 360.0) * degree) & ((1 << N) - 1)].second;
+        return table[(u16)(((T)(1 << N) / (T)360.0) * degree) & ((1 << N) - 1)].second;
     }
 
     inline T sinRadian(T radian) {

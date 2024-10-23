@@ -115,6 +115,12 @@ struct TVec3<f32> : public Vec {
         z = other.z;
     }
 
+    void set(const Vec& other) {
+        x = other.x;
+        y = other.y;
+        z = other.z;
+    }
+
     void set(f32 x_, f32 y_, f32 z_) {
         x = x_;
         y = y_;
@@ -455,6 +461,7 @@ struct TUtil {
 
 template<>
 struct TUtil<f32> {
+    static inline f32 epsilon() { return 32.0f * FLT_EPSILON; }
     static inline f32 PI() { return 3.1415927f; }
 
     static inline f32 clamp(f32 v, f32 min, f32 max) {

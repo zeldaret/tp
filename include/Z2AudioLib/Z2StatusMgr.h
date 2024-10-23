@@ -28,9 +28,10 @@ struct Z2StatusMgr : public JASGlobalInstance<Z2StatusMgr> {
     f32 getCameraInWaterDepth() { return mUnderwaterDepth; }
     f32 getCameraInWaterDepthRatio() const { return mCameraInWaterDepthRatio; }
     u8 getHour() { return mHour; }
-    bool isPaused() { return mIsMenuIn; }
+    bool isPaused() { return mPauseFlag; }
     bool isHeartGuageOn() { return mHeartGaugeOn; }
     void getCameraMapInfo(u32 info) { mCameraMapInfo = info; }
+    void setPauseFlag(u8 flag) { mPauseFlag = flag; }
 
     /* 0x00 */ u8 mHour;
     /* 0x01 */ u8 mMinute;
@@ -38,7 +39,7 @@ struct Z2StatusMgr : public JASGlobalInstance<Z2StatusMgr> {
     /* 0x03 */ u8 field_0x03;
     /* 0x04 */ s16 mTime;
     /* 0x08 */ void* mEventBit;
-    /* 0x0C */ bool mIsMenuIn;
+    /* 0x0C */ u8 mPauseFlag;
     /* 0x10 */ u32 mCameraMapInfo;
     /* 0x14 */ u32 field_0x14;
     /* 0x18 */ f32 mUnderwaterDepth;

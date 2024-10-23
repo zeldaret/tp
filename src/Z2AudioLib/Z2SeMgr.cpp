@@ -13,7 +13,6 @@
 #include "Z2AudioLib/Z2Param.h"
 #include "Z2AudioLib/Z2SeqMgr.h"
 #include "dol2asm.h"
-#include "global.h"
 
 //
 // Forward References:
@@ -294,7 +293,7 @@ bool Z2SeMgr::seStart(JAISoundID i_soundID, Vec const* i_pos, u32 param_2, s8 i_
         }
         break;
     case Z2SE_OBJ_CHANDLV5_SWING:
-        i_volume = Z2Calc::getParamByExp(param_2, 353.0f, 261.0f, 0.4f, 0.05f, 1.0f,
+        i_volume = Z2Calc::getParamByExp(param_2, 35.0f, 261.0f, 0.4f, 0.05f, 1.0f,
                                          Z2Calc::CURVE_SIGN_2);
         break;
     case Z2SE_OBJ_IRONBALL_HIT:
