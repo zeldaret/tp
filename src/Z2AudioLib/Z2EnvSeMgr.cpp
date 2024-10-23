@@ -1181,22 +1181,23 @@ bool Z2EnvSeMgr::startEtcSe(s8 param_1) {
     f32 dVar15 = mEtcSeMgr.getDolbyPower();
     bool rv = false;
     f32 dVar18 = field_0x21c;
-    f32 local_90;
+    f32 local_90, local_98, local_9c, local_a0;
+    bool iVar5, iVar6, iVar7, iVar8;
     switch (field_0x214) {
     case 0x11:
         local_90 = Z2Calc::linearTransform(field_0x120.calcNoise1f(), 0.0f, 1.0f, 0.01f, 1.0f,
                                            true);
         dVar18 *= Z2Calc::linearTransform(field_0x130.calcNoise1f(), 0.0f, 1.0f, 0.8f, 1.2f,
                                           true);
-        bool iVar8 = field_0x20c.startEnvSeLevel(Z2SE_OBJ_RANCH_WOODPLATE, dVar17,
+        iVar8 = field_0x20c.startEnvSeLevel(Z2SE_OBJ_RANCH_WOODPLATE, dVar17,
                                                  (dVar19 * local_90), dVar14, dVar15, dVar18, 0);
         local_90 = Z2Calc::linearTransform(local_90, 0.0f, 1.0f, 0.3f, 1.0f, true);
         field_0x0.calcPan();
         field_0x1c.calcPan();
-        bool iVar6 = field_0x0.startEnvSeAutoPanLevel(JA_SE_ATM_WIND_1, dVar17, local_90, dVar18);
-        bool iVar7 = field_0x1c.startEnvSeAutoPanLevel(JA_SE_ATM_WIND_1, dVar17, 0.7f * local_90,
+        iVar6 = field_0x0.startEnvSeAutoPanLevel(JA_SE_ATM_WIND_1, dVar17, local_90, dVar18);
+        iVar7 = field_0x1c.startEnvSeAutoPanLevel(JA_SE_ATM_WIND_1, dVar17, 0.7f * local_90,
                                                        (0.8f * dVar18));
-        bool iVar5 = false;
+        iVar5 = false;
         if (iVar8 && iVar6 && iVar7) {
             iVar5 = true;
         }
@@ -1265,11 +1266,11 @@ bool Z2EnvSeMgr::startEtcSe(s8 param_1) {
     case 0x0:
         break;
     case 0x10:
-        f32 local_98 = Z2Calc::getParamByExp(getFogDensity(), 0.4f, 1.0f, 0.2f, 0.2f, 1.0f,
+        local_98 = Z2Calc::getParamByExp(getFogDensity(), 0.4f, 1.0f, 0.2f, 0.2f, 1.0f,
                                              Z2Calc::CURVE_SIGN_0);
-        f32 local_9c = Z2Calc::getParamByExp(getFogDensity(), 0.4f, 1.0f, 0.2f, 0.75f, 1.0f,
+        local_9c = Z2Calc::getParamByExp(getFogDensity(), 0.4f, 1.0f, 0.2f, 0.75f, 1.0f,
                                              Z2Calc::CURVE_SIGN_0);
-        f32 local_a0 = field_0x2e8.calcNoise1f();
+        local_a0 = field_0x2e8.calcNoise1f();
         rv = field_0x240.startEnvSeLevel(Z2SE_ENV_PUPPET_FOG_L, 0.3f,
                                          (dVar19 * ((0.332f + 0.668f * local_a0) * local_98)),
                                          dVar14, dVar15, 0.8f + 0.2f * local_a0, 0);
@@ -1299,6 +1300,7 @@ bool Z2EnvSeMgr::startFogWipeTrigger(Vec* param_0) {
                                                (JGeometry::TVec3<f32>*)param_0, fogDensity2, 0.3f,
                                                1.0f, fogDensity, -1.0f, -1.0f, 0);
     }
+    //! @bug does not always return a value
 }
 
 /* 802C93A0-802C93E4 2C3CE0 0044+00 0/0 0/0 1/1 .text            setFogWipeWidth__10Z2EnvSeMgrFf */
@@ -1331,7 +1333,7 @@ bool Z2EnvSeMgr::startFogSe() {
                                              dVar13, 0);
     bool uVar8 = false;
     if (iVar5 && iVar6) {
-        uVar8 = 1;
+        uVar8 = true;
     }
     return uVar8;
 }

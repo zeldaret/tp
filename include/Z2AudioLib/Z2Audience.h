@@ -226,7 +226,7 @@ struct Z2Audience : public JAIAudience, public JASGlobalInstance<Z2Audience> {
     /* 0x134 */ Z2AudioCamera mAudioCamera[1];
     /* 0x1A8 */ Z2SpotMic mSpotMic[1];
     /* 0x1D0 */ Z2SpotMic* mLinkMic;
-    /* 0x1D4 */ s32 mNumPlayers;
+    /* 0x1D4 */ s32 mMaxChannels;
     /* 0x1D8 */ u8 field_0x1d8[4];
     /* 0x1DC */ bool mUsingOffMicVol;
 };  // Size: 0x1E0

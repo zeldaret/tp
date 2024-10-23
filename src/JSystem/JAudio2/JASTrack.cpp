@@ -167,73 +167,32 @@ extern "C" extern u8 __OSReport_disable;
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 804555A0-804555A4 003BA0 0004+00 6/6 0/0 0/0 .sdata2          @457 */
-SECTION_SDATA2 static u8 lit_457[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
 /* 80291228-8029131C 28BB68 00F4+00 1/1 3/3 0/0 .text            __ct__8JASTrackFv */
 // NONMATCHING
-/* JASTrack::JASTrack() : mDefaultChannelMgr(this), mChannelMgrCount(1), mStatus(0) {
+JASTrack::JASTrack() : mDefaultChannelMgr(this), mChannelMgrCount(1), mStatus(0) {
     mChannelMgrs[0] = &mDefaultChannelMgr;
     for (int i = 1; i < 4; i++) {
         mChannelMgrs[i] = NULL;
     }
     init();
-} */
-
-#ifndef NONMATCHING
-/* ############################################################################################## */
-/* 804316A8-804316B4 05E3C8 000C+00 1/1 0/0 0/0 .bss             @431 */
-static u8 lit_431[12];
-#endif
+}
 
 /* 804316B4-80431AC0 05E3D4 040C+00 1/2 0/0 0/0 .bss             sDefaultBankTable__8JASTrack */
 JASDefaultBankTable JASTrack::sDefaultBankTable;
 
-#ifndef NONMATCHING
-/* 80431AC0-80431ACC 05E7E0 000C+00 0/1 0/0 0/0 .bss             @433 */
-#pragma push
-#pragma force_active on
-static u8 lit_433[12];
-#pragma pop
-#endif
-
 /* 80431ACC-80431ADC 05E7EC 0010+00 1/2 0/0 0/0 .bss             sTrackList__8JASTrack */
 JASTrack::TList JASTrack::sTrackList;
 
-#ifndef NONMATCHING
-/* 80431ADC-80431AE8 05E7FC 000C+00 3/3 0/0 0/0 .bss             @470 */
-static u8 lit_470[12];
-
-/* 80431AE8-80431AF4 05E808 000C+00 2/2 0/0 0/0 .bss             @476 */
-static u8 lit_476[12];
-
-/* 80431AF4-80431B04 05E814 0010+00 3/3 1/1 0/0 .bss
- * memPool_$localstatic3$getMemPool___58JASPoolAllocObject_MultiThreaded<Q28JASTrack11TChannelMgr>Fv
- */
-extern u8 data_80431AF4[16];
-u8 data_80431AF4[16];
-
-/* 80431B04-80431B18 05E824 0010+04 2/2 2/2 0/0 .bss
- * memPool_$localstatic3$getMemPool___43JASPoolAllocObject_MultiThreaded<8JASTrack>Fv */
-extern u8 data_80431B04[16 + 4 /* padding */];
-u8 data_80431B04[16 + 4 /* padding */];
-#endif
-
 /* 8029131C-80291444 28BC5C 0128+00 4/4 4/4 0/0 .text            __dt__8JASTrackFv */
+// NONMATCHING JASPoolAllocObject_MultiThreaded<_> locations
 JASTrack::~JASTrack() {
     for (int i = 1; i < 4; i++) {
         delete mChannelMgrs[i];
     }
 }
 
-
 /* 80291444-802915D4 28BD84 0190+00 1/1 3/3 0/0 .text            setChannelMgrCount__8JASTrackFUl */
+// NONMATCHING JASPoolAllocObject_MultiThreaded<_> locations
 void JASTrack::setChannelMgrCount(u32 i_count) {
     mChannelMgrCount = 1;
     for (int i = 1; i < i_count; i++) {
@@ -253,8 +212,6 @@ void JASTrack::setChannelMgrCount(u32 i_count) {
     }
 }
 
-
-/* ############################################################################################## */
 /* 8039AFD0-8039AFE8 027630 0018+00 1/1 0/0 0/0 .rodata          sAdsTable__8JASTrack */
 JASOscillator::Point const JASTrack::sAdsTable[4] = {
     {0, 0, 0x7fff},
@@ -269,10 +226,8 @@ JASOscillator::Data const JASTrack::sEnvOsc = {0, 1.0f, NULL, NULL, 1.0f, 0.0f};
 /* 8039B000-8039B018 027660 0018+00 0/1 0/0 0/0 .rodata          sPitchEnvOsc__8JASTrack */
 JASOscillator::Data const JASTrack::sPitchEnvOsc = {1, 1.0f, NULL, NULL, 1.0f, 0.0f};
 
-/* 804555A4-804555A8 003BA4 0004+00 9/9 0/0 0/0 .sdata2          @679 */
-SECTION_SDATA2 static f32 lit_679 = 1.0f;
-
 /* 802915D4-802918FC 28BF14 0328+00 2/2 1/1 0/0 .text            init__8JASTrackFv */
+// NONMATCHING JASPoolAllocObject_MultiThreaded<_> locations
 void JASTrack::init() {
     mSeqCtrl.init();
     mTrackPort.init();
@@ -344,11 +299,6 @@ void JASTrack::init() {
     mStatus = 0;
 }
 
-
-/* ############################################################################################## */
-/* 804555A8-804555AC 003BA8 0004+00 4/4 0/0 0/0 .sdata2          @690 */
-SECTION_SDATA2 static f32 lit_690 = 0.5f;
-
 /* 802918FC-8029194C 28C23C 0050+00 1/1 0/0 0/0 .text            initTimed__8JASTrackFv */
 void JASTrack::initTimed() {
     mMoveParam[0].mValue = 1.0f;
@@ -362,7 +312,6 @@ void JASTrack::initTimed() {
         mMoveParam[i].mTarget = mMoveParam[i].mValue;
     }
 }
-
 
 /* 8029194C-802919F4 28C28C 00A8+00 1/1 0/0 0/0 .text            inherit__8JASTrackFRC8JASTrack */
 void JASTrack::inherit(JASTrack const& i_parent) {
@@ -396,18 +345,11 @@ void JASTrack::setSeqData(void* param_0, u32 param_1) {
 }
 
 /* 80291A28-80291A78 28C368 0050+00 0/0 2/2 0/0 .text            startSeq__8JASTrackFv */
-#ifdef NONMATCHING
-// matches once static data declared correctly
 void JASTrack::startSeq() {
     JASCriticalSection critical_section;
     sTrackList.append(this);
     mStatus = 1;
 }
-#else
-void JASTrack::startSeq() {
-    // NONMATCHING
-}
-#endif
 
 /* 80291A78-80291ABC 28C3B8 0044+00 0/0 2/2 0/0 .text            stopSeq__8JASTrackFv */
 void JASTrack::stopSeq() {
@@ -464,8 +406,8 @@ void JASTrack::closeChild(u32 i_index) {
     }
 }
 
-
 /* 80291C30-80291DAC 28C570 017C+00 0/0 2/2 0/0 .text            openChild__8JASTrackFUl */
+// NONMATCHING JASPoolAllocObject_MultiThreaded<_> locations
 JASTrack* JASTrack::openChild(u32 i_index) {
     JASTrack* child = mChildren[i_index];
     if (child != NULL) {
@@ -496,7 +438,6 @@ JASTrack* JASTrack::openChild(u32 i_index) {
     child->inherit(*this);
     return child;
 }
-
 
 /* 80291DAC-80291DBC 28C6EC 0010+00 0/0 1/1 0/0 .text            connectBus__8JASTrackFii */
 void JASTrack::connectBus(int param_0, int param_1) {
@@ -538,7 +479,6 @@ JASChannel* JASTrack::channelStart(JASTrack::TChannelMgr* i_channelMgr, u32 para
     return channel;
 }
 
-
 /* 80291F38-80292008 28C878 00D0+00 0/0 1/1 0/0 .text            noteOn__8JASTrackFUlUlUl */
 int JASTrack::noteOn(u32 i_noteID, u32 param_1, u32 param_2) {
     if (isMute()) {
@@ -558,13 +498,6 @@ int JASTrack::noteOn(u32 i_noteID, u32 param_1, u32 param_2) {
     }
     return ret;
 }
-
-/* ############################################################################################## */
-/* 804555AC-804555B0 003BAC 0004+00 1/1 0/0 0/0 .sdata2          @952 */
-SECTION_SDATA2 static f32 lit_952 = 100.0f;
-
-/* 804555B0-804555B8 003BB0 0008+00 4/4 0/0 0/0 .sdata2          @954 */
-SECTION_SDATA2 static f64 lit_954 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80292008-80292198 28C948 0190+00 0/0 1/1 0/0 .text            gateOn__8JASTrackFUlUlfUl */
 int JASTrack::gateOn(u32 param_0, u32 i_velocity, f32 i_time, u32 i_flags) {
@@ -606,7 +539,6 @@ int JASTrack::gateOn(u32 param_0, u32 i_velocity, f32 i_time, u32 i_flags) {
     field_0x22b = param_0;
     return 1;
 }
-
 
 /* 80292198-80292220 28CAD8 0088+00 1/1 1/1 0/0 .text            noteOff__8JASTrackFUlUs */
 int JASTrack::noteOff(u32 i_noteID, u16 param_1) {
@@ -650,11 +582,6 @@ void JASTrack::updateTimedParam() {
         }
     }
 }
-
-
-/* ############################################################################################## */
-/* 804555B8-804555BC 003BB8 0004+00 1/1 0/0 0/0 .sdata2          @1032 */
-SECTION_SDATA2 static f32 lit_1032 = 1.0f / 3.0f;
 
 /* 80292348-802924E4 28CC88 019C+00 1/1 0/0 0/0 .text            updateTrack__8JASTrackFf */
 void JASTrack::updateTrack(f32 param_0) {
@@ -702,14 +629,6 @@ void JASTrack::updateTrack(f32 param_0) {
     }
 }
 
-
-/* ############################################################################################## */
-/* 804555BC-804555C0 003BBC 0004+00 1/1 0/0 0/0 .sdata2          @1042 */
-SECTION_SDATA2 static f32 lit_1042 = 4.0f / 3.0f;
-
-/* 804555C0-804555C8 003BC0 0008+00 1/1 0/0 0/0 .sdata2          @1044 */
-SECTION_SDATA2 static f64 lit_1044 = 4503601774854144.0 /* cast s32 to float */;
-
 /* 802924E4-80292580 28CE24 009C+00 5/5 0/0 0/0 .text            updateTempo__8JASTrackFv */
 void JASTrack::updateTempo() {
     if (mParent == NULL) {
@@ -720,7 +639,6 @@ void JASTrack::updateTempo() {
         field_0x1dc = mParent->field_0x1dc;
     }
 }
-
 
 /* 80292580-80292644 28CEC0 00C4+00 4/4 0/0 0/0 .text            updateSeq__8JASTrackFbf */
 void JASTrack::updateSeq(bool param_0, f32 param_1) {
@@ -739,13 +657,6 @@ void JASTrack::updateSeq(bool param_0, f32 param_1) {
     }
 }
 
-/* ############################################################################################## */
-/* 804555C8-804555CC 003BC8 0004+00 1/1 0/0 0/0 .sdata2          @1069 */
-SECTION_SDATA2 static f32 lit_1069 = 120.0f;
-
-/* 804555CC-804555D0 003BCC 0004+00 1/1 0/0 0/0 .sdata2          @1070 */
-SECTION_SDATA2 static f32 lit_1070 = 10.0f;
-
 /* 80292644-802926E0 28CF84 009C+00 1/1 0/0 0/0 .text            seqTimeToDspTime__8JASTrackFf */
 u32 JASTrack::seqTimeToDspTime(f32 i_seqTime) {
     f32 dsp_time;
@@ -757,7 +668,6 @@ u32 JASTrack::seqTimeToDspTime(f32 i_seqTime) {
     }
     return dsp_time;
 }
-
 
 /* 802926E0-80292708 28D020 0028+00 0/0 4/4 0/0 .text            setParam__8JASTrackFUlfUl */
 void JASTrack::setParam(u32 i_index, f32 i_target, u32 i_count) {
@@ -814,9 +724,8 @@ void JASTrack::setOscAdsr(s16 param_0, s16 param_1, s16 param_2, s16 param_3, u1
     mDirectRelease = i_directRelease;
 }
 
-/* ############################################################################################## */
 /* 804555D0-804555D4 003BD0 0004+00 2/2 0/0 0/0 .sdata2          FILTER_MODE_IIR__6JASDsp */
-SECTION_SDATA2 u32 JASDsp::FILTER_MODE_IIR = 0x00000020;
+const u32 JASDsp::FILTER_MODE_IIR = 0x00000020;
 
 /* 8029285C-8029289C 28D19C 0040+00 0/0 2/2 0/0 .text            setFIR__8JASTrackFPCs */
 void JASTrack::setFIR(s16 const* i_FIR) {
@@ -926,10 +835,6 @@ void JASTrack::setTimebase(u16 i_timebase) {
     updateTempo();
 }
 
-/* ############################################################################################## */
-/* 804555D4-804555D8 003BD4 0004+00 1/1 0/0 0/0 .sdata2          @1246 */
-SECTION_SDATA2 static f32 lit_1246 = 32767.0f;
-
 /* 80292BF4-80292CA4 28D534 00B0+00 1/1 0/0 0/0 .text
  * updateChannel__8JASTrackFP10JASChannelPQ26JASDsp8TChannel    */
 void JASTrack::updateChannel(JASChannel* param_0, JASDsp::TChannel* param_1) {
@@ -1011,7 +916,6 @@ int JASTrack::tickProc() {
     return 0;
 }
 
-
 /* 80292E9C-80292F6C 28D7DC 00D0+00 1/1 0/0 0/0 .text            seqMain__8JASTrackFv */
 int JASTrack::seqMain() {
     if (mFlags.flag6) {
@@ -1033,7 +937,6 @@ int JASTrack::seqMain() {
     }
 }
 
-
 /* 80292F6C-80292F90 28D8AC 0024+00 1/1 0/0 0/0 .text            cbSeqMain__Q28JASTrack5TListFPv */
 s32 JASTrack::TList::cbSeqMain(void* i_this) {
     static_cast<JASTrack::TList*>(i_this)->seqMain();
@@ -1052,7 +955,7 @@ void JASTrack::TList::append(JASTrack* i_track) {
 }
 
 /* 8029301C-802930DC 28D95C 00C0+00 1/1 0/0 0/0 .text            seqMain__Q28JASTrack5TListFv */
-#ifdef NONMATCHING
+// NONMATCHING problems with the iterator
 void JASTrack::TList::seqMain() {
     for (iterator it = begin(); it != end(); it++) {
         if (it->seqMain() < 0) {
@@ -1063,11 +966,6 @@ void JASTrack::TList::seqMain() {
         }
     }
 }
-#else
-void JASTrack::TList::seqMain() {
-    // NONMATCHING
-}
-#endif
 
 /* 802930DC-80293148 28DA1C 006C+00 2/2 0/0 0/0 .text __ct__Q28JASTrack11TChannelMgrFP8JASTrack */
 JASTrack::TChannelMgr::TChannelMgr(JASTrack* i_track) : mSoundParams(NULL), mTrack(i_track) {
@@ -1129,74 +1027,3 @@ void JASTrack::TChannelMgr::setPauseFlag(bool i_pause) {
         }
     }
 }
-
-/* 802932C8-802932E0 28DC08 0018+00 1/1 0/0 0/0 .text            __ct__Q28JASTrack10MoveParam_Fv */
-// JASTrack::MoveParam_::MoveParam_() {
-extern "C" void __ct__Q28JASTrack10MoveParam_Fv() {
-    // NONMATCHING
-}
-
-/* 802932E0-80293334 28DC20 0054+00 2/2 2/2 0/0 .text
- * __dt__35JASMemPool_MultiThreaded<8JASTrack>Fv                */
-extern "C" void func_802932E0(void* _this) {
-    // NONMATCHING
-}
-
-/* 80293334-80293388 28DC74 0054+00 3/3 1/1 0/0 .text
- * __dt__50JASMemPool_MultiThreaded<Q28JASTrack11TChannelMgr>Fv */
-extern "C" void func_80293334(void* _this) {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 803C5B68-803C5B74 022C88 000C+00 2/2 0/0 0/0 .data            __vt__19JASDefaultBankTable */
-SECTION_DATA extern void* __vt__19JASDefaultBankTable[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)func_80293528,
-};
-
-/* 803C5B74-803C5B80 022C94 000C+00 1/1 0/0 0/0 .data            __vt__17JASBankTable<256> */
-SECTION_DATA extern void* data_803C5B74[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)func_80293528,
-};
-
-/* 803C5B80-803C5B90 022CA0 000C+04 1/1 1/1 0/0 .data            __vt__11JASBankList */
-SECTION_DATA extern void* __vt__11JASBankList[3 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)NULL,
-    /* padding */
-    NULL,
-};
-
-#ifndef NONMATCHING
-/* 80293388-8029345C 28DCC8 00D4+00 0/0 1/0 0/0 .text            __sinit_JASTrack_cpp */
-void __sinit_JASTrack_cpp() {
-    // NONMATCHING
-}
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80293388, __sinit_JASTrack_cpp);
-#pragma pop
-
-/* 8029345C-802934B4 28DD9C 0058+00 1/1 0/0 0/0 .text            __dt__Q28JASTrack5TListFv */
-// JASTrack::TList::~TList() {
-extern "C" void __dt__Q28JASTrack5TListFv() {
-    // NONMATCHING
-}
-
-/* 802934B4-80293528 28DDF4 0074+00 1/1 0/0 0/0 .text            __dt__19JASDefaultBankTableFv */
-// JASDefaultBankTable::~JASDefaultBankTable() {
-extern "C" void __dt__19JASDefaultBankTableFv() {
-    // NONMATCHING
-}
-
-/* 80293528-8029354C 28DE68 0024+00 2/0 0/0 0/0 .text            getBank__17JASBankTable<256>CFUl */
-extern "C" void func_80293528(void* _this, u32 param_0) /* const */ {
-    // NONMATCHING
-}
-#endif

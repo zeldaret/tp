@@ -4,73 +4,21 @@
 //
 
 #include "JSystem/JAudio2/JAUInitializer.h"
+#include "JSystem/JAudio2/JAISe.h"
+#include "JSystem/JAudio2/JAISeq.h"
+#include "JSystem/JAudio2/JAISoundChild.h"
+#include "JSystem/JAudio2/JAIStream.h"
+#include "JSystem/JAudio2/JASAramStream.h"
+#include "JSystem/JAudio2/JASAudioThread.h"
+#include "JSystem/JAudio2/JASDriverIF.h"
+#include "JSystem/JAudio2/JASDvdThread.h"
 #include "JSystem/JAudio2/JASTaskThread.h"
 #include "JSystem/JAudio2/JASTrack.h"
 #include "JSystem/JAudio2/JASWaveArcLoader.h"
 #include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "JSystem/JKernel/JKRThread.h"
-#include "dol2asm.h"
 #include "dolphin/os/OSRtc.h"
-
-//
-// Types:
-//
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__18JAU_JASInitializerFv();
-extern "C" void initJASystem__18JAU_JASInitializerFP12JKRSolidHeap();
-extern "C" void __ct__18JAU_JAIInitializerFv();
-extern "C" void initJAInterface__18JAU_JAIInitializerFv();
-
-//
-// External References:
-//
-
-extern "C" void getThreadPointer__6JASDvdFv();
-extern "C" void createThread__6JASDvdFliUl();
-extern "C" void __ct__17JASGenericMemPoolFv();
-extern "C" void newMemPool__17JASGenericMemPoolFUli();
-extern "C" void setupRootHeap__9JASKernelFP12JKRSolidHeapUl();
-extern "C" void setupAramHeap__9JASKernelFUlUl();
-extern "C" void func_802932E0(void* _this);
-extern "C" void func_80293334(void* _this);
-extern "C" void initSystem__13JASAramStreamFUlUl();
-extern "C" void setCurrentDir__16JASWaveArcLoaderFPCc();
-extern "C" void create__14JASAudioThreadFl();
-extern "C" void setDSPLevel__9JASDriverFf();
-extern "C" void setOutputMode__9JASDriverFUl();
-extern "C" void func_8029FC34(void* _this);
-extern "C" void func_802A1268(void* _this);
-extern "C" void func_802A1AF4(void* _this);
-extern "C" void func_802A3E68(void* _this);
-extern "C" void getFreeSize__7JKRHeapFv();
-extern "C" void enter__15JKRThreadSwitchFP9JKRThreadi();
-extern "C" void __register_global_object();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_29();
-extern "C" extern u8 data_80431AF4[16];
-extern "C" extern u8 data_80431B04[16 + 4 /* padding */];
-extern "C" extern u8 data_80434084[16 + 4 /* padding */];
-extern "C" extern u8 data_804340B0[16];
-extern "C" extern u8 data_804340CC[16 + 4 /* padding */];
-extern "C" extern u8 data_804340FC[16 + 4 /* padding */];
-extern "C" extern u8 data_80450B8C[4];
-extern "C" extern u8 struct_80451230[8];
-extern "C" extern u8 data_80451310[8];
-extern "C" extern u8 data_80451318[8];
-extern "C" extern u8 data_80451320[8];
-extern "C" extern u8 data_80451328[8];
-extern "C" u8 sManager__15JKRThreadSwitch[4];
-extern "C" u8 sAramObject__7JKRAram[4];
-extern "C" extern u8 __OSReport_disable;
-
-//
-// Declarations:
-//
 
 /* 802A4AD0-802A4B28 29F410 0058+00 0/0 1/1 0/0 .text            __ct__18JAU_JASInitializerFv */
 JAU_JASInitializer::JAU_JASInitializer() {
@@ -89,17 +37,9 @@ JAU_JASInitializer::JAU_JASInitializer() {
     field_0x30 = NULL;
 }
 
-/* ############################################################################################## */
-/* 80434110-8043411C 060E30 000C+00 2/2 0/0 0/0 .bss             @757 */
-static u8 lit_757[12];
-
-/* 8043411C-80434128 060E3C 000C+00 1/1 0/0 0/0 .bss             @763 */
-static u8 lit_763[12];
-
 /* 802A4B28-802A4D3C 29F468 0214+00 0/0 1/1 0/0 .text
  * initJASystem__18JAU_JASInitializerFP12JKRSolidHeap           */
-// extra destructors
-#ifdef NONMATCHING
+// NONMATCHING JASPoolAllocObject_MultiThreaded<_> locations
 void JAU_JASInitializer::initJASystem(JKRSolidHeap* param_0) {
     if (JASAudioThread::getThreadPointer()) {
 
@@ -114,9 +54,9 @@ void JAU_JASInitializer::initJASystem(JKRSolidHeap* param_0) {
             field_0x04 = JKRAram::getManager()->getAudioMemSize();
         }
         JASKernel::setupAramHeap(field_0x00, field_0x04);
-        JASPoolAllocObject_MultiThreaded<JASTrack>::newMemPool(field_0x1c);
+        JASTrack::newMemPool(field_0x1c);
         if (field_0x20 > 0) {
-            JASPoolAllocObject_MultiThreaded<JASTrack::TChannelMgr>::newMemPool(field_0x20);
+            JASTrack::TChannelMgr::newMemPool(field_0x20);
         }
         JASDvd::createThread(field_0x0c,0x80,0x1000);
         JASAudioThread::create(field_0x10);
@@ -144,11 +84,6 @@ void JAU_JASInitializer::initJASystem(JKRSolidHeap* param_0) {
         break;
     }
 }
-#else
-void JAU_JASInitializer::initJASystem(JKRSolidHeap* param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 802A4D3C-802A4D60 29F67C 0024+00 0/0 1/1 0/0 .text            __ct__18JAU_JAIInitializerFv */
 JAU_JAIInitializer::JAU_JAIInitializer() {
@@ -158,45 +93,14 @@ JAU_JAIInitializer::JAU_JAIInitializer() {
     field_0xc = 16;
 }
 
-/* ############################################################################################## */
-/* 80434128-80434134 060E48 000C+00 0/1 0/0 0/0 .bss             @855 */
-#pragma push
-#pragma force_active on
-static u8 lit_855[12];
-#pragma pop
-
-/* 80434134-80434140 060E54 000C+00 0/1 0/0 0/0 .bss             @859 */
-#pragma push
-#pragma force_active on
-static u8 lit_859[12];
-#pragma pop
-
-/* 80434140-8043414C 060E60 000C+00 0/1 0/0 0/0 .bss             @863 */
-#pragma push
-#pragma force_active on
-static u8 lit_863[12];
-#pragma pop
-
-/* 8043414C-804341B8 060E6C 000C+60 0/1 0/0 0/0 .bss             @867 */
-#pragma push
-#pragma force_active on
-static u8 lit_867[12 + 96 /* padding */];
-#pragma pop
-
 /* 802A4D60-802A4EE8 29F6A0 0188+00 0/0 1/1 0/0 .text initJAInterface__18JAU_JAIInitializerFv */
-// extra destructors
-#ifdef NONMATCHING
+// NONMATCHING JASPoolAllocObject<_> locations
 void JAU_JAIInitializer::initJAInterface() {
     s32 r30 = JASDram->getFreeSize();
-    JASPoolAllocObject<JAIStream>::newMemPool(field_0x8);
-    JASPoolAllocObject<JAISeq>::newMemPool(field_0x4);
-    JASPoolAllocObject<JAISe>::newMemPool(field_0x0);
-    JASPoolAllocObject<JAISoundChild>::newMemPool(field_0xc);
+    JAIStream::newMemPool(field_0x8);
+    JAISeq::newMemPool(field_0x4);
+    JAISe::newMemPool(field_0x0);
+    JAISoundChild::newMemPool(field_0xc);
     s32 r29 = JASDram->getFreeSize();
     //OSReport("JAU_JAIInitializer uses %d bytes\n", r30 - r29);
 }
-#else
-void JAU_JAIInitializer::initJAInterface() {
-    // NONMATCHING
-}
-#endif

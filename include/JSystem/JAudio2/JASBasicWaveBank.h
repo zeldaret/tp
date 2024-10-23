@@ -10,11 +10,9 @@
  */
 class JASWaveHandle {
 public:
-    /* virtual */ ~JASWaveHandle() {};
-    //virtual const JASWaveInfo* getWaveInfo() const = 0;
-    //virtual int getWavePtr() const = 0;
-
-    void* vtable;
+    virtual ~JASWaveHandle() {};
+    virtual const JASWaveInfo* getWaveInfo() const = 0;
+    virtual int getWavePtr() const = 0;
 };
 
 /**
@@ -23,12 +21,10 @@ public:
  */
 class JASWaveBank {
 public:
-    /* 80298B88 */ /* virtual */ ~JASWaveBank() {};
-    //virtual JASWaveHandle* getWaveHandle(u32) const = 0;
-    //virtual JASWaveArc* getWaveArc(u32) = 0;
-    //virtual u32 getArcCount() const = 0;
-
-    void* vtable;
+    /* 80298B88 */ virtual ~JASWaveBank() {};
+    virtual JASWaveHandle* getWaveHandle(u32) const = 0;
+    virtual JASWaveArc* getWaveArc(u32) = 0;
+    virtual u32 getArcCount() const = 0;
 };
 
 /**
@@ -37,7 +33,7 @@ public:
  */
 struct JASBasicWaveBank : public JASWaveBank {
     struct TWaveHandle : public JASWaveHandle {
-        /* 802985E4 */ ~TWaveHandle();
+        /* 802985E4 */ ~TWaveHandle() {}
         /* 80298B64 */ int getWavePtr() const;
         /* 80298C18 */ TWaveHandle() { mHeap = NULL; }
         /* 80298C64 */ const JASWaveInfo* getWaveInfo() const { return &field_0x4; }
@@ -57,7 +53,7 @@ struct JASBasicWaveBank : public JASWaveBank {
         /* 0x04 */ int field_0x4;
     };
 
-    struct TWaveGroup {
+    struct TWaveGroup : JASWaveArc {
         /* 802989C0 */ TWaveGroup();
         /* 80298A0C */ ~TWaveGroup();
         /* 80298A84 */ void setWaveCount(u32, JKRHeap*);
@@ -65,7 +61,6 @@ struct JASBasicWaveBank : public JASWaveBank {
         /* 80298B2C */ void onEraseDone();
         /* 80298B54 */ u32 getWaveID(int) const;
 
-        /* 0x00 */ JASWaveArc base;
         /* 0x74 */ JASBasicWaveBank* mBank;
         /* 0x78 */ TGroupWaveInfo* mCtrlWaveArray;
         /* 0x7C */ u16 mWaveCount;
@@ -82,7 +77,7 @@ struct JASBasicWaveBank : public JASWaveBank {
     /* 8029883C */ void decWaveTable(JASBasicWaveBank::TWaveGroup const*);
     /* 802988DC */ JASWaveHandle* getWaveHandle(u32) const;
     /* 80298910 */ void setWaveInfo(JASBasicWaveBank::TWaveGroup*, int, u16, JASWaveInfo const&);
-    /* 80298C6C */ JASWaveArc* getWaveArc(u32 param_0); // { return getWaveGroup(param_0); }
+    /* 80298C6C */ JASWaveArc* getWaveArc(u32 param_0) { return getWaveGroup(param_0); }
     /* 80298C8C */ u32 getArcCount() const { return mGroupCount; }
 
     /* 0x04 */ OSMutex field_0x4;

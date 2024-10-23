@@ -67,54 +67,7 @@ extern "C" u32 one__11JASWaveInfo[1 + 1 /* padding */];
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 803C7728-803C773C 024848 0014+00 2/2 0/0 0/0 .data __vt__Q216JASBasicWaveBank11TWaveHandle */
-SECTION_DATA extern void* __vt__Q216JASBasicWaveBank11TWaveHandle[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__Q216JASBasicWaveBank11TWaveHandleFv,
-    (void*)getWaveInfo__Q216JASBasicWaveBank11TWaveHandleCFv,
-    (void*)getWavePtr__Q216JASBasicWaveBank11TWaveHandleCFv,
-};
-
-/* 803C773C-803C7754 02485C 0018+00 2/2 0/0 0/0 .data __vt__Q216JASBasicWaveBank10TWaveGroup */
-SECTION_DATA extern void* __vt__Q216JASBasicWaveBank10TWaveGroup[6] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__Q216JASBasicWaveBank10TWaveGroupFv,
-    (void*)onDispose__10JASWaveArcFv,
-    (void*)onLoadDone__Q216JASBasicWaveBank10TWaveGroupFv,
-    (void*)onEraseDone__Q216JASBasicWaveBank10TWaveGroupFv,
-};
-
-/* 803C7754-803C7768 024874 0014+00 3/3 2/2 0/0 .data            __vt__13JASWaveHandle */
-SECTION_DATA extern void* __vt__13JASWaveHandle[5] = {
-    (void*)NULL /* RTTI */, (void*)NULL, (void*)__dt__13JASWaveHandleFv, (void*)NULL, (void*)NULL,
-};
-
-/* 803C7768-803C7780 024888 0018+00 2/2 0/0 0/0 .data            __vt__16JASBasicWaveBank */
-SECTION_DATA extern void* __vt__16JASBasicWaveBank[6] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__16JASBasicWaveBankFv,
-    (void*)getWaveHandle__16JASBasicWaveBankCFUl,
-    (void*)getWaveArc__16JASBasicWaveBankFUl,
-    (void*)getArcCount__16JASBasicWaveBankCFv,
-};
-
-/* 803C7780-803C7798 0248A0 0018+00 3/3 2/2 0/0 .data            __vt__11JASWaveBank */
-SECTION_DATA extern void* __vt__11JASWaveBank[6] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__11JASWaveBankFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-};
-
 /* 802984F8-80298558 292E38 0060+00 0/0 1/1 0/0 .text            __ct__16JASBasicWaveBankFv */
-// vtable order
-#ifdef NONMATCHING
 JASBasicWaveBank::JASBasicWaveBank() {
     mWaveTable = NULL;
     mWaveGroupArray = NULL;
@@ -122,34 +75,12 @@ JASBasicWaveBank::JASBasicWaveBank() {
     mGroupCount = 0;
     OSInitMutex(&field_0x4);
 }
-#else
-JASBasicWaveBank::JASBasicWaveBank() {
-    // NONMATCHING
-}
-#endif
 
 /* 80298558-802985E4 292E98 008C+00 1/0 0/0 0/0 .text            __dt__16JASBasicWaveBankFv */
-// vtable order
-#ifdef NONMATCHING
 JASBasicWaveBank::~JASBasicWaveBank() {
     delete[] mWaveTable;
     delete[] mWaveGroupArray;
 }
-#else
-JASBasicWaveBank::~JASBasicWaveBank() {
-    // NONMATCHING
-}
-#endif
-
-/* 802985E4-80298640 292F24 005C+00 3/2 0/0 0/0 .text __dt__Q216JASBasicWaveBank11TWaveHandleFv */
-// vtable order
-#ifdef NONMATCHING
-JASBasicWaveBank::TWaveHandle::~TWaveHandle() {}
-#else
-JASBasicWaveBank::TWaveHandle::~TWaveHandle() {
-    // NONMATCHING
-}
-#endif
 
 /* 80298640-80298664 292F80 0024+00 1/1 1/1 0/0 .text            getWaveGroup__16JASBasicWaveBankFUl
  */
@@ -183,26 +114,19 @@ void JASBasicWaveBank::setWaveTableSize(u32 param_0, JKRHeap* param_1) {
 
 /* 80298790-8029883C 2930D0 00AC+00 1/1 0/0 0/0 .text
  * incWaveTable__16JASBasicWaveBankFPCQ216JASBasicWaveBank10TWaveGroup */
-// instruction order
-#ifdef NONMATCHING
+// NONMATCHING instruction order
 void JASBasicWaveBank::incWaveTable(JASBasicWaveBank::TWaveGroup const* param_0) {
     JASMutexLock lock(&field_0x4);
     for (u32 i = 0; i < param_0->getWaveCount(); i++) {
         TWaveHandle* handle = mWaveTable + param_0->getWaveID(i);
         if (!handle->mHeap) {
-            handle->mHeap = &param_0->base.mHeap;
-            handle->field_0x4.field_0x20 = &param_0->base._48;
+            handle->mHeap = const_cast<JASHeap*>(&param_0->mHeap);
+            handle->field_0x4.field_0x20 = &param_0->_48;
             handle->field_0x4.field_0x08 = param_0->mCtrlWaveArray[i].field_0x4;
         }
     }
 }
-#else
-void JASBasicWaveBank::incWaveTable(JASBasicWaveBank::TWaveGroup const* param_0) {
-    // NONMATCHING
-}
-#endif
 
-/* ############################################################################################## */
 /* 80451278-80451280 000778 0004+04 2/2 0/0 0/0 .sbss            mNoLoad__16JASBasicWaveBank */
 u32 JASBasicWaveBank::mNoLoad;
 
@@ -212,7 +136,7 @@ void JASBasicWaveBank::decWaveTable(JASBasicWaveBank::TWaveGroup const* param_0)
     JASMutexLock lock(&field_0x4);
     for (u32 i = 0; i < param_0->getWaveCount(); i++) {
         TWaveHandle* handle = mWaveTable + param_0->getWaveID(i);
-        if (handle->mHeap == &param_0->base.mHeap) {
+        if (handle->mHeap == &param_0->mHeap) {
             handle->mHeap = NULL;
             handle->field_0x4.field_0x20 = &mNoLoad;
             handle->field_0x4.field_0x08 = -1;
@@ -246,30 +170,16 @@ void JASBasicWaveBank::setWaveInfo(JASBasicWaveBank::TWaveGroup* wgrp, int index
 }
 
 /* 802989C0-80298A0C 293300 004C+00 1/1 0/0 0/0 .text __ct__Q216JASBasicWaveBank10TWaveGroupFv */
-// vtable order
-#ifdef NONMATCHING
 JASBasicWaveBank::TWaveGroup::TWaveGroup() {
     mBank = NULL;
     mCtrlWaveArray = NULL;
     mWaveCount = 0;
 }
-#else
-JASBasicWaveBank::TWaveGroup::TWaveGroup() {
-    // NONMATCHING
-}
-#endif
 
 /* 80298A0C-80298A84 29334C 0078+00 3/2 0/0 0/0 .text __dt__Q216JASBasicWaveBank10TWaveGroupFv */
-// vtable order
-#ifdef NONMATCHING
 JASBasicWaveBank::TWaveGroup::~TWaveGroup() {
     delete[] mCtrlWaveArray;
 }
-#else
-JASBasicWaveBank::TWaveGroup::~TWaveGroup() {
-    // NONMATCHING
-}
-#endif
 
 /* 80298A84-80298B04 2933C4 0080+00 0/0 1/1 0/0 .text
  * setWaveCount__Q216JASBasicWaveBank10TWaveGroupFUlP7JKRHeap   */
@@ -312,50 +222,4 @@ int JASBasicWaveBank::TWaveHandle::getWavePtr() const {
         return 0;
     }
     return (int)base + field_0x4.field_0x08;
-}
-
-/* 80298B88-80298BD0 2934C8 0048+00 1/0 0/0 0/0 .text            __dt__11JASWaveBankFv */
-// JASWaveBank::~JASWaveBank() {
-void __dt__11JASWaveBankFv() {
-    // NONMATCHING
-}
-
-/* 80298BD0-80298C18 293510 0048+00 1/0 0/0 0/0 .text            __dt__13JASWaveHandleFv */
-// JASWaveHandle::~JASWaveHandle() {
-void __dt__13JASWaveHandleFv() {
-    // NONMATCHING
-}
-
-/* 80298C18-80298C4C 293558 0034+00 1/1 0/0 0/0 .text __ct__Q216JASBasicWaveBank11TWaveHandleFv */
-// JASBasicWaveBank::TWaveHandle::TWaveHandle() {
-void __ct__Q216JASBasicWaveBank11TWaveHandleFv() {
-    // NONMATCHING
-}
-
-/* 80298C4C-80298C64 29358C 0018+00 1/1 0/0 0/0 .text __ct__Q216JASBasicWaveBank14TGroupWaveInfoFv
- */
-// JASBasicWaveBank::TGroupWaveInfo::TGroupWaveInfo() {
-void __ct__Q216JASBasicWaveBank14TGroupWaveInfoFv() {
-    // NONMATCHING
-}
-
-/* 80298C64-80298C6C 2935A4 0008+00 1/0 0/0 0/0 .text
- * getWaveInfo__Q216JASBasicWaveBank11TWaveHandleCFv            */
-// JASWaveInfo* JASBasicWaveBank::TWaveHandle::getWaveInfo() const {
-void getWaveInfo__Q216JASBasicWaveBank11TWaveHandleCFv() {
-    // NONMATCHING
-}
-
-/* 80298C6C-80298C8C 2935AC 0020+00 1/0 0/0 0/0 .text            getWaveArc__16JASBasicWaveBankFUl
- */
-// JASWaveArc* JASBasicWaveBank::getWaveArc(u32 param_0) {
-void getWaveArc__16JASBasicWaveBankFUl() {
-    // NONMATCHING
-}
-
-/* 80298C8C-80298C94 2935CC 0008+00 1/0 0/0 0/0 .text            getArcCount__16JASBasicWaveBankCFv
- */
-// u32 JASBasicWaveBank::getArcCount() const {
-void getArcCount__16JASBasicWaveBankCFv() {
-    // NONMATCHING
 }

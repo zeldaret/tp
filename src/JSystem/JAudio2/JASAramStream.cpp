@@ -4,94 +4,15 @@
 //
 
 #include "JSystem/JAudio2/JASAramStream.h"
+#include "JSystem/JAudio2/JASAiCtrl.h"
 #include "JSystem/JAudio2/JASChannel.h"
 #include "JSystem/JAudio2/JASCriticalSection.h"
 #include "JSystem/JAudio2/JASDriverIF.h"
+#include "JSystem/JAudio2/JASDSPInterface.h"
 #include "JSystem/JAudio2/JASDvdThread.h"
+#include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
-#include "JSystem/JAudio2/JASAiCtrl.h"
-#include "dol2asm.h"
 
-//
-// Types:
-//
-
-/* JASMemPool_MultiThreaded<JASChannel> */
-struct JASMemPool_MultiThreaded__template2 {
-    /* 802978DC */ void func_802978DC(void* _this);
-};
-
-//
-// Forward References:
-//
-
-extern "C" void initSystem__13JASAramStreamFUlUl();
-extern "C" void __ct__13JASAramStreamFv();
-extern "C" void init__13JASAramStreamFUlUlPFUlP13JASAramStreamPv_vPv();
-extern "C" void prepare__13JASAramStreamFli();
-extern "C" void start__13JASAramStreamFv();
-extern "C" void stop__13JASAramStreamFUs();
-extern "C" void pause__13JASAramStreamFb();
-extern "C" void cancel__13JASAramStreamFv();
-extern "C" void getBlockSamples__13JASAramStreamCFv();
-extern "C" void headerLoadTask__13JASAramStreamFPv();
-extern "C" void firstLoadTask__13JASAramStreamFPv();
-extern "C" void loadToAramTask__13JASAramStreamFPv();
-extern "C" void finishTask__13JASAramStreamFPv();
-extern "C" void prepareFinishTask__13JASAramStreamFPv();
-extern "C" void headerLoad__13JASAramStreamFUli();
-extern "C" void load__13JASAramStreamFv();
-extern "C" void channelProcCallback__13JASAramStreamFPv();
-extern "C" void dvdErrorCheck__13JASAramStreamFPv();
-extern "C" void channelCallback__13JASAramStreamFUlP10JASChannelPQ26JASDsp8TChannelPv();
-extern "C" void updateChannel__13JASAramStreamFUlP10JASChannelPQ26JASDsp8TChannel();
-extern "C" void channelProc__13JASAramStreamFv();
-extern "C" void channelStart__13JASAramStreamFv();
-extern "C" void channelStop__13JASAramStreamFUs();
-extern "C" void func_802978DC(void* _this);
-extern "C" u8 sLoadThread__13JASAramStream[4];
-extern "C" u8 sReadBuffer__13JASAramStream[4];
-extern "C" u8 sBlockSize__13JASAramStream[4];
-extern "C" u8 sChannelMax__13JASAramStream[4];
-
-//
-// External References:
-//
-
-extern "C" void sendCmdMsg__13JASTaskThreadFPFPv_vPCvUl();
-extern "C" void sendCmdMsg__13JASTaskThreadFPFPv_vPv();
-extern "C" void getThreadPointer__6JASDvdFv();
-extern "C" void __ct__17JASGenericMemPoolFv();
-extern "C" void __dt__17JASGenericMemPoolFv();
-extern "C" void alloc__17JASGenericMemPoolFUl();
-extern "C" void __ct__10JASChannelFPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv();
-extern "C" void playForce__10JASChannelFv();
-extern "C" void release__10JASChannelFUs();
-extern "C" void setOscInit__10JASChannelFUlPCQ213JASOscillator4Data();
-extern "C" void setMixConfig__10JASChannelFUlUs();
-extern "C" void getDacRate__9JASDriverFv();
-extern "C" void rejectCallback__9JASDriverFPFPv_lPv();
-extern "C" void registerSubFrameCallback__9JASDriverFPFPv_lPv();
-extern "C" void* __nwa__FUlP7JKRHeapi();
-extern "C" void __dl__FPv();
-extern "C" void mainRamToAram__7JKRAramFPUcUlUl15JKRExpandSwitchUlP7JKRHeapiPUl();
-extern "C" void __register_global_object();
-extern "C" void _savegpr_19();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_19();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
 /* 80451250-80451254 000750 0004+00 6/6 0/0 0/0 .sbss            sLoadThread__13JASAramStream */
 JASTaskThread* JASAramStream::sLoadThread;
 
@@ -110,10 +31,8 @@ u32 JASAramStream::sChannelMax;
 /* 80451262 0006+00 data_80451262 None */
 extern bool struct_80451260;
 extern bool struct_80451261;
-extern u32 struct_80451264;
 bool struct_80451260;
 bool struct_80451261;
-u32 struct_80451264;
 
 /* 8029631C-802963A8 290C5C 008C+00 0/0 1/1 0/0 .text            initSystem__13JASAramStreamFUlUl */
 void JASAramStream::initSystem(u32 i_blockSize, u32 i_channelMax) {
@@ -129,23 +48,8 @@ void JASAramStream::initSystem(u32 i_blockSize, u32 i_channelMax) {
     }
 }
 
-/* ############################################################################################## */
-/* 80455610-80455614 003C10 0004+00 3/3 0/0 0/0 .sdata2          @390 */
-SECTION_SDATA2 static u8 lit_390[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80455614-80455618 003C14 0004+00 2/2 0/0 0/0 .sdata2          @391 */
-SECTION_SDATA2 static f32 lit_391 = 1.0f;
-
-/* 80455618-8045561C 003C18 0004+00 2/2 0/0 0/0 .sdata2          @392 */
-SECTION_SDATA2 static f32 lit_392 = 0.5f;
-
 /* 802963A8-8029649C 290CE8 00F4+00 0/0 1/1 0/0 .text            __ct__13JASAramStreamFv */
-#ifdef NONMATCHING
+// NONMATCHING missing load
 JASAramStream::JASAramStream() {
     field_0x0a8 = NULL;
     field_0x0ac = false;
@@ -191,15 +95,10 @@ JASAramStream::JASAramStream() {
         field_0x1dc[i] = 0;
     }
 }
-#else
-JASAramStream::JASAramStream() {
-    // NONMATCHING
-}
-#endif
 
 /* 8029649C-8029655C 290DDC 00C0+00 0/0 1/1 0/0 .text
  * init__13JASAramStreamFUlUlPFUlP13JASAramStreamPv_vPv         */
-#ifdef NONMATCHING
+// NONMATCHING missing load
 void JASAramStream::init(u32 param_0, u32 param_1, StreamCallback i_callback, void* i_callbackData) {
     field_0x148 = param_0;
     field_0x14c = param_1;
@@ -223,11 +122,6 @@ void JASAramStream::init(u32 param_0, u32 param_1, StreamCallback i_callback, vo
     OSInitMessageQueue(&field_0x000, field_0x040, 0x10);
     OSInitMessageQueue(&field_0x020, field_0x080, 4);
 }
-#else
-void JASAramStream::init(u32 param_0, u32 param_1, StreamCallback i_callback, void* param_3) {
-    // NONMATCHING
-}
-#endif
 
 /* 8029655C-80296618 290E9C 00BC+00 0/0 1/1 0/0 .text            prepare__13JASAramStreamFli */
 bool JASAramStream::prepare(s32 param_0, int param_1) {
@@ -345,13 +239,6 @@ void JASAramStream::prepareFinishTask(void* i_this) {
     }
 }
 
-/* ############################################################################################## */
-/* 8045561C-80455620 003C1C 0004+00 1/1 0/0 0/0 .sdata2          @531 */
-SECTION_SDATA2 static f32 lit_531 = 127.0f;
-
-/* 80455620-80455628 003C20 0008+00 3/3 0/0 0/0 .sdata2          @533 */
-SECTION_SDATA2 static f64 lit_533 = 4503599627370496.0 /* cast u32 to float */;
-
 /* 80296920-80296AE8 291260 01C8+00 1/1 0/0 0/0 .text            headerLoad__13JASAramStreamFUli */
 bool JASAramStream::headerLoad(u32 param_0, int param_1) {
     if (struct_80451261) {
@@ -401,7 +288,7 @@ bool JASAramStream::headerLoad(u32 param_0, int param_1) {
 
 
 /* 80296AE8-80296D74 291428 028C+00 2/2 0/0 0/0 .text            load__13JASAramStreamFv */
-#ifdef NONMATCHING
+// NONMATCHING regalloc and one instruction swap
 bool JASAramStream::load() {
     {
         JASCriticalSection cs;
@@ -421,7 +308,11 @@ bool JASAramStream::load() {
     }
     u32 size = sBlockSize * mChannelNum + sizeof(BlockHeader);
     u32 offset = block * size + sizeof(Header);
-    if (DVDReadPrio(&mDvdFileInfo, sReadBuffer, size, offset, 1) < 0) {
+    u32 size2 = size;
+    if (block == loop_end_block) {
+        size2 = mDvdFileInfo.length - offset;
+    }
+    if (DVDReadPrio(&mDvdFileInfo, sReadBuffer, size2, offset, 1) < 0) {
         struct_80451261 = true;
         return false;
     }
@@ -431,8 +322,8 @@ bool JASAramStream::load() {
     }
     u32 uvar2 = field_0x148 + field_0x10c * sBlockSize;
     for (int i = 0; i < mChannelNum; i++) {
-        if (!JKRAram::mainRamToAram(sReadBuffer + bhead->field_0x4 * i + 0x20,
-                                    uvar2 + i * field_0x160 * sBlockSize,
+        if (!JKRAram::mainRamToAram(sReadBuffer + bhead->field_0x4 * i + sizeof(BlockHeader),
+                                    uvar2 + sBlockSize * field_0x160 * i,
                                     bhead->field_0x4, EXPAND_SWITCH_UNKNOWN0, 0, NULL, -1, NULL)) {
             struct_80451261 = 1;
             return false;
@@ -442,7 +333,10 @@ bool JASAramStream::load() {
     if (field_0x10c >= field_0x108) {
         u32 uvar8 = mBlock - 1 + field_0x108;
         if (mLoop) {
-            for (; uvar8 > loop_end_block; uvar8 = uvar8 - loop_end_block + loop_start_block) {}
+            while (uvar8 > loop_end_block) {
+                uvar8 -= loop_end_block;
+                uvar8 += loop_start_block;
+            }
         }
         if (uvar8 == loop_end_block || uvar8 + 2 == loop_end_block) {
             field_0x108 = field_0x160;
@@ -462,44 +356,21 @@ bool JASAramStream::load() {
     }
     return true;
 }
-#else
-bool JASAramStream::load() {
-    // NONMATCHING
-}
-#endif
 
 /* 80296D74-80296D94 2916B4 0020+00 2/2 0/0 0/0 .text channelProcCallback__13JASAramStreamFPv */
 s32 JASAramStream::channelProcCallback(void* i_this) {
     return ((JASAramStream*)i_this)->channelProc();
 }
 
-/* ############################################################################################## */
-/* 803C7670-803C76A8 -00001 0034+04 1/1 0/0 0/0 .data            @613 */
-SECTION_DATA static void* lit_613[13 + 1 /* padding */] = {
-    (void*)(((char*)dvdErrorCheck__13JASAramStreamFPv) + 0x40),
-    (void*)(((char*)dvdErrorCheck__13JASAramStreamFPv) + 0x34),
-    (void*)(((char*)dvdErrorCheck__13JASAramStreamFPv) + 0x48),
-    (void*)(((char*)dvdErrorCheck__13JASAramStreamFPv) + 0x40),
-    (void*)(((char*)dvdErrorCheck__13JASAramStreamFPv) + 0x40),
-    (void*)(((char*)dvdErrorCheck__13JASAramStreamFPv) + 0x40),
-    (void*)(((char*)dvdErrorCheck__13JASAramStreamFPv) + 0x40),
-    (void*)(((char*)dvdErrorCheck__13JASAramStreamFPv) + 0x40),
-    (void*)(((char*)dvdErrorCheck__13JASAramStreamFPv) + 0x40),
-    (void*)(((char*)dvdErrorCheck__13JASAramStreamFPv) + 0x40),
-    (void*)(((char*)dvdErrorCheck__13JASAramStreamFPv) + 0x40),
-    (void*)(((char*)dvdErrorCheck__13JASAramStreamFPv) + 0x40),
-    (void*)(((char*)dvdErrorCheck__13JASAramStreamFPv) + 0x40),
-    /* padding */
-    NULL,
-};
-
 /* 80296D94-80296DF0 2916D4 005C+00 2/1 0/0 0/0 .text            dvdErrorCheck__13JASAramStreamFPv
  */
-#ifdef NONMATCHING
+// NONMATCHING supposed to use a switch table
 s32 JASAramStream::dvdErrorCheck(void* param_0) {
     switch (DVDGetDriveStatus()) {
     case DVD_STATE_END:
         struct_80451260 = false;
+        break;
+    case DVD_STATE_BUSY:
         break;
     case DVD_STATE_WAITING:
     case DVD_STATE_COVER_CLOSED:
@@ -508,20 +379,15 @@ s32 JASAramStream::dvdErrorCheck(void* param_0) {
     case DVD_STATE_WRONG_DISK:
     case DVD_STATE_MOTOR_STOPPED:
     case DVD_STATE_IGNORED:
-    case 9:
     case DVD_STATE_CANCELED:
     case DVD_STATE_RETRY:
     case DVD_STATE_FATAL_ERROR:
+    default:
         struct_80451260 = true;
         break;
     }
     return 0;
 }
-#else
-s32 JASAramStream::dvdErrorCheck(void* param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 80296DF0-80296E2C 291730 003C+00 1/1 0/0 0/0 .text
  * channelCallback__13JASAramStreamFUlP10JASChannelPQ26JASDsp8TChannelPv */
@@ -532,8 +398,7 @@ void JASAramStream::channelCallback(u32 i_callbackType, JASChannel* i_channel,
 
 /* 80296E2C-802974AC 29176C 0680+00 1/1 0/0 0/0 .text
  * updateChannel__13JASAramStreamFUlP10JASChannelPQ26JASDsp8TChannel */
-#ifdef NONMATCHING
-// missing extra loads of field_0x0c4
+// NONMATCHING missing extra loads of field_0x0c4
 void JASAramStream::updateChannel(u32 i_callbackType, JASChannel* i_channel,
                                   JASDsp::TChannel* i_dspChannel) {
     u32 block_samples = getBlockSamples();
@@ -712,15 +577,9 @@ void JASAramStream::updateChannel(u32 i_callbackType, JASChannel* i_channel,
     }
     i_channel->mPauseFlag = field_0x0ae != 0;
 }
-#else
-void JASAramStream::updateChannel(u32 param_0, JASChannel* param_1, JASDsp::TChannel* param_2) {
-    // NONMATCHING
-}
-#endif
 
 /* 802974AC-80297658 291DEC 01AC+00 1/1 0/0 0/0 .text            channelProc__13JASAramStreamFv */
-#ifdef NONMATCHING
-// regalloc and instruction ordering
+// NONMATCHING instruction ordering
 s32 JASAramStream::channelProc() {
     OSMessage msg;
     while (OSReceiveMessage(&field_0x020, &msg, OS_MESSAGE_NOBLOCK)) {
@@ -778,13 +637,7 @@ s32 JASAramStream::channelProc() {
     
     return 0;
 }
-#else
-s32 JASAramStream::channelProc() {
-    // NONMATCHING
-}
-#endif
 
-/* ############################################################################################## */
 /* 8039B168-8039B174 0277C8 000C+00 1/0 0/0 0/0 .rodata          OSC_RELEASE_TABLE */
 static JASOscillator::Point const OSC_RELEASE_TABLE[2] = {
     {0x0000, 0x0002, 0x0000},
@@ -793,17 +646,6 @@ static JASOscillator::Point const OSC_RELEASE_TABLE[2] = {
 
 /* 8039B174-8039B190 -00001 0018+04 1/1 0/0 0/0 .rodata          OSC_ENV */
 static JASOscillator::Data const OSC_ENV = {0, 1.0f, NULL, OSC_RELEASE_TABLE, 1.0f, 0.0f};
-
-/* 80431B28-80431B34 05E848 000C+00 1/1 0/0 0/0 .bss             @792 */
-static u8 lit_792[12];
-
-/* 80431B34-80431B48 05E854 0010+04 1/1 4/4 0/0 .bss
- * memPool_$localstatic3$getMemPool___46JASPoolAllocObject_MultiThreaded<10JASChannel>Fv */
-extern u8 data_80431B34[16 + 4 /* padding */];
-u8 data_80431B34[16 + 4 /* padding */];
-
-/* 80455628-80455630 003C28 0004+04 1/1 0/0 0/0 .sdata2          one$776 */
-SECTION_SDATA2 static u32 one = 1;
 
 /* 80297658-80297870 291F98 0218+00 1/1 0/0 0/0 .text            channelStart__13JASAramStreamFv */
 void JASAramStream::channelStart() {
@@ -826,6 +668,7 @@ void JASAramStream::channelStart() {
         wave_info.field_0x1c = 0;
         wave_info.field_0x1e = 0;
         // probably a fake match, this should be set in the JASWaveInfo constructor
+        static u32 const one = 1;
         wave_info.field_0x20 = &one;
         JASChannel* channel = new JASChannel(channelCallback, this);
         channel->setPriority(0x7f7f);
@@ -851,10 +694,4 @@ void JASAramStream::channelStop(u16 i_directRelease) {
             mChannels[i]->release(i_directRelease);
         }
     }
-}
-
-/* 802978DC-80297930 29221C 0054+00 1/1 5/5 0/0 .text
- * __dt__38JASMemPool_MultiThreaded<10JASChannel>Fv             */
-extern "C" void func_802978DC(void* _this) {
-    // NONMATCHING
 }

@@ -1,6 +1,8 @@
 #ifndef JASWAVEINFO_H
 #define JASWAVEINFO_H
 
+#include "dolphin/types.h"
+
 /**
  * @ingroup jsystem-jaudio
  * 

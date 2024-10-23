@@ -5,124 +5,125 @@
 
 #include "JSystem/JAudio2/JASWSParser.h"
 #include "JSystem/JAudio2/JASBasicWaveBank.h"
+#include "JSystem/JAudio2/JASSimpleWaveBank.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "dolphin/types.h"
-
-//
-// Forward References:
-//
-
-extern "C" void getGroupCount__11JASWSParserFPCv();
-extern "C" void createWaveBank__11JASWSParserFPCvP7JKRHeap();
-extern "C" void createBasicWaveBank__11JASWSParserFPCvP7JKRHeap();
-extern "C" void createSimpleWaveBank__11JASWSParserFPCvP7JKRHeap();
-extern "C" void func_80299490(void* _this, void const*, u32);
-extern "C" void func_802994A8(void* _this, void const*, u32);
-extern "C" void func_802994C0(void* _this, void const*, u32);
-extern "C" void func_802994D8(void* _this, void const*, u32);
-extern "C" void func_802994F0(void* _this, void const*, u32);
-extern "C" void func_80299508(void* _this, void const*, u32);
-extern "C" void func_80299520(void* _this, void const*, u32);
-extern "C" u8 sUsedHeapSize__11JASWSParser[4 + 4 /* padding */];
-
-//
-// External References:
-//
-
-extern "C" void __ct__16JASBasicWaveBankFv();
-extern "C" void getWaveGroup__16JASBasicWaveBankFUl();
-extern "C" void setGroupCount__16JASBasicWaveBankFUlP7JKRHeap();
-extern "C" void setWaveTableSize__16JASBasicWaveBankFUlP7JKRHeap();
-extern "C" void
-setWaveInfo__16JASBasicWaveBankFPQ216JASBasicWaveBank10TWaveGroupiUsRC11JASWaveInfo();
-extern "C" void setWaveCount__Q216JASBasicWaveBank10TWaveGroupFUlP7JKRHeap();
-extern "C" void __ct__17JASSimpleWaveBankFv();
-extern "C" void setWaveTableSize__17JASSimpleWaveBankFUlP7JKRHeap();
-extern "C" void setWaveInfo__17JASSimpleWaveBankFUlRC11JASWaveInfo();
-extern "C" void setFileName__10JASWaveArcFPCc();
-extern "C" void getFreeSize__7JKRHeapFv();
-extern "C" void* __nw__FUlP7JKRHeapi();
-extern "C" void _savegpr_20();
-extern "C" void _savegpr_23();
-extern "C" void _restgpr_20();
-extern "C" void _restgpr_23();
-extern "C" u32 one__11JASWaveInfo[1 + 1 /* padding */];
-
-//
-// Declarations:
-//
+#include "JSystem/JKernel/JKRSolidHeap.h"
 
 /* 80298FB0-80298FD8 2938F0 0028+00 1/1 0/0 0/0 .text            getGroupCount__11JASWSParserFPCv */
 u32 JASWSParser::getGroupCount(void const* stream) {
 	THeader* header = (THeader*)stream;
-	return ((TOffset<TCtrlGroup>*)&header->mCtrlGroupOffset)->ptr(header)->mCtrlGroupCount;
+	return header->mCtrlGroupOffset.ptr(header)->mGroupCount;
 }
 
 
 /* 80298FD8-80299034 293918 005C+00 0/0 1/1 0/0 .text createWaveBank__11JASWSParserFPCvP7JKRHeap
  */
-JASWaveBank* JASWSParser::createWaveBank(void const* param_0, JKRHeap* param_1) {
-    if (getGroupCount(param_0) == 1) {
-        return (JASWaveBank*)createSimpleWaveBank(param_0, param_1);
+JASWaveBank* JASWSParser::createWaveBank(void const* stream, JKRHeap* heap) {
+    if (getGroupCount(stream) == 1) {
+        return createSimpleWaveBank(stream, heap);
     } else {
-        return (JASWaveBank*) createBasicWaveBank(param_0, param_1);
+        return createBasicWaveBank(stream, heap);
     }
 }
 
-/* ############################################################################################## */
 /* 80451280-80451288 000780 0004+04 2/2 0/0 0/0 .sbss            sUsedHeapSize__11JASWSParser */
-u8 JASWSParser::sUsedHeapSize[4 + 4 /* padding */];
+u32 JASWSParser::sUsedHeapSize;
 
 /* 80299034-80299264 293974 0230+00 1/1 0/0 0/0 .text
  * createBasicWaveBank__11JASWSParserFPCvP7JKRHeap              */
-JASBasicWaveBank* JASWSParser::createBasicWaveBank(void const* param_0, JKRHeap* param_1) {
-    // NONMATCHING
+JASBasicWaveBank* JASWSParser::createBasicWaveBank(void const* stream, JKRHeap* heap) {
+    if (heap == NULL) {
+        heap = JASDram;
+    }
+    u32 free_size = heap->getFreeSize();
+
+    THeader* header = (THeader*)stream;
+    JASBasicWaveBank* wave_bank = new (heap, 0) JASBasicWaveBank();
+    if (wave_bank == NULL) {
+        return NULL;
+    }
+
+    TCtrlGroup* ctrl_group = header->mCtrlGroupOffset.ptr(header);
+    wave_bank->setGroupCount(ctrl_group->mGroupCount, heap);
+    wave_bank->setWaveTableSize(header->mWaveTableSize, heap);
+    for (u32 i = 0; i < ctrl_group->mGroupCount; i++) {
+        TCtrl* ctrl = ctrl_group->mCtrlSceneOffsets[i].ptr(header)->mCtrlOffset.ptr(header);
+        JASBasicWaveBank::TWaveGroup* wave_group = wave_bank->getWaveGroup(i);
+        TWaveArchive* archive = header->mArchiveBankOffset.ptr(header)->mArchiveOffsets[i].ptr(header);
+        wave_group->setWaveCount(ctrl->mWaveCount, heap);
+        for (int j = 0; j < ctrl->mWaveCount; j++) {
+            TWave* wave = archive->mWaveOffsets[j].ptr(header);
+            JASWaveInfo wave_info;
+            wave_info.field_0x00 = wave->_01;
+            wave_info.field_0x01 = wave->_02;
+            wave_info.field_0x04 = wave->_04;
+            wave_info.field_0x08 = wave->mOffset;
+            wave_info.field_0x0c = wave->_0C;
+            wave_info.field_0x02 = wave->_10 == 0 ? 0 : 0xff;
+            wave_info.field_0x10 = wave->_14;
+            wave_info.field_0x14 = wave->_18;
+            wave_info.field_0x18 = wave->_1C;
+            wave_info.field_0x1c = wave->_20;
+            wave_info.field_0x1e = wave->_22;
+            TCtrlWave* ctrl_wave = ctrl->mCtrlWaveOffsets[j].ptr(header);
+            wave_bank->setWaveInfo(wave_group, j, JSULoHalf(ctrl_wave->_00), wave_info);
+        }
+        wave_group->setFileName(archive->mFileName);
+    }
+
+    sUsedHeapSize += (free_size - heap->getFreeSize());
+    return wave_bank;
 }
 
 /* 80299264-80299490 293BA4 022C+00 1/1 0/0 0/0 .text
  * createSimpleWaveBank__11JASWSParserFPCvP7JKRHeap             */
-JASSimpleWaveBank* JASWSParser::createSimpleWaveBank(void const* param_0, JKRHeap* param_1) {
-    // NONMATCHING
-}
+JASSimpleWaveBank* JASWSParser::createSimpleWaveBank(void const* stream, JKRHeap* heap) {
+    if (heap == NULL) {
+        heap = JASDram;
+    }
+    u32 free_size = heap->getFreeSize();
+    
+    THeader* header = (THeader*)stream;
+    TCtrlGroup* ctrl_group = header->mCtrlGroupOffset.ptr(header);
+    if (ctrl_group->mGroupCount != 1) {
+        return NULL;
+    }
 
-/* 80299490-802994A8 293DD0 0018+00 2/2 0/0 0/0 .text
- * JSUConvertOffsetToPtr<Q211JASWSParser9TCtrlWave>__FPCvUl     */
-extern "C" void func_80299490(void* _this, void const* param_0, u32 param_1) {
-    // NONMATCHING
-}
+    JASSimpleWaveBank* wave_bank = new (heap, 0) JASSimpleWaveBank();
+    if (wave_bank == NULL) {
+        return NULL;
+    }
 
-/* 802994A8-802994C0 293DE8 0018+00 2/2 0/0 0/0 .text
- * JSUConvertOffsetToPtr<Q211JASWSParser5TWave>__FPCvUl         */
-extern "C" void func_802994A8(void* _this, void const* param_0, u32 param_1) {
-    // NONMATCHING
-}
+    u32 max = 0;
+    TCtrl* ctrl = ctrl_group->mCtrlSceneOffsets[0].ptr(header)->mCtrlOffset.ptr(header);
+    TWaveArchive* archive = header->mArchiveBankOffset.ptr(header)->mArchiveOffsets[0].ptr(header);
+    for (int i = 0; i < ctrl->mWaveCount; i++) {
+        u32 tmp = JSULoHalf(ctrl->mCtrlWaveOffsets[i].ptr(header)->_00);
+        if (max < tmp) {
+            max = tmp;
+        }
+    }
+    wave_bank->setWaveTableSize(max + 1, heap);
+    
+    for (int i = 0; i < ctrl->mWaveCount; i++) {
+        TWave* wave = archive->mWaveOffsets[i].ptr(header);
+        JASWaveInfo wave_info;
+        wave_info.field_0x00 = wave->_01;
+        wave_info.field_0x01 = wave->_02;
+        wave_info.field_0x04 = wave->_04;
+        wave_info.field_0x08 = wave->mOffset;
+        wave_info.field_0x0c = wave->_0C;
+        wave_info.field_0x02 = wave->_10 == 0 ? 0 : 0xff;
+        wave_info.field_0x10 = wave->_14;
+        wave_info.field_0x14 = wave->_18;
+        wave_info.field_0x18 = wave->_1C;
+        wave_info.field_0x1c = wave->_20;
+        wave_info.field_0x1e = wave->_22;
+        TCtrlWave* ctrl_wave = ctrl->mCtrlWaveOffsets[i].ptr(header);
+        wave_bank->setWaveInfo(JSULoHalf(ctrl_wave->_00), wave_info);
+    }
+    wave_bank->setFileName(archive->mFileName);
 
-/* 802994C0-802994D8 293E00 0018+00 2/2 0/0 0/0 .text
- * JSUConvertOffsetToPtr<Q211JASWSParser12TWaveArchive>__FPCvUl */
-extern "C" void func_802994C0(void* _this, void const* param_0, u32 param_1) {
-    // NONMATCHING
-}
-
-/* 802994D8-802994F0 293E18 0018+00 2/2 0/0 0/0 .text
- * JSUConvertOffsetToPtr<Q211JASWSParser16TWaveArchiveBank>__FPCvUl */
-extern "C" void func_802994D8(void* _this, void const* param_0, u32 param_1) {
-    // NONMATCHING
-}
-
-/* 802994F0-80299508 293E30 0018+00 2/2 0/0 0/0 .text
- * JSUConvertOffsetToPtr<Q211JASWSParser5TCtrl>__FPCvUl         */
-extern "C" void func_802994F0(void* _this, void const* param_0, u32 param_1) {
-    // NONMATCHING
-}
-
-/* 80299508-80299520 293E48 0018+00 2/2 0/0 0/0 .text
- * JSUConvertOffsetToPtr<Q211JASWSParser10TCtrlScene>__FPCvUl   */
-extern "C" void func_80299508(void* _this, void const* param_0, u32 param_1) {
-    // NONMATCHING
-}
-
-/* 80299520-80299538 293E60 0018+00 3/3 0/0 0/0 .text
- * JSUConvertOffsetToPtr<Q211JASWSParser10TCtrlGroup>__FPCvUl   */
-extern "C" void func_80299520(void* _this, void const* param_0, u32 param_1) {
-    // NONMATCHING
+    sUsedHeapSize += (free_size - heap->getFreeSize());
+    return wave_bank;
 }

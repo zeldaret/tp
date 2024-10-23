@@ -75,8 +75,6 @@ struct JAUSoundTable_ {
 
     const void* field_0x0;
     Root* field_0x4;
-    u32 field_0x8;
-    u32 field_0xc;
 };
 
 /**

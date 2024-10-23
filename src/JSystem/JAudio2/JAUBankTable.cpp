@@ -11,7 +11,7 @@ void JAUBankTableDictionary::appendBankTable(JSULink<JAUBankTable>* bankTableLis
     append(bankTableList);
 }
 
-/* 802A4AA0-802A4AC4 29F3E0 0024+00 0/0 2/0 0/0 .text            getBank__12JAUBankTableCFUl */
-JASBank* JAUBankTable::getBank(u32 bank) const {
-    return mBankPtrTable.get(bank);
+// Needed to make the inline function JAUBankTable::getBank appear in this TU
+static JASBank* dummy(JAUBankTable* table) {
+    return table->getBank(0);
 }

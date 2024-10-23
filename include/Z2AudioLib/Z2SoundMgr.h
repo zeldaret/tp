@@ -28,7 +28,9 @@ public:
                                                  JGeometry::TVec3<f32> const*);
 
     JAISeMgr* getSeMgr() { return &mSeMgr; }
+    const JAISeMgr* getSeMgr() const { return &mSeMgr; }
     JAISeqMgr* getSeqMgr() { return &mSeqMgr; }
+    const JAISeqMgr* getSeqMgr() const { return &mSeqMgr; }
     JAIStreamMgr* getStreamMgr() { return &mStreamMgr; }
 
 private:

@@ -8,6 +8,10 @@ void JMAEulerToQuat(s16 param_0, s16 param_1, s16 param_2, Quaternion* param_3);
 void JMAQuatLerp(const Quaternion*, const Quaternion*, f32, Quaternion*);
 void JMAFastVECNormalize(register const Vec* src, register Vec* dst);   
 
+inline int JMAAbs(int value) {
+    return (value >> 0x1f ^ value) - (value >> 0x1f);
+}
+
 inline f32 JMAFastReciprocal(f32 value) {
     return __fres(value);
 }

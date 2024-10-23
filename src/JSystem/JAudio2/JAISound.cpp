@@ -9,18 +9,6 @@
 #include "JSystem/JAudio2/JASReport.h"
 #include "JSystem/JAudio2/JASTrack.h"
 
-//
-// Forward References:
-//
-
-//
-// External References:
-//
-
-//
-// Declarations:
-//
-
 /* 802A2184-802A21A0 29CAC4 001C+00 0/0 14/14 0/0 .text            releaseSound__14JAISoundHandleFv
  */
 void JAISoundHandle::releaseSound() {

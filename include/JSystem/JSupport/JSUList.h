@@ -45,13 +45,13 @@ class JSULink : public JSUPtrLink {
 public:
     JSULink(T* object) : JSUPtrLink((void*)object) {}
 
-    T* getObject() const { return (T*)getObjectPtr(); }
+    T* getObject() const { return static_cast<T*>(getObjectPtr()); }
 
-    JSUList<T>* getSupervisor() const { return (JSUList<T>*)this->getList(); }
+    JSUList<T>* getSupervisor() const { return static_cast<JSUList<T>*>(this->getList()); }
 
-    JSULink<T>* getNext() const { return (JSULink<T>*)this->JSUPtrLink::getNext(); }
+    JSULink<T>* getNext() const { return static_cast<JSULink*>(this->JSUPtrLink::getNext()); }
 
-    JSULink<T>* getPrev() const { return (JSULink<T>*)this->JSUPtrLink::getPrev(); }
+    JSULink<T>* getPrev() const { return static_cast<JSULink*>(this->JSUPtrLink::getPrev()); }
 };
 
 //

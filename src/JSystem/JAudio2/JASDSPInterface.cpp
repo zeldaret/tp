@@ -7,25 +7,13 @@
 #include "JSystem/JAudio2/JASCalc.h"
 #include "JSystem/JAudio2/JASHeapCtrl.h"
 #include "JSystem/JAudio2/JASWaveInfo.h"
+#include "JSystem/JAudio2/dspproc.h"
 #include "JSystem/JAudio2/dsptask.h"
 #include "JSystem/JAudio2/osdsp_task.h"
 #include "JSystem/JAudio2/JASCriticalSection.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "dolphin/os/OSCache.h"
 
-//
-// Forward References:
-//
-
-//
-// External References:
-//
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
 /* 804512E8-804512EC 0007E8 0004+00 5/5 0/0 0/0 .sbss            CH_BUF__6JASDsp */
 JASDsp::TChannel* JASDsp::CH_BUF;
 
@@ -94,7 +82,6 @@ void JASDsp::invalChannelAll() {
     DCInvalidateRange(CH_BUF, sizeof(TChannel) * 64);
 }
 
-/* ############################################################################################## */
 /* 8039B360-8039B3A0 0279C0 0040+00 1/1 0/0 0/0 .rodata          DSPADPCM_FILTER__6JASDsp */
 u8 const JASDsp::DSPADPCM_FILTER[64] = {
     0x00, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x08, 0x00, 0x04, 0x00, 0x04, 0x00,
@@ -440,7 +427,6 @@ void JASDsp::initBuffer() {
     flushBuffer();
 }
 
-/* ############################################################################################## */
 /* 803C78F0-803C7920 024A10 0018+18 1/1 0/0 0/0 .data            SEND_TABLE__6JASDsp */
 u16 JASDsp::SEND_TABLE[12 + 12 /* padding */] = {
     0x0D00,
@@ -556,22 +542,13 @@ bool JASDsp::TChannel::isFinish() const {
     return mIsFinished != 0;
 }
 
-/* ############################################################################################## */
-/* 8045574C-80455754 003D4C 0008+00 1/1 0/0 0/0 .sdata2          COMP_BLOCKSAMPLES$331 */
-static const u8 COMP_BLOCKSAMPLES[8] = {
-    0x10, 0x10, 0x01, 0x01, 0x01, 0x10, 0x10, 0x01,
-};
-
-/* 80455754-8045575C 003D54 0008+00 1/1 0/0 0/0 .sdata2          COMP_BLOCKBYTES$332 */
-static const u8 COMP_BLOCKBYTES[8] = {
-    0x09, 0x05, 0x08, 0x10, 0x01, 0x01, 0x01, 0x01,
-};
-
 /* 8029DD8C-8029DEAC 2986CC 0120+00 0/0 1/1 0/0 .text
  * setWaveInfo__Q26JASDsp8TChannelFRC11JASWaveInfoUlUl          */
 void JASDsp::TChannel::setWaveInfo(JASWaveInfo const& param_0, u32 param_1, u32 param_2) {
     field_0x118 = param_1;
+    static const u8 COMP_BLOCKSAMPLES[8] = {0x10, 0x10, 0x01, 0x01, 0x01, 0x10, 0x10, 0x01};
     field_0x064 = COMP_BLOCKSAMPLES[param_0.field_0x00];
+    static const u8 COMP_BLOCKBYTES[8] = {0x09, 0x05, 0x08, 0x10, 0x01, 0x01, 0x01, 0x01};
     field_0x100 = COMP_BLOCKBYTES[param_0.field_0x00];
     field_0x068 = 0;
     if (field_0x100 >= 4) {
@@ -721,16 +698,13 @@ void JASDsp::TChannel::setDistFilter(s16 param_0) {
     iir_filter_params[4] = param_0;
 }
 
-/* ############################################################################################## */
-/* 8039B8A0-8039B8B8 027F00 0018+00 1/1 0/0 0/0 .rodata          connect_table$463 */
-static u16 const connect_table[12] = {
-    0x0000, 0x0D00, 0x0D60, 0x0DC0, 0x0E20, 0x0E80,
-    0x0EE0, 0x0CA0, 0x0F40, 0x0FA0, 0x0B00, 0x09A0,
-};
-
 /* 8029E09C-8029E0BC 2989DC 0020+00 0/0 1/1 0/0 .text setBusConnect__Q26JASDsp8TChannelFUcUc */
 void JASDsp::TChannel::setBusConnect(u8 param_0, u8 param_1) {
     u16* tmp = field_0x010[param_0];
+    static u16 const connect_table[12] = {
+        0x0000, 0x0D00, 0x0D60, 0x0DC0, 0x0E20, 0x0E80,
+        0x0EE0, 0x0CA0, 0x0F40, 0x0FA0, 0x0B00, 0x09A0,
+    };
     tmp[0] = connect_table[param_1];
 }
 

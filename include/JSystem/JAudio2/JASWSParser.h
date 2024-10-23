@@ -17,56 +17,66 @@ public:
     template<class T>
     class TOffset {
     public:
-        T* ptr(void* param_0) {
+        T* ptr(void const* param_0) {
             return JSUConvertOffsetToPtr<T>(param_0, mOffset);
         }
-        void* mOffset;
+    
+    private:
+        /* 0x0 */ u32 mOffset;
+    };
+
+    struct TCtrlWave {
+        /* 0x0 */ u32 _00;
+    };
+
+    struct TWave {
+        /* 0x00 */ u8 _00;
+        /* 0x01 */ u8 _01;
+        /* 0x02 */ u8 _02;
+        /* 0x04 */ f32 _04;
+        /* 0x08 */ u32 mOffset;
+        /* 0x0C */ u32 _0C;
+        /* 0x10 */ u32 _10;
+        /* 0x14 */ u32 _14;
+        /* 0x18 */ u32 _18;
+        /* 0x1C */ u32 _1C;
+        /* 0x20 */ s16 _20;
+        /* 0x22 */ s16 _22;
+    };
+
+    struct TWaveArchive {
+        /* 0x00 */ char mFileName[0x74];  // unknown length
+        /* 0x74 */ TOffset<TWave> mWaveOffsets[0];
+    };
+
+    struct TWaveArchiveBank {
+        /* 0x0 */ u8 _00[8];
+        /* 0x8 */ TOffset<TWaveArchive> mArchiveOffsets[0];
+    };
+
+    struct TCtrl {
+        /* 0x0 */ u8 _00[4];
+        /* 0x4 */ u32 mWaveCount;
+        /* 0x8 */ TOffset<TCtrlWave> mCtrlWaveOffsets[0];
+    };
+
+    struct TCtrlScene {
+        /* 0x0 */ u8 _00[0xC];
+        /* 0xC */ TOffset<TCtrl> mCtrlOffset;
+    };
+
+    struct TCtrlGroup {
+        /* 0x0 */ u8 _00[8];
+        /* 0x8 */ u32 mGroupCount;
+        /* 0xC */ TOffset<TCtrlScene> mCtrlSceneOffsets[0];
     };
 
     /** @fabricated */
     struct THeader {
-        u8 _00[0x10];            // _00 - unknown/padding
-        u32 mArchiveBankOffset;  // _10
-        u32 mCtrlGroupOffset;    // _14
-    };
-    struct TCtrlWave {
-        u32 _00;  // _00
-    };
-    struct TWave {
-        u8 _00;       // _00
-        u8 _01;       // _01
-        u8 _02;       // _02
-        f32 _04;      // _04
-        u32 mOffset;  // _08
-        u32 _0C;      // _0C
-        u32 _10;      // _10
-        u32 _14;      // _14
-        u32 _18;      // _18
-        u32 _1C;      // _1C
-        s16 _20;      // _20
-        s16 _22;      // _22
-    };
-    struct TWaveArchive {
-        char mFileName[0x74];  // _00 - unknown length
-        u32 mWaveOffsets[1];   // _74 - dynamic length
-    };
-    struct TWaveArchiveBank {
-        u8 _00[8];               // _00 - unknown/padding
-        u32 mArchiveOffsets[1];  // _08 - dynamic length
-    };
-    struct TCtrl {
-        u8 _00[4];                // _00 - unknown/padding
-        u32 mWaveCount;           // _04
-        u32 mCtrlWaveOffsets[1];  // _08 - dynamic length
-    };
-    struct TCtrlScene {
-        u8 _00[12];       // _00 - unknown/padding
-        u32 mCtrlOffset;  // _0C
-    };
-    struct TCtrlGroup {
-        u8 _00[8];                 // _00 - unknown/padding
-        u32 mCtrlGroupCount;       // _08
-        u32 mCtrlSceneOffsets[1];  // _0C - dynamic length
+        /* 0x00 */ u8 _00[0xC];
+        /* 0x0C */ u32 mWaveTableSize;
+        /* 0x10 */ TOffset<TWaveArchiveBank> mArchiveBankOffset;
+        /* 0x14 */ TOffset<TCtrlGroup> mCtrlGroupOffset;
     };
 
     /* 80298FB0 */ static u32 getGroupCount(void const*);
@@ -74,7 +84,7 @@ public:
     /* 80299034 */ static JASBasicWaveBank* createBasicWaveBank(void const*, JKRHeap*);
     /* 80299264 */ static JASSimpleWaveBank* createSimpleWaveBank(void const*, JKRHeap*);
 
-    static u8 sUsedHeapSize[4 + 4 /* padding */];
+    static u32 sUsedHeapSize;
 };
 
 #endif /* JASWSPARSER_H */

@@ -4,189 +4,184 @@
 //
 
 #include "JSystem/JAudio2/JASBNKParser.h"
-#include "dol2asm.h"
-
-//
-// Types:
-//
-
-struct JKRHeap {
-    /* 802CE72C */ void getFreeSize();
-};
-
-template <typename A0>
-struct JASMemPool_MultiThreaded {};
-/* JASMemPool_MultiThreaded<JASChannel> */
-struct JASMemPool_MultiThreaded__template2 {
-    /* 802978DC */ void func_802978DC(void* _this);
-};
-
-struct JASInst {};
-
-struct JASGenericMemPool {
-    /* 80290848 */ JASGenericMemPool();
-};
-
-struct JASDrumSet {
-    struct TPerc {
-        /* 802984C4 */ TPerc();
-    };
-
-    /* 802982EC */ JASDrumSet();
-    /* 80298370 */ void newPercArray(u8, JKRHeap*);
-    /* 802984B4 */ void setPerc(int, JASDrumSet::TPerc*);
-};
-
-struct JASCalc {
-    /* 8028F354 */ void bcopy(void const*, void*, u32);
-};
-
-struct JASBasicInst {
-    /* 80298014 */ JASBasicInst();
-    /* 8029819C */ void setKeyRegionCount(u32, JKRHeap*);
-    /* 8029821C */ void setOsc(int, JASOscillator::Data const*);
-    /* 8029822C */ void getKeyRegion(int);
-};
-
-struct JASBasicBank {
-    /* 80297D78 */ JASBasicBank();
-    /* 80297DA4 */ void newInstTable(u8, JKRHeap*);
-    /* 80297E68 */ void setInst(int, JASInst*);
-    /* 80297E80 */ void getInst(int) const;
-};
-
-//
-// Forward References:
-//
-
-extern "C" void createBank__12JASBNKParserFPCvP7JKRHeap();
-extern "C" void createBasicBank__12JASBNKParserFPCvP7JKRHeap();
-extern "C" void findChunk__Q212JASBNKParser4Ver1FPCvUl();
-extern "C" void createBasicBank__Q212JASBNKParser4Ver1FPCvP7JKRHeap();
-extern "C" void createBasicBank__Q212JASBNKParser4Ver0FPCvP7JKRHeap();
-extern "C" void
-findOscPtr__Q212JASBNKParser4Ver0FP12JASBasicBankPCQ312JASBNKParser4Ver07THeaderPCQ312JASBNKParser4Ver04TOsc();
-extern "C" void getOscTableEndPtr__Q212JASBNKParser4Ver0FPCQ213JASOscillator5Point();
-extern "C" void func_80299FA0(void* _this, void const*, u32);
-extern "C" void func_80299FB8(void* _this, void const*, u32);
-extern "C" void func_80299FD0(void* _this, void const*, u32);
-extern "C" void func_80299FE8(void* _this, void const*, u32);
-extern "C" void func_8029A000(void* _this, void const*, u32);
-extern "C" void func_8029A018(void* _this, void const*, u32);
-extern "C" void func_8029A030(void* _this, void const*, u32);
-extern "C" void __sinit_JASBNKParser_cpp();
-extern "C" u8 sUsedHeapSize__12JASBNKParser[4];
-
-//
-// External References:
-//
-
-extern "C" void bcopy__7JASCalcFPCvPvUl();
-extern "C" void __ct__17JASGenericMemPoolFv();
-extern "C" void func_802978DC(void* _this);
-extern "C" void __ct__12JASBasicBankFv();
-extern "C" void newInstTable__12JASBasicBankFUcP7JKRHeap();
-extern "C" void setInst__12JASBasicBankFiP7JASInst();
-extern "C" void getInst__12JASBasicBankCFi();
-extern "C" void __ct__12JASBasicInstFv();
-extern "C" void setKeyRegionCount__12JASBasicInstFUlP7JKRHeap();
-extern "C" void setOsc__12JASBasicInstFiPCQ213JASOscillator4Data();
-extern "C" void getKeyRegion__12JASBasicInstFi();
-extern "C" void __ct__10JASDrumSetFv();
-extern "C" void newPercArray__10JASDrumSetFUcP7JKRHeap();
-extern "C" void setPerc__10JASDrumSetFiPQ210JASDrumSet5TPerc();
-extern "C" void __ct__Q210JASDrumSet5TPercFv();
-extern "C" void setRelease__Q210JASDrumSet5TPercFUl();
-extern "C" void getFreeSize__7JKRHeapFv();
-extern "C" void* __nw__FUlP7JKRHeapi();
-extern "C" void* __nwa__FUlP7JKRHeapi();
-extern "C" void __register_global_object();
-extern "C" void _savegpr_17();
-extern "C" void _savegpr_19();
-extern "C" void _savegpr_23();
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_17();
-extern "C" void _restgpr_19();
-extern "C" void _restgpr_23();
-extern "C" void _restgpr_28();
-extern "C" extern u8 JASDram[4];
-
-//
-// Declarations:
-//
+#include "JSystem/JAudio2/JASBasicBank.h"
+#include "JSystem/JAudio2/JASCalc.h"
+#include "JSystem/JAudio2/JASDrumSet.h"
+#include "JSystem/JAudio2/JASHeapCtrl.h"
+#include "JSystem/JKernel/JKRSolidHeap.h"
+#include "JSystem/JSupport/JSupport.h"
 
 /* 80299538-80299558 293E78 0020+00 0/0 1/1 0/0 .text createBank__12JASBNKParserFPCvP7JKRHeap */
-JASBank* JASBNKParser::createBank(void const* param_0, JKRHeap* param_1) {
-    // NONMATCHING
+JASBank* JASBNKParser::createBank(void const* stream, JKRHeap* heap) {
+    return createBasicBank(stream, heap);
 }
 
-/* ############################################################################################## */
 /* 80451288-8045128C 000788 0004+00 1/1 0/0 0/0 .sbss            sUsedHeapSize__12JASBNKParser */
-u8 JASBNKParser::sUsedHeapSize[4];
+u32 JASBNKParser::sUsedHeapSize;
 
 /* 80299558-80299600 293E98 00A8+00 1/1 0/0 0/0 .text createBasicBank__12JASBNKParserFPCvP7JKRHeap
  */
-JASBasicBank* JASBNKParser::createBasicBank(void const* param_0, JKRHeap* param_1) {
-    // NONMATCHING
+JASBasicBank* JASBNKParser::createBasicBank(void const* stream, JKRHeap* heap) {
+    if (heap == NULL) {
+        heap = JASDram;
+    }
+
+    u32 free_size = heap->getFreeSize();
+    JASBasicBank* bank = NULL;
+
+    TFileHeader* header = (TFileHeader*)stream;
+    switch (header->mVersion) {
+    case 0:
+        bank = Ver0::createBasicBank(stream, heap);
+        break;
+    case 1:
+        bank = Ver1::createBasicBank(stream, heap);
+        break;
+    }
+
+    sUsedHeapSize += free_size - heap->getFreeSize();
+    return bank;
 }
 
 /* 80299600-8029963C 293F40 003C+00 1/1 0/0 0/0 .text findChunk__Q212JASBNKParser4Ver1FPCvUl */
-void JASBNKParser::Ver1::findChunk(void const* param_0, u32 param_1) {
-    // NONMATCHING
+JASBNKParser::Ver1::TChunk* JASBNKParser::Ver1::findChunk(void const* stream, u32 id) {
+    TFileHeader* header = (TFileHeader*)stream;
+    void* end = (void*)((int)stream + header->mSize);
+    TChunk* chunk = (TChunk*)((int)stream + 0x20);
+    while (chunk < end) {
+        if (chunk->mID == id) {
+            return chunk;
+        }
+        chunk = (TChunk*)(((int)chunk + 0xb + chunk->mSize) & ~3);
+    }
+    return NULL;
 }
-
-/* ############################################################################################## */
-/* 80455658-80455660 003C58 0004+04 2/2 0/0 0/0 .sdata2          @835 */
-SECTION_SDATA2 static f32 lit_835[1 + 1 /* padding */] = {
-    127.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 80455660-80455668 003C60 0008+00 1/1 0/0 0/0 .sdata2          @838 */
-SECTION_SDATA2 static f64 lit_838 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8029963C-80299A3C 293F7C 0400+00 1/1 0/0 0/0 .text
  * createBasicBank__Q212JASBNKParser4Ver1FPCvP7JKRHeap          */
-void JASBNKParser::Ver1::createBasicBank(void const* param_0, JKRHeap* param_1) {
-    // NONMATCHING
-}
+// NONMATCHING instruction ordering, regalloc
+JASBasicBank* JASBNKParser::Ver1::createBasicBank(void const* stream, JKRHeap* heap) {
+    if (heap == NULL) {
+        heap = JASDram;
+    }
 
-/* ############################################################################################## */
-/* 80455668-80455670 003C68 0008+00 1/1 0/0 0/0 .sdata2          @990 */
-SECTION_SDATA2 static f64 lit_990 = 4503601774854144.0 /* cast s32 to float */;
+    JASBasicBank* bank = new (heap, 0) JASBasicBank();
+    if (bank == NULL) {
+        return NULL;
+    }
+
+    TEnvtChunk* envt_chunk = (TEnvtChunk*)findChunk(stream, 'ENVT');
+    TOscChunk* osc_chunk = (TOscChunk*)findChunk(stream, 'OSCT');
+    TListChunk* list_chunk = (TListChunk*)findChunk(stream, 'LIST');
+
+    void* envt = new (heap, 2) u8[envt_chunk->mSize];
+    JASCalc::bcopy(envt_chunk->mData, envt, envt_chunk->mSize);
+
+    u32 count = osc_chunk->mCount;
+    TOsc* osc = osc_chunk->mOsc;
+    JASOscillator::Data* osc_data = new (heap, 0) JASOscillator::Data[count];
+    for (int i = 0; i < count; i++, osc++) {
+        JASOscillator::Data* data = &osc_data[i];
+        data->mTarget = osc->mTarget;
+        data->_04 = osc->_08;
+        data->mScale = osc->mScale;
+        data->_14 = osc->_18;
+        data->mTable = (JASOscillator::Point*)((int)envt + osc->mTableOffset);
+        data->_0C = (JASOscillator::Point*)((int)envt + osc->_10);
+    }
+
+    bank->newInstTable(list_chunk->mCount, heap);
+    for (int i = 0; i < list_chunk->mCount; i++) {
+        if (list_chunk->mOffsets[i] != 0) {
+            u32* ptr = (u32*)((int)stream + list_chunk->mOffsets[i]);
+            u32* data = ptr + 1;
+            switch (*ptr) {
+            case 'Inst': {
+                JASBasicInst* inst = new (heap, 0) JASBasicInst();
+                u32 count = *data;
+                data++;
+                for (int j = 0; j < count; j++) {
+                    u32 index = *data;
+                    data++;
+                    inst->setOsc(j, &osc_data[index]);
+                }
+                count = *data;
+                data++;
+                for (int j = 0; j < count; j++) {
+                    data++;
+                }
+                count = *data;
+                data++;
+                inst->setKeyRegionCount(count, heap);
+                for (int j = 0; j < count; j++) {
+                    JASBasicInst::TKeymap* keymap = inst->getKeyRegion(j);
+                    keymap->setHighKey(*data >> 0x18);
+                    u32 fVar4 = data[1];
+                    keymap->field_0x4 = JSULoHalf(data[3]);
+                    keymap->field_0x8 = *(f32*)&data[4];
+                    keymap->field_0xc = *(f32*)&data[5];
+                    data += 2;
+                    for (int k = 0; k < fVar4; k++) {
+                        data += 4;
+                    }
+                }
+                inst->setVolume(*(f32*)&data[0]);
+                inst->setPitch(*(f32*)&data[1]);
+                bank->setInst(i, inst);
+                break;
+            }
+
+            case 'Perc': {
+                JASDrumSet* drum = new (heap, 0) JASDrumSet();
+                u32 count = *data;
+                data++;
+                drum->newPercArray(count, heap);
+                for (int j = 0; j < count; j++) {
+                    u32 offset = *data;
+                    data++;
+                    if (offset != 0) {
+                        JASDrumSet::TPerc* perc = new (heap, 0) JASDrumSet::TPerc();
+                        u32* ptr = (u32*)((int)stream + offset);
+                        TPercData* perc_data = (TPercData*)(ptr + 1);
+                        perc->setVolume(perc_data->mVolume);
+                        perc->setPitch(perc_data->mPitch);
+                        perc->setPan((f32)perc_data->mPan / 127.0f);
+                        perc->setRelease(perc_data->mRelease);
+                        ptr = (u32*)&perc_data->field_0xc;
+                        u32 count2 = *ptr;
+                        ptr++;
+                        for (int k = 0; k < count2; k++) {
+                            ptr++;
+                        }
+                        u32 pVar6 = ptr[0];
+                        perc->field_0xe = JSULoHalf(ptr[2]);
+                        perc->field_0x10 = *(f32*)&ptr[3];
+                        perc->field_0x14 = *(f32*)&ptr[4];
+                        for (int k = 0; k < pVar6; k++) {}
+                        drum->setPerc(j, perc);
+                    }
+                }
+                bank->setInst(i, drum);
+                break;
+            }
+            }
+        }
+    }
+
+    return bank;
+}
 
 /* 80299A3C-80299E68 29437C 042C+00 1/1 0/0 0/0 .text
  * createBasicBank__Q212JASBNKParser4Ver0FPCvP7JKRHeap          */
-void JASBNKParser::Ver0::createBasicBank(void const* param_0, JKRHeap* param_1) {
+JASBasicBank* JASBNKParser::Ver0::createBasicBank(void const* stream, JKRHeap* heap) {
     // NONMATCHING
 }
-
-/* ############################################################################################## */
-/* 80455670-80455674 003C70 0004+00 1/1 0/0 0/0 .sdata2          @1045 */
-SECTION_SDATA2 static f32 lit_1045 = 1.0f;
-
-/* 80455674-80455678 003C74 0004+00 1/1 0/0 0/0 .sdata2          @1046 */
-SECTION_SDATA2 static u8 lit_1046[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80455678-80455680 003C78 0004+04 1/1 0/0 0/0 .sdata2          @1047 */
-SECTION_SDATA2 static f32 lit_1047[1 + 1 /* padding */] = {
-    0.5f,
-    /* padding */
-    0.0f,
-};
 
 /* 80299E68-80299F8C 2947A8 0124+00 1/1 0/0 0/0 .text
  * findOscPtr__Q212JASBNKParser4Ver0FP12JASBasicBankPCQ312JASBNKParser4Ver07THeaderPCQ312JASBNKParser4Ver04TOsc
  */
-void JASBNKParser::Ver0::findOscPtr(JASBasicBank* param_0,
-                                        JASBNKParser::Ver0::THeader const* param_1,
-                                        JASBNKParser::Ver0::TOsc const* param_2) {
+void JASBNKParser::Ver0::findOscPtr(JASBasicBank* param_0, THeader const* param_1,
+                                    TOsc const* param_2) {
     // NONMATCHING
 }
 
@@ -195,66 +190,3 @@ void JASBNKParser::Ver0::findOscPtr(JASBasicBank* param_0,
 void JASBNKParser::Ver0::getOscTableEndPtr(JASOscillator::Point const* param_0) {
     // NONMATCHING
 }
-
-/* 80299FA0-80299FB8 2948E0 0018+00 1/1 0/0 0/0 .text
- * JSUConvertOffsetToPtr<Q312JASBNKParser4Ver05TPmap>__FPCvUl   */
-extern "C" void func_80299FA0(void* _this, void const* param_0, u32 param_1) {
-    // NONMATCHING
-}
-
-/* 80299FB8-80299FD0 2948F8 0018+00 1/1 0/0 0/0 .text
- * JSUConvertOffsetToPtr<Q312JASBNKParser4Ver05TPerc>__FPCvUl   */
-extern "C" void func_80299FB8(void* _this, void const* param_0, u32 param_1) {
-    // NONMATCHING
-}
-
-/* 80299FD0-80299FE8 294910 0018+00 1/1 0/0 0/0 .text
- * JSUConvertOffsetToPtr<Q312JASBNKParser4Ver05TVmap>__FPCvUl   */
-extern "C" void func_80299FD0(void* _this, void const* param_0, u32 param_1) {
-    // NONMATCHING
-}
-
-/* 80299FE8-8029A000 294928 0018+00 1/1 0/0 0/0 .text
- * JSUConvertOffsetToPtr<Q312JASBNKParser4Ver07TKeymap>__FPCvUl */
-extern "C" void func_80299FE8(void* _this, void const* param_0, u32 param_1) {
-    // NONMATCHING
-}
-
-/* 8029A000-8029A018 294940 0018+00 1/1 0/0 0/0 .text
- * JSUConvertOffsetToPtr<Q213JASOscillator5Point>__FPCvUl       */
-extern "C" void func_8029A000(void* _this, void const* param_0, u32 param_1) {
-    // NONMATCHING
-}
-
-/* 8029A018-8029A030 294958 0018+00 2/2 0/0 0/0 .text
- * JSUConvertOffsetToPtr<Q312JASBNKParser4Ver04TOsc>__FPCvUl    */
-extern "C" void func_8029A018(void* _this, void const* param_0, u32 param_1) {
-    // NONMATCHING
-}
-
-/* 8029A030-8029A048 294970 0018+00 2/2 0/0 0/0 .text
- * JSUConvertOffsetToPtr<Q312JASBNKParser4Ver05TInst>__FPCvUl   */
-extern "C" void func_8029A030(void* _this, void const* param_0, u32 param_1) {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80431B70-80431B7C 05E890 000C+00 1/1 0/0 0/0 .bss             @1065 */
-static u8 lit_1065[12];
-
-/* 80431B7C-80431B90 05E89C 0010+04 1/1 0/0 0/0 .bss
- * memPool___46JASPoolAllocObject_MultiThreaded<10JASChannel>   */
-static u8 data_80431B7C[16 + 4 /* padding */];
-
-/* 8045128C-80451290 00078C 0004+00 1/1 0/0 0/0 .sbss            None */
-static u8 data_8045128C[4];
-
-/* 8029A048-8029A0A0 294988 0058+00 0/0 1/0 0/0 .text            __sinit_JASBNKParser_cpp */
-void __sinit_JASBNKParser_cpp() {
-    // NONMATCHING
-}
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x8029A048, __sinit_JASBNKParser_cpp);
-#pragma pop

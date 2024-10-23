@@ -24,6 +24,18 @@ private:
     size_t data[N];
 };
 
+template<> class __bitset_base<1> {
+public:
+    __bitset_base() { data = 0; }
+
+    bool test(size_t pos) const { return data & (1 << pos); }
+    bool any() const;
+    void set(size_t pos, bool val) { data |= (1 << pos); }
+    void reset(size_t pos) { data &= ~(1 << pos); }
+private:
+    size_t data;
+};
+
 template<size_t N> __bitset_base<N>::__bitset_base() {
     std::fill(data, data + N, 0);
 }

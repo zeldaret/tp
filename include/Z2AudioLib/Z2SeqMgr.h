@@ -123,28 +123,18 @@ public:
     void bgmNowBattle(float);
     void taktModeMute();
     void taktModeMuteOff();
-    void setFieldBgmPlay(bool);
-    /* 802B99AC */ void unMuteSceneBgm(u32);
-    /* 802B9A24 */ void muteSceneBgm(u32, f32);
-    /* 802B9AD0 */ void setTwilightGateVol(f32);
-    /* 802B9AFC */ void setWindStoneVol(f32, u32);
-
-    void onEnemyDamage() { setBattleSeqState(2); }
-
-    void i_setTwilightGateVol(f32 vol) { mTwilightGateVol = vol; }
-
-    void i_setWindStoneVol(f32 vol, u32 count) { mWindStone.move(vol, count); }
-
-    void i_bgmAllUnMute(u32 count) { mAllBgmMaster.move(1.0f, count); }
-
-    void i_muteSceneBgm(u32 count, f32 vol) {
-        mSceneBgm.move(vol, count);
-    }
-
-    void i_unMuteSceneBgm(u32 count) {
+    void setFieldBgmPlay(bool value) { mFlags.mFieldBgmPlay = value; }
+    /* 802B99AC */ void unMuteSceneBgm(u32 count) {
         mBgmPause.move(1.0f, 0);
         mSceneBgm.move(1.0f, count);
     }
+    /* 802B9A24 */ void muteSceneBgm(u32 count, f32 vol) { mSceneBgm.move(vol, count); }
+    /* 802B9AD0 */ void setTwilightGateVol(f32 vol) {
+        mTwilightGateVol = vol < 0.0f ? 0.0f : vol > 1.0f ? 1.0f : vol;
+    }
+    /* 802B9AFC */ void setWindStoneVol(f32 vol, u32 count) { mWindStone.move(vol, count); };
+
+    void onEnemyDamage() { setBattleSeqState(2); }
 
     void bgmAllMute(u32 count, f32 val) {
         mAllBgmMaster.mTransition.set(val, mAllBgmMaster.mIntensity, count);
@@ -180,6 +170,14 @@ public:
         }
 
         return -1;
+    }
+
+    bool checkBgmPlaying() {
+        bool ret = false;
+        if (mMainBgmHandle || mStreamBgmHandle) {
+            ret = true;
+        }
+        return ret;
     }
 
     JAISoundHandle* getMainBgmHandle() { return &mMainBgmHandle; }
@@ -221,9 +219,9 @@ public:
         bool mBattleSearched : 1;
         bool mBattleBgmOff : 1;
         bool mRiding : 1;
-        bool flag5 : 1;
-        bool flag6 : 1;
-        bool flag7 : 1;
+        bool mFieldBgmPlay : 1;
+        bool mHeightVolMod : 1;
+        bool mTimeProcVolMod : 1;
     } mFlags;
 };  // Size = 0xD4
 
