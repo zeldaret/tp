@@ -12,7 +12,7 @@ var Z2WolfHowlMgr_8cpp =
     [ "sHealingSong", "Z2WolfHowlMgr_8cpp.html#a8c17d6b9e81f6b7d3040e4a253fe01b6", null ],
     [ "sHowlLightPrelude", "Z2WolfHowlMgr_8cpp.html#ad3abe2169ff4dc851ea4e421e4c88c20", null ],
     [ "sHowlSoulRequiem", "Z2WolfHowlMgr_8cpp.html#a29a45031626419e7832871a2045d99a6", null ],
-    [ "sHowlTobikusa", "Z2WolfHowlMgr_8cpp.html#ad375be0a385f598a28286af4110aab09", null ],
+    [ "sHowlTobikusa", "Z2WolfHowlMgr_8cpp.html#ac6ee007423fdb21bcbe85f01625b016e", null ],
     [ "sHowlUmakusa", "Z2WolfHowlMgr_8cpp.html#a3f9325a00f2ce304a10b781fc1355414", null ],
     [ "sHowlZeldaSong", "Z2WolfHowlMgr_8cpp.html#abf11472d5561c382fc2092a70df31c8a", null ],
     [ "sNewSong1", "Z2WolfHowlMgr_8cpp.html#a34cac973e166cda4d9af9a8c6b043f44", null ],

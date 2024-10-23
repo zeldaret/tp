@@ -13,7 +13,5 @@ var osdsp__task_8cpp =
     [ "DSP_prior_task", "osdsp__task_8cpp.html#a06476203d643770322374f0096a6a434", null ],
     [ "struct_80451308", "osdsp__task_8cpp.html#a0cabb4cef85b2494a733fc1ff5727fdc", null ],
     [ "struct_80451309", "osdsp__task_8cpp.html#aeac481ede68cc237e7386d54ff6eb067", null ],
-    [ "struct_8045130a", "osdsp__task_8cpp.html#ae6a48e57f100195e2e03a89caa903f19", null ],
-    [ "struct_8045130b", "osdsp__task_8cpp.html#a35fc2fe0fa1adae5b297b9312a92cd82", null ],
     [ "sync_stack", "osdsp__task_8cpp.html#ae304c17379b515594838ab900adee579", null ]
 ];

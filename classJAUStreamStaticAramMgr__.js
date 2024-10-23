@@ -1,7 +1,7 @@
 var classJAUStreamStaticAramMgr__ =
 [
     [ "JAUStreamStaticAramMgr_", "classJAUStreamStaticAramMgr__.html#ae0f4aa5632ce584ea4f957eb9532c976", null ],
-    [ "deleteStreamAram", "classJAUStreamStaticAramMgr__.html#a14b52c01a749c2aa462dba7743a43cf9", null ],
+    [ "deleteStreamAram", "classJAUStreamStaticAramMgr__.html#a422150dea6bd063f517f56bf1d29046d", null ],
     [ "isAramReserved", "classJAUStreamStaticAramMgr__.html#a2185585a654b5f600ee703c99976ed69", null ],
     [ "newStreamAram", "classJAUStreamStaticAramMgr__.html#ad8aaf10bbe44df47a686f532564b43f0", null ],
     [ "reserveAram", "classJAUStreamStaticAramMgr__.html#a241aeb1671659c2d38240ccdc93df0db", null ],

@@ -1,5 +1,6 @@
 var classJASWaveHandle =
 [
-    [ "~JASWaveHandle", "classJASWaveHandle.html#a3464aac3456a46e35298adb9224098f5", null ],
-    [ "vtable", "classJASWaveHandle.html#a17b886054972691b3fe35f4a7783a579", null ]
+    [ "~JASWaveHandle", "classJASWaveHandle.html#aa41f5d0dc0ef29ba6022ba8254fae5d3", null ],
+    [ "getWaveInfo", "classJASWaveHandle.html#aee520d7ed3d52b31a5aa964b0df86262", null ],
+    [ "getWavePtr", "classJASWaveHandle.html#a4b79bf40ebcce2a0f64e3faa3c86be30", null ]
 ];

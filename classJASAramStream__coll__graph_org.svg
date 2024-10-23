@@ -50,7 +50,7 @@
 <!-- Node10 -->
 <g id="Node000010" class="node">
 <title>Node10</title>
-<g id="a_Node000010"><a xlink:href="structJASChannel.html" target="_top" xlink:title=" ">
+<g id="a_Node000010"><a xlink:href="classJASChannel.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1451.12,-751.25 1381.12,-751.25 1381.12,-732 1451.12,-732 1451.12,-751.25"/>
 <text text-anchor="middle" x="1416.12" y="-737.75" font-family="Helvetica,sans-Serif" font-size="10.00">JASChannel</text>
 </a>

@@ -27,7 +27,7 @@ var structZ2Audience =
     [ "field_0x8", "structZ2Audience.html#a006d4ec626346747fb237c5d9da38506", null ],
     [ "mAudioCamera", "structZ2Audience.html#acd8db4dcebc700e4500ae85d3c9d09f7", null ],
     [ "mLinkMic", "structZ2Audience.html#a8f9b4a34f8445f16e59ccac4d492b611", null ],
-    [ "mNumPlayers", "structZ2Audience.html#a99ff9467974f46e1958c399c7ca82b40", null ],
+    [ "mMaxChannels", "structZ2Audience.html#af854fef01af22a9ae17a28aa916c32e6", null ],
     [ "mSetting", "structZ2Audience.html#a73e3e21bc09fe5e8fb556bcacf2937e3", null ],
     [ "mSpotMic", "structZ2Audience.html#a7644470c12bcf964bc7d5b811c8cd63a", null ],
     [ "mUsingOffMicVol", "structZ2Audience.html#a0de931f8e862ae768d91ff9e4fa5d42a", null ]

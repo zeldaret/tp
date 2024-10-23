@@ -1,6 +1,6 @@
 <map id="JSURandomInputStream" name="JSURandomInputStream">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,153,172,178"/>
-<area shape="rect" id="Node000002" href="$structJSUInputStream.html" title=" " alt="" coords="29,79,148,105"/>
+<area shape="rect" id="Node000002" href="$classJSUInputStream.html" title=" " alt="" coords="29,79,148,105"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,120,91,152,86,152,86,120"/>
 <area shape="rect" id="Node000003" href="$classJSUIosBase.html" title=" " alt="" coords="41,5,136,31"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="91,46,91,79,86,79,86,46"/>

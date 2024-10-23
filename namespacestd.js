@@ -1,6 +1,7 @@
 var namespacestd =
 [
     [ "__bitset_base", "classstd_1_1____bitset__base.html", "classstd_1_1____bitset__base" ],
+    [ "__bitset_base< 1 >", "classstd_1_1____bitset__base_3_011_01_4.html", "classstd_1_1____bitset__base_3_011_01_4" ],
     [ "bitset", "classstd_1_1bitset.html", "classstd_1_1bitset" ],
     [ "less", "structstd_1_1less.html", null ],
     [ "less__template0", "structstd_1_1less____template0.html", null ],

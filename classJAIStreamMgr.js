@@ -5,6 +5,7 @@ var classJAIStreamMgr =
     [ "freeDeadStream_", "classJAIStreamMgr.html#a49b842fc16d556c4b7a4859b1fca7c0c", null ],
     [ "getParams", "classJAIStreamMgr.html#a0209d5108687feaf06d654749c8dded8", null ],
     [ "getStreamAramMgr", "classJAIStreamMgr.html#a088841343fd7174e2ea32c83d305727e", null ],
+    [ "getStreamList", "classJAIStreamMgr.html#a91ed4127d2e2b488ae4072feb5893911", null ],
     [ "isActive", "classJAIStreamMgr.html#a724756823e8a41363373704dc1739520", null ],
     [ "mixOut", "classJAIStreamMgr.html#a9e8a6697e3d7f741dd8e368e3ec7e80c", null ],
     [ "newStream_", "classJAIStreamMgr.html#a3e9a457c69143232255116e3db38494a", null ],

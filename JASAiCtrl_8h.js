@@ -34,16 +34,16 @@ var JASAiCtrl_8h =
     [ "dacCallbackFunc", "JASAiCtrl_8h.html#a00531ab21832a9bf31c86b1ac412ed2c", null ],
     [ "extMixCallback", "JASAiCtrl_8h.html#a59d871918765cdc4972df6c54c76fc44", null ],
     [ "lastRspMadep", "JASAiCtrl_8h.html#ab7baa6c0831956e91ee591f381dafa89", null ],
-    [ "sDacRate", "JASAiCtrl_8h.html#afec24412613710f6e2b6c82ffe88e030", null ],
+    [ "sDacRate", "JASAiCtrl_8h.html#aedd0caa0e5b0fdc0611f43d373b5dd0e", null ],
     [ "sDmaDacBuffer", "JASAiCtrl_8h.html#a7eb24b2b852c92182ca9207652e6de71", null ],
     [ "sDspDacBuffer", "JASAiCtrl_8h.html#ab101ef6823c4ff6d9df63c5f2e05bca2", null ],
     [ "sDspDacCallback", "JASAiCtrl_8h.html#a54ee1de8278c76593ec823fedb7e4727", null ],
     [ "sDspDacReadBuffer", "JASAiCtrl_8h.html#abc997aa1000e8432fc952ac42a25dc4a", null ],
     [ "sDspDacWriteBuffer", "JASAiCtrl_8h.html#a848a2206abc6b1176e8a4a65ce00c908", null ],
     [ "sDspStatus", "JASAiCtrl_8h.html#ac6fbcaf9ab95b373e5e35e05a9ed9449", null ],
-    [ "sMixFuncs", "JASAiCtrl_8h.html#a9739248ecf104d28ae4a871d1e4df921", null ],
-    [ "sMixMode", "JASAiCtrl_8h.html#a84e2d50139b20b9df14d531b58d9010b", null ],
+    [ "sMixFuncs", "JASAiCtrl_8h.html#abb4a18cb6bb5c4f908bacd5aefccf3f6", null ],
+    [ "sMixMode", "JASAiCtrl_8h.html#a71c5a1f429c86502963c08655e40dfe7", null ],
     [ "sOutputRate", "JASAiCtrl_8h.html#aa8ba490234d1992b1f359e3354134c5b", null ],
     [ "sSubFrameCounter", "JASAiCtrl_8h.html#a032df687235bab5ba9cd441f68ceeaa8", null ],
-    [ "sSubFrames", "JASAiCtrl_8h.html#a728455b6397fbd22f5f148027ca66bb8", null ]
+    [ "sSubFrames", "JASAiCtrl_8h.html#a3edf18546d705085e68ff2f6562a2710", null ]
 ];

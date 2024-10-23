@@ -123,7 +123,7 @@
 <!-- Node6 -->
 <g id="Node000006" class="node">
 <title>Node6</title>
-<g id="a_Node000006"><a xlink:href="structJASBank.html" target="_top" xlink:title=" ">
+<g id="a_Node000006"><a xlink:href="classJASBank.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="261.88,-286.25 204.62,-286.25 204.62,-267 261.88,-267 261.88,-286.25"/>
 <text text-anchor="middle" x="233.25" y="-272.75" font-family="Helvetica,sans-Serif" font-size="10.00">JASBank</text>
 </a>

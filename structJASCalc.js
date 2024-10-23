@@ -1,9 +1,7 @@
 var structJASCalc =
 [
-    [ "bcopy", "structJASCalc.html#a1cdf7708b37bc46723f2b41b4355551d", null ],
     [ "bcopy", "structJASCalc.html#abcd87e8573e59048244f2452525fb86a", null ],
     [ "bcopyfast", "structJASCalc.html#a48ea198879a10163e8553de17bd7530b", null ],
-    [ "bzero", "structJASCalc.html#ac946a26e7b103e034ac53623dd2d0cf5", null ],
     [ "bzero", "structJASCalc.html#a193d03c32dae7b84f775de8f035581b9", null ],
     [ "bzerofast", "structJASCalc.html#a816571f6cac94301e0c8a3d4cec30eb2", null ],
     [ "clamp", "structJASCalc.html#acb2051a470cbad82d079d4fed49dc7f9", null ],

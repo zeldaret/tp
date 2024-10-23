@@ -1,3 +1,9 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structJASBasicWaveBank_1_1TGroupWaveInfo.html" title=" " alt="" coords="5,5,197,46"/>
+<area shape="rect" id="Node000000" href="$structJASBNKParser_1_1Ver1_1_1TChunk.html" title=" " alt="" coords="5,71,151,111"/>
+<area shape="rect" id="Node000001" href="$structJASBNKParser_1_1Ver1_1_1TEnvtChunk.html" title=" " alt="" coords="199,5,344,46"/>
+<area shape="poly" id="edge1317_Node000000_Node000001" title=" " alt="" coords="154,63,208,44,210,49,155,68"/>
+<area shape="rect" id="Node000002" href="$structJASBNKParser_1_1Ver1_1_1TListChunk.html" title=" " alt="" coords="199,71,344,111"/>
+<area shape="poly" id="edge1318_Node000000_Node000002" title=" " alt="" coords="166,88,198,88,198,94,166,94"/>
+<area shape="rect" id="Node000003" href="$structJASBNKParser_1_1Ver1_1_1TOscChunk.html" title=" " alt="" coords="199,136,344,177"/>
+<area shape="poly" id="edge1319_Node000000_Node000003" title=" " alt="" coords="155,114,210,133,208,138,154,119"/>
 </map>

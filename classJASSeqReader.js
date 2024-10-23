@@ -20,7 +20,7 @@ var classJASSeqReader =
     [ "readByte", "classJASSeqReader.html#a9bb39f613f96816a562817e6900c0ebf", null ],
     [ "readMidiValue", "classJASSeqReader.html#a739d581ffc5fe2a026591e334704b031", null ],
     [ "ret", "classJASSeqReader.html#ad2233671a54da6f747a3f343f8a228a5", null ],
-    [ "field_0x00", "classJASSeqReader.html#a03a1635bfccff0511f2504b3fd9e245f", null ],
+    [ "field_0x00", "classJASSeqReader.html#abcc1073be13efdb2d3c7890d0dd773e5", null ],
     [ "field_0x04", "classJASSeqReader.html#a661bdd7068dd91d2f4cac944a9a6cc18", null ],
     [ "field_0x08", "classJASSeqReader.html#a63b15fb83ec738e3595a0d2db2afe342", null ],
     [ "field_0x0c", "classJASSeqReader.html#a2e803daeea363c8078f377aa1311b2d5", null ],

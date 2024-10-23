@@ -883,7 +883,7 @@
 <!-- Node32 -->
 <g id="Node000032" class="node">
 <title>Node32</title>
-<g id="a_Node000032"><a xlink:href="structJSUInputStream.html" target="_top" xlink:title=" ">
+<g id="a_Node000032"><a xlink:href="classJSUInputStream.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="548.88,-891.25 460.12,-891.25 460.12,-872 548.88,-872 548.88,-891.25"/>
 <text text-anchor="middle" x="504.5" y="-877.75" font-family="Helvetica,sans-Serif" font-size="10.00">JSUInputStream</text>
 </a>

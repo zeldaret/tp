@@ -13,7 +13,6 @@ var structdSv__memBit__c =
     [ "isStageBossEnemy2", "structdSv__memBit__c.html#a9ced21da225683b8a0fe1b97a53d7f5c", null ],
     [ "isStageLife", "structdSv__memBit__c.html#a8eadb08ce8aaedbc19fa07fb1e4a6ac7", null ],
     [ "isSwitch", "structdSv__memBit__c.html#a9a317d90eb3c5009855b50477961f1f1", null ],
-    [ "isSwitch", "structdSv__memBit__c.html#a2fe2340b56128e0749092ec14d37388b", null ],
     [ "isTbox", "structdSv__memBit__c.html#aa2ca505601d7c0baf74054c1d4309221", null ],
     [ "isTbox", "structdSv__memBit__c.html#a04c5ff58ebe699b21e357d9b7e2c9acd", null ],
     [ "offSwitch", "structdSv__memBit__c.html#a0791e3eddc18cccbd39ccbbe6126479c", null ],

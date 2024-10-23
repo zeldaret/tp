@@ -1,119 +1,120 @@
 <map id="JAISe::TInner" name="JAISe::TInner">
-<area shape="rect" id="Node000001" title=" " alt="" coords="1954,707,2054,732"/>
-<area shape="rect" id="Node000002" href="$structJASSoundParams.html" title=" " alt="" coords="562,917,690,943"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="706,938,917,960,1045,968,1173,972,1684,972,1713,969,1740,963,1793,941,1841,910,1884,871,1922,830,1953,791,1993,731,1997,734,1957,794,1926,834,1888,875,1844,914,1795,946,1742,968,1713,975,1684,977,1173,977,1045,973,916,965,706,943"/>
-<area shape="rect" id="Node000026" href="$structJASTrack_1_1TChannelMgr.html" title=" " alt="" coords="1256,704,1418,730"/>
-<area shape="poly" id="edge43_Node000026_Node000002" title=" " alt="" coords="705,923,923,906,1031,891,1107,873,1174,841,1235,800,1286,759,1320,728,1324,732,1289,763,1238,804,1176,845,1109,878,1032,897,924,911,706,929"/>
-<area shape="rect" id="Node000028" href="$structJASChannel.html" title=" " alt="" coords="956,653,1050,679"/>
-<area shape="poly" id="edge39_Node000028_Node000002" title=" " alt="" coords="683,910,799,869,848,850,872,835,883,817,887,800,883,764,879,727,884,708,896,690,924,672,955,664,956,669,926,677,900,693,889,711,884,728,888,763,892,800,888,819,876,839,850,855,801,874,685,915"/>
-<area shape="rect" id="Node000054" href="$structJAISoundParamsMove.html" title=" " alt="" coords="925,1076,1081,1102"/>
-<area shape="poly" id="edge58_Node000054_Node000002" title=" " alt="" coords="673,947,753,977,787,986,814,991,842,996,875,1008,937,1041,986,1073,983,1078,935,1045,873,1013,840,1001,813,996,786,991,752,982,671,952"/>
-<area shape="rect" id="Node000003" href="$structJASTrack.html" title=" " alt="" coords="1643,465,1722,491"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1715,499,1987,704,1984,708,1712,503"/>
-<area shape="poly" id="edge25_Node000003_Node000003" title=" " alt="" coords="1652,448,1662,441,1683,439,1702,441,1713,447,1716,457,1711,466,1706,464,1711,456,1709,451,1700,446,1683,444,1664,446,1655,452"/>
-<area shape="poly" id="edge44_Node000026_Node000003" title=" " alt="" coords="1670,506,1603,638,1595,665,1590,676,1579,687,1541,708,1500,720,1458,726,1418,727,1418,722,1457,720,1499,715,1539,703,1575,683,1585,673,1590,663,1599,636,1665,504"/>
-<area shape="rect" id="Node000004" href="$classJASPoolAllocObject__MultiThreaded.html" title=" " alt="" coords="1242,565,1432,605"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1441,558,1576,518,1651,489,1653,494,1578,523,1442,563"/>
-<area shape="rect" id="Node000005" href="$structJASOscillator_1_1Point.html" title=" " alt="" coords="5,1008,143,1034"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="158,1022,423,1033,752,1043,905,1049,1101,1054,1201,1051,1293,1043,1372,1027,1404,1015,1431,1001,1468,973,1494,945,1513,916,1527,885,1547,815,1574,728,1587,682,1598,636,1637,552,1671,490,1676,493,1642,554,1604,638,1592,684,1580,730,1552,816,1532,887,1518,919,1498,948,1471,977,1433,1006,1406,1020,1373,1032,1294,1048,1201,1057,1101,1059,904,1054,752,1048,423,1039,158,1027"/>
-<area shape="rect" id="Node000006" href="$structJASOscillator_1_1Data.html" title=" " alt="" coords="257,777,391,803"/>
-<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="99,995,306,802,310,806,103,999"/>
-<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="326,761,341,680,355,627,375,571,401,514,433,460,474,411,523,372,550,357,575,350,599,347,622,349,670,360,729,372,777,380,814,391,851,403,899,413,1001,426,1088,433,1237,437,1387,439,1474,445,1577,456,1643,467,1642,472,1577,461,1474,450,1386,444,1237,442,1088,438,1001,431,898,418,850,408,813,396,776,385,728,377,669,365,621,355,599,353,576,355,552,362,525,376,477,415,438,463,405,517,380,573,361,629,346,681,331,762"/>
-<area shape="rect" id="Node000032" href="$structJASOscillator.html" title=" " alt="" coords="576,777,677,803"/>
-<area shape="poly" id="edge34_Node000032_Node000006" title=" " alt="" coords="406,788,575,788,575,793,406,793"/>
-<area shape="rect" id="Node000007" href="$classJASDefaultBankTable.html" title=" " alt="" coords="1262,96,1412,122"/>
-<area shape="poly" id="edge7_Node000003_Node000007" title=" " alt="" coords="1396,125,1441,144,1490,169,1538,202,1579,242,1619,302,1649,366,1669,424,1681,464,1676,466,1664,425,1644,368,1614,305,1575,245,1534,206,1487,174,1439,148,1394,130"/>
-<area shape="rect" id="Node000014" href="$classJASGlobalInstance.html" title=" " alt="" coords="1601,71,1764,112"/>
-<area shape="poly" id="edge12_Node000014_Node000007" title=" " alt="" coords="1427,102,1601,93,1601,98,1427,107"/>
-<area shape="rect" id="Node000008" href="$classJASBankTable.html" title=" " alt="" coords="927,53,1079,79"/>
-<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="1095,75,1262,97,1261,102,1094,80"/>
-<area shape="rect" id="Node000009" href="$classJASBankList.html" title=" " alt="" coords="577,5,675,31"/>
-<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="691,23,875,45,927,52,927,58,874,50,690,28"/>
-<area shape="rect" id="Node000010" href="$classJASPtrArray.html" title=" " alt="" coords="533,55,720,80"/>
-<area shape="poly" id="edge10_Node000008_Node000010" title=" " alt="" coords="736,64,927,64,927,69,736,70"/>
-<area shape="poly" id="edge11_Node000007_Node000014" title=" " alt="" coords="1585,103,1577,103,1412,110,1412,105,1577,98,1585,98"/>
-<area shape="rect" id="Node000015" href="$structJASTrack_1_1TList.html" title=" " alt="" coords="1279,364,1395,390"/>
-<area shape="poly" id="edge13_Node000003_Node000015" title=" " alt="" coords="1410,377,1492,388,1536,397,1578,410,1627,435,1666,463,1663,467,1625,440,1576,415,1534,402,1491,393,1410,383"/>
-<area shape="rect" id="Node000016" href="$structJGadget_1_1TLinkList.html" title=" " alt="" coords="930,318,1076,359"/>
-<area shape="poly" id="edge14_Node000015_Node000016" title=" " alt="" coords="1092,346,1279,368,1278,373,1091,351"/>
-<area shape="rect" id="Node000017" href="$structJGadget_1_1TNodeLinkList.html" title=" " alt="" coords="545,285,707,311"/>
-<area shape="poly" id="edge15_Node000016_Node000017" title=" " alt="" coords="723,306,930,328,929,333,723,311"/>
-<area shape="rect" id="Node000018" href="$structJGadget_1_1TLinkListNode.html" title=" " alt="" coords="243,123,405,148"/>
-<area shape="poly" id="edge45_Node000003_Node000018" title=" " alt="" coords="421,133,500,136,688,144,875,161,1047,184,1218,213,1432,250,1475,253,1509,252,1542,257,1579,276,1589,287,1595,299,1603,325,1676,464,1672,466,1599,327,1590,301,1585,290,1575,280,1540,262,1509,258,1474,259,1432,255,1217,218,1046,189,874,166,687,149,500,141,421,139"/>
-<area shape="poly" id="edge16_Node000017_Node000018" title=" " alt="" coords="421,149,469,163,502,180,511,192,515,205,515,228,514,251,518,262,526,272,546,286,543,290,522,276,513,264,509,252,509,228,509,205,506,195,498,184,467,168,419,155"/>
-<area shape="poly" id="edge17_Node000018_Node000018" title=" " alt="" coords="298,105,307,99,324,96,340,98,349,105,352,114,347,123,343,121,347,114,345,108,338,103,324,101,309,104,301,110"/>
-<area shape="rect" id="Node000019" href="$classJASSeqCtrl.html" title=" " alt="" coords="1292,265,1382,291"/>
-<area shape="poly" id="edge18_Node000003_Node000019" title=" " alt="" coords="1397,284,1507,302,1553,311,1578,320,1616,354,1645,394,1666,434,1679,464,1674,466,1662,436,1641,397,1612,357,1576,324,1551,316,1506,307,1397,289"/>
-<area shape="rect" id="Node000020" href="$classJASSeqReader.html" title=" " alt="" coords="948,268,1058,294"/>
-<area shape="poly" id="edge19_Node000019_Node000020" title=" " alt="" coords="1074,278,1292,276,1292,281,1074,283"/>
-<area shape="rect" id="Node000021" href="$classJASSeqParser.html" title=" " alt="" coords="949,219,1057,244"/>
-<area shape="poly" id="edge20_Node000019_Node000021" title=" " alt="" coords="1073,238,1292,269,1291,275,1072,244"/>
-<area shape="rect" id="Node000022" href="$structJASSeqParser_1_1CmdInfo.html" title=" " alt="" coords="545,236,707,262"/>
-<area shape="poly" id="edge21_Node000021_Node000022" title=" " alt="" coords="723,246,874,242,949,235,949,240,874,247,723,251"/>
-<area shape="rect" id="Node000023" href="$classJASTrackPort.html" title=" " alt="" coords="1285,465,1389,491"/>
-<area shape="poly" id="edge22_Node000003_Node000023" title=" " alt="" coords="1404,476,1643,476,1643,481,1404,481"/>
-<area shape="rect" id="Node000024" href="$classJASRegisterParam.html" title=" " alt="" coords="1271,515,1403,540"/>
-<area shape="poly" id="edge23_Node000003_Node000024" title=" " alt="" coords="1418,517,1577,496,1642,484,1643,489,1577,501,1419,522"/>
-<area shape="rect" id="Node000025" href="$structJASTrack_1_1MoveParam__.html" title=" " alt="" coords="1256,315,1418,340"/>
-<area shape="poly" id="edge24_Node000003_Node000025" title=" " alt="" coords="1434,335,1517,347,1553,356,1578,365,1610,387,1638,414,1675,463,1671,467,1634,418,1607,391,1576,370,1551,361,1516,353,1433,340"/>
-<area shape="poly" id="edge26_Node000003_Node000026" title=" " alt="" coords="1385,695,1476,651,1527,622,1575,589,1631,536,1670,490,1674,493,1635,540,1579,593,1530,626,1479,656,1387,700"/>
-<area shape="rect" id="Node000027" href="$classJASPoolAllocObject__MultiThreaded.html" title=" " alt="" coords="898,703,1108,744"/>
-<area shape="poly" id="edge27_Node000026_Node000027" title=" " alt="" coords="1123,718,1255,716,1255,721,1124,724"/>
-<area shape="poly" id="edge28_Node000026_Node000028" title=" " alt="" coords="1065,673,1256,702,1255,707,1065,678"/>
-<area shape="poly" id="edge32_Node000028_Node000028" title=" " alt="" coords="971,636,982,629,1003,627,1022,629,1034,635,1038,645,1032,654,1028,652,1032,644,1030,639,1021,634,1003,632,984,634,974,640"/>
-<area shape="rect" id="Node000029" href="$classJASPoolAllocObject__MultiThreaded.html" title=" " alt="" coords="524,713,728,753"/>
-<area shape="poly" id="edge29_Node000028_Node000029" title=" " alt="" coords="743,709,955,672,956,677,744,715"/>
-<area shape="rect" id="Node000030" href="$structJASDSPChannel.html" title=" " alt="" coords="566,425,686,451"/>
-<area shape="poly" id="edge30_Node000028_Node000030" title=" " alt="" coords="703,443,789,464,834,481,876,504,918,540,953,581,997,651,993,654,948,584,914,543,873,508,832,486,787,469,701,449"/>
-<area shape="poly" id="edge31_Node000030_Node000030" title=" " alt="" coords="597,408,607,401,626,399,644,401,655,407,658,417,653,426,648,424,653,416,651,411,642,406,626,404,609,406,600,412"/>
-<area shape="poly" id="edge33_Node000028_Node000032" title=" " alt="" coords="692,778,795,757,842,743,873,728,880,720,884,710,888,700,897,689,925,675,955,667,956,672,927,680,900,694,892,702,889,712,885,722,876,733,844,748,797,762,693,783"/>
-<area shape="rect" id="Node000033" href="$structJASLfo.html" title=" " alt="" coords="594,515,659,540"/>
-<area shape="poly" id="edge35_Node000028_Node000033" title=" " alt="" coords="674,528,769,541,823,553,875,572,910,590,941,611,989,651,986,655,938,615,907,594,873,577,822,558,768,546,674,533"/>
-<area shape="poly" id="edge36_Node000033_Node000033" title=" " alt="" coords="597,497,607,491,626,488,644,490,655,496,658,506,653,516,648,513,653,505,651,500,642,495,626,493,609,496,600,502"/>
-<area shape="rect" id="Node000034" href="$unionJASChannel_1_1MixConfig.html" title=" " alt="" coords="549,564,704,590"/>
-<area shape="poly" id="edge37_Node000028_Node000034" title=" " alt="" coords="720,585,796,598,875,616,927,632,972,650,970,655,925,637,874,621,795,603,719,591"/>
-<area shape="rect" id="Node000035" href="$classJASChannelParams.html" title=" " alt="" coords="557,845,695,871"/>
-<area shape="poly" id="edge42_Node000026_Node000035" title=" " alt="" coords="711,863,790,865,874,858,1001,831,1124,795,1229,757,1303,728,1305,733,1231,762,1125,800,1002,837,875,863,790,870,711,868"/>
-<area shape="poly" id="edge38_Node000028_Node000035" title=" " alt="" coords="682,838,752,817,788,811,818,811,845,806,872,787,881,776,884,765,884,740,883,715,887,702,897,690,924,672,955,665,956,670,926,677,900,693,892,705,888,716,889,740,890,765,886,778,876,791,847,811,819,816,789,817,753,822,684,843"/>
-<area shape="rect" id="Node000036" href="$structJASWaveInfo.html" title=" " alt="" coords="576,613,677,639"/>
-<area shape="poly" id="edge40_Node000028_Node000036" title=" " alt="" coords="692,629,875,648,956,657,955,663,874,653,692,635"/>
-<area shape="rect" id="Node000037" href="$structOSMessageQueue.html" title=" " alt="" coords="561,663,692,688"/>
-<area shape="poly" id="edge41_Node000028_Node000037" title=" " alt="" coords="707,671,956,665,956,670,707,676"/>
-<area shape="rect" id="Node000045" href="$structJAISeqData.html" title=" " alt="" coords="1637,649,1728,675"/>
-<area shape="poly" id="edge46_Node000001_Node000045" title=" " alt="" coords="1744,669,1910,697,1954,706,1953,711,1909,702,1743,674"/>
-<area shape="rect" id="Node000046" href="$classJAISeMgr.html" title=" " alt="" coords="1643,1185,1722,1211"/>
-<area shape="poly" id="edge47_Node000001_Node000046" title=" " alt="" coords="1719,1175,1762,1146,1813,1107,1863,1060,1907,1006,1929,970,1947,930,1974,851,1990,780,1998,732,2004,733,1996,781,1979,852,1952,932,1933,972,1912,1009,1867,1064,1816,1111,1765,1150,1722,1179"/>
-<area shape="rect" id="Node000047" href="$classJASGlobalInstance.html" title=" " alt="" coords="1933,1177,2075,1217"/>
-<area shape="poly" id="edge49_Node000047_Node000046" title=" " alt="" coords="1738,1195,1933,1194,1933,1200,1738,1201"/>
-<area shape="poly" id="edge48_Node000046_Node000047" title=" " alt="" coords="1918,1203,1909,1203,1723,1202,1723,1197,1909,1198,1918,1198"/>
-<area shape="rect" id="Node000048" href="$structJAISeqDataUser.html" title=" " alt="" coords="943,1317,1063,1343"/>
-<area shape="poly" id="edge50_Node000046_Node000048" title=" " alt="" coords="1077,1320,1240,1300,1432,1270,1505,1257,1576,1237,1650,1209,1652,1214,1578,1242,1506,1262,1432,1275,1241,1305,1078,1325"/>
-<area shape="rect" id="Node000052" href="$classJAISeCategoryMgr.html" title=" " alt="" coords="1272,1364,1402,1390"/>
-<area shape="poly" id="edge55_Node000052_Node000048" title=" " alt="" coords="1074,1344,1132,1356,1272,1370,1271,1376,1131,1361,1073,1350"/>
-<area shape="rect" id="Node000049" href="$classJAISoundActivity.html" title=" " alt="" coords="1276,1136,1398,1162"/>
-<area shape="poly" id="edge51_Node000046_Node000049" title=" " alt="" coords="1413,1154,1577,1176,1643,1188,1642,1193,1577,1181,1412,1159"/>
-<area shape="rect" id="Node000050" href="$structJAIAudience.html" title=" " alt="" coords="1289,1185,1385,1211"/>
-<area shape="poly" id="edge52_Node000046_Node000050" title=" " alt="" coords="1400,1196,1643,1196,1643,1201,1400,1201"/>
-<area shape="rect" id="Node000051" href="$structJAISeqDataMgr.html" title=" " alt="" coords="1280,1235,1394,1260"/>
-<area shape="poly" id="edge53_Node000046_Node000051" title=" " alt="" coords="1408,1238,1577,1216,1642,1204,1643,1209,1577,1221,1409,1243"/>
-<area shape="poly" id="edge54_Node000046_Node000052" title=" " alt="" coords="1417,1373,1497,1361,1538,1348,1576,1330,1609,1302,1637,1269,1673,1210,1677,1213,1642,1272,1613,1306,1578,1334,1540,1353,1498,1366,1418,1379"/>
-<area shape="rect" id="Node000053" href="$structJASNonCopyable.html" title=" " alt="" coords="941,1399,1065,1424"/>
-<area shape="poly" id="edge56_Node000052_Node000053" title=" " alt="" coords="1080,1413,1147,1414,1217,1408,1259,1399,1298,1388,1299,1393,1260,1404,1218,1413,1147,1419,1080,1419"/>
-<area shape="poly" id="edge63_Node000046_Node000054" title=" " alt="" coords="1096,1085,1197,1088,1319,1097,1449,1116,1515,1130,1578,1148,1621,1164,1658,1182,1656,1187,1619,1169,1576,1153,1513,1135,1448,1121,1318,1102,1197,1093,1096,1090"/>
-<area shape="poly" id="edge57_Node000052_Node000054" title=" " alt="" coords="1033,1110,1322,1362,1319,1366,1029,1114"/>
-<area shape="rect" id="Node000055" href="$structJAISoundParamsTransition.html" title=" " alt="" coords="536,1080,716,1106"/>
-<area shape="poly" id="edge59_Node000054_Node000055" title=" " alt="" coords="732,1089,925,1087,925,1092,732,1094"/>
-<area shape="rect" id="Node000056" href="$structJAISoundParamsTransition_1_1TTransition.html" title=" " alt="" coords="234,237,414,277"/>
-<area shape="poly" id="edge60_Node000055_Node000056" title=" " alt="" coords="342,291,419,491,464,628,503,770,510,822,510,864,512,905,526,955,545,992,569,1026,613,1078,609,1081,565,1030,541,995,522,956,507,906,505,864,505,823,497,771,459,630,414,493,337,293"/>
-<area shape="rect" id="Node000062" href="$classJAITempoMgr.html" title=" " alt="" coords="762,176,865,202"/>
-<area shape="poly" id="edge67_Node000062_Node000056" title=" " alt="" coords="429,236,524,221,761,192,762,197,524,226,430,241"/>
-<area shape="rect" id="Node000057" href="$classJSUList.html" title=" " alt="" coords="939,1448,1067,1474"/>
-<area shape="poly" id="edge61_Node000052_Node000057" title=" " alt="" coords="1082,1456,1149,1448,1217,1433,1270,1412,1313,1388,1316,1393,1272,1417,1218,1438,1149,1453,1083,1461"/>
-<area shape="rect" id="Node000058" href="$classJSUPtrList.html" title=" " alt="" coords="583,1448,669,1474"/>
-<area shape="poly" id="edge62_Node000057_Node000058" title=" " alt="" coords="685,1458,939,1458,939,1464,685,1464"/>
-<area shape="rect" id="Node000060" href="$structJAISoundStrategyMgr.html" title=" " alt="" coords="1609,699,1757,740"/>
-<area shape="poly" id="edge64_Node000001_Node000060" title=" " alt="" coords="1772,717,1953,717,1953,722,1772,722"/>
-<area shape="rect" id="Node000061" href="$structJAISoundStrategyMgr____unknown.html" title=" " alt="" coords="1609,765,1757,805"/>
-<area shape="poly" id="edge65_Node000001_Node000061" title=" " alt="" coords="1772,765,1909,737,1953,728,1954,733,1910,742,1773,770"/>
-<area shape="poly" id="edge66_Node000001_Node000062" title=" " alt="" coords="880,179,1039,164,1242,152,1345,151,1439,154,1519,163,1578,180,1624,203,1667,231,1708,263,1746,298,1814,375,1872,457,1920,536,1958,608,2000,705,1995,707,1953,610,1916,539,1868,459,1810,379,1742,302,1704,267,1664,235,1621,208,1576,185,1518,168,1438,159,1344,156,1243,158,1040,169,880,184"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="1900,500,2000,526"/>
+<area shape="rect" id="Node000002" href="$structJASSoundParams.html" title=" " alt="" coords="562,508,690,534"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="705,516,1002,510,1684,510,1899,510,1899,516,1684,516,1002,515,705,521"/>
+<area shape="rect" id="Node000026" href="$structJASTrack_1_1TChannelMgr.html" title=" " alt="" coords="1256,892,1418,918"/>
+<area shape="poly" id="edge43_Node000026_Node000002" title=" " alt="" coords="706,529,807,552,849,567,876,586,888,611,892,646,887,732,884,816,889,849,900,871,917,879,948,886,1041,895,1255,902,1255,907,1041,900,947,891,915,884,896,875,883,851,879,817,882,732,886,647,883,613,872,589,847,572,805,557,705,535"/>
+<area shape="rect" id="Node000028" href="$classJASChannel.html" title=" " alt="" coords="956,1036,1050,1062"/>
+<area shape="poly" id="edge39_Node000028_Node000002" title=" " alt="" coords="665,540,716,574,775,622,832,682,857,716,877,752,888,786,892,816,885,871,881,898,880,924,886,953,901,983,914,1000,930,1013,965,1033,963,1038,927,1017,910,1003,896,986,881,954,875,925,876,897,880,871,886,816,883,787,872,754,852,719,828,685,771,626,712,578,662,544"/>
+<area shape="rect" id="Node000055" href="$structJAISoundParamsMove.html" title=" " alt="" coords="925,348,1081,374"/>
+<area shape="poly" id="edge59_Node000055_Node000002" title=" " alt="" coords="653,496,698,464,751,433,847,396,937,372,938,377,849,401,753,438,701,468,657,501"/>
+<area shape="rect" id="Node000003" href="$structJASTrack.html" title=" " alt="" coords="1643,905,1722,931"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1699,890,1938,525,1942,527,1703,893"/>
+<area shape="poly" id="edge25_Node000003_Node000003" title=" " alt="" coords="1656,888,1665,881,1683,879,1699,881,1709,887,1711,897,1707,906,1702,904,1706,896,1704,890,1697,886,1683,884,1667,886,1660,892"/>
+<area shape="poly" id="edge44_Node000026_Node000003" title=" " alt="" coords="1628,922,1577,922,1516,924,1456,922,1418,919,1419,914,1456,917,1516,919,1577,917,1628,917"/>
+<area shape="rect" id="Node000004" href="$classJASPoolAllocObject__MultiThreaded.html" title=" " alt="" coords="1242,942,1432,983"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1447,946,1642,920,1643,926,1448,951"/>
+<area shape="rect" id="Node000005" href="$structJASOscillator_1_1Point.html" title=" " alt="" coords="5,1267,143,1292"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="158,1288,238,1295,323,1298,815,1298,1042,1301,1136,1299,1223,1290,1306,1271,1390,1239,1478,1190,1575,1121,1598,1100,1617,1075,1647,1021,1666,969,1676,930,1681,932,1671,970,1652,1023,1622,1078,1602,1104,1579,1126,1481,1195,1392,1244,1308,1276,1224,1295,1137,1304,1042,1306,815,1303,322,1303,237,1300,158,1293"/>
+<area shape="rect" id="Node000006" href="$structJASOscillator_1_1Data.html" title=" " alt="" coords="257,797,391,823"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="87,1252,313,822,318,825,91,1255"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="367,788,439,759,523,733,587,719,637,712,752,705,813,702,875,705,1154,742,1432,784,1474,788,1507,789,1540,795,1578,810,1609,832,1637,857,1675,903,1670,907,1633,861,1606,836,1576,815,1538,800,1507,795,1474,793,1432,789,1153,747,874,710,813,708,752,710,637,717,588,724,525,738,441,764,369,793"/>
+<area shape="rect" id="Node000032" href="$structJASOscillator.html" title=" " alt="" coords="576,797,677,823"/>
+<area shape="poly" id="edge34_Node000032_Node000006" title=" " alt="" coords="406,808,575,808,575,813,406,813"/>
+<area shape="rect" id="Node000007" href="$classJASDefaultBankTable.html" title=" " alt="" coords="1262,1356,1412,1382"/>
+<area shape="poly" id="edge7_Node000003_Node000007" title=" " alt="" coords="1426,1354,1521,1338,1557,1329,1575,1321,1583,1308,1588,1288,1593,1239,1595,1187,1598,1147,1617,1082,1638,1020,1673,930,1678,932,1643,1022,1622,1084,1604,1148,1600,1187,1598,1239,1593,1289,1588,1310,1579,1325,1559,1334,1522,1343,1427,1359"/>
+<area shape="rect" id="Node000014" href="$classJASGlobalInstance.html" title=" " alt="" coords="1601,1159,1764,1200"/>
+<area shape="poly" id="edge12_Node000014_Node000007" title=" " alt="" coords="1379,1386,1424,1403,1477,1414,1504,1415,1529,1412,1554,1404,1575,1390,1591,1370,1597,1350,1596,1329,1591,1306,1582,1259,1586,1235,1599,1210,1611,1198,1615,1202,1603,1213,1591,1236,1588,1259,1596,1305,1601,1328,1602,1350,1596,1373,1579,1394,1556,1409,1531,1417,1504,1421,1476,1419,1423,1408,1377,1391"/>
+<area shape="rect" id="Node000008" href="$classJASBankTable.html" title=" " alt="" coords="927,1356,1079,1382"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="1094,1366,1262,1366,1262,1372,1094,1372"/>
+<area shape="rect" id="Node000009" href="$classJASBankList.html" title=" " alt="" coords="577,1389,675,1415"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="690,1394,927,1373,927,1378,691,1399"/>
+<area shape="rect" id="Node000010" href="$classJASPtrArray.html" title=" " alt="" coords="533,1340,720,1366"/>
+<area shape="poly" id="edge10_Node000008_Node000010" title=" " alt="" coords="736,1355,927,1363,927,1368,736,1360"/>
+<area shape="poly" id="edge11_Node000007_Node000014" title=" " alt="" coords="1604,1212,1603,1213,1593,1231,1590,1248,1594,1283,1597,1318,1592,1335,1579,1352,1551,1365,1509,1373,1412,1375,1412,1370,1508,1367,1549,1360,1575,1348,1587,1333,1592,1317,1589,1284,1584,1248,1588,1229,1599,1210,1600,1209"/>
+<area shape="rect" id="Node000015" href="$structJASTrack_1_1TList.html" title=" " alt="" coords="1279,636,1395,662"/>
+<area shape="poly" id="edge13_Node000003_Node000015" title=" " alt="" coords="1410,647,1451,651,1496,661,1539,677,1579,701,1603,724,1623,751,1653,809,1672,865,1682,904,1676,906,1667,866,1648,812,1618,754,1599,728,1575,706,1537,682,1494,666,1450,657,1409,652"/>
+<area shape="rect" id="Node000016" href="$structJGadget_1_1TLinkList.html" title=" " alt="" coords="930,613,1076,653"/>
+<area shape="poly" id="edge14_Node000015_Node000016" title=" " alt="" coords="1092,634,1279,643,1279,649,1092,640"/>
+<area shape="rect" id="Node000017" href="$structJGadget_1_1TNodeLinkList.html" title=" " alt="" coords="545,619,707,644"/>
+<area shape="poly" id="edge15_Node000016_Node000017" title=" " alt="" coords="723,629,930,630,930,635,723,635"/>
+<area shape="rect" id="Node000018" href="$structJGadget_1_1TLinkListNode.html" title=" " alt="" coords="243,589,405,615"/>
+<area shape="poly" id="edge45_Node000003_Node000018" title=" " alt="" coords="420,588,685,564,853,554,1029,548,1201,551,1357,564,1426,575,1487,591,1538,610,1579,633,1609,663,1633,699,1652,738,1665,778,1680,853,1684,905,1678,905,1674,854,1660,780,1647,740,1629,702,1605,667,1575,638,1536,615,1485,596,1425,581,1356,569,1200,556,1029,554,853,559,686,569,421,594"/>
+<area shape="poly" id="edge16_Node000017_Node000018" title=" " alt="" coords="421,609,545,621,545,626,420,614"/>
+<area shape="poly" id="edge17_Node000018_Node000018" title=" " alt="" coords="298,572,307,565,324,563,340,565,349,571,352,581,347,590,343,588,347,580,345,574,338,570,324,568,309,570,301,576"/>
+<area shape="rect" id="Node000019" href="$classJASSeqCtrl.html" title=" " alt="" coords="1292,799,1382,824"/>
+<area shape="poly" id="edge18_Node000003_Node000019" title=" " alt="" coords="1397,817,1484,834,1578,861,1623,881,1661,903,1659,907,1621,886,1576,866,1482,839,1396,822"/>
+<area shape="rect" id="Node000020" href="$classJASSeqReader.html" title=" " alt="" coords="948,820,1058,846"/>
+<area shape="poly" id="edge19_Node000019_Node000020" title=" " alt="" coords="1074,832,1143,832,1217,828,1292,817,1292,823,1218,833,1143,837,1074,837"/>
+<area shape="rect" id="Node000021" href="$classJASSeqParser.html" title=" " alt="" coords="949,771,1057,796"/>
+<area shape="poly" id="edge20_Node000019_Node000021" title=" " alt="" coords="1073,787,1292,805,1292,810,1072,792"/>
+<area shape="rect" id="Node000022" href="$structJASSeqParser_1_1CmdInfo.html" title=" " alt="" coords="545,748,707,774"/>
+<area shape="poly" id="edge21_Node000021_Node000022" title=" " alt="" coords="707,774,753,780,857,785,949,783,949,789,857,790,752,785,706,779"/>
+<area shape="rect" id="Node000023" href="$classJASTrackPort.html" title=" " alt="" coords="1285,1056,1389,1082"/>
+<area shape="poly" id="edge22_Node000003_Node000023" title=" " alt="" coords="1403,1063,1488,1049,1533,1036,1576,1017,1605,998,1632,974,1670,930,1674,933,1636,978,1609,1002,1578,1022,1535,1041,1489,1054,1404,1068"/>
+<area shape="rect" id="Node000024" href="$classJASRegisterParam.html" title=" " alt="" coords="1271,1105,1403,1131"/>
+<area shape="poly" id="edge23_Node000003_Node000024" title=" " alt="" coords="1418,1118,1457,1115,1498,1108,1538,1095,1575,1076,1613,1043,1641,1002,1662,962,1674,931,1679,933,1667,964,1646,1005,1617,1046,1579,1081,1540,1100,1499,1113,1458,1120,1419,1123"/>
+<area shape="rect" id="Node000025" href="$structJASTrack_1_1MoveParam__.html" title=" " alt="" coords="1256,1007,1418,1032"/>
+<area shape="poly" id="edge24_Node000003_Node000025" title=" " alt="" coords="1433,1002,1504,986,1576,965,1619,948,1656,929,1658,934,1621,953,1578,970,1505,991,1434,1007"/>
+<area shape="poly" id="edge26_Node000003_Node000026" title=" " alt="" coords="1434,897,1504,897,1577,900,1643,908,1642,913,1577,905,1504,902,1434,903"/>
+<area shape="rect" id="Node000027" href="$classJASPoolAllocObject__MultiThreaded.html" title=" " alt="" coords="898,933,1108,973"/>
+<area shape="poly" id="edge27_Node000026_Node000027" title=" " alt="" coords="1122,933,1255,914,1255,919,1123,938"/>
+<area shape="poly" id="edge28_Node000026_Node000028" title=" " alt="" coords="1060,1028,1137,997,1178,976,1216,952,1228,940,1240,928,1268,916,1270,921,1243,932,1231,944,1219,957,1180,981,1139,1001,1062,1033"/>
+<area shape="poly" id="edge32_Node000028_Node000028" title=" " alt="" coords="971,1019,982,1012,1003,1009,1022,1012,1034,1018,1038,1027,1032,1037,1028,1034,1032,1027,1030,1021,1021,1017,1003,1015,984,1017,974,1023"/>
+<area shape="rect" id="Node000029" href="$classJASPoolAllocObject__MultiThreaded.html" title=" " alt="" coords="524,946,728,987"/>
+<area shape="poly" id="edge29_Node000028_Node000029" title=" " alt="" coords="738,988,956,1036,955,1041,737,993"/>
+<area shape="rect" id="Node000030" href="$structJASDSPChannel.html" title=" " alt="" coords="566,1049,686,1075"/>
+<area shape="poly" id="edge30_Node000028_Node000030" title=" " alt="" coords="702,1057,956,1048,956,1053,702,1062"/>
+<area shape="poly" id="edge31_Node000030_Node000030" title=" " alt="" coords="597,1032,607,1025,626,1023,644,1025,655,1031,658,1041,653,1050,648,1048,653,1040,651,1035,642,1030,626,1028,609,1030,600,1036"/>
+<area shape="poly" id="edge33_Node000028_Node000032" title=" " alt="" coords="692,802,738,804,787,812,835,830,857,843,876,859,888,875,893,890,892,921,889,951,892,967,901,983,914,999,931,1013,967,1033,964,1038,928,1017,911,1003,896,986,887,969,884,952,887,920,888,891,883,877,872,863,854,847,833,834,786,817,737,809,692,808"/>
+<area shape="rect" id="Node000033" href="$structJASLfo.html" title=" " alt="" coords="594,1139,659,1164"/>
+<area shape="poly" id="edge35_Node000028_Node000033" title=" " alt="" coords="673,1140,766,1119,874,1091,966,1060,968,1065,875,1096,767,1124,674,1145"/>
+<area shape="poly" id="edge36_Node000033_Node000033" title=" " alt="" coords="597,1121,607,1115,626,1112,644,1114,655,1120,658,1130,653,1140,648,1137,653,1129,651,1124,642,1119,626,1117,609,1120,600,1126"/>
+<area shape="rect" id="Node000034" href="$unionJASChannel_1_1MixConfig.html" title=" " alt="" coords="549,1188,704,1214"/>
+<area shape="poly" id="edge37_Node000028_Node000034" title=" " alt="" coords="718,1182,807,1163,873,1143,907,1124,939,1101,986,1060,990,1064,942,1106,910,1128,875,1148,809,1168,719,1187"/>
+<area shape="rect" id="Node000035" href="$classJASChannelParams.html" title=" " alt="" coords="557,1237,695,1263"/>
+<area shape="poly" id="edge42_Node000026_Node000035" title=" " alt="" coords="711,1246,791,1238,874,1220,985,1183,1030,1166,1070,1147,1107,1123,1142,1093,1178,1055,1215,1006,1224,986,1225,967,1227,948,1240,928,1257,916,1260,920,1244,932,1232,950,1230,967,1229,987,1220,1009,1182,1058,1146,1097,1110,1127,1072,1151,1032,1171,986,1188,875,1225,792,1244,711,1252"/>
+<area shape="poly" id="edge38_Node000028_Node000035" title=" " alt="" coords="710,1231,873,1195,914,1164,948,1126,992,1061,997,1064,952,1129,917,1168,875,1200,711,1236"/>
+<area shape="rect" id="Node000036" href="$structJASWaveInfo.html" title=" " alt="" coords="576,847,677,872"/>
+<area shape="poly" id="edge40_Node000028_Node000036" title=" " alt="" coords="693,866,798,888,845,903,876,920,887,936,890,952,892,967,900,983,934,1012,970,1033,968,1038,931,1017,896,986,887,969,885,953,882,938,873,924,843,908,796,893,692,872"/>
+<area shape="rect" id="Node000037" href="$structOSMessageQueue.html" title=" " alt="" coords="561,896,692,922"/>
+<area shape="poly" id="edge41_Node000028_Node000037" title=" " alt="" coords="701,924,729,932,803,957,875,986,976,1033,974,1038,873,991,801,962,728,937,700,929"/>
+<area shape="rect" id="Node000045" href="$structJAISeqData.html" title=" " alt="" coords="1637,1224,1728,1250"/>
+<area shape="poly" id="edge46_Node000001_Node000045" title=" " alt="" coords="1741,1224,1763,1210,1781,1186,1798,1154,1831,1071,1861,971,1886,861,1925,655,1944,526,1950,527,1930,656,1892,863,1866,972,1836,1073,1803,1156,1785,1189,1766,1213,1744,1228"/>
+<area shape="rect" id="Node000046" href="$classJAISeMgr.html" title=" " alt="" coords="1643,179,1722,204"/>
+<area shape="poly" id="edge47_Node000001_Node000046" title=" " alt="" coords="1710,214,1778,286,1857,378,1907,445,1942,498,1938,501,1902,448,1853,381,1774,289,1706,217"/>
+<area shape="rect" id="Node000047" href="$classJASGlobalInstance.html" title=" " alt="" coords="1879,173,2021,213"/>
+<area shape="poly" id="edge49_Node000047_Node000046" title=" " alt="" coords="1738,189,1879,190,1879,195,1738,194"/>
+<area shape="poly" id="edge48_Node000046_Node000047" title=" " alt="" coords="1864,198,1855,198,1788,198,1723,196,1723,191,1788,193,1855,193,1864,193"/>
+<area shape="rect" id="Node000048" href="$structJAISeqDataUser.html" title=" " alt="" coords="943,152,1063,178"/>
+<area shape="poly" id="edge50_Node000046_Node000048" title=" " alt="" coords="1078,165,1577,184,1643,187,1643,192,1577,189,1078,170"/>
+<area shape="rect" id="Node000053" href="$classJAISeCategoryMgr.html" title=" " alt="" coords="1272,213,1402,239"/>
+<area shape="poly" id="edge56_Node000053_Node000048" title=" " alt="" coords="1079,176,1272,212,1271,217,1078,181"/>
+<area shape="rect" id="Node000049" href="$classJAISoundActivity.html" title=" " alt="" coords="1276,5,1398,31"/>
+<area shape="poly" id="edge51_Node000046_Node000049" title=" " alt="" coords="1413,13,1453,16,1495,23,1538,35,1578,53,1614,82,1643,116,1678,177,1673,180,1638,119,1610,85,1576,58,1536,40,1494,28,1452,21,1412,18"/>
+<area shape="rect" id="Node000050" href="$structJAIAudience.html" title=" " alt="" coords="1289,55,1385,80"/>
+<area shape="poly" id="edge52_Node000046_Node000050" title=" " alt="" coords="1400,67,1486,77,1533,89,1578,105,1606,121,1632,140,1671,176,1667,180,1629,144,1604,125,1576,110,1532,94,1485,83,1399,72"/>
+<area shape="rect" id="Node000051" href="$structJAISeqDataMgr.html" title=" " alt="" coords="1280,104,1394,130"/>
+<area shape="poly" id="edge53_Node000046_Node000051" title=" " alt="" coords="1409,119,1491,129,1578,146,1619,160,1655,176,1653,181,1617,165,1576,151,1490,134,1409,124"/>
+<area shape="rect" id="Node000052" href="$structJAISoundStrategyMgr.html" title=" " alt="" coords="1263,369,1411,409"/>
+<area shape="poly" id="edge65_Node000001_Node000052" title=" " alt="" coords="1426,381,1518,380,1628,387,1744,405,1801,419,1856,438,1881,451,1904,467,1938,497,1934,501,1900,471,1878,455,1854,443,1800,425,1743,410,1627,392,1518,386,1426,386"/>
+<area shape="poly" id="edge54_Node000046_Node000052" title=" " alt="" coords="1426,381,1513,370,1550,361,1576,351,1595,336,1613,317,1642,276,1662,235,1675,204,1680,206,1667,237,1647,278,1617,321,1599,340,1578,355,1552,366,1514,375,1427,386"/>
+<area shape="poly" id="edge55_Node000046_Node000053" title=" " alt="" coords="1417,216,1642,193,1643,198,1418,221"/>
+<area shape="rect" id="Node000054" href="$structJASNonCopyable.html" title=" " alt="" coords="941,259,1065,284"/>
+<area shape="poly" id="edge57_Node000053_Node000054" title=" " alt="" coords="1080,261,1217,244,1271,235,1272,241,1218,249,1081,266"/>
+<area shape="poly" id="edge64_Node000046_Node000055" title=" " alt="" coords="1086,342,1217,314,1325,291,1431,264,1642,201,1643,206,1433,269,1326,296,1218,319,1087,347"/>
+<area shape="poly" id="edge58_Node000053_Node000055" title=" " alt="" coords="1054,340,1217,276,1306,237,1308,242,1219,281,1056,345"/>
+<area shape="rect" id="Node000056" href="$structJAISoundParamsTransition.html" title=" " alt="" coords="536,359,716,384"/>
+<area shape="poly" id="edge60_Node000055_Node000056" title=" " alt="" coords="732,366,925,360,925,366,732,371"/>
+<area shape="rect" id="Node000057" href="$structJAISoundParamsTransition_1_1TTransition.html" title=" " alt="" coords="234,398,414,439"/>
+<area shape="poly" id="edge61_Node000056_Node000057" title=" " alt="" coords="429,399,538,382,539,388,430,405"/>
+<area shape="rect" id="Node000062" href="$classJAITempoMgr.html" title=" " alt="" coords="762,437,865,463"/>
+<area shape="poly" id="edge68_Node000062_Node000057" title=" " alt="" coords="429,422,762,444,761,449,429,428"/>
+<area shape="rect" id="Node000058" href="$classJSUList.html" title=" " alt="" coords="939,209,1067,235"/>
+<area shape="poly" id="edge62_Node000053_Node000058" title=" " alt="" coords="1082,222,1132,223,1271,223,1271,229,1132,228,1082,227"/>
+<area shape="rect" id="Node000059" href="$classJSUPtrList.html" title=" " alt="" coords="583,209,669,235"/>
+<area shape="poly" id="edge63_Node000058_Node000059" title=" " alt="" coords="685,220,939,220,939,225,685,225"/>
+<area shape="rect" id="Node000061" href="$structJAISoundStrategyMgr____unknown.html" title=" " alt="" coords="1609,1274,1757,1315"/>
+<area shape="poly" id="edge66_Node000001_Node000061" title=" " alt="" coords="1765,1265,1815,1236,1836,1217,1853,1195,1877,1135,1897,1052,1913,953,1925,848,1940,649,1946,526,1951,526,1945,650,1930,848,1918,954,1902,1053,1882,1137,1858,1197,1840,1221,1818,1240,1768,1270"/>
+<area shape="poly" id="edge67_Node000001_Node000062" title=" " alt="" coords="880,447,1051,447,1292,452,1572,466,1715,477,1856,492,1900,499,1899,504,1855,497,1715,482,1571,471,1292,457,1051,452,880,452"/>
 </map>

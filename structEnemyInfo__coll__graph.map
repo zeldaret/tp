@@ -1,0 +1,5 @@
+<map id="EnemyInfo" name="EnemyInfo">
+<area shape="rect" id="Node000001" title=" " alt="" coords="15,94,98,120"/>
+<area shape="rect" id="Node000002" href="$structZ2EnemyArea.html" title=" " alt="" coords="5,5,108,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="59,47,59,94,54,94,54,47"/>
+</map>

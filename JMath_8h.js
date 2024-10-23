@@ -6,6 +6,7 @@ var JMath_8h =
     [ "gekko_ps_copy16", "JMath_8h.html#ad48eee826025f6a77c1980ade392cb16", null ],
     [ "gekko_ps_copy3", "JMath_8h.html#a88806bec22cc0d7ef99795f7babe0974", null ],
     [ "gekko_ps_copy6", "JMath_8h.html#ab22ba6a5846c45fccb32b4e418e5b3bd", null ],
+    [ "JMAAbs", "JMath_8h.html#ab1dbea2833abbaf6c0e12464bda4b1e5", null ],
     [ "JMAEulerToQuat", "JMath_8h.html#a68d66e31dbd6458f19e8b43ab4e3bdee", null ],
     [ "JMAFastReciprocal", "JMath_8h.html#a68e6580e820a34bc8b43294f6769615e", null ],
     [ "JMAFastSqrt", "JMath_8h.html#a286260dd64be4ef2dce58c19de8cf08c", null ],

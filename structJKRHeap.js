@@ -49,7 +49,6 @@ var structJKRHeap =
     [ "getEndAddr", "structJKRHeap.html#a28f6956b50bb905450f38d5775714a0f", null ],
     [ "getErrorFlag", "structJKRHeap.html#ad1b53f8bf2a6f0406d861964f3c58ced", null ],
     [ "getFreeSize", "structJKRHeap.html#ac472913127c2cf2bf7ef1e8a0c806c0c", null ],
-    [ "getFreeSize", "structJKRHeap.html#ac472913127c2cf2bf7ef1e8a0c806c0c", null ],
     [ "getHeapSize", "structJKRHeap.html#a94e05437bb453568de0163cac6450267", null ],
     [ "getHeapTree", "structJKRHeap.html#ad836c0faa798b610b7fb85690c5d1e3c", null ],
     [ "getHeapType", "structJKRHeap.html#a7ff223ba162a0f9c3a3f54c811fdc2e5", null ],

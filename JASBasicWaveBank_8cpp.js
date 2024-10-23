@@ -38,11 +38,6 @@ var JASBasicWaveBank_8cpp =
     [ "setWaveCount__Q216JASBasicWaveBank10TWaveGroupFUlP7JKRHeap", "JASBasicWaveBank_8cpp.html#a8b37e6655911df4af37828f2e1be0a4a", null ],
     [ "setWaveInfo__16JASBasicWaveBankFPQ216JASBasicWaveBank10TWaveGroupiUsRC11JASWaveInfo", "JASBasicWaveBank_8cpp.html#aca5755238ed02adcf3db16fe85d6c36a", null ],
     [ "setWaveTableSize__16JASBasicWaveBankFUlP7JKRHeap", "JASBasicWaveBank_8cpp.html#acb06e9e05bef9d5d2d5412fa8411b939", null ],
-    [ "__vt__11JASWaveBank", "JASBasicWaveBank_8cpp.html#ac16bd8afb8f05ad4457735c10d17e5a6", null ],
-    [ "__vt__13JASWaveHandle", "JASBasicWaveBank_8cpp.html#a04d504ccbdcc8238209d0b7fc44eee6e", null ],
-    [ "__vt__16JASBasicWaveBank", "JASBasicWaveBank_8cpp.html#a2e7f12d75c37142cfd403554e1c08719", null ],
-    [ "__vt__Q216JASBasicWaveBank10TWaveGroup", "JASBasicWaveBank_8cpp.html#a6535f6e8353a6e60aa29ae9a09ffd910", null ],
-    [ "__vt__Q216JASBasicWaveBank11TWaveHandle", "JASBasicWaveBank_8cpp.html#ad1c7f508afa468eff83108ec73d71672", null ],
     [ "mNoLoad__16JASBasicWaveBank", "JASBasicWaveBank_8cpp.html#a81141070520f79fe06fffadaf7039b34", null ],
     [ "one__11JASWaveInfo", "JASBasicWaveBank_8cpp.html#ad39326200dd446e4969f40a736f3abb3", null ]
 ];

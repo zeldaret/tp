@@ -1,3 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structJASDSPChannel.html" title=" " alt="" coords="5,5,126,31"/>
+<area shape="rect" id="Node000000" href="$structJASGenericMemPool.html" title=" " alt="" coords="5,31,152,56"/>
+<area shape="rect" id="Node000001" href="$classJASMemPool.html" title=" " alt="" coords="244,5,376,31"/>
+<area shape="poly" id="edge1325_Node000000_Node000001" title=" " alt="" coords="167,31,243,23,244,28,168,36"/>
+<area shape="rect" id="Node000002" href="$classJASMemPool__MultiThreaded.html" title=" " alt="" coords="200,55,420,80"/>
+<area shape="poly" id="edge1326_Node000000_Node000002" title=" " alt="" coords="167,50,199,53,199,59,167,55"/>
 </map>

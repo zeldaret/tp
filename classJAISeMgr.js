@@ -20,9 +20,9 @@ var classJAISeMgr =
     [ "startSound", "classJAISeMgr.html#a6328b959e3b3d280781d39fce255fa45", null ],
     [ "stop", "classJAISeMgr.html#ad8a540e26f7d3382e762de39d9d568cb", null ],
     [ "stopSoundID", "classJAISeMgr.html#a7685ca694eb504cecd7b17627b7c09c4", null ],
-    [ "field_0x10", "classJAISeMgr.html#a7275453d822508c47cf596bbb08a1107", null ],
     [ "mAudience", "classJAISeMgr.html#a6c5dfaabe0e942ca9f94e1fa13cbfe46", null ],
     [ "mCategoryMgrs", "classJAISeMgr.html#a3059080c78f9a24dd4af666256e5a855", null ],
     [ "mParams", "classJAISeMgr.html#a9f0616591653e90fba3f193e00bb57d2", null ],
-    [ "mSeqDataMgr", "classJAISeMgr.html#ab22f077b1fa15c3073cb2ccf2cab39e0", null ]
+    [ "mSeqDataMgr", "classJAISeMgr.html#ab22f077b1fa15c3073cb2ccf2cab39e0", null ],
+    [ "mStrategyMgr", "classJAISeMgr.html#a4fc1d35248980fd05e4e44dd86b73bbc", null ]
 ];

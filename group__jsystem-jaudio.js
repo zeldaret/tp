@@ -73,7 +73,8 @@ var group__jsystem_jaudio =
       [ "getParams", "classJAISeCategoryMgr.html#a90c4735c6d773b715a103b65ca973b0d", null ],
       [ "getSeList", "classJAISeCategoryMgr.html#ae3ad18ad4ae49760ffe07b8d63b1853d", null ],
       [ "isUsingSeqData", "classJAISeCategoryMgr.html#acef1465fe88eb768191ed96ecf91719d", null ],
-      [ "JAISeMgr_acceptsNewSe_", "classJAISeCategoryMgr.html#a00c4012f8c49116668fcf772be24b65a", null ],
+      [ "JAISeMgr_acceptsNewSe_", "classJAISeCategoryMgr.html#afa41c213eb1559c42382a1ddfa56be19", null ],
+      [ "JAISeMgr_appendSe_", "classJAISeCategoryMgr.html#a57eddf29e1073bd6957926b6548400cd", null ],
       [ "JAISeMgr_calc_", "classJAISeCategoryMgr.html#af255ba578f3990f9d50e03cd52ed85ed", null ],
       [ "JAISeMgr_freeDeadSe_", "classJAISeCategoryMgr.html#ae0946b9f749bd515af92bec14f429592", null ],
       [ "JAISeMgr_mixOut_", "classJAISeCategoryMgr.html#afa0f241c0c786cf67e4d8210cf4374b6", null ],
@@ -112,11 +113,11 @@ var group__jsystem_jaudio =
       [ "startSound", "classJAISeMgr.html#a6328b959e3b3d280781d39fce255fa45", null ],
       [ "stop", "classJAISeMgr.html#ad8a540e26f7d3382e762de39d9d568cb", null ],
       [ "stopSoundID", "classJAISeMgr.html#a7685ca694eb504cecd7b17627b7c09c4", null ],
-      [ "field_0x10", "classJAISeMgr.html#a7275453d822508c47cf596bbb08a1107", null ],
       [ "mAudience", "classJAISeMgr.html#a6c5dfaabe0e942ca9f94e1fa13cbfe46", null ],
       [ "mCategoryMgrs", "classJAISeMgr.html#a3059080c78f9a24dd4af666256e5a855", null ],
       [ "mParams", "classJAISeMgr.html#a9f0616591653e90fba3f193e00bb57d2", null ],
-      [ "mSeqDataMgr", "classJAISeMgr.html#ab22f077b1fa15c3073cb2ccf2cab39e0", null ]
+      [ "mSeqDataMgr", "classJAISeMgr.html#ab22f077b1fa15c3073cb2ccf2cab39e0", null ],
+      [ "mStrategyMgr", "classJAISeMgr.html#a4fc1d35248980fd05e4e44dd86b73bbc", null ]
     ] ],
     [ "JAISeq", "classJAISeq.html", [
       [ "TInner", "classJAISeq_1_1TInner.html", [
@@ -191,7 +192,7 @@ var group__jsystem_jaudio =
       [ "calc", "classJAISeqMgr.html#a50b33197379e59b2aec547ef5efe87b0", null ],
       [ "endStartSeq_", "classJAISeqMgr.html#aed1a6ead9a74280e6bdcc5d716f2b211", null ],
       [ "freeDeadSeq_", "classJAISeqMgr.html#a1182029534f9b8803a7bef22b80584e0", null ],
-      [ "getNumActiveSeqs", "classJAISeqMgr.html#ade56d3f6bc448c586cf94316b1a91e9c", null ],
+      [ "getNumActiveSeqs", "classJAISeqMgr.html#aecb6fe4503ce472fa63e78fbec8de601", null ],
       [ "getParams", "classJAISeqMgr.html#a46c9fa0732b19ea9ec0eedb8fa4cb2fb", null ],
       [ "getSeqDataMgr", "classJAISeqMgr.html#acaddacf30d031025bf534497d50ce6a7", null ],
       [ "isActive", "classJAISeqMgr.html#a653f3e171200a63659193811145b306e", null ],
@@ -494,7 +495,7 @@ var group__jsystem_jaudio =
     ] ],
     [ "JAIStreamAramMgr", "structJAIStreamAramMgr.html", [
       [ "~JAIStreamAramMgr", "structJAIStreamAramMgr.html#ab98cfeea9e54c2b3286b2f3c72bd1116", null ],
-      [ "deleteStreamAram", "structJAIStreamAramMgr.html#ae19846254e0d9b1c795f82fa88b3efe9", null ],
+      [ "deleteStreamAram", "structJAIStreamAramMgr.html#a94a3bc2a24d5c937a1af504122bcb2ec", null ],
       [ "newStreamAram", "structJAIStreamAramMgr.html#a478bad715ef6832b3295f9afcd425521", null ]
     ] ],
     [ "JAIStreamMgr", "classJAIStreamMgr.html", [
@@ -503,6 +504,7 @@ var group__jsystem_jaudio =
       [ "freeDeadStream_", "classJAIStreamMgr.html#a49b842fc16d556c4b7a4859b1fca7c0c", null ],
       [ "getParams", "classJAIStreamMgr.html#a0209d5108687feaf06d654749c8dded8", null ],
       [ "getStreamAramMgr", "classJAIStreamMgr.html#a088841343fd7174e2ea32c83d305727e", null ],
+      [ "getStreamList", "classJAIStreamMgr.html#a91ed4127d2e2b488ae4072feb5893911", null ],
       [ "isActive", "classJAIStreamMgr.html#a724756823e8a41363373704dc1739520", null ],
       [ "mixOut", "classJAIStreamMgr.html#a9e8a6697e3d7f741dd8e368e3ec7e80c", null ],
       [ "newStream_", "classJAIStreamMgr.html#a3e9a457c69143232255116e3db38494a", null ],
@@ -669,17 +671,16 @@ var group__jsystem_jaudio =
       [ "snIntCount", "structJASAudioThread.html#adb6829bd1e800dc7b50994bfff08afb1", null ],
       [ "sThreadQueue", "structJASAudioThread.html#ae9b726ffae2d1821e385f6c5c092c612", null ]
     ] ],
-    [ "JASBank", "structJASBank.html", [
-      [ "~JASBank", "structJASBank.html#ac29617851cffb84e6cb754a79a04c249", null ],
-      [ "JASBank", "structJASBank.html#ae51882639252b1df630e0d023915eeed", null ],
-      [ "~JASBank", "structJASBank.html#afe97411a0a61b592e3a97b71ecaf7310", null ],
-      [ "assignWaveBank", "structJASBank.html#a6f481f5a28ae568200fe99630db25db8", null ],
-      [ "getInstParam", "structJASBank.html#a819e17007ee2cc76332a0d483a482a45", null ],
-      [ "getType", "structJASBank.html#a9dc05d0facfc0ca83965a83f591ce378", null ],
-      [ "getWaveBank", "structJASBank.html#a7e64cd2db34b8966307d017c72651390", null ],
-      [ "noteOn", "structJASBank.html#a0d6c87524335343ad8041907167e0ed6", null ],
-      [ "noteOnOsc", "structJASBank.html#a2feb3b64049bf983482d25ea01a194e0", null ],
-      [ "mWaveBank", "structJASBank.html#a68a77ec267ecfd4fe80591c63b8d9624", null ]
+    [ "JASBank", "classJASBank.html", [
+      [ "JASBank", "classJASBank.html#ae51882639252b1df630e0d023915eeed", null ],
+      [ "~JASBank", "classJASBank.html#afe97411a0a61b592e3a97b71ecaf7310", null ],
+      [ "assignWaveBank", "classJASBank.html#a6f481f5a28ae568200fe99630db25db8", null ],
+      [ "getInstParam", "classJASBank.html#a819e17007ee2cc76332a0d483a482a45", null ],
+      [ "getType", "classJASBank.html#a9dc05d0facfc0ca83965a83f591ce378", null ],
+      [ "getWaveBank", "classJASBank.html#a7e64cd2db34b8966307d017c72651390", null ],
+      [ "noteOn", "classJASBank.html#a0d6c87524335343ad8041907167e0ed6", null ],
+      [ "noteOnOsc", "classJASBank.html#a2feb3b64049bf983482d25ea01a194e0", null ],
+      [ "mWaveBank", "classJASBank.html#a68a77ec267ecfd4fe80591c63b8d9624", null ]
     ] ],
     [ "JASBankList", "classJASBankList.html", [
       [ "getBank", "classJASBankList.html#a2c503bed27d6ed90065d5c2fb30c1a2c", null ]
@@ -710,23 +711,22 @@ var group__jsystem_jaudio =
       [ "TKeymap", "structJASBasicInst_1_1TKeymap.html", [
         [ "~TKeymap", "structJASBasicInst_1_1TKeymap.html#a819bb59c2ad94cb0ac6004c069f9724d", null ],
         [ "TKeymap", "structJASBasicInst_1_1TKeymap.html#aa1439b798bcf54cc64053d689a6587e8", null ],
-        [ "field_0x0", "structJASBasicInst_1_1TKeymap.html#a4ebc6d04bb6fde0e0aa3ae8af9a3c58c", null ],
+        [ "setHighKey", "structJASBasicInst_1_1TKeymap.html#a093114c8aa9b534d3fc11d82a51d0f2c", null ],
         [ "field_0x4", "structJASBasicInst_1_1TKeymap.html#a8c495f6714cc1e8eeface301cbfc46ca", null ],
         [ "field_0x6", "structJASBasicInst_1_1TKeymap.html#a2ba685eb7900f9112a8fc751895ec982", null ],
         [ "field_0x8", "structJASBasicInst_1_1TKeymap.html#a90f041acd11cf0dad75349f85337492b", null ],
-        [ "field_0xc", "structJASBasicInst_1_1TKeymap.html#aa2ace12064e81c7187b82a36948f4090", null ]
+        [ "field_0xc", "structJASBasicInst_1_1TKeymap.html#aa2ace12064e81c7187b82a36948f4090", null ],
+        [ "mHighKey", "structJASBasicInst_1_1TKeymap.html#ab01c4fe55a8d1db0efb43e108fa51a1e", null ]
       ] ],
       [ "JASBasicInst", "structJASBasicInst.html#ae019e3b6b32598fd43d09fb25937952d", null ],
-      [ "JASBasicInst", "structJASBasicInst.html#ae019e3b6b32598fd43d09fb25937952d", null ],
       [ "~JASBasicInst", "structJASBasicInst.html#aa26e7535866607141b3c8f399b0fa7f3", null ],
-      [ "getKeyRegion", "structJASBasicInst.html#a30e6fe83a1e11fca5d7f26a8a1287e62", null ],
       [ "getKeyRegion", "structJASBasicInst.html#a7b9d83728dd6cf55290c6a27f0e369af", null ],
       [ "getParam", "structJASBasicInst.html#a72a42f7bc4fc6f98e2ba45d1bf6de9fb", null ],
       [ "getType", "structJASBasicInst.html#a451a8aabc39e5906aecbd1ae7bb01b76", null ],
       [ "setKeyRegionCount", "structJASBasicInst.html#a5f0cf92f4564d5dce8923bdc84fc007d", null ],
-      [ "setKeyRegionCount", "structJASBasicInst.html#a5f0cf92f4564d5dce8923bdc84fc007d", null ],
       [ "setOsc", "structJASBasicInst.html#a731959bf6412d679f27fac18dd0584c7", null ],
-      [ "setOsc", "structJASBasicInst.html#a731959bf6412d679f27fac18dd0584c7", null ],
+      [ "setPitch", "structJASBasicInst.html#ab55ad6ff4dac1a36eae8796f35c2f256", null ],
+      [ "setVolume", "structJASBasicInst.html#a64e1ffa34cfac84eefb7cfa728ab661b", null ],
       [ "field_0xc", "structJASBasicInst.html#a92a64b6a52841edfd26bf632c5aeac09", null ],
       [ "mKeymap", "structJASBasicInst.html#a83fa4ab36a615332cb9a8d187f4d89e3", null ],
       [ "mKeymapCount", "structJASBasicInst.html#a451a0ca630f357604efe46348d24cf5f", null ],
@@ -734,12 +734,15 @@ var group__jsystem_jaudio =
       [ "mVolume", "structJASBasicInst.html#aed15548146e7e1ae600fd40e48607992", null ]
     ] ],
     [ "JASWaveHandle", "classJASWaveHandle.html", [
-      [ "~JASWaveHandle", "classJASWaveHandle.html#a3464aac3456a46e35298adb9224098f5", null ],
-      [ "vtable", "classJASWaveHandle.html#a17b886054972691b3fe35f4a7783a579", null ]
+      [ "~JASWaveHandle", "classJASWaveHandle.html#aa41f5d0dc0ef29ba6022ba8254fae5d3", null ],
+      [ "getWaveInfo", "classJASWaveHandle.html#aee520d7ed3d52b31a5aa964b0df86262", null ],
+      [ "getWavePtr", "classJASWaveHandle.html#a4b79bf40ebcce2a0f64e3faa3c86be30", null ]
     ] ],
     [ "JASWaveBank", "classJASWaveBank.html", [
-      [ "~JASWaveBank", "classJASWaveBank.html#ae675e3207b1b489489470fb8259ea83c", null ],
-      [ "vtable", "classJASWaveBank.html#aacdb95ad6cc3e7943760bf96d227ebe4", null ]
+      [ "~JASWaveBank", "classJASWaveBank.html#a44a0eb28a1a1b99cae67d6c69f23cb88", null ],
+      [ "getArcCount", "classJASWaveBank.html#a465ac5fe3bfbd076010170b473cc0a60", null ],
+      [ "getWaveArc", "classJASWaveBank.html#a95aa991f7dd262db8850cd9454a556d7", null ],
+      [ "getWaveHandle", "classJASWaveBank.html#a208d9931c9031ff0186df245b2e98488", null ]
     ] ],
     [ "JASBasicWaveBank", "structJASBasicWaveBank.html", [
       [ "TGroupWaveInfo", "structJASBasicWaveBank_1_1TGroupWaveInfo.html", [
@@ -755,7 +758,6 @@ var group__jsystem_jaudio =
         [ "onEraseDone", "structJASBasicWaveBank_1_1TWaveGroup.html#af51c7e0ff300406647777644bdb5bfdb", null ],
         [ "onLoadDone", "structJASBasicWaveBank_1_1TWaveGroup.html#a527aefe1366aa9e5b450c7a97d9810ab", null ],
         [ "setWaveCount", "structJASBasicWaveBank_1_1TWaveGroup.html#af213f0d0b31b63d8ee8fe7241593005a", null ],
-        [ "base", "structJASBasicWaveBank_1_1TWaveGroup.html#a99a49adec44c0a2afcea6de783b0cc90", null ],
         [ "mBank", "structJASBasicWaveBank_1_1TWaveGroup.html#ac58ec6b85120af14c4c26ac5618138df", null ],
         [ "mCtrlWaveArray", "structJASBasicWaveBank_1_1TWaveGroup.html#a04d1e4e0c75d58e9cc108c1bc685bbe2", null ],
         [ "mWaveCount", "structJASBasicWaveBank_1_1TWaveGroup.html#a819a13102861834f61850b4e6065b715", null ]
@@ -788,10 +790,8 @@ var group__jsystem_jaudio =
       [ "mWaveTable", "structJASBasicWaveBank.html#af477a32e050e8f6c35e22cea4ef6ef8a", null ]
     ] ],
     [ "JASCalc", "structJASCalc.html", [
-      [ "bcopy", "structJASCalc.html#a1cdf7708b37bc46723f2b41b4355551d", null ],
       [ "bcopy", "structJASCalc.html#abcd87e8573e59048244f2452525fb86a", null ],
       [ "bcopyfast", "structJASCalc.html#a48ea198879a10163e8553de17bd7530b", null ],
-      [ "bzero", "structJASCalc.html#ac946a26e7b103e034ac53623dd2d0cf5", null ],
       [ "bzero", "structJASCalc.html#a193d03c32dae7b84f775de8f035581b9", null ],
       [ "bzerofast", "structJASCalc.html#a816571f6cac94301e0c8a3d4cec30eb2", null ],
       [ "clamp", "structJASCalc.html#acb2051a470cbad82d079d4fed49dc7f9", null ],
@@ -827,7 +827,7 @@ var group__jsystem_jaudio =
       [ "mPitch", "classJASChannelParams.html#a2b58a80c01093d39a52d33403d901643", null ],
       [ "mVolume", "classJASChannelParams.html#a11b9941b01a6929f4de338a9ca5ff43c", null ]
     ] ],
-    [ "JASChannel", "structJASChannel.html", [
+    [ "JASChannel", "classJASChannel.html", [
       [ "MixConfig", "unionJASChannel_1_1MixConfig.html", [
         [ "lower0", "unionJASChannel_1_1MixConfig.html#a9dbdf57a39c0d8aadc468de0c107c90a", null ],
         [ "lower1", "unionJASChannel_1_1MixConfig.html#a4c7d06613fcc045ead31e6841c077a20", null ],
@@ -840,89 +840,87 @@ var group__jsystem_jaudio =
         [ "mEffect", "structJASChannel_1_1PanVector.html#adb9aef22da9a8cbc55caacb145f8d6ea", null ],
         [ "mSound", "structJASChannel_1_1PanVector.html#a21eb90cd891d1f24a852ffa441a7c8b4", null ]
       ] ],
-      [ "Callback", "structJASChannel.html#a944c45362ed697cf8c2c70cab24294c7", null ],
-      [ "CallbackType", "structJASChannel.html#abc0cf5f0176acc6f9c153574d47818d4", [
-        [ "CB_PLAY", "structJASChannel.html#abc0cf5f0176acc6f9c153574d47818d4a4546ec10d191c53760382c4c37bd177b", null ],
-        [ "CB_START", "structJASChannel.html#abc0cf5f0176acc6f9c153574d47818d4aabc8bbefbe4e67baf00f0a10cc383557", null ],
-        [ "CB_STOP", "structJASChannel.html#abc0cf5f0176acc6f9c153574d47818d4aa43a5f95ab87aa1830168277d5ff7e15", null ],
-        [ "CB_TIMER", "structJASChannel.html#abc0cf5f0176acc6f9c153574d47818d4a107d0f1ddf4e3dbfbbdb1ff57326bdc9", null ]
+      [ "Callback", "classJASChannel.html#a944c45362ed697cf8c2c70cab24294c7", null ],
+      [ "CallbackType", "classJASChannel.html#abc0cf5f0176acc6f9c153574d47818d4", [
+        [ "CB_PLAY", "classJASChannel.html#abc0cf5f0176acc6f9c153574d47818d4a4546ec10d191c53760382c4c37bd177b", null ],
+        [ "CB_START", "classJASChannel.html#abc0cf5f0176acc6f9c153574d47818d4aabc8bbefbe4e67baf00f0a10cc383557", null ],
+        [ "CB_STOP", "classJASChannel.html#abc0cf5f0176acc6f9c153574d47818d4aa43a5f95ab87aa1830168277d5ff7e15", null ],
+        [ "CB_TIMER", "classJASChannel.html#abc0cf5f0176acc6f9c153574d47818d4a107d0f1ddf4e3dbfbbdb1ff57326bdc9", null ]
       ] ],
-      [ "Status", "structJASChannel.html#a65e01648f95bc799a2a9fe7c31a00f75", [
-        [ "STATUS_INACTIVE", "structJASChannel.html#a65e01648f95bc799a2a9fe7c31a00f75ab1a784ecc6919018c595ab7c39221ee2", null ],
-        [ "STATUS_ACTIVE", "structJASChannel.html#a65e01648f95bc799a2a9fe7c31a00f75ade34b7b3db34762381d1d755c6065fe8", null ],
-        [ "STATUS_RELEASE", "structJASChannel.html#a65e01648f95bc799a2a9fe7c31a00f75aa2272aff964093b65f753c8d25aa18ee", null ]
+      [ "Status", "classJASChannel.html#a65e01648f95bc799a2a9fe7c31a00f75", [
+        [ "STATUS_INACTIVE", "classJASChannel.html#a65e01648f95bc799a2a9fe7c31a00f75ab1a784ecc6919018c595ab7c39221ee2", null ],
+        [ "STATUS_ACTIVE", "classJASChannel.html#a65e01648f95bc799a2a9fe7c31a00f75ade34b7b3db34762381d1d755c6065fe8", null ],
+        [ "STATUS_RELEASE", "classJASChannel.html#a65e01648f95bc799a2a9fe7c31a00f75aa2272aff964093b65f753c8d25aa18ee", null ]
       ] ],
-      [ "JASChannel", "structJASChannel.html#a9f085cd3727a63e35d33e942925645bc", null ],
-      [ "~JASChannel", "structJASChannel.html#a7accc3c8aaeb925e11b3d3f208e0404f", null ],
-      [ "calcEffect", "structJASChannel.html#a8ce17eef92c918869678f678b4b1da55", null ],
-      [ "calcPan", "structJASChannel.html#a97a02e4db705389df0ff8ea1fd25ca9d", null ],
-      [ "checkBankDispose", "structJASChannel.html#ab4eccc8db17277d438e876e5f32842ac", null ],
-      [ "dspUpdateCallback", "structJASChannel.html#a6303db37aa8bca08b7197decfc4e506c", null ],
-      [ "effectOsc", "structJASChannel.html#afbacf8d0f312bdba5ea3f4b68a426bf3", null ],
-      [ "free", "structJASChannel.html#ac634b7b177feb983f9c93f814b229772", null ],
-      [ "initBankDisposeMsgQueue", "structJASChannel.html#a900862a5b748d01feffc46cf0b6ea34b", null ],
-      [ "initBankDisposeMsgQueue", "structJASChannel.html#a3824f858477fdd442d5aca53da0d9e5c", null ],
-      [ "initialUpdateDSPChannel", "structJASChannel.html#a4413d35a90d851eacc36b5bd8e09eb27", null ],
-      [ "isDolbyMode", "structJASChannel.html#adfc913c7ef7021c6d8a9c2361bc0c47a", null ],
-      [ "play", "structJASChannel.html#a1a1d38f29d9f3f49dba7c5fc645ed82a", null ],
-      [ "playForce", "structJASChannel.html#a0294cf788134ca02fd24c92a66ea6f86", null ],
-      [ "receiveBankDisposeMsg", "structJASChannel.html#a3d72b27caedc93c1f74333de5b0f527f", null ],
-      [ "receiveBankDisposeMsg", "structJASChannel.html#a13d4ae71233d432093ec9039f9cead48", null ],
-      [ "release", "structJASChannel.html#aa076f39f9f99b11981c71bd1f4b99d1f", null ],
-      [ "setBankDisposeID", "structJASChannel.html#a5a8215cc8ff1d202be28887c4913e849", null ],
-      [ "setDirectRelease", "structJASChannel.html#aaa9e82459859047c4d5a411051a7db8b", null ],
-      [ "setInitDolby", "structJASChannel.html#a08a4aa2d0fe11a9a69e824d171107b11", null ],
-      [ "setInitFxmix", "structJASChannel.html#a386458f7e9ecae9b98d7a9973e856de2", null ],
-      [ "setInitPan", "structJASChannel.html#aeff1e09370ceea752d9deee9f43b04b1", null ],
-      [ "setInitPitch", "structJASChannel.html#adc1b0002f3f4b879936b2a780d2cc64a", null ],
-      [ "setInitVolume", "structJASChannel.html#a32823bb6d69f1a60abbe9e9cfb71e23a", null ],
-      [ "setKey", "structJASChannel.html#a0e77cca9692793552ec004dfad352e54", null ],
-      [ "setKeySweepTarget", "structJASChannel.html#a8145981103eff4bf51e04f858add1b64", null ],
-      [ "setMixConfig", "structJASChannel.html#a85a8c642ae59274a558568f85184b917", null ],
-      [ "setOscInit", "structJASChannel.html#aaac45a36d5c76571c3be4c74b2189983", null ],
-      [ "setParams", "structJASChannel.html#a28112990c2468940392318eba05ad041", null ],
-      [ "setPauseFlag", "structJASChannel.html#a2c82b58da6eacd2f4b25a085dc264897", null ],
-      [ "setPriority", "structJASChannel.html#a08e8df11939df9a2faa3dfd4c63ddea3", null ],
-      [ "setSkipSamples", "structJASChannel.html#ab5daf1aefd00b6ad7a11d63864708804", null ],
-      [ "setTremolo", "structJASChannel.html#a04198799ef3d143fac213666289ac948", null ],
-      [ "setTremoloDelay", "structJASChannel.html#ab058bc3f5792a64236aaa07f94edeb7d", null ],
-      [ "setUpdateTimer", "structJASChannel.html#a2582d3ff71e705f096aad3fb73df49a0", null ],
-      [ "setVelocity", "structJASChannel.html#a0b541708be6a11c0415336d5b8c8d5c7", null ],
-      [ "setVibrate", "structJASChannel.html#afea5c857f0dcb9ed6ac61c14faf8d5d5", null ],
-      [ "setVibrateDelay", "structJASChannel.html#a9e8576c5224672bcc7b8de8fcf3a438c", null ],
-      [ "updateAutoMixer", "structJASChannel.html#af907a2bccc5d68fb213ca1a01d5f2675", null ],
-      [ "updateDSPChannel", "structJASChannel.html#a30237f21ed08d2876d1b658577286c27", null ],
-      [ "updateEffectorParam", "structJASChannel.html#a7be5be33e999612410c03b3f67f9a2f5", null ],
-      [ "updateMixer", "structJASChannel.html#a1ab66a82a8db615df6c0182a4d7b42d6", null ],
-      [ "field_0x0", "structJASChannel.html#a10405140607d3ac6713e5bf66cbd7e65", null ],
-      [ "field_0x104", "structJASChannel.html#ac237601cc1c0148a97e07161868cab7d", null ],
-      [ "field_0x4", "structJASChannel.html#a47fb62565330bcc79b3f55a5349785e1", null ],
-      [ "field_0xdc", "structJASChannel.html#acb9d9c37dad2fb15beae5848785e90b5", null ],
-      [ "filler", "structJASChannel.html#a04dbaf358ba0b021b8596e547a249ee7", null ],
-      [ "mBankDisposeID", "structJASChannel.html#a54842bd7dee5d16eb0e0cc5e30983d39", null ],
-      [ "mCallback", "structJASChannel.html#a1312999e9480d7f4433fc6817e87cec3", null ],
-      [ "mCallbackData", "structJASChannel.html#a3cbc8617ec8a299e2f1d34a3a86da191", null ],
-      [ "mDspCh", "structJASChannel.html#a54b2d15556c0f3758c84e60000d5de62", null ],
-      [ "mKey", "structJASChannel.html#ad1d7f8b0ab253fe3f7f13fc72bb883c6", null ],
-      [ "mKeySweep", "structJASChannel.html#a3e23368957d718831020a07b9464ae10", null ],
-      [ "mKeySweepCount", "structJASChannel.html#af41113bc57920465dffe8fc80ac9b414", null ],
-      [ "mKeySweepTarget", "structJASChannel.html#af0e8ca92afba250844f69ba271d7ddbe", null ],
-      [ "mMixConfig", "structJASChannel.html#aec14b8ebee95f7b2bb035de87fe6ff41", null ],
-      [ "mOscillators", "structJASChannel.html#aaaaa7558674bb945ec74c6f43ec74b48", null ],
-      [ "mParams", "structJASChannel.html#a448793964b47148bde9591bd379cb743", null ],
-      [ "mPauseFlag", "structJASChannel.html#a69224e37a3a6884f028c4c50655c19f1", null ],
-      [ "mPriority", "structJASChannel.html#aecb8f3f0733ec7df9b04fa86b21a1d45", null ],
-      [ "mSkipSamples", "structJASChannel.html#a3d4445f66201912ff13e9c220671c54a", null ],
-      [ "mSoundParams", "structJASChannel.html#a94b25c212cdd369e95559e4100c0520e", null ],
-      [ "mStatus", "structJASChannel.html#a7ddaa2c4223db08ec0004bcd88a32b58", null ],
-      [ "mTremolo", "structJASChannel.html#af629a26fba590ac098edaa14f9098763", null ],
-      [ "mUpdateTimer", "structJASChannel.html#ad07f3c0fe5a0d3b014fcd8c205da3f50", null ],
-      [ "mVelocity", "structJASChannel.html#a8a25e28541798c8e28b4eff46b261ac0", null ],
-      [ "mVibrate", "structJASChannel.html#a1d78b60abcdd82bc4f7fd5b5120cb055", null ],
-      [ "sBankDisposeList", "structJASChannel.html#a40c73c6abe6dcdd9b83c10dcaea55f04", null ],
-      [ "sBankDisposeListSize", "structJASChannel.html#a2ec24aecf4ed186f531d4cca379a43d8", null ],
-      [ "sBankDisposeMsg", "structJASChannel.html#a845088c569cf1251be70ec7888cfb85a", null ],
-      [ "sBankDisposeMsgQ", "structJASChannel.html#a32fa43c0d927beb0ee4cb192b40cfa60", null ]
+      [ "JASChannel", "classJASChannel.html#a9f085cd3727a63e35d33e942925645bc", null ],
+      [ "~JASChannel", "classJASChannel.html#a7accc3c8aaeb925e11b3d3f208e0404f", null ],
+      [ "calcEffect", "classJASChannel.html#a8ce17eef92c918869678f678b4b1da55", null ],
+      [ "calcPan", "classJASChannel.html#a97a02e4db705389df0ff8ea1fd25ca9d", null ],
+      [ "checkBankDispose", "classJASChannel.html#ab4eccc8db17277d438e876e5f32842ac", null ],
+      [ "dspUpdateCallback", "classJASChannel.html#a6303db37aa8bca08b7197decfc4e506c", null ],
+      [ "effectOsc", "classJASChannel.html#afbacf8d0f312bdba5ea3f4b68a426bf3", null ],
+      [ "free", "classJASChannel.html#ac634b7b177feb983f9c93f814b229772", null ],
+      [ "initBankDisposeMsgQueue", "classJASChannel.html#a3824f858477fdd442d5aca53da0d9e5c", null ],
+      [ "initialUpdateDSPChannel", "classJASChannel.html#a4413d35a90d851eacc36b5bd8e09eb27", null ],
+      [ "isDolbyMode", "classJASChannel.html#adfc913c7ef7021c6d8a9c2361bc0c47a", null ],
+      [ "play", "classJASChannel.html#a1a1d38f29d9f3f49dba7c5fc645ed82a", null ],
+      [ "playForce", "classJASChannel.html#a0294cf788134ca02fd24c92a66ea6f86", null ],
+      [ "receiveBankDisposeMsg", "classJASChannel.html#a13d4ae71233d432093ec9039f9cead48", null ],
+      [ "release", "classJASChannel.html#aa076f39f9f99b11981c71bd1f4b99d1f", null ],
+      [ "setBankDisposeID", "classJASChannel.html#a5a8215cc8ff1d202be28887c4913e849", null ],
+      [ "setDirectRelease", "classJASChannel.html#aaa9e82459859047c4d5a411051a7db8b", null ],
+      [ "setInitDolby", "classJASChannel.html#a08a4aa2d0fe11a9a69e824d171107b11", null ],
+      [ "setInitFxmix", "classJASChannel.html#a386458f7e9ecae9b98d7a9973e856de2", null ],
+      [ "setInitPan", "classJASChannel.html#aeff1e09370ceea752d9deee9f43b04b1", null ],
+      [ "setInitPitch", "classJASChannel.html#adc1b0002f3f4b879936b2a780d2cc64a", null ],
+      [ "setInitVolume", "classJASChannel.html#a32823bb6d69f1a60abbe9e9cfb71e23a", null ],
+      [ "setKey", "classJASChannel.html#a0e77cca9692793552ec004dfad352e54", null ],
+      [ "setKeySweepTarget", "classJASChannel.html#a8145981103eff4bf51e04f858add1b64", null ],
+      [ "setMixConfig", "classJASChannel.html#a85a8c642ae59274a558568f85184b917", null ],
+      [ "setOscInit", "classJASChannel.html#aaac45a36d5c76571c3be4c74b2189983", null ],
+      [ "setParams", "classJASChannel.html#a28112990c2468940392318eba05ad041", null ],
+      [ "setPauseFlag", "classJASChannel.html#a2c82b58da6eacd2f4b25a085dc264897", null ],
+      [ "setPriority", "classJASChannel.html#a08e8df11939df9a2faa3dfd4c63ddea3", null ],
+      [ "setSkipSamples", "classJASChannel.html#ab5daf1aefd00b6ad7a11d63864708804", null ],
+      [ "setTremolo", "classJASChannel.html#a04198799ef3d143fac213666289ac948", null ],
+      [ "setTremoloDelay", "classJASChannel.html#ab058bc3f5792a64236aaa07f94edeb7d", null ],
+      [ "setUpdateTimer", "classJASChannel.html#a2582d3ff71e705f096aad3fb73df49a0", null ],
+      [ "setVelocity", "classJASChannel.html#a0b541708be6a11c0415336d5b8c8d5c7", null ],
+      [ "setVibrate", "classJASChannel.html#afea5c857f0dcb9ed6ac61c14faf8d5d5", null ],
+      [ "setVibrateDelay", "classJASChannel.html#a9e8576c5224672bcc7b8de8fcf3a438c", null ],
+      [ "updateAutoMixer", "classJASChannel.html#af907a2bccc5d68fb213ca1a01d5f2675", null ],
+      [ "updateDSPChannel", "classJASChannel.html#a30237f21ed08d2876d1b658577286c27", null ],
+      [ "updateEffectorParam", "classJASChannel.html#a7be5be33e999612410c03b3f67f9a2f5", null ],
+      [ "updateMixer", "classJASChannel.html#a1ab66a82a8db615df6c0182a4d7b42d6", null ],
+      [ "field_0x0", "classJASChannel.html#a10405140607d3ac6713e5bf66cbd7e65", null ],
+      [ "field_0x104", "classJASChannel.html#ac237601cc1c0148a97e07161868cab7d", null ],
+      [ "field_0x4", "classJASChannel.html#a47fb62565330bcc79b3f55a5349785e1", null ],
+      [ "field_0xdc", "classJASChannel.html#acb9d9c37dad2fb15beae5848785e90b5", null ],
+      [ "filler", "classJASChannel.html#a04dbaf358ba0b021b8596e547a249ee7", null ],
+      [ "mBankDisposeID", "classJASChannel.html#a54842bd7dee5d16eb0e0cc5e30983d39", null ],
+      [ "mCallback", "classJASChannel.html#a1312999e9480d7f4433fc6817e87cec3", null ],
+      [ "mCallbackData", "classJASChannel.html#a3cbc8617ec8a299e2f1d34a3a86da191", null ],
+      [ "mDspCh", "classJASChannel.html#a54b2d15556c0f3758c84e60000d5de62", null ],
+      [ "mKey", "classJASChannel.html#ad1d7f8b0ab253fe3f7f13fc72bb883c6", null ],
+      [ "mKeySweep", "classJASChannel.html#a3e23368957d718831020a07b9464ae10", null ],
+      [ "mKeySweepCount", "classJASChannel.html#af41113bc57920465dffe8fc80ac9b414", null ],
+      [ "mKeySweepTarget", "classJASChannel.html#af0e8ca92afba250844f69ba271d7ddbe", null ],
+      [ "mMixConfig", "classJASChannel.html#aec14b8ebee95f7b2bb035de87fe6ff41", null ],
+      [ "mOscillators", "classJASChannel.html#aaaaa7558674bb945ec74c6f43ec74b48", null ],
+      [ "mParams", "classJASChannel.html#a448793964b47148bde9591bd379cb743", null ],
+      [ "mPauseFlag", "classJASChannel.html#a69224e37a3a6884f028c4c50655c19f1", null ],
+      [ "mPriority", "classJASChannel.html#aecb8f3f0733ec7df9b04fa86b21a1d45", null ],
+      [ "mSkipSamples", "classJASChannel.html#a3d4445f66201912ff13e9c220671c54a", null ],
+      [ "mSoundParams", "classJASChannel.html#a94b25c212cdd369e95559e4100c0520e", null ],
+      [ "mStatus", "classJASChannel.html#a7ddaa2c4223db08ec0004bcd88a32b58", null ],
+      [ "mTremolo", "classJASChannel.html#af629a26fba590ac098edaa14f9098763", null ],
+      [ "mUpdateTimer", "classJASChannel.html#ad07f3c0fe5a0d3b014fcd8c205da3f50", null ],
+      [ "mVelocity", "classJASChannel.html#a8a25e28541798c8e28b4eff46b261ac0", null ],
+      [ "mVibrate", "classJASChannel.html#a1d78b60abcdd82bc4f7fd5b5120cb055", null ],
+      [ "sBankDisposeList", "classJASChannel.html#a40c73c6abe6dcdd9b83c10dcaea55f04", null ],
+      [ "sBankDisposeListSize", "classJASChannel.html#a2ec24aecf4ed186f531d4cca379a43d8", null ],
+      [ "sBankDisposeMsg", "classJASChannel.html#a845088c569cf1251be70ec7888cfb85a", null ],
+      [ "sBankDisposeMsgQ", "classJASChannel.html#a32fa43c0d927beb0ee4cb192b40cfa60", null ]
     ] ],
     [ "JASPortArgs", "structJASPortArgs.html", [
       [ "_00", "structJASPortArgs.html#ae3ea2fe4ce5101c3e2a6244063a3f5af", null ],
@@ -945,7 +943,6 @@ var group__jsystem_jaudio =
         [ "execCommandStay", "structJASPortCmd_1_1TPortHead.html#a2460c2fe40bcb8811c1da4e1ed8a4ef3", null ]
       ] ],
       [ "Command", "structJASPortCmd.html#a0a06bbbcde2078f984239fde01edd0eb", null ],
-      [ "execAllCommand", "structJASPortCmd.html#a72a48d0e6e2ede31eb65e30ebf0679db", null ],
       [ "execAllCommand", "structJASPortCmd.html#a9027648b3f3c6eab169cb32772a27b4b", null ],
       [ "_10", "structJASPortCmd.html#a3674e1a1f9742039473fcc0149534b38", null ],
       [ "_14", "structJASPortCmd.html#aa0f6f5c50b153a7040d75ad59d6d1649", null ],
@@ -960,8 +957,10 @@ var group__jsystem_jaudio =
     [ "JASDrumSet", "structJASDrumSet.html", [
       [ "TPerc", "structJASDrumSet_1_1TPerc.html", [
         [ "TPerc", "structJASDrumSet_1_1TPerc.html#ae37d71d94404d73bd41007ed9b4bc2e7", null ],
-        [ "TPerc", "structJASDrumSet_1_1TPerc.html#ae37d71d94404d73bd41007ed9b4bc2e7", null ],
+        [ "setPan", "structJASDrumSet_1_1TPerc.html#ad51e960de5765e43652a348d326b857d", null ],
+        [ "setPitch", "structJASDrumSet_1_1TPerc.html#af67d70c45de7be7258c693bf8c58de38", null ],
         [ "setRelease", "structJASDrumSet_1_1TPerc.html#a2aa4b23f8f7f7afba5f43796ad6e49b5", null ],
+        [ "setVolume", "structJASDrumSet_1_1TPerc.html#ae93662a88dd827d6111586355aff1b54", null ],
         [ "field_0x10", "structJASDrumSet_1_1TPerc.html#acad4b3e4c9c7583f8a9303c8a2eeabc8", null ],
         [ "field_0x14", "structJASDrumSet_1_1TPerc.html#ac54839f2614bd0f2387eee9776572b75", null ],
         [ "field_0xc", "structJASDrumSet_1_1TPerc.html#ac85bca2fb3ea5ba86dc6b4b337d0bb75", null ],
@@ -971,13 +970,10 @@ var group__jsystem_jaudio =
         [ "mVolume", "structJASDrumSet_1_1TPerc.html#af82e16d0c8968b24e512e0d633ae4049", null ]
       ] ],
       [ "JASDrumSet", "structJASDrumSet.html#a9ac4e0dc375da0708e51e390e80c7781", null ],
-      [ "JASDrumSet", "structJASDrumSet.html#a9ac4e0dc375da0708e51e390e80c7781", null ],
       [ "~JASDrumSet", "structJASDrumSet.html#a8952f657353c0c652b47c7fe26bbbdab", null ],
       [ "getParam", "structJASDrumSet.html#a23ddf03f1af92a3d852def06a403f73f", null ],
       [ "getType", "structJASDrumSet.html#acc5830de21e04bbd0d83fbf0320787d6", null ],
       [ "newPercArray", "structJASDrumSet.html#a11f1aeaedbf46d907383c5b9add00985", null ],
-      [ "newPercArray", "structJASDrumSet.html#a11f1aeaedbf46d907383c5b9add00985", null ],
-      [ "setPerc", "structJASDrumSet.html#a3473effefabe9b52c95077d19f8341f2", null ],
       [ "setPerc", "structJASDrumSet.html#a3473effefabe9b52c95077d19f8341f2", null ],
       [ "field_0x4", "structJASDrumSet.html#a3aec9832e5bb77d1518e134456331da1", null ],
       [ "field_0x8", "structJASDrumSet.html#ac03ef42f274a6296bc9c5074b238157a", null ]
@@ -1006,13 +1002,10 @@ var group__jsystem_jaudio =
       [ "getLowestActiveChannel", "structJASDSPChannel.html#ad37e1e82a1afc885539f18e095b5b0b9", null ],
       [ "getLowestChannel", "structJASDSPChannel.html#ad69f4993dfcfa764ca7a7e876dbf2b5e", null ],
       [ "getStatus", "structJASDSPChannel.html#a5dd9324aa25eb125bbbdf0c5dd74e7ab", null ],
-      [ "initAll", "structJASDSPChannel.html#a224831fbf3ed54a99acab3a6485cb550", null ],
       [ "initAll", "structJASDSPChannel.html#ac8a238d9708114d58802c5a6c5a62989", null ],
-      [ "killActiveChannel", "structJASDSPChannel.html#a9568996581f236cf7dcffc507bf585f2", null ],
       [ "killActiveChannel", "structJASDSPChannel.html#ae3ede6eb7a81777254a63741a3523eae", null ],
       [ "setPriority", "structJASDSPChannel.html#ae59a961ca413eb34588b6f6d4c3be76a", null ],
       [ "start", "structJASDSPChannel.html#a6de9486c1712c6d7092344821c483335", null ],
-      [ "updateAll", "structJASDSPChannel.html#a9ad593aec61da85793ebfb9a2e3d8f95", null ],
       [ "updateAll", "structJASDSPChannel.html#ac39103158a28bf39bd0b55dad9b5e103", null ],
       [ "updateProc", "structJASDSPChannel.html#a4986aa99d2433a2eb5f5b2dee0d91ed8", null ],
       [ "field_0xc", "structJASDSPChannel.html#afe292f535deb74a43ca345570f830b95", null ],
@@ -1035,7 +1028,7 @@ var group__jsystem_jaudio =
       [ "JASGlobalInstance", "classJASGlobalInstance.html#a82f3ac9a2cb8e2e4821191dcd089fd20", null ],
       [ "~JASGlobalInstance", "classJASGlobalInstance.html#a86cb58ba5aa6fd25cfa3bf108fdd0fbb", null ],
       [ "getInstance", "classJASGlobalInstance.html#a57f4a347f48fb3a4c4577b99e36942f1", null ],
-      [ "sInstance", "classJASGlobalInstance.html#a0a3566576d480f8814720a9dd634d835", null ]
+      [ "sInstance", "classJASGlobalInstance.html#a2ee00f89caad32b5b7e220b654b28c47", null ]
     ] ],
     [ "JASPtrTable< T >", "classJASPtrTable.html", [
       [ "JASPtrTable", "classJASPtrTable.html#a2220bd4b8c168fe5d8e425f5bf061941", null ],
@@ -1057,6 +1050,7 @@ var group__jsystem_jaudio =
       [ "free", "classJASHeap.html#aa94d32956ea8b4c82cf9006e7cc528bf", null ],
       [ "getBase", "classJASHeap.html#ace65d91779a2efffaf9e5091cdde3d12", null ],
       [ "getCurOffset", "classJASHeap.html#afd3bde81dcd38dc81f0090f88e7059f8", null ],
+      [ "getSize", "classJASHeap.html#a9adcd470bd22d3347e697197295907c2", null ],
       [ "getTailHeap", "classJASHeap.html#a6d2fdca6caa04c8e7e227bdd9ba72cae", null ],
       [ "getTailOffset", "classJASHeap.html#aaaa645c94e28d1684f30f414c8489679", null ],
       [ "initRootHeap", "classJASHeap.html#a23103387bf7029c4e21b2550173738cd", null ],
@@ -1071,15 +1065,14 @@ var group__jsystem_jaudio =
     ] ],
     [ "JASGenericMemPool", "structJASGenericMemPool.html", [
       [ "JASGenericMemPool", "structJASGenericMemPool.html#abde407738a0cdd745ec2a0347c1ef470", null ],
-      [ "JASGenericMemPool", "structJASGenericMemPool.html#abde407738a0cdd745ec2a0347c1ef470", null ],
       [ "~JASGenericMemPool", "structJASGenericMemPool.html#a0634ab6fc7eca2e78c20cadb055c350b", null ],
       [ "alloc", "structJASGenericMemPool.html#ac9d5d8dd5ac7614244646ea188aa765e", null ],
       [ "free", "structJASGenericMemPool.html#aa51532835bc1fb3a68fef43c2620727e", null ],
       [ "newMemPool", "structJASGenericMemPool.html#a95012543d946bf07253c6746577882a3", null ],
       [ "field_0x0", "structJASGenericMemPool.html#a873195276f388b635054d1368b07f1b6", null ],
-      [ "field_0xc", "structJASGenericMemPool.html#a91dd25886db879387be36af2b6662fab", null ],
-      [ "freeMemCount", "structJASGenericMemPool.html#ac9282c05f72a42397de7a38997d79879", null ],
-      [ "totalMemCount", "structJASGenericMemPool.html#ad2f7d7dd411afbdc73f6454646b44a56", null ]
+      [ "freeMemCount", "structJASGenericMemPool.html#a5bb4f18e37bfdc8e4076dc039605a50f", null ],
+      [ "totalMemCount", "structJASGenericMemPool.html#a842d61de7be137514c772603635e39f9", null ],
+      [ "usedMemCount", "structJASGenericMemPool.html#a15906f41e3253ea20d8d4dde812c74ff", null ]
     ] ],
     [ "JASMemPool< T >", "classJASMemPool.html", [
       [ "alloc", "classJASMemPool.html#aa5830ba8ca304b9366e533711df8e426", null ],
@@ -1102,6 +1095,7 @@ var group__jsystem_jaudio =
         [ "mNextChunk", "structJASMemChunkPool_1_1MemoryChunk.html#a4dc2ce21cf101720ced0ea6554a89d8e", null ],
         [ "mUsedSize", "structJASMemChunkPool_1_1MemoryChunk.html#a333e145564be198f684f76129bfb7996", null ]
       ] ],
+      [ "JASMemChunkPool", "classJASMemChunkPool.html#a14721681961e9ed41f6fbb0515aa3b6c", null ],
       [ "alloc", "classJASMemChunkPool.html#a0928dd198467d64bb36a1412a9d07112", null ],
       [ "createNewChunk", "classJASMemChunkPool.html#a8f39936d0e11551a20191280f80f8661", null ],
       [ "free", "classJASMemChunkPool.html#aac32d2e644ee90b767d80c142b3cb73a", null ],
@@ -1115,10 +1109,10 @@ var group__jsystem_jaudio =
       [ "operator new", "classJASPoolAllocObject.html#a32444d390b28a594b9f5346f5f9e683c", null ],
       [ "operator new", "classJASPoolAllocObject.html#a66a24cf28b6585d7dda706d1510f4d13", null ]
     ] ],
-    [ "JASMemPool_MultiThreaded< A0 >", "structJASMemPool__MultiThreaded.html", [
-      [ "alloc", "structJASMemPool__MultiThreaded.html#a5ba093caef2ea94a40abb149e09b4dd2", null ],
-      [ "free", "structJASMemPool__MultiThreaded.html#abaef48657c16110aecd07abbed7e6b8b", null ],
-      [ "newMemPool", "structJASMemPool__MultiThreaded.html#a37786b9ddb4b13ac8cb1b3d96678cd5b", null ]
+    [ "JASMemPool_MultiThreaded< T >", "classJASMemPool__MultiThreaded.html", [
+      [ "alloc", "classJASMemPool__MultiThreaded.html#abf4596083dbea71c3e8e425b22b2e136", null ],
+      [ "free", "classJASMemPool__MultiThreaded.html#ac3a7153f79ba018dcf3dd36912a1e6af", null ],
+      [ "newMemPool", "classJASMemPool__MultiThreaded.html#aaa5cc07711d7c5ff33a9e946a766e654", null ]
     ] ],
     [ "JASPoolAllocObject_MultiThreaded< T >", "classJASPoolAllocObject__MultiThreaded.html", [
       [ "getMemPool", "classJASPoolAllocObject__MultiThreaded.html#af3d41c134d43b775f9155a1fbd21a4a8", null ],
@@ -1213,10 +1207,8 @@ var group__jsystem_jaudio =
     ] ],
     [ "JASProbe", "structJASProbe.html", [
       [ "start", "structJASProbe.html#a1e89209175737eec0c5e6b950a40545e", null ],
-      [ "start", "structJASProbe.html#a5b3ef75e30a3625793531781fb6da1ce", null ],
       [ "start", "structJASProbe.html#a51ec80845d95feee6f66c07e698c9905", null ],
       [ "stop", "structJASProbe.html#a8a8a271c74a376ff7913ed4d5f4c6a6c", null ],
-      [ "stop", "structJASProbe.html#a1e2641d9fe021bf7d2c2e9829cdd9721", null ],
       [ "stop", "structJASProbe.html#a933ba4e988da8878e04ed6c923854880", null ],
       [ "_08", "structJASProbe.html#a2aacd94a8f3b2f32d74fac428a2861bd", null ],
       [ "_0C", "structJASProbe.html#a171b8ed5c5edbd4d4991ce5778122047", null ],
@@ -1376,8 +1368,8 @@ var group__jsystem_jaudio =
       [ "registerSeqCallback", "classJASSeqParser.html#afb495934e1035170877c6662f9a55cc8", null ],
       [ "writeReg", "classJASSeqParser.html#ad7973cbd0d1820943f0ea872ed3730e4", null ],
       [ "sCallBackFunc", "classJASSeqParser.html#a23b310dbd70dae341bfa830dc12b96a0", null ],
-      [ "sCmdInfo", "classJASSeqParser.html#afe43c825a5a0dfefa6122dc3e3b33f6a", null ],
-      [ "sExtCmdInfo", "classJASSeqParser.html#af3908af6ddd3f91e7d3e5308962e661f", null ]
+      [ "sCmdInfo", "classJASSeqParser.html#a8f82a8870f245f89fe5847cafb63b815", null ],
+      [ "sExtCmdInfo", "classJASSeqParser.html#ac709abb79b4f69e2250dab9bfff997bf", null ]
     ] ],
     [ "JASSeqReader", "classJASSeqReader.html", [
       [ "call", "classJASSeqReader.html#a55af1a810df7247f1eef50964f41d447", null ],
@@ -1400,7 +1392,7 @@ var group__jsystem_jaudio =
       [ "readByte", "classJASSeqReader.html#a9bb39f613f96816a562817e6900c0ebf", null ],
       [ "readMidiValue", "classJASSeqReader.html#a739d581ffc5fe2a026591e334704b031", null ],
       [ "ret", "classJASSeqReader.html#ad2233671a54da6f747a3f343f8a228a5", null ],
-      [ "field_0x00", "classJASSeqReader.html#a03a1635bfccff0511f2504b3fd9e245f", null ],
+      [ "field_0x00", "classJASSeqReader.html#abcc1073be13efdb2d3c7890d0dd773e5", null ],
       [ "field_0x04", "classJASSeqReader.html#a661bdd7068dd91d2f4cac944a9a6cc18", null ],
       [ "field_0x08", "classJASSeqReader.html#a63b15fb83ec738e3595a0d2db2afe342", null ],
       [ "field_0x0c", "classJASSeqReader.html#a2e803daeea363c8078f377aa1311b2d5", null ],
@@ -1652,11 +1644,9 @@ var group__jsystem_jaudio =
       [ "sOscTable", "classJASVoiceBank.html#ab7fab48df720b45895bc7687ba4b7c60", null ]
     ] ],
     [ "JASDisposer", "structJASDisposer.html", [
-      [ "~JASDisposer", "structJASDisposer.html#a874ac1c4ca00812cac9519ecdd001f6e", null ],
       [ "JASDisposer", "structJASDisposer.html#a228e747ff68f3e83ba16401555ea0f44", null ],
       [ "~JASDisposer", "structJASDisposer.html#a874ac1c4ca00812cac9519ecdd001f6e", null ],
-      [ "onDispose", "structJASDisposer.html#a9544d15b1c8bee62a122937e46b4dc36", null ],
-      [ "onDispose", "structJASDisposer.html#a78830a402ce5c179d9c45ab04c580875", null ]
+      [ "onDispose", "structJASDisposer.html#a9544d15b1c8bee62a122937e46b4dc36", null ]
     ] ],
     [ "JASWaveArcLoader", "structJASWaveArcLoader.html", [
       [ "getCurrentDir", "structJASWaveArcLoader.html#aff1dcfefa4f18843f59f0cf6a23aa9cc", null ],
@@ -1674,34 +1664,27 @@ var group__jsystem_jaudio =
       ] ],
       [ "JASWaveArc", "structJASWaveArc.html#af7261694efda1982aafadce526f49d2a", null ],
       [ "~JASWaveArc", "structJASWaveArc.html#af50cab06b3e1b91c467aa174c83086d2", null ],
-      [ "JASWaveArc", "structJASWaveArc.html#af7261694efda1982aafadce526f49d2a", null ],
-      [ "~JASWaveArc", "structJASWaveArc.html#a160a073181939ecca837ac7944a830ff", null ],
-      [ "erase", "structJASWaveArc.html#a9efd3b6a183ab767fd0b330da6c6c4dd", null ],
-      [ "erase", "structJASWaveArc.html#a9efd3b6a183ab767fd0b330da6c6c4dd", null ],
+      [ "erase", "structJASWaveArc.html#aa9e324ec77197fda3a3daa82413b0877", null ],
       [ "eraseSetup", "structJASWaveArc.html#a94d5003edb845ea1e8627495a7a61ce3", null ],
-      [ "load", "structJASWaveArc.html#ae5e8bf74c014fc3aed124affe9b9909e", null ],
+      [ "getStatus", "structJASWaveArc.html#ad19b664af844b3c6d8ddcb8220caa4ac", null ],
       [ "load", "structJASWaveArc.html#ae5e8bf74c014fc3aed124affe9b9909e", null ],
       [ "loadSetup", "structJASWaveArc.html#aa6108207486b08958b3c581320156d1f", null ],
       [ "loadTail", "structJASWaveArc.html#af45357beefeb0b667d66f7dc5677b412", null ],
-      [ "loadTail", "structJASWaveArc.html#af45357beefeb0b667d66f7dc5677b412", null ],
       [ "loadToAramCallback", "structJASWaveArc.html#adf9cb4f97060a3ece2f4a3b23b198f48", null ],
-      [ "onDispose", "structJASWaveArc.html#a518b6544de3a55c70810baa81c9af7e4", null ],
       [ "onDispose", "structJASWaveArc.html#af46f8af352bfe62136fd7284978c7c12", null ],
       [ "onEraseDone", "structJASWaveArc.html#ae4dc1a0efffc76f958053a34e4801c7c", null ],
-      [ "onEraseDone", "structJASWaveArc.html#aa23e55ae5c9837b22937539974cabb58", null ],
       [ "onLoadDone", "structJASWaveArc.html#ab4820db2e92a7afaf8808e4e60ec9e91", null ],
-      [ "onLoadDone", "structJASWaveArc.html#a443d7f00145b9bdd9c7b563cddb0174a", null ],
       [ "sendLoadCmd", "structJASWaveArc.html#a52ee85d493b8f64f06911d424f5d8486", null ],
       [ "setEntryNum", "structJASWaveArc.html#aed3605f340bec761371f0d6ed47663ac", null ],
       [ "setFileName", "structJASWaveArc.html#aa2183154dcccf857c9bfc72f378b4536", null ],
       [ "_48", "structJASWaveArc.html#ad7c548bb6397934bd5f16a500074802c", null ],
-      [ "_4c", "structJASWaveArc.html#a559bb4d336453ca353225641e63b011d", null ],
       [ "_58", "structJASWaveArc.html#aeca61946e0cb640867798c57ffa1f486", null ],
       [ "_5a", "structJASWaveArc.html#a053a92502c314403412c04935252e236", null ],
       [ "mEntryNum", "structJASWaveArc.html#a69ef94a58fe86158909e65324e255d57", null ],
       [ "mFileLength", "structJASWaveArc.html#aec0732d8fbd1d2f3b2f18eb54161ac03", null ],
       [ "mHeap", "structJASWaveArc.html#a8eb863d6722c89d8ccf2ebf76393b10b", null ],
-      [ "mMutex", "structJASWaveArc.html#a047a0866ac647901de1dd3b376eb0b97", null ]
+      [ "mMutex", "structJASWaveArc.html#a047a0866ac647901de1dd3b376eb0b97", null ],
+      [ "mStatus", "structJASWaveArc.html#a3cda8ea8e9c491de278ba861c37b057b", null ]
     ] ],
     [ "JASWaveInfo", "structJASWaveInfo.html", [
       [ "JASWaveInfo", "structJASWaveInfo.html#a78bb874a1f40ae7ee7175f9784e9bf29", null ],
@@ -1717,34 +1700,35 @@ var group__jsystem_jaudio =
       [ "field_0x1c", "structJASWaveInfo.html#af7131bdf547bb7bf339bda08034caa80", null ],
       [ "field_0x1e", "structJASWaveInfo.html#ad365b16b49fc5375ddd9c18c1852aaf9", null ],
       [ "field_0x20", "structJASWaveInfo.html#af1c744092b05a765c6448cda8e96ee12", null ],
-      [ "one", "structJASWaveInfo.html#a25038dcd794630be575d6f12407d99ac", null ]
+      [ "one", "structJASWaveInfo.html#a4d81005ae9370ab58639752373680b7f", null ]
     ] ],
-    [ "JASWSParser", "structJASWSParser.html", [
+    [ "JASWSParser", "classJASWSParser.html", [
       [ "TCtrl", "structJASWSParser_1_1TCtrl.html", [
         [ "_00", "structJASWSParser_1_1TCtrl.html#a6c10f6ab51cf00145006a5a753f9d26d", null ],
-        [ "mCtrlWaveOffsets", "structJASWSParser_1_1TCtrl.html#acf35abf3414644f0a79ca77fabb7ea6e", null ],
+        [ "mCtrlWaveOffsets", "structJASWSParser_1_1TCtrl.html#a67f3da272a922bf1c616a5dab5891ce0", null ],
         [ "mWaveCount", "structJASWSParser_1_1TCtrl.html#a4ce2be58d6b007d18bdc8fc7dc8dd4ee", null ]
       ] ],
       [ "TCtrlGroup", "structJASWSParser_1_1TCtrlGroup.html", [
         [ "_00", "structJASWSParser_1_1TCtrlGroup.html#a2b721970e9f17185aebd547fcd8b5f7f", null ],
-        [ "mCtrlGroupCount", "structJASWSParser_1_1TCtrlGroup.html#ad8d636caf0e5b8afef77fbb49daca798", null ],
-        [ "mCtrlSceneOffsets", "structJASWSParser_1_1TCtrlGroup.html#afa02da4e3a61c8df92d1f7944c6ab19d", null ]
+        [ "mCtrlSceneOffsets", "structJASWSParser_1_1TCtrlGroup.html#ab98a56362d972215781107087c29f811", null ],
+        [ "mGroupCount", "structJASWSParser_1_1TCtrlGroup.html#ac5d5c0d294cfdf03f35086f4846ce2cc", null ]
       ] ],
       [ "TCtrlScene", "structJASWSParser_1_1TCtrlScene.html", [
-        [ "_00", "structJASWSParser_1_1TCtrlScene.html#ad4704209d29595424e731692c6762c00", null ],
-        [ "mCtrlOffset", "structJASWSParser_1_1TCtrlScene.html#ab93bd9c7d4d2035b7c33478d9ec79e58", null ]
+        [ "_00", "structJASWSParser_1_1TCtrlScene.html#a2549b10fb98ea201370ac1000d0210ed", null ],
+        [ "mCtrlOffset", "structJASWSParser_1_1TCtrlScene.html#aa976cbe5564265c1b09159df7cb93a4c", null ]
       ] ],
       [ "TCtrlWave", "structJASWSParser_1_1TCtrlWave.html", [
         [ "_00", "structJASWSParser_1_1TCtrlWave.html#ab3ac72266826cba3c0db45147c59e700", null ]
       ] ],
       [ "THeader", "structJASWSParser_1_1THeader.html", [
-        [ "_00", "structJASWSParser_1_1THeader.html#a05c9ecbf7491afeb6244062e7044c3d1", null ],
-        [ "mArchiveBankOffset", "structJASWSParser_1_1THeader.html#ae457c29bb3acb69ec6154a15742647a3", null ],
-        [ "mCtrlGroupOffset", "structJASWSParser_1_1THeader.html#a0961c33d073e079e3cd24b4bdb6ba6ca", null ]
+        [ "_00", "structJASWSParser_1_1THeader.html#a02e66ab66971e7686b9e14b9811ea744", null ],
+        [ "mArchiveBankOffset", "structJASWSParser_1_1THeader.html#a14345719ab30b80654695767cd882d2e", null ],
+        [ "mCtrlGroupOffset", "structJASWSParser_1_1THeader.html#a3f06da00a2e275a3535702a9f7e056bb", null ],
+        [ "mWaveTableSize", "structJASWSParser_1_1THeader.html#ad5d1d0b53a810dc54c95af49f3587d1e", null ]
       ] ],
       [ "TOffset", "classJASWSParser_1_1TOffset.html", [
-        [ "ptr", "classJASWSParser_1_1TOffset.html#a34e8d49159d1607693d64e7ca72473f8", null ],
-        [ "mOffset", "classJASWSParser_1_1TOffset.html#a33e0bc8b58d487fecef66ccf6636f9ca", null ]
+        [ "ptr", "classJASWSParser_1_1TOffset.html#aadc1cc2095e14b3931051730bbc5ec68", null ],
+        [ "mOffset", "classJASWSParser_1_1TOffset.html#aa95cadf8fbb5d998cfb072880b056ceb", null ]
       ] ],
       [ "TWave", "structJASWSParser_1_1TWave.html", [
         [ "_00", "structJASWSParser_1_1TWave.html#ae8d7da0e9cba64b49cbf1419acc46d8e", null ],
@@ -1762,18 +1746,17 @@ var group__jsystem_jaudio =
       ] ],
       [ "TWaveArchive", "structJASWSParser_1_1TWaveArchive.html", [
         [ "mFileName", "structJASWSParser_1_1TWaveArchive.html#a9e3269132bfe6f8fa99faab69a4625b5", null ],
-        [ "mWaveOffsets", "structJASWSParser_1_1TWaveArchive.html#a12c2c3978b2b31781394b83eefc542f1", null ]
+        [ "mWaveOffsets", "structJASWSParser_1_1TWaveArchive.html#ade2d3e80ff4a244cda34a10d3085a956", null ]
       ] ],
       [ "TWaveArchiveBank", "structJASWSParser_1_1TWaveArchiveBank.html", [
         [ "_00", "structJASWSParser_1_1TWaveArchiveBank.html#a50bc1c3393c36d5ee0d455fed9a028f3", null ],
-        [ "mArchiveOffsets", "structJASWSParser_1_1TWaveArchiveBank.html#a185d359e8ca9239e2f1eb7611dacb85f", null ]
+        [ "mArchiveOffsets", "structJASWSParser_1_1TWaveArchiveBank.html#a9be44f80dea4e74b99718d938143d100", null ]
       ] ],
-      [ "createBasicWaveBank", "structJASWSParser.html#a89366501fcd8d41a815eade213c953e2", null ],
-      [ "createSimpleWaveBank", "structJASWSParser.html#ac83b00095338b7087805b29e76091971", null ],
-      [ "createWaveBank", "structJASWSParser.html#a65893c41add9e073113ade3095e1f4ad", null ],
-      [ "createWaveBank", "structJASWSParser.html#a9673e8732af42c2b029eba0e9ff9217c", null ],
-      [ "getGroupCount", "structJASWSParser.html#a7fcb6b48dbec96dc1870104d7bb5607b", null ],
-      [ "sUsedHeapSize", "structJASWSParser.html#a50926d3addb392f2acf6d95ef66ca308", null ]
+      [ "createBasicWaveBank", "classJASWSParser.html#a89366501fcd8d41a815eade213c953e2", null ],
+      [ "createSimpleWaveBank", "classJASWSParser.html#ac83b00095338b7087805b29e76091971", null ],
+      [ "createWaveBank", "classJASWSParser.html#a9673e8732af42c2b029eba0e9ff9217c", null ],
+      [ "getGroupCount", "classJASWSParser.html#a7fcb6b48dbec96dc1870104d7bb5607b", null ],
+      [ "sUsedHeapSize", "classJASWSParser.html#ad1bef441f3316d8dbd5ad2f69b61661c", null ]
     ] ],
     [ "JAUAudibleParam", "structJAUAudibleParam.html", [
       [ "getDopplerPower", "structJAUAudibleParam.html#acff576f78a128731535f129d545bc3e1", null ],
@@ -1840,12 +1823,10 @@ var group__jsystem_jaudio =
     ] ],
     [ "JAUBankTable", "classJAUBankTable.html", [
       [ "JAUBankTable", "classJAUBankTable.html#a92931536025317c40a46814171766b1a", null ],
-      [ "getBank", "classJAUBankTable.html#ac5e93dce4da014a6ef502d6c2f57d02a", null ],
-      [ "getBank", "classJAUBankTable.html#aae3f31bb9cca89c948937d3c2eee49cf", null ],
+      [ "getBank", "classJAUBankTable.html#a557580ef8763863cb6a37617631b0ee4", null ],
       [ "registBank", "classJAUBankTable.html#a49a52837d4f3054f0806f6d2840d9344", null ],
       [ "field_0xc", "classJAUBankTable.html#a327523d2a7edb9cf58d57755fdb8da02", null ],
-      [ "mBankPtrTable", "classJAUBankTable.html#ad9a2dea57d7f7796c5ea11e7671696c7", null ],
-      [ "vtable", "classJAUBankTable.html#ae205ad77205e1bbd9ae6ce6ce092b543", null ]
+      [ "mBankPtrTable", "classJAUBankTable.html#ad9a2dea57d7f7796c5ea11e7671696c7", null ]
     ] ],
     [ "JAUBankTableLink", "classJAUBankTableLink.html", [
       [ "JAUBankTableLink", "classJAUBankTableLink.html#ab32a03ce680d1871b63b09be1405cf45", null ]
@@ -1902,7 +1883,7 @@ var group__jsystem_jaudio =
         [ "registeredWaveBankTables", "structJAUSection_1_1TSectionData.html#a30eae9e2356083b9d5340f0019a6cfc1", null ]
       ] ],
       [ "JAUSection", "classJAUSection.html#adaeda261071529f1af6bd399ea198713", null ],
-      [ "~JAUSection", "classJAUSection.html#ae62e6b60c01007c406b5116a5dde39c6", null ],
+      [ "~JAUSection", "classJAUSection.html#a0984d80a023e1e4fb348d1d95754bfea", null ],
       [ "asSectionHeap", "classJAUSection.html#a1d393e326401c1270747b76ef3938e85", null ],
       [ "beginNewBankTable", "classJAUSection.html#ad7ba0791505804af29b5a367d7d5806a", null ],
       [ "dispose", "classJAUSection.html#ad31b1e603c367692415808225c65783d", null ],
@@ -1923,8 +1904,6 @@ var group__jsystem_jaudio =
       [ "newStreamFileTable", "classJAUSection.html#a9ed78d290b00c78b75043eb32902c98e", null ],
       [ "newVoiceBank", "classJAUSection.html#ae9f6908c7081a96b10d6db5db4bffb1a", null ],
       [ "newWaveBank", "classJAUSection.html#a2c81fc55e3bc476750b412ebf9d462d7", null ],
-      [ "base1", "classJAUSection.html#a8719e9304f2e20f5a29b96d4659627d1", null ],
-      [ "base2", "classJAUSection.html#a4b021dc4d16a489cc603e31ed35be90d", null ],
       [ "buildingBankTable_", "classJAUSection.html#a5b4b1a55db9b583e3cfaf4059a0d53b1", null ],
       [ "data_", "classJAUSection.html#aff0de9f124a982cb6060f0949fd19a7d", null ],
       [ "field_0x28", "classJAUSection.html#a8103bfe0959a00166177660f25036e5b", null ],
@@ -1947,7 +1926,10 @@ var group__jsystem_jaudio =
       [ "getHeap", "classJAUSectionHeap.html#a4761dc20a6b462bb0d8c1ae6a57f7a5b", null ],
       [ "getOpenSection", "classJAUSectionHeap.html#ae519a774044c988a0d5a4fd746a2e096", null ],
       [ "getSectionHeapData", "classJAUSectionHeap.html#ac6e49f2042be602e8c945f06db0cf862", null ],
-      [ "getSeqData", "classJAUSectionHeap.html#ad381163ea49f604d18a9ecc0645623c5", null ],
+      [ "getSeqData", "classJAUSectionHeap.html#aa17c0d92a4ef5a86b98e1e1d8cf37e9e", null ],
+      [ "getSeqSeqDataMgr", "classJAUSectionHeap.html#a79a2be629dfc0668bf9475de58e423c2", null ],
+      [ "getSeSeqDataMgr", "classJAUSectionHeap.html#a4676ac879c44757fc6597fd9446c1bdb", null ],
+      [ "getStreamDataMgr", "classJAUSectionHeap.html#a5c7c943d8379707671d9e5cf22bf7832", null ],
       [ "getWaveBankTable", "classJAUSectionHeap.html#a6b9db9fff73d826f5bd43ea78c53d597", null ],
       [ "loadDynamicSeq", "classJAUSectionHeap.html#a9fa791dd2f36eb640f372b07416df5f0", null ],
       [ "newDynamicSeqBlock", "classJAUSectionHeap.html#a7c0368afdc95a603978b23b298342783", null ],
@@ -1955,8 +1937,6 @@ var group__jsystem_jaudio =
       [ "releaseSeqData", "classJAUSectionHeap.html#a955e5d30a4450999772b89c7da972aa6", null ],
       [ "setSeqDataArchive", "classJAUSectionHeap.html#ad76e4819217442abdaea7b172b079bba", null ],
       [ "setSeqDataUser", "classJAUSectionHeap.html#addafb1a6eed85d49749edc0be596b99d", null ],
-      [ "base1", "classJAUSectionHeap.html#aee9611a2da3b6a62cbb98d7a71a860e4", null ],
-      [ "base2", "classJAUSectionHeap.html#a23b09fd9fff0aba47bf225c53c60a4de", null ],
       [ "field_0xe4", "classJAUSectionHeap.html#a0ec99daf4933c9f4093e122d46aed69d", null ],
       [ "mHeap", "classJAUSectionHeap.html#a97b7d6d0cd5ea44e7c84ff7039685f44", null ],
       [ "mSectionList", "classJAUSectionHeap.html#acb75774bea8efa48160b7cb3683fc435", null ],
@@ -2078,9 +2058,7 @@ var group__jsystem_jaudio =
       [ "init", "structJAUSoundTable__.html#aacf9505d8315bfa3a9b0648c89feb66c", null ],
       [ "reset", "structJAUSoundTable__.html#a61e5928b7fc0f6bb118470d7e63a49af", null ],
       [ "field_0x0", "structJAUSoundTable__.html#ac5d36f3fc442551e8a02ec7059c3b837", null ],
-      [ "field_0x4", "structJAUSoundTable__.html#a44563dc6d9ec92db79e22c915c695acf", null ],
-      [ "field_0x8", "structJAUSoundTable__.html#aa3bf28fe2c0d06972c897586bf39786f", null ],
-      [ "field_0xc", "structJAUSoundTable__.html#a11037af7c542af0e37d2cdaf8b938370", null ]
+      [ "field_0x4", "structJAUSoundTable__.html#a44563dc6d9ec92db79e22c915c695acf", null ]
     ] ],
     [ "JAUSoundTableRoot", "structJAUSoundTableRoot.html", [
       [ "magicNumber", "structJAUSoundTableRoot.html#a1ea8209d91b8d0d19bd6391ca4876dc0", null ],
@@ -2105,7 +2083,6 @@ var group__jsystem_jaudio =
       [ "getData", "structJAUSoundTable.html#a5b6c71ded27f14f0f6af81c5c09842cb", null ],
       [ "getItem", "structJAUSoundTable.html#a652a33da7409a0eaf17e08506f5a0c4c", null ],
       [ "getResource", "structJAUSoundTable.html#a2880bfb4bd2d611d5a8825421179b2e4", null ],
-      [ "getTypeID", "structJAUSoundTable.html#a22b34f73a3e93555f529960224cea3fd", null ],
       [ "getTypeID", "structJAUSoundTable.html#a22b34f73a3e93555f529960224cea3fd", null ],
       [ "init", "structJAUSoundTable.html#a062073b4970116c3b176e158a71a4c4c", null ],
       [ "field_0x0", "structJAUSoundTable.html#a094e932200f39975f792b1b97996bd57", null ]
@@ -2133,7 +2110,7 @@ var group__jsystem_jaudio =
     ] ],
     [ "JAUStreamStaticAramMgr_< MAX_CHUNKS_ >", "classJAUStreamStaticAramMgr__.html", [
       [ "JAUStreamStaticAramMgr_", "classJAUStreamStaticAramMgr__.html#ae0f4aa5632ce584ea4f957eb9532c976", null ],
-      [ "deleteStreamAram", "classJAUStreamStaticAramMgr__.html#a14b52c01a749c2aa462dba7743a43cf9", null ],
+      [ "deleteStreamAram", "classJAUStreamStaticAramMgr__.html#a422150dea6bd063f517f56bf1d29046d", null ],
       [ "isAramReserved", "classJAUStreamStaticAramMgr__.html#a2185585a654b5f600ee703c99976ed69", null ],
       [ "newStreamAram", "classJAUStreamStaticAramMgr__.html#ad8aaf10bbe44df47a686f532564b43f0", null ],
       [ "reserveAram", "classJAUStreamStaticAramMgr__.html#a241aeb1671659c2d38240ccdc93df0db", null ],

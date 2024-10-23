@@ -2,7 +2,7 @@ var classJAUSection =
 [
     [ "TSectionData", "structJAUSection_1_1TSectionData.html", "structJAUSection_1_1TSectionData" ],
     [ "JAUSection", "classJAUSection.html#adaeda261071529f1af6bd399ea198713", null ],
-    [ "~JAUSection", "classJAUSection.html#ae62e6b60c01007c406b5116a5dde39c6", null ],
+    [ "~JAUSection", "classJAUSection.html#a0984d80a023e1e4fb348d1d95754bfea", null ],
     [ "asSectionHeap", "classJAUSection.html#a1d393e326401c1270747b76ef3938e85", null ],
     [ "beginNewBankTable", "classJAUSection.html#ad7ba0791505804af29b5a367d7d5806a", null ],
     [ "dispose", "classJAUSection.html#ad31b1e603c367692415808225c65783d", null ],
@@ -23,8 +23,6 @@ var classJAUSection =
     [ "newStreamFileTable", "classJAUSection.html#a9ed78d290b00c78b75043eb32902c98e", null ],
     [ "newVoiceBank", "classJAUSection.html#ae9f6908c7081a96b10d6db5db4bffb1a", null ],
     [ "newWaveBank", "classJAUSection.html#a2c81fc55e3bc476750b412ebf9d462d7", null ],
-    [ "base1", "classJAUSection.html#a8719e9304f2e20f5a29b96d4659627d1", null ],
-    [ "base2", "classJAUSection.html#a4b021dc4d16a489cc603e31ed35be90d", null ],
     [ "buildingBankTable_", "classJAUSection.html#a5b4b1a55db9b583e3cfaf4059a0d53b1", null ],
     [ "data_", "classJAUSection.html#aff0de9f124a982cb6060f0949fd19a7d", null ],
     [ "field_0x28", "classJAUSection.html#a8103bfe0959a00166177660f25036e5b", null ],

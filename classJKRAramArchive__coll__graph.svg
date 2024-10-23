@@ -910,7 +910,7 @@ var sectionId = 'dynsection-1';
 <!-- Node31 -->
 <g id="Node000031" class="node">
 <title>Node31</title>
-<g id="a_Node000031"><a xlink:href="structJSUInputStream.html" target="_top" xlink:title=" ">
+<g id="a_Node000031"><a xlink:href="classJSUInputStream.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="546.62,-331.03 457.88,-331.03 457.88,-311.78 546.62,-311.78 546.62,-331.03"/>
 <text text-anchor="middle" x="502.25" y="-317.53" font-family="Helvetica,sans-Serif" font-size="10.00">JSUInputStream</text>
 </a>

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['callbacktype_0',['callbacktype',['../classJASAramStream.html#a189b2661514223ea998732aedcb82bee',1,'JASAramStream::CallbackType'],['../structJASChannel.html#abc0cf5f0176acc6f9c153574d47818d4',1,'JASChannel::CallbackType'],['../structJASDSPChannel.html#a3c7e86163f0a6e4273382b1e4e1dd1bd',1,'JASDSPChannel::CallbackType']]],
+  ['callbacktype_0',['callbacktype',['../classJASAramStream.html#a189b2661514223ea998732aedcb82bee',1,'JASAramStream::CallbackType'],['../classJASChannel.html#abc0cf5f0176acc6f9c153574d47818d4',1,'JASChannel::CallbackType'],['../structJASDSPChannel.html#a3c7e86163f0a6e4273382b1e4e1dd1bd',1,'JASDSPChannel::CallbackType']]],
   ['calltype_5fe_1',['CallType_e',['../classdaObjYobikusa__c.html#af92fc35a01dc5c4e12ad813f53e72ee2',1,'daObjYobikusa_c']]],
   ['cardcommand_2',['CardCommand',['../classmDoMemCd__Ctrl__c.html#a64cca2c44b01039c18da2e4c72d15ab0',1,'mDoMemCd_Ctrl_c']]],
   ['cccd_5fobjattype_3',['cCcD_ObjAtType',['../c__cc__d_8h.html#a7ea8b37907a43d95917839ea058b446b',1,'c_cc_d.h']]],

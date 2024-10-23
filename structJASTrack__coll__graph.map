@@ -24,7 +24,7 @@
 <area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="715,1369,821,1378,820,1384,715,1374"/>
 <area shape="rect" id="Node000009" href="$classJASPtrTable.html" title=" " alt="" coords="258,1328,384,1354"/>
 <area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="399,1344,512,1352,511,1358,399,1349"/>
-<area shape="rect" id="Node000010" href="$structJASBank.html" title=" " alt="" coords="283,1377,359,1403"/>
+<area shape="rect" id="Node000010" href="$classJASBank.html" title=" " alt="" coords="283,1377,359,1403"/>
 <area shape="poly" id="edge10_Node000008_Node000010" title=" " alt="" coords="374,1382,511,1369,512,1374,375,1388"/>
 <area shape="rect" id="Node000011" href="$classJASWaveBank.html" title=" " alt="" coords="5,1377,115,1403"/>
 <area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="130,1388,282,1388,282,1393,130,1393"/>
@@ -56,7 +56,7 @@
 <area shape="poly" id="edge27_Node000001_Node000024" title=" " alt="" coords="1950,240,1941,303,1923,387,1893,480,1873,526,1849,568,1823,603,1795,635,1732,691,1671,736,1623,766,1620,761,1668,731,1728,687,1791,631,1819,599,1844,565,1868,523,1888,478,1918,386,1936,302,1945,240"/>
 <area shape="rect" id="Node000025" href="$classJASPoolAllocObject__MultiThreaded.html" title=" " alt="" coords="1492,167,1701,208"/>
 <area shape="poly" id="edge28_Node000024_Node000025" title=" " alt="" coords="1717,193,1870,203,1870,209,1716,198"/>
-<area shape="rect" id="Node000026" href="$structJASChannel.html" title=" " alt="" coords="1550,271,1643,296"/>
+<area shape="rect" id="Node000026" href="$classJASChannel.html" title=" " alt="" coords="1550,271,1643,296"/>
 <area shape="poly" id="edge29_Node000024_Node000026" title=" " alt="" coords="1658,269,1884,222,1885,228,1659,274"/>
 <area shape="poly" id="edge34_Node000026_Node000026" title=" " alt="" coords="1562,253,1574,247,1597,244,1618,246,1631,252,1635,262,1628,272,1624,269,1629,261,1627,256,1617,251,1597,249,1575,252,1564,258"/>
 <area shape="rect" id="Node000027" href="$classJASPoolAllocObject__MultiThreaded.html" title=" " alt="" coords="1118,145,1322,185"/>

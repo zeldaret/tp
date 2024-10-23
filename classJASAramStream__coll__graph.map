@@ -3,7 +3,7 @@
 <area shape="poly" id="edge36_Node000001_Node000001" title=" " alt="" coords="2358,530,2366,524,2382,521,2396,523,2405,529,2407,539,2403,548,2399,546,2402,538,2401,533,2394,528,2382,526,2368,528,2361,534"/>
 <area shape="rect" id="Node000002" href="$structOSMessageQueue.html" title=" " alt="" coords="1486,528,1617,553"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1632,540,2322,556,2322,562,1632,545"/>
-<area shape="rect" id="Node000010" href="$structJASChannel.html" title=" " alt="" coords="1847,322,1940,348"/>
+<area shape="rect" id="Node000010" href="$classJASChannel.html" title=" " alt="" coords="1847,322,1940,348"/>
 <area shape="poly" id="edge30_Node000010_Node000002" title=" " alt="" coords="1632,524,1728,502,1770,488,1798,474,1829,445,1855,409,1885,347,1890,349,1859,412,1834,448,1801,479,1772,493,1729,507,1633,529"/>
 <area shape="rect" id="Node000026" href="$classJKRThread.html" title=" " alt="" coords="1850,1060,1937,1085"/>
 <area shape="poly" id="edge60_Node000026_Node000002" title=" " alt="" coords="1574,564,1675,701,1739,795,1802,892,1853,986,1888,1058,1884,1060,1849,989,1797,895,1735,798,1670,704,1570,567"/>

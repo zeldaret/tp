@@ -742,7 +742,7 @@
 <!-- Node18 -->
 <g id="Node000018" class="node">
 <title>Node18</title>
-<g id="a_Node000018"><a xlink:href="structZ2SoundObjMgr.html" target="_top" xlink:title=" ">
+<g id="a_Node000018"><a xlink:href="classZ2SoundObjMgr.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="420.38,-968.25 333.88,-968.25 333.88,-949 420.38,-949 420.38,-968.25"/>
 <text text-anchor="middle" x="377.12" y="-954.75" font-family="Helvetica,sans-Serif" font-size="10.00">Z2SoundObjMgr</text>
 </a>

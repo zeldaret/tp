@@ -1,12 +1,14 @@
 <map id="JAISoundChild" name="JAISoundChild">
-<area shape="rect" id="Node000001" title=" " alt="" coords="67,346,174,372"/>
-<area shape="rect" id="Node000002" href="$structJAISoundParamsMove.html" title=" " alt="" coords="153,258,309,283"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="206,295,137,348,134,344,202,291"/>
-<area shape="rect" id="Node000003" href="$structJASSoundParams.html" title=" " alt="" coords="5,169,134,195"/>
-<area shape="poly" id="edge5_Node000001_Node000003" title=" " alt="" coords="73,210,77,245,85,283,99,317,115,344,110,347,94,319,80,284,72,246,68,210"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="107,200,209,255,207,259,104,205"/>
-<area shape="rect" id="Node000004" href="$structJAISoundParamsTransition.html" title=" " alt="" coords="158,169,338,195"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="245,210,236,258,231,257,240,209"/>
-<area shape="rect" id="Node000005" href="$structJAISoundParamsTransition_1_1TTransition.html" title=" " alt="" coords="158,5,338,46"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="251,62,251,169,246,169,246,62"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="139,361,246,387"/>
+<area shape="rect" id="Node000002" href="$classJASPoolAllocObject.html" title=" " alt="" coords="5,258,145,298"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,306,179,359,176,363,109,310"/>
+<area shape="rect" id="Node000003" href="$structJAISoundParamsMove.html" title=" " alt="" coords="276,265,431,291"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="321,301,214,363,212,358,319,297"/>
+<area shape="rect" id="Node000004" href="$structJASSoundParams.html" title=" " alt="" coords="128,169,257,195"/>
+<area shape="poly" id="edge6_Node000001_Node000004" title=" " alt="" coords="195,210,195,361,190,361,190,210"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="227,200,334,262,332,267,225,205"/>
+<area shape="rect" id="Node000005" href="$structJAISoundParamsTransition.html" title=" " alt="" coords="281,169,461,195"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="369,210,359,265,353,264,363,209"/>
+<area shape="rect" id="Node000006" href="$structJAISoundParamsTransition_1_1TTransition.html" title=" " alt="" coords="281,5,461,46"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="374,62,374,169,368,169,368,62"/>
 </map>

@@ -1,0 +1,7 @@
+<map id="JASBNKParser::Ver1::TOscChunk" name="JASBNKParser::Ver1::TOscChunk">
+<area shape="rect" id="Node000001" title=" " alt="" coords="89,109,235,150"/>
+<area shape="rect" id="Node000002" href="$structJASBNKParser_1_1Ver1_1_1TChunk.html" title=" " alt="" coords="5,5,151,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,56,148,107,144,110,102,60"/>
+<area shape="rect" id="Node000003" href="$structJASBNKParser_1_1Ver1_1_1TOsc.html" title=" " alt="" coords="175,5,320,46"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="223,60,180,110,176,107,219,56"/>
+</map>

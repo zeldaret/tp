@@ -4,7 +4,7 @@
 <area shape="poly" id="edge59_Node000023_Node000001" title=" " alt="" coords="1441,703,1486,724,1536,752,1586,787,1630,830,1654,863,1674,899,1705,973,1724,1040,1733,1086,1728,1087,1718,1041,1700,975,1669,901,1649,866,1626,833,1583,791,1533,756,1483,728,1439,708"/>
 <area shape="rect" id="Node000002" href="$classJASPoolAllocObject__MultiThreaded.html" title=" " alt="" coords="949,351,1159,392"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1175,372,1225,385,1249,396,1270,411,1300,440,1325,475,1344,513,1360,551,1379,622,1388,672,1382,673,1374,624,1355,553,1340,515,1320,478,1296,444,1267,415,1246,401,1223,390,1173,377"/>
-<area shape="rect" id="Node000003" href="$structJASChannel.html" title=" " alt="" coords="1007,629,1101,655"/>
+<area shape="rect" id="Node000003" href="$classJASChannel.html" title=" " alt="" coords="1007,629,1101,655"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1116,648,1307,673,1306,678,1116,653"/>
 <area shape="poly" id="edge7_Node000003_Node000003" title=" " alt="" coords="1022,612,1033,605,1054,603,1073,605,1085,611,1089,621,1083,630,1079,628,1083,620,1081,615,1072,610,1054,608,1035,610,1025,616"/>
 <area shape="rect" id="Node000004" href="$classJASPoolAllocObject__MultiThreaded.html" title=" " alt="" coords="575,691,779,732"/>
@@ -73,7 +73,7 @@
 <area shape="poly" id="edge40_Node000026_Node000028" title=" " alt="" coords="787,60,978,52,978,57,787,66"/>
 <area shape="rect" id="Node000029" href="$classJASPtrTable.html" title=" " alt="" coords="286,64,412,90"/>
 <area shape="poly" id="edge41_Node000028_Node000029" title=" " alt="" coords="427,72,583,67,583,73,427,77"/>
-<area shape="rect" id="Node000030" href="$structJASBank.html" title=" " alt="" coords="311,15,387,40"/>
+<area shape="rect" id="Node000030" href="$classJASBank.html" title=" " alt="" coords="311,15,387,40"/>
 <area shape="poly" id="edge42_Node000028_Node000030" title=" " alt="" coords="403,31,583,53,583,59,402,37"/>
 <area shape="rect" id="Node000031" href="$classJASWaveBank.html" title=" " alt="" coords="19,15,129,40"/>
 <area shape="poly" id="edge43_Node000030_Node000031" title=" " alt="" coords="144,25,310,25,310,30,144,30"/>

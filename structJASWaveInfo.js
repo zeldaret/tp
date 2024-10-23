@@ -13,5 +13,5 @@ var structJASWaveInfo =
     [ "field_0x1c", "structJASWaveInfo.html#af7131bdf547bb7bf339bda08034caa80", null ],
     [ "field_0x1e", "structJASWaveInfo.html#ad365b16b49fc5375ddd9c18c1852aaf9", null ],
     [ "field_0x20", "structJASWaveInfo.html#af1c744092b05a765c6448cda8e96ee12", null ],
-    [ "one", "structJASWaveInfo.html#a25038dcd794630be575d6f12407d99ac", null ]
+    [ "one", "structJASWaveInfo.html#a4d81005ae9370ab58639752373680b7f", null ]
 ];

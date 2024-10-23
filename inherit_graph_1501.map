@@ -1,3 +1,13 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classJASCriticalSection.html" title=" " alt="" coords="5,5,136,31"/>
+<area shape="rect" id="Node000000" href="$structJASDisposer.html" title=" " alt="" coords="5,19,103,44"/>
+<area shape="rect" id="Node000001" href="$structJASWaveArc.html" title=" " alt="" coords="156,19,255,44"/>
+<area shape="poly" id="edge1320_Node000000_Node000001" title=" " alt="" coords="118,29,155,29,155,34,118,34"/>
+<area shape="rect" id="Node000002" href="$structJASBasicWaveBank_1_1TWaveGroup.html" title=" " alt="" coords="308,5,532,31"/>
+<area shape="poly" id="edge1321_Node000001_Node000002" title=" " alt="" coords="270,25,308,22,308,28,271,30"/>
+<area shape="rect" id="Node000003" href="$structJASSimpleWaveBank.html" title=" " alt="" coords="346,55,495,80"/>
+<area shape="poly" id="edge1322_Node000001_Node000003" title=" " alt="" coords="271,40,345,52,345,58,270,45"/>
+<area shape="rect" id="Node000004" href="$classJASWaveBank.html" title=" " alt="" coords="151,80,260,106"/>
+<area shape="poly" id="edge1324_Node000004_Node000003" title=" " alt="" coords="275,82,345,74,345,79,275,87"/>
+<area shape="rect" id="Node000005" href="$structJASBasicWaveBank.html" title=" " alt="" coords="349,104,491,130"/>
+<area shape="poly" id="edge1323_Node000004_Node000005" title=" " alt="" coords="275,98,349,106,348,112,275,103"/>
 </map>

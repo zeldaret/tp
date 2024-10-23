@@ -7,6 +7,7 @@ var classJASHeap =
     [ "free", "classJASHeap.html#aa94d32956ea8b4c82cf9006e7cc528bf", null ],
     [ "getBase", "classJASHeap.html#ace65d91779a2efffaf9e5091cdde3d12", null ],
     [ "getCurOffset", "classJASHeap.html#afd3bde81dcd38dc81f0090f88e7059f8", null ],
+    [ "getSize", "classJASHeap.html#a9adcd470bd22d3347e697197295907c2", null ],
     [ "getTailHeap", "classJASHeap.html#a6d2fdca6caa04c8e7e227bdd9ba72cae", null ],
     [ "getTailOffset", "classJASHeap.html#aaaa645c94e28d1684f30f414c8489679", null ],
     [ "initRootHeap", "classJASHeap.html#a23103387bf7029c4e21b2550173738cd", null ],

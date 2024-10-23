@@ -1,5 +1,7 @@
 <map id="JAUBankTable" name="JAUBankTable">
-<area shape="rect" id="Node000001" title=" " alt="" coords="18,5,127,31"/>
-<area shape="rect" id="Node000002" href="$classJAUBankTableLink.html" title=" " alt="" coords="5,79,140,105"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="18,79,127,105"/>
+<area shape="rect" id="Node000003" href="$classJAUBankTableLink.html" title=" " alt="" coords="5,153,140,178"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="75,120,75,152,70,152,70,120"/>
+<area shape="rect" id="Node000002" href="$classJASBankList.html" title=" " alt="" coords="23,5,122,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,46,75,79,70,79,70,46"/>
 </map>

@@ -1,5 +1,7 @@
 <map id="JAISeqDataMgr" name="JAISeqDataMgr">
-<area shape="rect" id="Node000001" title=" " alt="" coords="52,5,165,31"/>
-<area shape="rect" id="Node000002" href="$classJAUSeqDataMgr__SeqCollection.html" title=" " alt="" coords="5,79,212,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,46,111,79,106,79,106,46"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="103,5,217,31"/>
+<area shape="rect" id="Node000002" href="$classJAUSectionHeap.html" title=" " alt="" coords="5,79,128,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="134,43,84,81,80,77,130,39"/>
+<area shape="rect" id="Node000003" href="$classJAUSeqDataMgr__SeqCollection.html" title=" " alt="" coords="151,79,358,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="190,39,240,77,237,81,187,43"/>
 </map>

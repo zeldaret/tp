@@ -26,7 +26,7 @@
 <area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="715,45,821,55,820,61,715,51"/>
 <area shape="rect" id="Node000010" href="$classJASPtrTable.html" title=" " alt="" coords="258,5,384,31"/>
 <area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="399,21,512,29,511,34,399,26"/>
-<area shape="rect" id="Node000011" href="$structJASBank.html" title=" " alt="" coords="283,55,359,80"/>
+<area shape="rect" id="Node000011" href="$classJASBank.html" title=" " alt="" coords="283,55,359,80"/>
 <area shape="poly" id="edge11_Node000009_Node000011" title=" " alt="" coords="374,60,488,48,511,45,512,51,488,53,374,65"/>
 <area shape="rect" id="Node000012" href="$classJASWaveBank.html" title=" " alt="" coords="5,55,115,80"/>
 <area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="130,65,282,65,282,70,130,70"/>
@@ -58,7 +58,7 @@
 <area shape="poly" id="edge28_Node000002_Node000025" title=" " alt="" coords="1939,974,1901,873,1875,810,1844,749,1780,642,1710,542,1607,408,1611,405,1715,539,1784,639,1849,746,1879,808,1906,871,1944,972"/>
 <area shape="rect" id="Node000026" href="$classJASPoolAllocObject__MultiThreaded.html" title=" " alt="" coords="1492,1085,1701,1125"/>
 <area shape="poly" id="edge29_Node000025_Node000026" title=" " alt="" coords="1716,1086,1781,1072,1845,1053,1890,1033,1928,1012,1930,1017,1893,1038,1847,1058,1782,1077,1718,1091"/>
-<area shape="rect" id="Node000027" href="$structJASChannel.html" title=" " alt="" coords="1550,885,1643,911"/>
+<area shape="rect" id="Node000027" href="$classJASChannel.html" title=" " alt="" coords="1550,885,1643,911"/>
 <area shape="poly" id="edge30_Node000025_Node000027" title=" " alt="" coords="1659,913,1905,985,1903,990,1658,918"/>
 <area shape="poly" id="edge35_Node000027_Node000027" title=" " alt="" coords="1562,868,1574,861,1597,859,1618,861,1631,867,1635,877,1628,886,1624,883,1629,876,1627,871,1617,866,1597,864,1575,866,1564,872"/>
 <area shape="rect" id="Node000028" href="$classJASPoolAllocObject__MultiThreaded.html" title=" " alt="" coords="1118,762,1322,803"/>

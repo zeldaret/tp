@@ -1,0 +1,548 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Twilight Princess Decompilation" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Documentation for the Twilight Princess codebase" />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Twilight Princess Decompilation" />
+<meta name="twitter:description" content="Documentation for the Twilight Princess codebase" />
+<!-- END twitter metadata -->
+<title>Twilight Princess: JSUMemoryInputStream Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="overrides.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeInteractiveToc.init()
+</script>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/jothepro/doxygen-awesome-css" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="midna.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Twilight Princess
+   </div>
+   <div id="projectbrief">Decompilation of The Legend of Zelda: Twilight Princess</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('classJSUMemoryInputStream.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classJSUMemoryInputStream-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">JSUMemoryInputStream Class Reference<div class="ingroups"><a class="el" href="group__jsystem.html">JSystem</a> &raquo; <a class="el" href="group__jsystem-jsupport.html">JSupport</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="JSUMemoryStream_8h_source.html">JSUMemoryStream.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for JSUMemoryInputStream:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classJSUMemoryInputStream__inherit__graph.svg" width="178" height="258"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for JSUMemoryInputStream:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classJSUMemoryInputStream__coll__graph.svg" width="178" height="258"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a2072c46faffb1748514c65ecc9681d72" id="r_a2072c46faffb1748514c65ecc9681d72"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSUMemoryInputStream.html#a2072c46faffb1748514c65ecc9681d72">JSUMemoryInputStream</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">res</a>, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> size)</td></tr>
+<tr class="separator:a2072c46faffb1748514c65ecc9681d72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20a71f586bac24044d047c5264c54b2b" id="r_a20a71f586bac24044d047c5264c54b2b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSUMemoryInputStream.html#a20a71f586bac24044d047c5264c54b2b">~JSUMemoryInputStream</a> ()</td></tr>
+<tr class="separator:a20a71f586bac24044d047c5264c54b2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6af02e6d77724a9c0a5ad72baa0b12d" id="r_aa6af02e6d77724a9c0a5ad72baa0b12d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSUMemoryInputStream.html#aa6af02e6d77724a9c0a5ad72baa0b12d">setBuffer</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> *, <a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>)</td></tr>
+<tr class="separator:aa6af02e6d77724a9c0a5ad72baa0b12d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fd899e265df568ce9c63cc1380d401f" id="r_a6fd899e265df568ce9c63cc1380d401f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSUMemoryInputStream.html#a6fd899e265df568ce9c63cc1380d401f">readData</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *, <a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>)</td></tr>
+<tr class="separator:a6fd899e265df568ce9c63cc1380d401f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfb6f603a2f241631e443de27fbe22c6" id="r_abfb6f603a2f241631e443de27fbe22c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSUMemoryInputStream.html#abfb6f603a2f241631e443de27fbe22c6">seekPos</a> (<a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>, <a class="el" href="JSUInputStream_8h.html#a858865037a136681f994fcd5565c1404">JSUStreamSeekFrom</a>)</td></tr>
+<tr class="separator:abfb6f603a2f241631e443de27fbe22c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bdd870065f3e4991a21702f1484b75a" id="r_a8bdd870065f3e4991a21702f1484b75a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSUMemoryInputStream.html#a8bdd870065f3e4991a21702f1484b75a">getLength</a> () <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a8bdd870065f3e4991a21702f1484b75a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e1e0e84ca925709172e1056c78cf88b" id="r_a0e1e0e84ca925709172e1056c78cf88b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSUMemoryInputStream.html#a0e1e0e84ca925709172e1056c78cf88b">getPosition</a> () <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a0e1e0e84ca925709172e1056c78cf88b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classJSURandomInputStream"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classJSURandomInputStream')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classJSURandomInputStream.html">JSURandomInputStream</a></td></tr>
+<tr class="memitem:abd20e1d86be69625c8e3abdb9fbf6d3b inherit pub_methods_classJSURandomInputStream" id="r_abd20e1d86be69625c8e3abdb9fbf6d3b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSURandomInputStream.html#abd20e1d86be69625c8e3abdb9fbf6d3b">JSURandomInputStream</a> ()</td></tr>
+<tr class="separator:abd20e1d86be69625c8e3abdb9fbf6d3b inherit pub_methods_classJSURandomInputStream"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98d99cc32e62b38e19ab6708636b7513 inherit pub_methods_classJSURandomInputStream" id="r_a98d99cc32e62b38e19ab6708636b7513"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSURandomInputStream.html#a98d99cc32e62b38e19ab6708636b7513">~JSURandomInputStream</a> ()</td></tr>
+<tr class="separator:a98d99cc32e62b38e19ab6708636b7513 inherit pub_methods_classJSURandomInputStream"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9905c2bb96a4daddcc6537bf36fff9a inherit pub_methods_classJSURandomInputStream" id="r_af9905c2bb96a4daddcc6537bf36fff9a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSURandomInputStream.html#af9905c2bb96a4daddcc6537bf36fff9a">getAvailable</a> () <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:af9905c2bb96a4daddcc6537bf36fff9a inherit pub_methods_classJSURandomInputStream"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3dbc28334afbace39f44431582cc8713 inherit pub_methods_classJSURandomInputStream" id="r_a3dbc28334afbace39f44431582cc8713"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> <a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSURandomInputStream.html#a3dbc28334afbace39f44431582cc8713">skip</a> (<a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>)</td></tr>
+<tr class="separator:a3dbc28334afbace39f44431582cc8713 inherit pub_methods_classJSURandomInputStream"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a612471c3416746fe4013a60c6ac89a91 inherit pub_methods_classJSURandomInputStream" id="r_a612471c3416746fe4013a60c6ac89a91"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSURandomInputStream.html#a612471c3416746fe4013a60c6ac89a91">align</a> (<a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>)</td></tr>
+<tr class="separator:a612471c3416746fe4013a60c6ac89a91 inherit pub_methods_classJSURandomInputStream"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a687254f12cf8d669ef6f1433c54a1608 inherit pub_methods_classJSURandomInputStream" id="r_a687254f12cf8d669ef6f1433c54a1608"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSURandomInputStream.html#a687254f12cf8d669ef6f1433c54a1608">peek</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *, <a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>)</td></tr>
+<tr class="separator:a687254f12cf8d669ef6f1433c54a1608 inherit pub_methods_classJSURandomInputStream"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40a3a55da92e1e3bd5d002aa57ad1d98 inherit pub_methods_classJSURandomInputStream" id="r_a40a3a55da92e1e3bd5d002aa57ad1d98"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSURandomInputStream.html#a40a3a55da92e1e3bd5d002aa57ad1d98">seek</a> (<a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>, <a class="el" href="JSUInputStream_8h.html#a858865037a136681f994fcd5565c1404">JSUStreamSeekFrom</a>)</td></tr>
+<tr class="separator:a40a3a55da92e1e3bd5d002aa57ad1d98 inherit pub_methods_classJSURandomInputStream"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classJSUInputStream"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classJSUInputStream')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classJSUInputStream.html">JSUInputStream</a></td></tr>
+<tr class="memitem:a0d6d707b943225a0865d84f70602c752 inherit pub_methods_classJSUInputStream" id="r_a0d6d707b943225a0865d84f70602c752"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSUInputStream.html#a0d6d707b943225a0865d84f70602c752">JSUInputStream</a> ()</td></tr>
+<tr class="separator:a0d6d707b943225a0865d84f70602c752 inherit pub_methods_classJSUInputStream"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a53e5c0c9ae80e3865855fe9a7005d2 inherit pub_methods_classJSUInputStream" id="r_a4a53e5c0c9ae80e3865855fe9a7005d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSUInputStream.html#a4a53e5c0c9ae80e3865855fe9a7005d2">~JSUInputStream</a> ()</td></tr>
+<tr class="separator:a4a53e5c0c9ae80e3865855fe9a7005d2 inherit pub_methods_classJSUInputStream"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2ef23f0e033430a8a4a25094d908331 inherit pub_methods_classJSUInputStream" id="r_af2ef23f0e033430a8a4a25094d908331"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSUInputStream.html#af2ef23f0e033430a8a4a25094d908331">readU32</a> ()</td></tr>
+<tr class="separator:af2ef23f0e033430a8a4a25094d908331 inherit pub_methods_classJSUInputStream"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabf96b6369e7ba2812a92470b760a354 inherit pub_methods_classJSUInputStream" id="r_aabf96b6369e7ba2812a92470b760a354"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSUInputStream.html#aabf96b6369e7ba2812a92470b760a354">read32b</a> ()</td></tr>
+<tr class="separator:aabf96b6369e7ba2812a92470b760a354 inherit pub_methods_classJSUInputStream"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a412b6ce523a9da25c0cc732173812303 inherit pub_methods_classJSUInputStream" id="r_a412b6ce523a9da25c0cc732173812303"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSUInputStream.html#a412b6ce523a9da25c0cc732173812303">readS32</a> ()</td></tr>
+<tr class="separator:a412b6ce523a9da25c0cc732173812303 inherit pub_methods_classJSUInputStream"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00ccf6536a6e7ecd2785f948d6702627 inherit pub_methods_classJSUInputStream" id="r_a00ccf6536a6e7ecd2785f948d6702627"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSUInputStream.html#a00ccf6536a6e7ecd2785f948d6702627">readS16</a> ()</td></tr>
+<tr class="separator:a00ccf6536a6e7ecd2785f948d6702627 inherit pub_methods_classJSUInputStream"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6672644c4bad229cb246c3fdc381383d inherit pub_methods_classJSUInputStream" id="r_a6672644c4bad229cb246c3fdc381383d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSUInputStream.html#a6672644c4bad229cb246c3fdc381383d">readU16</a> ()</td></tr>
+<tr class="separator:a6672644c4bad229cb246c3fdc381383d inherit pub_methods_classJSUInputStream"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfc90f696881b7b4e1f61450e08e549a inherit pub_methods_classJSUInputStream" id="r_abfc90f696881b7b4e1f61450e08e549a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSUInputStream.html#abfc90f696881b7b4e1f61450e08e549a">readU8</a> ()</td></tr>
+<tr class="separator:abfc90f696881b7b4e1f61450e08e549a inherit pub_methods_classJSUInputStream"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab37d45a4078ece9597f0d19fb101d7dd inherit pub_methods_classJSUInputStream" id="r_ab37d45a4078ece9597f0d19fb101d7dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSUInputStream.html#ab37d45a4078ece9597f0d19fb101d7dd">read8b</a> ()</td></tr>
+<tr class="separator:ab37d45a4078ece9597f0d19fb101d7dd inherit pub_methods_classJSUInputStream"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cf39f5cfbb153ebe3bac6882ebfdd90 inherit pub_methods_classJSUInputStream" id="r_a7cf39f5cfbb153ebe3bac6882ebfdd90"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSUInputStream.html#a7cf39f5cfbb153ebe3bac6882ebfdd90">read16b</a> ()</td></tr>
+<tr class="separator:a7cf39f5cfbb153ebe3bac6882ebfdd90 inherit pub_methods_classJSUInputStream"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8109dd3ca2ac7f79900750ec5dee0c44 inherit pub_methods_classJSUInputStream" id="r_a8109dd3ca2ac7f79900750ec5dee0c44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classJSUInputStream.html">JSUInputStream</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSUInputStream.html#a8109dd3ca2ac7f79900750ec5dee0c44">operator&gt;&gt;</a> (<a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> &amp;<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">dest</a>)</td></tr>
+<tr class="separator:a8109dd3ca2ac7f79900750ec5dee0c44 inherit pub_methods_classJSUInputStream"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c550c6a0e041dded45aa44196162da9 inherit pub_methods_classJSUInputStream" id="r_a3c550c6a0e041dded45aa44196162da9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classJSUInputStream.html">JSUInputStream</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSUInputStream.html#a3c550c6a0e041dded45aa44196162da9">operator&gt;&gt;</a> (<a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> &amp;<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">dest</a>)</td></tr>
+<tr class="separator:a3c550c6a0e041dded45aa44196162da9 inherit pub_methods_classJSUInputStream"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4be788482436136239b238989472b08 inherit pub_methods_classJSUInputStream" id="r_ac4be788482436136239b238989472b08"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSUInputStream.html#ac4be788482436136239b238989472b08">read</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *, <a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>)</td></tr>
+<tr class="separator:ac4be788482436136239b238989472b08 inherit pub_methods_classJSUInputStream"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classJSUIosBase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classJSUIosBase')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classJSUIosBase.html">JSUIosBase</a></td></tr>
+<tr class="memitem:af86b7da881edd8e731f3a5ec00f7f5ad inherit pub_methods_classJSUIosBase" id="r_af86b7da881edd8e731f3a5ec00f7f5ad"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSUIosBase.html#af86b7da881edd8e731f3a5ec00f7f5ad">JSUIosBase</a> ()</td></tr>
+<tr class="separator:af86b7da881edd8e731f3a5ec00f7f5ad inherit pub_methods_classJSUIosBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac150d608cc92027136f67cd41ca720af inherit pub_methods_classJSUIosBase" id="r_ac150d608cc92027136f67cd41ca720af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSUIosBase.html#ac150d608cc92027136f67cd41ca720af">~JSUIosBase</a> ()</td></tr>
+<tr class="separator:ac150d608cc92027136f67cd41ca720af inherit pub_methods_classJSUIosBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11f87dc27fe5cae90039332bc3c56b84 inherit pub_methods_classJSUIosBase" id="r_a11f87dc27fe5cae90039332bc3c56b84"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSUIosBase.html#a11f87dc27fe5cae90039332bc3c56b84">isGood</a> () <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:a11f87dc27fe5cae90039332bc3c56b84 inherit pub_methods_classJSUIosBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad10bebb757eb058e3194459f45ee8c8c inherit pub_methods_classJSUIosBase" id="r_ad10bebb757eb058e3194459f45ee8c8c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSUIosBase.html#ad10bebb757eb058e3194459f45ee8c8c">clrState</a> (<a class="el" href="JSUIosBase_8h.html#a61dd3f9cb1b6fb3089120128760e0642">EIoState</a> state)</td></tr>
+<tr class="separator:ad10bebb757eb058e3194459f45ee8c8c inherit pub_methods_classJSUIosBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b62d7111833ca2d08c0afdeb3845606 inherit pub_methods_classJSUIosBase" id="r_a9b62d7111833ca2d08c0afdeb3845606"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSUIosBase.html#a9b62d7111833ca2d08c0afdeb3845606">setState</a> (<a class="el" href="JSUIosBase_8h.html#a61dd3f9cb1b6fb3089120128760e0642">EIoState</a> state)</td></tr>
+<tr class="separator:a9b62d7111833ca2d08c0afdeb3845606 inherit pub_methods_classJSUIosBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ac7dcdfc65ca65f6e87412d49381024fc" id="r_ac7dcdfc65ca65f6e87412d49381024fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSUMemoryInputStream.html#ac7dcdfc65ca65f6e87412d49381024fc">mBuffer</a></td></tr>
+<tr class="separator:ac7dcdfc65ca65f6e87412d49381024fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40229b6dce1986a0b79160128212275e" id="r_a40229b6dce1986a0b79160128212275e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSUMemoryInputStream.html#a40229b6dce1986a0b79160128212275e">mLength</a></td></tr>
+<tr class="separator:a40229b6dce1986a0b79160128212275e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc37e7b87a20375b3667b6df1f1b3818" id="r_afc37e7b87a20375b3667b6df1f1b3818"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSUMemoryInputStream.html#afc37e7b87a20375b3667b6df1f1b3818">mPosition</a></td></tr>
+<tr class="separator:afc37e7b87a20375b3667b6df1f1b3818"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a2072c46faffb1748514c65ecc9681d72" name="a2072c46faffb1748514c65ecc9681d72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2072c46faffb1748514c65ecc9681d72">&#9670;&#160;</a></span>JSUMemoryInputStream()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">JSUMemoryInputStream::JSUMemoryInputStream </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *&#160;</td>
+          <td class="paramname"><em>res</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a20a71f586bac24044d047c5264c54b2b" name="a20a71f586bac24044d047c5264c54b2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20a71f586bac24044d047c5264c54b2b">&#9670;&#160;</a></span>~JSUMemoryInputStream()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">virtual</a> JSUMemoryInputStream::~JSUMemoryInputStream </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a8bdd870065f3e4991a21702f1484b75a" name="a8bdd870065f3e4991a21702f1484b75a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bdd870065f3e4991a21702f1484b75a">&#9670;&#160;</a></span>getLength()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> JSUMemoryInputStream::getLength </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classJSURandomInputStream.html#a6a167c78d9be50e8cbe053aefcca983f">JSURandomInputStream</a>.</p>
+
+</div>
+</div>
+<a id="a0e1e0e84ca925709172e1056c78cf88b" name="a0e1e0e84ca925709172e1056c78cf88b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e1e0e84ca925709172e1056c78cf88b">&#9670;&#160;</a></span>getPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> JSUMemoryInputStream::getPosition </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classJSURandomInputStream.html#a035d29fd40a3e6918d7a34ed0bd5f9f9">JSURandomInputStream</a>.</p>
+
+</div>
+</div>
+<a id="a6fd899e265df568ce9c63cc1380d401f" name="a6fd899e265df568ce9c63cc1380d401f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fd899e265df568ce9c63cc1380d401f">&#9670;&#160;</a></span>readData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> JSUMemoryInputStream::readData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *&#160;</td>
+          <td class="paramname"><em>pData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classJSURandomInputStream.html#a1dafb520131b8eaf050bc79031cbc274">JSURandomInputStream</a>.</p>
+
+</div>
+</div>
+<a id="abfb6f603a2f241631e443de27fbe22c6" name="abfb6f603a2f241631e443de27fbe22c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfb6f603a2f241631e443de27fbe22c6">&#9670;&#160;</a></span>seekPos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> JSUMemoryInputStream::seekPos </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="JSUInputStream_8h.html#a858865037a136681f994fcd5565c1404">JSUStreamSeekFrom</a>&#160;</td>
+          <td class="paramname"><em>seekFrom</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classJSURandomInputStream.html#a478201ab107c242fedb7bb6acea35437">JSURandomInputStream</a>.</p>
+
+</div>
+</div>
+<a id="aa6af02e6d77724a9c0a5ad72baa0b12d" name="aa6af02e6d77724a9c0a5ad72baa0b12d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6af02e6d77724a9c0a5ad72baa0b12d">&#9670;&#160;</a></span>setBuffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> JSUMemoryInputStream::setBuffer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> *&#160;</td>
+          <td class="paramname"><em>pBuffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ac7dcdfc65ca65f6e87412d49381024fc" name="ac7dcdfc65ca65f6e87412d49381024fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7dcdfc65ca65f6e87412d49381024fc">&#9670;&#160;</a></span>mBuffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>* JSUMemoryInputStream::mBuffer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a40229b6dce1986a0b79160128212275e" name="a40229b6dce1986a0b79160128212275e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40229b6dce1986a0b79160128212275e">&#9670;&#160;</a></span>mLength</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> JSUMemoryInputStream::mLength</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afc37e7b87a20375b3667b6df1f1b3818" name="afc37e7b87a20375b3667b6df1f1b3818"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc37e7b87a20375b3667b6df1f1b3818">&#9670;&#160;</a></span>mPosition</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> JSUMemoryInputStream::mPosition</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>include/JSystem/JSupport/<a class="el" href="JSUMemoryStream_8h_source.html">JSUMemoryStream.h</a></li>
+<li>src/JSystem/JSupport/<a class="el" href="JSUMemoryStream_8cpp.html">JSUMemoryStream.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classJSUMemoryInputStream.html">JSUMemoryInputStream</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

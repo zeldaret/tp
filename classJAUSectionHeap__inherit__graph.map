@@ -1,0 +1,15 @@
+<map id="JAUSectionHeap" name="JAUSectionHeap">
+<area shape="rect" id="Node000001" title=" " alt="" coords="210,241,333,267"/>
+<area shape="rect" id="Node000002" href="$classJAUSection.html" title=" " alt="" coords="86,160,177,186"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,191,251,238,249,243,164,196"/>
+<area shape="rect" id="Node000003" href="$classJKRDisposer.html" title=" " alt="" coords="5,79,103,105"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="78,114,121,158,118,162,74,117"/>
+<area shape="rect" id="Node000004" href="$classJSULink.html" title=" " alt="" coords="127,79,291,105"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="188,117,145,162,141,158,185,114"/>
+<area shape="rect" id="Node000005" href="$classJSUPtrLink.html" title=" " alt="" coords="164,5,253,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="211,46,211,79,206,79,206,46"/>
+<area shape="rect" id="Node000006" href="$classJASGlobalInstance.html" title=" " alt="" coords="201,153,342,193"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="274,209,274,241,269,241,269,209"/>
+<area shape="rect" id="Node000007" href="$structJAISeqDataMgr.html" title=" " alt="" coords="367,160,480,186"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="388,196,296,243,293,238,386,191"/>
+</map>

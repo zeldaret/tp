@@ -19,7 +19,7 @@ var d__save_8h =
     [ "dSv_player_config_c", "classdSv__player__config__c.html", "classdSv__player__config__c" ],
     [ "dSv_player_c", "classdSv__player__c.html", "classdSv__player__c" ],
     [ "dSv_memBit_c", "structdSv__memBit__c.html", "structdSv__memBit__c" ],
-    [ "dSv_event_c", "structdSv__event__c.html", "structdSv__event__c" ],
+    [ "dSv_event_c", "classdSv__event__c.html", "classdSv__event__c" ],
     [ "dSv_MiniGame_c", "classdSv__MiniGame__c.html", "classdSv__MiniGame__c" ],
     [ "dSv_memory_c", "classdSv__memory__c.html", "classdSv__memory__c" ],
     [ "dSv_memory2_c", "classdSv__memory2__c.html", "classdSv__memory2__c" ],
@@ -33,7 +33,7 @@ var d__save_8h =
     [ "dSv_reserve_c", "classdSv__reserve__c.html", "classdSv__reserve__c" ],
     [ "dSv_save_c", "classdSv__save__c.html", "classdSv__save__c" ],
     [ "dSv_info_c", "structdSv__info__c.html", "structdSv__info__c" ],
-    [ "dSv_event_flag_c", "structdSv__event__flag__c.html", "structdSv__event__flag__c" ],
+    [ "dSv_event_flag_c", "classdSv__event__flag__c.html", "classdSv__event__flag__c" ],
     [ "dSv_event_tmp_flag_c", "classdSv__event__tmp__flag__c.html", "classdSv__event__tmp__flag__c" ],
     [ "ButtonIndexes", "d__save_8h.html#adc9ed629efbc45a31723b62cf366f029", [
       [ "A_BUTTON", "d__save_8h.html#adc9ed629efbc45a31723b62cf366f029ab423be11a8d837d76334630082abb38f", null ],

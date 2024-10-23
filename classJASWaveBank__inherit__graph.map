@@ -1,5 +1,7 @@
 <map id="JASWaveBank" name="JASWaveBank">
-<area shape="rect" id="Node000001" title=" " alt="" coords="22,5,131,31"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="106,5,215,31"/>
 <area shape="rect" id="Node000002" href="$structJASBasicWaveBank.html" title=" " alt="" coords="5,79,148,105"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="79,46,79,79,74,79,74,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="137,43,92,81,89,77,133,39"/>
+<area shape="rect" id="Node000003" href="$structJASSimpleWaveBank.html" title=" " alt="" coords="171,79,321,105"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="188,39,233,77,230,81,185,43"/>
 </map>

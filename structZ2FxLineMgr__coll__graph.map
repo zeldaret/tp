@@ -1,8 +1,10 @@
 <map id="Z2FxLineMgr" name="Z2FxLineMgr">
-<area shape="rect" id="Node000001" title=" " alt="" coords="27,94,125,120"/>
-<area shape="rect" id="Node000002" href="$classJASGlobalInstance.html" title=" " alt="" coords="5,183,147,223"/>
-<area shape="poly" id="edge2_Node000002_Node000001" title=" " alt="" coords="44,131,35,144,35,158,51,180,47,184,29,159,29,142,40,128"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,168,96,156,95,144,83,121,88,119,100,143,101,156,98,169"/>
-<area shape="rect" id="Node000003" href="$structZ2FxLineEditNode.html" title=" " alt="" coords="12,5,140,31"/>
-<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="79,47,79,94,73,94,73,47"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="84,94,182,120"/>
+<area shape="rect" id="Node000002" href="$classJASGlobalInstance.html" title=" " alt="" coords="62,183,204,223"/>
+<area shape="poly" id="edge2_Node000002_Node000001" title=" " alt="" coords="101,131,92,144,92,158,108,180,104,184,86,159,86,142,97,128"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="150,168,153,156,152,144,140,121,145,119,157,143,158,156,155,169"/>
+<area shape="rect" id="Node000003" href="$structZ2FxLineConfig.html" title=" " alt="" coords="5,5,117,31"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="83,41,125,92,121,95,79,45"/>
+<area shape="rect" id="Node000004" href="$structZ2FxLineEditNode.html" title=" " alt="" coords="141,5,269,31"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="187,45,145,95,141,92,183,41"/>
 </map>

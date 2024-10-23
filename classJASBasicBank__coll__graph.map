@@ -1,0 +1,9 @@
+<map id="JASBasicBank" name="JASBasicBank">
+<area shape="rect" id="Node000001" title=" " alt="" coords="77,183,187,208"/>
+<area shape="rect" id="Node000002" href="$classJASBank.html" title=" " alt="" coords="22,94,98,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,130,124,181,120,184,78,133"/>
+<area shape="rect" id="Node000003" href="$classJASWaveBank.html" title=" " alt="" coords="5,5,115,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="63,47,63,94,57,94,57,47"/>
+<area shape="rect" id="Node000004" href="$structJASInst.html" title=" " alt="" coords="122,94,190,120"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="151,135,138,183,133,182,146,134"/>
+</map>

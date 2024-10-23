@@ -854,7 +854,7 @@
 <!-- Node31 -->
 <g id="Node000031" class="node">
 <title>Node31</title>
-<g id="a_Node000031"><a xlink:href="structJSUInputStream.html" target="_top" xlink:title=" ">
+<g id="a_Node000031"><a xlink:href="classJSUInputStream.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="556.38,-331.62 467.62,-331.62 467.62,-312.38 556.38,-312.38 556.38,-331.62"/>
 <text text-anchor="middle" x="512" y="-318.12" font-family="Helvetica,sans-Serif" font-size="10.00">JSUInputStream</text>
 </a>

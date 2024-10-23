@@ -1,11 +1,11 @@
 <map id="JASBasicWaveBank" name="JASBasicWaveBank">
-<area shape="rect" id="Node000001" title=" " alt="" coords="1521,497,1663,523"/>
-<area shape="rect" id="Node000020" href="$structJASBasicWaveBank_1_1TWaveGroup.html" title=" " alt="" coords="1847,481,2072,507"/>
-<area shape="poly" id="edge35_Node000020_Node000001" title=" " alt="" coords="1678,514,1711,516,1767,518,1823,516,1896,505,1897,510,1824,521,1767,523,1711,521,1678,519"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="1521,488,1663,514"/>
+<area shape="rect" id="Node000020" href="$structJASBasicWaveBank_1_1TWaveGroup.html" title=" " alt="" coords="1847,472,2072,498"/>
+<area shape="poly" id="edge35_Node000020_Node000001" title=" " alt="" coords="1678,505,1711,506,1767,509,1823,506,1896,496,1897,501,1824,512,1767,514,1711,512,1678,510"/>
 <area shape="rect" id="Node000002" href="$classJASWaveBank.html" title=" " alt="" coords="1163,549,1273,575"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1288,550,1520,517,1521,523,1288,555"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1288,548,1520,510,1521,515,1288,553"/>
 <area shape="rect" id="Node000003" href="$structOSMutex.html" title=" " alt="" coords="611,192,686,218"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="675,227,709,255,749,280,804,299,873,316,1039,344,1206,370,1277,383,1334,397,1561,494,1558,499,1332,402,1276,388,1205,375,1038,349,872,321,802,304,747,285,706,259,672,231"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="675,227,709,255,749,280,804,299,873,316,1039,344,1205,369,1277,382,1334,396,1463,442,1563,485,1561,490,1461,447,1332,401,1276,387,1205,375,1038,349,872,321,802,304,747,285,706,259,672,231"/>
 <area shape="rect" id="Node000005" href="$structOSThread.html" title=" " alt="" coords="1178,111,1258,136"/>
 <area shape="poly" id="edge9_Node000005_Node000003" title=" " alt="" coords="675,180,708,157,747,138,806,122,867,111,929,105,989,103,1097,106,1178,115,1177,120,1097,112,989,108,929,110,868,116,808,127,749,143,711,162,678,185"/>
 <area shape="rect" id="Node000008" href="$structOSMutexQueue.html" title=" " alt="" coords="841,148,954,174"/>
@@ -14,8 +14,8 @@
 <area shape="poly" id="edge14_Node000009_Node000003" title=" " alt="" coords="677,225,710,249,749,267,773,272,799,273,847,269,847,274,799,278,773,277,748,272,707,253,674,230"/>
 <area shape="rect" id="Node000013" href="$classJASHeap.html" title=" " alt="" coords="859,500,936,526"/>
 <area shape="poly" id="edge27_Node000013_Node000003" title=" " alt="" coords="662,231,696,308,721,352,750,394,781,426,815,455,875,497,872,502,812,459,777,430,746,397,716,355,691,310,657,233"/>
-<area shape="rect" id="Node000021" href="$structJASWaveArc.html" title=" " alt="" coords="1168,412,1268,438"/>
-<area shape="poly" id="edge34_Node000021_Node000003" title=" " alt="" coords="666,230,700,280,723,306,750,326,783,342,829,357,945,383,1068,403,1168,416,1167,422,1067,408,944,388,828,362,781,347,747,331,719,310,696,284,662,233"/>
+<area shape="rect" id="Node000021" href="$structJASWaveArc.html" title=" " alt="" coords="1168,411,1268,436"/>
+<area shape="poly" id="edge34_Node000021_Node000003" title=" " alt="" coords="666,230,700,280,723,306,750,326,783,342,829,357,945,382,1068,402,1168,415,1167,420,1067,407,944,387,828,362,781,347,747,331,719,310,696,284,662,233"/>
 <area shape="rect" id="Node000004" href="$structOSThreadQueue.html" title=" " alt="" coords="1533,23,1651,48"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1527,21,1472,11,1415,8,1357,11,1096,24,982,36,838,61,791,68,772,74,750,87,720,112,694,141,660,193,655,190,690,138,716,108,747,83,770,70,790,63,837,55,982,31,1095,18,1357,6,1415,3,1472,6,1528,16"/>
 <area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="1561,59,1520,83,1473,103,1415,116,1357,124,1259,127,1259,122,1357,118,1415,111,1471,98,1518,78,1558,55"/>
@@ -29,14 +29,14 @@
 <area shape="poly" id="edge10_Node000005_Node000008" title=" " alt="" coords="969,150,1177,125,1178,131,970,155"/>
 <area shape="poly" id="edge13_Node000003_Node000009" title=" " alt="" coords="841,244,813,237,686,213,687,207,814,231,842,239"/>
 <area shape="rect" id="Node000010" href="$structJASBasicWaveBank_1_1TWaveHandle.html" title=" " alt="" coords="1103,500,1333,526"/>
-<area shape="poly" id="edge15_Node000001_Node000010" title=" " alt="" coords="1349,509,1520,508,1520,513,1349,514"/>
+<area shape="poly" id="edge15_Node000001_Node000010" title=" " alt="" coords="1349,506,1520,500,1520,506,1349,511"/>
 <area shape="rect" id="Node000011" href="$classJASWaveHandle.html" title=" " alt="" coords="837,549,958,575"/>
 <area shape="poly" id="edge16_Node000010_Node000011" title=" " alt="" coords="973,548,1129,524,1130,529,973,553"/>
 <area shape="rect" id="Node000012" href="$structJASWaveInfo.html" title=" " alt="" coords="847,599,948,624"/>
 <area shape="poly" id="edge17_Node000010_Node000012" title=" " alt="" coords="963,605,1021,593,1050,583,1077,568,1085,561,1088,552,1092,543,1101,535,1122,524,1125,529,1104,539,1097,546,1093,555,1089,564,1080,573,1053,588,1023,598,964,611"/>
 <area shape="poly" id="edge18_Node000010_Node000013" title=" " alt="" coords="952,510,1102,510,1102,515,952,515"/>
 <area shape="poly" id="edge29_Node000013_Node000013" title=" " alt="" coords="875,483,883,476,897,473,911,476,920,482,922,491,918,501,913,499,917,491,915,485,909,480,898,479,885,481,879,487"/>
-<area shape="poly" id="edge33_Node000021_Node000013" title=" " alt="" coords="950,496,1167,436,1169,441,952,501"/>
+<area shape="poly" id="edge33_Node000021_Node000013" title=" " alt="" coords="950,496,1168,434,1169,439,952,501"/>
 <area shape="rect" id="Node000014" href="$classJSUTree.html" title=" " alt="" coords="573,536,724,562"/>
 <area shape="poly" id="edge19_Node000013_Node000014" title=" " alt="" coords="740,552,777,551,813,545,836,534,861,524,863,529,838,539,814,550,777,556,740,558"/>
 <area shape="rect" id="Node000015" href="$classJSUList.html" title=" " alt="" coords="298,508,397,534"/>
@@ -52,9 +52,9 @@
 <area shape="poly" id="edge25_Node000014_Node000018" title=" " alt="" coords="538,566,574,560,575,565,539,571"/>
 <area shape="rect" id="Node000019" href="$structJASDisposer.html" title=" " alt="" coords="600,448,697,474"/>
 <area shape="poly" id="edge28_Node000013_Node000019" title=" " alt="" coords="689,478,749,500,806,509,859,511,858,516,806,514,748,505,687,483"/>
-<area shape="poly" id="edge32_Node000021_Node000019" title=" " alt="" coords="712,445,748,439,866,429,983,424,1168,421,1168,427,983,429,866,435,749,445,713,450"/>
-<area shape="poly" id="edge30_Node000001_Node000020" title=" " alt="" coords="1832,499,1711,503,1663,507,1663,501,1711,498,1832,494"/>
-<area shape="poly" id="edge31_Node000020_Node000021" title=" " alt="" coords="1283,427,1521,446,1824,474,1857,478,1857,483,1823,479,1520,451,1283,432"/>
-<area shape="rect" id="Node000022" href="$structJASBasicWaveBank_1_1TGroupWaveInfo.html" title=" " alt="" coords="1496,547,1687,588"/>
-<area shape="poly" id="edge36_Node000020_Node000022" title=" " alt="" coords="1703,558,1763,551,1823,540,1878,523,1926,505,1928,510,1880,529,1824,545,1763,556,1703,563"/>
+<area shape="poly" id="edge32_Node000021_Node000019" title=" " alt="" coords="712,445,748,439,866,429,983,423,1168,420,1168,426,983,429,866,434,749,445,713,450"/>
+<area shape="poly" id="edge30_Node000001_Node000020" title=" " alt="" coords="1832,490,1711,494,1663,497,1663,492,1711,489,1832,484"/>
+<area shape="poly" id="edge31_Node000020_Node000021" title=" " alt="" coords="1283,424,1521,439,1824,465,1858,469,1858,474,1823,470,1520,445,1283,430"/>
+<area shape="rect" id="Node000022" href="$structJASBasicWaveBank_1_1TGroupWaveInfo.html" title=" " alt="" coords="1496,538,1687,578"/>
+<area shape="poly" id="edge36_Node000020_Node000022" title=" " alt="" coords="1703,549,1763,542,1823,531,1878,514,1926,496,1928,501,1880,519,1824,536,1763,547,1703,554"/>
 </map>

@@ -190,7 +190,7 @@ var sectionId = 'dynsection-0';
 <!-- Node27 -->
 <g id="Node000027" class="node">
 <title>Node27</title>
-<g id="a_Node000027"><a xlink:href="structdSv__event__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000027"><a xlink:href="classdSv__event__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="224.38,-1962.93 151.38,-1962.93 151.38,-1943.68 224.38,-1943.68 224.38,-1962.93"/>
 <text text-anchor="middle" x="187.88" y="-1949.43" font-family="Helvetica,sans-Serif" font-size="10.00">dSv_event_c</text>
 </a>

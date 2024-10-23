@@ -1,0 +1,1940 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Twilight Princess Decompilation" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Documentation for the Twilight Princess codebase" />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Twilight Princess Decompilation" />
+<meta name="twitter:description" content="Documentation for the Twilight Princess codebase" />
+<!-- END twitter metadata -->
+<title>Twilight Princess: JASChannel Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="overrides.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeInteractiveToc.init()
+</script>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/jothepro/doxygen-awesome-css" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="midna.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Twilight Princess
+   </div>
+   <div id="projectbrief">Decompilation of The Legend of Zelda: Twilight Princess</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.9.8 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('classJASChannel.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classJASChannel-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">JASChannel Class Reference<div class="ingroups"><a class="el" href="group__jsystem.html">JSystem</a> &raquo; <a class="el" href="group__jsystem-jaudio.html">JAudio</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="JASChannel_8h_source.html">JASChannel.h</a>&gt;</code></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for JASChannel:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classJASChannel__inherit__graph.svg" width="215" height="126"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for JASChannel:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="classJASChannel__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionJASChannel_1_1MixConfig.html">MixConfig</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structJASChannel_1_1PanVector.html">PanVector</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:abc0cf5f0176acc6f9c153574d47818d4" id="r_abc0cf5f0176acc6f9c153574d47818d4"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#abc0cf5f0176acc6f9c153574d47818d4">CallbackType</a> { <a class="el" href="classJASChannel.html#abc0cf5f0176acc6f9c153574d47818d4a4546ec10d191c53760382c4c37bd177b">CB_PLAY</a>
+, <a class="el" href="classJASChannel.html#abc0cf5f0176acc6f9c153574d47818d4aabc8bbefbe4e67baf00f0a10cc383557">CB_START</a>
+, <a class="el" href="classJASChannel.html#abc0cf5f0176acc6f9c153574d47818d4aa43a5f95ab87aa1830168277d5ff7e15">CB_STOP</a>
+, <a class="el" href="classJASChannel.html#abc0cf5f0176acc6f9c153574d47818d4a107d0f1ddf4e3dbfbbdb1ff57326bdc9">CB_TIMER</a>
+ }</td></tr>
+<tr class="separator:abc0cf5f0176acc6f9c153574d47818d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65e01648f95bc799a2a9fe7c31a00f75" id="r_a65e01648f95bc799a2a9fe7c31a00f75"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a65e01648f95bc799a2a9fe7c31a00f75">Status</a> { <a class="el" href="classJASChannel.html#a65e01648f95bc799a2a9fe7c31a00f75ab1a784ecc6919018c595ab7c39221ee2">STATUS_INACTIVE</a>
+, <a class="el" href="classJASChannel.html#a65e01648f95bc799a2a9fe7c31a00f75ade34b7b3db34762381d1d755c6065fe8">STATUS_ACTIVE</a>
+, <a class="el" href="classJASChannel.html#a65e01648f95bc799a2a9fe7c31a00f75aa2272aff964093b65f753c8d25aa18ee">STATUS_RELEASE</a>
+ }</td></tr>
+<tr class="separator:a65e01648f95bc799a2a9fe7c31a00f75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a944c45362ed697cf8c2c70cab24294c7" id="r_a944c45362ed697cf8c2c70cab24294c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">typedef</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a944c45362ed697cf8c2c70cab24294c7">Callback</a>) (<a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="classJASChannel.html">JASChannel</a> *, <a class="el" href="structJASDsp_1_1TChannel.html">JASDsp::TChannel</a> *, <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *)</td></tr>
+<tr class="separator:a944c45362ed697cf8c2c70cab24294c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a9f085cd3727a63e35d33e942925645bc" id="r_a9f085cd3727a63e35d33e942925645bc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a9f085cd3727a63e35d33e942925645bc">JASChannel</a> (<a class="el" href="classJASChannel.html#a944c45362ed697cf8c2c70cab24294c7">Callback</a>, <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *)</td></tr>
+<tr class="separator:a9f085cd3727a63e35d33e942925645bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7accc3c8aaeb925e11b3d3f208e0404f" id="r_a7accc3c8aaeb925e11b3d3f208e0404f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a7accc3c8aaeb925e11b3d3f208e0404f">~JASChannel</a> ()</td></tr>
+<tr class="separator:a7accc3c8aaeb925e11b3d3f208e0404f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a1d38f29d9f3f49dba7c5fc645ed82a" id="r_a1a1d38f29d9f3f49dba7c5fc645ed82a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a1a1d38f29d9f3f49dba7c5fc645ed82a">play</a> ()</td></tr>
+<tr class="separator:a1a1d38f29d9f3f49dba7c5fc645ed82a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0294cf788134ca02fd24c92a66ea6f86" id="r_a0294cf788134ca02fd24c92a66ea6f86"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a0294cf788134ca02fd24c92a66ea6f86">playForce</a> ()</td></tr>
+<tr class="separator:a0294cf788134ca02fd24c92a66ea6f86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa076f39f9f99b11981c71bd1f4b99d1f" id="r_aa076f39f9f99b11981c71bd1f4b99d1f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#aa076f39f9f99b11981c71bd1f4b99d1f">release</a> (<a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>)</td></tr>
+<tr class="separator:aa076f39f9f99b11981c71bd1f4b99d1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaac45a36d5c76571c3be4c74b2189983" id="r_aaac45a36d5c76571c3be4c74b2189983"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#aaac45a36d5c76571c3be4c74b2189983">setOscInit</a> (<a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="structJASOscillator_1_1Data.html">JASOscillator::Data</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> *)</td></tr>
+<tr class="separator:aaac45a36d5c76571c3be4c74b2189983"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85a8c642ae59274a558568f85184b917" id="r_a85a8c642ae59274a558568f85184b917"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a85a8c642ae59274a558568f85184b917">setMixConfig</a> (<a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>)</td></tr>
+<tr class="separator:a85a8c642ae59274a558568f85184b917"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbacf8d0f312bdba5ea3f4b68a426bf3" id="r_afbacf8d0f312bdba5ea3f4b68a426bf3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#afbacf8d0f312bdba5ea3f4b68a426bf3">effectOsc</a> (<a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="structJASOscillator_1_1EffectParams.html">JASOscillator::EffectParams</a> *)</td></tr>
+<tr class="separator:afbacf8d0f312bdba5ea3f4b68a426bf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8145981103eff4bf51e04f858add1b64" id="r_a8145981103eff4bf51e04f858add1b64"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a8145981103eff4bf51e04f858add1b64">setKeySweepTarget</a> (<a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>, <a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>)</td></tr>
+<tr class="separator:a8145981103eff4bf51e04f858add1b64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7be5be33e999612410c03b3f67f9a2f5" id="r_a7be5be33e999612410c03b3f67f9a2f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a7be5be33e999612410c03b3f67f9a2f5">updateEffectorParam</a> (<a class="el" href="structJASDsp_1_1TChannel.html">JASDsp::TChannel</a> *, <a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> *, <a class="el" href="structJASOscillator_1_1EffectParams.html">JASOscillator::EffectParams</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;)</td></tr>
+<tr class="separator:a7be5be33e999612410c03b3f67f9a2f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4413d35a90d851eacc36b5bd8e09eb27" id="r_a4413d35a90d851eacc36b5bd8e09eb27"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a4413d35a90d851eacc36b5bd8e09eb27">initialUpdateDSPChannel</a> (<a class="el" href="structJASDsp_1_1TChannel.html">JASDsp::TChannel</a> *)</td></tr>
+<tr class="separator:a4413d35a90d851eacc36b5bd8e09eb27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30237f21ed08d2876d1b658577286c27" id="r_a30237f21ed08d2876d1b658577286c27"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a30237f21ed08d2876d1b658577286c27">updateDSPChannel</a> (<a class="el" href="structJASDsp_1_1TChannel.html">JASDsp::TChannel</a> *)</td></tr>
+<tr class="separator:a30237f21ed08d2876d1b658577286c27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af907a2bccc5d68fb213ca1a01d5f2675" id="r_af907a2bccc5d68fb213ca1a01d5f2675"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#af907a2bccc5d68fb213ca1a01d5f2675">updateAutoMixer</a> (<a class="el" href="structJASDsp_1_1TChannel.html">JASDsp::TChannel</a> *, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>)</td></tr>
+<tr class="separator:af907a2bccc5d68fb213ca1a01d5f2675"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ab66a82a8db615df6c0182a4d7b42d6" id="r_a1ab66a82a8db615df6c0182a4d7b42d6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a1ab66a82a8db615df6c0182a4d7b42d6">updateMixer</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>, <a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> *)</td></tr>
+<tr class="separator:a1ab66a82a8db615df6c0182a4d7b42d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac634b7b177feb983f9c93f814b229772" id="r_ac634b7b177feb983f9c93f814b229772"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#ac634b7b177feb983f9c93f814b229772">free</a> ()</td></tr>
+<tr class="separator:ac634b7b177feb983f9c93f814b229772"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4eccc8db17277d438e876e5f32842ac" id="r_ab4eccc8db17277d438e876e5f32842ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#ab4eccc8db17277d438e876e5f32842ac">checkBankDispose</a> () <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a></td></tr>
+<tr class="separator:ab4eccc8db17277d438e876e5f32842ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c82b58da6eacd2f4b25a085dc264897" id="r_a2c82b58da6eacd2f4b25a085dc264897"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a2c82b58da6eacd2f4b25a085dc264897">setPauseFlag</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_0</a>)</td></tr>
+<tr class="separator:a2c82b58da6eacd2f4b25a085dc264897"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2582d3ff71e705f096aad3fb73df49a0" id="r_a2582d3ff71e705f096aad3fb73df49a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a2582d3ff71e705f096aad3fb73df49a0">setUpdateTimer</a> (<a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_0</a>)</td></tr>
+<tr class="separator:a2582d3ff71e705f096aad3fb73df49a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a8215cc8ff1d202be28887c4913e849" id="r_a5a8215cc8ff1d202be28887c4913e849"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a5a8215cc8ff1d202be28887c4913e849">setBankDisposeID</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_0</a>)</td></tr>
+<tr class="separator:a5a8215cc8ff1d202be28887c4913e849"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa9e82459859047c4d5a411051a7db8b" id="r_aaa9e82459859047c4d5a411051a7db8b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#aaa9e82459859047c4d5a411051a7db8b">setDirectRelease</a> (<a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_0</a>)</td></tr>
+<tr class="separator:aaa9e82459859047c4d5a411051a7db8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afea5c857f0dcb9ed6ac61c14faf8d5d5" id="r_afea5c857f0dcb9ed6ac61c14faf8d5d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#afea5c857f0dcb9ed6ac61c14faf8d5d5">setVibrate</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_0</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_1</a>)</td></tr>
+<tr class="separator:afea5c857f0dcb9ed6ac61c14faf8d5d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e8576c5224672bcc7b8de8fcf3a438c" id="r_a9e8576c5224672bcc7b8de8fcf3a438c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a9e8576c5224672bcc7b8de8fcf3a438c">setVibrateDelay</a> (<a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_0</a>)</td></tr>
+<tr class="separator:a9e8576c5224672bcc7b8de8fcf3a438c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04198799ef3d143fac213666289ac948" id="r_a04198799ef3d143fac213666289ac948"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a04198799ef3d143fac213666289ac948">setTremolo</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_0</a>, <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_1</a>)</td></tr>
+<tr class="separator:a04198799ef3d143fac213666289ac948"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab058bc3f5792a64236aaa07f94edeb7d" id="r_ab058bc3f5792a64236aaa07f94edeb7d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#ab058bc3f5792a64236aaa07f94edeb7d">setTremoloDelay</a> (<a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_0</a>)</td></tr>
+<tr class="separator:ab058bc3f5792a64236aaa07f94edeb7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08e8df11939df9a2faa3dfd4c63ddea3" id="r_a08e8df11939df9a2faa3dfd4c63ddea3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a08e8df11939df9a2faa3dfd4c63ddea3">setPriority</a> (<a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_0</a>)</td></tr>
+<tr class="separator:a08e8df11939df9a2faa3dfd4c63ddea3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28112990c2468940392318eba05ad041" id="r_a28112990c2468940392318eba05ad041"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a28112990c2468940392318eba05ad041">setParams</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="classJASChannelParams.html">JASChannelParams</a> &amp;<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_0</a>)</td></tr>
+<tr class="separator:a28112990c2468940392318eba05ad041"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32823bb6d69f1a60abbe9e9cfb71e23a" id="r_a32823bb6d69f1a60abbe9e9cfb71e23a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a32823bb6d69f1a60abbe9e9cfb71e23a">setInitVolume</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_0</a>)</td></tr>
+<tr class="separator:a32823bb6d69f1a60abbe9e9cfb71e23a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a386458f7e9ecae9b98d7a9973e856de2" id="r_a386458f7e9ecae9b98d7a9973e856de2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a386458f7e9ecae9b98d7a9973e856de2">setInitFxmix</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_0</a>)</td></tr>
+<tr class="separator:a386458f7e9ecae9b98d7a9973e856de2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc1b0002f3f4b879936b2a780d2cc64a" id="r_adc1b0002f3f4b879936b2a780d2cc64a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#adc1b0002f3f4b879936b2a780d2cc64a">setInitPitch</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_0</a>)</td></tr>
+<tr class="separator:adc1b0002f3f4b879936b2a780d2cc64a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeff1e09370ceea752d9deee9f43b04b1" id="r_aeff1e09370ceea752d9deee9f43b04b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#aeff1e09370ceea752d9deee9f43b04b1">setInitPan</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_0</a>)</td></tr>
+<tr class="separator:aeff1e09370ceea752d9deee9f43b04b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08a4aa2d0fe11a9a69e824d171107b11" id="r_a08a4aa2d0fe11a9a69e824d171107b11"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a08a4aa2d0fe11a9a69e824d171107b11">setInitDolby</a> (<a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_0</a>)</td></tr>
+<tr class="separator:a08a4aa2d0fe11a9a69e824d171107b11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e77cca9692793552ec004dfad352e54" id="r_a0e77cca9692793552ec004dfad352e54"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a0e77cca9692793552ec004dfad352e54">setKey</a> (<a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_0</a>)</td></tr>
+<tr class="separator:a0e77cca9692793552ec004dfad352e54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b541708be6a11c0415336d5b8c8d5c7" id="r_a0b541708be6a11c0415336d5b8c8d5c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a0b541708be6a11c0415336d5b8c8d5c7">setVelocity</a> (<a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_0</a>)</td></tr>
+<tr class="separator:a0b541708be6a11c0415336d5b8c8d5c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5daf1aefd00b6ad7a11d63864708804" id="r_ab5daf1aefd00b6ad7a11d63864708804"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#ab5daf1aefd00b6ad7a11d63864708804">setSkipSamples</a> (<a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">param_0</a>)</td></tr>
+<tr class="separator:ab5daf1aefd00b6ad7a11d63864708804"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfc913c7ef7021c6d8a9c2361bc0c47a" id="r_adfc913c7ef7021c6d8a9c2361bc0c47a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#adfc913c7ef7021c6d8a9c2361bc0c47a">isDolbyMode</a> ()</td></tr>
+<tr class="separator:adfc913c7ef7021c6d8a9c2361bc0c47a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a8ce17eef92c918869678f678b4b1da55" id="r_a8ce17eef92c918869678f678b4b1da55"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a8ce17eef92c918869678f678b4b1da55">calcEffect</a> (<a class="el" href="structJASChannel_1_1PanVector.html">JASChannel::PanVector</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> *)</td></tr>
+<tr class="separator:a8ce17eef92c918869678f678b4b1da55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97a02e4db705389df0ff8ea1fd25ca9d" id="r_a97a02e4db705389df0ff8ea1fd25ca9d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a97a02e4db705389df0ff8ea1fd25ca9d">calcPan</a> (<a class="el" href="structJASChannel_1_1PanVector.html">JASChannel::PanVector</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> *)</td></tr>
+<tr class="separator:a97a02e4db705389df0ff8ea1fd25ca9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6303db37aa8bca08b7197decfc4e506c" id="r_a6303db37aa8bca08b7197decfc4e506c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a6303db37aa8bca08b7197decfc4e506c">dspUpdateCallback</a> (<a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="structJASDsp_1_1TChannel.html">JASDsp::TChannel</a> *, <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *)</td></tr>
+<tr class="separator:a6303db37aa8bca08b7197decfc4e506c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3824f858477fdd442d5aca53da0d9e5c" id="r_a3824f858477fdd442d5aca53da0d9e5c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a3824f858477fdd442d5aca53da0d9e5c">initBankDisposeMsgQueue</a> ()</td></tr>
+<tr class="separator:a3824f858477fdd442d5aca53da0d9e5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13d4ae71233d432093ec9039f9cead48" id="r_a13d4ae71233d432093ec9039f9cead48"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a13d4ae71233d432093ec9039f9cead48">receiveBankDisposeMsg</a> ()</td></tr>
+<tr class="separator:a13d4ae71233d432093ec9039f9cead48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_static_methods_classJASPoolAllocObject__MultiThreaded"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classJASPoolAllocObject__MultiThreaded')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classJASPoolAllocObject__MultiThreaded.html">JASPoolAllocObject_MultiThreaded&lt; JASChannel &gt;</a></td></tr>
+<tr class="memitem:a96904cf7be0015faac48f9219e591630 inherit pub_static_methods_classJASPoolAllocObject__MultiThreaded" id="r_a96904cf7be0015faac48f9219e591630"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASPoolAllocObject__MultiThreaded.html#a96904cf7be0015faac48f9219e591630">operator new</a> (<a class="el" href="stddef_8h.html#acf18a0d6c4b39d531e021702e9a77984">size_t</a> <a class="el" href="e__fmod_8c.html#aeab71244afb687f16d8c4f5ee9d6ef0e">n</a>)</td></tr>
+<tr class="separator:a96904cf7be0015faac48f9219e591630 inherit pub_static_methods_classJASPoolAllocObject__MultiThreaded"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0aef58fe6f323f330ece96def7d8105c inherit pub_static_methods_classJASPoolAllocObject__MultiThreaded" id="r_a0aef58fe6f323f330ece96def7d8105c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASPoolAllocObject__MultiThreaded.html#a0aef58fe6f323f330ece96def7d8105c">operator new</a> (<a class="el" href="stddef_8h.html#acf18a0d6c4b39d531e021702e9a77984">size_t</a> <a class="el" href="e__fmod_8c.html#aeab71244afb687f16d8c4f5ee9d6ef0e">n</a>, <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *ptr)</td></tr>
+<tr class="separator:a0aef58fe6f323f330ece96def7d8105c inherit pub_static_methods_classJASPoolAllocObject__MultiThreaded"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa831964fdf71b1ac2b5d398d9de43397 inherit pub_static_methods_classJASPoolAllocObject__MultiThreaded" id="r_aa831964fdf71b1ac2b5d398d9de43397"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASPoolAllocObject__MultiThreaded.html#aa831964fdf71b1ac2b5d398d9de43397">operator delete</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *ptr, <a class="el" href="stddef_8h.html#acf18a0d6c4b39d531e021702e9a77984">size_t</a> <a class="el" href="e__fmod_8c.html#aeab71244afb687f16d8c4f5ee9d6ef0e">n</a>)</td></tr>
+<tr class="separator:aa831964fdf71b1ac2b5d398d9de43397 inherit pub_static_methods_classJASPoolAllocObject__MultiThreaded"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76f2e034997f6fc0f1830e2fa494839f inherit pub_static_methods_classJASPoolAllocObject__MultiThreaded" id="r_a76f2e034997f6fc0f1830e2fa494839f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASPoolAllocObject__MultiThreaded.html#a76f2e034997f6fc0f1830e2fa494839f">newMemPool</a> (<a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a> <a class="el" href="e__fmod_8c.html#aeab71244afb687f16d8c4f5ee9d6ef0e">n</a>)</td></tr>
+<tr class="separator:a76f2e034997f6fc0f1830e2fa494839f inherit pub_static_methods_classJASPoolAllocObject__MultiThreaded"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a7ddaa2c4223db08ec0004bcd88a32b58" id="r_a7ddaa2c4223db08ec0004bcd88a32b58"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a7ddaa2c4223db08ec0004bcd88a32b58">mStatus</a></td></tr>
+<tr class="separator:a7ddaa2c4223db08ec0004bcd88a32b58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69224e37a3a6884f028c4c50655c19f1" id="r_a69224e37a3a6884f028c4c50655c19f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a69224e37a3a6884f028c4c50655c19f1">mPauseFlag</a></td></tr>
+<tr class="separator:a69224e37a3a6884f028c4c50655c19f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54b2d15556c0f3758c84e60000d5de62" id="r_a54b2d15556c0f3758c84e60000d5de62"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJASDSPChannel.html">JASDSPChannel</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a54b2d15556c0f3758c84e60000d5de62">mDspCh</a></td></tr>
+<tr class="separator:a54b2d15556c0f3758c84e60000d5de62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1312999e9480d7f4433fc6817e87cec3" id="r_a1312999e9480d7f4433fc6817e87cec3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classJASChannel.html#a944c45362ed697cf8c2c70cab24294c7">Callback</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a1312999e9480d7f4433fc6817e87cec3">mCallback</a></td></tr>
+<tr class="separator:a1312999e9480d7f4433fc6817e87cec3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cbc8617ec8a299e2f1d34a3a86da191" id="r_a3cbc8617ec8a299e2f1d34a3a86da191"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a3cbc8617ec8a299e2f1d34a3a86da191">mCallbackData</a></td></tr>
+<tr class="separator:a3cbc8617ec8a299e2f1d34a3a86da191"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad07f3c0fe5a0d3b014fcd8c205da3f50" id="r_ad07f3c0fe5a0d3b014fcd8c205da3f50"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#ad07f3c0fe5a0d3b014fcd8c205da3f50">mUpdateTimer</a></td></tr>
+<tr class="separator:ad07f3c0fe5a0d3b014fcd8c205da3f50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54842bd7dee5d16eb0e0cc5e30983d39" id="r_a54842bd7dee5d16eb0e0cc5e30983d39"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a54842bd7dee5d16eb0e0cc5e30983d39">mBankDisposeID</a></td></tr>
+<tr class="separator:a54842bd7dee5d16eb0e0cc5e30983d39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaaaa7558674bb945ec74c6f43ec74b48" id="r_aaaaa7558674bb945ec74c6f43ec74b48"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJASOscillator.html">JASOscillator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#aaaaa7558674bb945ec74c6f43ec74b48">mOscillators</a> [2]</td></tr>
+<tr class="separator:aaaaa7558674bb945ec74c6f43ec74b48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d78b60abcdd82bc4f7fd5b5120cb055" id="r_a1d78b60abcdd82bc4f7fd5b5120cb055"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJASLfo.html">JASLfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a1d78b60abcdd82bc4f7fd5b5120cb055">mVibrate</a></td></tr>
+<tr class="separator:a1d78b60abcdd82bc4f7fd5b5120cb055"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af629a26fba590ac098edaa14f9098763" id="r_af629a26fba590ac098edaa14f9098763"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJASLfo.html">JASLfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#af629a26fba590ac098edaa14f9098763">mTremolo</a></td></tr>
+<tr class="separator:af629a26fba590ac098edaa14f9098763"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec14b8ebee95f7b2bb035de87fe6ff41" id="r_aec14b8ebee95f7b2bb035de87fe6ff41"><td class="memItemLeft" align="right" valign="top"><a class="el" href="unionJASChannel_1_1MixConfig.html">MixConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#aec14b8ebee95f7b2bb035de87fe6ff41">mMixConfig</a> [6]</td></tr>
+<tr class="separator:aec14b8ebee95f7b2bb035de87fe6ff41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecb8f3f0733ec7df9b04fa86b21a1d45" id="r_aecb8f3f0733ec7df9b04fa86b21a1d45"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#aecb8f3f0733ec7df9b04fa86b21a1d45">mPriority</a></td></tr>
+<tr class="separator:aecb8f3f0733ec7df9b04fa86b21a1d45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a448793964b47148bde9591bd379cb743" id="r_a448793964b47148bde9591bd379cb743"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classJASChannelParams.html">JASChannelParams</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a448793964b47148bde9591bd379cb743">mParams</a></td></tr>
+<tr class="separator:a448793964b47148bde9591bd379cb743"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94b25c212cdd369e95559e4100c0520e" id="r_a94b25c212cdd369e95559e4100c0520e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structJASSoundParams.html">JASSoundParams</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a94b25c212cdd369e95559e4100c0520e">mSoundParams</a></td></tr>
+<tr class="separator:a94b25c212cdd369e95559e4100c0520e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1d7f8b0ab253fe3f7f13fc72bb883c6" id="r_ad1d7f8b0ab253fe3f7f13fc72bb883c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#ad1d7f8b0ab253fe3f7f13fc72bb883c6">mKey</a></td></tr>
+<tr class="separator:ad1d7f8b0ab253fe3f7f13fc72bb883c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a25e28541798c8e28b4eff46b261ac0" id="r_a8a25e28541798c8e28b4eff46b261ac0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a8a25e28541798c8e28b4eff46b261ac0">mVelocity</a></td></tr>
+<tr class="separator:a8a25e28541798c8e28b4eff46b261ac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e23368957d718831020a07b9464ae10" id="r_a3e23368957d718831020a07b9464ae10"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a3e23368957d718831020a07b9464ae10">mKeySweep</a></td></tr>
+<tr class="separator:a3e23368957d718831020a07b9464ae10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0e8ca92afba250844f69ba271d7ddbe" id="r_af0e8ca92afba250844f69ba271d7ddbe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#af0e8ca92afba250844f69ba271d7ddbe">mKeySweepTarget</a></td></tr>
+<tr class="separator:af0e8ca92afba250844f69ba271d7ddbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af41113bc57920465dffe8fc80ac9b414" id="r_af41113bc57920465dffe8fc80ac9b414"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#af41113bc57920465dffe8fc80ac9b414">mKeySweepCount</a></td></tr>
+<tr class="separator:af41113bc57920465dffe8fc80ac9b414"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d4445f66201912ff13e9c220671c54a" id="r_a3d4445f66201912ff13e9c220671c54a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a3d4445f66201912ff13e9c220671c54a">mSkipSamples</a></td></tr>
+<tr class="separator:a3d4445f66201912ff13e9c220671c54a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb9d9c37dad2fb15beae5848785e90b5" id="r_acb9d9c37dad2fb15beae5848785e90b5"><td class="memItemLeft" >struct {&#160;</td><td class="memItemRight" valign="bottom"></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a554bf4b443e8f12cae0f4a78f79cb562" id="r_a554bf4b443e8f12cae0f4a78f79cb562"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;&#160;&#160;<a class="el" href="classJASChannel.html#a10405140607d3ac6713e5bf66cbd7e65">field_0x0</a>&#160;</td><td class="memItemRight" valign="bottom"></td></tr>
+<tr class="separator:a554bf4b443e8f12cae0f4a78f79cb562"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60f70ac79d75740a1af1df23e4ae4706" id="r_a60f70ac79d75740a1af1df23e4ae4706"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="structJASWaveInfo.html">JASWaveInfo</a>&#160;&#160;&#160;<a class="el" href="classJASChannel.html#a47fb62565330bcc79b3f55a5349785e1">field_0x4</a>&#160;</td><td class="memItemRight" valign="bottom"></td></tr>
+<tr class="separator:a60f70ac79d75740a1af1df23e4ae4706"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb9d9c37dad2fb15beae5848785e90b5" id="r_acb9d9c37dad2fb15beae5848785e90b5"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#acb9d9c37dad2fb15beae5848785e90b5">field_0xdc</a>&#160;</td><td class="memItemRight" valign="bottom"></td></tr>
+<tr class="separator:acb9d9c37dad2fb15beae5848785e90b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac237601cc1c0148a97e07161868cab7d" id="r_ac237601cc1c0148a97e07161868cab7d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#ac237601cc1c0148a97e07161868cab7d">field_0x104</a></td></tr>
+<tr class="separator:ac237601cc1c0148a97e07161868cab7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a32fa43c0d927beb0ee4cb192b40cfa60" id="r_a32fa43c0d927beb0ee4cb192b40cfa60"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="structOSMessageQueue.html">OSMessageQueue</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a32fa43c0d927beb0ee4cb192b40cfa60">sBankDisposeMsgQ</a></td></tr>
+<tr class="separator:a32fa43c0d927beb0ee4cb192b40cfa60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a845088c569cf1251be70ec7888cfb85a" id="r_a845088c569cf1251be70ec7888cfb85a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="OSMessage_8h.html#a29207f9ff15a7a595a6aad5f8edd83c0">OSMessage</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a845088c569cf1251be70ec7888cfb85a">sBankDisposeMsg</a> [16]</td></tr>
+<tr class="separator:a845088c569cf1251be70ec7888cfb85a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40c73c6abe6dcdd9b83c10dcaea55f04" id="r_a40c73c6abe6dcdd9b83c10dcaea55f04"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="OSMessage_8h.html#a29207f9ff15a7a595a6aad5f8edd83c0">OSMessage</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a40c73c6abe6dcdd9b83c10dcaea55f04">sBankDisposeList</a> [16]</td></tr>
+<tr class="separator:a40c73c6abe6dcdd9b83c10dcaea55f04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ec24aecf4ed186f531d4cca379a43d8" id="r_a2ec24aecf4ed186f531d4cca379a43d8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">static</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a2ec24aecf4ed186f531d4cca379a43d8">sBankDisposeListSize</a></td></tr>
+<tr class="separator:a2ec24aecf4ed186f531d4cca379a43d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a04dbaf358ba0b021b8596e547a249ee7" id="r_a04dbaf358ba0b021b8596e547a249ee7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJASChannel.html#a04dbaf358ba0b021b8596e547a249ee7">filler</a> [0x108]</td></tr>
+<tr class="separator:a04dbaf358ba0b021b8596e547a249ee7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="a944c45362ed697cf8c2c70cab24294c7" name="a944c45362ed697cf8c2c70cab24294c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a944c45362ed697cf8c2c70cab24294c7">&#9670;&#160;</a></span>Callback</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">typedef</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>(* JASChannel::Callback) (<a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>, <a class="el" href="classJASChannel.html">JASChannel</a> *, <a class="el" href="structJASDsp_1_1TChannel.html">JASDsp::TChannel</a> *, <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a id="abc0cf5f0176acc6f9c153574d47818d4" name="abc0cf5f0176acc6f9c153574d47818d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc0cf5f0176acc6f9c153574d47818d4">&#9670;&#160;</a></span>CallbackType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">enum</a> <a class="el" href="classJASChannel.html#abc0cf5f0176acc6f9c153574d47818d4">JASChannel::CallbackType</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="abc0cf5f0176acc6f9c153574d47818d4a4546ec10d191c53760382c4c37bd177b" name="abc0cf5f0176acc6f9c153574d47818d4a4546ec10d191c53760382c4c37bd177b"></a>CB_PLAY&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abc0cf5f0176acc6f9c153574d47818d4aabc8bbefbe4e67baf00f0a10cc383557" name="abc0cf5f0176acc6f9c153574d47818d4aabc8bbefbe4e67baf00f0a10cc383557"></a>CB_START&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abc0cf5f0176acc6f9c153574d47818d4aa43a5f95ab87aa1830168277d5ff7e15" name="abc0cf5f0176acc6f9c153574d47818d4aa43a5f95ab87aa1830168277d5ff7e15"></a>CB_STOP&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abc0cf5f0176acc6f9c153574d47818d4a107d0f1ddf4e3dbfbbdb1ff57326bdc9" name="abc0cf5f0176acc6f9c153574d47818d4a107d0f1ddf4e3dbfbbdb1ff57326bdc9"></a>CB_TIMER&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="a65e01648f95bc799a2a9fe7c31a00f75" name="a65e01648f95bc799a2a9fe7c31a00f75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65e01648f95bc799a2a9fe7c31a00f75">&#9670;&#160;</a></span>Status</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">enum</a> <a class="el" href="classJASChannel.html#a65e01648f95bc799a2a9fe7c31a00f75">JASChannel::Status</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a65e01648f95bc799a2a9fe7c31a00f75ab1a784ecc6919018c595ab7c39221ee2" name="a65e01648f95bc799a2a9fe7c31a00f75ab1a784ecc6919018c595ab7c39221ee2"></a>STATUS_INACTIVE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a65e01648f95bc799a2a9fe7c31a00f75ade34b7b3db34762381d1d755c6065fe8" name="a65e01648f95bc799a2a9fe7c31a00f75ade34b7b3db34762381d1d755c6065fe8"></a>STATUS_ACTIVE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a65e01648f95bc799a2a9fe7c31a00f75aa2272aff964093b65f753c8d25aa18ee" name="a65e01648f95bc799a2a9fe7c31a00f75aa2272aff964093b65f753c8d25aa18ee"></a>STATUS_RELEASE&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a9f085cd3727a63e35d33e942925645bc" name="a9f085cd3727a63e35d33e942925645bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f085cd3727a63e35d33e942925645bc">&#9670;&#160;</a></span>JASChannel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">JASChannel::JASChannel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classJASChannel.html#a944c45362ed697cf8c2c70cab24294c7">Callback</a>&#160;</td>
+          <td class="paramname"><em>i_callback</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *&#160;</td>
+          <td class="paramname"><em>i_callbackData</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7accc3c8aaeb925e11b3d3f208e0404f" name="a7accc3c8aaeb925e11b3d3f208e0404f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7accc3c8aaeb925e11b3d3f208e0404f">&#9670;&#160;</a></span>~JASChannel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">JASChannel::~JASChannel </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a8ce17eef92c918869678f678b4b1da55" name="a8ce17eef92c918869678f678b4b1da55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ce17eef92c918869678f678b4b1da55">&#9670;&#160;</a></span>calcEffect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> JASChannel::calcEffect </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJASChannel_1_1PanVector.html">JASChannel::PanVector</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> *&#160;</td>
+          <td class="paramname"><em>i_vector</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a97a02e4db705389df0ff8ea1fd25ca9d" name="a97a02e4db705389df0ff8ea1fd25ca9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97a02e4db705389df0ff8ea1fd25ca9d">&#9670;&#160;</a></span>calcPan()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> JASChannel::calcPan </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJASChannel_1_1PanVector.html">JASChannel::PanVector</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> *&#160;</td>
+          <td class="paramname"><em>i_vector</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab4eccc8db17277d438e876e5f32842ac" name="ab4eccc8db17277d438e876e5f32842ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4eccc8db17277d438e876e5f32842ac">&#9670;&#160;</a></span>checkBankDispose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> JASChannel::checkBankDispose </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6303db37aa8bca08b7197decfc4e506c" name="a6303db37aa8bca08b7197decfc4e506c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6303db37aa8bca08b7197decfc4e506c">&#9670;&#160;</a></span>dspUpdateCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> JASChannel::dspUpdateCallback </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>i_type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structJASDsp_1_1TChannel.html">JASDsp::TChannel</a> *&#160;</td>
+          <td class="paramname"><em>i_channel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *&#160;</td>
+          <td class="paramname"><em>i_this</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afbacf8d0f312bdba5ea3f4b68a426bf3" name="afbacf8d0f312bdba5ea3f4b68a426bf3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbacf8d0f312bdba5ea3f4b68a426bf3">&#9670;&#160;</a></span>effectOsc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> JASChannel::effectOsc </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>i_index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structJASOscillator_1_1EffectParams.html">JASOscillator::EffectParams</a> *&#160;</td>
+          <td class="paramname"><em>i_params</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac634b7b177feb983f9c93f814b229772" name="ac634b7b177feb983f9c93f814b229772"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac634b7b177feb983f9c93f814b229772">&#9670;&#160;</a></span>free()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> JASChannel::free </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3824f858477fdd442d5aca53da0d9e5c" name="a3824f858477fdd442d5aca53da0d9e5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3824f858477fdd442d5aca53da0d9e5c">&#9670;&#160;</a></span>initBankDisposeMsgQueue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> JASChannel::initBankDisposeMsgQueue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4413d35a90d851eacc36b5bd8e09eb27" name="a4413d35a90d851eacc36b5bd8e09eb27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4413d35a90d851eacc36b5bd8e09eb27">&#9670;&#160;</a></span>initialUpdateDSPChannel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> JASChannel::initialUpdateDSPChannel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJASDsp_1_1TChannel.html">JASDsp::TChannel</a> *&#160;</td>
+          <td class="paramname"><em>i_channel</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adfc913c7ef7021c6d8a9c2361bc0c47a" name="adfc913c7ef7021c6d8a9c2361bc0c47a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfc913c7ef7021c6d8a9c2361bc0c47a">&#9670;&#160;</a></span>isDolbyMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> JASChannel::isDolbyMode </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1a1d38f29d9f3f49dba7c5fc645ed82a" name="a1a1d38f29d9f3f49dba7c5fc645ed82a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a1d38f29d9f3f49dba7c5fc645ed82a">&#9670;&#160;</a></span>play()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a> JASChannel::play </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0294cf788134ca02fd24c92a66ea6f86" name="a0294cf788134ca02fd24c92a66ea6f86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0294cf788134ca02fd24c92a66ea6f86">&#9670;&#160;</a></span>playForce()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a> JASChannel::playForce </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a13d4ae71233d432093ec9039f9cead48" name="a13d4ae71233d432093ec9039f9cead48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13d4ae71233d432093ec9039f9cead48">&#9670;&#160;</a></span>receiveBankDisposeMsg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> JASChannel::receiveBankDisposeMsg </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa076f39f9f99b11981c71bd1f4b99d1f" name="aa076f39f9f99b11981c71bd1f4b99d1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa076f39f9f99b11981c71bd1f4b99d1f">&#9670;&#160;</a></span>release()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> JASChannel::release </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td>
+          <td class="paramname"><em>i_directRelease</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5a8215cc8ff1d202be28887c4913e849" name="a5a8215cc8ff1d202be28887c4913e849"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a8215cc8ff1d202be28887c4913e849">&#9670;&#160;</a></span>setBankDisposeID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> JASChannel::setBankDisposeID </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> *&#160;</td>
+          <td class="paramname"><em>param_0</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaa9e82459859047c4d5a411051a7db8b" name="aaa9e82459859047c4d5a411051a7db8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa9e82459859047c4d5a411051a7db8b">&#9670;&#160;</a></span>setDirectRelease()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> JASChannel::setDirectRelease </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td>
+          <td class="paramname"><em>param_0</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a08a4aa2d0fe11a9a69e824d171107b11" name="a08a4aa2d0fe11a9a69e824d171107b11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08a4aa2d0fe11a9a69e824d171107b11">&#9670;&#160;</a></span>setInitDolby()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> JASChannel::setInitDolby </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>param_0</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a386458f7e9ecae9b98d7a9973e856de2" name="a386458f7e9ecae9b98d7a9973e856de2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a386458f7e9ecae9b98d7a9973e856de2">&#9670;&#160;</a></span>setInitFxmix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> JASChannel::setInitFxmix </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>param_0</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aeff1e09370ceea752d9deee9f43b04b1" name="aeff1e09370ceea752d9deee9f43b04b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeff1e09370ceea752d9deee9f43b04b1">&#9670;&#160;</a></span>setInitPan()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> JASChannel::setInitPan </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>param_0</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adc1b0002f3f4b879936b2a780d2cc64a" name="adc1b0002f3f4b879936b2a780d2cc64a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc1b0002f3f4b879936b2a780d2cc64a">&#9670;&#160;</a></span>setInitPitch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> JASChannel::setInitPitch </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>param_0</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a32823bb6d69f1a60abbe9e9cfb71e23a" name="a32823bb6d69f1a60abbe9e9cfb71e23a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32823bb6d69f1a60abbe9e9cfb71e23a">&#9670;&#160;</a></span>setInitVolume()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> JASChannel::setInitVolume </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>param_0</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0e77cca9692793552ec004dfad352e54" name="a0e77cca9692793552ec004dfad352e54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e77cca9692793552ec004dfad352e54">&#9670;&#160;</a></span>setKey()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> JASChannel::setKey </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td>
+          <td class="paramname"><em>param_0</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8145981103eff4bf51e04f858add1b64" name="a8145981103eff4bf51e04f858add1b64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8145981103eff4bf51e04f858add1b64">&#9670;&#160;</a></span>setKeySweepTarget()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> JASChannel::setKeySweepTarget </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a>&#160;</td>
+          <td class="paramname"><em>i_target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>i_count</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a85a8c642ae59274a558568f85184b917" name="a85a8c642ae59274a558568f85184b917"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85a8c642ae59274a558568f85184b917">&#9670;&#160;</a></span>setMixConfig()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> JASChannel::setMixConfig </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>i_index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td>
+          <td class="paramname"><em>i_config</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaac45a36d5c76571c3be4c74b2189983" name="aaac45a36d5c76571c3be4c74b2189983"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaac45a36d5c76571c3be4c74b2189983">&#9670;&#160;</a></span>setOscInit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> JASChannel::setOscInit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>i_index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structJASOscillator_1_1Data.html">JASOscillator::Data</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> *&#160;</td>
+          <td class="paramname"><em>i_data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a28112990c2468940392318eba05ad041" name="a28112990c2468940392318eba05ad041"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28112990c2468940392318eba05ad041">&#9670;&#160;</a></span>setParams()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> JASChannel::setParams </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="classJASChannelParams.html">JASChannelParams</a> &amp;&#160;</td>
+          <td class="paramname"><em>param_0</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2c82b58da6eacd2f4b25a085dc264897" name="a2c82b58da6eacd2f4b25a085dc264897"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c82b58da6eacd2f4b25a085dc264897">&#9670;&#160;</a></span>setPauseFlag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> JASChannel::setPauseFlag </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a>&#160;</td>
+          <td class="paramname"><em>param_0</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a08e8df11939df9a2faa3dfd4c63ddea3" name="a08e8df11939df9a2faa3dfd4c63ddea3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08e8df11939df9a2faa3dfd4c63ddea3">&#9670;&#160;</a></span>setPriority()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> JASChannel::setPriority </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td>
+          <td class="paramname"><em>param_0</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab5daf1aefd00b6ad7a11d63864708804" name="ab5daf1aefd00b6ad7a11d63864708804"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5daf1aefd00b6ad7a11d63864708804">&#9670;&#160;</a></span>setSkipSamples()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> JASChannel::setSkipSamples </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>param_0</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a04198799ef3d143fac213666289ac948" name="a04198799ef3d143fac213666289ac948"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04198799ef3d143fac213666289ac948">&#9670;&#160;</a></span>setTremolo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> JASChannel::setTremolo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>param_0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>param_1</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab058bc3f5792a64236aaa07f94edeb7d" name="ab058bc3f5792a64236aaa07f94edeb7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab058bc3f5792a64236aaa07f94edeb7d">&#9670;&#160;</a></span>setTremoloDelay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> JASChannel::setTremoloDelay </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td>
+          <td class="paramname"><em>param_0</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2582d3ff71e705f096aad3fb73df49a0" name="a2582d3ff71e705f096aad3fb73df49a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2582d3ff71e705f096aad3fb73df49a0">&#9670;&#160;</a></span>setUpdateTimer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> JASChannel::setUpdateTimer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>param_0</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0b541708be6a11c0415336d5b8c8d5c7" name="a0b541708be6a11c0415336d5b8c8d5c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b541708be6a11c0415336d5b8c8d5c7">&#9670;&#160;</a></span>setVelocity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> JASChannel::setVelocity </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a>&#160;</td>
+          <td class="paramname"><em>param_0</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afea5c857f0dcb9ed6ac61c14faf8d5d5" name="afea5c857f0dcb9ed6ac61c14faf8d5d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afea5c857f0dcb9ed6ac61c14faf8d5d5">&#9670;&#160;</a></span>setVibrate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> JASChannel::setVibrate </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>param_0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>param_1</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9e8576c5224672bcc7b8de8fcf3a438c" name="a9e8576c5224672bcc7b8de8fcf3a438c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e8576c5224672bcc7b8de8fcf3a438c">&#9670;&#160;</a></span>setVibrateDelay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> JASChannel::setVibrateDelay </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a>&#160;</td>
+          <td class="paramname"><em>param_0</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af907a2bccc5d68fb213ca1a01d5f2675" name="af907a2bccc5d68fb213ca1a01d5f2675"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af907a2bccc5d68fb213ca1a01d5f2675">&#9670;&#160;</a></span>updateAutoMixer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> JASChannel::updateAutoMixer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJASDsp_1_1TChannel.html">JASDsp::TChannel</a> *&#160;</td>
+          <td class="paramname"><em>i_channel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>param_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>param_2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>param_3</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>param_4</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a30237f21ed08d2876d1b658577286c27" name="a30237f21ed08d2876d1b658577286c27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30237f21ed08d2876d1b658577286c27">&#9670;&#160;</a></span>updateDSPChannel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#adafe97a8e4be18b0198f234819016582">s32</a> JASChannel::updateDSPChannel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJASDsp_1_1TChannel.html">JASDsp::TChannel</a> *&#160;</td>
+          <td class="paramname"><em>i_channel</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7be5be33e999612410c03b3f67f9a2f5" name="a7be5be33e999612410c03b3f67f9a2f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7be5be33e999612410c03b3f67f9a2f5">&#9670;&#160;</a></span>updateEffectorParam()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> JASChannel::updateEffectorParam </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structJASDsp_1_1TChannel.html">JASDsp::TChannel</a> *&#160;</td>
+          <td class="paramname"><em>i_channel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> *&#160;</td>
+          <td class="paramname"><em>i_mixerVolume</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structJASOscillator_1_1EffectParams.html">JASOscillator::EffectParams</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> &amp;&#160;</td>
+          <td class="paramname"><em>i_params</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1ab66a82a8db615df6c0182a4d7b42d6" name="a1ab66a82a8db615df6c0182a4d7b42d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ab66a82a8db615df6c0182a4d7b42d6">&#9670;&#160;</a></span>updateMixer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a> JASChannel::updateMixer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>i_volume</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>i_pan</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>i_fxmix</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a>&#160;</td>
+          <td class="paramname"><em>i_dolby</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> *&#160;</td>
+          <td class="paramname"><em>i_volumeOut</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a10405140607d3ac6713e5bf66cbd7e65" name="a10405140607d3ac6713e5bf66cbd7e65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10405140607d3ac6713e5bf66cbd7e65">&#9670;&#160;</a></span>field_0x0</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> JASChannel::field_0x0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac237601cc1c0148a97e07161868cab7d" name="ac237601cc1c0148a97e07161868cab7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac237601cc1c0148a97e07161868cab7d">&#9670;&#160;</a></span>field_0x104</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a> JASChannel::field_0x104</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a47fb62565330bcc79b3f55a5349785e1" name="a47fb62565330bcc79b3f55a5349785e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47fb62565330bcc79b3f55a5349785e1">&#9670;&#160;</a></span>field_0x4</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJASWaveInfo.html">JASWaveInfo</a> JASChannel::field_0x4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acb9d9c37dad2fb15beae5848785e90b5" name="acb9d9c37dad2fb15beae5848785e90b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb9d9c37dad2fb15beae5848785e90b5">&#9670;&#160;</a></span>[struct]</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct  { ... }  JASChannel::field_0xdc</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a04dbaf358ba0b021b8596e547a249ee7" name="a04dbaf358ba0b021b8596e547a249ee7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04dbaf358ba0b021b8596e547a249ee7">&#9670;&#160;</a></span>filler</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#aed742c436da53c1080638ce6ef7d13de">u8</a> JASChannel::filler[0x108]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a54842bd7dee5d16eb0e0cc5e30983d39" name="a54842bd7dee5d16eb0e0cc5e30983d39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54842bd7dee5d16eb0e0cc5e30983d39">&#9670;&#160;</a></span>mBankDisposeID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">const</a> <a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>* JASChannel::mBankDisposeID</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1312999e9480d7f4433fc6817e87cec3" name="a1312999e9480d7f4433fc6817e87cec3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1312999e9480d7f4433fc6817e87cec3">&#9670;&#160;</a></span>mCallback</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classJASChannel.html#a944c45362ed697cf8c2c70cab24294c7">Callback</a> JASChannel::mCallback</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3cbc8617ec8a299e2f1d34a3a86da191" name="a3cbc8617ec8a299e2f1d34a3a86da191"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cbc8617ec8a299e2f1d34a3a86da191">&#9670;&#160;</a></span>mCallbackData</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">void</a>* JASChannel::mCallbackData</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a54b2d15556c0f3758c84e60000d5de62" name="a54b2d15556c0f3758c84e60000d5de62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54b2d15556c0f3758c84e60000d5de62">&#9670;&#160;</a></span>mDspCh</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJASDSPChannel.html">JASDSPChannel</a>* JASChannel::mDspCh</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad1d7f8b0ab253fe3f7f13fc72bb883c6" name="ad1d7f8b0ab253fe3f7f13fc72bb883c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1d7f8b0ab253fe3f7f13fc72bb883c6">&#9670;&#160;</a></span>mKey</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5ffa4f640862b25ba6d4f635b78bdbe1">s16</a> JASChannel::mKey</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3e23368957d718831020a07b9464ae10" name="a3e23368957d718831020a07b9464ae10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e23368957d718831020a07b9464ae10">&#9670;&#160;</a></span>mKeySweep</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> JASChannel::mKeySweep</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af41113bc57920465dffe8fc80ac9b414" name="af41113bc57920465dffe8fc80ac9b414"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af41113bc57920465dffe8fc80ac9b414">&#9670;&#160;</a></span>mKeySweepCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> JASChannel::mKeySweepCount</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af0e8ca92afba250844f69ba271d7ddbe" name="af0e8ca92afba250844f69ba271d7ddbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0e8ca92afba250844f69ba271d7ddbe">&#9670;&#160;</a></span>mKeySweepTarget</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a5f6906312a689f27d70e9d086649d3fd">f32</a> JASChannel::mKeySweepTarget</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aec14b8ebee95f7b2bb035de87fe6ff41" name="aec14b8ebee95f7b2bb035de87fe6ff41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec14b8ebee95f7b2bb035de87fe6ff41">&#9670;&#160;</a></span>mMixConfig</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="unionJASChannel_1_1MixConfig.html">MixConfig</a> JASChannel::mMixConfig[6]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaaaa7558674bb945ec74c6f43ec74b48" name="aaaaa7558674bb945ec74c6f43ec74b48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaaaa7558674bb945ec74c6f43ec74b48">&#9670;&#160;</a></span>mOscillators</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJASOscillator.html">JASOscillator</a> JASChannel::mOscillators[2]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a448793964b47148bde9591bd379cb743" name="a448793964b47148bde9591bd379cb743"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a448793964b47148bde9591bd379cb743">&#9670;&#160;</a></span>mParams</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classJASChannelParams.html">JASChannelParams</a> JASChannel::mParams</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a69224e37a3a6884f028c4c50655c19f1" name="a69224e37a3a6884f028c4c50655c19f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69224e37a3a6884f028c4c50655c19f1">&#9670;&#160;</a></span>mPauseFlag</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">bool</a> JASChannel::mPauseFlag</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aecb8f3f0733ec7df9b04fa86b21a1d45" name="aecb8f3f0733ec7df9b04fa86b21a1d45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecb8f3f0733ec7df9b04fa86b21a1d45">&#9670;&#160;</a></span>mPriority</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> JASChannel::mPriority</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3d4445f66201912ff13e9c220671c54a" name="a3d4445f66201912ff13e9c220671c54a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d4445f66201912ff13e9c220671c54a">&#9670;&#160;</a></span>mSkipSamples</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> JASChannel::mSkipSamples</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a94b25c212cdd369e95559e4100c0520e" name="a94b25c212cdd369e95559e4100c0520e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94b25c212cdd369e95559e4100c0520e">&#9670;&#160;</a></span>mSoundParams</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJASSoundParams.html">JASSoundParams</a> JASChannel::mSoundParams</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7ddaa2c4223db08ec0004bcd88a32b58" name="a7ddaa2c4223db08ec0004bcd88a32b58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ddaa2c4223db08ec0004bcd88a32b58">&#9670;&#160;</a></span>mStatus</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a> JASChannel::mStatus</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af629a26fba590ac098edaa14f9098763" name="af629a26fba590ac098edaa14f9098763"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af629a26fba590ac098edaa14f9098763">&#9670;&#160;</a></span>mTremolo</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJASLfo.html">JASLfo</a> JASChannel::mTremolo</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad07f3c0fe5a0d3b014fcd8c205da3f50" name="ad07f3c0fe5a0d3b014fcd8c205da3f50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad07f3c0fe5a0d3b014fcd8c205da3f50">&#9670;&#160;</a></span>mUpdateTimer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a2caf5cd7bcdbe1eefa727f44ffb10bac">u32</a> JASChannel::mUpdateTimer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8a25e28541798c8e28b4eff46b261ac0" name="a8a25e28541798c8e28b4eff46b261ac0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a25e28541798c8e28b4eff46b261ac0">&#9670;&#160;</a></span>mVelocity</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="types_8h.html#a9e6c91d77e24643b888dbd1a1a590054">u16</a> JASChannel::mVelocity</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1d78b60abcdd82bc4f7fd5b5120cb055" name="a1d78b60abcdd82bc4f7fd5b5120cb055"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d78b60abcdd82bc4f7fd5b5120cb055">&#9670;&#160;</a></span>mVibrate</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structJASLfo.html">JASLfo</a> JASChannel::mVibrate</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a40c73c6abe6dcdd9b83c10dcaea55f04" name="a40c73c6abe6dcdd9b83c10dcaea55f04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40c73c6abe6dcdd9b83c10dcaea55f04">&#9670;&#160;</a></span>sBankDisposeList</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="OSMessage_8h.html#a29207f9ff15a7a595a6aad5f8edd83c0">OSMessage</a> JASChannel::sBankDisposeList</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2ec24aecf4ed186f531d4cca379a43d8" name="a2ec24aecf4ed186f531d4cca379a43d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ec24aecf4ed186f531d4cca379a43d8">&#9670;&#160;</a></span>sBankDisposeListSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="c__lib_8h.html#a78569d8e1e6f0b9b721c63e167ad2735">int</a> JASChannel::sBankDisposeListSize</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a845088c569cf1251be70ec7888cfb85a" name="a845088c569cf1251be70ec7888cfb85a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a845088c569cf1251be70ec7888cfb85a">&#9670;&#160;</a></span>sBankDisposeMsg</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="OSMessage_8h.html#a29207f9ff15a7a595a6aad5f8edd83c0">OSMessage</a> JASChannel::sBankDisposeMsg</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a32fa43c0d927beb0ee4cb192b40cfa60" name="a32fa43c0d927beb0ee4cb192b40cfa60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32fa43c0d927beb0ee4cb192b40cfa60">&#9670;&#160;</a></span>sBankDisposeMsgQ</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structOSMessageQueue.html">OSMessageQueue</a> JASChannel::sBankDisposeMsgQ</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>src/JSystem/JAudio2/<a class="el" href="JASAudioThread_8cpp.html">JASAudioThread.cpp</a></li>
+<li>include/JSystem/JAudio2/<a class="el" href="JASChannel_8h_source.html">JASChannel.h</a></li>
+<li>src/JSystem/JAudio2/<a class="el" href="JASChannel_8cpp.html">JASChannel.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classJASChannel.html">JASChannel</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

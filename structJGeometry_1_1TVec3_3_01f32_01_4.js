@@ -24,6 +24,7 @@ var structJGeometry_1_1TVec3_3_01f32_01_4 =
     [ "scale", "structJGeometry_1_1TVec3_3_01f32_01_4.html#a49049403100fc71a74b57058526fd6ea", null ],
     [ "scale", "structJGeometry_1_1TVec3_3_01f32_01_4.html#adb3f50b585801de2d4f9b43b3718f92a", null ],
     [ "set", "structJGeometry_1_1TVec3_3_01f32_01_4.html#a9a8eb9a1fd8d917ec9644c37544660fa", null ],
+    [ "set", "structJGeometry_1_1TVec3_3_01f32_01_4.html#ad9238c7a9f1a71ba928844a67b86bbba", null ],
     [ "set", "structJGeometry_1_1TVec3_3_01f32_01_4.html#af89050b6152ae9d76d2765c9714aa7d5", null ],
     [ "setLength", "structJGeometry_1_1TVec3_3_01f32_01_4.html#a858ac72daf272f6c7e2e88a1129bd8c1", null ],
     [ "squared", "structJGeometry_1_1TVec3_3_01f32_01_4.html#a1eb8e656446d58b37198b27835076a5e", null ],

@@ -10,7 +10,7 @@ var classJAISeqMgr =
     [ "calc", "classJAISeqMgr.html#a50b33197379e59b2aec547ef5efe87b0", null ],
     [ "endStartSeq_", "classJAISeqMgr.html#aed1a6ead9a74280e6bdcc5d716f2b211", null ],
     [ "freeDeadSeq_", "classJAISeqMgr.html#a1182029534f9b8803a7bef22b80584e0", null ],
-    [ "getNumActiveSeqs", "classJAISeqMgr.html#ade56d3f6bc448c586cf94316b1a91e9c", null ],
+    [ "getNumActiveSeqs", "classJAISeqMgr.html#aecb6fe4503ce472fa63e78fbec8de601", null ],
     [ "getParams", "classJAISeqMgr.html#a46c9fa0732b19ea9ec0eedb8fa4cb2fb", null ],
     [ "getSeqDataMgr", "classJAISeqMgr.html#acaddacf30d031025bf534497d50ce6a7", null ],
     [ "isActive", "classJAISeqMgr.html#a653f3e171200a63659193811145b306e", null ],

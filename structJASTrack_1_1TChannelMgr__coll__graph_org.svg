@@ -59,7 +59,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="structJASChannel.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="classJASChannel.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="821.5,-586.25 751.5,-586.25 751.5,-567 821.5,-567 821.5,-586.25"/>
 <text text-anchor="middle" x="786.5" y="-572.75" font-family="Helvetica,sans-Serif" font-size="10.00">JASChannel</text>
 </a>
@@ -735,7 +735,7 @@
 <!-- Node30 -->
 <g id="Node000030" class="node">
 <title>Node30</title>
-<g id="a_Node000030"><a xlink:href="structJASBank.html" target="_top" xlink:title=" ">
+<g id="a_Node000030"><a xlink:href="classJASBank.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="286.25,-1047.25 229,-1047.25 229,-1028 286.25,-1028 286.25,-1047.25"/>
 <text text-anchor="middle" x="257.62" y="-1033.75" font-family="Helvetica,sans-Serif" font-size="10.00">JASBank</text>
 </a>

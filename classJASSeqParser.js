@@ -73,6 +73,6 @@ var classJASSeqParser =
     [ "registerSeqCallback", "classJASSeqParser.html#afb495934e1035170877c6662f9a55cc8", null ],
     [ "writeReg", "classJASSeqParser.html#ad7973cbd0d1820943f0ea872ed3730e4", null ],
     [ "sCallBackFunc", "classJASSeqParser.html#a23b310dbd70dae341bfa830dc12b96a0", null ],
-    [ "sCmdInfo", "classJASSeqParser.html#afe43c825a5a0dfefa6122dc3e3b33f6a", null ],
-    [ "sExtCmdInfo", "classJASSeqParser.html#af3908af6ddd3f91e7d3e5308962e661f", null ]
+    [ "sCmdInfo", "classJASSeqParser.html#a8f82a8870f245f89fe5847cafb63b815", null ],
+    [ "sExtCmdInfo", "classJASSeqParser.html#ac709abb79b4f69e2250dab9bfff997bf", null ]
 ];

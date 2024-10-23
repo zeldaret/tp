@@ -10,7 +10,7 @@ var JASHeapCtrl_8h =
     [ "getSystemHeap", "JASHeapCtrl_8h.html#a8ee61af5d8d14ad5879b493d44831530", null ],
     [ "setupAramHeap", "JASHeapCtrl_8h.html#a15e5d7d4bb973dd87e3c2b81ff6a5372", null ],
     [ "setupRootHeap", "JASHeapCtrl_8h.html#ad729d84cef649f4e1a400088428e989d", null ],
-    [ "audioAramHeap", "JASHeapCtrl_8h.html#a722f755a873a797c9d44ffeef003fa50", null ],
+    [ "audioAramHeap", "JASHeapCtrl_8h.html#a9756127e650c0e6e68d386b84dfabeee", null ],
     [ "JASDram", "JASHeapCtrl_8h.html#a59a4b2bba8b0965789ee1b838b4d3890", null ],
     [ "sAramBase", "JASHeapCtrl_8h.html#a3b34987328636dadd813f2e446e68431", null ],
     [ "sCommandHeap", "JASHeapCtrl_8h.html#a18f2c093c5b6b310568a0c5e7bea1898", null ],

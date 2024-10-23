@@ -1,6 +1,8 @@
 <map id="Z2SceneMgr" name="Z2SceneMgr">
-<area shape="rect" id="Node000001" title=" " alt="" coords="28,5,124,31"/>
-<area shape="rect" id="Node000002" href="$classJASGlobalInstance.html" title=" " alt="" coords="5,94,147,135"/>
-<area shape="poly" id="edge2_Node000002_Node000001" title=" " alt="" coords="44,43,35,55,35,69,51,92,47,95,29,71,29,54,40,39"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,79,96,67,95,56,83,32,88,30,100,54,101,68,98,80"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="28,94,124,120"/>
+<area shape="rect" id="Node000002" href="$classJASGlobalInstance.html" title=" " alt="" coords="5,183,147,223"/>
+<area shape="poly" id="edge2_Node000002_Node000001" title=" " alt="" coords="44,131,35,144,35,158,51,180,47,184,29,159,29,142,40,128"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,168,96,156,95,144,83,121,88,119,100,143,101,156,98,169"/>
+<area shape="rect" id="Node000003" href="$structJAISoundID.html" title=" " alt="" coords="30,5,122,31"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="79,47,79,94,73,94,73,47"/>
 </map>

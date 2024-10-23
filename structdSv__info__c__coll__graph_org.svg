@@ -584,7 +584,7 @@
 <!-- Node26 -->
 <g id="Node000026" class="node">
 <title>Node26</title>
-<g id="a_Node000026"><a xlink:href="structdSv__event__c.html" target="_top" xlink:title=" ">
+<g id="a_Node000026"><a xlink:href="classdSv__event__c.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="623.5,-344.16 550.5,-344.16 550.5,-324.91 623.5,-324.91 623.5,-344.16"/>
 <text text-anchor="middle" x="587" y="-330.66" font-family="Helvetica,sans-Serif" font-size="10.00">dSv_event_c</text>
 </a>

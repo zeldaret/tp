@@ -299,7 +299,7 @@ var sectionId = 'dynsection-1';
 <!-- Node10 -->
 <g id="Node000010" class="node">
 <title>Node10</title>
-<g id="a_Node000010"><a xlink:href="structJASBank.html" target="_top" xlink:title=" ">
+<g id="a_Node000010"><a xlink:href="classJASBank.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="265.25,-35.25 208,-35.25 208,-16 265.25,-16 265.25,-35.25"/>
 <text text-anchor="middle" x="236.62" y="-21.75" font-family="Helvetica,sans-Serif" font-size="10.00">JASBank</text>
 </a>
@@ -607,7 +607,7 @@ var sectionId = 'dynsection-1';
 <!-- Node26 -->
 <g id="Node000026" class="node">
 <title>Node26</title>
-<g id="a_Node000026"><a xlink:href="structJASChannel.html" target="_top" xlink:title=" ">
+<g id="a_Node000026"><a xlink:href="classJASChannel.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="1228.5,-865.25 1158.5,-865.25 1158.5,-846 1228.5,-846 1228.5,-865.25"/>
 <text text-anchor="middle" x="1193.5" y="-851.75" font-family="Helvetica,sans-Serif" font-size="10.00">JASChannel</text>
 </a>

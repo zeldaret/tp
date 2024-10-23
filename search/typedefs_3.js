@@ -1,7 +1,7 @@
 var searchData=
 [
   ['calibrationfunc_0',['calibrationFunc',['../d__menu__option_8cpp.html#a191a27e18f0e03ad5f8159c191dcfe38',1,'d_menu_option.cpp']]],
-  ['callback_1',['callback',['../structJASDSPChannel.html#a1f403dbb73394dabb1e26f91a8a513f9',1,'JASDSPChannel::Callback'],['../classJUTVideo.html#afe4f60162a8dd449a1c1ac471aa82b9a',1,'JUTVideo::Callback'],['../structJASChannel.html#a944c45362ed697cf8c2c70cab24294c7',1,'JASChannel::Callback']]],
+  ['callback_1',['callback',['../structJASDSPChannel.html#a1f403dbb73394dabb1e26f91a8a513f9',1,'JASDSPChannel::Callback'],['../classJUTVideo.html#afe4f60162a8dd449a1c1ac471aa82b9a',1,'JUTVideo::Callback'],['../classJASChannel.html#a944c45362ed697cf8c2c70cab24294c7',1,'JASChannel::Callback']]],
   ['callbackfn_2',['callbackFn',['../JUTGamePad_8h.html#a2f0b00652a669749e07a12c29412b6b2',1,'JUTGamePad.h']]],
   ['capigph_5fmthd_3',['cAPIGph_Mthd',['../c__API_8h.html#a886376eb0d4542ca26341714d48a17a1',1,'c_API.h']]],
   ['captpolycallback_4',['CaptPolyCallback',['../d__bg__s__cap__poly_8h.html#a321fa9f31217725b7c933c98416f6b4a',1,'d_bg_s_cap_poly.h']]],

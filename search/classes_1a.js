@@ -48,7 +48,7 @@ var searchData=
   ['z2soundobjbase_45',['Z2SoundObjBase',['../classZ2SoundObjBase.html',1,'']]],
   ['z2soundobjbeegroup_46',['Z2SoundObjBeeGroup',['../classZ2SoundObjBeeGroup.html',1,'']]],
   ['z2soundobjcoach_47',['Z2SoundObjCoach',['../structZ2SoundObjCoach.html',1,'']]],
-  ['z2soundobjmgr_48',['Z2SoundObjMgr',['../structZ2SoundObjMgr.html',1,'']]],
+  ['z2soundobjmgr_48',['Z2SoundObjMgr',['../classZ2SoundObjMgr.html',1,'']]],
   ['z2soundobjsimple_49',['Z2SoundObjSimple',['../classZ2SoundObjSimple.html',1,'']]],
   ['z2soundstarter_50',['Z2SoundStarter',['../structZ2SoundStarter.html',1,'']]],
   ['z2speechmgr_51',['Z2SpeechMgr',['../structZ2SpeechMgr.html',1,'']]],

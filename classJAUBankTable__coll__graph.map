@@ -1,9 +1,11 @@
 <map id="JAUBankTable" name="JAUBankTable">
-<area shape="rect" id="Node000001" title=" " alt="" coords="37,271,146,297"/>
-<area shape="rect" id="Node000002" href="$classJASPtrTable.html" title=" " alt="" coords="5,183,178,208"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,224,94,271,89,271,89,224"/>
-<area shape="rect" id="Node000003" href="$structJASBank.html" title=" " alt="" coords="53,94,130,120"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="94,135,94,182,89,182,89,135"/>
-<area shape="rect" id="Node000004" href="$classJASWaveBank.html" title=" " alt="" coords="37,5,146,31"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="94,47,94,94,89,94,89,47"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="21,271,131,297"/>
+<area shape="rect" id="Node000002" href="$classJASBankList.html" title=" " alt="" coords="5,183,104,208"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="64,223,75,270,70,272,59,224"/>
+<area shape="rect" id="Node000003" href="$classJASPtrTable.html" title=" " alt="" coords="128,183,301,208"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="184,219,97,273,94,268,181,215"/>
+<area shape="rect" id="Node000004" href="$classJASBank.html" title=" " alt="" coords="176,94,253,120"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="217,135,217,182,212,182,212,135"/>
+<area shape="rect" id="Node000005" href="$classJASWaveBank.html" title=" " alt="" coords="160,5,269,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="217,47,217,94,212,94,212,47"/>
 </map>

@@ -10,23 +10,23 @@ var group__jsystem_jsupport =
       [ "mFile", "classJSUFileInputStream.html#a95d65c8b761f319fe381c04df76367f7", null ],
       [ "mPosition", "classJSUFileInputStream.html#ad05c0d301afcbedc46aae561f288b21a", null ]
     ] ],
-    [ "JSUInputStream", "structJSUInputStream.html", [
-      [ "~JSUInputStream", "structJSUInputStream.html#a4a53e5c0c9ae80e3865855fe9a7005d2", null ],
-      [ "JSUInputStream", "structJSUInputStream.html#a0d6d707b943225a0865d84f70602c752", null ],
-      [ "~JSUInputStream", "structJSUInputStream.html#a9e24dc925c60af6b3c3450a137fd6a33", null ],
-      [ "getAvailable", "structJSUInputStream.html#a87bc921d9b7645d9ab6eec792f375de7", null ],
-      [ "read", "structJSUInputStream.html#ac4be788482436136239b238989472b08", null ],
-      [ "read", "structJSUInputStream.html#ac4be788482436136239b238989472b08", null ],
-      [ "read16b", "structJSUInputStream.html#a7cf39f5cfbb153ebe3bac6882ebfdd90", null ],
-      [ "read32b", "structJSUInputStream.html#aabf96b6369e7ba2812a92470b760a354", null ],
-      [ "read8b", "structJSUInputStream.html#ab37d45a4078ece9597f0d19fb101d7dd", null ],
-      [ "readData", "structJSUInputStream.html#afd15521ed72ac4ff47297220d4e71ef5", null ],
-      [ "readS16", "structJSUInputStream.html#a00ccf6536a6e7ecd2785f948d6702627", null ],
-      [ "readS32", "structJSUInputStream.html#a412b6ce523a9da25c0cc732173812303", null ],
-      [ "readU16", "structJSUInputStream.html#a6672644c4bad229cb246c3fdc381383d", null ],
-      [ "readU32", "structJSUInputStream.html#af2ef23f0e033430a8a4a25094d908331", null ],
-      [ "readU8", "structJSUInputStream.html#abfc90f696881b7b4e1f61450e08e549a", null ],
-      [ "skip", "structJSUInputStream.html#a8f521f37c6079eab6a2ee1692cc184fa", null ]
+    [ "JSUInputStream", "classJSUInputStream.html", [
+      [ "JSUInputStream", "classJSUInputStream.html#a0d6d707b943225a0865d84f70602c752", null ],
+      [ "~JSUInputStream", "classJSUInputStream.html#a4a53e5c0c9ae80e3865855fe9a7005d2", null ],
+      [ "getAvailable", "classJSUInputStream.html#a87bc921d9b7645d9ab6eec792f375de7", null ],
+      [ "operator>>", "classJSUInputStream.html#a3c550c6a0e041dded45aa44196162da9", null ],
+      [ "operator>>", "classJSUInputStream.html#a8109dd3ca2ac7f79900750ec5dee0c44", null ],
+      [ "read", "classJSUInputStream.html#ac4be788482436136239b238989472b08", null ],
+      [ "read16b", "classJSUInputStream.html#a7cf39f5cfbb153ebe3bac6882ebfdd90", null ],
+      [ "read32b", "classJSUInputStream.html#aabf96b6369e7ba2812a92470b760a354", null ],
+      [ "read8b", "classJSUInputStream.html#ab37d45a4078ece9597f0d19fb101d7dd", null ],
+      [ "readData", "classJSUInputStream.html#afd15521ed72ac4ff47297220d4e71ef5", null ],
+      [ "readS16", "classJSUInputStream.html#a00ccf6536a6e7ecd2785f948d6702627", null ],
+      [ "readS32", "classJSUInputStream.html#a412b6ce523a9da25c0cc732173812303", null ],
+      [ "readU16", "classJSUInputStream.html#a6672644c4bad229cb246c3fdc381383d", null ],
+      [ "readU32", "classJSUInputStream.html#af2ef23f0e033430a8a4a25094d908331", null ],
+      [ "readU8", "classJSUInputStream.html#abfc90f696881b7b4e1f61450e08e549a", null ],
+      [ "skip", "classJSUInputStream.html#a8f521f37c6079eab6a2ee1692cc184fa", null ]
     ] ],
     [ "JSUIosBase", "classJSUIosBase.html", [
       [ "JSUIosBase", "classJSUIosBase.html#af86b7da881edd8e731f3a5ec00f7f5ad", null ],
@@ -133,18 +133,17 @@ var group__jsystem_jsupport =
       [ "operator==", "classJSUTreeIterator.html#af46300a760db1c2f10f1619d164bb223", null ],
       [ "mTree", "classJSUTreeIterator.html#a6567e157532227c4a9f8d2b9a0a2a064", null ]
     ] ],
-    [ "JSUMemoryInputStream", "structJSUMemoryInputStream.html", [
-      [ "JSUMemoryInputStream", "structJSUMemoryInputStream.html#a2072c46faffb1748514c65ecc9681d72", null ],
-      [ "~JSUMemoryInputStream", "structJSUMemoryInputStream.html#a20a71f586bac24044d047c5264c54b2b", null ],
-      [ "getLength", "structJSUMemoryInputStream.html#a8bdd870065f3e4991a21702f1484b75a", null ],
-      [ "getPosition", "structJSUMemoryInputStream.html#a0e1e0e84ca925709172e1056c78cf88b", null ],
-      [ "readData", "structJSUMemoryInputStream.html#a6fd899e265df568ce9c63cc1380d401f", null ],
-      [ "seekPos", "structJSUMemoryInputStream.html#abfb6f603a2f241631e443de27fbe22c6", null ],
-      [ "setBuffer", "structJSUMemoryInputStream.html#aa6af02e6d77724a9c0a5ad72baa0b12d", null ],
-      [ "setBuffer", "structJSUMemoryInputStream.html#aa6af02e6d77724a9c0a5ad72baa0b12d", null ],
-      [ "mBuffer", "structJSUMemoryInputStream.html#ac7dcdfc65ca65f6e87412d49381024fc", null ],
-      [ "mLength", "structJSUMemoryInputStream.html#a40229b6dce1986a0b79160128212275e", null ],
-      [ "mPosition", "structJSUMemoryInputStream.html#afc37e7b87a20375b3667b6df1f1b3818", null ]
+    [ "JSUMemoryInputStream", "classJSUMemoryInputStream.html", [
+      [ "JSUMemoryInputStream", "classJSUMemoryInputStream.html#a2072c46faffb1748514c65ecc9681d72", null ],
+      [ "~JSUMemoryInputStream", "classJSUMemoryInputStream.html#a20a71f586bac24044d047c5264c54b2b", null ],
+      [ "getLength", "classJSUMemoryInputStream.html#a8bdd870065f3e4991a21702f1484b75a", null ],
+      [ "getPosition", "classJSUMemoryInputStream.html#a0e1e0e84ca925709172e1056c78cf88b", null ],
+      [ "readData", "classJSUMemoryInputStream.html#a6fd899e265df568ce9c63cc1380d401f", null ],
+      [ "seekPos", "classJSUMemoryInputStream.html#abfb6f603a2f241631e443de27fbe22c6", null ],
+      [ "setBuffer", "classJSUMemoryInputStream.html#aa6af02e6d77724a9c0a5ad72baa0b12d", null ],
+      [ "mBuffer", "classJSUMemoryInputStream.html#ac7dcdfc65ca65f6e87412d49381024fc", null ],
+      [ "mLength", "classJSUMemoryInputStream.html#a40229b6dce1986a0b79160128212275e", null ],
+      [ "mPosition", "classJSUMemoryInputStream.html#afc37e7b87a20375b3667b6df1f1b3818", null ]
     ] ],
     [ "JSURandomInputStream", "classJSURandomInputStream.html", [
       [ "JSURandomInputStream", "classJSURandomInputStream.html#abd20e1d86be69625c8e3abdb9fbf6d3b", null ],

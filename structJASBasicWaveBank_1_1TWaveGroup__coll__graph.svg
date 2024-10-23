@@ -48,7 +48,7 @@
 <script type="application/ecmascript">
 var viewWidth = 1007;
 var viewHeight = 539;
-var sectionId = 'dynsection-0';
+var sectionId = 'dynsection-1';
 </script>
 <script type="application/ecmascript" xlink:href="svg.min.js"/>
 <svg id="graph" class="graph">
@@ -58,8 +58,8 @@ var sectionId = 'dynsection-0';
 <g id="Node000001" class="node">
 <title>Node1</title>
 <g id="a_Node000001"><a xlink:title=" ">
-<polygon fill="#999999" stroke="#666666" points="333.62,-85.75 165.38,-85.75 165.38,-66.5 333.62,-66.5 333.62,-85.75"/>
-<text text-anchor="middle" x="249.5" y="-72.25" font-family="Helvetica,sans-Serif" font-size="10.00">JASBasicWaveBank::TWaveGroup</text>
+<polygon fill="#999999" stroke="#666666" points="332.62,-85.75 164.38,-85.75 164.38,-66.5 332.62,-66.5 332.62,-85.75"/>
+<text text-anchor="middle" x="248.5" y="-72.25" font-family="Helvetica,sans-Serif" font-size="10.00">JASBasicWaveBank::TWaveGroup</text>
 </a>
 </g>
 </g>
@@ -76,8 +76,8 @@ var sectionId = 'dynsection-0';
 <g id="edge35_Node000017_Node000001" class="edge">
 <title>Node1&#45;&gt;Node17</title>
 <g id="a_edge35_Node000017_Node000001"><a xlink:title=" ">
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M273.49,-60.36C286.7,-52.68 303.61,-43.61 319.5,-37.25 337.51,-30.05 358.13,-24.12 375.8,-19.7"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="271.88,-57.24 265.07,-65.36 275.46,-63.26 271.88,-57.24"/>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M272.86,-60.37C286.27,-52.71 303.41,-43.63 319.5,-37.25 337.53,-30.1 358.16,-24.18 375.82,-19.75"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="271.17,-57.31 264.3,-65.38 274.7,-63.35 271.17,-57.31"/>
 </a>
 </g>
 <text text-anchor="middle" x="361.5" y="-39" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey"> mWaveGroupArray</text>
@@ -95,11 +95,10 @@ var sectionId = 'dynsection-0';
 <g id="edge1_Node000001_Node000002" class="edge">
 <title>Node2&#45;&gt;Node1</title>
 <g id="a_edge1_Node000001_Node000002"><a xlink:title=" ">
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M247.25,-138.13C247.87,-121.35 248.72,-98.35 249.18,-85.94"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="243.76,-137.85 246.89,-147.97 250.75,-138.1 243.76,-137.85"/>
+<path fill="none" stroke="#63b8ff" d="M247,-138.13C247.41,-121.35 247.98,-98.35 248.28,-85.94"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="243.51,-137.88 246.76,-147.97 250.5,-138.06 243.51,-137.88"/>
 </a>
 </g>
-<text text-anchor="middle" x="260.12" y="-111.12" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey"> base</text>
 </g>
 <!-- Node3 -->
 <g id="Node000003" class="node">
@@ -523,11 +522,11 @@ var sectionId = 'dynsection-0';
 <g id="edge28_Node000001_Node000017" class="edge">
 <title>Node17&#45;&gt;Node1</title>
 <g id="a_edge28_Node000001_Node000017"><a xlink:title=" ">
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M352.39,-14.54C315.13,-18.1 273.14,-24.8 259.5,-37.25 251.46,-44.59 249.57,-57.55 249.27,-66.24"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="352.61,-18.03 362.26,-13.67 351.99,-11.06 352.61,-18.03"/>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M352.76,-15.06C316.27,-18.81 275.3,-25.52 261.5,-37.25 253.03,-44.45 250.07,-57.45 249.04,-66.18"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="352.78,-18.57 362.4,-14.13 352.11,-11.6 352.78,-18.57"/>
 </a>
 </g>
-<text text-anchor="middle" x="276" y="-39" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey"> mBank</text>
+<text text-anchor="middle" x="278" y="-39" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey"> mBank</text>
 </g>
 <!-- Node18 -->
 <g id="Node000018" class="node">
@@ -608,11 +607,11 @@ var sectionId = 'dynsection-0';
 <g id="edge36_Node000001_Node000022" class="edge">
 <title>Node22&#45;&gt;Node1</title>
 <g id="a_edge36_Node000001_Node000022"><a xlink:title=" ">
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M137.12,-135.42C146.42,-124.55 158.61,-112.16 171.75,-103.75 183.77,-96.06 198.26,-90.31 211.46,-86.17"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="134.62,-132.94 130.99,-142.89 140.04,-137.38 134.62,-132.94"/>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M136.98,-135.08C146.04,-124.29 157.9,-112.06 170.75,-103.75 182.61,-96.08 196.92,-90.36 210.02,-86.23"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="134.25,-132.88 130.72,-142.88 139.71,-137.26 134.25,-132.88"/>
 </a>
 </g>
-<text text-anchor="middle" x="208.88" y="-111.12" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey"> mCtrlWaveArray</text>
+<text text-anchor="middle" x="207.88" y="-111.12" font-family="Helvetica,sans-Serif" font-size="10.00" fill="grey"> mCtrlWaveArray</text>
 </g>
 </g>
 </svg>
