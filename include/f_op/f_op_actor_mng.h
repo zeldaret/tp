@@ -116,6 +116,7 @@ public:
     static bool getTriPla(cM3dGPla* i_plane) { return dComIfG_Bgsp().GetTriPla(mGndCheck, i_plane); }
     static int getRoomId() { return dComIfG_Bgsp().GetRoomId(mGndCheck); }
     static int getPolyColor() { return dComIfG_Bgsp().GetPolyColor(mGndCheck); }
+    static int getPolyAtt0() { return dComIfG_Bgsp().GetPolyAtt0(mGndCheck); }
     static dBgS_ObjGndChk* getGroundCheck() { return &mGndCheck; }
     static f32 getGroundY() { return mGroundY; }
 };

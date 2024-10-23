@@ -18,6 +18,9 @@ public:
     /* 80BDC7D8 */ int execute();
     /* 80BDCB0C */ int draw();
 
+    void onDigStart() { field_0x568 = 1; }
+    s16 getSceneNum() const { return field_0x56c; }
+
 private:
     /* 0x568 */ u8 field_0x568;
     /* 0x569 */ u8 field_0x569;

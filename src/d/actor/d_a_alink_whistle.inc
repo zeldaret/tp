@@ -6,6 +6,7 @@
 #include "d/actor/d_a_alink.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_procname.h"
+#include "d/actor/d_a_horse.h"
 #include "d/actor/d_a_npc_tk.h"
 #include "d/actor/d_a_obj_yobikusa.h"
 
@@ -229,9 +230,9 @@ int daAlink_c::procGrassWhistleWait() {
                 mProcVar5.field_0x3012 = 1;
                 return 1;
             }
-
-            setGrassCancelStatus(0);
         }
+
+        setGrassCancelStatus(0);
     } else if (checkAnmEnd(&mUpperFrameCtrl[2])) {
         setGrassCancelStatus(0x12);
         setDoStatus(0x2C);
@@ -296,8 +297,29 @@ int daAlink_c::procCoHorseCallWaitInit(int param_0) {
 /* 801120C8-801121B4 10CA08 00EC+00 1/0 0/0 0/0 .text            procCoHorseCallWait__9daAlink_cFv
  */
 int daAlink_c::procCoHorseCallWait() {
-    // NONMATCHING
-    return 0;
+    setGrassCancelStatus(0);
+
+    mProcVar4.field_0x3010--;
+    if (mProcVar4.field_0x3010 > 2 && dComIfGp_getHorseActor() != NULL) {
+        cLib_addCalcAngleS(&shape_angle.y, fopAcM_searchActorAngleY(this, dComIfGp_getHorseActor()), 2, 0x2000, 0x800);
+        current.angle.y = shape_angle.y;
+    }
+
+    if (mProcVar4.field_0x3010 == 60) {
+        dCam_getBody()->EventFlag(2);
+    } else if (mProcVar4.field_0x3010 == 15) {
+        dCam_getBody()->EventFlag(3);
+    } else if (mProcVar4.field_0x3010 == 0) {
+        resetSpecialEvent();
+
+        if (checkWolf()) {
+            procWolfWaitInit();
+        } else {
+            procWaitInit();
+        }
+    }
+
+    return 1;
 }
 
 /* 801121B4-80112220 10CAF4 006C+00 1/0 0/0 0/0 .text            procHawkCatchInit__9daAlink_cFv */
@@ -343,6 +365,35 @@ int daAlink_c::procHawkSubjectInit() {
 
 /* 80112304-8011243C 10CC44 0138+00 1/0 0/0 0/0 .text            procHawkSubject__9daAlink_cFv */
 int daAlink_c::procHawkSubject() {
-    // NONMATCHING
-    return 0;
+    if (mProcVar2.field_0x300c != 0) {
+        if (mProcVar2.field_0x300c != 0) {
+            mProcVar2.field_0x300c--;
+            if (mProcVar2.field_0x300c == 0) {
+                checkWaitAction();
+            }
+        }
+    } else if (checkEventRun()) {
+        dComIfGp_evmng_cutEnd(field_0x3184);
+    } else {
+        fopAc_ac_c* temp_r29 = field_0x280c.getActor();
+        setGrassCancelStatus(0x12);
+        setDoStatus(0x31);
+
+        if (doTrigger()) {
+            mProcVar2.field_0x300c = 2;
+            if (temp_r29 != NULL) {
+                ((daNPC_TK_c*)temp_r29)->setAttack();
+                field_0x280c.clearData();
+            }
+        } else if (grassCancelTrigger()) {
+            return checkWaitAction();
+        } else if (setBodyAngleToCamera()) {
+            cXyz sp8;
+            checkSightLine(10000.0f, &sp8);
+            mSight.setPos(&sp8);
+            mSight.onDrawFlg();
+        }
+    }
+
+    return 1;
 }

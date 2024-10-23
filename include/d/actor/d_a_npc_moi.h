@@ -83,8 +83,12 @@ public:
     static void* mCutNameList[5];
     static u8 mCutList[60];
 
+    bool chkSFight() { return field_0x166b == 1; }
+
 private:
-    /* 0x568 */ u8 field_0x568[0x1674 - 0x568];
+    /* 0x0568 */ u8 field_0x568[0x166B - 0x568];
+    /* 0x166B */ u8 field_0x166b;
+    /* 0x166C */ u8 field_0x166c[0x1674 - 0x166C];
 };
 
 STATIC_ASSERT(sizeof(daNpc_Moi_c) == 0x1674);
