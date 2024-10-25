@@ -1228,6 +1228,7 @@ BOOL daAlink_c::checkDeadHP() {
 /* 80118D7C-80118FF8 1136BC 027C+00 3/3 0/0 0/0 .text            checkDeadAction__9daAlink_cFi */
 BOOL daAlink_c::checkDeadAction(int param_0) {
     // NONMATCHING
+    return 0;
 }
 
 /* 80118FF8-801190A4 113938 00AC+00 1/1 0/0 0/0 .text
@@ -1360,6 +1361,7 @@ static u8 dummy[20];
 static int daAlink_c_getDemoIDData(dDemo_actor_c* param_0, int* param_1, int* param_2,
                                        int* param_3, u16* param_4, int* param_5, int* param_6) {
     // NONMATCHING
+    return 0;
 }
 
 /* 801195C0-801195F8 113F00 0038+00 7/0 0/0 0/0 .text            procDemoCommon__9daAlink_cFv */

@@ -674,6 +674,7 @@ public:
         FTANM_UNK_7B = 0x7B,
         FTANM_UNK_7C = 0x7C,
         FTANM_UNK_8A = 0x8A,
+        FTANM_UNK_8B = 0x8B,
         FTANM_UNK_8D = 0x8D,
         FTANM_UNK_8E = 0x8E,
         FTANM_UNK_8F = 0x8F,
@@ -682,6 +683,7 @@ public:
         FTANM_UNK_95 = 0x95,
         FTANM_UNK_96 = 0x96,
         FTANM_UNK_97 = 0x97,
+        FTANM_UNK_99 = 0x99,
         FTANM_UNK_9A = 0x9A,
         FTANM_UNK_9B = 0x9B,
         FTANM_UNK_9C = 0x9C,
@@ -1309,7 +1311,7 @@ public:
     /* 800A39B8 */ void handBgCheck();
     /* 800A3C8C */ JKRHeap* setItemHeap();
     /* 800A3CE4 */ void setIdxMask(u16*, u16*);
-    /* 800A3D0C */ void* getAnimeResource(daPy_anmHeap_c*, u16, u32);
+    /* 800A3D0C */ J3DAnmTransform* getAnimeResource(daPy_anmHeap_c*, u16, u32);
     /* 800A3D7C */ J3DModel* initModel(J3DModelData*, u32, u32);
     /* 800A3E30 */ J3DModel* initModel(u16, u32);
     /* 800A3E98 */ J3DModel* initModelEnv(u16, u32);
@@ -2001,7 +2003,7 @@ public:
     /* 800E7460 */ int procPickUp();
     /* 800E75EC */ int procPickPutInit(int);
     /* 800E76E0 */ int procPickPut();
-    /* 800E7894 */ void checkSetChainPullAnime(s16);
+    /* 800E7894 */ BOOL checkSetChainPullAnime(s16);
     /* 800E794C */ s16 getChainStickAngleY(s16) const;
     /* 800E7994 */ u8 checkChainEmphasys();
     /* 800E79F8 */ BOOL searchFmChainPos();
@@ -2361,8 +2363,8 @@ public:
     /* 80102B1C */ int checkSwimAction(int);
     /* 80103058 */ int checkSwimUpAction();
     /* 801032C8 */ void swimOutAfter(int);
-    /* 80103398 */ bool checkSwimFall();
-    /* 801033CC */ void checkSwimOutAction();
+    /* 80103398 */ BOOL checkSwimFall();
+    /* 801033CC */ int checkSwimOutAction();
     /* 80103698 */ void setSwimMoveAnime();
     /* 80103EE0 */ bool checkSwimButtonAccept();
     /* 80103F08 */ bool checkUpSwimButtonAccept();
@@ -2743,12 +2745,12 @@ public:
     /* 80128F5C */ void setWolfAtnMoveDirection();
     /* 80129114 */ void setBlendWolfAtnMoveAnime(f32);
     /* 8012933C */ void setBlendWolfAtnBackMoveAnime(f32);
-    /* 8012948C */ void setDoubleAnimeWolf(f32, f32, f32, daAlink_c::daAlink_WANM,
+    /* 8012948C */ int setDoubleAnimeWolf(f32, f32, f32, daAlink_c::daAlink_WANM,
                                            daAlink_c::daAlink_WANM, int, f32);
     /* 80129678 */ void setSingleAnimeWolfBase(daAlink_c::daAlink_WANM);
     /* 801296A8 */ void setSingleAnimeWolfBaseMorf(daAlink_c::daAlink_WANM, f32);
     /* 801296D8 */ void setSingleAnimeWolfBaseSpeed(daAlink_c::daAlink_WANM, f32, f32);
-    /* 80129704 */ void setSingleAnimeWolf(daAlink_c::daAlink_WANM, f32, f32, s16, f32);
+    /* 80129704 */ int setSingleAnimeWolf(daAlink_c::daAlink_WANM, f32, f32, s16, f32);
     /* 80129848 */ void setSingleAnimeWolfParam(daAlink_c::daAlink_WANM, daAlinkHIO_anm_c const*);
     /* 8012987C */ int checkWolfLandAction(int);
     /* 80129958 */ BOOL checkMidnaUseAbility() const;
@@ -2758,7 +2760,7 @@ public:
     /* 8012A02C */ BOOL wolfSideBgCheck(s16);
     /* 8012A228 */ BOOL checkWolfAttackReverse(int);
     /* 8012A330 */ int checkWolfBarrierHitReverse();
-    /* 8012A41C */ bool checkWolfBarrierWallHit(cBgS_PolyInfo&);
+    /* 8012A41C */ BOOL checkWolfBarrierWallHit(cBgS_PolyInfo&);
     /* 8012A498 */ void wolfBgCheck();
     /* 8012ACCC */ void changeWolfBlendRate(int);
     /* 8012AD1C */ void setWolfFootMatrix();
@@ -3572,7 +3574,7 @@ public:
     /* 0x02154 */ J3DAnmTexPattern* field_0x2154;
     /* 0x02158 */ J3DAnmTextureSRTKey* mpFaceBtk;
     /* 0x0215C */ daPy_frameCtrl_c* field_0x215c;
-    /* 0x02160 */ s8* field_0x2160;
+    /* 0x02160 */ u16* field_0x2160;
     /* 0x02164 */ mDoExt_bckAnm field_0x2164;
     /* 0x02180 */ daAlink_matAnm_c* field_0x2180[2];
     /* 0x02188 */ dEyeHL_c mEyeHL1;
@@ -3750,16 +3752,20 @@ public:
     union {
         s16 field_0x300a;
         s16 mBoardSwordChargeTime;
+        s16 mDigActorName;
     } /* 0x0300A */ mProcVar1;
     union {
         s16 field_0x300c;
         s16 mPuzzleAimAngle;
+        s16 mDigType;
     } /* 0x0300C */ mProcVar2;
     union {
         s16 field_0x300e;
+        s16 mDigChangeArea;
     } /* 0x0300E */ mProcVar3;
     union {
         s16 field_0x3010;
+        s16 mDigExitID;
     } /* 0x03010 */ mProcVar4;
     union {
         s16 field_0x3012;

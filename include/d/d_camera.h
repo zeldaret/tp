@@ -391,6 +391,10 @@ public:
         i_info->field_0x1e = param_1;
     }
 
+    void EventFlag(int i_flag) {
+        mEventData.field_0x24 = i_flag;
+    }
+
     static engine_fn engine_tbl[];
 
     /* 0x000 */ camera_class* field_0x0;

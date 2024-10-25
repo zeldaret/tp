@@ -1925,11 +1925,11 @@ fopAc_ac_c* fopAcM_myRoomSearchEnemy(s8 roomNo) {
 
 /* 8001CAD8-8001CB48 017418 0070+00 0/0 0/0 81/81 .text
  * fopAcM_createDisappear__FPC10fopAc_ac_cPC4cXyzUcUcUc         */
-s32 fopAcM_createDisappear(const fopAc_ac_c* i_actor, const cXyz* i_pos, u8 param_3, u8 param_4,
-                           u8 param_5) {
+s32 fopAcM_createDisappear(const fopAc_ac_c* i_actor, const cXyz* i_pos, u8 i_size, u8 i_type,
+                           u8 i_enemyID) {
     s8 roomNo = fopAcM_GetRoomNo(i_actor);
     return fopAcM_GetID(fopAcM_fastCreate(PROC_DISAPPEAR,
-                                          (param_5 << 0x10) | (param_3 << 0x8) | param_4, i_pos,
+                                          (i_enemyID << 0x10) | (i_size << 0x8) | i_type, i_pos,
                                           roomNo, &i_actor->current.angle, NULL, 0xFF, NULL, NULL));
 }
 

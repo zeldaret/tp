@@ -4,13 +4,9 @@
 //
 
 #include "d/actor/d_a_obj_digsnow.h"
-
 #include "d/actor/d_a_player.h"
 #include "d/d_com_inf_game.h"
-
-//
-// Declarations:
-//
+#include <cmath.h>
 
 /* 80BDCC58-80BDCC94 000078 003C+00 1/1 0/0 0/0 .text            initBaseMtx__14daObjDigSnow_cFv */
 void daObjDigSnow_c::initBaseMtx() {
@@ -62,8 +58,9 @@ static char* l_arcName = "Y_horiyuk";
 
 /* 80BDCD64-80BDCDD4 000184 0070+00 1/0 0/0 0/0 .text            CreateHeap__14daObjDigSnow_cFv */
 int daObjDigSnow_c::CreateHeap() {
-    J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 4);
-    mpModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 4);
+    JUT_ASSERT(0x9F, modelData != 0);
+    mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
 
     if (mpModel == NULL) {
         return FALSE;
@@ -74,28 +71,25 @@ int daObjDigSnow_c::CreateHeap() {
 
 /* 80BDCDD4-80BDCE84 0001F4 00B0+00 1/1 0/0 0/0 .text            create1st__14daObjDigSnow_cFv */
 int daObjDigSnow_c::create1st() {
-    cPhs__Step step;
-
     if (dComIfGs_isSwitch(getSwNo(), fopAcM_GetHomeRoomNo(this))) {
         return cPhs_ERROR_e;
-    } else {
-        step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, l_arcName);
-        if (step == cPhs_COMPLEATE_e) {
-            step =
-                (cPhs__Step)MoveBGCreate(l_arcName, 7, dBgS_MoveBGProc_TypicalRotY, 0x1000, NULL);
-            if (step == cPhs_ERROR_e) {
-                return step;
-            }
+    }
+
+    cPhs__Step phase_state = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, l_arcName);
+    if (phase_state == cPhs_COMPLEATE_e) {
+        phase_state = (cPhs__Step)MoveBGCreate(l_arcName, 7, dBgS_MoveBGProc_TypicalRotY, 0x1000, NULL);
+        if (phase_state == cPhs_ERROR_e) {
+            return phase_state;
         }
     }
 
-    return step;
+    return phase_state;
 }
 
 /* 80BDCE84-80BDCF00 0002A4 007C+00 1/0 0/0 0/0 .text            Execute__14daObjDigSnow_cFPPA3_A4_f
  */
 int daObjDigSnow_c::Execute(Mtx** i_mtx) {
-    if (dComIfGp_getLinkPlayer()->checkWolf()) {
+    if (daPy_py_c::i_checkNowWolf()) {
         attention_info.flags = 0x80;
     } else {
         attention_info.flags = 0;
@@ -145,14 +139,20 @@ void daObjDigSnow_c::mode_init_dig() {
     f32 gnd_height = dComIfG_Bgsp().GroundCross(&obj_gnd_chk);
     if (gnd_height != -1000000000.0f) {
         mGroundHeight = gnd_height;
+    } else {
+#ifdef DEBUG
+        // "No BG under digsnow!"
+        OS_REPORT_ERROR("掘る雪の下にＢＧがありません！");
+        fopAcM_delete(this);
+#endif
     }
 
-    startDig();
+    mAction = 1;
 }
 
 /* 80BDD124-80BDD1BC 000544 0098+00 1/0 0/0 0/0 .text            mode_dig__14daObjDigSnow_cFv */
 void daObjDigSnow_c::mode_dig() {
-    f32 step = fabsf(((current.pos.y - mGroundHeight) + 10.0f) / 35.0f);
+    f32 step = std::fabs(((current.pos.y - mGroundHeight) + 10.0f) / 35.0f);
     if (step < 1.0f) {
         step = 1.0f;
     }
@@ -167,13 +167,12 @@ void daObjDigSnow_c::mode_dig() {
 void daObjDigSnow_c::mode_init_end() {
     dComIfGs_onSwitch(getSwNo(), fopAcM_GetHomeRoomNo(this));
     fopAcM_delete(this);
-    endDig();
+    
+    mAction = 2;
 }
 
 /* 80BDD210-80BDD214 000630 0004+00 1/0 0/0 0/0 .text            mode_end__14daObjDigSnow_cFv */
-void daObjDigSnow_c::mode_end() {
-    /* empty function */
-}
+void daObjDigSnow_c::mode_end() {}
 
 /* 80BDD214-80BDD2B8 000634 00A4+00 1/0 0/0 0/0 .text            Draw__14daObjDigSnow_cFv */
 int daObjDigSnow_c::Draw() {
@@ -197,7 +196,6 @@ int daObjDigSnow_c::Delete() {
  */
 static int daObjDigSnow_create1st(daObjDigSnow_c* i_this) {
     fopAcM_SetupActor(i_this, daObjDigSnow_c);
-
     return i_this->create1st();
 }
 

@@ -1888,7 +1888,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_lv4SlideWall"),
     ActorRel(NonMatching, "d_a_obj_lv4bridge"),
     ActorRel(NonMatching, "d_a_obj_lv4chandelier"),
-    ActorRel(NonMatching, "d_a_obj_lv4digsand"),
+    ActorRel(Matching, "d_a_obj_lv4digsand"),
     ActorRel(Matching, "d_a_obj_lv4floor"),
     ActorRel(Matching, "d_a_obj_lv4gear"),
     ActorRel(NonMatching, "d_a_obj_lv4prelvtr"),
