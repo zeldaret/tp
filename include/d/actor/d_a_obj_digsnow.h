@@ -47,8 +47,8 @@ public:
     /* 80BDD2B8 */ virtual int Delete();
 
     u8 getSwNo() { return fopAcM_GetParamBit(this, 0, 8); }
-    void startDig() { mAction = ACTION_DIG_e; }
-    void endDig() { mAction = ACTION_END_e; }
+    void startDig() { mMode = ACTION_DIG_e; }
+    void endDig() { mMode = ACTION_END_e; }
 
 private:
     /* 0x5A0 */ request_of_phase_process_class mPhaseReq;

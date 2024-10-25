@@ -53,7 +53,6 @@ public:
                                    daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
                                    daNpcT_evtData_c const*, char**);
     /* 80CD5B84 */ void chkGoal();
-    /* 801312C8 */ void setWolfHowling();
 
     /* 80CD5B7C */ s32 getBackboneJointNo();
     /* 80CD5B74 */ s32 getHeadJointNo();
@@ -71,6 +70,17 @@ public:
     /* 80CD03C8 */ void drawOtherMdl();
     /* 80CD05D0 */ void drawGhost();
     /* 80CD06BC */ bool afterSetMotionAnm(int, int, f32, int);
+
+    void setWolfHowling() {
+        if (field_0x10c8 != 0) {
+            fopAc_ac_c* actor_p = field_0x10e4.getActorP();
+            JUT_ASSERT(0x1A3, 0 != actor_p);
+
+            ((daObj_Sekizoa_c*)actor_p)->setWolfHowling();
+        } else {
+            field_0x1173 = 1;
+        }
+    }
 
     u8 getType() {
         int prm = fopAcM_GetParam(this) >> 0x1C;
@@ -116,6 +126,14 @@ public:
 
     static void* mCutNameList[9];
     static u8 mCutList[108];
+
+    /* 0x0E40 */ u8 field_0xe40[0x10C8 - 0xE40];
+    /* 0x10C8 */ u8 field_0x10c8;
+    /* 0x10C9 */ u8 field_0x10c9[0x10E4 - 0x10C9];
+    /* 0x10E4 */ daNpcT_ActorMngr_c field_0x10e4;
+    /* 0x10EC */ u8 field_0x10ec[0x1173 - 0x10ec];
+    /* 0x1173 */ u8 field_0x1173;
+    /* 0x1174 */ u8 field_0x1174[0x1180 - 0x1174];
 };
 
 #endif /* D_A_OBJ_SEKIZOA_H */

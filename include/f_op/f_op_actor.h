@@ -271,12 +271,14 @@ public:
     void onWolfDownPullEndFlg() { mFlags |= 0x20; }
     void onWolfNoLock() { mFlags |= 0x200; }
     void onDownFlg() { mFlags |= 1; }
+    void onHeadLockFlg() { mFlags |= 0x80; }
 
     void offWolfBiteDamage() { mFlags &= ~0x40; }
     void offCutDownHitFlg() { mFlags &= ~0x2; }
     void offWolfDownPullFlg() { mFlags &= ~0x10; }
     void offDownFlg() { mFlags &= ~0x17; }
     void offWolfNoLock() { mFlags &= ~0x200; }
+    void offHeadLockFlg() { mFlags &= ~0x80; }
 
     void setMidnaBindMode(u8 i_bindMode) { mMidnaBindMode = i_bindMode; }
     void setMidnaBindID(u8 i_idx, u32 i_bindID) { mMidnaBindID[i_idx] = i_bindID; }
@@ -285,6 +287,7 @@ public:
     void setThrowModeThrowRight() { mThrowMode |= 0x10; }
     void setThrowModeThrowLeft() { mThrowMode |= 8; }
     void setDownPos(const cXyz* i_pos) { mDownPos = *i_pos; }
+    void setHeadLockPos(const cXyz* i_pos) { mHeadLockPos = *i_pos; }
 
     /* 0x568 */ cXyz mDownPos;
     /* 0x574 */ cXyz mHeadLockPos;

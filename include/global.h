@@ -43,4 +43,19 @@ inline BOOL checkEqual(s32 a, s32 b) {
 // hack to make strings with no references compile properly
 #define DEAD_STRING(s) OSReport(s)
 
+#define UNK_BSS(name) \
+    static u8 lit_##name[1 + 3 /* padding */];
+
+#define UNK_REL_DATA \
+    static u8 cNullVec__6Z2Calc[12] = { \
+        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, \
+    }; \
+    static u32 lit_1787[1 + 4 /* padding */] = { \
+        0x02000201, \
+        0x40080000, \
+        0x00000000, \
+        0x3FE00000, \
+        0x00000000, \
+    };
+
 #endif

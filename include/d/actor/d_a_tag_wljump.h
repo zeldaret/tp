@@ -21,10 +21,14 @@ public:
         }
     }
 
+    f32 getLandArea() const { return mLandArea; }
+    void onNextCheckFlg() { mNextCheckFlg = true; }
+    s16 getNotSlideFlg() const { return shape_angle.z; }
+
     /* 0x568 */ s8 field_0x568;
-    /* 0x568 */ s8 field_0x569;
-    /* 0x568 */ u8 field_0x56a;
-    /* 0x568 */ u8 field_0x56b;
+    /* 0x569 */ s8 field_0x569;
+    /* 0x56A */ u8 field_0x56a;
+    /* 0x56B */ u8 mNextCheckFlg;
     /* 0x56C */ u8 field_0x56c[4];
     /* 0x570 */ u8 field_0x570;
     /* 0x571 */ u8 field_0x571;
@@ -34,7 +38,7 @@ public:
     /* 0x574 */ u16 field_0x576;
     /* 0x578 */ dMsgFlow_c mMsgFlow;
     /* 0x5C4 */ dPath* field_0x5c4;
-    /* 0x5C8 */ f32 field_0x5c8;
+    /* 0x5C8 */ f32 mLandArea;
 };
 
 #endif /* D_A_TAG_WLJUMP_H */

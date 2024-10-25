@@ -420,6 +420,7 @@ public:
     u16 getOldFrameStartJoint() { return mOldFrameStartJoint; }
     u16 getOldFrameEndJoint() { return mOldFrameEndJoint; }
     Quaternion* getOldFrameQuaternion(int i_no) { return &mOldFrameQuaternion[i_no]; }
+    f32 getOldFrameMorfCounter() { return mOldFrameMorfCounter; }
 
 private:
     /* 0x00 */ bool mOldFrameFlg;

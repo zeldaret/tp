@@ -387,6 +387,7 @@ public:
         ERFLG1_UNK_20000000 = 0x20000000,
         ERFLG1_UNK_10000000 = 0x10000000,
         ERFLG1_UNK_4000000 = 0x4000000,
+        ERFLG1_UNK_2000000 = 0x2000000,
         ERFLG1_UNK_1000000 = 0x1000000,
         ERFLG1_UNK_200000 = 0x200000,
         ERFLG1_UNK_100000 = 0x100000,
@@ -420,12 +421,14 @@ public:
     };
 
     enum daPy_RFLG0 {
+        RFLG0_WOLF_BARK = 0x80000000,
         RFLG0_UNK_40000000 = 0x40000000,
         RFLG0_UNK_20000000 = 0x20000000,
         RFLG0_UNK_10000000 = 0x10000000,
         RFLG0_UNK_8000000 = 0x8000000,
         RFLG0_UNK_4000000 = 0x4000000,
         RFLG0_GRAB_PUT_START = 0x400000,
+        RFLG0_WOLF_GROWL = 0x200000,
         RFLG0_UNK_80000 = 0x80000,
         RFLG0_UNK_40000 = 0x40000,
         RFLG0_UNK_20000 = 0x20000,
@@ -869,6 +872,10 @@ public:
     u32 checkMagneBootsOn() const { return checkNoResetFlg0(FLG0_MAGNE_BOOTS_ON); }
     BOOL checkFastSwordCut() const { return checkNoResetFlg0(FLG0_UNK_80000); }
     u32 checkMidnaRide() const { return checkNoResetFlg0(FLG0_MIDNA_RIDE); }
+    BOOL checkWolfGrowl() const { return checkResetFlg0(RFLG0_WOLF_GROWL); }
+    BOOL checkWolfThreat() const { return checkWolfGrowl(); }
+    BOOL checkWolfBark() const { return checkResetFlg0(RFLG0_WOLF_BARK); }
+
     void onPlayerNoDraw() { onNoResetFlg0(FLG0_PLAYER_NO_DRAW); }
     void offPlayerNoDraw() { offNoResetFlg0(FLG0_PLAYER_NO_DRAW); }
     void onPushPullKeep() { onNoResetFlg0(FLG0_PUSH_PULL_KEEP); }
@@ -879,6 +886,8 @@ public:
     void onForceGameOver() { onNoResetFlg2(FLG2_FORCE_GAMEOVER); }
     void onForceWolfChange() { onEndResetFlg0(ERFLG0_UNK_2); }
     void onDoPutEmphasys() { onEndResetFlg1(ERFLG1_UNK_10000000); }
+    void onNsScream() { onEndResetFlg1(ERFLG1_UNK_1); }
+    void onNsScreamAnm() { onEndResetFlg1(daPy_ERFLG1(ERFLG1_UNK_1 | ERFLG1_UNK_2)); }
 
     u32 checkBoarSingleBattle() const { return checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE); }
     u32 checkWolfDashAutoJump() const { return checkNoResetFlg2(FLG2_WOLF_DASH_AUTO_JUMP); }

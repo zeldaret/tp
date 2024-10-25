@@ -32,6 +32,8 @@ public:
 
     u8 getSceneNum() { return (fopAcM_GetParam(this) >> 0xC) & 0xFF; }
     int getItemNum() { return getSceneNum(); }
+    u8 getType() const { return mType; }
+    void onDigFlg() { mDigFlg = true; }
 };
 
 STATIC_ASSERT(sizeof(daObjDigpl_c) == 0x5C0);

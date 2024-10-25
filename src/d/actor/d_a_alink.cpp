@@ -551,13 +551,13 @@ SECTION_SDATA2 static u8 bFootJoint[4] = {
 };
 
 /* 804531D8-804531E0 0017D8 0008+00 1/1 0/0 0/0 .sdata2          snowID$53110 */
-SECTION_SDATA2 static u8 snowID[8] = {
-    0x88, 0x4D, 0x88, 0x4E, 0x88, 0x51, 0x88, 0x52,
+SECTION_SDATA2 static u16 snowID[] = {
+    0x884D, 0x884E, 0x8851, 0x8852,
 };
 
 /* 804531E0-804531E8 0017E0 0008+00 1/1 0/0 0/0 .sdata2          smokeID$53111 */
-SECTION_SDATA2 static u8 smokeID[8] = {
-    0x83, 0xA0, 0x83, 0xA1, 0x83, 0xA4, 0x83, 0xA5,
+SECTION_SDATA2 static u16 smokeID[] = {
+    0x83A0, 0x83A1, 0x83A4, 0x83A5,
 };
 
 /* 804531E8-804531F0 0017E8 0008+00 1/1 0/0 0/0 .sdata2          waterColor$53845 */
@@ -884,13 +884,13 @@ SECTION_RODATA static Vec const l_ironBallCenterVec = {
 COMPILER_STRIP_GATE(0x8038FB50, &l_ironBallCenterVec);
 
 /* 8038FB5C-8038FBBC 01C1BC 0060+00 1/2 0/0 0/0 .rodata          l_wolfFootOnFrame */
-SECTION_RODATA static u8 const l_wolfFootOnFrame[96] = {
-    0x00, 0x00, 0x00, 0x00, 0x41, 0x80, 0x00, 0x00, 0x41, 0x98, 0x00, 0x00, 0x40, 0xC0, 0x00, 0x00,
-    0x41, 0x20, 0x00, 0x00, 0x41, 0x40, 0x00, 0x00, 0x40, 0xE0, 0x00, 0x00, 0x40, 0x40, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00, 0x41, 0xD8, 0x00, 0x00, 0x41, 0x00, 0x00, 0x00,
-    0x41, 0x88, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0xC0, 0x00, 0x00, 0x41, 0x30, 0x00, 0x00,
-    0x41, 0xC0, 0x00, 0x00, 0x42, 0x00, 0x00, 0x00, 0x41, 0x40, 0x00, 0x00, 0x41, 0xD0, 0x00, 0x00,
-    0x42, 0x60, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x30, 0x00, 0x00, 0x42, 0x68, 0x00, 0x00,
+SECTION_RODATA static f32 const l_wolfFootOnFrame[6][4] = {
+    {0.0f, 16.0f, 19.0f, 6.0f},
+    {10.0f, 12.0f, 7.0f, 3.0f},
+    {0.0f, 20.0f, 27.0f, 8.0f},
+    {17.0f, 0.0f, 24.0f, 11.0f},
+    {24.0f, 32.0f, 12.0f, 26.0f},
+    {56.0f, 0.0f, 44.0f, 58.0f},
 };
 COMPILER_STRIP_GATE(0x8038FB5C, &l_wolfFootOnFrame);
 
@@ -2427,7 +2427,7 @@ void daAlink_c::setIdxMask(u16* o_arcNo, u16* o_resID) {
 
 /* 800A3D0C-800A3D7C 09E64C 0070+00 5/5 0/0 0/0 .text
  * getAnimeResource__9daAlink_cFP14daPy_anmHeap_cUsUl           */
-void* daAlink_c::getAnimeResource(daPy_anmHeap_c* p_anmHeap, u16 i_anmID, u32 buf_size) {
+J3DAnmTransform* daAlink_c::getAnimeResource(daPy_anmHeap_c* p_anmHeap, u16 i_anmID, u32 buf_size) {
     u16 arcNo;
     u16 resID = i_anmID;
 
@@ -2437,10 +2437,10 @@ void* daAlink_c::getAnimeResource(daPy_anmHeap_c* p_anmHeap, u16 i_anmID, u32 bu
     setIdxMask(&arcNo, &resID);
 
     if (arcNo == 0xFFFF) {
-        return p_anmHeap->loadDataIdx(resID);
+        return (J3DAnmTransform*)p_anmHeap->loadDataIdx(resID);
     }
 
-    return p_anmHeap->loadDataDemoRID(resID, arcNo);
+    return (J3DAnmTransform*)p_anmHeap->loadDataDemoRID(resID, arcNo);
 }
 
 /* 800A3D7C-800A3E30 09E6BC 00B4+00 16/16 0/0 0/0 .text initModel__9daAlink_cFP12J3DModelDataUlUl

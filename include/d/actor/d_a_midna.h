@@ -32,6 +32,7 @@ public:
         FLG0_UNK_8000000 = 0x8000000,
         FLG0_NPC_NEAR = 0x100000,
         FLG0_NPC_FAR = 0x40000,
+        FLG0_UNK_20000 = 0x20000,
         FLG0_NO_INPUT = 0x4000,
         FLG0_NO_DRAW = 0x2000,
         FLG0_UNK_400 = 0x400,
@@ -118,6 +119,11 @@ public:
     BOOL checkWolfNoPos() const { return checkStateFlg0(FLG0_UNK_800); }
     int checkMetamorphoseEnable() { return (this->*mpFunc)(); }
     int checkShadowModelDrawDemoForce() const { return checkStateFlg1(FLG1_SHADOW_MODEL_DRAW_DEMO_FORCE); }
+    
+    void setForceNeckAimPos(const cXyz& i_pos) {
+        onStateFlg0(FLG0_UNK_20000);
+        field_0x9c4 = i_pos;
+    }
 
     void onTagWaitPosWarp(const cXyz* param_0) {
         field_0x9ac = *param_0;

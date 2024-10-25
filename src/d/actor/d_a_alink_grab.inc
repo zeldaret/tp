@@ -441,7 +441,9 @@ int daAlink_c::procPickPut() {
 }
 
 /* 800E7894-800E794C 0E21D4 00B8+00 2/2 0/0 0/0 .text checkSetChainPullAnime__9daAlink_cFs */
-void daAlink_c::checkSetChainPullAnime(s16 param_0){// NONMATCHING
+BOOL daAlink_c::checkSetChainPullAnime(s16 param_0) {
+    // NONMATCHING
+    return 0;
 }
 
 /* 800E794C-800E7994 0E228C 0048+00 3/3 0/0 0/0 .text            getChainStickAngleY__9daAlink_cCFs
