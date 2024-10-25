@@ -608,7 +608,7 @@ s32 fopAcM_createWarpHole(const cXyz*, const csXyz*, int, u8, u8, u8);
 
 fopAc_ac_c* fopAcM_myRoomSearchEnemy(s8 roomNo);
 
-s32 fopAcM_createDisappear(const fopAc_ac_c*, const cXyz*, u8, u8, u8);
+s32 fopAcM_createDisappear(const fopAc_ac_c* i_actor, const cXyz* i_pos, u8 i_size, u8 i_type, u8 i_enemyID);
 void fopAcM_setCarryNow(fopAc_ac_c*, int);
 void fopAcM_cancelCarryNow(fopAc_ac_c*);
 s32 fopAcM_otoCheck(const fopAc_ac_c*, f32);

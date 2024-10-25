@@ -9,8 +9,8 @@
 #include "d/d_s_play.h"
 
 // NONMATCHING ?
-static int setMidnaBindEffect(fopEn_enemy_c* i_actorP, Z2CreatureEnemy* i_creatureP,
-                                     cXyz* param_2, cXyz* param_3) {
+static int setMidnaBindEffect(fopEn_enemy_c* i_actorP, Z2CreatureEnemy* i_creatureP, cXyz* i_effPos,
+                              cXyz* i_effSize) {
     static GXColor e_prim[] = {
         {0xFF, 0x78, 0x00, 0x00},
         {0xFF, 0x64, 0x78, 0x00},
@@ -42,7 +42,7 @@ static int setMidnaBindEffect(fopEn_enemy_c* i_actorP, Z2CreatureEnemy* i_creatu
             cXyz sp54(nREG_F(8) + 100.0f, nREG_F(9), nREG_F(10));
             mDoMtx_stack_c::multVec(&sp54, &sp48);
 
-            cXyz sp60 = sp48 - *param_2;
+            cXyz sp60 = sp48 - *i_effPos;
 
             sp68.y = cM_atan2s(sp60.x, sp60.z);
             sp68.x = -cM_atan2s(sp60.y, JMAFastSqrt(sp60.x * sp60.x + sp60.z * sp60.z));
@@ -50,15 +50,15 @@ static int setMidnaBindEffect(fopEn_enemy_c* i_actorP, Z2CreatureEnemy* i_creatu
 
             s32 room_no = fopAcM_GetRoomNo(a_this);
             JPABaseEmitter* emitter = dComIfGp_particle_set(
-                0x29B, param_2, &a_this->tevStr, &sp68, param_3, 0xFF, NULL,
-                room_no, &e_prim[darkworld_check], &e_env[darkworld_check], NULL);
+                0x29B, i_effPos, &a_this->tevStr, &sp68, i_effSize, 0xFF, NULL, room_no,
+                &e_prim[darkworld_check], &e_env[darkworld_check], NULL);
 
             if (emitter != NULL) {
                 emitter->setGlobalParticleHeightScale((JREG_F(7) + 0.01f) * sp60.abs());
             }
 
             room_no = fopAcM_GetRoomNo(a_this);
-            dComIfGp_particle_set(0x29C, param_2, &a_this->tevStr, &a_this->shape_angle, param_3,
+            dComIfGp_particle_set(0x29C, i_effPos, &a_this->tevStr, &a_this->shape_angle, i_effSize,
                                   0xFF, NULL, room_no, &e_prim[darkworld_check],
                                   &e_env[darkworld_check], NULL);
 
@@ -69,8 +69,8 @@ static int setMidnaBindEffect(fopEn_enemy_c* i_actorP, Z2CreatureEnemy* i_creatu
             static u16 eff_id[] = {0x29D, 0x29E, 0x29F};
 
             u32* bind_id = i_actorP->getMidnaBindID(i);
-            *bind_id = dComIfGp_particle_set(*bind_id, eff_id[i], param_2, &a_this->tevStr,
-                                             &a_this->shape_angle, param_3, 0xFF, NULL,
+            *bind_id = dComIfGp_particle_set(*bind_id, eff_id[i], i_effPos, &a_this->tevStr,
+                                             &a_this->shape_angle, i_effSize, 0xFF, NULL,
                                              fopAcM_GetRoomNo(a_this), &e_prim[darkworld_check],
                                              &e_env[darkworld_check], NULL);
         }
