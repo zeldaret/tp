@@ -1891,22 +1891,22 @@ COMPILER_STRIP_GATE(0x80391BA0, &effName_39419);
 #pragma pop
 
 /* 80391BAC-80391BB8 01E20C 000C+00 1/1 0/0 0/0 .rodata          smokeParticleScale$39643 */
-SECTION_RODATA static u8 const smokeParticleScale_39643[12] = {
-    0x3F, 0x33, 0x33, 0x33, 0x3F, 0x33, 0x33, 0x33, 0x3F, 0x33, 0x33, 0x33,
+SECTION_RODATA static Vec const smokeParticleScale_39643 = {
+    0.69999999f, 0.69999999f, 0.69999999f
 };
 COMPILER_STRIP_GATE(0x80391BAC, &smokeParticleScale_39643);
 
 /* 80391BB8-80391BC4 01E218 000C+00 1/1 0/0 0/0 .rodata          wolfWaterCenterScale$39644 */
-SECTION_RODATA static u8 const wolfWaterCenterScale[12] = {
-    0x3F, 0x99, 0x99, 0x9A, 0x3F, 0x99, 0x99, 0x9A, 0x3F, 0x99, 0x99, 0x9A,
+SECTION_RODATA static Vec const wolfWaterCenterScale = {
+    1.2f, 1.2f, 1.2f
 };
 COMPILER_STRIP_GATE(0x80391BB8, &wolfWaterCenterScale);
 
 /* 80391BC4-80391BD0 01E224 000C+00 0/1 0/0 0/0 .rodata          waterScale$39762 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const waterScale_39762[12] = {
-    0x3F, 0x14, 0x7A, 0xE1, 0x3F, 0x14, 0x7A, 0xE1, 0x3F, 0x14, 0x7A, 0xE1,
+SECTION_RODATA static Vec const waterScale_39762 = {
+    0.57999998f, 0.57999998f, 0.57999998f
 };
 COMPILER_STRIP_GATE(0x80391BC4, &waterScale_39762);
 #pragma pop
@@ -1914,8 +1914,8 @@ COMPILER_STRIP_GATE(0x80391BC4, &waterScale_39762);
 /* 80391BD0-80391BDC 01E230 000C+00 0/1 0/0 0/0 .rodata          waterCenterScale$39763 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const waterCenterScale[12] = {
-    0x3F, 0x99, 0x99, 0x9A, 0x3F, 0x99, 0x99, 0x9A, 0x3F, 0x99, 0x99, 0x9A,
+SECTION_RODATA static Vec const waterCenterScale = {
+    1.2f, 1.2f, 1.2f
 };
 COMPILER_STRIP_GATE(0x80391BD0, &waterCenterScale);
 #pragma pop
@@ -1923,8 +1923,8 @@ COMPILER_STRIP_GATE(0x80391BD0, &waterCenterScale);
 /* 80391BDC-80391BE8 01E23C 000C+00 0/1 0/0 0/0 .rodata          waterSmokeScale$39764 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const waterSmokeScale[12] = {
-    0x3F, 0x33, 0x33, 0x33, 0x3F, 0x33, 0x33, 0x33, 0x3F, 0x33, 0x33, 0x33,
+SECTION_RODATA static Vec const waterSmokeScale = {
+    0.69999999f, 0.69999999f, 0.69999999f
 };
 COMPILER_STRIP_GATE(0x80391BDC, &waterSmokeScale);
 #pragma pop
@@ -1932,8 +1932,8 @@ COMPILER_STRIP_GATE(0x80391BDC, &waterSmokeScale);
 /* 80391BE8-80391BF4 01E248 000C+00 0/1 0/0 0/0 .rodata          smokeParticleScale$39891 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const smokeParticleScale_39891[12] = {
-    0x3F, 0x4C, 0xCC, 0xCD, 0x3F, 0x4C, 0xCC, 0xCD, 0x3F, 0x4C, 0xCC, 0xCD,
+SECTION_RODATA static Vec const smokeParticleScale_39891 = {
+    0.8f, 0.8f, 0.8f
 };
 COMPILER_STRIP_GATE(0x80391BE8, &smokeParticleScale_39891);
 #pragma pop
@@ -1941,8 +1941,8 @@ COMPILER_STRIP_GATE(0x80391BE8, &smokeParticleScale_39891);
 /* 80391BF4-80391C00 01E254 000C+00 0/1 0/0 0/0 .rodata          waterScale$39892 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const waterScale_39892[12] = {
-    0x3F, 0xA0, 0x00, 0x00, 0x3F, 0xA0, 0x00, 0x00, 0x3F, 0xA0, 0x00, 0x00,
+SECTION_RODATA static Vec const waterScale_39892 = {
+    1.25f, 1.25f, 1.25f
 };
 COMPILER_STRIP_GATE(0x80391BF4, &waterScale_39892);
 #pragma pop
@@ -1950,8 +1950,8 @@ COMPILER_STRIP_GATE(0x80391BF4, &waterScale_39892);
 /* 80391C00-80391C0C 01E260 000C+00 0/1 0/0 0/0 .rodata          wolfSmokeScale$39893 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const wolfSmokeScale[12] = {
-    0x3F, 0x33, 0x33, 0x33, 0x3F, 0x33, 0x33, 0x33, 0x3F, 0x33, 0x33, 0x33,
+SECTION_RODATA static Vec const wolfSmokeScale = {
+    0.69999999f, 0.69999999f, 0.69999999f
 };
 COMPILER_STRIP_GATE(0x80391C00, &wolfSmokeScale);
 #pragma pop
@@ -1959,8 +1959,8 @@ COMPILER_STRIP_GATE(0x80391C00, &wolfSmokeScale);
 /* 80391C0C-80391C18 01E26C 000C+00 0/1 0/0 0/0 .rodata          shikoScale$40012 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const shikoScale[12] = {
-    0x3F, 0x33, 0x33, 0x33, 0x3F, 0x33, 0x33, 0x33, 0x3F, 0x33, 0x33, 0x33,
+SECTION_RODATA static Vec const shikoScale = {
+    0.69999999f, 0.69999999f, 0.69999999f
 };
 COMPILER_STRIP_GATE(0x80391C0C, &shikoScale);
 #pragma pop
@@ -1968,8 +1968,8 @@ COMPILER_STRIP_GATE(0x80391C0C, &shikoScale);
 /* 80391C18-80391C24 01E278 000C+00 0/1 0/0 0/0 .rodata          pushedSlip$40013 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const pushedSlip[12] = {
-    0x3F, 0x4C, 0xCC, 0xCD, 0x3F, 0x4C, 0xCC, 0xCD, 0x3F, 0x4C, 0xCC, 0xCD,
+SECTION_RODATA static Vec const pushedSlip = {
+    0.8f, 0.8f, 0.8f
 };
 COMPILER_STRIP_GATE(0x80391C18, &pushedSlip);
 #pragma pop
@@ -1977,23 +1977,23 @@ COMPILER_STRIP_GATE(0x80391C18, &pushedSlip);
 /* 80391C24-80391C30 01E284 000C+00 0/1 0/0 0/0 .rodata          loseScale$40014 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const loseScale[12] = {
-    0x3F, 0x8C, 0xCC, 0xCD, 0x3F, 0x8C, 0xCC, 0xCD, 0x3F, 0x8C, 0xCC, 0xCD,
+SECTION_RODATA static Vec const loseScale = {
+    1.1f, 1.1f, 1.1f
 };
 COMPILER_STRIP_GATE(0x80391C24, &loseScale);
 #pragma pop
 
 /* 80391C30-80391C3C 01E290 000C+00 1/1 0/0 0/0 .rodata          releaeScale$40567 */
-SECTION_RODATA static u8 const releaeScale[12] = {
-    0x3F, 0x4C, 0xCC, 0xCD, 0x3F, 0x4C, 0xCC, 0xCD, 0x3F, 0x4C, 0xCC, 0xCD,
+SECTION_RODATA static Vec const releaeScale = {
+    0.8f, 0.8f, 0.8f,
 };
 COMPILER_STRIP_GATE(0x80391C30, &releaeScale);
 
 /* 80391C3C-80391C48 01E29C 000C+00 0/1 0/0 0/0 .rodata          lightAParticleScale$40829 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const lightAParticleScale[12] = {
-    0x3F, 0x80, 0x00, 0x00, 0x3F, 0x95, 0xE3, 0x54, 0x3F, 0x80, 0x00, 0x00,
+SECTION_RODATA static Vec const lightAParticleScale = {
+    1.0f, 1.171f, 1.0f
 };
 COMPILER_STRIP_GATE(0x80391C3C, &lightAParticleScale);
 #pragma pop
@@ -2001,8 +2001,8 @@ COMPILER_STRIP_GATE(0x80391C3C, &lightAParticleScale);
 /* 80391C48-80391C54 01E2A8 000C+00 0/1 0/0 0/0 .rodata          lightALocalTrans$40830 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const lightALocalTrans[12] = {
-    0x42, 0x88, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+SECTION_RODATA static Vec const lightALocalTrans = {
+    68.0f, 0.0f, 0.0f
 };
 COMPILER_STRIP_GATE(0x80391C48, &lightALocalTrans);
 #pragma pop
@@ -2010,8 +2010,8 @@ COMPILER_STRIP_GATE(0x80391C48, &lightALocalTrans);
 /* 80391C54-80391C60 01E2B4 000C+00 0/1 0/0 0/0 .rodata          localOffset$40952 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const localOffset_40952[12] = {
-    0x00, 0x00, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00,
+SECTION_RODATA static Vec const localOffset_40952 = {
+    0.0f, -10.0f, -10.0f
 };
 COMPILER_STRIP_GATE(0x80391C54, &localOffset_40952);
 #pragma pop
@@ -2019,8 +2019,8 @@ COMPILER_STRIP_GATE(0x80391C54, &localOffset_40952);
 /* 80391C60-80391C6C 01E2C0 000C+00 0/1 0/0 0/0 .rodata          localScale0$40953 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const localScale0[12] = {
-    0x3F, 0x33, 0x33, 0x33, 0x3F, 0x59, 0x99, 0x9A, 0x3F, 0xC0, 0x00, 0x00,
+SECTION_RODATA static Vec const localScale0 = {
+    0.69999999f, 0.85f, 1.5f
 };
 COMPILER_STRIP_GATE(0x80391C60, &localScale0);
 #pragma pop
@@ -2028,8 +2028,8 @@ COMPILER_STRIP_GATE(0x80391C60, &localScale0);
 /* 80391C6C-80391C78 01E2CC 000C+00 0/1 0/0 0/0 .rodata          localScale1$40954 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const localScale1[12] = {
-    0x3F, 0x80, 0x00, 0x00, 0x3F, 0x59, 0x99, 0x9A, 0x3F, 0xC0, 0x00, 0x00,
+SECTION_RODATA static Vec const localScale1 = {
+    1.0f, 0.85f, 1.5f
 };
 COMPILER_STRIP_GATE(0x80391C6C, &localScale1);
 #pragma pop
@@ -2037,8 +2037,8 @@ COMPILER_STRIP_GATE(0x80391C6C, &localScale1);
 /* 80391C78-80391C84 01E2D8 000C+00 0/1 0/0 0/0 .rodata          waterEffScale$41082 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const waterEffScale[12] = {
-    0x3F, 0xC0, 0x00, 0x00, 0x3F, 0xC0, 0x00, 0x00, 0x3F, 0xC0, 0x00, 0x00,
+SECTION_RODATA static Vec const waterEffScale = {
+    1.5f, 1.5f, 1.5f
 };
 COMPILER_STRIP_GATE(0x80391C78, &waterEffScale);
 #pragma pop
@@ -3592,12 +3592,13 @@ SECTION_DATA static const char cannonPortal[22] = "SKY_CANNON_WARP_START";
 #pragma pop
 
 /* 803B2CEC-803B2D34 00FE0C 0048+00 1/2 0/0 0/0 .data            m_fEffParamProc__9daAlink_c */
-SECTION_DATA u8 daAlink_c::m_fEffParamProc[72] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+EffParamProc daAlink_c::m_fEffParamProc[] = {
+    &daAlink_c::setEffectFrontRollParam,
+    &daAlink_c::setEffectSlipParam,
+    &daAlink_c::setEffectSmallLandParam,
+    &daAlink_c::setEffectRunParam,
+    &daAlink_c::setEffectLandParam,
+    &daAlink_c::setEffectSumouParam,
 };
 
 /* 803B2D34-803B2D40 00FE54 000C+00 0/1 0/0 0/0 .data            leftRotNormal$41087 */
@@ -4060,7 +4061,7 @@ void daAlink_c::playerInit() {
     mZ2Link.setKanteraState(0);
     mProcID = 0x160;
 
-    m_swordBlur.m_blurTex = (void*)dComIfG_getObjectRes(l_arcName, 0x59);  // blur.bti
+    m_swordBlur.m_blurTex = (ResTIMG*)dComIfG_getObjectRes(l_arcName, 0x59);  // blur.bti
 
     J3DModelData* modelData = mpSwAModel->getModelData();
     m_nSwordBtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 0x44);  // al_swa.btk
@@ -11796,7 +11797,7 @@ void daAlink_c::commonProcInit(daAlink_c::daAlink_PROC i_procID) {
     field_0x2b98 = 0.0f;
     mSpeedModifier = 0.0f;
     field_0x2fb3 = 0;
-    field_0x2f9e = 6;
+    mEffProc = EFFPROC_NONE;
 
     clearCutTurnEffectID();
     if (!checkModeFlg(MODE_SWIMMING)) {

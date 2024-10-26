@@ -414,36 +414,48 @@ public:
     }
 
     static JPAEmitterManager* getEmitterManager() { return mEmitterMng; }
+
     static JPAParticleCallBack* getLight8PcallBack() { 
         return &mLight8PcallBack; 
     }
+
     static JPAParticleCallBack* getGen_b_Light8PcallBack() {
         return &m_b_Light8PcallBack; 
     }
+
     static JPAParticleCallBack* getGen_d_Light8PcallBack() {
         return &m_d_Light8PcallBack; 
     }
+
     static dPa_gen_b_light8EcallBack* getGen_b_Light8EcallBack() {
         return &m_b_Light8EcallBack; 
     }
+
     static dPa_gen_d_light8EcallBack* getGen_d_Light8EcallBack() {
         return &m_d_Light8EcallBack; 
     }
+
     static dPa_light8EcallBack* getLight8EcallBack() {
         return &mLight8EcallBack; 
     }
+
     static JPAParticleCallBack* getParticleTracePCB() {
         return &mParticleTracePCB; 
     }
+
     static JPAParticleCallBack* getFsenthPcallBack() {
         return &mFsenthPcallBack; 
+    }
+
+    static JPAParticleCallBack* getWaterBubblePcallBack() {
+        return &mWaterBubblePcallBack; 
     }
 
     static dPa_selectTexEcallBack mTsubo[8];
     static u8 mLifeBall[24];
     static Mtx mWindViewMatrix;
     static JPAEmitterManager* mEmitterMng;
-    static u8 mWaterBubblePcallBack[4];
+    static JPAParticleCallBack mWaterBubblePcallBack;
     static JPAParticleCallBack mFsenthPcallBack;
     static dPa_light8EcallBack mLight8EcallBack;
     static JPAParticleCallBack mLight8PcallBack;

@@ -20,7 +20,6 @@ public:
     void offDrawFlg() { mDrawFlag = false; }
     void setPos(const cXyz* i_pos) { mPos = *i_pos; }
 
-private:
     /* 0x04 */ bool mDrawFlag;
     /* 0x05 */ u8 field_0x5[3];
     /* 0x08 */ cXyz mPos;
@@ -289,7 +288,9 @@ public:
         FLG2_UNK_20000000 = 0x20000000,
         FLG2_UNK_10000000 = 0x10000000,
         FLG2_UNK_4080000 = 0x4080000,
+        FLG2_UNK_4000000 = 0x4000000,
         FLG2_UNK_2080000 = 0x2080000,
+        FLG2_UNK_2000000 = 0x2000000,
         FLG2_BOAR_SINGLE_BATTLE = 0x1800000,
         FLG2_UNK_8000000 = 0x8000000,
         FLG2_UNK_1000000 = 0x1000000,
@@ -348,6 +349,7 @@ public:
         FLG3_UNK_10 = 0x10,
         FLG3_UNK_8 = 8,
         FLG3_UNK_4 = 4,
+        FLG3_UNK_1 = 1,
     };
 
     enum daPy_ERFLG0 {
@@ -389,8 +391,10 @@ public:
         ERFLG1_UNK_4000000 = 0x4000000,
         ERFLG1_UNK_2000000 = 0x2000000,
         ERFLG1_UNK_1000000 = 0x1000000,
+        ERFLG1_UNK_400000 = 0x400000,
         ERFLG1_UNK_200000 = 0x200000,
         ERFLG1_UNK_100000 = 0x100000,
+        ERFLG1_UNK_80000 = 0x80000,
         ERFLG1_UNK_40000 = 0x40000,
         ERFLG1_UNK_10000 = 0x10000,
         ERFLG1_UNK_8000 = 0x8000,
@@ -445,6 +449,7 @@ public:
         RFLG0_GRAB_UP_END = 0x20,
         RFLG0_UNK_10 = 0x10,
         RFLG0_UNK_8 = 0x8,
+        RFLG0_UNK_4 = 0x4,
         RFLG0_UNK_2 = 0x2,
         RFLG0_UNK_1 = 0x1,
     };
@@ -456,6 +461,10 @@ public:
         RFLG1_UNK_80 = 0x80,
         RFLG1_UNK_40 = 0x40,
         RFLG1_UNK_30 = 0x30,
+        RFLG1_UNK_20 = 0x20,
+        RFLG1_UNK_10 = 0x10,
+        RFLG1_UNK_8 = 0x8,
+        RFLG1_UNK_4 = 0x4,
         RFLG1_UNK_2 = 0x2,
         RFLG1_WOLF_ATTACK_REVERSE = 0x1,
 

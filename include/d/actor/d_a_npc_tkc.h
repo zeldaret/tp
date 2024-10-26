@@ -50,10 +50,14 @@ public:
     /* 80B0FDE4 */ void setAttnPos();
     /* 80B0FFD4 */ bool drawDbgInfo();
 
+    void setStart() { field_0xd7a = 1; }
+
     static u8 mEvtSeqList[48];
 
 private:
-    /* 0x568 */ u8 field_0x568[0xd7c - 0x568];
+    /* 0x568 */ u8 field_0x568[0xd7a - 0x568];
+    /* 0xD7A */ u8 field_0xd7a;
+    /* 0xD7B */ u8 field_0xd7b[0xd7c - 0xd7b];
 };
 
 STATIC_ASSERT(sizeof(daNpcTkc_c) == 0xd7c);

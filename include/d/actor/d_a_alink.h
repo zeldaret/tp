@@ -35,13 +35,18 @@ public:
     /* 800CFE68 */ virtual ~daAlink_lockCursor_c() {}
 
     void initFrame() {
-        field_0x4 = false;
+        field_0x4 = 0;
         field_0x2c = 4.0f;
         field_0x30 = 0.0f;
     }
 
+    void setPos(f32 i_posX, f32 i_posY) {
+        mPosX = i_posX;
+        mPosY = i_posY;
+    }
+
 private:
-    /* 0x04 */ bool field_0x4;
+    /* 0x04 */ u8 field_0x4;
     /* 0x05 */ u8 field_0x5[3];
     /* 0x08 */ J2DScreen* mScrn;
     /* 0x0C */ J2DPane* field_0xc;
@@ -54,8 +59,8 @@ private:
     /* 0x28 */ J2DAnmTransformKey* field_0x28;
     /* 0x2C */ f32 field_0x2c;
     /* 0x30 */ f32 field_0x30;
-    /* 0x34 */ f32 field_0x34;
-    /* 0x38 */ f32 field_0x38;
+    /* 0x34 */ f32 mPosX;
+    /* 0x38 */ f32 mPosY;
 };
 
 class daAlink_sight_c : public daPy_sightPacket_c {
@@ -86,16 +91,16 @@ public:
     /* 800CFD58 */ virtual ~daAlink_blur_c() {}
 
     // private:
-    /* 0x010 */ void* m_blurTex;
+    /* 0x010 */ ResTIMG* m_blurTex;
     /* 0x014 */ int field_0x14;
     /* 0x018 */ u8 field_0x18[4];
     /* 0x01C */ int field_0x1c;
-    /* 0x020 */ u8 field_0x20[4];
+    /* 0x020 */ int field_0x20;
     /* 0x024 */ f32 field_0x24;
     /* 0x028 */ u8 field_0x28[4];
     /* 0x02C */ cXyz field_0x2c;
-    /* 0x038 */ cXyz field_0x38[0x3C];
-    /* 0x308 */ cXyz field_0x308[0x3C];
+    /* 0x038 */ cXyz field_0x38[60];
+    /* 0x308 */ cXyz field_0x308[60];
 };  // Size = 0x5D8
 
 class dAlink_bottleWaterPcallBack_c : public JPAParticleCallBack {
@@ -218,6 +223,7 @@ public:
 
 class daAlink_c;
 typedef int (daAlink_c::*daAlink_procFunc)();
+typedef void (daAlink_c::*EffParamProc)();
 
 struct daAlink_procInitTable {
     /* 0x0 */ daAlink_procFunc m_procFunc;
@@ -1255,6 +1261,16 @@ public:
         /* 0x2 */ DIR_LEFT,
         /* 0x3 */ DIR_RIGHT,
         /* 0x4 */ DIR_NONE,
+    };
+
+    enum daAlink_EFFPROC {
+        EFFPROC_FRONT_ROLL,
+        EFFPROC_SLIP,
+        EFFPROC_SMALL_LAND,
+        EFFPROC_RUN,
+        EFFPROC_LAND,
+        EFFPROC_SUMOU,
+        EFFPROC_NONE,
     };
 
     class firePointEff_c {
@@ -3444,8 +3460,7 @@ public:
 
     static daAlink_procInitTable m_procInitTable[];
     static daAlink_procFunc m_demoInitTable[];
-
-    static u8 m_fEffParamProc[72];
+    static EffParamProc m_fEffParamProc[];
 
     /* 0x0062C */ request_of_phase_process_class mPhaseReq;
     /* 0x00634 */ char* mArcName;
@@ -3660,7 +3675,7 @@ public:
     /* 0x02F9B */ u8 field_0x2f9b;
     /* 0x02F9C */ u8 mSelectItemId;
     /* 0x02F9D */ u8 field_0x2f9d;
-    /* 0x02F9E */ u8 field_0x2f9e;
+    /* 0x02F9E */ u8 mEffProc;
     /* 0x02F9F */ u8 field_0x2f9f;
     /* 0x02FA0 */ u8 field_0x2fa0;
     /* 0x02FA1 */ u8 mRunCutComboCount;
