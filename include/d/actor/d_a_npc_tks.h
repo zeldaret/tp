@@ -30,7 +30,7 @@ public:
     /* 80B15A24 */ void reset();
     /* 80B160A8 */ void setAction(void (daNpcTks_c::*)());
     /* 80B16148 */ void wait();
-    /* 80B16344 */ void setMotionAnm(int, f32);
+    /* 80B16344 */ bool setMotionAnm(int, f32);
     /* 80B16634 */ void waitNude();
     /* 80B1682C */ void waitLv6();
     /* 80B16B74 */ void talk();

@@ -1115,7 +1115,7 @@ void daNpc_zrC_c::setExpression(int param_0, f32 param_1) {
 }
 
 /* 80B8F9F8-80B8FBE4 001ED8 01EC+00 2/0 0/0 0/0 .text            setMotionAnm__11daNpc_zrC_cFif */
-void daNpc_zrC_c::setMotionAnm(int param_0, f32 param_1) {
+bool daNpc_zrC_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 

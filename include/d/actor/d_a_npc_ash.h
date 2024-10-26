@@ -101,7 +101,7 @@ public:
     /* 80959478 */ static BOOL ctrlJointCallBack(J3DJoint*, int);
     /* 809594C4 */ bool setExpressionAnm(int, bool);
     /* 809596E0 */ bool setExpressionBtp(int);
-    /* 809597C0 */ void setMotionAnm(int i_idx, f32 i_morf);
+    /* 809597C0 */ bool setMotionAnm(int i_idx, f32 i_morf);
     /* 80959910 */ void reset();
     /* 80959B28 */ inline bool setAction(ActionFn);
     /* 80959BD0 */ inline bool isSneaking();

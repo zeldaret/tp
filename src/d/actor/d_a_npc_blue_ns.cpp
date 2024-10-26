@@ -912,7 +912,7 @@ void daNpcBlueNS_c::setAttnPos() {
 }
 
 /* 8096A238-8096A308 0019B8 00D0+00 1/0 0/0 0/0 .text            setMotionAnm__13daNpcBlueNS_cFif */
-void daNpcBlueNS_c::setMotionAnm(int param_0, f32 param_1) {
+bool daNpcBlueNS_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 

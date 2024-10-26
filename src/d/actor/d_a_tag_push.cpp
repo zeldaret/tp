@@ -164,12 +164,6 @@ static int daTag_Push_IsDelete(void* i_this) {
     return 1;
 }
 
-/* 804908CC-80490944 00068C 0078+00 1/0 0/0 0/0 .text            __dt__12daTag_Push_cFv */
-inline daTag_Push_c::~daTag_Push_c() {}
-
-/* 80490884-804908CC 000644 0048+00 1/0 0/0 0/0 .text            __dt__18daNpcT_ActorMngr_cFv */
-inline daNpcT_ActorMngr_c::~daNpcT_ActorMngr_c() {}
-
 /* ############################################################################################## */
 /* 80490978-80490998 -00001 0020+00 1/0 0/0 0/0 .data            daTag_Push_MethodTable */
 static actor_method_class daTag_Push_MethodTable = {

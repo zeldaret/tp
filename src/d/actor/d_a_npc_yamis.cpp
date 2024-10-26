@@ -99,7 +99,7 @@ extern "C" void changeBtk__8daNpcT_cFPiPi();
 extern "C" void __sinit_d_a_npc_yamis_cpp();
 extern "C" void
 __ct__13daNpc_yamiS_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc();
-extern "C" bool getEyeballMaterialNo__13daNpc_yamiS_cFv();
+extern "C" s32 getEyeballMaterialNo__13daNpc_yamiS_cFv();
 extern "C" s32 getHeadJointNo__13daNpc_yamiS_cFv();
 extern "C" s32 getNeckJointNo__13daNpc_yamiS_cFv();
 extern "C" bool getBackboneJointNo__13daNpc_yamiS_cFv();
@@ -1240,7 +1240,7 @@ daNpc_yamiS_c::daNpc_yamiS_c(daNpcT_faceMotionAnmData_c const* param_0,
 }
 
 /* 80B49598-80B495A0 003118 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__13daNpc_yamiS_cFv */
-bool daNpc_yamiS_c::getEyeballMaterialNo() {
+s32 daNpc_yamiS_c::getEyeballMaterialNo() {
     return true;
 }
 

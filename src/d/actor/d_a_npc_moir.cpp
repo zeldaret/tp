@@ -884,7 +884,7 @@ void daNpcMoiR_c::setExpressionBtp(int param_0) {
 }
 
 /* 80A7D474-80A7D5C4 0013F4 0150+00 1/0 0/0 0/0 .text            setMotionAnm__11daNpcMoiR_cFif */
-void daNpcMoiR_c::setMotionAnm(int param_0, f32 param_1) {
+bool daNpcMoiR_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 

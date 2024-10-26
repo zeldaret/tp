@@ -36,7 +36,7 @@ public:
     /* 8098D26C */ void setAttnPos();
     /* 8098D58C */ void setExpressionAnm(int, bool);
     /* 8098D848 */ void setExpressionBtp(int);
-    /* 8098D938 */ void setMotionAnm(int, f32);
+    /* 8098D938 */ bool setMotionAnm(int, f32);
     /* 8098DB44 */ void setExpression(int, f32);
     /* 8098DB70 */ void setMotion(int, f32, int);
     /* 8098DBB4 */ bool drawDbgInfo();

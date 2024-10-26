@@ -116,7 +116,7 @@ extern "C" void func_80A063B4(void* _this, int*);
 extern "C" void __sinit_d_a_npc_hoz_cpp();
 extern "C" void
 __ct__11daNpc_Hoz_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc();
-extern "C" bool getEyeballMaterialNo__11daNpc_Hoz_cFv();
+extern "C" s32 getEyeballMaterialNo__11daNpc_Hoz_cFv();
 extern "C" s32 getHeadJointNo__11daNpc_Hoz_cFv();
 extern "C" s32 getNeckJointNo__11daNpc_Hoz_cFv();
 extern "C" bool getBackboneJointNo__11daNpc_Hoz_cFv();
@@ -1780,16 +1780,17 @@ REGISTER_CTORS(0x80A063D0, __sinit_d_a_npc_hoz_cpp);
 /* 80A064E4-80A065A4 0050C4 00C0+00 1/1 0/0 0/0 .text
  * __ct__11daNpc_Hoz_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc
  */
-daNpc_Hoz_c::daNpc_Hoz_c(daNpcT_faceMotionAnmData_c const* param_0,
-                             daNpcT_motionAnmData_c const* param_1,
-                             daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_2, int param_3,
-                             daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_4, int param_5,
-                             daNpcT_evtData_c const* param_6, char** param_7) {
+daNpc_Hoz_c::daNpc_Hoz_c(daNpcT_faceMotionAnmData_c const* param_1,
+                             daNpcT_motionAnmData_c const* param_2,
+                             daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_3, int param_4,
+                             daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_5, int param_6,
+                             daNpcT_evtData_c const* param_7, char** param_8) :
+                             daNpcT_c(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8) {
     // NONMATCHING
 }
 
 /* 80A065A4-80A065AC 005184 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__11daNpc_Hoz_cFv */
-bool daNpc_Hoz_c::getEyeballMaterialNo() {
+s32 daNpc_Hoz_c::getEyeballMaterialNo() {
     return true;
 }
 
@@ -1811,13 +1812,13 @@ s32 daNpc_Hoz_c::getBackboneJointNo() {
 
 /* 80A065C4-80A065D4 0051A4 0010+00 1/0 0/0 0/0 .text            checkChangeJoint__11daNpc_Hoz_cFi
  */
-bool daNpc_Hoz_c::checkChangeJoint(int param_0) {
+int daNpc_Hoz_c::checkChangeJoint(int param_0) {
     // NONMATCHING
 }
 
 /* 80A065D4-80A065E4 0051B4 0010+00 1/0 0/0 0/0 .text            checkRemoveJoint__11daNpc_Hoz_cFi
  */
-bool daNpc_Hoz_c::checkRemoveJoint(int param_0) {
+int daNpc_Hoz_c::checkRemoveJoint(int param_0) {
     // NONMATCHING
 }
 

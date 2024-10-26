@@ -813,7 +813,7 @@ void daNpc_SoldierA_c::setAttnPos() {
 
 /* 80AF0928-80AF0A38 001488 0110+00 1/0 0/0 0/0 .text            setMotionAnm__16daNpc_SoldierA_cFif
  */
-void daNpc_SoldierA_c::setMotionAnm(int param_0, f32 param_1) {
+bool daNpc_SoldierA_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 

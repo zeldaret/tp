@@ -27,7 +27,7 @@ public:
     /* 80AF39B8 */ void main();
     /* 80AF3B30 */ bool ctrlBtk();
     /* 80AF3B38 */ void setAttnPos();
-    /* 80AF4030 */ void setMotionAnm(int, f32);
+    /* 80AF4030 */ bool setMotionAnm(int, f32);
     /* 80AF4130 */ void setMotion(int, f32, int);
     /* 80AF4174 */ bool drawDbgInfo();
     /* 80AF417C */ void drawOtherMdls();

@@ -956,7 +956,7 @@ void daNpc_myna2_c::setExpressionBtp(int param_0) {
 }
 
 /* 80A84EAC-80A84FEC 00110C 0140+00 1/0 0/0 0/0 .text            setMotionAnm__13daNpc_myna2_cFif */
-void daNpc_myna2_c::setMotionAnm(int param_0, f32 param_1) {
+bool daNpc_myna2_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 

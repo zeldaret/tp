@@ -33,7 +33,7 @@ public:
     /* 80D106C8 */ void setExpression(int, f32);
     /* 80D106F4 */ void talk();
     /* 80D10A80 */ void demo();
-    /* 80D11104 */ void setMotionAnm(int, f32);
+    /* 80D11104 */ bool setMotionAnm(int, f32);
     /* 80D11228 */ void warp();
     /* 80D11670 */ void setParam();
     /* 80D116C8 */ void main();

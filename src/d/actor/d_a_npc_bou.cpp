@@ -109,7 +109,7 @@ extern "C" void func_8097258C(void* _this, int*);
 extern "C" void __sinit_d_a_npc_bou_cpp();
 extern "C" void
 __ct__11daNpc_Bou_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc();
-extern "C" bool getEyeballMaterialNo__11daNpc_Bou_cFv();
+extern "C" s32 getEyeballMaterialNo__11daNpc_Bou_cFv();
 extern "C" s32 getHeadJointNo__11daNpc_Bou_cFv();
 extern "C" s32 getNeckJointNo__11daNpc_Bou_cFv();
 extern "C" bool getBackboneJointNo__11daNpc_Bou_cFv();
@@ -1687,7 +1687,7 @@ daNpc_Bou_c::daNpc_Bou_c(daNpcT_faceMotionAnmData_c const* param_0,
 }
 
 /* 809727B4-809727BC 005914 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__11daNpc_Bou_cFv */
-bool daNpc_Bou_c::getEyeballMaterialNo() {
+s32 daNpc_Bou_c::getEyeballMaterialNo() {
     return true;
 }
 

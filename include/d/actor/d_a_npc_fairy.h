@@ -17,7 +17,7 @@ public:
     /* 809B2430 */ void Create();
     /* 809B26E8 */ void CreateHeap();
     /* 809B2B44 */ void setAnmData();
-    /* 809B2C20 */ void setMotionAnm(int, f32, int);
+    /* 809B2C20 */ bool setMotionAnm(int, f32, int);
     /* 809B2E78 */ void afterSetMotionAnm(int, int, f32, int);
     /* 809B2EFC */ void Delete();
     /* 809B2F30 */ void Execute();
@@ -107,7 +107,7 @@ public:
                                  daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
                                  daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
                                  daNpcT_evtData_c const*, char**);
-    /* 809B9238 */ bool getEyeballMaterialNo();
+    /* 809B9238 */ s32 getEyeballMaterialNo();
     /* 809B9240 */ s32 getHeadJointNo();
     /* 809B9248 */ s32 getNeckJointNo();
     /* 809B9250 */ bool getBackboneJointNo();

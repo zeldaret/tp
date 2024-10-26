@@ -740,7 +740,7 @@ void daNpcAshB_c::setExpressionBtp(int param_0) {
 }
 
 /* 8095EEE0-8095F0A4 001180 01C4+00 1/0 0/0 0/0 .text            setMotionAnm__11daNpcAshB_cFif */
-void daNpcAshB_c::setMotionAnm(int param_0, f32 param_1) {
+bool daNpcAshB_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 

@@ -55,7 +55,7 @@ public:
     /* 809F4698 */ void setAttnPos();
     /* 809F4BB0 */ bool setExpressionAnm(int, bool);
     /* 809F4BB8 */ void setExpression(int, f32);
-    /* 809F4BBC */ void setMotionAnm(int, f32);
+    /* 809F4BBC */ bool setMotionAnm(int, f32);
     /* 809F4DE8 */ void setMotion(int, f32, int);
     /* 809F4E2C */ BOOL drawDbgInfo();
     /* 809F4E34 */ void drawOtherMdls();

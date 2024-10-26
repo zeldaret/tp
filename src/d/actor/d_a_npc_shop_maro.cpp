@@ -44,7 +44,7 @@ extern "C" s32 getFootLJointNo__8daNpcT_cFv();
 extern "C" s32 getFootRJointNo__8daNpcT_cFv();
 extern "C" bool getEyeballLMaterialNo__8daNpcT_cFv();
 extern "C" bool getEyeballRMaterialNo__8daNpcT_cFv();
-extern "C" bool getEyeballMaterialNo__8daNpcT_cFv();
+extern "C" s32 getEyeballMaterialNo__8daNpcT_cFv();
 extern "C" void afterJntAnm__8daNpcT_cFi();
 extern "C" void setParam__8daNpcT_cFv();
 extern "C" bool checkChangeEvt__8daNpcT_cFv();
@@ -452,16 +452,6 @@ extern "C" void ctrlSubFaceMotion__8daNpcT_cFi() {
     /* empty function */
 }
 
-/* 80AEC7C0-80AEC7C8 0009E0 0008+00 1/0 0/0 0/0 .text            checkChangeJoint__8daNpcT_cFi */
-bool daNpcT_c::checkChangeJoint(int param_0) {
-    return false;
-}
-
-/* 80AEC7C8-80AEC7D0 0009E8 0008+00 1/0 0/0 0/0 .text            checkRemoveJoint__8daNpcT_cFi */
-bool daNpcT_c::checkRemoveJoint(int param_0) {
-    return false;
-}
-
 /* 80AEC7D0-80AEC7D8 0009F0 0008+00 1/0 0/0 0/0 .text            getBackboneJointNo__8daNpcT_cFv */
 s32 daNpcT_c::getBackboneJointNo() {
     return -1;
@@ -498,12 +488,6 @@ extern "C" bool getEyeballLMaterialNo__8daNpcT_cFv() {
  */
 // bool daNpcT_c::getEyeballRMaterialNo() {
 extern "C" bool getEyeballRMaterialNo__8daNpcT_cFv() {
-    return false;
-}
-
-/* 80AEC808-80AEC810 000A28 0008+00 1/0 0/0 0/0 .text            getEyeballMaterialNo__8daNpcT_cFv
- */
-bool daNpcT_c::getEyeballMaterialNo() {
     return false;
 }
 

@@ -544,7 +544,7 @@ static bool daTag_AllMato_IsDelete(void* param_0) {
 }
 
 /* 80489138-80489180 001C78 0048+00 3/2 0/0 0/0 .text            __dt__18daNpcT_ActorMngr_cFv */
-daNpcT_ActorMngr_c::~daNpcT_ActorMngr_c() {
+void __dt__18daNpcT_ActorMngr_cFv() {
     // NONMATCHING
 }
 

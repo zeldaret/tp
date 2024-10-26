@@ -633,7 +633,7 @@ void daNpcDrSol_c::setAttnPos() {
 }
 
 /* 809AF12C-809AF1FC 0013AC 00D0+00 1/0 0/0 0/0 .text            setMotionAnm__12daNpcDrSol_cFif */
-void daNpcDrSol_c::setMotionAnm(int param_0, f32 param_1) {
+bool daNpcDrSol_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 
