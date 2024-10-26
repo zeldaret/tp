@@ -14,4 +14,6 @@ static s32 fopCam_Draw(camera_class* param_1);
 static int fopCam_Execute(camera_class* pCamera);
 int fopCam_IsDelete(camera_class* pCamera);
 
+extern leafdraw_method_class g_fopCam_Method;
+
 #endif

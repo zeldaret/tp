@@ -31,6 +31,12 @@ public:
     /* 80088464 */ dCamBGChk_c();
 
     f32 WallUpDistance() { return mWallUpDistance; }
+    f32 FwdDistance(s32 param_0) { return mChkInfo[param_0].mDistance; }
+    s16 FwdChkAngle(s32 param_0) { return cAngle::d2s(mChkInfo[param_0].mChkAngle); }
+    f32 FwdWeightH(s32 param_0) { return mChkInfo[param_0].mWeightH; }
+    f32 FwdWeightL(s32 param_0) { return mChkInfo[param_0].mWeightL; }
+    f32 FwdBackMargin() { return mFwdBackMargin; }
+    f32 FwdCushion() { return mFwdCushion; }
 
     // name is a guess for now
     struct ChkInfo {
@@ -79,7 +85,7 @@ public:
     /* 80182C74 */ void Arg0(u8);
     /* 80182C7C */ void Fovy(u8);
     /* 80182C58 */ void Fovy();
-    /* 80182CB4 */ void CheckFlag(u16);
+    /* 80182CB4 */ bool CheckFlag(u16 flag) { return mCurrentStyle->field_0x6 & flag; }
     /* 80182CD0 */ void Val(s32, int);
 
     /* 0x00 */ u8 mMapToolFovy;
@@ -108,7 +114,7 @@ public:
     /* 80182BB8 */ void CheckFlag2(u16);
     /* 80182BE8 */ void WaitRollSpeed();
     /* 80182BF0 */ void WaitRollTimer();
-    /* 80182C1C */ void ThrowTimer();
+    /* 80182C1C */ // void ThrowTimer();
     /* 80182C24 */ void ThrowCushion();
     /* 80182C2C */ void ThrowVAngle();
     /* 80182C34 */ void ThrowCtrAdjust();
@@ -120,6 +126,11 @@ public:
     f32 ManualEndVal() { return mManualEndVal; }
     f32 CinemaScopeTrimHeight() { return mTrimCineScopeHeight; }
     f32 VistaTrimHeight() { return mTrimVistaHeight; }
+    f32 ForceLockOffTimer() { return mForceLockOffTimer; }
+    f32 ForceLockOffDist() { return mForceLockOffDist; }
+    int ThrowTimer() { return mThrowTimer; }
+    f32 USOValue() { return mFalseValue; }
+    f32 USOAngle() { return mFalseAngle; }
 
     /* 0x000 */ f32 mDrawNear;
     /* 0x004 */ f32 mDrawFar;

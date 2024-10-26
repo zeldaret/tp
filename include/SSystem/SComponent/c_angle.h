@@ -63,6 +63,9 @@ struct cAngle {
     /* Converts Radian value into Degree value */
     static f32 r2d(f32 r) { return Radian_to_Degree(r); }
 
+    /* Converts Degree value into Radian value */
+    static f32 d2r(f32 d) { return Degree_to_Radian(d); }
+
     /* Converts Degree value to s16 angle */
     static s16 d2s(f32 d) { return Degree_to_SAngle(d); }
 
@@ -111,15 +114,22 @@ public:
     void Val(const cXyz&);
     cXyz Xyz(void) const;
     void Globe(class cSGlobe*) const;
+
+    void R(f32 i_radial) { mRadial = i_radial; }
+    void U(cSAngle const& i_angle) { mAngle2 = i_angle.Val(); }
+    void V(cSAngle const& i_angle) { mAngle1 = i_angle.Val(); }
 };
 
 class cSGlobe {
 public:
     float mRadius;
-    cSAngle mAzimuth;      // original: V
-    cSAngle mInclination;  // original: U
+    cSAngle mInclination;  // original: V
+    cSAngle mAzimuth;      // original: U
 
     cSGlobe() {}
+
+    void R(f32 i_radius) { mRadius = i_radius; }
+    void U(cSAngle const& i_azimuth) { mAzimuth = i_azimuth.Val(); }
 
     cSGlobe(const cSGlobe&);
     cSGlobe(float, short, short);
@@ -132,8 +142,8 @@ public:
     void Val(float, const cSAngle&, const cSAngle&);
     void Val(const cXyz&);
     float R(void) const { return mRadius; }
-    const cSAngle& V(void) const { return mAzimuth; }
-    const cSAngle& U(void) const { return mInclination; }
+    const cSAngle& V(void) const { return mInclination; }
+    const cSAngle& U(void) const { return mAzimuth; }
     cXyz Xyz(void) const;
     void Polar(cSPolar*) const;
     cXyz Norm(void) const;

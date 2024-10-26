@@ -216,6 +216,8 @@ public:
     void clrFlag(u32 flag) { mFlags &= ~flag; }
     int GetActionCount() { return mActionCount; }
     int GetLockonCount() { return mLockonCount; }
+    void LockSoundOn() { clrFlag(0x400000); }
+    void LockSoundOff() { setFlag(0x400000); }
     bool Lockon() { return LockonTruth() || chkFlag(0x20000000); }  // only matches with -O2?
     int ZHintRequest(fopAc_ac_c* param_1, int param_2) {
         return mZHintTarget.request(param_1, param_2);

@@ -325,6 +325,8 @@ public:
         FLG3_UNK_80000000 = 0x80000000,
         FLG3_UNK_40000000 = 0x40000000,
         FLG3_UNK_20000000 = 0x20000000,
+        FLG3_COPY_ROD_ATN_KEEP = 0x10000000,
+        FLG3_BOOMERANG_ATN_KEEP = 0x8000000,
         FLG3_UNK_4000000 = 0x4000000,
         FLG3_UNK_2000000 = 0x2000000,
         FLG3_UNK_1000000 = 0x1000000,
@@ -445,6 +447,7 @@ public:
         RFLG0_GRAB_UP_END = 0x20,
         RFLG0_UNK_10 = 0x10,
         RFLG0_UNK_8 = 0x8,
+        RFLG0_GRAB_THROW = 0x4,
         RFLG0_UNK_2 = 0x2,
         RFLG0_UNK_1 = 0x1,
     };
@@ -595,8 +598,8 @@ public:
     virtual MtxP getBottleMtx();
     virtual BOOL checkPlayerGuard() const;
     virtual u32 checkPlayerFly() const { return 0; }
-    virtual BOOL checkFrontRoll() const;  // weak
-    virtual BOOL checkWolfDash() const;  // weak
+    virtual BOOL checkFrontRoll() const { return FALSE; }
+    virtual BOOL checkWolfDash() const { return FALSE; }
     virtual BOOL checkAutoJump() const;
     virtual bool checkSideStep() const;
     virtual bool checkWolfTriggerJump() const;
@@ -640,7 +643,7 @@ public:
     virtual bool cancelWolfLock(fopAc_ac_c*);
     virtual s32 getAtnActorID() const { return -1; }
     virtual s32 getItemID() const;
-    virtual s32 getGrabActorID() const;  // weak
+    virtual s32 getGrabActorID() const { return -1; }
     virtual BOOL exchangeGrabActor(fopAc_ac_c*);
     virtual BOOL setForceGrab(fopAc_ac_c*, int, int);
     virtual void setForcePutPos(cXyz const&);
@@ -652,7 +655,7 @@ public:
     virtual void setOutPower(f32, short, int);
     virtual void setGrabCollisionOffset(f32, f32, cBgS_PolyInfo*);
     virtual void onMagneGrab(f32, f32);
-    virtual void onFrollCrashFlg(u8, int);  // weak
+    virtual void onFrollCrashFlg(u8, int) {}
     virtual MtxP getModelJointMtx(u16);
     virtual MtxP getHeadMtx();
     virtual bool setHookshotCarryOffset(fpc_ProcID, cXyz const*);
@@ -684,7 +687,7 @@ public:
     virtual BOOL checkHorseRideNotReady() const;
     virtual bool checkArrowChargeEnd() const;
     virtual f32 getSearchBallScale() const;
-    virtual s16 checkFastShotTime();
+    virtual int checkFastShotTime();
     virtual bool checkNoEquipItem() const;
     virtual bool checkFireMaterial() const;
     virtual bool checkKandelaarSwing(int) const;
@@ -788,6 +791,7 @@ public:
     BOOL checkHorseZelda() const { return checkNoResetFlg2(FLG2_HORSE_ZELDA); }
     BOOL checkSpecialHorseRide() { return checkNoResetFlg2(daPy_FLG2(FLG2_HORSE_ZELDA | FLG2_UNK_1000000 | FLG2_UNK_800000)); }
     BOOL checkBoardNoFootAngle() const { return checkResetFlg1(RFLG1_UNK_40); }
+    bool checkGrabThrow() const { return checkResetFlg0(RFLG0_GRAB_THROW); }
 
     void onBossRoomWait() { onEndResetFlg0(ERFLG0_BOSS_ROOM_WAIT); }
     void onBeeFollow() { onEndResetFlg0(ERFLG0_BEE_FOLLOW); }
@@ -875,6 +879,8 @@ public:
     BOOL checkWolfGrowl() const { return checkResetFlg0(RFLG0_WOLF_GROWL); }
     BOOL checkWolfThreat() const { return checkWolfGrowl(); }
     BOOL checkWolfBark() const { return checkResetFlg0(RFLG0_WOLF_BARK); }
+    u32 checkBoomerangAtnKeep() const { return checkNoResetFlg3(FLG3_BOOMERANG_ATN_KEEP); }
+    u32 checkCopyRodAtnKeep() const { return checkNoResetFlg3(FLG3_COPY_ROD_ATN_KEEP); }
 
     void onPlayerNoDraw() { onNoResetFlg0(FLG0_PLAYER_NO_DRAW); }
     void offPlayerNoDraw() { offNoResetFlg0(FLG0_PLAYER_NO_DRAW); }

@@ -2622,6 +2622,14 @@ inline int dComIfGp_getStagePlightNumInfo() {
     return g_dComIfG_gameInfo.play.getStage().getPlightNumInfo();
 }
 
+inline s16 dComIfGp_getStageWorldRollAngleX() {
+    return g_dComIfG_gameInfo.play.getStage().getWorldRollAngleX();
+}
+
+inline s16 dComIfGp_getStageWorldRollDirAngleY() {
+    return g_dComIfG_gameInfo.play.getStage().getWorldRollDirAngleY();
+}
+
 inline u8 dComIfGp_isHeapLockFlag() {
     return g_dComIfG_gameInfo.play.isHeapLockFlag();
 }

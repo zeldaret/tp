@@ -267,7 +267,7 @@ void dCcMassS_Mng::SetCam(cM3dGCps const& cps) {
 }
 
 /* 80085EB0-80085EB8 0807F0 0008+00 0/0 1/1 0/0 .text            GetResultCam__12dCcMassS_MngCFv */
-u8 dCcMassS_Mng::GetResultCam() const {
+u32 dCcMassS_Mng::GetResultCam() const {
     return mResultCam;
 }
 
