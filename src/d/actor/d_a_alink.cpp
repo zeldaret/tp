@@ -367,63 +367,41 @@ SECTION_SDATA2 static u16 grassWhistleIdx[2] = {
 };
 
 /* 80453094-8045309C 001694 0006+02 1/1 0/0 0/0 .sdata2          effName$40765 */
-SECTION_SDATA2 static u8 effName_40765[6 + 2 /* padding */] = {
-    0x04,
-    0x07,
-    0x04,
-    0x08,
-    0x04,
-    0x09,
-    /* padding */
-    0x00,
-    0x00,
+SECTION_SDATA2 static u16 effName_40765[] = {
+    0x0407,
+    0x0408,
+    0x0409,
 };
 
 /* 8045309C-804530A4 00169C 0006+02 1/1 0/0 0/0 .sdata2          effName0$40950 */
-SECTION_SDATA2 static u8 effName0[6 + 2 /* padding */] = {
-    0x86,
-    0x7D,
-    0x86,
-    0x7E,
-    0x86,
-    0x7F,
-    /* padding */
-    0x00,
-    0x00,
+SECTION_SDATA2 static u16 effName0[] = {
+    0x867D,
+    0x867E,
+    0x867F,
 };
 
 /* 804530A4-804530AC 0016A4 0006+02 1/1 0/0 0/0 .sdata2          effName1$40951 */
-SECTION_SDATA2 static u8 effName1[6 + 2 /* padding */] = {
-    0x89,
-    0x81,
-    0x89,
-    0x82,
-    0x89,
-    0x83,
-    /* padding */
-    0x00,
-    0x00,
+SECTION_SDATA2 static u16 effName1[] = {
+    0x8981,
+    0x8982,
+    0x8983,
 };
 
 /* 804530AC-804530B0 0016AC 0004+00 1/1 0/0 0/0 .sdata2          effNameNormal$41086 */
-SECTION_SDATA2 static u8 effNameNormal[4] = {
-    0x01,
-    0x59,
-    0x01,
-    0x5A,
+SECTION_SDATA2 static u16 effNameNormal[] = {
+    0x0159,
+    0x015A,
 };
 
 /* 804530B0-804530B8 0016B0 0008+00 1/1 0/0 0/0 .sdata2          effNameLight$41091 */
-SECTION_SDATA2 static u8 effNameLight[8] = {
-    0x0A, 0x28, 0x0A, 0x29, 0x0A, 0x2A, 0x0A, 0x2B,
+SECTION_SDATA2 static u16 effNameLight[] = {
+    0x0A28, 0x0A29, 0x0A2A, 0x0A2B,
 };
 
 /* 804530B8-804530BC 0016B8 0004+00 1/1 0/0 0/0 .sdata2          effNameWater$41101 */
-SECTION_SDATA2 static u8 effNameWater[4] = {
-    0x0C,
-    0x52,
-    0x0C,
-    0x53,
+SECTION_SDATA2 static u16 effNameWater[] = {
+    0x0C52,
+    0x0C53,
 };
 
 /* 804530C0-804530C8 0016C0 0008+00 1/1 0/0 0/0 .sdata2          jointID$41285 */
@@ -432,104 +410,74 @@ SECTION_SDATA2 static u8 jointID[8] = {
 };
 
 /* 804530C8-804530D0 0016C8 0008+00 1/1 0/0 0/0 .sdata2          effName$41286 */
-SECTION_SDATA2 static u8 effName_41286[8] = {
-    0x88, 0xE1, 0x88, 0xE2, 0x88, 0xE3, 0x88, 0xE4,
+SECTION_SDATA2 static u16 effName_41286[] = {
+    0x88E1, 0x88E2, 0x88E3, 0x88E4,
 };
 
 /* 804530D0-804530D8 0016D0 0006+02 1/1 0/0 0/0 .sdata2          effName$41312 */
-SECTION_SDATA2 static u8 effName_41312[6 + 2 /* padding */] = {
-    0x0A,
-    0x58,
-    0x0A,
-    0x59,
-    0x0B,
-    0x9D,
-    /* padding */
-    0x00,
-    0x00,
+SECTION_SDATA2 static u16 effName_41312[] = {
+    0x0A58,
+    0x0A59,
+    0x0B9D,
 };
 
 /* 804530D8-804530E0 0016D8 0006+02 1/1 0/0 0/0 .sdata2          name0$41422 */
-SECTION_SDATA2 static u8 name0[6 + 2 /* padding */] = {
-    0x02,
-    0xA3,
-    0x83,
-    0xA2,
-    0x88,
-    0x4F,
-    /* padding */
-    0x00,
-    0x00,
+SECTION_SDATA2 static u16 name0[] = {
+    0x02A3,
+    0x83A2,
+    0x884F,
 };
 
 /* 804530E0-804530E8 0016E0 0006+02 1/1 0/0 0/0 .sdata2          name1$41423 */
-SECTION_SDATA2 static u8 name1[6 + 2 /* padding */] = {
-    0x02,
-    0xA3,
-    0x83,
-    0xA3,
-    0x88,
-    0x50,
-    /* padding */
-    0x00,
-    0x00,
+SECTION_SDATA2 static u16 name1[] = {
+    0x02A3,
+    0x83A3,
+    0x8850,
 };
 
 /* 804530E8-804530F0 0016E8 0006+02 1/1 0/0 0/0 .sdata2          effID$41443 */
-SECTION_SDATA2 static u8 effID[6 + 2 /* padding */] = {
-    0x02,
-    0x44,
-    0x02,
-    0x45,
-    0x02,
-    0x46,
-    /* padding */
-    0x00,
-    0x00,
+SECTION_SDATA2 static u16 effID[] = {
+    0x0244,
+    0x0245,
+    0x0246,
 };
 
 /* 804530F0-804530F4 0016F0 0004+00 1/1 0/0 0/0 .sdata2          normalNameID$41521 */
-SECTION_SDATA2 static u8 normalNameID[4] = {
-    0x83,
-    0x90,
-    0x83,
-    0x91,
+SECTION_SDATA2 static u16 normalNameID[] = {
+    0x8390,
+    0x8391,
 };
 
 /* 804530F4-804530F8 0016F4 0004+00 1/1 0/0 0/0 .sdata2          ganonNameID$41522 */
-SECTION_SDATA2 static u8 ganonNameID[4] = {
-    0x8C,
-    0x2A,
-    0x8C,
-    0x2B,
+SECTION_SDATA2 static u16 ganonNameID[] = {
+    0x8C2A,
+    0x8C2B,
 };
 
 /* 804530F8-80453100 0016F8 0008+00 1/1 0/0 0/0 .sdata2          effDataTable$41650 */
-SECTION_SDATA2 static u8 effDataTable[8] = {
-    0x02, 0xA5, 0x02, 0xA6, 0x02, 0xA7, 0x02, 0xA8,
+SECTION_SDATA2 static u16 effDataTable[] = {
+    0x02A5, 0x02A6, 0x02A7, 0x02A8,
 };
 
 /* 80453104-8045310C 001704 0008+00 1/1 0/0 0/0 .sdata2          cutSplashName$41756 */
-SECTION_SDATA2 static u8 cutSplashName[8] = {
-    0x01, 0xB8, 0x01, 0xB9, 0x01, 0xBA, 0x01, 0xBB,
+SECTION_SDATA2 static u16 cutSplashName[] = {
+    0x01B8, 0x01B9, 0x01BA, 0x01BB,
 };
 
 /* 8045310C-80453110 00170C 0004+00 1/1 0/0 0/0 .sdata2          effName$42224 */
-SECTION_SDATA2 static u8 effName_42224[4] = {
-    0x88,
-    0x18,
-    0x88,
-    0x19,
+SECTION_SDATA2 static u16 effName_42224[] = {
+    0x8818,
+    0x8819,
 };
 
 /* 80453110-80453114 001710 0004+00 1/1 0/0 0/0 .sdata2          effName$42309 */
-SECTION_SDATA2 static u16 effName_42309[2] = {
+SECTION_SDATA2 static u16 effName_42309[] = {
     0x0814,
     0x0815,
 };
 
 /* 80453114-80453118 001714 0004+00 1/1 0/0 0/0 .sdata2          effName$42340 */
-SECTION_SDATA2 static u16 effName_42340[2] = {
+SECTION_SDATA2 static u16 effName_42340[] = {
     0x0816,
     0x0817,
 };
@@ -855,8 +803,8 @@ COMPILER_STRIP_GATE(0x8038FB20, &l_crawlMinSideOffset);
 /* 8038FB2C-8038FB38 01C18C 000C+00 0/2 0/0 0/0 .rodata          l_swordTopLocalN */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const l_swordTopLocalN[12] = {
-    0x42, 0xC8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+SECTION_RODATA static Vec const l_swordTopLocalN = {
+    100.0f, 0.0f, 0.0f
 };
 COMPILER_STRIP_GATE(0x8038FB2C, &l_swordTopLocalN);
 #pragma pop
@@ -864,8 +812,8 @@ COMPILER_STRIP_GATE(0x8038FB2C, &l_swordTopLocalN);
 /* 8038FB38-8038FB44 01C198 000C+00 0/2 0/0 0/0 .rodata          l_swordTopLocalM */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const l_swordTopLocalM[12] = {
-    0x42, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+SECTION_RODATA static Vec const l_swordTopLocalM = {
+    120.0f, 0.0f, 0.0f
 };
 COMPILER_STRIP_GATE(0x8038FB38, &l_swordTopLocalM);
 #pragma pop

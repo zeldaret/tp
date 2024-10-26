@@ -144,6 +144,7 @@ public:
     void setAwayFromCenterSpeed(f32 i_speed) { mAwayFromCenterSpeed = i_speed; }
     void setAwayFromAxisSpeed(f32 i_speed) { mAwayFromAxisSpeed = i_speed; }
     void setSpread(f32 i_spread) { mSpread = i_spread; }
+    void setLocalTranslation(const JGeometry::TVec3<f32>& i_trans) { mLocalTrs.set(i_trans); }
 
     void setGlobalParticleHeightScale(f32 height) {
         mGlobalPScl.y = height;

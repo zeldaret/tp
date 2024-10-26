@@ -610,7 +610,72 @@ void daAlink_c::setEffect() {
 
 /* 801221F0-801225E8 11CB30 03F8+00 1/1 0/0 0/0 .text            setSumouEffect__9daAlink_cFv */
 void daAlink_c::setSumouEffect() {
-    // NONMATCHING
+    daPy_frameCtrl_c* temp_r28 = &mUnderFrameCtrl[0];
+    cXyz sp14;
+
+    if (mProcID == PROC_SUMOU_ACTION) {
+        if ((field_0x3198 == 0x14F) || (field_0x3198 == 0x151) || (field_0x3198 == 0x150)) {
+            JPABaseEmitter* temp_r3 = setEmitter(&field_0x31c8, 0x8538, &current.pos, NULL);
+            if (temp_r3 != NULL) {
+                temp_r3->setGlobalRTMatrix(mpLinkModel->getAnmMtx(9));
+                if (field_0x3198 == 0x151) {
+                    temp_r3->setLifeTime(5);
+                }
+            }
+
+            if (field_0x3198 != 0x150) {
+                if (temp_r28->getFrame() >= 12.0f) {
+                    mDoMtx_multVecZero(mpLinkModel->getAnmMtx(9), &sp14);
+                    setEmitter(&field_0x31cc, 0x8539, &sp14, NULL);
+                    setEmitter(&field_0x31d0, 0x853A, &sp14, &shape_angle);
+                }
+            }
+        } else if (field_0x3198 == 0x145 || field_0x3198 == 0x146 || field_0x3198 == 0x14E || field_0x3198 == 0x147) {
+            if (field_0x3198 != 0x14E && (field_0x3198 == 0x145 || field_0x3198 == 0x146 || temp_r28->getFrame() >= 29.0f)) { 
+                JPABaseEmitter* temp_r3_2 = setEmitter(&field_0x31c8, 0x8542, &field_0x3834, &shape_angle);
+                if (temp_r3_2 != NULL) {
+                    temp_r3_2->setGlobalRTMatrix(mpLinkModel->getAnmMtx(0));
+                }
+
+                JPABaseEmitter* temp_r3_3 = setEmitter(&field_0x31cc, 0x8541, &field_0x3834, &shape_angle);
+                if (temp_r3_3 != NULL) {
+                    temp_r3_3->setGlobalRTMatrix(mpLinkModel->getAnmMtx(0));
+                }
+            }
+
+            if (temp_r28->getFrame() >= 35.0f || (field_0x3198 == 0x14E && temp_r28->getFrame() >= 3.0f) || ((field_0x3198 == 0x145 || field_0x3198 == 0x146) && temp_r28->getFrame() >= 7.0f)) {
+                f32 var_f31;
+                if (field_0x3198 == 0x147) {
+                    var_f31 = 40.0f;
+                } else {
+                    var_f31 = 30.0f;
+                }
+
+                sp14.set(field_0x3834.x + (var_f31 * cM_ssin(shape_angle.y)), field_0x3834.y, field_0x3834.z + (var_f31 * cM_scos(shape_angle.y)));
+                setEmitter(&field_0x31d0, 0x8539, &sp14, NULL);
+                setEmitter(&field_0x31d4, 0x853A, &sp14, &shape_angle);
+            }
+        }
+    } else if (mProcID == PROC_SUMOU_MOVE) {
+        if (field_0x3198 == 0x154) {
+            JPABaseEmitter* temp_r3_4 = setEmitter(&field_0x31c8, 0x8545, &field_0x3834, &shape_angle);
+            if (temp_r3_4 != NULL) {
+                mDoMtx_stack_c::copy(mpLinkModel->getAnmMtx(0));
+                mDoMtx_stack_c::transM(36.0f, 84.0f, 0.0f);
+                temp_r3_4->setGlobalRTMatrix(mDoMtx_stack_c::get());
+            }
+        } else if (field_0x3198 == 0x155) {
+            if (temp_r28->getFrame() >= 17.0f) {
+                JPABaseEmitter* temp_r3_5 = setEmitter(&field_0x31c8, 0x853A, &field_0x3834, &shape_angle);
+                if (temp_r3_5 != NULL) {
+                    mDoMtx_stack_c::copy(mpLinkModel->getAnmMtx(0));
+                    mDoMtx_stack_c::XrotM(0x7FFF);
+                    temp_r3_5->setGlobalRTMatrix(mDoMtx_stack_c::get());
+                    temp_r3_5->setGlobalScale(releaeScale);
+                }
+            }
+        }
+    }
 }
 
 /* 801225E8-80122654 11CF28 006C+00 1/1 0/0 0/0 .text setWaterfallEffect__9daAlink_cFPC4cXyzPUl */
@@ -621,19 +686,127 @@ void daAlink_c::setWaterfallEffect(cXyz const* param_0, u32* param_1) {
 
 /* 80122654-8012277C 11CF94 0128+00 1/1 0/0 0/0 .text            setWaterfallEffect__9daAlink_cFv */
 void daAlink_c::setWaterfallEffect() {
-    // NONMATCHING
+    Vec sp8;
+    if (checkEndResetFlg1(ERFLG1_UNK_800)) {
+        if (checkWolf()) {
+            mDoMtx_multVecZero(mpLinkModel->getAnmMtx(3), &sp8);
+            sp8.y += 5.0f;
+        } else {
+            mDoMtx_multVecZero(mpLinkModel->getAnmMtx(3), &sp8);
+        }
+
+        setWaterfallEffect((cXyz*)&sp8, &field_0x31c8);
+    }
+
+    if (checkWolf() && checkEndResetFlg1(ERFLG1_UNK_1000)) {
+        mDoMtx_multVecZero(mpLinkModel->getAnmMtx(0x1A), &sp8);
+        sp8.y -= 15.0f;
+        setWaterfallEffect((cXyz*)&sp8, &field_0x31d0);
+    }
+
+    if (checkEndResetFlg1(daPy_ERFLG1(ERFLG1_UNK_1000 | ERFLG1_UNK_800))) {
+        seStartOnlyReverbLevel(Z2SE_AL_IN_WATER_FALL);
+    }
 }
 
 /* 8012277C-801228F4 11D0BC 0178+00 1/1 0/0 0/0 .text            setMagneBootsEffect__9daAlink_cFv
  */
 void daAlink_c::setMagneBootsEffect() {
-    // NONMATCHING
+    cXyz sp20;
+
+    int i, j;
+    for (i = 0; i < 2; i++) {
+        if (i == 0) {
+            sp20 = mLeftFootPos - current.pos;
+        } else {
+            sp20 = mRightFootPos - current.pos;
+        }
+
+        if (checkMagneBootsOn()) {
+            mDoMtx_multVecSR(mMagneBootInvMtx, &sp20, &sp20);
+        }
+
+        if (sp20.y < 6.0f) {
+            u32* var_r28 = field_0x3228[i];
+
+            for (j = 0; j < 3; j++, var_r28++) {
+                JPABaseEmitter* temp_r3 = setEmitter(var_r28, effName_40765[j], &current.pos, NULL);
+                if (temp_r3 != NULL) {
+                    if (j == 1) {
+                        temp_r3->setGlobalRTMatrix(mpLinkBootModels[i]->getAnmMtx(1));
+                    } else {
+                        temp_r3->setGlobalRTMatrix(mpLinkBootModels[i]->getAnmMtx(2));
+                    }
+                }
+            }
+        }
+    }
 }
 
 /* 801228F4-80122BBC 11D234 02C8+00 1/1 0/0 0/0 .text            setSwordChargeEffect__9daAlink_cFv
  */
 void daAlink_c::setSwordChargeEffect() {
-    // NONMATCHING
+    f32 var_f30;
+    BOOL temp_r3 = checkMasterSwordEquip();
+    if (temp_r3) {
+        var_f30 = l_swordTopLocalM.x;
+    } else {
+        var_f30 = l_swordTopLocalN.x;
+    }
+
+    f32 var_f31 = m_nSwordBtk->getFrame();
+    if (var_f31 > 0.0f) {
+        cXyz sp50;
+        if (!checkWoodSwordEquip()) {
+            JPABaseEmitter* temp_r3_2 = setEmitter(&field_0x321c, 0x368, &current.pos, NULL);
+            if (temp_r3_2 != NULL) {
+                temp_r3_2->setGlobalRTMatrix(mSwordModel->getBaseTRMtx());
+
+                if (temp_r3) {
+                    temp_r3_2->setGlobalParticleScale(lightAParticleScale);
+                    temp_r3_2->setLocalTranslation(lightALocalTrans);
+                }
+            }
+        }
+
+        cXyz sp44;
+        mDoMtx_multVecSR(mSwordModel->getBaseTRMtx(), &cXyz::BaseX, &sp50);
+        mDoMtx_multVecZero(mSwordModel->getBaseTRMtx(), &sp44);
+
+        if (var_f31 >= 14.0f) {
+            var_f31 = 14.0f;
+        }
+
+        sp50 = sp44 + ((sp50 * (var_f31 + 1.0f)) * (var_f30 / 15.0f));
+        setEmitter(&field_0x3220, 0x36A, &sp50, NULL);
+
+        if (var_f31 >= 14.0f) {
+            setEmitter(&field_0x3224, 0x36B, &sp50, NULL);
+        } else {
+            if (checkWolf() || checkWoodSwordEquip()) {
+                seStartSwordCut(Z2SE_WOLF_POWER_COME);
+            } else {
+                seStartSwordCut(Z2SE_SWORD_POWER_COME);
+            }
+        }
+    } else {
+        JPABaseEmitter* temp_r3_4 = dComIfGp_particle_getEmitter(field_0x321c);
+        if (temp_r3_4 != NULL) {
+            u8 temp_r3_5 = temp_r3_4->getGlobalAlpha();
+            if (temp_r3_5 > 17) {
+                JPABaseEmitter* temp_r3_6 = setEmitter(&field_0x321c, 0x368, &current.pos, NULL);
+                if (temp_r3_6 != NULL) {
+                    temp_r3_6->setGlobalRTMatrix(mSwordModel->getBaseTRMtx());
+                    temp_r3_6->setGlobalAlpha(temp_r3_5 - 17);
+                }
+            } else {
+                temp_r3_4->setGlobalAlpha(0);
+            }
+        }
+
+        stopDrawParticle(field_0x3220);
+        stopDrawParticle(field_0x3224);
+    }
 }
 
 /* 80122BBC-80122F18 11D4FC 035C+00 1/1 0/0 0/0 .text            setElecDamageEffect__9daAlink_cFv
