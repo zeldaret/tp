@@ -59,7 +59,7 @@ extern "C" void __dt__12dBgS_AcchCirFv();
 extern "C" void __dt__10dCcD_GSttsFv();
 extern "C" void __dt__12dBgS_ObjAcchFv();
 extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" bool getEyeballMaterialNo__8daNpcT_cFv();
+extern "C" s32 getEyeballMaterialNo__8daNpcT_cFv();
 extern "C" void setEyeAngleY__15daNpcT_JntAnm_cF4cXyzsifs();
 extern "C" void setEyeAngleX__15daNpcT_JntAnm_cF4cXyzfs();
 extern "C" s32 getHeadJointNo__8daNpcT_cFv();
@@ -862,12 +862,6 @@ extern "C" void __dt__12J3DFrameCtrlFv() {
     // NONMATCHING
 }
 
-/* 80B6E368-80B6E370 0022A8 0008+00 1/0 0/0 0/0 .text            getEyeballMaterialNo__8daNpcT_cFv
- */
-bool daNpcT_c::getEyeballMaterialNo() {
-    return false;
-}
-
 /* 80B6E370-80B6E48C 0022B0 011C+00 1/1 0/0 0/0 .text setEyeAngleY__15daNpcT_JntAnm_cF4cXyzsifs */
 // void daNpcT_JntAnm_c::setEyeAngleY(cXyz param_0, s16 param_1, int param_2, f32 param_3,
 //                                       s16 param_4) {
@@ -928,16 +922,6 @@ s32 daNpcT_c::getBackboneJointNo() {
 // void daNpcT_c::ctrlSubFaceMotion(int param_0) {
 extern "C" void ctrlSubFaceMotion__8daNpcT_cFi() {
     /* empty function */
-}
-
-/* 80B6E6B0-80B6E6B8 0025F0 0008+00 1/0 0/0 0/0 .text            checkChangeJoint__8daNpcT_cFi */
-bool daNpcT_c::checkChangeJoint(int param_0) {
-    return false;
-}
-
-/* 80B6E6B8-80B6E6C0 0025F8 0008+00 1/0 0/0 0/0 .text            checkRemoveJoint__8daNpcT_cFi */
-bool daNpcT_c::checkRemoveJoint(int param_0) {
-    return false;
 }
 
 /* 80B6E6C0-80B6E6C8 002600 0008+00 1/0 0/0 0/0 .text            getFootLJointNo__8daNpcT_cFv */

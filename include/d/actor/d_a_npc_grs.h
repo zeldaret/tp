@@ -30,7 +30,7 @@ public:
     /* 809E5874 */ void setExpressionAnm(int, bool);
     /* 809E5A08 */ void setExpressionBtp(int);
     /* 809E5B1C */ void setExpression(int, f32);
-    /* 809E5B48 */ void setMotionAnm(int, f32);
+    /* 809E5B48 */ bool setMotionAnm(int, f32);
     /* 809E5CB8 */ void setMotion(int, f32, int);
     /* 809E5CFC */ bool drawDbgInfo();
     /* 809E5D04 */ void drawOtherMdls();

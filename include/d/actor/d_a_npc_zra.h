@@ -233,7 +233,7 @@ public:
     /* 80B7B9D4 */ bool setExpressionAnm(int, bool);
     /* 80B7BD60 */ bool setExpressionBtp(int);
     /* 80B7BE74 */ void setExpression(int, f32);
-    /* 80B7BEA0 */ void setMotionAnm(int, f32);
+    /* 80B7BEA0 */ bool setMotionAnm(int, f32);
     /* 80B7C070 */ void setMotionWaterAnm(int);
     /* 80B7C308 */ void setMotion(int, f32, BOOL);
     /* 80B7C34C */ BOOL drawDbgInfo();

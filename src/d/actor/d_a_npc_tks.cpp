@@ -1431,7 +1431,7 @@ void daNpcTks_c::wait() {
 }
 
 /* 80B16344-80B16634 001E04 02F0+00 1/0 0/0 0/0 .text            setMotionAnm__10daNpcTks_cFif */
-void daNpcTks_c::setMotionAnm(int param_0, f32 param_1) {
+bool daNpcTks_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 

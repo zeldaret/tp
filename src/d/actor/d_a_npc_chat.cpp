@@ -2906,7 +2906,7 @@ void daNpcChat_c::setExpressionBtp(int param_0) {
 }
 
 /* 80983168-80983584 002A08 041C+00 3/0 0/0 0/0 .text            setMotionAnm__11daNpcChat_cFif */
-void daNpcChat_c::setMotionAnm(int param_0, f32 param_1) {
+bool daNpcChat_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 

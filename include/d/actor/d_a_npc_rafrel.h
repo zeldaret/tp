@@ -25,7 +25,7 @@ public:
     /* 80ABA698 */ void ctrlJointCallBack(J3DJoint*, int);
     /* 80ABA6E4 */ void setExpressionAnm(int, bool);
     /* 80ABA8EC */ void setExpressionBtp(int);
-    /* 80ABA9CC */ void setMotionAnm(int, f32);
+    /* 80ABA9CC */ bool setMotionAnm(int, f32);
     /* 80ABAB88 */ void reset();
     /* 80ABADC4 */ void setWaitAction();
     /* 80ABAFBC */ void isSneaking();

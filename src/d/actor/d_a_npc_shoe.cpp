@@ -889,7 +889,7 @@ void daNpcShoe_c::lookat() {
 }
 
 /* 80AE9A00-80AE9AD0 0021A0 00D0+00 1/0 0/0 0/0 .text            setMotionAnm__11daNpcShoe_cFif */
-void daNpcShoe_c::setMotionAnm(int param_0, f32 param_1) {
+bool daNpcShoe_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 

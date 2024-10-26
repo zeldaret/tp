@@ -813,7 +813,7 @@ void daNpcBouS_c::setExpressionBtp(int param_0) {
 }
 
 /* 809745F4-80974730 001194 013C+00 1/0 0/0 0/0 .text            setMotionAnm__11daNpcBouS_cFif */
-void daNpcBouS_c::setMotionAnm(int param_0, f32 param_1) {
+bool daNpcBouS_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 

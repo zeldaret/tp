@@ -179,7 +179,7 @@ extern "C" void getFaceMotionAnm__10daNpc_Kn_cF26daNpcT_faceMotionAnmData_c();
 extern "C" void getMotionAnm__10daNpc_Kn_cF22daNpcT_motionAnmData_c();
 extern "C" void
 __ct__10daNpc_Kn_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc();
-extern "C" bool getEyeballMaterialNo__10daNpc_Kn_cFv();
+extern "C" s32 getEyeballMaterialNo__10daNpc_Kn_cFv();
 extern "C" bool getEyeballLMaterialNo__10daNpc_Kn_cFv();
 extern "C" bool getEyeballRMaterialNo__10daNpc_Kn_cFv();
 extern "C" void func_80A3BD2C(void* _this, s16*);
@@ -4595,12 +4595,12 @@ void daNpc_Kn_c::clrParam() {
 
 /* 80A3A568-80A3A7C0 00FC48 0258+00 2/2 0/0 0/0 .text            setFaceMotionAnm__10daNpc_Kn_cFib
  */
-void daNpc_Kn_c::setFaceMotionAnm(int param_0, bool param_1) {
+bool daNpc_Kn_c::setFaceMotionAnm(int param_0, bool param_1) {
     // NONMATCHING
 }
 
 /* 80A3A7C0-80A3AA58 00FEA0 0298+00 2/2 0/0 0/0 .text            setMotionAnm__10daNpc_Kn_cFifi */
-void daNpc_Kn_c::setMotionAnm(int param_0, f32 param_1, int param_2) {
+bool daNpc_Kn_c::setMotionAnm(int param_0, f32 param_1, int param_2) {
     // NONMATCHING
 }
 
@@ -4756,7 +4756,7 @@ daNpc_Kn_c::daNpc_Kn_c(daNpcT_faceMotionAnmData_c const* param_0,
 }
 
 /* 80A3BD14-80A3BD1C 0113F4 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__10daNpc_Kn_cFv */
-bool daNpc_Kn_c::getEyeballMaterialNo() {
+s32 daNpc_Kn_c::getEyeballMaterialNo() {
     return false;
 }
 

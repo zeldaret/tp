@@ -161,7 +161,7 @@ __ct__13daNpc_Fairy_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPC
 extern "C" void __dt__12J3DFrameCtrlFv();
 extern "C" void __dt__8cM3dGCylFv();
 extern "C" void __dt__8cM3dGAabFv();
-extern "C" bool getEyeballMaterialNo__13daNpc_Fairy_cFv();
+extern "C" s32 getEyeballMaterialNo__13daNpc_Fairy_cFv();
 extern "C" s32 getHeadJointNo__13daNpc_Fairy_cFv();
 extern "C" s32 getNeckJointNo__13daNpc_Fairy_cFv();
 extern "C" bool getBackboneJointNo__13daNpc_Fairy_cFv();
@@ -1638,7 +1638,7 @@ void daNpc_Fairy_c::setAnmData() {
 
 /* 809B2C20-809B2E78 001200 0258+00 1/0 0/0 0/0 .text            setMotionAnm__13daNpc_Fairy_cFifi
  */
-void daNpc_Fairy_c::setMotionAnm(int param_0, f32 param_1, int param_2) {
+bool daNpc_Fairy_c::setMotionAnm(int param_0, f32 param_1, int param_2) {
     // NONMATCHING
 }
 
@@ -2709,7 +2709,7 @@ extern "C" void __dt__8cM3dGAabFv() {
 }
 
 /* 809B9238-809B9240 007818 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__13daNpc_Fairy_cFv */
-bool daNpc_Fairy_c::getEyeballMaterialNo() {
+s32 daNpc_Fairy_c::getEyeballMaterialNo() {
     return true;
 }
 

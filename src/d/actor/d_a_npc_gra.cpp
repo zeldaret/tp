@@ -1830,7 +1830,7 @@ void daNpc_grA_c::setExpression(int param_0, f32 param_1) {
 }
 
 /* 809C0E44-809C1018 0025E4 01D4+00 2/0 0/0 0/0 .text            setMotionAnm__11daNpc_grA_cFif */
-void daNpc_grA_c::setMotionAnm(int param_0, f32 param_1) {
+bool daNpc_grA_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 

@@ -1150,7 +1150,7 @@ COMPILER_STRIP_GATE(0x809919D8, &lit_4808);
 #pragma pop
 
 /* 8098D938-8098DB44 001B18 020C+00 2/0 0/0 0/0 .text            setMotionAnm__11daNpcChin_cFif */
-void daNpcChin_c::setMotionAnm(int param_0, f32 param_1) {
+bool daNpcChin_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 

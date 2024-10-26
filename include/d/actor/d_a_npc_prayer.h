@@ -26,7 +26,7 @@ public:
     /* 80AB38A0 */ void setParam();
     /* 80AB390C */ void main();
     /* 80AB3964 */ void setAttnPos();
-    /* 80AB3B0C */ void setMotionAnm(int, f32);
+    /* 80AB3B0C */ bool setMotionAnm(int, f32);
     /* 80AB3BDC */ void setMotion(int, f32, int);
     /* 80AB3C24 */ bool drawDbgInfo();
     /* 80AB3C2C */ void reset();

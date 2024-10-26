@@ -145,8 +145,8 @@ public:
     /* 80A3A2A8 */ void evtOrder();
     /* 80A3A404 */ void evtChange();
     /* 80A3A504 */ void clrParam();
-    /* 80A3A568 */ void setFaceMotionAnm(int, bool);
-    /* 80A3A7C0 */ void setMotionAnm(int, f32, int);
+    /* 80A3A568 */ bool setFaceMotionAnm(int, bool);
+    /* 80A3A7C0 */ bool setMotionAnm(int, f32, int);
     /* 80A3AA58 */ void setPos(cXyz);
     /* 80A3AAF0 */ void setAngle(s16);
     /* 80A3AB18 */ void chkActorInSight(fopAc_ac_c*, f32, s16);
@@ -174,7 +174,7 @@ public:
                               daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
                               daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
                               daNpcT_evtData_c const*, char**);
-    /* 80A3BD14 */ bool getEyeballMaterialNo();
+    /* 80A3BD14 */ s32 getEyeballMaterialNo();
     /* 80A3BD1C */ bool getEyeballLMaterialNo();
     /* 80A3BD24 */ bool getEyeballRMaterialNo();
     /* 80A3C998 */ void setParamTeach01();

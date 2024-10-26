@@ -845,7 +845,7 @@ void daNpcTkc_c::reset() {
 }
 
 /* 80B0DA94-80B0DBC8 0013B4 0134+00 1/0 0/0 0/0 .text            setMotionAnm__10daNpcTkc_cFif */
-void daNpcTkc_c::setMotionAnm(int param_0, f32 param_1) {
+bool daNpcTkc_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 

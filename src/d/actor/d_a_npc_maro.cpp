@@ -124,7 +124,7 @@ extern "C" void func_8056469C(void* _this, int*);
 extern "C" void __sinit_d_a_npc_maro_cpp();
 extern "C" void
 __ct__12daNpc_Maro_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc();
-extern "C" bool getEyeballMaterialNo__12daNpc_Maro_cFv();
+extern "C" s32 getEyeballMaterialNo__12daNpc_Maro_cFv();
 extern "C" s32 getHeadJointNo__12daNpc_Maro_cFv();
 extern "C" s32 getNeckJointNo__12daNpc_Maro_cFv();
 extern "C" bool getBackboneJointNo__12daNpc_Maro_cFv();
@@ -2491,7 +2491,7 @@ daNpc_Maro_c::daNpc_Maro_c(daNpcT_faceMotionAnmData_c const* param_0,
 }
 
 /* 80564970-80564978 0094D0 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__12daNpc_Maro_cFv */
-bool daNpc_Maro_c::getEyeballMaterialNo() {
+s32 daNpc_Maro_c::getEyeballMaterialNo() {
     return true;
 }
 

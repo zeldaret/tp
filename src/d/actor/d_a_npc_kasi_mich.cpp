@@ -1055,7 +1055,7 @@ void daNpcKasiMich_c::setAttnPos() {
 
 /* 80A27184-80A27254 0010A4 00D0+00 1/0 0/0 0/0 .text            setMotionAnm__15daNpcKasiMich_cFif
  */
-void daNpcKasiMich_c::setMotionAnm(int param_0, f32 param_1) {
+bool daNpcKasiMich_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 

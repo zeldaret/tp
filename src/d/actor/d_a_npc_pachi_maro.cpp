@@ -129,7 +129,7 @@ extern "C" void changeBtk__8daNpcT_cFPiPi();
 extern "C" void __sinit_d_a_npc_pachi_maro_cpp();
 extern "C" void
 __ct__18daNpc_Pachi_Maro_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc();
-extern "C" bool getEyeballMaterialNo__18daNpc_Pachi_Maro_cFv();
+extern "C" s32 getEyeballMaterialNo__18daNpc_Pachi_Maro_cFv();
 extern "C" s32 getHeadJointNo__18daNpc_Pachi_Maro_cFv();
 extern "C" s32 getNeckJointNo__18daNpc_Pachi_Maro_cFv();
 extern "C" bool getBackboneJointNo__18daNpc_Pachi_Maro_cFv();
@@ -1701,7 +1701,7 @@ daNpc_Pachi_Maro_c::daNpc_Pachi_Maro_c(
 
 /* 80A9B7E0-80A9B7E8 003C40 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__18daNpc_Pachi_Maro_cFv
  */
-bool daNpc_Pachi_Maro_c::getEyeballMaterialNo() {
+s32 daNpc_Pachi_Maro_c::getEyeballMaterialNo() {
     return true;
 }
 

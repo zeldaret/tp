@@ -1397,7 +1397,7 @@ void daNpc_GWolf_c::setExpression(int param_0, f32 param_1) {
 }
 
 /* 809F4BBC-809F4DE8 001BFC 022C+00 2/0 0/0 0/0 .text            setMotionAnm__13daNpc_GWolf_cFif */
-void daNpc_GWolf_c::setMotionAnm(int param_0, f32 param_1) {
+bool daNpc_GWolf_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 

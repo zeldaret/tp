@@ -36,7 +36,7 @@ public:
 
     /* 0x568 */ daNpcT_ActorMngr_c mActorMngr;
 
-    /* 804908CC */ virtual ~daTag_Push_c();
+    /* 804908CC */ virtual ~daTag_Push_c() {}
 };
 
 STATIC_ASSERT(sizeof(daTag_Push_c) == 0x574);

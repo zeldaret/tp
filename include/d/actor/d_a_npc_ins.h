@@ -25,7 +25,7 @@ public:
     /* 80A0F2AC */ void ctrlJointCallBack(J3DJoint*, int);
     /* 80A0F2F8 */ void setExpressionAnm(int, bool);
     /* 80A0F538 */ void setExpressionBtp(int);
-    /* 80A0F618 */ void setMotionAnm(int, f32);
+    /* 80A0F618 */ bool setMotionAnm(int, f32);
     /* 80A0F78C */ void reset();
     /* 80A0F984 */ void waitShop(void*);
     /* 80A0FF40 */ void setMotion(int, f32, int);

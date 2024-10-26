@@ -1583,6 +1583,10 @@ inline bool dComIfGs_isCollectCrystal(u8 i_item) {
     return g_dComIfG_gameInfo.info.getPlayer().getCollect().isCollectCrystal(i_item);
 }
 
+inline bool dComIfGs_isCollectShield(u8 i_item) {
+    return g_dComIfG_gameInfo.info.getPlayer().getCollect().isCollect(2, i_item);
+}
+
 inline void dComIfGs_onCollectMirror(u8 i_item) {
     g_dComIfG_gameInfo.info.getPlayer().getCollect().onCollectMirror(i_item);
 }

@@ -1054,7 +1054,7 @@ void daNpcKasiKyu_c::setAttnPos() {
 
 /* 80A22984-80A22A54 0010A4 00D0+00 1/0 0/0 0/0 .text            setMotionAnm__14daNpcKasiKyu_cFif
  */
-void daNpcKasiKyu_c::setMotionAnm(int param_0, f32 param_1) {
+bool daNpcKasiKyu_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 

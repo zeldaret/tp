@@ -104,7 +104,7 @@ extern "C" void func_80B52004(void* _this, int*);
 extern "C" void __sinit_d_a_npc_yelia_cpp();
 extern "C" void
 __ct__13daNpc_Yelia_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc();
-extern "C" bool getEyeballMaterialNo__13daNpc_Yelia_cFv();
+extern "C" s32 getEyeballMaterialNo__13daNpc_Yelia_cFv();
 extern "C" s32 getHeadJointNo__13daNpc_Yelia_cFv();
 extern "C" s32 getNeckJointNo__13daNpc_Yelia_cFv();
 extern "C" bool getBackboneJointNo__13daNpc_Yelia_cFv();
@@ -1808,7 +1808,7 @@ daNpc_Yelia_c::daNpc_Yelia_c(daNpcT_faceMotionAnmData_c const* param_0,
 }
 
 /* 80B521E4-80B521EC 004FC4 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__13daNpc_Yelia_cFv */
-bool daNpc_Yelia_c::getEyeballMaterialNo() {
+s32 daNpc_Yelia_c::getEyeballMaterialNo() {
     return true;
 }
 

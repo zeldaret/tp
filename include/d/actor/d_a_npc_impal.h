@@ -25,7 +25,7 @@ public:
     /* 80A087DC */ void ctrlJointCallBack(J3DJoint*, int);
     /* 80A08828 */ void setExpressionAnm(int, bool);
     /* 80A08A68 */ void setExpressionBtp(int);
-    /* 80A08B48 */ void setMotionAnm(int, f32);
+    /* 80A08B48 */ bool setMotionAnm(int, f32);
     /* 80A08CBC */ void reset();
     /* 80A08EB8 */ void setAction(bool (daNpcImpal_c::*)(void*));
     /* 80A090E8 */ void wait(void*);

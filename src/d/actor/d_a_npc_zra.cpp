@@ -1458,7 +1458,7 @@ void daNpc_zrA_c::setExpression(int i_expression, f32 i_morf) {
 }
 
 /* 80B7BEA0-80B7C070 003A80 01D0+00 2/0 0/0 0/0 .text            setMotionAnm__11daNpc_zrA_cFif */
-void daNpc_zrA_c::setMotionAnm(int i_idx, f32 i_morf) {
+bool daNpc_zrA_c::setMotionAnm(int i_idx, f32 i_morf) {
     J3DAnmTransformKey* bck_anm = NULL;
     J3DAnmTextureSRTKey* btk_anm = NULL;
     int btk_idx = 0;

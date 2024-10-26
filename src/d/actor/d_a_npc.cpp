@@ -1156,19 +1156,12 @@ void daNpcT_JntAnm_c::calcJntRad(f32 param_0, f32 param_1, f32 param_2) {
     // NONMATCHING
 }
 
-/* ############################################################################################## */
-/* 80453430-80453434 001A30 0004+00 1/1 0/0 0/0 .sdata2          @5422 */
-SECTION_SDATA2 static f32 lit_5422 = 10922.0f;
-
-/* 80453434-80453438 001A34 0004+00 1/1 0/0 0/0 .sdata2          @5423 */
-SECTION_SDATA2 static f32 lit_5423 = 7281.0f;
-
 /* 80147DCC-80147E3C 14270C 0070+00 0/0 0/0 28/28 .text
  * setParam__19daNpcT_DmgStagger_cFP10fopAc_ac_cP10fopAc_ac_cs  */
 void daNpcT_DmgStagger_c::setParam(fopAc_ac_c* i_actor1, fopAc_ac_c* i_actor2, s16 i_angle) {
     if (i_actor2 && i_actor1) {
-        field_0xc = FLOAT_LABEL(lit_5422);
-        field_0x10 = FLOAT_LABEL(lit_5423);
+        field_0xc[0] = 10922.0f;
+        field_0xc[1] = 7281.0f;
         field_0x16 = fopAcM_searchActorAngleY(i_actor1, i_actor2) - i_angle;
         mStagger = 0x4000;
     }
@@ -1844,12 +1837,12 @@ void daNpcT_c::clrParam() {
 }
 
 /* 8014A388-8014A628 144CC8 02A0+00 1/1 0/0 57/57 .text            setFaceMotionAnm__8daNpcT_cFib */
-void daNpcT_c::setFaceMotionAnm(int param_0, bool param_1) {
+bool daNpcT_c::setFaceMotionAnm(int param_0, bool param_1) {
     // NONMATCHING
 }
 
 /* 8014A628-8014A908 144F68 02E0+00 1/0 1/0 59/0 .text            setMotionAnm__8daNpcT_cFifi */
-void daNpcT_c::setMotionAnm(int param_0, f32 param_1, int param_2) {
+bool daNpcT_c::setMotionAnm(int param_0, f32 param_1, int param_2) {
     // NONMATCHING
 }
 
@@ -1916,20 +1909,20 @@ SECTION_SDATA2 static f32 lit_6775 = 180.0f;
 
 /* 8014ABD0-8014ACF0 145510 0120+00 2/2 0/0 53/53 .text chkActorInSight__8daNpcT_cFP10fopAc_ac_cfs
  */
-void daNpcT_c::chkActorInSight(fopAc_ac_c* param_0, f32 param_1, s16 param_2) {
+BOOL daNpcT_c::chkActorInSight(fopAc_ac_c* param_0, f32 param_1, s16 param_2) {
     // NONMATCHING
 }
 
 /* 8014ACF0-8014ADA0 145630 00B0+00 2/2 0/0 12/12 .text chkPointInArea__8daNpcT_cF4cXyz4cXyzfffs
  */
-void daNpcT_c::chkPointInArea(cXyz param_0, cXyz param_1, f32 param_2, f32 param_3, f32 param_4,
+BOOL daNpcT_c::chkPointInArea(cXyz param_0, cXyz param_1, f32 param_2, f32 param_3, f32 param_4,
                                   s16 param_5) {
     // NONMATCHING
 }
 
 /* 8014ADA0-8014AE1C 1456E0 007C+00 1/1 0/0 1/1 .text chkPointInArea__8daNpcT_cF4cXyz4cXyz4cXyzs
  */
-void daNpcT_c::chkPointInArea(cXyz param_0, cXyz param_1, cXyz param_2, s16 param_3) {
+BOOL daNpcT_c::chkPointInArea(cXyz param_0, cXyz param_1, cXyz param_2, s16 param_3) {
     // NONMATCHING
 }
 
@@ -1974,7 +1967,7 @@ void daNpcT_c::chkFindWolf(s16 param_0, int param_1, int param_2, f32 param_3, f
 }
 
 /* 8014B338-8014B3EC 145C78 00B4+00 0/0 0/0 75/75 .text            srchPlayerActor__8daNpcT_cFv */
-void daNpcT_c::srchPlayerActor() {
+BOOL daNpcT_c::srchPlayerActor() {
     // NONMATCHING
 }
 
@@ -2000,7 +1993,7 @@ void daNpcT_c::turn(s16 param_0, int param_1, int param_2) {
 }
 
 /* 8014B648-8014B808 145F88 01C0+00 0/0 0/0 177/177 .text            step__8daNpcT_cFsiiii */
-void daNpcT_c::step(s16 param_0, int param_1, int param_2, int param_3, int param_4) {
+int daNpcT_c::step(s16 param_0, int param_1, int param_2, int param_3, int param_4) {
     // NONMATCHING
 }
 
@@ -2039,7 +2032,7 @@ int daNpcT_c::initTalk(int param_0, fopAc_ac_c** param_1) {
 
 /* 8014BC78-8014BE2C 1465B8 01B4+00 0/0 0/0 169/169 .text talkProc__8daNpcT_cFPiiPP10fopAc_ac_ci
  */
-void daNpcT_c::talkProc(int* param_0, int param_1, fopAc_ac_c** param_2, int param_3) {
+int daNpcT_c::talkProc(int* param_0, int param_1, fopAc_ac_c** param_2, int param_3) {
     // NONMATCHING
 }
 
@@ -2066,7 +2059,7 @@ fopAc_ac_c* daNpcT_c::getNearestActorP(s16 param_0) {
 
 
 /* 8014BEE4-8014BFB0 146824 00CC+00 0/0 0/0 12/12 .text            getEvtAreaTagP__8daNpcT_cFii */
-void daNpcT_c::getEvtAreaTagP(int param_0, int param_1) {
+fopAc_ac_c* daNpcT_c::getEvtAreaTagP(int param_0, int param_1) {
     // NONMATCHING
 }
 
@@ -2258,13 +2251,6 @@ daNpcT_Hermite_c::~daNpcT_Hermite_c() {
     // NONMATCHING
 }
 
-/* 8014CBF4-8014CC0C 147534 0018+00 1/0 1/0 0/0 .text            decTmr__8daNpcT_cFv */
-void daNpcT_c::decTmr() {
-    if (mTimer != 0) {
-        mTimer--;
-    }
-}
-
 /* 8014CC0C-8014CC10 14754C 0004+00 1/0 1/0 0/0 .text            setCollision__8daNpcT_cFv */
 void daNpcT_c::setCollision() {
     /* empty function */
@@ -2276,7 +2262,8 @@ void daNpcT_c::setAttnPos() {
 }
 
 /* 8014CC14-8014CC18 147554 0004+00 1/0 1/0 0/0 .text            ctrlSubFaceMotion__8daNpcT_cFi */
-void daNpcT_c::ctrlSubFaceMotion(int param_0) {
+//void daNpcT_c::ctrlSubFaceMotion(int param_0) {
+void ctrlSubFaceMotion__8daNpcT_cFi() {
     /* empty function */
 }
 
@@ -2305,23 +2292,8 @@ void daNpcT_c::drawOtherMdl() {
     /* empty function */
 }
 
-/* 8014CC2C-8014CC30 14756C 0004+00 1/0 1/0 0/0 .text            drawGhost__8daNpcT_cFv */
-void daNpcT_c::drawGhost() {
-    /* empty function */
-}
-
 /* 8014CC30-8014CC38 147570 0008+00 1/0 1/0 0/0 .text            drawDbgInfo__8daNpcT_cFv */
 int daNpcT_c::drawDbgInfo() {
-    return false;
-}
-
-/* 8014CC38-8014CC40 147578 0008+00 1/0 1/0 0/0 .text            checkRemoveJoint__8daNpcT_cFi */
-bool daNpcT_c::checkRemoveJoint(int param_0) {
-    return false;
-}
-
-/* 8014CC40-8014CC48 147580 0008+00 1/0 1/0 0/0 .text            checkChangeJoint__8daNpcT_cFi */
-bool daNpcT_c::checkChangeJoint(int param_0) {
     return false;
 }
 
@@ -2393,51 +2365,12 @@ extern "C" bool afterSetFaceMotionAnm__8daNpcT_cFiifi() {
     return true;
 }
 
-/* 8014CCA8-8014CCAC 1475E8 0004+00 1/0 1/0 0/0 .text            changeBtp__8daNpcT_cFPiPi */
-void daNpcT_c::changeBtp(int* param_0, int* param_1) {
-    /* empty function */
-}
-
-/* 8014CCAC-8014CCB0 1475EC 0004+00 1/0 1/0 0/0 .text            changeBck__8daNpcT_cFPiPi */
-void daNpcT_c::changeBck(int* param_0, int* param_1) {
-    /* empty function */
-}
-
-/* 8014CCB0-8014CCE0 1475F0 0030+00 1/0 1/0 0/0 .text
- * getFaceMotionAnm__8daNpcT_cF26daNpcT_faceMotionAnmData_c     */
-daNpcT_faceMotionAnmData_c daNpcT_c::getFaceMotionAnm(daNpcT_faceMotionAnmData_c param_0) {
-    // NONMATCHING
-}
-
 /* 8014CCE0-8014CCE8 147620 0008+00 1/0 1/0 0/0 .text            afterSetMotionAnm__8daNpcT_cFiifi
  */
 // bool daNpcT_c::afterSetMotionAnm(int param_0, int param_1, f32 param_2, int param_3) {
 extern "C" bool afterSetMotionAnm__8daNpcT_cFiifi() {
     return true;
 }
-
-/* 8014CCE8-8014CCEC 147628 0004+00 1/0 1/0 0/0 .text            changeBtk__8daNpcT_cFPiPi */
-void daNpcT_c::changeBtk(int* param_0, int* param_1) {
-    /* empty function */
-}
-
-/* 8014CCEC-8014CCF0 14762C 0004+00 1/0 1/0 0/0 .text            changeAnm__8daNpcT_cFPiPi */
-void daNpcT_c::changeAnm(int* param_0, int* param_1) {
-    /* empty function */
-}
-
-/* 8014CCF0-8014CD20 147630 0030+00 1/0 1/0 0/0 .text
- * getMotionAnm__8daNpcT_cF22daNpcT_motionAnmData_c             */
-// probably inline
-#ifdef NONMATCHING
-daNpcT_motionAnmData_c daNpcT_c::getMotionAnm(daNpcT_motionAnmData_c param_0) {
-    return param_0;
-}
-#else
-daNpcT_motionAnmData_c daNpcT_c::getMotionAnm(daNpcT_motionAnmData_c param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 8014CD20-8014D0A8 147660 0388+00 1/0 1/1 0/0 .text            __dt__8daNpcT_cFv */
 // daNpcT_c::~daNpcT_c() {
@@ -2456,12 +2389,6 @@ extern "C" bool getEyeballLMaterialNo__8daNpcT_cFv() {
  */
 // bool daNpcT_c::getEyeballRMaterialNo() {
 extern "C" bool getEyeballRMaterialNo__8daNpcT_cFv() {
-    return false;
-}
-
-/* 8014D0B8-8014D0C0 1479F8 0008+00 1/0 1/0 0/0 .text            getEyeballMaterialNo__8daNpcT_cFv
- */
-bool daNpcT_c::getEyeballMaterialNo() {
     return false;
 }
 
@@ -5068,7 +4995,7 @@ bool daNpcF_c::setExpressionAnm(int param_0, bool param_1) {
 }
 
 /* 80155BE8-80155BEC 150528 0004+00 2/0 0/0 0/0 .text            setMotionAnm__8daNpcF_cFif */
-void daNpcF_c::setMotionAnm(int param_0, f32 param_1) {
+bool daNpcF_c::setMotionAnm(int param_0, f32 param_1) {
     /* empty function */
 }
 

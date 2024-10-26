@@ -1394,7 +1394,7 @@ config.libs = [
     ActorRel(Matching, "d_a_tag_lantern"),
     ActorRel(Matching, "d_a_tag_mist"),
     ActorRel(Matching, "d_a_tag_msg"),
-    ActorRel(Matching, "d_a_tag_push"),
+    ActorRel(Matching, "d_a_tag_push", extra_cflags=['-pragma "nosyminline off"']),
     ActorRel(Matching, "d_a_tag_telop"),
     ActorRel(NonMatching, "d_a_tbox"),
     ActorRel(Matching, "d_a_tbox2"),
