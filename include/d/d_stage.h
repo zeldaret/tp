@@ -76,7 +76,7 @@ struct stage_scls_info_class {
     /* 0x9 */ s8 mRoom;
     /* 0xA */ u8 field_0xa;
     /* 0xB */ u8 field_0xb;
-    /* 0xC */ s8 mWipe;
+    /* 0xC */ u8 mWipe;
 
     char* getStage() { return mStage; }
 
@@ -567,6 +567,9 @@ public:
 
     void setTreasure(stage_tresure_class*);
 
+    s16 getWorldRollAngleX() { return mWorldRollAngleX; }
+    s16 getWorldRollDirAngleY() { return mWorldRollDirAngleY; }
+
 public:
     /* 0x08 */ stage_camera_class* mCamera;
     /* 0x0C */ stage_arrow_class* mArrow;
@@ -588,8 +591,8 @@ public:
     /* 0x4C */ int mVrboxcolNumInfo;
     /* 0x50 */ u32 mPlightNumInfo;
     /* 0x54 */ u16 mPlayerNum;
-    /* 0x56 */ u16 field_0x56;
-    /* 0x58 */ u16 field_0x58;
+    /* 0x56 */ s16 mWorldRollAngleX;
+    /* 0x58 */ s16 mWorldRollDirAngleY;
     /* 0x5A */ u16 field_0x5a;
     /* 0x5C */ stage_stag_info_class* mStagInfo;
     /* 0x60 */ stage_scls_info_dummy_class* mSclsInfo;
@@ -1109,7 +1112,7 @@ inline u8 dStage_stagInfo_DefaultCameraType(stage_stag_info_class* pstag) {
     return pstag->mCameraType;
 }
 
-inline u32 dStage_sclsInfo_getSceneLayer(stage_scls_info_class* p_info) {
+inline u8 dStage_sclsInfo_getSceneLayer(stage_scls_info_class* p_info) {
     return p_info->field_0xb & 0xF;
 }
 

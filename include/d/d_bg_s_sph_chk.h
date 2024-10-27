@@ -15,7 +15,15 @@ public:
     /* 80078A14 */ dBgS_SphChk();
     /* 80078AC0 */ virtual ~dBgS_SphChk();
 
+    void SetCallback(SphChk_Callback i_callback) { mCallback = i_callback; }
+
     /* 0x50 */ SphChk_Callback mCallback;
+};
+
+class dBgS_CamSphChk : public dBgS_SphChk {
+public:
+    dBgS_CamSphChk() { SetCam(); }
+    /* 80165E74 */ virtual ~dBgS_CamSphChk() {}
 };
 
 #endif /* D_BG_D_BG_S_SPH_CHK_H */

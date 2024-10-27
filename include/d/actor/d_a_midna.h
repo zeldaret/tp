@@ -29,7 +29,7 @@ public:
 
     enum daMidna_FLG0 {
         FLG0_UNK_80000000 = 0x80000000,
-        FLG0_UNK_8000000 = 0x8000000,
+        FLG0_PORTAL_OBJ_CALL = 0x8000000,
         FLG0_NPC_NEAR = 0x100000,
         FLG0_NPC_FAR = 0x40000,
         FLG0_UNK_20000 = 0x20000,
@@ -112,6 +112,7 @@ public:
     bool checkDemoTypeNone() const { return mDemoType == 0; }
     void changeOriginalDemo() { mDemoType = 3; }
     void changeDemoMode(u32 mode) { mDemoMode = mode; }
+    BOOL checkPortalObjCall() { return checkStateFlg0(FLG0_PORTAL_OBJ_CALL); }
     BOOL checkNpcNear() { return checkStateFlg0(FLG0_NPC_NEAR); }
     BOOL checkNpcFar() { return checkStateFlg0(FLG0_NPC_FAR); }
     BOOL checkNoDraw() const { return checkStateFlg0(FLG0_NO_DRAW); }
@@ -137,7 +138,7 @@ public:
     }
 
     void offTagWaitPos() {
-        offStateFlg0((daMidna_FLG0)(FLG0_UNK_80000000 | FLG0_UNK_8000000 | FLG0_UNK_400));
+        offStateFlg0((daMidna_FLG0)(FLG0_UNK_80000000 | FLG0_PORTAL_OBJ_CALL | FLG0_UNK_400));
     }
 
     void onTagNoHairLead() {
@@ -176,7 +177,7 @@ public:
 
 
     bool checkPortalObjRide() const {
-        return checkStateFlg0(FLG0_UNK_8000000) && checkStateFlg0(FLG0_UNK_200);
+        return checkStateFlg0(FLG0_PORTAL_OBJ_CALL) && checkStateFlg0(FLG0_UNK_200);
     }
 
     inline static BOOL checkMidnaRealBody();
@@ -190,6 +191,11 @@ public:
     }
 
     void resetRatBody() {}
+
+    bool checkFlyWaitAnime() {
+        return field_0x5e4[0].getIdx() == 0x1CB || field_0x5e4[0].getIdx() == 0x1C7
+            || field_0x5e4[0].getIdx() == 0x1C8 || field_0x5e4[0].getIdx() == 0x1C9;
+    }
 
     static u8 const m_texDataTable[84];
     static u8 const m_anmDataTable[636];

@@ -3082,7 +3082,7 @@ public:
     virtual BOOL checkHorseRideNotReady() const;
     virtual bool checkArrowChargeEnd() const;
     virtual f32 getSearchBallScale() const;
-    virtual s16 checkFastShotTime();
+    virtual int checkFastShotTime();
     virtual bool checkNoEquipItem() const;
     virtual bool checkKandelaarSwing(int) const;
     virtual s16 getBoardCutTurnOffsetAngleY() const;
@@ -3334,6 +3334,12 @@ public:
     bool checkHorseGetOffMode() const { return mProcID == PROC_HORSE_GETOFF; }
     bool checkHorseRideOn() const { return mProcID == PROC_HORSE_RIDE; }
     bool checkGrabUp() const { return mProcID == PROC_GRAB_UP; }
+    bool checkSpinnerRideWait() const {
+        return mProcID == PROC_SPINNER_WAIT && mProcVar2.field_0x300c == 0;
+    }
+
+    fopAc_ac_c* getCopyRodActor() { return mCopyRodAcKeep.getActor(); }
+    fopAc_ac_c* getHookshotRoofWaitActor() { return mCargoCarryAcKeep.getActor(); }
 
     BOOL checkRideOn() const { return mRideStatus != 0; }
 

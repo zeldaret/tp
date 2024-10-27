@@ -155,10 +155,10 @@ static int dEvDt_Next_Stage(int index, int wipe_type) {
             point = stgInfo->mStart;
             roomNo = (s8)stgInfo->mRoom;
             layer = dStage_sclsInfo_getSceneLayer(stgInfo);
-            wipe = (s8)stgInfo->mWipe;
+            wipe = dStage_sclsInfo_getWipe(stgInfo);
             wipe_time = dStage_sclsInfo_getWipeTime(stgInfo);
 
-            if (stgInfo->mWipe == 15) {
+            if (wipe == 15) {
                 wipe = 0;
             }
 
