@@ -249,6 +249,7 @@ public:
     s8 getCameraID() { return mCameraID; }
     void setMode(int mode) { mMode = mode; }
     view_port_class* getViewPort() { return &mViewport; }
+    scissor_class* getScissor() { return &mViewport.mScissor; }
 
 private:
     /* 0x00 */ view_port_class mViewport;

@@ -108,7 +108,7 @@ extern "C" void func_80A6FAD4(void* _this, int*);
 extern "C" void __sinit_d_a_npc_lud_cpp();
 extern "C" void
 __ct__11daNpc_Lud_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc();
-extern "C" bool getEyeballMaterialNo__11daNpc_Lud_cFv();
+extern "C" s32 getEyeballMaterialNo__11daNpc_Lud_cFv();
 extern "C" s32 getHeadJointNo__11daNpc_Lud_cFv();
 extern "C" s32 getNeckJointNo__11daNpc_Lud_cFv();
 extern "C" bool getBackboneJointNo__11daNpc_Lud_cFv();
@@ -1736,7 +1736,7 @@ daNpc_Lud_c::daNpc_Lud_c(daNpcT_faceMotionAnmData_c const* param_0,
 }
 
 /* 80A6FCD0-80A6FCD8 005210 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__11daNpc_Lud_cFv */
-bool daNpc_Lud_c::getEyeballMaterialNo() {
+s32 daNpc_Lud_c::getEyeballMaterialNo() {
     return true;
 }
 

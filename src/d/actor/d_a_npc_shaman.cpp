@@ -111,7 +111,7 @@ extern "C" void
 __ct__11daNpc_Sha_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc();
 extern "C" void __dt__8cM3dGCylFv();
 extern "C" void __dt__8cM3dGAabFv();
-extern "C" bool getEyeballMaterialNo__11daNpc_Sha_cFv();
+extern "C" s32 getEyeballMaterialNo__11daNpc_Sha_cFv();
 extern "C" s32 getHeadJointNo__11daNpc_Sha_cFv();
 extern "C" s32 getNeckJointNo__11daNpc_Sha_cFv();
 extern "C" bool getBackboneJointNo__11daNpc_Sha_cFv();
@@ -1970,7 +1970,7 @@ extern "C" void __dt__8cM3dGAabFv() {
 }
 
 /* 80AE6B1C-80AE6B24 003E3C 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__11daNpc_Sha_cFv */
-bool daNpc_Sha_c::getEyeballMaterialNo() {
+s32 daNpc_Sha_c::getEyeballMaterialNo() {
     return true;
 }
 

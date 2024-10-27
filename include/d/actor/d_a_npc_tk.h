@@ -81,12 +81,23 @@ public:
         }
     }
 
+    BOOL isAttackLink() { return field_0x71a != 0; }
+    void setAttackLink() { mFlags |= 0x10; }
+    void setBackHanjo() { mFlags |= 0x20; }
+    void setHanjoHand() { mFlags |= 0x40; }
+    void setQuickHanjoHand() { mFlags |= 0x200; }
+    BOOL isHanjoHand() { return field_0x6ad != 0; }
+
 private:
-    /* 0x568 */ u8 field_0x568[0x6BE - 0x568];
+    /* 0x568 */ u8 field_0x568[0x6ad - 0x568];
+    /* 0x6AD */ u8 field_0x6ad;
+    /* 0x568 */ u8 field_0x6ae[0x6BE - 0x6ae];
     /* 0x6BE */ u16 mFlags;
     /* 0x6C0 */ u8 field_0x6c0[0x6C8 - 0x6C0];
     /* 0x6C8 */ dPath* field_0x6c8;
-    /* 0x6CC */ u8 field_0x6cc[0xB44 - 0x6CC];
+    /* 0x6CC */ u8 field_0x6cc[0x71a - 0x6CC];
+    /* 0x71A */ u8 field_0x71a;
+    /* 0x6CC */ u8 field_0x71b[0xB44 - 0x71b];
 };
 
 STATIC_ASSERT(sizeof(daNPC_TK_c) == 0xB44);

@@ -1053,7 +1053,7 @@ void daNpcShad_c::setExpressionBtp(int param_0) {
 }
 
 /* 80AD982C-80AD99B4 00170C 0188+00 1/0 0/0 0/0 .text            setMotionAnm__11daNpcShad_cFif */
-void daNpcShad_c::setMotionAnm(int param_0, f32 param_1) {
+bool daNpcShad_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 

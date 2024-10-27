@@ -786,7 +786,7 @@ bool daNpcAsh_c::setExpressionBtp(int i_idx) {
 }
 
 /* 809597C0-80959910 0015C0 0150+00 1/0 0/0 0/0 .text            setMotionAnm__10daNpcAsh_cFif */
-void daNpcAsh_c::setMotionAnm(int i_idx, f32 i_morf) {
+bool daNpcAsh_c::setMotionAnm(int i_idx, f32 i_morf) {
     if (i_idx < 8 || i_idx >= 18) {
         return;
     }

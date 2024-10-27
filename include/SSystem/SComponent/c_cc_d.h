@@ -445,6 +445,7 @@ public:
     u32 GetVsGrp() const { return MskSPrm(0x70); }
     u32 GetIGrp() const { return MskSPrm(0xE); }
     u32 ChkNoCrr() const { return MskSPrm(0x100); }
+    void OnNoCrrBit() { OnSPrmBit(0x100); }
     u32 ChkSph3DCrr() const { return MskSPrm(0x80); }
     void ClrSet() { OffSPrmBit(1); }
     u32 ChkHit() { return MskRPrm(1); }
@@ -487,6 +488,7 @@ public:
     void SetCoHit(cCcD_Obj* obj) { mObjCo.SetHit(obj); }
     BOOL ChkAtType(u32 type) const { return mObjAt.MskType(type); }
     u32 ChkCoNoCrr() const { return mObjCo.ChkNoCrr(); }
+    void OnCoNoCrrBit() { mObjCo.OnNoCrrBit(); }
     u32 ChkCoSph3DCrr() const { return mObjCo.ChkSph3DCrr(); }
     void OnAtSPrmBit(u32 flag) { mObjAt.OnSPrmBit(flag); }
     void OffAtSPrmBit(u32 flag) { mObjAt.OffSPrmBit(flag); }

@@ -60,7 +60,7 @@ extern "C" void __dt__12dBgS_AcchCirFv();
 extern "C" void __dt__10dCcD_GSttsFv();
 extern "C" void __dt__12dBgS_ObjAcchFv();
 extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" bool getEyeballMaterialNo__8daNpcT_cFv();
+extern "C" s32 getEyeballMaterialNo__8daNpcT_cFv();
 extern "C" void ctrlSubFaceMotion__8daNpcT_cFi();
 extern "C" bool checkChangeJoint__8daNpcT_cFi();
 extern "C" bool checkRemoveJoint__8daNpcT_cFi();
@@ -950,26 +950,10 @@ extern "C" void __dt__12J3DFrameCtrlFv() {
     // NONMATCHING
 }
 
-/* 80AD7A48-80AD7A50 002408 0008+00 1/0 0/0 0/0 .text            getEyeballMaterialNo__8daNpcT_cFv
- */
-bool daNpcT_c::getEyeballMaterialNo() {
-    return false;
-}
-
 /* 80AD7A50-80AD7A54 002410 0004+00 1/0 0/0 0/0 .text            ctrlSubFaceMotion__8daNpcT_cFi */
 // void daNpcT_c::ctrlSubFaceMotion(int param_0) {
 extern "C" void ctrlSubFaceMotion__8daNpcT_cFi() {
     /* empty function */
-}
-
-/* 80AD7A54-80AD7A5C 002414 0008+00 1/0 0/0 0/0 .text            checkChangeJoint__8daNpcT_cFi */
-bool daNpcT_c::checkChangeJoint(int param_0) {
-    return false;
-}
-
-/* 80AD7A5C-80AD7A64 00241C 0008+00 1/0 0/0 0/0 .text            checkRemoveJoint__8daNpcT_cFi */
-bool daNpcT_c::checkRemoveJoint(int param_0) {
-    return false;
 }
 
 /* 80AD7A64-80AD7A6C 002424 0008+00 1/0 0/0 0/0 .text            getBackboneJointNo__8daNpcT_cFv */

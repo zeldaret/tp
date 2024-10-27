@@ -54,7 +54,7 @@ __ct__11daNpc_grM_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ2
 extern "C" void __dt__8cM3dGCylFv();
 extern "C" void __dt__8cM3dGAabFv();
 extern "C" void __dt__4cXyzFv();
-extern "C" bool getEyeballMaterialNo__11daNpc_grM_cFv();
+extern "C" s32 getEyeballMaterialNo__11daNpc_grM_cFv();
 extern "C" s32 getHeadJointNo__11daNpc_grM_cFv();
 extern "C" s32 getNeckJointNo__11daNpc_grM_cFv();
 extern "C" bool getBackboneJointNo__11daNpc_grM_cFv();
@@ -982,7 +982,7 @@ extern "C" void __dt__4cXyzFv() {
 }
 
 /* 809D5F98-809D5FA0 002018 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__11daNpc_grM_cFv */
-bool daNpc_grM_c::getEyeballMaterialNo() {
+s32 daNpc_grM_c::getEyeballMaterialNo() {
     return true;
 }
 

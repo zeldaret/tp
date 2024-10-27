@@ -75,7 +75,7 @@ extern "C" void setEyeAngleX__15daNpcT_JntAnm_cF4cXyzfs();
 extern "C" void ctrlSubFaceMotion__8daNpcT_cFi();
 extern "C" s32 getFootLJointNo__8daNpcT_cFv();
 extern "C" s32 getFootRJointNo__8daNpcT_cFv();
-extern "C" bool getEyeballMaterialNo__8daNpcT_cFv();
+extern "C" s32 getEyeballMaterialNo__8daNpcT_cFv();
 extern "C" bool evtEndProc__8daNpcT_cFv();
 extern "C" void afterMoved__8daNpcT_cFv();
 extern "C" bool chkXYItems__8daNpcT_cFv();
@@ -1078,12 +1078,6 @@ s32 daNpcT_c::getFootLJointNo() {
 /* 80B77CAC-80B77CB4 002C6C 0008+00 1/0 0/0 0/0 .text            getFootRJointNo__8daNpcT_cFv */
 s32 daNpcT_c::getFootRJointNo() {
     return -1;
-}
-
-/* 80B77CB4-80B77CBC 002C74 0008+00 1/0 0/0 0/0 .text            getEyeballMaterialNo__8daNpcT_cFv
- */
-bool daNpcT_c::getEyeballMaterialNo() {
-    return false;
 }
 
 /* 80B77CBC-80B77CC4 002C7C 0008+00 1/0 0/0 0/0 .text            evtEndProc__8daNpcT_cFv */

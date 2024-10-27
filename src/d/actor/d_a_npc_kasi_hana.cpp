@@ -1173,7 +1173,7 @@ void daNpcKasiHana_c::setAttnPos() {
 
 /* 80A1CED0-80A1CFA0 002010 00D0+00 1/0 0/0 0/0 .text            setMotionAnm__15daNpcKasiHana_cFif
  */
-void daNpcKasiHana_c::setMotionAnm(int param_0, f32 param_1) {
+bool daNpcKasiHana_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 

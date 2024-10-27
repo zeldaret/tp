@@ -624,7 +624,7 @@ void daNpcPray_c::setAttnPos() {
 }
 
 /* 80AB3B0C-80AB3BDC 000E0C 00D0+00 1/0 0/0 0/0 .text            setMotionAnm__11daNpcPray_cFif */
-void daNpcPray_c::setMotionAnm(int param_0, f32 param_1) {
+bool daNpcPray_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 

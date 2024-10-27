@@ -264,13 +264,13 @@ cSGlobe::cSGlobe(const cXyz& xyz) {
 cSGlobe& cSGlobe::Formal() {
     if (mRadius < 0.0f) {
         mRadius = -mRadius;
-        mAzimuth = -mAzimuth;
-        mInclination.Val(mInclination.Inv());
+        mInclination = -mInclination;
+        mAzimuth.Val(mAzimuth.Inv());
     }
 
-    if (mAzimuth.Val() < -0x4000 || 0x4000 < mAzimuth.Val()) {
-        mAzimuth = cSAngle((s16)-0x8000) - mAzimuth;
-        mInclination.Val(mInclination.Inv());
+    if (mInclination.Val() < -0x4000 || 0x4000 < mInclination.Val()) {
+        mInclination = cSAngle((s16)-0x8000) - mInclination;
+        mAzimuth.Val(mAzimuth.Inv());
     }
 
     return *this;
@@ -279,24 +279,24 @@ cSGlobe& cSGlobe::Formal() {
 /* 8027196C-802719A4 0038+00 s=1 e=0 z=0  None .text      Val__7cSGlobeFRC7cSGlobe */
 void cSGlobe::Val(const cSGlobe& other) {
     mRadius = other.mRadius;
-    mAzimuth = other.mAzimuth;
     mInclination = other.mInclination;
+    mAzimuth = other.mAzimuth;
     Formal();
 }
 
 /* 802719A4-80271A08 0064+00 s=2 e=3 z=0  None .text      Val__7cSGlobeFfss */
 void cSGlobe::Val(f32 f, s16 s1, s16 s2) {
     mRadius = f;
-    mAzimuth = cSAngle(s1);
-    mInclination = cSAngle(s2);
+    mInclination = cSAngle(s1);
+    mAzimuth = cSAngle(s2);
     Formal();
 }
 
 /* 80271A08-80271A70 0068+00 s=1 e=11 z=0  None .text      Val__7cSGlobeFfRC7cSAngleRC7cSAngle */
 void cSGlobe::Val(f32 f, const cSAngle& a1, const cSAngle& a2) {
     mRadius = f;
-    mAzimuth = cSAngle(a1.Val());
-    mInclination = cSAngle(a2.Val());
+    mInclination = cSAngle(a1.Val());
+    mAzimuth = cSAngle(a2.Val());
     Formal();
 }
 
@@ -316,12 +316,12 @@ cXyz cSGlobe::Xyz() const {
 
 /* 80271AF4-80271B30 003C+00 s=1 e=0 z=0  None .text      Polar__7cSGlobeCFP7cSPolar */
 void cSGlobe::Polar(cSPolar* csp) const {
-    csp->Val(mRadius, 0x4000 - mAzimuth.Val(), mInclination.Val());
+    csp->Val(mRadius, 0x4000 - mInclination.Val(), mAzimuth.Val());
 }
 
 /* 80271B30-80271B7C 004C+00 s=0 e=3 z=0  None .text      Norm__7cSGlobeCFv */
 cXyz cSGlobe::Norm() const {
-    cSGlobe glob(1.0f, mAzimuth, mInclination);
+    cSGlobe glob(1.0f, mInclination, mAzimuth);
     return glob.Xyz();
 }
 

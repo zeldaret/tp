@@ -22,253 +22,6 @@
 #define MAKE_ITEM_PARAMS(itemNo, itemBitNo, param_2, param_3)                                      \
     ((itemNo & 0xFF) << 0 | (itemBitNo & 0xFF) << 0x8 | param_2 << 0x10 | (param_3 & 0xF) << 0x18)
 
-//
-// Forward References:
-//
-
-extern "C" void fopAcM_FastCreate__FsPFPv_iPvPv();
-extern "C" void fopAcM_setStageLayer__FPv();
-extern "C" void fopAcM_setRoomLayer__FPvi();
-extern "C" void fopAcM_SearchByID__FUiPP10fopAc_ac_c();
-extern "C" void fopAcM_SearchByName__FsPP10fopAc_ac_c();
-extern "C" void fopAcM_CreateAppend__Fv();
-extern "C" static void createAppend__FUsUlPC4cXyziPC5csXyzPC4cXyzScUi();
-extern "C" void fopAcM_Log__FPC10fopAc_ac_cPCc();
-extern "C" void fopAcM_delete__FP10fopAc_ac_c();
-extern "C" void fopAcM_delete__FUi();
-extern "C" void fopAcM_create__FsUsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i();
-extern "C" void fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc();
-extern "C" void fopAcM_fastCreate__FsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_iPv();
-extern "C" void fopAcM_fastCreate__FPCcUlPC4cXyziPC5csXyzPC4cXyzPFPv_iPv();
-extern "C" void fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i();
-extern "C" void fopAcM_createChildFromOffset__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i();
-extern "C" void fopAcM_DeleteHeap__FP10fopAc_ac_c();
-extern "C" void fopAcM_callCallback__FP10fopAc_ac_cPFP10fopAc_ac_c_iP7JKRHeap();
-extern "C" void fopAcM_entrySolidHeap___FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_SetMin__FP10fopAc_ac_cfff();
-extern "C" void fopAcM_SetMax__FP10fopAc_ac_cfff();
-extern "C" void fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff();
-extern "C" void fopAcM_setCullSizeSphere__FP10fopAc_ac_cffff();
-extern "C" void fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData();
-extern "C" void fopAcM_addAngleY__FP10fopAc_ac_css();
-extern "C" void fopAcM_calcSpeed__FP10fopAc_ac_c();
-extern "C" void fopAcM_posMove__FP10fopAc_ac_cPC4cXyz();
-extern "C" void fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz();
-extern "C" void fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_searchActorAngleX__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_seenActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_searchActorDistance2__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_searchActorDistanceXZ__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_searchActorDistanceXZ2__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_rollPlayerCrash__FPC10fopAc_ac_cfUlffif();
-extern "C" void fopAcM_checkCullingBox__FPA4_fffffff();
-extern "C" void fopAcM_cullingCheck__FPC10fopAc_ac_c();
-extern "C" void event_second_actor__FUs();
-extern "C" void fopAcM_orderTalkEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs();
-extern "C" void fopAcM_orderTalkItemBtnEvent__FUsP10fopAc_ac_cP10fopAc_ac_cUsUs();
-extern "C" void fopAcM_orderSpeakEvent__FP10fopAc_ac_cUsUs();
-extern "C" void fopAcM_orderDoorEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs();
-extern "C" void fopAcM_orderCatchEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs();
-extern "C" void fopAcM_orderOtherEvent__FP10fopAc_ac_cPCcUsUsUs();
-extern "C" void fopAcM_orderOtherEvent__FP10fopAc_ac_cP10fopAc_ac_cPCcUsUsUs();
-extern "C" void fopAcM_orderChangeEventId__FP10fopAc_ac_csUsUs();
-extern "C" void fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs();
-extern "C" void fopAcM_orderMapToolEvent__FP10fopAc_ac_cUcsUsUsUs();
-extern "C" void fopAcM_orderMapToolAutoNextEvent__FP10fopAc_ac_cUcsUsUsUs();
-extern "C" void fopAcM_orderPotentialEvent__FP10fopAc_ac_cUsUsUs();
-extern "C" void fopAcM_orderItemEvent__FP10fopAc_ac_cUsUs();
-extern "C" void fopAcM_orderTreasureEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs();
-extern "C" void fopAcM_getTalkEventPartner__FPC10fopAc_ac_c();
-extern "C" void fopAcM_getItemEventPartner__FPC10fopAc_ac_c();
-extern "C" void fopAcM_getEventPartner__FPC10fopAc_ac_c();
-extern "C" void fopAcM_createItemForPresentDemo__FPC4cXyziUciiPC5csXyzPC4cXyz();
-extern "C" void fopAcM_createItemForTrBoxDemo__FPC4cXyziiiPC5csXyzPC4cXyz();
-extern "C" void fopAcM_getItemNoFromTableNo__FUc();
-extern "C" void fopAcM_createItemFromEnemyID__FUcPC4cXyziiPC5csXyzPC4cXyzPfPf();
-extern "C" void fopAcM_createItemFromTable__FPC4cXyziiiPC5csXyziPC4cXyzPfPfb();
-extern "C" void fopAcM_createDemoItem__FPC4cXyziiPC5csXyziPC4cXyzUc();
-extern "C" void fopAcM_createItemForBoss__FPC4cXyziiPC5csXyzPC4cXyzffi();
-extern "C" void fopAcM_createItemForMidBoss__FPC4cXyziiPC5csXyzPC4cXyzii();
-extern "C" void fopAcM_createItemForDirectGet__FPC4cXyziiPC5csXyzPC4cXyzff();
-extern "C" void fopAcM_createItemForSimpleDemo__FPC4cXyziiPC5csXyzPC4cXyzff();
-extern "C" void fopAcM_createItem__FPC4cXyziiiPC5csXyzPC4cXyzi();
-extern "C" void fopAcM_fastCreateItem2__FPC4cXyziiiiPC5csXyzPC4cXyz();
-extern "C" void fopAcM_fastCreateItem__FPC4cXyziiPC5csXyzPC4cXyzPfPfiiPFPv_i();
-extern "C" void fopAcM_createBokkuri__FUsPC4cXyziiiPC4cXyzii();
-extern "C" void fopAcM_createWarpHole__FPC4cXyzPC5csXyziUcUcUc();
-extern "C" void enemySearchJugge__FPvPv();
-extern "C" void fopAcM_myRoomSearchEnemy__FSc();
-extern "C" void fopAcM_createDisappear__FPC10fopAc_ac_cPC4cXyzUcUcUc();
-extern "C" void fopAcM_setCarryNow__FP10fopAc_ac_ci();
-extern "C" void fopAcM_cancelCarryNow__FP10fopAc_ac_c();
-extern "C" void fopAcM_otoCheck__FPC10fopAc_ac_cf();
-extern "C" void fopAcM_otherBgCheck__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_wayBgCheck__FPC10fopAc_ac_cff();
-extern "C" void fopAcM_plAngleCheck__FPC10fopAc_ac_cs();
-extern "C" void fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci();
-extern "C" void fopAcM_effHamonSet__FPUlPC4cXyzff();
-extern "C" void fopAcM_carryOffRevise__FP10fopAc_ac_c();
-extern "C" static void vectle_calc__FPC10DOUBLE_POSP4cXyz();
-extern "C" static void get_vectle_calc__FPC4cXyzPC4cXyzP4cXyz();
-extern "C" void fopAcM_setEffectMtx__FPC10fopAc_ac_cPC12J3DModelData();
-extern "C" void fopAcM_getProcNameString__FPC10fopAc_ac_c();
-extern "C" void fopAcM_findObjectCB__FPC10fopAc_ac_cPv();
-extern "C" void fopAcM_searchFromName__FPCcUlUl();
-extern "C" void fopAcM_findObject4EventCB__FP10fopAc_ac_cPv();
-extern "C" void fopAcM_searchFromName4Event__FPCcs();
-extern "C" void fopAcM_getWaterY__FPC4cXyzPf();
-extern "C" void fpoAcM_relativePos__FPC10fopAc_ac_cPC4cXyzP4cXyz();
-extern "C" void fopAcM_getWaterStream__FPC4cXyzRC13cBgS_PolyInfoP4cXyzPii();
-extern "C" void fopAcM_getPolygonAngle__FRC13cBgS_PolyInfos();
-extern "C" void __dt__8cM3dGPlaFv();
-extern "C" void fopAcM_getPolygonAngle__FPC8cM3dGPlas();
-extern "C" void lineCheck__11fopAcM_lc_cFPC4cXyzPC4cXyzPC10fopAc_ac_c();
-extern "C" void gndCheck__11fopAcM_gc_cFPC4cXyz();
-extern "C" void roofCheck__11fopAcM_rc_cFPC4cXyz();
-extern "C" void waterCheck__11fopAcM_wt_cFPC4cXyz();
-extern "C" void fopAcM_initManager__Fv();
-extern "C" void __sinit_f_op_actor_mng_cpp();
-extern "C" void __dt__11dBgS_WtrChkFv();
-extern "C" void __dt__15dBgS_ObjRoofChkFv();
-extern "C" void __dt__14dBgS_ObjGndChkFv();
-extern "C" void __dt__5l_HIOFv();
-extern "C" static void func_8001E0D4();
-extern "C" static void func_8001E0DC();
-extern "C" static void func_8001E0E4();
-extern "C" static void func_8001E0EC();
-extern "C" static void func_8001E0F4();
-extern "C" static void func_8001E0FC();
-extern "C" static void func_8001E104();
-extern "C" static void func_8001E10C();
-extern "C" static void func_8001E114();
-extern "C" void onFrollCrashFlg__9daPy_py_cFUci();
-extern "C" int checkWolfDash__9daPy_py_cCFv();
-extern "C" int checkFrontRoll__9daPy_py_cCFv();
-extern "C" u32 checkHorseRide__9daPy_py_cCFv();
-extern "C" s32 getGrabActorID__9daPy_py_cCFv();
-extern "C" extern char const* const f_op_f_op_actor_mng__stringBase0;
-extern "C" u8 mLineCheck__11fopAcM_lc_c[112];
-extern "C" u8 mGndCheck__11fopAcM_gc_c[84];
-extern "C" u8 mRoofCheck__11fopAcM_rc_c[80];
-extern "C" u8 mWaterCheck__11fopAcM_wt_c[84 + 4 /* padding */];
-extern "C" f32 mGroundY__11fopAcM_gc_c;
-extern "C" f32 mRoofY__11fopAcM_rc_c;
-extern "C" f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_YrotS__FPA4_fs();
-extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
-extern "C" void fopScnM_SearchByID__FUi();
-extern "C" void fpcBs_Is_JustOfType__Fii();
-extern "C" void fpcEx_IsExist__FUi();
-extern "C" void fpcLy_CurrentLayer__Fv();
-extern "C" void fpcM_Delete__FPv();
-extern "C" void fpcM_IsCreating__FUi();
-extern "C" void fpcM_FastCreate__FsPFPv_iPvPv();
-extern "C" void fpcM_JudgeInLayer__FUiPFPvPv_PvPv();
-extern "C" void fpcPi_Change__FP22process_priority_classUiUsUs();
-extern "C" void fpcSch_JudgeForPName__FPvPv();
-extern "C" void fpcSch_JudgeByID__FPvPv();
-extern "C" void fpcSCtRq_Request__FP11layer_classsPFPvPv_iPvPv();
-extern "C" void dStage_searchName__FPCc();
-extern "C" void dStage_getName2__FsSc();
-extern "C" void checkArea__13daTagStream_cFPC4cXyz();
-extern "C" void onActor__10dSv_info_cFii();
-extern "C" void order__14dEvt_control_cFUsUsUsUsPvPvsUc();
-extern "C" void convPId__14dEvt_control_cFUi();
-extern "C" void searchMapEventData__14dEvt_control_cFUcl();
-extern "C" void setGtItm__14dEvt_control_cFUc();
-extern "C" void getEventIdx__16dEvent_manager_cFP10fopAc_ac_cUc();
-extern "C" void getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc();
-extern "C" void getEventPrio__16dEvent_manager_cFP10fopAc_ac_cs();
-extern "C" void getEmitter__Q213dPa_control_c7level_cFUl();
-extern "C" void
-set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf();
-extern "C" void
-setSimpleFoot__13dPa_control_cFUlPUlR13cBgS_PolyInfoPC4cXyzPC12dKy_tevstr_ciPC5csXyzPC4cXyzP18dPa_levelEcallBackScPC4cXyz();
-extern "C" void dPath_GetPolyRoomPathVec__FRC13cBgS_PolyInfoP4cXyzPi();
-extern "C" void LineCross__4cBgSFP11cBgS_LinChk();
-extern "C" void GroundCross__4cBgSFP11cBgS_GndChk();
-extern "C" void ChkPolySafe__4cBgSFRC13cBgS_PolyInfo();
-extern "C" void GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla();
-extern "C" void GetPolyAtt0__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void RoofChk__4dBgSFP12dBgS_RoofChk();
-extern "C" void SplGrpChk__4dBgSFP14dBgS_SplGrpChk();
-extern "C" void __ct__11dBgS_GndChkFv();
-extern "C" void __dt__11dBgS_GndChkFv();
-extern "C" void __ct__11dBgS_LinChkFv();
-extern "C" void __dt__11dBgS_LinChkFv();
-extern "C" void Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c();
-extern "C" void __ct__14dBgS_ObjLinChkFv();
-extern "C" void __dt__14dBgS_ObjLinChkFv();
-extern "C" void Set__14dBgS_SplGrpChkFR4cXyzf();
-extern "C" void __dt__14dBgS_SplGrpChkFv();
-extern "C" void SetObj__16dBgS_PolyPassChkFv();
-extern "C" void __ct__12dBgS_RoofChkFv();
-extern "C" void __dt__12dBgS_RoofChkFv();
-extern "C" void __ct__11dBgS_WtrChkFv();
-extern "C" void isHeart__FUc();
-extern "C" void check_itemno__Fi();
-extern "C" void dCam_getCamera__Fv();
-extern "C" void dKy_Sound_get__Fv();
-extern "C" void memalignB__3cMlFiUl();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void normalizeZP__4cXyzFv();
-extern "C" void atan2sX_Z__4cXyzCFv();
-extern "C" void __ct__5csXyzFsss();
-extern "C" void cM_atan2s__Fff();
-extern "C" void cM_rndF__Ff();
-extern "C" void cM_rndFX__Ff();
-extern "C" void SetPos__11cBgS_GndChkFPC4cXyz();
-extern "C" void cLib_memSet__FPviUl();
-extern "C" void cLib_chaseAngleS__FPsss();
-extern "C" void cLib_targetAngleY__FPC3VecPC3Vec();
-extern "C" void MtxPosition__FP4cXyzP4cXyz();
-extern "C" void calcViewFrustum__11J3DUClipperFv();
-extern "C" void clip__11J3DUClipperCFPA4_Cf3Vecf();
-extern "C" void clip__11J3DUClipperCFPA4_CfP3VecP3Vec();
-extern "C" void getFreeSize__7JKRHeapFv();
-extern "C" void __dl__FPv();
-extern "C" void setEffectMtx__13J3DTexMtxInfoFPA4_f();
-extern "C" void __register_global_object();
-extern "C" void _savegpr_19();
-extern "C" void _savegpr_21();
-extern "C" void _savegpr_23();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_19();
-extern "C" void _restgpr_21();
-extern "C" void _restgpr_23();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_29();
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mStatus__20dStage_roomControl_c[65792];
-extern "C" f32 Zero__4cXyz[3];
-extern "C" u8 BaseY__4cXyz[12];
-extern "C" u8 sincosTable___5JMath[65536];
-extern "C" f32 mSystemFar__14mDoLib_clipper;
-extern "C" u8 mProcID__20dStage_roomControl_c[4];
-extern "C" void* mClipper__14mDoLib_clipper;
-extern "C" u8 m_top__13daTagStream_c[4];
-extern "C" u8 mData__12dEnemyItem_c[4 + 4 /* padding */];
-extern "C" u8 Zero__5csXyz[4];
-extern "C" extern u8 data_80451164[4];
-
-//
-// Declarations:
-//
-
 /* 800198A4-800198C4 0141E4 0020+00 0/0 1/1 0/0 .text            fopAcM_FastCreate__FsPFPv_iPvPv */
 void* fopAcM_FastCreate(s16 i_procName, FastCreateReqFunc i_createFunc, void* i_createData,
                         void* i_data) {
@@ -792,15 +545,6 @@ s16 fopAcM_searchActorAngleY(const fopAc_ac_c* i_actorA, const fopAc_ac_c* i_act
     return cLib_targetAngleY(fopAcM_GetPosition_p(i_actorA), fopAcM_GetPosition_p(i_actorB));
 }
 
-/* ############################################################################################## */
-/* 80451C04-80451C08 000204 0004+00 13/13 0/0 0/0 .sdata2          @4645 */
-SECTION_SDATA2 static u8 lit_4645[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
 /* 8001A738-8001A79C 015078 0064+00 0/0 0/0 13/13 .text
  * fopAcM_searchActorAngleX__FPC10fopAc_ac_cPC10fopAc_ac_c      */
 s16 fopAcM_searchActorAngleX(const fopAc_ac_c* i_actorA, const fopAc_ac_c* i_actorB) {
@@ -821,25 +565,13 @@ s32 fopAcM_seenActorAngleY(const fopAc_ac_c* i_actorA, const fopAc_ac_c* i_actor
     return abs((s16)(target_angle - i_actorA->shape_angle.y));
 }
 
-/* ############################################################################################## */
-/* 80451C08-80451C10 000208 0008+00 3/3 0/0 0/0 .sdata2          @4745 */
-SECTION_SDATA2 static f64 lit_4745 = 0.5;
-
-/* 80451C10-80451C18 000210 0008+00 3/3 0/0 0/0 .sdata2          @4746 */
-SECTION_SDATA2 static f64 lit_4746 = 3.0;
-
-/* 80451C18-80451C20 000218 0008+00 4/4 0/0 0/0 .sdata2          @4747 */
-SECTION_SDATA2 static u8 lit_4747[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
 inline f32 local_sqrtf(f32 mag) {
-    if (mag > FLOAT_LABEL(lit_4645)) {
+    if (mag > 0.0f) {
         f64 tmpd = __frsqrte(mag);
-        tmpd = DOUBLE_LABEL(lit_4745) * tmpd * (DOUBLE_LABEL(lit_4746) - tmpd * tmpd * mag);
-        tmpd = DOUBLE_LABEL(lit_4745) * tmpd * (DOUBLE_LABEL(lit_4746) - tmpd * tmpd * mag);
-        return DOUBLE_LABEL(lit_4745) * tmpd * (DOUBLE_LABEL(lit_4746) - tmpd * tmpd * mag) * mag;
-    } else if (mag < DOUBLE_LABEL(lit_4747)) {
+        tmpd = 0.5 * tmpd * (3.0f - tmpd * tmpd * mag);
+        tmpd = 0.5 * tmpd * (3.0f - tmpd * tmpd * mag);
+        return 0.5 * tmpd * (3.0f - tmpd * tmpd * mag) * mag;
+    } else if (mag < 0.0) {
         return NAN;
     } else if (fpclassify(mag) == 1) {
         return NAN;
@@ -1020,8 +752,7 @@ static cull_sphere l_cullSizeSphere[] = {
 };
 
 /* 8001ACEC-8001B058 01562C 036C+00 0/0 1/1 1/1 .text fopAcM_cullingCheck__FPC10fopAc_ac_c */
-// some stack / extra instructions regarding mDoLib_clipper::clip
-#ifdef NONMATCHING
+// NONMATCHING some stack / extra instructions regarding mDoLib_clipper::clip
 s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
     MtxP mtx_p;
     if (fopAcM_GetMtx(i_actor) == NULL) {
@@ -1056,11 +787,11 @@ s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
 
             if (fopAcM_getCullSizeFar(i_actor) > 0.0f) {
                 mDoLib_clipper::changeFar(cullsize_far * mDoLib_clipper::getFar());
-                u32 ret = mDoLib_clipper::clip(mtx_p, &box->mMax, &box->mMin);
+                u32 ret = mDoLib_clipper::clip(mtx_p, &box->max, &box->min);
                 mDoLib_clipper::resetFar();
                 return ret;
             } else {
-                return mDoLib_clipper::clip(mtx_p, &box->mMax, &box->mMin);
+                return mDoLib_clipper::clip(mtx_p, &box->max, &box->min);
             }
         }
     } else {
@@ -1069,22 +800,22 @@ s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
                 mDoLib_clipper::changeFar(cullsize_far * mDoLib_clipper::getFar());
 
                 f32 radius = fopAcM_getCullSizeSphereR(i_actor);
-                const Vec* center_p = fopAcM_getCullSizeSphereCenter(i_actor);
+                const Vec& center_p = fopAcM_getCullSizeSphereCenter(i_actor);
                 Vec center;
-                center.x = center_p->x;
-                center.y = center_p->y;
-                center.z = center_p->z;
+                center.x = center_p.x;
+                center.y = center_p.y;
+                center.z = center_p.z;
 
                 u32 ret = mDoLib_clipper::clip(mtx_p, center, radius);
                 mDoLib_clipper::resetFar();
                 return ret;
             } else {
                 f32 radius = fopAcM_getCullSizeSphereR(i_actor);
-                const Vec* center_p = fopAcM_getCullSizeSphereCenter(i_actor);
+                const Vec& center_p = fopAcM_getCullSizeSphereCenter(i_actor);
                 Vec center;
-                center.x = center_p->x;
-                center.y = center_p->y;
-                center.z = center_p->z;
+                center.x = center_p.x;
+                center.y = center_p.y;
+                center.z = center_p.z;
                 return mDoLib_clipper::clip(mtx_p, center, radius);
             }
         } else {
@@ -1092,20 +823,15 @@ s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
 
             if (fopAcM_getCullSizeFar(i_actor) > 0.0f) {
                 mDoLib_clipper::changeFar(cullsize_far * mDoLib_clipper::getFar());
-                u32 ret = mDoLib_clipper::clip(mtx_p, sphere->mCenter, sphere->mRadius);
+                u32 ret = mDoLib_clipper::clip(mtx_p, sphere->center, sphere->radius);
                 mDoLib_clipper::resetFar();
                 return ret;
             } else {
-                return mDoLib_clipper::clip(mtx_p, sphere->mCenter, sphere->mRadius);
+                return mDoLib_clipper::clip(mtx_p, sphere->center, sphere->radius);
             }
         }
     }
 }
-#else
-s32 fopAcM_cullingCheck(fopAc_ac_c const* param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 8001B058-8001B068 015998 0010+00 5/5 0/0 0/0 .text            event_second_actor__FUs */
 void* event_second_actor(u16) {
@@ -1541,7 +1267,6 @@ s32 fopAcM_createItemFromEnemyID(u8 i_enemyID, cXyz const* i_pos, int i_itemBitN
                                       speedF, speedY, false);
 }
 
-
 /* 8001BF64-8001C078 0168A4 0114+00 1/1 0/0 11/11 .text
  * fopAcM_createItemFromTable__FPC4cXyziiiPC5csXyziPC4cXyzPfPfb */
 s32 fopAcM_createItemFromTable(cXyz const* i_pos, int i_tableNo, int i_itemBitNo, int i_roomNo,
@@ -1584,7 +1309,6 @@ s32 fopAcM_createItemFromTable(cXyz const* i_pos, int i_tableNo, int i_itemBitNo
 
     return fopAcM_GetID(ac);
 }
-
 
 /* 8001C078-8001C0D4 0169B8 005C+00 2/2 0/0 0/0 .text
  * fopAcM_createDemoItem__FPC4cXyziiPC5csXyziPC4cXyzUc          */
@@ -1759,16 +1483,6 @@ void* fopAcM_fastCreateItem2(const cXyz* i_pos, int i_itemNo, int i_itemBitNo, i
     }
 }
 
-/* ############################################################################################## */
-/* 80451C30-80451C34 000230 0004+00 1/1 0/0 0/0 .sdata2          @5808 */
-SECTION_SDATA2 static f32 lit_5808 = 2.0f;
-
-/* 80451C34-80451C38 000234 0004+00 1/1 0/0 0/0 .sdata2          @5809 */
-SECTION_SDATA2 static f32 lit_5809 = 8192.0f;
-
-/* 80451C38-80451C3C 000238 0004+00 4/4 0/0 0/0 .sdata2          @5810 */
-SECTION_SDATA2 static f32 lit_5810 = 1.0f;
-
 /* 8001C5B0-8001C870 016EF0 02C0+00 3/3 0/0 4/4 .text
  * fopAcM_fastCreateItem__FPC4cXyziiPC5csXyzPC4cXyzPfPfiiPFPv_i */
 void* fopAcM_fastCreateItem(const cXyz* i_pos, int i_itemNo, int i_roomNo, const csXyz* i_angle,
@@ -1788,7 +1502,7 @@ void* fopAcM_fastCreateItem(const cXyz* i_pos, int i_itemNo, int i_roomNo, const
     u32 params = MAKE_ITEM_PARAMS(item_no, item_bit_no, 0xFF, param_9);
 
     if (p_speedF != NULL && isHeart(i_itemNo)) {
-        *p_speedF = lit_5808 * *p_speedF;
+        *p_speedF = 2.0f * *p_speedF;
     }
 
     switch (i_itemNo) {
@@ -1824,18 +1538,18 @@ void* fopAcM_fastCreateItem(const cXyz* i_pos, int i_itemNo, int i_roomNo, const
                 angle = csXyz::Zero;
             }
             angle.z = 0xFF;
-            angle.y += (s16)cM_rndFX(lit_5809);
+            angle.y += (s16)cM_rndFX(0x2000);
 
             fopAc_ac_c* actor = (fopAc_ac_c*)fopAcM_fastCreate(
                 PROC_ITEM, params, i_pos, i_roomNo, &angle, i_scale, -1, i_createFunc, NULL);
 
             if (actor != NULL) {
                 if (p_speedF != NULL) {
-                    actor->speedF = *p_speedF * (lit_5810 + cM_rndFX(0.3f));
+                    actor->speedF = *p_speedF * (1.0f + cM_rndFX(0.3f));
                 }
 
                 if (p_speedY != NULL) {
-                    actor->speed.y = *p_speedY * (lit_5810 + cM_rndFX(0.2f));
+                    actor->speed.y = *p_speedY * (1.0f + cM_rndFX(0.2f));
                 }
             }
         }
@@ -1871,7 +1585,7 @@ s32 fopAcM_createBokkuri(u16 i_enemyNo, const cXyz* i_pos, int param_3, int para
     csXyz angle(0, 0, 0);
     if (param_6 != NULL) {
         angle.y = param_6->atan2sX_Z();
-        angle.y += static_cast<s16>(2048.0f * cM_rndFX(FLOAT_LABEL(/* 1.0f */ lit_5810)));
+        angle.y += static_cast<s16>(2048.0f * cM_rndFX(1.0f));
         param_8 = 1;
     }
     u32 actorParams = 0;
@@ -1984,11 +1698,6 @@ s32 fopAcM_otoCheck(fopAc_ac_c const* i_actor, f32 param_1) {
     return 0;
 }
 
-
-/* ############################################################################################## */
-/* 80451C48-80451C4C 000248 0004+00 2/2 0/0 0/0 .sdata2          @6035 */
-SECTION_SDATA2 static f32 lit_6035 = 100.0f;
-
 /* 8001CDFC-8001CED0 01773C 00D4+00 0/0 0/0 49/49 .text
  * fopAcM_otherBgCheck__FPC10fopAc_ac_cPC10fopAc_ac_c           */
 s32 fopAcM_otherBgCheck(fopAc_ac_c const* param_0, fopAc_ac_c const* param_1) {
@@ -1997,7 +1706,7 @@ s32 fopAcM_otherBgCheck(fopAc_ac_c const* param_0, fopAc_ac_c const* param_1) {
     cXyz end;
 
     end = param_1->current.pos;
-    end.y += lit_6035;
+    end.y += 100.0f;
 
     start = param_0->current.pos;
     start.y = param_0->eyePos.y;
@@ -2022,7 +1731,7 @@ s32 fopAcM_wayBgCheck(fopAc_ac_c const* param_0, f32 param_1, f32 param_2) {
     start.y += param_2;
     mDoMtx_YrotS((MtxP)calc_mtx, param_0->shape_angle.y);
 
-    offset.x = FLOAT_LABEL(lit_4645);
+    offset.x = 0.0f;
     offset.y = 50.0f;
     offset.z = param_1;
 
@@ -2090,35 +1799,21 @@ f32 fopAcM_gc_c::mGroundY;
  * fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci */
 void fopAcM_effSmokeSet1(u32* param_0, u32* param_1, cXyz const* param_2, csXyz const* param_3,
                          f32 param_4, dKy_tevstr_c const* param_5, int param_6) {
-    cXyz p2;
-    f32 z = param_2->z;
-    f32 y = FLOAT_LABEL(lit_6035) + param_2->y;
-    p2.x = param_2->x;
-    p2.y = y;
-    p2.z = z;
+    cXyz p2(param_2->x, param_2->y + 100.0f, param_2->z);
     if (fopAcM_gc_c::gndCheck(&p2)) {
         p2.y = fopAcM_gc_c::getGroundY();
-        cXyz stack_18;
-        stack_18.x = param_4;
-        stack_18.y = param_4;
-        stack_18.z = param_4;
+        cXyz stack_18(param_4, param_4, param_4);
         *param_0 =
             dComIfGp_particle_setSimpleFoot(*param_0, param_1, *fopAcM_gc_c::getGroundCheck(), &p2,
                                             param_5, param_6, param_3, &stack_18, NULL, 0xff, NULL);
     }
 }
 
-/* ############################################################################################## */
-/* 80451C50-80451C54 000250 0004+00 1/1 0/0 0/0 .sdata2          hamon_name$6107 */
-SECTION_SDATA2 static u16 hamon_name[2] = {
-    0x01B2,
-    0x01B3,
-};
-
 /* 8001D10C-8001D1F4 017A4C 00E8+00 0/0 1/1 41/41 .text            fopAcM_effHamonSet__FPUlPC4cXyzff
  */
 void fopAcM_effHamonSet(u32* param_0, cXyz const* param_1, f32 param_2, f32 emitRate) {
     cXyz tmp(param_2, param_2, param_2);
+    static u16 const hamon_name[2] = {0x01B2, 0x01B3};
 
     for (int i = 0; i < 2; i++) {
         *param_0 = dComIfGp_particle_set(*param_0, hamon_name[i], param_1, NULL, &tmp);
@@ -2130,7 +1825,6 @@ void fopAcM_effHamonSet(u32* param_0, cXyz const* param_1, f32 param_2, f32 emit
         param_0++;
     }
 }
-
 
 /* 8001D1F4-8001D1FC 017B34 0008+00 0/0 0/0 7/7 .text            fopAcM_riverStream__FP4cXyzPsPff */
 s32 fopAcM_riverStream(cXyz* param_0, s16* param_1, f32* param_2, f32 param_3) {
@@ -2149,7 +1843,7 @@ s32 fopAcM_carryOffRevise(fopAc_ac_c* param_0) {
     start.y = param_0->current.pos.y;
     mDoMtx_YrotS((MtxP)calc_mtx, player->shape_angle.y);
 
-    offset.x = FLOAT_LABEL(lit_4645);
+    offset.x = 0.0f;
     offset.y = param_0->current.pos.y - player->current.pos.y;
     offset.z = 150.0f;
 
@@ -2162,7 +1856,7 @@ s32 fopAcM_carryOffRevise(fopAc_ac_c* param_0) {
         param_0->current.pos.x = player->current.pos.x;
         param_0->current.pos.z = player->current.pos.z;
         param_0->old.pos = param_0->current.pos;
-        param_0->speedF = FLOAT_LABEL(lit_4645);
+        param_0->speedF = 0.0f;
         return 1;
     }
 
@@ -2173,15 +1867,14 @@ s32 fopAcM_carryOffRevise(fopAc_ac_c* param_0) {
  */
 static void vectle_calc(const DOUBLE_POS* pDpos, cXyz* pOut) {
     f64 len = sqrt(pDpos->x * pDpos->x + pDpos->y * pDpos->y + pDpos->z * pDpos->z);
-    if (DOUBLE_LABEL(/* 0.0 */ lit_4747) != len) {
+    if (len != 0.0) {
         pOut->x = pDpos->x / len;
         pOut->y = pDpos->y / len;
         pOut->z = pDpos->z / len;
     } else {
-        f32 tmp0 = FLOAT_LABEL(/* 0.0f */ lit_4645);  // temp not needed when data is moved
-        pOut->x = tmp0;
-        pOut->y = tmp0;
-        pOut->z = tmp0;
+        pOut->x = 0.0f;
+        pOut->y = 0.0f;
+        pOut->z = 0.0f;
     }
 }
 
@@ -2193,15 +1886,6 @@ static void get_vectle_calc(const cXyz* pXyzA, const cXyz* pXyzB, cXyz* pOut) {
     dPos.z = pXyzB->z - pXyzA->z;
     vectle_calc(&dPos, pOut);
 }
-
-/* ############################################################################################## */
-/* 80378898-803788C8 004EF8 0030+00 1/1 0/0 0/0 .rodata          mtx_adj$6195 */
-SECTION_RODATA static Mtx const mtx_adj = {
-    {0.5f, 0.0f, 0.0f, 0.5f},
-    {0.0f, -0.5f, 0.0f, 0.5f},
-    {0.0f, 0.0f, 1.0f, 0.0f},
-};
-COMPILER_STRIP_GATE(0x80378898, &mtx_adj);
 
 /* 8001D42C-8001D5A4 017D6C 0178+00 0/0 3/3 40/40 .text
  * fopAcM_setEffectMtx__FPC10fopAc_ac_cPC12J3DModelData         */
@@ -2216,6 +1900,11 @@ void fopAcM_setEffectMtx(const fopAc_ac_c* i_actor, const J3DModelData* modelDat
     Mtx mtx;
     C_MTXLookAt(mtx, &cXyz::Zero, &cXyz::BaseY, &half);
     mDoMtx_stack_c::scaleS(1.0, 1.0, 1.0);
+    static Mtx const mtx_adj = {
+        {0.5f, 0.0f, 0.0f, 0.5f},
+        {0.0f, -0.5f, 0.0f, 0.5f},
+        {0.0f, 0.0f, 1.0f, 0.0f},
+    };  
     mDoMtx_stack_c::concat(mtx_adj);
     mDoMtx_stack_c::concat(mtx);
     MtxP currentMtx = mDoMtx_stack_c::get();
@@ -2239,7 +1928,6 @@ void fopAcM_setEffectMtx(const fopAc_ac_c* i_actor, const J3DModelData* modelDat
         }
     }
 }
-
 
 /* 8001D5A4-8001D5EC 017EE4 0048+00 1/1 0/0 0/0 .text fopAcM_getProcNameString__FPC10fopAc_ac_c */
 static const char* fopAcM_getProcNameString(const fopAc_ac_c* i_actor) {
@@ -2420,9 +2108,10 @@ s16 fopAcM_getPolygonAngle(cM3dGPla const* p_plane, s16 param_1) {
     }
 
     f32 cos = cM_scos(p_plane->mNormal.atan2sX_Z() - param_1);
-    return cM_atan2s(JMAFastSqrt(p_plane->mNormal.x * p_plane->mNormal.x + p_plane->mNormal.z * p_plane->mNormal.z) * cos, p_plane->mNormal.y);
+    f32 xz = JMAFastSqrt(p_plane->mNormal.x * p_plane->mNormal.x + p_plane->mNormal.z * p_plane->mNormal.z);
+    xz *= cos;
+    return cM_atan2s(xz, p_plane->mNormal.y);
 }
-
 
 /* 8001DC68-8001DCBC 0185A8 0054+00 0/0 5/5 21/21 .text
  * lineCheck__11fopAcM_lc_cFPC4cXyzPC4cXyzPC10fopAc_ac_c        */

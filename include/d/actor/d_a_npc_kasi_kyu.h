@@ -26,7 +26,7 @@ public:
     /* 80A224C8 */ void setParam();
     /* 80A22534 */ void main();
     /* 80A227DC */ void setAttnPos();
-    /* 80A22984 */ void setMotionAnm(int, f32);
+    /* 80A22984 */ bool setMotionAnm(int, f32);
     /* 80A22A54 */ void setMotion(int, f32, int);
     /* 80A22A9C */ bool drawDbgInfo();
     /* 80A22AA4 */ void reset();

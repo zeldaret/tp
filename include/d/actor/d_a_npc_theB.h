@@ -32,7 +32,7 @@ public:
     /* 80AFDB70 */ void setAttnPos();
     /* 80AFDEC0 */ void setExpressionAnm(int, bool);
     /* 80AFE0BC */ void setExpressionBtp(int);
-    /* 80AFE1BC */ void setMotionAnm(int, f32);
+    /* 80AFE1BC */ bool setMotionAnm(int, f32);
     /* 80AFE398 */ bool drawDbgInfo();
     /* 80AFE3A0 */ void reset();
     /* 80AFE574 */ void playExpression();

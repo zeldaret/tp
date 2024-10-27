@@ -73,7 +73,7 @@ public:
     /* 80085CF0 */ void Clear();
     /* 80085D98 */ void Set(cCcD_Obj* p_obj, u8 priority);
     /* 80085E6C */ void SetCam(cM3dGCps const& cps);
-    /* 80085EB0 */ u8 GetResultCam() const;
+    /* 80085EB0 */ u32 GetResultCam() const;
     /* 80085EB8 */ void GetCamTopPos(Vec* p_out);
 };
 

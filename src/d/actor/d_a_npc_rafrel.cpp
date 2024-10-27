@@ -859,7 +859,7 @@ void daNpcRafrel_c::setExpressionBtp(int param_0) {
 }
 
 /* 80ABA9CC-80ABAB88 00148C 01BC+00 1/0 0/0 0/0 .text            setMotionAnm__13daNpcRafrel_cFif */
-void daNpcRafrel_c::setMotionAnm(int param_0, f32 param_1) {
+bool daNpcRafrel_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 

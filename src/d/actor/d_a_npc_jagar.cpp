@@ -108,7 +108,7 @@ extern "C" void func_80A1A05C(void* _this, f32, f32);
 extern "C" void __sinit_d_a_npc_jagar_cpp();
 extern "C" void
 __ct__13daNpc_Jagar_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc();
-extern "C" bool getEyeballMaterialNo__13daNpc_Jagar_cFv();
+extern "C" s32 getEyeballMaterialNo__13daNpc_Jagar_cFv();
 extern "C" s32 getHeadJointNo__13daNpc_Jagar_cFv();
 extern "C" s32 getNeckJointNo__13daNpc_Jagar_cFv();
 extern "C" bool getBackboneJointNo__13daNpc_Jagar_cFv();
@@ -1811,7 +1811,7 @@ daNpc_Jagar_c::daNpc_Jagar_c(daNpcT_faceMotionAnmData_c const* param_0,
 }
 
 /* 80A1A274-80A1A27C 005C54 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__13daNpc_Jagar_cFv */
-bool daNpc_Jagar_c::getEyeballMaterialNo() {
+s32 daNpc_Jagar_c::getEyeballMaterialNo() {
     return true;
 }
 

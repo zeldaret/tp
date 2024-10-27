@@ -31,7 +31,7 @@ public:
     /* 809AEDA8 */ void setParam();
     /* 809AEE24 */ void main();
     /* 809AEFDC */ void setAttnPos();
-    /* 809AF12C */ void setMotionAnm(int, f32);
+    /* 809AF12C */ bool setMotionAnm(int, f32);
     /* 809AF1FC */ bool drawDbgInfo();
     /* 809AF934 */ void adjustShapeAngle();
 

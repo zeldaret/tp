@@ -679,7 +679,7 @@ bool daNpcThe_c::setExpressionBtp(int i_idx) {
 }
 
 /* 80AF8564-80AF8744 000F84 01E0+00 2/0 0/0 0/0 .text            setMotionAnm__10daNpcThe_cFif */
-void daNpcThe_c::setMotionAnm(int i_idx, f32 i_morf) {
+bool daNpcThe_c::setMotionAnm(int i_idx, f32 i_morf) {
     J3DAnmTransformKey* anm_trans = NULL;
     J3DAnmTextureSRTKey* anm_tex = NULL;
     int attr = J3DFrameCtrl::LOOP_REPEAT_e;

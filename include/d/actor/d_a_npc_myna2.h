@@ -25,7 +25,7 @@ public:
     /* 80A848B4 */ void main();
     /* 80A84B64 */ void setAttnPos();
     /* 80A84DAC */ void setExpressionBtp(int);
-    /* 80A84EAC */ void setMotionAnm(int, f32);
+    /* 80A84EAC */ bool setMotionAnm(int, f32);
     /* 80A84FEC */ void setMotion(int, f32, int);
     /* 80A85030 */ bool drawDbgInfo();
     /* 80A85038 */ void drawOtherMdls();

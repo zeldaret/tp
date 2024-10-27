@@ -293,6 +293,7 @@ public:
     void setFrame(f32 frame) { mFrameCtrl.setFrame((s16)frame); }
     void setFrameF(f32 frame) { mFrameCtrl.setFrame(frame); }
     BOOL checkFrame(f32 frame) { return mFrameCtrl.checkPass(frame); }
+    f32 getMorfRatio() { return mCurMorf; }
 
     /* 0x04 */ J3DModel* mpModel;
     /* 0x08 */ J3DAnmTransform* mpAnm;

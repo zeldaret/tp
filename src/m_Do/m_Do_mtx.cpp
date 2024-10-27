@@ -219,11 +219,10 @@ void mDoMtx_lookAt(Mtx mtx, Vec const* param_1, Vec const* param_2, s16 param_3)
 
 /* 8000C710-8000C8D0 007050 01C0+00 0/0 10/10 1/1 .text mDoMtx_lookAt__FPA4_fPC3VecPC3VecPC3Vecs
  */
-void mDoMtx_lookAt(Mtx mtx, Vec const* param_1, Vec const* param_2, Vec const* param_3,
-                   s16 param_4) {
-    cXyz local_4c(*(cXyz*)param_1);
-    cXyz local_58(*(cXyz*)param_2);
-    cXyz local_64(*(cXyz*)param_3);
+void mDoMtx_lookAt(Mtx mtx, Vec const* i_eye, Vec const* i_center, Vec const* i_up, s16 i_bank) {
+    cXyz local_4c(*(cXyz*)i_eye);
+    cXyz local_58(*(cXyz*)i_center);
+    cXyz local_64(*(cXyz*)i_up);
     cXyz local_70 = local_4c - local_58;
     if (!local_70.normalizeRS()) {
         local_58.z += 1.0f;
@@ -233,14 +232,14 @@ void mDoMtx_lookAt(Mtx mtx, Vec const* param_1, Vec const* param_2, Vec const* p
     }
     C_MTXLookAt(mtx, &local_4c, &local_64, &local_58);
     Mtx local_40;
-    mDoMtx_ZrotS(local_40, param_4);
+    mDoMtx_ZrotS(local_40, i_bank);
     mDoMtx_concat(local_40, mtx, mtx);
     JGeometry::TVec3<f32> local_7c;
     local_7c.set(0.0f, mtx[1][1], mtx[2][1]);
     if (local_7c.isZero()) {
         local_58.y += 1.0f;
         C_MTXLookAt(mtx, &local_4c, &local_64, &local_58);
-        mDoMtx_ZrotS(local_40, param_4);
+        mDoMtx_ZrotS(local_40, i_bank);
         mDoMtx_concat(local_40, mtx, mtx);
     }
 }

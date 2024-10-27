@@ -57,7 +57,7 @@ extern "C" s32 getNeckJointNo__12daNpc_grMC_cFv();
 extern "C" bool getBackboneJointNo__12daNpc_grMC_cFv();
 extern "C" void checkChangeJoint__12daNpc_grMC_cFi();
 extern "C" void checkRemoveJoint__12daNpc_grMC_cFi();
-extern "C" bool getEyeballMaterialNo__12daNpc_grMC_cFv();
+extern "C" s32 getEyeballMaterialNo__12daNpc_grMC_cFv();
 extern "C" void __dt__18daNpc_grMC_Param_cFv();
 extern "C" static void func_809D905C();
 extern "C" static void func_809D9064();
@@ -1004,7 +1004,7 @@ void daNpc_grMC_c::checkRemoveJoint(int param_0) {
 }
 
 /* 809D900C-809D9014 001CEC 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__12daNpc_grMC_cFv */
-bool daNpc_grMC_c::getEyeballMaterialNo() {
+s32 daNpc_grMC_c::getEyeballMaterialNo() {
     return true;
 }
 

@@ -29,7 +29,7 @@ public:
     /* 80B0D458 */ void setExpressionAnm(int, bool);
     /* 80B0D5A4 */ void setExpressionBtp(int);
     /* 80B0D678 */ void reset();
-    /* 80B0DA94 */ void setMotionAnm(int, f32);
+    /* 80B0DA94 */ bool setMotionAnm(int, f32);
     /* 80B0DBC8 */ void setAction(void (daNpcTkc_c::*)());
     /* 80B0DC68 */ void wait();
     /* 80B0DEF8 */ void calcFly();

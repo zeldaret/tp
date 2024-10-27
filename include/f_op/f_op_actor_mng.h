@@ -17,6 +17,12 @@
         fopAcM_OnCondition(ptr, fopAcCnd_INIT_e); \
     }
 
+#define fopAcM_SetupActor2(ptr,ClassName, ...) \
+    if (!fopAcM_CheckCondition(ptr, fopAcCnd_INIT_e)) { \
+        new (ptr) ClassName(__VA_ARGS__); \
+        fopAcM_OnCondition(ptr, fopAcCnd_INIT_e); \
+    }
+
 class J3DModelData;  // placeholder
 class JKRHeap;
 class cM3dGPla;

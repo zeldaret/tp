@@ -961,7 +961,7 @@ void daObjTks_c::demo() {
 }
 
 /* 80D11104-80D11228 001F64 0124+00 1/0 0/0 0/0 .text            setMotionAnm__10daObjTks_cFif */
-void daObjTks_c::setMotionAnm(int param_0, f32 param_1) {
+bool daObjTks_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 

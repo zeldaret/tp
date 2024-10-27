@@ -53,7 +53,7 @@ public:
     /* 809D8FE4 */ bool getBackboneJointNo();
     /* 809D8FEC */ void checkChangeJoint(int);
     /* 809D8FFC */ void checkRemoveJoint(int);
-    /* 809D900C */ bool getEyeballMaterialNo();
+    /* 809D900C */ s32 getEyeballMaterialNo();
 
     static void* mCutNameList;
     static u8 mCutList[12];

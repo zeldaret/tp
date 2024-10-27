@@ -4729,7 +4729,7 @@ extern "C" f32 getSearchBallScale__9daAlink_cCFv(daAlink_c* this_) {
 }
 
 /* 800D079C-800D07A4 0CB0DC 0008+00 1/0 0/0 0/0 .text            checkFastShotTime__9daAlink_cFv */
-extern "C" s16 checkFastShotTime__9daAlink_cFv(daAlink_c* this_) {
+extern "C" int checkFastShotTime__9daAlink_cFv(daAlink_c* this_) {
     return this_->mFastShotTime;
 }
 

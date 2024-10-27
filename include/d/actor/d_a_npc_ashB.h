@@ -25,7 +25,7 @@ public:
     /* 8095EBB4 */ void ctrlJointCallBack(J3DJoint*, int);
     /* 8095EC00 */ void setExpressionAnm(int, bool);
     /* 8095EE00 */ void setExpressionBtp(int);
-    /* 8095EEE0 */ void setMotionAnm(int, f32);
+    /* 8095EEE0 */ bool setMotionAnm(int, f32);
     /* 8095F0A4 */ void reset();
     /* 8095F21C */ void setAction(bool (daNpcAshB_c::*)(void*));
     /* 8095F2C4 */ void wait(void*);
