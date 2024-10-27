@@ -211,8 +211,8 @@ void daAlink_c::changeWolf() {
     field_0x30b4 = 4;
     field_0x30bc = 31;
     field_0x30be = 36;
-    field_0x32c4 = 1;
-    field_0x32c6 = 2;
+    field_0x32c4[0] = 1;
+    field_0x32c4[1] = 2;
     field_0x30b6 = 2;
     attention_info.field_0xa = 50;
 
@@ -474,8 +474,8 @@ void daAlink_c::changeLink(int param_0) {
         field_0x30bc = 21;
         field_0x30be = 26;
         field_0x30b6 = 5;
-        field_0x32c4 = 2;
-        field_0x32c6 = 16;
+        field_0x32c4[0] = 2;
+        field_0x32c4[1] = 16;
         attention_info.field_0xa = 10;
 
         dCcD_Cyl* cyl_p = field_0x850;

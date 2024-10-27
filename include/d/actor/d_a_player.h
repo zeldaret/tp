@@ -340,6 +340,7 @@ public:
         FLG3_UNK_4000 = 0x4000,
         FLG3_UNK_2000 = 0x2000,
         FLG3_UNK_1000 = 0x1000,
+        FLG3_UNK_800 = 0x800,
         FLG3_UNK_400 = 0x400,
         FLG3_UNK_200 = 0x200,
         FLG3_UNK_100 = 0x100,
@@ -396,6 +397,7 @@ public:
         ERFLG1_UNK_100000 = 0x100000,
         ERFLG1_UNK_80000 = 0x80000,
         ERFLG1_UNK_40000 = 0x40000,
+        ERFLG1_UNK_20000 = 0x20000,
         ERFLG1_UNK_10000 = 0x10000,
         ERFLG1_UNK_8000 = 0x8000,
         ERFLG1_UNK_4000 = 0x4000,
@@ -807,6 +809,7 @@ public:
     void onWolfEyeKeep() { onEndResetFlg1(ERFLG1_WOLF_EYE_KEEP); }
     void onFogFade() { onNoResetFlg2(FLG2_UNK_4000); }
     BOOL checkStickArrowReset() const { return checkResetFlg0(RFLG0_UNK_1); }
+    u32 getCutAtFlg() const { return checkNoResetFlg0(FLG0_UNK_40); }
 
     void offWolfEnemyHangBite() { offNoResetFlg2(FLG2_WOLF_ENEMY_HANG_BITE); }
     bool onWolfEnemyHangBite(fopAc_ac_c* param_0) { return onWolfEnemyBiteAll(param_0, FLG2_WOLF_ENEMY_HANG_BITE); }
@@ -875,6 +878,7 @@ public:
 
     cXyz* getLeftHandPosP() { return &mLeftHandPos; }
     cXyz* getRightHandPosP() { return &mRightHandPos; }
+    cXyz* getHeadTopPosP() { return &mHeadTopPos; }
 
     u32 checkWolf() const { return checkNoResetFlg1(FLG1_IS_WOLF); }
     u32 checkEquipHeavyBoots() const { return checkNoResetFlg0(FLG0_EQUIP_HVY_BOOTS); }

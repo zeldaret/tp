@@ -2108,21 +2108,26 @@ COMPILER_STRIP_GATE(0x80391D78, &chuchuScale);
 #pragma pop
 
 /* 80391D84-80391D94 01E3E4 0010+00 1/1 0/0 0/0 .rodata          effJoint$42070 */
-SECTION_RODATA static u16 const effJoint[] = {
-    0x0007, 0x000C, 0x0010, 0x0022, 0x0003, 0x0003, 0x0003, 0x0003,
+SECTION_RODATA static u16 const effJoint[2][4] = {
+    {0x0007, 0x000C, 0x0010, 0x0022},
+    {0x0003, 0x0003, 0x0003, 0x0003},
 };
 COMPILER_STRIP_GATE(0x80391D84, &effJoint);
 
 /* 80391D94-80391DF4 01E3F4 0060+00 1/1 0/0 0/0 .rodata          effOffset$42071 */
-SECTION_RODATA static Vec const effOffset[] = {
-    {-5.0f, 0.0f, 0.0f},
-    {15.0f, 3.0f, 5.0f},
-    {4.0f, -10.0f, 15.0f},
-    {0.0f, -5.0f, -7.0f},
-    {15.0f, 5.0f, -20.0f},
-    {0.0f, -25.0f, 5.0f},
-    {15.0f, -5.0f, 20.0f},
-    {10.0f, -25.0f, -10.0f},
+SECTION_RODATA static Vec const effOffset[2][4] = {
+    {
+        {-5.0f, 0.0f, 0.0f},
+        {15.0f, 3.0f, 5.0f},
+        {4.0f, -10.0f, 15.0f},
+        {0.0f, -5.0f, -7.0f},
+    },
+    {
+        {15.0f, 5.0f, -20.0f},
+        {0.0f, -25.0f, 5.0f},
+        {15.0f, -5.0f, 20.0f},
+        {10.0f, -25.0f, -10.0f},
+    }
 };
 COMPILER_STRIP_GATE(0x80391D94, &effOffset);
 

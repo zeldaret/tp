@@ -32,6 +32,7 @@ public:
     bool checkShieldType(int i) { return getType(i) == 3; }
 
     s8 getType(int i) { return mData[i].mType; }
+    int getJntNum(int i) { return mData[i].mJntNum; }
 
     /* 0x00 */ const dJntColData_c* mData;
     /* 0x04 */ J3DModel* mModel;

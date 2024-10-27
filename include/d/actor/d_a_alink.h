@@ -115,6 +115,12 @@ public:
         mKeepMinY = minY;
     }
 
+    s16 getAppearFlg() const { return mAppearFlg; }
+    s16 getHitFlg() const { return mHitFlg; }
+    cXyz& getHitPos() { return mHitPos; }
+
+    void onAppearFlg() { mAppearFlg = true; }
+
 private:
     /* 0x04 */ s16 mHitFlg;
     /* 0x06 */ s16 mAppearFlg;
@@ -1278,6 +1284,7 @@ public:
         /* 800CFC3C */ ~firePointEff_c();
         /* 800CFC78 */ firePointEff_c();
         /* 0x00 */ u8 field_0x0;
+        /* 0x02 */ u16 field_0x2;
         /* 0x04 */ u32 field_0x4;
         /* 0x08 */ u32 field_0x8;
         /* 0x0C */ cXyz field_0xc;
@@ -3914,8 +3921,7 @@ public:
     /* 0x031A0 */ u32 mModeFlg;
     /* 0x031A4 */ int field_0x31a4;
     /* 0x031A8 */ u8 field_0x31a8[8];
-    /* 0x031B0 */ int field_0x31b0;
-    /* 0x031B4 */ u8 field_0x31b4[8];
+    /* 0x031B0 */ u32 field_0x31b0[3];
     /* 0x031BC */ u32 field_0x31bc;
     /* 0x031C0 */ u32 field_0x31c0;
     /* 0x031C4 */ u32 field_0x31c4;
@@ -3923,15 +3929,13 @@ public:
     /* 0x031CC */ u32 field_0x31cc;
     /* 0x031D0 */ u32 field_0x31d0;
     /* 0x031D4 */ u32 field_0x31d4;
-    /* 0x031D8 */ u8 field_0x31d8[12];
+    /* 0x031D8 */ u32 field_0x31d8[3];
     /* 0x031E4 */ u32 field_0x31e4;
-    /* 0x031E8 */ u8 field_0x31e8[16];
+    /* 0x031E8 */ u32 field_0x31e8[4];
     /* 0x031F8 */ u32 field_0x31f8;
     /* 0x031FC */ u32 field_0x31fc;
     /* 0x03200 */ u32 field_0x3200;
-    /* 0x03204 */ u32 field_0x3204;
-    /* 0x03208 */ u32 field_0x3208;
-    /* 0x0320C */ u8 field_0x320c[16];
+    /* 0x03204 */ u32 field_0x3204[6];
     /* 0x0321C */ u32 field_0x321c;
     /* 0x03220 */ u32 field_0x3220;
     /* 0x03224 */ u32 field_0x3224;
@@ -3940,17 +3944,18 @@ public:
     /* 0x03258 */ u32 field_0x3258;
     /* 0x0325C */ u32 field_0x325c;
     /* 0x03260 */ u32 field_0x3260[2];
-    /* 0x03268 */ u8 field_0x3268[0x3288 - 0x3268];
+    /* 0x03268 */ u32 field_0x3268;
+    /* 0x0326C */ u32 field_0x326c[4];
+    /* 0x0327C */ u32 field_0x327c[3];
     /* 0x03288 */ u32 field_0x3288;
     /* 0x0328C */ u32 field_0x328c;
     /* 0x03290 */ u32 field_0x3290;
     /* 0x03294 */ u32 field_0x3294;
-    /* 0x03298 */ u8 field_0x3298[8];
+    /* 0x03298 */ u32 field_0x3298[2];
     /* 0x032A0 */ J3DGXColorS10 field_0x32a0[2];
     /* 0x032B0 */ J3DGXColorS10 field_0x32b0[2];
     /* 0x032C0 */ s16 field_0x32c0[2];
-    /* 0x032C4 */ u16 field_0x32c4;
-    /* 0x032C6 */ u16 field_0x32c6;
+    /* 0x032C4 */ u16 field_0x32c4[2];
     /* 0x032C8 */ u32 field_0x32c8;
     /* 0x032CC */ u32 field_0x32cc;
     /* 0x032D0 */ u32 field_0x32d0;
