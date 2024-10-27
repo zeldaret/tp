@@ -2017,12 +2017,6 @@ int daAlink_c::procCrouch() {
     return 1;
 }
 
-/* 80425604-80425610 052324 000C+00 0/1 0/0 0/0 .bss             l_sumouBaseAnimeSp */
-static cXyz l_sumouBaseAnimeSp;
-
-/* 8042561C-80425628 05233C 000C+00 37/39 0/0 0/0 .bss             l_wolfBaseAnime */
-static cXyz l_wolfBaseAnime;
-
 BOOL daMidna_c::checkMidnaRealBody() {
     return dKy_darkworld_check() == 1 || dComIfGs_isTransformLV(3);
 }

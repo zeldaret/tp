@@ -160,67 +160,13 @@ BOOL daAlink_c::checkGrabRooster() {
     return false;
 }
 
-/* ############################################################################################## */
-/* 80425628-80425634 052348 000C+00 0/1 0/0 0/0 .bss             @4421 */
-#pragma push
-#pragma force_active on
-static u8 lit_4421[12];
-#pragma pop
-
-/* 80425634-80425640 052354 000C+00 2/3 0/0 0/0 .bss             l_wolfRopeBaseAnime */
-static Vec l_wolfRopeBaseAnime;
-
-/* 80425640-8042564C 052360 000C+00 0/1 0/0 0/0 .bss             @14255 */
-#pragma push
-#pragma force_active on
-static u8 lit_14255[12];
-#pragma pop
-
-/* 8042564C-80425658 05236C 000C+00 0/1 0/0 0/0 .bss             grabCarryOffset0$14254 */
-#pragma push
-#pragma force_active on
-static u8 grabCarryOffset0[12];
-#pragma pop
-
-/* 80425658-80425664 052378 000C+00 0/1 0/0 0/0 .bss             @14259 */
-#pragma push
-#pragma force_active on
-static u8 lit_14259[12];
-#pragma pop
-
-/* 80425664-80425670 052384 000C+00 0/1 0/0 0/0 .bss             grabCarryOffset1$14258 */
-#pragma push
-#pragma force_active on
-static u8 grabCarryOffset1[12];
-#pragma pop
-
-/* 80425670-8042567C 052390 000C+00 0/1 0/0 0/0 .bss             @14263 */
-#pragma push
-#pragma force_active on
-static u8 lit_14263[12];
-#pragma pop
-
-/* 8042567C-80425688 05239C 000C+00 0/1 0/0 0/0 .bss             grabCarryOffset2$14262 */
-#pragma push
-#pragma force_active on
-static u8 grabCarryOffset2[12];
-#pragma pop
-
-/* 80425688-80425694 0523A8 000C+00 0/1 0/0 0/0 .bss             @14267 */
-#pragma push
-#pragma force_active on
-static u8 lit_14267[12];
-#pragma pop
-
-/* 80425694-804256A0 0523B4 000C+00 0/1 0/0 0/0 .bss             grabCarryOffset3$14266 */
-#pragma push
-#pragma force_active on
-static u8 grabCarryOffset3[12];
-#pragma pop
-
 /* 800E3F50-800E4BD4 0DE890 0C84+00 1/1 0/0 0/0 .text            setGrabItemPos__9daAlink_cFv */
 void daAlink_c::setGrabItemPos() {
     // NONMATCHING
+    static cXyz grabCarryOffset0(0.0f, -30.0f, 25.0f);
+    static cXyz grabCarryOffset1(0.0f, 20.0f, -5.0f);
+    static cXyz grabCarryOffset2(-3.0f, 30.0f, -30.0f);
+    static cXyz grabCarryOffset3(-4.5f, 26.0f, -33.0f);
 }
 
 /* 800E4BD4-800E4DEC 0DF514 0218+00 16/16 0/0 0/0 .text            freeGrabItem__9daAlink_cFv */

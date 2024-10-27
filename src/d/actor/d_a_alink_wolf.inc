@@ -5747,13 +5747,13 @@ BOOL daAlink_c::setWolfEnemyHangBitePos(fopEn_enemy_c* i_enemy) {
 
 /* ############################################################################################## */
 /* 804256EC-804256F8 05240C 000C+00 0/1 0/0 0/0 .bss             @50952 */
-#pragma push
+/* #pragma push
 #pragma force_active on
 static u8 lit_50952[12];
-#pragma pop
+#pragma pop */
 
 /* 804256F8-80425708 052418 000C+04 1/2 0/0 0/0 .bss             l_wolfBiteHitMarkScale */
-static Vec l_wolfBiteHitMarkScale;
+static cXyz l_wolfBiteHitMarkScale(0.5f, 0.5f, 0.5f);
 
 /* 801396F8-801397A4 134038 00AC+00 1/1 0/0 0/0 .text
  * setWolfBiteDamage__9daAlink_cFP13fopEn_enemy_c               */
@@ -7834,13 +7834,7 @@ int daAlink_c::procWolfDigThroughInit(int param_0) {
 
     mProcVar5.field_0x3012 = param_0;
 
-    u16* var_r29;
-    if (var_r27 == 13) {
-        var_r29 = snowID;
-    } else {
-        var_r29 = smokeID;
-    }
-
+    const u16* var_r29 = var_r27 == 13 ? snowID : smokeID;
     for (int i = 0; i < 4; i++) {
         dComIfGp_particle_set(*var_r29, &current.pos, &shape_angle, NULL);
         var_r29++;

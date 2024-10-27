@@ -1293,7 +1293,7 @@ public:
     };  // Size: 0x10
 
     /* 8009D87C */ bool getE3Zhint();
-    /* 8009D884 */ static char* getAlinkArcName();
+    /* 8009D884 */ static const char* getAlinkArcName();
     /* 8009DA60 */ static bool checkStageName(char const*);
     /* 8009DA98 */ void tgHitCallback(fopAc_ac_c*, dCcD_GObjInf*, dCcD_GObjInf*);
     /* 8009DB64 */ void coHitCallback(fopAc_ac_c*, dCcD_GObjInf*);
@@ -3452,10 +3452,10 @@ public:
     static daAlink_AnmData const m_anmDataTable[414];
     static daAlink_WlAnmData const m_wlAnmDataTable[147];
     static daAlink_FaceTexData const m_faceTexDataTable[];
-    static u8 const m_handLeftOutSidePos[12];
-    static u8 const m_handRightOutSidePos[12];
-    static u8 const m_handLeftInSidePos[12];
-    static u8 const m_handRightInSidePos[12];
+    static Vec const m_handLeftOutSidePos;
+    static Vec const m_handRightOutSidePos;
+    static Vec const m_handLeftInSidePos;
+    static Vec const m_handRightInSidePos;
 
 
     static daAlink_procInitTable m_procInitTable[];
@@ -3463,10 +3463,10 @@ public:
     static EffParamProc m_fEffParamProc[];
 
     /* 0x0062C */ request_of_phase_process_class mPhaseReq;
-    /* 0x00634 */ char* mArcName;
+    /* 0x00634 */ const char* mArcName;
     /* 0x00638 */ JKRExpHeap* mpArcHeap;
     /* 0x0063C */ request_of_phase_process_class mShieldPhaseReq;
-    /* 0x00644 */ char* mShieldArcName;
+    /* 0x00644 */ const char* mShieldArcName;
     /* 0x00648 */ JKRExpHeap* mpShieldArcHeap;
     /* 0x0064C */ J3DModelData* field_0x064C;
     /* 0x00650 */ J3DModel* mpLinkModel;
@@ -4102,6 +4102,15 @@ struct daAlink_cutParamTbl {
     /* 0xB */ u8 field_0xb;
     /* 0xC */ f32 m_morf;
 };  // Size: 0x10
+
+struct daAlink_cutHorseParamTbl {
+    /* 0x0 */ int field_0x0;
+    /* 0x4 */ u16 field_0x4;
+    /* 0x6 */ u16 field_0x6;
+    /* 0x8 */ u8 field_0x8;
+    /* 0x9 */ u8 field_0x9;
+    /* 0xA */ u8 field_0xa;
+};  // Size: 0xC
 
 struct daAlinkHIO_anm_c {
     /* 0x00 */ s16 mEndFrame;
