@@ -1194,7 +1194,7 @@ u8 dPa_control_c::mLifeBall[24];
 JPAEmitterManager* dPa_control_c::mEmitterMng;
 
 /* 80450EA4-80450EA8 0003A4 0004+00 1/1 1/1 0/0 .sbss mWaterBubblePcallBack__13dPa_control_c */
-u8 dPa_control_c::mWaterBubblePcallBack[4];
+JPAParticleCallBack dPa_control_c::mWaterBubblePcallBack;
 
 /* 80450EA8-80450EAC 0003A8 0004+00 3/3 0/0 0/0 .sbss            mFsenthPcallBack__13dPa_control_c
  */

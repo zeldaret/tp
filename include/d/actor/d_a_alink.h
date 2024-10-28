@@ -35,13 +35,18 @@ public:
     /* 800CFE68 */ virtual ~daAlink_lockCursor_c() {}
 
     void initFrame() {
-        field_0x4 = false;
+        field_0x4 = 0;
         field_0x2c = 4.0f;
         field_0x30 = 0.0f;
     }
 
+    void setPos(f32 i_posX, f32 i_posY) {
+        mPosX = i_posX;
+        mPosY = i_posY;
+    }
+
 private:
-    /* 0x04 */ bool field_0x4;
+    /* 0x04 */ u8 field_0x4;
     /* 0x05 */ u8 field_0x5[3];
     /* 0x08 */ J2DScreen* mScrn;
     /* 0x0C */ J2DPane* field_0xc;
@@ -54,8 +59,8 @@ private:
     /* 0x28 */ J2DAnmTransformKey* field_0x28;
     /* 0x2C */ f32 field_0x2c;
     /* 0x30 */ f32 field_0x30;
-    /* 0x34 */ f32 field_0x34;
-    /* 0x38 */ f32 field_0x38;
+    /* 0x34 */ f32 mPosX;
+    /* 0x38 */ f32 mPosY;
 };
 
 class daAlink_sight_c : public daPy_sightPacket_c {
@@ -86,16 +91,16 @@ public:
     /* 800CFD58 */ virtual ~daAlink_blur_c() {}
 
     // private:
-    /* 0x010 */ void* m_blurTex;
+    /* 0x010 */ ResTIMG* m_blurTex;
     /* 0x014 */ int field_0x14;
     /* 0x018 */ u8 field_0x18[4];
     /* 0x01C */ int field_0x1c;
-    /* 0x020 */ u8 field_0x20[4];
+    /* 0x020 */ int field_0x20;
     /* 0x024 */ f32 field_0x24;
     /* 0x028 */ u8 field_0x28[4];
     /* 0x02C */ cXyz field_0x2c;
-    /* 0x038 */ cXyz field_0x38[0x3C];
-    /* 0x308 */ cXyz field_0x308[0x3C];
+    /* 0x038 */ cXyz field_0x38[60];
+    /* 0x308 */ cXyz field_0x308[60];
 };  // Size = 0x5D8
 
 class dAlink_bottleWaterPcallBack_c : public JPAParticleCallBack {
@@ -109,6 +114,12 @@ public:
         mAppearFlg = 0;
         mKeepMinY = minY;
     }
+
+    s16 getAppearFlg() const { return mAppearFlg; }
+    s16 getHitFlg() const { return mHitFlg; }
+    cXyz& getHitPos() { return mHitPos; }
+
+    void onAppearFlg() { mAppearFlg = true; }
 
 private:
     /* 0x04 */ s16 mHitFlg;
@@ -218,6 +229,7 @@ public:
 
 class daAlink_c;
 typedef int (daAlink_c::*daAlink_procFunc)();
+typedef void (daAlink_c::*EffParamProc)();
 
 struct daAlink_procInitTable {
     /* 0x0 */ daAlink_procFunc m_procFunc;
@@ -1257,11 +1269,22 @@ public:
         /* 0x4 */ DIR_NONE,
     };
 
+    enum daAlink_EFFPROC {
+        EFFPROC_FRONT_ROLL,
+        EFFPROC_SLIP,
+        EFFPROC_SMALL_LAND,
+        EFFPROC_RUN,
+        EFFPROC_LAND,
+        EFFPROC_SUMOU,
+        EFFPROC_NONE,
+    };
+
     class firePointEff_c {
     public:
         /* 800CFC3C */ ~firePointEff_c();
         /* 800CFC78 */ firePointEff_c();
         /* 0x00 */ u8 field_0x0;
+        /* 0x02 */ u16 field_0x2;
         /* 0x04 */ u32 field_0x4;
         /* 0x08 */ u32 field_0x8;
         /* 0x0C */ cXyz field_0xc;
@@ -1277,7 +1300,7 @@ public:
     };  // Size: 0x10
 
     /* 8009D87C */ bool getE3Zhint();
-    /* 8009D884 */ static char* getAlinkArcName();
+    /* 8009D884 */ static const char* getAlinkArcName();
     /* 8009DA60 */ static bool checkStageName(char const*);
     /* 8009DA98 */ void tgHitCallback(fopAc_ac_c*, dCcD_GObjInf*, dCcD_GObjInf*);
     /* 8009DB64 */ void coHitCallback(fopAc_ac_c*, dCcD_GObjInf*);
@@ -3442,22 +3465,21 @@ public:
     static daAlink_AnmData const m_anmDataTable[414];
     static daAlink_WlAnmData const m_wlAnmDataTable[147];
     static daAlink_FaceTexData const m_faceTexDataTable[];
-    static u8 const m_handLeftOutSidePos[12];
-    static u8 const m_handRightOutSidePos[12];
-    static u8 const m_handLeftInSidePos[12];
-    static u8 const m_handRightInSidePos[12];
+    static Vec const m_handLeftOutSidePos;
+    static Vec const m_handRightOutSidePos;
+    static Vec const m_handLeftInSidePos;
+    static Vec const m_handRightInSidePos;
 
 
     static daAlink_procInitTable m_procInitTable[];
     static daAlink_procFunc m_demoInitTable[];
-
-    static u8 m_fEffParamProc[72];
+    static EffParamProc m_fEffParamProc[];
 
     /* 0x0062C */ request_of_phase_process_class mPhaseReq;
-    /* 0x00634 */ char* mArcName;
+    /* 0x00634 */ const char* mArcName;
     /* 0x00638 */ JKRExpHeap* mpArcHeap;
     /* 0x0063C */ request_of_phase_process_class mShieldPhaseReq;
-    /* 0x00644 */ char* mShieldArcName;
+    /* 0x00644 */ const char* mShieldArcName;
     /* 0x00648 */ JKRExpHeap* mpShieldArcHeap;
     /* 0x0064C */ J3DModelData* field_0x064C;
     /* 0x00650 */ J3DModel* mpLinkModel;
@@ -3666,7 +3688,7 @@ public:
     /* 0x02F9B */ u8 field_0x2f9b;
     /* 0x02F9C */ u8 mSelectItemId;
     /* 0x02F9D */ u8 field_0x2f9d;
-    /* 0x02F9E */ u8 field_0x2f9e;
+    /* 0x02F9E */ u8 mEffProc;
     /* 0x02F9F */ u8 field_0x2f9f;
     /* 0x02FA0 */ u8 field_0x2fa0;
     /* 0x02FA1 */ u8 mRunCutComboCount;
@@ -3905,8 +3927,7 @@ public:
     /* 0x031A0 */ u32 mModeFlg;
     /* 0x031A4 */ int field_0x31a4;
     /* 0x031A8 */ u8 field_0x31a8[8];
-    /* 0x031B0 */ int field_0x31b0;
-    /* 0x031B4 */ u8 field_0x31b4[8];
+    /* 0x031B0 */ u32 field_0x31b0[3];
     /* 0x031BC */ u32 field_0x31bc;
     /* 0x031C0 */ u32 field_0x31c0;
     /* 0x031C4 */ u32 field_0x31c4;
@@ -3914,15 +3935,13 @@ public:
     /* 0x031CC */ u32 field_0x31cc;
     /* 0x031D0 */ u32 field_0x31d0;
     /* 0x031D4 */ u32 field_0x31d4;
-    /* 0x031D8 */ u8 field_0x31d8[12];
+    /* 0x031D8 */ u32 field_0x31d8[3];
     /* 0x031E4 */ u32 field_0x31e4;
-    /* 0x031E8 */ u8 field_0x31e8[16];
+    /* 0x031E8 */ u32 field_0x31e8[4];
     /* 0x031F8 */ u32 field_0x31f8;
     /* 0x031FC */ u32 field_0x31fc;
     /* 0x03200 */ u32 field_0x3200;
-    /* 0x03204 */ u32 field_0x3204;
-    /* 0x03208 */ u32 field_0x3208;
-    /* 0x0320C */ u8 field_0x320c[16];
+    /* 0x03204 */ u32 field_0x3204[6];
     /* 0x0321C */ u32 field_0x321c;
     /* 0x03220 */ u32 field_0x3220;
     /* 0x03224 */ u32 field_0x3224;
@@ -3931,17 +3950,18 @@ public:
     /* 0x03258 */ u32 field_0x3258;
     /* 0x0325C */ u32 field_0x325c;
     /* 0x03260 */ u32 field_0x3260[2];
-    /* 0x03268 */ u8 field_0x3268[0x3288 - 0x3268];
+    /* 0x03268 */ u32 field_0x3268;
+    /* 0x0326C */ u32 field_0x326c[4];
+    /* 0x0327C */ u32 field_0x327c[3];
     /* 0x03288 */ u32 field_0x3288;
     /* 0x0328C */ u32 field_0x328c;
     /* 0x03290 */ u32 field_0x3290;
     /* 0x03294 */ u32 field_0x3294;
-    /* 0x03298 */ u8 field_0x3298[8];
+    /* 0x03298 */ u32 field_0x3298[2];
     /* 0x032A0 */ J3DGXColorS10 field_0x32a0[2];
     /* 0x032B0 */ J3DGXColorS10 field_0x32b0[2];
     /* 0x032C0 */ s16 field_0x32c0[2];
-    /* 0x032C4 */ u16 field_0x32c4;
-    /* 0x032C6 */ u16 field_0x32c6;
+    /* 0x032C4 */ u16 field_0x32c4[2];
     /* 0x032C8 */ u32 field_0x32c8;
     /* 0x032CC */ u32 field_0x32cc;
     /* 0x032D0 */ u32 field_0x32d0;
@@ -4093,6 +4113,15 @@ struct daAlink_cutParamTbl {
     /* 0xB */ u8 field_0xb;
     /* 0xC */ f32 m_morf;
 };  // Size: 0x10
+
+struct daAlink_cutHorseParamTbl {
+    /* 0x0 */ int field_0x0;
+    /* 0x4 */ u16 field_0x4;
+    /* 0x6 */ u16 field_0x6;
+    /* 0x8 */ u8 field_0x8;
+    /* 0x9 */ u8 field_0x9;
+    /* 0xA */ u8 field_0xa;
+};  // Size: 0xC
 
 struct daAlinkHIO_anm_c {
     /* 0x00 */ s16 mEndFrame;

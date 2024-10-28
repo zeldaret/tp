@@ -163,6 +163,10 @@ struct TParseData : public data::TParse_TParagraph_data::TData {
         set(data);
     }
 
+    TParseData() {
+        set(NULL);
+    }
+
     void set(const data::TParse_TParagraph_data& data) {
         data.getData(this);
     }
@@ -183,6 +187,7 @@ struct TParseData : public data::TParse_TParagraph_data::TData {
 template <int T, class Iterator=JGadget::binary::TValueIterator_raw<u8> >
 struct TParseData_fixed : public TParseData<T> {
     TParseData_fixed(const void* pContent) : TParseData<T>(pContent) {}
+    TParseData_fixed() : TParseData<T>() {}
 
     const void* getNext() const {
         return fileCount;

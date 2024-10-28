@@ -830,15 +830,8 @@ void daAlink_c::setHookshotTopPosFly() {
     }
 }
 
-/* ############################################################################################## */
-/* 804256A0-804256AC 0523C0 000C+00 0/1 0/0 0/0 .bss             @29722 */
-#pragma push
-#pragma force_active on
-static u8 lit_29722[12];
-#pragma pop
-
 /* 804256AC-804256B8 0523CC 000C+00 1/2 0/0 0/0 .bss             l_hookSnowSandHitScale */
-static Vec l_hookSnowSandHitScale;
+static cXyz l_hookSnowSandHitScale(0.5f, 0.5f, 0.5f);
 
 /* 80109BDC-8010B2DC 10451C 1700+00 1/1 0/0 0/0 .text            setHookshotPos__9daAlink_cFv */
 // NONMATCHING - almost, just cXyz stack order

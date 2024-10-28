@@ -211,8 +211,8 @@ void daAlink_c::changeWolf() {
     field_0x30b4 = 4;
     field_0x30bc = 31;
     field_0x30be = 36;
-    field_0x32c4 = 1;
-    field_0x32c6 = 2;
+    field_0x32c4[0] = 1;
+    field_0x32c4[1] = 2;
     field_0x30b6 = 2;
     attention_info.field_0xa = 50;
 
@@ -474,8 +474,8 @@ void daAlink_c::changeLink(int param_0) {
         field_0x30bc = 21;
         field_0x30be = 26;
         field_0x30b6 = 5;
-        field_0x32c4 = 2;
-        field_0x32c6 = 16;
+        field_0x32c4[0] = 2;
+        field_0x32c4[1] = 16;
         attention_info.field_0xa = 10;
 
         dCcD_Cyl* cyl_p = field_0x850;
@@ -5747,13 +5747,13 @@ BOOL daAlink_c::setWolfEnemyHangBitePos(fopEn_enemy_c* i_enemy) {
 
 /* ############################################################################################## */
 /* 804256EC-804256F8 05240C 000C+00 0/1 0/0 0/0 .bss             @50952 */
-#pragma push
+/* #pragma push
 #pragma force_active on
 static u8 lit_50952[12];
-#pragma pop
+#pragma pop */
 
 /* 804256F8-80425708 052418 000C+04 1/2 0/0 0/0 .bss             l_wolfBiteHitMarkScale */
-static Vec l_wolfBiteHitMarkScale;
+static cXyz l_wolfBiteHitMarkScale(0.5f, 0.5f, 0.5f);
 
 /* 801396F8-801397A4 134038 00AC+00 1/1 0/0 0/0 .text
  * setWolfBiteDamage__9daAlink_cFP13fopEn_enemy_c               */
@@ -7834,13 +7834,7 @@ int daAlink_c::procWolfDigThroughInit(int param_0) {
 
     mProcVar5.field_0x3012 = param_0;
 
-    u16* var_r29;
-    if (var_r27 == 13) {
-        var_r29 = snowID;
-    } else {
-        var_r29 = smokeID;
-    }
-
+    const u16* var_r29 = var_r27 == 13 ? snowID : smokeID;
     for (int i = 0; i < 4; i++) {
         dComIfGp_particle_set(*var_r29, &current.pos, &shape_angle, NULL);
         var_r29++;
