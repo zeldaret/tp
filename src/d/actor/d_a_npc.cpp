@@ -4214,7 +4214,6 @@ void daNpcF_c::setDamage(int i_timer, int i_expression, int i_motion) {
     mIsDamaged = true;
 }
 
-
 /* 80153718-8015387C 14E058 0164+00 0/0 0/0 81/81 .text ctrlMsgAnm__8daNpcF_cFRiRiP10fopAc_ac_ci
  */
 int daNpcF_c::ctrlMsgAnm(int& o_expression, int& o_motion, fopAc_ac_c* param_2, BOOL param_3) {
@@ -4946,11 +4945,6 @@ void daNpcF_clearMessageTmpBit() {
 
 /* 80155B54-80155BB4 150494 0060+00 1/0 0/0 0/0 .text            __dt__20daNpcF_MoveBgActor_cFv */
 daNpcF_MoveBgActor_c::~daNpcF_MoveBgActor_c() {
-    /* empty function */
-}
-
-/* 80155BB4-80155BB8 1504F4 0004+00 2/0 0/0 0/0 .text            setCollisions__8daNpcF_cFv */
-void daNpcF_c::setCollisions() {
     /* empty function */
 }
 
