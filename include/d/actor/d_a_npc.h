@@ -953,7 +953,7 @@ public:
     /* 8015276C */ virtual void setMtx();
     /* 801527FC */ virtual void setMtx2();
     /* 80155BB8 */ virtual void setAttnPos();
-    /* 80155BB4 */ virtual void setCollisions();
+    /* 80155BB4 */ virtual void setCollisions() {}
     /* 80155BE0 */ virtual bool setExpressionAnm(int i_idx, bool i_modify);
     /* 80155EC8 */ virtual bool setExpressionBtp(int i_idx);
     /* 80155BF0 */ virtual void setExpression(int i_expression, f32 i_morf);
