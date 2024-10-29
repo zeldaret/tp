@@ -47,26 +47,26 @@ class daHorse_c : public fopAc_ac_c {
 public:
     enum daHorse_ERFLG0 {
         /* 0x001 */ ERFLG0_UNK_1 = 0x1,
-        /* 0x010 */ MOVE_ACCEPT = 0x10,
-        /* 0x080 */ RIDE_RUN_FLG = 0x80,
-        /* 0x100 */ CUT_TURN_CANCEL = 0x100,
+        /* 0x010 */ ERFLG0_MOVE_ACCEPT = 0x10,
+        /* 0x080 */ ERFLG0_RIDE_RUN_FLG = 0x80,
+        /* 0x100 */ ERFLG0_CUT_TURN_CANCEL = 0x100,
 
         ERFLG0_UNK_18 = 0x18,
     };
 
     enum daHorse_RFLG0 {
-        /* 0x02 */ ENEMY_SEARCH = 2,
-        /* 0x08 */ LASH_DASH_START = 8,
-        /* 0x10 */ TURN_STAND = 0x10,
-        /* 0x40 */ TURN_STAND_CAMERA = 0x40,
+        /* 0x02 */ RFLG0_ENEMY_SEARCH = 2,
+        /* 0x08 */ RFLG0_LASH_DASH_START = 8,
+        /* 0x10 */ RFLG0_TURN_STAND = 0x10,
+        /* 0x40 */ RFLG0_TURN_STAND_CAMERA = 0x40,
     };
 
     enum daHorse_FLG0 {
-        /* 0x00000020 */ RODEO_LEFT = 0x20,
-        /* 0x00000040 */ RIDE_START_FLG = 0x40,
-        /* 0x00000080 */ NO_DRAW_WAIT = 0x80,
-        /* 0x00010000 */ PLAYER_BACK_RIDE_LASH = 0x10000,
-        /* 0x20000000 */ TURN_CANCEL_KEEP = 0x20000000,
+        /* 0x00000020 */ FLG0_RODEO_LEFT = 0x20,
+        /* 0x00000040 */ FLG0_RIDE_START_FLG = 0x40,
+        /* 0x00000080 */ FLG0_NO_DRAW_WAIT = 0x80,
+        /* 0x00010000 */ FLG0_PLAYER_BACK_RIDE_LASH = 0x10000,
+        /* 0x20000000 */ FLG0_TURN_CANCEL_KEEP = 0x20000000,
         /* 0x80000000 */ FLG0_RODEO_MODE = 0x80000000
     };
 
@@ -166,7 +166,7 @@ public:
     bool checkNoBombProc() const { return field_0x16b4 == 0 || field_0x16b4 == 1; }
     bool checkResetStateFlg0(daHorse_RFLG0 flag) const { return mResetStateFlg0 & flag; }
     bool checkEndResetStateFlg0(daHorse_ERFLG0 flag) const { return mEndResetStateFlg0 & flag; }
-    bool checkStateFlg0(daHorse_FLG0 flag) const { return mStateFlg0 & flag; }
+    u32 checkStateFlg0(daHorse_FLG0 flag) const { return mStateFlg0 & flag; }
     f32 getNormalMaxSpeedF() { return mNormalMaxSpeedF; }
     f32 getLashMaxSpeedF() { return mLashMaxSpeedF; }
     void changeDemoMoveAngle(s16 angle) { mDemoMoveAngle = angle; }
@@ -179,7 +179,8 @@ public:
     void onStateFlg0(daHorse_FLG0 flag) { mStateFlg0 |= flag; }
     void offStateFlg0(daHorse_FLG0 flag) { mStateFlg0 &= ~flag; }
     void onEndResetStateFlg0(daHorse_ERFLG0 i_flag) { mEndResetStateFlg0 |= i_flag;}
-    void offNoDrawWait() { offStateFlg0(NO_DRAW_WAIT); }
+    void offEndResetStateFlg0(daHorse_ERFLG0 i_flag) { mEndResetStateFlg0 &= ~i_flag;}
+    void offNoDrawWait() { offStateFlg0(FLG0_NO_DRAW_WAIT); }
     bool checkSpecialWallHit(const cXyz& param_0) { return (this->*mpCheckSpecialWallHitFn)(param_0); }
     MtxP getSaddleMtx() { return field_0x570->getAnmMtx(21); }
     MtxP getRootMtx() { return field_0x570->getAnmMtx(0); }
@@ -193,18 +194,18 @@ public:
 
     daHoZelda_c* i_getZeldaActor() { return (daHoZelda_c*)mZeldaActorKeep.getActor(); }
 
-    bool checkTurnStandCamera() const { return checkResetStateFlg0(TURN_STAND_CAMERA); }
-    bool checkTurnStand() const { return checkResetStateFlg0(TURN_STAND); }
-    bool checkRodeoMode() const { return checkStateFlg0(FLG0_RODEO_MODE); }
-    bool checkCutTurnCancel() const { return checkEndResetStateFlg0(CUT_TURN_CANCEL); }
-    bool checkTurnCancelKeep() const { return checkStateFlg0(TURN_CANCEL_KEEP); }
-    bool checkTurn() const { return field_0x16b4 == 3 && field_0x1720 == 0; }
-    bool checkStop() const { return field_0x16b4 == 2; }
+    bool checkTurnStandCamera() const { return checkResetStateFlg0(RFLG0_TURN_STAND_CAMERA); }
+    bool checkTurnStand() const { return checkResetStateFlg0(RFLG0_TURN_STAND); }
+    u32 checkRodeoMode() const { return checkStateFlg0(FLG0_RODEO_MODE); }
+    bool checkCutTurnCancel() const { return checkEndResetStateFlg0(ERFLG0_CUT_TURN_CANCEL); }
+    bool checkTurnCancelKeep() const { return checkStateFlg0(FLG0_TURN_CANCEL_KEEP); }
+    BOOL checkTurn() const { return field_0x16b4 == 3 && field_0x1720 == 0; }
+    BOOL checkStop() const { return field_0x16b4 == 2; }
     bool checkJump() const { return field_0x16b4 == 4; }
     bool checkWait() const { return field_0x16b4 == 0; }
     bool checkLand() const { return field_0x16b4 == 5 && field_0x171a == 0; }
     bool checkGetOff() const { return fabsf(speedF) < 3.0f; }
-    bool checkEnemySearch() { return checkResetStateFlg0(ENEMY_SEARCH); }
+    bool checkEnemySearch() { return checkResetStateFlg0(RFLG0_ENEMY_SEARCH); }
     bool checkOriginalDemo() const { return field_0x16b8 == 3; }
     s16 checkCowHit() const { return mCowHit; }
     s16 getCowHitAngle() const { return mCowHitAngle; }
@@ -216,10 +217,20 @@ public:
         onEndResetStateFlg0(ERFLG0_UNK_1);
     }
 
-    void onMoveAccept() { onEndResetStateFlg0(MOVE_ACCEPT); }
+    void onMoveAccept() { onEndResetStateFlg0(ERFLG0_MOVE_ACCEPT); }
     void onPlayerLash() { onEndResetStateFlg0(ERFLG0_UNK_18); }
-    void offPlayerBackRideLash() { offStateFlg0(PLAYER_BACK_RIDE_LASH); }
+    void offPlayerBackRideLash() { offStateFlg0(FLG0_PLAYER_BACK_RIDE_LASH); }
     void onRodeoMode() { onStateFlg0(FLG0_RODEO_MODE); }
+    void onRideStartFlg() { onStateFlg0(FLG0_RIDE_START_FLG); }
+    void onRideRunFlg() { onEndResetStateFlg0(ERFLG0_RIDE_RUN_FLG); }
+    void onPlayerBackRideLash() { onStateFlg0(FLG0_PLAYER_BACK_RIDE_LASH); }
+    void onCutTurnCancel() { onEndResetStateFlg0(ERFLG0_CUT_TURN_CANCEL); }
+    void offCutTurnCancel() { offEndResetStateFlg0(ERFLG0_CUT_TURN_CANCEL); }
+    void onTurnCancelKeep() { onStateFlg0(FLG0_TURN_CANCEL_KEEP); }
+    void offTurnCancelKeep() { offStateFlg0(FLG0_TURN_CANCEL_KEEP); }
+
+    BOOL checkTurnCancelFrame() const { return checkTurn() && field_0x177C < field_0x5b0[0].getFrame(); }
+    BOOL checkStopCancelFrame() const { return checkStop() && field_0x177C < field_0x5b0[0].getFrame(); }
 
     void initHorseMtx() {
         mDoMtx_stack_c::transS(current.pos);
@@ -230,6 +241,13 @@ public:
 
     void setSpeedF(f32 i_speed) { speedF = i_speed; }
     void setWalkSpeedF() { speedF = field_0x1764; }
+
+    MtxP getLeftStirrupMtx() { return field_0x570->getAnmMtx(0x17); }
+    MtxP getRightStirrupMtx() { return field_0x570->getAnmMtx(0x19); }
+    void calcWeightEnvMtx() { field_0x570->calcWeightEnvelopeMtx(); }
+
+    void setReinPosNormal() { (this->*mpSetReinPosNormalFn)(); }
+    void setReinPosHand(int param_0) { (this->*mpSetReinPosHandFn)(param_0); }
 
     static u8 const m_footJointTable[8];
     static f32 const m_callLimitDistance2;
@@ -294,7 +312,9 @@ public:
     /* 0x1768 */ f32 field_0x1768;
     /* 0x176C */ f32 field_0x176c;
     /* 0x1770 */ f32 field_0x1770;
-    /* 0x1774 */ u8 field_0x1774[0x14];
+    /* 0x1774 */ u8 field_0x1774[0x177C - 0x1774];
+    /* 0x177C */ f32 field_0x177C;
+    /* 0x1780 */ u8 field_0x1780[0x1788 - 0x1780];
     /* 0x1788 */ f32 mDemoStickR;
     /* 0x178C */ f32 mNormalMaxSpeedF;
     /* 0x1790 */ f32 mLashMaxSpeedF;
