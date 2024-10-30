@@ -7,6 +7,7 @@
 #include "d/d_bg_s_lin_chk.h"
 #include "d/d_cc_d.h"
 #include "d/d_msg_flow.h"
+#include "m_Do/m_Do_audio.h"
 
 class daHorseRein_c {
 public:
@@ -66,12 +67,18 @@ public:
         /* 0x00000040 */ FLG0_RIDE_START_FLG = 0x40,
         /* 0x00000080 */ FLG0_NO_DRAW_WAIT = 0x80,
         /* 0x00010000 */ FLG0_PLAYER_BACK_RIDE_LASH = 0x10000,
+        /* 0x00400000 */ FLG0_UNK_400000 = 0x400000,
         /* 0x20000000 */ FLG0_TURN_CANCEL_KEEP = 0x20000000,
         /* 0x80000000 */ FLG0_RODEO_MODE = 0x80000000
     };
 
     fopAc_ac_c* getZeldaActor();
-    /* 807E27BC */ void cancelOriginalDemo();
+
+    void cancelOriginalDemo() { 
+        field_0x16b8 = 2;
+        field_0x1740 = 1;
+    }
+
     /* 807E27F8 */ void onDemoJumpDistance(f32, f32);
     /* 807E28B8 */ void changeDemoPos0(cXyz const*);
     /* 807E28E0 */ void setHorsePosAndAngle(cXyz const*, s16);
@@ -199,6 +206,7 @@ public:
     u32 checkRodeoMode() const { return checkStateFlg0(FLG0_RODEO_MODE); }
     bool checkCutTurnCancel() const { return checkEndResetStateFlg0(ERFLG0_CUT_TURN_CANCEL); }
     bool checkTurnCancelKeep() const { return checkStateFlg0(FLG0_TURN_CANCEL_KEEP); }
+    BOOL checkRodeoLeft() const { return checkStateFlg0(FLG0_RODEO_LEFT); }
     BOOL checkTurn() const { return field_0x16b4 == 3 && field_0x1720 == 0; }
     BOOL checkStop() const { return field_0x16b4 == 2; }
     bool checkJump() const { return field_0x16b4 == 4; }
@@ -209,6 +217,7 @@ public:
     bool checkOriginalDemo() const { return field_0x16b8 == 3; }
     s16 checkCowHit() const { return mCowHit; }
     s16 getCowHitAngle() const { return mCowHitAngle; }
+    u8 getRodeoPointCnt() const { return mRodeoPointCnt; }
 
     void onTagJump(f32 param_0, f32 param_1, f32 param_2) {
         field_0x1768 = param_0;
@@ -237,6 +246,12 @@ public:
         mDoMtx_stack_c::ZXYrotM(shape_angle);
         field_0x570->setBaseTRMtx(mDoMtx_stack_c::get());
         field_0x570->calc();
+    }
+
+    void offRodeoMode() {
+        offStateFlg0(daHorse_FLG0(FLG0_RODEO_MODE | FLG0_UNK_400000));
+        field_0x16bc = 0;
+        mDoAud_subBgmStop();
     }
 
     void setSpeedF(f32 i_speed) { speedF = i_speed; }
@@ -284,7 +299,8 @@ public:
     /* 0x16B8 */ u8 field_0x16b8;
     /* 0x16B9 */ u8 field_0x16b9[2];
     /* 0x16BB */ u8 mRodeoPointCnt;
-    /* 0x16BC */ u8 field_0x16bc[0x16C4 - 0x16BC];
+    /* 0x16BC */ u8 field_0x16bc;
+    /* 0x16BD */ u8 field_0x16bd[0x16C4 - 0x16BD];
     /* 0x16C4 */ u16 mAnmIdx[3];
     /* 0x16CA */ u8 field_0x16ca[0x16F2 - 0x16CA];
     /* 0x16F2 */ s16 mAimNeckAngleY;

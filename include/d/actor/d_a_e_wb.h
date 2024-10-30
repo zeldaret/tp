@@ -36,6 +36,8 @@ public:
     s16 getWaitRollAngle() const { return mWaitRollAngle; }
     bool checkGetOff() const { return speedF < 3.0f; }
     f32 rideSpeedRate() const { return speedF / mSpeedRate; }
+    f32 getAnimeFrameRate() { return field_0x5e0->getFrame() / field_0x5e0->getEndFrame(); }
+    BOOL checkAnmLoopFrame() { return field_0x5e0->checkFrame(0.0f); }
 
     J3DModel* getModel() {
         if (field_0x5e0 != NULL) {

@@ -48,6 +48,10 @@ inline void mDoAud_subBgmStart(u32 i_bgmID) {
     Z2AudioMgr::getInterface()->subBgmStart(i_bgmID);
 }
 
+inline void mDoAud_subBgmStop() {
+    Z2AudioMgr::getInterface()->subBgmStop();
+}
+
 inline void mDoAud_bgmNowBattle(f32 param_0) {
     Z2AudioMgr::getInterface()->bgmNowBattle(param_0);
 }
