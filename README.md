@@ -76,12 +76,9 @@ Building
   git clone https://github.com/zeldaret/tp.git
   ```
 
-- Copy your disc image to `orig/GZ2E01`.  
-  Supported formats: ISO (GCM), RVZ, WIA, WBFS, CISO, NFS, GCZ, TGC.
-  - To save space, extract the disc image and keep only the following files:
-    - `sys/main.dol`
-    - `files/RELS.arc`
-    - `files/rel/**/*.rel`
+- Copy your game's disc image to `orig/GZ2E01`.
+  - Supported formats: ISO (GCM), RVZ, WIA, WBFS, CISO, NFS, GCZ, TGC.
+  - After the initial build, the disc image can be deleted to save space.
 
 - Configure:
 
