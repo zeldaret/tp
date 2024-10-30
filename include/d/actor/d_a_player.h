@@ -306,6 +306,7 @@ public:
         FLG2_UNK_4000 = 0x4000,
         FLG2_UNK_2000 = 0x2000,
         FLG2_UNK_1000 = 0x1000,
+        FLG2_UNK_800 = 0x800,
         FLG2_PLAYER_SHADOW = 0x400,
         FLG2_UNK_200 = 0x200,
         FLG2_UNK_100 = 0x100,

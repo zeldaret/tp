@@ -1681,8 +1681,8 @@ public:
     /* 800CB480 */ bool checkSwordDraw();
     /* 800CB53C */ bool checkShieldDraw();
     /* 800CB5F8 */ bool checkItemDraw();
-    /* 800CB694 */ void initShadowScaleLight();
-    /* 800CBA38 */ void moveShadowScaleLight();
+    /* 800CB694 */ int initShadowScaleLight();
+    /* 800CBA38 */ int moveShadowScaleLight();
     /* 800CBC18 */ void shadowDraw();
     /* 800CC25C */ void modelCalc(J3DModel*);
     /* 800CC298 */ void basicModelDraw(J3DModel*);
