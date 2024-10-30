@@ -1703,7 +1703,7 @@ COMPILER_STRIP_GATE(0x8039199C, &rightOffset);
 #pragma force_active on
 static daAlink_cutHorseParamTbl const cutParamTable_19765[] = {
     {
-        0x20,
+        daAlink_c::FTANM_UNK_20,
         0x91,
         0x10C,
         0x00,
@@ -1711,7 +1711,7 @@ static daAlink_cutHorseParamTbl const cutParamTable_19765[] = {
         0x22,
     },
     {
-        0x21,
+        daAlink_c::FTANM_UNK_21,
         0x92,
         0x10D,
         0x00,
@@ -1719,7 +1719,7 @@ static daAlink_cutHorseParamTbl const cutParamTable_19765[] = {
         0x23,
     },
     {
-        0x22,
+        daAlink_c::FTANM_UNK_22,
         0x93,
         0x10E,
         0x00,
@@ -1727,7 +1727,7 @@ static daAlink_cutHorseParamTbl const cutParamTable_19765[] = {
         0x2A,
     },
     {
-        0x23,
+        daAlink_c::FTANM_UNK_23,
         0x94,
         0x10F,
         0x00,
@@ -4511,7 +4511,7 @@ int daAlink_c::create() {
     if (checkStageName("F_SP102") && fopAcM_GetRoomNo(this) == 0 &&
         dComIfG_play_c::getLayerNo(0) == 4)
     {
-        onNoResetFlg2(FLG2_UNK_800000);
+        onNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE);
     } else if (checkStageName("F_SP123") && fopAcM_GetRoomNo(this) == 13 &&
                dComIfG_play_c::getLayerNo(0) == 0)
     {

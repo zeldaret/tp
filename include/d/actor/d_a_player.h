@@ -291,10 +291,9 @@ public:
         FLG2_UNK_4000000 = 0x4000000,
         FLG2_UNK_2080000 = 0x2080000,
         FLG2_UNK_2000000 = 0x2000000,
-        FLG2_BOAR_SINGLE_BATTLE = 0x1800000,
         FLG2_UNK_8000000 = 0x8000000,
         FLG2_UNK_1000000 = 0x1000000,
-        FLG2_UNK_800000 = 0x800000,
+        FLG2_BOAR_SINGLE_BATTLE = 0x800000,
         FLG2_STATUS_WINDOW_DRAW = 0x400000,
         FLG2_UNK_280000 = 0x280000,
         FLG2_UNK_200000 = 0x200000,
@@ -307,8 +306,10 @@ public:
         FLG2_UNK_4000 = 0x4000,
         FLG2_UNK_2000 = 0x2000,
         FLG2_UNK_1000 = 0x1000,
+        FLG2_UNK_800 = 0x800,
         FLG2_PLAYER_SHADOW = 0x400,
         FLG2_UNK_200 = 0x200,
+        FLG2_UNK_100 = 0x100,
         FLG2_UNK_80 = 0x80,
         FLG2_WOLF_ENEMY_HANG_BITE = 0x40,
         FLG2_WOLF_ENEMY_LEFT_THROW = 0x20,
@@ -368,6 +369,7 @@ public:
         ERFLG0_BEE_FOLLOW = 0x400000,
         ERFLG0_UNK_200000 = 0x200000,
         ERFLG0_UNK_100000 = 0x100000,
+        ERFLG0_UNK_80000 = 0x80000,
         ERFLG0_UNK_40000 = 0x40000,
         ERFLG0_UNK_20000 = 0x20000,
         ERFLG0_UNK_10000 = 0x10000,
@@ -799,7 +801,7 @@ public:
     bool getGrabPutStart() const { return checkResetFlg0(RFLG0_GRAB_PUT_START); }
     bool checkSwimUp() const { return checkNoResetFlg0(FLG0_SWIM_UP); }
     BOOL checkHorseZelda() const { return checkNoResetFlg2(FLG2_HORSE_ZELDA); }
-    BOOL checkSpecialHorseRide() { return checkNoResetFlg2(daPy_FLG2(FLG2_HORSE_ZELDA | FLG2_UNK_1000000 | FLG2_UNK_800000)); }
+    BOOL checkSpecialHorseRide() { return checkNoResetFlg2(daPy_FLG2(FLG2_HORSE_ZELDA | FLG2_UNK_1000000 | FLG2_BOAR_SINGLE_BATTLE)); }
     BOOL checkBoardNoFootAngle() const { return checkResetFlg1(RFLG1_UNK_40); }
     bool checkGrabThrow() const { return checkResetFlg0(RFLG0_GRAB_THROW); }
 
@@ -813,6 +815,7 @@ public:
     void onFogFade() { onNoResetFlg2(FLG2_UNK_4000); }
     BOOL checkStickArrowReset() const { return checkResetFlg0(RFLG0_UNK_1); }
     u32 getCutAtFlg() const { return checkNoResetFlg0(FLG0_UNK_40); }
+    u32 checkBoarSingleBattleFirst() const { return checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE); }
 
     void offWolfEnemyHangBite() { offNoResetFlg2(FLG2_WOLF_ENEMY_HANG_BITE); }
     bool onWolfEnemyHangBite(fopAc_ac_c* param_0) { return onWolfEnemyBiteAll(param_0, FLG2_WOLF_ENEMY_HANG_BITE); }
@@ -907,7 +910,7 @@ public:
     void onNsScream() { onEndResetFlg1(ERFLG1_UNK_1); }
     void onNsScreamAnm() { onEndResetFlg1(daPy_ERFLG1(ERFLG1_UNK_1 | ERFLG1_UNK_2)); }
 
-    u32 checkBoarSingleBattle() const { return checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE); }
+    u32 checkBoarSingleBattle() const { return checkNoResetFlg2(daPy_FLG2(FLG2_UNK_1000000 | FLG2_BOAR_SINGLE_BATTLE)); }
     u32 checkWolfDashAutoJump() const { return checkNoResetFlg2(FLG2_WOLF_DASH_AUTO_JUMP); }
 
     void changeOriginalDemo() {

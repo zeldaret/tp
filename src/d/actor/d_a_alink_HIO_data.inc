@@ -571,7 +571,7 @@ const daAlinkHIO_cutTurn_c1 daAlinkHIO_cutTurn_c0::m = {
 /* 8038DC1C-8038DC3C 01A27C 0020+00 0/1 0/0 0/0 .rodata          m__21daAlinkHIO_hoCutLA_c0 */
 #pragma push
 #pragma force_active on
-const daAlinkHIO_hoCutLA_c1 daAlinkHIO_hoCutLA_c0::m = {
+const daAlinkHIO_hoCut_c1 daAlinkHIO_hoCutLA_c0::m = {
 	{
 		21,
         0.9f,
@@ -588,7 +588,7 @@ const daAlinkHIO_hoCutLA_c1 daAlinkHIO_hoCutLA_c0::m = {
 /* 8038DC3C-8038DC5C 01A29C 0020+00 0/1 0/0 0/0 .rodata          m__21daAlinkHIO_hoCutLB_c0 */
 #pragma push
 #pragma force_active on
-const daAlinkHIO_hoCutLB_c1 daAlinkHIO_hoCutLB_c0::m = {
+const daAlinkHIO_hoCut_c1 daAlinkHIO_hoCutLB_c0::m = {
 	{
 		24,
         0.9f,
@@ -605,7 +605,7 @@ const daAlinkHIO_hoCutLB_c1 daAlinkHIO_hoCutLB_c0::m = {
 /* 8038DC5C-8038DC7C 01A2BC 0020+00 0/1 0/0 0/0 .rodata          m__21daAlinkHIO_hoCutRA_c0 */
 #pragma push
 #pragma force_active on
-const daAlinkHIO_hoCutRA_c1 daAlinkHIO_hoCutRA_c0::m = {
+const daAlinkHIO_hoCut_c1 daAlinkHIO_hoCutRA_c0::m = {
 	{
 		24,
         0.95f,
@@ -622,7 +622,7 @@ const daAlinkHIO_hoCutRA_c1 daAlinkHIO_hoCutRA_c0::m = {
 /* 8038DC7C-8038DC9C 01A2DC 0020+00 0/1 0/0 0/0 .rodata          m__21daAlinkHIO_hoCutRB_c0 */
 #pragma push
 #pragma force_active on
-const daAlinkHIO_hoCutRB_c1 daAlinkHIO_hoCutRB_c0::m = {
+const daAlinkHIO_hoCut_c1 daAlinkHIO_hoCutRB_c0::m = {
 	{
 		11,
         0.9f,

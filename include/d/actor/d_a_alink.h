@@ -676,6 +676,10 @@ public:
         FTANM_UNK_9 = 9,
         FTANM_UNK_13 = 0x13,
         FTANM_UNK_14 = 0x14,
+        FTANM_UNK_20 = 0x20,
+        FTANM_UNK_21 = 0x21,
+        FTANM_UNK_22 = 0x22,
+        FTANM_UNK_23 = 0x23,
         FTANM_UNK_27 = 0x27,
         FTANM_UNK_2D = 0x2D,
         FTANM_UNK_48 = 0x48,
@@ -1677,8 +1681,8 @@ public:
     /* 800CB480 */ bool checkSwordDraw();
     /* 800CB53C */ bool checkShieldDraw();
     /* 800CB5F8 */ bool checkItemDraw();
-    /* 800CB694 */ void initShadowScaleLight();
-    /* 800CBA38 */ void moveShadowScaleLight();
+    /* 800CB694 */ int initShadowScaleLight();
+    /* 800CBA38 */ int moveShadowScaleLight();
     /* 800CBC18 */ void shadowDraw();
     /* 800CC25C */ void modelCalc(J3DModel*);
     /* 800CC298 */ void basicModelDraw(J3DModel*);
@@ -1709,7 +1713,7 @@ public:
     /* 800D014C */ void setMidnaTalkStatus(u8 status) {
         dComIfGp_setZStatus(status, 0);
     }
-    /* 800D0164 */ void set3DStatus(u8, u8);
+    /* 800D0164 */ void set3DStatus(u8 status, u8 direction) { dComIfGp_set3DStatus(status, direction, 0); }
     /* 800D2684 */ void checkCutTurnCharge();
     /* 800D0E08 */ void checkLightSwordMtrl();
     /* 800D0E98 */ BOOL checkSwordEquipAnime() const;
@@ -2093,14 +2097,14 @@ public:
     /* 800ECD90 */ BOOL checkHorseNotDamageReaction() const;
     /* 800ECDC4 */ BOOL checkHorseWaitLashAnime() const;
     /* 800ECDEC */ BOOL checkHorseReinLeftOnly() const;
-    /* 800ECE10 */ void getReinHandType() const;
+    /* 800ECE10 */ int getReinHandType() const;
     /* 800ECF04 */ BOOL checkHorseLieAnime() const;
     /* 800ECF5C */ BOOL checkHorseSubjectivity() const;
     /* 800ECF9C */ void setHorseSwordUpAnime();
     /* 800ECFF4 */ void setHorseTurnUpperAnime(int);
     /* 800ED074 */ BOOL checkHorseNoUpperAnime() const;
     /* 800ED0D4 */ void getHorseReinHandPos(cXyz*, cXyz*);
-    /* 800ED1F0 */ void checkHorseNotGrab() const;
+    /* 800ED1F0 */ BOOL checkHorseNotGrab() const;
     /* 800ED310 */ void setHorseStirrup();
     /* 800ED4B8 */ void changeBoarRunRide();
     /* 800ED4DC */ int setSyncHorsePos();
@@ -2127,7 +2131,7 @@ public:
     /* 800EF394 */ void horseGetOffEnd();
     /* 800EF450 */ int checkNextActionHorse();
     /* 800EF598 */ BOOL checkHorseGetOff();
-    /* 800EF6B0 */ void checkHorseGetOffAndSetDoStatus();
+    /* 800EF6B0 */ int checkHorseGetOffAndSetDoStatus();
     /* 800EF884 */ int setHorseGetOff(int);
     /* 800EF95C */ int procHorseRideInit();
     /* 800EFDC4 */ int procHorseRide();
@@ -4115,12 +4119,12 @@ struct daAlink_cutParamTbl {
 };  // Size: 0x10
 
 struct daAlink_cutHorseParamTbl {
-    /* 0x0 */ int field_0x0;
-    /* 0x4 */ u16 field_0x4;
-    /* 0x6 */ u16 field_0x6;
+    /* 0x0 */ daAlink_c::daAlink_FTANM m_faceanm;
+    /* 0x4 */ u16 m_upperAnm;
+    /* 0x6 */ u16 m_faceBtk;
     /* 0x8 */ u8 field_0x8;
     /* 0x9 */ u8 field_0x9;
-    /* 0xA */ u8 field_0xa;
+    /* 0xA */ u8 m_cutType;
 };  // Size: 0xC
 
 struct daAlinkHIO_anm_c {
@@ -4446,56 +4450,32 @@ public:
     static daAlinkHIO_cutTurn_c1 const m;
 };
 
-class daAlinkHIO_hoCutLA_c1 {
+class daAlinkHIO_hoCut_c1 {
 public:
-    /* 0x00 */ daAlinkHIO_anm_c field_0x0;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1C;
-};  // Size: 0x20
+    /* 0x00 */ daAlinkHIO_anm_c mCutAnm;
+    /* 0x14 */ f32 mAttackStartFrame;
+    /* 0x18 */ f32 mAttackEndFrame;
+    /* 0x1C */ f32 mAfterCutMorf;
+};
 
 class daAlinkHIO_hoCutLA_c0 {
 public:
-    static daAlinkHIO_hoCutLA_c1 const m;
+    static daAlinkHIO_hoCut_c1 const m;
 };
-
-class daAlinkHIO_hoCutLB_c1 {
-public:
-    /* 0x00 */ daAlinkHIO_anm_c field_0x0;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1C;
-};  // Size: 0x20
 
 class daAlinkHIO_hoCutLB_c0 {
 public:
-    static daAlinkHIO_hoCutLB_c1 const m;
+    static daAlinkHIO_hoCut_c1 const m;
 };
-
-class daAlinkHIO_hoCutRA_c1 {
-public:
-    /* 0x00 */ daAlinkHIO_anm_c field_0x0;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1C;
-};  // Size: 0x20
 
 class daAlinkHIO_hoCutRA_c0 {
 public:
-    static daAlinkHIO_hoCutRA_c1 const m;
+    static daAlinkHIO_hoCut_c1 const m;
 };
-
-class daAlinkHIO_hoCutRB_c1 {
-public:
-    /* 0x00 */ daAlinkHIO_anm_c field_0x0;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1C;
-};  // Size: 0x20
 
 class daAlinkHIO_hoCutRB_c0 {
 public:
-    static daAlinkHIO_hoCutRB_c1 const m;
+    static daAlinkHIO_hoCut_c1 const m;
 };
 
 class daAlinkHIO_hoCutCharge_c1 {
