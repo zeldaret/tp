@@ -6,14 +6,23 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-    - uses: actions/checkout@v4
-    - name: generate docs
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Run Doxygen
       uses: mattnotmitt/doxygen-action@v1
       with:
-        doxyfile-path: 'Doxyfile'
-    - name: deploy docs to github pages
-      uses: peaceiris/actions-gh-pages@v4
+        doxyfile-path: Doxyfile
+    - name: Upload static files as artifact
+      uses: actions/upload-pages-artifact@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./docs/doxygen/html
+        path: docs/doxygen/html/
+    - name: Deploy to GitHub Pages
+      uses: actions/deploy-pages@v4
+      id: deployment
