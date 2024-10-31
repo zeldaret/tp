@@ -97,6 +97,11 @@ public:
     static cXyz* getCrossP() { return mLineCheck.GetCrossP(); }
     static bool lineCheck(const cXyz*, const cXyz*, const fopAc_ac_c*);
     static bool getTriPla(cM3dGPla* o_tri) { return dComIfG_Bgsp().GetTriPla(mLineCheck, o_tri); }
+    static bool checkWallHit() {
+        cM3dGPla poly;
+        getTriPla(&poly);
+        return cBgW_CheckBWall(poly.mNormal.y);
+    }
 
     static dBgS_ObjLinChk mLineCheck;
 };
@@ -203,6 +208,7 @@ enum fopAcM_CARRY {
     /* 0x10 */ fopAcM_CARRY_LIGHT = 16, // guess based on context
     /* 0x20 */ fopAcM_CARRY_ITEM = 32,
     /* 0x30 */ fopAcM_CARRY_UNK_30 = 0x30,
+    /* 0x40 */ fopAcM_CARRY_UNK_40 = 0x40,
     /* 0x80 */ fopAcM_CARRY_CHICKEN = 0x80,
 };
 

@@ -4233,8 +4233,29 @@ void daAlink_c::checkWarpStart() {
 
 /* 8011FBC0-8011FD4C 11A500 018C+00 3/3 0/0 0/0 .text            warpModelTexScroll__9daAlink_cFv */
 int daAlink_c::warpModelTexScroll() {
-    // NONMATCHING
-    return 0;
+    field_0x3478 += 0.15f;
+    if (field_0x3478 >= 1.0f) {
+        field_0x3478 -= 1.0f;
+    }
+
+    int temp_r30 = cLib_chaseF(&field_0x347c, field_0x3480, 0.06f);
+    field_0x3484 = cLib_minMaxLimit<f32>(0.5f * field_0x347c, 0.0f, 1.0f);
+
+    dRes_info_c::setWarpSRT(field_0x064C, current.pos, field_0x3478, field_0x347c);
+    dRes_info_c::setWarpSRT(mSwordModel->getModelData(), current.pos, field_0x3478, field_0x347c);
+    dRes_info_c::setWarpSRT(mShieldModel->getModelData(), current.pos, field_0x3478, field_0x347c);
+    dRes_info_c::setWarpSRT(mSheathModel->getModelData(), current.pos, field_0x3478, field_0x347c);
+
+    if (checkWolf()) {
+        dRes_info_c::setWarpSRT(mpWlChainModels[0]->getModelData(), current.pos, field_0x3478, field_0x347c);
+    } else {
+        dRes_info_c::setWarpSRT(mpLinkFaceModel->getModelData(), current.pos, field_0x3478, field_0x347c);
+        dRes_info_c::setWarpSRT(mpLinkHatModel->getModelData(), current.pos, field_0x3478, field_0x347c);
+        dRes_info_c::setWarpSRT(mpLinkHandModel->getModelData(), current.pos, field_0x3478, field_0x347c);
+        dRes_info_c::setWarpSRT(mpLinkBootModels[0]->getModelData(), current.pos, field_0x3478, field_0x347c);
+    }
+
+    return temp_r30;
 }
 
 /* 8011FD4C-80120124 11A68C 03D8+00 2/2 0/0 0/0 .text            procCoWarpInit__9daAlink_cFii */
