@@ -12,10 +12,6 @@
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_controller_pad.h"
 
-//
-// Types:
-//
-
 class dAttDrawParam_c {
 public:
     /* 80070158 */ dAttDrawParam_c();
@@ -26,156 +22,6 @@ public:
     /* 0xC */ f32 field_0xc;
 };
 
-//
-// Forward References:
-//
-
-extern "C" void __ct__11dAttParam_cFl();
-extern "C" void __dt__11dAttParam_cFv();
-extern "C" void __ct__15dAttDrawParam_cFv();
-extern "C" void execute__19dAttDraw_CallBack_cFUsP16J3DTransformInfo();
-extern "C" void __ct__12dAttention_cFP10fopAc_ac_cUl();
-extern "C" void __dt__12dAttention_cFv();
-extern "C" void GetLockonList__12dAttention_cFl();
-extern "C" void getActionBtnB__12dAttention_cFv();
-extern "C" void getActionBtnXY__12dAttention_cFv();
-extern "C" void chkAttMask__12dAttention_cFUlUl();
-extern "C" static void check_event_condition__FUlUs();
-extern "C" static void check_flontofplayer__FUlss();
-extern "C" static void distace_weight__Ffsf();
-extern "C" static void distace_angle_adjust__Ffsf();
-extern "C" static void check_distace__FP4cXyzsP4cXyzffff();
-extern "C" void calcWeight__12dAttention_cFiP10fopAc_ac_cfssPUl();
-extern "C" void setList__12dAttention_cFiP10fopAc_ac_cff7cSAngleUl();
-extern "C" void initList__12dAttention_cFUl();
-extern "C" static void select_attention__FP10fopAc_ac_cPv();
-extern "C" void makeList__12dAttention_cFv();
-extern "C" void setOwnerAttentionPos__12dAttention_cFv();
-extern "C" void SelectAttention__12dAttention_cFP10fopAc_ac_c();
-extern "C" void __dt__7cSGlobeFv();
-extern "C" void sortList__12dAttention_cFv();
-extern "C" void stockAttention__12dAttention_cFv();
-extern "C" void nextAttention__12dAttention_cFv();
-extern "C" void freeAttention__12dAttention_cFv();
-extern "C" void chaseAttention__12dAttention_cFv();
-extern "C" void EnemyDistance__12dAttention_cFP10fopAc_ac_c();
-extern "C" static void sound_attention__FP10fopAc_ac_cPv();
-extern "C" void runSoundProc__12dAttention_cFv();
-extern "C" void runDrawProc__12dAttention_cFv();
-extern "C" void runDebugDisp__12dAttention_cFv();
-extern "C" void checkButton__12dAttention_cFv();
-extern "C" void triggerProc__12dAttention_cFv();
-extern "C" void lostCheck__12dAttention_cFv();
-extern "C" void judgementStatus4Hold__12dAttention_cFv();
-extern "C" void judgementStatus4Switch__12dAttention_cFv();
-extern "C" void Run__12dAttention_cFv();
-extern "C" void Draw__12dAttention_cFv();
-extern "C" void lockSoundStart__12dAttention_cFUl();
-extern "C" void setAnm__10dAttDraw_cFUcf();
-extern "C" void setAlphaAnm__10dAttDraw_cFUcUc();
-extern "C" void alphaAnm__10dAttDraw_cFv();
-extern "C" void setTevKColor__11J3DTevBlockFUlPC10J3DGXColor();
-extern "C" void draw__10dAttDraw_cFR4cXyzPA4_f();
-extern "C" void LockonTarget__12dAttention_cFl();
-extern "C" void LockonReleaseDistanse__12dAttention_cFv();
-extern "C" void LockonTargetPId__12dAttention_cFl();
-extern "C" void ActionTarget__12dAttention_cFl();
-extern "C" void CheckObjectTarget__12dAttention_cFl();
-extern "C" void LockonTruth__12dAttention_cFv();
-extern "C" void checkDistance__12dAttention_cFP4cXyzsP4cXyzffff();
-extern "C" void getActor__10dAttList_cFv();
-extern "C" void setActor__10dAttList_cFP10fopAc_ac_c();
-extern "C" void getPId__10dAttHint_cFPv();
-extern "C" void convPId__10dAttHint_cFUi();
-extern "C" void request__10dAttHint_cFP10fopAc_ac_ci();
-extern "C" void init__10dAttHint_cFv();
-extern "C" void proc__10dAttHint_cFv();
-extern "C" void convPId__11dAttCatch_cFUi();
-extern "C" void init__11dAttCatch_cFv();
-extern "C" void proc__11dAttCatch_cFv();
-extern "C" void request__11dAttCatch_cFP10fopAc_ac_cUcfffsi();
-extern "C" void convPId__10dAttLook_cFUi();
-extern "C" void init__10dAttLook_cFv();
-extern "C" void proc__10dAttLook_cFv();
-extern "C" void request__10dAttLook_cFP10fopAc_ac_cfffsi();
-extern "C" void __dt__15dAttDrawParam_cFv();
-extern "C" void __sinit_d_attention_cpp();
-extern "C" extern char const* const d_d_attention__stringBase0;
-extern "C" u8 loc_type_tbl__12dAttention_c[12];
-extern "C" u8 act_type_tbl__12dAttention_c[20];
-extern "C" u32 loc_type_num__12dAttention_c;
-extern "C" u32 act_type_num__12dAttention_c;
-extern "C" u32 chk_type_tbl__12dAttention_c;
-extern "C" u32 chk_type_num__12dAttention_c;
-extern "C" extern u8 data_80450680[8];
-extern "C" extern u8 data_80450688[8];
-
-//
-// External References:
-//
-
-extern "C" void play__14mDoExt_baseAnmFv();
-extern "C" void init__13mDoExt_bpkAnmFP16J3DMaterialTableP11J3DAnmColoriifss();
-extern "C" void entry__13mDoExt_bpkAnmFP16J3DMaterialTablef();
-extern "C" void init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss();
-extern "C" void entry__13mDoExt_btkAnmFP16J3DMaterialTablef();
-extern "C" void init__13mDoExt_brkAnmFP16J3DMaterialTableP15J3DAnmTevRegKeyiifss();
-extern "C" void entry__13mDoExt_brkAnmFP16J3DMaterialTablef();
-extern "C" void init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb();
-extern "C" void entry__13mDoExt_bckAnmFP12J3DModelDataf();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_createSolidHeapFromGameToCurrent__FUlUl();
-extern "C" void mDoExt_adjustSolidHeap__FP12JKRSolidHeap();
-extern "C" void mDoExt_destroySolidHeap__FP12JKRSolidHeap();
-extern "C" void mDoExt_restoreCurrentHeap__Fv();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void fopAcIt_Executor__FPFPvPv_iPv();
-extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
-extern "C" void fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fpcSch_JudgeByID__FPvPv();
-extern "C" void __dt__10dAttList_cFv();
-extern "C" void __ct__10dAttList_cFv();
-extern "C" void __dt__10dAttDraw_cFv();
-extern "C" void __ct__10dAttDraw_cFv();
-extern "C" void isSwitch__12dSv_danBit_cCFi();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void getAttentionOffsetY__9daPy_py_cFv();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void __ct__7cSAngleFRC7cSAngle();
-extern "C" void __ct__7cSAngleFs();
-extern "C" void Inv__7cSAngleCFv();
-extern "C" void __mi__7cSAngleCFs();
-extern "C" void __ct__7cSGlobeFRC4cXyz();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void bgmNowBattle__8Z2SeqMgrFf();
-extern "C" void __dl__FPv();
-extern "C" void __register_global_object();
-extern "C" void __destroy_arr();
-extern "C" void __construct_array();
-extern "C" void _savegpr_21();
-extern "C" void _savegpr_22();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_21();
-extern "C" void _restgpr_22();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__25mDoExt_McaMorfCallBack1_c[3];
-extern "C" u8 dist_table__12dAttention_c[6552];
-extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-
-//
-// Declarations:
-//
-
 /* 80070018-80070038 06A958 0020+00 2/2 0/0 0/0 .text padLockButton__25@unnamed@d_attention_cpp@Fl
  */
 namespace {
@@ -184,103 +30,18 @@ static bool padLockButton(s32 i_padNo) {
 }
 }  // namespace
 
-/* ############################################################################################## */
-/* 8037A770-8037A770 006DD0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8037A770 = "D_MN09B";
-#pragma pop
-
 /* 803A9BF8-803A9C04 006D18 000C+00 2/2 0/0 0/0 .data            loc_type_tbl__12dAttention_c */
-SECTION_DATA type_tbl_entry dAttention_c::loc_type_tbl[3] = {
+type_tbl_entry dAttention_c::loc_type_tbl[3] = {
     {0, 1},
     {1, 2},
     {2, 4},
 };
 
 /* 803A9C04-803A9C18 006D24 0014+00 1/1 0/0 0/0 .data            act_type_tbl__12dAttention_c */
-SECTION_DATA type_tbl_entry dAttention_c::act_type_tbl[5] = {
+type_tbl_entry dAttention_c::act_type_tbl[5] = {
     {3, 8}, {4, 16}, {5, 32}, {6, 64}, {7, 128},
 };
 
-/* 803A9C18-803A9C3C 006D38 0024+00 1/1 0/0 0/0 .data            ftp_table$4417 */
-SECTION_DATA static int ftp_table[9] = {
-    4, 1, 2, 8, 16, 32, 64, 128, 256,
-};
-
-/* 803A9C3C-803A9C48 006D5C 000C+00 1/1 0/0 0/0 .data            ang_table2$4419 */
-SECTION_DATA static s16 ang_table2[6] = {
-    0x0AAA, 0x2000, 0x2AAA, 0x4000, 0x4E38, 0x6000,
-};
-
-/* 803A9C48-803A9C54 006D68 000C+00 1/1 1/1 0/0 .data            __vt__19dAttDraw_CallBack_c */
-SECTION_DATA extern void* __vt__19dAttDraw_CallBack_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)execute__19dAttDraw_CallBack_cFUsP16J3DTransformInfo,
-};
-
-/* 803A9C54-803A9C60 006D74 000C+00 2/2 0/0 0/0 .data            __vt__15dAttDrawParam_c */
-SECTION_DATA extern void* __vt__15dAttDrawParam_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__15dAttDrawParam_cFv,
-};
-
-/* 803A9C60-803A9C70 006D80 000C+04 3/3 1/1 0/0 .data            __vt__11dAttParam_c */
-SECTION_DATA extern void* __vt__11dAttParam_c[3 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__11dAttParam_cFv,
-    /* padding */
-    NULL,
-};
-
-/* 80452628-8045262C 000C28 0004+00 1/1 0/0 0/0 .sdata2          @4061 */
-SECTION_SDATA2 static f32 lit_4061 = 45.0f;
-
-/* 8045262C-80452630 000C2C 0004+00 1/1 0/0 0/0 .sdata2          @4062 */
-SECTION_SDATA2 static f32 lit_4062 = 30.0f;
-
-/* 80452630-80452634 000C30 0004+00 1/1 0/0 0/0 .sdata2          @4063 */
-SECTION_SDATA2 static f32 lit_4063 = 90.0f;
-
-/* 80452634-80452638 000C34 0004+00 2/2 0/0 0/0 .sdata2          @4064 */
-SECTION_SDATA2 static f32 lit_4064 = -9.0f / 10.0f;
-
-/* 80452638-8045263C 000C38 0004+00 1/1 0/0 0/0 .sdata2          @4065 */
-SECTION_SDATA2 static f32 lit_4065 = 3000.0f;
-
-/* 8045263C-80452640 000C3C 0004+00 1/1 0/0 0/0 .sdata2          @4066 */
-SECTION_SDATA2 static f32 lit_4066 = 1000.0f;
-
-/* 80452640-80452644 000C40 0004+00 1/1 0/0 0/0 .sdata2          @4067 */
-SECTION_SDATA2 static f32 lit_4067 = 6.0f;
-
-/* 80452644-80452648 000C44 0004+00 1/1 0/0 0/0 .sdata2          @4068 */
-SECTION_SDATA2 static f32 lit_4068 = 4.5f;
-
-/* 80452648-8045264C 000C48 0004+00 1/1 0/0 0/0 .sdata2          @4069 */
-SECTION_SDATA2 static f32 lit_4069 = 14.0f;
-
-/* 8045264C-80452650 000C4C 0004+00 1/1 0/0 0/0 .sdata2          @4070 */
-SECTION_SDATA2 static f32 lit_4070 = 10.0f;
-
-/* 80452650-80452654 000C50 0004+00 12/12 0/0 0/0 .sdata2          @4071 */
-SECTION_SDATA2 static u8 lit_4071[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80452654-80452658 000C54 0004+00 1/1 0/0 0/0 .sdata2          @4072 */
-SECTION_SDATA2 static f32 lit_4072 = 17.0f / 10.0f;
-
-/* 80452658-8045265C 000C58 0004+00 10/10 0/0 0/0 .sdata2          @4073 */
-SECTION_SDATA2 static f32 lit_4073 = 1.0f;
-
-/* ############################################################################################## */
 /* 80450F58-80450F60 000458 0008+00 0/0 2/2 0/0 .sbss            None */
 extern bool on_final_boss_stg;
 bool on_final_boss_stg;
@@ -324,14 +85,8 @@ dAttDrawParam_c::dAttDrawParam_c() {
     field_0xc = 2.0f;
 }
 
-/* ############################################################################################## */
-/* 80452664-80452668 000C64 0004+00 1/1 0/0 0/0 .sdata2          @4092 */
-SECTION_SDATA2 static f32 lit_4092 = 3.0f / 5.0f;
-
 /* 80070178-80070198 06AAB8 0020+00 1/0 0/0 0/0 .text
  * execute__19dAttDraw_CallBack_cFUsP16J3DTransformInfo         */
-// vtable issues
-#ifdef NONMATCHING
 int dAttDraw_CallBack_c::execute(u16 param_0, J3DTransformInfo* param_1) {
     if (param_0 == 0) {
         param_1->mTranslate.y *= 0.6f;
@@ -339,21 +94,6 @@ int dAttDraw_CallBack_c::execute(u16 param_0, J3DTransformInfo* param_1) {
 
     return 1;
 }
-#else
-// void dAttDraw_CallBack_c::execute(u16 param_0, J3DTransformInfo* param_1) {
-extern "C" void execute__19dAttDraw_CallBack_cFUsP16J3DTransformInfo() {
-    // NONMATCHING
-}
-#endif
-
-/* ############################################################################################## */
-/* 8037A770-8037A770 006DD0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8037A778 = "Always";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8037A77F = "";
-#pragma pop
 
 /* 80424B0C-80424B20 05182C 0010+04 3/3 0/0 0/0 .bss             g_AttDwHIO */
 static dAttDrawParam_c g_AttDwHIO;
@@ -529,9 +269,8 @@ dAttList_c* dAttention_c::getActionBtnXY() {
     return NULL;
 }
 
-/* ############################################################################################## */
 /* 80450660-80450664 0000E0 0004+00 2/2 0/0 0/0 .sdata           loc_type_num__12dAttention_c */
-SECTION_SDATA int dAttention_c::loc_type_num = 3;
+int dAttention_c::loc_type_num = 3;
 
 /* 80070A70-80070AC0 06B3B0 0050+00 1/1 0/0 0/0 .text            chkAttMask__12dAttention_cFUlUl */
 int dAttention_c::chkAttMask(u32 param_0, u32 param_1) {
@@ -571,27 +310,32 @@ static int check_event_condition(u32 i_listType, u16 i_condition) {
     return false;
 }
 
-/* ############################################################################################## */
 /* 80450664-80450668 0000E4 0004+00 1/1 0/0 0/0 .sdata           act_type_num__12dAttention_c */
-SECTION_SDATA int dAttention_c::act_type_num = 5;
+int dAttention_c::act_type_num = 5;
 
 /* 80450668-8045066C 0000E8 0004+00 1/1 0/0 0/0 .sdata           chk_type_tbl__12dAttention_c */
-SECTION_SDATA type_tbl_entry dAttention_c::chk_type_tbl[1] = {
+type_tbl_entry dAttention_c::chk_type_tbl[1] = {
     {8, 256},
 };
 
 /* 8045066C-80450670 0000EC 0004+00 1/1 0/0 0/0 .sdata           chk_type_num__12dAttention_c */
-SECTION_SDATA int dAttention_c::chk_type_num = 1;
+int dAttention_c::chk_type_num = 1;
 
 /* 80450670-80450674 0000F0 0004+00 2/2 0/0 0/0 .sdata           None */
-SECTION_SDATA static bool attn_opt_hold = true;
+static bool attn_opt_hold = true;
 
 /* 80070B2C-80070BF4 06B46C 00C8+00 2/2 0/0 0/0 .text            check_flontofplayer__FUlss */
 static int check_flontofplayer(u32 param_0, s16 param_1, s16 param_2) {
+    static int ftp_table[9] = {
+        4, 1, 2, 8, 16, 32, 64, 128, 256,
+    };
+
     static s16 ang_table[3] = {
-        0x4000,
-        0x2000,
-        0x0AAA,
+        0x4000, 0x2000, 0x0AAA,
+    };
+
+    static s16 ang_table2[6] = {
+        0x0AAA, 0x2000, 0x2AAA, 0x4000, 0x4E38, 0x6000,
     };
 
     if (param_1 < 0) {
@@ -621,17 +365,6 @@ static int check_flontofplayer(u32 param_0, s16 param_1, s16 param_2) {
     return false;
 }
 
-/* ############################################################################################## */
-/* 80452668-80452670 000C68 0004+04 2/2 0/0 0/0 .sdata2          @4448 */
-SECTION_SDATA2 static f32 lit_4448[1 + 1 /* padding */] = {
-    32768.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 80452670-80452678 000C70 0008+00 3/3 0/0 0/0 .sdata2          @4450 */
-SECTION_SDATA2 static f64 lit_4450 = 4503601774854144.0 /* cast s32 to float */;
-
 /* 80070BF4-80070C40 06B534 004C+00 2/2 0/0 0/0 .text            distace_weight__Ffsf */
 static f32 distace_weight(f32 param_0, s16 param_1, f32 param_2) {
     f32 tmp = param_1 / 32768.0f;
@@ -649,22 +382,9 @@ static f32 distace_angle_adjust(f32 param_0, s16 param_1, f32 param_2) {
     return param_0 * ((1.0f - param_2) + (param_2 * ((1.0f - tmp) * (1.0f - tmp))));
 }
 
-
-/* ############################################################################################## */
-/* 80452678-80452680 000C78 0008+00 3/3 0/0 0/0 .sdata2          @4514 */
-SECTION_SDATA2 static f64 lit_4514 = 0.5;
-
-/* 80452680-80452688 000C80 0008+00 3/3 0/0 0/0 .sdata2          @4515 */
-SECTION_SDATA2 static f64 lit_4515 = 3.0;
-
-/* 80452688-80452690 000C88 0008+00 3/3 0/0 0/0 .sdata2          @4516 */
-SECTION_SDATA2 static u8 lit_4516[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
 /* 80070CA0-80070E90 06B5E0 01F0+00 3/3 0/0 0/0 .text            check_distace__FP4cXyzsP4cXyzffff
  */
-static bool check_distace(cXyz* param_0, s16 param_1, cXyz* param_2, f32 param_3, f32 param_4,
+static BOOL check_distace(cXyz* param_0, s16 param_1, cXyz* param_2, f32 param_3, f32 param_4,
                           f32 param_5, f32 param_6) {
     cXyz tmp = *param_2 - *param_0;
 
@@ -679,14 +399,6 @@ static bool check_distace(cXyz* param_0, s16 param_1, cXyz* param_2, f32 param_3
 
     return true;
 }
-
-
-/* ############################################################################################## */
-/* 80452690-80452694 000C90 0004+00 3/3 0/0 0/0 .sdata2          @4562 */
-SECTION_SDATA2 static f32 lit_4562 = -1.0f;
-
-/* 80452694-80452698 000C94 0004+00 3/3 0/0 0/0 .sdata2          @4563 */
-SECTION_SDATA2 static f32 lit_4563 = 0.5f;
 
 /* 80070E90-800710C0 06B7D0 0230+00 2/2 0/0 0/0 .text
  * calcWeight__12dAttention_cFiP10fopAc_ac_cfssPUl              */
@@ -759,7 +471,6 @@ f32 dAttention_c::calcWeight(int param_0, fopAc_ac_c* param_1, f32 param_2, s16 
     return weight;
 }
 
-
 /* 800710C0-80071240 06BA00 0180+00 1/1 0/0 0/0 .text
  * setList__12dAttention_cFiP10fopAc_ac_cff7cSAngleUl           */
 void dAttention_c::setList(int param_0, fopAc_ac_c* param_1, f32 param_2, f32 param_3,
@@ -820,7 +531,6 @@ void dAttention_c::setList(int param_0, fopAc_ac_c* param_1, f32 param_2, f32 pa
     }
 }
 
-
 /* 80071240-8007138C 06BB80 014C+00 6/6 0/0 0/0 .text            initList__12dAttention_cFUl */
 void dAttention_c::initList(u32 flags) {
     mPlayerAttentionFlags = flags;
@@ -850,7 +560,6 @@ void dAttention_c::initList(u32 flags) {
     }
     setFlag(0x1000);
 }
-
 
 /* 8007138C-800713CC 06BCCC 0040+00 1/1 0/0 0/0 .text            select_attention__FP10fopAc_ac_cPv
  */
@@ -906,12 +615,6 @@ int dAttention_c::SelectAttention(fopAc_ac_c* param_0) {
     }
     return 0;
 }
-
-/* 8007167C-800716B8 06BFBC 003C+00 0/0 9/9 0/0 .text            __dt__7cSGlobeFv */
-extern "C" void __dt__7cSGlobeFv() {
-    // NONMATCHING
-}
-
 
 /* 800716B8-800718A4 06BFF8 01EC+00 4/4 0/0 0/0 .text            sortList__12dAttention_cFv */
 void dAttention_c::sortList() {
@@ -1387,7 +1090,7 @@ void dAttention_c::judgementStatus4Switch() {
                 setFlag(0x800000);
             }
         } else if (field_0x32b == 0) {
-            if (mDoCPd_c::getStickY(mPadNo) < lit_4064) {
+            if (mDoCPd_c::getStickY(mPadNo) < -0.9f) {
                 mAttnStatus = ST_NONE;
                 freeAttention();
             } else if (nextAttention()) {
@@ -1600,7 +1303,6 @@ void dAttention_c::lockSoundStart(u32 i_sfxID) {
     }
 }
 
-
 /* 80072DD8-80072FE8 06D718 0210+00 1/1 0/0 0/0 .text            setAnm__10dAttDraw_cFUcf */
 void dAttDraw_c::setAnm(u8 param_0, f32 param_1) {
     field_0x170 = param_0;
@@ -1623,7 +1325,6 @@ void dAttDraw_c::setAnm(u8 param_0, f32 param_1) {
     }
 }
 
-
 /* 80072FE8-80073004 06D928 001C+00 1/1 0/0 0/0 .text            setAlphaAnm__10dAttDraw_cFUcUc */
 void dAttDraw_c::setAlphaAnm(u8 param_0, u8 param_1) {
     field_0x171 = param_0;
@@ -1631,17 +1332,6 @@ void dAttDraw_c::setAlphaAnm(u8 param_0, u8 param_1) {
     field_0x173 = 2;
     field_0x174 = param_1;
 }
-
-/* ############################################################################################## */
-/* 804526A0-804526A8 000CA0 0004+04 1/1 0/0 0/0 .sdata2          @5668 */
-SECTION_SDATA2 static f32 lit_5668[1 + 1 /* padding */] = {
-    255.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 804526A8-804526B0 000CA8 0008+00 1/1 0/0 0/0 .sdata2          @5670 */
-SECTION_SDATA2 static f64 lit_5670 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 80073004-800732AC 06D944 02A8+00 1/1 0/0 0/0 .text            alphaAnm__10dAttDraw_cFv */
 void dAttDraw_c::alphaAnm() {
@@ -1686,20 +1376,6 @@ void dAttDraw_c::alphaAnm() {
     }
 }
 
-
-/* 800732AC-800732B0 06DBEC 0004+00 0/0 3/0 0/0 .text setTevKColor__11J3DTevBlockFUlPC10J3DGXColor
- */
-void J3DTevBlock::setTevKColor(u32 param_0, J3DGXColor const* param_1) {
-    /* empty function */
-}
-
-/* ############################################################################################## */
-/* 804526B0-804526B4 000CB0 0004+00 1/1 0/0 0/0 .sdata2          @5784 */
-SECTION_SDATA2 static f32 lit_5784 = 0.01745329238474369f;
-
-/* 804526B4-804526B8 000CB4 0004+00 1/1 0/0 0/0 .sdata2          @5785 */
-SECTION_SDATA2 static f32 lit_5785 = -100.0f;
-
 /* 800732B0-8007353C 06DBF0 028C+00 1/1 0/0 0/0 .text            draw__10dAttDraw_cFR4cXyzPA4_f */
 void dAttDraw_c::draw(cXyz& param_0, Mtx param_1) {
     J3DModelData* modelData = mModel[field_0x170]->getModelData();
@@ -1743,7 +1419,6 @@ void dAttDraw_c::draw(cXyz& param_0, Mtx param_1) {
     dComIfGd_setList();
 }
 
-
 /* 8007353C-800735DC 06DE7C 00A0+00 8/8 13/13 21/21 .text            LockonTarget__12dAttention_cFl
  */
 fopAc_ac_c* dAttention_c::LockonTarget(s32 param_0) {
@@ -1785,7 +1460,6 @@ f32 dAttention_c::LockonReleaseDistanse() {
 
     return distace_angle_adjust(dist_table[idx].mDistanceAdjust, tmp_a, 1.0f) + dist_table[idx].mDistMaxRelease;
 }
-
 
 /* 800736CC-80073734 06E00C 0068+00 2/2 0/0 0/0 .text            LockonTargetPId__12dAttention_cFl
  */
@@ -1920,11 +1594,10 @@ void dAttCatch_c::proc() {
 
 /* 80073A08-80073CA4 06E348 029C+00 0/0 0/0 10/10 .text
  * request__11dAttCatch_cFP10fopAc_ac_cUcfffsi                  */
-// regalloc
+// NONMATCHING regalloc
 // This is a weird one. Some solution was found that changes dComIfGp_getPlayer but it is incompatible
 // with other calls.
 // https://decomp.me/scratch/aMCEI
-#ifdef NONMATCHING
 int dAttCatch_c::request(fopAc_ac_c* param_1, u8 param_2, f32 param_3, f32 param_4,
                               f32 param_5, s16 param_6, int param_7) {
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
@@ -1941,7 +1614,7 @@ int dAttCatch_c::request(fopAc_ac_c* param_1, u8 param_2, f32 param_3, f32 param
     }
     if (param_6 != 0) {
         cSGlobe acStack_50(acStack_48);
-        s16 sVar5 = acStack_50.U() - fopAcM_GetShapeAngle_p((fopAc_ac_c*)player)->y;
+        s16 sVar5 = acStack_50.U() - fopAcM_GetShapeAngle_p(player)->y;
         if (sVar5 < 0) {
             sVar5 = -sVar5;
         }
@@ -1961,12 +1634,6 @@ int dAttCatch_c::request(fopAc_ac_c* param_1, u8 param_2, f32 param_3, f32 param
     }
     return 0;
 }
-#else
-int dAttCatch_c::request(fopAc_ac_c* param_0, u8 param_1, f32 param_2, f32 param_3,
-                              f32 param_4, s16 param_5, int param_6) {
-    // NONMATCHING
-}
-#endif
 
 /* 80073CA4-80073CD4 06E5E4 0030+00 0/0 1/1 0/0 .text            convPId__10dAttLook_cFUi */
 fopAc_ac_c* dAttLook_c::convPId(fpc_ProcID i_id) {
@@ -2027,27 +1694,3 @@ int dAttLook_c::request(fopAc_ac_c* param_1, f32 param_2, f32 param_3, f32 param
 
 /* 80073FC4-8007400C 06E904 0048+00 2/1 0/0 0/0 .text            __dt__15dAttDrawParam_cFv */
 dAttDrawParam_c::~dAttDrawParam_c() {}
-
-/* ############################################################################################## */
-/* 8045067A-8045067E -00001 0004+00 0/0 0/0 0/0 .sdata           None */
-#pragma push
-#pragma force_active on
-SECTION_SDATA static u8 pad_8045067A[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-#pragma pop
-
-/* 80450680-80450688 000100 0008+00 0/0 2/2 0/0 .sdata           None */
-SECTION_SDATA extern u8 data_80450680[8] = {
-    0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80450688-80450690 000108 0008+00 0/0 1/1 0/0 .sdata           None */
-SECTION_SDATA extern u8 data_80450688[8] = {
-    0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 8037A770-8037A770 006DD0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

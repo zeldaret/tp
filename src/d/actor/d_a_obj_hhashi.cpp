@@ -13,25 +13,23 @@
 #include "m_Do/m_Do_lib.h"
 #include "SSystem/SComponent/c_math.h"
 
-/* ############################################################################################## */
-/* 805814AC-805814F0 000000 0044+00 10/10 0/0 0/0 .rodata          ccCylSrc$3773 */
-const static dCcD_SrcCyl ccCylSrc = {
-    {
-        {0x0, {{0x0, 0x0, 0x0}, {0x100000, 0x1f}, 0x11}}, // mObj
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2}, // mGObjTg
-        {0x0}, // mGObjCo
-    }, // mObjInf
-    {
-        {0.0f, 0.0f, 0.0f}, // mCenter
-        110.0f, // mRadius
-        158.0f // mHeight
-    } // mCyl
-};
-
 /* 8057F9B8-8057FA18 000078 0060+00 1/1 0/0 0/0 .text            initCcCylinder__13daObjHHASHI_cFv
  */
 void daObjHHASHI_c::initCcCylinder() {
+    const static dCcD_SrcCyl ccCylSrc = {
+        {
+            {0x0, {{0x0, 0x0, 0x0}, {0x100000, 0x1f}, 0x11}}, // mObj
+            {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+            {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2}, // mGObjTg
+            {0x0}, // mGObjCo
+        }, // mObjInf
+        {
+            {0.0f, 0.0f, 0.0f}, // mCenter
+            110.0f, // mRadius
+            158.0f // mHeight
+        } // mCyl
+    };
+
     mStts.Init(0xff, 0xff, this);
     mCyl.Set(ccCylSrc);
     mCyl.SetStts(&mStts);

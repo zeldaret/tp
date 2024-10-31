@@ -171,9 +171,8 @@ int daBdoorL5_c::create() {
     if (rv != cPhs_COMPLEATE_e) {
         return rv;
     }
-    s32 roomNo = fopAcM_GetRoomNo(this);
-    u32 swBit = door_param2_c::getSwbit(this);
-    if (dComIfGs_isSwitch(swBit, roomNo) == 0 && dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo()) != 3) {
+    if (!dComIfGs_isSwitch(door_param2_c::getSwbit(this), fopAcM_GetRoomNo(this))
+                            && dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo()) != 3) {
         createKey();
     } else {
         mKeyHoleId = -1;
@@ -361,9 +360,8 @@ void daBdoorL5_c::calcGoal(cXyz* param_1, int param_2) {
 void daBdoorL5_c::smokeInit() {
     field_0x5a4 = current.pos;
     field_0x5b0 = shape_angle;
-    s32 roomNo = fopAcM_GetRoomNo(this);
     dComIfGp_particle_setPolyColor(0x8156, field_0x5b8.m_gnd, &field_0x5a4, &tevStr, &field_0x5b0,
-                                   0, 0, 0, roomNo, 0);
+                                   0, 0, 0, fopAcM_GetRoomNo(this), 0);
 }
 
 /* 80671B14-80671C14 000F54 0100+00 1/1 0/0 0/0 .text            createKey__11daBdoorL5_cFv */
@@ -414,8 +412,7 @@ int daBdoorL5_c::checkFront() {
 
 /* 80671DE4-80671E70 001224 008C+00 1/1 0/0 0/0 .text            checkOpen__11daBdoorL5_cFv */
 int daBdoorL5_c::checkOpen() {
-    // Fake Match - should be daPy_py_c::i_checkNowWolf
-    if (dComIfGp_getLinkPlayer()->mNoResetFlg1 & daPy_py_c::FLG1_IS_WOLF) {
+    if (daPy_py_c::i_checkNowWolf()) {
         return 0;
     }
 

@@ -6,39 +6,7 @@
 #include "JSystem/J3DGraphBase/J3DTransform.h"
 #include "JSystem/JMath/JMATrigonometric.h"
 #include "JSystem/J3DGraphBase/J3DStruct.h"
-#include "dol2asm.h"
 #include "dolphin/base/PPCArch.h"
-
-//
-// Forward References:
-//
-
-extern "C" void __MTGQR7__FUl();
-extern "C" void J3DGQRSetup7__FUlUlUlUl();
-extern "C" void J3DCalcBBoardMtx__FPA4_f();
-extern "C" void J3DCalcYBBoardMtx__FPA4_f();
-extern "C" void J3DPSCalcInverseTranspose__FPA4_fPA3_f();
-extern "C" void J3DGetTranslateRotateMtx__FRC16J3DTransformInfoPA4_f();
-extern "C" void J3DGetTranslateRotateMtx__FsssfffPA4_f();
-extern "C" void J3DGetTextureMtx__FRC17J3DTextureSRTInfoRC3VecPA4_f();
-extern "C" void J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f();
-extern "C" void J3DGetTextureMtxMaya__FRC17J3DTextureSRTInfoPA4_f();
-extern "C" void J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f();
-extern "C" void J3DScaleNrmMtx__FPA4_fRC3Vec();
-extern "C" void J3DScaleNrmMtx33__FPA3_fRC3Vec();
-extern "C" void J3DMtxProjConcat__FPA4_fPA4_fPA4_f();
-extern "C" void J3DPSMtxArrayConcat__FPA4_fPA4_fPA4_fUl();
-extern "C" extern f32 PSMulUnit01[2];
-
-//
-// External References:
-//
-
-extern "C" u8 sincosTable___5JMath[65536];
-
-//
-// Declarations:
-//
 
 /* 80311630-80311638 -00001 0008+00 0/0 0/0 0/0 .text            __MTGQR7__FUl */
 void __MTGQR7(register u32 v) {
@@ -55,18 +23,8 @@ void J3DGQRSetup7(u32 r0, u32 r1, u32 r2, u32 r3) {
     __MTGQR7(v);
 }
 
-/* ############################################################################################## */
-/* 80456378-8045637C 004978 0004+00 6/6 0/0 0/0 .sdata2          @435 */
-SECTION_SDATA2 static u8 lit_435[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
 /* 80311670-80311760 30BFB0 00F0+00 0/0 2/2 0/0 .text            J3DCalcBBoardMtx__FPA4_f */
 // this uses a non-standard sqrtf, not sure why or how its supposed to be setup
-#ifdef NONMATCHING
 static inline f32 sqrtf2(f32 x) {
     if (x > 0.0f) {
         f32 guess = (f32)__frsqrte(x);
@@ -102,13 +60,7 @@ void J3DCalcBBoardMtx(Mtx mtx) {
     mtx[2][1] = 0.0f;
     mtx[2][2] = z;
 }
-#else
-void J3DCalcBBoardMtx(f32 (*param_0)[4]) {
-    // NONMATCHING
-}
-#endif
 
-/* ############################################################################################## */
 /* 803A1E30-803A1E50 02E490 0020+00 0/0 1/1 0/0 .rodata          j3dDefaultTransformInfo */
 extern J3DTransformInfo const j3dDefaultTransformInfo = {
     {1.0f, 1.0f, 1.0f}, {0, 0, 0}, {0.0f, 0.0f, 0.0f}};
@@ -119,12 +71,6 @@ extern Vec const j3dDefaultScale = {1.0f, 1.0f, 1.0f};
 /* 803A1E5C-803A1E8C 02E4BC 0030+00 0/0 8/8 7/7 .rodata          j3dDefaultMtx */
 extern Mtx const j3dDefaultMtx = {
     {1.0f, 0.0f, 0.0f, 0.0f}, {0.0f, 1.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 1.0f, 0.0f}};
-
-/* 803A1E8C-803A1E98 02E4EC 000C+00 1/1 0/0 0/0 .rodata          @443 */
-SECTION_RODATA static u8 const lit_443[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x803A1E8C, &lit_443);
 
 /* 80311760-8031189C 30C0A0 013C+00 0/0 2/2 0/0 .text            J3DCalcYBBoardMtx__FPA4_f */
 void J3DCalcYBBoardMtx(f32 (*param_0)[4]) {
@@ -191,10 +137,6 @@ void J3DGetTranslateRotateMtx(s16 rx, s16 ry, s16 rz, f32 tx, f32 ty, f32 tz, Mt
     dst[2][3] = tz;
 }
 
-/* ############################################################################################## */
-/* 8045637C-80456380 00497C 0004+00 4/4 0/0 0/0 .sdata2          @526 */
-SECTION_SDATA2 static f32 lit_526 = 1.0f;
-
 /* 80311ACC-80311B80 30C40C 00B4+00 0/0 3/3 0/0 .text
  * J3DGetTextureMtx__FRC17J3DTextureSRTInfoRC3VecPA4_f          */
 void J3DGetTextureMtx(const J3DTextureSRTInfo& srt, const Vec& center, Mtx dst) {
@@ -247,15 +189,6 @@ void J3DGetTextureMtxOld(const J3DTextureSRTInfo& srt, const Vec& center, Mtx ds
     dst[0][2] = 0.0f;
     dst[2][2] = 1.0f;
 }
-
-
-/* ############################################################################################## */
-/* 80456380-80456388 004980 0004+04 2/2 0/0 0/0 .sdata2          @557 */
-SECTION_SDATA2 static f32 lit_557[1 + 1 /* padding */] = {
-    0.5f,
-    /* padding */
-    0.0f,
-};
 
 /* 80311C34-80311CE4 30C574 00B0+00 0/0 3/3 0/0 .text
  * J3DGetTextureMtxMaya__FRC17J3DTextureSRTInfoPA4_f            */
@@ -361,8 +294,8 @@ void J3DMtxProjConcat(f32 (*param_0)[4], f32 (*param_1)[4], f32 (*param_2)[4]) {
 
 /* ############################################################################################## */
 /* 80450958-80450960 0003D8 0008+00 1/1 0/0 0/0 .sdata           Unit01 */
-SECTION_SDATA static u8 Unit01[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
+static f32 Unit01[2] = {
+    0.0f, 1.0f
 };
 
 /* 80311F70-8031204C 30C8B0 00DC+00 0/0 1/1 0/0 .text J3DPSMtxArrayConcat__FPA4_fPA4_fPA4_fUl */
@@ -372,7 +305,7 @@ void J3DPSMtxArrayConcat(f32 (*param_0)[4], f32 (*param_1)[4], f32 (*param_2)[4]
 
 /* ############################################################################################## */
 /* 803CD8F8-803CD900 02AA18 0008+00 0/0 2/2 0/0 .data            PSMulUnit01 */
-SECTION_DATA extern f32 PSMulUnit01[2] = {
+extern f32 PSMulUnit01[2] = {
     0.0f,
     -1.0f,
 };

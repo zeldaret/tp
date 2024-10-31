@@ -13,9 +13,8 @@ int daObjEff::Act_c::_create() {
     fopAcM_SetupActor(this, Act_c);
 
     if (daObj::PrmAbstract<Act_c::Prm_e>(this, PRM_8, PRM_0) == 3) {
-        s32 roomNo = fopAcM_GetRoomNo(this);
         dComIfGp_particle_setColor(0x00E7, &current.pos, NULL, NULL, NULL, 0.0f, 55, NULL, &scale,
-                                   NULL, roomNo, &scale);
+                                   NULL, fopAcM_GetRoomNo(this), &scale);
     }
 
     return cPhs_ERROR_e;

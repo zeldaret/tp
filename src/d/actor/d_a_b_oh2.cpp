@@ -161,8 +161,7 @@ static void action(b_oh2_class* i_this) {
     mDoMtx_stack_c::XrotM(i_this->shape_angle.x);
     i_this->mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
 
-    int roomNo = fopAcM_GetRoomNo(i_this);
-    i_this->mpMorf->play(0, dComIfGp_getReverb(roomNo));
+    i_this->mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(i_this)));
 
     if (boss->speedF <= 1.0f) {
         i_this->mpBrk->setFrame(0.0f);

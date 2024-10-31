@@ -76,9 +76,12 @@ public:
     /* 804CAEE8 */ int execute();
     /* 804CBC60 */ int draw();
 
-    virtual BOOL checkExplodeNow();
-    virtual void deleteBombAndEffect();
-    virtual void setCargoBombExplode();
+    virtual BOOL checkExplodeNow() { return field_0xb51 != 0; }
+    virtual void deleteBombAndEffect() {
+        fopAcM_delete(this);
+        onStateFlg0(FLG0_UNK_40);
+    }
+    virtual void setCargoBombExplode() { onStateFlg0(FLG0_BOMB_HIT); }
 
     void onStateFlg0(daNbomb_FLG0 i_flag) { mStateFlg0 |= i_flag; }
     void offStateFlg0(daNbomb_FLG0 i_flag) { mStateFlg0 &= ~i_flag; }

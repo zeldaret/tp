@@ -279,8 +279,7 @@ void daDoor20_c::setEventPrm() {
             }
             if (chkMakeKey()) {
                 if (field_0x5f0) {
-                    // FAKE MATCH: should be daPy_py_c::i_checkNowWolf
-                    if (((daPy_py_c*)g_dComIfG_gameInfo.play.getPlayerPtr(LINK_PTR))->checkWolf()) {
+                    if (daPy_py_c::i_checkNowWolf()) {
                         if (dComIfGs_getKeyNum() == 0) {
                             return;
                         }
@@ -446,13 +445,11 @@ void daDoor20_c::openInit_0() {
         csXyz acStack_2c(0, field_0x670, 0);
         for (u32 i = 0; i < 5; i++) {
             if (strcmp(dComIfGp_getStartStageName(), "D_MN10") == 0) {
-                s32 roomNo = fopAcM_GetRoomNo(this);
-                dComIfGp_particle_set(l_eff_id_lv4[i],
-                    &current.pos, &acStack_2c, NULL, 0xff, NULL, roomNo, NULL, NULL, NULL);
+                dComIfGp_particle_set(l_eff_id_lv4[i], &current.pos, &acStack_2c, NULL, 0xff, NULL,
+                                      fopAcM_GetRoomNo(this), NULL, NULL, NULL);
             } else {
-                s32 roomNo = fopAcM_GetRoomNo(this);
-                dComIfGp_particle_set(l_eff_id_lv3[i],
-                    &current.pos, &acStack_2c, NULL, 0xff, NULL, roomNo, NULL, NULL, NULL);
+                dComIfGp_particle_set(l_eff_id_lv3[i], &current.pos, &acStack_2c, NULL, 0xff, NULL,
+                                      fopAcM_GetRoomNo(this), NULL, NULL, NULL);
             }
         }
         fopAcM_onSwitch(this, bVar5);
@@ -461,12 +458,6 @@ void daDoor20_c::openInit_0() {
         field_0x672 = false;
     }
 }
-
-/* 80466864-80466868 000044 0004+00 1/1 0/0 0/0 .rodata          l_eff_id$4449 */
-static u16 const l_eff_id[2] = {
-    0x8295,
-    0x8296,
-};
 
 /* 80461D24-80461EC4 001264 01A0+00 1/1 0/0 0/0 .text            openInit_1__10daDoor20_cFv */
 void daDoor20_c::openInit_1() {
@@ -481,10 +472,10 @@ void daDoor20_c::openInit_1() {
     JUT_ASSERT(918, rt == 0);
     u8 bVar5 = door_param2_c::getSwbit3(this);
     if (bVar5 != 0xff && !fopAcM_isSwitch(this, bVar5)) {
+        static u16 const l_eff_id[2] = {0x8295, 0x8296};
         for (int i = 0; i < 2; i++) {
-            s32 roomNo = fopAcM_GetRoomNo(this);
             dComIfGp_particle_set(l_eff_id[i], &current.pos, &shape_angle, NULL, 0xff, NULL,
-                                  roomNo, NULL, NULL, NULL);
+                                  fopAcM_GetRoomNo(this), NULL, NULL, NULL);
         }
         fopAcM_onSwitch(this, bVar5);
         field_0x672 = true;

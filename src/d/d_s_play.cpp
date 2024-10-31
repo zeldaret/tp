@@ -43,8 +43,6 @@ static int phase_5(dScnPly_c*);
 static int phase_6(dScnPly_c*);
 static int phase_compleate(void*);
 
-extern "C" s8 func_80252E70(s8*);
-
 /* 804510F8-80451100 0005F8 0008+00 2/2 0/0 0/0 .sbss            resPhase */
 static request_of_phase_process_class resPhase[1];
 
@@ -76,7 +74,7 @@ s8 dScnPly_c::calcPauseTimer() {
         nextPauseTimer = 0;
         return pauseTimer;
     } else {
-        return func_80252E70(&pauseTimer);  // cLib_calcTimer<s8> : 80252E70
+        return cLib_calcTimer<s8>(&pauseTimer);
     }
 }
 

@@ -7,47 +7,8 @@
 #include "JSystem/J3DGraphAnimator/J3DSkinDeform.h"
 #include "JSystem/JSupport/JSupport.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "dol2asm.h"
 #include "dolphin/os.h"
 #include "string.h"
-
-//
-// Forward References:
-//
-
-extern "C" void load__24J3DClusterLoaderDataBaseFPCv();
-extern "C" void __ct__20J3DClusterLoader_v15Fv();
-extern "C" void __dt__20J3DClusterLoader_v15Fv();
-extern "C" void load__20J3DClusterLoader_v15FPCv();
-extern "C" void readCluster__20J3DClusterLoader_v15FPC15J3DClusterBlock();
-extern "C" void __dt__16J3DClusterLoaderFv();
-extern "C" void func_80334644(void* _this, void const*, void const*);
-extern "C" void func_8033465C(void* _this, void const*, void const*);
-extern "C" void func_80334674(void* _this, void const*, void const*);
-extern "C" extern char const* const J3DClusterLoader__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void* __nw__FUl();
-extern "C" void* __nwa__FUl();
-extern "C" void* __nwa__FUli();
-extern "C" void __dl__FPv();
-extern "C" void __ct__10JUTNameTabFPC7ResNTAB();
-extern "C" void func_802F42C0(void* _this, void const*, void const*);
-extern "C" void func_8030A530(void* _this, void const*, void const*);
-extern "C" void func_8030A560(void* _this, void const*, void const*);
-extern "C" void __ct__13J3DDeformDataFv();
-extern "C" void __ct__11J3DDeformerFP13J3DDeformData();
-extern "C" void _savegpr_23();
-extern "C" void _savegpr_26();
-extern "C" void _restgpr_23();
-extern "C" void _restgpr_26();
-
-//
-// Declarations:
-//
 
 /* 80334130-803341CC 32EA70 009C+00 0/0 1/1 0/0 .text load__24J3DClusterLoaderDataBaseFPCv */
 void* J3DClusterLoaderDataBase::load(const void* i_data) {
@@ -60,23 +21,6 @@ void* J3DClusterLoaderDataBase::load(const void* i_data) {
     }
     return NULL;
 }
-
-/* ############################################################################################## */
-/* 803CF0E8-803CF0F8 02C208 0010+00 2/2 0/0 0/0 .data            __vt__20J3DClusterLoader_v15 */
-SECTION_DATA extern void* __vt__20J3DClusterLoader_v15[4] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)load__20J3DClusterLoader_v15FPCv,
-    (void*)__dt__20J3DClusterLoader_v15Fv,
-};
-
-/* 803CF0F8-803CF108 02C218 0010+00 3/3 0/0 0/0 .data            __vt__16J3DClusterLoader */
-SECTION_DATA extern void* __vt__16J3DClusterLoader[4] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)__dt__16J3DClusterLoaderFv,
-};
 
 /* 803341CC-803341E8 32EB0C 001C+00 1/1 0/0 0/0 .text            __ct__20J3DClusterLoader_v15Fv */
 J3DClusterLoader_v15::J3DClusterLoader_v15() {}

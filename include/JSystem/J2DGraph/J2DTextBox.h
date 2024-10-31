@@ -75,7 +75,7 @@ public:
     /* 80300278 */ virtual void setFont(JUTFont*);
     /* 8021C7F4 */ virtual JUTFont* getFont() const { return mFont; }
     /* 80254408 */ virtual bool setBlack(JUtility::TColor);
-    /* 80186C84 */ virtual bool setWhite(JUtility::TColor);
+    /* 80186C84 */ virtual bool setWhite(JUtility::TColor white) { mWhiteColor = white; return true; }
     /* 8019230C */ virtual bool setBlackWhite(JUtility::TColor, JUtility::TColor);
     /* 801DFA34 */ virtual JUtility::TColor getBlack() const;
     /* 801DFA28 */ virtual JUtility::TColor getWhite() const;

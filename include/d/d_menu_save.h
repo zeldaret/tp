@@ -265,7 +265,7 @@ public:
     /* 801F69B8 */ void _draw();
     /* 801F69FC */ void _draw2();
 
-    /* 802844D0 */ virtual ~dMenu_save_c();
+    /* 802844D0 */ virtual ~dMenu_save_c() {}
 
     u8 getSaveStatus() { return mSaveStatus; }
     u8 getEndStatus() { return mEndStatus; }

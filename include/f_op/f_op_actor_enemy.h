@@ -48,18 +48,16 @@ static int setMidnaBindEffect(fopEn_enemy_c* i_actorP, Z2CreatureEnemy* i_creatu
             sp68.x = -cM_atan2s(sp60.y, JMAFastSqrt(sp60.x * sp60.x + sp60.z * sp60.z));
             sp68.z = 0;
 
-            s32 room_no = fopAcM_GetRoomNo(a_this);
             JPABaseEmitter* emitter = dComIfGp_particle_set(
-                0x29B, i_effPos, &a_this->tevStr, &sp68, i_effSize, 0xFF, NULL, room_no,
-                &e_prim[darkworld_check], &e_env[darkworld_check], NULL);
+                0x29B, i_effPos, &a_this->tevStr, &sp68, i_effSize, 0xFF, NULL,
+                fopAcM_GetRoomNo(a_this), &e_prim[darkworld_check], &e_env[darkworld_check], NULL);
 
             if (emitter != NULL) {
                 emitter->setGlobalParticleHeightScale((JREG_F(7) + 0.01f) * sp60.abs());
             }
 
-            room_no = fopAcM_GetRoomNo(a_this);
             dComIfGp_particle_set(0x29C, i_effPos, &a_this->tevStr, &a_this->shape_angle, i_effSize,
-                                  0xFF, NULL, room_no, &e_prim[darkworld_check],
+                                  0xFF, NULL, fopAcM_GetRoomNo(a_this), &e_prim[darkworld_check],
                                   &e_env[darkworld_check], NULL);
 
             i_creatureP->startCreatureSound(Z2SE_MIDNA_BIND_LOCK_ON, 0, -1);
@@ -75,7 +73,7 @@ static int setMidnaBindEffect(fopEn_enemy_c* i_actorP, Z2CreatureEnemy* i_creatu
                                              &e_env[darkworld_check], NULL);
         }
 
-        i_creatureP->startCreatureSound(Z2SE_MIDNA_BIND_LOCK_SUS, 0, -1);
+        i_creatureP->startCreatureSoundLevel(Z2SE_MIDNA_BIND_LOCK_SUS, 0, -1);
         return 1;
     }
 

@@ -36,11 +36,11 @@ void daObjE_CREATE_c::NormalAction() {
                 // this was probably supposed to be:
                 // "cLib_offsetPos(&current.pos, &current.pos, angle, &offsetPos)"
                 cLib_offsetPos(&offsetPos, &current.pos, angle, &offsetPos);
-                s8 roomNo = fopAcM_GetRoomNo(this);
 
                 mActorList[i] =
                     fopAcM_createChild(mEnemyProcName, fopAcM_GetID(this), mEnemyParams,
-                                       &current.pos, roomNo, &mEnemyAngle, NULL, -1, NULL);
+                                       &current.pos, fopAcM_GetRoomNo(this), &mEnemyAngle,
+                                       NULL, -1, NULL);
             }
             mActionMode++;
             mKillCheckDelayTimer = 50;

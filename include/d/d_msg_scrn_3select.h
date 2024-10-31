@@ -5,7 +5,7 @@
 
 class J2DScreen;
 class J2DAnmTransform;
-class J2DAnmColor;
+class J2DAnmColorKey;
 class J2DAnmTextureSRTKey;
 class dSelect_cursor_c;
 class CPaneMgr;
@@ -58,7 +58,7 @@ public:
 private:
     /* 0x004 */ J2DScreen* mpScreen;
     /* 0x008 */ J2DAnmTransform* mpAnmBck;
-    /* 0x00C */ J2DAnmColor* mpAnmBpk;
+    /* 0x00C */ J2DAnmColorKey* mpAnmBpk;
     /* 0x010 */ J2DAnmTextureSRTKey* mpAnmBtk;
     /* 0x014 */ dSelect_cursor_c* mpSelectCursor;
     /* 0x018 */ CPaneMgr* mpParent;

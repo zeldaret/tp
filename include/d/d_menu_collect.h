@@ -21,7 +21,7 @@ class dMenu_Collect2DTop_c : public dDlst_base_c {
 public:
     dMenu_Collect2DTop_c(dMenu_Collect2D_c* param_0) { mpCollect2D = param_0; }
     /* 801B77A4 */ virtual void draw();
-    /* 801B7EB8 */ virtual ~dMenu_Collect2DTop_c();
+    /* 801B7EB8 */ virtual ~dMenu_Collect2DTop_c() {}
 
     /* 0x4 */ dMenu_Collect2D_c* mpCollect2D;
 };
@@ -102,7 +102,7 @@ public:
     /* 801B61BC */ void setItemNameString(u8, u8);
     /* 801B6344 */ void setItemNameStringNull();
 
-    /* 801B7F00 */ virtual void draw();
+    /* 801B7F00 */ virtual void draw() { _draw(); }
     /* 801AFE34 */ virtual ~dMenu_Collect2D_c();
 
     u8 getCursorX() { return mCursorX; }

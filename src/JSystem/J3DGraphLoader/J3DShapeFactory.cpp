@@ -9,31 +9,12 @@
 #include "JSystem/JSupport/JSupport.h"
 #include "dolphin/os.h"
 
-//
-// Forward References:
-//
-
-//
-// External References:
-//
-
-extern "C" J3DShapeInitData* func_80336764(const void*,
-                                           const void*);  // JSUConvertOffsetToPtr<J3DShapeInitData>
-extern "C" u16* func_8033677C(const void*, const void*);  // JSUConvertOffsetToPtr<u16>
-
-//
-// Declarations:
-//
-
 /* 80337350-80337400 331C90 00B0+00 0/0 2/2 0/0 .text __ct__15J3DShapeFactoryFRC13J3DShapeBlock */
 J3DShapeFactory::J3DShapeFactory(J3DShapeBlock const& block) {
-    //mShapeInitData = JSUConvertOffsetToPtr<J3DShapeInitData>(&block, (u32)block.mpShapeInitData);
-    mShapeInitData = func_80336764(&block, block.mpShapeInitData),
-    //mIndexTable = JSUConvertOffsetToPtr<u16>(&block, (u32)block.mpIndexTable);
-    mIndexTable = func_8033677C(&block, block.mpIndexTable),
+    mShapeInitData = JSUConvertOffsetToPtr<J3DShapeInitData>(&block, (u32)block.mpShapeInitData);
+    mIndexTable = JSUConvertOffsetToPtr<u16>(&block, (u32)block.mpIndexTable);
     mVtxDescList = JSUConvertOffsetToPtr<GXVtxDescList>(&block, (u32)block.mpVtxDescList),
-    //mMtxTable = JSUConvertOffsetToPtr<u16>(&block, (u32)block.mpMtxTable);
-    mMtxTable = func_8033677C(&block, block.mpMtxTable),
+    mMtxTable = JSUConvertOffsetToPtr<u16>(&block, (u32)block.mpMtxTable);
     mDisplayListData = JSUConvertOffsetToPtr<u8>(&block, (u32)block.mpDisplayListData),
     mMtxInitData = JSUConvertOffsetToPtr<J3DShapeMtxInitData>(&block, (u32)block.mpMtxInitData),
     mDrawInitData = JSUConvertOffsetToPtr<J3DShapeDrawInitData>(&block, (u32)block.mpDrawInitData),

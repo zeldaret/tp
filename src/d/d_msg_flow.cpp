@@ -10,419 +10,14 @@
 #include "d/d_msg_object.h"
 #include "d/d_shop_system.h"
 #include "d/d_meter2_info.h"
-#include "dol2asm.h"
 #include "f_op/f_op_msg_mng.h"
 #include "m_Do/m_Do_graphic.h"
 #include "d/actor/d_a_midna.h"
 #include "SSystem/SComponent/c_math.h"
 
-//
-// Forward References:
-//
-
-extern "C" void __ct__10dMsgFlow_cFv();
-extern "C" void __dt__10dMsgFlow_cFv();
-extern "C" void init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c();
-extern "C" void checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi();
-extern "C" void doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci();
-extern "C" void checkEventRender__10dMsgFlow_cFPiPiPiPi();
-extern "C" void remove__10dMsgFlow_cFv();
-extern "C" void getEventId__10dMsgFlow_cFPi();
-extern "C" void getMsgNo__10dMsgFlow_cFv();
-extern "C" void getNowMsgNo__10dMsgFlow_cFv();
-extern "C" void getMsg__10dMsgFlow_cFv();
-extern "C" void setInitValue__10dMsgFlow_cFi();
-extern "C" void setInitValueGroupChange__10dMsgFlow_cFiPP10fopAc_ac_c();
-extern "C" void getMsgDataBlock__10dMsgFlow_cFPCc();
-extern "C" void getInitNodeIndex__10dMsgFlow_cFUs();
-extern "C" void setNodeIndex__10dMsgFlow_cFUsPP10fopAc_ac_c();
-extern "C" void setSelectMsg__10dMsgFlow_cFP14mesg_flow_nodeP14mesg_flow_nodeP10fopAc_ac_c();
-extern "C" void setNormalMsg__10dMsgFlow_cFP14mesg_flow_nodeP10fopAc_ac_c();
-extern "C" void messageNodeProc__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_c();
-extern "C" void branchNodeProc__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_c();
-extern "C" void eventNodeProc__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_c();
-extern "C" void nodeProc__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_c();
-extern "C" void getParam__10dMsgFlow_cFPUsPUsPUc();
-extern "C" void getParam__10dMsgFlow_cFPUcPUc();
-extern "C" void getParam__10dMsgFlow_cFPUc();
-extern "C" void query001__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query002__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query003__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query004__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query005__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query006__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query007__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query008__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query009__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query010__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query011__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query012__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query013__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query014__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query015__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query016__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query017__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query018__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query019__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query020__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query021__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query022__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query023__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query024__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query025__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query026__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query027__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query028__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query029__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query030__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query031__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query032__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query033__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query034__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query035__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query036__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query037__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query038__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query039__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query040__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query041__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query042__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query043__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query044__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query045__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query046__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" bool query047__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query048__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query049__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query050__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query051__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query052__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void query053__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void event000__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event001__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event002__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event003__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event004__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event005__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event006__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event007__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event008__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event009__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event010__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event011__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" bool event012__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event013__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event014__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event015__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event016__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event017__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event018__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" bool event019__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event020__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event021__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event022__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event023__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event024__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event025__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event026__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event027__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event028__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event029__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event030__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event031__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event032__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event033__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event034__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event035__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event036__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event037__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event038__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event039__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event040__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void event041__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" bool event042__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
-extern "C" void func_8024DAB0(void* _this, s32*);
-extern "C" void __sinit_d_msg_flow_cpp();
-extern "C" extern char const* const d_msg_d_msg_flow__stringBase0;
-extern "C" u8 mQueryList__10dMsgFlow_c[636];
-extern "C" u8 mEventList__10dMsgFlow_c[516];
-
-//
-// External References:
-//
-
-extern "C" void fadeOut__13mDoGph_gInf_cFfR8_GXColor();
-extern "C" void fopMsgM_SearchByID__FUi();
-extern "C" void fopMsgM_messageSet__FUlP10fopAc_ac_cUl();
-extern "C" void fopMsgM_messageSet__FUlUl();
-extern "C" void getStatusRoomDt__20dStage_roomControl_cFi();
-extern "C" void setItemBombNumCount__14dComIfG_play_cFUcs();
-extern "C" void dComIfGp_getReverb__Fi();
-extern "C" void dComIfGs_onZoneSwitch__Fii();
-extern "C" void dComIfGs_offZoneSwitch__Fii();
-extern "C" void dComIfGs_isZoneSwitch__Fii();
-extern "C" void dComIfGs_onOneZoneSwitch__Fii();
-extern "C" void dComIfGs_offOneZoneSwitch__Fii();
-extern "C" void dComIfGs_isOneZoneSwitch__Fii();
-extern "C" void dComIfGs_isZoneItem__Fii();
-extern "C" void dComIfGs_isOneZoneItem__Fii();
-extern "C" void dComIfGs_setSelectItemIndex__FiUc();
-extern "C" void dComIfGs_setMixItemIndex__FiUc();
-extern "C" void dComIfGs_getMixItemIndex__Fi();
-extern "C" void dComIfGp_setSelectItem__Fi();
-extern "C" void dComIfGs_checkGetInsectNum__Fv();
-extern "C" void daNpcKakashi_getSwdTutorialStep__Fv();
-extern "C" void daNpcKakashi_getSwdTutorialResult__Fv();
-extern "C" void daNpcKakashi_getSuccessCount__Fv();
-extern "C" void getSelectItemIndex__21dSv_player_status_a_cCFi();
-extern "C" void getRupeeMax__21dSv_player_status_a_cCFv();
-extern "C" void setItem__17dSv_player_item_cFiUc();
-extern "C" void getItem__17dSv_player_item_cCFib();
-extern "C" void setBottleItemIn__17dSv_player_item_cFUcUc();
-extern "C" void setEmptyBottleItemIn__17dSv_player_item_cFUc();
-extern "C" void checkInsectBottle__17dSv_player_item_cFv();
-extern "C" void checkEmptyBottle__17dSv_player_item_cFv();
-extern "C" void checkBombBag__17dSv_player_item_cFUc();
-extern "C" void setWarashibeItem__17dSv_player_item_cFUc();
-extern "C" void offFirstBit__21dSv_player_get_item_cFUc();
-extern "C" void setBombNum__24dSv_player_item_record_cFUcUc();
-extern "C" void getBombNum__24dSv_player_item_record_cCFUc();
-extern "C" void getBombNum__21dSv_player_item_max_cCFUc();
-extern "C" void getLightDropNum__16dSv_light_drop_cCFUc();
-extern "C" void onLightDropGetFlag__16dSv_light_drop_cFUc();
-extern "C" void isTbox__12dSv_memBit_cCFi();
-extern "C" void onSwitch__12dSv_memBit_cFi();
-extern "C" void offSwitch__12dSv_memBit_cFi();
-extern "C" void isSwitch__12dSv_memBit_cCFi();
-extern "C" void isItem__12dSv_memBit_cCFi();
-extern "C" void onEventBit__11dSv_event_cFUs();
-extern "C" void offEventBit__11dSv_event_cFUs();
-extern "C" void isEventBit__11dSv_event_cCFUs();
-extern "C" void setEventReg__11dSv_event_cFUsUc();
-extern "C" void getEventReg__11dSv_event_cCFUs();
-extern "C" void onSwitch__12dSv_danBit_cFi();
-extern "C" void offSwitch__12dSv_danBit_cFi();
-extern "C" void isSwitch__12dSv_danBit_cCFi();
-extern "C" void isItem__12dSv_danBit_cCFi();
-extern "C" void checkDistance__12dAttention_cFP4cXyzsP4cXyzffff();
-extern "C" void execItemGet__FUc();
-extern "C" void checkItemGet__FUci();
-extern "C" void setMidnaMsg__9daAlink_cFv();
-extern "C" void getDistTable__12dAttention_cFi();
-extern "C" void getAttentionOffsetY__9daPy_py_cFv();
-extern "C" void setMidnaMotionNum__9daPy_py_cFi();
-extern "C" void setMidnaFaceNum__9daPy_py_cFi();
-extern "C" void isFlag__13dShopSystem_cFi();
-extern "C" void setSoldOutFlag__13dShopSystem_cFv();
-extern "C" void resetMiniGameItem__13dMeter2Info_cFb();
-extern "C" void dMeter2Info_getNewLetterNum__Fv();
-extern "C" void dMeter2Info_setNewLetterSender__Fv();
-extern "C" void dMeter2Info_recieveLetter__Fv();
-extern "C" void isMidonaMessage__12dMsgObject_cFv();
-extern "C" void isKillMessageFlag__12dMsgObject_cFv();
-extern "C" void onKillMessageFlag__12dMsgObject_cFv();
-extern "C" void setTalkPartner__12dMsgObject_cFP10fopAc_ac_c();
-extern "C" void setNowTalkFlowNo__12dMsgObject_cFs();
-extern "C" void changeFlowGroup__12dMsgObject_cFl();
-extern "C" void endFlowGroup__12dMsgObject_cFv();
-extern "C" void getMsgDtPtr__12dMsgObject_cFv();
-extern "C" void getStatus__12dMsgObject_cFv();
-extern "C" void setSelectCursorPos__12dMsgObject_cFUc();
-extern "C" void setArrowNum__12dMsgObject_cFUc();
-extern "C" void setSelectWordFlag__12dMsgObject_cFUc();
-extern "C" void getSelectBombBagID__12dMsgObject_cFv();
-extern "C" void getSelectBombPrice__12dMsgObject_cFv();
-extern "C" void setEquipBombInfo__12dMsgObject_cFv();
-extern "C" void setSelectCancelPos__12dMsgObject_cFUc();
-extern "C" void dMsgObject_getFundRaising__Fv();
-extern "C" void dMsgObject_setFundRaising__FUs();
-extern "C" void dMsgObject_getOffering__Fv();
-extern "C" void dMsgObject_addOffering__Fs();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void cM_rndF__Ff();
-extern "C" void __mi__7cSAngleCFs();
-extern "C" void __ct__7cSGlobeFRC4cXyz();
-extern "C" void messageSePlay__7Z2SeMgrFUsP3VecSc();
-extern "C" void __dl__FPv();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
-extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern dScnKy_env_light_c g_env_light;
-extern "C" extern dMsgObject_HIO_c g_MsgObject_HIO_c;
-extern "C" extern GXColor g_saftyWhiteColor;
-extern "C" u8 m_midnaActor__9daPy_py_c[4];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
 /* 803C14B8-803C14C4 01E5D8 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
+static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 803C14C4-803C151C -00001 0058+00 1/1 0/0 0/0 .data            @4646 */
-SECTION_DATA static void* lit_4646[22] = {
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0x140),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0x140),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0x148),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0x148),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0x138),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0x140),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0x148),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0x148),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0x140),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0x148),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0x148),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0x140),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0x148),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0x148),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0x148),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0x148),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0x148),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0x148),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0x148),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0x148),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0x148),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0x140),
-};
-
-/* 803C151C-803C1584 -00001 0068+00 1/1 0/0 0/0 .data            @4645 */
-SECTION_DATA static void* lit_4645[26] = {
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0xCC),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0xD0),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0xD0),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0xD0),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0xCC),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0xD0),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0xD0),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0xCC),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0xCC),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0xCC),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0xD0),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0xD0),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0xD0),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0xD0),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0xD0),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0xD0),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0xD0),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0xD0),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0xD0),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0xD0),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0xD0),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0xD0),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0xD0),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0xD0),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0xD0),
-    (void*)(((char*)checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi) + 0xCC),
-};
-
-/* 803C1584-803C15D0 -00001 004C+00 1/1 0/0 0/0 .data            @4936 */
-SECTION_DATA static void* lit_4936[19] = {
-    (void*)(((char*)messageNodeProc__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_c) + 0x208),
-    (void*)(((char*)messageNodeProc__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_c) + 0x208),
-    (void*)(((char*)messageNodeProc__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_c) + 0x14C),
-    (void*)(((char*)messageNodeProc__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_c) + 0x208),
-    (void*)(((char*)messageNodeProc__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_c) + 0x208),
-    (void*)(((char*)messageNodeProc__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_c) + 0x208),
-    (void*)(((char*)messageNodeProc__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_c) + 0x160),
-    (void*)(((char*)messageNodeProc__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_c) + 0x208),
-    (void*)(((char*)messageNodeProc__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_c) + 0x208),
-    (void*)(((char*)messageNodeProc__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_c) + 0x208),
-    (void*)(((char*)messageNodeProc__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_c) + 0x208),
-    (void*)(((char*)messageNodeProc__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_c) + 0x208),
-    (void*)(((char*)messageNodeProc__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_c) + 0x208),
-    (void*)(((char*)messageNodeProc__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_c) + 0x208),
-    (void*)(((char*)messageNodeProc__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_c) + 0x1BC),
-    (void*)(((char*)messageNodeProc__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_c) + 0x208),
-    (void*)(((char*)messageNodeProc__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_c) + 0x208),
-    (void*)(((char*)messageNodeProc__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_c) + 0x208),
-    (void*)(((char*)messageNodeProc__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_c) + 0x1BC),
-};
-
-/* 803C184C-803C1AC8 01E96C 027C+00 2/3 0/0 0/0 .data            mQueryList__10dMsgFlow_c */
-SECTION_DATA queryFunc dMsgFlow_c::mQueryList[53] = {
-    &dMsgFlow_c::query005, &dMsgFlow_c::query001, &dMsgFlow_c::query002, &dMsgFlow_c::query003,
-    &dMsgFlow_c::query006, &dMsgFlow_c::query007, &dMsgFlow_c::query004, &dMsgFlow_c::query008,
-    &dMsgFlow_c::query009, &dMsgFlow_c::query010, &dMsgFlow_c::query011, &dMsgFlow_c::query012,
-    &dMsgFlow_c::query013, &dMsgFlow_c::query014, &dMsgFlow_c::query015, &dMsgFlow_c::query016,
-    &dMsgFlow_c::query017, &dMsgFlow_c::query018, &dMsgFlow_c::query019, &dMsgFlow_c::query020,
-    &dMsgFlow_c::query021, &dMsgFlow_c::query022, &dMsgFlow_c::query023, &dMsgFlow_c::query024,
-    &dMsgFlow_c::query025, &dMsgFlow_c::query026, &dMsgFlow_c::query027, &dMsgFlow_c::query028,
-    &dMsgFlow_c::query029, &dMsgFlow_c::query030, &dMsgFlow_c::query031, &dMsgFlow_c::query032,
-    &dMsgFlow_c::query033, &dMsgFlow_c::query034, &dMsgFlow_c::query035, &dMsgFlow_c::query036,
-    &dMsgFlow_c::query037, &dMsgFlow_c::query038, &dMsgFlow_c::query039, &dMsgFlow_c::query040,
-    &dMsgFlow_c::query041, &dMsgFlow_c::query042, &dMsgFlow_c::query043, &dMsgFlow_c::query044,
-    &dMsgFlow_c::query045, &dMsgFlow_c::query046, &dMsgFlow_c::query047, &dMsgFlow_c::query048,
-    &dMsgFlow_c::query049, &dMsgFlow_c::query050, &dMsgFlow_c::query051, &dMsgFlow_c::query052,
-    &dMsgFlow_c::query053,
-};
-
-/* 803C1CCC-803C1ED0 01EDEC 0204+00 1/2 0/0 0/0 .data            mEventList__10dMsgFlow_c */
-SECTION_DATA eventFunc dMsgFlow_c::mEventList[43] = {
-    &dMsgFlow_c::event000, &dMsgFlow_c::event001, &dMsgFlow_c::event002, &dMsgFlow_c::event003,
-    &dMsgFlow_c::event004, &dMsgFlow_c::event005, &dMsgFlow_c::event006, &dMsgFlow_c::event007,
-    &dMsgFlow_c::event008, &dMsgFlow_c::event009, &dMsgFlow_c::event010, &dMsgFlow_c::event011,
-    &dMsgFlow_c::event012, &dMsgFlow_c::event013, &dMsgFlow_c::event014, &dMsgFlow_c::event015,
-    &dMsgFlow_c::event016, &dMsgFlow_c::event017, &dMsgFlow_c::event018, &dMsgFlow_c::event019,
-    &dMsgFlow_c::event020, &dMsgFlow_c::event021, &dMsgFlow_c::event022, &dMsgFlow_c::event023,
-    &dMsgFlow_c::event024, &dMsgFlow_c::event025, &dMsgFlow_c::event026, &dMsgFlow_c::event027,
-    &dMsgFlow_c::event028, &dMsgFlow_c::event029, &dMsgFlow_c::event030, &dMsgFlow_c::event031,
-    &dMsgFlow_c::event032, &dMsgFlow_c::event033, &dMsgFlow_c::event034, &dMsgFlow_c::event035,
-    &dMsgFlow_c::event036, &dMsgFlow_c::event037, &dMsgFlow_c::event038, &dMsgFlow_c::event039,
-    &dMsgFlow_c::event040, &dMsgFlow_c::event041, &dMsgFlow_c::event042,
-};
-
-/* 803C1ED0-803C1EF0 -00001 0020+00 1/1 0/0 0/0 .data            @6324 */
-SECTION_DATA static void* lit_6324[8] = {
-    (void*)(((char*)event023__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c) + 0xD8),
-    (void*)(((char*)event023__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c) + 0x34),
-    (void*)(((char*)event023__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c) + 0x4C),
-    (void*)(((char*)event023__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c) + 0x64),
-    (void*)(((char*)event023__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c) + 0x7C),
-    (void*)(((char*)event023__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c) + 0x94),
-    (void*)(((char*)event023__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c) + 0xAC),
-    (void*)(((char*)event023__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c) + 0xC4),
-};
-
-/* 803C1EF0-803C1F20 -00001 0030+00 1/1 0/0 0/0 .data            @6503 */
-SECTION_DATA static void* lit_6503[12] = {
-    (void*)(((char*)event027__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c) + 0xC4),
-    (void*)(((char*)event027__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c) + 0x160),
-    (void*)(((char*)event027__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c) + 0x1FC),
-    (void*)(((char*)event027__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c) + 0x3A4),
-    (void*)(((char*)event027__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c) + 0x298),
-    (void*)(((char*)event027__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c) + 0x298),
-    (void*)(((char*)event027__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c) + 0x2B8),
-    (void*)(((char*)event027__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c) + 0x308),
-    (void*)(((char*)event027__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c) + 0x358),
-    (void*)(((char*)event027__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c) + 0x3A4),
-    (void*)(((char*)event027__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c) + 0x3A4),
-    (void*)(((char*)event027__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c) + 0x3A4),
-};
-
-/* 803C1F20-803C1F40 -00001 0020+00 1/1 0/0 0/0 .data            @6752 */
-SECTION_DATA static void* lit_6752[8] = {
-    (void*)(((char*)event040__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c) + 0xF4),
-    (void*)(((char*)event040__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c) + 0x34),
-    (void*)(((char*)event040__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c) + 0x50),
-    (void*)(((char*)event040__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c) + 0x6C),
-    (void*)(((char*)event040__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c) + 0x88),
-    (void*)(((char*)event040__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c) + 0xA4),
-    (void*)(((char*)event040__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c) + 0xC0),
-    (void*)(((char*)event040__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c) + 0xDC),
 };
 
 /* 80249F00-80249F48 244840 0048+00 0/0 5/5 154/154 .text            __ct__10dMsgFlow_cFv */
@@ -433,14 +28,6 @@ dMsgFlow_c::dMsgFlow_c() {
 
 /* 80249F48-80249F90 244888 0048+00 1/0 7/7 111/111 .text            __dt__10dMsgFlow_cFv */
 dMsgFlow_c::~dMsgFlow_c() {}
-
-/* ############################################################################################## */
-/* 80399CB0-80399CB0 026310 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80399CB0 = "FLW1";
-SECTION_DEAD static char const* const stringBase_80399CB5 = "FLI1";
-#pragma pop
 
 /* 80249F90-8024A13C 2448D0 01AC+00 0/0 10/10 86/86 .text
  * init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c             */
@@ -485,10 +72,13 @@ void dMsgFlow_c::init(fopAc_ac_c* i_partner, int i_flowID, int param_2, fopAc_ac
     }
 }
 
+static void dummy() {
+    DEAD_STRING("");
+}
+
 /* 8024A13C-8024A2D8 244A7C 019C+00 2/0 0/0 2/2 .text checkOpenDoor__10dMsgFlow_cFP10fopAc_ac_cPi
  */
-// regalloc, instruction issues
-#ifdef NONMATCHING
+// NONMATCHING regalloc, instruction issues
 int dMsgFlow_c::checkOpenDoor(fopAc_ac_c *param_1,int *param_2) {
   if (dMsgObject_isTalkNowCheck()) {
     return 0;
@@ -551,11 +141,6 @@ int dMsgFlow_c::checkOpenDoor(fopAc_ac_c *param_1,int *param_2) {
   }
   
 }
-#else
-int dMsgFlow_c::checkOpenDoor(fopAc_ac_c* param_0, int* param_1) {
-    // NONMATCHING
-}
-#endif
 
 /* 8024A2D8-8024A424 244C18 014C+00 0/0 21/21 78/78 .text
  * doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci            */
@@ -739,8 +324,6 @@ void dMsgFlow_c::setInitValueGroupChange(int param_1, fopAc_ac_c** param_2) {
     setNodeIndex(getInitNodeIndex(mFlow), param_2);
 }
 
-/* ############################################################################################## */
-
 /* 8024A6EC-8024A784 24502C 0098+00 4/4 0/0 0/0 .text            getMsgDataBlock__10dMsgFlow_cFPCc
  */
 u8* dMsgFlow_c::getMsgDataBlock(char const* block_tag) {
@@ -837,14 +420,6 @@ void dMsgFlow_c::setNodeIndex(u16 param_1, fopAc_ac_c** param_2) {
     }
     field_0x10 = param_1;
 }
-
-/* ############################################################################################## */
-/* 80399CB0-80399CB0 026310 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80399CBA = "";
-SECTION_DEAD static char const* const stringBase_80399CBB = "INF1";
-#pragma pop
 
 /* 8024A95C-8024AA50 24529C 00F4+00 1/1 0/0 0/0 .text
  * setSelectMsg__10dMsgFlow_cFP14mesg_flow_nodeP14mesg_flow_nodeP10fopAc_ac_c */
@@ -1112,6 +687,24 @@ int dMsgFlow_c::getParam(u8* params) {
     return *(int*)params;
 }
 
+/* 803C184C-803C1AC8 01E96C 027C+00 2/3 0/0 0/0 .data            mQueryList__10dMsgFlow_c */
+queryFunc dMsgFlow_c::mQueryList[53] = {
+    &dMsgFlow_c::query005, &dMsgFlow_c::query001, &dMsgFlow_c::query002, &dMsgFlow_c::query003,
+    &dMsgFlow_c::query006, &dMsgFlow_c::query007, &dMsgFlow_c::query004, &dMsgFlow_c::query008,
+    &dMsgFlow_c::query009, &dMsgFlow_c::query010, &dMsgFlow_c::query011, &dMsgFlow_c::query012,
+    &dMsgFlow_c::query013, &dMsgFlow_c::query014, &dMsgFlow_c::query015, &dMsgFlow_c::query016,
+    &dMsgFlow_c::query017, &dMsgFlow_c::query018, &dMsgFlow_c::query019, &dMsgFlow_c::query020,
+    &dMsgFlow_c::query021, &dMsgFlow_c::query022, &dMsgFlow_c::query023, &dMsgFlow_c::query024,
+    &dMsgFlow_c::query025, &dMsgFlow_c::query026, &dMsgFlow_c::query027, &dMsgFlow_c::query028,
+    &dMsgFlow_c::query029, &dMsgFlow_c::query030, &dMsgFlow_c::query031, &dMsgFlow_c::query032,
+    &dMsgFlow_c::query033, &dMsgFlow_c::query034, &dMsgFlow_c::query035, &dMsgFlow_c::query036,
+    &dMsgFlow_c::query037, &dMsgFlow_c::query038, &dMsgFlow_c::query039, &dMsgFlow_c::query040,
+    &dMsgFlow_c::query041, &dMsgFlow_c::query042, &dMsgFlow_c::query043, &dMsgFlow_c::query044,
+    &dMsgFlow_c::query045, &dMsgFlow_c::query046, &dMsgFlow_c::query047, &dMsgFlow_c::query048,
+    &dMsgFlow_c::query049, &dMsgFlow_c::query050, &dMsgFlow_c::query051, &dMsgFlow_c::query052,
+    &dMsgFlow_c::query053,
+};
+
 /* 8024B138-8024B180 245A78 0048+00 1/0 0/0 0/0 .text
  * query001__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
 int dMsgFlow_c::query001(mesg_flow_node_branch* flow_node, fopAc_ac_c*, int) {
@@ -1134,10 +727,6 @@ int dMsgFlow_c::query002(mesg_flow_node_branch*, fopAc_ac_c*, int) {
 
     return 0;
 }
-
-/* ############################################################################################## */
-/* 80454D90-80454D98 003390 0008+00 5/5 0/0 0/0 .sdata2          @5116 */
-SECTION_SDATA2 static f64 lit_5116 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8024B208-8024B250 245B48 0048+00 1/0 0/0 0/0 .text
  * query003__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
@@ -1182,18 +771,17 @@ int dMsgFlow_c::query006(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, 
 
 /* 8024B32C-8024B45C 245C6C 0130+00 1/0 0/0 0/0 .text
  * query007__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-// instruction order and u16 issue
-#ifdef NONMATCHING
+// NONMATCHING regalloc and u16 issue
 int dMsgFlow_c::query007(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
-    u32 uVar3 = *(u16*)(flow_node->params);
+    u16 uVar3 = *(u16*)(flow_node->params);
     cXyz this_00 = daPy_getPlayerActorClass()->attention_info.position;
     this_00.y -= daPy_getPlayerActorClass()->getAttentionOffsetY();
-    s16 uVar8 = (cSGlobe(param_1->attention_info.position - this_00).U() - daPy_getPlayerActorClass()->shape_angle.GetY());
+    s16 uVar8 = cSGlobe(param_1->attention_info.position - this_00).U()
+                - fopAcM_GetShapeAngle_p(daPy_getPlayerActorClass())->y;
     u8 attentionId = param_1->attention_info.distances[fopAc_attn_SPEAK_e];
     f32 fVar1 = dAttention_c::getDistTable(attentionId).mDistMaxRelease;
-    u16 x = uVar3;
-    if (x != 0) {
-        fVar1 = x;
+    if (uVar3 != 0) {
+        fVar1 = uVar3;
     }
 
     return (u16) dComIfGp_getAttention().checkDistance(
@@ -1203,11 +791,6 @@ int dMsgFlow_c::query007(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, 
         dAttention_c::getDistTable(attentionId).mLowerY);
 
 }
-#else
-int dMsgFlow_c::query007(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
-    // NONMATCHING
-}
-#endif
 
 /* 8024B45C-8024B4A4 245D9C 0048+00 1/0 0/0 0/0 .text
  * query008__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
@@ -1323,19 +906,15 @@ int dMsgFlow_c::query021(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, 
     // NONMATCHING
 }
 
-#ifdef NONMATCHING
 /* 8024B8E4-8024B918 246224 0034+00 1/0 0/0 0/0 .text
  * query022__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
+// NONMATCHING
 int dMsgFlow_c::query022(mesg_flow_node_branch* flow_node, fopAc_ac_c*, int) {
     // fake match but 0 comparison zeroes out 24 bits while this function zeroes out 16
     // return (__cntlzw(checkItemGet(flow_node->params[0], 1)) >> 5) & 0xffff;
     return checkItemGet(flow_node->params[0], 1) == 0;
 }
-#else
-int dMsgFlow_c::query022(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
-    // NONMATCHING
-}
-#endif
+
 
 /* 8024B918-8024B954 246258 003C+00 1/0 0/0 0/0 .text
  * query023__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
@@ -1365,19 +944,14 @@ int dMsgFlow_c::query026(mesg_flow_node_branch*, fopAc_ac_c* actor, int) {
 
 /* 8024B9E8-8024BA4C 246328 0064+00 1/0 0/0 0/0 .text
  * query027__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
-#ifdef NONMATCHING
+// NONMATCHING
 int dMsgFlow_c::query027(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
-    u8 uVar1 = *(u16*)flow_node->params;
+    u8 uVar1 = *(u16*)flow_node->params & 0xff;
     if (uVar1 == 0) {
         uVar1 = dComIfGp_getNeedLightDropNum();
     }
     return dComIfGs_getLightDropNum(dComIfGp_getStartStageDarkArea()) < uVar1;
 }
-#else
-int dMsgFlow_c::query027(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, int param_2) {
-    // NONMATCHING
-}
-#endif
 
 /* 8024BA4C-8024BAA0 24638C 0054+00 1/0 0/0 0/0 .text
  * query028__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
@@ -1708,6 +1282,21 @@ int dMsgFlow_c::query053(mesg_flow_node_branch*, fopAc_ac_c*, int) {
     return phi_r4;
 }
 
+/* 803C1CCC-803C1ED0 01EDEC 0204+00 1/2 0/0 0/0 .data            mEventList__10dMsgFlow_c */
+eventFunc dMsgFlow_c::mEventList[43] = {
+    &dMsgFlow_c::event000, &dMsgFlow_c::event001, &dMsgFlow_c::event002, &dMsgFlow_c::event003,
+    &dMsgFlow_c::event004, &dMsgFlow_c::event005, &dMsgFlow_c::event006, &dMsgFlow_c::event007,
+    &dMsgFlow_c::event008, &dMsgFlow_c::event009, &dMsgFlow_c::event010, &dMsgFlow_c::event011,
+    &dMsgFlow_c::event012, &dMsgFlow_c::event013, &dMsgFlow_c::event014, &dMsgFlow_c::event015,
+    &dMsgFlow_c::event016, &dMsgFlow_c::event017, &dMsgFlow_c::event018, &dMsgFlow_c::event019,
+    &dMsgFlow_c::event020, &dMsgFlow_c::event021, &dMsgFlow_c::event022, &dMsgFlow_c::event023,
+    &dMsgFlow_c::event024, &dMsgFlow_c::event025, &dMsgFlow_c::event026, &dMsgFlow_c::event027,
+    &dMsgFlow_c::event028, &dMsgFlow_c::event029, &dMsgFlow_c::event030, &dMsgFlow_c::event031,
+    &dMsgFlow_c::event032, &dMsgFlow_c::event033, &dMsgFlow_c::event034, &dMsgFlow_c::event035,
+    &dMsgFlow_c::event036, &dMsgFlow_c::event037, &dMsgFlow_c::event038, &dMsgFlow_c::event039,
+    &dMsgFlow_c::event040, &dMsgFlow_c::event041, &dMsgFlow_c::event042,
+};
+
 /* 8024C3FC-8024C488 246D3C 008C+00 1/0 0/0 0/0 .text
  * event000__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c  */
 int dMsgFlow_c::event000(mesg_flow_node_event* flow_node, fopAc_ac_c*) {
@@ -1757,10 +1346,6 @@ int dMsgFlow_c::event003(mesg_flow_node_event* flow_node, fopAc_ac_c*) {
     dComIfGp_setItemRupeeCount(-prm0);
     return 1;
 }
-
-/* ############################################################################################## */
-/* 80454DA0-80454DA8 0033A0 0008+00 3/3 0/0 0/0 .sdata2          @6040 */
-SECTION_SDATA2 static f64 lit_6040 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8024C590-8024C5F0 246ED0 0060+00 1/0 0/0 0/0 .text
  * event004__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c  */
@@ -2045,20 +1630,10 @@ int dMsgFlow_c::event020(mesg_flow_node_event* flow_node, fopAc_ac_c* actor) {
 
 /* 8024CD84-8024CDAC 2476C4 0028+00 1/0 0/0 0/0 .text
  * event021__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c  */
-#ifdef NONMATCHING
 int dMsgFlow_c::event021(mesg_flow_node_event* param_0, fopAc_ac_c* param_1) {
     cLib_calcTimer(&field_0x3c);
     return 1;
 }
-#else
-int dMsgFlow_c::event021(mesg_flow_node_event* param_0, fopAc_ac_c* param_1) {
-    // NONMATCHING
-}
-#endif
-
-/* ############################################################################################## */
-/* 80454DA8-80454DAC 0033A8 0004+00 1/1 0/0 0/0 .sdata2          @6273 */
-SECTION_SDATA2 static f32 lit_6273 = 100.0f;
 
 /* 8024CDAC-8024CE40 2476EC 0094+00 1/0 0/0 0/0 .text
  * event022__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c  */
@@ -2071,7 +1646,6 @@ int dMsgFlow_c::event022(mesg_flow_node_event* flow_node, fopAc_ac_c*) {
     dComIfGp_setItemOilCount(dComIfGs_getMaxOil() * (prm0 / 100.0f));
     return 1;
 }
-
 
 /* 8024CE40-8024CF2C 247780 00EC+00 2/0 0/0 0/0 .text
  * event023__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c  */
@@ -2104,7 +1678,6 @@ int dMsgFlow_c::event023(mesg_flow_node_event* flow_node, fopAc_ac_c*) {
 
     return 1;
 }
-
 
 /* 8024CF2C-8024CF54 24786C 0028+00 1/0 0/0 0/0 .text
  * event024__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c  */
@@ -2230,8 +1803,7 @@ int dMsgFlow_c::event027(mesg_flow_node_event* flow_node, fopAc_ac_c*) {
 
 /* 8024D3C4-8024D500 247D04 013C+00 1/0 0/0 0/0 .text
  * event028__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c  */
-// regalloc
-#ifdef NONMATCHING
+// NONMATCHING regalloc
 int dMsgFlow_c::event028(mesg_flow_node_event* param_0, fopAc_ac_c* param_1) {
     dMsgObject_c::setSelectCursorPos(dComIfGs_getTmpReg(0xFBFF) - 1);
     u8 bagID = dMsgObject_c::getSelectBombBagID();
@@ -2259,11 +1831,6 @@ int dMsgFlow_c::event028(mesg_flow_node_event* param_0, fopAc_ac_c* param_1) {
 
     return 1;
 }
-#else
-int dMsgFlow_c::event028(mesg_flow_node_event* param_0, fopAc_ac_c* param_1) {
-    // NONMATCHING
-}
-#endif
 
 /* 8024D500-8024D544 247E40 0044+00 1/0 0/0 0/0 .text
  * event029__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c  */
@@ -2304,10 +1871,6 @@ int dMsgFlow_c::event031(mesg_flow_node_event*, fopAc_ac_c*) {
     return 1;
 }
 
-/* ############################################################################################## */
-/* 80454DAC-80454DB0 0033AC 0004+00 2/2 0/0 0/0 .sdata2          @6613 */
-SECTION_SDATA2 static f32 lit_6613 = 1.0f;
-
 /* 8024D5EC-8024D6BC 247F2C 00D0+00 1/0 0/0 0/0 .text
  * event032__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c  */
 int dMsgFlow_c::event032(mesg_flow_node_event* param_0, fopAc_ac_c* param_1) {
@@ -2331,7 +1894,6 @@ int dMsgFlow_c::event032(mesg_flow_node_event* param_0, fopAc_ac_c* param_1) {
     return 1;
 }
 
-
 /* 8024D6BC-8024D788 247FFC 00CC+00 1/0 0/0 0/0 .text
  * event033__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c  */
 int dMsgFlow_c::event033(mesg_flow_node_event* param_0, fopAc_ac_c* param_1) {
@@ -2354,7 +1916,6 @@ int dMsgFlow_c::event033(mesg_flow_node_event* param_0, fopAc_ac_c* param_1) {
     cLib_calcTimer(&field_0x3c);
     return 1;
 }
-
 
 /* 8024D788-8024D7C8 2480C8 0040+00 1/0 0/0 0/0 .text
  * event034__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c  */
@@ -2450,7 +2011,6 @@ int dMsgFlow_c::event040(mesg_flow_node_event* flow_node, fopAc_ac_c*) {
     return 1;
 }
 
-
 /* 8024DA78-8024DAA8 2483B8 0030+00 1/0 0/0 0/0 .text
  * event041__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c  */
 int dMsgFlow_c::event041(mesg_flow_node_event* flow_node, fopAc_ac_c*) {
@@ -2465,10 +2025,3 @@ int dMsgFlow_c::event041(mesg_flow_node_event* flow_node, fopAc_ac_c*) {
 int dMsgFlow_c::event042(mesg_flow_node_event*, fopAc_ac_c*) {
     return 1;
 }
-
-/* 8024DAB0-8024DACC 2483F0 001C+00 3/3 0/0 0/0 .text            cLib_calcTimer<l>__FPl */
-extern "C" void func_8024DAB0(void* _this, s32* param_0) {
-    // NONMATCHING
-}
-
-/* 80399CB0-80399CB0 026310 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

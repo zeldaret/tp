@@ -945,7 +945,7 @@ public:
     inline BOOL i_checkSwordGet();
     inline bool i_checkShieldGet() const;
     inline static BOOL checkNowWolf();
-    inline static u32 i_checkNowWolf() { return dComIfGp_getLinkPlayer()->checkWolf(); }
+    inline static u32 i_checkNowWolf() { return ((daPy_py_c*)dComIfGp_getLinkPlayer())->checkWolf(); }
     inline bool checkZoraWearFlg() const;
     inline bool checkMagicArmorWearFlg() const;
     inline static BOOL i_checkFirstMidnaDemo() { return dComIfGs_isEventBit(0xc10); }

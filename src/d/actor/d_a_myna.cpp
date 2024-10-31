@@ -583,7 +583,6 @@ void daMyna_c::attack_fly_init() {
 }
 
 /* 80946BF4-80946D20 001074 012C+00 1/0 0/0 0/0 .text            attack_fly_move__8daMyna_cFv */
-// NONMATCHING regswap
 void daMyna_c::attack_fly_move() {
     if (daMyna_evtTagActor0 != NULL) {
         cXyz var1(1.0f, 1.0f, 1.0f);
@@ -727,7 +726,6 @@ void daMyna_c::shopping_wait_init() {
 }
 
 /* 809471E8-809475B4 001668 03CC+00 1/0 0/0 0/0 .text            shopping_wait_move__8daMyna_cFv */
-// NONMATCHING regswap
 void daMyna_c::shopping_wait_move() {
     if (!daPy_py_c::i_checkNowWolf()) {
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[802])) {

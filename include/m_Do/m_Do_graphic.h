@@ -8,8 +8,6 @@ class JUTFader;
 
 int mDoGph_Create();
 
-extern u8 mBlureFlag__13mDoGph_gInf_c;  // Blure
-extern u8 mFade__13mDoGph_gInf_c;    // Fade
 extern bool data_80450BE7;  // AutoForcus
 
 struct ResTIMG;
@@ -17,7 +15,7 @@ class mDoGph_gInf_c {
 public:
     class bloom_c {
     public:
-        // bloom_c() { m_buffer = NULL; } matches sinit
+        bloom_c() { m_buffer = NULL; }
         /* 80009544 */ void create();
         /* 800095F8 */ void remove();
         /* 80009650 */ void draw();

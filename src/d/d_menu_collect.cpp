@@ -4,6 +4,8 @@
  */
 
 #include "d/d_menu_collect.h"
+#include "JSystem/J3DGraphLoader/J3DModelLoader.h"
+#include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
@@ -23,9 +25,7 @@
 #include "d/d_item.h"
 #include "d/d_lib.h"
 #include "d/d_meter2_info.h"
-#include "dol2asm.h"
 #include "dolphin/os.h"
-#include "dolphin/types.h"
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_mtx.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
@@ -33,303 +33,8 @@
 #include "d/d_menu_window.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 
-extern "C" void __ct__17dMenu_Collect2D_cFP10JKRExpHeapP9STControlP10CSTControl();
-extern "C" void __dt__17dMenu_Collect2D_cFv();
-extern "C" void _create__17dMenu_Collect2D_cFv();
-extern "C" void _delete__17dMenu_Collect2D_cFv();
-extern "C" void initialize__17dMenu_Collect2D_cFv();
-extern "C" void isFishIconVisible__17dMenu_Collect2D_cFv();
-extern "C" void isSkillIconVisible__17dMenu_Collect2D_cFv();
-extern "C" void isInsectIconVisible__17dMenu_Collect2D_cFv();
-extern "C" void screenSet__17dMenu_Collect2D_cFv();
-extern "C" void animationSet__17dMenu_Collect2D_cFv();
-extern "C" void btkAnimeLoop0__17dMenu_Collect2D_cFP19J2DAnmTextureSRTKey();
-extern "C" void setBackAlpha__17dMenu_Collect2D_cFv();
-extern "C" void cursorMove__17dMenu_Collect2D_cFv();
-extern "C" void cursorPosSet__17dMenu_Collect2D_cFv();
-extern "C" void changeSword__17dMenu_Collect2D_cFv();
-extern "C" void changeShield__17dMenu_Collect2D_cFv();
-extern "C" void changeClothe__17dMenu_Collect2D_cFv();
-extern "C" void setArrowMaxNum__17dMenu_Collect2D_cFUc();
-extern "C" void setWalletMaxNum__17dMenu_Collect2D_cFUs();
-extern "C" void setSmellType__17dMenu_Collect2D_cFv();
-extern "C" void setHeartPiece__17dMenu_Collect2D_cFv();
-extern "C" void setPohMaxNum__17dMenu_Collect2D_cFUc();
-extern "C" void setEquipItemFrameColorSword__17dMenu_Collect2D_cFi();
-extern "C" void setEquipItemFrameColorShield__17dMenu_Collect2D_cFi();
-extern "C" void setEquipItemFrameColorClothes__17dMenu_Collect2D_cFi();
-extern "C" void setHIO__17dMenu_Collect2D_cFb();
-extern "C" void getItemTag__17dMenu_Collect2D_cFiib();
-extern "C" void wait_init__17dMenu_Collect2D_cFv();
-extern "C" void wait_proc__17dMenu_Collect2D_cFv();
-extern "C" void save_open_init__17dMenu_Collect2D_cFv();
-extern "C" void save_open_proc__17dMenu_Collect2D_cFv();
-extern "C" void save_move_init__17dMenu_Collect2D_cFv();
-extern "C" void save_move_proc__17dMenu_Collect2D_cFv();
-extern "C" void save_close_init__17dMenu_Collect2D_cFv();
-extern "C" void save_close_proc__17dMenu_Collect2D_cFv();
-extern "C" void option_open_init__17dMenu_Collect2D_cFv();
-extern "C" void option_open_proc__17dMenu_Collect2D_cFv();
-extern "C" void option_move_init__17dMenu_Collect2D_cFv();
-extern "C" void option_move_proc__17dMenu_Collect2D_cFv();
-extern "C" void option_close_init__17dMenu_Collect2D_cFv();
-extern "C" void option_close_proc__17dMenu_Collect2D_cFv();
-extern "C" void letter_open_init__17dMenu_Collect2D_cFv();
-extern "C" void letter_open_proc__17dMenu_Collect2D_cFv();
-extern "C" void letter_move_init__17dMenu_Collect2D_cFv();
-extern "C" void letter_move_proc__17dMenu_Collect2D_cFv();
-extern "C" void letter_close_init__17dMenu_Collect2D_cFv();
-extern "C" void letter_close_proc__17dMenu_Collect2D_cFv();
-extern "C" void fishing_open_init__17dMenu_Collect2D_cFv();
-extern "C" void fishing_open_proc__17dMenu_Collect2D_cFv();
-extern "C" void fishing_move_init__17dMenu_Collect2D_cFv();
-extern "C" void fishing_move_proc__17dMenu_Collect2D_cFv();
-extern "C" void fishing_close_init__17dMenu_Collect2D_cFv();
-extern "C" void fishing_close_proc__17dMenu_Collect2D_cFv();
-extern "C" void skill_open_init__17dMenu_Collect2D_cFv();
-extern "C" void skill_open_proc__17dMenu_Collect2D_cFv();
-extern "C" void skill_move_init__17dMenu_Collect2D_cFv();
-extern "C" void skill_move_proc__17dMenu_Collect2D_cFv();
-extern "C" void skill_close_init__17dMenu_Collect2D_cFv();
-extern "C" void skill_close_proc__17dMenu_Collect2D_cFv();
-extern "C" void insect_open_init__17dMenu_Collect2D_cFv();
-extern "C" void insect_open_proc__17dMenu_Collect2D_cFv();
-extern "C" void insect_move_init__17dMenu_Collect2D_cFv();
-extern "C" void insect_move_proc__17dMenu_Collect2D_cFv();
-extern "C" void insect_close_init__17dMenu_Collect2D_cFv();
-extern "C" void insect_close_proc__17dMenu_Collect2D_cFv();
-extern "C" void _move__17dMenu_Collect2D_cFv();
-extern "C" void _draw__17dMenu_Collect2D_cFv();
-extern "C" void drawTop__17dMenu_Collect2D_cFv();
-extern "C" void isKeyCheck__17dMenu_Collect2D_cFv();
-extern "C" bool isOutCheck__17dMenu_Collect2D_cFv();
-extern "C" void setAButtonString__17dMenu_Collect2D_cFUs();
-extern "C" void setBButtonString__17dMenu_Collect2D_cFUs();
-extern "C" void setItemNameString__17dMenu_Collect2D_cFUcUc();
-extern "C" void setItemNameStringNull__17dMenu_Collect2D_cFv();
-extern "C" void __ct__17dMenu_Collect3D_cFP10JKRExpHeapP17dMenu_Collect2D_cP10CSTControl();
-extern "C" void __dt__17dMenu_Collect3D_cFv();
-extern "C" void _create__17dMenu_Collect3D_cFv();
-extern "C" void _delete__17dMenu_Collect3D_cFv();
-extern "C" void _move__17dMenu_Collect3D_cFUcUc();
-extern "C" void draw__17dMenu_Collect3D_cFv();
-extern "C" void setJ3D__17dMenu_Collect3D_cFPCcPCcPCc();
-extern "C" void set_mtx__17dMenu_Collect3D_cFv();
-extern "C" void animePlay__17dMenu_Collect3D_cFv();
-extern "C" void animeEntry__17dMenu_Collect3D_cFv();
-extern "C" void createMaskModel__17dMenu_Collect3D_cFv();
-extern "C" void createMirrorModel__17dMenu_Collect3D_cFv();
-extern "C" void getCrystalNum__17dMenu_Collect3D_cFv();
-extern "C" void getMirrorNum__17dMenu_Collect3D_cFv();
-extern "C" void getMaskMdlVisible__17dMenu_Collect3D_cFv();
-extern "C" void setupItem3D__17dMenu_Collect3D_cFPA4_f();
-extern "C" void toItem3Dpos__17dMenu_Collect3D_cFfffP4cXyz();
-extern "C" void calcViewMtx__17dMenu_Collect3D_cFPA4_f();
-extern "C" void draw__20dMenu_Collect2DTop_cFv();
-extern "C" void __ct__15dMenu_Collect_cFP10JKRExpHeapP9STControlP10CSTControl();
-extern "C" void __dt__15dMenu_Collect_cFv();
-extern "C" void _create__15dMenu_Collect_cFv();
-extern "C" void _delete__15dMenu_Collect_cFv();
-extern "C" void _move__15dMenu_Collect_cFv();
-extern "C" void draw__15dMenu_Collect_cFv();
-extern "C" void __sinit_d_menu_collect_cpp();
-extern "C" void __dt__20dMenu_Collect2DTop_cFv();
-extern "C" void draw__17dMenu_Collect2D_cFv();
-extern "C" extern char const* const d_menu_d_menu_collect__stringBase0;
-extern "C" f32 mViewOffsetY__17dMenu_Collect3D_c[1 + 1 /* padding */];
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_XrotM__FPA4_fs();
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void mDoMtx_ZrotM__FPA4_fs();
-extern "C" void mDoMtx_lookAt__FPA4_fPC3VecPC3VecPC3Vecs();
-extern "C" void play__14mDoExt_baseAnmFv();
-extern "C" void init__13mDoExt_brkAnmFP16J3DMaterialTableP15J3DAnmTevRegKeyiifss();
-extern "C" void entry__13mDoExt_brkAnmFP16J3DMaterialTablef();
-extern "C" void init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb();
-extern "C" void entry__13mDoExt_bckAnmFP12J3DModelDataf();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_createSolidHeapToCurrent__FUlP7JKRHeapUl();
-extern "C" void mDoExt_destroySolidHeap__FP12JKRSolidHeap();
-extern "C" void mDoExt_destroyExpHeap__FP10JKRExpHeap();
-extern "C" void mDoExt_setCurrentHeap__FP7JKRHeap();
-extern "C" void mDoExt_restoreCurrentHeap__Fv();
-extern "C" void mDoExt_getMesgFont__Fv();
-extern "C" void mDoExt_getRubyFont__Fv();
-extern "C" void __ct__11J3DLightObjFv();
-extern "C" void checkTrigger__9STControlFv();
-extern "C" void checkLeftTrigger__9STControlFv();
-extern "C" void checkRightTrigger__9STControlFv();
-extern "C" void checkUpTrigger__9STControlFv();
-extern "C" void checkDownTrigger__9STControlFv();
-extern "C" void getRupeeMax__21dSv_player_status_a_cCFv();
-extern "C" void isFirstBit__21dSv_player_get_item_cCFUc();
-extern "C" void isCollectCrystal__20dSv_player_collect_cCFUc();
-extern "C" void isCollectMirror__20dSv_player_collect_cCFUc();
-extern "C" void isEventBit__11dSv_event_cCFUs();
-extern "C" void __dt__15J3DTevKColorAnmFv();
-extern "C" void __ct__15J3DTevKColorAnmFv();
-extern "C" void __dt__14J3DTevColorAnmFv();
-extern "C" void __ct__14J3DTevColorAnmFv();
-extern "C" void __dt__11J3DTexNoAnmFv();
-extern "C" void __ct__11J3DTexNoAnmFv();
-extern "C" void __dt__12J3DTexMtxAnmFv();
-extern "C" void __ct__12J3DTexMtxAnmFv();
-extern "C" void __dt__14J3DMatColorAnmFv();
-extern "C" void __ct__14J3DMatColorAnmFv();
-extern "C" void set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c();
-extern "C" void checkItemGet__FUci();
-extern "C" void setShieldChange__9daAlink_cFv();
-extern "C" void initStatusWindow__9daAlink_cFv();
-extern "C" void statusWindowExecute__9daAlink_cFPC4cXyzs();
-extern "C" void statusWindowDraw__9daAlink_cFv();
-extern "C" void resetStatusWindow__9daAlink_cFv();
-extern "C" void __ct__16dSelect_cursor_cFUcfP10JKRArchive();
-extern "C" void setPos__16dSelect_cursor_cFffP7J2DPaneb();
-extern "C" void setParam__16dSelect_cursor_cFfffff();
-extern "C" void setAlphaRate__16dSelect_cursor_cFf();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void dKy_tevstr_init__FP12dKy_tevstr_cScUc();
-extern "C" void __ct__15dMenu_Fishing_cFP10JKRExpHeapP9STControlP10CSTControl();
-extern "C" void _move__15dMenu_Fishing_cFv();
-extern "C" void _draw__15dMenu_Fishing_cFv();
-extern "C" void _open__15dMenu_Fishing_cFv();
-extern "C" void _close__15dMenu_Fishing_cFv();
-extern "C" void __ct__14dMenu_Insect_cFP10JKRExpHeapP9STControlP10CSTControlUc();
-extern "C" void _move__14dMenu_Insect_cFv();
-extern "C" void _draw__14dMenu_Insect_cFv();
-extern "C" void _open__14dMenu_Insect_cFv();
-extern "C" void _close__14dMenu_Insect_cFv();
-extern "C" void getGetInsectNum__14dMenu_Insect_cFv();
-extern "C" void __ct__14dMenu_Letter_cFP10JKRExpHeapP9STControlP10CSTControl();
-extern "C" void _move__14dMenu_Letter_cFv();
-extern "C" void _draw__14dMenu_Letter_cFv();
-extern "C" void _open__14dMenu_Letter_cFv();
-extern "C" void _close__14dMenu_Letter_cFv();
-extern "C" void __ct__14dMenu_Option_cFP10JKRArchiveP9STControl();
-extern "C" void _delete__14dMenu_Option_cFv();
-extern "C" void _move__14dMenu_Option_cFv();
-extern "C" void _draw__14dMenu_Option_cFv();
-extern "C" void _open__14dMenu_Option_cFv();
-extern "C" void _close__14dMenu_Option_cFv();
-extern "C" void initialize__14dMenu_Option_cFv();
-extern "C" void __ct__12dMenu_save_cFv();
-extern "C" void _create__12dMenu_save_cFv();
-extern "C" void initialize__12dMenu_save_cFv();
-extern "C" void _open__12dMenu_save_cFv();
-extern "C" void _close__12dMenu_save_cFv();
-extern "C" void _delete__12dMenu_save_cFv();
-extern "C" void _move__12dMenu_save_cFv();
-extern "C" void _draw__12dMenu_save_cFv();
-extern "C" void __ct__13dMenu_Skill_cFP10JKRExpHeapP9STControlP10CSTControl();
-extern "C" void _move__13dMenu_Skill_cFv();
-extern "C" void _draw__13dMenu_Skill_cFv();
-extern "C" void _open__13dMenu_Skill_cFv();
-extern "C" void _close__13dMenu_Skill_cFv();
-extern "C" void dMw_A_TRIGGER__Fv();
-extern "C" void getStringKanji__13dMeter2Info_cFUlPcP14JMSMesgEntry_c();
-extern "C" void dMeter2Info_getNumberTextureName__Fi();
-extern "C" void dMeter2Info_setCloth__FUcb();
-extern "C" void dMeter2Info_setSword__FUcb();
-extern "C" void dMeter2Info_setShield__FUcb();
-extern "C" void dMeter2Info_getRecieveLetterNum__Fv();
-extern "C" void dMeter2Info_set2DVibration__Fv();
-extern "C" void dMeter2Info_set2DVibrationM__Fv();
-extern "C" void getSmellTypeMessageID__12dMsgObject_cFv();
-extern "C" void __ct__12dMsgString_cFv();
-extern "C" void __dt__12dMsgString_cFv();
-extern "C" void __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap();
-extern "C" void paneTrans__8CPaneMgrFff();
-extern "C" void getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs();
-extern "C" void dPaneClass_showNullPane__FP9J2DScreen();
-extern "C" void setAlphaRate__13CPaneMgrAlphaFf();
-extern "C" void cLib_addCalcAngleS__FPsssss();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void freeAll__7JKRHeapFv();
-extern "C" void getTotalFreeSize__7JKRHeapFv();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void create__10JKRExpHeapFUlP7JKRHeapb();
-extern "C" void adjustSize__12JKRSolidHeapFv();
-extern "C" void getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader();
-extern "C" void __ct__9J2DScreenFv();
-extern "C" void setPriority__9J2DScreenFPCcUlP10JKRArchive();
-extern "C" void draw__9J2DScreenFffPC14J2DGrafContext();
-extern "C" void animation__9J2DScreenFv();
-extern "C" void __ct__10J2DPictureFPC7ResTIMG();
-extern "C" void getStringPtr__10J2DTextBoxCFv();
-extern "C" void setString__10J2DTextBoxFsPCce();
-extern "C" void load__20J2DAnmLoaderDataBaseFPCv();
-extern "C" void init__15J3DVertexBufferFv();
-extern "C" void __as__12J3DLightInfoFRC12J3DLightInfo();
-extern "C" void initialize__8J3DModelFv();
-extern "C" void entryModelData__8J3DModelFP12J3DModelDataUlUl();
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void searchUpdateMaterialID__15J3DAnmTevRegKeyFP12J3DModelData();
-extern "C" void initialize__14J3DMaterialAnmFv();
-extern "C" void load__22J3DModelLoaderDataBaseFPCvUl();
-extern "C" void load__20J3DAnmLoaderDataBaseFPCv24J3DAnmLoaderDataBaseFlag();
-extern "C" void __construct_array();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_17();
-extern "C" void _savegpr_23();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_17();
-extern "C" void _restgpr_23();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__12J3DFrameCtrl[3];
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern void* __vt__8J3DModel[9];
-extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" f32 Zero__4cXyz[3];
-extern "C" u8 mFader__13mDoGph_gInf_c[4];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 80395330-80395330 021990 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80395330 = "zelda_collect_soubi_screen.blo";
-SECTION_DEAD static char const* const stringBase_8039534F = "zelda_collect_soubi_do_icon_parts.blo";
-SECTION_DEAD static char const* const stringBase_80395375 = "tt_block8x8.bti";
-SECTION_DEAD static char const* const stringBase_80395385 = "";
-SECTION_DEAD static char const* const stringBase_80395386 = "zelda_collect_soubi_screen.btk";
-SECTION_DEAD static char const* const stringBase_803953A5 = "md_mask_parts_spin_1.bck";
-SECTION_DEAD static char const* const stringBase_803953BE = "md_mask_parts_spin_2.bck";
-SECTION_DEAD static char const* const stringBase_803953D7 = "md_mask_parts_spin_3.bck";
-SECTION_DEAD static char const* const stringBase_803953F0 = "md_mask_parts_spin_4.bck";
-SECTION_DEAD static char const* const stringBase_80395409 = "md_mask_parts_spin_1.brk";
-SECTION_DEAD static char const* const stringBase_80395422 = "md_mask_parts_spin_2_3.brk";
-SECTION_DEAD static char const* const stringBase_8039543D = "md_mask_parts_spin_4.brk";
-SECTION_DEAD static char const* const stringBase_80395456 = "md_mask_UI.bmd";
-SECTION_DEAD static char const* const stringBase_80395465 = "kageri_mirrer_spin_1.bck";
-SECTION_DEAD static char const* const stringBase_8039547E = "kageri_mirrer_spin_2.bck";
-SECTION_DEAD static char const* const stringBase_80395497 = "kageri_mirrer_spin_3.bck";
-SECTION_DEAD static char const* const stringBase_803954B0 = "kageri_mirrer_spin_4.bck";
-SECTION_DEAD static char const* const stringBase_803954C9 = "kageri_mirrer_spin_1.brk";
-SECTION_DEAD static char const* const stringBase_803954E2 = "kageri_mirrer_spin_2_3_4.brk";
-#pragma pop
-
 /* 803BC380-803BC38C 0194A0 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
+static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
@@ -358,38 +63,6 @@ static processFunc process[] = {
     &dMenu_Collect2D_c::skill_move_proc,    &dMenu_Collect2D_c::skill_close_proc,
     &dMenu_Collect2D_c::insect_open_proc,   &dMenu_Collect2D_c::insect_move_proc,
     &dMenu_Collect2D_c::insect_close_proc,
-};
-
-/* 803BC71C-803BC72C -00001 0010+00 1/1 0/0 0/0 .data            bck_name$7583 */
-SECTION_DATA static void* bck_name_7583[4] = {
-    (void*)(((char*)&d_menu_d_menu_collect__stringBase0) + 0x75),
-    (void*)(((char*)&d_menu_d_menu_collect__stringBase0) + 0x8E),
-    (void*)(((char*)&d_menu_d_menu_collect__stringBase0) + 0xA7),
-    (void*)(((char*)&d_menu_d_menu_collect__stringBase0) + 0xC0),
-};
-
-/* 803BC72C-803BC73C -00001 0010+00 1/1 0/0 0/0 .data            brk_name$7584 */
-SECTION_DATA static void* brk_name_7584[4] = {
-    (void*)(((char*)&d_menu_d_menu_collect__stringBase0) + 0xD9),
-    (void*)(((char*)&d_menu_d_menu_collect__stringBase0) + 0xF2),
-    (void*)(((char*)&d_menu_d_menu_collect__stringBase0) + 0xF2),
-    (void*)(((char*)&d_menu_d_menu_collect__stringBase0) + 0x10D),
-};
-
-/* 803BC73C-803BC74C -00001 0010+00 1/1 0/0 0/0 .data            bck_name$7687 */
-SECTION_DATA static void* bck_name_7687[4] = {
-    (void*)(((char*)&d_menu_d_menu_collect__stringBase0) + 0x135),
-    (void*)(((char*)&d_menu_d_menu_collect__stringBase0) + 0x14E),
-    (void*)(((char*)&d_menu_d_menu_collect__stringBase0) + 0x167),
-    (void*)(((char*)&d_menu_d_menu_collect__stringBase0) + 0x180),
-};
-
-/* 803BC74C-803BC75C -00001 0010+00 1/1 0/0 0/0 .data            brk_name$7688 */
-SECTION_DATA static void* brk_name_7688[4] = {
-    (void*)(((char*)&d_menu_d_menu_collect__stringBase0) + 0x199),
-    (void*)(((char*)&d_menu_d_menu_collect__stringBase0) + 0x1B2),
-    (void*)(((char*)&d_menu_d_menu_collect__stringBase0) + 0x1B2),
-    (void*)(((char*)&d_menu_d_menu_collect__stringBase0) + 0x1B2),
 };
 
 /* 801AFD48-801AFE34 1AA688 00EC+00 1/1 0/0 0/0 .text
@@ -551,7 +224,6 @@ void dMenu_Collect2D_c::initialize() {
     (this->*init[mProcess])();
 }
 
-
 /* 801B05A8-801B061C 1AAEE8 0074+00 2/2 0/0 0/0 .text isFishIconVisible__17dMenu_Collect2D_cFv */
 bool dMenu_Collect2D_c::isFishIconVisible() {
     if (dComIfGs_getFishNum(0) || dComIfGs_getFishNum(1) || dComIfGs_getFishNum(2) ||
@@ -584,87 +256,19 @@ bool dMenu_Collect2D_c::isInsectIconVisible() {
     return dMenu_Insect_c::getGetInsectNum();
 }
 
-/* ############################################################################################## */
-/* 80394F78-80394F88 0215D8 000C+04 3/3 0/0 0/0 .rodata          @3778 */
-SECTION_RODATA static u8 const lit_3778[12 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+static u8 const lit_3778[12] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(0x80394F78, &lit_3778);
-
-/* 80394F88-80394FA0 0215E8 0018+00 0/1 0/0 0/0 .rodata          text_sv$4768 */
-#pragma push
-#pragma force_active on
-static const u64 text_sv[3] = {
-    'sav_0',
-    'sav_1',
-    'sav_2',
-};
-#pragma pop
-
-/* 80394FA0-80394FB8 021600 0018+00 0/1 0/0 0/0 .rodata          text_op$4769 */
-#pragma push
-#pragma force_active on
-static const u64 text_op[3] = {
-    'opt_0',
-    'opt_1',
-    'opt_2',
-};
-#pragma pop
-
-/* 80394FB8-80394FD0 021618 0018+00 0/1 0/0 0/0 .rodata          ftext_sv$4770 */
-#pragma push
-#pragma force_active on
-static const u64 ftext_sv[3] = {
-    'f_sav_0',
-    'f_sav_1',
-    'f_sav_2',
-};
-#pragma pop
-
-/* 80394FD0-80394FE8 021630 0018+00 0/1 0/0 0/0 .rodata          ftext_op$4771 */
-#pragma push
-#pragma force_active on
-static const u64 ftext_op[3] = {
-    'f_opt_0',
-    'f_opt_1',
-    'f_opt_2',
-};
-#pragma pop
-
-/* 80394FE8-80395010 021648 0028+00 0/1 0/0 0/0 .rodata          text_a_tag$4777 */
-#pragma push
-#pragma force_active on
-static const u64 text_a_tag_4777[5] = {
-    'atext1_1', 'atext1_2', 'atext1_3', 'atext1_4', 'atext1_5',
-};
-#pragma pop
-
-/* 80395010-80395038 021670 0028+00 0/1 0/0 0/0 .rodata          text_b_tag$4778 */
-#pragma push
-#pragma force_active on
-static const u64 text_b_tag_4778[5] = {
-    'btext1_1', 'btext1_2', 'btext1_3', 'btext1_4', 'btext1_5',
-};
-#pragma pop
 
 /* 801B074C-801B1C3C 1AB08C 14F0+00 1/1 0/0 0/0 .text            screenSet__17dMenu_Collect2D_cFv */
 void dMenu_Collect2D_c::screenSet() {
+    static const u64 text_sv[3] = {'sav_0', 'sav_1', 'sav_2'};
+    static const u64 text_op[3] = {'opt_0', 'opt_1', 'opt_2',};
+    static const u64 ftext_sv[3] = {'f_sav_0', 'f_sav_1', 'f_sav_2'};
+    static const u64 ftext_op[3] = {'f_opt_0', 'f_opt_1', 'f_opt_2'};
+    static const u64 text_a_tag[5] = {'atext1_1', 'atext1_2', 'atext1_3', 'atext1_4', 'atext1_5'};
+    static const u64 text_b_tag[5] = {'btext1_1', 'btext1_2', 'btext1_3', 'btext1_4', 'btext1_5'};
+
     static_cast<J2DTextBox*>(mpScreen->search('f_t00'))->setFont(mDoExt_getRubyFont());
     static_cast<J2DTextBox*>(mpScreen->search('f_t00'))->setString(0x20, "");
     dMeter2Info_getStringKanji(
@@ -685,12 +289,12 @@ void dMenu_Collect2D_c::screenSet() {
     }
 
     for (int i = 0; i < 5; i++) {
-        static_cast<J2DTextBox*>(mpScreenIcon->search(text_a_tag_4777[i]))
+        static_cast<J2DTextBox*>(mpScreenIcon->search(text_a_tag[i]))
             ->setFont(mDoExt_getMesgFont());
-        static_cast<J2DTextBox*>(mpScreenIcon->search(text_b_tag_4778[i]))
+        static_cast<J2DTextBox*>(mpScreenIcon->search(text_b_tag[i]))
             ->setFont(mDoExt_getMesgFont());
-        static_cast<J2DTextBox*>(mpScreenIcon->search(text_a_tag_4777[i]))->setString(0x20, "");
-        static_cast<J2DTextBox*>(mpScreenIcon->search(text_b_tag_4778[i]))->setString(0x20, "");
+        static_cast<J2DTextBox*>(mpScreenIcon->search(text_a_tag[i]))->setString(0x20, "");
+        static_cast<J2DTextBox*>(mpScreenIcon->search(text_b_tag[i]))->setString(0x20, "");
     }
 
     static_cast<J2DTextBox*>(mpScreen->search('item_n04'))->setFont(mDoExt_getMesgFont());
@@ -1041,7 +645,7 @@ void dMenu_Collect2D_c::screenSet() {
 void dMenu_Collect2D_c::animationSet() {
     OSInitFastCast();
     void* resource =
-        JKRGetNameResource("zelda_collect_soubi_screen_revo.btk", dComIfGp_getCollectResArchive());
+        JKRGetNameResource("zelda_collect_soubi_screen.btk", dComIfGp_getCollectResArchive());
     mpAnmKey = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(resource);
     mpAnmKey->searchUpdateMaterialID(mpScreen);
     field_0x34 = 0.0f;
@@ -1113,59 +717,6 @@ void dMenu_Collect2D_c::setBackAlpha() {
 
     mpBlackTex->setAlpha(alpha * 150.0f);
 }
-
-
-/* ############################################################################################## */
-/* 80395038-80395044 021698 0009+03 1/1 0/0 0/0 .rodata          @5343 */
-SECTION_RODATA static u8 const lit_5343[9 + 3 /* padding */] = {
-    0x03,
-    0x03,
-    0x04,
-    0x03,
-    0x04,
-    0x05,
-    0x04,
-    0x05,
-    0x05,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80395038, &lit_5343);
-
-/* 80395044-80395050 0216A4 0009+03 1/1 0/0 0/0 .rodata          @5344 */
-SECTION_RODATA static u8 const lit_5344[9 + 3 /* padding */] = {
-    0x02,
-    0x01,
-    0x02,
-    0x00,
-    0x01,
-    0x02,
-    0x00,
-    0x01,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80395044, &lit_5344);
-
-/* 80453F50-80453F54 002550 0004+00 1/1 0/0 0/0 .sdata2          @5402 */
-SECTION_SDATA2 static u32 lit_5402 = 0x03020301;
-
-/* 80453F54-80453F58 002554 0004+00 1/1 0/0 0/0 .sdata2          None */
-SECTION_SDATA2 static u32 data_80453F54 = 0x02000100;
-
-/* 80453F58-80453F5C 002558 0004+00 1/1 0/0 0/0 .sdata2          @5403 */
-SECTION_SDATA2 static u32 lit_5403 = 0x03030403;
-
-/* 80453F5C-80453F60 00255C 0004+00 1/1 0/0 0/0 .sdata2          None */
-SECTION_SDATA2 static u32 data_80453F5C = 0x04030404;
-
-/* 80453F60-80453F64 002560 0004+00 6/6 0/0 0/0 .sdata2          @5531 */
-SECTION_SDATA2 static f32 lit_5531 = -1.0f;
 
 /* 801B1FAC-801B27EC 1AC8EC 0840+00 1/1 0/0 0/0 .text            cursorMove__17dMenu_Collect2D_cFv
  */
@@ -1390,28 +941,6 @@ LAB_802bab54:
     }
 }
 
-/* ############################################################################################## */
-/* 80453F64-80453F68 002564 0004+00 1/1 0/0 0/0 .sdata2          @5611 */
-SECTION_SDATA2 static f32 lit_5611 = 11.0f / 10.0f;
-
-/* 80453F68-80453F6C 002568 0004+00 1/1 0/0 0/0 .sdata2          @5612 */
-SECTION_SDATA2 static f32 lit_5612 = 17.0f / 20.0f;
-
-/* 80453F6C-80453F70 00256C 0004+00 1/1 0/0 0/0 .sdata2          @5613 */
-SECTION_SDATA2 static f32 lit_5613 = 1.0f / 20.0f;
-
-/* 80453F70-80453F74 002570 0004+00 1/1 0/0 0/0 .sdata2          @5614 */
-SECTION_SDATA2 static f32 lit_5614 = 3.0f / 5.0f;
-
-/* 80453F74-80453F78 002574 0004+00 1/1 0/0 0/0 .sdata2          @5615 */
-SECTION_SDATA2 static f32 lit_5615 = 3.0f / 100.0f;
-
-/* 80453F78-80453F7C 002578 0004+00 1/1 0/0 0/0 .sdata2          @5616 */
-SECTION_SDATA2 static f32 lit_5616 = 1.0f / 10.0f;
-
-/* 80453F7C-80453F80 00257C 0004+00 1/1 0/0 0/0 .sdata2          @5617 */
-SECTION_SDATA2 static f32 lit_5617 = 7.0f / 10.0f;
-
 /* 801B27EC-801B2A74 1AD12C 0288+00 2/2 0/0 0/0 .text            cursorPosSet__17dMenu_Collect2D_cFv
  */
 void dMenu_Collect2D_c::cursorPosSet() {
@@ -1451,7 +980,6 @@ void dMenu_Collect2D_c::cursorPosSet() {
         mpDrawCursor->setParam(1.0f, 1.0f, 0.1f, 0.7f, 0.7f);
     }
 }
-
 
 /* 801B2A74-801B2D00 1AD3B4 028C+00 1/1 0/0 0/0 .text            changeSword__17dMenu_Collect2D_cFv
  */
@@ -1499,7 +1027,6 @@ void dMenu_Collect2D_c::changeSword() {
     }
 }
 
-
 /* 801B2D00-801B2EE4 1AD640 01E4+00 1/1 0/0 0/0 .text            changeShield__17dMenu_Collect2D_cFv
  */
 void dMenu_Collect2D_c::changeShield() {
@@ -1537,7 +1064,6 @@ void dMenu_Collect2D_c::changeShield() {
     }
 }
 
-
 /* 801B2EE4-801B30C8 1AD824 01E4+00 1/1 0/0 0/0 .text            changeClothe__17dMenu_Collect2D_cFv
  */
 void dMenu_Collect2D_c::changeClothe() {
@@ -1571,7 +1097,6 @@ void dMenu_Collect2D_c::changeClothe() {
         break;
     }
 }
-
 
 /* 801B30C8-801B3340 1ADA08 0278+00 1/1 0/0 0/0 .text setArrowMaxNum__17dMenu_Collect2D_cFUc */
 void dMenu_Collect2D_c::setArrowMaxNum(u8 param_0) {
@@ -2556,7 +2081,6 @@ void dMenu_Collect2D_c::_draw() {
     mpDrawCursor->draw();
 }
 
-
 /* 801B5F48-801B5F84 1B0888 003C+00 1/1 0/0 0/0 .text            drawTop__17dMenu_Collect2D_cFv */
 void dMenu_Collect2D_c::drawTop() {
     dComIfGd_set2DOpaTop(mpDraw2DTop);
@@ -2734,46 +2258,6 @@ void dMenu_Collect3D_c::_delete() {
     }
 }
 
-/* ############################################################################################## */
-/* 80453F80-80453F84 002580 0004+00 1/1 0/0 0/0 .sdata2          @7324 */
-SECTION_SDATA2 static f32 lit_7324 = 60.0f;
-
-/* 80453F84-80453F88 002584 0004+00 1/1 0/0 0/0 .sdata2          @7325 */
-SECTION_SDATA2 static f32 lit_7325 = 580.0f;
-
-/* 80453F88-80453F8C 002588 0004+00 1/1 0/0 0/0 .sdata2          @7326 */
-SECTION_SDATA2 static f32 lit_7326 = 90.0f;
-
-/* 80453F8C-80453F90 00258C 0004+00 1/1 0/0 0/0 .sdata2          @7327 */
-SECTION_SDATA2 static f32 lit_7327 = 550.0f;
-
-/* 80453F90-80453F94 002590 0004+00 1/1 0/0 0/0 .sdata2          @7328 */
-SECTION_SDATA2 static f32 lit_7328 = 450.0f;
-
-/* 80453F94-80453F98 002594 0004+00 1/1 0/0 0/0 .sdata2          @7329 */
-SECTION_SDATA2 static f32 lit_7329 = -3.0f;
-
-/* 80453F98-80453F9C 002598 0004+00 1/1 0/0 0/0 .sdata2          @7330 */
-SECTION_SDATA2 static f32 lit_7330 = -5.0f;
-
-/* 80453F9C-80453FA0 00259C 0004+00 1/1 0/0 0/0 .sdata2          @7331 */
-SECTION_SDATA2 static f32 lit_7331 = 16.0f;
-
-/* 80453FA0-80453FA4 0025A0 0004+00 1/1 0/0 0/0 .sdata2          @7332 */
-SECTION_SDATA2 static f32 lit_7332 = 8.0f;
-
-/* 80453FA4-80453FA8 0025A4 0004+00 2/2 0/0 0/0 .sdata2          @7333 */
-SECTION_SDATA2 static f32 lit_7333 = 2.0f;
-
-/* 80453FA8-80453FAC 0025A8 0004+00 1/1 0/0 0/0 .sdata2          @7334 */
-SECTION_SDATA2 static f32 lit_7334 = -4.0f;
-
-/* 80453FAC-80453FB0 0025AC 0004+00 1/1 0/0 0/0 .sdata2          @7335 */
-SECTION_SDATA2 static f32 lit_7335 = -10.0f;
-
-/* 80453FB0-80453FB4 0025B0 0004+00 1/1 0/0 0/0 .sdata2          @7336 */
-SECTION_SDATA2 static f32 lit_7336 = 600.0f;
-
 /* 801B66C8-801B696C 1B1008 02A4+00 2/2 0/0 0/0 .text            _move__17dMenu_Collect3D_cFUcUc */
 void dMenu_Collect3D_c::_move(u8 param_0, u8 param_1) {
     cXyz itemPos;
@@ -2840,7 +2324,6 @@ void dMenu_Collect3D_c::_move(u8 param_0, u8 param_1) {
     }
 }
 
-
 /* 801B696C-801B6A30 1B12AC 00C4+00 1/1 0/0 0/0 .text            draw__17dMenu_Collect3D_cFv */
 void dMenu_Collect3D_c::draw() {
     dComIfGd_setListItem3D();
@@ -2857,11 +2340,10 @@ void dMenu_Collect3D_c::draw() {
 }
 
 /* 801B6A30-801B6D30 1B1370 0300+00 2/2 0/0 0/0 .text setJ3D__17dMenu_Collect3D_cFPCcPCcPCc */
-// regalloc
-#ifdef NONMATCHING
+// NONMATCHING regalloc
 void dMenu_Collect3D_c::setJ3D(const char* param_0, const char* param_1, const char* param_2) {
     JKRArchive* resArchive = dComIfGp_getCollectResArchive();
-    J3DModelData* modelData = (J3DModelData*)J3DModelLoaderDataBase::load(
+    J3DModelData* modelData = J3DModelLoaderDataBase::load(
         resArchive->getResource('BMD ', param_0), 0x51020010);
 
     for (u16 i = 0; i < modelData->getMaterialNum(); i++) {
@@ -2888,11 +2370,6 @@ void dMenu_Collect3D_c::setJ3D(const char* param_0, const char* param_1, const c
         }
     }
 }
-#else
-void dMenu_Collect3D_c::setJ3D(const char* param_0, const char* param_1, const char* param_2) {
-    // NONMATCHING
-}
-#endif
 
 /* 801B6D30-801B6E70 1B1670 0140+00 2/2 0/0 0/0 .text            set_mtx__17dMenu_Collect3D_cFv */
 void dMenu_Collect3D_c::set_mtx() {
@@ -2958,32 +2435,11 @@ void dMenu_Collect3D_c::animeEntry() {
     }
 }
 
-/* 803952B8-803952CC 021918 0014+00 0/1 0/0 0/0 .rodata          m_kamen_offset_x$7578 */
-#pragma push
-#pragma force_active on
-static const f32 m_kamen_offset_x[5] = {
-    -14.0f, -14.0f, -14.0f, 1.3f, 6.5f,
-};
-#pragma pop
-
-/* 803952CC-803952E0 02192C 0014+00 0/1 0/0 0/0 .rodata          m_kamen_offset_y$7579 */
-#pragma push
-#pragma force_active on
-static const f32 m_kamen_offset_y[5] = {
-    0.0f, 0.0f, 0.0f, 22.0f, 30.0f,
-};
-#pragma pop
-
-/* 803952E0-803952F4 021940 0014+00 0/1 0/0 0/0 .rodata          m_kamen_scale$7580 */
-#pragma push
-#pragma force_active on
-static const f32 m_kamen_scale[5] = {
-    2.6f, 2.6f, 2.2f, 1.8f, 1.8f,
-};
-#pragma pop
-
 /* 801B7014-801B71C4 1B1954 01B0+00 1/1 0/0 0/0 .text createMaskModel__17dMenu_Collect3D_cFv */
 void dMenu_Collect3D_c::createMaskModel() {
+    static const f32 m_kamen_offset_x[5] = {-14.0f, -14.0f, -14.0f, 1.3f, 6.5f};
+    static const f32 m_kamen_offset_y[5] = {0.0f, 0.0f, 0.0f, 22.0f, 30.0f};
+    static const f32 m_kamen_scale[5] = {2.6f, 2.6f, 2.2f, 1.8f, 1.8f};
     static char* bck_name[4] = {
         "md_mask_parts_spin_1.bck",
         "md_mask_parts_spin_2.bck",
@@ -3023,41 +2479,11 @@ void dMenu_Collect3D_c::createMaskModel() {
     }
 }
 
-
-/* 803952F4-80395308 021954 0014+00 0/1 0/0 0/0 .rodata          m_mirror_offset_x$7682 */
-#pragma push
-#pragma force_active on
-static const f32 m_mirror_offset_x[5] = {
-    0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
-};
-#pragma pop
-
-/* 80395308-8039531C 021968 0014+00 0/1 0/0 0/0 .rodata          m_mirror_offset_y$7683 */
-#pragma push
-#pragma force_active on
-static const f32 m_mirror_offset_y[5] = {
-    4.0f, 4.0f, 4.0f, 4.0f, 4.0f,
-};
-#pragma pop
-
-/* 8039531C-80395330 02197C 0014+00 0/1 0/0 0/0 .rodata          m_mirror_scale$7684 */
-#pragma push
-#pragma force_active on
-static const f32 m_mirror_scale[5] = {
-    0.6f, 0.6f, 0.6f, 0.6f, 0.6f,
-};
-#pragma pop
-
-/* 80395330-80395330 021990 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803954FF = "kageri_mirrer_UI.bmd";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80395514 = "\0\0\0";
-#pragma pop
-
 /* 801B71C4-801B7434 1B1B04 0270+00 1/1 0/0 0/0 .text createMirrorModel__17dMenu_Collect3D_cFv */
 void dMenu_Collect3D_c::createMirrorModel() {
+    static const f32 m_mirror_offset_x[5] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
+    static const f32 m_mirror_offset_y[5] = {4.0f, 4.0f, 4.0f, 4.0f, 4.0f};
+    static const f32 m_mirror_scale[5] = {0.6f, 0.6f, 0.6f, 0.6f, 0.6f};
     static char* bck_name[4] = {
         "kageri_mirrer_spin_1.bck",
         "kageri_mirrer_spin_2.bck",
@@ -3103,7 +2529,6 @@ void dMenu_Collect3D_c::createMirrorModel() {
     }
 }
 
-
 /* 801B7434-801B749C 1B1D74 0068+00 5/5 0/0 0/0 .text getCrystalNum__17dMenu_Collect3D_cFv */
 u8 dMenu_Collect3D_c::getCrystalNum() {
     u8 count = 0;
@@ -3143,56 +2568,40 @@ u8 dMenu_Collect3D_c::getMaskMdlVisible() {
     return 2;
 }
 
-/* ############################################################################################## */
 /* 80450720-80450728 0001A0 0004+04 1/1 0/0 1/1 .sdata           mViewOffsetY__17dMenu_Collect3D_c
  */
 f32 dMenu_Collect3D_c::mViewOffsetY = -100.0f;
 
-/* 80453FC4-80453FC8 0025C4 0004+00 3/3 0/0 0/0 .sdata2          @7944 */
-SECTION_SDATA2 static f32 lit_7944 = 608.0f;
-
-/* 80453FC8-80453FCC 0025C8 0004+00 3/3 0/0 0/0 .sdata2          @7945 */
-SECTION_SDATA2 static f32 lit_7945 = 448.0f;
-
-/* 80453FCC-80453FD0 0025CC 0004+00 2/2 0/0 0/0 .sdata2          @7946 */
-SECTION_SDATA2 static f32 lit_7946 = -100.0f;
-
-/* 80453FD0-80453FD4 0025D0 0004+00 1/1 0/0 0/0 .sdata2          @7947 */
-SECTION_SDATA2 static f32 lit_7947 = 45.0f;
-
-/* 80453FD4-80453FD8 0025D4 0004+00 2/2 0/0 0/0 .sdata2          @7948 */
-SECTION_SDATA2 static f32 lit_7948 = 19.0f / 14.0f;
-
-/* 80453FD8-80453FE0 0025D8 0004+04 1/1 0/0 0/0 .sdata2          @7949 */
-SECTION_SDATA2 static f32 lit_7949[1 + 1 /* padding */] = {
-    100000.0f,
-    /* padding */
-    0.0f,
-};
-
 /* 801B75E8-801B7660 1B1F28 0078+00 0/0 1/1 0/0 .text setupItem3D__17dMenu_Collect3D_cFPA4_f */
 void dMenu_Collect3D_c::setupItem3D(Mtx param_0) {
-    GXSetViewport(0.0, mViewOffsetY, 608.0, 448.0, 0.0, 1.0);
-    mViewOffsetY = -100.0;
+    GXSetViewport(0.0f, mViewOffsetY, 608.0f, 448.0f, 0.0f, 1.0f);
+    mViewOffsetY = -100.0f;
     Mtx44 projection;
-    C_MTXPerspective(projection, 45.0, mDoGph_gInf_c::getAspect(), 1.0, 100000.0);
+    C_MTXPerspective(projection, 45.0f, mDoGph_gInf_c::getAspect(), 1.0f, 100000.0f);
     GXSetProjection(projection, GX_PERSPECTIVE);
     calcViewMtx(param_0);
 }
 
-
-/* ############################################################################################## */
-/* 80453FE0-80453FE8 0025E0 0008+00 1/1 0/0 0/0 .sdata2          @7963 */
-SECTION_SDATA2 static f64 lit_7963 = 0.39269909262657166;
-
 /* 801B7660-801B774C 1B1FA0 00EC+00 1/1 0/0 0/0 .text toItem3Dpos__17dMenu_Collect3D_cFfffP4cXyz
  */
 // This is mostly matching like this using O2 but still regalloc (f29/f31). The main issue is the use of dVar12
-#ifdef NONMATCHING
+#pragma push
+#pragma optimization_level 2
 void dMenu_Collect3D_c::toItem3Dpos(f32 param_0, f32 param_1, f32 param_2, cXyz* param_3) {
-    // NONMATCHING
+    Mtx adStack_98;
+    Mtx auStack_c8;
+    f32 dVar7 =
+        (2.0f * ((param_0 - mDoGph_gInf_c::getMinXF()) / mDoGph_gInf_c::getWidthF()) - 1.0f);
+    f32 dVar11 = (2.0f * ((param_1 - -100.0f) / 448.0f) - 1.0f);
+    calcViewMtx(adStack_98);
+    MTXInverse(adStack_98, auStack_c8);
+    f32 tangent = tan(0.39269909262657166);
+    f32 dVar12 = -param_2;
+    cXyz cStack_d4((dVar7 * param_2) * (mDoGph_gInf_c::getAspect() * tangent),
+                   (tangent * (dVar11 * dVar12)), dVar12);
+    MTXMultVec(auStack_c8, &cStack_d4, param_3);
 }
-#endif
+#pragma pop
 
 /* 801B774C-801B77A4 1B208C 0058+00 2/2 0/0 0/0 .text calcViewMtx__17dMenu_Collect3D_cFPA4_f */
 void dMenu_Collect3D_c::calcViewMtx(Mtx param_0) {
@@ -3201,9 +2610,33 @@ void dMenu_Collect3D_c::calcViewMtx(Mtx param_0) {
 
 
 /* 801B77A4-801B78C0 1B20E4 011C+00 1/0 0/0 0/0 .text            draw__20dMenu_Collect2DTop_cFv */
-// void dMenu_Collect2DTop_c::draw() {
-extern "C" void draw__20dMenu_Collect2DTop_cFv() {
-    // NONMATCHING
+void dMenu_Collect2DTop_c::draw() {
+    J2DGrafContext* graf_port = dComIfGp_getCurrentGrafPort();
+    graf_port->setup2D();
+    mpCollect2D->getBlackTex()->draw(mDoGph_gInf_c::getMinXF(), mDoGph_gInf_c::getMinYF(),
+                                     mDoGph_gInf_c::getWidthF(), mDoGph_gInf_c::getHeightF(),
+                                     false, false, false);
+    if (mpCollect2D->getSaveScreen() != NULL) {
+        mpCollect2D->getSaveScreen()->_draw();
+    }
+    if (mpCollect2D->getOptionScreen() != NULL) {
+        mpCollect2D->getOptionScreen()->_draw();
+    }
+    if (mpCollect2D->getLetterScreen() != NULL) {
+        mpCollect2D->getLetterScreen()->_draw();
+    }
+    if (mpCollect2D->getFishingScreen() != NULL) {
+        mpCollect2D->getFishingScreen()->_draw();
+    }
+    if (mpCollect2D->getSkillScreen() != NULL) {
+        mpCollect2D->getSkillScreen()->_draw();
+    }
+    if (mpCollect2D->getInsectScreen() != NULL) {
+        mpCollect2D->getInsectScreen()->_draw();
+    }
+    if (mpCollect2D->getIconScreen() != NULL) {
+        mpCollect2D->getIconScreen()->draw(0.0f, 0.0f, graf_port);
+    }
 }
 
 /* 801B78C0-801B795C 1B2200 009C+00 0/0 1/1 0/0 .text
@@ -3249,24 +2682,4 @@ void dMenu_Collect_c::draw() {
     dComIfGd_set2DOpa(mpCollect2D);
     mpCollect3D->draw();
     mpCollect2D->drawTop();
-}
-
-/* 801B7B14-801B7EB8 1B2454 03A4+00 0/0 1/0 0/0 .text            __sinit_d_menu_collect_cpp */
-void __sinit_d_menu_collect_cpp(){// NONMATCHING
-}
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x801B7B14, __sinit_d_menu_collect_cpp);
-#pragma pop
-
-/* 801B7EB8-801B7F00 1B27F8 0048+00 1/0 0/0 0/0 .text            __dt__20dMenu_Collect2DTop_cFv */
-dMenu_Collect2DTop_c::~dMenu_Collect2DTop_c() {
-    // NONMATCHING
-}
-
-/* 801B7F00-801B7F20 1B2840 0020+00 1/0 0/0 0/0 .text            draw__17dMenu_Collect2D_cFv */
-// void dMenu_Collect2D_c::draw() {
-extern "C" void draw__17dMenu_Collect2D_cFv() {
-    // NONMATCHING
 }
