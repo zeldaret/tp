@@ -19,8 +19,6 @@
 #include "d/d_msg_object.h"
 #include "d/d_pane_class.h"
 
-extern "C" extern dMsgObject_HIO_c g_MsgObject_HIO_c;
-
 /* 8020FAB4-802102F8 20A3F4 0844+00 0/0 1/1 0/0 .text            __ct__13dMeter2Draw_cFP10JKRExpHeap
  */
 dMeter2Draw_c::dMeter2Draw_c(JKRExpHeap* mp_heap) {
@@ -83,7 +81,7 @@ dMeter2Draw_c::dMeter2Draw_c(JKRExpHeap* mp_heap) {
     playPikariBckAnimation(1.0f);
 
     void* pikari_bpk = JKRGetNameResource("zelda_icon_pikari.bpk", dComIfGp_getMain2DArchive());
-    mPikariBpk = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(pikari_bpk);
+    mPikariBpk = (J2DAnmColor*)J2DAnmLoaderDataBase::load(pikari_bpk);
     mPikariBpk->searchUpdateMaterialID(mpPikariScreen);
     playPikariBpkAnimation(1.0f);
 
@@ -815,17 +813,17 @@ void dMeter2Draw_c::initMagic() {
 
     void* res = JKRFileLoader::getGlbResource("zelda_game_image_sanso_10percent.bpk",
                                               dComIfGp_getMain2DArchive());
-    mpOxygenBpk[0] = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(res);
+    mpOxygenBpk[0] = (J2DAnmColor*)J2DAnmLoaderDataBase::load(res);
     mpOxygenBpk[0]->searchUpdateMaterialID(mpKanteraScreen);
 
     res = JKRFileLoader::getGlbResource("zelda_game_image_sanso_25percent.bpk",
                                         dComIfGp_getMain2DArchive());
-    mpOxygenBpk[1] = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(res);
+    mpOxygenBpk[1] = (J2DAnmColor*)J2DAnmLoaderDataBase::load(res);
     mpOxygenBpk[1]->searchUpdateMaterialID(mpKanteraScreen);
 
     res = JKRFileLoader::getGlbResource("zelda_game_image_sanso_50percent.bpk",
                                         dComIfGp_getMain2DArchive());
-    mpOxygenBpk[2] = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(res);
+    mpOxygenBpk[2] = (J2DAnmColor*)J2DAnmLoaderDataBase::load(res);
     mpOxygenBpk[2]->searchUpdateMaterialID(mpKanteraScreen);
 
     field_0x558 = 0.0f;

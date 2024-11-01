@@ -14,13 +14,6 @@
 #include "d/d_msg_object.h"
 #include "d/d_pane_class.h"
 
-extern "C" void __dl__FPv();
-extern "C" extern void* __vt__10J2DAnmBase[4];
-extern "C" extern void* __vt__10JUTNameTab[3];
-extern "C" extern void* __vt__14J2DAnmColorKey[5];
-extern "C" extern void* __vt__11J2DAnmColor[5];
-extern "C" extern dMsgObject_HIO_c g_MsgObject_HIO_c;
-
 /* 803C0C00-803C0C0C 01DD20 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -68,7 +61,7 @@ dMsgScrn3Select_c::dMsgScrn3Select_c() {
     mBckFrame = 190.0f;
     mOffsetX = 0.0f;
 
-    mpAnmBpk = (J2DAnmColor*)J2DAnmLoaderDataBase::load(
+    mpAnmBpk = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(
         JKRGetNameResource("zelda_window_3menu.bpk", dComIfGp_getMsgArchive(0)));
     mpAnmBpk->searchUpdateMaterialID(mpScreen);
     mBpkFrame = 0.0f;
@@ -226,12 +219,6 @@ dMsgScrn3Select_c::~dMsgScrn3Select_c() {
         delete mpSelPo_c[i];
         mpSelPo_c[i] = NULL;
     }
-}
-
-/* 80239BE0-80239C64 234520 0084+00 0/0 1/0 0/0 .text            __dt__14J2DAnmColorKeyFv */
-// J2DAnmColorKey::~J2DAnmColorKey() {
-extern "C" void __dt__14J2DAnmColorKeyFv() {
-    // NONMATCHING
 }
 
 /* 80239C64-80239C78 2345A4 0014+00 0/0 5/5 0/0 .text            isSelect__17dMsgScrn3Select_cFv */

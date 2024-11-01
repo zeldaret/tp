@@ -136,8 +136,7 @@ static int daObj_Web1_Execute(obj_web1_class* i_this) {
         i_this->mHitTimer--;
     }
 
-    int roomNo = fopAcM_GetRoomNo(i_this);
-    i_this->mZ2SoundObj.framework(0, dComIfGp_getReverb(roomNo));
+    i_this->mZ2SoundObj.framework(0, dComIfGp_getReverb(fopAcM_GetRoomNo(i_this)));
 
     if (i_this->mDeleteTimer != 0) {
         if (i_this->mDeleteTimer == 1) {

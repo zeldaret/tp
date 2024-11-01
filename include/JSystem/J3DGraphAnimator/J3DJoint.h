@@ -18,12 +18,12 @@ public:
     /* 80325D1C */ static void setMtxBuffer(J3DMtxBuffer*);
 
     /* 8000D948 */ virtual ~J3DMtxCalc() {}
-    /* 80014E90 */ virtual void setAnmTransform(J3DAnmTransform*);
-    /* 80014E9C */ virtual J3DAnmTransform* getAnmTransform();
-    /* 80014E8C */ virtual void setAnmTransform(u8, J3DAnmTransform*);
-    /* 80014E94 */ virtual J3DAnmTransform* getAnmTransform(u8);
-    /* 80014EA4 */ virtual void setWeight(u8, f32);
-    /* 80014EA8 */ virtual void getWeight(u8) const;
+    /* 80014E90 */ virtual void setAnmTransform(J3DAnmTransform*) {}
+    /* 80014E9C */ virtual J3DAnmTransform* getAnmTransform() { return NULL; }
+    /* 80014E8C */ virtual void setAnmTransform(u8, J3DAnmTransform*) {}
+    /* 80014E94 */ virtual J3DAnmTransform* getAnmTransform(u8) { return NULL; }
+    /* 80014EA4 */ virtual void setWeight(u8, f32) {}
+    /* 80014EA8 */ virtual f32 getWeight(u8) const { return 0.0f; }
     virtual void init(const Vec& param_0, const Mtx&) = 0;
     virtual void calc() = 0;
 

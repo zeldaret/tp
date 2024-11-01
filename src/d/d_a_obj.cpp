@@ -17,18 +17,15 @@ void eff_break_tsubo(fopAc_ac_c* i_actor, cXyz i_scale, int i_type) {
     J3DModelData* tubo_bmd = (J3DModelData*)dComIfG_getObjectRes("Always", 0x20);
     J3DAnmTexPattern* tubo_btp = (J3DAnmTexPattern*)dComIfG_getObjectRes("Always", 0x42);
 
-    s32 roomNo = fopAcM_GetRoomNo(i_actor);
-
     JPABaseEmitter* emitter = dComIfGp_particle_set(
         dPa_name::ZI_J_M_tuboHahen_e, &i_actor->current.pos, NULL, NULL, 0xFF,
-        (dPa_modelEcallBack*)&dPa_modelEcallBack::mEcallback, roomNo, NULL, NULL, &i_scale);
+        &dPa_modelEcallBack::mEcallback, fopAcM_GetRoomNo(i_actor), NULL, NULL, &i_scale);
 
     dPa_modelEcallBack::setModel(emitter, tubo_bmd, i_actor->tevStr, 3, tubo_btp, 0, i_type);
 
-    s32 roomNo2 = fopAcM_GetRoomNo(i_actor);
     dComIfGp_particle_set(dPa_name::ZI_J_tuboHahen_e, &i_actor->current.pos, NULL, NULL, 0xFF,
-                          dPa_control_c::getTsuboSelectTexEcallBack(i_type), roomNo2, NULL, NULL,
-                          &i_scale);
+                          dPa_control_c::getTsuboSelectTexEcallBack(i_type),
+                          fopAcM_GetRoomNo(i_actor), NULL, NULL, &i_scale);
 }
 
 /* 80037180-80037210 031AC0 0090+00 0/0 0/0 2/2 .text make_eff_break_kotubo__5daObjFP10fopAc_ac_c
@@ -221,15 +218,3 @@ void HitSeStart(cXyz const* i_sePos, int i_roomNo, dCcD_GObjInf const* i_CcObj, 
     }
 }
 }  // namespace daObj
-
-/* 80037A4C-80037A54 03238C 0008+00 0/0 2/0 0/0 .text            GetCoCP__12cCcD_CylAttrFv */
-// void cCcD_CylAttr::GetCoCP() {
-extern "C" void GetCoCP__12cCcD_CylAttrFv() {
-    // NONMATCHING
-}
-
-/* 80037A54-80037A5C 032394 0008+00 0/0 2/0 0/0 .text            GetCoCP__12cCcD_SphAttrFv */
-// void cCcD_SphAttr::GetCoCP() {
-extern "C" void GetCoCP__12cCcD_SphAttrFv() {
-    // NONMATCHING
-}

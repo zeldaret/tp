@@ -8,98 +8,6 @@
 #include "d/d_jnt_col.h"
 #include "f_op/f_op_actor_mng.h"
 
-//
-// Forward References:
-//
-
-extern "C" void Ct__4dCcSFv();
-extern "C" void Dt__4dCcSFv();
-extern "C" void ChkShieldFrontRange__4dCcSFP8cCcD_ObjP8cCcD_ObjiPC4cXyz();
-extern "C" void ChkShield__4dCcSFP8cCcD_ObjP8cCcD_ObjP12dCcD_GObjInfP12dCcD_GObjInfPC4cXyz();
-extern "C" void CalcTgPlusDmg__4dCcSFP8cCcD_ObjP8cCcD_ObjP9cCcD_SttsP9cCcD_Stts();
-extern "C" void
-ChkAtTgHitAfterCross__4dCcSFbbPC12cCcD_GObjInfPC12cCcD_GObjInfP9cCcD_SttsP9cCcD_SttsP10cCcD_GSttsP10cCcD_GStts();
-extern "C" void
-SetCoGObjInf__4dCcSFbbP12cCcD_GObjInfP12cCcD_GObjInfP9cCcD_SttsP9cCcD_SttsP10cCcD_GSttsP10cCcD_GStts();
-extern "C" void GetRank__4dCcSFUc();
-extern "C" bool ChkNoHitGCo__4dCcSFP8cCcD_ObjP8cCcD_Obj();
-extern "C" void SetPosCorrect__4dCcSFP8cCcD_ObjP4cXyzP8cCcD_ObjP4cXyzf();
-extern "C" void CalcParticleAngle__4dCcSFP12dCcD_GObjInfP9cCcD_SttsP9cCcD_SttsP5csXyz();
-extern "C" void
-ProcAtTgHitmark__4dCcSFbbP8cCcD_ObjP8cCcD_ObjP12dCcD_GObjInfP12dCcD_GObjInfP9cCcD_SttsP9cCcD_SttsP10dCcD_GSttsP10dCcD_GSttsP4cXyzb();
-extern "C" void
-SetAtTgGObjInf__4dCcSFbbP8cCcD_ObjP8cCcD_ObjP12cCcD_GObjInfP12cCcD_GObjInfP9cCcD_SttsP9cCcD_SttsP10cCcD_GSttsP10cCcD_GSttsP4cXyz();
-extern "C" void ChkCamera__4dCcSFR4cXyzR4cXyzfP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_c();
-extern "C" void chkCameraPoint__4dCcSFRC4cXyzPQ214cCcD_ShapeAttr5ShapeP10fopAc_ac_cP10fopAc_ac_c();
-extern "C" void __dt__12cCcD_SphAttrFv();
-extern "C" void MoveAfterCheck__4dCcSFv();
-extern "C" void DrawAfter__4dCcSFv();
-extern "C" void Move__4dCcSFv();
-extern "C" void Draw__4dCcSFv();
-extern "C" void MassClear__4dCcSFv();
-extern "C" void ChkAtTgMtrlHit__4dCcSFUcUc();
-extern "C" void ChkNoHitGAtTg__4dCcSFPC12cCcD_GObjInfPC12cCcD_GObjInfP10cCcD_GSttsP10cCcD_GStts();
-extern "C" u8 m_mtrl_hit_tbl__4dCcS[64];
-extern "C" extern void* __vt__4dCcS[13];
-
-//
-// External References:
-//
-
-extern "C" void ZXYrotS__14mDoMtx_stack_cFRC5csXyz();
-extern "C" void __dt__4dCcSFv();
-extern "C" void getHitmarkPosAndAngle__9dJntCol_cCFPC4cXyzPC5csXyzP4cXyzP5csXyzi();
-extern "C" void setHitMark__13dPa_control_cFUsP10fopAc_ac_cPC4cXyzPC5csXyzPC4cXyzUl();
-extern "C" void SetHitApid__22dCcD_GAtTgCoCommonBaseFUi();
-extern "C" void SetEffCounterTimer__22dCcD_GAtTgCoCommonBaseFv();
-extern "C" void ChkEffCounter__22dCcD_GAtTgCoCommonBaseFv();
-extern "C" void ChkAtNoGuard__12dCcD_GObjInfFv();
-extern "C" void Ct__12dCcMassS_MngFv();
-extern "C" void Clear__12dCcMassS_MngFv();
-extern "C" void Chk__15cCcD_DivideInfoCFRC15cCcD_DivideInfo();
-extern "C" void CalcDivideInfoOverArea__15cCcD_DivideAreaFP15cCcD_DivideInfoRC8cM3dGAab();
-extern "C" void PlusCcMove__9cCcD_SttsFfff();
-extern "C" void PlusDmg__9cCcD_SttsFi();
-extern "C" void GetAc__8cCcD_ObjFv();
-extern "C" void CalcAabBox__12cCcD_CpsAttrFv();
-extern "C" void CalcAabBox__12cCcD_SphAttrFv();
-extern "C" void Ct__4cCcSFv();
-extern "C" void Dt__4cCcSFv();
-extern "C" void Move__4cCcSFv();
-extern "C" void DrawClear__4cCcSFv();
-extern "C" void SetCoGCorrectProc__4cCcSFP8cCcD_ObjP8cCcD_Obj();
-extern "C" void cM3d_CalcVecZAngle__FRC3VecP5csXyz();
-extern "C" void __ct__8cM3dGCpsFv();
-extern "C" void __dt__8cM3dGCpsFv();
-extern "C" void Set__8cM3dGCpsFRC4cXyzRC4cXyzf();
-extern "C" void Set__8cM3dGSphFRC9cM3dGSphS();
-extern "C" void cLib_distanceAngleS__Fss();
-extern "C" void __dl__FPv();
-extern "C" void _savegpr_17();
-extern "C" void _savegpr_23();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_17();
-extern "C" void _restgpr_23();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__8cM3dGAab[3];
-extern "C" extern void* __vt__15cCcD_DivideInfo[3];
-extern "C" extern void* __vt__8cM3dGSph[3];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__12cCcD_CpsAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 BaseZ__4cXyz[12];
-
-//
-// Declarations:
-//
-
 /* 80085ED4-80085F08 080814 0034+00 0/0 1/1 0/0 .text            Ct__4dCcSFv */
 void dCcS::Ct() {
     cCcS::Ct();
@@ -243,8 +151,7 @@ bool dCcS::ChkAtTgHitAfterCross(bool i_setAt, bool i_setTg, cCcD_GObjInf const* 
 /* 80086240-80086360 080B80 0120+00 1/0 0/0 0/0 .text
  * SetCoGObjInf__4dCcSFbbP12cCcD_GObjInfP12cCcD_GObjInfP9cCcD_SttsP9cCcD_SttsP10cCcD_GSttsP10cCcD_GStts
  */
-// weird reg alloc
-#ifdef NONMATCHING
+// NONMATCHING weird reg alloc
 void dCcS::SetCoGObjInf(bool i_co2Set, bool i_co1Set, cCcD_GObjInf* i_co1Obj, cCcD_GObjInf* i_co2Obj,
                         cCcD_Stts* i_co1Stts, cCcD_Stts* i_co2Stts, cCcD_GStts* i_co1GStts,
                         cCcD_GStts* i_co2GStts) {
@@ -282,13 +189,6 @@ void dCcS::SetCoGObjInf(bool i_co2Set, bool i_co1Set, cCcD_GObjInf* i_co1Obj, cC
         }
     }
 }
-#else
-void dCcS::SetCoGObjInf(bool param_0, bool param_1, cCcD_GObjInf* param_2,
-                            cCcD_GObjInf* param_3, cCcD_Stts* param_4, cCcD_Stts* param_5,
-                            cCcD_GStts* param_6, cCcD_GStts* param_7) {
-    // NONMATCHING
-}
-#endif
 
 /* 80086360-80086404 080CA0 00A4+00 1/1 0/0 0/0 .text            GetRank__4dCcSFUc */
 int dCcS::GetRank(u8 weight) {
@@ -478,8 +378,7 @@ void dCcS::CalcParticleAngle(dCcD_GObjInf* i_atObjInf, cCcD_Stts* i_atStts, cCcD
 /* 8008685C-80086AC0 08119C 0264+00 1/1 0/0 0/0 .text
  * ProcAtTgHitmark__4dCcSFbbP8cCcD_ObjP8cCcD_ObjP12dCcD_GObjInfP12dCcD_GObjInfP9cCcD_SttsP9cCcD_SttsP10dCcD_GSttsP10dCcD_GSttsP4cXyzb
  */
-// one branch issue
-#ifdef NONMATCHING
+// NONMATCHING one branch issue
 void dCcS::ProcAtTgHitmark(bool i_setAt, bool i_setTg, cCcD_Obj* param_2, cCcD_Obj* param_3,
                            dCcD_GObjInf* i_atObjInf, dCcD_GObjInf* i_tgObjInf, cCcD_Stts* param_6,
                            cCcD_Stts* param_7, dCcD_GStts* param_8, dCcD_GStts* param_9,
@@ -542,14 +441,6 @@ void dCcS::ProcAtTgHitmark(bool i_setAt, bool i_setTg, cCcD_Obj* param_2, cCcD_O
         }
     }
 }
-#else
-void dCcS::ProcAtTgHitmark(bool param_0, bool param_1, cCcD_Obj* param_2, cCcD_Obj* param_3,
-                               dCcD_GObjInf* param_4, dCcD_GObjInf* param_5, cCcD_Stts* param_6,
-                               cCcD_Stts* param_7, dCcD_GStts* param_8, dCcD_GStts* param_9,
-                               cXyz* param_10, bool param_11) {
-    // NONMATCHING
-}
-#endif
 
 /* 80086AC0-80086D8C 081400 02CC+00 1/0 0/0 0/0 .text
  * SetAtTgGObjInf__4dCcSFbbP8cCcD_ObjP8cCcD_ObjP12cCcD_GObjInfP12cCcD_GObjInfP9cCcD_SttsP9cCcD_SttsP10cCcD_GSttsP10cCcD_GSttsP4cXyz

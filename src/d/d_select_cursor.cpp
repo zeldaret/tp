@@ -4,188 +4,15 @@
 //
 
 #include "d/d_select_cursor.h"
+#include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "d/d_com_inf_game.h"
 #include "JSystem/J2DGraph/J2DAnimation.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
-#include "dol2asm.h"
-#include "global.h"
-
-//
-// Types:
-//
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__19dSelect_cursorHIO_cFv();
-extern "C" void __ct__16dSelect_cursor_cFUcfP10JKRArchive();
-extern "C" void __dt__16dSelect_cursor_cFv();
-extern "C" void draw__16dSelect_cursor_cFv();
-extern "C" void update__16dSelect_cursor_cFv();
-extern "C" void setPos__16dSelect_cursor_cFffP7J2DPaneb();
-extern "C" void setParam__16dSelect_cursor_cFfffff();
-extern "C" void setScale__16dSelect_cursor_cFf();
-extern "C" void setAlphaRate__16dSelect_cursor_cFf();
-extern "C" void addAlpha__16dSelect_cursor_cFv();
-extern "C" void decAlpha__16dSelect_cursor_cFv();
-extern "C" void setBpkAnimation__16dSelect_cursor_cFP11J2DAnmColor();
-extern "C" void setBtk0Animation__16dSelect_cursor_cFP19J2DAnmTextureSRTKey();
-extern "C" void setCursorAnimation__16dSelect_cursor_cFv();
-extern "C" void setBckAnimation__16dSelect_cursor_cFP18J2DAnmTransformKey();
-extern "C" void moveCenter__16dSelect_cursor_cFP7J2DPaneff();
-extern "C" void __dt__19dSelect_cursorHIO_cFv();
-extern "C" void __dt__18J2DAnmTransformKeyFv();
-extern "C" extern char const* const d_d_select_cursor__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void animation__14dSelect_icon_cFv();
-extern "C" void setAlpha__14dSelect_icon_cFUc();
-extern "C" void setPos__14dSelect_icon_cFP7J2DPaneff();
-extern "C" void __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap();
-extern "C" void getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs();
-extern "C" void dPaneClass_showNullPane__FP9J2DScreen();
-extern "C" void show__13CPaneMgrAlphaFv();
-extern "C" void hide__13CPaneMgrAlphaFv();
-extern "C" void isVisible__13CPaneMgrAlphaFv();
-extern "C" void setAlphaRate__13CPaneMgrAlphaFf();
-extern "C" void getAlphaRate__13CPaneMgrAlphaFv();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader();
-extern "C" void __ct__9J2DScreenFv();
-extern "C" void setPriority__9J2DScreenFPCcUlP10JKRArchive();
-extern "C" void draw__9J2DScreenFffPC14J2DGrafContext();
-extern "C" void animation__9J2DScreenFv();
-extern "C" void load__20J2DAnmLoaderDataBaseFPCv();
-extern "C" void _savegpr_23();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_23();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern void* __vt__10J2DAnmBase[4];
-extern "C" extern void* __vt__15J2DAnmTransform[5 + 4 /* padding */];
-extern "C" extern void* __vt__18J2DAnmTransformKey[6];
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 80394AA0-80394AA0 021100 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-
 
 /* 803BB700-803BB70C 018820 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
+static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-
-/* 803BB70C-803BB71C -00001 0010+00 0/1 0/0 0/0 .data            blo_name$3684 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char* blo_name[4] = {
-    "zelda_select_cursor_4parts.blo",
-    "zelda_store_select_icon.blo",
-    "zelda_map_screen_portal_icon.blo",
-    "zelda_map_screen_batsumark.blo",
-};
-#pragma pop
-
-/* 803BB71C-803BB72C -00001 0010+00 0/1 0/0 0/0 .data            bck_name$3685 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char* bck_name[4] = {
-    "",
-    "zelda_store_select_icon.bck",
-    "",
-    "",
-};
-#pragma pop
-
-/* 803BB72C-803BB73C -00001 0010+00 0/1 0/0 0/0 .data            bpk_name$3686 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char* bpk_name[4] = {
-    "zelda_select_cursor_4parts.bpk",
-    "zelda_store_select_icon.bpk",
-    "zelda_map_screen_portal_icon.bpk",
-    "zelda_map_screen_batsumark.bpk",
-};
-#pragma pop
-
-/* 803BB73C-803BB74C -00001 0010+00 0/1 0/0 0/0 .data            btk_name$3687 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char* btk_name[4] = {
-    "zelda_select_cursor_4parts.btk",
-    "zelda_store_select_icon.btk",
-    "",
-    "",
-};
-#pragma pop
-
-/* 803BB74C-803BB78C -00001 0010+30 0/1 0/0 0/0 .data            btk2_name$3688 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char* btk2_name[4 + 12 /* padding */] = {
-    "",
-    "zelda_store_select_icon_02.btk",
-    "",
-    "",
-    /* padding */
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-};
-#pragma pop
-
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const pad_80394C0D = "\0\0";
-#pragma pop
-
-/* 803BB78C-803BB7A8 0188AC 0010+0C 2/2 0/0 0/0 .data            __vt__16dSelect_cursor_c */
-SECTION_DATA extern void* __vt__16dSelect_cursor_c[4 + 3 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__16dSelect_cursor_cFv,
-    (void*)__dt__16dSelect_cursor_cFv,
-    /* padding */
-    NULL,
-    NULL,
-    NULL,
-};
-
-/* 803BB7A8-803BB7B8 0188C8 000C+04 2/2 0/0 0/0 .data            __vt__19dSelect_cursorHIO_c */
-SECTION_DATA extern void* __vt__19dSelect_cursorHIO_c[3 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__19dSelect_cursorHIO_cFv,
-    /* padding */
-    NULL,
-};
-
-/* 80453A48-80453A4C 002048 0004+00 4/4 0/0 0/0 .sdata2          @3673 */
-SECTION_SDATA2 static f32 lit_3673 = 1.0f;
-
-/* 80453A4C-80453A50 00204C 0004+00 1/1 0/0 0/0 .sdata2          @3674 */
-SECTION_SDATA2 static f32 lit_3674 = 3.0f / 10.0f;
 
 /* 801941E4-80194220 18EB24 003C+00 1/1 0/0 0/0 .text            __ct__19dSelect_cursorHIO_cFv */
 dSelect_cursorHIO_c::dSelect_cursorHIO_c() {
@@ -199,25 +26,44 @@ dSelect_cursorHIO_c::dSelect_cursorHIO_c() {
     mDebugON = false;
 }
 
-
-/* ############################################################################################## */
-/* 80394A10-80394A30 021070 0020+00 1/1 0/0 0/0 .rodata          corner_tag$3707 */
-SECTION_RODATA static u64 const corner_tag[4] = {
-    'l_u_null', 'l_d_null', 'r_u_null', 'r_d_null',
-};
-COMPILER_STRIP_GATE(0x80394A10, &corner_tag);
-
-/* 80453A50-80453A54 002050 0004+00 4/4 0/0 0/0 .sdata2          @3808 */
-SECTION_SDATA2 static u8 lit_3808[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
 /* 80194220-801949EC 18EB60 07CC+00 0/0 14/14 0/0 .text __ct__16dSelect_cursor_cFUcfP10JKRArchive
  */
 dSelect_cursor_c::dSelect_cursor_c(u8 param_0, f32 param_1, JKRArchive* param_2) {
+    static char* blo_name[4] = {
+        "zelda_select_cursor_4parts.blo",
+        "zelda_store_select_icon.blo",
+        "zelda_map_screen_portal_icon.blo",
+        "zelda_map_screen_batsumark.blo",
+    };
+
+    static char* bck_name[4] = {
+        "",
+        "zelda_store_select_icon.bck",
+        "",
+        "",
+    };
+
+    static char* bpk_name[4] = {
+        "zelda_select_cursor_4parts.bpk",
+        "zelda_store_select_icon.bpk",
+        "zelda_map_screen_portal_icon.bpk",
+        "zelda_map_screen_batsumark.bpk",
+    };
+
+    static char* btk_name[4] = {
+        "zelda_select_cursor_4parts.btk",
+        "zelda_store_select_icon.btk",
+        "",
+        "",
+    };
+
+    static char* btk2_name[4 + 12 /* padding */] = {
+        "",
+        "zelda_store_select_icon_02.btk",
+        "",
+        "",
+    };
+
     mpCursorHIO = new dSelect_cursorHIO_c();
     mpCursorHIO->field_0x4 = -1;
     mNameIdx = 0;
@@ -257,7 +103,7 @@ dSelect_cursor_c::dSelect_cursor_c(u8 param_0, f32 param_1, JKRArchive* param_2)
     }
 
     mpScreen = new J2DScreen();
-    mpScreen->setPriority((char*) blo_name[mNameIdx], 0x20000, param_2);
+    mpScreen->setPriority(blo_name[mNameIdx], 0x20000, param_2);
     dPaneClass_showNullPane(mpScreen);
 
     for (int i = 0; i < 4; i++) {
@@ -270,10 +116,11 @@ dSelect_cursor_c::dSelect_cursor_c(u8 param_0, f32 param_1, JKRArchive* param_2)
             mpPaneMgr->hide();
             mpPaneMgr->setAlpha(0);
 
+            static u64 const corner_tag[4] = {'l_u_null', 'l_d_null', 'r_u_null', 'r_d_null'};
             for (int i = 0; i< 4; i++) {
-                field_0x1C[i] = new CPaneMgr(mpScreen, ((u64*)corner_tag)[i], 0, NULL);
-                field_0x94[i] = mpScreen->search( ((u64*)corner_tag)[i])->getTranslateX();
-                field_0xa4[i] = mpScreen->search( ((u64*)corner_tag)[i])->getTranslateY();
+                field_0x1C[i] = new CPaneMgr(mpScreen, corner_tag[i], 0, NULL);
+                field_0x94[i] = mpScreen->search(corner_tag[i])->getTranslateX();
+                field_0xa4[i] = mpScreen->search(corner_tag[i])->getTranslateY();
                 field_0x74[i] = field_0x94[i];
                 field_0x84[i] = field_0xa4[i];
             }
@@ -407,7 +254,7 @@ dSelect_cursor_c::~dSelect_cursor_c() {
 }
 
 /* 80194C30-80194CC0 18F570 0090+00 1/0 0/0 0/0 .text            draw__16dSelect_cursor_cFv */
-#ifdef NONMATCHING
+// NONMATCHING
 void dSelect_cursor_c::draw() {
     mpPaneMgr->getAlphaRate();
     update();
@@ -418,19 +265,6 @@ void dSelect_cursor_c::draw() {
         mpSelectIcon->drawSelf(); // inline here, but not sure how to properly define it
     }
 }
-#else
-// void dSelect_cursor_c::draw() {
-extern "C" void draw__16dSelect_cursor_cFv() {
-    // NONMATCHING
-}
-#endif
-
-/* ############################################################################################## */
-/* 80453A54-80453A58 002054 0004+00 3/3 0/0 0/0 .sdata2          @4062 */
-SECTION_SDATA2 static f32 lit_4062 = 0.5f;
-
-/* 80453A58-80453A60 002058 0008+00 3/3 0/0 0/0 .sdata2          @4064 */
-SECTION_SDATA2 static f64 lit_4064 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80194CC0-801950F4 18F600 0434+00 1/1 0/0 0/0 .text            update__16dSelect_cursor_cFv */
 void dSelect_cursor_c::update() {
@@ -525,11 +359,6 @@ void dSelect_cursor_c::update() {
     }
 }
 
-
-/* ############################################################################################## */
-/* 80453A60-80453A64 002060 0004+00 1/1 0/0 0/0 .sdata2          @4089 */
-SECTION_SDATA2 static f32 lit_4089 = -1.0f;
-
 /* 801950F4-801951B0 18FA34 00BC+00 0/0 30/30 0/0 .text setPos__16dSelect_cursor_cFffP7J2DPaneb */
 void dSelect_cursor_c::setPos(f32 i_posX, f32 i_posY, J2DPane* i_pane, bool i_scaleBounds) {
     mpPane = i_pane;
@@ -566,7 +395,6 @@ void dSelect_cursor_c::setPos(f32 i_posX, f32 i_posY, J2DPane* i_pane, bool i_sc
 
 }
 
-
 /* 801951B0-801951C8 18FAF0 0018+00 0/0 24/24 0/0 .text setParam__16dSelect_cursor_cFfffff */
 void dSelect_cursor_c::setParam(f32 i_param1, f32 i_param2, f32 i_param3, f32 i_param4,
                                     f32 i_param5) {
@@ -596,15 +424,14 @@ void dSelect_cursor_c::setScale(f32 i_scale) {
     }
 }
 
-
 /* 801952A0-80195330 18FBE0 0090+00 0/0 77/77 0/0 .text setAlphaRate__16dSelect_cursor_cFf */
 void dSelect_cursor_c::setAlphaRate(f32 i_alphaRate) {
-    if (i_alphaRate > FLOAT_LABEL(lit_3808)) {
+    if (i_alphaRate > 0.0f) {
         if (mpPaneMgr->isVisible() == 0) {
             mpPaneMgr->show();
         }
     } else {
-        i_alphaRate = FLOAT_LABEL(lit_3808);
+        i_alphaRate = 0.0f;
         if (mpPaneMgr->isVisible() == 1) {
             mpPaneMgr->hide();
         }
@@ -612,10 +439,6 @@ void dSelect_cursor_c::setAlphaRate(f32 i_alphaRate) {
 
     mpPaneMgr->setAlphaRate(i_alphaRate);
 }
-
-/* ############################################################################################## */
-/* 80453A64-80453A68 002064 0004+00 2/2 0/0 0/0 .sdata2          @4157 */
-SECTION_SDATA2 static f32 lit_4157 = 5.0f;
 
 /* 80195330-801953CC 18FC70 009C+00 0/0 1/1 0/0 .text            addAlpha__16dSelect_cursor_cFv */
 int dSelect_cursor_c::addAlpha() {
@@ -636,7 +459,6 @@ int dSelect_cursor_c::addAlpha() {
     return 0;
 }
 
-
 /* 801953CC-80195460 18FD0C 0094+00 0/0 1/1 0/0 .text            decAlpha__16dSelect_cursor_cFv */
 int dSelect_cursor_c::decAlpha() {
     s16 alpha_timer = mpPaneMgr->getAlphaTimer();
@@ -655,22 +477,17 @@ int dSelect_cursor_c::decAlpha() {
     return 0;
 }
 
-
-/* ############################################################################################## */
-/* 80394A30-80394A50 021090 0020+00 1/1 0/0 0/0 .rodata          tag$4181 */
-static u64 const tag_4181[4] = {
-    'l_ld', 'l_lu', 'l_rd', 'l_ru',
-};
-
 /* 80195460-801955F0 18FDA0 0190+00 1/1 0/0 0/0 .text
  * setBpkAnimation__16dSelect_cursor_cFP11J2DAnmColor           */
 void dSelect_cursor_c::setBpkAnimation(J2DAnmColor* param_0) {
     switch (mNameIdx) {
-    case 0:
+    case 0: {
+        static u64 const tag_4181[4] = {'l_ld', 'l_lu', 'l_rd', 'l_ru'};
         for (int i = 0; i < 4; i++) {
             mpScreen->search(tag_4181[i])->setAnimation(param_0);
         }
         break;
+    }
     case 2:
         mpScreen->search('light')->setAnimation(param_0);
         mpScreen->search('back_l')->setAnimation(param_0);
@@ -684,43 +501,31 @@ void dSelect_cursor_c::setBpkAnimation(J2DAnmColor* param_0) {
     }
 }
 
-/* ############################################################################################## */
-/* 80394A50-80394A90 0210B0 0040+00 1/1 0/0 0/0 .rodata          tag$4197 */
-static u64 const tag_4197[8] = {
-    'i_c_ld1', 'i_c_ld2', 'i_c_lu1', 'i_c_lu2', 'i_c_rd1', 'i_c_rd2', 'i_c_ru1', 'i_c_ru2', 
-};
-
-/* 80394A90-80394AA0 0210F0 0010+00 1/1 0/0 0/0 .rodata          tag$4204 */
-static u64 const tag_4204[2] = {
-    'gold01', 'gold02',
-};
-
 /* 801955F0-80195724 18FF30 0134+00 1/1 0/0 0/0 .text
  * setBtk0Animation__16dSelect_cursor_cFP19J2DAnmTextureSRTKey  */
 void dSelect_cursor_c::setBtk0Animation(J2DAnmTextureSRTKey* param_0) {
     switch (mNameIdx) {
-    case 0:
+    case 0: {
+        static u64 const tag_4197[8] = {
+            'i_c_ld1', 'i_c_ld2', 'i_c_lu1', 'i_c_lu2', 'i_c_rd1', 'i_c_rd2', 'i_c_ru1', 'i_c_ru2', 
+        };
         for (int i = 0; i < 8; i++) {
             mpScreen->search(tag_4197[i])->setAnimation(param_0);
         }
         break;
-    case 1:
+    }
+    case 1: {
+        static u64 const tag_4204[2] = {'gold01', 'gold02'};
         for (int i = 0; i < 2; i++) {
             mpScreen->search(tag_4204[i])->setAnimation(param_0);
         }
         break;
+    }
     default:
         mpScreen->search('gold01')->setAnimation(param_0);
         break;
     }
 }
-
-/* ############################################################################################## */
-/* 80453A68-80453A6C 002068 0004+00 1/1 0/0 0/0 .sdata2          @4237 */
-SECTION_SDATA2 static f32 lit_4237 = 20.0f;
-
-/* 80453A6C-80453A70 00206C 0004+00 1/1 0/0 0/0 .sdata2          @4238 */
-SECTION_SDATA2 static f32 lit_4238 = 10.0f;
 
 /* 80195724-801958E0 190064 01BC+00 1/1 0/0 0/0 .text setCursorAnimation__16dSelect_cursor_cFv */
 void dSelect_cursor_c::setCursorAnimation() {
@@ -765,15 +570,3 @@ void dSelect_cursor_c::setBckAnimation(J2DAnmTransformKey* param_0) {
 void dSelect_cursor_c::moveCenter(J2DPane* i_pane, f32 i_x, f32 i_y) {
     i_pane->translate(i_x,i_y);
 }
-
-/* 80195978-801959C0 1902B8 0048+00 1/0 0/0 0/0 .text            __dt__19dSelect_cursorHIO_cFv */
-dSelect_cursorHIO_c::~dSelect_cursorHIO_c() {
-}
-
-/* 801959C0-80195A2C 190300 006C+00 0/0 1/0 0/0 .text            __dt__18J2DAnmTransformKeyFv */
-// J2DAnmTransformKey::~J2DAnmTransformKey() {
-extern "C" void __dt__18J2DAnmTransformKeyFv() {
-    // NONMATCHING
-}
-
-/* 80394AA0-80394AA0 021100 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

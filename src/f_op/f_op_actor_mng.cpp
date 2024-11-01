@@ -13,7 +13,6 @@
 #include "d/actor/d_a_player.h"
 #include "d/d_item.h"
 #include "d/d_path.h"
-#include "dol2asm.h"
 #include "f_op/f_op_scene_mng.h"
 #include "m_Do/m_Do_lib.h"
 #include "d/actor/d_a_tag_stream.h"
@@ -568,9 +567,9 @@ s32 fopAcM_seenActorAngleY(const fopAc_ac_c* i_actorA, const fopAc_ac_c* i_actor
 inline f32 local_sqrtf(f32 mag) {
     if (mag > 0.0f) {
         f64 tmpd = __frsqrte(mag);
-        tmpd = 0.5 * tmpd * (3.0f - tmpd * tmpd * mag);
-        tmpd = 0.5 * tmpd * (3.0f - tmpd * tmpd * mag);
-        return 0.5 * tmpd * (3.0f - tmpd * tmpd * mag) * mag;
+        tmpd = 0.5 * tmpd * (3.0 - tmpd * tmpd * mag);
+        tmpd = 0.5 * tmpd * (3.0 - tmpd * tmpd * mag);
+        return 0.5 * tmpd * (3.0 - tmpd * tmpd * mag) * mag;
     } else if (mag < 0.0) {
         return NAN;
     } else if (fpclassify(mag) == 1) {
@@ -1641,10 +1640,10 @@ fopAc_ac_c* fopAcM_myRoomSearchEnemy(s8 roomNo) {
  * fopAcM_createDisappear__FPC10fopAc_ac_cPC4cXyzUcUcUc         */
 s32 fopAcM_createDisappear(const fopAc_ac_c* i_actor, const cXyz* i_pos, u8 i_size, u8 i_type,
                            u8 i_enemyID) {
-    s8 roomNo = fopAcM_GetRoomNo(i_actor);
     return fopAcM_GetID(fopAcM_fastCreate(PROC_DISAPPEAR,
                                           (i_enemyID << 0x10) | (i_size << 0x8) | i_type, i_pos,
-                                          roomNo, &i_actor->current.angle, NULL, 0xFF, NULL, NULL));
+                                          fopAcM_GetRoomNo(i_actor), &i_actor->current.angle,
+                                          NULL, 0xFF, NULL, NULL));
 }
 
 /* 8001CB48-8001CBA0 017488 0058+00 0/0 6/6 7/7 .text            fopAcM_setCarryNow__FP10fopAc_ac_ci
@@ -2102,6 +2101,7 @@ s16 fopAcM_getPolygonAngle(cBgS_PolyInfo const& poly, s16 param_1) {
 }
 
 /* 8001DBD8-8001DC68 018518 0090+00 1/1 5/5 18/18 .text fopAcM_getPolygonAngle__FPC8cM3dGPlas */
+// NONMATCHING multiplication order
 s16 fopAcM_getPolygonAngle(cM3dGPla const* p_plane, s16 param_1) {
     if (p_plane == NULL) {
         return 0;

@@ -10,7 +10,7 @@ class dSelect_cursorHIO_c {
 public:
     /* 801941E4 */ dSelect_cursorHIO_c();
 
-    /* 80195978 */ virtual ~dSelect_cursorHIO_c();
+    /* 80195978 */ virtual ~dSelect_cursorHIO_c() {}
 
     /* 0x04 */ s8 field_0x4;
     /* 0x08 */ f32 field_0x8;

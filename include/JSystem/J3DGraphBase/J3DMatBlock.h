@@ -78,12 +78,12 @@ public:
     /* 803172FC */ virtual s32 countDLSize();
     virtual u32 getType() = 0;
     /* 8031741C */ virtual void setTexGenNum(u32 const*);
-    /* 8000E0D0 */ virtual void setTexGenNum(u32);
-    /* 8000DFE8 */ virtual u32 getTexGenNum() const;
-    /* 8000E0CC */ virtual void setTexCoord(u32, J3DTexCoord const*);
-    /* 8000DFE0 */ virtual J3DTexCoord* getTexCoord(u32);
+    /* 8000E0D0 */ virtual void setTexGenNum(u32) {}
+    /* 8000DFE8 */ virtual u32 getTexGenNum() const { return 0; }
+    /* 8000E0CC */ virtual void setTexCoord(u32, J3DTexCoord const*) {}
+    /* 8000DFE0 */ virtual J3DTexCoord* getTexCoord(u32) { return NULL; }
     /* 8003AB2C */ virtual void setTexMtx(u32, J3DTexMtx*) {}
-    /* 8000DFD8 */ virtual J3DTexMtx* getTexMtx(u32);
+    /* 8000DFD8 */ virtual J3DTexMtx* getTexMtx(u32) { return NULL; }
     /* 80317424 */ virtual void setNBTScale(J3DNBTScale const*);
     /* 80317420 */ virtual void setNBTScale(J3DNBTScale);
     /* 80317334 */ virtual J3DNBTScale* getNBTScale();
@@ -217,37 +217,37 @@ public:
     virtual u32 getType() = 0;
     /* 8031730C */ virtual s32 countDLSize();
     /* 80323544 */ virtual void setTexNo(u32, u16 const*);
-    /* 8000E0AC */ virtual void setTexNo(u32, u16);
-    /* 8000DF94 */ virtual u16 getTexNo(u32) const;
+    /* 8000E0AC */ virtual void setTexNo(u32, u16) {}
+    /* 8000DF94 */ virtual u16 getTexNo(u32) const { return 0xffff; }
     /* 80323548 */ virtual void setTevOrder(u32, J3DTevOrder const*);
-    /* 8000E0BC */ virtual void setTevOrder(u32, J3DTevOrder);
-    /* 8000DFB8 */ virtual J3DTevOrder* getTevOrder(u32);
+    /* 8000E0BC */ virtual void setTevOrder(u32, J3DTevOrder) {}
+    /* 8000DFB8 */ virtual J3DTevOrder* getTevOrder(u32) { return NULL; }
     /* 80110E80 */ virtual void setTevColor(u32, J3DGXColorS10 const*);
-    /* 8000E0C4 */ virtual void setTevColor(u32, J3DGXColorS10);
-    /* 8000DFC8 */ virtual J3DGXColorS10* getTevColor(u32);
-    /* 800732AC */ virtual void setTevKColor(u32, J3DGXColor const*);
-    /* 8000E0C0 */ virtual void setTevKColor(u32, J3DGXColor);
-    /* 8000DFC0 */ virtual J3DGXColor* getTevKColor(u32);
+    /* 8000E0C4 */ virtual void setTevColor(u32, J3DGXColorS10) {}
+    /* 8000DFC8 */ virtual J3DGXColorS10* getTevColor(u32) { return NULL; }
+    /* 800732AC */ virtual void setTevKColor(u32, J3DGXColor const*) {}
+    /* 8000E0C0 */ virtual void setTevKColor(u32, J3DGXColor) {}
+    /* 8000DFC0 */ virtual J3DGXColor* getTevKColor(u32) { return NULL; }
     /* 80322950 */ virtual void setTevKColorSel(u32, u8 const*);
-    /* 8000E0B8 */ virtual void setTevKColorSel(u32, u8);
-    /* 8000DFB0 */ virtual bool getTevKColorSel(u32);
+    /* 8000E0B8 */ virtual void setTevKColorSel(u32, u8) {}
+    /* 8000DFB0 */ virtual bool getTevKColorSel(u32) { return false; }
     /* 80322954 */ virtual void setTevKAlphaSel(u32, u8 const*);
-    /* 8000E0B4 */ virtual void setTevKAlphaSel(u32, u8);
-    /* 8000DFA8 */ virtual bool getTevKAlphaSel(u32);
+    /* 8000E0B4 */ virtual void setTevKAlphaSel(u32, u8) {}
+    /* 8000DFA8 */ virtual bool getTevKAlphaSel(u32) { return false; }
     /* 8032354C */ virtual void setTevStageNum(u8 const*);
-    /* 8000E0C8 */ virtual void setTevStageNum(u8);
-    /* 8000DFD0 */ virtual u8 getTevStageNum() const;
+    /* 8000E0C8 */ virtual void setTevStageNum(u8) {}
+    /* 8000DFD0 */ virtual u8 getTevStageNum() const { return 1; }
     /* 80323550 */ virtual void setTevStage(u32, J3DTevStage const*);
-    /* 8000E0A8 */ virtual void setTevStage(u32, J3DTevStage);
-    /* 8000DF8C */ virtual J3DTevStage* getTevStage(u32);
+    /* 8000E0A8 */ virtual void setTevStage(u32, J3DTevStage) {}
+    /* 8000DF8C */ virtual J3DTevStage* getTevStage(u32) { return NULL; }
     /* 8032295C */ virtual void setTevSwapModeInfo(u32, J3DTevSwapModeInfo const*);
     /* 80322958 */ virtual void setTevSwapModeInfo(u32, J3DTevSwapModeInfo);
     /* 80322960 */ virtual void setTevSwapModeTable(u32, J3DTevSwapModeTable const*);
-    /* 8000E0B0 */ virtual void setTevSwapModeTable(u32, J3DTevSwapModeTable);
-    /* 8000DFA0 */ virtual J3DTevSwapModeTable* getTevSwapModeTable(u32);
+    /* 8000E0B0 */ virtual void setTevSwapModeTable(u32, J3DTevSwapModeTable) {}
+    /* 8000DFA0 */ virtual J3DTevSwapModeTable* getTevSwapModeTable(u32) { return NULL; }
     /* 80323554 */ virtual void setIndTevStage(u32, J3DIndTevStage const*);
-    /* 8000E0A4 */ virtual void setIndTevStage(u32, J3DIndTevStage);
-    /* 8000DF84 */ virtual J3DIndTevStage* getIndTevStage(u32);
+    /* 8000E0A4 */ virtual void setIndTevStage(u32, J3DIndTevStage) {}
+    /* 8000DF84 */ virtual J3DIndTevStage* getIndTevStage(u32) { return NULL; }
     /* 80323558 */ virtual u32 getTexNoOffset() const;
     /* 80322964 */ virtual bool getTevRegOffset() const;
     /* 80321FE0 */ virtual void setTexNoOffset(u32);
@@ -809,19 +809,19 @@ public:
     virtual u32 getType() = 0;
     /* 80317368 */ virtual void setFog(J3DFog);
     /* 80317364 */ virtual void setFog(J3DFog*);
-    /* 8000DF5C */ virtual J3DFog* getFog();
+    /* 8000DF5C */ virtual J3DFog* getFog() { return NULL; }
     /* 8031736C */ virtual void setAlphaComp(J3DAlphaComp const*);
-    /* 8000E01C */ virtual void setAlphaComp(J3DAlphaComp const&);
-    /* 8000DF54 */ virtual J3DAlphaComp* getAlphaComp();
+    /* 8000E01C */ virtual void setAlphaComp(J3DAlphaComp const&) {}
+    /* 8000DF54 */ virtual J3DAlphaComp* getAlphaComp() { return NULL; }
     /* 80317370 */ virtual void setBlend(J3DBlend const*);
-    /* 8000E018 */ virtual void setBlend(J3DBlend const&);
-    /* 8000DF4C */ virtual J3DBlend* getBlend();
+    /* 8000E018 */ virtual void setBlend(J3DBlend const&) {}
+    /* 8000DF4C */ virtual J3DBlend* getBlend() { return NULL; }
     /* 80317374 */ virtual void setZMode(J3DZMode const*);
-    /* 8000E014 */ virtual void setZMode(J3DZMode);
-    /* 8000DF44 */ virtual J3DZMode* getZMode();
+    /* 8000E014 */ virtual void setZMode(J3DZMode) {}
+    /* 8000DF44 */ virtual J3DZMode* getZMode() { return NULL; }
     /* 80317378 */ virtual void setZCompLoc(u8 const*);
-    /* 8000E010 */ virtual void setZCompLoc(u8);
-    /* 8000DF3C */ virtual u8 getZCompLoc() const;
+    /* 8000E010 */ virtual void setZCompLoc(u8) {}
+    /* 8000DF3C */ virtual u8 getZCompLoc() const { return 0; }
     /* 80317380 */ virtual void setDither(u8 const*);
     /* 8031737C */ virtual void setDither(u8);
     /* 80317384 */ virtual u8 getDither() const;
@@ -1054,17 +1054,17 @@ public:
     virtual void load() = 0;
     /* 80317314 */ virtual s32 countDLSize();
     virtual u32 getType() = 0;
-    /* 8000E0A0 */ virtual void setIndTexStageNum(u8);
-    /* 8000DF7C */ virtual u8 getIndTexStageNum() const;
+    /* 8000E0A0 */ virtual void setIndTexStageNum(u8) {}
+    /* 8000DF7C */ virtual u8 getIndTexStageNum() const { return 0; }
     /* 80317410 */ virtual void setIndTexOrder(u32, J3DIndTexOrder);
     /* 8031740C */ virtual void setIndTexOrder(u32, J3DIndTexOrder const*);
-    /* 8000DF74 */ virtual J3DIndTexOrder* getIndTexOrder(u32);
+    /* 8000DF74 */ virtual J3DIndTexOrder* getIndTexOrder(u32) { return NULL; }
     /* 80317414 */ virtual void setIndTexMtx(u32, J3DIndTexMtx const*);
-    /* 8000E060 */ virtual void setIndTexMtx(u32, J3DIndTexMtx);
-    /* 8000DF6C */ virtual J3DIndTexMtx* getIndTexMtx(u32);
-    /* 8000E020 */ virtual void setIndTexCoordScale(u32, J3DIndTexCoordScale);
+    /* 8000E060 */ virtual void setIndTexMtx(u32, J3DIndTexMtx) {}
+    /* 8000DF6C */ virtual J3DIndTexMtx* getIndTexMtx(u32) { return NULL; }
+    /* 8000E020 */ virtual void setIndTexCoordScale(u32, J3DIndTexCoordScale) {}
     /* 80317418 */ virtual void setIndTexCoordScale(u32, J3DIndTexCoordScale const*);
-    /* 8000DF64 */ virtual J3DIndTexCoordScale* getIndTexCoordScale(u32);
+    /* 8000DF64 */ virtual J3DIndTexCoordScale* getIndTexCoordScale(u32) { return NULL; }
     /* 8031726C */ virtual ~J3DIndBlock() {}
 };
 
@@ -1215,17 +1215,17 @@ public:
     /* 80317304 */ virtual s32 countDLSize();
     virtual u32 getType() = 0;
     /* 80317448 */ virtual void setMatColor(u32, J3DGXColor const*);
-    /* 8000E0DC */ virtual void setMatColor(u32, J3DGXColor);
-    /* 8000E000 */ virtual J3DGXColor* getMatColor(u32);
+    /* 8000E0DC */ virtual void setMatColor(u32, J3DGXColor) {}
+    /* 8000E000 */ virtual J3DGXColor* getMatColor(u32) { return NULL; }
     /* 801A4C0C */ virtual void setAmbColor(u32, J3DGXColor const*);
-    /* 8000E0D4 */ virtual void setAmbColor(u32, J3DGXColor);
-    /* 8000DFF0 */ virtual J3DGXColor* getAmbColor(u32);
-    /* 8000E0E0 */ virtual void setColorChanNum(u8);
+    /* 8000E0D4 */ virtual void setAmbColor(u32, J3DGXColor) {}
+    /* 8000DFF0 */ virtual J3DGXColor* getAmbColor(u32) { return NULL; }
+    /* 8000E0E0 */ virtual void setColorChanNum(u8) {}
     /* 8031744C */ virtual void setColorChanNum(u8 const*);
-    /* 8000E008 */ virtual u8 getColorChanNum() const;
-    /* 8000E0D8 */ virtual void setColorChan(u32, J3DColorChan const&);
+    /* 8000E008 */ virtual u8 getColorChanNum() const { return 0; }
+    /* 8000E0D8 */ virtual void setColorChan(u32, J3DColorChan const&) {}
     /* 80317450 */ virtual void setColorChan(u32, J3DColorChan const*);
-    /* 8000DFF8 */ virtual J3DColorChan* getColorChan(u32);
+    /* 8000DFF8 */ virtual J3DColorChan* getColorChan(u32) { return NULL; }
     /* 801A4C08 */ virtual void setLight(u32, J3DLightObj*);
     /* 80317454 */ virtual bool getLight(u32);
     /* 80317460 */ virtual void setCullMode(u8 const*);

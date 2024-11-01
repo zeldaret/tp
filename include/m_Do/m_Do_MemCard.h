@@ -1,6 +1,7 @@
 #ifndef M_DO_M_DO_MEMCARD_H
 #define M_DO_M_DO_MEMCARD_H
 
+#include "card.h"
 #include "dolphin/os/OSMutex.h"
 #include "global.h"
 
@@ -42,6 +43,14 @@ public:
     void clearProbeStat() { mProbeStat = 2; }
     void setCopyToPos(u8 param_0) { mCopyToPos = param_0; }
     u32 getDataVersion() { return mDataVersion; }
+    void setDataVersion(u32 version) { mDataVersion = version; }
+    void getCardStatus(s32 fileNo, CARDStat* stat) { CARDGetStatus(mChannel, fileNo, stat); }
+    void setCardStatus(s32 fileNo, CARDStat* stat) { CARDSetStatus(mChannel, fileNo, stat); }
+    void setSerialNo() {
+        u64 serial_no;
+        CARDGetSerialNo(mChannel, &serial_no);
+        mSerialNo = serial_no;
+    }
 
     /* 0x0000 */ u8 mData[0x1FBC];
     /* 0x1FBC */ u8 mChannel;
@@ -111,8 +120,24 @@ inline u32 mDoMemCd_LoadSync(void* buffer, u32 size, u32 index) {
     return g_mDoMemCd_control.LoadSync(buffer, size, index);
 }
 
-inline s32 mDoMemCd_getDataVersion() {
+inline u32 mDoMemCd_getDataVersion() {
     return g_mDoMemCd_control.getDataVersion();
+}
+
+inline void mDoMemCd_setDataVersion(u32 version) {
+    g_mDoMemCd_control.setDataVersion(version);
+}
+
+inline void mDoMemCd_setSerialNo() {
+    g_mDoMemCd_control.setSerialNo();
+}
+
+inline void mDoMemCd_getCardStatus(s32 fileNo, CARDStat* stat) {
+    g_mDoMemCd_control.getCardStatus(fileNo, stat);
+}
+
+inline void mDoMemCd_setCardStatus(s32 fileNo, CARDStat* stat) {
+    g_mDoMemCd_control.setCardStatus(fileNo, stat);
 }
 
 #endif /* M_DO_M_DO_MEMCARD_H */

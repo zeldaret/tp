@@ -3,8 +3,6 @@
 // Translation Unit: d/d_menu_save
 //
 
-#define NO_INLINE_DLSTBASE_DRAW
-
 #include "d/d_menu_save.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRMemArchive.h"
@@ -16,7 +14,6 @@
 #include "d/d_file_sel_warning.h"
 #include "d/d_meter2_info.h"
 #include "d/d_msg_string.h"
-#include "dol2asm.h"
 #include "m_Do/m_Do_MemCard.h"
 #include "m_Do/m_Do_MemCardRWmng.h"
 #include "m_Do/m_Do_Reset.h"
@@ -26,528 +23,50 @@
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "f_op/f_op_msg_mng.h"
 
-//
-// Forward References:
-//
-
-extern "C" void __ct__9dMs_HIO_cFv();
-extern "C" void __ct__12dMenu_save_cFv();
-extern "C" void _create__12dMenu_save_cFv();
-extern "C" void screenSet__12dMenu_save_cFv();
-extern "C" void initialize__12dMenu_save_cFv();
-extern "C" void displayInit__12dMenu_save_cFv();
-extern "C" void _open__12dMenu_save_cFv();
-extern "C" void _close__12dMenu_save_cFv();
-extern "C" void _delete__12dMenu_save_cFv();
-extern "C" void _move__12dMenu_save_cFv();
-extern "C" void saveSelAnm__12dMenu_save_cFv();
-extern "C" void selFileWakuAnm__12dMenu_save_cFv();
-extern "C" void bookIconAnm__12dMenu_save_cFv();
-extern "C" void memCardWatch__12dMenu_save_cFv();
-extern "C" void saveQuestion__12dMenu_save_cFv();
-extern "C" void saveQuestion2__12dMenu_save_cFv();
-extern "C" void saveQuestion21__12dMenu_save_cFv();
-extern "C" void saveQuestion3__12dMenu_save_cFv();
-extern "C" void saveQuestion4__12dMenu_save_cFv();
-extern "C" void saveGuide__12dMenu_save_cFv();
-extern "C" void memCardCheck__12dMenu_save_cFv();
-extern "C" void memCardErrMsgWaitKey__12dMenu_save_cFv();
-extern "C" void backSaveQuestionInitSet__12dMenu_save_cFv();
-extern "C" void backSaveQuestion__12dMenu_save_cFv();
-extern "C" void backSaveQuestion2__12dMenu_save_cFv();
-extern "C" void closeSelect__12dMenu_save_cFv();
-extern "C" void closeSelect2__12dMenu_save_cFv();
-extern "C" void iplSelMsgInitSet__12dMenu_save_cFv();
-extern "C" void iplSelInitSet__12dMenu_save_cFv();
-extern "C" void IPLSelectDisp1__12dMenu_save_cFv();
-extern "C" void IPLSelectDisp2__12dMenu_save_cFv();
-extern "C" void memCardErrGoIPLSel__12dMenu_save_cFv();
-extern "C" void IPLSelect2Disp__12dMenu_save_cFv();
-extern "C" void memCardErrGoIPLSel2__12dMenu_save_cFv();
-extern "C" void memCardErrGotoIPL__12dMenu_save_cFv();
-extern "C" void memCardErrMsgWaitFormatSel__12dMenu_save_cFv();
-extern "C" void cardFormatYesSelDisp__12dMenu_save_cFv();
-extern "C" void cardFormatNoSelDisp__12dMenu_save_cFv();
-extern "C" void memCardErrMsgWaitFormatSel2__12dMenu_save_cFv();
-extern "C" void cardFormatYesSel2Disp__12dMenu_save_cFv();
-extern "C" void memCardFormat__12dMenu_save_cFv();
-extern "C" void memCardFormatWait__12dMenu_save_cFv();
-extern "C" void gameFileMakeSelInitSet__12dMenu_save_cFv();
-extern "C" void makeGameFileSelDisp__12dMenu_save_cFv();
-extern "C" void memCardMakeGameFileSel__12dMenu_save_cFv();
-extern "C" void makeGameFileDisp__12dMenu_save_cFv();
-extern "C" void memCardMakeGameFile__12dMenu_save_cFv();
-extern "C" void memCardMakeGameFileWait__12dMenu_save_cFv();
-extern "C" void memCardCommandEnd__12dMenu_save_cFv();
-extern "C" void memCardCommandEnd2__12dMenu_save_cFv();
-extern "C" void memCardDataLoadWait__12dMenu_save_cFv();
-extern "C" void dataWrite__12dMenu_save_cFv();
-extern "C" void memCardDataSaveWait__12dMenu_save_cFv();
-extern "C" void memCardDataSaveWait2__12dMenu_save_cFv();
-extern "C" void gameContinueDisp__12dMenu_save_cFv();
-extern "C" void gameContinue__12dMenu_save_cFv();
-extern "C" void gameContinue2__12dMenu_save_cFv();
-extern "C" void gameContinue3__12dMenu_save_cFv();
-extern "C" void saveEnd__12dMenu_save_cFv();
-extern "C" void endingNoSave__12dMenu_save_cFv();
-extern "C" void endingNoSave2__12dMenu_save_cFv();
-extern "C" void endingDataCheck__12dMenu_save_cFv();
-extern "C" void retryQuestion0__12dMenu_save_cFv();
-extern "C" void retryQuestion1__12dMenu_save_cFv();
-extern "C" void retryQuestion2__12dMenu_save_cFv();
-extern "C" void restartInit__12dMenu_save_cFv();
-extern "C" void saveWait__12dMenu_save_cFv();
-extern "C" void messageChange__12dMenu_save_cFv();
-extern "C" void YesNoSelect__12dMenu_save_cFv();
-extern "C" void msgTxtSet__12dMenu_save_cFUsb();
-extern "C" void openSaveSelect__12dMenu_save_cFv();
-extern "C" void openSaveSelect2__12dMenu_save_cFv();
-extern "C" void openSaveSelect3__12dMenu_save_cFv();
-extern "C" void saveSelect__12dMenu_save_cFv();
-extern "C" void saveSelectStart__12dMenu_save_cFv();
-extern "C" void selectDataOpenMove__12dMenu_save_cFv();
-extern "C" void dataSelectAnmSet__12dMenu_save_cFv();
-extern "C" void saveSelectMoveAnime__12dMenu_save_cFv();
-extern "C" void saveYesNoSelect__12dMenu_save_cFv();
-extern "C" void yesnoSelectStart__12dMenu_save_cFv();
-extern "C" void saveMoveDisp__12dMenu_save_cFv();
-extern "C" void saveMoveDisp2__12dMenu_save_cFv();
-extern "C" void yesnoSelectAnmSet__12dMenu_save_cFUc();
-extern "C" void yesNoCursorMoveAnm__12dMenu_save_cFv();
-extern "C" void yesnoCancelAnmSet__12dMenu_save_cFv();
-extern "C" void saveYesNoCancelMove__12dMenu_save_cFv();
-extern "C" void headerTxtSet__12dMenu_save_cFUs();
-extern "C" void headerTxtChangeAnm__12dMenu_save_cFv();
-extern "C" void errDispInitSet__12dMenu_save_cFi();
-extern "C" void msgWindowInitOpen__12dMenu_save_cFv();
-extern "C" void msgWindowOpen__12dMenu_save_cFv();
-extern "C" void msgWindowClose__12dMenu_save_cFv();
-extern "C" void errYesNoSelect__12dMenu_save_cFUcUc();
-extern "C" void errCurMove__12dMenu_save_cFUcUc();
-extern "C" void errYesNoCursorMoveAnm__12dMenu_save_cFv();
-extern "C" void errorTxtSet__12dMenu_save_cFUs();
-extern "C" void errorTxtChangeAnm__12dMenu_save_cFv();
-extern "C" void saveSelectOpenInit__12dMenu_save_cFv();
-extern "C" void selectDataBaseMoveAnmInitSet__12dMenu_save_cFii();
-extern "C" void selectDataBaseMoveAnm__12dMenu_save_cFv();
-extern "C" void saveSelectOpenAnmSet__12dMenu_save_cFv();
-extern "C" void selectDataMoveAnmInitSet__12dMenu_save_cFii();
-extern "C" void selectDataMoveAnm__12dMenu_save_cFv();
-extern "C" void yesnoMenuMoveAnmInitSet__12dMenu_save_cFiiUc();
-extern "C" void yesnoMenuMoveAnm__12dMenu_save_cFv();
-extern "C" void yesnoSelectMoveAnm__12dMenu_save_cFUc();
-extern "C" void yesnoCursorShow__12dMenu_save_cFv();
-extern "C" void errorMoveAnmInitSet__12dMenu_save_cFii();
-extern "C" void errorMoveAnm__12dMenu_save_cFv();
-extern "C" void modoruTxtDispAnmInit__12dMenu_save_cFUc();
-extern "C" void modoruTxtDispAnm__12dMenu_save_cFv();
-extern "C" void ketteiTxtDispAnmInit__12dMenu_save_cFUc();
-extern "C" void ketteiTxtDispAnm__12dMenu_save_cFv();
-extern "C" void selectWakuAlpahAnmInit__12dMenu_save_cFUcUcUcUc();
-extern "C" void selectWakuAlpahAnm__12dMenu_save_cFUc();
-extern "C" void selFileCursorShow__12dMenu_save_cFv();
-extern "C" void yesnoWakuAlpahAnmInit__12dMenu_save_cFUcUcUcUc();
-extern "C" void yesnoWakuAlpahAnm__12dMenu_save_cFUc();
-extern "C" void dataSave__12dMenu_save_cFv();
-extern "C" void setSaveData__12dMenu_save_cFv();
-extern "C" void setInitSaveData__12dMenu_save_cFv();
-extern "C" void _draw__12dMenu_save_cFv();
-extern "C" void _draw2__12dMenu_save_cFv();
-extern "C" void draw__23dDlst_MenuSaveExplain_cFv();
-extern "C" void draw__16dDlst_MenuSave_cFv();
-extern "C" void __dt__16dDlst_MenuSave_cFv();
-extern "C" void __dt__23dDlst_MenuSaveExplain_cFv();
-extern "C" void __dt__9dMs_HIO_cFv();
-extern "C" void __sinit_d_menu_save_cpp();
-extern "C" extern char const* const d_menu_d_menu_save__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void mDoExt_getJ2dHeap__Fv();
-extern "C" void mDoExt_getMesgFont__Fv();
-extern "C" void mDoExt_removeMesgFont__Fv();
-extern "C" void mDoExt_getSubFont__Fv();
-extern "C" void mDoExt_removeSubFont__Fv();
-extern "C" void create__24mDoDvdThd_mountArchive_cFPCcUcP7JKRHeap();
-extern "C" void load__15mDoMemCd_Ctrl_cFv();
-extern "C" void LoadSync__15mDoMemCd_Ctrl_cFPvUlUl();
-extern "C" void save__15mDoMemCd_Ctrl_cFPvUlUl();
-extern "C" void SaveSync__15mDoMemCd_Ctrl_cFv();
-extern "C" void getStatus__15mDoMemCd_Ctrl_cFUl();
-extern "C" void command_format__15mDoMemCd_Ctrl_cFv();
-extern "C" void FormatSync__15mDoMemCd_Ctrl_cFv();
-extern "C" void command_attach__15mDoMemCd_Ctrl_cFv();
-extern "C" void mDoMemCdRWm_TestCheckSumGameData__FPv();
-extern "C" void mDoMemCdRWm_SetCheckSumGameData__FPUcUc();
-extern "C" void fopMsgM_messageGet__FPcUl();
-extern "C" void __ct__9STControlFssssffss();
-extern "C" void checkTrigger__9STControlFv();
-extern "C" void checkLeftTrigger__9STControlFv();
-extern "C" void checkRightTrigger__9STControlFv();
-extern "C" void checkUpTrigger__9STControlFv();
-extern "C" void checkDownTrigger__9STControlFv();
-extern "C" void setItem__17dSv_player_item_cFiUc();
-extern "C" void getItem__17dSv_player_item_cCFib();
-extern "C" void isFirstBit__21dSv_player_get_item_cCFUc();
-extern "C" void offEventBit__11dSv_event_cFUs();
-extern "C" void isEventBit__11dSv_event_cCFUs();
-extern "C" void putSave__10dSv_info_cFi();
-extern "C" void memory_to_card__10dSv_info_cFPci();
-extern "C" void initdata_to_card__10dSv_info_cFPci();
-extern "C" void set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c();
-extern "C" void __ct__15dFile_warning_cFP10JKRArchiveUc();
-extern "C" void _move__15dFile_warning_cFv();
-extern "C" void openInit__15dFile_warning_cFv();
-extern "C" void closeInit__15dFile_warning_cFv();
-extern "C" void init__15dFile_warning_cFv();
-extern "C" void _draw__15dFile_warning_cFv();
-extern "C" void __ct__12dFile_info_cFP10JKRArchiveUc();
-extern "C" void setSaveData__12dFile_info_cFP10dSv_save_ciUc();
-extern "C" void _draw__12dFile_info_cFv();
-extern "C" void __ct__16dSelect_cursor_cFUcfP10JKRArchive();
-extern "C" void setPos__16dSelect_cursor_cFffP7J2DPaneb();
-extern "C" void setParam__16dSelect_cursor_cFfffff();
-extern "C" void setAlphaRate__16dSelect_cursor_cFf();
-extern "C" void setMiniGameItem__13dMeter2Info_cFUc();
-extern "C" void resetMiniGameItem__13dMeter2Info_cFb();
-extern "C" void __ct__17dMsgScrnExplain_cFP9STControlUcbUc();
-extern "C" void move__17dMsgScrnExplain_cFv();
-extern "C" void draw__17dMsgScrnExplain_cFP13J2DOrthoGraph();
-extern "C" void openExplain__17dMsgScrnExplain_cFUlUcUcUcb();
-extern "C" void __ct__12dMsgString_cFv();
-extern "C" void __dt__12dMsgString_cFv();
-extern "C" void __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap();
-extern "C" void
-colorAnime__8CPaneMgrFsQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorUc();
-extern "C" void getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs();
-extern "C" void dPaneClass_showNullPane__FP9J2DScreen();
-extern "C" void __ct__13CPaneMgrAlphaFP9J2DScreenUxUcP10JKRExpHeap();
-extern "C" void show__13CPaneMgrAlphaFv();
-extern "C" void alphaAnime__13CPaneMgrAlphaFsUcUcUc();
-extern "C" void cAPICPad_ANY_BUTTON__FUl();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void checkBgmIDPlaying__8Z2SeqMgrFUl();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader();
-extern "C" void animationTransform__7J2DPaneFv();
-extern "C" void __ct__9J2DScreenFv();
-extern "C" void setPriority__9J2DScreenFPCcUlP10JKRArchive();
-extern "C" void draw__9J2DScreenFffPC14J2DGrafContext();
-extern "C" void animation__9J2DScreenFv();
-extern "C" void getStringPtr__10J2DTextBoxCFv();
-extern "C" void setString__10J2DTextBoxFPCce();
-extern "C" void setString__10J2DTextBoxFsPCce();
-extern "C" void load__20J2DAnmLoaderDataBaseFPCv();
-extern "C" void __register_global_object();
-extern "C" void __ptmf_test();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_23();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_23();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern void* __vt__12dMenu_save_c[3 + 3 /* padding */];
-extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" u8 sManager__10JFWDisplay[4];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-
-/* ############################################################################################## */
 /* 803BDF78-803BDF84 01B098 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
+static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 803BDF84-803BDF90 01B0A4 000C+00 3/3 0/0 0/0 .data            SelStartFrameTbl */
-SECTION_DATA static int SelStartFrameTbl[3] = {
+static int SelStartFrameTbl[3] = {
     59,
     99,
     139,
 };
 
 /* 803BDF90-803BDF9C 01B0B0 000C+00 3/3 0/0 0/0 .data            SelEndFrameTbl */
-SECTION_DATA static int SelEndFrameTbl[3] = {
+static int SelEndFrameTbl[3] = {
     69,
     109,
     149,
 };
 
 /* 803BDF9C-803BDFA8 01B0BC 000C+00 2/2 0/0 0/0 .data            SelOpenStartFrameTbl */
-SECTION_DATA static int SelOpenStartFrameTbl[3] = {
+static int SelOpenStartFrameTbl[3] = {
     249,
     448,
     648,
 };
 
 /* 803BDFA8-803BDFB4 01B0C8 000C+00 2/2 0/0 0/0 .data            SelOpenEndFrameTbl */
-SECTION_DATA static int SelOpenEndFrameTbl[3] = {
+static int SelOpenEndFrameTbl[3] = {
     259,
     460,
     659,
 };
 
 /* 803BDFB4-803BDFC4 01B0D4 0010+00 2/2 0/0 0/0 .data            YnSelStartFrameTbl */
-SECTION_DATA static int YnSelStartFrameTbl[2][2] = {
+static int YnSelStartFrameTbl[2][2] = {
     {2150, 3181},
     {2139, 3171},
 };
 
 /* 803BDFC4-803BDFD8 01B0E4 0010+04 2/2 0/0 0/0 .data            YnSelEndFrameTbl */
-SECTION_DATA static int YnSelEndFrameTbl[2][2] = {{2138, 3171}, {2150, 3181}};
-
-/* 803BDFD8-803BDFF0 01B0F8 0018+00 0/1 0/0 0/0 .data            l_tagName0$3857 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u64 l_tagName0[3] = {'w_sel_00', 'w_sel_01', 'w_sel_02'};
-#pragma pop
-
-/* 803BDFF0-803BE000 01B110 0010+00 0/1 0/0 0/0 .data            l_tagName000$3866 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u64 l_tagName000[2] = {'w_no_t', 'w_yes_t'};
-#pragma pop
-
-/* 803BE000-803BE010 01B120 0010+00 0/1 0/0 0/0 .data            l_tagName000U$3867 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u64 l_tagName000U[2] = {'f_no_t', 'f_yes_t'};
-#pragma pop
-
-/* 803BE010-803BE020 01B130 0010+00 0/1 0/0 0/0 .data            l_tagName00$3879 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u64 l_tagName00[2] = {'w_modo', 'w_kete'};
-#pragma pop
-
-/* 803BE020-803BE030 01B140 0010+00 0/1 0/0 0/0 .data            l_tagName00U$3880 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u64 l_tagName00U[2] = {'f_modo', 'f_kete'};
-#pragma pop
-
-/* 803BE030-803BE048 01B150 0018+00 0/1 0/0 0/0 .data            l_tagName3$3887 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u64 l_tagName3[3] = {'w_moyo00', 'w_moyo01', 'w_moyo02'};
-#pragma pop
-
-/* 803BE048-803BE060 01B168 0018+00 0/1 0/0 0/0 .data            l_tagName4$3888 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u64 l_tagName4[3] = {'w_gold00', 'w_gold01', 'w_gold02'};
-#pragma pop
-
-/* 803BE060-803BE078 01B180 0018+00 0/1 0/0 0/0 .data            l_tagName5$3889 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u64 l_tagName5[3] = {'w_go2_00', 'w_go2_01', 'w_go2_02'};
-#pragma pop
-
-/* 803BE078-803BE088 01B198 0010+00 0/1 0/0 0/0 .data            l_tagName9$3898 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u64 l_tagName9[2] = {'w_no_m', 'w_yes_m'};
-#pragma pop
-
-/* 803BE088-803BE098 01B1A8 0010+00 0/1 0/0 0/0 .data            l_tagName10$3899 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u64 l_tagName10[2] = {'w_no_g', 'w_yes_g'};
-#pragma pop
-
-/* 803BE098-803BE0A8 01B1B8 0010+00 0/1 0/0 0/0 .data            l_tagName11$3900 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u64 l_tagName11[2] = {'w_no_gr', 'w_yes_gr'};
-#pragma pop
-
-/* 803BE0A8-803BE0C0 01B1C8 0018+00 0/1 0/0 0/0 .data            l_tagName12$3909 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u64 l_tagName12[3] = {'w_bk_l00', 'w_bk_l01', 'w_bk_l02'};
-#pragma pop
-
-/* 803BE0C0-803BE0D0 01B1E0 0010+00 0/1 0/0 0/0 .data            l_tagName21$3916 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u64 l_tagName21[2] = {'t_for', 't_for1'};
-#pragma pop
-
-/* 803BE0D0-803BE120 01B1F0 0050+00 0/1 0/0 0/0 .data            l_tagName211$3917 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u64 l_tagName211[10] = {'tmoyou00', 'tmoyou01', 'tmoyou02', 'tmoyou03',
-                                            'tmoyou04', 'tmoyou05', 'tmoyou06', 'tmoyou07',
-                                            'tmoyou08', 'tmoyou09'};
-#pragma pop
-
-/* 803BE120-803BE130 01B240 0010+00 0/1 0/0 0/0 .data            l_tagName20$3929 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u64 l_tagName20[2] = {'er_for0', 'er_for1'};
-#pragma pop
-
-/* 803BE130-803BE148 01B250 0018+00 0/1 0/0 0/0 .data            l_tagName13$3937 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u64 l_tagName13[3] = {'w_dat_i0', 'w_dat_i1', 'w_dat_i2'};
-#pragma pop
+static int YnSelEndFrameTbl[2][2] = {{2138, 3171}, {2150, 3181}};
 
 /* 8042E84C-8042E860 05B56C 0010+04 21/21 0/0 0/0 .bss             g_msHIO */
 static dMs_HIO_c g_msHIO;
-
-/* 803BE424-803BE70C 01B544 02E8+00 1/2 0/0 0/0 .data            MenuSaveProc */
-typedef void (dMenu_save_c::*menuProcFunc)();
-SECTION_DATA menuProcFunc MenuSaveProc[62] = {
-    &dMenu_save_c::saveQuestion,
-    &dMenu_save_c::saveQuestion2,
-    &dMenu_save_c::saveQuestion21,
-    &dMenu_save_c::saveQuestion3,
-    &dMenu_save_c::saveQuestion4,
-    &dMenu_save_c::saveGuide,
-    &dMenu_save_c::memCardCheck,
-    &dMenu_save_c::backSaveQuestion,
-    &dMenu_save_c::backSaveQuestion2,
-    &dMenu_save_c::memCardErrMsgWaitKey,
-    &dMenu_save_c::IPLSelectDisp1,
-    &dMenu_save_c::IPLSelectDisp2,
-    &dMenu_save_c::memCardErrGoIPLSel,
-    &dMenu_save_c::IPLSelect2Disp,
-    &dMenu_save_c::memCardErrGoIPLSel2,
-    &dMenu_save_c::memCardErrGotoIPL,
-    &dMenu_save_c::memCardErrMsgWaitFormatSel,
-    &dMenu_save_c::cardFormatYesSelDisp,
-    &dMenu_save_c::cardFormatNoSelDisp,
-    &dMenu_save_c::memCardErrMsgWaitFormatSel2,
-    &dMenu_save_c::cardFormatYesSel2Disp,
-    &dMenu_save_c::memCardFormat,
-    &dMenu_save_c::memCardFormatWait,
-    &dMenu_save_c::makeGameFileSelDisp,
-    &dMenu_save_c::memCardMakeGameFileSel,
-    &dMenu_save_c::makeGameFileDisp,
-    &dMenu_save_c::memCardMakeGameFile,
-    &dMenu_save_c::memCardMakeGameFileWait,
-    &dMenu_save_c::memCardCommandEnd,
-    &dMenu_save_c::memCardCommandEnd2,
-    &dMenu_save_c::memCardDataLoadWait,
-    &dMenu_save_c::memCardDataSaveWait,
-    &dMenu_save_c::memCardDataSaveWait2,
-    &dMenu_save_c::gameContinueDisp,
-    &dMenu_save_c::gameContinue,
-    &dMenu_save_c::gameContinue2,
-    &dMenu_save_c::gameContinue3,
-    &dMenu_save_c::saveEnd,
-    &dMenu_save_c::endingNoSave,
-    &dMenu_save_c::endingNoSave2,
-    &dMenu_save_c::endingDataCheck,
-    &dMenu_save_c::saveWait,
-    &dMenu_save_c::messageChange,
-    &dMenu_save_c::retryQuestion0,
-    &dMenu_save_c::retryQuestion1,
-    &dMenu_save_c::retryQuestion2,
-    &dMenu_save_c::openSaveSelect,
-    &dMenu_save_c::openSaveSelect2,
-    &dMenu_save_c::openSaveSelect3,
-    &dMenu_save_c::saveSelect,
-    &dMenu_save_c::saveSelectMoveAnime,
-    &dMenu_save_c::selectDataOpenMove,
-    &dMenu_save_c::saveYesNoSelect,
-    &dMenu_save_c::yesNoCursorMoveAnm,
-    &dMenu_save_c::saveYesNoCancelMove,
-    &dMenu_save_c::saveMoveDisp,
-    &dMenu_save_c::saveMoveDisp2,
-    &dMenu_save_c::msgWindowInitOpen,
-    &dMenu_save_c::msgWindowOpen,
-    &dMenu_save_c::msgWindowClose,
-    &dMenu_save_c::errYesNoCursorMoveAnm,
-};
-
-/* 803BE70C-803BE718 -00001 000C+00 1/1 0/0 0/0 .data            @4794 */
-SECTION_DATA static void* lit_4794[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)iplSelMsgInitSet__12dMenu_save_cFv,
-};
-
-/* 803BE718-803BE724 -00001 000C+00 1/1 0/0 0/0 .data            @4797 */
-SECTION_DATA static void* lit_4797[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)gameFileMakeSelInitSet__12dMenu_save_cFv,
-};
-
-/* 803BE724-803BE758 -00001 0034+00 1/1 0/0 0/0 .data            @4802 */
-SECTION_DATA static void* lit_4802[13] = {
-    (void*)(((char*)memCardCheck__12dMenu_save_cFv) + 0x4C),
-    (void*)(((char*)memCardCheck__12dMenu_save_cFv) + 0x19C),
-    (void*)(((char*)memCardCheck__12dMenu_save_cFv) + 0x184),
-    (void*)(((char*)memCardCheck__12dMenu_save_cFv) + 0x1E8),
-    (void*)(((char*)memCardCheck__12dMenu_save_cFv) + 0x1E8),
-    (void*)(((char*)memCardCheck__12dMenu_save_cFv) + 0x1E8),
-    (void*)(((char*)memCardCheck__12dMenu_save_cFv) + 0x10C),
-    (void*)(((char*)memCardCheck__12dMenu_save_cFv) + 0x10C),
-    (void*)(((char*)memCardCheck__12dMenu_save_cFv) + 0x7C),
-    (void*)(((char*)memCardCheck__12dMenu_save_cFv) + 0xAC),
-    (void*)(((char*)memCardCheck__12dMenu_save_cFv) + 0xDC),
-    (void*)(((char*)memCardCheck__12dMenu_save_cFv) + 0x134),
-    (void*)(((char*)memCardCheck__12dMenu_save_cFv) + 0x134),
-};
-
-/* 803BE758-803BE764 -00001 000C+00 1/1 0/0 0/0 .data            @4901 */
-SECTION_DATA static void* lit_4901[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)iplSelInitSet__12dMenu_save_cFv,
-};
-
-/* 803BE764-803BE774 01B884 0010+00 2/2 1/1 0/0 .data            __vt__16dDlst_MenuSave_c */
-SECTION_DATA extern void* __vt__16dDlst_MenuSave_c[4] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__16dDlst_MenuSave_cFv,
-    (void*)__dt__16dDlst_MenuSave_cFv,
-};
-
-/* 803BE774-803BE7CC 01B894 0010+48 2/2 1/1 0/0 .data            __vt__23dDlst_MenuSaveExplain_c */
-SECTION_DATA extern void* __vt__23dDlst_MenuSaveExplain_c[4 + 18 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__23dDlst_MenuSaveExplain_cFv,
-    (void*)__dt__23dDlst_MenuSaveExplain_cFv,
-    /* padding */
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-};
 
 /* 801EF654-801EF6A0 1E9F94 004C+00 1/1 0/0 0/0 .text            __ct__9dMs_HIO_cFv */
 dMs_HIO_c::dMs_HIO_c() {
@@ -611,15 +130,9 @@ dMenu_save_c::dMenu_save_c() {
     field_0x21a1 = 0;
 }
 
-/* 80454438-8045443C 002A38 0004+00 1/1 0/0 0/0 .sdata2          @3849 */
-SECTION_SDATA2 static f32 lit_3849 = 9.0f / 10.0f;
-
-/* 8045443C-80454440 002A3C 0004+00 2/2 0/0 0/0 .sdata2          @3850 */
-SECTION_SDATA2 static f32 lit_3850 = 0.5f;
-
 /* 801EF7AC-801EF904 1EA0EC 0158+00 0/0 3/3 0/0 .text            _create__12dMenu_save_cFv */
 void dMenu_save_c::_create() {
-    stick = new STControl(2, 2, 1, 1, lit_3849, lit_3850, 0, 0x2000);
+    stick = new STControl(2, 2, 1, 1, 0.9f, 0.5f, 0, 0x2000);
 
     if (mUseType == TYPE_DEFAULT || mUseType == TYPE_WHITE_EVENT || mUseType == TYPE_BLACK_EVENT) {
         mpMount =
@@ -653,78 +166,28 @@ void dMenu_save_c::_create() {
     g_msHIO.field_0x4 = -1;
 }
 
-/* ############################################################################################## */
-/* 80397960-80397960 023FC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80397978 = "zelda_file_select2.blo";
-SECTION_DEAD static char const* const stringBase_8039798F = "zelda_file_select2.bck";
-SECTION_DEAD static char const* const stringBase_803979A6 = "zelda_file_select2.bpk";
-SECTION_DEAD static char const* const stringBase_803979BD = "zelda_file_select2_02.btk";
-SECTION_DEAD static char const* const stringBase_803979D7 = "zelda_file_select2.btk";
-SECTION_DEAD static char const* const stringBase_803979EE = "zelda_file_select2.brk";
-SECTION_DEAD static char const* const stringBase_80397A05 = "";
-#pragma pop
-
-/* 80450740-80450744 0001C0 0002+02 1/1 0/0 0/0 .sdata           l_msgNum0$3868 */
-SECTION_SDATA static u8 l_msgNum0[2] = {
-    0x08,
-    0x07,
-};
-
-/* 80450744-80450748 0001C4 0002+02 1/1 0/0 0/0 .sdata           l_msgNum$3881 */
-SECTION_SDATA static u8 l_msgNum[2] = {
-    0x54,
-    0x55,
-};
-
-/* 80454440-80454444 002A40 0004+00 1/1 0/0 0/0 .sdata2          @4173 */
-SECTION_SDATA2 static f32 lit_4173 = 19.0f;
-
-/* 80454444-80454448 002A44 0004+00 1/1 0/0 0/0 .sdata2          @4174 */
-SECTION_SDATA2 static f32 lit_4174 = 20.0f;
-
-/* 80454448-8045444C 002A48 0004+00 13/13 0/0 0/0 .sdata2          @4175 */
-SECTION_SDATA2 static u8 lit_4175[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 8045444C-80454450 002A4C 0004+00 1/1 0/0 0/0 .sdata2          @4176 */
-SECTION_SDATA2 static f32 lit_4176 = 440.0f;
-
-/* 80454450-80454454 002A50 0004+00 1/1 0/0 0/0 .sdata2          @4177 */
-SECTION_SDATA2 static f32 lit_4177 = 198.0f;
-
-/* 80454454-80454458 002A54 0004+00 1/1 0/0 0/0 .sdata2          @4178 */
-SECTION_SDATA2 static f32 lit_4178 = 21.0f;
-
-/* 80454458-8045445C 002A58 0004+00 20/20 0/0 0/0 .sdata2          @4179 */
-SECTION_SDATA2 static f32 lit_4179 = 1.0f;
-
-/* 8045445C-80454460 002A5C 0004+00 3/3 0/0 0/0 .sdata2          @4180 */
-SECTION_SDATA2 static f32 lit_4180 = 24.0f / 25.0f;
-
-/* 80454460-80454464 002A60 0004+00 2/2 0/0 0/0 .sdata2          @4181 */
-SECTION_SDATA2 static f32 lit_4181 = 47.0f / 50.0f;
-
-/* 80454464-80454468 002A64 0004+00 2/2 0/0 0/0 .sdata2          @4182 */
-SECTION_SDATA2 static f32 lit_4182 = 3.0f / 100.0f;
-
-/* 80454468-80454470 002A68 0004+04 2/2 0/0 0/0 .sdata2          @4183 */
-SECTION_SDATA2 static f32 lit_4183[1 + 1 /* padding */] = {
-    7.0f / 10.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 80454470-80454478 002A70 0008+00 17/17 0/0 0/0 .sdata2          @4185 */
-SECTION_SDATA2 static f64 lit_4185 = 4503601774854144.0 /* cast s32 to float */;
-
 /* 801EF904-801F0938 1EA244 1034+00 1/1 0/0 0/0 .text            screenSet__12dMenu_save_cFv */
 void dMenu_save_c::screenSet() {
+    static u64 l_tagName0[3] = {'w_sel_00', 'w_sel_01', 'w_sel_02'};
+    static u64 l_tagName000[2] = {'w_no_t', 'w_yes_t'};
+    static u64 l_tagName000U[2] = {'f_no_t', 'f_yes_t'};
+    static u64 l_tagName00[2] = {'w_modo', 'w_kete'};
+    static u64 l_tagName00U[2] = {'f_modo', 'f_kete'};
+    static u64 l_tagName3[3] = {'w_moyo00', 'w_moyo01', 'w_moyo02'};
+    static u64 l_tagName4[3] = {'w_gold00', 'w_gold01', 'w_gold02'};
+    static u64 l_tagName5[3] = {'w_go2_00', 'w_go2_01', 'w_go2_02'};
+    static u64 l_tagName9[2] = {'w_no_m', 'w_yes_m'};
+    static u64 l_tagName10[2] = {'w_no_g', 'w_yes_g'};
+    static u64 l_tagName11[2] = {'w_no_gr', 'w_yes_gr'};
+    static u64 l_tagName12[3] = {'w_bk_l00', 'w_bk_l01', 'w_bk_l02'};
+    static u64 l_tagName21[2] = {'t_for', 't_for1'};
+    static u64 l_tagName211[10] = {'tmoyou00', 'tmoyou01', 'tmoyou02', 'tmoyou03', 'tmoyou04',
+                                'tmoyou05', 'tmoyou06', 'tmoyou07', 'tmoyou08', 'tmoyou09'};
+    static u64 l_tagName20[2] = {'er_for0', 'er_for1'};
+    static u64 l_tagName13[3] = {'w_dat_i0', 'w_dat_i1', 'w_dat_i2'};
+    static u8 l_msgNum0[2] = {0x08, 0x07};
+    static u8 l_msgNum[2] = {0x54, 0x55};
+
     mSaveSel.Scr = new J2DScreen();
     mSaveSel.Scr->setPriority("zelda_file_select2.blo", 0x1100000, mpArchive);
     dPaneClass_showNullPane(mSaveSel.Scr);
@@ -1005,8 +468,6 @@ int dMenu_save_c::_close() {
 }
 
 /* 801F0B28-801F1048 1EB468 0520+00 0/0 4/4 0/0 .text            _delete__12dMenu_save_cFv */
-// creates extra data
-#ifdef NONMATCHING
 void dMenu_save_c::_delete() {
     delete stick;
 
@@ -1151,11 +612,72 @@ void dMenu_save_c::_delete() {
         mpArchive->unmount();
     }
 }
-#else
-void dMenu_save_c::_delete() {
-    // NONMATCHING
-}
-#endif
+
+/* 803BE424-803BE70C 01B544 02E8+00 1/2 0/0 0/0 .data            MenuSaveProc */
+typedef void (dMenu_save_c::*menuProcFunc)();
+menuProcFunc MenuSaveProc[62] = {
+    &dMenu_save_c::saveQuestion,
+    &dMenu_save_c::saveQuestion2,
+    &dMenu_save_c::saveQuestion21,
+    &dMenu_save_c::saveQuestion3,
+    &dMenu_save_c::saveQuestion4,
+    &dMenu_save_c::saveGuide,
+    &dMenu_save_c::memCardCheck,
+    &dMenu_save_c::backSaveQuestion,
+    &dMenu_save_c::backSaveQuestion2,
+    &dMenu_save_c::memCardErrMsgWaitKey,
+    &dMenu_save_c::IPLSelectDisp1,
+    &dMenu_save_c::IPLSelectDisp2,
+    &dMenu_save_c::memCardErrGoIPLSel,
+    &dMenu_save_c::IPLSelect2Disp,
+    &dMenu_save_c::memCardErrGoIPLSel2,
+    &dMenu_save_c::memCardErrGotoIPL,
+    &dMenu_save_c::memCardErrMsgWaitFormatSel,
+    &dMenu_save_c::cardFormatYesSelDisp,
+    &dMenu_save_c::cardFormatNoSelDisp,
+    &dMenu_save_c::memCardErrMsgWaitFormatSel2,
+    &dMenu_save_c::cardFormatYesSel2Disp,
+    &dMenu_save_c::memCardFormat,
+    &dMenu_save_c::memCardFormatWait,
+    &dMenu_save_c::makeGameFileSelDisp,
+    &dMenu_save_c::memCardMakeGameFileSel,
+    &dMenu_save_c::makeGameFileDisp,
+    &dMenu_save_c::memCardMakeGameFile,
+    &dMenu_save_c::memCardMakeGameFileWait,
+    &dMenu_save_c::memCardCommandEnd,
+    &dMenu_save_c::memCardCommandEnd2,
+    &dMenu_save_c::memCardDataLoadWait,
+    &dMenu_save_c::memCardDataSaveWait,
+    &dMenu_save_c::memCardDataSaveWait2,
+    &dMenu_save_c::gameContinueDisp,
+    &dMenu_save_c::gameContinue,
+    &dMenu_save_c::gameContinue2,
+    &dMenu_save_c::gameContinue3,
+    &dMenu_save_c::saveEnd,
+    &dMenu_save_c::endingNoSave,
+    &dMenu_save_c::endingNoSave2,
+    &dMenu_save_c::endingDataCheck,
+    &dMenu_save_c::saveWait,
+    &dMenu_save_c::messageChange,
+    &dMenu_save_c::retryQuestion0,
+    &dMenu_save_c::retryQuestion1,
+    &dMenu_save_c::retryQuestion2,
+    &dMenu_save_c::openSaveSelect,
+    &dMenu_save_c::openSaveSelect2,
+    &dMenu_save_c::openSaveSelect3,
+    &dMenu_save_c::saveSelect,
+    &dMenu_save_c::saveSelectMoveAnime,
+    &dMenu_save_c::selectDataOpenMove,
+    &dMenu_save_c::saveYesNoSelect,
+    &dMenu_save_c::yesNoCursorMoveAnm,
+    &dMenu_save_c::saveYesNoCancelMove,
+    &dMenu_save_c::saveMoveDisp,
+    &dMenu_save_c::saveMoveDisp2,
+    &dMenu_save_c::msgWindowInitOpen,
+    &dMenu_save_c::msgWindowOpen,
+    &dMenu_save_c::msgWindowClose,
+    &dMenu_save_c::errYesNoCursorMoveAnm,
+};
 
 /* 801F1048-801F1100 1EB988 00B8+00 0/0 4/4 0/0 .text            _move__12dMenu_save_cFv */
 void dMenu_save_c::_move() {
@@ -1201,7 +723,6 @@ void dMenu_save_c::selFileWakuAnm() {
     mpFileWakuRotAnm->setFrame(mFileWakuRotAnmFrame);
 }
 
-
 /* 801F11F4-801F12F0 1EBB34 00FC+00 1/1 0/0 0/0 .text            bookIconAnm__12dMenu_save_cFv */
 void dMenu_save_c::bookIconAnm() {
     field_0x154 += 2;
@@ -1222,7 +743,6 @@ void dMenu_save_c::bookIconAnm() {
     }
     field_0x160->setFrame(field_0x164);
 }
-
 
 /* 801F12F0-801F1378 1EBC30 0088+00 1/1 0/0 0/0 .text            memCardWatch__12dMenu_save_cFv */
 void dMenu_save_c::memCardWatch() {
@@ -1290,7 +810,6 @@ void dMenu_save_c::saveQuestion() {
         }
     }
 }
-
 
 /* 801F1558-801F1620 1EBE98 00C8+00 1/0 0/0 0/0 .text            saveQuestion2__12dMenu_save_cFv */
 void dMenu_save_c::saveQuestion2() {
@@ -1421,7 +940,6 @@ void dMenu_save_c::memCardCheck() {
     }
 }
 
-
 /* 801F191C-801F19A8 1EC25C 008C+00 1/0 0/0 0/0 .text memCardErrMsgWaitKey__12dMenu_save_cFv */
 void dMenu_save_c::memCardErrMsgWaitKey() {
     if (cAPICPad_ANY_BUTTON(PAD_1) && dMeter2Info_getMsgKeyWaitTimer() == 0) {
@@ -1489,10 +1007,6 @@ void dMenu_save_c::backSaveQuestion2() {
     }
 }
 
-/* ############################################################################################## */
-/* 80454478-8045447C 002A78 0004+00 16/16 0/0 0/0 .sdata2          @4879 */
-SECTION_SDATA2 static f32 lit_4879 = -1.0f;
-
 /* 801F1B38-801F1BF8 1EC478 00C0+00 5/5 0/0 0/0 .text            closeSelect__12dMenu_save_cFv */
 void dMenu_save_c::closeSelect() {
     mDoAud_seStart(Z2SE_SY_MENU_BACK, NULL, 0, 0);
@@ -1511,7 +1025,6 @@ void dMenu_save_c::closeSelect() {
     }
 }
 
-
 /* 801F1BF8-801F1C70 1EC538 0078+00 2/2 0/0 0/0 .text            closeSelect2__12dMenu_save_cFv */
 void dMenu_save_c::closeSelect2() {
     mDoAud_seStart(Z2SE_SY_CURSOR_OK, NULL, 0, 0);
@@ -1519,7 +1032,6 @@ void dMenu_save_c::closeSelect2() {
     field_0x21a2 = 1;
     mMenuProc = PROC_BACK_SAVE_QUESTION;
 }
-
 
 /* 801F1C70-801F1C94 1EC5B0 0024+00 1/0 0/0 0/0 .text            iplSelMsgInitSet__12dMenu_save_cFv
  */
@@ -1543,7 +1055,6 @@ void dMenu_save_c::IPLSelectDisp1() {
         mMenuProc = PROC_MEMCARD_ERRMSG_WAIT_KEY;
     }
 }
-
 
 /* 801F1D54-801F1DD4 1EC694 0080+00 1/0 0/0 0/0 .text            IPLSelectDisp2__12dMenu_save_cFv */
 void dMenu_save_c::IPLSelectDisp2() {
@@ -1853,13 +1364,6 @@ void dMenu_save_c::dataWrite() {
     dataSave();
 }
 
-/* ############################################################################################## */
-/* 80397960-80397960 023FC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80397A06 = "save cmdState %d\n";
-#pragma pop
-
 /* 801F28E4-801F298C 1ED224 00A8+00 1/0 0/0 0/0 .text memCardDataSaveWait__12dMenu_save_cFv */
 void dMenu_save_c::memCardDataSaveWait() {
     mDoAud_seStartLevel(Z2SE_SY_FILE_SAVE_LEVEL, NULL, 0, 0);
@@ -1874,7 +1378,6 @@ void dMenu_save_c::memCardDataSaveWait() {
         mMenuProc = PROC_MEMCARD_DATA_SAVE_WAIT2;
     }
 }
-
 
 /* 801F298C-801F2B5C 1ED2CC 01D0+00 1/0 0/0 0/0 .text memCardDataSaveWait2__12dMenu_save_cFv */
 void dMenu_save_c::memCardDataSaveWait2() {
@@ -1912,7 +1415,6 @@ void dMenu_save_c::memCardDataSaveWait2() {
         mMenuProc = PROC_MEMCARD_COMMAND_END2;
     }
 }
-
 
 /* 801F2B5C-801F2BF8 1ED49C 009C+00 1/0 0/0 0/0 .text            gameContinueDisp__12dMenu_save_cFv
  */
@@ -1975,7 +1477,6 @@ void dMenu_save_c::gameContinue() {
         mMenuProc = PROC_GAME_CONTINUE2;
     }
 }
-
 
 /* 801F2D78-801F2DA0 1ED6B8 0028+00 1/0 0/0 0/0 .text            gameContinue2__12dMenu_save_cFv */
 void dMenu_save_c::gameContinue2() {
@@ -2197,7 +1698,6 @@ int dMenu_save_c::YesNoSelect() {
     return ret;
 }
 
-
 /* 801F34BC-801F3588 1EDDFC 00CC+00 8/8 0/0 0/0 .text            msgTxtSet__12dMenu_save_cFUsb */
 void dMenu_save_c::msgTxtSet(u16 msgID, bool param_1) {
     if (msgID != 0xFFFF) {
@@ -2251,7 +1751,6 @@ void dMenu_save_c::openSaveSelect() {
     }
 }
 
-
 /* 801F36B4-801F37A0 1EDFF4 00EC+00 1/0 0/0 0/0 .text            openSaveSelect2__12dMenu_save_cFv
  */
 void dMenu_save_c::openSaveSelect2() {
@@ -2304,7 +1803,6 @@ void dMenu_save_c::openSaveSelect3() {
     }
 }
 
-
 /* 801F3934-801F3A94 1EE274 0160+00 1/0 0/0 0/0 .text            saveSelect__12dMenu_save_cFv */
 void dMenu_save_c::saveSelect() {
     if (!mDoRst::isReset()) {
@@ -2334,7 +1832,6 @@ void dMenu_save_c::saveSelect() {
     }
 }
 
-
 /* 801F3A94-801F3BE0 1EE3D4 014C+00 1/1 0/0 0/0 .text            saveSelectStart__12dMenu_save_cFv
  */
 void dMenu_save_c::saveSelectStart() {
@@ -2361,7 +1858,6 @@ void dMenu_save_c::saveSelectStart() {
         mMenuProc = PROC_SELECT_DATA_OPEN_MOVE;
     }
 }
-
 
 /* 801F3BE0-801F3C7C 1EE520 009C+00 1/0 0/0 0/0 .text selectDataOpenMove__12dMenu_save_cFv */
 void dMenu_save_c::selectDataOpenMove() {
@@ -2398,7 +1894,6 @@ void dMenu_save_c::dataSelectAnmSet() {
         mSelIcon->setAlphaRate(0.0f);
     }
 }
-
 
 /* 801F3E30-801F40D8 1EE770 02A8+00 1/0 0/0 0/0 .text saveSelectMoveAnime__12dMenu_save_cFv */
 void dMenu_save_c::saveSelectMoveAnime() {
@@ -2455,7 +1950,6 @@ void dMenu_save_c::saveSelectMoveAnime() {
     }
 }
 
-
 /* 801F40D8-801F4238 1EEA18 0160+00 1/0 0/0 0/0 .text            saveYesNoSelect__12dMenu_save_cFv
  */
 void dMenu_save_c::saveYesNoSelect() {
@@ -2486,7 +1980,6 @@ void dMenu_save_c::saveYesNoSelect() {
     }
 }
 
-
 /* 801F4238-801F42FC 1EEB78 00C4+00 1/1 0/0 0/0 .text            yesnoSelectStart__12dMenu_save_cFv
  */
 void dMenu_save_c::yesnoSelectStart() {
@@ -2503,7 +1996,6 @@ void dMenu_save_c::yesnoSelectStart() {
         yesnoCancelAnmSet();
     }
 }
-
 
 /* 801F42FC-801F43F8 1EEC3C 00FC+00 1/0 0/0 0/0 .text            saveMoveDisp__12dMenu_save_cFv */
 void dMenu_save_c::saveMoveDisp() {
@@ -2522,7 +2014,6 @@ void dMenu_save_c::saveMoveDisp() {
         mMenuProc = PROC_MEMCARD_DATA_SAVE_WAIT;
     }
 }
-
 
 /* 801F43F8-801F4510 1EED38 0118+00 1/0 0/0 0/0 .text            saveMoveDisp2__12dMenu_save_cFv */
 void dMenu_save_c::saveMoveDisp2() {
@@ -2543,7 +2034,6 @@ void dMenu_save_c::saveMoveDisp2() {
     }
 }
 
-
 /* 801F4510-801F46B4 1EEE50 01A4+00 4/4 0/0 0/0 .text yesnoSelectAnmSet__12dMenu_save_cFUc */
 void dMenu_save_c::yesnoSelectAnmSet(u8 param_0) {
     if (mYesNoPrevCursor != 0xFF) {
@@ -2562,7 +2052,6 @@ void dMenu_save_c::yesnoSelectAnmSet(u8 param_0) {
         mpNoYes[mYesNoCursor]->getPanePtr()->animationTransform();
     }
 }
-
 
 /* 801F46B4-801F4724 1EEFF4 0070+00 1/0 0/0 0/0 .text yesNoCursorMoveAnm__12dMenu_save_cFv */
 void dMenu_save_c::yesNoCursorMoveAnm() {
@@ -2586,7 +2075,6 @@ void dMenu_save_c::yesnoCancelAnmSet() {
     yesnoMenuMoveAnmInitSet(2099, 2089, 0);
     mMenuProc = PROC_SAVE_YES_NO_CANCEL_MOVE;
 }
-
 
 /* 801F47DC-801F485C 1EF11C 0080+00 1/0 0/0 0/0 .text saveYesNoCancelMove__12dMenu_save_cFv */
 void dMenu_save_c::saveYesNoCancelMove() {
@@ -2664,7 +2152,6 @@ void dMenu_save_c::errDispInitSet(int param_0) {
     mSelIcon->setAlphaRate(0.0f);
     mMenuProc = PROC_MSG_WINDOW_INIT_OPEN;
 }
-
 
 /* 801F4B84-801F4D10 1EF4C4 018C+00 1/0 0/0 0/0 .text            msgWindowInitOpen__12dMenu_save_cFv
  */
@@ -2786,7 +2273,6 @@ bool dMenu_save_c::errYesNoSelect(u8 param_0, u8 param_1) {
     return yesnoSelected;
 }
 
-
 /* 801F4FB4-801F5054 1EF8F4 00A0+00 1/1 0/0 0/0 .text            errCurMove__12dMenu_save_cFUcUc */
 void dMenu_save_c::errCurMove(u8 param_0, u8 param_1) {
     mYesNoPrevCursor = mYesNoCursor;
@@ -2798,7 +2284,6 @@ void dMenu_save_c::errCurMove(u8 param_0, u8 param_1) {
     field_0x1b3 = mMenuProc;
     mMenuProc = PROC_ERR_YES_NO_CURSOR_MOVE_ANM;
 }
-
 
 /* 801F5054-801F50C4 1EF994 0070+00 1/0 0/0 0/0 .text errYesNoCursorMoveAnm__12dMenu_save_cFv */
 void dMenu_save_c::errYesNoCursorMoveAnm() {
@@ -2880,7 +2365,6 @@ void dMenu_save_c::selectDataBaseMoveAnmInitSet(int param_0, int param_1) {
     field_0x65 = 1;
 }
 
-
 /* 801F53D4-801F54C0 1EFD14 00EC+00 3/3 0/0 0/0 .text selectDataBaseMoveAnm__12dMenu_save_cFv */
 bool dMenu_save_c::selectDataBaseMoveAnm() {
     if (mDataBaseMoveAnmFrame != mDataBaseMoveFrameMax) {
@@ -2914,7 +2398,6 @@ bool dMenu_save_c::selectDataBaseMoveAnm() {
     }
 }
 
-
 /* 801F54C0-801F5508 1EFE00 0048+00 1/1 0/0 0/0 .text saveSelectOpenAnmSet__12dMenu_save_cFv */
 void dMenu_save_c::saveSelectOpenAnmSet() {
     setSaveData();
@@ -2939,7 +2422,6 @@ void dMenu_save_c::selectDataMoveAnmInitSet(int param_0, int param_1) {
     mpSelData[1]->getPanePtr()->animationTransform();
     mpSelData[2]->getPanePtr()->animationTransform();
 }
-
 
 /* 801F5600-801F5744 1EFF40 0144+00 3/3 0/0 0/0 .text            selectDataMoveAnm__12dMenu_save_cFv
  */
@@ -2973,7 +2455,6 @@ bool dMenu_save_c::selectDataMoveAnm() {
     }
 }
 
-
 /* 801F5744-801F58C8 1F0084 0184+00 12/12 0/0 0/0 .text
  * yesnoMenuMoveAnmInitSet__12dMenu_save_cFiiUc                 */
 void dMenu_save_c::yesnoMenuMoveAnmInitSet(int anmFrame, int frameMax, u8 param_2) {
@@ -3000,7 +2481,6 @@ void dMenu_save_c::yesnoMenuMoveAnmInitSet(int anmFrame, int frameMax, u8 param_
     mpNoYes[1]->getPanePtr()->animationTransform();
     field_0x9d = 1;
 }
-
 
 /* 801F58C8-801F5AE4 1F0208 021C+00 13/13 0/0 0/0 .text yesnoMenuMoveAnm__12dMenu_save_cFv */
 bool dMenu_save_c::yesnoMenuMoveAnm() {
@@ -3050,7 +2530,6 @@ bool dMenu_save_c::yesnoMenuMoveAnm() {
         return true;
     }
 }
-
 
 /* 801F5AE4-801F5D84 1F0424 02A0+00 4/4 0/0 0/0 .text yesnoSelectMoveAnm__12dMenu_save_cFUc */
 bool dMenu_save_c::yesnoSelectMoveAnm(u8 param_0) {
@@ -3115,18 +2594,6 @@ bool dMenu_save_c::yesnoSelectMoveAnm(u8 param_0) {
     return ret;
 }
 
-
-/* ############################################################################################## */
-/* 8045447C-80454480 002A7C 0004+00 1/1 0/0 0/0 .sdata2          @6327 */
-SECTION_SDATA2 static f32 lit_6327 = 21.0f / 25.0f;
-
-/* 80454480-80454488 002A80 0004+04 1/1 0/0 0/0 .sdata2          @6328 */
-SECTION_SDATA2 static f32 lit_6328[1 + 1 /* padding */] = {
-    3.0f / 50.0f,
-    /* padding */
-    0.0f,
-};
-
 /* 801F5D84-801F5EF4 1F06C4 0170+00 9/9 0/0 0/0 .text            yesnoCursorShow__12dMenu_save_cFv
  */
 void dMenu_save_c::yesnoCursorShow() {
@@ -3145,7 +2612,6 @@ void dMenu_save_c::yesnoCursorShow() {
     }
 }
 
-
 /* 801F5EF4-801F5F84 1F0834 0090+00 3/3 0/0 0/0 .text errorMoveAnmInitSet__12dMenu_save_cFii */
 void dMenu_save_c::errorMoveAnmInitSet(int param_0, int param_1) {
     field_0xb4->setAnimation(field_0x4c);
@@ -3155,7 +2621,6 @@ void dMenu_save_c::errorMoveAnmInitSet(int param_0, int param_1) {
     field_0xb4->animationTransform();
     field_0xd3 = 1;
 }
-
 
 /* 801F5F84-801F60A4 1F08C4 0120+00 4/4 0/0 0/0 .text            errorMoveAnm__12dMenu_save_cFv */
 bool dMenu_save_c::errorMoveAnm() {
@@ -3191,7 +2656,6 @@ bool dMenu_save_c::errorMoveAnm() {
         return 1;
     }
 }
-
 
 /* 801F60A4-801F6120 1F09E4 007C+00 5/5 0/0 0/0 .text modoruTxtDispAnmInit__12dMenu_save_cFUc */
 void dMenu_save_c::modoruTxtDispAnmInit(u8 param_0) {
@@ -3303,10 +2767,9 @@ void dMenu_save_c::selFileCursorShow() {
 
     Vec pos = mpSelData[mSelectedFile]->getGlobalVtxCenter(false, 0);
     mSelIcon->setPos(pos.x, pos.y, mpSelData[mSelectedFile]->getPanePtr(), true);
-    mSelIcon->setAlphaRate(0.0f);
+    mSelIcon->setAlphaRate(1.0f);
     mSelIcon->setParam(0.96f, 0.94f, 0.03f, 0.7f, 0.7f);
 }
-
 
 /* 801F6608-801F6654 1F0F48 004C+00 1/1 0/0 0/0 .text
  * yesnoWakuAlpahAnmInit__12dMenu_save_cFUcUcUcUc               */

@@ -65,7 +65,10 @@ extern J3DTevSwapModeInfo const j3dDefaultTevSwapMode;
  * 
  */
 struct J3DTevStage {
-    /* 8000E230 */ J3DTevStage();
+    /* 8000E230 */ J3DTevStage() {
+        setTevStageInfo(j3dDefaultTevStageInfo);
+        setTevSwapModeInfo(j3dDefaultTevSwapMode);
+    }
     void setTevColorOp(u8 param_1, u8 param_2, u8 param_3, u8 param_4, u8 param_5) {
         mTevColorOp = mTevColorOp & ~(0x01 << 2) | param_1 << 2;
         if (param_1 <= 1) {
@@ -237,13 +240,14 @@ struct J3DTevOrder : public J3DTevOrderInfo {
 };
 
 extern u8 j3dTevSwapTableTable[1024];
+extern u8 const data_804563F8;
 
 /**
  * @ingroup jsystem-j3d
  * 
  */
 struct J3DTevSwapModeTable {
-    /* 8000E134 */ J3DTevSwapModeTable();
+    /* 8000E134 */ J3DTevSwapModeTable() { mIdx = data_804563F8; }
     J3DTevSwapModeTable(J3DTevSwapModeTableInfo const& info) {
         mIdx = calcTevSwapTableID(info.field_0x0, info.field_0x1, info.field_0x2, info.field_0x3);
     }

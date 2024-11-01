@@ -15,7 +15,7 @@
 #include "SSystem/SComponent/c_malloc.h"
 #include "SSystem/SComponent/c_math.h"
 #include "SSystem/SComponent/c_API_controller_pad.h"
-#include "dol2asm.h"
+#include "base/PPCArch.h"
 #include "m_Do/m_Do_DVDError.h"
 #include "m_Do/m_Do_MemCard.h"
 #include "m_Do/m_Do_Reset.h"
@@ -23,110 +23,6 @@
 #include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_machine_exception.h"
 #include "m_Do/m_Do_main.h"
-
-
-//
-// Forward References:
-//
-
-extern "C" static void myGetHeapTypeByString__FP7JKRHeap();
-extern "C" static void myMemoryErrorRoutine__FPvUli();
-extern "C" void myHeapCheckRecursive__FP7JKRHeap();
-extern "C" void mDoMch_HeapCheckAll__Fv();
-extern "C" static s8 developKeyCheck__FUlUl(u32, u32);
-extern "C" bool mDoMch_IsProgressiveMode__Fv();
-extern "C" bool exceptionReadPad__FPUlPUl(u32*, u32*);
-extern "C" void exceptionRestart__Fv();
-extern "C" void myExceptionCallback__FUsP9OSContextUlUl();
-extern "C" static void fault_callback_scroll__FUsP9OSContextUlUl();
-extern "C" static void my_PrintHeap__FPCcUl();
-extern "C" void my_SysPrintHeap__FPCcPvUl();
-extern "C" void mDoMch_Create__Fv();
-extern "C" extern char const* const m_Do_m_Do_machine__stringBase0;
-extern "C" void* mRenderModeObj__15mDoMch_render_c[1 + 1 /* padding */];
-
-//
-// External References:
-//
-
-extern "C" void mDoExt_createAssertHeap__FP7JKRHeap();
-extern "C" void mDoExt_createDbPrintHeap__FUlP7JKRHeap();
-extern "C" void mDoExt_getDbPrintHeap__Fv();
-extern "C" void mDoExt_createGameHeap__FUlP7JKRHeap();
-extern "C" void mDoExt_getGameHeap__Fv();
-extern "C" void mDoExt_createZeldaHeap__FUlP7JKRHeap();
-extern "C" void mDoExt_getZeldaHeap__Fv();
-extern "C" void mDoExt_createCommandHeap__FUlP7JKRHeap();
-extern "C" void mDoExt_getCommandHeap__Fv();
-extern "C" void mDoExt_createArchiveHeap__FUlP7JKRHeap();
-extern "C" void mDoExt_getArchiveHeap__Fv();
-extern "C" void mDoExt_createJ2dHeap__FUlP7JKRHeap();
-extern "C" void mDoExt_getJ2dHeap__Fv();
-extern "C" void mDoRst_reset__FiUli();
-extern "C" void create__9mDoDvdThdFl();
-extern "C" void mDoDvdErr_ThdInit__Fv();
-extern "C" void ThdInit__15mDoMemCd_Ctrl_cFv();
-extern "C" void init__3cMlFP7JKRHeap();
-extern "C" void cM_initRnd__Fiii();
-extern "C" void firstInit__9JFWSystemFv();
-extern "C" void init__9JFWSystemFv();
-extern "C" void becomeCurrentHeap__7JKRHeapFv();
-extern "C" void getFreeSize__7JKRHeapFv();
-extern "C" void getTotalFreeSize__7JKRHeapFv();
-extern "C" void setErrorFlag__7JKRHeapFb();
-extern "C" void setErrorHandler__7JKRHeapFPFPvUli_v();
-extern "C" void* __nw__FUl();
-extern "C" void __ct__9JKRThreadFP8OSThreadi();
-extern "C" void createManager__15JKRThreadSwitchFP7JKRHeap();
-extern "C" void setTransBuffer__13JKRAramStreamFPUcUlP7JKRHeap();
-extern "C" void start__10JUTDbPrintFP7JUTFontP7JKRHeap();
-extern "C" void __ct__10JUTGamePadFQ210JUTGamePad8EPadPort();
-extern "C" void __dt__10JUTGamePadFv();
-extern "C" void isEnablePad__12JUTExceptionCFv();
-extern "C" void readPad__12JUTExceptionFPUlPUl();
-extern "C" void waitTime__12JUTExceptionFl();
-extern "C" void setPreUserCallback__12JUTExceptionFPFUsP9OSContextUlUl_v();
-extern "C" void setPostUserCallback__12JUTExceptionFPFUsP9OSContextUlUl_v();
-extern "C" void appendMapFile__12JUTExceptionFPCc();
-extern "C" void setVisible__12JUTAssertionFb();
-extern "C" void destroyManager__8JUTVideoFv();
-extern "C" void print_f__10JUTConsoleFPCce();
-extern "C" void print__10JUTConsoleFPCc();
-extern "C" void scroll__10JUTConsoleFi();
-extern "C" void getUsedLine__10JUTConsoleCFv();
-extern "C" void getLineOffset__10JUTConsoleCFv();
-extern "C" void drawDirect__17JUTConsoleManagerCFb();
-extern "C" void setDirectConsole__17JUTConsoleManagerFP10JUTConsole();
-extern "C" void PPCHalt();
-extern "C" u32 OSGetProgressiveMode();
-extern "C" void OSSetProgressiveMode(u32);
-extern "C" u32 VIGetDTVStatus();
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_28();
-extern "C" extern s8 data_80450580;
-extern "C" extern s8 developmentMode__7mDoMain;
-extern "C" u32 memMargin__7mDoMain;
-extern "C" u32 maxStdHeaps__Q29JFWSystem11CSetUpParam;
-extern "C" u32 sysHeapSize__Q29JFWSystem11CSetUpParam;
-extern "C" u32 fifoBufSize__Q29JFWSystem11CSetUpParam;
-extern "C" u32 aramAudioBufSize__Q29JFWSystem11CSetUpParam;
-extern "C" u32 aramGraphBufSize__Q29JFWSystem11CSetUpParam;
-extern "C" void* renderMode__Q29JFWSystem11CSetUpParam;
-extern "C" u32 sSZSBufferSize__7JKRAram[1 + 1 /* padding */];
-extern "C" u32 sSZSBufferSize__12JKRDvdRipper;
-extern "C" u32 sSZSBufferSize__16JKRDvdAramRipper;
-extern "C" u8 sHungUpTime__7mDoMain[4];
-extern "C" extern u8 data_80450B14[4];
-extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" u8 systemHeap__9JFWSystem[4];
-extern "C" u8 systemConsole__9JFWSystem[4];
-extern "C" u8 sSystemHeap__7JKRHeap[4];
-extern "C" u8 sRootHeap__7JKRHeap[4];
-extern "C" u8 sDebugPrint__10JUTDbPrint[4 + 4 /* padding */];
-
-//
-// Declarations:
-//
 
 /* 80450BF0-80450BF4 0000F0 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 mDebugFill;
@@ -500,12 +396,13 @@ static void fault_callback_scroll(u16, OSContext* p_context, u32, u32) {
     } while (true);
 }
 
-// originally used in my_PrintHeap, but the function body was removed in retail
-const char* my_PrintHeapSring = "\x1B[32m%-24s = size=%d KB\n\x1B[m";
+static void dummy_string() {
+    DEAD_STRING("\x1B[32m%-24s = size=%d KB\n\x1B[m");
+}
 
 /* 8000BCF4-8000BCF8 006634 0004+00 1/1 0/0 0/0 .text            my_PrintHeap__FPCcUl */
 static void my_PrintHeap(char const* heapName, u32 heapSize) {
-    return;
+    /* empty function */
 }
 
 /* 8000BCF8-8000BD44 006638 004C+00 1/1 0/0 0/0 .text            my_SysPrintHeap__FPCcPvUl */
@@ -513,20 +410,6 @@ void my_SysPrintHeap(char const* message, void* start, u32 size) {
     OSReport_System("\x1b[32m%-24s = %08x-%08x size=%d KB\n\x1b[m", message, start,
                     (u32)start + size, size / 1024);
 }
-
-/* ############################################################################################## */
-/* 80373DE8-80373DE8 000448 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8037403D = "アリーナ";
-SECTION_DEAD static char const* const stringBase_80374046 = "システムヒープ";
-SECTION_DEAD static char const* const stringBase_80374055 = "コマンドヒープ";
-SECTION_DEAD static char const* const stringBase_80374064 = "アーカイブヒープ";
-SECTION_DEAD static char const* const stringBase_80374075 = "Ｊ２Ｄ用ヒープ";
-SECTION_DEAD static char const* const stringBase_80374084 = "ゲームヒープ";
-SECTION_DEAD static char const* const stringBase_80374091 = "ゼルダヒープ";
-SECTION_DEAD static char const* const stringBase_8037409E = "/map/Final/Release/frameworkF.map";
-#pragma pop
 
 /* 803A2F60-803A2F9C 000080 003C+00 1/0 0/0 0/0 .data            g_ntscZeldaIntDf */
 extern GXRenderModeObj g_ntscZeldaIntDf = {
@@ -643,7 +526,7 @@ int mDoMch_Create() {
     JKRHeap::getRootHeap()->setErrorFlag(true);
     JFWSystem::getSystemHeap()->setErrorFlag(true);
 
-    JKRHeap* rootHeap = JKRHeap::getRootHeap();
+    JKRHeap* rootHeap = JKRGetRootHeap();
     // Command Heap size: 4 KB
     my_SysPrintHeap("コマンドヒープ", mDoExt_createCommandHeap(0x1000, rootHeap), 0x1000);
 
@@ -656,13 +539,13 @@ int mDoMch_Create() {
     // Game Heap size: 4408 KB
     my_SysPrintHeap("ゲームヒープ", mDoExt_createGameHeap(0x44E000, rootHeap), 0x44E000);
 
-    JKRHeap* sysHeap = JKRHeap::getSystemHeap();
+    JKRHeap* sysHeap = JKRGetSystemHeap();
     u32 zeldaHeapSize = sysHeap->getFreeSize() - 0x10000;
     JKRHeap* zeldaHeap = mDoExt_createZeldaHeap(zeldaHeapSize, sysHeap);
     my_SysPrintHeap("ゼルダヒープ", zeldaHeap, zeldaHeapSize);
     zeldaHeap->becomeCurrentHeap();
 
-    JKRAramStream::setTransBuffer(NULL, 0x2000, JKRHeap::getSystemHeap());
+    JKRAramStream::setTransBuffer(NULL, 0x2000, JKRGetSystemHeap());
     JKRThreadSwitch::createManager(NULL);
     JKRThread* thread = new JKRThread(OSGetCurrentThread(), 0);
 

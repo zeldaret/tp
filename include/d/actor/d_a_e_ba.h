@@ -79,7 +79,7 @@ public:
     /* 0x698 */ f32 mKnockbackSpeed;
     /* 0x69C */ s16 mKnockbackAngle;
     /* 0x69E */ csXyz mChanceAngle;
-    /* 0x6A4 */ bool mIsDying;
+    /* 0x6A4 */ s8 mIsDying;
     /* 0x6A6 */ s16 mTimer[4];
     /* 0x6AE */ s16 mIFrames;
     /* 0x6B0 */ cXyz field_0x6b0;

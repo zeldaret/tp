@@ -379,10 +379,9 @@ void daOnsTaru_c::breakEffSet() {
     J3DModelData* kibako_bmd = (J3DModelData*)dComIfG_getObjectRes("Always", "BreakWoodBox.bmd");
     JUT_ASSERT(0x310, kibako_bmd != 0);
 
-    s32 room_no = fopAcM_GetRoomNo(this);
     JPABaseEmitter* emitter =
         dComIfGp_particle_set(0x8A99, &pos, NULL, NULL, 0xFF, &dPa_modelEcallBack::getEcallback(),
-                              room_no, NULL, NULL, &scale);
+                              fopAcM_GetRoomNo(this), NULL, NULL, &scale);
     if (emitter != NULL) {
         dPa_modelEcallBack::setModel(emitter, kibako_bmd, tevStr, 3, NULL, 0, 0);
     }

@@ -12,7 +12,6 @@
 #include "d/actor/d_a_player.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_menu_collect.h"
-#include "dol2asm.h"
 #include "f_ap/f_ap_game.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_machine.h"
@@ -22,8 +21,6 @@
 #include "JSystem/JParticle/JPADrawInfo.h"
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JFramework/JFWSystem.h"
-
-extern "C" u8 m_bloom__13mDoGph_gInf_c[20];  // needed for sinit for now
 
 /* 80007D9C-80007E44 0026DC 00A8+00 1/1 0/0 0/0 .text            createTimg__FUsUsUl */
 static ResTIMG* createTimg(u16 width, u16 height, u32 format) {
@@ -1147,19 +1144,4 @@ int mDoGph_Create() {
     mDoExt_adjustSolidHeap(heap);
     mDoExt_restoreCurrentHeap();
     return 1;
-}
-
-/* 8000B1D0-8000B1E4 005B10 0014+00 0/0 1/0 0/0 .text            __sinit_m_Do_graphic_cpp */
-void __sinit_m_Do_graphic_cpp(){// NONMATCHING
-}
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x8000B1D0, __sinit_m_Do_graphic_cpp);
-#pragma pop
-
-/* 8000B1E4-8000B1EC 005B24 0008+00 0/0 1/0 0/0 .text            getAtnActorID__9daPy_py_cCFv */
-// s32 daPy_py_c::getAtnActorID() const {
-extern "C" s32 getAtnActorID__9daPy_py_cCFv() {
-    return -1;
 }

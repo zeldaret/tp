@@ -151,12 +151,8 @@ public:
         mTranslateValues = pTranslateValues;
         mKind = KIND_TRANSFORM;
     }
-    #ifdef __dt__15J2DAnmTransformFv_DEFINED
-    /* 80184370 */ virtual ~J2DAnmTransform();
-    #else
     /* 80184370 */ virtual ~J2DAnmTransform() {}
-    #endif
-    /* 80191130 */ virtual void getTransform(u16, J3DTransformInfo*) const;
+    /* 80191130 */ virtual void getTransform(u16, J3DTransformInfo*) const; // {} (should be inline)
 
     /* 0x10 */ f32* mScaleValues;
     /* 0x14 */ s16* mRotationValues;

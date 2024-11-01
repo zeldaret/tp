@@ -266,9 +266,8 @@ void daBdoor_c::calcGoal(cXyz* i_goalP, int param_1) {
 void daBdoor_c::smokeInit() {
     mParticlePos = current.pos;
     mParticleAngle = shape_angle;
-    s32 room = fopAcM_GetRoomNo(this);
     dComIfGp_particle_setPolyColor(0x8156, mAcch.m_gnd, &mParticlePos, &tevStr, &mParticleAngle,
-                                   NULL, 0, NULL, room, NULL);
+                                   NULL, 0, NULL, fopAcM_GetRoomNo(this), NULL);
 }
 
 /* 806700C4-806701F4 000D24 0130+00 1/1 0/0 0/0 .text            checkArea__9daBdoor_cFv */
@@ -297,8 +296,7 @@ BOOL daBdoor_c::checkFront() {
 
 /* 80670294-80670320 000EF4 008C+00 1/1 0/0 0/0 .text            checkOpen__9daBdoor_cFv */
 BOOL daBdoor_c::checkOpen() {
-    // Fake Match - should be daPy_py_c::i_checkNowWolf
-    if (dComIfGp_getLinkPlayer()->mNoResetFlg1 & daPy_py_c::FLG1_IS_WOLF) {
+    if (daPy_py_c::i_checkNowWolf()) {
         return false;
     }
     if (!dComIfGs_isDungeonItemBossKey()) {

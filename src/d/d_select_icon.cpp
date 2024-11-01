@@ -34,6 +34,4 @@ void dSelect_icon_c::setPos(J2DPane* param_0, f32 transX, f32 transY) {
     field_0xc->getPanePtr()->translate(transX, transY);
 }
 
-dSi_HIO_c::~dSi_HIO_c() {}
-
 static dSi_HIO_c g_siHIO;

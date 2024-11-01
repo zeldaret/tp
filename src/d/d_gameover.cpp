@@ -3,17 +3,12 @@
 // Translation Unit: d/d_gameover
 //
 
-/**
- * This TU mostly matches except for the dGov_HIO_c vtable being the incorrect size
- * Once that's fixed, inline the dGov_HIO_c / dDlst_Gameover_CAPTURE_c dtors.
- */
-
 #include "d/d_gameover.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_meter2_info.h"
 #include "d/d_meter_HIO.h"
-#include "dol2asm.h"
+#include "d/d_msg_scrn_light.h"
 #include "m_Do/m_Do_Reset.h"
 #include "m_Do/m_Do_graphic.h"
 #include "JSystem/JUtility/JUTTexture.h"
@@ -24,7 +19,7 @@
 class dGov_HIO_c : public mDoHIO_entry_c {
 public:
     /* 8019AFE0 */ dGov_HIO_c();
-    /* 8019C06C */ virtual ~dGov_HIO_c();  // supposed to be inlined
+    /* 8019C06C */ virtual ~dGov_HIO_c() {}
 
     /* 0x04 */ u8 unk_0x4;
     /* 0x08 */ f32 mScale;
@@ -34,139 +29,8 @@ public:
     /* 0x18 */ GXColor mWhite;
 };  // Size: 0x1C
 
-struct dMsgScrnLight_c {
-    /* 80245934 */ dMsgScrnLight_c(u8, u8);
-    /* 80245F90 */ void draw(f32*, f32, f32, f32, f32, f32, f32, JUtility::TColor,
-                             JUtility::TColor);
-
-    /* 0x00 */ u8 field_0x0[0x24];
-};
-
-//
-// Forward References:
-//
-
-extern "C" void draw__24dDlst_Gameover_CAPTURE_cFv();
-extern "C" void __ct__10dGov_HIO_cFv();
-extern "C" void _create__11dGameover_cFv();
-extern "C" void _execute__11dGameover_cFv();
-extern "C" void playerAnmWait_init__11dGameover_cFv();
-extern "C" void playerAnmWait_proc__11dGameover_cFv();
-extern "C" void dispFadeOut_init__11dGameover_cFv();
-extern "C" void dispFadeOut_proc__11dGameover_cFv();
-extern "C" void dispWait_init__11dGameover_cFv();
-extern "C" void dispWait_proc__11dGameover_cFv();
-extern "C" void demoFadeIn_init__11dGameover_cFv();
-extern "C" void demoFadeIn_proc__11dGameover_cFv();
-extern "C" void demoFadeOut_init__11dGameover_cFv();
-extern "C" void demoFadeOut_proc__11dGameover_cFv();
-extern "C" void saveOpen_init__11dGameover_cFv();
-extern "C" void saveOpen_proc__11dGameover_cFv();
-extern "C" void saveMove_init__11dGameover_cFv();
-extern "C" void saveMove_proc__11dGameover_cFv();
-extern "C" void saveClose_init__11dGameover_cFv();
-extern "C" void saveClose_proc__11dGameover_cFv();
-extern "C" void deleteWait_init__11dGameover_cFv();
-extern "C" void deleteWait_proc__11dGameover_cFv();
-extern "C" void _draw__11dGameover_cFv();
-extern "C" void _delete__11dGameover_cFv();
-extern "C" void __ct__24dDlst_GameOverScrnDraw_cFP10JKRArchive();
-extern "C" void __dt__24dDlst_GameOverScrnDraw_cFv();
-extern "C" void setBackAlpha__24dDlst_GameOverScrnDraw_cFf();
-extern "C" void draw__24dDlst_GameOverScrnDraw_cFv();
-extern "C" static void dGameover_Draw__FP11dGameover_c();
-extern "C" static void dGameover_Execute__FP11dGameover_c();
-extern "C" static bool dGameover_IsDelete__FP11dGameover_c();
-extern "C" static void dGameover_Delete__FP11dGameover_c();
-extern "C" static void dGameover_Create__FP9msg_class();
-extern "C" void d_GameOver_Create__FUc();
-extern "C" void d_GameOver_Delete__FRUi();
-extern "C" void __dt__10dGov_HIO_cFv();
-extern "C" void __sinit_d_gameover_cpp();
-extern "C" void __dt__24dDlst_Gameover_CAPTURE_cFv();
-extern "C" void __dt__12dMenu_save_cFv();
-extern "C" extern char const* const d_d_gameover__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void mDoExt_setCurrentHeap__FP7JKRHeap();
-extern "C" void mDoExt_getSubFont__Fv();
-extern "C" void fopMsgM_SearchByID__FUi();
-extern "C" void fopMsgM_Delete__FPv();
-extern "C" void fopMsgM_create__FsP10fopAc_ac_cP4cXyzPUlPUlPFPv_i();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfGp_setHeapLockFlag__FUc();
-extern "C" void dComIfGp_offHeapLockFlag__Fi();
-extern "C" void setItem__17dSv_player_item_cFiUc();
-extern "C" void getItem__17dSv_player_item_cCFib();
-extern "C" void isFirstBit__21dSv_player_get_item_cCFUc();
-extern "C" void offEventBit__11dSv_event_cFUs();
-extern "C" void isEventBit__11dSv_event_cCFUs();
-extern "C" void getResInfo__14dRes_control_cFPCcP11dRes_info_ci();
-extern "C" void set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c();
-extern "C" void __ct__12dMenu_save_cFv();
-extern "C" void _create__12dMenu_save_cFv();
-extern "C" void _open__12dMenu_save_cFv();
-extern "C" void _delete__12dMenu_save_cFv();
-extern "C" void _move__12dMenu_save_cFv();
-extern "C" void _draw2__12dMenu_save_cFv();
-extern "C" void getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c();
-extern "C" void resetMiniGameItem__13dMeter2Info_cFb();
-extern "C" void __ct__15dMsgScrnLight_cFUcUc();
-extern "C" void draw__15dMsgScrnLight_cFPfffffffQ28JUtility6TColorQ28JUtility6TColor();
-extern "C" void dPaneClass_showNullPane__FP9J2DScreen();
-extern "C" void freeAll__7JKRHeapFv();
-extern "C" void getTotalFreeSize__7JKRHeapFv();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void __ct__9J2DScreenFv();
-extern "C" void setPriority__9J2DScreenFPCcUlP10JKRArchive();
-extern "C" void draw__9J2DScreenFffPC14J2DGrafContext();
-extern "C" void func_802FC800();
-extern "C" void setString__10J2DTextBoxFPCce();
-extern "C" void __register_global_object();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern void* __vt__14mDoHIO_entry_c[3];
-extern "C" extern void* __vt__16dDlst_MenuSave_c[4];
-extern "C" extern void* __vt__23dDlst_MenuSaveExplain_c[4 + 18 /* padding */];
-extern "C" u8 mFadeColor__13mDoGph_gInf_c[4];
-extern "C" u8 mFader__13mDoGph_gInf_c[4];
-extern "C" u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
-extern "C" u8 mFrameBufferTex__13mDoGph_gInf_c[4];
-extern "C" u8 mZbufferTex__13mDoGph_gInf_c[4];
-extern "C" f32 mFadeRate__13mDoGph_gInf_c;
-extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" u8 sManager__10JFWDisplay[4];
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 80453B80-80453B84 002180 0004+00 3/3 0/0 0/0 .sdata2          @3868 */
-SECTION_SDATA2 static u8 lit_3868[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80453B84-80453B88 002184 0004+00 6/6 0/0 0/0 .sdata2          @3869 */
-SECTION_SDATA2 static f32 lit_3869 = 1.0f;
-
-/* 80453B88-80453B8C 002188 0004+00 1/1 0/0 0/0 .sdata2          @3870 */
-SECTION_SDATA2 static f32 lit_3870 = 10.0f;
+/* 8042CA2C-8042CA48 05974C 001C+00 2/2 0/0 0/0 .bss             l_HIO */
+static dGov_HIO_c l_HIO;
 
 /* 8019ACF8-8019AFE0 195638 02E8+00 1/0 0/0 0/0 .text            draw__24dDlst_Gameover_CAPTURE_cFv
  */
@@ -227,264 +91,31 @@ void dDlst_Gameover_CAPTURE_c::draw() {
     GXEnd();
 }
 
-
-/* ############################################################################################## */
 /* 803BBB50-803BBB5C 018C70 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
+static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 803BBB5C-803BBB68 -00001 000C+00 0/1 0/0 0/0 .data            @3883 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3883[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)playerAnmWait_init__11dGameover_cFv,
-};
-#pragma pop
-
-/* 803BBB68-803BBB74 -00001 000C+00 0/1 0/0 0/0 .data            @3884 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3884[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)dispFadeOut_init__11dGameover_cFv,
-};
-#pragma pop
-
-/* 803BBB74-803BBB80 -00001 000C+00 0/1 0/0 0/0 .data            @3885 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3885[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)dispWait_init__11dGameover_cFv,
-};
-#pragma pop
-
-/* 803BBB80-803BBB8C -00001 000C+00 0/1 0/0 0/0 .data            @3886 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3886[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)demoFadeIn_init__11dGameover_cFv,
-};
-#pragma pop
-
-/* 803BBB8C-803BBB98 -00001 000C+00 0/1 0/0 0/0 .data            @3887 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3887[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)demoFadeOut_init__11dGameover_cFv,
-};
-#pragma pop
-
-/* 803BBB98-803BBBA4 -00001 000C+00 0/1 0/0 0/0 .data            @3888 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3888[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)saveOpen_init__11dGameover_cFv,
-};
-#pragma pop
-
-/* 803BBBA4-803BBBB0 -00001 000C+00 0/1 0/0 0/0 .data            @3889 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3889[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)saveMove_init__11dGameover_cFv,
-};
-#pragma pop
-
-/* 803BBBB0-803BBBBC -00001 000C+00 0/1 0/0 0/0 .data            @3890 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3890[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)saveClose_init__11dGameover_cFv,
-};
-#pragma pop
-
-/* 803BBBBC-803BBBC8 -00001 000C+00 0/1 0/0 0/0 .data            @3891 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3891[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)deleteWait_init__11dGameover_cFv,
-};
-#pragma pop
-
 /* 803BBBC8-803BBC34 018CE8 006C+00 2/3 0/0 0/0 .data            init_process */
 typedef void (dGameover_c::*initFunc)();
-SECTION_DATA initFunc init_process[] = {
+initFunc init_process[] = {
     &dGameover_c::playerAnmWait_init, &dGameover_c::dispFadeOut_init, &dGameover_c::dispWait_init,
     &dGameover_c::demoFadeIn_init,    &dGameover_c::demoFadeOut_init, &dGameover_c::saveOpen_init,
     &dGameover_c::saveMove_init,      &dGameover_c::saveClose_init,   &dGameover_c::deleteWait_init,
 };
 
-/* 803BBC34-803BBC40 -00001 000C+00 0/1 0/0 0/0 .data            @3892 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3892[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)playerAnmWait_proc__11dGameover_cFv,
-};
-#pragma pop
-
-/* 803BBC40-803BBC4C -00001 000C+00 0/1 0/0 0/0 .data            @3893 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3893[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)dispFadeOut_proc__11dGameover_cFv,
-};
-#pragma pop
-
-/* 803BBC4C-803BBC58 -00001 000C+00 0/1 0/0 0/0 .data            @3894 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3894[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)dispWait_proc__11dGameover_cFv,
-};
-#pragma pop
-
-/* 803BBC58-803BBC64 -00001 000C+00 0/1 0/0 0/0 .data            @3895 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3895[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)demoFadeIn_proc__11dGameover_cFv,
-};
-#pragma pop
-
-/* 803BBC64-803BBC70 -00001 000C+00 0/1 0/0 0/0 .data            @3896 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3896[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)demoFadeOut_proc__11dGameover_cFv,
-};
-#pragma pop
-
-/* 803BBC70-803BBC7C -00001 000C+00 0/1 0/0 0/0 .data            @3897 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3897[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)saveOpen_proc__11dGameover_cFv,
-};
-#pragma pop
-
-/* 803BBC7C-803BBC88 -00001 000C+00 0/1 0/0 0/0 .data            @3898 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3898[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)saveMove_proc__11dGameover_cFv,
-};
-#pragma pop
-
-/* 803BBC88-803BBC94 -00001 000C+00 0/1 0/0 0/0 .data            @3899 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3899[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)saveClose_proc__11dGameover_cFv,
-};
-#pragma pop
-
-/* 803BBC94-803BBCA0 -00001 000C+00 0/1 0/0 0/0 .data            @3900 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3900[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)deleteWait_proc__11dGameover_cFv,
-};
-#pragma pop
-
 /* 803BBCA0-803BBD0C 018DC0 006C+00 1/2 0/0 0/0 .data            move_process */
 typedef void (dGameover_c::*moveFunc)();
-SECTION_DATA moveFunc move_process[] = {
+moveFunc move_process[] = {
     &dGameover_c::playerAnmWait_proc, &dGameover_c::dispFadeOut_proc, &dGameover_c::dispWait_proc,
     &dGameover_c::demoFadeIn_proc,    &dGameover_c::demoFadeOut_proc, &dGameover_c::saveOpen_proc,
     &dGameover_c::saveMove_proc,      &dGameover_c::saveClose_proc,   &dGameover_c::deleteWait_proc,
 };
 
-/* 803BBD0C-803BBD2C 018E2C 0020+00 1/1 0/0 0/0 .data            offset$4331 */
-SECTION_DATA static f32 offset[8] = {
-    -138.0f, -96.0f, -56.0f, -18.0f, 42.0f, 75.0f, 110.0f, 143.0f,
-};
-
-/* 803BBD2C-803BBD40 -00001 0014+00 1/0 0/0 0/0 .data            l_dGameover_Method */
-SECTION_DATA static void* l_dGameover_Method[5] = {
-    (void*)dGameover_Create__FP9msg_class,     (void*)dGameover_Delete__FP11dGameover_c,
-    (void*)dGameover_Execute__FP11dGameover_c, (void*)dGameover_IsDelete__FP11dGameover_c,
-    (void*)dGameover_Draw__FP11dGameover_c,
-};
-
-/* 803BBD40-803BBD68 -00001 0028+00 0/0 0/0 1/0 .data            g_profile_GAMEOVER */
-SECTION_DATA extern void* g_profile_GAMEOVER[10] = {
-    (void*)0xFFFFFFFD, (void*)0x000CFFFD,
-    (void*)0x03170000, (void*)&g_fpcLf_Method,
-    (void*)0x0000011C, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopMsg_Method,
-    (void*)0x03030000, (void*)&l_dGameover_Method,
-};
-
-/* 803BBD68-803BBD78 018E88 0010+00 2/2 0/0 0/0 .data            __vt__24dDlst_GameOverScrnDraw_c */
-SECTION_DATA extern void* __vt__24dDlst_GameOverScrnDraw_c[4] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__24dDlst_GameOverScrnDraw_cFv,
-    (void*)__dt__24dDlst_GameOverScrnDraw_cFv,
-};
-
-/* 803BBD78-803BBD90 018E98 000C+0C 1/1 1/1 0/0 .data            __vt__12dMenu_save_c */
-SECTION_DATA extern void* __vt__12dMenu_save_c[3 + 3 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dMenu_save_cFv,
-    /* padding */
-    NULL,
-    NULL,
-    NULL,
-};
-
-/* 803BBD90-803BBDA8 018EB0 000C+0C 2/2 0/0 0/0 .data            __vt__10dGov_HIO_c */
-SECTION_DATA extern void* __vt__10dGov_HIO_c[3 + 3 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10dGov_HIO_cFv,
-    /* padding */
-    NULL,
-    NULL,
-    NULL,
-};
-
 /* 8019AFE0-8019B044 195920 0064+00 1/1 0/0 0/0 .text            __ct__10dGov_HIO_cFv */
 dGov_HIO_c::dGov_HIO_c() {
     mScale = 2.7f;
-    mAlpha = lit_3869;
+    mAlpha = 1.0f;
     mAnimSpeed = 0.2f;
 
     mBlack.r = 0;
@@ -497,22 +128,6 @@ dGov_HIO_c::dGov_HIO_c() {
     mWhite.b = 125;
     mWhite.a = 255;
 }
-
-/* ############################################################################################## */
-/* 80394C28-80394C28 021288 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80394C28 = "Gover";
-SECTION_DEAD static char const* const stringBase_80394C2E = "D_MN10A";
-#pragma pop
-
-/* 803BBDA8-803BBDB8 018EC8 0010+00 2/2 0/0 0/0 .data            __vt__24dDlst_Gameover_CAPTURE_c */
-SECTION_DATA extern void* __vt__24dDlst_Gameover_CAPTURE_c[4] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__24dDlst_Gameover_CAPTURE_cFv,
-    (void*)__dt__24dDlst_Gameover_CAPTURE_cFv,
-};
 
 /* 8019B044-8019B2F4 195984 02B0+00 1/1 0/0 0/0 .text            _create__11dGameover_cFv */
 int dGameover_c::_create() {
@@ -654,7 +269,7 @@ void dGameover_c::demoFadeIn_init() {
 /* 8019B484-8019B4D8 195DC4 0054+00 1/0 0/0 0/0 .text            demoFadeIn_proc__11dGameover_cFv */
 void dGameover_c::demoFadeIn_proc() {
     mTimer++;
-    dgo_screen_c->setBackAlpha(lit_3869);
+    dgo_screen_c->setBackAlpha(1.0f);
 
     if (mTimer >= 30) {
         mProc = PROC_SAVE_OPEN;
@@ -785,22 +400,6 @@ int dGameover_c::_delete() {
     return 1;
 }
 
-/* ############################################################################################## */
-/* 80394C28-80394C28 021288 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80394C36 = "zelda_game_over.blo";
-SECTION_DEAD static char const* const stringBase_80394C4A = "tt_block8x8.bti";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80394C5A = "\0\0\0\0\0";
-#pragma pop
-
-/* 80453BA0-80453BA4 0021A0 0004+00 1/1 0/0 0/0 .sdata2          @4290 */
-SECTION_SDATA2 static f32 lit_4290 = 486.0f;
-
-/* 80453BA4-80453BA8 0021A4 0004+00 1/1 0/0 0/0 .sdata2          @4291 */
-SECTION_SDATA2 static f32 lit_4291 = 660.0f;
-
 /* 8019B940-8019BBFC 196280 02BC+00 1/1 0/0 0/0 .text
  * __ct__24dDlst_GameOverScrnDraw_cFP10JKRArchive               */
 dDlst_GameOverScrnDraw_c::dDlst_GameOverScrnDraw_c(JKRArchive* i_archive) {
@@ -856,31 +455,6 @@ void dDlst_GameOverScrnDraw_c::setBackAlpha(f32 i_alpha) {
     mpBackImg->setAlpha(i_alpha * 255.0f);
 }
 
-/* 80453BAC-80453BB0 0021AC 0004+00 1/1 0/0 0/0 .sdata2          @4374 */
-SECTION_SDATA2 static f32 lit_4374 = 608.0f;
-
-/* 80453BB0-80453BB4 0021B0 0004+00 1/1 0/0 0/0 .sdata2          @4375 */
-SECTION_SDATA2 static f32 lit_4375 = 448.0f;
-
-/* 80453BB4-80453BB8 0021B4 0004+00 1/1 0/0 0/0 .sdata2          @4376 */
-SECTION_SDATA2 static f32 lit_4376 = 304.0f;
-
-/* 80453BB8-80453BC0 0021B8 0004+04 1/1 0/0 0/0 .sdata2          @4377 */
-SECTION_SDATA2 static f32 lit_4377[1 + 1 /* padding */] = {
-    224.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 8019BCF4-8019BF3C 196634 0248+00 1/0 0/0 0/0 .text            draw__24dDlst_GameOverScrnDraw_cFv
- */
-/* ############################################################################################## */
-/* 8042CA20-8042CA2C 059740 000C+00 1/1 0/0 0/0 .bss             @3882 */
-// static u8 lit_3882[12];
-
-/* 8042CA2C-8042CA48 05974C 001C+00 2/2 0/0 0/0 .bss             l_HIO */
-static dGov_HIO_c l_HIO;
-
 void dDlst_GameOverScrnDraw_c::draw() {
     J2DGrafContext* graf_ctx = dComIfGp_getCurrentGrafPort();
     graf_ctx->setup2D();
@@ -912,6 +486,8 @@ void dDlst_GameOverScrnDraw_c::draw() {
         img_white.a = l_HIO.mWhite.a;
 
         mpBackImg->draw(0.0f, 0.0f, 608.0f, 448.0f, false, false, false);
+
+        static f32 offset[8] = {-138.0f, -96.0f, -56.0f, -18.0f, 42.0f, 75.0f, 110.0f, 143.0f};
 
         for (int i = 0; i < 8; i++) {
             mpLight->draw(&field_0x10, offset[i] + 304.0f, 224.0f, l_HIO.mScale, l_HIO.mScale,
@@ -969,31 +545,20 @@ bool d_GameOver_Delete(fpc_ProcID& i_id) {
     return false;
 }
 
-/* 8019C06C-8019C0C8 1969AC 005C+00 2/1 0/0 0/0 .text            __dt__10dGov_HIO_cFv */
-// dGov_HIO_c::~dGov_HIO_c() {
-extern "C" void __dt__10dGov_HIO_cFv() {
-    // NONMATCHING
-}
+/* 803BBD2C-803BBD40 -00001 0014+00 1/0 0/0 0/0 .data            l_dGameover_Method */
+static void* l_dGameover_Method[5] = {
+    (void*)dGameover_Create,
+    (void*)dGameover_Delete,
+    (void*)dGameover_Execute,
+    (void*)dGameover_IsDelete,
+    (void*)dGameover_Draw,
+};
 
-/* 8019C0C8-8019C2CC 196A08 0204+00 0/0 1/0 0/0 .text            __sinit_d_gameover_cpp */
-void __sinit_d_gameover_cpp(){// NONMATCHING
-}
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x8019C0C8, __sinit_d_gameover_cpp);
-#pragma pop
-
-/* 8019C2CC-8019C314 196C0C 0048+00 1/0 0/0 0/0 .text            __dt__24dDlst_Gameover_CAPTURE_cFv
- */
-dDlst_Gameover_CAPTURE_c::~dDlst_Gameover_CAPTURE_c() {
-    // NONMATCHING
-}
-
-/* 8019C314-8019C388 196C54 0074+00 1/0 0/0 0/0 .text            __dt__12dMenu_save_cFv */
-// dMenu_save_c::~dMenu_save_c() {
-extern "C" void __dt__12dMenu_save_cFv() {
-    // NONMATCHING
-}
-
-/* 80394C28-80394C28 021288 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+/* 803BBD40-803BBD68 -00001 0028+00 0/0 0/0 1/0 .data            g_profile_GAMEOVER */
+extern void* g_profile_GAMEOVER[10] = {
+    (void*)0xFFFFFFFD, (void*)0x000CFFFD,
+    (void*)0x03170000, (void*)&g_fpcLf_Method,
+    (void*)0x0000011C, (void*)NULL,
+    (void*)NULL,       (void*)&g_fopMsg_Method,
+    (void*)0x03030000, (void*)&l_dGameover_Method,
+};

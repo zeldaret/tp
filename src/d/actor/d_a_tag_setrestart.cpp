@@ -75,8 +75,7 @@ int daTagRestart_c::execute() {
                 restart_pos.y = fopAcM_gc_c::getGroundY();
             }
 
-            s32 player_roomNo = fopAcM_GetRoomNo(player);
-            dComIfGs_setRestartRoom(restart_pos, restart_angle, player_roomNo);
+            dComIfGs_setRestartRoom(restart_pos, restart_angle, fopAcM_GetRoomNo(player));
         }
     }
 

@@ -88,13 +88,19 @@ public:
     /* vt 0x20 */ virtual void setCullBack(_GXCullMode cmode);
     /* vt 0x24 */ virtual void setAlpha(u8);
     /* vt 0x28 */ virtual bool setConnectParent(bool connected);
-    /* vt 0x2C */ virtual void calcMtx();
+    /* vt 0x2C */ virtual void calcMtx() {
+        if (mPaneTree.getParent() != NULL) {
+            makeMatrix(mTranslateX, mTranslateY);
+        }
+    }
     /* vt 0x30 */ virtual void update();
     /* vt 0x34 */ virtual void drawSelf(f32 arg1, f32 arg2);
     /* vt 0x38 */ virtual void drawSelf(f32 arg1, f32 arg2, Mtx* mtx);
     /* vt 0x3C */ virtual J2DPane* search(u64 tag);
     /* vt 0x40 */ virtual J2DPane* searchUserInfo(u64 tag);
-    /* vt 0x44 */ virtual void makeMatrix(f32, f32);
+    /* vt 0x44 */ virtual void makeMatrix(f32 a, f32 b) {
+        makeMatrix(a, b, -mBounds.i.x, -mBounds.i.y);
+    }
     /* vt 0x48 */ virtual void makeMatrix(f32 a, f32 b, f32 c, f32 d);
     /* vt 0x4C */ virtual bool isUsed(const ResTIMG* timg);
     /* vt 0x50 */ virtual bool isUsed(const ResFONT* font);

@@ -45,7 +45,7 @@ struct KCol_Header {
 class dBgWKCol : public dBgW_Base {
 public:
     /* 8007E6F4 */ dBgWKCol();
-    /* 8007E7D0 */ static void initKCollision(void*);
+    /* 8007E7D0 */ static void* initKCollision(void*);
     /* 8007E804 */ void create(void* pprism, void* plc);
     /* 8007E850 */ void getTriNrm(KC_PrismData*, Vec**) const;
     /* 8007E8C0 */ cM3dGPla GetTriPla(int) const;

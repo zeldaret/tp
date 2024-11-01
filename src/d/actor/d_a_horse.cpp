@@ -2460,38 +2460,6 @@ extern "C" void __dt__10cCcD_GSttsFv() {
     // NONMATCHING
 }
 
-/* 80844B8C-80844B90 00CD4C 0004+00 3/0 0/0 0/0 .text
- * setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform           */
-void J3DMtxCalc::setAnmTransform(u8 param_0, J3DAnmTransform* param_1) {
-    /* empty function */
-}
-
-/* 80844B90-80844B94 00CD50 0004+00 3/0 0/0 0/0 .text
- * setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform             */
-void J3DMtxCalc::setAnmTransform(J3DAnmTransform* param_0) {
-    /* empty function */
-}
-
-/* 80844B94-80844B9C 00CD54 0008+00 3/0 0/0 0/0 .text            getAnmTransform__10J3DMtxCalcFUc */
-J3DAnmTransform* J3DMtxCalc::getAnmTransform(u8 param_0) {
-    return NULL;
-}
-
-/* 80844B9C-80844BA4 00CD5C 0008+00 3/0 0/0 0/0 .text            getAnmTransform__10J3DMtxCalcFv */
-J3DAnmTransform* J3DMtxCalc::getAnmTransform() {
-    return NULL;
-}
-
-/* 80844BA4-80844BA8 00CD64 0004+00 3/0 0/0 0/0 .text            setWeight__10J3DMtxCalcFUcf */
-void J3DMtxCalc::setWeight(u8 param_0, f32 param_1) {
-    /* empty function */
-}
-
-/* 80844BA8-80844BB4 00CD68 000C+00 3/0 0/0 0/0 .text            getWeight__10J3DMtxCalcCFUc */
-void J3DMtxCalc::getWeight(u8 param_0) const {
-    // NONMATCHING
-}
-
 /* 80844BB4-80844BDC 00CD74 0028+00 1/0 0/0 0/0 .text
  * init__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>FRC3VecRA3_A4_Cf
  */

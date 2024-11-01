@@ -3,8 +3,6 @@
 // Translation Unit: d/d_drawlist
 //
 
-#define NO_INLINE_DLSTBASE_DRAW
-
 #include "d/d_drawlist.h"
 #include "d/d_s_play.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
@@ -17,10 +15,6 @@
 #include "m_Do/m_Do_lib.h"
 #include "m_Do/m_Do_mtx.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
-
-//
-// Types:
-//
 
 class dDlst_blo_c : public dDlst_base_c {
 public:
@@ -186,178 +180,6 @@ public:
     /* 0x38 */ cXyz* mLightVec;
     /* 0x3c */ dDlst_shadowPoly_c* mPoly;
 };
-
-//
-// Forward References:
-//
-
-extern "C" void setViewPort__14dDlst_window_cFffffff();
-extern "C" void setScissor__14dDlst_window_cFffff();
-extern "C" void draw__13dDlst_2DTri_cFv();
-extern "C" void draw__14dDlst_2DQuad_cFv();
-extern "C" void draw__15dDlst_2DPoint_cFv();
-extern "C" void draw__11dDlst_2DT_cFv();
-extern "C" void draw__12dDlst_2DT2_cFv();
-extern "C" void __ct__12dDlst_2DT2_cFv();
-extern "C" void init__12dDlst_2DT2_cFP7ResTIMGffffUcUcUcff();
-extern "C" void draw__11dDlst_2DM_cFv();
-extern "C" void draw__11dDlst_2Dm_cFv();
-extern "C" void draw__12dDlst_2DMt_cFv();
-extern "C" void getTexture__10J2DPictureCFUc();
-extern "C" void __ct__10dDlst_2D_cFP7ResTIMGssssUc();
-extern "C" void draw__10dDlst_2D_cFv();
-extern "C" void draw__11dDlst_blo_cFv();
-extern "C" void clearAnmTransform__9J2DScreenFv();
-extern "C" void calcMtx__7J2DPaneFv();
-extern "C" void makeMatrix__7J2DPaneFff();
-extern "C" s32 getTypeID__7J2DPaneCFv();
-extern "C" void setWhite__10J2DPictureFQ28JUtility6TColor();
-extern "C" void setBlack__10J2DPictureFQ28JUtility6TColor();
-extern "C" void __dt__10J2DAnmBaseFv();
-extern "C" void init__8cM_rnd_cFiii();
-extern "C" void get__8cM_rnd_cFv();
-extern "C" void getF__8cM_rnd_cFf();
-extern "C" void getFX__8cM_rnd_cFf();
-extern "C" void getValue__8cM_rnd_cFff();
-extern "C" void draw__18dDlst_effectLine_cFv();
-extern "C" void update__18dDlst_effectLine_cFR4cXyzR8_GXColorUsUsUsUsffff();
-extern "C" void set__18dDlst_shadowPoly_cFP10cBgD_Vtx_tUsUsUsP8cM3dGPla();
-extern "C" void draw__18dDlst_shadowPoly_cFv();
-extern "C" static void J3DDrawBuffer__create__FUl();
-extern "C" void reset__18dDlst_shadowReal_cFv();
-extern "C" void imageDraw__18dDlst_shadowReal_cFPA4_f();
-extern "C" void draw__18dDlst_shadowReal_cFv();
-extern "C" static void psdRealCallBack__FP13cBgS_ShdwDrawP10cBgD_Vtx_tiiiP8cM3dGPla();
-extern "C" static void realPolygonCheck__FP4cXyzffP4cXyzP18dDlst_shadowPoly_c();
-extern "C" void __dt__14ShdwDrawPoly_cFv();
-extern "C" static void setkankyoShadow__FP12dKy_tevstr_cPf();
-extern "C" void setShadowRealMtx__18dDlst_shadowReal_cFP4cXyzP4cXyzfffP12dKy_tevstr_c();
-extern "C" void set__18dDlst_shadowReal_cFUlP8J3DModelP4cXyzffP12dKy_tevstr_cff();
-extern "C" void add__18dDlst_shadowReal_cFP8J3DModel();
-extern "C" void draw__20dDlst_shadowSimple_cFv();
-extern "C" void set__20dDlst_shadowSimple_cFP4cXyzffP4cXyzsfP9_GXTexObj();
-extern "C" void init__21dDlst_shadowControl_cFv();
-extern "C" void reset__21dDlst_shadowControl_cFv();
-extern "C" void imageDraw__21dDlst_shadowControl_cFPA4_f();
-extern "C" void draw__21dDlst_shadowControl_cFPA4_f();
-extern "C" void setReal__21dDlst_shadowControl_cFUlScP8J3DModelP4cXyzffP12dKy_tevstr_c();
-extern "C" void addReal__21dDlst_shadowControl_cFUlP8J3DModel();
-extern "C" void setSimple__21dDlst_shadowControl_cFP4cXyzffP4cXyzsfP9_GXTexObj();
-extern "C" void setSimpleTex__21dDlst_shadowControl_cFPC7ResTIMG();
-extern "C" void newData__13dDlst_peekZ_cFssPUl();
-extern "C" void peekData__13dDlst_peekZ_cFv();
-extern "C" void __ct__12dDlst_list_cFv();
-extern "C" void __ct__26mDoExt_3DlineMatSortPacketFv();
-extern "C" void __dt__18dDlst_shadowReal_cFv();
-extern "C" void __dt__17dDlst_shadowTri_cFv();
-extern "C" void __ct__18dDlst_shadowReal_cFv();
-extern "C" void __ct__17dDlst_shadowTri_cFv();
-extern "C" void __ct__20dDlst_shadowSimple_cFv();
-extern "C" void init__12dDlst_list_cFv();
-extern "C" void __dt__12dDlst_list_cFv();
-extern "C" void reset__12dDlst_list_cFv();
-extern "C" void entryZSortXluDrawList__12dDlst_list_cFP13J3DDrawBufferP9J3DPacketR4cXyz();
-extern "C" void drawOpaDrawList__12dDlst_list_cFP13J3DDrawBuffer();
-extern "C" void drawXluDrawList__12dDlst_list_cFP13J3DDrawBuffer();
-extern "C" void drawOpaListItem3d__12dDlst_list_cFv();
-extern "C" void drawXluListItem3d__12dDlst_list_cFv();
-extern "C" void set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c();
-extern "C" void draw__12dDlst_list_cFPP12dDlst_base_cPP12dDlst_base_c();
-extern "C" void wipeIn__12dDlst_list_cFfR8_GXColor();
-extern "C" void wipeIn__12dDlst_list_cFf();
-extern "C" void calcWipe__12dDlst_list_cFv();
-extern "C" dDlst_shadowTri_c* getTri__22dDlst_shadowRealPoly_cFv();
-extern "C" s32 getTriMax__22dDlst_shadowRealPoly_cFv();
-extern "C" void searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen();
-extern "C" void __sinit_d_drawlist_cpp();
-extern "C" extern char const* const d_d_drawlist__stringBase0;
-extern "C" extern void* __vt__11dDlst_2DT_c[3];
-extern "C" extern void* __vt__15dDlst_2DPoint_c[3];
-extern "C" extern void* __vt__14dDlst_2DQuad_c[3];
-extern "C" extern void* __vt__13dDlst_2DTri_c[3];
-extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" u8 mWipeDlst__12dDlst_list_c[72];
-extern "C" u8 mWipeColor__12dDlst_list_c[4];
-extern "C" f32 mWipeRate__12dDlst_list_c;
-extern "C" f32 mWipeSpeed__12dDlst_list_c[1 + 1 /* padding */];
-extern "C" extern u8 data_80450EE0;
-
-//
-// External References:
-//
-
-extern "C" void __dt__4cXyzFv();
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void mDoMtx_lookAt__FPA4_fPC3VecPC3Vecs();
-extern "C" void scaleM__14mDoMtx_stack_cFfff();
-extern "C" void __ct__4cXyzFv();
-extern "C" void __dt__26mDoExt_3DlineMatSortPacketFv();
-extern "C" void mDoLib_setResTimgObj__FPC7ResTIMGP9_GXTexObjUlP10_GXTlutObj();
-extern "C" void ShdwDraw__4cBgSFP13cBgS_ShdwDraw();
-extern "C" void dKy_plight_near_pos__Fv();
-extern "C" void dKy_GxFog_set__Fv();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void normalize__4cXyzFv();
-extern "C" void isZero__4cXyzCFv();
-extern "C" void __ct__13cBgS_ShdwDrawFv();
-extern "C" void __dt__13cBgS_ShdwDrawFv();
-extern "C" void Set__13cBgS_ShdwDrawFR4cXyzR4cXyz();
-extern "C" void SetCallback__13cBgS_ShdwDrawFPFP13cBgS_ShdwDrawP10cBgD_Vtx_tiiiP8cM3dGPla_i();
-extern "C" void cLib_chaseUC__FPUcUcUc();
-extern "C" void calcViewFrustum__11J3DUClipperFv();
-extern "C" void clip__11J3DUClipperCFPA4_CfP3VecP3Vec();
-extern "C" void* __nw__FUl();
-extern "C" void* __nwa__FUli();
-extern "C" void __dl__FPv();
-extern "C" void getGlbResource__10JKRArchiveFUlPCcP10JKRArchive();
-extern "C" void clearAnmTransform__7J2DPaneFv();
-extern "C" void draw__9J2DScreenFffPC14J2DGrafContext();
-extern "C" void __ct__10J2DPictureFv();
-extern "C" void reinitGX__6J3DSysFv();
-extern "C" void drawFast__14J3DShapePacketFv();
-extern "C" void loadPreDrawSetting__8J3DShapeCFv();
-extern "C" void initialize__13J3DDrawBufferFv();
-extern "C" void allocBuffer__13J3DDrawBufferFUl();
-extern "C" void __dt__13J3DDrawBufferFv();
-extern "C" void frameInit__13J3DDrawBufferFv();
-extern "C" void entryImm__13J3DDrawBufferFP9J3DPacketUs();
-extern "C" void draw__13J3DDrawBufferCFv();
-extern "C" void GXClearVtxDesc();
-extern "C" void GXPixModeSync();
-extern "C" void __destroy_arr();
-extern "C" void __construct_array();
-extern "C" void _savefpr_26();
-extern "C" void _restfpr_26();
-extern "C" void _savegpr_22();
-extern "C" void _savegpr_23();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_22();
-extern "C" void _restgpr_23();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__26mDoExt_3DlineMatSortPacket[5];
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern void* __vt__9J3DPacket[5];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mClipper__14mDoLib_clipper[92];
-extern "C" u8 sincosTable___5JMath[65536];
-extern "C" u8 mBackColor__13mDoGph_gInf_c[4];
-extern "C" f32 mSystemFar__14mDoLib_clipper;
-extern "C" f32 mFovyRate__14mDoLib_clipper;
-extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
-
-//
-// Declarations:
-//
 
 /* 80051AC0-80051ADC 04C400 001C+00 0/0 3/3 0/0 .text setViewPort__14dDlst_window_cFffffff */
 void dDlst_window_c::setViewPort(f32 xOrig, f32 yOrig, f32 width, f32 height, f32 nearZ, f32 farZ) {
@@ -715,55 +537,42 @@ void dDlst_2DT2_c::draw() {
     dComIfGp_getCurrentGrafPort()->setup2D();
 }
 
-/* ############################################################################################## */
 /* 803A87A0-803A87C0 0058C0 000C+14 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
+static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 803A87C0-803A8800 0058E0 003C+04 0/0 0/0 0/0 .data            l_frontZMat */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_frontZMat[] ALIGN_DECL(32) = {
+static u8 l_frontZMat[] ALIGN_DECL(32) = {
     0x61, 0x40, 0x00, 0x00, 0x07, 0x10, 0x00, 0x00, 0x10, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x10,
     0x00, 0x00, 0x10, 0x09, 0x00, 0x00, 0x00, 0x01, 0x61, 0x00, 0x00, 0x40, 0x10, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-#pragma pop
 
 /* 803A8800-803A882C 005920 002A+02 0/0 0/0 0/0 .data            l_frontNoZSubMat */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_frontNoZSubMat[] ALIGN_DECL(32) = {
+static u8 l_frontNoZSubMat[] ALIGN_DECL(32) = {
     0x61, 0x40, 0x00, 0x00, 0x06, 0x61, 0x41, 0x00, 0x09, 0x35, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-#pragma pop
 
 /* 803A882C-803A88A0 00594C 0060+14 0/1 0/0 0/0 .data            l_shadowVolPos */
-#pragma push
-#pragma force_active on
-SECTION_DATA static Vec l_shadowVolPos[] = {
+static Vec l_shadowVolPos[] = {
     {-1.0f, -1.0f, 0.0f}, {-1.0f, -1.0f, -300.0f}, {-1.0f, 1.0f, 0.0f}, {-1.0f, 1.0f, -300.0f},
     {1.0f, -1.0f, 0.0f},  {1.0f, -1.0f, -300.0f},  {1.0f, 1.0f, 0.0f},  {1.0f, 1.0f, -300.0f},
 };
-#pragma pop
 
 /* 803A88A0-803A88E0 0059C0 003B+05 0/0 0/0 0/0 .data            l_shadowVolDL */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_shadowVolDL[] ALIGN_DECL(32) = {
+static u8 l_shadowVolDL[] ALIGN_DECL(32) = {
     0x80, 0x00, 0x18, 0x06, 0x02, 0x03, 0x07, 0x00, 0x04, 0x05, 0x01, 0x06, 0x04, 0x00, 0x02,
     0x07, 0x05, 0x04, 0x06, 0x03, 0x01, 0x05, 0x07, 0x02, 0x00, 0x01, 0x03, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-#pragma pop
 
 /* 803A88E0-803A8940 005A00 005A+06 1/1 0/0 0/0 .data            l_shadowProjMat */
-SECTION_DATA static u8 l_shadowProjMat[] ALIGN_DECL(32) = {
+static u8 l_shadowProjMat[] ALIGN_DECL(32) = {
     0x61, 0x28, 0x38, 0x03, 0xC0, 0x61, 0xC0, 0x08, 0xFF, 0xFF, 0x61, 0xC1, 0x08, 0xE6, 0x70,
     0x61, 0x43, 0x00, 0x00, 0x01, 0x61, 0x40, 0x00, 0x00, 0x07, 0x61, 0x41, 0x00, 0x04, 0xAD,
     0x61, 0xF3, 0x64, 0x00, 0x00, 0x10, 0x00, 0x00, 0x10, 0x3F, 0x00, 0x00, 0x00, 0x01, 0x10,
@@ -773,9 +582,7 @@ SECTION_DATA static u8 l_shadowProjMat[] ALIGN_DECL(32) = {
 };
 
 /* 803A8940-803A89A0 005A60 005A+06 0/0 0/0 0/0 .data            l_shadowVolMat */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_shadowVolMat[] ALIGN_DECL(32) = {
+static u8 l_shadowVolMat[] ALIGN_DECL(32) = {
     0x61, 0x28, 0x38, 0x00, 0x00, 0x61, 0xC0, 0x08, 0xFF, 0xFC, 0x61, 0xC1, 0x08, 0xFF, 0x90,
     0x61, 0x43, 0x00, 0x00, 0x41, 0x61, 0x40, 0x00, 0x00, 0x0D, 0x61, 0x41, 0x00, 0x01, 0x35,
     0x61, 0xF3, 0x7F, 0x00, 0x00, 0x10, 0x00, 0x00, 0x10, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x10,
@@ -783,12 +590,9 @@ SECTION_DATA static u8 l_shadowVolMat[] ALIGN_DECL(32) = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-#pragma pop
 
 /* 803A89A0-803A8A00 005AC0 0055+0B 0/1 0/0 0/0 .data            l_clearMat */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_clearMat[] ALIGN_DECL(32) = {
+static u8 l_clearMat[] ALIGN_DECL(32) = {
     0x61, 0x28, 0x38, 0x00, 0x00, 0x61, 0xC0, 0x08, 0xFF, 0xFF, 0x61, 0xC1, 0x08, 0xFF, 0xA0,
     0x61, 0x40, 0x00, 0x00, 0x06, 0x61, 0x41, 0x00, 0x00, 0x14, 0x61, 0xF3, 0x7F, 0x00, 0x00,
     0x10, 0x00, 0x00, 0x10, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x10, 0x09, 0x00,
@@ -796,12 +600,9 @@ SECTION_DATA static u8 l_clearMat[] ALIGN_DECL(32) = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-#pragma pop
 
 /* 803A8A00-803A8A60 005B20 0055+0B 0/1 0/0 0/0 .data            l_frontMat */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_frontMat[] ALIGN_DECL(32) = {
+static u8 l_frontMat[] ALIGN_DECL(32) = {
     0x61, 0x28, 0x38, 0x00, 0x00, 0x61, 0xC0, 0x08, 0xFF, 0xFF, 0x61, 0xC1, 0x08, 0xFF, 0x90,
     0x61, 0x43, 0x00, 0x00, 0x41, 0x61, 0x40, 0x00, 0x00, 0x07, 0x61, 0x41, 0x00, 0x01, 0x15,
     0x10, 0x00, 0x00, 0x10, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x10, 0x09, 0x00,
@@ -809,34 +610,25 @@ SECTION_DATA static u8 l_frontMat[] ALIGN_DECL(32) = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-#pragma pop
 
 /* 803A8A60-803A8A9C 005B80 003C+00 0/1 0/0 0/0 .data            l_backSubMat */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_backSubMat[] ALIGN_DECL(32) = {
+static u8 l_backSubMat[] ALIGN_DECL(32) = {
     0x61, 0x41, 0x00, 0x09, 0x35, 0x10, 0x00, 0x00, 0x10, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x10,
     0x00, 0x00, 0x10, 0x09, 0x00, 0x00, 0x00, 0x01, 0x61, 0x00, 0x00, 0x80, 0x10, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-#pragma pop
 
 /* 803A8A9C-803A8B60 005BBC 00A8+1C 0/1 0/0 0/0 .data            l_simpleShadowPos */
-#pragma push
-#pragma force_active on
-SECTION_DATA static Vec l_simpleShadowPos[] = {
+static Vec l_simpleShadowPos[] = {
     {0.0f, -1.0f, 0.0f},   {0.0f, 0.0f, 0.0f},   {1.0f, -1.0f, -1.0f}, {1.0f, 0.0f, -1.0f},
     {-1.0f, -1.0f, -1.0f}, {-1.0f, 0.0f, -1.0f}, {-1.0f, -1.0f, 1.0f}, {-1.0f, 0.0f, 1.0f},
     {1.0f, -1.0f, 1.0f},   {1.0f, 0.0f, 1.0f},   {-1.0f, 1.0f, -1.0f}, {1.0f, 1.0f, -1.0f},
     {1.0f, 1.0f, 1.0f},    {-1.0f, 1.0f, 1.0f},
 };
-#pragma pop
 
 /* 803A8B60-803A8BC0 005C80 0058+08 0/1 0/0 0/0 .data            l_shadowVolumeDL */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_shadowVolumeDL[] ALIGN_DECL(32) = {
+static u8 l_shadowVolumeDL[] ALIGN_DECL(32) = {
     0x98, 0x00, 0x05, 0x03, 0x09, 0x01, 0x07, 0x05, 0x98, 0x00, 0x05, 0x04, 0x06, 0x00, 0x08,
     0x02, 0x98, 0x00, 0x04, 0x04, 0x05, 0x06, 0x07, 0x98, 0x00, 0x04, 0x02, 0x03, 0x04, 0x05,
     0x98, 0x00, 0x04, 0x08, 0x09, 0x02, 0x03, 0x98, 0x00, 0x04, 0x06, 0x07, 0x08, 0x09, 0x98,
@@ -844,12 +636,9 @@ SECTION_DATA static u8 l_shadowVolumeDL[] ALIGN_DECL(32) = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-#pragma pop
 
 /* 803A8BC0-803A8C20 005CE0 0055+0B 0/1 0/0 0/0 .data            l_shadowSealTexDL */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_shadowSealTexDL[] ALIGN_DECL(32) = {
+static u8 l_shadowSealTexDL[] ALIGN_DECL(32) = {
     0x61, 0x28, 0x38, 0x03, 0xC0, 0x61, 0x40, 0x00, 0x00, 0x06, 0x61, 0x41, 0x00, 0x06, 0x15,
     0x10, 0x00, 0x00, 0x10, 0x3F, 0x00, 0x00, 0x00, 0x01, 0x10, 0x00, 0x00, 0x10, 0x09, 0x00,
     0x00, 0x00, 0x00, 0x61, 0x00, 0x00, 0x40, 0x01, 0x80, 0x00, 0x04, 0x0A, 0x00, 0x00, 0x0B,
@@ -857,12 +646,9 @@ SECTION_DATA static u8 l_shadowSealTexDL[] ALIGN_DECL(32) = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-#pragma pop
 
 /* 803A8C20-803A8C80 005D40 0055+0B 0/1 0/0 0/0 .data            l_shadowSealTex2DL */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_shadowSealTex2DL[] ALIGN_DECL(32) = {
+static u8 l_shadowSealTex2DL[] ALIGN_DECL(32) = {
     0x61, 0x28, 0x38, 0x03, 0xC0, 0x61, 0x40, 0x00, 0x00, 0x06, 0x61, 0x41, 0x00, 0x06, 0x15,
     0x10, 0x00, 0x00, 0x10, 0x3F, 0x00, 0x00, 0x00, 0x01, 0x10, 0x00, 0x00, 0x10, 0x09, 0x00,
     0x00, 0x00, 0x00, 0x61, 0x00, 0x00, 0x40, 0x01, 0x80, 0x00, 0x04, 0x0A, 0x00, 0x00, 0x0B,
@@ -870,12 +656,9 @@ SECTION_DATA static u8 l_shadowSealTex2DL[] ALIGN_DECL(32) = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-#pragma pop
 
 /* 803A8C80-803A8D00 005DA0 0069+17 0/1 0/0 0/0 .data            l_shadowSealDL */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_shadowSealDL[] ALIGN_DECL(32) = {
+static u8 l_shadowSealDL[] ALIGN_DECL(32) = {
     0x10, 0x00, 0x00, 0x10, 0x0E, 0x00, 0x00, 0x05, 0x00, 0x10, 0x00, 0x00, 0x10, 0x10, 0x00,
     0x00, 0x05, 0x00, 0x61, 0x28, 0x38, 0x00, 0x00, 0x61, 0xC0, 0x08, 0xFF, 0xFF, 0x61, 0xC1,
     0x08, 0xFF, 0xB0, 0x61, 0x40, 0x00, 0x00, 0x06, 0x61, 0x41, 0x00, 0x06, 0xED, 0x10, 0x00,
@@ -884,48 +667,6 @@ SECTION_DATA static u8 l_shadowSealDL[] ALIGN_DECL(32) = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-#pragma pop
-
-/* 803A8D00-803A8D7C 005E20 007B+01 1/1 0/0 0/0 .data            l_matDL$5404 */
-SECTION_DATA static u8 l_matDL[] ALIGN_DECL(32) = {
-    0x10, 0x00, 0x00, 0x10, 0x0E, 0x00, 0x00, 0x04, 0x00, 0x10, 0x00, 0x00, 0x10, 0x10, 0x00, 0x00,
-    0x04, 0x00, 0x61, 0x28, 0x38, 0x00, 0x00, 0x61, 0xC0, 0x08, 0xFF, 0xF2, 0x61, 0xC1, 0x08, 0xFF,
-    0x90, 0x61, 0x43, 0x00, 0x00, 0x41, 0x61, 0xF3, 0x7F, 0x00, 0x00, 0x10, 0x00, 0x00, 0x10, 0x3F,
-    0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x10, 0x09, 0x00, 0x00, 0x00, 0x01, 0x61, 0x00, 0x00,
-    0x40, 0x10, 0x61, 0xEE, 0x00, 0x00, 0x00, 0x61, 0xEF, 0x00, 0x00, 0x00, 0x61, 0xF0, 0x00, 0x00,
-    0x00, 0x61, 0xF1, 0x00, 0x00, 0x00, 0x61, 0xF2, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 803A8D7C-803A8D8C 005E9C 0010+00 1/1 0/0 0/0 .data            l_imageDrawColor$5405 */
-SECTION_DATA static GXColor l_imageDrawColor[4] = {
-    {255, 0, 0, 0},
-    {0, 255, 0, 0},
-    {0, 0, 255, 0},
-    {0, 0, 0, 255},
-};
-
-/* 803A8D8C-803A8D9C 005EAC 0010+00 0/1 0/0 0/0 .data            l_tevColorChan$5438 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static GXTevColor l_tevColorChan[4] = {
-    GX_CH_RED,
-    GX_CH_GREEN,
-    GX_CH_BLUE,
-    GX_CH_ALPHA,
-};
-#pragma pop
-
-/* 803A8D9C-803A8DCC 005EBC 0030+00 0/0 0/0 0/0 .data            mtx_adj$5842 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static Mtx mtx_adj = {
-    {0.5f, 0.0f, 0.0f, 0.5f},
-    {0.0f, -0.5f, 0.0f, 0.5f},
-    {0.0f, 0.0f, 1.0f, 0.0f},
-};
-#pragma pop
 
 /* 80052B00-80052B4C 04D440 004C+00 1/1 0/0 0/0 .text            __ct__12dDlst_2DT2_cFv */
 dDlst_2DT2_c::dDlst_2DT2_c() {
@@ -1186,48 +927,9 @@ void dDlst_2D_c::draw() {
     mpPicture.draw(mPosX, mPosY, mSizeX, mSizeY, false, false, false);
 }
 
-
 /* 80053B64-80053BA0 04E4A4 003C+00 1/0 0/0 0/0 .text            draw__11dDlst_blo_cFv */
 void dDlst_blo_c::draw() {
     mScreen.draw(field_0x120, field_0x124, dComIfGp_getCurrentGrafPort());
-}
-
-
-/* 80053BA0-80053BC0 04E4E0 0020+00 0/0 1/0 0/0 .text            clearAnmTransform__9J2DScreenFv */
-void J2DScreen::clearAnmTransform() {
-    // NONMATCHING
-}
-
-/* 80053BC0-80053C00 04E500 0040+00 0/0 7/0 0/0 .text            calcMtx__7J2DPaneFv */
-void J2DPane::calcMtx() {
-    // NONMATCHING
-}
-
-/* 80053C00-80053C3C 04E540 003C+00 0/0 8/0 0/0 .text            makeMatrix__7J2DPaneFff */
-void J2DPane::makeMatrix(f32 param_0, f32 param_1) {
-    // NONMATCHING
-}
-
-/* 80053C3C-80053C44 04E57C 0008+00 0/0 1/0 0/0 .text            getTypeID__7J2DPaneCFv */
-// s32 J2DPane::getTypeID() const {
-extern "C" s32 getTypeID__7J2DPaneCFv() {
-    return 16;
-}
-
-/* 80053C44-80053C6C 04E584 0028+00 0/0 1/0 0/0 .text setWhite__10J2DPictureFQ28JUtility6TColor */
-bool J2DPicture::setWhite(JUtility::TColor param_0) {
-    // NONMATCHING
-}
-
-/* 80053C6C-80053C94 04E5AC 0028+00 0/0 1/0 0/0 .text setBlack__10J2DPictureFQ28JUtility6TColor */
-bool J2DPicture::setBlack(JUtility::TColor param_0) {
-    // NONMATCHING
-}
-
-/* 80053C94-80053CDC 04E5D4 0048+00 1/0 0/0 0/0 .text            __dt__10J2DAnmBaseFv */
-// J2DAnmBase::~J2DAnmBase() {
-extern "C" void __dt__10J2DAnmBaseFv() {
-    // NONMATCHING
 }
 
 /* 80053CDC-80053CEC 04E61C 0010+00 0/0 2/2 0/0 .text            init__8cM_rnd_cFiii */
@@ -1246,7 +948,6 @@ f32 cM_rnd_c::get() {
 
     return fabsf(rm);
 }
-
 
 /* 80053DE0-80053E18 04E720 0038+00 1/1 0/0 0/0 .text            getF__8cM_rnd_cFf */
 f32 cM_rnd_c::getF(f32 param_0) {
@@ -1776,6 +1477,26 @@ void dDlst_shadowControl_c::reset() {
 
 /* 800557C8-80055A14 050108 024C+00 0/0 1/1 0/0 .text imageDraw__21dDlst_shadowControl_cFPA4_f */
 void dDlst_shadowControl_c::imageDraw(Mtx param_0) {
+    static u8 l_matDL[] ALIGN_DECL(32) = {
+        0x10, 0x00, 0x00, 0x10, 0x0E, 0x00, 0x00, 0x04, 0x00, 0x10, 0x00, 0x00, 0x10, 0x10,
+        0x00, 0x00, 0x04, 0x00, 0x61, 0x28, 0x38, 0x00, 0x00, 0x61, 0xC0, 0x08, 0xFF, 0xF2,
+        0x61, 0xC1, 0x08, 0xFF, 0x90, 0x61, 0x43, 0x00, 0x00, 0x41, 0x61, 0xF3, 0x7F, 0x00,
+        0x00, 0x10, 0x00, 0x00, 0x10, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x10,
+        0x09, 0x00, 0x00, 0x00, 0x01, 0x61, 0x00, 0x00, 0x40, 0x10, 0x61, 0xEE, 0x00, 0x00,
+        0x00, 0x61, 0xEF, 0x00, 0x00, 0x00, 0x61, 0xF0, 0x00, 0x00, 0x00, 0x61, 0xF1, 0x00,
+        0x00, 0x00, 0x61, 0xF2, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    };
+
+    static GXColor l_imageDrawColor[4] = {
+        {255, 0, 0, 0},
+        {0, 255, 0, 0},
+        {0, 0, 255, 0},
+        {0, 0, 0, 255},
+    };
+
+
     GXCallDisplayList(l_matDL, 0x60);
     GXSetZMode(GX_DISABLE, GX_LEQUAL, GX_DISABLE);
     GXSetZCompLoc(GX_TRUE);
@@ -1827,6 +1548,13 @@ void dDlst_shadowControl_c::imageDraw(Mtx param_0) {
 /* 80055A14-80055C74 050354 0260+00 0/0 1/1 0/0 .text            draw__21dDlst_shadowControl_cFPA4_f
  */
 void dDlst_shadowControl_c::draw(Mtx param_0) {
+    static GXTevColor l_tevColorChan[4] = {
+        GX_CH_RED,
+        GX_CH_GREEN,
+        GX_CH_BLUE,
+        GX_CH_ALPHA,
+    };
+
     j3dSys.reinitGX();
     GXSetNumIndStages(0);
     dKy_GxFog_set();
@@ -1878,6 +1606,16 @@ void dDlst_shadowControl_c::draw(Mtx param_0) {
     GXSetColorUpdate(GX_ENABLE);
     GXSetAlphaUpdate(GX_DISABLE);
 }
+
+/* 803A8D9C-803A8DCC 005EBC 0030+00 0/0 0/0 0/0 .data            mtx_adj$5842 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static Mtx mtx_adj = {
+    {0.5f, 0.0f, 0.0f, 0.5f},
+    {0.0f, -0.5f, 0.0f, 0.5f},
+    {0.0f, 0.0f, 1.0f, 0.0f},
+};
+#pragma pop
 
 /* 80055C74-80055F1C 0505B4 02A8+00 0/0 1/1 1/1 .text
  * setReal__21dDlst_shadowControl_cFUlScP8J3DModelP4cXyzffP12dKy_tevstr_c */
@@ -2259,11 +1997,4 @@ void dDlst_list_c::calcWipe() {
         mWipeDlst.setScaleY(mWipeDlst.getScaleX() * 1.218f);
         dComIfGd_set2DXlu(&mWipeDlst);
     }
-}
-
-/* 800569B0-800569B4 0512F0 0004+00 1/0 7/0 0/0 .text
- * searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen             */
-// void J2DAnmBase::searchUpdateMaterialID(J2DScreen* param_0) {
-extern "C" void searchUpdateMaterialID__10J2DAnmBaseFP9J2DScreen() {
-    /* empty function */
 }
