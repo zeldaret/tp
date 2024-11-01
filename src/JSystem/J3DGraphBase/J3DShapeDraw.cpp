@@ -4,6 +4,7 @@
 //
 
 #include "JSystem/J3DGraphBase/J3DShapeDraw.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "string.h"
 #include "dolphin/gx.h"
 #include "dolphin/os/OSCache.h"
@@ -34,8 +35,8 @@ u32 J3DShapeDraw::countVertex(u32 stride) {
     return count;
 }
 
-#ifdef NONMATCHING
 /* 80314974-80314ABC 30F2B4 0148+00 0/0 1/1 0/0 .text addTexMtxIndexInDL__12J3DShapeDrawFUlUlUl */
+// NONMATCHING regalloc
 void J3DShapeDraw::addTexMtxIndexInDL(u32 stride, u32 attrOffs, u32 valueBase) {
     u32 byteNum = countVertex(stride);
     u32 newSize = ALIGN_NEXT(mDisplayListSize + byteNum, 0x20);
@@ -58,8 +59,7 @@ void J3DShapeDraw::addTexMtxIndexInDL(u32 stride, u32 attrOffs, u32 valueBase) {
         newDL += 2;
 
         for (s32 i = 0; i < (u16)vtxNum; i++) {
-            // mul arg swap
-            u8* oldDLVtx = (&oldDL[stride * i + 3]);
+            u8* oldDLVtx = &oldDL[stride * i + 3];
             u8 pnmtxidx = *oldDLVtx;
             memcpy(newDL, oldDLVtx, attrOffs);
             u8* newDL1 = &newDL[attrOffs];
@@ -79,11 +79,6 @@ void J3DShapeDraw::addTexMtxIndexInDL(u32 stride, u32 attrOffs, u32 valueBase) {
     mDisplayList = newDLStart;
     DCStoreRange(newDLStart, mDisplayListSize);
 }
-#else
-void J3DShapeDraw::addTexMtxIndexInDL(u32 param_0, u32 param_1, u32 param_2) {
-    // NONMATCHING
-}
-#endif
 
 /* 80314ABC-80314AD4 30F3FC 0018+00 0/0 1/1 0/0 .text            __ct__12J3DShapeDrawFPCUcUl */
 J3DShapeDraw::J3DShapeDraw(u8 const* displayList, u32 displayListSize) {

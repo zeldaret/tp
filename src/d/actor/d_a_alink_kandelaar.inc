@@ -225,11 +225,6 @@ void daAlink_c::preKandelaarDraw() {
     field_0x344c = ((near + (far * near) / proj.z) / (far - near) + 1.0f) * 1.6777215E7f;
 }
 
-
-/* 80110E80-80110E84 10B7C0 0004+00 0/0 3/0 0/0 .text
- * setTevColor__11J3DTevBlockFUlPC13J3DGXColorS10               */
-void J3DTevBlock::setTevColor(u32 param_0, J3DGXColorS10 const* param_1) {}
-
 /* 80110E84-80110F88 10B7C4 0104+00 4/4 0/0 0/0 .text            setKandelaarModel__9daAlink_cFv */
 void daAlink_c::setKandelaarModel() {
     field_0x2f94 = 0;

@@ -113,6 +113,7 @@ public:
  */
 class J3DPatchedMaterial : public J3DMaterial {
 public:
+    J3DPatchedMaterial() { initialize(); }
     /* 80316FB8 */ void initialize();
 
     /* 80316FD8 */ virtual void makeDisplayList();

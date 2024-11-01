@@ -6,113 +6,12 @@
 #include "JSystem/J3DGraphBase/J3DShapeMtx.h"
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
 #include "JSystem/J3DGraphBase/J3DGD.h"
-#include "dol2asm.h"
+#include "JSystem/J3DGraphBase/J3DMatBlock.h"
+#include "JSystem/J3DGraphBase/J3DTexture.h"
 #include "dolphin/types.h"
 
-//
-// Forward References:
-//
-
-extern "C" void resetMtxLoadCache__11J3DShapeMtxFv();
-extern "C" void loadMtxIndx_PNGP__11J3DShapeMtxCFiUs();
-extern "C" void loadMtxIndx_PCPU__11J3DShapeMtxCFiUs();
-extern "C" void loadMtxIndx_NCPU__11J3DShapeMtxCFiUs();
-extern "C" void loadMtxIndx_PNCPU__11J3DShapeMtxCFiUs();
-extern "C" void loadExecute__17J3DDifferedTexMtxFPA4_Cf();
-extern "C" void loadMtxConcatView_PNGP__21J3DShapeMtxConcatViewCFiUs();
-extern "C" void loadMtxConcatView_PCPU__21J3DShapeMtxConcatViewCFiUs();
-extern "C" void loadMtxConcatView_NCPU__21J3DShapeMtxConcatViewCFiUs();
-extern "C" void loadMtxConcatView_PNCPU__21J3DShapeMtxConcatViewCFiUs();
-extern "C" void loadMtxConcatView_PNGP_LOD__21J3DShapeMtxConcatViewCFiUs();
-extern "C" void load__11J3DShapeMtxCFv();
-extern "C" void calcNBTScale__11J3DShapeMtxFRC3VecPA3_A3_fPA3_A3_f();
-extern "C" void load__21J3DShapeMtxConcatViewCFv();
-extern "C" void loadNrmMtx__21J3DShapeMtxConcatViewCFiUsPA4_f();
-extern "C" void load__16J3DShapeMtxMultiCFv();
-extern "C" void calcNBTScale__16J3DShapeMtxMultiFRC3VecPA3_A3_fPA3_A3_f();
-extern "C" void load__26J3DShapeMtxMultiConcatViewCFv();
-extern "C" void loadNrmMtx__26J3DShapeMtxMultiConcatViewCFiUsPA4_f();
-extern "C" void load__27J3DShapeMtxBBoardConcatViewCFv();
-extern "C" void load__28J3DShapeMtxYBBoardConcatViewCFv();
-extern "C" void __dt__28J3DShapeMtxYBBoardConcatViewFv();
-extern "C" void getType__28J3DShapeMtxYBBoardConcatViewCFv();
-extern "C" void loadNrmMtx__21J3DShapeMtxConcatViewCFiUs();
-extern "C" void getUseMtxIndex__11J3DShapeMtxCFUs();
-extern "C" void __dt__27J3DShapeMtxBBoardConcatViewFv();
-extern "C" void getType__27J3DShapeMtxBBoardConcatViewCFv();
-extern "C" void __dt__26J3DShapeMtxMultiConcatViewFv();
-extern "C" void getType__26J3DShapeMtxMultiConcatViewCFv();
-extern "C" void getUseMtxNum__26J3DShapeMtxMultiConcatViewCFv();
-extern "C" void getUseMtxIndex__26J3DShapeMtxMultiConcatViewCFUs();
-extern "C" void loadNrmMtx__26J3DShapeMtxMultiConcatViewCFiUs();
-extern "C" void __dt__16J3DShapeMtxMultiFv();
-extern "C" void getType__16J3DShapeMtxMultiCFv();
-extern "C" void getUseMtxNum__16J3DShapeMtxMultiCFv();
-extern "C" void getUseMtxIndex__16J3DShapeMtxMultiCFUs();
-extern "C" void __dt__21J3DShapeMtxConcatViewFv();
-extern "C" void getType__21J3DShapeMtxConcatViewCFv();
-extern "C" void __dt__11J3DShapeMtxFv();
-extern "C" void getType__11J3DShapeMtxCFv();
-extern "C" void __sinit_J3DShapeMtx_cpp();
-extern "C" u8 sMtxLoadPipeline__11J3DShapeMtx[48];
-extern "C" u8 sMtxLoadPipeline__21J3DShapeMtxConcatView[48];
-extern "C" u8 sMtxLoadLODPipeline__21J3DShapeMtxConcatView[48];
-extern "C" u8 sMtxLoadCache__11J3DShapeMtx[20 + 4 /* padding */];
-extern "C" u8 sCurrentPipeline__11J3DShapeMtx[4];
-extern "C" u8 sCurrentScaleFlag__11J3DShapeMtx[4];
-extern "C" u8 sTexMtxLoadType__11J3DShapeMtx[4];
-extern "C" u8 sMtxPtrTbl__21J3DShapeMtxConcatView[8];
-extern "C" u8 sTexGenBlock__17J3DDifferedTexMtx[4];
-extern "C" u8 sTexMtxObj__17J3DDifferedTexMtx[4];
-
-//
-// External References:
-//
-
-void J3DFifoLoadPosMtxImm(Mtx, u32);
-void J3DFifoLoadNrmMtxImm(Mtx, u32);
-void J3DFifoLoadNrmMtxImm3x3(Mtx33, u32);
-void J3DFifoLoadNrmMtxToTexMtx(Mtx, u32);
-void J3DFifoLoadNrmMtxToTexMtx33(Mtx33, u32);
-
-extern "C" bool getUseMtxNum__11J3DShapeMtxCFv();
-extern "C" void __dl__FPv();
-extern "C" void J3DFifoLoadPosMtxImm__FPA4_fUl();
-extern "C" void J3DFifoLoadNrmMtxImm__FPA4_fUl();
-extern "C" void J3DFifoLoadNrmMtxImm3x3__FPA3_fUl();
-extern "C" void J3DFifoLoadNrmMtxToTexMtx__FPA4_fUl();
-extern "C" void J3DFifoLoadNrmMtxToTexMtx3x3__FPA3_fUl();
-extern "C" void loadPosMtxIndx__6J3DSysCFiUs();
-extern "C" void loadNrmMtxIndx__6J3DSysCFiUs();
-extern "C" void J3DCalcBBoardMtx__FPA4_f();
-extern "C" void J3DCalcYBBoardMtx__FPA4_f();
-extern "C" void J3DPSCalcInverseTranspose__FPA4_fPA3_f();
-extern "C" void J3DGetTextureMtx__FRC17J3DTextureSRTInfoRC3VecPA4_f();
-extern "C" void J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f();
-extern "C" void J3DGetTextureMtxMaya__FRC17J3DTextureSRTInfoPA4_f();
-extern "C" void J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f();
-extern "C" void J3DScaleNrmMtx__FPA4_fRC3Vec();
-extern "C" void J3DScaleNrmMtx33__FPA3_fRC3Vec();
-extern "C" void J3DMtxProjConcat__FPA4_fPA4_fPA4_f();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_22();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_22();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
 /* 80434C80-80434C98 0619A0 0014+04 2/2 0/0 0/0 .bss             sMtxLoadCache__11J3DShapeMtx */
-u16 J3DShapeMtx::sMtxLoadCache[10 + 2 /* padding */];
+u16 J3DShapeMtx::sMtxLoadCache[10];
 
 /* 803130A8-803130E4 30D9E8 003C+00 0/0 1/1 0/0 .text            resetMtxLoadCache__11J3DShapeMtxFv
  */
@@ -180,54 +79,6 @@ J3DShapeMtxConcatView_LoadFunc J3DShapeMtxConcatView::sMtxLoadLODPipeline[4] = {
     &loadMtxConcatView_PNCPU,
 };
 
-#ifndef NONMATCHING
-/* 803CDAB0-803CDAE0 02ABD0 0030+00 1/1 0/0 0/0 .data            qMtx$895 */
-SECTION_DATA static u8 qMtx[48] = {
-    0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0xBF, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 803CDAE0-803CDB10 02AC00 0030+00 1/1 0/0 0/0 .data            qMtx2$896 */
-SECTION_DATA static u8 qMtx2[48] = {
-    0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0xBF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 803CDB10-803CDB40 -00001 0030+00 1/1 0/0 0/0 .data            @1035 */
-SECTION_DATA static void* lit_1035[12] = {
-    (void*)(((char*)loadExecute__17J3DDifferedTexMtxFPA4_Cf) + 0x5B4),
-    (void*)(((char*)loadExecute__17J3DDifferedTexMtxFPA4_Cf) + 0x390),
-    (void*)(((char*)loadExecute__17J3DDifferedTexMtxFPA4_Cf) + 0x3CC),
-    (void*)(((char*)loadExecute__17J3DDifferedTexMtxFPA4_Cf) + 0x370),
-    (void*)(((char*)loadExecute__17J3DDifferedTexMtxFPA4_Cf) + 0x5B4),
-    (void*)(((char*)loadExecute__17J3DDifferedTexMtxFPA4_Cf) + 0x3DC),
-    (void*)(((char*)loadExecute__17J3DDifferedTexMtxFPA4_Cf) + 0x390),
-    (void*)(((char*)loadExecute__17J3DDifferedTexMtxFPA4_Cf) + 0x390),
-    (void*)(((char*)loadExecute__17J3DDifferedTexMtxFPA4_Cf) + 0x3CC),
-    (void*)(((char*)loadExecute__17J3DDifferedTexMtxFPA4_Cf) + 0x370),
-    (void*)(((char*)loadExecute__17J3DDifferedTexMtxFPA4_Cf) + 0x510),
-    (void*)(((char*)loadExecute__17J3DDifferedTexMtxFPA4_Cf) + 0x46C),
-};
-
-/* 803CDB40-803CDB70 -00001 0030+00 1/1 0/0 0/0 .data            @1034 */
-SECTION_DATA static void* lit_1034[12] = {
-    (void*)(((char*)loadExecute__17J3DDifferedTexMtxFPA4_Cf) + 0x2B8),
-    (void*)(((char*)loadExecute__17J3DDifferedTexMtxFPA4_Cf) + 0xCC),
-    (void*)(((char*)loadExecute__17J3DDifferedTexMtxFPA4_Cf) + 0xE0),
-    (void*)(((char*)loadExecute__17J3DDifferedTexMtxFPA4_Cf) + 0xB8),
-    (void*)(((char*)loadExecute__17J3DDifferedTexMtxFPA4_Cf) + 0x2B8),
-    (void*)(((char*)loadExecute__17J3DDifferedTexMtxFPA4_Cf) + 0x110),
-    (void*)(((char*)loadExecute__17J3DDifferedTexMtxFPA4_Cf) + 0xCC),
-    (void*)(((char*)loadExecute__17J3DDifferedTexMtxFPA4_Cf) + 0xCC),
-    (void*)(((char*)loadExecute__17J3DDifferedTexMtxFPA4_Cf) + 0xE0),
-    (void*)(((char*)loadExecute__17J3DDifferedTexMtxFPA4_Cf) + 0xB8),
-    (void*)(((char*)loadExecute__17J3DDifferedTexMtxFPA4_Cf) + 0x224),
-    (void*)(((char*)loadExecute__17J3DDifferedTexMtxFPA4_Cf) + 0x190),
-};
-#endif
-
 /* 804515A8-804515AC 000AA8 0004+00 4/4 2/2 0/0 .sbss            sCurrentPipeline__11J3DShapeMtx */
 u32 J3DShapeMtx::sCurrentPipeline;
 
@@ -257,18 +108,9 @@ J3DTexGenBlock* J3DDifferedTexMtx::sTexGenBlock;
 /* 804515C4-804515C8 000AC4 0004+00 1/1 2/2 0/0 .sbss            sTexMtxObj__17J3DDifferedTexMtx */
 J3DTexMtxObj* J3DDifferedTexMtx::sTexMtxObj;
 
-/* 80456398-8045639C 004998 0004+00 2/2 0/0 0/0 .sdata2          @1032 */
-SECTION_SDATA2 static u8 lit_1032[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
 /* 8031322C-80313828 30DB6C 05FC+00 7/5 0/0 0/0 .text loadExecute__17J3DDifferedTexMtxFPA4_Cf */
-#ifdef NONMATCHING
+// NONMATCHING regalloc
 void J3DDifferedTexMtx::loadExecute(f32 const (*param_0)[4]) {
-// regalloc
     static Mtx qMtx = {
         {0.5f, 0.0f, 0.5f, 0.0f},
         {0.0f, -0.5f, 0.5f, 0.0f},
@@ -299,16 +141,18 @@ void J3DDifferedTexMtx::loadExecute(f32 const (*param_0)[4]) {
                 u32 unk;
                 switch (tex_gen_src & 0x3f) {
                 case 3:
-                case 9:
+                case 9: {
                     Mtx& tmp5 = tex_mtx_obj->getMtx(i);
                     mtx = &tmp5;
                     break;
+                }
                 case 1:
                 case 6:
-                case 7:
+                case 7: {
                     Mtx& tmp6 = tex_mtx_obj->getMtx(i);
                     mtx = &tmp6;
                     break;
+                }
                 case 2:
                 case 8:
                     PSMTXInverse(j3dSys.mViewMtx, tmp2);
@@ -336,11 +180,11 @@ void J3DDifferedTexMtx::loadExecute(f32 const (*param_0)[4]) {
                     tex_mtx_info = &tex_mtx->getTexMtxInfo();
                     unk = (tex_gen_src & 0x80) >> 7;
                     if (unk == 0) {
-                        J3DGetTextureMtxOld(tex_mtx_info->mSRT, tex_mtx_info->mCenter, tmp0);
+                        J3DGetTextureMtx(tex_mtx_info->mSRT, tex_mtx_info->mCenter, tmp0);
                     } else if (unk == 1) {
-                        J3DGetTextureMtxMayaOld(tex_mtx_info->mSRT, tmp0);
+                        J3DGetTextureMtxMaya(tex_mtx_info->mSRT, tmp0);
                     }
-                    PSMTXConcat(tmp0, qMtx2, tmp0);
+                    PSMTXConcat(tmp0, qMtx, tmp0);
                     eff_mtx = &tex_mtx_obj->getEffectMtx(i);
                     J3DMtxProjConcat(tmp0, *eff_mtx, tmp2);
                     PSMTXInverse(j3dSys.mViewMtx, tmp1);
@@ -354,11 +198,11 @@ void J3DDifferedTexMtx::loadExecute(f32 const (*param_0)[4]) {
                     tex_mtx_info = &tex_mtx->getTexMtxInfo();
                     unk = (tex_gen_src & 0x80) >> 7;
                     if (unk == 0) {
-                        J3DGetTextureMtxOld(tex_mtx_info->mSRT, tex_mtx_info->mCenter, tmp0);
+                        J3DGetTextureMtx(tex_mtx_info->mSRT, tex_mtx_info->mCenter, tmp0);
                     } else if (unk == 1) {
-                        J3DGetTextureMtxMayaOld(tex_mtx_info->mSRT, tmp0);
+                        J3DGetTextureMtxMaya(tex_mtx_info->mSRT, tmp0);
                     }
-                    PSMTXConcat(tmp0, qMtx, tmp0);
+                    PSMTXConcat(tmp0, qMtx2, tmp0);
                     eff_mtx = &tex_mtx_obj->getEffectMtx(i);
                     J3DMtxProjConcat(tmp0, *eff_mtx, tmp2);
                     PSMTXInverse(j3dSys.mViewMtx, tmp1);
@@ -425,11 +269,11 @@ void J3DDifferedTexMtx::loadExecute(f32 const (*param_0)[4]) {
                     tex_mtx_info = &tex_mtx->getTexMtxInfo();
                     unk = (tex_gen_src & 0x80) >> 7;
                     if (unk == 0) {
-                        J3DGetTextureMtxOld(tex_mtx_info->mSRT, tex_mtx_info->mCenter, tmp0);
+                        J3DGetTextureMtx(tex_mtx_info->mSRT, tex_mtx_info->mCenter, tmp0);
                     } else if (unk == 1) {
-                        J3DGetTextureMtxMayaOld(tex_mtx_info->mSRT, tmp0);
+                        J3DGetTextureMtxMaya(tex_mtx_info->mSRT, tmp0);
                     }
-                    PSMTXConcat(tmp0, qMtx2, tmp0);
+                    PSMTXConcat(tmp0, qMtx, tmp0);
                     eff_mtx = &tex_mtx_obj->getEffectMtx(i);
                     J3DMtxProjConcat(tmp0, *eff_mtx, tmp2);
                     PSMTXInverse(j3dSys.mViewMtx, tmp1);
@@ -444,11 +288,11 @@ void J3DDifferedTexMtx::loadExecute(f32 const (*param_0)[4]) {
                     tex_mtx_info = &tex_mtx->getTexMtxInfo();
                     unk = (tex_gen_src & 0x80) >> 7;
                     if (unk == 0) {
-                        J3DGetTextureMtxOld(tex_mtx_info->mSRT, tex_mtx_info->mCenter, tmp0);
+                        J3DGetTextureMtx(tex_mtx_info->mSRT, tex_mtx_info->mCenter, tmp0);
                     } else if (unk == 1) {
-                        J3DGetTextureMtxMayaOld(tex_mtx_info->mSRT, tmp0);
+                        J3DGetTextureMtxMaya(tex_mtx_info->mSRT, tmp0);
                     }
-                    PSMTXConcat(tmp0, qMtx, tmp0);
+                    PSMTXConcat(tmp0, qMtx2, tmp0);
                     eff_mtx = &tex_mtx_obj->getEffectMtx(i);
                     J3DMtxProjConcat(tmp0, *eff_mtx, tmp2);
                     PSMTXInverse(j3dSys.mViewMtx, tmp1);
@@ -469,11 +313,6 @@ void J3DDifferedTexMtx::loadExecute(f32 const (*param_0)[4]) {
         }
     }
 }
-#else
-void J3DDifferedTexMtx::loadExecute(f32 const (*param_0)[4]) {
-    // NONMATCHING
-}
-#endif
 
 /* 80313828-803138C8 30E168 00A0+00 1/0 0/0 0/0 .text
  * loadMtxConcatView_PNGP__21J3DShapeMtxConcatViewCFiUs         */
@@ -702,9 +541,9 @@ void J3DShapeMtxBBoardConcatView::load() const {
     mtx[0][0] = 1.0f / mtx[0][0];
     mtx[1][1] = 1.0f / mtx[1][1];
     mtx[2][2] = 1.0f / mtx[2][2];
-    mtx[0][3] = FLOAT_LABEL(lit_1032); // 0.0f;
-    mtx[1][3] = FLOAT_LABEL(lit_1032); // 0.0f;
-    mtx[2][3] = FLOAT_LABEL(lit_1032); // 0.0f;
+    mtx[0][3] = 0.0f;
+    mtx[1][3] = 0.0f;
+    mtx[2][3] = 0.0f;
     if (!sNBTFlag) {
         J3DFifoLoadNrmMtxImm(mtx, 0);
     } else {
@@ -749,12 +588,9 @@ void J3DShapeMtxYBBoardConcatView::load() const {
     }
 }
 
-/* ############################################################################################## */
-/* 803CDB70-803CDB84 02AC90 0014+00 0/0 0/0 0/0 .data            mtxCache$1263 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 mtxCache[20] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-};
-#pragma pop
+static void dummy() {
+    static u8 mtxCache[20] = {
+        0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+        0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+    };
+}
