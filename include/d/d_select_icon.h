@@ -2,11 +2,12 @@
 #define D_D_SELECT_ICON_H
 
 #include "JSystem/J2DGraph/J2DScreen.h"
+#include "d/d_drawlist.h"
 #include "d/d_pane_class.h"
 
 class dSi_HIO_c {
 public:
-    virtual ~dSi_HIO_c();
+    virtual ~dSi_HIO_c() {}
     dSi_HIO_c();
 
     u8 field_0x4[4];
@@ -20,10 +21,10 @@ public:
     virtual ~dSelect_icon_c() {}
 
     void drawSelf() {
-        // Not sure what field_0x4 is
+        field_0x4.draw();
     }
 
-    /* 0x04 */ u8 field_0x4[4];
+    /* 0x04 */ dDlst_base_c field_0x4;  // type is a guess
     /* 0x08 */ J2DScreen* field_0x8;
     /* 0x0C */ CPaneMgrAlpha* field_0xc;
     /* 0x10 */ CPaneMgr* field_0x10;

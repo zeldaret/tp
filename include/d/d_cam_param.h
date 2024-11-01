@@ -21,7 +21,7 @@ public:
     /* 0x8 */ int mInputSpeed;
     /* 0xC */ u8 field_0xc[4];
 
-    /* 800889B0 */ virtual ~dCstick_c();
+    /* 800889B0 */ virtual ~dCstick_c() {}
 
     f32 SwTHH() { return mThresholdHigh; }
 };
@@ -64,7 +64,7 @@ struct dCamStyleData {
         /* 0x0 */ u32 field_0x0;
         /* 0x4 */ u16 field_0x4;
         /* 0x6 */ u16 field_0x6;
-        /* 0x8 */ u8 field_0x8[0x78 - 0x8];
+        /* 0x8 */ f32 field_0x8[28];
     };  // Size: 0x78
 
     /* 0x0 */ u8 field_0x0[4];
@@ -77,16 +77,19 @@ public:
     /* 800884F0 */ dCamParam_c(s32);
     /* 800885D4 */ int Change(s32);
     /* 80088620 */ int SearchStyle(u32);
-    /* 80182C60 */ void Arg2(s16);
-    /* 80182C3C */ void Arg2();
-    /* 80182C48 */ void Arg1();
-    /* 80182C6C */ void Arg1(u8);
-    /* 80182C50 */ void Arg0();
-    /* 80182C74 */ void Arg0(u8);
-    /* 80182C7C */ void Fovy(u8);
-    /* 80182C58 */ void Fovy();
+
+    /* 80182C60 */ void Arg2(s16 val) { mMapToolArg2 = val; }
+    /* 80182C3C */ int Arg2() { return mMapToolArg2; }
+    /* 80182C48 */ u8 Arg1() { return mMapToolArg1; }
+    /* 80182C6C */ void Arg1(u8 val) { mMapToolArg1 = val; }
+    /* 80182C50 */ u8 Arg0() { return mMapToolArg0; }
+    /* 80182C74 */ void Arg0(u8 val) { mMapToolArg0 = val; }
+    /* 80182C7C */ void Fovy(u8 val) { mMapToolFovy = val; }
+    /* 80182C58 */ u8 Fovy() { return mMapToolFovy; }
     /* 80182CB4 */ bool CheckFlag(u16 flag) { return mCurrentStyle->field_0x6 & flag; }
-    /* 80182CD0 */ void Val(s32, int);
+    /* 80182CD0 */ f32 Val(s32 param_0, int param_1) {
+        return mCamStyleData[param_0].field_0x8[param_1];
+    }
 
     /* 0x00 */ u8 mMapToolFovy;
     /* 0x01 */ u8 mMapToolArg0;
@@ -103,7 +106,7 @@ public:
     int Algorythmn() { return mCurrentStyle->field_0x4; }
     bool Flag(s32 param_0, u16 param_1) { return mCamStyleData[param_0].field_0x6 & param_1; }
 
-    /* 8008858C */ virtual ~dCamParam_c();
+    /* 8008858C */ virtual ~dCamParam_c() {}
 };
 
 class dCamSetup_c {
@@ -111,16 +114,17 @@ public:
     /* 80088668 */ dCamSetup_c();
     /* 80088918 */ bool CheckLatitudeRange(s16*);
     /* 80088988 */ f32 PlayerHideDist();
-    /* 80182BB8 */ void CheckFlag2(u16);
-    /* 80182BE8 */ void WaitRollSpeed();
-    /* 80182BF0 */ void WaitRollTimer();
-    /* 80182C1C */ // void ThrowTimer();
-    /* 80182C24 */ void ThrowCushion();
-    /* 80182C2C */ void ThrowVAngle();
-    /* 80182C34 */ void ThrowCtrAdjust();
-    /* 80182CEC */ void ChargeBRatio();
-    /* 80182CF4 */ void ChargeTimer();
-    /* 80182CFC */ void ChargeLatitude();
+
+    /* 80182BB8 */ bool CheckFlag2(u16 i_flag) { return mFlags2 & i_flag; }
+    /* 80182BE8 */ f32 WaitRollSpeed() { return mWaitRollSpeed; }
+    /* 80182BF0 */ int WaitRollTimer() { return mWaitRollTimer; }
+    /* 80182C1C */ int ThrowTimer() { return mThrowTimer; }
+    /* 80182C24 */ f32 ThrowCushion() { return mThrowCushion; }
+    /* 80182C2C */ f32 ThrowVAngle() { return mThrowVAngle; }
+    /* 80182C34 */ f32 ThrowCtrAdjust() { return mThrowCtrOffset; }
+    /* 80182CEC */ f32 ChargeBRatio() { return mChargeBRatio; }
+    /* 80182CF4 */ int ChargeTimer() { return mChargeTimer; }
+    /* 80182CFC */ f32 ChargeLatitude() { return mChargeLatitude; }
 
     bool CheckFlag(u16 i_flag) { return mDebugFlags & i_flag; }
     f32 ManualEndVal() { return mManualEndVal; }
@@ -128,14 +132,13 @@ public:
     f32 VistaTrimHeight() { return mTrimVistaHeight; }
     f32 ForceLockOffTimer() { return mForceLockOffTimer; }
     f32 ForceLockOffDist() { return mForceLockOffDist; }
-    int ThrowTimer() { return mThrowTimer; }
     f32 USOValue() { return mFalseValue; }
     f32 USOAngle() { return mFalseAngle; }
 
     /* 0x000 */ f32 mDrawNear;
     /* 0x004 */ f32 mDrawFar;
     /* 0x008 */ u16 mDebugFlags;
-    /* 0x00A */ u16 field_0xa;
+    /* 0x00A */ u16 mFlags2;
     /* 0x00C */ int field_0xc;
     /* 0x010 */ int mModeSwitchType;
     /* 0x014 */ void* mTypeTable;
@@ -199,7 +202,7 @@ public:
     /* 0x0F8 */ f32 field_0xf8;
     /* 0x0FC vtable */
 
-    /* 800888B8 */ virtual ~dCamSetup_c();
+    /* 800888B8 */ virtual ~dCamSetup_c() {}
 
     /* 0x100 */ dCstick_c mCStick;
     /* 0x114 */ dCamBGChk_c mBGChk;

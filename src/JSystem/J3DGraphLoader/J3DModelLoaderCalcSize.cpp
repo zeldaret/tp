@@ -11,54 +11,7 @@
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "JSystem/JSupport/JSupport.h"
 #include "dolphin/os.h"
-#include "dol2asm.h"
 
-//
-// Forward References:
-//
-
-extern "C" void countMaterialNum__14J3DModelLoaderFPCv();
-extern "C" void calcLoadSize__14J3DModelLoaderFPCvUl();
-extern "C" void calcLoadMaterialTableSize__14J3DModelLoaderFPCv();
-extern "C" void calcLoadBinaryDisplayListSize__14J3DModelLoaderFPCvUl();
-extern "C" void calcSizeInformation__14J3DModelLoaderFPC17J3DModelInfoBlockUl();
-extern "C" void calcSizeJoint__14J3DModelLoaderFPC13J3DJointBlock();
-extern "C" void calcSizeEnvelope__14J3DModelLoaderFPC16J3DEnvelopeBlock();
-extern "C" void calcSizeDraw__14J3DModelLoaderFPC12J3DDrawBlock();
-extern "C" void calcSizeMaterial__18J3DModelLoader_v26FPC16J3DMaterialBlockUl();
-extern "C" void calcSizeShape__14J3DModelLoaderFPC13J3DShapeBlockUl();
-extern "C" void calcSizeTexture__14J3DModelLoaderFPC15J3DTextureBlock();
-extern "C" void calcSizeMaterialTable__18J3DModelLoader_v26FPC16J3DMaterialBlockUl();
-extern "C" void calcSizeTextureTable__14J3DModelLoaderFPC15J3DTextureBlock();
-extern "C" void calcSizePatchedMaterial__14J3DModelLoaderFPC16J3DMaterialBlockUl();
-extern "C" void calcSizeMaterialDL__14J3DModelLoaderFPC18J3DMaterialDLBlockUl();
-extern "C" extern char const* const J3DModelLoaderCalcSize__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void __ct__18J3DMaterialFactoryFRC16J3DMaterialBlock();
-extern "C" void __ct__18J3DMaterialFactoryFRC18J3DMaterialDLBlock();
-extern "C" void countUniqueMaterials__18J3DMaterialFactoryFv();
-extern "C" void
-calcSize__18J3DMaterialFactoryCFP11J3DMaterialQ218J3DMaterialFactory12MaterialTypeiUl();
-extern "C" void func_8033674C(void* _this, void const*, void const*);
-extern "C" void __ct__15J3DShapeFactoryFRC13J3DShapeBlock();
-extern "C" void calcSize__15J3DShapeFactoryFiUl();
-extern "C" void calcSizeVcdVatCmdBuffer__15J3DShapeFactoryFUl();
-extern "C" void _savegpr_22();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_22();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-
-//
-// Declarations:
-//
 
 /* 80336794-803367D4 3310D4 0040+00 0/0 3/0 0/0 .text countMaterialNum__14J3DModelLoaderFPCv */
 u16 J3DModelLoader::countMaterialNum(const void* stream) {
@@ -73,26 +26,15 @@ u16 J3DModelLoader::countMaterialNum(const void* stream) {
     return 0;
 }
 
-/* ############################################################################################## */
-/* 803A20E8-803A20E8 02E748 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803A20E8 = "Unknown data block\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_803A20FC = "\0\0\0";
-#pragma pop
-
 /* 803367D4-803369A0 331114 01CC+00 0/0 3/0 0/0 .text calcLoadSize__14J3DModelLoaderFPCvUl */
-// size load issue.
-#ifdef NONMATCHING
 u32 J3DModelLoader::calcLoadSize(void const* stream, u32 flags_) {
     int flags = flags_;
     const J3DModelFileData* header = static_cast<const J3DModelFileData*>(stream);
-    size_t size;
+    size_t size = 0;
     const J3DModelBlock* nextBlock = header->mBlocks;
     u32 i = 0;
     // TODO: What sizeof will get us a size of 0xE4?
-    size = 0xE4;
+    size += 0xE4;
     for (; i < header->mBlockNum; i++) {
         switch (nextBlock->mBlockType) {
         case 'INF1':
@@ -128,11 +70,6 @@ u32 J3DModelLoader::calcLoadSize(void const* stream, u32 flags_) {
     }
     return size;
 }
-#else
-u32 J3DModelLoader::calcLoadSize(void const* param_0, u32 param_1) {
-    // NONMATCHING
-}
-#endif
 
 /* 803369A0-80336A98 3312E0 00F8+00 0/0 3/0 0/0 .text
  * calcLoadMaterialTableSize__14J3DModelLoaderFPCv              */
@@ -176,14 +113,13 @@ u32 J3DModelLoader::calcLoadMaterialTableSize(const void* stream) {
 
 /* 80336A98-80336CD8 3313D8 0240+00 0/0 3/0 0/0 .text
  * calcLoadBinaryDisplayListSize__14J3DModelLoaderFPCvUl        */
-// flags issue
-#ifdef NONMATCHING
+// NONMATCHING flags issue
 u32 J3DModelLoader::calcLoadBinaryDisplayListSize(const void* stream, u32 flags) {
+    u32 size = 0;
     const J3DModelFileData* header = (const J3DModelFileData*)stream;
     const J3DModelBlock* nextBlock = header->mBlocks;
     u32 i = 0;
-    u32 matFlags = flags & (J3DMLF_Material_UseIndirect | J3DMLF_26);
-    int size = sizeof(J3DModelData);
+    size += sizeof(J3DModelData);
     for (; i < header->mBlockNum; i++) {
         switch (nextBlock->mBlockType) {
         case 'INF1':
@@ -203,18 +139,19 @@ u32 J3DModelLoader::calcLoadBinaryDisplayListSize(const void* stream, u32 flags)
 			break;
 		case 'MAT2':
 			break;
-		case 'MAT3':
+		case 'MAT3': {
 			u32 flags2 = (J3DMLF_21 | J3DMLF_Material_PE_Full | J3DMLF_Material_Color_LightOn);
-            flags2 |= matFlags;
+            flags2 |= flags & (J3DMLF_Material_UseIndirect | J3DMLF_26);
 			mpMaterialBlock = (const J3DMaterialBlock*)nextBlock;
 			if ((flags & (J3DMLF_13 | J3DMLF_DoBdlMaterialCalc)) == 0) {
 				field_0x18 = 1;
 				size += calcSizeMaterial((const J3DMaterialBlock*)nextBlock, flags2);
 			} else if ((flags & (J3DMLF_13 | J3DMLF_DoBdlMaterialCalc)) == J3DMLF_DoBdlMaterialCalc) {
 				field_0x18 = 1;
-				size += calcSizePatchedMaterial((const J3DMaterialBlock*)nextBlock, matFlags);
+				size += calcSizePatchedMaterial((const J3DMaterialBlock*)nextBlock, flags2);
 			}
 			break;
+        }
 		case 'EVP1':
 			size += calcSizeEnvelope((const J3DEnvelopeBlock*)nextBlock);
 			break;
@@ -231,11 +168,6 @@ u32 J3DModelLoader::calcLoadBinaryDisplayListSize(const void* stream, u32 flags)
     }
     return size;
 }
-#else
-u32 J3DModelLoader::calcLoadBinaryDisplayListSize(void const* param_0, u32 param_1) {
-    // NONMATCHING
-}
-#endif
 
 /* 80336CD8-80336D64 331618 008C+00 2/2 0/0 0/0 .text
  * calcSizeInformation__14J3DModelLoaderFPC17J3DModelInfoBlockUl */
@@ -257,7 +189,6 @@ u32 J3DModelLoader::calcSizeInformation(const J3DModelInfoBlock* block, u32 flag
 	mpModelHierarchy = JSUConvertOffsetToPtr<J3DModelHierarchy>(block, block->mpHierarchy);
 	return size;
 }
-
 
 /* 80336D64-80336D90 3316A4 002C+00 2/2 0/0 0/0 .text
  * calcSizeJoint__14J3DModelLoaderFPC13J3DJointBlock            */

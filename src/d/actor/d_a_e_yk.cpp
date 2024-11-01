@@ -8,90 +8,11 @@
 #include "d/actor/d_a_e_yk.h"
 #include "c/c_damagereaction.h"
 #include "d/d_com_inf_game.h"
-#include "d/actor/d_a_midna.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_s_play.h"
-#include "dol2asm.h"
 #include "SSystem/SComponent/c_math.h"
-
-/* 80807D70-80807D7C 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80807D7C-80807D90 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-
-// NONMATCHING load order and regalloc
-static int setMidnaBindEffect(fopEn_enemy_c* i_enemy, Z2CreatureEnemy* i_sound,
-                              cXyz* i_pos, cXyz* i_scale) {
-    static GXColor e_prim[2] = {
-        {0xFF, 0x78, 0x00, 0x00},
-        {0xFF, 0x64, 0x78, 0x00},
-    };
-    static GXColor e_env[2] = {
-        {0x5A, 0x2D, 0x2D, 0x00},
-        {0x3C, 0x1E, 0x1E, 0x00},
-    };
-
-    daPy_py_c* player = daPy_getPlayerActorClass();
-    if (player->getMidnaActor() != NULL && player->checkWolfLock(i_enemy)) {
-        cXyz local_48;
-        int world = dKy_darkworld_check() ? 1 : 0;
-
-        if (i_enemy->getMidnaBindMode() == 0) {
-            i_enemy->setMidnaBindMode(1);
-            csXyz angle;
-
-            MTXCopy(daPy_py_c::getMidnaActor()->getMtxHairTop(), mDoMtx_stack_c::get());
-            cXyz local_54(100.0f, 0.0f, 0.0f);
-            mDoMtx_stack_c::multVec(&local_54, &local_48);
-            cXyz local_60 = local_48 - *i_pos;
-
-            angle.y = cM_atan2s(local_60.x, local_60.z);
-            angle.x = -cM_atan2s(local_60.y,
-                                    JMAFastSqrt(local_60.x * local_60.x + local_60.z * local_60.z));
-            angle.z = 0;
-
-            JPABaseEmitter* emitter =
-                dComIfGp_particle_set(0x29B, i_pos, &i_enemy->tevStr, &angle, i_scale,
-                                      0xff, NULL, fopAcM_GetRoomNo(i_enemy),
-                                      &e_prim[world], &e_env[world], NULL);
-            if (emitter != NULL) {
-                emitter->setGlobalParticleHeightScale(0.01f * local_60.abs());
-            }
-
-            dComIfGp_particle_set(0x29C, i_pos, &i_enemy->tevStr, &i_enemy->shape_angle,
-                                  i_scale, 0xff, NULL, fopAcM_GetRoomNo(i_enemy),
-                                  &e_prim[world], &e_env[world], NULL);
-
-            i_sound->startCreatureSound(Z2SE_MIDNA_BIND_LOCK_ON, 0, -1);
-        }
-
-        static u16 eff_id[3] = {0x029D, 0x029E, 0x029F};
-        for (int i = 0; i < 3; i++) {
-            u32* bind_id = i_enemy->getMidnaBindID(i);
-            *bind_id = dComIfGp_particle_set(*bind_id, eff_id[i], i_pos, &i_enemy->tevStr,
-                                             &i_enemy->shape_angle, i_scale, 0xff, NULL,
-                                             fopAcM_GetRoomNo(i_enemy),
-                                             &e_prim[world], &e_env[world], NULL);
-        }
-
-        i_sound->startCreatureSoundLevel(Z2SE_MIDNA_BIND_LOCK_SUS, 0, -1);
-        return 1;
-
-    } else {
-        i_enemy->setMidnaBindMode(0);
-        return 0;
-    }
-}
+UNK_REL_DATA
+#include "f_op/f_op_actor_enemy.h"
 
 /* 80807EF8-80807EFC 000008 0004+00 2/2 0/0 0/0 .bss             None */
 static u8 data_80807EF8;

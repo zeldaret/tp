@@ -171,7 +171,9 @@ struct TVec3<f32> : public Vec {
     }
 
     inline TVec3<f32> operator+(const TVec3<f32>& b) {
-        return *this += b;
+        TVec3<f32> a = *this;
+        a += b;
+        return a;
     }
 
     // inline TVec3<f32> operator+(const TVec3<f32>& b) {

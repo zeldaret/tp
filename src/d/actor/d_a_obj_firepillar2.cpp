@@ -121,12 +121,10 @@ int daObjFPillar2_c::Create() {
     fopAcM_SetMtx(this, mMtx);
     mSoundObj.init(&mSoundPos, 1);
     if (getKind() == KIND_PIPE_FIRE) {
-        s32 roomNo = fopAcM_GetRoomNo(this);
         field_0x980 = dComIfGp_particle_set(0x84df, &current.pos, &current.angle, 0, 0xff, 0,
-                                            roomNo, 0, 0, 0);
-        roomNo = fopAcM_GetRoomNo(this);
+                                            fopAcM_GetRoomNo(this), 0, 0, 0);
         field_0x984 = dComIfGp_particle_set(0x84e0, &current.pos, &current.angle, 0, 0xff, 0,
-                                            roomNo, 0, 0, 0);
+                                            fopAcM_GetRoomNo(this), 0, 0, 0);
     }
     actionOffInit();
     return 1;
@@ -322,16 +320,15 @@ void daObjFPillar2_c::actionOff() {
 void daObjFPillar2_c::actionOnWaitInit() {
     if (getKind() == KIND_PIPE_FIRE) {
         for (int i = 0; i < 3; i++) {
-            s32 roomNo = fopAcM_GetRoomNo(this);
-            mPipeFireEmitters[i] = dComIfGp_particle_set(
-                l_pipe_fire_id[i], &current.pos, &current.angle, 0, 0xff, 0, roomNo, 0, 0, 0);
+            mPipeFireEmitters[i] = dComIfGp_particle_set(l_pipe_fire_id[i], &current.pos,
+                                                         &current.angle, 0, 0xff, 0,
+                                                         fopAcM_GetRoomNo(this), 0, 0, 0);
         }
     } else {
         if (getKind() == KIND_MAGMA_POLE) {
             for (int i = 0; i < 3; i++) {
-                s32 roomNo = fopAcM_GetRoomNo(this);
                 dComIfGp_particle_set(l_yogan_foot_id[i], &current.pos, &current.angle,
-                                      &mYoganScale, 0xff, 0, roomNo, 0, 0, 0);
+                                      &mYoganScale, 0xff, 0, fopAcM_GetRoomNo(this), 0, 0, 0);
             }
         }
     }
@@ -373,10 +370,9 @@ void daObjFPillar2_c::actionOnWait() {
 void daObjFPillar2_c::actionOnInit() {
     if (getKind() == KIND_MAGMA_POLE) {
         for (int i = 0; i < 3; i++) {
-            s32 roomNo = fopAcM_GetRoomNo((fopAc_ac_c*)this);
             mMagmaPoleEmitters[i] = dComIfGp_particle_set(
                 l_yogan_head_id[getSize()][i],
-                &current.pos, &current.angle, 0, 0xff, 0, roomNo, 0, 0, 0);
+                &current.pos, &current.angle, 0, 0xff, 0, fopAcM_GetRoomNo(this), 0, 0, 0);
             if (mMagmaPoleEmitters[i] != NULL) {
                 mMagmaPoleEmitters[i]->becomeImmortalEmitter();
                 mMagmaPoleEmitters[i]->setGlobalRTMatrix(mModel->getAnmMtx(0));

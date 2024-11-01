@@ -193,10 +193,10 @@ public:
         setModel(param_0, param_1, param_2, param_3, param_4, param_5);
     }
 
-    static dPa_modelEcallBack& getEcallback() { return (dPa_modelEcallBack&)mEcallback; }
-    static dPa_modelEcallBack* mEcallback;  // Should be dPa_modelEcallBack
+    static dPa_modelEcallBack& getEcallback() { return mEcallback; }
+    static dPa_modelEcallBack mEcallback;
 
-    static u8 mPcallback[4];
+    static dPa_modelPcallBack mPcallback;
     static model_c* mModel;
 };
 
@@ -415,15 +415,15 @@ public:
 
     static JPAEmitterManager* getEmitterManager() { return mEmitterMng; }
 
-    static JPAParticleCallBack* getLight8PcallBack() { 
+    static dPa_light8PcallBack* getLight8PcallBack() { 
         return &mLight8PcallBack; 
     }
 
-    static JPAParticleCallBack* getGen_b_Light8PcallBack() {
+    static dPa_gen_b_light8PcallBack* getGen_b_Light8PcallBack() {
         return &m_b_Light8PcallBack; 
     }
 
-    static JPAParticleCallBack* getGen_d_Light8PcallBack() {
+    static dPa_gen_d_light8PcallBack* getGen_d_Light8PcallBack() {
         return &m_d_Light8PcallBack; 
     }
 
@@ -439,11 +439,11 @@ public:
         return &mLight8EcallBack; 
     }
 
-    static JPAParticleCallBack* getParticleTracePCB() {
+    static dPa_particleTracePcallBack_c* getParticleTracePCB() {
         return &mParticleTracePCB; 
     }
 
-    static JPAParticleCallBack* getFsenthPcallBack() {
+    static dPa_fsenthPcallBack* getFsenthPcallBack() {
         return &mFsenthPcallBack; 
     }
 
@@ -455,15 +455,15 @@ public:
     static u8 mLifeBall[24];
     static Mtx mWindViewMatrix;
     static JPAEmitterManager* mEmitterMng;
-    static JPAParticleCallBack mWaterBubblePcallBack;
-    static JPAParticleCallBack mFsenthPcallBack;
+    static dPa_wbPcallBack_c mWaterBubblePcallBack;
+    static dPa_fsenthPcallBack mFsenthPcallBack;
     static dPa_light8EcallBack mLight8EcallBack;
-    static JPAParticleCallBack mLight8PcallBack;
+    static dPa_light8PcallBack mLight8PcallBack;
     static dPa_gen_b_light8EcallBack m_b_Light8EcallBack;
-    static JPAParticleCallBack m_b_Light8PcallBack;
+    static dPa_gen_b_light8PcallBack m_b_Light8PcallBack;
     static dPa_gen_d_light8EcallBack m_d_Light8EcallBack;
-    static JPAParticleCallBack m_d_Light8PcallBack;
-    static JPAParticleCallBack mParticleTracePCB;
+    static dPa_gen_d_light8PcallBack m_d_Light8PcallBack;
+    static dPa_particleTracePcallBack_c mParticleTracePCB;
     static u8 mStatus;
 
 private:

@@ -193,7 +193,7 @@ namespace daObjMovebox {
 
         int getType() { return prm_get_type(); }
 
-        static s16 M_dir_base[4];
+        static const s16 M_dir_base[4];
         static const char* const M_arcname[8];
         static const dCcD_SrcCyl M_cyl_src;
         static const daObjMovebox::Hio_c::Attr_c M_attr[8];

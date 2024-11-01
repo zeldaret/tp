@@ -7,43 +7,14 @@
 #include "JSystem/JUtility/JUTTexture.h"
 #include "stdio.h"
 #include "d/d_com_inf_game.h"
+#include "d/d_save.h"
 #include "dolphin/card.h"
 #include "m_Do/m_Do_MemCard.h"
 
-//
-// Forward References:
-//
-
-extern "C" void mDoMemCdRWm_Store__FP12CARDFileInfoPvUl();
-extern "C" void mDoMemCdRWm_Restore__FP12CARDFileInfoPvUl();
-extern "C" static void mDoMemCdRWm_BuildHeader__FP22mDoMemCdRWm_HeaderData();
-extern "C" static void mDoMemCdRWm_SetCardStat__FP12CARDFileInfo();
-extern "C" static void mDoMemCdRWm_CheckCardStat__FP12CARDFileInfo();
-extern "C" static void mDoMemCdRWm_CalcCheckSum__FPvUl();
-extern "C" static void mDoMemCdRWm_CalcCheckSumGameData__FPvUl();
-extern "C" void mDoMemCdRWm_TestCheckSumGameData__FPv();
-extern "C" void mDoMemCdRWm_SetCheckSumGameData__FPUcUc();
-extern "C" extern char const* const m_Do_m_Do_MemCardRWmng__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void _savegpr_20();
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_20();
-extern "C" void _restgpr_28();
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
 /* 803ECF40-803F0F40 019C60 4000+00 2/2 0/0 0/0 .bss             sTmpBuf */
 static u8 sTmpBuf[0x4000];
 
 /* 80017498-8001769C 011DD8 0204+00 0/0 1/1 0/0 .text mDoMemCdRWm_Store__FP12CARDFileInfoPvUl */
-#ifdef NONMATCHING
 s32 mDoMemCdRWm_Store(CARDFileInfo* file, void* data, u32 length) {
     mDoMemCdRWm_BuildHeader((mDoMemCdRWm_HeaderData*)sTmpBuf);
 
@@ -66,12 +37,20 @@ s32 mDoMemCdRWm_Store(CARDFileInfo* file, void* data, u32 length) {
         }
     }
 
+    struct data_s {
+        int field_0x0;
+        int field_0x4;
+        u8 mData[0x1FF4];
+        u32 mChecksum;
+    };
+
     memset(sTmpBuf, 0, sizeof(sTmpBuf));
-    *(int*)(sTmpBuf + 4) = 6;
-    memcpy(sTmpBuf + 8, data, length);
-    *(int*)(sTmpBuf) = 0;
-    u32 checksum = mDoMemCdRWm_CalcCheckSum(sTmpBuf, 0x1FFC);
-    *(u32*)(sTmpBuf + 0x1FFC) = checksum;
+    data_s* tmp_data = (data_s*)sTmpBuf;
+    tmp_data->field_0x4 = 6;
+    memcpy(tmp_data->mData, data, length);
+    tmp_data->field_0x0 = 0;
+    u32 checksum = mDoMemCdRWm_CalcCheckSum(tmp_data, 0x1FFC);
+    tmp_data->mChecksum = checksum;
 
     card_state = CARDWrite(file, sTmpBuf, sizeof(sTmpBuf) / 2, 0x4000);
     if (card_state != CARD_RESULT_READY) {
@@ -103,15 +82,76 @@ s32 mDoMemCdRWm_Store(CARDFileInfo* file, void* data, u32 length) {
     mDoMemCdRWm_SetCardStat(file);
     return card_state;
 }
-#else
-s32 mDoMemCdRWm_Store(CARDFileInfo* param_0, void* param_1, u32 param_2) {
-    // NONMATCHING
-}
-#endif
 
 /* 8001769C-8001787C 011FDC 01E0+00 0/0 1/1 0/0 .text mDoMemCdRWm_Restore__FP12CARDFileInfoPvUl */
-s32 mDoMemCdRWm_Restore(CARDFileInfo* param_0, void* param_1, u32 param_2) {
-    // NONMATCHING
+s32 mDoMemCdRWm_Restore(CARDFileInfo* file, void* data, u32 length) {
+    BOOL rewrite = FALSE;
+
+    struct save_data_s {
+        u8 field_0x0[4];
+        u32 mDataVersion;
+        u8 mSave1[QUEST_LOG_SIZE];
+        u8 mSave2[QUEST_LOG_SIZE];
+        u8 mSave3[QUEST_LOG_SIZE];
+    };
+
+    save_data_s* saves = (save_data_s*)sTmpBuf;
+    save_data_s* backup_saves = (save_data_s*)(sTmpBuf + sizeof(sTmpBuf) / 2);
+
+    s32 card_state = CARDRead(file, saves, sizeof(sTmpBuf) / 2, 0x4000);
+    if (card_state != CARD_RESULT_READY) {
+        return card_state;
+    }
+
+    BOOL test_save1 = mDoMemCdRWm_TestCheckSumGameData(saves->mSave1);
+    BOOL test_save2 = mDoMemCdRWm_TestCheckSumGameData(saves->mSave2);
+    BOOL test_save3 = mDoMemCdRWm_TestCheckSumGameData(saves->mSave3);
+
+    card_state = CARDRead(file, backup_saves, sizeof(sTmpBuf) / 2, 0x6000);
+    if (card_state != CARD_RESULT_READY) {
+        return card_state;
+    }
+
+    BOOL test_backup1 = mDoMemCdRWm_TestCheckSumGameData(backup_saves->mSave1);
+    BOOL test_backup2 = mDoMemCdRWm_TestCheckSumGameData(backup_saves->mSave2);
+    BOOL test_backup3 = mDoMemCdRWm_TestCheckSumGameData(backup_saves->mSave3);
+
+    if (!test_save1 && test_backup1) {
+        memcpy(saves->mSave1, backup_saves->mSave1, QUEST_LOG_SIZE);
+        rewrite = TRUE;
+    }
+
+    if (!test_save2 && test_backup2) {
+        memcpy(saves->mSave2, backup_saves->mSave2, QUEST_LOG_SIZE);
+        rewrite = TRUE;
+    }
+
+    if (!test_save3 && test_backup3) {
+        memcpy(saves->mSave3, backup_saves->mSave3, QUEST_LOG_SIZE);
+        rewrite = TRUE;
+    }
+
+    if (!mDoMemCdRWm_CheckCardStat(file)) {
+        return CARD_RESULT_FATAL_ERROR;
+    }
+
+    if (rewrite) {
+        card_state = CARDWrite(file, saves, sizeof(sTmpBuf) / 2, 0x4000);
+        if (card_state != CARD_RESULT_READY) {
+            return card_state;
+        }
+
+        card_state = CARDWrite(file, saves, sizeof(sTmpBuf) / 2, 0x6000);
+        if (card_state != CARD_RESULT_READY) {
+            return card_state;
+        }
+    }
+
+    memcpy(data, saves->mSave1, length);
+    mDoMemCd_setDataVersion(saves->mDataVersion);
+    mDoMemCd_setSerialNo();
+
+    return CARD_RESULT_READY;
 }
 
 /* 8001787C-800179E4 0121BC 0168+00 1/1 0/0 0/0 .text
@@ -141,14 +181,60 @@ static void mDoMemCdRWm_BuildHeader(mDoMemCdRWm_HeaderData* header) {
 }
 
 /* 800179E4-80017B4C 012324 0168+00 1/1 0/0 0/0 .text mDoMemCdRWm_SetCardStat__FP12CARDFileInfo */
-static void mDoMemCdRWm_SetCardStat(CARDFileInfo* param_0) {
-    // NONMATCHING
+static void mDoMemCdRWm_SetCardStat(CARDFileInfo* file) {
+    CARDStat stat;
+    mDoMemCd_getCardStatus(file->fileNo, &stat);
+    stat.iconAddr = 0;
+    stat.commentAddr = 0x2400;
+    CARDSetBannerFormat(&stat, CARD_STAT_BANNER_C8);
+    CARDSetIconAnim(&stat, CARD_STAT_ANIM_BOUNCE);
+    CARDSetIconFormat(&stat, 0, CARD_STAT_ICON_C8);
+    CARDSetIconFormat(&stat, 1, CARD_STAT_ICON_C8);
+    CARDSetIconFormat(&stat, 2, CARD_STAT_ICON_C8);
+    CARDSetIconFormat(&stat, 3, CARD_STAT_ICON_C8);
+    CARDSetIconFormat(&stat, 4, CARD_STAT_ICON_C8);
+    CARDSetIconFormat(&stat, 5, CARD_STAT_ICON_NONE);
+    CARDSetIconFormat(&stat, 6, CARD_STAT_ICON_NONE);
+    CARDSetIconFormat(&stat, 7, CARD_STAT_ICON_NONE);
+    CARDSetIconSpeed(&stat, 0, CARD_STAT_SPEED_FAST);
+    CARDSetIconSpeed(&stat, 1, CARD_STAT_SPEED_FAST);
+    CARDSetIconSpeed(&stat, 2, CARD_STAT_SPEED_FAST);
+    CARDSetIconSpeed(&stat, 3, CARD_STAT_SPEED_FAST);
+    CARDSetIconSpeed(&stat, 4, CARD_STAT_SPEED_FAST);
+    CARDSetIconSpeed(&stat, 5, CARD_STAT_SPEED_END);
+    CARDSetIconSpeed(&stat, 6, CARD_STAT_SPEED_END);
+    CARDSetIconSpeed(&stat, 7, CARD_STAT_SPEED_END);
+    mDoMemCd_setCardStatus(file->fileNo, &stat);
 }
 
 /* 80017B4C-80017C74 01248C 0128+00 2/2 0/0 0/0 .text mDoMemCdRWm_CheckCardStat__FP12CARDFileInfo
  */
-static BOOL mDoMemCdRWm_CheckCardStat(CARDFileInfo* param_0) {
-    // NONMATCHING
+static BOOL mDoMemCdRWm_CheckCardStat(CARDFileInfo* file) {
+    CARDStat stat;
+    mDoMemCd_getCardStatus(file->fileNo, &stat);
+    if (stat.iconAddr != 0 || stat.commentAddr != 0x2400
+        || CARDGetBannerFormat(&stat) != CARD_STAT_BANNER_C8
+        || CARDGetIconAnim(&stat) != CARD_STAT_ANIM_BOUNCE
+        || CARDGetIconFormat(&stat, 0) != CARD_STAT_ICON_C8
+        || CARDGetIconFormat(&stat, 1) != CARD_STAT_ICON_C8
+        || CARDGetIconFormat(&stat, 2) != CARD_STAT_ICON_C8
+        || CARDGetIconFormat(&stat, 3) != CARD_STAT_ICON_C8
+        || CARDGetIconFormat(&stat, 4) != CARD_STAT_ICON_C8
+        || CARDGetIconFormat(&stat, 5) != CARD_STAT_ICON_NONE
+        || CARDGetIconFormat(&stat, 6) != CARD_STAT_ICON_NONE
+        || CARDGetIconFormat(&stat, 7) != CARD_STAT_ICON_NONE
+        || CARDGetIconSpeed(&stat, 0) != CARD_STAT_SPEED_FAST
+        || CARDGetIconSpeed(&stat, 1) != CARD_STAT_SPEED_FAST
+        || CARDGetIconSpeed(&stat, 2) != CARD_STAT_SPEED_FAST
+        || CARDGetIconSpeed(&stat, 3) != CARD_STAT_SPEED_FAST
+        || CARDGetIconSpeed(&stat, 4) != CARD_STAT_SPEED_FAST
+        || CARDGetIconSpeed(&stat, 5) != CARD_STAT_SPEED_END
+        || CARDGetIconSpeed(&stat, 6) != CARD_STAT_SPEED_END
+        || CARDGetIconSpeed(&stat, 7) != CARD_STAT_SPEED_END)
+    {
+        return FALSE;
+    }
+    return TRUE;
 }
 
 /* 80017C74-80017CB4 0125B4 0040+00 1/1 0/0 0/0 .text            mDoMemCdRWm_CalcCheckSum__FPvUl */

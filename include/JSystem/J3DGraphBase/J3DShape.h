@@ -56,8 +56,8 @@ public:
     }
 
     void setCurrentTexMtx(u8 param_1, u8 param_2, u8 param_3, u8 param_4,
-        u8 param_5, u8 param_6, u8 param_7, u8 param_8) {
-        mMtxIdxRegA = ((param_1 & 0xff) << 6) | (param_2 << 0xc)| (param_3 << 0x12) | (param_4 << 0x18);
+                          u8 param_5, u8 param_6, u8 param_7, u8 param_8) {
+        mMtxIdxRegA = (param_1 << 6) | (param_2 << 0xc) | (param_3 << 0x12) | (param_4 << 0x18);
         mMtxIdxRegB = (param_5) | param_6 << 6 | param_7 << 0xc | param_8 << 0x12;
     }
 };

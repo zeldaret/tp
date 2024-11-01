@@ -406,7 +406,9 @@ J3DMaterial* J3DMaterialFactory::create(J3DMaterial* i_material, MaterialType i_
 
 /* 80330440-80330D84 32AD80 0944+00 1/1 0/0 0/0 .text
  * createNormalMaterial__18J3DMaterialFactoryCFP11J3DMaterialiUl */
-#ifdef NONMATCHING
+// NONMATCHING. The call to setFog does not match because it uses the version that takes a J3DFog.
+// If we switch to the version that takes a J3DFog* that part matches, except the vtable index is wrong.
+// Also regalloc issues
 J3DMaterial* J3DMaterialFactory::createNormalMaterial(J3DMaterial* i_material, int i_idx,
                                                       u32 i_flags) const {
     if (mpDisplayListInit != NULL) {
@@ -417,10 +419,7 @@ J3DMaterial* J3DMaterialFactory::createNormalMaterial(J3DMaterial* i_material, i
     if (stages > tev_stage_num) {
         tev_stage_num = stages;
     }
-    u32 u1 = 8;
-    if (tev_stage_num <= 8) {
-        u1 = tev_stage_num;
-    }
+    u32 u1 = tev_stage_num <= 8 ? tev_stage_num : 8;
     u32 texgens = countTexGens(i_idx);
     u32 texgen_flag = texgens > 4 ? 0 : getMdlDataFlag_TexGenFlag(i_flags);
     u32 color_flag = getMdlDataFlag_ColorFlag(i_flags);
@@ -440,7 +439,7 @@ J3DMaterial* J3DMaterialFactory::createNormalMaterial(J3DMaterial* i_material, i
     i_material->mColorBlock->setCullMode(newCullMode(i_idx));
     i_material->mTexGenBlock->setTexGenNum(newTexGenNum(i_idx));
     i_material->mTexGenBlock->setNBTScale(newNBTScale(i_idx));
-    i_material->mPEBlock->setFog(newFog(i_idx));
+    i_material->mPEBlock->setFog(&newFog(i_idx));
     i_material->mPEBlock->setAlphaComp(newAlphaComp(i_idx));
     i_material->mPEBlock->setBlend(newBlend(i_idx));
     i_material->mPEBlock->setZMode(newZMode(i_idx));
@@ -479,7 +478,8 @@ J3DMaterial* J3DMaterialFactory::createNormalMaterial(J3DMaterial* i_material, i
         i_material->mColorBlock->setMatColor(i, newMatColor(i_idx, i));
     }
     for (u8 i = 0; i < 4; i++) {
-        i_material->mColorBlock->setColorChan(i, newColorChan(i_idx, i));
+        J3DColorChan color_chan = newColorChan(i_idx, i);
+        i_material->mColorBlock->setColorChan(i, color_chan);
     }
     for (u8 i = 0; i < texgens; i++) {
         J3DTexCoord tex_coord = newTexCoord(i_idx, i);
@@ -513,7 +513,7 @@ J3DMaterial* J3DMaterialFactory::createNormalMaterial(J3DMaterial* i_material, i
             i_material->mIndBlock->setIndTexOrder(i, newIndTexOrder(i_idx, i));
         }
         for (u8 i = 0; i < ind_tex_stage_num; i++) {
-            i_material->mIndBlock->setIndTexCoordScale(i, newIndTexCoordScale(i_idx, i));
+            i_material->mIndBlock->setIndTexCoordScale(i, &newIndTexCoordScale(i_idx, i));
         }
         for (u8 i = 0; i < tev_stage_num; i++) {
             i_material->mTevBlock->setIndTevStage(i, newIndTevStage(i_idx, i));
@@ -521,197 +521,123 @@ J3DMaterial* J3DMaterialFactory::createNormalMaterial(J3DMaterial* i_material, i
     }
     return i_material;
 }
-#else
-J3DMaterial* J3DMaterialFactory::createNormalMaterial(J3DMaterial* param_0, int param_1,
-                                                  u32 param_2) const {
-    // NONMATCHING
-}
-#endif
 
 /* 80330D84-8033168C 32B6C4 0908+00 1/1 0/0 0/0 .text
  * createPatchedMaterial__18J3DMaterialFactoryCFP11J3DMaterialiUl */
-J3DMaterial* J3DMaterialFactory::createPatchedMaterial(J3DMaterial* param_0, int param_1,
-                                                   u32 param_2) const {
-    // NONMATCHING
+// NONMATCHING same fog problem as createNormalMaterial
+J3DMaterial* J3DMaterialFactory::createPatchedMaterial(J3DMaterial* i_material, int i_idx,
+                                                       u32 i_flags) const {
+    if (i_material == NULL) {
+        i_material = new J3DPatchedMaterial();
+    }
+    bool bVar1 = i_flags & 0x3000000 ? true : false;
+    i_material->mColorBlock = J3DMaterial::createColorBlock(0x40000000);
+    i_material->mTexGenBlock = new J3DTexGenBlockPatched();
+    i_material->mTevBlock = new J3DTevBlockPatched();
+    i_material->mIndBlock = J3DMaterial::createIndBlock(bVar1);
+    i_material->mPEBlock = J3DMaterial::createPEBlock(0x10000000, getMaterialMode(i_idx));
+    i_material->mIndex = i_idx;
+    i_material->mMaterialMode = getMaterialMode(i_idx);
+    i_material->mTevBlock->setTevStageNum(newTevStageNum(i_idx));
+    i_material->mColorBlock->setColorChanNum(newColorChanNum(i_idx));
+    i_material->mColorBlock->setCullMode(newCullMode(i_idx));
+    i_material->mPEBlock->setFog(&newFog(i_idx));
+    i_material->mPEBlock->setAlphaComp(newAlphaComp(i_idx));
+    i_material->mPEBlock->setBlend(newBlend(i_idx));
+    i_material->mPEBlock->setZMode(newZMode(i_idx));
+    i_material->mPEBlock->setZCompLoc(newZCompLoc(i_idx));
+    i_material->mPEBlock->setDither(newDither(i_idx));
+    u8 tev_stage_num = i_material->getTevStageNum();
+    for (u8 i = 0; i < 8; i++) {
+        i_material->mTevBlock->setTexNo(i, newTexNo(i_idx, i));
+    }
+    for (u8 i = 0; i < tev_stage_num; i++) {
+        i_material->mTevBlock->setTevOrder(i, newTevOrder(i_idx, i));
+    }
+    for (u8 i = 0; i < 4; i++) {
+        i_material->mTevBlock->setTevKColor(i, newTevKColor(i_idx, i));
+    }
+    for (u8 i = 0; i < 4; i++) {
+        i_material->mTevBlock->setTevColor(i, newTevColor(i_idx, i));
+    }
+    for (u8 i = 0; i < tev_stage_num; i++) {
+        J3DMaterialInitData* material_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
+        i_material->mTevBlock->setTevStage(i, newTevStage(i_idx, i));
+        if (material_init_data->mTevSwapModeIdx[i] != 0xffff) {
+            i_material->mTevBlock->getTevStage(i)->setTexSel(
+                mpTevSwapModeInfo[material_init_data->mTevSwapModeIdx[i]].mTexSel);
+            i_material->mTevBlock->getTevStage(i)->setRasSel(
+                mpTevSwapModeInfo[material_init_data->mTevSwapModeIdx[i]].mRasSel);
+        }
+    }
+    J3DMaterialInitData* init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
+    for (u8 i = 0; i < tev_stage_num; i++) {
+        if (init_data->mTevKColorSel[i] != 0xff) {
+            i_material->mTevBlock->setTevKColorSel(i, init_data->mTevKColorSel[i]);
+        } else {
+            i_material->mTevBlock->setTevKColorSel(i, 0xC);
+        }
+    }
+    for (u8 i = 0; i < 2; i++) {
+        i_material->mColorBlock->setMatColor(i, newMatColor(i_idx, i));
+    }
+    for (u8 i = 0; i < 4; i++) {
+        J3DColorChan color_chan = newColorChan(i_idx, i);
+        i_material->mColorBlock->setColorChan(i, color_chan);
+    }
+    u32 texgens = countTexGens(i_idx);
+    i_material->mTexGenBlock->setTexGenNum(newTexGenNum(i_idx));
+    for (u8 i = 0; i < 8; i++) {
+        i_material->mTexGenBlock->setTexMtx(i, newTexMtx(i_idx, i));
+    }
+    for (u8 i = 0; i < texgens; i++) {
+        J3DTexCoord tex_coord = newTexCoord(i_idx, i);
+        i_material->mTexGenBlock->setTexCoord(i, &tex_coord);
+    }
+    if (bVar1 && mpIndInitData != NULL) {
+        u8 ind_tex_stage_num = newIndTexStageNum(i_idx);
+        i_material->mIndBlock->setIndTexStageNum(newIndTexStageNum(i_idx));
+        for (u8 i = 0; i < ind_tex_stage_num; i++) {
+            i_material->mIndBlock->setIndTexMtx(i, newIndTexMtx(i_idx, i));
+        }
+        for (u8 i = 0; i < ind_tex_stage_num; i++) {
+            i_material->mIndBlock->setIndTexOrder(i, newIndTexOrder(i_idx, i));
+        }
+        for (u8 i = 0; i < ind_tex_stage_num; i++) {
+            i_material->mIndBlock->setIndTexCoordScale(i, &newIndTexCoordScale(i_idx, i));
+        }
+        for (u8 i = 0; i < tev_stage_num; i++) {
+            i_material->mTevBlock->setIndTevStage(i, newIndTevStage(i_idx, i));
+        }
+    }
+    return i_material;
 }
 
 /* 8033168C-803317D4 32BFCC 0148+00 0/0 1/1 0/0 .text
  * modifyPatchedCurrentMtx__18J3DMaterialFactoryCFP11J3DMateriali */
-void J3DMaterialFactory::modifyPatchedCurrentMtx(J3DMaterial* param_0, int param_1) const {
-    // NONMATCHING
+// NONMATCHING problem with setCurrentTexMtx
+void J3DMaterialFactory::modifyPatchedCurrentMtx(J3DMaterial* i_material, int i_idx) const {
+    J3DTexCoord coord[8];
+    u32 tex_gens = countTexGens(i_idx);
+    for (u8 i = 0; i < tex_gens; i++) {
+        coord[i] = newTexCoord(i_idx, i);
+    }
+    J3DCurrentMtx currentMtx;
+    currentMtx.setCurrentTexMtx(
+        coord[0].getTexGenMtx(),
+        coord[1].getTexGenMtx(),
+        coord[2].getTexGenMtx(),
+        coord[3].getTexGenMtx(),
+        coord[4].getTexGenMtx(),
+        coord[5].getTexGenMtx(),
+        coord[6].getTexGenMtx(),
+        coord[7].getTexGenMtx()
+    );
+    i_material->mCurrentMtx = currentMtx;
 }
-
-/* 803CEE90-803CEF0C 02BFB0 007C+00 2/2 0/0 0/0 .data            __vt__14J3DPEBlockNull */
-SECTION_DATA extern void* __vt__14J3DPEBlockNull[31] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)reset__10J3DPEBlockFP10J3DPEBlock,
-    (void*)load__14J3DPEBlockNullFv,
-    (void*)patch__10J3DPEBlockFv,
-    (void*)diff__10J3DPEBlockFUl,
-    (void*)diffFog__10J3DPEBlockFv,
-    (void*)diffBlend__10J3DPEBlockFv,
-    (void*)countDLSize__10J3DPEBlockFv,
-    (void*)getType__14J3DPEBlockNullFv,
-    (void*)setFog__10J3DPEBlockF6J3DFog,
-    (void*)setFog__10J3DPEBlockFP6J3DFog,
-    (void*)getFog__10J3DPEBlockFv,
-    (void*)setAlphaComp__10J3DPEBlockFPC12J3DAlphaComp,
-    (void*)setAlphaComp__10J3DPEBlockFRC12J3DAlphaComp,
-    (void*)getAlphaComp__10J3DPEBlockFv,
-    (void*)setBlend__10J3DPEBlockFPC8J3DBlend,
-    (void*)setBlend__10J3DPEBlockFRC8J3DBlend,
-    (void*)getBlend__10J3DPEBlockFv,
-    (void*)setZMode__10J3DPEBlockFPC8J3DZMode,
-    (void*)setZMode__10J3DPEBlockF8J3DZMode,
-    (void*)getZMode__10J3DPEBlockFv,
-    (void*)setZCompLoc__10J3DPEBlockFPCUc,
-    (void*)setZCompLoc__10J3DPEBlockFUc,
-    (void*)getZCompLoc__10J3DPEBlockCFv,
-    (void*)setDither__10J3DPEBlockFPCUc,
-    (void*)setDither__10J3DPEBlockFUc,
-    (void*)getDither__10J3DPEBlockCFv,
-    (void*)getFogOffset__10J3DPEBlockCFv,
-    (void*)setFogOffset__10J3DPEBlockFUl,
-    (void*)__dt__14J3DPEBlockNullFv,
-};
-
-/* 803CEF0C-803CEFE8 02C02C 00DC+00 2/2 0/0 0/0 .data            __vt__15J3DTevBlockNull */
-SECTION_DATA extern void* __vt__15J3DTevBlockNull[55] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)reset__15J3DTevBlockNullFP11J3DTevBlock,
-    (void*)load__11J3DTevBlockFv,
-    (void*)diff__11J3DTevBlockFUl,
-    (void*)diffTexNo__11J3DTevBlockFv,
-    (void*)diffTevReg__11J3DTevBlockFv,
-    (void*)diffTexCoordScale__11J3DTevBlockFv,
-    (void*)diffTevStage__11J3DTevBlockFv,
-    (void*)diffTevStageIndirect__11J3DTevBlockFv,
-    (void*)patch__11J3DTevBlockFv,
-    (void*)patchTexNo__11J3DTevBlockFv,
-    (void*)patchTevReg__11J3DTevBlockFv,
-    (void*)patchTexNoAndTexCoordScale__11J3DTevBlockFv,
-    (void*)ptrToIndex__15J3DTevBlockNullFv,
-    (void*)indexToPtr__15J3DTevBlockNullFv,
-    (void*)getType__15J3DTevBlockNullFv,
-    (void*)countDLSize__11J3DTevBlockFv,
-    (void*)setTexNo__11J3DTevBlockFUlPCUs,
-    (void*)setTexNo__11J3DTevBlockFUlUs,
-    (void*)getTexNo__11J3DTevBlockCFUl,
-    (void*)setTevOrder__11J3DTevBlockFUlPC11J3DTevOrder,
-    (void*)setTevOrder__11J3DTevBlockFUl11J3DTevOrder,
-    (void*)getTevOrder__11J3DTevBlockFUl,
-    (void*)setTevColor__11J3DTevBlockFUlPC13J3DGXColorS10,
-    (void*)setTevColor__11J3DTevBlockFUl13J3DGXColorS10,
-    (void*)getTevColor__11J3DTevBlockFUl,
-    (void*)setTevKColor__11J3DTevBlockFUlPC10J3DGXColor,
-    (void*)setTevKColor__11J3DTevBlockFUl10J3DGXColor,
-    (void*)getTevKColor__11J3DTevBlockFUl,
-    (void*)setTevKColorSel__11J3DTevBlockFUlPCUc,
-    (void*)setTevKColorSel__11J3DTevBlockFUlUc,
-    (void*)getTevKColorSel__11J3DTevBlockFUl,
-    (void*)setTevKAlphaSel__11J3DTevBlockFUlPCUc,
-    (void*)setTevKAlphaSel__11J3DTevBlockFUlUc,
-    (void*)getTevKAlphaSel__11J3DTevBlockFUl,
-    (void*)setTevStageNum__11J3DTevBlockFPCUc,
-    (void*)setTevStageNum__11J3DTevBlockFUc,
-    (void*)getTevStageNum__11J3DTevBlockCFv,
-    (void*)setTevStage__11J3DTevBlockFUlPC11J3DTevStage,
-    (void*)setTevStage__11J3DTevBlockFUl11J3DTevStage,
-    (void*)getTevStage__11J3DTevBlockFUl,
-    (void*)setTevSwapModeInfo__11J3DTevBlockFUlPC18J3DTevSwapModeInfo,
-    (void*)setTevSwapModeInfo__11J3DTevBlockFUl18J3DTevSwapModeInfo,
-    (void*)setTevSwapModeTable__11J3DTevBlockFUlPC19J3DTevSwapModeTable,
-    (void*)setTevSwapModeTable__11J3DTevBlockFUl19J3DTevSwapModeTable,
-    (void*)getTevSwapModeTable__11J3DTevBlockFUl,
-    (void*)setIndTevStage__11J3DTevBlockFUlPC14J3DIndTevStage,
-    (void*)setIndTevStage__11J3DTevBlockFUl14J3DIndTevStage,
-    (void*)getIndTevStage__11J3DTevBlockFUl,
-    (void*)getTexNoOffset__11J3DTevBlockCFv,
-    (void*)getTevRegOffset__11J3DTevBlockCFv,
-    (void*)setTexNoOffset__11J3DTevBlockFUl,
-    (void*)setTevRegOffset__11J3DTevBlockFUl,
-    (void*)__dt__15J3DTevBlockNullFv,
-};
-
-/* 803CEFE8-803CF054 02C108 006C+00 2/2 0/0 0/0 .data            __vt__18J3DTexGenBlockNull */
-SECTION_DATA extern void* __vt__18J3DTexGenBlockNull[27] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)reset__14J3DTexGenBlockFP14J3DTexGenBlock,
-    (void*)calc__18J3DTexGenBlockNullFPA4_Cf,
-    (void*)calcWithoutViewMtx__18J3DTexGenBlockNullFPA4_Cf,
-    (void*)calcPostTexMtx__18J3DTexGenBlockNullFPA4_Cf,
-    (void*)calcPostTexMtxWithoutViewMtx__18J3DTexGenBlockNullFPA4_Cf,
-    (void*)load__18J3DTexGenBlockNullFv,
-    (void*)patch__18J3DTexGenBlockNullFv,
-    (void*)diff__18J3DTexGenBlockNullFUl,
-    (void*)diffTexMtx__18J3DTexGenBlockNullFv,
-    (void*)diffTexGen__18J3DTexGenBlockNullFv,
-    (void*)countDLSize__14J3DTexGenBlockFv,
-    (void*)getType__18J3DTexGenBlockNullFv,
-    (void*)setTexGenNum__14J3DTexGenBlockFPCUl,
-    (void*)setTexGenNum__14J3DTexGenBlockFUl,
-    (void*)getTexGenNum__14J3DTexGenBlockCFv,
-    (void*)setTexCoord__14J3DTexGenBlockFUlPC11J3DTexCoord,
-    (void*)getTexCoord__14J3DTexGenBlockFUl,
-    (void*)setTexMtx__14J3DTexGenBlockFUlP9J3DTexMtx,
-    (void*)getTexMtx__14J3DTexGenBlockFUl,
-    (void*)setNBTScale__14J3DTexGenBlockFPC11J3DNBTScale,
-    (void*)setNBTScale__14J3DTexGenBlockF11J3DNBTScale,
-    (void*)getNBTScale__14J3DTexGenBlockFv,
-    (void*)getTexMtxOffset__14J3DTexGenBlockCFv,
-    (void*)setTexMtxOffset__14J3DTexGenBlockFUl,
-    (void*)__dt__18J3DTexGenBlockNullFv,
-};
-
-/* 803CF054-803CF0E8 02C174 0090+04 2/2 0/0 0/0 .data            __vt__17J3DColorBlockNull */
-SECTION_DATA extern void* __vt__17J3DColorBlockNull[36 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)load__13J3DColorBlockFv,
-    (void*)reset__13J3DColorBlockFP13J3DColorBlock,
-    (void*)patch__13J3DColorBlockFv,
-    (void*)patchMatColor__13J3DColorBlockFv,
-    (void*)patchLight__13J3DColorBlockFv,
-    (void*)diff__13J3DColorBlockFUl,
-    (void*)diffAmbColor__13J3DColorBlockFv,
-    (void*)diffMatColor__13J3DColorBlockFv,
-    (void*)diffColorChan__13J3DColorBlockFv,
-    (void*)diffLightObj__13J3DColorBlockFUl,
-    (void*)countDLSize__13J3DColorBlockFv,
-    (void*)getType__17J3DColorBlockNullFv,
-    (void*)setMatColor__13J3DColorBlockFUlPC10J3DGXColor,
-    (void*)setMatColor__13J3DColorBlockFUl10J3DGXColor,
-    (void*)getMatColor__13J3DColorBlockFUl,
-    (void*)setAmbColor__13J3DColorBlockFUlPC10J3DGXColor,
-    (void*)setAmbColor__13J3DColorBlockFUl10J3DGXColor,
-    (void*)getAmbColor__13J3DColorBlockFUl,
-    (void*)setColorChanNum__13J3DColorBlockFUc,
-    (void*)setColorChanNum__13J3DColorBlockFPCUc,
-    (void*)getColorChanNum__13J3DColorBlockCFv,
-    (void*)setColorChan__13J3DColorBlockFUlRC12J3DColorChan,
-    (void*)setColorChan__13J3DColorBlockFUlPC12J3DColorChan,
-    (void*)getColorChan__13J3DColorBlockFUl,
-    (void*)setLight__13J3DColorBlockFUlP11J3DLightObj,
-    (void*)getLight__13J3DColorBlockFUl,
-    (void*)setCullMode__13J3DColorBlockFPCUc,
-    (void*)setCullMode__13J3DColorBlockFUc,
-    (void*)getCullMode__13J3DColorBlockCFv,
-    (void*)getMatColorOffset__13J3DColorBlockCFv,
-    (void*)getColorChanOffset__13J3DColorBlockCFv,
-    (void*)setMatColorOffset__13J3DColorBlockFUl,
-    (void*)setColorChanOffset__13J3DColorBlockFUl,
-    (void*)__dt__17J3DColorBlockNullFv,
-    /* padding */
-    NULL,
-};
 
 /* 803317D4-80331A7C 32C114 02A8+00 2/2 0/0 0/0 .text
  * createLockedMaterial__18J3DMaterialFactoryCFP11J3DMaterialiUl */
-#ifdef NONMATCHING
-// matches but makes the J3DMaterial destructor appear in the wrong place
 J3DMaterial* J3DMaterialFactory::createLockedMaterial(J3DMaterial* i_material, int i_idx,
                                                       u32 i_flags) const {
     if (i_material == NULL) {
@@ -741,12 +667,6 @@ J3DMaterial* J3DMaterialFactory::createLockedMaterial(J3DMaterial* i_material, i
     }
     return i_material;
 }
-#else
-J3DMaterial* J3DMaterialFactory::createLockedMaterial(J3DMaterial* param_0, int param_1,
-                                                  u32 param_2) const {
-    // NONMATCHING
-}
-#endif
 
 /* 80331A7C-80331AFC 32C3BC 0080+00 0/0 4/4 0/0 .text
  * calcSize__18J3DMaterialFactoryCFP11J3DMaterialQ218J3DMaterialFactory12MaterialTypeiUl */
@@ -769,8 +689,7 @@ u32 J3DMaterialFactory::calcSize(J3DMaterial* i_material, J3DMaterialFactory::Ma
 
 /* 80331AFC-80331C30 32C43C 0134+00 1/1 0/0 0/0 .text
  * calcSizeNormalMaterial__18J3DMaterialFactoryCFP11J3DMaterialiUl */
-#ifdef NONMATCHING
-// regalloc
+// NONMATCHING regalloc
 u32 J3DMaterialFactory::calcSizeNormalMaterial(J3DMaterial* i_material, int i_idx,
                                                u32 i_flags) const {
     u32 size = 0;
@@ -779,12 +698,11 @@ u32 J3DMaterialFactory::calcSizeNormalMaterial(J3DMaterial* i_material, int i_id
     }
 
     u32 stages = countStages(i_idx);
-    // u32 tev_stage_num = getMdlDataFlag_TevStageNum(i_flags);
-    u32 tev_stage_num = (i_flags >> 0x10) & 0x1f;
+    u32 tev_stage_num = getMdlDataFlag_TevStageNum(i_flags);
     if (stages > tev_stage_num) {
         tev_stage_num = stages;
     }
-    u32 tex_gens = countTexGens(i_flags);
+    u32 tex_gens = countTexGens(i_idx);
     u32 tex_gen_flag = tex_gens > 4 ?
         getMdlDataFlag_TexGenFlag(0) : getMdlDataFlag_TexGenFlag(i_flags);
     u32 color_block_flag = getMdlDataFlag_ColorFlag(i_flags);
@@ -806,23 +724,16 @@ u32 J3DMaterialFactory::calcSizeNormalMaterial(J3DMaterial* i_material, int i_id
     }
     return size;
 }
-#else
-u32 J3DMaterialFactory::calcSizeNormalMaterial(J3DMaterial* param_0, int param_1,
-                                                    u32 param_2) const {
-    // NONMATCHING
-}
-#endif
 
 /* 80331C30-80331D00 32C570 00D0+00 1/1 0/0 0/0 .text
  * calcSizePatchedMaterial__18J3DMaterialFactoryCFP11J3DMaterialiUl */
-#ifdef NONMATCHING
 u32 J3DMaterialFactory::calcSizePatchedMaterial(J3DMaterial* i_material, int i_idx,
                                                 u32 i_flags) const {
     u32 size = 0;
     if (i_material == NULL) {
         size = sizeof(J3DPatchedMaterial);
     }
-    int ind_flag = (i_flags & 0x3000000) != 0;
+    u8 ind_flag = (i_flags & 0x3000000) != 0 ? 1 : 0;
     size += J3DMaterial::calcSizeColorBlock(0x40000000);
     size += 0x134;  // TODO what is this
     size += J3DMaterial::calcSizeIndBlock(ind_flag);
@@ -835,12 +746,6 @@ u32 J3DMaterialFactory::calcSizePatchedMaterial(J3DMaterial* i_material, int i_i
     }
     return size;
 }
-#else
-u32 J3DMaterialFactory::calcSizePatchedMaterial(J3DMaterial* param_0, int param_1,
-                                                     u32 param_2) const {
-    // NONMATCHING
-}
-#endif
 
 /* 80331D00-80331D18 32C640 0018+00 2/2 0/0 0/0 .text
  * calcSizeLockedMaterial__18J3DMaterialFactoryCFP11J3DMaterialiUl */
@@ -855,16 +760,11 @@ u32 J3DMaterialFactory::calcSizeLockedMaterial(J3DMaterial* i_material, int i_id
 }
 
 /* 804564A8-804564AC 004AA8 0004+00 1/1 0/0 0/0 .sdata2          @1691 */
-#ifdef NONMATCHING
 static GXColor const defaultMatColor = {0xff, 0xff, 0xff, 0xff};
-#else
-SECTION_SDATA2 static u32 lit_1691 = 0xFFFFFFFF;
-#endif
 
 /* 80331D18-80331D74 32C658 005C+00 2/2 0/0 0/0 .text newMatColor__18J3DMaterialFactoryCFii */
-#ifdef NONMATCHING
 J3DGXColor J3DMaterialFactory::newMatColor(int i_idx, int i_no) const {
-    J3DGXColor dflt = defaultMatColor;
+    J3DGXColor dflt = (J3DGXColor)defaultMatColor;
     u16 mat_color_index = mpMaterialInitData[mpMaterialID[i_idx]].mMatColorIdx[i_no];
     if (mat_color_index != 0xffff) {
         return mpMatColor[mat_color_index];
@@ -872,11 +772,6 @@ J3DGXColor J3DMaterialFactory::newMatColor(int i_idx, int i_no) const {
         return dflt;
     }
 }
-#else
-J3DGXColor J3DMaterialFactory::newMatColor(int param_0, int param_1) const {
-    // NONMATCHING
-}
-#endif
 
 /* 80331D74-80331DAC 32C6B4 0038+00 2/2 0/0 0/0 .text newColorChanNum__18J3DMaterialFactoryCFi */
 u8 J3DMaterialFactory::newColorChanNum(int i_idx) const {
@@ -889,8 +784,7 @@ u8 J3DMaterialFactory::newColorChanNum(int i_idx) const {
 }
 
 /* 80331DAC-80331F50 32C6EC 01A4+00 2/2 0/0 0/0 .text newColorChan__18J3DMaterialFactoryCFii */
-#ifdef NONMATCHING
-// problem with J3DColorChan inline constructor
+// NONMATCHING problem with J3DColorChan inline constructor
 J3DColorChan J3DMaterialFactory::newColorChan(int i_idx, int i_no) const {
     u16 color_chan_index = mpMaterialInitData[mpMaterialID[i_idx]].mColorChanIdx[i_no];
     if (color_chan_index != 0xffff) {
@@ -899,23 +793,13 @@ J3DColorChan J3DMaterialFactory::newColorChan(int i_idx, int i_no) const {
         return J3DColorChan();
     }
 }
-#else
-J3DColorChan J3DMaterialFactory::newColorChan(int param_0, int param_1) const {
-    // NONMATCHING
-}
-#endif
 
 /* 804564AC-804564B0 004AAC 0004+00 1/1 0/0 0/0 .sdata2          @1798 */
-#ifdef NONMATCHING
 static GXColor const defaultAmbColor = {0x32, 0x32, 0x32, 0x32};
-#else
-SECTION_SDATA2 static u32 lit_1798 = 0x32323232;
-#endif
 
 /* 80331F50-80331FAC 32C890 005C+00 1/1 0/0 0/0 .text newAmbColor__18J3DMaterialFactoryCFii */
-#ifdef NONMATCHING
 J3DGXColor J3DMaterialFactory::newAmbColor(int i_idx, int i_no) const {
-    J3DGXColor dflt = defaultAmbColor;
+    J3DGXColor dflt = (J3DGXColor)defaultAmbColor;
     u16 amb_color_index = mpMaterialInitData[mpMaterialID[i_idx]].mAmbColorIdx[i_no];
     if (amb_color_index != 0xffff) {
         return mpAmbColor[amb_color_index];
@@ -923,11 +807,6 @@ J3DGXColor J3DMaterialFactory::newAmbColor(int i_idx, int i_no) const {
         return dflt;
     }
 }
-#else
-J3DGXColor J3DMaterialFactory::newAmbColor(int param_0, int param_1) const {
-    // NONMATCHING
-}
-#endif
 
 /* 80331FAC-80331FE4 32C8EC 0038+00 2/2 0/0 0/0 .text newTexGenNum__18J3DMaterialFactoryCFi */
 u32 J3DMaterialFactory::newTexGenNum(int i_idx) const {
@@ -1006,20 +885,11 @@ J3DGXColorS10 J3DMaterialFactory::newTevColor(int i_idx, int i_no) const {
 }
 
 /* 804564B0-804564B8 004AB0 0004+04 1/1 0/0 0/0 .sdata2          @1915 */
-#ifdef NONMATCHING
 static GXColor const defaultTevKColor = {0xff, 0xff, 0xff, 0xff};
-#else
-SECTION_SDATA2 static u32 lit_1915[1 + 1 /* padding */] = {
-    0xFFFFFFFF,
-    /* padding */
-    0x00000000,
-};
-#endif
 
 /* 80332210-8033226C 32CB50 005C+00 2/2 0/0 0/0 .text newTevKColor__18J3DMaterialFactoryCFii */
-#ifdef NONMATCHING
 J3DGXColor J3DMaterialFactory::newTevKColor(int i_idx, int i_no) const {
-    J3DGXColor dflt = defaultTevKColor;
+    J3DGXColor dflt = (J3DGXColor)defaultTevKColor;
     u16 tev_kcolor_index = mpMaterialInitData[mpMaterialID[i_idx]].mTevKColorIdx[i_no];
     if (tev_kcolor_index != 0xffff) {
         return mpTevKColor[tev_kcolor_index];
@@ -1027,11 +897,6 @@ J3DGXColor J3DMaterialFactory::newTevKColor(int i_idx, int i_no) const {
         return dflt;
     }
 }
-#else
-J3DGXColor J3DMaterialFactory::newTevKColor(int param_0, int param_1) const {
-    // NONMATCHING
-}
-#endif
 
 /* 8033226C-803322A4 32CBAC 0038+00 2/2 0/0 0/0 .text newTevStageNum__18J3DMaterialFactoryCFi */
 u8 J3DMaterialFactory::newTevStageNum(int i_idx) const {
@@ -1055,8 +920,6 @@ J3DTevStage J3DMaterialFactory::newTevStage(int i_idx, int i_no) const {
 
 /* 80332304-803323A0 32CC44 009C+00 1/1 0/0 0/0 .text
  * newTevSwapModeTable__18J3DMaterialFactoryCFii                */
-#ifdef NONMATCHING
-// J3DTevSwapModeTable inline constructor matches in the first usage but not the second
 J3DTevSwapModeTable J3DMaterialFactory::newTevSwapModeTable(int i_idx, int i_no) const {
     u16 tev_swap_mode_table_index = mpMaterialInitData[mpMaterialID[i_idx]].mTevSwapModeTableIdx[i_no];
     if (tev_swap_mode_table_index != 0xffff) {
@@ -1065,11 +928,6 @@ J3DTevSwapModeTable J3DMaterialFactory::newTevSwapModeTable(int i_idx, int i_no)
         return J3DTevSwapModeTable(j3dDefaultTevSwapModeTable);
     }
 }
-#else
-J3DTevSwapModeTable J3DMaterialFactory::newTevSwapModeTable(int param_0, int param_1) const {
-    // NONMATCHING
-}
-#endif
 
 /* 803323A0-803323C8 32CCE0 0028+00 2/2 0/0 0/0 .text newIndTexStageNum__18J3DMaterialFactoryCFi
  */
@@ -1133,8 +991,7 @@ J3DFog J3DMaterialFactory::newFog(int i_idx) const {
 }
 
 /* 80332768-803327E8 32D0A8 0080+00 2/2 0/0 0/0 .text newAlphaComp__18J3DMaterialFactoryCFi */
-#ifdef NONMATCHING
-// weird issue with calcAlphaCmpID, see J3DMatBlock.h
+// NONMATCHING weird issue with calcAlphaCmpID, see J3DMatBlock.h
 J3DAlphaComp J3DMaterialFactory::newAlphaComp(int i_idx) const {
     J3DMaterialInitData* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
     if (mtl_init_data->mAlphaCompIdx != 0xffff) {
@@ -1143,11 +1000,6 @@ J3DAlphaComp J3DMaterialFactory::newAlphaComp(int i_idx) const {
         return J3DAlphaComp(0xffff);
     }
 }
-#else
-J3DAlphaComp J3DMaterialFactory::newAlphaComp(int param_0) const {
-    // NONMATCHING
-}
-#endif
 
 /* 803327E8-8033282C 32D128 0044+00 2/2 0/0 0/0 .text            newBlend__18J3DMaterialFactoryCFi
  */
@@ -1201,142 +1053,4 @@ J3DNBTScale J3DMaterialFactory::newNBTScale(int i_idx) const {
     } else {
         return dflt;
     }
-}
-
-/* 803329A0-803329A4 32D2E0 0004+00 1/0 0/0 0/0 .text            load__14J3DPEBlockNullFv */
-// void J3DPEBlockNull::load() {
-extern "C" void load__14J3DPEBlockNullFv() {
-    /* empty function */
-}
-
-/* 803329A4-803329B0 32D2E4 000C+00 1/0 0/0 0/0 .text            getType__14J3DPEBlockNullFv */
-// u32 J3DPEBlockNull::getType() {
-extern "C" void getType__14J3DPEBlockNullFv() {
-    // NONMATCHING
-}
-
-/* 803329B0-80332A0C 32D2F0 005C+00 1/0 0/0 0/0 .text            __dt__14J3DPEBlockNullFv */
-// J3DPEBlockNull::~J3DPEBlockNull() {
-extern "C" void __dt__14J3DPEBlockNullFv() {
-    // NONMATCHING
-}
-
-/* 80332A0C-80332A10 32D34C 0004+00 1/0 0/0 0/0 .text reset__15J3DTevBlockNullFP11J3DTevBlock */
-// void J3DTevBlockNull::reset(J3DTevBlock* param_0) {
-extern "C" void reset__15J3DTevBlockNullFP11J3DTevBlock() {
-    /* empty function */
-}
-
-/* 80332A10-80332A14 32D350 0004+00 1/0 0/0 0/0 .text            ptrToIndex__15J3DTevBlockNullFv */
-// void J3DTevBlockNull::ptrToIndex() {
-extern "C" void ptrToIndex__15J3DTevBlockNullFv() {
-    /* empty function */
-}
-
-/* 80332A14-80332A38 32D354 0024+00 1/0 0/0 0/0 .text            indexToPtr__15J3DTevBlockNullFv */
-// void J3DTevBlockNull::indexToPtr() {
-extern "C" void indexToPtr__15J3DTevBlockNullFv() {
-    // NONMATCHING
-}
-
-/* 80332A38-80332A44 32D378 000C+00 1/0 0/0 0/0 .text            getType__15J3DTevBlockNullFv */
-// u32 J3DTevBlockNull::getType() {
-extern "C" void getType__15J3DTevBlockNullFv() {
-    // NONMATCHING
-}
-
-/* 80332A44-80332AA0 32D384 005C+00 1/0 0/0 0/0 .text            __dt__15J3DTevBlockNullFv */
-// J3DTevBlockNull::~J3DTevBlockNull() {
-extern "C" void __dt__15J3DTevBlockNullFv() {
-    // NONMATCHING
-}
-
-/* 80332AA0-80332AA4 32D3E0 0004+00 1/0 0/0 0/0 .text            calc__18J3DTexGenBlockNullFPA4_Cf
- */
-// void J3DTexGenBlockNull::calc(f32 const (*param_0)[4]) {
-extern "C" void calc__18J3DTexGenBlockNullFPA4_Cf() {
-    /* empty function */
-}
-
-/* 80332AA4-80332AA8 32D3E4 0004+00 1/0 0/0 0/0 .text
- * calcWithoutViewMtx__18J3DTexGenBlockNullFPA4_Cf              */
-// void J3DTexGenBlockNull::calcWithoutViewMtx(f32 const (*param_0)[4]) {
-extern "C" void calcWithoutViewMtx__18J3DTexGenBlockNullFPA4_Cf() {
-    /* empty function */
-}
-
-/* 80332AA8-80332AAC 32D3E8 0004+00 1/0 0/0 0/0 .text calcPostTexMtx__18J3DTexGenBlockNullFPA4_Cf
- */
-// void J3DTexGenBlockNull::calcPostTexMtx(f32 const (*param_0)[4]) {
-extern "C" void calcPostTexMtx__18J3DTexGenBlockNullFPA4_Cf() {
-    /* empty function */
-}
-
-/* 80332AAC-80332AB0 32D3EC 0004+00 1/0 0/0 0/0 .text
- * calcPostTexMtxWithoutViewMtx__18J3DTexGenBlockNullFPA4_Cf    */
-// void J3DTexGenBlockNull::calcPostTexMtxWithoutViewMtx(f32 const (*param_0)[4]) {
-extern "C" void calcPostTexMtxWithoutViewMtx__18J3DTexGenBlockNullFPA4_Cf() {
-    /* empty function */
-}
-
-/* 80332AB0-80332AB4 32D3F0 0004+00 1/0 0/0 0/0 .text            load__18J3DTexGenBlockNullFv */
-// void J3DTexGenBlockNull::load() {
-extern "C" void load__18J3DTexGenBlockNullFv() {
-    /* empty function */
-}
-
-/* 80332AB4-80332AB8 32D3F4 0004+00 1/0 0/0 0/0 .text            patch__18J3DTexGenBlockNullFv */
-// void J3DTexGenBlockNull::patch() {
-extern "C" void patch__18J3DTexGenBlockNullFv() {
-    /* empty function */
-}
-
-/* 80332AB8-80332ABC 32D3F8 0004+00 1/0 0/0 0/0 .text            diff__18J3DTexGenBlockNullFUl */
-// void J3DTexGenBlockNull::diff(u32 param_0) {
-extern "C" void diff__18J3DTexGenBlockNullFUl() {
-    /* empty function */
-}
-
-/* 80332ABC-80332AC0 32D3FC 0004+00 1/0 0/0 0/0 .text            diffTexMtx__18J3DTexGenBlockNullFv
- */
-// void J3DTexGenBlockNull::diffTexMtx() {
-extern "C" void diffTexMtx__18J3DTexGenBlockNullFv() {
-    /* empty function */
-}
-
-/* 80332AC0-80332AC4 32D400 0004+00 1/0 0/0 0/0 .text            diffTexGen__18J3DTexGenBlockNullFv
- */
-// void J3DTexGenBlockNull::diffTexGen() {
-extern "C" void diffTexGen__18J3DTexGenBlockNullFv() {
-    /* empty function */
-}
-
-/* 80332AC4-80332AD0 32D404 000C+00 1/0 0/0 0/0 .text            getType__18J3DTexGenBlockNullFv */
-// u32 J3DTexGenBlockNull::getType() {
-extern "C" void getType__18J3DTexGenBlockNullFv() {
-    // NONMATCHING
-}
-
-/* 80332AD0-80332B2C 32D410 005C+00 1/0 0/0 0/0 .text            __dt__18J3DTexGenBlockNullFv */
-// J3DTexGenBlockNull::~J3DTexGenBlockNull() {
-extern "C" void __dt__18J3DTexGenBlockNullFv() {
-    // NONMATCHING
-}
-
-/* 80332B2C-80332B38 32D46C 000C+00 1/0 0/0 0/0 .text            getType__17J3DColorBlockNullFv */
-// u32 J3DColorBlockNull::getType() {
-extern "C" void getType__17J3DColorBlockNullFv() {
-    // NONMATCHING
-}
-
-/* 80332B38-80332B94 32D478 005C+00 1/0 0/0 0/0 .text            __dt__17J3DColorBlockNullFv */
-// J3DColorBlockNull::~J3DColorBlockNull() {
-extern "C" void __dt__17J3DColorBlockNullFv() {
-    // NONMATCHING
-}
-
-/* 80332B94-80332BDC 32D4D4 0048+00 0/0 2/2 0/0 .text            __dt__11J3DMaterialFv */
-// J3DMaterial::~J3DMaterial() {
-extern "C" void __dt__11J3DMaterialFv() {
-    // NONMATCHING
 }

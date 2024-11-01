@@ -6,107 +6,14 @@
  */
 
 #include "d/actor/d_a_e_fz.h"
+UNK_REL_DATA
+#include "f_op/f_op_actor_enemy.h"
 #include "d/actor/d_a_mirror.h"
 #include "d/actor/d_a_b_yo.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_item.h"
-#include "d/actor/d_a_player.h"
-#include "d/actor/d_a_midna.h"
 #include "SSystem/SComponent/c_math.h"
 #include "SSystem/SComponent/c_xyz.h"
-
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-
-/* 806C14D4-806C18E8 002C74 0414+00 1/1 0/0 0/0 .text
- * setMidnaBindEffect__FP13fopEn_enemy_cP15Z2CreatureEnemyP4cXyzP4cXyz */
-// NONMATCHING
-// gave up on this one, it's a mess. 
-// it appears to be actually defined in f_op_actor header and is in ~60 enemy actor TUs
-// so needs to be solved eventually
-// bind_id issue + regalloc (could be related)
-static int setMidnaBindEffect(fopEn_enemy_c* i_actorP, Z2CreatureEnemy* i_creatureP, cXyz* i_pos,
-                              cXyz* i_scale) {
-    static GXColor e_prim[2] = {
-        {0xFF, 0x78, 0x00, 0x00}, 
-        {0xFF, 0x64, 0x78, 0x00},
-    };
-    static GXColor e_env[2] = {
-        {0x5A, 0x2D, 0x2D, 0x00}, 
-        {0x3C, 0x1E, 0x1E, 0x00},
-    };
-
-    int darkworld_check;
-    daPy_py_c* player_actor = daPy_getPlayerActorClass();
-
-    if (player_actor->getMidnaActor() && player_actor->checkWolfLock(i_actorP)) {
-        cXyz pos3;
-        if (dKy_darkworld_check()) {
-            darkworld_check = 1;
-        } else {
-            darkworld_check = 0;
-        }
-
-        if (i_actorP->getMidnaBindMode() == 0) {
-            i_actorP->setMidnaBindMode(1);
-
-            csXyz angle;
-            PSMTXCopy(player_actor->getMidnaActor()->getMtxHairTop(), mDoMtx_stack_c::get());
-            cXyz cStack_54(100.0f, 0.0f, 0.0f);
-            mDoMtx_stack_c::multVec(&cStack_54, &pos3);
-
-            cXyz pos = pos3 - *i_pos;
-
-            angle.y = cM_atan2s(pos.x, pos.z);
-            angle.x = -cM_atan2s(pos.y, JMAFastSqrt(pos.x * pos.x + pos.z * pos.z));
-            angle.z = 0;
-
-            s32 room_no = fopAcM_GetRoomNo(i_actorP);
-
-            JPABaseEmitter* emitter = dComIfGp_particle_set(
-                0x29b, i_pos, &i_actorP->tevStr, &angle, i_scale, 0xff, 0, room_no,
-                &e_prim[darkworld_check], &e_env[darkworld_check], 0);
-
-            if (emitter) {
-                emitter->setGlobalParticleHeightScale(0.01f * pos.abs());
-            }
-
-            room_no = fopAcM_GetRoomNo(i_actorP);
-
-            dComIfGp_particle_set(0x29c, i_pos, &i_actorP->tevStr, &i_actorP->shape_angle,
-                                  i_scale, 0xff, 0, room_no, &e_prim[darkworld_check],
-                                  &e_env[darkworld_check], 0);
-
-            i_creatureP->startCreatureSound(Z2SE_MIDNA_BIND_LOCK_ON, 0, -1);
-        }
-
-        static u16 eff_id[3] = {0x029D, 0x029E, 0x029F};
-        for (int i = 0; i < 3; i++) {
-            u32* bind_id = i_actorP->getMidnaBindID(i);
-            s32 room_no = fopAcM_GetRoomNo(i_actorP);
-            *bind_id = dComIfGp_particle_set(*bind_id, eff_id[i], i_pos, &i_actorP->tevStr,
-                                             &i_actorP->shape_angle, i_scale, 0xff, 0, room_no,
-                                             &e_prim[darkworld_check], &e_env[darkworld_check], 0);
-
-        }
-
-        i_creatureP->startCreatureSound(Z2SE_MIDNA_BIND_LOCK_SUS, 0, -1);
-        return 1;
-    }
-
-    i_actorP->setMidnaBindMode(0);
-    return 0;
-}
 
 namespace {
 

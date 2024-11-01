@@ -176,8 +176,8 @@ enum fopAcM_STATUS {
     /* 0x100000 */ fopAcM_STATUS_HOOK_CARRY_NOW = 1 << 20,
 };
 
-inline s32 fopAcM_GetRoomNo(const fopAc_ac_c* pActor) {
-    return (s8)pActor->current.roomNo;
+inline s8 fopAcM_GetRoomNo(const fopAc_ac_c* pActor) {
+    return pActor->current.roomNo;
 }
 
 inline fpc_ProcID fopAcM_GetID(const void* pActor) {
@@ -697,23 +697,19 @@ inline s32 fopAcM_seenPlayerAngleY(const fopAc_ac_c* i_actor) {
 s8 dComIfGp_getReverb(int roomNo);
 
 inline void fopAcM_seStartCurrent(const fopAc_ac_c* actor, u32 sfxID, u32 param_2) {
-    s8 roomNo = fopAcM_GetRoomNo(actor);
-    mDoAud_seStart(sfxID, &actor->current.pos, param_2, dComIfGp_getReverb(roomNo));
+    mDoAud_seStart(sfxID, &actor->current.pos, param_2, dComIfGp_getReverb(fopAcM_GetRoomNo(actor)));
 }
 
 inline void fopAcM_seStart(const fopAc_ac_c* actor, u32 sfxID, u32 param_2) {
-    s8 roomNo = fopAcM_GetRoomNo(actor);
-    mDoAud_seStart(sfxID, &actor->eyePos, param_2, dComIfGp_getReverb(roomNo));
+    mDoAud_seStart(sfxID, &actor->eyePos, param_2, dComIfGp_getReverb(fopAcM_GetRoomNo(actor)));
 }
 
 inline void fopAcM_seStartLevel(const fopAc_ac_c* actor, u32 sfxID, u32 param_2) {
-    s8 roomNo = fopAcM_GetRoomNo(actor);
-    mDoAud_seStartLevel(sfxID, &actor->eyePos, param_2, dComIfGp_getReverb(roomNo));
+    mDoAud_seStartLevel(sfxID, &actor->eyePos, param_2, dComIfGp_getReverb(fopAcM_GetRoomNo(actor)));
 }
 
 inline void fopAcM_seStartCurrentLevel(const fopAc_ac_c* actor, u32 sfxID, u32 param_2) {
-    s8 roomNo = fopAcM_GetRoomNo(actor);
-    mDoAud_seStartLevel(sfxID, &actor->current.pos, param_2, dComIfGp_getReverb(roomNo));
+    mDoAud_seStartLevel(sfxID, &actor->current.pos, param_2, dComIfGp_getReverb(fopAcM_GetRoomNo(actor)));
 }
 
 inline void fopAcM_offActor(fopAc_ac_c* pActor, u32 flag) {

@@ -65,7 +65,7 @@ public:
     /* 80313BF0 */ virtual void calcNBTScale(Vec const&, f32 (*)[3][3], f32 (*)[3][3]);
 
     static J3DShapeMtx_LoadFunc sMtxLoadPipeline[4];
-    static u16 sMtxLoadCache[10 + 2 /* padding */];
+    static u16 sMtxLoadCache[10];
     static u32 sCurrentPipeline;
     static u8* sCurrentScaleFlag;
     static u8 sNBTFlag;

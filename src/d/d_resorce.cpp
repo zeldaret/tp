@@ -6,144 +6,19 @@
 #include "d/d_resorce.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
+#include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
+#include "JSystem/J3DGraphLoader/J3DClusterLoader.h"
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "JSystem/JKernel/JKRMemArchive.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
+#include "JSystem/JUtility/JUTConsole.h"
+#include "d/d_bg_w_kcol.h"
 #include "d/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/os.h"
-#include "dolphin/types.h"
-#include "global.h"
 #include "m_Do/m_Do_graphic.h"
 #include "stdio.h"
 #include "string.h"
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__11dRes_info_cFv();
-extern "C" void __dt__11dRes_info_cFv();
-extern "C" void set__11dRes_info_cFPCcPCcUcP7JKRHeap();
-extern "C" static void setAlpha__FP16J3DMaterialTable();
-extern "C" static void setIndirectTex__FP12J3DModelData();
-extern "C" static void setAlpha__FP12J3DModelData();
-extern "C" static void addWarpMaterial__FP12J3DModelData();
-extern "C" void __ct__11J3DTevStageFRC15J3DTevStageInfo();
-extern "C" void setTexMtx__14J3DTexGenBlockFUlP9J3DTexMtx();
-extern "C" void onWarpMaterial__11dRes_info_cFP12J3DModelData();
-extern "C" void offWarpMaterial__11dRes_info_cFP12J3DModelData();
-extern "C" void setWarpSRT__11dRes_info_cFP12J3DModelDataRC4cXyzff();
-extern "C" void loaderBasicBmd__11dRes_info_cFUlPv();
-extern "C" void __dt__15J3DTevKColorAnmFv();
-extern "C" void __ct__15J3DTevKColorAnmFv();
-extern "C" void __dt__14J3DTevColorAnmFv();
-extern "C" void __ct__14J3DTevColorAnmFv();
-extern "C" void __dt__11J3DTexNoAnmFv();
-extern "C" void __ct__11J3DTexNoAnmFv();
-extern "C" void __dt__12J3DTexMtxAnmFv();
-extern "C" void __ct__12J3DTexMtxAnmFv();
-extern "C" void __dt__14J3DMatColorAnmFv();
-extern "C" void __ct__14J3DMatColorAnmFv();
-extern "C" void loadResource__11dRes_info_cFv();
-extern "C" void __dt__18J3DAnmTransformKeyFv();
-extern "C" void __dt__15J3DAnmTransformFv();
-extern "C" void deleteArchiveRes__11dRes_info_cFv();
-extern "C" static void getArcHeader__FP10JKRArchive();
-extern "C" void setRes__11dRes_info_cFP10JKRArchiveP7JKRHeap();
-extern "C" void setRes__11dRes_info_cFv();
-extern "C" static void myGetMemBlockSize__FPv();
-extern "C" static void myGetMemBlockSize0__FPv();
-extern "C" void dump_long__11dRes_info_cFP11dRes_info_ci();
-extern "C" void dump__11dRes_info_cFP11dRes_info_ci();
-extern "C" void __dt__14dRes_control_cFv();
-extern "C" void setRes__14dRes_control_cFPCcP11dRes_info_ciPCcUcP7JKRHeap();
-extern "C" void syncRes__14dRes_control_cFPCcP11dRes_info_ci();
-extern "C" void deleteRes__14dRes_control_cFPCcP11dRes_info_ci();
-extern "C" void getResInfo__14dRes_control_cFPCcP11dRes_info_ci();
-extern "C" void newResInfo__14dRes_control_cFP11dRes_info_ci();
-extern "C" void getResInfoLoaded__14dRes_control_cFPCcP11dRes_info_ci();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void getRes__14dRes_control_cFPCcPCcP11dRes_info_ci();
-extern "C" void getIDRes__14dRes_control_cFPCcUsP11dRes_info_ci();
-extern "C" void syncAllRes__14dRes_control_cFP11dRes_info_ci();
-extern "C" void setObjectRes__14dRes_control_cFPCcPvUlP7JKRHeap();
-extern "C" void setStageRes__14dRes_control_cFPCcP7JKRHeap();
-extern "C" void dump__14dRes_control_cFv();
-extern "C" void getObjectResName2Index__14dRes_control_cFPCcPCc();
-extern "C" void __dt__10J3DAnmBaseFv();
-extern "C" bool getKind__15J3DAnmTransformCFv();
-extern "C" void __dt__18mDoExt_transAnmBasFv();
-extern "C" s32 getKind__18J3DAnmTransformKeyCFv();
-extern "C" void getTransform__18J3DAnmTransformKeyCFUsP16J3DTransformInfo();
-extern "C" void calc__11J3DTexNoAnmCFPUs();
-extern "C" extern char const* const d_d_resorce__stringBase0;
-extern "C" void DCStoreRangeNoSync(void*, u32);
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void setTevStageInfo__11J3DTevStageFRC15J3DTevStageInfo();
-extern "C" void mDoExt_getGameHeap__Fv();
-extern "C" void mDoExt_createSolidHeapToCurrent__FUlP7JKRHeapUl();
-extern "C" void mDoExt_createSolidHeapFromGameToCurrent__FUlUl();
-extern "C" void mDoExt_adjustSolidHeap__FP12JKRSolidHeap();
-extern "C" void mDoExt_destroySolidHeap__FP12JKRSolidHeap();
-extern "C" void mDoExt_restoreCurrentHeap__Fv();
-extern "C" void mDoExt_resIDToIndex__FP10JKRArchiveUs();
-extern "C" void create__24mDoDvdThd_mountArchive_cFPCcUcP7JKRHeap();
-extern "C" void ConvDzb__4cBgSFPv();
-extern "C" void initKCollision__8dBgWKColFPv();
-extern "C" void getSize__7JKRHeapFPvP7JKRHeap();
-extern "C" void findFromRoot__7JKRHeapFPv();
-extern "C" void* __nw__FUl();
-extern "C" void* __nwa__FUl();
-extern "C" void __dl__FPv();
-extern "C" void getIdxResource__10JKRArchiveFUl();
-extern "C" void getFileAttribute__10JKRArchiveCFUl();
-extern "C" void findIdxResource__10JKRArchiveCFUl();
-extern "C" void findNameResource__10JKRArchiveCFPCc();
-extern "C" void __ct__13JKRMemArchiveFPvUl15JKRMemBreakFlag();
-extern "C" void getName__10JUTNameTabCFUs();
-extern "C" void JUTReportConsole_f(const char*, ...);
-extern "C" void addResTIMG__10J3DTextureFUsPC7ResTIMG();
-extern "C" void addTexMtxIndexInDL__8J3DShapeF7_GXAttrUl();
-extern "C" void addTexMtxIndexInVcd__8J3DShapeF7_GXAttr();
-extern "C" void __as__13J3DTexMtxInfoFRC13J3DTexMtxInfo();
-extern "C" void newSharedDisplayList__12J3DModelDataFUl();
-extern "C" void makeSharedDL__12J3DModelDataFv();
-extern "C" void simpleCalcMaterial__12J3DModelDataFUsPA4_f();
-extern "C" void __ct__15J3DAnmTransformFsPfPsPf();
-extern "C" void calcTransform__18J3DAnmTransformKeyCFfUsP16J3DTransformInfo();
-extern "C" void getTexNo__16J3DAnmTexPatternCFUsPUs();
-extern "C" void initialize__14J3DMaterialAnmFv();
-extern "C" void load__24J3DClusterLoaderDataBaseFPCv();
-extern "C" void load__22J3DModelLoaderDataBaseFPCvUl();
-extern "C" void load__20J3DAnmLoaderDataBaseFPCv24J3DAnmLoaderDataBaseFlag();
-extern "C" void setResource__20J3DAnmLoaderDataBaseFP10J3DAnmBasePCv();
-extern "C" void __destroy_arr();
-extern "C" void __construct_array();
-extern "C" void _savegpr_20();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_20();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
-extern "C" u8 mZbufferTimg__13mDoGph_gInf_c[4];
-extern "C" u8 sCurrentHeap__7JKRHeap[4];
 
 /* 8003A260-8003A280 034BA0 0020+00 0/0 1/1 0/0 .text            __ct__11dRes_info_cFv */
 dRes_info_c::dRes_info_c() {
@@ -204,8 +79,6 @@ static void setAlpha(J3DMaterialTable* pMatTable) {
     }
 }
 
-/* ############################################################################################## */
-
 /* 8003A490-8003A81C 034DD0 038C+00 1/1 0/0 0/0 .text            setIndirectTex__FP12J3DModelData */
 static void setIndirectTex(J3DModelData* param_0) {
     const char* textureName;
@@ -236,7 +109,6 @@ static void setAlpha(J3DModelData* pModelData) {
     setAlpha(&pModelData->getMaterialTable());
 }
 
-/* ############################################################################################## */
 /* 80379840-803798A4 005EA0 0064+00 2/2 0/0 0/0 .rodata          l_texMtxInfo */
 static const J3DTexMtxInfo l_texMtxInfo = {
     0x00,
@@ -251,35 +123,17 @@ static const J3DTexMtxInfo l_texMtxInfo = {
     },
 };
 
-/* 803798A4-803798B8 005F04 0014+00 1/1 0/0 0/0 .rodata          l_tevStageInfo$3774 */
-static J3DTevStageInfo const l_tevStageInfo = {
-    0x05, 0x0F, 0x08, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x01, 0x00,
-    0x07, 0x04, 0x00, 0x07, 0x00, 0x00, 0x00, 0x01, 0x00,
-};
-
-/* 80450628-8045062C 0000A8 0004+00 1/1 0/0 0/0 .sdata           l_texCoordInfo$3772 */
-static J3DTexCoordInfo l_texCoordInfo = {
-    0x00,
-    0x00,
-    0x27,
-};
-
-/* 8045062C-80450630 0000AC 0004+00 1/1 0/0 0/0 .sdata           l_tevOrderInfo$3773 */
-static J3DTevOrderInfo l_tevOrderInfo = {
-    0x00,
-    0x03,
-    0xFF,
-    0x00,
-};
-
-/* 80451DF0-80451DF8 0003F0 0008+00 1/1 0/0 0/0 .sdata2          l_alphaCompInfo$3775 */
-SECTION_SDATA2 static J3DAlphaCompInfo l_alphaCompInfo = {
-    0x04, 0x80, 0x00, 0x03, 0xFF, 0, 0, 0,
-};
-
 /* 8003A840-8003AACC 035180 028C+00 1/1 0/0 0/0 .text            addWarpMaterial__FP12J3DModelData
  */
+// NONMATCHING l_alphaCompInfo needs to be placed in .sdata2, but the function breaks if it is declared const
 static void addWarpMaterial(J3DModelData* param_1) {
+    static J3DTevStageInfo const l_tevStageInfo = {
+        0x05, 0x0F, 0x08, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x01, 0x00,
+        0x07, 0x04, 0x00, 0x07, 0x00, 0x00, 0x00, 0x01, 0x00,
+    };
+    static J3DTexCoordInfo l_texCoordInfo = {0x00, 0x00, 0x27};
+    static J3DTevOrderInfo l_tevOrderInfo = {0x00, 0x03, 0xFF, 0x00};
+
     ResTIMG* objectRes = (ResTIMG*)dComIfG_getObjectRes("Always", 0x5d);
     J3DTexture* texture = param_1->getTexture();
     u16 textureNum = texture->getNum();
@@ -309,6 +163,7 @@ static void addWarpMaterial(J3DModelData* param_1) {
         pShape->addTexMtxIndexInVcd(attr);
         J3DPEBlock* peBlock = pMaterial->getPEBlock();
         J3DAlphaComp* alphaComp = peBlock->getAlphaComp();
+        static J3DAlphaCompInfo const l_alphaCompInfo = {0x04, 0x80, 0x00, 0x03, 0xFF, 0, 0, 0};
         alphaComp->setAlphaCompInfo(l_alphaCompInfo);
         peBlock->setZCompLoc((u8)0);
     }
@@ -366,23 +221,9 @@ void dRes_info_c::setWarpSRT(J3DModelData* modelData, cXyz const& param_1, f32 t
     cMtx_concat(l_texMtxInfo.mEffectMtx, stackMtx, texMtxInfo.mEffectMtx);
 }
 
-/* ############################################################################################## */
-/* 803A7C18-803A7C38 -00001 0020+00 1/1 0/0 0/0 .data            @4017 */
-SECTION_DATA static void* lit_4017[8] = {
-    (void*)(((char*)loaderBasicBmd__11dRes_info_cFUlPv) + 0x180),
-    (void*)(((char*)loaderBasicBmd__11dRes_info_cFUlPv) + 0x130),
-    (void*)(((char*)loaderBasicBmd__11dRes_info_cFUlPv) + 0x13C),
-    (void*)(((char*)loaderBasicBmd__11dRes_info_cFUlPv) + 0x148),
-    (void*)(((char*)loaderBasicBmd__11dRes_info_cFUlPv) + 0x154),
-    (void*)(((char*)loaderBasicBmd__11dRes_info_cFUlPv) + 0x160),
-    (void*)(((char*)loaderBasicBmd__11dRes_info_cFUlPv) + 0x16C),
-    (void*)(((char*)loaderBasicBmd__11dRes_info_cFUlPv) + 0x178),
-};
-
 /* 8003AE14-8003B150 035754 033C+00 2/1 1/1 0/0 .text            loaderBasicBmd__11dRes_info_cFUlPv
  */
-// regalloc
-#ifdef NONMATCHING
+// NONMATCHING regalloc
 J3DModelData* dRes_info_c::loaderBasicBmd(u32 i_type, void* i_data) {
     u32 flags = 0x59020010;
     J3DMaterial* pMaterial;
@@ -459,127 +300,8 @@ J3DModelData* dRes_info_c::loaderBasicBmd(u32 i_type, void* i_data) {
 
     return modelData;
 }
-#else
-J3DModelData* dRes_info_c::loaderBasicBmd(u32 param_0, void* param_1) {
-    // NONMATCHING
-}
-#endif
-
-/* 8003B150-8003B18C 035A90 003C+00 2/2 8/8 0/0 .text            __dt__15J3DTevKColorAnmFv */
-// J3DTevKColorAnm::~J3DTevKColorAnm() {
-extern "C" void __dt__15J3DTevKColorAnmFv() {
-    // NONMATCHING
-}
-
-/* 8003B18C-8003B1A4 035ACC 0018+00 2/2 3/3 0/0 .text            __ct__15J3DTevKColorAnmFv */
-// J3DTevKColorAnm::J3DTevKColorAnm() {
-extern "C" void __ct__15J3DTevKColorAnmFv() {
-    // NONMATCHING
-}
-
-/* 8003B1A4-8003B1E0 035AE4 003C+00 2/2 8/8 0/0 .text            __dt__14J3DTevColorAnmFv */
-// J3DTevColorAnm::~J3DTevColorAnm() {
-extern "C" void __dt__14J3DTevColorAnmFv() {
-    // NONMATCHING
-}
-
-/* 8003B1E0-8003B1F8 035B20 0018+00 2/2 3/3 0/0 .text            __ct__14J3DTevColorAnmFv */
-// J3DTevColorAnm::J3DTevColorAnm() {
-extern "C" void __ct__14J3DTevColorAnmFv() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 803A7C38-803A7C48 004D58 0010+00 4/4 22/22 0/0 .data            __vt__10J3DAnmBase */
-SECTION_DATA extern void* __vt__10J3DAnmBase[4] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10J3DAnmBaseFv,
-    (void*)NULL,
-};
-
-/* 803A7C48-803A7C5C 004D68 0014+00 3/3 3/3 0/0 .data            __vt__15J3DAnmTransform */
-SECTION_DATA extern void* __vt__15J3DAnmTransform[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__15J3DAnmTransformFv,
-    (void*)getKind__15J3DAnmTransformCFv,
-    (void*)NULL,
-};
-
-/* 803A7C5C-803A7C70 004D7C 0014+00 2/2 1/1 0/0 .data            __vt__18mDoExt_transAnmBas */
-SECTION_DATA extern void* __vt__18mDoExt_transAnmBas[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__18mDoExt_transAnmBasFv,
-    (void*)getKind__18J3DAnmTransformKeyCFv,
-    (void*)getTransform__18J3DAnmTransformKeyCFUsP16J3DTransformInfo,
-};
-
-/* 803A7C70-803A7C84 004D90 0014+00 3/3 2/2 0/0 .data            __vt__18J3DAnmTransformKey */
-SECTION_DATA extern void* __vt__18J3DAnmTransformKey[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__18J3DAnmTransformKeyFv,
-    (void*)getKind__18J3DAnmTransformKeyCFv,
-    (void*)getTransform__18J3DAnmTransformKeyCFUsP16J3DTransformInfo,
-};
-
-/* 803A7C84-803A7C90 004DA4 000C+00 2/2 1/1 0/0 .data            __vt__11J3DTexNoAnm */
-SECTION_DATA extern void* __vt__11J3DTexNoAnm[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)calc__11J3DTexNoAnmCFPUs,
-};
-
-/* 8003B1F8-8003B240 035B38 0048+00 2/2 8/8 0/0 .text            __dt__11J3DTexNoAnmFv */
-// J3DTexNoAnm::~J3DTexNoAnm() {
-extern "C" void __dt__11J3DTexNoAnmFv() {
-    // NONMATCHING
-}
-
-/* 8003B240-8003B264 035B80 0024+00 2/2 3/3 0/0 .text            __ct__11J3DTexNoAnmFv */
-// J3DTexNoAnm::J3DTexNoAnm() {
-extern "C" void __ct__11J3DTexNoAnmFv() {
-    // NONMATCHING
-}
-
-/* 8003B264-8003B2A0 035BA4 003C+00 2/2 8/8 0/0 .text            __dt__12J3DTexMtxAnmFv */
-// J3DTexMtxAnm::~J3DTexMtxAnm() {
-extern "C" void __dt__12J3DTexMtxAnmFv() {
-    // NONMATCHING
-}
-
-/* 8003B2A0-8003B2B8 035BE0 0018+00 2/2 3/3 0/0 .text            __ct__12J3DTexMtxAnmFv */
-// J3DTexMtxAnm::J3DTexMtxAnm() {
-extern "C" void __ct__12J3DTexMtxAnmFv() {
-    // NONMATCHING
-}
-
-/* 8003B2B8-8003B2F4 035BF8 003C+00 2/2 8/8 0/0 .text            __dt__14J3DMatColorAnmFv */
-// J3DMatColorAnm::~J3DMatColorAnm() {
-extern "C" void __dt__14J3DMatColorAnmFv() {
-    // NONMATCHING
-}
-
-/* 8003B2F4-8003B30C 035C34 0018+00 2/2 3/3 0/0 .text            __ct__14J3DMatColorAnmFv */
-// J3DMatColorAnm::J3DMatColorAnm() {
-extern "C" void __ct__14J3DMatColorAnmFv() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803798E2 =
-    "<%s.arc> setRes: res pointer buffer nothing !!\n";
-SECTION_DEAD static char const* const stringBase_80379912 = "<%s> res == NULL !!\n";
-#pragma pop
 
 /* 8003B30C-8003B8D0 035C4C 05C4+00 2/2 0/0 0/0 .text            loadResource__11dRes_info_cFv */
-// J3DXXX ctor/dtor inlines
-#ifdef NONMATCHING
 int dRes_info_c::loadResource() {
     s32 file_num = mArchive->countFile();
     mRes = new void*[file_num];
@@ -724,23 +446,6 @@ int dRes_info_c::loadResource() {
 
     return 0;
 }
-#else
-int dRes_info_c::loadResource() {
-    // NONMATCHING
-}
-#endif
-
-/* 8003B8D0-8003B93C 036210 006C+00 1/0 0/0 0/0 .text            __dt__18J3DAnmTransformKeyFv */
-extern "C" void __dt__18J3DAnmTransformKeyFv() {
-    // asm J3DAnmTransformKey::~J3DAnmTransformKey() {
-    // NONMATCHING
-}
-
-/* 8003B93C-8003B998 03627C 005C+00 1/0 0/0 0/0 .text            __dt__15J3DAnmTransformFv */
-extern "C" void __dt__15J3DAnmTransformFv() {
-    // asm J3DAnmTransform::~J3DAnmTransform() {
-    // NONMATCHING
-}
 
 /* 8003B998-8003BA9C 0362D8 0104+00 1/1 0/0 0/0 .text            deleteArchiveRes__11dRes_info_cFv
  */
@@ -861,12 +566,11 @@ static s32 myGetMemBlockSize0(void* param_0) {
     return size;
 }
 
-/* ############################################################################################## */
-/* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8037997F = "%5.1f %5x %5.1f %5x %3d %s\n";
-#pragma pop
+// Fixes string data and float literal order
+f32 dummy(int x) {
+    DEAD_STRING("%5.1f %5x %5.1f %5x %3d %s\n");
+    return x;
+}
 
 /* 8003BD2C-8003BE38 03666C 010C+00 1/1 0/0 0/0 .text dump_long__11dRes_info_cFP11dRes_info_ci */
 void dRes_info_c::dump_long(dRes_info_c* param_0, int param_1) {
@@ -907,34 +611,9 @@ void dRes_info_c::dump_long(dRes_info_c* param_0, int param_1) {
     }
 }
 
-/* ############################################################################################## */
-/* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80379A38 = "dRes_info_c::dump %08x %d\n";
-SECTION_DEAD static char const* const stringBase_80379A53 =
-    "No ArchiveSize(KB) SolidHeapSize(KB) Cnt Archive"
-    "Name\n";
-SECTION_DEAD static char const* const stringBase_80379A89 = "%2d %6.1f %6x %6.1f %6x %3d %s\n";
-SECTION_DEAD static char const* const stringBase_80379AA9 =
-    "----------------------------------------------\n "
-    "  %6.1f %6x %6.1f %6x   Total\n\n";
-#pragma pop
-
-/* 80451DF8-80451E00 0003F8 0008+00 1/1 0/0 0/0 .sdata2          @4277 */
-SECTION_SDATA2 static f64 lit_4277 = 4503601774854144.0 /* cast s32 to float */;
-
-/* 80451E00-80451E08 000400 0004+04 1/1 0/0 0/0 .sdata2          @4333 */
-SECTION_SDATA2 static f32 lit_4333[1 + 1 /* padding */] = {
-    0.0009765625f,
-    /* padding */
-    0.0f,
-};
-
 /* 8003BE38-8003BFB0 036778 0178+00 1/1 0/0 0/0 .text            dump__11dRes_info_cFP11dRes_info_ci
  */
-// float literal order
-#ifdef NONMATCHING
+// NONMATCHING float literal order
 void dRes_info_c::dump(dRes_info_c* param_0, int param_1) {
     int totalArcHeaderSize;
     int totalHeapSize;
@@ -962,11 +641,6 @@ void dRes_info_c::dump(dRes_info_c* param_0, int param_1) {
         "----------------------------------------------\n   %6.1f %6x %6.1f %6x   Total\n\n",
         totalArcHeaderSize / 1024.0f, totalArcHeaderSize, totalHeapSize / 1024.0f, totalHeapSize);
 }
-#else
-void dRes_info_c::dump(dRes_info_c* param_0, int param_1) {
-    // NONMATCHING
-}
-#endif
 
 /* 8003BFB0-8003C078 0368F0 00C8+00 0/0 1/1 0/0 .text            __dt__14dRes_control_cFv */
 dRes_control_c::~dRes_control_c() {
@@ -978,8 +652,6 @@ dRes_control_c::~dRes_control_c() {
         mStageInfo[i].~dRes_info_c();
     }
 }
-
-/* ############################################################################################## */
 
 /* 8003C078-8003C160 0369B8 00E8+00 2/2 8/8 0/0 .text
  * setRes__14dRes_control_cFPCcP11dRes_info_ciPCcUcP7JKRHeap    */
@@ -1083,8 +755,6 @@ dRes_info_c* dRes_control_c::getResInfoLoaded(char const* arcName, dRes_info_c* 
     }
     return resInfo;
 }
-
-/* ############################################################################################## */
 
 /* 8003C2EC-8003C37C 036C2C 0090+00 1/1 54/54 894/894 .text
  * getRes__14dRes_control_cFPCclP11dRes_info_ci                 */
@@ -1216,39 +886,3 @@ int dRes_control_c::getObjectResName2Index(char const* arcName, char const* para
         }
     }
 }
-
-/* 8003C734-8003C77C 037074 0048+00 1/0 0/0 0/0 .text            __dt__10J3DAnmBaseFv */
-extern "C" void __dt__10J3DAnmBaseFv() {
-    // asm J3DAnmBase::~J3DAnmBase() {
-    // NONMATCHING
-}
-
-/* 8003C77C-8003C784 0370BC 0008+00 1/0 0/0 0/0 .text            getKind__15J3DAnmTransformCFv */
-s32 J3DAnmTransform::getKind() const {
-    return 0;
-}
-
-/* 8003C784-8003C800 0370C4 007C+00 1/0 0/0 0/0 .text            __dt__18mDoExt_transAnmBasFv */
-// mDoExt_transAnmBas::~mDoExt_transAnmBas() {
-extern "C" void __dt__18mDoExt_transAnmBasFv() {
-    // NONMATCHING
-}
-
-/* 8003C800-8003C808 037140 0008+00 2/0 0/0 0/0 .text            getKind__18J3DAnmTransformKeyCFv */
-s32 J3DAnmTransformKey::getKind() const {
-    return 8;
-}
-
-/* 8003C808-8003C82C 037148 0024+00 2/0 0/0 0/0 .text
- * getTransform__18J3DAnmTransformKeyCFUsP16J3DTransformInfo    */
-void J3DAnmTransformKey::getTransform(u16 param_0, J3DTransformInfo* param_1) const {
-    // NONMATCHING
-}
-
-/* 8003C82C-8003C85C 03716C 0030+00 1/0 0/0 0/0 .text            calc__11J3DTexNoAnmCFPUs */
-// void J3DTexNoAnm::calc(u16* param_0) const {
-extern "C" void calc__11J3DTexNoAnmCFPUs() {
-    // NONMATCHING
-}
-
-/* 803798B8-803798B8 005F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

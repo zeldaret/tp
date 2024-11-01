@@ -3,71 +3,23 @@
 // Translation Unit: d/d_scope
 //
 
-#define NO_INLINE_DLSTBASE_DRAW
-
 #include "d/d_scope.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/JUtility/JUTTexture.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_meter2_info.h"
-#include "dol2asm.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "m_Do/m_Do_graphic.h"
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
 
-//
-// Forward References:
-//
-
-extern "C" void __ct__8dScope_cFUc();
-extern "C" void __ct__Q28JUtility6TColorFv();
-extern "C" void __dt__8dScope_cFv();
-extern "C" void _execute__8dScope_cFUl();
-extern "C" void draw__8dScope_cFv();
-extern "C" void isDead__8dScope_cFv();
-extern "C" void open_init__8dScope_cFv();
-extern "C" void open_proc__8dScope_cFv();
-extern "C" void move_init__8dScope_cFv();
-extern "C" void move_proc__8dScope_cFv();
-extern "C" void close_init__8dScope_cFv();
-extern "C" void close_proc__8dScope_cFv();
-extern "C" void __dt__11dMeterSub_cFv();
-extern "C" int _create__11dMeterSub_cFv();
-extern "C" int _delete__11dMeterSub_cFv();
-extern "C" void draw__11dMeterSub_cFv();
-extern "C" int _execute__11dMeterSub_cFUl();
-extern "C" int isDead__11dMeterSub_cFv();
-extern "C" void __sinit_d_scope_cpp();
-extern "C" extern char const* const d_d_scope__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void J2DDrawLine__FffffQ28JUtility6TColori();
-extern "C" void __ct__10J2DPictureFPC7ResTIMG();
-extern "C" void __construct_array();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_23();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_23();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__12dDlst_base_c[3];
-
-//
-// Declarations:
-//
-
 /* 803BB618-803BB624 018738 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
+static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 803BB648-803BB66C 018768 0024+00 2/3 0/0 0/0 .data            init_process */
 typedef void (dScope_c::*initFunc)();
-SECTION_DATA initFunc init_process[] = {
+initFunc init_process[] = {
     &dScope_c::open_init,
     &dScope_c::move_init,
     &dScope_c::close_init,
@@ -75,24 +27,11 @@ SECTION_DATA initFunc init_process[] = {
 
 /* 803BB690-803BB6B4 0187B0 0024+00 1/2 0/0 0/0 .data            move_process */
 typedef void (dScope_c::*moveFunc)();
-SECTION_DATA moveFunc move_process[] = {
+moveFunc move_process[] = {
     &dScope_c::open_proc,
     &dScope_c::move_proc,
     &dScope_c::close_proc,
 };
-
-/* 80453A10-80453A14 002010 0004+00 4/4 0/0 0/0 .sdata2          @3756 */
-SECTION_SDATA2 static f32 lit_3756 = 3.0f;
-
-/* 80453A14-80453A18 002014 0004+00 4/4 0/0 0/0 .sdata2          @3757 */
-SECTION_SDATA2 static u8 lit_3757[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-extern void* __vt__11dMeterSub_c[8 + 3 /* padding */];
 
 /* 80193690-80193960 18DFD0 02D0+00 0/0 1/1 0/0 .text            __ct__8dScope_cFUc */
 dScope_c::dScope_c(u8 param_0) : field_0x58(-1), field_0x5c(-1) {
@@ -122,38 +61,14 @@ dScope_c::dScope_c(u8 param_0) : field_0x58(-1), field_0x5c(-1) {
     mp_image = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', "tt_block8x8.bti");
     mpBlackTex = new J2DPicture(mp_image);
     mpBlackTex->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(0, 0, 0, 255));
-    mScale = lit_3756;
-    mAlpha = FLOAT_LABEL(lit_3757);
+    mScale = 3.0f;
+    mAlpha = 0.0f;
     mOpenTimer = 0;
     field_0x8a = 0;
     mProcess = PROC_OPEN;
     mIsDead = false;
     (this->*init_process[mProcess])();
 }
-
-/* 803BB6B4-803BB6D4 0187D4 0020+00 2/2 0/0 0/0 .data            __vt__8dScope_c */
-SECTION_DATA extern void* __vt__8dScope_c[8] = {
-    (void*)NULL /* RTTI */,          (void*)NULL,
-    (void*)draw__8dScope_cFv,        (void*)__dt__8dScope_cFv,
-    (void*)_create__11dMeterSub_cFv, (void*)_execute__8dScope_cFUl,
-    (void*)_delete__11dMeterSub_cFv, (void*)isDead__8dScope_cFv,
-};
-
-/* 803BB6D4-803BB700 0187F4 0020+0C 3/3 6/6 0/0 .data            __vt__11dMeterSub_c */
-SECTION_DATA extern void* __vt__11dMeterSub_c[8 + 3 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__11dMeterSub_cFv,
-    (void*)__dt__11dMeterSub_cFv,
-    (void*)_create__11dMeterSub_cFv,
-    (void*)_execute__11dMeterSub_cFUl,
-    (void*)_delete__11dMeterSub_cFv,
-    (void*)isDead__11dMeterSub_cFv,
-    /* padding */
-    NULL,
-    NULL,
-    NULL,
-};
 
 /* 8019396C-80193B90 18E2AC 0224+00 1/0 0/0 0/0 .text            __dt__8dScope_cFv */
 dScope_c::~dScope_c() {
@@ -226,22 +141,6 @@ int dScope_c::_execute(u32) {
     return 1;
 }
 
-/* ############################################################################################## */
-/* 80453A20-80453A24 002020 0004+00 1/1 0/0 0/0 .sdata2          @3879 */
-SECTION_SDATA2 static f32 lit_3879 = 255.0f;
-
-/* 80453A24-80453A28 002024 0004+00 1/1 0/0 0/0 .sdata2          @3880 */
-SECTION_SDATA2 static f32 lit_3880 = 304.0f;
-
-/* 80453A28-80453A2C 002028 0004+00 1/1 0/0 0/0 .sdata2          @3881 */
-SECTION_SDATA2 static f32 lit_3881 = 448.0f;
-
-/* 80453A2C-80453A30 00202C 0004+00 1/1 0/0 0/0 .sdata2          @3882 */
-SECTION_SDATA2 static f32 lit_3882 = 224.0f;
-
-/* 80453A30-80453A34 002030 0004+00 1/1 0/0 0/0 .sdata2          @3883 */
-SECTION_SDATA2 static f32 lit_3883 = 608.0f;
-
 /* 80193C68-80193FA0 18E5A8 0338+00 1/0 0/0 0/0 .text            draw__8dScope_cFv */
 void dScope_c::draw() {
     dComIfGp_getCurrentGrafPort()->setup2D();
@@ -289,23 +188,10 @@ bool dScope_c::isDead() {
 
 /* 80193FB4-80193FD0 18E8F4 001C+00 1/0 0/0 0/0 .text            open_init__8dScope_cFv */
 void dScope_c::open_init() {
-    mScale = lit_3756;
-    mAlpha = FLOAT_LABEL(lit_3757);
+    mScale = 3.0f;
+    mAlpha = 0.0f;
     mOpenTimer = 0;
 }
-
-/* ############################################################################################## */
-/* 80453A34-80453A38 002034 0004+00 2/2 0/0 0/0 .sdata2          @3902 */
-SECTION_SDATA2 static f32 lit_3902 = 1.5f;
-
-/* 80453A38-80453A3C 002038 0004+00 2/2 0/0 0/0 .sdata2          @3903 */
-SECTION_SDATA2 static f32 lit_3903 = 5.0f;
-
-/* 80453A3C-80453A40 00203C 0004+00 2/2 0/0 0/0 .sdata2          @3904 */
-SECTION_SDATA2 static f32 lit_3904 = 1.0f;
-
-/* 80453A40-80453A48 002040 0008+00 2/2 0/0 0/0 .sdata2          @3906 */
-SECTION_SDATA2 static f64 lit_3906 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80193FD0-80194048 18E910 0078+00 1/0 0/0 0/0 .text            open_proc__8dScope_cFv */
 void dScope_c::open_proc() {
@@ -319,7 +205,6 @@ void dScope_c::open_proc() {
         mProcess = PROC_MOVE;
     }
 }
-
 
 /* 80194048-8019404C 18E988 0004+00 1/0 0/0 0/0 .text            move_init__8dScope_cFv */
 void dScope_c::move_init() {}
@@ -341,41 +226,4 @@ void dScope_c::close_proc() {
         mAlpha = 0.0f;
         mIsDead = true;
     }
-}
-
-
-/* 801940D4-8019411C 18EA14 0048+00 1/0 0/0 0/0 .text            __dt__11dMeterSub_cFv */
-// dMeterSub_c::~dMeterSub_c() {
-extern "C" void __dt__11dMeterSub_cFv() {
-    // NONMATCHING
-}
-
-/* 8019411C-80194124 18EA5C 0008+00 2/0 0/0 0/0 .text            _create__11dMeterSub_cFv */
-// int dMeterSub_c::_create() {
-extern "C" int _create__11dMeterSub_cFv() {
-    return false;
-}
-
-/* 80194124-8019412C 18EA64 0008+00 2/0 0/0 0/0 .text            _delete__11dMeterSub_cFv */
-// int dMeterSub_c::_delete() {
-extern "C" int _delete__11dMeterSub_cFv() {
-    return false;
-}
-
-/* 8019412C-80194130 18EA6C 0004+00 1/0 0/0 0/0 .text            draw__11dMeterSub_cFv */
-// void dMeterSub_c::draw() {
-extern "C" void draw__11dMeterSub_cFv() {
-    /* empty function */
-}
-
-/* 80194130-80194138 18EA70 0008+00 1/0 0/0 0/0 .text            _execute__11dMeterSub_cFUl */
-// int dMeterSub_c::_execute(u32 param_0) {
-extern "C" int _execute__11dMeterSub_cFUl() {
-    return false;
-}
-
-/* 80194138-80194140 18EA78 0008+00 1/0 3/0 0/0 .text            isDead__11dMeterSub_cFv */
-// int dMeterSub_c::isDead() {
-extern "C" int isDead__11dMeterSub_cFv() {
-    return false;
 }

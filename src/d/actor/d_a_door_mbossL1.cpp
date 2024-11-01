@@ -981,27 +981,24 @@ int daMBdoorL1_c::openInit() {
         }
         if (getDoorType() == 0) {
             for (int i = 0; i < 2; i++) {
-                s32 roomNo = fopAcM_GetRoomNo(this);
                 dComIfGp_particle_set(
                     l_eff_id[i],
-                    &current.pos, &acStack_3c, 0, 0xff, 0, roomNo, NULL, NULL, NULL);
+                    &current.pos, &acStack_3c, 0, 0xff, 0, fopAcM_GetRoomNo(this), NULL, NULL, NULL);
             }
         } else {
             if (getDoorType() == 1) {
                 for (u32 k = 0; k < 5; k++) {
                     switch (level) {
                     case 4: {
-                        s32 roomNo = fopAcM_GetRoomNo(this);
                         dComIfGp_particle_set(
                             l_eff_id_lv4[k],
-                            &current.pos, &acStack_3c, 0, 0xff, 0, roomNo, NULL, NULL, NULL);
+                            &current.pos, &acStack_3c, 0, 0xff, 0, fopAcM_GetRoomNo(this), NULL, NULL, NULL);
                         break;
                     }
                     default: {
-                        s32 roomNo = fopAcM_GetRoomNo(this);
                         dComIfGp_particle_set(
                             l_eff_id_lv3[k],
-                            &current.pos, &acStack_3c, 0, 0xff, 0, roomNo, NULL, NULL, NULL);
+                            &current.pos, &acStack_3c, 0, 0xff, 0, fopAcM_GetRoomNo(this), NULL, NULL, NULL);
                         break;
                     }
                     }
@@ -1357,9 +1354,8 @@ void daMBdoorL1_c::smokeInit2() {
         field_0x81c.y -= 10.0f;
         field_0x828.y += 10.0f;
         field_0x604.CrrPos(dComIfG_Bgsp());
-        s32 roomNo = fopAcM_GetRoomNo(this);
         dComIfGp_particle_setPolyColor(0x8c50, field_0x604.m_gnd, &current.pos, &tevStr,
-                                       &shape_angle, NULL, 0, NULL, roomNo, 0);
+                                       &shape_angle, NULL, 0, NULL, fopAcM_GetRoomNo(this), 0);
     }
 }
 
@@ -1541,8 +1537,7 @@ int daMBdoorL1_c::startDemoEnd() {
     f32 fVar1 = dVar12 < 0.0f ? 180.0f : -180.0f;
     cXyz cStack_88(current.pos.x - fVar1 * local_70.x, current.pos.y,
                  current.pos.z - fVar1 * local_70.z);
-    s32 roomNo = fopAcM_GetRoomNo(player);
-    dComIfGs_setRestartRoom(cStack_88, dVar12 > 0.0f ? current.angle.y : (s16)(current.angle.y + 0x8000), roomNo);
+    dComIfGs_setRestartRoom(cStack_88, dVar12 > 0.0f ? current.angle.y : (s16)(current.angle.y + 0x8000), fopAcM_GetRoomNo(player));
     return 1;
 }
 
@@ -1560,7 +1555,7 @@ int daMBdoorL1_c::checkMBossRoom() {
 int daMBdoorL1_c::checkStopClose() {
     u8 FRoomNo = door_param2_c::getFRoomNo(this);
     door_param2_c::getFRoomNo(this);
-    s32 roomNo = fopAcM_GetRoomNo(this);
+    s8 roomNo = fopAcM_GetRoomNo(this);
     if (mDoorStop.mModel == NULL) {
         return 0;
     }

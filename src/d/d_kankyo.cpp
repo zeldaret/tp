@@ -3042,18 +3042,6 @@ static void setLightTevColorType_MAJI_sub(J3DMaterial* param_0, dKy_tevstr_c* pa
     // NONMATCHING
 }
 
-/* 801A4C08-801A4C0C 19F548 0004+00 0/0 4/0 0/0 .text setLight__13J3DColorBlockFUlP11J3DLightObj
- */
-void J3DColorBlock::setLight(u32 param_0, J3DLightObj* param_1) {
-    /* empty function */
-}
-
-/* 801A4C0C-801A4C10 19F54C 0004+00 0/0 3/0 0/0 .text
- * setAmbColor__13J3DColorBlockFUlPC10J3DGXColor                */
-void J3DColorBlock::setAmbColor(u32 param_0, J3DGXColor const* param_1) {
-    /* empty function */
-}
-
 /* 801A4C10-801A4DA0 19F550 0190+00 1/1 0/0 0/0 .text
  * dKy_cloudshadow_scroll__FP12J3DModelDataP12dKy_tevstr_ci     */
 static void dKy_cloudshadow_scroll(J3DModelData* i_modelData, dKy_tevstr_c* i_tevstr, int param_2) {

@@ -2572,7 +2572,7 @@ static cPhs__Step daDo_Create(fopAc_ac_c* i_this) {
         fopAcM_OnStatus(i_this, fopAcStts_CULL_e);
         fopAcM_OnCarryType(i_this, fopAcM_CARRY_TYPE_8);
         i_this->attention_info.flags = 0;
-        i_this->attention_info.distances[fopAc_attn_SPEAK_e] = 7;
+        i_this->attention_info.distances[fopAc_attn_CARRY_e] = 7;
         fopAcM_SetMtx(i_this, _this->mpMorf->getModel()->getBaseTRMtx());
         _this->mBgS_Acch.Set(fopAcM_GetPosition_p(i_this), fopAcM_GetOldPosition_p(i_this), i_this,
                              1, &_this->mBgS_AcchCir, fopAcM_GetSpeed_p(i_this), NULL, NULL);

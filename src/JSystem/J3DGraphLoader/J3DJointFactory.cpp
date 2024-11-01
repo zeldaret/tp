@@ -8,29 +8,14 @@
 #include "JSystem/J3DGraphAnimator/J3DJoint.h"
 #include "JSystem/JSupport/JSupport.h"
 
-//
-// Types:
-//
-
-extern "C" u16* func_8033677C(const void*, const void*);  // JSUConvertOffsetToPtr<u16>
-extern "C" void* __nw__FUl();
-extern "C" void __ct__8J3DJointFv();
-
 /* 80337178-803371D0 331AB8 0058+00 0/0 1/1 0/0 .text __ct__15J3DJointFactoryFRC13J3DJointBlock */
 J3DJointFactory::J3DJointFactory(J3DJointBlock const& block) {
-    mJointInitData = JSUConvertOffsetToPtr<J3DJointInitData>(&block, block.mpJointInitData);
-
-    // Fix when we have our ODR working.
-    // mIndexTable = JSUConvertOffsetToPtr<u16>(&block, block.mpIndexTable);
-    mIndexTable = func_8033677C(&block, block.mpIndexTable);
+    mJointInitData = JSUConvertOffsetToPtr<J3DJointInitData>(&block, (u32)block.mpJointInitData);
+    mIndexTable = JSUConvertOffsetToPtr<u16>(&block, (u32)block.mpIndexTable);
 }
 
 /* 803371D0-80337338 331B10 0168+00 0/0 1/1 0/0 .text            create__15J3DJointFactoryFi */
-J3DJoint* J3DJointFactory::create(int param_0) {
-    // NONMATCHING
-}
-
-/* J3DJoint* J3DJointFactory::create(int no) {
+J3DJoint* J3DJointFactory::create(int no) {
     J3DJoint* joint = new J3DJoint();
     joint->mJntNo = no;
     joint->mKind = getKind(no);
@@ -45,4 +30,4 @@ J3DJoint* J3DJointFactory::create(int param_0) {
         joint->mScaleCompensate = 0;
 
     return joint;
-} */
+}

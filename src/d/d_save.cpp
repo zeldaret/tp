@@ -8,33 +8,7 @@
 #include "JSystem/JUtility/JUTGamePad.h"
 #include "stdio.h"
 #include "d/d_meter2_info.h"
-#include "dol2asm.h"
 #include "d/actor/d_a_obj_carry.h"
-
-//
-// Forward References:
-//
-
-extern "C" void setItem__17dSv_player_item_cFiUc();
-extern "C" void getItem__17dSv_player_item_cCFib();
-extern "C" void isFirstBit__21dSv_player_get_item_cCFUc();
-extern "C" void onEventBit__11dSv_event_cFUs();
-extern "C" void offEventBit__11dSv_event_cFUs();
-extern "C" void isEventBit__11dSv_event_cCFUs();
-extern "C" extern char const* const d_save_d_save__stringBase0;
-extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-
-//
-// External References:
-//
-
-extern "C" void _savegpr_22();
-extern "C" void _restgpr_22();
-extern "C" void __div2i();
-
-//
-// Declarations:
-//
 
 /* 80032918-80032958 02D258 0040+00 4/4 0/0 0/0 .text            dSv_item_rename__FUc */
 static u8 dSv_item_rename(u8 i_itemNo) {
@@ -1674,17 +1648,8 @@ BOOL dSv_info_c::isActor(int i_id, int i_roomNo) const {
     return mZone[zoneNo].getActor().is(i_id);
 }
 
-/* ############################################################################################## */
-/* 80379234-80379234 005894 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8037925D = "Write size:%d\n";
-SECTION_DEAD static char const* const stringBase_8037926C = "SAVE size:%d\n";
-#pragma pop
-
 /* 80035798-80035A04 0300D8 026C+00 0/0 1/1 0/0 .text            memory_to_card__10dSv_info_cFPci */
-// regalloc
-#ifdef NONMATCHING
+// NONMATCHING regalloc
 int dSv_info_c::memory_to_card(char* card_ptr, int dataNum) {
     BOOL lantern_stolen;
     BOOL lantern_dropped;
@@ -1761,11 +1726,6 @@ int dSv_info_c::memory_to_card(char* card_ptr, int dataNum) {
     printf("SAVE size:%d\n", sizeof(dSv_save_c));
     return 0;
 }
-#else
-int dSv_info_c::memory_to_card(char* card_ptr, int dataNum) {
-    // NONMATCHING
-}
-#endif
 
 /* 80035A04-80035BD0 030344 01CC+00 0/0 2/2 0/0 .text            card_to_memory__10dSv_info_cFPci */
 int dSv_info_c::card_to_memory(char* i_cardPtr, int i_dataNum) {

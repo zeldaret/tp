@@ -19,184 +19,6 @@
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JUtility/JUTTexture.h"
-#include "dol2asm.h"
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__14dMsgScrnItem_cFUcUcP10JKRExpHeap();
-extern "C" void __dt__14dMsgScrnItem_cFv();
-extern "C" void exec__14dMsgScrnItem_cFv();
-extern "C" void drawSelf__14dMsgScrnItem_cFv();
-extern "C" void arwAnimeInit__14dMsgScrnItem_cFv();
-extern "C" void arwAnimeMove__14dMsgScrnItem_cFv();
-extern "C" void dotAnimeInit__14dMsgScrnItem_cFv();
-extern "C" void dotAnimeMove__14dMsgScrnItem_cFv();
-extern "C" void setSelectString__14dMsgScrnItem_cFPcPcPc();
-extern "C" void setSelectRubyString__14dMsgScrnItem_cFPcPcPc();
-extern "C" void isSelect__14dMsgScrnItem_cFv();
-extern "C" void selectAnimeInit__14dMsgScrnItem_cFUcUcfUc();
-extern "C" void selectAnimeMove__14dMsgScrnItem_cFUcUcb();
-extern "C" void selectAnimeEnd__14dMsgScrnItem_cFv();
-extern "C" void fukiScale__14dMsgScrnItem_cFf();
-extern "C" void fukiTrans__14dMsgScrnItem_cFff();
-extern "C" void fukiAlpha__14dMsgScrnItem_cFf();
-extern "C" void fukiPosCalc__14dMsgScrnItem_cFUc();
-extern "C" void setBtk0Animation__14dMsgScrnItem_cFP19J2DAnmTextureSRTKey();
-extern "C" void setBpk0Animation__14dMsgScrnItem_cFP11J2DAnmColor();
-extern "C" void setBpk1Animation__14dMsgScrnItem_cFP11J2DAnmColor();
-extern "C" void isOugiID__14dMsgScrnItem_cFv();
-extern "C" extern char const* const msg_scrn_d_msg_scrn_item__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void mDoExt_getMesgFont__Fv();
-extern "C" void mDoLib_project__FP3VecP3Vec();
-extern "C" void dComIfGp_getSubHeap2D__Fi();
-extern "C" void
-readItemTexture__13dMeter2Info_cFUcPvP10J2DPicturePvP10J2DPicturePvP10J2DPicturePvP10J2DPicturei();
-extern "C" void
-setItemColor__13dMeter2Info_cFUcP10J2DPictureP10J2DPictureP10J2DPictureP10J2DPicture();
-extern "C" void getActor__12dMsgObject_cFv();
-extern "C" void getMessageID__12dMsgObject_cFv();
-extern "C" void __ct__17dMsgScrn3Select_cFv();
-extern "C" void isSelect__17dMsgScrn3Select_cFv();
-extern "C" void setString__17dMsgScrn3Select_cFPcPcPc();
-extern "C" void setRubyString__17dMsgScrn3Select_cFPcPcPc();
-extern "C" void translate__17dMsgScrn3Select_cFff();
-extern "C" void draw__17dMsgScrn3Select_cFff();
-extern "C" void selAnimeInit__17dMsgScrn3Select_cFUcUcUcfUc();
-extern "C" void selAnimeMove__17dMsgScrn3Select_cFUcUcb();
-extern "C" void selAnimeEnd__17dMsgScrn3Select_cFv();
-extern "C" void getTextBoxWidth__17dMsgScrn3Select_cFv();
-extern "C" void getFontSize__17dMsgScrn3Select_cFv();
-extern "C" void getRubyFontSize__17dMsgScrn3Select_cFv();
-extern "C" void getCharSpace__17dMsgScrn3Select_cFv();
-extern "C" void getRubyCharSpace__17dMsgScrn3Select_cFv();
-extern "C" void getTextBoxGlobalPosX__17dMsgScrn3Select_cFi();
-extern "C" void getTextBoxGlobalPosY__17dMsgScrn3Select_cFi();
-extern "C" void __ct__15dMsgScrnArrow_cFv();
-extern "C" void draw__15dMsgScrnArrow_cFv();
-extern "C" void setPos__15dMsgScrnArrow_cFff();
-extern "C" void arwAnimeInit__15dMsgScrnArrow_cFv();
-extern "C" void arwAnimeMove__15dMsgScrnArrow_cFv();
-extern "C" void dotAnimeInit__15dMsgScrnArrow_cFv();
-extern "C" void dotAnimeMove__15dMsgScrnArrow_cFv();
-extern "C" void __ct__14dMsgScrnBase_cFv();
-extern "C" void __dt__14dMsgScrnBase_cFv();
-extern "C" void init__14dMsgScrnBase_cFv();
-extern "C" void multiDraw__14dMsgScrnBase_cFv();
-extern "C" void draw__14dMsgScrnBase_cFv();
-extern "C" void drawOutFont__14dMsgScrnBase_cFfff();
-extern "C" void fontAlpha__14dMsgScrnBase_cFf();
-extern "C" void isTalkNow__14dMsgScrnBase_cFv();
-extern "C" void __ct__15dMsgScrnLight_cFUcUc();
-extern "C" void draw__15dMsgScrnLight_cFPffffffUc();
-extern "C" void __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap();
-extern "C" void reinit__8CPaneMgrFv();
-extern "C" void getGlobalPosX__8CPaneMgrFv();
-extern "C" void getGlobalPosY__8CPaneMgrFv();
-extern "C" void paneTrans__8CPaneMgrFff();
-extern "C" void getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs();
-extern "C" void dPaneClass_showNullPane__FP9J2DScreen();
-extern "C" void setAlphaRate__13CPaneMgrAlphaFf();
-extern "C" void getAlphaRate__13CPaneMgrAlphaFv();
-extern "C" bool __eq__4cXyzCFRC3Vec();
-extern "C" void alloc__7JKRHeapFUli();
-extern "C" void free__7JKRHeapFPv();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader();
-extern "C" void readIdxResource__10JKRArchiveFPvUlUl();
-extern "C" void getBounds__7J2DPaneFv();
-extern "C" void setBasePosition__7J2DPaneF15J2DBasePosition();
-extern "C" void __ct__9J2DScreenFv();
-extern "C" void setPriority__9J2DScreenFPCcUlP10JKRArchive();
-extern "C" void draw__9J2DScreenFffPC14J2DGrafContext();
-extern "C" void animation__9J2DScreenFv();
-extern "C" void __ct__10J2DPictureFPC7ResTIMG();
-extern "C" void load__20J2DAnmLoaderDataBaseFPCv();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" void* item_resource__10dItem_data[1530];
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 80399990-80399990 025FF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80399990 = "zelda_item_get_window.blo";
-SECTION_DEAD static char const* const stringBase_803999AA = "zelda_item_get_window_text.blo";
-SECTION_DEAD static char const* const stringBase_803999C9 = "zelda_item_get_window.btk";
-SECTION_DEAD static char const* const stringBase_803999E3 = "zelda_item_get_window.bpk";
-SECTION_DEAD static char const* const stringBase_803999FD = "zelda_item_get_window_02.bpk";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80399A1A = "\0\0\0\0\0";
-#pragma pop
-
-/* 803C0F78-803C0FD0 01E098 0058+00 2/2 0/0 0/0 .data            __vt__14dMsgScrnItem_c */
-SECTION_DATA extern void* __vt__14dMsgScrnItem_c[22] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__14dMsgScrnBase_cFv,
-    (void*)__dt__14dMsgScrnItem_cFv,
-    (void*)exec__14dMsgScrnItem_cFv,
-    (void*)multiDraw__14dMsgScrnBase_cFv,
-    (void*)drawSelf__14dMsgScrnItem_cFv,
-    (void*)setSelectString__14dMsgScrnItem_cFPcPcPc,
-    (void*)setSelectRubyString__14dMsgScrnItem_cFPcPcPc,
-    (void*)arwAnimeInit__14dMsgScrnItem_cFv,
-    (void*)arwAnimeMove__14dMsgScrnItem_cFv,
-    (void*)dotAnimeInit__14dMsgScrnItem_cFv,
-    (void*)dotAnimeMove__14dMsgScrnItem_cFv,
-    (void*)isSelect__14dMsgScrnItem_cFv,
-    (void*)selectAnimeInit__14dMsgScrnItem_cFUcUcfUc,
-    (void*)selectAnimeMove__14dMsgScrnItem_cFUcUcb,
-    (void*)selectAnimeEnd__14dMsgScrnItem_cFv,
-    (void*)fukiScale__14dMsgScrnItem_cFf,
-    (void*)fukiTrans__14dMsgScrnItem_cFff,
-    (void*)fukiAlpha__14dMsgScrnItem_cFf,
-    (void*)fontAlpha__14dMsgScrnBase_cFf,
-    (void*)fukiPosCalc__14dMsgScrnItem_cFUc,
-};
-
-/* 80454BF8-80454BFC 0031F8 0004+00 2/2 0/0 0/0 .sdata2          @4192 */
-SECTION_SDATA2 static f32 lit_4192 = 100.0f;
-
-/* 80454BFC-80454C00 0031FC 0004+00 3/3 0/0 0/0 .sdata2          @4193 */
-SECTION_SDATA2 static f32 lit_4193 = 1.0f;
-
-/* 80454C00-80454C04 003200 0004+00 1/1 0/0 0/0 .sdata2          @4194 */
-SECTION_SDATA2 static f32 lit_4194 = 48.0f;
-
-/* 80454C04-80454C08 003204 0004+00 3/3 0/0 0/0 .sdata2          @4195 */
-SECTION_SDATA2 static u8 lit_4195[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80454C08-80454C0C 003208 0004+00 1/1 0/0 0/0 .sdata2          @4196 */
-SECTION_SDATA2 static f32 lit_4196 = 6.0f / 5.0f;
-
-/* 80454C0C-80454C10 00320C 0004+00 3/3 0/0 0/0 .sdata2          @4197 */
-SECTION_SDATA2 static f32 lit_4197 = 0.5f;
-
-/* 80454C10-80454C18 003210 0008+00 2/2 0/0 0/0 .sdata2          @4199 */
-SECTION_SDATA2 static f64 lit_4199 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8023E79C-8023F51C 2390DC 0D80+00 0/0 1/1 0/0 .text __ct__14dMsgScrnItem_cFUcUcP10JKRExpHeap */
 dMsgScrnItem_c::dMsgScrnItem_c(u8 param_1, u8 param_2, JKRExpHeap* param_3) {
@@ -298,7 +120,7 @@ dMsgScrnItem_c::dMsgScrnItem_c(u8 param_1, u8 param_2, JKRExpHeap* param_3) {
     }
     mpScreen = new J2DScreen();
     JUT_ASSERT(188, mpScreen != 0);
-    bool fg = mpScreen->setPriority("zelda_item_get_window_revo.blo", 0x1020000, dComIfGp_getMsgArchive(3));
+    bool fg = mpScreen->setPriority("zelda_item_get_window.blo", 0x1020000, dComIfGp_getMsgArchive(3));
     JUT_ASSERT(195, fg != false);
     dPaneClass_showNullPane(mpScreen);
     mpTxScreen = new J2DScreen();
@@ -350,13 +172,13 @@ dMsgScrnItem_c::dMsgScrnItem_c(u8 param_1, u8 param_2, JKRExpHeap* param_3) {
     JUT_ASSERT(312, mpMg_c[1] != 0);
     OSInitFastCast();
     fukiPosCalc(param_1);
-    field_0x118[0] = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(JKRGetNameResource("zelda_item_get_window_revo.btk", dComIfGp_getMsgArchive(3)));
+    field_0x118[0] = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(JKRGetNameResource("zelda_item_get_window.btk", dComIfGp_getMsgArchive(3)));
     field_0x118[0]->searchUpdateMaterialID(mpScreen);
     field_0x140[0] = 0.0f;
-    field_0x12c[0] = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(JKRGetNameResource("zelda_item_get_window_revo.bpk", dComIfGp_getMsgArchive(3)));
+    field_0x12c[0] = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(JKRGetNameResource("zelda_item_get_window.bpk", dComIfGp_getMsgArchive(3)));
     field_0x12c[0]->searchUpdateMaterialID(mpScreen);
     field_0x154[0] = 0.0f;
-    field_0x12c[1] = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(JKRGetNameResource("zelda_item_get_window_revo_02.bpk", dComIfGp_getMsgArchive(3)));
+    field_0x12c[1] = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(JKRGetNameResource("zelda_item_get_window_02.bpk", dComIfGp_getMsgArchive(3)));
     field_0x12c[1]->searchUpdateMaterialID(mpScreen);
     field_0x154[1] = 0.0f;
     field_0x19d = false;
@@ -475,10 +297,6 @@ dMsgScrnItem_c::~dMsgScrnItem_c() {
     dComIfGp_getMsgCommonArchive()->removeResourceAll();;
 }
 
-/* ############################################################################################## */
-/* 80454C18-80454C20 003218 0008+00 2/2 0/0 0/0 .sdata2          @4388 */
-SECTION_SDATA2 static f64 lit_4388 = 4503601774854144.0 /* cast s32 to float */;
-
 /* 8023F888-8023FB24 23A1C8 029C+00 1/0 0/0 0/0 .text            exec__14dMsgScrnItem_cFv */
 void dMsgScrnItem_c::exec() {
     f32 dVar12 = field_0x13c;
@@ -529,20 +347,8 @@ void dMsgScrnItem_c::exec() {
     mpMg_c[1]->scale(g_MsgObject_HIO_c.mBoxItemTextSizeX, g_MsgObject_HIO_c.mBoxItemTextSizeY);
 }
 
-
-/* ############################################################################################## */
-/* 80454C20-80454C24 003220 0004+00 1/1 0/0 0/0 .sdata2          @4476 */
-SECTION_SDATA2 static f32 lit_4476 = 2.0f;
-
-/* 80454C24-80454C28 003224 0004+00 1/1 0/0 0/0 .sdata2          @4477 */
-SECTION_SDATA2 static f32 lit_4477 = 255.0f;
-
-/* 80454C28-80454C2C 003228 0004+00 1/1 0/0 0/0 .sdata2          @4478 */
-SECTION_SDATA2 static f32 lit_4478 = 3.0f / 5.0f;
-
 /* 8023FB24-8023FF30 23A464 040C+00 1/0 0/0 0/0 .text            drawSelf__14dMsgScrnItem_cFv */
-// Issues with float regs order
-#ifdef NONMATCHING
+// NONMATCHING Issues with float regs order
 void dMsgScrnItem_c::drawSelf() {
     J2DGrafContext* grafContext = dComIfGp_getCurrentGrafPort();
     grafContext->setup2D();
@@ -556,7 +362,7 @@ void dMsgScrnItem_c::drawSelf() {
                             dVar12 * g_MsgObject_HIO_c.mBoxItemHaloAlpha, mCharInfoPtr[i].mColorNo);
         }
     }
-    //f32 this_00 = mpTm_c[0]->getGlobalPosX();
+    mpTm_c[0]->getGlobalPosX();
     drawOutFont(g_MsgObject_HIO_c.mBoxItemTextPosX - 2.0f, g_MsgObject_HIO_c.mBoxItemTextPosY,
                 1.0f);
     mpTxScreen->draw(0.0f, 0.0f, grafContext);
@@ -622,11 +428,6 @@ void dMsgScrnItem_c::drawSelf() {
         }
     }
 }
-#else
-void dMsgScrnItem_c::drawSelf() {
-    // NONMATCHING
-}
-#endif
 
 /* 8023FF30-8023FF54 23A870 0024+00 1/0 0/0 0/0 .text            arwAnimeInit__14dMsgScrnItem_cFv */
 void dMsgScrnItem_c::arwAnimeInit() {
@@ -701,34 +502,6 @@ void dMsgScrnItem_c::fukiAlpha(f32 param_1) {
         }
     }
 }
-
-/* ############################################################################################## */
-/* 80454C2C-80454C30 00322C 0004+00 1/1 0/0 0/0 .sdata2          @4663 */
-SECTION_SDATA2 static f32 lit_4663 = 608.0f;
-
-/* 80454C30-80454C34 003230 0004+00 1/1 0/0 0/0 .sdata2          @4664 */
-SECTION_SDATA2 static f32 lit_4664 = 448.0f;
-
-/* 80454C34-80454C38 003234 0004+00 1/1 0/0 0/0 .sdata2          @4665 */
-SECTION_SDATA2 static f32 lit_4665 = 50.0f;
-
-/* 80454C38-80454C3C 003238 0004+00 1/1 0/0 0/0 .sdata2          @4666 */
-SECTION_SDATA2 static f32 lit_4666 = 105.0f;
-
-/* 80454C3C-80454C40 00323C 0004+00 1/1 0/0 0/0 .sdata2          @4667 */
-SECTION_SDATA2 static f32 lit_4667 = 486.0f;
-
-/* 80454C40-80454C44 003240 0004+00 1/1 0/0 0/0 .sdata2          @4668 */
-SECTION_SDATA2 static f32 lit_4668 = 230.0f;
-
-/* 80454C44-80454C48 003244 0004+00 1/1 0/0 0/0 .sdata2          @4669 */
-SECTION_SDATA2 static f32 lit_4669 = 235.0f;
-
-/* 80454C48-80454C4C 003248 0004+00 1/1 0/0 0/0 .sdata2          @4670 */
-SECTION_SDATA2 static f32 lit_4670 = 355.0f;
-
-/* 80454C4C-80454C50 00324C 0004+00 1/1 0/0 0/0 .sdata2          @4671 */
-SECTION_SDATA2 static f32 lit_4671 = 209.0f;
 
 /* 80240174-8024074C 23AAB4 05D8+00 1/0 0/0 0/0 .text            fukiPosCalc__14dMsgScrnItem_cFUc */
 void dMsgScrnItem_c::fukiPosCalc(u8 param_1) {

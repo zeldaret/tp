@@ -399,7 +399,6 @@ bool dMpath_c::isExistMapPathData() {
     return data_80450E88;
 }
 
-/* ############################################################################################## */
 /* 80450630-80450634 0000B0 0004+00 0/0 1/1 2/2 .sdata           mNextRoomNo__10dMapInfo_c */
 int dMapInfo_c::mNextRoomNo = -1;
 
@@ -407,7 +406,7 @@ int dMapInfo_c::mNextRoomNo = -1;
 s8 dMpath_c::mBottomFloorNo = 127;
 
 /* 80450635 0001+00 data_80450635 None */
-s8 dMpath_c::mTopFloorNo = 128;
+s8 dMpath_c::mTopFloorNo = -128;
 
 /* 8003F760-8003F7E8 03A0A0 0088+00 0/0 1/1 0/0 .text getTopBottomFloorNo__8dMpath_cFPScPSc */
 int dMpath_c::getTopBottomFloorNo(s8* i_topFloorNo, s8* i_bottomFloorNo) {
@@ -662,13 +661,10 @@ void renderingDAmap_c::draw() {
     mIsDraw = true;
 }
 
-/* ############################################################################################## */
-/* 80451E48-80451E4C 000448 0004+00 1/1 0/0 0/0 .sdata2          l_mapBaseColor$4239 */
-static const GXColor l_mapBaseColor = {4, 0, 0, 0};
-
 /* 8003FE4C-8003FE54 03A78C 0008+00 3/0 3/0 0/0 .text            getBackColor__16renderingDAmap_cCFv
  */
 const GXColor* renderingDAmap_c::getBackColor() const {
+    static const GXColor l_mapBaseColor = {4, 0, 0, 0};
     return &l_mapBaseColor;
 }
 
@@ -899,7 +895,6 @@ void renderingPlusDoor_c::drawDoor2() {
     drawDoorCommon(door_info->mDrTgData, door_info->mNum, false);
 }
 
-/* ############################################################################################## */
 /* 80451E58-80451E5C 000458 0004+00 1/1 0/0 0/0 .sdata2          l_doorWhite */
 static const GXColor l_doorWhite = {100, 0, 0, 0};
 
@@ -912,15 +907,11 @@ static const GXColor l_doorWhite2 = {100, 0, 0, 0};
 /* 80451E64-80451E68 000464 0004+00 1/1 0/0 0/0 .sdata2          l_doorWhiteNoStay2 */
 static const GXColor l_doorWhiteNoStay2 = {108, 0, 0, 0};
 
-/* 80451E68-80451E70 000468 0008+00 1/1 0/0 0/0 .sdata2          l_tex0$4406 */
-static const u8 l_tex0[8] = {
-    0x00, 0x00, 0x01, 0x00, 0x01, 0x01, 0x00, 0x01,
-};
-
 /* 800405FC-80040710 03AF3C 0114+00 2/2 0/0 0/0 .text
  * drawDoorCommon__19renderingPlusDoor_cFPC21stage_tgsc_data_classib */
 void renderingPlusDoor_c::drawDoorCommon(stage_tgsc_data_class const* i_doorData, int i_dataNum,
                                          bool param_2) {
+    static const u8 l_tex0[8] = {0x00, 0x00, 0x01, 0x00, 0x01, 0x01, 0x00, 0x01};
     int prm0;
     int prm1;
 
@@ -1091,31 +1082,24 @@ static const GXColor l_npcYkwStartColor = {140, 0, 0, 0};
 /* 80451E98-80451E9C 000498 0004+00 1/0 0/0 0/0 .sdata2          l_tksStartColor */
 static const GXColor l_tksStartColor = {164, 0, 0, 0};
 
-/* 80451E9C-80451EA4 00049C 0008+00 1/1 0/0 0/0 .sdata2          l_iconTex0$4523 */
-static const u8 l_iconTex0_4523[8] = {
-    0x00, 0x01, 0x01, 0x01, 0x01, 0x00, 0x00, 0x00,
-};
-
-/* 80451EA4-80451EA8 0004A4 0004+00 1/1 0/0 0/0 .sdata2          tboxNotStayColor$4542 */
-static const GXColor tboxNotStayColor_4542 = {128, 0, 0, 0};
-
 struct treasureDispData {
     /* 0x0 */ u8 field_0x0;
     /* 0x4 */ int field_0x4;
     /* 0x8 */ const GXColor* field_0x8;
 };
 
-/* 80379C88-80379CB8 -00001 0030+00 1/1 0/0 0/0 .rodata          l_treasureDispList$4524 */
-static const treasureDispData l_treasureDispList_4524[4] = {
-    {1, 2, &l_entranceStartColor},
-    {8, 5, &l_entranceLv8StartColor},
-    {0, 1, &l_treasureStartColor},
-    {5, 3, &l_destinationStartColor},
-};
-
 /* 80040B00-80040E84 03B440 0384+00 1/1 0/0 0/0 .text
  * drawTreasure__28renderingPlusDoorAndCursor_cFv               */
 void renderingPlusDoorAndCursor_c::drawTreasure() {
+    static const u8 l_iconTex0[8] = {0x00, 0x01, 0x01, 0x01, 0x01, 0x00, 0x00, 0x00};
+    static const GXColor tboxNotStayColor = {128, 0, 0, 0};
+    static const treasureDispData l_treasureDispList[4] = {
+        {1, 2, &l_entranceStartColor},
+        {8, 5, &l_entranceLv8StartColor},
+        {0, 1, &l_treasureStartColor},
+        {5, 3, &l_destinationStartColor},
+    };
+
     bool rend_all_room = isRendAllRoom();
 
     GXClearVtxDesc();
@@ -1123,13 +1107,13 @@ void renderingPlusDoorAndCursor_c::drawTreasure() {
     GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGB, GX_F32, 0);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGB565, 0);
-    GXSetArray(GX_VA_TEX0, (void*)l_iconTex0_4523, 2);
+    GXSetArray(GX_VA_TEX0, (void*)l_iconTex0, 2);
 
     setTevSettingIntensityTextureToCI();
 
     for (int i = 0; i < 4; i++) {
         dTres_c::typeGroupData_c* typeGroupData_p;
-        u8 tmp = l_treasureDispList_4524[i].field_0x0;
+        u8 tmp = l_treasureDispList[i].field_0x0;
         typeGroupData_p = getFirstData(tmp);
         int group_num = getIconGroupNumber(tmp);
 
@@ -1138,10 +1122,10 @@ void renderingPlusDoorAndCursor_c::drawTreasure() {
 
             GXInvalidateTexAll();
             GXTexObj* texObj_p =
-                dMpath_n::m_texObjAgg.getTexObjPointer(l_treasureDispList_4524[i].field_0x4);
+                dMpath_n::m_texObjAgg.getTexObjPointer(l_treasureDispList[i].field_0x4);
             GXLoadTexObj(texObj_p, GX_TEXMAP0);
             GXColor sp18;
-            const GXColor* temp_r3_2 = l_treasureDispList_4524[i].field_0x8;
+            const GXColor* temp_r3_2 = l_treasureDispList[i].field_0x8;
             sp18.r = temp_r3_2->r;
             sp18.g = temp_r3_2->g;
             sp18.b = temp_r3_2->b;
@@ -1157,7 +1141,7 @@ void renderingPlusDoorAndCursor_c::drawTreasure() {
 
                 if (tmp == 0) {
                     if (mRoomNoSingle != typeGroupData_p->getRoomNo()) {
-                        sp18 = tboxNotStayColor_4542;
+                        sp18 = tboxNotStayColor;
                     } else {
                         sp18 = l_treasureStartColor;
                     }
@@ -1183,30 +1167,18 @@ void renderingPlusDoorAndCursor_c::drawTreasure() {
     setTevSettingNonTextureDirectColor();
 }
 
-/* 80379CB8-80379D3C -00001 0084+00 1/1 0/0 0/0 .rodata          l_treasureDispList$4606 */
-static const treasureDispData l_treasureDispList_4606[11] = {
-    {16, 4, &l_tksStartColor},     {2, 4, &l_smallKeyStartColor}, {10, 4, &l_npc0StartColor},
-    {9, 4, &l_npc0StartColor},     {14, 4, &l_npcYkwStartColor},  {13, 4, &l_npcYkmStartColor},
-    {15, 4, &l_npc0StartColor},    {11, 4, &l_npc0StartColor},    {12, 4, &l_npc0StartColor},
-    {4, 4, &l_smallKeyStartColor}, {3, 4, &l_bossStartColor},
-};
-
-/* 80451EAC-80451EB4 0004AC 0008+00 1/1 0/0 0/0 .sdata2          l_iconTex0$4605 */
-static const u8 l_iconTex0_4605[8] = {
-    0x00, 0x01, 0x01, 0x01, 0x01, 0x00, 0x00, 0x00,
-};
-
-/* 80451EB4-80451EB8 0004B4 0004+00 1/1 0/0 0/0 .sdata2          tboxNotStayColor$4624 */
-static const GXColor tboxNotStayColor_4624 = {
-    0x80,
-    0x00,
-    0x00,
-    0x00,
-};
-
 /* 80040E84-80041208 03B7C4 0384+00 1/1 0/0 0/0 .text
  * drawTreasureAfterPlayer__28renderingPlusDoorAndCursor_cFv    */
 void renderingPlusDoorAndCursor_c::drawTreasureAfterPlayer() {
+    static const treasureDispData l_treasureDispList[11] = {
+        {16, 4, &l_tksStartColor},     {2, 4, &l_smallKeyStartColor}, {10, 4, &l_npc0StartColor},
+        {9, 4, &l_npc0StartColor},     {14, 4, &l_npcYkwStartColor},  {13, 4, &l_npcYkmStartColor},
+        {15, 4, &l_npc0StartColor},    {11, 4, &l_npc0StartColor},    {12, 4, &l_npc0StartColor},
+        {4, 4, &l_smallKeyStartColor}, {3, 4, &l_bossStartColor},
+    };
+    static const u8 l_iconTex0[8] = {0x00, 0x01, 0x01, 0x01, 0x01, 0x00, 0x00, 0x00};
+    static const GXColor tboxNotStayColor = {0x80, 0x00, 0x00, 0x00};
+
     bool rend_all_room = isRendAllRoom();
 
     GXClearVtxDesc();
@@ -1214,13 +1186,13 @@ void renderingPlusDoorAndCursor_c::drawTreasureAfterPlayer() {
     GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGB, GX_F32, 0);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGB565, 0);
-    GXSetArray(GX_VA_TEX0, (void*)l_iconTex0_4605, 2);
+    GXSetArray(GX_VA_TEX0, (void*)l_iconTex0, 2);
 
     setTevSettingIntensityTextureToCI();
 
     for (int i = 0; i < 11; i++) {
         dTres_c::typeGroupData_c* typeGroupData_p;
-        u8 tmp = l_treasureDispList_4606[i].field_0x0;
+        u8 tmp = l_treasureDispList[i].field_0x0;
         typeGroupData_p = getFirstData(tmp);
         int group_num = getIconGroupNumber(tmp);
 
@@ -1229,10 +1201,10 @@ void renderingPlusDoorAndCursor_c::drawTreasureAfterPlayer() {
 
             GXInvalidateTexAll();
             GXTexObj* texObj_p =
-                dMpath_n::m_texObjAgg.getTexObjPointer(l_treasureDispList_4606[i].field_0x4);
+                dMpath_n::m_texObjAgg.getTexObjPointer(l_treasureDispList[i].field_0x4);
             GXLoadTexObj(texObj_p, GX_TEXMAP0);
             GXColor sp18;
-            const GXColor* temp_r3_2 = l_treasureDispList_4606[i].field_0x8;
+            const GXColor* temp_r3_2 = l_treasureDispList[i].field_0x8;
             sp18.r = temp_r3_2->r;
             sp18.g = temp_r3_2->g;
             sp18.b = temp_r3_2->b;
@@ -1248,7 +1220,7 @@ void renderingPlusDoorAndCursor_c::drawTreasureAfterPlayer() {
 
                 if (tmp == 0) {
                     if (mRoomNoSingle != typeGroupData_p->getRoomNo()) {
-                        sp18 = tboxNotStayColor_4624;
+                        sp18 = tboxNotStayColor;
                     } else {
                         sp18 = l_treasureStartColor;
                     }

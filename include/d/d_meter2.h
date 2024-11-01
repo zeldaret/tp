@@ -19,20 +19,12 @@ class dMeterHaihai_c;
 
 class dMeterSub_c : public dDlst_base_c {
 public:
-    // these seem to be inlined, but generates in the wrong order in d_scope.cpp
-    /* 8019412C */ //virtual void draw() {}
-    /* 801940D4 */ //virtual ~dMeterSub_c() {}
-    /* 8019411C */ //virtual int _create() { return 0; }
-    /* 80194130 */ //virtual int _execute(u32) { return 0; }
-    /* 80194124 */ //virtual int _delete() { return 0; }
-    /* 80194138 */ //virtual int isDead() { return 0; }
-
-    /* 8019412C */ virtual void draw();
+    /* 8019412C */ virtual void draw() {}
     /* 801940D4 */ virtual ~dMeterSub_c() {}
-    /* 8019411C */ virtual int _create();
-    /* 80194130 */ virtual int _execute(u32);
-    /* 80194124 */ virtual int _delete();
-    /* 80194138 */ virtual bool isDead();
+    /* 8019411C */ virtual int _create() { return 0; }
+    /* 80194130 */ virtual int _execute(u32) { return 0; }
+    /* 80194124 */ virtual int _delete() { return 0; }
+    /* 80194138 */ virtual bool isDead() { return false; }
 };
 
 class dMeter2_c : public msg_class {

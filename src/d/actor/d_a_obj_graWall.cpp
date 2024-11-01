@@ -12,8 +12,7 @@ int daObjGraWall_c::Create() {
     field_0x6e0 = fopAcM_GetParam(this);
 
     if (field_0x6e0 != 0xff) {
-        int roomNo = fopAcM_GetRoomNo(this);
-        if (dComIfGs_isSwitch(field_0x6e0, roomNo) != 0) {
+        if (dComIfGs_isSwitch(field_0x6e0, fopAcM_GetRoomNo(this)) != 0) {
             return cPhs_ERROR_e;
         }
     } else {

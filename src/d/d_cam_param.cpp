@@ -7,25 +7,6 @@
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_com_inf_game.h"
-#include "dol2asm.h"
-
-//
-// Forward References:
-//
-
-extern "C" void __dt__11dCamParam_cFv();
-extern "C" void __dt__11dCamSetup_cFv();
-extern "C" void __dt__9dCstick_cFv();
-
-//
-// External References:
-//
-
-extern "C" void __dl__FPv();
-
-//
-// Declarations:
-//
 
 /* 8008813C-80088284 082A7C 0148+00 0/0 12/12 0/0 .text            rationalBezierRatio__8dCamMathFff
  */
@@ -69,9 +50,9 @@ f32 dCamMath::rationalBezierRatio(f32 param_0, f32 param_1) {
     return 0.0f;
 }
 
-/* ############################################################################################## */
-/* 80452810-80452814 000E10 0004+00 2/2 0/0 0/0 .sdata2          @3791 */
-SECTION_SDATA2 static f32 lit_3791 = 1.0f;  // placed in a weird order, so can't remove until fixed
+static f32 dummy_literal1() {
+    return 1.0f;
+}
 
 /* 80088284-800882E0 082BC4 005C+00 0/0 1/1 0/0 .text            zoomFovy__8dCamMathFff */
 f32 dCamMath::zoomFovy(f32 param_0, f32 param_1) {
@@ -112,30 +93,6 @@ f32 dCamMath::xyzHorizontalDistance(cXyz& i_posA, cXyz& i_posB) {
     return sqrt((x * x) + (z * z));
 }
 
-/* ############################################################################################## */
-/* 803AC500-803AC50C 009620 000C+00 2/2 0/0 0/0 .data            __vt__11dCamSetup_c */
-SECTION_DATA extern void* __vt__11dCamSetup_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__11dCamSetup_cFv,
-};
-
-/* 803AC50C-803AC518 00962C 000C+00 2/2 0/0 0/0 .data            __vt__11dCamParam_c */
-SECTION_DATA extern void* __vt__11dCamParam_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__11dCamParam_cFv,
-};
-
-/* 803AC518-803AC528 009638 000C+04 3/3 0/0 0/0 .data            __vt__9dCstick_c */
-SECTION_DATA extern void* __vt__9dCstick_c[3 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__9dCstick_cFv,
-    /* padding */
-    NULL,
-};
-
 /* 80088434-8008845C 082D74 0028+00 1/1 0/0 0/0 .text            __ct__9dCstick_cFv */
 dCstick_c::dCstick_c() {
     mThresholdLow = 0.2f;
@@ -152,7 +109,7 @@ bool dCstick_c::Shift(u32 param_0) {
 dCamBGChk_c::dCamBGChk_c() {
     mFloorMargin = 32.0f;
 
-    mChkInfo[0].mDistance = lit_3791;
+    mChkInfo[0].mDistance = 1.0f;
     mChkInfo[0].mChkAngle = 25.0f;
     mChkInfo[0].mWeightH = 0.4f;
     mChkInfo[0].mWeightL = 0.6f;
@@ -187,12 +144,6 @@ dCamParam_c::dCamParam_c(s32 i_styleID) {
     mMapToolArg2 = -1;
 }
 
-/* 8008858C-800885D4 082ECC 0048+00 1/0 1/1 0/0 .text            __dt__11dCamParam_cFv */
-// dCamParam_c::~dCamParam_c() {
-extern "C" void __dt__11dCamParam_cFv() {
-    // NONMATCHING
-}
-
 /* 800885D4-80088620 082F14 004C+00 1/1 7/7 0/0 .text            Change__11dCamParam_cFl */
 int dCamParam_c::Change(s32 i_styleID) {
     if (i_styleID >= 0 && i_styleID < mStyleNum) {
@@ -220,15 +171,13 @@ int dCamParam_c::SearchStyle(u32 param_0) {
     return styleID;
 }
 
-/* ############################################################################################## */
-/* 80452858-8045285C 000E58 0004+00 1/1 0/0 0/0 .sdata2          @4058 */
-SECTION_SDATA2 static f32 lit_4058 = 0.25f;  // placed in a weird order, so can't remove until fixed
+static f32 dummy_literal2() {
+    return 0.25f;
+}
 
 /* 80088668-800888B8 082FA8 0250+00 0/0 1/1 0/0 .text            __ct__11dCamSetup_cFv */
 dCamSetup_c::dCamSetup_c() {
-    f32 temp_1 = lit_3791;
-
-    mDrawNear = temp_1;
+    mDrawNear = 1.0f;
     mDrawFar = 100000.0f;
     field_0xc = 1;
     mModeSwitchType = -1;
@@ -242,11 +191,11 @@ dCamSetup_c::dCamSetup_c() {
     field_0x50 = 100.0f;
     field_0x30 = 0.75f;
     mBaseCushion = 0.28f;
-    mJumpCushion = temp_1;
+    mJumpCushion = 1.0f;
     field_0x58 = 0.15f;
     field_0x44 = 0.005f;
     field_0x54 = 0.06f;
-    mCurveWeight = temp_1;
+    mCurveWeight = 1.0f;
     field_0x34 = 25.0f;
     mSubjLinkCullDist = 70.0f;
     mParallelDist = 60.0f;
@@ -260,15 +209,15 @@ dCamSetup_c::dCamSetup_c() {
     mFalseAngle = 30.0f;
     mDebugFlags = 1;
 
-    field_0xa = 0x118;
-    field_0xa |= 0x200;
-    field_0xa |= 0x400;
+    mFlags2 = 0x118;
+    mFlags2 |= 0x200;
+    mFlags2 |= 0x400;
 
     mChargeLatitude = 27.0f;
     mChargeTimer = 90;
     mChargeBRatio = 0.5f;
     mLockonChangeTimer = 40;
-    mLockonChangeCushion = lit_4058;
+    mLockonChangeCushion = 0.25f;
     field_0x6c = 45.0f;
     mForceLockOffDist = 3500.0f;
     mForceLockOffTimer = 90;
@@ -296,7 +245,7 @@ dCamSetup_c::dCamSetup_c() {
     field_0xe0 = 0.06f;
     field_0xec = 25;
     field_0xf4 = 0.85f;
-    field_0xf8 = temp_1;
+    field_0xf8 = 1.0f;
     field_0xf0 = 12;
     field_0xe4 = 50.0f;
     field_0xe8 = 0.0f;
@@ -305,12 +254,6 @@ dCamSetup_c::dCamSetup_c() {
     mScreensaverExecTimer = 120;
 
     dCam_getBody()->EventRecoverNotime();
-}
-
-/* 800888B8-80088918 0831F8 0060+00 1/0 1/1 0/0 .text            __dt__11dCamSetup_cFv */
-// dCamSetup_c::~dCamSetup_c() {
-extern "C" void __dt__11dCamSetup_cFv() {
-    // NONMATCHING
 }
 
 /* 80088918-80088988 083258 0070+00 0/0 1/1 0/0 .text CheckLatitudeRange__11dCamSetup_cFPs */
@@ -339,6 +282,3 @@ f32 dCamSetup_c::PlayerHideDist() {
 
     return mSubjLinkCullDist;
 }
-
-/* 800889B0-800889F8 0832F0 0048+00 1/0 0/0 0/0 .text            __dt__9dCstick_cFv */
-dCstick_c::~dCstick_c() {}

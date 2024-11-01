@@ -10,7 +10,7 @@
 class dDlst_Gameover_CAPTURE_c : public dDlst_base_c {
 public:
     /* 8019ACF8 */ virtual void draw();
-    /* 8019C2CC */ virtual ~dDlst_Gameover_CAPTURE_c();  // supposed to be inlined
+    /* 8019C2CC */ virtual ~dDlst_Gameover_CAPTURE_c() {}
 };
 
 class dMsgScrnLight_c;

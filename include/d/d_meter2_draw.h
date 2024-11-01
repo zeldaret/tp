@@ -354,8 +354,8 @@ private:
     /* 0x518 */ J2DPicture* mpItemXYPane[3];
     /* 0x524 */ int field_0x524[2][2];
     /* 0x534 */ J2DAnmTransformKey* mPikariBck;
-    /* 0x538 */ J2DAnmColorKey* mPikariBpk;
-    /* 0x53C */ J2DAnmColorKey* mpOxygenBpk[3];
+    /* 0x538 */ J2DAnmColor* mPikariBpk;
+    /* 0x53C */ J2DAnmColor* mpOxygenBpk[3];
     /* 0x548 */ JUtility::TColor mPikariBlack;
     /* 0x54C */ JUtility::TColor mPikariWhite;
     /* 0x550 */ f32 field_0x550;
