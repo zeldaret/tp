@@ -2034,7 +2034,7 @@ public:
     /* 800E794C */ s16 getChainStickAngleY(s16) const;
     /* 800E7994 */ u8 checkChainEmphasys();
     /* 800E79F8 */ BOOL searchFmChainPos();
-    /* 800E7AEC */ void setFmChainPosFromOut(fopAc_ac_c*, cXyz*, int);
+    /* 800E7AEC */ BOOL setFmChainPosFromOut(fopAc_ac_c*, cXyz*, int);
     /* 800E7C30 */ int procFmChainUpInit();
     /* 800E7CC0 */ int procFmChainUp();
     /* 800E7DD8 */ int procFmChainStrongPullInit();
@@ -2044,13 +2044,13 @@ public:
     /* 800E7EF4 */ BOOL wallGrabTrigger();
     /* 800E7F18 */ BOOL wallGrabButton();
     /* 800E7F3C */ int setPushPullKeepData(dBgW_Base::PushPullLabel, int);
-    /* 800E80A4 */ void checkPushPullTurnBlock();
-    /* 800E8148 */ void checkPullBehindWall();
+    /* 800E80A4 */ BOOL checkPushPullTurnBlock();
+    /* 800E8148 */ BOOL checkPullBehindWall();
     /* 800E8298 */ void offGoatStopGame();
     /* 800E82B0 */ BOOL checkGoatCatchActor(fopAc_ac_c*);
     /* 800E8314 */ f32 getGoatCatchDistance2();
-    /* 800E8334 */ void endPushPull();
-    /* 800E8354 */ void getPushPullAnimeSpeed();
+    /* 800E8334 */ int endPushPull();
+    /* 800E8354 */ f32 getPushPullAnimeSpeed();
     /* 800E8428 */ int procCoPushPullWaitInit(int);
     /* 800E857C */ int procCoPushPullWait();
     /* 800E875C */ int procCoPushMoveInit(int, int);
@@ -3458,6 +3458,7 @@ public:
     BOOL checkStartFall() { return getStartMode() == 3; }
 
     u8 getBStatus() { return dComIfGp_getAStatus(); }
+    void setRStatus(u8 param_0, u8 param_1) { dComIfGp_setRStatus(param_0, param_1); }
 
     inline bool checkWindSpeedOnXZ() const;
     inline void startRestartRoomFromOut(int, u32, int);

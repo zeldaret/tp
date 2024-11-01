@@ -148,11 +148,19 @@ public:
     /* 80C0F7EC */ void getAttentionPos(fopAc_ac_c*);
     /* 80C0F860 */ void standWaitJump(void*);
 
+    bool checkNpcObjGra() { return field_0xa7e == 1; }
+    void setCrazyDash() { field_0xa48 |= 4; }
+    void setCrazyCatch() { field_0xa48 |= 2; }
+
     static u8 mBaseMotionList[264];
     static u8 mFaceMotionList[168];
 
 private:
-    /* 0x568 */ u8 field_0x568[0x20a4 - 0x568];
+    /* 0x0568 */ u8 field_0x568[0xA48 - 0x568];
+    /* 0x0A48 */ u16 field_0xa48;
+    /* 0x0A4A */ u8 field_0xa4a[0xA7E - 0xA4A];
+    /* 0x0A7E */ u8 field_0xa7e;
+    /* 0x0A7F */ u8 field_0xa7f[0x20a4 - 0xA7F];
 };
 
 STATIC_ASSERT(sizeof(daObj_GrA_c) == 0x20a4);

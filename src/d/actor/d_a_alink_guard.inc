@@ -5,6 +5,7 @@
 
 #include "d/actor/d_a_alink.h"
 #include "d/d_com_inf_game.h"
+#include "d/actor/d_a_obj_gra2.h"
 
 /* 800DC548-800DC5A4 0D6E88 005C+00 13/13 0/0 0/0 .text checkEnemyGroup__9daAlink_cFP10fopAc_ac_c
  */
@@ -17,14 +18,6 @@ BOOL daAlink_c::checkEnemyGroup(fopAc_ac_c* i_actor) {
 class daNpc_Kn_c : public fopAc_ac_c {
 public:
     bool checkBattleMode() { return true; }
-};
-
-class daObj_GrA_c : public fopAc_ac_c {
-public:
-    bool checkNpcObjGra() { return field_0xa7e == 1; }
-
-    u8 temp[0xA7E - 0x568];
-    u8 field_0xa7e;
 };
 
 /* 800DC5A4-800DC5DC 0D6EE4 0038+00 4/4 0/0 0/0 .text checkSpecialNpc__9daAlink_cFP10fopAc_ac_c */

@@ -426,6 +426,7 @@ public:
         ERFLG2_UNK_40 = 0x40,
         ERFLG2_UNK_20 = 0x20,
         ERFLG2_UNK_10 = 0x10,
+        ERFLG2_UNK_8 = 8,
         ERFLG2_UNK_2 = 2,
         ERFLG2_UNK_1 = 1,
     };
