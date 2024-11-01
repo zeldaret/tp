@@ -343,27 +343,6 @@ void mDoExt_modelTexturePatch(J3DModelData* i_modelData) {
     }
 }
 
-/* 8000DBC8-8000DBCC 008508 0004+00 0/0 2/0 0/0 .text patchTexNoAndTexCoordScale__11J3DTevBlockFv
- */
-void J3DTevBlock::patchTexNoAndTexCoordScale() {
-    /* empty function */
-}
-
-/* 8000DBCC-8000DBD0 00850C 0004+00 0/0 6/0 0/0 .text            patch__10J3DPEBlockFv */
-void J3DPEBlock::patch() {
-    /* empty function */
-}
-
-/* 8000DBD0-8000DBD4 008510 0004+00 0/0 2/0 0/0 .text            patchLight__13J3DColorBlockFv */
-void J3DColorBlock::patchLight() {
-    /* empty function */
-}
-
-/* 8000DBD4-8000DBD8 008514 0004+00 0/0 2/0 0/0 .text            patch__11J3DTevBlockFv */
-void J3DTevBlock::patch() {
-    /* empty function */
-}
-
 /* 8000DBD8-8000DC2C 008518 0054+00 3/3 0/0 0/0 .text            mDoExt_modelDiff__FP8J3DModel */
 static void mDoExt_modelDiff(J3DModel* i_model) {
     i_model->calcMaterial();

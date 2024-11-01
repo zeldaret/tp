@@ -27,15 +27,14 @@ u16 J3DModelLoader::countMaterialNum(const void* stream) {
 }
 
 /* 803367D4-803369A0 331114 01CC+00 0/0 3/0 0/0 .text calcLoadSize__14J3DModelLoaderFPCvUl */
-// NONMATCHING size load issue
 u32 J3DModelLoader::calcLoadSize(void const* stream, u32 flags_) {
     int flags = flags_;
     const J3DModelFileData* header = static_cast<const J3DModelFileData*>(stream);
-    size_t size;
+    size_t size = 0;
     const J3DModelBlock* nextBlock = header->mBlocks;
     u32 i = 0;
     // TODO: What sizeof will get us a size of 0xE4?
-    size = 0xE4;
+    size += 0xE4;
     for (; i < header->mBlockNum; i++) {
         switch (nextBlock->mBlockType) {
         case 'INF1':
@@ -116,12 +115,11 @@ u32 J3DModelLoader::calcLoadMaterialTableSize(const void* stream) {
  * calcLoadBinaryDisplayListSize__14J3DModelLoaderFPCvUl        */
 // NONMATCHING flags issue
 u32 J3DModelLoader::calcLoadBinaryDisplayListSize(const void* stream, u32 flags) {
+    u32 size = 0;
     const J3DModelFileData* header = (const J3DModelFileData*)stream;
     const J3DModelBlock* nextBlock = header->mBlocks;
     u32 i = 0;
-    u32 matFlags = flags & (J3DMLF_Material_UseIndirect | J3DMLF_26);
-    u32 flags2;
-    int size = sizeof(J3DModelData);
+    size += sizeof(J3DModelData);
     for (; i < header->mBlockNum; i++) {
         switch (nextBlock->mBlockType) {
         case 'INF1':
@@ -141,18 +139,19 @@ u32 J3DModelLoader::calcLoadBinaryDisplayListSize(const void* stream, u32 flags)
 			break;
 		case 'MAT2':
 			break;
-		case 'MAT3':
-			flags2 = (J3DMLF_21 | J3DMLF_Material_PE_Full | J3DMLF_Material_Color_LightOn);
-            flags2 |= matFlags;
+		case 'MAT3': {
+			u32 flags2 = (J3DMLF_21 | J3DMLF_Material_PE_Full | J3DMLF_Material_Color_LightOn);
+            flags2 |= flags & (J3DMLF_Material_UseIndirect | J3DMLF_26);
 			mpMaterialBlock = (const J3DMaterialBlock*)nextBlock;
 			if ((flags & (J3DMLF_13 | J3DMLF_DoBdlMaterialCalc)) == 0) {
 				field_0x18 = 1;
 				size += calcSizeMaterial((const J3DMaterialBlock*)nextBlock, flags2);
 			} else if ((flags & (J3DMLF_13 | J3DMLF_DoBdlMaterialCalc)) == J3DMLF_DoBdlMaterialCalc) {
 				field_0x18 = 1;
-				size += calcSizePatchedMaterial((const J3DMaterialBlock*)nextBlock, matFlags);
+				size += calcSizePatchedMaterial((const J3DMaterialBlock*)nextBlock, flags2);
 			}
 			break;
+        }
 		case 'EVP1':
 			size += calcSizeEnvelope((const J3DEnvelopeBlock*)nextBlock);
 			break;
@@ -190,7 +189,6 @@ u32 J3DModelLoader::calcSizeInformation(const J3DModelInfoBlock* block, u32 flag
 	mpModelHierarchy = JSUConvertOffsetToPtr<J3DModelHierarchy>(block, block->mpHierarchy);
 	return size;
 }
-
 
 /* 80336D64-80336D90 3316A4 002C+00 2/2 0/0 0/0 .text
  * calcSizeJoint__14J3DModelLoaderFPC13J3DJointBlock            */

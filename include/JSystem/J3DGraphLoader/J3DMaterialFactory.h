@@ -143,8 +143,8 @@ public:
     u16 getMaterialID(int idx) const { return mpMaterialID[idx]; }
     u8 getMaterialMode(int idx) const { return mpMaterialInitData[mpMaterialID[idx]].mMaterialMode; }
     
-    static u32 getMdlDataFlag_TevStageNum(u32 flags) { return (flags >> 0x10) & 0x1f; }
-    static u32 getMdlDataFlag_TexGenFlag(u32 flags) { return flags & 0x0c000000; }
+    static int getMdlDataFlag_TevStageNum(u32 flags) { return (flags >> 0x10) & 0x1f; }
+    static int getMdlDataFlag_TexGenFlag(u32 flags) { return flags & 0x0c000000; }
     static u32 getMdlDataFlag_ColorFlag(u32 flags) { return flags & 0xc0000000; }
     static u32 getMdlDataFlag_PEFlag(u32 flags) { return flags & 0x30000000; }
 
