@@ -2327,8 +2327,193 @@ int daAlink_c::procGoatCatchInit(fopAc_ac_c* param_0, f32 param_1) {
 
 /* 800E9BD0-800EA2A8 0E4510 06D8+00 1/0 0/0 0/0 .text            procGoatCatch__9daAlink_cFv */
 int daAlink_c::procGoatCatch() {
-    // NONMATCHING
-    return 0;
+    daPy_frameCtrl_c* temp_r28 = &mUnderFrameCtrl[0];
+    fopAc_ac_c* temp_r3 = field_0x280c.getActor();
+
+    s16 temp_r27 = fopAcM_GetName(temp_r3);
+    s16 sp8;
+    if (mProcVar2.field_0x300c == 0 || (mProcVar1.field_0x300a == 0 && temp_r28->getFrame() < 29.0f)) {
+        sp8 = field_0x2ff0;
+    } else {
+        sp8 = 0;
+    }
+
+    cLib_addCalcAngleS(&shape_angle.x, sp8, 5, 0x2000, 0x400);
+
+    if (temp_r3 == NULL) {
+        if (!checkGoatStopGame()) {
+            cancelGoronThrowEvent();
+            endDemoMode();
+        } else {
+            offGoatStopGame();
+        }
+
+        return procWaitInit();
+    }
+
+    if (!mLinkAcch.i_ChkGroundHit() && mProcVar5.field_0x3012 == 0 && (!checkMagneBootsOn() || !checkNoResetFlg0(FLG0_UNK_2000))) {
+        setGoatStopGameFail(temp_r3);
+        return 1;
+    }
+
+    if (mProcVar2.field_0x300c != 0) {
+        if (mProcVar1.field_0x300a == 0) {
+            field_0x2f99 = 5;
+            onEndResetFlg0(ERFLG0_UNK_8000000);
+
+            if (temp_r28->getFrame() >= 81.0f) {
+                field_0x2f92 = 1;
+                field_0x2f93 = 6;
+            } else if (temp_r28->getFrame() >= 39.0f) {
+                onModeFlg(0x100);
+            } else if (temp_r28->getFrame() >= 32.0f) {
+                field_0x2f92 = 0xFE;
+                field_0x2f93 = 0xFE;
+                field_0x3478 = 1.0f;
+            }
+
+            if (checkAnmEnd(temp_r28)) {
+                if (mProcVar5.field_0x3012 == 0) {
+                    setOldRootQuaternion(0, -0x8000, 0);
+                    shape_angle.y += 0x8000;
+                    current.angle.y = shape_angle.y;
+                    field_0x2fe4 = shape_angle.y;
+                }
+
+                if (temp_r27 == PROC_OBJ_GRA) {
+                    field_0x2f99 = 0x30;
+                    setSingleAnimeBaseSpeed(ANM_WAIT_B, daAlinkHIO_move_c0::m.mWaitAnmSpeed, 3.0f);
+                    offModeFlg(0x8000);
+                    mProcVar1.field_0x300a = 0x1E;
+                    return 1;
+                }
+
+                if (!checkGoatStopGame()) {
+                    cancelGoronThrowEvent();
+                    endDemoMode();
+                } else {
+                    offGoatStopGame();
+                    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[565])) {
+                        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[587]);
+                    } else {
+                        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[178]);
+                    }
+                }
+
+                return procWaitInit();
+            }
+        } else {
+            mProcVar1.field_0x300a--;
+            if (mProcVar1.field_0x300a == 0) {
+                onEndResetFlg0(ERFLG0_UNK_8000000);
+                cancelGoronThrowEvent();
+                endDemoMode();
+                return procWaitInit();
+            }
+        }
+
+        return 1;
+    }
+
+    if (!doButton() || (!mLinkAcch.i_ChkGroundHit() && (!checkMagneBootsOn() || !checkNoResetFlg0(FLG0_UNK_2000))) || field_0x3198 > 0 && mNormalSpeed >= 30.0f) {
+
+        if (checkMagneBootsOn()) {
+            cancelMagneBootsOn();
+        }
+        setGoatStopGameFail(temp_r3);
+        return 1;
+    }
+
+    setDoStatusEmphasys(0x15);
+
+    int temp_r25 = getDirectionFromShapeAngle();
+    if (mNormalSpeed > 1.0f) {
+        f32 temp_f30 = temp_r28->getFrame();
+        if (checkAnmEnd(temp_r28)) {
+            setSingleAnimeBase(ANM_COW_CATCH);
+        }
+    
+        field_0x2f9d = 0x60;
+    
+        if (field_0x3198 > 0) {
+            field_0x3198 += 1;
+            cLib_chaseF(&mNormalSpeed, 30.0f, 1.0f);
+        } else {
+            f32 var_f31 = 1.0f;
+            if ((temp_r27 == PROC_OBJ_GRA || temp_r27 == PROC_E_GOB) && !checkBootsOrArmorHeavy()) {
+                field_0x3198++;
+            } else if (checkInputOnR() && temp_r25 == DIR_FORWARD) {
+                var_f31 += 1.0f;
+            }
+
+            if (checkBootsOrArmorHeavy()) {
+                var_f31 += 0.5f;
+            }
+
+            cLib_chaseF(&mNormalSpeed, 0.0f, var_f31);
+
+            if (mNormalSpeed < 0.1f) {
+                mNormalSpeed = 0.1f;
+            }
+        }
+
+        if (!checkUnderMove0BckNoArc(ANM_COW_CATCH)) {
+            setSingleAnimeBase(ANM_COW_CATCH);
+            temp_r28->setFrame(temp_f30);
+            getNowAnmPackUnder(UNDER_0)->setFrame(temp_f30);
+        }
+
+        seStartOnlyReverbLevel(Z2SE_FN_LINK_SLIP);
+    } else {
+        if (mNormalSpeed > 0.0f) {
+            mNormalSpeed = 0.0f;
+            setSingleAnimeBase(ANM_COW_PRESS);
+            voiceStart(Z2SE_AL_V_LIFTUP_L);
+        } else if (checkAnmEnd(temp_r28) && checkGoatStopGame()) {
+            dComIfGs_onTmpBit(dSv_event_tmp_flag_c::tempBitLabels[35]);
+        }
+
+        field_0x2f99 = 4;
+
+        if (checkAnmEnd(temp_r28)) {
+            if (temp_r27 == PROC_E_GOB && !checkBootsOrArmorHeavy()) {
+                setGoatStopGameFail(temp_r3);
+                return 1;
+            }
+
+            if (checkInputOnR() && (temp_r25 == DIR_LEFT || temp_r25 == DIR_RIGHT)) {
+                mProcVar3.field_0x300e = temp_r25;
+            }
+
+            daAlink_ANM var_r26;
+            if (mProcVar3.field_0x300e == 2) {
+                if (temp_r27 == PROC_OBJ_GRA) {
+                    ((daObj_GrA_c*)temp_r3)->setCrazyThrowLeft();
+                } else if (temp_r27 == PROC_COW) {
+                    ((daCow_c*)temp_r3)->setCrazyThrowLeft();
+                } else {
+                    ((fopEn_enemy_c*)temp_r3)->setThrowModeThrowLeft();
+                }
+                var_r26 = ANM_COW_THROW_LEFT;
+            } else {
+                if (temp_r27 == PROC_OBJ_GRA) {
+                    ((daObj_GrA_c*)temp_r3)->setCrazyThrowRight();
+                } else if (temp_r27 == PROC_COW) {
+                    ((daCow_c*)temp_r3)->setCrazyThrowRight();
+                } else {
+                    ((fopEn_enemy_c*)temp_r3)->setThrowModeThrowRight();
+                }
+                var_r26 = ANM_COW_THROW_RIGHT;
+            }
+
+            mProcVar2.field_0x300c = 1;
+            setSingleAnimeBase(var_r26);
+            field_0x2f99 = 0xC;
+            voiceStart(Z2SE_AL_V_THROW_GORON);
+        }
+    }
+
+    return 1;
 }
 
 /* 800EA2A8-800EA3AC 0E4BE8 0104+00 2/2 0/0 0/0 .text            procGoatStrokeInit__9daAlink_cFv */
@@ -2394,6 +2579,96 @@ int daAlink_c::procGoronMoveInit() {
 
 /* 800EA4CC-800EA844 0E4E0C 0378+00 1/0 0/0 0/0 .text            procGoronMove__9daAlink_cFv */
 int daAlink_c::procGoronMove() {
-    // NONMATCHING
-    return 0;
+    mCargoCarryAcKeep.setActor();
+
+    if (!mCargoCarryAcKeep.getActor() || !checkGoronSideMove()) {
+        offGoronSideMove();
+        return checkNextAction(0);
+    }
+
+    setShapeAngleToAtnActor(0);
+
+    if (field_0x2f98 == 3) {
+        current.angle.y = shape_angle.y - 0x4000;
+    } else {
+        current.angle.y = shape_angle.y + 0x4000;
+    }
+
+    if (checkSetItemTrigger(HVY_BOOTS)) {
+        return procBootsEquipInit();
+    }
+
+    int temp_r28 = cLib_distanceAngleS(field_0x2fe2, shape_angle.y);
+
+    if (mAttention->getActionBtnB() != NULL && mAttention->getActionBtnB()->mType == 4) {
+        setDoStatus(0x91);
+
+        if (doTrigger()) {
+            mProcVar3.field_0x300e = 1;
+        } else if (!doButton()) {
+            mProcVar3.field_0x300e = 0;
+        }
+        if (mProcVar3.field_0x300e != 0) {
+            if (field_0x27f4->current.pos.abs2XZ(current.pos) < getGoatCatchDistance2()) {
+                offGoronSideMove();
+                return procGoatCatchInit(field_0x27f4, 0.0f);
+            }
+        }
+    } else {
+        mProcVar3.field_0x300e = 0;
+    }
+
+    f32 var_f31;
+    if (checkInputOnR() && temp_r28 > 0x800 && temp_r28 < 0x7800) {
+        if (abs((s16)(field_0x2fe2 - current.angle.y)) > 0x4000) {
+            current.angle.y += 0x8000;
+            mNormalSpeed *= -1.0f;
+
+            if (field_0x2f98 == 3) {
+                field_0x2f98 = 2;
+            } else {
+                field_0x2f98 = 3;
+            }
+        }
+
+        if (field_0x33a8 > (0.3f * (1.0f - fabsf(mNormalSpeed / field_0x594)))) {
+            var_f31 = daAlinkHIO_atnMove_c0::m.mAcceleration * field_0x33a8;
+        } else {
+            var_f31 = 0.0f;
+        }
+    } else {
+        var_f31 = 0.0f;
+    }
+
+    setNormalSpeedF(var_f31, daAlinkHIO_atnMove_c0::m.mDeceleration);
+
+    if (checkZeroSpeedF()) {
+        onModeFlg(1);
+        field_0x2f98 = 3;
+        current.angle.y = shape_angle.y - 0x4000;
+
+        if (!checkUnderMove0BckNoArc(ANM_ATN_RIGHT)) {
+            setSingleAnimeBase(ANM_ATN_RIGHT);
+        }
+    } else {
+        offModeFlg(1);
+        if (!checkUnderMove0BckNoArc(ANM_COW_MOVE_LEFT_RIGHT)) {
+            setSingleAnimeBase(ANM_COW_MOVE_LEFT_RIGHT);
+        }
+
+        daPy_frameCtrl_c* temp_r29 = &mUnderFrameCtrl[0];
+        f32 var_f30;
+        if (field_0x2f98 == 3) {
+            var_f30 = -1.0f;
+            temp_r29->setLoop(temp_r29->getEnd());
+        } else {
+            var_f30 = 1.0f;
+            temp_r29->setLoop(temp_r29->getStart());
+        }
+
+        temp_r29->setRate(var_f30 * (mNormalSpeed / field_0x594));
+        initBasAnime();
+    }
+
+    return 1;
 }

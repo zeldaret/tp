@@ -151,6 +151,8 @@ public:
     bool checkNpcObjGra() { return field_0xa7e == 1; }
     void setCrazyDash() { field_0xa48 |= 4; }
     void setCrazyCatch() { field_0xa48 |= 2; }
+    void setCrazyThrowLeft() { field_0xa48 |= 8; }
+    void setCrazyThrowRight() { field_0xa48 |= 0x10; }
 
     static u8 mBaseMotionList[264];
     static u8 mFaceMotionList[168];
