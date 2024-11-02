@@ -23,6 +23,7 @@ class daMidna_c : public fopAc_ac_c {
 public:
     enum daMidna_ERFLG0 {
         ERFLG0_NO_SERVICE_WAIT = 0x80,
+        ERFLG0_FORCE_MORF_CANCEL = 0x10,
         ERFLG0_FORCE_PANIC = 8,
         ERFLG0_UNK_2 = 2,
     };
@@ -180,6 +181,8 @@ public:
         return checkStateFlg0(FLG0_PORTAL_OBJ_CALL) && checkStateFlg0(FLG0_UNK_200);
     }
 
+    BOOL checkDemoPortalWarpWait() const { return mDemoMode == 11; }
+
     inline static BOOL checkMidnaRealBody();
 
     inline static BOOL i_checkMidnaRealBody() {
@@ -196,6 +199,8 @@ public:
         return field_0x5e4[0].getIdx() == 0x1CB || field_0x5e4[0].getIdx() == 0x1C7
             || field_0x5e4[0].getIdx() == 0x1C8 || field_0x5e4[0].getIdx() == 0x1C9;
     }
+
+    void onForceMorfCancel() { onEndResetStateFlg0(ERFLG0_FORCE_MORF_CANCEL); }
 
     static u8 const m_texDataTable[84];
     static u8 const m_anmDataTable[636];

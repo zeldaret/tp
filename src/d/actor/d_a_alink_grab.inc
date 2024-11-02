@@ -274,8 +274,8 @@ void daAlink_c::setGrabItemPos() {
 
                 cXyz sp128;
                 cXyz sp11C;
-                mDoMtx_multVecZero(mFootData2[0].field_0x74, &sp128);
-                mDoMtx_multVecZero(mFootData2[1].field_0x74, &sp11C);
+                mDoMtx_multVecZero(mFootData2[0].field_0x14[2], &sp128);
+                mDoMtx_multVecZero(mFootData2[1].field_0x14[2], &sp11C);
 
                 temp_r3->current.pos = (sp128 + sp11C) * 0.5f;
                 mDoMtx_stack_c::ZXYrotS(spA, shape_angle.y, shape_angle.z);

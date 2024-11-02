@@ -826,7 +826,7 @@ int daAlink_c::setSyncHorse(int param_0) {
 }
 
 /* 800EE64C-800EE918 0E8F8C 02CC+00 1/1 0/0 0/0 .text            setSyncBoar__9daAlink_cFi */
-// NONMATCHING - regalloc, equivalent? NONMATCHING
+// NONMATCHING - regalloc, equivalent?
 int daAlink_c::setSyncBoar(int param_0) {
     e_wb_class* e_wb_p = static_cast<e_wb_class*>(mRideAcKeep.getActor());
     BOOL mode_1 = checkModeFlg(1);

@@ -483,11 +483,9 @@ static const u16 effName_42340[] = {
 };
 
 /* 8045314C-80453150 00174C 0004+00 1/1 0/0 0/0 .sdata2          fFootJoint$44785 */
-static const u8 fFootJoint[4] = {
-    0x00,
-    0x10,
-    0x00,
-    0x15,
+static const u16 fFootJoint[] = {
+    0x0010,
+    0x0015,
 };
 
 /* 80453150-80453154 001750 0004+00 1/1 0/0 0/0 .sdata2          bFootJoint$44786 */
@@ -2306,9 +2304,10 @@ void daAlink_c::setMatrixOffset(f32* param_0, f32 param_1) {
 
 /* 800A2CE0-800A3430 09D620 0750+00 3/3 0/0 0/0 .text
  * setLegAngle__9daAlink_cFfP18daAlink_footData_cPsPsi          */
-void daAlink_c::setLegAngle(f32 param_0, daAlink_footData_c* param_1, s16* param_2,
+int daAlink_c::setLegAngle(f32 param_0, daAlink_footData_c* param_1, s16* param_2,
                                 s16* param_3, int param_4) {
     // NONMATCHING
+    return 0;
 }
 
 /* 80391EFC-80391F08 01E55C 000C+00 0/1 0/0 0/0 .rodata          localLeftFootOffset$56542 */
