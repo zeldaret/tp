@@ -4,127 +4,332 @@
 //
 
 #include "JSystem/JParticle/JPAParticle.h"
+#include "JSystem/JParticle/JPABaseShape.h"
+#include "JSystem/JParticle/JPAChildShape.h"
 #include "JSystem/JParticle/JPAEmitter.h"
 #include "JSystem/JParticle/JPAEmitterManager.h"
-#include "dol2asm.h"
-
-//
-// Forward References:
-//
-
-extern "C" void __dt__19JPAParticleCallBackFv();
-extern "C" void init_p__15JPABaseParticleFP18JPAEmitterWorkData();
-extern "C" void init_c__15JPABaseParticleFP18JPAEmitterWorkDataP15JPABaseParticle();
-extern "C" void calc_p__15JPABaseParticleFP18JPAEmitterWorkData();
-extern "C" void calc_c__15JPABaseParticleFP18JPAEmitterWorkData();
-extern "C" void canCreateChild__15JPABaseParticleFP18JPAEmitterWorkData();
-extern "C" void getWidth__15JPABaseParticleCFPC14JPABaseEmitter();
-extern "C" void getHeight__15JPABaseParticleCFPC14JPABaseEmitter();
-
-//
-// External References:
-//
-
-extern "C" void calc_p__11JPAResourceFP18JPAEmitterWorkDataP15JPABaseParticle();
-extern "C" void calc_c__11JPAResourceFP18JPAEmitterWorkDataP15JPABaseParticle();
-extern "C" void calcField__11JPAResourceFP18JPAEmitterWorkDataP15JPABaseParticle();
-extern "C" void createChild__14JPABaseEmitterFP15JPABaseParticle();
-extern "C" void JPAGetYZRotateMtx__FssPA4_f();
-extern "C" void __dl__FPv();
-extern "C" void JMAVECScaleAdd__FPC3VecPC3VecP3Vecf();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__19JPAParticleCallBack[5];
-
-//
-// Declarations:
-//
+#include "JSystem/JParticle/JPAExtraShape.h"
 
 /* 8027EFA4-8027EFEC 2798E4 0048+00 0/0 11/11 1/1 .text            __dt__19JPAParticleCallBackFv */
 JPAParticleCallBack::~JPAParticleCallBack() {
-    // NONMATCHING
+    /* empty function */
 }
-
-/* ############################################################################################## */
-/* 80455388-8045538C 003988 0004+00 2/2 0/0 0/0 .sdata2          @2565 */
-SECTION_SDATA2 static f32 lit_2565 = 1.0f;
-
-/* 8045538C-80455390 00398C 0004+00 4/4 0/0 0/0 .sdata2          @2566 */
-SECTION_SDATA2 static u8 lit_2566[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80455390-80455394 003990 0004+00 2/2 0/0 0/0 .sdata2          @2567 */
-SECTION_SDATA2 static f32 lit_2567 = 32.0f;
-
-/* 80455394-80455398 003994 0004+00 2/2 0/0 0/0 .sdata2          @2568 */
-SECTION_SDATA2 static f32 lit_2568 = 0.5f;
-
-/* 80455398-8045539C 003998 0004+00 2/2 0/0 0/0 .sdata2          @2569 */
-SECTION_SDATA2 static f32 lit_2569 = 3.0f;
-
-/* 8045539C-804553A0 00399C 0004+00 1/1 0/0 0/0 .sdata2          @2570 */
-SECTION_SDATA2 static f32 lit_2570 = 32768.0f;
-
-/* 804553A0-804553A8 0039A0 0008+00 4/4 0/0 0/0 .sdata2          @2572 */
-SECTION_SDATA2 static f64 lit_2572 = 4503601774854144.0 /* cast s32 to float */;
-
-/* 804553A8-804553B0 0039A8 0008+00 2/2 0/0 0/0 .sdata2          @2574 */
-SECTION_SDATA2 static f64 lit_2574 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8027EFEC-8027F8C8 27992C 08DC+00 0/0 1/1 0/0 .text
  * init_p__15JPABaseParticleFP18JPAEmitterWorkData              */
-void JPABaseParticle::init_p(JPAEmitterWorkData* param_0) {
-    // NONMATCHING
+// NONMATCHING a couple problems, likely issues with setLength and get_r_ss
+void JPABaseParticle::init_p(JPAEmitterWorkData* work) {
+    JPABaseEmitter* emtr = work->mpEmtr;
+    JPAExtraShape* esp = work->mpRes->getEsp();
+    JPABaseShape* bsp = work->mpRes->getBsp();
+    JPADynamicsBlock* dyn = work->mpRes->getDyn();
+
+    mAge = -1;
+    mLifeTime = (1.0f - dyn->getLifeTimeRndm() * emtr->get_r_f()) * emtr->mLifeTime;
+    mTime = 0.0f;
+
+    initStatus(0);
+    MTXMultVecSR(work->mGlobalSR, &work->mVolumePos, &mLocalPosition);
+    if (emtr->checkFlag(8)) {
+        setStatus(0x20);
+    }
+
+    mOffsetPosition.set(work->mGlobalPos);
+    mPosition.set(mOffsetPosition.x + mLocalPosition.x * work->mPublicScale.x,
+                  mOffsetPosition.y + mLocalPosition.y * work->mPublicScale.y,
+                  mOffsetPosition.z + mLocalPosition.z * work->mPublicScale.z);
+
+    JGeometry::TVec3<f32> velOmni; 
+    if (emtr->mAwayFromCenterSpeed) {
+        velOmni.setLength(work->mVelOmni, emtr->mAwayFromCenterSpeed);
+    } else {
+        velOmni.zero();
+    }
+
+    JGeometry::TVec3<f32> velAxis;
+    if (emtr->mAwayFromAxisSpeed) {
+        velAxis.setLength(work->mVelAxis, emtr->mAwayFromAxisSpeed);
+    } else {
+        velAxis.zero();
+    }
+
+    JGeometry::TVec3<f32> velDir;
+    if (emtr->mDirSpeed) {
+        Mtx mtx;
+        s16 angleY = emtr->get_r_ss();
+        s16 angleZ = emtr->get_r_zp() * 0x8000 * emtr->mSpread;
+        JPAGetYZRotateMtx(angleY, angleZ, mtx);
+        MTXConcat(work->mDirectionMtx, mtx, mtx);
+        velDir.set(emtr->mDirSpeed * mtx[0][2],
+                   emtr->mDirSpeed * mtx[1][2],
+                   emtr->mDirSpeed * mtx[2][2]);
+    } else {
+        velDir.zero();
+    }
+
+    JGeometry::TVec3<f32> velRndm;
+    if (emtr->mRndmDirSpeed) {
+        velRndm.set(emtr->mRndmDirSpeed * emtr->get_r_zh(),
+                    emtr->mRndmDirSpeed * emtr->get_r_zh(),
+                    emtr->mRndmDirSpeed * emtr->get_r_zh());
+    } else {
+        velRndm.zero();
+    }
+
+    f32 ratio = emtr->get_r_zp() * dyn->getInitVelRatio() + 1.0f;
+    mVelType1.set(ratio * (velOmni.x + velAxis.x + velDir.x + velRndm.x),
+                  ratio * (velOmni.y + velAxis.y + velDir.y + velRndm.y),
+                  ratio * (velOmni.z + velAxis.z + velDir.z + velRndm.z));
+    
+    if (emtr->checkFlag(4)) {
+        mVelType1.mul(emtr->mLocalScl);
+    }
+    MTXMultVecSR(work->mGlobalRot, &mVelType1, &mVelType1);
+
+    mVelType0.zero();
+
+    mMoment = 1.0f - dyn->getMomentRndm() * emtr->get_r_f();
+    mDrag = 1.0f;
+    field_0x78 = 0;
+
+    mBaseAxis.set(work->mGlobalRot[0][1], work->mGlobalRot[1][1], work->mGlobalRot[2][1]);
+
+    mPrmClr = emtr->mPrmClr;
+    mEnvClr = emtr->mEnvClr;
+
+    mAnmRandom = emtr->get_r_f() * bsp->getLoopOfstValue();
+
+    if (esp != NULL && esp->isEnableScaleAnm()) {
+        f32 scale = emtr->mScaleOut * (emtr->get_r_zp() * esp->getScaleRndm() + 1.0f);
+        mParticleScaleX = mParticleScaleY = mScaleOut = scale;
+    } else {
+        mParticleScaleX = mParticleScaleY = mScaleOut = emtr->mScaleOut;
+    }
+
+    mPrmColorAlphaAnm = 0xff;
+
+    if (esp != NULL && esp->isEnableAlphaFlick()) {
+        mAlphaWaveRandom = emtr->get_r_zp() * esp->getAlphaFreqRndm() + 1.0f;
+    } else {
+        mAlphaWaveRandom = 1.0f;
+    }
+
+    if (esp != NULL) {
+        if (esp->isEnableRotateAnm()) {
+            mRotateAngle = esp->getRotateInitAngle() + esp->getRotateRndmAngle() * emtr->get_r_zh();
+            mRotateSpeed = esp->getRotateInitSpeed() *
+                           (esp->getRotateRndmSpeed() * emtr->get_r_zp() + 1.0f);
+            mRotateSpeed = emtr->get_r_zp() < esp->getRotateDirection() ?
+                           mRotateSpeed : (s16)-mRotateSpeed;
+        } else {
+            mRotateAngle = 0;
+            mRotateSpeed = 0;
+        }
+    } else {
+        mRotateAngle = 0;
+        mRotateSpeed = 0;
+    }
 }
 
 /* 8027F8C8-8027FFD0 27A208 0708+00 0/0 1/1 0/0 .text
  * init_c__15JPABaseParticleFP18JPAEmitterWorkDataP15JPABaseParticle */
-void JPABaseParticle::init_c(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    // NONMATCHING
+void JPABaseParticle::init_c(JPAEmitterWorkData* work, JPABaseParticle* parent) {
+    JPABaseEmitter* emtr = work->mpEmtr;
+    JPAChildShape* csp = work->mpRes->getCsp();
+
+    mAge = -1;
+    mLifeTime = csp->getLife();
+    mTime = 0.0f;
+    initStatus(4);
+    mLocalPosition.set(parent->mLocalPosition);
+
+    f32 pos_rndm = csp->getPosRndm();
+    if (pos_rndm != 0.0f) {
+        JGeometry::TVec3<f32> rnd(emtr->get_r_zh(), emtr->get_r_zh(), emtr->get_r_zh());
+        rnd.setLength(pos_rndm * emtr->get_r_f());
+        mLocalPosition.add(rnd);
+    }
+
+    if (emtr->checkFlag(0x10)) {
+        setStatus(0x20);
+    }
+
+    mOffsetPosition.set(parent->mOffsetPosition);
+
+    f32 base_speed = csp->getBaseVel() * (csp->getBaseVelRndm() * emtr->get_r_zp() + 1.0f);
+    JGeometry::TVec3<f32> base_vel(emtr->get_r_zp(), emtr->get_r_zp(), emtr->get_r_zp());
+    base_vel.setLength(base_speed);
+    mVelType1.scaleAdd(csp->getVelInhRate(), parent->mVelType1, base_vel);
+    mVelType0.scale(csp->getVelInhRate(), parent->mVelType2);
+    
+    mMoment = parent->mMoment;
+    if (csp->isFieldAffected()) {
+        mDrag = parent->mDrag;
+    } else {
+        setStatus(0x40);
+        mDrag = 1.0f;
+    }
+    field_0x78 = parent->field_0x78;
+
+    mVelType2.set(mVelType0);
+    f32 ratio = mMoment * mDrag;
+    mVelocity.set(ratio * (mVelType1.x + mVelType2.x),
+                  ratio * (mVelType1.y + mVelType2.y),
+                  ratio * (mVelType1.z + mVelType2.z));
+    
+    mBaseAxis.set(parent->mBaseAxis);
+
+    if (csp->isScaleInherited()) {
+        mParticleScaleX = mScaleOut = parent->mParticleScaleX * csp->getScaleInhRate();
+        mParticleScaleY = mAlphaWaveRandom = parent->mParticleScaleY * csp->getScaleInhRate();
+    } else {
+        mParticleScaleX = mScaleOut = mParticleScaleY = mAlphaWaveRandom = 1.0f;
+    }
+
+    if (csp->isColorInherited()) {
+        mPrmClr.r = parent->mPrmClr.r * csp->getColorInhRate();
+        mPrmClr.g = parent->mPrmClr.g * csp->getColorInhRate();
+        mPrmClr.b = parent->mPrmClr.b * csp->getColorInhRate();
+        mEnvClr.r = parent->mEnvClr.r * csp->getColorInhRate();
+        mEnvClr.g = parent->mEnvClr.g * csp->getColorInhRate();
+        mEnvClr.b = parent->mEnvClr.b * csp->getColorInhRate();
+    } else {
+        csp->getPrmClr(&mPrmClr);
+        csp->getEnvClr(&mEnvClr);
+    }
+
+    mPrmColorAlphaAnm = 0xff;
+    if (csp->isAlphaInherited()) {
+        mPrmClr.a = COLOR_MULTI(parent->mPrmClr.a, parent->mPrmColorAlphaAnm)
+                    * csp->getAlphaInhRate();
+    } else {
+        mPrmClr.a = csp->getPrmAlpha();
+    }
+
+    mRotateAngle = parent->mRotateAngle;
+    if (csp->isRotateOn()) {
+        mRotateSpeed = csp->getRotInitSpeed();
+    } else {
+        mRotateSpeed = 0;
+    }
+
+    mTexAnmIdx = 0;
 }
 
 /* 8027FFD0-80280260 27A910 0290+00 0/0 1/1 0/0 .text
  * calc_p__15JPABaseParticleFP18JPAEmitterWorkData              */
-void JPABaseParticle::calc_p(JPAEmitterWorkData* param_0) {
-    // NONMATCHING
+bool JPABaseParticle::calc_p(JPAEmitterWorkData* work) {
+    if (++mAge >= mLifeTime) {
+        return true;
+    }
+    mTime = (f32)mAge / (f32)mLifeTime;
+
+    if (checkStatus(0x20)) {
+        mOffsetPosition.set(work->mGlobalPos);
+    }
+
+    mVelType2.zero();
+    if (!checkStatus(0x40)) {
+        work->mpRes->calcField(work, this);
+    }
+    mVelType2.add(mVelType0);
+    mVelType1.scale(work->mpEmtr->mAirResist);
+    f32 ratio = mMoment * mDrag;
+    mVelocity.set(ratio * (mVelType1.x + mVelType2.x),
+                  ratio * (mVelType1.y + mVelType2.y),
+                  ratio * (mVelType1.z + mVelType2.z));
+    
+    if (work->mpEmtr->mpPtclCallBack != NULL) {
+        work->mpEmtr->mpPtclCallBack->execute(work->mpEmtr, this);
+    }
+
+    if (checkStatus(2)) {
+        return true;
+    }
+
+    work->mpRes->calc_p(work, this);
+    mRotateAngle += mRotateSpeed;
+
+    if (work->mpRes->getCsp() != NULL && canCreateChild(work)) {
+        for (int i = work->mpRes->getCsp()->getRate(); i > 0; i--) {
+            work->mpEmtr->createChild(this);
+        }
+    }
+
+    mLocalPosition.add(mVelocity);
+    mPosition.set(mOffsetPosition.x + mLocalPosition.x * work->mPublicScale.x,
+                  mOffsetPosition.y + mLocalPosition.y * work->mPublicScale.y,
+                  mOffsetPosition.z + mLocalPosition.z * work->mPublicScale.z);
+
+    return false;
 }
 
 /* 80280260-802804C8 27ABA0 0268+00 0/0 1/1 0/0 .text
  * calc_c__15JPABaseParticleFP18JPAEmitterWorkData              */
-void JPABaseParticle::calc_c(JPAEmitterWorkData* param_0) {
-    // NONMATCHING
+bool JPABaseParticle::calc_c(JPAEmitterWorkData* work) {
+    if (++mAge >= mLifeTime) {
+        return true;
+    }
+    mTime = (f32)mAge / (f32)mLifeTime;
+
+    if (mAge != 0) {
+        if (checkStatus(0x20)) {
+            mOffsetPosition.set(work->mGlobalPos);
+        }
+
+        mVelType1.y -= work->mpRes->getCsp()->getGravity();
+        mVelType2.zero();
+        if (!checkStatus(0x40)) {
+            work->mpRes->calcField(work, this);
+        }
+        mVelType2.add(mVelType0);
+        mVelType1.scale(work->mpEmtr->mAirResist);
+        f32 ratio = mMoment * mDrag;
+        mVelocity.set(ratio * (mVelType1.x + mVelType2.x),
+                    ratio * (mVelType1.y + mVelType2.y),
+                    ratio * (mVelType1.z + mVelType2.z));
+    }
+    
+    if (work->mpEmtr->mpPtclCallBack != NULL) {
+        work->mpEmtr->mpPtclCallBack->execute(work->mpEmtr, this);
+    }
+
+    if (checkStatus(2)) {
+        return true;
+    }
+
+    work->mpRes->calc_c(work, this);
+    mRotateAngle += mRotateSpeed;
+    mLocalPosition.add(mVelocity);
+    mPosition.set(mOffsetPosition.x + mLocalPosition.x * work->mPublicScale.x,
+                  mOffsetPosition.y + mLocalPosition.y * work->mPublicScale.y,
+                  mOffsetPosition.z + mLocalPosition.z * work->mPublicScale.z);
+
+    return false;
 }
 
 /* 802804C8-80280548 27AE08 0080+00 1/1 0/0 0/0 .text
  * canCreateChild__15JPABaseParticleFP18JPAEmitterWorkData      */
-void JPABaseParticle::canCreateChild(JPAEmitterWorkData* param_0) {
-    // NONMATCHING
+bool JPABaseParticle::canCreateChild(JPAEmitterWorkData* work) {
+    JPAChildShape* csp = work->mpRes->getCsp();
+    bool ret = false;
+    int time = mAge - (int)((mLifeTime - 1) * csp->getTiming());
+    if (time >= 0 && time % (csp->getStep() + 1) == 0) {
+        ret = true;
+    }
+    return ret;
 }
-
-/* ############################################################################################## */
-/* 804553B0-804553B8 0039B0 0004+04 2/2 0/0 0/0 .sdata2          @3010 */
-SECTION_SDATA2 static f32 lit_3010[1 + 1 /* padding */] = {
-    2.0f,
-    /* padding */
-    0.0f,
-};
 
 /* 80280548-80280568 27AE88 0020+00 0/0 3/3 0/0 .text
  * getWidth__15JPABaseParticleCFPC14JPABaseEmitter              */
 f32 JPABaseParticle::getWidth(JPABaseEmitter const* emtr) const {
-    f32 scale = lit_3010[0] * mParticleScaleX;
+    f32 scale = 2.0f * mParticleScaleX;
     return scale * emtr->mpEmtrMgr->mpWorkData->mGlobalPtclScl.x;
 }
 
 /* 80280568-80280588 27AEA8 0020+00 0/0 3/3 0/0 .text
  * getHeight__15JPABaseParticleCFPC14JPABaseEmitter             */
 f32 JPABaseParticle::getHeight(JPABaseEmitter const* emtr) const {
-    f32 scale = lit_3010[0] * mParticleScaleY;
+    f32 scale = 2.0f * mParticleScaleY;
     return scale * emtr->mpEmtrMgr->mpWorkData->mGlobalPtclScl.y;
 }

@@ -148,10 +148,6 @@ struct _GXTexObj {};
 
 struct LIGHT_INFLUENCE {};
 
-struct JMath {
-    static u8 sincosTable_[65536];
-};
-
 struct J3DUClipper {
     /* 8027378C */ void calcViewFrustum();
 };
@@ -286,7 +282,6 @@ extern "C" void MtxPosition__FP4cXyzP4cXyz();
 extern "C" void calcViewFrustum__11J3DUClipperFv();
 extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXCopy();
 extern "C" void __construct_array();
 extern "C" void _savegpr_22();
 extern "C" void _savegpr_25();

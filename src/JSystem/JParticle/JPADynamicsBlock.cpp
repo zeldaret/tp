@@ -4,57 +4,8 @@
 //
 
 #include "JSystem/JParticle/JPADynamicsBlock.h"
+#include "JSystem/JMath/JMATrigonometric.h"
 #include "JSystem/JParticle/JPAEmitter.h"
-#include "dol2asm.h"
-
-//
-// Types:
-//
-
-//
-// Forward References:
-//
-
-extern "C" static void JPAVolumePoint(JPAEmitterWorkData*);
-extern "C" static void JPAVolumeLine(JPAEmitterWorkData*);
-extern "C" static void JPAVolumeCircle(JPAEmitterWorkData*);
-extern "C" static void JPAVolumeCube(JPAEmitterWorkData*);
-extern "C" static void JPAVolumeSphere(JPAEmitterWorkData*);
-extern "C" static void JPAVolumeCylinder(JPAEmitterWorkData*);
-extern "C" static void JPAVolumeTorus(JPAEmitterWorkData*);
-extern "C" void __ct__16JPADynamicsBlockFPCUc();
-extern "C" void init__16JPADynamicsBlockFv();
-extern "C" void create__16JPADynamicsBlockFP18JPAEmitterWorkData();
-
-//
-// External References:
-//
-
-extern "C" void createParticle__14JPABaseEmitterFv();
-extern "C" u8 sincosTable___5JMath[65536];
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 80455310-80455314 003910 0004+00 7/7 0/0 0/0 .sdata2          @2287 */
-SECTION_SDATA2 static u8 lit_2287[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80455314-80455318 003914 0004+00 7/7 0/0 0/0 .sdata2          @2288 */
-SECTION_SDATA2 static f32 lit_2288 = 1.0f;
-
-/* 80455318-80455320 003918 0004+04 3/3 0/0 0/0 .sdata2          @2289 */
-SECTION_SDATA2 static f32 lit_2289[1 + 1 /* padding */] = {
-    0.5f,
-    /* padding */
-    0.0f,
-};
 
 /* 8027B144-8027B220 275A84 00DC+00 1/1 0/0 0/0 .text JPAVolumePoint__FP18JPAEmitterWorkData */
 void JPAVolumePoint(JPAEmitterWorkData* work) {
@@ -63,12 +14,6 @@ void JPAVolumePoint(JPAEmitterWorkData* work) {
                        work->mpEmtr->get_r_zh());
     work->mVelAxis.set(work->mVelOmni.x, 0.0f, work->mVelOmni.z);
 }
-
-
-
-/* ############################################################################################## */
-/* 80455320-80455328 003920 0008+00 6/6 0/0 0/0 .sdata2          @2321 */
-SECTION_SDATA2 static f64 lit_2321 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8027B220-8027B33C 275B60 011C+00 1/1 0/0 0/0 .text JPAVolumeLine */
 void JPAVolumeLine(JPAEmitterWorkData* work) {
@@ -85,17 +30,13 @@ void JPAVolumeLine(JPAEmitterWorkData* work) {
     work->mVelAxis.set(0.0f, 0.0f, work->mVolumePos.z);
 }
 
-
-
 /* 8027B33C-8027B4E8 275C7C 01AC+00 1/1 0/0 0/0 .text JPAVolumeCircle */
-// regalloc. Could be issue with mul asm implementations
-#ifdef NONMATCHING
+// NONMATCHING regalloc. Could be issue with mul asm implementations
 void JPAVolumeCircle(JPAEmitterWorkData* work) {
     s16 thetai;
     f32 theta;
     f32 distance;
     f32 sizeXZ;
-    f32 temp;
     if (work->mpEmtr->checkFlag(JPADynFlag_FixedInterval)) {
         theta = (s16)((work->mVolumeEmitIdx << 16) / work->mEmitCount);
         thetai = theta * work->mVolumeSweep;
@@ -116,14 +57,6 @@ void JPAVolumeCircle(JPAEmitterWorkData* work) {
     work->mVelAxis.set(work->mVolumePos.x, 0.0f, work->mVolumePos.z);
 }
 
-#else
-
-static void JPAVolumeCircle(JPAEmitterWorkData* param_0) {
-    // NONMATCHING
-}
-
-#endif
-
 /* 8027B4E8-8027B5F0 275E28 0108+00 1/1 0/0 0/0 .text JPAVolumeCube */
 void JPAVolumeCube(JPAEmitterWorkData* work) {
     work->mVolumePos.set(work->mpEmtr->get_r_zh() * work->mVolumeSize,
@@ -133,32 +66,64 @@ void JPAVolumeCube(JPAEmitterWorkData* work) {
     work->mVelAxis.set(work->mVolumePos.x, 0.0f, work->mVolumePos.z);
 }
 
-
-
-/* ############################################################################################## */
-/* 80455328-80455330 003928 0004+04 1/1 0/0 0/0 .sdata2          @2501 */
-SECTION_SDATA2 static f32 lit_2501[1 + 1 /* padding */] = {
-    32768.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 80455330-80455338 003930 0008+00 1/1 0/0 0/0 .sdata2          @2503 */
-SECTION_SDATA2 static f64 lit_2503 = 4503599627370496.0 /* cast u32 to float */;
-
 /* 8027B5F0-8027B87C 275F30 028C+00 1/1 0/0 0/0 .text JPAVolumeSphere__FP18JPAEmitterWorkData */
-static void JPAVolumeSphere(JPAEmitterWorkData* param_0) {
-    // NONMATCHING
+static void JPAVolumeSphere(JPAEmitterWorkData* work) {
+    s16 phi, theta;
+    if (work->mpEmtr->checkFlag(JPADynFlag_FixedInterval)) {
+        phi = (u16)(work->mVolumeX * 0x8000 / (work->mDivNumber - 1) + 0x4000);
+        f32 tmp = (u16)(work->mVolumeAngleNum * 0x10000 / (work->mVolumeAngleMax - 1));
+        theta = tmp * work->mVolumeSweep + 0x8000;
+        work->mVolumeAngleNum++;
+        if (work->mVolumeAngleNum == work->mVolumeAngleMax) {
+            work->mVolumeAngleNum = 0;
+            work->mVolumeX++;
+            if (work->mVolumeX * 2 < work->mDivNumber) {
+                work->mVolumeAngleMax = work->mVolumeAngleMax != 1 ?
+                    work->mVolumeAngleMax + 4 : work->mVolumeAngleMax + 3;
+            } else {
+                work->mVolumeAngleMax = work->mVolumeAngleMax != 4 ? work->mVolumeAngleMax - 4 : 1;
+            }
+        }
+    } else {
+        phi = work->mpEmtr->get_r_ss() >> 1;
+        theta = work->mVolumeSweep * work->mpEmtr->get_r_ss();
+    }
+
+    f32 rnd = work->mpEmtr->get_r_f();
+    if (work->mpEmtr->checkFlag(JPADynFlag_FixedDensity)) {
+        rnd = 1.0f - rnd * rnd * rnd;
+    }
+    f32 rad = work->mVolumeSize * (work->mVolumeMinRad + rnd * (1.0f - work->mVolumeMinRad));
+    work->mVolumePos.set(rad * JMASCos(phi) * JMASSin(theta), -rad * JMASSin(phi),
+                         rad * JMASCos(phi) * JMASCos(theta));
+    work->mVelOmni.mul(work->mVolumePos, work->mGlobalScl);
+    work->mVelAxis.set(work->mVolumePos.x, 0.0f, work->mVolumePos.z);
 }
 
 /* 8027B87C-8027B9F8 2761BC 017C+00 1/1 0/0 0/0 .text JPAVolumeCylinder__FP18JPAEmitterWorkData */
-static void JPAVolumeCylinder(JPAEmitterWorkData* param_0) {
-    // NONMATCHING
+static void JPAVolumeCylinder(JPAEmitterWorkData* work) {
+    s16 theta = work->mVolumeSweep * work->mpEmtr->get_r_ss();
+    f32 rnd = work->mpEmtr->get_r_f();
+    if (work->mpEmtr->checkFlag(JPADynFlag_FixedDensity)) {
+        rnd = 1.0f - rnd * rnd;
+    }
+    f32 rad = work->mVolumeSize * (work->mVolumeMinRad + rnd * (1.0f - work->mVolumeMinRad));
+    work->mVolumePos.set(rad * JMASSin(theta), work->mVolumeSize * work->mpEmtr->get_r_zp(),
+                         rad * JMASCos(theta));
+    work->mVelOmni.mul(work->mVolumePos, work->mGlobalScl);
+    work->mVelAxis.set(work->mVolumePos.x, 0.0f, work->mVolumePos.z);
 }
 
 /* 8027B9F8-8027BB18 276338 0120+00 1/1 0/0 0/0 .text JPAVolumeTorus__FP18JPAEmitterWorkData */
-static void JPAVolumeTorus(JPAEmitterWorkData* param_0) {
-    // NONMATCHING
+static void JPAVolumeTorus(JPAEmitterWorkData* work) {
+    s16 theta = work->mVolumeSweep * work->mpEmtr->get_r_ss();
+    s16 phi = work->mpEmtr->get_r_ss();
+    f32 rad = work->mVolumeSize * work->mVolumeMinRad;
+    work->mVelAxis.set(rad * JMASSin(theta) * JMASCos(phi), rad * JMASSin(phi),
+                       rad * JMASCos(theta) * JMASCos(phi));
+    work->mVolumePos.set(work->mVelAxis.x + work->mVolumeSize * JMASSin(theta), work->mVelAxis.y,
+                         work->mVelAxis.z + work->mVolumeSize * JMASCos(theta));
+    work->mVelOmni.mul(work->mVolumePos, work->mGlobalScl);
 }
 
 /* 8027BB18-8027BB4C 276458 0034+00 0/0 1/1 0/0 .text            __ct__16JPADynamicsBlockFPCUc */
@@ -206,10 +171,6 @@ void JPADynamicsBlock::init() {
 
 /* 8027BBE8-8027BDEC 276528 0204+00 0/0 1/1 0/0 .text
  * create__16JPADynamicsBlockFP18JPAEmitterWorkData             */
-
-#ifdef NONMATCHING
-
-// literal only
 void JPADynamicsBlock::create(JPAEmitterWorkData* work) {
     if (work->mpEmtr->checkStatus(JPAEmtrStts_RateStepEmit)) {
         s32 emitCount;
@@ -263,11 +224,3 @@ void JPADynamicsBlock::create(JPAEmitterWorkData* work) {
 
     work->mpEmtr->clearStatus(JPAEmtrStts_FirstEmit);
 }
-
-#else
-
-void JPADynamicsBlock::create(JPAEmitterWorkData* param_0) {
-    // NONMATCHING
-}
-
-#endif
