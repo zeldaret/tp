@@ -42,7 +42,9 @@ public:
     };
 
     enum daMidna_FLG1 {
+        FLG1_SHADOW_NO_DRAW = 0x1000,
         FLG1_UNK_100 = 0x100,
+        FLG1_NO_MASK_DRAW = 0x80,
         FLG1_FORCE_NORMAL_COL = 8,
         FLG1_FORCE_TIRED_COL = 4,
         FLG1_SHADOW_MODEL_DRAW_DEMO_FORCE = 2,
@@ -120,7 +122,7 @@ public:
     BOOL checkNoInput() const { return checkStateFlg0(FLG0_NO_INPUT); }
     BOOL checkWolfNoPos() const { return checkStateFlg0(FLG0_UNK_800); }
     int checkMetamorphoseEnable() { return (this->*mpFunc)(); }
-    int checkShadowModelDrawDemoForce() const { return checkStateFlg1(FLG1_SHADOW_MODEL_DRAW_DEMO_FORCE); }
+    u32 checkShadowModelDrawDemoForce() const { return checkStateFlg1(FLG1_SHADOW_MODEL_DRAW_DEMO_FORCE); }
     
     void setForceNeckAimPos(const cXyz& i_pos) {
         onStateFlg0(FLG0_UNK_20000);
@@ -179,6 +181,14 @@ public:
 
     bool checkPortalObjRide() const {
         return checkStateFlg0(FLG0_PORTAL_OBJ_CALL) && checkStateFlg0(FLG0_UNK_200);
+    }
+
+    BOOL checkShadowNoDraw() const {
+        return checkStateFlg1(FLG1_SHADOW_NO_DRAW);
+    }
+
+    BOOL checkNoMaskDraw() const {
+        return checkStateFlg1(FLG1_NO_MASK_DRAW);
     }
 
     BOOL checkDemoPortalWarpWait() const { return mDemoMode == 11; }
