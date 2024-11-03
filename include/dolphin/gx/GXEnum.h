@@ -796,6 +796,7 @@ typedef enum _GXCommand {
 
     GX_CMD_LOAD_CP_REG = 0x08,
     GX_CMD_LOAD_XF_REG = 0x10,
+    GX_CMD_LOAD_BP_REG = 0x61,
 } GXCommand;
 
 typedef enum _GXClipMode {

@@ -2708,7 +2708,7 @@ const daAlinkHIO_wlDamNormal_c1 daAlinkHIO_wlDamNormal_c0::m = {
 };
 
 /* 8038F29C-8038F308 01B8FC 006C+00 2/4 0/0 0/0 .rodata          m__24daAlinkHIO_wlDamLarge_c0 */
-const daAlinkHIO_wlDamLarge_c1 daAlinkHIO_wlDamLarge_c0::m = {
+const daAlinkHIO_wlDamLaHu_c1 daAlinkHIO_wlDamLarge_c0::m = {
 	{
 		49,
         1.0f,
@@ -2749,7 +2749,7 @@ const daAlinkHIO_wlDamLarge_c1 daAlinkHIO_wlDamLarge_c0::m = {
 /* 8038F308-8038F374 01B968 006C+00 0/2 0/0 0/0 .rodata          m__23daAlinkHIO_wlDamHuge_c0 */
 #pragma push
 #pragma force_active on
-const daAlinkHIO_wlDamHuge_c1 daAlinkHIO_wlDamHuge_c0::m = {
+const daAlinkHIO_wlDamLaHu_c1 daAlinkHIO_wlDamHuge_c0::m = {
 	{
 		49,
         1.1f,

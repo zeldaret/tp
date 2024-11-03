@@ -45,6 +45,10 @@ public:
         setBackJoint(-1);
     }
 
+    void setCoCancelTimer() {
+        mCoCancelTimer = 30;
+    }
+
 private:
     /* 0x0568 */ request_of_phase_process_class mPhase;
     /* 0x0570 */ dCcD_Stts mCcStts;

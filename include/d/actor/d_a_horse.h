@@ -264,6 +264,8 @@ public:
     void setReinPosNormal() { (this->*mpSetReinPosNormalFn)(); }
     void setReinPosHand(int param_0) { (this->*mpSetReinPosHandFn)(param_0); }
 
+    u32 getShadowID() const { return mShadowID; }
+
     static u8 const m_footJointTable[8];
     static f32 const m_callLimitDistance2;
 
@@ -317,7 +319,9 @@ public:
     /* 0x1720 */ s16 field_0x1720;
     /* 0x1722 */ u8 field_0x1722[0x1728 - 0x1722];
     /* 0x1728 */ int field_0x1728;
-    /* 0x172C */ u8 field_0x172c[0x14];
+    /* 0x172C */ u8 field_0x172c[0x1734 - 0x172C];
+    /* 0x1734 */ u32 mShadowID;
+    /* 0x1738 */ u8 field_0x1738[0x1740 - 0x1738];
     /* 0x1740 */ u32 field_0x1740;
     /* 0x1744 */ u32 mStateFlg0;
     /* 0x1748 */ u32 mResetStateFlg0;

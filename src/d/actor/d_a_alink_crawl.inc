@@ -79,8 +79,9 @@ void daAlink_c::setCrawlMoveDirectionArrow() {
 
 /* 800F7E48-800F81C0 0F2788 0378+00 2/2 0/0 0/0 .text changeCrawlAutoMoveProc__9daAlink_cFP4cXyz
  */
-void daAlink_c::changeCrawlAutoMoveProc(cXyz* param_0) {
+BOOL daAlink_c::changeCrawlAutoMoveProc(cXyz* param_0) {
     // NONMATCHING
+    return 0;
 }
 
 /* 800F81C0-800F85C0 0F2B00 0400+00 2/2 0/0 0/0 .text
@@ -169,8 +170,9 @@ BOOL daAlink_c::checkNotCrawlStand(cXyz* param_0, cXyz* param_1) {
 
 /* 800F8B00-800F8D04 0F3440 0204+00 2/2 0/0 0/0 .text
  * checkCrawlInHoll__9daAlink_cFP4cXyzP4cXyzP4cXyzi             */
-void daAlink_c::checkCrawlInHoll(cXyz* param_0, cXyz* param_1, cXyz* param_2, int param_3) {
+BOOL daAlink_c::checkCrawlInHoll(cXyz* param_0, cXyz* param_1, cXyz* param_2, int param_3) {
     // NONMATCHING
+    return 0;
 }
 
 /* 800F8D04-800F8DBC 0F3644 00B8+00 2/2 0/0 0/0 .text            setCrawlMoveHoll__9daAlink_cFv */

@@ -100,6 +100,11 @@ public:
 
     void setNaderu() { field_0x568 |= 0x80; }
     void setNaderuFinish() { field_0x568 |= 0x100; }
+    void setCrazyDash() { field_0x568 |= 4; }
+    void setCrazyBeforeCatch() { field_0x568 |= 1; }
+    void setCrazyCatch() { field_0x568 |= 2; }
+    void setCrazyThrowLeft() { field_0x568 |= 8; }
+    void setCrazyThrowRight() { field_0x568 |= 0x10; }
 
 private:
     /* 0x568 */ u16 field_0x568;

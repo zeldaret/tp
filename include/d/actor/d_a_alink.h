@@ -133,14 +133,13 @@ public:
     /* 800CFCB8 */ ~daAlink_footData_c();
     /* 800CFCF4 */ daAlink_footData_c();
 
-    /* 0x00 */ u8 field_0x00[2];
-    /* 0x02 */ u16 field_0x2;
-    /* 0x04 */ u16 field_0x4;
-    /* 0x06 */ u16 field_0x6;
+    /* 0x00 */ u8 field_0x0;
+    /* 0x01 */ u8 field_0x1;
+    /* 0x02 */ s16 field_0x2;
+    /* 0x04 */ s16 field_0x4;
+    /* 0x06 */ s16 field_0x6;
     /* 0x08 */ cXyz field_0x8;
-    /* 0x14 */ Mtx field_0x14;
-    /* 0x44 */ Mtx field_0x44;
-    /* 0x74 */ Mtx field_0x74;
+    /* 0x14 */ Mtx field_0x14[3];
 };  // Size: 0xA4
 
 STATIC_ASSERT(sizeof(daAlink_footData_c) == 0xA4);
@@ -696,6 +695,8 @@ public:
         FTANM_UNK_8F = 0x8F,
         FTANM_UNK_90 = 0x90,
         FTANM_UNK_91 = 0x91,
+        FTANM_UNK_92 = 0x92,
+        FTANM_UNK_93 = 0x93,
         FTANM_UNK_95 = 0x95,
         FTANM_UNK_96 = 0x96,
         FTANM_UNK_97 = 0x97,
@@ -1333,7 +1334,7 @@ public:
     /* 800A2710 */ void setArmMatrix();
     /* 800A29DC */ void setFootMatrix();
     /* 800A2C24 */ void setMatrixOffset(f32*, f32);
-    /* 800A2CE0 */ void setLegAngle(f32, daAlink_footData_c*, s16*, s16*, int);
+    /* 800A2CE0 */ int setLegAngle(f32, daAlink_footData_c*, s16*, s16*, int);
     /* 800A3430 */ void footBgCheck();
     /* 800A39B8 */ void handBgCheck();
     /* 800A3C8C */ JKRHeap* setItemHeap();
@@ -1694,7 +1695,7 @@ public:
     /* 800CE294 */ bool checkNoSubjectModeCamera();
     /* 800CE468 */ bool acceptSubjectModeChange();
     /* 800CE628 */ int checkSubjectAction();
-    /* 800CE728 */ void checkBodyAngleX(s16);
+    /* 800CE728 */ s16 checkBodyAngleX(s16);
     /* 800CE8A0 */ BOOL setBodyAngleToCamera();
     /* 800CEAF4 */ void setSubjectMode();
     /* 800CEB58 */ BOOL subjectCancelTrigger();
@@ -2034,7 +2035,7 @@ public:
     /* 800E794C */ s16 getChainStickAngleY(s16) const;
     /* 800E7994 */ u8 checkChainEmphasys();
     /* 800E79F8 */ BOOL searchFmChainPos();
-    /* 800E7AEC */ void setFmChainPosFromOut(fopAc_ac_c*, cXyz*, int);
+    /* 800E7AEC */ BOOL setFmChainPosFromOut(fopAc_ac_c*, cXyz*, int);
     /* 800E7C30 */ int procFmChainUpInit();
     /* 800E7CC0 */ int procFmChainUp();
     /* 800E7DD8 */ int procFmChainStrongPullInit();
@@ -2044,13 +2045,13 @@ public:
     /* 800E7EF4 */ BOOL wallGrabTrigger();
     /* 800E7F18 */ BOOL wallGrabButton();
     /* 800E7F3C */ int setPushPullKeepData(dBgW_Base::PushPullLabel, int);
-    /* 800E80A4 */ void checkPushPullTurnBlock();
-    /* 800E8148 */ void checkPullBehindWall();
+    /* 800E80A4 */ BOOL checkPushPullTurnBlock();
+    /* 800E8148 */ BOOL checkPullBehindWall();
     /* 800E8298 */ void offGoatStopGame();
     /* 800E82B0 */ BOOL checkGoatCatchActor(fopAc_ac_c*);
     /* 800E8314 */ f32 getGoatCatchDistance2();
-    /* 800E8334 */ void endPushPull();
-    /* 800E8354 */ void getPushPullAnimeSpeed();
+    /* 800E8334 */ int endPushPull();
+    /* 800E8354 */ f32 getPushPullAnimeSpeed();
     /* 800E8428 */ int procCoPushPullWaitInit(int);
     /* 800E857C */ int procCoPushPullWait();
     /* 800E875C */ int procCoPushMoveInit(int, int);
@@ -2259,14 +2260,14 @@ public:
     /* 800F7C50 */ f32 getCrawlMoveAnmSpeed();
     /* 800F7C74 */ f32 getCrawlMoveSpeed();
     /* 800F7CE8 */ void setCrawlMoveDirectionArrow();
-    /* 800F7E48 */ void changeCrawlAutoMoveProc(cXyz*);
+    /* 800F7E48 */ BOOL changeCrawlAutoMoveProc(cXyz*);
     /* 800F81C0 */ int getCrawlMoveVec(cXyz*, cXyz*, cXyz*, int, int, u8*);
     /* 800F85C0 */ void crawlBgCheck(cXyz*, cXyz*, int);
     /* 800F8700 */ void checkCrawlSideWall(cXyz*, cXyz*, cXyz*, cXyz*, s16*, s16*);
     /* 800F88F8 */ void decideCrawlDoStatus();
     /* 800F89E0 */ BOOL checkNotCrawlStand(cXyz*);
     /* 800F8A50 */ BOOL checkNotCrawlStand(cXyz*, cXyz*);
-    /* 800F8B00 */ void checkCrawlInHoll(cXyz*, cXyz*, cXyz*, int);
+    /* 800F8B00 */ BOOL checkCrawlInHoll(cXyz*, cXyz*, cXyz*, int);
     /* 800F8D04 */ void setCrawlMoveHoll();
     /* 800F8DBC */ void setCrawlMoveAngle();
     /* 800F8F08 */ void stopHalfMoveAnime(f32);
@@ -3458,6 +3459,7 @@ public:
     BOOL checkStartFall() { return getStartMode() == 3; }
 
     u8 getBStatus() { return dComIfGp_getAStatus(); }
+    void setRStatus(u8 param_0, u8 param_1) { dComIfGp_setRStatus(param_0, param_1); }
 
     inline bool checkWindSpeedOnXZ() const;
     inline void startRestartRoomFromOut(int, u32, int);
@@ -3647,7 +3649,7 @@ public:
     /* 0x02900 */ u32 field_0x2900;
     /* 0x02904 */ daAlink_footData_c mFootData1[2];
     /* 0x02A4C */ daAlink_footData_c mFootData2[2];
-    /* 0x02B94 */ f32* field_0x2b94;
+    /* 0x02B94 */ f32 field_0x2b94;
     /* 0x02B98 */ f32 field_0x2b98;
     /* 0x02B98 */ f32 field_0x2b9c;
     /* 0x02BA0 */ f32* field_0x2ba0;
@@ -5948,7 +5950,7 @@ public:
     static daAlinkHIO_wlDamNormal_c1 const m;
 };
 
-class daAlinkHIO_wlDamLarge_c1 {
+class daAlinkHIO_wlDamLaHu_c1 {
 public:
     /* 0x00 */ daAlinkHIO_anm_c field_0x0;
     /* 0x14 */ daAlinkHIO_anm_c field_0x14;
@@ -5961,31 +5963,16 @@ public:
     /* 0x60 */ f32 field_0x60;
     /* 0x64 */ f32 field_0x64;
     /* 0x68 */ f32 field_0x68;
-};  // Size: 0x6C
+};
 
 class daAlinkHIO_wlDamLarge_c0 {
 public:
-    static daAlinkHIO_wlDamLarge_c1 const m;
+    static daAlinkHIO_wlDamLaHu_c1 const m;
 };
-
-class daAlinkHIO_wlDamHuge_c1 {
-public:
-    /* 0x00 */ daAlinkHIO_anm_c field_0x0;
-    /* 0x14 */ daAlinkHIO_anm_c field_0x14;
-    /* 0x28 */ daAlinkHIO_anm_c field_0x28;
-    /* 0x3C */ daAlinkHIO_anm_c field_0x3C;
-    /* 0x50 */ s16 field_0x50;
-    /* 0x54 */ f32 field_0x54;
-    /* 0x58 */ f32 field_0x58;
-    /* 0x5C */ f32 field_0x5C;
-    /* 0x60 */ f32 field_0x60;
-    /* 0x64 */ f32 field_0x64;
-    /* 0x68 */ f32 field_0x68;
-};  // Size: 0x6C
 
 class daAlinkHIO_wlDamHuge_c0 {
 public:
-    static daAlinkHIO_wlDamHuge_c1 const m;
+    static daAlinkHIO_wlDamLaHu_c1 const m;
 };
 
 class daAlinkHIO_wlDamFall_c1 {

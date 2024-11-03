@@ -88,6 +88,7 @@ public:
     u32 checkStateFlg0(daNbomb_FLG0 i_flag) const { return mStateFlg0 & i_flag; }
 
     u32 checkWaterBomb() const { return checkStateFlg0(FLG0_WATER_BOMB); }
+    u32 checkPlayerMake() const { return checkStateFlg0(FLG0_PLAYER_MAKE); }
 
     static const char* m_arcNameList[6];
 

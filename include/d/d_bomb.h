@@ -59,6 +59,11 @@ public:
                                               NULL, NULL);
     }
 
+    static fopAc_ac_c* createInsectBombPlayer(cXyz* i_pos) {
+        return (fopAc_ac_c*)fopAcM_fastCreate(PROC_NBOMB, 10, i_pos, -1, NULL, NULL, -1,
+                                              NULL, NULL);
+    }
+
     static fopAc_ac_c* createWaterBombExplode(cXyz* i_pos) {
         return (fopAc_ac_c*)fopAcM_fastCreate(PROC_NBOMB, 18, i_pos, -1, NULL, NULL, -1, NULL,
                                               NULL);

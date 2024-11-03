@@ -520,6 +520,8 @@ public:
     }
 
     f32 getCameraZoomForcus(int i_no) { return mCameraInfo[i_no].mCameraZoomForcus; }
+
+    f32 getCameraZoomScale(int i_no) { return mCameraInfo[i_no].mCameraZoomScale; }
     void setCameraZoomScale(int i_no, f32 i_scale) { mCameraInfo[i_no].mCameraZoomScale = i_scale; }
 
     void saveCameraPosition(int i, cXyz* i_pos, cXyz* i_target, f32 i_fovy, s16 i_bank) {
@@ -2725,6 +2727,10 @@ inline void dComIfGp_setCameraInfo(int camIdx, camera_class* p_cam, int param_2,
 
 inline void dComIfGp_setCameraZoomScale(int i_no, f32 i_scale) {
     g_dComIfG_gameInfo.play.setCameraZoomScale(i_no, i_scale);
+}
+
+inline f32 dComIfGp_getCameraZoomScale(int i_no) {
+    return g_dComIfG_gameInfo.play.getCameraZoomScale(i_no);
 }
 
 inline f32 dComIfGp_getCameraZoomForcus(int i_no) {
