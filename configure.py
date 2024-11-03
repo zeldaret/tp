@@ -13,6 +13,7 @@
 ###
 
 import argparse
+import json
 import sys
 from pathlib import Path
 from typing import Any, Dict, List
@@ -2114,6 +2115,58 @@ config.libs = [
     ActorRel(NonMatching, "d_a_title"),
     ActorRel(Matching, "d_a_warp_bug"),
 ]
+
+
+# Define our custom asset processing scripts
+config.custom_build_rules = [
+    {
+        "name": "convert_matDL",
+        "command": "$python tools/converters/matDL_dis.py $in $out --symbol $symbol",
+        "description": "CONVERT $symbol",
+    },
+]
+config.custom_build_steps = {}
+
+# Grab the specific GameID so we can format our strings properly
+version = VERSIONS[version_num]
+out_dir = config.build_dir / version
+
+
+# This generates the build steps needed for preprocessing
+def emit_build_rule(asset):
+    steps = config.custom_build_steps.setdefault("pre-compile", [])
+
+    match asset.get("custom_type"):
+        case None:
+            return
+
+        case "matDL":
+            steps.append(
+                {
+                    "rule": "convert_matDL",
+                    "inputs": out_dir / "bin" / asset["binary"],
+                    "outputs": out_dir / "include" / asset["header"],
+                    "variables": {
+                        "symbol": asset["symbol"],
+                    },
+                    "implicit": Path("tools/converters/matDL_dis.py"),
+                }
+            )
+
+        case _:
+            print("Unknown asset type: " + asset["custom_type"])
+
+
+# Parse the config and create the build rules for all our assets
+config_path = out_dir / "config.json"
+if config_path.exists():
+    config_data = json.load(open(config_path))
+    for asset in config_data.get("extract", []):
+        emit_build_rule(asset)
+    for module in config_data.get("modules", []):
+        for asset in module.get("extract", []):
+            emit_build_rule(asset)
+
 
 # Optional extra categories for progress tracking
 config.progress_categories = [

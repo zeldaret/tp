@@ -299,6 +299,79 @@ modules:
   hash: 22fc05a1e8059a065914ca60d162bf8d79327455
   symbols: config/GZ2E01/rels/d_a_grass/symbols.txt
   splits: config/GZ2E01/rels/d_a_grass/splits.txt
+  extract:
+  - symbol: l_M_kusa05_RGBATEX
+    binary: assets/l_M_kusa05_RGBATEX.bin
+    header: assets/l_M_kusa05_RGBATEX.h
+  - symbol: l_M_Hijiki00TEX
+    binary: assets/l_M_Hijiki00TEX.bin
+    header: assets/l_M_Hijiki00TEX.h
+  - symbol: l_M_Kusa_9qDL
+    binary: assets/l_M_Kusa_9qDL.bin
+    header: assets/l_M_Kusa_9qDL.h
+  - symbol: l_M_Kusa_9q_cDL
+    binary: assets/l_M_Kusa_9q_cDL.bin
+    header: assets/l_M_Kusa_9q_cDL.h
+  - symbol: l_M_TenGusaDL
+    binary: assets/l_M_TenGusaDL.bin
+    header: assets/l_M_TenGusaDL.h
+  - symbol: l_Tengusa_matDL
+    binary: assets/l_Tengusa_matDL.bin
+    header: assets/l_Tengusa_matDL.h
+    header_type: none
+    custom_type: matDL
+  - symbol: l_kusa9q_matDL
+    binary: assets/l_kusa9q_matDL.bin
+    header: assets/l_kusa9q_matDL.h
+    header_type: none
+    custom_type: matDL
+  - symbol: l_kusa9q_l4_matDL
+    binary: assets/l_kusa9q_l4_matDL.bin
+    header: assets/l_kusa9q_l4_matDL.h
+    header_type: none
+    custom_type: matDL
+  - symbol: l_J_Ohana00_64TEX
+    binary: assets/l_J_Ohana00_64TEX.bin
+    header: assets/l_J_Ohana00_64TEX.h
+  - symbol: l_J_hana00DL
+    binary: assets/l_J_hana00DL.bin
+    header: assets/l_J_hana00DL.h
+  - symbol: l_J_hana00_cDL
+    binary: assets/l_J_hana00_cDL.bin
+    header: assets/l_J_hana00_cDL.h
+  - symbol: l_matDL
+    binary: assets/l_matDL.bin
+    header: assets/l_matDL.h
+    header_type: none
+    custom_type: matDL
+  - symbol: l_matLight4DL
+    binary: assets/l_matLight4DL.bin
+    header: assets/l_matLight4DL.h
+    header_type: none
+    custom_type: matDL
+  - symbol: l_J_Ohana01_64128_0419TEX
+    binary: assets/l_J_Ohana01_64128_0419TEX.bin
+    header: assets/l_J_Ohana01_64128_0419TEX.h
+  - symbol: l_J_hana01DL
+    binary: assets/l_J_hana01DL.bin
+    header: assets/l_J_hana01DL.h
+  - symbol: l_J_hana01_c_00DL
+    binary: assets/l_J_hana01_c_00DL.bin
+    header: assets/l_J_hana01_c_00DL.h
+  - symbol: l_J_hana01_c_01DL
+    binary: assets/l_J_hana01_c_01DL.bin
+    header: assets/l_J_hana01_c_01DL.h
+  - symbol: l_mat2DL
+    binary: assets/l_mat2DL.bin
+    header: assets/l_mat2DL.h
+    header_type: none
+    custom_type: matDL
+  - symbol: l_mat2Light4DL
+    binary: assets/l_mat2Light4DL.bin
+    header: assets/l_mat2Light4DL.h
+    header_type: none
+    custom_type: matDL
+  
 - object: files/RELS.arc:rels/amem/d_a_kytag05.rel
   hash: 0765a8953491870110c7525693dd1655e18f5827
   symbols: config/GZ2E01/rels/d_a_kytag05/symbols.txt
@@ -1115,6 +1188,19 @@ modules:
   hash: 06ea29fcd01b9a6c6924d32a2732496e10541b24
   symbols: config/GZ2E01/rels/d_a_mant/symbols.txt
   splits: config/GZ2E01/rels/d_a_mant/splits.txt
+  extract:
+  - symbol: l_Egnd_mantTEX
+    binary: assets/l_Egnd_mantTEX.bin
+    header: assets/l_Egnd_mantTEX.h
+  - symbol: l_Egnd_mantTEX_U
+    binary: assets/l_Egnd_mantTEX_U.bin
+    header: assets/l_Egnd_mantTEX_U.h
+  - symbol: l_Egnd_mantPAL
+    binary: assets/l_Egnd_mantPAL.bin
+    header: assets/l_Egnd_mantPAL.h
+  - symbol: l_Egnd_mantDL
+    binary: assets/l_Egnd_mantDL.bin
+    header: assets/l_Egnd_mantDL.h
 - object: files/rel/Final/Release/d_a_mg_fshop.rel
   hash: 81bb9eef98be70c2b69a913a51b0e6a9554403f4
   symbols: config/GZ2E01/rels/d_a_mg_fshop/symbols.txt
@@ -3035,3 +3121,14 @@ modules:
   hash: 19eacf74625a4ce9f319a552fac89a18c616e87a
   symbols: config/GZ2E01/rels/d_a_warp_bug/symbols.txt
   splits: config/GZ2E01/rels/d_a_warp_bug/splits.txt
+
+extract:
+- symbol: black_tex
+  binary: assets/black_tex.bin
+  header: assets/black_tex.h
+- symbol: msg_data
+  binary: assets/msg_data.bin
+  header: assets/msg_data.h
+- symbol: font_data
+  binary: assets/font_data.bin
+  header: assets/font_data.h
