@@ -785,7 +785,6 @@ BOOL daAlink_c::checkDamageAction() {
 
 /* 800D8F3C-800D9514 0D387C 05D8+00 2/2 0/0 0/0 .text procDamageInit__9daAlink_cFP12dCcD_GObjInfi
  */
-// NONMATCHING - cLib_minMaxLimit appears to have issues when using s16
 int daAlink_c::procDamageInit(dCcD_GObjInf* param_0, int param_1) {
     BOOL freeze_player;
 

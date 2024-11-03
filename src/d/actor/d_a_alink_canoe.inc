@@ -1153,7 +1153,6 @@ int daAlink_c::procCanoeRodGrab() {
 }
 
 /* 800F6464-800F659C 0F0DA4 0138+00 6/6 0/0 0/0 .text procCanoeFishingWaitInit__9daAlink_cFv */
-// NONMATCHING - cLib_minMaxLimit regalloc
 int daAlink_c::procCanoeFishingWaitInit() {
     if (!commonProcInitNotSameProc(PROC_CANOE_FISHING_WAIT)) {
         field_0x311a = 0;
@@ -1241,7 +1240,6 @@ int daAlink_c::procCanoeFishingReelInit() {
 
 /* 800F6874-800F69D4 0F11B4 0160+00 1/0 0/0 0/0 .text            procCanoeFishingReel__9daAlink_cFv
  */
-// NONMATCHING - cLib_minMaxLimit regalloc
 int daAlink_c::procCanoeFishingReel() {
     if (canoeCommon()) {
         mItemVar0.field_0x3018 = 1;

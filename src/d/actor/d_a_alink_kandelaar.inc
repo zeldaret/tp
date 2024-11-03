@@ -108,7 +108,6 @@ bool daAlink_c::checkKandelaarSwing(int param_0) const {
 }
 
 /* 801108EC-80110BEC 10B22C 0300+00 1/1 0/0 0/0 .text kandelaarModelCallBack__9daAlink_cFv */
-// NONMATCHING - regalloc from cLib_minMaxLimit
 int daAlink_c::kandelaarModelCallBack() {
     cXyz sp44;
     mDoMtx_multVecZero(J3DSys::mCurrentMtx, &sp44);

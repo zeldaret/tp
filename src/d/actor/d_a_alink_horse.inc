@@ -826,7 +826,6 @@ int daAlink_c::setSyncHorse(int param_0) {
 }
 
 /* 800EE64C-800EE918 0E8F8C 02CC+00 1/1 0/0 0/0 .text            setSyncBoar__9daAlink_cFi */
-// NONMATCHING - regalloc, equivalent?
 int daAlink_c::setSyncBoar(int param_0) {
     e_wb_class* e_wb_p = static_cast<e_wb_class*>(mRideAcKeep.getActor());
     BOOL mode_1 = checkModeFlg(1);
@@ -1021,7 +1020,6 @@ void daAlink_c::setHorseSwordUp(int param_0) {
 
 /* 800EEF30-800EF050 0E9870 0120+00 9/9 0/0 0/0 .text            setRideSubjectAngle__9daAlink_cFs
  */
-// NONMATCHING - cLib_minMaxLimit regalloc
 int daAlink_c::setRideSubjectAngle(s16 param_0) {
     shape_angle.y += mBodyAngle.y;
     BOOL temp_r27 = setBodyAngleToCamera();
@@ -1033,11 +1031,11 @@ int daAlink_c::setRideSubjectAngle(s16 param_0) {
         var_r30 = daAlinkHIO_horse_c0::m.field_0x58;
     }
 
-    mBodyAngle.x = cLib_minMaxLimit<s16>(mBodyAngle.x, daAlinkHIO_horse_c0::m.field_0x5A, var_r30);
+    mBodyAngle.x = cLib_minMaxLimit<s16>((s16)mBodyAngle.x, daAlinkHIO_horse_c0::m.field_0x5A, var_r30);
 
     s16 temp_r29 = shape_angle.y - param_0;
     if (checkHorseZelda()) {
-        field_0x3190 = cLib_minMaxLimit<s16>(temp_r29, -0x4000, 0x4000);
+        field_0x3190 = cLib_minMaxLimit<s16>((s16)temp_r29, -0x4000, 0x4000);
     } else {
         field_0x3190 = temp_r29;
     }
@@ -1055,15 +1053,14 @@ int daAlink_c::setRideSubjectAngle(s16 param_0) {
 }
 
 /* 800EF050-800EF0E8 0E9990 0098+00 7/7 0/0 0/0 .text setBodyAngleRideReadyAnime__9daAlink_cFv */
-// NONMATCHING - missing mr, probably issue with cLib_minMaxLimit implementation
 void daAlink_c::setBodyAngleRideReadyAnime() {
     setBodyAngleXReadyAnime(0);
 
     s16 angle;
     if (mTargetedActor != NULL) {
-        angle = cLib_minMaxLimit(
-            (s16)(cLib_targetAngleY(&current.pos, &mTargetedActor->eyePos) - shape_angle.y),
-            (s16)-0x3800, (s16)0x3800);
+        angle = cLib_minMaxLimit<s16>(
+            cLib_targetAngleY(&current.pos, &mTargetedActor->eyePos) - shape_angle.y,
+            -0x3800, 0x3800);
     } else {
         angle = 0;
     }
@@ -2200,7 +2197,6 @@ int daAlink_c::procHorseCutTurn() {
 
 /* 800F1D18-800F2028 0EC658 0310+00 2/2 0/0 0/0 .text
  * procHorseDamageInit__9daAlink_cFP12dCcD_GObjInf              */
- // NONMATCHING - cLib_minMaxLimit regalloc
 int daAlink_c::procHorseDamageInit(dCcD_GObjInf* param_0) {
     commonProcInit(PROC_HORSE_DAMAGE);
 

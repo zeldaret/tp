@@ -38,15 +38,10 @@ BOOL daAlink_c::checkShieldAttackEmphasys() {
 }
 
 /* 800DC678-800DC79C 0D6FB8 0124+00 5/5 0/0 0/0 .text checkGuardActionChange__9daAlink_cFv */
-/* BOOL daAlink_c::checkGuardActionChange() {
-    return checkAttentionLock() && !checkIronBallWaitAnime() && !checkGrabAnime() &&
-!checkCopyRodControllAnime() && mTargetedActor != NULL && !checkSpecialNpc(mTargetedActor) &&
-(fopAcM_GetGroup(mTargetedActor) != 3 && fopAcM_GetGroup(mTargetedActor) != fopAc_NPC_e);
-} */
-
 BOOL daAlink_c::checkGuardActionChange() {
-    // NONMATCHING
-    return 0;
+    return checkAttentionLock() && !checkIronBallWaitAnime() && !checkGrabAnime() &&
+           !checkCopyRodControllAnime() && !((mTargetedActor != NULL && !checkSpecialNpc(mTargetedActor)) &&
+           (fopAcM_GetGroup(mTargetedActor) == 3 || fopAcM_GetGroup(mTargetedActor) == fopAc_NPC_e));
 }
 
 /* 800DC79C-800DC8C4 0D70DC 0128+00 3/3 0/0 0/0 .text            stickArrowIncrement__9daAlink_cFi
@@ -239,7 +234,6 @@ void daAlink_c::setGuardSe(dCcD_GObjInf* i_objinf) {
 }
 
 /* 800DD1D4-800DD3E4 0D7B14 0210+00 1/1 0/0 0/0 .text setSmallGuard__9daAlink_cFP12dCcD_GObjInf */
-// NONMATCHING
 void daAlink_c::setSmallGuard(dCcD_GObjInf* i_objinf) {
     setUpperAnimeBase(0x16);
     cXyz* dmg_vec = (cXyz*)getDamageVec(i_objinf);
@@ -253,9 +247,7 @@ void daAlink_c::setSmallGuard(dCcD_GObjInf* i_objinf) {
                                   daAlinkHIO_guard_c0::m.mSmallGuardLRAngleMax);
     }
 
-    s16 max = daAlinkHIO_guard_c0::m.mSmallGuardFBAngleMax;
-    s16 min = -max;
-    mBodyAngle.x = cLib_minMaxLimit<s16>(cM_atan2s(dmg_vec->y, dmg_vec->absXZ()), min, max);
+    mBodyAngle.x = cLib_minMaxLimit<s16>(cM_atan2s(dmg_vec->y, dmg_vec->absXZ()), -daAlinkHIO_guard_c0::m.mSmallGuardFBAngleMax, daAlinkHIO_guard_c0::m.mSmallGuardFBAngleMax);
 }
 
 /* 800DD3E4-800DD894 0D7D24 04B0+00 1/1 0/0 0/0 .text

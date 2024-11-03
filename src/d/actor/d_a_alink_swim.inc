@@ -1414,7 +1414,6 @@ int daAlink_c::procSwimHookshotMove() {
 
 /* 8010519C-80105728 0FFADC 058C+00 1/1 0/0 0/0 .text
  * procSwimDamageInit__9daAlink_cFP12dCcD_GObjInf               */
-// NONMATCHING - cLib_minMaxLimit regalloc issue
 int daAlink_c::procSwimDamageInit(dCcD_GObjInf* param_0) {
     seStartOnlyReverb(Z2SE_AL_DAMAGE_NORMAL);
     dComIfGp_getVibration().StartShock(2, 31, cXyz(0.0f, 1.0f, 0.0f));

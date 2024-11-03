@@ -1695,7 +1695,7 @@ public:
     /* 800CE294 */ bool checkNoSubjectModeCamera();
     /* 800CE468 */ bool acceptSubjectModeChange();
     /* 800CE628 */ int checkSubjectAction();
-    /* 800CE728 */ void checkBodyAngleX(s16);
+    /* 800CE728 */ s16 checkBodyAngleX(s16);
     /* 800CE8A0 */ BOOL setBodyAngleToCamera();
     /* 800CEAF4 */ void setSubjectMode();
     /* 800CEB58 */ BOOL subjectCancelTrigger();

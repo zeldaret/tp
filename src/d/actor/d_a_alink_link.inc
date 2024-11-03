@@ -273,7 +273,7 @@ int daAlink_c::procMove() {
         setBlendMoveAnime(-1.0f);
         if (field_0x3174 != 8) {
             field_0x30a0 =
-                cLib_minMaxLimit2((s16)(field_0x2ff0 >> 1), daAlinkHIO_basic_c0::m.mNeckMaxUp,
+                cLib_minMaxLimit<s16>((s16)(field_0x2ff0 >> 1), daAlinkHIO_basic_c0::m.mNeckMaxUp,
                                  daAlinkHIO_basic_c0::m.mNeckMaxDown);
         }
     }
@@ -656,7 +656,7 @@ int daAlink_c::procSlide() {
 
             if (checkInputOnR()) {
                 mProcVar2.field_0x300c =
-                    cLib_minMaxLimit2<s16>((s16)(mProcVar2.field_0x300c + sin * 256.0f), -0x1000, 0x1000);
+                    cLib_minMaxLimit<s16>((s16)(mProcVar2.field_0x300c + sin * 256.0f), -0x1000, 0x1000);
             } else {
                 cLib_chaseS(&mProcVar2.field_0x300c, 0, 64);
             }
@@ -4224,13 +4224,86 @@ int daAlink_c::checkSubjectAction() {
 }
 
 /* 800CE728-800CE8A0 0C9068 0178+00 1/1 0/0 0/0 .text            checkBodyAngleX__9daAlink_cFs */
-void daAlink_c::checkBodyAngleX(s16 param_0) {
-    // NONMATCHING
+s16 daAlink_c::checkBodyAngleX(s16 param_0) {
+    if (checkWolf() || mProcID == PROC_PEEP_SUBJECTIVITY || mProcID == PROC_HOOKSHOT_WALL_SHOOT) {
+        return param_0;
+    }
+
+    Vec sp2C = {0.0f, 0.0f, 0.0f};
+    sp2C.y = 0.5f * field_0x598;
+
+    cXyz sp20;
+    mDoMtx_multVecZero(mpLinkModel->getAnmMtx(1), &sp20);
+    cXyz sp14;
+
+    if (param_0 >= 0) {
+        sp2C.z = 25.0f;
+    } else {
+        sp2C.z = -25.0f;
+    }
+
+    mDoMtx_stack_c::transS(sp20);
+    concatMagneBootMtx();
+    mDoMtx_stack_c::ZXYrotM(param_0, shape_angle.y, 0);
+    mDoMtx_stack_c::multVec(&sp2C, &sp14);
+
+    if (commonLineCheck(&sp20, &sp14)) {
+        cXyz sp8 = sp14 - mLinkLinChk.i_GetCross();
+        multVecMagneBootInvMtx(&sp8);
+
+        current.pos.x -= sp8.x;
+        current.pos.z -= sp8.z;
+    }
+
+    return param_0;
 }
 
 /* 800CE8A0-800CEAF4 0C91E0 0254+00 15/15 0/0 0/0 .text setBodyAngleToCamera__9daAlink_cFv */
 BOOL daAlink_c::setBodyAngleToCamera() {
-    // NONMATCHING
+    if (dComIfGp_checkCameraAttentionStatus(field_0x317c, 0x10)) {
+        field_0x310e = field_0x310a;
+        field_0x3110 = field_0x310c;
+        onEndResetFlg2(ERFLG2_UNK_20);
+
+        s16 sp8;
+        if (checkInputOnR()) {
+            f32 var_f31 = 512.0f * field_0x33ac * field_0x33ac;
+            if (checkWolfEyeUp()) {
+                var_f31 *= 0.6f;
+            }
+
+            if (dComIfGp_checkPlayerStatus0(0, 0x200000)) {
+                var_f31 /= dComIfGp_getCameraZoomScale(field_0x317c);
+            }
+
+            shape_angle.y = shape_angle.y + (var_f31 * cM_ssin(mStickAngle));
+            sp8 = mBodyAngle.x + (var_f31 * cM_scos(mStickAngle));
+
+            if (checkNotItemSinkLimit() && sp8 > 0 && sp8 > mBodyAngle.x) {
+                sp8 = mBodyAngle.x;
+            }
+        } else {
+            sp8 = mBodyAngle.x;
+        }
+
+        if (checkNotItemSinkLimit() && sp8 > 0) {
+            cLib_addCalcAngleS(&sp8, 0, 5, 0x1000, 0x400);
+        }
+
+        s16 var_r29;
+        if (!dComIfGp_checkPlayerStatus0(0, 0x202000) && mEquipItem == IRONBALL) {
+            var_r29 = -10000;
+        } else {
+            var_r29 = daAlinkHIO_item_c0::m.mItemFPUpMaxUnk;
+        }
+
+        mBodyAngle.x = cLib_minMaxLimit<s16>((s16)sp8, var_r29, daAlinkHIO_item_c0::m.mItemFPMaxUnk);
+        checkBodyAngleX(mBodyAngle.x);
+        field_0x310a = mBodyAngle.x;
+        field_0x310c = shape_angle.y;
+        return 1;
+    }
+
     return 0;
 }
 

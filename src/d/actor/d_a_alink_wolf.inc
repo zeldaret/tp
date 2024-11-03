@@ -555,7 +555,6 @@ BOOL daAlink_c::checkWolfSideStep() const {
 }
 
 /* 80127E08-80127F20 122748 0118+00 1/1 0/0 0/0 .text            setWolfTailAngle__9daAlink_cFv */
-// NONMATCHING - cLib_minMaxLimit regalloc
 void daAlink_c::setWolfTailAngle() {
     s16* var_r30 = field_0x3094;
     s16* var_r29 = field_0x309a;
@@ -4993,7 +4992,7 @@ int daAlink_c::procWolfRopeSubjectivityInit() {
 }
 
 /* 80133930-80133D6C 12E270 043C+00 1/0 0/0 0/0 .text procWolfRopeSubjectivity__9daAlink_cFv */
-// NONMATCHING - cLib_minMaxLimit regalloc
+// NONMATCHING - float regalloc
 int daAlink_c::procWolfRopeSubjectivity() {
     daPy_frameCtrl_c* temp_r28 = &mUnderFrameCtrl[0];
     daObjCrope_c* temp_r3 = (daObjCrope_c*)field_0x280c.getActor();
@@ -5004,7 +5003,7 @@ int daAlink_c::procWolfRopeSubjectivity() {
 
     f32 temp_f31 = temp_r3->getStartRate(&current.pos);
     f32 temp_f30 = temp_r26->absXZ(current.pos);
-    f32 temp_f29 = temp_r26->absXZ(current.pos);
+    f32 temp_f29 = temp_r25->absXZ(current.pos);
 
     onResetFlg0(RFLG0_UNK_4000000);
 
