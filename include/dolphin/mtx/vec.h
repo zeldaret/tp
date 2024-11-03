@@ -42,8 +42,8 @@ inline void C_VECAdd(register const Vec* a, register const Vec* b, register Vec*
     asm {
         psq_l axy, 0(a), 0, 0
         psq_l bxy, 0(b), 0, 0
-        ps_add axy, axy, bxy
-        psq_st axy, 0(ab), 0, 0
+        ps_add bxy, axy, bxy
+        psq_st bxy, 0(ab), 0, 0
         psq_l az, 8(a), 1, 0
         psq_l bz, 8(b), 1, 0
         ps_add sumz, az, bz

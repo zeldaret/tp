@@ -3,8 +3,53 @@
 
 #include "dolphin/mtx/vec.h"
 #include "math.h"
+#include "JSystem/JMath/JMath.h"
 
 namespace JGeometry {
+
+template<typename T>
+struct TUtil {
+    static inline T clamp(T v, T min, T max) {
+        if (v < min) {
+            return min;
+        }
+        if (v > max) {
+            return max;
+        }
+        return v;
+    }
+};
+
+template<>
+struct TUtil<f32> {
+    static inline f32 clamp(f32 v, f32 min, f32 max) {
+        if (v < min) {
+            return min;
+        }
+        if (v > max) {
+            return max;
+        }
+        return v;
+    }
+    static inline f32 epsilon() { return 32.0f * FLT_EPSILON; }
+    static inline f32 PI() { return 3.1415927f; }
+    static inline f32 inv_sqrt(f32 x) {
+        if (x <= 0.0f) {
+            return x;
+        }
+        f32 root = __frsqrte(x);
+        return 0.5f * root * (3.0f - x * (root * root));
+    }
+};
+
+template<>
+struct TUtil<double> {
+    static inline double epsilon() { return 32.0f * FLT_EPSILON; }
+    static inline double one() { return 1.0; }
+    static inline double atan2(double x, double y) { return atan2(x, y); }
+    static inline double asin(double x) { return asin(x); }
+    static inline double halfPI() { return 1.5707963267948966; }
+};
 
 template <typename T>
 struct TVec3 {
@@ -155,6 +200,10 @@ struct TVec3<f32> : public Vec {
         };
     }
 
+    inline void mul(const TVec3<f32>& a) {
+        mul(*this, a);
+    }
+
     inline TVec3<f32>& operator=(const Vec& b) {
         setTVec3f(&b.x, &this->x);
         return *this;
@@ -250,6 +299,10 @@ struct TVec3<f32> : public Vec {
         };
     }
 
+    void scaleAdd(register f32 sc, const TVec3<f32>& a, const TVec3<f32>& b) {
+        JMAVECScaleAdd(&a, &b, this, sc);
+    }
+
     void negateInternal(TVec3<f32>* dst) {
         register f32* rdst = &dst->x;
         const register f32* src = &x;
@@ -286,7 +339,7 @@ struct TVec3<f32> : public Vec {
     }
     
     void setLength(f32 len) {
-         f32 sq = squared();
+        f32 sq = squared();
         if (sq <= FLT_EPSILON * 32.0f) {
             return;
         }
@@ -299,21 +352,33 @@ struct TVec3<f32> : public Vec {
         scale(norm * len);
     }
 
+    f32 setLength(const TVec3<f32>& other, f32 len) {
+        f32 sq = other.squared();
+        if (sq <= TUtil<f32>::epsilon()) {
+            zero();
+            return 0.0f;
+        }
+        f32 inv_norm = TUtil<f32>::inv_sqrt(sq);
+        scale(inv_norm * len, other);
+        return inv_norm * sq;
+    }
+
     f32 dot(const TVec3<f32>& other) const {
         register const f32* pThis = &x;
         register const f32* pOther = &other.x;
-        register f32 otherReg;
-        register f32 thisyz;
         register f32 res;
+        register f32 thisyz;
+        register f32 otheryz;
+        register f32 otherxy;
         register f32 thisxy;
         asm {
             psq_l thisyz, 4(pThis), 0, 0
-            psq_l otherReg, 4(pOther), 0, 0
-            ps_mul thisyz, thisyz, otherReg
+            psq_l otheryz, 4(pOther), 0, 0
+            ps_mul thisyz, thisyz, otheryz
             psq_l thisxy, 0(pThis), 0, 0
-            psq_l otherReg, 0(pOther), 0, 0
-            ps_madd res, thisxy, otherReg, thisyz
-            ps_sum0 res, res, thisyz, thisyz
+            psq_l otherxy, 0(pOther), 0, 0
+            ps_madd otheryz, thisxy, otherxy, thisyz
+            ps_sum0 res, otheryz, thisyz, thisyz
         };
         return res;
     }
@@ -446,44 +511,6 @@ struct TBox2 : TBox<TVec2<T> > {
     void set(const TBox2& other) { set(other.i, other.f); }
     void set(const TVec2<f32>& i, const TVec2<f32>& f) { this->i.set(i), this->f.set(f); }
     void set(f32 x0, f32 y0, f32 x1, f32 y1) { i.set(x0, y0); f.set(x1, y1); }
-};
-
-template<typename T>
-struct TUtil {
-    static inline T clamp(T v, T min, T max) {
-        if (v < min) {
-            return min;
-        }
-        if (v > max) {
-            return max;
-        }
-        return v;
-    }
-};
-
-template<>
-struct TUtil<f32> {
-    static inline f32 epsilon() { return 32.0f * FLT_EPSILON; }
-    static inline f32 PI() { return 3.1415927f; }
-
-    static inline f32 clamp(f32 v, f32 min, f32 max) {
-        if (v < min) {
-            return min;
-        }
-        if (v > max) {
-            return max;
-        }
-        return v;
-    }
-};
-
-template<>
-struct TUtil<double> {
-    static inline double epsilon() { return 32.0f * FLT_EPSILON; }
-    static inline double one() { return 1.0; }
-    static inline double atan2(double x, double y) { return atan2(x, y); }
-    static inline double asin(double x) { return asin(x); }
-    static inline double halfPI() { return 1.5707963267948966; }
 };
 
 // clang-format on

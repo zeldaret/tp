@@ -1,6 +1,8 @@
 #ifndef JPALIST_H
 #define JPALIST_H
 
+#include "dolphin/types.h"
+
 /**
  * @ingroup jsystem-jparticle
  * 
@@ -15,9 +17,10 @@ struct JPANode {
     JPANode<T>* getPrev() { return mpPrev; }
     JPANode<T>* getNext() { return mpNext; }
     T* getObject() { return &mData; }
-    JPANode<T>* mpPrev;
-    JPANode<T>* mpNext;
-    T mData;
+
+    /* 0x00 */ JPANode<T>* mpPrev;
+    /* 0x04 */ JPANode<T>* mpNext;
+    /* 0x08 */ T mData;
 };
 
 /**
@@ -26,9 +29,9 @@ struct JPANode {
  */
 template <class T>
 struct JPAList {
-    JPANode<T>* mpFirst;
-    JPANode<T>* mpLast;
-    u32 mNum;
+    /* 0x00 */ JPANode<T>* mpFirst;
+    /* 0x04 */ JPANode<T>* mpLast;
+    /* 0x08 */ u32 mNum;
 
     JPAList() : mpFirst(NULL), mpLast(NULL), mNum() {}
 
@@ -103,6 +106,27 @@ struct JPAList {
         }
 
         return ret;
+    }
+
+    JPANode<T>* erase(JPANode<T>* node) {
+        if (node->mpNext != NULL && node->mpPrev != NULL) {
+            node->mpPrev->mpNext = node->mpNext;
+            node->mpNext->mpPrev = node->mpPrev;
+            mNum--;
+        } else if (node->mpNext != NULL) {
+            node->mpNext->mpPrev = NULL;
+            mpFirst = node->mpNext;
+            mNum--;
+        } else if (node->mpPrev != NULL) {
+            node->mpPrev->mpNext = NULL;
+            mpLast = node->mpPrev;
+            mNum--;
+        } else {
+            mpLast = NULL;
+            mpFirst = NULL;
+            mNum--;
+        }
+        return node;
     }
 };
 

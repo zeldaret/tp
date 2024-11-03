@@ -6,7 +6,9 @@
 void JMAMTXApplyScale(const Mtx, Mtx, f32, f32, f32);
 void JMAEulerToQuat(s16 param_0, s16 param_1, s16 param_2, Quaternion* param_3);
 void JMAQuatLerp(const Quaternion*, const Quaternion*, f32, Quaternion*);
-void JMAFastVECNormalize(register const Vec* src, register Vec* dst);   
+void JMAFastVECNormalize(register const Vec* src, register Vec* dst);
+void JMAVECScaleAdd(register const Vec* vec1, register const Vec* vec2, register Vec* dst,
+                    register f32 scale);
 
 inline int JMAAbs(int value) {
     return (value >> 0x1f ^ value) - (value >> 0x1f);

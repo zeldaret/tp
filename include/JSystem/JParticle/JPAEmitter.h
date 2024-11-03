@@ -47,10 +47,10 @@ struct JPAEmitterWorkData {
     /* 0x1B4 */ Mtx mPrjMtx;
     /* 0x1E4 */ JPAList<JPABaseParticle>* mpAlivePtcl;
     /* 0x1E8 */ JPANode<JPABaseParticle>* mpCurNode;
-    /* 0x1EC */ u32 mVolumeAngleNum;
-    /* 0x1F0 */ u32 mVolumeAngleMax;
-    /* 0x1F4 */ u32 mVolumeX;
-    /* 0x1F8 */ u32 mDivNumber;
+    /* 0x1EC */ s32 mVolumeAngleNum;
+    /* 0x1F0 */ s32 mVolumeAngleMax;
+    /* 0x1F4 */ s32 mVolumeX;
+    /* 0x1F8 */ s32 mDivNumber;
     /* 0x1FC */ f32 mScaleAnm;
     /* 0x200 */ u32 mDirType;
     /* 0x204 */ u32 mRotType;
@@ -93,8 +93,8 @@ enum {
  */
 class JPABaseEmitter {
 public:
-    /* 8027E5EC */ ~JPABaseEmitter();
-    /* 8027E64C */ JPABaseEmitter();
+    /* 8027E5EC */ ~JPABaseEmitter() {}
+    /* 8027E64C */ JPABaseEmitter() : mLink(this) {}
     /* 8027E6EC */ void init(JPAEmitterManager*, JPAResource*);
     /* 8027EDD4 */ bool processTillStartFrame();
     /* 8027EE14 */ bool processTermination();
@@ -223,7 +223,7 @@ public:
     /* 0x44 */ f32 mRndmDirSpeed;
     /* 0x48 */ f32 mAirResist;
     /* 0x4C */ JGeometry::TVec3<s16> mLocalRot;
-    /* 0x52 */ u16 mLifeTime;
+    /* 0x52 */ s16 mLifeTime;
     /* 0x54 */ u16 mVolumeSize;
     /* 0x56 */ u8 mRateStep;
     /* 0x58 */ JSULink<JPABaseEmitter> mLink;

@@ -6,22 +6,6 @@
 #include "JSystem/JParticle/JPAKeyBlock.h"
 #include "JSystem/JParticle/JPAMath.h"
 
-//
-// Types:
-//
-
-//
-// Forward References:
-//
-
-//
-// External References:
-//
-
-//
-// Declarations:
-//
-
 /* 8027D730-8027D740 278070 0010+00 0/0 1/1 0/0 .text            __ct__11JPAKeyBlockFPCUc */
 JPAKeyBlock::JPAKeyBlock(const u8* data)
     : mDataStart(data)
@@ -29,15 +13,13 @@ JPAKeyBlock::JPAKeyBlock(const u8* data)
 {
 }
 
-/* ############################################################################################## */
-
 /* 8027D740-8027D7D4 278080 0094+00 0/0 1/1 0/0 .text            calc__11JPAKeyBlockFf */
-void JPAKeyBlock::calc(float p1) {
+f32 JPAKeyBlock::calc(float p1) {
 	if (mDataStart[0xB] != '\0') {
 		int v1 = (int)field_0x4[(mDataStart[9] - 1) * 4] + 1;
 		// p1 -= (v1 * ((int)p1 / v1));
 		int v2 = ((int)p1 / v1);
 		p1     = p1 - (v2 * v1);
 	}
-	JPACalcKeyAnmValue(p1, mDataStart[9], field_0x4);
+	return JPACalcKeyAnmValue(p1, mDataStart[9], field_0x4);
 }

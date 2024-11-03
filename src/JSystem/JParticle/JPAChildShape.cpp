@@ -9,18 +9,6 @@
 #include "dolphin/gx.h"
 #include "dolphin/os.h"
 
-//
-// Types:
-//
-
-//
-// Forward References:
-//
-
-//
-// Declarations:
-//
-
 /* 8027AEBC-8027AFDC 2757FC 0120+00 0/0 1/1 0/0 .text JPARegistChildPrmEnv__FP18JPAEmitterWorkData
  */
 void JPARegistChildPrmEnv(JPAEmitterWorkData* work) {
@@ -50,7 +38,6 @@ void JPACalcChildAlphaOut(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
 /* 8027B008-8027B038 275948 0030+00 0/0 1/1 0/0 .text
  * JPACalcChildScaleOut__FP18JPAEmitterWorkDataP15JPABaseParticle */
 void JPACalcChildScaleOut(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
-    // literal
     ptcl->mParticleScaleX = ptcl->mScaleOut * (1.0f - ptcl->mTime);
     ptcl->mParticleScaleY = ptcl->mAlphaWaveRandom * (1.0f - ptcl->mTime);
 }

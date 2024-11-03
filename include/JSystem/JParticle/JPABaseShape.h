@@ -4,6 +4,7 @@
 #include "dolphin/gx/GXStruct.h"
 
 class JPAEmitterWorkData;
+class JPABaseParticle;
 class JKRHeap;
 
 /**
@@ -78,21 +79,21 @@ public:
     u32 getType() const { return (mpData->mFlags >> 0) & 0x0F; }
     u32 getDirType() const { return (mpData->mFlags >> 4) & 0x07; }
     u32 getRotType() const { return (mpData->mFlags >> 7) & 0x07; }
-    u32 getBasePlaneType() const { return (mpData->mFlags >> 10) & 0x07; }
+    u32 getBasePlaneType() const { return (mpData->mFlags >> 10) & 0x01; }
     u32 getTilingS() const { return (mpData->mFlags >> 25) & 0x01; }
     u32 getTilingT() const { return (mpData->mFlags >> 26) & 0x01; }
-    bool isGlblClrAnm() const { return !!(mpData->mFlags & 0x00001000); }
-    bool isGlblTexAnm() const { return !!(mpData->mFlags & 0x00004000); }
-    bool isPrjTex() const { return !!(mpData->mFlags & 0x00100000); }
+    BOOL isGlblClrAnm() const { return mpData->mFlags & 0x00001000; }
+    BOOL isGlblTexAnm() const { return mpData->mFlags & 0x00004000; }
+    BOOL isPrjTex() const { return mpData->mFlags & 0x00100000; }
     bool isDrawFwdAhead() const { return !!(mpData->mFlags & 0x00200000); }
     bool isDrawPrntAhead() const { return !!(mpData->mFlags & 0x00400000); }
     bool isClipOn() const { return !!(mpData->mFlags & 0x00800000); }
-    bool isTexCrdAnm() const { return !!(mpData->mFlags & 0x01000000); }
+    BOOL isTexCrdAnm() const { return mpData->mFlags & 0x01000000; }
     bool isNoDrawParent() const { return !!(mpData->mFlags & 0x08000000); }
     bool isNoDrawChild() const { return !!(mpData->mFlags & 0x10000000); }
 
-    bool isPrmAnm() const { return !!(mpData->mClrFlg & 0x02); }
-    bool isEnvAnm() const { return !!(mpData->mClrFlg & 0x08); }
+    BOOL isPrmAnm() const { return mpData->mClrFlg & 0x02; }
+    BOOL isEnvAnm() const { return mpData->mClrFlg & 0x08; }
     u8 getClrAnmType() const { return (mpData->mClrFlg >> 4) & 0x07; }
     s16 getClrAnmMaxFrm() const { return mpData->mClrAnmFrmMax; }
     void getPrmClr(GXColor* dst) { *dst = mpData->mClrPrm; }
@@ -100,7 +101,7 @@ public:
     void getEnvClr(GXColor* dst) { *dst = mpData->mClrEnv; }
     void getEnvClr(s16 idx, GXColor* dst) { *dst = mpEnvClrAnmTbl[idx]; }
 
-    bool isTexAnm() const { return !!(mpData->mTexFlg & 0x01); }
+    BOOL isTexAnm() const { return mpData->mTexFlg & 0x01; }
     u8 getTexAnmType() const { return (mpData->mTexFlg >> 2) & 0x07; }
     u32 getTexIdx() const { return mpData->mTexIdx; }
     u8 getTexIdx(u8 idx) const { return mpTexIdxAnimTbl[idx]; }
@@ -111,6 +112,7 @@ public:
     u32 getClrLoopOfst(u32 param_1) const { return getClrLoopOfstMask() & param_1; }
     u8 getTexLoopOfstMask() const { return mpData->mTexAnmRndmMask; }
     u32 getTexLoopOfst(u8 param_1) const { return getTexLoopOfstMask() & param_1; }
+    u8 getLoopOfstValue() { return mpData->mAnmRndm; }
 
     f32 getIncTransX() const { return ((f32*)mpTexCrdMtxAnmTbl)[5]; }
     f32 getInitTransX() const { return ((f32*)mpTexCrdMtxAnmTbl)[0]; }
@@ -140,5 +142,69 @@ struct JPAClrAnmKeyData {
     /* 0x0 */ s16 index;
     /* 0x2 */ GXColor color;
 };
+
+void JPACalcTexIdxNormal(JPAEmitterWorkData*);
+void JPACalcTexIdxRepeat(JPAEmitterWorkData*);
+void JPACalcTexIdxReverse(JPAEmitterWorkData*);
+void JPACalcTexIdxMerge(JPAEmitterWorkData*);
+void JPACalcTexIdxRandom(JPAEmitterWorkData*);
+void JPACalcPrm(JPAEmitterWorkData*);
+void JPACalcEnv(JPAEmitterWorkData*);
+void JPACalcClrIdxNormal(JPAEmitterWorkData*);
+void JPACalcClrIdxRepeat(JPAEmitterWorkData*);
+void JPACalcClrIdxReverse(JPAEmitterWorkData*);
+void JPACalcClrIdxMerge(JPAEmitterWorkData*);
+void JPACalcClrIdxRandom(JPAEmitterWorkData*);
+
+void JPACalcTexIdxNormal(JPAEmitterWorkData*, JPABaseParticle*);
+void JPACalcTexIdxRepeat(JPAEmitterWorkData*, JPABaseParticle*);
+void JPACalcTexIdxReverse(JPAEmitterWorkData*, JPABaseParticle*);
+void JPACalcTexIdxMerge(JPAEmitterWorkData*, JPABaseParticle*);
+void JPACalcTexIdxRandom(JPAEmitterWorkData*, JPABaseParticle*);
+void JPACalcPrm(JPAEmitterWorkData*, JPABaseParticle*);
+void JPACalcEnv(JPAEmitterWorkData*, JPABaseParticle*);
+void JPACalcClrIdxNormal(JPAEmitterWorkData*, JPABaseParticle*);
+void JPACalcClrIdxRepeat(JPAEmitterWorkData*, JPABaseParticle*);
+void JPACalcClrIdxReverse(JPAEmitterWorkData*, JPABaseParticle*);
+void JPACalcClrIdxMerge(JPAEmitterWorkData*, JPABaseParticle*);
+void JPACalcClrIdxRandom(JPAEmitterWorkData*, JPABaseParticle*);
+void JPACalcColorCopy(JPAEmitterWorkData*, JPABaseParticle*);
+
+void JPADrawStripe(JPAEmitterWorkData*);
+void JPADrawStripeX(JPAEmitterWorkData*);
+void JPADrawEmitterCallBackB(JPAEmitterWorkData*);
+void JPALoadTex(JPAEmitterWorkData*);
+void JPALoadTexAnm(JPAEmitterWorkData*);
+void JPAGenTexCrdMtxIdt(JPAEmitterWorkData*);
+void JPAGenCalcTexCrdMtxAnm(JPAEmitterWorkData*);
+void JPAGenTexCrdMtxAnm(JPAEmitterWorkData*);
+void JPAGenTexCrdMtxPrj(JPAEmitterWorkData*);
+void JPALoadPosMtxCam(JPAEmitterWorkData*);
+void JPASetLineWidth(JPAEmitterWorkData*);
+void JPASetPointSize(JPAEmitterWorkData*);
+void JPARegistPrm(JPAEmitterWorkData*);
+void JPARegistEnv(JPAEmitterWorkData*);
+void JPARegistPrmEnv(JPAEmitterWorkData*);
+
+void JPADrawPoint(JPAEmitterWorkData*, JPABaseParticle*);
+void JPADrawLine(JPAEmitterWorkData*, JPABaseParticle*);
+void JPADrawRotBillboard(JPAEmitterWorkData*, JPABaseParticle*);
+void JPADrawBillboard(JPAEmitterWorkData*, JPABaseParticle*);
+void JPADrawRotDirection(JPAEmitterWorkData*, JPABaseParticle*);
+void JPADrawDirection(JPAEmitterWorkData*, JPABaseParticle*);
+void JPADrawRotation(JPAEmitterWorkData*, JPABaseParticle*);
+void JPADrawDBillboard(JPAEmitterWorkData*, JPABaseParticle*);
+void JPADrawRotYBillboard(JPAEmitterWorkData*, JPABaseParticle*);
+void JPADrawYBillboard(JPAEmitterWorkData*, JPABaseParticle*);
+void JPADrawParticleCallBack(JPAEmitterWorkData*, JPABaseParticle*);
+void JPALoadTexAnm(JPAEmitterWorkData*, JPABaseParticle*);
+void JPASetPointSize(JPAEmitterWorkData*, JPABaseParticle*);
+void JPASetLineWidth(JPAEmitterWorkData*, JPABaseParticle*);
+void JPALoadCalcTexCrdMtxAnm(JPAEmitterWorkData*, JPABaseParticle*);
+void JPARegistAlpha(JPAEmitterWorkData*, JPABaseParticle*);
+void JPARegistEnv(JPAEmitterWorkData*, JPABaseParticle*);
+void JPARegistAlphaEnv(JPAEmitterWorkData*, JPABaseParticle*);
+void JPARegistPrmAlpha(JPAEmitterWorkData*, JPABaseParticle*);
+void JPARegistPrmAlphaEnv(JPAEmitterWorkData*, JPABaseParticle*);
 
 #endif /* JPABASESHAPE_H */

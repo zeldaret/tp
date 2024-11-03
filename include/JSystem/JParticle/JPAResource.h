@@ -47,13 +47,15 @@ public:
     u16 getUsrIdx() const { return mUsrIdx; }
 
 public:
-    /* 0x00 */ void** mpCalcEmitterFuncList;
-    /* 0x04 */ void** mpDrawEmitterFuncList;
-    /* 0x08 */ void** mpDrawEmitterChildFuncList;
-    /* 0x0C */ void** mpCalcParticleFuncList;
-    /* 0x10 */ void** mpDrawParticleFuncList;
-    /* 0x14 */ void** mpCalcParticleChildFuncList;
-    /* 0x18 */ void** mpDrawParticleChildFuncList;
+    typedef void (*EmitterFunc)(JPAEmitterWorkData*);
+    typedef void (*ParticleFunc)(JPAEmitterWorkData*, JPABaseParticle*);
+    /* 0x00 */ EmitterFunc* mpCalcEmitterFuncList;
+    /* 0x04 */ EmitterFunc* mpDrawEmitterFuncList;
+    /* 0x08 */ EmitterFunc* mpDrawEmitterChildFuncList;
+    /* 0x0C */ ParticleFunc* mpCalcParticleFuncList;
+    /* 0x10 */ ParticleFunc* mpDrawParticleFuncList;
+    /* 0x14 */ ParticleFunc* mpCalcParticleChildFuncList;
+    /* 0x18 */ ParticleFunc* mpDrawParticleChildFuncList;
 
     /* 0x1C */ JPABaseShape* mpBaseShape;
     /* 0x20 */ JPAExtraShape* mpExtraShape;
