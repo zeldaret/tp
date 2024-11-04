@@ -2263,7 +2263,7 @@ public:
     /* 800F7E48 */ BOOL changeCrawlAutoMoveProc(cXyz*);
     /* 800F81C0 */ int getCrawlMoveVec(cXyz*, cXyz*, cXyz*, int, int, u8*);
     /* 800F85C0 */ void crawlBgCheck(cXyz*, cXyz*, int);
-    /* 800F8700 */ void checkCrawlSideWall(cXyz*, cXyz*, cXyz*, cXyz*, s16*, s16*);
+    /* 800F8700 */ BOOL checkCrawlSideWall(cXyz*, cXyz*, cXyz*, cXyz*, s16*, s16*);
     /* 800F88F8 */ void decideCrawlDoStatus();
     /* 800F89E0 */ BOOL checkNotCrawlStand(cXyz*);
     /* 800F8A50 */ BOOL checkNotCrawlStand(cXyz*, cXyz*);
@@ -3426,6 +3426,8 @@ public:
         return i_frameCtrl->checkAnmEnd();
     }
 
+    BOOL checkCrawlWaterIn() { return mWaterY > current.pos.y + 15.5f; }
+
     const cXyz& getHsChainTopPos() const { return mHookshotTopPos; }
     const cXyz& getHsChainRootPos() const { return mHeldItemRootPos; }
 
@@ -3644,7 +3646,7 @@ public:
     /* 0x028B0 */ fpc_ProcID mShieldArrowIDs[16];
     /* 0x028F0 */ fpc_ProcID mMsgClassID;
     /* 0x028F4 */ int mAtnActorID;
-    /* 0x028F8 */ int field_0x28f8;
+    /* 0x028F8 */ fpc_ProcID field_0x28f8;
     /* 0x028FC */ int field_0x28fc;
     /* 0x02900 */ u32 field_0x2900;
     /* 0x02904 */ daAlink_footData_c mFootData1[2];
@@ -5124,7 +5126,7 @@ public:
     static daAlinkHIO_damNormal_c1 const m;
 };
 
-class daAlinkHIO_damLarge_c1 {
+class daAlinkHIO_damLaHu_c1 {
 public:
     /* 0x00 */ daAlinkHIO_anm_c field_0x0;
     /* 0x14 */ daAlinkHIO_anm_c field_0x14;
@@ -5141,35 +5143,16 @@ public:
     /* 0xB0 */ f32 field_0xB0;
     /* 0xB4 */ f32 field_0xB4;
     /* 0xB8 */ f32 field_0xB8;
-};  // Size: 0xBC
+};
 
 class daAlinkHIO_damLarge_c0 {
 public:
-    static daAlinkHIO_damLarge_c1 const m;
+    static daAlinkHIO_damLaHu_c1 const m;
 };
-
-class daAlinkHIO_damHuge_c1 {
-public:
-    /* 0x00 */ daAlinkHIO_anm_c field_0x0;
-    /* 0x14 */ daAlinkHIO_anm_c field_0x14;
-    /* 0x28 */ daAlinkHIO_anm_c field_0x28;
-    /* 0x3C */ daAlinkHIO_anm_c field_0x3C;
-    /* 0x50 */ daAlinkHIO_anm_c field_0x50;
-    /* 0x64 */ daAlinkHIO_anm_c field_0x64;
-    /* 0x78 */ daAlinkHIO_anm_c field_0x78;
-    /* 0x8C */ daAlinkHIO_anm_c field_0x8C;
-    /* 0xA0 */ s16 field_0xA0;
-    /* 0xA4 */ f32 field_0xA4;
-    /* 0xA8 */ f32 field_0xA8;
-    /* 0xAC */ f32 field_0xAC;
-    /* 0xB0 */ f32 field_0xB0;
-    /* 0xB4 */ f32 field_0xB4;
-    /* 0xB8 */ f32 field_0xB8;
-};  // Size: 0xBC
 
 class daAlinkHIO_damHuge_c0 {
 public:
-    static daAlinkHIO_damHuge_c1 const m;
+    static daAlinkHIO_damLaHu_c1 const m;
 };
 
 class daAlinkHIO_damHorse_c1 {
