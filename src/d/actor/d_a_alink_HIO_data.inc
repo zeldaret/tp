@@ -1238,7 +1238,7 @@ const daAlinkHIO_damNormal_c1 daAlinkHIO_damNormal_c0::m = {
 };
 
 /* 8038E2B0-8038E36C 01A910 00BC+00 2/4 0/0 0/0 .rodata          m__22daAlinkHIO_damLarge_c0 */
-const daAlinkHIO_damLarge_c1 daAlinkHIO_damLarge_c0::m = {
+const daAlinkHIO_damLaHu_c1 daAlinkHIO_damLarge_c0::m = {
 	{
 		49,
         0.8f,
@@ -1305,7 +1305,7 @@ const daAlinkHIO_damLarge_c1 daAlinkHIO_damLarge_c0::m = {
 };
 
 /* 8038E36C-8038E428 01A9CC 00BC+00 1/3 0/0 0/0 .rodata          m__21daAlinkHIO_damHuge_c0 */
-const daAlinkHIO_damHuge_c1 daAlinkHIO_damHuge_c0::m = {
+const daAlinkHIO_damLaHu_c1 daAlinkHIO_damHuge_c0::m = {
 	{
 		49,
         0.8f,
