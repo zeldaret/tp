@@ -80,6 +80,8 @@ public:
     u8* getBuffer() { return mBuffer; }
     bool checkNoSetIdx() const { return mIdx == 0xFFFF; }
     bool checkNoSetPriIdx() const { return mPriIdx == 0xFFFF; }
+    u16 getArcNo() const { return mArcNo; }
+    void setIdx(u16 i_idx) { mIdx = i_idx; }
 
 private:
     /* 0x00 */ u16 mIdx;
@@ -263,7 +265,9 @@ public:
         FLG1_DASH_MODE = 0x400000,
         FLG1_UNK_200000 = 0x200000,
         FLG1_UNK_100000 = 0x100000,
+        FLG1_UNK_80000 = 0x80000,
         FLG1_UNK_40000 = 0x40000,
+        FLG1_UNK_20000 = 0x20000,
         FLG1_UNK_10000 = 0x10000,
         FLG1_UNK_8000 = 0x8000,
         FLG1_THROW_DAMAGE = 0x4000,
@@ -271,10 +275,12 @@ public:
         FLG1_UNK_1000 = 0x1000,
         FLG1_UNK_800 = 0x800,
         FLG1_UNK_200 = 0x200,
+        FLG1_UNK_100 = 0x100,
         FLG1_UNK_80 = 0x80,
         FLG1_UNK_40 = 0x40,
         FLG1_UNK_20 = 0x20,
         FLG1_UNK_10 = 0x10,
+        FLG1_UNK_8 = 8,
         FLG1_UNK_4 = 4,
         FLG1_UNK_2 = 2,
         FLG1_UNK_1 = 1,
@@ -439,6 +445,7 @@ public:
         RFLG0_UNK_10000000 = 0x10000000,
         RFLG0_UNK_8000000 = 0x8000000,
         RFLG0_UNK_4000000 = 0x4000000,
+        RFLG0_UNK_2000000 = 0x2000000,
         RFLG0_GRAB_PUT_START = 0x400000,
         RFLG0_WOLF_GROWL = 0x200000,
         RFLG0_UNK_80000 = 0x80000,

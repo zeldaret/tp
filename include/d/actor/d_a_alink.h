@@ -669,8 +669,10 @@ public:
 
     enum daAlink_FTANM {
         FTANM_UNK_0 = 0,
+        FTANM_UNK_1 = 1,
         FTANM_UNK_3 = 3,
         FTANM_UNK_4 = 4,
+        FTANM_UNK_5 = 5,
         FTANM_UNK_8 = 8,
         FTANM_UNK_9 = 9,
         FTANM_UNK_13 = 0x13,
@@ -681,6 +683,7 @@ public:
         FTANM_UNK_23 = 0x23,
         FTANM_UNK_27 = 0x27,
         FTANM_UNK_2D = 0x2D,
+        FTANM_UNK_39 = 0x39,
         FTANM_UNK_48 = 0x48,
         FTANM_UNK_75 = 0x75,
         FTANM_UNK_76 = 0x76,
@@ -690,6 +693,7 @@ public:
         FTANM_UNK_7C = 0x7C,
         FTANM_UNK_8A = 0x8A,
         FTANM_UNK_8B = 0x8B,
+        FTANM_UNK_8C = 0x8C,
         FTANM_UNK_8D = 0x8D,
         FTANM_UNK_8E = 0x8E,
         FTANM_UNK_8F = 0x8F,
@@ -700,6 +704,7 @@ public:
         FTANM_UNK_95 = 0x95,
         FTANM_UNK_96 = 0x96,
         FTANM_UNK_97 = 0x97,
+        FTANM_UNK_98 = 0x98,
         FTANM_UNK_99 = 0x99,
         FTANM_UNK_9A = 0x9A,
         FTANM_UNK_9B = 0x9B,
@@ -1310,21 +1315,21 @@ public:
     /* 8009DA98 */ void tgHitCallback(fopAc_ac_c*, dCcD_GObjInf*, dCcD_GObjInf*);
     /* 8009DB64 */ void coHitCallback(fopAc_ac_c*, dCcD_GObjInf*);
     /* 8009DC6C */ void setMatrixWorldAxisRot(f32 (*)[4], s16, s16, s16, int, cXyz const*);
-    /* 8009DD90 */ void jointControll(int);
+    /* 8009DD90 */ int jointControll(int);
     /* 8009E7B8 */ void setUpperFront();
     /* 8009E91C */ void changeBlendRate(int);
     /* 8009EB18 */ void resetRootMtx();
     /* 8009EB58 */ bool modelCallBack(int);
-    /* 8009ECA0 */ void headModelCallBack(int);
+    /* 8009ECA0 */ int headModelCallBack(int);
     /* 8009EF7C */ int wolfModelCallBack(int);
     /* 8009F034 */ void setHatAngle();
     /* 8009FFF8 */ void calcHairAngle(s16*);
     /* 800A002C */ void setHairAngle(cXyz*, f32, f32);
     /* 800A0744 */ void setLookPosFromOut(cXyz*);
     /* 800A07D8 */ bool checkAttentionPosAngle(cXyz*);
-    /* 800A0868 */ void checkActorPosAngle(fopAc_ac_c*, cXyz**);
-    /* 800A093C */ void getNeckAimPos(cXyz*, int*, int);
-    /* 800A142C */ void getNeckAimAngle(cXyz*, s16*, s16*, s16*, s16*);
+    /* 800A0868 */ BOOL checkActorPosAngle(fopAc_ac_c*, cXyz**);
+    /* 800A093C */ cXyz* getNeckAimPos(cXyz*, int*, int);
+    /* 800A142C */ s16 getNeckAimAngle(cXyz*, s16*, s16*, s16*, s16*);
     /* 800A1AEC */ void setEyeMove(cXyz*, s16, s16);
     /* 800A1F90 */ void setNeckAngle();
     /* 800A2198 */ bool commonLineCheck(cXyz*, cXyz*);
@@ -1362,7 +1367,7 @@ public:
     /* 800A7950 */ bool checkWindSpeedOnAngle() const;
     /* 800A79EC */ bool checkWindSpeedOnAngleAnime(int) const;
     /* 800A7A5C */ bool checkDashAnime() const;
-    /* 800A7ABC */ void checkWindWallRate(cXyz const&);
+    /* 800A7ABC */ f32 checkWindWallRate(cXyz const&);
     /* 800A7CB0 */ void setWindSpeed();
     /* 800A8310 */ void setBodyPartPos();
     /* 800A87F8 */ void setAttentionPos();
@@ -1411,7 +1416,7 @@ public:
     /* 800AD3A8 */ void setUpperAnimeBaseSpeed(u16, f32, f32);
     /* 800AD3D8 */ void setUpperAnime(u16, daAlink_c::daAlink_UPPER, f32, f32, s16, f32);
     /* 800AD6F0 */ void setUpperAnimeParam(u16, daAlink_c::daAlink_UPPER, daAlinkHIO_anm_c const*);
-    /* 800AD724 */ void resetUpperAnime(daAlink_c::daAlink_UPPER, f32);
+    /* 800AD724 */ int resetUpperAnime(daAlink_c::daAlink_UPPER, f32);
     /* 800AD8F4 */ void setUnderAnimeMorf(f32);
     /* 800AD964 */ int setUnderAnime(u16, daAlink_c::daAlink_UNDER, f32, f32, s16, f32);
     /* 800ADAB8 */ int setUnderAnimeParam(u16, daAlink_c::daAlink_UNDER, daAlinkHIO_anm_c const*);
@@ -1426,7 +1431,7 @@ public:
     /* 800AF4B0 */ void setFaceBck(u16, int, u16);
     /* 800AF61C */ void setFaceBtp(u16, int, u16);
     /* 800AF7D0 */ void setFaceBtk(u16, int, u16);
-    /* 800AF8A0 */ void setFaceBasicTexture(daAlink_c::daAlink_FTANM);
+    /* 800AF8A0 */ daAlink_FTANM setFaceBasicTexture(daAlink_c::daAlink_FTANM);
     /* 800AF9A8 */ void setFaceBasicAnime(daAlink_c::daAlink_ANM);
     /* 800AFAA8 */ void setFacePriTexture(daAlink_c::daAlink_FTANM);
     /* 800AFB14 */ void setFacePriAnime(daAlink_c::daAlink_ANM);
@@ -2191,7 +2196,7 @@ public:
     /* 800F3BEC */ f32 getCanoeCres() const;
     /* 800F3C18 */ f32 getCanoeSpeedRate() const;
     /* 800F3C44 */ s16 getCanoeMaxRotSpeed() const;
-    /* 800F3CCC */ cXyz* getCanoeLocalPaddleTop();
+    /* 800F3CCC */ static cXyz* getCanoeLocalPaddleTop();
     /* 800F3CF8 */ BOOL checkCanoeRideTandem();
     /* 800F3D58 */ BOOL checkFishingRodAndLureItem() const;
     /* 800F3DA0 */ void initFishingRodHand();
@@ -3666,7 +3671,7 @@ public:
     /* 0x02CA8 */ Z2CreatureLink mZ2Link;
     /* 0x02D78 */ u8* field_0x2d78;
     /* 0x02D7C */ daPy_frameCtrl_c* field_0x2d7c;
-    /* 0x02D80 */ int field_0x2d80;
+    /* 0x02D80 */ void* field_0x2d80;
     /* 0x02D84 */ Z2WolfHowlMgr mZ2WolfHowlMgr;
     /* 0x02E44 */ dJntCol_c field_0x2e44;
     /* 0x02E54 */ dPaPoF_c field_0x2e54;
@@ -3828,9 +3833,7 @@ public:
     /* 0x03060 */ s16 field_0x3060;
     /* 0x03062 */ s16 field_0x3062;
     /* 0x03064 */ s16 field_0x3064;
-    /* 0x03066 */ s16 field_0x3066;
-    /* 0x03068 */ u8 field_0x3068[2];
-    /* 0x0306A */ s16 field_0x306a;
+    /* 0x03066 */ s16 field_0x3066[3];
     /* 0x0306C */ s16 field_0x306c;
     /* 0x0306E */ s16 field_0x306e;
     /* 0x03070 */ s16 field_0x3070;
@@ -3860,7 +3863,7 @@ public:
     /* 0x030A8 */ u16 field_0x30a8;
     /* 0x030AA */ u16 field_0x30aa;
     /* 0x030AC */ s16 mWolfEyeUp;
-    /* 0x030AE */ u16 field_0x30ae;
+    /* 0x030AE */ s16 field_0x30ae;
     /* 0x030B0 */ s16 field_0x30b0;
     /* 0x030B2 */ s16 field_0x30b2;
     /* 0x030B4 */ u16 field_0x30b4;
@@ -3934,7 +3937,7 @@ public:
     /* 0x0319C */ int field_0x319c;
     /* 0x031A0 */ u32 mModeFlg;
     /* 0x031A4 */ int field_0x31a4;
-    /* 0x031A8 */ u8 field_0x31a8[8];
+    /* 0x031A8 */ u32 field_0x31a8[2];
     /* 0x031B0 */ u32 field_0x31b0[3];
     /* 0x031BC */ u32 field_0x31bc;
     /* 0x031C0 */ u32 field_0x31c0;
