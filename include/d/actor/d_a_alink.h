@@ -1327,7 +1327,7 @@ public:
     /* 800A002C */ void setHairAngle(cXyz*, f32, f32);
     /* 800A0744 */ void setLookPosFromOut(cXyz*);
     /* 800A07D8 */ bool checkAttentionPosAngle(cXyz*);
-    /* 800A0868 */ BOOL checkActorPosAngle(fopAc_ac_c*, cXyz**);
+    /* 800A0868 */ bool checkActorPosAngle(fopAc_ac_c*, cXyz**);
     /* 800A093C */ cXyz* getNeckAimPos(cXyz*, int*, int);
     /* 800A142C */ s16 getNeckAimAngle(cXyz*, s16*, s16*, s16*, s16*);
     /* 800A1AEC */ void setEyeMove(cXyz*, s16, s16);
@@ -3652,7 +3652,7 @@ public:
     /* 0x028F0 */ fpc_ProcID mMsgClassID;
     /* 0x028F4 */ int mAtnActorID;
     /* 0x028F8 */ fpc_ProcID field_0x28f8;
-    /* 0x028FC */ int field_0x28fc;
+    /* 0x028FC */ fpc_ProcID field_0x28fc;
     /* 0x02900 */ u32 field_0x2900;
     /* 0x02904 */ daAlink_footData_c mFootData1[2];
     /* 0x02A4C */ daAlink_footData_c mFootData2[2];

@@ -19,6 +19,7 @@ public:
     void onDrawFlg() { mDrawFlag = true; }
     void offDrawFlg() { mDrawFlag = false; }
     void setPos(const cXyz* i_pos) { mPos = *i_pos; }
+    cXyz* getPosP() { return &mPos; }
 
     /* 0x04 */ bool mDrawFlag;
     /* 0x05 */ u8 field_0x5[3];
@@ -379,6 +380,7 @@ public:
         ERFLG0_UNK_40000 = 0x40000,
         ERFLG0_UNK_20000 = 0x20000,
         ERFLG0_UNK_10000 = 0x10000,
+        ERFLG0_UNK_4000 = 0x4000,
         ERFLG0_UNK_2000 = 0x2000,
         ERFLG0_UNK_1000 = 0x1000,
         ERFLG0_UNK_400 = 0x400,
@@ -430,6 +432,7 @@ public:
 
     enum daPy_ERFLG2 {
         ERFLG2_UNK_100 = 0x100,
+        ERFLG2_UNK_80 = 0x80,
         ERFLG2_UNK_40 = 0x40,
         ERFLG2_UNK_20 = 0x20,
         ERFLG2_UNK_10 = 0x10,

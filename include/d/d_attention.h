@@ -85,6 +85,8 @@ public:
     /* 80073CEC */ void proc();
     /* 80073D08 */ int request(fopAc_ac_c*, f32, f32, f32, s16, int);
 
+    fopAc_ac_c* getLookTarget() { return convPId(mLookTargetID); }
+
 private:
     u32 field_0x0;
     s32 field_0x4;
@@ -232,6 +234,10 @@ public:
                       f32 i_downDist, s16 i_angle, int param_5) {
         mCatghTarget.request(param_0, param_1, i_horizontalDist, i_upDist, i_downDist, i_angle,
                              param_5);
+    }
+
+    fopAc_ac_c* getLookTarget() {
+        return mLookTarget.getLookTarget();
     }
 
     void Init(fopAc_ac_c* param_0, u32 i_padNo) {

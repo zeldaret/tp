@@ -2060,6 +2060,10 @@ inline void dComIfGp_att_CatchRequest(fopAc_ac_c* param_0, u8 param_1, f32 i_hor
                                          i_downDist, i_angle, param_5);
 }
 
+inline fopAc_ac_c* dComIfGp_att_getLookTarget() {
+    return dComIfGp_getAttention().getLookTarget();
+}
+
 inline J2DGrafContext* dComIfGp_getCurrentGrafPort() {
     return g_dComIfG_gameInfo.play.getCurrentGrafPort();
 }
