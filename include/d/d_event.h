@@ -159,6 +159,7 @@ public:
     fopAc_ac_c* getPt1() { return convPId(mPt1); }
     fopAc_ac_c* getPt2() { return convPId(mPt2); }
     fopAc_ac_c* getPtT() { return convPId(mPtT); }
+    fopAc_ac_c* getPtI() { return convPId(mPtI); }
     fopAc_ac_c* getPtD() { return convPId(mPtd); }
     bool isChangeOK(void* param_0) { return mChangeOK == param_0; }
     u8 getPreItemNo() { return mPreItemNo; }
@@ -169,11 +170,11 @@ public:
 public:
     /* 0x000 */ u8 field_0x0[4];
     /* 0x004 */ dEvt_order_c mOrder[8];
-    /* 0x0C4 */ u32 mPt1;
-    /* 0x0C8 */ u32 mPt2;
-    /* 0x0CC */ u32 mPtT;
-    /* 0x0D0 */ u32 mPtI;
-    /* 0x0D4 */ u32 mPtd;
+    /* 0x0C4 */ fpc_ProcID mPt1;
+    /* 0x0C8 */ fpc_ProcID mPt2;
+    /* 0x0CC */ fpc_ProcID mPtT;
+    /* 0x0D0 */ fpc_ProcID mPtI;
+    /* 0x0D4 */ fpc_ProcID mPtd;
     /* 0x0D8 */ u16 mEventFlag;
     /* 0x0DA */ u16 mFlag2;
     /* 0x0DC */ u16 mHindFlag;

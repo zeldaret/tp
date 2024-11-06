@@ -4725,8 +4725,8 @@ void daAlink_c::setPolygonSpeed() {
     offNoResetFlg3(daPy_FLG3(FLG3_UNK_1000 | FLG3_UNK_2000));
     if ((!checkEventRun() || checkNoResetFlg0(FLG0_UNK_14000)) && !checkMagneBootsOn()) {
         cM3dGPla sp24;
-        if (checkNoResetFlg3(FLG3_UNK_10000)) {
-            offNoResetFlg3(FLG3_UNK_10000);
+        if (checkNoResetFlg3(FLG3_MIDNA_TALK_POLY_SPEED)) {
+            offNoResetFlg3(FLG3_MIDNA_TALK_POLY_SPEED);
             field_0x3594 = field_0x35a0;
             field_0x35a0 = cXyz::Zero;
         }
@@ -7742,8 +7742,8 @@ BOOL daAlink_c::checkAutoJumpAction() {
                 resetUpperAnime(UPPER_2, -1.0f);
             }
 
-            f32 var_f31 = field_0x35c4.x + (field_0x35ac.x + (speed.x + field_0x3594.x));
-            f32 var_f30 = field_0x35c4.z + (field_0x35ac.z + (speed.z + field_0x3594.z));
+            f32 var_f31 = field_0x35c4.x + (mWindSpeed.x + (speed.x + field_0x3594.x));
+            f32 var_f30 = field_0x35c4.z + (mWindSpeed.z + (speed.z + field_0x3594.z));
             BOOL var_r28 = true;
 
             f32 var_f29 = JMAFastSqrt((var_f31 * var_f31) + (var_f30 * var_f30));
@@ -7889,7 +7889,7 @@ BOOL daAlink_c::checkAutoJumpAction() {
                 return procFallInit(1, sp24);
             }
         }
-    } else if (checkGrabGlide() && field_0x35ac.y > 10.0f) {
+    } else if (checkGrabGlide() && mWindSpeed.y > 10.0f) {
         mLinkAcch.i_ClrGroundHit();
         return procAutoJumpInit(1);
     } else if (checkEndResetFlg0(ERFLG0_UNK_100) && mLinkAcch.i_ChkGroundHit() && !checkWolf()) {
@@ -9931,10 +9931,10 @@ void daAlink_c::posMove() {
             current.pos += field_0x3594;
 
             if (checkModeFlg(2)) {
-                current.pos += field_0x35ac;
+                current.pos += mWindSpeed;
             } else {
-                current.pos.x += field_0x35ac.x;
-                current.pos.z += field_0x35ac.z;
+                current.pos.x += mWindSpeed.x;
+                current.pos.z += mWindSpeed.z;
             }
         } else if (checkNoResetFlg0(FLG0_UNK_14000)) {
             current.pos += field_0x3594;

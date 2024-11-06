@@ -257,7 +257,7 @@ void daDoor20_c::setEventPrm() {
             }
         } else {
             if (daPy_py_c::i_checkNowWolf()) {
-                if (!player->checkMidnaRide() || !daMidna_c::i_checkMidnaRealBody()) {
+                if (!player->checkMidnaRide() || !daMidna_c::checkMidnaRealBody()) {
                     return;
                 }
             }

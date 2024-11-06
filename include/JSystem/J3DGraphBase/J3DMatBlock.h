@@ -31,7 +31,7 @@ struct J3DGXColor : public GXColor {
     /* 8000E538 */ J3DGXColor() {}
     J3DGXColor(J3DGXColor const& other) { __memcpy(this, &other, sizeof(J3DGXColor)); }
     J3DGXColor(GXColor const& color) : GXColor(color) {}
-    J3DGXColor& operator=(GXColor color) {
+    J3DGXColor& operator=(const GXColor& color) {
         *(GXColor*)this = color;
         return *this;
     }

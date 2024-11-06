@@ -1079,7 +1079,7 @@ u32 dEvt_control_c::getPId(void* actor) {
 
 /* 800432EC-8004331C 03DC2C 0030+00 7/7 13/13 16/16 .text            convPId__14dEvt_control_cFUi */
 fopAc_ac_c* dEvt_control_c::convPId(fpc_ProcID id) {
-    return (fopAc_ac_c*)fopAcIt_Judge(fpcSch_JudgeByID, &id);
+    return fopAcM_SearchByID(id);
 }
 
 /* 8004331C-800433F0 03DC5C 00D4+00 0/0 1/1 0/0 .text            getStbDemoData__14dEvt_control_cFPc

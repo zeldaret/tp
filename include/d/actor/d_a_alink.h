@@ -3284,6 +3284,46 @@ public:
     u32 getStartEvent() { return fopAcM_GetParam(this) >> 0x18; }
     BOOL checkClimbFall() { return checkLadderFall(); }
 
+    bool checkMidnaWolfDashAnime() { return checkNoResetFlg1(FLG1_DASH_MODE); }
+    bool checkMidnaClingAnime() { return mMidnaAnm == 1; }
+    bool checkMidnaLowClingAnime() { return mMidnaAnm == 2; }
+    bool checkMidnaLookAroundAnime() { return mMidnaAnm == 3; }
+    bool checkMidnaPanicAnime() { return mMidnaAnm == 5; }
+    bool checkMidnaWolfDeadAnime() { return mMidnaAnm == 6; }
+    bool checkMidnaWolfSwimDeadAnime() { return mMidnaAnm == 7; }
+    bool checkMidnaRopeWaitStaggerAnime() { return mMidnaAnm == 8; }
+    bool checkMidnaRopeMoveStaggerAnime() { return mMidnaAnm == 9; }
+    bool checkMidnaGanonCatchAnm() { return mMidnaAnm == 10; }
+    bool checkMidnaGanonThrowLeftAnm() { return mMidnaAnm == 11; }
+    bool checkMidnaGanonThrowRightAnm() { return mMidnaAnm == 12; }
+    bool checkMidnaDigInAnime() { return mMidnaAnm == 13; }
+
+    void clearMidnaMsgNum() {
+        mMidnaMsgNum = 0xffff;
+        mMidnaMsg = NULL;
+    }
+
+    void setEndGanonThrow() { mProcVar3.field_0x300e = 1; }
+
+    s16 getProcNeckX() { return field_0x30a0; }
+    s16 getMidnaProcNeckY() { return field_0x30d4; }
+    f32 getEyeMoveRateY() { return field_0x33f4; }
+    f32 getMidnaEyeMoveRateX() { return field_0x33f8; }
+
+    J3DModel* getMidnaModel() {
+        if (mClothesChangeWaitTimer != 0) {
+            return NULL;
+        } else {
+            return mpWlMidnaModel;
+        }
+    }
+
+    J3DModel* getMidnaMaskModel() { return mpWlMidnaMaskModel; }
+    J3DModel* getMidnaHandModel() { return mpWlMidnaHandModel; }
+    J3DModel* getMidnaHairHandModel() { return mpWlMidnaHairModel; }
+
+    cXyz* getMidnaHairAtnPos() { return &mMidnaHairAtnPos; }
+
     const daAlink_AnmData* getAnmData(daAlink_ANM anmID) const { return &m_anmDataTable[anmID]; }
     const daAlink_FaceTexData* getFaceTexData(daAlink_FTANM i_anmID) const { return &m_faceTexDataTable[i_anmID]; }
 
@@ -3428,6 +3468,9 @@ public:
 
     BOOL checkCrawlWaterIn() { return mWaterY > current.pos.y + 15.5f; }
 
+    MtxP getWolfMidnaMatrix() { return mpLinkModel->getAnmMtx(0x19); }
+    s16 getIceDamageWaitTimer() const { return mIceDamageWaitTimer; }
+    const cXyz& getWindSpeed() const { return mWindSpeed; }
     const cXyz& getHsChainTopPos() const { return mHookshotTopPos; }
     const cXyz& getHsChainRootPos() const { return mHeldItemRootPos; }
 
@@ -3693,7 +3736,7 @@ public:
     /* 0x02F98 */ u8 field_0x2f98;
     /* 0x02F99 */ u8 field_0x2f99;
     /* 0x02F9A */ s8 mVoiceReverbIntensity;
-    /* 0x02F9B */ u8 field_0x2f9b;
+    /* 0x02F9B */ u8 mMidnaAnm;
     /* 0x02F9C */ u8 mSelectItemId;
     /* 0x02F9D */ u8 field_0x2f9d;
     /* 0x02F9E */ u8 mEffProc;
@@ -3777,7 +3820,7 @@ public:
     /* 0x03000 */ s16 field_0x3000;
     /* 0x03002 */ s16 field_0x3002;
     /* 0x03004 */ s16 field_0x3004;
-    /* 0x03006 */ s16 field_0x3006;
+    /* 0x03006 */ s16 mIceDamageWaitTimer;
     // `mProcVar`'s are variables that are context dependent for each `PROC` action.
     // (The exact setup may need to be simplified later)
     union {
@@ -3879,7 +3922,7 @@ public:
     /* 0x030CE */ u16 mKeepItem;
     /* 0x030D0 */ s16 field_0x30d0;
     /* 0x030D2 */ s16 field_0x30d2;
-    /* 0x030D4 */ u16 field_0x30d4;
+    /* 0x030D4 */ s16 field_0x30d4;
     /* 0x030D6 */ s16 field_0x30d6;
     /* 0x030D8 */ u8 field_0x30d8[0x14];
     /* 0x030EC */ s16 field_0x30ec;
@@ -4059,14 +4102,14 @@ public:
     /* 0x03588 */ cXyz field_0x3588;
     /* 0x03594 */ cXyz field_0x3594;
     /* 0x035A0 */ cXyz field_0x35a0;
-    /* 0x035AC */ cXyz field_0x35ac;
+    /* 0x035AC */ cXyz mWindSpeed;
     /* 0x035B8 */ cXyz field_0x35b8;
     /* 0x035C4 */ cXyz field_0x35c4;
     /* 0x035D0 */ cXyz field_0x35d0;
     /* 0x035DC */ cXyz field_0x35dc;
     /* 0x035E8 */ cXyz field_0x35e8;
     /* 0x035F4 */ cXyz mMidnaAtnPos;
-    /* 0x03600 */ cXyz field_0x3600;
+    /* 0x03600 */ cXyz mMidnaHairAtnPos;
     /* 0x0360C */ cXyz mKandelaarFlamePos;
     /* 0x03618 */ cXyz field_0x3618;
     /* 0x03624 */ cXyz field_0x3624;

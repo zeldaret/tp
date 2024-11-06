@@ -328,6 +328,8 @@ public:
     J3DModel* getModel() { return mpModel; }
     void offMorfNone() { mMorfNone = false; }
     void onMorfNone() { mMorfNone = true; }
+    J3DTransformInfo* getOldTransInfo() { return mpTransformInfo; }
+    Quaternion* getOldQuaternion() { return mpQuat; }
 
 private:
     /* 0x38 */ mDoExt_McaMorfCallBack1_c* mpCallback1;

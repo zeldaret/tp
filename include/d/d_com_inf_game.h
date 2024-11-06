@@ -3381,23 +3381,19 @@ inline void dComIfGp_event_setTalkPartner(fopAc_ac_c* i_actor) {
 }
 
 inline fopAc_ac_c* dComIfGp_event_getTalkPartner() {
-    u32 t = g_dComIfG_gameInfo.play.getEvent().mPtT;
-    return g_dComIfG_gameInfo.play.getEvent().convPId(t);
+    return g_dComIfG_gameInfo.play.getEvent().getPtT();
 }
 
 inline fopAc_ac_c* dComIfGp_event_getItemPartner() {
-    u32 i = g_dComIfG_gameInfo.play.getEvent().mPtI;
-    return g_dComIfG_gameInfo.play.getEvent().convPId(i);
+    return g_dComIfG_gameInfo.play.getEvent().getPtI();
 }
 
 inline fopAc_ac_c* dComIfGp_event_getPt1() {
-    u32 pt1 = g_dComIfG_gameInfo.play.getEvent().mPt1;
-    return g_dComIfG_gameInfo.play.getEvent().convPId(pt1);
+    return g_dComIfG_gameInfo.play.getEvent().getPt1();
 }
 
 inline fopAc_ac_c* dComIfGp_event_getPt2() {
-    u32 pt2 = g_dComIfG_gameInfo.play.getEvent().mPt2;
-    return g_dComIfG_gameInfo.play.getEvent().convPId(pt2);
+    return g_dComIfG_gameInfo.play.getEvent().getPt2();
 }
 
 inline BOOL dComIfGp_event_runCheck() {
