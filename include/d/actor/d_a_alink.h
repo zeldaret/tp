@@ -1425,7 +1425,7 @@ public:
     /* 800AD340 */ void setUpperAnimeBase(u16);
     /* 800AD374 */ void setUpperAnimeBaseMorf(u16, f32);
     /* 800AD3A8 */ void setUpperAnimeBaseSpeed(u16, f32, f32);
-    /* 800AD3D8 */ void setUpperAnime(u16, daAlink_c::daAlink_UPPER, f32, f32, s16, f32);
+    /* 800AD3D8 */ int setUpperAnime(u16, daAlink_c::daAlink_UPPER, f32, f32, s16, f32);
     /* 800AD6F0 */ void setUpperAnimeParam(u16, daAlink_c::daAlink_UPPER, daAlinkHIO_anm_c const*);
     /* 800AD724 */ int resetUpperAnime(daAlink_c::daAlink_UPPER, f32);
     /* 800AD8F4 */ void setUnderAnimeMorf(f32);
@@ -3253,6 +3253,7 @@ public:
     BOOL checkCopyRodControllAnime() const { return checkUpperAnime(0x202); }
     BOOL checkWolfHeadDamageAnime() const { return checkUpperAnime(0x2A7); }
     BOOL checkExchangeRodAnime() const { return checkUpperAnime(0x68); }
+    BOOL checkReelAnime() const { return checkUpperAnime(0x1FB); }
 
     int checkWolfEyeUp() const { return mWolfEyeUp; }
     void onModeFlg(u32 flag) { mModeFlg |= flag; }
@@ -3713,7 +3714,7 @@ public:
     /* 0x02B94 */ f32 field_0x2b94;
     /* 0x02B98 */ f32 field_0x2b98;
     /* 0x02B98 */ f32 field_0x2b9c;
-    /* 0x02BA0 */ f32* field_0x2ba0;
+    /* 0x02BA0 */ f32 field_0x2ba0;
     /* 0x02BA4 */ f32 field_0x2ba4;
     /* 0x02BA8 */ f32 mSinkShapeOffset;
     /* 0x02BAC */ f32 mAcchCirWallH[3];
