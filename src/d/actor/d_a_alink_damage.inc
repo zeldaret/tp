@@ -208,7 +208,7 @@ int daAlink_c::setDamagePoint(int i_dmgAmount, int i_checkZoraMag, int i_setDmgT
         setDamageColorTime();
     }
 
-    field_0x3006 = 0;
+    mIceDamageWaitTimer = 0;
     return 0;
 }
 
@@ -391,8 +391,8 @@ bool daAlink_c::checkLargeAttack(int param_0) const {
 
 /* 800D7C40-800D8F3C 0D2580 12FC+00 1/1 0/0 0/0 .text            checkDamageAction__9daAlink_cFv */
 BOOL daAlink_c::checkDamageAction() {
-    s16 spE = field_0x3006;
-    field_0x3006 = 0;
+    s16 spE = mIceDamageWaitTimer;
+    mIceDamageWaitTimer = 0;
 
     u8 spA = field_0x2fca;
     field_0x2fca = 0;
@@ -513,17 +513,17 @@ BOOL daAlink_c::checkDamageAction() {
     field_0x2fca = spA;
     int sp2C = checkPolyDamage();
     field_0x2fca = 0;
-    field_0x3006 = spE;
+    mIceDamageWaitTimer = spE;
 
     if (sp2C & 0x80) {
-        field_0x3006++;
-        if (field_0x3006 < daAlinkHIO_damage_c0::m.mFreezeTime) {
+        mIceDamageWaitTimer++;
+        if (mIceDamageWaitTimer < daAlinkHIO_damage_c0::m.mFreezeTime) {
             sp2C = 0;
         }
-    } else if (field_0x3006 > 3) {
-        field_0x3006 -= 3;
+    } else if (mIceDamageWaitTimer > 3) {
+        mIceDamageWaitTimer -= 3;
     } else {
-        field_0x3006 = 0;
+        mIceDamageWaitTimer = 0;
     }
 
     if (sp2C != 0) {
@@ -2068,7 +2068,7 @@ int daAlink_c::procCoSwimFreezeReturnInit() {
         mUnderFrameCtrl[0].setEnd(3);
         mUnderFrameCtrl[0].setAttribute(0);
         setFaceBasicTexture(FTANM_UNK_90);
-        field_0x2f9b = 1;
+        mMidnaAnm = 1;
         var_f31 = daAlinkHIO_wlSwim_c0::m.field_0x48;
     } else {
         setSingleAnime(ANM_SWIM_DMG_FREEZE, daAlinkHIO_damNormal_c0::m.field_0x60,

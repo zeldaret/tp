@@ -1548,7 +1548,7 @@ int daAlink_c::procAutoJump() {
         field_0x3198 = 0x32;
     }
 
-    if (checkGrabGlide() && field_0x35ac.y > 0.0f) {
+    if (checkGrabGlide() && mWindSpeed.y > 0.0f) {
         speed.y = 0.0f;
     }
 
@@ -2007,10 +2007,6 @@ int daAlink_c::procCrouch() {
     }
 
     return 1;
-}
-
-BOOL daMidna_c::checkMidnaRealBody() {
-    return dKy_darkworld_check() == 1 || dComIfGs_isTransformLV(3);
 }
 
 /* 800C77F4-800C7C64 0C2134 0470+00 4/2 0/0 0/0 .text procCoMetamorphoseInit__9daAlink_cFv */
@@ -4010,8 +4006,8 @@ int daAlink_c::draw() {
             tevStr.field_0x362 = b * var_f2;
             var_r31 = 0;
         }
-    } else if (field_0x3006 != 0) {
-        f32 temp_f4 = 1.0f - (field_0x3006 * (1.0f / daAlinkHIO_damage_c0::m.mFreezeTime));
+    } else if (mIceDamageWaitTimer != 0) {
+        f32 temp_f4 = 1.0f - (mIceDamageWaitTimer * (1.0f / daAlinkHIO_damage_c0::m.mFreezeTime));
         f32 temp_f3 = 1.0f - temp_f4;
 
         tevStr.mFogColor.r = (temp_f4 * daAlinkHIO_damage_c0::m.mFreezeInitR) +
