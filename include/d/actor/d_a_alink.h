@@ -1336,8 +1336,8 @@ public:
     /* 800A21E0 */ static s16 getMoveBGActorName(cBgS_PolyInfo&, int);
     /* 800A2280 */ fopAc_ac_c* checkGoronRide();
     /* 800A22E8 */ void setMoveSlantAngle();
-    /* 800A2710 */ void setArmMatrix();
-    /* 800A29DC */ void setFootMatrix();
+    /* 800A2710 */ int setArmMatrix();
+    /* 800A29DC */ int setFootMatrix();
     /* 800A2C24 */ void setMatrixOffset(f32*, f32);
     /* 800A2CE0 */ int setLegAngle(f32, daAlink_footData_c*, s16*, s16*, int);
     /* 800A3430 */ void footBgCheck();

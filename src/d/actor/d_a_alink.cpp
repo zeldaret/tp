@@ -3268,8 +3268,66 @@ static const u16 armJointTable[] = {
 };
 
 /* 800A2710-800A29DC 09D050 02CC+00 1/1 0/0 0/0 .text            setArmMatrix__9daAlink_cFv */
-void daAlink_c::setArmMatrix() {
-    // NONMATCHING
+int daAlink_c::setArmMatrix() {
+    daAlink_footData_c* var_r29 = mFootData2;
+
+    int i;
+    for (i = 0; i < 2; i++, var_r29++) {
+        for (int j = 0; j < 3; j++) {
+            cMtx_copy(mpLinkModel->getAnmMtx(j + armJointTable[i]), var_r29->field_0x14[j]);
+        }
+        
+    }
+
+    if (!field_0x2060->getOldFrameFlg()) {
+        return 0;
+    }
+
+    var_r29 = mFootData2;
+    
+    cXyz sp2C;
+    csXyz* sp18 = field_0x312a;
+    csXyz* sp14 = field_0x3136;
+
+    for (i = 0; i < 2; i++, var_r29++, sp18++, sp14++) {
+        u16 temp_r28 = armJointTable[i];
+        s16 spA;
+        s16 sp8 = 0;
+
+        if ((mProcID == PROC_HOOKSHOT_ROOF_SHOOT || mProcID == PROC_HOOKSHOT_WALL_SHOOT) && field_0x3020 == i) {
+            spA = mProcVar3.field_0x300e;
+            if (mProcID == PROC_HOOKSHOT_WALL_SHOOT) {
+                sp8 = (mProcVar4.field_0x3010 - shape_angle.y);
+            }
+        } else {
+            spA = 0;
+        }
+
+        setMatrixWorldAxisRot(mpLinkModel->getAnmMtx(temp_r28), spA, sp8, var_r29->field_0x6, 0, NULL);
+
+        mDoMtx_stack_c::ZXYrotM(*sp18);
+        mDoMtx_copy(mDoMtx_stack_c::get(), mpLinkModel->getAnmMtx(temp_r28));
+        mDoMtx_stack_c::multVec(&arm1Vec, &sp2C);
+        temp_r28++;
+
+        setMatrixWorldAxisRot(mpLinkModel->getAnmMtx(temp_r28), spA, sp8, var_r29->field_0x4, 0, &sp2C);
+
+        mDoMtx_stack_c::ZXYrotM(*sp14);
+        mDoMtx_copy(mDoMtx_stack_c::get(), mpLinkModel->getAnmMtx(temp_r28));
+        mDoMtx_stack_c::multVec(&arm2Vec, &sp2C);
+        temp_r28++;
+
+        setMatrixWorldAxisRot(mpLinkModel->getAnmMtx(temp_r28), spA, sp8, var_r29->field_0x2, 0, &sp2C);
+        temp_r28++;
+
+        J3DTransformInfo* temp_r3_3 = field_0x2060->getOldFrameTransInfo(temp_r28);
+        cXyz sp20(temp_r3_3->mTranslate.x, temp_r3_3->mTranslate.y, temp_r3_3->mTranslate.z);
+        mDoMtx_stack_c::multVec(&sp20, &sp2C);
+
+        setMatrixWorldAxisRot(mpLinkModel->getAnmMtx(temp_r28), spA, sp8, var_r29->field_0x2, 0, &sp2C);
+    }
+
+    return 1;
 }
 
 /* 80391ED8-80391EE4 01E538 000C+00 0/1 0/0 0/0 .rodata          leg1Vec$56150 */
@@ -3306,8 +3364,56 @@ static const u16 footJointTable[] = {
 };
 
 /* 800A29DC-800A2C24 09D31C 0248+00 1/1 0/0 0/0 .text            setFootMatrix__9daAlink_cFv */
-void daAlink_c::setFootMatrix() {
-    // NONMATCHING
+int daAlink_c::setFootMatrix() {
+    daAlink_footData_c* var_r30 = mFootData1;
+
+    int i;
+    for (i = 0; i < 2; i++, var_r30++) {
+        for (int j = 0; j < 3; j++) {
+            cMtx_copy(mpLinkModel->getAnmMtx(j + footJointTable[i]), var_r30->field_0x14[j]);
+        }
+        
+    }
+
+    if (!field_0x2060->getOldFrameFlg()) {
+        return 0;
+    }
+
+    var_r30 = mFootData1;
+    cXyz sp10;
+
+    if (mProcID == PROC_HORSE_GETOFF) {
+        current.angle.y = shape_angle.y;
+        if (field_0x2fc0 == 0) {
+            shape_angle.y -= 0x4000;
+        } else {
+            shape_angle.y += 0x4000;
+        }
+    }
+
+    for (i = 0; i < 2; i++, var_r30++) {
+        u16 temp_r29 = footJointTable[i];
+
+        setMatrixWorldAxisRot(mpLinkModel->getAnmMtx(temp_r29), var_r30->field_0x6, 0, 0, 0, NULL);
+        mDoMtx_stack_c::multVec(&leg1Vec, &sp10);
+        temp_r29++;
+
+        setMatrixWorldAxisRot(mpLinkModel->getAnmMtx(temp_r29), var_r30->field_0x4, 0, 0, 0, &sp10);
+        mDoMtx_stack_c::multVec(&leg2Vec, &sp10);
+        temp_r29++;
+
+        setMatrixWorldAxisRot(mpLinkModel->getAnmMtx(temp_r29), var_r30->field_0x2, 0, 0, 0, &sp10);
+        temp_r29++;
+        mDoMtx_stack_c::multVec(&footVec, &sp10);
+
+        setMatrixWorldAxisRot(mpLinkModel->getAnmMtx(temp_r29), var_r30->field_0x2, 0, 0, 0, &sp10);
+    }
+
+    if (mProcID == PROC_HORSE_GETOFF) {
+        shape_angle.y = current.angle.y;
+    }
+
+    return 1;
 }
 
 /* 800A2C24-800A2CE0 09D564 00BC+00 3/3 0/0 0/0 .text            setMatrixOffset__9daAlink_cFPff */
@@ -6637,7 +6743,7 @@ void daAlink_c::setCollisionPos() {
 }
 
 /* 800ABDB8-800AC328 0A66F8 0570+00 1/1 0/0 0/0 .text            setCollision__9daAlink_cFv */
-// NONMATCHING
+// NONMATCHING - regalloc / minor issues
 void daAlink_c::setCollision() {
     field_0x814.Move();
     field_0x173c.Move();
