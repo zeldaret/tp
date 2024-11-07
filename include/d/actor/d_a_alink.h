@@ -156,7 +156,18 @@ public:
 
     static void decMorfFrame() { cLib_calcTimer<u8>(&m_morf_frame); }
     static void setMorfFrame(u8 i_frame) { m_morf_frame = i_frame; }
+    static u8 getMorfFrame() { return m_morf_frame; }
+    
+    static void onEyeMoveFlg() { m_eye_move_flg = true; }
+    static void offEyeMoveFlg() { m_eye_move_flg = false; }
+    static bool getEyeMoveFlg() { return m_eye_move_flg; }
 
+    f32* getNowOffsetXP() { return &mNowOffsetX; }
+    f32* getNowOffsetYP() { return &mNowOffsetY; }
+    void setNowOffsetX(f32 i_offset) { mNowOffsetX = i_offset; }
+    void setNowOffsetY(f32 i_offset) { mNowOffsetY = i_offset; }
+
+    static bool m_eye_move_flg;
     static u8 m_morf_frame;
 
     /* 0x0F4 */ f32 field_0xf4;
