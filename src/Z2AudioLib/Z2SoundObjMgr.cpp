@@ -165,36 +165,36 @@ void Z2SoundObjMgr::searchEnemy() {
         bool bVar6 = false;
         u8 enemyId = this_00->mEnemyID;
         switch (enemyId) {
-        case 0x36:
+        case Z2_ENEMY_SW:
             if (Z2GetSceneMgr()->getCurrentSceneNum() == 0x1c)
                 continue;
             break;
-        case 0x11:
+        case Z2_ENEMY_CR:
             if (Z2GetSceneMgr()->getCurrentSceneNum() == 0x1e)
                 continue;
             break;
-        case 0x27:
-        case 0x28:
-        case 0x39:
+        case Z2_ENEMY_NZ:
+        case Z2_ENEMY_PO:
+        case Z2_ENEMY_HP:
             bVar6 = true;
             break;
-        case 0x37:
+        case Z2_ENEMY_RDB:
             if (iVar16 == 0)
                 continue;
             break;
-        case 0xa:
-        case 0xb:
+        case Z2_ENEMY_WB:
+        case Z2_ENEMY_RD:
             if (iVar16 != 0)
                 continue;
-        case 0xc:
-        case 0x16:
-        case 0x1f:
-        case 0x22:
-        case 0x26:
-        case 0x29:
-        case 0x2b:
-        case 0x30:
-        case 0x35:
+        case Z2_ENEMY_DN:
+        case Z2_ENEMY_DB:
+        case Z2_ENEMY_GE:
+        case Z2_ENEMY_OC:
+        case Z2_ENEMY_MM:
+        case Z2_ENEMY_RB:
+        case Z2_ENEMY_HB:
+        case Z2_ENEMY_TT:
+        case Z2_ENEMY_SM2:
             if (!Z2GetLink()->isRiding())
                 break;
             if (Z2GetLink()->getMoveSpeed() <= 0x26)
@@ -339,14 +339,14 @@ void Z2SoundObjMgr::setGhostEnemyState(u8 p1) {
  * getEnemyID__13Z2SoundObjMgrFPCcP26JSULink<15Z2CreatureEnemy> */
 u8 Z2SoundObjMgr::getEnemyID(char const* param_0, JSULink<Z2CreatureEnemy>* param_1) {
     if (param_0 != NULL) {
-        for (u8 uVar2 = 0; uVar2 < 0x40; uVar2++) {
+        for (u8 uVar2 = 0; uVar2 < ARRAY_SIZE(mEnemyInfo); uVar2++) {
             if (strcmp(param_0, mEnemyInfo[(u32)uVar2].mName) == 0) {
                 append(param_1);
                 return uVar2;
             }
         }
     }
-    return Z2_ENEMY_ID_0;
+    return Z2_ENEMY_NULL;
 }
 
 /* 802C0100-802C0120 2BAA40 0020+00 1/1 1/1 0/0 .text            setBattleInit__13Z2SoundObjMgrFv */

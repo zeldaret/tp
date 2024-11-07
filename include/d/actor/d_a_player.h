@@ -58,8 +58,6 @@ public:
         HEAP_TYPE_5,
     };
 
-    /* 80140DCC */ void __defctor();  // compiler generated due to ctor with default param
-
     daPy_anmHeap_c(u32 param_0 = 0);
     ~daPy_anmHeap_c();
     void initData();
@@ -78,6 +76,7 @@ public:
     bool checkNoSetArcNo() const { return mArcNo == 0xFFFF; }
     void setBufferSize(u32 size) { mBufferSize = size; }
     void setBuffer(u8* buf) { mBuffer = buf; }
+    u32 getBufferSize() { return mBufferSize; }
     u8* getBuffer() { return mBuffer; }
     bool checkNoSetIdx() const { return mIdx == 0xFFFF; }
     bool checkNoSetPriIdx() const { return mPriIdx == 0xFFFF; }
@@ -267,7 +266,7 @@ public:
         FLG1_DASH_MODE = 0x400000,
         FLG1_UNK_200000 = 0x200000,
         FLG1_UNK_100000 = 0x100000,
-        FLG1_UNK_80000 = 0x80000,
+        FLG1_MIDNA_ATN_POS = 0x80000,
         FLG1_UNK_40000 = 0x40000,
         FLG1_UNK_20000 = 0x20000,
         FLG1_UNK_10000 = 0x10000,
@@ -277,7 +276,7 @@ public:
         FLG1_UNK_1000 = 0x1000,
         FLG1_UNK_800 = 0x800,
         FLG1_UNK_200 = 0x200,
-        FLG1_UNK_100 = 0x100,
+        FLG1_MIDNA_HAIR_ATN_POS = 0x100,
         FLG1_UNK_80 = 0x80,
         FLG1_UNK_40 = 0x40,
         FLG1_UNK_20 = 0x20,
@@ -346,7 +345,7 @@ public:
         FLG3_UNK_100000 = 0x100000,
         FLG3_UNK_80000 = 0x80000,
         FLG3_COPY_ROD_THROW_AFTER = 0x40000,
-        FLG3_UNK_10000 = 0x10000,
+        FLG3_MIDNA_TALK_POLY_SPEED = 0x10000,
         FLG3_UNK_8000 = 0x8000,
         FLG3_UNK_4000 = 0x4000,
         FLG3_UNK_2000 = 0x2000,
@@ -422,7 +421,7 @@ public:
         ERFLG1_WOLF_EYE_KEEP = 0x200,
         ERFLG1_UNK_100 = 0x100,
         ERFLG1_UNK_80 = 0x80,
-        ERFLG1_UNK_40 = 0x40,
+        ERFLG1_MIDNA_RIDE_SHOCK = 0x40,
         ERFLG1_UNK_20 = 0x20,
         ERFLG1_UNK_10 = 0x10,
         ERFLG1_UNK_8 = 8,
@@ -433,7 +432,7 @@ public:
 
     enum daPy_ERFLG2 {
         ERFLG2_UNK_100 = 0x100,
-        ERFLG2_UNK_80 = 0x80,
+        ERFLG2_PORTAL_WARP_MIDNA_ATN_KEEP = 0x80,
         ERFLG2_UNK_40 = 0x40,
         ERFLG2_UNK_20 = 0x20,
         ERFLG2_UNK_10 = 0x10,
@@ -817,6 +816,8 @@ public:
     BOOL checkSpecialHorseRide() { return checkNoResetFlg2(daPy_FLG2(FLG2_HORSE_ZELDA | FLG2_UNK_1000000 | FLG2_BOAR_SINGLE_BATTLE)); }
     BOOL checkBoardNoFootAngle() const { return checkResetFlg1(RFLG1_UNK_40); }
     bool checkGrabThrow() const { return checkResetFlg0(RFLG0_GRAB_THROW); }
+    bool checkMidnaAtnPos() const { return checkNoResetFlg1(FLG1_MIDNA_ATN_POS); }
+    bool checkMidnaHairAtnPos() const { return checkNoResetFlg1(FLG1_MIDNA_HAIR_ATN_POS); }
 
     void onBossRoomWait() { onEndResetFlg0(ERFLG0_BOSS_ROOM_WAIT); }
     void onBeeFollow() { onEndResetFlg0(ERFLG0_BEE_FOLLOW); }
@@ -825,6 +826,7 @@ public:
     void onNotHang() { onEndResetFlg0(ERFLG0_NOT_HANG); }
     void onShieldBackBone() { onEndResetFlg1(ERFLG1_GANON_FINISH); }
     void onWolfEyeKeep() { onEndResetFlg1(ERFLG1_WOLF_EYE_KEEP); }
+    void onPortalWarpMidnaAtnKeep() { onEndResetFlg2(ERFLG2_PORTAL_WARP_MIDNA_ATN_KEEP); }
     void onFogFade() { onNoResetFlg2(FLG2_UNK_4000); }
     BOOL checkStickArrowReset() const { return checkResetFlg0(RFLG0_UNK_1); }
     u32 getCutAtFlg() const { return checkNoResetFlg0(FLG0_UNK_40); }
@@ -840,6 +842,7 @@ public:
             mSpecialMode = 0;
         }
     }
+    void onMidnaTalkPolySpeed() { onNoResetFlg3(FLG3_MIDNA_TALK_POLY_SPEED); }
 
     void offCargoCarry() {
         if (checkCargoCarry()) {
@@ -914,6 +917,9 @@ public:
     void offPlayerNoDraw() { offNoResetFlg0(FLG0_PLAYER_NO_DRAW); }
     void onPushPullKeep() { onNoResetFlg0(FLG0_PUSH_PULL_KEEP); }
     void offPushPullKeep() { offNoResetFlg0(FLG0_PUSH_PULL_KEEP); }
+    void onMidnaRide() { onNoResetFlg0(FLG0_MIDNA_RIDE); }
+    void offMidnaRide() { offNoResetFlg0(FLG0_MIDNA_RIDE); }
+    void onMidnaRideShock() { onEndResetFlg1(ERFLG1_MIDNA_RIDE_SHOCK); }
     void onPlayerShadowNoDraw() { onNoResetFlg2(FLG2_PLAYER_SHADOW); }
     void offPlayerShadowNoDraw() { offNoResetFlg2(FLG2_PLAYER_SHADOW); }
     void onLightSwordGetEffect() { onEndResetFlg2(ERFLG2_UNK_10); }
@@ -946,6 +952,8 @@ public:
 
     void changeDemoMoveAngle(s16 i_angle) { mDemo.setMoveAngle(i_angle); }
 
+    void setItemPos(cXyz* i_itemPos) { mItemPos = *i_itemPos; }
+
     static bool checkPeepEndSceneChange() { return getLastSceneMode() == 7; }
 
     static int getLastSceneDamage() { return (dComIfGs_getLastSceneMode() >> 4) & 0x7F; }
@@ -965,6 +973,7 @@ public:
     static int checkNowWolfPowerUp() { return checkNowWolfEyeUp(); }
 
     static daMidna_c* getMidnaActor() { return m_midnaActor; }
+    static void setMidnaActor(fopAc_ac_c* actor) { m_midnaActor = (daMidna_c*)actor; }
 
     // not sure how to define this properly
     // static void onWolfEnemyCatch(fopAc_ac_c* i_actorP) { onWolfEnemyBiteAll(i_actorP,8);}

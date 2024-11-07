@@ -260,7 +260,7 @@ Z2SoundHandlePool* Z2Creature::startCreatureVoice(JAISoundID i_soundID, s8 param
 /* 802C0AF8-802C0B70 2BB438 0078+00 3/0 2/0 0/0 .text
  * startCreatureVoiceLevel__10Z2CreatureF10JAISoundIDSc         */
 Z2SoundHandlePool* Z2Creature::startCreatureVoiceLevel(JAISoundID i_soundID, s8 param_1) {
-    if (i_soundID == 0x501f0) {
+    if (i_soundID == Z2SE_MDN_V_WAITD) {
         if (Z2GetStatusMgr()->getDemoStatus() == 2 || !Z2GetSceneMgr()->isInGame()) {
             return NULL;
         }
@@ -420,7 +420,7 @@ Z2SoundHandlePool* Z2CreatureEnemy::startCreatureSound(JAISoundID i_soundID, u32
     Z2SoundHandlePool* handle = mSoundObjAnime.startSound(i_soundID, param_1, param_2);
 
     switch (mEnemyID) {
-    case 0x19:
+    case Z2_ENEMY_SF:
         if (i_soundID == Z2SE_EN_SF_BREAK_DOWN) {
             field_0xa3 = 1;
             Z2GetSoundObjMgr()->getEnemyList()->remove(this);
@@ -429,7 +429,7 @@ Z2SoundHandlePool* Z2CreatureEnemy::startCreatureSound(JAISoundID i_soundID, u32
             Z2GetSoundObjMgr()->getEnemyList()->append(this);
         }
         break;
-    case 0x23:
+    case Z2_ENEMY_FZ:
         if (handle != NULL && handle->isSoundAttached() && i_soundID == Z2SE_EN_FZ_BOUND) {
             f32 volume = Z2Calc::linearTransform(param_1, 10.0f, 50.0f, 0.1f, 1.0f, false);
             f32 pitch = Z2Calc::linearTransform(param_1, 10.0f, 50.0f, 0.8f, 1.2f, false);
@@ -437,16 +437,16 @@ Z2SoundHandlePool* Z2CreatureEnemy::startCreatureSound(JAISoundID i_soundID, u32
             (*handle)->getAuxiliary().movePitch(pitch, 0);
         }
         break;
-    case 0x2d:
+    case Z2_ENEMY_MS:
         Z2_E_ms_modVol(handle, mSoundObjAnime.field_0x1c);
         break;
-    case 0x36:
+    case Z2_ENEMY_SW:
         Z2_E_sw_modPitch(handle, param_1);
         break;
-    case 0x26:
+    case Z2_ENEMY_MM:
         Z2_E_mm_modPitch(handle, mSoundObjAnime.field_0x1c);
         break;
-    case 0x35:
+    case Z2_ENEMY_SM2:
         if (i_soundID == Z2SE_EN_SM_HIT) {
             field_0xa3 = 1;
             Z2GetSeqMgr()->setBattleLastHit(struct_80450869);
@@ -485,17 +485,17 @@ Z2SoundHandlePool* Z2CreatureEnemy::startCreatureSoundLevel(JAISoundID i_soundID
     Z2SoundHandlePool* handle = mSoundObjAnime.startLevelSound(i_soundID, param_1, param_2);
 
     switch (mEnemyID) {
-    case 0x23:
+    case Z2_ENEMY_FZ:
         if (handle != NULL && *handle != NULL && i_soundID == Z2SE_EN_FZ_MOVE) {
             f32 volume = Z2Calc::getParamByExp(param_1, 1.0f, 50.0f, 0.4f, 0.1f, 1.1f,
                                                Z2Calc::CURVE_SIGN_1);
             (*handle)->getAuxiliary().moveVolume(volume, 0);
         }
         break;
-    case 0x36:
+    case Z2_ENEMY_SW:
         Z2_E_sw_modPitch(handle, param_1);
         break;
-    case 0x29:
+    case Z2_ENEMY_RB:
         if (handle != NULL && *handle != NULL && i_soundID == Z2SE_EN_RB_MOVE) {
             f32 volume = Z2Calc::getParamByExp(param_1, 4.0f, 35.0f, 0.6f, 0.7f, 1.0f,
                                                Z2Calc::CURVE_SIGN_1);
@@ -588,25 +588,25 @@ Z2SoundHandlePool* Z2CreatureEnemy::startCreatureVoice(JAISoundID i_soundID, s8 
     Z2SoundHandlePool* handle = mSoundObjSimple1.startSound(i_soundID, var1, param_1);
 
     switch (mEnemyID) {
-    case 0x18:
+    case Z2_ENEMY_SH:
         if (i_soundID == Z2SE_EN_SH_V_DEAD) {
             field_0xa3 = 1;
             Z2GetSeqMgr()->setBattleLastHit(struct_80450869);
         }
         break;
-    case 0x1a:
+    case Z2_ENEMY_BS:
         if (i_soundID == Z2SE_EN_BS_V_DEAD) {
             field_0xa3 = 1;
             Z2GetSeqMgr()->setBattleLastHit(struct_80450869);
         }
         break;
-    case 0x2d:
+    case Z2_ENEMY_MS:
         Z2_E_ms_modVol(handle, mSoundObjSimple1.field_0x1c);
         break;
-    case 0x36:
+    case Z2_ENEMY_SW:
         Z2_E_sw_modPitch(handle, mSoundObjSimple1.field_0x1c);
         break;
-    case 0x26:
+    case Z2_ENEMY_MM:
         Z2_E_mm_modPitch(handle, mSoundObjSimple1.field_0x1c);
         break;
     }
@@ -622,7 +622,7 @@ Z2SoundHandlePool* Z2CreatureEnemy::startCreatureVoice(JAISoundID i_soundID, s8 
  * startCreatureVoiceLevel__15Z2CreatureEnemyF10JAISoundIDSc    */
 Z2SoundHandlePool* Z2CreatureEnemy::startCreatureVoiceLevel(JAISoundID i_soundID, s8 param_1) {
     u32 var1 = 0;
-    if (mEnemyID == 7) {
+    if (mEnemyID == Z2_ENEMY_RDY) {
         var1 = 1;
     }
     return mSoundObjSimple1.startLevelSound(i_soundID, var1, param_1);
@@ -646,11 +646,11 @@ Z2SoundHandlePool* Z2CreatureEnemy::startCreatureExtraSoundLevel(JAISoundID i_so
 Z2SoundHandlePool* Z2CreatureEnemy::startCollisionSE(u32 param_0, u32 param_1) {
     u8 var1;
     switch (mEnemyID) {
-    case 0x21:
+    case Z2_ENEMY_WS:
         field_0xa3 = 1;
         Z2GetSeqMgr()->setBattleLastHit(struct_80450869);
         return mSoundObjAnime.startCollisionSE(param_0, param_1, NULL);
-    case 0x2f:
+    case Z2_ENEMY_BI:
         if (getSupervisor() != NULL) {
             Z2GetSoundObjMgr()->removeEnemy(this);
         }
@@ -673,7 +673,8 @@ Z2SoundHandlePool* Z2CreatureEnemy::startCollisionSE(u32 param_0, u32 param_1) {
         case 0x24:
             field_0xa3 = 1;
             var1 = struct_80450869;
-            if (param_0 - 0x40000 <= 1 || param_0 - 0x40000 == 3) {
+            if (param_0 == Z2SE_HIT_SWORD || param_0 == Z2SE_HIT_SWORD_STAB
+                                          || param_0 == Z2SE_HIT_WOLFBITE) {
                 var1 = 0x14;
             }
             Z2GetSeqMgr()->setBattleLastHit(var1);

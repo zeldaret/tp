@@ -1222,9 +1222,9 @@ int daAlink_c::setDoubleAnimeWolf(f32 param_0, f32 param_1, f32 param_2,
     setFaceBasicTexture(FTANM_UNK_8B);
 
     if (checkWolfLieCode()) {
-        field_0x2f9b = 2;
+        mMidnaAnm = 2;
     } else {
-        field_0x2f9b = m_wlAnmDataTable[param_3].field_0x2;
+        mMidnaAnm = m_wlAnmDataTable[param_3].field_0x2;
     }
 
     daAlink_WANM var_r27;
@@ -1284,9 +1284,9 @@ int daAlink_c::setSingleAnimeWolf(daAlink_c::daAlink_WANM i_anmID, f32 i_speed, 
     setFaceBasicTexture(FTANM_UNK_8B);
 
     if (checkWolfLieCode()) {
-        field_0x2f9b = 2;
+        mMidnaAnm = 2;
     } else {
-        field_0x2f9b = m_wlAnmDataTable[i_anmID].field_0x2;
+        mMidnaAnm = m_wlAnmDataTable[i_anmID].field_0x2;
     }
 
     field_0x215c = mUnderFrameCtrl;
@@ -1385,7 +1385,7 @@ int daAlink_c::checkNextActionWolf(int param_0) {
         return 1;
     }
 
-    if (checkEndResetFlg1(ERFLG1_UNK_40) &&
+    if (checkEndResetFlg1(ERFLG1_MIDNA_RIDE_SHOCK) &&
         (mProcID == PROC_WOLF_WAIT || mProcID == PROC_WOLF_SERVICE_WAIT ||
          mProcID == PROC_WOLF_TIRED_WAIT || (!checkInputOnR() && mProcID == PROC_WOLF_MOVE) ||
          mProcID == PROC_WOLF_LIE_START || mProcID == PROC_WOLF_LIE_MOVE ||
