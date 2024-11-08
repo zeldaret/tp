@@ -12857,7 +12857,110 @@ void daAlink_c::posMove() {
 
 /* 800BD6FC-800BDD70 0B803C 0674+00 1/1 0/0 0/0 .text            autoGroundHit__9daAlink_cFv */
 void daAlink_c::autoGroundHit() {
-    // NONMATCHING
+    offNoResetFlg0(FLG0_UNK_2000);
+
+    if (checkMagneBootsOn()) {
+        cXyz sp68;
+        cXyz sp5C;
+        cXyz sp50;
+
+        mDoMtx_stack_c::copy(mMagneBootMtx);
+        mDoMtx_stack_c::multVecSR(&cXyz::BaseY, &sp50);
+        sp68 = current.pos + (sp50 * 30.0f);
+        sp5C = current.pos + (sp50 * 100.0f);
+
+        if (commonMagneLineCheck(&sp68, &sp5C)) {
+            current.pos = mMagneLineChk.i_GetCross();
+            onNoResetFlg0(FLG0_UNK_2000);
+
+            if (checkNoResetFlg1(FLG1_UNK_20000000)) {
+                mDoMtx_stack_c::YrotM(current.angle.y);
+                mDoMtx_stack_c::multVecSR(&cXyz::BaseZ, &sp50);
+                sp50 *= 10.0f;
+                sp68 += sp50;
+                sp5C += sp50;
+
+                if (commonLineCheck(&sp68, &sp5C) && daTagMagne_c::checkMagnetCode(mLinkLinChk)) {
+                    offNoResetFlg1(FLG1_UNK_20000000);
+                } else {
+                    mNormalSpeed = 0.0f;
+                    speedF = 0.0f;
+                }
+            }
+        } else if (!cBgW_CheckBGround(mMagneBootsTopVec.y)) {
+            sp50 = current.pos - field_0x3798;
+            sp68 -= sp50;
+            sp5C -= sp50;
+
+            if (commonMagneLineCheck(&sp68, &sp5C)) {
+                onNoResetFlg0(FLG0_UNK_2000);
+                mNormalSpeed = 0.0f;
+                speedF = 0.0f;
+                onNoResetFlg1(FLG1_UNK_20000000);
+                field_0x3092 = current.angle.y + 0x8000;
+                current.pos = field_0x3798;
+            }
+        }
+    } else if (!checkModeFlg(0x70C52) || (checkBoardRide() && !checkModeFlg(2)) || checkModeFlg(0x40)) {
+        cM3dGPla sp74;
+        f32 temp_f30 = mLinkAcch.GetGroundH() - current.pos.y;
+        
+        if (!mLinkAcch.i_ChkGroundHit()) {
+            if (checkBoardRide() && shape_angle.x < 0) {
+                return;
+            }
+
+            cXyz sp44 = current.pos - field_0x3798;
+            s16 var_r29;
+
+            f32 temp_f1 = sp44.absXZ();
+            if (temp_f1 > 1.0f) {
+                var_r29 = getGroundAngle(&mLinkAcch.m_gnd, sp44.atan2sX_Z());
+            } else {
+                var_r29 = field_0x2ff0;
+            }
+
+            f32 var_f31 = temp_f1 * cM_ssin(var_r29);
+            if (var_f31 < 0.0f) {
+                var_f31 = 0.0f;
+            }
+
+            BOOL var_r28;
+            if (-1000000000.0f != mLinkAcch.GetGroundH()) {
+                dComIfG_Bgsp().GetTriPla(mLinkAcch.m_gnd, &sp74);
+                var_r28 = cBgW_CheckBGround(sp74.mNormal.y);
+            } else {
+                var_r28 = 0;
+            }
+
+            if (var_r28 != 0) {
+                if (temp_f30 <= 0.000001f) {
+                    if (temp_f30 >= l_autoDownHeight - var_f31) {
+                        current.pos.y = mLinkAcch.GetGroundH();
+                        mLinkAcch.SetGroundHit();
+                        speed.y = 0.0f;
+                    }
+                }
+            }
+        }
+    } else if (checkModeFlg(0x40000) && checkNoResetFlg0(FLG0_UNK_80) && current.pos.y > mWaterY && current.pos.y - mWaterY < 1000.0f) {
+        current.pos.y = mWaterY;
+    }
+
+    if (checkReinRide() || checkSpinnerRide()) {
+        if ((current.pos.y - mLinkAcch.GetGroundH() > 1500.0f) || (checkSpinnerRide() && mRideAcKeep.getActor() != NULL && ((daSpinner_c*)mRideAcKeep.getActor())->getJumpFlg())) {
+            if (checkNoResetFlg3(FLG3_UNK_80000) == 0) {
+                onNoResetFlg3(FLG3_UNK_80000);
+                mLastJumpPos = current.pos;
+                mFallHeight = mLastJumpPos.y;
+                field_0x33c8 = mLastJumpPos.y;
+            }
+        } else {
+            offNoResetFlg3(FLG3_UNK_80000);
+        }
+    } else {
+        offNoResetFlg3(FLG3_UNK_80000);
+    }
 }
 
 /* 800BDD70-800BDE20 0B86B0 00B0+00 2/2 0/0 0/0 .text            startPeepChange__9daAlink_cFv */
