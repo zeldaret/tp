@@ -459,7 +459,17 @@ GXTlutRegionCallback GXSetTlutRegionCallback(GXTlutRegionCallback callback) {
 
 /* 8035E6D4-8035E750 359014 007C+00 0/0 1/1 0/0 .text            GXSetTexCoordScaleManually */
 void GXSetTexCoordScaleManually(GXTexCoordID coord, GXBool enable, u16 s_scale, u16 t_scale) {
-    // NONMATCHING
+    __GXData->tcsManEnab = (__GXData->tcsManEnab & ~(1 << coord)) | (enable << coord);
+    if (enable == GX_FALSE) {
+        return;
+    }
+    GX_SET_REG(__GXData->suTs0[coord], (u16)(s_scale - 1), 16, 31);
+    GX_SET_REG(__GXData->suTs1[coord], (u16)(t_scale - 1), 16, 31);
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.u32 = __GXData->suTs0[coord];
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.u32 = __GXData->suTs1[coord];
+    __GXData->bpSentNot = 0;
 }
 
 /* 8035E750-8035E7F0 359090 00A0+00 1/1 0/0 0/0 .text            __SetSURegs */

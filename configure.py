@@ -226,6 +226,9 @@ elif args.warn == "off":
 elif args.warn == "error":
     cflags_base.append("-W error")
 
+cflags_noopt = cflags_base[:]
+cflags_noopt.remove("-O4,p")
+
 # Metrowerks library flags
 cflags_runtime = [
     *cflags_base,
@@ -868,15 +871,18 @@ config.libs = [
             Object(NonMatching, "Z2AudioLib/Z2AudioMgr.cpp"),
         ],
     },
-    DolphinLib(
-        "gf",
-        [
-            Object(NonMatching, "dolphin/gf/GFGeometry.cpp"),
-            Object(NonMatching, "dolphin/gf/GFLight.cpp"),
-            Object(NonMatching, "dolphin/gf/GFPixel.cpp"),
-            Object(NonMatching, "dolphin/gf/GFTev.cpp"),
+    {
+        "lib": "gf",
+        "mw_version": "GC/2.7",
+        "cflags": cflags_noopt,
+        "progress_category": "sdk",
+        "objects": [
+            Object(NonMatching, "dolphin/gf/GFGeometry.cpp", extra_cflags=["-O3"]),
+            Object(Matching, "dolphin/gf/GFLight.cpp", extra_cflags=["-O3"]),
+            Object(Matching, "dolphin/gf/GFPixel.cpp", extra_cflags=["-O3"]),
+            Object(Matching, "dolphin/gf/GFTev.cpp", extra_cflags=["-O3"]),
         ],
-    ),
+    },
     JSystemLib(
         "JKernel",
         [
@@ -1063,13 +1069,16 @@ config.libs = [
             Object(Matching, "dolphin/os/__ppc_eabi_init.cpp"),
         ],
     ),
-    DolphinLib(
-        "exi",
-        [
-            Object(NonMatching, "dolphin/exi/EXIBios.c", extra_cflags=["-O3"]),
-            Object(Matching, "dolphin/exi/EXIUart.c"),
+    {
+        "lib": "exi",
+        "mw_version": "GC/1.2.5n",
+        "cflags": cflags_noopt,
+        "progress_category": "sdk",
+        "objects": [
+            Object(Matching, "dolphin/exi/EXIBios.c", extra_cflags=["-O3,p"]),
+            Object(Matching, "dolphin/exi/EXIUart.c", extra_cflags=["-O4,p"]),
         ],
-    ),
+    },
     DolphinLib(
         "si",
         [
@@ -1109,7 +1118,7 @@ config.libs = [
     DolphinLib(
         "vi",
         [
-            Object(NonMatching, "dolphin/vi/vi.c"),
+            Object(Matching, "dolphin/vi/vi.c"),
         ],
     ),
     DolphinLib(
@@ -1169,7 +1178,7 @@ config.libs = [
             Object(Matching, "dolphin/gx/GXGeometry.c"),
             Object(Matching, "dolphin/gx/GXFrameBuf.c"),
             Object(Matching, "dolphin/gx/GXLight.c", extra_cflags=["-fp_contract off"]),
-            Object(NonMatching, "dolphin/gx/GXTexture.c"),
+            Object(Matching, "dolphin/gx/GXTexture.c"),
             Object(Matching, "dolphin/gx/GXBump.c"),
             Object(Matching, "dolphin/gx/GXTev.c"),
             Object(Matching, "dolphin/gx/GXPixel.c"),

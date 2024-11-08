@@ -6,6 +6,7 @@
 #include "dolphin/vi.h"
 #include "dol2asm.h"
 #include "dolphin/os.h"
+#include "gx/GXStruct.h"
 
 #define CLAMP(x, l, h) (((x) > (h)) ? (h) : (((x) < (l)) ? (l) : (x)))
 #define MIN(a, b) (((a) < (b)) ? (a) : (b))
@@ -402,17 +403,16 @@ static VITimingInfo* getTiming(VITVMode mode) {
 }
 
 /* 8034C310-8034C514 346C50 0204+00 1/1 0/0 0/0 .text            __VIInit */
-#ifdef NONMATCHING
 void __VIInit(VITVMode mode) {
     VITimingInfo* tm;
     u32 nonInter;
-    vu32 a;
+    vu32 a, b;
     u32 tv, tvForReg;
 
     u16 hct, vct;
 
-    nonInter = mode & 2;
     tv = (u32)mode >> 2;
+    nonInter = mode & 3;
 
     *(u32*)OSPhysicalToCached(0xCC) = tv;
 
@@ -454,23 +454,28 @@ void __VIInit(VITVMode mode) {
     vct = (tm->numHalfLines / 2 + 1) | (1 << 12) | (0 << 15);
     __VIRegs[VI_DISP_INT_0U] = hct << 0;
     __VIRegs[VI_DISP_INT_0] = vct;
+    
+    switch (tv) {
+    case VI_TVMODE_NTSC_DS:
+    case VI_TVMODE_NTSC_PROG:
+    case VI_TVMODE_NTSC_3D:
+        tvForReg = tv;
+        break;
+    default:
+        tvForReg = 0;
+        break;
+    }
 
-    if (mode != VI_TVMODE_NTSC_PROG && mode != VI_TVMODE_NTSC_3D && mode != VI_TVMODE_GCA_PROG) {
+    if (nonInter <= 1) {
         __VIRegs[VI_DISP_CONFIG] =
-            (1 << 0) | (0 << 1) | (nonInter << 2) | (0 << 3) | (0 << 4) | (0 << 6) | (tv << 8);
+            (1 << 0) | (0 << 1) | ((nonInter & 1) << 2) | (0 << 3) | (0 << 4) | (0 << 6) | (tvForReg << 8);
         __VIRegs[VI_CLOCK_SEL] = 0;
-
     } else {
         __VIRegs[VI_DISP_CONFIG] =
-            (1 << 0) | (0 << 1) | (1 << 2) | (0 << 3) | (0 << 4) | (0 << 6) | (tv << 8);
+            (1 << 0) | (0 << 1) | (1 << 2) | (0 << 3) | (0 << 4) | (0 << 6) | (tvForReg << 8);
         __VIRegs[VI_CLOCK_SEL] = 1;
     }
 }
-#else
-void __VIInit() {
-    // NONMATCHING
-}
-#endif
 
 /* 80450A10-80450A14 -00001 0004+00 1/1 0/0 0/0 .sdata           __VIVersion */
 SECTION_SDATA static void* __VIVersion = (void*)&lit_1;
@@ -847,21 +852,10 @@ static void PrintDebugPalCaution(void) {
     }
 }
 
-/* 803D1AD8-803D1B24 02EBF8 004B+01 0/1 0/0 0/0 .data            @538 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static char lit_538[] =
-    "VIConfigure(): Tried to change mode from (%d) to (%d), which is forbidden\n";
-#pragma pop
-
-/* 80450A14-80450A1C 000494 0005+03 1/1 0/0 0/0 .sdata           @537 */
-SECTION_SDATA static char lit_537[] = "vi.c";
-
 /* 8034CE8C-8034D694 3477CC 0808+00 0/0 2/2 0/0 .text            VIConfigure */
-#ifdef NONMATCHING
 void VIConfigure(const GXRenderModeObj* obj) {
     VITimingInfo* tm;
-    u32 regDspCfg;
+    u32 regDspCfg, regClockSel, regClockSel2;
     BOOL enabled;
     u32 newNonInter, tvInBootrom, tvInGame;
 
@@ -885,7 +879,7 @@ void VIConfigure(const GXRenderModeObj* obj) {
     case VI_NTSC:
     case VI_GCA:
     case 7:
-        if (tvInGame == VI_NTSC || tvInGame == VI_MPAL || tvInGame == VI_GCA) {
+        if (tvInGame == VI_NTSC || tvInGame == VI_MPAL || tvInGame == VI_GCA || tvInGame == 7) {
             break;
         }
         goto panic;
@@ -936,35 +930,38 @@ void VIConfigure(const GXRenderModeObj* obj) {
     setInterruptRegs(tm);
 
     regDspCfg = regs[VI_DISP_CONFIG];
+    regClockSel = regs[VI_CLOCK_SEL];
     // TODO: USE BIT MACROS OR SOMETHING
     if ((HorVer.nonInter == VI_PROGRESSIVE) || (HorVer.nonInter == VI_3D)) {
         regDspCfg = (((u32)(regDspCfg)) & ~0x00000004) | (((u32)(1)) << 2);
+        regClockSel2 = (regClockSel & ~1) | 1;
     } else {
         regDspCfg = (((u32)(regDspCfg)) & ~0x00000004) | (((u32)(HorVer.nonInter & 1)) << 2);
+        regClockSel2 = regClockSel & ~1;
     }
 
     regDspCfg = (((u32)(regDspCfg)) & ~0x00000008) | (((u32)(HorVer.is3D)) << 3);
 
-    if ((HorVer.tv == VI_DEBUG_PAL) || (HorVer.tv == VI_EURGB60) || (HorVer.tv == VI_GCA)) {
-        regDspCfg = (((u32)(regDspCfg)) & ~0x00000300);
-    } else {
+    if ((HorVer.tv == VI_TVMODE_NTSC_DS) || (HorVer.tv == VI_TVMODE_NTSC_PROG) || (HorVer.tv == VI_TVMODE_NTSC_3D)) {
         regDspCfg = (((u32)(regDspCfg)) & ~0x00000300) | (((u32)(HorVer.tv)) << 8);
+    } else {
+        regDspCfg = (((u32)(regDspCfg)) & ~0x00000300);
     }
 
     regs[VI_DISP_CONFIG] = (u16)regDspCfg;
+
+    // regDspCfg = regs[VI_CLOCK_SEL];
+    // if (obj->vi_tv_mode == VI_TVMODE_NTSC_PROG || obj->vi_tv_mode == VI_TVMODE_NTSC_3D ||
+    //     obj->vi_tv_mode == VI_TVMODE_GCA_PROG)
+    // {
+    //     regDspCfg = (u32)(regDspCfg & ~0x1) | 1;
+    // } else {
+    //     regDspCfg = (u32)(regDspCfg & ~0x1);
+    // }
+
+    regs[VI_CLOCK_SEL] = (u16)regClockSel2;
+
     changed |= VI_BITMASK(0x01);
-
-    regDspCfg = regs[VI_CLOCK_SEL];
-    if (obj->vi_tv_mode == VI_TVMODE_NTSC_PROG || obj->vi_tv_mode == VI_TVMODE_NTSC_3D ||
-        obj->vi_tv_mode == VI_TVMODE_GCA_PROG)
-    {
-        regDspCfg = (u32)(regDspCfg & ~0x1) | 1;
-    } else {
-        regDspCfg = (u32)(regDspCfg & ~0x1);
-    }
-
-    regs[VI_CLOCK_SEL] = (u16)regDspCfg;
-
     changed |= 0x200;
 
     setScalingRegs(HorVer.panSizeX, HorVer.dispSizeX, HorVer.is3D);
@@ -981,11 +978,9 @@ void VIConfigure(const GXRenderModeObj* obj) {
                     tm->prbEven, tm->psbOdd, tm->psbEven, HorVer.isBlack);
     OSRestoreInterrupts(enabled);
 }
-#else
-void VIConfigure(const GXRenderModeObj*) {
-    // NONMATCHING
-}
-#endif
+
+/* 80450A14-80450A1C 000494 0005+03 1/1 0/0 0/0 .sdata           @537 */
+SECTION_SDATA static char lit_537[] = "vi.c";
 
 /* 8034D694-8034D7C4 347FD4 0130+00 0/0 9/9 0/0 .text            VIFlush */
 void VIFlush(void) {
