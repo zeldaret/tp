@@ -1,5 +1,5 @@
 CompileFlags:
-  Add: [-Wno-c++11-compat-deprecated-writable-strings, -Wno-extern-initializer]
+  Add: [-Wno-c++11-compat-deprecated-writable-strings, -Wno-extern-initializer, -Wno-multichar]
 ---
 If:
   PathMatch: .*/*.inc

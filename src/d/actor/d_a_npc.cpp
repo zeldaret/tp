@@ -1092,8 +1092,77 @@ dCcD_SrcSph daNpcF_c::mCcDSph = {
 };
 
 /* 801464D8-8014698C 140E18 04B4+00 1/1 0/0 0/0 .text chkPassed2__13daNpcT_Path_cF4cXyzP4cXyzii */
-int daNpcT_Path_c::chkPassed2(cXyz param_0, cXyz* param_1, int param_2, int param_3) {
-    // NONMATCHING
+// NONMATCHING
+int daNpcT_Path_c::chkPassed2(cXyz param_1, cXyz* param_2, int param_3, int param_4) {
+    cXyz cStack_80;
+    cXyz local_8c;
+    cXyz local_98;
+    cXyz cStack_a4;
+    cXyz cStack_b0;
+    cXyz cStack_bc;
+    u16 idx = getIdx();
+    u16 local_140;
+    u16 local_142;
+    u16 local_144;
+    local_144 = idx;
+    local_142 = idx;
+    if (chkClose() && getNumPnts() == param_3) {
+        daNpcT_decIdx(getNumPnts(), local_142, 1, chkReverse());
+        daNpcT_incIdx(getNumPnts(), local_144, 1, chkReverse());
+    } else {
+        daNpcT_decIdx(param_3, local_142, 0, chkReverse());
+        daNpcT_incIdx(param_3, local_144, 0, chkReverse());
+    }
+    local_140 = local_142;
+    if (chkClose() && getNumPnts() == param_3) {
+        daNpcT_decIdx(getNumPnts(), local_140, 1, chkReverse());
+    } else {
+        daNpcT_decIdx(param_3, local_140, 0, chkReverse());
+    }
+
+    cStack_80 = getPntPos(local_140);
+    local_8c = getPntPos(local_142);
+    local_98 = getPntPos(idx);
+    cStack_a4 = getPntPos(local_144);
+    if (local_142 == (u16)(idx & 0xffff)) {
+        cStack_b0 = cStack_a4 - local_8c;
+    } else {
+        cStack_b0 = local_98 - local_8c;
+    }
+    if (local_144 == (u16)(idx & 0xffff)) {
+        cStack_bc = cStack_a4 - local_8c;
+    } else {
+        cStack_bc = cStack_a4 - local_98;
+    }
+    daNpcT_Hermite_c adStack_70;
+    cXyz auStack_d4;
+    adStack_70.Set(field_0x1E * (1.0f / param_4));
+    hermite(local_8c, cStack_b0, local_98, cStack_bc, adStack_70,
+            auStack_d4);
+    param_2->x = auStack_d4.x;
+    param_2->y = auStack_d4.y;
+    param_2->z = auStack_d4.z;
+    f32 local_12c;
+    f32 local_130;
+    f32 local_134;
+    f32 local_138;
+    f32 auStack_13c;
+    if (cM3d_Len2dSqPntAndSegLine(param_1.x, param_1.z, local_8c.x, local_8c.z, local_98.x,
+                                  local_98.z, &local_12c, &local_134, &auStack_13c) &&
+        cM3d_Len2dSqPntAndSegLine(param_2->x, param_2->z, local_8c.x, local_8c.z, local_98.x,
+                                  local_98.z, &local_130, &local_138, &auStack_13c))
+    {
+        s16 sVar10 = cM_atan2s(local_98.x - local_8c.x,
+                                        local_98.z - local_8c.z);
+        s16 sVar11 = cM_atan2s(local_130 - local_12c,
+                                        local_138 - local_134);
+        s16 diff = sVar10 - sVar11;
+        u16 uVar4 = abs(diff);
+        if (uVar4 > 0x4000) {
+            return 1;
+        }
+    }
+    return 0;
 }
 
 /* 8014698C-80146C98 1412CC 030C+00 1/1 0/0 0/0 .text
@@ -2244,11 +2313,6 @@ void daNpcT_offTmpBit(u32 i_idx) {
 /* 8014CB6C-8014CBAC 1474AC 0040+00 0/0 0/0 38/38 .text            daNpcT_chkTmpBit__FUl */
 BOOL daNpcT_chkTmpBit(u32 i_idx) {
     return dComIfGs_isTmpBit(dSv_event_tmp_flag_c::tempBitLabels[i_idx]);
-}
-
-/* 8014CBAC-8014CBF4 1474EC 0048+00 1/0 0/0 0/0 .text            __dt__16daNpcT_Hermite_cFv */
-daNpcT_Hermite_c::~daNpcT_Hermite_c() {
-    // NONMATCHING
 }
 
 /* 8014CC0C-8014CC10 14754C 0004+00 1/0 1/0 0/0 .text            setCollision__8daNpcT_cFv */

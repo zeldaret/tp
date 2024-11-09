@@ -1117,3 +1117,8 @@ void JPAResource::calcWorkData_d(JPAEmitterWorkData* work) {
     MTXConcat(work->mpEmtr->mGlobalRot, mtx, work->mGlobalRot);
     MTXMultVecSR(work->mGlobalRot, &work->mpEmtr->mLocalDir, &work->mGlobalEmtrDir);
 }
+
+#pragma push
+#pragma force_active on
+static u8 jpa_resource_padding[28] = {0};
+#pragma pop

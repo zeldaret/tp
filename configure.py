@@ -547,7 +547,7 @@ config.libs = [
             Object(Matching, "d/d_menu_fmap2D.cpp"),
             Object(Matching, "d/d_menu_insect.cpp"),
             Object(Matching, "d/d_menu_item_explain.cpp"),
-            Object(NonMatching, "d/d_menu_letter.cpp"),
+            Object(NonMatching, "d/d_menu_letter.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(Matching, "d/d_menu_option.cpp"),
             Object(Matching, "d/d_menu_ring.cpp"),
             Object(Equivalent, "d/d_menu_save.cpp"),
@@ -680,7 +680,7 @@ config.libs = [
         "JParticle",
         [
             Object(Matching, "JSystem/JParticle/JPAResourceManager.cpp"),
-            Object(Equivalent, "JSystem/JParticle/JPAResource.cpp"),
+            Object(Matching, "JSystem/JParticle/JPAResource.cpp", extra_cflags=['-pragma "nosyminline off"']),
             Object(Matching, "JSystem/JParticle/JPABaseShape.cpp"),
             Object(Matching, "JSystem/JParticle/JPAExtraShape.cpp"),
             Object(Matching, "JSystem/JParticle/JPAChildShape.cpp"),
