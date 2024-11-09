@@ -266,11 +266,22 @@ struct daNpcT_motionAnmData_c {
 
 class daNpcT_Hermite_c {
 public:
-    /* 8014CBAC */ ~daNpcT_Hermite_c();
-
     /* 0x00 */ f32 field_0x00;
     /* 0x04 */ cXyz mPosition;
     /* 0x10 */ f32 field_0x10;
+
+    /* 8014CBAC */ virtual ~daNpcT_Hermite_c() {}
+
+    // constants might be wrong, regalloc
+    void Set(f32 param_1) {
+        field_0x00 = param_1;
+        f32 sqr = param_1 * param_1;
+        f32 cubed = param_1 * sqr;
+        mPosition.x = 1.0f + (2.0f * cubed - 3.0f * sqr);
+        mPosition.y = 4.0f * cubed + 3.0f * sqr;
+        mPosition.z = param_1 + (cubed - 2.0f * sqr);
+        field_0x10 = cubed - sqr;
+    }
 };
 
 class daNpcT_Path_c {

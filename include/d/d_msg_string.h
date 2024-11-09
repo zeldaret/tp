@@ -20,7 +20,7 @@ public:
             return getStringLocal(param_0, param_1, param_2, param_3, param_4, param_5);
         }
     }
-    /* 801E1D10 */ virtual void getStringPage(u32, u8, u8, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*,
+    /* 801E1D10 */ virtual f32 getStringPage(u32, u8, u8, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*,
                                       u8);
     /* 80249DB4 */ virtual void resetStringLocal(J2DTextBox*);
     /* 80249DE4 */ virtual void drawOutFontLocal(J2DTextBox*, f32);

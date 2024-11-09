@@ -4,6 +4,7 @@
 //
 
 #include "d/d_menu_letter.h"
+#include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/JKernel/JKRMemArchive.h"
 #include "stdio.h"
@@ -180,28 +181,17 @@ static moveFunc map_move_process[] = {
     &dMenu_Letter_c::read_close_move,
 };
 
-/* 803BDB8C-803BDBA8 01ACAC 0010+0C 2/2 0/0 0/0 .data            __vt__14dMenu_Letter_c */
-SECTION_DATA extern void* __vt__14dMenu_Letter_c[4 + 3 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__14dMenu_Letter_cFv,
-    (void*)__dt__14dMenu_Letter_cFv,
-    /* padding */
-    NULL,
-    NULL,
-    NULL,
-};
-
-/* 804542E0-804542E4 0028E0 0004+00 13/13 0/0 0/0 .sdata2          @3827 */
-SECTION_SDATA2 static u8 lit_3827[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 804542E4-804542E8 0028E4 0004+00 10/10 0/0 0/0 .sdata2          @3828 */
-SECTION_SDATA2 static f32 lit_3828 = 1.0f;
+// /* 803BDB8C-803BDBA8 01ACAC 0010+0C 2/2 0/0 0/0 .data            __vt__14dMenu_Letter_c */
+// SECTION_DATA extern void* __vt__14dMenu_Letter_c[4 + 3 /* padding */] = {
+//     (void*)NULL /* RTTI */,
+//     (void*)NULL,
+//     (void*)draw__14dMenu_Letter_cFv,
+//     (void*)__dt__14dMenu_Letter_cFv,
+//     /* padding */
+//     NULL,
+//     NULL,
+//     NULL,
+// };
 
 /* 801DCDC0-801DCF34 1D7700 0174+00 0/0 2/2 0/0 .text
  * __ct__14dMenu_Letter_cFP10JKRExpHeapP9STControlP10CSTControl */
@@ -322,19 +312,6 @@ dMenu_Letter_c::~dMenu_Letter_c() {
     dComIfGp_getMsgArchive(0)->removeResourceAll();
 }
 
-/* ############################################################################################## */
-/* 804542E8-804542EC 0028E8 0004+00 1/1 0/0 0/0 .sdata2          @3964 */
-SECTION_SDATA2 static f32 lit_3964 = 53.0f / 50.0f;
-
-/* 804542EC-804542F0 0028EC 0004+00 1/1 0/0 0/0 .sdata2          @3965 */
-SECTION_SDATA2 static f32 lit_3965 = 9.0f / 10.0f;
-
-/* 804542F0-804542F4 0028F0 0004+00 1/1 0/0 0/0 .sdata2          @3966 */
-SECTION_SDATA2 static f32 lit_3966 = 1.0f / 50.0f;
-
-/* 804542F4-804542F8 0028F4 0004+00 1/1 0/0 0/0 .sdata2          @3967 */
-SECTION_SDATA2 static f32 lit_3967 = 2.0f / 5.0f;
-
 /* 801DD36C-801DD474 1D7CAC 0108+00 1/1 0/0 0/0 .text            _create__14dMenu_Letter_cFv */
 void dMenu_Letter_c::_create() {
     mpDrawCursor = new dSelect_cursor_c(2, 1.0f, NULL);
@@ -369,26 +346,71 @@ void dMenu_Letter_c::_move() {
     mDoExt_setCurrentHeap(heap);
 }
 
-/* ############################################################################################## */
-/* 804542F8-804542FC 0028F8 0004+00 1/1 0/0 0/0 .sdata2          @4054 */
-SECTION_SDATA2 static f32 lit_4054 = 608.0f;
-
-/* 804542FC-80454300 0028FC 0004+00 1/1 0/0 0/0 .sdata2          @4055 */
-SECTION_SDATA2 static f32 lit_4055 = 448.0f;
-
-/* 80454300-80454308 002900 0004+04 3/3 0/0 0/0 .sdata2          @4056 */
-SECTION_SDATA2 static f32 lit_4056[1 + 1 /* padding */] = {
-    -1.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 80454308-80454310 002908 0008+00 3/3 0/0 0/0 .sdata2          @4058 */
-SECTION_SDATA2 static f64 lit_4058 = 4503599627370496.0 /* cast u32 to float */;
-
 /* 801DD50C-801DD934 1D7E4C 0428+00 1/1 1/1 0/0 .text            _draw__14dMenu_Letter_cFv */
+// NONMATCHING - getGlobalVtx result copy issue
 void dMenu_Letter_c::_draw() {
-    // NONMATCHING
+    if (mpArchive == NULL) {
+        return;
+    }
+    J2DGrafContext* grafContext = dComIfGp_getCurrentGrafPort();
+    u8 prevAlpha = mpBlackTex->getAlpha();
+    mpBlackTex->setAlpha(0xff);
+    mpBlackTex->draw(mDoGph_gInf_c::getMinXF(), mDoGph_gInf_c::getMinYF(),
+                     mDoGph_gInf_c::getWidthF(), mDoGph_gInf_c::getHeightF(), false, false, false);
+    mpBlackTex->setAlpha(prevAlpha);
+    mpMenuBaseScreen->draw(0.0f, 0.0f, grafContext);
+    u32 left, top, width, height;
+    GXGetScissor(&left, &top, &width, &height);
+    CPaneMgr afStack_138;
+    Mtx mtx;
+    Vec local_178 = afStack_138.getGlobalVtx(field_0x1ec, &mtx, 0, false, 0);
+    f32 x1 = local_178.x;
+    f32 y1 = local_178.y;
+    Vec local_184 = afStack_138.getGlobalVtx(field_0x1ec, &mtx, 3, false, 0);
+    f32 dVar17 = mDoGph_gInf_c::getWidthF() / 608.0f;
+    f32 dVar16 = mDoGph_gInf_c::getHeightF() / 448.0f;
+    f32 fVar1 = (x1 - mDoGph_gInf_c::getMinXF()) / dVar17;
+    f32 fVar2 = y1 / dVar16;
+    grafContext->scissor(fVar1, fVar2,
+                         (local_184.x - x1) / dVar17,
+                         (local_184.y - y1) / dVar16);
+    grafContext->setScissor();
+    mpMenuScreen->draw(field_0x358, 0.0f, grafContext);
+    if (mProcess == 2 || mProcess == 1) {
+        mpMenuDMYScreen->draw(field_0x358 + field_0x35c, 0.0f, grafContext);
+    }
+    grafContext->scissor(
+        left,
+        top,
+        width,
+        height);
+    grafContext->setScissor();
+    if (mProcess != 2 && mProcess != 1) {
+        mpDrawCursor->draw();
+    }
+    if (mProcess == 3 || mProcess == 4 || mProcess == 5 || mProcess == 6 || mProcess == 7) {
+        mpBlackTex->draw(
+            mDoGph_gInf_c::getMinXF(), mDoGph_gInf_c::getMinYF(), mDoGph_gInf_c::getWidthF(),
+            mDoGph_gInf_c::getHeightF(), 0, false, 0);
+        u8 dVar1 = field_0x3ac[field_0x36f * 6 + mIndex] - 1;
+        for (int i = 0; i < 2; i++) {
+            mpLetterScreen[i]->draw(0.0f, 0.0f, grafContext);
+        }
+        for (int i = 0; i < 2; i++) {
+            J2DTextBox* uVar10 = NULL;
+            if (field_0x2f4[i] != NULL) {
+                uVar10 = (J2DTextBox*)field_0x2f4[i]->getPanePtr();
+            }
+            J2DTextBox* uVar18 = (J2DTextBox*)field_0x2ec[i]->getPanePtr();
+            mpString->getStringPage(dMenu_Letter::getLetterText(dVar1), field_0x3e3 - 1, 0xc,
+                uVar18, uVar10, NULL, NULL, 0);
+        }
+        mpString->drawOutFont((J2DTextBox*)field_0x2ec[1]->getPanePtr(), -1.0f);
+        if (mProcess == 4) {
+            mpArrow->draw();
+        }
+    }
+    mpIconScreen->draw(0.0f, 0.0f, grafContext);
 }
 
 /* 801DD934-801DD95C 1D8274 0028+00 0/0 2/2 0/0 .text            isSync__14dMenu_Letter_cFv */
@@ -427,16 +449,6 @@ void dMenu_Letter_c::init() {
     changeActiveColor();
     (this->*map_init_process[mProcess])();
 }
-
-/* ############################################################################################## */
-/* 80396DC0-80396DC0 023420 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80396DC0 = "/res/Layout/letres.arc";
-#pragma pop
-
-/* 80454310-80454318 002910 0008+00 7/7 0/0 0/0 .sdata2          @4171 */
-SECTION_SDATA2 static f64 lit_4171 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 801DDA74-801DDC98 1D83B4 0224+00 0/0 2/2 0/0 .text            _open__14dMenu_Letter_cFv */
 int dMenu_Letter_c::_open() {
@@ -488,7 +500,6 @@ int dMenu_Letter_c::_open() {
     }
 }
 
-
 /* 801DDC98-801DDE18 1D85D8 0180+00 0/0 1/1 0/0 .text            _close__14dMenu_Letter_cFv */
 int dMenu_Letter_c::_close() {
     s16 closeWindowFrame =
@@ -518,7 +529,6 @@ int dMenu_Letter_c::_close() {
         return 0;
     }
 }
-
 
 /* 801DDE18-801DDE54 1D8758 003C+00 1/0 0/0 0/0 .text            wait_init__14dMenu_Letter_cFv */
 void dMenu_Letter_c::wait_init() {
@@ -591,21 +601,6 @@ void dMenu_Letter_c::slide_right_init() {
     setBButtonString(0);
 }
 
-
-/* ############################################################################################## */
-/* 80454318-8045431C 002918 0004+00 3/3 0/0 0/0 .sdata2          @4308 */
-SECTION_SDATA2 static f32 lit_4308 = 0.5f;
-
-/* 8045431C-80454320 00291C 0004+00 2/2 0/0 0/0 .sdata2          @4309 */
-SECTION_SDATA2 static f32 lit_4309 = 50.0f;
-
-/* 80454320-80454328 002920 0004+04 2/2 0/0 0/0 .sdata2          @4310 */
-SECTION_SDATA2 static f32 lit_4310[1 + 1 /* padding */] = {
-    1.0f / 10.0f,
-    /* padding */
-    0.0f,
-};
-
 /* 801DE1E8-801DE24C 1D8B28 0064+00 1/0 0/0 0/0 .text slide_right_move__14dMenu_Letter_cFv */
 void dMenu_Letter_c::slide_right_move() {
     cLib_addCalc2(&field_0x358, 0.0f, 0.5f, 50.0f);
@@ -614,7 +609,6 @@ void dMenu_Letter_c::slide_right_move() {
         mProcess = 0;
     }
 }
-
 
 /* 801DE24C-801DE2D0 1D8B8C 0084+00 1/0 0/0 0/0 .text            slide_left_init__14dMenu_Letter_cFv
  */
@@ -627,7 +621,6 @@ void dMenu_Letter_c::slide_left_init() {
     setBButtonString(0);
 }
 
-
 /* 801DE2D0-801DE334 1D8C10 0064+00 1/0 0/0 0/0 .text            slide_left_move__14dMenu_Letter_cFv
  */
 void dMenu_Letter_c::slide_left_move() {
@@ -638,18 +631,43 @@ void dMenu_Letter_c::slide_left_move() {
     }
 }
 
-
-/* ############################################################################################## */
-/* 80396DC0-80396DC0 023420 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80396DD7 = "%d/%d";
-#pragma pop
-
 /* 801DE334-801DE564 1D8C74 0230+00 1/0 0/0 0/0 .text            read_open_init__14dMenu_Letter_cFv
  */
 void dMenu_Letter_c::read_open_init() {
-    // NONMATCHING
+    field_0x36a = 0;
+    u8 idx = field_0x3ac[field_0x36f * 6 + mIndex] - 1;
+    field_0x3e3 = 1;
+    for (int i = 0; i < 2; i++) {
+        mpTextParent[i]->scale(0.0f, 0.0f);
+        mpTextParent[i]->setAlphaRate(0.0f);
+        J2DTextBox* text1 = NULL;
+        if (field_0x2f4[i] != 0) {
+            text1 = (J2DTextBox*)field_0x2f4[i]->getPanePtr();
+        }
+        J2DTextBox* text2 = (J2DTextBox*)field_0x2ec[i]->getPanePtr();
+        mpString->getStringPage(dMenu_Letter::getLetterText(idx), field_0x3e3 - 1, 12, text2, text1,
+                                NULL, NULL, NULL);
+    }
+    field_0x3e2 = mpString->getPageMax(12);
+    if (field_0x3e2 > 1) {
+        char acStack_30[20];
+        sprintf(acStack_30, "%d/%d", field_0x3e3, field_0x3e2);
+        for (int i = 0; i < 2; i++) {
+            field_0x1e4[i]->show();
+            strcpy(field_0x1e4[i]->getStringPtr(), acStack_30);
+        }
+    } else {
+        for (int i = 0; i < 2; i++) {
+            field_0x1e4[i]->hide();
+        }
+    }
+    if (!dComIfGs_isLetterReadFlag(idx)) {
+        dComIfGs_onLetterReadFlag(idx);
+        field_0x34[mIndex][4]->hide();
+    }
+    setAButtonString(0);
+    setBButtonString(0);
+    mpBlackTex->setAlpha(0);
 }
 
 /* 801DE564-801DE70C 1D8EA4 01A8+00 1/0 0/0 0/0 .text            read_open_move__14dMenu_Letter_cFv
@@ -676,7 +694,6 @@ void dMenu_Letter_c::read_open_move() {
         mpBlackTex->setAlpha(g_drawHIO.mLetterSelectScreen.mWindowBGAlpha * div);
     }
 }
-
 
 /* 801DE70C-801DE824 1D904C 0118+00 1/0 0/0 0/0 .text            read_move_init__14dMenu_Letter_cFv
  */
@@ -741,7 +758,6 @@ void dMenu_Letter_c::read_move_move() {
     }
 }
 
-
 /* 801DEA48-801DEA94 1D9388 004C+00 1/0 0/0 0/0 .text read_next_fadeout_init__14dMenu_Letter_cFv
  */
 void dMenu_Letter_c::read_next_fadeout_init() {
@@ -781,10 +797,24 @@ void dMenu_Letter_c::read_next_fadeout_move() {
     }
 }
 
-
 /* 801DEBD8-801DED04 1D9518 012C+00 1/0 0/0 0/0 .text read_next_fadein_init__14dMenu_Letter_cFv */
 void dMenu_Letter_c::read_next_fadein_init() {
-    // NONMATCHING
+    field_0x36a = 0;
+    u8 idx = field_0x3ac[field_0x36f * 6 + mIndex] - 1;
+    for (int i = 0; i < 2; i++) {
+        J2DTextBox* text1 = NULL;
+        if (field_0x2f4[i] != 0) {
+            text1 = (J2DTextBox*)field_0x2f4[i]->getPanePtr();
+        }
+        J2DTextBox* text2 = (J2DTextBox*)field_0x2ec[i]->getPanePtr();
+        mpString->getStringPage(dMenu_Letter::getLetterText(idx), field_0x3e3 - 1, 12, text2, text1, NULL, NULL, NULL);
+    }
+    char acStack_30[10];
+    sprintf(acStack_30, "%d/%d", field_0x3e3, field_0x3e2);
+    for (int i = 0; i < 2; i++) {
+        field_0x1e4[i]->show();
+        strcpy(field_0x1e4[i]->getStringPtr(), acStack_30);
+    }
 }
 
 /* 801DED04-801DEE20 1D9644 011C+00 1/0 0/0 0/0 .text read_next_fadein_move__14dMenu_Letter_cFv */
@@ -810,7 +840,6 @@ void dMenu_Letter_c::read_next_fadein_move() {
         }
     }
 }
-
 
 /* 801DEE20-801DEE6C 1D9760 004C+00 1/0 0/0 0/0 .text            read_close_init__14dMenu_Letter_cFv
  */
@@ -844,185 +873,256 @@ void dMenu_Letter_c::read_close_move() {
     }
 }
 
-
 /* 803969C8-803969F8 023028 0030+00 2/2 0/0 0/0 .rodata          tag_sub0$4610 */
 static const u64 tag_sub0[6] = {
     'menu_t0s', 'menu_t1s', 'menu_t2s', 'menu_t3s', 'menu_t4s', 'menu_t5s',
 };
 
 /* 803969F8-80396A28 023058 0030+00 0/1 0/0 0/0 .rodata          tag_sub1$4611 */
-#pragma push
-#pragma force_active on
 static const u64 tag_sub1[6] = {
     'menu_t0', 'menu_t1', 'menu_t2', 'menu_t3', 'menu_t4', 'menu_t5',
 };
-#pragma pop
 
 /* 80396A28-80396A58 023088 0030+00 0/1 0/0 0/0 .rodata          tag_name0$4612 */
-#pragma push
-#pragma force_active on
 static const u64 tag_name0[6] = {
     'menu_t6s', 'menu_f7s', 'menu_f8s', 'menu_t9s', 'menu_10s', 'menu_11s',
 };
-#pragma pop
 
 /* 80396A58-80396A88 0230B8 0030+00 0/1 0/0 0/0 .rodata          tag_name1$4613 */
-#pragma push
-#pragma force_active on
 static const u64 tag_name1[6] = {
     'menu_f6', 'menu_f7', 'menu_t8', 'menu_t9', 'menu_t10', 'menu_t11',
 };
-#pragma pop
 
 /* 80396A88-80396AB8 0230E8 0030+00 0/1 0/0 0/0 .rodata          ftag_sub0$4614 */
-#pragma push
-#pragma force_active on
 static const u64 ftag_sub0[6] = {
     'fenu_t0s', 'fenu_t1s', 'fenu_t2s', 'fenu_t3s', 'fenu_t4s', 'fenu_t5s',
 };
-#pragma pop
 
 /* 80396AB8-80396AE8 023118 0030+00 0/1 0/0 0/0 .rodata          ftag_sub1$4615 */
-#pragma push
-#pragma force_active on
 static const u64 ftag_sub1[6] = {
     'fenu_t0', 'fenu_t1', 'fenu_t2', 'fenu_t3', 'fenu_t4', 'fenu_t5',
 };
-#pragma pop
 
 /* 80396AE8-80396B18 023148 0030+00 0/1 0/0 0/0 .rodata          ftag_name0$4616 */
-#pragma push
-#pragma force_active on
 static const u64 ftag_name0[6] = {
     'fenu_t6s', 'fenu_t7s', 'fenu_f8s', 'fenu_t9s', 'fenu_10s', 'fenu_11s',
 };
-#pragma pop
 
 /* 80396B18-80396B48 023178 0030+00 0/1 0/0 0/0 .rodata          ftag_name1$4617 */
-#pragma push
-#pragma force_active on
 static const u64 ftag_name1[6] = {
     'fenu_t6', 'fenu_t7', 'fenu_t8', 'fenu_t9', 'fenu_t10', 'fenu_t11',
 };
-#pragma pop
 
 /* 80396B48-80396B78 0231A8 0030+00 0/1 0/0 0/0 .rodata          tag_letter$4628 */
-#pragma push
-#pragma force_active on
 static const u64 tag_letter[6] = {
     'let_00_n', 'let_01_n', 'let_02_n', 'let_03_n', 'let_04_n', 'let_05_n',
 };
-#pragma pop
 
 /* 80396B78-80396BA8 0231D8 0030+00 0/1 0/0 0/0 .rodata          tag_frame$4635 */
-#pragma push
-#pragma force_active on
 static const u64 tag_frame[6] = {
     'flame_00', 'flame_01', 'flame_02', 'flame_03', 'flame_04', 'flame_05',
 };
-#pragma pop
 
 /* 80396BA8-80396BD8 023208 0030+00 0/1 0/0 0/0 .rodata          tag_menu0$4636 */
-#pragma push
-#pragma force_active on
 static const u64 tag_menu0[6] = {
     'fenu_t0', 'fenu_t1', 'fenu_t2', 'fenu_t3', 'fenu_t4', 'fenu_t5',
 };
-#pragma pop
 
 /* 80396BD8-80396C08 023238 0030+00 0/1 0/0 0/0 .rodata          tag_menu1$4637 */
-#pragma push
-#pragma force_active on
 static const u64 tag_menu1[6] = {
     'fenu_t6', 'fenu_t7', 'fenu_t8', 'fenu_t9', 'fenu_t10', 'fenu_t11',
 };
-#pragma pop
 
 /* 80396C08-80396C38 023268 0030+00 0/1 0/0 0/0 .rodata          tag_midoku$4638 */
-#pragma push
-#pragma force_active on
 static const u64 tag_midoku[6] = {
     'midoku_0', 'midoku_1', 'midoku_2', 'midoku_3', 'midoku_4', 'midoku_5',
 };
-#pragma pop
-
-/* 80396DC0-80396DC0 023420 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80396DDD = "zelda_letter_select_6menu.blo";
-SECTION_DEAD static char const* const stringBase_80396DFB = "";
-#pragma pop
 
 /* 801DF010-801DFA28 1D9950 0A18+00 1/1 0/0 0/0 .text            screenSetMenu__14dMenu_Letter_cFv
  */
 void dMenu_Letter_c::screenSetMenu() {
-    // NONMATCHING
-}
-
-/* 801DFA28-801DFA34 1DA368 000C+00 0/0 1/0 0/0 .text            getWhite__10J2DTextBoxCFv */
-JUtility::TColor J2DTextBox::getWhite() const {
-    // NONMATCHING
-}
-
-/* 801DFA34-801DFA40 1DA374 000C+00 0/0 1/0 0/0 .text            getBlack__10J2DTextBoxCFv */
-JUtility::TColor J2DTextBox::getBlack() const {
-    // NONMATCHING
-}
-
-/* 801DFA40-801DFA4C 1DA380 000C+00 0/0 1/0 0/0 .text            getWhite__10J2DPictureCFv */
-JUtility::TColor J2DPicture::getWhite() const {
-    // NONMATCHING
-}
-
-/* 801DFA4C-801DFA58 1DA38C 000C+00 0/0 1/0 0/0 .text            getBlack__10J2DPictureCFv */
-JUtility::TColor J2DPicture::getBlack() const {
-    // NONMATCHING
+    mpMenuScreen = new J2DScreen();
+    JUT_ASSERT(1146, mpMenuScreen != 0);
+    bool fg = mpMenuScreen->setPriority("zelda_letter_select_6menu.blo", 0x20000, mpArchive);
+    JUT_ASSERT(1156, fg != false);
+    dPaneClass_showNullPane(mpMenuScreen);
+    mpParent[0] = new CPaneMgr(mpMenuScreen, 'n_all', 2, NULL);
+    JUT_ASSERT(1161, mpParent[0] != 0);
+    mpParent[0]->setAlphaRate(0.0f);
+    for (int i = 0; i < 6; i++) {
+        field_0x124[i][0] = (J2DTextBox*)mpMenuScreen->search(ftag_sub0[i]);
+        field_0x124[i][1] = (J2DTextBox*)mpMenuScreen->search(ftag_sub1[i]);
+        field_0x124[i][2] = (J2DTextBox*)mpMenuScreen->search(ftag_name0[i]);
+        field_0x124[i][3] = (J2DTextBox*)mpMenuScreen->search(ftag_name1[i]);
+        mpMenuScreen->search(tag_sub0[i])->hide();
+        mpMenuScreen->search(tag_sub1[i])->hide();
+        mpMenuScreen->search(tag_name0[i])->hide();
+        mpMenuScreen->search(tag_name1[i])->hide();
+        for (int j = 0; j < 4; j++) {
+            field_0x124[i][j]->setFont(mDoExt_getMesgFont());
+            field_0x124[i][j]->setString(0x40, "");
+        }
+    }
+    for (int i = 0; i < 6; i++) {
+        mpLetterParent[i] = new CPaneMgr(mpMenuScreen, tag_letter[i], 0, NULL);
+        JUT_ASSERT(1212, mpLetterParent[i] != 0);
+    }
+    for (int i = 0; i < 6; i++) {
+        field_0x34[i][0] = mpMenuScreen->search(tag_frame[i]);
+        field_0x34[i][1] = mpMenuScreen->search(tag_menu0[i]);
+        field_0x34[i][2] = mpMenuScreen->search(tag_menu1[i]);
+        field_0x34[i][3] = mpMenuScreen->search(tag_letter[i]);
+        field_0x34[i][4] = mpMenuScreen->search(tag_midoku[i]);
+        if (i < field_0x373) {
+            field_0x34[i][3]->show();
+            field_0x34[i][4]->show();
+        } else {
+            field_0x34[i][3]->hide();
+            field_0x34[i][4]->hide();
+        }
+    }
+    for (int i = 0; i < 4; i++) {
+        if (i == 0) {
+            field_0x328[i] = ((J2DPicture*)field_0x34[0][i])->getBlack();
+            field_0x348[i] = ((J2DPicture*)field_0x34[0][i])->getWhite();
+            field_0x318[i] = ((J2DPicture*)field_0x34[1][i])->getBlack();
+            field_0x338[i] = ((J2DPicture*)field_0x34[1][i])->getWhite();
+            field_0x328[i].a = 0xff;
+            field_0x318[i].a = 0xff;
+        } else if (i == 3) {
+            field_0x328[i] = field_0x124[i][1]->getBlack();
+            field_0x348[i] = field_0x124[i][1]->getWhite();
+            field_0x318[i] = field_0x124[i][1]->getBlack();
+            field_0x338[i] = field_0x124[i][1]->getWhite();
+        } else {
+            // Unclear what type is field_0x34
+            field_0x328[i] = ((J2DTextBox*)field_0x34[0][i])->getBlack();
+            field_0x348[i] = ((J2DTextBox*)field_0x34[0][i])->getWhite();
+            field_0x318[i] = ((J2DTextBox*)field_0x34[1][i])->getBlack();
+            field_0x338[i] = ((J2DTextBox*)field_0x34[1][i])->getWhite();
+        }
+    }
+    mpMenuDMYScreen = new J2DScreen();
+    JUT_ASSERT(1270, mpMenuDMYScreen != 0);
+    fg = mpMenuDMYScreen->setPriority("zelda_letter_select_6menu.blo", 0x20000, mpArchive);
+    JUT_ASSERT(1280, fg != false);
+    dPaneClass_showNullPane(mpMenuDMYScreen);
+    mpDMYParent = new CPaneMgr(mpMenuDMYScreen, 'n_all', 2, NULL);
+    JUT_ASSERT(1285, mpDMYParent != 0);
+    for (int i = 0; i < 6; i++) {
+        field_0x184[i][0] = (J2DTextBox*)mpMenuDMYScreen->search(ftag_sub0[i]);
+        field_0x184[i][1] = (J2DTextBox*)mpMenuDMYScreen->search(ftag_sub1[i]);
+        field_0x184[i][2] = (J2DTextBox*)mpMenuDMYScreen->search(ftag_name0[i]);
+        field_0x184[i][3] = (J2DTextBox*)mpMenuDMYScreen->search(ftag_name1[i]);
+        mpMenuDMYScreen->search(tag_sub0[i])->hide();
+        mpMenuDMYScreen->search(tag_sub1[i])->hide();
+        mpMenuDMYScreen->search(tag_name0[i])->hide();
+        mpMenuDMYScreen->search(tag_name1[i])->hide();
+        for (int j = 0; j < 4; j = j + 1) {
+            field_0x184[i][j]->setFont(mDoExt_getMesgFont());
+            field_0x184[i][j]->setString(0x40, "");
+        }
+    }
+    for (int i = 0; i < 6; i++) {
+        field_0xac[i][0] = (J2DTextBox*)mpMenuDMYScreen->search(tag_frame[i]);
+        field_0xac[i][1] = (J2DTextBox*)mpMenuDMYScreen->search(tag_menu0[i]);
+        field_0xac[i][2] = (J2DTextBox*)mpMenuDMYScreen->search(tag_menu1[i]);
+        field_0xac[i][3] = (J2DTextBox*)mpMenuDMYScreen->search(tag_letter[i]);
+        field_0xac[i][4] = (J2DTextBox*)mpMenuDMYScreen->search(tag_midoku[i]);
+    }
 }
 
 //* 80396C38-80396C80 023298 0048+00 0/1 0/0 0/0 .rodata          tag_pip$4827 */
-#pragma push
-#pragma force_active on
 static const u64 tag_pip[9] = {
     'pi_00_n', 'pi_01_n', 'pi_02_n', 'pi_03_n', 'pi_04_n',
     'pi_05_n', 'pi_06_n', 'pi_07_n', 'pi_08_n',
 };
-#pragma pop
 
 /* 80396C80-80396CC8 0232E0 0048+00 0/1 0/0 0/0 .rodata          tag_pil$4828 */
-#pragma push
-#pragma force_active on
 static const u64 tag_pil[9] = {
     'pi_l_00', 'pi_l_01', 'pi_l_02', 'pi_l_03', 'pi_l_04',
     'pi_l_05', 'pi_l_06', 'pi_l_07', 'pi_l_08',
 };
-#pragma pop
 
 /* 80396CC8-80396D10 023328 0048+00 0/1 0/0 0/0 .rodata          tag_pii$4829 */
-#pragma push
-#pragma force_active on
 static const u64 tag_pii[9] = {
     'pi_00', 'pi_01', 'pi_02', 'pi_03', 'pi_04', 'pi_05', 'pi_06', 'pi_07', 'pi_08',
 };
-#pragma pop
-
-/* 80396DC0-80396DC0 023420 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80396DFC = "zelda_letter_select_base.blo";
-#pragma pop
 
 /* 801DFA58-801E0330 1DA398 08D8+00 1/1 0/0 0/0 .text            screenSetBase__14dMenu_Letter_cFv
  */
 void dMenu_Letter_c::screenSetBase() {
-    // NONMATCHING
+    mpMenuBaseScreen = new J2DScreen();
+    JUT_ASSERT(1357, mpBaseScreen != 0);
+    bool fg = mpMenuBaseScreen->setPriority("zelda_letter_select_base.blo", 0x20000, mpArchive);
+    JUT_ASSERT(1361, fg != false);
+    dPaneClass_showNullPane(mpMenuBaseScreen);
+    mpMenuBaseScreen->search('wi_btn_n')->hide();
+    mpParent[1] = new CPaneMgr(mpMenuBaseScreen, 'n_all', 2, NULL);
+    JUT_ASSERT(1372, mpParent[1] != 0);
+    mpParent[1]->setAlphaRate(0.0f);
+    J2DTextBox* piVar9 = (J2DTextBox*)mpMenuBaseScreen->search('f_t_00');
+    mpMenuBaseScreen->search('t_t00')->hide(); 
+    piVar9->setString(0x40, "");
+    piVar9->setFont(mDoExt_getSubFont());
+    dComIfGp_setMessageCountNumber(field_0x374 + (field_0x36f + 1) * 100);
+    mpString->getString(0x4d6, piVar9, NULL, NULL, NULL, 0);
+    J2DTextBox* text1 = (J2DTextBox*)mpMenuBaseScreen->search('fwpstex1');
+    J2DTextBox* text2 = (J2DTextBox*)mpMenuBaseScreen->search('fwp_tex1');
+    J2DTextBox* text3 = (J2DTextBox*)mpMenuBaseScreen->search('fgps_tx1');
+    J2DTextBox* text4 = (J2DTextBox*)mpMenuBaseScreen->search('fgp_tex1');
+    mpMenuBaseScreen->search('wps_text')->hide();
+    mpMenuBaseScreen->search('w_p_text')->hide();
+    mpMenuBaseScreen->search('g_ps_txt')->hide();
+    mpMenuBaseScreen->search('g_p_text')->hide();
+    text1->setString(0x40, "");
+    text2->setString(0x40, "");
+    text3->setString(0x40, "");
+    text4->setString(0x40, "");
+    text1->setFont(mDoExt_getMesgFont());
+    text2->setFont(mDoExt_getMesgFont());
+    text3->setFont(mDoExt_getMesgFont());
+    text4->setFont(mDoExt_getMesgFont());
+    dMeter2Info_getStringKanji(0x4d7, text1->getStringPtr(), 0);
+    dMeter2Info_getStringKanji(0x4d7, text2->getStringPtr(), 0);
+    dMeter2Info_getStringKanji(0x4d7, text3->getStringPtr(), 0);
+    dMeter2Info_getStringKanji(0x4d7, text4->getStringPtr(), 0);
+    ((J2DTextBox*)mpMenuBaseScreen->search('pi_no_00'))->setFont(mDoExt_getMesgFont());
+    ((J2DTextBox*)mpMenuBaseScreen->search('pi_no_01'))->setFont(mDoExt_getMesgFont());
+    ((J2DTextBox*)mpMenuBaseScreen->search('pi_no_02'))->setFont(mDoExt_getMesgFont());
+    ((J2DTextBox*)mpMenuBaseScreen->search('pi_no_03'))->setFont(mDoExt_getMesgFont());
+    ((J2DTextBox*)mpMenuBaseScreen->search('pi_no_04'))->setFont(mDoExt_getMesgFont());
+    ((J2DTextBox*)mpMenuBaseScreen->search('pi_no_05'))->setFont(mDoExt_getMesgFont());
+    ((J2DTextBox*)mpMenuBaseScreen->search('pi_no_06'))->setFont(mDoExt_getMesgFont());
+    ((J2DTextBox*)mpMenuBaseScreen->search('pi_no_07'))->setFont(mDoExt_getMesgFont());
+    ((J2DTextBox*)mpMenuBaseScreen->search('pi_no_08'))->setFont(mDoExt_getMesgFont());
+    field_0x1ec = (J2DTextBox*)mpMenuBaseScreen->search('let_area');
+    for (int i = 0; i < 9; i++) {
+        field_0x1f0[i] = (J2DTextBox*)mpMenuBaseScreen->search(tag_pip[i]);
+        if (field_0x374 > 1 && i < field_0x374) {
+            field_0x1f0[i]->show();
+        } else {
+            field_0x1f0[i]->hide();
+        }
+        mpPageLight[i] = (J2DPicture*)mpMenuBaseScreen->search(tag_pil[i]);
+        if (i == field_0x36f) {
+            mpPageLight[i]->show();
+        } else {
+            mpPageLight[i]->hide();
+        }
+        field_0x238[i] = (J2DTextBox*)mpMenuBaseScreen->search(tag_pii[i]);
+    }
+    if (field_0x374 > 1) {
+        J2DPane* pJVar6 = mpMenuBaseScreen->search('pi_n');
+        f32 dVar18 = field_0x1f0[1]->getBounds().i.x - field_0x1f0[0]->getBounds().i.x;
+        f32 dVar17 = dVar18 * (field_0x374 - 1);
+        f32 dVar16 = (pJVar6->getWidth() / 2) - (dVar17 / 2);
+        for (int i = 0; i < 9; i++) {
+            f32 y = field_0x1f0[i]->getBounds().i.y;
+            field_0x1f0[i]->move(dVar16 + dVar18 * i, y);
+        }
+    }
 }
-
-/* ############################################################################################## */
-/* 80396DC0-80396DC0 023420 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80396E19 = "zelda_letter_select_shadow.blo";
-#pragma pop
 
 /* 801E0330-801E03D8 1DAC70 00A8+00 1/1 0/0 0/0 .text            screenSetShadow__14dMenu_Letter_cFv
  */
@@ -1034,32 +1134,70 @@ void dMenu_Letter_c::screenSetShadow() {
     mpParent[2]->setAlphaRate(0.0f);
 }
 
-
-/* ############################################################################################## */
-/* 80396D10-80396D70 023370 0060+00 1/1 0/0 0/0 .rodata          line_tag$4914 */
-SECTION_RODATA static u8 const line_tag4914[96] = {
-    // in-function static
-    0x00, 0x00, 0x6C, 0x69, 0x6E, 0x65, 0x30, 0x39, 0x00, 0x00, 0x6C, 0x69, 0x6E, 0x65, 0x31, 0x30,
-    0x00, 0x00, 0x6C, 0x69, 0x6E, 0x65, 0x31, 0x31, 0x00, 0x00, 0x6C, 0x69, 0x6E, 0x65, 0x31, 0x32,
-    0x00, 0x00, 0x6C, 0x69, 0x6E, 0x65, 0x31, 0x33, 0x00, 0x00, 0x6C, 0x69, 0x6E, 0x65, 0x31, 0x34,
-    0x00, 0x00, 0x6C, 0x69, 0x6E, 0x65, 0x31, 0x35, 0x00, 0x00, 0x6C, 0x69, 0x6E, 0x65, 0x31, 0x36,
-    0x00, 0x00, 0x6C, 0x69, 0x6E, 0x65, 0x31, 0x37, 0x00, 0x00, 0x6C, 0x69, 0x6E, 0x65, 0x31, 0x38,
-    0x00, 0x00, 0x6C, 0x69, 0x6E, 0x65, 0x31, 0x39, 0x00, 0x00, 0x6C, 0x69, 0x6E, 0x65, 0x32, 0x30,
-};
-COMPILER_STRIP_GATE(0x80396D10, &line_tag4914);
-
-/* 80396DC0-80396DC0 023420 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80396E38 = "zelda_letter_window_base.blo";
-SECTION_DEAD static char const* const stringBase_80396E55 = "zelda_letter_window_spot.blo";
-SECTION_DEAD static char const* const stringBase_80396E72 = "tt_block8x8.bti";
-#pragma pop
-
 /* 801E03D8-801E09A8 1DAD18 05D0+00 1/1 0/0 0/0 .text            screenSetLetter__14dMenu_Letter_cFv
  */
 void dMenu_Letter_c::screenSetLetter() {
-    // NONMATCHING
+    static u64 const line_tag[12] = {
+        'line09', 'line10', 'line11', 'line12', 'line13', 'line14',
+        'line15', 'line16', 'line17', 'line18', 'line19', 'line20',
+    };
+    mpLetterScreen[0] = new J2DScreen();
+    JUT_ASSERT(1507, mpLetterScreen[0] != 0);
+    bool fg = mpLetterScreen[0]->setPriority("zelda_letter_window_base.blo", 0x20000, mpArchive);
+    JUT_ASSERT(1511, fg != false);
+    dPaneClass_showNullPane(mpLetterScreen[0]);
+    field_0x2ec[0] = new CPaneMgr(mpLetterScreen[0], 't4_s', 0, NULL);
+    field_0x2ec[1] = new CPaneMgr(mpLetterScreen[0], 'mg_e4lin', 0, NULL);
+    for (int i = 0; i < 2; i++) {
+        field_0x2f4[i] = NULL;
+    }
+    mpLetterScreen[0]->search('t3f_s')->hide();
+    mpLetterScreen[0]->search('mg_3flin')->hide();
+    mpLetterScreen[0]->search('mg_3f_s')->hide();
+    mpLetterScreen[0]->search('mg_3f')->hide();
+    mpLetterScreen[0]->search('t3_s')->hide();
+    mpLetterScreen[0]->search('mg_3line')->hide();
+    mpLineParent = new CPaneMgr(mpLetterScreen[0], 'us_n', 0, NULL);
+    JUT_ASSERT(1530, mpLineParent != 0);
+    for (int i = 0; i < 12; i++) {
+        if (line_tag[i] != 0) {
+            field_0x25c[i] = (J2DTextBox*)mpLetterScreen[0]->search(line_tag[i]);
+        } else {
+            field_0x25c[i] = NULL;
+        }
+    }
+    mpLetterScreen[0]->search('jp_fri_n')->hide();
+    mpLetterScreen[0]->search('jp_n')->hide();
+    for (int i = 0; i < 2; i++) {
+        ((J2DTextBox*)field_0x2ec[i]->getPanePtr())->setFont(mDoExt_getMesgFont());
+        ((J2DTextBox*)field_0x2ec[i]->getPanePtr())->setString(0x200, "");
+        if (field_0x2f4[i] != NULL) {
+            ((J2DTextBox*)field_0x2f4[i]->getPanePtr())->setFont(mDoExt_getMesgFont());
+            ((J2DTextBox*)field_0x2f4[i]->getPanePtr())->setString(0x200, "");
+        }
+    }
+    field_0x1e4[0] = (J2DTextBox*)mpLetterScreen[0]->search('p_texts');
+    field_0x1e4[1] = (J2DTextBox*)mpLetterScreen[0]->search('p_text');
+    for (int i = 0; i < 2; i++) {
+        field_0x1e4[i]->setFont(mDoExt_getSubFont());
+        field_0x1e4[i]->setString(0x10, "");
+    }
+    mpLetterScreen[1] = new J2DScreen();
+    JUT_ASSERT(1627, mpLetterScreen[1] != 0);
+    fg = mpLetterScreen[1]->setPriority("zelda_letter_window_spot.blo", 0x20000, mpArchive);
+    JUT_ASSERT(1631, fg != false);
+    dPaneClass_showNullPane(mpLetterScreen[1]);
+    for (int i = 0; i < 2; i++) {
+        mpTextParent[i] = new CPaneMgr(mpLetterScreen[i], 'n_all', 2, NULL);
+        JUT_ASSERT(1636, mpTextParent[i] != 0);
+        mpTextParent[i]->scale(0.0f, 0.0f);
+        mpTextParent[i]->setAlphaRate(0.0f);
+    }
+    ResTIMG* local_30 = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', "tt_block8x8.bti");
+    mpBlackTex = new J2DPicture(local_30);
+    JUT_ASSERT(1644, mpBlackTex != 0);
+    mpBlackTex->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(0, 0, 0, 255));
+    mpBlackTex->setAlpha(0);
 }
 
 /* 80396D70-80396D98 0233D0 0028+00 1/1 0/0 0/0 .rodata          text_a_tag$5024 */
@@ -1071,12 +1209,6 @@ static const u64 text_a_tag[5] = {
 static const u64 text_b_tag[5] = {
     'btext1_1', 'btext1_2', 'btext1_3', 'btext1_4', 'btext1_5',
 };
-
-/* 80396DC0-80396DC0 023420 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80396E82 = "zelda_collect_soubi_do_icon_parts.blo";
-#pragma pop
 
 /* 801E09A8-801E0B24 1DB2E8 017C+00 1/1 0/0 0/0 .text            screenSetDoIcon__14dMenu_Letter_cFv
  */
@@ -1107,7 +1239,24 @@ void dMenu_Letter_c::setCursorPos() {
 
 /* 801E0BB0-801E0E34 1DB4F0 0284+00 3/3 0/0 0/0 .text changeActiveColor__14dMenu_Letter_cFv */
 void dMenu_Letter_c::changeActiveColor() {
-    // NONMATCHING
+    setCursorPos();
+    for (int i = 0; (int)i < 6; i++) {
+        if (i == mIndex) {
+            ((J2DPicture*)field_0x34[i][0])->setBlackWhite(field_0x318[0], field_0x338[0]);
+            ((J2DTextBox*)field_0x34[i][1])->setBlackWhite(field_0x318[1], field_0x338[1]);
+            ((J2DTextBox*)field_0x34[i][2])->setBlackWhite(field_0x318[2], field_0x338[2]);
+            field_0x124[i][1]->setBlackWhite(field_0x318[3], field_0x338[3]);
+            field_0x124[i][3]->setBlackWhite(field_0x318[3], field_0x338[3]);
+            mpLetterParent[i]->scale(field_0x360, field_0x360);
+        } else {
+            ((J2DPicture*)field_0x34[i][0])->setBlackWhite(field_0x328[0], field_0x348[0]);
+            ((J2DTextBox*)field_0x34[i][1])->setBlackWhite(field_0x328[1], field_0x348[1]);
+            ((J2DTextBox*)field_0x34[i][2])->setBlackWhite(field_0x328[2], field_0x348[2]);
+            field_0x124[i][1]->setBlackWhite(field_0x328[3], field_0x348[3]);
+            field_0x124[i][3]->setBlackWhite(field_0x328[3], field_0x348[3]);
+            mpLetterParent[i]->scale(field_0x364, field_0x364);
+        }
+    }
 }
 
 /* 801E0E34-801E0E84 1DB774 0050+00 2/2 0/0 0/0 .text            changePageLight__14dMenu_Letter_cFv
@@ -1124,18 +1273,94 @@ void dMenu_Letter_c::changePageLight() {
 
 /* 801E0E84-801E1038 1DB7C4 01B4+00 2/2 0/0 0/0 .text            setPageText__14dMenu_Letter_cFv */
 void dMenu_Letter_c::setPageText() {
-    // NONMATCHING
+    int dVar1 = field_0x36f * 6;
+    for (int i = 0; i < field_0x373; i++) {
+        u8 idx = field_0x3ac[i + dVar1] - 1;
+        mpString->getString(dMenu_Letter::getLetterSubject(idx),field_0x124[i][0], NULL, NULL, NULL, 0);
+        mpString->getString(dMenu_Letter::getLetterSubject(idx),field_0x124[i][1], NULL, NULL, NULL, 0);
+        mpString->getString(dMenu_Letter::getLetterName(idx),field_0x124[i][2], NULL, NULL, NULL, 0);
+        mpString->getString(dMenu_Letter::getLetterName(idx),field_0x124[i][3], NULL, NULL, NULL, 0);
+    }
+    for (int i = 0; i < 6; i++) {
+        if (i < field_0x373) {
+            u8 idx = field_0x3ac[i + dVar1] - 1;
+            if (!dComIfGs_isLetterReadFlag(idx)) {
+                field_0x34[i][4]->show();
+            } else {
+                field_0x34[i][4]->hide();
+            }
+        } else {
+            field_0x34[i][4]->hide();
+        }
+    }
 }
 
 /* 801E1038-801E11EC 1DB978 01B4+00 1/1 0/0 0/0 .text            setDMYPageText__14dMenu_Letter_cFv
  */
 void dMenu_Letter_c::setDMYPageText() {
-    // NONMATCHING
+    int dVar1 = field_0x372 * 6;
+    for (int i = 0; i < field_0x373; i++) {
+        u8 idx = field_0x3ac[i + dVar1] - 1;
+        mpString->getString(dMenu_Letter::getLetterSubject(idx),field_0x184[i][0], NULL, NULL, NULL, 0);
+        mpString->getString(dMenu_Letter::getLetterSubject(idx),field_0x184[i][1], NULL, NULL, NULL, 0);
+        mpString->getString(dMenu_Letter::getLetterName(idx),field_0x184[i][2], NULL, NULL, NULL, 0);
+        mpString->getString(dMenu_Letter::getLetterName(idx),field_0x184[i][3], NULL, NULL, NULL, 0);
+    }
+    for (int i = 0; i < 6; i++) {
+        if (i < field_0x373) {
+            u8 idx = field_0x3ac[i + dVar1] - 1;
+            if (!dComIfGs_isLetterReadFlag(idx)) {
+                field_0xac[i][4]->show();
+            } else {
+                field_0xac[i][4]->hide();
+            }
+        } else {
+            field_0xac[i][4]->hide();
+        }
+    }
 }
 
 /* 801E11EC-801E1518 1DBB2C 032C+00 2/2 0/0 0/0 .text            copyDMYMenu__14dMenu_Letter_cFv */
 void dMenu_Letter_c::copyDMYMenu() {
-    // NONMATCHING
+    setDMYPageText();
+    for (int i = 0; i < 6; i++) {
+        if (i == mIndex) {
+            ((J2DPicture*)field_0xac[i][0])->setBlackWhite(field_0x318[0], field_0x338[0]);
+            field_0xac[i][1]->setBlackWhite(field_0x318[1], field_0x338[1]);
+            field_0xac[i][2]->setBlackWhite(field_0x318[2], field_0x338[2]);
+            field_0x184[i][1]->setBlackWhite(field_0x318[3], field_0x338[3]);
+            field_0x184[i][3]->setBlackWhite(field_0x318[3], field_0x338[3]);
+            field_0xac[i][3]->scale(field_0x360, field_0x360);
+        } else {
+            ((J2DPicture*)field_0xac[i][0])->setBlackWhite(field_0x328[0], field_0x348[0]);
+            field_0xac[i][1]->setBlackWhite(field_0x328[1], field_0x348[1]);
+            field_0xac[i][2]->setBlackWhite(field_0x328[2], field_0x348[2]);
+            field_0x184[i][1]->setBlackWhite(field_0x328[3], field_0x348[3]);
+            field_0x184[i][3]->setBlackWhite(field_0x328[3], field_0x348[3]);
+            field_0xac[i][3]->scale(field_0x364, field_0x364);
+        }
+        if (i < field_0x373) {
+            field_0xac[i][3]->show();
+        } else {
+            field_0xac[i][3]->hide();
+        }
+    }
+    mIndex = 0;
+    int dVar1 = (m_letter_num - 6 * field_0x36f) & 0xff;
+    if (dVar1 < 6) {
+        field_0x373 = dVar1;
+    } else {
+        field_0x373 = 6;
+    }
+    changeActiveColor();
+    setPageText();
+    for (int i = 0; i < 6; i++) {
+        if (i < field_0x373) {
+            field_0x34[i][3]->show();
+        } else {
+            field_0x34[i][3]->hide();
+        }
+    }
 }
 
 /* 801E1518-801E15C8 1DBE58 00B0+00 7/7 0/0 0/0 .text setAButtonString__14dMenu_Letter_cFUs */
@@ -1168,24 +1393,104 @@ void dMenu_Letter_c::setBButtonString(u16 i_stringID) {
 
 /* 801E1678-801E1748 1DBFB8 00D0+00 1/1 0/0 0/0 .text            getLetterNum__14dMenu_Letter_cFv */
 u8 dMenu_Letter_c::getLetterNum() {
-    // NONMATCHING
+    u8 letterNum = 0;
+    if (g_drawHIO.mLetterSelectScreen.mLetterNum > 0) {
+        for (int i = 0; i < g_drawHIO.mLetterSelectScreen.mLetterNum; i++) {
+            if (dMenu_Letter::getLetterSubject(i) != 0 || dMenu_Letter::getLetterName(i) != 0 ||
+                dMenu_Letter::getLetterText(i) != 0)
+            {
+                dComIfGs_onLetterGetFlag(i);
+                dComIfGs_setGetNumber(letterNum, i + 1);
+                letterNum++;
+            }
+        }
+    } else {
+        letterNum = dMeter2Info_getRecieveLetterNum();
+    }
+    return letterNum;
 }
 
 /* 801E1748-801E1D10 1DC088 05C8+00 2/2 0/0 0/0 .text            setHIO__14dMenu_Letter_cFb */
 void dMenu_Letter_c::setHIO(bool i_useHIO) {
-    // NONMATCHING
-}
-
-/* 801E1D10-801E1D5C 1DC650 004C+00 0/0 1/0 0/0 .text
- * getStringPage__12dMsgString_cFUlUcUcP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc */
-void dMsgString_c::getStringPage(u32 param_0, u8 param_1, u8 param_2, J2DTextBox* param_3,
-                                     J2DTextBox* param_4, JUTFont* param_5, COutFont_c* param_6,
-                                     u8 param_7) {
-    // NONMATCHING
+    if (i_useHIO || g_drawHIO.mLetterSelectScreen.mDebugON) {
+        for (int i = 0; i < 3; i++) {
+            mpParent[i]->paneTrans(g_drawHIO.mLetterSelectScreen.mWindowPosX,
+                                   g_drawHIO.mLetterSelectScreen.mWindowPosY);
+            mpParent[i]->scale(g_drawHIO.mLetterSelectScreen.mWindowScale,
+                               g_drawHIO.mLetterSelectScreen.mWindowScale);
+        }
+        mpDMYParent->paneTrans(g_drawHIO.mLetterSelectScreen.mWindowPosX,
+                               g_drawHIO.mLetterSelectScreen.mWindowPosY);
+        mpDMYParent->scale(g_drawHIO.mLetterSelectScreen.mWindowScale,
+                           g_drawHIO.mLetterSelectScreen.mWindowScale);
+        for (int i = 0; i < 9; i++) {
+            mpPageLight[i]->setBlackWhite(g_drawHIO.mLetterSelectScreen.mSelectPageIconBack,
+                                          g_drawHIO.mLetterSelectScreen.mSelectPageIconFront);
+            if (i == field_0x36f) {
+                field_0x238[i]->setAlpha(0xff);
+            } else {
+                field_0x238[i]->setAlpha(g_drawHIO.mLetterSelectScreen.mUnselectPageIconAlpha);
+            }
+        }
+        field_0x318[0].set(g_drawHIO.mLetterSelectScreen.mSelectBarBack);
+        field_0x338[0].set(g_drawHIO.mLetterSelectScreen.mSelectBarFront);
+        field_0x318[3].set(g_drawHIO.mLetterSelectScreen.mSelectTextBack);
+        field_0x338[3].set(g_drawHIO.mLetterSelectScreen.mSelectTextFront);
+        field_0x360 = g_drawHIO.mLetterSelectScreen.mSelectBarScale;
+        field_0x364 = g_drawHIO.mLetterSelectScreen.mUnselectBarScale;
+        for (int i = 0; i < 6; i++) {
+            if (i == mIndex) {
+                ((J2DPicture*)field_0x34[i][0])->setBlackWhite(field_0x318[0], field_0x338[0]);
+                field_0x124[i][1]->setBlackWhite(field_0x318[3], field_0x338[3]);
+                field_0x124[i][3]->setBlackWhite(field_0x318[3], field_0x338[3]);
+                mpLetterParent[i]->scale(field_0x360, field_0x360);
+            } else {
+                mpLetterParent[i]->scale(field_0x364, field_0x364);
+            }
+        }
+        for (int i = 0; i < 2; i++) {
+            mpTextParent[i]->paneTrans(g_drawHIO.mLetterSelectScreen.mLetterWindowPosX,
+                                       g_drawHIO.mLetterSelectScreen.mLetterWindowPosY);
+            if (mProcess == 4 || mProcess == 5 || mProcess == 6) {
+                mpTextParent[i]->scale(g_drawHIO.mLetterSelectScreen.mLetterWindowScale,
+                                       g_drawHIO.mLetterSelectScreen.mLetterWindowScale);
+            }
+        }
+        if (((mProcess == 4) || (mProcess == 5)) ||
+            (mProcess == 6))
+        {
+            mpBlackTex->setAlpha(g_drawHIO.mLetterSelectScreen.mWindowBGAlpha);
+        }
+        mpLineParent->paneTrans(g_drawHIO.mLetterSelectScreen.mLetterLinePosX,
+                                g_drawHIO.mLetterSelectScreen.mLetterLinePosY);
+        for (int i = 0; i < 12; i++) {
+            if (field_0x25c[i] != NULL) {
+                field_0x25c[i]->setAlpha(g_drawHIO.mLetterSelectScreen.mLetterLineAlpha);
+            }
+        }
+        ((J2DTextBox*)field_0x2ec[1]->getPanePtr())->setBlackWhite(g_drawHIO.mLetterSelectScreen.mLetterTextBack, g_drawHIO.mLetterSelectScreen.mLetterTextFront);
+    }
+    if (g_drawHIO.mCollectScreen.mButtonDebugON != 0 || i_useHIO) {
+        if (mpButtonAB[0] != NULL) {
+            mpButtonAB[0]->paneTrans(g_drawHIO.mCollectScreen.mButtonAPosX, g_drawHIO.mCollectScreen.mButtonAPosY);
+            mpButtonAB[0]->scale(g_drawHIO.mCollectScreen.mButtonAScale, g_drawHIO.mCollectScreen.mButtonAScale);
+        }
+        if (mpButtonAB[1] != NULL) {
+            mpButtonAB[1]->paneTrans(g_drawHIO.mCollectScreen.mButtonBPosX, g_drawHIO.mCollectScreen.mButtonBPosY);
+            mpButtonAB[1]->scale(g_drawHIO.mCollectScreen.mButtonBScale, g_drawHIO.mCollectScreen.mButtonBScale);
+        }
+        if (mpButtonText[0] != NULL) {
+            mpButtonText[0]->paneTrans(g_drawHIO.mCollectScreen.mButtonATextPosX, g_drawHIO.mCollectScreen.mButtonATextPosY);
+            mpButtonText[0]->scale(g_drawHIO.mCollectScreen.mButtonATextScale, g_drawHIO.mCollectScreen.mButtonATextScale);
+        }
+        if (mpButtonText[1] != NULL) {
+            mpButtonText[1]->paneTrans(g_drawHIO.mCollectScreen.mButtonBTextPosX, g_drawHIO.mCollectScreen.mButtonBTextPosY);
+            mpButtonText[1]->scale(g_drawHIO.mCollectScreen.mButtonBTextScale, g_drawHIO.mCollectScreen.mButtonBTextScale);
+        }
+    }
 }
 
 /* 801E1D5C-801E1D7C 1DC69C 0020+00 1/0 0/0 0/0 .text            draw__14dMenu_Letter_cFv */
-// void dMenu_Letter_c::draw() {
-extern "C" void draw__14dMenu_Letter_cFv() {
-    // NONMATCHING
+void dMenu_Letter_c::draw() {
+    _draw(); 
 }

@@ -119,8 +119,12 @@ public:
         mWhite = i_white;
         return true;
     }
-    /* 801DFA4C */ virtual JUtility::TColor getBlack() const;
-    /* 801DFA40 */ virtual JUtility::TColor getWhite() const;
+    /* 801DFA4C */ virtual JUtility::TColor getBlack() const {
+        return mBlack;
+    }
+    /* 801DFA40 */ virtual JUtility::TColor getWhite() const {
+        return mWhite;
+    }
     /* 8025603C */ virtual J2DMaterial* getMaterial() const { return NULL; }
     /* 802FDBFC */ virtual void drawFullSet(f32, f32, f32, f32, Mtx*);
     /* 802FE380 */ virtual void drawTexCoord(f32, f32, f32, f32, s16, s16, s16, s16, s16, s16, s16,

@@ -17,7 +17,7 @@ JPAParticleCallBack::~JPAParticleCallBack() {
 
 /* 8027EFEC-8027F8C8 27992C 08DC+00 0/0 1/1 0/0 .text
  * init_p__15JPABaseParticleFP18JPAEmitterWorkData              */
-// NONMATCHING a couple problems, likely issues with setLength and get_r_ss
+// NONMATCHING a couple problems, likely issues with setLength
 void JPABaseParticle::init_p(JPAEmitterWorkData* work) {
     JPABaseEmitter* emtr = work->mpEmtr;
     JPAExtraShape* esp = work->mpRes->getEsp();
@@ -56,8 +56,8 @@ void JPABaseParticle::init_p(JPAEmitterWorkData* work) {
     JGeometry::TVec3<f32> velDir;
     if (emtr->mDirSpeed) {
         Mtx mtx;
-        s16 angleY = emtr->get_r_ss();
-        s16 angleZ = emtr->get_r_zp() * 0x8000 * emtr->mSpread;
+        int angleZ = emtr->get_r_ss();
+        f32 angleY = emtr->get_r_zp() * 0x8000 * emtr->mSpread;
         JPAGetYZRotateMtx(angleY, angleZ, mtx);
         MTXConcat(work->mDirectionMtx, mtx, mtx);
         velDir.set(emtr->mDirSpeed * mtx[0][2],
