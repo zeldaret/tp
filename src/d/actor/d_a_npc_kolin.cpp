@@ -1254,7 +1254,7 @@ void daNpc_Kolin_c::setParam() {
 
 /* 80555118-8055523C 001218 0124+00 1/0 0/0 0/0 .text            checkChangeEvt__13daNpc_Kolin_cFv
  */
-void daNpc_Kolin_c::checkChangeEvt() {
+bool daNpc_Kolin_c::checkChangeEvt() {
     // NONMATCHING
 }
 
@@ -1274,12 +1274,12 @@ void daNpc_Kolin_c::srchActors() {
 }
 
 /* 80555448-805554E8 001548 00A0+00 1/0 0/0 0/0 .text            evtTalk__13daNpc_Kolin_cFv */
-void daNpc_Kolin_c::evtTalk() {
+bool daNpc_Kolin_c::evtTalk() {
     // NONMATCHING
 }
 
 /* 805554E8-805555B0 0015E8 00C8+00 1/0 0/0 0/0 .text            evtCutProc__13daNpc_Kolin_cFv */
-void daNpc_Kolin_c::evtCutProc() {
+bool daNpc_Kolin_c::evtCutProc() {
     // NONMATCHING
 }
 
@@ -1517,7 +1517,7 @@ void daNpc_Kolin_c::setCollision() {
 }
 
 /* 80555CE4-80555CEC 001DE4 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__13daNpc_Kolin_cFv */
-bool daNpc_Kolin_c::drawDbgInfo() {
+int daNpc_Kolin_c::drawDbgInfo() {
     return false;
 }
 
@@ -2133,14 +2133,14 @@ REGISTER_CTORS(0x8055A25C, __sinit_d_a_npc_kolin_cpp);
 /* 8055A3B8-8055A498 0064B8 00E0+00 1/1 0/0 0/0 .text
  * __ct__13daNpc_Kolin_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc
  */
-daNpc_Kolin_c::daNpc_Kolin_c(daNpcT_faceMotionAnmData_c const* param_0,
+/* daNpc_Kolin_c::daNpc_Kolin_c(daNpcT_faceMotionAnmData_c const* param_0,
                                  daNpcT_motionAnmData_c const* param_1,
                                  daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_2,
                                  int param_3,
                                  daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_4,
                                  int param_5, daNpcT_evtData_c const* param_6, char** param_7) {
     // NONMATCHING
-}
+} */
 
 /* 8055A498-8055A4A0 006598 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__13daNpc_Kolin_cFv */
 s32 daNpc_Kolin_c::getEyeballMaterialNo() {
@@ -2160,19 +2160,19 @@ s32 daNpc_Kolin_c::getNeckJointNo() {
 }
 
 /* 8055A4B0-8055A4B8 0065B0 0008+00 1/0 0/0 0/0 .text getBackboneJointNo__13daNpc_Kolin_cFv */
-bool daNpc_Kolin_c::getBackboneJointNo() {
-    return true;
+s32 daNpc_Kolin_c::getBackboneJointNo() {
+    return 1;
 }
 
 /* 8055A4B8-8055A4C8 0065B8 0010+00 1/0 0/0 0/0 .text            checkChangeJoint__13daNpc_Kolin_cFi
  */
-void daNpc_Kolin_c::checkChangeJoint(int param_0) {
+int daNpc_Kolin_c::checkChangeJoint(int param_0) {
     // NONMATCHING
 }
 
 /* 8055A4C8-8055A4D8 0065C8 0010+00 1/0 0/0 0/0 .text            checkRemoveJoint__13daNpc_Kolin_cFi
  */
-void daNpc_Kolin_c::checkRemoveJoint(int param_0) {
+int daNpc_Kolin_c::checkRemoveJoint(int param_0) {
     // NONMATCHING
 }
 

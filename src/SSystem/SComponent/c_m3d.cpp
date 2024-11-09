@@ -2150,7 +2150,7 @@ static int cM3d_2PlaneCrossLine(const cM3dGPla& pPlaneA, const cM3dGPla& pPlaneB
 
 /* 8026E8A0-8026E980 2691E0 00E0+00 0/0 1/1 0/0 .text
  * cM3d_3PlaneCrossPos__FRC8cM3dGPlaRC8cM3dGPlaRC8cM3dGPlaP3Vec */
-bool cM3d_3PlaneCrossPos(const cM3dGPla& pPlaneA, const cM3dGPla& pPlaneB, const cM3dGPla& pPlaneC,
+BOOL cM3d_3PlaneCrossPos(const cM3dGPla& pPlaneA, const cM3dGPla& pPlaneB, const cM3dGPla& pPlaneC,
                          Vec* pVecOut) {
     cM3dGLin lin;
     if (!cM3d_2PlaneCrossLine(pPlaneA, pPlaneB, &lin)) {

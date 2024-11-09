@@ -53,6 +53,7 @@ void dKy_actor_addcol_amb_set(s16 r, s16 g, s16 b, f32 factor);
 void dKy_bg_addcol_amb_set(s16 r, s16 g, s16 b, f32 factor);
 int dKy_WolfEyeLight_set(cXyz* param_0, f32 param_1, f32 param_2, f32 param_3,
                               GXColor* param_4, f32 param_5, u8 param_6, u8 param_7);
+BOOL dKy_TeachWind_existence_chk();
 
 struct LIGHT_INFLUENCE {
     /* 0x00 */ cXyz mPosition;

@@ -212,6 +212,10 @@ public:
      */
     /* 8000CF44 */ static void ZXYrotM(csXyz const& xyz);
 
+    static void quatS(const Quaternion* quat) {
+        MTXQuat(now, (PSQuaternion*)quat);
+    }
+
     /* 8000CF7C */ static void quatM(Quaternion const*);
     /* 8000D070 */ ~mDoMtx_stack_c() {}  // inline
 

@@ -19,6 +19,7 @@ public:
     void onDrawFlg() { mDrawFlag = true; }
     void offDrawFlg() { mDrawFlag = false; }
     void setPos(const cXyz* i_pos) { mPos = *i_pos; }
+    cXyz* getPosP() { return &mPos; }
 
     /* 0x04 */ bool mDrawFlag;
     /* 0x05 */ u8 field_0x5[3];
@@ -79,6 +80,8 @@ public:
     u8* getBuffer() { return mBuffer; }
     bool checkNoSetIdx() const { return mIdx == 0xFFFF; }
     bool checkNoSetPriIdx() const { return mPriIdx == 0xFFFF; }
+    u16 getArcNo() const { return mArcNo; }
+    void setIdx(u16 i_idx) { mIdx = i_idx; }
 
 private:
     /* 0x00 */ u16 mIdx;
@@ -213,7 +216,7 @@ public:
     /* 0x05D4 */ cXyz mRightHandPos;
     /* 0x05E0 */ cXyz mLeftFootPos;
     /* 0x05EC */ cXyz mRightFootPos;
-    /* 0x05F8 */ u8 field_0x5f8[0xC];
+    /* 0x05F8 */ cXyz field_0x5f8;
     /* 0x0604 */ daPy_demo_c mDemo;
 
 public:
@@ -258,12 +261,14 @@ public:
         FLG1_UNK_10000000 = 0x10000000,
         FLG1_UNK_4000000 = 0x4000000,
         FLG1_IS_WOLF = 0x2000000,
+        FLG1_UNK_1000000 = 0x1000000,
         FLG1_UNK_800000 = 0x800000,
         FLG1_DASH_MODE = 0x400000,
         FLG1_UNK_200000 = 0x200000,
         FLG1_UNK_100000 = 0x100000,
         FLG1_MIDNA_ATN_POS = 0x80000,
         FLG1_UNK_40000 = 0x40000,
+        FLG1_UNK_20000 = 0x20000,
         FLG1_UNK_10000 = 0x10000,
         FLG1_UNK_8000 = 0x8000,
         FLG1_THROW_DAMAGE = 0x4000,
@@ -276,6 +281,7 @@ public:
         FLG1_UNK_40 = 0x40,
         FLG1_UNK_20 = 0x20,
         FLG1_UNK_10 = 0x10,
+        FLG1_UNK_8 = 8,
         FLG1_UNK_4 = 4,
         FLG1_UNK_2 = 2,
         FLG1_UNK_1 = 1,
@@ -374,6 +380,7 @@ public:
         ERFLG0_UNK_40000 = 0x40000,
         ERFLG0_UNK_20000 = 0x20000,
         ERFLG0_UNK_10000 = 0x10000,
+        ERFLG0_UNK_4000 = 0x4000,
         ERFLG0_UNK_2000 = 0x2000,
         ERFLG0_UNK_1000 = 0x1000,
         ERFLG0_UNK_400 = 0x400,
@@ -441,6 +448,7 @@ public:
         RFLG0_UNK_10000000 = 0x10000000,
         RFLG0_UNK_8000000 = 0x8000000,
         RFLG0_UNK_4000000 = 0x4000000,
+        RFLG0_UNK_2000000 = 0x2000000,
         RFLG0_GRAB_PUT_START = 0x400000,
         RFLG0_WOLF_GROWL = 0x200000,
         RFLG0_UNK_80000 = 0x80000,

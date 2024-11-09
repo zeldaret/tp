@@ -212,7 +212,7 @@ public:
         /* 0x00 */ ANM_NONE = 0,
     };
 
-    void onForcePanic();
+    void onForcePanic() { onEndResetStateFlg0(ERFLG0_FORCE_PANIC); }
     u32 checkForceNormalColor() const;
     u32 checkForceTiredColor() const;
     static bool checkMidnaTired();
