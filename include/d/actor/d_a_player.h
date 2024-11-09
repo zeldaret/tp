@@ -216,7 +216,7 @@ public:
     /* 0x05D4 */ cXyz mRightHandPos;
     /* 0x05E0 */ cXyz mLeftFootPos;
     /* 0x05EC */ cXyz mRightFootPos;
-    /* 0x05F8 */ u8 field_0x5f8[0xC];
+    /* 0x05F8 */ cXyz field_0x5f8;
     /* 0x0604 */ daPy_demo_c mDemo;
 
 public:

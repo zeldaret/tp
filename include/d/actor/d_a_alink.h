@@ -118,6 +118,7 @@ public:
     s16 getAppearFlg() const { return mAppearFlg; }
     s16 getHitFlg() const { return mHitFlg; }
     cXyz& getHitPos() { return mHitPos; }
+    f32 getKeepMinY() { return mKeepMinY; }
 
     void onAppearFlg() { mAppearFlg = true; }
 
@@ -3503,6 +3504,7 @@ public:
     bool checkRootTransZClearMode() { return field_0x2f99 & 4; }
     bool checkRootTransXClearMode() { return field_0x2f99 & 1; }
     bool checkRootTransYClearMode() { return field_0x2f99 & 2; }
+    bool checkRootTransClearContinueMode() { return field_0x2f99 & 8; }
     s16 checkWindStoneHowl() {return mProcVar4.field_0x3010; }
     u8 getCorrectCurveID() { return mZ2WolfHowlMgr.getCorrectCurveID(); }
     u8 getCorrectLineNum() { return mZ2WolfHowlMgr.getCorrectLineNum(); }
@@ -3522,6 +3524,8 @@ public:
 
     u8 getBStatus() { return dComIfGp_getAStatus(); }
     void setRStatus(u8 param_0, u8 param_1) { dComIfGp_setRStatus(param_0, param_1); }
+
+    BOOL checkWindSpeedMoveXZ() const { return mWindSpeed.abs2XZ() > 1.0f; }
 
     inline bool checkWindSpeedOnXZ() const;
     inline void startRestartRoomFromOut(int, u32, int);
