@@ -356,6 +356,7 @@ public:
     bool ChkAtStopNoConHit() { return mGObjAt.ChkSPrm(0x4); }
     bool ChkTgNoConHit() { return mGObjTg.ChkSPrm(2); }
     bool ChkTgStopNoConHit() { return mGObjTg.ChkSPrm(0x2000); }
+    void OnCoNoCamHit() { mGObjCo.OnSPrm(2); }
     bool ChkCoNoCamHit() { return mGObjCo.ChkSPrm(2); }
     dCcD_HitCallback GetCoHitCallback() { return mGObjCo.GetHitCallback(); }
     dCcD_HitCallback GetAtHitCallback() { return mGObjAt.GetHitCallback(); }
