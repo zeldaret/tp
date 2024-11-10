@@ -8,7 +8,6 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_s_play.h"
 
-// NONMATCHING ?
 static int setMidnaBindEffect(fopEn_enemy_c* i_actorP, Z2CreatureEnemy* i_creatureP, cXyz* i_effPos,
                               cXyz* i_effSize) {
     static GXColor e_prim[] = {

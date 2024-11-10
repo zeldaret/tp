@@ -70,7 +70,7 @@ bool cBgS::Regist(dBgW_Base* p_data, fpc_ProcID actor_id, void* p_actor) {
 }
 
 /* 80074250-800742E4 06EB90 0094+00 0/0 2/2 187/187 .text            Release__4cBgSFP9dBgW_Base */
-int cBgS::Release(dBgW_Base* p_data) {
+bool cBgS::Release(dBgW_Base* p_data) {
     if (p_data == NULL) {
         return 1;
     }
