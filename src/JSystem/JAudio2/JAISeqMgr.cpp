@@ -53,7 +53,7 @@ void JAISeqMgr::freeDeadSeq_() {
     JSULink<JAISeq>* link = mSeqList.getFirst();
     while (link != NULL) {
         JAISeq* seq = link->getObject();
-        JSULink<JAISeq>* next = seq->getNext();
+        JSULink<JAISeq>* next = link->getNext();
         if (seq->status_.isDead()) {
             mSeqList.remove(link);
             delete seq;
