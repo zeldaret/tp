@@ -5,77 +5,10 @@
 
 #include "JSystem/J3DGraphAnimator/J3DSkinDeform.h"
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "dol2asm.h"
 #include "dolphin/os.h"
 #include "string.h"
-
-//
-// Types:
-//
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__12J3DSkinNListFv();
-extern "C" static void J3DPSWeightMTXMultVec__FPA4_ffP3VecP3Vec();
-extern "C" static void J3DPSWeightMTXMultVecSR__FPA4_ffP3VecP3Vec();
-extern "C" void calcSkin_VtxPosF32__12J3DSkinNListFPA4_fPvPv();
-extern "C" void calcSkin_VtxNrmF32__12J3DSkinNListFPA4_fPvPv();
-extern "C" void __ct__13J3DSkinDeformFv();
-extern "C" void initSkinInfo__13J3DSkinDeformFP12J3DModelData();
-extern "C" void initMtxIndexArray__13J3DSkinDeformFP12J3DModelData();
-extern "C" void changeFastSkinDL__13J3DSkinDeformFP12J3DModelData();
-extern "C" void calcNrmMtx__13J3DSkinDeformFP12J3DMtxBuffer();
-extern "C" void transformVtxPosNrm__13J3DSkinDeformFP12J3DModelData();
-extern "C" void calcAnmInvJointMtx__13J3DSkinDeformFP12J3DMtxBuffer();
-extern "C" void deformFastVtxPos_F32__13J3DSkinDeformCFP15J3DVertexBufferP12J3DMtxBuffer();
-extern "C" void deformFastVtxNrm_F32__13J3DSkinDeformCFP15J3DVertexBufferP12J3DMtxBuffer();
-extern "C" void deformVtxPos_F32__13J3DSkinDeformCFP15J3DVertexBufferP12J3DMtxBuffer();
-extern "C" void deformVtxPos_S16__13J3DSkinDeformCFP15J3DVertexBufferP12J3DMtxBuffer();
-extern "C" void deformVtxNrm_F32__13J3DSkinDeformCFP15J3DVertexBuffer();
-extern "C" void deformVtxNrm_S16__13J3DSkinDeformCFP15J3DVertexBuffer();
-extern "C" void deform__13J3DSkinDeformFP8J3DModel();
-extern "C" void deform__13J3DSkinDeformFP15J3DVertexBufferP12J3DMtxBuffer();
-extern "C" void calc__15J3DVtxColorCalcFP8J3DModel();
-extern "C" void __dt__13J3DSkinDeformFv();
-extern "C" extern char const* const J3DSkinDeform__stringBase0;
-extern "C" u8 sWorkArea_WEvlpMixMtx__13J3DSkinDeform[4096];
-extern "C" u8 sWorkArea_WEvlpMixWeight__13J3DSkinDeform[4096];
-extern "C" u16 sWorkArea_MtxReg__13J3DSkinDeform[1024 + 4 /* padding */];
-
-//
-// External References:
-//
-
-extern "C" void* __nwa__FUl();
-extern "C" void* __nwa__FUli();
-extern "C" void __dl__FPv();
-extern "C" void J3DGQRSetup7__FUlUlUlUl();
-extern "C" void J3DPSCalcInverseTranspose__FPA4_fPA3_f();
-extern "C" void makeVcdVatCmd__8J3DShapeFv();
-extern "C" void __construct_new_array();
-extern "C" void _savegpr_14();
-extern "C" void _savegpr_17();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_14();
-extern "C" void _restgpr_17();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern f32 PSMulUnit01[2];
-
-//
-// Declarations:
-//
 
 /* 8032C6E4-8032C704 327024 0020+00 1/1 0/0 0/0 .text            __ct__12J3DSkinNListFv */
 J3DSkinNList::J3DSkinNList() {
@@ -269,31 +202,13 @@ void J3DSkinDeform::initSkinInfo(J3DModelData* param_0) {
     }
 }
 
-/* ############################################################################################## */
-/* 803A2008-803A2018 02E668 0010+00 1/1 0/0 0/0 .rodata          @1142 */
-SECTION_RODATA static u32 const lit_1142[4] = {
-    0, 1, 1, 2,
-};
-COMPILER_STRIP_GATE(0x803A2008, &lit_1142);
-
-/* 803A2028-803A2028 02E688 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803A2028 =
-    " Invlid Data : CPU Pipeline process GX_INDEX16 D"
-    "ata Only\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_803A2062 = "\0\0\0\0\0";
-#pragma pop
-
 /* 80439218-80439A20 065F38 0800+08 1/1 0/0 0/0 .bss             sWorkArea_MtxReg__13J3DSkinDeform
  */
 u16 J3DSkinDeform::sWorkArea_MtxReg[1024 + 4 /* padding */];
 
 /* 8032CF44-8032D378 327884 0434+00 0/0 1/1 0/0 .text
  * initMtxIndexArray__13J3DSkinDeformFP12J3DModelData           */
-// Several register order and regalloc issues
-#ifdef NONMATCHING
+// NONMATCHING - Several register order and regalloc issues
 int J3DSkinDeform::initMtxIndexArray(J3DModelData* param_0) {
     if (mPosData != NULL && mNrmData != NULL) {
         return 0;
@@ -409,11 +324,6 @@ int J3DSkinDeform::initMtxIndexArray(J3DModelData* param_0) {
 
     return 0;
 }
-#else   
-int J3DSkinDeform::initMtxIndexArray(J3DModelData* param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* ############################################################################################## */
 /* 803A2018-803A2028 02E678 0010+00 1/1 0/0 0/0 .rodata          @1270 */
@@ -424,8 +334,7 @@ COMPILER_STRIP_GATE(0x803A2018, &lit_1270);
 
 /* 8032D378-8032D5C4 327CB8 024C+00 0/0 1/1 0/0 .text
  * changeFastSkinDL__13J3DSkinDeformFP12J3DModelData            */
-// regalloc, display list access issues
-#ifdef NONMATCHING
+// NONMATCHING - regalloc, display list access issues
 void J3DSkinDeform::changeFastSkinDL(J3DModelData* param_0) {
     for (u16 i = 0; i < param_0->getShapeNum(); i++) {
         u32 local_28[4] = {0,1,1,2};
@@ -484,11 +393,6 @@ void J3DSkinDeform::changeFastSkinDL(J3DModelData* param_0) {
         pShape->makeVcdVatCmd();
     }
 }
-#else
-void J3DSkinDeform::changeFastSkinDL(J3DModelData* param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 8032D5C4-8032D738 327F04 0174+00 1/1 0/0 0/0 .text calcNrmMtx__13J3DSkinDeformFP12J3DMtxBuffer
  */
@@ -614,8 +518,7 @@ void J3DSkinDeform::deformFastVtxNrm_F32(J3DVertexBuffer* param_0, J3DMtxBuffer*
 
 /* 8032DB50-8032DC74 328490 0124+00 1/1 0/0 0/0 .text
  * deformVtxPos_F32__13J3DSkinDeformCFP15J3DVertexBufferP12J3DMtxBuffer */
-// J3DPSMulMtxVec regalloc
-#ifdef NONMATCHING
+// NONMATCHING - J3DPSMulMtxVec regalloc
 void J3DSkinDeform::deformVtxPos_F32(J3DVertexBuffer* param_0, J3DMtxBuffer* param_1) const {
     Mtx* anmMtxs[2];
     anmMtxs[0] = (Mtx*)param_1->getAnmMtx(0);
@@ -632,16 +535,10 @@ void J3DSkinDeform::deformVtxPos_F32(J3DVertexBuffer* param_0, J3DMtxBuffer* par
     DCStoreRange(param_0->getTransformedVtxPos(0), param_0->getVertexData()->getVtxNum() * sizeof(Vec));
     param_0->setCurrentVtxPos(transformedVtxPos);
 }
-#else
-void J3DSkinDeform::deformVtxPos_F32(J3DVertexBuffer* param_0, J3DMtxBuffer* param_1) const {
-    // NONMATCHING
-}
-#endif
 
 /* 8032DC74-8032DDB8 3285B4 0144+00 1/1 0/0 0/0 .text
  * deformVtxPos_S16__13J3DSkinDeformCFP15J3DVertexBufferP12J3DMtxBuffer */
-// J3DPSMulMtxVec regalloc
-#ifdef NONMATCHING
+// NONMATCHING - J3DPSMulMtxVec regalloc
 void J3DSkinDeform::deformVtxPos_S16(J3DVertexBuffer* param_0, J3DMtxBuffer* param_1) const {
     Mtx* anmMtxs[2];
     anmMtxs[0] = (Mtx*)param_1->getAnmMtx(0);
@@ -660,16 +557,10 @@ void J3DSkinDeform::deformVtxPos_S16(J3DVertexBuffer* param_0, J3DMtxBuffer* par
     DCStoreRange(param_0->getTransformedVtxPos(0), param_0->getVertexData()->getVtxNum() * sizeof(SVec));
     param_0->setCurrentVtxPos(transformedVtxPos);
 }
-#else
-void J3DSkinDeform::deformVtxPos_S16(J3DVertexBuffer* param_0, J3DMtxBuffer* param_1) const {
-    // NONMATCHING
-}
-#endif
 
 /* 8032DDB8-8032DEBC 3286F8 0104+00 1/1 0/0 0/0 .text
  * deformVtxNrm_F32__13J3DSkinDeformCFP15J3DVertexBuffer        */
-// J3DPSMulMtxVec regalloc
-#ifdef NONMATCHING
+// NONMATCHING - J3DPSMulMtxVec regalloc
 void J3DSkinDeform::deformVtxNrm_F32(J3DVertexBuffer* param_0) const {
     param_0->swapTransformedVtxNrm();
     int nrmNum = param_0->getVertexData()->getNrmNum();
@@ -681,16 +572,10 @@ void J3DSkinDeform::deformVtxNrm_F32(J3DVertexBuffer* param_0) const {
     DCStoreRange(param_0->getTransformedVtxNrm(0), param_0->getVertexData()->getNrmNum() * sizeof(Vec));
     param_0->setCurrentVtxNrm(transformedVtxNrm);
 }
-#else
-void J3DSkinDeform::deformVtxNrm_F32(J3DVertexBuffer* param_0) const {
-    // NONMATCHING
-}
-#endif
 
 /* 8032DEBC-8032DFDC 3287FC 0120+00 1/1 0/0 0/0 .text
  * deformVtxNrm_S16__13J3DSkinDeformCFP15J3DVertexBuffer        */
-// J3DPSMulMtxVec regalloc
-#ifdef NONMATCHING
+// NONMATCHING - J3DPSMulMtxVec regalloc
 void J3DSkinDeform::deformVtxNrm_S16(J3DVertexBuffer* param_0) const {
     u8 vtxNrmFrac = param_0->getVertexData()->getVtxNrmFrac();
     J3DGQRSetup7(vtxNrmFrac, 7, vtxNrmFrac, 7);
@@ -704,11 +589,6 @@ void J3DSkinDeform::deformVtxNrm_S16(J3DVertexBuffer* param_0) const {
     DCStoreRange(param_0->getTransformedVtxNrm(0), param_0->getVertexData()->getNrmNum() * sizeof(SVec));
     param_0->setCurrentVtxNrm(transformedVtxNrm);
 }
-#else
-void J3DSkinDeform::deformVtxNrm_S16(J3DVertexBuffer* param_0) const {
-    // NONMATCHING
-}
-#endif
 
 /* 8032DFDC-8032E064 32891C 0088+00 0/0 1/1 0/0 .text            deform__13J3DSkinDeformFP8J3DModel
  */

@@ -8,181 +8,12 @@
 #include "JSystem/JSupport/JSURandomInputStream.h"
 #include "dol2asm.h"
 
-//
-// Forward References:
-//
-
-extern "C" void __ct__11J2DWindowExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial();
-extern "C" void setMinSize__11J2DWindowExFv();
-extern "C" void __dt__11J2DWindowExFv();
-extern "C" void drawSelf__11J2DWindowExFffPA3_A4_f();
-extern "C" void func_803012CC();
-extern "C" void func_80301994();
-extern "C" void drawFrameTexture__11J2DWindowExFffffUsUsUsUsP11J2DMaterialb();
-extern "C" void func_80301FC8();
-extern "C" void func_80302164();
-extern "C" void setTevOrder__11J2DWindowExFb();
-extern "C" void setTevStage__11J2DWindowExFb();
-extern "C" void setStage__11J2DWindowExFP11J2DTevStageQ211J2DWindowEx10stage_enum();
-extern "C" void setBlack__11J2DWindowExFQ28JUtility6TColor();
-extern "C" void setWhite__11J2DWindowExFQ28JUtility6TColor();
-extern "C" void setBlackWhite__11J2DWindowExFQ28JUtility6TColorQ28JUtility6TColor();
-extern "C" void getBlackWhite__11J2DWindowExCFPQ28JUtility6TColorPQ28JUtility6TColor();
-extern "C" void isSetBlackWhite__11J2DWindowExCFQ28JUtility6TColorQ28JUtility6TColor();
-extern "C" void getBlack__11J2DWindowExCFv();
-extern "C" void getWhite__11J2DWindowExCFv();
-extern "C" void setAlpha__11J2DWindowExFUc();
-extern "C" void setCullBack__11J2DWindowExF11_GXCullMode();
-extern "C" void rewriteAlpha__11J2DWindowExFv();
-extern "C" void getFrameTexture__11J2DWindowExCFUcUc();
-extern "C" void getContentsTexture__11J2DWindowExCFUc();
-extern "C" void isUsed__11J2DWindowExFPC7ResTIMG();
-extern "C" void setAnimation__11J2DWindowExFP11J2DAnmColor();
-extern "C" void setAnimation__11J2DWindowExFP19J2DAnmTextureSRTKey();
-extern "C" void setAnimation__11J2DWindowExFP16J2DAnmTexPattern();
-extern "C" void setAnimation__11J2DWindowExFP15J2DAnmTevRegKey();
-extern "C" void isNeedSetAnm__11J2DWindowExFUc();
-extern "C" void setAnimation__11J2DWindowExFP20J2DAnmVisibilityFull();
-extern "C" void setAnimation__11J2DWindowExFP14J2DAnmVtxColor();
-extern "C" void animationPane__11J2DWindowExFPC15J2DAnmTransform();
-extern "C" void getFrameMaterial__11J2DWindowExCFUc();
-extern "C" void getContentsMaterial__11J2DWindowExCFv();
-extern "C" void getMaterial__11J2DWindowExCFRQ29J2DWindow9TMaterial();
-extern "C" void draw__11J2DWindowExFffff();
-extern "C" void setCullBack__11J2DWindowExFb();
-extern "C" void isUsed__11J2DWindowExFPC7ResFONT();
-extern "C" void setAnimation__11J2DWindowExFP10J2DAnmBase();
-extern "C" void getColor__14J2DAnmVtxColorCFUcUsP8_GXColor();
-
-//
-// External References:
-//
-
-extern "C" void calcMtx__7J2DPaneFv();
-extern "C" void makeMatrix__7J2DPaneFff();
-extern "C" void setAnimation__11J2DWindowExFP15J2DAnmTransform();
-extern "C" void __dl__FPv();
-extern "C" void read__14JSUInputStreamFPvl();
-extern "C" void peek__20JSURandomInputStreamFPvl();
-extern "C" void seek__20JSURandomInputStreamFl17JSUStreamSeekFrom();
-extern "C" void setGX__11J2DMaterialFv();
-extern "C" void setAnimation__11J2DMaterialFP11J2DAnmColor();
-extern "C" void setAnimation__11J2DMaterialFP19J2DAnmTextureSRTKey();
-extern "C" void setAnimation__11J2DMaterialFP16J2DAnmTexPattern();
-extern "C" void setAnimation__11J2DMaterialFP15J2DAnmTevRegKey();
-extern "C" void move__7J2DPaneFff();
-extern "C" void add__7J2DPaneFff();
-extern "C" void func_802F7264();
-extern "C" void search__7J2DPaneFUx();
-extern "C" void searchUserInfo__7J2DPaneFUx();
-extern "C" void isUsed__7J2DPaneFPC7ResTIMG();
-extern "C" void isUsed__7J2DPaneFPC7ResFONT();
-extern "C" void makeMatrix__7J2DPaneFffff();
-extern "C" void setCullBack__7J2DPaneF11_GXCullMode();
-extern "C" void getParentPane__7J2DPaneFv();
-extern "C" void makePaneExStream__7J2DPaneFP7J2DPaneP20JSURandomInputStream();
-extern "C" void setAnimation__7J2DPaneFP10J2DAnmBase();
-extern "C" void clearAnmTransform__7J2DPaneFv();
-extern "C" void animationTransform__7J2DPaneFPC15J2DAnmTransform();
-extern "C" void setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull();
-extern "C" void setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor();
-extern "C" void animationPane__7J2DPaneFPC15J2DAnmTransform();
-extern "C" void setAnimationVF__7J2DPaneFP20J2DAnmVisibilityFull();
-extern "C" void setAnimationVC__7J2DPaneFP14J2DAnmVtxColor();
-extern "C" void setConnectParent__7J2DPaneFb();
-extern "C" void update__7J2DPaneFv();
-extern "C" void __ct__9J2DWindowFv();
-extern "C" void __dt__9J2DWindowFv();
-extern "C" void resize__9J2DWindowFff();
-extern "C" void drawSelf__9J2DWindowFff();
-extern "C" s32 getTypeID__9J2DWindowCFv();
-extern "C" void getVisibility__20J2DAnmVisibilityFullCFUsPUc();
-extern "C" void _savegpr_20();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_20();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-
-//
-// Declarations:
-//
-
 /* ############################################################################################## */
 /* 803A1C60-803A1C70 02E2C0 0010+00 2/2 0/0 0/0 .rodata          @1508 */
 SECTION_RODATA static u8 const lit_1508[16] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 COMPILER_STRIP_GATE(0x803A1C60, &lit_1508);
-
-/* 803CD3E8-803CD4B8 02A508 00CC+04 2/2 0/0 0/0 .data            __vt__11J2DWindowEx */
-SECTION_DATA extern void* __vt__11J2DWindowEx[51 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__11J2DWindowExFv,
-    (void*)getTypeID__9J2DWindowCFv,
-    (void*)move__7J2DPaneFff,
-    (void*)add__7J2DPaneFff,
-    (void*)resize__9J2DWindowFff,
-    (void*)setCullBack__11J2DWindowExFb,
-    (void*)setCullBack__11J2DWindowExF11_GXCullMode,
-    (void*)setAlpha__11J2DWindowExFUc,
-    (void*)setConnectParent__7J2DPaneFb,
-    (void*)calcMtx__7J2DPaneFv,
-    (void*)update__7J2DPaneFv,
-    (void*)drawSelf__9J2DWindowFff,
-    (void*)drawSelf__11J2DWindowExFffPA3_A4_f,
-    (void*)search__7J2DPaneFUx,
-    (void*)searchUserInfo__7J2DPaneFUx,
-    (void*)makeMatrix__7J2DPaneFff,
-    (void*)makeMatrix__7J2DPaneFffff,
-    (void*)isUsed__11J2DWindowExFPC7ResTIMG,
-    (void*)isUsed__11J2DWindowExFPC7ResFONT,
-    (void*)clearAnmTransform__7J2DPaneFv,
-    (void*)rewriteAlpha__11J2DWindowExFv,
-    (void*)setAnimation__11J2DWindowExFP10J2DAnmBase,
-    (void*)setAnimation__11J2DWindowExFP15J2DAnmTransform,
-    (void*)setAnimation__11J2DWindowExFP11J2DAnmColor,
-    (void*)setAnimation__11J2DWindowExFP16J2DAnmTexPattern,
-    (void*)setAnimation__11J2DWindowExFP19J2DAnmTextureSRTKey,
-    (void*)setAnimation__11J2DWindowExFP15J2DAnmTevRegKey,
-    (void*)setAnimation__11J2DWindowExFP20J2DAnmVisibilityFull,
-    (void*)setAnimation__11J2DWindowExFP14J2DAnmVtxColor,
-    (void*)animationTransform__7J2DPaneFPC15J2DAnmTransform,
-    (void*)setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull,
-    (void*)setAnimationVF__7J2DPaneFP20J2DAnmVisibilityFull,
-    (void*)setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor,
-    (void*)setAnimationVC__7J2DPaneFP14J2DAnmVtxColor,
-    (void*)animationPane__11J2DWindowExFPC15J2DAnmTransform,
-    (void*)func_80301FC8,
-    (void*)func_80302164,
-    (void*)draw__11J2DWindowExFffff,
-    (void*)setBlack__11J2DWindowExFQ28JUtility6TColor,
-    (void*)setWhite__11J2DWindowExFQ28JUtility6TColor,
-    (void*)setBlackWhite__11J2DWindowExFQ28JUtility6TColorQ28JUtility6TColor,
-    (void*)getBlack__11J2DWindowExCFv,
-    (void*)getWhite__11J2DWindowExCFv,
-    (void*)getFrameTexture__11J2DWindowExCFUcUc,
-    (void*)getContentsTexture__11J2DWindowExCFUc,
-    (void*)getMaterial__11J2DWindowExCFRQ29J2DWindow9TMaterial,
-    (void*)getFrameMaterial__11J2DWindowExCFUc,
-    (void*)getContentsMaterial__11J2DWindowExCFv,
-    (void*)func_80301994,
-    /* padding */
-    NULL,
-};
-
-/* 804562A0-804562A8 0048A0 0008+00 4/4 0/0 0/0 .sdata2          @1549 */
-SECTION_SDATA2 static f64 lit_1549 = 4503601774854144.0 /* cast s32 to float */;
-
-/* 804562A8-804562B0 0048A8 0008+00 1/1 0/0 0/0 .sdata2          @1552 */
-SECTION_SDATA2 static f64 lit_1552 = 4503599627370496.0 /* cast u32 to float */;
 
 struct J2DWindowExDef {
     u32 field_0x0[4];
@@ -488,26 +319,6 @@ void J2DWindowEx::draw_private(JGeometry::TBox2<f32> const& param_0,
     }
 }
 
-
-/* ############################################################################################## */
-/* 804562B0-804562B4 0048B0 0004+00 4/4 0/0 0/0 .sdata2          @1827 */
-SECTION_SDATA2 static u8 lit_1827[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 804562B4-804562B8 0048B4 0004+00 1/1 0/0 0/0 .sdata2          @2256 */
-SECTION_SDATA2 static f32 lit_2256 = 1.0f;
-
-/* 804562B8-804562C0 0048B8 0004+04 1/1 0/0 0/0 .sdata2          @2257 */
-SECTION_SDATA2 static f32 lit_2257[1 + 1 /* padding */] = {
-    0.5f,
-    /* padding */
-    0.0f,
-};
-
 /* 80301994-80301D74 2FC2D4 03E0+00 1/0 0/0 0/0 .text
  * drawContents__11J2DWindowExFRCQ29JGeometry8TBox2<f>          */
 void J2DWindowEx::drawContents(JGeometry::TBox2<f32> const& param_1) {
@@ -793,8 +604,7 @@ bool J2DWindowEx::setWhite(JUtility::TColor white) {
 
 /* 80302874-80302A4C 2FD1B4 01D8+00 1/0 0/0 0/0 .text
  * setBlackWhite__11J2DWindowExFQ28JUtility6TColorQ28JUtility6TColor */
-// J2DGXColorS10 issue
-#ifdef NONMATCHING
+// NONMATCHING - J2DGXColorS10 issue
 bool J2DWindowEx::setBlackWhite(JUtility::TColor black, JUtility::TColor white) {
     for (int i = 0; i < 4; i++) {
         if (mFrameMaterial[i] == NULL) {
@@ -839,11 +649,6 @@ bool J2DWindowEx::setBlackWhite(JUtility::TColor black, JUtility::TColor white) 
     }
     return true;
 }
-#else
-bool J2DWindowEx::setBlackWhite(JUtility::TColor param_0, JUtility::TColor param_1) {
-    // NONMATCHING
-}
-#endif
 
 /* 80302A4C-80302BE8 2FD38C 019C+00 4/4 0/0 0/0 .text
  * getBlackWhite__11J2DWindowExCFPQ28JUtility6TColorPQ28JUtility6TColor */

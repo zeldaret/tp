@@ -359,8 +359,7 @@ extern "C" extern void* __vt__11J2DIndBlock[14];
 //
 
 /* 802EB394-802EB424 2E5CD4 0090+00 0/0 1/1 0/0 .text            initialize__13J2DColorBlockFv */
-// instruction order
-#ifdef NONMATCHING
+// NONMATCHING - instruction order
 void J2DColorBlock::initialize() {
     for (int i = 0; i < 2; i++) {
         mMatColor[i] = JUtility::TColor(j2dDefaultColInfo);
@@ -371,11 +370,6 @@ void J2DColorBlock::initialize() {
     }
     mCullMode = GX_CULL_NONE;
 }
-#else
-void J2DColorBlock::initialize() {
-    // NONMATCHING
-}
-#endif
 
 /* 802EB424-802EB510 2E5D64 00EC+00 0/0 1/1 0/0 .text            setGX__13J2DColorBlockFv */
 void J2DColorBlock::setGX() {
@@ -413,280 +407,6 @@ void J2DTexGenBlock::setGX() {
         }
     }
 }
-
-/* ############################################################################################## */
-/* 803CCA90-803CCAC8 029BB0 0038+00 1/1 1/1 0/0 .data            __vt__15J2DIndBlockFull */
-SECTION_DATA extern void* __vt__15J2DIndBlockFull[14] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)initialize__15J2DIndBlockFullFv,
-    (void*)setGX__15J2DIndBlockFullFv,
-    (void*)getType__15J2DIndBlockFullFv,
-    (void*)setIndTexStageNum__15J2DIndBlockFullFUc,
-    (void*)getIndTexStageNum__15J2DIndBlockFullCFv,
-    (void*)setIndTexOrder__15J2DIndBlockFullFUl14J2DIndTexOrder,
-    (void*)getIndTexOrder__15J2DIndBlockFullFUl,
-    (void*)setIndTexMtx__15J2DIndBlockFullFUl12J2DIndTexMtx,
-    (void*)getIndTexMtx__15J2DIndBlockFullFUl,
-    (void*)setIndTexCoordScale__15J2DIndBlockFullFUl19J2DIndTexCoordScale,
-    (void*)getIndTexCoordScale__15J2DIndBlockFullFUl,
-    (void*)__dt__15J2DIndBlockFullFv,
-};
-
-/* 803CCAC8-803CCB84 029BE8 00BC+00 2/2 0/0 0/0 .data            __vt__13J2DTevBlock16 */
-SECTION_DATA extern void* __vt__13J2DTevBlock16[47] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)initialize__13J2DTevBlock16Fv,
-    (void*)setGX__13J2DTevBlock16Fv,
-    (void*)loadTexture__13J2DTevBlock16F11_GXTexMapIDUl,
-    (void*)getType__13J2DTevBlock16Fv,
-    (void*)getMaxStage__13J2DTevBlock16Fv,
-    (void*)setTexNo__13J2DTevBlock16FUlUs,
-    (void*)getTexNo__13J2DTevBlock16CFUl,
-    (void*)setFontNo__13J2DTevBlock16FUs,
-    (void*)getFontNo__13J2DTevBlock16CFv,
-    (void*)setTevOrder__13J2DTevBlock16FUl11J2DTevOrder,
-    (void*)getTevOrder__13J2DTevBlock16FUl,
-    (void*)setTevColor__13J2DTevBlock16FUl13J2DGXColorS10,
-    (void*)getTevColor__13J2DTevBlock16FUl,
-    (void*)setTevKColor__13J2DTevBlock16FUlQ28JUtility6TColor,
-    (void*)getTevKColor__13J2DTevBlock16FUl,
-    (void*)setTevKColorSel__13J2DTevBlock16FUlUc,
-    (void*)getTevKColorSel__13J2DTevBlock16FUl,
-    (void*)setTevKAlphaSel__13J2DTevBlock16FUlUc,
-    (void*)getTevKAlphaSel__13J2DTevBlock16FUl,
-    (void*)setTevStageNum__13J2DTevBlock16FUc,
-    (void*)getTevStageNum__13J2DTevBlock16CFv,
-    (void*)setTevStage__13J2DTevBlock16FUl11J2DTevStage,
-    (void*)getTevStage__13J2DTevBlock16FUl,
-    (void*)setTevSwapModeInfo__13J2DTevBlock16FUl18J2DTevSwapModeInfo,
-    (void*)setTevSwapModeTable__13J2DTevBlock16FUl19J2DTevSwapModeTable,
-    (void*)getTevSwapModeTable__13J2DTevBlock16FUl,
-    (void*)setIndTevStage__13J2DTevBlock16FUl14J2DIndTevStage,
-    (void*)getIndTevStage__13J2DTevBlock16FUl,
-    (void*)insertTexture__13J2DTevBlock16FUlPC7ResTIMG,
-    (void*)insertTexture__13J2DTevBlock16FUlPC7ResTIMGP10JUTPalette,
-    (void*)insertTexture__13J2DTevBlock16FUlP10JUTTexture,
-    (void*)setTexture__13J2DTevBlock16FUlPC7ResTIMG,
-    (void*)setTexture__13J2DTevBlock16FUlP10JUTTexture,
-    (void*)removeTexture__13J2DTevBlock16FUl,
-    (void*)setFont__13J2DTevBlock16FP7ResFONT,
-    (void*)setFont__13J2DTevBlock16FP7JUTFont,
-    (void*)setPalette__13J2DTevBlock16FUlPC7ResTLUT,
-    (void*)prepareTexture__13J2DTevBlock16FUc,
-    (void*)getTexture__13J2DTevBlock16FUl,
-    (void*)getPalette__13J2DTevBlock16FUl,
-    (void*)getFont__13J2DTevBlock16Fv,
-    (void*)shiftDeleteFlag__13J2DTevBlock16FUcb,
-    (void*)setUndeleteFlag__13J2DTevBlock16FUc,
-    (void*)setFontUndeleteFlag__13J2DTevBlock16Fv,
-    (void*)__dt__13J2DTevBlock16Fv,
-};
-
-/* 803CCB84-803CCC40 029CA4 00BC+00 2/2 0/0 0/0 .data            __vt__12J2DTevBlock8 */
-SECTION_DATA extern void* __vt__12J2DTevBlock8[47] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)initialize__12J2DTevBlock8Fv,
-    (void*)setGX__12J2DTevBlock8Fv,
-    (void*)loadTexture__12J2DTevBlock8F11_GXTexMapIDUl,
-    (void*)getType__12J2DTevBlock8Fv,
-    (void*)getMaxStage__12J2DTevBlock8Fv,
-    (void*)setTexNo__12J2DTevBlock8FUlUs,
-    (void*)getTexNo__12J2DTevBlock8CFUl,
-    (void*)setFontNo__12J2DTevBlock8FUs,
-    (void*)getFontNo__12J2DTevBlock8CFv,
-    (void*)setTevOrder__12J2DTevBlock8FUl11J2DTevOrder,
-    (void*)getTevOrder__12J2DTevBlock8FUl,
-    (void*)setTevColor__12J2DTevBlock8FUl13J2DGXColorS10,
-    (void*)getTevColor__12J2DTevBlock8FUl,
-    (void*)setTevKColor__12J2DTevBlock8FUlQ28JUtility6TColor,
-    (void*)getTevKColor__12J2DTevBlock8FUl,
-    (void*)setTevKColorSel__12J2DTevBlock8FUlUc,
-    (void*)getTevKColorSel__12J2DTevBlock8FUl,
-    (void*)setTevKAlphaSel__12J2DTevBlock8FUlUc,
-    (void*)getTevKAlphaSel__12J2DTevBlock8FUl,
-    (void*)setTevStageNum__12J2DTevBlock8FUc,
-    (void*)getTevStageNum__12J2DTevBlock8CFv,
-    (void*)setTevStage__12J2DTevBlock8FUl11J2DTevStage,
-    (void*)getTevStage__12J2DTevBlock8FUl,
-    (void*)setTevSwapModeInfo__12J2DTevBlock8FUl18J2DTevSwapModeInfo,
-    (void*)setTevSwapModeTable__12J2DTevBlock8FUl19J2DTevSwapModeTable,
-    (void*)getTevSwapModeTable__12J2DTevBlock8FUl,
-    (void*)setIndTevStage__12J2DTevBlock8FUl14J2DIndTevStage,
-    (void*)getIndTevStage__12J2DTevBlock8FUl,
-    (void*)insertTexture__12J2DTevBlock8FUlPC7ResTIMG,
-    (void*)insertTexture__12J2DTevBlock8FUlPC7ResTIMGP10JUTPalette,
-    (void*)insertTexture__12J2DTevBlock8FUlP10JUTTexture,
-    (void*)setTexture__12J2DTevBlock8FUlPC7ResTIMG,
-    (void*)setTexture__12J2DTevBlock8FUlP10JUTTexture,
-    (void*)removeTexture__12J2DTevBlock8FUl,
-    (void*)setFont__12J2DTevBlock8FP7ResFONT,
-    (void*)setFont__12J2DTevBlock8FP7JUTFont,
-    (void*)setPalette__12J2DTevBlock8FUlPC7ResTLUT,
-    (void*)prepareTexture__12J2DTevBlock8FUc,
-    (void*)getTexture__12J2DTevBlock8FUl,
-    (void*)getPalette__12J2DTevBlock8FUl,
-    (void*)getFont__12J2DTevBlock8Fv,
-    (void*)shiftDeleteFlag__12J2DTevBlock8FUcb,
-    (void*)setUndeleteFlag__12J2DTevBlock8FUc,
-    (void*)setFontUndeleteFlag__12J2DTevBlock8Fv,
-    (void*)__dt__12J2DTevBlock8Fv,
-};
-
-/* 803CCC40-803CCCFC 029D60 00BC+00 2/2 0/0 0/0 .data            __vt__12J2DTevBlock4 */
-SECTION_DATA extern void* __vt__12J2DTevBlock4[47] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)initialize__12J2DTevBlock4Fv,
-    (void*)setGX__12J2DTevBlock4Fv,
-    (void*)loadTexture__12J2DTevBlock4F11_GXTexMapIDUl,
-    (void*)getType__12J2DTevBlock4Fv,
-    (void*)getMaxStage__12J2DTevBlock4Fv,
-    (void*)setTexNo__12J2DTevBlock4FUlUs,
-    (void*)getTexNo__12J2DTevBlock4CFUl,
-    (void*)setFontNo__12J2DTevBlock4FUs,
-    (void*)getFontNo__12J2DTevBlock4CFv,
-    (void*)setTevOrder__12J2DTevBlock4FUl11J2DTevOrder,
-    (void*)getTevOrder__12J2DTevBlock4FUl,
-    (void*)setTevColor__12J2DTevBlock4FUl13J2DGXColorS10,
-    (void*)getTevColor__12J2DTevBlock4FUl,
-    (void*)setTevKColor__12J2DTevBlock4FUlQ28JUtility6TColor,
-    (void*)getTevKColor__12J2DTevBlock4FUl,
-    (void*)setTevKColorSel__12J2DTevBlock4FUlUc,
-    (void*)getTevKColorSel__12J2DTevBlock4FUl,
-    (void*)setTevKAlphaSel__12J2DTevBlock4FUlUc,
-    (void*)getTevKAlphaSel__12J2DTevBlock4FUl,
-    (void*)setTevStageNum__12J2DTevBlock4FUc,
-    (void*)getTevStageNum__12J2DTevBlock4CFv,
-    (void*)setTevStage__12J2DTevBlock4FUl11J2DTevStage,
-    (void*)getTevStage__12J2DTevBlock4FUl,
-    (void*)setTevSwapModeInfo__12J2DTevBlock4FUl18J2DTevSwapModeInfo,
-    (void*)setTevSwapModeTable__12J2DTevBlock4FUl19J2DTevSwapModeTable,
-    (void*)getTevSwapModeTable__12J2DTevBlock4FUl,
-    (void*)setIndTevStage__12J2DTevBlock4FUl14J2DIndTevStage,
-    (void*)getIndTevStage__12J2DTevBlock4FUl,
-    (void*)insertTexture__12J2DTevBlock4FUlPC7ResTIMG,
-    (void*)insertTexture__12J2DTevBlock4FUlPC7ResTIMGP10JUTPalette,
-    (void*)insertTexture__12J2DTevBlock4FUlP10JUTTexture,
-    (void*)setTexture__12J2DTevBlock4FUlPC7ResTIMG,
-    (void*)setTexture__12J2DTevBlock4FUlP10JUTTexture,
-    (void*)removeTexture__12J2DTevBlock4FUl,
-    (void*)setFont__12J2DTevBlock4FP7ResFONT,
-    (void*)setFont__12J2DTevBlock4FP7JUTFont,
-    (void*)setPalette__12J2DTevBlock4FUlPC7ResTLUT,
-    (void*)prepareTexture__12J2DTevBlock4FUc,
-    (void*)getTexture__12J2DTevBlock4FUl,
-    (void*)getPalette__12J2DTevBlock4FUl,
-    (void*)getFont__12J2DTevBlock4Fv,
-    (void*)shiftDeleteFlag__12J2DTevBlock4FUcb,
-    (void*)setUndeleteFlag__12J2DTevBlock4FUc,
-    (void*)setFontUndeleteFlag__12J2DTevBlock4Fv,
-    (void*)__dt__12J2DTevBlock4Fv,
-};
-
-/* 803CCCFC-803CCDB8 029E1C 00BC+00 2/2 0/0 0/0 .data            __vt__12J2DTevBlock2 */
-SECTION_DATA extern void* __vt__12J2DTevBlock2[47] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)initialize__12J2DTevBlock2Fv,
-    (void*)setGX__12J2DTevBlock2Fv,
-    (void*)loadTexture__12J2DTevBlock2F11_GXTexMapIDUl,
-    (void*)getType__12J2DTevBlock2Fv,
-    (void*)getMaxStage__12J2DTevBlock2Fv,
-    (void*)setTexNo__12J2DTevBlock2FUlUs,
-    (void*)getTexNo__12J2DTevBlock2CFUl,
-    (void*)setFontNo__12J2DTevBlock2FUs,
-    (void*)getFontNo__12J2DTevBlock2CFv,
-    (void*)setTevOrder__12J2DTevBlock2FUl11J2DTevOrder,
-    (void*)getTevOrder__12J2DTevBlock2FUl,
-    (void*)setTevColor__12J2DTevBlock2FUl13J2DGXColorS10,
-    (void*)getTevColor__12J2DTevBlock2FUl,
-    (void*)setTevKColor__12J2DTevBlock2FUlQ28JUtility6TColor,
-    (void*)getTevKColor__12J2DTevBlock2FUl,
-    (void*)setTevKColorSel__12J2DTevBlock2FUlUc,
-    (void*)getTevKColorSel__12J2DTevBlock2FUl,
-    (void*)setTevKAlphaSel__12J2DTevBlock2FUlUc,
-    (void*)getTevKAlphaSel__12J2DTevBlock2FUl,
-    (void*)setTevStageNum__12J2DTevBlock2FUc,
-    (void*)getTevStageNum__12J2DTevBlock2CFv,
-    (void*)setTevStage__12J2DTevBlock2FUl11J2DTevStage,
-    (void*)getTevStage__12J2DTevBlock2FUl,
-    (void*)setTevSwapModeInfo__12J2DTevBlock2FUl18J2DTevSwapModeInfo,
-    (void*)setTevSwapModeTable__12J2DTevBlock2FUl19J2DTevSwapModeTable,
-    (void*)getTevSwapModeTable__12J2DTevBlock2FUl,
-    (void*)setIndTevStage__12J2DTevBlock2FUl14J2DIndTevStage,
-    (void*)getIndTevStage__12J2DTevBlock2FUl,
-    (void*)insertTexture__12J2DTevBlock2FUlPC7ResTIMG,
-    (void*)insertTexture__12J2DTevBlock2FUlPC7ResTIMGP10JUTPalette,
-    (void*)insertTexture__12J2DTevBlock2FUlP10JUTTexture,
-    (void*)setTexture__12J2DTevBlock2FUlPC7ResTIMG,
-    (void*)setTexture__12J2DTevBlock2FUlP10JUTTexture,
-    (void*)removeTexture__12J2DTevBlock2FUl,
-    (void*)setFont__12J2DTevBlock2FP7ResFONT,
-    (void*)setFont__12J2DTevBlock2FP7JUTFont,
-    (void*)setPalette__12J2DTevBlock2FUlPC7ResTLUT,
-    (void*)prepareTexture__12J2DTevBlock2FUc,
-    (void*)getTexture__12J2DTevBlock2FUl,
-    (void*)getPalette__12J2DTevBlock2FUl,
-    (void*)getFont__12J2DTevBlock2Fv,
-    (void*)shiftDeleteFlag__12J2DTevBlock2FUcb,
-    (void*)setUndeleteFlag__12J2DTevBlock2FUc,
-    (void*)setFontUndeleteFlag__12J2DTevBlock2Fv,
-    (void*)__dt__12J2DTevBlock2Fv,
-};
-
-/* 803CCDB8-803CCE74 029ED8 00BC+00 2/2 0/0 0/0 .data            __vt__12J2DTevBlock1 */
-SECTION_DATA extern void* __vt__12J2DTevBlock1[47] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)initialize__12J2DTevBlock1Fv,
-    (void*)setGX__12J2DTevBlock1Fv,
-    (void*)loadTexture__12J2DTevBlock1F11_GXTexMapIDUl,
-    (void*)getType__12J2DTevBlock1Fv,
-    (void*)getMaxStage__12J2DTevBlock1Fv,
-    (void*)setTexNo__12J2DTevBlock1FUlUs,
-    (void*)getTexNo__12J2DTevBlock1CFUl,
-    (void*)setFontNo__12J2DTevBlock1FUs,
-    (void*)getFontNo__12J2DTevBlock1CFv,
-    (void*)setTevOrder__12J2DTevBlock1FUl11J2DTevOrder,
-    (void*)getTevOrder__12J2DTevBlock1FUl,
-    (void*)setTevColor__12J2DTevBlock1FUl13J2DGXColorS10,
-    (void*)getTevColor__12J2DTevBlock1FUl,
-    (void*)setTevKColor__12J2DTevBlock1FUlQ28JUtility6TColor,
-    (void*)getTevKColor__12J2DTevBlock1FUl,
-    (void*)setTevKColorSel__12J2DTevBlock1FUlUc,
-    (void*)getTevKColorSel__12J2DTevBlock1FUl,
-    (void*)setTevKAlphaSel__12J2DTevBlock1FUlUc,
-    (void*)getTevKAlphaSel__12J2DTevBlock1FUl,
-    (void*)setTevStageNum__12J2DTevBlock1FUc,
-    (void*)getTevStageNum__12J2DTevBlock1CFv,
-    (void*)setTevStage__12J2DTevBlock1FUl11J2DTevStage,
-    (void*)getTevStage__12J2DTevBlock1FUl,
-    (void*)setTevSwapModeInfo__12J2DTevBlock1FUl18J2DTevSwapModeInfo,
-    (void*)setTevSwapModeTable__12J2DTevBlock1FUl19J2DTevSwapModeTable,
-    (void*)getTevSwapModeTable__12J2DTevBlock1FUl,
-    (void*)setIndTevStage__12J2DTevBlock1FUl14J2DIndTevStage,
-    (void*)getIndTevStage__12J2DTevBlock1FUl,
-    (void*)insertTexture__12J2DTevBlock1FUlPC7ResTIMG,
-    (void*)insertTexture__12J2DTevBlock1FUlPC7ResTIMGP10JUTPalette,
-    (void*)insertTexture__12J2DTevBlock1FUlP10JUTTexture,
-    (void*)setTexture__12J2DTevBlock1FUlPC7ResTIMG,
-    (void*)setTexture__12J2DTevBlock1FUlP10JUTTexture,
-    (void*)removeTexture__12J2DTevBlock1FUl,
-    (void*)setFont__12J2DTevBlock1FP7ResFONT,
-    (void*)setFont__12J2DTevBlock1FP7JUTFont,
-    (void*)setPalette__12J2DTevBlock1FUlPC7ResTLUT,
-    (void*)prepareTexture__12J2DTevBlock1FUc,
-    (void*)getTexture__12J2DTevBlock1FUl,
-    (void*)getPalette__12J2DTevBlock1FUl,
-    (void*)getFont__12J2DTevBlock1Fv,
-    (void*)shiftDeleteFlag__12J2DTevBlock1FUcb,
-    (void*)setUndeleteFlag__12J2DTevBlock1FUc,
-    (void*)setFontUndeleteFlag__12J2DTevBlock1Fv,
-    (void*)__dt__12J2DTevBlock1Fv,
-};
 
 /* 802EB620-802EB6A4 2E5F60 0084+00 1/0 1/1 0/0 .text            __dt__14J2DTexGenBlockFv */
 J2DTexGenBlock::~J2DTexGenBlock() {
@@ -748,8 +468,6 @@ J2DTevBlock1::~J2DTevBlock1() {
 }
 
 /* 802EBA50-802EBC0C 2E6390 01BC+00 1/0 0/0 0/0 .text            initialize__12J2DTevBlock1Fv */
-// inlines
-#ifdef NONMATCHING
 void J2DTevBlock1::initialize() {
     mTexNo[0] = -1;
     mFontNo = -1;
@@ -770,12 +488,6 @@ void J2DTevBlock1::initialize() {
     mPalette[0] = NULL;
     mFont = NULL;
 }
-#else
-extern "C" void initialize__12J2DTevBlock1Fv() {
-    // asm void J2DTevBlock1::initialize() {
-    // NONMATCHING
-}
-#endif
 
 /* 802EBC0C-802EBCC0 2E654C 00B4+00 1/0 0/0 0/0 .text            prepareTexture__12J2DTevBlock1FUc
  */
@@ -1078,9 +790,33 @@ J2DTevBlock2::~J2DTevBlock2() {
 }
 
 /* 802EC7A0-802ECA18 2E70E0 0278+00 1/0 0/0 0/0 .text            initialize__12J2DTevBlock2Fv */
-extern "C" void initialize__12J2DTevBlock2Fv() {
-    // asm void J2DTevBlock2::initialize() {
-    // NONMATCHING
+void J2DTevBlock2::initialize() {
+    mTexNo[0] = 0xffff;
+    mTexNo[1] = 0xffff;
+    mFontNo = 0xffff;
+    mTevOrder[0].setTevOrderInfo(j2dDefaultTevOrderInfoNull);
+    mTevOrder[1].setTevOrderInfo(j2dDefaultTevOrderInfoNull);
+    for (int i = 0; i < 4; i++) {
+        mTevColor[i] = j2dDefaultTevColor;
+    }
+    mTevStageNum = 1;
+    mTevStage[0].setStageNo(0);
+    mTevStage[1].setStageNo(1);
+    for (int i = 0; i < 4; i++) {
+        mTevKColor[i] = j2dDefaultTevKColor;
+    }
+    mTevKColorSel[0] = 0xff;
+    mTevKColorSel[1] = 0xff;
+    mTevKAlphaSel[0] = 0xff;
+    mTevKAlphaSel[1] = 0xff;
+    for (int i = 0; i < 4; i++) {
+        mTevSwapModeTable[i].setTevSwapModeTableInfo(j2dDefaultTevSwapModeTable);
+    }
+    mIndTevStage[0].setIndTevStageInfo(j2dDefaultIndTevStageInfo);
+    mIndTevStage[1].setIndTevStageInfo(j2dDefaultIndTevStageInfo);
+    mPalette[0] = NULL;
+    mPalette[1] = NULL;
+    mFont = NULL;
 }
 
 /* 802ECA18-802ECAE8 2E7358 00D0+00 1/0 0/0 0/0 .text            prepareTexture__12J2DTevBlock2FUc
@@ -1238,8 +974,7 @@ bool J2DTevBlock2::insertTexture(u32 param_0, JUTTexture* p_tex) {
 }
 
 /* 802ECF48-802ED16C 2E7888 0224+00 1/0 0/0 0/0 .text setTexture__12J2DTevBlock2FUlPC7ResTIMG */
-// instruction order
-#ifdef NONMATCHING
+// NONMATCHING - instruction order
 bool J2DTevBlock2::setTexture(u32 param_0, ResTIMG const* p_timg) {
     if (param_0 >= 2) {
         return false;
@@ -1303,11 +1038,6 @@ bool J2DTevBlock2::setTexture(u32 param_0, ResTIMG const* p_timg) {
     mTexNo[param_0] = -1;
     return true;
 }
-#else
-bool J2DTevBlock2::setTexture(u32 param_0, ResTIMG const* param_1) {
-    // NONMATCHING
-}
-#endif
 
 /* 802ED16C-802ED21C 2E7AAC 00B0+00 1/0 0/0 0/0 .text setTexture__12J2DTevBlock2FUlP10JUTTexture
  */
@@ -1512,8 +1242,7 @@ J2DTevBlock4::~J2DTevBlock4() {
 }
 
 /* 802EDAC4-802EDD34 2E8404 0270+00 1/0 0/0 0/0 .text            initialize__12J2DTevBlock4Fv */
-// inlines
-#ifdef NONMATCHING
+// NONMATCHING - inlines
 void J2DTevBlock4::initialize() {
     for (int i = 0; i < 4; i++) {
         mTexNo[i] = -1;
@@ -1547,12 +1276,6 @@ void J2DTevBlock4::initialize() {
     }
     mFont = NULL;
 }
-#else
-extern "C" void initialize__12J2DTevBlock4Fv() {
-    // asm void J2DTevBlock4::initialize() {
-    // NONMATCHING
-}
-#endif
 
 /* 802EDD34-802EDE04 2E8674 00D0+00 1/0 0/0 0/0 .text            prepareTexture__12J2DTevBlock4FUc
  */
@@ -1577,8 +1300,7 @@ bool J2DTevBlock4::prepareTexture(u8 param_0) {
 
 /* 802EDE04-802EE1D4 2E8744 03D0+00 1/0 0/0 0/0 .text
  * insertTexture__12J2DTevBlock4FUlPC7ResTIMGP10JUTPalette      */
-// local_3c
-#ifdef NONMATCHING
+// NONMATCHING - local_3c
 bool J2DTevBlock4::insertTexture(u32 param_0, ResTIMG const* p_timg, JUTPalette* p_tlut) {
     if (param_0 >= 4 || !p_timg) {
         return false;
@@ -1669,11 +1391,6 @@ bool J2DTevBlock4::insertTexture(u32 param_0, ResTIMG const* p_timg, JUTPalette*
     mTexNo[param_0] = -1;
     return true;
 }
-#else
-bool J2DTevBlock4::insertTexture(u32 param_0, ResTIMG const* param_1, JUTPalette* param_2) {
-    // NONMATCHING
-}
-#endif
 
 /* 802EE1D4-802EE364 2E8B14 0190+00 1/0 0/0 0/0 .text
  * insertTexture__12J2DTevBlock4FUlP10JUTTexture                */
@@ -2494,30 +2211,6 @@ void J2DPEBlock::setGX() {
     GXSetDither(mDither);
 }
 
-/* 802F18A0-802F1934 2EC1E0 0094+00 5/5 0/0 0/0 .text            __ct__14J2DIndTevStageFv */
-// should be inline
-#ifdef NONMATCHING
-J2DIndTevStage::J2DIndTevStage() {
-    mFlags = J2DCalcIndTevStage(j2dDefaultIndTevStageInfo);
-}
-#else
-void __ct__14J2DIndTevStageFv() {
-    // NONMATCHING
-}
-#endif
-
-/* 802F1934-802F1940 2EC274 000C+00 5/5 0/0 0/0 .text            __ct__19J2DTevSwapModeTableFv */
-// Should be inline
-#ifdef NONMATCHING
-J2DTevSwapModeTable::J2DTevSwapModeTable() {
-    field_0x0 = data_804561AC;
-}
-#else
-void __ct__19J2DTevSwapModeTableFv() {
-    // NONMATCHING
-}
-#endif
-
 /* 802F1940-802F19A8 2EC280 0068+00 5/5 1/1 0/0 .text            __ct__11J2DTevStageFv */
 J2DTevStage::J2DTevStage() {
     setTevStageInfo(j2dDefaultTevStageInfo);
@@ -2531,26 +2224,6 @@ void J2DTevStage::setTevStageInfo(J2DTevStageInfo const& info) {
     setTevColorOp(info.mCOp, info.mCBias, info.mCScale, info.mCClamp, info.mCReg);
     setAlphaABCD(info.mAlphaA, info.mAlphaB, info.mAlphaC, info.mAlphaD);
     setTevAlphaOp(info.mAOp, info.mABias, info.mAScale, info.mAClamp, info.mAReg);
-}
-
-/* 802F1B70-802F1B90 2EC4B0 0020+00 5/5 0/0 0/0 .text            __ct__11J2DTevOrderFv */
-// Matching but should be inline
-#ifdef NONMATCHING
-J2DTevOrder::J2DTevOrder() {
-    mTevOrderInfo = j2dDefaultTevOrderInfoNull;
-}
-#else
-// J2DTevOrder::J2DTevOrder() {
-void __ct__11J2DTevOrderFv() {
-    // NONMATCHING
-}
-#endif
-
-/* 802F1B90-802F1B94 2EC4D0 0004+00 5/5 0/0 0/0 .text            __ct__13J2DGXColorS10Fv */
-// Most likely inlined
-//J2DGXColorS10::J2DGXColorS10() {
-void __ct__13J2DGXColorS10Fv() {
-    /* empty function */
 }
 
 /* 802F1B94-802F1BA0 2EC4D4 000C+00 1/0 0/0 0/0 .text            getType__15J2DIndBlockFullFv */

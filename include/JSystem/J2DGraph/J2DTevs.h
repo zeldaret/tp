@@ -9,11 +9,11 @@
  * 
  */
 struct J2DTextureSRTInfo {
-    /* 0x00 */ f32 field_0x0;
-    /* 0x04 */ f32 field_0x4;
-    /* 0x08 */ f32 field_0x8;
-    /* 0x0C */ f32 field_0xc;
-    /* 0x10 */ f32 field_0x10;
+    /* 0x00 */ f32 mScaleX;
+    /* 0x04 */ f32 mScaleY;
+    /* 0x08 */ f32 mRotationDeg;
+    /* 0x0C */ f32 mTranslationX;
+    /* 0x10 */ f32 mTranslationY;
 };  // Size: 0x14
 
 /**
@@ -274,6 +274,7 @@ public:
         *(J2DTexCoordInfo*)this = info;
     }
     void setTexCoordInfo(const J2DTexCoordInfo& info) { mTexCoordInfo = info; }
+    void setTexGenMtx(u8 texGenMtx) { mTexCoordInfo.mTexGenMtx = texGenMtx; }
     s32 getTexGenType() { return mTexCoordInfo.mTexGenType; }
     s32 getTexGenSrc() { return mTexCoordInfo.mTexGenSrc; }
     s32 getTexGenMtx() { return mTexCoordInfo.mTexGenMtx; }
@@ -513,6 +514,7 @@ inline u8 J2DCalcTevSwapTable(u8 param_0, u8 param_1, u8 param_2, u8 param_3) {
 }
 
 extern const J2DTevSwapModeTableInfo j2dDefaultTevSwapModeTable;
+extern const u8 data_804561AC;
 
 /**
  * @ingroup jsystem-j2d
@@ -520,7 +522,7 @@ extern const J2DTevSwapModeTableInfo j2dDefaultTevSwapModeTable;
  */
 class J2DTevSwapModeTable {
 public:
-    /* 802F1934 */ J2DTevSwapModeTable();
+    /* 802F1934 */ J2DTevSwapModeTable() { field_0x0 = data_804561AC; }
     J2DTevSwapModeTable(const J2DTevSwapModeTableInfo& info) {
         field_0x0 = J2DCalcTevSwapTable(info.field_0x0, info.field_0x1, info.field_0x2, info.field_0x3);
     }
