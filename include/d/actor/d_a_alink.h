@@ -3511,6 +3511,7 @@ public:
     u32 getWolfHowlTimer() { return mZ2WolfHowlMgr.getTimer(); }
     s8 getOnLineNum() { return mZ2WolfHowlMgr.getOnLineNum(); }
     SongNote getCorrectLine(u8 param_0) { return mZ2WolfHowlMgr.getCorrectLine(param_0); }
+    void startWindStoneSound(s8 id, Vec* pos) { mZ2WolfHowlMgr.startWindStoneSound(id, pos); }
     J3DModelData* getItemModelData() { return mpItemModelData; }
 
     cXyz* getIronBallChainPos() const { return mIronBallChainPos; }
