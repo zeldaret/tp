@@ -23,6 +23,7 @@ struct J3DTransformInfo {
         return *this;
     } */
 
+#ifdef __MWERKS__
     inline J3DTransformInfo& operator=(const register J3DTransformInfo& b) {
         register const J3DTransformInfo& var_r31 = b;
         register J3DTransformInfo& var_r30 = *this;
@@ -46,6 +47,7 @@ struct J3DTransformInfo {
         }
         return *this;
     }
+#endif
 };  // Size: 0x20
 
 extern J3DTransformInfo const j3dDefaultTransformInfo;

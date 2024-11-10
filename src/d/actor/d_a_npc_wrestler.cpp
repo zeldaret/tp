@@ -2128,7 +2128,7 @@ bool daNpcWrestler_c::setExpressionBtp(int param_0) {
 
 /* 80B3074C-80B308B0 0015AC 0164+00 1/0 0/0 0/0 .text            setMotionAnm__15daNpcWrestler_cFif
  */
-void daNpcWrestler_c::setMotionAnm(int param_0, f32 param_1) {
+bool daNpcWrestler_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 

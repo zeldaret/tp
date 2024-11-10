@@ -242,7 +242,7 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
  */
 int daBoomerang_sight_c::createHeap() {
     void* resource;
-    char* arcName = daAlink_c::getAlinkArcName();
+    const char* arcName = daAlink_c::getAlinkArcName();
     JKRArchive* loader = dComIfG_getObjectResInfo(arcName)->getArchive();
 
     field_0x4 = new J2DScreen();

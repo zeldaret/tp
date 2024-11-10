@@ -208,7 +208,7 @@ public:
     }
 
     static u8 const mData[2072];
-    static Vec mPos[5];
+    static cXyz mPos[5];
     static u8 mSttsFlag[5];
     static s8 mRoomNo[5];
     static bool mSaveFlag;

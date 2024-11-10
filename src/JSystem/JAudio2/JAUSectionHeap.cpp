@@ -4,9 +4,14 @@
 //
 
 #include "JSystem/JAudio2/JAUSectionHeap.h"
+#include "JSystem/JAudio2/JASBNKParser.h"
+#include "JSystem/JAudio2/JASBankTable.h"
+#include "JSystem/JAudio2/JASBasicWaveBank.h"
 #include "JSystem/JAudio2/JASCriticalSection.h"
 #include "JSystem/JAudio2/JASHeapCtrl.h"
 #include "JSystem/JAudio2/JASResArcLoader.h"
+#include "JSystem/JAudio2/JASVoiceBank.h"
+#include "JSystem/JAudio2/JASWSParser.h"
 #include "JSystem/JAudio2/JAUSeqCollection.h"
 #include "JSystem/JAudio2/JAUSoundInfo.h"
 #include "JSystem/JAudio2/JAUSoundTable.h"
@@ -15,14 +20,6 @@
 #include "stdlib.h"
 #include "dol2asm.h"
 #include "dolphin/dvd.h"
-
-//
-// Types:
-//
-
-struct JASWSParser {
-    /* 80298FD8 */ static JASWaveBank* createWaveBank(void const*, JKRHeap*);
-};
 
 namespace {
     class TPushCurrentHeap {
@@ -54,153 +51,33 @@ namespace {
                 field_0x8[i] = DVDConvertPathToEntrynum(stack_14.getFilePath(i));
             }
         }
-        virtual s32 getStreamFileEntry(JAISoundID);
-        virtual ~TStreamDataMgr();
+        virtual s32 getStreamFileEntry(JAISoundID id) {
+            u32 short_id = id.mId.mAdvancedId.mShortId;
+            if (short_id >= field_0x4) {
+                return -1;
+            }
+            return field_0x8[short_id];
+        }
+        virtual ~TStreamDataMgr() {}
 
         bool isValid() { return field_0x4; }
 
-        s32 field_0x4;
+        u32 field_0x4;
         s32* field_0x8;
     };
 }
 
-//
-// Forward References:
-//
-
-extern "C" void __ct__Q210JAUSection12TSectionDataFv();
-extern "C" void resetRegisteredBankTables__Q210JAUSection12TSectionDataFv();
-extern "C" void resetRegisteredWaveBankTables__Q210JAUSection12TSectionDataFv();
-extern "C" void __ct__10JAUSectionFP14JAUSectionHeapUll();
-extern "C" void finishBuild__10JAUSectionFv();
-extern "C" void dispose__10JAUSectionFv();
-extern "C" void newSoundTable__10JAUSectionFPCvUlb();
-extern "C" void newSoundNameTable__10JAUSectionFPCvUlb();
-extern "C" void newStreamFileTable__10JAUSectionFPCvb();
-extern "C" void newSeSeqCollection__10JAUSectionFPCvUl();
-extern "C" void newStaticSeqDataBlock___10JAUSectionF10JAISoundIDUl();
-extern "C" void newStaticSeqData__10JAUSectionF10JAISoundIDPCvUl();
-extern "C" void newStaticSeqData__10JAUSectionF10JAISoundID();
-extern "C" void newCopy__10JAUSectionFPCvUll();
-extern "C" void newWaveBank__10JAUSectionFUlPCv();
-extern "C" void loadWaveArc__10JAUSectionFUlUl();
-extern "C" void newBank__10JAUSectionFPCvUl();
-extern "C" void newVoiceBank__10JAUSectionFUlUl();
-extern "C" void beginNewBankTable__10JAUSectionFUlUl();
-extern "C" void endNewBankTable__10JAUSectionFv();
-extern "C" void __ct__Q214JAUSectionHeap16TSectionHeapDataFv();
-extern "C" void setSeqDataArchive__14JAUSectionHeapFP10JKRArchive();
-extern "C" void loadDynamicSeq__14JAUSectionHeapF10JAISoundIDb();
-extern "C" void releaseIdleDynamicSeqDataBlock__14JAUSectionHeapFv();
-extern "C" static void JAUNewSectionHeap__FP12JKRSolidHeapb();
-extern "C" void JAUNewSectionHeap__Fb();
-extern "C" void __ct__14JAUSectionHeapFP12JKRSolidHeapbl();
-extern "C" void getOpenSection__14JAUSectionHeapFv();
-extern "C" void setSeqDataUser__14JAUSectionHeapFP14JAISeqDataUser();
-extern "C" void newDynamicSeqBlock__14JAUSectionHeapFUl();
-extern "C" void getSeqData__14JAUSectionHeapF10JAISoundIDP10JAISeqData();
-extern "C" int releaseSeqData__14JAUSectionHeapFv();
-extern "C" void __dt__14JAUSectionHeapFv();
-extern "C" static void func_802A6440();
-extern "C" void __dt__10JAUSectionFv();
-extern "C" void func_802A6574();
-extern "C" void func_802A65D4(void* _this, u32, bool);
-extern "C" void func_802A6614(void* _this, u32);
-extern "C" void func_802A6634(void* _this, u32);
-extern "C" void func_802A665C(void* _this);
-extern "C" static void func_802A6680();
-extern "C" static void func_802A6688();
-extern "C" static void func_802A6690();
-extern "C" static void func_802A6698();
-extern "C" extern char const* const JAUSectionHeap__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void getResSize__15JASResArcLoaderFPC10JKRArchiveUs();
-extern "C" void createWaveBank__11JASWSParserFPCvP7JKRHeap();
-extern "C" void createBank__12JASBNKParserFPCvP7JKRHeap();
-extern "C" void load__10JASWaveArcFP7JASHeap();
-extern "C" void __dt__13JAISeqDataMgrFv();
-extern "C" void __dt__16JAIStreamDataMgrFv();
-extern "C" void func_802A4A80();
-extern "C" void getBank__12JAUBankTableCFUl();
-extern "C" void init__16JAUSeqCollectionFPCv();
-extern "C" void __ct__27JAUSeqDataMgr_SeqCollectionFv();
-extern "C" void __ct__15JAUSeqDataBlockFv();
-extern "C" void __ct__23JAUDynamicSeqDataBlocksFv();
-extern "C" void setSeqDataArchive__23JAUDynamicSeqDataBlocksFP10JKRArchive();
-extern "C" void getSeqData__23JAUDynamicSeqDataBlocksF10JAISoundIDP14JAISeqDataUserP10JAISeqDatab();
-extern "C" void appendDynamicSeqDataBlock__23JAUDynamicSeqDataBlocksFP15JAUSeqDataBlock();
-extern "C" void loadDynamicSeq__23JAUDynamicSeqDataBlocksF10JAISoundIDbP14JAISeqDataUser();
-extern "C" void releaseIdleDynamicSeqDataBlock__23JAUDynamicSeqDataBlocksFP14JAISeqDataUser();
-extern "C" void init__13JAUSoundTableFPCv();
-extern "C" void init__17JAUSoundNameTableFPCv();
-extern "C" void __ct__18JAUStreamFileTableFv();
-extern "C" void init__18JAUStreamFileTableFPCv();
-extern "C" void getNumFiles__18JAUStreamFileTableCFv();
-extern "C" void getFilePath__18JAUStreamFileTableCFi();
-extern "C" void becomeCurrentHeap__7JKRHeapFv();
-extern "C" void freeTail__7JKRHeapFv();
-extern "C" void getFreeSize__7JKRHeapFv();
-extern "C" void* __nw__FUl();
-extern "C" void* __nwa__FUl();
-extern "C" void* __nwa__FUli();
-extern "C" void* __nwa__FUlP7JKRHeapi();
-extern "C" void __dl__FPv();
-extern "C" void create__12JKRSolidHeapFUlP7JKRHeapb();
-extern "C" void __ct__11JKRDisposerFv();
-extern "C" void __dt__11JKRDisposerFv();
-extern "C" void __ct__10JSUPtrLinkFPv();
-extern "C" void __dt__10JSUPtrLinkFv();
-extern "C" void __dt__10JSUPtrListFv();
-extern "C" void initiate__10JSUPtrListFv();
-extern "C" void append__10JSUPtrListFP10JSUPtrLink();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__11JASBankList[3 + 1 /* padding */];
-extern "C" extern void* __vt__7JASBank[5];
-extern "C" extern void* __vt__12JASVoiceBank[5 + 1 /* padding */];
-extern "C" extern void* __vt__13JAISeqDataMgr[6];
-extern "C" extern void* __vt__16JAIStreamDataMgr[4 + 1 /* padding */];
-extern "C" extern void* __vt__32JAUStreamDataMgr_StreamFileTable[4];
-extern "C" extern u8 data_80450B50[4];
-extern "C" extern u8 data_80450B54[4];
-extern "C" extern u8 data_80450B58[4];
-extern "C" extern u8 data_80450B90[4 + 4 /* padding */];
-extern "C" extern u8 data_80450CC0[4 + 4 /* padding */];
-extern "C" extern u8 __OSReport_disable;
-
-//
-// Declarations:
-//
-
 /* 802A4EE8-802A4F68 29F828 0080+00 1/1 0/0 0/0 .text __ct__Q210JAUSection12TSectionDataFv */
-// wild destructors appeared!
-#ifdef NONMATCHING
 JAUSection::TSectionData::TSectionData() {
     resetRegisteredWaveBankTables();
     resetRegisteredBankTables();
-    field_0x84 = 0;
-    field_0x88 = 0;
-    field_0x80 = 0;
+    mBstDst = NULL;
+    mBstnDst = NULL;
+    field_0x80 = NULL;
     field_0xa0 = 0;
     field_0x9c = 0;
 }
-#else
-JAUSection::TSectionData::TSectionData() {
-    // NONMATCHING
-}
-#endif
 
-/* ############################################################################################## */
 /* 8039B950-8039B950 027FB0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 #pragma push
 #pragma force_active on
@@ -209,97 +86,30 @@ SECTION_DEAD static char const* const stringBase_8039B950 = "index out of range 
 
 /* 802A4F68-802A4FE4 29F8A8 007C+00 1/1 0/0 0/0 .text
  * resetRegisteredBankTables__Q210JAUSection12TSectionDataFv    */
-// position of std::__bitset_base<8>::reset
-#ifdef NONMATCHING
 void JAUSection::TSectionData::resetRegisteredBankTables() {
     for (u32 i = 0; i < 255; i++) {
         registeredBankTables.reset(i);
     }
 }
-#else
-void JAUSection::TSectionData::resetRegisteredBankTables() {
-    // NONMATCHING
-}
-#endif
 
 /* 802A4FE4-802A5060 29F924 007C+00 1/1 0/0 0/0 .text
  * resetRegisteredWaveBankTables__Q210JAUSection12TSectionDataFv */
-// position of std::__bitset_base<8>::reset
-#ifdef NONMATCHING
 void JAUSection::TSectionData::resetRegisteredWaveBankTables() {
     for (u32 i = 0; i < 255; i++) {
         registeredWaveBankTables.reset(i);
     }
 }
-#else
-void JAUSection::TSectionData::resetRegisteredWaveBankTables() {
-    // NONMATCHING
-}
-#endif
-
-/* ############################################################################################## */
-/* 803C9AC0-803C9AF4 026BE0 0034+00 2/2 0/0 0/0 .data            __vt__14JAUSectionHeap */
-SECTION_DATA extern void* __vt__14JAUSectionHeap[13] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__14JAUSectionHeapFv,
-    (void*)dispose__10JAUSectionFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_802A6698,
-    (void*)func_802A6690,
-    (void*)func_802A6688,
-    (void*)func_802A6680,
-    (void*)setSeqDataUser__14JAUSectionHeapFP14JAISeqDataUser,
-    (void*)getSeqData__14JAUSectionHeapF10JAISoundIDP10JAISeqData,
-    (void*)releaseSeqData__14JAUSectionHeapFv,
-};
-
-/* 803C9AF4-803C9B08 026C14 0014+00 1/1 0/0 0/0 .data            __vt__16JAUBankTableLink */
-SECTION_DATA extern void* __vt__16JAUBankTableLink[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)getBank__12JAUBankTableCFUl,
-};
-
-/* 803C9B08-803C9B14 026C28 000C+00 1/1 0/0 0/0 .data            __vt__12JAUBankTable */
-SECTION_DATA extern void* __vt__12JAUBankTable[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)getBank__12JAUBankTableCFUl,
-};
-
-/* 803C9B14-803C9B24 026C34 0010+00 2/2 0/0 0/0 .data
- * __vt__Q228@unnamed@JAUSectionHeap_cpp@14TStreamDataMgr       */
-SECTION_DATA extern void* data_803C9B14[4] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)func_802A6440,
-    (void*)func_802A6574,
-};
-
-/* 803C9B24-803C9B38 026C44 0010+04 3/3 0/0 0/0 .data            __vt__10JAUSection */
-SECTION_DATA extern void* __vt__10JAUSection[4 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10JAUSectionFv,
-    (void*)dispose__10JAUSectionFv,
-    /* padding */
-    NULL,
-};
 
 /* 802A5060-802A50F8 29F9A0 0098+00 1/1 0/0 0/0 .text __ct__10JAUSectionFP14JAUSectionHeapUll */
-// NONMATCHING - JAUSection inheritance
-/* JAUSection::JAUSection(JAUSectionHeap* param_0, u32 param_1, s32 param_2) : JSULink<JAUSection>(this), field_0x28(param_1), sectionHeap_(param_0) {
+JAUSection::JAUSection(JAUSectionHeap* param_0, u32 param_1, s32 param_2)
+            : JSULink<JAUSection>(this), field_0x28(param_1), sectionHeap_(param_0) {
     buildingBankTable_ = NULL;
     field_0x2c = 1;
     data_.field_0x98 = param_2;
     if (this != sectionHeap_) {
         data_.field_0x00.setSeqDataArchive(sectionHeap_->sectionHeapData_.seqDataBlocks.getSeqDataArchive());
     }
-} */
+}
 
 /* 802A50F8-802A5160 29FA38 0068+00 0/0 1/1 0/0 .text            finishBuild__10JAUSectionFv */
 void JAUSection::finishBuild() {
@@ -329,8 +139,7 @@ void JAUSection::dispose() {
 
 /* 802A51E4-802A52A0 29FB24 00BC+00 0/0 1/1 0/0 .text            newSoundTable__10JAUSectionFPCvUlb
  */
-// regalloc, stackalloc
-#ifdef NONMATCHING
+// NONMATCHING regalloc
 JAUSoundTable* JAUSection::newSoundTable(void const* bst, u32 param_1, bool param_2) {
     JUT_ASSERT(285, isOpen());
     JUT_ASSERT(286, isBuilding());
@@ -346,21 +155,15 @@ JAUSoundTable* JAUSection::newSoundTable(void const* bst, u32 param_1, bool para
         }
         JAUSoundTable* soundTable = new JAUSoundTable(param_2);
         JUT_ASSERT(299, soundTable);
-        soundTable->init(bst);
+        soundTable->init(bstDst);
         sectionHeap_->sectionHeapData_.soundTable = soundTable;
         data_.mBstDst = bstDst;
     }
     return sectionHeap_->sectionHeapData_.soundTable;
 }
-#else
-JAUSoundTable* JAUSection::newSoundTable(void const* param_0, u32 param_1, bool param_2) {
-    // NONMATCHING
-}
-#endif
 
 /* 802A52A0-802A535C 29FBE0 00BC+00 0/0 1/1 0/0 .text newSoundNameTable__10JAUSectionFPCvUlb */
-// regalloc, stackalloc
-#ifdef NONMATCHING
+// NONMATCHING regalloc
 JAUSoundNameTable* JAUSection::newSoundNameTable(void const* bstn, u32 param_1, bool param_2) {
     JUT_ASSERT(315, isOpen());
     JUT_ASSERT(316, isBuilding());
@@ -382,15 +185,8 @@ JAUSoundNameTable* JAUSection::newSoundNameTable(void const* bstn, u32 param_1, 
     }
     return sectionHeap_->sectionHeapData_.soundNameTable;
 }
-#else
-JAUSoundNameTable* JAUSection::newSoundNameTable(void const* param_0, u32 param_1, bool param_2) {
-    // NONMATCHING
-}
-#endif
 
 /* 802A535C-802A5500 29FC9C 01A4+00 0/0 1/1 0/0 .text newStreamFileTable__10JAUSectionFPCvb */
-// JAUStreamFileTable::isValid() signed
-#ifdef NONMATCHING
 JAIStreamDataMgr* JAUSection::newStreamFileTable(void const* param_0, bool param_1) {
     JUT_ASSERT(345, asSectionHeap() == this);
     JUT_ASSERT(346, isOpen());
@@ -415,11 +211,6 @@ JAIStreamDataMgr* JAUSection::newStreamFileTable(void const* param_0, bool param
     }
     return sectionHeap_->sectionHeapData_.streamDataMgr_;
 }
-#else
-JAIStreamDataMgr* JAUSection::newStreamFileTable(void const* param_0, bool param_1) {
-    // NONMATCHING
-}
-#endif
 
 /* 802A5500-802A5598 29FE40 0098+00 0/0 1/1 0/0 .text newSeSeqCollection__10JAUSectionFPCvUl */
 JAISeqDataMgr* JAUSection::newSeSeqCollection(void const* bsc, u32 param_1) {
@@ -524,8 +315,6 @@ SECTION_DEAD static char const* const pad_8039B9B9 = "\0\0\0\0\0\0";
 #pragma pop
 
 /* 802A5854-802A5948 2A0194 00F4+00 0/0 1/1 0/0 .text            newWaveBank__10JAUSectionFUlPCv */
-// position of std::__bitset_base<8>::set
-#ifdef NONMATCHING
 JASWaveBank* JAUSection::newWaveBank(u32 bank_no, void const* param_1) {
     JUT_ASSERT(528, isOpen());
     JUT_ASSERT(529, isBuilding());
@@ -542,15 +331,8 @@ JASWaveBank* JAUSection::newWaveBank(u32 bank_no, void const* param_1) {
     return NULL;
 
 }
-#else
-JASWaveBank* JAUSection::newWaveBank(u32 param_0, void const* param_1) {
-    // NONMATCHING
-}
-#endif
 
 /* 802A5948-802A5A50 2A0288 0108+00 0/0 1/1 0/0 .text            loadWaveArc__10JAUSectionFUlUl */
-// position of std::__bitset_base<8>::test
-#ifdef NONMATCHING
 bool JAUSection::loadWaveArc(u32 param_0, u32 param_1) {
     if (data_.registeredWaveBankTables.test(param_0)) {
         JASWaveBank* waveBank = sectionHeap_->getWaveBankTable().getWaveBank(param_0);
@@ -565,15 +347,8 @@ bool JAUSection::loadWaveArc(u32 param_0, u32 param_1) {
     }
     return false;
 }
-#else
-bool JAUSection::loadWaveArc(u32 param_0, u32 param_1) {
-    // NONMATCHING
-}
-#endif
 
 /* 802A5A50-802A5B84 2A0390 0134+00 0/0 1/1 0/0 .text            newBank__10JAUSectionFPCvUl */
-// vtable order JAUBankTableLink
-#ifdef NONMATCHING
 JASBank* JAUSection::newBank(void const* param_0, u32 param_1) {
     JUT_ASSERT(647, isOpen());
     JUT_ASSERT(648, isBuilding());
@@ -598,15 +373,9 @@ JASBank* JAUSection::newBank(void const* param_0, u32 param_1) {
     }
     return 0;
 }
-#else
-JASBank* JAUSection::newBank(void const* param_0, u32 param_1) {
-    // NONMATCHING
-}
-#endif
 
 /* 802A5B84-802A5CAC 2A04C4 0128+00 0/0 1/1 0/0 .text            newVoiceBank__10JAUSectionFUlUl */
-// regalloc
-#ifdef NONMATCHING
+// NONMATCHING regalloc
 JASVoiceBank* JAUSection::newVoiceBank(u32 bank_no, u32 param_1) {
     JUT_ASSERT(685, isOpen());
     JUT_ASSERT(686, isBuilding());
@@ -628,15 +397,8 @@ JASVoiceBank* JAUSection::newVoiceBank(u32 bank_no, u32 param_1) {
     }
     return NULL;
 }
-#else
-JASVoiceBank* JAUSection::newVoiceBank(u32 param_0, u32 param_1) {
-    // NONMATCHING
-}
-#endif
 
 /* 802A5CAC-802A5D9C 2A05EC 00F0+00 0/0 1/1 0/0 .text beginNewBankTable__10JAUSectionFUlUl */
-// JAUBankTable inheritance
-#ifdef NONMATCHING
 bool JAUSection::beginNewBankTable(u32 param_0, u32 param_1) {
     JUT_ASSERT(714, isOpen());
     JUT_ASSERT(715, isBuilding());
@@ -658,11 +420,6 @@ bool JAUSection::beginNewBankTable(u32 param_0, u32 param_1) {
     }
     return bankTableLink;
 }
-#else
-bool JAUSection::beginNewBankTable(u32 param_0, u32 param_1) {
-    // NONMATCHING
-}
-#endif
 
 /* 802A5D9C-802A5DF4 2A06DC 0058+00 0/0 1/1 0/0 .text            endNewBankTable__10JAUSectionFv */
 JAUBankTable* JAUSection::endNewBankTable() {
@@ -728,11 +485,11 @@ JAUSectionHeap* JAUNewSectionHeap(bool param_0) {
 }
 
 /* 802A5FE0-802A6094 2A0920 00B4+00 1/1 0/0 0/0 .text __ct__14JAUSectionHeapFP12JKRSolidHeapbl */
-// NONMATCHING - JAUSectionHeap inheritance
-/* JAUSectionHeap::JAUSectionHeap(JKRSolidHeap* param_0, bool param_1, s32 param_2) : JAUSection(this, 0, param_2), JASGlobalInstance<JAUSectionHeap>(param_1), mHeap(param_0) {
+JAUSectionHeap::JAUSectionHeap(JKRSolidHeap* param_0, bool param_1, s32 param_2)
+        : JAUSection(this, 0, param_2), JASGlobalInstance<JAUSectionHeap>(param_1), mHeap(param_0) {
     field_0xe4 = 0;
     mSectionList.append(this);
-} */
+}
 
 /* 802A6094-802A60A0 2A09D4 000C+00 0/0 1/1 0/0 .text            getOpenSection__14JAUSectionHeapFv
  */
@@ -752,7 +509,7 @@ bool JAUSectionHeap::newDynamicSeqBlock(u32 size) {
     /* JUT_ASSERT(937, isOpen());
     JUT_ASSERT(938, isBuilding());
     JUT_ASSERT(939, sectionHeap_ == this); */
-    TPushCurrentHeap push(base1.getHeap_());
+    TPushCurrentHeap push(getHeap_());
     JAUSeqDataBlock * seqDataBlock = new JAUSeqDataBlock();
     if (!seqDataBlock) {
         return false;
@@ -769,7 +526,7 @@ bool JAUSectionHeap::newDynamicSeqBlock(u32 size) {
     seqDataBlock->field_0x14.size = size;
     seqDataBlock->field_0x10.setAnonymous();
     JASCriticalSection cs;
-    if (base1.sectionHeap_->sectionHeapData_.seqDataBlocks.appendDynamicSeqDataBlock(seqDataBlock)) {
+    if (sectionHeap_->sectionHeapData_.seqDataBlocks.appendDynamicSeqDataBlock(seqDataBlock)) {
         return true;
     }
     return false;
@@ -777,15 +534,15 @@ bool JAUSectionHeap::newDynamicSeqBlock(u32 size) {
 
 /* 802A61D0-802A6270 2A0B10 00A0+00 2/1 0/0 0/0 .text
  * getSeqData__14JAUSectionHeapF10JAISoundIDP10JAISeqData       */
-s32 JAUSectionHeap::getSeqData(JAISoundID param_0, JAISeqData* param_1) {
+JAISeqDataMgr::SeqDataReturnValue JAUSectionHeap::getSeqData(JAISoundID param_0, JAISeqData* param_1) {
     for (JSULink<JAUSection> * link = mSectionList.getFirst(); link; link = link->getNext()) {
         s32 result = link->getObject()->data_.field_0x00.getSeqData(param_0, sectionHeapData_.seqDataUser, param_1, false);
         // JUT_ASSERT(994, result != JAI_ASYNC_RESULT_RETRY);
         if (result == 2) {
-            return 2;
+            return JAISeqDataMgr::SeqDataReturnValue_2;
         }
     }
-    return sectionHeapData_.seqDataBlocks.getSeqData(param_0, sectionHeapData_.seqDataUser, param_1, true);
+    return (SeqDataReturnValue)sectionHeapData_.seqDataBlocks.getSeqData(param_0, sectionHeapData_.seqDataUser, param_1, true);
 }
 
 /* 802A6270-802A6278 2A0BB0 0008+00 2/1 0/0 0/0 .text            releaseSeqData__14JAUSectionHeapFv
@@ -793,91 +550,3 @@ s32 JAUSectionHeap::getSeqData(JAISoundID param_0, JAISeqData* param_1) {
 int JAUSectionHeap::releaseSeqData() {
     return 0;
 }
-
-/* 802A6278-802A6440 2A0BB8 01C8+00 2/1 0/0 0/0 .text            __dt__14JAUSectionHeapFv */
-// JAUSectionHeap inheritance
-#ifdef NONMATCHING
-JAUSectionHeap::~JAUSectionHeap() {}
-#else
-JAUSectionHeap::~JAUSectionHeap() {
-    // NONMATCHING
-}
-#endif
-
-/* 802A6440-802A6468 2A0D80 0028+00 1/0 0/0 0/0 .text
- * getStreamFileEntry__Q228@unnamed@JAUSectionHeap_cpp@14TStreamDataMgrF10JAISoundID */
-static void func_802A6440() {
-    // NONMATCHING
-}
-
-/* 802A6468-802A6574 2A0DA8 010C+00 1/0 0/0 0/0 .text            __dt__10JAUSectionFv */
-JAUSection::~JAUSection() {
-    // NONMATCHING
-}
-
-/* 802A6574-802A65D4 2A0EB4 0060+00 1/0 0/0 0/0 .text
- * __dt__Q228@unnamed@JAUSectionHeap_cpp@14TStreamDataMgrFv     */
-void func_802A6574() {
-    // NONMATCHING
-}
-
-/* 802A65D4-802A6614 2A0F14 0040+00 3/3 0/0 0/0 .text            set__Q23std16__bitset_base<8>FUlb
- */
-extern "C" void func_802A65D4(void* _this, u32 param_0, bool param_1) {
-    // NONMATCHING
-}
-
-/* 802A6614-802A6634 2A0F54 0020+00 2/2 0/0 0/0 .text            reset__Q23std16__bitset_base<8>FUl
- */
-extern "C" void func_802A6614(void* _this, u32 param_0) {
-    // NONMATCHING
-}
-
-/* 802A6634-802A665C 2A0F74 0028+00 1/1 0/0 0/0 .text            test__Q23std16__bitset_base<8>CFUl
- */
-extern "C" void func_802A6634(void* _this, u32 param_0) /* const */ {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 804507D0-804507D8 000250 0004+04 1/1 0/0 0/0 .sdata           @2588 */
-SECTION_SDATA static u8 lit_2588[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 802A665C-802A6680 2A0F9C 0024+00 1/1 0/0 0/0 .text            __ct__Q23std16__bitset_base<8>Fv */
-extern "C" void func_802A665C(void* _this) {
-    // NONMATCHING
-}
-
-/* 802A6680-802A6688 2A0FC0 0008+00 1/0 0/0 0/0 .text
- * @220@setSeqDataUser__14JAUSectionHeapFP14JAISeqDataUser      */
-static void func_802A6680() {
-    // NONMATCHING
-}
-
-/* 802A6688-802A6690 2A0FC8 0008+00 1/0 0/0 0/0 .text @220@releaseSeqData__14JAUSectionHeapFv */
-static void func_802A6688() {
-    // NONMATCHING
-}
-
-/* 802A6690-802A6698 2A0FD0 0008+00 1/0 0/0 0/0 .text
- * @220@getSeqData__14JAUSectionHeapF10JAISoundIDP10JAISeqData  */
-static void func_802A6690() {
-    // NONMATCHING
-}
-
-/* 802A6698-802A66A0 2A0FD8 0008+00 1/0 0/0 0/0 .text            @220@__dt__14JAUSectionHeapFv */
-static void func_802A6698() {
-    // NONMATCHING
-}
-
-/* 8039B950-8039B950 027FB0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

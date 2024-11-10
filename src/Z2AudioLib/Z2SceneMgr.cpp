@@ -3,908 +3,2053 @@
 // Translation Unit: Z2SceneMgr
 //
 
+#include "JSystem/JAudio2/JASBasicWaveBank.h"
+#include "JSystem/JAudio2/JAUSectionHeap.h"
+#include "JSystem/JAudio2/JAUSoundTable.h"
 #include "Z2AudioLib/Z2SceneMgr.h"
-#include "Z2AudioLib/Z2SoundMgr.h"
-#include "Z2AudioLib/Z2SeqMgr.h"
-#include "Z2AudioLib/Z2SeMgr.h"
 #include "Z2AudioLib/Z2Param.h"
-#include "dol2asm.h"
-
-//
-// Types:
-//
-
-struct dSv_memBit_c {
-    /* 80034860 */ void isSwitch(int) const;
-};
-
-struct dSv_info_c {
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct dSv_event_flag_c {
-    static u8 saveBitLabels[1644 + 4 /* padding */];
-};
-
-struct dSv_event_c {
-    /* 800349BC */ void isEventBit(u16) const;
-};
-
-struct Z2SoundObjMgr {
-    /* 802BF980 */ void setForceBattleArea(bool, u16, u16, u16);
-    /* 802BFFEC */ void setGhostEnemyState(u8);
-    /* 802C013C */ void deleteEnemyAll();
-};
-
-struct Z2FxLineMgr {
-    /* 802BAEB8 */ void setSceneFx(s32);
-};
-
-struct Z2EnvSeMgr {
-    /* 802C699C */ void resetSceneInner();
-    /* 802C6AC0 */ void initSceneEnvSe(s32, s8, f32);
-};
-
-struct JAUSoundTable {
-    /* 802A7160 */ void getTypeID(JAISoundID) const;
-};
-
-struct JASWaveArc {
-    /* 8029A4C0 */ void load(JASHeap*);
-    /* 8029A580 */ void loadTail(JASHeap*);
-    /* 8029A640 */ void erase();
-};
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__10Z2SceneMgrFv();
-extern "C" void setInDarkness__10Z2SceneMgrFb();
-extern "C" void setSceneExist__10Z2SceneMgrFb();
-extern "C" void setFadeOutStart__10Z2SceneMgrFUc();
-extern "C" void setFadeInStart__10Z2SceneMgrFUc();
-extern "C" void setSceneName__10Z2SceneMgrFPcll();
-extern "C" void __ct__10JAISoundIDFRC10JAISoundID(JAISoundID* this_, JAISoundID const& soundIdToSet);
-extern "C" void setFieldBgmPlay__8Z2SeqMgrFb();
-extern "C" void isActive__12JAIStreamMgrCFv();
-extern "C" void getID__8JAISoundCFv();
-extern "C" void func_802B9994(void* _this);
-extern "C" static void dComIfGs_getStartPoint__Fv();
-extern "C" void unMuteSceneBgm__8Z2SeqMgrFUl();
-extern "C" void muteSceneBgm__8Z2SeqMgrFUlf();
-extern "C" static void dComIfGs_isSaveSwitch__Fi();
-extern "C" void resetCrowdSize__7Z2SeMgrFv();
-extern "C" void setTwilightGateVol__8Z2SeqMgrFf();
-extern "C" void setWindStoneVol__8Z2SeqMgrFfUl();
-extern "C" void __as__10JAISoundIDFRC10JAISoundID(JAISoundID* this_, JAISoundID const& param_0);
-extern "C" void sceneChange__10Z2SceneMgrF10JAISoundIDUcUcUcUcUcb();
-extern "C" void framework__10Z2SceneMgrFv();
-extern "C" void load1stDynamicWave__10Z2SceneMgrFv();
-extern "C" void _load1stWaveInner_1__10Z2SceneMgrFv();
-extern "C" void _load1stWaveInner_2__10Z2SceneMgrFv();
-extern "C" void check1stDynamicWave__10Z2SceneMgrFv();
-extern "C" void load2ndDynamicWave__10Z2SceneMgrFv();
-extern "C" void sceneBgmStart__10Z2SceneMgrFv();
-extern "C" void loadStaticWaves__10Z2SceneMgrFv();
-extern "C" bool checkFirstWaves__10Z2SceneMgrFv();
-extern "C" void eraseSeWave__10Z2SceneMgrFUl();
-extern "C" void eraseBgmWave__10Z2SceneMgrFUl();
-extern "C" void getWaveLoadStatus__10Z2SceneMgrFUlUl();
-extern "C" void loadSeWave__10Z2SceneMgrFUl();
-extern "C" void loadBgmWave__10Z2SceneMgrFUl();
-extern "C" void __ct__10JAISoundIDFUl(void* param_0, u32 param_1);
-extern "C" extern char const* const Z2SceneMgr__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void dComIfGs_isStageSwitch__Fii();
-extern "C" void isSwitch__12dSv_memBit_cCFi();
-extern "C" void isEventBit__11dSv_event_cCFUs();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void dComIfGs_isEventBit__FUs();
-extern "C" void load__10JASWaveArcFP7JASHeap();
-extern "C" void loadTail__10JASWaveArcFP7JASHeap();
-extern "C" void erase__10JASWaveArcFv();
-extern "C" void stop__8JAISoundFUl();
-extern "C" void moveVolume__18JAISoundParamsMoveFfUl();
-extern "C" void getTypeID__13JAUSoundTableCF10JAISoundID();
-extern "C" void resetFilterAll__10Z2SoundMgrFv();
-extern "C" void resetModY__7Z2SeMgrFv();
-extern "C" void seStopAll__7Z2SeMgrFUl();
-extern "C" void seMoveVolumeAll__7Z2SeMgrFfUl();
-extern "C" void bgmStart__8Z2SeqMgrFUlUll();
-extern "C" void bgmStop__8Z2SeqMgrFUll();
-extern "C" void bgmStreamPrepare__8Z2SeqMgrFUl();
-extern "C" void bgmStreamCheckReady__8Z2SeqMgrFv();
-extern "C" void bgmStreamPlay__8Z2SeqMgrFv();
-extern "C" void changeBgmStatus__8Z2SeqMgrFl();
-extern "C" void setHeightVolMod__8Z2SeqMgrFbUl();
-extern "C" void setTimeProcVolMod__8Z2SeqMgrFbUl();
-extern "C" void checkBgmIDPlaying__8Z2SeqMgrFUl();
-extern "C" void resetBattleBgmParams__8Z2SeqMgrFv();
-extern "C" void setBattleBgmOff__8Z2SeqMgrFb();
-extern "C" void menuOut__11Z2StatusMgrFv();
-extern "C" void setDemoName__11Z2StatusMgrFPc();
-extern "C" void checkDayTime__11Z2StatusMgrFv();
-extern "C" void setSceneFx__11Z2FxLineMgrFl();
-extern "C" void setForceBattleArea__13Z2SoundObjMgrFbUsUsUs();
-extern "C" void setGhostEnemyState__13Z2SoundObjMgrFUc();
-extern "C" void deleteEnemyAll__13Z2SoundObjMgrFv();
-extern "C" void resetSceneInner__10Z2EnvSeMgrFv();
-extern "C" void initSceneEnvSe__10Z2EnvSeMgrFlScf();
-extern "C" void _savegpr_16();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_16();
-extern "C" void _restgpr_29();
-extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 data_80450B3C[4];
-extern "C" extern u8 data_80450B40[4];
-extern "C" extern u8 data_80450B48[4];
-extern "C" extern u8 data_80450B58[4];
-extern "C" extern Z2SoundMgr* data_80450B60;
-extern "C" extern u8 data_80450B7C[4];
-extern "C" extern Z2SeMgr* data_80450B88;
-extern "C" extern u8 data_80450CC0[4 + 4 /* padding */];
-extern "C" extern u8 __OSReport_disable;
-
-//
-// Declarations:
-//
+#include "Z2AudioLib/Z2SeMgr.h"
+#include "Z2AudioLib/Z2SeqMgr.h"
+#include "Z2AudioLib/Z2SoundMgr.h"
+#include "Z2AudioLib/Z2SoundObjMgr.h"
+#include "Z2AudioLib/Z2StatusMgr.h"
+#include "d/d_com_inf_game.h"
 
 /* 802B6840-802B68B0 2B1180 0070+00 0/0 1/1 0/0 .text            __ct__10Z2SceneMgrFv */
 Z2SceneMgr::Z2SceneMgr(void) : JASGlobalInstance<Z2SceneMgr>(this) {
-    volatile int timerx;
     sceneNum = -1;
-    timerx = -1;
     BGM_ID = -1;
     roomNum = -1;
-    SeWave_1 = 0;
-    SeWaveToErase_1 = 0;
-    SeWave_2 = 0;
-    SeWaveToErase_2 = 0;
-    BgmWave_1 = 0;
-    BgmWaveToErase_1 = 0;
-    BgmWave_2 = 0;
-    BgmWaveToErase_2 = 0;
-    SeWave_3 = 0;
-    SeWaveToErase_3 = 0;
+    requestSeWave_1 = 0;
+    loadedSeWave_1 = 0;
+    requestSeWave_2 = 0;
+    loadedSeWave_2 = 0;
+    requestBgmWave_1 = 0;
+    loadedBgmWave_1 = 0;
+    requestBgmWave_2 = 0;
+    loadedBgmWave_2 = 0;
+    requestDemoWave = 0;
+    loadedDemoWave = 0;
     field_0x18 = 0;
     field_0x19 = 0;
-    field_0x1a = 0;
-    field_0x1b = 0;
+    field_0x1a = false;
+    field_0x1b = false;
     sceneExist = 0;
     inGame = 0;
     inDarkness = false;
-    field_0x17 = 0;
+    load1stWait = 0;
 }
 
 /* 802B68B0-802B68E0 2B11F0 0030+00 0/0 1/1 0/0 .text            setInDarkness__10Z2SceneMgrFb */
 void Z2SceneMgr::setInDarkness(bool param_0) {
     inDarkness = param_0;
     if (!param_0) {
-        Z2SoundMgr::getInstance()->resetFilterAll();
+        Z2GetSoundMgr()->resetFilterAll();
     }
 }
 
-/* ############################################################################################## */
-/* 80455A38-80455A3C 004038 0004+00 8/8 0/0 0/0 .sdata2          @3511 */
-SECTION_SDATA2 static u8 lit_3511[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+static char* sSpotName[81] = {
+    "F_SP00",
+    "F_SP103",
+    "R_SP01",
+    "F_SP104",
+    "R_SP107",
+    "F_SP108",
+    "R_SP108",
+    "F_SP117",
+    "F_SP109",
+    "R_SP109",
+    "R_SP209",
+    "F_SP110",
+    "R_SP110",
+    "F_SP111",
+    "F_SP128",
+    "R_SP128",
+    "F_SP115",
+    "F_SP112",
+    "F_SP126",
+    "F_SP127",
+    "R_SP127",
+    "F_SP113",
+    "F_SP116",
+    "R_SP116",
+    "R_SP160",
+    "R_SP161",
+    "F_SP114",
+    "F_SP118",
+    "F_SP124",
+    "F_SP125",
+    "F_SP121",
+    "F_SP122",
+    "F_SP123",
+    "F_SP200",
+    "F_SP102",
+    "",
+    "R_SP300",
+    "R_SP301",
+    "T_ENEMY",
+    "D_MN54",
+    "D_MN05",
+    "D_MN05B",
+    "D_MN05A",
+    "D_MN04",
+    "D_MN04B",
+    "D_MN04A",
+    "D_MN01",
+    "D_MN01B",
+    "D_MN01A",
+    "D_MN10",
+    "D_MN10B",
+    "D_MN10A",
+    "D_MN11",
+    "D_MN11B",
+    "D_MN11A",
+    "D_MN06",
+    "D_MN06B",
+    "D_MN06A",
+    "D_MN07",
+    "D_MN07B",
+    "D_MN07A",
+    "D_MN08",
+    "D_MN08B",
+    "D_MN08C",
+    "D_MN08A",
+    "D_MN08D",
+    "D_MN09",
+    "D_MN09A",
+    "D_MN09B",
+    "D_MN09C",
+    "D_SB00",
+    "D_SB01",
+    "D_SB02",
+    "D_SB03",
+    "D_SB04",
+    "D_SB05",
+    "D_SB06",
+    "D_SB07",
+    "D_SB08",
+    "D_SB09",
+    "D_SB10",
 };
 
-/* 80455A3C-80455A40 00403C 0004+00 6/6 0/0 0/0 .sdata2          @3512 */
-SECTION_SDATA2 static f32 lit_3512 = 1.0f;
-
 /* 802B68E0-802B697C 2B1220 009C+00 3/3 2/2 2/2 .text            setSceneExist__10Z2SceneMgrFb */
-#ifdef NONMATCHING
 void Z2SceneMgr::setSceneExist(bool param_1) {
     sceneExist = param_1;
     timer = 0;
 
-    JAISeMgr* seMgr = data_80450B60->getSeMgr();
+    JAISeMgr* seMgr = Z2GetSoundMgr()->getSeMgr();
 
     if (param_1) {
         inGame = 1;
 
-        if (SeWave_3 == 0x85) {
-            seMgr->getCategory(9)->getParams()->moveVolume(FLOAT_LABEL(lit_3511), 0);
-        } else if (SeWave_3 == 0x7F) {
-            data_80450B88->seMoveVolumeAll(FLOAT_LABEL(lit_3511), 0);
+        if (requestDemoWave == 0x85) {
+            seMgr->getCategory(9)->getParams()->moveVolume(0.0f, 0);
+        } else if (requestDemoWave == 0x7F) {
+            Z2GetSeMgr()->seMoveVolumeAll(0.0f, 0);
         } else {
-            seMgr->getCategory(9)->getParams()->moveVolume(lit_3512, 33);
+            seMgr->getCategory(9)->getParams()->moveVolume(1.0f, 33);
         }
     } else {
-        seMgr->getCategory(9)->getParams()->moveVolume(FLOAT_LABEL(lit_3511), 180);
+        seMgr->getCategory(9)->getParams()->moveVolume(0.0f, 180);
     }
 }
-#else
-void Z2SceneMgr::setSceneExist(bool param_0) {
-    // NONMATCHING
-}
-#endif
-
-/* ############################################################################################## */
-/* 80455A40-80455A48 004040 0004+04 1/1 0/0 0/0 .sdata2          @3529 */
-SECTION_SDATA2 static f32 lit_3529[1 + 1 /* padding */] = {
-    3.0f / 10.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 80455A48-80455A50 004048 0008+00 5/5 0/0 0/0 .sdata2          @3531 */
-SECTION_SDATA2 static f64 lit_3531 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802B697C-802B6A18 2B12BC 009C+00 0/0 1/1 0/0 .text            setFadeOutStart__10Z2SceneMgrFUc */
-#ifdef NONMATCHING
 void Z2SceneMgr::setFadeOutStart(u8 param_0) {
     setSceneExist(false);
-    Z2SeqMgr::getInstance()->bgmAllMute(33,  3.0f / 10.0f);
-    Z2SeMgr::getInstance()->seMoveVolumeAll(FLOAT_LABEL(lit_3511), 33);
-    Z2SeqMgr::getInstance()->setBattleBgmOff(true);
-    field_0x17 = 40;
+    Z2GetSeqMgr()->bgmAllMute(33,  3.0f / 10.0f);
+    Z2GetSeMgr()->seMoveVolumeAll(0.0f, 33);
+    Z2GetSeqMgr()->setBattleBgmOff(true);
+    load1stWait = 40;
     timer = -1;
 }
-#else
-void Z2SceneMgr::setFadeOutStart(u8 param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 802B6A18-802B6AF8 2B1358 00E0+00 0/0 1/1 0/0 .text            setFadeInStart__10Z2SceneMgrFUc */
-#ifdef NONMATCHING
 void Z2SceneMgr::setFadeInStart(u8 param_0) {
-    if (SeWave_3 == 0x7f) {
-        Z2SeMgr::getInstance()->seMoveVolumeAll(FLOAT_LABEL(lit_3511), 0);
+    if (requestDemoWave == 0x7f) {
+        Z2GetSeMgr()->seMoveVolumeAll(0.0f, 0);
     } else {
-        Z2SeMgr::getInstance()->seMoveVolumeAll(FLOAT_LABEL(lit_3512), 33);
+        Z2GetSeMgr()->seMoveVolumeAll(1.0f, 33);
 
-        if (SeWave_3 == 0x85) {
-            JAISeMgr* seMgr = Z2SoundMgr::getInstance()->getSeMgr();
-            seMgr->getCategory(9)->getParams()->moveVolume(FLOAT_LABEL(lit_3511), 0);
+        if (requestDemoWave == 0x85) {
+            JAISeMgr* seMgr = Z2GetSoundMgr()->getSeMgr();
+            seMgr->getCategory(9)->getParams()->moveVolume(0.0f, 0);
         }
     }
-    Z2SeqMgr::getInstance()->i_setTwilightGateVol(FLOAT_LABEL(lit_3512));
-    Z2StatusMgr::getInstance()->menuOut();
+    Z2GetSeqMgr()->setTwilightGateVol(1.0f);
+    Z2GetStatusMgr()->menuOut();
 
-    if (field_0x1a == 0) {
-        Z2SeqMgr::getInstance()->bgmAllMute(33,  3.0f / 10.0f);
+    if (!field_0x1a) {
+        Z2GetSeqMgr()->bgmAllMute(33, 1.0f);
     }
 
     inGame = true;
 }
-#else
-void Z2SceneMgr::setFadeInStart(u8 param_0) {
-    // NONMATCHING
-}
-#endif
-
-/* ############################################################################################## */
-/* 8039BFA8-8039BFA8 028608 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039BFA8 = "F_SP00";
-SECTION_DEAD static char const* const stringBase_8039BFAF = "F_SP103";
-SECTION_DEAD static char const* const stringBase_8039BFB7 = "R_SP01";
-SECTION_DEAD static char const* const stringBase_8039BFBE = "F_SP104";
-SECTION_DEAD static char const* const stringBase_8039BFC6 = "R_SP107";
-SECTION_DEAD static char const* const stringBase_8039BFCE = "F_SP108";
-SECTION_DEAD static char const* const stringBase_8039BFD6 = "R_SP108";
-SECTION_DEAD static char const* const stringBase_8039BFDE = "F_SP117";
-SECTION_DEAD static char const* const stringBase_8039BFE6 = "F_SP109";
-SECTION_DEAD static char const* const stringBase_8039BFEE = "R_SP109";
-SECTION_DEAD static char const* const stringBase_8039BFF6 = "R_SP209";
-SECTION_DEAD static char const* const stringBase_8039BFFE = "F_SP110";
-SECTION_DEAD static char const* const stringBase_8039C006 = "R_SP110";
-SECTION_DEAD static char const* const stringBase_8039C00E = "F_SP111";
-SECTION_DEAD static char const* const stringBase_8039C016 = "F_SP128";
-SECTION_DEAD static char const* const stringBase_8039C01E = "R_SP128";
-SECTION_DEAD static char const* const stringBase_8039C026 = "F_SP115";
-SECTION_DEAD static char const* const stringBase_8039C02E = "F_SP112";
-SECTION_DEAD static char const* const stringBase_8039C036 = "F_SP126";
-SECTION_DEAD static char const* const stringBase_8039C03E = "F_SP127";
-SECTION_DEAD static char const* const stringBase_8039C046 = "R_SP127";
-SECTION_DEAD static char const* const stringBase_8039C04E = "F_SP113";
-SECTION_DEAD static char const* const stringBase_8039C056 = "F_SP116";
-SECTION_DEAD static char const* const stringBase_8039C05E = "R_SP116";
-SECTION_DEAD static char const* const stringBase_8039C066 = "R_SP160";
-SECTION_DEAD static char const* const stringBase_8039C06E = "R_SP161";
-SECTION_DEAD static char const* const stringBase_8039C076 = "F_SP114";
-SECTION_DEAD static char const* const stringBase_8039C07E = "F_SP118";
-SECTION_DEAD static char const* const stringBase_8039C086 = "F_SP124";
-SECTION_DEAD static char const* const stringBase_8039C08E = "F_SP125";
-SECTION_DEAD static char const* const stringBase_8039C096 = "F_SP121";
-SECTION_DEAD static char const* const stringBase_8039C09E = "F_SP122";
-SECTION_DEAD static char const* const stringBase_8039C0A6 = "F_SP123";
-SECTION_DEAD static char const* const stringBase_8039C0AE = "F_SP200";
-SECTION_DEAD static char const* const stringBase_8039C0B6 = "F_SP102";
-SECTION_DEAD static char const* const stringBase_8039C0BE = "";
-SECTION_DEAD static char const* const stringBase_8039C0BF = "R_SP300";
-SECTION_DEAD static char const* const stringBase_8039C0C7 = "R_SP301";
-SECTION_DEAD static char const* const stringBase_8039C0CF = "T_ENEMY";
-SECTION_DEAD static char const* const stringBase_8039C0D7 = "D_MN54";
-SECTION_DEAD static char const* const stringBase_8039C0DE = "D_MN05";
-SECTION_DEAD static char const* const stringBase_8039C0E5 = "D_MN05B";
-SECTION_DEAD static char const* const stringBase_8039C0ED = "D_MN05A";
-SECTION_DEAD static char const* const stringBase_8039C0F5 = "D_MN04";
-SECTION_DEAD static char const* const stringBase_8039C0FC = "D_MN04B";
-SECTION_DEAD static char const* const stringBase_8039C104 = "D_MN04A";
-SECTION_DEAD static char const* const stringBase_8039C10C = "D_MN01";
-SECTION_DEAD static char const* const stringBase_8039C113 = "D_MN01B";
-SECTION_DEAD static char const* const stringBase_8039C11B = "D_MN01A";
-SECTION_DEAD static char const* const stringBase_8039C123 = "D_MN10";
-SECTION_DEAD static char const* const stringBase_8039C12A = "D_MN10B";
-SECTION_DEAD static char const* const stringBase_8039C132 = "D_MN10A";
-SECTION_DEAD static char const* const stringBase_8039C13A = "D_MN11";
-SECTION_DEAD static char const* const stringBase_8039C141 = "D_MN11B";
-SECTION_DEAD static char const* const stringBase_8039C149 = "D_MN11A";
-SECTION_DEAD static char const* const stringBase_8039C151 = "D_MN06";
-SECTION_DEAD static char const* const stringBase_8039C158 = "D_MN06B";
-SECTION_DEAD static char const* const stringBase_8039C160 = "D_MN06A";
-SECTION_DEAD static char const* const stringBase_8039C168 = "D_MN07";
-SECTION_DEAD static char const* const stringBase_8039C16F = "D_MN07B";
-SECTION_DEAD static char const* const stringBase_8039C177 = "D_MN07A";
-SECTION_DEAD static char const* const stringBase_8039C17F = "D_MN08";
-SECTION_DEAD static char const* const stringBase_8039C186 = "D_MN08B";
-SECTION_DEAD static char const* const stringBase_8039C18E = "D_MN08C";
-SECTION_DEAD static char const* const stringBase_8039C196 = "D_MN08A";
-SECTION_DEAD static char const* const stringBase_8039C19E = "D_MN08D";
-SECTION_DEAD static char const* const stringBase_8039C1A6 = "D_MN09";
-SECTION_DEAD static char const* const stringBase_8039C1AD = "D_MN09A";
-SECTION_DEAD static char const* const stringBase_8039C1B5 = "D_MN09B";
-SECTION_DEAD static char const* const stringBase_8039C1BD = "D_MN09C";
-SECTION_DEAD static char const* const stringBase_8039C1C5 = "D_SB00";
-SECTION_DEAD static char const* const stringBase_8039C1CC = "D_SB01";
-SECTION_DEAD static char const* const stringBase_8039C1D3 = "D_SB02";
-SECTION_DEAD static char const* const stringBase_8039C1DA = "D_SB03";
-SECTION_DEAD static char const* const stringBase_8039C1E1 = "D_SB04";
-SECTION_DEAD static char const* const stringBase_8039C1E8 = "D_SB05";
-SECTION_DEAD static char const* const stringBase_8039C1EF = "D_SB06";
-SECTION_DEAD static char const* const stringBase_8039C1F6 = "D_SB07";
-SECTION_DEAD static char const* const stringBase_8039C1FD = "D_SB08";
-SECTION_DEAD static char const* const stringBase_8039C204 = "D_SB09";
-SECTION_DEAD static char const* const stringBase_8039C20B = "D_SB10";
-SECTION_DEAD static char const* const stringBase_8039C212 = "force_end";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039C21C = "\0\0\0";
-#pragma pop
-
-/* 803CA5C0-803CA704 -00001 0144+00 1/1 0/0 0/0 .data            sSpotName */
-SECTION_DATA static void* sSpotName[81] = {
-    (void*)&Z2SceneMgr__stringBase0,
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x7),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0xF),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x16),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x1E),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x26),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x2E),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x36),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x3E),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x46),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x4E),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x56),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x5E),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x66),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x6E),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x76),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x7E),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x86),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x8E),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x96),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x9E),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0xA6),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0xAE),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0xB6),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0xBE),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0xC6),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0xCE),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0xD6),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0xDE),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0xE6),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0xEE),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0xF6),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0xFE),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x106),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x10E),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x116),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x117),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x11F),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x127),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x12F),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x136),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x13D),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x145),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x14D),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x154),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x15C),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x164),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x16B),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x173),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x17B),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x182),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x18A),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x192),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x199),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x1A1),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x1A9),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x1B0),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x1B8),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x1C0),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x1C7),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x1CF),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x1D7),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x1DE),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x1E6),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x1EE),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x1F6),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x1FE),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x205),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x20D),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x215),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x21D),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x224),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x22B),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x232),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x239),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x240),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x247),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x24E),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x255),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x25C),
-    (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x263),
-};
-
-/* 803CA704-803CA744 -00001 0040+00 1/1 0/0 0/0 .data            @5354 */
-SECTION_DATA static void* lit_5354[16] = {
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BDC),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BE4),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BE4),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BDC),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BE4),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BE4),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BDC),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BEC),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2BC0),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BEC),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BDC),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BEC),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BEC),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BDC),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BE4),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BE4),
-};
-
-/* 803CA744-803CA784 -00001 0040+00 1/1 0/0 0/0 .data            @5353 */
-SECTION_DATA static void* lit_5353[16] = {
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BA0),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BB8),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1B98),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1B98),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1B98),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BA0),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BB8),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BA0),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BBC),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BA8),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BA8),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BA8),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BB0),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BB0),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BB0),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BB8),
-};
-
-/* 803CA784-803CA7BC -00001 0038+00 1/1 0/0 0/0 .data            @5352 */
-SECTION_DATA static void* lit_5352[14] = {
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xC48),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xC78),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xCC8),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xCC8),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xCA0),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xCC8),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xC08),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xC08),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xCC8),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xC18),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xC20),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xC28),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xC34),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xC3C),
-};
-
-/* 803CA7BC-803CA7F4 -00001 0038+00 1/1 0/0 0/0 .data            @5351 */
-SECTION_DATA static void* lit_5351[14] = {
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xB48),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xAF4),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xB48),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xB48),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xADC),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xB48),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xADC),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xB48),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xB48),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xB48),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xB48),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xB48),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xADC),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xAEC),
-};
-
-/* 803CA7F4-803CA824 -00001 0030+00 1/1 0/0 0/0 .data            @5350 */
-SECTION_DATA static void* lit_5350[12] = {
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x7B0),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x72C),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x804),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x804),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x778),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x788),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x798),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x790),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x798),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x7A0),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x7A8),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x7A8),
-};
-
-/* 803CA824-803CA844 -00001 0020+00 1/1 0/0 0/0 .data            @5349 */
-SECTION_DATA static void* lit_5349[8] = {
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x430),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x45C),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x52C),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x604),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x604),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x628),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x6F4),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x604),
-};
-
-/* 803CA844-803CA878 -00001 0034+00 1/1 0/0 0/0 .data            @5348 */
-SECTION_DATA static void* lit_5348[13] = {
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x3E4),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2E0),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x3E4),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x364),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x378),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x338),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x3E4),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x3E4),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x338),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x35C),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x3E4),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x3E4),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x328),
-};
-
-/* 803CA878-803CA9BC -00001 0144+00 1/1 0/0 0/0 .data            @5347 */
-SECTION_DATA static void* lit_5347[81] = {
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x150),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1E0),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x40C),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x700),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x80C),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xA08),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x968),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1824),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xB94),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xCF4),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xF00),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1010),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1174),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xF70),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1098),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1140),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x11BC),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x13B4),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x12D8),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1338),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1384),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1468),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x150C),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x15E4),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1688),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x17E0),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x18E8),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1994),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1934),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x19C8),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1A30),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BF4),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1CF8),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1DA8),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1D2C),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2BC0),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2A7C),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x948),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x134),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2BC0),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1E68),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1EA4),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1F00),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1FAC),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1FE8),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2038),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x20D8),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2108),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2158),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x21F8),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2248),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2298),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2338),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2374),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x23D0),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x247C),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x24AC),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x24FC),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x259C),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x25F4),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2644),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x26E4),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2760),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2760),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x27B0),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2894),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x28D4),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2980),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2A04),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2A34),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2AC4),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2A84),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2AF0),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2AF0),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2B18),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2B44),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2B44),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2B44),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2B44),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2B44),
-    (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2B6C),
-};
-
-/* 80455A50-80455A54 004050 0004+00 1/1 0/0 0/0 .sdata2          @5341 */
-SECTION_SDATA2 static f32 lit_5341 = -1.0f;
-
-/* 80455A54-80455A58 004054 0004+00 2/2 0/0 0/0 .sdata2          @5342 */
-SECTION_SDATA2 static f32 lit_5342 = 0.5f;
-
-/* 80455A58-80455A5C 004058 0004+00 1/1 0/0 0/0 .sdata2          @5343 */
-SECTION_SDATA2 static f32 lit_5343 = 7.0f / 10.0f;
-
-/* 80455A5C-80455A60 00405C 0004+00 1/1 0/0 0/0 .sdata2          @5344 */
-SECTION_SDATA2 static f32 lit_5344 = 4.0f / 5.0f;
-
-/* 80455A60-80455A64 004060 0004+00 1/1 0/0 0/0 .sdata2          @5345 */
-SECTION_SDATA2 static f32 lit_5345 = 1.0f / 10.0f;
-
-/* 80455A64-80455A68 004064 0004+00 1/1 0/0 0/0 .sdata2          @5346 */
-SECTION_SDATA2 static f32 lit_5346 = 2.0f / 25.0f;
 
 /* 802B6AF8-802B995C 2B1438 2E64+00 8/0 1/1 0/0 .text            setSceneName__10Z2SceneMgrFPcll */
-void Z2SceneMgr::setSceneName(char* param_0, s32 param_1, s32 param_2) {
-    // NONMATCHING
-}
+// NONMATCHING JSULink<JAIStream>::getNext() inlining
+void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
+    JAISoundID bgm_id = -1;
+    JAISound* sound;
+    int spot = 0;
+    u8 se_wave1 = 0;
+    u8 se_wave2 = 0;
+    u8 bgm_wave1 = 0;
+    u8 bgm_wave2 = 0;
+    u8 demo_wave = 0;
+    bool bVar6 = false;
+    bool height_vol_mod = false;
+    bool field_bgm_play = false;
+    bool time_proc_vol_mod = false;
+    bool bVar2 = false;
+    field_0x1b = false;
+    f32 fVar1 = -1.0f;
+    
+    Z2GetSeqMgr()->resetBattleBgmParams();
+    Z2GetSeqMgr()->setWindStoneVol(1.0f, 0);
+    Z2GetSeqMgr()->setTwilightGateVol(1.0f);
+    Z2GetSeMgr()->resetCrowdSize();
+    Z2GetSoundObjMgr()->setGhostEnemyState(0);
+    Z2GetSeMgr()->resetModY();
+    if (Z2GetStatusMgr()->getDemoStatus() == 8) {
+        Z2GetStatusMgr()->setDemoName("force_end");
+    }
 
-//! @meme this looks to be non-inlined here because @ref setSceneName is too large*
-extern "C" void __ct__10JAISoundIDFRC10JAISoundID(JAISoundID* this_, JAISoundID const& soundIdToSet) {
-    this_->mId = soundIdToSet.mId;
-}
+    if (spotName != NULL) {
+        for (spot = 0; spot < (int)ARRAY_SIZE(sSpotName); spot++) {
+            if (!strcmp(spotName, sSpotName[spot])) {
+                break;
+            }
+        }
+        if (spot == (int)ARRAY_SIZE(sSpotName)) {
+            spot = SPOT_NONE;
+        }
+    }
 
-/* 802B9968-802B9978 2B42A8 0010+00 1/1 0/0 0/0 .text            setFieldBgmPlay__8Z2SeqMgrFb */
-void Z2SeqMgr::setFieldBgmPlay(bool param_1) {
-    mFlags.flag5 = param_1;
-}
+    switch (spot) {
+    case SPOT_ENEMY_TEST:
+        bgm_wave2 = 2;
+        if (room < 30) {
+            se_wave1 = 0x8a;
+        } else {
+            se_wave1 = 0x8b;
+        }
+        break;
 
-/* 802B9978-802B9988 2B42B8 0010+00 1/1 0/0 0/0 .text            isActive__12JAIStreamMgrCFv */
-bool JAIStreamMgr::isActive() const {
-    // NONMATCHING
-}
+    case SPOT_ORDON_RANCH:
+        if (layer == 1) {
+            if (dComIfGs_isSaveSwitch(0x67)) {
+                bgm_id = Z2BGM_TOAL_NIGHT;
+                bgm_wave1 = 6;
+                Z2GetSeqMgr()->changeBgmStatus(0);
+            }
+        } else {
+            if (layer == 8) {
+                demo_wave = 0x5c;
+            }
+            bgm_id = Z2BGM_RANCH;
+            bgm_wave1 = 1;
+            bgm_wave2 = 2;
+            time_proc_vol_mod = true;
+        }
+        se_wave1 = 0x26;
+        se_wave2 = 0x25;
+        field_0x1b = true;
+        break;
 
-/* 802B9988-802B9994 2B42C8 000C+00 1/1 0/0 0/0 .text            getID__8JAISoundCFv */
-// JAISoundID JAISound::getID() const {
-extern "C" void getID__8JAISoundCFv() {
-    // NONMATCHING
-}
+    case SPOT_ORDON_VILLAGE:
+        field_0x1b = true;
+        se_wave1 = 0x26;
+        if (room == 0) {
+            se_wave2 = 0x27;
+            switch (layer) {
+            case 1:
+                bgm_id = Z2BGM_TOAL_NIGHT;
+                bgm_wave1 = 6;
+                Z2GetSeqMgr()->changeBgmStatus(0);
+                break;
+            case 8:
+                bgm_id = 0x2000011;
+                demo_wave = 0x64;
+                break;
+            case 10:
+            case 11:
+                se_wave1 = 0;
+                se_wave2 = 0;
+                demo_wave = 0x7f;
+                break;
+            default:
+                bgm_id = Z2BGM_TOAL_VILLEGE;
+                bgm_wave1 = 3;
+                bgm_wave2 = 4;
+                time_proc_vol_mod = true;
+                break;
+            }
+        } else if (room == 1) {
+            se_wave2 = 0x28;
+            switch (layer) {
+            case 1:
+                field_0x1b = false;
+                if (dComIfGs_isSaveSwitch(0x67)) {
+                    bgm_id = Z2BGM_TOAL_NIGHT;
+                    bgm_wave1 = 6;
+                    Z2GetSeqMgr()->changeBgmStatus(0);
+                }
+                break;
+            case 12:
+                se_wave1 = 0;
+                se_wave2 = 0;
+                demo_wave = 0x7f;
+                break;
+            case 5:
+            case 8:
+                bgm_id = Z2BGM_EVENT01;
+                bgm_wave1 = 5;
+                break;
+            case 9:
+                demo_wave = 0x5c;
+                break;
+            case 3:
+                bVar2 = true;
+                if (!dComIfGs_isSaveSwitch(0xa)) {
+                    break;
+                }
+                // fallthrough
+            case 4:
+                if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[18])
+                    && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[625]))
+                {
+                    bgm_wave1 = 0x55;
+                    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[194])) {
+                        bgm_id = Z2BGM_EVENT05;
+                    }
+                    break;
+                }
+                // fallthrough
+            default:
+                bgm_id = Z2BGM_TOAL_VILLEGE;
+                bgm_wave1 = 3;
+                time_proc_vol_mod = true;
+                break;
+            }
+        }
+        break;
 
-/* 802B9994-802B999C 2B42D4 0008+00 1/1 0/0 0/0 .text            getFirst__19JSUList<9JAIStream>CFv
- */
-extern "C" void func_802B9994(void* _this) /* const */ {
-    // NONMATCHING
-}
+    case SPOT_ORDON_INTERIOR:
+        se_wave1 = 0x26;
+        switch (room) {
+        case 0:
+            bgm_id = Z2BGM_INDOOR;
+            bgm_wave1 = 8;
+            bgm_wave2 = 9;
+            se_wave2 = 0x2a;
+            break;
+        case 1:
+            if (layer == 0) {
+                if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[136])) {
+                    bgm_id = Z2BGM_SHOP01;
+                } else {
+                    bgm_id = Z2BGM_SHOP02;
+                }
+                bgm_wave1 = 7;
+            } else if (layer == 2) {
+                if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[53])) {
+                    bgm_id = Z2BGM_SHOP01;
+                    bgm_wave1 = 7;
+                } else {
+                    bgm_id = Z2BGM_ROOM_2;
+                    bgm_wave1 = 0x35;
+                }
+            }
+            se_wave2 = 0x29;
+            break;
+        case 2:
+            if (layer == 0 || layer == 3) {
+                bgm_id = Z2BGM_INDOOR;
+                bgm_wave1 = 8;
+            } else if (layer == 1) {
+                bgm_id = Z2BGM_TOAL_NIGHT;
+                bgm_wave1 = 6;
+                Z2GetSeqMgr()->changeBgmStatus(1);
+            } else if (layer == 2) {
+                if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[53])) {
+                    bgm_id = Z2BGM_INDOOR;
+                    bgm_wave1 = 8;
+                } else {
+                    bgm_id = Z2BGM_ROOM_2;
+                    bgm_wave1 = 0x35;
+                }
+            }
+            se_wave2 = 0x2c;
+            break;
+        case 3:
+        case 4:
+        case 7:
+            bgm_id = Z2BGM_INDOOR;
+            bgm_wave1 = 8;
+            break;
+        case 5:
+            if (layer == 0) {
+                if (dComIfGs_isSaveSwitch(0x67)) {
+                    bgm_id = Z2BGM_TOAL_NIGHT;
+                    bgm_wave1 = 6;
+                    Z2GetSeqMgr()->changeBgmStatus(1);
+                } else {
+                    bgm_id = Z2BGM_INDOOR;
+                    bgm_wave1 = 8;
+                }
+            } else {
+                if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[53])) {
+                    bgm_id = Z2BGM_INDOOR;
+                    bgm_wave1 = 8;
+                } else {
+                    bgm_id = Z2BGM_ROOM_2;
+                    bgm_wave1 = 0x35;
+                }
+            }
+            se_wave2 = 0x2b;
+        }
+        field_0x1b = true;
+        break;
 
-/* 802B999C-802B99AC 2B42DC 0010+00 1/1 0/0 0/0 .text            dComIfGs_getStartPoint__Fv */
-static void dComIfGs_getStartPoint() {
-    // NONMATCHING
-}
+    case SPOT_ORDON_SPRING:
+        se_wave1 = 0x26;
+        se_wave2 = 0x2d;
+        switch (layer) {
+        case 4:
+            field_0x1b = false;
+            bVar2 = true;
+            if (dComIfGs_isSaveSwitch(0x67)) {
+                bgm_id = Z2BGM_TOAL_NIGHT;
+                bgm_wave1 = 6;
+                Z2GetSeqMgr()->changeBgmStatus(0);
+            }
+            break;
+        case 7:
+            se_wave1 = 0;
+            se_wave2 = 0;
+            demo_wave = 0x7f;
+            break;
+        case 8:
+            demo_wave = 0x65;
+            break;
+        case 10:
+            demo_wave = 0x69;
+            break;
+        case 9:
+        case 11:
+            demo_wave = 0x6a;
+            break;
+        case 12:
+            demo_wave = 0x85;
+            break;
+        case 13:
+        case 14:
+            demo_wave = 0x5c;
+            break;
+        case 3:
+            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[18])
+                && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[625]))
+            {
+                bgm_id = Z2BGM_EVENT05;
+                bgm_wave1 = 0x55;
+                break;
+            }
+            // fallthrough
+        default:
+            bVar2 = true;
+            break;
+        }
+        break;
 
-/* 802B99AC-802B9A24 2B42EC 0078+00 1/1 0/0 0/0 .text            unMuteSceneBgm__8Z2SeqMgrFUl */
-void Z2SeqMgr::unMuteSceneBgm(u32 param_0) {
-    // NONMATCHING
-}
+    case SPOT_TWILIGHT_HYRULE_CASTLE:
+        se_wave1 = 0x2e;
+        if (inDarkness) {
+            se_wave2 = 0x30;
+            if (room == 0) {
+                if (layer == 11) {
+                    demo_wave = 0x66;
+                } else if (layer == 7 || layer == 10) {
+                    demo_wave = 0x67;
+                } else {
+                    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[42])) {
+                        bgm_id = Z2BGM_TWILIGHT;
+                        bgm_wave1 = 0xe;
+                    }
+                }
+            } else if (room == 3 && (layer == 8 || layer == 12)) {
+                demo_wave = 0x68;
+            } else if ((room == 3 && layer == 10) || (room == 2 && layer == 8)) {
+                bgm_id = Z2BGM_DEMO08;
+                bgm_wave1 = 0x21;
+                demo_wave = 0x69;
+            } else {
+                if (room == 3 && layer == 14) {
+                    bVar2 = true;
+                }
+                bgm_id = Z2BGM_TWILIGHT;
+                bgm_wave1 = 0xe;
+            }
+        } else {
+            if (room == 3 && layer == 9) {
+                demo_wave = 0x75;
+            }
+            se_wave2 = 0x2f;
+        }
+        break;
 
-/* 802B9A24-802B9A88 2B4364 0064+00 1/1 0/0 0/0 .text            muteSceneBgm__8Z2SeqMgrFUlf */
-void Z2SeqMgr::muteSceneBgm(u32 param_0, f32 param_1) {
-    // NONMATCHING
-}
+    case SPOT_CASTLE_THRONE_ROOM:
+        if (layer == 8) {
+            demo_wave = 0x68;
+        } else if (layer == 9) {
+            demo_wave = 0x7f;
+        }
+        break;
 
-/* 802B9A88-802B9A94 2B43C8 000C+00 1/1 0/0 0/0 .text            __as__10JAISoundIDFRC10JAISoundID
- */
-extern "C" void __as__10JAISoundIDFRC10JAISoundID(JAISoundID* this_, JAISoundID const& param_0) {
-    // NONMATCHING
-}
+    case SPOT_CORO_SHOP:
+        se_wave1 = 0x31;
+        if (inDarkness) {
+            bgm_id = Z2BGM_TWILIGHT;
+            bgm_wave1 = 0xe;
+            se_wave2 = 0x33;
+        } else {
+            if (layer == 1) {
+                bgm_id = Z2BGM_EVENT05;
+                bgm_wave1 = 0x55;
+                se_wave2 = 0x32;
+            } else {
+                bgm_id = Z2BGM_FILONE_FOREST;
+                bgm_wave1 = 0xf;
+                time_proc_vol_mod = true;
+                Z2GetSeqMgr()->changeBgmStatus(1);
+                se_wave2 = 0x32;
+            }
+        }
+        break;
 
-/* 802B9A94-802B9AC4 2B43D4 0030+00 1/1 0/0 0/0 .text            dComIfGs_isSaveSwitch__Fi */
-static void dComIfGs_isSaveSwitch(int param_0) {
-    // NONMATCHING
-}
+    case SPOT_FARON_WOODS:
+        se_wave1 = 0x31;
+        if (layer == 11) {
+            demo_wave = 0x6c;
+            inDarkness = false;
+        } else if (layer == 9) {
+            demo_wave = 0x6a;
+        } else if (inDarkness) {
+            if (layer == 7) {
+                demo_wave = 0x78;
+            } else if (layer == 8) {
+                demo_wave = 0x66;
+            } else if (layer == 10) {
+                bgm_id = Z2BGM_DEMO10;
+                bgm_wave1 = 0x21;
+                demo_wave = 0x6b;
+            } else {
+                bgm_id = Z2BGM_TWILIGHT;
+                bgm_wave1 = 0xe;
+            }
+            se_wave2 = 0x33;
+        } else {
+            se_wave2 = 0x32;
+            switch (layer) {
+            case 4:
+            case 6:
+            case 12:
+                demo_wave = 0x7f;
+                se_wave1 = 0;
+                se_wave2 = 0;
+                break;
+            case 13:
+                demo_wave = 0x5c;
+                break;
+            case 1:
+                if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[18])
+                    && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[625]))
+                {
+                    bgm_id = Z2BGM_EVENT05;
+                    bgm_wave1 = 0x55;
+                }
+                break;
+            default:
+                bgm_id = Z2BGM_FILONE_FOREST;
+                bgm_wave1 = 0xf;
+                time_proc_vol_mod = true;
+                if (room == 0xe) {
+                    Z2GetSeqMgr()->changeBgmStatus(1);
+                } else {
+                    Z2GetSeqMgr()->changeBgmStatus(0);
+                }
+                break;
+            }
+        }
+        break;
 
-/* 802B9AC4-802B9AD0 2B4404 000C+00 1/1 0/0 0/0 .text            resetCrowdSize__7Z2SeMgrFv */
-void Z2SeMgr::resetCrowdSize() {
-    // NONMATCHING
-}
+    case SPOT_KAKARIKO_VILLAGE:
+        se_wave1 = 0x34;
+        if (layer == 8) {
+            demo_wave = 0x6e;
+            inDarkness = false;
+        } else if (inDarkness) {
+            bgm_id = Z2BGM_TWILIGHT;
+            bgm_wave1 = 0xe;
+            se_wave2 = 0x36;
+        } else {
+            se_wave2 = 0x35;
+            switch (layer) {
+            case 6:
+            case 7:
+                demo_wave = 0x7f;
+                se_wave1 = 0;
+                se_wave2 = 0;
+                break;
+            case 9:
+                demo_wave = 0x6e;
+                break;
+            case 10:
+                demo_wave = 0x6f;
+                break;
+            case 11:
+                bVar2 = true;
+                demo_wave = 0x70;
+                break;
+            case 12:
+                demo_wave = 0x71;
+                break;
+            case 13:
+                demo_wave = 0x83;
+                bgm_wave1 = 0x2c;
+                break;
+            case 0:
+                bgm_id = Z2BGM_KAKARIKO;
+                bgm_wave1 = 0x10;
+                bgm_wave2 = 0x18;
+                demo_wave = 0x84;
+                time_proc_vol_mod = true;
+                break;
+            case 1:
+                bgm_id = Z2BGM_EVENT02;
+                bgm_wave1 = 0x1c;
+                bgm_wave2 = 0x18;
+                break;
+            case 4:
+                bVar2 = true;
+                bgm_id = Z2BGM_LUTERA2;
+                bgm_wave1 = 0x2c;
+                break;
+            default:
+                bgm_id = Z2BGM_KAKARIKO;
+                bgm_wave1 = 0x10;
+                bgm_wave2 = 0x23;
+                time_proc_vol_mod = true;
+                break;
+            }
+        }
+        break;
 
-/* 802B9AD0-802B9AFC 2B4410 002C+00 1/1 0/0 0/0 .text            setTwilightGateVol__8Z2SeqMgrFf */
-void Z2SeqMgr::setTwilightGateVol(f32 param_0) {
-    // NONMATCHING
-}
+    case SPOT_KAKARIKO_INTERIOR:
+        se_wave1 = 0x34;
+        if (inDarkness) {
+            se_wave2 = 0x36;
+            if (room == 0 && layer == 8) {
+                demo_wave = 0x6d;
+                bgm_wave1 = 0xe;
+            } else {
+                bgm_id = Z2BGM_TWILIGHT;
+                bgm_wave1 = 0xe;
+                if (room == 5) {
+                    bgm_wave2 = 0x1c;
+                }
+            }
+        } else {
+            switch (room) {
+            case 1:
+                if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[64])) {
+                    bgm_id = Z2BGM_SHOP01;
+                } else {
+                    bgm_id = Z2BGM_SHOP02;
+                }
+                bgm_wave1 = 7;
+                break;
+            case 2:
+                if (layer == 13) {
+                    demo_wave = 0x83;
+                } else {
+                    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[64])) {
+                        bgm_id = Z2BGM_INDOOR;
+                        bgm_wave1 = 8;
+                    }
+                }
+                break;
+            case 3:
+                if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[109])) {
+                    bgm_id = Z2BGM_SHOP_MARO;
+                    bgm_wave1 = 0x33;
+                } else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[85])) {
+                    bgm_id = Z2BGM_SHOP01;
+                    bgm_wave1 = 7;
+                } else {
+                    bgm_id = Z2BGM_INDOOR;
+                    bgm_wave1 = 8;
+                }
+                break;
+            case 0:
+                if (layer == 9) {
+                    demo_wave = 0x85;
+                } else {
+                    bgm_id = Z2BGM_CHURCH1;
+                    bgm_wave1 = 0x2f;
+                }
+                break;
+            case 4:
+            case 5:
+            case 6:
+                break;
+            }
+            se_wave2 = 0x86;
+        }
+        break;
 
-/* 802B9AFC-802B9B60 2B443C 0064+00 1/1 0/0 0/0 .text            setWindStoneVol__8Z2SeqMgrFfUl */
-void Z2SeqMgr::setWindStoneVol(f32 param_0, u32 param_1) {
-    // NONMATCHING
-}
+    case SPOT_SANCTUARY_BASEMENT:
+        se_wave1 = 0x34;
+        if (inDarkness) {
+            bgm_id = Z2BGM_TWILIGHT;
+            bgm_wave1 = 0xe;
+            se_wave2 = 0x36;
+        } else {
+            bgm_id = Z2BGM_CHURCH2;
+            bgm_wave1 = 0x30;
+            se_wave2 = 0x86;
+            Z2GetSeqMgr()->muteSceneBgm(30, 0.5f);
+        }
+        break;
 
-/* 802B9B60-802B9B68 -00001 0008+00 0/0 0/0 0/0 .text            __ct__10JAISoundIDFUl */
-// JAISoundID::JAISoundID(u32 id) {
-extern "C" void __ct__10JAISoundIDFUl(void* param_0, u32 param_1) {
-    *(u32*)param_0 = (u32)(param_1);
+    case SPOT_KAKARIKO_GRAVEYARD:
+        se_wave1 = 0x34;
+        if (inDarkness) {
+            bgm_id = Z2BGM_TWILIGHT;
+            bgm_wave1 = 0xe;
+            se_wave2 = 0x36;
+        } else {
+            if (layer == 4) {
+                bgm_id = Z2BGM_LUTERA2;
+                bgm_wave1 = 0x2c;
+            } else {
+                bgm_id = Z2BGM_CHURCH2;
+                bgm_wave1 = 0x30;
+                Z2GetSeqMgr()->unMuteSceneBgm(30);
+                time_proc_vol_mod = true;
+                bgm_wave2 = 0x2c;
+            }
+            se_wave2 = 0x37;
+        }
+        break;
+
+    case SPOT_DEATH_MOUNTAIN:
+        se_wave1 = 0x34;
+        if (layer == 8) {
+            demo_wave = 0x7f;
+            se_wave1 = 0;
+            se_wave2 = 0;
+        } else if (inDarkness) {
+            bgm_id = Z2BGM_TWILIGHT;
+            bgm_wave1 = 0xe;
+            se_wave2 = 0x39;
+        } else {
+            bgm_id = Z2BGM_DEATH_MOUNTAIN01;
+            bgm_wave1 = 0x11;
+            se_wave2 = 0x38;
+            time_proc_vol_mod = true;
+            if (room == 3) {
+                height_vol_mod = true;
+            }
+        }
+        break;
+
+    case SPOT_HIDDEN_VILLAGE:
+        if (layer == 0) {
+            Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
+            if (dComIfGs_isSwitch(0x2e, 0) && !dComIfGs_isSwitch(0x11, 0)) {
+                bgm_id = Z2BGM_HIDDEN_VILLAGE;
+            }
+            field_0x1b = true;
+        } else if (layer == 1) {
+            Z2GetSeqMgr()->bgmStop(33, 0);
+        }
+        bgm_wave1 = 0x31;
+        se_wave1 = 0x34;
+        se_wave2 = 0x4f;
+        break;
+
+    case SPOT_IMPAZ_HOUSE:
+        bgm_id = Z2BGM_INDOOR;
+        bgm_wave1 = 8;
+        se_wave1 = 0x34;
+        se_wave2 = 0x4f;
+        field_0x1b = true;
+        break;
+
+    case SPOT_SUMO_HALL:
+        if (layer == 8) {
+            demo_wave = 0x7f;
+            se_wave1 = 0;
+            se_wave2 = 0;
+        } else {
+            bgm_id = Z2BGM_DEATH_MOUNTAIN02;
+            bgm_wave1 = 0x11;
+            se_wave1 = 0x34;
+            bgm_wave2 = 0x12;
+            se_wave2 = 0x3a;
+        }
+        break;
+
+    case SPOT_LAKE_HYLIA:
+        se_wave1 = 0x3b;
+        if (layer == 8) {
+            demo_wave = 0x72;
+            inDarkness = false;
+        } else if (room == 1 && layer == 9) {
+            demo_wave = 0x74;
+        } else if (layer == 10 || layer == 11) {
+            demo_wave = 0x7f;
+            se_wave1 = 0;
+            se_wave2 = 0;
+        } else if (inDarkness) {
+            bgm_id = Z2BGM_TWILIGHT;
+            bgm_wave1 = 0xe;
+            se_wave2 = 0x3d;
+            if (layer == 14) {
+                field_0x1b = true;
+                Z2GetSoundObjMgr()->setForceBattleArea(true, 10000, 40000, 50000);
+            } else {
+                if (dComIfGs_isSaveSwitch(0xf) && !dComIfGs_isSaveSwitch(0x10)) {
+                    field_0x1b = true;
+                }
+                bgm_wave2 = 0x4d;
+            }
+        } else {
+            if (room == 0) {
+                bgm_id = Z2BGM_LAKE;
+                bgm_wave1 = 0x34;
+                height_vol_mod = true;
+                time_proc_vol_mod = true;
+            }
+            se_wave2 = 0x3c;
+        }
+        break;
+
+    case SPOT_UPPER_ZORAS_RIVER:
+        se_wave1 = 0x55;
+        if (layer == 8) {
+            demo_wave = 0x7f;
+            se_wave1 = 0;
+            se_wave2 = 0;
+        } else if (inDarkness) {
+            bgm_id = Z2BGM_TWILIGHT;
+            bgm_wave1 = 0xe;
+            se_wave2 = 0x3f;
+        } else {
+            bgm_wave1 = 0x34;
+            se_wave2 = 0x3e;
+            height_vol_mod = true;
+        }
+        break;
+
+    case SPOT_FISHING_POND:
+        if (layer == 8) {
+            demo_wave = 0x7f;
+            se_wave1 = 0;
+            se_wave2 = 0;
+        } else {
+            se_wave1 = 0x3b;
+            bgm_id = Z2BGM_FISHING;
+            bgm_wave1 = 0x2b;
+            se_wave2 = 0x3e;
+            height_vol_mod = true;
+            time_proc_vol_mod = true;
+        }
+        break;
+
+    case SPOT_HENA_CABIN:
+        se_wave1 = 0x3b;
+        bgm_id = Z2BGM_INDOOR;
+        bgm_wave1 = 8;
+        bgm_wave2 = 0x47;
+        se_wave2 = 0x3e;
+        break;
+
+    case SPOT_ZORAS_RIVER:
+        se_wave1 = 0x55;
+        if (inDarkness) {
+            bgm_id = Z2BGM_CARGO_GAME_TW;
+            bgm_wave1 = 0x24;
+            se_wave2 = 0x41;
+            field_0x1b = true;
+        } else {
+            if (layer == 4) {
+                bgm_id = 0x200000b;
+            } else if (layer == 1) {
+                bgm_id = Z2BGM_MINIGAME_ROOM;
+                bgm_wave1 = 0x47;
+                bgm_wave2 = 0x42;
+            } else if (layer == 0 || layer == 2) {
+                bgm_wave2 = 0x57;
+            }
+            se_wave2 = 0x40;
+        }
+        break;
+
+    case SPOT_ZORAS_DOMAIN:
+        se_wave1 = 0x3b;
+        if (layer == 8 || layer == 9) {
+            demo_wave = 0x82;
+        } else if (layer == 10 || layer == 11) {
+            se_wave1 = 0;
+            se_wave2 = 0;
+            demo_wave = 0x7f;
+        } else if (inDarkness) {
+            bgm_id = Z2BGM_TWILIGHT;
+            bgm_wave1 = 0x0e;
+            bgm_wave2 = 0x2c;
+            se_wave2 = 0x3f;
+        } else {
+            bgm_id = Z2BGM_ZORA_VILLAGE;
+            bgm_wave1 = 0x20;
+            se_wave2 = 0x3e;
+            height_vol_mod = true;
+            time_proc_vol_mod = true;
+        }
+        break;
+
+    case SPOT_CASTLE_TOWN:
+        se_wave1 = 0x42;
+        if (layer == 8) {
+            demo_wave = 0x68;
+        } else if (inDarkness) {
+            bgm_id = Z2BGM_TWILIGHT;
+            bgm_wave1 = 0xe;
+            se_wave2 = 0x44;
+        } else {
+            se_wave2 = 0x43;
+            time_proc_vol_mod = true;
+            if (room == 1 && layer == 9) {
+                demo_wave = 0x7a;
+            } else if (layer == 10) {
+                se_wave1 = 0;
+                se_wave2 = 0;
+                demo_wave = 0x7f;
+            } else if (!(layer == 1 && room == 1
+                && dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[542])))
+            {
+                bgm_id = Z2BGM_CASTLE_TOWN;
+                bgm_wave1 = 0x25;
+                Z2GetSeqMgr()->changeBgmStatus(room);
+            }
+        }
+        break;
+
+    case SPOT_CASTLE_TOWN_INTERIOR:
+        if (room == 6) {
+            se_wave1 = 0x2e;
+            se_wave2 = 0x2f;
+        } else {
+            se_wave1 = 0x42;
+            if (inDarkness) {
+                bgm_id = Z2BGM_TWILIGHT;
+                bgm_wave1 = 0xe;
+                se_wave2 = 0x44;
+            } else {
+                se_wave2 = 0x5b;
+                if (room == 5) {
+                    if (layer == 8) {
+                        demo_wave = 0x73;
+                    } else if (layer == 9) {
+                        se_wave1 = 0;
+                        se_wave2 = 0;
+                        demo_wave = 0x7f;
+                    } else {
+                        bgm_id = Z2BGM_INDOOR_03;
+                        bgm_wave1 = 8;
+                    }
+                }
+            }
+        }
+        break;
+
+    case SPOT_CASTLE_TOWN_SHOPS:
+        se_wave1 = 0x42;
+        se_wave2 = 0x5b;
+        switch (room) {
+        case 0:
+            if (layer == 1) {
+                bgm_id = Z2BGM_SHOP_MARO;
+                bgm_wave1 = 0x33;
+            } else {
+                bgm_id = Z2BGM_SHOP_CELEB;
+                bgm_wave1 = 0x32;
+            }
+            break;
+        case 1:
+            bgm_id = Z2BGM_FORTUNE;
+            bgm_wave1 = 0x37;
+            Z2GetSeqMgr()->changeBgmStatus(0);
+            break;
+        case 2:
+            bgm_id = Z2BGM_INDOOR;
+            bgm_wave1 = 8;
+            break;
+        case 3:
+            bgm_id = Z2BGM_INDOOR_04;
+            bgm_wave1 = 0x56;
+            break;
+        case 4:
+            bgm_id = Z2BGM_CASTLE_TOWN;
+            bgm_wave1 = 0x25;
+            Z2GetSeqMgr()->changeBgmStatus(5);
+            break;
+        case 5:
+            bgm_id = Z2BGM_SHOP02;
+            bgm_wave1 = 7;
+            break;
+        }
+        break;
+
+    case SPOT_STAR_TENT:
+        se_wave1 = 0x42;
+        se_wave2 = 0x87;
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[289])) {
+            bgm_id = Z2BGM_MINIGAME_ROOM;
+        }
+        bgm_wave1 = 0x46;
+        break;
+
+    case SPOT_SACRED_GROVE:
+        se_wave1 = 0x31;
+        bgm_wave2 = 0x1b;
+        se_wave2 = 0x45;
+        if (room == 3) {
+            bgm_id = Z2BGM_HOLY_FOREST;
+            bgm_wave1 = 0x2a;
+        } else if (room == 2) {
+            if (layer == 10) {
+                se_wave1 = 0;
+                se_wave2 = 0;
+                demo_wave = 0x7f;
+            } else {
+                bgm_id = Z2BGM_TEMPLE_OF_TIME;
+                bgm_wave1 = 0x3e;
+            }
+        } else if (room == 1) {
+            if (layer == 0 || layer == 9) {
+                demo_wave = 0x76;
+            } else if (layer == 8 || layer == 11) {
+                se_wave1 = 0;
+                se_wave2 = 0;
+                demo_wave = 0x7f;
+            } else {
+                bgm_wave2 = 0x40;
+            }
+        }
+        break;
+
+    case SPOT_SNOWPEAK:
+        if (layer == 8) {
+            se_wave1 = 0;
+            se_wave2 = 0;
+            demo_wave = 0x7f;
+        } else {
+            bgm_id = Z2BGM_SNOW_MOUNTAIN;
+            bgm_wave1 = 0x2d;
+            bgm_wave2 = 0x3a;
+            se_wave1 = 0x46;
+            se_wave2 = 0x47;
+        }
+        height_vol_mod = true;
+        break;
+
+    case SPOT_GERUDO_DESERT:
+        se_wave1 = 0x48;
+        se_wave2 = 0x49;
+        if (layer == 8 || layer == 9 || layer == 10) {
+            demo_wave = 0x77;
+        } else if (layer == 11) {
+            se_wave1 = 0;
+            se_wave2 = 0;
+            demo_wave = 0x7f;
+        } else {
+            bgm_id = Z2BGM_DESERT;
+            bgm_wave1 = 0x1f;
+        }
+        break;
+
+    case SPOT_ARBITERS_GROUNDS_EXTERIOR:
+        if (room == 1) {
+            Z2GetSoundObjMgr()->setForceBattleArea(true, 1000, 2000, 9000);
+            bgm_wave1 = 0x3d;
+            bgm_wave2 = 0x1c;
+        }
+        se_wave1 = 0x48;
+        se_wave2 = 0x49;
+        break;
+
+    case SPOT_MIRROR_CHAMBER:
+        switch (layer) {
+        case 7:
+        case 8:
+        case 9:
+        case 10:
+            demo_wave = 0x80;
+            break;
+        case 11:
+        case 12:
+            demo_wave = 0x78;
+            break;
+        case 13:
+            demo_wave = 0x7e;
+            break;
+        default:
+            bVar2 = true;
+            bgm_id = Z2BGM_DESERT;
+            bgm_wave1 = 0x1f;
+            break;
+        }
+        se_wave1 = 0x48;
+        se_wave2 = 0x49;
+        break;
+
+    case SPOT_HYRULE_FIELD:
+        se_wave1 = 0x4a;
+        if (room == 10 && layer == 11) {
+            demo_wave = 0x74;
+            fVar1 = 0.7f;
+        } else if (layer == 9 || layer == 10) {
+            se_wave1 = 0;
+            se_wave2 = 0;
+            demo_wave = 0x7f;
+        } else if (layer == 2 || layer == 3) {
+            bgm_id = Z2BGM_HORSE_BATTLE;
+            bgm_wave1 = 0xd;
+            se_wave1 = 0x54;
+            se_wave2 = 0x4e;
+            field_0x1b = true;
+            fVar1 = 1.0f;
+            Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
+        } else if (inDarkness) {
+            if (layer == 12) {
+                demo_wave = 0x6a;
+            } else {
+                bgm_id = Z2BGM_TWILIGHT;
+                bgm_wave1 = 0xe;
+            }
+            se_wave2 = 0x4c;
+            if (room == 13 && layer == 14) {
+                bgm_wave2 = 0x1c;
+            }
+        } else {
+            field_bgm_play = true;
+            if (Z2GetStatusMgr()->checkDayTime()) {
+                bgm_id = Z2BGM_FIELD_LINK_DAY;
+            } else {
+                bgm_id = Z2BGM_FIELD_LINK_NIGHT;
+            }
+            bgm_wave1 = 0x19;
+            switch (room) {
+            case 2:
+            case 3:
+            case 4:
+                se_wave2 = 0x5e;
+                break;
+            case 0:
+            case 5:
+            case 7:
+                se_wave2 = 0x5f;
+                break;
+            case 9:
+            case 10:
+            case 11:
+                se_wave2 = 0x60;
+                break;
+            case 12:
+            case 13:
+            case 14:
+                se_wave2 = 0x61;
+                break;
+            case 1:
+            case 6:
+            case 15:
+                se_wave2 = 0x4b;
+                break;
+            }
+            switch (room) {
+            case 0:
+            case 3:
+            case 6:
+            case 10:
+            case 13:
+                fVar1 = 1.0f;
+                break;
+            case 1:
+            case 2:
+            case 4:
+            case 5:
+            case 14:
+            case 15:
+                fVar1 = 0.7f;
+                break;
+            case 7:
+            case 9:
+            case 11:
+            case 12:
+                fVar1 = 0.8f;
+                break;
+            }
+        }
+        break;
+
+    case SPOT_CASTLE_TOWN_GATES:
+        se_wave1 = 0x4a;
+        if (layer == 8) {
+            demo_wave = 0x73;
+            fVar1 = 1.0f;
+        } else if (layer == 9) {
+            demo_wave = 0x75;
+            fVar1 = 0.5f;
+        } else if (layer == 10) {
+            se_wave1 = 0;
+            se_wave2 = 0;
+            demo_wave = 0x7f;
+        } else if (inDarkness) {
+            bgm_id = Z2BGM_TWILIGHT;
+            bgm_wave1 = 0xe;
+            se_wave2 = 0x4c;
+        } else {
+            if (room == 8) {
+                se_wave2 = 0x62;
+                fVar1 = 0.8f;
+            } else if (room == 16) {
+                se_wave2 = 0x88;
+                fVar1 = 0.8f;
+            } else if (room == 17) {
+                se_wave2 = 0x89;
+                fVar1 = 1.0f;
+            }
+            field_bgm_play = true;
+            if (Z2GetStatusMgr()->checkDayTime()) {
+                bgm_id = Z2BGM_FIELD_LINK_DAY;
+            } else {
+                bgm_id = Z2BGM_FIELD_LINK_NIGHT;
+            }
+            bgm_wave1 = 0x19;
+        }
+        break;
+
+    case SPOT_HYLIA_BRIDGE_BATTLE:
+        se_wave1 = 0x54;
+        bgm_wave1 = 0x3d;
+        se_wave2 = 0x4e;
+        fVar1 = 1.0f;
+        field_0x1b = true;
+        Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
+        break;
+
+    case SPOT_ELDIN_BRIDGE_BATTLE:
+        se_wave1 = 0x4a;
+        if (layer == 11) {
+            se_wave1 = 0;
+            se_wave2 = 0;
+            demo_wave = 0x7f;
+        } else if (layer == 10) {
+            bgm_wave1 = 0x59;
+        } else if (layer != 8 && layer != 9) {
+            if (layer == 0) {
+                bgm_wave1 = 13;
+            } else if (layer == 4) {
+                bgm_wave1 = 0x3d;
+            }
+            fVar1 = 1.0f;
+            se_wave2 = 0x4d;
+            Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
+        }
+        break;
+
+    case SPOT_SHADES_REALM:
+        se_wave1 = 0x4a;
+        if (dComIfGs_getStartPoint() == 2) {
+            bgm_wave2 = 0x50;
+        } else if (dComIfGs_getStartPoint() == 3) {
+            bgm_wave2 = 0x4f;
+        } else if (dComIfGs_getStartPoint() == 4) {
+            bgm_wave2 = 0x3b;
+        } else if (dComIfGs_getStartPoint() == 5) {
+            bgm_wave2 = 0x51;
+        } else if (dComIfGs_getStartPoint() == 6) {
+            bgm_wave2 = 0x52;
+        } else if (dComIfGs_getStartPoint() == 7) {
+            bgm_wave2 = 0x53;
+        } else {
+            bgm_wave1 = 0x44;
+        }
+        se_wave2 = 0x5d;
+        field_0x1b = true;
+        Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
+        break;
+
+    case SPOT_FOREST_TEMPLE:
+        bgm_id = Z2BGM_DUNGEON_FOREST;
+        bgm_wave1 = 0xa;
+        bgm_wave2 = 0x40;
+        se_wave1 = 1;
+        se_wave2 = 2;
+        Z2GetSeqMgr()->changeBgmStatus(room);
+        break;
+
+    case SPOT_FOREST_TEMPLE_MINIBOSS:
+        bgm_id = Z2BGM_DUNGEON_FOREST;
+        bgm_wave1 = 0xa;
+        bgm_wave2 = 0xb;
+        se_wave1 = 1;
+        se_wave2 = 3;
+        field_0x1b = true;
+        Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
+        Z2GetSeqMgr()->unMuteSceneBgm(struct_80450860);
+        break;
+
+    case SPOT_FOREST_TEMPLE_BOSS:
+        se_wave1 = 1;
+        if (dComIfGs_isStageSwitch(2, 1)) {
+            bgm_id = Z2BGM_DUNGEON_FOREST;
+            bgm_wave1 = 0xa;
+        } else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[55])) {
+            bgm_id = 0x200005b;
+        } else {
+            bgm_wave1 = 0xc;
+            se_wave2 = 4;
+            field_0x1b = true;
+            Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
+        }
+        Z2GetSeqMgr()->unMuteSceneBgm(struct_80450860);
+        break;
+
+    case SPOT_GORON_MINES:
+        bgm_id = Z2BGM_DUNGEON_LV2;
+        bgm_wave1 = 0x13;
+        bgm_wave2 = 0x3c;
+        Z2GetSeqMgr()->changeBgmStatus(room);
+        se_wave1 = 5;
+        se_wave2 = 6;
+        break;
+
+    case SPOT_GORON_MINES_MINIBOSS:
+        bgm_id = Z2BGM_DUNGEON_LV2;
+        bgm_wave1 = 0x13;
+        se_wave1 = 5;
+        se_wave2 = 7;
+        bgm_wave2 = 0x14;
+        field_0x1b = true;
+        Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
+        break;
+
+    case SPOT_GORON_MINES_BOSS:
+        se_wave1 = 5;
+        if (dComIfGs_isStageSwitch(3, 0x7c)) {
+            bgm_id = Z2BGM_DUNGEON_LV2;
+            bgm_wave1 = 0x13;
+        } else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[64])) {
+            bgm_id = 0x200005b;
+        } else {
+            bgm_wave1 = 0x16;
+            se_wave2 = 8;
+            field_0x1b = true;
+            Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
+        }
+        break;
+
+    case SPOT_LAKEBED_TEMPLE:
+        bgm_id = Z2BGM_DUNGEON_LV3;
+        bgm_wave1 = 0x15;
+        bgm_wave2 = 0x40;
+        se_wave1 = 9;
+        se_wave2 = 0xa;
+        break;
+
+    case SPOT_LAKEBED_TEMPLE_MINIBOSS:
+        bgm_id = Z2BGM_DUNGEON_LV3;
+        bgm_wave1 = 0x15;
+        bgm_wave2 = 0x17;
+        se_wave1 = 9;
+        se_wave2 = 0xb;
+        field_0x1b = true;
+        Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
+        break;
+
+    case SPOT_LAKEBED_TEMPLE_BOSS:
+        se_wave1 = 9;
+        if (dComIfGs_isStageSwitch(4, 0xe)) {
+            bgm_id = Z2BGM_DUNGEON_LV3;
+            bgm_wave1 = 0x15;
+        } else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[78])) {
+            bgm_id = 0x200005b;
+        } else {
+            bgm_wave1 = 0x1e;
+            se_wave2 = 0xc;
+            field_0x1b = true;
+            Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
+        }
+        break;
+
+    case SPOT_ARBITERS_GROUNDS:
+        bgm_id = Z2BGM_DUNGEON_LV4;
+        bgm_wave1 = 0x1a;
+        bgm_wave2 = 0x41;
+        se_wave1 = 0xd;
+        se_wave2 = 0xe;
+        if (room == 1) {
+            Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
+        }
+        break;
+
+    case SPOT_ARBITERS_GROUNDS_MINIBOSS:
+        bgm_id = Z2BGM_DUNGEON_LV4;
+        bgm_wave1 = 0x1a;
+        bgm_wave2 = 0x22;
+        se_wave1 = 0xd;
+        se_wave2 = 0xf;
+        field_0x1b = true;
+        Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
+        break;
+
+    case SPOT_ARBITERS_GROUNDS_BOSS:
+        se_wave1 = 0xd;
+        if (dComIfGs_isStageSwitch(0xa, 0xa)) {
+            bgm_id = Z2BGM_DUNGEON_LV4;
+            bgm_wave1 = 0x1a;
+        } else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[265])) {
+            bgm_id = 0x200005b;
+        } else {
+            bgm_wave1 = 0x4c;
+            se_wave2 = 0x10;
+            field_0x1b = true;
+            Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
+        }
+        break;
+
+    case SPOT_SNOWPEAK_RUINS:
+        bgm_id = Z2BGM_DUNGEON_LV5;
+        bgm_wave1 = 0x1d;
+        bgm_wave2 = 0x40;
+        se_wave1 = 0x11;
+        se_wave2 = 0x12;
+        Z2GetSeqMgr()->changeBgmStatus(room);
+        break;
+
+    case SPOT_SNOWPEAK_RUINS_MINIBOSS:
+        bgm_id = Z2BGM_DUNGEON_LV5;
+        bgm_wave1 = 0x1d;
+        bgm_wave2 = 0x38;
+        se_wave1 = 0x11;
+        se_wave2 = 0x13;
+        field_0x1b = true;
+        Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
+        Z2GetSeqMgr()->changeBgmStatus(room);
+        break;
+
+    case SPOT_SNOWPEAK_RUINS_BOSS:
+        Z2GetSeqMgr()->unMuteSceneBgm(60);
+        se_wave1 = 0x11;
+        if (dComIfGs_isStageSwitch(8, 0x19)) {
+            bgm_id = Z2BGM_DUNGEON_LV5;
+            bgm_wave1 = 0x1d;
+        } else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[266])) {
+            bgm_id = 0x200005b;
+        } else {
+            bgm_wave1 = 0x2e;
+            se_wave2 = 0x14;
+            field_0x1b = true;
+            Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
+        }
+        break;
+
+    case SPOT_TEMPLE_OF_TIME:
+        bgm_id = Z2BGM_DUNGEON_LV6;
+        bgm_wave1 = 0x26;
+        bgm_wave2 = 0x40;
+        se_wave1 = 0x15;
+        se_wave2 = 0x16;
+        break;
+
+    case SPOT_TEMPLE_OF_TIME_MINIBOSS:
+        bgm_id = Z2BGM_DUNGEON_LV6;
+        bgm_wave1 = 0x26;
+        bgm_wave2 = 0x3f;
+        se_wave1 = 0x15;
+        se_wave2 = 0x17;
+        field_0x1b = true;
+        Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
+        break;
+
+    case SPOT_TEMPLE_OF_TIME_BOSS:
+        se_wave1 = 0x15;
+        if (dComIfGs_isStageSwitch(7, 0x18)) {
+            bgm_id = Z2BGM_DUNGEON_LV6;
+            bgm_wave1 = 0x26;
+        } else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[267])) {
+            bgm_id = 0x200005b;
+        } else {
+            bgm_wave1 = 0x4e;
+            se_wave2 = 0x18;
+            field_0x1b = true;
+            Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
+        }
+        break;
+
+    case SPOT_CITY_IN_THE_SKY:
+        if (room == 16) {
+            bgm_id = Z2BGM_OBACHAN;
+            bgm_wave1 = 0x40;
+        } else {
+            bgm_id = Z2BGM_DUNGEON_LV7;
+            bgm_wave1 = 0x27;
+        }
+        se_wave1 = 0x19;
+        se_wave2 = 0x1a;
+        break;
+
+    case SPOT_CITY_IN_THE_SKY_MINIBOSS:
+        bgm_id = Z2BGM_DUNGEON_LV7;
+        bgm_wave1 = 0x27;
+        bgm_wave2 = 0x43;
+        se_wave1 = 0x19;
+        se_wave2 = 0x1b;
+        field_0x1b = true;
+        Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
+        break;
+
+    case SPOT_CITY_IN_THE_SKY_BOSS:
+        se_wave1 = 0x19;
+        if (dComIfGs_isStageSwitch(0x16, 0x25)) {
+            bgm_id = Z2BGM_DUNGEON_LV7;
+            bgm_wave1 = 0x27;
+        } else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[268])) {
+            bgm_id = 0x200005b;
+        } else {
+            bgm_wave1 = 0x1e;
+            se_wave2 = 0x1c;
+            field_0x1b = true;
+            Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
+        }
+        break;
+
+    case SPOT_PALACE_OF_TWILIGHT:
+        if (layer == 8) {
+            if (room == 0 || room == 9) {
+                demo_wave = 0x77;
+            } else if (room == 11) {
+                demo_wave = 0x81;
+            }
+        } else if (layer == 9) {
+            demo_wave = 0x78;
+        } else {
+            bVar2 = true;
+            bgm_id = Z2BGM_DUNGEON_LV8;
+            bgm_wave1 = 0x28;
+            Z2GetSeqMgr()->changeBgmStatus(room);
+        }
+        se_wave1 = 0x1d;
+        se_wave2 = 0x1e;
+        break;
+
+    case SPOT_PALACE_OF_TWILIGHT_MINIBOSS_A:
+    case SPOT_PALACE_OF_TWILIGHT_MINIBOSS_B:
+        bgm_id = Z2BGM_DUNGEON_LV8;
+        bgm_wave1 = 0x28;
+        bgm_wave2 = 0x48;
+        se_wave1 = 0x1d;
+        se_wave2 = 0x1f;
+        field_0x1b = true;
+        Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
+        break;
+
+    case SPOT_PALACE_OF_TWILIGHT_THRONE_ROOM:
+        if (layer == 8) {
+            demo_wave = 0x81;
+        } else if (layer == 9) {
+            demo_wave = 0x79;
+        } else if (dComIfGs_isStageSwitch(0x17, 0x16)) {
+            bgm_id = Z2BGM_DUNGEON_LV8;
+            bgm_wave1 = 0x28;
+        } else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[570])) {
+            bgm_id = 0x200005b;
+            JSUList<JAIStream>* stream_list = Z2GetSoundMgr()->getStreamMgr()->getStreamList();
+            JSULink<JAIStream>* stream;
+            for (stream = stream_list->getFirst(); stream != NULL; stream = stream->getNext()) {
+                if (stream->getObject()->getID() == 0x2000046) {
+                    bgm_id = -1;
+                }
+            }
+        }
+        break;
+
+    case SPOT_PALACE_OF_TWILIGHT_BOSS:
+        se_wave1 = 0x1d;
+        bgm_wave1 = 0x39;
+        se_wave2 = 0x20;
+        if (room == 50) {
+            inDarkness = true;
+        }
+        field_0x1b = true;
+        Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
+        break;
+
+    case SPOT_HYRULE_CASTLE:
+        if (room >= 1 && room <= 6) {
+            bgm_id = 0x2000040;
+            bgm_wave2 = 0x58;
+        } else if (room == 8 || room == 12) {
+            bgm_id = Z2BGM_DUNGEON_LV9_02;
+            bgm_wave1 = 0x29;
+            height_vol_mod = true;
+        } else {
+            Z2GetSeqMgr()->bgmStop(45, 0);
+            bgm_wave2 = 0x3d;
+        }
+        se_wave1 = 0x21;
+        se_wave2 = 0x22;
+        field_0x1b = true;
+        Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
+        break;
+
+    case SPOT_FINAL_BATTLE_THRONE_ROOM:
+        if (room == 50) {
+            if (layer == 8) {
+                demo_wave = 0x7b;
+            } else if (layer == 0) {
+                bgm_wave1 = 0x49;
+                se_wave2 = 0x23;
+            } else if (layer == 10) {
+                demo_wave = 0x7b;
+            } else if (layer == 1) {
+                bgm_wave1 = 0x4a;
+                se_wave2 = 0x24;
+            } else if (layer == 9) {
+                demo_wave = 0x7c;
+            }
+        }
+        se_wave1 = 0x56;
+        field_0x1b = true;
+        Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
+        break;
+
+    case SPOT_FINAL_BATTLE_FIELD:
+        bgm_wave1 = 0x4b;
+        se_wave2 = 0x63;
+        se_wave1 = 0x8c;
+        field_0x1b = true;
+        Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
+        break;
+
+    case SPOT_FINAL_BATTLE_CUTSCENE:
+        if (layer == 8) {
+            demo_wave = 0x7c;
+            fVar1 = 0.1f;
+        } else if (layer == 10) {
+            demo_wave = 0x7d;
+        } else if (layer == 9) {
+            demo_wave = 0x7e;
+            fVar1 = 0.08f;
+        } else if (layer == 11) {
+            demo_wave = 0x7f;
+        }
+        break;
+
+    case SPOT_LIGHT_SPIRIT_CHAMBER:
+        demo_wave = 0x7c;
+        break;
+
+    case SPOT_CAVE_OF_ORDEALS:
+        se_wave2 = 0x51;
+        if (room != 49 || layer < 5 || layer > 8) {
+            bgm_id = Z2BGM_SUB_DUNGEON;
+            bgm_wave1 = 0x45;
+        }
+        break;
+
+    case SPOT_ICE_BLOCK_PUZZLE:
+        se_wave1 = 0x11;
+        se_wave2 = 0x12;
+        bgm_id = Z2BGM_SUB_DUNGEON;
+        bgm_wave1 = 0x45;
+        break;
+
+    case SPOT_GORGE_LANTERN_CAVE:
+    case SPOT_LAKE_LANTERN_CAVE:
+        se_wave2 = 0x52;
+        bgm_id = Z2BGM_SUB_DUNGEON;
+        bgm_wave1 = 0x45;
+        break;
+
+    case SPOT_ELDIN_MAGNET_CAVE:
+        se_wave1 = 5;
+        se_wave2 = 6;
+        bgm_id = Z2BGM_SUB_DUNGEON;
+        bgm_wave1 = 0x45;
+        break;
+
+    case SPOT_GROTTO_GRASS_1:
+    case SPOT_GROTTO_GRASS_2:
+    case SPOT_GROTTO_ROCK_1:
+    case SPOT_GROTTO_ROCK_2:
+    case SPOT_GROTTO_POND:
+        se_wave2 = 0x50;
+        bgm_id = Z2BGM_SUB_DUNGEON;
+        bgm_wave1 = 0x45;
+        break;
+
+    case SPOT_FARON_WOODS_CAVE:
+        se_wave2 = 0x53;
+        if (inDarkness) {
+            bgm_id = Z2BGM_TWILIGHT;
+            bgm_wave1 = 0xe;
+        } else {
+            bgm_id = Z2BGM_SUB_DUNGEON;
+            bgm_wave1 = 0x45;
+        }
+        break;
+    }
+
+    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[104])
+        && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[250])
+        && demo_wave == 0 && spot != SPOT_ELDIN_BRIDGE_BATTLE)
+    {
+        bgm_wave1 = 0x36;
+        if (spot == SPOT_CASTLE_TOWN_SHOPS && room == 5) {
+            bgm_id = -1;
+        } else {
+            bgm_id = Z2BGM_MIDNA_SOS;
+            if ((spot == SPOT_CASTLE_TOWN_INTERIOR && room == 5)
+                || spot == SPOT_CASTLE_TOWN_SHOPS || spot == SPOT_STAR_TENT)
+            {
+                Z2GetSeqMgr()->muteSceneBgm(33, 0.5f);
+            } else {
+                Z2GetSeqMgr()->unMuteSceneBgm(33);
+            }
+        }
+        time_proc_vol_mod = false;
+    } else if (sceneNum == SPOT_CASTLE_TOWN_SHOPS && roomNum == 1
+        && !(spot == SPOT_CASTLE_TOWN && room == 3))
+    {
+        bgm_id = Z2BGM_FORTUNE;
+        bgm_wave1 = 0x37;
+        Z2GetSeqMgr()->changeBgmStatus(1);
+        time_proc_vol_mod = false;
+    }
+
+    if (Z2GetSoundMgr()->getStreamMgr()->isActive()) {
+        JAUSoundTable* sound_table = JAUSoundTable::getInstance();
+        JSUList<JAIStream>* stream_list = Z2GetSoundMgr()->getStreamMgr()->getStreamList();
+        JSULink<JAIStream>* stream;
+        for (stream = stream_list->getFirst(); stream != NULL; stream = stream->getNext()) {
+            if (bVar2 || sound_table->getTypeID(stream->getObject()->getID()) != 0x71) {
+                stream->getObject()->stop(struct_80450860);
+            }
+        }
+    }
+
+    Z2GetSeqMgr()->setHeightVolMod(height_vol_mod, 30);
+    Z2GetSeqMgr()->setTimeProcVolMod(time_proc_vol_mod, 0);
+    Z2GetSeqMgr()->setFieldBgmPlay(field_bgm_play);
+    Z2GetEnvSeMgr()->initSceneEnvSe(spot, room, fVar1);
+
+    if (sceneNum != spot || bgm_id != BGM_ID || se_wave1 != loadedSeWave_1
+        || se_wave2 != loadedSeWave_2 || bgm_wave1 != loadedBgmWave_1
+        || bgm_wave2 != loadedBgmWave_2 || demo_wave != loadedDemoWave)
+    {
+        sceneNum = spot;
+        sceneChange(bgm_id, se_wave1, se_wave2, bgm_wave1, bgm_wave2, demo_wave, false);
+    }
+    roomNum = room;
 }
 
 /* 802B9B68-802B9C50 2B44A8 00E8+00 1/1 0/0 0/0 .text
  * sceneChange__10Z2SceneMgrF10JAISoundIDUcUcUcUcUcb            */
-void Z2SceneMgr::sceneChange(JAISoundID param_0, u8 param_1, u8 param_2, u8 param_3, u8 param_4,
-                                 u8 param_5, bool param_6) {
-    // NONMATCHING
+void Z2SceneMgr::sceneChange(JAISoundID bgm, u8 seWave1, u8 seWave2, u8 bgmWave1, u8 bgmWave2,
+                             u8 demoWave, bool param_6) {
+    if (bgm != BGM_ID) {
+        if (Z2GetSeqMgr()->getMainBgmID() == bgm) {
+            field_0x1a = false;
+        } else {
+            field_0x1a = true;
+        }
+    } else {
+        if (Z2GetSeqMgr()->getMainBgmID() == bgm) {
+            if (param_6) {
+                field_0x1a = true;
+            } else {
+                field_0x1a = false;
+            }
+        } else {
+            field_0x1a = true;
+        }
+    }
+
+    requestSeWave_1 = seWave1;
+    requestSeWave_2 = seWave2;
+    requestBgmWave_1 = bgmWave1;
+    requestBgmWave_2 = bgmWave2;
+    requestDemoWave = demoWave;
+    BGM_ID = bgm;
+    Z2GetFxLineMgr()->setSceneFx(sceneNum);
 }
 
 /* 802B9C50-802B9D40 2B4590 00F0+00 0/0 1/1 0/0 .text            framework__10Z2SceneMgrFv */
 void Z2SceneMgr::framework() {
-    // NONMATCHING
+    if (load1stWait > 0) {
+        load1stWait--;
+        if (load1stWait == 0 && timer == 0) {
+            _load1stWaveInner_1();
+        }
+    } else if (load1stWait < 0) {
+        load1stWait++;
+        if (load1stWait == 0 && field_0x1a) {
+            _load1stWaveInner_2();
+        }
+    }
+
+    if (isSceneExist()) {
+        if (timer < 10000) {
+            timer++;
+        }
+        if (!field_0x1b && Z2GetStatusMgr()->getDemoStatus() != 3 && timer == struct_80450863) {
+            Z2GetSeqMgr()->setBattleBgmOff(false);
+        }
+    } else {
+        Z2GetSeqMgr()->setBattleBgmOff(true);
+    }
 }
 
 /* 802B9D40-802B9D98 2B4680 0058+00 0/0 1/1 0/0 .text            load1stDynamicWave__10Z2SceneMgrFv
  */
 void Z2SceneMgr::load1stDynamicWave() {
-    // NONMATCHING
+    timer = 0;
+    Z2GetSoundObjMgr()->deleteEnemyAll();
+    setSceneExist(false);
+    if (load1stWait == 0) {
+        _load1stWaveInner_1();
+    }
 }
 
 /* 802B9D98-802B9FC8 2B46D8 0230+00 2/2 0/0 0/0 .text            _load1stWaveInner_1__10Z2SceneMgrFv
  */
 void Z2SceneMgr::_load1stWaveInner_1() {
-    // NONMATCHING
+    Z2GetSeMgr()->seStopAll(0);
+    Z2GetEnvSeMgr()->resetSceneInner();
+    field_0x18 = dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[104]) ? 0x59 : 0x58;
+
+    if (loadedSeWave_2 != 0 && requestSeWave_2 != loadedSeWave_2) {
+        eraseSeWave(loadedSeWave_2);
+        loadedSeWave_2 = 0;
+    }
+
+    if (loadedDemoWave != 0 && requestDemoWave != loadedDemoWave) {
+        if (loadedSeWave_2 != 0 && eraseSeWave(loadedSeWave_2)) {
+            loadedSeWave_2 = 0;
+        }
+        eraseSeWave(loadedDemoWave);
+        loadedDemoWave = 0;
+    }
+
+    if (field_0x18 != field_0x19 || requestSeWave_1 != loadedSeWave_1) {
+        if (loadedSeWave_2 != 0 && eraseSeWave(loadedSeWave_2)) {
+            loadedSeWave_2 = 0;
+        }
+        if (loadedDemoWave != 0 && eraseSeWave(loadedDemoWave)) {
+            loadedDemoWave = 0;
+        }
+        if (loadedSeWave_1 != 0 && eraseSeWave(loadedSeWave_1)) {
+            loadedSeWave_1 = 0;
+        }
+        if (field_0x18 != field_0x19 && eraseSeWave(field_0x19) && loadSeWave(field_0x18)) {
+            field_0x19 = field_0x18;
+        }
+        if (requestSeWave_1 != 0 && loadSeWave(requestSeWave_1)) {
+            loadedSeWave_1 = requestSeWave_1;
+        } else {
+            loadedSeWave_1 = 0;
+        }
+    }
+
+    if (field_0x1a && Z2GetSeqMgr()->checkBgmPlaying()) {
+        Z2GetSeqMgr()->bgmStop(0xf, 0);
+        load1stWait = -15;
+    } else {
+        _load1stWaveInner_2();
+    }
 }
 
 /* 802B9FC8-802BA09C 2B4908 00D4+00 2/2 0/0 0/0 .text            _load1stWaveInner_2__10Z2SceneMgrFv
  */
 void Z2SceneMgr::_load1stWaveInner_2() {
-    // NONMATCHING
+    if (loadedBgmWave_2 != 0 && requestBgmWave_2 != loadedBgmWave_2) {
+        eraseBgmWave(loadedBgmWave_2);
+        loadedBgmWave_2 = 0;
+    }
+
+    if (requestBgmWave_1 != loadedBgmWave_1) {
+        if (loadedBgmWave_2 != 0 && eraseBgmWave(loadedBgmWave_2)) {
+            loadedBgmWave_2 = 0;
+        }
+        if (loadedBgmWave_1 != 0 && eraseBgmWave(loadedBgmWave_1)) {
+            loadedBgmWave_1 = 0;
+        }
+        if (requestBgmWave_1 != 0 && loadBgmWave(requestBgmWave_1)) {
+            loadedBgmWave_1 = requestBgmWave_1;
+        } else {
+            loadedBgmWave_1 = 0;
+        }
+    }
 }
 
 /* 802BA09C-802BA120 2B49DC 0084+00 0/0 1/1 0/0 .text            check1stDynamicWave__10Z2SceneMgrFv
  */
 bool Z2SceneMgr::check1stDynamicWave() {
-    // NONMATCHING
+    return load1stWait != 0 || getSeLoadStatus(requestSeWave_1) == 1
+        || getBgmLoadStatus(requestBgmWave_1) == 1;
 }
 
 /* 802BA120-802BA294 2B4A60 0174+00 0/0 2/2 0/0 .text            load2ndDynamicWave__10Z2SceneMgrFv
  */
 void Z2SceneMgr::load2ndDynamicWave() {
-    // NONMATCHING
+    if (requestDemoWave != loadedDemoWave) {
+        if (loadedSeWave_2 != 0 && eraseSeWave(loadedSeWave_2)) {
+            loadedSeWave_2 = 0;
+        }
+        if (loadedDemoWave != 0 && eraseSeWave(loadedDemoWave)) {
+            loadedDemoWave = 0;
+        }
+        if (requestDemoWave != 0 && requestDemoWave != 0x7f && loadSeWave(requestDemoWave)) {
+            loadedDemoWave = requestDemoWave;
+        } else {
+            loadedDemoWave = 0;
+        }
+    }
+
+    if (requestSeWave_2 != loadedSeWave_2) {
+        if (loadedSeWave_2 != 0 && eraseSeWave(loadedSeWave_2)) {
+            loadedSeWave_2 = 0;
+        }
+        if (requestSeWave_2 != 0 && loadSeWave(requestSeWave_2)) {
+            loadedSeWave_2 = requestSeWave_2;
+        } else {
+            loadedSeWave_2 = 0;
+        }
+    }
+
+    if (requestBgmWave_2 != loadedBgmWave_2) {
+        if (loadedBgmWave_2 != 0 && eraseBgmWave(loadedBgmWave_2)) {
+            loadedBgmWave_2 = 0;
+        }
+        if (requestBgmWave_2 != 0 && loadBgmWave(requestBgmWave_2)) {
+            loadedBgmWave_2 = requestBgmWave_2;
+        } else {
+            loadedBgmWave_2 = 0;
+        }
+    }
 }
 
-/* ############################################################################################## */
-/* 803CA9BC-803CAB18 -00001 015C+00 1/1 0/0 0/0 .data            @5852 */
-SECTION_DATA static void* lit_5852[87] = {
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x150),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x150),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x204),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x23C),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x150),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x180),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x150),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x150),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x150),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x180),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x180),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x150),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x180),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x190),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
-    (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x1B8),
-};
-
 /* 802BA294-802BA56C 2B4BD4 02D8+00 1/0 2/2 0/0 .text            sceneBgmStart__10Z2SceneMgrFv */
+// NONMATCHING regalloc
 void Z2SceneMgr::sceneBgmStart() {
-    // NONMATCHING
+    inGame = true;
+    setSceneExist(true);
+    Z2GetStatusMgr()->setPauseFlag(0);
+
+    if (!field_0x1a && Z2GetSeqMgr()->checkBgmIDPlaying(BGM_ID)) {
+        return;
+    }
+
+    if (!BGM_ID.isAnonymous() && Z2GetStatusMgr()->getDemoStatus() != 11) {
+        bool var;
+        switch (BGM_ID.mId.mBytes.b0) {
+        case 1:
+            var = false;
+            switch (Z2GetSeqMgr()->getSubBgmID()) {
+            case Z2BGM_BATTLE_NORMAL:
+            case Z2BGM_BOOMERAMG_MONKEY:
+            case Z2BGM_SUMOMO:
+                var = true;
+                break;
+            }
+            Z2GetSeqMgr()->bgmStart(BGM_ID, 0, var);
+            Z2GetSeqMgr()->unMuteSceneBgm(0);
+
+            switch (BGM_ID) {
+            case Z2BGM_DUNGEON_FOREST:
+            case Z2BGM_DUNGEON_LV2:
+            case Z2BGM_DUNGEON_LV5:
+            case Z2BGM_CASTLE_TOWN:
+            case Z2BGM_DUNGEON_LV8:
+            case Z2BGM_DUNGEON_LV9_02:
+            case Z2BGM_SNOW_MOUNTAIN:
+                if (sceneNum == SPOT_CASTLE_TOWN_SHOPS) {
+                    Z2GetSeqMgr()->changeBgmStatus(5);
+                } else {
+                    Z2GetSeqMgr()->changeBgmStatus(roomNum);
+                }
+                break;
+            case Z2BGM_HOLY_FOREST:
+            case Z2BGM_LUTERA2:
+            case Z2BGM_DEMO08:
+            case Z2BGM_DEMO10:
+                Z2GetSeqMgr()->changeBgmStatus(0);
+                break;
+            case Z2BGM_CHURCH2:
+                if (sceneNum == SPOT_SANCTUARY_BASEMENT) {
+                    Z2GetSeqMgr()->muteSceneBgm(0, 0.5f);
+                }
+                break;
+            case Z2BGM_MIDNA_SOS:
+                if ((sceneNum == SPOT_CASTLE_TOWN_INTERIOR && roomNum == 5)
+                    || sceneNum == SPOT_CASTLE_TOWN_SHOPS || sceneNum == SPOT_STAR_TENT)
+                {
+                    Z2GetSeqMgr()->muteSceneBgm(0, 0.5f);
+                }
+                break;
+            case Z2BGM_TOAL_NIGHT:
+                if (sceneNum == SPOT_ORDON_INTERIOR && roomNum == 2) {
+                    Z2GetSeqMgr()->changeBgmStatus(2);
+                } else {
+                    Z2GetSeqMgr()->changeBgmStatus(0);
+                }
+                break;
+            case Z2BGM_FILONE_FOREST:
+                if (sceneNum == SPOT_CORO_SHOP
+                    || (sceneNum == SPOT_FARON_WOODS && roomNum == 14))
+                {
+                    Z2GetSeqMgr()->changeBgmStatus(2);
+                } else {
+                    Z2GetSeqMgr()->changeBgmStatus(0);
+                }
+                break;
+            }
+            break;
+
+        case 2:
+            if (!Z2GetSeqMgr()->bgmStreamCheckReady()) {
+                Z2GetSeqMgr()->bgmStreamPrepare(BGM_ID);
+            }
+            Z2GetSeqMgr()->bgmStreamPlay();
+            break;
+        }
+    }
+
+    Z2GetSeqMgr()->bgmAllUnMute(0);
+    field_0x1a = false;
 }
 
 /* 802BA56C-802BA5C0 2B4EAC 0054+00 0/0 1/1 0/0 .text            loadStaticWaves__10Z2SceneMgrFv */
 void Z2SceneMgr::loadStaticWaves() {
-    // NONMATCHING
+    loadSeWave(0);
+    loadBgmWave(0);
+    loadSeWave(0x58);
+    field_0x18 = 0x58;
+    field_0x19 = 0x58;
 }
 
 /* 802BA5C0-802BA5C8 2B4F00 0008+00 0/0 1/1 0/0 .text            checkFirstWaves__10Z2SceneMgrFv */
@@ -913,28 +2058,63 @@ BOOL Z2SceneMgr::checkFirstWaves() {
 }
 
 /* 802BA5C8-802BA630 2B4F08 0068+00 2/2 0/0 0/0 .text            eraseSeWave__10Z2SceneMgrFUl */
-void Z2SceneMgr::eraseSeWave(u32 param_0) {
-    // NONMATCHING
+bool Z2SceneMgr::eraseSeWave(u32 wave) {
+    JASWaveBank* wave_bank = JAUSectionHeap::getInstance()->getWaveBankTable().getWaveBank(0);
+    if (wave_bank != NULL) {
+        JASWaveArc* wave_arc = wave_bank->getWaveArc(wave);
+        if (wave_arc != NULL) {
+            return wave_arc->erase();
+        }
+    }
+    return false;
 }
 
 /* 802BA630-802BA698 2B4F70 0068+00 2/2 0/0 0/0 .text            eraseBgmWave__10Z2SceneMgrFUl */
-void Z2SceneMgr::eraseBgmWave(u32 param_0) {
-    // NONMATCHING
+bool Z2SceneMgr::eraseBgmWave(u32 wave) {
+    JASWaveBank* wave_bank = JAUSectionHeap::getInstance()->getWaveBankTable().getWaveBank(1);
+    if (wave_bank != NULL) {
+        JASWaveArc* wave_arc = wave_bank->getWaveArc(wave);
+        if (wave_arc != NULL) {
+            return wave_arc->erase();
+        }
+    }
+    return false;
 }
 
 /* 802BA698-802BA704 2B4FD8 006C+00 1/1 0/0 0/0 .text getWaveLoadStatus__10Z2SceneMgrFUlUl */
-void Z2SceneMgr::getWaveLoadStatus(u32 param_0, u32 param_1) {
-    // NONMATCHING
+s32 Z2SceneMgr::getWaveLoadStatus(u32 wave, u32 bank) {
+    JASWaveBank* wave_bank = JAUSectionHeap::getInstance()->getWaveBankTable().getWaveBank(bank);
+    if (wave_bank != NULL) {
+        JASWaveArc* wave_arc = wave_bank->getWaveArc(wave);
+        if (wave_arc != NULL) {
+            return wave_arc->getStatus();
+        }
+    }
+    return 0;
 }
 
 /* 802BA704-802BA770 2B5044 006C+00 3/3 0/0 0/0 .text            loadSeWave__10Z2SceneMgrFUl */
-void Z2SceneMgr::loadSeWave(u32 param_0) {
-    // NONMATCHING
+bool Z2SceneMgr::loadSeWave(u32 wave) {
+    JASWaveBank* wave_bank = JAUSectionHeap::getInstance()->getWaveBankTable().getWaveBank(0);
+    if (wave_bank != NULL) {
+        JASWaveArc* wave_arc = wave_bank->getWaveArc(wave);
+        if (wave_arc != NULL) {
+            return wave_arc->load(NULL);
+        }
+    }
+    return false;
 }
 
 /* 802BA770-802BA7DC 2B50B0 006C+00 3/3 0/0 0/0 .text            loadBgmWave__10Z2SceneMgrFUl */
-void Z2SceneMgr::loadBgmWave(u32 param_0) {
-    // NONMATCHING
+bool Z2SceneMgr::loadBgmWave(u32 wave) {
+    JASWaveBank* wave_bank = JAUSectionHeap::getInstance()->getWaveBankTable().getWaveBank(1);
+    if (wave_bank != NULL) {
+        JASWaveArc* wave_arc = wave_bank->getWaveArc(wave);
+        if (wave_arc != NULL) {
+            return wave_arc->loadTail(NULL);
+        }
+    }
+    return false;
 }
 
 /* 8039BFA8-8039BFA8 028608 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

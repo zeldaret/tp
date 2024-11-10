@@ -4,18 +4,8 @@
 //
 
 #include "JSystem/JAudio2/dspproc.h"
-
-//
-// Forward References:
-//
-
-//
-// External References:
-//
-
-//
-// Declarations:
-//
+#include "JSystem/JAudio2/dsptask.h"
+#include "JSystem/JAudio2/JASDSPInterface.h"
 
 /* 8029E4E0-8029E528 298E20 0048+00 0/0 1/1 0/0 .text            DSPReleaseHalt2__FUl */
 void DSPReleaseHalt2(u32 msg) {
@@ -26,7 +16,6 @@ void DSPReleaseHalt2(u32 msg) {
     DSPSendCommands2(msgs,0,NULL);
 }
 
-/* ############################################################################################## */
 /* 804512F8-80451300 0007F8 0004+04 2/2 0/0 0/0 .sbss            flag */
 static volatile BOOL flag;
 

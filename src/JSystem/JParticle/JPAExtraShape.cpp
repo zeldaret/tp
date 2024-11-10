@@ -8,11 +8,6 @@
 #include "JSystem/JParticle/JPAParticle.h"
 #include "JSystem/JParticle/JPAEmitter.h"
 #include "dolphin/os.h"
-#include "dolphin/types.h"
-
-//
-// Types:
-//
 
 /* 8027A918-8027A990 275258 0078+00 0/0 1/1 0/0 .text
  * JPACalcScaleX__FP18JPAEmitterWorkDataP15JPABaseParticle      */

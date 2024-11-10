@@ -38,7 +38,7 @@ public:
     /* 80969E9C */ void _search_HollyBall_G(void*, void*);
     /* 80969F54 */ void main();
     /* 8096A090 */ void setAttnPos();
-    /* 8096A238 */ void setMotionAnm(int, f32);
+    /* 8096A238 */ bool setMotionAnm(int, f32);
     /* 8096A308 */ void setMotion(int, f32, int);
     /* 8096A350 */ bool drawDbgInfo();
     /* 8096A358 */ void reset();

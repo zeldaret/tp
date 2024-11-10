@@ -13,130 +13,8 @@
 #include "JSystem/JAudio2/JASCalc.h"
 #include "JSystem/JAudio2/JASDriverIF.h"
 #include "JSystem/JAudio2/JAUSectionHeap.h"
-#include "dol2asm.h"
-
-//
-// Forward References:
-//
-
-extern "C" void seqCallback__FP8JASTrackUs();
-extern "C" void __ct__10Z2SoundMgrFv();
-extern "C" void func_802A9EE8();
-extern "C" void calc__10Z2SoundMgrFv();
-extern "C" void setIIR__10Z2SoundMgrFP8JAISoundPCs();
-extern "C" void setFilterOff__10Z2SoundMgrFP8JAISound();
-extern "C" void resetFilterAll__10Z2SoundMgrFv();
-extern "C" void mixOut__10Z2SoundMgrFv();
-extern "C" void framework__10Z2SoundMgrFv();
-extern "C" void pauseAllGameSound__10Z2SoundMgrFb();
-extern "C" void stopSoundID__10Z2SoundMgrF10JAISoundID();
-extern "C" void stopSync__10Z2SoundMgrFv();
-extern "C" void stop__10Z2SoundMgrFv();
-extern "C" void initParams__10Z2SoundMgrFv();
-extern "C" void multiVolumeSoundID__10Z2SoundMgrF10JAISoundIDf();
-extern "C" void isPlayingSoundID__10Z2SoundMgrF10JAISoundID();
-extern "C" extern char const* const Z2SoundMgr__stringBase0;
 
 void dComIfGs_staffroll_next_go();
-
-//
-// External References:
-//
-
-extern "C" void dComIfGs_staffroll_next_go__Fv();
-extern "C" void setFIR__8JASTrackFPCs();
-extern "C" void setIIR__8JASTrackFPCs();
-extern "C" void writePort__8JASTrackFUlUs();
-extern "C" void waitSubFrame__9JASDriverFv();
-extern "C" void pause__16JAISeCategoryMgrFb();
-extern "C" void __ct__8JAISeMgrFb();
-extern "C" void stop__8JAISeMgrFv();
-extern "C" void stopSoundID__8JAISeMgrF10JAISoundID();
-extern "C" void initParams__8JAISeMgrFv();
-extern "C" void calc__8JAISeMgrFv();
-extern "C" void mixOut__8JAISeMgrFv();
-extern "C" void func_802A0768();
-extern "C" void getNumActiveSe__8JAISeMgrCFv();
-extern "C" void __ct__9JAISeqMgrFb();
-extern "C" void func_802A1B48();
-extern "C" void calc__9JAISeqMgrFv();
-extern "C" void stop__9JAISeqMgrFv();
-extern "C" void stopSoundID__9JAISeqMgrF10JAISoundID();
-extern "C" void mixOut__9JAISeqMgrFv();
-extern "C" void moveVolume__18JAISoundParamsMoveFfUl();
-extern "C" void __ct__12JAIStreamMgrFb();
-extern "C" void func_802A3C3C();
-extern "C" void calc__12JAIStreamMgrFv();
-extern "C" void stop__12JAIStreamMgrFv();
-extern "C" void stop__12JAIStreamMgrFUl();
-extern "C" void stopSoundID__12JAIStreamMgrF10JAISoundID();
-extern "C" void mixOut__12JAIStreamMgrFv();
-extern "C" void loadDynamicSeq__14JAUSectionHeapF10JAISoundIDb();
-extern "C" void releaseIdleDynamicSeqDataBlock__14JAUSectionHeapFv();
-extern "C" void seMoveVolumeAll__7Z2SeMgrFfUl();
-extern "C" void bgmStart__8Z2SeqMgrFUlUll();
-extern "C" void changeBgmStatus__8Z2SeqMgrFl();
-extern "C" void onVariantBgmJumpEnd__8Z2SeqMgrFb();
-extern "C" void setChildTrackVolume__8Z2SeqMgrFP14JAISoundHandleifUlff();
-extern "C" void onFieldBgmJumpStart__8Z2SeqMgrFv();
-extern "C" void onFieldBgmJumpEnd__8Z2SeqMgrFv();
-extern "C" void getSwBit__11Z2SoundInfoCF10JAISoundID();
-extern "C" void speakOneWord__12Z2SpeechMgr2Fb();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" u8 const CUTOFF_TO_IIR_TABLE__7JASCalc[1024];
-extern "C" extern u8 data_80450B4C[4];
-extern "C" extern u8 data_80450B70[4];
-extern "C" extern u8 data_80450B80[4];
-extern "C" extern u8 data_80450B84[4];
-extern "C" extern u8 data_80450B88[4];
-extern "C" extern u8 data_80450CC0[4 + 4 /* padding */];
-extern "C" extern u8 __OSReport_disable;
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 803C9D18-803C9D70 -00001 0058+00 1/1 0/0 0/0 .data            @3690 */
-SECTION_DATA static void* lit_3690[22] = {
-    (void*)(((char*)seqCallback__FP8JASTrackUs) + 0x40),
-    (void*)(((char*)seqCallback__FP8JASTrackUs) + 0x7C),
-    (void*)(((char*)seqCallback__FP8JASTrackUs) + 0x88),
-    (void*)(((char*)seqCallback__FP8JASTrackUs) + 0x94),
-    (void*)(((char*)seqCallback__FP8JASTrackUs) + 0xA4),
-    (void*)(((char*)seqCallback__FP8JASTrackUs) + 0xB4),
-    (void*)(((char*)seqCallback__FP8JASTrackUs) + 0xC4),
-    (void*)(((char*)seqCallback__FP8JASTrackUs) + 0x1AC),
-    (void*)(((char*)seqCallback__FP8JASTrackUs) + 0x1BC),
-    (void*)(((char*)seqCallback__FP8JASTrackUs) + 0x1D0),
-    (void*)(((char*)seqCallback__FP8JASTrackUs) + 0x1D0),
-    (void*)(((char*)seqCallback__FP8JASTrackUs) + 0x1D0),
-    (void*)(((char*)seqCallback__FP8JASTrackUs) + 0x1D0),
-    (void*)(((char*)seqCallback__FP8JASTrackUs) + 0x1D0),
-    (void*)(((char*)seqCallback__FP8JASTrackUs) + 0x1D0),
-    (void*)(((char*)seqCallback__FP8JASTrackUs) + 0x1D0),
-    (void*)(((char*)seqCallback__FP8JASTrackUs) + 0x1D0),
-    (void*)(((char*)seqCallback__FP8JASTrackUs) + 0x1D0),
-    (void*)(((char*)seqCallback__FP8JASTrackUs) + 0x1D0),
-    (void*)(((char*)seqCallback__FP8JASTrackUs) + 0x1D0),
-    (void*)(((char*)seqCallback__FP8JASTrackUs) + 0x1CC),
-    (void*)(((char*)seqCallback__FP8JASTrackUs) + 0x148),
-};
-
-/* 80455838-8045583C 003E38 0004+00 5/5 0/0 0/0 .sdata2          @3688 */
-SECTION_SDATA2 static f32 lit_3688 = 1.0f;
-
-/* 8045583C-80455840 003E3C 0004+00 1/1 0/0 0/0 .sdata2          @3689 */
-SECTION_SDATA2 static f32 lit_3689 = -1.0f;
 
 /* 802A9BC8-802A9E80 2A4508 02B8+00 1/0 1/1 0/0 .text            seqCallback__FP8JASTrackUs */
 u16 seqCallback(JASTrack* i_track, u16 param_1) {
@@ -221,20 +99,7 @@ u16 seqCallback(JASTrack* i_track, u16 param_1) {
     return 0;
 }
 
-
-/* ############################################################################################## */
-/* 803C9D70-803C9D80 026E90 000C+04 1/1 1/1 0/0 .data            __vt__10Z2SoundMgr */
-SECTION_DATA extern void* __vt__10Z2SoundMgr[3 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)func_802A9EE8,
-    /* padding */
-    NULL,
-};
-
 /* 802A9E80-802A9EE8 2A47C0 0068+00 0/0 1/1 0/0 .text            __ct__10Z2SoundMgrFv */
-#ifdef NONMATCHING
-// matches but generates an extra weak function
 Z2SoundMgr::Z2SoundMgr() :
     JASGlobalInstance<Z2SoundMgr>(this),
     mSeMgr(true),
@@ -243,37 +108,6 @@ Z2SoundMgr::Z2SoundMgr() :
 {
     mSoundID.setAnonymous();
 }
-#else
-Z2SoundMgr::Z2SoundMgr() : JASGlobalInstance<Z2SoundMgr>(this),
-    mSeMgr(true),
-    mSeqMgr(true),
-    mStreamMgr(true) {
-    // NONMATCHING
-}
-#endif
-
-/* ############################################################################################## */
-/* 8039B9D0-8039B9D0 028030 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039B9D0 = "Unknown Sound-Type id :%08x\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039B9ED = "\0\0";
-#pragma pop
-
-/* 80455840-80455844 003E40 0004+00 1/1 0/0 0/0 .sdata2          @3904 */
-SECTION_SDATA2 static f32 lit_3904 = 3.0f / 10.0f;
-
-/* 80455844-80455848 003E44 0004+00 3/3 0/0 0/0 .sdata2          @3905 */
-SECTION_SDATA2 static u8 lit_3905[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80455848-80455850 003E48 0008+00 2/2 0/0 0/0 .sdata2          @3909 */
-SECTION_SDATA2 static f64 lit_3909 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802A9EE8-802AA1B0 2A4828 02C8+00 1/0 0/0 0/0 .text
  * startSound__10Z2SoundMgrF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3<f> */
@@ -289,7 +123,7 @@ bool Z2SoundMgr::startSound(JAISoundID i_soundID, JAISoundHandle* i_handle,
     case 1:
         if (i_soundID == Z2BGM_LUTERA_DEMO) {
             Z2GetSeqMgr()->bgmStart(Z2BGM_LUTERA2, 0, 0);
-            Z2GetSeqMgr()->i_unMuteSceneBgm(0);
+            Z2GetSeqMgr()->unMuteSceneBgm(0);
             Z2GetSeqMgr()->changeBgmStatus(0);
             return mSeMgr.startSound(Z2SE_NO_SOUND, i_handle, i_pos);
         } else {
@@ -335,7 +169,7 @@ bool Z2SoundMgr::startSound(JAISoundID i_soundID, JAISoundHandle* i_handle,
 
 
 /* 802AA1B0-802AA270 2A4AF0 00C0+00 2/2 0/0 0/0 .text            calc__10Z2SoundMgrFv */
-#ifdef NONMATCHING
+// NONMATCHING extra load
 void Z2SoundMgr::calc() {
     mSeMgr.calc();
     if (!mSoundID.isAnonymous() && !isPlayingSoundID(mSoundID)) {
@@ -347,11 +181,6 @@ void Z2SoundMgr::calc() {
     mSeqMgr.calc();
     mStreamMgr.calc();
 }
-#else
-void Z2SoundMgr::calc() {
-    // NONMATCHING
-}
-#endif
 
 /* 802AA270-802AA33C 2A4BB0 00CC+00 1/1 2/2 0/0 .text            setIIR__10Z2SoundMgrFP8JAISoundPCs
  */
@@ -519,14 +348,6 @@ void Z2SoundMgr::stop() {
     mStreamMgr.stop();
 }
 
-/* ############################################################################################## */
-/* 80455850-80455858 003E50 0004+04 1/1 0/0 0/0 .sdata2          @4313 */
-SECTION_SDATA2 static f32 lit_4313[1 + 1 /* padding */] = {
-    0.5f,
-    /* padding */
-    0.0f,
-};
-
 /* 802AA908-802AA9E8 2A5248 00E0+00 0/0 1/1 0/0 .text            initParams__10Z2SoundMgrFv */
 void Z2SoundMgr::initParams() {
     mSeMgr.initParams();
@@ -537,7 +358,7 @@ void Z2SoundMgr::initParams() {
 
 /* 802AA9E8-802AAAC4 2A5328 00DC+00 0/0 1/1 0/0 .text
  * multiVolumeSoundID__10Z2SoundMgrF10JAISoundIDf               */
-#ifdef NONMATCHING
+// NONMATCHING extra load
 void Z2SoundMgr::multiVolumeSoundID(JAISoundID i_soundID, f32 i_multi) {
     if (!i_soundID.isAnonymous() && Z2GetSoundInfo()->getSoundType(i_soundID) == 0) {
         JSUList<JAISe>* list =
@@ -549,18 +370,13 @@ void Z2SoundMgr::multiVolumeSoundID(JAISoundID i_soundID, f32 i_multi) {
         }
     }
 }
-#else
-void Z2SoundMgr::multiVolumeSoundID(JAISoundID param_0, f32 param_1) {
-    // NONMATCHING
-}
-#endif
 
 /* 802AAAC4-802AAB94 2A5404 00D0+00 1/1 0/0 0/0 .text isPlayingSoundID__10Z2SoundMgrF10JAISoundID
  */
-#ifdef NONMATCHING
+// NONMATCHING extra load
 bool Z2SoundMgr::isPlayingSoundID(JAISoundID i_soundID) {
     if (i_soundID.isAnonymous()) {
-        return 0;
+        return false;
     }
     if (Z2GetSoundInfo()->getSoundType(i_soundID) == 0) {
         JSUList<JAISe>* list =
@@ -573,10 +389,5 @@ bool Z2SoundMgr::isPlayingSoundID(JAISoundID i_soundID) {
     }
     return false;
 }
-#else
-bool Z2SoundMgr::isPlayingSoundID(JAISoundID param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 8039B9D0-8039B9D0 028030 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

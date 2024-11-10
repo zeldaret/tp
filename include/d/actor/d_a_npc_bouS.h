@@ -25,7 +25,7 @@ public:
     /* 809742DC */ void ctrlJointCallBack(J3DJoint*, int);
     /* 80974328 */ void setExpressionAnm(int, bool);
     /* 80974514 */ void setExpressionBtp(int);
-    /* 809745F4 */ void setMotionAnm(int, f32);
+    /* 809745F4 */ bool setMotionAnm(int, f32);
     /* 80974730 */ void reset();
     /* 809748F0 */ void setAction(bool (daNpcBouS_c::*)(void*));
     /* 80974A04 */ void checkInstructionTag(fopAc_ac_c*);

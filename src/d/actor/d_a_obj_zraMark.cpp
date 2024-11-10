@@ -124,7 +124,7 @@ int daObjZraMark_c::CreateHeap() {
         break;
     }
 
-    s32 room_no = fopAcM_GetRoomNo(this);
+    s8 room_no = fopAcM_GetRoomNo(this);
     if (!mHahenMngr.create(pos, room_no, color, var_r29, 0)) {
         // "------------------Fragment Generation Error\n"
         OS_REPORT("------------------破片生成ミス\n");

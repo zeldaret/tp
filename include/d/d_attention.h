@@ -85,6 +85,8 @@ public:
     /* 80073CEC */ void proc();
     /* 80073D08 */ int request(fopAc_ac_c*, f32, f32, f32, s16, int);
 
+    fopAc_ac_c* getLookTarget() { return convPId(mLookTargetID); }
+
 private:
     u32 field_0x0;
     s32 field_0x4;
@@ -216,6 +218,8 @@ public:
     void clrFlag(u32 flag) { mFlags &= ~flag; }
     int GetActionCount() { return mActionCount; }
     int GetLockonCount() { return mLockonCount; }
+    void LockSoundOn() { clrFlag(0x400000); }
+    void LockSoundOff() { setFlag(0x400000); }
     bool Lockon() { return LockonTruth() || chkFlag(0x20000000); }  // only matches with -O2?
     int ZHintRequest(fopAc_ac_c* param_1, int param_2) {
         return mZHintTarget.request(param_1, param_2);
@@ -230,6 +234,10 @@ public:
                       f32 i_downDist, s16 i_angle, int param_5) {
         mCatghTarget.request(param_0, param_1, i_horizontalDist, i_upDist, i_downDist, i_angle,
                              param_5);
+    }
+
+    fopAc_ac_c* getLookTarget() {
+        return mLookTarget.getLookTarget();
     }
 
     void Init(fopAc_ac_c* param_0, u32 i_padNo) {

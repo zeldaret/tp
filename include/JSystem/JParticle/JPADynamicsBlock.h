@@ -96,7 +96,10 @@ public:
     f32 getInitVelDir() { return mpData->mInitialVelDir; }
     f32 getInitVelDirSp() { return mpData->mSpread; }
     f32 getInitVelRndm() { return mpData->mInitialVelRndm; }
+    f32 getInitVelRatio() { return mpData->mInitialVelRatio; }
     f32 getAirRes() { return mpData->mAirResist; }
+    f32 getLifeTimeRndm() { return mpData->mLifeTimeRndm; }
+    f32 getMomentRndm() { return mpData->mMoment; }
 
 public:
     /* 0x00 */ const JPADynamicsBlockData* mpData;

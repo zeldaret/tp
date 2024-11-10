@@ -148,7 +148,6 @@ void JPARegistEnv(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
  */
 void JPACalcClrIdxNormal(JPAEmitterWorkData* work) {
     JPABaseShape* bsp = work->mpRes->getBsp();
-    // can't get the extsh to appear in the right spot...
     s16 keyFrame;
     if (work->mpEmtr->mTick < bsp->getClrAnmMaxFrm()) {
         keyFrame = work->mpEmtr->mTick;

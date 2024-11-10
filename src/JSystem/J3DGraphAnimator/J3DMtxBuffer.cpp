@@ -248,7 +248,24 @@ static u8 J3DUnit01[8] = {
 
 /* 803268D4-80326ACC 321214 01F8+00 0/0 1/1 0/0 .text calcWeightEnvelopeMtx__12J3DMtxBufferFv */
 void J3DMtxBuffer::calcWeightEnvelopeMtx() {
-    // NONMATCHING
+    int max      = mJointTree->getWEvlpMtxNum();
+	u16* indices = mJointTree->getWEvlpMixIndex();
+	f32* weights = mJointTree->getWEvlpMixWeight();
+	for (int i = -1; i < max; i++) {
+		u8* scaleFlags    = mpEvlpScaleFlagArr;
+		scaleFlags[i]     = 1;
+		Mtx* weightAnmMtx = &mpWeightEvlpMtx[i];
+		int mixNum        = mJointTree->getWEvlpMixMtxNum(i);
+		for (int j = 0; j < mixNum; j++) {
+			u16 idx       = indices[j];
+			f32 weight    = weights[j];
+			Mtx& invMtx   = mJointTree->getInvJointMtx(idx);
+			Mtx& worldMtx = mpUserAnmMtx[idx];
+			// I think it's this but as ASM? maybe?
+			MTXConcat(invMtx, worldMtx, *weightAnmMtx);
+			scaleFlags[i] &= mpScaleFlagArr[j];
+		}
+	}
 }
 
 /* 80326ACC-80326D3C 32140C 0270+00 0/0 1/1 0/0 .text

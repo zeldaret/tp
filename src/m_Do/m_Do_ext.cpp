@@ -3,9 +3,6 @@
  * Model, Animation, and Heap Functions
  */
 
-// Not matching because of virtual tables
-#define NON_VIRTUAL_3DLINEMAT
-
 #include "m_Do/m_Do_ext.h"
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
@@ -21,423 +18,6 @@
 #include "dolphin/gx/GXDraw.h"
 #include "global.h"
 #include "m_Do/m_Do_mtx.h"
-
-//
-// Types:
-//
-
-struct J3DDrawBuffer;
-
-struct J3DDrawBuffer {
-    /* 8032548C */ void entryImm(J3DPacket*, u16);
-};
-
-/* J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya> */
-struct J3DMtxCalcNoAnm__template0 {
-    /* 8000FA20 */ void func_8000FA20(void* _this);
-    /* 8001505C */ void func_8001505C(void* _this, Vec const&, f32 const (&)[3][4]);
-    /* 80015084 */ void func_80015084(void* _this);
-};
-
-struct J3DMtxCalcAnimationAdaptorBase {
-    J3DMtxCalcAnimationAdaptorBase() {}
-    void change() {}
-};
-
-template <typename A0>
-struct J3DMtxCalcAnimationAdaptorDefault : public J3DMtxCalcAnimationAdaptorBase {
-    J3DMtxCalcAnimationAdaptorDefault(J3DAnmTransform* param_0) {}
-};
-
-struct J3DMtxCalcAnmBase /* : public J3DMtxCalc */ {
-    J3DMtxCalcAnmBase(J3DAnmTransform* param_0) { mAnmTransform = param_0; }
-    /* 8000D8EC */ ~J3DMtxCalcAnmBase();
-    /* 80014FB8 */ J3DAnmTransform* getAnmTransform();
-    /* 80014FC0 */ void setAnmTransform(J3DAnmTransform*);
-
-    J3DAnmTransform* mAnmTransform;
-};
-
-template <typename A0, typename B0>
-struct J3DMtxCalcAnimation : public J3DMtxCalcAnmBase {
-    J3DMtxCalcAnimation(J3DAnmTransform* param_0) : J3DMtxCalcAnmBase(param_0), field_0x8(param_0) {}
-    ~J3DMtxCalcAnimation() {}
-    void setAnmTransform(J3DAnmTransform*) {}
-    void init(const Vec&, const Mtx&) {}
-    void calc() {}
-
-    A0 field_0x8;
-};
-/* J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformMaya>,
- * J3DMtxCalcJ3DSysInitMaya> */
-struct J3DMtxCalcAnimation__template0 {
-    /* 8000D8E4 */ void func_8000D8E4(void* _this, J3DAnmTransform*);
-    /* 80014FC8 */ void func_80014FC8(void* _this);
-    /* 80015034 */ void func_80015034(void* _this, Vec const&, f32 const (&)[3][4]);
-    /* 800150AC */ void func_800150AC(void* _this);
-};
-
-//
-// Forward References:
-//
-
-extern "C" static void mDoExt_setJ3DData__FPA4_fPC16J3DTransformInfoUs();
-extern "C" void initPlay__14mDoExt_baseAnmFsifss();
-extern "C" void play__14mDoExt_baseAnmFv();
-extern "C" void init__13mDoExt_bpkAnmFP16J3DMaterialTableP11J3DAnmColoriifss();
-extern "C" void entry__13mDoExt_bpkAnmFP16J3DMaterialTablef();
-extern "C" void init__13mDoExt_btpAnmFP16J3DMaterialTableP16J3DAnmTexPatterniifss();
-extern "C" void entry__13mDoExt_btpAnmFP16J3DMaterialTables();
-extern "C" void init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss();
-extern "C" void entry__13mDoExt_btkAnmFP16J3DMaterialTablef();
-extern "C" void init__13mDoExt_brkAnmFP16J3DMaterialTableP15J3DAnmTevRegKeyiifss();
-extern "C" void entry__13mDoExt_brkAnmFP16J3DMaterialTablef();
-extern "C" void init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb();
-extern "C" void func_8000D8E4(void* _this, J3DAnmTransform*);
-extern "C" void __dt__17J3DMtxCalcAnmBaseFv();
-extern "C" void __dt__10J3DMtxCalcFv();
-extern "C" void changeBckOnly__13mDoExt_bckAnmFP15J3DAnmTransform();
-extern "C" void entry__13mDoExt_bckAnmFP12J3DModelDataf();
-extern "C" void entryJoint__13mDoExt_bckAnmFP12J3DModelDataUsf();
-extern "C" void init__13mDoExt_blkAnmFP13J3DDeformDataP13J3DAnmClusteriifss();
-extern "C" static void mDoExt_changeMaterial__FP8J3DModel();
-extern "C" void mDoExt_modelTexturePatch__FP12J3DModelData();
-extern "C" void patchTexNoAndTexCoordScale__11J3DTevBlockFv();
-extern "C" void patch__10J3DPEBlockFv();
-extern "C" void patchLight__13J3DColorBlockFv();
-extern "C" void patch__11J3DTevBlockFv();
-extern "C" static void mDoExt_modelDiff__FP8J3DModel();
-extern "C" void mDoExt_modelUpdate__FP8J3DModel();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_modelEntryDL__FP8J3DModel();
-extern "C" void mDoExt_btkAnmRemove__FP12J3DModelData();
-extern "C" void mDoExt_brkAnmRemove__FP12J3DModelData();
-extern "C" bool getZCompLoc__10J3DPEBlockCFv();
-extern "C" bool getZMode__10J3DPEBlockFv();
-extern "C" bool getBlend__10J3DPEBlockFv();
-extern "C" bool getAlphaComp__10J3DPEBlockFv();
-extern "C" bool getFog__10J3DPEBlockFv();
-extern "C" bool getIndTexCoordScale__11J3DIndBlockFUl();
-extern "C" bool getIndTexMtx__11J3DIndBlockFUl();
-extern "C" bool getIndTexOrder__11J3DIndBlockFUl();
-extern "C" bool getIndTexStageNum__11J3DIndBlockCFv();
-extern "C" bool getIndTevStage__11J3DTevBlockFUl();
-extern "C" bool getTevStage__11J3DTevBlockFUl();
-extern "C" void getTexNo__11J3DTevBlockCFUl();
-extern "C" bool getTevSwapModeTable__11J3DTevBlockFUl();
-extern "C" bool getTevKAlphaSel__11J3DTevBlockFUl();
-extern "C" bool getTevKColorSel__11J3DTevBlockFUl();
-extern "C" bool getTevOrder__11J3DTevBlockFUl();
-extern "C" bool getTevKColor__11J3DTevBlockFUl();
-extern "C" bool getTevColor__11J3DTevBlockFUl();
-extern "C" bool getTevStageNum__11J3DTevBlockCFv();
-extern "C" bool getTexMtx__14J3DTexGenBlockFUl();
-extern "C" bool getTexCoord__14J3DTexGenBlockFUl();
-extern "C" bool getTexGenNum__14J3DTexGenBlockCFv();
-extern "C" bool getAmbColor__13J3DColorBlockFUl();
-extern "C" bool getColorChan__13J3DColorBlockFUl();
-extern "C" bool getMatColor__13J3DColorBlockFUl();
-extern "C" bool getColorChanNum__13J3DColorBlockCFv();
-extern "C" void setZCompLoc__10J3DPEBlockFUc();
-extern "C" void setZMode__10J3DPEBlockF8J3DZMode();
-extern "C" void setBlend__10J3DPEBlockFRC8J3DBlend();
-extern "C" void setAlphaComp__10J3DPEBlockFRC12J3DAlphaComp();
-extern "C" void setIndTexCoordScale__11J3DIndBlockFUl19J3DIndTexCoordScale();
-extern "C" void __dt__19J3DIndTexCoordScaleFv();
-extern "C" void setIndTexMtx__11J3DIndBlockFUl12J3DIndTexMtx();
-extern "C" void __dt__12J3DIndTexMtxFv();
-extern "C" void setIndTexStageNum__11J3DIndBlockFUc();
-extern "C" void setIndTevStage__11J3DTevBlockFUl14J3DIndTevStage();
-extern "C" void setTevStage__11J3DTevBlockFUl11J3DTevStage();
-extern "C" void setTexNo__11J3DTevBlockFUlUs();
-extern "C" void setTevSwapModeTable__11J3DTevBlockFUl19J3DTevSwapModeTable();
-extern "C" void setTevKAlphaSel__11J3DTevBlockFUlUc();
-extern "C" void setTevKColorSel__11J3DTevBlockFUlUc();
-extern "C" void setTevOrder__11J3DTevBlockFUl11J3DTevOrder();
-extern "C" void setTevKColor__11J3DTevBlockFUl10J3DGXColor();
-extern "C" void setTevColor__11J3DTevBlockFUl13J3DGXColorS10();
-extern "C" void setTevStageNum__11J3DTevBlockFUc();
-extern "C" void setTexCoord__14J3DTexGenBlockFUlPC11J3DTexCoord();
-extern "C" void setTexGenNum__14J3DTexGenBlockFUl();
-extern "C" void setAmbColor__13J3DColorBlockFUl10J3DGXColor();
-extern "C" void setColorChan__13J3DColorBlockFUlRC12J3DColorChan();
-extern "C" void setMatColor__13J3DColorBlockFUl10J3DGXColor();
-extern "C" void setColorChanNum__13J3DColorBlockFUc();
-extern "C" void __ct__19J3DIndTexCoordScaleFv();
-extern "C" void __ct__12J3DIndTexMtxFv();
-extern "C" void __ct__14J3DIndTexOrderFv();
-extern "C" void __ct__19J3DTevSwapModeTableFv();
-extern "C" void __ct__11J3DTevOrderFv();
-extern "C" void __ct__14J3DIndTevStageFv();
-extern "C" void __ct__11J3DTevStageFv();
-extern "C" void setTevStageInfo__11J3DTevStageFRC15J3DTevStageInfo();
-extern "C" void __ct__13J3DGXColorS10Fv();
-extern "C" void __ct__11J3DTexCoordFv();
-extern "C" void __ct__12J3DColorChanFv();
-extern "C" void __ct__10J3DGXColorFv();
-extern "C" void create__21mDoExt_invisibleModelFP8J3DModelUc();
-extern "C" void __dt__19mDoExt_invJntPacketFv();
-extern "C" void __ct__19mDoExt_invJntPacketFv();
-extern "C" void __dt__9J3DPacketFv();
-extern "C" void entryJoint__21mDoExt_invisibleModelFP4cXyz();
-extern "C" void entryDL__21mDoExt_invisibleModelFP4cXyz();
-extern "C" void mDoExt_setupShareTexture__FP12J3DModelDataP12J3DModelData();
-extern "C" void mDoExt_setupStageTexture__FP12J3DModelData();
-extern "C" void mDoExt_createAssertHeap__FP7JKRHeap();
-extern "C" u32 mDoExt_getAssertHeap__Fv();
-extern "C" void mDoExt_createDbPrintHeap__FUlP7JKRHeap();
-extern "C" u32 mDoExt_getDbPrintHeap__Fv();
-extern "C" void mDoExt_createGameHeap__FUlP7JKRHeap();
-extern "C" u32 mDoExt_getGameHeap__Fv();
-extern "C" void mDoExt_createZeldaHeap__FUlP7JKRHeap();
-extern "C" u32 mDoExt_getZeldaHeap__Fv();
-extern "C" void mDoExt_createCommandHeap__FUlP7JKRHeap();
-extern "C" u32 mDoExt_getCommandHeap__Fv();
-extern "C" void mDoExt_createArchiveHeap__FUlP7JKRHeap();
-extern "C" u32 mDoExt_getArchiveHeap__Fv();
-extern "C" u32 mDoExt_getArchiveHeapPtr__Fv();
-extern "C" void mDoExt_createJ2dHeap__FUlP7JKRHeap();
-extern "C" u32 mDoExt_getJ2dHeap__Fv();
-extern "C" u32 mDoExt_getHostIOHeap__Fv();
-extern "C" static void mDoExt_createSolidHeap__FUlP7JKRHeapUl();
-extern "C" void mDoExt_createSolidHeapFromGame__FUlUl();
-extern "C" void mDoExt_createSolidHeapFromSystem__FUlUl();
-extern "C" static void mDoExt_createSolidHeapToCurrent__FPP7JKRHeapUlP7JKRHeapUl();
-extern "C" void mDoExt_createSolidHeapToCurrent__FUlP7JKRHeapUl();
-extern "C" void mDoExt_createSolidHeapFromGameToCurrent__FPP7JKRHeapUlUl();
-extern "C" void mDoExt_createSolidHeapFromGameToCurrent__FUlUl();
-extern "C" void mDoExt_adjustSolidHeap__FP12JKRSolidHeap();
-extern "C" void mDoExt_adjustSolidHeapToSystem__FP12JKRSolidHeap();
-extern "C" void mDoExt_destroySolidHeap__FP12JKRSolidHeap();
-extern "C" void mDoExt_destroyExpHeap__FP10JKRExpHeap();
-extern "C" void mDoExt_setCurrentHeap__FP7JKRHeap();
-extern "C" u32 mDoExt_getCurrentHeap__Fv();
-extern "C" void mDoExt_restoreCurrentHeap__Fv();
-extern "C" void mDoExt_resIDToIndex__FP10JKRArchiveUs();
-extern "C" void calc__25mDoExt_MtxCalcAnmBlendTblFv();
-extern "C" void calc__28mDoExt_MtxCalcAnmBlendTblOldFv();
-extern "C" void initOldFrameMorf__22mDoExt_MtxCalcOldFrameFfUsUs();
-extern "C" void decOldFrameMorfCounter__22mDoExt_MtxCalcOldFrameFv();
-extern "C" void __ct__13mDoExt_morf_cFv();
-extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" void func_8000FA20(void* _this);
-extern "C" void __dt__19J3DMtxCalcNoAnmBaseFv();
-extern "C" void __dt__13mDoExt_morf_cFv();
-extern "C" void setMorf__13mDoExt_morf_cFf();
-extern "C" void frameUpdate__13mDoExt_morf_cFv();
-extern "C" void
-__ct__14mDoExt_McaMorfFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiiPvUlUl();
-extern "C" void __dt__14mDoExt_McaMorfFv();
-extern "C" void
-create__14mDoExt_McaMorfFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiiPvUlUl();
-extern "C" void calc__14mDoExt_McaMorfFv();
-extern "C" void setAnm__14mDoExt_McaMorfFP15J3DAnmTransformiffffPv();
-extern "C" void play__14mDoExt_McaMorfFP3VecUlSc();
-extern "C" void entryDL__14mDoExt_McaMorfFv();
-extern "C" void modelCalc__14mDoExt_McaMorfFv();
-extern "C" void getTransform__14mDoExt_McaMorfFUsP16J3DTransformInfo();
-extern "C" void
-__ct__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl();
-extern "C" void __dt__16mDoExt_McaMorfSOFv();
-extern "C" void
-create__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl();
-extern "C" void calc__16mDoExt_McaMorfSOFv();
-extern "C" void setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff();
-extern "C" void play__16mDoExt_McaMorfSOFUlSc();
-extern "C" void updateDL__16mDoExt_McaMorfSOFv();
-extern "C" void entryDL__16mDoExt_McaMorfSOFv();
-extern "C" void modelCalc__16mDoExt_McaMorfSOFv();
-extern "C" void getTransform__16mDoExt_McaMorfSOFUsP16J3DTransformInfo();
-extern "C" void stopZelAnime__16mDoExt_McaMorfSOFv();
-extern "C" void
-__ct__15mDoExt_McaMorf2FP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformP15J3DAnmTransformifiiP10Z2CreatureUlUl();
-extern "C" void __dt__15mDoExt_McaMorf2Fv();
-extern "C" void
-create__15mDoExt_McaMorf2FP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformP15J3DAnmTransformifiiP10Z2CreatureUlUl();
-extern "C" void ERROR_EXIT__15mDoExt_McaMorf2Fv();
-extern "C" void calc__15mDoExt_McaMorf2Fv();
-extern "C" void setAnm__15mDoExt_McaMorf2FP15J3DAnmTransformP15J3DAnmTransformfiffff();
-extern "C" void setAnmRate__15mDoExt_McaMorf2Ff();
-extern "C" void play__15mDoExt_McaMorf2FUlSc();
-extern "C" void entryDL__15mDoExt_McaMorf2Fv();
-extern "C" void modelCalc__15mDoExt_McaMorf2Fv();
-extern "C" void stopZelAnime__15mDoExt_McaMorf2Fv();
-extern "C" void draw__19mDoExt_invJntPacketFv();
-extern "C" void init__15mDoExt_3Dline_cFUsii();
-extern "C" void __ct__4cXyzFv();
-extern "C" void init__19mDoExt_3DlineMat0_cFUsUsi();
-extern "C" void __ct__15mDoExt_3Dline_cFv();
-extern "C" void setMaterial__19mDoExt_3DlineMat0_cFv();
-extern "C" void draw__19mDoExt_3DlineMat0_cFv();
-extern "C" void update__19mDoExt_3DlineMat0_cFifR8_GXColorUsP12dKy_tevstr_c();
-extern "C" void update__19mDoExt_3DlineMat0_cFiR8_GXColorP12dKy_tevstr_c();
-extern "C" void init__19mDoExt_3DlineMat1_cFUsUsP7ResTIMGi();
-extern "C" void setMaterial__19mDoExt_3DlineMat1_cFv();
-extern "C" void draw__19mDoExt_3DlineMat1_cFv();
-extern "C" void update__19mDoExt_3DlineMat1_cFifR8_GXColorUsP12dKy_tevstr_c();
-extern "C" void update__19mDoExt_3DlineMat1_cFiR8_GXColorP12dKy_tevstr_c();
-extern "C" void setMat__26mDoExt_3DlineMatSortPacketFP18mDoExt_3DlineMat_c();
-extern "C" void draw__26mDoExt_3DlineMatSortPacketFv();
-extern "C" static void
-mDoExt_initFontCommon__FPP7JUTFontPP7ResFONTP7JKRHeapPCcP10JKRArchiveUcUlUl();
-extern "C" void __dt__7JUTFontFv();
-extern "C" static void mDoExt_initFont0__Fv();
-extern "C" void mDoExt_getMesgFont__Fv();
-extern "C" void mDoExt_removeMesgFont__Fv();
-extern "C" static void mDoExt_initFont1__Fv();
-extern "C" void mDoExt_getRubyFont__Fv();
-extern "C" static void mDoExt_initFont2__Fv();
-extern "C" void mDoExt_getSubFont__Fv();
-extern "C" void mDoExt_removeSubFont__Fv();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void mDoExt_setAraCacheSize__FUl();
-extern "C" void mDoExt_GetCurrentRunningThread__Fv();
-extern "C" void setGX__7JUTFontFQ28JUtility6TColorQ28JUtility6TColor();
-extern "C" void getCellWidth__7JUTFontCFv();
-extern "C" void getCellHeight__7JUTFontCFv();
-extern "C" void __dt__26mDoExt_3DlineMatSortPacketFv();
-extern "C" bool getMaterialID__19mDoExt_3DlineMat1_cFv();
-extern "C" int getMaterialID__19mDoExt_3DlineMat0_cFv();
-extern "C" void setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform();
-extern "C" void setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform();
-extern "C" bool getAnmTransform__10J3DMtxCalcFUc();
-extern "C" bool getAnmTransform__10J3DMtxCalcFv();
-extern "C" void setWeight__10J3DMtxCalcFUcf();
-extern "C" void getWeight__10J3DMtxCalcCFUc();
-extern "C" void __dt__28mDoExt_MtxCalcAnmBlendTblOldFv();
-extern "C" void __dt__25mDoExt_MtxCalcAnmBlendTblFv();
-extern "C" void getAnmTransform__17J3DMtxCalcAnmBaseFv();
-extern "C" void setAnmTransform__17J3DMtxCalcAnmBaseFP15J3DAnmTransform();
-extern "C" void func_80014FC8(void* _this);
-extern "C" void func_80015034(void* _this, Vec const&, f32 const (&)[3][4]);
-extern "C" void func_8001505C(void* _this, Vec const&, f32 const (&)[3][4]);
-extern "C" void func_80015084(void* _this);
-extern "C" void func_800150AC(void* _this);
-extern "C" extern char const* const m_Do_m_Do_ext__stringBase0;
-
-static void mDoExt_initFontCommon(JUTFont** param_0, ResFONT** param_1, JKRHeap* param_2,
-                                  char const* param_3, JKRArchive* param_4, u8 param_5, u32 param_6,
-                                  u32 param_7);
-
-//
-// External References:
-//
-
-extern "C" void __dt__4cXyzFv();
-extern "C" void dComIfG_getStageRes__FPCc();
-extern "C" void entryZSortXluDrawList__12dDlst_list_cFP13J3DDrawBufferP9J3DPacketR4cXyz();
-extern "C" void dKy_setLight_again__Fv();
-extern "C" void dKy_Global_amb_set__FP12dKy_tevstr_c();
-extern "C" void dKy_GxFog_set__Fv();
-extern "C" void __pl__4cXyzCFRC3Vec();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void __ml__4cXyzCFf();
-extern "C" void outprod__4cXyzCFRC3Vec();
-extern "C" void normalizeZP__4cXyzFv();
-extern "C" void cLib_chaseF__FPfff();
-extern "C" void framework__14Z2SoundObjBaseFUlSc();
-extern "C" void dispose__14Z2SoundObjBaseFv();
-extern "C" void stopOK__14Z2SoundObjBaseFR17Z2SoundHandlePool();
-extern "C" void startSound__14Z2SoundObjBaseF10JAISoundIDUlSc();
-extern "C" void startLevelSound__14Z2SoundObjBaseF10JAISoundIDUlSc();
-extern "C" void __ct__15Z2SoundObjAnimeFv();
-extern "C" void init__15Z2SoundObjAnimeFP3VecUc();
-extern "C" void initAnime__15Z2SoundObjAnimeFPvbff();
-extern "C" void updateAnime__15Z2SoundObjAnimeFff();
-extern "C" void initAnime__10Z2CreatureFPvbff();
-extern "C" void updateAnime__10Z2CreatureFff();
-extern "C" void
-GFSetBlendModeEtc__F12_GXBlendMode14_GXBlendFactor14_GXBlendFactor10_GXLogicOpUcUcUc();
-extern "C" void GFSetZMode__FUc10_GXCompareUc();
-extern "C" void becomeCurrentHeap__7JKRHeapFv();
-extern "C" void destroy__7JKRHeapFv();
-extern "C" void free__7JKRHeapFPvP7JKRHeap();
-extern "C" void setErrorFlag__7JKRHeapFb();
-extern "C" void* __nw__FUl();
-extern "C" void* __nw__FUlP7JKRHeapi();
-extern "C" void* __nwa__FUl();
-extern "C" void __dl__FPv();
-extern "C" void create__10JKRExpHeapFUlP7JKRHeapb();
-extern "C" void create__12JKRSolidHeapFUlP7JKRHeapb();
-extern "C" void adjustSize__12JKRSolidHeapFv();
-extern "C" void create__13JKRAssertHeapFP7JKRHeap();
-extern "C" void removeResource__13JKRFileLoaderFPvP13JKRFileLoader();
-extern "C" void getGlbResource__10JKRArchiveFUlPCcP10JKRArchive();
-extern "C" void findIdResource__10JKRArchiveCFUs();
-extern "C" void __ct__12JUTCacheFontFPC7ResFONTUlP7JKRHeap();
-extern "C" void getName__10JUTNameTabCFUs();
-extern "C" void __ct__10JUTResFontFPC7ResFONTP7JKRHeap();
-extern "C" void reinitGX__6J3DSysFv();
-extern "C" void init__15J3DVertexBufferFv();
-extern "C" void callDL__17J3DDisplayListObjCFv();
-extern "C" bool entry__9J3DPacketFP13J3DDrawBuffer();
-extern "C" void drawFast__14J3DShapePacketFv();
-extern "C" void loadPreDrawSetting__8J3DShapeCFv();
-extern "C" void entryImm__13J3DDrawBufferFP9J3DPacketUs();
-extern "C" void __as__16J3DIndTexMtxInfoFRC16J3DIndTexMtxInfo();
-extern "C" void initialize__8J3DModelFv();
-extern "C" void entryModelData__8J3DModelFP12J3DModelDataUlUl();
-extern "C" void newDifferedDisplayList__8J3DModelFUl();
-extern "C" void lock__8J3DModelFv();
-extern "C" void unlock__8J3DModelFv();
-extern "C" void diff__8J3DModelFv();
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void update__12J3DFrameCtrlFv();
-extern "C" void searchUpdateMaterialID__11J3DAnmColorFP16J3DMaterialTable();
-extern "C" void searchUpdateMaterialID__16J3DAnmTexPatternFP16J3DMaterialTable();
-extern "C" void searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP16J3DMaterialTable();
-extern "C" void searchUpdateMaterialID__15J3DAnmTevRegKeyFP16J3DMaterialTable();
-extern "C" void setTexMtxAnm__14J3DMaterialAnmFiP12J3DTexMtxAnm();
-extern "C" void setTevColorAnm__14J3DMaterialAnmFiP14J3DTevColorAnm();
-extern "C" void setTevKColorAnm__14J3DMaterialAnmFiP15J3DTevKColorAnm();
-extern "C" void setAnm__13J3DDeformDataFP13J3DAnmCluster();
-extern "C" void init__24J3DMtxCalcJ3DSysInitMayaFRC3VecRA3_A4_Cf();
-extern "C" void calcTransform__27J3DMtxCalcCalcTransformMayaFRC16J3DTransformInfo();
-extern "C" void entryMatColorAnimator__16J3DMaterialTableFP11J3DAnmColor();
-extern "C" void entryTexNoAnimator__16J3DMaterialTableFP16J3DAnmTexPattern();
-extern "C" void entryTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey();
-extern "C" void entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
-extern "C" void JMAEulerToQuat__FsssP10Quaternion();
-extern "C" void JMAQuatLerp__FPC10QuaternionPC10QuaternionfP10Quaternion();
-extern "C" void GXClearVtxDesc();
-extern "C" void __construct_new_array();
-extern "C" void _savegpr_15();
-extern "C" void _savegpr_18();
-extern "C" void _savegpr_20();
-extern "C" void _savegpr_21();
-extern "C" void _savegpr_22();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_15();
-extern "C" void _restgpr_18();
-extern "C" void _restgpr_20();
-extern "C" void _restgpr_21();
-extern "C" void _restgpr_22();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__9J3DPacket[5];
-extern "C" extern void* __vt__8J3DModel[9];
-extern "C" u8 mCurrentMtx__6J3DSys[48];
-extern "C" f32 mParentS__6J3DSys[3];
-extern "C" u8 sGDLObj__17J3DDisplayListObj[16];
-extern "C" u8 sCurrentHeap__7JKRHeap[4];
-extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
-extern "C" u8 mJoint__10J3DMtxCalc[4];
-extern "C" extern u16 data_804563F8;
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 80451B18-80451B1C 000118 0004+00 11/11 0/0 0/0 .sdata2          @3847 */
-SECTION_SDATA2 static f32 lit_3847 = 1.0f;
 
 /* 8000D0AC-8000D320 0079EC 0274+00 5/5 0/0 0/0 .text
  * mDoExt_setJ3DData__FPA4_fPC16J3DTransformInfoUs              */
@@ -486,19 +66,6 @@ static void mDoExt_setJ3DData(Mtx mtx, const J3DTransformInfo* transformInfo, u1
     J3DSys::mParentS.z = transformInfo->mScale.z;
 }
 
-
-/* ############################################################################################## */
-/* 80451B1C-80451B20 00011C 0004+00 22/22 0/0 0/0 .sdata2          @3876 */
-SECTION_SDATA2 static u8 lit_3876[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80451B20-80451B28 000120 0008+00 10/10 0/0 0/0 .sdata2          @3878 */
-SECTION_SDATA2 static f64 lit_3878 = 4503601774854144.0 /* cast s32 to float */;
-
 /* 8000D320-8000D428 007C60 0108+00 6/6 0/0 0/0 .text            initPlay__14mDoExt_baseAnmFsifss */
 int mDoExt_baseAnm::initPlay(s16 i_frameMax, int i_attribute, f32 i_rate, s16 i_startF,
                              s16 i_endF) {
@@ -524,13 +91,11 @@ int mDoExt_baseAnm::initPlay(s16 i_frameMax, int i_attribute, f32 i_rate, s16 i_
     return 1;
 }
 
-
 /* 8000D428-8000D47C 007D68 0054+00 0/0 12/12 198/198 .text            play__14mDoExt_baseAnmFv */
 int mDoExt_baseAnm::play() {
     mFrameCtrl.update();
     return isStop();
 }
-
 
 /* 8000D47C-8000D518 007DBC 009C+00 0/0 3/3 6/6 .text
  * init__13mDoExt_bpkAnmFP16J3DMaterialTableP11J3DAnmColoriifss */
@@ -587,7 +152,6 @@ void mDoExt_btpAnm::entry(J3DMaterialTable* i_matTable, s16 i_frame) {
     mpAnm->setFrame(i_frame);
     i_matTable->entryTexNoAnimator(mpAnm);
 }
-
 
 /* 8000D63C-8000D6D8 007F7C 009C+00 0/0 6/6 137/137 .text
  * init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss */
@@ -647,736 +211,47 @@ void mDoExt_brkAnm::entry(J3DMaterialTable* i_matTable, f32 i_frame) {
 
 /* ############################################################################################## */
 /* 803A3020-803A30C0 000140 0085+1B 1/1 0/0 0/0 .data            l_invisibleMat$7041 */
-SECTION_DATA static u8 l_invisibleMat[133 + 27 /* padding */] ALIGN_DECL(32) = {
-    0x10,
-    0x00,
-    0x00,
-    0x10,
-    0x0E,
-    0x00,
-    0x00,
-    0x04,
-    0x00,
-    0x10,
-    0x00,
-    0x00,
-    0x10,
-    0x10,
-    0x00,
-    0x00,
-    0x04,
-    0x00,
-    0x61,
-    0x28,
-    0x38,
-    0x00,
-    0x00,
-    0x61,
-    0xC0,
-    0x08,
-    0xFF,
-    0xFC,
-    0x61,
-    0xC1,
-    0x08,
-    0xFF,
-    0xF0,
-    0x61,
-    0xF3,
-    0x7F,
-    0x00,
-    0x00,
-    0x61,
-    0x43,
-    0x00,
-    0x00,
-    0x41,
-    0x61,
-    0x40,
-    0x00,
-    0x00,
-    0x17,
-    0x61,
-    0xEE,
-    0x00,
-    0x00,
-    0x00,
-    0x61,
-    0xEF,
-    0x00,
-    0x00,
-    0x00,
-    0x61,
-    0xF0,
-    0x00,
-    0x00,
-    0x00,
-    0x61,
-    0xF1,
-    0x00,
-    0x00,
-    0x00,
-    0x61,
-    0xF2,
-    0x00,
-    0x00,
-    0x00,
-    0x61,
-    0x41,
-    0x00,
-    0x00,
-    0x04,
-    0x10,
-    0x00,
-    0x00,
-    0x10,
-    0x3F,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x10,
-    0x00,
-    0x00,
-    0x10,
-    0x09,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x61,
-    0x00,
-    0x00,
-    0x40,
-    0x10,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+static u8 l_invisibleMat[133] ALIGN_DECL(32) = {
+    0x10, 0x00, 0x00, 0x10, 0x0E, 0x00, 0x00, 0x04, 0x00, 0x10, 0x00, 0x00, 0x10, 0x10, 0x00,
+    0x00, 0x04, 0x00, 0x61, 0x28, 0x38, 0x00, 0x00, 0x61, 0xC0, 0x08, 0xFF, 0xFC, 0x61, 0xC1,
+    0x08, 0xFF, 0xF0, 0x61, 0xF3, 0x7F, 0x00, 0x00, 0x61, 0x43, 0x00, 0x00, 0x41, 0x61, 0x40,
+    0x00, 0x00, 0x17, 0x61, 0xEE, 0x00, 0x00, 0x00, 0x61, 0xEF, 0x00, 0x00, 0x00, 0x61, 0xF0,
+    0x00, 0x00, 0x00, 0x61, 0xF1, 0x00, 0x00, 0x00, 0x61, 0xF2, 0x00, 0x00, 0x00, 0x61, 0x41,
+    0x00, 0x00, 0x04, 0x10, 0x00, 0x00, 0x10, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00,
+    0x10, 0x09, 0x00, 0x00, 0x00, 0x01, 0x61, 0x00, 0x00, 0x40, 0x10, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 803A30C0-803A3160 0001E0 0084+1C 1/1 0/0 0/0 .data            l_matDL */
-SECTION_DATA static u8 l_matDL[132 + 28 /* padding */] = {
-    0x08,
-    0x30,
-    0x3C,
-    0xF3,
-    0xCF,
-    0x00,
-    0x10,
-    0x00,
-    0x00,
-    0x10,
-    0x18,
-    0x3C,
-    0xF3,
-    0xCF,
-    0x00,
-    0x10,
-    0x00,
-    0x00,
-    0x10,
-    0x0E,
-    0x00,
-    0x00,
-    0x7F,
-    0x32,
-    0x10,
-    0x00,
-    0x00,
-    0x10,
-    0x10,
-    0x00,
-    0x00,
-    0x05,
-    0x00,
-    0x10,
-    0x00,
-    0x00,
-    0x10,
-    0x0C,
-    0xFF,
-    0xFF,
-    0xFF,
-    0xFF,
-    0x61,
-    0x28,
-    0x38,
-    0x00,
-    0x00,
-    0x61,
-    0xC0,
-    0x28,
-    0xF6,
-    0xAF,
-    0x61,
-    0xC1,
-    0x08,
-    0xFF,
-    0xE0,
-    0x61,
-    0x43,
-    0x00,
-    0x00,
-    0x41,
-    0x61,
-    0x40,
-    0x00,
-    0x00,
-    0x17,
-    0x61,
-    0x41,
-    0x00,
-    0x00,
-    0x0C,
-    0x61,
-    0xF3,
-    0x7F,
-    0x00,
-    0x00,
-    0x10,
-    0x00,
-    0x00,
-    0x10,
-    0x3F,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x10,
-    0x00,
-    0x00,
-    0x10,
-    0x09,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x61,
-    0x00,
-    0x00,
-    0x00,
-    0x10,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+static u8 l_matDL[132] ALIGN_DECL(32) = {
+    0x08, 0x30, 0x3C, 0xF3, 0xCF, 0x00, 0x10, 0x00, 0x00, 0x10, 0x18, 0x3C, 0xF3, 0xCF, 0x00,
+    0x10, 0x00, 0x00, 0x10, 0x0E, 0x00, 0x00, 0x7F, 0x32, 0x10, 0x00, 0x00, 0x10, 0x10, 0x00,
+    0x00, 0x05, 0x00, 0x10, 0x00, 0x00, 0x10, 0x0C, 0xFF, 0xFF, 0xFF, 0xFF, 0x61, 0x28, 0x38,
+    0x00, 0x00, 0x61, 0xC0, 0x28, 0xF6, 0xAF, 0x61, 0xC1, 0x08, 0xFF, 0xE0, 0x61, 0x43, 0x00,
+    0x00, 0x41, 0x61, 0x40, 0x00, 0x00, 0x17, 0x61, 0x41, 0x00, 0x00, 0x0C, 0x61, 0xF3, 0x7F,
+    0x00, 0x00, 0x10, 0x00, 0x00, 0x10, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x10,
+    0x09, 0x00, 0x00, 0x00, 0x01, 0x61, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 803A3160-803A31F0 000280 008D+03 1/1 0/0 0/0 .data            l_mat1DL */
-SECTION_DATA static u8 l_mat1DL[141 + 3 /* padding */] = {
-    0x10,
-    0x00,
-    0x00,
-    0x10,
-    0x40,
-    0xFF,
-    0xFF,
-    0x42,
-    0x80,
-    0x08,
-    0x30,
-    0x3C,
-    0xF3,
-    0xCF,
-    0x00,
-    0x10,
-    0x00,
-    0x00,
-    0x10,
-    0x18,
-    0x3C,
-    0xF3,
-    0xCF,
-    0x00,
-    0x10,
-    0x00,
-    0x00,
-    0x10,
-    0x0E,
-    0x00,
-    0x00,
-    0x7F,
-    0x32,
-    0x10,
-    0x00,
-    0x00,
-    0x10,
-    0x10,
-    0x00,
-    0x00,
-    0x05,
-    0x00,
-    0x10,
-    0x00,
-    0x00,
-    0x10,
-    0x0C,
-    0xFF,
-    0xFF,
-    0xFF,
-    0xFF,
-    0x61,
-    0x28,
-    0x38,
-    0x00,
-    0x40,
-    0x61,
-    0xC0,
-    0x28,
-    0xFA,
-    0x8F,
-    0x61,
-    0xC1,
-    0x08,
-    0xFF,
-    0xF0,
-    0x61,
-    0x43,
-    0x00,
-    0x00,
-    0x41,
-    0x61,
-    0x40,
-    0x00,
-    0x00,
-    0x17,
-    0x61,
-    0x41,
-    0x00,
-    0x00,
-    0x0C,
-    0x61,
-    0xF3,
-    0x7F,
-    0x00,
-    0x00,
-    0x10,
-    0x00,
-    0x00,
-    0x10,
-    0x3F,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x10,
-    0x00,
-    0x00,
-    0x10,
-    0x09,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x61,
-    0x00,
-    0x00,
-    0x00,
-    0x11,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 803A31F0-803A3234 000310 0044+00 1/1 2/2 0/0 .data            __vt__7JUTFont */
-SECTION_DATA extern void* __vt__7JUTFont[17] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__7JUTFontFv,
-    (void*)NULL,
-    (void*)setGX__7JUTFontFQ28JUtility6TColorQ28JUtility6TColor,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)getCellWidth__7JUTFontCFv,
-    (void*)getCellHeight__7JUTFontCFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-};
-
-/* 803A3234-803A3248 000354 0014+00 1/1 1/1 0/0 .data            __vt__26mDoExt_3DlineMatSortPacket
- */
-SECTION_DATA extern void* __vt__26mDoExt_3DlineMatSortPacket[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)entry__9J3DPacketFP13J3DDrawBuffer,
-    (void*)draw__26mDoExt_3DlineMatSortPacketFv,
-    (void*)__dt__26mDoExt_3DlineMatSortPacketFv,
-};
-
-/* 803A3248-803A325C 000368 0014+00 0/0 0/0 22/22 .data            __vt__19mDoExt_3DlineMat1_c */
-SECTION_DATA extern void* __vt__19mDoExt_3DlineMat1_c[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)getMaterialID__19mDoExt_3DlineMat1_cFv,
-    (void*)setMaterial__19mDoExt_3DlineMat1_cFv,
-    (void*)draw__19mDoExt_3DlineMat1_cFv,
-};
-
-/* 803A325C-803A3270 00037C 0014+00 0/0 0/0 14/14 .data            __vt__19mDoExt_3DlineMat0_c */
-SECTION_DATA extern void* __vt__19mDoExt_3DlineMat0_c[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)getMaterialID__19mDoExt_3DlineMat0_cFv,
-    (void*)setMaterial__19mDoExt_3DlineMat0_cFv,
-    (void*)draw__19mDoExt_3DlineMat0_cFv,
-};
-
-/* 803A3270-803A3284 000390 0014+00 2/2 0/0 0/0 .data            __vt__19mDoExt_invJntPacket */
-SECTION_DATA extern void* __vt__19mDoExt_invJntPacket[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)entry__9J3DPacketFP13J3DDrawBuffer,
-    (void*)draw__19mDoExt_invJntPacketFv,
-    (void*)__dt__19mDoExt_invJntPacketFv,
-};
-
-/* 803A3284-803A32B0 0003A4 002C+00 2/2 0/0 0/0 .data            __vt__15mDoExt_McaMorf2 */
-SECTION_DATA extern void* __vt__15mDoExt_McaMorf2[11] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__15mDoExt_McaMorf2Fv,
-    (void*)setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform,
-    (void*)getAnmTransform__10J3DMtxCalcFv,
-    (void*)setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform,
-    (void*)getAnmTransform__10J3DMtxCalcFUc,
-    (void*)setWeight__10J3DMtxCalcFUcf,
-    (void*)getWeight__10J3DMtxCalcCFUc,
-    (void*)func_8001505C,
-    (void*)calc__15mDoExt_McaMorf2Fv,
-};
-
-/* 803A32B0-803A32DC 0003D0 002C+00 2/2 0/0 0/0 .data            __vt__16mDoExt_McaMorfSO */
-SECTION_DATA extern void* __vt__16mDoExt_McaMorfSO[11] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__16mDoExt_McaMorfSOFv,
-    (void*)setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform,
-    (void*)getAnmTransform__10J3DMtxCalcFv,
-    (void*)setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform,
-    (void*)getAnmTransform__10J3DMtxCalcFUc,
-    (void*)setWeight__10J3DMtxCalcFUcf,
-    (void*)getWeight__10J3DMtxCalcCFUc,
-    (void*)func_8001505C,
-    (void*)calc__16mDoExt_McaMorfSOFv,
-};
-
-/* 803A32DC-803A32FC 0003FC 0020+00 1/1 0/0 0/0 .data            __vt__15mDoExt_zelAnime */
-SECTION_DATA extern void* __vt__15mDoExt_zelAnime[8] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)framework__14Z2SoundObjBaseFUlSc,
-    (void*)dispose__14Z2SoundObjBaseFv,
-    (void*)stopOK__14Z2SoundObjBaseFR17Z2SoundHandlePool,
-    (void*)init__15Z2SoundObjAnimeFP3VecUc,
-    (void*)startSound__14Z2SoundObjBaseF10JAISoundIDUlSc,
-    (void*)startLevelSound__14Z2SoundObjBaseF10JAISoundIDUlSc,
-};
-
-/* 803A32FC-803A3328 00041C 002C+00 2/2 0/0 0/0 .data            __vt__14mDoExt_McaMorf */
-SECTION_DATA extern void* __vt__14mDoExt_McaMorf[11] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__14mDoExt_McaMorfFv,
-    (void*)setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform,
-    (void*)getAnmTransform__10J3DMtxCalcFv,
-    (void*)setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform,
-    (void*)getAnmTransform__10J3DMtxCalcFUc,
-    (void*)setWeight__10J3DMtxCalcFUcf,
-    (void*)getWeight__10J3DMtxCalcCFUc,
-    (void*)func_8001505C,
-    (void*)calc__14mDoExt_McaMorfFv,
-};
-
-/* 803A3328-803A3354 000448 002C+00 2/2 0/0 0/0 .data            __vt__13mDoExt_morf_c */
-SECTION_DATA extern void* __vt__13mDoExt_morf_c[11] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__13mDoExt_morf_cFv,
-    (void*)setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform,
-    (void*)getAnmTransform__10J3DMtxCalcFv,
-    (void*)setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform,
-    (void*)getAnmTransform__10J3DMtxCalcFUc,
-    (void*)setWeight__10J3DMtxCalcFUcf,
-    (void*)getWeight__10J3DMtxCalcCFUc,
-    (void*)func_8001505C,
-    (void*)func_80015084,
-};
-
-/* 803A3354-803A3360 000474 000C+00 3/3 30/30 0/0 .data            __vt__12J3DFrameCtrl */
-SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12J3DFrameCtrlFv,
-};
-
-/* 803A3360-803A338C 000480 002C+00 5/5 2/2 0/0 .data
- * __vt__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya> */
-SECTION_DATA extern void* data_803A3360[11] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)func_8000FA20,
-    (void*)setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform,
-    (void*)getAnmTransform__10J3DMtxCalcFv,
-    (void*)setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform,
-    (void*)getAnmTransform__10J3DMtxCalcFUc,
-    (void*)setWeight__10J3DMtxCalcFUcf,
-    (void*)getWeight__10J3DMtxCalcCFUc,
-    (void*)func_8001505C,
-    (void*)func_80015084,
-};
-
-/* 803A338C-803A33B8 0004AC 002C+00 6/6 4/4 0/0 .data            __vt__19J3DMtxCalcNoAnmBase */
-SECTION_DATA extern void* __vt__19J3DMtxCalcNoAnmBase[11] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__19J3DMtxCalcNoAnmBaseFv,
-    (void*)setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform,
-    (void*)getAnmTransform__10J3DMtxCalcFv,
-    (void*)setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform,
-    (void*)getAnmTransform__10J3DMtxCalcFUc,
-    (void*)setWeight__10J3DMtxCalcFUcf,
-    (void*)getWeight__10J3DMtxCalcCFUc,
-    (void*)NULL,
-    (void*)NULL,
-};
-
-/* 803A33B8-803A33E4 0004D8 002C+00 1/1 1/1 2/2 .data __vt__28mDoExt_MtxCalcAnmBlendTblOld */
-SECTION_DATA extern void* __vt__28mDoExt_MtxCalcAnmBlendTblOld[11] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__28mDoExt_MtxCalcAnmBlendTblOldFv,
-    (void*)setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform,
-    (void*)getAnmTransform__10J3DMtxCalcFv,
-    (void*)setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform,
-    (void*)getAnmTransform__10J3DMtxCalcFUc,
-    (void*)setWeight__10J3DMtxCalcFUcf,
-    (void*)getWeight__10J3DMtxCalcCFUc,
-    (void*)func_8001505C,
-    (void*)calc__28mDoExt_MtxCalcAnmBlendTblOldFv,
-};
-
-/* 803A33E4-803A3410 000504 002C+00 2/2 1/1 2/2 .data            __vt__25mDoExt_MtxCalcAnmBlendTbl
- */
-SECTION_DATA extern void* __vt__25mDoExt_MtxCalcAnmBlendTbl[11] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__25mDoExt_MtxCalcAnmBlendTblFv,
-    (void*)setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform,
-    (void*)getAnmTransform__10J3DMtxCalcFv,
-    (void*)setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform,
-    (void*)getAnmTransform__10J3DMtxCalcFUc,
-    (void*)setWeight__10J3DMtxCalcFUcf,
-    (void*)getWeight__10J3DMtxCalcCFUc,
-    (void*)func_8001505C,
-    (void*)calc__25mDoExt_MtxCalcAnmBlendTblFv,
-};
-
-/* 803A3410-803A343C 000530 002C+00 2/2 0/0 0/0 .data
- * __vt__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>
- */
-SECTION_DATA extern void* data_803A3410[11] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)func_80014FC8,
-    (void*)func_8000D8E4,
-    (void*)getAnmTransform__17J3DMtxCalcAnmBaseFv,
-    (void*)setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform,
-    (void*)getAnmTransform__10J3DMtxCalcFUc,
-    (void*)setWeight__10J3DMtxCalcFUcf,
-    (void*)getWeight__10J3DMtxCalcCFUc,
-    (void*)func_80015034,
-    (void*)func_800150AC,
-};
-
-/* 803A343C-803A3468 00055C 002C+00 3/3 0/0 0/0 .data            __vt__17J3DMtxCalcAnmBase */
-SECTION_DATA extern void* __vt__17J3DMtxCalcAnmBase[11] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__17J3DMtxCalcAnmBaseFv,
-    (void*)setAnmTransform__17J3DMtxCalcAnmBaseFP15J3DAnmTransform,
-    (void*)getAnmTransform__17J3DMtxCalcAnmBaseFv,
-    (void*)setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform,
-    (void*)getAnmTransform__10J3DMtxCalcFUc,
-    (void*)setWeight__10J3DMtxCalcFUcf,
-    (void*)getWeight__10J3DMtxCalcCFUc,
-    (void*)NULL,
-    (void*)NULL,
-};
-
-/* 803A3468-803A3498 000588 002C+04 10/10 4/4 0/0 .data            __vt__10J3DMtxCalc */
-SECTION_DATA extern void* __vt__10J3DMtxCalc[11 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10J3DMtxCalcFv,
-    (void*)setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform,
-    (void*)getAnmTransform__10J3DMtxCalcFv,
-    (void*)setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform,
-    (void*)getAnmTransform__10J3DMtxCalcFUc,
-    (void*)setWeight__10J3DMtxCalcFUcf,
-    (void*)getWeight__10J3DMtxCalcCFUc,
-    (void*)NULL,
-    (void*)NULL,
-    /* padding */
-    NULL,
+static u8 l_mat1DL[141] ALIGN_DECL(32) = {
+    0x10, 0x00, 0x00, 0x10, 0x40, 0xFF, 0xFF, 0x42, 0x00, 0x00, 0x00, 0x00, 0xF3, 0xCF, 0x00, 0x10,
+    0x00, 0x00, 0x10, 0x18, 0x3C, 0xF3, 0xCF, 0x00, 0x10, 0x00, 0x00, 0x10, 0x0E, 0x00, 0x00, 0x7F,
+    0x32, 0x10, 0x00, 0x00, 0x10, 0x10, 0x00, 0x00, 0x05, 0x00, 0x10, 0x00, 0x00, 0x10, 0x0C, 0xFF,
+    0xFF, 0xFF, 0xFF, 0x61, 0x28, 0x38, 0x00, 0x40, 0x61, 0xC0, 0x28, 0xFA, 0x8F, 0x61, 0xC1, 0x08,
+    0xFF, 0xF0, 0x61, 0x43, 0x00, 0x00, 0x41, 0x61, 0x40, 0x00, 0x00, 0x17, 0x61, 0x41, 0x00, 0x00,
+    0x0C, 0x61, 0xF3, 0x7F, 0x00, 0x00, 0x10, 0x00, 0x00, 0x10, 0x3F, 0x00, 0x00, 0x00, 0x01, 0x10,
+    0x00, 0x00, 0x10, 0x09, 0x00, 0x00, 0x00, 0x01, 0x61, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 8000D7DC-8000D8E4 00811C 0108+00 0/0 18/18 85/85 .text
  * init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb               */
-// J3DMtxCalcAnimation inheritance
-#ifdef NOTIMPLEMENTED
+// NONMATCHING J3DMtxCalcAnimation inheritance
 int mDoExt_bckAnm::init(J3DAnmTransform* i_bck, int i_play, int i_attr, f32 i_rate,
                         s16 i_startF, s16 i_endF, bool i_modify) {
     JUT_ASSERT(614, (i_modify || isCurrentSolidHeap()) && i_bck != 0);
@@ -1394,24 +269,6 @@ int mDoExt_bckAnm::init(J3DAnmTransform* i_bck, int i_play, int i_attr, f32 i_ra
         return initPlay(mAnm->getFrameMax(), i_attr, i_rate, i_startF, i_endF);
     }
     return 1;
-}
-#else
-int mDoExt_bckAnm::init(J3DAnmTransform* i_bck, int i_play, int i_attr, f32 i_rate,
-                            s16 i_startF, s16 i_endF, bool i_modify) {
-    // NONMATCHING
-}
-#endif
-
-/* 8000D8E4-8000D8EC -00001 0008+00 0/0 0/0 0/0 .text
- * setAnmTransform__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>FP15J3DAnmTransform
- */
-extern "C" void func_8000D8E4(void* _this, J3DAnmTransform* param_0) {
-    *(u32*)(((u8*)_this) + 4) /* _this->field_0x4 */ = (u32)(param_0);
-}
-
-/* 8000D8EC-8000D948 00822C 005C+00 1/0 0/0 0/0 .text            __dt__17J3DMtxCalcAnmBaseFv */
-J3DMtxCalcAnmBase::~J3DMtxCalcAnmBase() {
-    // NONMATCHING
 }
 
 /* 8000D990-8000D9CC 0082D0 003C+00 0/0 5/5 31/31 .text
@@ -1484,27 +341,6 @@ void mDoExt_modelTexturePatch(J3DModelData* i_modelData) {
         OSRestoreInterrupts(ret);
         GDSetCurrent(NULL);
     }
-}
-
-/* 8000DBC8-8000DBCC 008508 0004+00 0/0 2/0 0/0 .text patchTexNoAndTexCoordScale__11J3DTevBlockFv
- */
-void J3DTevBlock::patchTexNoAndTexCoordScale() {
-    /* empty function */
-}
-
-/* 8000DBCC-8000DBD0 00850C 0004+00 0/0 6/0 0/0 .text            patch__10J3DPEBlockFv */
-void J3DPEBlock::patch() {
-    /* empty function */
-}
-
-/* 8000DBD0-8000DBD4 008510 0004+00 0/0 2/0 0/0 .text            patchLight__13J3DColorBlockFv */
-void J3DColorBlock::patchLight() {
-    /* empty function */
-}
-
-/* 8000DBD4-8000DBD8 008514 0004+00 0/0 2/0 0/0 .text            patch__11J3DTevBlockFv */
-void J3DTevBlock::patch() {
-    /* empty function */
 }
 
 /* 8000DBD8-8000DC2C 008518 0054+00 3/3 0/0 0/0 .text            mDoExt_modelDiff__FP8J3DModel */
@@ -1594,358 +430,6 @@ void mDoExt_brkAnmRemove(J3DModelData* i_modelData) {
     }
 }
 
-/* 8000DF3C-8000DF44 00887C 0008+00 0/0 5/0 0/0 .text            getZCompLoc__10J3DPEBlockCFv */
-u8 J3DPEBlock::getZCompLoc() const {
-    return 0;
-}
-
-/* 8000DF44-8000DF4C 008884 0008+00 0/0 5/0 0/0 .text            getZMode__10J3DPEBlockFv */
-J3DZMode* J3DPEBlock::getZMode() {
-    return NULL;
-}
-
-/* 8000DF4C-8000DF54 00888C 0008+00 0/0 5/0 0/0 .text            getBlend__10J3DPEBlockFv */
-J3DBlend* J3DPEBlock::getBlend() {
-    return NULL;
-}
-
-/* 8000DF54-8000DF5C 008894 0008+00 0/0 5/0 0/0 .text            getAlphaComp__10J3DPEBlockFv */
-J3DAlphaComp* J3DPEBlock::getAlphaComp() {
-    return NULL;
-}
-
-/* 8000DF5C-8000DF64 00889C 0008+00 0/0 6/0 0/0 .text            getFog__10J3DPEBlockFv */
-J3DFog* J3DPEBlock::getFog() {
-    return NULL;
-}
-
-/* 8000DF64-8000DF6C 0088A4 0008+00 0/0 2/0 0/0 .text getIndTexCoordScale__11J3DIndBlockFUl */
-J3DIndTexCoordScale* J3DIndBlock::getIndTexCoordScale(u32 param_0) {
-    return NULL;
-}
-
-/* 8000DF6C-8000DF74 0088AC 0008+00 0/0 2/0 0/0 .text            getIndTexMtx__11J3DIndBlockFUl */
-J3DIndTexMtx* J3DIndBlock::getIndTexMtx(u32 param_0) {
-    return NULL;
-}
-
-/* 8000DF74-8000DF7C 0088B4 0008+00 0/0 2/0 0/0 .text            getIndTexOrder__11J3DIndBlockFUl */
-J3DIndTexOrder* J3DIndBlock::getIndTexOrder(u32 param_0) {
-    return NULL;
-}
-
-/* 8000DF7C-8000DF84 0088BC 0008+00 0/0 2/0 0/0 .text            getIndTexStageNum__11J3DIndBlockCFv
- */
-u8 J3DIndBlock::getIndTexStageNum() const {
-    return 0;
-}
-
-/* 8000DF84-8000DF8C 0088C4 0008+00 0/0 2/0 0/0 .text            getIndTevStage__11J3DTevBlockFUl */
-J3DIndTevStage* J3DTevBlock::getIndTevStage(u32 param_0) {
-    return NULL;
-}
-
-/* 8000DF8C-8000DF94 0088CC 0008+00 0/0 2/0 0/0 .text            getTevStage__11J3DTevBlockFUl */
-J3DTevStage* J3DTevBlock::getTevStage(u32 param_0) {
-    return NULL;
-}
-
-/* 8000DF94-8000DFA0 0088D4 000C+00 0/0 2/0 0/0 .text            getTexNo__11J3DTevBlockCFUl */
-u16 J3DTevBlock::getTexNo(u32 param_0) const {
-    // NONMATCHING
-}
-
-/* 8000DFA0-8000DFA8 0088E0 0008+00 0/0 4/0 0/0 .text getTevSwapModeTable__11J3DTevBlockFUl */
-J3DTevSwapModeTable* J3DTevBlock::getTevSwapModeTable(u32 param_0) {
-    return NULL;
-}
-
-/* 8000DFA8-8000DFB0 0088E8 0008+00 0/0 4/0 0/0 .text            getTevKAlphaSel__11J3DTevBlockFUl
- */
-bool J3DTevBlock::getTevKAlphaSel(u32 param_0) {
-    return false;
-}
-
-/* 8000DFB0-8000DFB8 0088F0 0008+00 0/0 3/0 0/0 .text            getTevKColorSel__11J3DTevBlockFUl
- */
-bool J3DTevBlock::getTevKColorSel(u32 param_0) {
-    return false;
-}
-
-/* 8000DFB8-8000DFC0 0088F8 0008+00 0/0 2/0 0/0 .text            getTevOrder__11J3DTevBlockFUl */
-J3DTevOrder* J3DTevBlock::getTevOrder(u32 param_0) {
-    return NULL;
-}
-
-/* 8000DFC0-8000DFC8 008900 0008+00 0/0 3/0 0/0 .text            getTevKColor__11J3DTevBlockFUl */
-J3DGXColor* J3DTevBlock::getTevKColor(u32 param_0) {
-    return NULL;
-}
-
-/* 8000DFC8-8000DFD0 008908 0008+00 0/0 3/0 0/0 .text            getTevColor__11J3DTevBlockFUl */
-J3DGXColorS10* J3DTevBlock::getTevColor(u32 param_0) {
-    return NULL;
-}
-
-/* 8000DFD0-8000DFD8 008910 0008+00 0/0 2/0 0/0 .text            getTevStageNum__11J3DTevBlockCFv */
-u8 J3DTevBlock::getTevStageNum() const {
-    return 1;
-}
-
-/* 8000DFD8-8000DFE0 008918 0008+00 0/0 2/0 0/0 .text            getTexMtx__14J3DTexGenBlockFUl */
-J3DTexMtx* J3DTexGenBlock::getTexMtx(u32 param_0) {
-    return NULL;
-}
-
-/* 8000DFE0-8000DFE8 008920 0008+00 0/0 2/0 0/0 .text            getTexCoord__14J3DTexGenBlockFUl */
-J3DTexCoord* J3DTexGenBlock::getTexCoord(u32 param_0) {
-    return NULL;
-}
-
-/* 8000DFE8-8000DFF0 008928 0008+00 0/0 2/0 0/0 .text            getTexGenNum__14J3DTexGenBlockCFv
- */
-u32 J3DTexGenBlock::getTexGenNum() const {
-    return 0;
-}
-
-/* 8000DFF0-8000DFF8 008930 0008+00 0/0 3/0 0/0 .text            getAmbColor__13J3DColorBlockFUl */
-J3DGXColor* J3DColorBlock::getAmbColor(u32 param_0) {
-    return NULL;
-}
-
-/* 8000DFF8-8000E000 008938 0008+00 0/0 2/0 0/0 .text            getColorChan__13J3DColorBlockFUl */
-J3DColorChan* J3DColorBlock::getColorChan(u32 param_0) {
-    return NULL;
-}
-
-/* 8000E000-8000E008 008940 0008+00 0/0 2/0 0/0 .text            getMatColor__13J3DColorBlockFUl */
-J3DGXColor* J3DColorBlock::getMatColor(u32 param_0) {
-    return NULL;
-}
-
-/* 8000E008-8000E010 008948 0008+00 0/0 2/0 0/0 .text            getColorChanNum__13J3DColorBlockCFv
- */
-u8 J3DColorBlock::getColorChanNum() const {
-    return 0;
-}
-
-/* 8000E010-8000E014 008950 0004+00 0/0 5/0 0/0 .text            setZCompLoc__10J3DPEBlockFUc */
-void J3DPEBlock::setZCompLoc(u8 param_0) {
-    /* empty function */
-}
-
-/* 8000E014-8000E018 008954 0004+00 0/0 5/0 0/0 .text            setZMode__10J3DPEBlockF8J3DZMode */
-void J3DPEBlock::setZMode(J3DZMode param_0) {
-    /* empty function */
-}
-
-/* 8000E018-8000E01C 008958 0004+00 0/0 5/0 0/0 .text            setBlend__10J3DPEBlockFRC8J3DBlend
- */
-void J3DPEBlock::setBlend(J3DBlend const& param_0) {
-    /* empty function */
-}
-
-/* 8000E01C-8000E020 00895C 0004+00 0/0 5/0 0/0 .text setAlphaComp__10J3DPEBlockFRC12J3DAlphaComp
- */
-void J3DPEBlock::setAlphaComp(J3DAlphaComp const& param_0) {
-    /* empty function */
-}
-
-/* 8000E020-8000E024 008960 0004+00 0/0 2/0 0/0 .text
- * setIndTexCoordScale__11J3DIndBlockFUl19J3DIndTexCoordScale   */
-void J3DIndBlock::setIndTexCoordScale(u32 param_0, J3DIndTexCoordScale param_1) {
-    /* empty function */
-}
-
-/* 8000E024-8000E060 008964 003C+00 0/0 2/2 0/0 .text            __dt__19J3DIndTexCoordScaleFv */
-// J3DIndTexCoordScale::~J3DIndTexCoordScale() {
-extern "C" void __dt__19J3DIndTexCoordScaleFv() {
-    // NONMATCHING
-}
-
-/* 8000E060-8000E064 0089A0 0004+00 0/0 2/0 0/0 .text setIndTexMtx__11J3DIndBlockFUl12J3DIndTexMtx
- */
-void J3DIndBlock::setIndTexMtx(u32 param_0, J3DIndTexMtx param_1) {
-    /* empty function */
-}
-
-/* 8000E064-8000E0A0 0089A4 003C+00 0/0 2/2 0/0 .text            __dt__12J3DIndTexMtxFv */
-// J3DIndTexMtx::~J3DIndTexMtx() {
-extern "C" void __dt__12J3DIndTexMtxFv() {
-    // NONMATCHING
-}
-
-/* 8000E0A0-8000E0A4 0089E0 0004+00 0/0 2/0 0/0 .text            setIndTexStageNum__11J3DIndBlockFUc
- */
-void J3DIndBlock::setIndTexStageNum(u8 param_0) {
-    /* empty function */
-}
-
-/* 8000E0A4-8000E0A8 0089E4 0004+00 0/0 2/0 0/0 .text
- * setIndTevStage__11J3DTevBlockFUl14J3DIndTevStage             */
-void J3DTevBlock::setIndTevStage(u32 param_0, J3DIndTevStage param_1) {
-    /* empty function */
-}
-
-/* 8000E0A8-8000E0AC 0089E8 0004+00 0/0 2/0 0/0 .text setTevStage__11J3DTevBlockFUl11J3DTevStage
- */
-void J3DTevBlock::setTevStage(u32 param_0, J3DTevStage param_1) {
-    /* empty function */
-}
-
-/* 8000E0AC-8000E0B0 0089EC 0004+00 0/0 2/0 0/0 .text            setTexNo__11J3DTevBlockFUlUs */
-void J3DTevBlock::setTexNo(u32 param_0, u16 param_1) {
-    /* empty function */
-}
-
-/* 8000E0B0-8000E0B4 0089F0 0004+00 0/0 4/0 0/0 .text
- * setTevSwapModeTable__11J3DTevBlockFUl19J3DTevSwapModeTable   */
-void J3DTevBlock::setTevSwapModeTable(u32 param_0, J3DTevSwapModeTable param_1) {
-    /* empty function */
-}
-
-/* 8000E0B4-8000E0B8 0089F4 0004+00 0/0 4/0 0/0 .text            setTevKAlphaSel__11J3DTevBlockFUlUc
- */
-void J3DTevBlock::setTevKAlphaSel(u32 param_0, u8 param_1) {
-    /* empty function */
-}
-
-/* 8000E0B8-8000E0BC 0089F8 0004+00 0/0 3/0 0/0 .text            setTevKColorSel__11J3DTevBlockFUlUc
- */
-void J3DTevBlock::setTevKColorSel(u32 param_0, u8 param_1) {
-    /* empty function */
-}
-
-/* 8000E0BC-8000E0C0 0089FC 0004+00 0/0 2/0 0/0 .text setTevOrder__11J3DTevBlockFUl11J3DTevOrder
- */
-void J3DTevBlock::setTevOrder(u32 param_0, J3DTevOrder param_1) {
-    /* empty function */
-}
-
-/* 8000E0C0-8000E0C4 008A00 0004+00 0/0 3/0 0/0 .text setTevKColor__11J3DTevBlockFUl10J3DGXColor
- */
-void J3DTevBlock::setTevKColor(u32 param_0, J3DGXColor param_1) {
-    /* empty function */
-}
-
-/* 8000E0C4-8000E0C8 008A04 0004+00 0/0 3/0 0/0 .text setTevColor__11J3DTevBlockFUl13J3DGXColorS10
- */
-void J3DTevBlock::setTevColor(u32 param_0, J3DGXColorS10 param_1) {
-    /* empty function */
-}
-
-/* 8000E0C8-8000E0CC 008A08 0004+00 0/0 2/0 0/0 .text            setTevStageNum__11J3DTevBlockFUc */
-void J3DTevBlock::setTevStageNum(u8 param_0) {
-    /* empty function */
-}
-
-/* 8000E0CC-8000E0D0 008A0C 0004+00 0/0 2/0 0/0 .text
- * setTexCoord__14J3DTexGenBlockFUlPC11J3DTexCoord              */
-void J3DTexGenBlock::setTexCoord(u32 param_0, J3DTexCoord const* param_1) {
-    /* empty function */
-}
-
-/* 8000E0D0-8000E0D4 008A10 0004+00 0/0 2/0 0/0 .text            setTexGenNum__14J3DTexGenBlockFUl
- */
-void J3DTexGenBlock::setTexGenNum(u32 param_0) {
-    /* empty function */
-}
-
-/* 8000E0D4-8000E0D8 008A14 0004+00 0/0 3/0 0/0 .text setAmbColor__13J3DColorBlockFUl10J3DGXColor
- */
-void J3DColorBlock::setAmbColor(u32 param_0, J3DGXColor param_1) {
-    /* empty function */
-}
-
-/* 8000E0D8-8000E0DC 008A18 0004+00 0/0 2/0 0/0 .text
- * setColorChan__13J3DColorBlockFUlRC12J3DColorChan             */
-void J3DColorBlock::setColorChan(u32 param_0, J3DColorChan const& param_1) {
-    /* empty function */
-}
-
-/* 8000E0DC-8000E0E0 008A1C 0004+00 0/0 2/0 0/0 .text setMatColor__13J3DColorBlockFUl10J3DGXColor
- */
-void J3DColorBlock::setMatColor(u32 param_0, J3DGXColor param_1) {
-    /* empty function */
-}
-
-/* 8000E0E0-8000E0E4 008A20 0004+00 0/0 2/0 0/0 .text            setColorChanNum__13J3DColorBlockFUc
- */
-void J3DColorBlock::setColorChanNum(u8 param_0) {
-    /* empty function */
-}
-
-/* 8000E0E4-8000E0F0 008A24 000C+00 0/0 1/1 0/0 .text            __ct__19J3DIndTexCoordScaleFv */
-// J3DIndTexCoordScale::J3DIndTexCoordScale() {
-extern "C" void __ct__19J3DIndTexCoordScaleFv() {
-    // NONMATCHING
-}
-
-/* 8000E0F0-8000E128 008A30 0038+00 0/0 1/1 0/0 .text            __ct__12J3DIndTexMtxFv */
-// J3DIndTexMtx::J3DIndTexMtx() {
-extern "C" void __ct__12J3DIndTexMtxFv() {
-    // NONMATCHING
-}
-
-/* 8000E128-8000E134 008A68 000C+00 0/0 1/1 0/0 .text            __ct__14J3DIndTexOrderFv */
-// J3DIndTexOrder::J3DIndTexOrder() {
-extern "C" void __ct__14J3DIndTexOrderFv() {
-    // NONMATCHING
-}
-
-/* 8000E134-8000E140 008A74 000C+00 0/0 1/1 0/0 .text            __ct__19J3DTevSwapModeTableFv */
-J3DTevSwapModeTable::J3DTevSwapModeTable() {
-    // NONMATCHING
-}
-
-/* 8000E140-8000E14C 008A80 000C+00 0/0 2/2 0/0 .text            __ct__11J3DTevOrderFv */
-// J3DTevOrder::J3DTevOrder() {
-extern "C" void __ct__11J3DTevOrderFv() {
-    // NONMATCHING
-}
-
-/* 8000E14C-8000E230 008A8C 00E4+00 0/0 2/2 0/0 .text            __ct__14J3DIndTevStageFv */
-// J3DIndTevStage::J3DIndTevStage() {
-extern "C" void __ct__14J3DIndTevStageFv() {
-    // NONMATCHING
-}
-
-/* 8000E230-8000E298 008B70 0068+00 0/0 4/4 0/0 .text            __ct__11J3DTevStageFv */
-J3DTevStage::J3DTevStage() {
-    // NONMATCHING
-}
-
-/* 8000E298-8000E460 008BD8 01C8+00 1/1 1/1 0/0 .text
- * setTevStageInfo__11J3DTevStageFRC15J3DTevStageInfo           */
-//void J3DTevStage::setTevStageInfo(J3DTevStageInfo const& param_0) {
-void setTevStageInfo__11J3DTevStageFRC15J3DTevStageInfo() {
-    // NONMATCHING
-}
-
-/* 8000E460-8000E464 008DA0 0004+00 0/0 3/3 0/0 .text            __ct__13J3DGXColorS10Fv */
-// J3DGXColorS10::J3DGXColorS10() {
-extern "C" void __ct__13J3DGXColorS10Fv() {
-    /* empty function */
-}
-
-/* 8000E464-8000E47C 008DA4 0018+00 0/0 2/2 0/0 .text            __ct__11J3DTexCoordFv */
-// J3DTexCoord::J3DTexCoord() {
-extern "C" void __ct__11J3DTexCoordFv() {
-    // NONMATCHING
-}
-
-/* 8000E47C-8000E538 008DBC 00BC+00 0/0 1/1 0/0 .text            __ct__12J3DColorChanFv */
-// J3DColorChan::J3DColorChan() {
-extern "C" void __ct__12J3DColorChanFv() {
-    // NONMATCHING
-}
-
-/* 8000E538-8000E53C 008E78 0004+00 0/0 3/3 0/0 .text            __ct__10J3DGXColorFv */
-// J3DGXColor::J3DGXColor() {
-extern "C" void __ct__10J3DGXColorFv() {
-    /* empty function */
-}
-
 /* 8000E53C-8000E5F8 008E7C 00BC+00 0/0 0/0 19/19 .text
  * create__21mDoExt_invisibleModelFP8J3DModelUc                 */
 int mDoExt_invisibleModel::create(J3DModel* i_model, u8 param_1) {
@@ -1965,18 +449,6 @@ int mDoExt_invisibleModel::create(J3DModel* i_model, u8 param_1) {
     }
 
     return 1;
-}
-
-/* 8000E5F8-8000E654 008F38 005C+00 2/1 0/0 0/0 .text            __dt__19mDoExt_invJntPacketFv */
-mDoExt_invJntPacket::~mDoExt_invJntPacket() {}
-
-/* 8000E654-8000E680 008F94 002C+00 1/1 0/0 0/0 .text            __ct__19mDoExt_invJntPacketFv */
-mDoExt_invJntPacket::mDoExt_invJntPacket() {}
-
-/* 8000E680-8000E6C8 008FC0 0048+00 0/0 1/0 0/0 .text            __dt__9J3DPacketFv */
-// J3DPacket::~J3DPacket() {
-extern "C" void __dt__9J3DPacketFv() {
-    // NONMATCHING
 }
 
 /* 8000E6C8-8000E7C0 009008 00F8+00 1/1 0/0 0/0 .text entryJoint__21mDoExt_invisibleModelFP4cXyz
@@ -2123,7 +595,6 @@ void mDoExt_setupStageTexture(J3DModelData* i_modelData) {
     }
 }
 
-/* ############################################################################################## */
 /* 80450C20-80450C24 000120 0004+00 2/1 0/0 0/0 .sbss            AssertHeap */
 static JKRAssertHeap* AssertHeap;
 
@@ -2138,7 +609,6 @@ JKRAssertHeap* mDoExt_getAssertHeap() {
     return AssertHeap;
 }
 
-/* ############################################################################################## */
 /* 80450C24-80450C28 000124 0004+00 2/1 0/0 0/0 .sbss            DbPrintHeap */
 static JKRExpHeap* DbPrintHeap;
 
@@ -2152,7 +622,6 @@ JKRExpHeap* mDoExt_getDbPrintHeap() {
     return DbPrintHeap;
 }
 
-/* ############################################################################################## */
 /* 80450C28-80450C2C 000128 0004+00 2/1 3/3 0/0 .sbss            gameHeap */
 JKRExpHeap* gameHeap;
 
@@ -2169,7 +638,6 @@ JKRExpHeap* mDoExt_getGameHeap() {
     return gameHeap;
 }
 
-/* ############################################################################################## */
 /* 80450C2C-80450C30 00012C 0004+00 2/1 3/3 0/0 .sbss            zeldaHeap */
 JKRExpHeap* zeldaHeap;
 
@@ -2183,7 +651,6 @@ JKRExpHeap* mDoExt_getZeldaHeap() {
     return zeldaHeap;
 }
 
-/* ############################################################################################## */
 /* 80450C30-80450C34 000130 0004+00 2/1 1/1 0/0 .sbss            commandHeap */
 JKRExpHeap* commandHeap;
 
@@ -2197,7 +664,6 @@ JKRExpHeap* mDoExt_getCommandHeap() {
     return commandHeap;
 }
 
-/* ############################################################################################## */
 /* 80450C34-80450C38 000134 0004+00 3/1 5/5 0/0 .sbss            archiveHeap */
 JKRExpHeap* archiveHeap;
 
@@ -2218,7 +684,6 @@ JKRExpHeap* mDoExt_getArchiveHeapPtr() {
     return archiveHeap;
 }
 
-/* ############################################################################################## */
 /* 80450C38-80450C3C 000138 0004+00 2/1 0/0 0/0 .sbss            j2dHeap */
 static JKRExpHeap* j2dHeap;
 
@@ -2235,7 +700,6 @@ JKRExpHeap* mDoExt_getJ2dHeap() {
     return j2dHeap;
 }
 
-/* ############################################################################################## */
 /* 80450C3C-80450C40 00013C 0004+00 1/0 0/0 0/0 .sbss            HostIOHeap */
 static JKRExpHeap* HostIOHeap;
 
@@ -2296,7 +760,6 @@ JKRSolidHeap* mDoExt_createSolidHeapToCurrent(JKRHeap** o_heap, u32 i_size, JKRH
     return resultHeap;
 }
 
-/* ############################################################################################## */
 /* 80450C40-80450C44 000140 0004+00 2/2 0/0 0/0 .sbss            mDoExt_SaveCurrentHeap */
 static JKRHeap* mDoExt_SaveCurrentHeap;
 
@@ -2497,7 +960,6 @@ void mDoExt_MtxCalcAnmBlendTblOld::calc() {
     }
 }
 
-
 /* 8000F848-8000F8CC 00A188 0084+00 0/0 26/26 8/8 .text
  * initOldFrameMorf__22mDoExt_MtxCalcOldFrameFfUsUs             */
 void mDoExt_MtxCalcOldFrame::initOldFrameMorf(f32 param_0, u16 frameStartJoint, u16 frameEndJoint) {
@@ -2520,10 +982,8 @@ void mDoExt_MtxCalcOldFrame::initOldFrameMorf(f32 param_0, u16 frameStartJoint, 
     mOldFrameEndJoint = frameEndJoint;
 }
 
-
 /* 8000F8CC-8000F950 00A20C 0084+00 2/2 0/0 0/0 .text
  * decOldFrameMorfCounter__22mDoExt_MtxCalcOldFrameFv           */
-#ifdef NONMATCHING
 void mDoExt_MtxCalcOldFrame::decOldFrameMorfCounter() {
     if (mOldFrameMorfCounter > 0.0f) {
 
@@ -2544,49 +1004,18 @@ void mDoExt_MtxCalcOldFrame::decOldFrameMorfCounter() {
         }
     }
 }
-#else
-void mDoExt_MtxCalcOldFrame::decOldFrameMorfCounter() {
-    // NONMATCHING
-}
-#endif
 
 /* 8000F950-8000F9D8 00A290 0088+00 3/3 0/0 0/0 .text            __ct__13mDoExt_morf_cFv */
-// vtable issues
-#ifdef NONMATCHING
 mDoExt_morf_c::mDoExt_morf_c() {
     mpModel = NULL;
     mpAnm = NULL;
     mpTransformInfo = NULL;
     mpQuat = NULL;
 }
-#else
-mDoExt_morf_c::mDoExt_morf_c() {
-    // NONMATCHING
-}
-#endif
-
-/* 8000F9D8-8000FA20 00A318 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
-// J3DFrameCtrl::~J3DFrameCtrl() {
-extern "C" void __dt__12J3DFrameCtrlFv() {
-    // NONMATCHING
-}
-
-/* 8000FA20-8000FA8C 00A360 006C+00 1/0 0/0 0/0 .text
- * __dt__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>Fv */
-extern "C" void func_8000FA20(void* _this) {
-    // NONMATCHING
-}
-
-/* 8000FA8C-8000FAE8 00A3CC 005C+00 1/0 0/0 0/0 .text            __dt__19J3DMtxCalcNoAnmBaseFv */
-// J3DMtxCalcNoAnmBase::~J3DMtxCalcNoAnmBase() {
-extern "C" void __dt__19J3DMtxCalcNoAnmBaseFv() {
-    // NONMATCHING
-}
 
 /* 8000FAE8-8000FB7C 00A428 0094+00 4/3 0/0 0/0 .text            __dt__13mDoExt_morf_cFv */
-// mDoExt_morf_c::~mDoExt_morf_c() {
-extern "C" void __dt__13mDoExt_morf_cFv() {
-    // NONMATCHING
+mDoExt_morf_c::~mDoExt_morf_c() {
+    /* empty function */
 }
 
 /* 8000FB7C-8000FBC0 00A4BC 0044+00 3/3 4/4 20/20 .text            setMorf__13mDoExt_morf_cFf */
@@ -2601,7 +1030,6 @@ void mDoExt_morf_c::setMorf(f32 i_morf) {
 
     mPrevMorf = mCurMorf;
 }
-
 
 /* 8000FBC0-8000FC4C 00A500 008C+00 3/3 0/0 0/0 .text            frameUpdate__13mDoExt_morf_cFv */
 void mDoExt_morf_c::frameUpdate() {
@@ -2619,7 +1047,6 @@ void mDoExt_morf_c::frameUpdate() {
     mFrameCtrl.update();
 }
 
-
 /* 8000FC4C-8000FD10 00A58C 00C4+00 0/0 0/0 34/34 .text
  * __ct__14mDoExt_McaMorfFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiiPvUlUl
  */
@@ -2634,14 +1061,11 @@ mDoExt_McaMorf::mDoExt_McaMorf(J3DModelData* modelData, mDoExt_McaMorfCallBack1_
 }
 
 /* 8000FD10-8000FD94 00A650 0084+00 1/0 0/0 0/0 .text            __dt__14mDoExt_McaMorfFv */
-// mDoExt_McaMorf::~mDoExt_McaMorf() {
-extern "C" void __dt__14mDoExt_McaMorfFv() {
-    // NONMATCHING
+mDoExt_McaMorf::~mDoExt_McaMorf() {
+    if (field_0x50 && mpSound != NULL) {
+        mpSound->stopAnime();
+    }
 }
-
-/* ############################################################################################## */
-/* 80451B28-80451B2C 000128 0004+00 3/3 0/0 0/0 .sdata2          @5939 */
-SECTION_SDATA2 static f32 lit_5939 = -1.0f;
 
 /* 8000FD94-80010074 00A6D4 02E0+00 1/1 0/0 0/0 .text
  * create__14mDoExt_McaMorfFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiiPvUlUl
@@ -2723,8 +1147,8 @@ int mDoExt_McaMorf::create(J3DModelData* modelData, mDoExt_McaMorfCallBack1_c* c
     return 0;
 }
 
-
 /* 80010074-8001037C 00A9B4 0308+00 1/0 0/0 0/0 .text            calc__14mDoExt_McaMorfFv */
+// NONMATCHING regalloc
 void mDoExt_McaMorf::calc() {
     if (!mpModel) {
         return;
@@ -2790,7 +1214,6 @@ void mDoExt_McaMorf::calc() {
     }
 }
 
-
 /* 8001037C-800105C8 00ACBC 024C+00 1/1 1/1 29/29 .text
  * setAnm__14mDoExt_McaMorfFP15J3DAnmTransformiffffPv           */
 void mDoExt_McaMorf::setAnm(J3DAnmTransform* param_0, int param_1, f32 param_2, f32 param_3,
@@ -2831,7 +1254,6 @@ void mDoExt_McaMorf::setAnm(J3DAnmTransform* param_0, int param_1, f32 param_2, 
     }
 }
 
-
 /* 800105C8-80010680 00AF08 00B8+00 0/0 1/1 37/37 .text            play__14mDoExt_McaMorfFP3VecUlSc
  */
 u32 mDoExt_McaMorf::play(Vec* param_0, u32 param_1, s8 param_2) {
@@ -2843,7 +1265,6 @@ u32 mDoExt_McaMorf::play(Vec* param_0, u32 param_1, s8 param_2) {
     }
     return isStop();
 }
-
 
 /* 80010680-800106AC 00AFC0 002C+00 0/0 0/0 33/33 .text            entryDL__14mDoExt_McaMorfFv */
 void mDoExt_McaMorf::entryDL() {
@@ -2896,9 +1317,8 @@ mDoExt_McaMorfSO::mDoExt_McaMorfSO(J3DModelData* param_0, mDoExt_McaMorfCallBack
 }
 
 /* 80010888-800108F0 00B1C8 0068+00 1/0 0/0 0/0 .text            __dt__16mDoExt_McaMorfSOFv */
-// mDoExt_McaMorfSO::~mDoExt_McaMorfSO() {
-extern "C" void __dt__16mDoExt_McaMorfSOFv() {
-    // NONMATCHING
+mDoExt_McaMorfSO::~mDoExt_McaMorfSO() {
+    stopZelAnime();
 }
 
 /* 800108F0-80010B68 00B230 0278+00 1/1 0/0 0/0 .text
@@ -2983,8 +1403,8 @@ int mDoExt_McaMorfSO::create(J3DModelData* i_modelData, mDoExt_McaMorfCallBack1_
     return 0;
 }
 
-
 /* 80010B68-80010E70 00B4A8 0308+00 1/0 0/0 0/0 .text            calc__16mDoExt_McaMorfSOFv */
+// NONMATCHING regalloc
 void mDoExt_McaMorfSO::calc() {
     if (mpModel != NULL) {
         u16 jnt_no = J3DMtxCalc::getJoint()->getJntNo();
@@ -3071,7 +1491,6 @@ void mDoExt_McaMorfSO::calc() {
     }
 }
 
-
 /* 80010E70-800110B0 00B7B0 0240+00 1/1 5/5 208/208 .text
  * setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff           */
 void mDoExt_McaMorfSO::setAnm(J3DAnmTransform* i_anm, int i_attr, f32 i_morf, f32 i_rate,
@@ -3118,7 +1537,6 @@ void mDoExt_McaMorfSO::setAnm(J3DAnmTransform* i_anm, int i_attr, f32 i_morf, f3
     }
 }
 
-
 /* 800110B0-80011154 00B9F0 00A4+00 0/0 5/5 143/143 .text            play__16mDoExt_McaMorfSOFUlSc
  */
 int mDoExt_McaMorfSO::play(u32 param_0, s8 param_1) {
@@ -3134,7 +1552,6 @@ int mDoExt_McaMorfSO::play(u32 param_0, s8 param_1) {
 
     return isStop();
 }
-
 
 /* 80011154-800111C0 00BA94 006C+00 0/0 0/0 4/4 .text            updateDL__16mDoExt_McaMorfSOFv */
 void mDoExt_McaMorfSO::updateDL() {
@@ -3207,9 +1624,8 @@ mDoExt_McaMorf2::mDoExt_McaMorf2(J3DModelData* param_0, mDoExt_McaMorfCallBack1_
 }
 
 /* 800113FC-80011464 00BD3C 0068+00 1/0 0/0 0/0 .text            __dt__15mDoExt_McaMorf2Fv */
-// mDoExt_McaMorf2::~mDoExt_McaMorf2() {
-extern "C" void __dt__15mDoExt_McaMorf2Fv() {
-    // NONMATCHING
+mDoExt_McaMorf2::~mDoExt_McaMorf2() {
+    stopZelAnime();
 }
 
 /* 80011464-800116B4 00BDA4 0250+00 1/1 0/0 0/0 .text
@@ -3242,10 +1658,6 @@ void mDoExt_McaMorf2::calc() {
     // NONMATCHING
 }
 
-/* ############################################################################################## */
-/* 80451B2C-80451B30 00012C 0004+00 6/6 0/0 0/0 .sdata2          @6819 */
-SECTION_SDATA2 static f32 lit_6819 = 0.5f;
-
 /* 80011D70-80011FCC 00C6B0 025C+00 1/1 0/0 2/2 .text
  * setAnm__15mDoExt_McaMorf2FP15J3DAnmTransformP15J3DAnmTransformfiffff */
 void mDoExt_McaMorf2::setAnm(J3DAnmTransform* param_0, J3DAnmTransform* param_1, f32 param_2,
@@ -3276,7 +1688,6 @@ void mDoExt_McaMorf2::setAnmRate(f32 param_0) {
     }
 }
 
-
 /* 800120A0-80012144 00C9E0 00A4+00 0/0 0/0 1/1 .text            play__15mDoExt_McaMorf2FUlSc */
 int mDoExt_McaMorf2::play(u32 param_0, s8 param_1) {
     frameUpdate();
@@ -3291,7 +1702,6 @@ int mDoExt_McaMorf2::play(u32 param_0, s8 param_1) {
 
     return isStop();
 }
-
 
 /* 80012144-80012170 00CA84 002C+00 0/0 0/0 1/1 .text            entryDL__15mDoExt_McaMorf2Fv */
 void mDoExt_McaMorf2::entryDL() {
@@ -3335,12 +1745,6 @@ void mDoExt_3Dline_c::init(u16 param_0, int param_1, int param_2) {
     // NONMATCHING
 }
 
-/* 800125DC-800125E0 00CF1C 0004+00 1/1 9/9 0/0 .text            __ct__4cXyzFv */
-// cXyz::cXyz() {
-extern "C" void __ct__4cXyzFv() {
-    /* empty function */
-}
-
 /* 800125E0-800126BC 00CF20 00DC+00 0/0 0/0 12/12 .text            init__19mDoExt_3DlineMat0_cFUsUsi
  */
 int mDoExt_3DlineMat0_c::init(u16 param_0, u16 param_1, int param_2) {
@@ -3373,17 +1777,6 @@ void mDoExt_3DlineMat0_c::draw() {
     // NONMATCHING
 }
 
-/* ############################################################################################## */
-/* 80451B30-80451B38 000130 0004+04 4/4 0/0 0/0 .sdata2          @7404 */
-SECTION_SDATA2 static f32 lit_7404[1 + 1 /* padding */] = {
-    64.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 80451B38-80451B40 000138 0008+00 2/2 0/0 0/0 .sdata2          @7406 */
-SECTION_SDATA2 static f64 lit_7406 = 4503599627370496.0 /* cast u32 to float */;
-
 /* 80012874-80012E3C 00D1B4 05C8+00 0/0 0/0 2/2 .text
  * update__19mDoExt_3DlineMat0_cFifR8_GXColorUsP12dKy_tevstr_c  */
 void mDoExt_3DlineMat0_c::update(int param_0, f32 param_1, _GXColor& param_2, u16 param_3,
@@ -3396,13 +1789,6 @@ void mDoExt_3DlineMat0_c::update(int param_0, f32 param_1, _GXColor& param_2, u1
 void mDoExt_3DlineMat0_c::update(int param_0, _GXColor& param_1, dKy_tevstr_c* param_2) {
     // NONMATCHING
 }
-
-/* ############################################################################################## */
-/* 80451B40-80451B44 000140 0004+00 1/1 0/0 0/0 .sdata2          @7624 */
-SECTION_SDATA2 static f32 lit_7624 = 0.125f;
-
-/* 80451B44-80451B48 000144 0004+00 1/1 0/0 0/0 .sdata2          @7625 */
-SECTION_SDATA2 static f32 lit_7625 = 1.0f / 100.0f;
 
 /* 80013360-800134F8 00DCA0 0198+00 0/0 0/0 19/19 .text init__19mDoExt_3DlineMat1_cFUsUsP7ResTIMGi
  */
@@ -3433,31 +1819,6 @@ void mDoExt_3DlineMat1_c::draw() {
     // NONMATCHING
 }
 
-/* ############################################################################################## */
-/* 80451B48-80451B50 000148 0008+00 2/2 0/0 0/0 .sdata2          @7919 */
-SECTION_SDATA2 static f64 lit_7919 = 0.5;
-
-/* 80451B50-80451B58 000150 0008+00 2/2 0/0 0/0 .sdata2          @7920 */
-SECTION_SDATA2 static f64 lit_7920 = 3.0;
-
-/* 80451B58-80451B60 000158 0008+00 2/2 0/0 0/0 .sdata2          @7921 */
-SECTION_SDATA2 static u8 lit_7921[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80451B60-80451B64 000160 0004+00 2/2 0/0 0/0 .sdata2          @7922 */
-SECTION_SDATA2 static f32 lit_7922 = 1.0f / 10.0f;
-
-/* 80451B64-80451B68 000164 0004+00 1/1 0/0 0/0 .sdata2          @7923 */
-SECTION_SDATA2 static f32 lit_7923 = 1.0f / 50.0f;
-
-/* 80451B68-80451B70 000168 0004+04 1/1 0/0 0/0 .sdata2          @7924 */
-SECTION_SDATA2 static f32 lit_7924[1 + 1 /* padding */] = {
-    8.0f,
-    /* padding */
-    0.0f,
-};
-
 /* 8001373C-80013FB0 00E07C 0874+00 0/0 0/0 6/6 .text
  * update__19mDoExt_3DlineMat1_cFifR8_GXColorUsP12dKy_tevstr_c  */
 void mDoExt_3DlineMat1_c::update(int param_0, f32 param_1, _GXColor& param_2, u16 param_3,
@@ -3487,7 +1848,6 @@ void mDoExt_3DlineMatSortPacket::draw() {
     } while (lineMat != NULL);
     J3DShape::resetVcdVatCache();
 }
-
 
 void drawCube(MtxP mtx, cXyz* pos, const GXColor& color) {
     GXSetArray(GX_VA_POS, pos, sizeof(cXyz));
@@ -3581,14 +1941,6 @@ void mDoExt_cylinderPacket::draw() {
     GXDrawCylinder(8);
 }
 
-/* ############################################################################################## */
-/* 803740FC-803740FC 00075C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8037416B =
-    "\nキャッシュフォントクラス作成に失敗しました\n";
-#pragma pop
-
 /* 80014804-8001494C 00F144 0148+00 3/3 0/0 0/0 .text
  * mDoExt_initFontCommon__FPP7JUTFontPP7ResFONTP7JKRHeapPCcP10JKRArchiveUcUlUl */
 static void mDoExt_initFontCommon(JUTFont** mDoExt_font, ResFONT** mDoExt_resfont, JKRHeap* param_2,
@@ -3620,17 +1972,6 @@ static void mDoExt_initFontCommon(JUTFont** mDoExt_font, ResFONT** mDoExt_resfon
     JUT_ASSERT(7183, mDoExt_font != 0);
 }
 
-
-/* 8001494C-80014994 00F28C 0048+00 1/0 0/0 0/0 .text            __dt__7JUTFontFv */
-//JUTFont::~JUTFont() {
-extern "C" void __dt__7JUTFontFv() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 803740C0-803740D4 000720 0012+02 1/1 0/0 0/0 .rodata          fontdata$8224 */
-static char const fontdata_8224[] = "rodan_b_24_22.bfn";
-
 /* 80450C44-80450C48 000144 0004+00 3/3 0/0 0/0 .sbss            mDoExt_font0 */
 static JUTFont* mDoExt_font0;
 
@@ -3642,8 +1983,9 @@ static ResFONT* mDoExt_resfont0;
 
 /* 80014994-800149F0 00F2D4 005C+00 1/1 0/0 0/0 .text            mDoExt_initFont0__Fv */
 static void mDoExt_initFont0() {
+    static char const fontdata[] = "rodan_b_24_22.bfn";
     mDoExt_initFontCommon(&mDoExt_font0, &mDoExt_resfont0, mDoExt_getZeldaHeap(),
-                          fontdata_8224, dComIfGp_getFontArchive(), 1, 0, 0);
+                          fontdata, dComIfGp_getFontArchive(), 1, 0, 0);
 }
 
 /* 800149F0-80014A2C 00F330 003C+00 0/0 51/51 2/2 .text            mDoExt_getMesgFont__Fv */
@@ -3673,11 +2015,6 @@ void mDoExt_removeMesgFont() {
     }
 }
 
-
-/* ############################################################################################## */
-/* 803740D4-803740E8 000734 0014+00 1/1 0/0 0/0 .rodata          fontdata$8253 */
-static char const fontdata_8253[] = "reishotai_24_22.bfn";
-
 /* 80450C50-80450C54 000150 0004+00 2/2 0/0 0/0 .sbss            mDoExt_font1 */
 static JUTFont* mDoExt_font1;
 
@@ -3689,8 +2026,9 @@ static ResFONT* mDoExt_resfont1;
 
 /* 80014AA4-80014B04 00F3E4 0060+00 1/1 0/0 0/0 .text            mDoExt_initFont1__Fv */
 static void mDoExt_initFont1() {
+    static char const fontdata[] = "reishotai_24_22.bfn";
     mDoExt_initFontCommon(&mDoExt_font1, &mDoExt_resfont1, mDoExt_getZeldaHeap(),
-                          fontdata_8253, dComIfGp_getRubyArchive(), 1, 1, 0x8000);
+                          fontdata, dComIfGp_getRubyArchive(), 1, 1, 0x8000);
 }
 
 /* 80014B04-80014B40 00F444 003C+00 0/0 8/8 0/0 .text            mDoExt_getRubyFont__Fv */
@@ -3703,10 +2041,6 @@ JUTFont* mDoExt_getRubyFont() {
     return mDoExt_font1;
 }
 
-/* ############################################################################################## */
-/* 803740E8-803740FC 000748 0014+00 1/1 0/0 0/0 .rodata          fontdata$8287 */
-static char const fontdata_8287[] = "reishotai_24_22.bfn";
-
 /* 80450C5C-80450C60 00015C 0004+00 3/3 0/0 0/0 .sbss            mDoExt_font2 */
 static JUTFont* mDoExt_font2;
 
@@ -3718,8 +2052,9 @@ static ResFONT* mDoExt_resfont2;
 
 /* 80014B40-80014BA0 00F480 0060+00 1/1 0/0 0/0 .text            mDoExt_initFont2__Fv */
 static void mDoExt_initFont2() {
+    static char const fontdata[] = "reishotai_24_22.bfn";
     mDoExt_initFontCommon(&mDoExt_font2, &mDoExt_resfont2, mDoExt_getZeldaHeap(),
-                          fontdata_8287, dComIfGp_getRubyArchive(), 1, 1, 0x8000);
+                          fontdata, dComIfGp_getRubyArchive(), 1, 1, 0x8000);
 }
 
 /* 80014BA0-80014BDC 00F4E0 003C+00 0/0 11/11 0/0 .text            mDoExt_getSubFont__Fv */
@@ -3748,7 +2083,6 @@ void mDoExt_removeSubFont() {
         }
     }
 }
-
 
 /* 80014C54-80014D5C 00F594 0108+00 3/3 14/14 445/445 .text
  * mDoExt_J3DModel__create__FP12J3DModelDataUlUl                */
@@ -3785,7 +2119,6 @@ J3DModel* mDoExt_J3DModel__create(J3DModelData* i_modelData, u32 i_modelFlag, u3
     return NULL;
 }
 
-/* ############################################################################################## */
 /* 80450C68-80450C70 000168 0004+04 1/1 0/0 0/0 .sbss            aram_cache_size */
 static u32 aram_cache_size;
 
@@ -3805,24 +2138,6 @@ OSThread* mDoExt_GetCurrentRunningThread() {
     return thread;
 }
 
-/* 80014D9C-80014DC8 00F6DC 002C+00 1/0 0/0 0/0 .text
- * setGX__7JUTFontFQ28JUtility6TColorQ28JUtility6TColor         */
-void JUTFont::setGX(JUtility::TColor param_0, JUtility::TColor param_1) {
-    // NONMATCHING
-}
-
-/* 80014DC8-80014DF4 00F708 002C+00 1/0 0/0 0/0 .text            getCellWidth__7JUTFontCFv */
-//void JUTFont::getCellWidth() const {
-void getCellWidth__7JUTFontCFv() {
-    // NONMATCHING
-}
-
-/* 80014DF4-80014E20 00F734 002C+00 1/0 0/0 0/0 .text            getCellHeight__7JUTFontCFv */
-//void JUTFont::getCellHeight() const {
-void getCellHeight__7JUTFontCFv() {
-    // NONMATCHING
-}
-
 /* 80014E20-80014E7C 00F760 005C+00 1/0 2/2 0/0 .text __dt__26mDoExt_3DlineMatSortPacketFv */
 mDoExt_3DlineMatSortPacket::~mDoExt_3DlineMatSortPacket() {
     // NONMATCHING
@@ -3834,108 +2149,6 @@ int mDoExt_3DlineMat1_c::getMaterialID() {
 }
 
 /* 80014E84-80014E8C 00F7C4 0008+00 1/0 0/0 0/0 .text getMaterialID__19mDoExt_3DlineMat0_cFv */
-// int mDoExt_3DlineMat0_c::getMaterialID() {
-extern "C" int getMaterialID__19mDoExt_3DlineMat0_cFv() {
+int mDoExt_3DlineMat0_c::getMaterialID() {
     return 0;
 }
-
-/* 80014E8C-80014E90 00F7CC 0004+00 11/0 2/0 0/0 .text
- * setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform           */
-void J3DMtxCalc::setAnmTransform(u8 param_0, J3DAnmTransform* param_1) {
-    /* empty function */
-}
-
-/* 80014E90-80014E94 00F7D0 0004+00 9/0 2/0 0/0 .text
- * setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform             */
-void J3DMtxCalc::setAnmTransform(J3DAnmTransform* param_0) {
-    /* empty function */
-}
-
-/* 80014E94-80014E9C 00F7D4 0008+00 11/0 2/0 0/0 .text            getAnmTransform__10J3DMtxCalcFUc
- */
-J3DAnmTransform* J3DMtxCalc::getAnmTransform(u8 param_0) {
-    return NULL;
-}
-
-/* 80014E9C-80014EA4 00F7DC 0008+00 9/0 2/0 0/0 .text            getAnmTransform__10J3DMtxCalcFv */
-J3DAnmTransform* J3DMtxCalc::getAnmTransform() {
-    return NULL;
-}
-
-/* 80014EA4-80014EA8 00F7E4 0004+00 11/0 2/0 0/0 .text            setWeight__10J3DMtxCalcFUcf */
-void J3DMtxCalc::setWeight(u8 param_0, f32 param_1) {
-    /* empty function */
-}
-
-/* 80014EA8-80014EB0 00F7E8 0008+00 11/0 2/0 0/0 .text            getWeight__10J3DMtxCalcCFUc */
-void J3DMtxCalc::getWeight(u8 param_0) const {
-    // NONMATCHING
-}
-
-/* 80014EB0-80014F3C 00F7F0 008C+00 1/0 0/0 0/0 .text __dt__28mDoExt_MtxCalcAnmBlendTblOldFv */
-// mDoExt_MtxCalcAnmBlendTblOld::~mDoExt_MtxCalcAnmBlendTblOld() {
-extern "C" void __dt__28mDoExt_MtxCalcAnmBlendTblOldFv() {
-    // NONMATCHING
-}
-
-/* 80014F3C-80014FB8 00F87C 007C+00 1/0 0/0 0/0 .text            __dt__25mDoExt_MtxCalcAnmBlendTblFv
- */
-// mDoExt_MtxCalcAnmBlendTbl::~mDoExt_MtxCalcAnmBlendTbl() {
-extern "C" void __dt__25mDoExt_MtxCalcAnmBlendTblFv() {
-    // NONMATCHING
-}
-
-/* 80014FB8-80014FC0 00F8F8 0008+00 2/0 0/0 0/0 .text getAnmTransform__17J3DMtxCalcAnmBaseFv */
-J3DAnmTransform* J3DMtxCalcAnmBase::getAnmTransform() {
-    // NONMATCHING
-}
-
-/* 80014FC0-80014FC8 -00001 0008+00 0/0 0/0 0/0 .text
- * setAnmTransform__17J3DMtxCalcAnmBaseFP15J3DAnmTransform      */
-void J3DMtxCalcAnmBase::setAnmTransform(J3DAnmTransform* param_0) {
-    *(u32*)(((u8*)this) + 4) /* this->field_0x4 */ = (u32)(param_0);
-}
-
-/* 80014FC8-80015034 00F908 006C+00 1/0 0/0 0/0 .text
- * __dt__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv
- */
-extern "C" void func_80014FC8(void* _this) {
-    // NONMATCHING
-}
-
-/* 80015034-8001505C 00F974 0028+00 1/0 0/0 0/0 .text
- * init__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>FRC3VecRA3_A4_Cf
- */
-extern "C" void func_80015034(void* _this, Vec const& param_0, f32 const (&param_1)[3][4]) {
-    // NONMATCHING
-}
-
-/* 8001505C-80015084 00F99C 0028+00 7/0 0/0 0/0 .text
- * init__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>FRC3VecRA3_A4_Cf
- */
-void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya>::init(
-    Vec const& param_0, f32 const (&param_1)[3][4]) {
-    J3DMtxCalcJ3DSysInitMaya::init(param_0, param_1);
-}
-
-/* 80015084-800150AC 00F9C4 0028+00 2/0 0/0 0/0 .text
- * calc__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>Fv */
-void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya>::calc() {
-    J3DMtxCalcCalcTransformMaya::calcTransform(getJoint()->getTransformInfo());
-}
-
-/* 800150AC-8001513C 00F9EC 0090+00 1/0 0/0 0/0 .text
- * calc__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv
- */
-// Matching with J3DMtxCalcAnmBase inheritance
-#ifdef NONMATCHING
-void J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformMaya>, J3DMtxCalcJ3DSysInitMaya>::calc() {
-    J3DMtxCalcCalcTransformMaya::calcTransform(getJoint()->getTransformInfo());
-}
-#else
-extern "C" void func_800150AC(void* _this) {
-    // NONMATCHING
-}
-#endif
-
-/* 803740FC-803740FC 00075C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

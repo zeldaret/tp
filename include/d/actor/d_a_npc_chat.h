@@ -42,7 +42,7 @@ public:
     /* 80982F4C */ void main();
     /* 80982FA4 */ void setAttnPos();
     /* 809830EC */ void setExpressionBtp(int);
-    /* 80983168 */ void setMotionAnm(int, f32);
+    /* 80983168 */ bool setMotionAnm(int, f32);
     /* 80983584 */ void setMotion(int, f32, int);
     /* 809835C8 */ bool drawDbgInfo();
     /* 809835D0 */ void drawOtherMdls();

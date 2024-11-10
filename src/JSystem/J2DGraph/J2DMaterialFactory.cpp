@@ -5,79 +5,12 @@
 
 #include "JSystem/J2DGraph/J2DMaterialFactory.h"
 #include "JSystem/J2DGraph/J2DMaterial.h"
+#include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/JSupport/JSupport.h"
+#include "JSystem/JUtility/JUTResource.h"
 #include "string.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__18J2DMaterialFactoryFRC16J2DMaterialBlock();
-extern "C" void countStages__18J2DMaterialFactoryCFi();
-extern "C" void
-create__18J2DMaterialFactoryCFP11J2DMaterialiUlP15J2DResReferenceP15J2DResReferenceP10JKRArchive();
-extern "C" void newMatColor__18J2DMaterialFactoryCFii();
-extern "C" void newColorChanNum__18J2DMaterialFactoryCFi();
-extern "C" void newColorChan__18J2DMaterialFactoryCFii();
-extern "C" void newTexGenNum__18J2DMaterialFactoryCFi();
-extern "C" void newTexCoord__18J2DMaterialFactoryCFii();
-extern "C" void newTexMtx__18J2DMaterialFactoryCFii();
-extern "C" void newCullMode__18J2DMaterialFactoryCFi();
-extern "C" void newTexNo__18J2DMaterialFactoryCFii();
-extern "C" void newFontNo__18J2DMaterialFactoryCFi();
-extern "C" void newTevOrder__18J2DMaterialFactoryCFii();
-extern "C" void newTevColor__18J2DMaterialFactoryCFii();
-extern "C" void newTevKColor__18J2DMaterialFactoryCFii();
-extern "C" void newTevStageNum__18J2DMaterialFactoryCFi();
-extern "C" void newTevStage__18J2DMaterialFactoryCFii();
-extern "C" void newTevSwapModeTable__18J2DMaterialFactoryCFii();
-extern "C" void newIndTexStageNum__18J2DMaterialFactoryCFi();
-extern "C" void newIndTexOrder__18J2DMaterialFactoryCFii();
-extern "C" void newIndTexMtx__18J2DMaterialFactoryCFii();
-extern "C" void newIndTevStage__18J2DMaterialFactoryCFii();
-extern "C" void newIndTexCoordScale__18J2DMaterialFactoryCFii();
-extern "C" void newAlphaComp__18J2DMaterialFactoryCFi();
-extern "C" void newBlend__18J2DMaterialFactoryCFi();
-extern "C" void newDither__18J2DMaterialFactoryCFi();
-extern "C" void __ct__11J2DTevStageFRC15J2DTevStageInfo();
-extern "C" void func_802F4170(void* _this, void const*, void const*);
-extern "C" void func_802F4188(void* _this, void const*, void const*);
-extern "C" void func_802F41A0(void* _this, void const*, void const*);
-extern "C" void func_802F41B8(void* _this, void const*, void const*);
-extern "C" void func_802F41D0(void* _this, void const*, void const*);
-extern "C" void func_802F41E8(void* _this, void const*, void const*);
-extern "C" void func_802F4200(void* _this, void const*, void const*);
-extern "C" void func_802F4218(void* _this, void const*, void const*);
-extern "C" void func_802F4230(void* _this, void const*, void const*);
-extern "C" void func_802F4248(void* _this, void const*, void const*);
-extern "C" u8* func_802F4260(void const*, void const*);
-extern "C" void func_802F4278(void* _this, void const*, void const*);
-extern "C" void func_802F4290(void* _this, void const*, void const*);
-extern "C" void func_802F42A8(void* _this, void const*, void const*);
-extern "C" void func_802F42C0(void* _this, void const*, void const*);
-extern "C" void func_802F42D8(void* _this, void const*, void const*);
-
-//
-// External References:
-//
-
-extern "C" void* __nw__FUl();
-extern "C" void getResource__15JUTResReferenceFPCvUlP10JKRArchive();
-extern "C" void calc__9J2DTexMtxFv();
-extern "C" void createTevBlock__11J2DMaterialFib();
-extern "C" void createIndBlock__11J2DMaterialFib();
-extern "C" void __ct__11J2DTevStageFv();
-extern "C" void setTevStageInfo__11J2DTevStageFRC15J2DTevStageInfo();
-extern "C" void get__13J2DDataManageFPCc();
-extern "C" void getResReference__15J2DResReferenceCFUs();
-extern "C" void getName__15J2DResReferenceCFUs();
-extern "C" void _savegpr_19();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_19();
-extern "C" void _restgpr_29();
-extern "C" u8 mDataManage__9J2DScreen[4 + 4 /* padding */];
 
 /* 802F2AD0-802F2C94 2ED410 01C4+00 0/0 1/1 0/0 .text
  * __ct__18J2DMaterialFactoryFRC16J2DMaterialBlock              */
@@ -137,8 +70,7 @@ u32 J2DMaterialFactory::countStages(int param_0) const {
 /* 802F2D1C-802F362C 2ED65C 0910+00 0/0 1/1 0/0 .text
  * create__18J2DMaterialFactoryCFP11J2DMaterialiUlP15J2DResReferenceP15J2DResReferenceP10JKRArchive
  */
-// Stack issues
-#ifdef NONMATCHING
+// NONMATCHING - Stack issues
 J2DMaterial* J2DMaterialFactory::create(J2DMaterial* param_0, int index, u32 param_2,
                                     J2DResReference* param_3, J2DResReference* param_4,
                                     JKRArchive* param_5) const {
@@ -261,15 +193,6 @@ J2DMaterial* J2DMaterialFactory::create(J2DMaterial* param_0, int index, u32 par
     }
     return param_0;
 }
-#else
-J2DMaterial* J2DMaterialFactory::create(J2DMaterial* param_0, int param_1, u32 param_2,
-                                    J2DResReference* param_3, J2DResReference* param_4,
-                                    JKRArchive* param_5) const {
-    // NONMATCHING
-}
-#endif
-
-/* ############################################################################################## */
 
 /* 802F362C-802F36CC 2EDF6C 00A0+00 1/1 0/0 0/0 .text newMatColor__18J2DMaterialFactoryCFii */
 JUtility::TColor J2DMaterialFactory::newMatColor(int param_0, int param_1) const {
@@ -368,26 +291,17 @@ J2DTevOrder J2DMaterialFactory::newTevOrder(int param_0, int param_1) const {
     return J2DTevOrder();
 }
 
-/* ############################################################################################## */
-/* 80456BB0-80456BB4 000050 0004+00 1/1 0/0 0/0 .sbss2           @2018 */
-SECTION_SBSS2 static GXColorS10 lit_2018;
-
 /* 802F3A1C-802F3AB4 2EE35C 0098+00 1/1 0/0 0/0 .text newTevColor__18J2DMaterialFactoryCFii */
-// J2DGXColorS10 init issues
-#ifdef NONMATCHING
+// NONMATCHING - J2DGXColorS10 init issues
 J2DGXColorS10 J2DMaterialFactory::newTevColor(int param_0, int param_1) const {
-    J2DGXColorS10 rv = J2DGXColorS10(GXColorS10());
+    GXColorS10 color = {};
+    J2DGXColorS10 rv = J2DGXColorS10(color);
     J2DMaterialInitData* iVar2 = &field_0x4[field_0x8[param_0]];
     if (iVar2->field_0x92[param_1] != 0xffff) {
         return field_0x38[iVar2->field_0x92[param_1]];
     }
     return rv;
 }
-#else
-J2DGXColorS10 J2DMaterialFactory::newTevColor(int param_0, int param_1) const {
-    // NONMATCHING
-}
-#endif
 
 /* ############################################################################################## */
 

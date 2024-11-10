@@ -20,7 +20,7 @@ void cBgS_LinChk::ct() {
     field_0x40 = start_end;
 
     SetActorPid(UINT32_MAX);
-    field_0x4c = 0;
+    mStts = 0;
     mFrontFlag = 1;
     mBackFlag = 0;
 }
@@ -30,13 +30,13 @@ void cBgS_LinChk::Set2(cXyz const* startPos, cXyz const* endPos, unsigned int ac
     mLin.SetStartEnd(*startPos, *endPos);
     field_0x40 = *endPos;
     SetActorPid(actorPid);
-    field_0x4c &= ~0x10;
+    mStts &= ~STTS_HIT;
     ClearPi();
 }
 
 /* 80267F40-80267F80 262880 0040+00 0/0 1/1 0/0 .text            PreCalc__11cBgS_LinChkFv */
 void cBgS_LinChk::PreCalc() {
-    mPreWallChk = !(field_0x4c & 0x40000000);
-    mPreGroundChk = !(field_0x4c & 0x80000000);
-    mPreRoofChk = !(field_0x4c & 0x20000000);
+    mPreWallChk = !(mStts & STTS_WALL_OFF);
+    mPreGroundChk = !(mStts & STTS_GROUND_OFF);
+    mPreRoofChk = !(mStts & STTS_ROOF_OFF);
 }

@@ -91,7 +91,7 @@ public:
     /* 80AF8114 */ static BOOL ctrlJointCallBack(J3DJoint*, int);
     /* 80AF8160 */ bool setExpressionAnm(int, bool);
     /* 80AF841C */ bool setExpressionBtp(int);
-    /* 80AF8564 */ void setMotionAnm(int, f32);
+    /* 80AF8564 */ bool setMotionAnm(int, f32);
     /* 80AF8744 */ BOOL wait(void*);
     /* 80AF8B0C */ void setMotion(int, f32, int);
     /* 80AF8B50 */ void setExpression(int, f32);

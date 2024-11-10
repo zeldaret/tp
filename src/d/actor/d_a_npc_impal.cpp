@@ -776,7 +776,7 @@ void daNpcImpal_c::setExpressionBtp(int param_0) {
 }
 
 /* 80A08B48-80A08CBC 001248 0174+00 1/0 0/0 0/0 .text            setMotionAnm__12daNpcImpal_cFif */
-void daNpcImpal_c::setMotionAnm(int param_0, f32 param_1) {
+bool daNpcImpal_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 

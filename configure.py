@@ -13,6 +13,7 @@
 ###
 
 import argparse
+import json
 import sys
 from pathlib import Path
 from typing import Any, Dict, List
@@ -151,9 +152,9 @@ if not config.non_matching:
 # Tool versions
 config.binutils_tag = "2.42-1"
 config.compilers_tag = "20240706"
-config.dtk_tag = "v1.1.2"
-config.objdiff_tag = "v2.3.2"
-config.sjiswrap_tag = "v1.1.1"
+config.dtk_tag = "v1.2.0"
+config.objdiff_tag = "v2.3.4"
+config.sjiswrap_tag = "v1.2.0"
 config.wibo_tag = "0.6.11"
 
 # Project
@@ -224,6 +225,9 @@ elif args.warn == "off":
     cflags_base.append("-W off")
 elif args.warn == "error":
     cflags_base.append("-W error")
+
+cflags_noopt = cflags_base[:]
+cflags_noopt.remove("-O4,p")
 
 # Metrowerks library flags
 cflags_runtime = [
@@ -340,7 +344,7 @@ config.libs = [
             Object(NonMatching, "m_Do/m_Do_printf.cpp"),
             Object(Matching, "m_Do/m_Do_audio.cpp"),
             Object(Matching, "m_Do/m_Do_controller_pad.cpp"),
-            Object(NonMatching, "m_Do/m_Do_graphic.cpp"),
+            Object(Equivalent, "m_Do/m_Do_graphic.cpp"),
             Object(NonMatching, "m_Do/m_Do_machine.cpp"),
             Object(Matching, "m_Do/m_Do_mtx.cpp"),
             Object(NonMatching, "m_Do/m_Do_ext.cpp"),
@@ -349,7 +353,7 @@ config.libs = [
             Object(Matching, "m_Do/m_Do_dvd_thread.cpp"),
             Object(Matching, "m_Do/m_Do_DVDError.cpp"),
             Object(Matching, "m_Do/m_Do_MemCard.cpp"),
-            Object(NonMatching, "m_Do/m_Do_MemCardRWmng.cpp"),
+            Object(Matching, "m_Do/m_Do_MemCardRWmng.cpp"),
             Object(Matching, "m_Do/m_Do_machine_exception.cpp"),
         ],
     },
@@ -360,7 +364,7 @@ config.libs = [
         "progress_category": "game",
         "host": True,
         "objects": [
-            Object(NonMatching, "c/c_damagereaction.cpp"),
+            Object(Matching, "c/c_damagereaction.cpp"),
             Object(Matching, "c/c_dylink.cpp"),
         ],
     },
@@ -441,7 +445,7 @@ config.libs = [
             Object(NonMatching, "d/d_stage.cpp"),
             Object(Matching, "d/d_map.cpp"),
             Object(Matching, "d/d_com_inf_game.cpp", extra_cflags=['-pragma "nosyminline on"']),
-            Object(NonMatching, "d/d_com_static.cpp"),
+            Object(Matching, "d/d_com_static.cpp"),
             Object(Matching, "d/d_com_inf_actor.cpp"),
             Object(Matching, "d/d_bomb.cpp"),
             Object(Matching, "d/d_lib.cpp"),
@@ -456,12 +460,12 @@ config.libs = [
             Object(NonMatching, "d/d_demo.cpp"),
             Object(Matching, "d/d_door_param2.cpp"),
             Object(NonMatching, "d/d_resorce.cpp"),
-            Object(NonMatching, "d/d_map_path.cpp"),
+            Object(Matching, "d/d_map_path.cpp"),
             Object(NonMatching, "d/d_map_path_fmap.cpp"),
             Object(NonMatching, "d/d_map_path_dmap.cpp"),
-            Object(NonMatching, "d/d_event.cpp"),
+            Object(Matching, "d/d_event.cpp"),
             Object(Matching, "d/d_event_data.cpp"),
-            Object(NonMatching, "d/d_event_manager.cpp"),
+            Object(Matching, "d/d_event_manager.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(Matching, "d/d_event_lib.cpp"),
             Object(Matching, "d/d_simple_model.cpp"),
             Object(NonMatching, "d/d_particle.cpp"),
@@ -494,11 +498,11 @@ config.libs = [
             Object(Matching, "d/d_bg_w_base.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(NonMatching, "d/d_bg_w_kcol.cpp"),
             Object(Matching, "d/d_bg_w_sv.cpp"),
-            Object(NonMatching, "d/d_cc_d.cpp"),
+            Object(Equivalent, "d/d_cc_d.cpp"),
             Object(Matching, "d/d_cc_mass_s.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(NonMatching, "d/d_cc_s.cpp"),
             Object(Matching, "d/d_cc_uty.cpp"),
-            Object(NonMatching, "d/d_cam_param.cpp"),
+            Object(NonMatching, "d/d_cam_param.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(NonMatching, "d/d_ev_camera.cpp"),
             Object(Matching, "d/d_spline_path.cpp"),
             Object(Matching, "d/d_item_data.cpp"),
@@ -523,13 +527,13 @@ config.libs = [
             Object(NonMatching, "d/d_file_sel_warning.cpp"),
             Object(Matching, "d/d_file_sel_info.cpp"),
             Object(Matching, "d/d_bright_check.cpp"),
-            Object(NonMatching, "d/d_scope.cpp"),
-            Object(NonMatching, "d/d_select_cursor.cpp"),
+            Object(NonMatching, "d/d_scope.cpp", extra_cflags=['-pragma "nosyminline on"']),
+            Object(Equivalent, "d/d_select_cursor.cpp"),
             Object(Matching, "d/d_select_icon.cpp"),
             Object(Matching, "d/d_shop_camera.cpp"),
             Object(Matching, "d/d_shop_item_ctrl.cpp"),
             Object(Matching, "d/d_shop_system.cpp"),
-            Object(NonMatching, "d/d_gameover.cpp"),
+            Object(Matching, "d/d_gameover.cpp"),
             Object(NonMatching, "d/d_kankyo.cpp"),
             Object(Matching, "d/d_kyeff.cpp"),
             Object(Matching, "d/d_kyeff2.cpp"),
@@ -541,15 +545,15 @@ config.libs = [
             Object(NonMatching, "d/d_menu_dmap_map.cpp"),
             Object(Matching, "d/d_menu_map_common.cpp"),
             Object(Matching, "d/d_menu_fishing.cpp"),
-            Object(Equivalent, "d/d_menu_fmap.cpp"),
+            Object(Matching, "d/d_menu_fmap.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(NonMatching, "d/d_menu_fmap_map.cpp"),
             Object(Matching, "d/d_menu_fmap2D.cpp"),
             Object(Matching, "d/d_menu_insect.cpp"),
             Object(Matching, "d/d_menu_item_explain.cpp"),
-            Object(NonMatching, "d/d_menu_letter.cpp"),
+            Object(NonMatching, "d/d_menu_letter.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(Matching, "d/d_menu_option.cpp"),
             Object(Matching, "d/d_menu_ring.cpp"),
-            Object(NonMatching, "d/d_menu_save.cpp"),
+            Object(Equivalent, "d/d_menu_save.cpp"),
             Object(Matching, "d/d_menu_skill.cpp"),
             Object(Matching, "d/d_menu_window_HIO.cpp"),
             Object(NonMatching, "d/d_menu_window.cpp"),
@@ -566,7 +570,7 @@ config.libs = [
             Object(NonMatching, "d/d_msg_class.cpp"),
             Object(NonMatching, "d/d_msg_object.cpp"),
             Object(NonMatching, "d/d_msg_unit.cpp"),
-            Object(NonMatching, "d/d_msg_scrn_3select.cpp"),
+            Object(Matching, "d/d_msg_scrn_3select.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(Matching, "d/d_msg_scrn_arrow.cpp"),
             Object(Matching, "d/d_msg_scrn_base.cpp"),
             Object(Matching, "d/d_msg_scrn_boss.cpp"),
@@ -679,7 +683,7 @@ config.libs = [
         "JParticle",
         [
             Object(Matching, "JSystem/JParticle/JPAResourceManager.cpp"),
-            Object(NonMatching, "JSystem/JParticle/JPAResource.cpp"),
+            Object(Matching, "JSystem/JParticle/JPAResource.cpp", extra_cflags=['-pragma "nosyminline off"']),
             Object(Matching, "JSystem/JParticle/JPABaseShape.cpp"),
             Object(Matching, "JSystem/JParticle/JPAExtraShape.cpp"),
             Object(Matching, "JSystem/JParticle/JPAChildShape.cpp"),
@@ -688,8 +692,8 @@ config.libs = [
             Object(NonMatching, "JSystem/JParticle/JPAFieldBlock.cpp"),
             Object(Matching, "JSystem/JParticle/JPAKeyBlock.cpp"),
             Object(Matching, "JSystem/JParticle/JPATexture.cpp"),
-            Object(NonMatching, "JSystem/JParticle/JPAResourceLoader.cpp"),
-            Object(NonMatching, "JSystem/JParticle/JPAEmitterManager.cpp"),
+            Object(Matching, "JSystem/JParticle/JPAResourceLoader.cpp"),
+            Object(Equivalent, "JSystem/JParticle/JPAEmitterManager.cpp"),
             Object(Matching, "JSystem/JParticle/JPAEmitter.cpp"),
             Object(NonMatching, "JSystem/JParticle/JPAParticle.cpp"),
             Object(Matching, "JSystem/JParticle/JPAMath.cpp"),
@@ -774,29 +778,29 @@ config.libs = [
             Object(Matching, "JSystem/JAudio2/JASSeqReader.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASAramStream.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASBank.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASBasicBank.cpp"),
+            Object(Matching, "JSystem/JAudio2/JASBasicBank.cpp", extra_cflags=['-pragma "nosyminline off"']),
             Object(Matching, "JSystem/JAudio2/JASVoiceBank.cpp"),
             Object(Matching, "JSystem/JAudio2/JASBasicInst.cpp", extra_cflags=['-pragma "nosyminline off"']),
             Object(Matching, "JSystem/JAudio2/JASDrumSet.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASBasicWaveBank.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASSimpleWaveBank.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASWSParser.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASBasicWaveBank.cpp", extra_cflags=['-pragma "nosyminline off"']),
+            Object(Matching, "JSystem/JAudio2/JASSimpleWaveBank.cpp"),
+            Object(Matching, "JSystem/JAudio2/JASWSParser.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASBNKParser.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASWaveArcLoader.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASChannel.cpp"),
+            Object(Matching, "JSystem/JAudio2/JASWaveArcLoader.cpp", extra_cflags=['-pragma "nosyminline off"']),
+            Object(NonMatching, "JSystem/JAudio2/JASChannel.cpp", extra_cflags=['-pragma "nosyminline off"']),
             Object(Matching, "JSystem/JAudio2/JASLfo.cpp"),
             Object(Matching, "JSystem/JAudio2/JASOscillator.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASAiCtrl.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASAudioThread.cpp"),
             Object(Matching, "JSystem/JAudio2/JASAudioReseter.cpp"),
             Object(Matching, "JSystem/JAudio2/JASDSPChannel.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASDSPInterface.cpp"),
+            Object(Matching, "JSystem/JAudio2/JASDSPInterface.cpp"),
             Object(Matching, "JSystem/JAudio2/JASDriverIF.cpp"),
             Object(Matching, "JSystem/JAudio2/JASSoundParams.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/dspproc.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/dsptask.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/osdsp.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/osdsp_task.cpp"),
+            Object(Matching, "JSystem/JAudio2/dspproc.cpp", extra_cflags=["-O4", "-func_align 32"]),
+            Object(Matching, "JSystem/JAudio2/dsptask.cpp", extra_cflags=["-O4", "-func_align 32"]),
+            Object(Matching, "JSystem/JAudio2/osdsp.cpp", extra_cflags=["-O4", "-func_align 32", "-str nopool"]),
+            Object(Matching, "JSystem/JAudio2/osdsp_task.cpp", extra_cflags=["-O4", "-func_align 32"]),
             Object(Matching, "JSystem/JAudio2/JAIAudible.cpp"),
             Object(Matching, "JSystem/JAudio2/JAIAudience.cpp"),
             Object(Matching, "JSystem/JAudio2/JAISe.cpp"),
@@ -810,7 +814,7 @@ config.libs = [
             Object(Matching, "JSystem/JAudio2/JAISoundInfo.cpp"),
             Object(Matching, "JSystem/JAudio2/JAISoundParams.cpp"),
             Object(Matching, "JSystem/JAudio2/JAISoundStarter.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JAIStream.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAIStream.cpp", extra_cflags=["-sym off"]),
             Object(Matching, "JSystem/JAudio2/JAIStreamDataMgr.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JAIStreamMgr.cpp"),
             Object(Matching, "JSystem/JAudio2/JAUAudioArcInterpreter.cpp"),
@@ -854,12 +858,12 @@ config.libs = [
             Object(NonMatching, "Z2AudioLib/Z2SeqMgr.cpp"),
             Object(Matching, "Z2AudioLib/Z2StatusMgr.cpp"),
             Object(NonMatching, "Z2AudioLib/Z2SceneMgr.cpp"),
-            Object(NonMatching, "Z2AudioLib/Z2FxLineMgr.cpp"),
-            Object(NonMatching, "Z2AudioLib/Z2SoundInfo.cpp"),
+            Object(Matching, "Z2AudioLib/Z2FxLineMgr.cpp"),
+            Object(Matching, "Z2AudioLib/Z2SoundInfo.cpp"),
             Object(NonMatching, "Z2AudioLib/Z2Audience.cpp"),
             Object(Matching, "Z2AudioLib/Z2SoundObject.cpp"),
-            Object(NonMatching, "Z2AudioLib/Z2SoundObjMgr.cpp"),
-            Object(NonMatching, "Z2AudioLib/Z2Creature.cpp"),
+            Object(Matching, "Z2AudioLib/Z2SoundObjMgr.cpp"),
+            Object(Matching, "Z2AudioLib/Z2Creature.cpp"),
             Object(NonMatching, "Z2AudioLib/Z2LinkMgr.cpp"),
             Object(NonMatching, "Z2AudioLib/Z2EnvSeMgr.cpp"),
             Object(Matching, "Z2AudioLib/Z2WolfHowlMgr.cpp"),
@@ -867,20 +871,23 @@ config.libs = [
             Object(NonMatching, "Z2AudioLib/Z2AudioMgr.cpp"),
         ],
     },
-    DolphinLib(
-        "gf",
-        [
-            Object(NonMatching, "dolphin/gf/GFGeometry.cpp"),
-            Object(NonMatching, "dolphin/gf/GFLight.cpp"),
-            Object(NonMatching, "dolphin/gf/GFPixel.cpp"),
-            Object(NonMatching, "dolphin/gf/GFTev.cpp"),
+    {
+        "lib": "gf",
+        "mw_version": "GC/2.7",
+        "cflags": cflags_noopt,
+        "progress_category": "sdk",
+        "objects": [
+            Object(NonMatching, "dolphin/gf/GFGeometry.cpp", extra_cflags=["-O3"]),
+            Object(Matching, "dolphin/gf/GFLight.cpp", extra_cflags=["-O3"]),
+            Object(Matching, "dolphin/gf/GFPixel.cpp", extra_cflags=["-O3"]),
+            Object(Matching, "dolphin/gf/GFTev.cpp", extra_cflags=["-O3"]),
         ],
-    ),
+    },
     JSystemLib(
         "JKernel",
         [
             Object(Matching, "JSystem/JKernel/JKRHeap.cpp"),
-            Object(NonMatching, "JSystem/JKernel/JKRExpHeap.cpp"),
+            Object(Matching, "JSystem/JKernel/JKRExpHeap.cpp"),
             Object(Matching, "JSystem/JKernel/JKRSolidHeap.cpp"),
             Object(Matching, "JSystem/JKernel/JKRAssertHeap.cpp"),
             Object(Matching, "JSystem/JKernel/JKRDisposer.cpp"),
@@ -966,8 +973,8 @@ config.libs = [
             Object(NonMatching, "JSystem/J2DGraph/J2DWindowEx.cpp"),
             Object(NonMatching, "JSystem/J2DGraph/J2DPictureEx.cpp"),
             Object(Matching, "JSystem/J2DGraph/J2DTextBoxEx.cpp"),
-            Object(NonMatching, "JSystem/J2DGraph/J2DAnmLoader.cpp"),
-            Object(NonMatching, "JSystem/J2DGraph/J2DAnimation.cpp"),
+            Object(Matching, "JSystem/J2DGraph/J2DAnmLoader.cpp", extra_cflags=['-pragma "nosyminline off"']),
+            Object(Matching, "JSystem/J2DGraph/J2DAnimation.cpp"),
             Object(Matching, "JSystem/J2DGraph/J2DManage.cpp"),
         ],
     ),
@@ -995,7 +1002,7 @@ config.libs = [
         [
             Object(Matching, "JSystem/J3DGraphAnimator/J3DShapeTable.cpp"),
             Object(Matching, "JSystem/J3DGraphAnimator/J3DJointTree.cpp"),
-            Object(Equivalent, "JSystem/J3DGraphAnimator/J3DModelData.cpp"),
+            Object(Matching, "JSystem/J3DGraphAnimator/J3DModelData.cpp", extra_cflags=['-pragma "nosyminline off"']),
             Object(NonMatching, "JSystem/J3DGraphAnimator/J3DMtxBuffer.cpp"),
             Object(Matching, "JSystem/J3DGraphAnimator/J3DModel.cpp"),
             Object(Equivalent, "JSystem/J3DGraphAnimator/J3DAnimation.cpp"),
@@ -1011,12 +1018,12 @@ config.libs = [
         [
             Object(NonMatching, "JSystem/J3DGraphLoader/J3DMaterialFactory.cpp"),
             Object(NonMatching, "JSystem/J3DGraphLoader/J3DMaterialFactory_v21.cpp"),
-            Object(NonMatching, "JSystem/J3DGraphLoader/J3DClusterLoader.cpp"),
-            Object(Equivalent, "JSystem/J3DGraphLoader/J3DModelLoader.cpp"),
+            Object(Matching, "JSystem/J3DGraphLoader/J3DClusterLoader.cpp", extra_cflags=['-pragma "nosyminline off"']),
+            Object(Matching, "JSystem/J3DGraphLoader/J3DModelLoader.cpp", extra_cflags=['-pragma "nosyminline off"']),
             Object(NonMatching, "JSystem/J3DGraphLoader/J3DModelLoaderCalcSize.cpp"),
-            Object(NonMatching, "JSystem/J3DGraphLoader/J3DJointFactory.cpp"),
-            Object(NonMatching, "JSystem/J3DGraphLoader/J3DShapeFactory.cpp"),
-            Object(NonMatching, "JSystem/J3DGraphLoader/J3DAnmLoader.cpp"),
+            Object(Matching, "JSystem/J3DGraphLoader/J3DJointFactory.cpp"),
+            Object(Matching, "JSystem/J3DGraphLoader/J3DShapeFactory.cpp"),
+            Object(Matching, "JSystem/J3DGraphLoader/J3DAnmLoader.cpp", extra_cflags=['-pragma "nosyminline off"']),
         ],
     ),
     JSystemLib(
@@ -1062,13 +1069,16 @@ config.libs = [
             Object(Matching, "dolphin/os/__ppc_eabi_init.cpp"),
         ],
     ),
-    DolphinLib(
-        "exi",
-        [
-            Object(NonMatching, "dolphin/exi/EXIBios.c", extra_cflags=["-O3"]),
-            Object(Matching, "dolphin/exi/EXIUart.c"),
+    {
+        "lib": "exi",
+        "mw_version": "GC/1.2.5n",
+        "cflags": cflags_noopt,
+        "progress_category": "sdk",
+        "objects": [
+            Object(Matching, "dolphin/exi/EXIBios.c", extra_cflags=["-O3,p"]),
+            Object(Matching, "dolphin/exi/EXIUart.c", extra_cflags=["-O4,p"]),
         ],
-    ),
+    },
     DolphinLib(
         "si",
         [
@@ -1108,7 +1118,7 @@ config.libs = [
     DolphinLib(
         "vi",
         [
-            Object(NonMatching, "dolphin/vi/vi.c"),
+            Object(Matching, "dolphin/vi/vi.c"),
         ],
     ),
     DolphinLib(
@@ -1168,7 +1178,7 @@ config.libs = [
             Object(Matching, "dolphin/gx/GXGeometry.c"),
             Object(Matching, "dolphin/gx/GXFrameBuf.c"),
             Object(Matching, "dolphin/gx/GXLight.c", extra_cflags=["-fp_contract off"]),
-            Object(NonMatching, "dolphin/gx/GXTexture.c"),
+            Object(Matching, "dolphin/gx/GXTexture.c"),
             Object(Matching, "dolphin/gx/GXBump.c"),
             Object(Matching, "dolphin/gx/GXTev.c"),
             Object(Matching, "dolphin/gx/GXPixel.c"),
@@ -1200,7 +1210,7 @@ config.libs = [
             Object(Matching, "PowerPC_EABI_Support/Runtime/Src/runtime.c"),
             Object(NonMatching, "PowerPC_EABI_Support/Runtime/Src/__init_cpp_exceptions.cpp"),
             Object(Matching, "PowerPC_EABI_Support/Runtime/Src/Gecko_ExceptionPPC.cp"),
-            Object(Matching, "PowerPC_EABI_Support/Runtime/Src/GCN_mem_alloc.c", extra_cflags=["-str reuse,nopool,readonly"]),
+            Object(Matching, "PowerPC_EABI_Support/Runtime/Src/GCN_Mem_Alloc.c", extra_cflags=["-str reuse,nopool,readonly"]),
         ],
     },
     {
@@ -1218,7 +1228,7 @@ config.libs = [
             Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/arith.c"),
             Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/buffer_io.c"),
             Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/char_io.c"),
-            Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/SRC/critical_regions.gamecube.c"),
+            Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Src/critical_regions.gamecube.c"),
             Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/ctype.c"),
             Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/direct_io.c"),
             Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/file_io.c"),
@@ -1234,7 +1244,7 @@ config.libs = [
             Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/string.c"),
             Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/strtoul.c"),
             Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/wchar_io.c"),
-            Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/SRC/uart_console_io_gcn.c"),
+            Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Src/uart_console_io_gcn.c"),
             Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_acos.c"),
             Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_asin.c"),
             Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_atan2.c"),
@@ -1263,7 +1273,7 @@ config.libs = [
             Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_fmod.c"),
             Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_pow.c"),
             Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_sqrt.c"),
-            Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/SRC/math_ppc.c"),
+            Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Src/math_ppc.c"),
             Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_sqrt.c"),
             Object(Matching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/extras.c"),
         ],
@@ -1365,7 +1375,7 @@ config.libs = [
     ActorRel(Matching, "d_a_door_knob00"),
     ActorRel(Matching, "d_a_door_shutter"),
     ActorRel(Matching, "d_a_door_spiral"),
-    ActorRel(NonMatching, "d_a_dshutter"),
+    ActorRel(Matching, "d_a_dshutter"),
     ActorRel(NonMatching, "d_a_ep"),
     ActorRel(Matching, "d_a_hitobj"),
     ActorRel(Matching, "d_a_kytag00"),
@@ -1394,7 +1404,7 @@ config.libs = [
     ActorRel(Matching, "d_a_tag_lantern"),
     ActorRel(Matching, "d_a_tag_mist"),
     ActorRel(Matching, "d_a_tag_msg"),
-    ActorRel(Matching, "d_a_tag_push"),
+    ActorRel(Matching, "d_a_tag_push", extra_cflags=['-pragma "nosyminline off"']),
     ActorRel(Matching, "d_a_tag_telop"),
     ActorRel(NonMatching, "d_a_tbox"),
     ActorRel(Matching, "d_a_tbox2"),
@@ -1407,7 +1417,7 @@ config.libs = [
     ActorRel(Matching, "d_a_disappear"),
     ActorRel(NonMatching, "d_a_mg_rod"),
     ActorRel(NonMatching, "d_a_midna"),
-    ActorRel(NonMatching, "d_a_nbomb"),
+    ActorRel(Equivalent, "d_a_nbomb"),
     ActorRel(NonMatching, "d_a_obj_life_container"),
     ActorRel(NonMatching, "d_a_obj_yousei"),
     ActorRel(NonMatching, "d_a_spinner"),
@@ -1452,7 +1462,7 @@ config.libs = [
     ActorRel(Matching, "d_a_obj_eff"),
     ActorRel(NonMatching, "d_a_obj_fmobj"),
     ActorRel(NonMatching, "d_a_obj_gpTaru"),
-    ActorRel(NonMatching, "d_a_obj_hhashi"),
+    ActorRel(Matching, "d_a_obj_hhashi"),
     ActorRel(NonMatching, "d_a_obj_kanban2"),
     ActorRel(NonMatching, "d_a_obj_kbacket"),
     ActorRel(Matching, "d_a_obj_kgate"),
@@ -1520,14 +1530,14 @@ config.libs = [
     ActorRel(NonMatching, "d_a_coach_fire"),
     ActorRel(NonMatching, "d_a_cow"),
     ActorRel(NonMatching, "d_a_cstatue"),
-    ActorRel(NonMatching, "d_a_do"),
+    ActorRel(Equivalent, "d_a_do"),
     ActorRel(Matching, "d_a_door_boss"),
     ActorRel(Matching, "d_a_door_bossL5"),
-    ActorRel(NonMatching, "d_a_door_mbossL1"),
+    ActorRel(Equivalent, "d_a_door_mbossL1"),
     ActorRel(Matching, "d_a_door_push"),
     ActorRel(NonMatching, "d_a_e_ai"),
     ActorRel(Matching, "d_a_e_arrow"),
-    ActorRel(NonMatching, "d_a_e_ba"),
+    ActorRel(Equivalent, "d_a_e_ba"),
     ActorRel(NonMatching, "d_a_e_bee"),
     ActorRel(NonMatching, "d_a_e_bg"),
     ActorRel(NonMatching, "d_a_e_bi"),
@@ -1546,7 +1556,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_e_fb"),
     ActorRel(NonMatching, "d_a_e_fk"),
     ActorRel(NonMatching, "d_a_e_fs"),
-    ActorRel(NonMatching, "d_a_e_fz"),
+    ActorRel(Equivalent, "d_a_e_fz"),
     ActorRel(NonMatching, "d_a_e_gb"),
     ActorRel(NonMatching, "d_a_e_ge"),
     ActorRel(NonMatching, "d_a_e_gi"),
@@ -1607,7 +1617,7 @@ config.libs = [
     ActorRel(Matching, "d_a_e_yd_leaf"),
     ActorRel(NonMatching, "d_a_e_yg"),
     ActorRel(NonMatching, "d_a_e_yh"),
-    ActorRel(NonMatching, "d_a_e_yk"),
+    ActorRel(Equivalent, "d_a_e_yk"),
     ActorRel(NonMatching, "d_a_e_ym"),
     ActorRel(Matching, "d_a_e_ym_tag"),
     ActorRel(NonMatching, "d_a_e_ymb"),
@@ -1628,7 +1638,7 @@ config.libs = [
     ActorRel(Matching, "d_a_kytag07"),
     ActorRel(Matching, "d_a_kytag08"),
     ActorRel(Matching, "d_a_kytag09"),
-    ActorRel(NonMatching, "d_a_kytag12"),
+    ActorRel(Matching, "d_a_kytag12"),
     ActorRel(NonMatching, "d_a_kytag13"),
     ActorRel(Matching, "d_a_kytag15"),
     ActorRel(Matching, "d_a_kytag16"),
@@ -1888,7 +1898,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_lv4SlideWall"),
     ActorRel(NonMatching, "d_a_obj_lv4bridge"),
     ActorRel(NonMatching, "d_a_obj_lv4chandelier"),
-    ActorRel(NonMatching, "d_a_obj_lv4digsand"),
+    ActorRel(Matching, "d_a_obj_lv4digsand"),
     ActorRel(Matching, "d_a_obj_lv4floor"),
     ActorRel(Matching, "d_a_obj_lv4gear"),
     ActorRel(NonMatching, "d_a_obj_lv4prelvtr"),
@@ -1975,12 +1985,12 @@ config.libs = [
     ActorRel(Matching, "d_a_obj_sekizo"),
     ActorRel(NonMatching, "d_a_obj_sekizoa"),
     ActorRel(NonMatching, "d_a_obj_shield"),
-    ActorRel(NonMatching, "d_a_obj_sm_door"),
+    ActorRel(Equivalent, "d_a_obj_sm_door"),
     ActorRel(NonMatching, "d_a_obj_smallkey"),
     ActorRel(NonMatching, "d_a_obj_smgdoor"),
     ActorRel(Matching, "d_a_obj_smoke"),
     ActorRel(NonMatching, "d_a_obj_smtile"),
-    ActorRel(NonMatching, "d_a_obj_smw_stone"),
+    ActorRel(Matching, "d_a_obj_smw_stone"),
     ActorRel(Matching, "d_a_obj_snowEffTag"),
     ActorRel(Matching, "d_a_obj_snow_soup"),
     ActorRel(NonMatching, "d_a_obj_so"),
@@ -2054,7 +2064,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_zdoor"),
     ActorRel(NonMatching, "d_a_obj_zrTurara"),
     ActorRel(Matching, "d_a_obj_zrTuraraRock"),
-    ActorRel(NonMatching, "d_a_obj_zraMark"),
+    ActorRel(Equivalent, "d_a_obj_zraMark"),
     ActorRel(Matching, "d_a_obj_zra_freeze"),
     ActorRel(NonMatching, "d_a_obj_zra_rock"),
     ActorRel(NonMatching, "d_a_passer_mng"),
@@ -2114,6 +2124,58 @@ config.libs = [
     ActorRel(NonMatching, "d_a_title"),
     ActorRel(Matching, "d_a_warp_bug"),
 ]
+
+
+# Define our custom asset processing scripts
+config.custom_build_rules = [
+    {
+        "name": "convert_matDL",
+        "command": "$python tools/converters/matDL_dis.py $in $out --symbol $symbol",
+        "description": "CONVERT $symbol",
+    },
+]
+config.custom_build_steps = {}
+
+# Grab the specific GameID so we can format our strings properly
+version = VERSIONS[version_num]
+out_dir = config.build_dir / version
+
+
+# This generates the build steps needed for preprocessing
+def emit_build_rule(asset):
+    steps = config.custom_build_steps.setdefault("pre-compile", [])
+
+    match asset.get("custom_type"):
+        case None:
+            return
+
+        case "matDL":
+            steps.append(
+                {
+                    "rule": "convert_matDL",
+                    "inputs": out_dir / "bin" / asset["binary"],
+                    "outputs": out_dir / "include" / asset["header"],
+                    "variables": {
+                        "symbol": asset["symbol"],
+                    },
+                    "implicit": Path("tools/converters/matDL_dis.py"),
+                }
+            )
+
+        case _:
+            print("Unknown asset type: " + asset["custom_type"])
+
+
+# Parse the config and create the build rules for all our assets
+config_path = out_dir / "config.json"
+if config_path.exists():
+    config_data = json.load(open(config_path))
+    for asset in config_data.get("extract", []):
+        emit_build_rule(asset)
+    for module in config_data.get("modules", []):
+        for asset in module.get("extract", []):
+            emit_build_rule(asset)
+
 
 # Optional extra categories for progress tracking
 config.progress_categories = [

@@ -1,6 +1,8 @@
 #ifndef JPARANDOM_H
 #define JPARANDOM_H
 
+#include "dolphin/types.h"
+
 /**
  * @ingroup jsystem-jparticle
  * 
@@ -27,8 +29,7 @@ public:
     }
 
     f32 get_rndm_zh() {
-        f32 f = get_rndm_f();
-        return f - 0.5f;
+        return get_rndm_f() - 0.5f;
     }
 
     s16 get_rndm_ss() { return (s16)(get_rndm_u() >> 16); }

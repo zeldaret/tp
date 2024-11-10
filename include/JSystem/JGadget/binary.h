@@ -90,8 +90,26 @@ struct TValueIterator {
         mBegin = begin;
     }
 
+    const void* get() const { return mBegin; }
+
     typename Parser::ParseType operator*() {
-        return *(typename Parser::ParseType*)mBegin;
+        return *(typename Parser::ParseType*)get();
+    }
+
+    TValueIterator& operator++() {
+        const_cast<u32*>(mBegin)++;
+        return *this;
+    }
+
+    const TValueIterator operator++(int) {
+        TValueIterator old(*this);
+        ++(*this);
+        return old;
+    }
+
+    TValueIterator& operator+=(s32 v) {
+        const_cast<u32*>(mBegin) += v;
+        return *this;
     }
 
     const void* mBegin;
@@ -101,6 +119,20 @@ template<typename T>
 struct TValueIterator_raw : public TValueIterator<TParseValue_raw_<u8>, 1> {
     TValueIterator_raw(const void* begin) : TValueIterator<TParseValue_raw_<u8>, 1>(begin) {}
 };
+
+template <typename T>
+struct TParseValue_misaligned : TParseValue_raw_<T> {
+    static T parse(const void* data) { return TParseValue_raw_::parse(data); }
+};
+
+template<typename T>
+struct TValueIterator_misaligned : public TValueIterator<TParseValue_misaligned<T>, sizeof(T)> {
+    TValueIterator_misaligned(const TValueIterator_misaligned<T>& other) : TValueIterator<TParseValue_misaligned<T>, sizeof(T)>(other) {}
+    TValueIterator_misaligned(const void* begin) : TValueIterator<TParseValue_misaligned<T>, sizeof(T)>(begin) {}
+};
+
+
+inline bool operator==(TValueIterator<TParseValue_misaligned<u32>, 4> a, TValueIterator<TParseValue_misaligned<u32>, 4> b) { return a.mBegin == b.mBegin; }
 
 }  // namespace binary
 }  // namespace JGadget

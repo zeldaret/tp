@@ -379,9 +379,8 @@ int daBdoorL1_c::create() {
     shape_angle.x = 0;
     current.angle.z = 0;
     current.angle.x = 0;
-    s32 roomNo = fopAcM_GetRoomNo(this);
-    u32 swBit = door_param2_c::getSwbit(this);
-    if (dComIfGs_isSwitch(swBit, roomNo) == 0 && dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo()) != 3) {
+    if (!dComIfGs_isSwitch(door_param2_c::getSwbit(this), fopAcM_GetRoomNo(this))
+                            && dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo()) != 3) {
         createKey();
     } else {
         mKeyHoleId = -1;
@@ -407,7 +406,7 @@ void daBdoorL1_c::demoProc() {
     cXyz cStack_38;
     if (dComIfGp_evmng_getIsAddvance(field_0x5a0)) {
         switch (demoAction) {
-        case 0:
+        case 0: {
             int* puVar3 = dComIfGp_evmng_getMyIntegerP(field_0x5a0, "Timer");
             if (puVar3 == NULL) {
                 field_0x5a4 = 1;
@@ -415,6 +414,7 @@ void daBdoorL1_c::demoProc() {
                 field_0x5a4 = *puVar3;
             }
             break;
+        }
         case 1:
             field_0x59a = 5;
             break;
@@ -483,12 +483,13 @@ void daBdoorL1_c::demoProc() {
             dComIfGp_evmng_cutEnd(field_0x5a0);
         }
         break;
-    case 2:
+    case 2: {
         obj_keyhole_class* keyhole = (obj_keyhole_class*)fopAcM_SearchByID(mKeyHoleId);
         if ((keyhole != NULL && keyhole->checkOpenEnd()) || mKeyHoleId == -1) {
             dComIfGp_evmng_cutEnd(field_0x5a0);
         }
         break;
+    }
     case 3:
         if (openProc() != 0) {
             openEnd();
@@ -561,46 +562,15 @@ void daBdoorL1_c::demoProc() {
     }
 }
 
-/* 804E4A6C-804E4A74 000058 0006+02 0/1 0/0 0/0 .rodata          l_lv1_eff$4252 */
-static u16 const l_lv1_eff[3] = {
-    0x8C42,
-    0x8C43,
-    0x8C44,
-};
-
-/* 804E4A74-804E4A7C 000060 0006+02 0/1 0/0 0/0 .rodata          l_lv2_eff$4253 */
-static u16 const l_lv2_eff[3] = {
-    0x8C45,
-    0x8C46,
-    0x8C47,
-};
-
-/* 804E4A7C-804E4A80 000068 0004+00 0/1 0/0 0/0 .rodata          l_lv4_eff_a$4254 */
-static u16 const l_lv4_eff_a[2] = {
-    0x8C48,
-    0x8C49,
-};
-
-/* 804E4A80-804E4A84 00006C 0004+00 0/1 0/0 0/0 .rodata          l_lv4_eff_b$4255 */
-static u16 const l_lv4_eff_b[2] = {
-    0x8C4A,
-    0x8C4B,
-};
-
-/* 804E4A84-804E4A88 000070 0004+00 0/1 0/0 0/0 .rodata          l_lv6_eff_a$4256 */
-static u16 const l_lv6_eff_a[2] = {
-    0x8C4C,
-    0x8C4D,
-};
-
-/* 804E4A88-804E4A8C 000074 0004+00 0/1 0/0 0/0 .rodata          l_lv6_eff_b$4257 */
-static u16 const l_lv6_eff_b[2] = {
-    0x8C4E,
-    0x8C4F,
-};
-
 /* 804E3180-804E357C 001460 03FC+00 1/1 0/0 0/0 .text            openInit__11daBdoorL1_cFv */
 int daBdoorL1_c::openInit() {
+    static u16 const l_lv1_eff[3] = {0x8C42, 0x8C43, 0x8C44};
+    static u16 const l_lv2_eff[3] = {0x8C45, 0x8C46, 0x8C47};
+    static u16 const l_lv4_eff_a[2] = {0x8C48, 0x8C49};
+    static u16 const l_lv4_eff_b[2] = {0x8C4A, 0x8C4B};
+    static u16 const l_lv6_eff_a[2] = {0x8C4C, 0x8C4D};
+    static u16 const l_lv6_eff_b[2] = {0x8C4E, 0x8C4F};
+
     u32 i;
     if (field_0x590->ChkUsed()) {
         dComIfG_Bgsp().Release(field_0x590);
@@ -764,9 +734,8 @@ int daBdoorL1_c::closeProc() {
             field_0x7d0.y += 10.0f;
             field_0x5ac.CrrPos(dComIfG_Bgsp());
             cXyz cStack_34(1.65f, 1.65f, 1.65f);
-            s32 roomNo = fopAcM_GetRoomNo(this);
             dComIfGp_particle_setPolyColor(0x8c50, field_0x5ac.m_gnd, &current.pos, &tevStr,
-                                           &shape_angle, &cStack_34, 0, 0, roomNo,
+                                           &shape_angle, &cStack_34, 0, 0, fopAcM_GetRoomNo(this),
                                            0);
             break;
         }

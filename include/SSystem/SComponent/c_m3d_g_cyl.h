@@ -36,6 +36,7 @@ public:
     f32* GetRP() { return &mRadius; }
     f32 GetH() const { return mHeight; }
     cXyz& GetC() { return mCenter; }
+    const cXyz& GetC() const { return mCenter; }
 
     bool Cross(const cM3dGCps* cps, cXyz* xyz) const { return cM3d_Cross_CpsCyl(*cps, *this, xyz); }
     bool Cross(const cM3dGTri& tri, cXyz* xyz) const { return cM3d_Cross_CylTri(this, &tri, xyz); }

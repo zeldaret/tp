@@ -205,8 +205,9 @@ s32 dEvt_control_c::beforeFlagProc(dEvt_order_c* p_order) {
     return 1;
 }
 
-/* 80379D80-80379D80 0063E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-static char const* const stringBase_80379D80 = "？？？";
+static char const* dummy1() {
+    return "？？？";
+}
 
 /* 80041964-800419A8 03C2A4 0044+00 2/2 0/0 0/0 .text
  * afterFlagProc__14dEvt_control_cFP12dEvt_order_c              */
@@ -834,9 +835,6 @@ bool dEvt_control_c::skipper() {
     return startSkip;
 }
 
-/* 80451EC8-80451ECC 0004C8 0004+00 1/1 0/0 0/0 .sdata2          @5013 */
-static f32 lit_5013 = -1.0f / 20.0f;
-
 /* 80042BBC-80042FA8 03D4FC 03EC+00 0/0 1/1 0/0 .text            Step__14dEvt_control_cFv */
 int dEvt_control_c::Step() {
     dEvent_manager_c* evtMng = &dComIfGp_getEventManager();
@@ -1081,7 +1079,7 @@ u32 dEvt_control_c::getPId(void* actor) {
 
 /* 800432EC-8004331C 03DC2C 0030+00 7/7 13/13 16/16 .text            convPId__14dEvt_control_cFUi */
 fopAc_ac_c* dEvt_control_c::convPId(fpc_ProcID id) {
-    return (fopAc_ac_c*)fopAcIt_Judge(fpcSch_JudgeByID, &id);
+    return fopAcM_SearchByID(id);
 }
 
 /* 8004331C-800433F0 03DC5C 00D4+00 0/0 1/1 0/0 .text            getStbDemoData__14dEvt_control_cFPc
@@ -1219,5 +1217,6 @@ void dEvt_control_c::setGtItm(u8 itemNo) {
     mGtItm = itemNo;
 }
 
-/* 80379DC6-80379DD0 006426 0008+02 0/0 0/0 0/0 .rodata          None */
-static char const* const stringBase_80379DC6 = "GIVEMAN";
+static char const* dummy2() {
+    return "GIVEMAN";
+}

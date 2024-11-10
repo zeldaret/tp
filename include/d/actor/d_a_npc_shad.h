@@ -25,7 +25,7 @@ public:
     /* 80AD946C */ void ctrlJointCallBack(J3DJoint*, int);
     /* 80AD94B8 */ void setExpressionAnm(int, bool);
     /* 80AD974C */ void setExpressionBtp(int);
-    /* 80AD982C */ void setMotionAnm(int, f32);
+    /* 80AD982C */ bool setMotionAnm(int, f32);
     /* 80AD99B4 */ void reset();
     /* 80AD9C0C */ void setWaitAction();
     /* 80AD9E04 */ void getPathPoint(u8, int, Vec*);

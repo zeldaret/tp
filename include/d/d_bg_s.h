@@ -36,7 +36,7 @@ public:
 public:
     cBgS() {}
     bool Regist(dBgW_Base*, fpc_ProcID, void*);
-    int Release(dBgW_Base*);
+    bool Release(dBgW_Base*);
     bool LineCross(cBgS_LinChk*);
     f32 GroundCross(cBgS_GndChk*);
     static void* ConvDzb(void*);

@@ -70,6 +70,16 @@ public:
         return val;
     }
 
+    JSUInputStream* operator>>(u8& dest) {
+        read(&dest, 1);
+        return this;
+    }
+
+    JSUInputStream* operator>>(s16& dest) {
+        read(&dest, 2);
+        return this;
+    }
+
     // TODO: return value probably wrong
     /* 802DC298 */ s32 read(void*, s32);
 };  // Size = 0x8

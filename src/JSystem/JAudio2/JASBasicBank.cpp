@@ -4,117 +4,52 @@
 //
 
 #include "JSystem/JAudio2/JASBasicBank.h"
-#include "dol2asm.h"
-
-//
-// Types:
-//
-
-struct JKRHeap {};
-
-struct JASInstParam {};
-
-struct JASInst {};
-
-struct JASCalc {
-    /* 8028F480 */ void bzero(void*, u32);
-};
-
-struct JASBasicBank {
-    /* 80297D78 */ JASBasicBank();
-    /* 80297DA4 */ void newInstTable(u8, JKRHeap*);
-    /* 80297E00 */ void getInstParam(int, int, int, JASInstParam*) const;
-    /* 80297E68 */ void setInst(int, JASInst*);
-    /* 80297E80 */ void getInst(int) const;
-    /* 80297F0C */ ~JASBasicBank();
-    /* 80297F68 */ void getType() const;
-};
-
-struct JASBank {
-    /* 80297EC4 */ ~JASBank();
-};
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__12JASBasicBankFv();
-extern "C" void newInstTable__12JASBasicBankFUcP7JKRHeap();
-extern "C" void getInstParam__12JASBasicBankCFiiiP12JASInstParam();
-extern "C" void setInst__12JASBasicBankFiP7JASInst();
-extern "C" void getInst__12JASBasicBankCFi();
-extern "C" void __dt__7JASBankFv();
-extern "C" void __dt__12JASBasicBankFv();
-extern "C" void getType__12JASBasicBankCFv();
-
-//
-// External References:
-//
-
-extern "C" void bzero__7JASCalcFPvUl();
-extern "C" void* __nwa__FUlP7JKRHeapi();
-extern "C" void __dl__FPv();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_29();
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 803C76A8-803C76BC 0247C8 0014+00 2/2 0/0 0/0 .data            __vt__12JASBasicBank */
-SECTION_DATA extern void* __vt__12JASBasicBank[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12JASBasicBankFv,
-    (void*)getInstParam__12JASBasicBankCFiiiP12JASInstParam,
-    (void*)getType__12JASBasicBankCFv,
-};
-
-/* 803C76BC-803C76D0 0247DC 0014+00 3/3 2/2 0/0 .data            __vt__7JASBank */
-SECTION_DATA extern void* __vt__7JASBank[5] = {
-    (void*)NULL /* RTTI */, (void*)NULL, (void*)__dt__7JASBankFv, (void*)NULL, (void*)NULL,
-};
+#include "JSystem/JAudio2/JASCalc.h"
 
 /* 80297D78-80297DA4 2926B8 002C+00 0/0 2/2 0/0 .text            __ct__12JASBasicBankFv */
 JASBasicBank::JASBasicBank() {
-    // NONMATCHING
+    mInstTable = NULL;
+    mInstNumMax = 0;
 }
 
 /* 80297DA4-80297E00 2926E4 005C+00 0/0 2/2 0/0 .text newInstTable__12JASBasicBankFUcP7JKRHeap */
-void JASBasicBank::newInstTable(u8 param_0, JKRHeap* param_1) {
-    // NONMATCHING
+void JASBasicBank::newInstTable(u8 num, JKRHeap* heap) {
+    if (num != 0) {
+        mInstNumMax = num;
+        mInstTable = new (heap, 0) JASInst*[mInstNumMax];
+        JASCalc::bzero(mInstTable, mInstNumMax * 4);
+    }
 }
 
 /* 80297E00-80297E68 292740 0068+00 1/0 0/0 0/0 .text
  * getInstParam__12JASBasicBankCFiiiP12JASInstParam             */
-void JASBasicBank::getInstParam(int param_0, int param_1, int param_2,
-                                    JASInstParam* param_3) const {
-    // NONMATCHING
+bool JASBasicBank::getInstParam(int prg_no, int param_1, int param_2,
+                                JASInstParam* o_param) const {
+    JASInst* inst = getInst(prg_no);
+    if (inst == NULL) {
+        return NULL;
+    }
+    return inst->getParam(param_1, param_2, o_param);
 }
 
 /* 80297E68-80297E80 2927A8 0018+00 0/0 2/2 0/0 .text            setInst__12JASBasicBankFiP7JASInst
  */
-void JASBasicBank::setInst(int param_0, JASInst* param_1) {
-    // NONMATCHING
+void JASBasicBank::setInst(int prg_no, JASInst* inst) {
+    if (mInstTable != NULL) {
+        mInstTable[prg_no] = inst;
+    }
 }
 
 /* 80297E80-80297EC4 2927C0 0044+00 1/1 1/1 0/0 .text            getInst__12JASBasicBankCFi */
-void JASBasicBank::getInst(int param_0) const {
-    // NONMATCHING
-}
-
-/* 80297EC4-80297F0C 292804 0048+00 1/0 0/0 0/0 .text            __dt__7JASBankFv */
-JASBank::~JASBank() {
-    // NONMATCHING
-}
-
-/* 80297F0C-80297F68 29284C 005C+00 1/0 0/0 0/0 .text            __dt__12JASBasicBankFv */
-JASBasicBank::~JASBasicBank() {
-    // NONMATCHING
-}
-
-/* 80297F68-80297F74 2928A8 000C+00 1/0 0/0 0/0 .text            getType__12JASBasicBankCFv */
-void JASBasicBank::getType() const {
-    // NONMATCHING
+JASInst* JASBasicBank::getInst(int prg_no) const {
+    if (prg_no < 0) {
+        return NULL;
+    }
+    if (prg_no >= mInstNumMax) {
+        return NULL;
+    }
+    if (mInstTable == NULL) {
+        return NULL;
+    }
+    return mInstTable[prg_no];
 }

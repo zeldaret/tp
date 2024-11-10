@@ -325,7 +325,7 @@ void JUTResFont::getWidthEntry(int code, JUTFont::TWidth* i_width) const {
 }
 
 /* 802DFD0C-802DFD58 2DA64C 004C+00 1/0 1/0 0/0 .text            getCellWidth__10JUTResFontCFv */
-int JUTResFont::getCellWidth() const {
+s32 JUTResFont::getCellWidth() const {
     if (mpGlyphBlocks) {
         ResFONT::GLY1* glyphBlock = *mpGlyphBlocks;
         if (glyphBlock) {

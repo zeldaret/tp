@@ -4,83 +4,8 @@
 //
 
 #include "JSystem/J3DGraphLoader/J3DMaterialFactory_v21.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/JSupport/JSupport.h"
-#include "dol2asm.h"
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__22J3DMaterialFactory_v21FRC20J3DMaterialBlock_v21();
-extern "C" void countUniqueMaterials__22J3DMaterialFactory_v21Fv();
-extern "C" void countTexGens__22J3DMaterialFactory_v21CFi();
-extern "C" void countStages__22J3DMaterialFactory_v21CFi();
-extern "C" void create__22J3DMaterialFactory_v21CFP11J3DMaterialiUl();
-extern "C" void newMatColor__22J3DMaterialFactory_v21CFii();
-extern "C" void newColorChanNum__22J3DMaterialFactory_v21CFi();
-extern "C" void newColorChan__22J3DMaterialFactory_v21CFii();
-extern "C" void newTexGenNum__22J3DMaterialFactory_v21CFi();
-extern "C" void newTexCoord__22J3DMaterialFactory_v21CFii();
-extern "C" void newTexMtx__22J3DMaterialFactory_v21CFii();
-extern "C" void newCullMode__22J3DMaterialFactory_v21CFi();
-extern "C" void newTexNo__22J3DMaterialFactory_v21CFii();
-extern "C" void newTevOrder__22J3DMaterialFactory_v21CFii();
-extern "C" void newTevColor__22J3DMaterialFactory_v21CFii();
-extern "C" void newTevKColor__22J3DMaterialFactory_v21CFii();
-extern "C" void newTevStageNum__22J3DMaterialFactory_v21CFi();
-extern "C" void newTevStage__22J3DMaterialFactory_v21CFii();
-extern "C" void newTevSwapModeTable__22J3DMaterialFactory_v21CFii();
-extern "C" void newFog__22J3DMaterialFactory_v21CFi();
-extern "C" void newAlphaComp__22J3DMaterialFactory_v21CFi();
-extern "C" void newBlend__22J3DMaterialFactory_v21CFi();
-extern "C" void newZMode__22J3DMaterialFactory_v21CFi();
-extern "C" void newZCompLoc__22J3DMaterialFactory_v21CFi();
-extern "C" void newDither__22J3DMaterialFactory_v21CFi();
-extern "C" void newNBTScale__22J3DMaterialFactory_v21CFi();
-extern "C" void func_80334118(void* _this, void const*, void const*);
-
-//
-// External References:
-//
-
-extern "C" void __ct__11J3DTevStageFv();
-extern "C" void __ct__11J3DTevStageFRC15J3DTevStageInfo();
-extern "C" void* __nw__FUl();
-extern "C" GXColorS10* func_802F41E8(void const*, void const*);
-extern "C" u8* func_802F4260(void const*, void const*);
-extern "C" GXColor* func_802F4278(void const*, void const*);
-extern "C" GXCullMode* func_802F4290(void const*, void const*);
-extern "C" u16* func_802F42C0(void const*, void const*);
-extern "C" void createColorBlock__11J3DMaterialFUl();
-extern "C" void createTexGenBlock__11J3DMaterialFUl();
-extern "C" void createTevBlock__11J3DMaterialFi();
-extern "C" void createIndBlock__11J3DMaterialFi();
-extern "C" void createPEBlock__11J3DMaterialFUlUl();
-extern "C" void initialize__11J3DMaterialFv();
-extern "C" void __as__13J3DTexMtxInfoFRC13J3DTexMtxInfo();
-extern "C" void __as__10J3DFogInfoFRC10J3DFogInfo();
-extern "C" void func_80332C24(void* _this, void const*, void const*);
-extern "C" void func_80332C3C(void* _this, void const*, void const*);
-extern "C" void func_80332C54(void* _this, void const*, void const*);
-extern "C" void func_80332C6C(void* _this, void const*, void const*);
-extern "C" void func_80332C84(void* _this, void const*, void const*);
-extern "C" void func_80332C9C(void* _this, void const*, void const*);
-extern "C" void func_80332CB4(void* _this, void const*, void const*);
-extern "C" void func_80332CCC(void* _this, void const*, void const*);
-extern "C" void func_80332CE4(void* _this, void const*, void const*);
-extern "C" void func_80332CFC(void* _this, void const*, void const*);
-extern "C" void func_80332D14(void* _this, void const*, void const*);
-extern "C" void func_80332D2C(void* _this, void const*, void const*);
-extern "C" void func_80332D5C(void* _this, void const*, void const*);
-extern "C" void _savegpr_19();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_19();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__11J3DMaterial[12];
-
-//
-// Declarations:
-//
 
 /* 80332DA4-80332F84 32D6E4 01E0+00 0/0 2/2 0/0 .text
  * __ct__22J3DMaterialFactory_v21FRC20J3DMaterialBlock_v21      */
@@ -158,8 +83,95 @@ u32 J3DMaterialFactory_v21::countStages(int i_idx) const {
 
 /* 80333068-803337D8 32D9A8 0770+00 0/0 2/2 0/0 .text
  * create__22J3DMaterialFactory_v21CFP11J3DMaterialiUl          */
-J3DMaterial* J3DMaterialFactory_v21::create(J3DMaterial* param_0, int param_1, u32 param_2) const {
-    // NONMATCHING
+// NONMATCHINg same problems as J3DMaterialFactory::createNormalMaterial
+J3DMaterial* J3DMaterialFactory_v21::create(J3DMaterial* i_material, int i_idx, u32 i_flags) const {
+    u32 stages = countStages(i_idx);
+    u32 tev_stage_num = getMdlDataFlag_TevStageNum(i_flags);
+    if (stages > tev_stage_num) {
+        tev_stage_num = stages;
+    }
+    u32 u1 = tev_stage_num <= 8 ? tev_stage_num : 8;
+    u32 texgens = countTexGens(i_idx);
+    u32 texgen_flag = texgens > 4 ? 0 : getMdlDataFlag_TexGenFlag(i_flags);
+    u32 color_flag = getMdlDataFlag_ColorFlag(i_flags);
+    u32 pe_flag = getMdlDataFlag_PEFlag(i_flags);
+    bool ind_flag = (i_flags & 0x1000000) != 0;
+    if (i_material == NULL) {
+        i_material = new J3DMaterial();
+    }
+    i_material->mColorBlock = J3DMaterial::createColorBlock(color_flag);
+    i_material->mTexGenBlock = J3DMaterial::createTexGenBlock(texgen_flag);
+    i_material->mTevBlock = J3DMaterial::createTevBlock((u16)tev_stage_num);
+    i_material->mIndBlock = J3DMaterial::createIndBlock(ind_flag);
+    i_material->mPEBlock = J3DMaterial::createPEBlock(pe_flag, getMaterialMode(i_idx));
+    i_material->mIndex = i_idx;
+    i_material->mMaterialMode = getMaterialMode(i_idx);
+    i_material->mColorBlock->setColorChanNum(newColorChanNum(i_idx));
+    i_material->mColorBlock->setCullMode(newCullMode(i_idx));
+    i_material->mTexGenBlock->setTexGenNum(newTexGenNum(i_idx));
+    i_material->mTexGenBlock->setNBTScale(newNBTScale(i_idx));
+    i_material->mPEBlock->setFog(&newFog(i_idx));
+    i_material->mPEBlock->setAlphaComp(newAlphaComp(i_idx));
+    i_material->mPEBlock->setBlend(newBlend(i_idx));
+    i_material->mPEBlock->setZMode(newZMode(i_idx));
+    i_material->mPEBlock->setZCompLoc(newZCompLoc(i_idx));
+    i_material->mPEBlock->setDither(newDither(i_idx));
+    i_material->mTevBlock->setTevStageNum(newTevStageNum(i_idx));
+    for (u8 i = 0; i < u1; i++) {
+        i_material->mTevBlock->setTexNo(i, newTexNo(i_idx, i));
+    }
+    for (u8 i = 0; i < tev_stage_num; i++) {
+        i_material->mTevBlock->setTevOrder(i, newTevOrder(i_idx, i));
+    }
+    for (u8 i = 0; i < tev_stage_num; i++) {
+        J3DMaterialInitData_v21* material_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
+        i_material->mTevBlock->setTevStage(i, newTevStage(i_idx, i));
+        if (material_init_data->mTevSwapModeIdx[i] != 0xffff) {
+            i_material->mTevBlock->getTevStage(i)->setTexSel(
+                mpTevSwapModeInfo[material_init_data->mTevSwapModeIdx[i]].mTexSel);
+            i_material->mTevBlock->getTevStage(i)->setRasSel(
+                mpTevSwapModeInfo[material_init_data->mTevSwapModeIdx[i]].mRasSel);
+        }
+    }
+    for (u8 i = 0; i < 4; i++) {
+        i_material->mTevBlock->setTevKColor(i, newTevKColor(i_idx, i));
+    }
+    for (u8 i = 0; i < 4; i++) {
+        i_material->mTevBlock->setTevColor(i, newTevColor(i_idx, i));
+    }
+    for (u8 i = 0; i < 4; i++) {
+        i_material->mTevBlock->setTevSwapModeTable(i, newTevSwapModeTable(i_idx, i));
+    }
+    for (u8 i = 0; i < 2; i++) {
+        i_material->mColorBlock->setMatColor(i, newMatColor(i_idx, i));
+    }
+    for (u8 i = 0; i < 4; i++) {
+        J3DColorChan color_chan = newColorChan(i_idx, i);
+        i_material->mColorBlock->setColorChan(i, color_chan);
+    }
+    for (u8 i = 0; i < texgens; i++) {
+        J3DTexCoord tex_coord = newTexCoord(i_idx, i);
+        i_material->mTexGenBlock->setTexCoord(i, &tex_coord);
+    }
+    for (u8 i = 0; i < 8; i++) {
+        i_material->mTexGenBlock->setTexMtx(i, newTexMtx(i_idx, i));
+    }
+    J3DMaterialInitData_v21* material_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
+    for (u8 i = 0; i < tev_stage_num; i++) {
+        if (material_init_data->mTevKColorSel[i] != 0xff) {
+            i_material->mTevBlock->setTevKColorSel(i, material_init_data->mTevKColorSel[i]);
+        } else {
+            i_material->mTevBlock->setTevKColorSel(i, 0xc);
+        }
+    }
+    for (u8 i = 0; i < tev_stage_num; i++) {
+        if (material_init_data->mTevKAlphaSel[i] != 0xff) {
+            i_material->mTevBlock->setTevKAlphaSel(i, material_init_data->mTevKAlphaSel[i]);
+        } else {
+            i_material->mTevBlock->setTevKAlphaSel(i, 0x1c);
+        }
+    }
+    return i_material;
 }
 
 /* 803337D8-80333834 32E118 005C+00 1/1 0/0 0/0 .text newMatColor__22J3DMaterialFactory_v21CFii */
@@ -186,8 +198,7 @@ u8 J3DMaterialFactory_v21::newColorChanNum(int i_idx) const {
 
 /* 8033386C-80333A10 32E1AC 01A4+00 1/1 0/0 0/0 .text newColorChan__22J3DMaterialFactory_v21CFii
  */
-// J3DColorChan ctor
-#ifdef NONMATCHING
+// NONMATCHING J3DColorChan ctor
 J3DColorChan J3DMaterialFactory_v21::newColorChan(int i_idx, int i_no) const {
     J3DMaterialInitData_v21* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
     if (mtl_init_data->mColorChanIdx[i_no] != 0xffff) {
@@ -196,11 +207,6 @@ J3DColorChan J3DMaterialFactory_v21::newColorChan(int i_idx, int i_no) const {
         return J3DColorChan();
     }
 }
-#else
-J3DColorChan J3DMaterialFactory_v21::newColorChan(int param_0, int param_1) const {
-    // NONMATCHING
-}
-#endif
 
 /* 80333A10-80333A48 32E350 0038+00 1/1 0/0 0/0 .text newTexGenNum__22J3DMaterialFactory_v21CFi */
 u32 J3DMaterialFactory_v21::newTexGenNum(int i_idx) const {
@@ -329,8 +335,7 @@ J3DFog J3DMaterialFactory_v21::newFog(int i_idx) const {
 }
 
 /* 80333EE0-80333F60 32E820 0080+00 1/1 0/0 0/0 .text newAlphaComp__22J3DMaterialFactory_v21CFi */
-// calcAlphaCmpID issue
-#ifdef NONMATCHING
+// NONMATCHING calcAlphaCmpID issue
 J3DAlphaComp J3DMaterialFactory_v21::newAlphaComp(int i_idx) const {
     J3DMaterialInitData_v21* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
     if (mtl_init_data->mAlphaCompIdx != 0xffff) {
@@ -338,11 +343,6 @@ J3DAlphaComp J3DMaterialFactory_v21::newAlphaComp(int i_idx) const {
     } 
     return J3DAlphaComp(0xffff);
 }
-#else
-J3DAlphaComp J3DMaterialFactory_v21::newAlphaComp(int param_0) const {
-    // NONMATCHING
-}
-#endif
 
 /* 80333F60-80333FA4 32E8A0 0044+00 1/1 0/0 0/0 .text newBlend__22J3DMaterialFactory_v21CFi */
 J3DBlend J3DMaterialFactory_v21::newBlend(int i_idx) const {

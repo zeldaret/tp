@@ -20,7 +20,7 @@
 #include "d/actor/d_a_player.h"
 #include "SSystem/SComponent/c_math.h"
 
-extern "C" extern u8 JPTracePCB4[4];
+extern JPAParticleCallBack* JPTracePCB4;
 
 /* 80049420-80049580 043D60 0160+00 4/4 0/0 0/0 .text            dPa_cleanupGX__Fv */
 static void dPa_cleanupGX() {
@@ -121,10 +121,10 @@ void dPa_followEcallBack::end() {
 
 /* 80450E90-80450E94 000390 0004+00 2/2 1/1 11/11 .sbss            mEcallback__18dPa_modelEcallBack
  */
-dPa_modelEcallBack* dPa_modelEcallBack::mEcallback;
+dPa_modelEcallBack dPa_modelEcallBack::mEcallback;
 
 /* 80450E94-80450E98 000394 0004+00 2/2 0/0 0/0 .sbss            mPcallback__18dPa_modelEcallBack */
-u8 dPa_modelEcallBack::mPcallback[4];
+dPa_modelPcallBack dPa_modelEcallBack::mPcallback;
 
 /* 80450E98-80450E9C 000398 0004+00 5/5 0/0 0/0 .sbss            mModel__18dPa_modelEcallBack */
 dPa_modelEcallBack::model_c* dPa_modelEcallBack::mModel;
@@ -643,7 +643,7 @@ void dPa_modelEcallBack::setup(JPABaseEmitter* param_0, cXyz const* param_1,
             struct_80450E9D -= (x) * sVar1;
             if (mModel[struct_80450E9D].getModelData() == NULL) {
                 param_0->setUserWork(struct_80450E9D++);
-                param_0->setParticleCallBackPtr((JPAParticleCallBack*)&mPcallback[0]);
+                param_0->setParticleCallBackPtr(&mPcallback);
                 return;
             }
             struct_80450E9D++;
@@ -810,16 +810,6 @@ dPa_simpleData_c::dPa_simpleData_c() {
     /* empty function */
 }
 
-/* ############################################################################################## */
-/* 80424710-8042471C 051430 000C+00 1/1 0/0 0/0 .bss             @4053 */
-static u8 lit_4053[12];
-
-/* 8042471C-80424728 05143C 000C+00 0/1 0/0 0/0 .bss             @4054 */
-#pragma push
-#pragma force_active on
-static u8 lit_4054[12];
-#pragma pop
-
 /* 8004B064-8004B168 0459A4 0104+00 2/2 0/0 0/0 .text
  * createEmitter__19dPa_simpleEcallBackFP17JPAEmitterManager    */
 JPABaseEmitter* dPa_simpleEcallBack::createEmitter(JPAEmitterManager* param_0) {
@@ -878,7 +868,7 @@ u32 dPa_simpleEcallBack::set(cXyz const* param_1, dKy_tevstr_c const* param_2, u
         GXColor local_64 = {0xff, 0xff, 0xff, 0xff};
         GXColor local_68 = {0xff, 0xff, 0xff, 0xff};
         if (&param_5 != NULL) {
-            local_64 = param_5;;
+            local_64 = param_5;
         }
         if (&param_4 != NULL) {
             local_68 = param_4;
@@ -935,7 +925,6 @@ u32 dPa_simpleEcallBack::set(cXyz const* param_1, dKy_tevstr_c const* param_2, u
     return 1;
 }
 
-
 /* 8004B4E0-8004B504 045E20 0024+00 1/0 0/0 0/0 .text
  * execute__17dPa_windPcallBackFP14JPABaseEmitterP15JPABaseParticle */
 void dPa_windPcallBack::execute(JPABaseEmitter* param_0, JPABaseParticle* param_1) {
@@ -980,8 +969,7 @@ void dPa_control_c::level_c::emitter_c::cleanup() {
          pdVar1 != dPa_control_c::getLight8EcallBack()) {
         mEmitter->setEmitterCallBackPtr(NULL);
         JPAParticleCallBack* cb = mEmitter->getParticleCallBackPtr();
-        if (cb == (JPAParticleCallBack*)JPTracePCB4 ||
-            cb == dPa_control_c::getParticleTracePCB()) {
+        if (cb == JPTracePCB4 || cb == dPa_control_c::getParticleTracePCB()) {
             mEmitter->setParticleCallBackPtr(NULL);
         }
     }
@@ -1194,11 +1182,11 @@ u8 dPa_control_c::mLifeBall[24];
 JPAEmitterManager* dPa_control_c::mEmitterMng;
 
 /* 80450EA4-80450EA8 0003A4 0004+00 1/1 1/1 0/0 .sbss mWaterBubblePcallBack__13dPa_control_c */
-u8 dPa_control_c::mWaterBubblePcallBack[4];
+dPa_wbPcallBack_c dPa_control_c::mWaterBubblePcallBack;
 
 /* 80450EA8-80450EAC 0003A8 0004+00 3/3 0/0 0/0 .sbss            mFsenthPcallBack__13dPa_control_c
  */
-JPAParticleCallBack dPa_control_c::mFsenthPcallBack;
+dPa_fsenthPcallBack dPa_control_c::mFsenthPcallBack;
 
 /* 80450EAC-80450EB0 0003AC 0004+00 2/2 0/0 1/1 .sbss            mLight8EcallBack__13dPa_control_c
  */
@@ -1206,25 +1194,25 @@ dPa_light8EcallBack dPa_control_c::mLight8EcallBack;
 
 /* 80450EB0-80450EB4 0003B0 0004+00 2/2 0/0 0/0 .sbss            mLight8PcallBack__13dPa_control_c
  */
-JPAParticleCallBack dPa_control_c::mLight8PcallBack;
+dPa_light8PcallBack dPa_control_c::mLight8PcallBack;
 
 /* 80450EB4-80450EB8 0003B4 0004+00 3/3 0/0 0/0 .sbss m_b_Light8EcallBack__13dPa_control_c */
 dPa_gen_b_light8EcallBack dPa_control_c::m_b_Light8EcallBack;
 
 /* 80450EB8-80450EBC 0003B8 0004+00 2/2 0/0 0/0 .sbss m_b_Light8PcallBack__13dPa_control_c */
-JPAParticleCallBack dPa_control_c::m_b_Light8PcallBack;
+dPa_gen_b_light8PcallBack dPa_control_c::m_b_Light8PcallBack;
 
 /* 80450EBC-80450EC0 0003BC 0004+00 3/3 0/0 0/0 .sbss m_d_Light8EcallBack__13dPa_control_c */
 dPa_gen_d_light8EcallBack dPa_control_c::m_d_Light8EcallBack;
 
 /* 80450EC0-80450EC4 0003C0 0004+00 2/2 0/0 0/0 .sbss m_d_Light8PcallBack__13dPa_control_c */
-JPAParticleCallBack dPa_control_c::m_d_Light8PcallBack;
+dPa_gen_d_light8PcallBack dPa_control_c::m_d_Light8PcallBack;
 
 /* 80450EC4-80450EC8 0003C4 0004+00 1/1 2/2 0/0 .sbss            None */
 u8 dPa_control_c::mStatus;
 
 /* 80450EC8-80450ED0 0003C8 0004+04 2/2 1/1 17/17 .sbss mParticleTracePCB__13dPa_control_c */
-JPAParticleCallBack dPa_control_c::mParticleTracePCB;
+dPa_particleTracePcallBack_c dPa_control_c::mParticleTracePCB;
 
 /* 80424870-804248A0 051590 0030+00 1/1 0/0 0/0 .bss             mWindViewMatrix__13dPa_control_c */
 Mtx dPa_control_c::mWindViewMatrix;
@@ -1294,12 +1282,6 @@ void dPa_control_c::createRoomScene() {
     mDoExt_setCurrentHeap(prevHeap);
     mDoExt_adjustSolidHeap(m_sceneHeap);
 }
-
-/* 804248A0-804248AC 0515C0 000C+00 0/1 0/0 0/0 .bss             @4742 */
-#pragma push
-#pragma force_active on
-static u8 lit_4742[12];
-#pragma pop
 
 /* 8004BDFC-8004BEB0 04673C 00B4+00 0/0 1/1 0/0 .text
  * readScene__13dPa_control_cFUcPP21mDoDvdThd_toMainRam_c       */

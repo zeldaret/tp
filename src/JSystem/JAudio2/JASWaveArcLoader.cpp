@@ -11,58 +11,6 @@
 #include "string.h"
 #include "dolphin/os.h"
 
-//
-// Forward References:
-//
-
-extern "C" void getRootHeap__16JASWaveArcLoaderFv();
-extern "C" void setCurrentDir__16JASWaveArcLoaderFPCc();
-extern "C" void getCurrentDir__16JASWaveArcLoaderFv();
-extern "C" void __ct__10JASWaveArcFv();
-extern "C" void __dt__10JASWaveArcFv();
-extern "C" void loadSetup__10JASWaveArcFUl();
-extern "C" void eraseSetup__10JASWaveArcFv();
-extern "C" void loadToAramCallback__10JASWaveArcFPv();
-extern "C" void sendLoadCmd__10JASWaveArcFv();
-extern "C" void load__10JASWaveArcFP7JASHeap();
-extern "C" void loadTail__10JASWaveArcFP7JASHeap();
-extern "C" void erase__10JASWaveArcFv();
-extern "C" void onDispose__10JASWaveArcFv();
-extern "C" void setEntryNum__10JASWaveArcFl();
-extern "C" void setFileName__10JASWaveArcFPCc();
-extern "C" void __dt__11JASDisposerFv();
-extern "C" u8 sCurrentDir__16JASWaveArcLoader[64];
-extern "C" u8 sAramHeap__16JASWaveArcLoader[4 + 4 /* padding */];
-
-//
-// External References:
-//
-
-extern "C" void sendCmdMsg__13JASTaskThreadFPFPv_vPCvUl();
-extern "C" void getThreadPointer__6JASDvdFv();
-extern "C" void __ct__7JASHeapFP11JASDisposer();
-extern "C" void alloc__7JASHeapFP7JASHeapUl();
-extern "C" void allocTail__7JASHeapFP7JASHeapUl();
-extern "C" void free__7JASHeapFv();
-extern "C" void getSystemHeap__9JASKernelFv();
-extern "C" void getAramHeap__9JASKernelFv();
-extern "C" void onDispose__11JASDisposerFv();
-extern "C" void onLoadDone__10JASWaveArcFv();
-extern "C" void onEraseDone__10JASWaveArcFv();
-extern "C" void* __nwa__FUlP7JKRHeapi();
-extern "C" void __dl__FPv();
-extern "C" void __dla__FPv();
-extern "C" void loadToAram__16JKRDvdAramRipperFlUl15JKRExpandSwitchUlUlPUl();
-extern "C" void __dt__10JSUPtrLinkFv();
-extern "C" void __dt__10JSUPtrListFv();
-extern "C" void _savegpr_27();
-extern "C" void _restgpr_27();
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
 /* 80451290-80451298 000790 0004+04 1/1 0/0 0/0 .sbss            sAramHeap__16JASWaveArcLoader */
 JASHeap* JASWaveArcLoader::sAramHeap;
 
@@ -75,7 +23,6 @@ JASHeap* JASWaveArcLoader::getRootHeap() {
     return JASKernel::getAramHeap();
 }
 
-/* ############################################################################################## */
 /* 803C77E0-803C7820 024900 0040+00 2/2 0/0 0/0 .data            sCurrentDir__16JASWaveArcLoader */
 char JASWaveArcLoader::sCurrentDir[DIR_MAX] = "/AudioRes/Waves/";
 
@@ -93,35 +40,14 @@ void JASWaveArcLoader::setCurrentDir(char const* dir) {
 
 /* 8029A130-8029A13C 294A70 000C+00 1/1 0/0 0/0 .text            getCurrentDir__16JASWaveArcLoaderFv
  */
-
 char* JASWaveArcLoader::getCurrentDir() {
     return sCurrentDir;
 }
 
-/* ############################################################################################## */
-/* 803C7820-803C7838 024940 0018+00 2/2 0/0 0/0 .data            __vt__10JASWaveArc */
-SECTION_DATA extern void* __vt__10JASWaveArc[6] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10JASWaveArcFv,
-    (void*)onDispose__10JASWaveArcFv,
-    (void*)onLoadDone__10JASWaveArcFv,
-    (void*)onEraseDone__10JASWaveArcFv,
-};
-
-/* 803C7838-803C7848 024958 0010+00 3/3 0/0 0/0 .data            __vt__11JASDisposer */
-SECTION_DATA extern void* __vt__11JASDisposer[4] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__11JASDisposerFv,
-    (void*)onDispose__11JASDisposerFv,
-};
-
 /* 8029A13C-8029A1B4 294A7C 0078+00 0/0 2/2 0/0 .text            __ct__10JASWaveArcFv */
-
 JASWaveArc::JASWaveArc() : mHeap(this) {
     _48 = 0;
-    _4c = 0;
+    mStatus = 0;
     mEntryNum = -1;
     mFileLength = 0;
     _58 = 0;
@@ -130,13 +56,7 @@ JASWaveArc::JASWaveArc() : mHeap(this) {
 }
 
 /* 8029A1B4-8029A258 294AF4 00A4+00 1/0 2/2 0/0 .text            __dt__10JASWaveArcFv */
-#ifdef NONMATCHING
 JASWaveArc::~JASWaveArc() {}
-#else
-void __dt__10JASWaveArcFv() {
-    // NONMATCHING
-}
-#endif
 
 /* 8029A258-8029A2EC 294B98 0094+00 1/1 0/0 0/0 .text            loadSetup__10JASWaveArcFUl */
 bool JASWaveArc::loadSetup(u32 param_0) {
@@ -144,26 +64,26 @@ bool JASWaveArc::loadSetup(u32 param_0) {
     if (_58 != param_0) {
         return false;
     }
-    if (_4c != 1) {
+    if (mStatus != 1) {
         return false;
     }
     _48 = 1;
-    _4c = 2;
+    mStatus = 2;
     return true;
 }
 
 /* 8029A2EC-8029A378 294C2C 008C+00 1/1 0/0 0/0 .text            eraseSetup__10JASWaveArcFv */
 bool JASWaveArc::eraseSetup() {
     JASMutexLock mutexLock(&mMutex);
-    if (_4c == 0) {
+    if (mStatus == 0) {
         return false;
     }
-    if (_4c == 1) {
-        _4c = 0;
+    if (mStatus == 1) {
+        mStatus = 0;
         return false;
     }
     _48 = 0;
-    _4c = 0;
+    mStatus = 0;
     return true;
 }
 
@@ -188,7 +108,7 @@ void JASWaveArc::loadToAramCallback(void* this_) {
 bool JASWaveArc::sendLoadCmd() {
     JASMutexLock mutexLock(&mMutex);
     _48 = 0;
-    _4c = 1;
+    mStatus = 1;
     void* base = mHeap.getBase();
     loadToAramCallbackParams commandInfo;
     commandInfo.mWavArc = this;
@@ -214,7 +134,7 @@ bool JASWaveArc::load(JASHeap* heap) {
         return false;
     }
     JASMutexLock mutexLock(&mMutex);
-    if (_4c != 0) {
+    if (mStatus != 0) {
         return false;
     }
     if (heap == NULL) {
@@ -233,7 +153,7 @@ bool JASWaveArc::loadTail(JASHeap* heap) {
         return false;
     }
     JASMutexLock mutexLock(&mMutex);
-    if (_4c != 0) {
+    if (mStatus != 0) {
         return false;
     }
     if (heap == NULL) {
@@ -247,8 +167,8 @@ bool JASWaveArc::loadTail(JASHeap* heap) {
 }
 
 /* 8029A640-8029A664 294F80 0024+00 0/0 2/2 0/0 .text            erase__10JASWaveArcFv */
-void JASWaveArc::erase() {
-    mHeap.free();
+bool JASWaveArc::erase() {
+    return mHeap.free();
 }
 
 /* 8029A664-8029A6AC 294FA4 0048+00 1/0 2/0 0/0 .text            onDispose__10JASWaveArcFv */
@@ -289,9 +209,4 @@ void JASWaveArc::setFileName(char const* fileName) {
         return;
     }
     setEntryNum(entryNum);
-}
-
-/* 8029A7B8-8029A800 2950F8 0048+00 1/0 0/0 0/0 .text            __dt__11JASDisposerFv */
-void __dt__11JASDisposerFv() {
-    // NONMATCHING
 }

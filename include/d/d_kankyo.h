@@ -53,6 +53,7 @@ void dKy_actor_addcol_amb_set(s16 r, s16 g, s16 b, f32 factor);
 void dKy_bg_addcol_amb_set(s16 r, s16 g, s16 b, f32 factor);
 int dKy_WolfEyeLight_set(cXyz* param_0, f32 param_1, f32 param_2, f32 param_3,
                               GXColor* param_4, f32 param_5, u8 param_6, u8 param_7);
+BOOL dKy_TeachWind_existence_chk();
 
 struct LIGHT_INFLUENCE {
     /* 0x00 */ cXyz mPosition;
@@ -603,6 +604,6 @@ void dKy_ParticleColor_get_bg(cXyz* param_0, dKy_tevstr_c* param_1, _GXColor* pa
 _GXColor dKy_light_influence_col(_GXColor* param_0, f32 param_1);
 static void dKy_WaterIn_Light_set();
 void dKy_SordFlush_set(cXyz param_0, int param_1);
-
+void dKy_camera_water_in_status_set(u8 status);
 
 #endif /* D_KANKYO_D_KANKYO_H */

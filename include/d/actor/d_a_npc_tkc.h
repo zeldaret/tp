@@ -29,7 +29,7 @@ public:
     /* 80B0D458 */ void setExpressionAnm(int, bool);
     /* 80B0D5A4 */ void setExpressionBtp(int);
     /* 80B0D678 */ void reset();
-    /* 80B0DA94 */ void setMotionAnm(int, f32);
+    /* 80B0DA94 */ bool setMotionAnm(int, f32);
     /* 80B0DBC8 */ void setAction(void (daNpcTkc_c::*)());
     /* 80B0DC68 */ void wait();
     /* 80B0DEF8 */ void calcFly();
@@ -50,10 +50,14 @@ public:
     /* 80B0FDE4 */ void setAttnPos();
     /* 80B0FFD4 */ bool drawDbgInfo();
 
+    void setStart() { field_0xd7a = 1; }
+
     static u8 mEvtSeqList[48];
 
 private:
-    /* 0x568 */ u8 field_0x568[0xd7c - 0x568];
+    /* 0x568 */ u8 field_0x568[0xd7a - 0x568];
+    /* 0xD7A */ u8 field_0xd7a;
+    /* 0xD7B */ u8 field_0xd7b[0xd7c - 0xd7b];
 };
 
 STATIC_ASSERT(sizeof(daNpcTkc_c) == 0xd7c);

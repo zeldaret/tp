@@ -9,63 +9,6 @@
 #include "JSystem/JAudio2/JAIStreamDataMgr.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JAudio2/JAIAudience.h"
-#include "dol2asm.h"
-
-//
-// Forward References:
-//
-
-extern "C" static void JAIStream_JASAramStreamCallback___FUlP13JASAramStreamPv();
-extern "C" void func_802A3104();
-extern "C" void func_802A319C();
-extern "C" void prepare_prepareStream___9JAIStreamFv();
-extern "C" void prepare___9JAIStreamFv();
-extern "C" void prepare_startStream___9JAIStreamFv();
-extern "C" void JAIStreamMgr_mixOut___9JAIStreamFRC14JASSoundParams16JAISoundActivity();
-extern "C" void die_JAIStream___9JAIStreamFv();
-extern "C" void JAISound_tryDie___9JAIStreamFv();
-extern "C" void JAIStreamMgr_calc___9JAIStreamFv();
-extern "C" s32 getNumChild__9JAIStreamCFv();
-extern "C" void getChild__9JAIStreamFi();
-extern "C" void releaseChild__9JAIStreamFi();
-extern "C" bool getTrack__9JAIStreamFv();
-extern "C" bool getChildTrack__9JAIStreamFi();
-extern "C" void asStream__9JAIStreamFv();
-extern "C" bool getTempoMgr__9JAIStreamFv();
-
-//
-// External References:
-//
-
-extern "C" void __ct__17JASGenericMemPoolFv();
-extern "C" void alloc__17JASGenericMemPoolFUl();
-extern "C" void free__17JASGenericMemPoolFPvUl();
-extern "C" void __ct__13JASAramStreamFv();
-extern "C" void init__13JASAramStreamFUlUlPFUlP13JASAramStreamPv_vPv();
-extern "C" void prepare__13JASAramStreamFli();
-extern "C" void start__13JASAramStreamFv();
-extern "C" void stop__13JASAramStreamFUs();
-extern "C" void pause__13JASAramStreamFb();
-extern "C" void cancel__13JASAramStreamFv();
-extern "C" void func_802A1268(void* _this);
-extern "C" void mixOutAll__14JAISoundParamsFRC14JASSoundParamsP14JASSoundParamsf();
-extern "C" void __ct__8JAISoundFv();
-extern "C" void func_802A2328();
-extern "C" bool asSe__8JAISoundFv();
-extern "C" bool asSeq__8JAISoundFv();
-extern "C" void die_JAISound___8JAISoundFv();
-extern "C" void increasePrepareCount_JAISound___8JAISoundFv();
-extern "C" void calc_JAISound___8JAISoundFv();
-extern "C" void init__13JAISoundChildFv();
-extern "C" void calc__13JAISoundChildFv();
-extern "C" void __ct__10JSUPtrLinkFPv();
-extern "C" void __register_global_object();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_29();
-extern "C" extern u8 data_804340B0[16];
-extern "C" extern u8 data_80451318[8];
 
 /* 802A30D4-802A3104 29DA14 0030+00 1/1 0/0 0/0 .text
  * JAIStream_JASAramStreamCallback___FUlP13JASAramStreamPv      */
@@ -113,9 +56,10 @@ void JAIStream::JAIStreamMgr_startID_(JAISoundID param_1, s32 param_2,
 /* 802A3230-802A33F4 29DB70 01C4+00 1/1 0/0 0/0 .text prepare_prepareStream___9JAIStreamFv */
 bool JAIStream::prepare_prepareStream_() {
     u32 local_28;
+    JAIStreamAramMgr* streamAramMgr;
     switch (field_0x290) {
     case 0:
-        JAIStreamAramMgr* streamAramMgr = field_0x2b8->getStreamAramMgr();
+        streamAramMgr = field_0x2b8->getStreamAramMgr();
         JUT_ASSERT(100, streamAramMgr);
         field_0x29c = streamAramMgr->newStreamAram(&local_28);
         if (field_0x29c != NULL) {
@@ -194,25 +138,6 @@ void JAIStream::prepare_startStream_() {
     }
 }
 
-/* ############################################################################################## */
-/* 804557F0-804557F4 003DF0 0004+00 2/2 0/0 0/0 .sdata2          @864 */
-SECTION_SDATA2 static f32 lit_864 = 1.0f;
-
-/* 804557F4-804557F8 003DF4 0004+00 2/2 0/0 0/0 .sdata2          @865 */
-SECTION_SDATA2 static u8 lit_865[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 804557F8-80455800 003DF8 0004+04 2/2 0/0 0/0 .sdata2          @866 */
-SECTION_SDATA2 static f32 lit_866[1 + 1 /* padding */] = {
-    0.5f,
-    /* padding */
-    0.0f,
-};
-
 /* 802A34E4-802A3720 29DE24 023C+00 0/0 1/1 0/0 .text
  * JAIStreamMgr_mixOut___9JAIStreamFRC14JASSoundParams16JAISoundActivity */
 void JAIStream::JAIStreamMgr_mixOut_(JASSoundParams const& param_1, JAISoundActivity param_2) {
@@ -264,17 +189,13 @@ void JAIStream::JAIStreamMgr_mixOut_(JASSoundParams const& param_1, JAISoundActi
     }
 }
 
-
-/* ############################################################################################## */
-/* 804340E0-804340F0 060E00 000C+04 3/3 0/0 0/0 .bss             @881 */
-static u8 lit_881[12 + 4 /* padding */];
-
 /* 802A3720-802A37FC 29E060 00DC+00 1/1 0/0 0/0 .text            die_JAIStream___9JAIStreamFv */
+// NONMATCHING JASPolAllocObject<_> locations
 void JAIStream::die_JAIStream_() {
     die_JAISound_();
     for (int i = 0; i < CHANNEL_MAX; i++) {
         if (field_0x2a0[i] != NULL) {
-            delete (JASPoolAllocObject<JAISoundChild>*)field_0x2a0[i];
+            delete field_0x2a0[i];
             field_0x2a0[i] = NULL;
         }
     }
@@ -283,7 +204,6 @@ void JAIStream::die_JAIStream_() {
         field_0x2bc = NULL;
     }
 }
-
 
 /* 802A37FC-802A388C 29E13C 0090+00 1/0 0/0 0/0 .text            JAISound_tryDie___9JAIStreamFv */
 bool JAIStream::JAISound_tryDie_() {
@@ -334,36 +254,25 @@ s32 JAIStream::getNumChild() const {
 }
 
 /* 802A3950-802A3A24 29E290 00D4+00 1/0 0/0 0/0 .text            getChild__9JAIStreamFi */
-#ifdef NONMATCHING
+// NONMATCHING JASPoolAllocObject<_> locations
 JAISoundChild* JAIStream::getChild(int i_idx) {
     if (field_0x2a0[i_idx] == NULL) {
-         JASPoolAllocObject<JAISoundChild>* ptr = new JASPoolAllocObject<JAISoundChild>();
-         field_0x2a0[i_idx] = new (ptr) JAISoundChild();
+         field_0x2a0[i_idx] = new JAISoundChild();
         if (field_0x2a0[i_idx] == NULL) {
             JUT_WARN(370, "JASPoolAllocObject::<JAISoundChild>::operator new failed .")
         }
     }
     return field_0x2a0[i_idx];
 }
-#else
-JAISoundChild* JAIStream::getChild(int param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 802A3A24-802A3ABC 29E364 0098+00 1/0 0/0 0/0 .text            releaseChild__9JAIStreamFi */
-#ifdef NONMATCHING
+// NONMATCHING JASPoolAllocObject<_> locations
 void JAIStream::releaseChild(int i_idx) {
     if (field_0x2a0[i_idx] != NULL) {
-        delete (JASPoolAllocObject<JAISoundChild>*)field_0x2a0[i_idx];
+        delete field_0x2a0[i_idx];
         field_0x2a0[i_idx] = NULL;
     }
 }
-#else
-void JAIStream::releaseChild(int param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 802A3ABC-802A3AC4 29E3FC 0008+00 1/0 0/0 0/0 .text            getTrack__9JAIStreamFv */
 JASTrack* JAIStream::getTrack() {

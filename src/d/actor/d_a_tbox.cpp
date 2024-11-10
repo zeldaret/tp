@@ -719,9 +719,8 @@ void daTbox_c::dropProc() {
         mDoMtx_identity(field_0x988);
         speedF = 0.0f;
         cXyz vec1(2.0f, 2.0f, 2.0f);
-        s32 room_no = fopAcM_GetRoomNo(this);
         dComIfGp_particle_setPolyColor(0xe7, mAcch.m_gnd, &current.pos, &tevStr, &home.angle,
-                                       &vec1, 0, NULL, room_no, NULL);
+                                       &vec1, 0, NULL, fopAcM_GetRoomNo(this), NULL);
         dComIfGp_getVibration().StartShock(4, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
         u32 sound_id = 0;
         cXyz vec2 = current.pos;
@@ -1247,7 +1246,8 @@ int daTbox_c::setGetDemoItem() {
 }
 
 /* 804946A4-804948CC 003A64 0228+00 11/0 0/0 0/0 .text            actionOpenWait__8daTbox_cFv */
-// nonmatching (regalloc)
+// nonmatching -- matches if checkTreasureRupeeReturn has return type bool,
+// but that breaks daAlink_c::procCoGetItem
 int daTbox_c::actionOpenWait() {
     daMidna_c* midna = daPy_py_c::getMidnaActor();
     daPy_py_c* player = daPy_getPlayerActorClass();

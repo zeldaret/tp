@@ -50,7 +50,7 @@ public:
     }
     JAISoundParamsMove* getParams() { return &mMove; }
     bool isActive() { return mSeqList.getNumLinks() != 0; }
-    int getNumActiveSeqs() { return mSeqList.getNumLinks(); }
+    int getNumActiveSeqs() const { return mSeqList.getNumLinks(); }
     void pause(bool i_pause) { mActivity.field_0x0.flags.flag2 = i_pause; }
 
 private:

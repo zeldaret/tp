@@ -114,7 +114,7 @@ extern "C" void changeBtk__8daNpcT_cFPiPi();
 extern "C" void __sinit_d_a_peru_cpp();
 extern "C" void
 __ct__8daPeru_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc();
-extern "C" bool getEyeballMaterialNo__8daPeru_cFv();
+extern "C" s32 getEyeballMaterialNo__8daPeru_cFv();
 extern "C" s32 getHeadJointNo__8daPeru_cFv();
 extern "C" s32 getNeckJointNo__8daPeru_cFv();
 extern "C" bool getBackboneJointNo__8daPeru_cFv();
@@ -1807,7 +1807,7 @@ daPeru_c::daPeru_c(daNpcT_faceMotionAnmData_c const* param_0,
 
 /* 80D4BEC4-80D4BECC 0050C4 0008+00 1/0 0/0 0/0 .text            getEyeballMaterialNo__8daPeru_cFv
  */
-bool daPeru_c::getEyeballMaterialNo() {
+s32 daPeru_c::getEyeballMaterialNo() {
     return true;
 }
 

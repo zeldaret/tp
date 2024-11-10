@@ -24,9 +24,7 @@ int daAlldie_c::actionWait() {
 
 /* 804D5838-804D5888 000098 0050+00 1/1 0/0 0/0 .text            actionCheck__10daAlldie_cFv */
 int daAlldie_c::actionCheck() {
-    s8 roomNo = fopAcM_GetRoomNo(this);
-
-    if (fopAcM_myRoomSearchEnemy(roomNo) == NULL) {
+    if (fopAcM_myRoomSearchEnemy(fopAcM_GetRoomNo(this)) == NULL) {
         mAction = ACT_TIMER;
         mTimer = 65;
     }
@@ -36,9 +34,7 @@ int daAlldie_c::actionCheck() {
 
 /* 804D5888-804D5938 0000E8 00B0+00 1/1 0/0 0/0 .text            actionTimer__10daAlldie_cFv */
 int daAlldie_c::actionTimer() {
-    s8 roomNo = fopAcM_GetRoomNo(this);
-
-    if (fopAcM_myRoomSearchEnemy(roomNo) != NULL) {
+    if (fopAcM_myRoomSearchEnemy(fopAcM_GetRoomNo(this)) != NULL) {
         mAction = ACT_CHECK;
     } else {
         if (mTimer > 0) {
@@ -165,7 +161,7 @@ int daAlldie_c::create() {
 
     s8 roomNo = fopAcM_GetRoomNo(this);
 
-    if (!dComIfGs_isSwitch(getSwbit(), roomNo)) {
+    if (!dComIfGs_isSwitch(getSwbit(), fopAcM_GetRoomNo(this))) {
         mAction = ACT_CHECK;
     } else {
         mAction = ACT_WAIT;

@@ -84,6 +84,10 @@ inline void cMtx_multVec(Mtx mtx, const Vec* src, Vec* dst) {
     mDoMtx_multVec(mtx, src, dst);
 }
 
+inline void cMtx_multVecSR(Mtx mtx, const Vec* src, Vec* dst) {
+    mDoMtx_multVecSR(mtx, src, dst);
+}
+
 inline void cMtx_lookAt(Mtx param_0, const Vec* param_1, const Vec* param_2, const Vec* param_3, s16 param_4) {
     mDoMtx_lookAt(param_0,param_1,param_2,param_3,param_4);
 }
@@ -207,6 +211,10 @@ public:
      * @param xyz The xyz rotation vector
      */
     /* 8000CF44 */ static void ZXYrotM(csXyz const& xyz);
+
+    static void quatS(const Quaternion* quat) {
+        MTXQuat(now, (PSQuaternion*)quat);
+    }
 
     /* 8000CF7C */ static void quatM(Quaternion const*);
     /* 8000D070 */ ~mDoMtx_stack_c() {}  // inline

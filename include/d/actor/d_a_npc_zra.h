@@ -233,7 +233,7 @@ public:
     /* 80B7B9D4 */ bool setExpressionAnm(int, bool);
     /* 80B7BD60 */ bool setExpressionBtp(int);
     /* 80B7BE74 */ void setExpression(int, f32);
-    /* 80B7BEA0 */ void setMotionAnm(int, f32);
+    /* 80B7BEA0 */ bool setMotionAnm(int, f32);
     /* 80B7C070 */ void setMotionWaterAnm(int);
     /* 80B7C308 */ void setMotion(int, f32, BOOL);
     /* 80B7C34C */ BOOL drawDbgInfo();
@@ -317,9 +317,11 @@ public:
     /* 80B8B530 */ BOOL ECut_searchPrince1(int);
     /* 80B8BCE8 */ BOOL ECut_searchPrince2(int);
     /* 80B8C3E8 */ void adjustShapeAngle() {}
+
     int getType() { return mType; }
     u32 getAngleNoFromParam() { return (u8)(fopAcM_GetParam(this) >> 8); }
     void setBlastFlag(u8 i_flag) { mBlastFlag = i_flag; }
+    MtxP getHeadMtx() { return mpMorf->getModel()->getAnmMtx(4); }
 
     /* 0x0B48 */ Z2Creature mCreatureSound;
     /* 0x0BD8 */ J3DModel* mpObjectModel[3];

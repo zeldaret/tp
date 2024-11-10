@@ -77,8 +77,7 @@ s32 daTagChgRestart_c::execute() {
             restart_angle = entry_p->mAngle.y;
         }
 
-        s32 l_roomNo = fopAcM_GetRoomNo(player);
-        dComIfGs_setRestartRoom(restart_pos, restart_angle, l_roomNo);
+        dComIfGs_setRestartRoom(restart_pos, restart_angle, fopAcM_GetRoomNo(player));
         fopAcM_onSwitch(this, daTagChgRestart_prm::getSwNo(this));
     }
 

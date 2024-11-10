@@ -40,10 +40,10 @@ Z2SeqMgr::Z2SeqMgr() : JASGlobalInstance<Z2SeqMgr>(this) {
     field_0xc8 = 1.0f;
     field_0xcc = 1.0f;
     mRideCount = 0;
-    mFlags.flag5 = false;
+    mFlags.mFieldBgmPlay = false;
     mFlags.mBattleBgmOff = true;
-    mFlags.flag6 = false;
-    mFlags.flag7 = false;
+    mFlags.mHeightVolMod = false;
+    mFlags.mTimeProcVolMod = false;
 }
 
 /* 802AF010-802AF408 2A9950 03F8+00 3/3 5/5 38/38 .text            bgmStart__8Z2SeqMgrFUlUll */
@@ -121,7 +121,7 @@ void Z2SeqMgr::bgmStart(u32 i_bgmID, u32 i_count, s32 param_2) {
         changeBgmStatus(0);
     }
 
-    if (mFlags.flag7 && !Z2GetStatusMgr()->checkDayTime()) {
+    if (mFlags.mTimeProcVolMod && !Z2GetStatusMgr()->checkDayTime()) {
         field_0xa4.forceOut();
     } else {
         field_0xa4.forceIn();
@@ -143,7 +143,6 @@ void Z2SeqMgr::bgmStop(u32 i_count, s32 param_1) {
         mMainBgmMaster.forceIn();
     }
 }
-
 
 /* ############################################################################################## */
 /* 8039BA08-8039BA08 028068 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -640,6 +639,7 @@ void Z2SeqMgr::changeBgmStatus(s32 param_0) {
     }
 
     u32 count = 0;
+    bool mute;
     f32 volume1, volume2, volume3, volume4;
     switch (getMainBgmID()) {
     case Z2BGM_TOAL_VILLEGE:
@@ -677,11 +677,11 @@ void Z2SeqMgr::changeBgmStatus(s32 param_0) {
         setChildTrackVolume(&mMainBgmHandle, 13, 0.0f, 0, -1.0f, -1.0f);
         break;
     case Z2BGM_DUNGEON_FOREST:
-        bool mute = false;
+        mute = false;
         switch (param_0) {
         case 4:
         case 0xc:
-            i_muteSceneBgm(struct_80450860, 0.0f);
+            muteSceneBgm(struct_80450860, 0.0f);
             // fallthrough
         case 7:
             mute = true;
@@ -691,7 +691,7 @@ void Z2SeqMgr::changeBgmStatus(s32 param_0) {
             break;
         }
         if (!mute) {
-            i_unMuteSceneBgm(struct_80450860);
+            unMuteSceneBgm(struct_80450860);
         }
         break;
     case Z2BGM_DUNGEON_LV2:
@@ -731,9 +731,9 @@ void Z2SeqMgr::changeBgmStatus(s32 param_0) {
         setChildTrackVolume(&mMainBgmHandle, 12, volume2, count, -1.0f, -1.0f);
         setChildTrackVolume(&mMainBgmHandle, 13, volume2, count, -1.0f, -1.0f);
         if (param_0 == 4) {
-            i_muteSceneBgm(60, 0.29f);
+            muteSceneBgm(60, 0.29f);
         } else {
-            i_unMuteSceneBgm(60);
+            unMuteSceneBgm(60);
         }
         break;
     case Z2BGM_CASTLE_TOWN:
@@ -805,14 +805,14 @@ void Z2SeqMgr::changeBgmStatus(s32 param_0) {
             break;
         }
         if (param_0 == 5) {
-            i_muteSceneBgm(count, 0.35f);
-            mFlags.flag6 = false;
+            muteSceneBgm(count, 0.35f);
+            mFlags.mHeightVolMod = false;
         } else {
-            i_unMuteSceneBgm(count);
+            unMuteSceneBgm(count);
             if (param_0 < 2) {
-                mFlags.flag6 = false;
+                mFlags.mHeightVolMod = false;
             } else {
-                mFlags.flag6 = true;
+                mFlags.mHeightVolMod = true;
             }
         }
         break;
@@ -840,9 +840,9 @@ void Z2SeqMgr::changeBgmStatus(s32 param_0) {
         break;
     case Z2BGM_LUTERA2:
         if (param_0 == 0) {
-            i_muteSceneBgm(0, 0.5f);
+            muteSceneBgm(0, 0.5f);
         } else if (param_0 == 1) {
-            i_unMuteSceneBgm(80);
+            unMuteSceneBgm(80);
         }
         break;
     case Z2BGM_DEMO08:
@@ -953,9 +953,9 @@ void Z2SeqMgr::changeBgmStatus(s32 param_0) {
         break;
     case Z2BGM_FORTUNE:
         if (param_0 == 1) {
-            i_muteSceneBgm(45, 0.5f);
+            muteSceneBgm(45, 0.5f);
         } else {
-            i_unMuteSceneBgm(45);
+            unMuteSceneBgm(45);
         }
         break;
     case Z2BGM_DUNGEON_LV9_02:
@@ -1019,11 +1019,11 @@ void Z2SeqMgr::changeBgmStatus(s32 param_0) {
     case Z2BGM_TOAL_NIGHT:
     case Z2BGM_FILONE_FOREST:
         if (param_0 == 1) {
-            i_muteSceneBgm(45, 0.5f);
+            muteSceneBgm(45, 0.5f);
         } else if (param_0 == 2) {
-            i_muteSceneBgm(0, 0.5f);
+            muteSceneBgm(0, 0.5f);
         } else {
-            i_unMuteSceneBgm(45);
+            unMuteSceneBgm(45);
         }
         break;
     case Z2BGM_VS_GANON_04:
@@ -1257,23 +1257,23 @@ void Z2SeqMgr::changeFishingBgm(s32 param_0) {
         if (getSubBgmID() == Z2BGM_FISHING_HIT) {
             subBgmStop();
         }
-        i_unMuteSceneBgm(struct_80450862);
+        unMuteSceneBgm(struct_80450862);
         break;
     case 1:
         if (getSubBgmID() == Z2BGM_FISHING_HIT) {
             subBgmStop();
         }
-        i_muteSceneBgm(2, 0.5f);
+        muteSceneBgm(2, 0.5f);
         break;
     case 2:
         subBgmStart(Z2BGM_FISHING_HIT);
-        i_muteSceneBgm(1, 0.0f);
+        muteSceneBgm(1, 0.0f);
         break;
     case 4:
         if (getSubBgmID() == Z2BGM_FISHING_HIT) {
             subBgmStop();
         }
-        i_muteSceneBgm(1, 0.0f);
+        muteSceneBgm(1, 0.0f);
         break;
     }
 }
@@ -1304,7 +1304,6 @@ void Z2SeqMgr::menuOutBgm() {
 }
 
 /* 802B2E3C-802B327C 2AD77C 0440+00 1/1 0/0 0/0 .text            fanfareFramework__8Z2SeqMgrFv */
-// NONMATCHING extra load
 void Z2SeqMgr::fanfareFramework() {
     switch (mFanfareID) {
     case Z2BGM_OPEN_BOX:
@@ -1364,7 +1363,7 @@ void Z2SeqMgr::fanfareFramework() {
             mFanfareCount = 50;
             mFanfareMute.fadeOut(30);
         } else if (mFanfareCount == 1) {
-            Z2GetSoundMgr()->startSound(mFanfareID, &mFanfareHandle, 0);
+            Z2GetSoundMgr()->startSound((u32)mFanfareID, &mFanfareHandle, 0);
             mFanfareID.setAnonymous();
         }
         break;
@@ -1424,26 +1423,26 @@ void Z2SeqMgr::stopWolfHowlSong() {
 }
 
 /* 802B3318-802B3398 2ADC58 0080+00 0/0 1/1 0/0 .text            setHeightVolMod__8Z2SeqMgrFbUl */
-void Z2SeqMgr::setHeightVolMod(bool param_0, u32 i_count) {
-    mFlags.flag6 = param_0;
-    if (!param_0) {
+void Z2SeqMgr::setHeightVolMod(bool i_value, u32 i_count) {
+    mFlags.mHeightVolMod = i_value;
+    if (!i_value) {
         field_0x84.fadeIn(i_count);
     }
 }
 
 /* 802B3398-802B33A8 2ADCD8 0010+00 0/0 1/1 0/0 .text            setTimeProcVolMod__8Z2SeqMgrFbUl */
-void Z2SeqMgr::setTimeProcVolMod(bool param_0, u32 i_count) {
-    mFlags.flag7 = param_0;
+void Z2SeqMgr::setTimeProcVolMod(bool i_value, u32 i_count) {
+    mFlags.mTimeProcVolMod = i_value;
 }
 
 /* 80450870-80450874 0002F0 0004+00 1/1 0/0 0/0 .sdata           sDeathMtBottom */
-SECTION_SDATA static f32 sDeathMtBottom = -1000.0f;
+static f32 sDeathMtBottom = -1000.0f;
 
 /* 80450874-80450878 0002F4 0004+00 1/1 0/0 0/0 .sdata           sDeathMtTop */
-SECTION_SDATA static f32 sDeathMtTop = 3650.0f;
+static f32 sDeathMtTop = 3650.0f;
 
 /* 80450878-80450880 0002F8 0004+04 1/1 0/0 0/0 .sdata           sUnderWaterDepthMax */
-SECTION_SDATA static f32 sUnderWaterDepthMax = 3500.0f;
+static f32 sUnderWaterDepthMax = 3500.0f;
 
 /* 802B33A8-802B3EAC 2ADCE8 0B04+00 0/0 1/1 0/0 .text            processBgmFramework__8Z2SeqMgrFv */
 void Z2SeqMgr::processBgmFramework() {
@@ -1467,7 +1466,7 @@ void Z2SeqMgr::processBgmFramework() {
         mMainBgmMaster.fadeIn(struct_80450861);
     }
 
-    if (mFlags.flag7) {
+    if (mFlags.mTimeProcVolMod) {
         if (Z2GetStatusMgr()->checkDayTime() && field_0xa4.getDest() != 1.0f) {
             field_0xa4.fadeIn(600);
         } else if (!Z2GetStatusMgr()->checkDayTime() && field_0xa4.getDest() != 0.0f) {
@@ -1475,11 +1474,11 @@ void Z2SeqMgr::processBgmFramework() {
         }
     }
 
-    if (mFlags.flag6 && Z2GetSceneMgr()->isSceneExist()
+    if (mFlags.mHeightVolMod && Z2GetSceneMgr()->isSceneExist()
         && Z2GetLink() != NULL && Z2GetLink()->getCurrentPos() != NULL)
     {
         f32 link_y = Z2GetLink()->getCurrentPos()->y;
-        f32 volume;
+        f32 volume, depth;
         switch (getMainBgmID()) {
         case Z2BGM_DEATH_MOUNTAIN01:
             volume = Z2Calc::getParamByExp(link_y, sDeathMtTop, sDeathMtBottom, 0.3f, 0.0f, 1.0f,
@@ -1501,7 +1500,7 @@ void Z2SeqMgr::processBgmFramework() {
         case Z2BGM_ZORA_VILLAGE:
         case Z2BGM_FISHING:
         case Z2BGM_LAKE:
-            f32 depth = Z2GetStatusMgr()->getCameraInWaterDepth();
+            depth = Z2GetStatusMgr()->getCameraInWaterDepth();
             if (depth > sUnderWaterDepthMax) {
                 field_0x84.forceOut();
             } else if (depth > 0.0f) {
@@ -1592,7 +1591,7 @@ void Z2SeqMgr::processBgmFramework() {
         f32 volume = base_vol * mMainBgmMaster.get() * mSceneBgm.get();
         mStreamBgmHandle->getAuxiliary().moveVolume(volume, 0);
     }
-    i_setWindStoneVol(1.0f, 30);
+    setWindStoneVol(1.0f, 30);
 }
 
 /* 802B3EAC-802B3F40 2AE7EC 0094+00 0/0 2/2 0/0 .text            checkBgmIDPlaying__8Z2SeqMgrFUl */
@@ -1969,7 +1968,7 @@ void Z2SeqMgr::stopBattleBgm(u8 param_0, u8 param_1) {
 
 /* 802B545C-802B556C 2AFD9C 0110+00 1/1 0/0 0/0 .text            fieldBgmStart__8Z2SeqMgrFv */
 void Z2SeqMgr::fieldBgmStart() {
-    if (Z2GetSceneMgr()->isSceneExist() && mFlags.flag5) {
+    if (Z2GetSceneMgr()->isSceneExist() && mFlags.mFieldBgmPlay) {
         if (Z2GetStatusMgr()->checkDayTime()) {
             Z2GetSoundMgr()->startSound(Z2BGM_FIELD_LINK_DAY, &mMainBgmHandle, NULL);
             changeBgmStatus(0);
@@ -2046,7 +2045,7 @@ void Z2SeqMgr::fieldBgmFramework() {
     if (Z2GetSceneMgr()->isSceneExist() && !Z2GetSceneMgr()->isInDarkness()
         && (Z2GetSceneMgr()->getCurrentSceneNum() == 0x1e
             || Z2GetSceneMgr()->getCurrentSceneNum() == 0x1f)
-        && mFlags.flag5)
+        && mFlags.mFieldBgmPlay)
     {
         if (mRideCount != 0) {
             mRideCount--;
@@ -2228,7 +2227,6 @@ void Z2SeqMgr::bgmNowBattle(f32 param_0) {
 void Z2SeqMgr::taktModeMute() {
     mBgmPause.move(0.3f, 10);
 }
-
 
 /* 802B5ED4-802B5F1C 2B0814 0048+00 0/0 1/1 0/0 .text            taktModeMuteOff__8Z2SeqMgrFv */
 void Z2SeqMgr::taktModeMuteOff() {

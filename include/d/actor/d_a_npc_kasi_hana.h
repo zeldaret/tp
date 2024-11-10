@@ -26,7 +26,7 @@ public:
     /* 80A1C9D0 */ void setParam();
     /* 80A1CA60 */ void main();
     /* 80A1CD28 */ void setAttnPos();
-    /* 80A1CED0 */ void setMotionAnm(int, f32);
+    /* 80A1CED0 */ bool setMotionAnm(int, f32);
     /* 80A1CFA0 */ void setMotion(int, f32, int);
     /* 80A1CFE8 */ bool drawDbgInfo();
     /* 80A1CFF0 */ void reset();

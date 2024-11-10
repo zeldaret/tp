@@ -6,23 +6,6 @@
 #include "JSystem/JAudio2/JAISe.h"
 #include "JSystem/JAudio2/JAIAudience.h"
 #include "JSystem/JAudio2/JAISeMgr.h"
-#include "dolphin/types.h"
-
-//
-// Types:
-//
-
-//
-// Forward References:
-//
-
-//
-// External References:
-//
-
-//
-// Declarations:
-//
 
 /* 8029F03C-8029F0F8 29997C 00BC+00 0/0 1/1 0/0 .text
  * __ct__5JAISeFP8JAISeMgrP27JAISoundStrategyMgr<5JAISe>Ul      */
@@ -31,7 +14,6 @@ JAISe::JAISe(JAISeMgr* param_0, JAISoundStrategyMgr<JAISe>* param_1, u32 param_2
     inner_.seMgr = param_0;
     inner_.mProperPriority = param_2;
 }
-
 
 /* 8029F0F8-8029F214 299A38 011C+00 1/1 0/0 0/0 .text            mixOut___5JAISeFRC14JASSoundParams
 */

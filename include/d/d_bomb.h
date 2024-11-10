@@ -32,9 +32,9 @@ public:
     static bool checkWaterBomb(fopAc_ac_c*);
     static bool checkInsectBombMove(fopAc_ac_c*);
 
-    virtual BOOL checkExplodeNow();
-    virtual void deleteBombAndEffect();
-    virtual void setCargoBombExplode();
+    virtual BOOL checkExplodeNow() { return FALSE; }
+    virtual void deleteBombAndEffect() {}
+    virtual void setCargoBombExplode() {}
 
     bool checkStateExplode() { return fopAcM_GetParam(this) == 0; }
 
@@ -56,6 +56,11 @@ public:
 
     static fopAc_ac_c* createFlowerBomb(cXyz* i_pos, csXyz* i_angle, int param_2) {
         return (fopAc_ac_c*)fopAcM_fastCreate(PROC_NBOMB, 4, i_pos, param_2, i_angle, NULL, -1,
+                                              NULL, NULL);
+    }
+
+    static fopAc_ac_c* createInsectBombPlayer(cXyz* i_pos) {
+        return (fopAc_ac_c*)fopAcM_fastCreate(PROC_NBOMB, 10, i_pos, -1, NULL, NULL, -1,
                                               NULL, NULL);
     }
 

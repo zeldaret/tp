@@ -4,87 +4,14 @@
 //
 
 #include "JSystem/JAudio2/JASAudioThread.h"
+#include "JSystem/JAudio2/JASAiCtrl.h"
+#include "JSystem/JAudio2/JASDriverIF.h"
+#include "JSystem/JAudio2/JASDSPChannel.h"
+#include "JSystem/JAudio2/JASDSPInterface.h"
 #include "JSystem/JAudio2/JASHeapCtrl.h"
+#include "JSystem/JAudio2/JASProbe.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
-#include "dol2asm.h"
 #include "dolphin/dsp.h"
-
-//
-// Types:
-//
-
-struct JASProbe {
-    /* 80290EE4 */ static void start(s32, char const*);
-    /* 80290F24 */ static void stop(s32);
-};
-
-/* JASMemPool_MultiThreaded<JASChannel> */
-struct JASMemPool_MultiThreaded__template2 {
-    /* 802978DC */ void func_802978DC(void* _this);
-};
-
-
-
-struct JASDsp {
-    /* 8029D958 */ static void boot(void (*)(void*));
-    /* 8029D9C4 */ static void finishWork(u16);
-    /* 8029DAC8 */ static void initBuffer();
-};
-
-struct JASDSPChannel {
-    /* 8029D3C8 */ static void initAll();
-};
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__14JASAudioThreadFiiUl();
-extern "C" void create__14JASAudioThreadFl();
-extern "C" void stop__14JASAudioThreadFv();
-extern "C" void run__14JASAudioThreadFv();
-extern "C" void DMACallback__14JASAudioThreadFv();
-extern "C" void DSPCallback__14JASAudioThreadFPv();
-extern "C" void __dt__14JASAudioThreadFv();
-extern "C" extern char const* const JASAudioThread__stringBase0;
-extern "C" u8 snIntCount__14JASAudioThread[4 + 4 /* padding */];
-
-//
-// External References:
-//
-
-extern "C" void __ct__17JASGenericMemPoolFv();
-extern "C" void newMemPool__17JASGenericMemPoolFUli();
-extern "C" void start__8JASProbeFlPCc();
-extern "C" void stop__8JASProbeFl();
-extern "C" void func_802978DC(void* _this);
-extern "C" void initAI__9JASDriverFPFv_v();
-extern "C" void startDMA__9JASDriverFv();
-extern "C" void stopDMA__9JASDriverFv();
-extern "C" void updateDac__9JASDriverFv();
-extern "C" void updateDSP__9JASDriverFv();
-extern "C" void finishDSPFrame__9JASDriverFv();
-extern "C" void initAll__13JASDSPChannelFv();
-extern "C" void boot__6JASDspFPFPv_v();
-extern "C" void finishWork__6JASDspFUs();
-extern "C" void initBuffer__6JASDspFv();
-extern "C" void updateDacCallback__9JASDriverFv();
-extern "C" void* __nw__FUlP7JKRHeapi();
-extern "C" void __dl__FPv();
-extern "C" void __ct__9JKRThreadFP7JKRHeapUlii();
-extern "C" void __dt__9JKRThreadFv();
-extern "C" void __register_global_object();
-extern "C" extern u8 data_80431B34[16 + 4 /* padding */];
-extern "C" extern u8 struct_80451260[8];
-extern "C" u8 sSystemHeap__7JKRHeap[4];
-extern "C" u8 sCurrentHeap__7JKRHeap[4];
-extern "C" extern u8 __OSReport_disable;
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
 
 /* 8029CCDC-8029CD4C 29761C 0070+00 1/1 0/0 0/0 .text            __ct__14JASAudioThreadFiiUl */
 JASAudioThread::JASAudioThread(int stackSize, int msgCount, u32 threadPriority)
@@ -108,16 +35,6 @@ void JASAudioThread::stop() {
     jamMessageBlock((void*)2);
 }
 
-/* ############################################################################################## */
-/* 8039B338-8039B338 027998 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039B338 = "SFR_DSP";
-#pragma pop
-
-/* 80431C68-80431C78 05E988 000C+04 1/1 0/0 0/0 .bss             @205 */
-static u8 lit_205[12 + 4 /* padding */];
-
 /* 804512D8-804512E0 0007D8 0004+04 1/1 2/2 0/0 .sbss            snIntCount__14JASAudioThread */
 volatile int JASAudioThread::snIntCount;
 
@@ -138,8 +55,7 @@ class JASChannel {
 };
 
 /* 8029CDEC-8029CF68 29772C 017C+00 1/0 0/0 0/0 .text            run__14JASAudioThreadFv */
-// Maybe location of JASPoolAllocObject_MultiThreaded<JASChannel>
-#ifdef NONMATCHING
+// NONMATCHING location of JASPoolAllocObject_MultiThreaded<JASChannel>
 void* JASAudioThread::run() {
     OSInitFastCast();
     JASDriver::initAI(DMACallback);
@@ -181,19 +97,6 @@ void* JASAudioThread::run() {
         }
     }
 }
-#else
-void* JASAudioThread::run() {
-    // NONMATCHING
-}
-#endif
-/* ############################################################################################## */
-/* 8039B338-8039B338 027998 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039B340 = "UPDATE-DAC";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039B34B = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
-#pragma pop
 
 /* 8029CF68-8029CFBC 2978A8 0054+00 1/1 0/0 0/0 .text            DMACallback__14JASAudioThreadFv */
 void JASAudioThread::DMACallback() {

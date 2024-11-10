@@ -72,14 +72,14 @@ private:
     /* 0x024 */ J2DScreen* mpSdwScreen;
     /* 0x028 */ J2DScreen* mpLetterScreen[2];
     /* 0x030 */ J2DScreen* mpIconScreen;
-    /* 0x034 */ J2DTextBox* field_0x34[6][5];
+    /* 0x034 */ J2DPane* field_0x34[6][5];
     /* 0x0AC */ J2DTextBox* field_0xac[6][5];
     /* 0x124 */ J2DTextBox* field_0x124[6][4];
     /* 0x184 */ J2DTextBox* field_0x184[6][4];
     /* 0x1E4 */ J2DTextBox* field_0x1e4[2];
     /* 0x1EC */ J2DTextBox* field_0x1ec;
     /* 0x1F0 */ J2DTextBox* field_0x1f0[9];
-    /* 0x214 */ J2DTextBox* mpPageLight[9];
+    /* 0x214 */ J2DPicture* mpPageLight[9];
     /* 0x238 */ J2DTextBox* field_0x238[9];
     /* 0x25C */ J2DTextBox* field_0x25c[12];
     /* 0x28C */ J2DTextBox* mpAButtonString[5];

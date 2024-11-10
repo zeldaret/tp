@@ -520,6 +520,8 @@ public:
     }
 
     f32 getCameraZoomForcus(int i_no) { return mCameraInfo[i_no].mCameraZoomForcus; }
+
+    f32 getCameraZoomScale(int i_no) { return mCameraInfo[i_no].mCameraZoomScale; }
     void setCameraZoomScale(int i_no, f32 i_scale) { mCameraInfo[i_no].mCameraZoomScale = i_scale; }
 
     void saveCameraPosition(int i, cXyz* i_pos, cXyz* i_target, f32 i_fovy, s16 i_bank) {
@@ -1523,6 +1525,14 @@ inline void dComIfGs_onLetterGetFlag(int i_no) {
     g_dComIfG_gameInfo.info.getPlayer().getLetterInfo().onLetterGetFlag(i_no);
 }
 
+inline int dComIfGs_isLetterReadFlag(int i_no) {
+    return g_dComIfG_gameInfo.info.getPlayer().getLetterInfo().isLetterReadFlag(i_no);
+}
+
+inline void dComIfGs_onLetterReadFlag(int i_no) {
+    g_dComIfG_gameInfo.info.getPlayer().getLetterInfo().onLetterReadFlag(i_no);
+}
+
 inline u8 dComIfGs_getArrowNum() {
     return g_dComIfG_gameInfo.info.getPlayer().getItemRecord().getArrowNum();
 }
@@ -1581,6 +1591,10 @@ inline bool dComIfGs_isCollectMirror(u8 i_item) {
 
 inline bool dComIfGs_isCollectCrystal(u8 i_item) {
     return g_dComIfG_gameInfo.info.getPlayer().getCollect().isCollectCrystal(i_item);
+}
+
+inline bool dComIfGs_isCollectShield(u8 i_item) {
+    return g_dComIfG_gameInfo.info.getPlayer().getCollect().isCollect(2, i_item);
 }
 
 inline void dComIfGs_onCollectMirror(u8 i_item) {
@@ -2052,6 +2066,10 @@ inline void dComIfGp_att_CatchRequest(fopAc_ac_c* param_0, u8 param_1, f32 i_hor
                                       f32 i_upDist, f32 i_downDist, s16 i_angle, int param_5) {
     dComIfGp_getAttention().CatchRequest(param_0, param_1, i_horizontalDist, i_upDist,
                                          i_downDist, i_angle, param_5);
+}
+
+inline fopAc_ac_c* dComIfGp_att_getLookTarget() {
+    return dComIfGp_getAttention().getLookTarget();
 }
 
 inline J2DGrafContext* dComIfGp_getCurrentGrafPort() {
@@ -2618,6 +2636,14 @@ inline int dComIfGp_getStagePlightNumInfo() {
     return g_dComIfG_gameInfo.play.getStage().getPlightNumInfo();
 }
 
+inline s16 dComIfGp_getStageWorldRollAngleX() {
+    return g_dComIfG_gameInfo.play.getStage().getWorldRollAngleX();
+}
+
+inline s16 dComIfGp_getStageWorldRollDirAngleY() {
+    return g_dComIfG_gameInfo.play.getStage().getWorldRollDirAngleY();
+}
+
 inline u8 dComIfGp_isHeapLockFlag() {
     return g_dComIfG_gameInfo.play.isHeapLockFlag();
 }
@@ -2713,6 +2739,10 @@ inline void dComIfGp_setCameraInfo(int camIdx, camera_class* p_cam, int param_2,
 
 inline void dComIfGp_setCameraZoomScale(int i_no, f32 i_scale) {
     g_dComIfG_gameInfo.play.setCameraZoomScale(i_no, i_scale);
+}
+
+inline f32 dComIfGp_getCameraZoomScale(int i_no) {
+    return g_dComIfG_gameInfo.play.getCameraZoomScale(i_no);
 }
 
 inline f32 dComIfGp_getCameraZoomForcus(int i_no) {
@@ -3363,23 +3393,19 @@ inline void dComIfGp_event_setTalkPartner(fopAc_ac_c* i_actor) {
 }
 
 inline fopAc_ac_c* dComIfGp_event_getTalkPartner() {
-    u32 t = g_dComIfG_gameInfo.play.getEvent().mPtT;
-    return g_dComIfG_gameInfo.play.getEvent().convPId(t);
+    return g_dComIfG_gameInfo.play.getEvent().getPtT();
 }
 
 inline fopAc_ac_c* dComIfGp_event_getItemPartner() {
-    u32 i = g_dComIfG_gameInfo.play.getEvent().mPtI;
-    return g_dComIfG_gameInfo.play.getEvent().convPId(i);
+    return g_dComIfG_gameInfo.play.getEvent().getPtI();
 }
 
 inline fopAc_ac_c* dComIfGp_event_getPt1() {
-    u32 pt1 = g_dComIfG_gameInfo.play.getEvent().mPt1;
-    return g_dComIfG_gameInfo.play.getEvent().convPId(pt1);
+    return g_dComIfG_gameInfo.play.getEvent().getPt1();
 }
 
 inline fopAc_ac_c* dComIfGp_event_getPt2() {
-    u32 pt2 = g_dComIfG_gameInfo.play.getEvent().mPt2;
-    return g_dComIfG_gameInfo.play.getEvent().convPId(pt2);
+    return g_dComIfG_gameInfo.play.getEvent().getPt2();
 }
 
 inline BOOL dComIfGp_event_runCheck() {

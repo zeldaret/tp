@@ -100,9 +100,12 @@ public:
     }
 
     MtxP getLegR3Mtx() { return mLegR3Mtx; }
+    MtxP getMidnaLocaterMtx() { return mpMorf->getModel()->getAnmMtx(4); }
 
 private:
-    /* 0x568 */ u8 field_0x568[0x620 - 0x568];
+    /* 0x568 */ u8 field_0x568[8];
+    /* 0x570 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x574 */ u8 field_0x574[0x620 - 0x574];
     /* 0x620 */ Mtx mLegR3Mtx;
     /* 0x650 */ u8 field_0x650[0x6E1 - 0x650];
     /* 0x6E1 */ u8 field_0x6e1;

@@ -23,10 +23,11 @@ public:
     /* 802A40B8 */ void stopSoundID(JAISoundID);
     /* 802A4118 */ void mixOut();
     /* 802A4174 */ JAIStream* newStream_();
-    /* 802B9978 */ bool isActive() const;
+    /* 802B9978 */ bool isActive() const { return mStreamList.getNumLinks() != 0; }
 
     JAISoundParamsMove* getParams() { return &mParams; }
     JAIStreamAramMgr* getStreamAramMgr() { return mStreamAramMgr; }
+    JSUList<JAIStream>* getStreamList() { return &mStreamList; }
     void setStreamDataMgr(JAIStreamDataMgr* param_0) {
         JUT_ASSERT(139, !isActive());
         streamDataMgr_ = param_0;

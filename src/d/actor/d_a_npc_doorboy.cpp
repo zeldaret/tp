@@ -908,7 +908,7 @@ void daNpcDoorBoy_c::lookat() {
 
 /* 809ACFF8-809AD0C8 002458 00D0+00 1/0 0/0 0/0 .text            setMotionAnm__14daNpcDoorBoy_cFif
  */
-void daNpcDoorBoy_c::setMotionAnm(int param_0, f32 param_1) {
+bool daNpcDoorBoy_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 

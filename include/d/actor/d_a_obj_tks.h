@@ -33,7 +33,7 @@ public:
     /* 80D106C8 */ void setExpression(int, f32);
     /* 80D106F4 */ void talk();
     /* 80D10A80 */ void demo();
-    /* 80D11104 */ void setMotionAnm(int, f32);
+    /* 80D11104 */ bool setMotionAnm(int, f32);
     /* 80D11228 */ void warp();
     /* 80D11670 */ void setParam();
     /* 80D116C8 */ void main();
@@ -43,8 +43,12 @@ public:
     /* 80D11E94 */ bool drawDbgInfo();
     /* 80D11E9C */ void drawOtherMdls();
 
+    void setStart() { field_0xde0 = 1; }
+
 private:
-    /* 0x568 */ u8 field_0x568[0xDE4 - 0x568];
+    /* 0x568 */ u8 field_0x568[0xDE0 - 0x568];
+    /* 0xDE0 */ u8 field_0xde0;
+    /* 0xDE1 */ u8 field_0xde1[0xDE4 - 0xDE1];
 };
 
 STATIC_ASSERT(sizeof(daObjTks_c) == 0xDE4);

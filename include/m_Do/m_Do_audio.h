@@ -3,6 +3,7 @@
 
 #include "Z2AudioLib/Z2AudioMgr.h"
 #include "Z2AudioLib/Z2EnvSeMgr.h"
+#include "Z2AudioLib/Z2Creature.h"
 
 class mDoAud_zelAudio_c : public Z2AudioMgr {
 public:
@@ -46,6 +47,10 @@ inline void mDoAud_bgmStart(u32 i_bgmID) {
 
 inline void mDoAud_subBgmStart(u32 i_bgmID) {
     Z2AudioMgr::getInterface()->subBgmStart(i_bgmID);
+}
+
+inline void mDoAud_subBgmStop() {
+    Z2AudioMgr::getInterface()->subBgmStop();
 }
 
 inline void mDoAud_bgmNowBattle(f32 param_0) {
@@ -150,6 +155,12 @@ inline void mDoAud_getCameraMapInfo(u32 param_0) {
 
 inline void mDoAud_setCameraGroupInfo(u8 param_0) {
     Z2AudioMgr::getInterface()->setCameraGroupInfo(param_0);
+}
+
+inline void mDoAud_setLinkShieldType(s32 param_0, s32 param_1) {
+    if (Z2GetLink() != NULL) {
+        Z2GetLink()->setLinkShieldType(param_0, param_1);
+    }
 }
 
 inline void mDoAud_mEnvse_framework() {

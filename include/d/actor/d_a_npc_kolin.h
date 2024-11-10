@@ -11,7 +11,7 @@
  * @details
  *
  */
-class daNpc_Kolin_c : public fopAc_ac_c {
+class daNpc_Kolin_c : public daNpcT_c {
 public:
     /* 80553FEC */ ~daNpc_Kolin_c();
     /* 80554138 */ void create();
@@ -24,21 +24,7 @@ public:
     /* 80554A90 */ void getType();
     /* 80554B30 */ void isDelete();
     /* 80554CB0 */ void reset();
-    /* 80554EBC */ void afterJntAnm(int);
-    /* 80554F48 */ void setParam();
-    /* 80555118 */ void checkChangeEvt();
-    /* 8055523C */ void setAfterTalkMotion();
     /* 805552DC */ void srchActors();
-    /* 80555448 */ void evtTalk();
-    /* 805554E8 */ void evtCutProc();
-    /* 805555B0 */ void action();
-    /* 8055574C */ void beforeMove();
-    /* 80555810 */ void setAttnPos();
-    /* 80555B48 */ void setCollision();
-    /* 80555CE4 */ bool drawDbgInfo();
-    /* 80555CEC */ void drawOtherMdl();
-    /* 80555DC4 */ void changeAnm(int*, int*);
-    /* 80555DEC */ void changeBck(int*, int*);
     /* 80555E38 */ void selectAction();
     /* 80555F28 */ void chkAction(int (daNpc_Kolin_c::*)(void*));
     /* 80555F54 */ void setAction(int (daNpc_Kolin_c::*)(void*));
@@ -64,20 +50,62 @@ public:
                                  daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
                                  daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
                                  daNpcT_evtData_c const*, char**);
-    /* 8055A498 */ s32 getEyeballMaterialNo();
-    /* 8055A4A0 */ s32 getHeadJointNo();
-    /* 8055A4A8 */ s32 getNeckJointNo();
-    /* 8055A4B0 */ bool getBackboneJointNo();
-    /* 8055A4B8 */ void checkChangeJoint(int);
-    /* 8055A4C8 */ void checkRemoveJoint(int);
-    /* 8055A4D8 */ s32 getFootLJointNo();
-    /* 8055A4E0 */ s32 getFootRJointNo();
+
+    /* 8055A4B8 */ virtual int checkChangeJoint(int);
+    /* 8055A4C8 */ virtual int checkRemoveJoint(int);
+    /* 8055A4B0 */ virtual s32 getBackboneJointNo();
+    /* 8055A4A8 */ virtual s32 getNeckJointNo();
+    /* 8055A4A0 */ virtual s32 getHeadJointNo();
+    /* 8055A4D8 */ virtual s32 getFootLJointNo();
+    /* 8055A4E0 */ virtual s32 getFootRJointNo();
+    /* 8055A498 */ virtual s32 getEyeballMaterialNo();
+    /* 80554EBC */ virtual void afterJntAnm(int);
+    /* 80554F48 */ virtual void setParam();
+    /* 80555118 */ virtual bool checkChangeEvt();
+    /* 80555448 */ virtual bool evtTalk();
+    /* 805554E8 */ virtual bool evtCutProc();
+    /* 8055523C */ virtual void setAfterTalkMotion();
+    /* 805555B0 */ virtual void action();
+    /* 8055574C */ virtual void beforeMove();
+    /* 80555810 */ virtual void setAttnPos();
+    /* 80555B48 */ virtual void setCollision();
+    /* 80555CE4 */ virtual int drawDbgInfo();
+    /* 80555CEC */ virtual void drawOtherMdl();
+    /* 80555DC4 */ virtual void changeAnm(int*, int*);
+    /* 80555DEC */ virtual void changeBck(int*, int*);
 
     static void* mCutNameList[11];
     static u8 mCutList[132];
 
+    BOOL orderNoRideEvt() {
+        if (field_0xf84 == 11) {
+            s16 var_r28 = (s16)(fopAcM_searchPlayerAngleY(this) - home.angle.y);
+            int var_r29 = 3;
+
+            if (var_r28 < 0) {
+                var_r29 = 2;
+            }
+
+            if (strlen(field_0x570[var_r29].eventName) != 0) {
+                u32 len = strlen(field_0x574[field_0x570[var_r29].num]);
+                if (len != 0) {
+                    eventInfo.setArchiveName(field_0x574[field_0x570[var_r29].num]);
+                    dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
+                }
+
+                field_0xe1c = dComIfGp_getEventManager().getEventIdx(this, field_0x570[var_r29].eventName, 0xFF);
+                fopAcM_orderOtherEventId(this, field_0xe1c, 0xFF, 0xFFFF, 4, 1);
+                return 1;
+            }
+        }
+
+        return 0;
+    }
+
 private:
-    /* 0x568 */ u8 field_0x568[0x1020 - 0x568];
+    /* 0x0E40 */ u8 field_0xe40[0xF84 - 0xE40];
+    /* 0x0F84 */ u8 field_0xf84;
+    /* 0x0F85 */ u8 field_0xf85[0x1020 - 0xF85];
 };
 
 STATIC_ASSERT(sizeof(daNpc_Kolin_c) == 0x1020);

@@ -15,7 +15,7 @@ class JKRSolidHeap;
 struct JASDisposer {
     JASDisposer() {}
     /* 8029A7B8 */ virtual ~JASDisposer() {}
-    /* 80290BCC */ virtual void onDispose();
+    /* 80290BCC */ virtual void onDispose() {}
 };
 
 #define DIR_MAX 64
@@ -45,14 +45,16 @@ struct JASWaveArc : JASDisposer {
     /* 8029A404 */ bool sendLoadCmd();
     /* 8029A4C0 */ bool load(JASHeap*);
     /* 8029A580 */ bool loadTail(JASHeap*);
-    /* 8029A640 */ void erase();
+    /* 8029A640 */ bool erase();
     /* 8029A6AC */ void setEntryNum(s32);
     /* 8029A70C */ void setFileName(char const*);
 
     /* 8029A1B4 */ virtual ~JASWaveArc();
     /* 8029A664 */ virtual void onDispose();
-    /* 80298FA0 */ virtual void onLoadDone();
-    /* 80298FA4 */ virtual void onEraseDone();
+    /* 80298FA0 */ virtual void onLoadDone() {}
+    /* 80298FA4 */ virtual void onEraseDone() {}
+
+    s32 getStatus() { return mStatus; }
 
     struct loadToAramCallbackParams {
         // not official struct name
@@ -64,7 +66,7 @@ struct JASWaveArc : JASDisposer {
 
     /* 0x04 */ JASHeap mHeap;
     /* 0x48 */ u32 _48;
-    /* 0x4C */ volatile s32 _4c;
+    /* 0x4C */ volatile s32 mStatus;
     /* 0x50 */ int mEntryNum;
     /* 0x54 */ u32 mFileLength;
     /* 0x58 */ u16 _58;

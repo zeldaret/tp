@@ -21,8 +21,8 @@ public:
         /* 800310C8 */ u8 check(fopAc_ac_c*);
         /* 80031038 */ bool check(cXyz const&);
         /* 80031150 */ void execute();
-        /* 80031F28 */ ~data_c();
-        /* 80031F64 */ data_c();
+        /* 80031F28 */ ~data_c() {}
+        /* 80031F64 */ data_c() { reset(); }
 
         void setNext(data_c* i_next) { mpNext = i_next; }
         data_c* getNext() { return mpNext; }
@@ -44,7 +44,7 @@ public:
     public:
         /* 80031190 */ void add(daSus_c::data_c*);
         /* 800311FC */ void reset();
-        /* 80031EE4 */ room_c();
+        /* 80031EE4 */ room_c() { init(); }
         void init() { mpData = NULL; }
 
         /* 0x0 */ data_c* mpData;
@@ -68,8 +68,8 @@ public:
     u8 getSw() { return fopAcM_GetParam(this) & 0xFF; }
     u8 getRoom() { return fopAcM_GetParam(this) >> 10; }
 
-    static u8 mData[1152];
-    static u8 mRoom[256];
+    static data_c mData[0x20];
+    static room_c mRoom[0x40];
     static s16 mSetTop;
 };
 

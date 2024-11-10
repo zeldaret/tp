@@ -163,29 +163,38 @@ struct TParseData : public data::TParse_TParagraph_data::TData {
         set(data);
     }
 
+    TParseData() {
+        set(NULL);
+    }
+
     void set(const data::TParse_TParagraph_data& data) {
         data.getData(this);
     }
 
     bool isEnd() const {
-        return _0 == 0;
+        return status == 0;
     }
 
     bool empty() const {
-        return _c == NULL;
+        return fileCount == NULL;
     }
 
     bool isValid() const {
-        return !empty() && _0 == 50;
+        return !empty() && status == 50;
     }
+
+    const void* getContent() const { return fileCount; }
+
+    u32 size() const { return dataSize; }
 };
 
 template <int T, class Iterator=JGadget::binary::TValueIterator_raw<u8> >
 struct TParseData_fixed : public TParseData<T> {
     TParseData_fixed(const void* pContent) : TParseData<T>(pContent) {}
+    TParseData_fixed() : TParseData<T>() {}
 
     const void* getNext() const {
-        return fileCount;
+        return _10;
     }
 
     bool isValid() const {
@@ -195,6 +204,19 @@ struct TParseData_fixed : public TParseData<T> {
     Iterator begin() {
         return Iterator(fileCount);
     }
+
+    Iterator end() {
+        Iterator i(fileCount);
+        i += size();
+        return i;
+    }
+};
+
+struct TParseData_string : public TParseData<0x60> {
+    TParseData_string(const void* pContent) : TParseData<0x60>(pContent) {}
+    TParseData_string() : TParseData<0x60>() {}
+
+    const char* getData() const { return (const char*)getContent(); }
 };
 
 }  // namespace stb

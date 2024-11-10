@@ -71,8 +71,12 @@ public:
     /* 8060EAE0 */ void CreateHeap();
     /* 8060F0D0 */ void create();
 
+    bool isDown() { return field_0xb01 != 0; }
+
 private:
-    /* 0x5ac */ u8 field_0x5ac[0x26cc - 0x5ac];
+    /* 0x05AC */ u8 field_0x5ac[0xB01 - 0x5AC];
+    /* 0x0B01 */ u8 field_0xb01;
+    /* 0x0B02 */ u8 field_0xb02[0x26CC - 0xB02];
 };
 
 STATIC_ASSERT(sizeof(daB_MGN_c) == 0x26cc);

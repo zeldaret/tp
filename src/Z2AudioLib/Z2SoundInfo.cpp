@@ -6,71 +6,21 @@
 #include "Z2AudioLib/Z2SoundInfo.h"
 #include "JSystem/JAudio2/JAISeq.h"
 #include "JSystem/JAudio2/JAISe.h"
+#include "JSystem/JAudio2/JAISoundChild.h"
+#include "JSystem/JAudio2/JAIStream.h"
 #include "JSystem/JAudio2/JAUSoundTable.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "Z2AudioLib/Z2Calc.h"
-#include "dol2asm.h"
 #include "dolphin/dvd.h"
 
-//
-// Types:
-//
-
 struct JAUStdSoundTableType {
-    static u32 STRM_CH_SHIFT;
+    static const u32 STRM_CH_SHIFT;
     struct StringOffset {
         static inline const char* getString(const void* addr, u32 offset) {
             return (const char*)addr + offset;
         }
     };
 };
-
-//
-// Forward References:
-//
-
-extern "C" void getBgmSeqResourceID__11Z2SoundInfoCF10JAISoundID();
-extern "C" void getSoundType__11Z2SoundInfoCF10JAISoundID();
-extern "C" void getCategory__11Z2SoundInfoCF10JAISoundID();
-extern "C" void getPriority__11Z2SoundInfoCF10JAISoundID();
-extern "C" void getAudibleSwFull__11Z2SoundInfoF10JAISoundID();
-extern "C" void getAudibleSw__11Z2SoundInfoCF10JAISoundID();
-extern "C" void getSeInfo__11Z2SoundInfoCF10JAISoundIDP5JAISe();
-extern "C" void getSeqInfo__11Z2SoundInfoCF10JAISoundIDP6JAISeq();
-extern "C" void getStreamInfo__11Z2SoundInfoCF10JAISoundIDP9JAIStream();
-extern "C" void getStreamFilePath__11Z2SoundInfoF10JAISoundID();
-extern "C" void getStreamFileEntry__11Z2SoundInfoF10JAISoundID();
-extern "C" void getSwBit__11Z2SoundInfoCF10JAISoundID();
-extern "C" void getSoundInfo___11Z2SoundInfoCF10JAISoundIDP8JAISound();
-extern "C" void __dt__11Z2SoundInfoFv();
-extern "C" static void func_802BBCBC();
-extern "C" static void func_802BBCC4();
-extern "C" static void func_802BBCCC();
-extern "C" static void func_802BBCD4();
-extern "C" u32 STRM_CH_SHIFT__20JAUStdSoundTableType;
-
-//
-// External References:
-//
-
-extern "C" void __dt__12JAISoundInfoFv();
-extern "C" void __dt__16JAIStreamDataMgrFv();
-extern "C" void getTypeID__13JAUSoundTableCF10JAISoundID();
-extern "C" void getData__13JAUSoundTableCF10JAISoundID();
-extern "C" void linearTransform__6Z2CalcFfffffb();
-extern "C" void getRandom_0_1__6Z2CalcFv();
-extern "C" void __dl__FPv();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__12JAUSoundInfo[4 + 1 /* padding */];
-extern "C" extern u8 data_80450B58[4];
-extern "C" extern u8 __OSReport_disable;
 
 /* 802BB00C-802BB090 2B594C 0084+00 2/1 0/0 0/0 .text
  * getBgmSeqResourceID__11Z2SoundInfoCF10JAISoundID             */
@@ -123,6 +73,7 @@ u32 Z2SoundInfo::getPriority(JAISoundID param_0) const {
 JAUAudibleParam Z2SoundInfo::getAudibleSwFull(JAISoundID param_0) {
     JAUAudibleParam local_28;
     JUT_ASSERT(82, isValid());
+    int iVar1, uVar7;
     switch (JASGlobalInstance<JAUSoundTable>::getInstance()->getTypeID(param_0)) {
     case 81:
         local_28.field_0x0.bytes.b0_0 = (u32)getSwBit(param_0) >> 8;
@@ -157,8 +108,7 @@ JAUAudibleParam Z2SoundInfo::getAudibleSwFull(JAISoundID param_0) {
             local_28.field_0x0.bytes.b1_1 = 1;
         }
 
-        int iVar1;
-        int uVar7 = 0;
+        uVar7 = 0;
         if ((getSwBit(param_0) & 0x80000) != 0) {
             uVar7 = 8;
         }
@@ -188,6 +138,7 @@ JAUAudibleParam Z2SoundInfo::getAudibleSwFull(JAISoundID param_0) {
 u16 Z2SoundInfo::getAudibleSw(JAISoundID param_0) const {
     JAUAudibleParam local_28;
     JUT_ASSERT(184, isValid());
+    int iVar1, uVar7;
     switch (JASGlobalInstance<JAUSoundTable>::getInstance()->getTypeID(param_0)) {
     case 81:
         local_28.field_0x0.bytes.b0_0 = (u32)getSwBit(param_0) >> 8;
@@ -222,8 +173,7 @@ u16 Z2SoundInfo::getAudibleSw(JAISoundID param_0) const {
             local_28.field_0x0.bytes.b1_1 = 1;
         }
 
-        int iVar1;
-        int uVar7 = 0;
+        uVar7 = 0;
         if ((getSwBit(param_0) & 0x80000) != 0) {
             uVar7 = 8;
         }
@@ -241,40 +191,6 @@ u16 Z2SoundInfo::getAudibleSw(JAISoundID param_0) const {
     }
     return local_28.field_0x0.half.f0;
 }
-
-/* ############################################################################################## */
-/* 80455A68-80455A6C 004068 0004+00 1/1 0/0 0/0 .sdata2          @963 */
-SECTION_SDATA2 static f32 lit_963 = 8.0f;
-
-/* 80455A6C-80455A70 00406C 0004+00 1/1 0/0 0/0 .sdata2          @964 */
-SECTION_SDATA2 static f32 lit_964 = 15.0f;
-
-/* 80455A70-80455A74 004070 0004+00 1/1 0/0 0/0 .sdata2          @965 */
-SECTION_SDATA2 static f32 lit_965 = 16.0f;
-
-/* 80455A74-80455A78 004074 0004+00 1/1 0/0 0/0 .sdata2          @966 */
-SECTION_SDATA2 static f32 lit_966 = 24.0f;
-
-/* 80455A78-80455A7C 004078 0004+00 1/1 0/0 0/0 .sdata2          @967 */
-SECTION_SDATA2 static f32 lit_967 = 48.0f;
-
-/* 80455A7C-80455A80 00407C 0004+00 2/2 0/0 0/0 .sdata2          @968 */
-SECTION_SDATA2 static u8 lit_968[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80455A80-80455A88 004080 0004+04 2/2 0/0 0/0 .sdata2          @969 */
-SECTION_SDATA2 static f32 lit_969[1 + 1 /* padding */] = {
-    1.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 80455A88-80455A90 004088 0008+00 2/2 0/0 0/0 .sdata2          @973 */
-SECTION_SDATA2 static f64 lit_973 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 802BB6DC-802BB8B4 2B601C 01D8+00 1/0 0/0 0/0 .text
  * getSeInfo__11Z2SoundInfoCF10JAISoundIDP5JAISe                */
@@ -309,24 +225,18 @@ void Z2SoundInfo::getSeInfo(JAISoundID param_1, JAISe* param_2) const {
     }
 }
 
-
 /* 802BB8B4-802BB8E0 2B61F4 002C+00 1/0 0/0 0/0 .text
  * getSeqInfo__11Z2SoundInfoCF10JAISoundIDP6JAISeq              */
 void Z2SoundInfo::getSeqInfo(JAISoundID param_0, JAISeq* param_1) const {
     getSoundInfo_(param_0, param_1);
 }
 
-/* ############################################################################################## */
 /* 80455A90-80455A94 004090 0004+00 1/1 0/0 0/0 .sdata2 STRM_CH_SHIFT__20JAUStdSoundTableType */
-SECTION_SDATA2 u32 JAUStdSoundTableType::STRM_CH_SHIFT = 0x00000002;
-
-/* 80455A94-80455A98 004094 0004+00 1/1 0/0 0/0 .sdata2          @1010 */
-SECTION_SDATA2 static f32 lit_1010 = 0.5f;
+u32 const JAUStdSoundTableType::STRM_CH_SHIFT = 2;
 
 /* 802BB8E0-802BBA10 2B6220 0130+00 1/0 0/0 0/0 .text
  * getStreamInfo__11Z2SoundInfoCF10JAISoundIDP9JAIStream        */
-// regalloc
-#ifdef NONMATCHING
+// NONMATCHING regalloc
 void Z2SoundInfo::getStreamInfo(JAISoundID param_1, JAIStream* param_2) const {
     int numChild;
     JAUSoundTableItem* data;
@@ -334,18 +244,15 @@ void Z2SoundInfo::getStreamInfo(JAISoundID param_1, JAIStream* param_2) const {
     JUT_ASSERT(349, isValid());
     switch (JASGlobalInstance<JAUSoundTable>::getInstance()->getTypeID(param_1) & 0xf0) {
     case 0x70:
-        int chShift;
-        u32 uVar1;
+        u16 uVar1;
         s32 iVar4;
-        u16 uVar3;
         data = JASGlobalInstance<JAUSoundTable>::getInstance()->getData(param_1);
         JUT_ASSERT(356, data);
         uVar1 = data->mResourceId;
         numChild = param_2->getNumChild();
         iVar4 = 0;
-        chShift = JAUStdSoundTableType::STRM_CH_SHIFT;
-        for (uVar3 = uVar1; iVar4 < numChild && uVar3 != 0; uVar3 >>= chShift, iVar4++) {
-            u32 uVar2 = uVar3 & 3;
+        for (; iVar4 < numChild && uVar1 != 0; uVar1 >>= JAUStdSoundTableType::STRM_CH_SHIFT, iVar4++) {
+            u32 uVar2 = uVar1 & 3;
             if (uVar2 != 0) {
                 JAISoundChild* child = param_2->getChild(iVar4);
                 if (child != NULL) {
@@ -365,21 +272,18 @@ void Z2SoundInfo::getStreamInfo(JAISoundID param_1, JAIStream* param_2) const {
         }
     }
 }
-#else
-void Z2SoundInfo::getStreamInfo(JAISoundID param_0, JAIStream* param_1) const {
-    // NONMATCHING
-}
-#endif
 
 /* 802BBA10-802BBA88 2B6350 0078+00 1/1 0/0 0/0 .text
  * getStreamFilePath__11Z2SoundInfoF10JAISoundID                */
 const char* Z2SoundInfo::getStreamFilePath(JAISoundID param_1) {
     JUT_ASSERT(387, isValid());
+    JAUSoundTableItem* data;
+    const void* resource;
     switch (JASGlobalInstance<JAUSoundTable>::getInstance()->getTypeID(param_1) & 0xf0) {
     case 0x70:
-        JAUSoundTableItem* data = JASGlobalInstance<JAUSoundTable>::getInstance()->getData(param_1);
+        data = JASGlobalInstance<JAUSoundTable>::getInstance()->getData(param_1);
         JUT_ASSERT(394, data);
-        const void* resource = JASGlobalInstance<JAUSoundTable>::getInstance()->getResource();
+        resource = JASGlobalInstance<JAUSoundTable>::getInstance()->getResource();
         JUT_ASSERT(398, resource);
         return JAUStdSoundTableType::StringOffset::getString(resource, data->field_0x4);
     default:
@@ -409,14 +313,6 @@ int Z2SoundInfo::getSwBit(JAISoundID param_1) const {
     return 0xffffffff;
 }
 
-/* ############################################################################################## */
-/* 80455A98-80455AA0 004098 0004+04 1/1 0/0 0/0 .sdata2          @1070 */
-SECTION_SDATA2 static f32 lit_1070[1 + 1 /* padding */] = {
-    1.0f / 127.0f,
-    /* padding */
-    0.0f,
-};
-
 /* 802BBB48-802BBBE0 2B6488 0098+00 3/3 0/0 0/0 .text
  * getSoundInfo___11Z2SoundInfoCF10JAISoundIDP8JAISound         */
 void Z2SoundInfo::getSoundInfo_(JAISoundID param_1, JAISound* param_2) const {
@@ -426,31 +322,4 @@ void Z2SoundInfo::getSoundInfo_(JAISoundID param_1, JAISound* param_2) const {
     if (data != NULL && (typeID & 0x40) != 0) {
         param_2->getProperty().field_0x0 = (1.0f / 127.0f) * data->field_0x1;
     }
-}
-
-
-/* 802BBBE0-802BBCBC 2B6520 00DC+00 2/1 0/0 0/0 .text            __dt__11Z2SoundInfoFv */
-// Z2SoundInfo::~Z2SoundInfo() {}
-
-/* 802BBCBC-802BBCC4 2B65FC 0008+00 1/0 0/0 0/0 .text
- * @4@getBgmSeqResourceID__11Z2SoundInfoCF10JAISoundID          */
-static void func_802BBCBC() {
-    // NONMATCHING
-}
-
-/* 802BBCC4-802BBCCC 2B6604 0008+00 1/0 0/0 0/0 .text @4@getAudibleSw__11Z2SoundInfoCF10JAISoundID
- */
-static void func_802BBCC4() {
-    // NONMATCHING
-}
-
-/* 802BBCCC-802BBCD4 2B660C 0008+00 1/0 0/0 0/0 .text            @8@__dt__11Z2SoundInfoFv */
-static void func_802BBCCC() {
-    // NONMATCHING
-}
-
-/* 802BBCD4-802BBCDC 2B6614 0008+00 1/0 0/0 0/0 .text
- * @8@getStreamFileEntry__11Z2SoundInfoF10JAISoundID            */
-static void func_802BBCD4() {
-    // NONMATCHING
 }

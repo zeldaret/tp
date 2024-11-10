@@ -47,10 +47,10 @@ struct JPAEmitterWorkData {
     /* 0x1B4 */ Mtx mPrjMtx;
     /* 0x1E4 */ JPAList<JPABaseParticle>* mpAlivePtcl;
     /* 0x1E8 */ JPANode<JPABaseParticle>* mpCurNode;
-    /* 0x1EC */ u32 mVolumeAngleNum;
-    /* 0x1F0 */ u32 mVolumeAngleMax;
-    /* 0x1F4 */ u32 mVolumeX;
-    /* 0x1F8 */ u32 mDivNumber;
+    /* 0x1EC */ s32 mVolumeAngleNum;
+    /* 0x1F0 */ s32 mVolumeAngleMax;
+    /* 0x1F4 */ s32 mVolumeX;
+    /* 0x1F8 */ s32 mDivNumber;
     /* 0x1FC */ f32 mScaleAnm;
     /* 0x200 */ u32 mDirType;
     /* 0x204 */ u32 mRotType;
@@ -93,8 +93,8 @@ enum {
  */
 class JPABaseEmitter {
 public:
-    /* 8027E5EC */ ~JPABaseEmitter();
-    /* 8027E64C */ JPABaseEmitter();
+    /* 8027E5EC */ ~JPABaseEmitter() {}
+    /* 8027E64C */ JPABaseEmitter() : mLink(this) {}
     /* 8027E6EC */ void init(JPAEmitterManager*, JPAResource*);
     /* 8027EDD4 */ bool processTillStartFrame();
     /* 8027EE14 */ bool processTermination();
@@ -132,6 +132,7 @@ public:
     void setGlobalRotation(const JGeometry::TVec3<s16>& rot) {
         JPAGetXYZRotateMtx(rot.x, rot.y, rot.z, mGlobalRot); 
     }
+    void getGlobalTranslation(JGeometry::TVec3<f32>* out) const { out->set(mGlobalTrs); }
     void setGlobalDynamicsScale(const JGeometry::TVec3<f32>& i_scale) { mGlobalScl.set(i_scale); }
     void setGlobalAlpha(u8 alpha) { mGlobalPrmClr.a = alpha; }
     u8 getGlobalAlpha() { return mGlobalPrmClr.a; }
@@ -140,6 +141,12 @@ public:
     void setGlobalEnvColor(u8 r, u8 g, u8 b) { mGlobalEnvClr.r = r; mGlobalEnvClr.g = g; mGlobalEnvClr.b = b; }
     void setVolumeSize(u16 size) { mVolumeSize = size; }
     void setLifeTime(s16 lifetime) { mLifeTime = lifetime; }
+    void setAwayFromCenterSpeed(f32 i_speed) { mAwayFromCenterSpeed = i_speed; }
+    void setAwayFromAxisSpeed(f32 i_speed) { mAwayFromAxisSpeed = i_speed; }
+    void setSpread(f32 i_spread) { mSpread = i_spread; }
+    void setLocalTranslation(const JGeometry::TVec3<f32>& i_trans) { mLocalTrs.set(i_trans); }
+    void setLocalRotation(const JGeometry::TVec3<s16>& i_rot) { mLocalRot.set(i_rot.x * 0.005493248f, i_rot.y * 0.005493248f, i_rot.z * 0.005493248f); }
+    void setRateStep(u8 i_step) { mRateStep = i_step; }
 
     void setGlobalParticleHeightScale(f32 height) {
         mGlobalPScl.y = height;
@@ -216,7 +223,7 @@ public:
     /* 0x44 */ f32 mRndmDirSpeed;
     /* 0x48 */ f32 mAirResist;
     /* 0x4C */ JGeometry::TVec3<s16> mLocalRot;
-    /* 0x52 */ u16 mLifeTime;
+    /* 0x52 */ s16 mLifeTime;
     /* 0x54 */ u16 mVolumeSize;
     /* 0x56 */ u8 mRateStep;
     /* 0x58 */ JSULink<JPABaseEmitter> mLink;

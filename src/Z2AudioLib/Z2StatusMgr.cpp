@@ -7,7 +7,6 @@
 #include "Z2AudioLib/Z2Param.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_s_play.h"
-#include "dol2asm.h"
 
 /* 802B5F1C-802B5F70 2B085C 0054+00 0/0 1/1 0/0 .text            __ct__11Z2StatusMgrFv */
 Z2StatusMgr::Z2StatusMgr() : JASGlobalInstance(this) {
@@ -17,7 +16,7 @@ Z2StatusMgr::Z2StatusMgr() : JASGlobalInstance(this) {
     field_0x03 = 0;
     mTime = 3072;
     mEventBit = NULL;
-    mIsMenuIn = false;
+    mPauseFlag = false;
     mCameraMapInfo = 0;
 
     mPolygonPosition.x = 10000000.0f;
@@ -84,7 +83,7 @@ void Z2StatusMgr::menuIn() {
     Z2GetSeqMgr()->menuInBgm();
     Z2GetSeMgr()->menuInSe();
 
-    mIsMenuIn = true;
+    mPauseFlag = true;
 }
 
 /* 802B617C-802B61BC 2B0ABC 0040+00 0/0 3/3 0/0 .text            menuOut__11Z2StatusMgrFv */
@@ -92,7 +91,7 @@ void Z2StatusMgr::menuOut() {
     Z2GetSeqMgr()->menuOutBgm();
     Z2GetSeMgr()->talkOutSe();
 
-    mIsMenuIn = false;
+    mPauseFlag = false;
 }
 
 /* 802B61BC-802B61E8 2B0AFC 002C+00 2/2 1/1 0/0 .text            isMovieDemo__11Z2StatusMgrFv */
@@ -196,7 +195,7 @@ void Z2StatusMgr::setDemoName(char* demoName) {
         if (mDemoStatus == 3) {
             Z2GetSeqMgr()->setBattleBgmOff(false);
         } else if (mDemoStatus == 4) {
-            Z2GetSeqMgr()->i_unMuteSceneBgm(struct_80450861);
+            Z2GetSeqMgr()->unMuteSceneBgm(struct_80450861);
         } else if (mDemoStatus == 5) {
             Z2GetSeqMgr()->subBgmStop();
         } else if (mDemoStatus == 9) {
@@ -215,7 +214,7 @@ void Z2StatusMgr::setDemoName(char* demoName) {
             mDemoStatus = 11;
         } else if (strcmp(demoName, "demo36_01") == 0 || strcmp(demoName, "demo36_02") == 0) {
             mDemoStatus = 4;
-            Z2GetSeqMgr()->i_muteSceneBgm(0x1e, 0.0f);
+            Z2GetSeqMgr()->muteSceneBgm(0x1e, 0.0f);
         } else if (strcmp(demoName, "demo37_01") == 0) {
             mDemoStatus = 12;
             Z2GetSoundMgr()->getSeMgr()->getCategory(9)->getParams()->moveVolume(0.0f, 0);

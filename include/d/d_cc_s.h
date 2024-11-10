@@ -45,6 +45,8 @@ public:
     /* 80086754 */ virtual void CalcParticleAngle(dCcD_GObjInf*, cCcD_Stts*, cCcD_Stts*, csXyz*);
 
     void SetMass(cCcD_Obj* i_obj, u8 i_priority) { mMass_Mng.Set(i_obj, i_priority); }
+    void SetMassCam(cM3dGCps& i_cps) { mMass_Mng.SetCam(i_cps); }
+    u32 GetMassResultCam() { return mMass_Mng.GetResultCam(); }
     void PrepareMass() { mMass_Mng.Prepare(); }
 
     static bool m_mtrl_hit_tbl[64];

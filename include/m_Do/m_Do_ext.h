@@ -43,7 +43,7 @@ private:
 class mDoExt_transAnmBas : public J3DAnmTransformKey {
 public:
     mDoExt_transAnmBas(void* bas) { mBas = bas; }
-    virtual ~mDoExt_transAnmBas();
+    virtual ~mDoExt_transAnmBas() {}
 
     void* getBas() { return mBas; }
 
@@ -224,10 +224,10 @@ private:
 
 class mDoExt_invJntPacket : public J3DPacket {
 public:
-    /* 8000E654 */ mDoExt_invJntPacket();
+    /* 8000E654 */ mDoExt_invJntPacket() {}
 
     /* 80012220 */ virtual void draw();
-    /* 8000E5F8 */ virtual ~mDoExt_invJntPacket();
+    /* 8000E5F8 */ virtual ~mDoExt_invJntPacket() {}
 
     void setJoint(J3DModel* i_model, u16 param_1, u8 param_2) {
         field_0x10 = i_model;
@@ -293,6 +293,7 @@ public:
     void setFrame(f32 frame) { mFrameCtrl.setFrame((s16)frame); }
     void setFrameF(f32 frame) { mFrameCtrl.setFrame(frame); }
     BOOL checkFrame(f32 frame) { return mFrameCtrl.checkPass(frame); }
+    f32 getMorfRatio() { return mCurMorf; }
 
     /* 0x04 */ J3DModel* mpModel;
     /* 0x08 */ J3DAnmTransform* mpAnm;
@@ -327,6 +328,8 @@ public:
     J3DModel* getModel() { return mpModel; }
     void offMorfNone() { mMorfNone = false; }
     void onMorfNone() { mMorfNone = true; }
+    J3DTransformInfo* getOldTransInfo() { return mpTransformInfo; }
+    Quaternion* getOldQuaternion() { return mpQuat; }
 
 private:
     /* 0x38 */ mDoExt_McaMorfCallBack1_c* mpCallback1;
@@ -420,6 +423,7 @@ public:
     u16 getOldFrameStartJoint() { return mOldFrameStartJoint; }
     u16 getOldFrameEndJoint() { return mOldFrameEndJoint; }
     Quaternion* getOldFrameQuaternion(int i_no) { return &mOldFrameQuaternion[i_no]; }
+    f32 getOldFrameMorfCounter() { return mOldFrameMorfCounter; }
 
 private:
     /* 0x00 */ bool mOldFrameFlg;
@@ -446,9 +450,10 @@ struct mDoExt_MtxCalcAnmBlendTbl
         }
     }
 
-    /* 800D00BC */ J3DAnmTransform* getAnm(int);
+    J3DAnmTransform* getAnm(int i) { return mAnmRatio[i].getAnmTransform(); }
+    f32 getRatio(int i) { return mAnmRatio[i].getRatio(); }
 
-    /* 80014F3C */ virtual ~mDoExt_MtxCalcAnmBlendTbl();
+    /* 80014F3C */ virtual ~mDoExt_MtxCalcAnmBlendTbl() {}
     /* 8000F26C */ virtual void calc();
 
     /* 0x4 */ int mNum;
@@ -463,7 +468,7 @@ struct mDoExt_MtxCalcAnmBlendTblOld : public mDoExt_MtxCalcAnmBlendTbl {
         : mDoExt_MtxCalcAnmBlendTbl(num, anmRatio) {
         mOldFrame = oldFrame;
     }
-    /* 80014EB0 */ virtual ~mDoExt_MtxCalcAnmBlendTblOld();
+    /* 80014EB0 */ virtual ~mDoExt_MtxCalcAnmBlendTblOld() {}
     /* 8000F4B0 */ virtual void calc();
 
     /* 0xC */ mDoExt_MtxCalcOldFrame* mOldFrame;

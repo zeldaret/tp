@@ -63,7 +63,7 @@ struct daDo_HIO_tmp {
 class daDo_HIO_c {
 public:
     /* 80667D4C */ daDo_HIO_c();
-    /* 8066ED40 */ virtual ~daDo_HIO_c();  // should be inlined
+    /* 8066ED40 */ virtual ~daDo_HIO_c() {}
 
     /* 0x04 */ s8 field_0x04;
     /* 0x08 */ f32 mBaseSize;

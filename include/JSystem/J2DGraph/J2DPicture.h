@@ -106,11 +106,25 @@ public:
     /* 802FDAC8 */ virtual const ResTIMG* changeTexture(char const*, u8, JUTPalette*);
     /* 800539DC */ virtual JUTTexture* getTexture(u8) const;
     /* 802FF634 */ virtual u8 getTextureCount() const;
-    /* 80053C6C */ virtual bool setBlack(JUtility::TColor);
-    /* 80053C44 */ virtual bool setWhite(JUtility::TColor);
-    /* 8018BEE0 */ virtual bool setBlackWhite(JUtility::TColor i_black, JUtility::TColor i_white);
-    /* 801DFA4C */ virtual JUtility::TColor getBlack() const;
-    /* 801DFA40 */ virtual JUtility::TColor getWhite() const;
+    /* 80053C6C */ virtual bool setBlack(JUtility::TColor i_black) {
+        mBlack = i_black;
+        return true;
+    }
+    /* 80053C44 */ virtual bool setWhite(JUtility::TColor i_white) {
+        mWhite = i_white;
+        return true;
+    }
+    /* 8018BEE0 */ virtual bool setBlackWhite(JUtility::TColor i_black, JUtility::TColor i_white) {
+        mBlack = i_black;
+        mWhite = i_white;
+        return true;
+    }
+    /* 801DFA4C */ virtual JUtility::TColor getBlack() const {
+        return mBlack;
+    }
+    /* 801DFA40 */ virtual JUtility::TColor getWhite() const {
+        return mWhite;
+    }
     /* 8025603C */ virtual J2DMaterial* getMaterial() const { return NULL; }
     /* 802FDBFC */ virtual void drawFullSet(f32, f32, f32, f32, Mtx*);
     /* 802FE380 */ virtual void drawTexCoord(f32, f32, f32, f32, s16, s16, s16, s16, s16, s16, s16,

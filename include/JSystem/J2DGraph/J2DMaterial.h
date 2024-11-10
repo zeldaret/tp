@@ -13,15 +13,15 @@ public:
     struct J2DMaterialAnmPointer {
         /* 802EA79C */ J2DMaterialAnmPointer();
 
-        /* 0x00 */ J2DAnmBase* field_0x0;
-        /* 0x04 */ J2DAnmBase* field_0x4;
-        /* 0x08 */ J2DAnmBase* field_0x8;
-        /* 0x0C */ J2DAnmBase* field_0xc;
-        /* 0x10 */ u16 field_0x10;
-        /* 0x12 */ u16 field_0x12[8];
-        /* 0x22 */ u16 field_0x22[8];
-        /* 0x32 */ u16 field_0x32[4];
-        /* 0x3A */ u16 field_0x3a[4];
+        /* 0x00 */ J2DAnmColor* mColorAnm;
+        /* 0x04 */ J2DAnmTextureSRTKey* mSRTAnm;
+        /* 0x08 */ J2DAnmTexPattern* mPatternAnm;
+        /* 0x0C */ J2DAnmTevRegKey* mTevAnm;
+        /* 0x10 */ u16 mColorIds;
+        /* 0x12 */ u16 mSRTIds[8];
+        /* 0x22 */ u16 mPatternIds[8];
+        /* 0x32 */ u16 mTevCRegIds[4];
+        /* 0x3A */ u16 mTevKRegIds[4];
     };  // Size: 0x44
 
     /* 802EA1AC */ J2DMaterial();

@@ -56,4 +56,6 @@ struct view_class : public leafdraw_class {
     /* 0x1E0 */ Mtx mViewMtxNoTrans;
 };
 
+extern leafdraw_method_class g_fopVw_Method;
+
 #endif

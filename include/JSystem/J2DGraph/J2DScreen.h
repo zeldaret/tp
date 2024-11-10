@@ -55,7 +55,7 @@ public:
     /* 802F90E0 */ virtual J2DPane* searchUserInfo(u64);
     /* 802F9600 */ virtual bool isUsed(ResTIMG const*);
     /* 802F9620 */ virtual bool isUsed(ResFONT const*);
-    /* 80053BA0 */ virtual void clearAnmTransform();
+    /* 80053BA0 */ virtual void clearAnmTransform() { J2DPane::clearAnmTransform(); }
     /* 802F9704 */ virtual void setAnimation(J2DAnmColor*);
     /* 80192414 */ virtual void setAnimation(J2DAnmTransform* i_bck) { J2DPane::setAnimation(i_bck); }
     /* 802F9798 */ virtual void setAnimation(J2DAnmTextureSRTKey*);

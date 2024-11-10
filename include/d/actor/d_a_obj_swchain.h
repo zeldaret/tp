@@ -35,6 +35,9 @@ public:
     /* 80CFB53C */ void draw();
     /* 80CFB5E8 */ void _delete();
 
+    u8 getSwbit() { return fopAcM_GetParamBit(this, 0, 8); }
+    BOOL checkDispEmphasis() { return fopAcM_isSwitch(this, getSwbit()) == FALSE; }
+
 private:
     /* 0x568 */ u8 field_0x568[0xaa0 - 0x568];
 };

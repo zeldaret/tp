@@ -3326,7 +3326,7 @@ PowerPC_EABI_Support/Runtime/Src/Gecko_ExceptionPPC.cp:
 	.text       start:0x803628AC end:0x80362914
 	.bss        start:0x8044D430 end:0x8044D440
 
-PowerPC_EABI_Support/Runtime/Src/GCN_mem_alloc.c:
+PowerPC_EABI_Support/Runtime/Src/GCN_Mem_Alloc.c:
 	.text       start:0x80362914 end:0x803629CC
 	.rodata     start:0x803A21A8 end:0x803A2220
 
@@ -3364,7 +3364,7 @@ PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/buffer_io.c:
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/char_io.c:
 	.text       start:0x803651D8 end:0x80365464
 
-PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/SRC/critical_regions.gamecube.c:
+PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Src/critical_regions.gamecube.c:
 	.text       start:0x80365464 end:0x80365470
 
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/ctype.c:
@@ -3420,7 +3420,7 @@ PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/strtoul.c:
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/wchar_io.c:
 	.text       start:0x80369114 end:0x8036919C
 
-PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/SRC/uart_console_io_gcn.c:
+PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Src/uart_console_io_gcn.c:
 	.text       start:0x8036919C end:0x80369274
 	.sbss       start:0x804519B0 end:0x804519B8
 
@@ -3534,7 +3534,7 @@ PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_sqrt.
 	.text       start:0x8036C7A0 end:0x8036C9C4
 	.sdata2     start:0x80456B48 end:0x80456B50
 
-PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/SRC/math_ppc.c:
+PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Src/math_ppc.c:
 	.text       start:0x8036C9C4 end:0x8036CA54
 
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_sqrt.c:

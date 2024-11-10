@@ -19,8 +19,8 @@ public:
     void onDrawFlg() { mDrawFlag = true; }
     void offDrawFlg() { mDrawFlag = false; }
     void setPos(const cXyz* i_pos) { mPos = *i_pos; }
+    cXyz* getPosP() { return &mPos; }
 
-private:
     /* 0x04 */ bool mDrawFlag;
     /* 0x05 */ u8 field_0x5[3];
     /* 0x08 */ cXyz mPos;
@@ -58,8 +58,6 @@ public:
         HEAP_TYPE_5,
     };
 
-    /* 80140DCC */ void __defctor();  // compiler generated due to ctor with default param
-
     daPy_anmHeap_c(u32 param_0 = 0);
     ~daPy_anmHeap_c();
     void initData();
@@ -78,9 +76,12 @@ public:
     bool checkNoSetArcNo() const { return mArcNo == 0xFFFF; }
     void setBufferSize(u32 size) { mBufferSize = size; }
     void setBuffer(u8* buf) { mBuffer = buf; }
+    u32 getBufferSize() { return mBufferSize; }
     u8* getBuffer() { return mBuffer; }
     bool checkNoSetIdx() const { return mIdx == 0xFFFF; }
     bool checkNoSetPriIdx() const { return mPriIdx == 0xFFFF; }
+    u16 getArcNo() const { return mArcNo; }
+    void setIdx(u16 i_idx) { mIdx = i_idx; }
 
 private:
     /* 0x00 */ u16 mIdx;
@@ -215,7 +216,7 @@ public:
     /* 0x05D4 */ cXyz mRightHandPos;
     /* 0x05E0 */ cXyz mLeftFootPos;
     /* 0x05EC */ cXyz mRightFootPos;
-    /* 0x05F8 */ u8 field_0x5f8[0xC];
+    /* 0x05F8 */ cXyz field_0x5f8;
     /* 0x0604 */ daPy_demo_c mDemo;
 
 public:
@@ -260,11 +261,14 @@ public:
         FLG1_UNK_10000000 = 0x10000000,
         FLG1_UNK_4000000 = 0x4000000,
         FLG1_IS_WOLF = 0x2000000,
+        FLG1_UNK_1000000 = 0x1000000,
         FLG1_UNK_800000 = 0x800000,
         FLG1_DASH_MODE = 0x400000,
         FLG1_UNK_200000 = 0x200000,
         FLG1_UNK_100000 = 0x100000,
+        FLG1_MIDNA_ATN_POS = 0x80000,
         FLG1_UNK_40000 = 0x40000,
+        FLG1_UNK_20000 = 0x20000,
         FLG1_UNK_10000 = 0x10000,
         FLG1_UNK_8000 = 0x8000,
         FLG1_THROW_DAMAGE = 0x4000,
@@ -272,10 +276,12 @@ public:
         FLG1_UNK_1000 = 0x1000,
         FLG1_UNK_800 = 0x800,
         FLG1_UNK_200 = 0x200,
+        FLG1_MIDNA_HAIR_ATN_POS = 0x100,
         FLG1_UNK_80 = 0x80,
         FLG1_UNK_40 = 0x40,
         FLG1_UNK_20 = 0x20,
         FLG1_UNK_10 = 0x10,
+        FLG1_UNK_8 = 8,
         FLG1_UNK_4 = 4,
         FLG1_UNK_2 = 2,
         FLG1_UNK_1 = 1,
@@ -289,11 +295,12 @@ public:
         FLG2_UNK_20000000 = 0x20000000,
         FLG2_UNK_10000000 = 0x10000000,
         FLG2_UNK_4080000 = 0x4080000,
+        FLG2_UNK_4000000 = 0x4000000,
         FLG2_UNK_2080000 = 0x2080000,
-        FLG2_BOAR_SINGLE_BATTLE = 0x1800000,
+        FLG2_UNK_2000000 = 0x2000000,
         FLG2_UNK_8000000 = 0x8000000,
         FLG2_UNK_1000000 = 0x1000000,
-        FLG2_UNK_800000 = 0x800000,
+        FLG2_BOAR_SINGLE_BATTLE = 0x800000,
         FLG2_STATUS_WINDOW_DRAW = 0x400000,
         FLG2_UNK_280000 = 0x280000,
         FLG2_UNK_200000 = 0x200000,
@@ -306,8 +313,10 @@ public:
         FLG2_UNK_4000 = 0x4000,
         FLG2_UNK_2000 = 0x2000,
         FLG2_UNK_1000 = 0x1000,
+        FLG2_UNK_800 = 0x800,
         FLG2_PLAYER_SHADOW = 0x400,
         FLG2_UNK_200 = 0x200,
+        FLG2_UNK_100 = 0x100,
         FLG2_UNK_80 = 0x80,
         FLG2_WOLF_ENEMY_HANG_BITE = 0x40,
         FLG2_WOLF_ENEMY_LEFT_THROW = 0x20,
@@ -325,6 +334,8 @@ public:
         FLG3_UNK_80000000 = 0x80000000,
         FLG3_UNK_40000000 = 0x40000000,
         FLG3_UNK_20000000 = 0x20000000,
+        FLG3_COPY_ROD_ATN_KEEP = 0x10000000,
+        FLG3_BOOMERANG_ATN_KEEP = 0x8000000,
         FLG3_UNK_4000000 = 0x4000000,
         FLG3_UNK_2000000 = 0x2000000,
         FLG3_UNK_1000000 = 0x1000000,
@@ -334,11 +345,12 @@ public:
         FLG3_UNK_100000 = 0x100000,
         FLG3_UNK_80000 = 0x80000,
         FLG3_COPY_ROD_THROW_AFTER = 0x40000,
-        FLG3_UNK_10000 = 0x10000,
+        FLG3_MIDNA_TALK_POLY_SPEED = 0x10000,
         FLG3_UNK_8000 = 0x8000,
         FLG3_UNK_4000 = 0x4000,
         FLG3_UNK_2000 = 0x2000,
         FLG3_UNK_1000 = 0x1000,
+        FLG3_UNK_800 = 0x800,
         FLG3_UNK_400 = 0x400,
         FLG3_UNK_200 = 0x200,
         FLG3_UNK_100 = 0x100,
@@ -348,6 +360,7 @@ public:
         FLG3_UNK_10 = 0x10,
         FLG3_UNK_8 = 8,
         FLG3_UNK_4 = 4,
+        FLG3_UNK_1 = 1,
     };
 
     enum daPy_ERFLG0 {
@@ -363,9 +376,11 @@ public:
         ERFLG0_BEE_FOLLOW = 0x400000,
         ERFLG0_UNK_200000 = 0x200000,
         ERFLG0_UNK_100000 = 0x100000,
+        ERFLG0_UNK_80000 = 0x80000,
         ERFLG0_UNK_40000 = 0x40000,
         ERFLG0_UNK_20000 = 0x20000,
         ERFLG0_UNK_10000 = 0x10000,
+        ERFLG0_UNK_4000 = 0x4000,
         ERFLG0_UNK_2000 = 0x2000,
         ERFLG0_UNK_1000 = 0x1000,
         ERFLG0_UNK_400 = 0x400,
@@ -386,11 +401,16 @@ public:
         ERFLG1_UNK_40000000 = 0x40000000,
         ERFLG1_UNK_20000000 = 0x20000000,
         ERFLG1_UNK_10000000 = 0x10000000,
+        ERFLG1_UNK_8000000 = 0x8000000,
         ERFLG1_UNK_4000000 = 0x4000000,
+        ERFLG1_UNK_2000000 = 0x2000000,
         ERFLG1_UNK_1000000 = 0x1000000,
+        ERFLG1_UNK_400000 = 0x400000,
         ERFLG1_UNK_200000 = 0x200000,
         ERFLG1_UNK_100000 = 0x100000,
+        ERFLG1_UNK_80000 = 0x80000,
         ERFLG1_UNK_40000 = 0x40000,
+        ERFLG1_UNK_20000 = 0x20000,
         ERFLG1_UNK_10000 = 0x10000,
         ERFLG1_UNK_8000 = 0x8000,
         ERFLG1_UNK_4000 = 0x4000,
@@ -401,7 +421,7 @@ public:
         ERFLG1_WOLF_EYE_KEEP = 0x200,
         ERFLG1_UNK_100 = 0x100,
         ERFLG1_UNK_80 = 0x80,
-        ERFLG1_UNK_40 = 0x40,
+        ERFLG1_MIDNA_RIDE_SHOCK = 0x40,
         ERFLG1_UNK_20 = 0x20,
         ERFLG1_UNK_10 = 0x10,
         ERFLG1_UNK_8 = 8,
@@ -412,20 +432,25 @@ public:
 
     enum daPy_ERFLG2 {
         ERFLG2_UNK_100 = 0x100,
+        ERFLG2_PORTAL_WARP_MIDNA_ATN_KEEP = 0x80,
         ERFLG2_UNK_40 = 0x40,
         ERFLG2_UNK_20 = 0x20,
         ERFLG2_UNK_10 = 0x10,
+        ERFLG2_UNK_8 = 8,
         ERFLG2_UNK_2 = 2,
         ERFLG2_UNK_1 = 1,
     };
 
     enum daPy_RFLG0 {
+        RFLG0_WOLF_BARK = 0x80000000,
         RFLG0_UNK_40000000 = 0x40000000,
         RFLG0_UNK_20000000 = 0x20000000,
         RFLG0_UNK_10000000 = 0x10000000,
         RFLG0_UNK_8000000 = 0x8000000,
         RFLG0_UNK_4000000 = 0x4000000,
+        RFLG0_UNK_2000000 = 0x2000000,
         RFLG0_GRAB_PUT_START = 0x400000,
+        RFLG0_WOLF_GROWL = 0x200000,
         RFLG0_UNK_80000 = 0x80000,
         RFLG0_UNK_40000 = 0x40000,
         RFLG0_UNK_20000 = 0x20000,
@@ -442,6 +467,7 @@ public:
         RFLG0_GRAB_UP_END = 0x20,
         RFLG0_UNK_10 = 0x10,
         RFLG0_UNK_8 = 0x8,
+        RFLG0_GRAB_THROW = 0x4,
         RFLG0_UNK_2 = 0x2,
         RFLG0_UNK_1 = 0x1,
     };
@@ -453,6 +479,10 @@ public:
         RFLG1_UNK_80 = 0x80,
         RFLG1_UNK_40 = 0x40,
         RFLG1_UNK_30 = 0x30,
+        RFLG1_UNK_20 = 0x20,
+        RFLG1_UNK_10 = 0x10,
+        RFLG1_UNK_8 = 0x8,
+        RFLG1_UNK_4 = 0x4,
         RFLG1_UNK_2 = 0x2,
         RFLG1_WOLF_ATTACK_REVERSE = 0x1,
 
@@ -592,8 +622,8 @@ public:
     virtual MtxP getBottleMtx();
     virtual BOOL checkPlayerGuard() const;
     virtual u32 checkPlayerFly() const { return 0; }
-    virtual BOOL checkFrontRoll() const;  // weak
-    virtual BOOL checkWolfDash() const;  // weak
+    virtual BOOL checkFrontRoll() const { return FALSE; }
+    virtual BOOL checkWolfDash() const { return FALSE; }
     virtual BOOL checkAutoJump() const;
     virtual bool checkSideStep() const;
     virtual bool checkWolfTriggerJump() const;
@@ -637,7 +667,7 @@ public:
     virtual bool cancelWolfLock(fopAc_ac_c*);
     virtual s32 getAtnActorID() const { return -1; }
     virtual s32 getItemID() const;
-    virtual s32 getGrabActorID() const;  // weak
+    virtual s32 getGrabActorID() const { return -1; }
     virtual BOOL exchangeGrabActor(fopAc_ac_c*);
     virtual BOOL setForceGrab(fopAc_ac_c*, int, int);
     virtual void setForcePutPos(cXyz const&);
@@ -649,7 +679,7 @@ public:
     virtual void setOutPower(f32, short, int);
     virtual void setGrabCollisionOffset(f32, f32, cBgS_PolyInfo*);
     virtual void onMagneGrab(f32, f32);
-    virtual void onFrollCrashFlg(u8, int);  // weak
+    virtual void onFrollCrashFlg(u8, int) {}
     virtual MtxP getModelJointMtx(u16);
     virtual MtxP getHeadMtx();
     virtual bool setHookshotCarryOffset(fpc_ProcID, cXyz const*);
@@ -681,7 +711,7 @@ public:
     virtual BOOL checkHorseRideNotReady() const;
     virtual bool checkArrowChargeEnd() const;
     virtual f32 getSearchBallScale() const;
-    virtual s16 checkFastShotTime();
+    virtual int checkFastShotTime();
     virtual bool checkNoEquipItem() const;
     virtual bool checkFireMaterial() const;
     virtual bool checkKandelaarSwing(int) const;
@@ -783,8 +813,11 @@ public:
     bool getGrabPutStart() const { return checkResetFlg0(RFLG0_GRAB_PUT_START); }
     bool checkSwimUp() const { return checkNoResetFlg0(FLG0_SWIM_UP); }
     BOOL checkHorseZelda() const { return checkNoResetFlg2(FLG2_HORSE_ZELDA); }
-    BOOL checkSpecialHorseRide() { return checkNoResetFlg2(daPy_FLG2(FLG2_HORSE_ZELDA | FLG2_UNK_1000000 | FLG2_UNK_800000)); }
+    BOOL checkSpecialHorseRide() { return checkNoResetFlg2(daPy_FLG2(FLG2_HORSE_ZELDA | FLG2_UNK_1000000 | FLG2_BOAR_SINGLE_BATTLE)); }
     BOOL checkBoardNoFootAngle() const { return checkResetFlg1(RFLG1_UNK_40); }
+    bool checkGrabThrow() const { return checkResetFlg0(RFLG0_GRAB_THROW); }
+    bool checkMidnaAtnPos() const { return checkNoResetFlg1(FLG1_MIDNA_ATN_POS); }
+    bool checkMidnaHairAtnPos() const { return checkNoResetFlg1(FLG1_MIDNA_HAIR_ATN_POS); }
 
     void onBossRoomWait() { onEndResetFlg0(ERFLG0_BOSS_ROOM_WAIT); }
     void onBeeFollow() { onEndResetFlg0(ERFLG0_BEE_FOLLOW); }
@@ -793,8 +826,11 @@ public:
     void onNotHang() { onEndResetFlg0(ERFLG0_NOT_HANG); }
     void onShieldBackBone() { onEndResetFlg1(ERFLG1_GANON_FINISH); }
     void onWolfEyeKeep() { onEndResetFlg1(ERFLG1_WOLF_EYE_KEEP); }
+    void onPortalWarpMidnaAtnKeep() { onEndResetFlg2(ERFLG2_PORTAL_WARP_MIDNA_ATN_KEEP); }
     void onFogFade() { onNoResetFlg2(FLG2_UNK_4000); }
     BOOL checkStickArrowReset() const { return checkResetFlg0(RFLG0_UNK_1); }
+    u32 getCutAtFlg() const { return checkNoResetFlg0(FLG0_UNK_40); }
+    u32 checkBoarSingleBattleFirst() const { return checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE); }
 
     void offWolfEnemyHangBite() { offNoResetFlg2(FLG2_WOLF_ENEMY_HANG_BITE); }
     bool onWolfEnemyHangBite(fopAc_ac_c* param_0) { return onWolfEnemyBiteAll(param_0, FLG2_WOLF_ENEMY_HANG_BITE); }
@@ -806,6 +842,7 @@ public:
             mSpecialMode = 0;
         }
     }
+    void onMidnaTalkPolySpeed() { onNoResetFlg3(FLG3_MIDNA_TALK_POLY_SPEED); }
 
     void offCargoCarry() {
         if (checkCargoCarry()) {
@@ -863,24 +900,36 @@ public:
 
     cXyz* getLeftHandPosP() { return &mLeftHandPos; }
     cXyz* getRightHandPosP() { return &mRightHandPos; }
+    cXyz* getHeadTopPosP() { return &mHeadTopPos; }
 
     u32 checkWolf() const { return checkNoResetFlg1(FLG1_IS_WOLF); }
     u32 checkEquipHeavyBoots() const { return checkNoResetFlg0(FLG0_EQUIP_HVY_BOOTS); }
     u32 checkMagneBootsOn() const { return checkNoResetFlg0(FLG0_MAGNE_BOOTS_ON); }
     BOOL checkFastSwordCut() const { return checkNoResetFlg0(FLG0_UNK_80000); }
     u32 checkMidnaRide() const { return checkNoResetFlg0(FLG0_MIDNA_RIDE); }
+    BOOL checkWolfGrowl() const { return checkResetFlg0(RFLG0_WOLF_GROWL); }
+    BOOL checkWolfThreat() const { return checkWolfGrowl(); }
+    BOOL checkWolfBark() const { return checkResetFlg0(RFLG0_WOLF_BARK); }
+    u32 checkBoomerangAtnKeep() const { return checkNoResetFlg3(FLG3_BOOMERANG_ATN_KEEP); }
+    u32 checkCopyRodAtnKeep() const { return checkNoResetFlg3(FLG3_COPY_ROD_ATN_KEEP); }
+
     void onPlayerNoDraw() { onNoResetFlg0(FLG0_PLAYER_NO_DRAW); }
     void offPlayerNoDraw() { offNoResetFlg0(FLG0_PLAYER_NO_DRAW); }
     void onPushPullKeep() { onNoResetFlg0(FLG0_PUSH_PULL_KEEP); }
     void offPushPullKeep() { offNoResetFlg0(FLG0_PUSH_PULL_KEEP); }
+    void onMidnaRide() { onNoResetFlg0(FLG0_MIDNA_RIDE); }
+    void offMidnaRide() { offNoResetFlg0(FLG0_MIDNA_RIDE); }
+    void onMidnaRideShock() { onEndResetFlg1(ERFLG1_MIDNA_RIDE_SHOCK); }
     void onPlayerShadowNoDraw() { onNoResetFlg2(FLG2_PLAYER_SHADOW); }
     void offPlayerShadowNoDraw() { offNoResetFlg2(FLG2_PLAYER_SHADOW); }
     void onLightSwordGetEffect() { onEndResetFlg2(ERFLG2_UNK_10); }
     void onForceGameOver() { onNoResetFlg2(FLG2_FORCE_GAMEOVER); }
     void onForceWolfChange() { onEndResetFlg0(ERFLG0_UNK_2); }
     void onDoPutEmphasys() { onEndResetFlg1(ERFLG1_UNK_10000000); }
+    void onNsScream() { onEndResetFlg1(ERFLG1_UNK_1); }
+    void onNsScreamAnm() { onEndResetFlg1(daPy_ERFLG1(ERFLG1_UNK_1 | ERFLG1_UNK_2)); }
 
-    u32 checkBoarSingleBattle() const { return checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE); }
+    u32 checkBoarSingleBattle() const { return checkNoResetFlg2(daPy_FLG2(FLG2_UNK_1000000 | FLG2_BOAR_SINGLE_BATTLE)); }
     u32 checkWolfDashAutoJump() const { return checkNoResetFlg2(FLG2_WOLF_DASH_AUTO_JUMP); }
 
     void changeOriginalDemo() {
@@ -903,6 +952,8 @@ public:
 
     void changeDemoMoveAngle(s16 i_angle) { mDemo.setMoveAngle(i_angle); }
 
+    void setItemPos(cXyz* i_itemPos) { mItemPos = *i_itemPos; }
+
     static bool checkPeepEndSceneChange() { return getLastSceneMode() == 7; }
 
     static int getLastSceneDamage() { return (dComIfGs_getLastSceneMode() >> 4) & 0x7F; }
@@ -915,13 +966,14 @@ public:
     inline BOOL i_checkSwordGet();
     inline bool i_checkShieldGet() const;
     inline static BOOL checkNowWolf();
-    inline static u32 i_checkNowWolf() { return dComIfGp_getLinkPlayer()->checkWolf(); }
+    inline static u32 i_checkNowWolf() { return ((daPy_py_c*)dComIfGp_getLinkPlayer())->checkWolf(); }
     inline bool checkZoraWearFlg() const;
     inline bool checkMagicArmorWearFlg() const;
     inline static BOOL i_checkFirstMidnaDemo() { return dComIfGs_isEventBit(0xc10); }
     static int checkNowWolfPowerUp() { return checkNowWolfEyeUp(); }
 
     static daMidna_c* getMidnaActor() { return m_midnaActor; }
+    static void setMidnaActor(fopAc_ac_c* actor) { m_midnaActor = (daMidna_c*)actor; }
 
     // not sure how to define this properly
     // static void onWolfEnemyCatch(fopAc_ac_c* i_actorP) { onWolfEnemyBiteAll(i_actorP,8);}

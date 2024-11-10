@@ -3,6 +3,8 @@
 
 #include "dolphin/types.h"
 
+class JPAEmitterWorkData;
+
 /**
  * @ingroup jsystem-jparticle
  * 
@@ -28,7 +30,7 @@ public:
     /* 8027B13C */ JPAExTexShape(u8 const*);
 
     const f32* getIndTexMtx() const { return &mpData->mIndTexMtx[0][0]; }
-    s32 getExpScale() const { return mpData->mExpScale; }
+    s8 getExpScale() const { return mpData->mExpScale; }
     u8 getIndTexIdx() const { return mpData->mIndTexIdx; }
     u8 getSecTexIdx() const { return mpData->mSecTexIdx; }
     bool isUseIndirect() const { return !!(mpData->mFlags & 0x01); }
@@ -37,5 +39,7 @@ public:
 public:
     const JPAExTexShapeData* mpData;
 };
+
+void JPALoadExTex(JPAEmitterWorkData*);
 
 #endif /* JPAEXTEXSHAPE_H */

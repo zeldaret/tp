@@ -906,3 +906,7 @@ J2DAnmTexPattern::J2DAnmTexPatternTIMGPointer::J2DAnmTexPatternTIMGPointer() {
 J2DAnmTexPattern::J2DAnmTexPatternTIMGPointer::~J2DAnmTexPatternTIMGPointer() {
     delete mPalette;
 }
+
+static void dummyDelete(J2DAnmTexPattern* pattern) {
+    delete pattern;
+}

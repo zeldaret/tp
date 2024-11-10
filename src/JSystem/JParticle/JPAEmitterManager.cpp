@@ -4,72 +4,14 @@
 //
 
 #include "JSystem/JParticle/JPAEmitterManager.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JParticle/JPAEmitter.h"
+#include "JSystem/JParticle/JPAParticle.h"
 #include "JSystem/JParticle/JPAResourceManager.h"
 #include "dolphin/gx.h"
 
-//
-// Types:
-//
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__17JPAEmitterManagerFUlUlP7JKRHeapUcUc();
-extern "C" void func_8027DEBC();
-extern "C" void calc__17JPAEmitterManagerFUc();
-extern "C" void draw__17JPAEmitterManagerFPC11JPADrawInfoUc();
-extern "C" void forceDeleteAllEmitter__17JPAEmitterManagerFv();
-extern "C" void forceDeleteGroupEmitter__17JPAEmitterManagerFUc();
-extern "C" void forceDeleteEmitter__17JPAEmitterManagerFP14JPABaseEmitter();
-extern "C" void entryResourceManager__17JPAEmitterManagerFP18JPAResourceManagerUc();
-extern "C" void clearResourceManager__17JPAEmitterManagerFUc();
-extern "C" void calcYBBCam__17JPAEmitterManagerFv();
-extern "C" void func_8027E51C(void* _this);
-extern "C" void func_8027E54C(void* _this);
-extern "C" void func_8027E588(void* _this);
-extern "C" void func_8027E598(void* _this);
-extern "C" void __dt__14JPABaseEmitterFv();
-extern "C" void __ct__14JPABaseEmitterFv();
-
-//
-// External References:
-//
-
-extern "C" void getResource__18JPAResourceManagerCFUs();
-extern "C" void calc__11JPAResourceFP18JPAEmitterWorkDataP14JPABaseEmitter();
-extern "C" void draw__11JPAResourceFP18JPAEmitterWorkDataP14JPABaseEmitter();
-extern "C" void init__14JPABaseEmitterFP17JPAEmitterManagerP11JPAResource();
-extern "C" void deleteAllParticle__14JPABaseEmitterFv();
-extern "C" void* __nw__FUlP7JKRHeapi();
-extern "C" void* __nwa__FUlP7JKRHeapi();
-extern "C" void __dl__FPv();
-extern "C" void __ct__10JSUPtrLinkFPv();
-extern "C" void __dt__10JSUPtrLinkFv();
-extern "C" void __dt__10JSUPtrListFv();
-extern "C" void initiate__10JSUPtrListFv();
-extern "C" void append__10JSUPtrListFP10JSUPtrLink();
-extern "C" void prepend__10JSUPtrListFP10JSUPtrLink();
-extern "C" void remove__10JSUPtrListFP10JSUPtrLink();
-extern "C" void __construct_new_array();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_29();
-
-//
-// Declarations:
-//
-
 /* 8027DCA0-8027DEBC 2785E0 021C+00 0/0 1/1 0/0 .text __ct__17JPAEmitterManagerFUlUlP7JKRHeapUcUc
  */
-// template ctors are at the end of the TU for some reason
-#ifdef NONMATCHING
 JPAEmitterManager::JPAEmitterManager(u32 ptclMax, u32 emtrMax, JKRHeap* pHeap, u8 grpMax,
                                      u8 resMax) {
     mEmtrMax = emtrMax;
@@ -93,12 +35,6 @@ JPAEmitterManager::JPAEmitterManager(u32 ptclMax, u32 emtrMax, JKRHeap* pHeap, u
 
     mpWorkData = new (pHeap, 0) JPAEmitterWorkData();
 }
-#else
-JPAEmitterManager::JPAEmitterManager(u32 param_0, u32 param_1, JKRHeap* param_2, u8 param_3,
-                                         u8 param_4) {
-    // NONMATCHING
-}
-#endif
 
 /* 8027DEBC-8027DFA0 2787FC 00E4+00 0/0 3/3 0/0 .text
  * createSimpleEmitterID__17JPAEmitterManagerFRCQ29JGeometry8TVec3<f>UsUcUcP18JPAEmitterCallBackP19JPAParticleCallBack
@@ -222,8 +158,6 @@ void JPAEmitterManager::clearResourceManager(u8 resMgrID) {
     mpResMgrAry[resMgrID] = NULL;
 }
 
-/* ############################################################################################## */
-
 /* 8027E3F4-8027E51C 278D34 0128+00 1/1 0/0 0/0 .text            calcYBBCam__17JPAEmitterManagerFv
  */
 void JPAEmitterManager::calcYBBCam() {
@@ -243,31 +177,3 @@ void JPAEmitterManager::calcYBBCam() {
     mpWorkData->mYBBCamMtx[2][2] = v.y;
     mpWorkData->mYBBCamMtx[2][3] = mpWorkData->mPosCamMtx[2][3];
 }
-
-/* 8027E51C-8027E54C 278E5C 0030+00 1/1 0/0 0/0 .text            __ct__25JSUList<14JPABaseEmitter>Fv
- */
-extern "C" void func_8027E51C(void* _this) {
-    // NONMATCHING
-}
-
-/* 8027E54C-8027E588 278E8C 003C+00 1/1 0/0 0/0 .text __dt__26JPANode<15JPABaseParticle>Fv */
-extern "C" void func_8027E54C(void* _this) {
-    // NONMATCHING
-}
-
-/* 8027E588-8027E598 278EC8 0010+00 1/1 0/0 0/0 .text __ct__26JPANode<15JPABaseParticle>Fv */
-extern "C" void func_8027E588(void* _this) {
-    // NONMATCHING
-}
-
-/* 8027E598-8027E5EC 278ED8 0054+00 1/1 0/0 0/0 .text            __dt__25JSUList<14JPABaseEmitter>Fv
- */
-extern "C" void func_8027E598(void* _this) {
-    // NONMATCHING
-}
-
-/* 8027E5EC-8027E64C 278F2C 0060+00 1/1 0/0 0/0 .text            __dt__14JPABaseEmitterFv */
-JPABaseEmitter::~JPABaseEmitter() {}
-
-/* 8027E64C-8027E6A4 278F8C 0058+00 1/1 0/0 0/0 .text            __ct__14JPABaseEmitterFv */
-JPABaseEmitter::JPABaseEmitter() : mLink(this) {}

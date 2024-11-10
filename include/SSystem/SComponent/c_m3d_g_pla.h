@@ -26,11 +26,21 @@ public:
     cXyz* GetNP() { return &mNormal; }
     const cXyz* GetNP() const { return &mNormal; }
     f32 GetD() const { return mD; }
+
     void SetupFrom3Vtx(const Vec* v1, const Vec* v2, const Vec* v3) {
         cM3d_CalcPla(v1, v2, v3, &mNormal, &mD);
     }
+
     f32 getCrossY_NonIsZero(const cXyz *param_1) {
         return ((-mNormal.x * param_1->x - mNormal.z * param_1->z) - mD) / mNormal.y;
+    }
+
+    bool cross(cM3dGLin const& line, Vec& point) {
+        return cM3d_Cross_LinPla(&line, this, &point, true, true);
+    }
+
+    f32 getSignedLenPos(const cXyz* param_0) const {
+        return cM3d_SignedLenPlaAndPos(this, param_0);
     }
 };
 

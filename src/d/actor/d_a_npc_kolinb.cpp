@@ -66,7 +66,7 @@ extern "C" void __dt__12dBgS_AcchCirFv();
 extern "C" void __dt__10dCcD_GSttsFv();
 extern "C" void __dt__12dBgS_ObjAcchFv();
 extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" bool getEyeballMaterialNo__8daNpcT_cFv();
+extern "C" s32 getEyeballMaterialNo__8daNpcT_cFv();
 extern "C" void ctrlSubFaceMotion__8daNpcT_cFi();
 extern "C" s32 getFootLJointNo__8daNpcT_cFv();
 extern "C" s32 getFootRJointNo__8daNpcT_cFv();
@@ -1067,12 +1067,6 @@ extern "C" void __dt__12dBgS_ObjAcchFv() {
 // J3DFrameCtrl::~J3DFrameCtrl() {
 extern "C" void __dt__12J3DFrameCtrlFv() {
     // NONMATCHING
-}
-
-/* 80A48350-80A48358 002AB0 0008+00 1/0 0/0 0/0 .text            getEyeballMaterialNo__8daNpcT_cFv
- */
-bool daNpcT_c::getEyeballMaterialNo() {
-    return false;
 }
 
 /* 80A48358-80A4835C 002AB8 0004+00 1/0 0/0 0/0 .text            ctrlSubFaceMotion__8daNpcT_cFi */

@@ -8,29 +8,13 @@
 #include "dolphin/dsp/dsp_task.h"
 #include "dolphin/os/OSContext.h"
 
-//
-// Forward References:
-//
-
 static void Dsp_Update_Request();
 
-//
-// External References:
-//
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
 /* 80451308-8045130C -00001 0004+00 6/6 0/0 0/0 .sbss            None */
 /* 80451308 0001+00 data_80451308 None */
 /* 80451309 0003+00 data_80451309 None */
-
 static vu8 struct_80451308;
 static u8 struct_80451309;
-static u8 struct_8045130a;
-static u8 struct_8045130b;
 
 /* 8045130C-80451310 00080C 0004+00 1/1 2/2 0/0 .sbss            DSP_prior_task */
 DSPTaskInfo* DSP_prior_task;
@@ -129,7 +113,6 @@ void __DSPHandler(__OSInterrupt interrupt, OSContext* context) {
     OSSetCurrentContext(context);
 }
 
-/* ############################################################################################## */
 /* 80434060-80434078 060D80 0014+04 3/3 0/0 0/0 .bss             sync_stack */
 static u32 sync_stack[5];
 
@@ -137,9 +120,9 @@ static u32 sync_stack[5];
 void DsyncFrame2(u32 param_0, u32 param_1, u32 param_2) {
     if (struct_80451308 != 1) {
         sync_stack[0] = param_0;
+        struct_80451309 = 1;
         sync_stack[1] = param_1;
         sync_stack[2] = param_2;
-        struct_80451309 = 1;
         return;
     }
     DsyncFrame2ch(param_0, param_1, param_2);
@@ -150,11 +133,11 @@ void DsyncFrame2(u32 param_0, u32 param_1, u32 param_2) {
 static void DsyncFrame3(u32 param_0, u32 param_1, u32 param_2, u32 param_3, u32 param_4) {
     if (struct_80451308 != 1) {
         sync_stack[0] = param_0;
+        struct_80451309 = 2;
         sync_stack[1] = param_1;
         sync_stack[2] = param_2;
         sync_stack[3] = param_3;
         sync_stack[4] = param_4;
-        struct_80451309 = 2;
         return;
     }
     DsyncFrame4ch(param_0, param_1, param_2, param_3, param_4);

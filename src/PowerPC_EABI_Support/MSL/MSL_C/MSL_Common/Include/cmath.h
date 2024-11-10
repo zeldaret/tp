@@ -3,9 +3,9 @@
 
 
 namespace std {
-/* float fabs(float num) {
+inline float fabs(float num) {
     return ::fabsf(num);
-} */
+}
 
 inline float fabsf(float num) {
     return ::fabsf(num);

@@ -5,7 +5,7 @@
 
 #include "d/d_com_static.h"
 #include "d/d_demo.h"
-#include "dol2asm.h"
+#include "d/actor/d_a_arrow.h"
 #include "d/actor/d_a_dshutter.h"
 #include "d/actor/d_a_grass.h"
 #include "d/actor/d_a_mirror.h"
@@ -18,127 +18,6 @@
 #include "d/actor/d_a_tag_mist.h"
 #include "d/actor/d_a_tag_stream.h"
 #include "stdio.h"
-
-//
-// Forward References:
-//
-
-extern "C" void set__Q27daSus_c6data_cFScRC4cXyzRC4cXyzUcUcUc();
-extern "C" void reset__Q27daSus_c6data_cFv();
-extern "C" void isSwitch__Q27daSus_c6data_cFv();
-extern "C" void check__Q27daSus_c6data_cFRC4cXyz();
-extern "C" void check__Q27daSus_c6data_cFP10fopAc_ac_c();
-extern "C" void execute__Q27daSus_c6data_cFv();
-extern "C" void add__Q27daSus_c6room_cFPQ27daSus_c6data_c();
-extern "C" void reset__Q27daSus_c6room_cFv();
-extern "C" void newData__7daSus_cFScRC4cXyzRC4cXyzUcUcUc();
-extern "C" void reset__7daSus_cFv();
-extern "C" void check__7daSus_cFScRC4cXyz();
-extern "C" void check__7daSus_cFP10fopAc_ac_c();
-extern "C" void execute__7daSus_cFv();
-extern "C" void daNpcMsg_setEvtNum__FUc();
-extern "C" void daNpcKakashi_chkSwdTutorialStage__Fv();
-extern "C" void daNpcKakashi_setSwdTutorialStep__FUc();
-extern "C" void daNpcKakashi_getSwdTutorialStep__Fv();
-extern "C" void daNpcKakashi_getSwdTutorialResult__Fv();
-extern "C" void daNpcKakashi_setSwdTutorialResult__Fb();
-extern "C" void daNpcKakashi_getSuccessCount__Fv();
-extern "C" void daNpcKakashi_incSuccessCount__Fv();
-extern "C" void daNpcKakashi_clrSuccessCount__Fv();
-extern "C" void getArcName__12daSetBgObj_cFP10fopAc_ac_c();
-extern "C" void checkArea__13daTagStream_cFPC4cXyz();
-extern "C" void entry__10daMirror_cFP8J3DModel();
-extern "C" void remove__10daMirror_cFv();
-extern "C" void deleteRoomGrass__9daGrass_cFi();
-extern "C" void deleteRoomFlower__9daGrass_cFi();
-extern "C" void daMP_c_Get_MovieRestFrame__6daMP_cFv();
-extern "C" void daMP_c_Set_PercentMovieVolume__6daMP_cFf();
-extern "C" void daMP_c_THPPlayerPlay__6daMP_cFv();
-extern "C" void daMP_c_THPPlayerPause__6daMP_cFv();
-extern "C" void checkMagnetCode__12daTagMagne_cFR13cBgS_PolyInfo();
-extern "C" void checkMagneA__12daTagMagne_cFv();
-extern "C" void checkMagneB__12daTagMagne_cFv();
-extern "C" void checkMagneC__12daTagMagne_cFv();
-extern "C" void getPlayerNo__11daTagMist_cFv();
-extern "C" void clrSaveFlag__12daObjCarry_cFv();
-extern "C" void setSaveFlag__12daObjCarry_cFv();
-extern "C" void chkSaveFlag__12daObjCarry_cFv();
-extern "C" void getPos__12daObjCarry_cFi();
-extern "C" void savePos__12daObjCarry_cFi4cXyz();
-extern "C" void onSttsFlag__12daObjCarry_cFiUc();
-extern "C" void offSttsFlag__12daObjCarry_cFiUc();
-extern "C" void chkSttsFlag__12daObjCarry_cFiUc();
-extern "C" void setRoomNo__12daObjCarry_cFiSc();
-extern "C" void getRoomNo__12daObjCarry_cFi();
-extern "C" void __sinit_d_com_static_cpp();
-extern "C" void func_80031EAC();
-extern "C" void __ct__Q27daSus_c6room_cFv();
-extern "C" void func_80031EF0();
-extern "C" void __dt__Q27daSus_c6data_cFv();
-extern "C" void __ct__Q27daSus_c6data_cFv();
-extern "C" extern char const* const d_com_d_com_static__stringBase0;
-extern "C" u8 mData__7daSus_c[1152];
-extern "C" u8 mRoom__7daSus_c[256];
-extern "C" u8 m_entryModel__10daMirror_c[12];
-extern "C" u8 m_deleteRoom__15dGrass_packet_c[12];
-extern "C" u8 m_deleteRoom__16dFlower_packet_c[12];
-extern "C" u8 mPos__12daObjCarry_c[60];
-extern "C" u8 m_aim_rate__8daYkgr_c[4];
-extern "C" u8 m_path__8daYkgr_c[4];
-extern "C" u8 m_emitter__8daYkgr_c[4];
-extern "C" u8 m_top__13daTagStream_c[4];
-extern "C" u8 m_myObj__10daMirror_c[4];
-extern "C" u8 m_myObj__9daGrass_c[4];
-extern "C" u8 m_grass__9daGrass_c[4];
-extern "C" u8 m_flower__9daGrass_c[4];
-extern "C" u8 m_myObj__6daMP_c[4];
-extern "C" u8 mTagMagne__12daTagMagne_c[4];
-extern "C" u8 mSttsFlag__12daObjCarry_c[5 + 3 /* padding */];
-extern "C" u8 mRoomNo__12daObjCarry_c[5 + 3 /* padding */];
-extern "C" void* M_dir_base__Q212daObjMovebox5Act_c[2];
-extern "C" u32 OPEN_SIZE__7daDsh_c;
-extern "C" f32 OPEN_ACCEL__7daDsh_c;
-extern "C" f32 OPEN_SPEED__7daDsh_c;
-extern "C" f32 OPEN_BOUND_SPEED__7daDsh_c;
-extern "C" f32 OPEN_BOUND_RATIO__7daDsh_c;
-extern "C" f32 CLOSE_ACCEL__7daDsh_c;
-extern "C" f32 CLOSE_SPEED__7daDsh_c;
-extern "C" f32 CLOSE_BOUND_SPEED__7daDsh_c;
-extern "C" f32 CLOSE_BOUND_RATIO__7daDsh_c;
-
-//
-// External References:
-//
-
-extern "C" void __dt__4cXyzFv();
-extern "C" void mDoMch_Create__Fv();
-extern "C" void __ct__4cXyzFv();
-extern "C" void fopAcM_delete__FP10fopAc_ac_c();
-extern "C" void fpoAcM_relativePos__FPC10fopAc_ac_cPC4cXyzP4cXyz();
-extern "C" void getLayerNo__14dComIfG_play_cFi();
-extern "C" void onEventBit__11dSv_event_cFUs();
-extern "C" void offEventBit__11dSv_event_cFUs();
-extern "C" void isEventBit__11dSv_event_cCFUs();
-extern "C" void setEventReg__11dSv_event_cFUsUc();
-extern "C" void getEventReg__11dSv_event_cCFUs();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void GetMagnetCode__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void __dl__FPv();
-extern "C" void __register_global_object();
-extern "C" void __destroy_arr();
-extern "C" void __construct_array();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" u8 m_status__7dDemo_c[4];
-extern "C" extern u8 mPlayerNo__11daTagMist_c[4];
-
-//
-// Declarations:
-//
 
 /* 80030F14-80030FBC 02B854 00A8+00 1/1 0/0 0/0 .text
  * set__Q27daSus_c6data_cFScRC4cXyzRC4cXyzUcUcUc                */
@@ -246,23 +125,15 @@ void daSus_c::room_c::reset() {
     }
 }
 
-/* ############################################################################################## */
-/* 80423FF0-80423FFC 050D10 000C+00 1/1 0/0 0/0 .bss             @3840 */
-static u8 lit_3840[12];
-
 /* 80423FFC-8042447C 050D1C 0480+00 6/7 0/0 0/0 .bss             mData__7daSus_c */
-u8 daSus_c::mData[1152];
+daSus_c::data_c daSus_c::mData[0x20];
 
 /* 8042447C-8042457C 05119C 0100+00 2/3 0/0 1/1 .bss             mRoom__7daSus_c */
-u8 daSus_c::mRoom[256];
+daSus_c::room_c daSus_c::mRoom[0x40];
 
 /* 80450D88-80450D8C -00001 0004+00 1/1 0/0 2/2 .sbss            None */
 /* 80450D88 0002+00 data_80450D88 m_count__9daArrow_c */
-extern s16 m_count__9daArrow_c;
-#pragma push
-#pragma force_active on
-s16 m_count__9daArrow_c;
-#pragma pop
+s16 daArrow_c::m_count;
 
 /* 80450D8A 0002+00 data_80450D8A mSetTop__7daSus_c */
 s16 daSus_c::mSetTop;
@@ -436,7 +307,7 @@ const char* daSetBgObj_c::getArcName(fopAc_ac_c* i_this) {
 /* ############################################################################################## */
 /* 80451D28-80451D30 -00001 0008+00 0/0 0/0 3/3 .sdata2          M_dir_base__Q212daObjMovebox5Act_c
  */
-SECTION_SDATA2 s16 daObjMovebox::Act_c::M_dir_base[4] = {
+s16 const daObjMovebox::Act_c::M_dir_base[4] = {
     0x0000,
     0x4000,
     0x8000,
@@ -444,31 +315,31 @@ SECTION_SDATA2 s16 daObjMovebox::Act_c::M_dir_base[4] = {
 };
 
 /* 80451D30-80451D34 000330 0004+00 0/0 0/0 3/3 .sdata2          OPEN_SIZE__7daDsh_c */
-SECTION_SDATA2 f32 daDsh_c::OPEN_SIZE = 270.1f;
+f32 const daDsh_c::OPEN_SIZE = 270.1f;
 
 /* 80451D34-80451D38 000334 0004+00 0/0 0/0 1/1 .sdata2          OPEN_ACCEL__7daDsh_c */
-SECTION_SDATA2 f32 daDsh_c::OPEN_ACCEL = 10.0f;
+f32 const daDsh_c::OPEN_ACCEL = 10.0f;
 
 /* 80451D38-80451D3C 000338 0004+00 0/0 0/0 1/1 .sdata2          OPEN_SPEED__7daDsh_c */
-SECTION_SDATA2 f32 daDsh_c::OPEN_SPEED = -40.0f;
+f32 const daDsh_c::OPEN_SPEED = -40.0f;
 
 /* 80451D3C-80451D40 00033C 0004+00 0/0 0/0 1/1 .sdata2          OPEN_BOUND_SPEED__7daDsh_c */
-SECTION_SDATA2 f32 daDsh_c::OPEN_BOUND_SPEED = -30.0f;
+f32 const daDsh_c::OPEN_BOUND_SPEED = -30.0f;
 
 /* 80451D40-80451D44 000340 0004+00 0/0 0/0 1/1 .sdata2          OPEN_BOUND_RATIO__7daDsh_c */
-SECTION_SDATA2 f32 daDsh_c::OPEN_BOUND_RATIO = -0.4f;
+f32 const daDsh_c::OPEN_BOUND_RATIO = -0.4f;
 
 /* 80451D44-80451D48 000344 0004+00 0/0 0/0 1/1 .sdata2          CLOSE_ACCEL__7daDsh_c */
-SECTION_SDATA2 f32 daDsh_c::CLOSE_ACCEL = 10.0f;
+f32 const daDsh_c::CLOSE_ACCEL = 10.0f;
 
 /* 80451D48-80451D4C 000348 0004+00 0/0 0/0 1/1 .sdata2          CLOSE_SPEED__7daDsh_c */
-SECTION_SDATA2 f32 daDsh_c::CLOSE_SPEED = 40.0f;
+f32 const daDsh_c::CLOSE_SPEED = 40.0f;
 
 /* 80451D4C-80451D50 00034C 0004+00 0/0 0/0 1/1 .sdata2          CLOSE_BOUND_SPEED__7daDsh_c */
-SECTION_SDATA2 f32 daDsh_c::CLOSE_BOUND_SPEED = 30.0f;
+f32 const daDsh_c::CLOSE_BOUND_SPEED = 30.0f;
 
 /* 80451D50-80451D54 000350 0004+00 0/0 0/0 1/1 .sdata2          CLOSE_BOUND_RATIO__7daDsh_c */
-SECTION_SDATA2 f32 daDsh_c::CLOSE_BOUND_RATIO = -0.4f;
+f32 const daDsh_c::CLOSE_BOUND_RATIO = -0.4f;
 
 /* 800318B4-8003194C 02C1F4 0098+00 0/0 1/1 0/0 .text            checkArea__13daTagStream_cFPC4cXyz
  */
@@ -485,7 +356,7 @@ int daTagStream_c::checkArea(cXyz const* param_0) {
 
 /* ############################################################################################## */
 /* 8042457C-80424588 05129C 000C+00 1/2 0/0 1/1 .bss             m_entryModel__10daMirror_c */
-daMirror_c::entryModelFunc daMirror_c::m_entryModel;
+daMirror_c::entryModelFunc daMirror_c::m_entryModel = NULL;
 
 /* 80450DA4-80450DA8 0002A4 0004+00 0/0 1/1 2/2 .sbss            m_top__13daTagStream_c */
 daTagStream_c* daTagStream_c::m_top;
@@ -513,7 +384,7 @@ bool daMirror_c::remove() {
 
 /* ############################################################################################## */
 /* 80424588-80424594 0512A8 000C+00 1/2 0/0 1/1 .bss             m_deleteRoom__15dGrass_packet_c */
-dGrass_packet_c::deleteFunc dGrass_packet_c::m_deleteRoom;
+dGrass_packet_c::deleteFunc dGrass_packet_c::m_deleteRoom = NULL;
 
 /* 80450DAC-80450DB0 0002AC 0004+00 0/0 0/0 2/2 .sbss            m_myObj__9daGrass_c */
 daGrass_c* daGrass_c::m_myObj;
@@ -531,7 +402,7 @@ void daGrass_c::deleteRoomGrass(int param_0) {
 
 /* ############################################################################################## */
 /* 80424594-804245A0 0512B4 000C+00 1/2 0/0 1/1 .bss             m_deleteRoom__16dFlower_packet_c */
-dFlower_packet_c::deleteFunc dFlower_packet_c::m_deleteRoom;
+dFlower_packet_c::deleteFunc dFlower_packet_c::m_deleteRoom = NULL;
 
 /* 80450DB4-80450DB8 0002B4 0004+00 1/1 0/0 9/9 .sbss            m_flower__9daGrass_c */
 dFlower_packet_c* daGrass_c::m_flower;
@@ -650,19 +521,12 @@ bool daObjCarry_c::chkSaveFlag() {
     return mSaveFlag == true;
 }
 
-/* ############################################################################################## */
-/* 804245A0-804245AC 0512C0 000C+00 0/1 0/0 0/0 .bss             @4480 */
-#pragma push
-#pragma force_active on
-static u8 lit_4480[12];
-#pragma pop
-
 /* 804245AC-804245E8 0512CC 003C+00 3/4 0/0 0/0 .bss             mPos__12daObjCarry_c */
-Vec daObjCarry_c::mPos[5];
+cXyz daObjCarry_c::mPos[5];
 
 /* 80031D24-80031D38 02C664 0014+00 0/0 0/0 1/1 .text            getPos__12daObjCarry_cFi */
 const cXyz& daObjCarry_c::getPos(int param_0) {
-    return *(cXyz*)&mPos[param_0];
+    return mPos[param_0];
 }
 
 /* 80031D38-80031D64 02C678 002C+00 0/0 0/0 2/2 .text            savePos__12daObjCarry_cFi4cXyz */
@@ -704,46 +568,3 @@ void daObjCarry_c::setRoomNo(int idx, s8 roomNo) {
 s8 daObjCarry_c::getRoomNo(int idx) {
     return mRoomNo[idx];
 }
-
-/* 80031DC4-80031EAC 02C704 00E8+00 0/0 1/0 0/0 .text            __sinit_d_com_static_cpp */
-void __sinit_d_com_static_cpp(){// NONMATCHING
-}
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80031DC4, __sinit_d_com_static_cpp);
-#pragma pop
-
-/* 80031EAC-80031EE4 02C7EC 0038+00 1/1 0/0 0/0 .text            __arraydtor$4479 */
-void func_80031EAC() {
-    // NONMATCHING
-}
-
-/* 80031EE4-80031EF0 02C824 000C+00 1/1 0/0 0/0 .text            __ct__Q27daSus_c6room_cFv */
-daSus_c::room_c::room_c() {
-    // NONMATCHING
-}
-
-/* 80031EF0-80031F28 02C830 0038+00 1/1 0/0 0/0 .text            __arraydtor$3839 */
-void func_80031EF0() {
-    // NONMATCHING
-}
-
-/* 80031F28-80031F64 02C868 003C+00 2/2 0/0 0/0 .text            __dt__Q27daSus_c6data_cFv */
-daSus_c::data_c::~data_c() {
-    // NONMATCHING
-}
-
-/* 80031F64-80031F94 02C8A4 0030+00 1/1 0/0 0/0 .text            __ct__Q27daSus_c6data_cFv */
-daSus_c::data_c::data_c() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80450DD1-80450DD5 -00001 0004+00 0/0 0/0 0/0 .sbss            None */
-#pragma push
-#pragma force_active on
-static u8 pad_80450DD1[4];
-#pragma pop
-
-/* 803790B0-803790B0 005710 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

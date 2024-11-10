@@ -1236,13 +1236,8 @@ extern "C" u8 func_80141AE8(u8*) {
 }
 
 /* 80141B04-801446D4 13C444 2BD0+00 0/0 1/0 0/0 .text            __sinit_d_a_alink_cpp */
-void __sinit_d_a_alink_cpp(){// NONMATCHING
-}
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80141B04, __sinit_d_a_alink_cpp);
-#pragma pop
+/* void __sinit_d_a_alink_cpp(){// NONMATCHING
+} */
 
 /* 801446D4-801446DC 13F014 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
 static void func_801446D4() {
