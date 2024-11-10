@@ -50,6 +50,7 @@ public:
     void setHierarchy(J3DModelHierarchy* hierarchy) { mHierarchy = hierarchy; }
     void setBasicMtxCalc(J3DMtxCalc* calc) { mBasicMtxCalc = calc; }
     u16 getWEvlpMtxNum() const { return mWEvlpMtxNum; }
+    u16* getWEvlpMixIndex() const { return mWEvlpMixMtxIndex; }
     u8 getWEvlpMixMtxNum(u16 idx) const { return mWEvlpMixMtxNum[idx]; }
     u16 * getWEvlpMixMtxIndex() const { return mWEvlpMixMtxIndex; }
     f32 * getWEvlpMixWeight() const { return mWEvlpMixWeight; }

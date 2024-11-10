@@ -4,144 +4,11 @@
 //
 
 #include "JSystem/J2DGraph/J2DMaterial.h"
+#include "JSystem/J3DGraphBase/J3DStruct.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JUtility/JUTPalette.h"
+#include "JSystem/JUtility/JUTTexture.h"
 #include "dol2asm.h"
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__11J2DMaterialFv();
-extern "C" void __dt__11J2DMaterialFv();
-extern "C" void setGX__11J2DMaterialFv();
-extern "C" void createTevBlock__11J2DMaterialFib();
-extern "C" void createIndBlock__11J2DMaterialFib();
-extern "C" void __ct__Q211J2DMaterial21J2DMaterialAnmPointerFv();
-extern "C" void makeAnmPointer__11J2DMaterialFv();
-extern "C" void setAnimation__11J2DMaterialFP11J2DAnmColor();
-extern "C" void setAnimation__11J2DMaterialFP19J2DAnmTextureSRTKey();
-extern "C" void setAnimation__11J2DMaterialFP16J2DAnmTexPattern();
-extern "C" void setAnimation__11J2DMaterialFP15J2DAnmTevRegKey();
-extern "C" void animation__11J2DMaterialFv();
-extern "C" void __dt__13J2DColorBlockFv();
-extern "C" void __dt__11J2DIndBlockFv();
-extern "C" void __dt__11J2DTevBlockFv();
-extern "C" void setGX__11J2DIndBlockFv();
-extern "C" void setGX__11J2DTevBlockFv();
-extern "C" void setTevKColor__11J2DTevBlockFUlQ28JUtility6TColor();
-extern "C" void setTevColor__11J2DTevBlockFUl13J2DGXColorS10();
-extern "C" void setTexNo__11J2DTevBlockFUlUs();
-extern "C" void setGX__15J2DIndBlockNullFv();
-extern "C" void getType__15J2DIndBlockNullFv();
-extern "C" void __dt__15J2DIndBlockNullFv();
-extern "C" void initialize__11J2DIndBlockFv();
-extern "C" void setIndTexStageNum__11J2DIndBlockFUc();
-extern "C" void setIndTexOrder__11J2DIndBlockFUl14J2DIndTexOrder();
-extern "C" void setIndTexMtx__11J2DIndBlockFUl12J2DIndTexMtx();
-extern "C" void setIndTexCoordScale__11J2DIndBlockFUl19J2DIndTexCoordScale();
-extern "C" void __ct__11J2DTexCoordFv();
-extern "C" void __ct__12J2DColorChanFv();
-extern "C" void __dt__19J2DIndTexCoordScaleFv();
-extern "C" void __ct__19J2DIndTexCoordScaleFv();
-extern "C" void __dt__12J2DIndTexMtxFv();
-extern "C" void __ct__12J2DIndTexMtxFv();
-extern "C" void __ct__14J2DIndTexOrderFv();
-extern "C" void getColor__11J2DAnmColorCFUsP8_GXColor();
-
-//
-// External References:
-//
-
-extern "C" void __ct__Q28JUtility6TColorFv();
-extern "C" void* __nw__FUl();
-extern "C" void* __nw__FUli();
-extern "C" void __dl__FPv();
-extern "C" void storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette7_GXTlut();
-extern "C" bool getIndTexCoordScale__11J2DIndBlockFUl();
-extern "C" bool getIndTexMtx__11J2DIndBlockFUl();
-extern "C" bool getIndTexOrder__11J2DIndBlockFUl();
-extern "C" bool getIndTexStageNum__11J2DIndBlockCFv();
-extern "C" void initialize__13J2DColorBlockFv();
-extern "C" void setGX__13J2DColorBlockFv();
-extern "C" void initialize__14J2DTexGenBlockFv();
-extern "C" void setGX__14J2DTexGenBlockFv();
-extern "C" void __dt__14J2DTexGenBlockFv();
-extern "C" void setTexMtx__14J2DTexGenBlockFUlR9J2DTexMtx();
-extern "C" void getTexMtx__14J2DTexGenBlockFUlR9J2DTexMtx();
-extern "C" void __ct__12J2DTevBlock1Fv();
-extern "C" void __ct__12J2DTevBlock2Fv();
-extern "C" void __ct__12J2DTevBlock4Fv();
-extern "C" void __ct__12J2DTevBlock8Fv();
-extern "C" void __ct__13J2DTevBlock16Fv();
-extern "C" void initialize__10J2DPEBlockFv();
-extern "C" void setGX__10J2DPEBlockFv();
-extern "C" void calcTransform__19J2DAnmTextureSRTKeyCFfUsP17J3DTextureSRTInfo();
-extern "C" void getTexNo__16J2DAnmTexPatternCFUsPUs();
-extern "C" void getResTIMG__16J2DAnmTexPatternCFUs();
-extern "C" void getPalette__16J2DAnmTexPatternCFUs();
-extern "C" void getTevColorReg__15J2DAnmTevRegKeyCFUsP11_GXColorS10();
-extern "C" void getTevKonstReg__15J2DAnmTevRegKeyCFUsP8_GXColor();
-extern "C" void __construct_array();
-extern "C" void _savegpr_26();
-extern "C" void _restgpr_26();
-extern "C" extern void* __vt__15J2DIndBlockFull[14];
-extern "C" extern void* __vt__11J2DTevBlock[47];
-extern "C" extern void* __vt__14J2DTexGenBlock[3 + 1 /* padding */];
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 803CCA08-803CCA40 029B28 0038+00 2/2 0/0 0/0 .data            __vt__15J2DIndBlockNull */
-SECTION_DATA extern void* __vt__15J2DIndBlockNull[14] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)initialize__11J2DIndBlockFv,
-    (void*)setGX__15J2DIndBlockNullFv,
-    (void*)getType__15J2DIndBlockNullFv,
-    (void*)setIndTexStageNum__11J2DIndBlockFUc,
-    (void*)getIndTexStageNum__11J2DIndBlockCFv,
-    (void*)setIndTexOrder__11J2DIndBlockFUl14J2DIndTexOrder,
-    (void*)getIndTexOrder__11J2DIndBlockFUl,
-    (void*)setIndTexMtx__11J2DIndBlockFUl12J2DIndTexMtx,
-    (void*)getIndTexMtx__11J2DIndBlockFUl,
-    (void*)setIndTexCoordScale__11J2DIndBlockFUl19J2DIndTexCoordScale,
-    (void*)getIndTexCoordScale__11J2DIndBlockFUl,
-    (void*)__dt__15J2DIndBlockNullFv,
-};
-
-/* 803CCA40-803CCA78 029B60 0038+00 3/3 1/1 0/0 .data            __vt__11J2DIndBlock */
-SECTION_DATA extern void* __vt__11J2DIndBlock[14] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)initialize__11J2DIndBlockFv,
-    (void*)setGX__11J2DIndBlockFv,
-    (void*)NULL,
-    (void*)setIndTexStageNum__11J2DIndBlockFUc,
-    (void*)getIndTexStageNum__11J2DIndBlockCFv,
-    (void*)setIndTexOrder__11J2DIndBlockFUl14J2DIndTexOrder,
-    (void*)getIndTexOrder__11J2DIndBlockFUl,
-    (void*)setIndTexMtx__11J2DIndBlockFUl12J2DIndTexMtx,
-    (void*)getIndTexMtx__11J2DIndBlockFUl,
-    (void*)setIndTexCoordScale__11J2DIndBlockFUl19J2DIndTexCoordScale,
-    (void*)getIndTexCoordScale__11J2DIndBlockFUl,
-    (void*)__dt__11J2DIndBlockFv,
-};
-
-/* 803CCA78-803CCA84 029B98 000C+00 2/2 0/0 0/0 .data            __vt__11J2DMaterial */
-SECTION_DATA extern void* __vt__11J2DMaterial[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__11J2DMaterialFv,
-};
-
-/* 803CCA84-803CCA90 029BA4 000C+00 3/3 0/0 0/0 .data            __vt__13J2DColorBlock */
-SECTION_DATA extern void* __vt__13J2DColorBlock[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__13J2DColorBlockFv,
-};
 
 /* 802EA1AC-802EA2CC 2E4AEC 0120+00 0/0 1/1 0/0 .text            __ct__11J2DMaterialFv */
 J2DMaterial::J2DMaterial() {
@@ -154,10 +21,10 @@ J2DMaterial::J2DMaterial() {
     mVisible = true;
 }
 
-/* 802EA2CC-802EA38C 2E4C0C 00C0+00 1/0 2/2 0/0 .text            __dt__11J2DMaterialFv */
-extern "C" void __dt__11J2DMaterialFv() {
-    // asm J2DMaterial::~J2DMaterial() {
-    // NONMATCHING
+J2DMaterial::~J2DMaterial() {
+    delete mTevBlock;
+    delete mIndBlock;
+    delete mAnmPointer;
 }
 
 /* 802EA38C-802EA410 2E4CCC 0084+00 0/0 8/8 0/0 .text            setGX__11J2DMaterialFv */
@@ -235,26 +102,26 @@ J2DIndBlock* J2DMaterial::createIndBlock(int block_type, bool noAlign) {
 /* 802EA79C-802EA84C 2E50DC 00B0+00 1/1 0/0 0/0 .text
  * __ct__Q211J2DMaterial21J2DMaterialAnmPointerFv               */
 J2DMaterial::J2DMaterialAnmPointer::J2DMaterialAnmPointer() {
-    field_0x0 = NULL;
-    field_0x10 = -1;
-    field_0x4 = 0;
+    mColorAnm = NULL;
+    mColorIds = -1;
+    mSRTAnm = NULL;
 
     for (int i = 0; i < 8; i++) {
-        field_0x12[i] = -1;
+        mSRTIds[i] = -1;
     }
-    field_0x8 = 0;
+    mPatternAnm = NULL;
 
     for (int i = 0; i < 8; i++) {
-        field_0x22[i] = -1;
+        mPatternIds[i] = -1;
     }
-    field_0xc = 0;
+    mTevAnm = NULL;
 
     for (int i = 0; i < 4; i++) {
-        field_0x32[i] = -1;
+        mTevCRegIds[i] = -1;
     }
 
     for (int i = 0; i < 4; i++) {
-        field_0x3a[i] = -1;
+        mTevKRegIds[i] = -1;
     }
 }
 
@@ -270,8 +137,8 @@ void J2DMaterial::makeAnmPointer() {
 void J2DMaterial::setAnimation(J2DAnmColor* anm) {
     if (anm != NULL || mAnmPointer != NULL) {
         makeAnmPointer();
-        mAnmPointer->field_0x0 = anm;
-        mAnmPointer->field_0x10 = -1;
+        mAnmPointer->mColorAnm = anm;
+        mAnmPointer->mColorIds = -1;
 
         if (anm != NULL) {
             u16 matNum = anm->getUpdateMaterialNum();
@@ -281,7 +148,7 @@ void J2DMaterial::setAnimation(J2DAnmColor* anm) {
                 u16 matID = anm->getUpdateMaterialID(i);
 
                 if (index == matID) {
-                    mAnmPointer->field_0x10 = i;
+                    mAnmPointer->mColorIds = i;
                     return;
                 }
             }
@@ -294,10 +161,10 @@ void J2DMaterial::setAnimation(J2DAnmColor* anm) {
 void J2DMaterial::setAnimation(J2DAnmTextureSRTKey* anm) {
     if (anm != NULL || mAnmPointer != NULL) {
         makeAnmPointer();
-        mAnmPointer->field_0x4 = anm;
+        mAnmPointer->mSRTAnm = anm;
 
         for (int i = 0; i < 8; i++) {
-            mAnmPointer->field_0x12[i] = -1;
+            mAnmPointer->mSRTIds[i] = -1;
         }
 
         if (anm != NULL) {
@@ -309,7 +176,7 @@ void J2DMaterial::setAnimation(J2DAnmTextureSRTKey* anm) {
 
                 if (index == matID) {
                     u8 mtxID = anm->getUpdateTexMtxID(i);
-                    mAnmPointer->field_0x12[mtxID] = i;
+                    mAnmPointer->mSRTIds[mtxID] = i;
                 }
             }
         }
@@ -321,10 +188,10 @@ void J2DMaterial::setAnimation(J2DAnmTextureSRTKey* anm) {
 void J2DMaterial::setAnimation(J2DAnmTexPattern* anm) {
     if (anm != NULL || mAnmPointer != NULL) {
         makeAnmPointer();
-        mAnmPointer->field_0x8 = anm;
+        mAnmPointer->mPatternAnm = anm;
 
         for (int i = 0; i < 8; i++) {
-            mAnmPointer->field_0x22[i] = -1;
+            mAnmPointer->mPatternIds[i] = -1;
         }
 
         if (anm != NULL) {
@@ -336,7 +203,7 @@ void J2DMaterial::setAnimation(J2DAnmTexPattern* anm) {
                 u16 matID = anm->getUpdateMaterialID(i);
 
                 if (index == matID) {
-                    mAnmPointer->field_0x22[anmTbl[i].mTexNo] = i;
+                    mAnmPointer->mPatternIds[anmTbl[i].mTexNo] = i;
                 }
             }
         }
@@ -348,10 +215,10 @@ void J2DMaterial::setAnimation(J2DAnmTexPattern* anm) {
 void J2DMaterial::setAnimation(J2DAnmTevRegKey* anm) {
     if (anm != NULL || mAnmPointer != NULL) {
         makeAnmPointer();
-        mAnmPointer->field_0xc = anm;
+        mAnmPointer->mTevAnm = anm;
 
         for (int i = 0; i < 4; i++) {
-            mAnmPointer->field_0x32[i] = -1;
+            mAnmPointer->mTevCRegIds[i] = -1;
         }
 
         if (anm != NULL) {
@@ -363,13 +230,13 @@ void J2DMaterial::setAnimation(J2DAnmTevRegKey* anm) {
 
                 if (index == matID) {
                     J3DAnmCRegKeyTable* anmTbl = anm->getAnmCRegKeyTable();
-                    mAnmPointer->field_0x32[anmTbl[i].mColorId] = i;
+                    mAnmPointer->mTevCRegIds[anmTbl[i].mColorId] = i;
                 }
             }
         }
 
         for (int i = 0; i < 4; i++) {
-            mAnmPointer->field_0x3a[i] = -1;
+            mAnmPointer->mTevKRegIds[i] = -1;
         }
 
         if (anm != NULL) {
@@ -381,161 +248,95 @@ void J2DMaterial::setAnimation(J2DAnmTevRegKey* anm) {
 
                 if (index == matID) {
                     J3DAnmKRegKeyTable* anmTbl = anm->getAnmKRegKeyTable();
-                    mAnmPointer->field_0x3a[anmTbl[i].mColorId] = i;
+                    mAnmPointer->mTevKRegIds[anmTbl[i].mColorId] = i;
                 }
             }
         }
     }
 }
 
-/* ############################################################################################## */
-/* 804561B0-804561B4 0047B0 0004+00 1/1 0/0 0/0 .sdata2          @1943 */
-SECTION_SDATA2 static f32 lit_1943 = 360.0f;
-
-/* 804561B4-804561B8 0047B4 0004+00 1/1 0/0 0/0 .sdata2          @1944 */
-SECTION_SDATA2 static f32 lit_1944 = 65535.0f;
-
-/* 804561B8-804561C0 0047B8 0008+00 1/1 0/0 0/0 .sdata2          @1946 */
-SECTION_SDATA2 static f64 lit_1946 = 4503599627370496.0 /* cast u32 to float */;
-
 /* 802EAC78-802EB0F4 2E55B8 047C+00 0/0 1/1 0/0 .text            animation__11J2DMaterialFv */
 void J2DMaterial::animation() {
-    // NONMATCHING
-}
+    if (!mAnmPointer) {
+		return;
+	}
 
-/* 802EB0F4-802EB13C 2E5A34 0048+00 1/0 0/0 0/0 .text            __dt__13J2DColorBlockFv */
-J2DColorBlock::~J2DColorBlock() {
-    // NONMATCHING
-}
+	if (mAnmPointer->mColorAnm && mAnmPointer->mColorIds != 0xFFFF) {
+		GXColor color;
+		mAnmPointer->mColorAnm->getColor(mAnmPointer->mColorIds, &color);
+		getColorBlock()->setMatColor(0, color);
+	}
+    
+	if (mAnmPointer->mSRTAnm) {
+		for (u8 i = 0; i < 8; i++) {
+			if (mAnmPointer->mSRTIds[i] != 0xFFFF) {
+				J3DTextureSRTInfo info3D;
+				mAnmPointer->mSRTAnm->getTransform(mAnmPointer->mSRTIds[i], &info3D);
+				J2DTextureSRTInfo info2D;
+				info2D.mScaleX       = info3D.mScaleX;
+				info2D.mScaleY       = info3D.mScaleY;
+				info2D.mRotationDeg  = (360.0f * f32((u16)info3D.mRotation)) / 65535.0f;
+				info2D.mTranslationX = info3D.mTranslationX;
+				info2D.mTranslationY = info3D.mTranslationY;
 
-/* 802EB13C-802EB184 2E5A7C 0048+00 1/0 0/0 0/0 .text            __dt__11J2DIndBlockFv */
-// J2DIndBlock::~J2DIndBlock() {
-extern "C" void __dt__11J2DIndBlockFv() {
-    // NONMATCHING
-}
+				J2DTexMtx texMtx;
+				getTexGenBlock()->getTexMtx(i, texMtx);
 
-/* 802EB184-802EB1CC 2E5AC4 0048+00 0/0 1/0 0/0 .text            __dt__11J2DTevBlockFv */
-// J2DTevBlock::~J2DTevBlock() {
-extern "C" void __dt__11J2DTevBlockFv() {
-    // NONMATCHING
-}
+				texMtx.getTexMtxInfo().mTexSRTInfo = info2D;
+				getTexGenBlock()->setTexMtx(i, texMtx);
+				getTexGenBlock()->getTexCoord(i).setTexGenMtx(i * 3 + 30);
+			}
+		}
+	}
 
-/* 802EB1CC-802EB1D0 2E5B0C 0004+00 1/0 0/0 0/0 .text            setGX__11J2DIndBlockFv */
-void J2DIndBlock::setGX() {
-    /* empty function */
-}
+	if (getTevBlock() && mAnmPointer->mPatternAnm) {
+		for (u8 i = 0; i < 8; i++) {
+			if (mAnmPointer->mPatternIds[i] != 0xFFFF) {
+				JUTTexture* texture = getTevBlock()->getTexture(i);
+				if (!texture) {
+					continue;
+				}
 
-/* 802EB1D0-802EB1D4 2E5B10 0004+00 0/0 1/0 0/0 .text            setGX__11J2DTevBlockFv */
-void J2DTevBlock::setGX() {
-    /* empty function */
-}
+				u16 idx = mAnmPointer->mPatternIds[i];
+				u16 texNo;
+				mAnmPointer->mPatternAnm->getTexNo(idx, &texNo);
+				getTevBlock()->setTexNo(i, texNo);
 
-/* 802EB1D4-802EB1D8 2E5B14 0004+00 0/0 1/0 0/0 .text
- * setTevKColor__11J2DTevBlockFUlQ28JUtility6TColor             */
-void J2DTevBlock::setTevKColor(u32 param_0, JUtility::TColor param_1) {
-    /* empty function */
-}
+                ResTIMG* img = mAnmPointer->mPatternAnm->getResTIMG(idx);
+                if (texture->getTexInfo() != img) {
+                    JUTPalette* palette = NULL;
+                    u32 tlut = GX_TLUT0;
+                    if (img->indexTexture != 0) {
+                        palette = mAnmPointer->mPatternAnm->getPalette(idx);
+						if (palette->getNumColors() > 256) {
+							tlut = i % 4 + 16;
+						} else {
+							tlut = i;
+						}
+                    }
 
-/* 802EB1D8-802EB1DC 2E5B18 0004+00 0/0 1/0 0/0 .text setTevColor__11J2DTevBlockFUl13J2DGXColorS10
- */
-void J2DTevBlock::setTevColor(u32 param_0, J2DGXColorS10 param_1) {
-    /* empty function */
-}
+                    texture->storeTIMG(img, palette, (GXTlut)tlut);
+                }
+            }
+		}
+	}
 
-/* 802EB1DC-802EB1E0 2E5B1C 0004+00 0/0 1/0 0/0 .text            setTexNo__11J2DTevBlockFUlUs */
-void J2DTevBlock::setTexNo(u32 param_0, u16 param_1) {
-    /* empty function */
-}
+	if (getTevBlock() && mAnmPointer->mTevAnm) {
+		for (u8 i = 0; i < 4; i++) {
+			if (mAnmPointer->mTevCRegIds[i] != 0xFFFF) {
+				J2DGXColorS10 color;
+				mAnmPointer->mTevAnm->getTevColorReg(mAnmPointer->mTevCRegIds[i], &color);
+				getTevBlock()->setTevColor(i, color);
+			}
+		}
 
-/* 802EB1E0-802EB1E4 2E5B20 0004+00 1/0 0/0 0/0 .text            setGX__15J2DIndBlockNullFv */
-extern "C" void setGX__15J2DIndBlockNullFv() {
-    /* empty function */
-}
-
-/* 802EB1E4-802EB1F0 2E5B24 000C+00 1/0 0/0 0/0 .text            getType__15J2DIndBlockNullFv */
-u32 J2DIndBlockNull::getType() {
-    // NONMATCHING
-}
-
-/* 802EB1F0-802EB24C 2E5B30 005C+00 1/0 0/0 0/0 .text            __dt__15J2DIndBlockNullFv */
-J2DIndBlockNull::~J2DIndBlockNull() {
-    // NONMATCHING
-}
-
-/* 802EB24C-802EB250 2E5B8C 0004+00 2/0 0/0 0/0 .text            initialize__11J2DIndBlockFv */
-extern "C" void initialize__11J2DIndBlockFv() {
-    /* empty function */
-}
-
-/* 802EB250-802EB254 2E5B90 0004+00 2/0 0/0 0/0 .text            setIndTexStageNum__11J2DIndBlockFUc
- */
-void J2DIndBlock::setIndTexStageNum(u8 param_0) {
-    /* empty function */
-}
-
-/* 802EB254-802EB258 2E5B94 0004+00 2/0 0/0 0/0 .text
- * setIndTexOrder__11J2DIndBlockFUl14J2DIndTexOrder             */
-void J2DIndBlock::setIndTexOrder(u32 param_0, J2DIndTexOrder param_1) {
-    /* empty function */
-}
-
-/* 802EB258-802EB25C 2E5B98 0004+00 2/0 0/0 0/0 .text setIndTexMtx__11J2DIndBlockFUl12J2DIndTexMtx
- */
-void J2DIndBlock::setIndTexMtx(u32 param_0, J2DIndTexMtx param_1) {
-    /* empty function */
-}
-
-/* 802EB25C-802EB260 2E5B9C 0004+00 2/0 0/0 0/0 .text
- * setIndTexCoordScale__11J2DIndBlockFUl19J2DIndTexCoordScale   */
-void J2DIndBlock::setIndTexCoordScale(u32 param_0, J2DIndTexCoordScale param_1) {
-    /* empty function */
-}
-
-/* 802EB260-802EB280 2E5BA0 0020+00 1/1 0/0 0/0 .text            __ct__11J2DTexCoordFv */
-//J2DTexCoord::J2DTexCoord() {
-void __ct__11J2DTexCoordFv() {
-    // NONMATCHING
-}
-
-/* 802EB280-802EB290 2E5BC0 0010+00 1/1 0/0 0/0 .text            __ct__12J2DColorChanFv */
-void __ct__12J2DColorChanFv() {
-//asm J2DColorChan::J2DColorChan() {
-    // NONMATCHING
-}
-
-/* 802EB290-802EB2CC 2E5BD0 003C+00 1/1 1/1 0/0 .text            __dt__19J2DIndTexCoordScaleFv */
-// Most likely inline
-// J2DIndTexCoordScale::~J2DIndTexCoordScale() {
-void __dt__19J2DIndTexCoordScaleFv() {
-    // NONMATCHING
-}
-
-/* 802EB2CC-802EB2E4 2E5C0C 0018+00 1/1 0/0 0/0 .text            __ct__19J2DIndTexCoordScaleFv */
-//J2DIndTexCoordScale::J2DIndTexCoordScale() {
-void __ct__19J2DIndTexCoordScaleFv() {
-    // NONMATCHING
-}
-
-/* 802EB2E4-802EB320 2E5C24 003C+00 1/1 1/1 0/0 .text            __dt__12J2DIndTexMtxFv */
-void __dt__12J2DIndTexMtxFv() {
-//asm J2DIndTexMtx::~J2DIndTexMtx() {
-    // NONMATCHING
-}
-
-/* 802EB320-802EB378 2E5C60 0058+00 1/1 0/0 0/0 .text            __ct__12J2DIndTexMtxFv */
-//J2DIndTexMtx::J2DIndTexMtx() {
-void __ct__12J2DIndTexMtxFv() {
-    // NONMATCHING
-}
-
-/* 802EB378-802EB390 2E5CB8 0018+00 1/1 0/0 0/0 .text            __ct__14J2DIndTexOrderFv */
-// Most likely inline
-//J2DIndTexOrder::J2DIndTexOrder() {
-void __ct__14J2DIndTexOrderFv() {
-    // NONMATCHING
-}
-
-/* 802EB390-802EB394 2E5CD0 0004+00 0/0 1/0 0/0 .text getColor__11J2DAnmColorCFUsP8_GXColor */
-void J2DAnmColor::getColor(u16 param_0, _GXColor* param_1) const {
-    /* empty function */
+		for (u8 i = 0; i < 4; i++) {
+			u16 idx = mAnmPointer->mTevKRegIds[i];
+			if (idx != 0xFFFF) {
+				JUtility::TColor konstColor;
+				mAnmPointer->mTevAnm->getTevKonstReg(idx, &konstColor);
+				getTevBlock()->setTevKColor(i, konstColor);
+			}
+		}
+	}
 }

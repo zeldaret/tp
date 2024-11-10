@@ -24,17 +24,17 @@ void J2DTexMtx::calc() {
 /* 802E9D2C-802E9EBC 2E466C 0190+00 1/1 0/0 0/0 .text
  * getTextureMtx__9J2DTexMtxFRC17J2DTextureSRTInfo3VecPA4_f     */
 void J2DTexMtx::getTextureMtx(J2DTextureSRTInfo const& param_0, Vec param_1, Mtx param_2) {
-    float f31 = (param_0.field_0x8 * M_PI) / 180.0f;
-    param_2[0][0] = param_0.field_0x0 * i_cosf(f31);
-    param_2[0][1] = -param_0.field_0x0 * i_sinf(f31);
+    float f31 = (param_0.mRotationDeg * M_PI) / 180.0f;
+    param_2[0][0] = param_0.mScaleX * i_cosf(f31);
+    param_2[0][1] = -param_0.mScaleX * i_sinf(f31);
     param_2[0][2] = 0.0f;
-    param_2[0][3] = -param_0.field_0x0 * i_cosf(f31) * param_1.x + param_1.y * (param_0.field_0x0 * i_sinf(f31)) +
-                    param_1.x + param_0.field_0xc;
-    param_2[1][0] = param_0.field_0x4 * i_sinf(f31);
-    param_2[1][1] = param_0.field_0x4 * i_cosf(f31);
+    param_2[0][3] = -param_0.mScaleX * i_cosf(f31) * param_1.x + param_1.y * (param_0.mScaleX * i_sinf(f31)) +
+                    param_1.x + param_0.mTranslationX;
+    param_2[1][0] = param_0.mScaleY * i_sinf(f31);
+    param_2[1][1] = param_0.mScaleY * i_cosf(f31);
     param_2[1][2] = 0.0f;
-    param_2[1][3] = -param_0.field_0x4 * i_sinf(f31) * param_1.x - param_1.y * (param_0.field_0x4 * i_cosf(f31)) +
-                    param_1.y + param_0.field_0x10;
+    param_2[1][3] = -param_0.mScaleY * i_sinf(f31) * param_1.x - param_1.y * (param_0.mScaleY * i_cosf(f31)) +
+                    param_1.y + param_0.mTranslationY;
     param_2[2][0] = 0.0f;
     param_2[2][1] = 0.0f;
     param_2[2][2] = 1.0f;
@@ -44,17 +44,17 @@ void J2DTexMtx::getTextureMtx(J2DTextureSRTInfo const& param_0, Vec param_1, Mtx
 /* 802E9EBC-802EA044 2E47FC 0188+00 1/1 0/0 0/0 .text
  * getTextureMtxMaya__9J2DTexMtxFRC17J2DTextureSRTInfoPA4_f     */
 void J2DTexMtx::getTextureMtxMaya(J2DTextureSRTInfo const& param_0, Mtx param_1) {
-    float f31 = (param_0.field_0x8 * M_PI) / 180.0f;
-    param_1[0][0] = param_0.field_0x0 * i_cosf(f31);
-    param_1[0][1] = param_0.field_0x4 * i_sinf(f31);
+    float f31 = (param_0.mRotationDeg * M_PI) / 180.0f;
+    param_1[0][0] = param_0.mScaleX * i_cosf(f31);
+    param_1[0][1] = param_0.mScaleY * i_sinf(f31);
     param_1[0][2] = 0.0f;
-    param_1[0][3] = (param_0.field_0xc - 0.5f) * i_cosf(f31) -
-                    (param_0.field_0x10 - 0.5f + param_0.field_0x4) * i_sinf(f31) + 0.5f;
-    param_1[1][0] = -param_0.field_0x0 * i_sinf(f31);
-    param_1[1][1] = param_0.field_0x4 * i_cosf(f31);
+    param_1[0][3] = (param_0.mTranslationX - 0.5f) * i_cosf(f31) -
+                    (param_0.mTranslationY - 0.5f + param_0.mScaleY) * i_sinf(f31) + 0.5f;
+    param_1[1][0] = -param_0.mScaleX * i_sinf(f31);
+    param_1[1][1] = param_0.mScaleY * i_cosf(f31);
     param_1[1][2] = 0.0f;
-    param_1[1][3] = -(param_0.field_0xc - 0.5f) * i_sinf(f31) -
-                    (param_0.field_0x10 - 0.5f + param_0.field_0x4) * i_cosf(f31) + 0.5f;
+    param_1[1][3] = -(param_0.mTranslationX - 0.5f) * i_sinf(f31) -
+                    (param_0.mTranslationY - 0.5f + param_0.mScaleY) * i_cosf(f31) + 0.5f;
     param_1[2][0] = 0.0f;
     param_1[2][1] = 0.0f;
     param_1[2][2] = 1.0f;
@@ -83,82 +83,24 @@ void J2DIndTexOrder::load(u8 indTexStage) {
     GXSetIndTexOrder((GXIndTexStageID)indTexStage, mInfo.getTexCoordID(), mInfo.getTexMapID());
 }
 
-/* 802EA12C-802EA134 2E4A6C 0008+00 0/0 1/0 0/0 .text getTevSwapModeTable__11J2DTevBlockFUl */
-J2DTevSwapModeTable* J2DTevBlock::getTevSwapModeTable(u32 param_0) {
-    return NULL;
-}
-
-/* 802EA134-802EA13C 2E4A74 0008+00 0/0 1/0 0/0 .text            getTevStage__11J2DTevBlockFUl */
-J2DTevStage* J2DTevBlock::getTevStage(u32 param_0) {
-    return NULL;
-}
-
-/* 802EA13C-802EA144 2E4A7C 0008+00 0/0 1/0 0/0 .text            getTevColor__11J2DTevBlockFUl */
-J2DGXColorS10* J2DTevBlock::getTevColor(u32 param_0) {
-    return NULL;
-}
-
-/* 802EA144-802EA14C 2E4A84 0008+00 0/0 1/0 0/0 .text            getTevOrder__11J2DTevBlockFUl */
-J2DTevOrder* J2DTevBlock::getTevOrder(u32 param_0) {
-    return NULL;
-}
-
-/* 802EA14C-802EA154 2E4A8C 0008+00 0/0 1/0 0/0 .text            getTevKAlphaSel__11J2DTevBlockFUl
- */
-u8 J2DTevBlock::getTevKAlphaSel(u32 param_0) {
-    return 0;
-}
-
-/* 802EA154-802EA15C 2E4A94 0008+00 0/0 1/0 0/0 .text            getTevKColorSel__11J2DTevBlockFUl
- */
-u8 J2DTevBlock::getTevKColorSel(u32 param_0) {
-    return 0;
-}
-
-/* 802EA15C-802EA164 2E4A9C 0008+00 0/0 1/0 0/0 .text            getTevKColor__11J2DTevBlockFUl */
-JUtility::TColor* J2DTevBlock::getTevKColor(u32 param_0) {
-    return NULL;
-}
-
-/* 802EA164-802EA170 2E4AA4 000C+00 0/0 1/0 0/0 .text            getFontNo__11J2DTevBlockCFv */
-u16 J2DTevBlock::getFontNo() const {
-    return 0xFFFF;
-}
-
-/* 802EA170-802EA17C 2E4AB0 000C+00 0/0 1/0 0/0 .text            getTexNo__11J2DTevBlockCFUl */
-u32 J2DTevBlock::getTexNo(u32 param_0) const {
-    return 0xFFFF;
-}
-
-/* 802EA17C-802EA184 2E4ABC 0008+00 0/0 1/0 0/0 .text            getTevStageNum__11J2DTevBlockCFv */
-u8 J2DTevBlock::getTevStageNum() const {
-    return 1;
-}
-
-/* 802EA184-802EA18C 2E4AC4 0008+00 0/0 1/0 0/0 .text            getIndTevStage__11J2DTevBlockFUl */
-J2DIndTevStage* J2DTevBlock::getIndTevStage(u32 param_0) {
-    return NULL;
-}
-
-/* 802EA18C-802EA194 2E4ACC 0008+00 0/0 2/0 0/0 .text getIndTexCoordScale__11J2DIndBlockFUl */
-J2DIndTexCoordScale* J2DIndBlock::getIndTexCoordScale(u32 param_0) {
-    return NULL;
-}
-
-/* 802EA194-802EA19C 2E4AD4 0008+00 0/0 2/0 0/0 .text            getIndTexMtx__11J2DIndBlockFUl */
-J2DIndTexMtx* J2DIndBlock::getIndTexMtx(u32 param_0) {
-    return NULL;
-}
-
-/* 802EA19C-802EA1A4 2E4ADC 0008+00 0/0 2/0 0/0 .text            getIndTexOrder__11J2DIndBlockFUl */
-J2DIndTexOrder* J2DIndBlock::getIndTexOrder(u32 param_0) {
-    return NULL;
-}
-
-/* 802EA1A4-802EA1AC 2E4AE4 0008+00 0/0 2/0 0/0 .text            getIndTexStageNum__11J2DIndBlockCFv
- */
-u8 J2DIndBlock::getIndTexStageNum() const {
-    return 0;
+static void dummyVirtual(J2DTevBlock* block, J2DIndBlock* indBlock) {
+    indBlock->getIndTexStageNum();
+    indBlock->getIndTexOrder(0);
+    indBlock->getIndTexStageNum();
+    indBlock->getIndTexOrder(0);
+    indBlock->getIndTexMtx(0);
+    indBlock->getIndTexCoordScale(0);
+    block->getIndTevStage(0);
+    block->getTevStageNum();
+    block->getTexNo(0);
+    block->getFontNo();
+    block->getTevKColor(0);
+    block->getTevKColorSel(0);
+    block->getTevKAlphaSel(0);
+    block->getTevOrder(0);
+    block->getTevColor(0);
+    block->getTevStage(0);
+    block->getTevSwapModeTable(0);
 }
 
 /* ############################################################################################## */
