@@ -12,90 +12,6 @@
 #include "JSystem/JMath/JMATrigonometric.h"
 #include "JSystem/JGeometry.h"
 
-//
-// Forward References:
-//
-
-extern "C" void __ct__10JASChannelFPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv();
-extern "C" void __dt__10JASChannelFv();
-extern "C" void play__10JASChannelFv();
-extern "C" void playForce__10JASChannelFv();
-extern "C" void release__10JASChannelFUs();
-extern "C" void setOscInit__10JASChannelFUlPCQ213JASOscillator4Data();
-extern "C" void setMixConfig__10JASChannelFUlUs();
-extern "C" void calcEffect__10JASChannelFPCQ210JASChannel9PanVector();
-extern "C" void calcPan__10JASChannelFPCQ210JASChannel9PanVector();
-extern "C" void effectOsc__10JASChannelFUlPQ213JASOscillator12EffectParams();
-extern "C" void setKeySweepTarget__10JASChannelFlUl();
-extern "C" void
-updateEffectorParam__10JASChannelFPQ26JASDsp8TChannelPUsRCQ213JASOscillator12EffectParams();
-extern "C" void dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv();
-extern "C" void initialUpdateDSPChannel__10JASChannelFPQ26JASDsp8TChannel();
-extern "C" void updateDSPChannel__10JASChannelFPQ26JASDsp8TChannel();
-extern "C" void updateAutoMixer__10JASChannelFPQ26JASDsp8TChannelffff();
-extern "C" void updateMixer__10JASChannelFffffPUs();
-extern "C" void free__10JASChannelFv();
-extern "C" void initBankDisposeMsgQueue__10JASChannelFv();
-extern "C" void receiveBankDisposeMsg__10JASChannelFv();
-extern "C" void checkBankDispose__10JASChannelCFv();
-extern "C" u8 sBankDisposeMsgQ__10JASChannel[32];
-extern "C" u8 sBankDisposeMsg__10JASChannel[64];
-extern "C" u8 sBankDisposeList__10JASChannel[64];
-extern "C" u8 sBankDisposeListSize__10JASChannel[4 + 4 /* padding */];
-
-//
-// External References:
-//
-
-extern "C" void pow2__7JASCalcFf();
-extern "C" void __ct__17JASGenericMemPoolFv();
-extern "C" void free__17JASGenericMemPoolFPvUl();
-extern "C" void func_802978DC(void* _this);
-extern "C" void __ct__6JASLfoFv();
-extern "C" void getValue__6JASLfoCFv();
-extern "C" void incCounter__6JASLfoFf();
-extern "C" void resetCounter__6JASLfoFv();
-extern "C" void __ct__13JASOscillatorFv();
-extern "C" void initStart__13JASOscillatorFPCQ213JASOscillator4Data();
-extern "C" void incCounter__13JASOscillatorFf();
-extern "C" void getValue__13JASOscillatorCFv();
-extern "C" void release__13JASOscillatorFv();
-extern "C" void update__13JASOscillatorFv();
-extern "C" void getDacRate__9JASDriverFv();
-extern "C" void free__13JASDSPChannelFv();
-extern "C" void start__13JASDSPChannelFv();
-extern "C" void drop__13JASDSPChannelFv();
-extern "C" void alloc__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv();
-extern "C" void allocForce__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv();
-extern "C" void setPriority__13JASDSPChannelFUc();
-extern "C" void setWaveInfo__Q26JASDsp8TChannelFRC11JASWaveInfoUlUl();
-extern "C" void setOscInfo__Q26JASDsp8TChannelFUl();
-extern "C" void initAutoMixer__Q26JASDsp8TChannelFv();
-extern "C" void setAutoMixer__Q26JASDsp8TChannelFUsUcUcUcUc();
-extern "C" void setPitch__Q26JASDsp8TChannelFUs();
-extern "C" void setMixerInitVolume__Q26JASDsp8TChannelFUcs();
-extern "C" void setMixerVolume__Q26JASDsp8TChannelFUcs();
-extern "C" void setPauseFlag__Q26JASDsp8TChannelFUc();
-extern "C" void setBusConnect__Q26JASDsp8TChannelFUcUc();
-extern "C" void getChannelLevel_dsp__9JASDriverFv();
-extern "C" void getOutputMode__9JASDriverFv();
-extern "C" void __register_global_object();
-extern "C" void __construct_array();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern u8 data_80431B34[16 + 4 /* padding */];
-extern "C" u8 sincosTable___5JMath[65536];
-extern "C" u32 one__11JASWaveInfo[1 + 1 /* padding */];
-extern "C" extern u8 struct_80451260[8];
-
-//
-// Declarations:
-//
-
 /* 80431B90-80431BB0 05E8B0 0020+00 2/2 0/0 0/0 .bss             sBankDisposeMsgQ__10JASChannel */
 OSMessageQueue JASChannel::sBankDisposeMsgQ;
 
@@ -136,9 +52,6 @@ JASChannel::JASChannel(Callback i_callback, void* i_callbackData) :
     mPriority = 0x13f;
     mPauseFlag = false;
 }
-
-/* 80431C30-80431C40 05E950 000C+04 1/1 0/2 0/0 .bss             @556 */
-static u8 lit_556[12 + 4 /* padding */];
 
 /* 8029A918-8029A9F0 295258 00D8+00 5/5 0/0 0/0 .text            __dt__10JASChannelFv */
 JASChannel::~JASChannel() {
