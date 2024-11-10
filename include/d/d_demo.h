@@ -7,6 +7,7 @@
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "Z2AudioLib/Z2SoundStarter.h"
+#include "f_op/f_op_actor_mng.h"
 
 class J3DModel;
 class dDemo_actor_c;
@@ -39,17 +40,42 @@ public:
     /* 0xAC */ dDemo_fog_c* mpFog;
 };
 
+// TODO: made up, figure out what this is
+struct dDemo_prm_data {
+    /* 0x0 */ u8 field_0x0[0x4 - 0x0];
+    /* 0x4 */ s8 field_0x4;
+    /* 0x5 */ u8 field_0x5[0x6 - 0x5];
+    /* 0x6 */ s8 field_0x6;
+    /* 0x7 */ s8 field_0x7;
+    /* 0x8 */ u8 field_0x8[0xB - 0x8];
+    /* 0xB */ s8 field_0xb;
+    /* 0xC */ u8 field_0xc[0xF - 0xC];
+    /* 0xF */ s8 field_0xf;
+};
+
 class dDemo_prm_c {
 public:
-    dDemo_prm_c() { mData = 0; }
-    u32 getData() { return mData; }
+    dDemo_prm_c() { mData = NULL; }
+    dDemo_prm_data* getData() { return mData; }
 
     /* 0x0 */ u32 field_0x0;
-    /* 0x4 */ u32 mData;
+    /* 0x4 */ dDemo_prm_data* mData;
 };
 
 class dDemo_actor_c : public JStage::TActor {
 public:
+    enum Enable_e {
+        ENABLE_TRANS_e = (1 << 1),
+        ENABLE_SCALE_e = (1 << 2),
+        ENABLE_ROTATE_e = (1 << 3),
+        ENABLE_SHAPE_e = (1 << 4),
+        ENABLE_ANM_e = (1 << 5),
+        ENABLE_ANM_FRAME_e = (1 << 6),
+        ENABLE_ANM_TRANSITION_e = (1 << 7),
+        ENABLE_TEX_ANM = (1 << 8),
+        ENABLE_TEX_ANM_FRAME_e = (1 << 9),
+    };
+
     /* 80038020 */ dDemo_actor_c();
     /* 80038128 */ fopAc_ac_c* getActor();
     /* 8003815C */ void setActor(fopAc_ac_c*);
@@ -58,22 +84,41 @@ public:
     
     /* 80038098 */ virtual ~dDemo_actor_c();
     /* 800387EC */ virtual void JSGSetData(u32, void const*, u32);
-    /* 8003A05C */ virtual s32 JSGFindNodeID(char const*) const;
-    /* 8003A088 */ virtual bool JSGGetNodeTransformation(u32, f32 (*)[4]) const;
-    /* 8003A0D8 */ virtual void JSGGetTranslation(Vec*) const;
+    /* 8003A05C */ virtual s32 JSGFindNodeID(char const* param_0) const {
+        JUT_ASSERT(mModel != 0);
+        return mModel->getModelData()->getJointName()->getIndex(param_0);
+    }
+    /* 8003A088 */ virtual bool JSGGetNodeTransformation(u32 param_0, Mtx param_1) const {
+        JUT_ASSERT(mModel != 0);
+        cMtx_copy(mModel->getAnmMtx((u16)param_0), param_1);
+        return true;
+    }
+    /* 8003A0D8 */ virtual void JSGGetTranslation(Vec* o_trans) const {
+        *o_trans = mTrans;
+    }
     /* 80038920 */ virtual void JSGSetTranslation(Vec const&);
-    /* 8003A0F4 */ virtual void JSGGetScaling(Vec*) const;
+    /* 8003A0F4 */ virtual void JSGGetScaling(Vec* o_scale) const {
+        *o_scale = mScale;
+    }
     /* 80038980 */ virtual void JSGSetScaling(Vec const&);
-    /* 8003A110 */ virtual void JSGGetRotation(Vec*) const;
+    /* 8003A110 */ virtual void JSGGetRotation(Vec* param_0) const {
+        param_0->x = mRotate.x * 0.005493164f;
+        param_0->y = mRotate.y * 0.005493164f;
+        param_0->z = mRotate.z * 0.005493164f;
+    }
     /* 800389A8 */ virtual void JSGSetRotation(Vec const&);
     /* 80038A0C */ virtual void JSGSetShape(u32);
     /* 80038A20 */ virtual void JSGSetAnimation(u32);
     /* 80038A40 */ virtual void JSGSetAnimationFrame(f32);
-    /* 8003A0C8 */ virtual f32 JSGGetAnimationFrameMax() const;
+    /* 8003A0C8 */ virtual f32 JSGGetAnimationFrameMax() const {
+        return mAnmFrameMax;
+    }
     /* 80038A54 */ virtual void JSGSetAnimationTransition(f32);
     /* 80038A68 */ virtual void JSGSetTextureAnimation(u32);
     /* 80038A7C */ virtual void JSGSetTextureAnimationFrame(f32);
-    /* 8003A0D0 */ virtual f32 JSGGetTextureAnimationFrameMax() const;
+    /* 8003A0D0 */ virtual f32 JSGGetTextureAnimationFrameMax() const {
+        return mTexAnmFrameMax;
+    }
 
     void setModel(J3DModel* p_model) { mModel = p_model; }
     u8 checkEnable(u16 flag) { return mFlags & flag; }
@@ -104,7 +149,7 @@ private:
     /* 0x48 */ J3DModel* mModel;
     /* 0x4C */ dDemo_prm_c mPrm;
     /* 0x54 */ u32 field_0x54;
-    /* 0x58 */ u32 mActorId;
+    /* 0x58 */ fpc_ProcID mActorId;
     /* 0x5C */ u32 mOldAnmId;
     /* 0x60 */ u32 mBtpId;
     /* 0x64 */ u32 mBtkId;
@@ -136,6 +181,15 @@ public:
 
 class dDemo_light_c : public JStage::TLight {
 public:
+    enum Enable_e {
+        ENABLE_LIGHT_TYPE_e = (1 << 0),
+        ENABLE_POSITION_e = (1 << 1),
+        ENABLE_COLOR_e = (1 << 2),
+        ENABLE_DIST_ATTEN_e = (1 << 3),
+        ENABLE_ANGLE_ATTEN_e = (1 << 4),
+        ENABLE_DIRECTION_e = (1 << 5),
+    };
+
     dDemo_light_c() {
         mFlags = 0;
     }
@@ -165,6 +219,13 @@ private:
 
 class dDemo_fog_c : public JStage::TFog {
 public:
+    enum Enable_e {
+        ENABLE_FOG_FN_e = (1 << 0),
+        ENABLE_START_Z_e = (1 << 1),
+        ENABLE_END_Z_e = (1 << 2),
+        ENABLE_COLOR_e = (1 << 3),
+    };
+
     dDemo_fog_c() {
         mFlags = 0;
     }
@@ -187,6 +248,17 @@ private:
 
 class dDemo_camera_c : public JStage::TCamera {
 public:
+    enum Enable_e {
+        ENABLE_PROJ_NEAR_e = (1 << 0),
+        ENABLE_PROJ_FAR_e = (1 << 1),
+        ENABLE_PROJ_FOVY_e = (1 << 2),
+        ENABLE_PROJ_ASPECT_e = (1 << 3),
+        ENABLE_VIEW_POS_e = (1 << 4),
+        ENABLE_VIEW_UP_VEC_e = (1 << 5),
+        ENABLE_VIEW_TARG_POS_e = (1 << 6),
+        ENABLE_VIEW_ROLL_e = (1 << 7),
+    };
+
     dDemo_camera_c() {
         mFlags = 0;
     }
@@ -232,6 +304,10 @@ private:
 
 class dDemo_ambient_c : public JStage::TAmbientLight {
 public:
+    enum Enable_e {
+        ENABLE_COLOR_e = (1 << 0),
+    };
+
     dDemo_ambient_c() {
         mFlags = 0;
     }
@@ -257,6 +333,8 @@ public:
 
 class jstudio_tAdaptor_message : public JStudio::TAdaptor_message {
 public:
+    typedef JStudio::TObject_message ObjectType;
+
     jstudio_tAdaptor_message() {}
 
     virtual ~jstudio_tAdaptor_message();

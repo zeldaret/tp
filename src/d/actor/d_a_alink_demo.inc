@@ -1427,17 +1427,33 @@ f32 daAlink_c::setStickAnmData(J3DAnmBase* i_anm, int param_1, int param_2, u16 
 
 /* 80119464-801195C0 113DA4 015C+00 1/1 0/0 0/0 .text
  * daAlink_c_getDemoIDData__FP13dDemo_actor_cPiPiPiPUsPiPi      */
+// NONMATCHING - some stack issues
 static int daAlink_c_getDemoIDData(dDemo_actor_c* param_0, int* param_1, int* param_2,
                                        int* param_3, u16* param_4, int* param_5, int* param_6) {
-    // NONMATCHING
-    static u8 dummy[20];
+    JStudio::stb::TParseData_fixed<51, TValueIterator_misaligned<u32> > sp30(param_0->getPrm()->getData());
 
-    /* JStudio::stb::TParseData_fixed<51> sp50((void*)param_0->getPrm()->getData());
+    static JStudio::stb::TParseData_fixed<51, TValueIterator_misaligned<u32> > dummy;
+    static JGadget::binary::TValueIterator_misaligned<u32> it(dummy.begin());
 
-    static JStudio::stb::TParseData_fixed<51> dummy;
-    static JGadget::binary::TValueIterator_raw<u32> it(sp50); */
+    if (it == sp30.end()) {
+        it = dummy.begin();
+        return 0;
+    }
 
-    return 0;
+    if (it == dummy.begin()) {
+        it = sp30.begin();
+    }
+
+    u32 var_r31 = *it;
+    *param_1 = var_r31 >> 0x1E;
+    *param_2 = (var_r31 >> 0x18) & 0xF;
+    *param_6 = (var_r31 >> 0x17) & 1;
+    *param_3 = (var_r31 >> 0x10) & 0xF;
+    *param_4 = var_r31 & 0xFFFF;
+    *param_5 = (var_r31 >> 0x14) & 7;
+
+    it++;
+    return 1;
 }
 
 /* 801195C0-801195F8 113F00 0038+00 7/0 0/0 0/0 .text            procDemoCommon__9daAlink_cFv */
