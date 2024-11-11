@@ -420,7 +420,7 @@ void daGrass_c::deleteRoomFlower(int param_0) {
 daMP_c* daMP_c::m_myObj;
 
 /* 80031A78-80031AA4 02C3B8 002C+00 0/0 0/0 1/1 .text daMP_c_Get_MovieRestFrame__6daMP_cFv */
-int daMP_c::daMP_c_Get_MovieRestFrame() {
+u32 daMP_c::daMP_c_Get_MovieRestFrame() {
     return m_myObj->mpGetMovieRestFrame();
 }
 

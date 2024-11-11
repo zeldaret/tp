@@ -91,6 +91,11 @@ public:
         mFrameRate = 0;
     }
 
+    void setFrameRate(u16 rate) {
+        mFrameRate = rate;
+        mTickRate = 0;
+    }
+
     void setDrawDoneMethod(EDrawDone drawDone) { mDrawDoneMethod = drawDone; }
     void setFader(JUTFader* fader) { mFader = fader; }
     JUTFader* getFader() const { return mFader; }

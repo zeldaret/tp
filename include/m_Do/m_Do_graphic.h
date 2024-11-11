@@ -101,6 +101,7 @@ public:
     static f32 getInvScale() { return 1.0f; }
     static f32 getScale() { return 1.0f; }
     static void setWideZoomLightProjection(Mtx m) {}
+    static void setFrameRate(u16 i_rate) { JFWDisplay::getManager()->setFrameRate(i_rate); }
 
     static GXTexObj mFrameBufferTexObj;
     static GXTexObj mZbufferTexObj;
