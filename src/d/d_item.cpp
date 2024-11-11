@@ -2048,8 +2048,8 @@ BOOL isHeart(u8 i_itemNo) {
     return is_heart;
 }
 
-bool isInsect(u8 i_itemNo) {
-    bool is_insect = false;
+BOOL isInsect(u8 i_itemNo) {
+    BOOL is_insect = false;
 
     switch (i_itemNo) {
     case M_BEETLE:

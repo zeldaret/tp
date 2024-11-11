@@ -4,6 +4,7 @@
 #include "f_op/f_op_actor.h"
 #include "f_op/f_op_actor_iter.h"
 #include "f_pc/f_pc_manager.h"
+#include "f_op/f_op_draw_tag.h"
 #include "d/d_bg_s.h"
 #include "d/d_bg_s_gnd_chk.h"
 #include "d/d_bg_s_lin_chk.h"
@@ -460,6 +461,14 @@ inline void dComIfGs_onActor(int bitNo, int roomNo);
 inline void fopAcM_onActor(const fopAc_ac_c* p_actor) {
     int setId = fopAcM_GetSetId(p_actor);
     dComIfGs_onActor(setId, fopAcM_GetHomeRoomNo(p_actor));
+}
+
+inline void fopAcM_onDraw(fopAc_ac_c* i_actor) {
+    fopDwTg_ToDrawQ(&i_actor->draw_tag, fpcM_DrawPriority(i_actor));
+}
+
+inline void fopAcM_offDraw(fopAc_ac_c* i_actor) {
+    fopDwTg_DrawQTo(&i_actor->draw_tag);
 }
 
 void fopAcM_initManager();
