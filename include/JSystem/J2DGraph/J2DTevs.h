@@ -97,6 +97,10 @@ public:
     J2DIndTexOrder(const J2DIndTexOrderInfo& info) {
         mInfo = info;
     }
+    J2DIndTexOrder& operator=(const J2DIndTexOrderInfo& info) {
+        mInfo = info;
+        return *this;
+    }
     /* 802EA0FC */ void load(u8);
 
 private:
@@ -137,6 +141,10 @@ public:
     J2DIndTexMtx(const J2DIndTexMtxInfo& info) {
         mIndTexMtxInfo = info;
     }
+    J2DIndTexMtx& operator=(const J2DIndTexMtxInfo& info) {
+        mIndTexMtxInfo = info;
+        return *this;
+    }
     /* 802EA098 */ void load(u8);
     /* 802E9C90 */ void load(u32);
     /* 802E9CC4 */ void calc();
@@ -175,6 +183,9 @@ public:
         mInfo = j2dDefaultIndTexCoordScaleInfo;
     }
     J2DIndTexCoordScale(const J2DIndTexCoordScaleInfo& info) {
+        mInfo = info;
+    }
+    J2DIndTexCoordScale& operator=(const J2DIndTexCoordScaleInfo& info) {
         mInfo = info;
     }
     /* 802EA0CC */ void load(u8);
@@ -352,6 +363,8 @@ struct J2DTevStageInfo {
     /* 0x13 */ u8 field_0x13;
 };
 
+extern J2DTevStageInfo const j2dDefaultTevStageInfo;
+
 /**
  * @ingroup jsystem-j2d
  * 
@@ -376,8 +389,8 @@ public:
     /* 802F19A8 */ void setTevStageInfo(J2DTevStageInfo const&);
 
     void setStageNo(u32 param_0) {
-        field_0x0 = (param_0 << 1) - 0x40;
-        field_0x4 = (param_0 << 1) - 0x3f;
+        field_0x0 = (param_0 << 1) + 0xc0;
+        field_0x4 = (param_0 << 1) + 0xc1;
     }
 
     void setTevSwapModeInfo(const J2DTevSwapModeInfo& swapInfo) {

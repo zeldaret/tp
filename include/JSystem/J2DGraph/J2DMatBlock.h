@@ -48,50 +48,50 @@ struct J2DTevSwapModeInfo;
  */
 class J2DTevBlock {
 public:
-    /* 802F2A40 */ virtual void initialize();
+    /* 802F2A40 */ virtual void initialize() {}
     /* 802EB1D0 */ virtual void setGX() {}
-    /* 802F2A44 */ virtual void loadTexture(_GXTexMapID, u32);
+    /* 802F2A44 */ virtual void loadTexture(_GXTexMapID, u32) {}
     virtual u32 getType() = 0;
     virtual u8 getMaxStage() = 0;
     /* 802EB1DC */ virtual void setTexNo(u32, u16) {}
     /* 802EA170 */ virtual u32 getTexNo(u32) const { return 0xFFFF; }
-    /* 802F2A48 */ virtual void setFontNo(u16);
+    /* 802F2A48 */ virtual void setFontNo(u16) {}
     /* 802EA164 */ virtual u16 getFontNo() const { return 0xFFFF; }
-    /* 802F2A4C */ virtual void setTevOrder(u32, J2DTevOrder);
+    /* 802F2A4C */ virtual void setTevOrder(u32, J2DTevOrder) {}
     /* 802EA144 */ virtual J2DTevOrder* getTevOrder(u32) { return NULL; }
     /* 802EB1D8 */ virtual void setTevColor(u32, J2DGXColorS10) {}
     /* 802EA13C */ virtual J2DGXColorS10* getTevColor(u32) { return NULL; }
     /* 802EB1D4 */ virtual void setTevKColor(u32, JUtility::TColor) {}
     /* 802EA15C */ virtual JUtility::TColor* getTevKColor(u32) { return NULL; }
-    /* 802F2A50 */ virtual void setTevKColorSel(u32, u8);
+    /* 802F2A50 */ virtual void setTevKColorSel(u32, u8) {}
     /* 802EA154 */ virtual u8 getTevKColorSel(u32) { return 0; }
-    /* 802F2A54 */ virtual void setTevKAlphaSel(u32, u8);
+    /* 802F2A54 */ virtual void setTevKAlphaSel(u32, u8) {}
     /* 802EA14C */ virtual u8 getTevKAlphaSel(u32) { return 0; }
-    /* 802F2A58 */ virtual void setTevStageNum(u8);
+    /* 802F2A58 */ virtual void setTevStageNum(u8) {}
     /* 802EA17C */ virtual u8 getTevStageNum() const { return 1; }
-    /* 802F2A5C */ virtual void setTevStage(u32, J2DTevStage);
+    /* 802F2A5C */ virtual void setTevStage(u32, J2DTevStage) {}
     /* 802EA134 */ virtual J2DTevStage* getTevStage(u32) { return NULL; }
-    /* 802F2A60 */ virtual void setTevSwapModeInfo(u32, J2DTevSwapModeInfo);
-    /* 802F2A64 */ virtual void setTevSwapModeTable(u32, J2DTevSwapModeTable);
+    /* 802F2A60 */ virtual void setTevSwapModeInfo(u32, J2DTevSwapModeInfo) {}
+    /* 802F2A64 */ virtual void setTevSwapModeTable(u32, J2DTevSwapModeTable) {}
     /* 802EA12C */ virtual J2DTevSwapModeTable* getTevSwapModeTable(u32) { return NULL; }
-    /* 802F2A68 */ virtual void setIndTevStage(u32, J2DIndTevStage);
+    /* 802F2A68 */ virtual void setIndTevStage(u32, J2DIndTevStage) {}
     /* 802EA184 */ virtual J2DIndTevStage* getIndTevStage(u32) { return NULL; }
-    /* 802F2A7C */ virtual bool insertTexture(u32, ResTIMG const*);
-    /* 802F2A74 */ virtual bool insertTexture(u32, ResTIMG const*, JUTPalette*);
-    /* 802F2A6C */ virtual bool insertTexture(u32, JUTTexture*);
-    /* 802F2A8C */ virtual bool setTexture(u32, ResTIMG const*);
-    /* 802F2A84 */ virtual bool setTexture(u32, JUTTexture*);
-    /* 802F2A94 */ virtual bool removeTexture(u32);
-    /* 802F2AA4 */ virtual bool setFont(ResFONT*);
-    /* 802F2A9C */ virtual bool setFont(JUTFont*);
-    /* 802F2AAC */ virtual bool setPalette(u32, ResTLUT const*);
-    /* 802F2AB4 */ virtual bool prepareTexture(u8);
+    /* 802F2A7C */ virtual bool insertTexture(u32, ResTIMG const*) { return false; }
+    /* 802F2A74 */ virtual bool insertTexture(u32, ResTIMG const*, JUTPalette*) { return false; }
+    /* 802F2A6C */ virtual bool insertTexture(u32, JUTTexture*) { return false; }
+    /* 802F2A8C */ virtual bool setTexture(u32, ResTIMG const*) { return false; }
+    /* 802F2A84 */ virtual bool setTexture(u32, JUTTexture*) { return false; }
+    /* 802F2A94 */ virtual bool removeTexture(u32) { return false; }
+    /* 802F2AA4 */ virtual bool setFont(ResFONT*) { return false; }
+    /* 802F2A9C */ virtual bool setFont(JUTFont*) { return false; }
+    /* 802F2AAC */ virtual bool setPalette(u32, ResTLUT const*) { return false; }
+    /* 802F2AB4 */ virtual bool prepareTexture(u8) { return false; }
     /* 802EB87C */ virtual JUTTexture* getTexture(u32);
     /* 802EB884 */ virtual JUTPalette* getPalette(u32);
-    /* 802F2ABC */ virtual JUTFont* getFont();
-    /* 802F2AC4 */ virtual void shiftDeleteFlag(u8, bool);
-    /* 802F2AC8 */ virtual void setUndeleteFlag(u8);
-    /* 802F2ACC */ virtual void setFontUndeleteFlag();
+    /* 802F2ABC */ virtual JUTFont* getFont() { return NULL; }
+    /* 802F2AC4 */ virtual void shiftDeleteFlag(u8, bool) {}
+    /* 802F2AC8 */ virtual void setUndeleteFlag(u8) {}
+    /* 802F2ACC */ virtual void setFontUndeleteFlag() {}
     /* 802EB184 */ virtual ~J2DTevBlock() {}
 };
 
@@ -106,32 +106,52 @@ public:
     /* 802EBA50 */ virtual void initialize();
     /* 802EC328 */ virtual void setGX();
     /* 802EC570 */ virtual void loadTexture(_GXTexMapID, u32);
-    /* 802F27A0 */ virtual u32 getType();
-    /* 802F27AC */ virtual u8 getMaxStage();
-    /* 802F27B4 */ virtual void setTexNo(u32, u16);
-    /* 802F27C4 */ virtual u32 getTexNo(u32) const;
-    /* 802F27D4 */ virtual void setFontNo(u16);
-    /* 802F27DC */ virtual u16 getFontNo() const;
-    /* 802F27E4 */ virtual void setTevOrder(u32, J2DTevOrder);
-    /* 802F2808 */ virtual J2DTevOrder* getTevOrder(u32);
-    /* 802F281C */ virtual void setTevColor(u32, J2DGXColorS10);
-    /* 802F2848 */ virtual J2DGXColorS10* getTevColor(u32);
-    /* 802F285C */ virtual void setTevKColor(u32, JUtility::TColor);
-    /* 802F2888 */ virtual JUtility::TColor* getTevKColor(u32);
-    /* 802F289C */ virtual void setTevKColorSel(u32, u8);
-    /* 802F28A8 */ virtual u8 getTevKColorSel(u32);
-    /* 802F28B4 */ virtual void setTevKAlphaSel(u32, u8);
-    /* 802F28C0 */ virtual u8 getTevKAlphaSel(u32);
-    /* 802F28CC */ virtual void setTevStageNum(u8);
-    /* 802F28D0 */ virtual u8 getTevStageNum() const;
-    /* 802F28D8 */ virtual void setTevStage(u32, J2DTevStage);
-    /* 802F2914 */ virtual J2DTevStage* getTevStage(u32);
-    /* 802F2928 */ virtual void setTevSwapModeInfo(u32, J2DTevSwapModeInfo);
-    /* 802F2960 */ virtual void setTevSwapModeTable(u32, J2DTevSwapModeTable);
-    /* 802F2970 */ virtual J2DTevSwapModeTable* getTevSwapModeTable(u32);
-    /* 802F2980 */ virtual void setIndTevStage(u32, J2DIndTevStage);
-    /* 802F2994 */ virtual J2DIndTevStage* getIndTevStage(u32);
-    /* 802F29A8 */ virtual bool insertTexture(u32, ResTIMG const*);
+    /* 802F27A0 */ virtual u32 getType() { return 'TVB1'; }
+    /* 802F27AC */ virtual u8 getMaxStage() { return 1; }
+    /* 802F27B4 */ virtual void setTexNo(u32 index, u16 texNo) { mTexNo[index] = texNo; }
+    /* 802F27C4 */ virtual u32 getTexNo(u32 index) const { return mTexNo[index]; }
+    /* 802F27D4 */ virtual void setFontNo(u16 fontNo) { mFontNo = fontNo; }
+    /* 802F27DC */ virtual u16 getFontNo() const { return mFontNo; }
+    /* 802F27E4 */ virtual void setTevOrder(u32 index, J2DTevOrder order) {
+        mTevOrder[index] = order;
+    }
+    /* 802F2808 */ virtual J2DTevOrder* getTevOrder(u32 index) { return &mTevOrder[index]; }
+    /* 802F281C */ virtual void setTevColor(u32 index, J2DGXColorS10 color) {
+        mTevColor[index] = color;
+    }
+    /* 802F2848 */ virtual J2DGXColorS10* getTevColor(u32 index) { return &mTevColor[index]; }
+    /* 802F285C */ virtual void setTevKColor(u32 index, JUtility::TColor color) {
+        mTevKColor[index] = color;
+    }
+    /* 802F2888 */ virtual JUtility::TColor* getTevKColor(u32 index) { return &mTevKColor[index]; }
+    /* 802F289C */ virtual void setTevKColorSel(u32 index, u8 sel) { mTevKColorSel[index] = sel; }
+    /* 802F28A8 */ virtual u8 getTevKColorSel(u32 index) { return mTevKColorSel[index]; }
+    /* 802F28B4 */ virtual void setTevKAlphaSel(u32 index, u8 sel) { mTevKAlphaSel[index] = sel; }
+    /* 802F28C0 */ virtual u8 getTevKAlphaSel(u32 index) { return mTevKAlphaSel[index]; }
+    /* 802F28CC */ virtual void setTevStageNum(u8 num) {}
+    /* 802F28D0 */ virtual u8 getTevStageNum() const { return 1; }
+    /* 802F28D8 */ virtual void setTevStage(u32 index, J2DTevStage stage) {
+        mTevStage[index] = stage;
+    }
+    /* 802F2914 */ virtual J2DTevStage* getTevStage(u32 index) { return &mTevStage[index]; }
+    /* 802F2928 */ virtual void setTevSwapModeInfo(u32 index, J2DTevSwapModeInfo info) {
+        mTevStage[index].setTevSwapModeInfo(info);
+    }
+    /* 802F2960 */ virtual void setTevSwapModeTable(u32 index, J2DTevSwapModeTable table) {
+        mTevSwapModeTable[index] = table;
+    }
+    /* 802F2970 */ virtual J2DTevSwapModeTable* getTevSwapModeTable(u32 index) {
+        return &mTevSwapModeTable[index];
+    }
+    /* 802F2980 */ virtual void setIndTevStage(u32 index, J2DIndTevStage stage) {
+        mIndTevStage[index] = stage;
+    }
+    /* 802F2994 */ virtual J2DIndTevStage* getIndTevStage(u32 index) {
+        return &mIndTevStage[index];
+    }
+    /* 802F29A8 */ virtual bool insertTexture(u32 index, ResTIMG const* p_timg) {
+        return insertTexture(index, p_timg, NULL);
+    }
     /* 802EBCC0 */ virtual bool insertTexture(u32, ResTIMG const*, JUTPalette*);
     /* 802EBDE4 */ virtual bool insertTexture(u32, JUTTexture*);
     /* 802EBE8C */ virtual bool setTexture(u32, ResTIMG const*);
@@ -141,12 +161,16 @@ public:
     /* 802EC1D8 */ virtual bool setFont(JUTFont*);
     /* 802EC258 */ virtual bool setPalette(u32, ResTLUT const*);
     /* 802EBC0C */ virtual bool prepareTexture(u8);
-    /* 802F29D8 */ virtual JUTTexture* getTexture(u32);
-    /* 802F29F8 */ virtual JUTPalette* getPalette(u32);
-    /* 802F2A18 */ virtual JUTFont* getFont();
+    /* 802F29D8 */ virtual JUTTexture* getTexture(u32 index) {
+        return index >= 1 ? NULL : mTexture[index];
+    }
+    /* 802F29F8 */ virtual JUTPalette* getPalette(u32 index) {
+        return index >= 1 ? NULL : mPalette[index];
+    }
+    /* 802F2A18 */ virtual JUTFont* getFont() { return mFont; }
     /* 802EC318 */ virtual void shiftDeleteFlag(u8, bool);
-    /* 802F2A20 */ virtual void setUndeleteFlag(u8);
-    /* 802F2A30 */ virtual void setFontUndeleteFlag();
+    /* 802F2A20 */ virtual void setUndeleteFlag(u8 flag) { mUndeleteFlag &= flag; }
+    /* 802F2A30 */ virtual void setFontUndeleteFlag() { mUndeleteFlag &= 0x7F; }
     /* 802EB998 */ virtual ~J2DTevBlock1();
 
 private:
@@ -162,7 +186,7 @@ private:
     /* 0x04C */ J2DIndTevStage mIndTevStage[1];
     /* 0x050 */ JUTTexture* mTexture[1];
     /* 0x054 */ JUTPalette* mPalette[1];
-    /* 0x058 */ JUTResFont* mFont;
+    /* 0x058 */ JUTFont* mFont;
     /* 0x05C */ u8 mUndeleteFlag;
 };  // Size: 0x60
 
@@ -177,32 +201,52 @@ public:
     /* 802EC7A0 */ virtual void initialize();
     /* 802ED584 */ virtual void setGX();
     /* 802ED874 */ virtual void loadTexture(_GXTexMapID, u32);
-    /* 802F24FC */ virtual u32 getType();
-    /* 802F2508 */ virtual u8 getMaxStage();
-    /* 802F2510 */ virtual void setTexNo(u32, u16);
-    /* 802F2520 */ virtual u32 getTexNo(u32) const;
-    /* 802F2530 */ virtual void setFontNo(u16);
-    /* 802F2538 */ virtual u16 getFontNo() const;
-    /* 802F2540 */ virtual void setTevOrder(u32, J2DTevOrder);
-    /* 802F2564 */ virtual J2DTevOrder* getTevOrder(u32);
-    /* 802F2578 */ virtual void setTevColor(u32, J2DGXColorS10);
-    /* 802F25A4 */ virtual J2DGXColorS10* getTevColor(u32);
-    /* 802F25B8 */ virtual void setTevKColor(u32, JUtility::TColor);
-    /* 802F25E4 */ virtual JUtility::TColor* getTevKColor(u32);
-    /* 802F25F8 */ virtual void setTevKColorSel(u32, u8);
-    /* 802F2604 */ virtual u8 getTevKColorSel(u32);
-    /* 802F2610 */ virtual void setTevKAlphaSel(u32, u8);
-    /* 802F261C */ virtual u8 getTevKAlphaSel(u32);
-    /* 802F2628 */ virtual void setTevStageNum(u8);
-    /* 802F2630 */ virtual u8 getTevStageNum() const;
-    /* 802F2638 */ virtual void setTevStage(u32, J2DTevStage);
-    /* 802F2674 */ virtual J2DTevStage* getTevStage(u32);
-    /* 802F2688 */ virtual void setTevSwapModeInfo(u32, J2DTevSwapModeInfo);
-    /* 802F26C0 */ virtual void setTevSwapModeTable(u32, J2DTevSwapModeTable);
-    /* 802F26D0 */ virtual J2DTevSwapModeTable* getTevSwapModeTable(u32);
-    /* 802F26E0 */ virtual void setIndTevStage(u32, J2DIndTevStage);
-    /* 802F26F4 */ virtual J2DIndTevStage* getIndTevStage(u32);
-    /* 802F2708 */ virtual bool insertTexture(u32, ResTIMG const*);
+    /* 802F24FC */ virtual u32 getType() { return 'TVB2'; }
+    /* 802F2508 */ virtual u8 getMaxStage() { return 2; }
+    /* 802F2510 */ virtual void setTexNo(u32 index, u16 texNo) { mTexNo[index] = texNo; }
+    /* 802F2520 */ virtual u32 getTexNo(u32 index) const { return mTexNo[index]; }
+    /* 802F2530 */ virtual void setFontNo(u16 fontNo) { mFontNo = fontNo; }
+    /* 802F2538 */ virtual u16 getFontNo() const { return mFontNo; }
+    /* 802F2540 */ virtual void setTevOrder(u32 index, J2DTevOrder order) {
+        mTevOrder[index] = order;
+    }
+    /* 802F2564 */ virtual J2DTevOrder* getTevOrder(u32 index) { return &mTevOrder[index]; }
+    /* 802F2578 */ virtual void setTevColor(u32 index, J2DGXColorS10 color) {
+        mTevColor[index] = color;
+    }
+    /* 802F25A4 */ virtual J2DGXColorS10* getTevColor(u32 index) { return &mTevColor[index]; }
+    /* 802F25B8 */ virtual void setTevKColor(u32 index, JUtility::TColor color) {
+        mTevKColor[index] = color;
+    }
+    /* 802F25E4 */ virtual JUtility::TColor* getTevKColor(u32 index) { return &mTevKColor[index]; }
+    /* 802F25F8 */ virtual void setTevKColorSel(u32 index, u8 sel) { mTevKColorSel[index] = sel; }
+    /* 802F2604 */ virtual u8 getTevKColorSel(u32 index) { return mTevKColorSel[index]; }
+    /* 802F2610 */ virtual void setTevKAlphaSel(u32 index, u8 sel) { mTevKAlphaSel[index] = sel; }
+    /* 802F261C */ virtual u8 getTevKAlphaSel(u32 index) { return mTevKAlphaSel[index]; }
+    /* 802F2628 */ virtual void setTevStageNum(u8 num) { mTevStageNum = num; }
+    /* 802F2630 */ virtual u8 getTevStageNum() const { return mTevStageNum; }
+    /* 802F2638 */ virtual void setTevStage(u32 index, J2DTevStage stage) {
+        mTevStage[index] = stage;
+    }
+    /* 802F2674 */ virtual J2DTevStage* getTevStage(u32 index) { return &mTevStage[index]; }
+    /* 802F2688 */ virtual void setTevSwapModeInfo(u32 index, J2DTevSwapModeInfo info) {
+        mTevStage[index].setTevSwapModeInfo(info);
+    }
+    /* 802F26C0 */ virtual void setTevSwapModeTable(u32 index, J2DTevSwapModeTable table) {
+        mTevSwapModeTable[index] = table;
+    }
+    /* 802F26D0 */ virtual J2DTevSwapModeTable* getTevSwapModeTable(u32 index) {
+        return &mTevSwapModeTable[index];
+    }
+    /* 802F26E0 */ virtual void setIndTevStage(u32 index, J2DIndTevStage stage) {
+        mIndTevStage[index] = stage;
+    }
+    /* 802F26F4 */ virtual J2DIndTevStage* getIndTevStage(u32 index) {
+        return &mIndTevStage[index];
+    }
+    /* 802F2708 */ virtual bool insertTexture(u32 index, ResTIMG const* p_timg) {
+        return insertTexture(index, p_timg, NULL);
+    }
     /* 802ECAE8 */ virtual bool insertTexture(u32, ResTIMG const*, JUTPalette*);
     /* 802ECDE8 */ virtual bool insertTexture(u32, JUTTexture*);
     /* 802ECF48 */ virtual bool setTexture(u32, ResTIMG const*);
@@ -212,12 +256,16 @@ public:
     /* 802ED3A4 */ virtual bool setFont(JUTFont*);
     /* 802ED424 */ virtual bool setPalette(u32, ResTLUT const*);
     /* 802ECA18 */ virtual bool prepareTexture(u8);
-    /* 802F2738 */ virtual JUTTexture* getTexture(u32);
-    /* 802F2758 */ virtual JUTPalette* getPalette(u32);
-    /* 802F2778 */ virtual JUTFont* getFont();
+    /* 802F2738 */ virtual JUTTexture* getTexture(u32 index) {
+        return index >= 2 ? NULL : mTexture[index];
+    }
+    /* 802F2758 */ virtual JUTPalette* getPalette(u32 index) {
+        return index >= 2 ? NULL : mPalette[index];
+    }
+    /* 802F2778 */ virtual JUTFont* getFont() { return mFont; }
     /* 802ED4FC */ virtual void shiftDeleteFlag(u8, bool);
-    /* 802F2780 */ virtual void setUndeleteFlag(u8);
-    /* 802F2790 */ virtual void setFontUndeleteFlag();
+    /* 802F2780 */ virtual void setUndeleteFlag(u8 flag) { mUndeleteFlag &= flag; }
+    /* 802F2790 */ virtual void setFontUndeleteFlag() { mUndeleteFlag &= 0x7F; }
     /* 802EC6C8 */ virtual ~J2DTevBlock2();
 
 private:
@@ -250,32 +298,52 @@ public:
     /* 802EDAC4 */ virtual void initialize();
     /* 802EEA2C */ virtual void setGX();
     /* 802EED1C */ virtual void loadTexture(_GXTexMapID, u32);
-    /* 802F2258 */ virtual u32 getType();
-    /* 802F2264 */ virtual u8 getMaxStage();
-    /* 802F226C */ virtual void setTexNo(u32, u16);
-    /* 802F227C */ virtual u32 getTexNo(u32) const;
-    /* 802F228C */ virtual void setFontNo(u16);
-    /* 802F2294 */ virtual u16 getFontNo() const;
-    /* 802F229C */ virtual void setTevOrder(u32, J2DTevOrder);
-    /* 802F22C0 */ virtual J2DTevOrder* getTevOrder(u32);
-    /* 802F22D4 */ virtual void setTevColor(u32, J2DGXColorS10);
-    /* 802F2300 */ virtual J2DGXColorS10* getTevColor(u32);
-    /* 802F2314 */ virtual void setTevKColor(u32, JUtility::TColor);
-    /* 802F2340 */ virtual JUtility::TColor* getTevKColor(u32);
-    /* 802F2354 */ virtual void setTevKColorSel(u32, u8);
-    /* 802F2360 */ virtual u8 getTevKColorSel(u32);
-    /* 802F236C */ virtual void setTevKAlphaSel(u32, u8);
-    /* 802F2378 */ virtual u8 getTevKAlphaSel(u32);
-    /* 802F2384 */ virtual void setTevStageNum(u8);
-    /* 802F238C */ virtual u8 getTevStageNum() const;
-    /* 802F2394 */ virtual void setTevStage(u32, J2DTevStage);
-    /* 802F23D0 */ virtual J2DTevStage* getTevStage(u32);
-    /* 802F23E4 */ virtual void setTevSwapModeInfo(u32, J2DTevSwapModeInfo);
-    /* 802F241C */ virtual void setTevSwapModeTable(u32, J2DTevSwapModeTable);
-    /* 802F242C */ virtual J2DTevSwapModeTable* getTevSwapModeTable(u32);
-    /* 802F243C */ virtual void setIndTevStage(u32, J2DIndTevStage);
-    /* 802F2450 */ virtual J2DIndTevStage* getIndTevStage(u32);
-    /* 802F2464 */ virtual bool insertTexture(u32, ResTIMG const*);
+    /* 802F2258 */ virtual u32 getType() { return 'TVB4'; }
+    /* 802F2264 */ virtual u8 getMaxStage() { return 4; }
+    /* 802F226C */ virtual void setTexNo(u32 index, u16 texNo) { mTexNo[index] = texNo; }
+    /* 802F227C */ virtual u32 getTexNo(u32 index) const { return mTexNo[index]; }
+    /* 802F228C */ virtual void setFontNo(u16 fontNo) { mFontNo = fontNo; }
+    /* 802F2294 */ virtual u16 getFontNo() const { return mFontNo; }
+    /* 802F229C */ virtual void setTevOrder(u32 index, J2DTevOrder order) {
+        mTevOrder[index] = order;
+    }
+    /* 802F22C0 */ virtual J2DTevOrder* getTevOrder(u32 index) { return &mTevOrder[index]; }
+    /* 802F22D4 */ virtual void setTevColor(u32 index, J2DGXColorS10 color) {
+        mTevColor[index] = color;
+    }
+    /* 802F2300 */ virtual J2DGXColorS10* getTevColor(u32 index) { return &mTevColor[index]; }
+    /* 802F2314 */ virtual void setTevKColor(u32 index, JUtility::TColor color) {
+        mTevKColor[index] = color;
+    }
+    /* 802F2340 */ virtual JUtility::TColor* getTevKColor(u32 index) { return &mTevKColor[index]; }
+    /* 802F2354 */ virtual void setTevKColorSel(u32 index, u8 sel) { mTevKColorSel[index] = sel; }
+    /* 802F2360 */ virtual u8 getTevKColorSel(u32 index) { return mTevKColorSel[index]; }
+    /* 802F236C */ virtual void setTevKAlphaSel(u32 index, u8 sel) { mTevKAlphaSel[index] = sel; }
+    /* 802F2378 */ virtual u8 getTevKAlphaSel(u32 index) { return mTevKAlphaSel[index]; }
+    /* 802F2384 */ virtual void setTevStageNum(u8 num) { mTevStageNum = num; }
+    /* 802F238C */ virtual u8 getTevStageNum() const { return mTevStageNum; }
+    /* 802F2394 */ virtual void setTevStage(u32 index, J2DTevStage stage) {
+        mTevStage[index] = stage;
+    }
+    /* 802F23D0 */ virtual J2DTevStage* getTevStage(u32 index) { return &mTevStage[index]; }
+    /* 802F23E4 */ virtual void setTevSwapModeInfo(u32 index, J2DTevSwapModeInfo info) {
+        mTevStage[index].setTevSwapModeInfo(info);
+    }
+    /* 802F241C */ virtual void setTevSwapModeTable(u32 index, J2DTevSwapModeTable table) {
+        mTevSwapModeTable[index] = table;
+    }
+    /* 802F242C */ virtual J2DTevSwapModeTable* getTevSwapModeTable(u32 index) {
+        return &mTevSwapModeTable[index];
+    }
+    /* 802F243C */ virtual void setIndTevStage(u32 index, J2DIndTevStage stage) {
+        mIndTevStage[index] = stage;
+    }
+    /* 802F2450 */ virtual J2DIndTevStage* getIndTevStage(u32 index) {
+        return &mIndTevStage[index];
+    }
+    /* 802F2464 */ virtual bool insertTexture(u32 index, ResTIMG const* p_timg) {
+        return insertTexture(index, p_timg, NULL);
+    }
     /* 802EDE04 */ virtual bool insertTexture(u32, ResTIMG const*, JUTPalette*);
     /* 802EE1D4 */ virtual bool insertTexture(u32, JUTTexture*);
     /* 802EE364 */ virtual bool setTexture(u32, ResTIMG const*);
@@ -285,12 +353,16 @@ public:
     /* 802EE84C */ virtual bool setFont(JUTFont*);
     /* 802EE8CC */ virtual bool setPalette(u32, ResTLUT const*);
     /* 802EDD34 */ virtual bool prepareTexture(u8);
-    /* 802F2494 */ virtual JUTTexture* getTexture(u32);
-    /* 802F24B4 */ virtual JUTPalette* getPalette(u32);
-    /* 802F24D4 */ virtual JUTFont* getFont();
+    /* 802F2494 */ virtual JUTTexture* getTexture(u32 index) {
+        return index >= 4 ? NULL : mTexture[index];
+    }
+    /* 802F24B4 */ virtual JUTPalette* getPalette(u32 index) {
+        return index >= 4 ? NULL : mPalette[index];
+    }
+    /* 802F24D4 */ virtual JUTFont* getFont() { return mFont; }
     /* 802EE9A4 */ virtual void shiftDeleteFlag(u8, bool);
-    /* 802F24DC */ virtual void setUndeleteFlag(u8);
-    /* 802F24EC */ virtual void setFontUndeleteFlag();
+    /* 802F24DC */ virtual void setUndeleteFlag(u8 flag) { mUndeleteFlag &= flag; }
+    /* 802F24EC */ virtual void setFontUndeleteFlag() { mUndeleteFlag &= 0x7F; }
     /* 802ED9E4 */ virtual ~J2DTevBlock4();
 
 private:
@@ -323,32 +395,52 @@ public:
     /* 802EEF6C */ virtual void initialize();
     /* 802EFEAC */ virtual void setGX();
     /* 802F019C */ virtual void loadTexture(_GXTexMapID, u32);
-    /* 802F1FB8 */ virtual u32 getType();
-    /* 802F1FC4 */ virtual u8 getMaxStage();
-    /* 802F1FCC */ virtual void setTexNo(u32, u16);
-    /* 802F1FDC */ virtual u32 getTexNo(u32) const;
-    /* 802F1FEC */ virtual void setFontNo(u16);
-    /* 802F1FF4 */ virtual u16 getFontNo() const;
-    /* 802F1FFC */ virtual void setTevOrder(u32, J2DTevOrder);
-    /* 802F2020 */ virtual J2DTevOrder* getTevOrder(u32);
-    /* 802F2034 */ virtual void setTevColor(u32, J2DGXColorS10);
-    /* 802F2060 */ virtual J2DGXColorS10* getTevColor(u32);
-    /* 802F2074 */ virtual void setTevKColor(u32, JUtility::TColor);
-    /* 802F20A0 */ virtual JUtility::TColor* getTevKColor(u32);
-    /* 802F20B4 */ virtual void setTevKColorSel(u32, u8);
-    /* 802F20C0 */ virtual u8 getTevKColorSel(u32);
-    /* 802F20CC */ virtual void setTevKAlphaSel(u32, u8);
-    /* 802F20D8 */ virtual u8 getTevKAlphaSel(u32);
-    /* 802F20E4 */ virtual void setTevStageNum(u8);
-    /* 802F20EC */ virtual u8 getTevStageNum() const;
-    /* 802F20F4 */ virtual void setTevStage(u32, J2DTevStage);
-    /* 802F2130 */ virtual J2DTevStage* getTevStage(u32);
-    /* 802F2144 */ virtual void setTevSwapModeInfo(u32, J2DTevSwapModeInfo);
-    /* 802F217C */ virtual void setTevSwapModeTable(u32, J2DTevSwapModeTable);
-    /* 802F218C */ virtual J2DTevSwapModeTable* getTevSwapModeTable(u32);
-    /* 802F219C */ virtual void setIndTevStage(u32, J2DIndTevStage);
-    /* 802F21B0 */ virtual J2DIndTevStage* getIndTevStage(u32);
-    /* 802F21C4 */ virtual bool insertTexture(u32, ResTIMG const*);
+    /* 802F1FB8 */ virtual u32 getType() { return 'TVB8'; }
+    /* 802F1FC4 */ virtual u8 getMaxStage() { return 8; }
+    /* 802F1FCC */ virtual void setTexNo(u32 index, u16 texNo) { mTexNo[index] = texNo; }
+    /* 802F1FDC */ virtual u32 getTexNo(u32 index) const { return mTexNo[index]; }
+    /* 802F1FEC */ virtual void setFontNo(u16 fontNo) { mFontNo = fontNo; }
+    /* 802F1FF4 */ virtual u16 getFontNo() const { return mFontNo; }
+    /* 802F1FFC */ virtual void setTevOrder(u32 index, J2DTevOrder order) {
+        mTevOrder[index] = order;
+    }
+    /* 802F2020 */ virtual J2DTevOrder* getTevOrder(u32 index) { return &mTevOrder[index]; }
+    /* 802F2034 */ virtual void setTevColor(u32 index, J2DGXColorS10 color) {
+        mTevColor[index] = color;
+    }
+    /* 802F2060 */ virtual J2DGXColorS10* getTevColor(u32 index) { return &mTevColor[index]; }
+    /* 802F2074 */ virtual void setTevKColor(u32 index, JUtility::TColor color) {
+        mTevKColor[index] = color;
+    }
+    /* 802F20A0 */ virtual JUtility::TColor* getTevKColor(u32 index) { return &mTevKColor[index]; }
+    /* 802F20B4 */ virtual void setTevKColorSel(u32 index, u8 sel) { mTevKColorSel[index] = sel; }
+    /* 802F20C0 */ virtual u8 getTevKColorSel(u32 index) { return mTevKColorSel[index]; }
+    /* 802F20CC */ virtual void setTevKAlphaSel(u32 index, u8 sel) { mTevKAlphaSel[index] = sel; }
+    /* 802F20D8 */ virtual u8 getTevKAlphaSel(u32 index) { return mTevKAlphaSel[index]; }
+    /* 802F20E4 */ virtual void setTevStageNum(u8 num) { mTevStageNum = num; }
+    /* 802F20EC */ virtual u8 getTevStageNum() const { return mTevStageNum; }
+    /* 802F20F4 */ virtual void setTevStage(u32 index, J2DTevStage stage) {
+        mTevStage[index] = stage;
+    }
+    /* 802F2130 */ virtual J2DTevStage* getTevStage(u32 index) { return &mTevStage[index]; }
+    /* 802F2144 */ virtual void setTevSwapModeInfo(u32 index, J2DTevSwapModeInfo info) {
+        mTevStage[index].setTevSwapModeInfo(info);
+    }
+    /* 802F217C */ virtual void setTevSwapModeTable(u32 index, J2DTevSwapModeTable table) {
+        mTevSwapModeTable[index] = table;
+    }
+    /* 802F218C */ virtual J2DTevSwapModeTable* getTevSwapModeTable(u32 index) {
+        return &mTevSwapModeTable[index];
+    }
+    /* 802F219C */ virtual void setIndTevStage(u32 index, J2DIndTevStage stage) {
+        mIndTevStage[index] = stage;
+    }
+    /* 802F21B0 */ virtual J2DIndTevStage* getIndTevStage(u32 index) {
+        return &mIndTevStage[index];
+    }
+    /* 802F21C4 */ virtual bool insertTexture(u32 index, ResTIMG const* p_timg) {
+        return insertTexture(index, p_timg, NULL);
+    }
     /* 802EF2B0 */ virtual bool insertTexture(u32, ResTIMG const*, JUTPalette*);
     /* 802EF67C */ virtual bool insertTexture(u32, JUTTexture*);
     /* 802EF80C */ virtual bool setTexture(u32, ResTIMG const*);
@@ -358,12 +450,16 @@ public:
     /* 802EFCEC */ virtual bool setFont(JUTFont*);
     /* 802EFD68 */ virtual bool setPalette(u32, ResTLUT const*);
     /* 802EF1E0 */ virtual bool prepareTexture(u8);
-    /* 802F21F4 */ virtual JUTTexture* getTexture(u32);
-    /* 802F2214 */ virtual JUTPalette* getPalette(u32);
-    /* 802F2234 */ virtual JUTFont* getFont();
+    /* 802F21F4 */ virtual JUTTexture* getTexture(u32 index) {
+        return index >= 8 ? NULL : mTexture[index];
+    }
+    /* 802F2214 */ virtual JUTPalette* getPalette(u32 index) {
+        return index >= 8 ? NULL : mPalette[index];
+    }
+    /* 802F2234 */ virtual JUTFont* getFont() { return mFont; }
     /* 802EFE40 */ virtual void shiftDeleteFlag(u8, bool);
-    /* 802F223C */ virtual void setUndeleteFlag(u8);
-    /* 802F224C */ virtual void setFontUndeleteFlag();
+    /* 802F223C */ virtual void setUndeleteFlag(u8 flag) { mUndeleteFlag &= flag; }
+    /* 802F224C */ virtual void setFontUndeleteFlag() { mFontUndeleteFlag = false; }
     /* 802EEE8C */ virtual ~J2DTevBlock8();
 
 private:
@@ -397,32 +493,52 @@ public:
     /* 802F03EC */ virtual void initialize();
     /* 802F132C */ virtual void setGX();
     /* 802F161C */ virtual void loadTexture(_GXTexMapID, u32);
-    /* 802F1D18 */ virtual u32 getType();
-    /* 802F1D24 */ virtual u8 getMaxStage();
-    /* 802F1D2C */ virtual void setTexNo(u32, u16);
-    /* 802F1D3C */ virtual u32 getTexNo(u32) const;
-    /* 802F1D4C */ virtual void setFontNo(u16);
-    /* 802F1D54 */ virtual u16 getFontNo() const;
-    /* 802F1D5C */ virtual void setTevOrder(u32, J2DTevOrder);
-    /* 802F1D80 */ virtual J2DTevOrder* getTevOrder(u32);
-    /* 802F1D94 */ virtual void setTevColor(u32, J2DGXColorS10);
-    /* 802F1DC0 */ virtual J2DGXColorS10* getTevColor(u32);
-    /* 802F1DD4 */ virtual void setTevKColor(u32, JUtility::TColor);
-    /* 802F1E00 */ virtual JUtility::TColor* getTevKColor(u32);
-    /* 802F1E14 */ virtual void setTevKColorSel(u32, u8);
-    /* 802F1E20 */ virtual u8 getTevKColorSel(u32);
-    /* 802F1E2C */ virtual void setTevKAlphaSel(u32, u8);
-    /* 802F1E38 */ virtual u8 getTevKAlphaSel(u32);
-    /* 802F1E44 */ virtual void setTevStageNum(u8);
-    /* 802F1E4C */ virtual u8 getTevStageNum() const;
-    /* 802F1E54 */ virtual void setTevStage(u32, J2DTevStage);
-    /* 802F1E90 */ virtual J2DTevStage* getTevStage(u32);
-    /* 802F1EA4 */ virtual void setTevSwapModeInfo(u32, J2DTevSwapModeInfo);
-    /* 802F1EDC */ virtual void setTevSwapModeTable(u32, J2DTevSwapModeTable);
-    /* 802F1EEC */ virtual J2DTevSwapModeTable* getTevSwapModeTable(u32);
-    /* 802F1EFC */ virtual void setIndTevStage(u32, J2DIndTevStage);
-    /* 802F1F10 */ virtual J2DIndTevStage* getIndTevStage(u32);
-    /* 802F1F24 */ virtual bool insertTexture(u32, ResTIMG const*);
+    /* 802F1D18 */ virtual u32 getType() { return 'TV16'; }
+    /* 802F1D24 */ virtual u8 getMaxStage() { return 16; }
+    /* 802F1D2C */ virtual void setTexNo(u32 index, u16 texNo) { mTexNo[index] = texNo; }
+    /* 802F1D3C */ virtual u32 getTexNo(u32 index) const { return mTexNo[index]; }
+    /* 802F1D4C */ virtual void setFontNo(u16 fontNo) { mFontNo = fontNo; }
+    /* 802F1D54 */ virtual u16 getFontNo() const { return mFontNo; }
+    /* 802F1D5C */ virtual void setTevOrder(u32 index, J2DTevOrder order) {
+        mTevOrder[index] = order;
+    }
+    /* 802F1D80 */ virtual J2DTevOrder* getTevOrder(u32 index) { return &mTevOrder[index]; }
+    /* 802F1D94 */ virtual void setTevColor(u32 index, J2DGXColorS10 color) {
+        mTevColor[index] = color;
+    }
+    /* 802F1DC0 */ virtual J2DGXColorS10* getTevColor(u32 index) { return &mTevColor[index]; }
+    /* 802F1DD4 */ virtual void setTevKColor(u32 index, JUtility::TColor color) {
+        mTevKColor[index] = color;
+    }
+    /* 802F1E00 */ virtual JUtility::TColor* getTevKColor(u32 index) { return &mTevKColor[index]; }
+    /* 802F1E14 */ virtual void setTevKColorSel(u32 index, u8 sel) { mTevKColorSel[index] = sel; }
+    /* 802F1E20 */ virtual u8 getTevKColorSel(u32 index) { return mTevKColorSel[index]; }
+    /* 802F1E2C */ virtual void setTevKAlphaSel(u32 index, u8 sel) { mTevKAlphaSel[index] = sel; }
+    /* 802F1E38 */ virtual u8 getTevKAlphaSel(u32 index) { return mTevKAlphaSel[index]; }
+    /* 802F1E44 */ virtual void setTevStageNum(u8 num) { mTevStageNum = num; }
+    /* 802F1E4C */ virtual u8 getTevStageNum() const { return mTevStageNum; }
+    /* 802F1E54 */ virtual void setTevStage(u32 index, J2DTevStage stage) {
+        mTevStage[index] = stage;
+    }
+    /* 802F1E90 */ virtual J2DTevStage* getTevStage(u32 index) { return &mTevStage[index]; }
+    /* 802F1EA4 */ virtual void setTevSwapModeInfo(u32 index, J2DTevSwapModeInfo info) {
+        mTevStage[index].setTevSwapModeInfo(info);
+    }
+    /* 802F1EDC */ virtual void setTevSwapModeTable(u32 index, J2DTevSwapModeTable table) {
+        mTevSwapModeTable[index] = table;
+    }
+    /* 802F1EEC */ virtual J2DTevSwapModeTable* getTevSwapModeTable(u32 index) {
+        return &mTevSwapModeTable[index];
+    }
+    /* 802F1EFC */ virtual void setIndTevStage(u32 index, J2DIndTevStage stage) {
+        mIndTevStage[index] = stage;
+    }
+    /* 802F1F10 */ virtual J2DIndTevStage* getIndTevStage(u32 index) {
+        return &mIndTevStage[index];
+    }
+    /* 802F1F24 */ virtual bool insertTexture(u32 index, ResTIMG const* p_timg) {
+        return insertTexture(index, p_timg, NULL);
+    }
     /* 802F0730 */ virtual bool insertTexture(u32, ResTIMG const*, JUTPalette*);
     /* 802F0AFC */ virtual bool insertTexture(u32, JUTTexture*);
     /* 802F0C8C */ virtual bool setTexture(u32, ResTIMG const*);
@@ -432,12 +548,16 @@ public:
     /* 802F116C */ virtual bool setFont(JUTFont*);
     /* 802F11E8 */ virtual bool setPalette(u32, ResTLUT const*);
     /* 802F0660 */ virtual bool prepareTexture(u8);
-    /* 802F1F54 */ virtual JUTTexture* getTexture(u32);
-    /* 802F1F74 */ virtual JUTPalette* getPalette(u32);
-    /* 802F1F94 */ virtual JUTFont* getFont();
+    /* 802F1F54 */ virtual JUTTexture* getTexture(u32 index) {
+        return index >= 8 ? NULL : mTexture[index];
+    }
+    /* 802F1F74 */ virtual JUTPalette* getPalette(u32 index) {
+        return index >= 8 ? NULL : mPalette[index];
+    }
+    /* 802F1F94 */ virtual JUTFont* getFont() { return mFont; }
     /* 802F12C0 */ virtual void shiftDeleteFlag(u8, bool);
-    /* 802F1F9C */ virtual void setUndeleteFlag(u8);
-    /* 802F1FAC */ virtual void setFontUndeleteFlag();
+    /* 802F1F9C */ virtual void setUndeleteFlag(u8 flag) { mUndeleteFlag &= flag; }
+    /* 802F1FAC */ virtual void setFontUndeleteFlag() { mFontUndeleteFlag = false; }
     /* 802F030C */ virtual ~J2DTevBlock16();
 
 public:
@@ -591,16 +711,26 @@ public:
 
     /* 802F1664 */ virtual void initialize();
     /* 802F1730 */ virtual void setGX();
-    /* 802F1B94 */ virtual u32 getType();
-    /* 802F1BA0 */ virtual void setIndTexStageNum(u8);
-    /* 802F1BA8 */ virtual u8 getIndTexStageNum() const;
-    /* 802F1BB0 */ virtual void setIndTexOrder(u32, J2DIndTexOrder);
-    /* 802F1BCC */ virtual J2DIndTexOrder* getIndTexOrder(u32);
-    /* 802F1BE0 */ virtual void setIndTexMtx(u32, J2DIndTexMtx);
-    /* 802F1C38 */ virtual J2DIndTexMtx* getIndTexMtx(u32);
-    /* 802F1C4C */ virtual void setIndTexCoordScale(u32, J2DIndTexCoordScale);
-    /* 802F1C68 */ virtual J2DIndTexCoordScale* getIndTexCoordScale(u32);
-    /* 802F1C7C */ virtual ~J2DIndBlockFull();
+    /* 802F1B94 */ virtual u32 getType() { return 'IBLF'; }
+    /* 802F1BA0 */ virtual void setIndTexStageNum(u8 num) { mIndTexStageNum = num; }
+    /* 802F1BA8 */ virtual u8 getIndTexStageNum() const { return mIndTexStageNum; }
+    /* 802F1BB0 */ virtual void setIndTexOrder(u32 index, J2DIndTexOrder order) {
+        mIndTexOrder[index] = order;
+    }
+    /* 802F1BCC */ virtual J2DIndTexOrder* getIndTexOrder(u32 index) {
+        return &mIndTexOrder[index];
+    }
+    /* 802F1BE0 */ virtual void setIndTexMtx(u32 index, J2DIndTexMtx mtx) {
+        mIndTexMtx[index] = mtx;
+    }
+    /* 802F1C38 */ virtual J2DIndTexMtx* getIndTexMtx(u32 index) { return &mIndTexMtx[index]; }
+    /* 802F1C4C */ virtual void setIndTexCoordScale(u32 index, J2DIndTexCoordScale scale) {
+        mTexCoordScale[index] = scale;
+    }
+    /* 802F1C68 */ virtual J2DIndTexCoordScale* getIndTexCoordScale(u32 index) {
+        return &mTexCoordScale[index];
+    }
+    /* 802F1C7C */ virtual ~J2DIndBlockFull() {}
 
 private:
     /* 0x04 */ u8 mIndTexStageNum;
