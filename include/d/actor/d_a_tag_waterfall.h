@@ -3,6 +3,13 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+/**
+ * @ingroup actors-tags
+ * @class daTagWaterFall_c
+ * @brief Waterfall Without Collision Tag
+ *
+ * @details Waterfalls player may move through (e.g. those in Iza's Rapid Ride)
+ */
 class daTagWaterFall_c : public fopAc_ac_c {
 public:
     daTagWaterFall_c() {}

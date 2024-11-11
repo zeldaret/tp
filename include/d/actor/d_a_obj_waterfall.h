@@ -8,10 +8,9 @@
 /**
  * @ingroup actors-objects
  * @class daObjWaterFall_c
- * @brief Waterfall
+ * @brief Waterfall With Collision Object
  *
- * @details
- *
+ * @details Waterfalls that player cannot move through (e.g. those in Zora's Domain)
  */
 class daObjWaterFall_c : public fopAc_ac_c {
 public:
@@ -27,20 +26,24 @@ public:
     /* 80D2FC9C */ int _delete();
 private:
     /* 0x568 */ request_of_phase_process_class mPhase;
-    /* 0x570 */ u8 field_0x570[4];
-    /* 0x574 */ dCcD_Stts field_0x574;
-    /* 0x5B0 */ dCcD_Tri field_0x5B0[2];
-    /* 0x868 */ dCcD_Cyl field_0x868;
-    /* 0x9A4 */ cXyz field_0x9A4[2];
-    /* 0x9BC */ cXyz field_0x9BC;
-    /* 0x9C8 */ s8 field_0x9C8;
+    /* 0x570 */ u8 pad[4];
+    /* 0x574 */ dCcD_Stts mCylColliderStts;
+    /* 0x5B0 */ dCcD_Tri mUnusedTriCollider[2];
+    /* 0x868 */ dCcD_Cyl mCylCollider;
+    /* 0x9A4 */ cXyz mCylColliderCenterOscillationTargets[2];
+    /* 0x9BC */ cXyz mCylColliderCenter;
+    /* 0x9C8 */ s8 mCylColliderCenterQuantizedOscillation;
+
+    enum Type_e {
+        ALLOW_ARROWS_e
+    };
 
     BOOL checkFallOut() {
         return fopAcM_GetParamBit(this, 10, 4);
     }
 
-    int getType() {
-        return fopAcM_GetParamBit(this, 8, 2);
+    Type_e getType() {
+        return static_cast<Type_e>(fopAcM_GetParamBit(this, 8, 2));
     }
 
     u32 getSwbit() {

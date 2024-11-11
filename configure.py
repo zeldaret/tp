@@ -2046,7 +2046,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_warp_obrg"),
     ActorRel(NonMatching, "d_a_obj_waterGate"),
     ActorRel(NonMatching, "d_a_obj_waterPillar"),
-    ActorRel(NonMatching, "d_a_obj_waterfall"),
+    ActorRel(Matching, "d_a_obj_waterfall"),
     ActorRel(NonMatching, "d_a_obj_wchain"),
     ActorRel(NonMatching, "d_a_obj_wdStick"),
     ActorRel(NonMatching, "d_a_obj_web0"),

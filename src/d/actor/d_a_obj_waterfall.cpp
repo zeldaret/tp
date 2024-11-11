@@ -15,10 +15,6 @@ static int daObjWaterFall_Execute(daObjWaterFall_c* i_this);
 static int daObjWaterFall_Delete(daObjWaterFall_c* i_this);
 static int daObjWaterFall_Create(fopAc_ac_c* i_this);
 
-//
-// Declarations:
-//
-
 /* ############################################################################################## */
 /* 80D2FE50-80D2FE78 000000 0028+00 4/4 0/0 0/0 .bss             target_info */
 static fopAc_ac_c* target_info[MAX_TARGET_INFO_COUNT];
@@ -31,7 +27,7 @@ static void* s_b_sub(void* param_0, void* unused) {
     if(fopAcM_IsActor(param_0) && fopAcM_GetName(param_0) == PROC_NBOMB) {
         dBomb_c* foundBomb = static_cast<dBomb_c*>(param_0);
         if(!foundBomb->checkWaterBomb(foundBomb) && fopAcM_GetParam(foundBomb) != dBomb_c::PRM_NORMAL_BOMB_EXPLODE) {
-            const u32 idx = target_info_count;  // Regalloc issues if this isn't done
+            const u32 idx = target_info_count;  //  Regalloc issues if this isn't done
 
             if(target_info_count < MAX_TARGET_INFO_COUNT) {
                 target_info[idx] = foundBomb;
@@ -44,9 +40,8 @@ static void* s_b_sub(void* param_0, void* unused) {
 
 /* 80D2ECA4-80D2ED14 000104 0070+00 1/1 0/0 0/0 .text            s_a_sub__FPvPv */
 static void* s_a_sub(void* param_0, void* unused) {
-    // NONMATCHING (regalloc)
     if(fopAcM_IsActor(param_0) && fopAcM_GetName(param_0) == PROC_ARROW) {
-        const u32 idx = target_info_count;  // Regalloc issues if this isn't done
+        const u32 idx = target_info_count;  //  Regalloc issues if this isn't done
         
         if(target_info_count < MAX_TARGET_INFO_COUNT) {
             daArrow_c* arrow_0 = static_cast<daArrow_c*>(param_0);
@@ -57,23 +52,20 @@ static void* s_a_sub(void* param_0, void* unused) {
     return NULL;
 }
 
-/* ############################################################################################## */
-/* 80D2FD58-80D2FD5C 000000 0004+00 4/4 0/0 0/0 .rodata          @3807 */
-
 /* 80D2ED14-80D2EFF8 000174 02E4+00 1/1 0/0 0/0 .text            search_bomb__16daObjWaterFall_cFv
  */
 void daObjWaterFall_c::search_bomb() {
     if(checkFallOut() != TRUE) {
-        // Get rid of previously found arrow or bomb processes populating target_info
+        //  Get rid of previously found arrow or bomb processes populating target_info
         target_info_count = 0;
         for(u32 i = 0; i < MAX_TARGET_INFO_COUNT; i++) {
             target_info[i] = NULL;
         }
 
-        // Find first 10 bomb processes to populate target_info
+        //  Find first 10 bomb processes to populate target_info
         fpcM_Search(s_b_sub, this);
 
-        // Check whether the bomb processes are within bounds (and should therefore be deleted)
+        //  Check whether the bomb processes are within bounds (and should therefore be deleted)
         if(target_info_count) {
             for(int i = 0; i < target_info_count; i++) {
                 cXyz vectorToOldBombPos;
@@ -112,17 +104,20 @@ void daObjWaterFall_c::search_bomb() {
 /* 80D2F034-80D2F324 000494 02F0+00 1/1 0/0 0/0 .text            search_arrow__16daObjWaterFall_cFv
  */
 void daObjWaterFall_c::search_arrow() {
-    if(getType() == 0 || checkFallOut() == TRUE)
+    //  Some waterfalls (e.g. in the Lakebed Temple) allow arrows to fly through them
+    if(getType() == ALLOW_ARROWS_e || checkFallOut() == TRUE)
         return;
 
-    // Get rid of previously found arrow or bomb processes populating target_info
+    //  Get rid of previously found arrow or bomb processes populating target_info
     target_info_count = 0;
     for(u32 i = 0; i < MAX_TARGET_INFO_COUNT; i++) {
         target_info[i] = NULL;
     }
-    // Find first 10 arrow processes to populate target_info
+
+    //  Find first 10 arrow processes to populate target_info
     fpcM_Search(s_a_sub, this);
-    // Check whether the arrow processes are within bounds (and should therefore be deleted)
+
+    //  Check whether the arrow processes are within bounds (and should therefore be deleted)
     if(target_info_count) {
         for(int i = 0; i < target_info_count; i++) {
             cXyz vectorToOldArrowPos;
@@ -173,7 +168,7 @@ void daObjWaterFall_c::setBaseMtx() {
 }
 
 /* 80D2FD84-80D2FD88 -00001 0004+00 1/1 0/0 0/0 .data            l_arcName */
-static const char* l_arcName = "sample\0"; // Null terminator needed to match rodata
+static const char* l_arcName = "sample";
 
 /* 80D2FD88-80D2FDCC 000004 0044+00 1/1 0/0 0/0 .data            l_cyl_src */
 static dCcD_SrcCyl l_cyl_src = {
@@ -193,38 +188,44 @@ static dCcD_SrcCyl l_cyl_src = {
 /* 80D2F39C-80D2F5A0 0007FC 0204+00 1/1 0/0 0/0 .text            Create__16daObjWaterFall_cFv */
 cPhs__Step daObjWaterFall_c::Create() {
     initBaseMtx();
-    field_0x574.Init(0, 0xFF, this);
-    field_0x868.Set(l_cyl_src);
-    field_0x868.SetStts(&field_0x574);
-    field_0x868.SetH(scale.y * 100.0f);
+
+    mCylColliderStts.Init(0, 0xFF, this);
+    mCylCollider.Set(l_cyl_src);
+    mCylCollider.SetStts(&mCylColliderStts);
+    mCylCollider.SetH(scale.y * 100.0f);
 
     if(scale.x < scale.z)
-        field_0x868.SetR(scale.x * 50.0f);
+        mCylCollider.SetR(scale.x * 50.0f);
     else
-        field_0x868.SetR(scale.z * 50.0f);
+        mCylCollider.SetR(scale.z * 50.0f);
 
-    field_0x868.OnCoNoCamHit();
+    mCylCollider.OnCoNoCamHit();
 
+    //  If a waterfall process is not a circular cylinder (i.e. scale.x != scale.z), the circular cylindrical collider 
+    //      is oscillated in order to approximate the elliptical shape of the process.
+    //
+    //  The member variable speedF (inherited from fopAc_ac_c) is used to control the speed of oscillation
+    //
+    //  This effect can be observed at the largest waterfall in Zora's Domain
     if(scale.x > scale.z) {
-        field_0x9A4[0].set((scale.x * -50.0f) + (scale.z * 50.0f), 0.0f,0.0f);
-        field_0x9A4[1].set((scale.x * 50.0f) - (scale.z * 50.0f), 0.0f,0.0f);
+        mCylColliderCenterOscillationTargets[0].set((scale.x * -50.0f) + (scale.z * 50.0f), 0.0f,0.0f);
+        mCylColliderCenterOscillationTargets[1].set((scale.x * 50.0f) - (scale.z * 50.0f), 0.0f,0.0f);
         speedF = ((scale.x * 100.0f) - (scale.z * 100.0f)) / 10.0f;
     }
     else {
-        field_0x9A4[0].set(0.0f, 0.0f,(scale.z * -50.0f) + (scale.x * 50.0f));
-        field_0x9A4[1].set(0.0f, 0.0f,(scale.z * 50.0f) - (scale.x * 50.0f));
+        mCylColliderCenterOscillationTargets[0].set(0.0f, 0.0f,(scale.z * -50.0f) + (scale.x * 50.0f));
+        mCylColliderCenterOscillationTargets[1].set(0.0f, 0.0f,(scale.z * 50.0f) - (scale.x * 50.0f));
         speedF = ((scale.z * 100.0f) - (scale.x * 100.0f)) / 10.0f;
     }
 
     mDoMtx_stack_c::transS(home.pos);
-
     mDoMtx_stack_c::YrotM(home.angle.y);
 
-    PSMTXMultVec(mDoMtx_stack_c::get(), &field_0x9A4[0], &field_0x9A4[0]);
-    PSMTXMultVec(mDoMtx_stack_c::get(), &field_0x9A4[1], &field_0x9A4[1]);
+    PSMTXMultVec(mDoMtx_stack_c::get(), &mCylColliderCenterOscillationTargets[0], &mCylColliderCenterOscillationTargets[0]);
+    PSMTXMultVec(mDoMtx_stack_c::get(), &mCylColliderCenterOscillationTargets[1], &mCylColliderCenterOscillationTargets[1]);
 
-    field_0x9BC = field_0x9A4[0];
-    field_0x9C8 = true;
+    mCylColliderCenter = mCylColliderCenterOscillationTargets[0];
+    mCylColliderCenterQuantizedOscillation = 1;
 
     return cPhs_LOADING_e;
 }
@@ -264,7 +265,7 @@ cPhs__Step daObjWaterFall_c::create() {
     if(Create() == cPhs_INIT_e) {
         return cPhs_ERROR_e;
     }
-
+    
     return cPhs_COMPLEATE_e;
 }
 
@@ -277,16 +278,16 @@ int daObjWaterFall_c::execute() {
     search_bomb();
     search_arrow();
 
-    if(field_0x9C8 > 0) {
-        if(cLib_chasePosXZ(&field_0x9BC, field_0x9A4[1], speedF))
-            field_0x9C8 = -1;
+    if(mCylColliderCenterQuantizedOscillation > 0) {
+        if(cLib_chasePosXZ(&mCylColliderCenter, mCylColliderCenterOscillationTargets[1], speedF))
+            mCylColliderCenterQuantizedOscillation = -1;
     }
-    else if(cLib_chasePosXZ(&field_0x9BC, field_0x9A4[0], speedF)) {
-        field_0x9C8 = 1;
+    else if(cLib_chasePosXZ(&mCylColliderCenter, mCylColliderCenterOscillationTargets[0], speedF)) {
+        mCylColliderCenterQuantizedOscillation = 1;
     }
 
-    field_0x868.SetC(field_0x9BC);
-    dComIfG_Ccsp()->Set(&field_0x868);
+    mCylCollider.SetC(mCylColliderCenter);
+    dComIfG_Ccsp()->Set(&mCylCollider);
 
     return 1;
 }
@@ -301,7 +302,7 @@ void daObjWaterFall_c::push_player() {
         outMagnitude = 25.0f;
 
     if(scale.x == scale.z) {
-        // Waterfall is perfectly cylindrical 
+        // Waterfall is a circular cylinder 
         const f32 distToPlayer = fopAcM_searchPlayerDistanceXZ(this);
 
         if(distToPlayer < scale.x * 50.0f) {
