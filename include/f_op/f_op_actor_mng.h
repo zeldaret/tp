@@ -288,7 +288,7 @@ inline csXyz* fopAcM_GetShapeAngle_p(fopAc_ac_c* pActor) {
     return &pActor->shape_angle;
 }
 
-inline bool fopAcM_CheckCondition(fopAc_ac_c* p_actor, u32 flag) {
+inline u32 fopAcM_CheckCondition(fopAc_ac_c* p_actor, u32 flag) {
     return p_actor->actor_condition & flag;
 }
 
