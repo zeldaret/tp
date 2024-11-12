@@ -7,6 +7,7 @@
 class JUTFader;
 
 int mDoGph_Create();
+void mDoGph_drawFilterQuad(s8 param_0, s8 param_1);
 
 extern bool data_80450BE7;  // AutoForcus
 

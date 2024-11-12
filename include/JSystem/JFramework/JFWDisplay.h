@@ -98,6 +98,7 @@ public:
 
     void setDrawDoneMethod(EDrawDone drawDone) { mDrawDoneMethod = drawDone; }
     void setFader(JUTFader* fader) { mFader = fader; }
+    void resetFader() { setFader(NULL); }
     JUTFader* getFader() const { return mFader; }
     void setClearColor(JUtility::TColor color) { mClearColor = color; }
 
