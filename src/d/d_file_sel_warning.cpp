@@ -247,9 +247,9 @@ void dFile_warning_c::setFontColor(JUtility::TColor param_0, JUtility::TColor pa
 
 /* 8019230C-80192354 18CC4C 0048+00 0/0 1/0 0/0 .text
  * setBlackWhite__10J2DTextBoxFQ28JUtility6TColorQ28JUtility6TColor */
-bool J2DTextBox::setBlackWhite(JUtility::TColor param_0, JUtility::TColor param_1) {
+/* bool J2DTextBox::setBlackWhite(JUtility::TColor param_0, JUtility::TColor param_1) {
     // NONMATCHING
-}
+} */
 
 /* 80192354-8019238C 18CC94 0038+00 1/0 0/0 0/0 .text            draw__16dDlst_FileWarn_cFv */
 void dDlst_FileWarn_c::draw() {

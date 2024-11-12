@@ -76,7 +76,11 @@ public:
     /* 8021C7F4 */ virtual JUTFont* getFont() const { return mFont; }
     /* 80254408 */ virtual bool setBlack(JUtility::TColor);
     /* 80186C84 */ virtual bool setWhite(JUtility::TColor white) { mWhiteColor = white; return true; }
-    /* 8019230C */ virtual bool setBlackWhite(JUtility::TColor, JUtility::TColor);
+    /* 8019230C */ virtual bool setBlackWhite(JUtility::TColor black, JUtility::TColor white) {
+        mBlackColor = black;
+        mWhiteColor = white;
+        return true;
+    }
     /* 801DFA34 */ virtual JUtility::TColor getBlack() const {
         return mBlackColor;
     }
@@ -124,6 +128,14 @@ public:
     void setFontColor(JUtility::TColor i_charColor, JUtility::TColor i_GradientColor) {
         mCharColor = i_charColor;
         mGradientColor = i_GradientColor;
+    }
+
+    void setCharColor(JUtility::TColor i_charColor) {
+        mCharColor.set(i_charColor);
+    }
+
+    void setGradColor(JUtility::TColor i_GradientColor) {
+        mGradientColor.set(i_GradientColor);
     }
 
     void setCharSpace(f32 space) { mCharSpacing = space; }

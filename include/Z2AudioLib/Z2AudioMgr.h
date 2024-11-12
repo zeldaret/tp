@@ -29,8 +29,9 @@ public:
     void resetRecover();
     bool hasReset() const;
 
-    static Z2AudioMgr* getInterface() { return mAudioMgrPtr; }
+    bool isResetting() { return mResettingFlag; }
 
+    static Z2AudioMgr* getInterface() { return mAudioMgrPtr; }
     static Z2AudioMgr* mAudioMgrPtr;
 
     /* 0x0514 */ virtual bool startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);

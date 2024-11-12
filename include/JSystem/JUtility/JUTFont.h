@@ -100,6 +100,9 @@ public:
     static bool isLeadByte_ShiftJIS(int b) {
         return (b >= 0x81 && b <= 0x9f) || (b >= 0xe0 && b <= 0xfc);
     }
+    static bool isLeadByte_EUC(int b) {
+        return (b >= 0xA1 && b <= 0xFE) || b == 0x8E;
+    }
 
     void initialize_state();
     void setCharColor(JUtility::TColor col1);

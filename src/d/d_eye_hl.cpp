@@ -90,27 +90,3 @@ void dEyeHL_mng_c::remove(dEyeHL_c* i_obj) {
         i_obj->m_next = NULL;
     }
 }
-
-/* ############################################################################################## */
-/* 80450FB0-80450FB8 -00001 0008+00 0/0 2/2 0/0 .sbss            None */
-/* 80450FB0 0001+00 data_80450FB0 None */
-/* 80450FB1 0001+00 data_80450FB1 None */
-/* 80450FB2 0006+00 data_80450FB2 None */
-extern u8 struct_80450FB0[8];
-u8 struct_80450FB0[8] ALIGN_DECL(8);
-
-/* 80450FB8-80450FBC -00001 0004+00 0/0 1/1 0/0 .sbss            None */
-/* 80450FB8 0001+00 data_80450FB8 None */
-/* 80450FB9 0001+00 data_80450FB9 None */
-/* 80450FBA 0001+00 data_80450FBA None */
-/* 80450FBB 0001+00 data_80450FBB None */
-extern u8 struct_80450FB8[4];
-u8 struct_80450FB8[4];
-
-/* 80450FBC-80450FC0 -00001 0004+00 0/0 1/1 0/0 .sbss            None */
-/* 80450FBC 0001+00 data_80450FBC None */
-/* 80450FBD 0003+00 data_80450FBD None */
-extern u8 struct_80450FBC[4];
-u8 struct_80450FBC[4];
-
-/* 8037B100-8037B100 007760 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

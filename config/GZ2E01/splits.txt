@@ -739,12 +739,13 @@ d/d_model.cpp:
 d/d_eye_hl.cpp:
 	.text       start:0x8009C964 end:0x8009CB88
 	.rodata     start:0x8037B100 end:0x8037B140
-	.sbss       start:0x80450FA8 end:0x80450FC0
+	.sbss       start:0x80450FA8 end:0x80450FB0
 	.sdata2     start:0x80452C10 end:0x80452C18
 
 d/d_error_msg.cpp:
 	.text       start:0x8009CB88 end:0x8009D87C
 	.rodata     start:0x8037B140 end:0x8038D658
+	.sbss       start:0x80450FB0 end:0x80450FB8
 	.sdata2     start:0x80452C18 end:0x80452C50
 	.sbss2      start:0x80456B78 end:0x80456B80
 
@@ -785,7 +786,7 @@ d/actor/d_a_alink.cpp:
 	.data       start:0x803AF990 end:0x803B3610
 	.bss        start:0x80425508 end:0x80425708
 	.sdata      start:0x80450690 end:0x804506A8
-	.sbss       start:0x80450FC0 end:0x80450FD8
+	.sbss       start:0x80450FB8 end:0x80450FD8
 	.sdata2     start:0x80452C50 end:0x804533A8
 
 d/actor/d_a_itembase.cpp:

@@ -30,6 +30,13 @@ public:
 
     void stopAllSounds(u32 fadeout);
 
+    void stopSound(JAISoundID soundID, u32 param_1) {
+        JAISoundHandle* phandle = getHandleSoundID(soundID);
+        if (phandle != NULL) {
+            (*phandle)->stop(param_1);
+        }
+    }
+
     void setPos(const JGeometry::TVec3<f32>& pos);
 
     int getNumHandles() const { return getNumLinks(); }

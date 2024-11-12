@@ -64,8 +64,8 @@ public:
     void setRiding(bool);
     void setMagnetized(bool);
     void setWolfEyeOpen(bool);
-    void startLinkSound(JAISoundID, u32, s8);
-    void startLinkSoundLevel(JAISoundID, u32, s8);
+    Z2SoundHandlePool* startLinkSound(JAISoundID, u32, s8);
+    JAISoundHandle* startLinkSoundLevel(JAISoundID, u32, s8);
     void startLinkVoice(JAISoundID, s8);
     void startLinkVoiceLevel(JAISoundID, s8);
     void startLinkSwordSound(JAISoundID, u32, s8);
