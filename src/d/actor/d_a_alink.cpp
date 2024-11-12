@@ -50,6 +50,14 @@
 #include "d/actor/d_a_tag_mwait.h"
 #include "d/actor/d_a_canoe.h"
 
+/* 80450FB8-80450FBC -00001 0004+00 0/0 1/1 0/0 .sbss            None */
+extern u8 struct_80450FB8[4];
+u8 struct_80450FB8[4];
+
+/* 80450FBC-80450FC0 -00001 0004+00 0/0 1/1 0/0 .sbss            None */
+extern u8 struct_80450FBC[4];
+u8 struct_80450FBC[4];
+
 static fopAc_ac_c* daAlink_searchTagKandelaar(fopAc_ac_c* i_actor, void* i_data);
 
 /* 8009D87C-8009D884 0981BC 0008+00 0/0 1/1 0/0 .text            getE3Zhint__9daAlink_cFv */

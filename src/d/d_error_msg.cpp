@@ -1,3 +1,8 @@
+/**
+ * d_error_msg.cpp
+ * Disk Error Message screen handler
+ */
+
 #include <cstring.h>
 #include "d/d_error_msg.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
@@ -7,19 +12,10 @@
 #include "m_Do/m_Do_graphic.h"
 #include "JSystem/JUtility/JUTTexture.h"
 #include "m_Do/m_Do_Reset.h"
-#include "dol2asm.h"
 
 #include "assets/black_tex.h"
 #include "assets/msg_data.h"
 #include "assets/font_data.h"
-
-extern u8 struct_80450FB0[1];
-extern u8 data_80450FB1;
-extern s8 data_80450FB2;
-
-/* static u8 struct_80450FB0[0];
-static u8 data_80450FB1;
-static u8 data_80450FB2; */
 
 #define MSG_READING_DISC 0
 #define MSG_COVER_OPEN   1
@@ -28,6 +24,7 @@ static u8 data_80450FB2; */
 #define MSG_READ_ERROR   4
 #define MSG_FATAL_ERROR  5
 
+// made up
 struct BMG_INF1 : JUTDataBlockHeader {
     /* 0x08 */ u8 m08[0x10 - 0x08];
     /* 0x10 */ u32 entries[6];
@@ -153,41 +150,42 @@ void dDvdErrorMsg_c::draw(s32 status) {
 
 /* 8009D354-8009D410 097C94 00BC+00 0/0 1/1 0/0 .text            execute__14dDvdErrorMsg_cFv */
 u8 dDvdErrorMsg_c::execute() {
+    static u8 l_dvdError;
+
     s32 drive_status = DVDGetDriveStatus();
-    if (drive_status != DVD_STATE_END && drive_status != DVD_STATE_BUSY && !struct_80450FB0[0]) {
-        struct_80450FB0[0] = true;
+    if (drive_status != DVD_STATE_END && drive_status != DVD_STATE_BUSY && !l_dvdError) {
+        l_dvdError = true;
     }
 
-    if (struct_80450FB0[0]) {
+    if (l_dvdError) {
         OSReport_Error("DVD Error !! <%d>\n", drive_status);
 
         if (drive_status == DVD_STATE_END) {
-            struct_80450FB0[0] = false;
-        } else if (mDoRst::isReset() && (drive_status == DVD_STATE_NO_DISK || drive_status == DVD_STATE_COVER_OPEN || drive_status == DVD_STATE_WRONG_DISK || drive_status == DVD_STATE_RETRY)) {
+            l_dvdError = false;
+        } else if (mDoRst::isReset() &&
+                  (drive_status == DVD_STATE_NO_DISK || drive_status == DVD_STATE_COVER_OPEN || drive_status == DVD_STATE_WRONG_DISK || drive_status == DVD_STATE_RETRY))
+        {
             mDoRst::onReturnToMenu();
         } else {
             draw(drive_status);
         }
     }
 
-    return struct_80450FB0[0];
+    return l_dvdError;
 }
 
-static u8 data_80450688 = 0xFF;
+static u8 l_captureAlpha = 0xFF;
 
 /* 8009D410-8009D790 097D50 0380+00 1/1 0/0 0/0 .text            drawCapture__FUc */
 // NONMATCHING - stack too small
 static void drawCapture(u8 alpha) {
-    if (!data_80450FB2) {
-        data_80450FB1 = false;
-        data_80450FB2 = true;
-    }
+    static bool l_texCopied = false;
 
-    if (!data_80450FB1) {
+    if (!l_texCopied) {
         GXSetTexCopySrc(0, 0, 608, 448);
         GXSetTexCopyDst(304, 224, (GXTexFmt)mDoGph_gInf_c::getFrameBufferTimg()->format, GX_TRUE);
         GXCopyTex(mDoGph_gInf_c::getFrameBufferTex(), GX_FALSE);
-        data_80450FB1 = true;
+        l_texCopied = true;
     }
 
     JFWDisplay::getManager()->setClearColor(g_clearColor);
@@ -242,9 +240,9 @@ bool dShutdownErrorMsg_c::execute() {
         return false;
     }
 
-    if (data_80450688 == 0xFF) {
+    if (l_captureAlpha == 0xFF) {
         if (Z2AudioMgr::getInterface()->isResetting() && !mDoAud_resetRecover()) {
-            drawCapture(data_80450688);
+            drawCapture(l_captureAlpha);
             return true;
         }
 
@@ -253,9 +251,9 @@ bool dShutdownErrorMsg_c::execute() {
         }
     }
 
-    drawCapture(data_80450688);
+    drawCapture(l_captureAlpha);
 
-    if (cLib_chaseUC(&data_80450688, 0, 15) != 0) {
+    if (cLib_chaseUC(&l_captureAlpha, 0, 15) != 0) {
         if (mDoRst::isReturnToMenu()) {
             mDoRst_reset(1, 0x80000000, 0);
         } else {
