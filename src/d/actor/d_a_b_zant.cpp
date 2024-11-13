@@ -1376,13 +1376,13 @@ static void s_pillar_sub(void* param_0, void* param_1) {
 }
 
 /* 80640654-80640664 002634 0010+00 0/0 0/0 1/1 .text            getMagicSpeed__10daB_ZANT_cFv */
-void daB_ZANT_c::getMagicSpeed() {
+f32 daB_ZANT_c::getMagicSpeed() {
     // NONMATCHING
 }
 
 /* 80640664-80640674 002644 0010+00 0/0 0/0 1/1 .text            getMagicWaterSpeed__10daB_ZANT_cFv
  */
-void daB_ZANT_c::getMagicWaterSpeed() {
+f32 daB_ZANT_c::getMagicWaterSpeed() {
     // NONMATCHING
 }
 

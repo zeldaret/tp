@@ -1521,8 +1521,8 @@ config.libs = [
     ActorRel(Equivalent, "d_a_b_yo"),
     ActorRel(Equivalent, "d_a_b_yo_ice"),
     ActorRel(NonMatching, "d_a_b_zant"),
-    ActorRel(NonMatching, "d_a_b_zant_magic"),
-    ActorRel(NonMatching, "d_a_b_zant_mobile"),
+    ActorRel(Equivalent, "d_a_b_zant_magic"),  # matches in objdiff, unknown issue
+    ActorRel(Matching, "d_a_b_zant_mobile"),
     ActorRel(Matching, "d_a_b_zant_sima"),
     ActorRel(NonMatching, "d_a_balloon_2D"),
     ActorRel(NonMatching, "d_a_bullet"),
