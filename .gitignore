@@ -33,3 +33,9 @@ compile_commands.json
 # Miscellaneous
 /*.txt
 *.exe
+
+# MacOS
+.DS_Store
+
+# ISOs
+*.iso
