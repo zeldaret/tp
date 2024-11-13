@@ -1728,7 +1728,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_shaman"),
     ActorRel(NonMatching, "d_a_npc_shoe"),
     ActorRel(NonMatching, "d_a_npc_shop0"),
-    ActorRel(NonMatching, "d_a_npc_shop_maro"),
+    ActorRel(Equivalent, "d_a_npc_shop_maro"),
     ActorRel(NonMatching, "d_a_npc_sola"),
     ActorRel(NonMatching, "d_a_npc_soldierA"),
     ActorRel(NonMatching, "d_a_npc_soldierB"),
