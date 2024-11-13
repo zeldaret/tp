@@ -41,8 +41,8 @@ public:
     /* 80640310 */ void setWaterBubble();
     /* 806403D4 */ void setMonkeyFallEffect();
     /* 80640478 */ void setLastRollEffect();
-    /* 80640654 */ void getMagicSpeed();
-    /* 80640664 */ void getMagicWaterSpeed();
+    /* 80640654 */ f32 getMagicSpeed();
+    /* 80640664 */ f32 getMagicWaterSpeed();
     /* 80640674 */ void executeSmallAttack();
     /* 80640C20 */ void calcScale(int);
     /* 80640D14 */ void executeWarp();
