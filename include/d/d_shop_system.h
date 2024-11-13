@@ -28,6 +28,44 @@ public:
         ITEM_MAX_e = 7,
     };
 
+    dShopSystem_c(daNpcT_faceMotionAnmData_c const* param_1, daNpcT_motionAnmData_c const* param_2,
+             daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_3, int param_4,
+             daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_5, int param_6, daNpcT_evtData_c const* param_7,
+             char** param_8) : daNpcT_c(param_1,param_2,param_3,param_4,param_5,param_6,param_7,param_8) {
+            
+            mShopCamAction.field_0xc0 = 0.25f;
+            mShopCamAction.field_0xc4 = 20.0f;
+            mShopCamAction.field_0xc8 = 0.25f;
+            mShopCamAction.field_0xcc = 5.0f;
+            mShopCamAction.field_0xda = true;
+            mShopCamAction.field_0xd0 = 0;
+            mShopCamAction.field_0xd2 = 0;
+            mShopCamAction.field_0xd4 = -1;
+            mShopCamAction.field_0xd6 = 0;
+            mShopCamAction.field_0x7c.x = 0.0f;
+            mShopCamAction.field_0x7c.y = 0.0f;
+            mShopCamAction.field_0x7c.z = 0.0f;
+            mShopCamAction.field_0x88.x = 0.0f;
+            mShopCamAction.field_0x88.y = 0.0f;
+            mShopCamAction.field_0x88.z = 100.0f;
+            mShopCamAction.field_0x94 = 60.0f;
+            mShopCamAction.field_0xb0.x = 0.0f;
+            mShopCamAction.field_0xb0.y = 0.0f;
+            mShopCamAction.field_0xb0.z = 0.0f;
+            mShopCamAction.field_0xd8 = 0;
+            mShopCamAction.field_0x18 = NULL;
+            mShopCamAction.field_0x24 = NULL;
+            mShopCamAction.field_0x20 = NULL;
+            mShopCamAction.field_0x1c = NULL;
+            mShopCamAction.field_0x30 = NULL;
+            mShopCamAction.field_0x2c = NULL;
+            mShopCamAction.field_0x28 = NULL;
+            mShopCamAction.field_0x34 = NULL;
+            mShopCamAction.mCamAction = NULL;
+            initShopSystem();
+
+    }
+
     /* 80197338 */ void initShopSystem();
     /* 801975C0 */ void onFlag(int);
     /* 801975DC */ void offFlag(int);
