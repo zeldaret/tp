@@ -26,7 +26,7 @@ UNK_REL_DATA
 namespace {
 /* 80650508-80650554 000020 004C+00 0/1 0/0 0/0 .data
  * cc_zant_src__30@unnamed@d_a_b_zant_magic_cpp@                */
-static dCcD_SrcCps cc_zant_src = {
+dCcD_SrcCps cc_zant_src = {
     {
         {0, {{AT_TYPE_CSTATUE_SWING, 2, 0x1D}, {0xD8FBFDFF, 0}, 0}},
         {dCcD_SE_13, 0, 1, 0, {0}},
@@ -42,7 +42,7 @@ static dCcD_SrcCps cc_zant_src = {
 
 /* 80650554-80650594 00006C 0040+00 0/1 0/0 0/0 .data
  * cc_zant_src2__30@unnamed@d_a_b_zant_magic_cpp@               */
-static dCcD_SrcSph cc_zant_src2 = {
+dCcD_SrcSph cc_zant_src2 = {
     {
         {0x0, {{0x400, 0x2, 0x0}, {0x6000, 0x3}, 0x0}}, // mObj
         {dCcD_SE_METAL, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
@@ -56,7 +56,7 @@ static dCcD_SrcSph cc_zant_src2 = {
 
 /* 80650594-806505D4 0000AC 0040+00 0/1 0/0 0/0 .data
  * cc_zant_src3__30@unnamed@d_a_b_zant_magic_cpp@               */
-static dCcD_SrcSph cc_zant_src3 = {
+dCcD_SrcSph cc_zant_src3 = {
     {
         {0x0, {{0x400, 0x2, 0x0}, {0x2, 0x3}, 0x0}}, // mObj
         {dCcD_SE_METAL, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
