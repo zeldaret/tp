@@ -746,4 +746,9 @@ inline bool fopAcM_CheckFoodStatus(const fopAc_ac_c* actor, fopAcM_FOOD status) 
     return actor->field_0x567 == status;
 }
 
+inline void fopAcM_effSmokeSet2(u32* param_0, u32* param_1, cXyz const* param_2, csXyz const* param_3,
+                                f32 param_4, dKy_tevstr_c const* param_5) {
+    fopAcM_effSmokeSet1(param_0, param_1, param_2, param_3, param_4, param_5, 0);
+}
+
 #endif

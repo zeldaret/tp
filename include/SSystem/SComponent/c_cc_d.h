@@ -486,7 +486,7 @@ public:
     void SetAtHit(cCcD_Obj* obj) { mObjAt.SetHit(obj); }
     void SetTgHit(cCcD_Obj* obj) { mObjTg.SetHit(obj); }
     void SetCoHit(cCcD_Obj* obj) { mObjCo.SetHit(obj); }
-    BOOL ChkAtType(u32 type) const { return mObjAt.MskType(type); }
+    u32 ChkAtType(u32 type) const { return mObjAt.MskType(type); }
     u32 ChkCoNoCrr() const { return mObjCo.ChkNoCrr(); }
     void OnCoNoCrrBit() { mObjCo.OnNoCrrBit(); }
     u32 ChkCoSph3DCrr() const { return mObjCo.ChkSph3DCrr(); }
