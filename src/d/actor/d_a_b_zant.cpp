@@ -3389,28 +3389,132 @@ void daB_ZANT_c::executeMonkey() {
 /* 806481F4-80648544 00A1D4 0350+00 2/1 0/0 0/0 .text            executeMonkeyFall__10daB_ZANT_cFv
  */
 void daB_ZANT_c::executeMonkeyFall() {
-    // NONMATCHING
+    switch (mMode) {
+    case 0:
+    case 20:
+        setTgHitBit(TRUE);
+        field_0x6e8 = 90;
+
+        if (mMode == 20) {
+            field_0x6e8 = 30;
+        }
+
+        setBck(10, J3DFrameCtrl::LOOP_REPEAT_e, 3.0f, 1.0f);
+        mMode = 1;
+
+        field_0x9e0[0].OffTgNoHitMark();
+        field_0x9e0[1].OffTgNoHitMark();
+
+        mSound.startCreatureVoice(Z2SE_EN_ZAN_MK_V_OTT, -1);
+    case 1:
+        if (field_0x6e8 == 0) {
+            setActionMode(ACT_MONKEY, 0);
+        }
+        break;
+    case 10:
+        setBck(11, J3DFrameCtrl::LOOP_ONCE_e, 3.0f, 1.0f);
+        mMode = 11;
+        field_0x707 = 0;
+        setTgHitBit(FALSE);
+        speedF = 0.0f;
+    case 11:
+        if (mpModelMorf->checkFrame(5)) {
+            mSound.startCreatureVoice(Z2SE_EN_ZAN_MK_V_FALL, -1);
+        }
+
+        if (mpModelMorf->isStop()) {
+            cXyz sp20(-30.0f, -170.0f, -175.0f);
+            cLib_offsetPos(&current.pos, &current.pos, shape_angle.y, &sp20);
+            old.pos = current.pos;
+            speed.y = -15.0f;
+            speedF = 8.0f;
+            current.angle.y = shape_angle.y + 0x8000;
+
+            setBck(0x1C, J3DFrameCtrl::LOOP_ONCE_e, 0.0f, 0.0f);
+            mMode = 12;
+
+            field_0x9e0[0].OnAtSetBit();
+            field_0x9e0[1].OnAtSetBit();
+        }
+        break;
+    case 12:
+        if (mAcch.i_ChkGroundHit()) {
+            mSound.startCreatureSound(Z2SE_EN_ZAN_MK_UMARU, 0, -1);
+            setMonkeyFallEffect();
+            dComIfGp_getVibration().StartShock(3, 31, cXyz(0.0f, 1.0f, 0.0f));
+
+            field_0x9e0[0].OffAtSetBit();
+            field_0x9e0[1].OffAtSetBit();
+
+            speedF = 0.0f;
+            mpModelMorf->setPlaySpeed(1.0f);
+            mMode = 13;
+            field_0x702 = 0;
+            setTgHitBit(TRUE);
+            field_0x6f0 = 120;
+        }
+        break;
+    case 13:
+        if (mpModelMorf->isStop()) {
+            setActionMode(ACT_MONKEY_DAMAGE, 5);
+        }
+        break;
+    }
 }
 
 /* 80648544-80648778 00A524 0234+00 1/1 0/0 0/0 .text            executeMonkeyDamage__10daB_ZANT_cFv
  */
 void daB_ZANT_c::executeMonkeyDamage() {
-    // NONMATCHING
+    switch (mMode) {
+    case 0:
+        if (setNextDamageMode(0)) {
+            setTgHitBit(FALSE);
+            return;
+        }
+
+        setBck(0x1D, J3DFrameCtrl::LOOP_ONCE_e, 3.0f, 1.0f);
+        mSound.startCreatureVoice(Z2SE_EN_ZAN_V_DMG, -1);
+        mMode = 1;
+        field_0x702 = 0;
+    case 1:
+        if (field_0x6f0 == 0) {
+            setTgHitBit(FALSE);
+        }
+
+        if (mpModelMorf->isStop()) {
+            setBck(0x1E, J3DFrameCtrl::LOOP_REPEAT_e, 3.0f, 1.0f);
+            mMode = 10;
+        }
+        break;
+    case 5:
+    case 6:
+        if (mMode == 5) {
+            field_0x6f0 = 100;
+            field_0x6ff = 0;
+        } else if (field_0x6f0 < 30) {
+            field_0x6f0 = 30;
+        }
+
+        setBck(0x1E, J3DFrameCtrl::LOOP_REPEAT_e, 3.0f, 1.0f);
+        mMode = 10;
+        field_0x702 = 0;
+    case 10:
+        if (mpModelMorf->checkFrame(1)) {
+            mSound.startCreatureVoice(Z2SE_EN_ZAN_MK_V_MGGG, -1);
+        }
+
+        if (field_0x6f0 == 0) {
+            setTgHitBit(FALSE);
+
+            if (!setNextDamageMode(1)) {
+                setNearPillarPos();
+                field_0x711 = 0;
+                setActionMode(ACT_WARP, 1);
+            }
+        }
+        break;
+    }
 }
-
-/* 8064EDA8-8064EDAC 00028C 0004+00 0/0 0/0 0/0 .rodata          @8452 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_8452 = -170.0f;
-COMPILER_STRIP_GATE(0x8064EDA8, &lit_8452);
-#pragma pop
-
-/* 8064EDAC-8064EDB0 000290 0004+00 0/0 0/0 0/0 .rodata          @8453 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_8453 = -175.0f;
-COMPILER_STRIP_GATE(0x8064EDAC, &lit_8453);
-#pragma pop
 
 /* 8064EDB0-8064EDB4 000294 0004+00 0/2 0/0 0/0 .rodata          @8683 */
 #pragma push
