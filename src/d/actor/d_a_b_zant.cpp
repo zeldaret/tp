@@ -78,6 +78,79 @@
 #define ANM_TRAMPLE_D          64
 #define ANM_WAIT               65
 
+/* JOINT IDS */
+#define JNT_CENTER     0
+#define JNT_BACKBONE   1
+#define JNT_NECK       2
+#define JNT_HEAD       3
+#define JNT_CHIN       4
+#define JNT_HELMET     5
+#define JNT_TONGUE1    6
+#define JNT_TONGUE2    7
+#define JNT_TONGUE3    8
+#define JNT_TONGUE4    9
+#define JNT_TONGUE5    10
+#define JNT_MOUTH      11
+#define JNT_SHOULDER_L 12
+#define JNT_ARM_L1     13
+#define JNT_ARM_L2     14
+#define JNT_ARM_L3     15
+#define JNT_ARM_L4     16
+#define JNT_HIRA_LB1   17
+#define JNT_HIRA_LB2   18
+#define JNT_HIRA_LF1   19
+#define JNT_HIRA_LF2   20
+#define JNT_SPAD_L     21
+#define JNT_SHOULDER_R 22
+#define JNT_ARM_R1     23
+#define JNT_ARM_R2     24
+#define JNT_ARM_R3     25
+#define JNT_ARM_R4     26
+#define JNT_HIRA_RB1   27
+#define JNT_HIRA_RB2   28
+#define JNT_HIRA_RF1   29
+#define JNT_HIRA_RF2   30
+#define JNT_SPAD_R     31
+#define JNT_WAIST      32
+#define JNT_LEG_L1     33
+#define JNT_LEG_L2     34
+#define JNT_FOOT_L     35
+#define JNT_LEG_R1     36
+#define JNT_LEG_R2     37
+#define JNT_FOOT_R     38
+#define JNT_TARE_B1    39
+#define JNT_TARE_B2    40
+#define JNT_TARE_F1    41
+#define JNT_TARE_F2    42
+
+enum OPENING_MODE {
+    MODE_START_DEMO,
+    MODE_START_DEMO_WAIT,
+    MODE_PAN_GROUND,
+
+    MODE_MSG_1 = 4,
+    MODE_MSG_1_WAIT,
+    MODE_WARP_OUT_SE,
+    MODE_START_WARP,
+
+    MODE_WARP_WAIT = 100,
+    MODE_PAN_THRONE,
+    MODE_ZOOM_THRONE,
+    MODE_MSG_2,
+    MODE_FLY_UP,
+    MODE_CLOSE_UP,
+    MODE_SET_BOSS_TITLE,
+
+    MODE_WARP_IN_SE = 20,
+    MODE_WARP_IN_SCALE,
+    MODE_WARP_IN_WAIT,
+    MODE_ZOOM_OUT_ROOM_CHANGE,
+    MODE_START_ROOM_CHANGE,
+    MODE_ROOM_CHANGE,
+    MODE_END_ROOM_CHANGE,
+    MODE_END_DEMO,
+};
+
 static u8 const lit_3757[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -211,10 +284,10 @@ int daB_ZANT_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     mDoMtx_stack_c::copy(i_model->getAnmMtx(jnt_no));
 
     switch (jnt_no) {
-    case 1:
+    case JNT_BACKBONE:
         mDoMtx_stack_c::ZrotM(mBackboneRotZ);
         break;
-    case 2:
+    case JNT_NECK:
         mDoMtx_stack_c::ZXYrotM(mNeckRotX, 0, mNeckRotZ);
         break;
     }
@@ -704,7 +777,7 @@ void daB_ZANT_c::ice_damage_check() {
 
                     cc_at_check(this, &mAtInfo);
 
-                    int var_r24 = prev_hp - health;
+                    int dmg_amount = prev_hp - health;
                     health = prev_hp;
 
                     if (!mAtInfo.mpCollider->ChkAtType(AT_TYPE_MASTER_SWORD)) {
@@ -738,7 +811,7 @@ void daB_ZANT_c::ice_damage_check() {
                             mModeTimer = 0;
                             break;
                         case DMGTYPE_SWORD:
-                            setDamageSe(&mFoot2Cc[i], var_r24);
+                            setDamageSe(&mFoot2Cc[i], dmg_amount);
                             setActionMode(ACT_ICE_DAMAGE, 10);
                             break;
                         }
@@ -943,9 +1016,9 @@ void daB_ZANT_c::setIceLandingEffect(BOOL i_landFootR) {
 
     cXyz particle_pos;
     if (!i_landFootR) {
-        mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(0x23));
+        mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(JNT_FOOT_L));
     } else {
-        mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(0x26));
+        mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(JNT_FOOT_R));
     }
 
     mDoMtx_stack_c::transM(10.0f, 0.0f, 0.0f);
@@ -964,7 +1037,7 @@ void daB_ZANT_c::setIceLandingEffect(BOOL i_landFootR) {
 /* 80640310-806403D4 0022F0 00C4+00 1/1 0/0 0/0 .text            setWaterBubble__10daB_ZANT_cFv */
 void daB_ZANT_c::setWaterBubble() {
     cXyz particle_pos;
-    mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(11));
+    mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(JNT_MOUTH));
     mDoMtx_stack_c::multVecZero(&particle_pos);
 
     field_0x389c[0] = dComIfGp_particle_set(field_0x389c[0], 0x1E8, &particle_pos, &tevStr);
@@ -1094,9 +1167,9 @@ void daB_ZANT_c::executeSmallAttack() {
 
         if (mpModelMorf->checkFrame(3) || mpModelMorf->checkFrame(13)) {
             if (mpModelMorf->checkFrame(13)) {
-                mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(0x10));
+                mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(JNT_ARM_L4));
             } else {
-                mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(0x1A));
+                mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(JNT_ARM_R4));
             }
 
             mDoMtx_stack_c::multVecZero(&sp44);
@@ -1152,7 +1225,7 @@ void daB_ZANT_c::executeSmallAttack() {
 }
 
 /* 80640C20-80640D14 002C00 00F4+00 3/3 0/0 0/0 .text            calcScale__10daB_ZANT_cFi */
-bool daB_ZANT_c::calcScale(int param_0) {
+bool daB_ZANT_c::calcScale(BOOL param_0) {
     if (!param_0) {
         cLib_addCalc(&mModelScaleXZ, 0.0f, 0.5f, 0.25f, 0.1f);
         cLib_addCalc(&mModelScaleY, 1.2f, 0.5f, 0.1f, 0.1f);
@@ -1304,10 +1377,10 @@ void daB_ZANT_c::executeDamage() {
     case 2:
         attention_info.flags = 4;
 
-        if (setNextDamageMode(0)) {
+        if (setNextDamageMode(FALSE)) {
             setTgHitBit(FALSE);
             return;
-        } else if (mFightPhase == PHASE_OI && setNextDamageMode(1)) {
+        } else if (mFightPhase == PHASE_OI && setNextDamageMode(TRUE)) {
             setTgHitBit(FALSE);
             return;
         }
@@ -1347,7 +1420,7 @@ void daB_ZANT_c::executeDamage() {
             setTgHitBit(FALSE);
         }
 
-        if (mpModelMorf->isStop() && !setNextDamageMode(1)) {
+        if (mpModelMorf->isStop() && !setNextDamageMode(TRUE)) {
             setBaseActionMode(0);
         }
         break;
@@ -1368,7 +1441,7 @@ void daB_ZANT_c::executeConfuse() {
         field_0x702 = 0;
     case 1:
         if (mpModelMorf->isStop()) {
-            setBaseActionMode(0);;
+            setBaseActionMode(0);
         }
         break;
     case 5:
@@ -1396,7 +1469,7 @@ void daB_ZANT_c::executeOpening() {
     cXyz sp4C;
 
     switch (mMode) {
-    case 0:
+    case MODE_START_DEMO:
         current.pos.set(0.0f, 0.0f, 160.0f);
         shape_angle.y = -0x8000;
 
@@ -1413,13 +1486,13 @@ void daB_ZANT_c::executeOpening() {
         player->setPlayerPosAndAngle(&sp34, 0, 0);
 
         setBck(ANM_OP_1, J3DFrameCtrl::LOOP_REPEAT_e, 0.0f, 1.0f);
-        mMode = 1;
+        mMode = MODE_START_DEMO_WAIT;
         mModeTimer = 30;
 
         camera->mCamera.Stop();
         camera->mCamera.SetTrimSize(3);
         field_0x77c = 220.0f;
-    case 1:
+    case MODE_START_DEMO_WAIT:
         sp4C.set(0.0f, 175.0f, 3.0f);
         sp40.set(0.0f, 270.0f, -194.0f);
         mDemoCamCenter = sp4C;
@@ -1427,23 +1500,23 @@ void daB_ZANT_c::executeOpening() {
         mDemoCamBank = 30.0f;
 
         if (mModeTimer == 0) {
-            mMode = 2;
+            mMode = MODE_PAN_GROUND;
             mModeTimer = 80;
         }
         break;
-    case 2:
+    case MODE_PAN_GROUND:
         sp4C.set(0.0f, 81.0f, -187.0f);
         sp40.set(0.0f, 67.0f, -408.0f);
         cLib_addCalcPos2(&mDemoCamCenter, sp4C, 0.1f, 4.3f);
         cLib_addCalcPos2(&mDemoCamEye, sp40, 0.1f, 6.0f);
 
         if (mModeTimer == 0) {
-            mMode = 4;
+            mMode = MODE_MSG_1;
             setBck(ANM_OP_2, J3DFrameCtrl::LOOP_ONCE_e, 3.0f, 1.0f);
             mSound.startCreatureVoice(Z2SE_EN_ZAN_OP_V_WAKEUP, -1);
         }
         break;
-    case 4:
+    case MODE_MSG_1:
         if (mpModelMorf->getFrame() > 5.0f) {
             sp4C.set(0.0f, 86.0f, -9.0f);
             sp40.set(0.0f, 10.0f, -209.0f);
@@ -1452,25 +1525,25 @@ void daB_ZANT_c::executeOpening() {
         }
 
         if (mpModelMorf->isStop()) {
-            mMode = 5;
+            mMode = MODE_MSG_1_WAIT;
             mModeTimer = 20;
             setBck(ANM_OP_3, J3DFrameCtrl::LOOP_REPEAT_e, 3.0f, 1.0f);
-            setZantMessage(0xE3B);
+            setZantMessage(0xE3B);  // My god had only one wish...
         }
         break;
-    case 5:
+    case MODE_MSG_1_WAIT:
         if (doZantMessage() == true) {
             mModeTimer = 20;
-            mMode = 6;
+            mMode = MODE_WARP_OUT_SE;
         }
         break;
-    case 6:
+    case MODE_WARP_OUT_SE:
         if (mModeTimer == 0) {
-            mMode = 7;
+            mMode = MODE_START_WARP;
             mSound.startCreatureSound(Z2SE_EN_ZAN_WARP_OUT, 0, -1);
         }
         break;
-    case 7:
+    case MODE_START_WARP:
         if (calcScale(0)) {
             current.pos.set(0.0f, 225.0f, -1700.0f);
             sp34.set(0.0f, 0.0f, -500.0f);
@@ -1478,22 +1551,22 @@ void daB_ZANT_c::executeOpening() {
             player->changeOriginalDemo();
             player->changeDemoMode(1, 0, 0, 0);
 
-            mMode = 100;
+            mMode = MODE_WARP_WAIT;
             mDemoCamCenter.set(0.0f, 200.0f, -1700.0f);
             mDemoCamEye.set(0.0f, 70.0f, -300.0f);
             mDemoCamBank = 68.0f;
             mModeTimer = 15;
         }
         break;
-    case 100:
+    case MODE_WARP_WAIT:
         if (mModeTimer == 0) {
             setBck(ANM_WAIT, J3DFrameCtrl::LOOP_REPEAT_e, 3.0f, 1.0f);
             player->changeDemoMode(0x48, 0, 0, 0);
-            mMode = 101;
+            mMode = MODE_PAN_THRONE;
             mModeTimer = 105;
         }
         break;
-    case 101:
+    case MODE_PAN_THRONE:
         sp4C.set(32.0f, 290.0f, -1678.0f);
         sp40.set(100.0f, 70.0f, -300.0f);
         cLib_addCalcPos2(&mDemoCamCenter, sp4C, 0.1f, 1.0f);
@@ -1510,11 +1583,11 @@ void daB_ZANT_c::executeOpening() {
         }
 
         if (mModeTimer == 0) {
-            mMode = 102;
+            mMode = MODE_ZOOM_THRONE;
             mModeTimer = 30;
         }
         break;
-    case 102:
+    case MODE_ZOOM_THRONE:
         calcScale(1);
         sp4C.set(32.0f, 290.0f, -1678.0f);
         sp40.set(66.0f, 180.0f, -989.0f);
@@ -1522,27 +1595,27 @@ void daB_ZANT_c::executeOpening() {
         cLib_addCalcPos2(&mDemoCamEye, sp40, 0.5f, 60.0f);
 
         if (mModeTimer == 0) {
-            mMode = 103;
+            mMode = MODE_MSG_2;
             setZantMessage(0xE3C);
         }
         break;
-    case 103:
+    case MODE_MSG_2:
         if (doZantMessage() == true) {
             setBck(ANM_OP_RISE, J3DFrameCtrl::LOOP_REPEAT_e, 10.0f, 1.0f);
-            mMode = 104;
+            mMode = MODE_FLY_UP;
             mModeTimer = 90;
             mSound.startCreatureSound(Z2SE_EN_ZAN_OP_FLY, 0, -1);
         }
         break;
-    case 104:
+    case MODE_FLY_UP:
         current.pos.y += 3.0f;
         mDemoCamCenter.y += 2.0f;
 
         if (mModeTimer == 0) {
-            mMode = 105;
+            mMode = MODE_CLOSE_UP;
         }
         break;
-    case 105:
+    case MODE_CLOSE_UP:
         if (mModeTimer == 0) {
             mDoMtx_stack_c::YrotM(-0x8000);
             mDoMtx_stack_c::transM(0.0f, 300.0f, 700.0f);
@@ -1582,11 +1655,11 @@ void daB_ZANT_c::executeOpening() {
             Z2GetAudioMgr()->bgmStart(Z2BGM_BOSS_ZANT, 0, 0);
             field_0x77c = 0.0f;
             field_0x6fc = 1;
-            mMode = 106;
+            mMode = MODE_SET_BOSS_TITLE;
             mModeTimer = 160;
         }
         break;
-    case 106:
+    case MODE_SET_BOSS_TITLE:
         if (mModeTimer == 100) {
             fopMsgM_messageSetDemo(0x486);
         }
@@ -1595,46 +1668,46 @@ void daB_ZANT_c::executeOpening() {
         cLib_addCalc(&mDemoCamCenter.y, 250.0f + 672.0f, 0.1f, 1.0f, 0.3f);
 
         if (mModeTimer == 0) {
-            mMode = 22;
+            mMode = MODE_WARP_IN_WAIT;
             mModeTimer = 20;
         }
         break;
-    case 20:
+    case MODE_WARP_IN_SE:
         shape_angle.y = fopAcM_searchPlayerAngleY(this);
         shape_angle.x = -fopAcM_searchPlayerAngleX(this) * 0.5f;
 
         if (mModeTimer == 0) {
             dComIfGp_particle_set(0x88FE, &current.pos, &shape_angle, NULL);
-            mMode = 21;
+            mMode = MODE_WARP_IN_SCALE;
             mSound.startCreatureSound(Z2SE_EN_ZAN_WARP_IN, 0, -1);
         }
         break;
-    case 21:
+    case MODE_WARP_IN_SCALE:
         shape_angle.y = fopAcM_searchPlayerAngleY(this);
         shape_angle.x = -fopAcM_searchPlayerAngleX(this) * 0.5f;
 
         if (calcScale(1)) {
-            mMode = 22;
+            mMode = MODE_WARP_IN_WAIT;
             mModeTimer = 20;
         }
         break;
-    case 22:
+    case MODE_WARP_IN_WAIT:
         if (mModeTimer == 0) {
-            mMode = 23;
+            mMode = MODE_ZOOM_OUT_ROOM_CHANGE;
             mModeTimer = 50;
         }
         break;
-    case 23:
+    case MODE_ZOOM_OUT_ROOM_CHANGE:
         calcRoomChangeCamera(0);
         if (mModeTimer == 0) {
-            mMode = 24;
+            mMode = MODE_START_ROOM_CHANGE;
             setBck(ANM_FLOAT_APPEAR, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
             mSound.startCreatureSound(Z2SE_EN_ZAN_MAHOJIN_BB, 0, -1);
             field_0x714 = 1;
             mKankyoBlend = 0.0f;
         }
         break;
-    case 24:
+    case MODE_START_ROOM_CHANGE:
         cLib_chaseF(&mKankyoBlend, 1.0f, 0.006f);
         if (mpModelMorf->checkFrame(110)) {
             mMahojinAnmMode = 1;
@@ -1651,15 +1724,15 @@ void daB_ZANT_c::executeOpening() {
         if (mpModelMorf->isStop()) {
             dComIfGp_getVibration().StopQuake(31);
             setBck(ANM_FLOAT_APPEAR_WAIT, J3DFrameCtrl::LOOP_REPEAT_e, 3.0f, 1.0f);
-            mMode = 25;
+            mMode = MODE_ROOM_CHANGE;
             mModeTimer = l_HIO.mMahojinWaitTime;
 
-            cXyz sp58(0.0f, 0.0f, 0.0f);
-            dComIfGs_setRestartRoom(sp58, 0, warp_next_room[1]);
+            cXyz pos(0.0f, 0.0f, 0.0f);
+            dComIfGs_setRestartRoom(pos, 0, warp_next_room[1]);
             return;
         }
         break;
-    case 25:
+    case MODE_ROOM_CHANGE:
         mFightPhase++;
         if (mFightPhase >= PHASE_MAX) {
             mFightPhase = PHASE_OP;
@@ -1691,17 +1764,17 @@ void daB_ZANT_c::executeOpening() {
         shape_angle.x = -fopAcM_searchPlayerAngleX(this) * 0.5f;
 
         initNextRoom();
-        mMode = 26;
-    case 26:
+        mMode = MODE_END_ROOM_CHANGE;
+    case MODE_END_ROOM_CHANGE:
         if (mModeTimer == 0 && dComIfGp_roomControl_checkStatusFlag(warp_next_room[mFightPhase], 0x10)) {
-            mMode = 27;
+            mMode = MODE_END_DEMO;
             field_0x714 = 0;
             mKankyoBlend = 0.0f;
             setBck(ANM_FLOAT_WAIT_RETURN, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
             mMahojinAnmMode = 4;
         }
         break;
-    case 27:
+    case MODE_END_DEMO:
         cLib_chaseF(&mKankyoBlend, 1.0f, 0.02f);
         player->setPlayerPosAndAngle(&sp34, 0, 0);
 
@@ -1797,8 +1870,8 @@ void daB_ZANT_c::executeFly() {
         sp9C.y += 100.0f;
         gndchk.SetPos(&sp9C);
         {
-            f32 var_f31 = dComIfG_Bgsp().GroundCross(&gndchk);
-            if (var_f31 != -1000000000.0f && current.pos.y <= var_f31) {
+            f32 gnd_pos = dComIfG_Bgsp().GroundCross(&gndchk);
+            if (gnd_pos != -1000000000.0f && current.pos.y <= gnd_pos) {
                 if (dComIfG_Bgsp().GetPolyAtt0(gndchk) == 11) {
                     speed.y = 50.0f;
                     speedF = 15.0f;
@@ -1808,11 +1881,11 @@ void daB_ZANT_c::executeFly() {
                     setBck(ANM_SWAMP_FALL_A, J3DFrameCtrl::LOOP_ONCE_e, 3.0f, 1.0f);
                     mSound.startCreatureVoice(Z2SE_EN_ZAN_BB_V_JUMP, -1);
 
-                    cXyz spA8(current.pos.x, var_f31, current.pos.z);
-                    cXyz spB4(1.5f, 1.5f, 1.5f);
+                    cXyz pos(current.pos.x, gnd_pos, current.pos.z);
+                    cXyz size(1.5f, 1.5f, 1.5f);
                     for (int i = 0; i < 4; i++) {
                         static u16 w_eff_id[] = {0x01B8, 0x01B9, 0x01BA, 0x01BB};
-                        field_0x389c[i] = dComIfGp_particle_setPolyColor(field_0x389c[i], w_eff_id[i], gndchk, &spA8, &tevStr, &shape_angle, &spB4, 0, NULL, -1, NULL);
+                        field_0x389c[i] = dComIfGp_particle_setPolyColor(field_0x389c[i], w_eff_id[i], gndchk, &pos, &tevStr, &shape_angle, &size, 0, NULL, -1, NULL);
                     }
 
                     mSound.startCreatureSound(Z2SE_EN_ZAN_BB_WTR, 0, -1);
@@ -2202,17 +2275,17 @@ void daB_ZANT_c::executeSwim() {
     fopAcM_SearchByID(mMobileIDs[mCorrectMobileNo], &pmobile);
 
     if (pmobile != NULL) {
-        s16 sp12 = pmobile->shape_angle.y;
-        cXyz sp50(cM_ssin(sp12) * 300.0f, 300.0f, cM_scos(sp12) * 300.0f);
+        s16 mobile_angle = pmobile->shape_angle.y;
+        cXyz sp50(cM_ssin(mobile_angle) * 300.0f, 300.0f, cM_scos(mobile_angle) * 300.0f);
         sp50 += pmobile->current.pos;
 
         s16 sp10 = cLib_targetAngleY(&pmobile->current.pos, &current.pos);
-        s16 spE = sp12 - sp10;
+        s16 spE = mobile_angle - sp10;
 
         switch (mMode) {
         case 10:
             if (field_0x6ff > 5) {
-                field_0x6b8 = sp12;
+                field_0x6b8 = mobile_angle;
                 mFlyWarpPos = sp50;
                 field_0x705 = 1;
                 field_0x711 = 1;
@@ -2244,7 +2317,7 @@ void daB_ZANT_c::executeSwim() {
         case 2:
             if (abs(spE) < 0x1000) {
                 if (mMode == 1) {
-                    field_0x6ac.set(cM_ssin(sp12) * 600.0f, 300.0f, cM_scos(sp12) * 600.0f);
+                    field_0x6ac.set(cM_ssin(mobile_angle) * 600.0f, 300.0f, cM_scos(mobile_angle) * 600.0f);
                     field_0x6ac += pmobile->current.pos;
                 } else {
                     field_0x6ac = sp50;
@@ -2272,17 +2345,17 @@ void daB_ZANT_c::executeSwim() {
                     cLib_addCalc2(&current.pos.y, 50.0f, 0.1f, 10.0f);
                 }
 
-                f32 var_f30 = fopAcM_searchPlayerDistance(this);
+                f32 player_dist = fopAcM_searchPlayerDistance(this);
                 s16 spA = -cLib_targetAngleX(&current.pos, &field_0x6ac) + 0x4000;
                 s16 sp8 = cLib_targetAngleY(&current.pos, &field_0x6ac);
-                f32 var_f31 = mpModelMorf->getFrame();
+                f32 anm_frame = mpModelMorf->getFrame();
 
                 int sp64 = 0;
-                if (var_f31 < 13.0f || var_f31 >= 45.0f) {
+                if (anm_frame < 13.0f || anm_frame >= 45.0f) {
                     sp64 = 1;
                 }
 
-                if ((13.0f <= var_f31 && var_f31 <= 19.0f) || (29.0f <= var_f31 && var_f31 <= 45.0f)) {
+                if ((13.0f <= anm_frame && anm_frame <= 19.0f) || (29.0f <= anm_frame && anm_frame <= 45.0f)) {
                     sp64 = 2;
                 }
 
@@ -2349,7 +2422,7 @@ void daB_ZANT_c::executeSwim() {
         case 6:
             cLib_chaseF(&speedF, 0.0f, 0.5f);
             cLib_chaseF(&speed.y, 5.0f, 0.5f);
-            cLib_addCalcAngleS2(&shape_angle.y, sp12, 0x10, 0x200);
+            cLib_addCalcAngleS2(&shape_angle.y, mobile_angle, 0x10, 0x200);
             cLib_addCalcAngleS2(&shape_angle.x, 0, 0x10, 0x200);
 
             if (!speedF && speed.y == 5.0f) {
@@ -2363,8 +2436,8 @@ void daB_ZANT_c::executeSwim() {
                 field_0x706 = 1;
                 maxFallSpeed = -100.0f;
 
-                cXyz sp5C(sp50.x, current.pos.y, sp50.z);
-                cLib_chasePosXZ(&current.pos, sp5C, 3.0f);
+                cXyz target(sp50.x, current.pos.y, sp50.z);
+                cLib_chasePosXZ(&current.pos, target, 3.0f);
                 
                 if (((daB_ZANTZ_c*)pmobile)->getMouthMode() == 3) {
                     field_0x705 = 1;
@@ -2479,7 +2552,7 @@ void daB_ZANT_c::executeSimaJump() {
                 return;
             }
         } else {
-            if (checkAvoidWeapon(0)) {
+            if (checkAvoidWeapon(FALSE)) {
                 mMode = 11;
                 return;
             }
@@ -2654,11 +2727,11 @@ void daB_ZANT_c::executeIceJump() {
             setBck(ANM_HUGE_LANDING, J3DFrameCtrl::LOOP_ONCE_e, 3.0f, 1.0f);
             mSound.startCreatureVoice(Z2SE_EN_ZAN_YO_V_LAND, -1);
 
-            mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(0x23));
+            mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(JNT_FOOT_L));
             mDoMtx_stack_c::transM(10.0f, 0.0f, 0.0f);
             mDoMtx_stack_c::multVecZero(&sp50);
 
-            mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(0x26));
+            mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(JNT_FOOT_R));
             mDoMtx_stack_c::transM(10.0f, 0.0f, 0.0f);
             mDoMtx_stack_c::multVecZero(&sp5C);
 
@@ -2672,9 +2745,9 @@ void daB_ZANT_c::executeIceJump() {
     case 5:
     case 6:
         if (field_0x70f == 0) {
-            mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(0x23));
+            mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(JNT_FOOT_L));
         } else {
-            mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(0x26));
+            mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(JNT_FOOT_R));
         }
 
         mDoMtx_stack_c::transM(10.0f, 0.0f, 0.0f);
@@ -2822,11 +2895,11 @@ void daB_ZANT_c::executeIceStep() {
     case 3:
     case 4:
     case 5:
-        f32 var_f31 = mpModelMorf->getFrame();
+        f32 anm_frame = mpModelMorf->getFrame();
         int sp98 = 0;
 
         if (mMode == 2) {
-            if (8.0f <= var_f31 && var_f31 <= 24.0f) {
+            if (8.0f <= anm_frame && anm_frame <= 24.0f) {
                 sp98 = 1;
             }
 
@@ -2845,11 +2918,11 @@ void daB_ZANT_c::executeIceStep() {
                 mFoot2Cc[4].OffAtSetBit();
             }
         } else if (mMode == 3) {
-            if (7.0f <= var_f31 && var_f31 <= 14.0f) {
+            if (7.0f <= anm_frame && anm_frame <= 14.0f) {
                 sp98 = 1;
             }
 
-            if (22.0f <= var_f31 && var_f31 <= 28.0f) {
+            if (22.0f <= anm_frame && anm_frame <= 28.0f) {
                 sp98 = 1;
             }
 
@@ -2873,7 +2946,7 @@ void daB_ZANT_c::executeIceStep() {
                 mFoot2Cc[4].OffAtSetBit();
             }
         } else if (mMode == 4) {
-            if (8.0f <= var_f31 && var_f31 <= 23.0f) {
+            if (8.0f <= anm_frame && anm_frame <= 23.0f) {
                 sp98 = 1;
             }
 
@@ -2892,11 +2965,11 @@ void daB_ZANT_c::executeIceStep() {
                 mFoot2Cc[0].OffAtSetBit();
             }
         } else {
-            if (7.0f <= var_f31 && var_f31 <= 13.0f) {
+            if (7.0f <= anm_frame && anm_frame <= 13.0f) {
                 sp98 = 1;
             }
 
-            if (21.0f <= var_f31 && var_f31 <= 27.0f) {
+            if (21.0f <= anm_frame && anm_frame <= 27.0f) {
                 sp98 = 1;
             }
 
@@ -3179,32 +3252,32 @@ void daB_ZANT_c::executeIceDamage() {
 
 /* 806471CC-806473E4 0091AC 0218+00 1/1 0/0 0/0 .text            setFarPillarPos__10daB_ZANT_cFv */
 void daB_ZANT_c::setFarPillarPos() {
-    fopAc_ac_c* sp48;
-    cXyz sp44(daPy_getPlayerActorClass()->current.pos);
-    int var_r28 = -1;
-    f32 var_f31 = 0.0f;
+    fopAc_ac_c* ppillar;
+    cXyz player_pos(daPy_getPlayerActorClass()->current.pos);
+    int pillar_no = -1;
+    f32 farthest_dist = 0.0f;
 
     for (int i = 0; i < 8; i++) {
         if (i != field_0x70a) {
-            fopAcM_SearchByID(mPillarIDs[i], &sp48);
-            if (sp48 != NULL) {
-                f32 var_f30 = sp44.abs(sp48->current.pos);
-                if (var_f30 > var_f31) {
-                    var_r28 = i;
-                    var_f31 = var_f30;
+            fopAcM_SearchByID(mPillarIDs[i], &ppillar);
+            if (ppillar != NULL) {
+                f32 dist = player_pos.abs(ppillar->current.pos);
+                if (dist > farthest_dist) {
+                    pillar_no = i;
+                    farthest_dist = dist;
                 }
             }
         }
     }
 
-    if (var_r28 != -1) {
-        fopAcM_SearchByID(mPillarIDs[var_r28], &sp48);
-        if (sp48 != NULL) {
-            mFlyWarpPos = sp48->current.pos;
+    if (pillar_no != -1) {
+        fopAcM_SearchByID(mPillarIDs[pillar_no], &ppillar);
+        if (ppillar != NULL) {
+            mFlyWarpPos = ppillar->current.pos;
             mFlyWarpPos.y += 500.0f;
-            field_0x709 = var_r28;
-            field_0x708 = var_r28;
-            field_0x70a = var_r28;
+            field_0x709 = pillar_no;
+            field_0x708 = pillar_no;
+            field_0x70a = pillar_no;
             field_0x71b = 1;
         }
     }
@@ -3212,11 +3285,11 @@ void daB_ZANT_c::setFarPillarPos() {
 
 /* 806473E4-80647468 0093C4 0084+00 4/4 0/0 0/0 .text            setNearPillarPos__10daB_ZANT_cFv */
 void daB_ZANT_c::setNearPillarPos() {
-    fopAc_ac_c* sp48;
-    fopAcM_SearchByID(mPillarIDs[8], &sp48);
+    fopAc_ac_c* ppillar;
+    fopAcM_SearchByID(mPillarIDs[8], &ppillar);
 
-    if (sp48 != NULL) {
-        mFlyWarpPos = sp48->current.pos;
+    if (ppillar != NULL) {
+        mFlyWarpPos = ppillar->current.pos;
         mFlyWarpPos.y += 500.0f;
         field_0x709 = 8;
         field_0x708 = 8;
@@ -3227,44 +3300,44 @@ void daB_ZANT_c::setNearPillarPos() {
 
 /* 80647468-806474F4 009448 008C+00 1/1 0/0 0/0 .text            setNextPillarInfo__10daB_ZANT_cFi
  */
-void daB_ZANT_c::setNextPillarInfo(int param_0) {
-    fopAc_ac_c* sp48;
-    fopAcM_SearchByID(mPillarIDs[param_0], &sp48);
+void daB_ZANT_c::setNextPillarInfo(int i_pillarNo) {
+    fopAc_ac_c* ppillar;
+    fopAcM_SearchByID(mPillarIDs[i_pillarNo], &ppillar);
 
-    if (sp48 != NULL) {
-        field_0x6ac = sp48->current.pos;
+    if (ppillar != NULL) {
+        field_0x6ac = ppillar->current.pos;
         field_0x6ac.y += 500.0f;
         field_0x708 = field_0x709;
-        field_0x709 = param_0;
+        field_0x709 = i_pillarNo;
     }
 }
 
 /* 806474F4-80647A34 0094D4 0540+00 1/1 0/0 0/0 .text            setNextPillarPos__10daB_ZANT_cFv */
 void daB_ZANT_c::setNextPillarPos() {
-    fopAc_ac_c* sp54;
-    cXyz sp44(daPy_getPlayerActorClass()->current.pos);
-    int var_r26 = -1;
-    f32 var_f31 = 10000.0f;
+    fopAc_ac_c* ppillar;
+    cXyz player_pos(daPy_getPlayerActorClass()->current.pos);
+    int pillar_no = -1;
+    f32 nearest_dist = 10000.0f;
 
     if (field_0x708 != 8 && field_0x709 != 8 && cM_rnd() < 0.5) {
-        fopAcM_SearchByID(mPillarIDs[8], &sp54);
+        fopAcM_SearchByID(mPillarIDs[8], &ppillar);
 
-        if (sp54 != NULL && sp44.absXZ(sp54->current.pos) > 500.0f) {
+        if (ppillar != NULL && player_pos.absXZ(ppillar->current.pos) > 500.0f) {
             setNextPillarInfo(8);
             return;
         }
     }
 
     if (field_0x709 == 8) {
-        fopAcM_SearchByID(mPillarIDs[8], &sp54);
-        if (sp54 != NULL) {
-            cXyz sp50(sp54->current.pos);
-            s16 sp8 = cLib_targetAngleY(&sp50, &sp44);
+        fopAcM_SearchByID(mPillarIDs[8], &ppillar);
+        if (ppillar != NULL) {
+            cXyz pillar_pos(ppillar->current.pos);
+            s16 sp8 = cLib_targetAngleY(&pillar_pos, &player_pos);
 
             for (int i = 0; i < 8; i++) {
                 if (i != field_0x708 && i != field_0x709) {
-                    fopAcM_SearchByID(mPillarIDs[i], &sp54);
-                    if (sp54 != NULL && abs((s16)(cLib_targetAngleY(&sp50, &sp54->current.pos) - sp8)) > 0x6000) {
+                    fopAcM_SearchByID(mPillarIDs[i], &ppillar);
+                    if (ppillar != NULL && abs((s16)(cLib_targetAngleY(&pillar_pos, &ppillar->current.pos) - sp8)) > 0x6000) {
                         setNextPillarInfo(i);
                         return;
                     }
@@ -3275,29 +3348,29 @@ void daB_ZANT_c::setNextPillarPos() {
 
     for (int i = 0; i < 8; i++) {
         if (i != field_0x708 && i != field_0x709) {
-            fopAcM_SearchByID(mPillarIDs[i], &sp54);
-            if (sp54 != NULL && sp44.absXZ(sp54->current.pos) > 500.0f) {
-                f32 var_f30 = current.pos.abs(sp54->current.pos);
-                if (var_f30 < var_f31) {
-                    var_r26 = i;
-                    var_f31 = var_f30;
+            fopAcM_SearchByID(mPillarIDs[i], &ppillar);
+            if (ppillar != NULL && player_pos.absXZ(ppillar->current.pos) > 500.0f) {
+                f32 dist = current.pos.abs(ppillar->current.pos);
+                if (dist < nearest_dist) {
+                    pillar_no = i;
+                    nearest_dist = dist;
                 }
             }
         }
     }
 
-    if (var_r26 != -1) {
-        setNextPillarInfo(var_r26);
+    if (pillar_no != -1) {
+        setNextPillarInfo(pillar_no);
     }
 }
 
 /* 80647A34-80647AC8 009A14 0094+00 1/1 0/0 0/0 .text            checkPillarSwing__10daB_ZANT_cFv */
 void daB_ZANT_c::checkPillarSwing() {
     if (field_0x707 != 0) {
-        fopAc_ac_c* sp48;
-        fopAcM_SearchByID(mPillarIDs[field_0x70a], &sp48);
+        fopAc_ac_c* ppillar;
+        fopAcM_SearchByID(mPillarIDs[field_0x70a], &ppillar);
 
-        if (sp48 != NULL && ((daPillar_c*)sp48)->checkRollAttack()) {
+        if (ppillar != NULL && ((daPillar_c*)ppillar)->checkRollAttack()) {
             if (mAction != ACT_MONKEY_FALL) {
                 setActionMode(ACT_MONKEY_FALL, 0);
             } else {
@@ -3309,7 +3382,7 @@ void daB_ZANT_c::checkPillarSwing() {
 
 /* 80647AC8-806481F4 009AA8 072C+00 1/1 0/0 0/0 .text            executeMonkey__10daB_ZANT_cFv */
 void daB_ZANT_c::executeMonkey() {
-    fopAc_ac_c* sp30;
+    fopAc_ac_c* ppillar;
 
     switch (mMode) {
     case 0:
@@ -3399,9 +3472,9 @@ void daB_ZANT_c::executeMonkey() {
             mMode = 9;
             field_0x707 = 0;
 
-            fopAcM_SearchByID(mPillarIDs[field_0x70a], &sp30);
-            if (sp30 != NULL) {
-                ((daPillar_c*)sp30)->setShake(2);
+            fopAcM_SearchByID(mPillarIDs[field_0x70a], &ppillar);
+            if (ppillar != NULL) {
+                ((daPillar_c*)ppillar)->setShake(2);
             }
         }
         break;
@@ -3420,9 +3493,9 @@ void daB_ZANT_c::executeMonkey() {
             field_0x707 = 1;
             field_0x70a = field_0x709;
             
-            fopAcM_SearchByID(mPillarIDs[field_0x70a], &sp30);
-            if (sp30 != NULL) {
-                ((daPillar_c*)sp30)->setShake(2);
+            fopAcM_SearchByID(mPillarIDs[field_0x70a], &ppillar);
+            if (ppillar != NULL) {
+                ((daPillar_c*)ppillar)->setShake(2);
             }
 
             mMode = 1;
@@ -3483,8 +3556,8 @@ void daB_ZANT_c::executeMonkeyFall() {
         }
 
         if (mpModelMorf->isStop()) {
-            cXyz sp20(-30.0f, -170.0f, -175.0f);
-            cLib_offsetPos(&current.pos, &current.pos, shape_angle.y, &sp20);
+            cXyz offset(-30.0f, -170.0f, -175.0f);
+            cLib_offsetPos(&current.pos, &current.pos, shape_angle.y, &offset);
             old.pos = current.pos;
             speed.y = -15.0f;
             speedF = 8.0f;
@@ -3603,7 +3676,7 @@ void daB_ZANT_c::setLastWarp(int param_0, int i_warpID) {
 
     field_0x713 = mFightCycle;
 
-    cXyz sp80(daPy_getPlayerActorClass()->current.pos);
+    cXyz player_pos(daPy_getPlayerActorClass()->current.pos);
     s16 var_r28;
 
     if (field_0x713 == 2 && param_0) {
@@ -3652,7 +3725,7 @@ void daB_ZANT_c::setLastWarp(int param_0, int i_warpID) {
 
             field_0x704 = 0;
 
-            var_r28 = cM_atan2s(-sp80.x, -200.0f - sp80.z);
+            var_r28 = cM_atan2s(-player_pos.x, -200.0f - player_pos.z);
             mFlyWarpPos.set(cM_ssin(var_r28) * 1000.0f, 0.0f, cM_scos(var_r28) * 1000.0f - 200.0f);
         } else {
             field_0x70f = 0;
@@ -3678,19 +3751,19 @@ void daB_ZANT_c::setLastWarp(int param_0, int i_warpID) {
             }
 
             mFlyWarpPos.set(cM_ssin(var_r28) * var_f31, 0.0f, cM_scos(var_r28) * var_f31);
-            mFlyWarpPos += sp80;
+            mFlyWarpPos += player_pos;
 
             if (mFlyWarpPos.z > 1000.0f || mFlyWarpPos.z < -1400.0f || std::abs(mFlyWarpPos.x) > 1200.0f) {
-                var_r28 = cM_atan2s(-sp80.x, -200.0f - sp80.z);
+                var_r28 = cM_atan2s(-player_pos.x, -200.0f - player_pos.z);
                 mFlyWarpPos.set(cM_ssin(var_r28) * var_f31, 0.0f, cM_scos(var_r28) * var_f31);
-                mFlyWarpPos += sp80;
+                mFlyWarpPos += player_pos;
             }
         }
         break;
     case 2: {
-        f32 var_f29 = sp80.absXZ(current.pos);
-        s16 spE = cLib_targetAngleY(&sp80, &current.pos);
-        s16 spC = cM_atan2s(-sp80.x, -sp80.z);
+        f32 var_f29 = player_pos.absXZ(current.pos);
+        s16 spE = cLib_targetAngleY(&player_pos, &current.pos);
+        s16 spC = cM_atan2s(-player_pos.x, -player_pos.z);
 
         if ((s16)(spE - spC) < 0) {
             var_r28 = spE + 0x2000;
@@ -3703,7 +3776,7 @@ void daB_ZANT_c::setLastWarp(int param_0, int i_warpID) {
         }
 
         mFlyWarpPos.set(var_f29 * cM_ssin(var_r28), 0.0f, var_f29 * cM_scos(var_r28));
-        mFlyWarpPos += sp80;
+        mFlyWarpPos += player_pos;
         field_0x70f = 20;
         break;
     }
@@ -3711,19 +3784,19 @@ void daB_ZANT_c::setLastWarp(int param_0, int i_warpID) {
         f32 var_f30 = cM_rndF(200.0f) + 700.0f;
         if (field_0x713 == 0) {
             var_f30 += 400.0f;
-            var_r28 = cM_atan2s(-sp80.x, -200.0f - sp80.z);
+            var_r28 = cM_atan2s(-player_pos.x, -200.0f - player_pos.z);
         } else {
             var_f30 += 400.0f;
             var_r28 = daPy_getPlayerActorClass()->shape_angle.y + cM_rndFX(3.9f) * 8192.0f;
         }
 
         mFlyWarpPos.set(cM_ssin(var_r28) * var_f30, 0.0f, cM_scos(var_r28) * var_f30);
-        mFlyWarpPos += sp80;
+        mFlyWarpPos += player_pos;
 
         if (mFlyWarpPos.z > 1000.0f || mFlyWarpPos.z < -1400.0f || std::abs(mFlyWarpPos.x) > 1200.0f) {
-            var_r28 = cM_atan2s(-sp80.x, -200.0f - sp80.z);
+            var_r28 = cM_atan2s(-player_pos.x, -200.0f - player_pos.z);
             mFlyWarpPos.set(cM_ssin(var_r28) * var_f30, 0.0f, cM_scos(var_r28) * var_f30);
-            mFlyWarpPos += sp80;
+            mFlyWarpPos += player_pos;
         }
 
         field_0x70f = 10;
@@ -3854,7 +3927,7 @@ void daB_ZANT_c::executeLastStartDemo() {
 /* 806494A8-8064A58C 00B488 10E4+00 2/1 0/0 0/0 .text            executeLastAttack__10daB_ZANT_cFv
  */
 void daB_ZANT_c::executeLastAttack() {
-    s16 spA = fopAcM_searchPlayerAngleY(this);
+    s16 angle_to_player = fopAcM_searchPlayerAngleY(this);
 
     switch (mMode) {
     case 0:
@@ -3886,7 +3959,7 @@ void daB_ZANT_c::executeLastAttack() {
                 setLastWarp(1, 0);
             }
         } else {
-            cLib_addCalcAngleS2(&shape_angle.y, spA, 0x10, 0x400);
+            cLib_addCalcAngleS2(&shape_angle.y, angle_to_player, 0x10, 0x400);
             current.angle.y = shape_angle.y;
 
             if (fopAcM_searchPlayerDistance(this) < 800.0f || mModeTimer == 0) {
@@ -3913,7 +3986,7 @@ void daB_ZANT_c::executeLastAttack() {
                 setLastWarp(1, 0);
             }
         } else {
-            cLib_addCalcAngleS2(&shape_angle.y, spA, 0x10, 0x400);
+            cLib_addCalcAngleS2(&shape_angle.y, angle_to_player, 0x10, 0x400);
             current.angle.y = shape_angle.y;
             cLib_chaseF(&speedF, 5.0f, 1.0f);
 
@@ -3948,7 +4021,7 @@ void daB_ZANT_c::executeLastAttack() {
         setTgShield(FALSE);
         field_0x702 = 0;
     case 6:
-        if (checkAvoidWeapon(0)) {
+        if (checkAvoidWeapon(FALSE)) {
             mSwordCc[0].OffAtSetBit();
             mSwordCc[1].OffAtSetBit();
             setTgHitBit(FALSE);
@@ -3962,8 +4035,8 @@ void daB_ZANT_c::executeLastAttack() {
             }
         } else {
             cLib_chaseF(&mSwordSize, l_HIO.mSwordAttackSize, 0.1f);
-            cLib_addCalcAngleS2(&current.angle.y, spA, 8, 0x400);
-            cLib_addCalcAngleS2(&shape_angle.y, spA, 8, 0x400);
+            cLib_addCalcAngleS2(&current.angle.y, angle_to_player, 8, 0x400);
+            cLib_addCalcAngleS2(&shape_angle.y, angle_to_player, 8, 0x400);
 
             if (field_0x713 == 0) {
                 if (mpModelMorf->checkFrame(4) || mpModelMorf->checkFrame(24)) {
@@ -4050,7 +4123,7 @@ void daB_ZANT_c::executeLastAttack() {
             mMode = 31;
         }
 
-        current.angle.y = spA;
+        current.angle.y = angle_to_player;
 
         mRollCc.OnAtSetBit();
         mRollCc.OnTgSetBit();
@@ -4085,7 +4158,7 @@ void daB_ZANT_c::executeLastAttack() {
                 }
             }
         } else if (mMode == 11) {
-            int sp48 = abs((s16)(spA - current.angle.y));
+            int sp48 = abs((s16)(angle_to_player - current.angle.y));
             if (sp48 > 0x4000) {
                 if (sp48 > 0x6800) {
                     cLib_chaseF(&speedF, -30.0f, var_f31 * 0.2f);
@@ -4093,7 +4166,7 @@ void daB_ZANT_c::executeLastAttack() {
                     cLib_chaseF(&speedF, 5.0f, var_f31 * 0.2f);
                 }
 
-                cLib_addCalcAngleS2(&current.angle.y, spA + 0x8000, 0x10, var_f31 * 512.0f);
+                cLib_addCalcAngleS2(&current.angle.y, angle_to_player + 0x8000, 0x10, var_f31 * 512.0f);
                 if (speedF < 0.0f && sp48 > 0x6000) {
                     current.angle.y += 0x8000;
                     speedF = -speedF;
@@ -4105,7 +4178,7 @@ void daB_ZANT_c::executeLastAttack() {
                     cLib_chaseF(&speedF, var_f31 * 30.0f, var_f31);
                 }
 
-                cLib_addCalcAngleS2(&current.angle.y, spA, 0x10, var_f31 * 768.0f);
+                cLib_addCalcAngleS2(&current.angle.y, angle_to_player, 0x10, var_f31 * 768.0f);
             }
         } else {
             cLib_chaseF(&speedF, var_f31 * 30.0f, var_f31 * 2.0f);
@@ -4967,17 +5040,17 @@ void daB_ZANT_c::setBaseActionMode(int param_0) {
         if (param_0 == 0) {
             setActionMode(ACT_WATER, 0);
         } else {
-            fopAc_ac_c* sp48;
-            fopAcM_SearchByID(mMobileIDs[mCorrectMobileNo], &sp48);
+            fopAc_ac_c* pmobile;
+            fopAcM_SearchByID(mMobileIDs[mCorrectMobileNo], &pmobile);
 
             s16 var_r27 = shape_angle.y;
             cXyz sp44(current.pos);
             sp44.y = -4000.0f;
 
-            if (sp48 != NULL) {
-                var_r27 = sp48->shape_angle.y;
+            if (pmobile != NULL) {
+                var_r27 = pmobile->shape_angle.y;
                 sp44.set(cM_ssin(var_r27) * 300.0f, 300.0f, cM_scos(var_r27) * 300.0f);
-                sp44 += sp48->current.pos;
+                sp44 += pmobile->current.pos;
             }
 
             attention_info.flags = 0;
@@ -5234,11 +5307,11 @@ void daB_ZANT_c::mtx_set() {
     mpModelMorf->modelCalc();
 
     if (mDrawSwords) {
-        mDoMtx_stack_c::copy(model->getAnmMtx(15));
+        mDoMtx_stack_c::copy(model->getAnmMtx(JNT_ARM_L3));
         mDoMtx_stack_c::scaleM(mSwordSize, mSwordSize, mSwordSize);
         mpSwordLModel->setBaseTRMtx(mDoMtx_stack_c::get());
 
-        mDoMtx_stack_c::copy(model->getAnmMtx(25));
+        mDoMtx_stack_c::copy(model->getAnmMtx(JNT_ARM_R3));
         mDoMtx_stack_c::scaleM(mSwordSize, mSwordSize, mSwordSize);
         mpSwordRModel->setBaseTRMtx(mDoMtx_stack_c::get());
     }
@@ -5269,20 +5342,20 @@ void daB_ZANT_c::mtx_set() {
 
 /* 8064CD0C-8064CFA8 00ECEC 029C+00 1/1 0/0 0/0 .text            cc_set__10daB_ZANT_cFv */
 void daB_ZANT_c::cc_set() {
-    mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(2));
+    mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(JNT_NECK));
     mDoMtx_stack_c::multVecZero(&eyePos);
     attention_info.position = eyePos;
     attention_info.position.y += mModelScaleY * 100.0f;
 
     cXyz center;
-    mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(1));
+    mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(JNT_BACKBONE));
     mDoMtx_stack_c::transM(30.0f, 0.0f, 0.0f);
     mDoMtx_stack_c::multVecZero(&center);
     mBodySphCc[0].SetC(center);
     mBodySphCc[0].SetR(70.0f);
     dComIfG_Ccsp()->Set(&mBodySphCc[0]);
 
-    mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(32));
+    mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(JNT_WAIST));
     mDoMtx_stack_c::transM(50.0f, 0.0f, 0.0f);
     mDoMtx_stack_c::multVecZero(&center);
     mBodySphCc[1].SetC(center);
@@ -5295,14 +5368,14 @@ void daB_ZANT_c::cc_set() {
         mRollCc.SetH(250.0f);
         dComIfG_Ccsp()->Set(&mRollCc);
 
-        mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(15));
+        mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(JNT_ARM_L3));
         mDoMtx_stack_c::transM(100.0f, 0.0f, 0.0f);
         mDoMtx_stack_c::multVecZero(&center);
         mSwordCc[0].SetC(center);
         mSwordCc[0].SetR(50.0f);
         dComIfG_Ccsp()->Set(&mSwordCc[0]);
 
-        mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(25));
+        mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(JNT_ARM_R3));
         mDoMtx_stack_c::transM(-100.0f, 0.0f, 0.0f);
         mDoMtx_stack_c::multVecZero(&center);
         mSwordCc[1].SetC(center);
@@ -5321,17 +5394,17 @@ void daB_ZANT_c::cc_ice_set() {
     };
 
     static dZantSph_c ice_sph_jnt[] = {
-        {0x23, 10.0f, 15.0f},
-        {0x22, 20.0f, 20.0f},
-        {0x22, 0.0f, 25.0f},
-        {0x21, 20.0f, 30.0f},
-        {0x26, 10.0f, 15.0f},
-        {0x25, 20.0f, 20.0f},
-        {0x25, 0.0f, 25.0f},
-        {0x24, 20.0f, 30.0f},
-        {0x20, 0.0f, 45.0f},
-        {0x1, 20.0f, 45.0f},
-        {0x3, 20.0f, 25.0f},
+        {JNT_FOOT_L, 10.0f, 15.0f},
+        {JNT_LEG_L2, 20.0f, 20.0f},
+        {JNT_LEG_L2, 0.0f, 25.0f},
+        {JNT_LEG_L1, 20.0f, 30.0f},
+        {JNT_FOOT_R, 10.0f, 15.0f},
+        {JNT_LEG_R2, 20.0f, 20.0f},
+        {JNT_LEG_R2, 0.0f, 25.0f},
+        {JNT_LEG_R1, 20.0f, 30.0f},
+        {JNT_WAIST, 0.0f, 45.0f},
+        {JNT_BACKBONE, 20.0f, 45.0f},
+        {JNT_HEAD, 20.0f, 25.0f},
     };
 
     cXyz sp34;
@@ -5339,25 +5412,25 @@ void daB_ZANT_c::cc_ice_set() {
 
     if (mAction == ACT_ICE_STEP || mAction == ACT_ICE_JUMP) {
         if (!dComIfGp_getAttention().LockonTruth() || dComIfGp_getAttention().LockonTarget(0) != this) {
-            mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(0x23));
+            mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(JNT_FOOT_L));
             mDoMtx_stack_c::transM(20.0f, 0.0f, 0.0f);
             mDoMtx_stack_c::multVecZero(&sp34);
 
-            mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(0x26));
+            mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(JNT_FOOT_R));
             mDoMtx_stack_c::transM(20.0f, 0.0f, 0.0f);
             mDoMtx_stack_c::multVecZero(&sp40);
 
-            cXyz sp4C(daPy_getPlayerActorClass()->current.pos);
-            s16 sp8 = daPy_getPlayerActorClass()->shape_angle.y;
+            cXyz player_pos(daPy_getPlayerActorClass()->current.pos);
+            s16 player_angle = daPy_getPlayerActorClass()->shape_angle.y;
 
-            if (sp34.absXZ(sp4C) < 700.0f) {
+            if (sp34.absXZ(player_pos) < 700.0f) {
                 field_0x70d = 0;
-                if (sp40.absXZ(sp4C) < 700.0f && abs((s16)(sp8 - cLib_targetAngleY(&sp4C, &sp40))) < abs((s16)(sp8 - cLib_targetAngleY(&sp4C, &sp34)))) {
+                if (sp40.absXZ(player_pos) < 700.0f && abs((s16)(player_angle - cLib_targetAngleY(&player_pos, &sp40))) < abs((s16)(player_angle - cLib_targetAngleY(&player_pos, &sp34)))) {
                     field_0x70d = 1;
                 }
-            } else if (sp40.absXZ(sp4C) < 700.0f) {
+            } else if (sp40.absXZ(player_pos) < 700.0f) {
                 field_0x70d = 1;
-            } else if (sp34.absXZ(sp4C) < sp40.absXZ(sp4C)) {
+            } else if (sp34.absXZ(player_pos) < sp40.absXZ(player_pos)) {
                 field_0x70d = 0;
             } else {
                 field_0x70d = 1;
@@ -5370,9 +5443,9 @@ void daB_ZANT_c::cc_ice_set() {
             }
         } else {
             if (field_0x70d == 0) {
-                mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(0x23));
+                mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(JNT_FOOT_L));
             } else {
-                mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(0x26));
+                mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(JNT_FOOT_R));
             }
 
             mDoMtx_stack_c::transM(20.0f, 0.0f, 0.0f);
@@ -5382,40 +5455,40 @@ void daB_ZANT_c::cc_ice_set() {
         attention_info.position = eyePos;
         attention_info.position.y += 120.0f;
     } else {
-        mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(2));
+        mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(JNT_NECK));
         mDoMtx_stack_c::multVecZero(&eyePos);
         attention_info.position = eyePos;
         attention_info.position.y += mModelScaleY * 120.0f;
     }
 
     cXyz sp64;
-    dZantSph_c sp58;
+    dZantSph_c sph;
 
     for (int i = 0; i < 6; i++) {
-        sp58 = ice_sph_jnt[i];
+        sph = ice_sph_jnt[i];
 
-        mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(sp58.joint_no));
-        mDoMtx_stack_c::transM(sp58.offset_x, 0.0f, 0.0f);
+        mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(sph.joint_no));
+        mDoMtx_stack_c::transM(sph.offset_x, 0.0f, 0.0f);
         mDoMtx_stack_c::multVecZero(&sp64);
 
         mFootCc[i].SetC(sp64);
-        mFootCc[i].SetR(sp58.radius * mModelScaleY);
+        mFootCc[i].SetR(sph.radius * mModelScaleY);
         dComIfG_Ccsp()->Set(&mFootCc[i]);
     }
 
     for (int i = 0; i < 11; i++) {
-        sp58 = ice_sph_jnt[i];
+        sph = ice_sph_jnt[i];
 
-        mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(sp58.joint_no));
-        mDoMtx_stack_c::transM(sp58.offset_x, 0.0f, 0.0f);
+        mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(sph.joint_no));
+        mDoMtx_stack_c::transM(sph.offset_x, 0.0f, 0.0f);
         mDoMtx_stack_c::multVecZero(&sp64);
 
         mFoot2Cc[i].SetC(sp64);
-        mFoot2Cc[i].SetR(sp58.radius * mModelScaleY);
+        mFoot2Cc[i].SetR(sph.radius * mModelScaleY);
         dComIfG_Ccsp()->Set(&mFoot2Cc[i]);
 
         mCameraCc[i].SetC(sp64);
-        mCameraCc[i].SetR((sp58.radius + 10.0f) * mModelScaleY);
+        mCameraCc[i].SetR((sph.radius + 10.0f) * mModelScaleY);
         dComIfG_Ccsp()->Set(&mCameraCc[i]);
     }
 }
