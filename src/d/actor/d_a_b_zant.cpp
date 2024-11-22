@@ -1101,7 +1101,7 @@ f32 daB_ZANT_c::getMagicWaterSpeed() {
  */
 void daB_ZANT_c::executeSmallAttack() {
     cXyz sp44;
-    s16 aim_target_angle = fopAcM_searchPlayerAngleX(this);
+    s16 aim_target_angle = fopAcM_searchPlayerAngleY(this);
 
     if (mFightPhase == PHASE_OI) {
         fopAc_ac_c* pmobile;
@@ -1617,7 +1617,7 @@ void daB_ZANT_c::executeOpening() {
         break;
     case MODE_CLOSE_UP:
         if (mModeTimer == 0) {
-            mDoMtx_stack_c::YrotM(-0x8000);
+            mDoMtx_stack_c::YrotS(-0x8000);
             mDoMtx_stack_c::transM(0.0f, 300.0f, 700.0f);
             mDoMtx_stack_c::multVecZero(&current.pos);
             current.pos.y += 100.0f;
@@ -1640,13 +1640,13 @@ void daB_ZANT_c::executeOpening() {
             player->changeDemoMode(0x17, 1, 4, 0);
             mDemoCamBank = 58.0f;
 
-            mDoMtx_stack_c::YrotM(-0x8000);
+            mDoMtx_stack_c::YrotS(-0x8000);
             mDoMtx_stack_c::transM(-85.0f, 344.0f, 382.0f);
             mDoMtx_stack_c::multVecZero(&mDemoCamEye);
             mDemoCamEye.y += 250.0f;
             mDemoCamEye.z -= 800.0f;
 
-            mDoMtx_stack_c::YrotM(-0x8000);
+            mDoMtx_stack_c::YrotS(-0x8000);
             mDoMtx_stack_c::transM(258.0f, 672.0f, 1374.0f);
             mDoMtx_stack_c::multVecZero(&mDemoCamCenter);
             mDemoCamCenter.y += 200.0f;
@@ -1748,7 +1748,7 @@ void daB_ZANT_c::executeOpening() {
         mDemoCamEye.y -= 250.0f;
         mDemoCamEye.z += 800.0f;
 
-        mDoMtx_stack_c::YrotM(-0x8000);
+        mDoMtx_stack_c::YrotS(-0x8000);
         mDoMtx_stack_c::transM(mDemoCamEye);
         mDoMtx_stack_c::multVecZero(&mDemoCamEye);
 
@@ -1756,7 +1756,7 @@ void daB_ZANT_c::executeOpening() {
         mDemoCamCenter.y -= 250.0f;
         mDemoCamCenter.z += 800.0f;
 
-        mDoMtx_stack_c::YrotM(-0x8000);
+        mDoMtx_stack_c::YrotS(-0x8000);
         mDoMtx_stack_c::transM(mDemoCamCenter);
         mDoMtx_stack_c::multVecZero(&mDemoCamCenter);
 
@@ -5780,7 +5780,7 @@ int daB_ZANT_c::create() {
 
 /* 8064E92C-8064E94C 01090C 0020+00 1/0 0/0 0/0 .text            daB_ZANT_Create__FP10daB_ZANT_c */
 static int daB_ZANT_Create(daB_ZANT_c* i_this) {
-    return i_this->_delete();
+    return i_this->create();
 }
 
 /* 8064F4AC-8064F4CC -00001 0020+00 1/0 0/0 0/0 .data            l_daB_ZANT_Method */
