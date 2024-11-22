@@ -90,6 +90,8 @@ public:
     u32 checkWaterBomb() const { return checkStateFlg0(FLG0_WATER_BOMB); }
     u32 checkPlayerMake() const { return checkStateFlg0(FLG0_PLAYER_MAKE); }
 
+    s16 getExTime() { return mExTime; }
+
     static const char* m_arcNameList[6];
 
     /* 0x56C */ request_of_phase_process_class mPhase;

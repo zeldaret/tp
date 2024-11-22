@@ -31,6 +31,7 @@ struct dCcU_AtInfo {
     /* 0x20 */ u8 mHitType;
 };
 
+int pl_cut_LRC(int index);
 u16 cc_pl_cut_bit_get();
 fopAc_ac_c* cc_at_check(fopAc_ac_c*, dCcU_AtInfo*);
 fopAc_ac_c* at_power_check(dCcU_AtInfo* i_AtInfo);

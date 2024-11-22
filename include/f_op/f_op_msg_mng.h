@@ -3,6 +3,7 @@
 
 #include "SSystem/SComponent/c_xyz.h"
 #include "f_pc/f_pc_leaf.h"
+#include "f_op/f_op_msg.h"
 
 class JKRExpHeap;
 class JKRHeap;

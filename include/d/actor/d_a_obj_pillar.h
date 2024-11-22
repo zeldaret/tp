@@ -31,8 +31,18 @@ public:
     /* 80CB0658 */ void Draw();
     /* 80CB0740 */ void Delete();
 
+    u8 getMdlType() { return field_0x73e & 0xF; }
+    bool checkRollAttack() { return field_0x732 == true; }
+    void setShake(int i_shake) { field_0x738 = i_shake; }
+
 private:
-    /* 0x568 */ u8 field_0x568[0x750 - 0x568];
+    /* 0x568 */ u8 field_0x568[0x732 - 0x568];
+    /* 0x732 */ u8 field_0x732;
+    /* 0x733 */ u8 field_0x733[0x738 - 0x733];
+    /* 0x738 */ int field_0x738;
+    /* 0x73C */ u8 field_0x73c[0x73E - 0x73C];
+    /* 0x73E */ u16 field_0x73e;
+    /* 0x740 */ u8 field_0x740[0x750 - 0x740];
 };
 
 STATIC_ASSERT(sizeof(daPillar_c) == 0x750);
