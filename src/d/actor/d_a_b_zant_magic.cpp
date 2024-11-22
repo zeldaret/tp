@@ -156,7 +156,7 @@ void daB_ZANTM_c::executeSmall() {
         speed.y = magic_speed * cM_ssin(current.angle.x);
         Z2GetAudioMgr()->seStart(Z2SE_EN_ZAN_FIRE_OUT, &current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, false);
     case 1:
-        Z2GetAudioMgr()->seStart(Z2SE_EN_ZAN_FIRE, &current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, false);
+        Z2GetAudioMgr()->seStartLevel(Z2SE_EN_ZAN_FIRE, &current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, false);
         cLib_chaseF(&field_0x5e8, 1.0f, 0.1f);
 
         if (mAliveTimer == 0 || mAcch.ChkWallHit() || mAcch.i_ChkGroundHit()) {
