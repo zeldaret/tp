@@ -897,7 +897,7 @@ extern actor_process_profile_definition g_profile_Obj_Kabuto = {
     7,
     fpcPi_CURRENT_e,
     PROC_Obj_Kabuto,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daObjKABUTO_c),
     0,
     0,

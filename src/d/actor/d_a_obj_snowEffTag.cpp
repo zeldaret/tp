@@ -151,7 +151,7 @@ extern actor_process_profile_definition g_profile_Tag_SnowEff = {
     7,
     fpcPi_CURRENT_e,
     PROC_Tag_SnowEff,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daSnowEffTag_c),
     0,
     0,

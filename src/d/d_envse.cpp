@@ -250,7 +250,7 @@ extern kankyo_process_profile_definition g_profile_ENVSE = {
     2,
     fpcPi_CURRENT_e,
     PROC_ENVSE,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(dEnvSe_c),
     0,
     0,

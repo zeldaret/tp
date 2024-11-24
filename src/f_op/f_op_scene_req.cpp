@@ -52,8 +52,8 @@ static s32 l_fopScnRq_IsUsingOfOverlap;
 /* 8001EEE4-8001EF24 019824 0040+00 2/0 0/0 0/0 .text fopScnRq_phase_Done__FP19scene_request_class
  */
 static cPhs__Step fopScnRq_phase_Done(scene_request_class* i_sceneReq) {
-    if (i_sceneReq->mCrtReq.mParameter != 1) {
-        fopScnPause_Disable((scene_class*)fpcEx_SearchByID(i_sceneReq->mCrtReq.mCreatingID));
+    if (i_sceneReq->mCrtReq.parameters != 1) {
+        fopScnPause_Disable((scene_class*)fpcEx_SearchByID(i_sceneReq->mCrtReq.creating_id));
     }
     l_fopScnRq_IsUsingOfOverlap = 0;
     return cPhs_NEXT_e;
@@ -73,7 +73,7 @@ static void fopScnRq_Execute(scene_request_class* i_sceneReq) {
 static int fopScnRq_PostMethod(void* param_1, scene_request_class* i_sceneReq) {
     if (i_sceneReq->mFadeRequest) {
         fopScnPause_Enable((scene_class*)param_1);
-        fopOvlpM_ToldAboutID(((scene_class*)param_1)->mBase.mBase.mBsPcId);
+        fopOvlpM_ToldAboutID(((scene_class*)param_1)->mBase.base.id);
     }
     return 1;
 }
@@ -152,7 +152,7 @@ s32 fopScnRq_Request(int param_1, scene_class* i_scene, s16 param_3, void* param
         }
         pScnReq->mFadeRequest = tmp;
         cPhs_Set(&pScnReq->mReqPhsProcCls, phase_handler_table);
-        ret = pScnReq->mCrtReq.mRequestId;
+        ret = pScnReq->mCrtReq.request_id;
     }
 
     return ret;

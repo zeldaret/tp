@@ -184,7 +184,7 @@ extern actor_process_profile_definition g_profile_OBJ_NDOOR = {
   7,                       // mListID
   fpcPi_CURRENT_e,         // mListPrio
   PROC_OBJ_NDOOR,          // mProcName
-  &g_fpcLf_Method.mBase,   // sub_method
+  &g_fpcLf_Method.base,   // sub_method
   sizeof(obj_ndoor_class), // mSize
   0,                       // mSizeOther
   0,                       // mParameters

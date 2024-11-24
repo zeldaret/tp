@@ -633,7 +633,7 @@ extern actor_process_profile_definition g_profile_Obj_Dan = {
     7,
     fpcPi_CURRENT_e,
     PROC_Obj_Dan,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daObjDAN_c),
     0,
     0,

@@ -1083,7 +1083,7 @@ extern actor_process_profile_definition g_profile_E_BEE = {
     7,
     fpcPi_CURRENT_e,
     PROC_E_BEE,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(e_bee_class),
     0,
     0,

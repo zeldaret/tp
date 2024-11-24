@@ -298,7 +298,7 @@ extern actor_process_profile_definition g_profile_Obj_FireWood2 = {
     3,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio
     PROC_Obj_Lv1Cdl00,       // mProcName
-    &g_fpcLf_Method.mBase,   // sub_method
+    &g_fpcLf_Method.base,   // sub_method
     sizeof(daFireWood2_c),   // mSize
     0,                       // mSizeOther
     0,                       // mParameters

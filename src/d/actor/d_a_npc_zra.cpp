@@ -2682,7 +2682,7 @@ extern actor_process_profile_definition g_profile_NPC_ZRA = {
     3,
     fpcPi_CURRENT_e,
     PROC_NPC_ZRA,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daNpc_zrA_c),
     0,
     0,

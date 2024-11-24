@@ -5339,7 +5339,7 @@ extern actor_process_profile_definition g_profile_ALINK = {
     5,
     fpcPi_CURRENT_e,
     PROC_ALINK,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daAlink_c),
     0,
     0,

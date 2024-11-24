@@ -21,7 +21,7 @@ static int fopMsg_Execute(void* i_this) {
 
     int stat = 1;
     if (dScnPly_c::isPause()) {
-        stat = fpcMtd_Execute(&_this->sub_method->mBase, i_this);
+        stat = fpcMtd_Execute(&_this->sub_method->base, i_this);
     }
 
     return stat;
@@ -31,7 +31,7 @@ static int fopMsg_Execute(void* i_this) {
 static int fopMsg_IsDelete(void* i_this) {
     msg_class* _this = static_cast<msg_class*>(i_this);
 
-    int stat = fpcMtd_IsDelete(&_this->sub_method->mBase, i_this);
+    int stat = fpcMtd_IsDelete(&_this->sub_method->base, i_this);
     if (stat == 1) {
         fopDwTg_DrawQTo(&_this->draw_tag);
     }
@@ -43,7 +43,7 @@ static int fopMsg_IsDelete(void* i_this) {
 static int fopMsg_Delete(void* i_this) {
     msg_class* _this = static_cast<msg_class*>(i_this);
 
-    int stat = fpcMtd_Delete(&_this->sub_method->mBase, i_this);
+    int stat = fpcMtd_Delete(&_this->sub_method->base, i_this);
     fopDwTg_DrawQTo(&_this->draw_tag);
 
     return stat;
@@ -73,7 +73,7 @@ int fopMsg_Create(void* i_this) {
         }
     }
 
-    int status = fpcMtd_Create(&_this->sub_method->mBase, _this);
+    int status = fpcMtd_Create(&_this->sub_method->base, _this);
     if (status == cPhs_COMPLEATE_e) {
         s32 priority = fpcLf_GetPriority(_this);
         fopDwTg_ToDrawQ(&_this->draw_tag, priority);

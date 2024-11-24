@@ -5,13 +5,13 @@
 #include "SSystem/SComponent/c_tag.h"
 
 typedef struct line_tag {
-    create_tag_class mBase;
-    s32 mLineListID;
+    /* 0x00 */ create_tag_class base;
+    /* 0x14 */ int list_id;
 } line_tag;
 
-s32 fpcLnTg_Move(line_tag* pLineTag, int newLineListID);
-void fpcLnTg_QueueTo(line_tag* pLineTag);
-s32 fpcLnTg_ToQueue(line_tag* pLineTag, int lineListID);
-void fpcLnTg_Init(line_tag* pLineTag, void* pData);
+s32 fpcLnTg_Move(line_tag* i_lineTag, int i_newListID);
+void fpcLnTg_QueueTo(line_tag* i_lineTag);
+s32 fpcLnTg_ToQueue(line_tag* i_lineTag, int lineListID);
+void fpcLnTg_Init(line_tag* i_lineTag, void* i_data);
 
 #endif

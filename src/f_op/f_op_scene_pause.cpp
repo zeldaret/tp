@@ -22,7 +22,7 @@ int fopScnPause_Enable(scene_class* i_scene) {
 /* 80020594-8002064C 01AED4 00B8+00 0/0 2/2 0/0 .text fopScnPause_Disable__FP11scene_class */
 int fopScnPause_Disable(scene_class* i_scene) {
     if (i_scene) {
-        void* tmp = (void*)i_scene->mBase.mBase.mLyTg.mpLayer->mpPcNode;
+        void* tmp = (void*)i_scene->mBase.base.layer_tag.layer->process_node;
 
         if (!tmp) {
             fpcM_PauseDisable(i_scene, 1);

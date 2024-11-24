@@ -168,7 +168,7 @@ extern actor_process_profile_definition g_profile_NO_CHG_ROOM = {
     2,
     fpcPi_CURRENT_e,
     PROC_NO_CHG_ROOM,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daNocrm_c),
     0,
     0,

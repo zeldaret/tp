@@ -4201,7 +4201,7 @@ extern actor_process_profile_definition g_profile_B_OB = {
     4,
     fpcPi_CURRENT_e,
     PROC_B_OB,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(b_ob_class),
     0,
     0,

@@ -13,31 +13,31 @@ void* daTag_Push_c::srchActor(void* param_0, void* param_1) {
         if (fopAcM_IsExecuting(fopAcM_GetID(param_0))) {
             switch (((daTag_Push_c*)param_1)->getId()) {
             case 1:
-                bVar1 = ((daTag_Push_c*)param_0)->mBase.mProcName == PROC_NPC_TARO;
+                bVar1 = ((daTag_Push_c*)param_0)->base.name == PROC_NPC_TARO;
                 break;
             case 2:
-                bVar1 = ((daTag_Push_c*)param_0)->mBase.mProcName == PROC_NPC_JAGAR;
+                bVar1 = ((daTag_Push_c*)param_0)->base.name == PROC_NPC_JAGAR;
                 break;
             case 3:
-                bVar1 = ((daTag_Push_c*)param_0)->mBase.mProcName == PROC_NPC_LEN;
+                bVar1 = ((daTag_Push_c*)param_0)->base.name == PROC_NPC_LEN;
                 break;
             case 4:
-                bVar1 = ((daTag_Push_c*)param_0)->mBase.mProcName == PROC_NPC_TARO;
+                bVar1 = ((daTag_Push_c*)param_0)->base.name == PROC_NPC_TARO;
                 break;
             case 5:
-                bVar1 = ((daTag_Push_c*)param_0)->mBase.mProcName == PROC_NPC_MARO;
+                bVar1 = ((daTag_Push_c*)param_0)->base.name == PROC_NPC_MARO;
                 break;
             case 6:
-                bVar1 = ((daTag_Push_c*)param_0)->mBase.mProcName == PROC_NPC_BESU;
+                bVar1 = ((daTag_Push_c*)param_0)->base.name == PROC_NPC_BESU;
                 break;
             case 7:
-                bVar1 = ((daTag_Push_c*)param_0)->mBase.mProcName == PROC_NPC_BOU;
+                bVar1 = ((daTag_Push_c*)param_0)->base.name == PROC_NPC_BOU;
                 break;
             case 8:
-                bVar1 = ((daTag_Push_c*)param_0)->mBase.mProcName == PROC_NPC_GRS;
+                bVar1 = ((daTag_Push_c*)param_0)->base.name == PROC_NPC_GRS;
                 break;
             case 9:
-                bVar1 = ((daTag_Push_c*)param_0)->mBase.mProcName == PROC_NPC_GRO;
+                bVar1 = ((daTag_Push_c*)param_0)->base.name == PROC_NPC_GRO;
                 break;
             }
         }
@@ -178,7 +178,7 @@ extern actor_process_profile_definition g_profile_TAG_PUSH = {
     8,
     fpcLy_CURRENT_e,
     PROC_TAG_PUSH,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daTag_Push_c),
     0,
     0,

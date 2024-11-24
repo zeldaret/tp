@@ -155,7 +155,7 @@ extern kankyo_process_profile_definition g_profile_WPILLAR = {
     9,
     fpcPi_CURRENT_e,
     PROC_WPILLAR,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(dkWpillar_c),
     0,
     0,

@@ -315,7 +315,7 @@ extern actor_process_profile_definition g_profile_OBJ_YSTONE = {
     8,
     fpcPi_CURRENT_e,
     PROC_OBJ_YSTONE,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(obj_ystone_class),
     0,
     0,

@@ -43,7 +43,7 @@ static s32 fopScn_Create(void* i_this) {
 
         u32* append = (u32*)fpcM_GetAppend(i_this);
         if (append != NULL) {
-            scene->mBase.mBase.mParameters = *append;
+            scene->mBase.base.parameters = *append;
         }
     }
 

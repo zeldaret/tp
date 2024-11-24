@@ -1351,7 +1351,7 @@ extern actor_process_profile_definition g_profile_E_PH = {
     3,
     fpcPi_CURRENT_e,
     PROC_E_PH,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daE_PH_c),
     0,
     0,

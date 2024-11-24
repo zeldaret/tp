@@ -181,7 +181,7 @@ extern kankyo_process_profile_definition g_profile_WMARK = {
     9,
     fpcPi_CURRENT_e,
     PROC_WMARK,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(dkWmark_c),
     0,
     0,

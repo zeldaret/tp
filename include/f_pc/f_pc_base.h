@@ -15,34 +15,34 @@ typedef struct process_profile_definition process_profile_definition;
 typedef struct profile_method_class profile_method_class;
 
 typedef struct base_process_class {
-    /* 0x00 */ u32 mBsType;
-    /* 0x04 */ fpc_ProcID mBsPcId;
-    /* 0x08 */ s16 mProcName;
-    /* 0x0A */ s8 mUnk0;
-    /* 0x0B */ u8 mPauseFlag;
-    /* 0x0C */ s8 mInitState;
-    /* 0x0D */ u8 mUnk2;
-    /* 0x0E */ s16 mBsTypeId;
-    /* 0x10 */ process_profile_definition* mpProf;
-    /* 0x14 */ struct create_request* mpCtRq;
-    /* 0x18 */ layer_management_tag_class mLyTg;
-    /* 0x34 */ line_tag mLnTg;
-    /* 0x4C */ delete_tag_class mDtTg;
-    /* 0x68 */ process_priority_class mPi;
-    /* 0xA8 */ process_method_class* mpPcMtd;
-    /* 0xAC */ void* mpUserData;
-    /* 0xB0 */ u32 mParameters;
-    /* 0xB4 */ u32 mSubType;
+    /* 0x00 */ int type;
+    /* 0x04 */ fpc_ProcID id;
+    /* 0x08 */ s16 name;
+    /* 0x0A */ s8 unk_0xA;
+    /* 0x0B */ u8 pause_flag;
+    /* 0x0C */ s8 init_state;  // maybe inaccurate name
+    /* 0x0D */ u8 create_phase;
+    /* 0x0E */ s16 profname;
+    /* 0x10 */ process_profile_definition* profile;
+    /* 0x14 */ struct create_request* create_req;
+    /* 0x18 */ layer_management_tag_class layer_tag;
+    /* 0x34 */ line_tag line_tag_;
+    /* 0x4C */ delete_tag_class delete_tag;
+    /* 0x68 */ process_priority_class priority;
+    /* 0xA8 */ process_method_class* methods;
+    /* 0xAC */ void* append;
+    /* 0xB0 */ u32 parameters;
+    /* 0xB4 */ int subtype;
 } base_process_class;  // Size: 0xB8
 
-s32 fpcBs_Is_JustOfType(int pType1, int pType2);
-s32 fpcBs_MakeOfType(int* pType);
-s32 fpcBs_MakeOfId(void);
-s32 fpcBs_Execute(base_process_class* pProc);
-void fpcBs_DeleteAppend(base_process_class* pProc);
-s32 fpcBs_IsDelete(base_process_class* pProc);
-s32 fpcBs_Delete(base_process_class* pProc);
-base_process_class* fpcBs_Create(s16 pProcTypeID, fpc_ProcID pProcID, void* pData);
-s32 fpcBs_SubCreate(base_process_class* pProc);
+BOOL fpcBs_Is_JustOfType(int i_typeA, int i_typeB);
+int fpcBs_MakeOfType(int* i_type);
+int fpcBs_MakeOfId();
+int fpcBs_Execute(base_process_class* i_proc);
+void fpcBs_DeleteAppend(base_process_class* i_proc);
+int fpcBs_IsDelete(base_process_class* i_proc);
+int fpcBs_Delete(base_process_class* i_proc);
+base_process_class* fpcBs_Create(s16 i_profname, fpc_ProcID i_procID, void* i_append);
+int fpcBs_SubCreate(base_process_class* i_proc);
 
 #endif

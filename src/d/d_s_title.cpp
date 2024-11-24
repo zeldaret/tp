@@ -13,11 +13,11 @@ extern scene_process_profile_definition g_profile_WARNING_SCENE = {
     1,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio
     PROC_WARNING_SCENE,     // mProcName               
-    &g_fpcNd_Method.mBase,  // sub_method                  
+    &g_fpcNd_Method.base,  // sub_method                  
     0x204,                  // mSize        
     0,                      // mSizeOther              
     0,                      // mParameters              
-    &g_fopScn_Method.mBase, // sub_method                   
+    &g_fopScn_Method.base, // sub_method                   
     NULL,                   // mpMtd
 };
 
@@ -27,10 +27,10 @@ extern scene_process_profile_definition g_profile_WARNING2_SCENE = {
     1,                      // mListID   
     fpcPi_CURRENT_e,        // mListPrio    
     PROC_WARNING2_SCENE,    // mProcName                     
-    &g_fpcNd_Method.mBase,  // sub_method                       
+    &g_fpcNd_Method.base,  // sub_method                       
     0x204,                  // mSize             
     0,                      // mSizeOther                
     0,                      // mParameters                
-    &g_fopScn_Method.mBase, // sub_method                        
+    &g_fopScn_Method.base, // sub_method                        
     NULL,                   // mpMtd
 };

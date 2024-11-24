@@ -8,13 +8,13 @@
 
 typedef struct base_process_class base_process_class;
 
-base_process_class* fpcEx_Search(fpcLyIt_JudgeFunc pFunc, void* pUserData);
-base_process_class* fpcEx_SearchByID(fpc_ProcID id);
-BOOL fpcEx_IsExist(fpc_ProcID id);
-s32 fpcEx_ToLineQ(base_process_class* pProc);
-s32 fpcEx_ExecuteQTo(base_process_class* pProc);
-s32 fpcEx_Execute(base_process_class* pProc);
-s32 fpcEx_ToExecuteQ(base_process_class* pProc);
-void fpcEx_Handler(fpcLnIt_QueueFunc pFunc);
+base_process_class* fpcEx_Search(fpcLyIt_JudgeFunc i_judgeFunc, void* i_data);
+base_process_class* fpcEx_SearchByID(fpc_ProcID i_id);
+BOOL fpcEx_IsExist(fpc_ProcID i_id);
+s32 fpcEx_ToLineQ(base_process_class* i_proc);
+s32 fpcEx_ExecuteQTo(base_process_class* i_proc);
+s32 fpcEx_Execute(base_process_class* i_proc);
+s32 fpcEx_ToExecuteQ(base_process_class* i_proc);
+void fpcEx_Handler(fpcLnIt_QueueFunc i_queueFunc);
 
 #endif

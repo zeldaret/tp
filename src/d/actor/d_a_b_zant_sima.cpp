@@ -245,7 +245,7 @@ extern actor_process_profile_definition g_profile_B_ZANTS = {
     3,
     fpcPi_CURRENT_e,
     PROC_B_ZANTS,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daB_ZANTS_c),
     0,
     0,

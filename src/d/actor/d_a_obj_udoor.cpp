@@ -226,7 +226,7 @@ extern actor_process_profile_definition g_profile_OBJ_UDOOR = {
   7,                       // mListID
   fpcPi_CURRENT_e,         // mListPrio
   PROC_OBJ_UDOOR,          // mProcName
-  &g_fpcLf_Method.mBase,   // sub_method
+  &g_fpcLf_Method.base,   // sub_method
   sizeof(obj_udoor_class), // mSize
   0,                       // mSizeOther
   0,                       // mParameters

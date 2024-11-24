@@ -139,7 +139,7 @@ extern actor_process_profile_definition g_profile_DISAPPEAR = {
     7,
     fpcPi_CURRENT_e,
     PROC_DISAPPEAR,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(disappear_class),
     0,
     0,

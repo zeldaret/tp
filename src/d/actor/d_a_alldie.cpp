@@ -208,7 +208,7 @@ extern actor_process_profile_definition g_profile_ALLDIE = {
     2,
     fpcPi_CURRENT_e,
     PROC_ALLDIE,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daAlldie_c),
     0,
     0,

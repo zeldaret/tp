@@ -6,12 +6,12 @@
 #include "SSystem/SComponent/c_tag.h"
 
 typedef struct create_tag {
-    create_tag_class mBase;
+    create_tag_class base;
 } create_tag;
 
-void fpcCtTg_ToCreateQ(create_tag* pTag);
-void fpcCtTg_CreateQTo(create_tag* pTag);
-s32 fpcCtTg_Init(create_tag* pTag, void* pUserData);
+void fpcCtTg_ToCreateQ(create_tag* i_createTag);
+void fpcCtTg_CreateQTo(create_tag* i_createTag);
+s32 fpcCtTg_Init(create_tag* i_createTag, void* i_data);
 
 extern node_list_class g_fpcCtTg_Queue;
 

@@ -434,7 +434,7 @@ extern actor_process_profile_definition g_profile_NPC_CLERKT = {
   7,                        // mListID
   fpcPi_CURRENT_e,          // mListPrio
   PROC_NPC_CLERKT,          // mProcName
-  &g_fpcLf_Method.mBase,    // sub_method
+  &g_fpcLf_Method.base,    // sub_method
   sizeof(daNpcClerkT_c),    // mSize
   0,                        // mSizeOther
   0,                        // mParameters

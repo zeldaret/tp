@@ -14,13 +14,13 @@
 /* 800236C0-80023728 0068+00 s=1 e=0 z=0  None .text
  * fpcLnIt_MethodCall__FP16create_tag_classP13method_filter     */
 static s32 fpcLnIt_MethodCall(create_tag_class* i_createTag, method_filter* i_filter) {
-    layer_class* pLayer = static_cast<base_process_class*>(i_createTag->mpTagData)->mLyTg.mpLayer;
-    layer_class* pCurLayer = fpcLy_CurrentLayer();
+    layer_class* layer = static_cast<base_process_class*>(i_createTag->mpTagData)->layer_tag.layer;
+    layer_class* save_layer = fpcLy_CurrentLayer();
     s32 ret;
 
-    fpcLy_SetCurrentLayer(pLayer);
+    fpcLy_SetCurrentLayer(layer);
     ret = cTgIt_MethodCall(i_createTag, i_filter);
-    fpcLy_SetCurrentLayer(pCurLayer);
+    fpcLy_SetCurrentLayer(save_layer);
 
     return ret;
 }

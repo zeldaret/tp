@@ -1663,7 +1663,7 @@ extern actor_process_profile_definition g_profile_NPC_THE = {
     7,
     fpcPi_CURRENT_e,
     PROC_NPC_THE,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daNpcThe_c),
     0,
     0,

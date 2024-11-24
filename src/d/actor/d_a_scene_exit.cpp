@@ -184,7 +184,7 @@ extern actor_process_profile_definition2 g_profile_SCENE_EXIT = {
   10,                    // mListID
   fpcPi_CURRENT_e,       // mListPrio
   PROC_SCENE_EXIT,       // mProcName
-  &g_fpcLf_Method.mBase, // sub_method
+  &g_fpcLf_Method.base, // sub_method
   0x0000059C,            // mSize
   0,                     // mSizeOther
   0,                     // mParameters

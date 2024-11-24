@@ -6,7 +6,7 @@
 
 class kankyo_class : public leafdraw_class {
 public:
-    /* 0xC0 */ int mBsType;
+    /* 0xC0 */ int type;
     /* 0xC4 */ create_tag_class draw_tag;
     /* 0xD8 */ leafdraw_method_class* sub_method;
     /* 0xDC */ cXyz mPos;

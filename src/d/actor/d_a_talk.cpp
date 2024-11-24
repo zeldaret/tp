@@ -136,7 +136,7 @@ extern actor_process_profile_definition g_profile_TALK = {
     7,
     fpcPi_CURRENT_e,
     PROC_TALK,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daTalk_c),
     0,
     0,

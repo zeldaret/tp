@@ -171,7 +171,7 @@ extern actor_process_profile_definition g_profile_Tag_Mwait = {
     7,
     fpcPi_CURRENT_e,
     PROC_Tag_Mwait,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daTagMwait_c),
     0,
     0,

@@ -724,7 +724,7 @@ extern actor_process_profile_definition g_profile_B_DR = {
   4,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio
   PROC_B_DR,              // mProcName
-  &g_fpcLf_Method.mBase,  // sub_method
+  &g_fpcLf_Method.base,  // sub_method
   sizeof(daB_DR_c),       // mSize
   0,                      // mSizeOther
   0,                      // mParameters

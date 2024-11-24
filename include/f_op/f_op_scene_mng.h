@@ -14,10 +14,10 @@ u32 fopScnM_ReRequest(s16, u32);
 void fopScnM_Management(void);
 void fopScnM_Init(void);
 
-inline u32 fpcM_LayerID(const void* pProc) {
-    return fpcBs_Is_JustOfType(g_fpcNd_type, ((base_process_class*)pProc)->mSubType) != FALSE ?
-               ((scene_class*)pProc)->mBase.mLayer.mLayerID :
-               0xFFFFFFFF;
+inline fpc_ProcID fpcM_LayerID(const void* pProc) {
+    return fpcBs_Is_JustOfType(g_fpcNd_type, ((base_process_class*)pProc)->subtype) != FALSE ?
+               ((scene_class*)pProc)->mBase.layer.layer_id :
+               fpcM_ERROR_PROCESS_ID_e;
 }
 
 inline u32 fopScnM_GetID(void* proc) {

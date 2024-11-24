@@ -647,7 +647,7 @@ extern actor_process_profile_definition g_profile_MIRROR = {
     7,
     fpcPi_CURRENT_e,
     PROC_MIRROR,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daMirror_c),
     0,
     0,

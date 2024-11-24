@@ -85,7 +85,7 @@ void daObjMovebox::Bgc_c::gnd_pos(const daObjMovebox::Act_c* i_actor,
 
         mDoMtx_stack_c::multVec(&sp50, &sp5C);
         M_gnd_work[i].SetPos(&sp5C);
-        M_gnd_work[i].SetActorPid(i_actor->mBase.mBsPcId);
+        M_gnd_work[i].SetActorPid(i_actor->base.id);
         field_0x0[i] = dComIfG_Bgsp().GroundCross(&M_gnd_work[i]);
 
         if (field_0x0[i] > var_f31) {
@@ -166,7 +166,7 @@ void daObjMovebox::Bgc_c::wall_pos(daObjMovebox::Act_c const* i_actor,
         sp54 = sp48 + sp6C;
 
         M_wall_work[i].Set(&sp48, &sp54, i_actor);
-        M_wall_work[i].SetActorPid(i_actor->mBase.mBsPcId);
+        M_wall_work[i].SetActorPid(i_actor->base.id);
 
         if (dComIfG_Bgsp().LineCross(&M_wall_work[i])) {
             field_0x64[i] = M_wall_work[i].i_GetCross();
@@ -269,7 +269,7 @@ bool daObjMovebox::Bgc_c::chk_wall_touch(daObjMovebox::Act_c const* i_actor,
     sp38 += i_actor->current.pos;
     sp44 = sp38 + sp68;
 
-    touch_work.SetActorPid(i_actor->mBase.mBsPcId);
+    touch_work.SetActorPid(i_actor->base.id);
     touch_work.Set(&sp38, &sp44, i_actor);
     return dComIfG_Bgsp().LineCross(&touch_work);
 }
@@ -1323,7 +1323,7 @@ extern actor_process_profile_definition g_profile_Obj_Movebox = {
     3,                            // mListID
     fpcPi_CURRENT_e,              // mListPrio
     PROC_Obj_Movebox,             // mProcName
-    &g_fpcLf_Method.mBase,        // sub_method
+    &g_fpcLf_Method.base,        // sub_method
     sizeof(daObjMovebox::Act_c),  // mSize
     0,                            // mSizeOther
     0,                            // mParameters

@@ -512,7 +512,7 @@ extern actor_process_profile_definition g_profile_TBOX2 = {
     4,
     fpcPi_CURRENT_e,
     PROC_TBOX2,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daTbox2_c),
     0,
     0,

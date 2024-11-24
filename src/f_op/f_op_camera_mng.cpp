@@ -13,7 +13,7 @@ static u32 l_fopCamM_id[4];
 
 /* 8001E308-8001E310 018C48 0008+00 0/0 12/12 2/2 .text fopCamM_GetParam__FP12camera_class */
 u32 fopCamM_GetParam(camera_class* i_this) {
-    return i_this->mBase.mParameters;
+    return i_this->base.parameters;
 }
 
 /* 8001E310-8001E374 018C50 0064+00 0/0 1/1 0/0 .text            fopCamM_Create__FisPv */

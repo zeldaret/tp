@@ -1651,7 +1651,7 @@ static int dStage_playerInit(dStage_dt_c* stageDt, void* i_data, int num, void* 
 
     base_process_class* ac =
         (base_process_class*)fopScnM_SearchByID(dStage_roomControl_c::getProcID());
-    if (ac->mProcName == PROC_PLAY_SCENE) {
+    if (ac->name == PROC_PLAY_SCENE) {
         if (strcmp(dComIfGp_getStartStageName(), "S_MV000")) {
             fopMsgM_Create(PROC_METER2, NULL, NULL);
         }

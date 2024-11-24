@@ -431,7 +431,7 @@ extern actor_process_profile_definition g_profile_Obj_Tornado2 = {
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio
     PROC_Obj_Tornado2,       // mProcName
-    &g_fpcLf_Method.mBase,   // sub_method
+    &g_fpcLf_Method.base,   // sub_method
     sizeof(daObjTrnd2_c),    // mDefaultRadius
     0,                       // mDefaultRadiusOther
     0,                       // mParameters

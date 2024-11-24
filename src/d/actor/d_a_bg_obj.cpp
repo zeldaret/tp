@@ -1368,7 +1368,7 @@ extern actor_process_profile_definition g_profile_BG_OBJ = {
     7,
     fpcPi_CURRENT_e,
     PROC_BG_OBJ,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daBgObj_c),
     0,
     0,

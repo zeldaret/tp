@@ -889,7 +889,7 @@ extern actor_process_profile_definition g_profile_E_ARROW = {
     8,
     fpcPi_CURRENT_e,
     PROC_E_ARROW,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(e_arrow_class),
     0,
     0,

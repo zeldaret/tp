@@ -190,7 +190,7 @@ extern actor_process_profile_definition g_profile_Obj_Digpl = {
     3,
     fpcPi_CURRENT_e,
     PROC_Obj_Digpl,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daObjDigpl_c),
     0,
     0,

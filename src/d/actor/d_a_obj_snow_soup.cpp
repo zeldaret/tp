@@ -215,7 +215,7 @@ extern actor_process_profile_definition g_profile_Obj_SnowSoup = {
     7,
     fpcPi_CURRENT_e,
     PROC_Obj_SnowSoup,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daObjSnowSoup_c),
     0,
     0,

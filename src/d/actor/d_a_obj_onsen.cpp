@@ -152,7 +152,7 @@ extern actor_process_profile_definition g_profile_Obj_Onsen = {
     3,
     fpcPi_CURRENT_e,
     PROC_Obj_Onsen,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daObjOnsen_c),
     0,
     0,

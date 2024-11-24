@@ -741,11 +741,11 @@ extern scene_process_profile_definition g_profile_LOGO_SCENE = {
     1,
     fpcPi_CURRENT_e,
     PROC_LOGO_SCENE,
-    &g_fpcNd_Method.mBase,
+    &g_fpcNd_Method.base,
     sizeof(dScnLogo_c),
     0,
     0,
-    &g_fopScn_Method.mBase,
+    &g_fopScn_Method.base,
     (process_method_class*)&l_dScnLogo_Method,
     NULL,
 };

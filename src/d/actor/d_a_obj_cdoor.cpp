@@ -350,7 +350,7 @@ extern actor_process_profile_definition g_profile_Obj_Cdoor = {
     3,
     fpcPi_CURRENT_e,
     PROC_Obj_Cdoor,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daObjCdoor_c),
     0,
     0,

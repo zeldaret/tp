@@ -199,7 +199,7 @@ extern actor_process_profile_definition g_profile_Obj_Mirror6Pole = {
     3,
     fpcPi_CURRENT_e,
     PROC_Obj_Mirror6Pole,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daObjMirror6Pole_c),
     0,
     0,

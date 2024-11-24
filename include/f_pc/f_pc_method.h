@@ -7,21 +7,16 @@
 typedef int (*process_method_func)(void*);
 
 typedef struct process_method_class {
-    process_method_func mpCreateFunc;
-    process_method_func mpDeleteFunc;
-    process_method_func mpExecuteFunc;
-    process_method_func mpIsDeleteFunc;
+    /* 0x0 */ process_method_func create_method;
+    /* 0x4 */ process_method_func delete_method;
+    /* 0x8 */ process_method_func execute_method;
+    /* 0xC */ process_method_func is_delete_method;
 } process_method_class;
 
-s32 fpcMtd_Method(process_method_func pFunc, void* pUserData);
-s32 fpcMtd_Execute(process_method_class* pMthd, void* pUserData);
-s32 fpcMtd_IsDelete(process_method_class* pMthd, void* pUserData);
-s32 fpcMtd_Delete(process_method_class* pMthd, void* pUserData);
-s32 fpcMtd_Create(process_method_class* pMthd, void* pUserData);
-
-extern "C" {
-void fpcMtd_Execute__FP20process_method_classPv(void);
-void fpcMtd_Create__FP20process_method_classPv(void);
-}
+s32 fpcMtd_Method(process_method_func i_method, void* i_process);
+s32 fpcMtd_Execute(process_method_class* i_methods, void* i_process);
+s32 fpcMtd_IsDelete(process_method_class* i_methods, void* i_process);
+s32 fpcMtd_Delete(process_method_class* i_methods, void* i_process);
+s32 fpcMtd_Create(process_method_class* i_methods, void* i_process);
 
 #endif

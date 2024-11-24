@@ -252,7 +252,7 @@ extern actor_process_profile_definition g_profile_BD = {
   8,                     // mListID
   fpcPi_CURRENT_e,       // mListPrio
   PROC_BD,               // mProcName
-  &g_fpcLf_Method.mBase, // sub_method
+  &g_fpcLf_Method.base, // sub_method
   sizeof(bd_class),      // mSize
   0,                     // mSizeOther
   0,                     // mParameters

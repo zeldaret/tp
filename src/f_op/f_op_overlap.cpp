@@ -16,19 +16,19 @@ static s32 fopOvlp_Draw(void* i_this) {
 /* 8001E3A4-8001E3CC 018CE4 0028+00 1/0 0/0 0/0 .text            fopOvlp_Execute__FPv */
 static s32 fopOvlp_Execute(void* i_this) {
     overlap_task_class* _this = (overlap_task_class*)i_this;
-    return fpcMtd_Execute(&_this->field_0xc0->mBase, i_this);
+    return fpcMtd_Execute(&_this->field_0xc0->base, i_this);
 }
 
 /* 8001E3CC-8001E3F4 018D0C 0028+00 1/0 0/0 0/0 .text            fopOvlp_IsDelete__FPv */
 static s32 fopOvlp_IsDelete(void* i_this) {
     overlap_task_class* _this = (overlap_task_class*)i_this;
-    return fpcMtd_IsDelete(&_this->field_0xc0->mBase, i_this);
+    return fpcMtd_IsDelete(&_this->field_0xc0->base, i_this);
 }
 
 /* 8001E3F4-8001E41C 018D34 0028+00 1/0 0/0 0/0 .text            fopOvlp_Delete__FPv */
 static s32 fopOvlp_Delete(void* i_this) {
     overlap_task_class* _this = (overlap_task_class*)i_this;
-    return fpcMtd_Delete(&_this->field_0xc0->mBase, i_this);
+    return fpcMtd_Delete(&_this->field_0xc0->base, i_this);
 }
 
 /* 8001E41C-8001E484 018D5C 0068+00 1/0 0/0 0/0 .text            fopOvlp_Create__FPv */
@@ -44,7 +44,7 @@ static s32 fopOvlp_Create(void* i_this) {
         _this->field_0xc8 = -1;
     }
 
-    return fpcMtd_Create(&_this->field_0xc0->mBase, _this);
+    return fpcMtd_Create(&_this->field_0xc0->base, _this);
 }
 
 /* ############################################################################################## */
