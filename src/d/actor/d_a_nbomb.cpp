@@ -767,7 +767,7 @@ BOOL daNbomb_c::procExplode() {
     mLightInfluence.mPow = mExplosionStrength * 1500.0f;
     mWindInfluence.mStrength = mExplosionStrength;
 
-    f32 dist_to_cam = current.pos.abs(camera->mLookat.mEye);
+    f32 dist_to_cam = current.pos.abs(camera->lookat.eye);
     if (dist_to_cam < 1500.0f) {
         dist_scale = dist_to_cam / 1500.0f;
         dist_scale *= dist_scale * dist_scale;

@@ -12,8 +12,8 @@ s16 fpcLf_GetPriority(const leafdraw_class* i_leaf) {
 
 /* 80021A24-80021A48 0024+00 s=1 e=6 z=0  None .text fpcLf_DrawMethod__FP21leafdraw_method_classPv
  */
-s32 fpcLf_DrawMethod(leafdraw_method_class* i_methods, void* i_data) {
-    return fpcMtd_Method(i_methods->draw_method, i_data);
+s32 fpcLf_DrawMethod(leafdraw_method_class* i_methods, void* i_process) {
+    return fpcMtd_Method(i_methods->draw_method, i_process);
 }
 
 /* 80021A48-80021A80 0038+00 s=1 e=0 z=0  None .text      fpcLf_Draw__FP14leafdraw_class */

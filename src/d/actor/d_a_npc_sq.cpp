@@ -150,8 +150,8 @@ static void demo_camera(npc_sq_class* i_this) {
         i_this->mCameraFovY = 55.0f;
         player_camera->mCamera.SetTrimSize(3);
         i_this->mMsgFlow.init(_this, i_this->mFlowID, 0, NULL);
-        i_this->mCameraEye = camera->mLookat.mEye;
-        i_this->mCameraCenter = camera->mLookat.mCenter;
+        i_this->mCameraEye = camera->lookat.eye;
+        i_this->mCameraCenter = camera->lookat.center;
         daPy_getPlayerActorClass()->changeOriginalDemo();
         // no break
 

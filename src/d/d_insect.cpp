@@ -116,8 +116,8 @@ void dInsect_c::CalcZBuffer(f32 param_0) {
         field_0x578 = 0;
     }
 
-    f32 view_near = dComIfGd_getView()->mNear;
-    f32 view_far = dComIfGd_getView()->mFar;
+    f32 view_near = dComIfGd_getView()->near;
+    f32 view_far = dComIfGd_getView()->far;
 
     mDoLib_pos2camera(&pos, &pos_projected);
     pos_projected.z += param_0;

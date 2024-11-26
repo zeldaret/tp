@@ -776,10 +776,10 @@ void daB_YO_c::setYoMessage(int i_msgIdx) {
 /* 80630EAC-80630F28 001B2C 007C+00 1/1 0/0 0/0 .text            doYoMessage__8daB_YO_cFv */
 int daB_YO_c::doYoMessage() {
     if (mpMsg != NULL) {
-        if (mpMsg->mMode == 0xE) {
-            mpMsg->mMode = 0x10;
-        } else if (mpMsg->mMode == 0x12) {
-            mpMsg->mMode = 0x13;
+        if (mpMsg->mode == 0xE) {
+            mpMsg->mode = 0x10;
+        } else if (mpMsg->mode == 0x12) {
+            mpMsg->mode = 0x13;
             mMsgPcID = 0xFFFFFFFF;
             return 1;
         }

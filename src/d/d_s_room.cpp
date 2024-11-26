@@ -212,14 +212,14 @@ static bool objectSetCheck(room_of_scene_class* i_this) {
             return 0;
         }
 
-        fpcM_LyJudge(&i_this->mBase, (fpcLyIt_JudgeFunc)deleteJugge, NULL);
+        fpcM_LyJudge(&i_this->base, (fpcLyIt_JudgeFunc)deleteJugge, NULL);
         g_dComIfG_gameInfo.play.getParticle()->levelAllForceOnEventMove();
         dComIfGs_clearRoomSwitch(dComIfGp_roomControl_getZoneNo(roomNo));
         dComIfGs_clearRoomItem(dComIfGp_roomControl_getZoneNo(roomNo));
         dComIfGp_roomControl_offStatusFlag(roomNo, 0x20);
         i_this->field_0x1d4 = 0;
     } else if (status_flag_20) {
-        fpcM_LyJudge(&i_this->mBase, (fpcLyIt_JudgeFunc)objectDeleteJugge, NULL);
+        fpcM_LyJudge(&i_this->base, (fpcLyIt_JudgeFunc)objectDeleteJugge, NULL);
         g_dComIfG_gameInfo.play.getParticle()->levelAllForceOnEventMove();
     }
 

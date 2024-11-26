@@ -74,7 +74,7 @@ public:
         camera_class* iVar1 = dComIfGp_getCamera(0);
         cXyz local_28;
         current.pos = *fopCamM_GetEye_p(iVar1);
-        dKyr_get_vectle_calc(&iVar1->mLookat.mEye, &iVar1->mLookat.mCenter, &local_28);
+        dKyr_get_vectle_calc(&iVar1->lookat.eye, &iVar1->lookat.center, &local_28);
         current.angle.y = cM_atan2s(local_28.x, local_28.z);
         current.angle.x = -cM_atan2s(
             local_28.y, JMAFastSqrt((local_28.x * local_28.x + local_28.z * local_28.z)));

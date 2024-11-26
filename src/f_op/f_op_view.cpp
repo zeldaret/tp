@@ -18,8 +18,8 @@ void fopVw_Execute(view_class* i_this) {
 
 /* 8001F1F8-8001F220 019B38 0028+00 1/0 0/0 0/0 .text            fopVw_IsDelete__FPv */
 s32 fopVw_IsDelete(void* i_this) {
-    view_class* _this = (view_class*)i_this;
-    return fpcMtd_IsDelete(&_this->sub_method->base, _this);
+    view_class* a_this = (view_class*)i_this;
+    return fpcMtd_IsDelete(&a_this->sub_method->base, a_this);
 }
 
 /* 8001F220-8001F248 019B60 0028+00 1/0 0/0 0/0 .text            fopVw_Delete__FP10view_class */
@@ -29,17 +29,15 @@ s32 fopVw_Delete(view_class* i_this) {
 
 /* 8001F248-8001F284 019B88 003C+00 1/0 0/0 0/0 .text            fopVw_Create__FPv */
 s32 fopVw_Create(void* i_this) {
-    view_class* _this = (view_class*)i_this;
+    view_class* a_this = (view_class*)i_this;
 
-    view_process_profile_definition* pProf =
-        (view_process_profile_definition*)fpcM_GetProfile(_this);
-    _this->sub_method = pProf->sub_method;
-    _this->field_0xc4 = pProf->unk28;
+    view_process_profile_definition* profile = (view_process_profile_definition*)fpcM_GetProfile(a_this);
+    a_this->sub_method = profile->sub_method;
+    a_this->field_0xc4 = profile->unk_0x28;
 
-    return fpcMtd_Create(&_this->sub_method->base, _this);
+    return fpcMtd_Create(&a_this->sub_method->base, a_this);
 }
 
-/* ############################################################################################## */
 /* 803A3928-803A3940 -00001 0014+04 0/0 2/0 0/0 .data            g_fopVw_Method */
 leafdraw_method_class g_fopVw_Method = {
     (process_method_func)fopVw_Create,  (process_method_func)fopVw_Delete,

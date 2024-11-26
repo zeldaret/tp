@@ -6,25 +6,25 @@
 #pragma nosyminline on
 
 #include "f_op/f_op_actor_mng.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "SSystem/SComponent/c_malloc.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_player.h"
+#include "d/actor/d_a_tag_stream.h"
 #include "d/d_item.h"
 #include "d/d_path.h"
 #include "f_op/f_op_scene_mng.h"
 #include "m_Do/m_Do_lib.h"
-#include "d/actor/d_a_tag_stream.h"
-#include "JSystem/J3DGraphBase/J3DMaterial.h"
 
 #define MAKE_ITEM_PARAMS(itemNo, itemBitNo, param_2, param_3)                                      \
     ((itemNo & 0xFF) << 0 | (itemBitNo & 0xFF) << 0x8 | param_2 << 0x10 | (param_3 & 0xF) << 0x18)
 
 /* 800198A4-800198C4 0141E4 0020+00 0/0 1/1 0/0 .text            fopAcM_FastCreate__FsPFPv_iPvPv */
-void* fopAcM_FastCreate(s16 i_procName, FastCreateReqFunc i_createFunc, void* i_createData,
-                        void* i_data) {
-    return fpcM_FastCreate(i_procName, i_createFunc, i_createData, i_data);
+fopAc_ac_c* fopAcM_FastCreate(s16 i_procName, FastCreateReqFunc i_createFunc, void* i_createData,
+                              void* i_append) {
+    return (fopAc_ac_c*)fpcM_FastCreate(i_procName, i_createFunc, i_createData, i_append);
 }
 
 /* 800198C4-80019934 014204 0070+00 1/1 5/5 18/18 .text            fopAcM_setStageLayer__FPv */
@@ -73,62 +73,61 @@ s32 fopAcM_SearchByName(s16 i_procName, fopAc_ac_c** i_outActor) {
 
 /* 80019AA8-80019B1C 0143E8 0074+00 1/1 7/7 0/0 .text            fopAcM_CreateAppend__Fv */
 fopAcM_prm_class* fopAcM_CreateAppend() {
-    fopAcM_prm_class* params =
-        static_cast<fopAcM_prm_class*>(cMl::memalignB(-4, sizeof(fopAcM_prm_class)));
-    if (params != NULL) {
-        cLib_memSet(params, 0, sizeof(fopAcM_prm_class));
-        params->mEnemyNo = 0xFFFF;
-        params->mRoomNo = -1;
-        params->mScale[0] = 10;
-        params->mScale[1] = 10;
-        params->mScale[2] = 10;
-        params->mParentPId = -1;
-        params->mSubtype = -1;
+    fopAcM_prm_class* append = (fopAcM_prm_class*)cMl::memalignB(-4, sizeof(fopAcM_prm_class));
+    if (append != NULL) {
+        cLib_memSet(append, 0, sizeof(fopAcM_prm_class));
+        append->setId = 0xFFFF;
+        append->room_no = -1;
+        append->scale[0] = 10;
+        append->scale[1] = 10;
+        append->scale[2] = 10;
+        append->parent_id = fpcM_ERROR_PROCESS_ID_e;
+        append->subtype = -1;
     }
-    return params;
+    return append;
 }
 
 /* 80019B1C-80019C78 01445C 015C+00 4/4 0/0 0/0 .text
  * createAppend__FUsUlPC4cXyziPC5csXyzPC4cXyzScUi               */
-fopAcM_prm_class* createAppend(u16 i_enemyNo, u32 i_parameters, const cXyz* i_pos, int i_roomNo,
-                               const csXyz* i_angle, const cXyz* i_scale, s8 i_subType,
-                               fpc_ProcID i_parentProcID) {
-    fopAcM_prm_class* params = fopAcM_CreateAppend();
-    if (params == NULL) {
+fopAcM_prm_class* createAppend(u16 i_setId, u32 i_parameters, const cXyz* i_pos, int i_roomNo,
+                               const csXyz* i_angle, const cXyz* i_scale, s8 i_subtype,
+                               fpc_ProcID i_parentId) {
+    fopAcM_prm_class* append = fopAcM_CreateAppend();
+    if (append == NULL) {
         return NULL;
-    } else {
-        params->mEnemyNo = i_enemyNo;
-
-        if (i_pos != NULL) {
-            params->mPos = *i_pos;
-        } else {
-            params->mPos = cXyz::Zero;
-        }
-
-        params->mRoomNo = i_roomNo;
-
-        if (i_angle != NULL) {
-            params->mAngle = *i_angle;
-        } else {
-            params->mAngle = csXyz::Zero;
-        }
-
-        if (i_scale != NULL) {
-            params->mScale[0] = 10.0f * i_scale->x;
-            params->mScale[1] = 10.0f * i_scale->y;
-            params->mScale[2] = 10.0f * i_scale->z;
-        } else {
-            params->mScale[0] = 10;
-            params->mScale[1] = 10;
-            params->mScale[2] = 10;
-        }
-
-        params->mParameter = i_parameters;
-        params->mParentPId = i_parentProcID;
-        params->mSubtype = i_subType;
-
-        return params;
     }
+
+    append->setId = i_setId;
+
+    if (i_pos != NULL) {
+        append->position = *i_pos;
+    } else {
+        append->position = cXyz::Zero;
+    }
+
+    append->room_no = i_roomNo;
+
+    if (i_angle != NULL) {
+        append->angle = *i_angle;
+    } else {
+        append->angle = csXyz::Zero;
+    }
+
+    if (i_scale != NULL) {
+        append->scale[0] = 10.0f * i_scale->x;
+        append->scale[1] = 10.0f * i_scale->y;
+        append->scale[2] = 10.0f * i_scale->z;
+    } else {
+        append->scale[0] = 10;
+        append->scale[1] = 10;
+        append->scale[2] = 10;
+    }
+
+    append->parameters = i_parameters;
+    append->parent_id = i_parentId;
+    append->subtype = i_subtype;
+
+    return append;
 }
 
 /* 80019C78-80019C7C 0145B8 0004+00 3/3 0/0 0/0 .text            fopAcM_Log__FPC10fopAc_ac_cPCc */
@@ -157,74 +156,75 @@ s32 fopAcM_delete(fpc_ProcID i_actorID) {
 
 /* 80019D18-80019D98 014658 0080+00 2/2 0/0 0/0 .text
  * fopAcM_create__FsUsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i         */
-s32 fopAcM_create(s16 i_procName, u16 i_enemyNo, u32 i_parameters, const cXyz* i_pos, int i_roomNo,
-                  const csXyz* i_angle, const cXyz* i_scale, s8 i_subType,
-                  createFunc i_createFunc) {
-    fopAcM_prm_class* params = createAppend(i_enemyNo, i_parameters, i_pos, i_roomNo, i_angle,
-                                            i_scale, i_subType, 0xFFFFFFFF);
-    if (params == NULL) {
-        return -1;
-    } else {
-        return fpcM_Create(i_procName, i_createFunc, params);
+fpc_ProcID fopAcM_create(s16 i_procName, u16 i_setId, u32 i_parameters, const cXyz* i_pos,
+                         int i_roomNo, const csXyz* i_angle, const cXyz* i_scale, s8 i_subtype,
+                         createFunc i_createFunc) {
+    fopAcM_prm_class* append = createAppend(i_setId, i_parameters, i_pos, i_roomNo, i_angle,
+                                            i_scale, i_subtype, fpcM_ERROR_PROCESS_ID_e);
+    if (append == NULL) {
+        return fpcM_ERROR_PROCESS_ID_e;
     }
+
+    return fpcM_Create(i_procName, i_createFunc, append);
 }
 
 /* 80019D98-80019E04 0146D8 006C+00 3/3 11/11 70/70 .text
  * fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc                 */
-s32 fopAcM_create(s16 i_procName, u32 i_parameters, const cXyz* i_pos, int i_roomNo,
-                  const csXyz* i_angle, const cXyz* i_scale, s8 i_subType) {
+fpc_ProcID fopAcM_create(s16 i_procName, u32 i_parameters, const cXyz* i_pos, int i_roomNo,
+                         const csXyz* i_angle, const cXyz* i_scale, s8 i_subtype) {
     return fopAcM_create(i_procName, 0xFFFF, i_parameters, i_pos, i_roomNo, i_angle, i_scale,
-                         i_subType, NULL);
+                         i_subtype, NULL);
 }
 
 /* 80019E04-80019E6C 014744 0068+00 5/5 6/6 18/18 .text
  * fopAcM_fastCreate__FsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_iPv     */
-void* fopAcM_fastCreate(s16 i_procName, u32 i_parameters, const cXyz* i_pos, int i_roomNo,
-                        const csXyz* i_angle, const cXyz* i_scale, s8 i_subType,
-                        createFunc i_createFunc, void* i_createFuncData) {
-    fopAcM_prm_class* prm = createAppend(0xFFFF, i_parameters, i_pos, i_roomNo, i_angle, i_scale,
-                                         i_subType, 0xFFFFFFFF);
-    if (prm == NULL) {
+fopAc_ac_c* fopAcM_fastCreate(s16 i_procName, u32 i_parameters, const cXyz* i_pos, int i_roomNo,
+                              const csXyz* i_angle, const cXyz* i_scale, s8 i_subtype,
+                              createFunc i_createFunc, void* i_createFuncData) {
+    fopAcM_prm_class* append = createAppend(0xFFFF, i_parameters, i_pos, i_roomNo, i_angle, i_scale,
+                                            i_subtype, fpcM_ERROR_PROCESS_ID_e);
+    if (append == NULL) {
         return NULL;
-    } else {
-        return fpcM_FastCreate(i_procName, i_createFunc, i_createFuncData, prm);
     }
+
+    return (fopAc_ac_c*)fpcM_FastCreate(i_procName, i_createFunc, i_createFuncData, append);
 }
 
 /* 80019E6C-80019EF0 0147AC 0084+00 0/0 1/1 0/0 .text
  * fopAcM_fastCreate__FPCcUlPC4cXyziPC5csXyzPC4cXyzPFPv_iPv     */
-void* fopAcM_fastCreate(const char* p_actorName, u32 i_parameters, const cXyz* i_pos, int i_roomNo,
-                        const csXyz* i_angle, const cXyz* i_scale, createFunc i_createFunc,
-                        void* i_createFuncData) {
-    dStage_objectNameInf* nameInfo = dStage_searchName(p_actorName);
+fopAc_ac_c* fopAcM_fastCreate(const char* i_actorname, u32 i_parameters, const cXyz* i_pos,
+                              int i_roomNo, const csXyz* i_angle, const cXyz* i_scale,
+                              createFunc i_createFunc, void* i_createFuncData) {
+    dStage_objectNameInf* nameInfo = dStage_searchName(i_actorname);
     if (nameInfo == NULL) {
         return NULL;
-    } else {
-        return fopAcM_fastCreate(nameInfo->mProcName, i_parameters, i_pos, i_roomNo, i_angle,
-                                 i_scale, nameInfo->mSubtype, i_createFunc, i_createFuncData);
     }
+
+    return fopAcM_fastCreate(nameInfo->mProcName, i_parameters, i_pos, i_roomNo, i_angle, i_scale,
+                             nameInfo->mSubtype, i_createFunc, i_createFuncData);
 }
 
 /* 80019EF0-80019F78 014830 0088+00 0/0 1/1 105/105 .text
  * fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i    */
-s32 fopAcM_createChild(s16 i_procName, fpc_ProcID i_parentProcID, u32 i_parameters,
-                       const cXyz* i_pos, int i_roomNo, const csXyz* i_angle, const cXyz* i_scale,
-                       s8 i_subType, createFunc i_createFunc) {
-    fopAcM_prm_class* prm = createAppend(0xFFFF, i_parameters, i_pos, i_roomNo, i_angle, i_scale,
-                                         i_subType, i_parentProcID);
-    if (prm == NULL) {
-        return -1;
-    } else {
-        return fpcM_Create(i_procName, i_createFunc, prm);
+fpc_ProcID fopAcM_createChild(s16 i_procName, fpc_ProcID i_parentID, u32 i_parameters,
+                              const cXyz* i_pos, int i_roomNo, const csXyz* i_angle,
+                              const cXyz* i_scale, s8 i_subtype, createFunc i_createFunc) {
+    fopAcM_prm_class* append = createAppend(0xFFFF, i_parameters, i_pos, i_roomNo, i_angle, i_scale,
+                                            i_subtype, i_parentID);
+    if (append == NULL) {
+        return fpcM_ERROR_PROCESS_ID_e;
     }
+
+    return fpcM_Create(i_procName, i_createFunc, append);
 }
 
 /* 80019F78-8001A138 0148B8 01C0+00 0/0 0/0 6/6 .text
  * fopAcM_createChildFromOffset__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i */
-s32 fopAcM_createChildFromOffset(s16 i_procName, fpc_ProcID i_parentProcID, u32 i_parameters,
-                                 const cXyz* i_pos, int i_roomNo, const csXyz* i_angle,
-                                 const cXyz* i_scale, s8 i_subType, createFunc i_createFunc) {
-    fopAc_ac_c* parent_actor = fopAcM_SearchByID(i_parentProcID);
+fpc_ProcID fopAcM_createChildFromOffset(s16 i_procName, fpc_ProcID i_parentID, u32 i_parameters,
+                                        const cXyz* i_pos, int i_roomNo, const csXyz* i_angle,
+                                        const cXyz* i_scale, s8 i_subtype,
+                                        createFunc i_createFunc) {
+    fopAc_ac_c* parent_actor = fopAcM_SearchByID(i_parentID);
     s16 parent_angleY = parent_actor->current.angle.y;
 
     cXyz offset_pos;
@@ -240,21 +240,21 @@ s32 fopAcM_createChildFromOffset(s16 i_procName, fpc_ProcID i_parentProcID, u32 
     } else {
         offset_angle = *i_angle;
     }
-    cXyz parentPos = parent_actor->current.pos;
+    cXyz pos = parent_actor->current.pos;
     csXyz angle(offset_angle);
 
     angle.y += parent_angleY;
-    parentPos.x += offset_pos.z * cM_ssin(parent_angleY) + offset_pos.x * cM_scos(parent_angleY);
-    parentPos.y += offset_pos.y;
-    parentPos.z += offset_pos.z * cM_scos(parent_angleY) - offset_pos.x * cM_ssin(parent_angleY);
+    pos.x += offset_pos.z * cM_ssin(parent_angleY) + offset_pos.x * cM_scos(parent_angleY);
+    pos.y += offset_pos.y;
+    pos.z += offset_pos.z * cM_scos(parent_angleY) - offset_pos.x * cM_ssin(parent_angleY);
 
-    fopAcM_prm_class* prm = createAppend(0xFFFF, i_parameters, &parentPos, i_roomNo, &angle,
-                                         i_scale, i_subType, i_parentProcID);
-    if (prm == NULL) {
-        return -1;
-    } else {
-        return fpcM_Create(i_procName, i_createFunc, prm);
+    fopAcM_prm_class* append =
+        createAppend(0xFFFF, i_parameters, &pos, i_roomNo, &angle, i_scale, i_subtype, i_parentID);
+    if (append == NULL) {
+        return fpcM_ERROR_PROCESS_ID_e;
     }
+
+    return fpcM_Create(i_procName, i_createFunc, append);
 }
 
 BOOL fopAcM_createHeap(fopAc_ac_c* i_this, u32 size, u32 align) {
@@ -555,7 +555,6 @@ s16 fopAcM_searchActorAngleX(const fopAc_ac_c* i_actorA, const fopAc_ac_c* i_act
     return cM_atan2s(posB->y - posA->y, JMAFastSqrt(x_dist * x_dist + z_dist * z_dist));
 }
 
-
 /* 8001A79C-8001A7E0 0150DC 0044+00 0/0 3/3 15/15 .text
  * fopAcM_seenActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c        */
 s32 fopAcM_seenActorAngleY(const fopAc_ac_c* i_actorA, const fopAc_ac_c* i_actorB) {
@@ -564,26 +563,11 @@ s32 fopAcM_seenActorAngleY(const fopAc_ac_c* i_actorA, const fopAc_ac_c* i_actor
     return abs((s16)(target_angle - i_actorA->shape_angle.y));
 }
 
-inline f32 local_sqrtf(f32 mag) {
-    if (mag > 0.0f) {
-        f64 tmpd = __frsqrte(mag);
-        tmpd = 0.5 * tmpd * (3.0 - tmpd * tmpd * mag);
-        tmpd = 0.5 * tmpd * (3.0 - tmpd * tmpd * mag);
-        return 0.5 * tmpd * (3.0 - tmpd * tmpd * mag) * mag;
-    } else if (mag < 0.0) {
-        return NAN;
-    } else if (fpclassify(mag) == 1) {
-        return NAN;
-    } else {
-        return mag;
-    }
-}
-
 /* 8001A7E0-8001A914 015120 0134+00 0/0 5/5 188/188 .text
  * fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c    */
 f32 fopAcM_searchActorDistance(const fopAc_ac_c* i_actorA, const fopAc_ac_c* i_actorB) {
     cXyz dist = (*fopAcM_GetPosition_p(i_actorB) - *fopAcM_GetPosition_p(i_actorA));
-    return local_sqrtf(dist.abs2());
+    return dist.abs();
 }
 
 /* 8001A914-8001A964 015254 0050+00 0/0 0/0 2/2 .text
@@ -598,9 +582,8 @@ f32 fopAcM_searchActorDistance2(const fopAc_ac_c* i_actorA, const fopAc_ac_c* i_
 f32 fopAcM_searchActorDistanceXZ(const fopAc_ac_c* i_actorA, const fopAc_ac_c* i_actorB) {
     const cXyz* posA = fopAcM_GetPosition_p(i_actorA);
     const cXyz* posB = fopAcM_GetPosition_p(i_actorB);
-    return sqrtf((*posB - *posA).abs2XZ());
+    return (*posB - *posA).absXZ();
 }
-
 
 /* 8001AA94-8001AAE0 0153D4 004C+00 1/1 4/4 30/30 .text
  * fopAcM_searchActorDistanceXZ2__FPC10fopAc_ac_cPC10fopAc_ac_c */
@@ -610,47 +593,44 @@ f32 fopAcM_searchActorDistanceXZ2(const fopAc_ac_c* i_actorA, const fopAc_ac_c* 
     return (*posB - *posA).abs2XZ();
 }
 
-
 BOOL daPy_py_c::checkNowWolf() {
     return dComIfGp_getLinkPlayer()->checkWolf();
 }
 
 /* 8001AAE0-8001AC40 015420 0160+00 0/0 0/0 2/2 .text
  * fopAcM_rollPlayerCrash__FPC10fopAc_ac_cfUlffif               */
-s32 fopAcM_rollPlayerCrash(fopAc_ac_c const* actor, f32 param_1, u32 param_2, f32 param_3,
-                           f32 param_4, int param_5, f32 param_6) {
+BOOL fopAcM_rollPlayerCrash(fopAc_ac_c const* i_crashActor, f32 i_range, u32 i_flag, f32 i_max_y,
+                            f32 i_min_y, BOOL param_5, f32 param_6) {
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
-
     if (player != dComIfGp_getLinkPlayer()) {
-        return 0;
+        return FALSE;
     }
 
-    f32 tmp = param_1 + 40.0f;
-
+    f32 range = i_range + 40.0f;
     if (daPy_py_c::checkNowWolf()) {
-        tmp += 55.0f;
+        range += 55.0f;
     }
 
-    f32 y_dist = fopAcM_searchPlayerDistanceY(actor);
-    if (y_dist > param_4 && y_dist < param_3 &&
+    f32 y_dist = fopAcM_searchPlayerDistanceY(i_crashActor);
+    if (y_dist > i_min_y && y_dist < i_max_y &&
         (player->checkFrontRoll() || player->checkWolfDash()) &&
-        fopAcM_searchPlayerDistanceXZ2(actor) < (tmp * tmp))
+        fopAcM_searchPlayerDistanceXZ2(i_crashActor) < (range * range))
     {
-        if (cM_scos(player->current.angle.y - fopAcM_searchPlayerAngleY(actor)) < param_6) {
-            player->onFrollCrashFlg(param_2, param_5);
-            return 1;
+        if (cM_scos(player->current.angle.y - fopAcM_searchPlayerAngleY(i_crashActor)) < param_6) {
+            player->onFrollCrashFlg(i_flag, param_5);
+            return TRUE;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 /* 8001AC40-8001ACEC 015580 00AC+00 0/0 0/0 2/2 .text fopAcM_checkCullingBox__FPA4_fffffff */
-s32 fopAcM_checkCullingBox(Mtx pMtx, f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2) {
+s32 fopAcM_checkCullingBox(Mtx m, f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2) {
     Vec tmp1 = {x1, y1, z1};
     Vec tmp2 = {x2, y2, z2};
     Mtx tmpMtx;
-    MTXConcat(j3dSys.getViewMtx(), pMtx, tmpMtx);
+    MTXConcat(j3dSys.getViewMtx(), m, tmpMtx);
     return mDoLib_clipper::clip(tmpMtx, &tmp2, &tmp1) != 0;
 }
 
@@ -773,13 +753,12 @@ s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
         if (fopAcM_GetCullSize(i_actor) == 14) {
             if (fopAcM_getCullSizeFar(i_actor) > 0.0f) {
                 mDoLib_clipper::changeFar(cullsize_far * mDoLib_clipper::getFar());
-                u32 ret = mDoLib_clipper::clip(mtx_p, &i_actor->cull.box.max,
-                                               &i_actor->cull.box.min);
+                u32 ret =
+                    mDoLib_clipper::clip(mtx_p, &i_actor->cull.box.max, &i_actor->cull.box.min);
                 mDoLib_clipper::resetFar();
                 return ret;
             } else {
-                return mDoLib_clipper::clip(mtx_p, &i_actor->cull.box.max,
-                                            &i_actor->cull.box.min);
+                return mDoLib_clipper::clip(mtx_p, &i_actor->cull.box.max, &i_actor->cull.box.min);
             }
         } else {
             cull_box* box = &l_cullSizeBox[cullsize];
@@ -839,186 +818,188 @@ void* event_second_actor(u16) {
 
 /* 8001B068-8001B0FC 0159A8 0094+00 0/0 3/3 0/0 .text
  * fopAcM_orderTalkEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs       */
-s32 fopAcM_orderTalkEvent(fopAc_ac_c* actorA, fopAc_ac_c* actorB, u16 priority, u16 flag) {
+s32 fopAcM_orderTalkEvent(fopAc_ac_c* i_actorA, fopAc_ac_c* i_actorB, u16 i_priority, u16 i_flag) {
     if (!dComIfGp_getEvent().isOrderOK() &&
-        (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actorA)))
+        (!(i_flag & 0x400) || !dComIfGp_getEvent().isChangeOK(i_actorA)))
     {
         return 0;
     }
 
-    if (priority == 0) {
-        priority = 0x1FF;
+    if (i_priority == 0) {
+        i_priority = 0x1FF;
     }
 
-    return dComIfGp_event_order(EVT_TYPE_TALK, priority, flag, 0x14F, actorA, actorB, -1, -1);
+    return dComIfGp_event_order(EVT_TYPE_TALK, i_priority, i_flag, 0x14F, i_actorA, i_actorB, -1,
+                                -1);
 }
 
 /* 8001B0FC-8001B19C 015A3C 00A0+00 0/0 1/1 0/0 .text
  * fopAcM_orderTalkItemBtnEvent__FUsP10fopAc_ac_cP10fopAc_ac_cUsUs */
-s32 fopAcM_orderTalkItemBtnEvent(u16 eventType, fopAc_ac_c* actorA, fopAc_ac_c* actorB,
-                                 u16 priority, u16 flag) {
+s32 fopAcM_orderTalkItemBtnEvent(u16 i_eventType, fopAc_ac_c* i_actorA, fopAc_ac_c* i_actorB,
+                                 u16 i_priority, u16 i_flag) {
     if (!dComIfGp_getEvent().isOrderOK() &&
-        (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actorA)))
+        (!(i_flag & 0x400) || !dComIfGp_getEvent().isChangeOK(i_actorA)))
     {
         return 0;
     }
 
-    if (priority == 0) {
-        priority = 500;
+    if (i_priority == 0) {
+        i_priority = 500;
     }
 
-    return dComIfGp_event_order(eventType, priority, flag, 0x14F, actorA, actorB, -1, -1);
+    return dComIfGp_event_order(i_eventType, i_priority, i_flag, 0x14F, i_actorA, i_actorB, -1, -1);
 }
 
 /* 8001B19C-8001B244 015ADC 00A8+00 0/0 3/3 16/16 .text fopAcM_orderSpeakEvent__FP10fopAc_ac_cUsUs
  */
-s32 fopAcM_orderSpeakEvent(fopAc_ac_c* actor, u16 priority, u16 flag) {
+s32 fopAcM_orderSpeakEvent(fopAc_ac_c* i_actor, u16 i_priority, u16 i_flag) {
     if (!dComIfGp_getEvent().isOrderOK() &&
-        (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actor)))
+        (!(i_flag & 0x400) || !dComIfGp_getEvent().isChangeOK(i_actor)))
     {
         return 0;
     }
 
-    if (priority == 0) {
-        priority = 0x1EA;
+    if (i_priority == 0) {
+        i_priority = 0x1EA;
     }
 
-    return dComIfGp_event_order(EVT_TYPE_TALK, priority, flag, 0x14F, dComIfGp_getPlayer(0), actor,
-                                -1, -1);
+    return dComIfGp_event_order(EVT_TYPE_TALK, i_priority, i_flag, 0x14F, dComIfGp_getPlayer(0),
+                                i_actor, -1, -1);
 }
 
 /* 8001B244-8001B334 015B84 00F0+00 0/0 2/2 0/0 .text
  * fopAcM_orderDoorEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs       */
-s32 fopAcM_orderDoorEvent(fopAc_ac_c* actorA, fopAc_ac_c* actorB, u16 priority, u16 flag) {
+s32 fopAcM_orderDoorEvent(fopAc_ac_c* i_actorA, fopAc_ac_c* i_actorB, u16 i_priority, u16 i_flag) {
     if (!dComIfGp_getEvent().isOrderOK() &&
-        (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actorA)))
+        (!(i_flag & 0x400) || !dComIfGp_getEvent().isChangeOK(i_actorA)))
     {
         return 0;
     }
 
-    if (priority == 0) {
-        priority = 0xFF;
+    if (i_priority == 0) {
+        i_priority = 0xFF;
     }
 
-    s16 eventID = actorB->eventInfo.getEventId();
-    u8 toolID = actorB->eventInfo.getMapToolId();
+    s16 eventID = i_actorB->eventInfo.getEventId();
+    u8 toolID = i_actorB->eventInfo.getMapToolId();
 
-    if (fopAcM_GetProfName(actorB) == 0x55 && toolID != 0xFF) {
-        eventID = dComIfGp_getEventManager().getEventIdx(actorA, NULL, toolID);
+    if (fopAcM_GetProfName(i_actorB) == 0x55 && toolID != 0xFF) {
+        eventID = dComIfGp_getEventManager().getEventIdx(i_actorA, NULL, toolID);
     }
 
-    return dComIfGp_event_order(EVT_TYPE_DOOR, priority, flag, -1, actorA, actorB, eventID, toolID);
+    return dComIfGp_event_order(EVT_TYPE_DOOR, i_priority, i_flag, -1, i_actorA, i_actorB, eventID,
+                                toolID);
 }
 
 /* 8001B334-8001B3CC 015C74 0098+00 0/0 1/1 0/0 .text
  * fopAcM_orderCatchEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs      */
-s32 fopAcM_orderCatchEvent(fopAc_ac_c* actorA, fopAc_ac_c* actorB, u16 priority, u16 flag) {
+s32 fopAcM_orderCatchEvent(fopAc_ac_c* i_actorA, fopAc_ac_c* i_actorB, u16 i_priority, u16 i_flag) {
     if (!dComIfGp_getEvent().isOrderOK() &&
-        (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actorA)))
+        (!(i_flag & 0x400) || !dComIfGp_getEvent().isChangeOK(i_actorA)))
     {
         return 0;
     }
 
-    if (priority == 0) {
-        priority = 2;
+    if (i_priority == 0) {
+        i_priority = 2;
     }
 
-    return dComIfGp_event_order(EVT_TYPE_CATCH, priority, flag, -1, actorA, actorB, -1, -1);
+    return dComIfGp_event_order(EVT_TYPE_CATCH, i_priority, i_flag, -1, i_actorA, i_actorB, -1, -1);
 }
 
 /* 8001B3CC-8001B4E0 015D0C 0114+00 0/0 2/2 6/6 .text
  * fopAcM_orderOtherEvent__FP10fopAc_ac_cPCcUsUsUs              */
-s32 fopAcM_orderOtherEvent(fopAc_ac_c* actor, char const* param_1, u16 param_2, u16 flag,
-                           u16 priority) {
+s32 fopAcM_orderOtherEvent(fopAc_ac_c* i_actor, char const* i_eventName, u16 param_2, u16 i_flag,
+                           u16 i_priority) {
     if (!dComIfGp_getEvent().isOrderOK() &&
-        (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actor)))
+        (!(i_flag & 0x400) || !dComIfGp_getEvent().isChangeOK(i_actor)))
     {
         return 0;
     }
 
-    s16 eventIdx = dComIfGp_getEventManager().getEventIdx(actor, param_1, -1);
+    s16 eventIdx = dComIfGp_getEventManager().getEventIdx(i_actor, i_eventName, -1);
     if (eventIdx < 0) {
         return 0;
     }
 
-    u16 eventPrio = dComIfGp_getEventManager().getEventPrio(actor, eventIdx);
+    u16 eventPrio = dComIfGp_getEventManager().getEventPrio(i_actor, eventIdx);
     if (eventPrio == 0) {
         eventPrio = 0xFF;
     }
 
-    if (priority != 0) {
-        eventPrio = priority;
+    if (i_priority != 0) {
+        eventPrio = i_priority;
     }
 
-    return dComIfGp_event_order(EVT_TYPE_OTHER, eventPrio, flag, param_2, actor,
-                                event_second_actor(flag), eventIdx, -1);
+    return dComIfGp_event_order(EVT_TYPE_OTHER, eventPrio, i_flag, param_2, i_actor,
+                                event_second_actor(i_flag), eventIdx, -1);
 }
 
 /* 8001B4E0-8001B5E4 015E20 0104+00 0/0 1/1 2/2 .text
  * fopAcM_orderOtherEvent__FP10fopAc_ac_cP10fopAc_ac_cPCcUsUsUs */
-s32 fopAcM_orderOtherEvent(fopAc_ac_c* actorA, fopAc_ac_c* actorB, char const* param_2, u16 param_3,
-                           u16 flag, u16 priority) {
+s32 fopAcM_orderOtherEvent(fopAc_ac_c* i_actorA, fopAc_ac_c* i_actorB, char const* i_eventName,
+                           u16 param_3, u16 i_flag, u16 i_priority) {
     if (!dComIfGp_getEvent().isOrderOK() &&
-        (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actorA)))
+        (!(i_flag & 0x400) || !dComIfGp_getEvent().isChangeOK(i_actorA)))
     {
         return 0;
     }
 
-    s16 eventIdx = dComIfGp_getEventManager().getEventIdx(actorA, param_2, -1);
+    s16 eventIdx = dComIfGp_getEventManager().getEventIdx(i_actorA, i_eventName, -1);
     if (eventIdx < 0) {
         return 0;
     }
 
-    u16 eventPrio = dComIfGp_getEventManager().getEventPrio(actorA, eventIdx);
+    u16 eventPrio = dComIfGp_getEventManager().getEventPrio(i_actorA, eventIdx);
     if (eventPrio == 0) {
         eventPrio = 0xFF;
     }
 
-    if (priority != 0) {
-        eventPrio = priority;
+    if (i_priority != 0) {
+        eventPrio = i_priority;
     }
 
-    return dComIfGp_event_order(EVT_TYPE_OTHER, eventPrio, flag, param_3, actorA, actorB, eventIdx,
-                                -1);
+    return dComIfGp_event_order(EVT_TYPE_OTHER, eventPrio, i_flag, param_3, i_actorA, i_actorB,
+                                eventIdx, -1);
 }
 
 /* 8001B5E4-8001B67C 015F24 0098+00 0/0 2/2 41/41 .text
  * fopAcM_orderChangeEventId__FP10fopAc_ac_csUsUs               */
-s32 fopAcM_orderChangeEventId(fopAc_ac_c* actor, s16 eventID, u16 flag, u16 param_3) {
-    u16 eventPrio = dComIfGp_getEventManager().getEventPrio(actor, eventID);
+s32 fopAcM_orderChangeEventId(fopAc_ac_c* i_actor, s16 i_eventID, u16 i_flag, u16 param_3) {
+    u16 eventPrio = dComIfGp_getEventManager().getEventPrio(i_actor, i_eventID);
     if (eventPrio == 0) {
         eventPrio = 0xFF;
     }
 
-    return dComIfGp_event_order(EVT_TYPE_OTHER, eventPrio, flag | 0x400, param_3, actor,
-                                event_second_actor(flag), eventID, -1);
+    return dComIfGp_event_order(EVT_TYPE_OTHER, eventPrio, i_flag | 0x400, param_3, i_actor,
+                                event_second_actor(i_flag), i_eventID, -1);
 }
 
 /* 8001B67C-8001B7B4 015FBC 0138+00 0/0 10/10 101/101 .text
  * fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs            */
-s32 fopAcM_orderOtherEventId(fopAc_ac_c* actor, s16 eventID, u8 mapToolID, u16 param_3,
-                             u16 priority, u16 flag) {
+s32 fopAcM_orderOtherEventId(fopAc_ac_c* i_actor, s16 i_eventID, u8 i_mapToolID, u16 param_3,
+                             u16 i_priority, u16 i_flag) {
     if (!dComIfGp_getEvent().isOrderOK() &&
-        (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actor)))
+        (!(i_flag & 0x400) || !dComIfGp_getEvent().isChangeOK(i_actor)))
     {
         return 0;
     }
 
     u16 newPriority = 50;
     s32 roomNo = dComIfGp_roomControl_getStayNo();
-    if (actor != NULL) {
-        roomNo = fopAcM_GetRoomNo(actor);
+    if (i_actor != NULL) {
+        roomNo = fopAcM_GetRoomNo(i_actor);
     }
 
-    if (priority != 0) {
-        newPriority = priority;
-    } else if (actor != NULL) {
-        u16 eventPrio = dComIfGp_getEventManager().getEventPrio(actor, eventID);
+    if (i_priority != 0) {
+        newPriority = i_priority;
+    } else if (i_actor != NULL) {
+        u16 eventPrio = dComIfGp_getEventManager().getEventPrio(i_actor, i_eventID);
 
         if (eventPrio != 0) {
             newPriority = eventPrio;
-        } else if (mapToolID != 0xFF) {
-            dStage_MapEvent_dt_c* dt = dEvt_control_c::searchMapEventData(mapToolID, roomNo);
+        } else if (i_mapToolID != 0xFF) {
+            dStage_MapEvent_dt_c* dt = dEvt_control_c::searchMapEventData(i_mapToolID, roomNo);
 
             if (dt != NULL) {
                 newPriority = dt->mPriority;
@@ -1026,36 +1007,36 @@ s32 fopAcM_orderOtherEventId(fopAc_ac_c* actor, s16 eventID, u8 mapToolID, u16 p
         }
     }
 
-    return dComIfGp_event_order(EVT_TYPE_OTHER, newPriority, flag, param_3, actor,
-                                event_second_actor(flag), eventID, mapToolID);
+    return dComIfGp_event_order(EVT_TYPE_OTHER, newPriority, i_flag, param_3, i_actor,
+                                event_second_actor(i_flag), i_eventID, i_mapToolID);
 }
 
 /* 8001B7B4-8001B8E0 0160F4 012C+00 1/1 1/1 4/4 .text
  * fopAcM_orderMapToolEvent__FP10fopAc_ac_cUcsUsUsUs            */
-s32 fopAcM_orderMapToolEvent(fopAc_ac_c* actor, u8 param_1, s16 eventID, u16 param_3, u16 flag,
-                             u16 param_5) {
+s32 fopAcM_orderMapToolEvent(fopAc_ac_c* i_actor, u8 param_1, s16 i_eventID, u16 param_3,
+                             u16 i_flag, u16 param_5) {
     if (!dComIfGp_getEvent().isOrderOK() &&
-        (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actor)))
+        (!(i_flag & 0x400) || !dComIfGp_getEvent().isChangeOK(i_actor)))
     {
         return 0;
     }
 
     u16 newPriority = 100;
     s32 roomNo = dComIfGp_roomControl_getStayNo();
-    if (actor != NULL) {
-        roomNo = fopAcM_GetRoomNo(actor);
+    if (i_actor != NULL) {
+        roomNo = fopAcM_GetRoomNo(i_actor);
     }
 
     dStage_MapEvent_dt_c* dt = dEvt_control_c::searchMapEventData(param_1, roomNo);
     if (dt != NULL) {
         newPriority = dt->mPriority;
 
-        if (eventID == 0xFF) {
-            eventID = dComIfGp_getEventManager().getEventIdx(actor, param_1);
+        if (i_eventID == 0xFF) {
+            i_eventID = dComIfGp_getEventManager().getEventIdx(i_actor, param_1);
         }
     }
 
-    if (flag & 0x100) {
+    if (i_flag & 0x100) {
         newPriority = 3;
     }
 
@@ -1063,65 +1044,67 @@ s32 fopAcM_orderMapToolEvent(fopAc_ac_c* actor, u8 param_1, s16 eventID, u16 par
         newPriority = param_5;
     }
 
-    return dComIfGp_event_order(EVT_TYPE_OTHER, newPriority, flag, param_3, actor,
-                                event_second_actor(flag), eventID, param_1);
+    return dComIfGp_event_order(EVT_TYPE_OTHER, newPriority, i_flag, param_3, i_actor,
+                                event_second_actor(i_flag), i_eventID, param_1);
 }
 
 /* 8001B8E0-8001B908 016220 0028+00 0/0 1/1 1/1 .text
  * fopAcM_orderMapToolAutoNextEvent__FP10fopAc_ac_cUcsUsUsUs    */
-s32 fopAcM_orderMapToolAutoNextEvent(fopAc_ac_c* actor, u8 param_1, s16 eventID, u16 param_3,
-                                     u16 flag, u16 param_5) {
-    return fopAcM_orderMapToolEvent(actor, param_1, eventID, param_3, flag | 0x100, param_5);
+s32 fopAcM_orderMapToolAutoNextEvent(fopAc_ac_c* i_actor, u8 param_1, s16 i_eventID, u16 param_3,
+                                     u16 i_flag, u16 param_5) {
+    return fopAcM_orderMapToolEvent(i_actor, param_1, i_eventID, param_3, i_flag | 0x100, param_5);
 }
 
 /* 8001B908-8001B9D0 016248 00C8+00 0/0 0/0 106/106 .text
  * fopAcM_orderPotentialEvent__FP10fopAc_ac_cUsUsUs             */
-s32 fopAcM_orderPotentialEvent(fopAc_ac_c* actor, u16 flag, u16 param_2, u16 priority) {
+s32 fopAcM_orderPotentialEvent(fopAc_ac_c* i_actor, u16 i_flag, u16 param_2, u16 i_priority) {
     if (!dComIfGp_getEvent().isOrderOK() &&
-        (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actor)))
+        (!(i_flag & 0x400) || !dComIfGp_getEvent().isChangeOK(i_actor)))
     {
         return 0;
     }
 
-    if (priority == 0) {
-        priority = 0xFF;
+    if (i_priority == 0) {
+        i_priority = 0xFF;
     }
 
-    return dComIfGp_event_order(EVT_TYPE_POTENTIAL, priority, flag, param_2, actor,
-                                event_second_actor(flag), -1, -1);
+    return dComIfGp_event_order(EVT_TYPE_POTENTIAL, i_priority, i_flag, param_2, i_actor,
+                                event_second_actor(i_flag), -1, -1);
 }
 
 /* 8001B9D0-8001BA7C 016310 00AC+00 0/0 3/3 12/12 .text fopAcM_orderItemEvent__FP10fopAc_ac_cUsUs
  */
-s32 fopAcM_orderItemEvent(fopAc_ac_c* actor, u16 priority, u16 flag) {
+s32 fopAcM_orderItemEvent(fopAc_ac_c* i_actor, u16 i_priority, u16 i_flag) {
     if (!dComIfGp_getEvent().isOrderOK() &&
-        (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actor)))
+        (!(i_flag & 0x400) || !dComIfGp_getEvent().isChangeOK(i_actor)))
     {
         return 0;
     }
 
-    if (priority == 0) {
-        priority = 0xFF;
+    if (i_priority == 0) {
+        i_priority = 0xFF;
     }
 
-    return dComIfGp_event_order(EVT_TYPE_ITEM, priority, flag, -1, dComIfGp_getPlayer(0), actor, -1,
-                                -1);
+    return dComIfGp_event_order(EVT_TYPE_ITEM, i_priority, i_flag, -1, dComIfGp_getPlayer(0),
+                                i_actor, -1, -1);
 }
 
 /* 8001BA7C-8001BB14 0163BC 0098+00 0/0 1/1 0/0 .text
  * fopAcM_orderTreasureEvent__FP10fopAc_ac_cP10fopAc_ac_cUsUs   */
-s32 fopAcM_orderTreasureEvent(fopAc_ac_c* actorA, fopAc_ac_c* actorB, u16 priority, u16 flag) {
+s32 fopAcM_orderTreasureEvent(fopAc_ac_c* i_actorA, fopAc_ac_c* i_actorB, u16 i_priority,
+                              u16 i_flag) {
     if (!dComIfGp_getEvent().isOrderOK() &&
-        (!(flag & 0x400) || !dComIfGp_getEvent().isChangeOK(actorA)))
+        (!(i_flag & 0x400) || !dComIfGp_getEvent().isChangeOK(i_actorA)))
     {
         return 0;
     }
 
-    if (priority == 0) {
-        priority = 0xFF;
+    if (i_priority == 0) {
+        i_priority = 0xFF;
     }
 
-    return dComIfGp_event_order(EVT_TYPE_TREASURE, priority, flag, -1, actorA, actorB, -1, -1);
+    return dComIfGp_event_order(EVT_TYPE_TREASURE, i_priority, i_flag, -1, i_actorA, i_actorB, -1,
+                                -1);
 }
 
 /* 8001BB14-8001BB44 016454 0030+00 0/0 11/11 10/10 .text
@@ -1137,8 +1120,8 @@ fopAc_ac_c* fopAcM_getItemEventPartner(fopAc_ac_c const*) {
 }
 
 /* 8001BB74-8001BBE8 0164B4 0074+00 0/0 1/1 0/0 .text fopAcM_getEventPartner__FPC10fopAc_ac_c */
-fopAc_ac_c* fopAcM_getEventPartner(fopAc_ac_c const* actor) {
-    if (dComIfGp_event_getPt1() != actor) {
+fopAc_ac_c* fopAcM_getEventPartner(fopAc_ac_c const* i_actor) {
+    if (dComIfGp_event_getPt1() != i_actor) {
         return dComIfGp_event_getPt1();
     }
 
@@ -1147,29 +1130,29 @@ fopAc_ac_c* fopAcM_getEventPartner(fopAc_ac_c const* actor) {
 
 /* 8001BBE8-8001BC74 016528 008C+00 0/0 5/5 43/43 .text
  * fopAcM_createItemForPresentDemo__FPC4cXyziUciiPC5csXyzPC4cXyz */
-s32 fopAcM_createItemForPresentDemo(cXyz const* i_pos, int i_itemNo, u8 param_2, int i_itemBitNo,
-                                    int i_roomNo, csXyz const* i_angle, cXyz const* i_scale) {
+fpc_ProcID fopAcM_createItemForPresentDemo(cXyz const* i_pos, int i_itemNo, u8 param_2,
+                                           int i_itemBitNo, int i_roomNo, csXyz const* i_angle,
+                                           cXyz const* i_scale) {
     dComIfGp_event_setGtItm(i_itemNo);
 
     if (i_itemNo == NO_ITEM) {
-        return -1;
-    } else {
-        return fopAcM_createDemoItem(i_pos, i_itemNo, i_itemBitNo, i_angle, i_roomNo, i_scale,
-                                     param_2);
+        return fpcM_ERROR_PROCESS_ID_e;
     }
+
+    return fopAcM_createDemoItem(i_pos, i_itemNo, i_itemBitNo, i_angle, i_roomNo, i_scale, param_2);
 }
 
 /* 8001BC74-8001BCFC 0165B4 0088+00 0/0 2/2 10/10 .text
  * fopAcM_createItemForTrBoxDemo__FPC4cXyziiiPC5csXyzPC4cXyz    */
-s32 fopAcM_createItemForTrBoxDemo(cXyz const* i_pos, int i_itemNo, int i_itemBitNo, int i_roomNo,
-                                  csXyz const* i_angle, cXyz const* i_scale) {
+fpc_ProcID fopAcM_createItemForTrBoxDemo(cXyz const* i_pos, int i_itemNo, int i_itemBitNo,
+                                         int i_roomNo, csXyz const* i_angle, cXyz const* i_scale) {
     dComIfGp_event_setGtItm(i_itemNo);
 
     if (i_itemNo == NO_ITEM) {
-        return -1;
-    } else {
-        return fopAcM_createDemoItem(i_pos, i_itemNo, i_itemBitNo, i_angle, i_roomNo, i_scale, 0);
+        return fpcM_ERROR_PROCESS_ID_e;
     }
+
+    return fopAcM_createDemoItem(i_pos, i_itemNo, i_itemBitNo, i_angle, i_roomNo, i_scale, 0);
 }
 
 struct ItemTableList {
@@ -1236,9 +1219,9 @@ struct EnemyTable {
 
 /* 8001BE14-8001BF64 016754 0150+00 0/0 0/0 9/9 .text
  * fopAcM_createItemFromEnemyID__FUcPC4cXyziiPC5csXyzPC4cXyzPfPf */
-s32 fopAcM_createItemFromEnemyID(u8 i_enemyID, cXyz const* i_pos, int i_itemBitNo, int i_roomNo,
-                                 csXyz const* i_angle, cXyz const* i_scale, f32* speedF,
-                                 f32* speedY) {
+fpc_ProcID fopAcM_createItemFromEnemyID(u8 i_enemyID, cXyz const* i_pos, int i_itemBitNo,
+                                        int i_roomNo, csXyz const* i_angle, cXyz const* i_scale,
+                                        f32* i_speedF, f32* i_speedY) {
     int tableNo = 0xFF;
     EnemyTableList* tblList = (EnemyTableList*)dEnemyItem_c::mData;
     int tableNum = tblList->field_0x4;
@@ -1258,19 +1241,21 @@ s32 fopAcM_createItemFromEnemyID(u8 i_enemyID, cXyz const* i_pos, int i_itemBitN
 
     if (daPy_getPlayerActorClass()->checkHorseRide()) {
         int itemNo = fopAcM_getItemNoFromTableNo(tableNo);
-        void* ac = fopAcM_createItemForDirectGet(i_pos, itemNo, i_roomNo, NULL, NULL, 0.0f, 0.0f);
-        return fopAcM_GetID(ac);
+        void* actor =
+            fopAcM_createItemForDirectGet(i_pos, itemNo, i_roomNo, NULL, NULL, 0.0f, 0.0f);
+        return fopAcM_GetID(actor);
     }
 
     return fopAcM_createItemFromTable(i_pos, tableNo, i_itemBitNo, i_roomNo, i_angle, 0, i_scale,
-                                      speedF, speedY, false);
+                                      i_speedF, i_speedY, false);
 }
 
 /* 8001BF64-8001C078 0168A4 0114+00 1/1 0/0 11/11 .text
  * fopAcM_createItemFromTable__FPC4cXyziiiPC5csXyziPC4cXyzPfPfb */
-s32 fopAcM_createItemFromTable(cXyz const* i_pos, int i_tableNo, int i_itemBitNo, int i_roomNo,
-                               csXyz const* i_angle, int param_5, cXyz const* i_scale, f32* speedF,
-                               f32* speedY, bool createDirect) {
+fpc_ProcID fopAcM_createItemFromTable(cXyz const* i_pos, int i_tableNo, int i_itemBitNo,
+                                      int i_roomNo, csXyz const* i_angle, int param_5,
+                                      cXyz const* i_scale, f32* i_speedF, f32* i_speedY,
+                                      bool i_createDirect) {
     // clang-format off
     JUT_ASSERT(0 <= i_itemNo && i_itemNo <= 255 && (-1 <= i_itemBitNo && i_itemBitNo < (dSv_info_c::DAN_ITEM + dSv_info_c::MEMORY_ITEM + dSv_info_c::ZONE_ITEM )) || i_itemBitNo == 255);
     // clang-format on
@@ -1278,7 +1263,7 @@ s32 fopAcM_createItemFromTable(cXyz const* i_pos, int i_tableNo, int i_itemBitNo
     ItemTableList* tableList = (ItemTableList*)dComIfGp_getItemTable();
 
     if (i_tableNo == 0xFF) {
-        return -1;
+        return fpcM_ERROR_PROCESS_ID_e;
     }
 
 #ifdef DEBUG
@@ -1290,91 +1275,97 @@ s32 fopAcM_createItemFromTable(cXyz const* i_pos, int i_tableNo, int i_itemBitNo
     }
 #endif
 
-    s32 itemNo = fopAcM_getItemNoFromTableNo(i_tableNo);
+    int itemNo = fopAcM_getItemNoFromTableNo(i_tableNo);
     if (itemNo == NO_ITEM) {
-        return -1;
+        return fpcM_ERROR_PROCESS_ID_e;
     }
 
-    void* ac;
-    if (createDirect) {
-        ac = fopAcM_createItemForDirectGet(i_pos, itemNo, i_roomNo, NULL, NULL, 0.0f, 0.0f);
-    } else if (speedF == NULL && speedY == NULL) {
-        ac =
+    void* create_actor;
+    if (i_createDirect) {
+        create_actor =
+            fopAcM_createItemForDirectGet(i_pos, itemNo, i_roomNo, NULL, NULL, 0.0f, 0.0f);
+    } else if (i_speedF == NULL && i_speedY == NULL) {
+        create_actor =
             fopAcM_fastCreateItem2(i_pos, itemNo, i_itemBitNo, i_roomNo, param_5, i_angle, i_scale);
     } else {
-        ac = fopAcM_fastCreateItem(i_pos, itemNo, i_roomNo, i_angle, i_scale, speedF, speedY,
-                                   i_itemBitNo, param_5, NULL);
+        create_actor = fopAcM_fastCreateItem(i_pos, itemNo, i_roomNo, i_angle, i_scale, i_speedF,
+                                             i_speedY, i_itemBitNo, param_5, NULL);
     }
 
-    return fopAcM_GetID(ac);
+    return fopAcM_GetID(create_actor);
 }
 
 /* 8001C078-8001C0D4 0169B8 005C+00 2/2 0/0 0/0 .text
  * fopAcM_createDemoItem__FPC4cXyziiPC5csXyziPC4cXyzUc          */
-s32 fopAcM_createDemoItem(const cXyz* i_pos, int i_itemNo, int i_itemBitNo, const csXyz* i_angle,
-                          int i_roomNo, const cXyz* scale, u8 param_7) {
+fpc_ProcID fopAcM_createDemoItem(const cXyz* i_pos, int i_itemNo, int i_itemBitNo,
+                                 const csXyz* i_angle, int i_roomNo, const cXyz* scale,
+                                 u8 param_7) {
     // clang-format off
     JUT_ASSERT(0 <= i_itemNo && i_itemNo < 256 && (-1 <= i_itemBitNo && i_itemBitNo < (dSv_info_c::DAN_ITEM + dSv_info_c::MEMORY_ITEM + dSv_info_c::ZONE_ITEM )) || i_itemBitNo == 255);
     // clang-format on
 
     if (i_itemNo == NO_ITEM) {
-        return -1;
-    } else {
-        return fopAcM_create(PROC_Demo_Item,
-                             (i_itemNo & 0xFF) | (i_itemBitNo & 0x7F) << 0x8 | (param_7 << 0x10),
-                             i_pos, i_roomNo, i_angle, scale, -1);
+        return fpcM_ERROR_PROCESS_ID_e;
     }
+
+    return fopAcM_create(PROC_Demo_Item,
+                         (i_itemNo & 0xFF) | (i_itemBitNo & 0x7F) << 0x8 | (param_7 << 0x10), i_pos,
+                         i_roomNo, i_angle, scale, -1);
 }
 
 /* 8001C0D4-8001C174 016A14 00A0+00 0/0 0/0 18/18 .text
  * fopAcM_createItemForBoss__FPC4cXyziiPC5csXyzPC4cXyzffi       */
-s32 fopAcM_createItemForBoss(const cXyz* i_pos, int i_itemNo, int i_roomNo, const csXyz* i_angle,
-                             const cXyz* i_scale, f32 speedF, f32 speedY, int param_8) {
-    fopAc_ac_c* actor = (fopAc_ac_c*)fopAcM_fastCreate(
-        PROC_Obj_LifeContainer, 0xFFFF0000 | param_8 << 0x8 | (i_itemNo & 0xFF), i_pos, i_roomNo,
-        i_angle, i_scale, -1, NULL, NULL);
+fpc_ProcID fopAcM_createItemForBoss(const cXyz* i_pos, int i_itemNo, int i_roomNo,
+                                    const csXyz* i_angle, const cXyz* i_scale, f32 i_speedF,
+                                    f32 i_speedY, int param_8) {
+    fopAc_ac_c* actor =
+        fopAcM_fastCreate(PROC_Obj_LifeContainer, 0xFFFF0000 | param_8 << 0x8 | (i_itemNo & 0xFF),
+                          i_pos, i_roomNo, i_angle, i_scale, -1, NULL, NULL);
     if (actor != NULL) {
-        actor->speedF = speedF;
-        actor->speed.y = speedY;
+        actor->speedF = i_speedF;
+        actor->speed.y = i_speedY;
     }
+
     return fopAcM_GetID(actor);
 }
 
 /* 8001C174-8001C1B8 016AB4 0044+00 0/0 0/0 2/2 .text
  * fopAcM_createItemForMidBoss__FPC4cXyziiPC5csXyzPC4cXyzii     */
-s32 fopAcM_createItemForMidBoss(const cXyz* i_pos, int i_itemNo, int i_roomNo, const csXyz* i_angle,
-                                const cXyz* i_scale, int param_6, int param_7) {
-    return fopAcM_createItem(i_pos, i_itemNo, param_7, i_roomNo, &csXyz(csXyz::Zero), i_scale, 0x6);
+fpc_ProcID fopAcM_createItemForMidBoss(const cXyz* i_pos, int i_itemNo, int i_roomNo,
+                                       const csXyz* i_angle, const cXyz* i_scale, int param_6,
+                                       int param_7) {
+    csXyz angle(csXyz::Zero);
+    return fopAcM_createItem(i_pos, i_itemNo, param_7, i_roomNo, &angle, i_scale, 0x6);
 }
 
 /* 8001C1B8-8001C1FC 016AF8 0044+00 2/2 0/0 1/1 .text
  * fopAcM_createItemForDirectGet__FPC4cXyziiPC5csXyzPC4cXyzff   */
-void* fopAcM_createItemForDirectGet(const cXyz* i_pos, int i_itemNo, int i_roomNo,
-                                    const csXyz* i_angle, const cXyz* i_scale, f32 speedF,
-                                    f32 speedY) {
-    return fopAcM_fastCreateItem(i_pos, i_itemNo, i_roomNo, i_angle, i_scale, &speedF, &speedY, -1,
+fopAc_ac_c* fopAcM_createItemForDirectGet(const cXyz* i_pos, int i_itemNo, int i_roomNo,
+                                          const csXyz* i_angle, const cXyz* i_scale, f32 i_speedF,
+                                          f32 i_speedY) {
+    return fopAcM_fastCreateItem(i_pos, i_itemNo, i_roomNo, i_angle, i_scale, &i_speedF, &i_speedY, -1,
                                  0x7, NULL);
 }
 
 /* 8001C1FC-8001C240 016B3C 0044+00 0/0 2/2 3/3 .text
  * fopAcM_createItemForSimpleDemo__FPC4cXyziiPC5csXyzPC4cXyzff  */
-void* fopAcM_createItemForSimpleDemo(const cXyz* i_pos, int i_itemNo, int i_roomNo,
-                                     const csXyz* i_angle, const cXyz* i_scale, f32 speedF,
-                                     f32 speedY) {
-    return fopAcM_fastCreateItem(i_pos, i_itemNo, i_roomNo, i_angle, i_scale, &speedF, &speedY, -1,
+fopAc_ac_c* fopAcM_createItemForSimpleDemo(const cXyz* i_pos, int i_itemNo, int i_roomNo,
+                                           const csXyz* i_angle, const cXyz* i_scale, f32 i_speedF,
+                                           f32 i_speedY) {
+    return fopAcM_fastCreateItem(i_pos, i_itemNo, i_roomNo, i_angle, i_scale, &i_speedF, &i_speedY, -1,
                                  0x4, NULL);
 }
 
 /* 8001C240-8001C3E0 016B80 01A0+00 1/1 1/1 17/17 .text
  * fopAcM_createItem__FPC4cXyziiiPC5csXyzPC4cXyzi               */
-s32 fopAcM_createItem(const cXyz* i_pos, int i_itemNo, int i_itemBitNo, int i_roomNo,
-                      const csXyz* i_angle, const cXyz* i_scale, int param_7) {
+fpc_ProcID fopAcM_createItem(const cXyz* i_pos, int i_itemNo, int i_itemBitNo, int i_roomNo,
+                             const csXyz* i_angle, const cXyz* i_scale, int param_7) {
     // clang-format off
     JUT_ASSERT(0 <= i_itemNo && i_itemNo < 256 && (-1 <= i_itemBitNo && i_itemBitNo < (dSv_info_c::DAN_ITEM + dSv_info_c::MEMORY_ITEM + dSv_info_c::ZONE_ITEM )) || i_itemBitNo == 255);
     // clang-format on
 
     if (i_itemNo == NO_ITEM) {
-        return -1;
+        return fpcM_ERROR_PROCESS_ID_e;
     }
 
     csXyz item_angle(csXyz::Zero);
@@ -1423,8 +1414,8 @@ s32 fopAcM_createItem(const cXyz* i_pos, int i_itemNo, int i_itemBitNo, int i_ro
 
 /* 8001C3E0-8001C5B0 016D20 01D0+00 1/1 0/0 0/0 .text
  * fopAcM_fastCreateItem2__FPC4cXyziiiiPC5csXyzPC4cXyz          */
-void* fopAcM_fastCreateItem2(const cXyz* i_pos, int i_itemNo, int i_itemBitNo, int i_roomNo,
-                             int param_5, const csXyz* i_angle, const cXyz* i_scale) {
+fopAc_ac_c* fopAcM_fastCreateItem2(const cXyz* i_pos, int i_itemNo, int i_itemBitNo, int i_roomNo,
+                                   int param_5, const csXyz* i_angle, const cXyz* i_scale) {
     // clang-format off
     JUT_ASSERT(0 <= i_itemNo && i_itemNo < 256 && (-1 <= i_itemBitNo && i_itemBitNo < (dSv_info_c::DAN_ITEM + dSv_info_c::MEMORY_ITEM + dSv_info_c::ZONE_ITEM )) || i_itemBitNo == 255);
     // clang-format on
@@ -1484,9 +1475,10 @@ void* fopAcM_fastCreateItem2(const cXyz* i_pos, int i_itemNo, int i_itemBitNo, i
 
 /* 8001C5B0-8001C870 016EF0 02C0+00 3/3 0/0 4/4 .text
  * fopAcM_fastCreateItem__FPC4cXyziiPC5csXyzPC4cXyzPfPfiiPFPv_i */
-void* fopAcM_fastCreateItem(const cXyz* i_pos, int i_itemNo, int i_roomNo, const csXyz* i_angle,
-                            const cXyz* i_scale, f32* p_speedF, f32* p_speedY, int i_itemBitNo,
-                            int param_9, createFunc i_createFunc) {
+fopAc_ac_c* fopAcM_fastCreateItem(const cXyz* i_pos, int i_itemNo, int i_roomNo,
+                                  const csXyz* i_angle, const cXyz* i_scale, f32* i_speedF,
+                                  f32* i_speedY, int i_itemBitNo, int param_9,
+                                  createFunc i_createFunc) {
     JUT_ASSERT(0 <= i_itemNo && i_itemNo < 256);
 
     csXyz angle;
@@ -1500,8 +1492,8 @@ void* fopAcM_fastCreateItem(const cXyz* i_pos, int i_itemNo, int i_roomNo, const
     u8 item_bit_no = i_itemBitNo;
     u32 params = MAKE_ITEM_PARAMS(item_no, item_bit_no, 0xFF, param_9);
 
-    if (p_speedF != NULL && isHeart(i_itemNo)) {
-        *p_speedF = 2.0f * *p_speedF;
+    if (i_speedF != NULL && isHeart(i_itemNo)) {
+        *i_speedF = 2.0f * *i_speedF;
     }
 
     switch (i_itemNo) {
@@ -1543,12 +1535,12 @@ void* fopAcM_fastCreateItem(const cXyz* i_pos, int i_itemNo, int i_roomNo, const
                 PROC_ITEM, params, i_pos, i_roomNo, &angle, i_scale, -1, i_createFunc, NULL);
 
             if (actor != NULL) {
-                if (p_speedF != NULL) {
-                    actor->speedF = *p_speedF * (1.0f + cM_rndFX(0.3f));
+                if (i_speedF != NULL) {
+                    actor->speedF = *i_speedF * (1.0f + cM_rndFX(0.3f));
                 }
 
-                if (p_speedY != NULL) {
-                    actor->speed.y = *p_speedY * (1.0f + cM_rndFX(0.2f));
+                if (i_speedY != NULL) {
+                    actor->speed.y = *i_speedY * (1.0f + cM_rndFX(0.2f));
                 }
             }
         }
@@ -1564,12 +1556,12 @@ void* fopAcM_fastCreateItem(const cXyz* i_pos, int i_itemNo, int i_roomNo, const
                                                            &angle, i_scale, -1, i_createFunc, NULL);
 
         if (actor != NULL) {
-            if (p_speedF != NULL) {
-                actor->speedF = *p_speedF;
+            if (i_speedF != NULL) {
+                actor->speedF = *i_speedF;
             }
 
-            if (p_speedY != NULL) {
-                actor->speed.y = *p_speedY;
+            if (i_speedY != NULL) {
+                actor->speed.y = *i_speedY;
             }
         }
 
@@ -1579,24 +1571,24 @@ void* fopAcM_fastCreateItem(const cXyz* i_pos, int i_itemNo, int i_roomNo, const
 
 /* 8001C870-8001C95C 0171B0 00EC+00 0/0 0/0 1/1 .text fopAcM_createBokkuri__FUsPC4cXyziiiPC4cXyzii
  */
-s32 fopAcM_createBokkuri(u16 i_enemyNo, const cXyz* i_pos, int param_3, int param_4, int i_roomNo,
-                         const cXyz* param_6, int param_7, int param_8) {
+fpc_ProcID fopAcM_createBokkuri(u16 i_setId, const cXyz* i_pos, int param_3, int param_4,
+                                int i_roomNo, const cXyz* param_6, int param_7, int param_8) {
     csXyz angle(0, 0, 0);
     if (param_6 != NULL) {
         angle.y = param_6->atan2sX_Z();
-        angle.y += static_cast<s16>(2048.0f * cM_rndFX(1.0f));
+        angle.y += (s16)(2048.0f * cM_rndFX(1.0f));
         param_8 = 1;
     }
     u32 actorParams = 0;
     make_prm_bokkuri(&actorParams, &angle, 6, param_3, param_4, param_7, param_8);
-    return fopAcM_create(PROC_Obj_Carry, i_enemyNo, actorParams, i_pos, i_roomNo, &angle, NULL, -1,
+    return fopAcM_create(PROC_Obj_Carry, i_setId, actorParams, i_pos, i_roomNo, &angle, NULL, -1,
                          NULL);
 }
 
 /* 8001C95C-8001C9CC 01729C 0070+00 0/0 0/0 12/12 .text
  * fopAcM_createWarpHole__FPC4cXyzPC5csXyziUcUcUc               */
-s32 fopAcM_createWarpHole(const cXyz* i_pos, const csXyz* i_angle, int i_roomNo, u8 param_4,
-                          u8 param_5, u8 param_6) {
+fpc_ProcID fopAcM_createWarpHole(const cXyz* i_pos, const csXyz* i_angle, int i_roomNo, u8 param_4,
+                                 u8 param_5, u8 param_6) {
     if (param_6 == 0xFF) {
         param_6 = param_4;
     }
@@ -1605,12 +1597,9 @@ s32 fopAcM_createWarpHole(const cXyz* i_pos, const csXyz* i_angle, int i_roomNo,
     return fopAcM_create(PROC_Obj_BossWarp, actorParams, i_pos, i_roomNo, i_angle, NULL, -1);
 }
 
-s32 fopAc_IsActor(void*);
-
 /* 8001C9CC-8001CA1C 01730C 0050+00 1/1 0/0 0/0 .text            enemySearchJugge__FPvPv */
 void* enemySearchJugge(void* i_actor, void* i_data) {
-    if (i_actor != NULL && fopAc_IsActor(i_actor) &&
-        static_cast<fopAc_ac_c*>(i_actor)->group == fopAc_ENEMY_e)
+    if (i_actor != NULL && fopAc_IsActor(i_actor) && ((fopAc_ac_c*)i_actor)->group == fopAc_ENEMY_e)
     {
         return i_actor;
     } else {
@@ -1638,12 +1627,11 @@ fopAc_ac_c* fopAcM_myRoomSearchEnemy(s8 roomNo) {
 
 /* 8001CAD8-8001CB48 017418 0070+00 0/0 0/0 81/81 .text
  * fopAcM_createDisappear__FPC10fopAc_ac_cPC4cXyzUcUcUc         */
-s32 fopAcM_createDisappear(const fopAc_ac_c* i_actor, const cXyz* i_pos, u8 i_size, u8 i_type,
-                           u8 i_enemyID) {
-    return fopAcM_GetID(fopAcM_fastCreate(PROC_DISAPPEAR,
-                                          (i_enemyID << 0x10) | (i_size << 0x8) | i_type, i_pos,
-                                          fopAcM_GetRoomNo(i_actor), &i_actor->current.angle,
-                                          NULL, 0xFF, NULL, NULL));
+fpc_ProcID fopAcM_createDisappear(const fopAc_ac_c* i_actor, const cXyz* i_pos, u8 i_size,
+                                  u8 i_type, u8 i_enemyID) {
+    return fopAcM_GetID(fopAcM_fastCreate(
+        PROC_DISAPPEAR, (i_enemyID << 0x10) | (i_size << 0x8) | i_type, i_pos,
+        fopAcM_GetRoomNo(i_actor), &i_actor->current.angle, NULL, 0xFF, NULL, NULL));
 }
 
 /* 8001CB48-8001CBA0 017488 0058+00 0/0 6/6 7/7 .text            fopAcM_setCarryNow__FP10fopAc_ac_ci
@@ -1683,7 +1671,7 @@ void fopAcM_cancelCarryNow(fopAc_ac_c* i_actor) {
 
 /* 8001CC5C-8001CDFC 01759C 01A0+00 0/0 0/0 9/9 .text            fopAcM_otoCheck__FPC10fopAc_ac_cf
  */
-s32 fopAcM_otoCheck(fopAc_ac_c const* i_actor, f32 param_1) {
+BOOL fopAcM_otoCheck(fopAc_ac_c const* i_actor, f32 param_1) {
     SND_INFLUENCE* sound = dKy_Sound_get();
 
     if (sound->field_0x14 != -1 && fopAcM_GetID(i_actor) != sound->field_0x14) {
@@ -1694,12 +1682,12 @@ s32 fopAcM_otoCheck(fopAc_ac_c const* i_actor, f32 param_1) {
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 /* 8001CDFC-8001CED0 01773C 00D4+00 0/0 0/0 49/49 .text
  * fopAcM_otherBgCheck__FPC10fopAc_ac_cPC10fopAc_ac_c           */
-s32 fopAcM_otherBgCheck(fopAc_ac_c const* param_0, fopAc_ac_c const* param_1) {
+BOOL fopAcM_otherBgCheck(fopAc_ac_c const* param_0, fopAc_ac_c const* param_1) {
     dBgS_LinChk linChk;
     cXyz start;
     cXyz end;
@@ -1720,7 +1708,7 @@ s32 fopAcM_otherBgCheck(fopAc_ac_c const* param_0, fopAc_ac_c const* param_1) {
 }
 
 /* 8001CED0-8001CFD8 017810 0108+00 0/0 0/0 18/18 .text fopAcM_wayBgCheck__FPC10fopAc_ac_cff */
-s32 fopAcM_wayBgCheck(fopAc_ac_c const* param_0, f32 param_1, f32 param_2) {
+BOOL fopAcM_wayBgCheck(fopAc_ac_c const* param_0, f32 param_1, f32 param_2) {
     dBgS_LinChk linChk;
     cXyz offset;
     cXyz start;
@@ -1740,20 +1728,20 @@ s32 fopAcM_wayBgCheck(fopAc_ac_c const* param_0, f32 param_1, f32 param_2) {
     linChk.Set(&start, &end, param_0);
 
     if (dComIfG_Bgsp().LineCross(&linChk)) {
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 /* 8001CFD8-8001D020 017918 0048+00 0/0 0/0 2/2 .text fopAcM_plAngleCheck__FPC10fopAc_ac_cs */
-s32 fopAcM_plAngleCheck(fopAc_ac_c const* i_actor, s16 i_angle) {
+BOOL fopAcM_plAngleCheck(fopAc_ac_c const* i_actor, s16 i_angle) {
     s16 angle = i_actor->shape_angle.y - dComIfGp_getPlayer(0)->shape_angle.y;
     if (angle <= i_angle && angle >= (s16)-i_angle) {
-        return 0;
+        return FALSE;
     }
 
-    return 1;
+    return TRUE;
 }
 
 /* 80450CCC-80450CD0 0001CC 0001+03 1/1 0/0 0/0 .sbss            l_hio */
@@ -1761,29 +1749,15 @@ static l_HIO l_hio;
 
 static fopAcM_lc_c l_actorLC;
 
-/* 803F1C0C-803F1C18 01E92C 000C+00 0/0 0/0 0/0 .bss             @5078 */
-#pragma push
-#pragma force_active on
-static u8 lit_5078[12];
-#pragma pop
+// stripped function
+void fopAcM_GetRealMin(const fopAc_ac_c*) {
+    static cXyz min;
+}
 
-/* 803F1C18-803F1C24 01E938 000C+00 0/0 0/0 0/0 .bss             min$5077 */
-#pragma push
-#pragma force_active on
-static u8 min[12];
-#pragma pop
-
-/* 803F1C24-803F1C30 01E944 000C+00 0/0 0/0 0/0 .bss             @5115 */
-#pragma push
-#pragma force_active on
-static u8 lit_5115[12];
-#pragma pop
-
-/* 803F1C30-803F1C3C 01E950 000C+00 0/0 0/0 0/0 .bss             max$5114 */
-#pragma push
-#pragma force_active on
-static u8 max[12];
-#pragma pop
+// stripped function
+void fopAcM_GetRealMax(const fopAc_ac_c*) {
+    static cXyz max;
+}
 
 /* 803F1C48-803F1CB8 01E968 0070+00 1/2 4/4 9/9 .bss             mLineCheck__11fopAcM_lc_c */
 dBgS_ObjLinChk fopAcM_lc_c::mLineCheck;
@@ -1891,7 +1865,7 @@ static void get_vectle_calc(const cXyz* pXyzA, const cXyz* pXyzB, cXyz* pOut) {
 void fopAcM_setEffectMtx(const fopAc_ac_c* i_actor, const J3DModelData* modelData) {
     const cXyz* pEyePos = &i_actor->eyePos;
     camera_class* camera = dCam_getCamera();
-    cXyz v1 = *pEyePos - camera->mLookat.mEye;
+    cXyz v1 = *pEyePos - camera->lookat.eye;
     cXyz v2;
     get_vectle_calc(&i_actor->tevStr.field_0x32c, pEyePos, &v2);
     Vec half;
@@ -1903,7 +1877,7 @@ void fopAcM_setEffectMtx(const fopAc_ac_c* i_actor, const J3DModelData* modelDat
         {0.5f, 0.0f, 0.0f, 0.5f},
         {0.0f, -0.5f, 0.0f, 0.5f},
         {0.0f, 0.0f, 1.0f, 0.0f},
-    };  
+    };
     mDoMtx_stack_c::concat(mtx_adj);
     mDoMtx_stack_c::concat(mtx);
     MtxP currentMtx = mDoMtx_stack_c::get();
@@ -1942,8 +1916,8 @@ static const fopAc_ac_c* fopAcM_findObjectCB(fopAc_ac_c const* i_actor, void* i_
         return NULL;
     }
 
-    if (prm->mProcName == fopAcM_GetProfName(i_actor) && prm->mSubType == i_actor->subtype) {
-        if (prm->mParam0 == 0 || prm->mParam1 == (prm->mParam0 & fopAcM_GetParam(i_actor))) {
+    if (prm->procname == fopAcM_GetProfName(i_actor) && prm->subtype == i_actor->subtype) {
+        if (prm->prm0 == 0 || prm->prm1 == (prm->prm0 & fopAcM_GetParam(i_actor))) {
             return i_actor;
         }
     }
@@ -1954,16 +1928,16 @@ static const fopAc_ac_c* fopAcM_findObjectCB(fopAc_ac_c const* i_actor, void* i_
 /* 8001D698-8001D6F0 017FD8 0058+00 0/0 1/1 1/1 .text            fopAcM_searchFromName__FPCcUlUl */
 fopAc_ac_c* fopAcM_searchFromName(char const* name, u32 param0, u32 param1) {
     fopAcM_search_prm prm;
-    prm.mParam0 = param0;
-    prm.mParam1 = param1;
+    prm.prm0 = param0;
+    prm.prm1 = param1;
 
     dStage_objectNameInf* objInf = dStage_searchName(name);
     if (objInf == NULL) {
         return NULL;
     }
 
-    prm.mProcName = objInf->mProcName;
-    prm.mSubType = objInf->mSubtype;
+    prm.procname = objInf->mProcName;
+    prm.subtype = objInf->mSubtype;
     return fopAcM_Search((fopAcIt_JudgeFunc)fopAcM_findObjectCB, &prm);
 }
 
@@ -1976,8 +1950,8 @@ fopAc_ac_c* fopAcM_findObject4EventCB(fopAc_ac_c* i_actor, void* i_data) {
         return NULL;
     }
 
-    if (prm->mProcName == fopAcM_GetProfName(i_actor) && prm->mSubType == i_actor->subtype) {
-        if (prm->mEventID < 0 || prm->mEventID == i_actor->eventInfo.getIdx()) {
+    if (prm->procname == fopAcM_GetProfName(i_actor) && prm->subtype == i_actor->subtype) {
+        if (prm->event_id < 0 || prm->event_id == i_actor->eventInfo.getIdx()) {
             return i_actor;
         }
     }
@@ -1987,33 +1961,33 @@ fopAc_ac_c* fopAcM_findObject4EventCB(fopAc_ac_c* i_actor, void* i_data) {
 
 /* 8001D7A0-8001D890 0180E0 00F0+00 0/0 7/7 0/0 .text            fopAcM_searchFromName4Event__FPCcs
  */
-fopAc_ac_c* fopAcM_searchFromName4Event(char const* name, s16 eventID) {
+fopAc_ac_c* fopAcM_searchFromName4Event(char const* i_name, s16 i_eventID) {
     fopAcM_search4ev_prm prm;
-    prm.mEventID = eventID;
-    strcpy(prm.mName, name);
+    prm.event_id = i_eventID;
+    strcpy(prm.name, i_name);
 
-    char* chr = strchr(prm.mName, ':');
+    char* chr = strchr(prm.name, ':');
     if (chr != NULL) {
         chr[0] = 0;
-        prm.mEventID = 0;
+        prm.event_id = 0;
 
         chr++;
         for (; *chr != 0; chr++) {
             if (*chr < '0' || *chr > '9') {
-                prm.mEventID = 0xFFFF;
+                prm.event_id = 0xFFFF;
                 break;
             }
-            prm.mEventID = prm.mEventID * 10 + (chr[0] - 0x30);
+            prm.event_id = prm.event_id * 10 + (chr[0] - 0x30);
         }
     }
 
-    dStage_objectNameInf* objInf = dStage_searchName(prm.mName);
+    dStage_objectNameInf* objInf = dStage_searchName(prm.name);
     if (objInf == NULL) {
         return 0;
     }
 
-    prm.mProcName = objInf->mProcName;
-    prm.mSubType = objInf->mSubtype;
+    prm.procname = objInf->mProcName;
+    prm.subtype = objInf->mSubtype;
     return fopAcM_Search((fopAcIt_JudgeFunc)fopAcM_findObject4EventCB, &prm);
 }
 
@@ -2030,25 +2004,25 @@ f32 fopAcM_rc_c::mRoofY;
 f32 fopAcM_wt_c::mWaterY;
 
 /* 8001D890-8001D900 0181D0 0070+00 0/0 2/2 19/19 .text            fopAcM_getWaterY__FPC4cXyzPf */
-s32 fopAcM_getWaterY(cXyz const* param_0, f32* param_1) {
+s32 fopAcM_getWaterY(cXyz const* param_0, f32* o_waterY) {
     if (fopAcM_wt_c::waterCheck(param_0) && fopAcM_wt_c::getPolyAtt0() != 6) {
-        *param_1 = fopAcM_wt_c::getWaterY();
+        *o_waterY = fopAcM_wt_c::getWaterY();
         return 1;
     } else {
-        *param_1 = -1000000000.0f;
+        *o_waterY = -1000000000.0f;
         return 0;
     }
 }
 
 /* 8001D900-8001D9A8 018240 00A8+00 0/0 2/2 2/2 .text
  * fpoAcM_relativePos__FPC10fopAc_ac_cPC4cXyzP4cXyz             */
-void fpoAcM_relativePos(fopAc_ac_c const* actor, cXyz const* p_inPos, cXyz* p_outPos) {
-    s16 angle = -actor->shape_angle.y;
-    cXyz pos = *p_inPos - actor->current.pos;
+void fpoAcM_relativePos(fopAc_ac_c const* i_actor, cXyz const* i_pos, cXyz* o_pos) {
+    s16 angle = -i_actor->shape_angle.y;
+    cXyz pos = *i_pos - i_actor->current.pos;
 
-    p_outPos->x = (pos.z * cM_ssin(angle)) + (pos.x * cM_scos(angle));
-    p_outPos->y = pos.y;
-    p_outPos->z = (pos.z * cM_scos(angle)) - (pos.x * cM_ssin(angle));
+    o_pos->x = (pos.z * cM_ssin(angle)) + (pos.x * cM_scos(angle));
+    o_pos->y = pos.y;
+    o_pos->z = (pos.z * cM_scos(angle)) - (pos.x * cM_ssin(angle));
 }
 
 /* 8001D9A8-8001DAE4 0182E8 013C+00 0/0 1/1 9/9 .text
@@ -2101,14 +2075,14 @@ s16 fopAcM_getPolygonAngle(cBgS_PolyInfo const& poly, s16 param_1) {
 }
 
 /* 8001DBD8-8001DC68 018518 0090+00 1/1 5/5 18/18 .text fopAcM_getPolygonAngle__FPC8cM3dGPlas */
-// NONMATCHING multiplication order
 s16 fopAcM_getPolygonAngle(cM3dGPla const* p_plane, s16 param_1) {
     if (p_plane == NULL) {
         return 0;
     }
 
     f32 cos = cM_scos(p_plane->mNormal.atan2sX_Z() - param_1);
-    f32 xz = JMAFastSqrt(p_plane->mNormal.x * p_plane->mNormal.x + p_plane->mNormal.z * p_plane->mNormal.z);
+    f32 xz = JMAFastSqrt(p_plane->mNormal.x * p_plane->mNormal.x +
+                         p_plane->mNormal.z * p_plane->mNormal.z);
     xz *= cos;
     return cM_atan2s(xz, p_plane->mNormal.y);
 }

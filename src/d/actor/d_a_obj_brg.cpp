@@ -1142,7 +1142,7 @@ static int daObj_Brg_Execute(obj_brg_class* i_this) {
     cXyz spE8;
 
     camera_class* camera = dComIfGp_getCamera(0);
-    spC4 = a_this->current.pos - camera->mLookat.mEye;
+    spC4 = a_this->current.pos - camera->lookat.eye;
 
     if (i_this->field_0xb1ef != 0) {
         i_this->field_0xb1ef--;
@@ -1158,7 +1158,7 @@ static int daObj_Brg_Execute(obj_brg_class* i_this) {
     }
 
     if (spC4.abs() > sp1BC) {
-        spD0 = camera->mLookat.mCenter - camera->mLookat.mEye;
+        spD0 = camera->lookat.center - camera->lookat.eye;
 
         cMtx_YrotS(*calc_mtx, -cM_atan2s(spD0.x, spD0.z));
         MtxPosition(&spC4, &spD0);

@@ -993,10 +993,10 @@ void daB_ZANT_c::setZantMessage(int i_msgNo) {
 /* 80640104-80640180 0020E4 007C+00 1/1 0/0 0/0 .text            doZantMessage__10daB_ZANT_cFv */
 int daB_ZANT_c::doZantMessage() {
     if (mpMsg != NULL) {
-        if (mpMsg->mMode == 14) {
-            mpMsg->mMode = 16;
-        } else if (mpMsg->mMode == 18) {
-            mpMsg->mMode = 19;
+        if (mpMsg->mode == 14) {
+            mpMsg->mode = 16;
+        } else if (mpMsg->mode == 18) {
+            mpMsg->mode = 19;
             mMsgID = fpcM_ERROR_PROCESS_ID_e;
             return 1;
         }

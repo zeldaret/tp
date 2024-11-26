@@ -2621,7 +2621,7 @@ void daE_PM_c::setLampBaseMtx() {
     }
 
     mDoMtx_stack_c::transS(vec2.x, vec2.y, vec2.z);
-    vec1 = dComIfGp_getCamera(0)->mLookat.mEye - vec2;
+    vec1 = dComIfGp_getCamera(0)->lookat.eye - vec2;
     mDoMtx_stack_c::YrotM(cM_atan2s(vec1.x, vec1.z));
     mDoMtx_stack_c::XrotM(-cM_atan2s(vec1.y, JMAFastSqrt(vec1.x * vec1.x + vec1.z * vec1.z)));
     mDoMtx_stack_c::scaleM(l_HIO.mGlowEffectScale, l_HIO.mGlowEffectScale, l_HIO.mGlowEffectScale);

@@ -309,10 +309,10 @@ int daObjSwBallC_c::demoProc() {
         } else {
             msg_class* msg = fopMsgM_SearchByID(field_0x588);
             if (msg != NULL) {
-                if (msg->mMode == 0xe) {
-                    msg->mMode = 0x10;
-                } else if (msg->mMode == 0x12) {
-                    msg->mMode = 0x13;
+                if (msg->mode == 0xe) {
+                    msg->mode = 0x10;
+                } else if (msg->mode == 0x12) {
+                    msg->mode = 0x13;
                     dComIfGp_evmng_cutEnd(field_0x578);
                 }
             }

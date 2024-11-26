@@ -9,9 +9,9 @@ public:
     /* 0xC0 */ int type;
     /* 0xC4 */ create_tag_class draw_tag;
     /* 0xD8 */ leafdraw_method_class* sub_method;
-    /* 0xDC */ cXyz mPos;
-    /* 0xE8 */ cXyz mScale;
-    /* 0xF4 */ u32 mParam;
+    /* 0xDC */ cXyz pos;
+    /* 0xE8 */ cXyz scale;
+    /* 0xF4 */ u32 parameters;
 };
 
 struct kankyo_process_profile_definition {

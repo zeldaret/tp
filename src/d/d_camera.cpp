@@ -3000,8 +3000,8 @@ bool dCamera_c::pointInSight(cXyz* i_point) {
     cXyz proj;
     dDlst_window_c* window = get_window(field_0x0);
     scissor_class* scissor = window->getScissor();
-    f32 scissor_width = scissor->mWidth;
-    f32 scissor_height = scissor->mHeight;
+    f32 scissor_width = scissor->width;
+    f32 scissor_height = scissor->height;
     mDoLib_project(i_point, &proj);
     return (proj.x > 0.0f && proj.x < scissor_width) && (proj.y > 0.0f && proj.y < scissor_height);
 }
@@ -3013,10 +3013,10 @@ f32 dCamera_c::radiusActorInSight(fopAc_ac_c* i_actor1, fopAc_ac_c* i_actor2, cX
     dDlst_window_c* window = get_window(field_0x0);
     scissor_class* scissor = window->getScissor();
     f32 dVar3 = cAngle::d2r(param_4) * 0.5f;
-    f32 tmp = (scissor->mHeight - mTrimHeight * 2.0f) / 448.0f * dVar3;
+    f32 tmp = (scissor->height - mTrimHeight * 2.0f) / 448.0f * dVar3;
     f32 fVar8 = tmp * (mTrimHeight < 0.01f ? 0.95f : 1.0f);
     dVar3 *= field_0x92c;
-    f32 fVar7 = dVar3 * (scissor->mWidth / 608.0f) * 0.85f;
+    f32 fVar7 = dVar3 * (scissor->width / 608.0f) * 0.85f;
     
     cXyz pos1 = attentionPos(i_actor1);
     pos1.y += (positionOf(i_actor1).y - attentionPos(i_actor1).y) * 0.5f;
@@ -3292,7 +3292,7 @@ int dCamera_c::defaultTriming() {
 void dCamera_c::setView(f32 i_xOrig, f32 i_yOrig, f32 i_width, f32 i_height) {
     dDlst_window_c* window = get_window(field_0x0);
     view_port_class* view_port = window->getViewPort();
-    window->setViewPort(i_xOrig, i_yOrig, i_width, i_height, view_port->mNearZ, view_port->mFarZ);
+    window->setViewPort(i_xOrig, i_yOrig, i_width, i_height, view_port->near_z, view_port->far_z);
     window->setScissor(i_xOrig, i_yOrig, i_width, i_height);
 }
 
@@ -4750,20 +4750,20 @@ static int camera_draw(camera_process_class* i_this) {
 
     int trim_height = body->TrimHeight();
     window->setScissor(0.0f, trim_height, 608.0f, 448.0f - trim_height * 2.0f);
-    C_MTXPerspective(i_this->mProjMtx, i_this->mFovy, i_this->mAspect, i_this->mNear, i_this->mFar);
-    mDoMtx_lookAt(i_this->mViewMtx, &i_this->mLookat.mEye, &i_this->mLookat.mCenter,
-                  &i_this->mLookat.mUp, i_this->mBank);
+    C_MTXPerspective(i_this->projMtx, i_this->fovy, i_this->aspect, i_this->near, i_this->far);
+    mDoMtx_lookAt(i_this->viewMtx, &i_this->lookat.eye, &i_this->lookat.center,
+                  &i_this->lookat.up, i_this->bank);
 
-    j3dSys.setViewMtx(i_this->mViewMtx);
-    cMtx_inverse(i_this->mViewMtx, i_this->mInvViewMtx);
+    j3dSys.setViewMtx(i_this->viewMtx);
+    cMtx_inverse(i_this->viewMtx, i_this->invViewMtx);
 
-    Z2GetAudience()->setAudioCamera(i_this->mViewMtx, i_this->mLookat.mEye, i_this->mLookat.mCenter,
-                                    i_this->mFovy, i_this->mAspect, getComStat(0x80), camera_id,
+    Z2GetAudience()->setAudioCamera(i_this->viewMtx, i_this->lookat.eye, i_this->lookat.center,
+                                    i_this->fovy, i_this->aspect, getComStat(0x80), camera_id,
                                     false);
 
     dBgS_GndChk gndchk;
     gndchk.OnWaterGrp();
-    gndchk.SetPos(&i_this->mLookat.mEye);
+    gndchk.SetPos(&i_this->lookat.eye);
 
     f32 cross = dComIfG_Bgsp().GroundCross(&gndchk);
     if (cross != -1000000000.0f) {
@@ -4775,20 +4775,20 @@ static int camera_draw(camera_process_class* i_this) {
 
         mDoAud_setCameraGroupInfo(dComIfG_Bgsp().GetGrpSoundId(gndchk));
         Vec spDC;
-        spDC.x = i_this->mLookat.mEye.x;
+        spDC.x = i_this->lookat.eye.x;
         spDC.y = cross;
-        spDC.z = i_this->mLookat.mEye.z;
+        spDC.z = i_this->lookat.eye.z;
 
         Z2AudioMgr::getInterface()->setCameraPolygonPos(&spDC);
     } else {
         Z2AudioMgr::getInterface()->setCameraPolygonPos(NULL);
     }
 
-    MTXCopy(i_this->mViewMtx, i_this->mViewMtxNoTrans);
-    i_this->mViewMtxNoTrans[0][3] = 0.0f;
-    i_this->mViewMtxNoTrans[1][3] = 0.0f;
-    i_this->mViewMtxNoTrans[2][3] = 0.0f;
-    cMtx_concatProjView(i_this->mProjMtx, i_this->mViewMtx, i_this->mProjViewMtx);
+    MTXCopy(i_this->viewMtx, i_this->viewMtxNoTrans);
+    i_this->viewMtxNoTrans[0][3] = 0.0f;
+    i_this->viewMtxNoTrans[1][3] = 0.0f;
+    i_this->viewMtxNoTrans[2][3] = 0.0f;
+    cMtx_concatProjView(i_this->projMtx, i_this->viewMtx, i_this->projViewMtx);
 
     body->Draw();
     return 1;
@@ -4882,7 +4882,7 @@ static int init_phase2(camera_class* i_this) {
 
 /* 80182454-80182484 17CD94 0030+00 1/0 0/0 0/0 .text            camera_create__FP12camera_class */
 static int camera_create(camera_class* i_this) {
-    return dComLbG_PhaseHandler(&i_this->mPhaseReq, l_method, i_this);
+    return dComLbG_PhaseHandler(&i_this->phase_request, l_method, i_this);
 }
 
 /* 80182484-801824C0 17CDC4 003C+00 1/0 0/0 0/0 .text camera_delete__FP20camera_process_class */

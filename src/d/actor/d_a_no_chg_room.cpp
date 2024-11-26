@@ -33,7 +33,7 @@ static bool isLoadRoom(int i_roomNo) {
                     dStage_roomControl_c::getStatusProcID(load_room_index));
                 JUT_ASSERT(roomScene != 0);
 
-                if (roomScene->field_0x1d4 >= 0 || !fpcNd_IsDeleteTiming(&roomScene->mBase)) {
+                if (roomScene->field_0x1d4 >= 0 || !fpcNd_IsDeleteTiming(&roomScene->base)) {
                     // "Room <%d> objects loading!\n"
                     OS_REPORT("部屋<%d>オブジェクト読み込み中！\n", load_room_index);
                     return false;

@@ -94,20 +94,20 @@ void mDoLib_project(Vec* src, Vec* dst) {
     float yOffset;
     float xSize;
     float ySize;
-    if (viewPort->mXOrig != 0.0f) {
-        xOffset = (0.5f * ((2.0f * viewPort->mXOrig) + viewPort->mWidth)) - 304.0f;
+    if (viewPort->x_orig != 0.0f) {
+        xOffset = (0.5f * ((2.0f * viewPort->x_orig) + viewPort->width)) - 304.0f;
         xSize = 608.0f;
     } else {
-        xOffset = viewPort->mXOrig;
-        xSize = viewPort->mWidth;
+        xOffset = viewPort->x_orig;
+        xSize = viewPort->width;
     }
 
-    if (viewPort->mYOrig != 0.0f) {
-        yOffset = (0.5f * ((2.0f * viewPort->mYOrig) + viewPort->mHeight)) - 224.0f;
+    if (viewPort->y_orig != 0.0f) {
+        yOffset = (0.5f * ((2.0f * viewPort->y_orig) + viewPort->height)) - 224.0f;
         ySize = 448.0f;
     } else {
-        yOffset = viewPort->mYOrig;
-        ySize = viewPort->mHeight;
+        yOffset = viewPort->y_orig;
+        ySize = viewPort->height;
     }
 
     dst->x = ((0.5f + (multVec.x * f3)) * xSize) + xOffset;
@@ -122,5 +122,5 @@ void mDoLib_pos2camera(Vec* src, Vec* dst) {
         dst->z = 0.0f;
         return;
     }
-    cMtx_multVec(dComIfGd_getView()->mViewMtx, src, dst);
+    cMtx_multVec(dComIfGd_getView()->viewMtx, src, dst);
 }

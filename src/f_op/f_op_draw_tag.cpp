@@ -8,7 +8,6 @@
 #include "SSystem/SComponent/c_tag.h"
 #include "global.h"
 
-/* ############################################################################################## */
 /* 804505D0-804505D8 000050 0008+00 2/2 2/2 0/0 .sdata           g_fopDwTg_Queue */
 node_lists_tree_class g_fopDwTg_Queue = {NULL, 0};
 
@@ -28,11 +27,9 @@ bool fopDwTg_Init(create_tag_class* i_createTag, void* i_process) {
     return true;
 }
 
-/* ############################################################################################## */
-/* 803F1E10-803F4CF0 01EB30 2EE0+00 1/1 0/0 0/0 .bss             lists$2216 */
-static node_list_class lists[1000];
-
 /* 80020518-80020548 01AE58 0030+00 0/0 1/1 0/0 .text            fopDwTg_CreateQueue__Fv */
 void fopDwTg_CreateQueue() {
+    static node_list_class lists[1000];
+
     cTr_Create(&g_fopDwTg_Queue, lists, ARRAY_SIZE(lists));
 }

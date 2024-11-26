@@ -362,7 +362,7 @@ int dMsgObject_c::_create(msg_class* param_1) {
     JUT_ASSERT(1302, mpCtrl != 0);
     mpRefer = new jmessage_tReference();
     JUT_ASSERT(1305, mpRefer != 0);
-    mpRefer->setpStatus(&param_1->mMode);
+    mpRefer->setpStatus(&param_1->mode);
     mpSeqProc = new jmessage_tSequenceProcessor(mpRefer, mpCtrl);
     JUT_ASSERT(1310, mpSeqProc != 0);
     mpRenProc = new jmessage_tRenderingProcessor(mpRefer);
@@ -1028,7 +1028,7 @@ void dMsgObject_c::continueProc() {
         field_0x199 = 0;
         updateEquipBombInfoLocal();
         offAutoMessageFlagLocal();
-        setMessageIndex(field_0x100->mMsgID, field_0x100->field_0xf0, true);
+        setMessageIndex(field_0x100->msg_idx, field_0x100->field_0xf0, true);
         mpScrnDraw->fukiPosCalc(pRef->getFukiPosType());
         strcpy(pRef->getTextPtr(), "");
         strcpy(pRef->getTextSPtr(), "");
@@ -1130,7 +1130,7 @@ void dMsgObject_c::selectProc() {
             iVar8 = true;
         }
     }
-    field_0x100->mSelectedChoiceIdx = pRef->getSelectPos();
+    field_0x100->select_idx = pRef->getSelectPos();
     if (isSend() && field_0x1a3 != 0 && iVar8) {
         field_0x1a3 = 0;
         if (mDoCPd_c::getTrigB(0)) {
@@ -1449,7 +1449,7 @@ void dMsgObject_c::talkStartInit() {
         mpScrnDraw->setMsgID( mpRefer->getMsgID());
         mpScrnDraw->setOutFont(mpOutFont);
         mpRefer->setFont(local_30);
-        mpRefer->setActorPos(field_0x100->mPos);
+        mpRefer->setActorPos(field_0x100->pos);
         mpRefer->setFontSizeX(mpScrnDraw->getFontSizeX());
         mpRefer->setFontSizeY(mpScrnDraw->getFontSizeY());
         mpRefer->setRubySize(mpScrnDraw->getRubySize());
@@ -1496,10 +1496,10 @@ void dMsgObject_c::fukiPosCalc(bool param_1) {
             cXyz cStack_48;
             mDoLib_project(&player->eyePos, &cStack_48);
             f32 temp;
-            if ((field_0x100->mPos == cXyz(0.0f, 0.0f, 0.0f))) {
+            if ((field_0x100->pos == cXyz(0.0f, 0.0f, 0.0f))) {
                 temp = cStack_48.y;
             } else {
-                mDoLib_project(&field_0x100->mPos, &local_3c);
+                mDoLib_project(&field_0x100->pos, &local_3c);
                 if (local_3c.x >= 0.0f && local_3c.x <= 608.0f && local_3c.y >= 0.0f &&
                     local_3c.y <= 448.0f)
                 {
@@ -2293,7 +2293,7 @@ int dMsgObject_Create(msg_class* param_1) {
     JKRHeap* prevHeap = mDoExt_setCurrentHeap(dComIfGp_getMsgExpHeap());
     dComIfGp_getMsgExpHeap()->getTotalFreeSize();
     fopMsgM_setStageLayer(param_1);
-    param_1->mMode = 0;
+    param_1->mode = 0;
     int rv = obj->_create(param_1);
     g_MsgObject_HIO_c.field_0x4 = -1;
     OS_REPORT("### msg object size =====> %d\n", dComIfGp_getMsgExpHeap()->getTotalFreeSize());

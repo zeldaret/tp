@@ -3897,11 +3897,11 @@ inline view_class* dComIfGd_getView() {
 }
 
 inline Mtx44* dComIfGd_getProjViewMtx() {
-    return &(g_dComIfG_gameInfo.drawlist.getView()->mProjViewMtx);
+    return &(g_dComIfG_gameInfo.drawlist.getView()->projViewMtx);
 }
 
 inline MtxP dComIfGd_getInvViewMtx() {
-    return g_dComIfG_gameInfo.drawlist.getView()->mInvViewMtx;
+    return g_dComIfG_gameInfo.drawlist.getView()->invViewMtx;
 }
 
 inline view_port_class* dComIfGd_getViewport() {
@@ -3909,10 +3909,10 @@ inline view_port_class* dComIfGd_getViewport() {
 }
 
 inline MtxP dComIfGd_getViewRotMtx() {
-    return ((camera_process_class*)g_dComIfG_gameInfo.drawlist.getView())->mViewMtxNoTrans;
+    return ((camera_process_class*)g_dComIfG_gameInfo.drawlist.getView())->viewMtxNoTrans;
 }
 inline MtxP dComIfGd_getViewMtx() {
-    return ((camera_process_class*)g_dComIfG_gameInfo.drawlist.getView())->mViewMtx;
+    return ((camera_process_class*)g_dComIfG_gameInfo.drawlist.getView())->viewMtx;
 }
 
 inline J3DDrawBuffer* dComIfGd_getListFilter() {

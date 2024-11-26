@@ -97,13 +97,13 @@ s32 dScnName_c::create() {
         dDlst_window_c* window = dComIfGp_getWindow(0);
         dComIfGp_setCamera(0, (camera_class*)&mCamera);
 
-        mCamera.mNear = 1.0f;
-        mCamera.mFar = 100000.0f;
-        mCamera.mFovy = 45.0f;
-        mCamera.mAspect = mDoGph_gInf_c::getWidthF() / mDoGph_gInf_c::getHeightF();
-        mCamera.mLookat.mEye.set(0.0f, 0.0f, -1000.0f);
-        mCamera.mLookat.mCenter.set(0.0f, 0.0f, 0.0f);
-        mCamera.mBank = 0;
+        mCamera.near = 1.0f;
+        mCamera.far = 100000.0f;
+        mCamera.fovy = 45.0f;
+        mCamera.aspect = mDoGph_gInf_c::getWidthF() / mDoGph_gInf_c::getHeightF();
+        mCamera.lookat.eye.set(0.0f, 0.0f, -1000.0f);
+        mCamera.lookat.center.set(0.0f, 0.0f, 0.0f);
+        mCamera.bank = 0;
 
         dComIfGp_setPlayer(0, NULL);
         dComIfGd_setWindow(window);
@@ -124,17 +124,17 @@ s32 dScnName_c::create() {
 
 /* 80258B2C-80258BC8 25346C 009C+00 1/1 0/0 0/0 .text            setView__10dScnName_cFv */
 void dScnName_c::setView() {
-    C_MTXPerspective(mCamera.mProjMtx, mCamera.mFovy, mCamera.mAspect, mCamera.mNear,
-                     mCamera.mFar);
-    mDoMtx_lookAt(mCamera.mViewMtx, &mCamera.mLookat.mEye, &mCamera.mLookat.mCenter,
-                  mCamera.mBank);
-    MTXInverse(mCamera.mViewMtx, mCamera.mInvViewMtx);
-    MTXCopy(mCamera.mViewMtx, mCamera.mViewMtxNoTrans);
-    mCamera.mViewMtxNoTrans[0][3] = 0.0f;
-    mCamera.mViewMtxNoTrans[1][3] = 0.0f;
-    mCamera.mViewMtxNoTrans[2][3] = 0.0f;
-    MTXCopy(mCamera.mViewMtx, j3dSys.mViewMtx);
-    mDoMtx_concatProjView(mCamera.mProjMtx, mCamera.mViewMtx, mCamera.mProjViewMtx);
+    C_MTXPerspective(mCamera.projMtx, mCamera.fovy, mCamera.aspect, mCamera.near,
+                     mCamera.far);
+    mDoMtx_lookAt(mCamera.viewMtx, &mCamera.lookat.eye, &mCamera.lookat.center,
+                  mCamera.bank);
+    MTXInverse(mCamera.viewMtx, mCamera.invViewMtx);
+    MTXCopy(mCamera.viewMtx, mCamera.viewMtxNoTrans);
+    mCamera.viewMtxNoTrans[0][3] = 0.0f;
+    mCamera.viewMtxNoTrans[1][3] = 0.0f;
+    mCamera.viewMtxNoTrans[2][3] = 0.0f;
+    MTXCopy(mCamera.viewMtx, j3dSys.mViewMtx);
+    mDoMtx_concatProjView(mCamera.projMtx, mCamera.viewMtx, mCamera.projViewMtx);
 }
 
 /* 80258BC8-80258C5C 253508 0094+00 1/1 0/0 0/0 .text            execute__10dScnName_cFv */

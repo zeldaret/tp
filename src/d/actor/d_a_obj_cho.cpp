@@ -317,8 +317,8 @@ void daObjCHO_c::Z_BufferChk() {
         dComIfGd_peekZ(vec2.x, vec2.y, &mBufferZ);
     }
 
-    f32 near = dComIfGd_getView()->mNear;
-    f32 far = dComIfGd_getView()->mFar;
+    f32 near = dComIfGd_getView()->near;
+    f32 far = dComIfGd_getView()->far;
     mDoLib_pos2camera(&vec1, &vec2);
     vec2.z += 50.0f;
     if (vec2.z > 0.0f) {

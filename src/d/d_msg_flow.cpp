@@ -165,11 +165,11 @@ int dMsgFlow_c::doFlow(fopAc_ac_c* param_0, fopAc_ac_c** param_1, int i_flow) {
     if (field_0x26 != 0 || field_0x27 != 0) {
         msg_class* msg = fopMsgM_SearchByID(mMsg);
         if (msg != NULL) {
-            if (msg->mMode != 0x12) {
+            if (msg->mode != 0x12) {
                 return 0;
             }
 
-            msg->mMode = 0x13;
+            msg->mode = 0x13;
             mMsg = -1;
         }
         field_0x27 = 0;
@@ -375,7 +375,7 @@ void dMsgFlow_c::setNodeIndex(u16 param_1, fopAc_ac_c** param_2) {
 
     if (param_1 == 0xffff) {
         if (msg != NULL) {
-            msg->mMode = 0x10;
+            msg->mode = 0x10;
         }
         dMsgObject_endFlowGroup();
         field_0x26 = 0x1;
@@ -400,7 +400,7 @@ void dMsgFlow_c::setNodeIndex(u16 param_1, fopAc_ac_c** param_2) {
                     field_0x3c = local_22[1] + 1;
                 }
                 if (msg != NULL) {
-                    msg->mMode = 0x10;
+                    msg->mode = 0x10;
                     dMsgObject_endFlowGroup();
                 }
                 field_0x27 = 1;
@@ -435,7 +435,7 @@ int dMsgFlow_c::setSelectMsg(mesg_flow_node* param_1, mesg_flow_node* param_2,
     
     if (mMsg != -1) {
         msg_class* iVar3 = fopMsgM_SearchByID(mMsg);
-        iVar3->mMode = 0xf;
+        iVar3->mode = 0xf;
         fopMsgM_messageSet(uVar2, uVar1);
     } else {
         if (dMeter2Info_getFloatingFlowID() == 0xffff) {
@@ -462,7 +462,7 @@ int dMsgFlow_c::setNormalMsg(mesg_flow_node* param_1, fopAc_ac_c* param_2) {
     
     if (mMsg != -1) {
         msg_class* iVar3 = fopMsgM_SearchByID(mMsg);
-        iVar3->mMode = 0xf;
+        iVar3->mode = 0xf;
         fopMsgM_messageSet(uVar2, 1000);
     } else {
         if (dMeter2Info_getFloatingFlowID() == 0xffff) {
@@ -517,10 +517,10 @@ int dMsgFlow_c::messageNodeProc(fopAc_ac_c* param_1, fopAc_ac_c** param_2) {
             if (mesgCamInfo != field_0x34) {
                 field_0x34 = mesgCamInfo;
             }
-            switch (msg->mMode) {
+            switch (msg->mode) {
             case 2:
                 field_0x41 = 1;
-                mNowMsgNo = msg->mMsgID;
+                mNowMsgNo = msg->msg_idx;
                 break;
             case 6:
                 field_0x40 = field_0x41;
@@ -537,7 +537,7 @@ int dMsgFlow_c::messageNodeProc(fopAc_ac_c* param_1, fopAc_ac_c** param_2) {
                     daPy_py_c::setMidnaFaceNum(mesgFaceAnimeAttrInfo);
                 }
                 field_0x41 = 0;
-                mNowMsgNo = msg->mMsgID;
+                mNowMsgNo = msg->msg_idx;
                 break;
             case 0xe:
             case 0x12:
@@ -758,7 +758,7 @@ int dMsgFlow_c::query004(mesg_flow_node_branch* flow_node, fopAc_ac_c* param_1, 
 /* 8024B2C0-8024B2F8 245C00 0038+00 2/1 1/1 1/1 .text
  * query005__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
 int dMsgFlow_c::query005(mesg_flow_node_branch*, fopAc_ac_c*, int) {
-    return mChoiceNo = fopMsgM_SearchByID(mMsg)->mSelectedChoiceIdx;
+    return mChoiceNo = fopMsgM_SearchByID(mMsg)->select_idx;
 }
 
 /* 8024B2F8-8024B32C 245C38 0034+00 1/0 0/0 0/0 .text
@@ -1028,7 +1028,7 @@ int dMsgFlow_c::query035(mesg_flow_node_branch* flow_node, fopAc_ac_c*, int) {
 /* 8024BC3C-8024BC80 24657C 0044+00 1/0 0/0 0/0 .text
  * query036__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
 int dMsgFlow_c::query036(mesg_flow_node_branch*, fopAc_ac_c*, int) {
-    int tmp = fopMsgM_SearchByID(mMsg)->mSelectedChoiceIdx;
+    int tmp = fopMsgM_SearchByID(mMsg)->select_idx;
 
     if (dMsgObject_getMsgObjectClass()->getSelectPushFlag() == 2) {
         tmp = 2;
@@ -1040,7 +1040,7 @@ int dMsgFlow_c::query036(mesg_flow_node_branch*, fopAc_ac_c*, int) {
 /* 8024BC80-8024BCC4 2465C0 0044+00 1/0 0/0 0/0 .text
  * query037__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
 int dMsgFlow_c::query037(mesg_flow_node_branch*, fopAc_ac_c*, int) {
-    int tmp = fopMsgM_SearchByID(mMsg)->mSelectedChoiceIdx;
+    int tmp = fopMsgM_SearchByID(mMsg)->select_idx;
 
     if (dMsgObject_getMsgObjectClass()->getSelectPushFlag() == 2) {
         tmp = 3;

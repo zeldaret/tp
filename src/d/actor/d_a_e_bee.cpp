@@ -629,8 +629,8 @@ static void bee_control(e_bee_class* i_this) {
             cXyz vec3;
             
             if (dComIfGp_checkPlayerStatus0(0, 0x200000)) {
-                vec3.x = bee->mPos.x - camera->mLookat.mEye.x;
-                vec3.z = bee->mPos.z - camera->mLookat.mEye.z;
+                vec3.x = bee->mPos.x - camera->lookat.eye.x;
+                vec3.z = bee->mPos.z - camera->lookat.eye.z;
                 if (JMAFastSqrt(vec3.x * vec3.x + vec3.z * vec3.z) > 2500.0f) {
                     bee->mNoDraw = true;
                 }

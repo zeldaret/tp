@@ -11,14 +11,13 @@
 #include "d/d_meter2_info.h"
 #include "d/d_msg_object.h"
 #include "f_op/f_op_scene_mng.h"
-#include "global.h"
 
 /* 8001F9B4-8001FA24 01A2F4 0070+00 0/0 3/3 0/0 .text            fopMsgM_setStageLayer__FPv */
-s32 fopMsgM_setStageLayer(void* param_0) {
+s32 fopMsgM_setStageLayer(void* i_process) {
     scene_class* scn = fopScnM_SearchByID(dStage_roomControl_c::getProcID());
 
     int id = fopScnM_LayerID(scn);
-    return fpcM_ChangeLayerID(param_0, id);
+    return fpcM_ChangeLayerID(i_process, id);
 }
 
 /* 8001FA24-8001FA44 01A364 0020+00 3/3 14/14 4/4 .text            fopMsgM_SearchByID__FUi */
@@ -28,7 +27,7 @@ msg_class* fopMsgM_SearchByID(fpc_ProcID i_id) {
 
 /* 8001FA44-8001FA4C 01A384 0008+00 0/0 2/2 0/0 .text            fopMsgM_GetAppend__FPv */
 fopMsg_prm_class* fopMsgM_GetAppend(void* i_msg) {
-    msg_class* msg = static_cast<msg_class*>(i_msg);
+    msg_class* msg = (msg_class*)i_msg;
     return (fopMsg_prm_class*)msg->base.append;
 }
 
@@ -39,35 +38,33 @@ void fopMsgM_Delete(void* i_this) {
 
 /* 8001FA6C-8001FB50 01A3AC 00E4+00 1/1 0/0 0/0 .text createAppend__FP10fopAc_ac_cP4cXyzPUlPUlUi
  */
-static fopMsg_prm_class* createAppend(fopAc_ac_c* i_actor, cXyz* i_pos, u32* i_msgID, u32* param_3,
+static fopMsg_prm_class* createAppend(fopAc_ac_c* i_talkActor, cXyz* i_pos, u32* i_msgIdx, u32* param_3,
                                       fpc_ProcID param_4) {
-    fopMsg_prm_class* params =
-        static_cast<fopMsg_prm_class*>(cMl::memalignB(-4, sizeof(fopMsg_prm_class)));
-
-    if (params == NULL) {
+    fopMsg_prm_class* append = (fopMsg_prm_class*)cMl::memalignB(-4, sizeof(fopMsg_prm_class));
+    if (append == NULL) {
         return NULL;
     }
 
-    params->mpActor = i_actor;
-    dMsgObject_setTalkActor(i_actor);
+    append->talk_actor = i_talkActor;
+    dMsgObject_setTalkActor(i_talkActor);
 
-    if (i_msgID != NULL) {
-        params->mMsgID = *i_msgID;
+    if (i_msgIdx != NULL) {
+        append->msg_idx = *i_msgIdx;
     }
 
     if (param_3 != NULL) {
-        params->field_0x14 = *param_3;
+        append->field_0x14 = *param_3;
     }
 
     if (i_pos != NULL) {
-        params->mPos = *i_pos;
+        append->pos = *i_pos;
     } else {
-        params->mPos = cXyz(0.0f, 0.0f, 0.0f);
+        append->pos = cXyz(0.0f, 0.0f, 0.0f);
     }
 
-    params->field_0x18 = param_4;
+    append->field_0x18 = param_4;
 
-    return params;
+    return append;
 }
 
 /* 8001FB50-8001FC4C 01A490 00FC+00 1/1 0/0 0/0 .text            createTimerAppend__FiUlUcUcffffUi
@@ -76,60 +73,56 @@ static fopMsg_prm_timer* createTimerAppend(int i_mode, u32 i_limitMs, u8 i_type,
                                            f32 param_4, f32 param_5, f32 param_6, f32 param_7,
                                            fpc_ProcID param_8) {
     fopMsg_prm_timer* appen = (fopMsg_prm_timer*)cMl::memalignB(-4, sizeof(fopMsg_prm_timer));
-
     if (appen == NULL) {
-        appen = NULL;
-    } else {
-        appen->mpActor = 0;
-        appen->mMsgID = 0;
-        appen->field_0x14 = 0;
-        appen->mPos = cXyz(0.0f, 0.0f, 0.0f);
-        appen->field_0x18 = param_8;
-        appen->timer_mode = i_mode;
-        appen->limit_ms = i_limitMs;
-        appen->type = i_type;
-        appen->field_0x25 = param_3;
-        appen->field_0x28 = param_4;
-        appen->field_0x2c = param_5;
-        appen->field_0x30 = param_6;
-        appen->field_0x34 = param_7;
+        return NULL;
     }
 
+    appen->talk_actor = NULL;
+    appen->msg_idx = 0;
+    appen->field_0x14 = 0;
+    appen->pos = cXyz(0.0f, 0.0f, 0.0f);
+    appen->field_0x18 = param_8;
+    appen->timer_mode = i_mode;
+    appen->limit_ms = i_limitMs;
+    appen->type = i_type;
+    appen->field_0x25 = param_3;
+    appen->field_0x28 = param_4;
+    appen->field_0x2c = param_5;
+    appen->field_0x30 = param_6;
+    appen->field_0x34 = param_7;
     return appen;
 }
 
 /* 8001FC4C-8001FCC0 01A58C 0074+00 0/0 1/1 0/0 .text
  * fopMsgM_create__FsP10fopAc_ac_cP4cXyzPUlPUlPFPv_i            */
-s32 fopMsgM_create(s16 param_0, fopAc_ac_c* param_1, cXyz* param_2, u32* param_3, u32* param_4,
+fpc_ProcID fopMsgM_create(s16 i_procName, fopAc_ac_c* i_talkActor, cXyz* i_pos, u32* i_msgIdx, u32* param_4,
                    fopMsgCreateFunc createFunc) {
-    fopMsg_prm_class* params = createAppend(param_1, param_2, param_3, param_4, -1);
-
-    if (params == NULL) {
-        return -1;
+    fopMsg_prm_class* append = createAppend(i_talkActor, i_pos, i_msgIdx, param_4, fpcM_ERROR_PROCESS_ID_e);
+    if (append == NULL) {
+        return fpcM_ERROR_PROCESS_ID_e;
     }
 
-    return fpcSCtRq_Request(fpcLy_CurrentLayer(), param_0, (stdCreateFunc)createFunc, NULL, params);
+    return fpcSCtRq_Request(fpcLy_CurrentLayer(), i_procName, (stdCreateFunc)createFunc, NULL, append);
 }
 
 /* 8001FCC0-8001FD34 01A600 0074+00 0/0 2/2 0/0 .text fop_Timer_create__FsUcUlUcUcffffPFPv_i */
-s32 fop_Timer_create(s16 i_procName, u8 i_mode, u32 i_limitMs, u8 i_type, u8 param_4, f32 param_5,
+fpc_ProcID fop_Timer_create(s16 i_procName, u8 i_mode, u32 i_limitMs, u8 i_type, u8 param_4, f32 param_5,
                      f32 param_6, f32 param_7, f32 param_8, fopMsgCreateFunc i_createFunc) {
-    fopMsg_prm_timer* timer_prm = createTimerAppend(i_mode, i_limitMs, i_type, param_4, param_5,
-                                                    param_6, param_7, param_8, -1);
-
-    if (timer_prm == NULL) {
-        return -1;
+    fopMsg_prm_timer* append = createTimerAppend(i_mode, i_limitMs, i_type, param_4, param_5,
+                                                    param_6, param_7, param_8, fpcM_ERROR_PROCESS_ID_e);
+    if (append == NULL) {
+        return fpcM_ERROR_PROCESS_ID_e;
     }
 
     return fpcSCtRq_Request(fpcLy_CurrentLayer(), i_procName, (stdCreateFunc)i_createFunc, NULL,
-                            timer_prm);
+                            append);
 }
 
 /* 804505C8-804505D0 000048 0004+04 4/4 0/0 0/0 .sdata           i_msgID */
-static u32 i_msgID = 0xFFFFFFFF;
+static fpc_ProcID i_msgID = fpcM_ERROR_PROCESS_ID_e;
 
 /* 8001FD34-8001FE84 01A674 0150+00 0/0 2/2 1/1 .text fopMsgM_messageSet__FUlP10fopAc_ac_cUl */
-int fopMsgM_messageSet(u32 i_msgIdx, fopAc_ac_c* i_actorP, u32 param_2) {
+fpc_ProcID fopMsgM_messageSet(u32 i_msgIdx, fopAc_ac_c* i_talkActor, u32 param_2) {
     if (dComIfGp_isHeapLockFlag() == 8) {
         dMeter2Info_getMeterClass()->emphasisButtonDelete();
     }
@@ -138,40 +131,40 @@ int fopMsgM_messageSet(u32 i_msgIdx, fopAc_ac_c* i_actorP, u32 param_2) {
         dComIfGp_isHeapLockFlag() != 2 && dComIfGp_isHeapLockFlag() != 3 &&
         dComIfGp_isHeapLockFlag() != 1)
     {
-        return -1;
+        return fpcM_ERROR_PROCESS_ID_e;
 
-    } else {
-        dComIfGp_clearMesgAnimeTagInfo();
-        dComIfGp_clearMesgCameraTagInfo();
-
-        cXyz pos;
-        if (i_actorP) {
-            pos = i_actorP->eyePos;
-        } else {
-            pos.set(0.0f, 0.0f, 0.0f);
-        }
-
-        if (g_MsgObject_HIO_c.mMsgDebug == true) {
-            i_msgIdx = g_MsgObject_HIO_c.mMsgIndex;
-        }
-
-        dMsgObject_c* msg = (dMsgObject_c*)fopMsgM_SearchByID(i_msgID);
-
-        if (msg && msg->mMode == 1) {
-            msg->mPos.set(pos);
-            msg->mMsgID = i_msgIdx;
-            msg->field_0xf0 = param_2;
-            msg->mpActor = i_actorP;
-            msg->setMessageIndex(i_msgIdx, param_2, false);
-            return i_msgID;
-        } else {
-            return 0;
-        }
     }
+
+    dComIfGp_clearMesgAnimeTagInfo();
+    dComIfGp_clearMesgCameraTagInfo();
+
+    cXyz pos;
+    if (i_talkActor != NULL) {
+        pos = i_talkActor->eyePos;
+    } else {
+        pos.set(0.0f, 0.0f, 0.0f);
+    }
+
+    if (g_MsgObject_HIO_c.mMsgDebug == true) {
+        i_msgIdx = g_MsgObject_HIO_c.mMsgIndex;
+    }
+
+    dMsgObject_c* msg = (dMsgObject_c*)fopMsgM_SearchByID(i_msgID);
+
+    if (msg != NULL && msg->mode == 1) {
+        msg->pos.set(pos);
+        msg->msg_idx = i_msgIdx;
+        msg->field_0xf0 = param_2;
+        msg->talk_actor = i_talkActor;
+        msg->setMessageIndex(i_msgIdx, param_2, false);
+        return i_msgID;
+    }
+
+    return 0;
 }
 
 /* 8001FE84-8001FFC4 01A7C4 0140+00 0/0 6/6 4/4 .text            fopMsgM_messageSet__FUlUl */
-int fopMsgM_messageSet(u32 msgIdx, u32 param_1) {
+fpc_ProcID fopMsgM_messageSet(u32 i_msgIdx, u32 param_1) {
     if (dComIfGp_isHeapLockFlag() == 8) {
         dMeter2Info_getMeterClass()->emphasisButtonDelete();
     }
@@ -180,40 +173,38 @@ int fopMsgM_messageSet(u32 msgIdx, u32 param_1) {
         dComIfGp_isHeapLockFlag() != 2 && dComIfGp_isHeapLockFlag() != 3 &&
         dComIfGp_isHeapLockFlag() != 1)
     {
-        return -1;
+        return fpcM_ERROR_PROCESS_ID_e;
 
-    } else {
-        cXyz pos;
-        pos.x = pos.y = pos.z = 0.0f;
-
-        dMsgObject_c* msg = (dMsgObject_c*)fopMsgM_SearchByID(i_msgID);
-
-        if (msg) {
-            if (msg->mMode == 1) {
-                msg->mPos.set(pos);
-                msg->mMsgID = msgIdx;
-                msg->field_0xf0 = param_1;
-                msg->mpActor = NULL;
-                msg->setTalkPartner(NULL);
-                msg->setMessageIndex(msgIdx, param_1, false);
-                return i_msgID;
-            }
-
-            if (msg->mMode == 15) {
-                msg->mPos.set(pos);
-                msg->mMsgID = msgIdx;
-                msg->field_0xf0 = param_1;
-                msg->mpActor = NULL;
-                return i_msgID;
-            }
-        }
-
-        return 0;
     }
+
+    cXyz pos;
+    pos.x = pos.y = pos.z = 0.0f;
+
+    dMsgObject_c* msg = (dMsgObject_c*)fopMsgM_SearchByID(i_msgID);
+
+    if (msg != NULL) {
+        if (msg->mode == 1) {
+            msg->pos.set(pos);
+            msg->msg_idx = i_msgIdx;
+            msg->field_0xf0 = param_1;
+            msg->talk_actor = NULL;
+            msg->setTalkPartner(NULL);
+            msg->setMessageIndex(i_msgIdx, param_1, false);
+            return i_msgID;
+        } else if (msg->mode == 15) {
+            msg->pos.set(pos);
+            msg->msg_idx = i_msgIdx;
+            msg->field_0xf0 = param_1;
+            msg->talk_actor = NULL;
+            return i_msgID;
+        }
+    }
+
+    return 0;
 }
 
 /* 8001FFC4-800200C0 01A904 00FC+00 0/0 1/1 13/13 .text            fopMsgM_messageSetDemo__FUl */
-int fopMsgM_messageSetDemo(u32 param_0) {
+fpc_ProcID fopMsgM_messageSetDemo(u32 i_msgidx) {
     dMsgObject_endFlowGroup();
     if (dComIfGp_isHeapLockFlag() == 8) {
         dMeter2Info_getMeterClass()->emphasisButtonDelete();
@@ -223,25 +214,25 @@ int fopMsgM_messageSetDemo(u32 param_0) {
         dComIfGp_isHeapLockFlag() != 2 && dComIfGp_isHeapLockFlag() != 3 &&
         dComIfGp_isHeapLockFlag() != 1)
     {
-        return -1;
+        return fpcM_ERROR_PROCESS_ID_e;
 
-    } else {
-        cXyz pos;
-        pos.x = pos.y = pos.z = 0.0f;
-
-        dMsgObject_c* msg = (dMsgObject_c*)fopMsgM_SearchByID(i_msgID);
-
-        if (msg && msg->mMode == 1) {
-            msg->mPos.set(pos);
-            msg->mMsgID = param_0;
-            msg->field_0xf0 = 1000;
-            msg->mpActor = NULL;
-            msg->setMessageIndexDemo(param_0, false);
-            return i_msgID;
-        } else {
-            return 0;
-        }
     }
+
+    cXyz pos;
+    pos.x = pos.y = pos.z = 0.0f;
+
+    dMsgObject_c* msg = (dMsgObject_c*)fopMsgM_SearchByID(i_msgID);
+
+    if (msg != NULL && msg->mode == 1) {
+        msg->pos.set(pos);
+        msg->msg_idx = i_msgidx;
+        msg->field_0xf0 = 1000;
+        msg->talk_actor = NULL;
+        msg->setMessageIndexDemo(i_msgidx, false);
+        return i_msgID;
+    }
+
+    return 0;
 }
 
 /* 800200C0-80020100 01AA00 0040+00 0/0 7/7 1/1 .text            fopMsgM_messageGet__FPcUl */
@@ -256,8 +247,8 @@ void fopMsgM_setMessageID(fpc_ProcID msg_id) {
 }
 
 /* 80020108-80020158 01AA48 0050+00 0/0 2/2 0/0 .text            fopMsgM_Create__FsPFPv_iPv */
-u32 fopMsgM_Create(s16 i_procName, FastCreateReqFunc i_createFunc, void* i_process) {
-    return fpcM_Create(i_procName, i_createFunc, i_process);
+fpc_ProcID fopMsgM_Create(s16 i_procName, FastCreateReqFunc i_createFunc, void* i_append) {
+    return fpcM_Create(i_procName, i_createFunc, i_append);
 }
 
 /* 80020158-80020160 -00001 0008+00 0/0 0/0 0/0 .text            setAlpha__7J2DPaneFUc */
@@ -270,56 +261,48 @@ f32 dummy() {
 }
 
 /* 80020160-800202CC 01AAA0 016C+00 1/0 4/4 2/2 .text            fopMsgM_valueIncrease__FiiUc */
-// NONMATCHING regalloc
-f32 fopMsgM_valueIncrease(int param_0, int param_1, u8 param_2) {
+f32 fopMsgM_valueIncrease(int param_0, int param_1, u8 i_type) {
     if (param_0 <= 0) {
         return 1.0f;
-    } else {
-        if (param_1 < 0) {
-            param_1 = 0;
-        } else if (param_1 > param_0) {
-            param_1 = param_0;
-        }
-
-        f32 ret;
-        f32 tmp1 = (f32)param_1 / param_0;
-
-        switch (param_2) {
-        case 0: {
-            ret = tmp1 * tmp1;
-            break;
-        }
-        case 1: {
-            ret = JMAFastSqrt(tmp1);
-            break;
-        }
-        case 2:
-        default: {
-            ret = tmp1;
-            break;
-        }
-        case 3: {
-            ret = tmp1 * ((2.0f * tmp1) - 1.0f) - 1.0f;
-            break;
-        }
-        case 4: {
-            f32 tmp = cM_ssin(0.5f * ((f32)0x8000 * tmp1));
-            ret = tmp * tmp;
-            break;
-        }
-        case 5: {
-            f32 tmp = cM_ssin(0.5f * ((f32)0xFFFF * tmp1));
-            ret = tmp * tmp;
-            break;
-        }
-        case 6: {
-            ret = cM_ssin((f32)0x8000 * tmp1);
-            break;
-        }
-        }
-
-        return ret;
     }
+
+    if (param_1 < 0) {
+        param_1 = 0;
+    } else if (param_1 > param_0) {
+        param_1 = param_0;
+    }
+
+    f32 var_f31 = (f32)param_1 / param_0;
+    f32 var_f30;
+
+    switch (i_type) {
+    case 0:
+        var_f30 = var_f31 * var_f31;
+        break;
+    case 1:
+        var_f30 = JMAFastSqrt(var_f31);
+        break;
+    case 2:
+    default:
+        var_f30 = var_f31;
+        break;
+    case 3:
+        var_f30 = (2.0f * ((2.0f * var_f31) - 1.0f)) - 1.0f;
+        break;
+    case 4:
+        var_f31 = cM_ssin(0.5f * ((f32)0x8000 * var_f31));
+        var_f30 = var_f31 * var_f31;
+        break;
+    case 5:
+        var_f31 = cM_ssin(0.5f * ((f32)0xFFFF * var_f31));
+        var_f30 = var_f31 * var_f31;
+        break;
+    case 6:
+        var_f30 = cM_ssin((f32)0x8000 * var_f31);
+        break;
+    }
+
+    return var_f30;
 }
 
 // Here to generate J2DPicture virtual inlines

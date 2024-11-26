@@ -212,8 +212,8 @@ void daAlink_c::preKandelaarDraw() {
         field_0x32c8 = 0;
     }
 
-    f32 near = dComIfGd_getView()->mNear;
-    f32 far = dComIfGd_getView()->mFar;
+    f32 near = dComIfGd_getView()->near;
+    f32 far = dComIfGd_getView()->far;
 
     mDoLib_pos2camera(&mKandelaarFlamePos, &proj);
     proj.z += 30.0f;

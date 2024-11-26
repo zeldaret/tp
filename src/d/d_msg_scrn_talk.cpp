@@ -624,10 +624,10 @@ void dMsgScrnTalk_c::fukiPosCalc(u8 param_1) {
         cXyz cStack_7c;
         f32 f3y;
         mDoLib_project(&player->eyePos, &cStack_7c);
-        if (msgActor->mPos == cXyz(0.0f, 0.0f, 0.0f)) {
+        if (msgActor->pos == cXyz(0.0f, 0.0f, 0.0f)) {
             f3y = cStack_7c.y;
         } else {
-            mDoLib_project(&msgActor->mPos, &local_70);
+            mDoLib_project(&msgActor->pos, &local_70);
             if (local_70.x >= 0.0f && local_70.x <= 608.0f && local_70.y >= 0.0f &&
                 local_70.y <= 448.0f)
             {

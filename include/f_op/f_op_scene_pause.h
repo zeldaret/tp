@@ -3,7 +3,7 @@
 
 class scene_class;
 
-int fopScnPause_Enable(scene_class* pScene);
-int fopScnPause_Disable(scene_class* pScene);
+int fopScnPause_Enable(scene_class* i_scene);
+int fopScnPause_Disable(scene_class* i_scene);
 
 #endif

@@ -1547,7 +1547,7 @@ static void dStage_actorCreate(stage_actor_data_class* i_actorData, fopAcM_prm_c
     if (actorInf == NULL) {
         JKRHeap::free(i_actorPrm, NULL);
     } else {
-        i_actorPrm->mSubtype = actorInf->mSubtype;
+        i_actorPrm->subtype = actorInf->mSubtype;
         s16 actor_name = actorInf->mProcName;
 
         if (actor_name == PROC_SUSPEND) {
@@ -1604,13 +1604,13 @@ static int dStage_playerInit(dStage_dt_c* stageDt, void* i_data, int num, void* 
     int point = dComIfGp_getStartStagePoint();
     u32 roomParam = dComIfGs_getRestartRoomParam();
     if (point == -2 || point == -3) {
-        appen->mParameter = dComIfGs_getTurnRestartParam();
-        appen->mPos = dComIfGs_getTurnRestartPos();
-        appen->mAngle.set(0, dComIfGs_getTurnRestartAngleY(), -0x100);
+        appen->parameters = dComIfGs_getTurnRestartParam();
+        appen->position = dComIfGs_getTurnRestartPos();
+        appen->angle.set(0, dComIfGs_getTurnRestartAngleY(), -0x100);
     } else if (point == -1) {
-        appen->mParameter = roomParam;
-        appen->mPos = dComIfGs_getRestartRoomPos();
-        appen->mAngle.set(0, dComIfGs_getRestartRoomAngleY(), -0x100);
+        appen->parameters = roomParam;
+        appen->position = dComIfGs_getRestartRoomPos();
+        appen->angle.set(0, dComIfGs_getRestartRoomAngleY(), -0x100);
     } else {
         int unk;
         if (point == -4) {
@@ -1626,26 +1626,26 @@ static int dStage_playerInit(dStage_dt_c* stageDt, void* i_data, int num, void* 
             player_data++;
         }
 
-        appen->mParameter = player_data->mParameter;
-        appen->mPos = player_data->mSpawnPos;
-        appen->mAngle = player_data->mAngle;
-        appen->mEnemyNo = player_data->mEnemyNo;
+        appen->parameters = player_data->mParameter;
+        appen->position = player_data->mSpawnPos;
+        appen->angle = player_data->mAngle;
+        appen->setId = player_data->mEnemyNo;
 
         if (point == -4) {
-            appen->mParameter = dComIfGs_getTurnRestartParam();
+            appen->parameters = dComIfGs_getTurnRestartParam();
         } else if (roomParam != 0) {
-            appen->mParameter = (roomParam & 0xFFFFFFC0) | (dComIfGp_getStartStageRoomNo() & 0x3F);
+            appen->parameters = (roomParam & 0xFFFFFFC0) | (dComIfGp_getStartStageRoomNo() & 0x3F);
         } else if (roomParam == 0) {
-            appen->mParameter =
-                (appen->mParameter & 0xFFFFFFC0) | (dComIfGp_getStartStageRoomNo() & 0x3F);
+            appen->parameters =
+                (appen->parameters & 0xFFFFFFC0) | (dComIfGp_getStartStageRoomNo() & 0x3F);
         }
     }
 
     dComIfGs_setRestartRoomParam(0);
-    appen->mEnemyNo = 0xFFFF;
-    appen->mRoomNo = -1;
+    appen->setId = 0xFFFF;
+    appen->room_no = -1;
 
-    dComIfGp_getStartStage()->set(dComIfGp_getStartStageName(), appen->mParameter & 0x3F,
+    dComIfGp_getStartStage()->set(dComIfGp_getStartStageName(), appen->parameters & 0x3F,
                                   dComIfGp_getStartStagePoint(), dComIfGp_getStartStageLayer());
     dStage_actorCreate(player_data, appen);
 
@@ -1885,11 +1885,11 @@ static int dStage_actorCommonLayerInit(dStage_dt_c* stageDt, void* i_data, int e
                 fopAcM_prm_class* appen = fopAcM_CreateAppend();
 
                 if (appen != NULL) {
-                    appen->mParameter = actor_data->mParameter;
-                    appen->mPos = actor_data->mSpawnPos;
-                    appen->mAngle = actor_data->mAngle;
-                    appen->mEnemyNo = actor_data->mEnemyNo;
-                    appen->mRoomNo = stageDt->getRoomNo();
+                    appen->parameters = actor_data->mParameter;
+                    appen->position = actor_data->mSpawnPos;
+                    appen->angle = actor_data->mAngle;
+                    appen->setId = actor_data->mEnemyNo;
+                    appen->room_no = stageDt->getRoomNo();
                     dStage_actorCreate(actor_data, appen);
                 }
             }
@@ -1912,14 +1912,14 @@ static int dStage_tgscCommonLayerInit(dStage_dt_c* stageDt, void* i_data, int en
             fopAcM_prm_class* appen = fopAcM_CreateAppend();
 
             if (appen != NULL) {
-                appen->mParameter = actor_data->mParameter;
-                appen->mPos = actor_data->mSpawnPos;
-                appen->mAngle = actor_data->mAngle;
-                appen->mEnemyNo = actor_data->mEnemyNo;
-                appen->mRoomNo = stageDt->getRoomNo();
-                appen->mScale[0] = actor_data->field_0x20[0];
-                appen->mScale[1] = actor_data->field_0x20[1];
-                appen->mScale[2] = actor_data->field_0x22;
+                appen->parameters = actor_data->mParameter;
+                appen->position = actor_data->mSpawnPos;
+                appen->angle = actor_data->mAngle;
+                appen->setId = actor_data->mEnemyNo;
+                appen->room_no = stageDt->getRoomNo();
+                appen->scale[0] = actor_data->field_0x20[0];
+                appen->scale[1] = actor_data->field_0x20[1];
+                appen->scale[2] = actor_data->field_0x22;
                 dStage_actorCreate(actor_data, appen);
             }
         }
@@ -1940,11 +1940,11 @@ static int dStage_actorInit(dStage_dt_c* stageDt, void* i_data, int entryNum, vo
                 fopAcM_prm_class* appen = fopAcM_CreateAppend();
 
                 if (appen != NULL) {
-                    appen->mParameter = actor_data->mParameter;
-                    appen->mPos = actor_data->mSpawnPos;
-                    appen->mAngle = actor_data->mAngle;
-                    appen->mEnemyNo = actor_data->mEnemyNo;
-                    appen->mRoomNo = stageDt->getRoomNo();
+                    appen->parameters = actor_data->mParameter;
+                    appen->position = actor_data->mSpawnPos;
+                    appen->angle = actor_data->mAngle;
+                    appen->setId = actor_data->mEnemyNo;
+                    appen->room_no = stageDt->getRoomNo();
                     dStage_actorCreate(actor_data, appen);
                 }
             }
@@ -1967,11 +1967,11 @@ static int dStage_actorInit_always(dStage_dt_c* stageDt, void* i_data, int entry
             fopAcM_prm_class* appen = fopAcM_CreateAppend();
 
             if (appen != NULL) {
-                appen->mParameter = actor_data->mParameter;
-                appen->mPos = actor_data->mSpawnPos;
-                appen->mAngle = actor_data->mAngle;
-                appen->mEnemyNo = actor_data->mEnemyNo;
-                appen->mRoomNo = stageDt->getRoomNo();
+                appen->parameters = actor_data->mParameter;
+                appen->position = actor_data->mSpawnPos;
+                appen->angle = actor_data->mAngle;
+                appen->setId = actor_data->mEnemyNo;
+                appen->room_no = stageDt->getRoomNo();
                 dStage_actorCreate(actor_data, appen);
             }
         }
@@ -1991,14 +1991,14 @@ static int dStage_tgscInfoInit(dStage_dt_c* stageDt, void* i_data, int entryNum,
             fopAcM_prm_class* appen = fopAcM_CreateAppend();
 
             if (appen != NULL) {
-                appen->mParameter = actor_data->mParameter;
-                appen->mPos = actor_data->mSpawnPos;
-                appen->mAngle = actor_data->mAngle;
-                appen->mEnemyNo = actor_data->mEnemyNo;
-                appen->mRoomNo = stageDt->getRoomNo();
-                appen->mScale[0] = actor_data->field_0x20[0];
-                appen->mScale[1] = actor_data->field_0x20[1];
-                appen->mScale[2] = actor_data->field_0x22;
+                appen->parameters = actor_data->mParameter;
+                appen->position = actor_data->mSpawnPos;
+                appen->angle = actor_data->mAngle;
+                appen->setId = actor_data->mEnemyNo;
+                appen->room_no = stageDt->getRoomNo();
+                appen->scale[0] = actor_data->field_0x20[0];
+                appen->scale[1] = actor_data->field_0x20[1];
+                appen->scale[2] = actor_data->field_0x22;
                 dStage_actorCreate(actor_data, appen);
             }
         }
@@ -2017,14 +2017,14 @@ static int dStage_doorInfoInit(dStage_dt_c* stageDt, void* i_data, int entryNum,
         fopAcM_prm_class* appen = fopAcM_CreateAppend();
 
         if (appen != NULL) {
-            appen->mParameter = actor_data->mParameter;
-            appen->mPos = actor_data->mSpawnPos;
-            appen->mAngle = actor_data->mAngle;
-            appen->mEnemyNo = actor_data->mEnemyNo;
-            appen->mRoomNo = stageDt->getRoomNo();
-            appen->mScale[0] = actor_data->field_0x20[0];
-            appen->mScale[1] = actor_data->field_0x20[1];
-            appen->mScale[2] = actor_data->field_0x22;
+            appen->parameters = actor_data->mParameter;
+            appen->position = actor_data->mSpawnPos;
+            appen->angle = actor_data->mAngle;
+            appen->setId = actor_data->mEnemyNo;
+            appen->room_no = stageDt->getRoomNo();
+            appen->scale[0] = actor_data->field_0x20[0];
+            appen->scale[1] = actor_data->field_0x20[1];
+            appen->scale[2] = actor_data->field_0x22;
             dStage_actorCreate(actor_data, appen);
         }
         actor_data++;

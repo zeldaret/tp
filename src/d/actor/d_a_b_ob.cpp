@@ -635,7 +635,7 @@ static int daB_OB_Draw(b_ob_class* i_this) {
 
         for (int i = 0; i < 19; i++) {
             if (!i_this->mBodyParts[i].mHide) {
-                if ((i_this->mBodyParts[i].mPos - camera->mLookat.mEye).abs() >
+                if ((i_this->mBodyParts[i].mPos - camera->lookat.eye).abs() >
                     i_this->mBodyParts[i].mSize * (JREG_F(17) + 500.0f))
                 {
                     g_env_light.setLightTevColorType_MAJI(i_this->mBodyParts[i].mpMorf->getModel(),
@@ -2315,7 +2315,7 @@ static void fish_move(b_ob_class* i_this) {
     a_this->attention_info.position.y += 50.0f;
 
     if (i_this->mDemoAction == 21 || i_this->mDemoAction == 22) {
-        sp84 = dComIfGp_getCamera(0)->mLookat.mEye - sp90;
+        sp84 = dComIfGp_getCamera(0)->lookat.eye - sp90;
     } else {
         sp84 = player->eyePos - sp90;
     }
@@ -2399,8 +2399,8 @@ static void demo_camera(b_ob_class* i_this) {
         daPy_getPlayerActorClass()->changeOriginalDemo();
         daPy_getPlayerActorClass()->changeDemoMode(46, 0, 0, 0);
 
-        i_this->mDemoCamEye = camera0->mLookat.mEye;
-        i_this->mDemoCamCenter = camera0->mLookat.mCenter;
+        i_this->mDemoCamEye = camera0->lookat.eye;
+        i_this->mDemoCamCenter = camera0->lookat.center;
         sp58 = i_this->mDemoCamEye - tentacle->current.pos;
 
         i_this->field_0x5ce0 = cM_atan2s(sp58.x, sp58.z);

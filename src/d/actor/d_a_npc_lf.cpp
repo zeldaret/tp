@@ -217,8 +217,8 @@ static int daNPC_LF_Execute(npc_lf_class* i_this) {
     
     for (int i = 0; i < i_this->mIter; i++, fish++) {
         cXyz pos;
-        pos.x = fish->field_0x04.x - camera->mLookat.mEye.x;
-        pos.z = fish->field_0x04.z - camera->mLookat.mEye.z;
+        pos.x = fish->field_0x04.x - camera->lookat.eye.x;
+        pos.z = fish->field_0x04.z - camera->lookat.eye.z;
 
         f32 res = JMAFastSqrt((pos.x * pos.x) + (pos.z * pos.z));
         if (res < 1500.0f) {

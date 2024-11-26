@@ -1008,7 +1008,7 @@ bool daTagTWGate_c::talkProc(int* param_1, int param_2, fopAc_ac_c** param_3) {
             rv = true;
         } else {
             if (mMsgFlow.getMsg() != NULL &&
-                (mMsgFlow.getMsg()->mMode == 2 || mMsgFlow.getMsg()->mMode == 6) && param_1 != NULL)
+                (mMsgFlow.getMsg()->mode == 2 || mMsgFlow.getMsg()->mode == 6) && param_1 != NULL)
             {
                 for (int i = 0; param_1[i] > 0; i++) {
                     if (param_1[i] == mMsgFlow.getMsgNo()) {

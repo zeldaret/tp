@@ -102,7 +102,7 @@ bool daTagWaterFall_c::checkHitWaterFall(cXyz objPos) {
  * checkHitWaterFallCamera__16daTagWaterFall_cFv                */
 bool daTagWaterFall_c::checkHitWaterFallCamera() {
     const camera_class* camera = dComIfGp_getCamera(0);
-    return checkHitWaterFall(camera->mLookat.mEye);
+    return checkHitWaterFall(camera->lookat.eye);
 }
 
 /* ############################################################################################## */

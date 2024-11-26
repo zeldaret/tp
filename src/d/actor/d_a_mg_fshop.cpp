@@ -1295,8 +1295,8 @@ static int daFshop_Draw(fshop_class* param_0) {
     camera_class* camera = dComIfGp_getCamera(0);
     
     for (int iVar12 = 0; iVar12 < 48; iVar12++) {
-        f32 fVar4 = param_0->mLure[iVar12].field_0x00.x - camera->mLookat.mEye.x;
-        f32 fVar5 = param_0->mLure[iVar12].field_0x00.z - camera->mLookat.mEye.z;
+        f32 fVar4 = param_0->mLure[iVar12].field_0x00.x - camera->lookat.eye.x;
+        f32 fVar5 = param_0->mLure[iVar12].field_0x00.z - camera->lookat.eye.z;
         if (fVar4 * fVar4 + fVar5 * fVar5 > 1200.0f) {
             g_env_light.setLightTevColorType_MAJI(param_0->mLure[iVar12].field_0x14, &param_0->tevStr);
             mDoExt_modelUpdateDL(param_0->mLure[iVar12].field_0x14);
@@ -1946,7 +1946,7 @@ static int daFshop_Execute(fshop_class* param_1) {
         mDoMtx_stack_c::scaleM(param_1->scale.x, param_1->scale.x,
                                param_1->scale.x);
         mDoMtx_stack_c::transM(0.0f, 190.0f * param_1->scale.x, 0.0f);
-        local_cc = pmVar11->mLookat.mEye - param_1->current.pos;
+        local_cc = pmVar11->lookat.eye - param_1->current.pos;
         mDoMtx_stack_c::YrotM(cM_atan2s(local_cc.x, local_cc.z));
         mDoMtx_stack_c::XrotM(-cM_atan2s(local_cc.y, JMAFastSqrt((local_cc.x * local_cc.x + local_cc.z * local_cc.z))));
         param_1->field_0x4070->setBaseTRMtx(mDoMtx_stack_c::get());

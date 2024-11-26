@@ -17,7 +17,7 @@ int dkWpillar_c::create() {
 
     int roomNo;
     u8 envrOverride;
-    if (fopAcM_gc_c::gndCheck(&mPos)) {
+    if (fopAcM_gc_c::gndCheck(&pos)) {
         roomNo = fopAcM_gc_c::getRoomId();
         envrOverride = fopAcM_gc_c::getPolyColor();
     } else {
@@ -26,16 +26,16 @@ int dkWpillar_c::create() {
     }
 
     dKy_tevstr_init(&mTevstr, roomNo, envrOverride);
-    g_env_light.settingTevStruct(0x10, &mPos, &mTevstr);
+    g_env_light.settingTevStruct(0x10, &pos, &mTevstr);
 
-    dComIfGp_particle_set(0x1BD, &mPos, &mTevstr, NULL, &mScale, 255, NULL, roomNo, NULL, NULL,
+    dComIfGp_particle_set(0x1BD, &pos, &mTevstr, NULL, &scale, 255, NULL, roomNo, NULL, NULL,
                           NULL);
-    if ((int)mParam != 3) {
-        dComIfGp_particle_set(0x1BE, &mPos, &mTevstr, NULL, &mScale, 255, NULL, roomNo, NULL, NULL,
+    if ((int)parameters != 3) {
+        dComIfGp_particle_set(0x1BE, &pos, &mTevstr, NULL, &scale, 255, NULL, roomNo, NULL, NULL,
                               NULL);
     }
 
-    if ((int)mParam == 1) {
+    if ((int)parameters == 1) {
         return cPhs_ERROR_e;
     }
 
@@ -69,12 +69,12 @@ int dkWpillar_c::create() {
         return cPhs_ERROR_e;
     }
 
-    if ((int)mParam == 2) {
-        mScale.set(0.5f, 0.25f, 0.5f);
+    if ((int)parameters == 2) {
+        scale.set(0.5f, 0.25f, 0.5f);
     }
 
-    mpModel->setBaseScale(mScale);
-    mDoMtx_stack_c::transS(mPos.x, mPos.y, mPos.z);
+    mpModel->setBaseScale(scale);
+    mDoMtx_stack_c::transS(pos.x, pos.y, pos.z);
     mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     return cPhs_COMPLEATE_e;
 }
@@ -107,9 +107,9 @@ int dkWpillar_c::execute() {
         fopKyM_Delete(this);
     } else {
         f32 sp8;
-        if (fopAcM_getWaterY(&mPos, &sp8) != 0) {
+        if (fopAcM_getWaterY(&pos, &sp8) != 0) {
             mpModel->getBaseTRMtx()[1][3] = sp8;
-            mPos.y = sp8;
+            pos.y = sp8;
         }
     }
 
@@ -124,7 +124,7 @@ static int dkWpillar_Execute(dkWpillar_c* i_this) {
 
 /* 802620C8-802621AC 25CA08 00E4+00 1/1 0/0 0/0 .text            draw__11dkWpillar_cFv */
 int dkWpillar_c::draw() {
-    g_env_light.settingTevStruct(0x10, &mPos, &mTevstr);
+    g_env_light.settingTevStruct(0x10, &pos, &mTevstr);
     g_env_light.setLightTevColorType_MAJI(mpModel, &mTevstr);
 
     dComIfGd_setListIndScreen();
