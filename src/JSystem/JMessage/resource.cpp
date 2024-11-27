@@ -4,8 +4,9 @@
 //
 
 #include "JSystem/JMessage/resource.h"
-#include "string.h"
+#include <algorithm.h>
 #include "dol2asm.h"
+#include "string.h"
 
 //
 // Types:
@@ -64,12 +65,81 @@ extern "C" f32 ga4cSignature__Q28JMessage4data[1 + 1 /* padding */];
 
 /* 802A8CDC-802A8EC0 2A361C 01E4+00 0/0 1/1 0/0 .text
  * toMessageIndex_messageID__Q28JMessage9TResourceCFUlUlPb      */
-u16 JMessage::TResource::toMessageIndex_messageID(u32 param_0, u32 param_1,
-                                                       bool* param_2) const {
-    // NONMATCHING
+// NONMATCHING - instruction order
+u16 JMessage::TResource::toMessageIndex_messageID(u32 lowerHalf, u32 upperHalf,
+                                                  bool* isMsgValid) const {
+    if (!mMessageID.get()) {
+        return 0xFFFF;
+    }
+
+    u32 val = -1;
+    bool check = true;
+
+    switch (mMessageID.get_formSupplement()) {
+    case 0:
+        if (upperHalf) {
+            check = false;
+        }
+        val = lowerHalf;
+        break;
+    case 1:
+        if (lowerHalf > 0xFFFFFF || upperHalf > 0xFF) {
+            check = false;
+        }
+        val = ((lowerHalf << 8) & 0xFFFFFF00) | (upperHalf & 0xFF);
+        break;
+    case 2:
+        if (lowerHalf > 0xFFFF || upperHalf > 0xFFFF) {
+            check = false;
+        }
+        val = ((lowerHalf << 16) & 0xFFFF0000) | (upperHalf & 0xFFFF);
+        break;
+    case 3:
+        if (lowerHalf > 0xFF || upperHalf > 0xFFFFFF) {
+            check = false;
+        }
+        val = ((lowerHalf << 24) & 0xFF000000) | (upperHalf & 0x00FFFFFF);
+        break;
+    case 4:
+        if (lowerHalf) {
+            check = false;
+        }
+        val = upperHalf;
+        break;
+    default:
+        return 0xFFFF;
+    }
+
+    if (isMsgValid) {
+        *isMsgValid = check;
+    }
+
+    if (val == 0xFFFFFFFF) {
+        return 0xFFFF;
+    }
+
+    const u32* first = (u32*)mMessageID.getContent();
+    const u32* last = (u32*)(first + mMessageID.get_number());
+
+    const u32* lower;
+    if (mMessageID.get_isOrdered()) {
+        lower = std::lower_bound<const u32*, u32>(first, last, val);
+
+        if (lower == last || *lower != val) {
+            return 0xFFFF;
+        }
+    } else {
+        lower = first;
+        while (lower != last && *lower != val) {
+            lower++;
+        }
+        if (lower == last) {
+            return 0xFFFF;
+        }
+    }
+    return (lower - first);
 }
 
-/* ############################################################################################## */
 /* 803C9C80-803C9C94 -00001 0014+00 1/1 0/0 0/0 .data
  * sapfnParseCharacter___Q28JMessage18TResourceContainer        */
 JMessage::locale::parseCharacter_function JMessage::TResourceContainer::sapfnParseCharacter_[5] = {
@@ -115,15 +185,19 @@ JMessage::TResourceContainer::TCResource::TCResource() {
 /* 802A8EF8-802A8F6C 2A3838 0074+00 1/0 2/2 0/0 .text
  * __dt__Q38JMessage18TResourceContainer10TCResourceFv          */
 // need to fix TLinkList_factory vtable stuff
-// JMessage::TResourceContainer::TCResource::~TCResource() {
-extern "C" void __dt__Q38JMessage18TResourceContainer10TCResourceFv() {
-    // NONMATCHING
-}
+JMessage::TResourceContainer::TCResource::~TCResource() {}
 
 /* 802A8F6C-802A8FFC 2A38AC 0090+00 0/0 1/1 0/0 .text
  * Get_groupID__Q38JMessage18TResourceContainer10TCResourceFUs  */
-JMessage::TResource* JMessage::TResourceContainer::TCResource::Get_groupID(u16 param_0) {
-    // NONMATCHING
+// NONMATCHING
+JMessage::TResource* JMessage::TResourceContainer::TCResource::Get_groupID(u16 groupID) {
+    JGadget::TContainerEnumerator<TResource, 0> enumerator(this);
+	while (enumerator) {
+		const TResource* res = &(*enumerator);
+		if (res->field_0xc.get_groupID() == groupID)
+			return (TResource*)res;
+	}
+	return NULL;
 }
 
 /* 802A8FFC-802A9048 2A393C 004C+00 1/0 0/0 0/0 .text
@@ -169,10 +243,7 @@ JMessage::TParse::TParse(JMessage::TResourceContainer* pContainer) {
 }
 
 /* 802A9158-802A91B8 2A3A98 0060+00 1/0 0/0 0/0 .text            __dt__Q28JMessage6TParseFv */
-// JMessage::TParse::~TParse() {
-extern "C" void __dt__Q28JMessage6TParseFv() {
-    // NONMATCHING
-}
+JMessage::TParse::~TParse() {}
 
 /* 802A91B8-802A92F4 2A3AF8 013C+00 1/0 0/0 0/0 .text
  * parseHeader_next__Q28JMessage6TParseFPPCvPUlUl               */
@@ -253,7 +324,7 @@ int JMessage::locale::parseCharacter_2Byte(char const** string) {
 }
 
 /* 802A94D4-802A9528 2A3E14 0054+00 1/1 0/0 0/0 .text lower_bound<PCUl,Ul>__3stdFPCUlPCUlRCUl */
-extern "C" void func_802A94D4(void* _this, u32 const* param_0, u32 const* param_1,
+/* extern "C" void func_802A94D4(void* _this, u32 const* param_0, u32 const* param_1,
                                   u32 const& param_2) {
     // NONMATCHING
-}
+} */

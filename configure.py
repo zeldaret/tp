@@ -927,7 +927,7 @@ config.libs = [
         [
             Object(NonMatching, "JSystem/JGadget/binary.cpp"),
             Object(NonMatching, "JSystem/JGadget/linklist.cpp"),
-            Object(NonMatching, "JSystem/JGadget/std-vector.cpp"),
+            Object(Equivalent, "JSystem/JGadget/std-vector.cpp"),  # just weak order
         ],
     ),
     JSystemLib(
@@ -984,7 +984,7 @@ config.libs = [
             Object(Matching, "JSystem/J3DGraphBase/J3DGD.cpp"),
             Object(Matching, "JSystem/J3DGraphBase/J3DSys.cpp"),
             Object(Matching, "JSystem/J3DGraphBase/J3DVertex.cpp"),
-            Object(NonMatching, "JSystem/J3DGraphBase/J3DTransform.cpp"),
+            Object(Matching, "JSystem/J3DGraphBase/J3DTransform.cpp"),
             Object(Matching, "JSystem/J3DGraphBase/J3DTexture.cpp"),
             Object(Matching, "JSystem/J3DGraphBase/J3DPacket.cpp"),
             Object(NonMatching, "JSystem/J3DGraphBase/J3DShapeMtx.cpp"),
