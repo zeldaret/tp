@@ -73,7 +73,7 @@ extern actor_process_profile_definition g_profile_Tag_Gstart = {
     2,
     fpcPi_CURRENT_e,
     PROC_Tag_Gstart,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daTagGstart_c),
     0,
     0,

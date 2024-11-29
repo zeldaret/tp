@@ -1129,10 +1129,10 @@ BOOL daAlink_c::checkEndMessage(u32 param_0) {
         msg_class* msg = fopMsgM_SearchByID(mMsgClassID);
 
         if (msg != NULL) {
-            if (msg->mMode == 14) {
-                msg->mMode = 16;
-            } else if (msg->mMode == 0x12) {
-                msg->mMode = 0x13;
+            if (msg->mode == 14) {
+                msg->mode = 16;
+            } else if (msg->mode == 0x12) {
+                msg->mode = 0x13;
                 return 1;
             }
         }

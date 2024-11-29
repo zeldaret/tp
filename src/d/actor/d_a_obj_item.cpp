@@ -1352,7 +1352,7 @@ extern actor_process_profile_definition g_profile_ITEM = {
     7,
     fpcPi_CURRENT_e,
     PROC_ITEM,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daItem_c),
     0,
     0,

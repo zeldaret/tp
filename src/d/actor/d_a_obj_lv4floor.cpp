@@ -190,7 +190,7 @@ extern actor_process_profile_definition g_profile_Obj_Lv4Floor = {
     3,
     fpcPi_CURRENT_e,
     PROC_Obj_Lv4Floor,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daObjLv4Floor_c),
     0,
     0,

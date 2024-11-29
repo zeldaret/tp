@@ -223,10 +223,10 @@ void dKyr_get_vectle_calc(cXyz* param_0, cXyz* param_1, cXyz* param_2) {
  * dKy_set_eyevect_calc__FP12camera_classP3Vecff                */
 static void dKy_set_eyevect_calc(camera_class* i_camera, Vec* param_1, f32 param_2, f32 param_3) {
     cXyz tmp;
-    get_vectle_calc(&i_camera->mLookat.mEye, &i_camera->mLookat.mCenter, &tmp);
-    param_1->x = i_camera->mLookat.mEye.x + tmp.x * param_2;
-    param_1->y = (i_camera->mLookat.mEye.y + tmp.y * param_3) - 200.0f;
-    param_1->z = i_camera->mLookat.mEye.z + tmp.z * param_2;
+    get_vectle_calc(&i_camera->lookat.eye, &i_camera->lookat.center, &tmp);
+    param_1->x = i_camera->lookat.eye.x + tmp.x * param_2;
+    param_1->y = (i_camera->lookat.eye.y + tmp.y * param_3) - 200.0f;
+    param_1->z = i_camera->lookat.eye.z + tmp.z * param_2;
 }
 
 /* 8005B830-8005B92C 056170 00FC+00 6/6 0/0 0/0 .text
@@ -235,19 +235,19 @@ static void dKy_set_eyevect_calc2(camera_class* i_camera, Vec* param_1, f32 para
     cXyz tmp;
     DOUBLE_POS pos;
 
-    pos.x = i_camera->mLookat.mCenter.x - i_camera->mLookat.mEye.x;
+    pos.x = i_camera->lookat.center.x - i_camera->lookat.eye.x;
     if (param_3 != 0.0f) {
-        pos.y = i_camera->mLookat.mCenter.y - i_camera->mLookat.mEye.y;
+        pos.y = i_camera->lookat.center.y - i_camera->lookat.eye.y;
     } else {
         pos.y = 0.0f;
     }
-    pos.z = i_camera->mLookat.mCenter.z - i_camera->mLookat.mEye.z;
+    pos.z = i_camera->lookat.center.z - i_camera->lookat.eye.z;
 
     vectle_calc(&pos, &tmp);
 
-    param_1->x = i_camera->mLookat.mEye.x + tmp.x * param_2;
-    param_1->y = i_camera->mLookat.mEye.y + tmp.y * param_3;
-    param_1->z = i_camera->mLookat.mEye.z + tmp.z * param_2;
+    param_1->x = i_camera->lookat.eye.x + tmp.x * param_2;
+    param_1->y = i_camera->lookat.eye.y + tmp.y * param_3;
+    param_1->z = i_camera->lookat.eye.z + tmp.z * param_2;
 
     if (param_3 == 0.0f) {
         param_1->y = 0.0f;
@@ -302,7 +302,7 @@ void dKyr_lenzflare_move() {
     lenz_p->field_0x94 = cM_atan2s(local_78.x, local_78.y);
     lenz_p->field_0x94 *= 0.0054931640625f;  // Maybe 45 / 8192
     lenz_p->field_0x94 += 180.0f;
-    dKyr_get_vectle_calc(&iVar6->mLookat.mEye, &iVar6->mLookat.mCenter, &cStack_6c);
+    dKyr_get_vectle_calc(&iVar6->lookat.eye, &iVar6->lookat.center, &cStack_6c);
 
     for (int i = 2; i < 8; i++) {
         if (i == 2) {
@@ -353,17 +353,17 @@ void dKyr_sun_move() {
     u32 st_type = dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo());
 
     if (g_env_light.mBaseLightInfluence.mColor.r == 0 && st_type != ST_ROOM) {
-        dKyr_get_vectle_calc(&camera_p2->mLookat.mEye, &g_env_light.mBaseLightInfluence.mPosition,
+        dKyr_get_vectle_calc(&camera_p2->lookat.eye, &g_env_light.mBaseLightInfluence.mPosition,
                              &sp54);
     } else {
-        dKyr_get_vectle_calc(&camera_p2->mLookat.mEye, &g_env_light.mSunPos2, &sp54);
+        dKyr_get_vectle_calc(&camera_p2->lookat.eye, &g_env_light.mSunPos2, &sp54);
     }
 
-    sun_p->mPos[0].x = camera_p2->mLookat.mEye.x + 8000.0f * sp54.x;
-    sun_p->mPos[0].y = camera_p2->mLookat.mEye.y + 8000.0f * sp54.y;
-    sun_p->mPos[0].z = camera_p2->mLookat.mEye.z + 8000.0f * sp54.z;
+    sun_p->mPos[0].x = camera_p2->lookat.eye.x + 8000.0f * sp54.x;
+    sun_p->mPos[0].y = camera_p2->lookat.eye.y + 8000.0f * sp54.y;
+    sun_p->mPos[0].z = camera_p2->lookat.eye.z + 8000.0f * sp54.z;
 
-    f32 var_f1 = (sun_p->mPos[0].y - camera_p2->mLookat.mEye.y) / 8000.0f;
+    f32 var_f1 = (sun_p->mPos[0].y - camera_p2->lookat.eye.y) / 8000.0f;
     if (var_f1 < 0.0f) {
         var_f1 = 0.0f;
     }
@@ -570,7 +570,7 @@ void dKyr_sun_move() {
     }
 
     if (dKyr_moon_arrival_check()) {
-        f32 var_f1_6 = (sun_p->mPos[0].y - camera_p2->mLookat.mEye.y) / -8000.0f;
+        f32 var_f1_6 = (sun_p->mPos[0].y - camera_p2->lookat.eye.y) / -8000.0f;
         var_f1_6 *= var_f1_6;
         var_f1_6 *= 6.0f;
 
@@ -587,10 +587,10 @@ void dKyr_sun_move() {
         sun_p->mSunAlpha >= 0.2f)
     {
         cXyz sp24;
-        dKyr_get_vectle_calc(&camera_p2->mLookat.mEye, &g_env_light.mSunPos2, &sp54);
-        sp24.x = camera_p2->mLookat.mEye.x + 30160.0f * sp54.x;
-        sp24.y = camera_p2->mLookat.mEye.y + 30160.0f * sp54.y;
-        sp24.z = camera_p2->mLookat.mEye.z + 30160.0f * sp54.z;
+        dKyr_get_vectle_calc(&camera_p2->lookat.eye, &g_env_light.mSunPos2, &sp54);
+        sp24.x = camera_p2->lookat.eye.x + 30160.0f * sp54.x;
+        sp24.y = camera_p2->lookat.eye.y + 30160.0f * sp54.y;
+        sp24.z = camera_p2->lookat.eye.z + 30160.0f * sp54.z;
         sp24.y -= 21678.0f;
         sun_p->field_0x58 = dComIfGp_particle_set(sun_p->field_0x58, 0x11C, &sp24, 0, 0);
     }
@@ -601,8 +601,8 @@ void dKyr_rain_init() {
     camera_class* camera_p = g_dComIfG_gameInfo.play.mCameraInfo[0].mCamera;
     g_env_light.mpRainPacket->mpTex = (u8*)dComIfG_getObjectRes("Always", 0x4a);
     g_env_light.mpRainPacket->mpTex2 = (u8*)dComIfG_getObjectRes("Always", 0x57);
-    g_env_light.mpRainPacket->mCamEyePos = camera_p->mLookat.mEye;
-    g_env_light.mpRainPacket->mCamCenterPos = camera_p->mLookat.mCenter;
+    g_env_light.mpRainPacket->mCamEyePos = camera_p->lookat.eye;
+    g_env_light.mpRainPacket->mCamCenterPos = camera_p->lookat.center;
     g_env_light.mpRainPacket->mCenterDeltaMul = 0.0f;
     g_env_light.mpRainPacket->field_0x3700 = 0.0f;
     g_env_light.mpRainPacket->mSibukiAlpha = 0.0f;
@@ -622,7 +622,7 @@ void dKyr_rain_init() {
 
 /* 8005CDA8-8005CDD0 0576E8 0028+00 1/1 0/0 0/0 .text rain_bg_chk__FP19dKankyo_rain_Packeti */
 static void rain_bg_chk(dKankyo_rain_Packet* i_packet, int i_idx) {
-    i_packet->mRainEff[i_idx].field_0x30 = dComIfGp_getCamera(0)->mLookat.mCenter.y + -800.0f;
+    i_packet->mRainEff[i_idx].field_0x30 = dComIfGp_getCamera(0)->lookat.center.y + -800.0f;
 }
 
 /* 8005CDD0-8005CF78 057710 01A8+00 1/1 0/0 0/0 .text            overhead_bg_chk__Fv */
@@ -633,7 +633,7 @@ static BOOL overhead_bg_chk() {
     dBgS_ObjGndChk_All gndchk;
     dBgS_RoofChk roofchk;
 
-    cXyz chkPos = camera->mLookat.mEye;
+    cXyz chkPos = camera->lookat.eye;
     chkPos.y += 50.0f;
 
     roofchk.i_SetPos(chkPos);
@@ -649,7 +649,7 @@ static BOOL overhead_bg_chk() {
 
     chkPos.y += 10000.0f;
     gndchk.SetPos(&chkPos);
-    if (dComIfG_Bgsp().GroundCross(&gndchk) > camera->mLookat.mEye.y + 50.0f) {
+    if (dComIfG_Bgsp().GroundCross(&gndchk) > camera->lookat.eye.y + 50.0f) {
         chk = true;
     }
 
@@ -667,11 +667,11 @@ static int forward_overhead_bg_chk(cXyz* param_0, f32 param_1) {
 
     cXyz chk_pos;
     cXyz vectle;
-    dKyr_get_vectle_calc(&camera_p->mLookat.mEye, &camera_p->mLookat.mCenter, &vectle);
-    chk_pos.x = camera_p->mLookat.mEye.x + vectle.x * param_1;
-    chk_pos.y = camera_p->mLookat.mEye.y + vectle.y * param_1;
-    chk_pos.z = camera_p->mLookat.mEye.z + vectle.z * param_1;
-    chk_pos.y = 50.0f + camera_p->mLookat.mEye.y;
+    dKyr_get_vectle_calc(&camera_p->lookat.eye, &camera_p->lookat.center, &vectle);
+    chk_pos.x = camera_p->lookat.eye.x + vectle.x * param_1;
+    chk_pos.y = camera_p->lookat.eye.y + vectle.y * param_1;
+    chk_pos.z = camera_p->lookat.eye.z + vectle.z * param_1;
+    chk_pos.y = 50.0f + camera_p->lookat.eye.y;
     *param_0 = chk_pos;
 
     roofChk.i_SetPos(chk_pos);
@@ -687,7 +687,7 @@ static int forward_overhead_bg_chk(cXyz* param_0, f32 param_1) {
     chk_pos.y += 10000.0f;
     gncChk.SetPos(&chk_pos);
 
-    if (dComIfG_Bgsp().GroundCross(&gncChk) > 50.0f + camera_p->mLookat.mEye.y) {
+    if (dComIfG_Bgsp().GroundCross(&gncChk) > 50.0f + camera_p->lookat.eye.y) {
         chk = 1;
     }
     return chk;
@@ -732,9 +732,9 @@ void dKyr_rain_move() {
     }
 
     if (rain_p->mRainCount != 0) {
-        dKyr_get_vectle_calc(&camera_p->mLookat.mCenter, &rain_p->mCamCenterPos, &spB0);
+        dKyr_get_vectle_calc(&camera_p->lookat.center, &rain_p->mCamCenterPos, &spB0);
 
-        f32 var_f1 = rain_p->mCamEyePos.abs(camera_p->mLookat.mEye);
+        f32 var_f1 = rain_p->mCamEyePos.abs(camera_p->lookat.eye);
 
         f32 var_f30;
         if (var_f1 > 10.0f) {
@@ -746,19 +746,19 @@ void dKyr_rain_move() {
             var_f30 = 0.0f;
         }
 
-        rain_p->mCamEyePos.x = camera_p->mLookat.mEye.x;
-        rain_p->mCamEyePos.z = camera_p->mLookat.mEye.z;
+        rain_p->mCamEyePos.x = camera_p->lookat.eye.x;
+        rain_p->mCamEyePos.z = camera_p->lookat.eye.z;
 
-        f32 var_f1_2 = rain_p->mCamEyePos.abs(camera_p->mLookat.mEye);
+        f32 var_f1_2 = rain_p->mCamEyePos.abs(camera_p->lookat.eye);
         f32 var_f2 = var_f1_2 / 20.0f;
         if (var_f2 > 1.0f) {
             var_f2 = 1.0f;
         }
 
         spA4.y -= var_f2 * 15.0f;
-        rain_p->mCamEyePos = camera_p->mLookat.mEye;
+        rain_p->mCamEyePos = camera_p->lookat.eye;
 
-        f32 var_f1_3 = rain_p->mCamCenterPos.abs(camera_p->mLookat.mCenter);
+        f32 var_f1_3 = rain_p->mCamCenterPos.abs(camera_p->lookat.center);
 
         f32 var_f1_4;
         if (var_f1_3 > 10.0f) {
@@ -778,7 +778,7 @@ void dKyr_rain_move() {
         cLib_addCalc(&rain_p->mCenterDelta.x, spB0.x, 0.2f, 0.1f, 0.01f);
         cLib_addCalc(&rain_p->mCenterDelta.y, spB0.y, 0.2f, 0.1f, 0.01f);
         cLib_addCalc(&rain_p->mCenterDelta.z, spB0.z, 0.2f, 0.1f, 0.01f);
-        rain_p->mCamCenterPos = camera_p->mLookat.mCenter;
+        rain_p->mCamCenterPos = camera_p->lookat.center;
 
         dKy_set_eyevect_calc2(camera_p, &spE0, 700.0f, 600.0f);
         spD4.z = 0.0f;
@@ -947,9 +947,9 @@ void dKyr_rain_move() {
             if (var_r24 || rain_p->mOverheadFade < 1.0f) {
                 cXyz sp80;
                 sp80 = spBC;
-                sp80.y = camera_p->mLookat.mEye.y;
+                sp80.y = camera_p->lookat.eye.y;
 
-                if (camera_p->mLookat.mEye.abs(sp80) < 800.0f) {
+                if (camera_p->lookat.eye.abs(sp80) < 800.0f) {
                     var_f31 *= rain_p->mOverheadFade * 1.0f;
                 }
             }
@@ -1009,7 +1009,7 @@ void dKyr_rain_move() {
                         var_f31 = 0.0f;
                     }
 
-                    if (camera_p->mLookat.mEye.y < 0.0f) {
+                    if (camera_p->lookat.eye.y < 0.0f) {
                         var_f31 = 0.0f;
                     }
                 } else {
@@ -1092,7 +1092,7 @@ void dKyr_housi_move() {
     }
 
     if (g_env_light.field_0xea9 == 2) {
-        sp54 = camera_p->mLookat.mEye;
+        sp54 = camera_p->lookat.eye;
         sp54.y += 100000.0f;
 
         spE4.SetPos(&sp54);
@@ -1144,13 +1144,13 @@ void dKyr_housi_move() {
 
             cXyz sp48;
             camera_class* cam_p = dComIfGp_getCamera(0);
-            sp48 = cam_p->mLookat.mEye;
+            sp48 = cam_p->lookat.eye;
             sp48.y += 100000.0f;
 
             sp90.SetPos(&sp48);
             f32 gnd_cross = dComIfG_Bgsp().GroundCross(&sp90);
-            if (gnd_cross > cam_p->mLookat.mEye.y) {
-                var_f31 = (gnd_cross - cam_p->mLookat.mEye.y) / 700.0f;
+            if (gnd_cross > cam_p->lookat.eye.y) {
+                var_f31 = (gnd_cross - cam_p->lookat.eye.y) / 700.0f;
                 if (var_f31 < 0.0f) {
                     var_f31 = 0.0f;
                 }
@@ -1393,7 +1393,7 @@ void dKyr_housi_move() {
         }
 
         if (dKy_darkworld_check() == 1 || var_r24 == 1) {
-            f32 var_f1_6 = sp6C.abs(camera_p->mLookat.mEye);
+            f32 var_f1_6 = sp6C.abs(camera_p->lookat.eye);
             effect_p->field_0x48 = var_f1_6;
 
             f32 var_f1_7;
@@ -1409,7 +1409,7 @@ void dKyr_housi_move() {
             effect_p->mAlpha = var_f1_7;
         }
 
-        f32 var_f1_8 = sp6C.abs(camera_p->mLookat.mEye);
+        f32 var_f1_8 = sp6C.abs(camera_p->lookat.eye);
         f32 temp_f25 = var_f1_8 / 2000.0f;
         effect_p->field_0x48 = 1.0f - (temp_f25 * temp_f25);
     }
@@ -1431,7 +1431,7 @@ void dKyr_snow_init() {
     }
 
     g_env_light.mpSnowPacket->field_0x6d88 = 0;
-    g_env_light.mpSnowPacket->field_0x6d74 = camera_p->mLookat.mEye;
+    g_env_light.mpSnowPacket->field_0x6d74 = camera_p->lookat.eye;
     g_env_light.mpSnowPacket->field_0x6d80 = 0.0f;
     g_env_light.mpSnowPacket->field_0x6d84 = 0.0f;
     g_env_light.mpSnowPacket->field_0x6d8a = 0;
@@ -1480,11 +1480,11 @@ void dKyr_snow_move() {
     dKy_set_eyevect_calc2(camera_p, &spB8, 500.0f, 500.0f);
     dKy_set_eyevect_calc2(camera_p, &spAC, 1000.0f, 1000.0f);
 
-    if (snow_p->field_0x6d74.abs(camera_p->mLookat.mEye) > 1500.0f) {
+    if (snow_p->field_0x6d74.abs(camera_p->lookat.eye) > 1500.0f) {
         snow_p->field_0x6d88 = 0;
     }
 
-    snow_p->field_0x6d74 = camera_p->mLookat.mEye;
+    snow_p->field_0x6d74 = camera_p->lookat.eye;
     spA0.z = 0.0f;
     spA0.y = 0.0f;
     spA0.x = 0.0f;
@@ -1503,9 +1503,9 @@ void dKyr_snow_move() {
     }
 
     cXyz sp58;
-    spC8.x = camera_p->mLookat.mCenter.x - camera_p->mLookat.mEye.x;
+    spC8.x = camera_p->lookat.center.x - camera_p->lookat.eye.x;
     spC8.y = 0.0f;
-    spC8.z = camera_p->mLookat.mCenter.z - camera_p->mLookat.mEye.z;
+    spC8.z = camera_p->lookat.center.z - camera_p->lookat.eye.z;
     vectle_calc(&spC8, &sp58);
 
     snow_p->field_0x6d84 =
@@ -1546,7 +1546,7 @@ void dKyr_snow_move() {
             cXyz sp4C;
             sp88 = sp94;
             temp_r25 = &effect_p->mPosition;
-            if (camera_p->mLookat.mEye.abs(*temp_r25) < 500.0f &&
+            if (camera_p->lookat.eye.abs(*temp_r25) < 500.0f &&
                 effect_p->mPosition.y < temp_f19 + 250.0f)
             {
                 f32 var_f1_3 = ((temp_f19 + 250.0f) - effect_p->mPosition.y) / 250.0f;
@@ -1573,7 +1573,7 @@ void dKyr_snow_move() {
             effect_p->mPosition.z += sp4C.z * 5.3f;
 
             sp88 = sp94;
-            if (camera_p->mLookat.mEye.abs(*temp_r25) < 500.0f &&
+            if (camera_p->lookat.eye.abs(*temp_r25) < 500.0f &&
                 effect_p->mBasePos.y < temp_f19 + 250.0f)
             {
                 f32 var_f1_5 = ((temp_f19 + 250.0f) - effect_p->mBasePos.y) / 250.0f;
@@ -1643,7 +1643,7 @@ void dKyr_snow_move() {
 
         sp7C = effect_p->mPosition;
 
-        f32 var_f26 = sp7C.abs(camera_p->mLookat.mEye) / 100.0f;
+        f32 var_f26 = sp7C.abs(camera_p->lookat.eye) / 100.0f;
         if (var_f26 > 1.0) {
             var_f26 = 1.0;
         }
@@ -1684,7 +1684,7 @@ void dKyr_snow_move() {
 
         sp7C = effect_p->mBasePos;
 
-        f32 var_f26_3 = sp7C.abs(camera_p->mLookat.mEye) / 100.0f;
+        f32 var_f26_3 = sp7C.abs(camera_p->lookat.eye) / 100.0f;
         if (var_f26_3 > 1.0) {
             var_f26_3 = 1.0;
         }
@@ -2092,13 +2092,13 @@ void dKyr_drawSibuki(Mtx param_0, u8** param_1) {
     if (g_env_light.mSnowCount == 0 && g_env_light.mCameraInWater == 0 &&
         dComIfGd_getView() != NULL)
     {
-        MTXInverse(dComIfGd_getView()->mViewMtxNoTrans, sp88);
+        MTXInverse(dComIfGd_getView()->viewMtxNoTrans, sp88);
         if (strcmp(dComIfGp_getStartStageName(), "F_SP113") == 0 &&
             dComIfGp_roomControl_getStayNo() == 1)
         {
-            if ((temp_r30->mLookat.mEye.z < 5100.0f ||
-                 (temp_r30->mLookat.mEye.x < -3250.0f && temp_r30->mLookat.mEye.y < -50.0f)) ||
-                (temp_r30->mLookat.mEye.x < -2700.0f && temp_r30->mLookat.mEye.z > 15750.0f))
+            if ((temp_r30->lookat.eye.z < 5100.0f ||
+                 (temp_r30->lookat.eye.x < -3250.0f && temp_r30->lookat.eye.y < -50.0f)) ||
+                (temp_r30->lookat.eye.x < -2700.0f && temp_r30->lookat.eye.z > 15750.0f))
             {
                 return;
             }
@@ -2113,7 +2113,7 @@ void dKyr_drawSibuki(Mtx param_0, u8** param_1) {
 
         cLib_addCalc(&temp_r29->mSibukiAlpha, var_f1, 0.2f, 30.0f, 0.001f);
         dKy_set_eyevect_calc(temp_r30, &sp2C, 7000.0f, 4000.0f);
-        dKyr_get_vectle_calc(&temp_r30->mLookat.mEye, &temp_r30->mLookat.mCenter, &sp20);
+        dKyr_get_vectle_calc(&temp_r30->lookat.eye, &temp_r30->lookat.center, &sp20);
 
         f32 var_f1_2 = 0.0f;
         if (sp20.y > var_f1_2) {
@@ -2153,7 +2153,7 @@ void dKyr_drawSibuki(Mtx param_0, u8** param_1) {
 
         f32 var_f30;
         if (dComIfGd_getView() != NULL) {
-            var_f30 = dComIfGd_getView()->mFovy / 45.0f;
+            var_f30 = dComIfGd_getView()->fovy / 45.0f;
             var_f30 *= var_f30;
             if (var_f30 >= 1.0f) {
                 var_f30 = 1.0f;
@@ -2286,7 +2286,7 @@ void dKyr_drawHousi(Mtx param_0, u8** param_1) {
                     sp18.b = 0x00;
                 }
 
-                dKy_ParticleColor_get_bg(&cam_p->mLookat.mEye, NULL, &sp20, &sp24, &sp1C, &sp18,
+                dKy_ParticleColor_get_bg(&cam_p->lookat.eye, NULL, &sp20, &sp24, &sp1C, &sp18,
                                          0.0f);
                 var_f25 = 255.0f;
             }
@@ -2295,9 +2295,9 @@ void dKyr_drawHousi(Mtx param_0, u8** param_1) {
                 f32 temp_f26 = 1.2f;
                 f32 temp_f24 = 6.5f;
 
-                // MTXInverse(dComIfGd_getView()->mViewMtxNoTrans, sp1BC);
+                // MTXInverse(dComIfGd_getView()->viewMtxNoTrans, sp1BC);
                 //  wtf is going on here
-                switch (MTXInverse(dComIfGd_getView()->mViewMtxNoTrans, sp1BC)) {
+                switch (MTXInverse(dComIfGd_getView()->viewMtxNoTrans, sp1BC)) {
                 case 0:
                     return;
                 }

@@ -118,7 +118,7 @@ extern actor_process_profile_definition g_profile_Tag_Lv6CstaSw = {
     7,
     fpcPi_CURRENT_e,
     PROC_Tag_Lv6CstaSw,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daLv6CstaSw_c),
     0,
     0,

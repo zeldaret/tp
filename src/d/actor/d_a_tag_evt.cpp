@@ -260,7 +260,7 @@ extern actor_process_profile_definition g_profile_TAG_EVT = {
     7,
     fpcLy_CURRENT_e,
     PROC_TAG_EVT,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daTag_Evt_c),
     0,
     0,

@@ -113,7 +113,7 @@ extern actor_process_profile_definition g_profile_Izumi_Gate = {
     7,
     fpcPi_CURRENT_e,
     PROC_Izumi_Gate,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daIzumiGate_c),
     0,
     0,

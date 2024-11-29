@@ -16,7 +16,7 @@ extern actor_process_profile_definition g_profile_NPC_HENNA0 = {
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio
   PROC_NPC_HENNA0,        // mProcName
-  &g_fpcLf_Method.mBase,  // sub_method
+  &g_fpcLf_Method.base,  // sub_method
   sizeof(d_a_npc_henna0), // mSize
   0,                      // mSizeOther
   0,                      // mParameters

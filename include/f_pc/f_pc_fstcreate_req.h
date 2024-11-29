@@ -9,15 +9,14 @@ typedef struct layer_class layer_class;
 typedef int (*fstCreateFunc)(void*, void*);
 
 typedef struct fast_create_request {
-    /* 0x00 */ create_request mBase;
-    /* 0x48 */ fstCreateFunc mpFastCreateFunc;
-    /* 0x4C */ void* mpFastCreateData;
+    /* 0x00 */ create_request base;
+    /* 0x48 */ fstCreateFunc create_func;
+    /* 0x4C */ void* data;
 } fast_create_request;  // Size: 0x50
 
-s32 fpcFCtRq_Do(fast_create_request* pFstCreateReq);
-s32 fpcFCtRq_Delete(fast_create_request*);
-base_process_class* fpcFCtRq_Request(layer_class* pLayer, s16 pProcTypeID,
-                                     fstCreateFunc pFastCreateFunc, void* pFastCreateData,
-                                     void* pData);
+s32 fpcFCtRq_Do(fast_create_request* i_createReq);
+s32 fpcFCtRq_Delete(fast_create_request* i_createReq);
+base_process_class* fpcFCtRq_Request(layer_class* i_layer, s16 i_procname,
+                                     fstCreateFunc i_createFunc, void* i_createData, void* i_append);
 
 #endif

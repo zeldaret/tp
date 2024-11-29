@@ -133,7 +133,7 @@ void daObjDigSnow_c::mode_wait() {
 void daObjDigSnow_c::mode_init_dig() {
     dBgS_ObjGndChk obj_gnd_chk;
 
-    obj_gnd_chk.SetActorPid(mBase.mBsPcId);
+    obj_gnd_chk.SetActorPid(base.id);
     obj_gnd_chk.SetPos(&current.pos);
 
     f32 gnd_height = dComIfG_Bgsp().GroundCross(&obj_gnd_chk);
@@ -229,7 +229,7 @@ extern actor_process_profile_definition g_profile_Obj_DigSnow = {
     3,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio
     PROC_Obj_DigSnow,        // mProcName
-    &g_fpcLf_Method.mBase,   // sub_method
+    &g_fpcLf_Method.base,   // sub_method
     sizeof(daObjDigSnow_c),  // mSize
     0,                       // mSizeOther
     0,                       // mParameters

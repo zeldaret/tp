@@ -164,7 +164,7 @@ extern actor_process_profile_definition g_profile_VRBOX = {
     7,
     fpcPi_CURRENT_e,
     PROC_VRBOX,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(vrbox_class),
     0,
     0,

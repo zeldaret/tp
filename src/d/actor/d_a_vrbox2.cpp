@@ -283,14 +283,14 @@ static int daVrbox2_Draw(vrbox2_class* i_this) {
         sp14 = sun_p->mPos[0];
 
         if (strcmp(dComIfGp_getStartStageName(), "F_SP102") == 0) {
-            dKyr_get_vectle_calc(&camera_p->mLookat.mEye, &g_env_light.mSunPos, &sp8);
-            sp14.x = camera_p->mLookat.mEye.x + (8000.0f * sp8.x);
-            sp14.y = camera_p->mLookat.mEye.y + (8000.0f * sp8.y);
-            sp14.z = camera_p->mLookat.mEye.z + (8000.0f * sp8.z);
+            dKyr_get_vectle_calc(&camera_p->lookat.eye, &g_env_light.mSunPos, &sp8);
+            sp14.x = camera_p->lookat.eye.x + (8000.0f * sp8.x);
+            sp14.y = camera_p->lookat.eye.y + (8000.0f * sp8.y);
+            sp14.z = camera_p->lookat.eye.z + (8000.0f * sp8.z);
         }
 
-        s16 temp_r19 = cLib_targetAngleX(&camera_p->mLookat.mEye, &sp14);
-        s16 temp_r18 = cLib_targetAngleY(&camera_p->mLookat.mEye, &sp14);
+        s16 temp_r19 = cLib_targetAngleX(&camera_p->lookat.eye, &sp14);
+        s16 temp_r18 = cLib_targetAngleY(&camera_p->lookat.eye, &sp14);
         mDoMtx_stack_c::transS(sp14.x, sp14.y, sp14.z);
         mDoMtx_stack_c::YrotM((s16)temp_r18);
         mDoMtx_stack_c::XrotM(0x7FFF - temp_r19);
@@ -322,8 +322,8 @@ static int daVrbox2_Draw(vrbox2_class* i_this) {
             sp14 = sun_p->mPos[0];
             sp14.y = 300.0f - (sp14.y * 0.85f);
 
-            s16 temp_r19_2 = cLib_targetAngleX(&camera_p->mLookat.mEye, &sp14);
-            s16 temp_r18_2 = cLib_targetAngleY(&camera_p->mLookat.mEye, &sp14);
+            s16 temp_r19_2 = cLib_targetAngleX(&camera_p->lookat.eye, &sp14);
+            s16 temp_r18_2 = cLib_targetAngleY(&camera_p->lookat.eye, &sp14);
             mDoMtx_stack_c::transS(sp14.x, sp14.y, sp14.z);
             mDoMtx_stack_c::YrotM((s16)temp_r18_2);
             mDoMtx_stack_c::XrotM(0x7FFF - temp_r19_2);
@@ -442,8 +442,8 @@ static int daVrbox2_color_set(vrbox2_class* i_this) {
 
     dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo());
 
-    cam_eye = camera_p->mLookat.mEye;
-    cam_center = camera_p->mLookat.mCenter;
+    cam_eye = camera_p->lookat.eye;
+    cam_center = camera_p->lookat.center;
     cam_eye.y = 0.0f;
     cam_center.y = 0.0f;
 
@@ -671,7 +671,7 @@ extern actor_process_profile_definition g_profile_VRBOX2 = {
     7,
     fpcPi_CURRENT_e,
     PROC_VRBOX2,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(vrbox2_class),
     0,
     0,

@@ -2693,7 +2693,7 @@ extern actor_process_profile_definition g_profile_NPC_HANJO = {
   7,                          // mListID
   fpcPi_CURRENT_e,            // mListPrio
   PROC_NPC_HANJO,             // mProcName
-  &g_fpcLf_Method.mBase,      // sub_method
+  &g_fpcLf_Method.base,      // sub_method
   sizeof(daNpc_Hanjo_c),      // mSize
   0,                          // mSizeOther
   0,                          // mParameters

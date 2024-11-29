@@ -371,7 +371,7 @@ extern actor_process_profile_definition g_profile_TAG_EVENT = {
     7,
     fpcPi_CURRENT_e,
     PROC_TAG_EVENT,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daTag_Event_c),
     0,
     0,

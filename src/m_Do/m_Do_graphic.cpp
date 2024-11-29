@@ -336,8 +336,8 @@ static void drawDepth2(view_class* param_0, view_port_class* param_1, int param_
             f32 sp14;
             GXGetProjectionv(sp4C);
             GXGetViewportv(sp34);
-            GXProject(param_0->mLookat.mCenter.x, param_0->mLookat.mCenter.y,
-                      param_0->mLookat.mCenter.z, param_0->mViewMtx, sp4C, sp34, &sp1C, &sp18,
+            GXProject(param_0->lookat.center.x, param_0->lookat.center.y,
+                      param_0->lookat.center.z, param_0->viewMtx, sp4C, sp34, &sp1C, &sp18,
                       &sp14);
         }
 
@@ -356,12 +356,12 @@ static void drawDepth2(view_class* param_0, view_port_class* param_1, int param_
 
                 if (atn_actor != NULL) {
                     cXyz sp28 = atn_actor->eyePos;
-                    if (fabsf(sp28.y - camera_p->mLookat.mEye.y) < 400.0f) {
-                        sp28.y = camera_p->mLookat.mEye.y;
+                    if (fabsf(sp28.y - camera_p->lookat.eye.y) < 400.0f) {
+                        sp28.y = camera_p->lookat.eye.y;
                     }
 
                     f32 var_f2 =
-                        (atn_actor->current.pos.abs(camera_p->mLookat.mEye)) / (280.0f * temp_f31);
+                        (atn_actor->current.pos.abs(camera_p->lookat.eye)) / (280.0f * temp_f31);
                     var_f2 -= 0.8f;
                     if (var_f2 < 0.0f) {
                         var_f2 = 0.0f;
@@ -390,11 +390,11 @@ static void drawDepth2(view_class* param_0, view_port_class* param_1, int param_
             l_tevColor0.a = -255;
         }
 
-        x_orig = (int)param_1->mXOrig & ~7;
-        y_orig = (int)param_1->mYOrig & ~7;
+        x_orig = (int)param_1->x_orig & ~7;
+        y_orig = (int)param_1->y_orig & ~7;
         y_orig_pos = y_orig < 0 ? 0 : y_orig;
-        width = (int)param_1->mWidth & ~7;
-        height = (int)param_1->mHeight & ~7;
+        width = (int)param_1->width & ~7;
+        height = (int)param_1->height & ~7;
         zBufferTex = mDoGph_gInf_c::mZbufferTex;
         frameBufferTex = mDoGph_gInf_c::mFrameBufferTex;
 
@@ -485,8 +485,8 @@ static void drawDepth2(view_class* param_0, view_port_class* param_1, int param_
         GXSetDither(GX_TRUE);
         GXSetNumIndStages(0);
         Mtx44 ortho;
-        C_MTXOrtho(ortho, param_1->mYOrig, param_1->mYOrig + param_1->mHeight, param_1->mXOrig,
-                   param_1->mXOrig + param_1->mWidth, 0.0f, 10.0f);
+        C_MTXOrtho(ortho, param_1->y_orig, param_1->y_orig + param_1->height, param_1->x_orig,
+                   param_1->x_orig + param_1->width, 0.0f, 10.0f);
         GXLoadPosMtxImm(mDoMtx_getIdentity(), 0);
         mDoMtx_stack_c::transS(0.0025f, 0.0025f, 0.0f);
         GXLoadTexMtxImm(mDoMtx_stack_c::get(), 0x1e, GX_MTX2x4);
@@ -521,20 +521,20 @@ static void drawDepth2(view_class* param_0, view_port_class* param_1, int param_
 
         GXSetTevSwapModeTable(GX_TEV_SWAP3, GX_CH_BLUE, GX_CH_BLUE, GX_CH_BLUE, GX_CH_ALPHA);
         GXSetTevSwapMode(GX_TEVSTAGE0, GX_TEV_SWAP0, GX_TEV_SWAP0);
-        GXSetProjection(param_0->mProjMtx, GX_PERSPECTIVE);
+        GXSetProjection(param_0->projMtx, GX_PERSPECTIVE);
     }
 }
 
 /* 800091C0-800094B4 003B00 02F4+00 1/1 0/0 0/0 .text trimming__FP10view_classP15view_port_class
  */
 static void trimming(view_class* param_0, view_port_class* param_1) {
-    s16 y_orig = (int)param_1->mYOrig & ~7;
+    s16 y_orig = (int)param_1->y_orig & ~7;
     s16 y_orig_pos = y_orig < 0 ? 0 : y_orig;
-    if ((y_orig_pos == 0) && (param_1->mScissor.mYOrig != param_1->mYOrig ||
-                              (param_1->mScissor.mHeight != param_1->mHeight)))
+    if ((y_orig_pos == 0) && (param_1->scissor.y_orig != param_1->y_orig ||
+                              (param_1->scissor.height != param_1->height)))
     {
-        s32 sc_top = (int)param_1->mScissor.mYOrig;
-        s32 sc_bottom = param_1->mScissor.mYOrig + param_1->mScissor.mHeight;
+        s32 sc_top = (int)param_1->scissor.y_orig;
+        s32 sc_bottom = param_1->scissor.y_orig + param_1->scissor.height;
         GXSetNumChans(1);
         GXSetChanCtrl(GX_ALPHA0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
         GXSetNumTexGens(0);
@@ -571,8 +571,8 @@ static void trimming(view_class* param_0, view_port_class* param_1) {
         GXPosition3s16(0, 0x1c0, -5);
         GXEnd();
     }
-    GXSetScissor(param_1->mScissor.mXOrig, param_1->mScissor.mYOrig, param_1->mScissor.mWidth,
-                 param_1->mScissor.mHeight);
+    GXSetScissor(param_1->scissor.x_orig, param_1->scissor.y_orig, param_1->scissor.width,
+                 param_1->scissor.height);
 }
 
 /* 800094B4-80009544 003DF4 0090+00 2/2 1/1 0/0 .text            mDoGph_drawFilterQuad__FScSc */
@@ -809,11 +809,11 @@ static void retry_captue_frame(view_class* param_0, view_port_class* param_1, in
     s16 height;
     void* tex;
 
-    x_orig = (int)param_1->mXOrig & 0xFFFFFFF8;
-    y_orig = (int)param_1->mYOrig & 0xFFFFFFF8;
+    x_orig = (int)param_1->x_orig & 0xFFFFFFF8;
+    y_orig = (int)param_1->y_orig & 0xFFFFFFF8;
     y_orig_pos = y_orig < 0 ? 0 : y_orig;
-    width = (int)param_1->mWidth & 0xFFFFFFF8;
-    height = (int)param_1->mHeight & 0xFFFFFFF8;
+    width = (int)param_1->width & 0xFFFFFFF8;
+    height = (int)param_1->height & 0xFFFFFFF8;
     tex = mDoGph_gInf_c::mFrameBufferTex;
 
     if (!dComIfGp_isPauseFlag()) {
@@ -869,7 +869,7 @@ static void motionBlure(view_class* param_0) {
         GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGB, GX_RGB8, 0);
         GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGB8, 0);
         mDoGph_drawFilterQuad(1, 1);
-        GXSetProjection(param_0->mProjMtx, GX_PERSPECTIVE);
+        GXSetProjection(param_0->projMtx, GX_PERSPECTIVE);
     }
     if (mDoGph_gInf_c::isBlure()) {
         g_env_light.mIsBlure = 1;
@@ -930,36 +930,36 @@ int mDoGph_Painter() {
         camera_class* camera_p = dComIfGp_getCamera(camera_id);
 
         if (camera_p != NULL) {
-            dComIfGd_imageDrawShadow(camera_p->mViewMtx);
+            dComIfGd_imageDrawShadow(camera_p->viewMtx);
             view_port_class* view_port = window_p->getViewPort();
 
-            if (view_port->mXOrig != 0.0f || view_port->mYOrig != 0.0f) {
+            if (view_port->x_orig != 0.0f || view_port->y_orig != 0.0f) {
                 view_port_class new_port;
-                new_port.mXOrig = 0.0f;
-                new_port.mYOrig = 0.0f;
-                new_port.mWidth = 608.0f;
-                new_port.mHeight = 448.0f;
-                new_port.mNearZ = view_port->mNearZ;
-                new_port.mFarZ = view_port->mFarZ;
-                new_port.mScissor = view_port->mScissor;
+                new_port.x_orig = 0.0f;
+                new_port.y_orig = 0.0f;
+                new_port.width = 608.0f;
+                new_port.height = 448.0f;
+                new_port.near_z = view_port->near_z;
+                new_port.far_z = view_port->far_z;
+                new_port.scissor = view_port->scissor;
 
                 view_port = &new_port;
             }
 
-            GXSetViewport(view_port->mXOrig, view_port->mYOrig, view_port->mWidth,
-                          view_port->mHeight, view_port->mNearZ, view_port->mFarZ);
-            GXSetScissor(view_port->mXOrig, view_port->mYOrig, view_port->mWidth,
-                         view_port->mHeight);
+            GXSetViewport(view_port->x_orig, view_port->y_orig, view_port->width,
+                          view_port->height, view_port->near_z, view_port->far_z);
+            GXSetScissor(view_port->x_orig, view_port->y_orig, view_port->width,
+                         view_port->height);
 
-            JPADrawInfo draw_info(camera_p->mViewMtx, camera_p->mFovy, camera_p->mAspect);
+            JPADrawInfo draw_info(camera_p->viewMtx, camera_p->fovy, camera_p->aspect);
 
             dComIfGp_setCurrentWindow(window_p);
             dComIfGp_setCurrentView(camera_p);
             dComIfGp_setCurrentViewport(view_port);
-            GXSetProjection(camera_p->mProjMtx, GX_PERSPECTIVE);
+            GXSetProjection(camera_p->projMtx, GX_PERSPECTIVE);
             PPCSync();
 
-            j3dSys.setViewMtx(camera_p->mViewMtx);
+            j3dSys.setViewMtx(camera_p->viewMtx);
             dKy_setLight();
             dComIfGd_drawOpaListSky();
             dComIfGd_drawXluListSky();
@@ -972,7 +972,7 @@ int mDoGph_Painter() {
             dComIfGp_particle_drawFogPri0_B(&draw_info);
             dComIfGp_particle_drawNormalPri0_B(&draw_info);
 
-            dComIfGd_drawShadow(camera_p->mViewMtx);
+            dComIfGd_drawShadow(camera_p->viewMtx);
 
             dComIfGd_drawOpaList();
             dComIfGd_drawOpaListDark();
@@ -1048,8 +1048,8 @@ int mDoGph_Painter() {
                 j3dSys.setViewMtx(m2);
                 dComIfGd_drawXluList2DScreen();
 
-                j3dSys.setViewMtx(camera_p->mViewMtx);
-                GXSetProjection(camera_p->mProjMtx, GX_PERSPECTIVE);
+                j3dSys.setViewMtx(camera_p->viewMtx);
+                GXSetProjection(camera_p->projMtx, GX_PERSPECTIVE);
                 j3dSys.reinitGX();
 
                 if ((g_env_light.mCameraInWater || !strcmp(dComIfGp_getStartStageName(), "D_MN08")))
@@ -1063,8 +1063,8 @@ int mDoGph_Painter() {
                 }
 
                 mDoGph_gInf_c::getBloom()->draw();
-                j3dSys.setViewMtx(camera_p->mViewMtx);
-                GXSetProjection(camera_p->mProjMtx, GX_PERSPECTIVE);
+                j3dSys.setViewMtx(camera_p->viewMtx);
+                GXSetProjection(camera_p->projMtx, GX_PERSPECTIVE);
 
                 dComIfGd_drawOpaList3Dlast();
                 ortho.setOrtho(

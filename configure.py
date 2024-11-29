@@ -397,7 +397,7 @@ config.libs = [
             Object(Matching, "f_op/f_op_kankyo.cpp"),
             Object(Matching, "f_op/f_op_msg.cpp"),
             Object(Matching, "f_op/f_op_kankyo_mng.cpp"),
-            Object(NonMatching, "f_op/f_op_msg_mng.cpp"),
+            Object(Matching, "f_op/f_op_msg_mng.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(Matching, "f_op/f_op_draw_iter.cpp"),
             Object(Matching, "f_op/f_op_draw_tag.cpp"),
             Object(Matching, "f_op/f_op_scene_pause.cpp"),
@@ -927,7 +927,7 @@ config.libs = [
         [
             Object(NonMatching, "JSystem/JGadget/binary.cpp"),
             Object(NonMatching, "JSystem/JGadget/linklist.cpp"),
-            Object(NonMatching, "JSystem/JGadget/std-vector.cpp"),
+            Object(Equivalent, "JSystem/JGadget/std-vector.cpp"),  # just weak order
         ],
     ),
     JSystemLib(
@@ -984,7 +984,7 @@ config.libs = [
             Object(Matching, "JSystem/J3DGraphBase/J3DGD.cpp"),
             Object(Matching, "JSystem/J3DGraphBase/J3DSys.cpp"),
             Object(Matching, "JSystem/J3DGraphBase/J3DVertex.cpp"),
-            Object(NonMatching, "JSystem/J3DGraphBase/J3DTransform.cpp"),
+            Object(Matching, "JSystem/J3DGraphBase/J3DTransform.cpp"),
             Object(Matching, "JSystem/J3DGraphBase/J3DTexture.cpp"),
             Object(Matching, "JSystem/J3DGraphBase/J3DPacket.cpp"),
             Object(NonMatching, "JSystem/J3DGraphBase/J3DShapeMtx.cpp"),

@@ -1283,20 +1283,20 @@ void daMyna_c::fly_body_wave() {
 void daMyna_c::talkAnime(msg_class* param_0) {
     u32 uVar4 = 0;
     if (param_0 != NULL && this == dComIfGp_event_getTalkPartner()) {
-        switch (param_0->mMode) {
+        switch (param_0->mode) {
         case 2:
             field_0x81C = 1;
             break;
         default:
-            if (param_0->mMsgID != field_0x824) {
+            if (param_0->msg_idx != field_0x824) {
                 field_0x81C = 1;
             }
         }
 
-        if (param_0->mMode == 6 && field_0x81C != 0) {
+        if (param_0->mode == 6 && field_0x81C != 0) {
             field_0x81C = 0;
             field_0x820 = dComIfGp_getMesgAnimeAttrInfo();
-            field_0x824 = param_0->mMsgID;
+            field_0x824 = param_0->msg_idx;
             uVar4 = 1;
         }
     }
@@ -1918,7 +1918,7 @@ extern actor_process_profile_definition g_profile_MYNA = {
     7,
     fpcPi_CURRENT_e,
     PROC_MYNA,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daMyna_c),
     0,
     0,

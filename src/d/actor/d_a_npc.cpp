@@ -1803,15 +1803,15 @@ int daNpcT_c::ctrlMsgAnm(int* param_0, int* param_1, fopAc_ac_c* param_2, int pa
 
         if (talk_partner == param_2) {
             msg_class* conv_actor = talk_partner_conv->getActor();
-            u16 actor_command = conv_actor->mMode;
+            u16 actor_command = conv_actor->mode;
 
             if (actor_command == 2 || actor_command == 3) {
                 mMsgId = -1;
             } else if (actor_command == 6) {
-                if (conv_actor->mMsgID != mMsgId) {
+                if (conv_actor->msg_idx != mMsgId) {
                     *param_0 = dComIfGp_getMesgFaceAnimeAttrInfo();
                     *param_1 = dComIfGp_getMesgAnimeAttrInfo();
-                    mMsgId = conv_actor->mMsgID;
+                    mMsgId = conv_actor->msg_idx;
                 }
 
                 if (dMsgObject_c::isMouthCheck()) {
@@ -4287,15 +4287,15 @@ int daNpcF_c::ctrlMsgAnm(int& o_expression, int& o_motion, fopAc_ac_c* param_2, 
         fopAc_ac_c* talkPartner = dComIfGp_event_getTalkPartner();
         if (talkPartner == param_2) {
             msg_class* actor = dMsgObject_c::getActor();
-            if (actor->mMode == dEvtCmd_INDEMO_e
-                || actor->mMode == dEvtCmd_INDOOR_e)
+            if (actor->mode == dEvtCmd_INDEMO_e
+                || actor->mode == dEvtCmd_INDOOR_e)
             {
                 field_0x9a4 = -1;
-            } else if (actor->mMode == dEvtCmd_INCATCH_e) {
-                if (actor->mMsgID != field_0x9a4) {
+            } else if (actor->mode == dEvtCmd_INCATCH_e) {
+                if (actor->msg_idx != field_0x9a4) {
                     o_expression = dComIfGp_getMesgFaceAnimeAttrInfo();
                     o_motion = dComIfGp_getMesgAnimeAttrInfo();
-                    field_0x9a4 = actor->mMsgID;
+                    field_0x9a4 = actor->msg_idx;
                 }
                 if (dMsgObject_c::isMouthCheck()) {
                     mAnmFlags &= ~ANM_PAUSE_EXPRESSION;
@@ -4442,7 +4442,7 @@ BOOL daNpcF_c::talkProc(int* param_0, BOOL param_1, fopAc_ac_c** i_actorP) {
     } else if (mFlow.doFlow(this, i_actorP, 0)) {
         ret = true;
     } else {
-        if (mFlow.getMsg() != NULL && (mFlow.getMsg()->mMode == 2 || mFlow.getMsg()->mMode == 6)
+        if (mFlow.getMsg() != NULL && (mFlow.getMsg()->mode == 2 || mFlow.getMsg()->mode == 6)
                                 && param_0 != NULL) {
             for (int i = 0; param_0[i] > 0; i++) {
                 if (param_0[i] == mFlow.getMsgNo()) {

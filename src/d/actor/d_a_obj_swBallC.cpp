@@ -309,10 +309,10 @@ int daObjSwBallC_c::demoProc() {
         } else {
             msg_class* msg = fopMsgM_SearchByID(field_0x588);
             if (msg != NULL) {
-                if (msg->mMode == 0xe) {
-                    msg->mMode = 0x10;
-                } else if (msg->mMode == 0x12) {
-                    msg->mMode = 0x13;
+                if (msg->mode == 0xe) {
+                    msg->mode = 0x10;
+                } else if (msg->mode == 0x12) {
+                    msg->mode = 0x13;
                     dComIfGp_evmng_cutEnd(field_0x578);
                 }
             }
@@ -469,7 +469,7 @@ extern actor_process_profile_definition g_profile_Obj_SwBallC = {
     7,
     fpcPi_CURRENT_e,
     PROC_Obj_SwBallC,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daObjSwBallC_c),
     0,
     0,

@@ -7,8 +7,8 @@
 typedef struct base_process_class base_process_class;
 
 BOOL fpcCt_IsCreatingByID(fpc_ProcID id);
-s32 fpcCt_IsDoing(base_process_class* pProc);
+BOOL fpcCt_IsDoing(base_process_class* pProc);
 BOOL fpcCt_Abort(base_process_class* pProc);
-void fpcCt_Handler(void);
+void fpcCt_Handler();
 
 #endif

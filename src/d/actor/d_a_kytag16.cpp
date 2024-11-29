@@ -179,7 +179,7 @@ extern actor_process_profile_definition g_profile_KYTAG16 = {
     7,
     fpcPi_CURRENT_e,
     PROC_KYTAG16,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(kytag16_class),
     0,
     0,

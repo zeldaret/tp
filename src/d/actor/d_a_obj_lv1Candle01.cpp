@@ -251,7 +251,7 @@ extern actor_process_profile_definition g_profile_Obj_Lv1Cdl01 = {
     3,
     fpcPi_CURRENT_e,
     PROC_Obj_Lv1Cdl01,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daLv1Cdl01_c),
     0,
     0,

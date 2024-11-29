@@ -49,7 +49,7 @@ extern kankyo_process_profile_definition g_profile_KYEFF2 = {
     12,
     fpcPi_CURRENT_e,
     PROC_KYEFF2,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(dKyeff2_c),
     0,
     0,

@@ -48,7 +48,7 @@ void dEyeHL_mng_c::update() {
             obj->m_timg->LODBias = obj->m_lodBias;
         }
     } else {
-        s16 tmp = 2.0f * (dComIfGd_getView()->mFovy - 45.0f);
+        s16 tmp = 2.0f * (dComIfGd_getView()->fovy - 45.0f);
         for (; obj != NULL; obj = obj->m_next) {
             ResTIMG* timg = obj->m_timg;
             timg->LODBias = obj->m_lodBias + tmp;

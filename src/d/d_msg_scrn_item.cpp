@@ -515,10 +515,10 @@ void dMsgScrnItem_c::fukiPosCalc(u8 param_1) {
         cXyz cStack_7c;
         f32 f3;
         mDoLib_project(&player->eyePos, &cStack_7c);
-        if (iVar6->mPos == cXyz(0.0f, 0.0f, 0.0f)) {
+        if (iVar6->pos == cXyz(0.0f, 0.0f, 0.0f)) {
             f3 = cStack_7c.y;
         } else {
-            mDoLib_project(&iVar6->mPos, &local_70);
+            mDoLib_project(&iVar6->pos, &local_70);
             if (local_70.x >= 0.0f && local_70.x <= 608.0f && local_70.y >= 0.0f &&
                 local_70.y <= 448.0f)
             {

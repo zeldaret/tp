@@ -97,7 +97,7 @@ extern actor_process_profile_definition g_profile_TAG_LV5SOUP = {
     7,
     fpcPi_CURRENT_e,
     0x122,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daTag_Lv5Soup_c),
     0,
     0,

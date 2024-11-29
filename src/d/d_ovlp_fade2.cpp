@@ -253,7 +253,7 @@ extern overlap_process_profile_definition g_profile_OVERLAP2 = {
     2,
     fpcPi_CURRENT_e,
     PROC_OVERLAP2,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(dOvlpFd2_c),
     0,
     0,

@@ -9,31 +9,31 @@
 #include "d/d_procname.h"
 
 typedef struct leafdraw_method_class {
-    /* 0x00 */ process_method_class mBase;
-    /* 0x10 */ process_method_func mpDrawFunc;
+    /* 0x00 */ process_method_class base;
+    /* 0x10 */ process_method_func draw_method;
 } leafdraw_method_class;
 
 typedef struct leafdraw_class {
-    /* 0x00 */ base_process_class mBase;
-    /* 0xB8 */ leafdraw_method_class* mpDrawMtd;
-    /* 0xBC */ s8 mbUnk0;
-    /* 0xBD */ u8 mbUnk1;
-    /* 0xBE */ draw_priority_class mDwPi;
+    /* 0x00 */ base_process_class base;
+    /* 0xB8 */ leafdraw_method_class* leaf_methods;
+    /* 0xBC */ s8 unk_0xBC;
+    /* 0xBD */ u8 unk_0xBD;
+    /* 0xBE */ draw_priority_class draw_priority;
 } leafdraw_class;
 
 typedef struct leaf_process_profile_definition {
-    /* 0x00 */ process_profile_definition mBase;
+    /* 0x00 */ process_profile_definition base;
     /* 0x1C */ leafdraw_method_class* sub_method; // Subclass methods
-    /* 0x20 */ s16 mPriority; // mDrawPriority
+    /* 0x20 */ s16 priority; // mDrawPriority
 } leaf_process_profile_definition;
 
-s16 fpcLf_GetPriority(const leafdraw_class* pLeaf);
-s32 fpcLf_DrawMethod(leafdraw_method_class* pMthd, void* pUserData);
-s32 fpcLf_Draw(leafdraw_class* pMthd);
-s32 fpcLf_Execute(leafdraw_class* pLeaf);
-s32 fpcLf_IsDelete(leafdraw_class* pLeaf);
-s32 fpcLf_Delete(leafdraw_class* pLeaf);
-s32 fpcLf_Create(leafdraw_class* pLeaf);
+s16 fpcLf_GetPriority(const leafdraw_class* i_leaf);
+s32 fpcLf_DrawMethod(leafdraw_method_class* i_method, void* i_process);
+s32 fpcLf_Draw(leafdraw_class* i_method);
+s32 fpcLf_Execute(leafdraw_class* i_leaf);
+s32 fpcLf_IsDelete(leafdraw_class* i_leaf);
+s32 fpcLf_Delete(leafdraw_class* i_leaf);
+s32 fpcLf_Create(leafdraw_class* i_leaf);
 
 extern int g_fpcLf_type;
 extern leafdraw_method_class g_fpcLf_Method;

@@ -16,12 +16,12 @@ static cXyz get_check_pos(kytag01_class* i_this) {
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
 
     cXyz pos;
-    f32 dist_to_cameye = a_this->current.pos.abs(camera->mLookat.mEye);
+    f32 dist_to_cameye = a_this->current.pos.abs(camera->lookat.eye);
     f32 dist_to_player = a_this->current.pos.abs(player->current.pos);
 
     if (dComIfGp_event_runCheck()) {
         if (dist_to_cameye < dist_to_player) {
-            pos = camera->mLookat.mEye;
+            pos = camera->lookat.eye;
         } else {
             pos = player->current.pos;
         }
@@ -69,13 +69,13 @@ static void mist_tag_move(kytag01_class* i_this) {
 
     var_f31 *= i_this->field_0x594;
 
-    spBC = camera->mLookat.mCenter;
-    spBC.y = camera->mLookat.mEye.y;
+    spBC = camera->lookat.center;
+    spBC.y = camera->lookat.eye.y;
 
-    dKyr_get_vectle_calc(&camera->mLookat.mEye, &spBC, &sp98);
-    sp80.y = camera->mLookat.mEye.y;
+    dKyr_get_vectle_calc(&camera->lookat.eye, &spBC, &sp98);
+    sp80.y = camera->lookat.eye.y;
 
-    dKyr_get_vectle_calc(&camera->mLookat.mEye, &sp80, &spA4);
+    dKyr_get_vectle_calc(&camera->lookat.eye, &sp80, &spA4);
 
     s16 var_r29_2 = cM_atan2s(sp98.x, sp98.z);
     s16 var_r26 = cM_atan2s(spA4.x, spA4.z);
@@ -234,7 +234,7 @@ extern actor_process_profile_definition g_profile_KYTAG01 = {
     7,
     fpcPi_CURRENT_e,
     PROC_KYTAG01,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(kytag01_class),
     0,
     0,

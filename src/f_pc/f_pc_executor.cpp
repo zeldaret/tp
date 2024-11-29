@@ -28,27 +28,28 @@ BOOL fpcEx_IsExist(fpc_ProcID i_id) {
 
 /* 800213C4-80021418 0054+00 s=0 e=1 z=0  None .text      fpcEx_Execute__FP18base_process_class */
 s32 fpcEx_Execute(base_process_class* i_proc) {
-    if (i_proc->mInitState != 2 || fpcPause_IsEnable(i_proc, 1) == 1)
+    if (i_proc->init_state != 2 || fpcPause_IsEnable(i_proc, 1) == TRUE)
         return 0;
+
     return fpcBs_Execute(i_proc);
 }
 
 /* 80021418-800214C4 00AC+00 s=1 e=0 z=0  None .text      fpcEx_ToLineQ__FP18base_process_class */
 s32 fpcEx_ToLineQ(base_process_class* i_proc) {
-    layer_class* pLayer = i_proc->mLyTg.mpLayer;
-    base_process_class* pLayerPcNode = &pLayer->mpPcNode->mBase;
+    layer_class* layer = i_proc->layer_tag.layer;
+    base_process_class* process = &layer->process_node->base;
 
-    if (pLayer->mLayerID == 0 || cTg_IsUse(&pLayerPcNode->mLnTg.mBase) == TRUE) {
-        s32 ret = fpcLnTg_ToQueue(&i_proc->mLnTg, i_proc->mPi.mInfoCurr.mListID);
+    if (layer->layer_id == fpcLy_ROOT_e || cTg_IsUse(&process->line_tag_.base) == TRUE) {
+        s32 ret = fpcLnTg_ToQueue(&i_proc->line_tag_, i_proc->priority.current_info.list_id);
         if (ret == 0) {
-            fpcLyTg_QueueTo(&i_proc->mLyTg);
+            fpcLyTg_QueueTo(&i_proc->layer_tag);
             return 0;
         }
 
-        i_proc->mInitState = 2;
-        if (fpcBs_Is_JustOfType(g_fpcNd_type, i_proc->mSubType)) {
-            process_node_class* pNode = (process_node_class*)i_proc;
-            fpcLyIt_OnlyHere(&pNode->mLayer, (fpcLyIt_OnlyHereFunc)fpcEx_ToLineQ, pNode);
+        i_proc->init_state = 2;
+        if (fpcBs_Is_JustOfType(g_fpcNd_type, i_proc->subtype)) {
+            process_node_class* node = (process_node_class*)i_proc;
+            fpcLyIt_OnlyHere(&node->layer, (fpcLyIt_OnlyHereFunc)fpcEx_ToLineQ, node);
         }
 
         return 1;
@@ -60,26 +61,26 @@ s32 fpcEx_ToLineQ(base_process_class* i_proc) {
 /* 800214C4-80021510 004C+00 s=0 e=1 z=0  None .text      fpcEx_ExecuteQTo__FP18base_process_class
  */
 s32 fpcEx_ExecuteQTo(base_process_class* i_proc) {
-    s32 ret = fpcLyTg_QueueTo(&i_proc->mLyTg);
+    s32 ret = fpcLyTg_QueueTo(&i_proc->layer_tag);
     if (ret == 1) {
-        i_proc->mInitState = 3;
+        i_proc->init_state = 3;
         return 1;
-    } else {
-        return 0;
     }
+    
+    return 0;
 }
 
 /* 80021510-80021568 0058+00 s=0 e=1 z=0  None .text      fpcEx_ToExecuteQ__FP18base_process_class
  */
 s32 fpcEx_ToExecuteQ(base_process_class* i_proc) {
-    s32 ret = fpcLyTg_ToQueue(&i_proc->mLyTg, i_proc->mPi.mInfoCurr.mLayer,
-                              i_proc->mPi.mInfoCurr.mListID, i_proc->mPi.mInfoCurr.mListPrio);
+    s32 ret = fpcLyTg_ToQueue(&i_proc->layer_tag, i_proc->priority.current_info.layer_id,
+                              i_proc->priority.current_info.list_id, i_proc->priority.current_info.list_priority);
     if (ret == 1) {
         fpcEx_ToLineQ(i_proc);
         return 1;
-    } else {
-        return 0;
     }
+    
+    return 0;
 }
 
 /* 80021568-80021588 0020+00 s=0 e=1 z=0  None .text      fpcEx_Handler__FPFPvPv_i */

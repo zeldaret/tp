@@ -416,7 +416,7 @@ extern actor_process_profile_definition g_profile_KYTAG13 = {
   7,                     // mListID
   fpcPi_CURRENT_e,       // mListPrio
   PROC_KYTAG13,          // mProcName
-  &g_fpcLf_Method.mBase, // sub_method
+  &g_fpcLf_Method.base, // sub_method
   sizeof(kytag13_class), // mSize
   0,                     // mSizeOther
   0,                     // mParameters
@@ -488,7 +488,7 @@ static int daKytag13_Execute_standard(kytag13_class* i_this) {
         }
     }
 
-    snow_packet->field_0x6d74 = camera->mLookat.mEye;
+    snow_packet->field_0x6d74 = camera->lookat.eye;
     sp7C.z = 0.0f;
     sp7C.y = 0.0f;
     sp7C.x = 0.0f;
@@ -510,9 +510,9 @@ static int daKytag13_Execute_standard(kytag13_class* i_this) {
 
     dKyr_get_vectle_calc(&sp40, &a_this->current.pos, &sp64);
 
-    sp88.x = camera->mLookat.mCenter.x - camera->mLookat.mEye.x;
+    sp88.x = camera->lookat.center.x - camera->lookat.eye.x;
     sp88.y = 0.0;
-    sp88.z = camera->mLookat.mCenter.z - camera->mLookat.mEye.z;
+    sp88.z = camera->lookat.center.z - camera->lookat.eye.z;
 
     cXyz sp28;
     vectle_calc(&sp88, &sp28);
@@ -605,11 +605,11 @@ static int daKytag13_Execute_standard(kytag13_class* i_this) {
                 var_f29 = 0.0f;
             }
 
-            if (camera->mLookat.mEye.abs(snow_packet->mSnowEff[i].mPosition) < 500.0f) {
+            if (camera->lookat.eye.abs(snow_packet->mSnowEff[i].mPosition) < 500.0f) {
                 var_f28 = temp_f30;
             }
 
-            if (camera->mLookat.mEye.abs(snow_packet->mSnowEff[i].mBasePos) < 500.0f) {
+            if (camera->lookat.eye.abs(snow_packet->mSnowEff[i].mBasePos) < 500.0f) {
                 var_f29 = temp_f30;
             }
 

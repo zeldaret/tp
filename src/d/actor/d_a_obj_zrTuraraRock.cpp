@@ -223,7 +223,7 @@ extern actor_process_profile_definition g_profile_Obj_zrTuraraRc = {
     7,
     fpcPi_CURRENT_e,
     PROC_Obj_zrTuraraRc,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daZrTuraRc_c),
     0,
     0,

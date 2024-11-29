@@ -22,7 +22,7 @@ static int daObj_Lv3waterB_Draw(obj_lv3WaterB_class* i_this) {
         J3DTexMtxInfo* tex_mtx_info = &material_p->getTexGenBlock()->getTexMtx(0)->getTexMtxInfo();
         if (tex_mtx_info != NULL) {
             Mtx m;
-            C_MTXLightPerspective(m, dComIfGd_getView()->mFovy, dComIfGd_getView()->mAspect, 1.0f,
+            C_MTXLightPerspective(m, dComIfGd_getView()->fovy, dComIfGd_getView()->aspect, 1.0f,
                                   1.0f, -0.015f, 0.0f);
             tex_mtx_info->setEffectMtx(m);
             i_this->mpBWaterModel->getModelData()->simpleCalcMaterial(0, (MtxP)j3dDefaultMtx);
@@ -220,7 +220,7 @@ extern actor_process_profile_definition g_profile_OBJ_LV3WATERB = {
     3,
     fpcPi_CURRENT_e,
     PROC_OBJ_LV3WATERB,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(obj_lv3WaterB_class),
     0,
     0,

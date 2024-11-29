@@ -609,7 +609,7 @@ extern actor_process_profile_definition g_profile_SQ = {
     7,
     fpcPi_CURRENT_e,
     PROC_SQ,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(sq_class),
     0,
     0,

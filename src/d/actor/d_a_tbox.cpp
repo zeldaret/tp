@@ -727,7 +727,7 @@ void daTbox_c::dropProc() {
         vec2.y += 10.0f;
         dBgS_ObjGndChk gnd_chk;
         gnd_chk.SetPos(&vec2);
-        gnd_chk.SetActorPid(mBase.mBsPcId);
+        gnd_chk.SetActorPid(base.id);
         dComIfG_Bgsp().GroundCross(&gnd_chk);
         int bg_index = gnd_chk.GetBgIndex();
         if (bg_index >= 0 && bg_index < 0x100) {
@@ -1710,7 +1710,7 @@ extern actor_process_profile_definition g_profile_TBOX = {
     4,
     fpcPi_CURRENT_e,
     PROC_TBOX,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daTbox_c),
     0,
     0,

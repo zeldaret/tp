@@ -90,7 +90,7 @@ extern actor_process_profile_definition g_profile_TAG_PATI = {
     7,
     fpcLy_CURRENT_e,
     PROC_TAG_PATI,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daTagPati_c),
     0,
     0,

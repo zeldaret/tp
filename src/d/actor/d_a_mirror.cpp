@@ -276,13 +276,13 @@ void dMirror_packet_c::mainDraw() {
     int prjPosNum = 4;
 
     view_class* view = dComIfGd_getView();
-    f32 temp_f22 = -view->mNear;
+    f32 temp_f22 = -view->near;
     cXyz* var_r21 = mQuad;
     cXyz* var_r22 = sp19C;
     int var_r23 = 0;
     int var_r28 = 0;
     for (int i = 0; i < 4; i++) {
-        cMtx_multVec(view->mViewMtx, var_r21, var_r22);
+        cMtx_multVec(view->viewMtx, var_r21, var_r22);
         if (var_r22->z >= temp_f22) {
             var_r23++;
         } else {
@@ -331,28 +331,28 @@ void dMirror_packet_c::mainDraw() {
             }
         }
 
-        f32 aspect = view->mAspect;
-        f32 temp_f0_2 = i_tanf(MTXDegToRad(view->mFovy * 0.5f));
+        f32 aspect = view->aspect;
+        f32 temp_f0_2 = i_tanf(MTXDegToRad(view->fovy * 0.5f));
         view_port_class* view_port = dComIfGd_getViewport();
 
         f32 var_f3;
         f32 var_f4;
         f32 var_f5;
         f32 var_f6;
-        if (view_port->mXOrig != 0.0f) {
-            var_f3 = (((view_port->mXOrig * 2.0f) + view_port->mWidth) * 0.5f) - (608.0f / 2);
+        if (view_port->x_orig != 0.0f) {
+            var_f3 = (((view_port->x_orig * 2.0f) + view_port->width) * 0.5f) - (608.0f / 2);
             var_f5 = 608.0f;
         } else {
-            var_f3 = view_port->mXOrig;
-            var_f5 = view_port->mWidth;
+            var_f3 = view_port->x_orig;
+            var_f5 = view_port->width;
         }
 
-        if (view_port->mYOrig != 0.0f) {
-            var_f4 = (((view_port->mYOrig * 2.0f) + view_port->mHeight) * 0.5f) - (448.0f / 2);
+        if (view_port->y_orig != 0.0f) {
+            var_f4 = (((view_port->y_orig * 2.0f) + view_port->height) * 0.5f) - (448.0f / 2);
             var_f6 = 448.0f;
         } else {
-            var_f4 = view_port->mYOrig;
-            var_f6 = view_port->mHeight;
+            var_f4 = view_port->y_orig;
+            var_f6 = view_port->height;
         }
 
         Vec* var_r3 = sp19C;
@@ -402,27 +402,27 @@ void dMirror_packet_c::mainDraw() {
 
         f32 temp_f7 = (spF8.x * mQuad[0].x) + (spF8.y * mQuad[0].y) + (spF8.z * mQuad[0].z);
         f32 temp_f22_4 =
-            ((spF8.z * view->mLookat.mCenter.z) +
-             ((spF8.x * view->mLookat.mCenter.x) + (spF8.y * view->mLookat.mCenter.y))) -
+            ((spF8.z * view->lookat.center.z) +
+             ((spF8.x * view->lookat.center.x) + (spF8.y * view->lookat.center.y))) -
             temp_f7;
 
         cXyz spEC =
-            view->mLookat.mEye -
-            (spF8 * (2.0f * (((spF8.z * view->mLookat.mEye.z) +
-                              ((spF8.x * view->mLookat.mEye.x) + (spF8.y * view->mLookat.mEye.y))) -
+            view->lookat.eye -
+            (spF8 * (2.0f * (((spF8.z * view->lookat.eye.z) +
+                              ((spF8.x * view->lookat.eye.x) + (spF8.y * view->lookat.eye.y))) -
                              temp_f7)));
-        cXyz spE0 = view->mLookat.mCenter - (spF8 * (2.0f * temp_f22_4));
+        cXyz spE0 = view->lookat.center - (spF8 * (2.0f * temp_f22_4));
 
         cXyz spD4(0.0f, 1.0f, 0.0f);
         if (mViewScale.y > 0.0f) {
-            sp110 = spEC - view->mLookat.mEye;
-            sp104 = sp110.outprod(view->mLookat.mUp);
+            sp110 = spEC - view->lookat.eye;
+            sp104 = sp110.outprod(view->lookat.up);
             spD4 = sp110.outprod(sp104);
             spD4.normalizeZP();
             spD4 *= cXyz(-1.0f, -1.0f, -1.0f);
         }
 
-        mDoMtx_lookAt(sp16C, &spEC, &spE0, &spD4, view->mBank);
+        mDoMtx_lookAt(sp16C, &spEC, &spE0, &spD4, view->bank);
         mDoMtx_stack_c::scaleS(mViewScale);
         mDoMtx_stack_c::concat(sp16C);
         J3DShape::resetVcdVatCache();
@@ -433,13 +433,13 @@ void dMirror_packet_c::mainDraw() {
 
         j3dSys.reinitGX();
         GXSetScissor(scissor[0], scissor[1], scissor[2], scissor[3]);
-        mirrorZdraw(sp150, sp138, view->mFar, var_f31, var_f30, var_f29, var_f28, var_f27);
+        mirrorZdraw(sp150, sp138, view->far, var_f31, var_f30, var_f29, var_f28, var_f27);
     }
 }
 
 /* 80871D84-80871E24 001244 00A0+00 1/0 0/0 0/0 .text            draw__16dMirror_packet_cFv */
 void dMirror_packet_c::draw() {
-    mDoLib_clipper::changeFar(dComIfGd_getView()->mFar);
+    mDoLib_clipper::changeFar(dComIfGd_getView()->far);
     if (!mDoLib_clipper::clip(j3dSys.getViewMtx(), &mMaxVal, &mMinVal)) {
         mainDraw();
     }
@@ -647,7 +647,7 @@ extern actor_process_profile_definition g_profile_MIRROR = {
     7,
     fpcPi_CURRENT_e,
     PROC_MIRROR,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daMirror_c),
     0,
     0,

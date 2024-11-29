@@ -106,7 +106,7 @@ extern actor_process_profile_definition g_profile_Obj_WaterEff = {
     7,
     fpcPi_CURRENT_e,
     PROC_Obj_WaterEff,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daObjWaterEff_c),
     0,
     0,

@@ -19,17 +19,17 @@ int dkWmark_c::create() {
 
     new (this) dkWmark_c();
 
-    field_0x48a = mParam >> 0x10;
-    mParam &= 0xFFFF;
+    field_0x48a = this->parameters >> 0x10;
+    this->parameters &= 0xFFFF;
 
-    if ((int)mParam >= 4) {
+    if ((int)this->parameters >= 4) {
         return cPhs_ERROR_e;
     }
 
-    if ((int)mParam == 3) {
+    if ((int)this->parameters == 3) {
         mColorType = 2;
     } else {
-        mColorType = mParam;
+        mColorType = this->parameters;
     }
 
     mpHeap = mDoExt_createSolidHeapFromGameToCurrent(0x880, 0x20);
@@ -48,7 +48,7 @@ int dkWmark_c::create() {
         return cPhs_ERROR_e;
     }
 
-    if ((int)mParam != 3 && daPy_py_c::i_checkNowWolf()) {
+    if ((int)this->parameters != 3 && daPy_py_c::i_checkNowWolf()) {
         mpModel->setBaseScale(wolfFootScale);
     }
 
@@ -56,7 +56,7 @@ int dkWmark_c::create() {
         return cPhs_ERROR_e;
     }
 
-    if ((int)mParam == 1 || (int)mParam == 3 || (int)mParam == 2) {
+    if ((int)this->parameters == 1 || (int)this->parameters == 3 || (int)this->parameters == 2) {
         field_0x494 = m_nowID;
         m_nowID++;
     } else {
@@ -88,10 +88,10 @@ static int dkWmark_Delete(dkWmark_c* i_this) {
 
 /* 802616C4-80261964 25C004 02A0+00 2/2 0/0 0/0 .text            setMatrix__9dkWmark_cFv */
 BOOL dkWmark_c::setMatrix() {
-    cXyz chk_pos(mPos.x, mPos.y + 100.0f, mPos.z);
+    cXyz chk_pos(pos.x, pos.y + 100.0f, pos.z);
 
     if (fopAcM_gc_c::gndCheck(&chk_pos)) {
-        mPos.y = fopAcM_gc_c::getGroundY();
+        pos.y = fopAcM_gc_c::getGroundY();
 
         cM3dGPla poly;
         fopAcM_gc_c::getTriPla(&poly);
@@ -99,7 +99,7 @@ BOOL dkWmark_c::setMatrix() {
         s16 temp_r26 = poly.mNormal.atan2sX_Z() - field_0x48a;
         f32 var_f31 = poly.mNormal.absXZ();
 
-        mDoMtx_stack_c::transS(mPos.x, mPos.y + 1.0f, mPos.z);
+        mDoMtx_stack_c::transS(pos.x, pos.y + 1.0f, pos.z);
         mDoMtx_stack_c::ZXYrotM(cM_atan2s(var_f31 * cM_scos(temp_r26), poly.mNormal.y), field_0x48a,
                                 cM_atan2s(var_f31 * -cM_ssin(temp_r26), poly.mNormal.y));
         mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
@@ -141,11 +141,11 @@ static int dkWmark_Execute(dkWmark_c* i_this) {
 int dkWmark_c::draw() {
     J3DGXColor color;
 
-    if (mDoLib_clipper::clip(j3dSys.getViewMtx(), mPos, mScale.x * 50.0f)) {
+    if (mDoLib_clipper::clip(j3dSys.getViewMtx(), pos, scale.x * 50.0f)) {
         return 1;
     }
 
-    g_env_light.settingTevStruct(0, &mPos, &mTevstr);
+    g_env_light.settingTevStruct(0, &pos, &mTevstr);
     g_env_light.setLightTevColorType_MAJI(mpModel, &mTevstr);
 
     static const GXColor kColor[] = {{0, 0, 0, 130}, {95, 75, 50, 60}, {100, 110, 120, 40}};
@@ -167,7 +167,6 @@ static int dkWmark_Draw(dkWmark_c* i_this) {
     return i_this->draw();
 }
 
-/* ############################################################################################## */
 /* 803C3430-803C3444 -00001 0014+00 1/0 0/0 0/0 .data            l_dkWmark_Method */
 static leafdraw_method_class l_dkWmark_Method = {
     (process_method_func)dkWmark_Create,  (process_method_func)dkWmark_Delete,
@@ -181,7 +180,7 @@ extern kankyo_process_profile_definition g_profile_WMARK = {
     9,
     fpcPi_CURRENT_e,
     PROC_WMARK,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(dkWmark_c),
     0,
     0,

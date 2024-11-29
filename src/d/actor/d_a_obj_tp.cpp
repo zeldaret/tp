@@ -35,8 +35,8 @@ static int daObj_Tp_Draw(obj_tp_class* i_this) {
                         &material->getTexGenBlock()->getTexMtx(0)->getTexMtxInfo();
                     if (texMtxInfo != NULL) {
                         Mtx lightProjMtx;
-                        C_MTXLightPerspective(lightProjMtx, dComIfGd_getView()->mFovy,
-                                              dComIfGd_getView()->mAspect, 1.0f, 1.0f, -0.01f, 0);
+                        C_MTXLightPerspective(lightProjMtx, dComIfGd_getView()->fovy,
+                                              dComIfGd_getView()->aspect, 1.0f, 1.0f, -0.01f, 0);
                         mDoGph_gInf_c::setWideZoomLightProjection(lightProjMtx);
                         texMtxInfo->setEffectMtx(lightProjMtx);
                         modelData->simpleCalcMaterial(0, (MtxP)j3dDefaultMtx);
@@ -528,7 +528,7 @@ extern actor_process_profile_definition g_profile_OBJ_TP = {
   3,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio
   PROC_OBJ_TP,            // mProcName
-  &g_fpcLf_Method.mBase,  // sub_method
+  &g_fpcLf_Method.base,  // sub_method
   sizeof(obj_tp_class),   // mSize
   0,                      // mSizeOther
   0,                      // mParameters

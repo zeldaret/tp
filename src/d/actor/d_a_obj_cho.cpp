@@ -317,8 +317,8 @@ void daObjCHO_c::Z_BufferChk() {
         dComIfGd_peekZ(vec2.x, vec2.y, &mBufferZ);
     }
 
-    f32 near = dComIfGd_getView()->mNear;
-    f32 far = dComIfGd_getView()->mFar;
+    f32 near = dComIfGd_getView()->near;
+    f32 far = dComIfGd_getView()->far;
     mDoLib_pos2camera(&vec1, &vec2);
     vec2.z += 50.0f;
     if (vec2.z > 0.0f) {
@@ -639,7 +639,7 @@ extern actor_process_profile_definition g_profile_Obj_Cho = {
     7,
     fpcPi_CURRENT_e,
     PROC_Obj_Cho,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daObjCHO_c),
     0,
     0,

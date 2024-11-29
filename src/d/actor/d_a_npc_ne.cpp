@@ -2480,12 +2480,12 @@ static void action(npc_ne_class* i_this) {
             if (i_this->mDistToTarget > 700.0f && fopAcM_CheckCondition(_this, 4)
                                              && player->speedF > 2.0f) {
                 camera_class* camera = dComIfGp_getCamera(0);
-                vec1.x = camera->mLookat.mEye.x - camera->mLookat.mCenter.x;
-                vec1.z = camera->mLookat.mEye.z - camera->mLookat.mCenter.z;
+                vec1.x = camera->lookat.eye.x - camera->lookat.center.x;
+                vec1.z = camera->lookat.eye.z - camera->lookat.center.z;
                 mDoMtx_YrotS(*calc_mtx, cM_atan2s(vec1.x, vec1.z));
                 vec1.set(0.0f, -50.0f, 100.0f);
                 MtxPosition(&vec1, &vec2);
-                vec2 += camera->mLookat.mEye;
+                vec2 += camera->lookat.eye;
                 dBgS_ObjGndChk_Spl gnd_chk_spl;
                 gnd_chk_spl.SetPos(&vec2);
                 f32 cross = dComIfG_Bgsp().GroundCross(&gnd_chk_spl);
@@ -3574,7 +3574,7 @@ extern actor_process_profile_definition g_profile_NPC_NE = {
     7,
     fpcPi_CURRENT_e,
     PROC_NPC_NE,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(npc_ne_class),
     0,
     0,

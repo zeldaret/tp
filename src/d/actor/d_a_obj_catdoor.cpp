@@ -202,7 +202,7 @@ extern actor_process_profile_definition g_profile_Obj_CatDoor = {
     3,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio
     PROC_Obj_CatDoor,        // mProcName
-    &g_fpcLf_Method.mBase,   // mSubMtd
+    &g_fpcLf_Method.base,   // mSubMtd
     sizeof(daObjCatDoor_c),  // mSize
     0,                       // mSizeOther
     0,                       // mParameters

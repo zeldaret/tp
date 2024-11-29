@@ -299,7 +299,7 @@ extern actor_process_profile_definition g_profile_SwLBall = {
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio
   PROC_SwLBall,           // mProcName
-  &g_fpcLf_Method.mBase,  // sub_method
+  &g_fpcLf_Method.base,  // sub_method
   sizeof(daSwLBall_c),    // mSize
   0,                      // mSizeOther
   0,                      // mParameters

@@ -286,7 +286,7 @@ extern actor_process_profile_definition g_profile_KYTAG08 = {
     7,
     fpcPi_CURRENT_e,
     PROC_KYTAG08,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(kytag08_class),
     0,
     0,

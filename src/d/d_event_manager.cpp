@@ -989,14 +989,14 @@ const char* dEvent_manager_c::getRunEventName() {
 }
 
 struct FindShtrCbPrms {
-    s16 mBsTypeId;
+    s16 profname;
     fopAc_ac_c* mActor;
 };
 
 /* 8004846C-80048520 042DAC 00B4+00 1/1 0/0 0/0 .text findShutterCallBack__FP10fopAc_ac_cPv */
 static fopAc_ac_c* findShutterCallBack(fopAc_ac_c* pActor, void* param_1) {
     FindShtrCbPrms* prms = (FindShtrCbPrms*)param_1;
-    if (prms->mBsTypeId != fopAcM_GetProfName(pActor)) {
+    if (prms->profname != fopAcM_GetProfName(pActor)) {
         return NULL;
     }
 
@@ -1011,7 +1011,7 @@ static fopAc_ac_c* findShutterCallBack(fopAc_ac_c* pActor, void* param_1) {
  */
 fopAc_ac_c* dEvent_manager_c::specialCast_Shutter(s16 bsTypeId, int param_1) {
     FindShtrCbPrms prms;
-    prms.mBsTypeId = bsTypeId;
+    prms.profname = bsTypeId;
     prms.mActor = dComIfGp_getPlayer(0);
     fopAc_ac_c* shutterActor =
         (fopAc_ac_c*)fopAcIt_Judge((fopAcIt_JudgeFunc)findShutterCallBack, &prms);

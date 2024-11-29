@@ -8,21 +8,21 @@
 #include "f_pc/f_pc_profile.h"
 
 typedef struct nodedraw_method_class {
-    process_method_class mBase;
-    process_method_func mpDrawFunc;
+    /* 0x00 */ process_method_class base;
+    /* 0x10 */ process_method_func draw_method;
 } nodedraw_method_class;
 
 typedef struct process_node_class {
-    /* 0x00 */ base_process_class mBase;
-    /* 0xB8 */ nodedraw_method_class* mpNodeMtd;
-    /* 0xBC */ layer_class mLayer;
-    /* 0xE8 */ node_list_class mLayerNodeLists[16];
-    /* 0x1A8 */ s8 mUnk0;
+    /* 0x000 */ base_process_class base;
+    /* 0x0B8 */ nodedraw_method_class* nodedraw_method;
+    /* 0x0BC */ layer_class layer;
+    /* 0x0E8 */ node_list_class layer_nodelist[16];
+    /* 0x1A8 */ s8 unk_0x1A8;
 } process_node_class;
 
 typedef struct node_process_profile_definition {
-    /* 0x00 */ process_profile_definition mBase;
-    /* 0x1C */ process_method_class* sub_method; // Subclass methods
+    /* 0x00 */ process_profile_definition base;
+    /* 0x1C */ process_method_class* sub_methods;
 } node_process_profile_definition;
 
 s32 fpcNd_DrawMethod(nodedraw_method_class* pNodeMethod, void* pData);

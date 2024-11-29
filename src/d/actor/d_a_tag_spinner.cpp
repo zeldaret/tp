@@ -117,7 +117,7 @@ extern actor_process_profile_definition g_profile_Tag_Spinner = {
     3,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio
     PROC_Tag_Spinner,        // mProcName
-    &g_fpcLf_Method.mBase,   // sub_method
+    &g_fpcLf_Method.base,   // sub_method
     sizeof(daTagSpinner_c),  // mSize
     0,                       // mSizeOther
     0,                       // mParameters

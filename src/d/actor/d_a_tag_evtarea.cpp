@@ -247,7 +247,7 @@ extern actor_process_profile_definition g_profile_TAG_EVTAREA = {
     8,
     fpcPi_CURRENT_e,
     PROC_TAG_EVTAREA,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daTag_EvtArea_c),
     0,
     0,

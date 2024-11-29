@@ -570,7 +570,7 @@ extern actor_process_profile_definition g_profile_L5BOSS_DOOR = {
     7,
     fpcPi_CURRENT_e,
     PROC_L5BOSS_DOOR,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daBdoorL5_c),
     0,
     0,

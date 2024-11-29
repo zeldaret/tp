@@ -655,7 +655,7 @@ int daObjIceBlk_c::checkWallPre(s16 i_angle) {
 
     int var_r29 = -1;
 
-    linchk.SetActorPid(mBase.mBsPcId);
+    linchk.SetActorPid(base.id);
 
     mDoMtx_stack_c::YrotS(i_angle);
     mDoMtx_stack_c::multVec(&cXyz::BaseZ, &spBC);
@@ -691,7 +691,7 @@ int daObjIceBlk_c::checkBgHit() {
 
     int var_r29 = -1;
 
-    mGndChk.SetActorPid(mBase.mBsPcId);
+    mGndChk.SetActorPid(base.id);
 
     for (int i = 0; i < 5; i++) {
         static const Vec l_check_offsetXZ[] = {
@@ -758,7 +758,7 @@ BOOL daObjIceBlk_c::checkFall() {
     cXyz end;
 
     dBgS_ObjLinChk linchk;
-    linchk.SetActorPid(mBase.mBsPcId);
+    linchk.SetActorPid(base.id);
 
     for (int i = 0; i < 5; i++) {
         static const Vec l_check_offsetXZ[] = {
@@ -912,7 +912,7 @@ extern actor_process_profile_definition g_profile_Obj_IceBlock = {
     3,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio
     PROC_Obj_IceBlock,       // mProcName
-    &g_fpcLf_Method.mBase,   // sub_method
+    &g_fpcLf_Method.base,   // sub_method
     sizeof(daObjIceBlk_c),   // mSize
     0,                       // mSizeOther
     0,                       // mParameters

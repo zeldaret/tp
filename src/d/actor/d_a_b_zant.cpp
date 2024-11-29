@@ -993,10 +993,10 @@ void daB_ZANT_c::setZantMessage(int i_msgNo) {
 /* 80640104-80640180 0020E4 007C+00 1/1 0/0 0/0 .text            doZantMessage__10daB_ZANT_cFv */
 int daB_ZANT_c::doZantMessage() {
     if (mpMsg != NULL) {
-        if (mpMsg->mMode == 14) {
-            mpMsg->mMode = 16;
-        } else if (mpMsg->mMode == 18) {
-            mpMsg->mMode = 19;
+        if (mpMsg->mode == 14) {
+            mpMsg->mode = 16;
+        } else if (mpMsg->mode == 18) {
+            mpMsg->mode = 19;
             mMsgID = fpcM_ERROR_PROCESS_ID_e;
             return 1;
         }
@@ -5798,7 +5798,7 @@ extern actor_process_profile_definition g_profile_B_ZANT = {
   4,                            // mListID
   fpcPi_CURRENT_e,              // mListPrio
   PROC_B_ZANT,                  // mProcName
-  &g_fpcLf_Method.mBase,        // sub_method
+  &g_fpcLf_Method.base,        // sub_method
   sizeof(daB_ZANT_c),           // mSize
   0,                            // mSizeOther
   0,                            // mParameters

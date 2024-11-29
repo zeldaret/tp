@@ -81,11 +81,11 @@ static void sparks_move(kytag10_class* i_this) {
 
     if (path_p != NULL) {
         int start_point_idx;
-        dPath* path_start = get_Extent_pos_start_get(i_this, path_p, &camera_p->mLookat.mEye,
+        dPath* path_start = get_Extent_pos_start_get(i_this, path_p, &camera_p->lookat.eye,
                                                      1000.0f, &start_point_idx);
 
         int end_point_idx;
-        dPath* path_end = get_Extent_pos_end_get(i_this, path_p, &camera_p->mLookat.mEye, 1000.0f,
+        dPath* path_end = get_Extent_pos_end_get(i_this, path_p, &camera_p->lookat.eye, 1000.0f,
                                                  &end_point_idx);
 
         s16 spD6;
@@ -225,7 +225,7 @@ extern actor_process_profile_definition g_profile_KYTAG10 = {
     7,
     fpcPi_CURRENT_e,
     PROC_KYTAG10,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(kytag10_class),
     0,
     0,

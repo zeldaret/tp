@@ -3393,19 +3393,19 @@ inline void dComIfGp_event_setTalkPartner(fopAc_ac_c* i_actor) {
 }
 
 inline fopAc_ac_c* dComIfGp_event_getTalkPartner() {
-    return g_dComIfG_gameInfo.play.getEvent().getPtT();
+    return (fopAc_ac_c*)g_dComIfG_gameInfo.play.getEvent().getPtT();
 }
 
 inline fopAc_ac_c* dComIfGp_event_getItemPartner() {
-    return g_dComIfG_gameInfo.play.getEvent().getPtI();
+    return (fopAc_ac_c*)g_dComIfG_gameInfo.play.getEvent().getPtI();
 }
 
 inline fopAc_ac_c* dComIfGp_event_getPt1() {
-    return g_dComIfG_gameInfo.play.getEvent().getPt1();
+    return (fopAc_ac_c*)g_dComIfG_gameInfo.play.getEvent().getPt1();
 }
 
 inline fopAc_ac_c* dComIfGp_event_getPt2() {
-    return g_dComIfG_gameInfo.play.getEvent().getPt2();
+    return (fopAc_ac_c*)g_dComIfG_gameInfo.play.getEvent().getPt2();
 }
 
 inline BOOL dComIfGp_event_runCheck() {
@@ -3897,11 +3897,11 @@ inline view_class* dComIfGd_getView() {
 }
 
 inline Mtx44* dComIfGd_getProjViewMtx() {
-    return &(g_dComIfG_gameInfo.drawlist.getView()->mProjViewMtx);
+    return &(g_dComIfG_gameInfo.drawlist.getView()->projViewMtx);
 }
 
 inline MtxP dComIfGd_getInvViewMtx() {
-    return g_dComIfG_gameInfo.drawlist.getView()->mInvViewMtx;
+    return g_dComIfG_gameInfo.drawlist.getView()->invViewMtx;
 }
 
 inline view_port_class* dComIfGd_getViewport() {
@@ -3909,10 +3909,10 @@ inline view_port_class* dComIfGd_getViewport() {
 }
 
 inline MtxP dComIfGd_getViewRotMtx() {
-    return ((camera_process_class*)g_dComIfG_gameInfo.drawlist.getView())->mViewMtxNoTrans;
+    return ((camera_process_class*)g_dComIfG_gameInfo.drawlist.getView())->viewMtxNoTrans;
 }
 inline MtxP dComIfGd_getViewMtx() {
-    return ((camera_process_class*)g_dComIfG_gameInfo.drawlist.getView())->mViewMtx;
+    return ((camera_process_class*)g_dComIfG_gameInfo.drawlist.getView())->viewMtx;
 }
 
 inline J3DDrawBuffer* dComIfGd_getListFilter() {

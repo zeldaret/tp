@@ -3421,7 +3421,7 @@ extern actor_process_profile_definition g_profile_MIDNA = {
     6,
     fpcPi_CURRENT_e,
     PROC_MIDNA,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daMidna_c),
     0,
     0,

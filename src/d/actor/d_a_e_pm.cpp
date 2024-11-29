@@ -2621,7 +2621,7 @@ void daE_PM_c::setLampBaseMtx() {
     }
 
     mDoMtx_stack_c::transS(vec2.x, vec2.y, vec2.z);
-    vec1 = dComIfGp_getCamera(0)->mLookat.mEye - vec2;
+    vec1 = dComIfGp_getCamera(0)->lookat.eye - vec2;
     mDoMtx_stack_c::YrotM(cM_atan2s(vec1.x, vec1.z));
     mDoMtx_stack_c::XrotM(-cM_atan2s(vec1.y, JMAFastSqrt(vec1.x * vec1.x + vec1.z * vec1.z)));
     mDoMtx_stack_c::scaleM(l_HIO.mGlowEffectScale, l_HIO.mGlowEffectScale, l_HIO.mGlowEffectScale);
@@ -2833,7 +2833,7 @@ extern actor_process_profile_definition g_profile_E_PM = {
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio
   PROC_E_PM,              // mProcName
-  &g_fpcLf_Method.mBase,  // sub_method
+  &g_fpcLf_Method.base,  // sub_method
   sizeof(daE_PM_c),       // mSize
   0,                      // mSizeOther
   0,                      // mParameters

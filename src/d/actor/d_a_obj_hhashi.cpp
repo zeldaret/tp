@@ -368,8 +368,8 @@ int daObjHHASHI_c::Execute(f32 (**param_1)[3][4]) {
 int daObjHHASHI_c::Draw() {
     if (dComIfGp_event_runCheck()) {
         camera_class* pCamera = dComIfGp_getCamera(0);
-        f32 xdiff = current.pos.x - pCamera->mLookat.mEye.x;
-        f32 zdiff = current.pos.z - pCamera->mLookat.mEye.z;
+        f32 xdiff = current.pos.x - pCamera->lookat.eye.x;
+        f32 zdiff = current.pos.z - pCamera->lookat.eye.z;
         if (JMAFastSqrt(xdiff * xdiff + zdiff * zdiff) < 200.0f) {
             return 1;
         }
@@ -415,7 +415,7 @@ extern actor_process_profile_definition g_profile_Obj_HHASHI = {
   3,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio
   PROC_Obj_HHASHI,        // mProcName
-  &g_fpcLf_Method.mBase,  // sub_method
+  &g_fpcLf_Method.base,  // sub_method
   sizeof(daObjHHASHI_c),  // mSize
   0,                      // mSizeOther
   0,                      // mParameters

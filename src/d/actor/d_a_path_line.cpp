@@ -14,7 +14,7 @@ extern actor_process_profile_definition2 g_profile_PATH_LINE = {
   9,                     // mListID
   fpcPi_CURRENT_e,       // mListPrio
   PROC_PATH_LINE,        // mProcName
-  &g_fpcLf_Method.mBase, // sub_method
+  &g_fpcLf_Method.base, // sub_method
   0x00000574,            // mSize
   0,                     // mSizeOther
   0,                     // mParameters
