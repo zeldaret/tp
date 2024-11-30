@@ -3474,7 +3474,7 @@ void daB_ZANT_c::executeMonkey() {
 
             fopAcM_SearchByID(mPillarIDs[field_0x70a], &ppillar);
             if (ppillar != NULL) {
-                ((daPillar_c*)ppillar)->setShake(2);
+                ((daPillar_c*)ppillar)->setShake(daPillar_c::SHAKE_WEAK);
             }
         }
         break;
@@ -3495,7 +3495,7 @@ void daB_ZANT_c::executeMonkey() {
             
             fopAcM_SearchByID(mPillarIDs[field_0x70a], &ppillar);
             if (ppillar != NULL) {
-                ((daPillar_c*)ppillar)->setShake(2);
+                ((daPillar_c*)ppillar)->setShake(daPillar_c::SHAKE_WEAK);
             }
 
             mMode = 1;
