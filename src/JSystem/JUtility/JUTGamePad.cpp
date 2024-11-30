@@ -206,7 +206,7 @@ SECTION_SDATA u32 JUTGamePad::sClampMode = 0x00000001;
 u32 JUTGamePad::sRumbleSupported;
 
 /* 802E08E4-802E0BBC 2DB224 02D8+00 0/0 2/2 0/0 .text            read__10JUTGamePadFv */
-#ifdef NONMATCHING
+// NONMATCHING
 u32 JUTGamePad::read() {
     sRumbleSupported = PADRead(mPadStatus);
 
@@ -281,11 +281,6 @@ u32 JUTGamePad::read() {
     checkResetSwitch();
     return sRumbleSupported;
 }
-#else
-u32 JUTGamePad::read() {
-    // NONMATCHING
-}
-#endif
 
 /* 802E0BBC-802E0C6C 2DB4FC 00B0+00 1/1 0/0 0/0 .text            assign__10JUTGamePadFv */
 void JUTGamePad::assign() {
@@ -362,7 +357,7 @@ SECTION_SDATA u32 JUTGamePad::C3ButtonReset::sResetPattern = 0x00001600;
 SECTION_SDATA u32 JUTGamePad::C3ButtonReset::sResetMaskPattern = 0x0000FFFF;
 
 /* 802E0CD8-802E0FA4 2DB618 02CC+00 2/2 0/0 0/0 .text            update__10JUTGamePadFv */
-#ifdef NONMATCHING
+// NONMATCHING
 void JUTGamePad::update() {
     if (mPortNum != -1) {
         if (mPortNum >= 0 && mPortNum < 4) {
@@ -408,11 +403,6 @@ void JUTGamePad::update() {
         }
     }
 }
-#else
-void JUTGamePad::update() {
-    // NONMATCHING
-}
-#endif
 
 /* 802E0FA4-802E1024 2DB8E4 0080+00 1/1 0/0 0/0 .text            checkResetSwitch__10JUTGamePadFv */
 void JUTGamePad::checkResetSwitch() {

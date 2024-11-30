@@ -476,7 +476,7 @@ config.libs = [
             Object(Matching, "d/d_kankyo_data.cpp"),
             Object(Matching, "d/d_kankyo_wether.cpp"),
             Object(NonMatching, "d/d_kankyo_rain.cpp"),
-            Object(NonMatching, "d/d_vibration.cpp"),
+            Object(Matching, "d/d_vibration.cpp"),
             Object(Matching, "d/d_vib_pattern.cpp"),
             Object(NonMatching, "d/d_attention.cpp"),
             Object(Matching, "d/d_bg_pc.cpp"),
