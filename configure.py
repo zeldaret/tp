@@ -1958,7 +1958,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_pdtile"),
     ActorRel(NonMatching, "d_a_obj_pdwall"),
     ActorRel(NonMatching, "d_a_obj_picture"),
-    ActorRel(NonMatching, "d_a_obj_pillar"),
+    ActorRel(Matching, "d_a_obj_pillar"),
     ActorRel(Matching, "d_a_obj_pleaf"),
     ActorRel(NonMatching, "d_a_obj_poCandle"),
     ActorRel(NonMatching, "d_a_obj_poFire"),
