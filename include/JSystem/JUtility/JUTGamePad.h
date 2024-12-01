@@ -2,6 +2,7 @@
 #define JUTGAMEPAD_H
 
 #include "JSystem/JKernel/JKRDisposer.h"
+#include "JSystem/JUtility/JUTAssert.h"
 #include "dolphin/os/OSTime.h"
 #include "dolphin/pad.h"
 
@@ -31,9 +32,11 @@ extern bool sResetSwitchPushing__Q210JUTGamePad13C3ButtonReset;
 * 
 */
 struct JUTGamePadRecordBase {
-    virtual void unk0() {}
-    virtual void unk1(PADStatus* pad) {}
-    virtual void unk2() {}
+    virtual ~JUTGamePadRecordBase() {}
+    virtual void getStatus(PADStatus* pad) = 0;
+    virtual void write(PADStatus* pad) = 0;
+
+    bool isActive() const { return mActive; }
 
     /* 0x4 */ bool mActive;
 };
@@ -45,18 +48,26 @@ struct JUTGamePadRecordBase {
 struct JUTGamePad : public JKRDisposer {
 public:
     enum EStickMode {
-        STICK_MODE_1 = 1,
+        EStickMode1 = 1,
     };
+
     enum EWhichStick {
-        WS_MAIN_STICK,
-        WS_SUB_STICK,
+        EMainStick,
+        ESubStick,
     };
+
     enum EPadPort {
-        Port_Unknown = -1,
-        Port_1,
-        Port_2,
-        Port_3,
-        Port_4,
+        EPortInvalid = -1,
+        EPort1,
+        EPort2,
+        EPort3,
+        EPort4,
+    };
+
+    enum EClampMode {
+        EClampNone,
+        EClamp,
+        EClampCircle,
     };
 
     JUTGamePad(JUTGamePad::EPadPort port);
@@ -226,7 +237,11 @@ public:
         void stopMotorHard(int portNo) { stopMotor(portNo, true); }
 
         static bool isEnabled(u32 mask) { return mEnabled & mask; }
-        static bool isEnabledPort(int port) { return isEnabled(sChannelMask[port]); }
+
+        static bool isEnabledPort(int port) {
+            JUT_ASSERT(250, 0 <= port && port < 4);
+            return isEnabled(sChannelMask[port]);
+        }
 
         /* 0x00 */ u32 field_0x0;
         /* 0x04 */ u32 field_0x4;
@@ -238,6 +253,19 @@ public:
     void startMotorWave(void* param_2, CRumble::ERumble rumble, u32 param_4) {
         mRumble.startPatternedRumble(param_2, rumble, param_4);
     }
+
+    static JSUList<JUTGamePad> mPadList;
+    static bool mListInitialized;
+    static PADStatus mPadStatus[4];
+    static CButton mPadButton[4];
+    static CStick mPadMStick[4];
+    static CStick mPadSStick[4];
+    static EStickMode sStickMode;
+    static int sClampMode;
+    static u8 mPadAssign[4];
+    static u32 sSuppressPadReset;
+    static s32 sAnalogMode;
+    static u32 sRumbleSupported;
 
     /* 0x18 */ CButton mButton;
     /* 0x48 */ CStick mMainStick;
@@ -252,19 +280,6 @@ public:
     /* 0x9C */ u8 field_0x9c[4];
     /* 0xA0 */ OSTime mResetTime;
     /* 0xA8 */ u8 field_0xa8;
-
-    static JSUList<JUTGamePad> mPadList;
-    static bool mListInitialized;
-    static PADStatus mPadStatus[4];
-    static CButton mPadButton[4];
-    static CStick mPadMStick[4];
-    static CStick mPadSStick[4];
-    static EStickMode sStickMode;
-    static u32 sClampMode;
-    static u8 mPadAssign[4];
-    static u32 sSuppressPadReset;
-    static s32 sAnalogMode;
-    static u32 sRumbleSupported;
 };
 
 /**
@@ -277,6 +292,7 @@ struct JUTGamePadLongPress {
 
     u32 getMaskPattern() const { return mMaskPattern; }
     u32 getPattern() const { return mPattern; }
+    bool isValid() const { return mValid; }
 
     /* 0x00 */ u8 field_0x0[0x10];
     /* 0x10 */ bool mValid;

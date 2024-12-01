@@ -241,7 +241,7 @@ void myExceptionCallback(u16, OSContext*, u32, u32) {
     } else {
         manager->setTraceSuppress(0x80);
         if (mDoMain::developmentMode == 0) {
-            JUTGamePad pad(JUTGamePad::Port_1);
+            JUTGamePad pad(JUTGamePad::EPort1);
             manager->setGamePad(&pad);
 
             if (manager != NULL) {
@@ -289,7 +289,7 @@ static void fault_callback_scroll(u16, OSContext* p_context, u32, u32) {
                            *(u32*)(srr0 - 0x8), *(u32*)(srr0 - 0x4), *(u32*)srr0);
     }
 
-    JUTGamePad pad(JUTGamePad::Port_1);
+    JUTGamePad pad(JUTGamePad::EPort1);
     manager->setGamePad(&pad);
 
     BOOL padDisabled = manager->isEnablePad() == false;

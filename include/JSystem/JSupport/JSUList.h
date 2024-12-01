@@ -168,7 +168,7 @@ public:
 
     T& operator*() { return *this->getObject(); }
 
-    T* operator->() { return this->getObject(); }
+    T* operator->() const { return mLink->getObject(); }
 
 // private:
     JSULink<T>* mLink;

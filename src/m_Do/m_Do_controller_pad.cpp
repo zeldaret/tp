@@ -17,13 +17,13 @@ interface_of_controller_pad mDoCPd_c::m_cpadInfo[4];
 
 /* 80007954-80007A94 002294 0140+00 0/0 1/1 0/0 .text            create__8mDoCPd_cFv */
 void mDoCPd_c::create() {
-    JUTGamePad* pad = new JUTGamePad(JUTGamePad::Port_1);
+    JUTGamePad* pad = new JUTGamePad(JUTGamePad::EPort1);
     m_gamePad[0] = pad;
 
     if (mDoMain::developmentMode != 0) {
-        m_gamePad[1] = new JUTGamePad(JUTGamePad::Port_2);
-        m_gamePad[2] = new JUTGamePad(JUTGamePad::Port_3);
-        m_gamePad[3] = new JUTGamePad(JUTGamePad::Port_4);
+        m_gamePad[1] = new JUTGamePad(JUTGamePad::EPort2);
+        m_gamePad[2] = new JUTGamePad(JUTGamePad::EPort3);
+        m_gamePad[3] = new JUTGamePad(JUTGamePad::EPort4);
     } else {
         m_gamePad[1] = NULL;
         m_gamePad[2] = NULL;

@@ -942,7 +942,7 @@ config.libs = [
             Object(Matching, "JSystem/JUtility/JUTFont.cpp"),
             Object(Matching, "JSystem/JUtility/JUTResFont.cpp", extra_cflags=['-pragma "nosyminline off"']),
             Object(Matching, "JSystem/JUtility/JUTDbPrint.cpp"),
-            Object(NonMatching, "JSystem/JUtility/JUTGamePad.cpp"),
+            Object(Matching, "JSystem/JUtility/JUTGamePad.cpp"),
             Object(NonMatching, "JSystem/JUtility/JUTException.cpp"),
             Object(Matching, "JSystem/JUtility/JUTDirectPrint.cpp"),
             Object(Matching, "JSystem/JUtility/JUTAssert.cpp"),
