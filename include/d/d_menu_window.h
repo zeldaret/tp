@@ -4,6 +4,8 @@
 #include "d/d_drawlist.h"
 #include "f_op/f_op_msg.h"
 #include "m_Do/m_Do_graphic.h"
+#include "d/d_com_inf_game.h"
+#include "JSystem/JUtility/JUTTexture.h"
 
 struct CSTControl;
 class STControl;
@@ -29,7 +31,7 @@ BOOL dMw_START_TRIGGER();
 
 class dDlst_MENU_CAPTURE_c : public dDlst_base_c {
 public:
-    /* 801FDFCC */ virtual void draw();/*  {
+    virtual void draw() {
         if (getDrawFlag() == 1) {
             setDrawFlag();
             dComIfGp_onPauseFlag();
@@ -50,7 +52,7 @@ public:
             GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
             GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO, GX_CC_TEXC);
             GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
-            GXColor color = {0xFF, 0xFF, 0xFF, mAlpha};
+            const GXColor color = {0, 0, 0, mAlpha};
             GXSetTevColor(GX_TEVREG0, color);
             GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_A0);
             GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
@@ -84,8 +86,9 @@ public:
             GXTexCoord2s8(0, 1);
             GXEnd();
         }
-    } */
-    /* 801FE2E8 */ virtual ~dDlst_MENU_CAPTURE_c();
+    }
+
+    virtual ~dDlst_MENU_CAPTURE_c() {}
 
     dDlst_MENU_CAPTURE_c() {
         mFlag = 0;
@@ -256,6 +259,7 @@ public:
 
     void onPauseWindow() { mPauseWindow = true; }
     void offPauseWindow() { mPauseWindow = false; }
+    bool isPauseWindow() { return mPauseWindow != false; }
     void onShowFlag() { mShowFlag |= 1; }
     void offShowFlag() { mShowFlag &= ~1; }
     bool isShowFlag() { return mShowFlag & 1 != 0; }
@@ -277,12 +281,12 @@ private:
     /* 0x12C */ dMenu_Fishing_c* mpMenuFishing;
     /* 0x130 */ dMenu_Skill_c* mpMenuSkill;
     /* 0x134 */ dMenu_Insect_c* mpMenuInsect;
-    /* 0x138 */ s32 mMemSize;
+    /* 0x138 */ int mMemSize;
     /* 0x13C */ f32 mFmapStageTransX;
     /* 0x140 */ f32 mFmapStageTransZ;
     /* 0x144 */ u8 field_0x144;
-    /* 0x145 */ u8 mButtons;
-    /* 0x146 */ u8 mMenuStatus;
+    /* 0x145 */ u8 mButtonBits;
+    /* 0x146 */ u8 mMenuProc;
     /* 0x147 */ u8 mShowFlag;
     /* 0x148 */ s8 field_0x148;
     /* 0x149 */ u8 field_0x149;
@@ -301,13 +305,5 @@ private:
 
 BOOL dMw_LEFT_TRIGGER();
 BOOL dMw_RIGHT_TRIGGER();
-
-static int dMw_Draw(dMw_c*);
-static int dMw_Execute(dMw_c*);
-static int dMw_IsDelete(dMw_c*);
-static int dMw_Delete(dMw_c*);
-static int dMw_Create(msg_class*);
-
-typedef int (*dMw_Method)(dMw_c*);
 
 #endif /* D_MENU_D_MENU_WINDOW_H */

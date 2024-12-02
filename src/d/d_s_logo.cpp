@@ -300,9 +300,9 @@ void dScnLogo_c::warningDispDraw() {
     }
 
     if (mTimer == 0 || mDoCPd_c::getTrig(PAD_1) &
-                           (CButton::A | CButton::B | CButton::X | CButton::Y | CButton::START |
-                            CButton::Z | CButton::L | CButton::R | CButton::DPAD_LEFT |
-                            CButton::DPAD_RIGHT | CButton::DPAD_DOWN | CButton::DPAD_UP))
+                           (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y | PAD_BUTTON_START |
+                            PAD_TRIGGER_Z | PAD_TRIGGER_L | PAD_TRIGGER_R | PAD_BUTTON_LEFT |
+                            PAD_BUTTON_RIGHT | PAD_BUTTON_DOWN | PAD_BUTTON_UP))
     {
         mExecCommand = EXEC_WARNING_OUT;
         mTimer = 30;

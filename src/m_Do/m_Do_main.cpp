@@ -97,8 +97,8 @@ void CheckHeap(u32 i_padNo) {
     bool comboCheck = false;
 
     // if L + R + Z is pressed
-    if ((mDoCPd_c::getHold(i_padNo) & ~CButton::Z) == (CButton::L + CButton::R) &&
-        mDoCPd_c::getTrig(i_padNo) & CButton::Z)
+    if ((mDoCPd_c::getHold(i_padNo) & ~PAD_TRIGGER_Z) == (PAD_TRIGGER_L + PAD_TRIGGER_R) &&
+        mDoCPd_c::getTrig(i_padNo) & PAD_TRIGGER_Z)
     {
         comboCheck = true;
     }
@@ -276,7 +276,7 @@ bool Debug_console(u32 i_padNo) {
             console_scroll_init = 1;
         }
 
-        if (mDoCPd_c::getTrig(i_padNo) & CButton::Z && !(mDoCPd_c::getHold(i_padNo) & ~CButton::Z))
+        if (mDoCPd_c::getTrig(i_padNo) & PAD_TRIGGER_Z && !(mDoCPd_c::getHold(i_padNo) & ~PAD_TRIGGER_Z))
         {
             console->setVisible(console->isVisible() == false);
             JUTAssertion::setMessageCount(0);
@@ -284,19 +284,19 @@ bool Debug_console(u32 i_padNo) {
 
         if (console->isVisible()) {
             u32 holdButtons = mDoCPd_c::getHold(i_padNo);
-            if ((holdButtons & CButton::L && holdButtons & CButton::R) ||
+            if ((holdButtons & PAD_TRIGGER_L && holdButtons & PAD_TRIGGER_R) ||
                 ((mDoCPd_c::getAnalogL(i_padNo) > 0.0f && mDoCPd_c::getAnalogR(i_padNo) > 0.0f)))
             {
                 f32 stick_x = mDoCPd_c::getStickX(i_padNo);
                 f32 stick_y = mDoCPd_c::getStickY(i_padNo);
 
-                if (holdButtons & (CButton::Y | CButton::X) &&
-                    mDoCPd_c::getTrig(i_padNo) & CButton::START)
+                if (holdButtons & (PAD_BUTTON_Y | PAD_BUTTON_X) &&
+                    mDoCPd_c::getTrig(i_padNo) & PAD_BUTTON_START)
                 {
                     console->clear();
                 }
 
-                if (!(mDoCPd_c::getHold(i_padNo) & (CButton::Y | CButton::X))) {
+                if (!(mDoCPd_c::getHold(i_padNo) & (PAD_BUTTON_Y | PAD_BUTTON_X))) {
                     console_scroll -= stick_y;
 
                     int scrollAmount;
@@ -313,16 +313,16 @@ bool Debug_console(u32 i_padNo) {
                         console->scroll(scrollAmount);
                     }
                 } else {
-                    if (mDoCPd_c::getHold(i_padNo) & CButton::X) {
+                    if (mDoCPd_c::getHold(i_padNo) & PAD_BUTTON_X) {
                         console_position_x += stick_x;
                     }
 
-                    if (mDoCPd_c::getHold(i_padNo) & CButton::Y) {
+                    if (mDoCPd_c::getHold(i_padNo) & PAD_BUTTON_Y) {
                         console_position_y -= stick_y;
                     }
                 }
 
-                if (mDoCPd_c::getTrig(i_padNo) & CButton::A) {
+                if (mDoCPd_c::getTrig(i_padNo) & PAD_BUTTON_A) {
                     console->dumpToTerminal(0xFFFFFFFF);
                     console->setOutput(JUTConsole::OUTPUT_OSREPORT | JUTConsole::OUTPUT_CONSOLE);
                 }
@@ -335,11 +335,11 @@ bool Debug_console(u32 i_padNo) {
             } else {
                 u32 pressButtons = mDoCPd_c::getTrig(i_padNo);
 
-                if (pressButtons & CButton::DPAD_DOWN) {
+                if (pressButtons & PAD_BUTTON_DOWN) {
                     g_HIO.mDisplayMeter ^= 1;
                 }
 
-                if (pressButtons & CButton::DPAD_LEFT) {
+                if (pressButtons & PAD_BUTTON_LEFT) {
                     if (JKRAram::getAramHeap()) {
                         JKRAram::getAramHeap()->dump();
                     }
@@ -349,11 +349,11 @@ bool Debug_console(u32 i_padNo) {
                     g_dComIfG_gameInfo.mResControl.dump();
                 }
 
-                if (mDoCPd_c::getTrig(i_padNo) & CButton::DPAD_RIGHT) {
+                if (mDoCPd_c::getTrig(i_padNo) & PAD_BUTTON_RIGHT) {
                     JKRHeap::getSystemHeap()->dump_sort();
                 }
 
-                if (mDoCPd_c::getTrig(i_padNo) & CButton::DPAD_UP) {
+                if (mDoCPd_c::getTrig(i_padNo) & PAD_BUTTON_UP) {
                     zeldaHeap->dump_sort();
                     gameHeap->dump_sort();
                     archiveHeap->dump_sort();
@@ -391,15 +391,15 @@ static void debug() {
             CheckHeap(PAD_3);
         }
 
-        if ((mDoCPd_c::getGamePad(PAD_3)->getButton() & ~CButton::Z) == CButton::R &&
-            mDoCPd_c::getGamePad(PAD_3)->testTrigger(CButton::Z))
+        if ((mDoCPd_c::getGamePad(PAD_3)->getButton() & ~PAD_TRIGGER_Z) == PAD_TRIGGER_R &&
+            mDoCPd_c::getGamePad(PAD_3)->testTrigger(PAD_TRIGGER_Z))
         {
             mDisplayHeapSize ^= 1;
         }
 
         if (mDisplayHeapSize) {
-            if ((mDoCPd_c::getGamePad(PAD_3)->getButton() & ~CButton::Z) == CButton::L &&
-                mDoCPd_c::getGamePad(PAD_3)->testTrigger(CButton::Z))
+            if ((mDoCPd_c::getGamePad(PAD_3)->getButton() & ~PAD_TRIGGER_Z) == PAD_TRIGGER_L &&
+                mDoCPd_c::getGamePad(PAD_3)->testTrigger(PAD_TRIGGER_Z))
             {
                 mDoMain::mHeapBriefType < 5 ? mDoMain::mHeapBriefType++ :
                                               mDoMain::mHeapBriefType = 1;
