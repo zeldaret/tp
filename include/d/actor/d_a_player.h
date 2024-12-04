@@ -360,6 +360,7 @@ public:
         FLG3_UNK_10 = 0x10,
         FLG3_UNK_8 = 8,
         FLG3_UNK_4 = 4,
+        FL3_TRANING_CUT_BACK = 2,
         FLG3_UNK_1 = 1,
     };
 
@@ -401,7 +402,7 @@ public:
         ERFLG1_UNK_40000000 = 0x40000000,
         ERFLG1_UNK_20000000 = 0x20000000,
         ERFLG1_UNK_10000000 = 0x10000000,
-        ERFLG1_UNK_8000000 = 0x8000000,
+        ERFLG1_LARGE_DAMAGE_UP_STOP = 0x8000000,
         ERFLG1_UNK_4000000 = 0x4000000,
         ERFLG1_UNK_2000000 = 0x2000000,
         ERFLG1_UNK_1000000 = 0x1000000,
@@ -928,6 +929,8 @@ public:
     void onDoPutEmphasys() { onEndResetFlg1(ERFLG1_UNK_10000000); }
     void onNsScream() { onEndResetFlg1(ERFLG1_UNK_1); }
     void onNsScreamAnm() { onEndResetFlg1(daPy_ERFLG1(ERFLG1_UNK_1 | ERFLG1_UNK_2)); }
+    void onLargeDamageUpStop() { onEndResetFlg1(ERFLG1_LARGE_DAMAGE_UP_STOP); }
+    void onTraningCutBack() { onNoResetFlg3(FL3_TRANING_CUT_BACK); }
 
     u32 checkBoarSingleBattle() const { return checkNoResetFlg2(daPy_FLG2(FLG2_UNK_1000000 | FLG2_BOAR_SINGLE_BATTLE)); }
     u32 checkWolfDashAutoJump() const { return checkNoResetFlg2(FLG2_WOLF_DASH_AUTO_JUMP); }

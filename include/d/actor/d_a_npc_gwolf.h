@@ -11,7 +11,7 @@
  * @details
  *
  */
-class daNpc_GWolf_c : public fopAc_ac_c {
+class daNpc_GWolf_c : public daNpcF_c {
 public:
     /* 809F30AC */ daNpc_GWolf_c();
     /* 809F34C0 */ void create();
@@ -67,7 +67,13 @@ public:
     static u8 mEvtCutList[60];
 
 private:
-    /* 0x568 */ u8 field_0xb48[0xE1C - 0x568];
+    /* 0xB48 */ Z2Creature mCreature;
+    /* 0xBD8 */ daNpcF_MatAnm_c* mpMatAnm;
+    /* 0xBDC */ daNpcF_Lookat_c mLookAt;
+    /* 0xC78 */ daNpcF_ActorMngr_c mActorMng[2];
+    /* 0xC88 */ u8 field_0xc88[4];
+    /* 0xC8C */ dCcD_Cyl mCyl;
+    /* 0xDC8 */ u8 field_0xdc8[0xE1C - 0xdc8];
     /* 0xE1C */ u8 field_0xe1c;
 };
 

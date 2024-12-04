@@ -588,6 +588,7 @@ BOOL daNpcT_chkDoBtnIsSpeak(fopAc_ac_c* i_ActorP);
 void daNpcT_offTmpBit(u32 i_idx);
 void daNpcT_onTmpBit(u32 i_idx);
 void daNpcT_onEvtBit(u32 i_idx);
+BOOL daNpcT_chkTmpBit(u32 i_idx);
 
 struct daBaseNpc_matAnm_c {
     /* 8014D884 */ void calc(J3DMaterial*) const;

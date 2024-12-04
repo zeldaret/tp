@@ -4,6 +4,9 @@
 */
 
 #include "d/actor/d_a_npc_kn.h"
+#include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc_gwolf.h"
+#include "JSystem//J3DGraphBase/J3DMaterial.h"
 #include "dol2asm.h"
 
 //
@@ -522,44 +525,54 @@ SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80A40D40-80A40D54 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
+// /* 80A40D40-80A40D54 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
+//     0x02000201,
+//     /* padding */
+//     0x40080000,
+//     0x00000000,
+//     0x3FE00000,
+//     0x00000000,
+// };
+// #pragma pop
 
 /* 80A40D54-80A40D98 000020 0044+00 1/1 0/0 0/0 .data            mCcDCyl__10daNpc_Kn_c */
-SECTION_DATA u8 daNpc_Kn_c::mCcDCyl[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+dCcD_SrcCyl daNpc_Kn_c::mCcDCyl = {
+    {
+        {0, {{0, 0, 0}, {0, 0}, {0}}},
+        {0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0},
+        {0},
+    },
+    {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f},
+    // 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    // 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    // 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    // 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    // 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 80A40D98-80A40DD8 000064 0040+00 1/1 0/0 0/0 .data            mCcDSph__10daNpc_Kn_c */
-SECTION_DATA u8 daNpc_Kn_c::mCcDSph[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+dCcD_SrcSph daNpc_Kn_c::mCcDSph = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0x0, 0x0}, 0x0}},  // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},         // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},         // mGObjTg
+        {0x0},                                      // mGObjCo
+    },                                              // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 0.0f}  // mSph
+    }  
 };
 
 /* 80A40DD8-80A40DF0 0000A4 0018+00 0/1 0/0 0/0 .data            l_bmdData */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_bmdData[24] = {
-    0x00, 0x00, 0x00, 0x2F, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x30,
-    0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x31, 0x00, 0x00, 0x00, 0x01,
+static int l_bmdData[3][2] = {
+    {47, 1}, 
+    {48, 1},
+    {49, 1}
 };
-#pragma pop
 
 /* 80A40DF0-80A40EC0 -00001 00D0+00 0/1 0/0 0/0 .data            l_evtList */
 #pragma push
@@ -655,84 +668,28 @@ SECTION_DATA static void* l_loadResPtrnList[8] = {
 };
 
 /* 80A40F24-80A40F5C 0001F0 0038+00 0/1 0/0 0/0 .data            l_faceMotionAnmData */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_faceMotionAnmData[56] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF,
-    0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x15, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF,
-    0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+static daNpcT_faceMotionAnmData_c l_faceMotionAnmData[2] = {
+    {-1, 0, 0, -1, 0, 0, 0},
+     {21, 0, 1, -1, 0, 0, 0}
+
 };
-#pragma pop
 
 /* 80A40F5C-80A41330 000228 03D4+00 0/1 0/0 0/0 .data            l_motionAnmData */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_motionAnmData[980] = {
-    0x00, 0x00, 0x00, 0x2B, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x26,
-    0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x27, 0x00, 0x00, 0x00, 0x02,
-    0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x29, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-    0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0B,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-    0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0E,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0D, 0x00, 0x00, 0x00, 0x02,
-    0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-    0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x11,
-    0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1A, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x01,
-    0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x23, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x24,
-    0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x13, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-    0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x25,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x12, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x01,
-    0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x1B, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1D,
-    0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-    0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x18, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x19,
-    0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x2C, 0x00, 0x00, 0x00, 0x02,
-    0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x2A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-    0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x16, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x17,
-    0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00,
+static int l_motionAnmData[245] = {
+    43,2, 1, -1,0, 0, 0, 38,2, 1, -1,0, 0, 0, 39,2, 1, -1,0, 0, 
+    0, 41,0, 1, -1,0, 0, 0, 16,0, 1, -1,0, 0, 0, 11,0, 1, -1,0, 
+    0, 0, 7, 0, 1, -1,0, 0, 0, 8, 0, 1, -1,0, 0, 0, 9, 2, 1, -1,
+    0,0,0, 14,0, 1, -1,0, 0, 0, 13,2, 1, -1,0, 0, 0, 12,0, 1, 
+    -1,0, 0, 0, 30,0, 1, -1,0, 0, 0, 17,2, 1, -1,0, 0, 0, 26,0, 
+    1, -1,0, 0, 0, 28,2, 1, -1,0, 0, 0, 35,0, 1, -1,0, 0, 0, 36,
+    2, 1, -1,0, 0, 0, 10,0, 1, -1,0, 0, 0, 19,0, 1, -1,0, 0, 0, 
+    40,0, 1, -1,0, 0, 0, 37,0, 1, -1,0, 0, 0, 5, 0, 1, -1,0, 0, 
+    0, 18,2, 1, -1,0, 0, 0, 27,0, 1, -1,0, 0, 0, 29,2, 1, -1,0, 
+    0, 0, 20,0, 1, -1,0, 0, 0, 15,0, 1, -1,0, 0, 0, 24,0, 1, -1,
+    0, 0, 0, 25,2, 1, -1,0, 0, 0, 44,2, 1, -1,0, 0, 0, 42,0, 1, 
+    -1,0, 0, 0, 22,0, 1, -1,0, 0, 0, 23,2, 1, -1,0, 0, 0, 6, 0, 
+    1, -1,0, 0, 0
 };
-#pragma pop
 
 /* 80A41330-80A41358 0005FC 0028+00 1/2 0/0 0/0 .data            l_podBckData */
 SECTION_DATA static u8 l_podBckData[40] = {
@@ -742,310 +699,414 @@ SECTION_DATA static u8 l_podBckData[40] = {
 };
 
 /* 80A41358-80A41378 000624 0020+00 0/1 0/0 0/0 .data            l_faceMotionSequenceData */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_faceMotionSequenceData[32] = {
-    0x00, 0x01, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
+static daNpcT_MotionSeqMngr_c::sequenceStepData_c l_faceMotionSequenceData[8] = {
+    {1, -1, 0},
+    {-1, 0, 0}, 
+    {-1, 0, 0}, 
+    {-1, 0, 0},
+    {0, -1, 0}, 
+    {-1, 0, 0}, 
+    {-1, 0, 0}, 
+    {-1, 0, 0},
 };
-#pragma pop
 
 /* 80A41378-80A41588 000644 0210+00 0/1 0/0 0/0 .data            l_motionSequenceData */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_motionSequenceData[528] = {
-    0x00, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x03, 0xFF, 0x01, 0x00, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x0F, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x1E, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x1F, 0xFF, 0x01, 0x00, 0x1E, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x1D, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x21, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x05, 0x00, 0x01, 0x00, 0x04, 0x03, 0x01, 0x00, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x02, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x22, 0x03, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x07, 0x00, 0x01, 0x00, 0x08, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x20, 0x03, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x1C, 0x03, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x17, 0x06, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x18, 0x03, 0x01, 0x00, 0x19, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x1A, 0xFF, 0x01, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x14, 0x03, 0x01, 0x00, 0x15, 0x03, 0x01, 0x00, 0x16, 0x03, 0x01, 0x00, 0x00, 0x03, 0x00,
-    0x00, 0x0D, 0x06, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x0E, 0x03, 0x01, 0x00, 0x0F, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x10, 0xFF, 0x01, 0x00, 0x11, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x12, 0xFF, 0x01, 0x00, 0x0F, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x13, 0xFF, 0x01, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x05, 0x00, 0x01, 0x00, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x1B, 0xFF, 0x01, 0x00, 0x02, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x0C, 0x03, 0x01, 0x00, 0x02, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x04, 0x03, 0x01, 0x00, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x05, 0x00, 0x01, 0x00, 0x02, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x06, 0x00, 0x01, 0x00, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x07, 0x00, 0x01, 0x00, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x07, 0x00, 0x01, 0x00, 0x02, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x07, 0x00, 0x01, 0x00, 0x01, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x01, 0x03, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
+static daNpcT_MotionSeqMngr_c::sequenceStepData_c l_motionSequenceData[132] = {
+    {0, -1, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {3, -1, 1},
+    {0, -1, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {15, -1, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {30, -1, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {31, -1, 1},
+    {30, -1, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {-1, -1, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {29, 0, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {33, 0, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {5, 0, 1}, 
+    {4, 3, 1}, 
+    {0, -1, 0},
+    {-1, 0, 0},
+    {2, -1, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {34, 3, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {7, 0, 1}, 
+    {8, 0, 0}, 
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {32, 3, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {28, 3, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {23, 6, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {24, 3, 1},
+    {25, 0, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {26, -1, 1},
+    {0, 0, 0}, 
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {20, 3, 1},
+    {21, 3, 1},
+    {22, 3, 1},
+    {0, 3, 0}, 
+    {13, 6, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {14, 3, 1},
+    {15, 0, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {16, -1, 1},
+    {17, 0, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {18, -1, 1},
+    {15, 0, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {19, -1, 1},
+    {0, 0, 0}, 
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {5, 0, 1}, 
+    {0, -1, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {27, -1, 1},
+    {2, -1, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {12, 3, 1},
+    {2, -1, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {4, 3, 1}, 
+    {0, -1, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {5, 0, 1}, 
+    {2, -1, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {6, 0, 1}, 
+    {0, -1, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {7,  0, 1},
+    {0, -1, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {7, 0, 1}, 
+    {2, -1, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {7, 0, 1}, 
+    {1, -1, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {1, 3, 0}, 
+    {-1, 0, 0},
+    {-1, 0, 0},
+    {-1, 0, 0}
 };
-#pragma pop
 
 /* 80A41588-80A415DC -00001 0054+00 1/1 0/0 0/0 .data            mCutNameList__10daNpc_Kn_c */
-SECTION_DATA void* daNpc_Kn_c::mCutNameList[21] = {
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x10),
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x11),
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x44),
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x58),
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x6A),
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x78),
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x86),
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x96),
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0xA5),
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0xBA),
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0xCA),
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0xDB),
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x101),
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x111),
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x126),
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x137),
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x15D),
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x16D),
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x181),
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x1A7),
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x1BD),
+char* daNpc_Kn_c::mCutNameList[21] = {
+    "",
+    "NONE_EQUIP_CHANGE_TALK",
+    "NO_EQ_CHNGE_TLK_STD",
+    "LARGE_DAMAGE_TALK",
+    "FIRST_ENCOUNT",
+    "ATTACK_FAILED",
+    "FIRST_SKILL_GET",
+    "SECOND_ENCOUNT",
+    "SECOND_SKILL_EXPLAIN",
+    "REFLECT_EXPLAIN",
+    "SECOND_SKILL_GET",
+    "THIRD_SKILL_EXPLAIN",
+    "THIRD_SKILL_GET",
+    "FOURTH_SKILL_EXPLAIN",
+    "FOURTH_SKILL_GET",
+    "FIFTH_SKILL_EXPLAIN",
+    "FIFTH_SKILL_GET",
+    "SIXTH_SKILL_EXPLAIN",
+    "SIXTH_SKILL_GET",
+    "SEVENTH_SKILL_EXPLAIN",
+    "SEVENTH_SKILL_GETT",
 };
 
-/* 80A415DC-80A415E8 -00001 000C+00 0/1 0/0 0/0 .data            @5884 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_5884[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)ECut_noneEquipChangeTalk__10daNpc_Kn_cFi,
-};
-#pragma pop
+// /* 80A415DC-80A415E8 -00001 000C+00 0/1 0/0 0/0 .data            @5884 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_5884[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)ECut_noneEquipChangeTalk__10daNpc_Kn_cFi,
+// };
+// #pragma pop
 
-/* 80A415E8-80A415F4 -00001 000C+00 0/1 0/0 0/0 .data            @5885 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_5885[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)ECut_noneEquipChangeTalkStand__10daNpc_Kn_cFi,
-};
-#pragma pop
+// /* 80A415E8-80A415F4 -00001 000C+00 0/1 0/0 0/0 .data            @5885 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_5885[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)ECut_noneEquipChangeTalkStand__10daNpc_Kn_cFi,
+// };
+// #pragma pop
 
-/* 80A415F4-80A41600 -00001 000C+00 0/1 0/0 0/0 .data            @5886 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_5886[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)ECut_largeDamageTalk__10daNpc_Kn_cFi,
-};
-#pragma pop
+// /* 80A415F4-80A41600 -00001 000C+00 0/1 0/0 0/0 .data            @5886 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_5886[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)ECut_largeDamageTalk__10daNpc_Kn_cFi,
+// };
+// #pragma pop
 
-/* 80A41600-80A4160C -00001 000C+00 0/1 0/0 0/0 .data            @5887 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_5887[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)ECut_firstEncount__10daNpc_Kn_cFi,
-};
-#pragma pop
+// /* 80A41600-80A4160C -00001 000C+00 0/1 0/0 0/0 .data            @5887 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_5887[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)ECut_firstEncount__10daNpc_Kn_cFi,
+// };
+// #pragma pop
 
-/* 80A4160C-80A41618 -00001 000C+00 0/1 0/0 0/0 .data            @5888 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_5888[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)ECut_attackFailed__10daNpc_Kn_cFi,
-};
-#pragma pop
+// /* 80A4160C-80A41618 -00001 000C+00 0/1 0/0 0/0 .data            @5888 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_5888[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)ECut_attackFailed__10daNpc_Kn_cFi,
+// };
+// #pragma pop
 
-/* 80A41618-80A41624 -00001 000C+00 0/1 0/0 0/0 .data            @5889 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_5889[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)ECut_firstSkillGet__10daNpc_Kn_cFi,
-};
-#pragma pop
+// /* 80A41618-80A41624 -00001 000C+00 0/1 0/0 0/0 .data            @5889 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_5889[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)ECut_firstSkillGet__10daNpc_Kn_cFi,
+// };
+// #pragma pop
 
-/* 80A41624-80A41630 -00001 000C+00 0/1 0/0 0/0 .data            @5890 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_5890[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)ECut_secondEncount__10daNpc_Kn_cFi,
-};
-#pragma pop
+// /* 80A41624-80A41630 -00001 000C+00 0/1 0/0 0/0 .data            @5890 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_5890[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)ECut_secondEncount__10daNpc_Kn_cFi,
+// };
+// #pragma pop
 
-/* 80A41630-80A4163C -00001 000C+00 0/1 0/0 0/0 .data            @5891 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_5891[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)ECut_secondSkillExplain__10daNpc_Kn_cFi,
-};
-#pragma pop
+// /* 80A41630-80A4163C -00001 000C+00 0/1 0/0 0/0 .data            @5891 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_5891[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)ECut_secondSkillExplain__10daNpc_Kn_cFi,
+// };
+// #pragma pop
 
-/* 80A4163C-80A41648 -00001 000C+00 0/1 0/0 0/0 .data            @5892 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_5892[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)ECut_reflectExplain__10daNpc_Kn_cFi,
-};
-#pragma pop
+// /* 80A4163C-80A41648 -00001 000C+00 0/1 0/0 0/0 .data            @5892 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_5892[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)ECut_reflectExplain__10daNpc_Kn_cFi,
+// };
+// #pragma pop
 
-/* 80A41648-80A41654 -00001 000C+00 0/1 0/0 0/0 .data            @5893 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_5893[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)ECut_secondSkillGet__10daNpc_Kn_cFi,
-};
-#pragma pop
+// /* 80A41648-80A41654 -00001 000C+00 0/1 0/0 0/0 .data            @5893 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_5893[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)ECut_secondSkillGet__10daNpc_Kn_cFi,
+// };
+// #pragma pop
 
-/* 80A41654-80A41660 -00001 000C+00 0/1 0/0 0/0 .data            @5894 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_5894[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)ECut_thirdSkillExplain__10daNpc_Kn_cFi,
-};
-#pragma pop
+// /* 80A41654-80A41660 -00001 000C+00 0/1 0/0 0/0 .data            @5894 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_5894[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)ECut_thirdSkillExplain__10daNpc_Kn_cFi,
+// };
+// #pragma pop
 
-/* 80A41660-80A4166C -00001 000C+00 0/1 0/0 0/0 .data            @5895 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_5895[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)ECut_thirdSkillGet__10daNpc_Kn_cFi,
-};
-#pragma pop
+// /* 80A41660-80A4166C -00001 000C+00 0/1 0/0 0/0 .data            @5895 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_5895[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)ECut_thirdSkillGet__10daNpc_Kn_cFi,
+// };
+// #pragma pop
 
-/* 80A4166C-80A41678 -00001 000C+00 0/1 0/0 0/0 .data            @5896 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_5896[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)ECut_fourthSkillExplain__10daNpc_Kn_cFi,
-};
-#pragma pop
+// /* 80A4166C-80A41678 -00001 000C+00 0/1 0/0 0/0 .data            @5896 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_5896[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)ECut_fourthSkillExplain__10daNpc_Kn_cFi,
+// };
+// #pragma pop
 
-/* 80A41678-80A41684 -00001 000C+00 0/1 0/0 0/0 .data            @5897 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_5897[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)ECut_fourthSkillGet__10daNpc_Kn_cFi,
-};
-#pragma pop
+// /* 80A41678-80A41684 -00001 000C+00 0/1 0/0 0/0 .data            @5897 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_5897[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)ECut_fourthSkillGet__10daNpc_Kn_cFi,
+// };
+// #pragma pop
 
-/* 80A41684-80A41690 -00001 000C+00 0/1 0/0 0/0 .data            @5898 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_5898[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)ECut_fifthSkillExplain__10daNpc_Kn_cFi,
-};
-#pragma pop
+// /* 80A41684-80A41690 -00001 000C+00 0/1 0/0 0/0 .data            @5898 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_5898[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)ECut_fifthSkillExplain__10daNpc_Kn_cFi,
+// };
+// #pragma pop
 
-/* 80A41690-80A4169C -00001 000C+00 0/1 0/0 0/0 .data            @5899 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_5899[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)ECut_fifthSkillGet__10daNpc_Kn_cFi,
-};
-#pragma pop
+// /* 80A41690-80A4169C -00001 000C+00 0/1 0/0 0/0 .data            @5899 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_5899[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)ECut_fifthSkillGet__10daNpc_Kn_cFi,
+// };
+// #pragma pop
 
-/* 80A4169C-80A416A8 -00001 000C+00 0/1 0/0 0/0 .data            @5900 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_5900[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)ECut_sixthSkillExplain__10daNpc_Kn_cFi,
-};
-#pragma pop
+// /* 80A4169C-80A416A8 -00001 000C+00 0/1 0/0 0/0 .data            @5900 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_5900[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)ECut_sixthSkillExplain__10daNpc_Kn_cFi,
+// };
+// #pragma pop
 
-/* 80A416A8-80A416B4 -00001 000C+00 0/1 0/0 0/0 .data            @5901 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_5901[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)ECut_sixthSkillGet__10daNpc_Kn_cFi,
-};
-#pragma pop
+// /* 80A416A8-80A416B4 -00001 000C+00 0/1 0/0 0/0 .data            @5901 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_5901[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)ECut_sixthSkillGet__10daNpc_Kn_cFi,
+// };
+// #pragma pop
 
-/* 80A416B4-80A416C0 -00001 000C+00 0/1 0/0 0/0 .data            @5902 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_5902[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)ECut_seventhSkillExplain__10daNpc_Kn_cFi,
-};
-#pragma pop
+// /* 80A416B4-80A416C0 -00001 000C+00 0/1 0/0 0/0 .data            @5902 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_5902[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)ECut_seventhSkillExplain__10daNpc_Kn_cFi,
+// };
+// #pragma pop
 
-/* 80A416C0-80A416CC -00001 000C+00 0/1 0/0 0/0 .data            @5903 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_5903[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)ECut_seventhSkillGet__10daNpc_Kn_cFi,
-};
-#pragma pop
+// /* 80A416C0-80A416CC -00001 000C+00 0/1 0/0 0/0 .data            @5903 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_5903[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)ECut_seventhSkillGet__10daNpc_Kn_cFi,
+// };
+// #pragma pop
 
 /* 80A416CC-80A417C8 000998 00FC+00 1/2 0/0 0/0 .data            mCutList__10daNpc_Kn_c */
-SECTION_DATA u8 daNpc_Kn_c::mCutList[252] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+daNpc_Kn_c::cutFunc daNpc_Kn_c::mCutList[21] = {
+        NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
 };
 
-/* 80A417C8-80A417E8 -00001 0020+00 1/1 0/0 0/0 .data            @6623 */
-SECTION_DATA static void* lit_6623[8] = {
-    (void*)(((char*)getType__10daNpc_Kn_cFv) + 0x60),
-    (void*)(((char*)getType__10daNpc_Kn_cFv) + 0x28),
-    (void*)(((char*)getType__10daNpc_Kn_cFv) + 0x30),
-    (void*)(((char*)getType__10daNpc_Kn_cFv) + 0x38),
-    (void*)(((char*)getType__10daNpc_Kn_cFv) + 0x40),
-    (void*)(((char*)getType__10daNpc_Kn_cFv) + 0x48),
-    (void*)(((char*)getType__10daNpc_Kn_cFv) + 0x50),
-    (void*)(((char*)getType__10daNpc_Kn_cFv) + 0x58),
-};
+// /* 80A417C8-80A417E8 -00001 0020+00 1/1 0/0 0/0 .data            @6623 */
+// SECTION_DATA static void* lit_6623[8] = {
+//     (void*)(((char*)getType__10daNpc_Kn_cFv) + 0x60),
+//     (void*)(((char*)getType__10daNpc_Kn_cFv) + 0x28),
+//     (void*)(((char*)getType__10daNpc_Kn_cFv) + 0x30),
+//     (void*)(((char*)getType__10daNpc_Kn_cFv) + 0x38),
+//     (void*)(((char*)getType__10daNpc_Kn_cFv) + 0x40),
+//     (void*)(((char*)getType__10daNpc_Kn_cFv) + 0x48),
+//     (void*)(((char*)getType__10daNpc_Kn_cFv) + 0x50),
+//     (void*)(((char*)getType__10daNpc_Kn_cFv) + 0x58),
+// };
 
 /* 80A417E8-80A417F8 000AB4 000E+02 1/1 0/0 0/0 .data            l_appearFlag$6644 */
 SECTION_DATA static u8 l_appearFlag[14 + 2 /* padding */] = {
@@ -1089,1635 +1150,1636 @@ SECTION_DATA static u8 l_delFlag[14 + 2 /* padding */] = {
     0x00,
 };
 
-/* 80A41808-80A41824 -00001 001C+00 1/1 0/0 0/0 .data            @6752 */
-SECTION_DATA static void* lit_6752[7] = {
-    (void*)(((char*)resetType__10daNpc_Kn_cFv) + 0x24),
-    (void*)(((char*)resetType__10daNpc_Kn_cFv) + 0x30),
-    (void*)(((char*)resetType__10daNpc_Kn_cFv) + 0x3C),
-    (void*)(((char*)resetType__10daNpc_Kn_cFv) + 0x48),
-    (void*)(((char*)resetType__10daNpc_Kn_cFv) + 0x54),
-    (void*)(((char*)resetType__10daNpc_Kn_cFv) + 0x60),
-    (void*)(((char*)resetType__10daNpc_Kn_cFv) + 0x94),
-};
+// /* 80A41808-80A41824 -00001 001C+00 1/1 0/0 0/0 .data            @6752 */
+// SECTION_DATA static void* lit_6752[7] = {
+//     (void*)(((char*)resetType__10daNpc_Kn_cFv) + 0x24),
+//     (void*)(((char*)resetType__10daNpc_Kn_cFv) + 0x30),
+//     (void*)(((char*)resetType__10daNpc_Kn_cFv) + 0x3C),
+//     (void*)(((char*)resetType__10daNpc_Kn_cFv) + 0x48),
+//     (void*)(((char*)resetType__10daNpc_Kn_cFv) + 0x54),
+//     (void*)(((char*)resetType__10daNpc_Kn_cFv) + 0x60),
+//     (void*)(((char*)resetType__10daNpc_Kn_cFv) + 0x94),
+// };
 
-/* 80A41824-80A41840 -00001 001C+00 1/1 0/0 0/0 .data            @6810 */
-SECTION_DATA static void* lit_6810[7] = {
-    (void*)(((char*)setParam__10daNpc_Kn_cFv) + 0x60),
-    (void*)(((char*)setParam__10daNpc_Kn_cFv) + 0x90),
-    (void*)(((char*)setParam__10daNpc_Kn_cFv) + 0xE0),
-    (void*)(((char*)setParam__10daNpc_Kn_cFv) + 0x110),
-    (void*)(((char*)setParam__10daNpc_Kn_cFv) + 0x140),
-    (void*)(((char*)setParam__10daNpc_Kn_cFv) + 0x170),
-    (void*)(((char*)setParam__10daNpc_Kn_cFv) + 0x180),
-};
+// /* 80A41824-80A41840 -00001 001C+00 1/1 0/0 0/0 .data            @6810 */
+// SECTION_DATA static void* lit_6810[7] = {
+//     (void*)(((char*)setParam__10daNpc_Kn_cFv) + 0x60),
+//     (void*)(((char*)setParam__10daNpc_Kn_cFv) + 0x90),
+//     (void*)(((char*)setParam__10daNpc_Kn_cFv) + 0xE0),
+//     (void*)(((char*)setParam__10daNpc_Kn_cFv) + 0x110),
+//     (void*)(((char*)setParam__10daNpc_Kn_cFv) + 0x140),
+//     (void*)(((char*)setParam__10daNpc_Kn_cFv) + 0x170),
+//     (void*)(((char*)setParam__10daNpc_Kn_cFv) + 0x180),
+// };
 
-/* 80A41840-80A4184C -00001 000C+00 1/1 0/0 0/0 .data            @6873 */
-SECTION_DATA static void* lit_6873[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)talk__10daNpc_Kn_cFPv,
-};
+// /* 80A41840-80A4184C -00001 000C+00 1/1 0/0 0/0 .data            @6873 */
+// SECTION_DATA static void* lit_6873[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)talk__10daNpc_Kn_cFPv,
+// };
 
-/* 80A4184C-80A41858 -00001 000C+00 1/1 0/0 0/0 .data            @6881 */
-SECTION_DATA static void* lit_6881[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)talk__10daNpc_Kn_cFPv,
-};
+// /* 80A4184C-80A41858 -00001 000C+00 1/1 0/0 0/0 .data            @6881 */
+// SECTION_DATA static void* lit_6881[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)talk__10daNpc_Kn_cFPv,
+// };
 
-/* 80A41858-80A41874 -00001 001C+00 1/1 0/0 0/0 .data            @7116 */
-SECTION_DATA static void* lit_7116[7] = {
-    (void*)(((char*)setCollision__10daNpc_Kn_cFv) + 0x70),
-    (void*)(((char*)setCollision__10daNpc_Kn_cFv) + 0x7C),
-    (void*)(((char*)setCollision__10daNpc_Kn_cFv) + 0xA4),
-    (void*)(((char*)setCollision__10daNpc_Kn_cFv) + 0xCC),
-    (void*)(((char*)setCollision__10daNpc_Kn_cFv) + 0xF4),
-    (void*)(((char*)setCollision__10daNpc_Kn_cFv) + 0x11C),
-    (void*)(((char*)setCollision__10daNpc_Kn_cFv) + 0x128),
-};
+// /* 80A41858-80A41874 -00001 001C+00 1/1 0/0 0/0 .data            @7116 */
+// SECTION_DATA static void* lit_7116[7] = {
+//     (void*)(((char*)setCollision__10daNpc_Kn_cFv) + 0x70),
+//     (void*)(((char*)setCollision__10daNpc_Kn_cFv) + 0x7C),
+//     (void*)(((char*)setCollision__10daNpc_Kn_cFv) + 0xA4),
+//     (void*)(((char*)setCollision__10daNpc_Kn_cFv) + 0xCC),
+//     (void*)(((char*)setCollision__10daNpc_Kn_cFv) + 0xF4),
+//     (void*)(((char*)setCollision__10daNpc_Kn_cFv) + 0x11C),
+//     (void*)(((char*)setCollision__10daNpc_Kn_cFv) + 0x128),
+// };
 
 /* 80A41874-80A4187C 000B40 0008+00 1/1 0/0 0/0 .data            l_swordOffset$7120 */
-SECTION_DATA static u8 l_swordOffset[8] = {
-    0x42, 0x70, 0x00, 0x00, 0x42, 0xF0, 0x00, 0x00,
+static f32 l_swordOffset[2] = {
+    60.0f,
+    120.0f
 };
 
-/* 80A4187C-80A41888 -00001 000C+00 0/1 0/0 0/0 .data            @7398 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_7398[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)test__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A4187C-80A41888 -00001 000C+00 0/1 0/0 0/0 .data            @7398 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_7398[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)test__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A41888-80A41894 -00001 000C+00 0/0 0/0 0/0 .data            @7413 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_7413[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)teach02_start__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A41888-80A41894 -00001 000C+00 0/0 0/0 0/0 .data            @7413 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_7413[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)teach02_start__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A41894-80A418A0 -00001 000C+00 0/0 0/0 0/0 .data            @7421 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_7421[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)teach02_start__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A41894-80A418A0 -00001 000C+00 0/0 0/0 0/0 .data            @7421 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_7421[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)teach02_start__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A418A0-80A418AC -00001 000C+00 0/0 0/0 0/0 .data            @7429 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_7429[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)teach02_start__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A418A0-80A418AC -00001 000C+00 0/0 0/0 0/0 .data            @7429 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_7429[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)teach02_start__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A418AC-80A418B8 -00001 000C+00 0/0 0/0 0/0 .data            @7437 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_7437[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)teach02_start__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A418AC-80A418B8 -00001 000C+00 0/0 0/0 0/0 .data            @7437 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_7437[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)teach02_start__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A418B8-80A418C4 -00001 000C+00 0/1 0/0 0/0 .data            @7443 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_7443[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)wait__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A418B8-80A418C4 -00001 000C+00 0/1 0/0 0/0 .data            @7443 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_7443[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)wait__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A418C4-80A418E0 -00001 001C+00 1/1 0/0 0/0 .data            @7450 */
-SECTION_DATA static void* lit_7450[7] = {
-    (void*)(((char*)selectAction__10daNpc_Kn_cFv) + 0x88),
-    (void*)(((char*)selectAction__10daNpc_Kn_cFv) + 0x90),
-    (void*)(((char*)selectAction__10daNpc_Kn_cFv) + 0xB0),
-    (void*)(((char*)selectAction__10daNpc_Kn_cFv) + 0xD0),
-    (void*)(((char*)selectAction__10daNpc_Kn_cFv) + 0x114),
-    (void*)(((char*)selectAction__10daNpc_Kn_cFv) + 0x158),
-    (void*)(((char*)selectAction__10daNpc_Kn_cFv) + 0x19C),
-};
+// /* 80A418C4-80A418E0 -00001 001C+00 1/1 0/0 0/0 .data            @7450 */
+// SECTION_DATA static void* lit_7450[7] = {
+//     (void*)(((char*)selectAction__10daNpc_Kn_cFv) + 0x88),
+//     (void*)(((char*)selectAction__10daNpc_Kn_cFv) + 0x90),
+//     (void*)(((char*)selectAction__10daNpc_Kn_cFv) + 0xB0),
+//     (void*)(((char*)selectAction__10daNpc_Kn_cFv) + 0xD0),
+//     (void*)(((char*)selectAction__10daNpc_Kn_cFv) + 0x114),
+//     (void*)(((char*)selectAction__10daNpc_Kn_cFv) + 0x158),
+//     (void*)(((char*)selectAction__10daNpc_Kn_cFv) + 0x19C),
+// };
 
-/* 80A418E0-80A418EC -00001 000C+00 1/1 0/0 0/0 .data            @7456 */
-SECTION_DATA static void* lit_7456[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)teach03_attackWait__10daNpc_Kn_cFPv,
-};
+// /* 80A418E0-80A418EC -00001 000C+00 1/1 0/0 0/0 .data            @7456 */
+// SECTION_DATA static void* lit_7456[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)teach03_attackWait__10daNpc_Kn_cFPv,
+// };
 
-/* 80A418EC-80A418F8 -00001 000C+00 1/1 0/0 0/0 .data            @7458 */
-SECTION_DATA static void* lit_7458[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)wait__10daNpc_Kn_cFPv,
-};
+// /* 80A418EC-80A418F8 -00001 000C+00 1/1 0/0 0/0 .data            @7458 */
+// SECTION_DATA static void* lit_7458[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)wait__10daNpc_Kn_cFPv,
+// };
 
-/* 80A418F8-80A41904 -00001 000C+00 0/1 0/0 0/0 .data            @7465 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_7465[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)teach04_attackWait__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A418F8-80A41904 -00001 000C+00 0/1 0/0 0/0 .data            @7465 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_7465[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)teach04_attackWait__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A41904-80A41910 -00001 000C+00 0/1 0/0 0/0 .data            @7467 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_7467[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)teach04_headBreakWait__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A41904-80A41910 -00001 000C+00 0/1 0/0 0/0 .data            @7467 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_7467[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)teach04_headBreakWait__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A41910-80A4191C -00001 000C+00 0/1 0/0 0/0 .data            @7469 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_7469[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)teach04_finishWait__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A41910-80A4191C -00001 000C+00 0/1 0/0 0/0 .data            @7469 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_7469[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)teach04_finishWait__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A4191C-80A41928 -00001 000C+00 0/1 0/0 0/0 .data            @7471 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_7471[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)wait__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A4191C-80A41928 -00001 000C+00 0/1 0/0 0/0 .data            @7471 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_7471[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)wait__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A41928-80A41934 -00001 000C+00 1/1 0/0 0/0 .data            @7478 */
-SECTION_DATA static void* lit_7478[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)teach05_surpriseAttackWait__10daNpc_Kn_cFPv,
-};
+// /* 80A41928-80A41934 -00001 000C+00 1/1 0/0 0/0 .data            @7478 */
+// SECTION_DATA static void* lit_7478[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)teach05_surpriseAttackWait__10daNpc_Kn_cFPv,
+// };
 
-/* 80A41934-80A41940 -00001 000C+00 1/1 0/0 0/0 .data            @7480 */
-SECTION_DATA static void* lit_7480[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)wait__10daNpc_Kn_cFPv,
-};
+// /* 80A41934-80A41940 -00001 000C+00 1/1 0/0 0/0 .data            @7480 */
+// SECTION_DATA static void* lit_7480[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)wait__10daNpc_Kn_cFPv,
+// };
 
-/* 80A41940-80A4194C -00001 000C+00 0/1 0/0 0/0 .data            @7487 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_7487[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)teach06_superJumpWait__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A41940-80A4194C -00001 000C+00 0/1 0/0 0/0 .data            @7487 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_7487[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)teach06_superJumpWait__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A4194C-80A41958 -00001 000C+00 0/1 0/0 0/0 .data            @7489 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_7489[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)teach06_divideMove__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A4194C-80A41958 -00001 000C+00 0/1 0/0 0/0 .data            @7489 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_7489[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)teach06_divideMove__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A41958-80A41964 -00001 000C+00 0/1 0/0 0/0 .data            @7491 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_7491[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)teach06_superJumpWaitDivide__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A41958-80A41964 -00001 000C+00 0/1 0/0 0/0 .data            @7491 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_7491[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)teach06_superJumpWaitDivide__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A41964-80A41970 -00001 000C+00 0/1 0/0 0/0 .data            @7493 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_7493[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)teach06_superJumpedDivide__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A41964-80A41970 -00001 000C+00 0/1 0/0 0/0 .data            @7493 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_7493[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)teach06_superJumpedDivide__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A41970-80A4197C -00001 000C+00 0/1 0/0 0/0 .data            @7495 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_7495[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)teach06_warpDelete__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A41970-80A4197C -00001 000C+00 0/1 0/0 0/0 .data            @7495 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_7495[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)teach06_warpDelete__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A4197C-80A41988 -00001 000C+00 0/1 0/0 0/0 .data            @7497 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_7497[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)teach06_waitDivide__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A4197C-80A41988 -00001 000C+00 0/1 0/0 0/0 .data            @7497 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_7497[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)teach06_waitDivide__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A41988-80A41994 -00001 000C+00 0/1 0/0 0/0 .data            @7499 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_7499[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)wait__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A41988-80A41994 -00001 000C+00 0/1 0/0 0/0 .data            @7499 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_7499[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)wait__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A41994-80A419A0 -00001 000C+00 0/1 0/0 0/0 .data            @7506 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_7506[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)teach07_superTurnAttackWait__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A41994-80A419A0 -00001 000C+00 0/1 0/0 0/0 .data            @7506 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_7506[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)teach07_superTurnAttackWait__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A419A0-80A419AC -00001 000C+00 0/1 0/0 0/0 .data            @7508 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_7508[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)teach07_divideMove__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A419A0-80A419AC -00001 000C+00 0/1 0/0 0/0 .data            @7508 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_7508[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)teach07_divideMove__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A419AC-80A419B8 -00001 000C+00 0/1 0/0 0/0 .data            @7510 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_7510[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)teach07_superTurnAttackWaitDivide__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A419AC-80A419B8 -00001 000C+00 0/1 0/0 0/0 .data            @7510 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_7510[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)teach07_superTurnAttackWaitDivide__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A419B8-80A419C4 -00001 000C+00 0/1 0/0 0/0 .data            @7512 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_7512[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)teach07_superTurnAttackedDivide__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A419B8-80A419C4 -00001 000C+00 0/1 0/0 0/0 .data            @7512 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_7512[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)teach07_superTurnAttackedDivide__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A419C4-80A419D0 -00001 000C+00 0/1 0/0 0/0 .data            @7514 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_7514[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)teach07_warpDelete__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A419C4-80A419D0 -00001 000C+00 0/1 0/0 0/0 .data            @7514 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_7514[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)teach07_warpDelete__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A419D0-80A419DC -00001 000C+00 0/1 0/0 0/0 .data            @7516 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_7516[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)teach07_waitDivide__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A419D0-80A419DC -00001 000C+00 0/1 0/0 0/0 .data            @7516 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_7516[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)teach07_waitDivide__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A419DC-80A419E8 -00001 000C+00 0/1 0/0 0/0 .data            @7518 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_7518[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)wait__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A419DC-80A419E8 -00001 000C+00 0/1 0/0 0/0 .data            @7518 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_7518[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)wait__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A419E8-80A41A3C -00001 0054+00 1/1 0/0 0/0 .data            @9731 */
-SECTION_DATA static void* lit_9731[21] = {
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x21C),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x224),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x22C),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x234),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x3D4),
-};
+// /* 80A419E8-80A41A3C -00001 0054+00 1/1 0/0 0/0 .data            @9731 */
+// SECTION_DATA static void* lit_9731[21] = {
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x21C),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x224),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x22C),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x234),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x468),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x3D4),
+// };
 
-/* 80A41A3C-80A41A90 -00001 0054+00 1/1 0/0 0/0 .data            @9730 */
-SECTION_DATA static void* lit_9730[21] = {
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x88),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0xEC),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x124),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x144),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
-    (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1F4),
-};
+// /* 80A41A3C-80A41A90 -00001 0054+00 1/1 0/0 0/0 .data            @9730 */
+// SECTION_DATA static void* lit_9730[21] = {
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x88),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0xEC),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x124),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x144),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1FC),
+//     (void*)(((char*)ECut_secondEncount__10daNpc_Kn_cFi) + 0x1F4),
+// };
 
-/* 80A41A90-80A41BAC -00001 011C+00 1/1 0/0 0/0 .data            @9985 */
-SECTION_DATA static void* lit_9985[71] = {
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x3A4),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x4AC),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x568),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x590),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x688),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x688),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x6B0),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x7FC),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x590),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x824),
-};
+// /* 80A41A90-80A41BAC -00001 011C+00 1/1 0/0 0/0 .data            @9985 */
+// SECTION_DATA static void* lit_9985[71] = {
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x3A4),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x4AC),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x568),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x590),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x688),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x688),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x6B0),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x7FC),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x590),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x84C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x824),
+// };
 
-/* 80A41BAC-80A41CC8 -00001 011C+00 1/1 0/0 0/0 .data            @9984 */
-SECTION_DATA static void* lit_9984[71] = {
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x90),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x120),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x13C),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x264),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x278),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x294),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x2E4),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x2F0),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x160),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x304),
-};
+// /* 80A41BAC-80A41CC8 -00001 011C+00 1/1 0/0 0/0 .data            @9984 */
+// SECTION_DATA static void* lit_9984[71] = {
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x90),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x120),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x13C),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x264),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x278),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x294),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x2E4),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x2F0),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x160),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_thirdSkillExplain__10daNpc_Kn_cFi) + 0x304),
+// };
 
-/* 80A41CC8-80A41D44 -00001 007C+00 1/1 0/0 0/0 .data            @10163 */
-SECTION_DATA static void* lit_10163[31] = {
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2E8),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x3B4),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x40C),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x434),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x4F0),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x548),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x5A4),
-};
+// /* 80A41CC8-80A41D44 -00001 007C+00 1/1 0/0 0/0 .data            @10163 */
+// SECTION_DATA static void* lit_10163[31] = {
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2E8),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x3B4),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x40C),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x434),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x4F0),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x548),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x5A4),
+// };
 
-/* 80A41D44-80A41DC0 -00001 007C+00 1/1 0/0 0/0 .data            @10162 */
-SECTION_DATA static void* lit_10162[31] = {
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x90),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0xA4),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x134),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x16C),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x24C),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x270),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2A4),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2B8),
-};
+// /* 80A41D44-80A41DC0 -00001 007C+00 1/1 0/0 0/0 .data            @10162 */
+// SECTION_DATA static void* lit_10162[31] = {
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x90),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0xA4),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x134),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x16C),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x24C),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x270),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2A4),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_thirdSkillGet__10daNpc_Kn_cFi) + 0x2B8),
+// };
 
-/* 80A41DC0-80A41EDC -00001 011C+00 1/1 0/0 0/0 .data            @10496 */
-SECTION_DATA static void* lit_10496[71] = {
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x4AC),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x578),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x5D0),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x6B4),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x6DC),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x820),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x828),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x828),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x850),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x9C0),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x6DC),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x9E8),
-};
+// /* 80A41DC0-80A41EDC -00001 011C+00 1/1 0/0 0/0 .data            @10496 */
+// SECTION_DATA static void* lit_10496[71] = {
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x4AC),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x578),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x5D0),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x6B4),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x6DC),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x820),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x828),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x828),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x850),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x9C0),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x6DC),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0xA08),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x9E8),
+// };
 
-/* 80A41EDC-80A41FF8 -00001 011C+00 1/1 0/0 0/0 .data            @10495 */
-SECTION_DATA static void* lit_10495[71] = {
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x90),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x9C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x12C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x168),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x184),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x344),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x358),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x3F8),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x1A8),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x40C),
-};
+// /* 80A41EDC-80A41FF8 -00001 011C+00 1/1 0/0 0/0 .data            @10495 */
+// SECTION_DATA static void* lit_10495[71] = {
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x90),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x9C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x12C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x168),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x184),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x344),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x358),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x3F8),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x1A8),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_fourthSkillExplain__10daNpc_Kn_cFi) + 0x40C),
+// };
 
-/* 80A41FF8-80A42074 -00001 007C+00 1/1 0/0 0/0 .data            @10672 */
-SECTION_DATA static void* lit_10672[31] = {
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2E8),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x3B4),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x40C),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x434),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x4F0),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x548),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x5A4),
-};
+// /* 80A41FF8-80A42074 -00001 007C+00 1/1 0/0 0/0 .data            @10672 */
+// SECTION_DATA static void* lit_10672[31] = {
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2E8),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x3B4),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x40C),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x434),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x4F0),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x548),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x5A4),
+// };
 
-/* 80A42074-80A420F0 -00001 007C+00 1/1 0/0 0/0 .data            @10671 */
-SECTION_DATA static void* lit_10671[31] = {
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x90),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0xA4),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x134),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x16C),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x24C),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x270),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2A4),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2B8),
-};
+// /* 80A42074-80A420F0 -00001 007C+00 1/1 0/0 0/0 .data            @10671 */
+// SECTION_DATA static void* lit_10671[31] = {
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x90),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0xA4),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x134),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x16C),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x24C),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x270),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2A4),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fourthSkillGet__10daNpc_Kn_cFi) + 0x2B8),
+// };
 
-/* 80A420F0-80A4220C -00001 011C+00 1/1 0/0 0/0 .data            @11023 */
-SECTION_DATA static void* lit_11023[71] = {
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x4A8),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x574),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x5CC),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x5F4),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x6B0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x6D8),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x7D0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x7D0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x7F8),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9A0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x6D8),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9C8),
-};
+// /* 80A420F0-80A4220C -00001 011C+00 1/1 0/0 0/0 .data            @11023 */
+// SECTION_DATA static void* lit_11023[71] = {
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x4A8),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x574),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x5CC),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x5F4),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x6B0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x6D8),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x7D0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x7D0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x7F8),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9A0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x6D8),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9F0),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x9C8),
+// };
 
-/* 80A4220C-80A42328 -00001 011C+00 1/1 0/0 0/0 .data            @11022 */
-SECTION_DATA static void* lit_11022[71] = {
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x90),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x120),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x15C),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x178),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x340),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x354),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x370),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x19C),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
-    (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x408),
-};
+// /* 80A4220C-80A42328 -00001 011C+00 1/1 0/0 0/0 .data            @11022 */
+// SECTION_DATA static void* lit_11022[71] = {
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x90),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x120),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x15C),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x178),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x340),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x354),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x370),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x19C),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x488),
+//     (void*)(((char*)ECut_fifthSkillExplain__10daNpc_Kn_cFi) + 0x408),
+// };
 
-/* 80A42328-80A423A4 -00001 007C+00 1/1 0/0 0/0 .data            @11199 */
-SECTION_DATA static void* lit_11199[31] = {
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2E8),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x3B4),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x40C),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x434),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x4F0),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x548),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x5A4),
-};
+// /* 80A42328-80A423A4 -00001 007C+00 1/1 0/0 0/0 .data            @11199 */
+// SECTION_DATA static void* lit_11199[31] = {
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2E8),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x3B4),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x40C),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x434),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x4F0),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x548),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x608),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x5A4),
+// };
 
-/* 80A423A4-80A42420 -00001 007C+00 1/1 0/0 0/0 .data            @11198 */
-SECTION_DATA static void* lit_11198[31] = {
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x90),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0xA4),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x134),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x16C),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x24C),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x270),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2A4),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-    (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2B8),
-};
+// /* 80A423A4-80A42420 -00001 007C+00 1/1 0/0 0/0 .data            @11198 */
+// SECTION_DATA static void* lit_11198[31] = {
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x90),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0xA4),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x134),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x16C),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x24C),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x270),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2A4),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+//     (void*)(((char*)ECut_fifthSkillGet__10daNpc_Kn_cFi) + 0x2B8),
+// };
 
-/* 80A42420-80A42564 -00001 0144+00 1/1 0/0 0/0 .data            @11518 */
-SECTION_DATA static void* lit_11518[81] = {
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x414),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x4E0),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x538),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x560),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x61C),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x644),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x73C),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x73C),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x764),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x8C8),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x644),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x8F0),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x968),
-};
+// /* 80A42420-80A42564 -00001 0144+00 1/1 0/0 0/0 .data            @11518 */
+// SECTION_DATA static void* lit_11518[81] = {
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x414),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x4E0),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x538),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x560),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x61C),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x644),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x73C),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x73C),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x764),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x8C8),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x644),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x8F0),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x988),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x968),
+// };
 
-/* 80A42564-80A426A8 -00001 0144+00 1/1 0/0 0/0 .data            @11517 */
-SECTION_DATA static void* lit_11517[81] = {
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x90),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x120),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x15C),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x178),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x2A0),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x2B4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x2D0),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x354),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x19C),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x368),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
-    (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3EC),
-};
+// /* 80A42564-80A426A8 -00001 0144+00 1/1 0/0 0/0 .data            @11517 */
+// SECTION_DATA static void* lit_11517[81] = {
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x90),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x120),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x15C),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x178),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x2A0),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x2B4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x2D0),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x354),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x19C),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x368),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3F4),
+//     (void*)(((char*)ECut_sixthSkillExplain__10daNpc_Kn_cFi) + 0x3EC),
+// };
 
-/* 80A426A8-80A42724 -00001 007C+00 1/1 0/0 0/0 .data            @11696 */
-SECTION_DATA static void* lit_11696[31] = {
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2F8),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x3C4),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x41C),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x444),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x500),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x558),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x5B4),
-};
+// /* 80A426A8-80A42724 -00001 007C+00 1/1 0/0 0/0 .data            @11696 */
+// SECTION_DATA static void* lit_11696[31] = {
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2F8),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x3C4),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x41C),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x444),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x500),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x558),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x618),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x5B4),
+// };
 
-/* 80A42724-80A427A0 -00001 007C+00 1/1 0/0 0/0 .data            @11695 */
-SECTION_DATA static void* lit_11695[31] = {
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x90),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0xA4),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x144),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x17C),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x25C),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x280),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2B4),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
-    (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
-};
+// /* 80A42724-80A427A0 -00001 007C+00 1/1 0/0 0/0 .data            @11695 */
+// SECTION_DATA static void* lit_11695[31] = {
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x90),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0xA4),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x144),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x17C),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x25C),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x280),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2B4),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2D8),
+//     (void*)(((char*)ECut_sixthSkillGet__10daNpc_Kn_cFi) + 0x2C8),
+// };
 
-/* 80A427A0-80A428E4 -00001 0144+00 1/1 0/0 0/0 .data            @11977 */
-SECTION_DATA static void* lit_11977[81] = {
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3F0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x4BC),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x514),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x53C),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x620),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x718),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x718),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x740),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x768),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x780),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x7A8),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x820),
-};
+// /* 80A427A0-80A428E4 -00001 0144+00 1/1 0/0 0/0 .data            @11977 */
+// SECTION_DATA static void* lit_11977[81] = {
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3F0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x4BC),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x514),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x53C),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x620),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x718),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x718),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x740),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x768),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x780),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x7A8),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x840),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x820),
+// };
 
-/* 80A428E4-80A42A28 -00001 0144+00 1/1 0/0 0/0 .data            @11974 */
-SECTION_DATA static void* lit_11974[81] = {
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x90),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x120),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x15C),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x178),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x2A0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x2B4),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x2D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x324),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x330),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x344),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3C8),
-};
+// /* 80A428E4-80A42A28 -00001 0144+00 1/1 0/0 0/0 .data            @11974 */
+// SECTION_DATA static void* lit_11974[81] = {
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x90),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x120),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x15C),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x178),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x2A0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x2B4),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x2D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x324),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x330),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x344),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_seventhSkillExplain__10daNpc_Kn_cFi) + 0x3C8),
+// };
 
-/* 80A42A28-80A42ACC -00001 00A4+00 1/1 0/0 0/0 .data            @12160 */
-SECTION_DATA static void* lit_12160[41] = {
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x314),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x3E0),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x438),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x460),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x51C),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x574),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x5D0),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x62C),
-};
+// /* 80A42A28-80A42ACC -00001 00A4+00 1/1 0/0 0/0 .data            @12160 */
+// SECTION_DATA static void* lit_12160[41] = {
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x314),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x3E0),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x438),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x460),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x51C),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x574),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x5D0),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x690),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x62C),
+// };
 
-/* 80A42ACC-80A42B70 -00001 00A4+00 1/1 0/0 0/0 .data            @12159 */
-SECTION_DATA static void* lit_12159[41] = {
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x90),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0xAC),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x14C),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x184),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x264),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x288),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2BC),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2D0),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
-    (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2E4),
-};
+// /* 80A42ACC-80A42B70 -00001 00A4+00 1/1 0/0 0/0 .data            @12159 */
+// SECTION_DATA static void* lit_12159[41] = {
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x90),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0xAC),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x14C),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x184),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x264),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x288),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2BC),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2D0),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2F4),
+//     (void*)(((char*)ECut_seventhSkillGet__10daNpc_Kn_cFi) + 0x2E4),
+// };
 
-/* 80A42B70-80A42BFC -00001 008C+00 1/1 0/0 0/0 .data            @12828 */
-SECTION_DATA static void* lit_12828[35] = {
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x44),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x44),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x44),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x44),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x19C),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x6C),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x104),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0xB8),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x3E4),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x3E4),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x3E4),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x3E4),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x1E8),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x3E4),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x3E4),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x3E4),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x150),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x3E4),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x3E4),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x3E4),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x2B8),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x3E4),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x3E4),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x3E4),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x3E4),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x44),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x44),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x44),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x304),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x44),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x44),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x44),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x350),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x44),
-    (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x39C),
-};
+// /* 80A42B70-80A42BFC -00001 008C+00 1/1 0/0 0/0 .data            @12828 */
+// SECTION_DATA static void* lit_12828[35] = {
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x44),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x44),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x44),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x44),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x19C),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x6C),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x104),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0xB8),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x3E4),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x3E4),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x3E4),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x3E4),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x1E8),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x3E4),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x3E4),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x3E4),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x150),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x3E4),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x3E4),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x3E4),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x2B8),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x3E4),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x3E4),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x3E4),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x3E4),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x44),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x44),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x44),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x304),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x44),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x44),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x44),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x350),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x44),
+//     (void*)(((char*)setSe__10daNpc_Kn_cFv) + 0x39C),
+// };
 
-/* 80A42BFC-80A42C08 -00001 000C+00 0/1 0/0 0/0 .data            @12903 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_12903[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)teach01_start__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A42BFC-80A42C08 -00001 000C+00 0/1 0/0 0/0 .data            @12903 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_12903[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)teach01_start__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A42C08-80A42C14 -00001 000C+00 0/1 0/0 0/0 .data            @12905 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_12905[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)teach01_attackWait__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A42C08-80A42C14 -00001 000C+00 0/1 0/0 0/0 .data            @12905 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_12905[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)teach01_attackWait__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A42C14-80A42C20 -00001 000C+00 0/1 0/0 0/0 .data            @12907 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_12907[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)teach01_swordAttackWait__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A42C14-80A42C20 -00001 000C+00 0/1 0/0 0/0 .data            @12907 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_12907[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)teach01_swordAttackWait__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A42C20-80A42C2C -00001 000C+00 0/1 0/0 0/0 .data            @12909 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_12909[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)teach01_swordFinishWait__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A42C20-80A42C2C -00001 000C+00 0/1 0/0 0/0 .data            @12909 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_12909[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)teach01_swordFinishWait__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A42C2C-80A42C38 -00001 000C+00 0/1 0/0 0/0 .data            @12911 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_12911[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)wait__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A42C2C-80A42C38 -00001 000C+00 0/1 0/0 0/0 .data            @12911 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_12911[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)wait__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
 /* 80A42C38-80A42C74 001F04 003C+00 0/1 0/0 0/0 .data            l_checkOffset$13216 */
 #pragma push
@@ -2772,330 +2834,330 @@ SECTION_DATA static u8 l_warpOutTimeTable[4] = {
 };
 #pragma pop
 
-/* 80A42D10-80A42E04 -00001 00F4+00 1/1 0/0 0/0 .data            @13764 */
-SECTION_DATA static void* lit_13764[61] = {
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x36C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x384),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x3B0),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x3D0),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x48C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x4E4),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x540),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x59C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x5C4),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x5EC),
-};
+// /* 80A42D10-80A42E04 -00001 00F4+00 1/1 0/0 0/0 .data            @13764 */
+// SECTION_DATA static void* lit_13764[61] = {
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x36C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x384),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x3B0),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x3D0),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x48C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x4E4),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x540),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x59C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x5C4),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x614),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x5EC),
+// };
 
-/* 80A42E04-80A42EF8 -00001 00F4+00 1/1 0/0 0/0 .data            @13763 */
-SECTION_DATA static void* lit_13763[61] = {
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x90),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0xC4),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x120),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x17C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x1B4),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x294),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x2B8),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x2EC),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x300),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x314),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x328),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
-    (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x33C),
-};
+// /* 80A42E04-80A42EF8 -00001 00F4+00 1/1 0/0 0/0 .data            @13763 */
+// SECTION_DATA static void* lit_13763[61] = {
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x90),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0xC4),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x120),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x17C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x1B4),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x294),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x2B8),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x2EC),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x300),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x314),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x328),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x34C),
+//     (void*)(((char*)ECut_firstSkillGet__10daNpc_Kn_cFi) + 0x33C),
+// };
 
-/* 80A42EF8-80A42F04 -00001 000C+00 0/1 0/0 0/0 .data            @13890 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_13890[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)teach02_start__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A42EF8-80A42F04 -00001 000C+00 0/1 0/0 0/0 .data            @13890 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_13890[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)teach02_start__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A42F04-80A42F10 -00001 000C+00 0/1 0/0 0/0 .data            @13892 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_13892[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)teach02_shieldBashWait__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A42F04-80A42F10 -00001 000C+00 0/1 0/0 0/0 .data            @13892 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_13892[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)teach02_shieldBashWait__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A42F10-80A42F1C -00001 000C+00 0/1 0/0 0/0 .data            @13894 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_13894[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)teach02_finishWait__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A42F10-80A42F1C -00001 000C+00 0/1 0/0 0/0 .data            @13894 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_13894[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)teach02_finishWait__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A42F1C-80A42F28 -00001 000C+00 0/1 0/0 0/0 .data            @13896 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_13896[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)teach02_shieldReflectWait__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A42F1C-80A42F28 -00001 000C+00 0/1 0/0 0/0 .data            @13896 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_13896[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)teach02_shieldReflectWait__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A42F28-80A42F34 -00001 000C+00 0/1 0/0 0/0 .data            @13898 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_13898[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)wait__10daNpc_Kn_cFPv,
-};
-#pragma pop
+// /* 80A42F28-80A42F34 -00001 000C+00 0/1 0/0 0/0 .data            @13898 */
+// #pragma push
+// #pragma force_active on
+// SECTION_DATA static void* lit_13898[3] = {
+//     (void*)NULL,
+//     (void*)0xFFFFFFFF,
+//     (void*)wait__10daNpc_Kn_cFPv,
+// };
+// #pragma pop
 
-/* 80A42F34-80A43000 -00001 00CC+00 1/1 0/0 0/0 .data            @14387 */
-SECTION_DATA static void* lit_14387[51] = {
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x394),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x3AC),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x3D8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x3F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x4B4),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x4DC),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x598),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x598),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5C0),
-};
+// /* 80A42F34-80A43000 -00001 00CC+00 1/1 0/0 0/0 .data            @14387 */
+// SECTION_DATA static void* lit_14387[51] = {
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x394),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x3AC),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x3D8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x3F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x4B4),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x4DC),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x598),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x598),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5F8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x5C0),
+// };
 
-/* 80A43000-80A430CC -00001 00CC+00 1/1 0/0 0/0 .data            @14386 */
-SECTION_DATA static void* lit_14386[51] = {
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x90),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x9C),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0xF8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x154),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x18C),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x1A8),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x2CC),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x2E0),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
-    (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x2F4),
-};
+// /* 80A43000-80A430CC -00001 00CC+00 1/1 0/0 0/0 .data            @14386 */
+// SECTION_DATA static void* lit_14386[51] = {
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x90),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x9C),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0xF8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x154),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x18C),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x1A8),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x2CC),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x2E0),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x374),
+//     (void*)(((char*)ECut_secondSkillExplain__10daNpc_Kn_cFi) + 0x2F4),
+// };
 
-/* 80A430CC-80A43148 -00001 007C+00 1/1 0/0 0/0 .data            @14591 */
-SECTION_DATA static void* lit_14591[31] = {
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x90),
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x130),
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x210),
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x234),
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x268),
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
-    (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x27C),
-};
+// /* 80A430CC-80A43148 -00001 007C+00 1/1 0/0 0/0 .data            @14591 */
+// SECTION_DATA static void* lit_14591[31] = {
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x90),
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x130),
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x210),
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x234),
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x268),
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x28C),
+//     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x27C),
+// };
 
 /* 80A43148-80A43168 -00001 0020+00 1/0 0/0 0/0 .data            daNpc_Kn_MethodTable */
 static actor_method_class daNpc_Kn_MethodTable = {
@@ -3124,125 +3186,125 @@ extern actor_process_profile_definition g_profile_NPC_KN = {
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
 
-/* 80A43198-80A431A4 002464 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGSph */
-SECTION_DATA extern void* __vt__8cM3dGSph[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGSphFv,
-};
+// /* 80A43198-80A431A4 002464 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGSph */
+// SECTION_DATA extern void* __vt__8cM3dGSph[3] = {
+//     (void*)NULL /* RTTI */,
+//     (void*)NULL,
+//     (void*)__dt__8cM3dGSphFv,
+// };
 
-/* 80A431A4-80A431C8 002470 0024+00 3/3 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
-SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_ObjAcchFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80A3C174,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80A3C16C,
-};
+// /* 80A431A4-80A431C8 002470 0024+00 3/3 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
+// SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
+//     (void*)NULL /* RTTI */,
+//     (void*)NULL,
+//     (void*)__dt__12dBgS_ObjAcchFv,
+//     (void*)NULL,
+//     (void*)NULL,
+//     (void*)func_80A3C174,
+//     (void*)NULL,
+//     (void*)NULL,
+//     (void*)func_80A3C16C,
+// };
 
-/* 80A431C8-80A431D4 002494 000C+00 2/2 0/0 0/0 .data            __vt__12dBgS_AcchCir */
-SECTION_DATA extern void* __vt__12dBgS_AcchCir[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_AcchCirFv,
-};
+// /* 80A431C8-80A431D4 002494 000C+00 2/2 0/0 0/0 .data            __vt__12dBgS_AcchCir */
+// SECTION_DATA extern void* __vt__12dBgS_AcchCir[3] = {
+//     (void*)NULL /* RTTI */,
+//     (void*)NULL,
+//     (void*)__dt__12dBgS_AcchCirFv,
+// };
 
-/* 80A431D4-80A431E0 0024A0 000C+00 3/3 0/0 0/0 .data            __vt__10cCcD_GStts */
-SECTION_DATA extern void* __vt__10cCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10cCcD_GSttsFv,
-};
+// /* 80A431D4-80A431E0 0024A0 000C+00 3/3 0/0 0/0 .data            __vt__10cCcD_GStts */
+// SECTION_DATA extern void* __vt__10cCcD_GStts[3] = {
+//     (void*)NULL /* RTTI */,
+//     (void*)NULL,
+//     (void*)__dt__10cCcD_GSttsFv,
+// };
 
-/* 80A431E0-80A431EC 0024AC 000C+00 2/2 0/0 0/0 .data            __vt__10dCcD_GStts */
-SECTION_DATA extern void* __vt__10dCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10dCcD_GSttsFv,
-};
+// /* 80A431E0-80A431EC 0024AC 000C+00 2/2 0/0 0/0 .data            __vt__10dCcD_GStts */
+// SECTION_DATA extern void* __vt__10dCcD_GStts[3] = {
+//     (void*)NULL /* RTTI */,
+//     (void*)NULL,
+//     (void*)__dt__10dCcD_GSttsFv,
+// };
 
-/* 80A431EC-80A431F8 0024B8 000C+00 3/3 0/0 0/0 .data            __vt__22daNpcT_MotionSeqMngr_c */
-SECTION_DATA extern void* __vt__22daNpcT_MotionSeqMngr_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__22daNpcT_MotionSeqMngr_cFv,
-};
+// /* 80A431EC-80A431F8 0024B8 000C+00 3/3 0/0 0/0 .data            __vt__22daNpcT_MotionSeqMngr_c */
+// SECTION_DATA extern void* __vt__22daNpcT_MotionSeqMngr_c[3] = {
+//     (void*)NULL /* RTTI */,
+//     (void*)NULL,
+//     (void*)__dt__22daNpcT_MotionSeqMngr_cFv,
+// };
 
-/* 80A431F8-80A43204 0024C4 000C+00 4/4 0/0 0/0 .data            __vt__18daNpcT_ActorMngr_c */
-SECTION_DATA extern void* __vt__18daNpcT_ActorMngr_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__18daNpcT_ActorMngr_cFv,
-};
+// /* 80A431F8-80A43204 0024C4 000C+00 4/4 0/0 0/0 .data            __vt__18daNpcT_ActorMngr_c */
+// SECTION_DATA extern void* __vt__18daNpcT_ActorMngr_c[3] = {
+//     (void*)NULL /* RTTI */,
+//     (void*)NULL,
+//     (void*)__dt__18daNpcT_ActorMngr_cFv,
+// };
 
-/* 80A43204-80A43210 0024D0 000C+00 3/3 0/0 0/0 .data            __vt__15daNpcT_JntAnm_c */
-SECTION_DATA extern void* __vt__15daNpcT_JntAnm_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__15daNpcT_JntAnm_cFv,
-};
+// /* 80A43204-80A43210 0024D0 000C+00 3/3 0/0 0/0 .data            __vt__15daNpcT_JntAnm_c */
+// SECTION_DATA extern void* __vt__15daNpcT_JntAnm_c[3] = {
+//     (void*)NULL /* RTTI */,
+//     (void*)NULL,
+//     (void*)__dt__15daNpcT_JntAnm_cFv,
+// };
 
-/* 80A43210-80A4321C 0024DC 000C+00 5/5 0/0 0/0 .data            __vt__8cM3dGAab */
-SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGAabFv,
-};
+// /* 80A43210-80A4321C 0024DC 000C+00 5/5 0/0 0/0 .data            __vt__8cM3dGAab */
+// SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
+//     (void*)NULL /* RTTI */,
+//     (void*)NULL,
+//     (void*)__dt__8cM3dGAabFv,
+// };
 
-/* 80A4321C-80A43228 0024E8 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGCyl */
-SECTION_DATA extern void* __vt__8cM3dGCyl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGCylFv,
-};
+// /* 80A4321C-80A43228 0024E8 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGCyl */
+// SECTION_DATA extern void* __vt__8cM3dGCyl[3] = {
+//     (void*)NULL /* RTTI */,
+//     (void*)NULL,
+//     (void*)__dt__8cM3dGCylFv,
+// };
 
-/* 80A43228-80A43234 0024F4 000C+00 3/3 0/0 0/0 .data            __vt__12J3DFrameCtrl */
-SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12J3DFrameCtrlFv,
-};
+// /* 80A43228-80A43234 0024F4 000C+00 3/3 0/0 0/0 .data            __vt__12J3DFrameCtrl */
+// SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
+//     (void*)NULL /* RTTI */,
+//     (void*)NULL,
+//     (void*)__dt__12J3DFrameCtrlFv,
+// };
 
-/* 80A43234-80A43240 002500 000C+00 3/3 0/0 0/0 .data            __vt__13daNpcT_Path_c */
-SECTION_DATA extern void* __vt__13daNpcT_Path_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__13daNpcT_Path_cFv,
-};
+// /* 80A43234-80A43240 002500 000C+00 3/3 0/0 0/0 .data            __vt__13daNpcT_Path_c */
+// SECTION_DATA extern void* __vt__13daNpcT_Path_c[3] = {
+//     (void*)NULL /* RTTI */,
+//     (void*)NULL,
+//     (void*)__dt__13daNpcT_Path_cFv,
+// };
 
 /* 80A43240-80A432A8 00250C 0068+00 2/2 0/0 0/0 .data            __vt__10daNpc_Kn_c */
-SECTION_DATA extern void* __vt__10daNpc_Kn_c[26] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)ctrlBtk__10daNpc_Kn_cFv,
-    (void*)getFootLJointNo__10daNpc_Kn_cFv,
-    (void*)getFootRJointNo__10daNpc_Kn_cFv,
-    (void*)getEyeballLMaterialNo__10daNpc_Kn_cFv,
-    (void*)getEyeballRMaterialNo__10daNpc_Kn_cFv,
-    (void*)getEyeballMaterialNo__10daNpc_Kn_cFv,
-    (void*)ctrlJoint__10daNpc_Kn_cFP8J3DJointP8J3DModel,
-    (void*)afterJntAnm__10daNpc_Kn_cFi,
-    (void*)checkChangeEvt__10daNpc_Kn_cFv,
-    (void*)evtEndProc__10daNpc_Kn_cFv,
-    (void*)evtProc__10daNpc_Kn_cFv,
-    (void*)setFootPos__10daNpc_Kn_cFv,
-    (void*)setFootPrtcl__10daNpc_Kn_cFP4cXyzf,
-    (void*)checkCullDraw__10daNpc_Kn_cFv,
-    (void*)twilight__10daNpc_Kn_cFv,
-    (void*)chkXYItems__10daNpc_Kn_cFv,
-    (void*)evtOrder__10daNpc_Kn_cFv,
-    (void*)decTmr__10daNpc_Kn_cFv,
-    (void*)clrParam__10daNpc_Kn_cFv,
-    (void*)afterSetFaceMotionAnm__10daNpc_Kn_cFiifi,
-    (void*)getFaceMotionAnm__10daNpc_Kn_cF26daNpcT_faceMotionAnmData_c,
-    (void*)getMotionAnm__10daNpc_Kn_cF22daNpcT_motionAnmData_c,
-    (void*)__dt__10daNpc_Kn_cFv,
-    (void*)afterSetMotionAnm__10daNpc_Kn_cFiifi,
-};
+// SECTION_DATA extern void* __vt__10daNpc_Kn_c[26] = {
+//     (void*)NULL /* RTTI */,
+//     (void*)NULL,
+//     (void*)ctrlBtk__10daNpc_Kn_cFv,
+//     (void*)getFootLJointNo__10daNpc_Kn_cFv,
+//     (void*)getFootRJointNo__10daNpc_Kn_cFv,
+//     (void*)getEyeballLMaterialNo__10daNpc_Kn_cFv,
+//     (void*)getEyeballRMaterialNo__10daNpc_Kn_cFv,
+//     (void*)getEyeballMaterialNo__10daNpc_Kn_cFv,
+//     (void*)ctrlJoint__10daNpc_Kn_cFP8J3DJointP8J3DModel,
+//     (void*)afterJntAnm__10daNpc_Kn_cFi,
+//     (void*)checkChangeEvt__10daNpc_Kn_cFv,
+//     (void*)evtEndProc__10daNpc_Kn_cFv,
+//     (void*)evtProc__10daNpc_Kn_cFv,
+//     (void*)setFootPos__10daNpc_Kn_cFv,
+//     (void*)setFootPrtcl__10daNpc_Kn_cFP4cXyzf,
+//     (void*)checkCullDraw__10daNpc_Kn_cFv,
+//     (void*)twilight__10daNpc_Kn_cFv,
+//     (void*)chkXYItems__10daNpc_Kn_cFv,
+//     (void*)evtOrder__10daNpc_Kn_cFv,
+//     (void*)decTmr__10daNpc_Kn_cFv,
+//     (void*)clrParam__10daNpc_Kn_cFv,
+//     (void*)afterSetFaceMotionAnm__10daNpc_Kn_cFiifi,
+//     (void*)getFaceMotionAnm__10daNpc_Kn_cF26daNpcT_faceMotionAnmData_c,
+//     (void*)getMotionAnm__10daNpc_Kn_cF22daNpcT_motionAnmData_c,
+//     (void*)__dt__10daNpc_Kn_cFv,
+//     (void*)afterSetMotionAnm__10daNpc_Kn_cFiifi,
+// };
 
 /* 80A2AA0C-80A2AECC 0000EC 04C0+00 1/0 0/0 0/0 .text            __dt__10daNpc_Kn_cFv */
 daNpc_Kn_c::~daNpc_Kn_c() {
@@ -3257,9 +3319,9 @@ extern "C" void __dt__8dCcD_SphFv() {
 
 /* 80A2AF98-80A2AFD4 000678 003C+00 2/2 0/0 0/0 .text __dt__Q210daNpc_Kn_c20daNpc_Kn_prtclMngr_cFv
  */
-daNpc_Kn_c::daNpc_Kn_prtclMngr_c::~daNpc_Kn_prtclMngr_c() {
-    // NONMATCHING
-}
+// daNpc_Kn_c::daNpc_Kn_prtclMngr_c::~daNpc_Kn_prtclMngr_c() {
+//     // NONMATCHING
+// }
 
 /* ############################################################################################## */
 /* 80A408C8-80A408F8 000000 0030+00 50/50 0/0 0/0 .rodata          mCcDObjData__10daNpc_Kn_c */
@@ -3270,157 +3332,157 @@ SECTION_RODATA u8 const daNpc_Kn_c::mCcDObjData[48] = {
 };
 COMPILER_STRIP_GATE(0x80A408C8, &daNpc_Kn_c::mCcDObjData);
 
-/* 80A408F8-80A40900 000030 0008+00 6/11 0/0 0/0 .rodata          @4095 */
-SECTION_RODATA static u8 const lit_4095[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80A408F8, &lit_4095);
+// /* 80A408F8-80A40900 000030 0008+00 6/11 0/0 0/0 .rodata          @4095 */
+// SECTION_RODATA static u8 const lit_4095[8] = {
+//     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
+// };
+// COMPILER_STRIP_GATE(0x80A408F8, &lit_4095);
 
-/* 80A40900-80A40904 000038 0004+00 26/59 0/0 0/0 .rodata          @4204 */
-SECTION_RODATA static u8 const lit_4204[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80A40900, &lit_4204);
+// /* 80A40900-80A40904 000038 0004+00 26/59 0/0 0/0 .rodata          @4204 */
+// SECTION_RODATA static u8 const lit_4204[4] = {
+//     0x00,
+//     0x00,
+//     0x00,
+//     0x00,
+// };
+// COMPILER_STRIP_GATE(0x80A40900, &lit_4204);
 
-/* 80A40904-80A40908 00003C 0004+00 2/2 0/0 0/0 .rodata          @4205 */
-SECTION_RODATA static f32 const lit_4205 = -1000000000.0f;
-COMPILER_STRIP_GATE(0x80A40904, &lit_4205);
+// /* 80A40904-80A40908 00003C 0004+00 2/2 0/0 0/0 .rodata          @4205 */
+// SECTION_RODATA static f32 const lit_4205 = -1000000000.0f;
+// COMPILER_STRIP_GATE(0x80A40904, &lit_4205);
 
-/* 80A40908-80A4090C 000040 0004+00 2/5 0/0 0/0 .rodata          @4326 */
-SECTION_RODATA static f32 const lit_4326 = 20.0f;
-COMPILER_STRIP_GATE(0x80A40908, &lit_4326);
+// /* 80A40908-80A4090C 000040 0004+00 2/5 0/0 0/0 .rodata          @4326 */
+// SECTION_RODATA static f32 const lit_4326 = 20.0f;
+// COMPILER_STRIP_GATE(0x80A40908, &lit_4326);
 
-/* 80A4090C-80A40910 000044 0004+00 9/16 0/0 0/0 .rodata          @4327 */
-SECTION_RODATA static f32 const lit_4327 = 1.0f;
-COMPILER_STRIP_GATE(0x80A4090C, &lit_4327);
+// /* 80A4090C-80A40910 000044 0004+00 9/16 0/0 0/0 .rodata          @4327 */
+// SECTION_RODATA static f32 const lit_4327 = 1.0f;
+// COMPILER_STRIP_GATE(0x80A4090C, &lit_4327);
 
-/* 80A40910-80A40914 000048 0004+00 1/2 0/0 0/0 .rodata          @4561 */
-SECTION_RODATA static f32 const lit_4561 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(0x80A40910, &lit_4561);
+// /* 80A40910-80A40914 000048 0004+00 1/2 0/0 0/0 .rodata          @4561 */
+// SECTION_RODATA static f32 const lit_4561 = 1.0f / 5.0f;
+// COMPILER_STRIP_GATE(0x80A40910, &lit_4561);
 
-/* 80A40914-80A40918 00004C 0004+00 16/45 0/0 0/0 .rodata          @4613 */
-SECTION_RODATA static f32 const lit_4613 = -1.0f;
-COMPILER_STRIP_GATE(0x80A40914, &lit_4613);
+// /* 80A40914-80A40918 00004C 0004+00 16/45 0/0 0/0 .rodata          @4613 */
+// SECTION_RODATA static f32 const lit_4613 = -1.0f;
+// COMPILER_STRIP_GATE(0x80A40914, &lit_4613);
 
-/* 80A40918-80A4091C 000050 0004+00 1/3 0/0 0/0 .rodata          @5160 */
-SECTION_RODATA static f32 const lit_5160 = 500.0f;
-COMPILER_STRIP_GATE(0x80A40918, &lit_5160);
+// /* 80A40918-80A4091C 000050 0004+00 1/3 0/0 0/0 .rodata          @5160 */
+// SECTION_RODATA static f32 const lit_5160 = 500.0f;
+// COMPILER_STRIP_GATE(0x80A40918, &lit_5160);
 
-/* 80A4091C-80A40920 000054 0004+00 1/4 0/0 0/0 .rodata          @5255 */
-SECTION_RODATA static f32 const lit_5255 = 180.0f;
-COMPILER_STRIP_GATE(0x80A4091C, &lit_5255);
+// /* 80A4091C-80A40920 000054 0004+00 1/4 0/0 0/0 .rodata          @5255 */
+// SECTION_RODATA static f32 const lit_5255 = 180.0f;
+// COMPILER_STRIP_GATE(0x80A4091C, &lit_5255);
 
-/* 80A40920-80A40924 000058 0004+00 1/1 0/0 0/0 .rodata          @5256 */
-SECTION_RODATA static u32 const lit_5256 = 0x43360B61;
-COMPILER_STRIP_GATE(0x80A40920, &lit_5256);
+// /* 80A40920-80A40924 000058 0004+00 1/1 0/0 0/0 .rodata          @5256 */
+// SECTION_RODATA static u32 const lit_5256 = 0x43360B61;
+// COMPILER_STRIP_GATE(0x80A40920, &lit_5256);
 
-/* 80A40924-80A40928 00005C 0004+00 0/4 0/0 0/0 .rodata          @5390 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5390 = 30.0f;
-COMPILER_STRIP_GATE(0x80A40924, &lit_5390);
-#pragma pop
+// /* 80A40924-80A40928 00005C 0004+00 0/4 0/0 0/0 .rodata          @5390 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_5390 = 30.0f;
+// COMPILER_STRIP_GATE(0x80A40924, &lit_5390);
+// #pragma pop
 
-/* 80A40928-80A4092C 000060 0004+00 0/1 0/0 0/0 .rodata          @5391 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5391 = 45.0f;
-COMPILER_STRIP_GATE(0x80A40928, &lit_5391);
-#pragma pop
+// /* 80A40928-80A4092C 000060 0004+00 0/1 0/0 0/0 .rodata          @5391 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_5391 = 45.0f;
+// COMPILER_STRIP_GATE(0x80A40928, &lit_5391);
+// #pragma pop
 
-/* 80A4092C-80A40930 000064 0004+00 0/1 0/0 0/0 .rodata          @5392 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5392 = 60.0f;
-COMPILER_STRIP_GATE(0x80A4092C, &lit_5392);
-#pragma pop
+// /* 80A4092C-80A40930 000064 0004+00 0/1 0/0 0/0 .rodata          @5392 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_5392 = 60.0f;
+// COMPILER_STRIP_GATE(0x80A4092C, &lit_5392);
+// #pragma pop
 
-/* 80A40930-80A40934 000068 0004+00 0/1 0/0 0/0 .rodata          @5393 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5393 = 90.0f;
-COMPILER_STRIP_GATE(0x80A40930, &lit_5393);
-#pragma pop
+// /* 80A40930-80A40934 000068 0004+00 0/1 0/0 0/0 .rodata          @5393 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_5393 = 90.0f;
+// COMPILER_STRIP_GATE(0x80A40930, &lit_5393);
+// #pragma pop
 
-/* 80A40934-80A40938 00006C 0004+00 0/1 0/0 0/0 .rodata          @5394 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5394 = 110.0f;
-COMPILER_STRIP_GATE(0x80A40934, &lit_5394);
-#pragma pop
+// /* 80A40934-80A40938 00006C 0004+00 0/1 0/0 0/0 .rodata          @5394 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_5394 = 110.0f;
+// COMPILER_STRIP_GATE(0x80A40934, &lit_5394);
+// #pragma pop
 
-/* 80A40938-80A4093C 000070 0004+00 5/6 0/0 0/0 .rodata          @5395 */
-SECTION_RODATA static f32 const lit_5395 = 135.0f;
-COMPILER_STRIP_GATE(0x80A40938, &lit_5395);
+// /* 80A40938-80A4093C 000070 0004+00 5/6 0/0 0/0 .rodata          @5395 */
+// SECTION_RODATA static f32 const lit_5395 = 135.0f;
+// COMPILER_STRIP_GATE(0x80A40938, &lit_5395);
 
-/* 80A4093C-80A40940 000074 0004+00 1/2 0/0 0/0 .rodata          @5560 */
-SECTION_RODATA static u32 const lit_5560 = 0x3BB40000;
-COMPILER_STRIP_GATE(0x80A4093C, &lit_5560);
+// /* 80A4093C-80A40940 000074 0004+00 1/2 0/0 0/0 .rodata          @5560 */
+// SECTION_RODATA static u32 const lit_5560 = 0x3BB40000;
+// COMPILER_STRIP_GATE(0x80A4093C, &lit_5560);
 
-/* 80A40940-80A40944 000078 0004+00 0/1 0/0 0/0 .rodata          @5561 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5561 = 8.0f;
-COMPILER_STRIP_GATE(0x80A40940, &lit_5561);
-#pragma pop
+// /* 80A40940-80A40944 000078 0004+00 0/1 0/0 0/0 .rodata          @5561 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_5561 = 8.0f;
+// COMPILER_STRIP_GATE(0x80A40940, &lit_5561);
+// #pragma pop
 
-/* 80A40944-80A40948 00007C 0004+00 0/1 0/0 0/0 .rodata          @5562 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5562 = 16384.0f;
-COMPILER_STRIP_GATE(0x80A40944, &lit_5562);
-#pragma pop
+// /* 80A40944-80A40948 00007C 0004+00 0/1 0/0 0/0 .rodata          @5562 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_5562 = 16384.0f;
+// COMPILER_STRIP_GATE(0x80A40944, &lit_5562);
+// #pragma pop
 
-/* 80A40948-80A40950 000080 0008+00 0/5 0/0 0/0 .rodata          @5687 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5687[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80A40948, &lit_5687);
-#pragma pop
+// /* 80A40948-80A40950 000080 0008+00 0/5 0/0 0/0 .rodata          @5687 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static u8 const lit_5687[8] = {
+//     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+// };
+// COMPILER_STRIP_GATE(0x80A40948, &lit_5687);
+// #pragma pop
 
-/* 80A40950-80A40958 000088 0008+00 0/5 0/0 0/0 .rodata          @5688 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5688[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80A40950, &lit_5688);
-#pragma pop
+// /* 80A40950-80A40958 000088 0008+00 0/5 0/0 0/0 .rodata          @5688 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static u8 const lit_5688[8] = {
+//     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+// };
+// COMPILER_STRIP_GATE(0x80A40950, &lit_5688);
+// #pragma pop
 
-/* 80A40958-80A40960 000090 0008+00 0/5 0/0 0/0 .rodata          @5689 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5689[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80A40958, &lit_5689);
-#pragma pop
+// /* 80A40958-80A40960 000090 0008+00 0/5 0/0 0/0 .rodata          @5689 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static u8 const lit_5689[8] = {
+//     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+// };
+// COMPILER_STRIP_GATE(0x80A40958, &lit_5689);
+// #pragma pop
 
-/* 80A40960-80A40964 000098 0004+00 0/0 0/0 0/0 .rodata          @5690 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5690 = 17.0f / 20.0f;
-COMPILER_STRIP_GATE(0x80A40960, &lit_5690);
-#pragma pop
+// /* 80A40960-80A40964 000098 0004+00 0/0 0/0 0/0 .rodata          @5690 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_5690 = 17.0f / 20.0f;
+// COMPILER_STRIP_GATE(0x80A40960, &lit_5690);
+// #pragma pop
 
-/* 80A40964-80A40968 00009C 0004+00 0/1 0/0 0/0 .rodata          @5710 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5710 = 6.0f;
-COMPILER_STRIP_GATE(0x80A40964, &lit_5710);
-#pragma pop
+// /* 80A40964-80A40968 00009C 0004+00 0/1 0/0 0/0 .rodata          @5710 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_5710 = 6.0f;
+// COMPILER_STRIP_GATE(0x80A40964, &lit_5710);
+// #pragma pop
 
-/* 80A40968-80A4096C 0000A0 0004+00 0/0 0/0 0/0 .rodata          @5787 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5787 = 1000000000.0f;
-COMPILER_STRIP_GATE(0x80A40968, &lit_5787);
-#pragma pop
+// /* 80A40968-80A4096C 0000A0 0004+00 0/0 0/0 0/0 .rodata          @5787 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_5787 = 1000000000.0f;
+// COMPILER_STRIP_GATE(0x80A40968, &lit_5787);
+// #pragma pop
 
 /* 80A4096C-80A40970 0000A4 0004+00 1/1 0/0 0/0 .rodata          id$5838 */
 SECTION_RODATA static u8 const id[4] = {
@@ -3432,21 +3494,62 @@ SECTION_RODATA static u8 const id[4] = {
 COMPILER_STRIP_GATE(0x80A4096C, &id);
 
 /* 80A40970-80A40A24 0000A8 00B4+00 8/29 0/0 0/0 .rodata          m__16daNpc_Kn_Param_c */
-SECTION_RODATA u8 const daNpc_Kn_Param_c::m[180] = {
-    0x42, 0x48, 0x00, 0x00, 0xC0, 0xA0, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x44, 0x9C, 0x40,
-    0x00, 0x43, 0x75, 0x00, 0x00, 0x43, 0x87, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x5C,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00, 0xC2,
-    0x20, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00, 0xC1, 0xF0, 0x00, 0x00, 0x42, 0x70, 0x00, 0x00,
-    0xC2, 0x70, 0x00, 0x00, 0x3F, 0x19, 0x99, 0x9A, 0x41, 0x40, 0x00, 0x00, 0x00, 0x06, 0x00,
-    0x06, 0x00, 0x08, 0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3C, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x40, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0x01, 0x2C, 0x00, 0x5A, 0x00, 0x00, 0x42, 0xC8,
-    0x00, 0x00, 0x43, 0x70, 0x00, 0x00, 0x44, 0x89, 0x80, 0x00, 0x41, 0xD8, 0x00, 0x00, 0x42,
-    0x48, 0x00, 0x00, 0x00, 0x10, 0x02, 0x00, 0x00, 0x78, 0x00, 0x5A, 0x40, 0x00, 0x00, 0x00,
+    daNpc_Kn_Param_c::param const daNpc_Kn_Param_c::m = {
+    50.0f,
+    -5.0f,
+    1.0f,
+    1250.0f,
+    245.0f,
+    270.0f,
+    0.0f,
+    55.0f,
+    0.0f,
+    0.0f,
+    40.0f,
+    -40.0f,
+    30.0f,
+    -30.0f,
+    60.0f,
+    -60.0f,
+    0.6f,
+    12.0f,
+    6,
+    6,
+    8,
+    6,
+    0,
+    0,
+    0,
+    0,
+    0x3c,
+    8,
+    0,
+    0,
+    0,
+    4.0f,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    -1,
+    255,
+    300,
+    90,
+    0,
+    100.0f,
+    240.0f,
+    1100.0f,
+    27.0f,
+    50.0f,
+    16,
+    512,
+    120,
+    90,
+    2.0f
 };
-COMPILER_STRIP_GATE(0x80A40970, &daNpc_Kn_Param_c::m);
 
 /* 80A40A24-80A40A44 00015C 0020+00 0/1 0/0 0/0 .rodata          heapSize$6094 */
 #pragma push
@@ -3458,33 +3561,33 @@ SECTION_RODATA static u8 const heapSize[32] = {
 COMPILER_STRIP_GATE(0x80A40A24, &heapSize);
 #pragma pop
 
-/* 80A40A44-80A40A48 00017C 0004+00 0/1 0/0 0/0 .rodata          @6139 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6139 = -300.0f;
-COMPILER_STRIP_GATE(0x80A40A44, &lit_6139);
-#pragma pop
+// /* 80A40A44-80A40A48 00017C 0004+00 0/1 0/0 0/0 .rodata          @6139 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_6139 = -300.0f;
+// COMPILER_STRIP_GATE(0x80A40A44, &lit_6139);
+// #pragma pop
 
-/* 80A40A48-80A40A4C 000180 0004+00 0/1 0/0 0/0 .rodata          @6140 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6140 = -50.0f;
-COMPILER_STRIP_GATE(0x80A40A48, &lit_6140);
-#pragma pop
+// /* 80A40A48-80A40A4C 000180 0004+00 0/1 0/0 0/0 .rodata          @6140 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_6140 = -50.0f;
+// COMPILER_STRIP_GATE(0x80A40A48, &lit_6140);
+// #pragma pop
 
-/* 80A40A4C-80A40A50 000184 0004+00 0/1 0/0 0/0 .rodata          @6141 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6141 = 300.0f;
-COMPILER_STRIP_GATE(0x80A40A4C, &lit_6141);
-#pragma pop
+// /* 80A40A4C-80A40A50 000184 0004+00 0/1 0/0 0/0 .rodata          @6141 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_6141 = 300.0f;
+// COMPILER_STRIP_GATE(0x80A40A4C, &lit_6141);
+// #pragma pop
 
-/* 80A40A50-80A40A54 000188 0004+00 0/1 0/0 0/0 .rodata          @6142 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6142 = 450.0f;
-COMPILER_STRIP_GATE(0x80A40A50, &lit_6142);
-#pragma pop
+// /* 80A40A50-80A40A54 000188 0004+00 0/1 0/0 0/0 .rodata          @6142 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_6142 = 450.0f;
+// COMPILER_STRIP_GATE(0x80A40A50, &lit_6142);
+// #pragma pop
 
 /* 80A2AFD4-80A2B278 0006B4 02A4+00 1/1 0/0 0/0 .text            create__10daNpc_Kn_cFv */
 void daNpc_Kn_c::create() {
@@ -3497,128 +3600,402 @@ void daNpc_Kn_c::CreateHeap() {
 }
 
 /* 80A2B620-80A2B654 000D00 0034+00 1/1 0/0 0/0 .text            Delete__10daNpc_Kn_cFv */
-void daNpc_Kn_c::Delete() {
+s32 daNpc_Kn_c::Delete() {
     // NONMATCHING
+    return 1;
 }
 
 /* 80A2B654-80A2B6B0 000D34 005C+00 2/2 0/0 0/0 .text            Execute__10daNpc_Kn_cFv */
-void daNpc_Kn_c::Execute() {
-    // NONMATCHING
+s32 daNpc_Kn_c::Execute() {
+    s32 ret = execute();
+    setPrtcl();
+    calcMagicBallPos();
+    setSwordChargePtcl();
+    setSe();
+    return ret;
 }
 
 /* 80A2B6B0-80A2B764 000D90 00B4+00 1/1 0/0 0/0 .text            Draw__10daNpc_Kn_cFv */
 void daNpc_Kn_c::Draw() {
-    // NONMATCHING
+    if (mpMatAnm) {
+        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
+        modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm);
+    }
+
+    _GXColorS10 local_28;
+    local_28.r = 0;
+    local_28.g = 0;
+    local_28.b = 0;
+    local_28.a = daNpc_Kn_Param_c::m.mAlpha;
+    draw(0,0,1250.0f,&local_28,0.0f,1,0,0);
 }
 
 /* 80A2B764-80A2B784 000E44 0020+00 1/1 0/0 0/0 .text
  * createHeapCallBack__10daNpc_Kn_cFP10fopAc_ac_c               */
 void daNpc_Kn_c::createHeapCallBack(fopAc_ac_c* param_0) {
-    // NONMATCHING
+    CreateHeap();
 }
 
 /* 80A2B784-80A2B7DC 000E64 0058+00 1/1 0/0 0/0 .text ctrlJointCallBack__10daNpc_Kn_cFP8J3DJointi
  */
-void daNpc_Kn_c::ctrlJointCallBack(J3DJoint* param_0, int param_1) {
-    // NONMATCHING
+int daNpc_Kn_c::ctrlJointCallBack(J3DJoint* i_joint, int param_1) {
+    if (param_1 == 0) {
+        J3DModel* model = j3dSys.getModel();
+        daNpc_Kn_c* _this = reinterpret_cast<daNpc_Kn_c*>(model->getUserArea());
+
+        if (_this) {
+            _this->ctrlJoint(i_joint, model);
+        }
+    }
+
+    return 1;
 }
 
 /* 80A2B7DC-80A2B844 000EBC 0068+00 2/1 0/0 0/0 .text            getType__10daNpc_Kn_cFv */
-void daNpc_Kn_c::getType() {
-    // NONMATCHING
+u8 daNpc_Kn_c::getType() {
+    switch (fopAcM_GetParam(this) & 0xFF) {
+    case 1:
+        return 0;
+    case 2:
+        return 1;
+    case 3:
+        return 2;
+    case 4:
+        return 3;
+    case 5:
+        return 4;
+    case 6:
+        return 5;
+    case 7:
+        return 6;
+    default:
+        return 7;
+    };
 }
 
 /* 80A2B844-80A2B850 000F24 000C+00 1/1 0/0 0/0 .text            getDivideNo__10daNpc_Kn_cFv */
-void daNpc_Kn_c::getDivideNo() {
-    // NONMATCHING
+u8 daNpc_Kn_c::getDivideNo() {
+    return (fopAcM_GetParam(this) & 0xFF00) >> 8;
 }
 
 /* 80A2B850-80A2B86C 000F30 001C+00 1/1 0/0 0/0 .text            getFlowNodeNo__10daNpc_Kn_cFv */
-void daNpc_Kn_c::getFlowNodeNo() {
-    // NONMATCHING
+u32 daNpc_Kn_c::getFlowNodeNo() {
+    u16 node_no = home.angle.x;
+
+    if (node_no == 0xFFFF) {
+        return 0xFFFFFFFF;
+    }
+
+    return node_no;
 }
 
 /* 80A2B86C-80A2B878 000F4C 000C+00 1/1 0/0 0/0 .text            getPath__10daNpc_Kn_cFv */
-void daNpc_Kn_c::getPath() {
-    // NONMATCHING
+u8 daNpc_Kn_c::getPath() {
+    return (fopAcM_GetParam(this) & 0xFF00) >> 8;
 }
 
 /* 80A2B878-80A2B91C 000F58 00A4+00 1/1 0/0 0/0 .text            isDelete__10daNpc_Kn_cFv */
-void daNpc_Kn_c::isDelete() {
-    // NONMATCHING
+bool daNpc_Kn_c::isDelete() {
+    switch (mType) {
+    case 0:
+        if (daNpcT_chkEvtBit(0x153) == 0) {
+            return 0;
+        }
+
+        break;
+    case 7:
+        if (daNpcT_chkEvtBit(l_appearFlag[mType] != 0) || daNpcT_chkEvtBit(l_delFlag[mType] != 0)) {
+            return 0;
+        }
+    }
+    
+    return 1;
 }
 
 /* 80A2B91C-80A2B9E0 000FFC 00C4+00 1/1 0/0 0/0 .text            resetCol__10daNpc_Kn_cFv */
 void daNpc_Kn_c::resetCol() {
-    // NONMATCHING
+
+    field_0x11DC.Set(mCcDCyl);
+    field_0x11DC.SetStts(&mCcStts);
+    field_0x11DC.SetTgHitCallback(tgHitCallBack);
+
+    for (int i = 0; i < 2; i++) {
+        field_0x1318[i].Set(mCcDSph);
+        field_0x1318[i].SetStts(&mCcStts);
+        field_0x1318[i].SetAtSe(dCcD_SE_HARD_BODY);
+        field_0x1318[i].SetAtSpl(dCcG_At_Spl_UNK_1);
+        field_0x1318[i].SetAtType(0x800);
+        field_0x1318[i].OnAtSPrmBit(0xc);
+        field_0x1318[i].OffAtNoConHit();
+        field_0x1318[i].OffCoSetBit();
+    }
 }
 
 /* 80A2B9E0-80A2BC5C 0010C0 027C+00 1/1 0/0 0/0 .text            reset__10daNpc_Kn_cFv */
+// NONMATCHING -- issue with memset
 void daNpc_Kn_c::reset() {
-    // NONMATCHING
+    initialize();
+    // memset(&field_0x1714, 0, 0xe3c - 0x); // figure this out later
+
+    if (mpMatAnm) {
+        mpMatAnm->initialize();
+    }
+
+    if (getPath() != 0xFF) {
+        mPath.initialize();
+        mPath.setPathInfo(getPath(), fopAcM_GetRoomNo(this), 0);
+    }
+
+    mStaffId = -1;
+    setAngle(home.angle.y);
+    field_0x15bd = 0;
+    field_0x15be = 0;
+    field_0x15cc = 0;
+    field_0x15cd = 0;
+    field_0x15ce = 0;
+    field_0x15bc = 0;
+    field_0x15af = 1;
+
+    for (int i = 0; i < 3; i++) {
+        mParticleMngr[i].field_0x24.init(&mAcch, 0.0f, 0.0f);
+    }
+
+    for (int i = 0; i < 3; i++) {
+        field_0x15d4[i] = -1;
+    }
+
+    field_0x170c = 0;
+    field_0x16f4.set(1.0f,1.0f,1.0f);
+    field_0x170d = 1;
+    field_0x170e = 0;
+
+    field_0x15c0 = current.pos;
+
+    if (mType <= 6 && (field_0x15ad == 0 || field_0x15ad > 2)) {
+        field_0xe2c = 1;
+        parentActorID = fopAcM_createChild(PROC_NPC_GWOLF, fopAcM_GetID(this), 0xffffff02, &current.pos, fopAcM_GetRoomNo(this), &current.angle, 0, -1, 0);
+    }
+
+    resetType();
 }
 
 /* 80A2BC5C-80A2BD30 00133C 00D4+00 2/1 0/0 0/0 .text            resetType__10daNpc_Kn_cFv */
 void daNpc_Kn_c::resetType() {
-    // NONMATCHING
+    switch (mType) {
+        case 0:
+            field_0x15ae = 0;
+            return;
+        case 1:
+            field_0x15ae = 4;
+            return;
+        case 2:
+            field_0x15ae = 4;
+            return;
+        case 3:
+            field_0x15ae = 4;
+            return;
+        case 4:
+            field_0x15ae = 4;
+            return;
+        case 5:
+            if (field_0x15ad != 0 && field_0x15ad <= 2) {
+                field_0x15ae = 0xe;
+                field_0x15af = 0;
+            } else {
+                field_0x15ae = 0x4;
+            }
+            break;
+        case 6:
+            if (field_0x15ad != 0 && field_0x15ad <= 2) {
+                field_0x15ae = 0x14;
+                field_0x15af = 0;
+                return;
+            }
+            field_0x15ae = 4;
+            return;
+        default:
+            field_0x15ae = -1;
+    }
 }
 
 /* 80A2BD30-80A2BFB0 001410 0280+00 2/1 0/0 0/0 .text            setParam__10daNpc_Kn_cFv */
+// NONMATCHING - small issue accessing daNpc_Kn_Param_c::m.mRadius in case 0/1 ?
 void daNpc_Kn_c::setParam() {
-    // NONMATCHING
-}
+    selectAction();
+    srchActors();
+
+    s16 field48 = daNpc_Kn_Param_c::m.field_0x48;
+    s16 field4a = daNpc_Kn_Param_c::m.field_0x4a;
+    s16 field4c = daNpc_Kn_Param_c::m.field_0x4c;
+    s16 field4e = daNpc_Kn_Param_c::m.field_0x4e;
+    f32 radius = daNpc_Kn_Param_c::m.mRadius;
+    f32 height = daNpc_Kn_Param_c::m.mHeight;
+
+    switch (mType) {
+    case 0:
+        attention_info.flags = setParamTeach01();
+        mAcchCir.SetWallR(daNpc_Kn_Param_c::m.mRadius);
+        mAcchCir.SetWallH(daNpc_Kn_Param_c::m.mHeight);
+        break;
+    case 1:
+        if (field_0x15ae < 4) {
+            attention_info.flags = setParamTeach01();
+            mAcchCir.SetWallR(daNpc_Kn_Param_c::m.mRadius);
+            mAcchCir.SetWallH(daNpc_Kn_Param_c::m.mHeight);
+        } else {
+            attention_info.flags = setParamTeach02();
+        }
+        break;
+    case 2:
+        if (field_0x15ae < 8) {
+            attention_info.flags = setParamTeach02();
+        } else {
+            attention_info.flags = setParamTeach03();
+        }
+        break;
+    case 3:
+        if (field_0x15ae < 9) {
+            attention_info.flags = setParamTeach03();
+        } else {
+            attention_info.flags = setParamTeach04();
+        }
+        break;
+    case 4:
+        if (field_0x15ae < 12) {
+            attention_info.flags = setParamTeach04();
+        } else {
+            attention_info.flags = setParamTeach05();
+        }
+        break;
+    case 5:
+        attention_info.flags = setParamTeach06();
+        break;
+    case 6:
+        attention_info.flags = setParamTeach07();
+        break;
+    default:
+        attention_info.distances[0] = daNpcT_getDistTableIdx(field4c, field4e);
+        attention_info.distances[2] = daNpcT_getDistTableIdx(field4c, field4e);
+        attention_info.distances[1] = attention_info.distances[0];
+        attention_info.distances[3] = daNpcT_getDistTableIdx(field48, field4a);
+        attention_info.flags = 10;
+        mAcchCir.SetWallR(daNpc_Kn_Param_c::m.mRadius);
+        mAcchCir.SetWallH(daNpc_Kn_Param_c::m.mHeight);
+    }
+
+    scale.set(daNpc_Kn_Param_c::m.mScale * field_0x16f4.x, daNpc_Kn_Param_c::m.mScale * field_0x16f4.y, daNpc_Kn_Param_c::m.mScale * field_0x16f4.z);
+    mCcStts.SetWeight(daNpc_Kn_Param_c::m.mWeight);
+    field_0xe0c = daNpc_Kn_Param_c::m.field_0x14;
+    mRadius = daNpc_Kn_Param_c::m.mRadius;
+    gravity = daNpc_Kn_Param_c::m.mGravity;
+    field_0xab4 = daNpc_Kn_Param_c::m.field_0x6C;
+    field_0xab8 = daNpc_Kn_Param_c::m.field_0x44;
+};
 
 /* 80A2BFB0-80A2C044 001690 0094+00 1/1 0/0 0/0 .text            setParamTeach03__10daNpc_Kn_cFv */
-void daNpc_Kn_c::setParamTeach03() {
-    // NONMATCHING
+u32 daNpc_Kn_c::setParamTeach03() {
+    s16 field48 = daNpc_Kn_Param_c::m.field_0x48;
+    s16 field4a = daNpc_Kn_Param_c::m.field_0x4a;
+    s16 field4c = daNpc_Kn_Param_c::m.field_0x4c;
+    s16 field4e = daNpc_Kn_Param_c::m.field_0x4e;
+    attention_info.distances[0] = daNpcT_getDistTableIdx(field4c, field4e);
+    attention_info.distances[2] = 0xe4;
+    attention_info.distances[1] = attention_info.distances[0];
+    attention_info.distances[3] = daNpcT_getDistTableIdx(field48, field4a);
+    mAcchCir.SetWallR(135.0f);
+    mAcchCir.SetWallH(daNpc_Kn_Param_c::m.mHeight);
+    return 4;
 }
 
 /* 80A2C044-80A2C0FC 001724 00B8+00 1/1 0/0 0/0 .text            setParamTeach04__10daNpc_Kn_cFv */
-void daNpc_Kn_c::setParamTeach04() {
-    // NONMATCHING
+u32 daNpc_Kn_c::setParamTeach04() {
+    s16 field48 = daNpc_Kn_Param_c::m.field_0x48;
+    s16 field4a = daNpc_Kn_Param_c::m.field_0x4a;
+    s16 field4c = daNpc_Kn_Param_c::m.field_0x4c;
+    s16 field4e = daNpc_Kn_Param_c::m.field_0x4e;
+    attention_info.distances[0] = daNpcT_getDistTableIdx(field4c, field4e);
+    attention_info.distances[2] = 0xe4;
+    attention_info.distances[1] = attention_info.distances[0];
+    attention_info.distances[3] = daNpcT_getDistTableIdx(field48, field4a);
+    if (field_0x15ae == 10 || field_0x15ae == 11) {
+        mAcchCir.SetWallR(135.0f);
+        mAcchCir.SetWallH(daNpc_Kn_Param_c::m.mHeight);
+        return 4;
+    }
+
+    return 0x200004;    
 }
 
 /* 80A2C0FC-80A2C190 0017DC 0094+00 3/3 0/0 0/0 .text            setParamTeach05__10daNpc_Kn_cFv */
-void daNpc_Kn_c::setParamTeach05() {
-    // NONMATCHING
+u32 daNpc_Kn_c::setParamTeach05() {
+    s16 field48 = daNpc_Kn_Param_c::m.field_0x48;
+    s16 field4a = daNpc_Kn_Param_c::m.field_0x4a;
+    s16 field4c = daNpc_Kn_Param_c::m.field_0x4c;
+    s16 field4e = daNpc_Kn_Param_c::m.field_0x4e;
+    attention_info.distances[0] = daNpcT_getDistTableIdx(field4c, field4e);
+    attention_info.distances[2] = 0xe4;
+    attention_info.distances[1] = attention_info.distances[0];
+    attention_info.distances[3] = daNpcT_getDistTableIdx(field48, field4a);
+    mAcchCir.SetWallR(135.0f);
+    mAcchCir.SetWallH(daNpc_Kn_Param_c::m.mHeight);
+    return 4;
 }
 
 /* 80A2C190-80A2C1B0 001870 0020+00 1/1 0/0 0/0 .text            setParamTeach06__10daNpc_Kn_cFv */
-void daNpc_Kn_c::setParamTeach06() {
-    // NONMATCHING
+u32 daNpc_Kn_c::setParamTeach06() {
+    setParamTeach05();
 }
 
 /* 80A2C1B0-80A2C1D0 001890 0020+00 1/1 0/0 0/0 .text            setParamTeach07__10daNpc_Kn_cFv */
-void daNpc_Kn_c::setParamTeach07() {
-    // NONMATCHING
+u32 daNpc_Kn_c::setParamTeach07() {
+    setParamTeach05();
 }
 
 /* 80A2C1D0-80A2C230 0018B0 0060+00 1/1 0/0 0/0 .text            setAfterTalkMotion__10daNpc_Kn_cFv
  */
 void daNpc_Kn_c::setAfterTalkMotion() {
-    // NONMATCHING
+    mMotionSeqMngr1.getNo();
+    mMotionSeqMngr1.setNo(1, -1.0, 0, 0);
 }
 
 /* 80A2C230-80A2C234 001910 0004+00 1/1 0/0 0/0 .text            srchActors__10daNpc_Kn_cFv */
-void daNpc_Kn_c::srchActors() {
-    /* empty function */
-}
+void daNpc_Kn_c::srchActors() {}
 
 /* 80A2C234-80A2C318 001914 00E4+00 1/1 0/0 0/0 .text            evtTalk__10daNpc_Kn_cFv */
-void daNpc_Kn_c::evtTalk() {
-    // NONMATCHING
+bool daNpc_Kn_c::evtTalk() {
+    if (chkAction(&daNpc_Kn_c::talk)) {
+        (this->*mpActionFunc)(0);
+    } else {
+        if (dComIfGp_event_chkTalkXY() == 0 || dComIfGp_evmng_ChkPresentEnd()) {
+            setAction(&daNpc_Kn_c::talk);
+            // return true;
+        }
+    }
+
+    return true;
 }
 
-/* ############################################################################################## */
-/* 80A40AF8-80A40AF8 000230 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80A40D2A = "Kn";
-#pragma pop
-
 /* 80A2C318-80A2C3FC 0019F8 00E4+00 1/1 0/0 0/0 .text            evtCutProc__10daNpc_Kn_cFv */
-void daNpc_Kn_c::evtCutProc() {
-    // NONMATCHING
+bool daNpc_Kn_c::evtCutProc() {
+    bool ret;
+    if (field_0x15ad != 0 && field_0x15ad <= 2) {
+        return false;
+    } else {
+        ret = false;
+        int staff_id = dComIfGp_getEventManager().getMyStaffId("Kn", this, -1);
+        if (staff_id != -1) {
+            mStaffId = staff_id;
+            int act_idx = dComIfGp_getEventManager().getMyActIdx(mStaffId, &mCutNameList[0], 21, 0, 0);
+            
+            if ((this->*mCutList[act_idx])(mStaffId)) {
+                dComIfGp_getEventManager().cutEnd(mStaffId);    
+            }
+
+            ret = true;
+        }
+    }
+    
+    return ret;
 }
 
 /* 80A2C3FC-80A2C484 001ADC 0088+00 1/1 0/0 0/0 .text            action__10daNpc_Kn_cFv */
@@ -3628,12 +4005,17 @@ void daNpc_Kn_c::action() {
 
 /* 80A2C484-80A2C4FC 001B64 0078+00 1/1 0/0 0/0 .text            beforeMove__10daNpc_Kn_cFv */
 void daNpc_Kn_c::beforeMove() {
-    // NONMATCHING
+    if (checkHide() || field_0xe32 != 0) {
+        attention_info.flags = 0;
+    }
 }
 
 /* 80A2C4FC-80A2C56C 001BDC 0070+00 1/1 0/0 0/0 .text            afterMoved__10daNpc_Kn_cFv */
 void daNpc_Kn_c::afterMoved() {
-    // NONMATCHING
+    if (field_0xe14 != 1e+09f) {
+        mTevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mGndChk);
+        mTevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(mGndChk);
+    }
 }
 
 /* ############################################################################################## */
@@ -3645,22 +4027,117 @@ COMPILER_STRIP_GATE(0x80A40A54, &lit_7002);
 #pragma pop
 
 /* 80A2C56C-80A2C77C 001C4C 0210+00 1/1 0/0 0/0 .text            setAttnPos__10daNpc_Kn_cFv */
+// NONMATCHING -- float literal and float loading issue
 void daNpc_Kn_c::setAttnPos() {
-    // NONMATCHING
+    cXyz pos(30.0f, 0.0f, 0.0f);
+    int head_joint_no = getHeadJointNo();
+    int neck_joint_no = getNeckJointNo();
+    int backbone_joint_no = getBackboneJointNo();
+    J3DModel* model = mpMorf[0]->getModel();
+
+    mJntAnm.setParam(this, model, &pos, backbone_joint_no, neck_joint_no, head_joint_no, 
+        daNpc_Kn_Param_c::m.field_0x24, daNpc_Kn_Param_c::m.field_0x20, 
+        daNpc_Kn_Param_c::m.field_0x2c, daNpc_Kn_Param_c::m.field_0x28, 
+        daNpc_Kn_Param_c::m.field_0x34, daNpc_Kn_Param_c::m.field_0x30,
+        daNpc_Kn_Param_c::m.field_0x3c, daNpc_Kn_Param_c::m.field_0x38,
+        0.0f, daNpc_Kn_Param_c::m.field_0x40,
+        0);
+    
+    mJntAnm.calcJntRad(0.2f, 1.0f,cM_s2rad(field_0xDAC.y - field_0xDB2.y));
+    setMtx();
+    model = mpMorf[1]->getModel();
+    J3DModelData* modelData = model->getModelData();
+    mDoMtx_stack_c::transS(current.pos);
+    mDoMtx_stack_c::ZXYrotM(field_0xDAC);
+    mDoMtx_stack_c::scaleM(scale);
+    model->setBaseTRMtx(mDoMtx_stack_c::get());
+    model->setUserArea((u32)modelData);
+    mpMorf[1]->modelCalc();
+    mDoMtx_stack_c::copy(mpMorf[1]->getModel()->getAnmMtx(getHeadJointNo()));
+    mDoMtx_stack_c::multVec(&pos, &eyePos);
+    mJntAnm.setEyeAngleX(eyePos, 1.0f, 0);
+    mJntAnm.setEyeAngleY(eyePos, field_0xDAC.y, 1, 1.0f, 0);
+    mDoMtx_stack_c::copy(mpMorf[1]->getModel()->getAnmMtx(getHeadJointNo()));
+    mDoMtx_stack_c::multVecZero(&attention_info.position);
+    attention_info.position.y += daNpc_Kn_Param_c::m.field_0x00;
 }
 
 /* 80A2C77C-80A2C984 001E5C 0208+00 2/1 0/0 0/0 .text            setCollision__10daNpc_Kn_cFv */
 void daNpc_Kn_c::setCollision() {
-    // NONMATCHING
+    cXyz centerPos;
+
+    if (field_0xe2c == 0 && field_0x15af != 0) {
+        u32 param;
+
+        if (field_0xABD == 1) {
+            param = 0x69;
+        } else {
+            param = 0x79;
+        }
+
+        field_0x11DC.SetCoSPrm(param);
+
+        switch (mType) {
+        case 0:
+            setCollisionTeach01();
+            break;
+        case 1:
+            if (field_0x15ae < 4) {
+                setCollisionTeach01();
+            } else {
+                setCollisionTeach02();
+            }
+            break;
+        case 2:
+            if (field_0x15ae < 8) {
+                setCollisionTeach02();
+            } else {
+                setCollisionTeach03();
+            }
+            break;
+        case 3:
+            if (field_0x15ae < 9) {
+                setCollisionTeach03();
+            } else {
+                setCollisionTeach04();
+            }
+            break;
+        case 4:
+            if (field_0x15ae < 12) {
+                setCollisionTeach04();
+            } else {
+                setCollisionTeach05();
+            }
+            break;
+        case 5:
+            setCollisionTeach06();
+            break;
+        case 6:
+            setCollisionTeach07();
+        }
+
+        mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getBackboneJointNo()));
+        mDoMtx_stack_c::multVecZero(&centerPos);
+        centerPos.y = current.pos.y;
+        f32 radius = daNpc_Kn_Param_c::m.mRadius;
+        field_0x11DC.SetH(daNpc_Kn_Param_c::m.field_0x14);
+        field_0x11DC.SetR(radius);
+        field_0x11DC.SetC(centerPos);
+        dComIfG_Ccsp()->Set(&field_0x11DC);
+    }
+
+    field_0x11DC.ClrCoHit();
+    field_0x11DC.ClrTgHit();
+    setCollisionSword();
 }
 
-/* ############################################################################################## */
-/* 80A40A58-80A40A5C 000190 0004+00 0/1 0/0 0/0 .rodata          @7177 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7177 = 40.0f;
-COMPILER_STRIP_GATE(0x80A40A58, &lit_7177);
-#pragma pop
+// /* ############################################################################################## */
+// /* 80A40A58-80A40A5C 000190 0004+00 0/1 0/0 0/0 .rodata          @7177 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_7177 = 40.0f;
+// COMPILER_STRIP_GATE(0x80A40A58, &lit_7177);
+// #pragma pop
 
 /* 80A2C984-80A2CB30 002064 01AC+00 1/1 0/0 0/0 .text            setCollisionSword__10daNpc_Kn_cFv
  */
@@ -3670,42 +4147,96 @@ void daNpc_Kn_c::setCollisionSword() {
 
 /* 80A2CB30-80A2CBEC 002210 00BC+00 9/9 0/0 0/0 .text            checkCollisionSword__10daNpc_Kn_cFv
  */
-void daNpc_Kn_c::checkCollisionSword() {
-    // NONMATCHING
+BOOL daNpc_Kn_c::checkCollisionSword() {
+    int iVar2 = false;  // Status variable
+    
+    // Main collision check loop
+    for (int iVar3 = 0; iVar3 < 2; iVar3++) {
+        // Check shield hit
+        
+        if (field_0x1318[iVar3].ChkAtShieldHit()) {
+            iVar2 = 1;
+            break;
+        }
+        
+        // Check regular hit
+        if (field_0x1318[iVar3].ChkAtHit()) {
+            iVar2 = 2;
+        }
+    }
+    
+    // If shield was hit, clear hit
+    if (iVar2 == 1) {
+        for (int iVar3 = 0; iVar3 < 2; iVar3++) {
+            field_0x1318[iVar3].ClrAtHit();
+        }
+    }
+    
+    return iVar2 == 2;
 }
 
 /* 80A2CBEC-80A2CC24 0022CC 0038+00 1/1 0/0 0/0 .text            setCollisionTeach03__10daNpc_Kn_cFv
  */
 void daNpc_Kn_c::setCollisionTeach03() {
-    // NONMATCHING
+    field_0x11DC.SetTgType(-1);
+    field_0x11DC.SetTgSPrm(19);
+    field_0x11DC.OffTgNoAtHitInfSet();
+    field_0x11DC.OnTgNoConHit();
+    field_0x11DC.OnCoSetBit();
 }
 
 /* 80A2CC24-80A2CD00 002304 00DC+00 1/1 0/0 0/0 .text            setCollisionTeach04__10daNpc_Kn_cFv
  */
 void daNpc_Kn_c::setCollisionTeach04() {
-    // NONMATCHING
+    switch (field_0x15ae) {
+    case 9:
+        if (dComIfGp_event_runCheck() && eventInfo.i_checkCommandDemoAccrpt()) {
+            field_0x11DC.OffTgSetBit();
+            field_0x11DC.OffCoSetBit();
+        } else {
+            field_0x11DC.SetTgType(-1);
+            field_0x11DC.SetTgHitMark(CcG_Tg_UNK_MARK_2);
+            field_0x11DC.SetTgSPrm(19);
+            field_0x11DC.OnTgShield();
+            field_0x11DC.OffTgNoAtHitInfSet();
+            field_0x11DC.OnTgNoConHit();
+        }
+        break;
+    case 11:
+    case 10:
+       field_0x11DC.SetTgType(-1);
+       field_0x11DC.SetTgHitMark(CcG_Tg_UNK_MARK_1);
+       field_0x11DC.SetTgSPrm(19);
+       field_0x11DC.OffTgShield();
+       field_0x11DC.OffTgNoAtHitInfSet();
+       field_0x11DC.OnTgNoConHit();
+    }
 }
 
 /* 80A2CD00-80A2CD38 0023E0 0038+00 3/3 0/0 0/0 .text            setCollisionTeach05__10daNpc_Kn_cFv
  */
 void daNpc_Kn_c::setCollisionTeach05() {
-    // NONMATCHING
+    field_0x11DC.SetTgType(-1);
+    field_0x11DC.SetTgSPrm(19);
+    field_0x11DC.OffTgNoAtHitInfSet();
+    field_0x11DC.OnTgNoConHit();
+    field_0x11DC.OnCoSetBit();
 }
 
 /* 80A2CD38-80A2CD58 002418 0020+00 1/1 0/0 0/0 .text            setCollisionTeach06__10daNpc_Kn_cFv
  */
 void daNpc_Kn_c::setCollisionTeach06() {
-    // NONMATCHING
+    setCollisionTeach05();
 }
 
 /* 80A2CD58-80A2CD78 002438 0020+00 1/1 0/0 0/0 .text            setCollisionTeach07__10daNpc_Kn_cFv
  */
 void daNpc_Kn_c::setCollisionTeach07() {
-    // NONMATCHING
+    setCollisionTeach05();
 }
 
 /* 80A2CD78-80A2CD80 002458 0008+00 1/1 0/0 0/0 .text            drawDbgInfo__10daNpc_Kn_cFv */
-bool daNpc_Kn_c::drawDbgInfo() {
+int daNpc_Kn_c::drawDbgInfo() {
     return false;
 }
 
@@ -3716,11 +4247,21 @@ void daNpc_Kn_c::drawOtherMdl() {
 
 /* 80A2CF9C-80A2D060 00267C 00C4+00 1/1 0/0 0/0 .text            drawGhost__10daNpc_Kn_cFv */
 void daNpc_Kn_c::drawGhost() {
-    // NONMATCHING
+    J3DModel* model = mpMorf[0]->getModel();
+    g_env_light.settingTevStruct(7, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(model, &tevStr);
+
+    if (dKy_darkworld_check()) {
+        dComIfGd_setListDark();
+        mInvisModel.entryDL(0);
+        dComIfGd_setList();
+    } else {
+        mInvisModel.entryDL(0);
+    }
 }
 
 /* 80A2D060-80A2D198 002740 0138+00 1/0 0/0 0/0 .text afterSetMotionAnm__10daNpc_Kn_cFiifi */
-void daNpc_Kn_c::afterSetMotionAnm(int param_0, int param_1, f32 param_2, int param_3) {
+bool daNpc_Kn_c::afterSetMotionAnm(int param_0, int param_1, f32 param_2, int param_3) {
     // NONMATCHING
 }
 
@@ -3731,98 +4272,445 @@ void daNpc_Kn_c::selectAction() {
 
 /* 80A2D3A4-80A2D3FC 002A84 0058+00 1/1 0/0 0/0 .text teach03_selectAction__10daNpc_Kn_cFv */
 void daNpc_Kn_c::teach03_selectAction() {
-    // NONMATCHING
+    switch(field_0x15ae) {
+    case 8:
+        mpTeachAction = &daNpc_Kn_c::teach03_attackWait;
+        return;
+    }
+
+    mpTeachAction = &daNpc_Kn_c::wait;
 }
 
 /* 80A2D3FC-80A2D4A0 002ADC 00A4+00 1/1 0/0 0/0 .text teach04_selectAction__10daNpc_Kn_cFv */
 void daNpc_Kn_c::teach04_selectAction() {
-    // NONMATCHING
+    switch (field_0x15ae) {
+    case 9:
+        mpTeachAction = &daNpc_Kn_c::teach04_headBreakWait;
+        return;
+    case 10:
+        mpTeachAction = &daNpc_Kn_c::teach04_attackWait;
+        return;
+    case 11: 
+        mpTeachAction = &daNpc_Kn_c::teach04_finishWait;
+        return;
+    }
+
+    mpTeachAction = &daNpc_Kn_c::wait;
 }
 
 /* 80A2D4A0-80A2D4F8 002B80 0058+00 1/1 0/0 0/0 .text teach05_selectAction__10daNpc_Kn_cFv */
 void daNpc_Kn_c::teach05_selectAction() {
-    // NONMATCHING
+    switch (field_0x15ae) {
+    case 12:
+        mpTeachAction = &daNpc_Kn_c::teach05_surpriseAttackWait;
+        return;
+    }
+
+    mpTeachAction = &daNpc_Kn_c::wait;
 }
 
 /* 80A2D4F8-80A2D600 002BD8 0108+00 1/1 0/0 0/0 .text teach06_selectAction__10daNpc_Kn_cFv */
 void daNpc_Kn_c::teach06_selectAction() {
-    // NONMATCHING
+    switch (field_0x15ae) {
+    case 13:
+        mpTeachAction = &daNpc_Kn_c::teach06_superJumpedDivide;
+        return;
+    case 14:
+        mpTeachAction = &daNpc_Kn_c::teach06_divideMove;
+        return;
+    case 15:
+        mpTeachAction = &daNpc_Kn_c::teach06_superJumpWaitDivide;
+        return;
+    case 16:
+        mpTeachAction = &daNpc_Kn_c::teach06_superJumpWait;
+        return;
+    case 17:
+        mpTeachAction = &daNpc_Kn_c::teach06_waitDivide;
+        return;
+    case 18:
+        mpTeachAction = &daNpc_Kn_c::teach06_warpDelete;
+        return;
+    }
+
+    mpTeachAction = &daNpc_Kn_c::wait;
 }
 
 /* 80A2D600-80A2D708 002CE0 0108+00 1/1 0/0 0/0 .text teach07_selectAction__10daNpc_Kn_cFv */
 void daNpc_Kn_c::teach07_selectAction() {
-    // NONMATCHING
+    switch (field_0x15ae) {
+    case 19:
+        mpTeachAction = &daNpc_Kn_c::teach07_superTurnAttackedDivide;
+        return;
+    case 20:
+        mpTeachAction = &daNpc_Kn_c::teach07_divideMove;
+        return;
+    case 21:
+        mpTeachAction = &daNpc_Kn_c::teach07_superTurnAttackWaitDivide;
+        return;
+    case 22:
+        mpTeachAction = &daNpc_Kn_c::teach07_superTurnAttackWait;
+        return;
+    case 23:
+        mpTeachAction = &daNpc_Kn_c::teach07_waitDivide;
+        return;
+    case 24:
+        mpTeachAction = &daNpc_Kn_c::teach07_warpDelete;
+        return;
+    }
+
+    mpTeachAction = &daNpc_Kn_c::wait;
 }
 
 /* 80A2D708-80A2D734 002DE8 002C+00 1/1 0/0 0/0 .text
  * chkAction__10daNpc_Kn_cFM10daNpc_Kn_cFPCvPvPv_i              */
-void daNpc_Kn_c::chkAction(int (daNpc_Kn_c::*param_0)(void*)) {
-    // NONMATCHING
+BOOL daNpc_Kn_c::chkAction(daNpc_Kn_c::actionFunc i_action) {
+    return mpActionFunc == i_action;
 }
 
 /* 80A2D734-80A2D7DC 002E14 00A8+00 2/2 0/0 0/0 .text
  * setAction__10daNpc_Kn_cFM10daNpc_Kn_cFPCvPvPv_i              */
-void daNpc_Kn_c::setAction(int (daNpc_Kn_c::*param_0)(void*)) {
-    // NONMATCHING
+BOOL daNpc_Kn_c::setAction(daNpc_Kn_c::actionFunc i_action) {
+    field_0xe2a = 3;
+    if (mpActionFunc) {
+        (this->*mpActionFunc)(0);
+    }
+
+    field_0xe2a = 0;
+    mpActionFunc = i_action;
+
+    if (mpActionFunc) {
+        (this->*mpActionFunc)(0);
+    }
+
+    return TRUE;
 }
 
 /* 80A2D7DC-80A2D9C4 002EBC 01E8+00 8/0 0/0 0/0 .text            wait__10daNpc_Kn_cFPv */
-void daNpc_Kn_c::wait(void* param_0) {
-    // NONMATCHING
+// NONMATCHING - switch statement is wrong (missing instruction)
+int daNpc_Kn_c::wait(void* param_0) {
+    switch(field_0xe2a) {
+    case 0:
+    case 1:
+        mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+        mMotionSeqMngr2.setNo(0,-1.0f,0,0);
+        field_0xe2a = 2;
+    case 2:
+        if (field_0xABD == 0 && srchPlayerActor()) {
+            mJntAnm.lookPlayer(0);
+        } else {
+            if (home.angle.y != field_0xDAC.y && step(home.angle.y, 1, 0x20, 0x14, 0) != 0) {
+                field_0xe2a = 1;
+                mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+                mMotionSeqMngr2.setNo(0,-1.0f,0,0);
+            }
+            mJntAnm.lookNone(0);
+        };
+    }
+
+    return 1;
 }
 
 /* 80A2D9C4-80A2DB94 0030A4 01D0+00 2/0 0/0 0/0 .text            talk__10daNpc_Kn_cFPv */
-void daNpc_Kn_c::talk(void* param_0) {
-    // NONMATCHING
+// NONMATCHING - switch statement is wrong (missing instruction)
+int daNpc_Kn_c::talk(void* param_0) {
+    int bVar = 0;
+
+    switch(field_0xe2a) {
+    case 0:
+    case 1:
+        initTalk(field_0xAB0, 0);
+        field_0xe2a = 2;
+    case 2:
+        if (field_0xABD == 0) {
+            mJntAnm.lookPlayer(0);
+
+            if (field_0xDAC.y == fopAcM_searchPlayerAngleY(this)) {
+                bVar = 1;
+            } else {
+                if (step(fopAcM_searchPlayerAngleY(this), 1, 0x20, 0x14, 0) != 0) {
+                    bVar = true;
+                    mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+                    mMotionSeqMngr2.setNo(0,-1.0f,0,0);
+                }
+            }
+        } else {
+            bVar = 1;
+        }
+
+        if (bVar != 0 && talkProc(0,0,NULL,0)) {
+            mActorMngr1.entry(daPy_getPlayerActorClass());
+            dComIfGp_event_reset();
+            field_0xe2a = 3;
+        };
+    }
+
+    return 0;
 }
 
 /* 80A2DB94-80A2DCB4 003274 0120+00 1/0 0/0 0/0 .text            test__10daNpc_Kn_cFPv */
-void daNpc_Kn_c::test(void* param_0) {
-    // NONMATCHING
+// NONMATCHING - switch statement is wrong (missing instruction)
+int daNpc_Kn_c::test(void* param_0) {
+     switch(field_0xe2a) {
+    case 0:
+    case 1:
+        speedF = 0.0f;
+        speed.setall(0.0f);
+        field_0xe2a = 2;
+    case 2:
+        mMotionSeqMngr1.setNo(daNpc_Kn_Param_c::m.field_0x64,-1.0f,0,0);
+        mMotionSeqMngr2.setNo(daNpc_Kn_Param_c::m.field_0x66,-1.0f,0,0);
+    }
+
+    mJntAnm.lookNone(0);
+    attention_info.flags = 0;
+    return 0;
 }
 
 /* 80A2DCB4-80A2DD70 003394 00BC+00 7/7 0/0 0/0 .text            setSceneChange__10daNpc_Kn_cFi */
 void daNpc_Kn_c::setSceneChange(int param_0) {
-    // NONMATCHING
+    for (int i = 2; i <= 7; i++) {
+        if (daNpcT_chkTmpBit(i + 0x5a)) {
+            dStage_changeScene(i,0.0,0,fopAcM_GetRoomNo(this),0,-1);
+
+            if (param_0 == 0) return;
+
+            daNpcT_offTmpBit(i + 0x5a);
+            daNpcT_onEvtBit(i + 0x1ea);
+            return;
+        }
+    }
+
+    dStage_changeScene(1,0.0,0,fopAcM_GetRoomNo(this),0,-1);
 }
 
 /* ############################################################################################## */
 /* 80A40AF8-80A40AF8 000230 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80A40D2D = "prm";
-#pragma pop
+// #pragma push
+// #pragma force_active on
+// SECTION_DEAD static char const* const stringBase_80A40D2D = "prm";
+// #pragma pop
 
 /* 80A2DD70-80A2DF84 003450 0214+00 1/0 0/0 0/0 .text ECut_noneEquipChangeTalk__10daNpc_Kn_cFi */
-void daNpc_Kn_c::ECut_noneEquipChangeTalk(int param_0) {
-    // NONMATCHING
+int daNpc_Kn_c::ECut_noneEquipChangeTalk(int i_idx) {
+    dEvent_manager_c* event_manager =  &dComIfGp_getEventManager();
+    int ret = 0;
+    int intP = -1;
+
+    int* intP2 = dComIfGp_evmng_getMyIntegerP(i_idx,"prm");
+
+    if (intP2) {
+        intP = *intP2;
+    }
+
+    if (event_manager->getIsAddvance(i_idx)) {
+        switch (intP) {
+        case 0:
+            mJntAnm.lookPlayer(0);
+            speed.zero();
+            speedF = 0.0f;
+            break;
+        case 10:
+            field_0xdfe = 2;
+            initTalk(field_0xAB0,NULL);
+            break;
+        }
+    }
+
+    switch (intP) {
+    case 0:
+        if (field_0xDAC.y != fopAcM_searchPlayerAngleY(this)) {
+            if (step(fopAcM_searchPlayerAngleY(this),1,0x20,0x14,0) != 0) {
+                ret = 1;
+                mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+                mMotionSeqMngr2.setNo(0,-1.0f,0,0);
+            }
+        } else {
+            ret = 1;
+        }
+        break;
+    case 10:
+        intP = talkProc(NULL,0,NULL,0);
+        if (intP != 0) {
+            ret = 1;
+        }
+        break;
+    default:
+        ret = 1;
+    }
+
+    return ret;
 }
 
 /* 80A2DF84-80A2E26C 003664 02E8+00 1/0 0/0 0/0 .text
  * ECut_noneEquipChangeTalkStand__10daNpc_Kn_cFi                */
-void daNpc_Kn_c::ECut_noneEquipChangeTalkStand(int param_0) {
-    // NONMATCHING
+int daNpc_Kn_c::ECut_noneEquipChangeTalkStand(int i_idx) {
+    dEvent_manager_c* event_manager =  &dComIfGp_getEventManager();
+    int ret = 0;
+    int intP = -1;
+
+    int* intP2 = dComIfGp_evmng_getMyIntegerP(i_idx,"prm");
+
+    if (intP2) {
+        intP = *intP2;
+    }
+
+    if (event_manager->getIsAddvance(i_idx)) {
+        switch (intP) {
+        case 0:
+            mJntAnm.lookNone(0);
+            mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+            mMotionSeqMngr2.setNo(22,-1.0f,0,0);
+            speed.zero();
+            speedF = 0.0f;
+            break;
+        case 10:
+            mJntAnm.lookPlayer(0);
+            break;
+        case 20:
+            field_0xdfe = 2;
+            initTalk(field_0xAB0,NULL);
+            break;
+        }
+    }
+
+    switch (intP) {
+    case 0:
+        if (mMotionSeqMngr2.getNo() != 22) {
+            break;
+        }
+
+        if (mMotionSeqMngr2.getStepNo() > 0) {
+            ret = 1;
+        }
+
+        break;
+    case 10:
+        if (field_0xDAC.y != fopAcM_searchPlayerAngleY(this)) {
+            if (step(fopAcM_searchPlayerAngleY(this),1,0x20,0x14,0) != 0) {
+                ret = 1;
+                mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+                mMotionSeqMngr2.setNo(0,-1.0f,0,0);
+            }
+        } else {
+            ret = 1;
+        }
+        break;
+    case 20:
+        intP = talkProc(NULL,0,NULL,0);
+        if (intP != 0) {
+            ret = 1;
+        }
+        break;
+    default:
+        ret = 1;
+    }
+
+    return ret;
 }
 
 /* 80A2E26C-80A2E528 00394C 02BC+00 1/0 0/0 0/0 .text ECut_largeDamageTalk__10daNpc_Kn_cFi */
-void daNpc_Kn_c::ECut_largeDamageTalk(int param_0) {
-    // NONMATCHING
+int daNpc_Kn_c::ECut_largeDamageTalk(int i_idx) {
+    dEvent_manager_c* event_manager =  &dComIfGp_getEventManager();
+    int ret = 0;
+    int intP = -1;
+
+    int* intP2 = dComIfGp_evmng_getMyIntegerP(i_idx,"prm");
+
+    if (intP2) {
+        intP = *intP2;
+    }
+
+    if (event_manager->getIsAddvance(i_idx)) {
+        switch (intP) {
+        case 0:
+            mJntAnm.lookPlayer(0);
+            speed.zero();
+            speedF = 0.0f;
+            break;
+        case 10:
+            break;
+        case 20:
+            field_0xdfe = 2;
+            initTalk(field_0xAB0,NULL);
+            break;
+        }
+    }
+
+    switch (intP) {
+    case 0:
+        if (!daPy_getPlayerActorClass()->checkPlayerFly()) {
+           ret = 1;
+        }
+
+        daPy_getPlayerActorClass()->onLargeDamageUpStop();
+        break;
+    case 10:
+        if (field_0xDAC.y != fopAcM_searchPlayerAngleY(this)) {
+            if (step(fopAcM_searchPlayerAngleY(this),1,0x20,0x14,0) != 0) {
+                ret = 1;
+                mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+                mMotionSeqMngr2.setNo(0,-1.0f,0,0);
+            } 
+
+        } else {
+            ret = 1;
+        }
+
+        daPy_getPlayerActorClass()->onLargeDamageUpStop();
+        
+        break;
+    case 20:
+        intP = talkProc(NULL,0,NULL,0);
+        
+        if (intP != 0) {
+            ret = 1;
+        }
+        
+        cLib_addCalcAngleS2(&field_0xDAC.y,fopAcM_searchPlayerAngleY(this),2,0x800);
+        setAngle(field_0xDAC.y);
+        daPy_getPlayerActorClass()->onLargeDamageUpStop();
+
+        break;
+    default:
+        ret = 1;
+    }
+
+    return ret;
 }
 
 /* 80A2E528-80A2E664 003C08 013C+00 5/0 0/0 0/0 .text            teach02_start__10daNpc_Kn_cFPv */
-void daNpc_Kn_c::teach02_start(void* param_0) {
-    // NONMATCHING
+// NONMATCHING - switch statement
+int daNpc_Kn_c::teach02_start(void* param_0) {
+    switch (field_0xe2a) {
+    case 1:
+    case 3:
+        break;
+    case 0:
+        mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+        mMotionSeqMngr2.setNo(0,-1.0f,0,0);
+        mJntAnm.lookPlayer(0);
+    
+        field_0xe2a = 2;
+    default:
+        field_0xe36 = 8;
+        field_0xe39 = 1;
+        cLib_addCalcAngleS2(&field_0xDAC.y,fopAcM_searchPlayerAngleY((fopAc_ac_c*)param_0),2,0x800);
+        setAngle(field_0xDAC.y);
+    }
+  
+    
+    return 1;
 }
 
 /* 80A2E664-80A2EC04 003D44 05A0+00 1/0 0/0 0/0 .text            teach03_attackWait__10daNpc_Kn_cFPv
  */
-void daNpc_Kn_c::teach03_attackWait(void* param_0) {
+int daNpc_Kn_c::teach03_attackWait(void* param_0) {
     // NONMATCHING
 }
 
 /* 80A2EC04-80A2EF8C 0042E4 0388+00 1/0 0/0 0/0 .text            teach04_attackWait__10daNpc_Kn_cFPv
  */
-void daNpc_Kn_c::teach04_attackWait(void* param_0) {
+int daNpc_Kn_c::teach04_attackWait(void* param_0) {
     // NONMATCHING
 }
 
@@ -3842,19 +4730,19 @@ COMPILER_STRIP_GATE(0x80A40A60, &lit_8271);
 #pragma pop
 
 /* 80A2EF8C-80A2F24C 00466C 02C0+00 1/0 0/0 0/0 .text teach04_headBreakWait__10daNpc_Kn_cFPv */
-void daNpc_Kn_c::teach04_headBreakWait(void* param_0) {
+int daNpc_Kn_c::teach04_headBreakWait(void* param_0) {
     // NONMATCHING
 }
 
 /* 80A2F24C-80A2F600 00492C 03B4+00 1/0 0/0 0/0 .text            teach04_finishWait__10daNpc_Kn_cFPv
  */
-void daNpc_Kn_c::teach04_finishWait(void* param_0) {
+int daNpc_Kn_c::teach04_finishWait(void* param_0) {
     // NONMATCHING
 }
 
 /* 80A2F600-80A2FBB4 004CE0 05B4+00 1/0 0/0 0/0 .text teach05_surpriseAttackWait__10daNpc_Kn_cFPv
  */
-void daNpc_Kn_c::teach05_surpriseAttackWait(void* param_0) {
+int daNpc_Kn_c::teach05_surpriseAttackWait(void* param_0) {
     // NONMATCHING
 }
 
@@ -3869,25 +4757,25 @@ static void s_subEnd6(void* param_0, void* param_1) {
 }
 
 /* 80A2FC80-80A30398 005360 0718+00 1/0 0/0 0/0 .text teach06_superJumpWait__10daNpc_Kn_cFPv */
-void daNpc_Kn_c::teach06_superJumpWait(void* param_0) {
+int daNpc_Kn_c::teach06_superJumpWait(void* param_0) {
     // NONMATCHING
 }
 
 /* 80A30398-80A305A8 005A78 0210+00 1/0 0/0 0/0 .text            teach06_divideMove__10daNpc_Kn_cFPv
  */
-void daNpc_Kn_c::teach06_divideMove(void* param_0) {
+int daNpc_Kn_c::teach06_divideMove(void* param_0) {
     // NONMATCHING
 }
 
 /* 80A305A8-80A30708 005C88 0160+00 1/0 0/0 0/0 .text            teach06_waitDivide__10daNpc_Kn_cFPv
  */
-void daNpc_Kn_c::teach06_waitDivide(void* param_0) {
+int daNpc_Kn_c::teach06_waitDivide(void* param_0) {
     // NONMATCHING
 }
 
 /* 80A30708-80A30D44 005DE8 063C+00 1/0 0/0 0/0 .text teach06_superJumpWaitDivide__10daNpc_Kn_cFPv
  */
-void daNpc_Kn_c::teach06_superJumpWaitDivide(void* param_0) {
+int daNpc_Kn_c::teach06_superJumpWaitDivide(void* param_0) {
     // NONMATCHING
 }
 
@@ -3908,13 +4796,13 @@ COMPILER_STRIP_GATE(0x80A40A68, &lit_9121);
 
 /* 80A30D44-80A30EDC 006424 0198+00 1/0 0/0 0/0 .text teach06_superJumpedDivide__10daNpc_Kn_cFPv
  */
-void daNpc_Kn_c::teach06_superJumpedDivide(void* param_0) {
+int daNpc_Kn_c::teach06_superJumpedDivide(void* param_0) {
     // NONMATCHING
 }
 
 /* 80A30EDC-80A30F5C 0065BC 0080+00 1/0 0/0 0/0 .text            teach06_warpDelete__10daNpc_Kn_cFPv
  */
-void daNpc_Kn_c::teach06_warpDelete(void* param_0) {
+int daNpc_Kn_c::teach06_warpDelete(void* param_0) {
     // NONMATCHING
 }
 
@@ -3930,7 +4818,7 @@ static void s_subEnd7(void* param_0, void* param_1) {
 
 /* 80A31028-80A315D0 006708 05A8+00 1/0 0/0 0/0 .text teach07_superTurnAttackWait__10daNpc_Kn_cFPv
  */
-void daNpc_Kn_c::teach07_superTurnAttackWait(void* param_0) {
+int daNpc_Kn_c::teach07_superTurnAttackWait(void* param_0) {
     // NONMATCHING
 }
 
@@ -3944,91 +4832,365 @@ COMPILER_STRIP_GATE(0x80A40A6C, &lit_9374);
 
 /* 80A315D0-80A317F8 006CB0 0228+00 1/0 0/0 0/0 .text            teach07_divideMove__10daNpc_Kn_cFPv
  */
-void daNpc_Kn_c::teach07_divideMove(void* param_0) {
+int daNpc_Kn_c::teach07_divideMove(void* param_0) {
     // NONMATCHING
 }
 
 /* 80A317F8-80A31958 006ED8 0160+00 1/0 0/0 0/0 .text            teach07_waitDivide__10daNpc_Kn_cFPv
  */
-void daNpc_Kn_c::teach07_waitDivide(void* param_0) {
+int daNpc_Kn_c::teach07_waitDivide(void* param_0) {
     // NONMATCHING
 }
 
 /* 80A31958-80A31E24 007038 04CC+00 1/0 0/0 0/0 .text
  * teach07_superTurnAttackWaitDivide__10daNpc_Kn_cFPv           */
-void daNpc_Kn_c::teach07_superTurnAttackWaitDivide(void* param_0) {
+int daNpc_Kn_c::teach07_superTurnAttackWaitDivide(void* param_0) {
     // NONMATCHING
 }
 
 /* 80A31E24-80A31FBC 007504 0198+00 1/0 0/0 0/0 .text
  * teach07_superTurnAttackedDivide__10daNpc_Kn_cFPv             */
-void daNpc_Kn_c::teach07_superTurnAttackedDivide(void* param_0) {
+int daNpc_Kn_c::teach07_superTurnAttackedDivide(void* param_0) {
     // NONMATCHING
 }
 
 /* 80A31FBC-80A3203C 00769C 0080+00 1/0 0/0 0/0 .text            teach07_warpDelete__10daNpc_Kn_cFPv
  */
-void daNpc_Kn_c::teach07_warpDelete(void* param_0) {
+int daNpc_Kn_c::teach07_warpDelete(void* param_0) {
     // NONMATCHING
 }
 
 /* 80A3203C-80A324C4 00771C 0488+00 3/0 0/0 0/0 .text            ECut_secondEncount__10daNpc_Kn_cFi
  */
-void daNpc_Kn_c::ECut_secondEncount(int param_0) {
-    // NONMATCHING
+ // NONMATCHING - need to finish second switch under case 10
+int daNpc_Kn_c::ECut_secondEncount(int i_idx) {
+   dEvent_manager_c* event_manager =  &dComIfGp_getEventManager();
+    int ret = 0;
+    int intP = -1;
+
+    int* intP2 = dComIfGp_evmng_getMyIntegerP(i_idx,"prm");
+
+    if (intP2) {
+        intP = *intP2;
+    }
+
+    if (event_manager->getIsAddvance(i_idx)) {
+        switch (intP) {
+        case 0:
+            mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+            mMotionSeqMngr2.setNo(0,-1.0f,0,0);
+            break;
+        case 2:
+            daNpc_GWolf_c* pGWolf = (daNpc_GWolf_c*)fpcM_SearchByID(parentActorID);
+
+            if (fopAcM_GetName(pGWolf) == PROC_NPC_GWOLF) {
+                pGWolf->setMotion(4,-1.0f,FALSE);
+            }
+
+            break;
+        case 5:
+            daNpc_GWolf_c* pProc = (daNpc_GWolf_c*)fpcM_SearchByID(parentActorID);
+
+            if (pProc) {
+                fopAcM_delete(pProc);
+            };
+
+            field_0xe2c = 0;
+            break;
+        case 10:
+            switch (mType) {
+            case 1:
+                initTalk(0x2bd,0);
+                break;
+            case 2:
+                initTalk(0x2de,0);
+                break;
+            case 3:
+                initTalk(0x2ee,0);
+                break;
+            case 4:
+                initTalk(0x2e6,0);
+                break;
+            case 5:
+                initTalk(0x2f7,0);
+                break;
+            case 6:
+                initTalk(0x2ff,0);
+                break;
+            }
+
+            break;
+        case 20:
+            field_0xdec = 30;
+            break;
+        }
+    }
+
+    switch (intP) {
+    case 0:
+        ret = 1;
+        break;
+    case 2:
+        ret = 1;
+        break;
+    case 5:
+        ret = 1;
+        break;
+    case 10:
+        if (talkProc(0,0,NULL,0)) {
+            if (mFlow.getChoiceNo() == 0) {
+                int local_38 = 0;
+
+                switch (mType) {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                }
+            } else {
+                break;
+            }
+        }
+
+        break;
+    case 20:
+        if (cLib_calcTimer(&field_0xdec) == 0) {
+            ret = 1;
+
+            switch (mType) {
+            case 1:
+                field_0x15ae = 2;
+                break;
+            case 2:
+                field_0x15ae = 5;
+                break;
+            case 3:
+                field_0x15ae = 8;
+                break;
+            case 4:
+                field_0x15ae = 9;
+                break;
+            case 5:
+                field_0x15ae = 12;
+                break;
+            case 6:
+                field_0x15ae = 13;
+                break;
+            }
+        }
+
+        break;
+    default:
+        ret = 1;
+    }
+
+    return ret;
 }
 
 /* 80A324C4-80A32D30 007BA4 086C+00 3/0 0/0 0/0 .text ECut_thirdSkillExplain__10daNpc_Kn_cFi */
-void daNpc_Kn_c::ECut_thirdSkillExplain(int param_0) {
-    // NONMATCHING
+int daNpc_Kn_c::ECut_thirdSkillExplain(int i_idx) {
+    dEvent_manager_c* event_manager =  &dComIfGp_getEventManager();
+
+    int ret = 0;
+    int intP = -1;
+
+    int* intP2 = dComIfGp_evmng_getMyIntegerP(i_idx,"prm");
+
+    if (intP2) {
+        intP = *intP2;
+    }
+
+    if (event_manager->getIsAddvance(i_idx)) {
+        switch (intP) {
+            case 0:
+                mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+                mMotionSeqMngr2.setNo(0,-1.0f,0,0);
+                mJntAnm.lookPlayer(0);
+                field_0xdec = 0x1e;
+                break;
+            case 10:
+                field_0xdfe = 2;
+                initTalk(0x2df,0);
+                break;
+            case 20:
+                Z2GetAudioMgr()->bgmStart(Z2BGM_OUGI_TRAINING,0,0);
+            case 65:
+                setPos(home.pos);
+                setAngle(home.angle.y);
+                cXyz pos(0.0f,0.0f,375.0f);
+                mDoMtx_stack_c::transS(home.pos);
+                mDoMtx_stack_c::YrotM(home.angle.y);
+                mDoMtx_stack_c::multVec(&pos,&pos);
+                pos.y += 500.0f;
+                
+                if (fopAcM_gc_c::gndCheck(&pos)) {
+                    pos.y = fopAcM_gc_c::getGroundY();
+                }
+
+                daPy_getPlayerActorClass()->setPlayerPosAndAngle(&pos,fopAcM_searchPlayerAngleY(this) + 0x8000,0);
+                daPy_getPlayerActorClass()->onTraningCutBack();
+                break;
+            case 30:
+                initTalk(0x2e0,0);
+                break;
+            case 40:
+                daNpcT_offTmpBit(0xb);
+                initTalk(0x2e1,0);
+                break;
+            case 50:
+                mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+                mMotionSeqMngr2.setNo(11,-1.0f,1,0);
+                break;
+            case 55:
+                field_0xdec = 0x1e;
+                break;
+            case 60:
+                initTalk(0x2e1,0);
+                break;
+            case 70:
+                mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+                mMotionSeqMngr2.setNo(24,-1.0f,1,0);
+                mJntAnm.lookNone(0);
+                break;
+        }
+    }
+
+    switch (intP) {
+        case 0:
+            if (cLib_calcTimer(&field_0xdec) == 0) {
+                if (field_0xDAC.y == fopAcM_searchPlayerAngleY(this)) {
+                    ret = 1;
+                    field_0x15b0 = current.pos;
+                    field_0x15bc = 0;
+                    speedF = 0.0f;
+                    speed.zero();
+                } else {
+                
+                if (step(fopAcM_searchPlayerAngleY(this),1,0x20,0x14,0) != 0) {
+                    mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+                    mMotionSeqMngr2.setNo(0,-1.0f,0,0);
+                }
+                }
+                
+            } else {
+                calcSlip();
+            }
+
+            break;
+        case 6:
+            if (field_0xDAC.y == fopAcM_searchPlayerAngleY(this)) {
+                ret = 1;
+            } else {
+                if (step(fopAcM_searchPlayerAngleY(this),1,0x20,0x14,0) != 0) {
+                    ret = 1;
+                    mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+                    mMotionSeqMngr2.setNo(0,-1.0f,0,0);
+                }
+                break;
+            }
+            ret = 1;
+            break;
+        case 10:
+            if (talkProc(0,0,NULL,0) != 0) {
+                ret = 1;
+            }
+            break;
+        case 20:
+        case 65:
+            ret = 1;
+            setPos(home.pos);
+            setAngle(home.angle.y);
+            cXyz pos(0.0f,0.0f,375.0f);
+            mDoMtx_stack_c::transS(home.pos);
+            mDoMtx_stack_c::YrotM(home.angle.y);
+            mDoMtx_stack_c::multVec(&pos,&pos);
+            cXyz pos2(pos);
+            pos2.y += 500.0f;
+            
+            if (fopAcM_gc_c::gndCheck(&pos2)) {
+                pos2.y = fopAcM_gc_c::getGroundY();
+            }
+
+            daPy_getPlayerActorClass()->setPlayerPosAndAngle(&pos2,fopAcM_searchPlayerAngleY(this) + 0x8000,0);
+            // daPy_getPlayerActorClass()->onTraningCutBack();
+            break;
+        case 30:
+        case 40:
+            if (talkProc(0,0,NULL,0) != 0) {
+                ret = 1;
+            }
+            break;
+        case 50:
+            break;
+        case 60:
+            if (talkProc(0,0,NULL,0) != 0) {
+                ret = 1;
+            }
+            break;
+        case 70:
+            if (mMotionSeqMngr2.getNo() == 0x18 && mMotionSeqMngr2.getStepNo() > 0) {
+                ret = 1;
+                field_0x15ae = 8;
+            }
+            break;
+        default:
+            ret = 1;
+    }
+
+    return ret;
+
 }
 
 /* 80A32D30-80A33358 008410 0628+00 3/0 0/0 0/0 .text            ECut_thirdSkillGet__10daNpc_Kn_cFi
  */
-void daNpc_Kn_c::ECut_thirdSkillGet(int param_0) {
+int daNpc_Kn_c::ECut_thirdSkillGet(int i_idx) {
     // NONMATCHING
 }
 
 /* 80A33358-80A33D80 008A38 0A28+00 3/0 0/0 0/0 .text ECut_fourthSkillExplain__10daNpc_Kn_cFi */
-void daNpc_Kn_c::ECut_fourthSkillExplain(int param_0) {
+int daNpc_Kn_c::ECut_fourthSkillExplain(int i_idx) {
     // NONMATCHING
 }
 
 /* 80A33D80-80A343A8 009460 0628+00 3/0 0/0 0/0 .text            ECut_fourthSkillGet__10daNpc_Kn_cFi
  */
-void daNpc_Kn_c::ECut_fourthSkillGet(int param_0) {
+int daNpc_Kn_c::ECut_fourthSkillGet(int i_idx) {
     // NONMATCHING
 }
 
 /* 80A343A8-80A34DB8 009A88 0A10+00 3/0 0/0 0/0 .text ECut_fifthSkillExplain__10daNpc_Kn_cFi */
-void daNpc_Kn_c::ECut_fifthSkillExplain(int param_0) {
+int daNpc_Kn_c::ECut_fifthSkillExplain(int i_idx) {
     // NONMATCHING
 }
 
 /* 80A34DB8-80A353E0 00A498 0628+00 3/0 0/0 0/0 .text            ECut_fifthSkillGet__10daNpc_Kn_cFi
  */
-void daNpc_Kn_c::ECut_fifthSkillGet(int param_0) {
+int daNpc_Kn_c::ECut_fifthSkillGet(int i_idx) {
     // NONMATCHING
 }
 
 /* 80A353E0-80A35D88 00AAC0 09A8+00 3/0 0/0 0/0 .text ECut_sixthSkillExplain__10daNpc_Kn_cFi */
-void daNpc_Kn_c::ECut_sixthSkillExplain(int param_0) {
+int daNpc_Kn_c::ECut_sixthSkillExplain(int i_idx) {
     // NONMATCHING
 }
 
 /* 80A35D88-80A363C0 00B468 0638+00 3/0 0/0 0/0 .text            ECut_sixthSkillGet__10daNpc_Kn_cFi
  */
-void daNpc_Kn_c::ECut_sixthSkillGet(int param_0) {
+int daNpc_Kn_c::ECut_sixthSkillGet(int i_idx) {
     // NONMATCHING
 }
 
 /* 80A363C0-80A36C20 00BAA0 0860+00 3/0 0/0 0/0 .text ECut_seventhSkillExplain__10daNpc_Kn_cFi */
-void daNpc_Kn_c::ECut_seventhSkillExplain(int param_0) {
+int daNpc_Kn_c::ECut_seventhSkillExplain(int i_idx) {
     // NONMATCHING
 }
 
 /* 80A36C20-80A372D0 00C300 06B0+00 3/0 0/0 0/0 .text ECut_seventhSkillGet__10daNpc_Kn_cFi */
-void daNpc_Kn_c::ECut_seventhSkillGet(int param_0) {
+int daNpc_Kn_c::ECut_seventhSkillGet(int i_idx) {
     // NONMATCHING
 }
 
@@ -4293,7 +5455,7 @@ static u8 struct_80A432FC[4];
 /* 80A43300-80A433C8 000048 00C8+00 0/0 0/0 0/0 .bss             mFindActorPtrs__10daNpc_Kn_c */
 #pragma push
 #pragma force_active on
-u8 daNpc_Kn_c::mFindActorPtrs[200];
+fopAc_ac_c* daNpc_Kn_c::mFindActorPtrs[50];
 #pragma pop
 
 /* 80A433C8-80A433CC 000110 0004+00 0/0 0/0 0/0 .bss             mFindCount__10daNpc_Kn_c */
@@ -4484,7 +5646,7 @@ void daNpc_Kn_c::deleteRes(s8 const* param_0, char const** param_1) {
 }
 
 /* 80A38930-80A38BB8 00E010 0288+00 1/1 0/0 0/0 .text            execute__10daNpc_Kn_cFv */
-void daNpc_Kn_c::execute() {
+s32 daNpc_Kn_c::execute() {
     // NONMATCHING
 }
 
@@ -4553,7 +5715,7 @@ void daNpc_Kn_c::ctrlJoint(J3DJoint* param_0, J3DModel* param_1) {
 }
 
 /* 80A39BBC-80A39DBC 00F29C 0200+00 1/0 0/0 0/0 .text            evtProc__10daNpc_Kn_cFv */
-void daNpc_Kn_c::evtProc() {
+int daNpc_Kn_c::evtProc() {
     // NONMATCHING
 }
 
@@ -4610,8 +5772,12 @@ void daNpc_Kn_c::setPos(cXyz param_0) {
 }
 
 /* 80A3AAF0-80A3AB18 0101D0 0028+00 35/35 0/0 0/0 .text            setAngle__10daNpc_Kn_cFs */
-void daNpc_Kn_c::setAngle(s16 param_0) {
-    // NONMATCHING
+void daNpc_Kn_c::setAngle(s16 i_angle) {
+    current.angle.y = i_angle;
+    shape_angle.y = current.angle.y;
+    field_0xDAC.y = current.angle.y;
+    field_0xDB2.y = field_0xDAC.y;
+    old.angle.y = current.angle.y;
 }
 
 /* 80A3AB18-80A3AC24 0101F8 010C+00 1/1 0/0 0/0 .text
@@ -4645,7 +5811,7 @@ extern "C" void getDistTable__12dAttention_cFi() {
 }
 
 /* 80A3AF64-80A3B000 010644 009C+00 1/1 0/0 0/0 .text            srchPlayerActor__10daNpc_Kn_cFv */
-void daNpc_Kn_c::srchPlayerActor() {
+BOOL daNpc_Kn_c::srchPlayerActor() {
     // NONMATCHING
 }
 
@@ -4660,7 +5826,7 @@ void daNpc_Kn_c::turn(s16 param_0, int param_1, int param_2) {
 }
 
 /* 80A3B220-80A3B3E8 010900 01C8+00 19/19 0/0 0/0 .text            step__10daNpc_Kn_cFsiiii */
-void daNpc_Kn_c::step(s16 param_0, int param_1, int param_2, int param_3, int param_4) {
+s32 daNpc_Kn_c::step(s16 param_0, int param_1, int param_2, int param_3, int param_4) {
     // NONMATCHING
 }
 
@@ -4671,7 +5837,7 @@ void daNpc_Kn_c::initTalk(int param_0, fopAc_ac_c** param_1) {
 
 /* 80A3B448-80A3B5EC 010B28 01A4+00 20/20 0/0 0/0 .text talkProc__10daNpc_Kn_cFPiiPP10fopAc_ac_ci
  */
-void daNpc_Kn_c::talkProc(int* param_0, int param_1, fopAc_ac_c** param_2, int param_3) {
+BOOL daNpc_Kn_c::talkProc(int* param_0, int param_1, fopAc_ac_c** param_2, int param_3) {
     // NONMATCHING
 }
 
@@ -4734,25 +5900,32 @@ bool daNpc_Kn_c::afterSetFaceMotionAnm(int param_0, int param_1, f32 param_2, in
 
 /* 80A3B7CC-80A3B7FC 010EAC 0030+00 1/0 0/0 0/0 .text
  * getFaceMotionAnm__10daNpc_Kn_cF26daNpcT_faceMotionAnmData_c  */
-void daNpc_Kn_c::getFaceMotionAnm(daNpcT_faceMotionAnmData_c param_0) {
+daNpcT_faceMotionAnmData_c daNpc_Kn_c::getFaceMotionAnm(daNpcT_faceMotionAnmData_c param_0) {
     // NONMATCHING
 }
 
 /* 80A3B7FC-80A3B82C 010EDC 0030+00 1/0 0/0 0/0 .text
  * getMotionAnm__10daNpc_Kn_cF22daNpcT_motionAnmData_c          */
-void daNpc_Kn_c::getMotionAnm(daNpcT_motionAnmData_c param_0) {
+daNpcT_motionAnmData_c daNpc_Kn_c::getMotionAnm(daNpcT_motionAnmData_c param_0) {
     // NONMATCHING
 }
 
 /* 80A3B82C-80A3BD14 010F0C 04E8+00 1/1 0/0 0/0 .text
  * __ct__10daNpc_Kn_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc
  */
+ // NONMATCHING - missing something instructions / regalloc
 daNpc_Kn_c::daNpc_Kn_c(daNpcT_faceMotionAnmData_c const* param_0,
                            daNpcT_motionAnmData_c const* param_1,
                            daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_2, int param_3,
                            daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_4, int param_5,
-                           daNpcT_evtData_c const* param_6, char** param_7) {
-    // NONMATCHING
+                           daNpcT_evtData_c const* param_6, char** param_7) :
+                            // daNpcT_c(param_0, param_1, param_2, param_3, param_4, param_5, param_6, param_7) { 
+                           mpFaceMotionAnmData(param_0), 
+                           mpMotionAnmData(param_1), mMotionSeqMngr1(param_2, param_3), 
+                           mMotionSeqMngr2(param_4, param_5), 
+                           mpEventData(param_6),
+                           field_0x5B8(param_7) {
+    initialize();
 }
 
 /* 80A3BD14-80A3BD1C 0113F4 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__10daNpc_Kn_cFv */
@@ -4761,7 +5934,7 @@ s32 daNpc_Kn_c::getEyeballMaterialNo() {
 }
 
 /* 80A3BD1C-80A3BD24 0113FC 0008+00 1/0 0/0 0/0 .text getEyeballLMaterialNo__10daNpc_Kn_cFv */
-bool daNpc_Kn_c::getEyeballLMaterialNo() {
+int daNpc_Kn_c::getEyeballLMaterialNo() {
     return false;
 }
 
@@ -4831,9 +6004,9 @@ extern "C" void __dt__13daNpcT_Path_cFv() {
 
 /* 80A3C1C4-80A3C1C8 0118A4 0004+00 1/1 0/0 0/0 .text __ct__Q210daNpc_Kn_c20daNpc_Kn_prtclMngr_cFv
  */
-daNpc_Kn_c::daNpc_Kn_prtclMngr_c::daNpc_Kn_prtclMngr_c() {
-    /* empty function */
-}
+// daNpc_Kn_c::daNpc_Kn_prtclMngr_c::daNpc_Kn_prtclMngr_c() {
+//     /* empty function */
+// }
 
 /* 80A3C1C8-80A3C24C 0118A8 0084+00 1/1 0/0 0/0 .text            __ct__8dCcD_SphFv */
 // dCcD_Sph::dCcD_Sph() {
@@ -4933,7 +6106,7 @@ extern "C" void setEyeAngleX__15daNpcT_JntAnm_cF4cXyzfs() {
 }
 
 /* 80A3C998-80A3CB14 012078 017C+00 1/1 0/0 0/0 .text            setParamTeach01__10daNpc_Kn_cFv */
-void daNpc_Kn_c::setParamTeach01() {
+u32 daNpc_Kn_c::setParamTeach01() {
     // NONMATCHING
 }
 
@@ -4949,23 +6122,23 @@ void daNpc_Kn_c::teach01_selectAction() {
 }
 
 /* 80A3CCC0-80A3CDFC 0123A0 013C+00 1/0 0/0 0/0 .text            teach01_start__10daNpc_Kn_cFPv */
-void daNpc_Kn_c::teach01_start(void* param_0) {
+int daNpc_Kn_c::teach01_start(void* param_0) {
     // NONMATCHING
 }
 
 /* 80A3CDFC-80A3CF78 0124DC 017C+00 1/0 0/0 0/0 .text            teach01_attackWait__10daNpc_Kn_cFPv
  */
-void daNpc_Kn_c::teach01_attackWait(void* param_0) {
+int daNpc_Kn_c::teach01_attackWait(void* param_0) {
     // NONMATCHING
 }
 
 /* 80A3CF78-80A3D32C 012658 03B4+00 1/0 0/0 0/0 .text teach01_swordAttackWait__10daNpc_Kn_cFPv */
-void daNpc_Kn_c::teach01_swordAttackWait(void* param_0) {
+int daNpc_Kn_c::teach01_swordAttackWait(void* param_0) {
     // NONMATCHING
 }
 
 /* 80A3D32C-80A3D6D8 012A0C 03AC+00 1/0 0/0 0/0 .text teach01_swordFinishWait__10daNpc_Kn_cFPv */
-void daNpc_Kn_c::teach01_swordFinishWait(void* param_0) {
+int daNpc_Kn_c::teach01_swordFinishWait(void* param_0) {
     // NONMATCHING
 }
 
@@ -5030,7 +6203,7 @@ COMPILER_STRIP_GATE(0x80A40AE4, &lit_13839);
 #pragma pop
 
 /* 80A3EB84-80A3EE38 014264 02B4+00 1/1 0/0 0/0 .text            setParamTeach02__10daNpc_Kn_cFv */
-void daNpc_Kn_c::setParamTeach02() {
+u32 daNpc_Kn_c::setParamTeach02() {
     // NONMATCHING
 }
 
@@ -5046,13 +6219,13 @@ void daNpc_Kn_c::teach02_selectAction() {
 }
 
 /* 80A3EFE0-80A3F358 0146C0 0378+00 1/0 0/0 0/0 .text teach02_shieldBashWait__10daNpc_Kn_cFPv */
-void daNpc_Kn_c::teach02_shieldBashWait(void* param_0) {
+int daNpc_Kn_c::teach02_shieldBashWait(void* param_0) {
     // NONMATCHING
 }
 
 /* 80A3F358-80A3F5A4 014A38 024C+00 1/0 0/0 0/0 .text            teach02_finishWait__10daNpc_Kn_cFPv
  */
-void daNpc_Kn_c::teach02_finishWait(void* param_0) {
+int daNpc_Kn_c::teach02_finishWait(void* param_0) {
     // NONMATCHING
 }
 
@@ -5080,7 +6253,7 @@ COMPILER_STRIP_GATE(0x80A40AF0, &lit_14211);
 
 /* 80A3F5A4-80A3F99C 014C84 03F8+00 1/0 0/0 0/0 .text teach02_shieldReflectWait__10daNpc_Kn_cFPv
  */
-void daNpc_Kn_c::teach02_shieldReflectWait(void* param_0) {
+int daNpc_Kn_c::teach02_shieldReflectWait(void* param_0) {
     // NONMATCHING
 }
 
@@ -5281,3 +6454,30 @@ static u8 data_80A43474[4];
 #pragma pop
 
 /* 80A40AF8-80A40AF8 000230 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+
+/* 80A43148-80A43168 -00001 0020+00 1/0 0/0 0/0 .data            daNpc_Kn_MethodTable */
+// static actor_method_class daNpc_Kn_MethodTable = {
+//     (process_method_func)daNpc_Kn_Create,
+//     (process_method_func)daNpc_Kn_Delete,
+//     (process_method_func)daNpc_Kn_Execute,
+//     (process_method_func)daNpc_Kn_IsDelete,
+//     (process_method_func)daNpc_Kn_Draw,
+// };
+
+// /* 80A43168-80A43198 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_KN */
+// extern actor_process_profile_definition g_profile_NPC_KN = {
+//   fpcLy_CURRENT_e,        // mLayerID
+//   7,                      // mListID
+//   fpcPi_CURRENT_e,        // mListPrio
+//   PROC_NPC_KN,            // mProcName
+//   &g_fpcLf_Method.mBase,  // sub_method
+//   sizeof(daNpc_Kn_c),     // mSize
+//   0,                      // mSizeOther
+//   0,                      // mParameters
+//   &g_fopAc_Method.base,   // sub_method
+//   347,                    // mPriority
+//   &daNpc_Kn_MethodTable,  // sub_method
+//   0x00044107,             // mStatus
+//   fopAc_ENEMY_e,          // mActorType
+//   fopAc_CULLBOX_CUSTOM_e, // cullType
+// };

@@ -79,6 +79,10 @@ inline base_process_class* fpcM_SearchByName(s16 name) {
     return (base_process_class*)fpcLyIt_AllJudge(fpcSch_JudgeForPName, &name);
 }
 
+inline base_process_class* fpcM_SearchByID(u32 id) {
+    return (base_process_class*)fpcEx_SearchByID(id);
+}
+
 void fpcM_Draw(void* pProc);
 s32 fpcM_DrawIterater(fpcM_DrawIteraterFunc pFunc);
 s32 fpcM_Execute(void* pProc);
