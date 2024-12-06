@@ -9,45 +9,45 @@ struct vib_pattern {
     /* 0x4 */ u32 bits;
 };
 
+enum VIBMODE_SHOCK {
+    VIBMODE_S_NONE = -1,
+    VIBMODE_S_CUSTOM,
+    VIBMODE_S_POWER1,
+    VIBMODE_S_POWER2,
+    VIBMODE_S_POWER3,
+    VIBMODE_S_POWER4,
+    VIBMODE_S_POWER5,
+    VIBMODE_S_POWER6,
+    VIBMODE_S_POWER7,
+    VIBMODE_S_POWER8,
+    VIBMODE_S_DOKUTT,
+    VIBMODE_S_FOR2D,
+
+    VIBMODE_S_MAX
+};
+
+enum VIBMODE_QUAKE {
+    VIBMODE_Q_NONE = -1,
+    VIBMODE_Q_CUSTOM,
+    VIBMODE_Q_POWER1,
+    VIBMODE_Q_POWER2,
+    VIBMODE_Q_POWER3,
+    VIBMODE_Q_POWER4,
+    VIBMODE_Q_POWER5,
+    VIBMODE_Q_POWER6,
+    VIBMODE_Q_POWER7,
+    VIBMODE_Q_POWER8,
+    VIBMODE_Q_HORSE,
+
+    VIBMODE_Q_MAX
+};
+
 class dVibration_c {
 public:
     enum {
         MODE_PAUSE = -1,
         MODE_WAIT,
         MODE_RUN,
-    };
-
-    enum VIBMODE_SHOCK {
-        VIBMODE_S_NONE = -1,
-        VIBMODE_S_CUSTOM,
-        VIBMODE_S_POWER1,
-        VIBMODE_S_POWER2,
-        VIBMODE_S_POWER3,
-        VIBMODE_S_POWER4,
-        VIBMODE_S_POWER5,
-        VIBMODE_S_POWER6,
-        VIBMODE_S_POWER7,
-        VIBMODE_S_POWER8,
-        VIBMODE_S_DOKUTT,
-        VIBMODE_S_FOR2D,
-
-        VIBMODE_S_MAX
-    };
-
-    enum VIBMODE_QUAKE {
-        VIBMODE_Q_NONE = -1,
-        VIBMODE_Q_CUSTOM,
-        VIBMODE_Q_POWER1,
-        VIBMODE_Q_POWER2,
-        VIBMODE_Q_POWER3,
-        VIBMODE_Q_POWER4,
-        VIBMODE_Q_POWER5,
-        VIBMODE_Q_POWER6,
-        VIBMODE_Q_POWER7,
-        VIBMODE_Q_POWER8,
-        VIBMODE_Q_HORSE,
-
-        VIBMODE_Q_MAX
     };
 
     /* 8006F268 */ int Run();
