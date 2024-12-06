@@ -18,9 +18,9 @@ void daObjWPndlm_c::initBaseMtx() {
 
 /* 80D39454-80D394CC 0000D4 0078+00 2/2 0/0 0/0 .text            setBaseMtx__13daObjWPndlm_cFv */
 void daObjWPndlm_c::setBaseMtx() {
-    PSMTXTrans(mDoMtx_stack_c::now, current.pos.x, current.pos.y, current.pos.z);
-    mDoMtx_ZXYrotM(mDoMtx_stack_c::now, shape_angle.x, shape_angle.y, shape_angle.z + field_0x958);
-    MTXCopy(mDoMtx_stack_c::get(), mpModel->mBaseTransformMtx);
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z + field_0x958);
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80D39C88-80D39CC8 000000 0040+00 2/2 0/0 0/0 .rodata          l_sph_src */
@@ -129,11 +129,9 @@ int daObjWPndlm_c::execute() {
     mSph.SetC(local_48);
     dComIfG_Ccsp()->Set(&mSph);
 
-    f32 lit_3826[6] = {-60.0f, -1120.0f, 100.0f, 80.0f, -1230.0f, -50.0f};
+    Vec lit_3826[2] = {{-60.0f, -1120.0f, 100.0f}, {80.0f, -1230.0f, -50.0f}};
     for (int i = 0; i < 2; i++) {
-        local_48.x = lit_3826[i * 3];
-        local_48.y = lit_3826[i * 3 + 1];
-        local_48.z = lit_3826[i * 3 + 2];
+        local_48 = lit_3826[i];
         mDoMtx_stack_c::transS(current.pos);
         mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z + field_0x958);
         mDoMtx_stack_c::multVec(&local_48, &local_48);
