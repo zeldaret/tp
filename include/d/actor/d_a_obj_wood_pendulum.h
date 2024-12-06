@@ -3,7 +3,6 @@
 
 #include "d/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
-#include "f_op/f_op_actor_mng.h"
 
 /**
  * @ingroup actors-objects
@@ -14,7 +13,6 @@
  *
  */
 class daObjWPndlm_c : public fopAc_ac_c {
-public:
 public:
     /* 80D39418 */ void initBaseMtx();
     /* 80D39454 */ void setBaseMtx();
@@ -40,6 +38,5 @@ private:
 };
 
 STATIC_ASSERT(sizeof(daObjWPndlm_c) == 0x960);
-
 
 #endif /* D_A_OBJ_WOOD_PENDULUM_H */
