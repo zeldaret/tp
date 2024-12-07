@@ -248,7 +248,7 @@ extern actor_process_profile_definition g_profile_Obj_GraveStone = {
     3,
     fpcPi_CURRENT_e,
     PROC_Obj_GraveStone,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daGraveStone_c),
     0,
     0,

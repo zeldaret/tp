@@ -244,7 +244,7 @@ extern actor_process_profile_definition g_profile_START_AND_GOAL = {
     9,
     fpcPi_CURRENT_e,
     PROC_START_AND_GOAL,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daStartAndGoal_c),
     0,
     0,

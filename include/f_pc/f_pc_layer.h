@@ -12,43 +12,43 @@ typedef struct process_method_tag_class process_method_tag_class;
 typedef struct process_node_class process_node_class;
 
 typedef struct layer_class {
-    /* 0x00 */ node_class mNode;
-    /* 0x0C */ u32 mLayerID;
-    /* 0x10 */ node_lists_tree_class mNodeListTree;
-    /* 0x18 */ process_node_class* mpPcNode;
-    /* 0x1C */ node_list_class mCancelList;
+    /* 0x00 */ node_class node;
+    /* 0x0C */ fpc_ProcID layer_id;
+    /* 0x10 */ node_lists_tree_class node_tree;
+    /* 0x18 */ process_node_class* process_node;
+    /* 0x1C */ node_list_class cancel_list;
     struct {
-        /* 0x28 */ s16 mCreatingCount;
-        /* 0x2A */ s16 mDeletingCount;
+        /* 0x28 */ s16 create_count;
+        /* 0x2A */ s16 delete_count;
     } counts;
 } layer_class;
 
-void fpcLy_SetCurrentLayer(layer_class* pLayer);
-layer_class* fpcLy_CurrentLayer(void);
-layer_class* fpcLy_RootLayer(void);
-layer_class* fpcLy_Layer(fpc_ProcID id);
-layer_class* fpcLy_Search(fpc_ProcID id);
-void fpcLy_Regist(layer_class* pLayer);
+void fpcLy_SetCurrentLayer(layer_class* i_layer);
+layer_class* fpcLy_CurrentLayer();
+layer_class* fpcLy_RootLayer();
+layer_class* fpcLy_Layer(fpc_ProcID i_id);
+layer_class* fpcLy_Search(fpc_ProcID i_id);
+void fpcLy_Regist(layer_class* i_layer);
 
-void fpcLy_CreatedMesg(layer_class* pLayer);
-void fpcLy_CreatingMesg(layer_class* pLayer);
-void fpcLy_DeletedMesg(layer_class* pLayer);
-void fpcLy_DeletingMesg(layer_class* pLayer);
-BOOL fpcLy_IsCreatingMesg(layer_class* pLayer);
-BOOL fpcLy_IsDeletingMesg(layer_class* pLayer);
+void fpcLy_CreatedMesg(layer_class* i_layer);
+void fpcLy_CreatingMesg(layer_class* i_layer);
+void fpcLy_DeletedMesg(layer_class* i_layer);
+void fpcLy_DeletingMesg(layer_class* i_layer);
+BOOL fpcLy_IsCreatingMesg(layer_class* i_layer);
+BOOL fpcLy_IsDeletingMesg(layer_class* i_layer);
 
-s32 fpcLy_IntoQueue(layer_class* pLayer, int treeListIdx, create_tag_class* pTag, int idx);
-s32 fpcLy_ToQueue(layer_class* pLayer, int treeListIdx, create_tag_class* pTag);
-s32 fpcLy_QueueTo(layer_class* pLayer, create_tag_class* pTag);
+s32 fpcLy_IntoQueue(layer_class* i_layer, int i_treeListNo, create_tag_class* i_createTag, int i_no);
+s32 fpcLy_ToQueue(layer_class* i_layer, int treeListIdx, create_tag_class* i_createTag);
+s32 fpcLy_QueueTo(layer_class* i_layer, create_tag_class* i_createTag);
 
-void fpcLy_Cancel(layer_class* pLayer);
-bool fpcLy_CancelMethod(process_method_tag_class* pLayer);
+int fpcLy_Cancel(layer_class* i_layer);
+bool fpcLy_CancelMethod(process_method_tag_class* i_layer);
 
-void fpcLy_CancelQTo(process_method_tag_class* pMthd);
-s32 fpcLy_ToCancelQ(layer_class* pLayer, process_method_tag_class* pMthd);
+void fpcLy_CancelQTo(process_method_tag_class* i_methods);
+s32 fpcLy_ToCancelQ(layer_class* i_layer, process_method_tag_class* i_methods);
 
-void fpcLy_Create(layer_class* pLayer, void* pPcNode, node_list_class* pLists, int listNum);
+void fpcLy_Create(layer_class* i_layer, void* i_node, node_list_class* i_nodeList, int i_numLists);
 
-s32 fpcLy_Delete(layer_class* pLayer);
+s32 fpcLy_Delete(layer_class* i_layer);
 
 #endif

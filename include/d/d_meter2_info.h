@@ -191,6 +191,7 @@ public:
     f32 get2DHeight() { return m2DHeight; }
     u8 getTableMapRegionNo() { return mTableMapRegionNo; }
     u8 getGoldWolfMapType() { return mGoldWolfMapType; }
+    bool isWindowAccept(int param_0) { return mWindowAccept & (1 << param_0); }
 
 public:
     /* 0x04 */ u8 unk4[4];
@@ -787,6 +788,10 @@ inline u8 dMeter2Info_getTableMapRegionNo() {
 
 inline u8 dMeter2Info_getGoldWolfMapType() {
     return g_meter2_info.getGoldWolfMapType();
+}
+
+inline bool dMeter2Info_isWindowAccept(int param_0) {
+    return g_meter2_info.isWindowAccept(param_0);
 }
 
 const char* dMeter2Info_getPlusTextureName();

@@ -1434,8 +1434,8 @@ static void demo_camera(b_bq_class* i_this) {
 
         daPy_getPlayerActorClass()->changeOriginalDemo();
 
-        i_this->mDemoCamEye = camera0->mLookat.mEye;
-        i_this->mDemoCamCenter = camera0->mLookat.mCenter;
+        i_this->mDemoCamEye = camera0->lookat.eye;
+        i_this->mDemoCamCenter = camera0->lookat.center;
 
         dComIfGp_getEvent().startCheckSkipEdge(i_this);
         // fallthrough
@@ -2693,7 +2693,7 @@ extern actor_process_profile_definition g_profile_B_BQ = {
     7,
     fpcPi_CURRENT_e,
     PROC_B_BQ,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(b_bq_class),
     0,
     0,

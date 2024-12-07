@@ -203,7 +203,7 @@ extern actor_process_profile_definition g_profile_Obj_BarDesk = {
     3,
     fpcPi_CURRENT_e,
     PROC_Obj_BarDesk,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daBarDesk_c),
     0,
     0,

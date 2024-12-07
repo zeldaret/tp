@@ -8,6 +8,6 @@ typedef struct node_list_class node_list_class;
 
 typedef int (*fpcMtdIt_MethodFunc)(void*);
 
-void fpcMtdIt_Method(node_list_class* pList, fpcMtdIt_MethodFunc pMethod);
+int fpcMtdIt_Method(node_list_class* pList, fpcMtdIt_MethodFunc pMethod);
 
 #endif

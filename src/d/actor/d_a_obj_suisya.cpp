@@ -120,7 +120,7 @@ extern actor_process_profile_definition g_profile_OBJ_SUISYA = {
     7,
     fpcPi_CURRENT_e,
     PROC_OBJ_SUISYA,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daObj_Suisya_c),
     0,
     0,

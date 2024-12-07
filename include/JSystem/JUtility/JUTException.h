@@ -104,7 +104,7 @@ public:
     void setTraceSuppress(u32 param_0) { mTraceSuppress = param_0; }
     void setGamePad(JUTGamePad* gamePad) {
         mGamePad = gamePad;
-        mGamePadPort = JUTGamePad::Port_Unknown;
+        mGamePadPort = JUTGamePad::EPortInvalid;
     }
 
     static void setMapFile(const char* map) {

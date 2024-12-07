@@ -107,7 +107,7 @@ extern actor_process_profile_definition g_profile_DMIDNA = {
     7,
     fpcPi_CURRENT_e,
     PROC_DMIDNA,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daDmidna_c),
     0,
     0,

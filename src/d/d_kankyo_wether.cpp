@@ -610,7 +610,7 @@ static void wether_move_rain() {
 
         if (g_env_light.mSnowCount == 0 && cam != NULL) {
             // Stage is not Fishing Pond
-            if (strcmp(dComIfGp_getStartStageName(), "R_SP127") || cam->mLookat.mEye.y > 0.0f) {
+            if (strcmp(dComIfGp_getStartStageName(), "R_SP127") || cam->lookat.eye.y > 0.0f) {
                 if (g_env_light.mRainCount < 125.0f) {
                     mDoAud_rainPlay(FALSE);
                 } else {

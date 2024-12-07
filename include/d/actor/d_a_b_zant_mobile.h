@@ -28,6 +28,11 @@ public:
     /* 80651DC4 */ int CreateHeap();
     /* 80652038 */ int create();
 
+    int getMouthMode() { return mMouthMode; }
+    int getAppearMode() { return mAppearMode; }
+    bool isSearchContinue() { return mSearchContinue != false; }
+    void offSearchContinue() { mSearchContinue = false; }
+
 private:
     /* 0x5AC */ request_of_phase_process_class mPhase;
     /* 0x5B4 */ mDoExt_McaMorfSO* mpMorf;

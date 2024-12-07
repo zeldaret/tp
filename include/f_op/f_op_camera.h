@@ -6,13 +6,13 @@
 class camera_class;
 
 struct camera_process_profile_definition {
-    /* 0x00 */ view_process_profile_definition mBase;
+    /* 0x00 */ view_process_profile_definition base;
     /* 0x3C */ leafdraw_method_class* sub_method; // Subclass methods
 };
 
-static s32 fopCam_Draw(camera_class* param_1);
-static int fopCam_Execute(camera_class* pCamera);
-int fopCam_IsDelete(camera_class* pCamera);
+static s32 fopCam_Draw(camera_class* i_this);
+static int fopCam_Execute(camera_class* i_this);
+int fopCam_IsDelete(camera_class* i_this);
 
 extern leafdraw_method_class g_fopCam_Method;
 

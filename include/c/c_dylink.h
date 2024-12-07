@@ -19,4 +19,8 @@ struct DynamicNameTableEntry {
 int cDyl_InitAsyncIsDone();
 void cDyl_InitAsync();
 
+BOOL cDyl_IsLinked(s16 i_ProfName);
+BOOL cDyl_Unlink(s16 i_ProfName);
+int cDyl_LinkASync(s16 i_ProfName);
+
 #endif /* C_C_DYLINK_H */

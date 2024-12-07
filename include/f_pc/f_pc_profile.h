@@ -9,20 +9,20 @@ typedef struct leafdraw_method_class leafdraw_method_class;
 typedef struct process_method_class process_method_class;
 
 typedef struct process_profile_definition {
-    /* 0x00 */ s32 mLayerID;
-    /* 0x04 */ u16 mListID;
-    /* 0x06 */ u16 mListPrio;
-    /* 0x08 */ s16 mProcName;
-    /* 0x0C */ process_method_class* sub_method; // Subclass methods
-    /* 0x10 */ s32 mSize;
-    /* 0x14 */ s32 mSizeOther;
-    /* 0x18 */ s32 mParameters;
+    /* 0x00 */ unsigned int layer_id;
+    /* 0x04 */ u16 list_id;
+    /* 0x06 */ u16 list_priority;
+    /* 0x08 */ s16 name;
+    /* 0x0C */ process_method_class* methods;
+    /* 0x10 */ u32 process_size;
+    /* 0x14 */ u32 unk_size;
+    /* 0x18 */ u32 parameters;
 } process_profile_definition;
 
 #define LAYER_DEFAULT (-2)
 
 struct leaf_process_profile_definition;
-process_profile_definition* fpcPf_Get(s16 profileID);
+process_profile_definition* fpcPf_Get(s16 i_profname);
 extern process_profile_definition** g_fpcPf_ProfileList_p;
 
 #endif

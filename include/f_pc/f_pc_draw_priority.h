@@ -5,11 +5,11 @@
 #include "dolphin/types.h"
 
 typedef struct draw_priority_class {
-    s16 mPriority;
+    s16 priority;
 } draw_priority_class;
 
-s16 fpcDwPi_Get(const draw_priority_class* pDwPi);
-void fpcDwPi_Set(draw_priority_class* pDwPi, s16 p);
-void fpcDwPi_Init(draw_priority_class* pDwPi, s16 p);
+s16 fpcDwPi_Get(const draw_priority_class* i_drawpriority);
+void fpcDwPi_Set(draw_priority_class* i_drawpriority, s16 i_priority);
+void fpcDwPi_Init(draw_priority_class* i_drawpriority, s16 i_priority);
 
 #endif

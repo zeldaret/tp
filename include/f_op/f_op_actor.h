@@ -11,16 +11,16 @@ struct actor_method_class {
 };
 
 struct actor_process_profile_definition {
-    /* 0x00 */ leaf_process_profile_definition mBase;
+    /* 0x00 */ leaf_process_profile_definition base;
     /* 0x24 */ actor_method_class* sub_method;
     /* 0x28 */ u32 status;
-    /* 0x2C */ u8 mActorType;
+    /* 0x2C */ u8 group;
     /* 0x2D */ u8 cullType;
 };
 
 // Unclear what this is. Only appears in 4 profiles (BG,DSHUTTER,PATH,SCENE_EXIT)
 struct actor_process_profile_definition2 {
-    /* 0x00 */ actor_process_profile_definition def;
+    /* 0x00 */ actor_process_profile_definition base;
     /* 0x30 */ u32 field_0x30;
 };
 
@@ -304,7 +304,7 @@ public:
     /* 0x5A8 */ u8 mMidnaBindMode;
 };  // Size: 0x5AC
 
-s32 fopAc_IsActor(void* actor);
+BOOL fopAc_IsActor(void* i_actor);
 
 extern actor_method_class g_fopAc_Method;
 

@@ -120,7 +120,7 @@ extern actor_process_profile_definition g_profile_Tag_Restart = {
     7,
     fpcPi_CURRENT_e,
     PROC_Tag_Restart,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daTagRestart_c),
     0,
     0,

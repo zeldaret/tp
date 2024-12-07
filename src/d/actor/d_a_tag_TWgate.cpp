@@ -1008,7 +1008,7 @@ bool daTagTWGate_c::talkProc(int* param_1, int param_2, fopAc_ac_c** param_3) {
             rv = true;
         } else {
             if (mMsgFlow.getMsg() != NULL &&
-                (mMsgFlow.getMsg()->mMode == 2 || mMsgFlow.getMsg()->mMode == 6) && param_1 != NULL)
+                (mMsgFlow.getMsg()->mode == 2 || mMsgFlow.getMsg()->mode == 6) && param_1 != NULL)
             {
                 for (int i = 0; param_1[i] > 0; i++) {
                     if (param_1[i] == mMsgFlow.getMsgNo()) {
@@ -1120,7 +1120,7 @@ extern actor_process_profile_definition g_profile_Tag_TWGate = {
     7,
     fpcPi_CURRENT_e,
     PROC_Tag_TWGate,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daTagTWGate_c),
     0,
     0,

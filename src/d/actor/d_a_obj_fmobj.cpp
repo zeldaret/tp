@@ -195,7 +195,7 @@ extern actor_process_profile_definition g_profile_OBJ_FMOBJ = {
     3,
     fpcPi_CURRENT_e,
     PROC_OBJ_FMOBJ,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(obj_fmobj_class),
     0,
     0,

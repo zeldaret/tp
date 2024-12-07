@@ -10,62 +10,63 @@ typedef struct layer_class layer_class;
 typedef struct process_node_class process_node_class;
 
 typedef struct node_create_request_method_class {
-    process_method_func mpExecuteFunc;
-    process_method_func mpCancelFunc;
-    process_method_func mpUnkFunc;
-    process_method_func mpPostMethodFunc;
+    /* 0x0 */ process_method_func execute_method;
+    /* 0x4 */ process_method_func cancel_method;
+    /* 0x8 */ process_method_func delete_method;
+    /* 0xC */ process_method_func post_method;
 } node_create_request_method_class;
+
 // needed to match struct copy
 typedef struct unk_process_node_class {
-    process_node_class* mpNodeProc;
-    u32 mProcId;
+    /* 0x0 */ process_node_class* node;
+    /* 0x4 */ fpc_ProcID id;
 } unk_process_node_class;
 
 typedef struct node_create_request {
-    create_tag_class mCreateTag;
-    process_method_tag_class mProcMthCls;
-    request_of_phase_process_class mReqPhsProc;
-    cPhs__Handler* mpPhsHandler;
-    node_create_request_method_class* mpNodeCrReqMthCls;
-    s32 mParameter;
-    s32 mRequestId;
-    unk_process_node_class mNodeProc;
-    layer_class* mpLayerClass;
-    u32 mCreatingID;
-    s16 mProcName;
-    void* mpUserData;
-    s16 unk_0x60;
-
+    /* 0x00 */ create_tag_class create_tag;
+    /* 0x14 */ process_method_tag_class method_tag;
+    /* 0x30 */ request_of_phase_process_class phase_request;
+    /* 0x38 */ cPhs__Handler* phase_handler;
+    /* 0x3C */ node_create_request_method_class* create_req_methods;
+    /* 0x40 */ s32 parameters;
+    /* 0x44 */ fpc_ProcID request_id;
+    /* 0x48 */ unk_process_node_class node_proc;
+    /* 0x50 */ layer_class* layer;
+    /* 0x54 */ fpc_ProcID creating_id;
+    /* 0x58 */ s16 name;
+    /* 0x5C */ void* data;
+    /* 0x60 */ s16 unk_0x60;
 } node_create_request;  // Size: 0x64
 
 typedef struct request_node_class {
-    node_class mBase;
-    node_create_request* mNodeCrReq;
+    /* 0x0 */ node_class node;
+    /* 0x4 */ node_create_request* node_create_req;
 } request_node_class;
 
-void fpcNdRq_RequestQTo(node_create_request* pNodeCreateReq);
-void fpcNdRq_ToRequestQ(node_create_request* pNodeCreateReq);
-s32 fpcNdRq_phase_IsCreated(node_create_request* pNodeCreateReq);
-s32 fpcNdRq_phase_Create(node_create_request* pNodeCreateReq);
-s32 fpcNdRq_phase_IsDeleteTiming(node_create_request* pNodeCreateReq);
-s32 fpcNdRq_phase_IsDeleted(node_create_request* pNodeCreateReq);
-s32 fpcNdRq_phase_Delete(node_create_request* pNodeCreateReq);
-s32 fpcNdRq_DoPhase(node_create_request* pNodeCreateReq);
-s32 fpcNdRq_Execute(node_create_request* pNodeCreateReq);
-s32 fpcNdRq_Delete(node_create_request* pNodeCreateReq);
-s32 fpcNdRq_Cancel(node_create_request* pNodeCreateReq);
-s32 fpcNdRq_Handler(void);
-s32 fpcNdRq_IsPossibleTarget(process_node_class* pProcNode);
-s32 fpcNdRq_IsIng(process_node_class* pProcNode);
-node_create_request* fpcNdRq_Create(u32 pRequestSize);
-node_create_request* fpcNdRq_ChangeNode(u32 pRequestSize, process_node_class* pProcNode,
-                                        s16 param_3, void* param_4);
-node_create_request* fpcNdRq_DeleteNode(u32 pRequestSize, process_node_class* pProcNode);
-node_create_request* fpcNdRq_CreateNode(u32 pRequestSize, s16 param_2, void* param_3);
+void fpcNdRq_RequestQTo(node_create_request* i_request);
+void fpcNdRq_ToRequestQ(node_create_request* i_request);
+s32 fpcNdRq_phase_IsCreated(node_create_request* i_request);
+s32 fpcNdRq_phase_Create(node_create_request* i_request);
+s32 fpcNdRq_phase_IsDeleteTiming(node_create_request* i_request);
+s32 fpcNdRq_phase_IsDeleted(node_create_request* i_request);
+s32 fpcNdRq_phase_Delete(node_create_request* i_request);
+s32 fpcNdRq_DoPhase(node_create_request* i_request);
+s32 fpcNdRq_Execute(node_create_request* i_request);
+s32 fpcNdRq_Delete(node_create_request* i_request);
+s32 fpcNdRq_Cancel(node_create_request* i_request);
+s32 fpcNdRq_Handler();
+s32 fpcNdRq_IsPossibleTarget(process_node_class* i_procNode);
+s32 fpcNdRq_IsIng(process_node_class* i_procNode);
+node_create_request* fpcNdRq_Create(u32 i_requestSize);
+node_create_request* fpcNdRq_ChangeNode(u32 i_requestSize, process_node_class* i_procNode,
+                                        s16 i_procName, void* i_data);
+node_create_request* fpcNdRq_DeleteNode(u32 i_requestSize, process_node_class* i_procNode);
+node_create_request* fpcNdRq_CreateNode(u32 i_requestSize, s16 i_procName, void* i_data);
 node_create_request*
-fpcNdRq_Request(u32 param_1, int param_2, process_node_class* param_3, s16 param_4,
-                void* param_5, node_create_request_method_class* pNodeCreateRequestMethodClass);
-s32 fpcNdRq_ReChangeNode(fpc_ProcID pRequestId, s16 param_2, void* param_3);
-s32 fpcNdRq_ReRequest(fpc_ProcID pRequestId, s16 param_2, void* param_3);
+fpcNdRq_Request(u32 i_requestSize, int i_reqType,
+                process_node_class* i_procNode, s16 i_procName, void* i_data,
+                node_create_request_method_class* i_create_req_methods);
+s32 fpcNdRq_ReChangeNode(fpc_ProcID i_requestID, s16 i_procName, void* i_data);
+s32 fpcNdRq_ReRequest(fpc_ProcID i_requestID, s16 i_procName, void* i_data);
 
 #endif

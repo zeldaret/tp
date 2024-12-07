@@ -111,8 +111,8 @@ int dEnvSe_c::execute_common(dStage_SoundInfo_c* i_soundInf, s8* param_1, u8 par
             for (dPath* path_p = dPath_GetRoomPath(data_p->field_0x18, path_roomNo); path_p != NULL;
                  path_p = dPath_GetNextRoomPath(path_p, path_roomNo))
             {
-                dEnvSe_getNearPathPos(&mPos, &cam_eye, path_p);
-                mDoAud_mEnvse_registRiverSePos(&mPos);
+                dEnvSe_getNearPathPos(&pos, &cam_eye, path_p);
+                mDoAud_mEnvse_registRiverSePos(&pos);
             }
 
             mDoAud_mEnvse_startRiverSe(dComIfGp_getReverb(roomNo));
@@ -126,7 +126,7 @@ int dEnvSe_c::execute_common(dStage_SoundInfo_c* i_soundInf, s8* param_1, u8 par
                 *param_1 |= 4;
             }
 
-            mPos = cam_eye;
+            pos = cam_eye;
 
             for (dPath* path_p = dPath_GetRoomPath(data_p->field_0x18, path_roomNo); path_p != NULL;
                  path_p = dPath_GetNextRoomPath(path_p, path_roomNo))
@@ -136,7 +136,7 @@ int dEnvSe_c::execute_common(dStage_SoundInfo_c* i_soundInf, s8* param_1, u8 par
                 f32 fvar11 = cM3d_LenSq(&sp14, &cam_eye);
                 if (fvar11 < fvar12) {
                     fvar12 = fvar11;
-                    mPos = sp14;
+                    pos = sp14;
                 }
 
                 mDoAud_mEnvse_registFallSePos(&sp14);
@@ -153,8 +153,8 @@ int dEnvSe_c::execute_common(dStage_SoundInfo_c* i_soundInf, s8* param_1, u8 par
             for (dPath* path_p = dPath_GetRoomPath(data_p->field_0x18, path_roomNo); path_p != NULL;
                  path_p = dPath_GetNextRoomPath(path_p, path_roomNo))
             {
-                dEnvSe_getNearPathPos(&mPos, &cam_eye, path_p);
-                mDoAud_mEnvse_registSmellSePos(&mPos);
+                dEnvSe_getNearPathPos(&pos, &cam_eye, path_p);
+                mDoAud_mEnvse_registSmellSePos(&pos);
             }
 
             mDoAud_mEnvse_startSmellSe(dComIfGp_getReverb(roomNo));
@@ -162,8 +162,8 @@ int dEnvSe_c::execute_common(dStage_SoundInfo_c* i_soundInf, s8* param_1, u8 par
             for (dPath* path_p = dPath_GetRoomPath(data_p->field_0x18, path_roomNo); path_p != NULL;
                  path_p = dPath_GetNextRoomPath(path_p, path_roomNo))
             {
-                dEnvSe_getNearPathPos(&mPos, &cam_eye, path_p);
-                mDoAud_mEnvse_registWindowPos(&mPos);
+                dEnvSe_getNearPathPos(&pos, &cam_eye, path_p);
+                mDoAud_mEnvse_registWindowPos(&pos);
             }
         } else if (data_p->field_0x17 >= 100) {
             if (!((field_0x108 >> i) & 1)) {
@@ -175,8 +175,8 @@ int dEnvSe_c::execute_common(dStage_SoundInfo_c* i_soundInf, s8* param_1, u8 par
             for (dPath* path_p = dPath_GetRoomPath(data_p->field_0x18, path_roomNo); path_p != NULL;
                  path_p = dPath_GetNextRoomPath(path_p, path_roomNo))
             {
-                dEnvSe_getNearPathPos(&mPos, &cam_eye, path_p);
-                mDoAud_registLv3WaterSePos(data_p->field_0x17, &mPos);
+                dEnvSe_getNearPathPos(&pos, &cam_eye, path_p);
+                mDoAud_registLv3WaterSePos(data_p->field_0x17, &pos);
             }
 
             mDoAud_startLv3WaterSe(dComIfGp_getReverb(roomNo));
@@ -250,7 +250,7 @@ extern kankyo_process_profile_definition g_profile_ENVSE = {
     2,
     fpcPi_CURRENT_e,
     PROC_ENVSE,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(dEnvSe_c),
     0,
     0,

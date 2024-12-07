@@ -139,7 +139,7 @@ extern actor_process_profile_definition g_profile_Tag_RmbitSw = {
     7,
     fpcPi_CURRENT_e,
     PROC_Tag_RmbitSw,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daTagRmbitSw_c),
     0,
     0,

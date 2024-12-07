@@ -176,7 +176,7 @@ extern actor_process_profile_definition g_profile_WarpBug = {
     7,
     fpcPi_CURRENT_e,
     PROC_WarpBug,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daWarpBug_c),
     0,
     0,

@@ -14,12 +14,12 @@ static cXyz get_check_pos(kytag00_class* i_this) {
     cXyz pos;
 
     if (player_p != NULL) {
-        f32 dist_to_cameye = a_this->current.pos.abs(camera_p->mLookat.mEye);
+        f32 dist_to_cameye = a_this->current.pos.abs(camera_p->lookat.eye);
         f32 dist_to_player = a_this->current.pos.abs(player_p->current.pos);
 
         pos = player_p->current.pos;
         if (dComIfGp_event_runCheck() && dist_to_cameye < dist_to_player) {
-            pos = camera_p->mLookat.mEye;
+            pos = camera_p->lookat.eye;
         }
     } else {
         pos.set(0.0f, 0.0f, 0.0f);
@@ -505,7 +505,7 @@ extern actor_process_profile_definition g_profile_KYTAG00 = {
     7,
     fpcPi_CURRENT_e,
     PROC_KYTAG00,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(kytag00_class),
     0,
     0,

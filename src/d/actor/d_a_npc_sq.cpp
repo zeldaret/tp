@@ -150,8 +150,8 @@ static void demo_camera(npc_sq_class* i_this) {
         i_this->mCameraFovY = 55.0f;
         player_camera->mCamera.SetTrimSize(3);
         i_this->mMsgFlow.init(_this, i_this->mFlowID, 0, NULL);
-        i_this->mCameraEye = camera->mLookat.mEye;
-        i_this->mCameraCenter = camera->mLookat.mCenter;
+        i_this->mCameraEye = camera->lookat.eye;
+        i_this->mCameraCenter = camera->lookat.center;
         daPy_getPlayerActorClass()->changeOriginalDemo();
         // no break
 
@@ -409,7 +409,7 @@ extern actor_process_profile_definition g_profile_NPC_SQ = {
     7,
     fpcPi_CURRENT_e,
     PROC_NPC_SQ,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(npc_sq_class),
     0,
     0,

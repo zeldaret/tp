@@ -244,7 +244,7 @@ extern actor_process_profile_definition g_profile_OBJ_KI = {
     7,
     fpcPi_CURRENT_e,
     PROC_OBJ_KI,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(obj_ki_class),
     0,
     0,

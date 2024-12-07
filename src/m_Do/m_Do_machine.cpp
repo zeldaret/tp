@@ -177,8 +177,8 @@ static int developKeyCheck(u32 btnTrig, u32 btnHold) {
     static u8 key_ganon;
     static u8 key_zelda;
 
-    if (btnHold == (CButton::L | CButton::R | CButton::Z | CButton::DPAD_DOWN) &&
-        btnTrig == CButton::DPAD_DOWN) {
+    if (btnHold == (PAD_TRIGGER_L | PAD_TRIGGER_R | PAD_TRIGGER_Z | PAD_BUTTON_DOWN) &&
+        btnTrig == PAD_BUTTON_DOWN) {
         if (key_link == 3 && key_ganon == 6 && key_zelda == 5) {
             mDoMain::developmentMode = 1;
         } else {
@@ -188,15 +188,15 @@ static int developKeyCheck(u32 btnTrig, u32 btnHold) {
         }
     }
 
-    if (btnHold == (CButton::L | CButton::DPAD_RIGHT) && btnTrig == CButton::L) {
+    if (btnHold == (PAD_TRIGGER_L | PAD_BUTTON_RIGHT) && btnTrig == PAD_TRIGGER_L) {
         key_link++;
     }
 
-    if (btnHold == (CButton::R | CButton::DPAD_UP) && btnTrig == CButton::R) {
+    if (btnHold == (PAD_TRIGGER_R | PAD_BUTTON_UP) && btnTrig == PAD_TRIGGER_R) {
         key_ganon++;
     }
 
-    if (btnHold == (CButton::Z | CButton::DPAD_LEFT) && btnTrig == CButton::Z) {
+    if (btnHold == (PAD_TRIGGER_Z | PAD_BUTTON_LEFT) && btnTrig == PAD_TRIGGER_Z) {
         key_zelda++;
     }
 
@@ -241,7 +241,7 @@ void myExceptionCallback(u16, OSContext*, u32, u32) {
     } else {
         manager->setTraceSuppress(0x80);
         if (mDoMain::developmentMode == 0) {
-            JUTGamePad pad(JUTGamePad::Port_1);
+            JUTGamePad pad(JUTGamePad::EPort1);
             manager->setGamePad(&pad);
 
             if (manager != NULL) {
@@ -289,7 +289,7 @@ static void fault_callback_scroll(u16, OSContext* p_context, u32, u32) {
                            *(u32*)(srr0 - 0x8), *(u32*)(srr0 - 0x4), *(u32*)srr0);
     }
 
-    JUTGamePad pad(JUTGamePad::Port_1);
+    JUTGamePad pad(JUTGamePad::EPort1);
     manager->setGamePad(&pad);
 
     BOOL padDisabled = manager->isEnablePad() == false;
@@ -310,12 +310,12 @@ static void fault_callback_scroll(u16, OSContext* p_context, u32, u32) {
             }
 
             bool waitRetrace = false;
-            if (btnTrig == CButton::START) {
+            if (btnTrig == PAD_BUTTON_START) {
                 exception_addition(exConsole);
                 waitRetrace = true;
             }
 
-            if (btnTrig == CButton::Z) {
+            if (btnTrig == PAD_TRIGGER_Z) {
                 JUTConsole* sysConsole = JFWSystem::getSystemConsole();
                 if (JUTConsoleManager::getManager()->getDirectConsole() != sysConsole) {
                     exConsole = sysConsole;
@@ -331,22 +331,22 @@ static void fault_callback_scroll(u16, OSContext* p_context, u32, u32) {
                 waitRetrace = true;
             }
 
-            if (btnTrig == CButton::A) {
+            if (btnTrig == PAD_BUTTON_A) {
                 exConsole->scrollToLastLine();
                 waitRetrace = true;
             }
 
-            if (btnTrig == CButton::B) {
+            if (btnTrig == PAD_BUTTON_B) {
                 exConsole->scrollToFirstLine();
                 waitRetrace = true;
             }
 
-            if (btnHold == CButton::DPAD_UP) {
+            if (btnHold == PAD_BUTTON_UP) {
                 exConsole->scroll(holdUpCount < 3 ? -1 : (holdUpCount < 5 ? -2 : (holdUpCount < 7 ? -4 : -8)));
                 waitRetrace = true;
                 holdDownCount = 0;
                 holdUpCount++;
-            } else if (btnHold == CButton::DPAD_DOWN) {
+            } else if (btnHold == PAD_BUTTON_DOWN) {
                 exConsole->scroll(holdDownCount < 3 ? 1 : (holdDownCount < 5 ? 2 : (holdDownCount < 7 ? 4 : 8)));
                 waitRetrace = true;
                 holdUpCount = 0;

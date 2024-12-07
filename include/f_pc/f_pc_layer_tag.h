@@ -15,16 +15,17 @@ typedef struct layer_class layer_class;
 
 
 typedef struct layer_management_tag_class {
-    create_tag_class mCreateTag;
-    layer_class* mpLayer;
-    u16 mNodeListID;
-    u16 mNodeListIdx;
+    /* 0x00 */ create_tag_class create_tag;
+    /* 0x14 */ layer_class* layer;
+    /* 0x18 */ u16 node_list_id;
+    /* 0x1A */ u16 node_list_priority;
 } layer_management_tag_class;
 
-s32 fpcLyTg_QueueTo(layer_management_tag_class* pTag);
-s32 fpcLyTg_ToQueue(layer_management_tag_class* pTag, unsigned int layerID, u16 listID,
-                    u16 listPrio);
-s32 fpcLyTg_Move(layer_management_tag_class*, unsigned int, u16, u16);
-s32 fpcLyTg_Init(layer_management_tag_class*, unsigned int, void*);
+s32 fpcLyTg_QueueTo(layer_management_tag_class* i_layer_tag);
+s32 fpcLyTg_ToQueue(layer_management_tag_class* i_layer_tag, unsigned int i_layerID, u16 i_listID,
+                    u16 i_listPriority);
+s32 fpcLyTg_Move(layer_management_tag_class* i_layer_tag, unsigned int i_layerID, u16 i_listID,
+                 u16 i_listPriority);
+s32 fpcLyTg_Init(layer_management_tag_class* i_layer_tag, unsigned int i_id, void* i_data);
 
 #endif

@@ -1105,7 +1105,7 @@ extern actor_process_profile_definition g_profile_E_BA = {
     7,
     fpcPi_CURRENT_e,
     PROC_E_BA,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(e_ba_class),
     0,
     0,

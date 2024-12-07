@@ -195,7 +195,7 @@ extern actor_process_profile_definition g_profile_Tag_Hstop = {
     3,
     fpcPi_CURRENT_e,
     PROC_Tag_Hstop,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daTagHstop_c),
     0,
     0,

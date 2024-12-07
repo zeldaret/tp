@@ -102,7 +102,7 @@ bool daTagWaterFall_c::checkHitWaterFall(cXyz objPos) {
  * checkHitWaterFallCamera__16daTagWaterFall_cFv                */
 bool daTagWaterFall_c::checkHitWaterFallCamera() {
     const camera_class* camera = dComIfGp_getCamera(0);
-    return checkHitWaterFall(camera->mLookat.mEye);
+    return checkHitWaterFall(camera->lookat.eye);
 }
 
 /* ############################################################################################## */
@@ -269,7 +269,7 @@ extern actor_process_profile_definition g_profile_Tag_WaterFall = {
     7,
     fpcPi_CURRENT_e,
     PROC_Tag_WaterFall,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daTagWaterFall_c),
     0,
     0,

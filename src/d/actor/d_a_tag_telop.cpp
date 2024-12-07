@@ -81,7 +81,7 @@ extern actor_process_profile_definition g_profile_TAG_TELOP = {
     7,
     fpcPi_CURRENT_e,
     PROC_TAG_TELOP,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daTag_Telop_c),
     0,
     0,

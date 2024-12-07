@@ -300,9 +300,9 @@ void dScnLogo_c::warningDispDraw() {
     }
 
     if (mTimer == 0 || mDoCPd_c::getTrig(PAD_1) &
-                           (CButton::A | CButton::B | CButton::X | CButton::Y | CButton::START |
-                            CButton::Z | CButton::L | CButton::R | CButton::DPAD_LEFT |
-                            CButton::DPAD_RIGHT | CButton::DPAD_DOWN | CButton::DPAD_UP))
+                           (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y | PAD_BUTTON_START |
+                            PAD_TRIGGER_Z | PAD_TRIGGER_L | PAD_TRIGGER_R | PAD_BUTTON_LEFT |
+                            PAD_BUTTON_RIGHT | PAD_BUTTON_DOWN | PAD_BUTTON_UP))
     {
         mExecCommand = EXEC_WARNING_OUT;
         mTimer = 30;
@@ -741,11 +741,11 @@ extern scene_process_profile_definition g_profile_LOGO_SCENE = {
     1,
     fpcPi_CURRENT_e,
     PROC_LOGO_SCENE,
-    &g_fpcNd_Method.mBase,
+    &g_fpcNd_Method.base,
     sizeof(dScnLogo_c),
     0,
     0,
-    &g_fopScn_Method.mBase,
+    &g_fopScn_Method.base,
     (process_method_class*)&l_dScnLogo_Method,
     NULL,
 };

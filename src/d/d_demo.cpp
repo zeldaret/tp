@@ -491,7 +491,7 @@ f32 dDemo_camera_c::JSGGetProjectionNear() const {
         return 0.0f;
     }
     
-    return view->mNear;
+    return view->near;
 }
 
 /* 80038AF8-80038B0C 033438 0014+00 1/0 0/0 0/0 .text JSGSetProjectionNear__14dDemo_camera_cFf */
@@ -508,7 +508,7 @@ f32 dDemo_camera_c::JSGGetProjectionFar() const {
         return 1.0f;
     }
     
-    return view->mFar;
+    return view->far;
 }
 
 /* 80038B40-80038B54 033480 0014+00 1/0 0/0 0/0 .text JSGSetProjectionFar__14dDemo_camera_cFf */
@@ -525,7 +525,7 @@ f32 dDemo_camera_c::JSGGetProjectionFovy() const {
         return 60.0f;
     }
     
-    return view->mFovy;
+    return view->fovy;
 }
 
 /* 80038B88-80038B9C 0334C8 0014+00 1/0 0/0 0/0 .text JSGSetProjectionFovy__14dDemo_camera_cFf */
@@ -543,7 +543,7 @@ f32 dDemo_camera_c::JSGGetProjectionAspect() const {
         return 1.3571428f;
     }
     
-    return view->mAspect;
+    return view->aspect;
 }
 
 /* 80038BD0-80038BE4 033510 0014+00 1/0 0/0 0/0 .text JSGSetProjectionAspect__14dDemo_camera_cFf
@@ -563,7 +563,7 @@ void dDemo_camera_c::JSGGetViewPosition(Vec* o_position) const {
         o_position->y = 0.0f;
         o_position->z = 0.0f;
     } else {
-        *o_position = view->mLookat.mEye;
+        *o_position = view->lookat.eye;
     }
 }
 
@@ -584,7 +584,7 @@ void dDemo_camera_c::JSGGetViewUpVector(Vec* o_upVec) const {
         o_upVec->y = 1.0f;
         o_upVec->z = 0.0f;
     } else {
-        *o_upVec = view->mLookat.mUp;
+        *o_upVec = view->lookat.up;
     }
 }
 
@@ -605,7 +605,7 @@ void dDemo_camera_c::JSGGetViewTargetPosition(Vec* o_targetPos) const {
         o_targetPos->y = 0.0f;
         o_targetPos->z = 1.0f;
     } else {
-        *o_targetPos = view->mLookat.mCenter;
+        *o_targetPos = view->lookat.center;
     }
 }
 
@@ -625,7 +625,7 @@ f32 dDemo_camera_c::JSGGetViewRoll() const {
         return 0.0f;
     }
     
-    return view->mBank * 0.0054931640625f;
+    return view->bank * 0.0054931640625f;
 }
 
 /* 80038DDC-80038DF0 03371C 0014+00 1/0 0/0 0/0 .text            JSGSetViewRoll__14dDemo_camera_cFf

@@ -11,20 +11,18 @@
 #include "f_pc/f_pc_method.h"
 #include "f_pc/f_pc_pause.h"
 #include "f_pc/f_pc_profile.h"
-#include "global.h"
 
 /* 8002064C-8002065C 0010+00 s=0 e=14 z=0  None .text      fpcBs_Is_JustOfType__Fii */
-s32 fpcBs_Is_JustOfType(int i_typeA, int i_typeB) {
-    return checkEqual(i_typeA, i_typeB); // return pType2 == pType1 matches when return type is bool
+BOOL fpcBs_Is_JustOfType(int i_typeA, int i_typeB) {
+    return i_typeB == i_typeA ? TRUE : FALSE;
 }
 
-/* ############################################################################################## */
 /* 80450D00-80450D04 0004+00 s=1 e=0 z=0  None .sbss      g_fpcBs_type */
-static int g_fpcBs_type;
+int g_fpcBs_type;
 
 /* 8002065C-8002069C 0040+00 s=1 e=5 z=0  None .text      fpcBs_MakeOfType__FPi */
-s32 fpcBs_MakeOfType(int* i_type) {
-    static s32 t_type = 0x9130000;
+int fpcBs_MakeOfType(int* i_type) {
+    static int t_type = 0x9130000;
     if (*i_type == 0) {
         *i_type = ++t_type;
     }
@@ -32,102 +30,109 @@ s32 fpcBs_MakeOfType(int* i_type) {
 }
 
 /* 8002069C-800206C4 0028+00 s=0 e=2 z=0  None .text      fpcBs_MakeOfId__Fv */
-s32 fpcBs_MakeOfId() {
-    static s32 process_id = 1;
+int fpcBs_MakeOfId() {
+    static int process_id = 1;
     return process_id++;
 }
 
 /* 800206C4-80020720 005C+00 s=0 e=1 z=0  None .text      fpcBs_Execute__FP18base_process_class */
-s32 fpcBs_Execute(base_process_class* i_proc) {
-    s32 result;
-    layer_class* savedLayer = fpcLy_CurrentLayer();
-    fpcLy_SetCurrentLayer(i_proc->mLyTg.mpLayer);
-    result = fpcMtd_Execute(i_proc->mpPcMtd, i_proc);
-    fpcLy_SetCurrentLayer(savedLayer);
+int fpcBs_Execute(base_process_class* i_proc) {
+    int result;
+    layer_class* save_layer = fpcLy_CurrentLayer();
+
+    fpcLy_SetCurrentLayer(i_proc->layer_tag.layer);
+    result = fpcMtd_Execute(i_proc->methods, i_proc);
+
+    fpcLy_SetCurrentLayer(save_layer);
     return result;
 }
 
 /* 80020720-80020760 0040+00 s=2 e=0 z=0  None .text      fpcBs_DeleteAppend__FP18base_process_class
  */
 void fpcBs_DeleteAppend(base_process_class* i_proc) {
-    if (i_proc->mpUserData != NULL) {
-        cMl::free(i_proc->mpUserData);
-        i_proc->mpUserData = NULL;
+    if (i_proc->append != NULL) {
+        cMl::free(i_proc->append);
+        i_proc->append = NULL;
     }
 }
 
 /* 80020760-800207BC 005C+00 s=0 e=1 z=0  None .text      fpcBs_IsDelete__FP18base_process_class */
-s32 fpcBs_IsDelete(base_process_class* i_proc) {
-    s32 result;
-    layer_class* savedLayer = fpcLy_CurrentLayer();
-    fpcLy_SetCurrentLayer(i_proc->mLyTg.mpLayer);
-    result = fpcMtd_IsDelete(i_proc->mpPcMtd, i_proc);
-    fpcLy_SetCurrentLayer(savedLayer);
+int fpcBs_IsDelete(base_process_class* i_proc) {
+    int result;
+    layer_class* save_layer = fpcLy_CurrentLayer();
+
+    fpcLy_SetCurrentLayer(i_proc->layer_tag.layer);
+    result = fpcMtd_IsDelete(i_proc->methods, i_proc);
+
+    fpcLy_SetCurrentLayer(save_layer);
     return result;
 }
 
 /* 800207BC-80020820 0064+00 s=0 e=2 z=0  None .text      fpcBs_Delete__FP18base_process_class */
-s32 fpcBs_Delete(base_process_class* i_proc) {
-    s32 deleteResult = fpcMtd_Delete(i_proc->mpPcMtd, i_proc);
-    if (deleteResult == 1) {
+int fpcBs_Delete(base_process_class* i_proc) {
+    int result = fpcMtd_Delete(i_proc->methods, i_proc);
+    if (result == 1) {
         fpcBs_DeleteAppend(i_proc);
-        i_proc->mBsType = 0;
+        i_proc->type = 0;
         cMl::free(i_proc);
     }
-    return deleteResult;
+
+    return result;
 }
 
 /* 80020820-8002091C 00FC+00 s=0 e=2 z=0  None .text      fpcBs_Create__FsUiPv */
-base_process_class* fpcBs_Create(s16 i_procTypeID, fpc_ProcID i_procID, void* i_data) {
-    process_profile_definition* procProfDef;
-    base_process_class* procClass;
+base_process_class* fpcBs_Create(s16 i_profname, fpc_ProcID i_procID, void* i_append) {
+    process_profile_definition* pprofile;
+    base_process_class* pprocess;
     u32 size;
 
-    procProfDef = (process_profile_definition*)fpcPf_Get(i_procTypeID);
-    size = procProfDef->mSize + procProfDef->mSizeOther;
-    procClass = (base_process_class*)cMl::memalignB(-4, size);
-    if (procClass == NULL) {
+    pprofile = (process_profile_definition*)fpcPf_Get(i_profname);
+    size = pprofile->process_size + pprofile->unk_size;
+
+    pprocess = (base_process_class*)cMl::memalignB(-4, size);
+    if (pprocess == NULL) {
         return NULL;
-    } else {
-        sBs_ClearArea(procClass, size);
-        fpcLyTg_Init(&procClass->mLyTg, procProfDef->mLayerID, procClass);
-        fpcLnTg_Init(&procClass->mLnTg, procClass);
-        fpcDtTg_Init(&procClass->mDtTg, procClass);
-        fpcPi_Init(&procClass->mPi, procClass, procProfDef->mLayerID, procProfDef->mListID,
-                   procProfDef->mListPrio);
-        procClass->mInitState = 0;
-        procClass->mUnk0 = 0;
-        procClass->mBsPcId = i_procID;
-        procClass->mBsTypeId = i_procTypeID;
-        procClass->mBsType = fpcBs_MakeOfType(&g_fpcBs_type);
-        procClass->mProcName = procProfDef->mProcName;
-        fpcPause_Init(procClass);
-        procClass->mpPcMtd = procProfDef->sub_method;
-        procClass->mpProf = procProfDef;
-        procClass->mpUserData = i_data;
-        procClass->mParameters = procProfDef->mParameters;
-        return procClass;
     }
+
+    sBs_ClearArea(pprocess, size);
+    fpcLyTg_Init(&pprocess->layer_tag, pprofile->layer_id, pprocess);
+    fpcLnTg_Init(&pprocess->line_tag_, pprocess);
+    fpcDtTg_Init(&pprocess->delete_tag, pprocess);
+    fpcPi_Init(&pprocess->priority, pprocess, pprofile->layer_id, pprofile->list_id,
+                pprofile->list_priority);
+
+    pprocess->init_state = 0;
+    pprocess->unk_0xA = 0;
+    pprocess->id = i_procID;
+    pprocess->profname = i_profname;
+    pprocess->type = fpcBs_MakeOfType(&g_fpcBs_type);
+    pprocess->name = pprofile->name;
+    fpcPause_Init(pprocess);
+    pprocess->methods = pprofile->methods;
+    pprocess->profile = pprofile;
+    pprocess->append = i_append;
+    pprocess->parameters = pprofile->parameters;
+    return pprocess;
 }
 
-s32 fpcBs_SubCreate(base_process_class* i_proc) {
-    switch (fpcMtd_Create(i_proc->mpPcMtd, i_proc)) {
-    case 2:
+int fpcBs_SubCreate(base_process_class* i_proc) {
+    switch (fpcMtd_Create(i_proc->methods, i_proc)) {
+    case cPhs_NEXT_e:
     case cPhs_COMPLEATE_e:
         fpcBs_DeleteAppend(i_proc);
-        i_proc->mUnk2 = 2;
-        return 2;
+        i_proc->create_phase = cPhs_NEXT_e;
+        return cPhs_NEXT_e;
     case cPhs_INIT_e:
-    case 1:
-        i_proc->mInitState = 1;
-        i_proc->mUnk2 = 0;
+    case cPhs_LOADING_e:
+        i_proc->init_state = 1;
+        i_proc->create_phase = cPhs_INIT_e;
         return cPhs_INIT_e;
-    case 3:
-        i_proc->mUnk2 = 3;
-        return 3;
+    case cPhs_UNK3_e:
+        i_proc->create_phase = cPhs_UNK3_e;
+        return cPhs_UNK3_e;
     case cPhs_ERROR_e:
     default:
-        i_proc->mUnk2 = 5;
+        i_proc->create_phase = cPhs_ERROR_e;
         return cPhs_ERROR_e;
     }
 }

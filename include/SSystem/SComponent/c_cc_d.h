@@ -389,6 +389,7 @@ public:
 
 STATIC_ASSERT(0x10 == sizeof(cCcD_ObjCommonBase));
 
+#pragma pack(1)
 class cCcD_ObjAt : public cCcD_ObjCommonBase {
 public:
     cCcD_ObjAt() { mType = 0; }
@@ -409,7 +410,9 @@ public:
 protected:
     /* 0x10 */ int mType;
     /* 0x14 */ u8 mAtp;
+    /* 0x15 */ u8 field_0x15[3];
 };
+#pragma pack()
 
 STATIC_ASSERT(0x18 == sizeof(cCcD_ObjAt));
 
@@ -487,7 +490,7 @@ public:
     void SetAtHit(cCcD_Obj* obj) { mObjAt.SetHit(obj); }
     void SetTgHit(cCcD_Obj* obj) { mObjTg.SetHit(obj); }
     void SetCoHit(cCcD_Obj* obj) { mObjCo.SetHit(obj); }
-    BOOL ChkAtType(u32 type) const { return mObjAt.MskType(type); }
+    u32 ChkAtType(u32 type) const { return mObjAt.MskType(type); }
     u32 ChkCoNoCrr() const { return mObjCo.ChkNoCrr(); }
     void OnCoNoCrrBit() { mObjCo.OnNoCrrBit(); }
     u32 ChkCoSph3DCrr() const { return mObjCo.ChkSph3DCrr(); }

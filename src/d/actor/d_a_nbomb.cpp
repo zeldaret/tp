@@ -767,7 +767,7 @@ BOOL daNbomb_c::procExplode() {
     mLightInfluence.mPow = mExplosionStrength * 1500.0f;
     mWindInfluence.mStrength = mExplosionStrength;
 
-    f32 dist_to_cam = current.pos.abs(camera->mLookat.mEye);
+    f32 dist_to_cam = current.pos.abs(camera->lookat.eye);
     if (dist_to_cam < 1500.0f) {
         dist_scale = dist_to_cam / 1500.0f;
         dist_scale *= dist_scale * dist_scale;
@@ -1757,7 +1757,7 @@ extern actor_process_profile_definition g_profile_NBOMB = {
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio
   PROC_NBOMB,             // mProcName
-  &g_fpcLf_Method.mBase,  // sub_method
+  &g_fpcLf_Method.base,  // sub_method
   sizeof(daNbomb_c),      // mSize
   0,                      // mSizeOther
   0,                      // mParameters

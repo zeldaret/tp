@@ -114,7 +114,7 @@ extern actor_process_profile_definition g_profile_Obj_Digholl = {
     3,
     fpcPi_CURRENT_e,
     PROC_Obj_Digholl,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daObjDigholl_c),
     0,
     0,

@@ -78,7 +78,7 @@ extern actor_process_profile_definition g_profile_Tag_AJnot = {
     3,
     fpcPi_CURRENT_e,
     PROC_Tag_AJnot,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daTagAJnot_c),
     0,
     0,

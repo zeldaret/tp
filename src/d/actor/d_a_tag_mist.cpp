@@ -164,7 +164,7 @@ extern actor_process_profile_definition g_profile_Tag_Mist = {
     7,
     fpcPi_CURRENT_e,
     PROC_Tag_Mist,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daTagMist_c),
     0,
     0,

@@ -190,7 +190,7 @@ JStudio::ctb::TObject* JStudio::ctb::TControl::getObject_index(u32 param_0) {
         return 0;
     }
     JGadget::TLinkList<TObject, -12>::iterator aiStack_14 = mList.begin();
-    std::advance(aiStack_14, param_0);
+    std::advance_fake(aiStack_14, param_0);
     return &*aiStack_14;
 }
 

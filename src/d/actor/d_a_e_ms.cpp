@@ -373,7 +373,7 @@ extern actor_process_profile_definition g_profile_E_MS = {
   7,                     // mListID
   fpcPi_CURRENT_e,       // mListPrio
   PROC_E_MS,             // mProcName
-  &g_fpcLf_Method.mBase, // sub_method
+  &g_fpcLf_Method.base, // sub_method
   sizeof(e_ms_class),    // mSize
   0,                     // mSizeOther
   0,                     // mParameters

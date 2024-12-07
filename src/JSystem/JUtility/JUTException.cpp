@@ -635,10 +635,10 @@ bool JUTException::readPad(u32* out_trigger, u32* out_button) {
     } while (ms < 0x32);
 
     if (mGamePad == (JUTGamePad*)0xffffffff) {
-        JUTGamePad gamePad0(JUTGamePad::Port_1);
-        JUTGamePad gamePad1(JUTGamePad::Port_2);
-        JUTGamePad gamePad2(JUTGamePad::Port_3);
-        JUTGamePad gamePad3(JUTGamePad::Port_4);
+        JUTGamePad gamePad0(JUTGamePad::EPort1);
+        JUTGamePad gamePad1(JUTGamePad::EPort2);
+        JUTGamePad gamePad2(JUTGamePad::EPort3);
+        JUTGamePad gamePad3(JUTGamePad::EPort4);
         JUTGamePad::read();
 
         c3bcnt[0] =

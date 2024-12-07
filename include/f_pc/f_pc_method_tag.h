@@ -7,14 +7,14 @@
 typedef int (*process_method_tag_func)(void*);
 
 typedef struct process_method_tag_class {
-    create_tag_class mCreateTag;
-    process_method_tag_func mpFunc;
-    void* mpMthdData;
+    /* 0x00 */ create_tag_class create_tag;
+    /* 0x14 */ process_method_tag_func method;
+    /* 0x18 */ void* data;
 } process_method_tag_class;
 
-s32 fpcMtdTg_Do(process_method_tag_class* pMthd);
-s32 fpcMtdTg_ToMethodQ(node_list_class* pList, process_method_tag_class* pMthd);
-void fpcMtdTg_MethodQTo(process_method_tag_class* pMthd);
-s32 fpcMtdTg_Init(process_method_tag_class* pMthd, process_method_tag_func pFunc, void* pMthdData);
+s32 fpcMtdTg_Do(process_method_tag_class* i_methodTag);
+s32 fpcMtdTg_ToMethodQ(node_list_class* i_nodelist, process_method_tag_class* i_methodTag);
+void fpcMtdTg_MethodQTo(process_method_tag_class* i_methodTag);
+s32 fpcMtdTg_Init(process_method_tag_class* i_methodTag, process_method_tag_func i_method, void* i_data);
 
 #endif

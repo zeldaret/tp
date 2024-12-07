@@ -168,7 +168,6 @@ public:
     /* 0x0C */ u32 mApid;
     /* 0x10 */ fopAc_ac_c* mAc;
     /* 0x14 */ s8 mEffCounter;
-    /* 0x15 */ u8 field_0x15[3];
     /* 0x18 vtable */
 
 public:
@@ -262,7 +261,8 @@ private:
     /* 0x38 */ cXyz mHitPos;
     /* 0x44 */ s16* mShieldFrontRangeYAngle;
     /* 0x48 */ s16 mShieldRange;
-};  // Size = 0x4A ?
+    /* 0x4A */ s16 field_0x4a;
+};  // Size = 0x4C
 
 // Correction (Co) Collider
 class dCcD_GObjCo : public dCcD_GAtTgCoCommonBase {

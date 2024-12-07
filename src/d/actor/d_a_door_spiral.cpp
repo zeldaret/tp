@@ -10,7 +10,7 @@ extern actor_process_profile_definition g_profile_SPIRAL_DOOR = {
     7,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio
     PROC_SPIRAL_DOOR,       // mProcName
-    &g_fpcLf_Method.mBase,  // sub_method
+    &g_fpcLf_Method.base,  // sub_method
     0x6b0,                  // mSize
     0,                      // mSizeOther
     0,                      // mParameters

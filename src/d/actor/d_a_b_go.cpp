@@ -312,7 +312,7 @@ extern actor_process_profile_definition g_profile_B_GO = {
     7,
     fpcPi_CURRENT_e,
     PROC_B_GO,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(b_go_class),
     0,
     0,

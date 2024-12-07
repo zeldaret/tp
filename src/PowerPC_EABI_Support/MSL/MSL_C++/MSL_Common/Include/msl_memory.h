@@ -5,18 +5,45 @@ namespace std {
 
 template<class ForwardIt, class Size, class T>
 inline ForwardIt uninitialized_fill_n(ForwardIt first, Size count, const T& value) {
-    for (; count > 0; ++first, (void) --count) {
-        *first = value;
+    for (; count--; ++first) {
+        if (first != NULL) {
+            *first = value;
+        }
     }
     return first;
 }
 
-template<class InputIt, class NoThrowForwardIt>
-inline NoThrowForwardIt uninitialized_copy(InputIt first, InputIt last, NoThrowForwardIt d_first) {
-    for (; first != last; ++first, ++d_first) {
-        *d_first = *first;
+template<class InputIterator, class ForwardIterator>
+inline ForwardIterator __uninitialized_copy(InputIterator first, InputIterator last, ForwardIterator result) {
+    ForwardIterator __save = result;
+
+    for (; first != last; ++first, ++result) {
+        *result = *first;
     }
-    return d_first;
+    return result;
+}
+
+template <class T, bool A, bool B>
+struct __uninitialized_copy_helper {
+	static T* uninitialized_copy(T* first, T* last, T* result) {
+		return __uninitialized_copy(first, last, result);
+	}
+};
+
+template <class T>
+struct __uninitialized_copy_helper<T, true, false>
+{
+	static T* uninitialized_copy(T* first, T* last, T* result)
+	{
+		for (; first < last; ++result, ++first)
+			*result = *first;
+		return result;
+	}
+};
+
+template <class T>
+inline T* uninitialized_copy(T* first, T* last, T* result) {
+	return __uninitialized_copy_helper<T, true, false>::uninitialized_copy(first, last, result);
 }
 
 }

@@ -3,7 +3,7 @@
 
 #include "SSystem/SComponent/c_tree.h"
 
-void fpcLn_Create(void);
+void fpcLn_Create();
 
 extern node_lists_tree_class g_fpcLn_Queue;
 

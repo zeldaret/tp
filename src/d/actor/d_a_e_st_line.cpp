@@ -134,7 +134,7 @@ extern actor_process_profile_definition g_profile_E_ST_LINE = {
     7,
     fpcPi_CURRENT_e,
     PROC_E_ST_LINE,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(e_st_line_class),
     0,
     0,

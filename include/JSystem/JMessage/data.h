@@ -42,6 +42,13 @@ struct data {
 
     struct TParse_TBlock_messageID : public TParse_TBlock {
         TParse_TBlock_messageID(const void* data) : TParse_TBlock(data) {}
+
+        char* get() const { return (char*)getRaw(); }
+        u8 get_formSupplement() const { return *(u8*)(get() + 0xB); }
+        u16 get_number() const { return *(u16*)(get() + 0x8); }
+        char* getContent() const { return (char*)get() + 0x10; }
+        u8 get_form() const { return *(u8*)(get() + 0xA) & 0xF; }
+        bool get_isOrdered() const { return *(u8*)(get() + 0xA) & 0xF0; }
     };
 
     struct TParse_TBlock_color : public TParse_TBlock {

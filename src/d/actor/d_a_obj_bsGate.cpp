@@ -209,7 +209,7 @@ extern actor_process_profile_definition g_profile_Obj_BsGate = {
     3,
     fpcPi_CURRENT_e,
     PROC_Obj_BsGate,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daBsGate_c),
     0,
     0,

@@ -7,18 +7,17 @@
 #include "f_pc/f_pc_layer.h"
 #include "f_pc/f_pc_stdcreate_req.h"
 
-/* ############################################################################################## */
 /* 803F1DD8-803F1DE8 01EAF8 0010+00 1/1 0/0 0/0 .bss             l_fopCamM_id */
-static u32 l_fopCamM_id[4];
+static fpc_ProcID l_fopCamM_id[4];
 
 /* 8001E308-8001E310 018C48 0008+00 0/0 12/12 2/2 .text fopCamM_GetParam__FP12camera_class */
 u32 fopCamM_GetParam(camera_class* i_this) {
-    return i_this->mBase.mParameters;
+    return i_this->base.parameters;
 }
 
 /* 8001E310-8001E374 018C50 0064+00 0/0 1/1 0/0 .text            fopCamM_Create__FisPv */
-u32 fopCamM_Create(int i_cameraIdx, s16 i_procName, void* param_3) {
-    l_fopCamM_id[i_cameraIdx] = fpcSCtRq_Request(fpcLy_CurrentLayer(), i_procName, 0, 0, param_3);
+fpc_ProcID fopCamM_Create(int i_cameraIdx, s16 i_procName, void* i_append) {
+    l_fopCamM_id[i_cameraIdx] = fpcSCtRq_Request(fpcLy_CurrentLayer(), i_procName, NULL, NULL, i_append);
     return l_fopCamM_id[i_cameraIdx];
 }
 

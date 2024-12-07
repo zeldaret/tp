@@ -14,7 +14,7 @@ namespace JMessage {
  */
 struct TResource {
     TResource()
-        : field_0x8(NULL), field_0xc(NULL), field_0x10(NULL), field_0x14(0), field_0x18(NULL) {}
+        : field_0x8(NULL), field_0xc(NULL), field_0x10(NULL), field_0x14(0), mMessageID(NULL) {}
 
     /* 802A8CDC */ u16 toMessageIndex_messageID(u32, u32, bool*) const;
 
@@ -56,7 +56,7 @@ struct TResource {
     /* 0x0C */ data::TParse_TBlock_info field_0xc;
     /* 0x10 */ char* field_0x10;
     /* 0x14 */ int field_0x14;
-    /* 0x18 */ data::TParse_TBlock_messageID field_0x18;
+    /* 0x18 */ data::TParse_TBlock_messageID mMessageID;
 };
 
 /**

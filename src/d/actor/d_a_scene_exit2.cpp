@@ -215,7 +215,7 @@ extern actor_process_profile_definition g_profile_SCENE_EXIT2 = {
     7,
     fpcPi_CURRENT_e,
     PROC_SCENE_EXIT2,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daScExit_c),
     0,
     0,

@@ -69,7 +69,7 @@ extern actor_process_profile_definition g_profile_Tag_Magne = {
     7,
     fpcPi_CURRENT_e,
     PROC_Tag_Magne,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daTagMagne_c),
     0,
     0,

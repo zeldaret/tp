@@ -1385,7 +1385,7 @@ void dAttDraw_c::draw(cXyz& param_0, Mtx param_1) {
     mModel[field_0x170]->setBaseTRMtx(mDoMtx_stack_c::get());
 
     view_class* view = dComIfGd_getView();
-    f32 temp_f31 = tan(0.01745329238474369f * (0.5f * view->mFovy));
+    f32 temp_f31 = tan(0.01745329238474369f * (0.5f * view->fovy));
     f32 temp_f30 = (-100.0f - g_AttDwHIO.mCursorDistance) / temp_f31;
 
     cXyz tmp;

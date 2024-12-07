@@ -606,7 +606,7 @@ static void daKytag06_type_07_Execute(kytag06_class* i_this) {
     daKytag06_type_07_wether_Execute(i_this);
 
     if (camera != NULL) {
-        if (camera->mLookat.mEye.y > 0.0f) {
+        if (camera->lookat.eye.y > 0.0f) {
             dKy_BossLight_set(&spX, &color, i_this->mWindPower * 2.0f, 0);
             g_env_light.mTerrainAmbienceBG[3].r = (u8)(i_this->mWindPower * 230.0f + 25.0f);
             g_env_light.mTerrainAmbienceBG[3].g = (u8)(i_this->mWindPower * 215.0f + 30.0f);
@@ -848,7 +848,7 @@ static void daKytag06_type_10_Execute(kytag06_class* i_this) {
         dKyw_evt_wind_set_go();
         camera_class* camera = dComIfGp_getCamera(0);
 
-        cXyz eye(camera->mLookat.mEye);
+        cXyz eye(camera->lookat.eye);
 
         if (camera != NULL) {
             if (((eye.x > 2079.0f && eye.x < 3013.0f && eye.y < 864.0f && eye.z > -6000.0f &&
@@ -1012,7 +1012,7 @@ static int daKytag06_Execute(kytag06_class* i_this) {
         if (i_this->mpPath != NULL) {
             int target1 = 0;
             int target2 = 0;
-            dStage_dPnt_c* pnt = near_rail_get(i_this, &camera->mLookat.mEye);
+            dStage_dPnt_c* pnt = near_rail_get(i_this, &camera->lookat.eye);
 
             if (pnt != NULL && pnt->mArg0 != 0xFF) {
                 dKy_change_colpat(pnt->mArg0);
@@ -1353,7 +1353,7 @@ extern actor_process_profile_definition g_profile_KYTAG06 = {
     7,
     fpcPi_CURRENT_e,
     PROC_KYTAG06,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(kytag06_class),
     0,
     0,

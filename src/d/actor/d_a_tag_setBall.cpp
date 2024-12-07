@@ -73,7 +73,7 @@ extern actor_process_profile_definition g_profile_Tag_SetBall = {
     7,
     fpcPi_CURRENT_e,
     PROC_Tag_SetBall,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daTagSetBall_c),
     0,
     0,

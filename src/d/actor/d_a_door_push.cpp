@@ -422,7 +422,7 @@ extern actor_process_profile_definition g_profile_PushDoor = {
     3,
     fpcPi_CURRENT_e,
     PROC_PushDoor,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daDoorPush_c),
     0,
     0,

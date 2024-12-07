@@ -202,7 +202,7 @@ int daObjLadder::Act_c::Create() {
     mDoMtx_stack_c::multVecZero(&gndVec);
     mDoMtx_stack_c::pop();
     mGndChk.SetPos(&gndVec);
-    mGndChk.SetActorPid(mBase.mBsPcId);
+    mGndChk.SetActorPid(base.id);
     mHeight = dComIfG_Bgsp().GroundCross(&mGndChk);
     mInDemo = false;
     mEventIdx = dComIfGp_getEventManager().getEventIdx(this, prm_get_evId());
@@ -458,7 +458,7 @@ extern actor_process_profile_definition g_profile_Obj_Ladder = {
   3,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio
   PROC_Obj_Ladder,        // mProcName
-  &g_fpcLf_Method.mBase,  // sub_method
+  &g_fpcLf_Method.base,  // sub_method
   sizeof(daObjLadder::Act_c),    // mSize
   0,                      // mSizeOther
   0,                      // mParameters

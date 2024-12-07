@@ -307,7 +307,7 @@ extern actor_process_profile_definition g_profile_Obj_Chandelier = {
     3,
     fpcPi_CURRENT_e,
     PROC_Obj_Chandelier,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daObjChandelier_c),
     0,
     0,

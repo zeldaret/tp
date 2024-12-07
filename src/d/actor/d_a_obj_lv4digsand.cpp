@@ -129,7 +129,7 @@ void daObjL4DigSand_c::mode_wait() {
  */
 void daObjL4DigSand_c::mode_init_dig() {
     dBgS_ObjGndChk gndchk;
-    gndchk.SetActorPid(mBase.mBsPcId);
+    gndchk.SetActorPid(base.id);
     gndchk.SetPos(&current.pos);
 
     f32 gnd_y = dComIfG_Bgsp().GroundCross(&gndchk);
@@ -229,7 +229,7 @@ extern actor_process_profile_definition g_profile_Obj_Lv4DigSand = {
   3,                        // mListID
   fpcPi_CURRENT_e,          // mListPrio
   PROC_Obj_Lv4DigSand,      // mProcName
-  &g_fpcLf_Method.mBase,    // sub_method
+  &g_fpcLf_Method.base,    // sub_method
   sizeof(daObjL4DigSand_c), // mSize
   0,                        // mSizeOther
   0,                        // mParameters

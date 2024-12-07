@@ -122,10 +122,11 @@ static int deleteJugge(void* i_obj, void*) {
 
 /* 8025B174-8025B194 255AB4 0020+00 1/1 0/0 0/0 .text isCreatingCallback__FP10create_tagPUi */
 static void* isCreatingCallback(create_tag* param_1, fpc_ProcID* param_2) {
-    void* tagData = param_1->mBase.mpTagData;
-    if (*(*((int**)tagData + 0x11) + 3) == *param_2) {
-        return tagData;
+    create_request* create_req = (create_request*)param_1->base.mpTagData;
+    if (create_req->layer->layer_id == *param_2) {
+        return create_req;
     }
+
     return NULL;
 }
 
@@ -211,14 +212,14 @@ static bool objectSetCheck(room_of_scene_class* i_this) {
             return 0;
         }
 
-        fpcM_LyJudge(&i_this->mBase, (fpcLyIt_JudgeFunc)deleteJugge, NULL);
+        fpcM_LyJudge(&i_this->base, (fpcLyIt_JudgeFunc)deleteJugge, NULL);
         g_dComIfG_gameInfo.play.getParticle()->levelAllForceOnEventMove();
         dComIfGs_clearRoomSwitch(dComIfGp_roomControl_getZoneNo(roomNo));
         dComIfGs_clearRoomItem(dComIfGp_roomControl_getZoneNo(roomNo));
         dComIfGp_roomControl_offStatusFlag(roomNo, 0x20);
         i_this->field_0x1d4 = 0;
     } else if (status_flag_20) {
-        fpcM_LyJudge(&i_this->mBase, (fpcLyIt_JudgeFunc)objectDeleteJugge, NULL);
+        fpcM_LyJudge(&i_this->base, (fpcLyIt_JudgeFunc)objectDeleteJugge, NULL);
         g_dComIfG_gameInfo.play.getParticle()->levelAllForceOnEventMove();
     }
 
@@ -439,10 +440,10 @@ scene_process_profile_definition g_profile_ROOM_SCENE = {
     0,                                          // mListID
     fpcPi_CURRENT_e,                            // mListPrio
     PROC_ROOM_SCENE,                            // mProcName
-    &g_fpcNd_Method.mBase,                      // sub_method
+    &g_fpcNd_Method.base,                      // sub_method
     sizeof(room_of_scene_class),                // mSize
     0,                                          // mSizeOther
     0,                                          // mParameters
-    &g_fopScn_Method.mBase,                     // sub_method
+    &g_fopScn_Method.base,                     // sub_method
     (process_method_class*)&l_dScnRoom_Method,  // mpMtd
 };

@@ -856,7 +856,7 @@ extern actor_process_profile_definition g_profile_E_YC = {
     4,
     fpcPi_CURRENT_e,
     PROC_E_YC,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(e_yc_class),
     0,
     0,

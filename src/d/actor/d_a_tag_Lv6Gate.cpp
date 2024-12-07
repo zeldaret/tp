@@ -5,56 +5,9 @@
 
 #include "d/actor/d_a_tag_Lv6Gate.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "d/actor/d_a_player.h"
 #include "d/d_procname.h"
 #include "dol2asm.h"
-
-//
-// Forward References:
-//
-
-extern "C" extern char const* const d_a_tag_Lv6Gate__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void fpcSch_JudgeForPName__FPvPv(void);
-extern "C" void fopAcM_SearchByID__FUiPP10fopAc_ac_c();
-extern "C" void fopAcM_SearchByName__FsPP10fopAc_ac_c();
-extern "C" void fopAcM_delete__FUi();
-extern "C" void fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs();
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void push__14mDoMtx_stack_cFv();
-extern "C" void pop__14mDoMtx_stack_cFv();
-extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void play__14mDoExt_baseAnmFv();
-extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
-extern "C" void onSwitch__10dSv_info_cFii();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void reset__14dEvt_control_cFv();
-extern "C" void setSkipZev__14dEvt_control_cFPvPc();
-extern "C" void setObjectArchive__16dEvent_manager_cFPc();
-extern "C" void getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc();
-extern "C" void endCheck__16dEvent_manager_cFs();
-extern "C" void getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci();
-extern "C" void getIsAddvance__16dEvent_manager_cFi();
-extern "C" void getMyNowCutName__16dEvent_manager_cFi();
-extern "C" void cutEnd__16dEvent_manager_cFi();
-extern "C" void
-set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf();
-extern "C" void Release__4cBgSFP9dBgW_Base();
-extern "C" void Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c();
-extern "C" void __ct__5csXyzFsss();
-extern "C" void ChkUsed__9cBgW_BgIdCFv();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void _savegpr_24();
-extern "C" void _restgpr_24();
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-
-//
-// Declarations:
-//
 
 /* 80D4F898-80D4F8B8 000078 0020+00 1/1 0/0 0/0 .text            createSolidHeap__FP10fopAc_ac_c */
 static int createSolidHeap(fopAc_ac_c* i_this) {
@@ -83,7 +36,8 @@ int daTagLv6Gate_c::createHeap() {
     btk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 19);
     mpBtk[0] = new mDoExt_btkAnm();
     if (mpBtk[0] == NULL ||
-        !mpBtk[0]->init(model_data, btk, TRUE, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1)) {
+        !mpBtk[0]->init(model_data, btk, TRUE, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1))
+    {
         return 0;
     }
 
@@ -105,11 +59,14 @@ int daTagLv6Gate_c::createHeap() {
         return 0;
     }
 
-    if (mBgW[0].Set((cBgD_t*)dComIfG_getObjectRes(l_arcName, 27), cBgW::MOVE_BG_e, &field_0x6f8[0])) {
+    if (mBgW[0].Set((cBgD_t*)dComIfG_getObjectRes(l_arcName, 27), cBgW::MOVE_BG_e, &field_0x6f8[0]))
+    {
         return 0;
     }
 
-    return checkEqual(mBgW[1].Set((cBgD_t*)dComIfG_getObjectRes(l_arcName, 28), cBgW::MOVE_BG_e, &field_0x6f8[1]), 0);
+    return checkEqual(
+        mBgW[1].Set((cBgD_t*)dComIfG_getObjectRes(l_arcName, 28), cBgW::MOVE_BG_e, &field_0x6f8[1]),
+        0);
 }
 
 /* 80D4FBB8-80D4FBD8 000398 0020+00 1/0 0/0 0/0 .text            daTagLv6Gate_Create__FP10fopAc_ac_c
@@ -118,7 +75,6 @@ static int daTagLv6Gate_Create(fopAc_ac_c* i_this) {
     return static_cast<daTagLv6Gate_c*>(i_this)->create();
 }
 
-#ifdef NONMATCHING
 void daTagLv6Gate_c::seStair() {
     Vec se_pos = {0.0f, 1800.0f, -6800.0f};
     mDoAud_seStart(Z2SE_OBJ_LV6_GATE_STAIR, &se_pos, 0, 0);
@@ -133,37 +89,10 @@ void daTagLv6Gate_c::seGlassOn() {
     Vec se_pos = {0.0f, 2887.0f, -8330.0f};
     mDoAud_seStart(Z2SE_OBJ_LV6_GATE_GLASS_ON, &se_pos, 0, 0);
 }
-#else
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3803[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x44, 0xE1, 0x00, 0x00, 0xC5, 0xD4, 0x80, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D50930, &lit_3803);
-#pragma pop
-
-/* 80D5093C-80D50948 000034 000C+00 0/1 0/0 0/0 .rodata          @3839 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3839[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x45, 0x34, 0x70, 0x00, 0xC6, 0x02, 0x28, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D5093C, &lit_3839);
-#pragma pop
-
-/* 80D50948-80D50954 000040 000C+00 0/1 0/0 0/0 .rodata          @3847 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3847[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x45, 0x34, 0x70, 0x00, 0xC6, 0x02, 0x28, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D50948, &lit_3847);
-#pragma pop
-#endif
 
 void daTagLv6Gate_c::initBaseMtx() {
     fopAcM_SetMtx(this, mpModel[0]->getBaseTRMtx());
-    
+
     mDoMtx_stack_c::transS(0.0f, 0.0f, 0.0f);
     mDoMtx_stack_c::YrotM(0);
     MTXCopy(mDoMtx_stack_c::get(), field_0x6f8[0]);
@@ -192,7 +121,7 @@ void daTagLv6Gate_c::create_init() {
 
     if (!fopAcM_isSwitch(this, getSwitchNo1())) {
         parentActorID = fopAcM_create(PROC_NPC_TKS, 2, &cXyz(-13.272481f, 2887.0f, -10373.718f),
-                                    fopAcM_GetRoomNo(this), &csXyz(0, 0x7FFF, 0), NULL, -1);
+                                      fopAcM_GetRoomNo(this), &csXyz(0, 0x7FFF, 0), NULL, -1);
     }
 }
 
@@ -218,11 +147,7 @@ static int daTagLv6Gate_Execute(daTagLv6Gate_c* i_this) {
     return i_this->execute();
 }
 
-#ifdef NONMATCHING
 bool daTagLv6Gate_c::checkOpenArea() {
-    fopAc_ac_c* actor;
-    cXyz pos;
-    
     if (!fopAcM_isSwitch(this, getSwitchNo2())) {
         return false;
     }
@@ -231,8 +156,10 @@ bool daTagLv6Gate_c::checkOpenArea() {
     mDoMtx_stack_c::inverse();
 
     for (int i = 0; i < 2; i++) {
-        actor = (i == 0) ? daPy_getPlayerActorClass() : fopAcM_SearchByName(PROC_NPC_TKS);
+        fopAc_ac_c* actor =
+            (i == 0) ? daPy_getPlayerActorClass() : fopAcM_SearchByName(PROC_NPC_TKS);
         if (actor != NULL) {
+            cXyz pos;
             mDoMtx_stack_c::push();
             mDoMtx_stack_c::multVec(fopAcM_GetPosition_p(actor), &pos);
             mDoMtx_stack_c::pop();
@@ -286,19 +213,19 @@ void daTagLv6Gate_c::cut4() {
         return;
     }
 
-    fopAcM_GetOldPosition_p(actor2) = pos;
+    *fopAcM_GetOldPosition_p(actor2) = pos;
     *fopAcM_GetPosition_p(actor2) = pos;
 }
 
 /* 80D4FEDC-80D5068C 0006BC 07B0+00 1/1 0/0 0/0 .text            execute__14daTagLv6Gate_cFv */
+// NONMATCHING
 int daTagLv6Gate_c::execute() {
-    // Fake match?
-    dComIfG_play_c& play = g_dComIfG_gameInfo.getPlay();
-    if (dComIfGp_event_runCheck() && !eventInfo.checkCommandTalk()) {
-        s32 cut_index = dComIfGp_evmng_getMyStaffId(l_arcName, NULL, 0);
+    dComIfG_inf_c& game_info = g_dComIfG_gameInfo;  // Fake match?
+
+    if (game_info.getPlay().getEvent().runCheck() && !eventInfo.checkCommandTalk()) {
+        s32 cut_index = dComIfGp_getEventManager().getMyStaffId(l_arcName, NULL, 0);
         if (cut_index != -1) {
-            // int* cut_name = (int*)dComIfGp_getEventManager().getMyNowCutName(cut_index);
-            int* cut_name = (int*)play.getEvtManager().getMyNowCutName(cut_index);
+            int* cut_name = (int*)dComIfGp_getEventManager().getMyNowCutName(cut_index);
 
             daPy_getPlayerActorClass()->onShieldBackBone();
 
@@ -338,7 +265,8 @@ int daTagLv6Gate_c::execute() {
             }
 
             if (eventInfo.checkCommandDemoAccrpt() && mEvtId != -1 &&
-                dComIfGp_evmng_endCheck(mEvtId)) {
+                dComIfGp_evmng_endCheck(mEvtId))
+            {
                 dComIfGp_event_reset();
                 mEvtId = -1;
             }
@@ -397,67 +325,6 @@ int daTagLv6Gate_c::execute() {
 
     return 1;
 }
-#else
-/* 80D5097C-80D50980 000074 0004+00 0/1 0/0 0/0 .rodata          @4155 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4155 = 78.0f;
-COMPILER_STRIP_GATE(0x80D5097C, &lit_4155);
-#pragma pop
-
-/* 80D50980-80D50984 000078 0004+00 0/1 0/0 0/0 .rodata          @4156 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4156 = -1.0f;
-COMPILER_STRIP_GATE(0x80D50980, &lit_4156);
-#pragma pop
-
-/* 80D50984-80D50988 00007C 0004+00 0/1 0/0 0/0 .rodata          @4157 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_4157 = 0x42EBB1D1;
-COMPILER_STRIP_GATE(0x80D50984, &lit_4157);
-#pragma pop
-
-/* 80D50988-80D5098C 000080 0004+00 0/1 0/0 0/0 .rodata          @4158 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4158 = 1677.0f;
-COMPILER_STRIP_GATE(0x80D50988, &lit_4158);
-#pragma pop
-
-/* 80D5098C-80D50990 000084 0004+00 0/1 0/0 0/0 .rodata          @4159 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_4159 = 0xC59FB6B7;
-COMPILER_STRIP_GATE(0x80D5098C, &lit_4159);
-#pragma pop
-
-/* 80D50990-80D50994 000088 0004+00 0/1 0/0 0/0 .rodata          @4160 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4160 = 12.75f;
-COMPILER_STRIP_GATE(0x80D50990, &lit_4160);
-#pragma pop
-
-/* 80D50994-80D50998 00008C 0004+00 0/1 0/0 0/0 .rodata          @4161 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4161 = 5.75f;
-COMPILER_STRIP_GATE(0x80D50994, &lit_4161);
-#pragma pop
-
-/* 80D50998-80D50998 000090 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80D509A0 = "LV6_GATE_APPEAR_SKIP";
-SECTION_DEAD static char const* const stringBase_80D509B5 = "LV6_GATE_APPEAR";
-#pragma pop
-
-int daTagLv6Gate_c::execute() {
-    // NONMATCHING
-}
-#endif
 
 /* 80D5068C-80D506AC 000E6C 0020+00 1/0 0/0 0/0 .text daTagLv6Gate_Draw__FP14daTagLv6Gate_c */
 static int daTagLv6Gate_Draw(daTagLv6Gate_c* i_this) {
@@ -527,7 +394,7 @@ extern actor_process_profile_definition g_profile_Tag_Lv6Gate = {
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio
     PROC_Tag_Lv6Gate,        // mProcName
-    &g_fpcLf_Method.mBase,   // sub_method
+    &g_fpcLf_Method.base,    // sub_method
     sizeof(daTagLv6Gate_c),  // mSize
     0,                       // mSizeOther
     0,                       // mParameters

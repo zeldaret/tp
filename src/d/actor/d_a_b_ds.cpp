@@ -1345,10 +1345,10 @@ void daB_DS_c::setYoMessage(int i_msgIdx) {
 /* 805CDA44-805CDAC0 002904 007C+00 1/1 0/0 0/0 .text            doYoMessage__8daB_DS_cFv */
 bool daB_DS_c::doYoMessage() {
     if (mpMsg != NULL) {
-        if (mpMsg->mMode == 0xE) {
-            mpMsg->mMode = 0x10;
-        } else if (mpMsg->mMode == 0x12) {
-            mpMsg->mMode = 0x13;
+        if (mpMsg->mode == 0xE) {
+            mpMsg->mode = 0x10;
+        } else if (mpMsg->mode == 0x12) {
+            mpMsg->mode = 0x13;
             mMsgPcID = 0xFFFFFFFF;
             return true;
         }
@@ -3182,8 +3182,8 @@ bool daB_DS_c::mChkScreenIn() {
     camera_class* camera = dComIfGp_getCamera(0);
     cXyz vec1, vec2;
 
-    vec2 = camera->mLookat.mEye - camera->mLookat.mCenter;
-    vec1 = camera->mLookat.mEye - current.pos;
+    vec2 = camera->lookat.eye - camera->lookat.center;
+    vec1 = camera->lookat.eye - current.pos;
     return abs((s16)(vec1.atan2sX_Z() - vec2.atan2sX_Z())) < 0x3000;
 }
 
@@ -6119,7 +6119,7 @@ extern actor_process_profile_definition g_profile_B_DS = {
     4,
     fpcPi_CURRENT_e,
     PROC_B_DS,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(daB_DS_c),
     0,
     0,

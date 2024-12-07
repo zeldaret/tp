@@ -38,12 +38,12 @@ s32 fpcM_Delete(void* i_proc) {
 }
 
 /* 80022138-80022158 0020+00 s=0 e=6 z=43  None .text      fpcM_IsCreating__FUi */
-BOOL fpcM_IsCreating(fpc_ProcID pID) {
-    return fpcCt_IsCreatingByID(pID);
+BOOL fpcM_IsCreating(fpc_ProcID i_id) {
+    return fpcCt_IsCreatingByID(i_id);
 }
 
 /* 80022158-800222B8 0160+00 s=0 e=1 z=0  None .text      fpcM_Management__FPFv_vPFv_v */
-void fpcM_Management(fpcM_ManagementFunc i_mngFunc1, fpcM_ManagementFunc i_mngFunc2) {
+void fpcM_Management(fpcM_ManagementFunc i_preExecuteFn, fpcM_ManagementFunc i_postExecuteFn) {
     MtxInit();
     dComIfGd_peekZdata();
 
@@ -68,15 +68,15 @@ void fpcM_Management(fpcM_ManagementFunc i_mngFunc1, fpcM_ManagementFunc i_mngFu
             fpcPi_Handler();
             fpcCt_Handler();
 
-            if (i_mngFunc1 != NULL) {
-                i_mngFunc1();
+            if (i_preExecuteFn != NULL) {
+                i_preExecuteFn();
             }
 
             fpcEx_Handler((fpcLnIt_QueueFunc)fpcM_Execute);
             fpcDw_Handler((fpcDw_HandlerFuncFunc)fpcM_DrawIterater, (fpcDw_HandlerFunc)fpcM_Draw);
 
-            if (i_mngFunc2 != NULL) {
-                i_mngFunc2();
+            if (i_postExecuteFn != NULL) {
+                i_postExecuteFn();
             }
 
             dComIfGp_drawSimpleModel();
@@ -99,10 +99,10 @@ void fpcM_Init() {
 }
 
 /* 800222F4-80022348 0054+00 s=0 e=3 z=0  None .text      fpcM_FastCreate__FsPFPv_iPvPv */
-base_process_class* fpcM_FastCreate(s16 i_procTypeID, FastCreateReqFunc i_createReqFunc,
-                                    void* i_createData, void* i_data) {
-    return fpcFCtRq_Request(fpcLy_CurrentLayer(), i_procTypeID, (fstCreateFunc)i_createReqFunc,
-                            i_createData, i_data);
+base_process_class* fpcM_FastCreate(s16 i_procname, FastCreateReqFunc i_createReqFunc,
+                                    void* i_createData, void* i_append) {
+    return fpcFCtRq_Request(fpcLy_CurrentLayer(), i_procname, (fstCreateFunc)i_createReqFunc,
+                            i_createData, i_append);
 }
 
 /* 80022348-8002236C 0024+00 s=0 e=1 z=0  None .text      fpcM_IsPause__FPvUc */

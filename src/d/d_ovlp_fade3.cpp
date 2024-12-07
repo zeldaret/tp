@@ -254,7 +254,7 @@ extern overlap_process_profile_definition g_profile_OVERLAP3 = {
     0,
     fpcPi_CURRENT_e,
     PROC_OVERLAP3,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(dOvlpFd3_c),
     0,
     0,

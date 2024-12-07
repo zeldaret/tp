@@ -629,8 +629,8 @@ static void bee_control(e_bee_class* i_this) {
             cXyz vec3;
             
             if (dComIfGp_checkPlayerStatus0(0, 0x200000)) {
-                vec3.x = bee->mPos.x - camera->mLookat.mEye.x;
-                vec3.z = bee->mPos.z - camera->mLookat.mEye.z;
+                vec3.x = bee->mPos.x - camera->lookat.eye.x;
+                vec3.z = bee->mPos.z - camera->lookat.eye.z;
                 if (JMAFastSqrt(vec3.x * vec3.x + vec3.z * vec3.z) > 2500.0f) {
                     bee->mNoDraw = true;
                 }
@@ -1083,7 +1083,7 @@ extern actor_process_profile_definition g_profile_E_BEE = {
     7,
     fpcPi_CURRENT_e,
     PROC_E_BEE,
-    &g_fpcLf_Method.mBase,
+    &g_fpcLf_Method.base,
     sizeof(e_bee_class),
     0,
     0,

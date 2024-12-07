@@ -1368,7 +1368,7 @@ static int ni_play(ni_class* i_this) {
     sp78.z = -i_this->mPadMainStickY;
 
     camera_class* camera = dComIfGp_getCamera(0);
-    sp84 = camera->mLookat.mCenter - camera->mLookat.mEye;
+    sp84 = camera->lookat.center - camera->lookat.eye;
 
     cMtx_YrotS(*calc_mtx, cM_atan2s(-sp84.x, -sp84.z));
     MtxPosition(&sp78, &sp84);
@@ -1521,9 +1521,9 @@ static void play_camera(ni_class* i_this) {
         camera->mCamera.Stop();
 
         i_this->field_0xafc = 500.0f;
-        i_this->field_0xac8 = camera0->mLookat.mEye;
-        i_this->field_0xad4 = camera0->mLookat.mCenter;
-        i_this->field_0xaec = dComIfGd_getView()->mFovy;
+        i_this->field_0xac8 = camera0->lookat.eye;
+        i_this->field_0xad4 = camera0->lookat.center;
+        i_this->field_0xaec = dComIfGd_getView()->fovy;
 
         player->changeOriginalDemo();
         player->changeDemoMode(1, 1, 0, 0);
