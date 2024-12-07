@@ -15,7 +15,7 @@ class daNpcCoach_c : public fopAc_ac_c {
 public:
     /* 8099DA60 */ void hitFireArrow(cXyz);
     /* 8099DBA4 */ void deleteFireArrow(unsigned int);
-    /* 8099DCE8 */ void deleteFireArrowFromList(unsigned int);
+    /* 8099DCE8 */ bool deleteFireArrowFromList(unsigned int);
     /* 8099DD28 */ void setPosAngle(cXyz&, csXyz&);
     /* 8099DD7C */ void ctrlJointHorse(J3DJoint*, J3DModel*);
     /* 8099DE18 */ void initCoachPosition(Vec&, SVec&);
@@ -43,9 +43,18 @@ public:
     /* 809A46C4 */ void initCoachBlazing();
     /* 809A48A8 */ daNpcCoach_c();
 
+    bool checkCoachBlazing() { return field_0x1dc4; }
+    Mtx* getCoachMtx() { return &field_0x2490; }
+
     static u8 const M_attr[160];
 private:
-    /* 0x568 */ u8 field_0x568[0x2570 - 0x568];
+    /* 0x568 */ u8 field_0x568[0x1dc4 - 0x568];
+    /* 0x1DC4 */ bool field_0x1dc4;
+    /* 0x1DC5 */ u8 field_0x1dc5[0x247c - 0x1dc5];
+    /* 0x247C */ u32 field_0x247c[4];
+    /* 0x248C */ u8 field_0x248c[0x2490 - 0x248c];
+    /* 0x2490 */ Mtx field_0x2490;
+    /* 0x24C0 */ u8 field_0x254c[0x2570 - 0x24c0];
 };
 
 STATIC_ASSERT(sizeof(daNpcCoach_c) == 0x2570);

@@ -309,7 +309,7 @@ extern "C" void __dt__4cXyzFv() {
 /* 8099DA60-8099DBA4 000400 0144+00 1/1 0/0 0/0 .text            hitFireArrow__12daNpcCoach_cF4cXyz
  */
 void daNpcCoach_c::hitFireArrow(cXyz param_0) {
-    // NONMATCHING
+    // NONMATCHING 
 }
 
 /* 8099DBA4-8099DCE8 000544 0144+00 0/0 0/0 1/1 .text            deleteFireArrow__12daNpcCoach_cFUi
@@ -320,8 +320,14 @@ void daNpcCoach_c::deleteFireArrow(unsigned int param_0) {
 
 /* 8099DCE8-8099DD28 000688 0040+00 0/0 0/0 1/1 .text deleteFireArrowFromList__12daNpcCoach_cFUi
  */
-void daNpcCoach_c::deleteFireArrowFromList(unsigned int param_0) {
-    // NONMATCHING
+bool daNpcCoach_c::deleteFireArrowFromList(unsigned int i_actorID) {
+    for (int i = 0; i < 5; i++) {
+        if (field_0x247c[i] == i_actorID) {
+            field_0x247c[i] = -1;
+            return true;
+        }
+    }
+    return false;
 }
 
 /* 8099DD28-8099DD7C 0006C8 0054+00 0/0 0/0 3/3 .text setPosAngle__12daNpcCoach_cFR4cXyzR5csXyz */

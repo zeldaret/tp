@@ -29,11 +29,23 @@ public:
     /* 80D01EB0 */ void Draw();
     /* 80D01F58 */ void Delete();
 
+    int getSwNo() { return fopAcM_GetParamBit(this, 0, 8); }
+    int getSwNo2() { return fopAcM_GetParamBit(this, 0x14, 8); }
+    int getRotateAngle() {
+        return (field_0x5ad == NULL) ? field_0x5ba + field_0x5c4 * 0x4000 :
+                                       field_0x5ba + (field_0x5c4 << 0xe) / 3;
+    }
+
 private:
-    /* 0x568 */ u8 field_0x568[0x5e0 - 0x568];
+    /* 0x568 */ u8 field_0x568[0x5ad - 0x568];
+    /* 0x5AD */ bool field_0x5ad;
+    /* 0x5AE */ u8 field_0x5ae[0x5ba - 0x5ae];
+    /* 0x5BA */ s16 field_0x5ba;
+    /* 0x5BC */ u8 field_0x5bc[0x5c4 - 0x5bc];
+    /* 0x5C4 */ s16 field_0x5c4;
+    /* 0x5C6 */ u8 field_0x5c6[0x5e0 - 0x5c6];
 };
 
 STATIC_ASSERT(sizeof(daObjSwTurn_c) == 0x5e0);
-
 
 #endif /* D_A_OBJ_SWTURN_H */
