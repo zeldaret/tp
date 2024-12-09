@@ -363,7 +363,7 @@ public:
 
     void resetRatBody() {}
 
-    bool checkFlyWaitAnime() {
+    bool checkFlyWaitAnime() const {
         return mBckHeap[0].getIdx() == 0x1CB || mBckHeap[0].getIdx() == 0x1C7
             || mBckHeap[0].getIdx() == 0x1C8 || mBckHeap[0].getIdx() == 0x1C9;
     }

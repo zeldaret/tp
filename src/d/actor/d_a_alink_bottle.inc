@@ -287,7 +287,7 @@ int daAlink_c::commonBottleDrink(int param_0) {
                current_anm == getMainBckData(ANM_BOTTLE_DRINK_NASTY)->m_underID)
     {
         if (checkAnmEnd(frameCtrl_p)) {
-            if (mDemo.getDemoMode() == 0x2A) {
+            if (mDemo.getDemoMode() == daPy_demo_c::DEMO_UNK_42_e) {
                 setSingleAnimeParam(ANM_PICK_UP, &daAlinkHIO_pickUp_c0::m.field_0x14);
             } else {
                 allUnequip(mKeepItem == KANTERA);
@@ -368,7 +368,7 @@ fopAc_ac_c* daAlink_c::makeFairy(cXyz* i_pos, u32 i_params) {
 /* 8010F54C-8010F698 109E8C 014C+00 2/2 0/0 0/0 .text            procBottleDrinkInit__9daAlink_cFUs
  */
 int daAlink_c::procBottleDrinkInit(u16 i_itemNo) {
-    if (mDemo.getDemoMode() == 0x2A) {
+    if (mDemo.getDemoMode() == daPy_demo_c::DEMO_UNK_42_e) {
         if (mProcID == PROC_BOTTLE_DRINK) {
             return 1;
         }

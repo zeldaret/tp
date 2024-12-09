@@ -1112,6 +1112,10 @@ inline u8 dStage_stagInfo_DefaultCameraType(stage_stag_info_class* pstag) {
     return pstag->mCameraType;
 }
 
+inline u16 dStage_stagInfo_GetCullPoint(stage_stag_info_class* pstag) {
+    return pstag->field_0x10 & 0xFFFF;
+}
+
 inline u8 dStage_sclsInfo_getSceneLayer(stage_scls_info_class* p_info) {
     return p_info->field_0xb & 0xF;
 }

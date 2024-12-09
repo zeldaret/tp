@@ -768,4 +768,24 @@ inline void fopAcM_effSmokeSet2(u32* param_0, u32* param_1, cXyz const* param_2,
     fopAcM_effSmokeSet1(param_0, param_1, param_2, param_3, param_4, param_5, 0);
 }
 
+inline void fopAcM_setWarningMessage_f(const fopAc_ac_c* i_actor, const char* i_filename, int i_line, const char* i_msg, ...) {
+#ifdef DEBUG
+    va_list args;
+    va_start(args, i_msg);
+
+    char buf[64];
+    snprintf(buf, sizeof(buf), "<%s> %s", dStage_getName(fopAcM_GetProfName(i_actor), i_actor->subtype), i_msg);
+    setWarningMessage_f_va(JUTAssertion::getSDevice(), i_filename, i_line, buf, args);
+
+    va_end(args);
+#endif
+}
+
+#ifdef DEBUG
+#define fopAcM_setWarningMessage(i_actor, i_filename, i_line, i_msg, ...) \
+    fopAcM_setWarningMessage_f(i_actor, i_filename, i_line, i_msg, __VA_ARGS__)
+#else
+#define fopAcM_setWarningMessage(...)
+#endif
+
 #endif

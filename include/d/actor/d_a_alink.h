@@ -1321,7 +1321,7 @@ public:
         /* 800D0CDC */ virtual ~hsChainShape_c();
     };  // Size: 0x10
 
-    /* 8009D87C */ bool getE3Zhint();
+    /* 8009D87C */ static BOOL getE3Zhint();
     /* 8009D884 */ static const char* getAlinkArcName();
     /* 8009DA60 */ static bool checkStageName(char const*);
     /* 8009DA98 */ void tgHitCallback(fopAc_ac_c*, dCcD_GObjInf*, dCcD_GObjInf*);

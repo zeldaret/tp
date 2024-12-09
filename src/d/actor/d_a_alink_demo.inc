@@ -87,11 +87,11 @@ int daAlink_c::checkDemoAction() {
     JUT_ASSERT(155,
                (demoMode < daPy_demo_c::DEMO_LAST_e) || (demoMode == daPy_demo_c::DEMO_NEW_ANM0_e));
 
-    if (demoMode != 6 && demoMode != 8) {
+    if (demoMode != daPy_demo_c::DEMO_UNK_6_e && demoMode != daPy_demo_c::DEMO_UNK_8_e) {
         offNoResetFlg0(FLG0_UNK_400);
     }
 
-    if (demoMode != 0x33 && mSpecialMode == 1) {
+    if (demoMode != daPy_demo_c::DEMO_SUMOU_SHIKO_e && mSpecialMode == 1) {
         return procSumouReadyInit();
     }
 
@@ -99,13 +99,28 @@ int daAlink_c::checkDemoAction() {
         return 0;
     }
 
-    if (!checkModeFlg(0x400) && demoMode != daPy_demo_c::DEMO_NEW_ANM0_e && demoMode != 0x46 &&
-        demoMode != 0x47 && demoMode != 0x39 && demoMode != 0x3A && demoMode != 9 &&
-        demoMode != 0x11 && demoMode != 0x18 && demoMode != 7 && demoMode != 0x13 &&
-        demoMode != 4 && demoMode != 0x38 && demoMode != 0x45 && demoMode != 0xA &&
-        demoMode != 0x2D && demoMode != 0x23 && demoMode != 0x43 && demoMode != 0x34 &&
-        (demoMode != 0xB || !checkModeFlg(0x10040)) &&
-        !dComIfGp_checkPlayerStatus0(0, 0x100000) && !checkFlyAtnWait() &&
+    if (!checkModeFlg(0x400) &&
+        demoMode != daPy_demo_c::DEMO_NEW_ANM0_e &&
+        demoMode != daPy_demo_c::DEMO_METAMORPHOSE_ONLY_UNK1_e &&
+        demoMode != daPy_demo_c::DEMO_METAMORPHOSE_ONLY_UNK2_e &&
+        demoMode != daPy_demo_c::DEMO_METAMORPHOSE_UNK1_e &&
+        demoMode != daPy_demo_c::DEMO_METAMORPHOSE_UNK2_e &&
+        demoMode != daPy_demo_c::DEMO_UNK_9_e &&
+        demoMode != daPy_demo_c::DEMO_UNK_17_e &&
+        demoMode != daPy_demo_c::DEMO_UNK_24_e &&
+        demoMode != daPy_demo_c::DEMO_UNK_7_e &&
+        demoMode != daPy_demo_c::DEMO_MONKEY_MOVE_e &&
+        demoMode != daPy_demo_c::DEMO_UNK_4_e &&
+        demoMode != daPy_demo_c::DEMO_WOLF_CARGO_CARRY_e &&
+        demoMode != daPy_demo_c::DEMO_ZORA_MOVE_e &&
+        demoMode != daPy_demo_c::DEMO_OPEN_TREASURE_e &&
+        demoMode != daPy_demo_c::DEMO_UNK_45_e &&
+        demoMode != daPy_demo_c::DEMO_DOOR_OPEN_e &&
+        demoMode != daPy_demo_c::DEMO_FM_CHAIN_STRONG_PULL_e &&
+        demoMode != daPy_demo_c::DEMO_FOG_DEAD_e &&
+        (demoMode != daPy_demo_c::DEMO_GET_ITEM_e || !checkModeFlg(0x10040)) &&
+        !dComIfGp_checkPlayerStatus0(0, 0x100000) &&
+        !checkFlyAtnWait() &&
         ((!mLinkAcch.ChkGroundHit() && !checkMagneBootsOn()) || checkModeFlg(0x70C52)))
     {
         return 0;
@@ -130,7 +145,7 @@ int daAlink_c::checkDemoAction() {
         return (this->*m_demoInitTable[demoMode])();
     }
 
-    if (demoMode == 6 || demoMode == 8) {
+    if (demoMode == daPy_demo_c::DEMO_UNK_6_e || demoMode == daPy_demo_c::DEMO_UNK_8_e) {
         if (mDemo.getParam1() != 1 && !checkNoResetFlg0(FLG0_UNK_400)) {
             seStartSystem(Z2SE_SY_TALK_START);
             onNoResetFlg0(FLG0_UNK_400);
@@ -143,7 +158,7 @@ int daAlink_c::checkDemoAction() {
         if (checkModeFlg(0x4000000) || checkModeFlg(0x40000) || checkHorseRide() ||
             checkBoarRide() || checkCanoeRide())
         {
-            if (demoMode == 6 && (checkHorseRide() || checkBoarRide())) {
+            if (demoMode == daPy_demo_c::DEMO_UNK_6_e && (checkHorseRide() || checkBoarRide())) {
                 if (mEquipItem != NO_ITEM && mEquipItem != KANTERA && !checkEquipAnime()) {
                     allUnequip(1);
                 }
@@ -176,7 +191,7 @@ int daAlink_c::checkDemoAction() {
         }
 
         return procCoTalkInit();
-    } else if (demoMode == 4) {
+    } else if (demoMode == daPy_demo_c::DEMO_UNK_4_e) {
         int var_r28;
         if (checkWolf()) {
             var_r28 = procWolfWaitInit();
@@ -237,7 +252,7 @@ int daAlink_c::checkDemoAction() {
             field_0x2060->initOldFrameMorf(0.0f, 0, field_0x30c6);
         }
         return var_r28;
-    } else if (demoMode == 9) {
+    } else if (demoMode == daPy_demo_c::DEMO_UNK_9_e) {
         onNoResetFlg0(FLG0_UNK_100000);
         if (mProcID == PROC_LARGE_DAMAGE_UP || mProcID == PROC_WOLF_LARGE_DAMAGE_UP ||
             mProcID == PROC_LARGE_DAMAGE_WALL)
@@ -251,7 +266,7 @@ int daAlink_c::checkDemoAction() {
         }
 
         return procCoLargeDamageInit(-2, 1, 0, 0, NULL, 0);
-    } else if (demoMode == 0x24) {
+    } else if (demoMode == daPy_demo_c::DEMO_UNK_36_e) {
         onNoResetFlg0(FLG0_UNK_100000);
         int prm0 = mDemo.getParam0();
         if (mProcID == PROC_CUT_NORMAL || mProcID == PROC_CUT_FINISH || mProcID == PROC_CUT_TURN) {
@@ -267,7 +282,7 @@ int daAlink_c::checkDemoAction() {
         } else {
             return procCutTurnInit(1, 1);
         }
-    } else if (demoMode == 0x52) {
+    } else if (demoMode == daPy_demo_c::DEMO_UNK_82_e) {
         onNoResetFlg0(FLG0_UNK_100000);
         if (mProcID == PROC_TURN_MOVE || mProcID == PROC_CUT_FINISH_JUMP_UP ||
             mProcID == PROC_CUT_FINISH_JUMP_UP_LAND)
@@ -276,7 +291,7 @@ int daAlink_c::checkDemoAction() {
         }
 
         return procTurnMoveInit(2);
-    } else if (demoMode == 0x54) {
+    } else if (demoMode == daPy_demo_c::DEMO_UNK_84_e) {
         onNoResetFlg0(FLG0_UNK_100000);
         if (mProcID != PROC_CUT_FINISH) {
             onNoResetFlg0(FLG0_UNK_1000000);
@@ -284,7 +299,7 @@ int daAlink_c::checkDemoAction() {
         }
 
         return 1;
-    } else if (demoMode == 0x2B) {
+    } else if (demoMode == daPy_demo_c::DEMO_UNK_43_e) {
         onNoResetFlg0(FLG0_UNK_100000);
         int prm0 = mDemo.getParam0();
 
@@ -297,7 +312,7 @@ int daAlink_c::checkDemoAction() {
         } else {
             return procWolfWaitAttackInit(prm0);
         }
-    } else if (demoMode == 0x1B) {
+    } else if (demoMode == daPy_demo_c::DEMO_UNK_27_e) {
         onNoResetFlg0(FLG0_UNK_100000);
 
         if (mDemo.getDemoType() == 1) {
@@ -307,29 +322,29 @@ int daAlink_c::checkDemoAction() {
         } else {
             return commonLargeDamageUpInit(-3, 1, 0, 0);
         }
-    } else if (demoMode == 0xF) {
+    } else if (demoMode == daPy_demo_c::DEMO_UNK_15_e) {
         onNoResetFlg0(FLG0_UNK_100000);
         return procWolfSitInit(1);
-    } else if (demoMode == 0x15) {
+    } else if (demoMode == daPy_demo_c::DEMO_UNK_21_e) {
         onNoResetFlg0(FLG0_UNK_100000);
         return procWolfHowlInit(0);
-    } else if (demoMode == 0x16) {
+    } else if (demoMode == daPy_demo_c::DEMO_UNK_22_e) {
         onNoResetFlg0(FLG0_UNK_100000);
         return procWolfHowlInit(1);
-    } else if (demoMode == 0x2D) {
+    } else if (demoMode == daPy_demo_c::DEMO_UNK_45_e) {
         onNoResetFlg0(FLG0_UNK_100000);
         return procCoWarpInit(mDemo.getParam0(), mDemo.getParam1());
-    } else if (demoMode == 0x18) {
+    } else if (demoMode == daPy_demo_c::DEMO_UNK_24_e) {
         onNoResetFlg0(FLG0_UNK_100000);
         return procAutoJumpInit(1);
-    } else if (demoMode == 0x5B) {
+    } else if (demoMode == daPy_demo_c::DEMO_UNK_91_e) {
         if (mProcID == PROC_CUT_TURN_MOVE || mProcID == PROC_CUT_TURN_CHARGE) {
             return 1;
         }
 
         onNoResetFlg0(FLG0_UNK_100000);
         return procCutTurnChargeInit();
-    } else if (demoMode == 0x5E) {
+    } else if (demoMode == daPy_demo_c::DEMO_UNK_94_e) {
         if (mProcID == PROC_WOLF_SERVICE_WAIT) {
             return 0;
         }
@@ -340,17 +355,17 @@ int daAlink_c::checkDemoAction() {
 
         onNoResetFlg0(FLG0_UNK_100000);
         return procWolfServiceWaitInit(0);
-    } else if (demoMode == 0x5C) {
+    } else if (demoMode == daPy_demo_c::DEMO_UNK_92_e) {
         if (mProcID == PROC_CUT_LARGE_JUMP_CHARGE || mProcID == PROC_CUT_TURN_MOVE) {
             return 1;
         }
 
         onNoResetFlg0(FLG0_UNK_100000);
         return procCutLargeJumpChargeInit();
-    } else if (demoMode == 0x49) {
+    } else if (demoMode == daPy_demo_c::DEMO_UNK_73_e) {
         onNoResetFlg0(FLG0_UNK_100000);
         return procSideRollInit(mDemo.getParam0() ? 3 : 2);
-    } else if (demoMode == 0x10) {
+    } else if (demoMode == daPy_demo_c::DEMO_UNK_16_e) {
         onNoResetFlg0(FLG0_UNK_100000);
         if (checkWolf()) {
             if (mProcID == PROC_WOLF_BACKJUMP_LAND || mProcID == PROC_WOLF_SIDESTEP_LAND ||
@@ -378,16 +393,16 @@ int daAlink_c::checkDemoAction() {
         }
 
         return procSideStepInit(mDemo.getParam0());
-    } else if (demoMode == 0x2C) {
+    } else if (demoMode == daPy_demo_c::DEMO_UNK_44_e) {
         onNoResetFlg0(FLG0_UNK_100000);
         return procWolfLieMoveInit(0);
-    } else if (demoMode == 0x11) {
+    } else if (demoMode == daPy_demo_c::DEMO_UNK_17_e) {
         onNoResetFlg0(FLG0_UNK_100000);
         return commonFallInit(1);
-    } else if (demoMode == 0x2A) {
+    } else if (demoMode == daPy_demo_c::DEMO_UNK_42_e) {
         onNoResetFlg0(FLG0_UNK_100000);
         return procBottleDrinkInit(mDemo.getParam0());
-    } else if (demoMode == 0x1F) {
+    } else if (demoMode == daPy_demo_c::DEMO_UNK_31_e) {
         onNoResetFlg0(FLG0_UNK_100000);
         if (!checkModeFlg(0x4070C52) &&
             (checkUpperReadyThrowAnime() || field_0x2f8c == 2 || field_0x2f8c == 1 ||
@@ -399,7 +414,7 @@ int daAlink_c::checkDemoAction() {
 
         dComIfGp_evmng_cutEnd(field_0x3184);
         return 1;
-    } else if (demoMode == 7) {
+    } else if (demoMode == daPy_demo_c::DEMO_UNK_7_e) {
         offNoResetFlg0(FLG0_UNK_100000);
         if (checkUpperReadyThrowAnime() || checkGrabAnime()) {
             resetUpperAnime(UPPER_2, -1.0f);
@@ -415,10 +430,10 @@ int daAlink_c::checkDemoAction() {
     } else if ((checkNoResetFlg0(FLG0_UNK_100000) || checkUpperReadyThrowAnime() ||
                 checkModeFlg(0x400) || mProcID == PROC_SWIM_SUBJECTIVITY ||
                 mProcID == PROC_FISHING_CAST || mProcID == PROC_SUBJECTIVITY) &&
-               (demoMode == 1 || checkDemoMoveMode(demoMode) || demoMode == 0x17 ||
-                demoMode == 0x1F || demoMode == 0x12 ||
+               (demoMode == daPy_demo_c::DEMO_UNK_1_e || checkDemoMoveMode(demoMode) || demoMode == daPy_demo_c::DEMO_UNK_23_e ||
+                demoMode == daPy_demo_c::DEMO_UNK_31_e || demoMode == daPy_demo_c::DEMO_UNK_18_e ||
                 (checkSpinnerRide() &&
-                 (demoMode == 0x1A || (demoMode == 0xE && mDemo.getParam0() == 0)))))
+                 (demoMode == daPy_demo_c::DEMO_UNK_26_e || (demoMode == daPy_demo_c::DEMO_UNK_14_e && mDemo.getParam0() == 0)))))
     {
         offNoResetFlg0(FLG0_UNK_100000);
         if (checkUpperReadyThrowAnime()) {
@@ -426,7 +441,7 @@ int daAlink_c::checkDemoAction() {
         }
 
         if (checkReinRide()) {
-            if (mDemo.getDemoMode() == 0x17 && !checkEquipAnime() && mEquipItem != 0x103 &&
+            if (mDemo.getDemoMode() == daPy_demo_c::DEMO_UNK_23_e && !checkEquipAnime() && mEquipItem != 0x103 &&
                 (mDemo.getParam1() == 2 || mDemo.getParam1() == 3))
             {
                 swordEquip(0);
@@ -467,13 +482,13 @@ int daAlink_c::checkDemoAction() {
 /* 80116E60-80116E9C 1117A0 003C+00 4/4 0/0 0/0 .text            checkDemoMoveMode__9daAlink_cCFUl
  */
 bool daAlink_c::checkDemoMoveMode(u32 i_mode) const {
-    return i_mode == 2 || i_mode == 3 || i_mode == 0x26;
+    return i_mode == daPy_demo_c::DEMO_UNK_2_e || i_mode == daPy_demo_c::DEMO_UNK_3_e || i_mode == daPy_demo_c::DEMO_UNK_38_e;
 }
 
 /* 80116E9C-80117064 1117DC 01C8+00 1/1 0/0 0/0 .text setDemoMoveData__9daAlink_cFPUlPC4cXyz */
-void daAlink_c::setDemoMoveData(u32* param_0, cXyz const* param_1) {
+void daAlink_c::setDemoMoveData(u32* o_mode, cXyz const* i_goal) {
     cXyz sp20;
-    sp20 = *param_1 - current.pos;
+    sp20 = *i_goal - current.pos;
 
     f32 temp_f30;
     f32 temp_f29;
@@ -492,15 +507,15 @@ void daAlink_c::setDemoMoveData(u32* param_0, cXyz const* param_1) {
 
     f32 dist_to_pos = sp20.abs2XZ();
     if (dist_to_pos < var_f27 * 25.0f) {
-        *param_0 = 1;
+        *o_mode = daPy_demo_c::DEMO_UNK_1_e;
 
         if (!checkModeFlg(0x2)) {
             mNormalSpeed = 0.0f;
         }
     } else if (dist_to_pos < temp_f30 || (dist_to_pos < temp_f28 && checkZeroSpeedF())) {
-        *param_0 = 1;
-    } else if ((*param_0 == 2 && dist_to_pos < temp_f29) || dist_to_pos < temp_f28) {
-        *param_0 = 2;
+        *o_mode = daPy_demo_c::DEMO_UNK_1_e;
+    } else if ((*o_mode == daPy_demo_c::DEMO_UNK_2_e && dist_to_pos < temp_f29) || dist_to_pos < temp_f28) {
+        *o_mode = daPy_demo_c::DEMO_UNK_2_e;
         mDemo.setStick(0.35f);
     } else if (mDemo.getDemoType() == 3) {
         mDemo.setStick(1.0f);
@@ -574,7 +589,7 @@ void daAlink_c::setDemoData() {
         dDemo_actor_c* demo_actor_p = dDemo_c::getActor(demoActorID);
         cXyz* pos_p = NULL;
         s16 angle;
-        u32 demo_mode = 1;
+        u32 demo_mode = daPy_demo_c::DEMO_UNK_1_e;
         int* prm0_p = NULL;
         int* prm1_p = NULL;
 
@@ -606,7 +621,7 @@ void daAlink_c::setDemoData() {
 
             if (mDemo.getDemoType() != 1) {
                 mDemo.setToolDemoType();
-                mDemo.setDemoMode(1);
+                mDemo.setDemoMode(daPy_demo_c::DEMO_UNK_1_e);
                 freeGrabItem();
 
                 if (dComIfGp_evmng_startCheck("R22-opening")) {
@@ -661,8 +676,8 @@ void daAlink_c::setDemoData() {
                 mDemo.setSystemDemoType();
                 var_r28 = TRUE;
 
-                if (mDemo.getDemoMode() == 0) {
-                    demo_mode = 0x41;
+                if (mDemo.getDemoMode() == daPy_demo_c::DEMO_UNK_0_e) {
+                    demo_mode = daPy_demo_c::DEMO_UNK_65_e;
                 }
             }
 
@@ -677,15 +692,15 @@ void daAlink_c::setDemoData() {
                     // demo_mode
                     demo_mode = ((cut_name[0] - '0') * 100) + ((cut_name[1] - '0') * 10) +
                                 (cut_name[2] - '0');
-                    if (mDemo.getDemoType() != 4 && (demo_mode == 1 || demo_mode == 0x17) &&
+                    if (mDemo.getDemoType() != 4 && (demo_mode == daPy_demo_c::DEMO_UNK_1_e || demo_mode == daPy_demo_c::DEMO_UNK_23_e) &&
                         mLinkAcch.ChkGroundHit() && !checkModeFlg(0x70C52))
                     {
                         mNormalSpeed = 0.0f;
                         speedF = 0.0f;
                     }
 
-                    if (demo_mode == 0x32 && !daMidna_c::checkMidnaRealBody()) {
-                        demo_mode = 1;
+                    if (demo_mode == daPy_demo_c::DEMO_WOLF_MIDNA_RIDE_SHOCK_e && !daMidna_c::checkMidnaRealBody()) {
+                        demo_mode = daPy_demo_c::DEMO_UNK_1_e;
                     }
 
                     pos_p = dComIfGp_evmng_getMyXyzP(field_0x3184, "pos");
@@ -696,7 +711,7 @@ void daAlink_c::setDemoData() {
                     int* angle_p = dComIfGp_evmng_getMyIntegerP(field_0x3184, "angle");
                     if (angle_p != NULL) {
                         angle = *angle_p;
-                    } else if (demo_mode == 5) {
+                    } else if (demo_mode == daPy_demo_c::DEMO_WAIT_TURN_e) {
                         angle = mDemo.getMoveAngle();
                     } else {
                         angle = shape_angle.y;
@@ -715,7 +730,7 @@ void daAlink_c::setDemoData() {
                         }
                     }
 
-                    if ((demo_mode == 2 || demo_mode == 3) && prm1_p != NULL && *prm1_p == 1) {
+                    if ((demo_mode == daPy_demo_c::DEMO_UNK_2_e || demo_mode == daPy_demo_c::DEMO_UNK_3_e) && prm1_p != NULL && *prm1_p == 1) {
                         cXyz goal_pos;
                         mDoMtx_stack_c::transS(current.pos);
                         mDoMtx_stack_c::YrotM(shape_angle.y);
@@ -726,9 +741,9 @@ void daAlink_c::setDemoData() {
                 }
             }
 
-            if ((mEquipItem == IRONBALL || checkFishingRodItem(mEquipItem)) && demo_mode != 1 &&
-                demo_mode != 0x1F && (field_0x3184 != -1 || mDemo.getDemoType() == 3) &&
-                (demo_mode != 6 || (var_r28 == 0 && !checkEquipAnime())))
+            if ((mEquipItem == IRONBALL || checkFishingRodItem(mEquipItem)) && demo_mode != daPy_demo_c::DEMO_UNK_1_e &&
+                demo_mode != daPy_demo_c::DEMO_UNK_31_e && (field_0x3184 != -1 || mDemo.getDemoType() == 3) &&
+                (demo_mode != daPy_demo_c::DEMO_UNK_6_e || (var_r28 == 0 && !checkEquipAnime())))
             {
                 deleteEquipItem(FALSE, TRUE);
                 if (checkIronBallWaitAnime()) {
@@ -738,7 +753,7 @@ void daAlink_c::setDemoData() {
         }
 
         if (mDemo.getDemoType() == 4) {
-            if (mDemo.getDemoMode() == 0xE) {
+            if (mDemo.getDemoMode() == daPy_demo_c::DEMO_UNK_14_e) {
                 if (mDemo.getTimer() != 0) {
                     mDemo.decTimer();
 
@@ -752,7 +767,7 @@ void daAlink_c::setDemoData() {
                 }
             }
         } else {
-            if (mDemo.getDemoType() == 1 || (mDemo.getDemoType() == 2 && field_0x3184 != -1)) {
+            if (mDemo.getDemoType() == daPy_demo_c::DEMO_UNK_1_e || (mDemo.getDemoType() == daPy_demo_c::DEMO_UNK_2_e && field_0x3184 != -1)) {
                 if (prm0_p != NULL) {
                     mDemo.setParam0(*prm0_p);
                 } else {
@@ -765,7 +780,7 @@ void daAlink_c::setDemoData() {
                     mDemo.setParam1(0);
                 }
 
-                if (demo_mode == 4) {
+                if (demo_mode == daPy_demo_c::DEMO_UNK_4_e) {
                     mNormalSpeed = 0.0f;
                     speedF = 0.0f;
                     field_0x814.ClrCcMove();
@@ -773,7 +788,7 @@ void daAlink_c::setDemoData() {
                     mDemo.setMoveAngle(angle);
                 } else if (checkDemoMoveMode(demo_mode)) {
                     setDemoMoveData(&demo_mode, pos_p);
-                } else if (demo_mode == 5) {
+                } else if (demo_mode == daPy_demo_c::DEMO_WAIT_TURN_e) {
                     mDemo.setMoveAngle(angle);
                 }
 
@@ -784,14 +799,14 @@ void daAlink_c::setDemoData() {
                 if (checkDemoMoveMode(demo_mode)) {
                     setDemoMoveData(&demo_mode, mDemo.getPos0());
                     mDemo.setDemoMode(demo_mode);
-                } else if (demo_mode == 0x41) {
-                    mDemo.setDemoMode(1);
+                } else if (demo_mode == daPy_demo_c::DEMO_UNK_65_e) {
+                    mDemo.setDemoMode(daPy_demo_c::DEMO_UNK_1_e);
                 }
             } else {
                 mDemo.setDemoMode(demo_mode);
             }
 
-            if (checkModeFlg(0x80000) || mDemo.getDemoMode() == 6 || mDemo.getDemoMode() == 8) {
+            if (checkModeFlg(0x80000) || mDemo.getDemoMode() == daPy_demo_c::DEMO_UNK_6_e || mDemo.getDemoMode() == daPy_demo_c::DEMO_UNK_8_e) {
                 dComIfGp_setPlayerStatus0(0, 0x10);
                 mMidnaTalkDelayTimer = 30;
             } else {
@@ -799,10 +814,10 @@ void daAlink_c::setDemoData() {
             }
 
             if (field_0x3184 != -1 &&
-                (demo_mode == 1 || demo_mode == 4 || demo_mode == 0x17 || demo_mode == 0xE ||
-                 demo_mode == 0x11 || demo_mode == 0x18 || demo_mode == 7 || demo_mode == 0xF ||
-                 demo_mode == 0x15 || demo_mode == 0x16 || demo_mode == 6 || demo_mode == 8 ||
-                 demo_mode == 0x29 || demo_mode == 0x12))
+                (demo_mode == daPy_demo_c::DEMO_UNK_1_e || demo_mode == daPy_demo_c::DEMO_UNK_4_e || demo_mode == daPy_demo_c::DEMO_UNK_23_e || demo_mode == daPy_demo_c::DEMO_UNK_14_e ||
+                 demo_mode == daPy_demo_c::DEMO_UNK_17_e || demo_mode == daPy_demo_c::DEMO_UNK_24_e || demo_mode == daPy_demo_c::DEMO_UNK_7_e || demo_mode == daPy_demo_c::DEMO_UNK_15_e ||
+                 demo_mode == daPy_demo_c::DEMO_UNK_21_e || demo_mode == daPy_demo_c::DEMO_UNK_22_e || demo_mode == daPy_demo_c::DEMO_UNK_6_e || demo_mode == daPy_demo_c::DEMO_UNK_8_e ||
+                 demo_mode == daPy_demo_c::DEMO_CROUCH_e || demo_mode == daPy_demo_c::DEMO_UNK_18_e))
             {
                 dComIfGp_evmng_cutEnd(field_0x3184);
             }
@@ -897,7 +912,7 @@ void daAlink_c::endDemoMode() {
     dComIfGp_clearPlayerStatus0(0, 0x10);
 
     BOOL temp_r29 = mDemo.getDemoType() == 4;
-    BOOL var_r0 = mDemo.getDemoMode() == 0xE || mDemo.getDemoMode() == 0x1A;
+    BOOL var_r0 = mDemo.getDemoMode() == daPy_demo_c::DEMO_UNK_14_e || mDemo.getDemoMode() == daPy_demo_c::DEMO_UNK_26_e;
 
     mDemo.resetDemoType();
     mDemo.setDemoMode(0);
@@ -943,7 +958,7 @@ void daAlink_c::endDemoMode() {
                 commonCheckNextAction(0);
             } else if (mProcID == PROC_HAWK_CATCH || mProcID == PROC_HAWK_SUBJECT) {
                 procHawkSubjectInit();
-            } else if (mProcID == PROC_GRASS_WHISTLE_WAIT || (mDemo.getDemoMode() != 0x2D && mProcID == PROC_WARP)) {
+            } else if (mProcID == PROC_GRASS_WHISTLE_WAIT || (mDemo.getDemoMode() != daPy_demo_c::DEMO_UNK_45_e && mProcID == PROC_WARP)) {
                 return;
             } else if (mProcID == PROC_TALK && dComIfGp_checkPlayerStatus0(0, 0x8000000)) {
                 procWolfLieMoveInit(0);
@@ -986,7 +1001,7 @@ fopAc_ac_c* daAlink_c::getDemoLookActor() {
 
 /* 80118170-801181A0 112AB0 0030+00 4/4 0/0 0/0 .text            checkFlyAtnWait__9daAlink_cFv */
 BOOL daAlink_c::checkFlyAtnWait() {
-    return mDemo.getDemoMode() == 0x17 && (mDemo.getParam1() == 4 || mDemo.getParam1() == 5);
+    return mDemo.getDemoMode() == daPy_demo_c::DEMO_UNK_23_e && (mDemo.getParam1() == 4 || mDemo.getParam1() == 5);
 }
 
 /* 801181A0-801182D4 112AE0 0134+00 2/2 0/0 0/0 .text            setGetItemFace__9daAlink_cFUs */
@@ -1077,7 +1092,7 @@ void daAlink_c::setShapeAngleToTalkActor() {
 
 /* 80118654-801186D4 112F94 0080+00 2/2 0/0 0/0 .text            setTalkAnime__9daAlink_cFv */
 void daAlink_c::setTalkAnime() {
-    if (mDemo.getDemoMode() == 8 || mEquipItem == KANTERA ||
+    if (mDemo.getDemoMode() == daPy_demo_c::DEMO_UNK_8_e || mEquipItem == KANTERA ||
         (checkNoResetFlg2(FLG2_UNK_1) && field_0x2fde == 0x48))
     {
         setDoubleAnime(0.0f, daAlinkHIO_move_c0::m.mWaitAnmSpeed,
@@ -1100,7 +1115,7 @@ u8 daAlink_c::setTradeItemAnime() {
             item_no = dComIfGp_event_getPreItemNo();
         }
 
-        u32 partner_id = fopAcM_createItemForPresentDemo(
+        fpc_ProcID partner_id = fopAcM_createItemForPresentDemo(
             &current.pos, item_no, 3, -1, fopAcM_GetRoomNo(this), &shape_angle, &scale);
         dComIfGp_event_setItemPartnerId(partner_id);
     }
@@ -1123,7 +1138,7 @@ void daAlink_c::setTradeItemOutHand() {
 
 /* 801187B4-80118840 1130F4 008C+00 5/5 0/0 0/0 .text            checkEndMessage__9daAlink_cFUl */
 BOOL daAlink_c::checkEndMessage(u32 param_0) {
-    if (mMsgClassID == -1) {
+    if (mMsgClassID == fpcM_ERROR_PROCESS_ID_e) {
         mMsgClassID = fopMsgM_messageSet(param_0, 1000);
     } else {
         msg_class* msg = fopMsgM_SearchByID(mMsgClassID);
@@ -1468,10 +1483,9 @@ int daAlink_c::procCoToolDemoInit() {
         return 1;
     }
 
-    f32 tmp_0 = 0.0f;
-    mNormalSpeed = tmp_0;
-    speedF = tmp_0;
-    speed.y = tmp_0;
+    mNormalSpeed = 0.0f;
+    speedF = 0.0f;
+    speed.y = 0.0f;
 
     mUnderAnmHeap[0].resetArcNo();
     mUnderAnmHeap[0].resetIdx();
@@ -1479,7 +1493,7 @@ int daAlink_c::procCoToolDemoInit() {
     mUnderAnmHeap[1].resetIdx();
     mUpperAnmHeap[1].resetIdx();
 
-    setDoubleAnimeBlendRatio(tmp_0);
+    setDoubleAnimeBlendRatio(0.0f);
     mNowAnmPackUnder[1].setAnmTransform(NULL);
     mNowAnmPackUpper[1].setAnmTransform(NULL);
 
@@ -1721,7 +1735,7 @@ int daAlink_c::procCoTalkInit() {
 
     commonProcInit(PROC_TALK);
 
-    if (mDemo.getDemoMode() == 6) {
+    if (mDemo.getDemoMode() == daPy_demo_c::DEMO_UNK_6_e) {
         if (mEquipItem != KANTERA && mEquipItem != NO_ITEM) {
             allUnequip(1);
         }
@@ -2033,9 +2047,9 @@ int daAlink_c::procCoGetItemInit() {
             item_no = dComIfGp_event_getGtItm();
         }
 
-        int item_partner_id = fopAcM_createItemForPresentDemo(&current.pos, item_no, 0, -1,
+        fpc_ProcID item_partner_id = fopAcM_createItemForPresentDemo(&current.pos, item_no, 0, -1,
                                                               fopAcM_GetRoomNo(this), NULL, NULL);
-        if (item_partner_id != 0xFFFFFFFF) {
+        if (item_partner_id != fpcM_ERROR_PROCESS_ID_e) {
             dComIfGp_event_setItemPartnerId(item_partner_id);
         }
 
@@ -2116,7 +2130,7 @@ int daAlink_c::procCoGetItemInit() {
     }
 
     current.angle.y = shape_angle.y;
-    mMsgClassID = -1;
+    mMsgClassID = fpcM_ERROR_PROCESS_ID_e;
     mProcVar0.field_0x3008 = 0;
     field_0x3198 = 0;
     field_0x32cc = 0;
@@ -2283,7 +2297,7 @@ int daAlink_c::procCoGetItem() {
                             dComIfGs_isItemFirstBit(mProcVar2.field_0x300c))
                         {
                             field_0x32cc += 2000;
-                            mMsgClassID = -1;
+                            mMsgClassID = fpcM_ERROR_PROCESS_ID_e;
                             return 1;
                         }
 
@@ -2293,7 +2307,7 @@ int daAlink_c::procCoGetItem() {
                             }
 
                             field_0x32cc += 0x5DC;
-                            mMsgClassID = -1;
+                            mMsgClassID = fpcM_ERROR_PROCESS_ID_e;
                             return 1;
                         }
                     }
@@ -2624,9 +2638,8 @@ int daAlink_c::procMonkeyMoveInit() {
     current.angle.y = shape_angle.y;
     setSpecialGravity(0.0f, maxFallSpeed, 0);
 
-    f32 tmp_0 = 0.0f;
-    speed.y = tmp_0;
-    mNormalSpeed = tmp_0;
+    speed.y = 0.0f;
+    mNormalSpeed = 0.0f;
     deleteEquipItem(FALSE, FALSE);
 
     if (!checkWolf()) {
@@ -2964,10 +2977,9 @@ int daAlink_c::procCoCaughtInit() {
         onModeFlg(0x40000);
     }
 
-    f32 tmp_0 = 0.0f;
-    mNormalSpeed = tmp_0;
-    speed.y = tmp_0;
-    setSpecialGravity(tmp_0, maxFallSpeed, 0);
+    mNormalSpeed = 0.0f;
+    speed.y = 0.0f;
+    setSpecialGravity(0.0f, maxFallSpeed, 0);
     mBodyAngle.z = 0;
     return 1;
 }
@@ -3453,10 +3465,9 @@ int daAlink_c::procZoraMoveInit() {
     }
 
     setSingleAnimeBase(ANM_HORSE_TAME_WAIT_B);
-    f32 tmp_0 = 0.0f;
-    speed.y = tmp_0;
-    mNormalSpeed = tmp_0;
-    setSpecialGravity(tmp_0, maxFallSpeed, 0);
+    speed.y = 0.0f;
+    mNormalSpeed = 0.0f;
+    setSpecialGravity(0.0f, maxFallSpeed, 0);
 
     deleteEquipItem(FALSE, TRUE);
     mProcVar4.field_0x3010 = 5000;
@@ -3661,7 +3672,7 @@ int daAlink_c::procNotUseItemInit(int param_0) {
     setSingleAnimeBase(ANM_TRADE_ITEM_PULL_OUT);
 
     mNormalSpeed = 0.0f;
-    mMsgClassID = -1;
+    mMsgClassID = fpcM_ERROR_PROCESS_ID_e;
     field_0x3198 = param_0;
     mProcVar2.field_0x300c = 0;
     mProcVar3.field_0x300e = 0;
@@ -3684,7 +3695,7 @@ int daAlink_c::procNotUseItemInit(int param_0) {
 /* 8011E57C-8011E6E0 118EBC 0164+00 1/0 0/0 0/0 .text            procNotUseItem__9daAlink_cFv */
 int daAlink_c::procNotUseItem() {
     if (mProcVar2.field_0x300c == 0) {
-        u32 item_partner_id = fopAcM_createItemForPresentDemo(
+        fpc_ProcID item_partner_id = fopAcM_createItemForPresentDemo(
             &current.pos, field_0x3198, 5, -1, fopAcM_GetRoomNo(this), &shape_angle, &scale);
         dComIfGp_event_setItemPartnerId(item_partner_id);
         mProcVar2.field_0x300c = 1;
@@ -3821,9 +3832,8 @@ int daAlink_c::procGanonFinishInit() {
 
     setSingleAnimeBase(ANM_GANON_FINISH);
 
-    f32 tmp_0 = 0.0f;
-    mNormalSpeed = tmp_0;
-    speed.y = tmp_0;
+    mNormalSpeed = 0.0f;
+    speed.y = 0.0f;
 
     field_0x37c8 = current.pos;
     onEndResetFlg1(ERFLG1_GANON_FINISH);
@@ -3944,7 +3954,7 @@ int daAlink_c::procDungeonWarpReadyInit() {
         return 0;
     }
 
-    u32 id;
+    fpc_ProcID id;
     if (checkItemSetButton(DUNGEON_EXIT) != 2) {
         id = fopAcM_create(PROC_OBJ_TKS, 0, &current.pos, fopAcM_GetRoomNo(this), &shape_angle,
                            NULL, -1);
@@ -3953,7 +3963,7 @@ int daAlink_c::procDungeonWarpReadyInit() {
                            NULL, -1);
     }
 
-    if (id == -1) {
+    if (id == fpcM_ERROR_PROCESS_ID_e) {
         return 0;
     }
 
@@ -4409,7 +4419,7 @@ int daAlink_c::procCoWarp() {
         setSpecialGravity(var_f1, maxFallSpeed, 1);
     }
 
-    if (mDemo.getDemoMode() == 0x2D) {
+    if (mDemo.getDemoMode() == daPy_demo_c::DEMO_UNK_45_e) {
         if (mProcVar5.field_0x3012 == 0) {
             mProcVar5.field_0x3012 = 1;
         }
@@ -4435,7 +4445,7 @@ int daAlink_c::procCoWarp() {
             mProcVar0.field_0x3008--;
         } else if (warpModelTexScroll()) {
             if (mProcVar2.field_0x300c != 0) {
-                if (mDemo.getDemoMode() == 0x2D) {
+                if (mDemo.getDemoMode() == daPy_demo_c::DEMO_UNK_45_e) {
                     if (mProcVar1.field_0x300a != 0) {
                         if (field_0x3174 == 4) {
                             dComIfGp_setNextStage(dComIfGp_getStartStageName(), mProcVar4.field_0x3010,

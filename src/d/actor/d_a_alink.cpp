@@ -61,7 +61,7 @@ u8 struct_80450FBC[4];
 static fopAc_ac_c* daAlink_searchTagKandelaar(fopAc_ac_c* i_actor, void* i_data);
 
 /* 8009D87C-8009D884 0981BC 0008+00 0/0 1/1 0/0 .text            getE3Zhint__9daAlink_cFv */
-bool daAlink_c::getE3Zhint() {
+BOOL daAlink_c::getE3Zhint() {
     return false;
 }
 
