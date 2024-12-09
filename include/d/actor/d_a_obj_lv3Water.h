@@ -17,6 +17,13 @@ class daLv3Water_c : public dBgS_MoveBgActor,
                      public request_of_phase_process_class,
                      public dEvLib_callback_c {
 public:
+    typedef void (daLv3Water_c::*modeFunc)();
+
+    enum Mode {
+        WAIT,
+        LEVEL_CTRL,
+    };
+
     daLv3Water_c() : dEvLib_callback_c(this) {}
 
     /* 80C58838 */ void setBaseMtx();

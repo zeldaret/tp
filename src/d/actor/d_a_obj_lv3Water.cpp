@@ -14,18 +14,11 @@
 static daLv3Water_HIO_c l_HIO;
 
 /* 80C5A13C-80C5A148 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-// unused data?
-#pragma push
-#pragma force_active on
 static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-#pragma pop
 
 /* 80C5A148-80C5A15C 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-// unused data?
-#pragma push
-#pragma force_active on
 static u32 lit_1787[1 + 4 /* padding */] = {
     0x02000201,
     /* padding */
@@ -34,7 +27,6 @@ static u32 lit_1787[1 + 4 /* padding */] = {
     0x3FE00000,
     0x00000000,
 };
-#pragma pop
 
 /* 80C5A15C-80C5A1B0 -00001 0054+00 3/3 0/0 0/0 .data            l_resNameIdx */
 static char* l_resNameIdx[] = {
@@ -43,8 +35,7 @@ static char* l_resNameIdx[] = {
     "Kr11wat00", "Kr12wat00", "Kr13wat00", "Kr13wat01", "Kr13wat02", "Kr03wat05", "Kr03wat06",
 };
 
-typedef void (daLv3Water_c::*mode_func)();
-static mode_func l_mode_func[] = {
+static daLv3Water_c::modeFunc l_mode_func[] = {
     &daLv3Water_c::mode_proc_wait,
     &daLv3Water_c::mode_proc_levelCtrl,
 };
@@ -194,7 +185,7 @@ int daLv3Water_c::create() {
 
         fopAcM_SetMtx(this, mpModel1->getBaseTRMtx());
         setBaseMtx();
-        mMode = 0;
+        mMode = WAIT;
     }
 
     return phase;
@@ -315,7 +306,7 @@ void daLv3Water_c::mode_init_levelCtrl() {
         fopAcM_seStartCurrent(this, Z2SE_ENV_FILL_UP_LV3WTR3, 0);
     }
 
-    mMode = 1;
+    mMode = LEVEL_CTRL;
 }
 
 /* 80C597FC-80C598BC 00111C 00C0+00 1/0 0/0 0/0 .text mode_proc_levelCtrl__12daLv3Water_cFv */
@@ -332,7 +323,7 @@ void daLv3Water_c::mode_proc_levelCtrl() {
         field_0x600 = field_0x600 + 1;
         if (field_0x600 >= field_0x601) {
             fVar = mSwitch1;
-            mMode = 0;
+            mMode = WAIT;
         }
 
         current.pos.y = home.pos.y + field_0x5fc * fVar;
@@ -406,7 +397,7 @@ BOOL daLv3Water_c::eventStart() {
             current.pos.y = home.pos.y + field_0x5fc;
         }
         field_0x605 = mSwitch2;
-        mMode = 0;
+        mMode = WAIT;
     } else {
         mode_init_levelCtrl();
     }
