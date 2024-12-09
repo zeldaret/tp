@@ -1832,7 +1832,7 @@ config.libs = [
     ActorRel(Matching, "d_a_obj_graWall"),
     ActorRel(NonMatching, "d_a_obj_gra_rock"),
     ActorRel(Matching, "d_a_obj_grave_stone"),
-    ActorRel(NonMatching, "d_a_obj_groundwater"),
+    ActorRel(Matching, "d_a_obj_groundwater"),
     ActorRel(NonMatching, "d_a_obj_grz_rock"),
     ActorRel(NonMatching, "d_a_obj_h_saku"),
     ActorRel(NonMatching, "d_a_obj_hakai_brl"),

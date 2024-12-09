@@ -36,4 +36,6 @@ public:
     static MoveBGActor_SetFunc m_set_func;
 };
 
+STATIC_ASSERT(sizeof(dBgS_MoveBgActor) == 0x5a0);
+
 #endif /* D_BG_D_BG_S_MOVEBG_ACTOR_H */
