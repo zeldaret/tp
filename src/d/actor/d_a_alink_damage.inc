@@ -649,7 +649,7 @@ BOOL daAlink_c::checkDamageAction() {
                                 return procHorseHangInit(var_r29, 0);
                             }
                         } else if (at_spl == 8 || checkModeFlg(0x70C52)) {
-                            if (!checkModeFlg(0x400) && mEquipItem != IRONBALL) {
+                            if (!checkModeFlg(0x400) && mEquipItem != fpcNm_ITEM_IRONBALL) {
                                 setSmallGuard(var_r29);
                             }
                         } else {
@@ -1670,7 +1670,7 @@ int daAlink_c::procCoElecDamageInit(fopAc_ac_c* param_0, dCcD_GObjInf* param_1, 
     daAlink_ANM var_r29;
     daAlink_WANM var_r28;
     if ((mLinkAcch.i_ChkGroundHit() && !temp_r27) || checkMagneBootsOn()) {
-        if (mEquipItem == IRONBALL) {
+        if (mEquipItem == fpcNm_ITEM_IRONBALL) {
             setIronBallWaitUpperAnime(1);
         }
         var_r29 = ANM_ELEC_STUN_GND;

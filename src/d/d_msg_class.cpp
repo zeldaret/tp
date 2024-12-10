@@ -1646,12 +1646,12 @@ bool jmessage_tMeasureProcessor::do_tag(u32 i_tag, void const* i_data, u32 i_siz
             push_word(bomb_price_text);
             return true;
         case 0x37:
-            u8 bomb_type = NORMAL_BOMB;
+            u8 bomb_type = fpcNm_ITEM_NORMAL_BOMB;
 
             if (*(u8*)i_data == 1) {
-                bomb_type = WATER_BOMB;
+                bomb_type = fpcNm_ITEM_WATER_BOMB;
             } else if (*(u8*)i_data == 2) {
-                bomb_type = POKE_BOMB;
+                bomb_type = fpcNm_ITEM_POKE_BOMB;
             }
 
             char bomb_max_text[40];

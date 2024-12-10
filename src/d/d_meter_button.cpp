@@ -1178,11 +1178,11 @@ void dMeterButton_c::screenInitButton() {
 
     u8 fishing_item = dComIfGs_getItem(SLOT_20, false);
     if (dMeter2Info_getMeterClass()->getMeterDrawPtr()->getCanoeFishing()) {
-        fishing_item = LURE_ROD;
+        fishing_item = fpcNm_ITEM_LURE_ROD;
     }
 
-    if (fishing_item == NO_ITEM) {
-        fishing_item = FISHING_ROD_1;
+    if (fishing_item == fpcNm_ITEM_NONE) {
+        fishing_item = fpcNm_ITEM_FISHING_ROD_1;
     }
 
     dMeter2Info_readItemTexture(fishing_item, mpFishingTex,

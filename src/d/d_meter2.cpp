@@ -188,22 +188,22 @@ int dMeter2_c::_create() {
 
     for (int i = 0; i < 2; i++) {
         if (field_0x128 == 0) {
-            if (mItemStatus[i * 2] == BOMB_BAG_LV1 || mItemStatus[i * 2] == NORMAL_BOMB ||
-                mItemStatus[i * 2] == WATER_BOMB || mItemStatus[i * 2] == POKE_BOMB)
+            if (mItemStatus[i * 2] == fpcNm_ITEM_BOMB_BAG_LV1 || mItemStatus[i * 2] == fpcNm_ITEM_NORMAL_BOMB ||
+                mItemStatus[i * 2] == fpcNm_ITEM_WATER_BOMB || mItemStatus[i * 2] == fpcNm_ITEM_POKE_BOMB)
             {
                 mpMeterDraw->setItemNum(i, dComIfGp_getSelectItemNum(i),
                                         dComIfGp_getSelectItemMaxNum(i));
-            } else if (mItemStatus[i * 2] == BEE_CHILD) {
+            } else if (mItemStatus[i * 2] == fpcNm_ITEM_BEE_CHILD) {
                 mpMeterDraw->setItemNum(i, dComIfGp_getSelectItemNum(i),
                                         dComIfGp_getSelectItemMaxNum(i));
-            } else if (mItemStatus[i * 2] == BOW || mItemStatus[i * 2] == LIGHT_ARROW ||
-                       mItemStatus[i * 2] == ARROW_LV1 || mItemStatus[i * 2] == ARROW_LV2 ||
-                       mItemStatus[i * 2] == ARROW_LV3 || mItemStatus[i * 2] == HAWK_ARROW)
+            } else if (mItemStatus[i * 2] == fpcNm_ITEM_BOW || mItemStatus[i * 2] == fpcNm_ITEM_LIGHT_ARROW ||
+                       mItemStatus[i * 2] == fpcNm_ITEM_ARROW_LV1 || mItemStatus[i * 2] == fpcNm_ITEM_ARROW_LV2 ||
+                       mItemStatus[i * 2] == fpcNm_ITEM_ARROW_LV3 || mItemStatus[i * 2] == fpcNm_ITEM_HAWK_ARROW)
             {
                 mpMeterDraw->setItemNum(i, mArrowNum, dComIfGs_getArrowMax());
-            } else if (mItemStatus[i * 2] == PACHINKO) {
+            } else if (mItemStatus[i * 2] == fpcNm_ITEM_PACHINKO) {
                 mpMeterDraw->setItemNum(i, mPachinkoNum, dComIfGs_getPachinkoMax());
-            } else if (mItemStatus[i * 2] == BOMB_ARROW) {
+            } else if (mItemStatus[i * 2] == fpcNm_ITEM_BOMB_ARROW) {
                 u8 item_num = dComIfGp_getSelectItemNum(i);
                 u8 item_max = dComIfGp_getSelectItemMaxNum(i);
                 if (item_num > mArrowNum) {
@@ -2499,7 +2499,7 @@ void dMeter2_c::moveBombNum() {
         temp_r31 = dComIfGs_getItem((u8)(i + SLOT_15), true);
         temp_r28 = dComIfGs_getItem((u8)(i + SLOT_15), false);
 
-        if (temp_r31 != NO_ITEM && temp_r31 != BOMB_BAG_LV1) {
+        if (temp_r31 != fpcNm_ITEM_NONE && temp_r31 != fpcNm_ITEM_BOMB_BAG_LV1) {
             if (g_mwHIO.getBombFlag() ||
                 (dMeter2Info_getMiniGameItemSetFlag() == 1 && i == dMeter2Info_getRentalBombBag()))
             {
@@ -2527,7 +2527,7 @@ void dMeter2_c::moveBombNum() {
                 }
 
                 if (var_r22 == 0) {
-                    if (temp_r31 == BOMB_ARROW) {
+                    if (temp_r31 == fpcNm_ITEM_BOMB_ARROW) {
                         for (int j = 0; j < 2; j++) {
                             if (i + SLOT_15 == dComIfGs_getSelectItemIndex(j) ||
                                 i + SLOT_15 == dComIfGs_getMixItemIndex(j))
@@ -2538,8 +2538,8 @@ void dMeter2_c::moveBombNum() {
                             }
                         }
                     }
-                    dComIfGs_setItem(i + SLOT_15, BOMB_BAG_LV1);
-                    dComIfGp_setItem(i + SLOT_15, BOMB_BAG_LV1);
+                    dComIfGs_setItem(i + SLOT_15, fpcNm_ITEM_BOMB_BAG_LV1);
+                    dComIfGp_setItem(i + SLOT_15, fpcNm_ITEM_BOMB_BAG_LV1);
 
                     for (int j = 0; j < 2; j++) {
                         if (i + SLOT_15 == dComIfGs_getSelectMixItemNoArrowIndex(j)) {
@@ -2551,7 +2551,7 @@ void dMeter2_c::moveBombNum() {
                 dComIfGs_setBombNum(i, var_r22);
                 mBombMax[i] = dComIfGs_getBombMax(temp_r28);
 
-                if (temp_r31 != BOMB_ARROW) {
+                if (temp_r31 != fpcNm_ITEM_BOMB_ARROW) {
                     for (int j = 0; j < 2; j++) {
                         if (i + SLOT_15 == dComIfGs_getSelectMixItemNoArrowIndex(j)) {
                             mpMeterDraw->setItemNum(j, dComIfGp_getSelectItemNum(j),
@@ -2561,7 +2561,7 @@ void dMeter2_c::moveBombNum() {
                 }
             }
         } else {
-            if (temp_r31 != BOMB_BAG_LV1) {
+            if (temp_r31 != fpcNm_ITEM_BOMB_BAG_LV1) {
                 dComIfGs_setBombNum(i, 0);
             }
 
@@ -2592,7 +2592,7 @@ void dMeter2_c::moveBombNum() {
 /* 80224258-80224354 21EB98 00FC+00 1/1 0/0 0/0 .text            moveBottleNum__9dMeter2_cFv */
 void dMeter2_c::moveBottleNum() {
     for (int i = 0; i < 4; i++) {
-        if (dComIfGs_getItem((u8)(i + SLOT_11), true) == BEE_CHILD) {
+        if (dComIfGs_getItem((u8)(i + SLOT_11), true) == fpcNm_ITEM_BEE_CHILD) {
             if (mBottleNum[i] != dComIfGs_getBottleNum(i)) {
                 for (int j = 0; j < 2; j++) {
                     if (i + SLOT_11 == dComIfGs_getSelectItemIndex(j)) {
@@ -2668,14 +2668,14 @@ void dMeter2_c::moveArrowNum() {
         i = 0;
         var_r28 = 0;
         for (; i < 2; i++, var_r28 += 2) {
-            if (mItemStatus[var_r28] == BOW || mItemStatus[var_r28] == LIGHT_ARROW ||
-                mItemStatus[var_r28] == ARROW_LV1 || mItemStatus[var_r28] == ARROW_LV2 ||
-                mItemStatus[var_r28] == ARROW_LV3 || mItemStatus[var_r28] == HAWK_ARROW)
+            if (mItemStatus[var_r28] == fpcNm_ITEM_BOW || mItemStatus[var_r28] == fpcNm_ITEM_LIGHT_ARROW ||
+                mItemStatus[var_r28] == fpcNm_ITEM_ARROW_LV1 || mItemStatus[var_r28] == fpcNm_ITEM_ARROW_LV2 ||
+                mItemStatus[var_r28] == fpcNm_ITEM_ARROW_LV3 || mItemStatus[var_r28] == fpcNm_ITEM_HAWK_ARROW)
             {
                 mpMeterDraw->setItemNum(i, mArrowNum, dComIfGs_getArrowMax());
-            } else if (mItemStatus[var_r28] == PACHINKO) {
+            } else if (mItemStatus[var_r28] == fpcNm_ITEM_PACHINKO) {
                 mpMeterDraw->setItemNum(i, mPachinkoNum, dComIfGs_getPachinkoMax());
-            } else if (mItemStatus[var_r28] == BOMB_ARROW) {
+            } else if (mItemStatus[var_r28] == fpcNm_ITEM_BOMB_ARROW) {
                 var_r27 = dComIfGp_getSelectItemNum(i);
                 var_r6_2 = dComIfGp_getSelectItemMaxNum(i);
 
@@ -2750,7 +2750,7 @@ void dMeter2_c::movePachinkoNum() {
     }
 
     for (int i = 0; i < 2; i++) {
-        if (mItemStatus[i * 2] == PACHINKO) {
+        if (mItemStatus[i * 2] == fpcNm_ITEM_PACHINKO) {
             mpMeterDraw->setItemNum(i, mPachinkoNum, dComIfGs_getPachinkoMax());
         }
     }
@@ -2777,7 +2777,7 @@ void dMeter2_c::alphaAnimeLife() {
 
 /* 80224A04-80224BAC 21F344 01A8+00 1/1 0/0 0/0 .text            alphaAnimeKantera__9dMeter2_cFv */
 void dMeter2_c::alphaAnimeKantera() {
-    if (dComIfGs_getMaxOil() == 0 || dComIfGs_getItem(SLOT_1, true) != KANTERA ||
+    if (dComIfGs_getMaxOil() == 0 || dComIfGs_getItem(SLOT_1, true) != fpcNm_ITEM_KANTERA ||
         !daPy_getPlayerActorClass()->checkUseKandelaar(0) || (mStatus & 0x4000) ||
         ((mStatus & 0x40) && dComIfGp_event_checkHind(0x400)) || dComIfGp_getOxygenShowFlag() ||
         ((daPy_getPlayerActorClass()->getSumouMode() != 0) ||
@@ -2940,20 +2940,20 @@ void dMeter2_c::alphaAnimeButton() {
                                         field_0x128 == 0 ? true : false);
 
         if (field_0x128 == 0 && dMeter2Info_getMiniGameItemSetFlag() != 1 &&
-            (mItemStatus[i * 2] == BOW || mItemStatus[i * 2] == LIGHT_ARROW ||
-             mItemStatus[i * 2] == ARROW_LV1 || mItemStatus[i * 2] == ARROW_LV2 ||
-             mItemStatus[i * 2] == ARROW_LV3 || mItemStatus[i * 2] == BOMB_BAG_LV1 ||
-             mItemStatus[i * 2] == NORMAL_BOMB || mItemStatus[i * 2] == WATER_BOMB ||
-             mItemStatus[i * 2] == POKE_BOMB || mItemStatus[i * 2] == HAWK_ARROW ||
-             mItemStatus[i * 2] == BOMB_ARROW || mItemStatus[i * 2] == PACHINKO ||
-             mItemStatus[i * 2] == BEE_CHILD))
+            (mItemStatus[i * 2] == fpcNm_ITEM_BOW || mItemStatus[i * 2] == fpcNm_ITEM_LIGHT_ARROW ||
+             mItemStatus[i * 2] == fpcNm_ITEM_ARROW_LV1 || mItemStatus[i * 2] == fpcNm_ITEM_ARROW_LV2 ||
+             mItemStatus[i * 2] == fpcNm_ITEM_ARROW_LV3 || mItemStatus[i * 2] == fpcNm_ITEM_BOMB_BAG_LV1 ||
+             mItemStatus[i * 2] == fpcNm_ITEM_NORMAL_BOMB || mItemStatus[i * 2] == fpcNm_ITEM_WATER_BOMB ||
+             mItemStatus[i * 2] == fpcNm_ITEM_POKE_BOMB || mItemStatus[i * 2] == fpcNm_ITEM_HAWK_ARROW ||
+             mItemStatus[i * 2] == fpcNm_ITEM_BOMB_ARROW || mItemStatus[i * 2] == fpcNm_ITEM_PACHINKO ||
+             mItemStatus[i * 2] == fpcNm_ITEM_BEE_CHILD))
         {
             mpMeterDraw->drawItemNum(i, 1.0f);
         } else {
             mpMeterDraw->drawItemNum(i, 0.0f);
         }
 
-        if (field_0x128 == 0 && mItemStatus[i * 2] == KANTERA) {
+        if (field_0x128 == 0 && mItemStatus[i * 2] == fpcNm_ITEM_KANTERA) {
             mpMeterDraw->drawKanteraMeter(i, 1.0f);
         } else {
             mpMeterDraw->drawKanteraMeter(i, 0.0f);
@@ -3065,10 +3065,10 @@ u8 dMeter2_c::isKeyVisible() {
 /* 802259F8-80225A64 220338 006C+00 2/2 0/0 0/0 .text            isArrowEquip__9dMeter2_cFv */
 int dMeter2_c::isArrowEquip() {
     for (int i = 0; i < 2; i++) {
-        if (mItemStatus[i * 2] == BOW || mItemStatus[i * 2] == LIGHT_ARROW ||
-            mItemStatus[i * 2] == ARROW_LV1 || mItemStatus[i * 2] == ARROW_LV2 ||
-            mItemStatus[i * 2] == ARROW_LV3 || mItemStatus[i * 2] == HAWK_ARROW ||
-            mItemStatus[i * 2] == BOMB_ARROW)
+        if (mItemStatus[i * 2] == fpcNm_ITEM_BOW || mItemStatus[i * 2] == fpcNm_ITEM_LIGHT_ARROW ||
+            mItemStatus[i * 2] == fpcNm_ITEM_ARROW_LV1 || mItemStatus[i * 2] == fpcNm_ITEM_ARROW_LV2 ||
+            mItemStatus[i * 2] == fpcNm_ITEM_ARROW_LV3 || mItemStatus[i * 2] == fpcNm_ITEM_HAWK_ARROW ||
+            mItemStatus[i * 2] == fpcNm_ITEM_BOMB_ARROW)
         {
             return i + 1;
         }
@@ -3079,7 +3079,7 @@ int dMeter2_c::isArrowEquip() {
 /* 80225A64-80225AA0 2203A4 003C+00 2/2 0/0 0/0 .text            isPachinkoEquip__9dMeter2_cFv */
 int dMeter2_c::isPachinkoEquip() {
     for (int i = 0; i < 2; i++) {
-        if (mItemStatus[i * 2] == PACHINKO) {
+        if (mItemStatus[i * 2] == fpcNm_ITEM_PACHINKO) {
             return i + 1;
         }
     }

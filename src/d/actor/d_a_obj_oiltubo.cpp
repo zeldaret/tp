@@ -289,7 +289,7 @@ int daObj_Oiltubo_c::wait(void* unused) {
     switch (mMode) {
     case 1:
         if (!eventInfo.i_checkCommandCatch()) {
-            dComIfGp_att_CatchRequest(this, OIL_BOTTLE_2, 100.0f, 50.0f, -50.0f, 0x2000, 1);
+            dComIfGp_att_CatchRequest(this, fpcNm_ITEM_OIL_BOTTLE_2, 100.0f, 50.0f, -50.0f, 0x2000, 1);
             eventInfo.i_onCondition(0x40);
         }
         break;

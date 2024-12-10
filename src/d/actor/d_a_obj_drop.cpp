@@ -127,7 +127,7 @@ void daObjDrop_c::dropGet() {
         s8 area = dComIfGp_getStartStageDarkArea();
         // "Drop of Light No%d<%d/%d> Get Area<%d>!\n"
         OS_REPORT("光の雫No%d<%d/%d>ゲットArea<%d>！\n", getSave(), num + 1, need_num, area);
-        execItemGet(HEART);
+        execItemGet(fpcNm_ITEM_HEART);
         mSetCollectDrop = false;
     }
 }

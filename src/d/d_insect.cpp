@@ -31,7 +31,7 @@ dInsect_c::dInsect_c() {
     field_0x56C = 0;
     mDraw = true;
     m_mode = 0;
-    m_itemNo = M_MAYFLY;
+    m_itemNo = fpcNm_ITEM_M_MAYFLY;
     field_0x584 = 0;
     field_0x585 = 0;
 }
@@ -80,7 +80,7 @@ void dInsect_c::Insect_GetDemoMain() {
                 mDraw = true;
                 m_mode = 0;
                 if (field_0x584 == 0) {
-                    fopAcM_createItem(&current.pos, HEART, -1, -1, NULL, NULL, 0);
+                    fopAcM_createItem(&current.pos, fpcNm_ITEM_HEART, -1, -1, NULL, NULL, 0);
                     field_0x584 = 1;
                 }
             } else {

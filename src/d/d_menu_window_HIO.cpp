@@ -13,9 +13,9 @@ dMw_HIO_c::dMw_HIO_c() {
 
 /* 801F9B38-801F9E14 1F4478 02DC+00 1/1 0/0 0/0 .text            init__9dMw_HIO_cFv */
 void dMw_HIO_c::init() {
-    static u8 m_cloth_item[3] = {WEAR_KOKIRI, ARMOR, WEAR_ZORA};
-    static u8 m_sword_item[4] = {SWORD, MASTER_SWORD, LIGHT_SWORD, WOOD_STICK};
-    static u8 m_shield_item[3] = {SHIELD, HYLIA_SHIELD, WOOD_SHIELD};
+    static u8 m_cloth_item[3] = {fpcNm_ITEM_WEAR_KOKIRI, fpcNm_ITEM_ARMOR, fpcNm_ITEM_WEAR_ZORA};
+    static u8 m_sword_item[4] = {fpcNm_ITEM_SWORD, fpcNm_ITEM_MASTER_SWORD, fpcNm_ITEM_LIGHT_SWORD, fpcNm_ITEM_WOOD_STICK};
+    static u8 m_shield_item[3] = {fpcNm_ITEM_SHIELD, fpcNm_ITEM_HYLIA_SHIELD, fpcNm_ITEM_WOOD_SHIELD};
 
     mArrowFlag = 0;
     mBombFlag = 0;
@@ -57,8 +57,8 @@ void dMw_HIO_c::init() {
     mDonationAmount = 0;
 
     for (int i = 0; i < 24; i++) {
-        mItemsCopy[i] = NO_ITEM;
-        mItems[i] = NO_ITEM;
+        mItemsCopy[i] = fpcNm_ITEM_NONE;
+        mItems[i] = fpcNm_ITEM_NONE;
         field_0x7a[i] = 0;
     }
 
@@ -72,8 +72,8 @@ void dMw_HIO_c::init() {
         mBombNum[i] = 0;
     }
 
-    mScentCopy = NO_ITEM;
-    mScent = NO_ITEM;
+    mScentCopy = fpcNm_ITEM_NONE;
+    mScent = fpcNm_ITEM_NONE;
     field_0xa8 = 0;
     field_0xf4 = 0;
     field_0xea = 0;

@@ -51,7 +51,7 @@ struct dCamMapToolData {
 struct dCamForcusLine {
     /* 801824C8 */ void Init();
     /* 80182560 */ void Draw();
-    /* 801825E4 */ void Off();
+    /* 801825E4 */ bool Off();
 
     /* 0x00 */ dDlst_effectLine_c mEffectLine;
     /* 0x38 */ cXyz field_0x38;
@@ -227,13 +227,15 @@ public:
     };
 
     struct Shake {
-        /* 0x00 */ u8 field_0x0[12];
-        /* 0x0C */ int field_0xc;
+        /* 0x00 */ u8 field_0x0[4];
+        /* 0x04 */ u8 field_0x4[4];
+        /* 0x08 */ u8 field_0x8[0xC - 0x8];
+        /* 0x0C */ s32 m_length;
         /* 0x10 */ int field_0x10;
         /* 0x14 */ u8 field_0x14[4];
-        /* 0x18 */ cXyz field_0x18;
+        /* 0x18 */ cXyz m_pos;
         /* 0x24 */ cXyz field_0x24;
-        /* 0x30 */ cXyz field_0x30;
+        /* 0x30 */ cXyz mEyeShake;
         /* 0x3C */ f32 field_0x3c;
         /* 0x40 */ cSAngle field_0x40;
     };  // Size: 0x44
@@ -254,37 +256,37 @@ public:
     /* 800894C4 */ fopAc_ac_c* getEvActor(char*);
     /* 800895F4 */ fopAc_ac_c* getEvActor(char*, char*);
     /* 80089730 */ int pauseEvCamera();
-    /* 800897E8 */ void fixedFrameEvCamera();
-    /* 8008A510 */ void stokerEvCamera();
-    /* 8008A974 */ void rollingEvCamera();
-    /* 8008B9B0 */ void fixedPositionEvCamera();
-    /* 8008BE2C */ void uniformTransEvCamera();
-    /* 8008BE50 */ void uniformBrakeEvCamera();
-    /* 8008BE74 */ void uniformAcceleEvCamera();
+    /* 800897E8 */ int fixedFrameEvCamera();
+    /* 8008A510 */ int stokerEvCamera();
+    /* 8008A974 */ int rollingEvCamera();
+    /* 8008B9B0 */ int fixedPositionEvCamera();
+    /* 8008BE2C */ int uniformTransEvCamera();
+    /* 8008BE50 */ int uniformBrakeEvCamera();
+    /* 8008BE74 */ int uniformAcceleEvCamera();
     /* 8008BE98 */ void transEvCamera(int);
-    /* 8008E938 */ void watchActorEvCamera();
-    /* 8008FAE8 */ void restorePosEvCamera();
-    /* 80090174 */ void talktoEvCamera();
+    /* 8008E938 */ int watchActorEvCamera();
+    /* 8008FAE8 */ int restorePosEvCamera();
+    /* 80090174 */ int talktoEvCamera();
     /* 80090230 */ bool maptoolIdEvCamera();
-    /* 80090478 */ bool styleEvCamera();
-    /* 80090514 */ void gameOverEvCamera();
-    /* 80091468 */ void tactEvCamera();
-    /* 800923B8 */ bool turnToActorEvCamera();
-    /* 800923C0 */ bool stbWaitEvCamera();
-    /* 800924D0 */ bool saveEvCamera();
-    /* 8009258C */ void loadEvCamera();
-    /* 800929AC */ void useItem0EvCamera();
-    /* 800937AC */ void useItem1EvCamera();
-    /* 80094240 */ void getItemEvCamera();
-    /* 80094A70 */ void possessedEvCamera();
-    /* 80095010 */ void fixedFramesEvCamera();
-    /* 8009544C */ void bSplineEvCamera();
-    /* 800956E4 */ void twoActor0EvCamera();
-    /* 80095E7C */ void peepHoleEvCamera();
-    /* 80095FD0 */ void digHoleEvCamera();
-    /* 800965AC */ void hintTalkEvCamera();
-    /* 80096EDC */ void bspTransEvCamera();
-    /* 80097694 */ bool portalWarpEvCamera();
+    /* 80090478 */ int styleEvCamera();
+    /* 80090514 */ int gameOverEvCamera();
+    /* 80091468 */ int tactEvCamera();
+    /* 800923B8 */ int turnToActorEvCamera();
+    /* 800923C0 */ int stbWaitEvCamera();
+    /* 800924D0 */ int saveEvCamera();
+    /* 8009258C */ int loadEvCamera();
+    /* 800929AC */ int useItem0EvCamera();
+    /* 800937AC */ int useItem1EvCamera();
+    /* 80094240 */ int getItemEvCamera();
+    /* 80094A70 */ int possessedEvCamera();
+    /* 80095010 */ int fixedFramesEvCamera();
+    /* 8009544C */ int bSplineEvCamera();
+    /* 800956E4 */ int twoActor0EvCamera();
+    /* 80095E7C */ int peepHoleEvCamera();
+    /* 80095FD0 */ int digHoleEvCamera();
+    /* 800965AC */ int hintTalkEvCamera();
+    /* 80096EDC */ int bspTransEvCamera();
+    /* 80097694 */ int portalWarpEvCamera();
     /* 8009771C */ cXyz attentionPos(fopAc_ac_c*);
     /* 80097738 */ cSAngle directionOf(fopAc_ac_c*);
     /* 8009775C */ cXyz positionOf(fopAc_ac_c*);
@@ -334,7 +336,7 @@ public:
     /* 80165104 */ void setUSOAngle();
     /* 80165158 */ cSAngle getUSOAngle(cSAngle);
     /* 8016517C */ bool pointInSight(cXyz*);
-    /* 80167C24 */ void radiusActorInSight(fopAc_ac_c*, fopAc_ac_c*, fopAc_ac_c*);
+    /* 80167C24 */ f32 radiusActorInSight(fopAc_ac_c*, fopAc_ac_c*, fopAc_ac_c*);
     /* 80165238 */ f32 radiusActorInSight(fopAc_ac_c*, fopAc_ac_c*, cXyz*, cXyz*, f32, s16, f32);
     /* 801657EC */ f32 groundHeight(cXyz*);
     /* 801658C0 */ bool lineBGCheck(cXyz*, cXyz*, dBgS_LinChk*, u32);
@@ -346,8 +348,8 @@ public:
     /* 80165FB4 */ void setView(f32, f32, f32, f32);
     /* 8016608C */ cSAngle forwardCheckAngle();
     /* 80166764 */ void bumpCheck(u32);
-    /* 80167BF8 */ void lineBGCheckBoth(cXyz*, cXyz*, dBgS_LinChk*, u32);
-    /* 80167CD8 */ void jutOutCheck(cXyz*, f32);
+    /* 80167BF8 */ bool lineBGCheckBoth(cXyz*, cXyz*, dBgS_LinChk*, u32);
+    /* 80167CD8 */ BOOL jutOutCheck(cXyz*, f32);
     /* 80167E3C */ void tooNearEscape(cXyz*);
     /* 80167EF4 */ f32 getWaterSurfaceHeight(cXyz*);
     /* 80167FEC */ void checkGroundInfo();
@@ -376,20 +378,20 @@ public:
     /* 8017E730 */ bool fixedPositionCamera(s32);
     /* 8017F25C */ bool oneSideCamera(s32);
     /* 8017F828 */ bool eventCamera(s32);
-    /* 8018050C */ void currentEvCamera();
+    /* 8018050C */ int currentEvCamera();
     /* 801806D4 */ bool letCamera(s32);
     /* 801806DC */ void setEventRecoveryTrans(s16);
     /* 80180738 */ void runEventRecoveryTrans();
     /* 80180A40 */ void EventRecoverNotime();
-    /* 80180AA8 */ void Set(cXyz, cXyz);
-    /* 80180AE0 */ void Set(cXyz, cXyz, f32, s16);
-    /* 80180B40 */ void Set(cXyz, cXyz, s16, f32);
+    /* 80180AA8 */ int Set(cXyz, cXyz);
+    /* 80180AE0 */ int Set(cXyz, cXyz, f32, s16);
+    /* 80180B40 */ int Set(cXyz, cXyz, s16, f32);
     /* 80180C18 */ void Reset(cXyz, cXyz);
-    /* 80180C68 */ void Reset();
+    /* 80180C68 */ int Reset();
     /* 80180BA0 */ void Reset(cXyz, cXyz, f32, s16);
-    /* 80180D24 */ void shakeCamera();
-    /* 80181000 */ void StartShake(s32, u8*, s32, cXyz);
-    /* 80181158 */ void StopShake();
+    /* 80180D24 */ f32 shakeCamera();
+    /* 80181000 */ int StartShake(s32, u8*, s32, cXyz);
+    /* 80181158 */ int StopShake();
     /* 80181170 */ void StartBlure(int, fopAc_ac_c*, f32, f32);
     /* 801811B8 */ void ResetBlure();
     /* 80181208 */ void SetBlureAlpha(f32);
@@ -399,9 +401,9 @@ public:
     /* 80181280 */ void blureCamera();
     /* 80181490 */ void onHorseDush();
     /* 80181500 */ fopAc_ac_c* GetForceLockOnActor();
-    /* 80181534 */ void ForceLockOn(fopAc_ac_c*);
-    /* 80181560 */ void ForceLockOff(fpc_ProcID);
-    /* 8018159C */ void ForceLockOff(fopAc_ac_c*);
+    /* 80181534 */ int ForceLockOn(fopAc_ac_c*);
+    /* 80181560 */ int ForceLockOff(fpc_ProcID);
+    /* 8018159C */ int ForceLockOff(fopAc_ac_c*);
     /* 80181E20 */ cXyz Up();
     /* 80181E64 */ cXyz Eye();
     /* 80181E98 */ cXyz Center();
@@ -436,6 +438,20 @@ public:
         dAttention_c& attn = dComIfGp_getAttention();
         mpLockonTarget = attn.LockonTruth() ? attn.LockonTarget(0) : NULL;
         attn.LockSoundOn();
+    }
+
+    void SetWindow(f32 param_0, f32 param_1) {
+        field_0x914 = param_0;
+        field_0x918 = param_1;
+        field_0x92c = param_0 / param_1;
+    }
+
+    s16 U2() {
+        if (chkFlag(0x10)) {
+            return field_0x5c.field_0x0.U();
+        } else {
+            return field_0x8c;
+        }
     }
 
     static engine_fn engine_tbl[];
@@ -506,7 +522,7 @@ public:
     /* 0x18C */ u32 field_0x18c;
     /* 0x190 */ int field_0x190;
     /* 0x194 */ bool field_0x194;
-    /* 0x198 */ u32 mLockOnActorID;
+    /* 0x198 */ fpc_ProcID mLockOnActorID;
     /* 0x19C */ fopAc_ac_c* mpLockOnActor;
     /* 0x1A0 */ int mForceLockTimer;
     /* 0x1A4 */ int mCurMode;
@@ -590,13 +606,13 @@ public:
         /* 0x00 */ u8 field_0x0[4];
         /* 0x04 */ int field_0x4;
         /* 0x08 */ csXyz field_0x8;
-        /* 0x10 */ fopAc_ac_c* field_0x10;
+        /* 0x10 */ fopAc_ac_c* mpActor;
         /* 0x14 */ int field_0x14;
-        /* 0x18 */ cXyz mBlurePosition;
-        /* 0x24 */ cXyz mBlureScale;
+        /* 0x18 */ cXyz mPosition;
+        /* 0x24 */ cXyz mScale;
+        /* 0x30 */ f32 mAlpha;
     }
-    /* 0x700 */ field_0x700;
-    /* 0x730 */ f32 mBlureAlpha;
+    /* 0x700 */ mBlure;
     /* 0x734 */ f32 field_0x734;
     /* 0x738 */ f32 field_0x738;
     /* 0x73C */ f32 field_0x73c;
@@ -621,7 +637,8 @@ public:
     /* 0x860 */ dCamMapToolData field_0x860;
     /* 0x89C */ dCamMapToolData field_0x89c;
     /* 0x8D8 */ dCamMapToolData field_0x8d8;
-    /* 0x914 */ u8 field_0x914[0x91c - 0x914];
+    /* 0x914 */ f32 field_0x914;
+    /* 0x918 */ f32 field_0x918;
     /* 0x91C */ f32 field_0x91c;
     /* 0x920 */ f32 mTrimHeight;
     /* 0x924 */ int mTrimSize;

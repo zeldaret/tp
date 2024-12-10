@@ -3,6 +3,11 @@
 
 
 namespace std {
+template<typename T>
+inline double fabs(T x) {
+    return ::fabs(x);
+}
+
 inline float fabs(float num) {
     return ::fabsf(num);
 }

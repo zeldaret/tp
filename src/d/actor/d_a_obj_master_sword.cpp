@@ -143,7 +143,7 @@ void daObjMasterSword_c::executeWait() {
     }
 
     if (fopAcM_checkCarryNow(this)) {
-        dMeter2Info_setCloth(WEAR_KOKIRI, false);
+        dMeter2Info_setCloth(fpcNm_ITEM_WEAR_KOKIRI, false);
         fopAcM_orderMapToolEvent(this, getEventID(), 0xFF, 0xFFFF, 1, 0);
     }
 }
@@ -548,9 +548,9 @@ int daObjMasterSword_c::execute() {
     mBrk.play();
 
     if (dComIfGs_isTmpBit(dSv_event_tmp_flag_c::tempBitLabels[73])) {
-        dComIfGs_onItemFirstBit(MASTER_SWORD);
-        dMeter2Info_setSword(MASTER_SWORD, false);
-        dComIfGs_setSelectEquipSword(MASTER_SWORD);
+        dComIfGs_onItemFirstBit(fpcNm_ITEM_MASTER_SWORD);
+        dMeter2Info_setSword(fpcNm_ITEM_MASTER_SWORD, false);
+        dComIfGs_setSelectEquipSword(fpcNm_ITEM_MASTER_SWORD);
 
         dComIfGp_setItemLifeCount(dComIfGs_getMaxLife(), 0);
         dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[getFlagNo()]);

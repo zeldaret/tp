@@ -344,8 +344,8 @@ void dMeter2Info_c::warpInProc() {
     dComIfGs_setWarpMarkFlag(0);
     dComIfGs_resetLastWarpAcceptStage();
 
-    if (dComIfGs_getItem(SLOT_18, true) != LV7_DUNGEON_EXIT) {
-        dComIfGs_setItem(SLOT_18, DUNGEON_EXIT);
+    if (dComIfGs_getItem(SLOT_18, true) != fpcNm_ITEM_LV7_DUNGEON_EXIT) {
+        dComIfGs_setItem(SLOT_18, fpcNm_ITEM_DUNGEON_EXIT);
     }
 }
 
@@ -379,7 +379,7 @@ void dMeter2Info_c::warpOutProc() {
     }
 
     dComIfGs_setWarpItemData(dComIfGp_getStartStageName(), warpPos, warpAngle.y, warpRoomNo, 0, 1);
-    dComIfGs_setItem(SLOT_18, DUNGEON_BACK);
+    dComIfGs_setItem(SLOT_18, fpcNm_ITEM_DUNGEON_BACK);
 }
 
 /* 8021CC00-8021CC0C 217540 000C+00 0/0 1/1 1/1 .text            resetMeterString__13dMeter2Info_cFv
@@ -496,9 +496,9 @@ int dMeter2Info_c::readItemTexture(u8 itemNo, void* param_1, J2DPicture* param_2
     int ret = 0;
 
     if (param_1 != NULL) {
-        if ((itemNo == KANTERA && dComIfGs_getOil() == 0) || itemNo == KANTERA2) {
+        if ((itemNo == fpcNm_ITEM_KANTERA && dComIfGs_getOil() == 0) || itemNo == fpcNm_ITEM_KANTERA2) {
             dComIfGp_getItemIconArchive()->readIdxResource(param_1, 0xC00, 0x23);
-        } else if (itemNo == COPY_ROD && !daPy_getPlayerActorClass()->checkCopyRodTopUse() &&
+        } else if (itemNo == fpcNm_ITEM_COPY_ROD && !daPy_getPlayerActorClass()->checkCopyRodTopUse() &&
                    param_9 == -1)
         {
             dComIfGp_getItemIconArchive()->readIdxResource(param_1, 0xC00, 0x57);
@@ -605,51 +605,51 @@ void dMeter2Info_c::setItemColor(u8 param_1, J2DPicture* param_2, J2DPicture* pa
  */
 s16 dMeter2Info_c::get2ndTexture(u8 itemType) {
     switch (itemType) {
-    case GREEN_RUPEE:
-    case BLUE_RUPEE:
-    case YELLOW_RUPEE:
-    case RED_RUPEE:
-    case PURPLE_RUPEE:
-    case ORANGE_RUPEE:
-    case SILVER_RUPEE:
+    case fpcNm_ITEM_GREEN_RUPEE:
+    case fpcNm_ITEM_BLUE_RUPEE:
+    case fpcNm_ITEM_YELLOW_RUPEE:
+    case fpcNm_ITEM_RED_RUPEE:
+    case fpcNm_ITEM_PURPLE_RUPEE:
+    case fpcNm_ITEM_ORANGE_RUPEE:
+    case fpcNm_ITEM_SILVER_RUPEE:
         return 0x2e;
-    case S_MAGIC:
-    case L_MAGIC:
-    case BOMB_5:
-    case BOMB_10:
-    case BOMB_20:
-    case BOMB_30:
-    case ARROW_10:
-    case ARROW_20:
-    case ARROW_30:
-    case ARROW_1:
-    case PACHINKO_SHOT:
-    case noentry1:
-    case noentry2:
-    case noentry3:
-    case WATER_BOMB_5:
-    case WATER_BOMB_10:
-    case WATER_BOMB_20:
-    case WATER_BOMB_30:
-    case BOMB_INSECT_5:
-    case TRIPLE_HEART:
+    case fpcNm_ITEM_S_MAGIC:
+    case fpcNm_ITEM_L_MAGIC:
+    case fpcNm_ITEM_BOMB_5:
+    case fpcNm_ITEM_BOMB_10:
+    case fpcNm_ITEM_BOMB_20:
+    case fpcNm_ITEM_BOMB_30:
+    case fpcNm_ITEM_ARROW_10:
+    case fpcNm_ITEM_ARROW_20:
+    case fpcNm_ITEM_ARROW_30:
+    case fpcNm_ITEM_ARROW_1:
+    case fpcNm_ITEM_PACHINKO_SHOT:
+    case fpcNm_ITEM_NOENTRY_19:
+    case fpcNm_ITEM_NOENTRY_20:
+    case fpcNm_ITEM_NOENTRY_21:
+    case fpcNm_ITEM_WATER_BOMB_5:
+    case fpcNm_ITEM_WATER_BOMB_10:
+    case fpcNm_ITEM_WATER_BOMB_20:
+    case fpcNm_ITEM_WATER_BOMB_30:
+    case fpcNm_ITEM_BOMB_INSECT_5:
+    case fpcNm_ITEM_TRIPLE_HEART:
         return 0xe;
-    case BOMB_INSECT_10:
+    case fpcNm_ITEM_BOMB_INSECT_10:
         return 0x14;
-    case BOMB_INSECT_20:
+    case fpcNm_ITEM_BOMB_INSECT_20:
         return 0x27;
-    case BOMB_INSECT_30:
+    case fpcNm_ITEM_BOMB_INSECT_30:
         return 0xf;
-    case RECOVERY_FAILY:
+    case fpcNm_ITEM_RECOVERY_FAILY:
         return 0x10;
-    case KAKERA_HEART:
-    case UTAWA_HEART:
-    case MAP:
+    case fpcNm_ITEM_KAKERA_HEART:
+    case fpcNm_ITEM_UTAWA_HEART:
+    case fpcNm_ITEM_MAP:
         return 0x69;
-    case COMPUS:
+    case fpcNm_ITEM_COMPUS:
         return 0x2a;
     default:
-    case SMALL_KEY:
+    case fpcNm_ITEM_SMALL_KEY:
         return -1;
     }
 }
@@ -658,18 +658,18 @@ s16 dMeter2Info_c::get2ndTexture(u8 itemType) {
  */
 s16 dMeter2Info_c::get3rdTexture(u8 itemType) {
     switch (itemType) {
-    case GREEN_RUPEE:
-    case BLUE_RUPEE:
-    case YELLOW_RUPEE:
-    case RED_RUPEE:
-    case PURPLE_RUPEE:
-    case ORANGE_RUPEE:
-    case SILVER_RUPEE:
+    case fpcNm_ITEM_GREEN_RUPEE:
+    case fpcNm_ITEM_BLUE_RUPEE:
+    case fpcNm_ITEM_YELLOW_RUPEE:
+    case fpcNm_ITEM_RED_RUPEE:
+    case fpcNm_ITEM_PURPLE_RUPEE:
+    case fpcNm_ITEM_ORANGE_RUPEE:
+    case fpcNm_ITEM_SILVER_RUPEE:
         return 0x2e;
-    case BOMB_INSECT_10:
-    case BOMB_INSECT_20:
-    case BOMB_INSECT_30:
-    case RECOVERY_FAILY:
+    case fpcNm_ITEM_BOMB_INSECT_10:
+    case fpcNm_ITEM_BOMB_INSECT_20:
+    case fpcNm_ITEM_BOMB_INSECT_30:
+    case fpcNm_ITEM_RECOVERY_FAILY:
         return 0x0e;
     default:
         return -1;
@@ -680,13 +680,13 @@ s16 dMeter2Info_c::get3rdTexture(u8 itemType) {
  */
 s16 dMeter2Info_c::get4thTexture(u8 itemType) {
     switch (itemType) {
-    case GREEN_RUPEE:
-    case BLUE_RUPEE:
-    case YELLOW_RUPEE:
-    case RED_RUPEE:
-    case PURPLE_RUPEE:
-    case ORANGE_RUPEE:
-    case SILVER_RUPEE:
+    case fpcNm_ITEM_GREEN_RUPEE:
+    case fpcNm_ITEM_BLUE_RUPEE:
+    case fpcNm_ITEM_YELLOW_RUPEE:
+    case fpcNm_ITEM_RED_RUPEE:
+    case fpcNm_ITEM_PURPLE_RUPEE:
+    case fpcNm_ITEM_ORANGE_RUPEE:
+    case fpcNm_ITEM_SILVER_RUPEE:
         return 0x2e;
     default:
         return -1;
@@ -963,8 +963,8 @@ void dMeter2Info_c::changeWater(u8 i_slotNo) {
     int i_bottleIdx = i_slotNo - SLOT_11;
     mHotSpringTimer[i_bottleIdx] = 0;
 
-    if (dComIfGs_getItem(i_slotNo, true) == HOT_SPRING) {
-        dComIfGs_setItem(i_slotNo, WATER_BOTTLE);
+    if (dComIfGs_getItem(i_slotNo, true) == fpcNm_ITEM_HOT_SPRING) {
+        dComIfGs_setItem(i_slotNo, fpcNm_ITEM_WATER_BOTTLE);
 
         for (int i = 0; i < 3; i++) {
             if (i_slotNo == dComIfGs_getSelectItemIndex(i)) {
@@ -987,7 +987,7 @@ void dMeter2Info_c::setMiniGameItem(u8 minigameFlag) {
         bool setRentBagIdx = false;
 
         for (int bagIdx = 0; bagIdx < 3; bagIdx++) {
-            if (!setRentBagIdx && dComIfGs_getItem((u8)(bagIdx + SLOT_15), true) == NO_ITEM) {
+            if (!setRentBagIdx && dComIfGs_getItem((u8)(bagIdx + SLOT_15), true) == fpcNm_ITEM_NONE) {
                 mRentalBombBagIdx = bagIdx;
                 setRentBagIdx = true;
             }
@@ -1022,12 +1022,12 @@ void dMeter2Info_c::setMiniGameItem(u8 minigameFlag) {
         dComIfGs_setArrowNum(mSaveArrowNumMG);
     }
 
-    dComIfGs_setItem((u8)(mRentalBombBagIdx + SLOT_15), NORMAL_BOMB);
-    dComIfGp_setItem((u8)(mRentalBombBagIdx + SLOT_15), NORMAL_BOMB);
+    dComIfGs_setItem((u8)(mRentalBombBagIdx + SLOT_15), fpcNm_ITEM_NORMAL_BOMB);
+    dComIfGp_setItem((u8)(mRentalBombBagIdx + SLOT_15), fpcNm_ITEM_NORMAL_BOMB);
 
     if (mMiniGameItemSetFlag != 3) {
-        dComIfGs_setItem(SLOT_4, BOW);
-        dComIfGp_setItem(SLOT_4, BOW);
+        dComIfGs_setItem(SLOT_4, fpcNm_ITEM_BOW);
+        dComIfGp_setItem(SLOT_4, fpcNm_ITEM_BOW);
         dComIfGs_setMixItemIndex(SELECT_ITEM_Y, 0xFF);
         dComIfGs_setSelectItemIndex(SELECT_ITEM_Y, 0xFF);
         dComIfGs_setMixItemIndex(SELECT_ITEM_X, SLOT_4);
@@ -1131,17 +1131,17 @@ bool dMeter2Info_getPixel(f32 param_0, f32 param_1, f32 param_2, f32 param_3, f3
 /* 8021E4B0-8021E530 218DF0 0080+00 0/0 2/2 1/1 .text            dMeter2Info_setCloth__FUcb */
 void dMeter2Info_setCloth(u8 i_clothId, bool param_1) {
     switch (i_clothId) {
-    case WEAR_CASUAL:
-    case WEAR_KOKIRI:
-    case ARMOR:
-    case WEAR_ZORA:
+    case fpcNm_ITEM_WEAR_CASUAL:
+    case fpcNm_ITEM_WEAR_KOKIRI:
+    case fpcNm_ITEM_ARMOR:
+    case fpcNm_ITEM_WEAR_ZORA:
         break;
     default:
-        i_clothId = WEAR_CASUAL;
+        i_clothId = fpcNm_ITEM_WEAR_CASUAL;
         param_1 = false;
     }
 
-    if (param_1 && dComIfGs_getSelectEquipClothes() != NO_ITEM) {
+    if (param_1 && dComIfGs_getSelectEquipClothes() != fpcNm_ITEM_NONE) {
         u8 equip_cloth = dComIfGs_getSelectEquipClothes();
         dComIfGs_offItemFirstBit(equip_cloth);
     }
@@ -1152,14 +1152,14 @@ void dMeter2Info_setCloth(u8 i_clothId, bool param_1) {
 /* 8021E530-8021E5D4 218E70 00A4+00 0/0 3/3 3/3 .text            dMeter2Info_setSword__FUcb */
 void dMeter2Info_setSword(u8 i_itemId, bool param_1) {
     switch (i_itemId) {
-    case NO_ITEM:
-    case WOOD_STICK:
-    case SWORD:
-    case MASTER_SWORD:
-    case LIGHT_SWORD:
+    case fpcNm_ITEM_NONE:
+    case fpcNm_ITEM_WOOD_STICK:
+    case fpcNm_ITEM_SWORD:
+    case fpcNm_ITEM_MASTER_SWORD:
+    case fpcNm_ITEM_LIGHT_SWORD:
         break;
     default:
-        i_itemId = NO_ITEM;
+        i_itemId = fpcNm_ITEM_NONE;
         param_1 = false;
     }
 
@@ -1174,13 +1174,13 @@ void dMeter2Info_setSword(u8 i_itemId, bool param_1) {
 /* 8021E5D4-8021E660 218F14 008C+00 0/0 3/3 0/0 .text            dMeter2Info_setShield__FUcb */
 void dMeter2Info_setShield(u8 i_itemId, bool param_1) {
     switch (i_itemId) {
-    case NO_ITEM:
-    case WOOD_SHIELD:
-    case SHIELD:
-    case HYLIA_SHIELD:
+    case fpcNm_ITEM_NONE:
+    case fpcNm_ITEM_WOOD_SHIELD:
+    case fpcNm_ITEM_SHIELD:
+    case fpcNm_ITEM_HYLIA_SHIELD:
         break;
     default:
-        i_itemId = NO_ITEM;
+        i_itemId = fpcNm_ITEM_NONE;
         param_1 = false;
     }
 

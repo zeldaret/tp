@@ -820,7 +820,7 @@ int daAlink_c::procHangWallCatch() {
 
 /* 800FC178-800FC240 0F6AB8 00C8+00 4/4 0/0 0/0 .text            procHangReadyInit__9daAlink_cFv */
 int daAlink_c::procHangReadyInit() {
-    if (field_0x2f91 == 3 && mEquipItem != NO_ITEM) {
+    if (field_0x2f91 == 3 && mEquipItem != fpcNm_ITEM_NONE) {
         return procPreActionUnequipInit(0x5C, NULL);
     } else if (mProcID == PROC_PREACTION_UNEQUIP) {
         setFrontWallType();
@@ -870,7 +870,7 @@ int daAlink_c::procHangReady() {
 /* 800FC2F4-800FC390 0F6C34 009C+00 2/2 0/0 0/0 .text            procHangLeverDownInit__9daAlink_cFv
  */
 int daAlink_c::procHangLeverDownInit() {
-    if (mEquipItem != NO_ITEM) {
+    if (mEquipItem != fpcNm_ITEM_NONE) {
         return procPreActionUnequipInit(PROC_HANG_LEVER_DOWN, field_0x27f4);
     }
 
@@ -1373,7 +1373,7 @@ int daAlink_c::checkLadderFall() {
 /* 800FD648-800FD7B0 0F7F88 0168+00 2/2 0/0 0/0 .text            procLadderUpStartInit__9daAlink_cFv
  */
 int daAlink_c::procLadderUpStartInit() {
-    if (mEquipItem != NO_ITEM) {
+    if (mEquipItem != fpcNm_ITEM_NONE) {
         return procPreActionUnequipInit(PROC_LADDER_UP_START, NULL);
     }
 
@@ -1479,7 +1479,7 @@ int daAlink_c::procLadderUpEnd() {
 int daAlink_c::procLadderDownStartInit() {
     onNoResetFlg3(FLG3_UNK_400000);
 
-    if (mEquipItem != NO_ITEM) {
+    if (mEquipItem != fpcNm_ITEM_NONE) {
         return procPreActionUnequipInit(PROC_LADDER_DOWN_START, NULL);
     }
 

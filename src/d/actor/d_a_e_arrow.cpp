@@ -387,9 +387,9 @@ static void e_arrow_bg(e_arrow_class* i_this) {
         i_this->mMode = 1;
         i_this->mTimers[0] = 100;
     case 1:
-        if (checkItemGet(BOW, 1) && fopAcM_searchPlayerDistance(i_this) < 30.0f) {
+        if (checkItemGet(fpcNm_ITEM_BOW, 1) && fopAcM_searchPlayerDistance(i_this) < 30.0f) {
             dComIfGp_setItemArrowNumCount(1);
-            fopAcM_createItemForSimpleDemo(&i_this->current.pos, ARROW_1, -1, NULL, NULL, 0.0f,
+            fopAcM_createItemForSimpleDemo(&i_this->current.pos, fpcNm_ITEM_ARROW_1, -1, NULL, NULL, 0.0f,
                                            0.0f);
             mDoAud_seStart(Z2SE_CONSUMP_ITEM_GET, NULL, 0, 0);
 

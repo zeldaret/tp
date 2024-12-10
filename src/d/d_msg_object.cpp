@@ -2223,7 +2223,7 @@ void dMsgObject_c::setDemoMessageLocal(u32 param_1) {
 u16 dMsgObject_c::getSmellTypeMessageIDLocal() {
     u16 msgId = 0;
     int smell = dComIfGs_getCollectSmell();
-    if (smell < SMELL_MEDICINE + 1 && smell >= SMELL_YELIA_POUCH) {
+    if (smell < fpcNm_ITEM_SMELL_MEDICINE + 1 && smell >= fpcNm_ITEM_SMELL_YELIA_POUCH) {
         msgId = smell + 0x165;
     } else {
         if (dComIfGs_getCollectSmell() != -1) {

@@ -49,7 +49,7 @@ static int daKytag12_Draw(kytag12_class* param_0) {
 static void daKytag12_light_swprd_proc(kytag12_class* i_this) {
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
 
-    if (dComIfGs_getSelectEquipSword() == LIGHT_SWORD) {
+    if (dComIfGs_getSelectEquipSword() == fpcNm_ITEM_LIGHT_SWORD) {
         if (player->getCutType() != 0) {
             if (i_this->field_0x576 == 0) {
                 cXyz sp28(player->current.pos);
@@ -878,7 +878,7 @@ static int daKytag12_Execute_R00(kytag12_class* i_this) {
         sp80.y = player->current.pos.y;
 
         if (player->current.pos.abs(sp80) < 600.0f &&
-            dComIfGs_getSelectEquipSword() == LIGHT_SWORD && player->getCutType() != 0 &&
+            dComIfGs_getSelectEquipSword() == fpcNm_ITEM_LIGHT_SWORD && player->getCutType() != 0 &&
             d_kytag12_cut_turn_check())
         {
             i_this->field_0x575 = 1;
