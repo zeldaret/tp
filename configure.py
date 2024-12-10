@@ -1764,7 +1764,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_Y_taihou"),
     ActorRel(NonMatching, "d_a_obj_amiShutter"),
     ActorRel(Matching, "d_a_obj_ari"),
-    ActorRel(NonMatching, "d_a_obj_automata"),
+    ActorRel(Matching, "d_a_obj_automata"),
     ActorRel(Matching, "d_a_obj_avalanche"),
     ActorRel(Matching, "d_a_obj_balloon"),
     ActorRel(Matching, "d_a_obj_barDesk"),
