@@ -1,6 +1,7 @@
 #ifndef D_BG_D_BG_W_KCOL_H
 #define D_BG_D_BG_W_KCOL_H
 
+#include "JSystem/JUtility/JUTAssert.h"
 #include "SSystem/SComponent/c_m3d_g_aab.h"
 #include "d/d_bg_plc.h"
 #include "d/d_bg_w_base.h"
@@ -11,35 +12,28 @@ struct dBgPc;
 struct dBgS_CaptPoly;
 
 struct KC_PrismData {
-    /* 0x0 */ f32 field_0x0;
-    /* 0x4 */ u16 field_0x4;
-    /* 0x6 */ u16 field_0x6;
-    /* 0x8 */ u16 field_0x8;
-    /* 0xA */ u16 field_0xa;
-    /* 0xC */ u16 field_0xc;
-    /* 0xE */ u16 field_0xe;
+    /* 0x0 */ f32 height;
+    /* 0x4 */ u16 pos_i;
+    /* 0x6 */ u16 fnrm_i;
+    /* 0x8 */ u16 enrm1_i;
+    /* 0xA */ u16 enrm2_i;
+    /* 0xC */ u16 enrm3_i;
+    /* 0xE */ u16 attribute;
 };  // Size: 0x10
 
-struct pkcdata {
-    /* 0x00 */ Vec* field_0x0;
-    /* 0x04 */ Vec* field_0x4;
+struct KC_Header {
+    /* 0x00 */ Vec* m_pos_data;
+    /* 0x04 */ Vec* m_nrm_data;
     /* 0x08 */ KC_PrismData* m_prism_data;
     /* 0x0C */ KC_PrismData* m_block_data;
-    /* 0x10 */ u8 field_0x10[4];
+    /* 0x10 */ f32 m_prism_thickness;
     /* 0x14 */ Vec m_area_min_pos;
-    /* 0x20 */ u32 field_0x20;
-    /* 0x24 */ u32 field_0x24;
-    /* 0x28 */ u32 field_0x28;
-    /* 0x2C */ u32 field_0x2c;
-    /* 0x30 */ u32 field_0x30;
-    /* 0x34 */ u32 field_0x34;
-};
-
-struct KCol_Header {
-    /* 0x0 */ u32 pos_data_offset;
-    /* 0x4 */ u32 nrm_data_offset;
-    /* 0x8 */ u32 prism_data_offset;
-    /* 0xC */ u32 block_data_offset;
+    /* 0x20 */ u32 m_area_x_width_mask;
+    /* 0x24 */ u32 m_area_y_width_mask;
+    /* 0x28 */ u32 m_area_z_width_mask;
+    /* 0x2C */ u32 m_block_width_shift;
+    /* 0x30 */ u32 m_area_x_blocks_shift;
+    /* 0x34 */ u32 m_area_xy_blocks_shift;
 };
 
 class dBgWKCol : public dBgW_Base {
@@ -113,11 +107,16 @@ public:
     /* 80082F94 */ virtual void MatrixCrrPos(cBgS_PolyInfo const&, void*, bool, cXyz*,
                                              csXyz*, csXyz*);
 
-    KC_PrismData* getPrismData(int poly_index) const { return &m_pkc_head->m_prism_data[poly_index]; }
-    void getTri1Pos(KC_PrismData* pd, Vec** nrm) const { *nrm = &m_pkc_head->field_0x0[pd->field_0x4]; }
+    KC_PrismData* getPrismData(int poly_index) const {
+        KC_PrismData* pd = &m_pkc_head->m_prism_data[poly_index];
+        JUT_ASSERT(0x12E, pd < (KC_PrismData*)m_pkc_head->m_block_data);
+        return pd;
+    }
+
+    void getTri1Pos(KC_PrismData* pd, Vec** nrm) const { *nrm = &m_pkc_head->m_pos_data[pd->pos_i]; }
 
 private:
-    /* 0x18 */ pkcdata* m_pkc_head;
+    /* 0x18 */ KC_Header* m_pkc_head;
     /* 0x1C */ dBgPlc m_code;
     /* 0x20 */ cM3dGAab m_bnd;
 };
