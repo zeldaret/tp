@@ -364,7 +364,7 @@ void dMenu_Collect2D_c::screenSet() {
     field_0x22d[0][2] = 0;
     field_0x22d[1][2] = 0;
     field_0x22d[2][2] = 0;
-    if (dComIfGs_getSelectEquipClothes() == WEAR_CASUAL) {
+    if (dComIfGs_getSelectEquipClothes() == fpcNm_ITEM_WEAR_CASUAL) {
         field_0x22d[3][2] = 0;
         field_0x22d[4][2] = 0;
         field_0x22d[5][2] = 0;
@@ -375,7 +375,7 @@ void dMenu_Collect2D_c::screenSet() {
     }
     field_0x22d[6][2] = 0;
     field_0x22d[0][3] = 1;
-    if (checkItemGet(BOW, 1)) {
+    if (checkItemGet(fpcNm_ITEM_BOW, 1)) {
         field_0x22d[1][3] = 1;
     } else {
         field_0x22d[1][3] = 0;
@@ -389,7 +389,7 @@ void dMenu_Collect2D_c::screenSet() {
     field_0x22d[4][3] = 0;
     field_0x22d[5][3] = 0;
     field_0x22d[6][3] = 0;
-    if (dComIfGs_getCollectSmell() != NO_ITEM) {
+    if (dComIfGs_getCollectSmell() != fpcNm_ITEM_NONE) {
         field_0x22d[0][4] = 1;
     } else {
         field_0x22d[0][4] = 0;
@@ -986,39 +986,39 @@ void dMenu_Collect2D_c::cursorPosSet() {
 void dMenu_Collect2D_c::changeSword() {
     switch (mCursorX) {
     case 3:
-        if (dComIfGs_isItemFirstBit(SWORD)) {
-            if (dComIfGs_getSelectEquipSword() != SWORD) {
-                dMeter2Info_setSword(SWORD, false);
+        if (dComIfGs_isItemFirstBit(fpcNm_ITEM_SWORD)) {
+            if (dComIfGs_getSelectEquipSword() != fpcNm_ITEM_SWORD) {
+                dMeter2Info_setSword(fpcNm_ITEM_SWORD, false);
                 setEquipItemFrameColorSword(0);
                 mDoAud_seStart(Z2SE_SY_ITEM_SET_X, NULL, 0, 0);
                 dMeter2Info_set2DVibration();
             }
-        } else if (dComIfGs_getSelectEquipSword() != WOOD_STICK) {
-            dMeter2Info_setSword(WOOD_STICK, false);
+        } else if (dComIfGs_getSelectEquipSword() != fpcNm_ITEM_WOOD_STICK) {
+            dMeter2Info_setSword(fpcNm_ITEM_WOOD_STICK, false);
             setEquipItemFrameColorSword(0);
             Z2GetAudioMgr()->seStart(Z2SE_SY_ITEM_SET_X, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
             dMeter2Info_set2DVibration();
         }
         break;
     case 4:
-        if (dComIfGs_isItemFirstBit(LIGHT_SWORD)) {
-            if (dComIfGs_getSelectEquipSword() != LIGHT_SWORD) {
-                dMeter2Info_setSword(LIGHT_SWORD, false);
+        if (dComIfGs_isItemFirstBit(fpcNm_ITEM_LIGHT_SWORD)) {
+            if (dComIfGs_getSelectEquipSword() != fpcNm_ITEM_LIGHT_SWORD) {
+                dMeter2Info_setSword(fpcNm_ITEM_LIGHT_SWORD, false);
                 setEquipItemFrameColorSword(1);
                 Z2GetAudioMgr()->seStart(Z2SE_SY_ITEM_SET_X, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
                                          0);
                 dMeter2Info_set2DVibration();
             }
-        } else if (dComIfGs_getSelectEquipSword() != MASTER_SWORD) {
-            dMeter2Info_setSword(MASTER_SWORD, false);
+        } else if (dComIfGs_getSelectEquipSword() != fpcNm_ITEM_MASTER_SWORD) {
+            dMeter2Info_setSword(fpcNm_ITEM_MASTER_SWORD, false);
             setEquipItemFrameColorSword(1);
             Z2GetAudioMgr()->seStart(Z2SE_SY_ITEM_SET_X, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
             dMeter2Info_set2DVibration();
         }
         break;
     case 5:
-        if (dComIfGs_getSelectEquipSword() != LIGHT_SWORD) {
-            dMeter2Info_setSword(LIGHT_SWORD, false);
+        if (dComIfGs_getSelectEquipSword() != fpcNm_ITEM_LIGHT_SWORD) {
+            dMeter2Info_setSword(fpcNm_ITEM_LIGHT_SWORD, false);
             setEquipItemFrameColorSword(2);
             Z2GetAudioMgr()->seStart(Z2SE_SY_ITEM_SET_X, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
             dMeter2Info_set2DVibration();
@@ -1032,18 +1032,18 @@ void dMenu_Collect2D_c::changeSword() {
 void dMenu_Collect2D_c::changeShield() {
     switch (mCursorX) {
     case 3:
-        if (dComIfGs_isItemFirstBit(SHIELD)) {
-            if (dComIfGs_getSelectEquipShield() != SHIELD) {
-                dMeter2Info_setShield(SHIELD, false);
+        if (dComIfGs_isItemFirstBit(fpcNm_ITEM_SHIELD)) {
+            if (dComIfGs_getSelectEquipShield() != fpcNm_ITEM_SHIELD) {
+                dMeter2Info_setShield(fpcNm_ITEM_SHIELD, false);
                 setEquipItemFrameColorShield(0);
                 daAlink_getAlinkActorClass()->setShieldChange();
                 Z2GetAudioMgr()->seStart(Z2SE_SY_ITEM_SET_X, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
                                          0);
                 dMeter2Info_set2DVibration();
             }
-        } else if (dComIfGs_isItemFirstBit(WOOD_SHIELD)) {
-            if (dComIfGs_getSelectEquipShield() != WOOD_SHIELD) {
-                dMeter2Info_setShield(WOOD_SHIELD, false);
+        } else if (dComIfGs_isItemFirstBit(fpcNm_ITEM_WOOD_SHIELD)) {
+            if (dComIfGs_getSelectEquipShield() != fpcNm_ITEM_WOOD_SHIELD) {
+                dMeter2Info_setShield(fpcNm_ITEM_WOOD_SHIELD, false);
                 setEquipItemFrameColorShield(0);
                 daAlink_getAlinkActorClass()->setShieldChange();
                 Z2GetAudioMgr()->seStart(Z2SE_SY_ITEM_SET_X, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
@@ -1053,8 +1053,8 @@ void dMenu_Collect2D_c::changeShield() {
         }
         break;
     case 4:
-        if (dComIfGs_getSelectEquipShield() != HYLIA_SHIELD) {
-            dMeter2Info_setShield(HYLIA_SHIELD, false);
+        if (dComIfGs_getSelectEquipShield() != fpcNm_ITEM_HYLIA_SHIELD) {
+            dMeter2Info_setShield(fpcNm_ITEM_HYLIA_SHIELD, false);
             setEquipItemFrameColorShield(1);
             daAlink_getAlinkActorClass()->setShieldChange();
             Z2GetAudioMgr()->seStart(Z2SE_SY_ITEM_SET_X, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
@@ -1069,8 +1069,8 @@ void dMenu_Collect2D_c::changeShield() {
 void dMenu_Collect2D_c::changeClothe() {
     switch (mCursorX) {
     case 3:
-        if (dComIfGs_getSelectEquipClothes() != WEAR_KOKIRI) {
-            dMeter2Info_setCloth(WEAR_KOKIRI, false);
+        if (dComIfGs_getSelectEquipClothes() != fpcNm_ITEM_WEAR_KOKIRI) {
+            dMeter2Info_setCloth(fpcNm_ITEM_WEAR_KOKIRI, false);
             setEquipItemFrameColorClothes(0);
             daPy_getPlayerActorClass()->setClothesChange(0);
             Z2GetAudioMgr()->seStart(Z2SE_SY_ITEM_SET_X, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
@@ -1078,8 +1078,8 @@ void dMenu_Collect2D_c::changeClothe() {
         }
         break;
     case 4:
-        if (dComIfGs_getSelectEquipClothes() != WEAR_ZORA) {
-            dMeter2Info_setCloth(WEAR_ZORA, false);
+        if (dComIfGs_getSelectEquipClothes() != fpcNm_ITEM_WEAR_ZORA) {
+            dMeter2Info_setCloth(fpcNm_ITEM_WEAR_ZORA, false);
             setEquipItemFrameColorClothes(1);
             daPy_getPlayerActorClass()->setClothesChange(0);
             Z2GetAudioMgr()->seStart(Z2SE_SY_ITEM_SET_X, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
@@ -1087,8 +1087,8 @@ void dMenu_Collect2D_c::changeClothe() {
         }
         break;
     case 5:
-        if (dComIfGs_getSelectEquipClothes() != ARMOR) {
-            dMeter2Info_setCloth(ARMOR, false);
+        if (dComIfGs_getSelectEquipClothes() != fpcNm_ITEM_ARMOR) {
+            dMeter2Info_setCloth(fpcNm_ITEM_ARMOR, false);
             setEquipItemFrameColorClothes(2);
             daPy_getPlayerActorClass()->setClothesChange(0);
             Z2GetAudioMgr()->seStart(Z2SE_SY_ITEM_SET_X, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
@@ -1153,19 +1153,19 @@ void dMenu_Collect2D_c::setSmellType() {
     };
     s32 smellType = -1;
     switch (dComIfGs_getCollectSmell()) {
-    case SMELL_YELIA_POUCH:
+    case fpcNm_ITEM_SMELL_YELIA_POUCH:
         smellType = 3;
         break;
-    case SMELL_POH:
+    case fpcNm_ITEM_SMELL_POH:
         smellType = 4;
         break;
-    case SMELL_FISH:
+    case fpcNm_ITEM_SMELL_FISH:
         smellType = 2;
         break;
-    case SMELL_CHILDREN:
+    case fpcNm_ITEM_SMELL_CHILDREN:
         smellType = 1;
         break;
-    case SMELL_MEDICINE:
+    case fpcNm_ITEM_SMELL_MEDICINE:
         smellType = 0;
         break;
     }
@@ -1248,20 +1248,20 @@ void dMenu_Collect2D_c::setEquipItemFrameColorSword(int i_frame) {
             mEquippedSword = dComIfGs_getSelectEquipSword();
 
             switch (mEquippedSword) {
-            case SWORD:
+            case fpcNm_ITEM_SWORD:
                 i_frame = 0;
                 break;
 
-            case WOOD_STICK:
+            case fpcNm_ITEM_WOOD_STICK:
                 i_frame = 0;
                 break;
 
-            case MASTER_SWORD:
+            case fpcNm_ITEM_MASTER_SWORD:
                 i_frame = 1;
                 break;
 
-            case LIGHT_SWORD:
-                if (dComIfGs_isItemFirstBit(LIGHT_SWORD)) {
+            case fpcNm_ITEM_LIGHT_SWORD:
+                if (dComIfGs_isItemFirstBit(fpcNm_ITEM_LIGHT_SWORD)) {
                     i_frame = 1;
                 }
                 break;
@@ -1307,12 +1307,12 @@ void dMenu_Collect2D_c::setEquipItemFrameColorShield(int i_frame) {
             mEquippedShield = dComIfGs_getSelectEquipShield();
 
             switch (mEquippedShield) {
-            case SHIELD:
-            case WOOD_SHIELD:
+            case fpcNm_ITEM_SHIELD:
+            case fpcNm_ITEM_WOOD_SHIELD:
                 i_frame = 0;
                 break;
 
-            case HYLIA_SHIELD:
+            case fpcNm_ITEM_HYLIA_SHIELD:
                 i_frame = 1;
                 break;
             }
@@ -1358,15 +1358,15 @@ void dMenu_Collect2D_c::setEquipItemFrameColorClothes(int i_frame) {
             mEquippedClothes = dComIfGs_getSelectEquipClothes();
 
             switch (mEquippedClothes) {
-            case WEAR_KOKIRI:
+            case fpcNm_ITEM_WEAR_KOKIRI:
                 i_frame = 0;
                 break;
 
-            case WEAR_ZORA:
+            case fpcNm_ITEM_WEAR_ZORA:
                 i_frame = 1;
                 break;
 
-            case ARMOR:
+            case fpcNm_ITEM_ARMOR:
                 i_frame = 2;
                 break;
             }

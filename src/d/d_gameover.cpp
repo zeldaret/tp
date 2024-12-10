@@ -162,7 +162,7 @@ int dGameover_c::_create() {
             if (!strcmp(dComIfGp_getLastPlayStageName(), "D_MN10A")) {
                 // Last stage was Stallord Arena
                 // Remove Ooccoo from inventory
-                dComIfGs_setItem(SLOT_18, NO_ITEM);
+                dComIfGs_setItem(SLOT_18, fpcNm_ITEM_NONE);
                 dComIfGs_resetLastWarpAcceptStage();
             }
 
@@ -340,8 +340,8 @@ void dGameover_c::saveClose_proc() {
         }
 
         // Reset Lantern and oil status back into inventory if gameover during monkey steal sequence
-        if (dComIfGs_isItemFirstBit(KANTERA) && dComIfGs_getItem(SLOT_1, true) == NO_ITEM) {
-            dComIfGs_setItem(SLOT_1, KANTERA);
+        if (dComIfGs_isItemFirstBit(fpcNm_ITEM_KANTERA) && dComIfGs_getItem(SLOT_1, true) == fpcNm_ITEM_NONE) {
+            dComIfGs_setItem(SLOT_1, fpcNm_ITEM_KANTERA);
             dComIfGs_setOil(dMeter2Info_getOilGaugeBackUp());
         }
 

@@ -55,13 +55,13 @@ void daAlink_c::setHorseWhistleModel() {
     mHeldItemModel = initModel(loadAramBmd(0x31A, 0x3000), 0);
 
     mDoExt_setCurrentHeap(prev_heap);
-    mEquipItem = HORSE_FLUTE;
+    mEquipItem = fpcNm_ITEM_HORSE_FLUTE;
     field_0x2f94 = 2;
 }
 
 /* 80111894-801119D8 10C1D4 0144+00 2/2 0/0 0/0 .text procGrassWhistleGetInit__9daAlink_cFv */
 int daAlink_c::procGrassWhistleGetInit() {
-    if (mEquipItem != NO_ITEM) {
+    if (mEquipItem != fpcNm_ITEM_NONE) {
         return procPreActionUnequipInit(PROC_GRASS_WHISTLE_GET, field_0x27f4);
     }
 
@@ -95,7 +95,7 @@ int daAlink_c::procGrassWhistleGet() {
     if (frameCtrl_p->checkAnmEnd()) {
         procGrassWhistleWaitInit(mProcVar2.field_0x300c, mProcVar3.field_0x300e,
                                  mProcVar4.field_0x3010, mProcVar5.field_0x3012, &field_0x37c8);
-    } else if (mEquipItem == NO_ITEM && frameCtrl_p->getFrame() >= 9.0f) {
+    } else if (mEquipItem == fpcNm_ITEM_NONE && frameCtrl_p->getFrame() >= 9.0f) {
         setGrassWhistleModel(mProcVar2.field_0x300c);
 
         if (field_0x280c.getActor() != NULL) {
@@ -133,7 +133,7 @@ int daAlink_c::procGrassWhistleWaitInit(int param_0, int param_1, int param_2, s
         field_0x32cc = 0x532;
     } else {
         setSingleAnimeBase(ANM_WAIT);
-        mKeepItem = NO_ITEM;
+        mKeepItem = fpcNm_ITEM_NONE;
 
         if (param_0 == 0) {
             field_0x3198 = 0x100;

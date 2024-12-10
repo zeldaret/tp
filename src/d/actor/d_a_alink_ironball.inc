@@ -8,7 +8,7 @@
 /* 8011243C-80112458 10CD7C 001C+00 1/0 0/0 0/0 .text            getIronBallCenterPos__9daAlink_cFv
  */
 cXyz* daAlink_c::getIronBallCenterPos() {
-    if (mEquipItem == IRONBALL) {
+    if (mEquipItem == fpcNm_ITEM_IRONBALL) {
         return &mIronBallCenterPos;
     }
 
@@ -17,7 +17,7 @@ cXyz* daAlink_c::getIronBallCenterPos() {
 
 /* 80112458-80112474 10CD98 001C+00 1/0 0/0 0/0 .text            getIronBallBgHit__9daAlink_cCFv */
 int daAlink_c::getIronBallBgHit() const {
-    if (mEquipItem == IRONBALL) {
+    if (mEquipItem == fpcNm_ITEM_IRONBALL) {
         return field_0x301c;
     }
 
@@ -26,26 +26,26 @@ int daAlink_c::getIronBallBgHit() const {
 
 /* 80112474-801124B4 10CDB4 0040+00 0/0 2/2 1/1 .text checkIronBallThrowMode__9daAlink_cCFv */
 bool daAlink_c::checkIronBallThrowMode() const {
-    return mEquipItem == IRONBALL &&
+    return mEquipItem == fpcNm_ITEM_IRONBALL &&
            (mItemVar0.field_0x3018 == 4 || mItemVar0.field_0x3018 == 5 || mItemVar0.field_0x3018 == 6 || mItemVar0.field_0x3018 == 3);
 }
 
 /* 801124B4-801124FC 10CDF4 0048+00 0/0 1/1 1/1 .text checkIronBallThrowReturnMode__9daAlink_cCFv
  */
 bool daAlink_c::checkIronBallThrowReturnMode() const {
-    return mEquipItem == IRONBALL && (mItemVar0.field_0x3018 == 4 || mItemVar0.field_0x3018 == 5 || mItemVar0.field_0x3018 == 6 ||
+    return mEquipItem == fpcNm_ITEM_IRONBALL && (mItemVar0.field_0x3018 == 4 || mItemVar0.field_0x3018 == 5 || mItemVar0.field_0x3018 == 6 ||
                                       mItemVar0.field_0x3018 == 7 || mItemVar0.field_0x3018 == 3);
 }
 
 /* 801124FC-80112524 10CE3C 0028+00 1/0 0/0 0/0 .text            checkIronBallReturn__9daAlink_cCFv
  */
 bool daAlink_c::checkIronBallReturn() const {
-    return mEquipItem == IRONBALL && mItemVar0.field_0x3018 == 7;
+    return mEquipItem == fpcNm_ITEM_IRONBALL && mItemVar0.field_0x3018 == 7;
 }
 
 /* 80112524-80112568 10CE64 0044+00 1/0 0/0 0/0 .text checkIronBallGroundStop__9daAlink_cCFv */
 bool daAlink_c::checkIronBallGroundStop() const {
-    return mEquipItem == IRONBALL && mItemVar0.field_0x3018 != 0 && mItemVar0.field_0x3018 != 8 && field_0x301e == 0 &&
+    return mEquipItem == fpcNm_ITEM_IRONBALL && mItemVar0.field_0x3018 != 0 && mItemVar0.field_0x3018 != 8 && field_0x301e == 0 &&
            field_0x301e < 10;
 }
 
@@ -1033,7 +1033,7 @@ int daAlink_c::procIronBallThrowInit() {
 int daAlink_c::procIronBallThrow() {
     daPy_frameCtrl_c* temp_r29 = &mUnderFrameCtrl[0];
 
-    if (mEquipItem != IRONBALL) {
+    if (mEquipItem != fpcNm_ITEM_IRONBALL) {
         return checkWaitAction();
     }
 
@@ -1093,7 +1093,7 @@ int daAlink_c::procIronBallReturnInit() {
 int daAlink_c::procIronBallReturn() {
     daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
 
-    if (mEquipItem != IRONBALL) {
+    if (mEquipItem != fpcNm_ITEM_IRONBALL) {
         return checkWaitAction();
     }
 

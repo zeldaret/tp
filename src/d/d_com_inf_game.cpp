@@ -63,7 +63,7 @@ void dComIfG_play_c::itemInit() {
     mNowOxygen = 600;
     mMaxOxygen = 600;
 
-    if (dComIfGs_checkGetItem(HAWK_EYE)) {
+    if (dComIfGs_checkGetItem(fpcNm_ITEM_HAWK_EYE)) {
         field_0x4f4b = 0;
     } else {
         field_0x4f4b = 21;
@@ -1461,7 +1461,7 @@ u8 dComIfGs_getSelectMixItemNoArrowIndex(int i_selmixItemIdx) {
         return sel_item_slotNo;
     }
 
-    if (mix_item_slotNo != NO_ITEM && mix_item_slotNo >= SLOT_15 && mix_item_slotNo < SLOT_18) {
+    if (mix_item_slotNo != fpcNm_ITEM_NONE && mix_item_slotNo >= SLOT_15 && mix_item_slotNo < SLOT_18) {
         return mix_item_slotNo;
     }
 
@@ -1483,17 +1483,17 @@ void dComIfGp_setSelectItem(int i_selItemIdx) {
                 dComIfGs_setSelectItemIndex(i_selItemIdx, 0xFF);
             }
         } else {
-            g_dComIfG_gameInfo.play.setSelectItem(i_selItemIdx, NO_ITEM);
+            g_dComIfG_gameInfo.play.setSelectItem(i_selItemIdx, fpcNm_ITEM_NONE);
         }
     } else if (dComIfGs_getSelectItemIndex(i_selItemIdx) != 0xFF) {
         u8 item = dComIfGs_getItem(dComIfGs_getSelectItemIndex(i_selItemIdx), false);
         g_dComIfG_gameInfo.play.setSelectItem(i_selItemIdx, item);
 
-        if (item == NO_ITEM) {
+        if (item == fpcNm_ITEM_NONE) {
             dComIfGs_setSelectItemIndex(i_selItemIdx, 0xFF);
         }
     } else {
-        g_dComIfG_gameInfo.play.setSelectItem(i_selItemIdx, NO_ITEM);
+        g_dComIfG_gameInfo.play.setSelectItem(i_selItemIdx, fpcNm_ITEM_NONE);
     }
 }
 
@@ -1506,35 +1506,35 @@ u8 dComIfGp_getSelectItem(int i_selItemIdx) {
     {
         u8 saveItem = dComIfGs_getItem(dComIfGs_getMixItemIndex(i_selItemIdx), false);
 
-        if (saveItem == BOW) {
+        if (saveItem == fpcNm_ITEM_BOW) {
             saveItem = playItem;
-            playItem = BOW;
-        } else if (saveItem == FISHING_ROD_1) {
+            playItem = fpcNm_ITEM_BOW;
+        } else if (saveItem == fpcNm_ITEM_FISHING_ROD_1) {
             saveItem = playItem;
-            playItem = FISHING_ROD_1;
+            playItem = fpcNm_ITEM_FISHING_ROD_1;
         }
 
-        if (playItem == BOW) {
+        if (playItem == fpcNm_ITEM_BOW) {
             switch (saveItem) {
-            case NORMAL_BOMB:
-            case WATER_BOMB:
-            case POKE_BOMB:
-                playItem = BOMB_ARROW;
+            case fpcNm_ITEM_NORMAL_BOMB:
+            case fpcNm_ITEM_WATER_BOMB:
+            case fpcNm_ITEM_POKE_BOMB:
+                playItem = fpcNm_ITEM_BOMB_ARROW;
                 break;
-            case HAWK_EYE:
-                playItem = HAWK_ARROW;
+            case fpcNm_ITEM_HAWK_EYE:
+                playItem = fpcNm_ITEM_HAWK_ARROW;
                 break;
             }
-        } else if (playItem == FISHING_ROD_1) {
+        } else if (playItem == fpcNm_ITEM_FISHING_ROD_1) {
             switch (saveItem) {
-            case BEE_CHILD:
-                playItem = BEE_ROD;
+            case fpcNm_ITEM_BEE_CHILD:
+                playItem = fpcNm_ITEM_BEE_ROD;
                 break;
-            case WORM:
-                playItem = WORM_ROD;
+            case fpcNm_ITEM_WORM:
+                playItem = fpcNm_ITEM_WORM_ROD;
                 break;
-            case ZORAS_JEWEL:
-                playItem = JEWEL_ROD;
+            case fpcNm_ITEM_ZORAS_JEWEL:
+                playItem = fpcNm_ITEM_JEWEL_ROD;
                 break;
             }
         }
@@ -1652,10 +1652,10 @@ JKRExpHeap* dComIfGp_getSubHeap2D(int flag) {
 
 u8 dComIfGs_checkGetInsectNum() {
     static u8 l_itemno[24] = {
-        M_BEETLE,      F_BEETLE,      M_BUTTERFLY, F_BUTTERFLY, M_STAG_BEETLE, F_STAG_BEETLE,
-        M_GRASSHOPPER, F_GRASSHOPPER, M_NANAFUSHI, F_NANAFUSHI, M_DANGOMUSHI,  F_DANGOMUSHI,
-        M_MANTIS,      F_MANTIS,      M_LADYBUG,   F_LADYBUG,   M_SNAIL,       F_SNAIL,
-        M_DRAGONFLY,   F_DRAGONFLY,   M_ANT,       F_ANT,       M_MAYFLY,      F_MAYFLY,
+        fpcNm_ITEM_M_BEETLE,      fpcNm_ITEM_F_BEETLE,      fpcNm_ITEM_M_BUTTERFLY, fpcNm_ITEM_F_BUTTERFLY, fpcNm_ITEM_M_STAG_BEETLE, fpcNm_ITEM_F_STAG_BEETLE,
+        fpcNm_ITEM_M_GRASSHOPPER, fpcNm_ITEM_F_GRASSHOPPER, fpcNm_ITEM_M_NANAFUSHI, fpcNm_ITEM_F_NANAFUSHI, fpcNm_ITEM_M_DANGOMUSHI,  fpcNm_ITEM_F_DANGOMUSHI,
+        fpcNm_ITEM_M_MANTIS,      fpcNm_ITEM_F_MANTIS,      fpcNm_ITEM_M_LADYBUG,   fpcNm_ITEM_F_LADYBUG,   fpcNm_ITEM_M_SNAIL,       fpcNm_ITEM_F_SNAIL,
+        fpcNm_ITEM_M_DRAGONFLY,   fpcNm_ITEM_F_DRAGONFLY,   fpcNm_ITEM_M_ANT,       fpcNm_ITEM_F_ANT,       fpcNm_ITEM_M_MAYFLY,      fpcNm_ITEM_F_MAYFLY,
     };
 
     u8 insectCount = 0;
@@ -1706,14 +1706,14 @@ s16 dComIfGp_getSelectItemNum(int i_selItemIdx) {
     u8 selectItem = dComIfGp_getSelectItem(i_selItemIdx);
     s16 itemNum = 0;
 
-    if (selectItem == NORMAL_BOMB || selectItem == WATER_BOMB || selectItem == POKE_BOMB ||
-        selectItem == BOMB_ARROW)
+    if (selectItem == fpcNm_ITEM_NORMAL_BOMB || selectItem == fpcNm_ITEM_WATER_BOMB || selectItem == fpcNm_ITEM_POKE_BOMB ||
+        selectItem == fpcNm_ITEM_BOMB_ARROW)
     {
         selectItem = dComIfGs_getSelectMixItemNoArrowIndex(i_selItemIdx) - SLOT_15;
         itemNum = dComIfGs_getBombNum(selectItem);
-    } else if (selectItem == PACHINKO) {
+    } else if (selectItem == fpcNm_ITEM_PACHINKO) {
         itemNum = dComIfGs_getPachinkoNum();
-    } else if (selectItem == BEE_CHILD) {
+    } else if (selectItem == fpcNm_ITEM_BEE_CHILD) {
         itemNum = dComIfGs_getBottleNum(dComIfGs_getSelectItemIndex(i_selItemIdx) - SLOT_11);
     }
 
@@ -1725,15 +1725,15 @@ int dComIfGp_getSelectItemMaxNum(int i_selItemIdx) {
     u8 selectItem = dComIfGp_getSelectItem(i_selItemIdx);
     int itemNum = 0;
 
-    if (selectItem == BOMB_BAG_LV1) {
+    if (selectItem == fpcNm_ITEM_BOMB_BAG_LV1) {
         itemNum = 1;
-    } else if (selectItem == NORMAL_BOMB || selectItem == WATER_BOMB || selectItem == POKE_BOMB ||
-               selectItem == BOMB_ARROW)
+    } else if (selectItem == fpcNm_ITEM_NORMAL_BOMB || selectItem == fpcNm_ITEM_WATER_BOMB || selectItem == fpcNm_ITEM_POKE_BOMB ||
+               selectItem == fpcNm_ITEM_BOMB_ARROW)
     {
         itemNum = dComIfGs_getBombMax(selectItem);
-    } else if (selectItem == PACHINKO) {
+    } else if (selectItem == fpcNm_ITEM_PACHINKO) {
         itemNum = dComIfGs_getPachinkoMax();
-    } else if (selectItem == BEE_CHILD) {
+    } else if (selectItem == fpcNm_ITEM_BEE_CHILD) {
         itemNum = dComIfGs_getBottleMax();
     }
 
@@ -1744,8 +1744,8 @@ int dComIfGp_getSelectItemMaxNum(int i_selItemIdx) {
 void dComIfGp_setSelectItemNum(int i_selItemIdx, s16 i_num) {
     u8 selectItem = dComIfGp_getSelectItem(i_selItemIdx);
 
-    if (selectItem == NORMAL_BOMB || selectItem == WATER_BOMB || selectItem == POKE_BOMB ||
-        selectItem == BOMB_ARROW)
+    if (selectItem == fpcNm_ITEM_NORMAL_BOMB || selectItem == fpcNm_ITEM_WATER_BOMB || selectItem == fpcNm_ITEM_POKE_BOMB ||
+        selectItem == fpcNm_ITEM_BOMB_ARROW)
     {
         u8 mix_slotNo = dComIfGs_getSelectMixItemNoArrowIndex(i_selItemIdx) - SLOT_15;
 
@@ -1753,9 +1753,9 @@ void dComIfGp_setSelectItemNum(int i_selItemIdx, s16 i_num) {
             i_num = dComIfGs_getBombMax(selectItem);
         }
         dComIfGs_setBombNum(mix_slotNo, i_num);
-    } else if (selectItem == PACHINKO) {
+    } else if (selectItem == fpcNm_ITEM_PACHINKO) {
         dComIfGs_setPachinkoNum(i_num);
-    } else if (selectItem == BEE_CHILD) {
+    } else if (selectItem == fpcNm_ITEM_BEE_CHILD) {
         u8 bottle_slot_no = dComIfGs_getSelectItemIndex(i_selItemIdx) - SLOT_11;
 
         if (i_num > dComIfGs_getBottleMax()) {
@@ -1769,14 +1769,14 @@ void dComIfGp_setSelectItemNum(int i_selItemIdx, s16 i_num) {
 void dComIfGp_addSelectItemNum(int i_selItemIdx, s16 i_num) {
     u8 selectItem = dComIfGp_getSelectItem(i_selItemIdx);
 
-    if (selectItem == NORMAL_BOMB || selectItem == WATER_BOMB || selectItem == POKE_BOMB ||
-        selectItem == BOMB_ARROW)
+    if (selectItem == fpcNm_ITEM_NORMAL_BOMB || selectItem == fpcNm_ITEM_WATER_BOMB || selectItem == fpcNm_ITEM_POKE_BOMB ||
+        selectItem == fpcNm_ITEM_BOMB_ARROW)
     {
         u8 slot_no = dComIfGs_getSelectMixItemNoArrowIndex(i_selItemIdx) - SLOT_15;
         dComIfGp_setItemBombNumCount(slot_no, i_num);
-    } else if (selectItem == PACHINKO) {
+    } else if (selectItem == fpcNm_ITEM_PACHINKO) {
         dComIfGp_setItemPachinkoNumCount(i_num);
-    } else if (selectItem == BEE_CHILD) {
+    } else if (selectItem == fpcNm_ITEM_BEE_CHILD) {
         dComIfGs_addBottleNum(dComIfGs_getSelectItemIndex(i_selItemIdx) - SLOT_11, i_num);
     }
 }
@@ -1965,16 +1965,16 @@ void dComIfGs_setSelectEquipClothes(u8 i_itemNo) {
  */
 void dComIfGs_setSelectEquipSword(u8 i_itemNo) {
     switch (i_itemNo) {
-    case SWORD:
+    case fpcNm_ITEM_SWORD:
         dComIfGs_setCollectSword(COLLECT_ORDON_SWORD);
         break;
-    case MASTER_SWORD:
+    case fpcNm_ITEM_MASTER_SWORD:
         dComIfGs_setCollectSword(COLLECT_MASTER_SWORD);
         break;
-    case WOOD_STICK:
+    case fpcNm_ITEM_WOOD_STICK:
         dComIfGs_setCollectSword(COLLECT_WOODEN_SWORD);
         break;
-    case LIGHT_SWORD:
+    case fpcNm_ITEM_LIGHT_SWORD:
         dComIfGs_setCollectSword(COLLECT_LIGHT_SWORD);
         break;
     }
@@ -1986,13 +1986,13 @@ void dComIfGs_setSelectEquipSword(u8 i_itemNo) {
  */
 void dComIfGs_setSelectEquipShield(u8 i_itemNo) {
     switch (i_itemNo) {
-    case WOOD_SHIELD:
+    case fpcNm_ITEM_WOOD_SHIELD:
         dComIfGs_setCollectShield(COLLECT_WOODEN_SHIELD);
         break;
-    case SHIELD:
+    case fpcNm_ITEM_SHIELD:
         dComIfGs_setCollectShield(COLLECT_ORDON_SHIELD);
         break;
-    case HYLIA_SHIELD:
+    case fpcNm_ITEM_HYLIA_SHIELD:
         dComIfGs_setCollectShield(COLLECT_HYLIAN_SHIELD);
         break;
     }

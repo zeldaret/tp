@@ -22,11 +22,11 @@ void daAlink_c::setArcName(BOOL i_isWolf) {
 }
 
 inline bool checkCarvingWoodShieldEquip() {
-    return dComIfGs_getSelectEquipShield() == WOOD_SHIELD;
+    return dComIfGs_getSelectEquipShield() == fpcNm_ITEM_WOOD_SHIELD;
 }
 
 inline bool checkShopWoodShieldEquip() {
-    return dComIfGs_getSelectEquipShield() == SHIELD;
+    return dComIfGs_getSelectEquipShield() == fpcNm_ITEM_SHIELD;
 }
 
 /* 8013FF90-8013FFD8 13A8D0 0048+00 2/2 0/0 0/0 .text            setShieldArcName__9daAlink_cFv */

@@ -1311,7 +1311,7 @@ dMeter_mapIconHIO_c::dMeter_mapIconHIO_c() {
     mCannonBallZoomScale[1] = 0.8f;
 
     mLV5DungeonItemDebug = false;
-    mLV5DungeonItem = NO_ITEM;
+    mLV5DungeonItem = fpcNm_ITEM_NONE;
     mIconDebug = false;
 
     for (int i = 0; i < ARRAY_SIZE(mIconDisplay); i++) {

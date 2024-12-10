@@ -3015,7 +3015,7 @@ static void demo_camera(b_ob_class* i_this) {
             csXyz sp17C(player->shape_angle);
             sp17C.y += KREG_S(3) + -0x7060;
 
-            fopAcM_createItemForBoss(&a_this->eyePos, UTAWA_HEART, fopAcM_GetRoomNo(a_this), &sp17C,
+            fopAcM_createItemForBoss(&a_this->eyePos, fpcNm_ITEM_UTAWA_HEART, fopAcM_GetRoomNo(a_this), &sp17C,
                                      NULL, KREG_F(19) + 10.0f, 10.0f, -1);
             dComIfGp_getVibration().StartShock(5, 1, cXyz(0.0f, 1.0f, 0.0f));
         }
@@ -3869,7 +3869,7 @@ static int daB_OB_Create(fopAc_ac_c* i_this) {
             if (!dComIfGs_isStageLife()) {
                 cXyz scale(1.0f, 1.0f, 1.0f);
                 pos.set(-916.0f, -23954.0f, 8916.0f);
-                fopAcM_createItemForBoss(&pos, UTAWA_HEART, fopAcM_GetRoomNo(a_this),
+                fopAcM_createItemForBoss(&pos, fpcNm_ITEM_UTAWA_HEART, fopAcM_GetRoomNo(a_this),
                                          &a_this->shape_angle, &scale, 0.0f, 0.0f, -1);
             }
 

@@ -13,7 +13,7 @@
 #include "f_op/f_op_actor_mng.h"
 
 bool daPy_py_c::checkWoodSwordEquip() {
-    return dComIfGs_getSelectEquipSword() == WOOD_STICK;
+    return dComIfGs_getSelectEquipSword() == fpcNm_ITEM_WOOD_STICK;
 }
 
 BOOL daPy_py_c::checkNowWolf() {

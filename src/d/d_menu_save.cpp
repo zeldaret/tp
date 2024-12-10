@@ -1601,8 +1601,8 @@ void dMenu_save_c::restartInit() {
         dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[225]);  // Monkey dropped lantern
     }
 
-    if (dComIfGs_isItemFirstBit(KANTERA) && dComIfGs_getItem(SLOT_1, true) == NO_ITEM) {
-        dComIfGs_setItem(SLOT_1, KANTERA);
+    if (dComIfGs_isItemFirstBit(fpcNm_ITEM_KANTERA) && dComIfGs_getItem(SLOT_1, true) == fpcNm_ITEM_NONE) {
+        dComIfGs_setItem(SLOT_1, fpcNm_ITEM_KANTERA);
         dComIfGs_setOil(dMeter2Info_getOilGaugeBackUp());
     }
 

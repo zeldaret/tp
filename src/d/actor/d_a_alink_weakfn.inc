@@ -140,7 +140,7 @@ extern "C" void offCondition__11dEvt_info_cFUs() {
 
 /* 80141210-80141230 13BB50 0020+00 1/1 0/0 0/0 .text            checkShieldGet__9daPy_py_cFv */
 extern "C" BOOL checkShieldGet__9daPy_py_cFv() {
-    return dComIfGs_getSelectEquipShield() != NO_ITEM;
+    return dComIfGs_getSelectEquipShield() != fpcNm_ITEM_NONE;
 }
 
 /* 80141230-80141264 13BB70 0034+00 1/1 0/0 0/0 .text            fopAcM_onSwitch__FPC10fopAc_ac_ci

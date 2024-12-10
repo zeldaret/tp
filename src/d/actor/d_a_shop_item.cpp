@@ -10,75 +10,75 @@
 /* 8059E9B8-8059EC04 000078 024C+00 2/2 0/0 0/0 .text            getShopArcname__12daShopItem_cFv */
 const char* daShopItem_c::getShopArcname() {
     switch (m_itemNo) {
-    case NO_ITEM:
+    case fpcNm_ITEM_NONE:
         if (strcmp("R_SP160", dComIfGp_getStartStageName()) == 0) {
             mShopItemID = SHOP_ITEMNO_ARMOR_SOLD;
         } else {
             mShopItemID = SHOP_ITEMNO_SOLD;
         }
         break;
-    case OIL_BOTTLE:
+    case fpcNm_ITEM_OIL_BOTTLE:
         mShopItemID = SHOP_ITEMNO_OIL;
         break;
-    case MILK_BOTTLE:
+    case fpcNm_ITEM_MILK_BOTTLE:
         mShopItemID = SHOP_ITEMNO_MILK;
         break;
-    case HALF_MILK_BOTTLE:
+    case fpcNm_ITEM_HALF_MILK_BOTTLE:
         mShopItemID = SHOP_ITEMNO_HALF_MILK;
         break;
-    case RED_BOTTLE:
+    case fpcNm_ITEM_RED_BOTTLE:
         mShopItemID = SHOP_ITEMNO_RED;
         break;
-    case GREEN_BOTTLE:
+    case fpcNm_ITEM_GREEN_BOTTLE:
         mShopItemID = SHOP_ITEMNO_GREEN;
         break;
-    case BLUE_BOTTLE:
+    case fpcNm_ITEM_BLUE_BOTTLE:
         mShopItemID = SHOP_ITEMNO_BLUE;
         break;
-    case DROP_BOTTLE:
+    case fpcNm_ITEM_DROP_BOTTLE:
         mShopItemID = SHOP_ITEMNO_DROP;
         break;
-    case ARROW_10:
-    case ARROW_20:
-    case ARROW_30:
+    case fpcNm_ITEM_ARROW_10:
+    case fpcNm_ITEM_ARROW_20:
+    case fpcNm_ITEM_ARROW_30:
         mShopItemID = SHOP_ITEMNO_ARROW;
         break;
-    case SHIELD:
+    case fpcNm_ITEM_SHIELD:
         mShopItemID = SHOP_ITEMNO_SHIELD_B;
         break;
-    case HYLIA_SHIELD:
+    case fpcNm_ITEM_HYLIA_SHIELD:
         mShopItemID = SHOP_ITEMNO_SHIELD_A;
         break;
-    case NORMAL_BOMB:
-    case BOMB_5:
-    case BOMB_10:
-    case BOMB_20:
-    case BOMB_30:
+    case fpcNm_ITEM_NORMAL_BOMB:
+    case fpcNm_ITEM_BOMB_5:
+    case fpcNm_ITEM_BOMB_10:
+    case fpcNm_ITEM_BOMB_20:
+    case fpcNm_ITEM_BOMB_30:
         mShopItemID = SHOP_ITEMNO_BOMB;
         break;
-    case WATER_BOMB:
+    case fpcNm_ITEM_WATER_BOMB:
         mShopItemID = SHOP_ITEMNO_WATER_BOMB;
         break;
-    case POKE_BOMB:
+    case fpcNm_ITEM_POKE_BOMB:
         mShopItemID = SHOP_ITEMNO_POKE_BOMB;
         break;
-    case BOMB_BAG_LV1:
-    case BOMB_IN_BAG:
+    case fpcNm_ITEM_BOMB_BAG_LV1:
+    case fpcNm_ITEM_BOMB_IN_BAG:
         mShopItemID = SHOP_ITEMNO_BOMB_BAG;
         break;
-    case BOMB_BAG_LV2:
+    case fpcNm_ITEM_BOMB_BAG_LV2:
         mShopItemID = SHOP_ITEMNO_BOMB_BAG_LV2;
         break;
-    case BEE_CHILD:
+    case fpcNm_ITEM_BEE_CHILD:
         mShopItemID = SHOP_ITEMNO_BEE_CHILD;
         break;
-    case PACHINKO:
+    case fpcNm_ITEM_PACHINKO:
         mShopItemID = SHOP_ITEMNO_PACHINKO;
         break;
-    case HAWK_EYE:
+    case fpcNm_ITEM_HAWK_EYE:
         mShopItemID = SHOP_ITEMNO_HAWKEYE;
         break;
-    case ARMOR:
+    case fpcNm_ITEM_ARMOR:
         mShopItemID = SHOP_ITEMNO_ARMOR;
         break;
     default:
@@ -185,7 +185,7 @@ void daShopItem_c::setListStart() {}
 
 /* 8059EFA0-8059F024 000660 0084+00 1/0 0/0 0/0 .text            setShadow__12daShopItem_cFv */
 void daShopItem_c::setShadow() {
-    if (m_itemNo != NO_ITEM) {
+    if (m_itemNo != fpcNm_ITEM_NONE) {
         daItemBase_c::setShadow();
     } else {
         mShadowKey = dComIfGd_setShadow(mShadowKey, 1, mpModel, &current.pos, 80.0f, 0.0f,
@@ -234,7 +234,7 @@ int daShopItem_c::_create() {
     if (getShopArcname() == NULL) {
         // "Display model archive name doesn't exist![%d]\n"
         OS_REPORT("陳列用モデルのアーカイブ名がありません！[%d]\n", m_itemNo);
-        m_itemNo = NO_ITEM;
+        m_itemNo = fpcNm_ITEM_NONE;
     }
 
     int phase_state = dComIfG_resLoad(&mPhase, getShopArcname());

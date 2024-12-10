@@ -2400,9 +2400,9 @@ void daNpc_zrA_c::moveRiverPosCalc(cXyz& o_pos) {
 void daNpc_zrA_c::createRuppi() {
     int item;
     if (cLib_getRndValue(0, 5) < 4) {
-        item = GREEN_RUPEE;
+        item = fpcNm_ITEM_GREEN_RUPEE;
     } else {
-        item = BLUE_RUPEE;
+        item = fpcNm_ITEM_BLUE_RUPEE;
     }
     cXyz pos(0.0f, 0.0f, -100.0f);
     mDoMtx_stack_c::transS(current.pos);

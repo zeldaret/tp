@@ -3215,10 +3215,10 @@ public:
         return checkHookshotReadyAnime() || checkHookshotShootAnime();
     }
     BOOL checkBoomerangReadyAnime() const {
-        return (mEquipItem == BOOMERANG || mEquipItem == noentry71) && checkUpperAnime(0x54);
+        return (mEquipItem == fpcNm_ITEM_BOOMERANG || mEquipItem == 0x102) && checkUpperAnime(0x54);
     }
     bool checkDkCaught2Anime() const { return checkUpperAnime(0x262); }
-    BOOL checkCopyRodThrowAnime() const { return mEquipItem == COPY_ROD && checkUpperAnime(0x53); }
+    BOOL checkCopyRodThrowAnime() const { return mEquipItem == fpcNm_ITEM_COPY_ROD && checkUpperAnime(0x53); }
     BOOL checkCutDashChargeAnime() const { return checkUpperAnime(0x83); }
     BOOL checkBoomerangAnimeAndReturnWait() const { return checkBoomerangAnime(); }
     BOOL checkTwoHandItemEquipAnime() const { return checkUpperAnime(0x245); }
@@ -3249,7 +3249,7 @@ public:
     bool checkIronBallSwingAnime() const { return checkUpperAnime(0x19B); }
     bool checkDashDamageAnime() const { return checkUpperAnime(0xAD); }
     bool checkBoomerangCatchAnime() const { return checkUpperAnime(0x52); }
-    BOOL checkCopyRodReadyAnime() const { return mEquipItem == COPY_ROD && checkUpperAnime(0x54); }
+    BOOL checkCopyRodReadyAnime() const { return mEquipItem == fpcNm_ITEM_COPY_ROD && checkUpperAnime(0x54); }
     BOOL checkCanoeFishingWaitAnime() const { return checkUpperAnime(0x5D) || checkUpperAnime(0x260); }
     BOOL checkCopyRodControllAnime() const { return checkUpperAnime(0x202); }
     BOOL checkWolfHeadDamageAnime() const { return checkUpperAnime(0x2A7); }
@@ -3262,7 +3262,7 @@ public:
     bool swordButton() { return itemButtonCheck(8); }
     daPy_actorKeep_c* getThrowBoomerangAcKeep() { return &mThrowBoomerangAcKeep; }
     s32 getStartRoomNo() { return fopAcM_GetParam(this) & 0x3F; }
-    bool checkFisingRodLure() const { return mEquipItem == noentry73; }
+    bool checkFisingRodLure() const { return mEquipItem == 0x105; }
     BOOL doTrigger() const { return mItemTrigger & BTN_A; }
     bool swordTrigger() { return itemTriggerCheck(BTN_B); }
     BOOL grassCancelTrigger() { return itemTriggerCheck(BTN_B); }
@@ -3439,7 +3439,7 @@ public:
     void setGrassCancelStatus(u8 param_0) { setBStatus(param_0); }
 
     void seStartSystem(u32 i_seID) { mDoAud_seStart(i_seID, NULL, 0, 0); }
-    bool checkIronBallEquip() const { return mEquipItem == IRONBALL; }
+    bool checkIronBallEquip() const { return mEquipItem == fpcNm_ITEM_IRONBALL; }
 
     f32 getAnmSpeedStickRate(f32 param_0, f32 param_1) const {
         return param_0 + (field_0x33a8 * (param_1 - param_0));

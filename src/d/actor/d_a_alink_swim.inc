@@ -15,7 +15,7 @@ BOOL daAlink_c::checkZoraWearMaskDraw() {
 
 /* 801018E4-80101934 0FC224 0050+00 1/1 0/0 0/0 .text checkAcceptUseItemInWater__9daAlink_cCFUs */
 BOOL daAlink_c::checkAcceptUseItemInWater(u16 i_itemNo) const {
-    return i_itemNo == HVY_BOOTS || i_itemNo == WATER_BOMB || checkHookshotItem(i_itemNo);
+    return i_itemNo == fpcNm_ITEM_HVY_BOOTS || i_itemNo == fpcNm_ITEM_WATER_BOMB || checkHookshotItem(i_itemNo);
 }
 
 /* 80101934-801019B8 0FC274 0084+00 4/4 0/0 0/0 .text            swimDeleteItem__9daAlink_cFv */
@@ -786,7 +786,7 @@ void daAlink_c::setSwimMoveAnime() {
     if (checkBootsOrArmorHeavy()) {
         var_r29 = ANM_SWIM_WAIT;
         field_0x594 = daAlinkHIO_swim_c0::m.mUnderwaterMaxSinkSpeed;
-        if (mEquipItem != NO_ITEM && !checkHookshotAnime()) {
+        if (mEquipItem != fpcNm_ITEM_NONE && !checkHookshotAnime()) {
             setDoStatus(4);
         }
     }
@@ -958,7 +958,7 @@ int daAlink_c::procSwimUp() {
 
     setNormalSpeedF(0.0f, daAlinkHIO_swim_c0::m.mDeceleration);
 
-    if (checkSetItemTrigger(HVY_BOOTS)) {
+    if (checkSetItemTrigger(fpcNm_ITEM_HVY_BOOTS)) {
         setHeavyBoots(1);
     }
 
@@ -1053,7 +1053,7 @@ int daAlink_c::procSwimWait() {
 
     setSwimUpDownOffset();
 
-    if (checkEquipHeavyBoots() && mEquipItem != NO_ITEM) {
+    if (checkEquipHeavyBoots() && mEquipItem != fpcNm_ITEM_NONE) {
         setDoStatus(0x4);
     }
 

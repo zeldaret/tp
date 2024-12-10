@@ -1777,7 +1777,7 @@ static void dKy_calc_color_set(GXColorS10* o_calcColor, color_RGB_class* i_col0A
 }
 
 inline bool checkZoraWearFlg() {
-    return dComIfGs_getSelectEquipClothes() == WEAR_ZORA;
+    return dComIfGs_getSelectEquipClothes() == fpcNm_ITEM_WEAR_ZORA;
 }
 
 /* 801A040C-801A133C 19AD4C 0F30+00 1/1 0/0 0/0 .text            setLight__18dScnKy_env_light_cFv */

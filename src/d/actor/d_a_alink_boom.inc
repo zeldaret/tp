@@ -84,7 +84,7 @@ fopAc_ac_c* daAlink_c::getBoomerangActor() {
         return mThrowBoomerangAcKeep.getActor();
     }
 
-    if (mEquipItem == BOOMERANG) {
+    if (mEquipItem == fpcNm_ITEM_BOOMERANG) {
         return mItemAcKeep.getActor();
     }
 
@@ -147,7 +147,7 @@ BOOL daAlink_c::checkBoomerangAnime() const {
 
 /* 800E04AC-800E04E8 0DADEC 003C+00 13/13 0/0 0/0 .text checkBoomerangThrowAnime__9daAlink_cCFv */
 BOOL daAlink_c::checkBoomerangThrowAnime() const {
-    return (mEquipItem == BOOMERANG || checkNoResetFlg1(FLG1_UNK_2) || mEquipItem == noentry71) &&
+    return (mEquipItem == fpcNm_ITEM_BOOMERANG || checkNoResetFlg1(FLG1_UNK_2) || mEquipItem == 0x102) &&
            checkUpperAnime(0x53);
 }
 
@@ -185,7 +185,7 @@ void daAlink_c::setBoomerangCatchAnime() {
     setFacePriBck(0xE8);
     field_0x2f97 = 254;
 
-    if (mEquipItem != COPY_ROD) {
+    if (mEquipItem != fpcNm_ITEM_COPY_ROD) {
         seStartOnlyReverb(JA_SE_LK_BOOM_CATCH);
     }
 }
@@ -220,13 +220,13 @@ void daAlink_c::throwBoomerang() {
 
         fopAcM_cancelCarryNow(item);
         item = NULL;
-        mEquipItem = NO_ITEM;
+        mEquipItem = fpcNm_ITEM_NONE;
         field_0x2f94 = 0xFF;
         field_0x2f96 = 0xFE;
     }
 
     mItemAcKeep.clearData();
-    mEquipItem = NO_ITEM;
+    mEquipItem = fpcNm_ITEM_NONE;
     field_0x2f94 = 0xFF;
     field_0x2f96 = 0xFE;
 
@@ -259,7 +259,7 @@ void daAlink_c::throwBoomerang() {
 int daAlink_c::returnBoomerang(int param_0) {
     dComIfGp_clearPlayerStatus0(0, 0x400000);
 
-    if (mEquipItem == NO_ITEM && !checkMagneBootsOn() && mItemAcKeep.getActor() == NULL &&
+    if (mEquipItem == fpcNm_ITEM_NONE && !checkMagneBootsOn() && mItemAcKeep.getActor() == NULL &&
         !checkBoardRide() && !checkBoarRide() && !checkWolf() &&
         (mProcID != PROC_HANG_READY || field_0x3198 != 3) && (!checkEventRun() || param_0 != 0) &&
         (checkNoUpperAnime() || checkPlayerGuard() || checkHorseTurnAnime() ||
@@ -268,7 +268,7 @@ int daAlink_c::returnBoomerang(int param_0) {
         mItemAcKeep = mThrowBoomerangAcKeep;
         mThrowBoomerangAcKeep.clearData();
 
-        mEquipItem = BOOMERANG;
+        mEquipItem = fpcNm_ITEM_BOOMERANG;
         field_0x2f94 = 2;
         onNoResetFlg0(FLG0_UNK_20);
 

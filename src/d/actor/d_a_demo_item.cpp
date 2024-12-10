@@ -75,11 +75,11 @@ void daDitem_c::actionStart() {
             OS_REPORT("ゲットアイテム：エフェクトライトセット＆表示スタート！\n");
         }
 
-        if (m_itemNo == DUNGEON_EXIT || m_itemNo == DUNGEON_EXIT_2) {
+        if (m_itemNo == fpcNm_ITEM_DUNGEON_EXIT || m_itemNo == fpcNm_ITEM_DUNGEON_EXIT_2) {
             current.angle.y = dComIfGp_getPlayer(0)->shape_angle.y;
         }
 
-        if (m_itemNo == UTAWA_HEART || m_itemNo == KAKERA_HEART) {
+        if (m_itemNo == fpcNm_ITEM_UTAWA_HEART || m_itemNo == fpcNm_ITEM_KAKERA_HEART) {
             JPABaseEmitter* emitter = field_0x96c.getEmitter();
             if (emitter == NULL) {
                 dComIfGp_particle_set(0x8DE, &current.pos, NULL, NULL, 0xFF, &field_0x96c, -1, NULL, NULL, NULL);
@@ -93,22 +93,22 @@ void daDitem_c::actionStart() {
             mParticleAlpha = 0xFF;
         }
 
-        if ((m_itemNo == ORANGE_RUPEE || m_itemNo == SILVER_RUPEE) && field_0x96c.getEmitter() == NULL) {
+        if ((m_itemNo == fpcNm_ITEM_ORANGE_RUPEE || m_itemNo == fpcNm_ITEM_SILVER_RUPEE) && field_0x96c.getEmitter() == NULL) {
             cXyz scale(0.55f, 0.55f, 0.55f);
             dComIfGp_particle_set(0xC14, &field_0x99c, NULL, &scale, 0xFF, &field_0x96c, -1, NULL, NULL, NULL);
         }
 
-        if (m_itemNo == WALLET_LV3 && field_0x96c.getEmitter() == NULL) {
+        if (m_itemNo == fpcNm_ITEM_WALLET_LV3 && field_0x96c.getEmitter() == NULL) {
             cXyz scale(1.2f, 1.2f, 1.2f);
             dComIfGp_particle_set(0xC14, &field_0x99c, NULL, &scale, 0xFF, &field_0x96c, -1, NULL, NULL, NULL);
         }
 
-        if (m_itemNo == CHUCHU_RARE && field_0x96c.getEmitter() == NULL) {
+        if (m_itemNo == fpcNm_ITEM_CHUCHU_RARE && field_0x96c.getEmitter() == NULL) {
             cXyz scale(0.8f, 0.8f, 0.8f);
             dComIfGp_particle_set(0xC14, &field_0x99c, NULL, &scale, 0xFF, &field_0x96c, -1, NULL, NULL, NULL);
         }
 
-        if ((m_itemNo == FAIRY_DROP || m_itemNo == DROP_BOTTLE) && field_0x96c.getEmitter() == NULL) {
+        if ((m_itemNo == fpcNm_ITEM_FAIRY_DROP || m_itemNo == fpcNm_ITEM_DROP_BOTTLE) && field_0x96c.getEmitter() == NULL) {
             dComIfGp_particle_set(0x8C15, &field_0x99c, NULL, NULL, 0xFF, &field_0x96c, -1, NULL, NULL, NULL);
         }
 
@@ -128,7 +128,7 @@ void daDitem_c::actionEvent() {
         cLib_addCalc2(&mLight.mPow, mLightStrength, 0.1f, 1.0f);
     }
 
-    if (m_itemNo == POU_SPIRIT) {
+    if (m_itemNo == fpcNm_ITEM_POU_SPIRIT) {
         mSound.startLevelSound(Z2SE_EN_PO_SOUL, 0, -1);
     }
 
@@ -137,7 +137,7 @@ void daDitem_c::actionEvent() {
             execItemGet(m_itemNo);
         }
 
-        if (m_itemNo == KAKERA_HEART) {
+        if (m_itemNo == fpcNm_ITEM_KAKERA_HEART) {
             s32 room_no = dComIfGp_roomControl_getStayNo();
 
             if (strcmp(dComIfGp_getStartStageName(), "F_SP116") == 0 && room_no == 2) {
@@ -229,7 +229,7 @@ void daDitem_c::actionEvent() {
 void daDitem_c::actionWaitLightEnd() {
     BOOL particle_hidden = TRUE;
 
-    if (m_itemNo == UTAWA_HEART || m_itemNo == KAKERA_HEART) {
+    if (m_itemNo == fpcNm_ITEM_UTAWA_HEART || m_itemNo == fpcNm_ITEM_KAKERA_HEART) {
         particle_hidden = cLib_chaseUC(&mParticleAlpha, 0, 26);
 
         JPABaseEmitter* emitter = field_0x96c.getEmitter();
@@ -402,7 +402,7 @@ void daDitem_c::settingEffectLight() {
 void daDitem_c::set_mtx() {
     mpModel->setBaseScale(scale);
 
-    if (m_itemNo != DUNGEON_EXIT && m_itemNo != DUNGEON_BACK && m_itemNo != LV7_DUNGEON_EXIT && m_itemNo != DUNGEON_EXIT_2) {
+    if (m_itemNo != fpcNm_ITEM_DUNGEON_EXIT && m_itemNo != fpcNm_ITEM_DUNGEON_BACK && m_itemNo != fpcNm_ITEM_LV7_DUNGEON_EXIT && m_itemNo != fpcNm_ITEM_DUNGEON_EXIT_2) {
         s16 var_r28 = 0xFFFF / 250;
         fopAcM_addAngleY(this, current.angle.y + var_r28, var_r28);
     }
@@ -440,12 +440,12 @@ int daDitem_c::Delete() {
         dKy_efplight_cut(&mLight);
     }
 
-    if (m_itemNo == UTAWA_HEART || m_itemNo == KAKERA_HEART) {
+    if (m_itemNo == fpcNm_ITEM_UTAWA_HEART || m_itemNo == fpcNm_ITEM_KAKERA_HEART) {
         field_0x96c.remove();
         field_0x980.remove();
     }
 
-    if (m_itemNo == ORANGE_RUPEE || m_itemNo == SILVER_RUPEE || m_itemNo == WALLET_LV3 || m_itemNo == FAIRY_DROP || m_itemNo == DROP_BOTTLE || m_itemNo == CHUCHU_RARE) {
+    if (m_itemNo == fpcNm_ITEM_ORANGE_RUPEE || m_itemNo == fpcNm_ITEM_SILVER_RUPEE || m_itemNo == fpcNm_ITEM_WALLET_LV3 || m_itemNo == fpcNm_ITEM_FAIRY_DROP || m_itemNo == fpcNm_ITEM_DROP_BOTTLE || m_itemNo == fpcNm_ITEM_CHUCHU_RARE) {
         field_0x96c.remove();
     }
 
@@ -478,7 +478,7 @@ int daDitem_c::create() {
             OS_REPORT_ERROR("ゲット用モデルのアーカイブ名がありません！[%d]\n", m_itemNo);
         }
 
-        m_itemNo = GREEN_RUPEE;
+        m_itemNo = fpcNm_ITEM_GREEN_RUPEE;
     }
 
     int phase_state = dComIfG_resLoad(&mPhase, dItem_data::getArcName(m_itemNo));
@@ -523,13 +523,13 @@ int daDitem_c::execute() {
     eyePos = current.pos;
     eyePos.y += mpModel->getModelData()->getJointNodePointer(0)->getMax()->y * 0.5f;
 
-    if (m_itemNo == ORANGE_RUPEE || m_itemNo == SILVER_RUPEE) {
+    if (m_itemNo == fpcNm_ITEM_ORANGE_RUPEE || m_itemNo == fpcNm_ITEM_SILVER_RUPEE) {
         field_0x99c = current.pos;
         field_0x99c.y += 10.0f;
-    } else if (m_itemNo == WALLET_LV3 || m_itemNo == CHUCHU_RARE) {
+    } else if (m_itemNo == fpcNm_ITEM_WALLET_LV3 || m_itemNo == fpcNm_ITEM_CHUCHU_RARE) {
         field_0x99c = current.pos;
         field_0x99c.y += 15.0f;
-    } else if (m_itemNo == FAIRY_DROP || m_itemNo == DROP_BOTTLE) {
+    } else if (m_itemNo == fpcNm_ITEM_FAIRY_DROP || m_itemNo == fpcNm_ITEM_DROP_BOTTLE) {
         field_0x99c = current.pos;
     }
 
@@ -544,7 +544,7 @@ static int daDitem_Execute(daDitem_c* i_this) {
 
 int daDitem_c::draw() {
     switch (m_itemNo) {
-    case WOOD_STICK:
+    case fpcNm_ITEM_WOOD_STICK:
         draw_WOOD_STICK();
         break;
     }

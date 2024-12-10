@@ -45,8 +45,8 @@ bool daAlink_c::checkSetNpcTks(cXyz* i_basePos, int i_roomNo, int param_2) {
     if (param_2 != 0 && checkDungeon() &&
         i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != 0x17 &&
         i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != 0x18 &&
-        (checkItemGet(TKS_LETTER, 1) ||
-         (checkItemGet(DUNGEON_BACK, 1) && !checkLv7DungeonShop())) &&
+        (checkItemGet(fpcNm_ITEM_TKS_LETTER, 1) ||
+         (checkItemGet(fpcNm_ITEM_DUNGEON_BACK, 1) && !checkLv7DungeonShop())) &&
         dComIfGs_isDungeonItemWarp())
     {
         if (!dComIfGs_isStageBossEnemy()) {
@@ -159,7 +159,7 @@ int daAlink_c::checkDemoAction() {
             checkBoarRide() || checkCanoeRide())
         {
             if (demoMode == daPy_demo_c::DEMO_UNK_6_e && (checkHorseRide() || checkBoarRide())) {
-                if (mEquipItem != NO_ITEM && mEquipItem != KANTERA && !checkEquipAnime()) {
+                if (mEquipItem != fpcNm_ITEM_NONE && mEquipItem != fpcNm_ITEM_KANTERA && !checkEquipAnime()) {
                     allUnequip(1);
                 }
             }
@@ -213,7 +213,7 @@ int daAlink_c::checkDemoAction() {
                 } else if (mDemo.getParam0() == 4) {
                     if (!checkFishingRodItem(mEquipItem)) {
                         deleteEquipItem(FALSE, TRUE);
-                        mEquipItem = FISHING_ROD_1;
+                        mEquipItem = fpcNm_ITEM_FISHING_ROD_1;
                         setGroundFishingRodActor();
                     }
                 } else if (mDemo.getParam0() == 3) {
@@ -625,7 +625,7 @@ void daAlink_c::setDemoData() {
                 freeGrabItem();
 
                 if (dComIfGp_evmng_startCheck("R22-opening")) {
-                    if (mEquipItem == IRONBALL) {
+                    if (mEquipItem == fpcNm_ITEM_IRONBALL) {
                         deleteEquipItem(FALSE, FALSE);
                     }
                 } else {
@@ -741,7 +741,7 @@ void daAlink_c::setDemoData() {
                 }
             }
 
-            if ((mEquipItem == IRONBALL || checkFishingRodItem(mEquipItem)) && demo_mode != daPy_demo_c::DEMO_UNK_1_e &&
+            if ((mEquipItem == fpcNm_ITEM_IRONBALL || checkFishingRodItem(mEquipItem)) && demo_mode != daPy_demo_c::DEMO_UNK_1_e &&
                 demo_mode != daPy_demo_c::DEMO_UNK_31_e && (field_0x3184 != -1 || mDemo.getDemoType() == 3) &&
                 (demo_mode != daPy_demo_c::DEMO_UNK_6_e || (var_r28 == 0 && !checkEquipAnime())))
             {
@@ -1092,7 +1092,7 @@ void daAlink_c::setShapeAngleToTalkActor() {
 
 /* 80118654-801186D4 112F94 0080+00 2/2 0/0 0/0 .text            setTalkAnime__9daAlink_cFv */
 void daAlink_c::setTalkAnime() {
-    if (mDemo.getDemoMode() == daPy_demo_c::DEMO_UNK_8_e || mEquipItem == KANTERA ||
+    if (mDemo.getDemoMode() == daPy_demo_c::DEMO_UNK_8_e || mEquipItem == fpcNm_ITEM_KANTERA ||
         (checkNoResetFlg2(FLG2_UNK_1) && field_0x2fde == 0x48))
     {
         setDoubleAnime(0.0f, daAlinkHIO_move_c0::m.mWaitAnmSpeed,
@@ -1252,7 +1252,7 @@ BOOL daAlink_c::checkRestartDead(int i_dmgAmount, int i_checkZoraMag) {
     i_dmgAmount *= (int)damageMagnification(i_checkZoraMag, 1);
 
     if (mProcID != PROC_DEAD && i_dmgAmount >= dComIfGs_getLife() && !checkMagicArmorNoDamage() &&
-        !dComIfGs_checkBottle(FAIRY))
+        !dComIfGs_checkBottle(fpcNm_ITEM_FAIRY))
     {
         onNoResetFlg2(FLG2_FORCE_GAMEOVER);
         procCoDeadInit(0);
@@ -1277,7 +1277,7 @@ void daAlink_c::setDeadRideSyncPos() {
 
 /* 80118C98-80118D7C 1135D8 00E4+00 5/5 0/0 0/0 .text            checkDeadHP__9daAlink_cFv */
 BOOL daAlink_c::checkDeadHP() {
-    return ((dComIfGs_getLife() == 0 && !checkResetFlg0(RFLG0_UNK_400)) && !dComIfGs_checkBottle(FAIRY)) ||
+    return ((dComIfGs_getLife() == 0 && !checkResetFlg0(RFLG0_UNK_400)) && !dComIfGs_checkBottle(fpcNm_ITEM_FAIRY)) ||
            checkNoResetFlg2(FLG2_FORCE_GAMEOVER) ||
            (dComIfGp_getOxygenShowFlag() && dComIfGp_getNowOxygen() == 0);
 }
@@ -1311,9 +1311,9 @@ BOOL daAlink_c::checkDeadAction(int param_0) {
 
                 return commonFallInit(1);
             }
-        } else if (dComIfGs_getLife() == 0 && !checkResetFlg0(RFLG0_UNK_400) && dComIfGs_checkBottle(FAIRY)) {
+        } else if (dComIfGs_getLife() == 0 && !checkResetFlg0(RFLG0_UNK_400) && dComIfGs_checkBottle(fpcNm_ITEM_FAIRY)) {
             makeFairy(&current.pos, 0);
-            dComIfGs_setBottleItemIn(FAIRY, EMPTY_BOTTLE);
+            dComIfGs_setBottleItemIn(fpcNm_ITEM_FAIRY, fpcNm_ITEM_EMPTY_BOTTLE);
         }
     }
 
@@ -1736,7 +1736,7 @@ int daAlink_c::procCoTalkInit() {
     commonProcInit(PROC_TALK);
 
     if (mDemo.getDemoMode() == daPy_demo_c::DEMO_UNK_6_e) {
-        if (mEquipItem != KANTERA && mEquipItem != NO_ITEM) {
+        if (mEquipItem != fpcNm_ITEM_KANTERA && mEquipItem != fpcNm_ITEM_NONE) {
             allUnequip(1);
         }
     }
@@ -1822,7 +1822,7 @@ int daAlink_c::procCoTalk() {
             mNormalSpeed = 0.0f;
         }
     } else {
-        if (mEquipItem == KANTERA) {
+        if (mEquipItem == fpcNm_ITEM_KANTERA) {
             if (mUpperAnmHeap[0].getIdx() != getMainBckData(ANM_WAIT)->m_upperID) {
                 setSingleAnimeBaseSpeed(ANM_WAIT, daAlinkHIO_move_c0::m.mWaitAnmSpeed, 3.0f);
             }
@@ -1933,7 +1933,7 @@ int daAlink_c::procCoUnequipInit() {
         setBlendMoveAnime(daAlinkHIO_basic_c0::m.mAnmBlendFactor);
 
         if (mDemo.getParam1() == 0) {
-            if (mEquipItem != NO_ITEM) {
+            if (mEquipItem != fpcNm_ITEM_NONE) {
                 allUnequip(0);
             }
         } else if (mDemo.getParam1() == 1) {
@@ -1956,7 +1956,7 @@ int daAlink_c::procCoUnequip() {
     if (mProcVar2.field_0x300c != 0) {
         if (checkAnmEnd(mUnderFrameCtrl)) {
             setBlendMoveAnime(3.0f);
-            itemEquip(COPY_ROD);
+            itemEquip(fpcNm_ITEM_COPY_ROD);
 
             f32 tmp_6 = 6.0f;
             mUpperFrameCtrl[2].setFrame(tmp_6);
@@ -1993,8 +1993,8 @@ void daAlink_c::setGetSubBgm(int i_seTypeIdx) {
 
 /* 8011A6FC-8011A798 11503C 009C+00 1/0 0/0 0/0 .text checkTreasureRupeeReturn__9daAlink_cCFi */
 BOOL daAlink_c::checkTreasureRupeeReturn(int i_itemNo) const {
-    if (i_itemNo == LINKS_SAVINGS) {
-        i_itemNo = PURPLE_RUPEE;
+    if (i_itemNo == fpcNm_ITEM_LINKS_SAVINGS) {
+        i_itemNo = fpcNm_ITEM_PURPLE_RUPEE;
     }
 
     i_itemNo -= 4;
@@ -2024,9 +2024,9 @@ int daAlink_c::procCoGetItemInit() {
 
     mLinkAcch.ClrWallNone();
 
-    if (!checkWolf() && mEquipItem != NO_ITEM && var_r30 == 0) {
-        if (checkModeFlg(0x400) || (checkStageName("D_MN05B") && mEquipItem == BOOMERANG &&
-                                      !dComIfGs_isItemFirstBit(BOOMERANG)))
+    if (!checkWolf() && mEquipItem != fpcNm_ITEM_NONE && var_r30 == 0) {
+        if (checkModeFlg(0x400) || (checkStageName("D_MN05B") && mEquipItem == fpcNm_ITEM_BOOMERANG &&
+                                      !dComIfGs_isItemFirstBit(fpcNm_ITEM_BOOMERANG)))
         {
             deleteEquipItem(0, 0);
         } else {
@@ -2320,7 +2320,7 @@ int daAlink_c::procCoGetItem() {
                     if (checkWolf()) {
                         setBlendWolfMoveAnime(daAlinkHIO_wlMove_c0::m.field_0x94);
                     } else {
-                        if (mEquipItem == KANTERA) {
+                        if (mEquipItem == fpcNm_ITEM_KANTERA) {
                             field_0x2f94 = 0;
                         }
 
@@ -2668,7 +2668,7 @@ int daAlink_c::procDemoBoomerangCatchInit() {
 
     mNormalSpeed = 0.0f;
     deleteEquipItem(FALSE, FALSE);
-    mEquipItem = BOOMERANG;
+    mEquipItem = fpcNm_ITEM_BOOMERANG;
     setItemActor();
     setSingleAnimeParam(ANM_BOOMERANG_CATCH, &daAlinkHIO_boom_c0::m.mCatchAnm);
     return 1;
@@ -3323,7 +3323,7 @@ int daAlink_c::procCoGetReadySitInit() {
         return 1;
     }
 
-    if (mEquipItem != NO_ITEM && !checkWolf()) {
+    if (mEquipItem != fpcNm_ITEM_NONE && !checkWolf()) {
         return procPreActionUnequipInit(PROC_GET_READY_SIT, NULL);
     }
 
@@ -3657,8 +3657,8 @@ int daAlink_c::procTradeItemOut() {
 
 /* 8011E3D8-8011E448 118D18 0070+00 2/2 0/0 0/0 .text            checkLetterItem__9daAlink_cFi */
 BOOL daAlink_c::checkLetterItem(int i_itemNo) {
-    return i_itemNo == LETTER || i_itemNo == BILL || i_itemNo == RAFRELS_MEMO ||
-           i_itemNo == TKS_LETTER || i_itemNo == ASHS_SCRIBBLING;
+    return i_itemNo == fpcNm_ITEM_LETTER || i_itemNo == fpcNm_ITEM_BILL || i_itemNo == fpcNm_ITEM_RAFRELS_MEMO ||
+           i_itemNo == fpcNm_ITEM_TKS_LETTER || i_itemNo == fpcNm_ITEM_ASHS_SCRIBBLING;
 }
 
 /* 8011E448-8011E57C 118D88 0134+00 1/1 0/0 0/0 .text            procNotUseItemInit__9daAlink_cFi */
@@ -3955,7 +3955,7 @@ int daAlink_c::procDungeonWarpReadyInit() {
     }
 
     fpc_ProcID id;
-    if (checkItemSetButton(DUNGEON_EXIT) != 2) {
+    if (checkItemSetButton(fpcNm_ITEM_DUNGEON_EXIT) != 2) {
         id = fopAcM_create(PROC_OBJ_TKS, 0, &current.pos, fopAcM_GetRoomNo(this), &shape_angle,
                            NULL, -1);
     } else {
@@ -4048,7 +4048,7 @@ int daAlink_c::procDungeonWarp() {
 
             if (scale.x < 0.01f) {
                 onNoResetFlg0(FLG0_PLAYER_NO_DRAW);
-                if (checkItemGet(DUNGEON_EXIT, 1)) {
+                if (checkItemGet(fpcNm_ITEM_DUNGEON_EXIT, 1)) {
                     int escape =
                         dStage_stagInfo_GetEscapeWarp(dComIfGp_getStage()->getStagInfo());
                     dStage_changeScene(escape, 0.0f, 12, -1, shape_angle.y, -1);
@@ -4354,11 +4354,11 @@ int daAlink_c::procCoWarpInit(int param_0, int param_1) {
                         }
                     }
 
-                    if (checkItemGet(DUNGEON_EXIT, 1) ||
-                        (checkItemGet(DUNGEON_BACK, 1) &&
+                    if (checkItemGet(fpcNm_ITEM_DUNGEON_EXIT, 1) ||
+                        (checkItemGet(fpcNm_ITEM_DUNGEON_BACK, 1) &&
                          strcmp(sp8, dComIfGs_getWarpStageName()) == 0))
                     {
-                        dComIfGs_setItem(SLOT_18, NO_ITEM);
+                        dComIfGs_setItem(SLOT_18, fpcNm_ITEM_NONE);
                         dComIfGs_resetLastWarpAcceptStage();
                     }
                 }

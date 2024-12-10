@@ -503,7 +503,7 @@ int daObjIce_s_c::create() {
         field_0x5c4 = 1;
     }
     if (field_0x5c4 != 0) {
-        if (dComIfGs_getCollectSmell() == SMELL_FISH) {
+        if (dComIfGs_getCollectSmell() == fpcNm_ITEM_SMELL_FISH) {
             field_0x5c5 = 1;
         } else {
             field_0x5c5 = 0xff;

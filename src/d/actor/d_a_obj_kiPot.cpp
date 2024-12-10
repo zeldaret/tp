@@ -72,7 +72,7 @@ void daKiPot_c::init_modeWait() {
 /* 80C44F80-80C45008 000360 0088+00 1/0 0/0 0/0 .text            modeWait__9daKiPot_cFv */
 void daKiPot_c::modeWait() {
     if (chkEvent() && eventInfo.i_checkCommandCatch() == 0) {
-        dComIfGp_att_CatchRequest(this, UGLY_SOUP, 100.0f, 50.0f, -50.0f, 0x2000, 1);
+        dComIfGp_att_CatchRequest(this, fpcNm_ITEM_UGLY_SOUP, 100.0f, 50.0f, -50.0f, 0x2000, 1);
         eventInfo.i_onCondition(0x40);
     }
 }
