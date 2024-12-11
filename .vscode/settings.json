@@ -28,6 +28,7 @@
     "build/**/*.o": true,
     "build/**/*.plf": true,
     "build/**/*.rel": true,
+    "orig/**/*.rel": true,
     "build/**/*.lcf": true,
     "build/**/*.preplf": true,
     "build/**/*.d": true,
