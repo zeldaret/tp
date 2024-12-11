@@ -587,6 +587,7 @@ u8 daNpcT_getDistTableIdx(int param_0, int param_1);
 BOOL daNpcT_chkDoBtnIsSpeak(fopAc_ac_c* i_ActorP);
 void daNpcT_offTmpBit(u32 i_idx);
 void daNpcT_onTmpBit(u32 i_idx);
+BOOL daNpcT_chkTmpBit(u32 i_idx);
 void daNpcT_onEvtBit(u32 i_idx);
 
 struct daBaseNpc_matAnm_c {

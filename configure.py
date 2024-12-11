@@ -1778,7 +1778,7 @@ config.libs = [
     ActorRel(Matching, "d_a_obj_bmWindow"),
     ActorRel(NonMatching, "d_a_obj_bmshutter"),
     ActorRel(Matching, "d_a_obj_bombf"),
-    ActorRel(NonMatching, "d_a_obj_boumato"),
+    ActorRel(Matching, "d_a_obj_boumato"),
     ActorRel(NonMatching, "d_a_obj_brg"),
     ActorRel(Matching, "d_a_obj_bsGate"),
     ActorRel(NonMatching, "d_a_obj_bubblePilar"),
