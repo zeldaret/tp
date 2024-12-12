@@ -1,6 +1,8 @@
 #ifndef D_A_OBJ_BOUMATO_H
 #define D_A_OBJ_BOUMATO_H
 
+#include "d/d_bg_s_acch.h"
+#include "d/d_jnt_col.h"
 #include "f_op/f_op_actor_mng.h"
 #include "d/d_cc_d.h"
 
@@ -13,34 +15,64 @@
  *
  */
 class daObj_BouMato_c : public fopAc_ac_c {
+private:
+    /* 0x568 */ int field_0x568;
+    /* 0x56C */ request_of_phase_process_class mPhase;
+    /* 0x574 */ J3DModel* mModel;
+    /* 0x578 */ dBgS_ObjAcch mAcch;
+    /* 0x750 */ dCcD_Stts mStts;
+    /* 0x78C */ dBgS_AcchCir mAcchCir;
+    /* 0x7CC */ cBgS_GndChk mGndChk;
+    /* 0x808 */ dCcD_Cyl mCyl;
+    /* 0x944 */ cM3dGCyl mCyl2;
+    /* 0x95C */ cM3dGLin mGLin;
+    /* 0x978 */ dBgS_LinChk mLinChk;
+    /* 0x9E8 */ dJntCol_c mJntCol;
+    /* 0x9F8 */ csXyz field_0x9f8[3];
+    /* 0xA0A */ u16 field_0xa0a;
+    /* 0xA0C */ int mCutType;
+    /* 0xA10 */ int field_0xa10;
+    /* 0xA14 */ f32 mGroundH;
+    /* 0xA18 */ f32 field_0xa18[3];
+    /* 0xA24 */ s16 field_0xa24[3];
+    /* 0xA2A */ s16 field_0xa2a;
+    /* 0xA2C */ int mShadowId;
+    /* 0xA30 */ s16 field_0xa30;
+    /* 0xA32 */ u8 field_0xa32;
+    /* 0xA34 */ fpc_ProcID mTargetId;
+    /* 0xA38 */ u8 field_0xa38;
+    /* 0xA39 */ bool mIsCurTurnRight;
+
 public:
-    /* 80BBAFEC */ ~daObj_BouMato_c();
-    /* 80BBB230 */ void create();
-    /* 80BBB770 */ void CreateHeap();
-    /* 80BBB800 */ void Delete();
-    /* 80BBB834 */ void Execute();
-    /* 80BBBD80 */ void Draw();
-    /* 80BBBE50 */ void createHeapCallBack(fopAc_ac_c*);
-    /* 80BBBE70 */ void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
-    /* 80BBBEA0 */ void srchArrow(void*, void*);
+    /* 80BBAFEC */ virtual ~daObj_BouMato_c();
+    /* 80BBB230 */ int create();
+    /* 80BBB770 */ int CreateHeap();
+    /* 80BBB800 */ int Delete();
+    /* 80BBB834 */ int Execute();
+    /* 80BBBD80 */ int Draw();
+    /* 80BBBE50 */ static int createHeapCallBack(fopAc_ac_c*);
+    /* 80BBBE70 */ static void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
+    /* 80BBBEA0 */ static void* srchArrow(void*, void*);
     /* 80BBBF4C */ void deleteStuckArrow();
-    /* 80BBBFF8 */ void getResName();
+    /* 80BBBFF8 */ char* getResName();
     /* 80BBC008 */ void setSwayParam(fopAc_ac_c*);
     /* 80BBC19C */ void setEnvTevColor();
     /* 80BBC1F8 */ void setRoomNo();
     /* 80BBC23C */ void setMtx();
 
-private:
-    /* 0x568 */ u8 field_0x568[0xa40 - 0x568];
+    u8 getType() { return 0; }
+    u8 getOffSwBit() { return (fopAcM_GetParam(this) & 0xff00) >> 8; }
+    u8 getOnSwBit() { return (fopAcM_GetParam(this) & 0xff0000) >> 16; }
+    void setCutType(u8 cutType) { mCutType = cutType; }
 };
 
 STATIC_ASSERT(sizeof(daObj_BouMato_c) == 0xa40);
 
 class daObj_BouMato_Param_c {
 public:
-    /* 80BBC404 */ ~daObj_BouMato_Param_c();
+    /* 80BBC404 */ virtual ~daObj_BouMato_Param_c() {}
 
-    static u8 const m[28];
+    static f32 const m[7];
 };
 
 

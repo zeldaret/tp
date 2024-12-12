@@ -58,6 +58,7 @@ public:
 
     void setBombArrowExplode() { field_0x950 = 0; }
     bool checkBombArrow() const { return mArrowType == true; }
+    u32 getHitAcID() { return mHitAcID; }
 
     void setShoot() { fopAcM_SetParam(this, 1); }
     void setChargeShoot() { fopAcM_SetParam(this, 2); }

@@ -50,7 +50,7 @@ static dCcD_SrcGObjInf const l_ccDObjData =
         {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
         {dCcD_SE_STONE, 0x0, 0x0, 0x0, 0x0}, // mGObjTg
         {0x0}, // mGObjCo
-    };
+};
 
 /* 80BA6CE0-80BA6D24 000030 0044+00 1/2 0/0 0/0 .data            l_ccDCyl */
 static dCcD_SrcCyl l_ccDCyl = {

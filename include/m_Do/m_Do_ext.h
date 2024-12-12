@@ -33,6 +33,7 @@ public:
     void setPlayMode(int i_mode) { mFrameCtrl.setAttribute(i_mode); }
     void setLoopFrame(f32 i_frame) { mFrameCtrl.setLoop(i_frame); }
     bool isStop() { return mFrameCtrl.checkState(1) || mFrameCtrl.getRate() == 0.0f; }
+    bool isLoop() { return mFrameCtrl.checkState(2); }
     void reset() { mFrameCtrl.reset(); }
     BOOL checkFrame(f32 frame) { return mFrameCtrl.checkPass(frame); }
 
