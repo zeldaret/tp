@@ -605,5 +605,6 @@ _GXColor dKy_light_influence_col(_GXColor* param_0, f32 param_1);
 static void dKy_WaterIn_Light_set();
 void dKy_SordFlush_set(cXyz param_0, int param_1);
 void dKy_camera_water_in_status_set(u8 status);
+void dKy_mock_light_every_set(LIGHT_INFLUENCE* param_0);
 
 #endif /* D_KANKYO_D_KANKYO_H */

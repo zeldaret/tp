@@ -1824,7 +1824,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_ganonwall2"),
     ActorRel(NonMatching, "d_a_obj_gb"),
     ActorRel(NonMatching, "d_a_obj_geyser"),
-    ActorRel(NonMatching, "d_a_obj_glowSphere"),
+    ActorRel(Matching, "d_a_obj_glowSphere"),
     ActorRel(NonMatching, "d_a_obj_gm"),
     ActorRel(NonMatching, "d_a_obj_goGate"),
     ActorRel(NonMatching, "d_a_obj_gomikabe"),
