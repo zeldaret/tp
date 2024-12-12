@@ -1774,7 +1774,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_bemos"),
     ActorRel(NonMatching, "d_a_obj_bhbridge"),
     ActorRel(Matching, "d_a_obj_bk_leaf"),
-    ActorRel(NonMatching, "d_a_obj_bky_rock"),
+    ActorRel(Matching, "d_a_obj_bky_rock"),
     ActorRel(Matching, "d_a_obj_bmWindow"),
     ActorRel(NonMatching, "d_a_obj_bmshutter"),
     ActorRel(Matching, "d_a_obj_bombf"),

@@ -17,6 +17,7 @@ enum CcG_Tg_HitMark {
     CcG_Tg_UNK_MARK_3 = 3,
     CcG_Tg_UNK_MARK_6 = 6,
     CcG_Tg_UNK_MARK_8 = 8,
+    CcG_Tg_UNK_MARK_9 = 9,
 };
 
 class cCcD_PntAttr;
