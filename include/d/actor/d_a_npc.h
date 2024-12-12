@@ -1006,6 +1006,7 @@ BOOL daNpcF_chkEvtBit(u32 i_idx);
 void daNpcF_onEvtBit(u32 i_idx);
 BOOL daNpcF_chkTmpBit(u32 i_idx);
 void daNpcF_offTmpBit(u32 i_idx);
+u8 daNpcF_getDistTableIdx(int param_0, int param_1);
 BOOL daNpcF_chkPointInArea(cXyz, cXyz, cXyz, s16);
 int daNpcF_getPlayerInfoFromPlayerList(int param_0, int i_roomNo, cXyz& param_2, csXyz& param_3);
 s16 daNpcF_getGroundAngle(cBgS_PolyInfo*, s16);

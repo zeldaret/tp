@@ -1830,7 +1830,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_gomikabe"),
     ActorRel(NonMatching, "d_a_obj_gra2"),
     ActorRel(Matching, "d_a_obj_graWall"),
-    ActorRel(NonMatching, "d_a_obj_gra_rock"),
+    ActorRel(Equivalent, "d_a_obj_gra_rock"),
     ActorRel(Matching, "d_a_obj_grave_stone"),
     ActorRel(Matching, "d_a_obj_groundwater"),
     ActorRel(NonMatching, "d_a_obj_grz_rock"),
