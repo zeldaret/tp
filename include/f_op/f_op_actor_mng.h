@@ -396,6 +396,14 @@ inline f32 fopAcM_getCullSizeFar(const fopAc_ac_c* i_actor) {
     return i_actor->cullSizeFar;
 }
 
+inline const Vec* fopAcM_getCullSizeBoxMin(const fopAc_ac_c* i_actor) {
+    return &i_actor->cull.box.min;
+}
+
+inline const Vec* fopAcM_getCullSizeBoxMax(const fopAc_ac_c* i_actor) {
+    return &i_actor->cull.box.max;
+}
+
 inline void fopAcM_SetCullSize(fopAc_ac_c* i_actor, s8 i_cullsize) {
     i_actor->cullType = i_cullsize;
 }
