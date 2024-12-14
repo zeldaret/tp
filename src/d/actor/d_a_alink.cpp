@@ -14274,7 +14274,7 @@ void daAlink_c::posMove() {
     }
 
     setFootSpeed();
-    if (checkEndResetFlg0(ERFLG0_UNK_10000000)) {
+    if (checkEndResetFlg0(ERFLG0_WOLF_FCHAIN_PULL)) {
         speedF = 0.0f;
         mNormalSpeed = 0.0f;
     }

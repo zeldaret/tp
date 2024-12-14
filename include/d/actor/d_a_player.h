@@ -463,7 +463,7 @@ public:
         ERFLG0_UNK_80000000 = 0x80000000,
         ERFLG0_UNK_40000000 = 0x40000000,
         ERFLG0_UNK_20000000 = 0x20000000,
-        ERFLG0_UNK_10000000 = 0x10000000,
+        ERFLG0_WOLF_FCHAIN_PULL = 0x10000000,
         ERFLG0_UNK_8000000 = 0x8000000,
         ERFLG0_UNK_4000000 = 0x4000000,
         ERFLG0_BOSS_ROOM_WAIT = 0x2000000,
@@ -920,6 +920,7 @@ public:
     void onForceAutoJump() { onEndResetFlg0(ERFLG0_FORCE_AUTO_JUMP); }
     void onNotAutoJump() { onEndResetFlg0(ERFLG0_NOT_AUTO_JUMP); }
     void onNotHang() { onEndResetFlg0(ERFLG0_NOT_HANG); }
+    void onWolfFchainPull() { onEndResetFlg0(ERFLG0_WOLF_FCHAIN_PULL); }
     void onShieldBackBone() { onEndResetFlg1(ERFLG1_GANON_FINISH); }
     void onWolfEyeKeep() { onEndResetFlg1(ERFLG1_WOLF_EYE_KEEP); }
     void onPortalWarpMidnaAtnKeep() { onEndResetFlg2(ERFLG2_PORTAL_WARP_MIDNA_ATN_KEEP); }
