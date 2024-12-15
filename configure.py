@@ -2027,7 +2027,7 @@ config.libs = [
     ActorRel(Matching, "d_a_obj_timeFire"),
     ActorRel(NonMatching, "d_a_obj_tks"),
     ActorRel(Matching, "d_a_obj_tmoon"),
-    ActorRel(NonMatching, "d_a_obj_toaru_maki"),
+    ActorRel(Matching, "d_a_obj_toaru_maki"),
     ActorRel(NonMatching, "d_a_obj_toby"),
     ActorRel(NonMatching, "d_a_obj_tobyhouse"),
     ActorRel(NonMatching, "d_a_obj_togeTrap"),

@@ -27,7 +27,7 @@ public:
 
 private:
     /* 0x574 */ J3DModel* mpModel;
-    /* 0x578 */ s32 field_0x578;
+    /* 0x578 */ dBgW* mpBgW;
     /* 0x57C */ Mtx mMtx;
 };
 
