@@ -26,7 +26,7 @@ public:
     void setItemNo(u8 i_itemNo) { m_itemNo = i_itemNo; }
     void setSaveBitNo(s16 i_saveBitNo) { m_saveBitNo = i_saveBitNo; }
 
-protected:
+public:
     /* 0x56C */ u8 field_0x56C;
     /* 0x56D */ bool mDraw;
     /* 0x570 */ u32 mParticleKey1;

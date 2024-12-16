@@ -2019,7 +2019,7 @@ config.libs = [
     ActorRel(Matching, "d_a_obj_table"),
     ActorRel(NonMatching, "d_a_obj_takaraDai"),
     ActorRel(NonMatching, "d_a_obj_tatigi"),
-    ActorRel(NonMatching, "d_a_obj_ten"),
+    ActorRel(Matching, "d_a_obj_ten"),
     ActorRel(Matching, "d_a_obj_testcube"),
     ActorRel(Matching, "d_a_obj_tgake"),
     ActorRel(NonMatching, "d_a_obj_thashi"),
