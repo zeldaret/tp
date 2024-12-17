@@ -606,5 +606,10 @@ static void dKy_WaterIn_Light_set();
 void dKy_SordFlush_set(cXyz param_0, int param_1);
 void dKy_camera_water_in_status_set(u8 status);
 void dKy_mock_light_every_set(LIGHT_INFLUENCE* param_0);
+f32 dKy_move_room_ratio(dKy_tevstr_c* param_0, s8* param_1);
+void dKy_bg1_addcol_amb_set(s16 r, s16 g, s16 b, f32 factor);
+void dKy_vrbox_addcol_sky0_set(s16 r, s16 g, s16 b, f32 factor);
+void dKy_vrbox_addcol_kasumi_set(s16 r, s16 g, s16 b, f32 factor);
+void dKy_addcol_fog_set(s16 r, s16 g, s16 b, f32 factor);
 
 #endif /* D_KANKYO_D_KANKYO_H */

@@ -3492,7 +3492,7 @@ SECTION_DEAD static char const* const stringBase_80394E70 = "D_MN";
 #pragma pop
 
 /* 801A6D4C-801A6E9C 1A168C 0150+00 1/1 1/1 0/0 .text dKy_move_room_ratio__FP12dKy_tevstr_cPSc */
-void dKy_move_room_ratio(dKy_tevstr_c* param_0, s8* param_1) {
+f32 dKy_move_room_ratio(dKy_tevstr_c* param_0, s8* param_1) {
     // NONMATCHING
 }
 

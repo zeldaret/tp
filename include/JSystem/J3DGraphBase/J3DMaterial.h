@@ -78,6 +78,7 @@ public:
     J3DTexCoord* getTexCoord(u32 idx) { return mTexGenBlock->getTexCoord(idx); }
     J3DZMode* getZMode() { return mPEBlock->getZMode(); }
     J3DBlend* getBlend() { return mPEBlock->getBlend(); }
+    J3DColorChan* getColorChan(u32 idx) { return getColorBlock()->getColorChan(idx); }
 
     void setTevColor(u32 i, const J3DGXColorS10* i_color) { mTevBlock->setTevColor(i, i_color); }
     void setTevKColor(u32 i, const J3DGXColor* i_color) { mTevBlock->setTevKColor(i, i_color); }

@@ -6,6 +6,9 @@
 #include "dolphin/os/OSMutex.h"
 #include "f_pc/f_pc_node.h"
 
+#define mDoDvd_MOUNT_DIRECTION_HEAD 0
+#define mDoDvd_MOUNT_DIRECTION_TAIL 1
+
 class JKRHeap;
 class JKRMemArchive;
 

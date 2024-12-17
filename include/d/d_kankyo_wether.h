@@ -214,11 +214,14 @@ struct CLOUD_EFF {
     /* 80056E38 */ ~CLOUD_EFF();
     /* 80056E74 */ CLOUD_EFF();
 
-    /* 0x00 */ u8 mStatus;
+    /* 0x00 */ s8 mStatus;
     /* 0x04 */ cXyz mPosition;
     /* 0x10 */ cXyz mBasePos;
     /* 0x1C */ cXyz mPntWindSpeed;
-    /* 0x28 */ u8 field_0x28[0x10];
+    /* 0x28 */ f32 field_0x28;
+    /* 0x2C */ u16 field_0x2c;
+    /* 0x30 */ f32 field_0x30;
+    /* 0x34 */ f32 field_0x34;
 };  // Size: 0x38
 
 class dKankyo_cloud_Packet : public J3DPacket {
@@ -235,7 +238,7 @@ struct VRKUMO_EFF {
     /* 80056F18 */ ~VRKUMO_EFF();
     /* 80056F54 */ VRKUMO_EFF();
 
-    /* 0x00 */ u8 mStatus;
+    /* 0x00 */ s8 mStatus;
     /* 0x04 */ cXyz mPosition;
     /* 0x10 */ cXyz mBasePos;
     /* 0x1C */ f32 mHeight;
@@ -284,18 +287,28 @@ public:
     /* 0x00010 */ u8* mpResTex;
     /* 0x00014 */ EF_ODOUR_EFF mOdourEff[2000];
     /* 0x17714 */ cXyz field_0x17714;
-    /* 0x17720 */ u8 field_0x17720[0x17728 - 0x17720];
+    /* 0x17720 */ u8 field_0x17720[0x17724 - 0x17720];
+    /* 0x17724 */ s16 field_0x17724;
+    /* 0x17720 */ s16 field_0x17726;
 };  // Size: 0x17728
 
 struct EF_MUD_EFF {
     /* 80056FFC */ ~EF_MUD_EFF();
     /* 80057038 */ EF_MUD_EFF();
 
-    /* 0x00 */ u8 mStatus;
+    /* 0x00 */ s8 mStatus;
     /* 0x04 */ cXyz mPosition;
     /* 0x10 */ cXyz mBasePos;
     /* 0x1C */ cXyz field_0x1c;
-    /* 0x28 */ u8 field_0x28[0x20];
+    /* 0x28 */ f32 field_0x28;
+    /* 0x2C */ f32 field_0x2c;
+    /* 0x30 */ f32 field_0x30;
+    /* 0x34 */ f32 field_0x34;
+    /* 0x38 */ f32 field_0x38;
+    /* 0x3C */ f32 field_0x3c;
+    /* 0x40 */ s16 field_0x40;
+    /* 0x42 */ s16 field_0x42;
+    /* 0x44 */ u8 field_0x44[0x48 - 0x44];
 };  // Size: 0x48
 
 class dKankyo_mud_Packet : public J3DPacket {

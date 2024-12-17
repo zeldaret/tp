@@ -814,7 +814,7 @@ public:
     virtual s16 getBoardCutTurnOffsetAngleY() const;
     virtual cXyz* getMagneHitPos();
     virtual cXyz* getMagneBootsTopVec();
-    virtual cXyz* getKandelaarFlamePos();
+    virtual cXyz* getKandelaarFlamePos() { return NULL; }
     virtual bool checkUseKandelaar(int);
     virtual void setDkCaught(fopAc_ac_c*);
     virtual void onPressedDamage(cXyz const&, short);

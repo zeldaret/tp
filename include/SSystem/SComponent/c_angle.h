@@ -69,6 +69,9 @@ struct cAngle {
     /* Converts Degree value to s16 angle */
     static s16 d2s(f32 d) { return Degree_to_SAngle(d); }
 
+    /* Converts s16 angle to Degree value */
+    static f32 s2d(s16 a) { return SAngle_to_Degree(a); }
+
     template <typename T>
     static T Adjust(T f1, T f2, T f3);
 };
