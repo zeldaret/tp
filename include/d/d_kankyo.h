@@ -137,10 +137,10 @@ struct GB_WIND_INFLUENCE {
 
 struct EF_THUNDER {
     /* 0x00 */ u8 mStatus;
-    /* 0x01 */ u8 mStateTimer;
+    /* 0x01 */ u8 mState;
     /* 0x02 */ u8 field_0x2;
     /* 0x04 */ int mMode;
-    /* 0x08 */ f32 field_0x8;
+    /* 0x08 */ f32 mFlashTimer;
     /* 0x0C */ f32 field_0xc;
     /* 0x10 */ f32 field_0x10;
     /* 0x14 */ f32 field_0x14;
@@ -605,5 +605,11 @@ _GXColor dKy_light_influence_col(_GXColor* param_0, f32 param_1);
 static void dKy_WaterIn_Light_set();
 void dKy_SordFlush_set(cXyz param_0, int param_1);
 void dKy_camera_water_in_status_set(u8 status);
+void dKy_mock_light_every_set(LIGHT_INFLUENCE* param_0);
+f32 dKy_move_room_ratio(dKy_tevstr_c* param_0, s8* param_1);
+void dKy_bg1_addcol_amb_set(s16 r, s16 g, s16 b, f32 factor);
+void dKy_vrbox_addcol_sky0_set(s16 r, s16 g, s16 b, f32 factor);
+void dKy_vrbox_addcol_kasumi_set(s16 r, s16 g, s16 b, f32 factor);
+void dKy_addcol_fog_set(s16 r, s16 g, s16 b, f32 factor);
 
 #endif /* D_KANKYO_D_KANKYO_H */

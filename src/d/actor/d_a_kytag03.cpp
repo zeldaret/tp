@@ -262,8 +262,8 @@ static void odour_move(kytag03_class* i_this) {
                                         }
 
                                         effect->mBasePos.z += temp_f22 * cM_rndFX(50.0f);
-                                        effect->field_0x1c = spFC.x;
-                                        effect->field_0x1e = spFC.y;
+                                        effect->mRotX = spFC.x;
+                                        effect->mRotY = spFC.y;
 
                                         effect->field_0x2c = cM_rndF(20.0f) + 45.0f +
                                                              temp_f22 * (cM_rndF(20.0f) + 100.0f);

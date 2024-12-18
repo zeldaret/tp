@@ -1037,6 +1037,14 @@ static int phase_3(char*) {
 
 /* 8002CEBC-8002CEFC 0277FC 0040+00 0/0 7/7 550/550 .text
  * dComIfG_resLoad__FP30request_of_phase_process_classPCc       */
+/**
+ * Attempts to load a Resource Archive (*.arc) into the Resource Control.
+ * The archive must be successfully loaded into the Resource Control before
+ * calling dComIfG_getObjectRes / dComIfG_getStageRes
+ * @param i_phase Pointer to phase request for handling resource loading process
+ * @param i_arcName Name of archive to be loaded
+ * @return Loading phase state. cPhs_COMPLEATE_e if loaded successfully
+ */
 int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* i_arcName) {
     static int (*l_method[3])(void*) = {(int (*)(void*))phase_1, (int (*)(void*))phase_2,
                                         (int (*)(void*))phase_3};
@@ -1078,6 +1086,15 @@ static int phase_03(phaseParam_c*) {
 
 /* 8002CFC0-8002D008 027900 0048+00 1/1 3/3 0/0 .text
  * dComIfG_resLoad__FP30request_of_phase_process_classPCcP7JKRHeap */
+/**
+ * Attempts to load a Resource Archive (*.arc) into the Resource Control using a specified heap.
+ * The archive must be successfully loaded into the Resource Control before
+ * calling dComIfG_getObjectRes / dComIfG_getStageRes
+ * @param i_phase Pointer to phase request for handling resource loading process
+ * @param i_arcName Name of archive to be loaded
+ * @param i_heap Pointer to heap to load resources into
+ * @return Loading phase state. cPhs_COMPLEATE_e if loaded successfully
+ */
 int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* i_resName,
                     JKRHeap* i_heap) {
     static int (*l_method[3])(void*) = {(int (*)(void*))phase_01, (int (*)(void*))phase_02,
@@ -1093,6 +1110,13 @@ int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* i_resNa
 
 /* 8002D008-8002D06C 027948 0064+00 1/1 10/10 540/540 .text
  * dComIfG_resDelete__FP30request_of_phase_process_classPCc     */
+/**
+ * Attempts to unload a Resource Archive (*.arc) from the Resource Control.
+ * This should be called from a process' delete method to prevent a memory leak.
+ * @param i_phase Pointer to phase request for handling resource unloading process
+ * @param i_arcName Name of archive to be unloaded
+ * @return TRUE if successful, FALSE otherwise
+ */
 int dComIfG_resDelete(request_of_phase_process_class* i_phase, char const* i_resName) {
     if (i_phase->id != cPhs_NEXT_e) {
         return 0;

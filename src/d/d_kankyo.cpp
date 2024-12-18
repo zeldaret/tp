@@ -1145,7 +1145,7 @@ static void envcolor_init() {
     g_env_light.field_0x1230 = 0.0f;
     g_env_light.field_0x1234 = 0.0f;
 
-    g_env_light.mThunderEff.mStateTimer = 0;
+    g_env_light.mThunderEff.mState = 0;
     g_env_light.field_0x1238 = 0.0f;
     g_env_light.field_0x123c = 0.0f;
     g_env_light.field_0x12d6 = 0;
@@ -3492,7 +3492,7 @@ SECTION_DEAD static char const* const stringBase_80394E70 = "D_MN";
 #pragma pop
 
 /* 801A6D4C-801A6E9C 1A168C 0150+00 1/1 1/1 0/0 .text dKy_move_room_ratio__FP12dKy_tevstr_cPSc */
-void dKy_move_room_ratio(dKy_tevstr_c* param_0, s8* param_1) {
+f32 dKy_move_room_ratio(dKy_tevstr_c* param_0, s8* param_1) {
     // NONMATCHING
 }
 
@@ -3816,7 +3816,7 @@ void dKy_SordFlush_set(cXyz param_0, int param_1) {
     dScnKy_env_light_c* light = dKy_getEnvlight();
 
     if (!dKy_darkworld_check() &&
-        (light->mThunderEff.mStateTimer >= 10 || light->mThunderEff.field_0x8 <= 0.0f))
+        (light->mThunderEff.mState >= 10 || light->mThunderEff.mFlashTimer <= 0.0f))
     {
         if (g_env_light.mSwordLight.mState == 0) {
             g_env_light.mSwordLight.mState = 1;

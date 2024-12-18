@@ -101,7 +101,7 @@ STAR_EFF::STAR_EFF() {}
 
 /* 80056E08-80056E38 051748 0030+00 1/0 0/0 0/0 .text            draw__19dKankyo_star_PacketFv */
 void dKankyo_star_Packet::draw() {
-    dKyr_drawStar(j3dSys.getViewMtx(), &field_0x10);
+    dKyr_drawStar(j3dSys.getViewMtx(), &mpTex);
 }
 
 /* 80056E38-80056E74 051778 003C+00 2/2 0/0 0/0 .text            __dt__9CLOUD_EFFFv */
@@ -540,7 +540,7 @@ static void wether_move_sun() {
                     g_env_light.mpSunPacket->mVisibility = 0.0f;
                     g_env_light.mpSunPacket->mSunAlpha = 0.0f;
                     g_env_light.mpSunPacket->field_0x64 = 0.0f;
-                    g_env_light.mpSunPacket->field_0x68 = 0.0f;
+                    g_env_light.mpSunPacket->mMoonAlpha = 0.0f;
 
                     if (g_env_light.mDaytime < 255.0f) {
                         g_env_light.mpSunPacket->field_0x6c = 1.0f;

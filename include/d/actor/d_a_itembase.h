@@ -3,6 +3,7 @@
 
 #include "d/d_bg_s_acch.h"
 #include "d/d_cc_d.h"
+#include "d/d_a_itembase_static.h"
 #include "f_op/f_op_actor_mng.h"
 
 struct daItemBase_data {

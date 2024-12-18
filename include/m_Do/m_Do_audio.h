@@ -175,6 +175,10 @@ inline void mDoAud_mEnvSe_startFarThunderSe(const Vec* param_0) {
     g_mEnvSeMgr.startFarThunderSe((Vec*)param_0, 0);
 }
 
+inline void mDoAud_mEnvSe_startNearThunderSe() {
+    g_mEnvSeMgr.startNearThunderSe(0);
+}
+
 inline void mDoAud_mEnvse_initStrongWind() {
     g_mEnvSeMgr.initStrongWindSe();
 }

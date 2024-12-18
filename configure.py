@@ -1418,7 +1418,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_mg_rod"),
     ActorRel(NonMatching, "d_a_midna"),
     ActorRel(Equivalent, "d_a_nbomb"),
-    ActorRel(NonMatching, "d_a_obj_life_container"),
+    ActorRel(Equivalent, "d_a_obj_life_container"),  # vtable ordering
     ActorRel(NonMatching, "d_a_obj_yousei"),
     ActorRel(NonMatching, "d_a_spinner"),
     ActorRel(Matching, "d_a_suspend"),
@@ -1824,7 +1824,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_ganonwall2"),
     ActorRel(Matching, "d_a_obj_gb"),
     ActorRel(NonMatching, "d_a_obj_geyser"),
-    ActorRel(NonMatching, "d_a_obj_glowSphere"),
+    ActorRel(Matching, "d_a_obj_glowSphere"),
     ActorRel(NonMatching, "d_a_obj_gm"),
     ActorRel(NonMatching, "d_a_obj_goGate"),
     ActorRel(NonMatching, "d_a_obj_gomikabe"),
