@@ -1145,7 +1145,7 @@ static void envcolor_init() {
     g_env_light.field_0x1230 = 0.0f;
     g_env_light.field_0x1234 = 0.0f;
 
-    g_env_light.mThunderEff.mStateTimer = 0;
+    g_env_light.mThunderEff.mState = 0;
     g_env_light.field_0x1238 = 0.0f;
     g_env_light.field_0x123c = 0.0f;
     g_env_light.field_0x12d6 = 0;
@@ -3816,7 +3816,7 @@ void dKy_SordFlush_set(cXyz param_0, int param_1) {
     dScnKy_env_light_c* light = dKy_getEnvlight();
 
     if (!dKy_darkworld_check() &&
-        (light->mThunderEff.mStateTimer >= 10 || light->mThunderEff.field_0x8 <= 0.0f))
+        (light->mThunderEff.mState >= 10 || light->mThunderEff.mFlashTimer <= 0.0f))
     {
         if (g_env_light.mSwordLight.mState == 0) {
             g_env_light.mSwordLight.mState = 1;

@@ -137,10 +137,10 @@ struct GB_WIND_INFLUENCE {
 
 struct EF_THUNDER {
     /* 0x00 */ u8 mStatus;
-    /* 0x01 */ u8 mStateTimer;
+    /* 0x01 */ u8 mState;
     /* 0x02 */ u8 field_0x2;
     /* 0x04 */ int mMode;
-    /* 0x08 */ f32 field_0x8;
+    /* 0x08 */ f32 mFlashTimer;
     /* 0x0C */ f32 field_0xc;
     /* 0x10 */ f32 field_0x10;
     /* 0x14 */ f32 field_0x14;

@@ -1216,8 +1216,8 @@ static void setkankyoShadow(dKy_tevstr_c* param_0, f32* param_1) {
         *param_1 *= param_0->field_0x344;
     }
 
-    if (env_light->mThunderEff.mStateTimer != 0 && env_light->mThunderEff.mStateTimer < 10) {
-        *param_1 += env_light->mThunderEff.field_0x8;
+    if (env_light->mThunderEff.mState != 0 && env_light->mThunderEff.mState < 10) {
+        *param_1 += env_light->mThunderEff.mFlashTimer;
     }
 
     if (g_env_light.mSwordLight.mState == 2) {

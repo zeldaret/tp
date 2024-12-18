@@ -221,7 +221,7 @@ struct CLOUD_EFF {
     /* 0x28 */ f32 field_0x28;
     /* 0x2C */ u16 field_0x2c;
     /* 0x30 */ f32 mAlpha;
-    /* 0x34 */ f32 field_0x34;
+    /* 0x34 */ f32 mSize;
 };  // Size: 0x38
 
 class dKankyo_cloud_Packet : public J3DPacket {
@@ -271,8 +271,8 @@ struct EF_ODOUR_EFF {
     /* 0x00 */ u8 mStatus;
     /* 0x04 */ cXyz mPosition;
     /* 0x10 */ cXyz mBasePos;
-    /* 0x1C */ s16 field_0x1c;
-    /* 0x1E */ s16 field_0x1e;
+    /* 0x1C */ s16 mRotX;
+    /* 0x1E */ s16 mRotY;
     /* 0x20 */ f32 field_0x20;
     /* 0x24 */ f32 field_0x24;
     /* 0x28 */ f32 field_0x28;
