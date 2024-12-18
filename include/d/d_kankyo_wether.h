@@ -55,7 +55,7 @@ public:
     /* 0x5C */ f32 mVisibility;
     /* 0x60 */ f32 mSunAlpha;
     /* 0x64 */ f32 field_0x64;
-    /* 0x68 */ f32 field_0x68;
+    /* 0x68 */ f32 mMoonAlpha;
     /* 0x6C */ f32 field_0x6c;
     /* 0x70 */ GXColor mColor;
     /* 0x74 */ GXColor field_0x74;
@@ -174,7 +174,7 @@ public:
     virtual void draw();
     virtual ~dKankyo_star_Packet();
 
-    /* 0x10 */ u8* field_0x10;
+    /* 0x10 */ u8* mpTex;
     /* 0x14 */ STAR_EFF mEffect[1];
     /* 0x48 */ s16 mEffectNum;
 };
@@ -220,7 +220,7 @@ struct CLOUD_EFF {
     /* 0x1C */ cXyz mPntWindSpeed;
     /* 0x28 */ f32 field_0x28;
     /* 0x2C */ u16 field_0x2c;
-    /* 0x30 */ f32 field_0x30;
+    /* 0x30 */ f32 mAlpha;
     /* 0x34 */ f32 field_0x34;
 };  // Size: 0x38
 
