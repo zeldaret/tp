@@ -15,7 +15,7 @@ public:
 
     /* 0x00 cBgS_LinChk */;
     /* 0x58 dBgS_Chk */;
-};
+}; // Size = 0x70
 
 class dBgS_LinkLinChk : public dBgS_LinChk {
 public:

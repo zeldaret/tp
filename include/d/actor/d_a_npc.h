@@ -571,7 +571,7 @@ public:
         field_0xde4 = 0.2f;
     }
 
-    static u8 const mCcDObjData[48];
+    static dCcD_SrcGObjInf const mCcDObjData;
     static dCcD_SrcCyl mCcDCyl;
     static dCcD_SrcSph mCcDSph;
     static fopAc_ac_c* mFindActorPtrs[50];
