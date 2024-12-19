@@ -2058,7 +2058,7 @@ config.libs = [
     ActorRel(Matching, "d_a_obj_wood_pendulum"),
     ActorRel(NonMatching, "d_a_obj_wood_statue"),
     ActorRel(Matching, "d_a_obj_wsword"),
-    ActorRel(NonMatching, "d_a_obj_yel_bag"),
+    ActorRel(Matching, "d_a_obj_yel_bag"),
     ActorRel(Matching, "d_a_obj_ystone"),
     ActorRel(Matching, "d_a_obj_zcloth"),
     ActorRel(NonMatching, "d_a_obj_zdoor"),
