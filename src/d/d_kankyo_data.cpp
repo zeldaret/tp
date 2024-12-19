@@ -25,7 +25,7 @@ struct dKyd_l_vr_box_data_struct {
 //
 
 /* 803A8E98-803A9198 005FB8 0300+00 1/1 0/0 0/0 .data            l_kydata_BloomInf_tbl */
-static dkydata_bloomInfo_info_class l_kydata_BloomInf_tbl[BLOOMINFO_MAX] = {
+static dKydata_BloomInfo_c l_kydata_BloomInf_tbl[BLOOMINFO_MAX] = {
     {BLOOM_SOFT, 0xFF, 0x40, 0x80, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00},
     {BLOOM_CLEAR, 0x28, 0x46, 0x87, 0xCF, 0xB1, 0x38, 0xD2, 0xFF, 0xFF, 0xFF, 0x60},  // Twilight
     {BLOOM_CLEAR, 0x2D, 0x46, 0x73, 0xCF, 0xB1, 0x38, 0xD2, 0xFF, 0xFF, 0xFF,
@@ -211,22 +211,22 @@ static dKydata_lightsizeInfo_c l_light_size_tbl_tw[9] = {
 
 // Maple color. Used in Fishing Hole. Values are RGB. TODO: struct here?
 /* 803A9410-803A9434 006530 0024+00 1/1 0/0 0/0 .data            l_maple_col */
-static u8 l_maple_col[36] = {
+static color_RGB_class l_maple_col[] = {
     // leaf color blend major
-    0x56, 0x4B, 0x39,  // spring
-    0x37, 0x28, 0x1E,  // summer
-    0x6E, 0x32, 0x0F,  // fall
-    0x64, 0x64, 0x80,  // winter
+    {0x56, 0x4B, 0x39},  // spring
+    {0x37, 0x28, 0x1E},  // summer
+    {0x6E, 0x32, 0x0F},  // fall
+    {0x64, 0x64, 0x80},  // winter
     // leaf color blend minor
-    0x52, 0x41, 0x66,  // spring
-    0x19, 0x0F, 0x00,  // summer
-    0x46, 0x00, 0x0F,  // fall
-    0x64, 0x64, 0x80,  // winter
+    {0x52, 0x41, 0x66},  // spring
+    {0x19, 0x0F, 0x00},  // summer
+    {0x46, 0x00, 0x0F},  // fall
+    {0x64, 0x64, 0x80},  // winter
     // leaf color base
-    0x65, 0x5E, 0x69,  // spring
-    0x0E, 0x23, 0x0B,  // summer
-    0x28, 0x14, 0x05,  // fall
-    0x5A, 0x5A, 0x6E,  // winter
+    {0x65, 0x5E, 0x69},  // spring
+    {0x0E, 0x23, 0x0B},  // summer
+    {0x28, 0x14, 0x05},  // fall
+    {0x5A, 0x5A, 0x6E},  // winter
 };
 
 /* 803A9434-803A94B8 006554 0084+00 1/1 0/0 0/0 .data            l_time_attribute */
@@ -817,7 +817,7 @@ void dKyd_xfog_table_set(u8 tblIdx) {
 }
 
 /* 80056A64-80056A70 0513A4 000C+00 0/0 1/1 0/0 .text            dKyd_maple_col_getp__Fv */
-void* dKyd_maple_col_getp() {
+color_RGB_class* dKyd_maple_col_getp() {
     return l_maple_col;
 }
 
@@ -837,7 +837,7 @@ dKydata_lightsizeInfo_c* dKyd_light_tw_size_tbl_getp() {
 }
 
 /* 80056A94-80056AA8 0513D4 0014+00 0/0 1/1 0/0 .text            dKyd_BloomInf_tbl_getp__Fi */
-dkydata_bloomInfo_info_class* dKyd_BloomInf_tbl_getp(int tblIdx) {
+dKydata_BloomInfo_c* dKyd_BloomInf_tbl_getp(int tblIdx) {
     return &l_kydata_BloomInf_tbl[tblIdx];
 }
 

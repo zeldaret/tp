@@ -194,14 +194,8 @@ public:
     /* 0x348 */ GXColorS10 mColorC0;
     /* 0x350 */ GXColorS10 mColorK0;
     /* 0x358 */ GXColorS10 mFogColor;
-    /* 0x360 */ u8 field_0x360;
-    /* 0x361 */ u8 field_0x361;
-    /* 0x362 */ u8 field_0x362;
-    /* 0x363 */ u8 field_0x363;
-    /* 0x364 */ u8 mLightInf;
-    /* 0x365 */ u8 field_0x365;
-    /* 0x366 */ u8 field_0x366;
-    /* 0x367 */ u8 field_0x367;
+    /* 0x360 */ GXColor field_0x360;
+    /* 0x364 */ GXColor mLightInf;
     /* 0x368 */ f32 mFogStartZ;
     /* 0x36C */ f32 mFogEndZ;
     /* 0x370 */ f32 mColpatBlend;
@@ -611,5 +605,7 @@ void dKy_bg1_addcol_amb_set(s16 r, s16 g, s16 b, f32 factor);
 void dKy_vrbox_addcol_sky0_set(s16 r, s16 g, s16 b, f32 factor);
 void dKy_vrbox_addcol_kasumi_set(s16 r, s16 g, s16 b, f32 factor);
 void dKy_addcol_fog_set(s16 r, s16 g, s16 b, f32 factor);
+cXyz dKy_light_influence_pos(int param_0);
+BOOL dKy_SunMoon_Light_Check();
 
 #endif /* D_KANKYO_D_KANKYO_H */

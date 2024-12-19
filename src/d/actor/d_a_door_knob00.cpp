@@ -165,7 +165,7 @@ int daKnob20_c::CreateInit() {
     field_0x5a0->Move();
     eventInfo.setArchiveName(getEvArcName());
     setEventId();
-    tevStr.mLightInf = knob_param_c::getDoorLightInf(this);
+    tevStr.mLightInf.r = knob_param_c::getDoorLightInf(this);
     return 1;
 }
 

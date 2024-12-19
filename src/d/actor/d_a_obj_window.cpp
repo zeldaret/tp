@@ -57,7 +57,7 @@ int daObjWindow_c::Create() {
         mCyl.Set(l_cyl_src);
         mCyl.SetStts(&mStts);
     }
-    tevStr.mLightInf = getLightInf();
+    tevStr.mLightInf.r = getLightInf();
     return 1;
 }
 

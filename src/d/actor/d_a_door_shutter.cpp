@@ -1314,7 +1314,7 @@ int daDoor20_c::execute() {
     } else {
         lightInf = door_param2_c::getBLightInf(this);
     }
-    tevStr.mLightInf = lightInf;
+    tevStr.mLightInf.r = lightInf;
     if (strcmp(dComIfGp_getStartStageName(), "D_MN05") != 0 && strcmp(dComIfGp_getStartStageName(), "D_MN04") != 0) {
         field_0x6de.CrrPos(dComIfG_Bgsp());
     }

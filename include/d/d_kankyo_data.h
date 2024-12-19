@@ -53,7 +53,7 @@ enum BloomType {
 };
 
 #define BLOOMINFO_MAX 64
-class dkydata_bloomInfo_info_class {
+class dKydata_BloomInfo_c {
 public:
     /* 0x0 */ u8 mType;
     /* 0x1 */ u8 mThreshold;
@@ -76,10 +76,10 @@ void* dKyd_dmvrbox_getp();
 dKyd_lightSchejule* dKyd_schejule_getp();
 dKyd_lightSchejule* dKyd_schejule_boss_getp();
 void dKyd_xfog_table_set(u8);
-void* dKyd_maple_col_getp();
+color_RGB_class* dKyd_maple_col_getp();
 dKydata_darkworldInfo_c* dKyd_darkworld_tbl_getp();
 dKydata_lightsizeInfo_c* dKyd_light_size_tbl_getp();
 dKydata_lightsizeInfo_c* dKyd_light_tw_size_tbl_getp();
-dkydata_bloomInfo_info_class* dKyd_BloomInf_tbl_getp(int);
+dKydata_BloomInfo_c* dKyd_BloomInf_tbl_getp(int);
 
 #endif /* D_KANKYO_D_KANKYO_DATA_H */

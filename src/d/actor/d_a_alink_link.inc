@@ -3910,12 +3910,12 @@ void daAlink_c::setWaterDropColor(const J3DGXColorS10* i_color) {
 
 /* 800CC7DC-800CC7FC 0C711C 0020+00 2/2 0/0 0/0 .text            initTevCustomColor__9daAlink_cFv */
 void daAlink_c::initTevCustomColor() {
-    tevStr.field_0x367 = 0;
+    tevStr.mLightInf.a = 0;
     tevStr.mFogColor.r = 0;
     tevStr.mFogColor.g = 0;
     tevStr.mFogColor.b = 0;
-    tevStr.field_0x360 = 0;
-    tevStr.field_0x362 = 0;
+    tevStr.field_0x360.r = 0;
+    tevStr.field_0x360.b = 0;
 }
 
 /* 800CC7FC-800CD78C 0C713C 0F90+00 1/1 0/0 0/0 .text            draw__9daAlink_cFv */
@@ -4001,9 +4001,9 @@ int daAlink_c::draw() {
             }
 
             f32 var_f2 = fabsf(cM_ssin(color_timer * 0x800));
-            tevStr.field_0x360 = r * var_f2;
-            tevStr.field_0x361 = g * var_f2;
-            tevStr.field_0x362 = b * var_f2;
+            tevStr.field_0x360.r = r * var_f2;
+            tevStr.field_0x360.g = g * var_f2;
+            tevStr.field_0x360.b = b * var_f2;
             var_r31 = 0;
         }
     } else if (mIceDamageWaitTimer != 0) {
@@ -4060,9 +4060,9 @@ int daAlink_c::draw() {
             }
         }
 
-        tevStr.field_0x360 = 0;
-        tevStr.field_0x361 = 0;
-        tevStr.field_0x362 = 0;
+        tevStr.field_0x360.r = 0;
+        tevStr.field_0x360.g = 0;
+        tevStr.field_0x360.b = 0;
 
         if (checkSwordDraw()) {
             modelDraw(mSwordModel, temp_r30);
@@ -4147,9 +4147,9 @@ int daAlink_c::draw() {
             modelDraw(mpLinkFaceModel, var_r3);
         }
 
-        tevStr.field_0x360 = 0;
-        tevStr.field_0x361 = 0;
-        tevStr.field_0x362 = 0;
+        tevStr.field_0x360.r = 0;
+        tevStr.field_0x360.g = 0;
+        tevStr.field_0x360.b = 0;
 
         if (checkSwordDraw()) {
             if (!checkNoResetFlg3(FLG3_UNK_80000000)) {
