@@ -1160,6 +1160,10 @@ inline u8 dStage_FileList_dt_GetDefaultCamera(dStage_FileList_dt_c* p_fList) {
     return p_fList->mDefaultCamera;
 }
 
+inline u8 dStage_FileList_dt_GRASSLIGHT(dStage_FileList_dt_c* p_fList) {
+    return (p_fList->mParameters >> 7) & 0xFF;
+}
+
 inline f32 dStage_FileList2_dt_GetLeftRmX(dStage_FileList2_dt_c* p_fList2) {
     return p_fList2->mLeftRmX;
 }

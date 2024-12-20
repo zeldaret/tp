@@ -93,7 +93,7 @@ struct SND_INFLUENCE {
     /* 0x00 */ cXyz field_0x0;
     /* 0x0C */ int field_0xc;
     /* 0x10 */ int field_0x10;
-    /* 0x14 */ u32 field_0x14;
+    /* 0x14 */ fpc_ProcID field_0x14;
 };
 
 struct DALKMIST_INFLUENCE {
@@ -159,8 +159,12 @@ struct LightStatus {
     /* 0x00 */ Vec field_0x0;
     /* 0x0C */ Vec field_0xc;
     /* 0x18 */ GXColor field_0x18;
-    /* 0x1C */ Vec field_0x1c;
-    /* 0x28 */ Vec field_0x28;
+    /* 0x1C */ int field_0x1c;
+    /* 0x20 */ f32 field_0x20;
+    /* 0x24 */ f32 field_0x24;
+    /* 0x28 */ f32 field_0x28;
+    /* 0x2C */ f32 field_0x2c;
+    /* 0x30 */ f32 field_0x30;
     /* 0x34 */ f32 field_0x34;
     /* 0x38 */ Vec mLightDir;
     /* 0x44 */ f32 mCutoff;
@@ -607,5 +611,8 @@ void dKy_vrbox_addcol_kasumi_set(s16 r, s16 g, s16 b, f32 factor);
 void dKy_addcol_fog_set(s16 r, s16 g, s16 b, f32 factor);
 cXyz dKy_light_influence_pos(int param_0);
 BOOL dKy_SunMoon_Light_Check();
+void dKy_bgparts_activelight_set(LIGHT_INFLUENCE* influence_p, int param_1);
+void dKy_bgparts_activelight_cut(int param_0);
+int dKy_Indoor_check();
 
 #endif /* D_KANKYO_D_KANKYO_H */

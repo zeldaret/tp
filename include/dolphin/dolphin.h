@@ -6,6 +6,7 @@
 #include <dolphin/dsp.h>
 #include <dolphin/dvd.h>
 #include <dolphin/gx.h>
+#include <dolphin/gf/GFPixel.h>
 //#include <dolphin/hio.h>
 #include <dolphin/mtx.h>
 #include <dolphin/vi.h>
