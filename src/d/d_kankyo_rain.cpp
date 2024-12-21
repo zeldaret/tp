@@ -5557,7 +5557,7 @@ void dKyr_mud_move() {
     }
 
     if (g_env_light.field_0x1048 != 0) {
-        if (strcmp(dComIfGp_getStartStageName(), "D_MN05A") == 0 && g_env_light.mColPatCurr == 6) {
+        if (strcmp(dComIfGp_getStartStageName(), "D_MN05A") == 0 && g_env_light.wether_pat1 == 6) {
             dComIfGs_PolyDamageOff_Set(1);
             cLib_addCalc(&mud_packet->field_0x1c3c, 0.0f, 0.1f, 0.001f, 0.000001f);
         } else {

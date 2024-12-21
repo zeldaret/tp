@@ -264,7 +264,7 @@ static void dKy_event_proc() {
 
             if (g_env_light.mColPatMode == 0 && g_env_light.mColPatModeGather == 0 &&
                 g_env_light.mColpatCurrGather != 0xFF &&
-                g_env_light.mColPatCurr != g_env_light.mColpatCurrGather)
+                g_env_light.wether_pat1 != g_env_light.mColpatCurrGather)
             {
                 g_env_light.mColPatBlendGather = 0.0f;
             }
@@ -1253,8 +1253,8 @@ static void daKytag06_type03_init(fopAc_ac_c* i_this) {
                 a_this->mMode = 9;
                 g_env_light.mRainCount = 250;
                 g_env_light.mColpatWeather = a_this->field_0x591;
-                g_env_light.mColPatPrev = a_this->field_0x591;
-                g_env_light.mColPatCurr = a_this->field_0x591;
+                g_env_light.wether_pat0 = a_this->field_0x591;
+                g_env_light.wether_pat1 = a_this->field_0x591;
             }
         }
     } else if (a_this->field_0x597 == 2 && dComIfGp_roomControl_getStayNo() != 0) {
@@ -1320,8 +1320,8 @@ static int daKytag06_Create(fopAc_ac_c* i_this) {
     default:
         if (strcmp(dComIfGp_getStartStageName(), "T_MUKAO") != 0) {
             g_env_light.mColpatWeather = 3;
-            g_env_light.mColPatPrev = 3;
-            g_env_light.mColPatCurr = 3;
+            g_env_light.wether_pat0 = 3;
+            g_env_light.wether_pat1 = 3;
         } else {
             dComIfGs_setTime(210.0f);
         }

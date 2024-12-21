@@ -36,7 +36,7 @@ int daObjDigpl_c::create() {
 
     attention_info.position = current.pos;
     eyePos = attention_info.position;
-    tevStr.mRoomNo = dComIfGp_roomControl_getStayNo();
+    tevStr.room_no = dComIfGp_roomControl_getStayNo();
     fopAcM_SetMin(this, -550.0f, -250.0f, -550.0f);
     fopAcM_SetMax(this, 550.0f, 250.0f, 550.0f);
     attention_info.distances[fopAc_attn_ETC_e] = 27;

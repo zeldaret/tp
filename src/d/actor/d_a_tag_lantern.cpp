@@ -48,13 +48,13 @@ int daTag_Lantern_c::Execute() {
     s32 room_no;
     if (mGroundCross != -1000000000.0f) {
         room_no = dComIfG_Bgsp().GetRoomId(mGndChk);
-        tevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mGndChk);
+        tevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(mGndChk);
     } else {
         room_no = dComIfGp_roomControl_getStayNo();
     }
 
-    tevStr.mRoomNo = room_no;
-    fopAcM_SetRoomNo(this, tevStr.mRoomNo);
+    tevStr.room_no = room_no;
+    fopAcM_SetRoomNo(this, tevStr.room_no);
     attention_info.flags = 0;
     attention_info.position = current.pos;
     eyePos = attention_info.position;

@@ -192,29 +192,29 @@ public:
     
     /* 0x000 */ J3DLightObj mLightObj;
     /* 0x074 */ J3DLightObj mLights[6];
-    /* 0x32C */ cXyz field_0x32c;
+    /* 0x32C */ cXyz field_0x32c;  // some light pos, unsure how it differs
     /* 0x338 */ cXyz mLightPosWorld;
     /* 0x344 */ f32 field_0x344;
-    /* 0x348 */ GXColorS10 mColorC0;
-    /* 0x350 */ GXColorS10 mColorK0;
-    /* 0x358 */ GXColorS10 mFogColor;
-    /* 0x360 */ GXColor field_0x360;
+    /* 0x348 */ GXColorS10 AmbCol;
+    /* 0x350 */ GXColorS10 FogCol;
+    /* 0x358 */ GXColorS10 TevColor;
+    /* 0x360 */ GXColor TevKColor;
     /* 0x364 */ GXColor mLightInf;
     /* 0x368 */ f32 mFogStartZ;
     /* 0x36C */ f32 mFogEndZ;
-    /* 0x370 */ f32 mColpatBlend;
+    /* 0x370 */ f32 pat_ratio;
     /* 0x374 */ f32 field_0x374;
-    /* 0x378 */ u16 field_0x378;
-    /* 0x37A */ u8 field_0x37a;
+    /* 0x378 */ u16 Material_id;  // Used for some sort of special material handling when non-0
+    /* 0x37A */ u8 Type;
     /* 0x37B */ u8 mInitTimer;
-    /* 0x37C */ u8 mEnvrIdxCurr;
-    /* 0x37D */ u8 mEnvrIdxPrev;
-    /* 0x37E */ u8 mColpatCurr;
-    /* 0x37F */ u8 mColpatPrev;
-    /* 0x380 */ s8 mRoomNo;
-    /* 0x381 */ u8 mEnvrIdxOverride;
+    /* 0x37C */ u8 UseCol;
+    /* 0x37D */ u8 PrevCol;
+    /* 0x37E */ u8 wether_pat1;
+    /* 0x37F */ u8 wether_pat0;
+    /* 0x380 */ s8 room_no;  // Room Color
+    /* 0x381 */ u8 YukaCol;  // Floor (Poly) Color
     /* 0x382 */ u8 mLightMode;
-    /* 0x383 */ u8 mInitType;
+    /* 0x383 */ u8 Material_use_fg;
     /* 0x384 */ u8 field_0x384;
     /* 0x385 */ u8 field_0x385;
 };  // Size = 0x388
@@ -419,7 +419,7 @@ public:
     /* 0x11D0 */ f32 field_0x11d0;
     /* 0x11D4 */ f32 mDiceWeatherChangeTime;
     /* 0x11D8 */ f32 mDiceWeatherTime;
-    /* 0x11DC */ f32 mColPatBlend;
+    /* 0x11DC */ f32 pat_ratio;
     /* 0x11E0 */ f32 mColPatBlendGather;
     /* 0x11E4 */ f32 mFogNear;
     /* 0x11E8 */ f32 mFogFar;
@@ -476,12 +476,12 @@ public:
     /* 0x12BC */ u16 mFogAdjCenter;
     /* 0x12BE */ u16 mDate;
     /* 0x12C0 */ s16 mActorLightEffect;
-    /* 0x12C2 */ u8 mColPatPrev;
-    /* 0x12C3 */ u8 mColPatCurr;
+    /* 0x12C2 */ u8 wether_pat0;
+    /* 0x12C3 */ u8 wether_pat1;
     /* 0x12C4 */ u8 mColpatPrevGather;
     /* 0x12C5 */ u8 mColpatCurrGather;
-    /* 0x12C6 */ u8 mEnvrIdxPrev;
-    /* 0x12C7 */ u8 mEnvrIdxCurr;
+    /* 0x12C6 */ u8 PrevCol;
+    /* 0x12C7 */ u8 UseCol;
     /* 0x12C8 */ u8 mColpatWeather;
     /* 0x12C9 */ u8 mDiceWeatherMode;
     /* 0x12CA */ u8 mDiceWeatherState;
@@ -584,11 +584,11 @@ f32 dKy_get_parcent(f32 param_0, f32 param_1, f32 param_2);
 void dKy_setLight_nowroom_grass(char param_0, f32 param_1);
 void dKy_Global_amb_set(dKy_tevstr_c* i_tevstr);
 u8 dKy_pol_eff_prim_get(cBgS_PolyInfo const* param_0, _GXColor* param_1);
-void dKy_pol_eff_env_get(cBgS_PolyInfo const* param_0, _GXColor* param_1);
+u8 dKy_pol_eff_env_get(cBgS_PolyInfo const* param_0, _GXColor* param_1);
 u8 dKy_pol_eff_alpha_get(cBgS_PolyInfo const* param_0);
 f32 dKy_pol_eff_ratio_get(cBgS_PolyInfo const* param_0);
-void dKy_pol_eff2_prim_get(cBgS_PolyInfo const* param_0, _GXColor* param_1);
-void dKy_pol_eff2_env_get(cBgS_PolyInfo const* param_0, _GXColor* param_1);
+u8 dKy_pol_eff2_prim_get(cBgS_PolyInfo const* param_0, _GXColor* param_1);
+u8 dKy_pol_eff2_env_get(cBgS_PolyInfo const* param_0, _GXColor* param_1);
 u8 dKy_pol_eff2_alpha_get(cBgS_PolyInfo const* param_0);
 f32 dKy_pol_eff2_ratio_get(cBgS_PolyInfo const* param_0);
 u8 dKy_pol_efftype_get(cBgS_PolyInfo const* param_0);

@@ -206,8 +206,8 @@ void daAlink_c::setGrabItemPos() {
         daPy_frameCtrl_c* sp1C = &mUnderFrameCtrl[0];
 
         s8 sp8 = fopAcM_GetRoomNo(this);
-        temp_r3->tevStr.mRoomNo = sp8;
-        temp_r3->tevStr.mEnvrIdxOverride = tevStr.mEnvrIdxOverride;
+        temp_r3->tevStr.room_no = sp8;
+        temp_r3->tevStr.YukaCol = tevStr.YukaCol;
         fopAcM_SetRoomNo(temp_r3, sp8);
     
         BOOL sp18 = checkGrabCarryActor();

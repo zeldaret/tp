@@ -33,10 +33,10 @@ void daAlink_c::hsChainShape_c::draw() {
     sp5C->getShape()->loadPreDrawSetting();
 
     GXColor sp58;
-    sp58.r = temp_r29->mColorC0.r;
-    sp58.g = temp_r29->mColorC0.g;
-    sp58.b = temp_r29->mColorC0.b;
-    sp58.a = temp_r29->mColorC0.a;
+    sp58.r = temp_r29->AmbCol.r;
+    sp58.g = temp_r29->AmbCol.g;
+    sp58.b = temp_r29->AmbCol.b;
+    sp58.a = temp_r29->AmbCol.a;
 
     GXSetChanAmbColor(GX_COLOR0A0, sp58);
     GXSetChanMatColor(GX_COLOR0A0, g_whiteColor);

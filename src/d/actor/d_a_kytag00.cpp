@@ -87,7 +87,7 @@ static void wether_tag_move(kytag00_class* i_this) {
         }
 
         var_f9 *= (var_f8 * i_this->field_0x588);
-        if (g_env_light.mEnvrIdxPrev == g_env_light.mEnvrIdxCurr) {
+        if (g_env_light.PrevCol == g_env_light.UseCol) {
             i_this->field_0x56d = 1;
 
             switch (i_this->field_0x56f) {

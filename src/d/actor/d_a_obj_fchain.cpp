@@ -39,7 +39,7 @@ int daObjFchain_c::create() {
                                                       0x10) == 0) {
             return cPhs_ERROR_e;
         }
-        tevStr.mRoomNo = dComIfGp_roomControl_getStayNo();
+        tevStr.room_no = dComIfGp_roomControl_getStayNo();
         mShape.setUserArea((u32)this);
         current.pos.y += 3.0f;
         s16 local_58 = shape_angle.y;
@@ -283,10 +283,10 @@ void daObjFchain_shape_c::draw() {
     material->loadSharedDL();
     material->getShape()->loadPreDrawSetting();
     GXColor ambColor;
-    ambColor.r = tevStr->mColorC0.r;
-    ambColor.g = tevStr->mColorC0.g;
-    ambColor.b = tevStr->mColorC0.b;
-    ambColor.a = tevStr->mColorC0.a;
+    ambColor.r = tevStr->AmbCol.r;
+    ambColor.g = tevStr->AmbCol.g;
+    ambColor.b = tevStr->AmbCol.b;
+    ambColor.a = tevStr->AmbCol.a;
     GXSetChanAmbColor(GX_COLOR0A0, ambColor);
     GXSetChanMatColor(GX_COLOR0A0, g_whiteColor);
     dKy_setLight_again();

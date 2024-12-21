@@ -183,10 +183,10 @@ static int daKytag01_Create(fopAc_ac_c* i_this) {
         if (a_this->mStartPoint == dComIfGs_getStartPoint() &&
             i_this->home.roomNo == dComIfGp_roomControl_getStayNo())
         {
-            a_this->field_0x59e = g_env_light.mColPatPrev;
+            a_this->field_0x59e = g_env_light.wether_pat0;
             g_env_light.mColpatWeather = a_this->field_0x59d;
-            g_env_light.mColPatPrev = a_this->field_0x59d;
-            g_env_light.mColPatCurr = g_env_light.mColPatPrev;
+            g_env_light.wether_pat0 = a_this->field_0x59d;
+            g_env_light.wether_pat1 = g_env_light.wether_pat0;
         }
     } else {
         a_this->mNamiSize = (int)((fopAcM_GetParam(i_this) >> 0x10) & 0xFF);

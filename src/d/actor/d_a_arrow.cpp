@@ -356,12 +356,12 @@ void daArrow_c::setRoomInfo() {
 
     if (fopAcM_gc_c::gndCheck(&current.pos)) {
         roomNo = fopAcM_gc_c::getRoomId();
-        tevStr.mEnvrIdxOverride = fopAcM_gc_c::getPolyColor();
+        tevStr.YukaCol = fopAcM_gc_c::getPolyColor();
     } else {
         roomNo = dComIfGp_roomControl_getStayNo();
     }
     
-    tevStr.mRoomNo = roomNo;
+    tevStr.room_no = roomNo;
     field_0x64c.SetRoomId(roomNo);
     fopAcM_SetRoomNo(this, roomNo);
 }
@@ -519,9 +519,9 @@ int daArrow_c::procWait() {
 
     u32 param = fopAcM_GetParam(this);
     if (param == 1 || param == 2) {
-        tevStr.mFogColor.r = 0;
-        tevStr.mFogColor.g = 0;
-        tevStr.mFogColor.b = 0;
+        tevStr.TevColor.r = 0;
+        tevStr.TevColor.g = 0;
+        tevStr.TevColor.b = 0;
 
         daAlink_c* link = daAlink_getAlinkActorClass();
         if (mArrowType == 1) {
@@ -1162,9 +1162,9 @@ int daArrow_c::draw() {
     }
 
     if (field_0x943 != 0) {
-        tevStr.mFogColor.r = link->getFreezeR();
-        tevStr.mFogColor.g = link->getFreezeG();
-        tevStr.mFogColor.b = link->getFreezeB();
+        tevStr.TevColor.r = link->getFreezeR();
+        tevStr.TevColor.g = link->getFreezeG();
+        tevStr.TevColor.b = link->getFreezeB();
     }
 
     g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);

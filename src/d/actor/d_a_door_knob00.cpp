@@ -153,7 +153,7 @@ void daKnob20_c::calcMtx() {
 int daKnob20_c::CreateInit() {
     int rt = dComIfG_Bgsp().Regist(field_0x5a0, this);
     JUT_ASSERT(299, rt == 0);
-    tevStr.mRoomNo = current.roomNo;
+    tevStr.room_no = current.roomNo;
     setAction(ACTION_INIT);
     attention_info.position.y += 150.0f;
     eyePos.y += 150.0f;

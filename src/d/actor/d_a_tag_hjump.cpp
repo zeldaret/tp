@@ -44,7 +44,7 @@ int daTagHjump_c::create() {
 
             if (phase == cPhs_COMPLEATE_e) {
                 fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
-                tevStr.mRoomNo = fopAcM_GetRoomNo(this);
+                tevStr.room_no = fopAcM_GetRoomNo(this);
 
                 mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
                 mDoMtx_stack_c::YrotM(shape_angle.y);

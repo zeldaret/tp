@@ -6248,7 +6248,7 @@ s32 daAlink_c::setRoomInfo() {
         roomID = dComIfG_Bgsp().GetRoomId(mLinkAcch.m_gnd);
 
         if (roomID != fopAcM_GetRoomNo(this)) {
-            tevStr.mRoomNo = roomID;
+            tevStr.room_no = roomID;
             mVoiceReverbIntensity = dComIfGp_getReverb(roomID);
             field_0x814.SetRoomId(roomID);
             fopAcM_SetRoomNo(this, roomID);
@@ -6259,7 +6259,7 @@ s32 daAlink_c::setRoomInfo() {
         roomID = fopAcM_GetRoomNo(this);
     }
 
-    tevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mLinkAcch.m_gnd);
+    tevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(mLinkAcch.m_gnd);
     field_0x3174 = dComIfG_Bgsp().GetGroundCode(mLinkAcch.m_gnd);
     field_0x2fbb = dComIfG_Bgsp().GetPolyAtt0(mLinkAcch.m_gnd);
     mGndPolySpecialCode = dComIfG_Bgsp().GetSpecialCode(mLinkAcch.m_gnd);

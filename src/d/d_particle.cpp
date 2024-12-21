@@ -528,27 +528,27 @@ bool dPa_modelEcallBack::model_c::set(J3DModelData* param_0, dKy_tevstr_c const&
     typedef struct Arr{
         int field_0x0[2];
     };
-    *(Arr*)&field_0x8.mColorC0 = *(Arr*)&param_1.mColorC0;
-    *(Arr*)&field_0x8.mColorK0 = *(Arr*)&param_1.mColorK0;
-    *(Arr*)&field_0x8.mFogColor = *(Arr*)&param_1.mFogColor;
-    *(int*)&field_0x8.field_0x360 = *(int*)&param_1.field_0x360;
+    *(Arr*)&field_0x8.AmbCol = *(Arr*)&param_1.AmbCol;
+    *(Arr*)&field_0x8.FogCol = *(Arr*)&param_1.FogCol;
+    *(Arr*)&field_0x8.TevColor = *(Arr*)&param_1.TevColor;
+    *(int*)&field_0x8.TevKColor = *(int*)&param_1.TevKColor;
     *(int*)&field_0x8.mLightInf = *(int*)&param_1.mLightInf;
     
     field_0x8.mFogStartZ = param_1.mFogStartZ;
     field_0x8.mFogEndZ = param_1.mFogEndZ;
-    field_0x8.mColpatBlend = param_1.mColpatBlend;
+    field_0x8.pat_ratio = param_1.pat_ratio;
     field_0x8.field_0x374 = param_1.field_0x374;
-    field_0x8.field_0x378 = param_1.field_0x378;
-    field_0x8.field_0x37a = param_1.field_0x37a;
+    field_0x8.Material_id = param_1.Material_id;
+    field_0x8.Type = param_1.Type;
     field_0x8.mInitTimer = param_1.mInitTimer;
-    field_0x8.mEnvrIdxCurr = param_1.mEnvrIdxCurr;
-    field_0x8.mEnvrIdxPrev = param_1.mEnvrIdxPrev;
-    field_0x8.mColpatCurr = param_1.mColpatCurr;
-    field_0x8.mColpatPrev = param_1.mColpatPrev;
-    field_0x8.mRoomNo = param_1.mRoomNo;
-    field_0x8.mEnvrIdxOverride = param_1.mEnvrIdxOverride;
+    field_0x8.UseCol = param_1.UseCol;
+    field_0x8.PrevCol = param_1.PrevCol;
+    field_0x8.wether_pat1 = param_1.wether_pat1;
+    field_0x8.wether_pat0 = param_1.wether_pat0;
+    field_0x8.room_no = param_1.room_no;
+    field_0x8.YukaCol = param_1.YukaCol;
     field_0x8.mLightMode = param_1.mLightMode;
-    field_0x8.mInitType = param_1.mInitType;
+    field_0x8.Material_use_fg = param_1.Material_use_fg;
     field_0x8.field_0x384 = param_1.field_0x384;
     field_0x8.field_0x385 = param_1.field_0x385;
     mRotAxis = rotAxis;
@@ -838,7 +838,7 @@ u32 dPa_simpleEcallBack::set(cXyz const* param_1, dKy_tevstr_c const* param_2, u
                                   _GXColor const& param_4, _GXColor const& param_5, int param_6,
                                   f32 param_7) {
     f32 dVar7 = param_7;
-    if (param_2 != NULL && param_2->mInitType != 124) {
+    if (param_2 != NULL && param_2->Material_use_fg != 124) {
         OS_REPORT("\x1b[43;30mSimple Particle tevstr nonset !!\n");
         return 0;
     }
@@ -1505,7 +1505,7 @@ JPABaseEmitter* dPa_control_c::set(u8 param_0, u16 param_1, cXyz const* param_2,
     }
 
     u32 local_ac = local_a8->getResUserWork(param_1);
-    if (param_3 != NULL && param_3->mInitType != 0x7c) {
+    if (param_3 != NULL && param_3->Material_use_fg != 0x7c) {
         return NULL;
     }
 

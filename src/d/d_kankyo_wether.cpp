@@ -690,7 +690,7 @@ static void wether_move_star() {
                     density = 0.0f;
                 }
 
-                if (g_env_light.mColPatCurr != 0 && g_env_light.mColPatBlend > 0.5f) {
+                if (g_env_light.wether_pat1 != 0 && g_env_light.pat_ratio > 0.5f) {
                     density = 0.0f;
                 }
 
@@ -926,15 +926,15 @@ static void wether_move_vrkumo() {
         } else if (strcmp(dComIfGp_getStartStageName(), "F_SP104") == 0 &&
                    dComIfG_play_c::getLayerNo(0) >= 3)
         {
-            if (g_env_light.mColPatCurr >= 4) {
+            if (g_env_light.wether_pat1 >= 4) {
                 cLib_addCalc(&g_env_light.mVrkumoStrength, 1.0f, 0.1f, 0.003f, 0.0000001f);
             } else {
                 cLib_addCalc(&g_env_light.mVrkumoStrength, 0.0f, 0.08f, 0.002f, 0.00000001f);
             }
-        } else if ((g_env_light.mColPatCurr == 1 && g_env_light.mColPatBlend > 0.0f) ||
-                   (g_env_light.mColPatPrev == 1 && g_env_light.mColPatBlend < 1.0f) ||
-                   (g_env_light.mColPatCurr == 2 && g_env_light.mColPatBlend > 0.0f) ||
-                   (g_env_light.mColPatPrev == 2 && g_env_light.mColPatBlend < 1.0f))
+        } else if ((g_env_light.wether_pat1 == 1 && g_env_light.pat_ratio > 0.0f) ||
+                   (g_env_light.wether_pat0 == 1 && g_env_light.pat_ratio < 1.0f) ||
+                   (g_env_light.wether_pat1 == 2 && g_env_light.pat_ratio > 0.0f) ||
+                   (g_env_light.wether_pat0 == 2 && g_env_light.pat_ratio < 1.0f))
         {
             cLib_addCalc(&g_env_light.mVrkumoStrength, 1.0f, 0.1f, 0.003f, 0.0000001f);
         } else {

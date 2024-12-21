@@ -2579,7 +2579,7 @@ s32 daObjCarry_c::CreateInit_ironball() {
         eyePos = current.pos;
 
         fopAcM_SetRoomNo(this,getRoomNo(l_saveID));
-        tevStr.mRoomNo = fopAcM_GetRoomNo(this);
+        tevStr.room_no = fopAcM_GetRoomNo(this);
 
         if (chkSttsFlag(l_saveID,1)) {
             mDraw = 1;

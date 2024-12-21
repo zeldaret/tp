@@ -310,7 +310,7 @@ int daObjCrope_c::create() {
         mCcStts.SetRoomId(fopAcM_GetRoomNo(this));
         mCollider.Set(l_sphSrc);
         mCollider.SetStts(&mCcStts);
-        tevStr.mRoomNo = fopAcM_GetRoomNo(this);
+        tevStr.room_no = fopAcM_GetRoomNo(this);
         gravity = -5.0f;
         cXyz cStack_68;
         cXyz cStack_74;
