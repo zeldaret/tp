@@ -215,8 +215,8 @@ struct Z2Audience : public JAIAudience, public JASGlobalInstance<Z2Audience> {
     /* 802BD71C */ virtual void mixChannelOut(JASSoundParams const&, JAIAudible*, int);
 
     Z2SpotMic* getLinkMic() { return mLinkMic; }
-    JGeometry::TVec3<f32> getAudioCamPos() {
-        return *mAudioCamera[0].getPos();
+    JGeometry::TVec3<f32> getAudioCamPos(int idx) {
+        return *mAudioCamera[idx].getPos();
     }
     Z2Audience3DSetting* getSetting() { return &mSetting; }
 

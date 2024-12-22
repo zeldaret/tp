@@ -119,7 +119,7 @@ void Z2SeMgr::modHeightAtCamera(Vec const** param_0) {
             }
         }
         field_0x340[idx] = **param_0;
-        Vec cam_pos = Z2GetAudience()->getAudioCamPos();
+        Vec cam_pos = Z2GetAudience()->getAudioCamPos(0);
         if (field_0x340[idx].y > cam_pos.y) {
             field_0x340[idx].y = cam_pos.y;
         }
@@ -266,19 +266,19 @@ bool Z2SeMgr::seStart(JAISoundID i_soundID, Vec const* i_pos, u32 param_2, s8 i_
         break;
     case Z2SE_SY_TALK_START:
     case Z2SE_SY_TALK_END:
-        if (Z2GetSceneMgr()->getCurrentSceneNum() != 0) {
+        if (Z2GetStatusMgr()->getDemoStatus() != 0) {
             return false;
         }
         break;
     case Z2SE_SY_TALK_NEXT:
-        if (Z2GetSceneMgr()->isMovieDemo()) {
+        if (Z2GetStatusMgr()->isMovieDemo()) {
             i_soundID = Z2SE_SY_DEMO_MESSAGE_NEXT;
         }
         break;
     case Z2SE_SY_TALK_WIN_CLOSE:
-        if (Z2GetSceneMgr()->getCurrentSceneNum() == 1) {
+        if (Z2GetStatusMgr()->getDemoStatus() == 1) {
             i_soundID = Z2SE_SY_TALK_END;
-        } else if (Z2GetSceneMgr()->isMovieDemo()) {
+        } else if (Z2GetStatusMgr()->isMovieDemo()) {
             i_soundID = Z2SE_SY_DEMO_MESSAGE_END;
         }
         break;
@@ -287,11 +287,13 @@ bool Z2SeMgr::seStart(JAISoundID i_soundID, Vec const* i_pos, u32 param_2, s8 i_
             return false;
         }
         break;
-    case Z2SE_OBJ_CHANDELIER_SWING:
-        if (i_pos->y > Z2GetAudience()->getAudioCamPos().y) {
+    case Z2SE_OBJ_CHANDELIER_SWING: {
+        Vec tmp = Z2GetAudience()->getAudioCamPos(0);
+        if (i_pos->y > tmp.y) {
             return false;
         }
         break;
+    }
     case Z2SE_OBJ_CHANDLV5_SWING:
         i_volume = Z2Calc::getParamByExp(param_2, 35.0f, 261.0f, 0.4f, 0.05f, 1.0f,
                                          Z2Calc::CURVE_SIGN_2);
@@ -313,7 +315,8 @@ bool Z2SeMgr::seStart(JAISoundID i_soundID, Vec const* i_pos, u32 param_2, s8 i_
                                          Z2Calc::CURVE_SIGN_2);
         break;
     case Z2SE_OBJ_L8_B_FOG_FLY:
-        if (i_pos->y > Z2GetAudience()->getAudioCamPos().y) {
+        Vec tmp = Z2GetAudience()->getAudioCamPos(0);
+        if (i_pos->y > tmp.y) {
             return false;
         }
         break;

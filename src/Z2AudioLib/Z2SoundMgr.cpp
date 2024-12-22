@@ -356,7 +356,6 @@ void Z2SoundMgr::initParams() {
 
 /* 802AA9E8-802AAAC4 2A5328 00DC+00 0/0 1/1 0/0 .text
  * multiVolumeSoundID__10Z2SoundMgrF10JAISoundIDf               */
-// NONMATCHING extra load
 void Z2SoundMgr::multiVolumeSoundID(JAISoundID i_soundID, f32 i_multi) {
     if (!i_soundID.isAnonymous() && Z2GetSoundInfo()->getSoundType(i_soundID) == 0) {
         JSUList<JAISe>* list =
@@ -371,7 +370,6 @@ void Z2SoundMgr::multiVolumeSoundID(JAISoundID i_soundID, f32 i_multi) {
 
 /* 802AAAC4-802AAB94 2A5404 00D0+00 1/1 0/0 0/0 .text isPlayingSoundID__10Z2SoundMgrF10JAISoundID
  */
-// NONMATCHING extra load
 bool Z2SoundMgr::isPlayingSoundID(JAISoundID i_soundID) {
     if (i_soundID.isAnonymous()) {
         return false;
