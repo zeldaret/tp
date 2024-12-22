@@ -11,7 +11,6 @@
 #include "d/d_item.h"
 #include "d/d_item_data.h"
 #include "d/d_procname.h"
-#include "dol2asm.h"
 #include "f_op/f_op_actor_mng.h"
 
 /* 80C39648-80C3968C 000000 0044+00 4/4 0/0 0/0 .rodata          l_cyl_src */
