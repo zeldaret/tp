@@ -55,7 +55,7 @@ static int daNPC_LF_Draw(npc_lf_class* i_this) {
     for (int i = 0; i < i_this->mIter; i++, fish++) {
         if (fish->field_0x17 == 0) {
             if (j == 0) {
-                g_env_light.settingTevStruct(0, &fish->field_0x04, &i_this->tevStr);
+                g_env_light.settingTevStruct(0, &fish->mPos, &i_this->tevStr);
             }
             j++;
 
@@ -77,151 +77,150 @@ static u8 data_80A6AA90;
 /* 80A6AAA0-80A6AABC 000018 001C+00 4/4 0/0 0/0 .bss             l_HIO */
 static daNPC_LF_HIO_c l_HIO;
 
+f32 dummyLiteral1() { return 50.0f; }
+f32 dummyLiteral2() { return 0.0f; }
+
 /* 80A69D90-80A6A1B8 000310 0428+00 1/1 0/0 0/0 .text            npc_lf_move__FP10fopAc_ac_cP4lf_s
  */
- // NONMATCHING - still missing some instructions + float literals
-static void npc_lf_move(fopAc_ac_c* param_0, lf_s* param_1) {
+static void npc_lf_move(fopAc_ac_c* param_0, lf_s* pFish) {
     cXyz pos;
     s16 maxStepAngle;
     f32 maxStep;
-    if ((u8)(param_1->field_0x18) == 0) {
-        param_1->mDistFromPlayer = fopAcM_searchPlayerDistance(param_0);
+    if ((pFish->field_0x18 & 7) == 0) {
+        pFish->mDistFromPlayer = fopAcM_searchPlayerDistance(param_0);
     }
 
-    switch (param_1->field_0x1c) {        
+    switch (pFish->field_0x1c) {        
     case 0:
-        if (param_1->field_0x38[0] == 0) {
+        if (pFish->field_0x38[0] == 0) {
             for (int i = 0; i < 100; i++) {
-                param_1->field_0x20.x = param_0->home.pos.x + cM_rndFX(500.0f);
-                param_1->field_0x20.y = param_0->home.pos.y + cM_rndFX(100.0f);
-                param_1->field_0x20.z = param_0->home.pos.z + cM_rndFX(500.0f);
+                pFish->field_0x20.x = param_0->home.pos.x + cM_rndFX(500.0f);
+                pFish->field_0x20.y = param_0->home.pos.y + cM_rndFX(100.0f);
+                pFish->field_0x20.z = param_0->home.pos.z + cM_rndFX(500.0f);
 
-                pos = param_1->field_0x20 - param_1->field_0x04;
+                pos = pFish->field_0x20 - pFish->mPos;
                 pos.y = 0.0f;
 
                 if (pos.abs() > 250.0f) {
-                    param_1->field_0x1c = 1;
-                    param_1->field_0x38[0] = cM_rndF(30.0f) + 30.0f;
+                    pFish->field_0x1c = 1;
+                    pFish->field_0x38[0] = cM_rndF(30.0f) + 30.0f;
                     break;
                 }
             }
         }
-        param_1->field_0x40 = 0.1f;
-        maxStepAngle = 0x400;
-        maxStep = 0.5f;
-        break;
-    case 1:
-        if (param_1->field_0x38[0] != 0) {
-            param_1->field_0x1c = 0;
-            param_1->field_0x38[0] = cM_rndF(10.0f);
-        }
-
-        param_1->field_0x40 = l_HIO.field_0x0c;
+        pFish->field_0x40 = 0.1f;
         maxStepAngle = 0;
         maxStep = 0.05f;
         break;
+    case 1:
+        if (pFish->field_0x38[0] == 0) {
+            pFish->field_0x1c = 0;
+            pFish->field_0x38[0] = 10.0f + cM_rndF(10.0f);
+        }
+
+        pFish->field_0x40 = l_HIO.field_0x0c;
+        maxStepAngle = 0x400;
+        maxStep = 0.5f;
+        break;
     }
 
-    if (param_1->field_0x38[1] == 0) {
+    if (pFish->field_0x38[1] != 0) {
         maxStep = 0.5f;
-        param_1->field_0x40 = l_HIO.field_0x14;
+        pFish->field_0x40 = l_HIO.field_0x14;
         maxStepAngle = 0x600;
         
     } else {
-        if (param_1->mDistFromPlayer < l_HIO.field_0x18) {
-            param_1->field_0x38[1] = cM_rndF(20.0f) + 20.0f;
+        if (pFish->mDistFromPlayer < l_HIO.field_0x18) {
+            pFish->field_0x38[1] = cM_rndF(20.0f) + 20.0f;
 
-            if (param_1->field_0x1c == 1)
-                param_1->field_0x1c = 0;
+            if (pFish->field_0x1c == 1)
+                pFish->field_0x1c = 0;
         }
     }
 
-    pos = param_1->field_0x20 - param_1->field_0x04;
-    s16 old_pos_y = param_1->field_0x10.y;
+    pos = pFish->field_0x20 - pFish->mPos;
+    s16 old_pos_y = pFish->mAngle.y;
 
-    cLib_addCalcAngleS2(&param_1->field_0x10.y, cM_atan2s(pos.x,pos.z),4,maxStepAngle);
-    cLib_addCalcAngleS2(&param_1->field_0x10.x, -cM_atan2s(pos.y,JMAFastSqrt((pos.x * pos.x) + (pos.z * pos.z))),4,maxStepAngle);
+    cLib_addCalcAngleS2(&pFish->mAngle.y, cM_atan2s(pos.x,pos.z),4,maxStepAngle);
+    cLib_addCalcAngleS2(&pFish->mAngle.x, -cM_atan2s(pos.y,JMAFastSqrt((pos.x * pos.x) + (pos.z * pos.z))),4,maxStepAngle);
     
-    f32 float1 = (old_pos_y - param_1->field_0x10.y);
-    float1 *= 5.0f;
-    f32 float2 = 4000.0f;
+    old_pos_y -= pFish->mAngle.y;
+    f32 float1 = old_pos_y * 5.0f;
 
     if (float1 > 4000.0f) {
-        if (float1 < -4000.0f) {
-            float2 = -4000.0f;
-        }
+        float1 = 4000.0f;
     } else {
-        float2 = 4000.0f;
+        if (float1 < -4000.0f) {
+            float1 = -4000.0f;
+        }
     }
 
-    cLib_addCalc2(&param_1->field_0x58, float2, 0.5f, 1000.0f);
-    cLib_addCalc2(&param_1->field_0x44, (param_1->field_0x3c * l_HIO.field_0x08), 1.0f, maxStep);
+    cLib_addCalc2(&pFish->field_0x58, float1, 0.5f, 1000.0f);
+    cLib_addCalc2(&pFish->field_0x44, (pFish->field_0x3c * l_HIO.field_0x10), 1.0f, maxStep);
 }
 
 /* 80A6A1B8-80A6A420 000738 0268+00 1/1 0/0 0/0 .text            action__FP10fopAc_ac_cP4lf_s */
-// NONMATCHING - second for loop incorrect
-static void action(fopAc_ac_c* param_0, lf_s* param_1) {
+static void action(fopAc_ac_c* param_0, lf_s* pFish) {
     cXyz pos;
-    param_1->field_0x18++;
+    pFish->field_0x18++;
 
     for (int i  = 0; i < 2; i++) {
-        if (param_1->field_0x38[i] != 0) {
-            param_1->field_0x38[i]--;
+        if (pFish->field_0x38[i] != 0) {
+            pFish->field_0x38[i]--;
         }
     }
 
-    switch (param_1->mActionMode) {
+    switch (pFish->mActionMode) {
     case npc_lf_class::ACT_MOVE:
-        npc_lf_move(param_0,param_1);
+        npc_lf_move(param_0,pFish);
     }
 
-    cMtx_YrotS(*calc_mtx,param_1->field_0x10.y);
-    cMtx_XrotM(*calc_mtx,param_1->field_0x10.x);
+    cMtx_YrotS(*calc_mtx,pFish->mAngle.y);
+    cMtx_XrotM(*calc_mtx,pFish->mAngle.x);
 
     pos.x = 0.0f;
     pos.y = 0.0f;
-    pos.z = param_1->field_0x44 * l_HIO.field_0x08;
+    pos.z = pFish->field_0x44 * l_HIO.field_0x08;
 
     MtxPosition(&pos,&pos);
 
-    param_1->field_0x04 += pos;
+    pFish->mPos += pos;
 
-    cLib_addCalc2(&param_1->field_0x3c,param_1->field_0x40,1.0f,0.2f);
-    cLib_addCalc2(&param_1->field_0x5c,(param_1->field_0x3c * 2000.0f + 2000.0f),0.5f,200.0f);
+    cLib_addCalc2(&pFish->field_0x3c,pFish->field_0x40,1.0f,0.2f);
+    cLib_addCalc2(&pFish->field_0x5c,(pFish->field_0x3c * 2000.0f + 2000.0f),0.5f,200.0f);
 
-    param_1->field_0x4c[1] = param_1->field_0x3c * 13000.0f + 2000.0f;
-    param_1->field_0x4c[0] += param_1->field_0x4c[1];
+    pFish->field_0x4c[1] = pFish->field_0x3c * 13000.0f + 2000.0f;
+    pFish->field_0x4c[0] += pFish->field_0x4c[1];
 
-    for (int i = 0, j = 0; i < 3; i++, j++) {
-        
-        f32 tmp = wp[j] * param_1->field_0x5c;
-        param_1->field_0x50[i] = tmp * cM_ssin(param_1->field_0x4c[j]);
+    for (int i = 0; i < 3; i++) {
+        pFish->field_0x50[i + 1] = cM_ssin(-15000 * i + pFish->field_0x4c[0]) * pFish->field_0x5c * wp[i];
     }
 
-    param_1->field_0x50[0] = param_1->field_0x5c * cM_ssin((param_1->field_0x4c[0] - 7000)) * 0.3f;
+    pFish->field_0x50[0] = pFish->field_0x5c * cM_ssin((pFish->field_0x4c[0] - 7000)) * -0.3f;
 
-    mDoMtx_stack_c::transS(param_1->field_0x04.x,param_1->field_0x04.y,param_1->field_0x04.z);
-    mDoMtx_stack_c::YrotM(param_1->field_0x10.y + param_1->field_0x50[0]);
-    mDoMtx_stack_c::XrotM(param_1->field_0x10.x);
-    f32 value = param_1->field_0x60 * l_HIO.field_0x08;
+    mDoMtx_stack_c::transS(pFish->mPos.x,pFish->mPos.y,pFish->mPos.z);
+    mDoMtx_stack_c::YrotM(pFish->mAngle.y + pFish->field_0x50[0]);
+    mDoMtx_stack_c::XrotM(pFish->mAngle.x);
+    f32 value = pFish->field_0x60 * l_HIO.field_0x08;
     mDoMtx_stack_c::scaleM(value,value,value);
-    param_1->mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
+    pFish->mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80A6A420-80A6A514 0009A0 00F4+00 2/1 0/0 0/0 .text            daNPC_LF_Execute__FP12npc_lf_class
  */
-// NONMATCHING - regalloc
-static int daNPC_LF_Execute(npc_lf_class* i_this) {
-    camera_class* camera = dComIfGp_getCamera(0);
-    lf_s* fish = i_this->mFish;
-    
+static int daNPC_LF_Execute(npc_lf_class* i_this2) {
+    npc_lf_class* i_this = (npc_lf_class*) i_this2;
+    view_class* camera;
+    lf_s* fish;
+    cXyz pos;
+    cXyz pos2;
+    camera = dComIfGp_getCamera(0);
+    fish = i_this->mFish;
     for (int i = 0; i < i_this->mIter; i++, fish++) {
-        cXyz pos;
-        pos.x = fish->field_0x04.x - camera->lookat.eye.x;
-        pos.z = fish->field_0x04.z - camera->lookat.eye.z;
+        pos.x = fish->mPos.x - camera->lookat.eye.x;
+        pos.z = fish->mPos.z - camera->lookat.eye.z;
 
-        f32 res = JMAFastSqrt((pos.x * pos.x) + (pos.z * pos.z));
-        if (res < 1500.0f) {
+        if (JMAFastSqrt((pos.x * pos.x) + (pos.z * pos.z)) < 1500.0f) {
             fish->field_0x17 = 0;
             action(i_this, fish);
         } else {
@@ -319,10 +318,10 @@ static cPhs__Step daNPC_LF_Create(fopAc_ac_c* i_this) {
 
         for (int i = 0; i < a_this->mIter; i++, fish++) {
             fish->mActionMode = npc_lf_class::ACT_MOVE;
-            fish->field_0x04.x = a_this->current.pos.x + cM_rndFX(300.0f);
-            fish->field_0x04.y = a_this->current.pos.y + cM_rndFX(50.0f);
-            fish->field_0x04.z = a_this->current.pos.z + cM_rndFX(300.0f);
-            fish->field_0x10.y = cM_rndF(65536.0f);
+            fish->mPos.x = a_this->current.pos.x + cM_rndFX(300.0f);
+            fish->mPos.y = a_this->current.pos.y + cM_rndFX(50.0f);
+            fish->mPos.z = a_this->current.pos.z + cM_rndFX(300.0f);
+            fish->mAngle.y = cM_rndF(65536.0f);
             fish->field_0x48 = cM_rndFX(0.1f) + 0.6f;
             fish->field_0x60 = cM_rndFX(0.1f) + 0.6f;
             // fish++;
