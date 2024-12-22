@@ -19,7 +19,7 @@ public:
 
     JAISoundID() {}
 
-    bool isAnonymous() { return mId.mFullId == 0xffffffff; }
+    bool isAnonymous() const { return mId.mFullId == 0xffffffff; }
     void setAnonymous() { mId.mFullId = -1; }
 
     union {

@@ -851,7 +851,7 @@ config.libs = [
             Object(Matching, "Z2AudioLib/Z2Calc.cpp"),
             Object(NonMatching, "Z2AudioLib/Z2AudioArcLoader.cpp"),
             Object(Matching, "Z2AudioLib/Z2Param.cpp"),
-            Object(NonMatching, "Z2AudioLib/Z2SoundMgr.cpp"),
+            Object(Matching, "Z2AudioLib/Z2SoundMgr.cpp"),
             Object(Matching, "Z2AudioLib/Z2SoundStarter.cpp"),
             Object(NonMatching, "Z2AudioLib/Z2SoundHandles.cpp"),
             Object(NonMatching, "Z2AudioLib/Z2SeMgr.cpp"),
