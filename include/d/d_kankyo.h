@@ -34,11 +34,11 @@ u8 dKy_pol_argument_get(cBgS_PolyInfo const* i_poly);
 void dKy_Sound_set(cXyz i_pos, int param_1, fpc_ProcID i_actorID, int param_3);
 void dKy_bg_MAxx_proc(void* param_0);
 void dKy_change_colpat(u8 colpat);
-void dKy_BossLight_set(cXyz* param_0, _GXColor* param_1, f32 param_2, u8 param_3);
+int dKy_BossLight_set(cXyz* param_0, _GXColor* param_1, f32 param_2, u8 param_3);
 void dKy_custom_colset(u8 prevGather, u8 curGather, f32 blend);
 void dKy_setLight();
 cXyz dKy_plight_near_pos();
-void dKy_BossSpotLight_set(cXyz* param_0, f32 param_1, f32 param_2, f32 param_3, _GXColor* param_4,
+int dKy_BossSpotLight_set(cXyz* param_0, f32 param_1, f32 param_2, f32 param_3, _GXColor* param_4,
                            f32 param_5, u8 param_6, u8 param_7);
 static void dKy_calc_color_set(_GXColorS10* param_0, color_RGB_class* param_1,
                                color_RGB_class* param_2, color_RGB_class* param_3,
