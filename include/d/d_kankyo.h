@@ -15,21 +15,19 @@ void dKy_itudemo_se();
 BOOL dKy_darkworld_spot_check(char const* stageName, int roomNo);
 void dKy_darkworld_Area_set(char const* stageName, int roomNo);
 void dKy_FiveSenses_fullthrottle_dark();
-s32 dKy_daynight_check();
+BOOL dKy_daynight_check();
 void dKy_clear_game_init();
 void dKy_setLight_init();
 u8 dKy_pol_sound_get(cBgS_PolyInfo const* param_0);
 void dKy_depth_dist_set(void* param_0);
 void dKy_instant_rainchg();
 void dKy_instant_timechg(f32);
-static void dKy_set_vrboxsoracol_ratio(f32 ratio);
-static void dKy_set_vrboxkumocol_ratio(f32 ratio);
+void dKy_set_vrboxsoracol_ratio(f32 ratio);
+void dKy_set_vrboxkumocol_ratio(f32 ratio);
 void dKy_actor_addcol_set(s16 param_0, s16 param_1, s16 param_2, f32 param_3);
 void dKy_fog_startendz_set(f32 param_0, f32 param_1, f32 param_2);
-static void dKy_vrbox_addcol_set(s16 param_0, s16 param_1, s16 param_2, f32 param_3);
+void dKy_vrbox_addcol_set(s16 param_0, s16 param_1, s16 param_2, f32 param_3);
 void dKy_GxFog_set();
-static void GxFog_set();
-static void GxXFog_set();
 u8 dKy_pol_argument_get(cBgS_PolyInfo const* i_poly);
 void dKy_Sound_set(cXyz i_pos, int param_1, fpc_ProcID i_actorID, int param_3);
 void dKy_bg_MAxx_proc(void* param_0);
@@ -40,11 +38,11 @@ void dKy_setLight();
 cXyz dKy_plight_near_pos();
 int dKy_BossSpotLight_set(cXyz* param_0, f32 param_1, f32 param_2, f32 param_3, _GXColor* param_4,
                            f32 param_5, u8 param_6, u8 param_7);
-static void dKy_calc_color_set(_GXColorS10* param_0, color_RGB_class* param_1,
+void dKy_calc_color_set(_GXColorS10* param_0, color_RGB_class* param_1,
                                color_RGB_class* param_2, color_RGB_class* param_3,
                                color_RGB_class* param_4, f32 param_5, f32 param_6,
                                _GXColorS10 param_7, f32 param_8);
-static void dKy_twilight_camelight_set();
+void dKy_twilight_camelight_set();
 u8 dKy_shadow_mode_check(u8 mode);
 void dKy_shadow_mode_set(u8 mode);
 void dKy_shadow_mode_reset(u8 mode);
@@ -248,6 +246,13 @@ struct dKy_pol_effcol_struct {
 
 struct dKy_pol_sound_struct {
     u8 data[8];
+};
+
+enum dKy_LIGHT_SIZE {
+    LIGHT_SIZE_S,
+    LIGHT_SIZE_M,
+    LIGHT_SIZE_L,
+    LIGHT_SIZE_LL,
 };
 
 class dScnKy_env_light_c {
@@ -517,7 +522,7 @@ public:
     /* 0x1302 */ s16 field_0x1302;
     /* 0x1304 */ f32 mWaterSurfaceShineRate;
     /* 0x1308 */ u8 field_0x1308;
-    /* 0x1309 */ u8 field_0x1309;
+    /* 0x1309 */ u8 light_size;
     /* 0x130A */ u8 field_0x130a;
     /* 0x130B */ u8 field_0x130b;
     /* 0x130C */ u8 field_0x130c;
@@ -554,13 +559,13 @@ BOOL dKy_withwarp_capture_check();
 bool dKy_darkworld_check();
 void dKy_undwater_filter_draw();
 BOOL dKy_camera_water_in_status_check();
-static int dKy_Outdoor_check();
-s32 dKy_getdaytime_hour();
-s32 dKy_getdaytime_minute();
-s32 dKy_get_dayofweek();
-s32 dKy_getDarktime_minute();
-s32 dKy_getDarktime_hour();
-static void dKy_Sound_init();
+int dKy_Outdoor_check();
+int dKy_getdaytime_hour();
+int dKy_getdaytime_minute();
+int dKy_get_dayofweek();
+int dKy_getDarktime_minute();
+int dKy_getDarktime_hour();
+void dKy_Sound_init();
 void dKy_setLight_nowroom(char);
 void dKy_setLight_nowroom_actor(dKy_tevstr_c*);
 void dKy_setLight_again();
@@ -600,7 +605,7 @@ void dKy_ParticleColor_get_bg(cXyz* param_0, dKy_tevstr_c* param_1, _GXColor* pa
                               _GXColor* param_3, _GXColor* param_4, _GXColor* param_5,
                               f32 param_6);
 _GXColor dKy_light_influence_col(_GXColor* param_0, f32 param_1);
-static void dKy_WaterIn_Light_set();
+void dKy_WaterIn_Light_set();
 void dKy_SordFlush_set(cXyz param_0, int param_1);
 void dKy_camera_water_in_status_set(u8 status);
 void dKy_mock_light_every_set(LIGHT_INFLUENCE* param_0);
