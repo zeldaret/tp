@@ -1998,7 +1998,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_ss_drink"),
     ActorRel(Matching, "d_a_obj_ss_item"),
     ActorRel(NonMatching, "d_a_obj_stairBlock"),
-    ActorRel(NonMatching, "d_a_obj_stone"),
+    ActorRel(Equivalent, "d_a_obj_stone"),
     ActorRel(NonMatching, "d_a_obj_stopper"),
     ActorRel(NonMatching, "d_a_obj_stopper2"),
     ActorRel(Matching, "d_a_obj_suisya"),
