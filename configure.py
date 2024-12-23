@@ -1796,7 +1796,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_crvhahen"),
     ActorRel(NonMatching, "d_a_obj_crvlh_down"),
     ActorRel(NonMatching, "d_a_obj_crvlh_up"),
-    ActorRel(NonMatching, "d_a_obj_crvsteel"),
+    ActorRel(Matching, "d_a_obj_crvsteel"),
     ActorRel(Matching, "d_a_obj_crystal"),
     ActorRel(NonMatching, "d_a_obj_cwall"),
     ActorRel(Matching, "d_a_obj_damCps"),
