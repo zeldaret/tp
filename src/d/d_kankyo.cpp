@@ -658,9 +658,9 @@ static f32 fl_data_ratio_set(f32 start, f32 end, f32 ratio) {
 /* 8019D7A0-8019D878 1980E0 00D8+00 3/3 0/0 0/0 .text float_kankyo_color_ratio_set__Fffffffff */
 static f32 float_kankyo_color_ratio_set(f32 color_a_start, f32 color_a_end, f32 color_ratio, f32 color_b_start,
                                         f32 color_b_end, f32 blend_ratio, f32 param_6, f32 param_7) {
-    f32 temp_f30 = fl_data_ratio_set(color_a_start, color_a_end, color_ratio);
-    f32 temp_f29 = fl_data_ratio_set(color_b_start, color_b_end, color_ratio);
-    f32 calc_color = fl_data_ratio_set(temp_f30, temp_f29, blend_ratio);
+    f32 a = fl_data_ratio_set(color_a_start, color_a_end, color_ratio);
+    f32 b = fl_data_ratio_set(color_b_start, color_b_end, color_ratio);
+    f32 calc_color = fl_data_ratio_set(a, b, blend_ratio);
     calc_color += param_7 * (param_6 - calc_color);
 
     return calc_color;
@@ -3382,10 +3382,10 @@ void dScnKy_env_light_c::settingTevStruct(int tevstrType, cXyz* pos_p, dKy_tevst
             MtxP view_mtx = j3dSys.getViewMtx();
             J3DLightInfo& light_info = tevstr_p->mLightObj.getLightInfo();
             Vec sp44;
-            cMtx_multVec(view_mtx, &lightStatusData[0].field_0x0, &sp44);
+            cMtx_multVec(view_mtx, &lightStatusData[0].position, &sp44);
 
             light_info.mLightPosition = sp44;
-            tevstr_p->field_0x32c = lightStatusData[0].field_0x0;
+            tevstr_p->field_0x32c = lightStatusData[0].position;
             light_info.mLightDirection = g_env_light.field_0x1064;
 
             light_info.mColor.r = 0;
@@ -3695,9 +3695,9 @@ void dScnKy_env_light_c::CalcTevColor() {
 
 /* 801A4F24-801A4F64 19F864 0040+00 1/1 0/0 0/0 .text            Sndpos__18dScnKy_env_light_cFv */
 void dScnKy_env_light_c::Sndpos() {
-    if (mSound.field_0x10 != 0) {
-        mSound.field_0x10--;
-        if (mSound.field_0x10 == 0) {
+    if (mSound.timer != 0) {
+        mSound.timer--;
+        if (mSound.timer == 0) {
             dKy_Sound_init();
         }
     }
@@ -3816,7 +3816,7 @@ void dScnKy_env_light_c::SetBaseLight() {
             mBaseLightInfluence.mPosition = kankyo->mMoonPos;
         }
     } else {
-        mBaseLightInfluence.mPosition = lightStatusPt[2].field_0x0;
+        mBaseLightInfluence.mPosition = lightStatusPt[2].position;
     }
 
     mBaseLightInfluence.mColor.r = 0xFF;
@@ -4123,13 +4123,13 @@ void dKy_GlobalLight_set() {
         LightStatus* light_status = &lightStatusData[i];
 
         Vec light_pos;
-        cMtx_multVec(view_mtx, &light_status->field_0x0, &light_pos);
+        cMtx_multVec(view_mtx, &light_status->position, &light_pos);
 
         GXLightObj light_obj;
         GXInitLightPos(&light_obj, light_pos.x, light_pos.y, light_pos.z);
         GXInitLightDir(&light_obj, light_status->mLightDir.x, light_status->mLightDir.y,
                        light_status->mLightDir.z);
-        GXInitLightColor(&light_obj, light_status->field_0x18);
+        GXInitLightColor(&light_obj, light_status->color);
 
         if (light_status->mRefDist <= 0.0f) {
             light_status->mRefDist = 1.0E-6f;
@@ -4222,7 +4222,7 @@ void dKy_setLight_nowroom_common(char room_no, f32 light_ratio) {
 
         for (int i = 0; i < 2; i++) {
             if (g_env_light.mBGpartsActiveLight[i].mIndex != 0 && 0.0f != g_env_light.mBGpartsActiveLight[i].mPow && (i != 1 || dMeter2Info_getWindowStatus() != 3)) {
-                lightStatusPt[i].field_0x0 = g_env_light.mBGpartsActiveLight[i].mPosition;
+                lightStatusPt[i].position = g_env_light.mBGpartsActiveLight[i].mPosition;
 
                 if (i == 0) {
                     lightStatusPt[i].mRefDist = g_env_light.mBGpartsActiveLight[i].mPow * 0.01f;
@@ -4234,22 +4234,22 @@ void dKy_setLight_nowroom_common(char room_no, f32 light_ratio) {
                 lightStatusPt[i].field_0x1c = 1;
                 lightStatusPt[i].mDistFn = GX_DA_STEEP;
                 lightStatusPt[i].mSpotFn = GX_SP_OFF;
-                lightStatusPt[i].field_0x18.r = g_env_light.mBGpartsActiveLight[i].mColor.r;
-                lightStatusPt[i].field_0x18.g = g_env_light.mBGpartsActiveLight[i].mColor.g;
-                lightStatusPt[i].field_0x18.b = g_env_light.mBGpartsActiveLight[i].mColor.b;
+                lightStatusPt[i].color.r = g_env_light.mBGpartsActiveLight[i].mColor.r;
+                lightStatusPt[i].color.g = g_env_light.mBGpartsActiveLight[i].mColor.g;
+                lightStatusPt[i].color.b = g_env_light.mBGpartsActiveLight[i].mColor.b;
             } else {
-                lightStatusPt[i].field_0x18.r = 0;
-                lightStatusPt[i].field_0x18.g = 0;
-                lightStatusPt[i].field_0x18.b = 0;
+                lightStatusPt[i].color.r = 0;
+                lightStatusPt[i].color.g = 0;
+                lightStatusPt[i].color.b = 0;
             }
         }
 
         for (int i = 0; i < 6; i++) {
             if (room_light_info != 0) {
                 if (i < room_light_info_num) {
-                    lightStatusPt[i + 2].field_0x0.x = room_light_info[i].m_position.x;
-                    lightStatusPt[i + 2].field_0x0.y = room_light_info[i].m_position.y;
-                    lightStatusPt[i + 2].field_0x0.z = room_light_info[i].m_position.z;
+                    lightStatusPt[i + 2].position.x = room_light_info[i].m_position.x;
+                    lightStatusPt[i + 2].position.y = room_light_info[i].m_position.y;
+                    lightStatusPt[i + 2].position.z = room_light_info[i].m_position.z;
 
                     if (dKy_lightswitch_check(&room_light_info[i], room_no) == TRUE) {
                         lightStatusPt[i + 2].mRefDist = room_light_info[i].m_radius;
@@ -4278,11 +4278,11 @@ void dKy_setLight_nowroom_common(char room_no, f32 light_ratio) {
                 lightMask |= lightMaskData[3];
 
                 if (i == 0) {
-                    lightStatusPt[i + 2].field_0x0 = kankyo->mSunPos;
+                    lightStatusPt[i + 2].position = kankyo->mSunPos;
                 } else if (camera != 0) {
-                    lightStatusPt[i + 2].field_0x0 = camera->lookat.eye + kankyo->mMoonPos;
+                    lightStatusPt[i + 2].position = camera->lookat.eye + kankyo->mMoonPos;
                 } else {
-                    lightStatusPt[i + 2].field_0x0 = kankyo->mMoonPos;
+                    lightStatusPt[i + 2].position = kankyo->mMoonPos;
                 }
 
                 lightStatusPt[i + 2].mRefDist = 10000.0f;
@@ -4299,13 +4299,13 @@ void dKy_setLight_nowroom_common(char room_no, f32 light_ratio) {
 
                 J3DLightInfo* room_light = &room_tevstr->mLights[i].getLightInfo();
                 if (room_light != NULL) {
-                    lightStatusPt[i + 2].field_0x18 = dKy_light_influence_col(&room_light->mColor, light_ratio);
+                    lightStatusPt[i + 2].color = dKy_light_influence_col(&room_light->mColor, light_ratio);
                 } else {
-                    lightStatusPt[i + 2].field_0x18 = dKy_light_influence_col(&g_env_light.mDungeonLights[i].mColor, light_ratio);
+                    lightStatusPt[i + 2].color = dKy_light_influence_col(&g_env_light.mDungeonLights[i].mColor, light_ratio);
                 }
 
                 if (room_no == dComIfGp_roomControl_getStayNo() && room_light_info != NULL && i < room_light_info_num) {
-                    g_env_light.mDungeonLights[i].mPosition = lightStatusPt[i + 2].field_0x0;
+                    g_env_light.mDungeonLights[i].mPosition = lightStatusPt[i + 2].position;
                     g_env_light.mDungeonLights[i].mRefDistance = lightStatusPt[i + 2].mRefDist;
                     g_env_light.mDungeonLights[i].mCutoffAngle = lightStatusPt[i + 2].mCutoff;
                     g_env_light.mDungeonLights[i].mAngleAttenuation = lightStatusPt[i + 2].mSpotFn;
@@ -4314,9 +4314,9 @@ void dKy_setLight_nowroom_common(char room_no, f32 light_ratio) {
                     g_env_light.mDungeonLights[i].mAngleY = room_light_info[i].m_directionY;
                 }
             } else {
-                lightStatusPt[i + 2].field_0x18.r = 0;
-                lightStatusPt[i + 2].field_0x18.g = 0;
-                lightStatusPt[i + 2].field_0x18.b = 0;
+                lightStatusPt[i + 2].color.r = 0;
+                lightStatusPt[i + 2].color.g = 0;
+                lightStatusPt[i + 2].color.b = 0;
             }
         }
 
@@ -4331,20 +4331,20 @@ void dKy_setLight_nowroom_common(char room_no, f32 light_ratio) {
                         }
 
                         if (room_tevstr->Type < 16) {
-                            lightStatusPt[j + 2].field_0x0.x = kankyo->field_0x0c18[i].mPos.x;
-                            lightStatusPt[j + 2].field_0x0.y = kankyo->field_0x0c18[i].mPos.y;
-                            lightStatusPt[j + 2].field_0x0.z = kankyo->field_0x0c18[i].mPos.z;
+                            lightStatusPt[j + 2].position.x = kankyo->field_0x0c18[i].mPos.x;
+                            lightStatusPt[j + 2].position.y = kankyo->field_0x0c18[i].mPos.y;
+                            lightStatusPt[j + 2].position.z = kankyo->field_0x0c18[i].mPos.z;
                         } else {
-                            lightStatusPt[j + 2].field_0x0.x = kankyo->field_0x0c18[i].mPos.x;
+                            lightStatusPt[j + 2].position.x = kankyo->field_0x0c18[i].mPos.x;
                             if (i == 0) {
-                                lightStatusPt[j + 2].field_0x0.y = kankyo->field_0x0c18[i].mPos.y + g_env_light.field_0x127c;
+                                lightStatusPt[j + 2].position.y = kankyo->field_0x0c18[i].mPos.y + g_env_light.field_0x127c;
                             } else {
-                                lightStatusPt[j + 2].field_0x0.y = 200.0f + kankyo->field_0x0c18[i].mPos.y;
+                                lightStatusPt[j + 2].position.y = 200.0f + kankyo->field_0x0c18[i].mPos.y;
                             }
-                            lightStatusPt[j + 2].field_0x0.z = kankyo->field_0x0c18[i].mPos.z;
+                            lightStatusPt[j + 2].position.z = kankyo->field_0x0c18[i].mPos.z;
                         }
 
-                        lightStatusPt[j + 2].field_0x18 = dKy_light_influence_col(&kankyo->field_0x0c18[i].mColor, light_ratio);
+                        lightStatusPt[j + 2].color = dKy_light_influence_col(&kankyo->field_0x0c18[i].mColor, light_ratio);
                         lightStatusPt[j + 2].mRefDist = kankyo->field_0x0c18[i].mRefDistance;
                         lightStatusPt[j + 2].mRefBrightness = 0.99999f;
                         lightStatusPt[j + 2].field_0x1c = 1;
@@ -4862,7 +4862,7 @@ void dKy_fog_startendz_set(f32 param_0, f32 param_1, f32 ratio) {
         ratio = 0.0f;
     }
 
-    if (ratio < 9.999999747378752e-05f) {
+    if (ratio < 0.0000000000001f) {
         ratio = 0.0f;
     }
 
@@ -4881,34 +4881,34 @@ void dKy_Itemgetcol_chg_on() {
 
 /* 801A8190-801A81C0 1A2AD0 0030+00 2/2 0/0 0/0 .text            dKy_Sound_init__Fv */
 void dKy_Sound_init() {
-    g_env_light.mSound.field_0x0.x = 999999.9f;
-    g_env_light.mSound.field_0x0.y = 999999.9f;
-    g_env_light.mSound.field_0x0.z = 999999.9f;
+    g_env_light.mSound.position.x = 999999.9f;
+    g_env_light.mSound.position.y = 999999.9f;
+    g_env_light.mSound.position.z = 999999.9f;
     g_env_light.mSound.field_0xc = 0;
-    g_env_light.mSound.field_0x14 = -1;
-    g_env_light.mSound.field_0x10 = 0;
+    g_env_light.mSound.actor_id = fpcM_ERROR_PROCESS_ID_e;
+    g_env_light.mSound.timer = 0;
 }
 
 /* 801A81C0-801A8474 1A2B00 02B4+00 0/0 5/5 27/27 .text            dKy_Sound_set__F4cXyziUii */
-void dKy_Sound_set(cXyz pos, int param_1, fpc_ProcID actor_id, int param_3) {
-    camera_class* temp_r3 = (camera_class*)dComIfGp_getCamera(0);
-    int var_r31 = 0;
-    f32 temp_f30 = pos.abs(temp_r3->lookat.eye);
-    f32 temp_f31 = g_env_light.mSound.field_0x0.abs(temp_r3->lookat.eye);
+void dKy_Sound_set(cXyz pos, int param_1, fpc_ProcID actor_id, int timer) {
+    camera_class* camera_p = (camera_class*)dComIfGp_getCamera(0);
+    BOOL set_sound = FALSE;
+    f32 dist_pos_to_eye = pos.abs(camera_p->lookat.eye);
+    f32 dist_sndpos_to_eye = g_env_light.mSound.position.abs(camera_p->lookat.eye);
 
-    if (temp_f30 < temp_f31) {
-        if (temp_f31 < 1500.0f) {
-            var_r31 = 1;
+    if (dist_pos_to_eye < dist_sndpos_to_eye) {
+        if (dist_sndpos_to_eye < 1500.0f) {
+            set_sound = TRUE;
         } else if (g_env_light.mSound.field_0xc < param_1) {
-            var_r31 = 1;
+            set_sound = TRUE;
         }
     }
 
-    if (var_r31 != 0) {
-        g_env_light.mSound.field_0x0 = pos;
+    if (set_sound) {
+        g_env_light.mSound.position = pos;
         g_env_light.mSound.field_0xc = param_1;
-        g_env_light.mSound.field_0x14 = actor_id;
-        g_env_light.mSound.field_0x10 = param_3;
+        g_env_light.mSound.actor_id = actor_id;
+        g_env_light.mSound.timer = timer;
     }
 }
 
@@ -5099,8 +5099,8 @@ void dKy_tevstr_init(dKy_tevstr_c* tevstr_p, s8 room_no, u8 floorCol) {
         J3DLightObj* tev_light_p = &tevstr_p->mLights[i];
         LightStatus* light_data_p = &lightStatusData[i];
 
-        tev_light_p->mInfo.mLightPosition = light_data_p->field_0x0;
-        tev_light_p->mInfo.mColor = light_data_p->field_0x18;
+        tev_light_p->mInfo.mLightPosition = light_data_p->position;
+        tev_light_p->mInfo.mColor = light_data_p->color;
         tev_light_p->mInfo.mCosAtten.x = 1.0f;
         tev_light_p->mInfo.mCosAtten.y = 0.0f;
         tev_light_p->mInfo.mCosAtten.z = 0.0f;
@@ -5353,9 +5353,9 @@ void dKy_ParticleColor_get_base(cXyz* param_0, dKy_tevstr_c* param_1, GXColor* p
                         var_f27 = 0.0f;
                     }
                 } else {
-                    sp64.x = lightStatusPt[i + 2].field_0x0.x;
-                    sp64.y = lightStatusPt[i + 2].field_0x0.y;
-                    sp64.z = lightStatusPt[i + 2].field_0x0.z;
+                    sp64.x = lightStatusPt[i + 2].position.x;
+                    sp64.y = lightStatusPt[i + 2].position.y;
+                    sp64.z = lightStatusPt[i + 2].position.z;
                     var_f27 = 190.0f * lightStatusPt[i + 2].mRefDist;
                 }
             } else {

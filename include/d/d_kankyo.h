@@ -88,10 +88,10 @@ struct EFLIGHT_PROC {
 };
 
 struct SND_INFLUENCE {
-    /* 0x00 */ cXyz field_0x0;
+    /* 0x00 */ cXyz position;
     /* 0x0C */ int field_0xc;
-    /* 0x10 */ int field_0x10;
-    /* 0x14 */ fpc_ProcID field_0x14;
+    /* 0x10 */ int timer;
+    /* 0x14 */ fpc_ProcID actor_id;
 };
 
 struct DALKMIST_INFLUENCE {
@@ -152,11 +152,10 @@ struct GB_MAPLE_COL_CHANGE {
     /* 0x00 */ J3DLightObj field_0x0;
 };  // Size: 0x74
 
-// most of these members are guesses, fix later
 struct LightStatus {
-    /* 0x00 */ Vec field_0x0;
+    /* 0x00 */ Vec position;
     /* 0x0C */ Vec field_0xc;
-    /* 0x18 */ GXColor field_0x18;
+    /* 0x18 */ GXColor color;
     /* 0x1C */ int field_0x1c;
     /* 0x20 */ f32 field_0x20;
     /* 0x24 */ f32 field_0x24;
