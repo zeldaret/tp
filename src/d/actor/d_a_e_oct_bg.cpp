@@ -847,7 +847,7 @@ void daE_OctBg_c::damage_check() {
                 dScnPly_c::setPauseTimer(0);
                 field_0x8c0.ClrTgHit();
                 field_0x5bc.startCreatureVoice(Z2SE_EN_BG_V_DAMAGE, -1);
-                if (field_0xb30.mpCollider->ChkAtType(0x4000)) {
+                if (field_0xb30.mpCollider->ChkAtType(AT_TYPE_HOOKSHOT)) {
                     setAction(&daE_OctBg_c::hook);
                 } else {
                     setAction(&daE_OctBg_c::damage);

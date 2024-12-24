@@ -165,7 +165,7 @@ static u8 at_power_get(dCcU_AtInfo* i_AtInfo) {
     u8 power = i_AtInfo->mpCollider->GetAtAtp();
 
     if (i_AtInfo->mPowerType == 0) {
-        if (i_AtInfo->mpCollider->ChkAtType(0x10000000)) {
+        if (i_AtInfo->mpCollider->ChkAtType(AT_TYPE_10000000)) {
             power = 0;
         } else if (power == 1) {
             power = 1;
@@ -179,7 +179,7 @@ static u8 at_power_get(dCcU_AtInfo* i_AtInfo) {
             power = 200;
         }
     } else if (i_AtInfo->mPowerType == 6) {
-        if (i_AtInfo->mpCollider->ChkAtType(0x10000000)) {
+        if (i_AtInfo->mpCollider->ChkAtType(AT_TYPE_10000000)) {
             power = 0;
         } else if (power == 1) {
             power = 1;
@@ -193,7 +193,7 @@ static u8 at_power_get(dCcU_AtInfo* i_AtInfo) {
     } else if (i_AtInfo->mPowerType == 4) {
         if (i_AtInfo->mpCollider->ChkAtType(AT_TYPE_IRON_BALL)) {
             power = 200;
-        } else if (i_AtInfo->mpCollider->ChkAtType(0x10000000)) {
+        } else if (i_AtInfo->mpCollider->ChkAtType(AT_TYPE_10000000)) {
             power = 0;
         } else if (power == 1) {
             power = 1;
@@ -247,7 +247,7 @@ static u8 at_power_get(dCcU_AtInfo* i_AtInfo) {
             power = 40;
         }
     } else if (i_AtInfo->mPowerType == 7) {
-        if (i_AtInfo->mpCollider->ChkAtType(0x420008)) {
+        if (i_AtInfo->mpCollider->ChkAtType(AT_TYPE_THROW_OBJ | AT_TYPE_20000 | AT_TYPE_IRON_BALL)) {
             power = 50;
         } else if (i_AtInfo->mpCollider->ChkAtType(AT_TYPE_ARROW)) {
             power = 27;
@@ -337,7 +337,7 @@ fopAc_ac_c* at_power_check(dCcU_AtInfo* i_AtInfo) {
 
         s16 ac_name = fopAcM_GetName(i_AtInfo->mpActor);
         if (ac_name == PROC_ALINK || ac_name == PROC_ALINK) {
-            if (i_AtInfo->mpCollider->ChkAtType(0x8000) ||
+            if (i_AtInfo->mpCollider->ChkAtType(AT_TYPE_8000) ||
                 i_AtInfo->mpCollider->ChkAtType(AT_TYPE_IRON_BALL))
             {
                 i_AtInfo->mHitType = HIT_TYPE_LINK_HEAVY_ATTACK;
@@ -358,7 +358,7 @@ fopAc_ac_c* at_power_check(dCcU_AtInfo* i_AtInfo) {
     }
 
     i_AtInfo->mHitStatus = 0;
-    if (i_AtInfo->mpCollider->ChkAtType(0x40) ||
+    if (i_AtInfo->mpCollider->ChkAtType(AT_TYPE_40) ||
         i_AtInfo->mpCollider->ChkAtType(AT_TYPE_BOOMERANG) ||
         i_AtInfo->mpCollider->ChkAtType(AT_TYPE_SLINGSHOT) ||
         i_AtInfo->mpCollider->ChkAtType(AT_TYPE_SHIELD_ATTACK))

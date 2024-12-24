@@ -13,6 +13,8 @@
  */
 class daItemKantera_c : public daItemBase_c {
 public:
+    typedef int (daItemKantera_c::*actionFunc)();
+
     /* 80C389BC */ void initBaseMtx();
     /* 80C389F8 */ void setBaseMtx();
     /* 80C38A64 */ int Create();

@@ -1362,12 +1362,11 @@ void daMyna_c::deleteItem(int i_itemIndex) {
 }
 
 /* 80949144-80949190 0035C4 004C+00 0/0 0/0 0/0 .text            deleteItem__8daMyna_cFUi */
-// Nonmatching, no clue what's going on here
 void daMyna_c::deleteItem(fpc_ProcID i_itemId) {
     for (int i = 0; i < mNumShopItems; i++) {
         if (i_itemId == mShopItems[i].mTargetActorID) {
-            mShopItems[i].mTargetActorID = -1;
-            mShopItems[i].mItemStatus = 4;
+            mShopItems[i_itemId].mTargetActorID = -1;
+            mShopItems[i_itemId].mItemStatus = 4;
         }
     }
 }
@@ -1791,7 +1790,7 @@ void daMyna_c::playDefaultWaitAnime() {
             setAnimeType(1, 0.0f);
         }
         break;
-    case 6:
+    case 6: {
         cXyz local_58;
         cXyz local_64;
         cXyz stack_70;
@@ -1818,6 +1817,7 @@ void daMyna_c::playDefaultWaitAnime() {
             setAnimeType(1, 6.0f);
         }
         break;
+    }
     case 5:
         cXyz local_94;
         cXyz stack_a0;
