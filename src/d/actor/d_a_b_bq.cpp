@@ -2515,8 +2515,8 @@ static int daB_BQ_Create(fopAc_ac_c* i_this) {
             }
 
             g_env_light.mColpatWeather = 6;
-            g_env_light.PrevCol = 6;
-            g_env_light.UseCol = 6;
+            g_env_light.wether_pat0 = 6;
+            g_env_light.wether_pat1 = 6;
             fish_set(a_this);
             return cPhs_ERROR_e;
         }
