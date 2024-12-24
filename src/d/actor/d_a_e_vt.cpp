@@ -3969,8 +3969,8 @@ int daE_VA_c::create() {
 
         if (mSwNo != 0xFF && dComIfGs_isSwitch(mSwNo, fopAcM_GetRoomNo(this))) {
             g_env_light.mColpatWeather = 4;
-            g_env_light.mColPatPrev = 4;
-            g_env_light.mColPatCurr = 4;
+            g_env_light.wether_pat0 = 4;
+            g_env_light.wether_pat1 = 4;
             return cPhs_ERROR_e;
         }
 
@@ -4028,8 +4028,8 @@ int daE_VA_c::create() {
 
         attention_info.distances[fopAc_attn_BATTLE_e] = 62;
         g_env_light.mColpatWeather = 2;
-        g_env_light.mColPatPrev = 2;
-        g_env_light.mColPatCurr = 2;
+        g_env_light.wether_pat0 = 2;
+        g_env_light.wether_pat1 = 2;
 
         if (daPy_getPlayerActorClass()->current.pos.z >= 1850.0f) {
             cDmr_SkipInfo = 0;
@@ -4046,14 +4046,14 @@ int daE_VA_c::create() {
             mKankyoColType = 0;
 
             g_env_light.mColpatWeather = 2;
-            g_env_light.mColPatPrev = 2;
-            g_env_light.mColPatCurr = 2;
+            g_env_light.wether_pat0 = 2;
+            g_env_light.wether_pat1 = 2;
         } else {
             mAction = ACTION_DEMO_OP_WAIT_e;
             mKankyoColType = 5;
             g_env_light.mColpatWeather = 3;
-            g_env_light.mColPatPrev = 3;
-            g_env_light.mColPatCurr = 3;
+            g_env_light.wether_pat0 = 3;
+            g_env_light.wether_pat1 = 3;
         }
 
         daE_VA_Execute(this);

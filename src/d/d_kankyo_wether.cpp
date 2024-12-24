@@ -300,7 +300,7 @@ void dKyw_wether_init() {
     g_env_light.mThunderEff.mStatus = 0;
     g_env_light.mThunderEff.mMode = 0;
     g_env_light.mRainInitialized = false;
-    g_env_light.mRainCount = 0;
+    g_env_light.raincnt = 0;
     g_env_light.mSnowInitialized = false;
     g_env_light.field_0xe92 = 0;
     g_env_light.mSnowCount = 0;
@@ -326,7 +326,7 @@ void dKyw_wether_init() {
     g_env_light.mEvilInitialized = 0;
     g_env_light.field_0x1054 = 0;
     g_env_light.field_0x1051 = 0;
-    g_env_light.field_0xe60 = 0.0f;
+    g_env_light.unk_0xe60 = 0.0f;
 
     dKyw_wind_init();
     dKyw_pntwind_init();
@@ -487,7 +487,7 @@ void dKyw_wether_move() {
 /* 80058318-80058894 052C58 057C+00 1/1 0/0 0/0 .text            wether_move_sun__Fv */
 static void wether_move_sun() {
     s32 sunVisible = false;
-    if (dComIfGp_checkStatus(1) && !g_env_light.mVrboxInvisible) {
+    if (dComIfGp_checkStatus(1) && !g_env_light.hide_vrbox) {
         roomRead_class* room = dComIfGp_getStageRoom();
         if (room != NULL && room->field_0x0 > dComIfGp_roomControl_getStayNo()) {
             sunVisible = dStage_roomRead_dt_c_GetVrboxswitch(
@@ -542,7 +542,7 @@ static void wether_move_sun() {
                     g_env_light.mpSunPacket->field_0x64 = 0.0f;
                     g_env_light.mpSunPacket->mMoonAlpha = 0.0f;
 
-                    if (g_env_light.mDaytime < 255.0f) {
+                    if (g_env_light.daytime < 255.0f) {
                         g_env_light.mpSunPacket->field_0x6c = 1.0f;
                     } else {
                         g_env_light.mpSunPacket->field_0x6c = 0.0f;
@@ -590,7 +590,7 @@ static void wether_move_sun() {
 static void wether_move_rain() {
     switch (g_env_light.mRainInitialized) {
     case FALSE:
-        if (g_env_light.mRainCount > 3) {
+        if (g_env_light.raincnt > 3) {
             g_env_light.mpRainPacket = new (32) dKankyo_rain_Packet();
 
             if (g_env_light.mpRainPacket != NULL) {
@@ -598,7 +598,7 @@ static void wether_move_rain() {
                 dKyr_rain_move();
                 g_env_light.mRainInitialized = 1;
 
-                if (g_env_light.mRainCount != 250) {
+                if (g_env_light.raincnt != 250) {
                     mDoAud_seStart(JA_SE_ATM_RAIN_START, NULL, 0, 0);
                 }
             }
@@ -611,7 +611,7 @@ static void wether_move_rain() {
         if (g_env_light.mSnowCount == 0 && cam != NULL) {
             // Stage is not Fishing Pond
             if (strcmp(dComIfGp_getStartStageName(), "R_SP127") || cam->lookat.eye.y > 0.0f) {
-                if (g_env_light.mRainCount < 125.0f) {
+                if (g_env_light.raincnt < 125.0f) {
                     mDoAud_rainPlay(FALSE);
                 } else {
                     mDoAud_rainPlay(TRUE);
@@ -619,7 +619,7 @@ static void wether_move_rain() {
             }
         }
 
-        if (g_env_light.mRainCount <= 3) {
+        if (g_env_light.raincnt <= 3) {
             g_env_light.mRainInitialized = 0;
             mDoAud_seStart(JA_SE_ATM_RAIN_END, NULL, 0, 0);
             delete g_env_light.mpRainPacket;
@@ -657,7 +657,7 @@ static void wether_move_star() {
         return;
     } else {
         // Stage is Hero Shade arena
-        if ((dComIfGp_checkStatus(1) && !g_env_light.mVrboxInvisible) ||
+        if ((dComIfGp_checkStatus(1) && !g_env_light.hide_vrbox) ||
             !strcmp(dComIfGp_getStartStageName(), "F_SP200"))
         {
             roomRead_class* room = dComIfGp_getStageRoom();
@@ -690,7 +690,7 @@ static void wether_move_star() {
                     density = 0.0f;
                 }
 
-                if (g_env_light.mColPatCurr != 0 && g_env_light.mColPatBlend > 0.5f) {
+                if (g_env_light.wether_pat1 != 0 && g_env_light.pat_ratio > 0.5f) {
                     density = 0.0f;
                 }
 
@@ -758,7 +758,7 @@ static void wether_move_housi() {
         (!strcmp(dComIfGp_getStartStageName(), "F_SP115") &&
          dComIfGp_roomControl_getStayNo() == 1 && dComIfGp_getStartStageLayer() == 9))
     {
-        if (g_env_light.mInitAnmTimer != 0) {
+        if (g_env_light.light_init_timer != 0) {
             g_env_light.field_0xea9 = 0;
             g_env_light.mHousiCount = 200;
 
@@ -790,7 +790,7 @@ static void wether_move_housi() {
                     g_env_light.mpHousiPacket->mpResTex = (u8*)dComIfG_getObjectRes("Always", 0x5E);
                 } else {
                     if (g_env_light.field_0xea9 == 2) {
-                        if (g_env_light.mPondSeason == 3) {
+                        if (g_env_light.fishing_hole_season == 3) {
                             g_env_light.mpHousiPacket->mpResTex =
                                 (u8*)dComIfG_getStageRes("momiji64s3tc.bti");
                         } else {
@@ -914,7 +914,7 @@ static void wether_move_vrkumo() {
     BOOL var_r31 = false;
     static cXyz r09o(-180000.0f, 750.0f, -200000.0f);
 
-    if (dComIfGp_checkStatus(1) && !g_env_light.mVrboxInvisible) {
+    if (dComIfGp_checkStatus(1) && !g_env_light.hide_vrbox) {
         g_env_light.mVrkumoCount = 6;
 
         if (memcmp(dComIfGp_getStartStageName(), "D_MN07", 6) == 0 ||
@@ -926,15 +926,15 @@ static void wether_move_vrkumo() {
         } else if (strcmp(dComIfGp_getStartStageName(), "F_SP104") == 0 &&
                    dComIfG_play_c::getLayerNo(0) >= 3)
         {
-            if (g_env_light.mColPatCurr >= 4) {
+            if (g_env_light.wether_pat1 >= 4) {
                 cLib_addCalc(&g_env_light.mVrkumoStrength, 1.0f, 0.1f, 0.003f, 0.0000001f);
             } else {
                 cLib_addCalc(&g_env_light.mVrkumoStrength, 0.0f, 0.08f, 0.002f, 0.00000001f);
             }
-        } else if ((g_env_light.mColPatCurr == 1 && g_env_light.mColPatBlend > 0.0f) ||
-                   (g_env_light.mColPatPrev == 1 && g_env_light.mColPatBlend < 1.0f) ||
-                   (g_env_light.mColPatCurr == 2 && g_env_light.mColPatBlend > 0.0f) ||
-                   (g_env_light.mColPatPrev == 2 && g_env_light.mColPatBlend < 1.0f))
+        } else if ((g_env_light.wether_pat1 == 1 && g_env_light.pat_ratio > 0.0f) ||
+                   (g_env_light.wether_pat0 == 1 && g_env_light.pat_ratio < 1.0f) ||
+                   (g_env_light.wether_pat1 == 2 && g_env_light.pat_ratio > 0.0f) ||
+                   (g_env_light.wether_pat0 == 2 && g_env_light.pat_ratio < 1.0f))
         {
             cLib_addCalc(&g_env_light.mVrkumoStrength, 1.0f, 0.1f, 0.003f, 0.0000001f);
         } else {
@@ -1000,10 +1000,10 @@ static void wether_move_vrkumo() {
         dKyw_get_wind_vec();
 
         cXyz sp8;
-        f32 wind_vec_x = g_env_light.mWind.vec.x;
-        f32 wind_vec_y = g_env_light.mWind.vec.y;
-        f32 wind_vec_z = g_env_light.mWind.vec.z;
-        f32 var_f31 = g_env_light.mWind.pow;
+        f32 wind_vec_x = g_env_light.global_wind_influence.vec.x;
+        f32 wind_vec_y = g_env_light.global_wind_influence.vec.y;
+        f32 wind_vec_z = g_env_light.global_wind_influence.vec.z;
+        f32 var_f31 = g_env_light.global_wind_influence.pow;
 
         if (strcmp(dComIfGp_getStartStageName(), "R_SP127") == 0) {
             var_f31 = 0.3f;
@@ -1097,7 +1097,7 @@ static void wether_move_evil() {
 
 /* 8005A0B8-8005A154 0549F8 009C+00 0/0 1/1 0/0 .text            dKyw_wether_move_draw__Fv */
 void dKyw_wether_move_draw() {
-    g_env_light.mMoyaSE = 0;
+    g_env_light.moya_se = 0;
 
     if (strcmp(dComIfGp_getStartStageName(), "Name")) {
         wether_move_sun();
@@ -1182,16 +1182,16 @@ void dKyw_wether_proc() {
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP108") ||
         !strcmp(dComIfGp_getStartStageName(), "F_SP127") ||
         (!strcmp(dComIfGp_getStartStageName(), "F_SP121") &&
-         g_env_light.mDiceWeatherTime != 0.0f))
+         g_env_light.dice_wether_time != 0.0f))
     {
         if (!dKy_darkworld_check()) {
             // Stage is Hyrule Field
             if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") ||
-                !(g_env_light.mDaytime >= 75.0f) || !(g_env_light.mDaytime <= 120.0f))
+                !(g_env_light.daytime >= 75.0f) || !(g_env_light.daytime <= 120.0f))
             {
                 // Stage is Hyrule Field
                 if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") &&
-                    g_env_light.mDiceWeatherMode >= 1 && g_env_light.mDiceWeatherMode < 6)
+                    g_env_light.dice_wether_mode >= 1 && g_env_light.dice_wether_mode < 6)
                 {
                     dKy_get_dayofweek();
 lbl1:
@@ -1212,9 +1212,9 @@ lbl1:
 
     // Stage is Fishing Pond
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") &&
-        (g_env_light.mPondSeason == 1 || g_env_light.mPondSeason == 3))
+        (g_env_light.fishing_hole_season == 1 || g_env_light.fishing_hole_season == 3))
     {
-        if (g_env_light.mPondSeason == 1) {
+        if (g_env_light.fishing_hole_season == 1) {
             g_env_light.mHousiCount = 35;
         } else {
             g_env_light.mHousiCount = 30;
@@ -1226,17 +1226,17 @@ lbl1:
 
 /* 8005A57C-8005A5C0 054EBC 0044+00 1/1 0/0 0/0 .text            dKyw_wind_init__Fv */
 static void dKyw_wind_init() {
-    g_env_light.mWind.vec.x = -1.0f;
-    g_env_light.mWind.vec.y = 0.0f;
-    g_env_light.mWind.vec.z = 0.0f;
-    g_env_light.mWind.pow = 0.0f;
-    g_env_light.field_0xe6c = 0;
-    g_env_light.field_0xe64 = 0;
-    g_env_light.field_0xe66 = 0;
-    g_env_light.mWind.vec_override = 0;
+    g_env_light.global_wind_influence.vec.x = -1.0f;
+    g_env_light.global_wind_influence.vec.y = 0.0f;
+    g_env_light.global_wind_influence.vec.z = 0.0f;
+    g_env_light.global_wind_influence.pow = 0.0f;
+    g_env_light.unk_0xe6c = 0;
+    g_env_light.unk_0xe64 = 0;
+    g_env_light.unk_0xe66 = 0;
+    g_env_light.global_wind_influence.vec_override = NULL;
     g_env_light.custom_windpower = 0.0f;
-    g_env_light.mEvtWindSet = 0;
-    g_env_light.mTeachWindExist = 0;
+    g_env_light.evt_wind_go = 0;
+    g_env_light.TeachWind_existence = 0;
 }
 
 /* 8005A5C0-8005AAE0 054F00 0520+00 0/0 2/2 0/0 .text            dKyw_wind_set__Fv */
@@ -1248,8 +1248,8 @@ void dKyw_wind_set() {
     cXyz wind_vec;
     f32 strength;
 
-    if (g_env_light.mWind.vec_override != NULL) {
-        wind_vec = *g_env_light.mWind.vec_override;
+    if (g_env_light.global_wind_influence.vec_override != NULL) {
+        wind_vec = *g_env_light.global_wind_influence.vec_override;
         strength = g_env_light.custom_windpower;
 
         cM_atan2s(wind_vec.x, wind_vec.z);
@@ -1305,9 +1305,9 @@ void dKyw_wind_set() {
             break;
         }
 
-        if (g_env_light.mEvtWindSet != 0 && g_env_light.mEvtWindSet != 0xFF) {
-            var_r30 = g_env_light.mEvtWindAngleX;
-            var_r29 = g_env_light.mEvtWindAngleY;
+        if (g_env_light.evt_wind_go != 0 && g_env_light.evt_wind_go != 0xFF) {
+            var_r30 = g_env_light.evt_wind_angle_x;
+            var_r29 = g_env_light.evt_wind_angle_y;
         }
 
         wind_vec.x = cM_scos(var_r30) * cM_ssin(var_r29);
@@ -1348,7 +1348,7 @@ void dKyw_wind_set() {
         }
     }
 
-    if (g_env_light.mEvtWindSet != 0) {
+    if (g_env_light.evt_wind_go != 0) {
         strength = g_env_light.custom_windpower;
     }
 
@@ -1371,30 +1371,30 @@ void dKyw_wind_set() {
         mDoAud_mEnvse_startStrongWindSe(reverb);
     }
 
-    if (g_env_light.mInitAnmTimer != 0) {
-        g_env_light.mWind.vec = wind_vec;
-        g_env_light.mWind.pow = strength;
+    if (g_env_light.light_init_timer != 0) {
+        g_env_light.global_wind_influence.vec = wind_vec;
+        g_env_light.global_wind_influence.pow = strength;
     } else {
-        cLib_addCalc(&g_env_light.mWind.vec.x, wind_vec.x, 0.05f, 2.0f, 0.001f);
-        cLib_addCalc(&g_env_light.mWind.vec.y, wind_vec.y, 0.05f, 2.0f, 0.001f);
-        cLib_addCalc(&g_env_light.mWind.vec.z, wind_vec.z, 0.05f, 2.0f, 0.001f);
-        cLib_addCalc(&g_env_light.mWind.pow, strength, 0.05f, 1.0f, 0.005f);
+        cLib_addCalc(&g_env_light.global_wind_influence.vec.x, wind_vec.x, 0.05f, 2.0f, 0.001f);
+        cLib_addCalc(&g_env_light.global_wind_influence.vec.y, wind_vec.y, 0.05f, 2.0f, 0.001f);
+        cLib_addCalc(&g_env_light.global_wind_influence.vec.z, wind_vec.z, 0.05f, 2.0f, 0.001f);
+        cLib_addCalc(&g_env_light.global_wind_influence.pow, strength, 0.05f, 1.0f, 0.005f);
     }
 }
 
 /* 8005AAE0-8005AAF0 055420 0010+00 1/1 6/6 7/7 .text            dKyw_get_wind_vec__Fv */
 cXyz* dKyw_get_wind_vec() {
-    return &g_env_light.mWind.vec;
+    return &g_env_light.global_wind_influence.vec;
 }
 
 /* 8005AAF0-8005AB00 055430 0010+00 1/1 6/6 8/8 .text            dKyw_get_wind_pow__Fv */
 f32 dKyw_get_wind_pow() {
-    return g_env_light.mWind.pow;
+    return g_env_light.global_wind_influence.pow;
 }
 
 /* 8005AB00-8005AB64 055440 0064+00 0/0 8/8 3/3 .text            dKyw_get_wind_vecpow__Fv */
 cXyz dKyw_get_wind_vecpow() {
-    cXyz vec = g_env_light.mWind.vec * g_env_light.mWind.pow;
+    cXyz vec = g_env_light.global_wind_influence.vec * g_env_light.global_wind_influence.pow;
     return vec;
 }
 
@@ -1404,13 +1404,13 @@ void dKyw_plight_collision_set(cXyz* param_0, s16 param_1, s16 param_2, f32 para
     dScnKy_env_light_c* env_light = dKy_getEnvlight();
 
     for (int i = 0; i < 5; i++) {
-        if (!env_light->mWindInfluenceEntity[i].mInUse) {
-            env_light->mWindInfluenceEntity[i].mInUse = true;
-            env_light->mWindInfluenceEntity[i].mMinRadius = param_4;
-            env_light->mWindInfluenceEntity[i].mSpeed = param_6;
-            env_light->mWindInfluenceEntity[i].mStrengthMaxVel = param_7;
+        if (!env_light->wind_inf_entity[i].mInUse) {
+            env_light->wind_inf_entity[i].mInUse = true;
+            env_light->wind_inf_entity[i].mMinRadius = param_4;
+            env_light->wind_inf_entity[i].mSpeed = param_6;
+            env_light->wind_inf_entity[i].mStrengthMaxVel = param_7;
 
-            WIND_INFLUENCE* wind_inf = &env_light->mWindInfluenceEntity[i].mInfluence;
+            WIND_INFLUENCE* wind_inf = &env_light->wind_inf_entity[i].mInfluence;
             wind_inf->position = *param_0;
             wind_inf->mDirection.x = cM_scos(param_1) * cM_ssin(param_2);
             wind_inf->mDirection.y = cM_ssin(param_1);
@@ -1431,28 +1431,28 @@ static void squal_proc() {
     WIND_INFLUENCE* influence;
 
     for (int i = 0; i < 5; i++) {
-        influence = &env_light->mWindInfluenceEntity[i].mInfluence;
-        switch (env_light->mWindInfluenceEntity[i].mInUse) {
+        influence = &env_light->wind_inf_entity[i].mInfluence;
+        switch (env_light->wind_inf_entity[i].mInUse) {
         case 0:
             break;
         case 1:
             influence->position.x +=
-                influence->mDirection.x * env_light->mWindInfluenceEntity[i].mSpeed;
+                influence->mDirection.x * env_light->wind_inf_entity[i].mSpeed;
             influence->position.y +=
-                influence->mDirection.y * env_light->mWindInfluenceEntity[i].mSpeed;
+                influence->mDirection.y * env_light->wind_inf_entity[i].mSpeed;
             influence->position.z +=
-                influence->mDirection.z * env_light->mWindInfluenceEntity[i].mSpeed;
+                influence->mDirection.z * env_light->wind_inf_entity[i].mSpeed;
 
             cLib_addCalc(&influence->mStrength, 0.0f, 0.2f,
-                         env_light->mWindInfluenceEntity[i].mStrengthMaxVel, 0.001f);
+                         env_light->wind_inf_entity[i].mStrengthMaxVel, 0.001f);
 
             f32 speed = 1.0f - influence->mStrength;
-            f32 target = env_light->mWindInfluenceEntity[i].mMinRadius;
+            f32 target = env_light->wind_inf_entity[i].mMinRadius;
             cLib_addCalc(&influence->mRadius, target, speed, speed * target * 0.05f, 0.01f);
 
             if (influence->mStrength < 0.01f) {
                 dKyw_pntwind_cut(influence);
-                env_light->mWindInfluenceEntity[i].mInUse = false;
+                env_light->wind_inf_entity[i].mInUse = false;
             }
             break;
         }
@@ -1462,11 +1462,11 @@ static void squal_proc() {
 /* 8005AD44-8005AD98 055684 0054+00 1/1 0/0 0/0 .text            dKyw_pntwind_init__Fv */
 static void dKyw_pntwind_init() {
     for (int i = 0; i < 30; i++) {
-        g_env_light.mPntWind[i] = NULL;
+        g_env_light.pntwind[i] = NULL;
     }
 
     for (int i = 0; i < 5; i++) {
-        g_env_light.mWindInfluenceEntity[i].mInUse = 0;
+        g_env_light.wind_inf_entity[i].mInUse = 0;
     }
 }
 
@@ -1474,9 +1474,9 @@ static void dKyw_pntwind_init() {
 static void pntwind_set(WIND_INFLUENCE* i_pntwind) {
     int i = 0;
     for (; i < 30; i++) {
-        if (g_env_light.mPntWind[i] == NULL) {
-            g_env_light.mPntWind[i] = i_pntwind;
-            g_env_light.mPntWind[i]->field_0x24 = i;
+        if (g_env_light.pntwind[i] == NULL) {
+            g_env_light.pntwind[i] = i_pntwind;
+            g_env_light.pntwind[i]->field_0x24 = i;
             break;
         }
     }
@@ -1503,7 +1503,7 @@ static void dKyw_pntlight_set(WIND_INFLUENCE* i_pntwind) {
 /* 8005AE58-8005AE90 055798 0038+00 1/1 0/0 5/5 .text dKyw_pntwind_cut__FP14WIND_INFLUENCE */
 void dKyw_pntwind_cut(WIND_INFLUENCE* i_pntwind) {
     if (i_pntwind != NULL && i_pntwind->field_0x24 >= 0 && i_pntwind->field_0x24 < 30) {
-        g_env_light.mPntWind[i_pntwind->field_0x24] = NULL;
+        g_env_light.pntwind[i_pntwind->field_0x24] = NULL;
     }
 }
 
@@ -1516,9 +1516,9 @@ static void pntwind_get_info(cXyz* param_0, cXyz* i_dir, f32* i_power, u8 param_
     *i_power = 0.0f;
 
     WIND_INFLUENCE* influence;
-    s32 influence_count = ARRAY_SIZE(g_env_light.mPntWind);
+    s32 influence_count = ARRAY_SIZE(g_env_light.pntwind);
     for (int i = 0; i < influence_count; i++) {
-        influence = g_env_light.mPntWind[i];
+        influence = g_env_light.pntwind[i];
         if (influence != NULL && influence->field_0x29 == param_3) {
             f32 dist = param_0->abs(influence->position);
 
@@ -1600,7 +1600,7 @@ void dKyw_get_AllWind_vec(cXyz* i_position, cXyz* i_direction, f32* i_power) {
     cXyz sp30;
     cXyz sp24;
 
-    sp30 = env_light->mWind.vec * (env_light->mWind.pow * (1.0f - *i_power));
+    sp30 = env_light->global_wind_influence.vec * (env_light->global_wind_influence.pow * (1.0f - *i_power));
     sp24 = *i_direction * (*i_power * 5.0f);
     sp54 = sp30 + sp24;
     *i_power = sp54.abs();
@@ -1611,9 +1611,9 @@ void dKyw_get_AllWind_vec(cXyz* i_position, cXyz* i_direction, f32* i_power) {
         i_direction->y = sp54.y;
         i_direction->z = sp54.z;
     } else {
-        i_direction->x = env_light->mWind.vec.x;
-        i_direction->y = env_light->mWind.vec.y;
-        i_direction->z = env_light->mWind.vec.z;
+        i_direction->x = env_light->global_wind_influence.vec.x;
+        i_direction->y = env_light->global_wind_influence.vec.y;
+        i_direction->z = env_light->global_wind_influence.vec.z;
     }
 }
 
@@ -1626,7 +1626,7 @@ cXyz dKyw_get_AllWind_vecpow(cXyz* param_0) {
     cXyz sp30;
 
     dKyw_pntwind_get_info(param_0, &sp30, &sp8);
-    sp18 = g_env_light.mWind.vec * (g_env_light.mWind.pow * (1.0f - sp8));
+    sp18 = g_env_light.global_wind_influence.vec * (g_env_light.global_wind_influence.pow * (1.0f - sp8));
     sp24 = sp30 * (5.0f * sp8);
     spC = sp18 + sp24;
 
@@ -1640,18 +1640,18 @@ void dKyw_custom_windpower(f32 pow) {
 
 /* 8005B61C-8005B638 055F5C 001C+00 0/0 0/0 6/6 .text            dKyw_evt_wind_set__Fss */
 void dKyw_evt_wind_set(s16 angleX, s16 angleY) {
-    g_env_light.mEvtWindSet = 1;
-    g_env_light.mEvtWindAngleX = angleX;
-    g_env_light.mEvtWindAngleY = angleY;
+    g_env_light.evt_wind_go = 1;
+    g_env_light.evt_wind_angle_x = angleX;
+    g_env_light.evt_wind_angle_y = angleY;
 }
 
 /* 8005B638-8005B64C 055F78 0014+00 0/0 0/0 3/3 .text            dKyw_evt_wind_set_go__Fv */
 void dKyw_evt_wind_set_go() {
-    g_env_light.mEvtWindSet = 1;
+    g_env_light.evt_wind_go = 1;
 }
 
 /* 8005B64C-8005B660 055F8C 0014+00 0/0 1/1 5/5 .text            dKyw_rain_set__Fi */
 void dKyw_rain_set(int count) {
-    g_env_light.mRainCount = count;
-    g_env_light.mRainCountOrig = count;
+    g_env_light.raincnt = count;
+    g_env_light.base_raincnt = count;
 }

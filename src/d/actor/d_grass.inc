@@ -270,7 +270,7 @@ void dGrass_packet_c::update() {
                     mtx[1][3] = data_p->m_pos.y;
                     mtx[2][3] = data_p->m_pos.z;
 
-                    if (g_env_light.mInitAnmTimer == 1) {
+                    if (g_env_light.light_init_timer == 1) {
                         mAngleZ[i] = 0;
                     }
 

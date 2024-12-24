@@ -165,7 +165,7 @@ int daDbDoor00_c::CreateInit() {
     u8 fRoomNo = door_param2_c::getFRoomNo(this);
     if (fopAcM_GetRoomNo(this) == -1) {
         fopAcM_SetRoomNo(this, fRoomNo);
-        tevStr.mRoomNo = current.roomNo;
+        tevStr.room_no = current.roomNo;
     }
     dComIfG_Bgsp().Regist(mpBgW, this);
     field_0x584 = 1;

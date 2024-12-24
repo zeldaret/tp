@@ -3457,8 +3457,8 @@ cPhs__Step daB_YO_c::create() {
                 mColorMode = 4;
                 mColBlend = 1.0f;
                 g_env_light.mColpatWeather = 2;
-                g_env_light.mColPatPrev = 2;
-                g_env_light.mColPatCurr = 2;
+                g_env_light.wether_pat0 = 2;
+                g_env_light.wether_pat1 = 2;
                 fopAcM_OffStatus(this, 0x4000);
             
             } else {

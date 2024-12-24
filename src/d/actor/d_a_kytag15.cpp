@@ -59,7 +59,7 @@ static int daKytag15_Execute(kytag15_class* i_this) {
         } else {
             cLib_addCalc(&i_this->field_0x590, 0.0f, 0.05f, 0.01f, 1.0E-8f);
         }
-    } else if (g_env_light.mColPatPrev == 11) {
+    } else if (g_env_light.wether_pat0 == 11) {
         cLib_addCalc(&i_this->field_0x590, 1.0f, 0.05f, 0.01f, 1.0E-8f);
     }
 

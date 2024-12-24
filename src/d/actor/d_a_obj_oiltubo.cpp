@@ -240,8 +240,8 @@ void daObj_Oiltubo_c::setParam() {
 /* 80CA7318-80CA7374 000C78 005C+00 2/2 0/0 0/0 .text            setEnvTevColor__15daObj_Oiltubo_cFv
  */
 void daObj_Oiltubo_c::setEnvTevColor() {
-    tevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mGroundChk);
-    tevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(mGroundChk);
+    tevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(mGroundChk);
+    tevStr.room_no = dComIfG_Bgsp().GetRoomId(mGroundChk);
 }
 
 /* 80CA7374-80CA73B8 000CD4 0044+00 2/2 0/0 0/0 .text            setRoomNo__15daObj_Oiltubo_cFv */

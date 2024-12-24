@@ -1044,11 +1044,11 @@ void daMidna_c::setRoomInfo() {
     int room_no;
     if (fopAcM_gc_c::gndCheck(&current.pos)) {
         room_no = fopAcM_gc_c::getRoomId();
-        tevStr.mEnvrIdxOverride = fopAcM_gc_c::getPolyColor();
+        tevStr.YukaCol = fopAcM_gc_c::getPolyColor();
     } else {
         room_no = dComIfGp_roomControl_getStayNo();
     }
-    tevStr.mRoomNo = room_no;
+    tevStr.room_no = room_no;
     mReverb = dComIfGp_getReverb(room_no);
     fopAcM_SetRoomNo(this, room_no);
 }
@@ -3266,12 +3266,12 @@ int daMidna_c::draw() {
         if (checkSetAnime(0, ANM_RETURN)) {
             f32 end_frame = mpMorf->getEndFrame();
             f32 frame = mpMorf->getFrame();
-            tevStr.mFogColor.r = (frame / end_frame) * -32.0f;
-            tevStr.mFogColor.g = tevStr.mFogColor.r;
-            tevStr.mFogColor.b = tevStr.mFogColor.r;
+            tevStr.TevColor.r = (frame / end_frame) * -32.0f;
+            tevStr.TevColor.g = tevStr.TevColor.r;
+            tevStr.TevColor.b = tevStr.TevColor.r;
         } else if (link->getIceDamageWaitTimer() != 0 || link->checkFreezeDamage() != 0) {
-            tevStr.mFogColor = link->tevStr.mFogColor;
-            field_0x6e0 = link->tevStr.mFogColor;
+            tevStr.TevColor = link->tevStr.TevColor;
+            field_0x6e0 = link->tevStr.TevColor;
             if (dKy_darkworld_check()) {
                 field_0x6e8 = (J3DGXColor)l_normalKColor;
                 field_0x6ec = (J3DGXColor)l_normalKColor2;
@@ -3311,7 +3311,7 @@ int daMidna_c::draw() {
     } else {
         g_env_light.settingTevStruct(1, &current.pos, &tevStr);
         if (field_0x668 != NULL) {
-            field_0x668->getTevColorReg(0, &tevStr.mFogColor);
+            field_0x668->getTevColorReg(0, &tevStr.TevColor);
         }
         g_env_light.setLightTevColorType_MAJI(mpGokouBmd, &tevStr);
         mDoExt_modelEntryDL(mpGokouBmd);
@@ -3359,9 +3359,9 @@ int daMidna_c::draw() {
         mDoExt_modelEntryDL(mpDemoHDTmpBmd);
     }
 
-    tevStr.mFogColor.r = 0;
-    tevStr.mFogColor.g = 0;
-    tevStr.mFogColor.b = 0;
+    tevStr.TevColor.r = 0;
+    tevStr.TevColor.g = 0;
+    tevStr.TevColor.b = 0;
     dComIfGd_setList();
 
     if (bvar1 && !checkStateFlg1(FLG1_SHADOW_NO_DRAW)) {

@@ -262,7 +262,7 @@ J3DModelData* dRes_info_c::loaderBasicBmd(u32 i_tag, void* i_data) {
     for (i = 0; i < modelData->getMaterialNum(); i++) {
         material = modelData->getMaterialNodePointer(i);
         lightMask = material->getColorChan(0)->getLightMask();
-        switch (g_env_light.field_0x1308) {
+        switch (g_env_light.light_mask_type) {
         case 1:
             lightMask &= 0x4;
             break;

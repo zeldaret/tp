@@ -108,7 +108,7 @@ public:
     /* 0x0018 */ RAIN_EFF mRainEff[250];
     /* 0x36C8 */ f32 field_0x36c8;
     /* 0x36CC */ f32 field_0x36cc;
-    /* 0x36D0 */ s16 mRainCount;
+    /* 0x36D0 */ s16 raincnt;
     /* 0x36D2 */ u8 field_0x36D2[6];
     /* 0x36D8 */ cXyz mCamEyePos;
     /* 0x36E4 */ cXyz mCamCenterPos;

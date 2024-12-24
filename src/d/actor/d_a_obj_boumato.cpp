@@ -315,8 +315,8 @@ void daObj_BouMato_c::setSwayParam(fopAc_ac_c* param_1) {
 /* 80BBC19C-80BBC1F8 00129C 005C+00 2/2 0/0 0/0 .text            setEnvTevColor__15daObj_BouMato_cFv
  */
 void daObj_BouMato_c::setEnvTevColor() {
-    tevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mGndChk);
-    tevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(mGndChk);
+    tevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(mGndChk);
+    tevStr.room_no = dComIfG_Bgsp().GetRoomId(mGndChk);
 }
 
 /* 80BBC1F8-80BBC23C 0012F8 0044+00 2/2 0/0 0/0 .text            setRoomNo__15daObj_BouMato_cFv */

@@ -13,32 +13,32 @@
 static void dice_wether_init(u8 i_weatherMode, f32 i_weatherTime, f32 i_currentTime) {
     dScnKy_env_light_c* env_light = dKy_getEnvlight();
 
-    env_light->mDiceWeatherMode = i_weatherMode;
-    env_light->mDiceWeatherTime =
+    env_light->dice_wether_mode = i_weatherMode;
+    env_light->dice_wether_time =
         i_currentTime + i_weatherTime + cM_rndF(i_weatherTime) + cM_rndF(i_weatherTime);
 
-    if (env_light->mDiceWeatherTime >= 360.0f) {
-        env_light->mDiceWeatherTime -= 360.0f;
+    if (env_light->dice_wether_time >= 360.0f) {
+        env_light->dice_wether_time -= 360.0f;
     }
 }
 
 /* 80857918-808579EC 000198 00D4+00 1/1 0/0 0/0 .text            dice_wether_execute__FUcff */
 static void dice_wether_execute(u8 i_weatherMode, f32 i_weatherTime, f32 i_currentTime) {
     dScnKy_env_light_c* env_light = dKy_getEnvlight();
-    env_light->mDiceWeatherMode = i_weatherMode;
+    env_light->dice_wether_mode = i_weatherMode;
 
-    if (env_light->mDiceWeatherMode != DICE_MODE_DONE_e) {
-        env_light->mDiceWeatherTime =
+    if (env_light->dice_wether_mode != DICE_MODE_DONE_e) {
+        env_light->dice_wether_time =
             i_currentTime + i_weatherTime + cM_rndF(i_weatherTime) + cM_rndF(i_weatherTime);
 
-        if (env_light->mDiceWeatherTime >= 360.0f) {
-            env_light->mDiceWeatherTime -= 360.0f;
+        if (env_light->dice_wether_time >= 360.0f) {
+            env_light->dice_wether_time -= 360.0f;
         }
 
-        env_light->mDiceWeatherCounter++;
+        env_light->dice_wether_counter++;
     } else {
-        env_light->mDiceWeatherMode = DICE_MODE_SUNNY_e;
-        env_light->mDiceWeatherState++;
+        env_light->dice_wether_mode = DICE_MODE_SUNNY_e;
+        env_light->dice_wether_state++;
     }
 }
 
@@ -48,13 +48,13 @@ static void dice_rain_minus() {
 
     if ((g_Counter.mCounter0 & 3) == 0) {
         // run block every 4 frames
-        if (env_light->mRainCount > 40) {
-            env_light->mRainCount -= 3;
-        } else if (env_light->mRainCount != 0) {
-            env_light->mRainCount--;
+        if (env_light->raincnt > 40) {
+            env_light->raincnt -= 3;
+        } else if (env_light->raincnt != 0) {
+            env_light->raincnt--;
         }
 
-        dKyw_rain_set(env_light->mRainCount);
+        dKyw_rain_set(env_light->raincnt);
     }
 }
 
@@ -99,86 +99,86 @@ static void dKy_event_proc() {
 
     dScnKy_env_light_c* env_light = dKy_getEnvlight();
 
-    if (!g_env_light.mCameraInWater) {
-        if (g_env_light.mInitAnmTimer == 0) {
+    if (!g_env_light.camera_water_in_status) {
+        if (g_env_light.light_init_timer == 0) {
             f32 current_time = dComIfGs_getTime();
 
-            switch (env_light->mDiceWeatherState) {
+            switch (env_light->dice_wether_state) {
             case DICE_STATE_RESET_e:
-                if (current_time > env_light->mDiceWeatherChangeTime &&
-                    current_time - env_light->mDiceWeatherChangeTime < 15.0f)
+                if (current_time > env_light->dice_wether_change_time &&
+                    current_time - env_light->dice_wether_change_time < 15.0f)
                 {
-                    env_light->mDiceWeatherState = DICE_STATE_INIT_e;
+                    env_light->dice_wether_state = DICE_STATE_INIT_e;
                 }
                 break;
             case DICE_STATE_INIT_e:
                 u8 table_no = cM_rndF(12.99f);
                 if (table_no >= 8) {
-                    env_light->mDiceWeatherState = DICE_STATE_NEXT_e;
+                    env_light->dice_wether_state = DICE_STATE_NEXT_e;
                 } else {
-                    env_light->mDiceWeatherCurrPattern = S_wether_table[table_no];
-                    env_light->mDiceWeatherCounter = 0;
+                    env_light->dice_wether_pat = S_wether_table[table_no];
+                    env_light->dice_wether_counter = 0;
 
-                    switch (env_light->mDiceWeatherCurrPattern) {
+                    switch (env_light->dice_wether_pat) {
                     case 0:
-                        dice_wether_init(S_wether_mode_pat01[env_light->mDiceWeatherCounter],
-                                         S_wether_time_pat01[env_light->mDiceWeatherCounter],
+                        dice_wether_init(S_wether_mode_pat01[env_light->dice_wether_counter],
+                                         S_wether_time_pat01[env_light->dice_wether_counter],
                                          current_time);
                         break;
                     case 1:
-                        dice_wether_init(S_wether_mode_pat02[env_light->mDiceWeatherCounter],
-                                         S_wether_time_pat02[env_light->mDiceWeatherCounter],
+                        dice_wether_init(S_wether_mode_pat02[env_light->dice_wether_counter],
+                                         S_wether_time_pat02[env_light->dice_wether_counter],
                                          current_time);
                         break;
                     case 2:
-                        dice_wether_init(S_wether_mode_pat03[env_light->mDiceWeatherCounter],
-                                         S_wether_time_pat03[env_light->mDiceWeatherCounter],
+                        dice_wether_init(S_wether_mode_pat03[env_light->dice_wether_counter],
+                                         S_wether_time_pat03[env_light->dice_wether_counter],
                                          current_time);
                         break;
                     case 3:
-                        dice_wether_init(S_wether_mode_pat04[env_light->mDiceWeatherCounter],
-                                         S_wether_time_pat04[env_light->mDiceWeatherCounter],
+                        dice_wether_init(S_wether_mode_pat04[env_light->dice_wether_counter],
+                                         S_wether_time_pat04[env_light->dice_wether_counter],
                                          current_time);
                         break;
                     case 4:
-                        dice_wether_init(S_wether_mode_pat05[env_light->mDiceWeatherCounter],
-                                         S_wether_time_pat05[env_light->mDiceWeatherCounter],
+                        dice_wether_init(S_wether_mode_pat05[env_light->dice_wether_counter],
+                                         S_wether_time_pat05[env_light->dice_wether_counter],
                                          current_time);
                         break;
                     }
 
-                    env_light->mDiceWeatherCounter++;
-                    env_light->mDiceWeatherState++;
+                    env_light->dice_wether_counter++;
+                    env_light->dice_wether_state++;
                 }
                 break;
             case DICE_STATE_EXEC_e:
-                if (current_time > env_light->mDiceWeatherTime &&
-                    current_time - env_light->mDiceWeatherTime < 180.0f)
+                if (current_time > env_light->dice_wether_time &&
+                    current_time - env_light->dice_wether_time < 180.0f)
                 {
-                    switch (env_light->mDiceWeatherCurrPattern) {
+                    switch (env_light->dice_wether_pat) {
                     case 0:
-                        dice_wether_execute(S_wether_mode_pat01[env_light->mDiceWeatherCounter],
-                                            S_wether_time_pat01[env_light->mDiceWeatherCounter],
+                        dice_wether_execute(S_wether_mode_pat01[env_light->dice_wether_counter],
+                                            S_wether_time_pat01[env_light->dice_wether_counter],
                                             current_time);
                         break;
                     case 1:
-                        dice_wether_execute(S_wether_mode_pat02[env_light->mDiceWeatherCounter],
-                                            S_wether_time_pat02[env_light->mDiceWeatherCounter],
+                        dice_wether_execute(S_wether_mode_pat02[env_light->dice_wether_counter],
+                                            S_wether_time_pat02[env_light->dice_wether_counter],
                                             current_time);
                         break;
                     case 2:
-                        dice_wether_execute(S_wether_mode_pat03[env_light->mDiceWeatherCounter],
-                                            S_wether_time_pat03[env_light->mDiceWeatherCounter],
+                        dice_wether_execute(S_wether_mode_pat03[env_light->dice_wether_counter],
+                                            S_wether_time_pat03[env_light->dice_wether_counter],
                                             current_time);
                         break;
                     case 3:
-                        dice_wether_execute(S_wether_mode_pat04[env_light->mDiceWeatherCounter],
-                                            S_wether_time_pat04[env_light->mDiceWeatherCounter],
+                        dice_wether_execute(S_wether_mode_pat04[env_light->dice_wether_counter],
+                                            S_wether_time_pat04[env_light->dice_wether_counter],
                                             current_time);
                         break;
                     case 4:
-                        dice_wether_execute(S_wether_mode_pat05[env_light->mDiceWeatherCounter],
-                                            S_wether_time_pat05[env_light->mDiceWeatherCounter],
+                        dice_wether_execute(S_wether_mode_pat05[env_light->dice_wether_counter],
+                                            S_wether_time_pat05[env_light->dice_wether_counter],
                                             current_time);
                         break;
                     }
@@ -186,24 +186,24 @@ static void dKy_event_proc() {
                 break;
             case DICE_STATE_NEXT_e:
                 u8 time_table_no = cM_rndF(7.99f);
-                env_light->mDiceWeatherChangeTime = current_time + S_time_table[time_table_no];
+                env_light->dice_wether_change_time = current_time + S_time_table[time_table_no];
 
-                if (env_light->mDiceWeatherChangeTime >= 360.0f) {
-                    env_light->mDiceWeatherChangeTime -= 360.0f;
+                if (env_light->dice_wether_change_time >= 360.0f) {
+                    env_light->dice_wether_change_time -= 360.0f;
                 }
 
-                env_light->mDiceWeatherState = DICE_STATE_RESET_e;
+                env_light->dice_wether_state = DICE_STATE_RESET_e;
                 break;
             }
 
             if (g_env_light.field_0x130b == 1) {
-                env_light->mDiceWeatherMode = DICE_MODE_UNK6_e;
+                env_light->dice_wether_mode = DICE_MODE_UNK6_e;
             }
 
             if (g_env_light.mColPatMode == 0 && g_env_light.mColPatModeGather == 0) {
                 u8 weather_colpat;
 
-                switch (env_light->mDiceWeatherMode) {
+                switch (env_light->dice_wether_mode) {
                 case DICE_MODE_SUNNY_e:
                     weather_colpat = 0;
                     if (g_env_light.mThunderEff.mMode == 1) {
@@ -219,21 +219,21 @@ static void dKy_event_proc() {
                     break;
                 case DICE_MODE_RAIN_LIGHT_e:
                     weather_colpat = 1;
-                    if (env_light->mRainCount < 40) {
-                        env_light->mRainCount++;
-                        dKyw_rain_set(env_light->mRainCount);
+                    if (env_light->raincnt < 40) {
+                        env_light->raincnt++;
+                        dKyw_rain_set(env_light->raincnt);
                     } else {
-                        env_light->mRainCount--;
-                        dKyw_rain_set(env_light->mRainCount);
+                        env_light->raincnt--;
+                        dKyw_rain_set(env_light->raincnt);
                     }
                     break;
                 case DICE_MODE_THUNDER_HEAVY_e:
                     g_env_light.mThunderEff.mMode = 1;
                 case DICE_MODE_RAIN_HEAVY_e:
                     weather_colpat = 2;
-                    if (env_light->mRainCount < 250) {
-                        env_light->mRainCount++;
-                        dKyw_rain_set(env_light->mRainCount);
+                    if (env_light->raincnt < 250) {
+                        env_light->raincnt++;
+                        dKyw_rain_set(env_light->raincnt);
                     }
                     break;
                 case DICE_MODE_THUNDER_LIGHT_e:
@@ -247,13 +247,13 @@ static void dKy_event_proc() {
                         g_env_light.mThunderEff.mMode = 0;
                     }
 
-                    if (env_light->mRainCount > 2) {
-                        env_light->mRainCount -= 2;
+                    if (env_light->raincnt > 2) {
+                        env_light->raincnt -= 2;
                     } else {
-                        env_light->mRainCount = 0;
+                        env_light->raincnt = 0;
                     }
 
-                    dKyw_rain_set(env_light->mRainCount);
+                    dKyw_rain_set(env_light->raincnt);
                 }
 
                 if (env_light->mColpatWeather != weather_colpat) {
@@ -264,7 +264,7 @@ static void dKy_event_proc() {
 
             if (g_env_light.mColPatMode == 0 && g_env_light.mColPatModeGather == 0 &&
                 g_env_light.mColpatCurrGather != 0xFF &&
-                g_env_light.mColPatCurr != g_env_light.mColpatCurrGather)
+                g_env_light.wether_pat1 != g_env_light.mColpatCurrGather)
             {
                 g_env_light.mColPatBlendGather = 0.0f;
             }
@@ -328,12 +328,12 @@ static void daKytag06_lv7_boss_wether_proc(kytag06_class* i_this, u8 param_1) {
     switch (param_1) {
     case 0:
         weather_colpat = 0;
-        if (env_light->mRainCount > 20) {
-            env_light->mRainCount -= 4;
-        } else if (env_light->mRainCount != 0) {
-            env_light->mRainCount--;
+        if (env_light->raincnt > 20) {
+            env_light->raincnt -= 4;
+        } else if (env_light->raincnt != 0) {
+            env_light->raincnt--;
         }
-        dKyw_rain_set(env_light->mRainCount);
+        dKyw_rain_set(env_light->raincnt);
         break;
     case 1:
         weather_colpat = 1;
@@ -341,16 +341,16 @@ static void daKytag06_lv7_boss_wether_proc(kytag06_class* i_this, u8 param_1) {
         break;
     case 2:
         weather_colpat = 2;
-        if (env_light->mRainCount < 250) {
-            env_light->mRainCount++;
-            dKyw_rain_set(env_light->mRainCount);
+        if (env_light->raincnt < 250) {
+            env_light->raincnt++;
+            dKyw_rain_set(env_light->raincnt);
         }
 
         g_env_light.mThunderEff.mMode = 1;
         break;
     }
 
-    if (env_light->mColpatWeather != weather_colpat && !g_env_light.mCameraInWater) {
+    if (env_light->mColpatWeather != weather_colpat && !g_env_light.camera_water_in_status) {
         g_env_light.mColpatWeather = weather_colpat;
         dKy_change_colpat(weather_colpat);
     }
@@ -458,12 +458,12 @@ static void daKytag06_wether_proc(kytag06_class* i_this, u8 param_1) {
 
         if ((g_Counter.mCounter0 & 3) == 0) {
             // run block every 4 frames
-            if (env_light->mRainCount < 40) {
-                env_light->mRainCount++;
-                dKyw_rain_set(env_light->mRainCount);
+            if (env_light->raincnt < 40) {
+                env_light->raincnt++;
+                dKyw_rain_set(env_light->raincnt);
             } else {
-                env_light->mRainCount--;
-                dKyw_rain_set(env_light->mRainCount);
+                env_light->raincnt--;
+                dKyw_rain_set(env_light->raincnt);
             }
         }
 
@@ -474,9 +474,9 @@ static void daKytag06_wether_proc(kytag06_class* i_this, u8 param_1) {
     case 3:
         weather_colpat = 1;
 
-        if (env_light->mRainCount < 250) {
-            env_light->mRainCount++;
-            dKyw_rain_set(env_light->mRainCount);
+        if (env_light->raincnt < 250) {
+            env_light->raincnt++;
+            dKyw_rain_set(env_light->raincnt);
         }
 
         if (env_light->mSnowCount != 0) {
@@ -487,9 +487,9 @@ static void daKytag06_wether_proc(kytag06_class* i_this, u8 param_1) {
         g_env_light.mThunderEff.mMode = 1;
         weather_colpat = 1;
 
-        if (env_light->mRainCount < 250) {
-            env_light->mRainCount++;
-            dKyw_rain_set(env_light->mRainCount);
+        if (env_light->raincnt < 250) {
+            env_light->raincnt++;
+            dKyw_rain_set(env_light->raincnt);
         }
 
         if (env_light->mSnowCount != 0) {
@@ -527,7 +527,7 @@ static void daKytag06_wether_proc(kytag06_class* i_this, u8 param_1) {
         break;
     }
 
-    if (env_light->mColpatWeather != weather_colpat && !g_env_light.mCameraInWater) {
+    if (env_light->mColpatWeather != weather_colpat && !g_env_light.camera_water_in_status) {
         g_env_light.mColpatWeather = weather_colpat;
         dKy_change_colpat(weather_colpat);
     }
@@ -608,13 +608,13 @@ static void daKytag06_type_07_Execute(kytag06_class* i_this) {
     if (camera != NULL) {
         if (camera->lookat.eye.y > 0.0f) {
             dKy_BossLight_set(&spX, &color, i_this->mWindPower * 2.0f, 0);
-            g_env_light.mTerrainAmbienceBG[3].r = (u8)(i_this->mWindPower * 230.0f + 25.0f);
-            g_env_light.mTerrainAmbienceBG[3].g = (u8)(i_this->mWindPower * 215.0f + 30.0f);
-            g_env_light.mTerrainAmbienceBG[3].b = (u8)(i_this->mWindPower * 155.0f + 25.0f);
+            g_env_light.bg_amb_col[3].r = (u8)(i_this->mWindPower * 230.0f + 25.0f);
+            g_env_light.bg_amb_col[3].g = (u8)(i_this->mWindPower * 215.0f + 30.0f);
+            g_env_light.bg_amb_col[3].b = (u8)(i_this->mWindPower * 155.0f + 25.0f);
         } else {
-            g_env_light.mTerrainAmbienceBG[3].r = 0;
-            g_env_light.mTerrainAmbienceBG[3].g = 0;
-            g_env_light.mTerrainAmbienceBG[3].b = 0;
+            g_env_light.bg_amb_col[3].r = 0;
+            g_env_light.bg_amb_col[3].g = 0;
+            g_env_light.bg_amb_col[3].b = 0;
             g_env_light.mThunderEff.mMode = 0;
         }
     }
@@ -776,9 +776,9 @@ static void daKytag06_type_06_Execute(kytag06_class* i_this) {
         break;
     }
 
-    g_env_light.mTerrainAmbienceBG[3].r = (u8)(i_this->mWindPower * 245.0f + 10.0f);
-    g_env_light.mTerrainAmbienceBG[3].g = (u8)(i_this->mWindPower * 185.0f + 15.0f);
-    g_env_light.mTerrainAmbienceBG[3].b = (u8)(i_this->mWindPower * 130.0f + 20.0f);
+    g_env_light.bg_amb_col[3].r = (u8)(i_this->mWindPower * 245.0f + 10.0f);
+    g_env_light.bg_amb_col[3].g = (u8)(i_this->mWindPower * 185.0f + 15.0f);
+    g_env_light.bg_amb_col[3].b = (u8)(i_this->mWindPower * 130.0f + 20.0f);
 
     static cXyz c_pos(0.0f, 0.0f, 0.0f);
 
@@ -967,8 +967,8 @@ static void daKytag06_type_03_Execute(kytag06_class* i_this) {
         case 2:
             if ((g_Counter.mCounter0 & 7) == 0) {
                 // run block every 8 frames
-                if (g_env_light.mRainCount < 250) {
-                    g_env_light.mRainCount++;
+                if (g_env_light.raincnt < 250) {
+                    g_env_light.raincnt++;
                 } else {
                     i_this->mMode++;
                 }
@@ -1103,8 +1103,8 @@ static int daKytag06_Execute(kytag06_class* i_this) {
                 break;
             case 2:
                 if (i_this->field_0x578 > 900) {
-                    if (g_env_light.mRainCount < 250) {
-                        g_env_light.mRainCount++;
+                    if (g_env_light.raincnt < 250) {
+                        g_env_light.raincnt++;
                     } else {
                         i_this->field_0x591++;
                     }
@@ -1129,8 +1129,8 @@ static int daKytag06_Execute(kytag06_class* i_this) {
                 if (i_this->field_0x578 > 0) {
                     g_env_light.mThunderEff.mMode = 0;
 
-                    if (g_env_light.mRainCount > 0) {
-                        g_env_light.mRainCount--;
+                    if (g_env_light.raincnt > 0) {
+                        g_env_light.raincnt--;
                     } else {
                         i_this->field_0x591++;
                     }
@@ -1251,10 +1251,10 @@ static void daKytag06_type03_init(fopAc_ac_c* i_this) {
 
             if (dComIfGs_isSwitch(a_this->mSwNo, stayNo)) {
                 a_this->mMode = 9;
-                g_env_light.mRainCount = 250;
+                g_env_light.raincnt = 250;
                 g_env_light.mColpatWeather = a_this->field_0x591;
-                g_env_light.mColPatPrev = a_this->field_0x591;
-                g_env_light.mColPatCurr = a_this->field_0x591;
+                g_env_light.wether_pat0 = a_this->field_0x591;
+                g_env_light.wether_pat1 = a_this->field_0x591;
             }
         }
     } else if (a_this->field_0x597 == 2 && dComIfGp_roomControl_getStayNo() != 0) {
@@ -1320,8 +1320,8 @@ static int daKytag06_Create(fopAc_ac_c* i_this) {
     default:
         if (strcmp(dComIfGp_getStartStageName(), "T_MUKAO") != 0) {
             g_env_light.mColpatWeather = 3;
-            g_env_light.mColPatPrev = 3;
-            g_env_light.mColPatCurr = 3;
+            g_env_light.wether_pat0 = 3;
+            g_env_light.wether_pat1 = 3;
         } else {
             dComIfGs_setTime(210.0f);
         }

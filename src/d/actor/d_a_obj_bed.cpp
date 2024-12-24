@@ -146,8 +146,8 @@ int daObj_Bed_c::isDelete() {
 
 /* 80BADF34-80BADF90 0009B4 005C+00 2/2 0/0 0/0 .text            setEnvTevColor__11daObj_Bed_cFv */
 void daObj_Bed_c::setEnvTevColor() {
-    tevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mGndChk);
-    tevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(mGndChk);
+    tevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(mGndChk);
+    tevStr.room_no = dComIfG_Bgsp().GetRoomId(mGndChk);
 }
 
 /* 80BADF90-80BADFD0 000A10 0040+00 2/2 0/0 0/0 .text            setRoomNo__11daObj_Bed_cFv */

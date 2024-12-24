@@ -207,10 +207,10 @@ void dMirror_packet_c::modelDraw(J3DModel* i_model, Mtx param_1) {
     JUT_ASSERT(kankyo != 0);
 
     GXColor color = {0};
-    color.r = kankyo->mTerrainAmbienceBG[0].r;
-    color.g = kankyo->mTerrainAmbienceBG[0].g;
-    color.b = kankyo->mTerrainAmbienceBG[0].b;
-    color.a = kankyo->mTerrainAmbienceBG[0].a;
+    color.r = kankyo->bg_amb_col[0].r;
+    color.g = kankyo->bg_amb_col[0].g;
+    color.b = kankyo->bg_amb_col[0].b;
+    color.a = kankyo->bg_amb_col[0].a;
 
     J3DModelData* modelData = i_model->getModelData();
     u16 materialNum = modelData->getMaterialNum();

@@ -82,6 +82,8 @@ public:
 
     void setTevColor(u32 i, const J3DGXColorS10* i_color) { mTevBlock->setTevColor(i, i_color); }
     void setTevKColor(u32 i, const J3DGXColor* i_color) { mTevBlock->setTevKColor(i, i_color); }
+    void setAmbColor(u32 i, const J3DGXColor* i_color) { mColorBlock->setAmbColor(i, i_color); }
+    void setLight(u32 i, J3DLightObj* i_lightobj) { mColorBlock->setLight(i, i_lightobj); }
     void setMaterialAnm(J3DMaterialAnm* i_anm) { mMaterialAnm = i_anm; }
     void setCullMode(u8 i_mode) { mColorBlock->setCullMode(i_mode); }
     void setTexMtx(u32 idx, J3DTexMtx* mtx) { mTexGenBlock->setTexMtx(idx, mtx); }

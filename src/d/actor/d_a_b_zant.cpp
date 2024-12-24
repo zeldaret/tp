@@ -4782,7 +4782,7 @@ void daB_ZANT_c::initNextRoom() {
         }
     }
 
-    tevStr.mRoomNo = warp_next_room[mFightPhase];
+    tevStr.room_no = warp_next_room[mFightPhase];
 }
 
 /* 8064B868-8064C1C0 00D848 0958+00 2/1 0/0 0/0 .text            executeRoomChange__10daB_ZANT_cFv

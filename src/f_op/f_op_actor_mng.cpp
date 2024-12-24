@@ -1674,8 +1674,8 @@ void fopAcM_cancelCarryNow(fopAc_ac_c* i_actor) {
 BOOL fopAcM_otoCheck(fopAc_ac_c const* i_actor, f32 param_1) {
     SND_INFLUENCE* sound = dKy_Sound_get();
 
-    if (sound->field_0x14 != -1 && fopAcM_GetID(i_actor) != sound->field_0x14) {
-        cXyz tmp = sound->field_0x0 - i_actor->current.pos;
+    if (sound->actor_id != fpcM_ERROR_PROCESS_ID_e && fopAcM_GetID(i_actor) != sound->actor_id) {
+        cXyz tmp = sound->position - i_actor->current.pos;
 
         if (tmp.abs() < param_1) {
             return sound->field_0xc;

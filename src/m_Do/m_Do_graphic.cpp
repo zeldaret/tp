@@ -836,7 +836,7 @@ static void retry_captue_frame(view_class* param_0, view_port_class* param_1, in
 
 /* 8000A290-8000A504 004BD0 0274+00 1/1 0/0 0/0 .text            motionBlure__FP10view_class */
 static void motionBlure(view_class* param_0) {
-    if (g_env_light.mIsBlure) {
+    if (g_env_light.is_blure) {
         GXLoadTexObj(mDoGph_gInf_c::getFrameBufferTexObj(), GX_TEXMAP0);
         GXColor local_60;
         local_60.a = mDoGph_gInf_c::getBlureRate();
@@ -872,9 +872,9 @@ static void motionBlure(view_class* param_0) {
         GXSetProjection(param_0->projMtx, GX_PERSPECTIVE);
     }
     if (mDoGph_gInf_c::isBlure()) {
-        g_env_light.mIsBlure = 1;
+        g_env_light.is_blure = 1;
     } else {
-        g_env_light.mIsBlure = 0;
+        g_env_light.is_blure = 0;
     }
 }
 
@@ -995,7 +995,7 @@ int mDoGph_Painter() {
                 GXInvalidateTexAll();
                 GXSetClipMode(GX_CLIP_ENABLE);
 
-                if (g_env_light.mIsBlure == 0) {
+                if (g_env_light.is_blure == 0) {
                     dComIfGd_drawOpaListInvisible();
                     dComIfGd_drawXluListInvisible();
                 }
@@ -1020,7 +1020,7 @@ int mDoGph_Painter() {
                 retry_captue_frame(camera_p, view_port, dComIfGp_getCameraZoomForcus(camera_id));
                 GXSetClipMode(GX_CLIP_ENABLE);
 
-                if (g_env_light.mIsBlure == 1) {
+                if (g_env_light.is_blure == 1) {
                     dComIfGd_drawOpaListInvisible();
                     dComIfGd_drawXluListInvisible();
                 }
@@ -1052,7 +1052,7 @@ int mDoGph_Painter() {
                 GXSetProjection(camera_p->projMtx, GX_PERSPECTIVE);
                 j3dSys.reinitGX();
 
-                if ((g_env_light.mCameraInWater || !strcmp(dComIfGp_getStartStageName(), "D_MN08")))
+                if ((g_env_light.camera_water_in_status || !strcmp(dComIfGp_getStartStageName(), "D_MN08")))
                 {
                     u8 enable = mDoGph_gInf_c::getBloom()->getEnable();
                     GXColor color = *mDoGph_gInf_c::getBloom()->getMonoColor();

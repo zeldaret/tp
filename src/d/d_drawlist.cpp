@@ -1212,7 +1212,7 @@ static void setkankyoShadow(dKy_tevstr_c* param_0, f32* param_1) {
         *param_1 *= env_light->field_0x1238;
     }
 
-    if ((env_light->mShadowMode & 4) && param_0 != NULL) {
+    if ((env_light->shadow_mode & 4) && param_0 != NULL) {
         *param_1 *= param_0->field_0x344;
     }
 
@@ -1220,8 +1220,8 @@ static void setkankyoShadow(dKy_tevstr_c* param_0, f32* param_1) {
         *param_1 += env_light->mThunderEff.mFlashTimer;
     }
 
-    if (g_env_light.mSwordLight.mState == 2) {
-        f32 fvar1 = g_env_light.mSwordLight.mFrame / 15.0f;
+    if (g_env_light.eflight.mState == 2) {
+        f32 fvar1 = g_env_light.eflight.mFrame / 15.0f;
         if (fvar1 > 1.0f) {
             fvar1 = 1.0f;
         }
@@ -1307,8 +1307,8 @@ u32 dDlst_shadowReal_c::set(u32 i_key, J3DModel* i_model, cXyz* param_2, f32 par
         } else {
             sp60 = dKy_plight_near_pos();
 
-            if (!(env_light->mShadowMode & 4) &&
-                ((env_light->mShadowMode & 1) || (env_light->mShadowMode & 2)))
+            if (!(env_light->shadow_mode & 4) &&
+                ((env_light->shadow_mode & 1) || (env_light->shadow_mode & 2)))
             {
                 sp60 = g_env_light.field_0x10a0;
                 param_5->mLightPosWorld = g_env_light.field_0x10a0;

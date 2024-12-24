@@ -1021,11 +1021,11 @@ void daBoomerang_c::setRoomInfo() {
     int roomNo;
     if (field_0x980 != -1000000000.0f) {
         roomNo = dComIfG_Bgsp().GetRoomId(field_0xd6c);
-        tevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(field_0xd6c);
+        tevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(field_0xd6c);
     } else {
         roomNo = dComIfGp_roomControl_getStayNo();
     }
-    tevStr.mRoomNo = roomNo;
+    tevStr.room_no = roomNo;
     field_0x953 = dComIfGp_getReverb(roomNo);
     field_0x9d0.SetRoomId(roomNo);
     fopAcM_SetRoomNo(this, roomNo);

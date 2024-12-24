@@ -87,7 +87,7 @@ static void wether_tag_move(kytag00_class* i_this) {
         }
 
         var_f9 *= (var_f8 * i_this->field_0x588);
-        if (g_env_light.mEnvrIdxPrev == g_env_light.mEnvrIdxCurr) {
+        if (g_env_light.PrevCol == g_env_light.UseCol) {
             i_this->field_0x56d = 1;
 
             switch (i_this->field_0x56f) {
@@ -140,14 +140,14 @@ static void wether_tag_move(kytag00_class* i_this) {
 /* 8046BD60-8046BDA4 0006C0 0044+00 1/1 0/0 0/0 .text            raincnt_set__Ff */
 static void raincnt_set(f32 param_0) {
     int cnt = param_0 * param_0 * param_0 * 250.0f;
-    if (cnt > g_env_light.mRainCountOrig) {
-        g_env_light.mRainCount = cnt;
+    if (cnt > g_env_light.base_raincnt) {
+        g_env_light.raincnt = cnt;
     }
 }
 
 /* 8046BDA4-8046BDB8 000704 0014+00 1/1 0/0 0/0 .text            raincnt_cut__Fv */
 static void raincnt_cut() {
-    g_env_light.mRainCount = g_env_light.mRainCountOrig;
+    g_env_light.raincnt = g_env_light.base_raincnt;
 }
 
 /* 8046BDB8-8046BEB8 000718 0100+00 3/2 0/0 0/0 .text wether_tag_efect_reset__FP13kytag00_class */
@@ -332,7 +332,7 @@ static void wether_tag_efect_move(kytag00_class* i_this) {
             break;
         case 11:
             g_env_light.mMoyaMode = 50;
-            g_env_light.mMoyaCount = var_f9 * 50.0f * g_env_light.field_0xf40;
+            g_env_light.mMoyaCount = var_f9 * 50.0f * g_env_light.senses_effect_strength;
             break;
         case 12:
             g_env_light.mMoyaMode = 5;

@@ -764,7 +764,7 @@ int dComIfG_play_c::getLayerNo_common_common(const char* i_stageName, int i_room
             // Stage is Fishing Pond or Hena's Hut
             else if (!strcmp(i_stageName, "F_SP127") || !strcmp(i_stageName, "R_SP127"))
             {
-                switch (g_env_light.mPondSeason) {
+                switch (g_env_light.fishing_hole_season) {
                 case 1:
                     o_layer = 0;
                     break;
@@ -2296,7 +2296,7 @@ BOOL dComIfGs_wolfeye_effect_check() {
     dScnKy_env_light_c* env_light = dKy_getEnvlight();
     BOOL ret = false;
 
-    if (env_light->field_0xf3d == 1 && env_light->field_0xf40 > 0.6) {
+    if (env_light->now_senses_effect == 1 && env_light->senses_effect_strength > 0.6) {
         ret = true;
     }
     return ret;
@@ -2383,12 +2383,12 @@ BOOL dComIfGs_isVisitedRoom(int param_0) {
 
 /* 8002FCF4-8002FD08 02A634 0014+00 0/0 1/1 0/0 .text            dComIfGs_staffroll_next_go__Fv */
 void dComIfGs_staffroll_next_go() {
-    g_env_light.field_0x130c = true;
+    g_env_light.staffroll_next_timer = true;
 }
 
 /* 8002FD08-8002FD18 02A648 0010+00 0/0 1/1 0/0 .text dComIfGs_staffroll_next_go_check__Fv */
 u8 dComIfGs_staffroll_next_go_check() {
-    return g_env_light.field_0x130c;
+    return g_env_light.staffroll_next_timer;
 }
 
 /* 80450608-8045060C 000088 0004+00 0/0 6/6 11/11 .sdata           g_whiteColor */

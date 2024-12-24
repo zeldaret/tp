@@ -1118,13 +1118,13 @@ int dDemo_c::update() {
         dScnKy_env_light_c* env_light = &g_env_light;
 
         if (dComIfGs_staffroll_next_go_check() > 10) {
-            env_light->field_0x130c = 0;
+            env_light->staffroll_next_timer = 0;
             m_mode = 2;
         } else {
             if (dComIfGs_staffroll_next_go_check() == 1) {
                 mDoGph_gInf_c::fadeOut(0.1f, g_blackColor);
             }
-            env_light->field_0x130c++;
+            env_light->staffroll_next_timer++;
         }
     }
 

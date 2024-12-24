@@ -485,13 +485,13 @@ void daNbomb_c::setRoomInfo() {
     int room_no;
     if (mAcch.GetGroundH() != -1000000000.0f) {
         room_no = dComIfG_Bgsp().GetRoomId(mAcch.m_gnd);
-        tevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mAcch.m_gnd);
+        tevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(mAcch.m_gnd);
         mPolySound = dKy_pol_sound_get(&mAcch.m_gnd);
     } else {
         room_no = dComIfGp_roomControl_getStayNo();
     }
 
-    tevStr.mRoomNo = room_no;
+    tevStr.room_no = room_no;
     mSoundReverb = dComIfGp_getReverb(room_no);
     mCcStts.SetRoomId(room_no);
     fopAcM_SetRoomNo(this, room_no);
@@ -1679,9 +1679,9 @@ int daNbomb_c::draw() {
     }
 
     if (checkStateFlg0(FLG0_FROZEN)) {
-        tevStr.mFogColor.r = player->getFreezeR();
-        tevStr.mFogColor.g = player->getFreezeG();
-        tevStr.mFogColor.b = player->getFreezeB();
+        tevStr.TevColor.r = player->getFreezeR();
+        tevStr.TevColor.g = player->getFreezeG();
+        tevStr.TevColor.b = player->getFreezeB();
     }
 
     g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);

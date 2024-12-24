@@ -3910,12 +3910,12 @@ void daAlink_c::setWaterDropColor(const J3DGXColorS10* i_color) {
 
 /* 800CC7DC-800CC7FC 0C711C 0020+00 2/2 0/0 0/0 .text            initTevCustomColor__9daAlink_cFv */
 void daAlink_c::initTevCustomColor() {
-    tevStr.field_0x367 = 0;
-    tevStr.mFogColor.r = 0;
-    tevStr.mFogColor.g = 0;
-    tevStr.mFogColor.b = 0;
-    tevStr.field_0x360 = 0;
-    tevStr.field_0x362 = 0;
+    tevStr.mLightInf.a = 0;
+    tevStr.TevColor.r = 0;
+    tevStr.TevColor.g = 0;
+    tevStr.TevColor.b = 0;
+    tevStr.TevKColor.r = 0;
+    tevStr.TevKColor.b = 0;
 }
 
 /* 800CC7FC-800CD78C 0C713C 0F90+00 1/1 0/0 0/0 .text            draw__9daAlink_cFv */
@@ -3946,13 +3946,13 @@ int daAlink_c::draw() {
     if (mClothesChangeWaitTimer != 0) {
         if (mProcID == PROC_METAMORPHOSE) {
             if (mProcVar3.field_0x300e > 0) {
-                tevStr.mFogColor.r = 255;
+                tevStr.TevColor.r = 255;
             } else {
-                tevStr.mFogColor.r = -255;
+                tevStr.TevColor.r = -255;
             }
 
-            tevStr.mFogColor.g = tevStr.mFogColor.r;
-            tevStr.mFogColor.b = tevStr.mFogColor.r;
+            tevStr.TevColor.g = tevStr.TevColor.r;
+            tevStr.TevColor.b = tevStr.TevColor.r;
 
             g_env_light.setLightTevColorType_MAJI(mpWlChangeModel, &tevStr);
             mDoExt_modelEntryDL(mpWlChangeModel);
@@ -3965,22 +3965,22 @@ int daAlink_c::draw() {
     BOOL var_r31 = 1;
 
     if (field_0x06f4 != NULL) {
-        field_0x06f4->getTevColorReg(0, &tevStr.mFogColor);
+        field_0x06f4->getTevColorReg(0, &tevStr.TevColor);
     } else if (mProcID == PROC_METAMORPHOSE || mProcID == PROC_DUNGEON_WARP ||
                mProcID == PROC_DUNGEON_WARP_SCN_START)
     {
-        tevStr.mFogColor.r = mProcVar3.field_0x300e;
-        tevStr.mFogColor.g = mProcVar3.field_0x300e;
-        tevStr.mFogColor.b = mProcVar3.field_0x300e;
+        tevStr.TevColor.r = mProcVar3.field_0x300e;
+        tevStr.TevColor.g = mProcVar3.field_0x300e;
+        tevStr.TevColor.b = mProcVar3.field_0x300e;
     } else if (field_0x346c != 0.0f) {
         f32 var_f2 = fabsf(field_0x346c);
-        tevStr.mFogColor.r = var_f2 * daAlinkHIO_wolf_c0::m.mLightDropR;
-        tevStr.mFogColor.g = var_f2 * daAlinkHIO_wolf_c0::m.mLightDropG;
-        tevStr.mFogColor.b = var_f2 * daAlinkHIO_wolf_c0::m.mLightDropB;
+        tevStr.TevColor.r = var_f2 * daAlinkHIO_wolf_c0::m.mLightDropR;
+        tevStr.TevColor.g = var_f2 * daAlinkHIO_wolf_c0::m.mLightDropG;
+        tevStr.TevColor.b = var_f2 * daAlinkHIO_wolf_c0::m.mLightDropB;
     } else if (checkFreezeDamage()) {
-        tevStr.mFogColor.r = daAlinkHIO_damage_c0::m.mFreezeR;
-        tevStr.mFogColor.g = daAlinkHIO_damage_c0::m.mFreezeG;
-        tevStr.mFogColor.b = daAlinkHIO_damage_c0::m.mFreezeB;
+        tevStr.TevColor.r = daAlinkHIO_damage_c0::m.mFreezeR;
+        tevStr.TevColor.g = daAlinkHIO_damage_c0::m.mFreezeG;
+        tevStr.TevColor.b = daAlinkHIO_damage_c0::m.mFreezeB;
     } else if (mDamageTimer != 0) {
         if (!checkMagicArmorNoDamage()) {
             int color_timer = mDamageTimer + mDamageColorTime;
@@ -4001,25 +4001,25 @@ int daAlink_c::draw() {
             }
 
             f32 var_f2 = fabsf(cM_ssin(color_timer * 0x800));
-            tevStr.field_0x360 = r * var_f2;
-            tevStr.field_0x361 = g * var_f2;
-            tevStr.field_0x362 = b * var_f2;
+            tevStr.TevKColor.r = r * var_f2;
+            tevStr.TevKColor.g = g * var_f2;
+            tevStr.TevKColor.b = b * var_f2;
             var_r31 = 0;
         }
     } else if (mIceDamageWaitTimer != 0) {
         f32 temp_f4 = 1.0f - (mIceDamageWaitTimer * (1.0f / daAlinkHIO_damage_c0::m.mFreezeTime));
         f32 temp_f3 = 1.0f - temp_f4;
 
-        tevStr.mFogColor.r = (temp_f4 * daAlinkHIO_damage_c0::m.mFreezeInitR) +
+        tevStr.TevColor.r = (temp_f4 * daAlinkHIO_damage_c0::m.mFreezeInitR) +
                               (temp_f3 * daAlinkHIO_damage_c0::m.mFreezeR);
-        tevStr.mFogColor.g = (temp_f4 * daAlinkHIO_damage_c0::m.mFreezeInitG) +
+        tevStr.TevColor.g = (temp_f4 * daAlinkHIO_damage_c0::m.mFreezeInitG) +
                               (temp_f3 * daAlinkHIO_damage_c0::m.mFreezeG);
-        tevStr.mFogColor.b = (temp_f4 * daAlinkHIO_damage_c0::m.mFreezeInitB) +
+        tevStr.TevColor.b = (temp_f4 * daAlinkHIO_damage_c0::m.mFreezeInitB) +
                               (temp_f3 * daAlinkHIO_damage_c0::m.mFreezeB);
     } else if (field_0x32b0[0].r != 0) {
-        tevStr.mFogColor.r = field_0x32b0[0].r;
-        tevStr.mFogColor.g = field_0x32b0[0].g;
-        tevStr.mFogColor.b = field_0x32b0[0].b;
+        tevStr.TevColor.r = field_0x32b0[0].r;
+        tevStr.TevColor.g = field_0x32b0[0].g;
+        tevStr.TevColor.b = field_0x32b0[0].b;
         var_r29 = 1;
     } else {
         var_r31 = 0;
@@ -4036,7 +4036,7 @@ int daAlink_c::draw() {
                 setWaterDropColor(&field_0x32b0[1]);
             } else {
                 mSwordUpColorIntensity = 0.0f;
-                setWaterDropColor((J3DGXColorS10*)&tevStr.mFogColor);
+                setWaterDropColor((J3DGXColorS10*)&tevStr.TevColor);
             }
         } else {
             if (checkMagicArmorWearAbility()) {
@@ -4060,9 +4060,9 @@ int daAlink_c::draw() {
             }
         }
 
-        tevStr.field_0x360 = 0;
-        tevStr.field_0x361 = 0;
-        tevStr.field_0x362 = 0;
+        tevStr.TevKColor.r = 0;
+        tevStr.TevKColor.g = 0;
+        tevStr.TevKColor.b = 0;
 
         if (checkSwordDraw()) {
             modelDraw(mSwordModel, temp_r30);
@@ -4147,9 +4147,9 @@ int daAlink_c::draw() {
             modelDraw(mpLinkFaceModel, var_r3);
         }
 
-        tevStr.field_0x360 = 0;
-        tevStr.field_0x361 = 0;
-        tevStr.field_0x362 = 0;
+        tevStr.TevKColor.r = 0;
+        tevStr.TevKColor.g = 0;
+        tevStr.TevKColor.b = 0;
 
         if (checkSwordDraw()) {
             if (!checkNoResetFlg3(FLG3_UNK_80000000)) {
@@ -4164,9 +4164,9 @@ int daAlink_c::draw() {
         if (checkShieldDraw()) {
             BOOL var_r24_2;
             if (checkWoodShieldEquip() && field_0x2fcb != 0 && mProcID != PROC_METAMORPHOSE) {
-                tevStr.mFogColor.r = -((120 - field_0x2fcb) * 32) / 120;
-                tevStr.mFogColor.g = tevStr.mFogColor.r;
-                tevStr.mFogColor.b = tevStr.mFogColor.r;
+                tevStr.TevColor.r = -((120 - field_0x2fcb) * 32) / 120;
+                tevStr.TevColor.g = tevStr.TevColor.r;
+                tevStr.TevColor.b = tevStr.TevColor.r;
                 var_r24_2 = 1;
             } else {
                 var_r24_2 = 0;
@@ -4174,16 +4174,16 @@ int daAlink_c::draw() {
 
             modelDraw(mShieldModel, var_r3);
             if (var_r24_2) {
-                tevStr.mFogColor.r = 0;
-                tevStr.mFogColor.g = 0;
-                tevStr.mFogColor.b = 0;
+                tevStr.TevColor.r = 0;
+                tevStr.TevColor.g = 0;
+                tevStr.TevColor.b = 0;
             }
         }
 
         if (var_r29) {
-            tevStr.mFogColor.r = 0;
-            tevStr.mFogColor.g = 0;
-            tevStr.mFogColor.b = 0;
+            tevStr.TevColor.r = 0;
+            tevStr.TevColor.g = 0;
+            tevStr.TevColor.b = 0;
         }
 
         if (checkItemDraw()) {
@@ -4228,22 +4228,22 @@ int daAlink_c::draw() {
         }
 
         if (checkEquipHeavyBoots()) {
-            GXColorS10 color = tevStr.mFogColor;
+            GXColorS10 color = tevStr.TevColor;
             for (int i = 0; i < 2; i++) {
                 JPABaseEmitter* emitter_p = dComIfGp_particle_getEmitter(field_0x3228[i][0]);
 
                 if (emitter_p != NULL) {
-                    tevStr.mFogColor.r = 5;
-                    tevStr.mFogColor.g = tevStr.mFogColor.r;
-                    tevStr.mFogColor.b = tevStr.mFogColor.r;
+                    tevStr.TevColor.r = 5;
+                    tevStr.TevColor.g = tevStr.TevColor.r;
+                    tevStr.TevColor.b = tevStr.TevColor.r;
                 } else {
-                    tevStr.mFogColor = color;
+                    tevStr.TevColor = color;
                 }
 
                 modelDraw(mpLinkBootModels[i], temp_r30);
             }
 
-            tevStr.mFogColor = color;
+            tevStr.TevColor = color;
         }
     }
 

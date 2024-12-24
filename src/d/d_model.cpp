@@ -31,8 +31,8 @@ void dMdl_c::draw() {
     mpModelData->getMaterialNodePointer(mMaterialId)->loadSharedDL();
     shape->loadPreDrawSetting();
 
-    GXColor amb_color = {mpTevstr->mColorC0.r, mpTevstr->mColorC0.g, mpTevstr->mColorC0.b,
-                         mpTevstr->mColorC0.a};
+    GXColor amb_color = {mpTevstr->AmbCol.r, mpTevstr->AmbCol.g, mpTevstr->AmbCol.b,
+                         mpTevstr->AmbCol.a};
     GXSetChanAmbColor(GX_COLOR0A0, amb_color);
     GXSetChanMatColor(GX_COLOR0A0, g_whiteColor);
     dKy_setLight_nowroom_actor(mpTevstr);
