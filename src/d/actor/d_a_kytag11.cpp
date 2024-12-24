@@ -48,17 +48,17 @@ static int daKytag11_Execute(kytag11_class* i_this) {
 
     if (!i_this->mInitTimeChange) {
         if (i_this->mNewTime != 0x1F) {
-            env_light->mDaytime = dComIfGs_getTime();
+            env_light->daytime = dComIfGs_getTime();
 
             f32 new_time = i_this->mNewTime * 15.0f;
-            env_light->mDaytime = new_time;
+            env_light->daytime = new_time;
             dComIfGs_setTime(new_time);
         }
 
         i_this->mInitTimeChange = true;
     }
 
-    env_light->field_0x12fb = 1;
+    env_light->using_time_control_tag = 1;
 
     if (i_this->mStopTime != 0x1F && i_this->mStopTime == (u8)dKy_getdaytime_hour()) {
         return 1;
@@ -67,19 +67,19 @@ static int daKytag11_Execute(kytag11_class* i_this) {
     f32 new_env_time = ((i_this->mEnvTime / 255.0f) * 0.5f);
     f32 current_time = dComIfGs_getTime();
 
-    env_light->mDaytime = current_time;
+    env_light->daytime = current_time;
     env_light->mDate = dComIfGs_getDate();
 
     new_env_time = current_time + new_env_time;
-    env_light->mDaytime = new_env_time;
+    env_light->daytime = new_env_time;
 
     if ((u32)new_env_time >= 360.0f) {
-        env_light->mDaytime = 0.0f;
+        env_light->daytime = 0.0f;
         env_light->mDate++;
         dKankyo_DayProc();
     }
 
-    dComIfGs_setTime(env_light->mDaytime);
+    dComIfGs_setTime(env_light->daytime);
     dComIfGs_setDate(env_light->mDate);
 
     return 1;

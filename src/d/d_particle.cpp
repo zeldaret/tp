@@ -226,16 +226,16 @@ static void initiateLighting8(_GXColor& param_0, s16 param_1) {
     color0.b = b = (param_1 >> 9) & 0x3e;
     if (daPy_py_c::checkNowWolfPowerUp()) {
         f32 fVar2;
-        f32 fVar1 = (g_env_light.mTerrainAmbienceBG[0].r / 255.0f);
+        f32 fVar1 = (g_env_light.bg_amb_col[0].r / 255.0f);
         fVar2 = r + 0x10;
         color0.r = fVar2 * (4.0f * (fVar1));
 
-        fVar2 = (g_env_light.mTerrainAmbienceBG[0].g / 255.0f);
+        fVar2 = (g_env_light.bg_amb_col[0].g / 255.0f);
         fVar1 = g + 0x10;
         color0.g = fVar1 * (4.0f * (fVar2));
 
         fVar1 = b + 0x10;
-        fVar2 = (g_env_light.mTerrainAmbienceBG[0].b / 255.0f);
+        fVar2 = (g_env_light.bg_amb_col[0].b / 255.0f);
         color0.b = fVar1 * (4.0f * (fVar2));
     }
 
@@ -287,10 +287,10 @@ static void drawSecond_light8(JPABaseEmitter* param_0) {
     GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_SET);
     GXSetNumChans(1);
     GXColor local_14;
-    local_14.r = g_env_light.mTerrainAmbienceBG[0].r;
-    local_14.g = g_env_light.mTerrainAmbienceBG[0].g;
-    local_14.b = g_env_light.mTerrainAmbienceBG[0].b;
-    local_14.a = g_env_light.mTerrainAmbienceBG[0].a;
+    local_14.r = g_env_light.bg_amb_col[0].r;
+    local_14.g = g_env_light.bg_amb_col[0].g;
+    local_14.b = g_env_light.bg_amb_col[0].b;
+    local_14.a = g_env_light.bg_amb_col[0].a;
     initiateLighting8(local_14, sVar3);
     GXSetNumTexGens(1);
     GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 0x3c, false, 0x7d);
@@ -315,15 +315,15 @@ static void drawSecond_b_light8(JPABaseEmitter* param_0) {
     GXSetNumChans(1);
     GXColor local_18;
     if (param_0->getUserWork() == 0) {
-        local_18.r = envLight->mActorAmbience.r;
-        local_18.g = envLight->mActorAmbience.g;
-        local_18.b = envLight->mActorAmbience.b;
-        local_18.a = envLight->mActorAmbience.a;
+        local_18.r = envLight->actor_amb_col.r;
+        local_18.g = envLight->actor_amb_col.g;
+        local_18.b = envLight->actor_amb_col.b;
+        local_18.a = envLight->actor_amb_col.a;
     } else {
-        local_18.r = envLight->mTerrainAmbienceBG[0].r;
-        local_18.g = envLight->mTerrainAmbienceBG[0].g;
-        local_18.b = envLight->mTerrainAmbienceBG[0].b;
-        local_18.a = envLight->mTerrainAmbienceBG[0].a;
+        local_18.r = envLight->bg_amb_col[0].r;
+        local_18.g = envLight->bg_amb_col[0].g;
+        local_18.b = envLight->bg_amb_col[0].b;
+        local_18.a = envLight->bg_amb_col[0].a;
     }
     initiate_b_Lighting8(local_18);
     GXSetNumTevStages(2);
@@ -895,8 +895,8 @@ u32 dPa_simpleEcallBack::set(cXyz const* param_1, dKy_tevstr_c const* param_2, u
             }
             dKy_ParticleColor_get_bg((cXyz*)param_1, (dKy_tevstr_c*)param_2, &local_6c, &local_70, &local_74, &local_78,
                                      dVar7);
-            dVar7 = g_env_light.mPaletteTerrainLightEffect +
-                    (1.0f - g_env_light.mPaletteTerrainLightEffect) * dVar7;
+            dVar7 = g_env_light.bg_light_influence +
+                    (1.0f - g_env_light.bg_light_influence) * dVar7;
             OS_REPORT("\nwork__ratio=[%f]", dVar7);
             local_6c = dKy_light_influence_col(&local_6c, dVar7);
             local_70 = dKy_light_influence_col(&local_70, dVar7);
@@ -1591,7 +1591,7 @@ JPABaseEmitter* dPa_control_c::set(u8 param_0, u16 param_1, cXyz const* param_2,
                     }
                     dKy_ParticleColor_get_bg((cXyz*)param_2, (dKy_tevstr_c*)param_3, &local_c0,
                                             &local_c4, &local_c8, &local_cc, param_12);
-                    param_12 = g_env_light.mPaletteTerrainLightEffect + (1.0f - g_env_light.mPaletteTerrainLightEffect) * param_12;
+                    param_12 = g_env_light.bg_light_influence + (1.0f - g_env_light.bg_light_influence) * param_12;
                     local_c0 = dKy_light_influence_col(&local_c0, param_12);
                     local_c4 = dKy_light_influence_col(&local_c4, param_12);
                     this_00->setGlobalEnvColor(local_c0.r, local_c0.g, local_c0.b);
@@ -1734,7 +1734,7 @@ static void dPa_kankyocolor_set(f32 param_0, JPABaseEmitter* param_1,
         }
         dKy_ParticleColor_get_bg((cXyz*)param_4, (dKy_tevstr_c*)param_2, &local_70, &local_74,
                                 &local_78, &local_7c, fVar1);
-        fVar1 = g_env_light.mPaletteTerrainLightEffect + (1.0f - g_env_light.mPaletteTerrainLightEffect) * fVar1;
+        fVar1 = g_env_light.bg_light_influence + (1.0f - g_env_light.bg_light_influence) * fVar1;
         local_70 = dKy_light_influence_col(&local_70, fVar1);
         //_GXColor::operator_ = (&local_70, (_GXColor*)&local_80);
         local_74 = dKy_light_influence_col(&local_74, fVar1);
@@ -1966,8 +1966,8 @@ void dPa_wbPcallBack_c::execute(JPABaseEmitter* param_0, JPABaseParticle* param_
 /* 8004DCA0-8004DD0C 0485E0 006C+00 1/0 0/0 0/0 .text
  * execute__19dPa_fsenthPcallBackFP14JPABaseEmitterP15JPABaseParticle */
 void dPa_fsenthPcallBack::execute(JPABaseEmitter* param_0, JPABaseParticle* param_1) {
-    if (g_env_light.field_0xf3d == 1 && g_env_light.field_0xf40 > 0.0f) {
-        param_0->setGlobalAlpha(255.0f * g_env_light.field_0xf40);
+    if (g_env_light.now_senses_effect == 1 && g_env_light.senses_effect_strength > 0.0f) {
+        param_0->setGlobalAlpha(255.0f * g_env_light.senses_effect_strength);
         param_0->playDrawParticle();
     } else {
         param_0->setGlobalAlpha(0);

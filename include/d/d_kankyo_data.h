@@ -11,12 +11,12 @@ struct color_RGB_class {
 
 // Invented name; Used as u8 `darkLv` in dKydata_darkworldInfo_c.
 enum dKyd_DARKLV {
-    FARON = 0,
-    ELDIN = 1,
-    LANAYRU = 2,
-    TEST = 5,         // Only used with nonexistent test stages
-    UNCLEARABLE = 6,  // Default. Palace of Twilight stages use this
-    ALWAYS_DARK = 8,  // Unused. Forces Twilight
+    KY_DARKLV_FARON = 0,
+    KY_DARKLV_ELDIN = 1,
+    KY_DARKLV_LANAYRU = 2,
+    KY_DARKLV_TEST = 5,         // Only used with nonexistent test stages
+    KY_DARKLV_UNCLEARABLE = 6,  // Default. Palace of Twilight stages use this
+    KY_DARKLV_ALWAYS = 8,  // Unused. Forces Twilight
 };
 
 class dKydata_darkworldInfo_c {

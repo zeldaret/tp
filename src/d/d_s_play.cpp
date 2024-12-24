@@ -503,15 +503,15 @@ static int phase_1(dScnPly_c* i_this) {
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") && dComIfGp_getStartStageRoomNo() == 0 &&
         dComIfGp_getStartStagePoint() == 2)
     {
-        g_env_light.mPondSeason++;
+        g_env_light.fishing_hole_season++;
 
-        if (g_env_light.mPondSeason > 4) {
-            g_env_light.mPondSeason = 1;
+        if (g_env_light.fishing_hole_season > 4) {
+            g_env_light.fishing_hole_season = 1;
         }
     }
 
     dComIfGs_BossLife_public_Set(0xFF);
-    g_env_light.field_0x1308 = 0;
+    g_env_light.light_mask_type = 0;
 
     JUTReportConsole_f("Start StageName:RoomNo [%s:%d]\n", dComIfGp_getStartStageName(),
                        dComIfGp_getStartStageRoomNo());

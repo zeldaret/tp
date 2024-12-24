@@ -1,16 +1,16 @@
-#include <dolphin.h>
-#include "f_op/f_op_kankyo.h"
 #include "d/d_kankyo.h"
-#include "d/actor/d_a_player.h"
-#include "d/d_meter2_info.h"
-#include "d/actor/d_a_kytag08.h"
-#include "d/d_kankyo_rain.h"
-#include "d/d_kankyo_static.h"
-#include "d/d_msg_object.h"
+#include <dolphin.h>
 #include "SSystem/SComponent/c_counter.h"
 #include "SSystem/SComponent/c_math.h"
-#include "m_Do/m_Do_lib.h"
+#include "d/actor/d_a_kytag08.h"
+#include "d/actor/d_a_player.h"
+#include "d/d_kankyo_rain.h"
+#include "d/d_kankyo_static.h"
+#include "d/d_meter2_info.h"
+#include "d/d_msg_object.h"
+#include "f_op/f_op_kankyo.h"
 #include "m_Do/m_Do_graphic.h"
+#include "m_Do/m_Do_lib.h"
 
 static void GxXFog_set();
 
@@ -243,16 +243,40 @@ static LightStatus lightStatusBase = {
     1.0f,
     GX_DA_OFF,
     {
-        0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
     },
     320.0f,
     -320.0f,
     1000.0f,
     160000.0f,
     {
-        0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
     },
     0.536479f,
     2.726476f,
@@ -628,8 +652,9 @@ static void kankyo_color_ratio_calc(GXColor* out_col_p, GXColorS10 color, f32 ra
 }
 
 /* 8019D68C-8019D790 197FCC 0104+00 2/2 0/0 0/0 .text kankyo_color_ratio_set__FUcUcfUcUcfsf */
-static s16 kankyo_color_ratio_set(u8 color_a_start, u8 color_a_end, f32 color_ratio, u8 color_b_start, u8 color_b_end,
-                                  f32 blend_ratio, s16 add_color, f32 scale) {
+static s16 kankyo_color_ratio_set(u8 color_a_start, u8 color_a_end, f32 color_ratio,
+                                  u8 color_b_start, u8 color_b_end, f32 blend_ratio, s16 add_color,
+                                  f32 scale) {
     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
 
     s16 a = s16_data_ratio_set(color_a_start, color_a_end, color_ratio);
@@ -637,7 +662,7 @@ static s16 kankyo_color_ratio_set(u8 color_a_start, u8 color_a_end, f32 color_ra
     s16 blend_color = s16_data_ratio_set(a, b, blend_ratio);
     blend_color += add_color;
 
-    s16 calc_color = kankyo->mColAllcolRatio * scale * blend_color;
+    s16 calc_color = kankyo->now_allcol_ratio * scale * blend_color;
 
     if (calc_color < 0) {
         calc_color = 0;
@@ -656,8 +681,9 @@ static f32 fl_data_ratio_set(f32 start, f32 end, f32 ratio) {
 }
 
 /* 8019D7A0-8019D878 1980E0 00D8+00 3/3 0/0 0/0 .text float_kankyo_color_ratio_set__Fffffffff */
-static f32 float_kankyo_color_ratio_set(f32 color_a_start, f32 color_a_end, f32 color_ratio, f32 color_b_start,
-                                        f32 color_b_end, f32 blend_ratio, f32 param_6, f32 param_7) {
+static f32 float_kankyo_color_ratio_set(f32 color_a_start, f32 color_a_end, f32 color_ratio,
+                                        f32 color_b_start, f32 color_b_end, f32 blend_ratio,
+                                        f32 param_6, f32 param_7) {
     f32 a = fl_data_ratio_set(color_a_start, color_a_end, color_ratio);
     f32 b = fl_data_ratio_set(color_b_start, color_b_end, color_ratio);
     f32 calc_color = fl_data_ratio_set(a, b, blend_ratio);
@@ -690,7 +716,7 @@ f32 dKy_get_parcent(f32 max, f32 min, f32 value) {
  */
 static void dKy_FiveSenses_fullthrottle_dark_static1() {
     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
-    int temp_r30 = 0;
+    BOOL init_mode_change = FALSE;
 
     cXyz particle_pos;
     cXyz particle_size;
@@ -704,87 +730,90 @@ static void dKy_FiveSenses_fullthrottle_dark_static1() {
     particle_size.z = 1.0f;
 
     if (daPy_py_c::checkNowWolfPowerUp()) {
-        kankyo->field_0xf3d = 1;
-        temp_r30 = 1;
+        kankyo->now_senses_effect = 1;
+        init_mode_change = TRUE;
 
-        if (kankyo->field_0xf40 <= 0.0f) {
+        if (kankyo->senses_effect_strength <= 0.0f) {
             dComIfGp_particle_set(0x1E3, &particle_pos, NULL, NULL, &particle_size);
         }
 
-        cLib_addCalc(&kankyo->field_0xf40, 1.0f, 0.5f, 0.1f, 0.01f);
-    } else if (kankyo->field_0xf40 > 0.0f) {
-        if (kankyo->field_0xf40 >= 1.0f) {
+        cLib_addCalc(&kankyo->senses_effect_strength, 1.0f, 0.5f, 0.1f, 0.01f);
+    } else if (kankyo->senses_effect_strength > 0.0f) {
+        if (kankyo->senses_effect_strength >= 1.0f) {
             dComIfGp_particle_set(0x46A, &particle_pos, NULL, NULL, &particle_size);
         }
 
-        cLib_addCalc(&kankyo->field_0xf40, 0.0f, 0.5f, 0.1f, 0.01f);
-        temp_r30 = 1;
+        cLib_addCalc(&kankyo->senses_effect_strength, 0.0f, 0.5f, 0.1f, 0.01f);
+        init_mode_change = TRUE;
     }
 
-    switch (kankyo->field_0xf3c) {
+    switch (kankyo->senses_mode) {
     case 0:
-        if (temp_r30 != 1) {
+        if (init_mode_change != TRUE) {
             break;
         }
 
-        kankyo->field_0xf44 = NULL;
-        kankyo->field_0xf48 = NULL;
-        kankyo->field_0xf4c = NULL;
+        kankyo->senses_ef_emitter0 = NULL;
+        kankyo->senses_ef_emitter1 = NULL;
+        kankyo->senses_ef_emitter2 = NULL;
 
-        kankyo->field_0xf44 = dComIfGp_particle_set(0x1F2, &particle_pos, NULL, NULL);
-        kankyo->field_0xf48 = dComIfGp_particle_set(0x1F3, &particle_pos, NULL, NULL, &particle_size);
-        kankyo->field_0xf4c = dComIfGp_particle_set(0x1F4, &particle_pos, NULL, NULL, &particle_size);
-        kankyo->field_0xf3c++;
+        kankyo->senses_ef_emitter0 = dComIfGp_particle_set(0x1F2, &particle_pos, NULL, NULL);
+        kankyo->senses_ef_emitter1 = dComIfGp_particle_set(0x1F3, &particle_pos, NULL, NULL, &particle_size);
+        kankyo->senses_ef_emitter2 = dComIfGp_particle_set(0x1F4, &particle_pos, NULL, NULL, &particle_size);
+        kankyo->senses_mode++;
     case 1:
-        if (temp_r30 == 1) {
-            if (kankyo->field_0xf44 != NULL) {
-                kankyo->field_0xf44->setGlobalTranslation(particle_pos.x, particle_pos.y, particle_pos.z);
-                kankyo->field_0xf44->setGlobalAlpha(kankyo->field_0xf40 * 255.0f);
+        if (init_mode_change == TRUE) {
+            if (kankyo->senses_ef_emitter0 != NULL) {
+                kankyo->senses_ef_emitter0->setGlobalTranslation(particle_pos.x, particle_pos.y,
+                                                                 particle_pos.z);
+                kankyo->senses_ef_emitter0->setGlobalAlpha(kankyo->senses_effect_strength * 255.0f);
             }
 
-            if (kankyo->field_0xf48 != NULL) {
-                kankyo->field_0xf48->setGlobalTranslation(particle_pos.x, particle_pos.y, particle_pos.z);
-                kankyo->field_0xf48->setGlobalAlpha(kankyo->field_0xf40 * 255.0f);
+            if (kankyo->senses_ef_emitter1 != NULL) {
+                kankyo->senses_ef_emitter1->setGlobalTranslation(particle_pos.x, particle_pos.y,
+                                                                 particle_pos.z);
+                kankyo->senses_ef_emitter1->setGlobalAlpha(kankyo->senses_effect_strength * 255.0f);
             }
 
-            if (kankyo->field_0xf4c != NULL) {
-                kankyo->field_0xf4c->setGlobalTranslation(particle_pos.x, particle_pos.y, particle_pos.z);
+            if (kankyo->senses_ef_emitter2 != NULL) {
+                kankyo->senses_ef_emitter2->setGlobalTranslation(particle_pos.x, particle_pos.y,
+                                                                 particle_pos.z);
 
-                kankyo->field_0xf4c->setGlobalEnvColor(
-                    255.0f * (1.0f - kankyo->field_0xf40),
-                    255.0f * (1.0f - kankyo->field_0xf40),
-                    255.0f * (1.0f - kankyo->field_0xf40));
+                kankyo->senses_ef_emitter2->setGlobalEnvColor(
+                    255.0f * (1.0f - kankyo->senses_effect_strength),
+                    255.0f * (1.0f - kankyo->senses_effect_strength),
+                    255.0f * (1.0f - kankyo->senses_effect_strength));
             }
         } else {
-            kankyo->field_0xf3c++;
+            kankyo->senses_mode++;
         }
         break;
     case 2:
-        if (kankyo->field_0xf44 != NULL) {
-            kankyo->field_0xf44->deleteAllParticle();
-            kankyo->field_0xf44->becomeInvalidEmitter();
-            kankyo->field_0xf44->quitImmortalEmitter();
-            kankyo->field_0xf44->setEmitterCallBackPtr(NULL);
-            kankyo->field_0xf44 = NULL;
+        if (kankyo->senses_ef_emitter0 != NULL) {
+            kankyo->senses_ef_emitter0->deleteAllParticle();
+            kankyo->senses_ef_emitter0->becomeInvalidEmitter();
+            kankyo->senses_ef_emitter0->quitImmortalEmitter();
+            kankyo->senses_ef_emitter0->setEmitterCallBackPtr(NULL);
+            kankyo->senses_ef_emitter0 = NULL;
         }
 
-        if (kankyo->field_0xf48 != NULL) {
-            kankyo->field_0xf48->deleteAllParticle();
-            kankyo->field_0xf48->becomeInvalidEmitter();
-            kankyo->field_0xf48->quitImmortalEmitter();
-            kankyo->field_0xf48->setEmitterCallBackPtr(NULL);
-            kankyo->field_0xf48 = NULL;
+        if (kankyo->senses_ef_emitter1 != NULL) {
+            kankyo->senses_ef_emitter1->deleteAllParticle();
+            kankyo->senses_ef_emitter1->becomeInvalidEmitter();
+            kankyo->senses_ef_emitter1->quitImmortalEmitter();
+            kankyo->senses_ef_emitter1->setEmitterCallBackPtr(NULL);
+            kankyo->senses_ef_emitter1 = NULL;
         }
 
-        if (kankyo->field_0xf4c != NULL) {
-            kankyo->field_0xf4c->deleteAllParticle();
-            kankyo->field_0xf4c->becomeInvalidEmitter();
-            kankyo->field_0xf4c->quitImmortalEmitter();
-            kankyo->field_0xf4c->setEmitterCallBackPtr(NULL);
-            kankyo->field_0xf4c = NULL;
+        if (kankyo->senses_ef_emitter2 != NULL) {
+            kankyo->senses_ef_emitter2->deleteAllParticle();
+            kankyo->senses_ef_emitter2->becomeInvalidEmitter();
+            kankyo->senses_ef_emitter2->quitImmortalEmitter();
+            kankyo->senses_ef_emitter2->setEmitterCallBackPtr(NULL);
+            kankyo->senses_ef_emitter2 = NULL;
         }
 
-        kankyo->field_0xf3c = 0;
+        kankyo->senses_mode = 0;
         break;
     }
 }
@@ -811,11 +840,11 @@ int dKy_light_influence_id(cXyz position, int param_1) {
 
     for (i = 0; i <= param_1; i++) {
         for (j = 0; j < 100; j++) {
-            if (g_env_light.mPointLight[j] != NULL && (i == 0 || j != closest_plight_no) &&
-                g_env_light.mPointLight[j]->mPow > 0.01f)
+            if (g_env_light.pointlight[j] != NULL && (i == 0 || j != closest_plight_no) &&
+                g_env_light.pointlight[j]->mPow > 0.01f)
             {
-                if (closest_plight_dist > position.abs(g_env_light.mPointLight[j]->mPosition)) {
-                    if (g_env_light.mPointLight[j]->mIndex & 0x8000) {
+                if (closest_plight_dist > position.abs(g_env_light.pointlight[j]->mPosition)) {
+                    if (g_env_light.pointlight[j]->mIndex & 0x8000) {
                         if (closest_plight_dist > var_f30) {
                             if (i == 0) {
                                 closest_plight_no = j;
@@ -828,12 +857,12 @@ int dKy_light_influence_id(cXyz position, int param_1) {
                             closest_plight_dist = var_f30;
                         }
                     } else {
-                        closest_plight_dist = position.abs(g_env_light.mPointLight[j]->mPosition);
-                        if (closest_plight_dist < g_env_light.mPointLight[j]->mPow) {
+                        closest_plight_dist = position.abs(g_env_light.pointlight[j]->mPosition);
+                        if (closest_plight_dist < g_env_light.pointlight[j]->mPow) {
                             if (strcmp(dComIfGp_getStartStageName(), "D_MN05") == 0 &&
                                 dComIfGp_roomControl_getStayNo() == 0)
                             {
-                                if (closest_plight_dist < g_env_light.mPointLight[j]->mPow * 0.5f) {
+                                if (closest_plight_dist < g_env_light.pointlight[j]->mPow * 0.5f) {
                                     var_r25 = 99;
                                 }
                             } else {
@@ -851,7 +880,7 @@ int dKy_light_influence_id(cXyz position, int param_1) {
                     }
                 }
 
-                if (g_env_light.mPointLight[j]->mIndex < 0 && var_r25 != 99) {
+                if (g_env_light.pointlight[j]->mIndex < 0 && var_r25 != 99) {
                     if (i == 0) {
                         closest_plight_no = j;
                     }
@@ -881,11 +910,11 @@ int dKy_eflight_influence_id(cXyz position, int param_1) {
 
     for (i = 0; i <= param_1; i++) {
         for (j = 0; j < 5; j++) {
-            if (g_env_light.mEfPLight[j] != NULL && (i == 0 || j != var_r28)) {
-                if (var_f31 > position.abs(g_env_light.mEfPLight[j]->mPosition) &&
-                    g_env_light.mEfPLight[j]->mPow > 0.01f)
+            if (g_env_light.efplight[j] != NULL && (i == 0 || j != var_r28)) {
+                if (var_f31 > position.abs(g_env_light.efplight[j]->mPosition) &&
+                    g_env_light.efplight[j]->mPow > 0.01f)
                 {
-                    var_f31 = position.abs(g_env_light.mEfPLight[j]->mPosition);
+                    var_f31 = position.abs(g_env_light.efplight[j]->mPosition);
 
                     if (i == 0) {
                         var_r28 = j;
@@ -908,7 +937,7 @@ int dKy_eflight_influence_id(cXyz position, int param_1) {
 /* 8019E404-8019E430 198D44 002C+00 1/1 0/0 0/0 .text            dKy_light_influence_col__Fi */
 GXColorS10 dKy_light_influence_col(int light_id) {
     dScnKy_env_light_c* kankyo = &g_env_light;
-    return kankyo->mPointLight[light_id >= 0 ? light_id : 0]->mColor;
+    return kankyo->pointlight[light_id >= 0 ? light_id : 0]->mColor;
 }
 
 /* 8019E430-8019E520 198D70 00F0+00 4/4 3/3 0/0 .text dKy_light_influence_col__FP8_GXColorf */
@@ -942,18 +971,18 @@ GXColor dKy_light_influence_col(GXColor* in_col_p, f32 ratio) {
 /* 8019E520-8019E548 198E60 0028+00 1/1 0/0 0/0 .text            dKy_light_influence_power__Fi */
 f32 dKy_light_influence_power(int light_id) {
     dScnKy_env_light_c* kankyo = &g_env_light;
-    return kankyo->mPointLight[light_id >= 0 ? light_id : 0]->mPow;
+    return kankyo->pointlight[light_id >= 0 ? light_id : 0]->mPow;
 }
 
 /* 8019E548-8019E570 198E88 0028+00 1/1 0/0 0/0 .text            dKy_light_influence_yuragi__Fi */
 f32 dKy_light_influence_yuragi(int light_id) {
     dScnKy_env_light_c* kankyo = &g_env_light;
-    return kankyo->mPointLight[light_id >= 0 ? light_id : 0]->mFluctuation;
+    return kankyo->pointlight[light_id >= 0 ? light_id : 0]->mFluctuation;
 }
 
 /* 8019E570-8019E694 198EB0 0124+00 1/1 0/0 0/0 .text dKy_light_influence_distance__F4cXyzi */
 f32 dKy_light_influence_distance(cXyz position, int light_id) {
-    return position.abs(g_env_light.mPointLight[light_id >= 0 ? light_id : 0]->mPosition);
+    return position.abs(g_env_light.pointlight[light_id >= 0 ? light_id : 0]->mPosition);
 }
 
 /* 8019E694-8019E708 198FD4 0074+00 2/2 0/0 0/0 .text            plight_init__Fv */
@@ -961,12 +990,12 @@ static void plight_init() {
     g_env_light.mLightInfluence[0].mPow = 99999.9f;
 
     for (int i = 0; i < 100; i++) {
-        g_env_light.mPointLight[i] = NULL;
+        g_env_light.pointlight[i] = NULL;
     }
 
     for (int i = 0; i < 5; i++) {
-        g_env_light.mEfPLight[i] = NULL;
-        g_env_light.field_0x72c[i] = NULL;
+        g_env_light.efplight[i] = NULL;
+        g_env_light.unk_0x72c[i] = NULL;
     }
 
     g_env_light.mPlayerPLightIdx = -1;
@@ -976,7 +1005,7 @@ static void plight_init() {
 /* 8019E708-8019E734 199048 002C+00 1/1 0/0 0/0 .text            darkmist_init__Fv */
 static void darkmist_init() {
     for (int i = 0; i < 10; i++) {
-        g_env_light.mDalkmistInf[i] = NULL;
+        g_env_light.dalkmist_influence[i] = NULL;
     }
 }
 
@@ -986,16 +1015,16 @@ static void plight_set() {
 
     stage_plight_info_class* plight_info = dComIfGp_getStagePlightInfo();
     if (plight_info != NULL) {
-        g_env_light.stagPlightInfo = plight_info;
+        g_env_light.stage_plight_info = plight_info;
 
         for (int i = 0; i < dComIfGp_getStagePlightNumInfo(); i++) {
             if (plight_no < 30) {
-                g_env_light.mLightInfluence[plight_no].mPosition = plight_info[i].m_position;
-                g_env_light.mLightInfluence[plight_no].mColor.r = plight_info[i].m_color.r;
-                g_env_light.mLightInfluence[plight_no].mColor.g = plight_info[i].m_color.g;
-                g_env_light.mLightInfluence[plight_no].mColor.b = plight_info[i].m_color.b;
-                g_env_light.mLightInfluence[plight_no].mPow = plight_info[i].m_radius * 200.0f;
-                g_env_light.mLightInfluence[plight_no].mFluctuation = plight_info[i].m_fluctuation;
+                g_env_light.mLightInfluence[plight_no].mPosition = plight_info[i].position;
+                g_env_light.mLightInfluence[plight_no].mColor.r = plight_info[i].color.r;
+                g_env_light.mLightInfluence[plight_no].mColor.g = plight_info[i].color.g;
+                g_env_light.mLightInfluence[plight_no].mColor.b = plight_info[i].color.b;
+                g_env_light.mLightInfluence[plight_no].mPow = plight_info[i].power * 200.0f;
+                g_env_light.mLightInfluence[plight_no].mFluctuation = plight_info[i].fluctuation;
                 dKy_plight_set(&g_env_light.mLightInfluence[plight_no]);
                 plight_no++;
             } else {
@@ -1011,7 +1040,7 @@ static void plight_set() {
 /* 8019E854-8019E874 199194 0020+00 1/1 0/0 0/0 .text            bgparts_activelight_init__Fv */
 static void bgparts_activelight_init() {
     for (int i = 0; i < 2; i++) {
-        g_env_light.mBGpartsActiveLight[0].mIndex = 0;
+        g_env_light.bgparts_active_light[0].mIndex = 0;
     }
 }
 
@@ -1029,26 +1058,26 @@ static void dungeonlight_init() {
     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
 
     for (int i = 0; i < 8; i++) {
-        kankyo->mDungeonLights[i].mPosition = cXyz(test_pos_tbl[i]);
-        kankyo->mDungeonLights[i].mRefDistance = 1.0f;
-        kankyo->mDungeonLights[i].field_0x14 = 0.99f;
-        kankyo->mDungeonLights[i].mColor.r = test_color_tbl[i].r;
-        kankyo->mDungeonLights[i].mColor.g = test_color_tbl[i].g;
-        kankyo->mDungeonLights[i].mColor.b = test_color_tbl[i].b;
-        kankyo->mDungeonLights[i].mColor.a = 255;
+        kankyo->dungeonlight[i].mPosition = cXyz(test_pos_tbl[i]);
+        kankyo->dungeonlight[i].mRefDistance = 1.0f;
+        kankyo->dungeonlight[i].field_0x14 = 0.99f;
+        kankyo->dungeonlight[i].mColor.r = test_color_tbl[i].r;
+        kankyo->dungeonlight[i].mColor.g = test_color_tbl[i].g;
+        kankyo->dungeonlight[i].mColor.b = test_color_tbl[i].b;
+        kankyo->dungeonlight[i].mColor.a = 255;
 
-        kankyo->mDungeonLights[i].mInfluence.mPosition = kankyo->mDungeonLights[i].mPosition;
-        kankyo->mDungeonLights[i].mInfluence.mColor.r = kankyo->mDungeonLights[i].mColor.r;
-        kankyo->mDungeonLights[i].mInfluence.mColor.g = kankyo->mDungeonLights[i].mColor.g;
-        kankyo->mDungeonLights[i].mInfluence.mColor.b = kankyo->mDungeonLights[i].mColor.b;
-        kankyo->mDungeonLights[i].mInfluence.mPow = kankyo->mDungeonLights[i].mRefDistance * 100.0f;
-        kankyo->mDungeonLights[i].mInfluence.mFluctuation = 0.0f;
+        kankyo->dungeonlight[i].mInfluence.mPosition = kankyo->dungeonlight[i].mPosition;
+        kankyo->dungeonlight[i].mInfluence.mColor.r = kankyo->dungeonlight[i].mColor.r;
+        kankyo->dungeonlight[i].mInfluence.mColor.g = kankyo->dungeonlight[i].mColor.g;
+        kankyo->dungeonlight[i].mInfluence.mColor.b = kankyo->dungeonlight[i].mColor.b;
+        kankyo->dungeonlight[i].mInfluence.mPow = kankyo->dungeonlight[i].mRefDistance * 100.0f;
+        kankyo->dungeonlight[i].mInfluence.mFluctuation = 0.0f;
 
-        kankyo->mDungeonLights[i].mCutoffAngle = 90.0f;
-        kankyo->mDungeonLights[i].mAngleX = -90.0f;
-        kankyo->mDungeonLights[i].mAngleY = 0.0f;
-        kankyo->mDungeonLights[i].mAngleAttenuation = GX_SP_OFF;
-        kankyo->mDungeonLights[i].mDistAttenuation = GX_DA_MEDIUM;
+        kankyo->dungeonlight[i].mCutoffAngle = 90.0f;
+        kankyo->dungeonlight[i].mAngleX = -90.0f;
+        kankyo->dungeonlight[i].mAngleY = 0.0f;
+        kankyo->dungeonlight[i].mAngleAttenuation = GX_SP_OFF;
+        kankyo->dungeonlight[i].mDistAttenuation = GX_DA_MEDIUM;
 
         kankyo->field_0x0c18[i].mPos = cXyz(test_pos_tbl[i]);
         kankyo->field_0x0c18[i].mColor.r = test_color_tbl[i].r;
@@ -1075,17 +1104,19 @@ static void undwater_init() {
     J3DModelData* modelData2 = (J3DModelData*)dComIfG_getObjectRes("Always", 0x1D);
     JUT_ASSERT(1867, modelData2 != 0);
 
-    g_env_light.mpUndwaterEfHeap = mDoExt_createSolidHeapFromGameToCurrent(0x600, 0x20);
+    g_env_light.undwater_ef_heap = mDoExt_createSolidHeapFromGameToCurrent(0x600, 0x20);
 
-    if (g_env_light.mpUndwaterEfHeap != NULL) {
-        g_env_light.mpUndwaterEfModel = mDoExt_J3DModel__create(modelData2, 0x80000, 0x11020202);
+    if (g_env_light.undwater_ef_heap != NULL) {
+        g_env_light.undwater_ef_model = mDoExt_J3DModel__create(modelData2, 0x80000, 0x11020202);
 
-        if (g_env_light.mpUndwaterEfModel != NULL) {
-            g_env_light.mpUndwaterBtk = new mDoExt_btkAnm();
+        if (g_env_light.undwater_ef_model != NULL) {
+            g_env_light.undwater_btk = new mDoExt_btkAnm();
 
-            if (g_env_light.mpUndwaterBtk != NULL) {
+            if (g_env_light.undwater_btk != NULL) {
                 J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Always", 0x3C);
-                if (!g_env_light.mpUndwaterBtk->init(modelData2, pbtk, TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1)) {
+                if (!g_env_light.undwater_btk->init(modelData2, pbtk, TRUE,
+                                                    J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1))
+                {
                     JUT_ASSERT(1898, 0);
                 }
             } else {
@@ -1093,7 +1124,7 @@ static void undwater_init() {
             }
         }
         mDoExt_restoreCurrentHeap();
-        mDoExt_adjustSolidHeap(g_env_light.mpUndwaterEfHeap);
+        mDoExt_adjustSolidHeap(g_env_light.undwater_ef_heap);
     } else {
         JUT_ASSERT(1917, 0);
     }
@@ -1135,34 +1166,34 @@ static void envcolor_init() {
     dKy_vrbox_addcol_set(0, 0, 0, 0.0f);
 
     g_env_light.field_0x1280 = 0;
-    g_env_light.mInitAnmTimer = 1;
-    g_env_light.mSchBit = 0;
-    g_env_light.mSchbitTimer = 0;
+    g_env_light.light_init_timer = 1;
+    g_env_light.schbit = 0;
+    g_env_light.schbit_timer = 0;
 
-    g_env_light.mVrboxInvisible = false;
+    g_env_light.hide_vrbox = false;
     g_env_light.mContrastFlag = 0;
     g_env_light.mFogAdjEnable = true;
     g_env_light.mFogAdjTableType = 0;
     g_env_light.mFogAdjCenter = 0x140;
     dKyd_xfog_table_set(0);
 
-    g_env_light.mColAllcolRatio = 1.0f;
-    g_env_light.mColActColRatio = 1.0f;
-    g_env_light.mColBgColRatio = 1.0f;
-    g_env_light.mColFogColRatio = 1.0f;
-    g_env_light.mColVrboxSoraColRatio = 1.0f;
-    g_env_light.mColVrboxKumocolRatio = 1.0f;
+    g_env_light.now_allcol_ratio = 1.0f;
+    g_env_light.now_actcol_ratio = 1.0f;
+    g_env_light.now_bgcol_ratio = 1.0f;
+    g_env_light.now_fogcol_ratio = 1.0f;
+    g_env_light.now_vrboxsoracol_ratio = 1.0f;
+    g_env_light.now_vrboxkumocol_ratio = 1.0f;
     g_env_light.field_0x1210 = 1.0f;
 
-    g_env_light.mAllcolRatio = 1.0f;
-    g_env_light.mActcolRatio = 1.0f;
-    g_env_light.mBgcolRatio = 1.0f;
-    g_env_light.mFogcolRatio = 1.0f;
-    g_env_light.mVrboxSoracolRatio = 1.0f;
-    g_env_light.mVrboxKumocolRatio = 1.0f;
+    g_env_light.allcol_ratio = 1.0f;
+    g_env_light.actcol_ratio = 1.0f;
+    g_env_light.bgcol_ratio = 1.0f;
+    g_env_light.fogcol_ratio = 1.0f;
+    g_env_light.vrboxsoracol_ratio = 1.0f;
+    g_env_light.vrboxkumocol_ratio = 1.0f;
     g_env_light.field_0x122c = 1.0f;
 
-    g_env_light.mItemGetCol_chg = 0;
+    g_env_light.Itemgetcol_chg = 0;
     g_env_light.field_0x1240 = 0.0f;
     g_env_light.field_0x1230 = 0.0f;
     g_env_light.field_0x1234 = 0.0f;
@@ -1171,12 +1202,12 @@ static void envcolor_init() {
     g_env_light.field_0x1238 = 0.0f;
     g_env_light.field_0x123c = 0.0f;
     g_env_light.field_0x12d6 = 0;
-    g_env_light.mShadowMode = 0;
-    g_env_light.mCameraInWater = 0;
+    g_env_light.shadow_mode = 0;
+    g_env_light.camera_water_in_status = 0;
 
     g_env_light.field_0x1258 = 0.0f;
     g_env_light.mActorLightEffect = 100;
-    g_env_light.mPaletteTerrainLightEffect = 1.0f;
+    g_env_light.bg_light_influence = 1.0f;
     g_env_light.field_0x1064.x = 0.0f;
     g_env_light.field_0x1064.y = -1.0f;
     g_env_light.field_0x1064.z = -1.0f;
@@ -1186,11 +1217,11 @@ static void envcolor_init() {
         g_env_light.mDemoAttentionPoint = 0.11f;
     }
 
-    g_env_light.field_0x1308 = 0;
+    g_env_light.light_mask_type = 0;
     g_env_light.field_0x130b = 0;
     g_env_light.light_size = LIGHT_SIZE_M;
     dKy_light_size_get(dComIfGp_getStartStageName());
-    g_env_light.mGrassLightEffectRate = 1.0f;
+    g_env_light.grass_light_inf_rate = 1.0f;
     g_env_light.field_0x12fc = -1;
     g_env_light.field_0x1278 = 0.0f;
     g_env_light.field_0x1264 = -255.0f;
@@ -1199,9 +1230,9 @@ static void envcolor_init() {
     g_env_light.field_0x127c = 200.0f;
 
     if (dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo()) == ST_BOSS_ROOM) {
-        g_env_light.mpSchedule = dKyd_schejule_boss_getp();
+        g_env_light.light_schedule = dKyd_schejule_boss_getp();
     } else {
-        g_env_light.mpSchedule = dKyd_schejule_getp();
+        g_env_light.light_schedule = dKyd_schejule_getp();
     }
 
     g_env_light.PrevCol = dComIfGp_roomControl_getStayNo();
@@ -1229,18 +1260,18 @@ static void envcolor_init() {
         g_env_light.field_0x12cc = 0;
     }
 
-    g_env_light.mRainCountOrig = 0;
+    g_env_light.base_raincnt = 0;
     g_env_light.field_0x12a0 = 0;
-    g_env_light.mDiceWeatherMode = 0;
-    g_env_light.mDiceWeatherChangeTime = dComIfGs_getTime() + (cM_rndF(g_Counter.mCounter0 & 31) * 15.0f);
-    if (g_env_light.mDiceWeatherChangeTime >= 360.0f) {
-        g_env_light.mDiceWeatherChangeTime -= 360.0f;
+    g_env_light.dice_wether_mode = 0;
+    g_env_light.dice_wether_change_time = dComIfGs_getTime() + (cM_rndF(g_Counter.mCounter0 & 31) * 15.0f);
+    if (g_env_light.dice_wether_change_time >= 360.0f) {
+        g_env_light.dice_wether_change_time -= 360.0f;
     }
 
-    g_env_light.mDiceWeatherState = 0;
-    g_env_light.mDiceWeatherCurrPattern = 0;
-    g_env_light.mDiceWeatherCounter = 0;
-    g_env_light.mDiceWeatherTime = 0.0f;
+    g_env_light.dice_wether_state = 0;
+    g_env_light.dice_wether_pat = 0;
+    g_env_light.dice_wether_counter = 0;
+    g_env_light.dice_wether_time = 0.0f;
 
     g_env_light.wether_pat0 = g_env_light.mColpatWeather;
     g_env_light.wether_pat1 = g_env_light.mColpatWeather;
@@ -1251,27 +1282,27 @@ static void envcolor_init() {
     g_env_light.mColPatModeGather = 0;
 
     if (stage_envr_p != NULL) {
-        g_env_light.mpDmEnvr = stage_envr_p;
+        g_env_light.stage_envr_info = stage_envr_p;
     } else {
-        g_env_light.mpDmEnvr = (stage_envr_info_class*)dKyd_dmenvr_getp();
+        g_env_light.stage_envr_info = (stage_envr_info_class*)dKyd_dmenvr_getp();
     }
 
     if (stage_palette_p != NULL) {
-        g_env_light.mpDmPalet = stage_palette_p;
+        g_env_light.stage_palette_info = stage_palette_p;
     } else {
-        g_env_light.mpDmPalet = (stage_palette_info_class*)dKyd_dmpalet_getp();
+        g_env_light.stage_palette_info = (stage_palette_info_class*)dKyd_dmpalet_getp();
     }
 
     if (stage_psel_p != NULL) {
-        g_env_light.mpDmPselect = stage_psel_p;
+        g_env_light.stage_pselect_info = stage_psel_p;
     } else {
-        g_env_light.mpDmPselect = (stage_pselect_info_class*)dKyd_dmpselect_getp();
+        g_env_light.stage_pselect_info = (stage_pselect_info_class*)dKyd_dmpselect_getp();
     }
 
     if (stage_vrboxcol_p != NULL) {
-        g_env_light.mpDmVrbox = stage_vrboxcol_p;
+        g_env_light.stage_vrboxcol_info = stage_vrboxcol_p;
     } else {
-        g_env_light.mpDmVrbox = (stage_vrboxcol_info_class*)dKyd_dmvrbox_getp();
+        g_env_light.stage_vrboxcol_info = (stage_vrboxcol_info_class*)dKyd_dmvrbox_getp();
     }
 
     plight_init();
@@ -1279,20 +1310,20 @@ static void envcolor_init() {
     darkmist_init();
     bgparts_activelight_init();
 
-    g_env_light.field_0x11c8 = 1.0f;
-    g_env_light.field_0x11cc = 1.0f;
-    g_env_light.field_0x11d0 = 1.0f;
+    g_env_light.unk_0x11c8 = 1.0f;
+    g_env_light.unk_0x11cc = 1.0f;
+    g_env_light.unk_0x11d0 = 1.0f;
     g_env_light.field_0xf2c = 0;
-    g_env_light.mpUndwaterEfModel = NULL;
+    g_env_light.undwater_ef_model = NULL;
     g_env_light.field_0xf34 = 0.0f;
-    g_env_light.mpUndwaterEfHeap = NULL;
+    g_env_light.undwater_ef_heap = NULL;
 
     undwater_init();
     dComIfGs_PolyDamageOff_Set(0);
 
-    g_env_light.field_0x98c = dComIfGp_roomControl_getStayNo();
-    g_env_light.mIsBlure = 0;
-    g_env_light.field_0x12fb = 0;
+    g_env_light.player_room_no = dComIfGp_roomControl_getStayNo();
+    g_env_light.is_blure = 0;
+    g_env_light.using_time_control_tag = 0;
     g_env_light.field_0x1300 = -1;
     g_env_light.field_0x1302 = -1;
     g_env_light.mWaterSurfaceShineRate = 1.0f;
@@ -1301,32 +1332,32 @@ static void envcolor_init() {
     if (stage_time >= 0) {
         dComIfGs_setTime(stage_time * 15.0f);
     }
-    g_env_light.mTimeSpeed = 0.012f;
+    g_env_light.time_change_rate = 0.012f;
 
-    memset(&g_env_light.mMoyaSE, 0, 0x10);
+    memset(&g_env_light.moya_se, 0, 0x10);
 }
 
 /* 8019F264-8019F2E8 199BA4 0084+00 1/1 1/1 0/0 .text            dKy_clear_game_init__Fv */
 void dKy_clear_game_init() {
     dKy_actor_addcol_set(0, 0, 0, 0.0f);
 
-    g_env_light.mSunPos.x = 1.0f;
-    g_env_light.mSunPos.y = 0.0f;
-    g_env_light.mSunPos.z = 0.0f;
+    g_env_light.sun_pos.x = 1.0f;
+    g_env_light.sun_pos.y = 0.0f;
+    g_env_light.sun_pos.z = 0.0f;
 
-    g_env_light.mMoonPos.x = -1.0f;
-    g_env_light.mMoonPos.y = 0.0f;
-    g_env_light.mMoonPos.z = 0.0f;
+    g_env_light.moon_pos.x = -1.0f;
+    g_env_light.moon_pos.y = 0.0f;
+    g_env_light.moon_pos.z = 0.0f;
 
-    g_env_light.mNexttime = -1.0f;
-    g_env_light.mTime = -1.0f;
-    g_env_light.mDarkDaytime = 120.0f;
+    g_env_light.nexttime = -1.0f;
+    g_env_light.old_time = -1.0f;
+    g_env_light.dark_daytime = 120.0f;
 
-    g_env_light.mDarktimeWeek = 0;
-    g_env_light.mPondSeason = 0;
+    g_env_light.darktime_week = 0;
+    g_env_light.fishing_hole_season = 0;
     g_env_light.field_0x130a = 0;
     g_env_light.field_0x12cc = 0;
-    g_env_light.field_0x130c = 0;
+    g_env_light.staffroll_next_timer = 0;
 }
 
 /* 8019F2E8-8019F400 199C28 0118+00 1/1 0/0 0/0 .text            __ct__18dScnKy_env_light_cFv */
@@ -1339,57 +1370,57 @@ dScnKy_env_light_c::dScnKy_env_light_c() {
 // NONMATCHING - getTimePass doing s8 check instead of int check
 void dScnKy_env_light_c::setDaytime() {
     mDate = dComIfGs_getDate();
-    mDaytime = dComIfGs_getTime();
+    daytime = dComIfGs_getTime();
 
-    if (field_0x12fb == 0) {
+    if (using_time_control_tag == 0) {
         if (!dKy_darkworld_check()) {
             if (dComIfGp_event_runCheck() == FALSE) {
                 msg_class* msg = dMsgObject_c::getActor();
                 bool temp_r29 = msg == NULL || msg->mode < 2;
 
                 if (dComIfGp_roomControl_getTimePass() && !field_0x130a && temp_r29) {
-                    mDaytime += mTimeSpeed;
+                    daytime += time_change_rate;
 
                     // Stage is Fishing Pond or Hena's Hut
                     if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") ||
                         !strcmp(dComIfGp_getStartStageName(), "R_SP127"))
                     {
-                        f32 current_time = mDaytime;
+                        f32 current_time = daytime;
                         if (current_time >= 300.0f || current_time <= 60.0f) {
-                            mDaytime += mTimeSpeed;
-                            mDaytime += mTimeSpeed;
+                            daytime += time_change_rate;
+                            daytime += time_change_rate;
                         } else if (current_time >= 150.0f && current_time <= 195.0f) {
-                            mDaytime = current_time + mTimeSpeed;
+                            daytime = current_time + time_change_rate;
                         }
                     }
 
-                    if ((u32)mDaytime >= 360.0f) {
-                        mDaytime = 0.0f;
+                    if ((u32)daytime >= 360.0f) {
+                        daytime = 0.0f;
                         mDate++;
                         dKankyo_DayProc();
                     }
                 }
             }
         } else {
-            mDarkDaytime += mTimeSpeed;
-            if ((u32)mDarkDaytime >= 360.0f) {
-                mDarktimeWeek++;
-                mDarkDaytime = 0.0f;
+            dark_daytime += time_change_rate;
+            if ((u32)dark_daytime >= 360.0f) {
+                darktime_week++;
+                dark_daytime = 0.0f;
             }
-            mDaytime = 0.0f;
+            daytime = 0.0f;
         }
     }
 
-    if (mDaytime >= 360.0f) {
-        mDaytime = 0.0f;
+    if (daytime >= 360.0f) {
+        daytime = 0.0f;
     }
 
-    dComIfGs_setTime(mDaytime);
+    dComIfGs_setTime(daytime);
     mDoAud_setHour(dKy_getdaytime_hour());
     mDoAud_setMinute(dKy_getdaytime_minute());
     mDoAud_setWeekday(dKy_get_dayofweek());
     dComIfGs_setDate(mDate);
-    g_env_light.field_0x12fb = 0;
+    g_env_light.using_time_control_tag = 0;
 }
 
 /* 8019F788-8019FA08 19A0C8 0280+00 1/1 0/0 0/0 .text            setSunpos__18dScnKy_env_light_cFv
@@ -1399,7 +1430,7 @@ void dScnKy_env_light_c::setSunpos() {
     cXyz pos;
 
     if (camera_p != NULL && strcmp(dComIfGp_getStartStageName(), "F_SP200") != 0) {
-        f32 sun_time = g_env_light.mDaytime;
+        f32 sun_time = g_env_light.daytime;
         f32 sun_angle;
         f32 moon_time;
         f32 moon_angle;
@@ -1419,7 +1450,7 @@ void dScnKy_env_light_c::setSunpos() {
             }
         }
 
-        moon_time = 180.0f + g_env_light.mDaytime;
+        moon_time = 180.0f + g_env_light.daytime;
         if (moon_time >= 360.0f) {
             moon_time -= 360.0f;
         }
@@ -1443,24 +1474,24 @@ void dScnKy_env_light_c::setSunpos() {
         pos.y = cosf(DEG_TO_RAD(sun_angle)) * 80000.0f;
         pos.z = cosf(DEG_TO_RAD(sun_angle)) * -48000.0f;
 
-        mSunPos.x = camera_p->lookat.eye.x + pos.x;
-        mSunPos.y = camera_p->lookat.eye.y - pos.y;
-        mSunPos.z = camera_p->lookat.eye.z + pos.z;
+        sun_pos.x = camera_p->lookat.eye.x + pos.x;
+        sun_pos.y = camera_p->lookat.eye.y - pos.y;
+        sun_pos.z = camera_p->lookat.eye.z + pos.z;
 
         pos.x = sinf(DEG_TO_RAD(moon_angle)) * 80000.0f;
         pos.y = cosf(DEG_TO_RAD(moon_angle)) * 80000.0f;
         pos.z = cosf(DEG_TO_RAD(moon_angle)) * -48000.0f;
 
-        mMoonPos.x = pos.x;
-        mMoonPos.y = -pos.y;
-        mMoonPos.z = pos.z;
+        moon_pos.x = pos.x;
+        moon_pos.y = -pos.y;
+        moon_pos.z = pos.z;
     }
 }
 
 /* 8019FA08-8019FA10 19A348 0008+00 3/3 5/5 1/1 .text            getDaytime__18dScnKy_env_light_cFv
  */
 f32 dScnKy_env_light_c::getDaytime() {
-    return mDaytime;
+    return daytime;
 }
 
 /* 8019FA10-8019FA3C 19A350 002C+00 2/2 2/2 32/32 .text            dKy_getdaytime_hour__Fv */
@@ -1498,12 +1529,12 @@ int dKy_getDarktime_minute() {
 
 /* 8019FBBC-8019FBCC 19A4FC 0010+00 0/0 0/0 8/8 .text            dKy_getDarktime_week__Fv */
 int dKy_getDarktime_week() {
-    return g_env_light.mDarktimeWeek;
+    return g_env_light.darktime_week;
 }
 
 /* 8019FBCC-8019FBD4 19A50C 0008+00 2/2 0/0 0/0 .text getDarkDaytime__18dScnKy_env_light_cFv */
 f32 dScnKy_env_light_c::getDarkDaytime() {
-    return mDarkDaytime;
+    return dark_daytime;
 }
 
 /* 8019FBD4-801A0340 19A514 076C+00 5/3 0/0 0/0 .text
@@ -1526,11 +1557,12 @@ f32 dScnKy_env_light_c::getDarkDaytime() {
  * @param start_pat_pal_id_p Index into stage Pselect for starting palette
  * @param end_pat_pal_id_p Index into stage Pselect for ending palette
  * @param pattern_ratio_p Ratio in-between previous pattern to the next
- * @param init_timer_p 
+ * @param init_timer_p
  */
 void dScnKy_env_light_c::setLight_palno_get(u8* prev_envr_id_p, u8* next_envr_id_p, u8* prev_pat_p,
-                                            u8* next_pat_p, u8* prev_pal_start_id_p, u8* prev_pal_end_id_p,
-                                            u8* next_pal_start_id_p, u8* next_pal_end_id_p, f32* color_ratio_p,
+                                            u8* next_pat_p, u8* prev_pal_start_id_p,
+                                            u8* prev_pal_end_id_p, u8* next_pal_start_id_p,
+                                            u8* next_pal_end_id_p, f32* color_ratio_p,
                                             int* start_pat_pal_id_p, int* end_pat_pal_id_p,
                                             f32* pattern_ratio_p, u8* init_timer_p) {
     stage_envr_info_class* envr_p;
@@ -1556,63 +1588,65 @@ void dScnKy_env_light_c::setLight_palno_get(u8* prev_envr_id_p, u8* next_envr_id
 
     for (int i = 0; i < 11; i++) {
         // if time of day is not within light schedule range, then don't calculate light color
-        if (!(mDaytime >= mpSchedule[i].startTime && mDaytime <= mpSchedule[i].endTime)) {
+        if (!(daytime >= light_schedule[i].startTime && daytime <= light_schedule[i].endTime)) {
             continue;
         }
 
-        *start_pat_pal_id_p = mpSchedule[i].startTimeLight;
-        *end_pat_pal_id_p = mpSchedule[i].endTimeLight;
-        *color_ratio_p = get_parcent(mpSchedule[i].endTime, mpSchedule[i].startTime, mDaytime);
+        *start_pat_pal_id_p = light_schedule[i].startTimeLight;
+        *end_pat_pal_id_p = light_schedule[i].endTimeLight;
+        *color_ratio_p = get_parcent(light_schedule[i].endTime, light_schedule[i].startTime, daytime);
 
-        envr_p = &g_env_light.mpDmEnvr[*prev_envr_id_p];
+        envr_p = &g_env_light.stage_envr_info[*prev_envr_id_p];
         switch (*prev_pat_p) {
         case 0:
-            psel_idx = envr_p->m_pselectID[0];
+            psel_idx = envr_p->pselect_id[0];
             break;
         case 1:
-            psel_idx = envr_p->m_pselectID[1];
+            psel_idx = envr_p->pselect_id[1];
             break;
         case 2:
-            psel_idx = envr_p->m_pselectID[2];
+            psel_idx = envr_p->pselect_id[2];
             break;
         case 3:
-            psel_idx = envr_p->m_pselectID[3];
+            psel_idx = envr_p->pselect_id[3];
             break;
         case 4:
-            psel_idx = envr_p->m_pselectID[4];
+            psel_idx = envr_p->pselect_id[4];
             break;
         case 5:
-            psel_idx = envr_p->m_pselectID[5];
+            psel_idx = envr_p->pselect_id[5];
             break;
         case 6:
-            psel_idx = envr_p->m_pselectID[6];
+            psel_idx = envr_p->pselect_id[6];
             break;
         case 7:
-            psel_idx = envr_p->m_pselectID[7];
+            psel_idx = envr_p->pselect_id[7];
             break;
         default:
             if (*prev_pat_p > 7 && *prev_pat_p < 64) {
-                psel_idx = envr_p->m_pselectID[*prev_pat_p];
+                psel_idx = envr_p->pselect_id[*prev_pat_p];
             }
             break;
         }
 
         // use a specific palette for underwater (except during morpheel and zant fight)
-        if (g_env_light.mCameraInWater && strcmp(dComIfGp_getStartStageName(), "D_MN08D") != 0
-            && strcmp(dComIfGp_getStartStageName(), "D_MN01A") != 0)
+        if (g_env_light.camera_water_in_status &&
+            strcmp(dComIfGp_getStartStageName(), "D_MN08D") != 0 &&
+            strcmp(dComIfGp_getStartStageName(), "D_MN01A") != 0)
         {
             if (g_env_light.wether_pat1 == 0) {
-                psel_idx = envr_p->m_pselectID[8];
+                psel_idx = envr_p->pselect_id[8];
             } else {
-                psel_idx = envr_p->m_pselectID[9];
+                psel_idx = envr_p->pselect_id[9];
             }
         }
         // use a specific palette for rollgoal (camera eye gets set below 0.0)
-        else if (strcmp(dComIfGp_getStartStageName(), "R_SP127") == 0) {
+        else if (strcmp(dComIfGp_getStartStageName(), "R_SP127") == 0)
+        {
             camera_class* camera_p = dComIfGp_getCamera(0);
 
             if (camera_p != NULL && camera_p->lookat.eye.y < 0.0f) {
-                psel_idx = envr_p->m_pselectID[10];
+                psel_idx = envr_p->pselect_id[10];
             }
         }
 
@@ -1620,78 +1654,78 @@ void dScnKy_env_light_c::setLight_palno_get(u8* prev_envr_id_p, u8* next_envr_id
             psel_idx = 0;
         }
 
-        stage_pselect_info_class* pselect_p = &g_env_light.mpDmPselect[psel_idx];
+        stage_pselect_info_class* pselect_p = &g_env_light.stage_pselect_info[psel_idx];
         switch (*start_pat_pal_id_p) {
         case 0:
-            *prev_pal_start_id_p = pselect_p->mPalIdx[0];
+            *prev_pal_start_id_p = pselect_p->palette_id[0];
             break;
         case 1:
-            *prev_pal_start_id_p = pselect_p->mPalIdx[1];
+            *prev_pal_start_id_p = pselect_p->palette_id[1];
             break;
         case 2:
-            *prev_pal_start_id_p = pselect_p->mPalIdx[2];
+            *prev_pal_start_id_p = pselect_p->palette_id[2];
             break;
         case 3:
-            *prev_pal_start_id_p = pselect_p->mPalIdx[3];
+            *prev_pal_start_id_p = pselect_p->palette_id[3];
             break;
         case 4:
-            *prev_pal_start_id_p = pselect_p->mPalIdx[4];
+            *prev_pal_start_id_p = pselect_p->palette_id[4];
             break;
         case 5:
-            *prev_pal_start_id_p = pselect_p->mPalIdx[5];
+            *prev_pal_start_id_p = pselect_p->palette_id[5];
             break;
         }
 
         switch (*end_pat_pal_id_p) {
         case 0:
-            *prev_pal_end_id_p = pselect_p->mPalIdx[0];
+            *prev_pal_end_id_p = pselect_p->palette_id[0];
             break;
         case 1:
-            *prev_pal_end_id_p = pselect_p->mPalIdx[1];
+            *prev_pal_end_id_p = pselect_p->palette_id[1];
             break;
         case 2:
-            *prev_pal_end_id_p = pselect_p->mPalIdx[2];
+            *prev_pal_end_id_p = pselect_p->palette_id[2];
             break;
         case 3:
-            *prev_pal_end_id_p = pselect_p->mPalIdx[3];
+            *prev_pal_end_id_p = pselect_p->palette_id[3];
             break;
         case 4:
-            *prev_pal_end_id_p = pselect_p->mPalIdx[4];
+            *prev_pal_end_id_p = pselect_p->palette_id[4];
             break;
         case 5:
-            *prev_pal_end_id_p = pselect_p->mPalIdx[5];
+            *prev_pal_end_id_p = pselect_p->palette_id[5];
             break;
         }
 
-        envr_p = &g_env_light.mpDmEnvr[*next_envr_id_p];
+        envr_p = &g_env_light.stage_envr_info[*next_envr_id_p];
         switch (*next_pat_p) {
         case 0:
-            psel_idx = envr_p->m_pselectID[0];
+            psel_idx = envr_p->pselect_id[0];
             break;
         case 1:
-            psel_idx = envr_p->m_pselectID[1];
+            psel_idx = envr_p->pselect_id[1];
             break;
         case 2:
-            psel_idx = envr_p->m_pselectID[2];
+            psel_idx = envr_p->pselect_id[2];
             break;
         case 3:
-            psel_idx = envr_p->m_pselectID[3];
+            psel_idx = envr_p->pselect_id[3];
             break;
         case 4:
-            psel_idx = envr_p->m_pselectID[4];
+            psel_idx = envr_p->pselect_id[4];
             break;
         case 5:
-            psel_idx = envr_p->m_pselectID[5];
+            psel_idx = envr_p->pselect_id[5];
             break;
         case 6:
-            psel_idx = envr_p->m_pselectID[6];
+            psel_idx = envr_p->pselect_id[6];
             break;
         case 7:
-            psel_idx = envr_p->m_pselectID[7];
+            psel_idx = envr_p->pselect_id[7];
             break;
         default:
             if (*next_pat_p > 7 && *next_pat_p < 64) {
-                psel_idx = envr_p->m_pselectID[*next_pat_p];
+                psel_idx = envr_p->pselect_id[*next_pat_p];
             }
             break;
         }
@@ -1700,19 +1734,20 @@ void dScnKy_env_light_c::setLight_palno_get(u8* prev_envr_id_p, u8* next_envr_id
             psel_idx = 0;
         }
 
-        pselect_p = &g_env_light.mpDmPselect[psel_idx];
+        pselect_p = &g_env_light.stage_pselect_info[psel_idx];
         if (*prev_envr_id_p != *next_envr_id_p || *prev_pat_p != *next_pat_p) {
-            if (pselect_p->mChangeRate < (1.0f / 30)) {
-                pselect_p->mChangeRate = (1.0f / 30);
+            if (pselect_p->change_rate < (1.0f / 30)) {
+                pselect_p->change_rate = (1.0f / 30);
             }
 
             if (g_env_light.mColPatMode == 0) {
-                if (pselect_p->mChangeRate > 0.0f) {
-                    *pattern_ratio_p += (1.0f / 30) / pselect_p->mChangeRate;
+                if (pselect_p->change_rate > 0.0f) {
+                    *pattern_ratio_p += (1.0f / 30) / pselect_p->change_rate;
                 }
 
                 // pattern change rate is faster in hyrule field
-                if (strcmp(dComIfGp_getStartStageName(), "F_SP121") == 0 && *prev_pat_p == *next_pat_p)
+                if (strcmp(dComIfGp_getStartStageName(), "F_SP121") == 0 &&
+                    *prev_pat_p == *next_pat_p)
                 {
                     *pattern_ratio_p += (1.0f / 15);
                 }
@@ -1726,63 +1761,65 @@ void dScnKy_env_light_c::setLight_palno_get(u8* prev_envr_id_p, u8* next_envr_id
         }
 
         // use a specific palette for underwater (except during morpheel and zant fight)
-        if (g_env_light.mCameraInWater && strcmp(dComIfGp_getStartStageName(), "D_MN08D") != 0
-            && strcmp(dComIfGp_getStartStageName(), "D_MN01A") != 0)
+        if (g_env_light.camera_water_in_status &&
+            strcmp(dComIfGp_getStartStageName(), "D_MN08D") != 0 &&
+            strcmp(dComIfGp_getStartStageName(), "D_MN01A") != 0)
         {
             if (g_env_light.wether_pat1 == 0) {
-                pselect_p = &g_env_light.mpDmPselect[envr_p->m_pselectID[8]];
+                pselect_p = &g_env_light.stage_pselect_info[envr_p->pselect_id[8]];
             } else {
-                pselect_p = &g_env_light.mpDmPselect[envr_p->m_pselectID[9]];
+                pselect_p = &g_env_light.stage_pselect_info[envr_p->pselect_id[9]];
             }
         }
         // use a specific palette for rollgoal (camera eye gets set below 0.0)
-        else if (strcmp(dComIfGp_getStartStageName(), "R_SP127") == 0) {
+        else if (strcmp(dComIfGp_getStartStageName(), "R_SP127") == 0)
+        {
             camera_class* camera_p = dComIfGp_getCamera(0);
 
             if (camera_p != NULL && camera_p->lookat.eye.y < 0.0f) {
-                pselect_p = &g_env_light.mpDmPselect[envr_p->m_pselectID[10]];
+                pselect_p = &g_env_light.stage_pselect_info[envr_p->pselect_id[10]];
             }
         }
 
         switch (*start_pat_pal_id_p) {
         case 0:
-            *next_pal_start_id_p = pselect_p->mPalIdx[0];
+            *next_pal_start_id_p = pselect_p->palette_id[0];
             break;
         case 1:
-            *next_pal_start_id_p = pselect_p->mPalIdx[1];
+            *next_pal_start_id_p = pselect_p->palette_id[1];
             break;
         case 2:
-            *next_pal_start_id_p = pselect_p->mPalIdx[2];
+            *next_pal_start_id_p = pselect_p->palette_id[2];
             break;
         case 3:
-            *next_pal_start_id_p = pselect_p->mPalIdx[3];
+            *next_pal_start_id_p = pselect_p->palette_id[3];
             break;
         case 4:
-            *next_pal_start_id_p = pselect_p->mPalIdx[4];
+            *next_pal_start_id_p = pselect_p->palette_id[4];
             break;
         case 5:
-            *next_pal_start_id_p = pselect_p->mPalIdx[5];
+            *next_pal_start_id_p = pselect_p->palette_id[5];
             break;
         }
 
         switch (*end_pat_pal_id_p) {
         case 0:
-            *next_pal_end_id_p = pselect_p->mPalIdx[0];
+            *next_pal_end_id_p = pselect_p->palette_id[0];
             break;
         case 1:
-            *next_pal_end_id_p = pselect_p->mPalIdx[1];
+            *next_pal_end_id_p = pselect_p->palette_id[1];
             break;
         case 2:
-            *next_pal_end_id_p = pselect_p->mPalIdx[2];
+            *next_pal_end_id_p = pselect_p->palette_id[2];
             break;
         case 3:
-            *next_pal_end_id_p = pselect_p->mPalIdx[3];
+            *next_pal_end_id_p = pselect_p->palette_id[3];
             break;
         case 4:
-            *next_pal_end_id_p = pselect_p->mPalIdx[4];
+            *next_pal_end_id_p = pselect_p->palette_id[4];
             break;
         case 5:
-            *next_pal_end_id_p = pselect_p->mPalIdx[5];
+            *next_pal_end_id_p = pselect_p->palette_id[5];
             break;
         }
         break;
@@ -1812,12 +1849,15 @@ void dKy_calc_color_set(GXColorS10* out_color_p, color_RGB_class* color_a_start_
                         color_RGB_class* color_b_start_p, color_RGB_class* color_a_end_p,
                         color_RGB_class* color_b_end_p, f32 color_ratio, f32 blend_ratio,
                         GXColorS10 add_col, f32 scale) {
-    out_color_p->r = kankyo_color_ratio_set(color_a_start_p->r, color_a_end_p->r, color_ratio, color_b_start_p->r,
-                                            color_b_end_p->r, blend_ratio, add_col.r, scale);
-    out_color_p->g = kankyo_color_ratio_set(color_a_start_p->g, color_a_end_p->g, color_ratio, color_b_start_p->g,
-                                            color_b_end_p->g, blend_ratio, add_col.g, scale);
-    out_color_p->b = kankyo_color_ratio_set(color_a_start_p->b, color_a_end_p->b, color_ratio, color_b_start_p->b,
-                                            color_b_end_p->b, blend_ratio, add_col.b, scale);
+    out_color_p->r =
+        kankyo_color_ratio_set(color_a_start_p->r, color_a_end_p->r, color_ratio,
+                               color_b_start_p->r, color_b_end_p->r, blend_ratio, add_col.r, scale);
+    out_color_p->g =
+        kankyo_color_ratio_set(color_a_start_p->g, color_a_end_p->g, color_ratio,
+                               color_b_start_p->g, color_b_end_p->g, blend_ratio, add_col.g, scale);
+    out_color_p->b =
+        kankyo_color_ratio_set(color_a_start_p->b, color_a_end_p->b, color_ratio,
+                               color_b_start_p->b, color_b_end_p->b, blend_ratio, add_col.b, scale);
 }
 
 inline bool checkZoraWearFlg() {
@@ -1826,7 +1866,7 @@ inline bool checkZoraWearFlg() {
 
 /* 801A040C-801A133C 19AD4C 0F30+00 1/1 0/0 0/0 .text            setLight__18dScnKy_env_light_cFv */
 void dScnKy_env_light_c::setLight() {
-    u8* init_timer = &g_env_light.mInitAnmTimer;
+    u8* init_timer = &g_env_light.light_init_timer;
     camera_class* camera_p = dComIfGp_getCamera(0);
 
     GXColorS10 add_col;
@@ -1836,7 +1876,7 @@ void dScnKy_env_light_c::setLight() {
     add_col.a = 0;
 
     if (camera_p != NULL) {
-        if (g_env_light.mCameraInWater) {
+        if (g_env_light.camera_water_in_status) {
             dBgS_CamGndChk_Wtr camchk;
             cXyz chkpos;
 
@@ -1861,115 +1901,121 @@ void dScnKy_env_light_c::setLight() {
         f32 color_ratio;
         int start_pat_pal_id;
         int end_pat_pal_id;
-        setLight_palno_get(&g_env_light.PrevCol, &g_env_light.UseCol,
-                           &g_env_light.wether_pat0, &g_env_light.wether_pat1, &prev_pal_start_id, &prev_pal_end_id,
-                           &next_pal_start_id, &next_pal_end_id, &color_ratio, &start_pat_pal_id, &end_pat_pal_id, &g_env_light.pat_ratio,
-                           init_timer);
+        setLight_palno_get(&g_env_light.PrevCol, &g_env_light.UseCol, &g_env_light.wether_pat0,
+                           &g_env_light.wether_pat1, &prev_pal_start_id, &prev_pal_end_id,
+                           &next_pal_start_id, &next_pal_end_id, &color_ratio, &start_pat_pal_id,
+                           &end_pat_pal_id, &g_env_light.pat_ratio, init_timer);
 
         if (prev_pal_start_id == 0xFF) {
-            mActorAmbience.r = 255;
-            mActorAmbience.g = 0;
-            mActorAmbience.b = 0;
+            actor_amb_col.r = 255;
+            actor_amb_col.g = 0;
+            actor_amb_col.b = 0;
 
             for (int i = 0; i < 4; i++) {
-                mTerrainAmbienceBG[i].r = 255;
-                mTerrainAmbienceBG[i].g = 0;
-                mTerrainAmbienceBG[i].b = 0;
-                mTerrainAmbienceBG[i].a = 0;
+                bg_amb_col[i].r = 255;
+                bg_amb_col[i].g = 0;
+                bg_amb_col[i].b = 0;
+                bg_amb_col[i].a = 0;
             }
         } else {
-            stage_palette_info_class* prev_pal_start_p = &g_env_light.mpDmPalet[prev_pal_start_id];
-            stage_palette_info_class* prev_pal_end_p = &g_env_light.mpDmPalet[prev_pal_end_id];
-            stage_palette_info_class* next_pal_start_p = &g_env_light.mpDmPalet[next_pal_start_id];
-            stage_palette_info_class* next_pal_end_p = &g_env_light.mpDmPalet[next_pal_end_id];
+            stage_palette_info_class* prev_pal_start_p = &g_env_light.stage_palette_info[prev_pal_start_id];
+            stage_palette_info_class* prev_pal_end_p = &g_env_light.stage_palette_info[prev_pal_end_id];
+            stage_palette_info_class* next_pal_start_p = &g_env_light.stage_palette_info[next_pal_start_id];
+            stage_palette_info_class* next_pal_end_p = &g_env_light.stage_palette_info[next_pal_end_id];
 
-            dKy_calc_color_set(&mActorAmbience, &prev_pal_start_p->mActorAmbColor, &next_pal_start_p->mActorAmbColor,
-                               &prev_pal_end_p->mActorAmbColor, &next_pal_end_p->mActorAmbColor, color_ratio,
-                               g_env_light.pat_ratio, add_col,
-                               g_env_light.field_0x1210 * (g_env_light.mColActColRatio * g_env_light.mColActColRatio));
+            dKy_calc_color_set(&actor_amb_col, &prev_pal_start_p->actor_amb_col,
+                               &next_pal_start_p->actor_amb_col, &prev_pal_end_p->actor_amb_col,
+                               &next_pal_end_p->actor_amb_col, color_ratio, g_env_light.pat_ratio,
+                               add_col,
+                               g_env_light.field_0x1210 * (g_env_light.now_actcol_ratio * g_env_light.now_actcol_ratio));
 
             for (int i = 0; i < 4; i++) {
                 if (i != 3 || (strcmp(dComIfGp_getStartStageName(), "R_SP127") != 0 &&
                                strcmp(dComIfGp_getStartStageName(), "F_SP127") != 0))
                 {
-                    dKy_calc_color_set(&mTerrainAmbienceBG[i], &prev_pal_start_p->mBgAmbColor[i],
-                                       &next_pal_start_p->mBgAmbColor[i], &prev_pal_end_p->mBgAmbColor[i],
-                                       &next_pal_end_p->mBgAmbColor[i], color_ratio, g_env_light.pat_ratio,
-                                       add_col, g_env_light.mColBgColRatio);
+                    dKy_calc_color_set(&bg_amb_col[i], &prev_pal_start_p->bg_amb_col[i],
+                                       &next_pal_start_p->bg_amb_col[i],
+                                       &prev_pal_end_p->bg_amb_col[i],
+                                       &next_pal_end_p->bg_amb_col[i], color_ratio,
+                                       g_env_light.pat_ratio, add_col, g_env_light.now_bgcol_ratio);
                 }
             }
 
             if (daPy_py_c::checkNowWolfPowerUp()) {
-                dKy_WolfPowerup_AmbCol(&mActorAmbience);
-                dKy_WolfPowerup_BgAmbCol(&mTerrainAmbienceBG[0]);
+                dKy_WolfPowerup_AmbCol(&actor_amb_col);
+                dKy_WolfPowerup_BgAmbCol(&bg_amb_col[0]);
             }
 
-            mTerrainAmbienceBG[1].a = (u8)kankyo_color_ratio_set(
-                prev_pal_start_p->mBgAmbColor1A, prev_pal_end_p->mBgAmbColor1A, color_ratio, next_pal_start_p->mBgAmbColor1A,
-                next_pal_end_p->mBgAmbColor1A, g_env_light.pat_ratio, 0, 1.0f);
-            mTerrainAmbienceBG[2].a = (u8)kankyo_color_ratio_set(
-                prev_pal_start_p->mBgAmbColor2A, prev_pal_end_p->mBgAmbColor2A, color_ratio, next_pal_start_p->mBgAmbColor2A,
-                next_pal_end_p->mBgAmbColor2A, g_env_light.pat_ratio, 0, 1.0f);
-            mTerrainAmbienceBG[3].a = (u8)kankyo_color_ratio_set(
-                prev_pal_start_p->mBgAmbColor3A, prev_pal_end_p->mBgAmbColor3A, color_ratio, next_pal_start_p->mBgAmbColor3A,
-                next_pal_end_p->mBgAmbColor3A, g_env_light.pat_ratio, 0, 1.0f);
+            bg_amb_col[1].a = (u8)kankyo_color_ratio_set(
+                prev_pal_start_p->BG1_amb_alpha, prev_pal_end_p->BG1_amb_alpha, color_ratio,
+                next_pal_start_p->BG1_amb_alpha, next_pal_end_p->BG1_amb_alpha,
+                g_env_light.pat_ratio, 0, 1.0f);
+            bg_amb_col[2].a = (u8)kankyo_color_ratio_set(
+                prev_pal_start_p->BG2_amb_alpha, prev_pal_end_p->BG2_amb_alpha, color_ratio,
+                next_pal_start_p->BG2_amb_alpha, next_pal_end_p->BG2_amb_alpha,
+                g_env_light.pat_ratio, 0, 1.0f);
+            bg_amb_col[3].a = (u8)kankyo_color_ratio_set(
+                prev_pal_start_p->BG3_amb_alpha, prev_pal_end_p->BG3_amb_alpha, color_ratio,
+                next_pal_start_p->BG3_amb_alpha, next_pal_end_p->BG3_amb_alpha,
+                g_env_light.pat_ratio, 0, 1.0f);
 
             s16 bg_light_inf = kankyo_color_ratio_set(
-                prev_pal_start_p->mTerrainLightInfluence, prev_pal_end_p->mTerrainLightInfluence, color_ratio,
-                next_pal_start_p->mTerrainLightInfluence, next_pal_end_p->mTerrainLightInfluence,
-                g_env_light.pat_ratio, 0, 1.0f);
-            mPaletteTerrainLightEffect = bg_light_inf * 0.01f;
-            if (mPaletteTerrainLightEffect > 2.0f) {
-                mPaletteTerrainLightEffect = 1.0f;
+                prev_pal_start_p->bg_light_influence, prev_pal_end_p->bg_light_influence,
+                color_ratio, next_pal_start_p->bg_light_influence,
+                next_pal_end_p->bg_light_influence, g_env_light.pat_ratio, 0, 1.0f);
+            bg_light_influence = bg_light_inf * 0.01f;
+            if (bg_light_influence > 2.0f) {
+                bg_light_influence = 1.0f;
             }
 
             mFogDensity = kankyo_color_ratio_set(
-                prev_pal_start_p->mCloudShadowDensity, prev_pal_end_p->mCloudShadowDensity, color_ratio,
-                next_pal_start_p->mCloudShadowDensity, next_pal_end_p->mCloudShadowDensity,
-                g_env_light.pat_ratio, 0, 1.0f);
+                prev_pal_start_p->cloud_shadow_density, prev_pal_end_p->cloud_shadow_density,
+                color_ratio, next_pal_start_p->cloud_shadow_density,
+                next_pal_end_p->cloud_shadow_density, g_env_light.pat_ratio, 0, 1.0f);
             if (daPy_py_c::checkNowWolfPowerUp()) {
                 mFogDensity = -1;
             }
 
             for (int i = 0; i < 6; i++) {
-                dKy_calc_color_set(&field_0x1128[i], &prev_pal_start_p->mPlightColor[i],
-                                   &next_pal_start_p->mPlightColor[i], &prev_pal_end_p->mPlightColor[i],
-                                   &next_pal_end_p->mPlightColor[i], color_ratio, g_env_light.pat_ratio,
-                                   add_col, g_env_light.mColBgColRatio);
+                dKy_calc_color_set(&dungeonlight_col[i], &prev_pal_start_p->plight_col[i],
+                                   &next_pal_start_p->plight_col[i], &prev_pal_end_p->plight_col[i],
+                                   &next_pal_end_p->plight_col[i], color_ratio,
+                                   g_env_light.pat_ratio, add_col, g_env_light.now_bgcol_ratio);
 
                 if (daPy_py_c::checkNowWolfPowerUp()) {
-                    field_0x1128[i].r = 0;
-                    field_0x1128[i].g = 0;
-                    field_0x1128[i].b = 0;
+                    dungeonlight_col[i].r = 0;
+                    dungeonlight_col[i].g = 0;
+                    dungeonlight_col[i].b = 0;
                 }
 
-                g_env_light.mDungeonLights[i].mColor.r = field_0x1128[i].r;
-                g_env_light.mDungeonLights[i].mColor.g = field_0x1128[i].g;
-                g_env_light.mDungeonLights[i].mColor.b = field_0x1128[i].b;
+                g_env_light.dungeonlight[i].mColor.r = dungeonlight_col[i].r;
+                g_env_light.dungeonlight[i].mColor.g = dungeonlight_col[i].g;
+                g_env_light.dungeonlight[i].mColor.b = dungeonlight_col[i].b;
             }
 
-            dKy_calc_color_set(&mFogColor, &prev_pal_start_p->mFogColor, &next_pal_start_p->mFogColor,
-                               &prev_pal_end_p->mFogColor, &next_pal_end_p->mFogColor, color_ratio,
-                               g_env_light.pat_ratio, mFogAddCol, g_env_light.mColFogColRatio);
+            dKy_calc_color_set(&fog_col, &prev_pal_start_p->fog_col, &next_pal_start_p->fog_col,
+                               &prev_pal_end_p->fog_col, &next_pal_end_p->fog_col, color_ratio,
+                               g_env_light.pat_ratio, addcol_fog, g_env_light.now_fogcol_ratio);
             mFogNear = float_kankyo_color_ratio_set(
-                prev_pal_start_p->mFogStartZ, prev_pal_end_p->mFogStartZ, color_ratio, next_pal_start_p->mFogStartZ,
-                next_pal_end_p->mFogStartZ, g_env_light.pat_ratio, g_env_light.field_0x11ec,
-                g_env_light.field_0x11f4);
+                prev_pal_start_p->fog_start_z, prev_pal_end_p->fog_start_z, color_ratio,
+                next_pal_start_p->fog_start_z, next_pal_end_p->fog_start_z, g_env_light.pat_ratio,
+                g_env_light.field_0x11ec, g_env_light.field_0x11f4);
             mFogFar = float_kankyo_color_ratio_set(
-                prev_pal_start_p->mFogEndZ, prev_pal_end_p->mFogEndZ, color_ratio, next_pal_start_p->mFogEndZ, next_pal_end_p->mFogEndZ,
-                g_env_light.pat_ratio, g_env_light.field_0x11f0, g_env_light.field_0x11f4);
+                prev_pal_start_p->fog_end_z, prev_pal_end_p->fog_end_z, color_ratio,
+                next_pal_start_p->fog_end_z, next_pal_end_p->fog_end_z, g_env_light.pat_ratio,
+                g_env_light.field_0x11f0, g_env_light.field_0x11f4);
 
             if (daPy_py_c::checkNowWolfPowerUp()) {
-                mFogColor.r = 0;
-                mFogColor.g = 0;
-                mFogColor.b = 0;
+                fog_col.r = 0;
+                fog_col.g = 0;
+                fog_col.b = 0;
                 dKy_WolfPowerup_FogNearFar(&mFogNear, &mFogFar);
             }
 
-            u8 prev_bloom_start_id = prev_pal_start_p->mBloomTblIdx;
-            u8 next_bloom_start_id = next_pal_start_p->mBloomTblIdx;
-            u8 prev_bloom_end_id = prev_pal_end_p->mBloomTblIdx;
-            u8 next_bloom_end_id = next_pal_end_p->mBloomTblIdx;
+            u8 prev_bloom_start_id = prev_pal_start_p->bloom_tbl_id;
+            u8 next_bloom_start_id = next_pal_start_p->bloom_tbl_id;
+            u8 prev_bloom_end_id = prev_pal_end_p->bloom_tbl_id;
+            u8 next_bloom_end_id = next_pal_end_p->bloom_tbl_id;
 
             if (daPy_py_c::checkNowWolfPowerUp()) {
                 next_bloom_end_id = 3;
@@ -1997,14 +2043,13 @@ void dScnKy_env_light_c::setLight() {
             bloomInf3_p = dKyd_BloomInf_tbl_getp(next_bloom_end_id);
 
             u8 bloom_point = kankyo_color_ratio_set(
-                bloomInf0_p->mThreshold, bloomInf1_p->mThreshold, color_ratio, bloomInf2_p->mThreshold,
-                bloomInf3_p->mThreshold, g_env_light.pat_ratio, 0, 1.0f);
+                bloomInf0_p->mThreshold, bloomInf1_p->mThreshold, color_ratio,
+                bloomInf2_p->mThreshold, bloomInf3_p->mThreshold, g_env_light.pat_ratio, 0, 1.0f);
             mDoGph_gInf_c::getBloom()->setPoint(bloom_point);
 
             u8 blure_size = (u8)kankyo_color_ratio_set(
                 bloomInf0_p->mBlurAmount, bloomInf1_p->mBlurAmount, color_ratio,
-                bloomInf2_p->mBlurAmount, bloomInf3_p->mBlurAmount, g_env_light.pat_ratio, 0,
-                1.0f);
+                bloomInf2_p->mBlurAmount, bloomInf3_p->mBlurAmount, g_env_light.pat_ratio, 0, 1.0f);
 
             if (dKy_darkworld_check()) {
                 static s16 S_fuwan_sin;
@@ -2021,19 +2066,19 @@ void dScnKy_env_light_c::setLight() {
                 bloomInf3_p->mDensity, g_env_light.pat_ratio, 0, 1.0f));
 
             GXColor bloom_blend_col;
-            bloom_blend_col.r = kankyo_color_ratio_set(bloomInf0_p->mColorR, bloomInf1_p->mColorR, color_ratio,
-                                                bloomInf2_p->mColorR, bloomInf3_p->mColorR,
-                                                g_env_light.pat_ratio, 0, 1.0f);
-            bloom_blend_col.g = kankyo_color_ratio_set(bloomInf0_p->mColorG, bloomInf1_p->mColorG, color_ratio,
-                                                bloomInf2_p->mColorG, bloomInf3_p->mColorG,
-                                                g_env_light.pat_ratio, 0, 1.0f);
-            bloom_blend_col.b = kankyo_color_ratio_set(bloomInf0_p->mColorB, bloomInf1_p->mColorB, color_ratio,
-                                                bloomInf2_p->mColorB, bloomInf3_p->mColorB,
-                                                g_env_light.pat_ratio, 0, 1.0f);
-            bloom_blend_col.a = kankyo_color_ratio_set(
-                bloomInf0_p->mOrigDensity, bloomInf1_p->mOrigDensity, color_ratio,
-                bloomInf2_p->mOrigDensity, bloomInf3_p->mOrigDensity, g_env_light.pat_ratio, 0,
-                1.0f);
+            bloom_blend_col.r = kankyo_color_ratio_set(
+                bloomInf0_p->mColorR, bloomInf1_p->mColorR, color_ratio, bloomInf2_p->mColorR,
+                bloomInf3_p->mColorR, g_env_light.pat_ratio, 0, 1.0f);
+            bloom_blend_col.g = kankyo_color_ratio_set(
+                bloomInf0_p->mColorG, bloomInf1_p->mColorG, color_ratio, bloomInf2_p->mColorG,
+                bloomInf3_p->mColorG, g_env_light.pat_ratio, 0, 1.0f);
+            bloom_blend_col.b = kankyo_color_ratio_set(
+                bloomInf0_p->mColorB, bloomInf1_p->mColorB, color_ratio, bloomInf2_p->mColorB,
+                bloomInf3_p->mColorB, g_env_light.pat_ratio, 0, 1.0f);
+            bloom_blend_col.a =
+                kankyo_color_ratio_set(bloomInf0_p->mOrigDensity, bloomInf1_p->mOrigDensity,
+                                       color_ratio, bloomInf2_p->mOrigDensity,
+                                       bloomInf3_p->mOrigDensity, g_env_light.pat_ratio, 0, 1.0f);
             mDoGph_gInf_c::getBloom()->setBlendColor(bloom_blend_col);
 
             if (g_env_light.field_0x12fc >= 0) {
@@ -2124,129 +2169,150 @@ void dScnKy_env_light_c::setLight() {
                 field_0x123c = 0.55f;
             }
 
-            if (g_env_light.mInitAnmTimer != 0) {
+            if (g_env_light.light_init_timer != 0) {
                 field_0x1238 = var_f30;
             } else {
                 cLib_addCalc(&field_0x1238, var_f30, 0.05f, 0.005f, 0.000001f);
             }
 
-            stage_vrboxcol_info_class* prev_vrboxcol_start_p = &g_env_light.mpDmVrbox[prev_pal_start_p->mVirtIdx];
-            stage_vrboxcol_info_class* prev_vrboxcol_end_p = &g_env_light.mpDmVrbox[prev_pal_end_p->mVirtIdx];
-            stage_vrboxcol_info_class* next_vrboxcol_start_p = &g_env_light.mpDmVrbox[next_pal_start_p->mVirtIdx];
-            stage_vrboxcol_info_class* next_vrboxcol_end_p = &g_env_light.mpDmVrbox[next_pal_end_p->mVirtIdx];
+            stage_vrboxcol_info_class* prev_vrboxcol_start_p = &g_env_light.stage_vrboxcol_info[prev_pal_start_p->vrboxcol_id];
+            stage_vrboxcol_info_class* prev_vrboxcol_end_p = &g_env_light.stage_vrboxcol_info[prev_pal_end_p->vrboxcol_id];
+            stage_vrboxcol_info_class* next_vrboxcol_start_p = &g_env_light.stage_vrboxcol_info[next_pal_start_p->vrboxcol_id];
+            stage_vrboxcol_info_class* next_vrboxcol_end_p = &g_env_light.stage_vrboxcol_info[next_pal_end_p->vrboxcol_id];
 
-            mVrSkyCol.r = kankyo_color_ratio_set(
-                prev_vrboxcol_start_p->field_0x0.r, prev_vrboxcol_end_p->field_0x0.r, color_ratio, next_vrboxcol_start_p->field_0x0.r,
-                next_vrboxcol_end_p->field_0x0.r, g_env_light.pat_ratio, mVrboxAddcolSky0.r,
-                g_env_light.mColVrboxSoraColRatio * g_env_light.field_0x11c8);
-            mVrSkyCol.g = kankyo_color_ratio_set(
-                prev_vrboxcol_start_p->field_0x0.g, prev_vrboxcol_end_p->field_0x0.g, color_ratio, next_vrboxcol_start_p->field_0x0.g,
-                next_vrboxcol_end_p->field_0x0.g, g_env_light.pat_ratio, mVrboxAddcolSky0.g,
-                g_env_light.mColVrboxSoraColRatio * g_env_light.field_0x11cc);
-            mVrSkyCol.b = kankyo_color_ratio_set(
-                prev_vrboxcol_start_p->field_0x0.b, prev_vrboxcol_end_p->field_0x0.b, color_ratio, next_vrboxcol_start_p->field_0x0.b,
-                next_vrboxcol_end_p->field_0x0.b, g_env_light.pat_ratio, mVrboxAddcolSky0.b,
-                g_env_light.mColVrboxSoraColRatio * g_env_light.field_0x11d0);
-            mVrSkyCol.a = 255;
+            vrbox_sky_col.r = kankyo_color_ratio_set(
+                prev_vrboxcol_start_p->sky_col.r, prev_vrboxcol_end_p->sky_col.r, color_ratio,
+                next_vrboxcol_start_p->sky_col.r, next_vrboxcol_end_p->sky_col.r,
+                g_env_light.pat_ratio, vrbox_addcol_sky0.r,
+                g_env_light.now_vrboxsoracol_ratio * g_env_light.unk_0x11c8);
+            vrbox_sky_col.g = kankyo_color_ratio_set(
+                prev_vrboxcol_start_p->sky_col.g, prev_vrboxcol_end_p->sky_col.g, color_ratio,
+                next_vrboxcol_start_p->sky_col.g, next_vrboxcol_end_p->sky_col.g,
+                g_env_light.pat_ratio, vrbox_addcol_sky0.g,
+                g_env_light.now_vrboxsoracol_ratio * g_env_light.unk_0x11cc);
+            vrbox_sky_col.b = kankyo_color_ratio_set(
+                prev_vrboxcol_start_p->sky_col.b, prev_vrboxcol_end_p->sky_col.b, color_ratio,
+                next_vrboxcol_start_p->sky_col.b, next_vrboxcol_end_p->sky_col.b,
+                g_env_light.pat_ratio, vrbox_addcol_sky0.b,
+                g_env_light.now_vrboxsoracol_ratio * g_env_light.unk_0x11d0);
+            vrbox_sky_col.a = 255;
 
-            mVrkumoCol.r = kankyo_color_ratio_set(
-                prev_vrboxcol_start_p->field_0x3.r, prev_vrboxcol_end_p->field_0x3.r, color_ratio, next_vrboxcol_start_p->field_0x3.r,
-                next_vrboxcol_end_p->field_0x3.r, g_env_light.pat_ratio, mVrboxAddcolSky0.r,
-                g_env_light.mColVrboxKumocolRatio * g_env_light.field_0x11c8);
-            mVrkumoCol.g = kankyo_color_ratio_set(
-                prev_vrboxcol_start_p->field_0x3.g, prev_vrboxcol_end_p->field_0x3.g, color_ratio, next_vrboxcol_start_p->field_0x3.g,
-                next_vrboxcol_end_p->field_0x3.g, g_env_light.pat_ratio, mVrboxAddcolSky0.g,
-                g_env_light.mColVrboxKumocolRatio * g_env_light.field_0x11cc);
-            mVrkumoCol.b = kankyo_color_ratio_set(
-                prev_vrboxcol_start_p->field_0x3.b, prev_vrboxcol_end_p->field_0x3.b, color_ratio, next_vrboxcol_start_p->field_0x3.b,
-                next_vrboxcol_end_p->field_0x3.b, g_env_light.pat_ratio, mVrboxAddcolSky0.b,
-                g_env_light.mColVrboxKumocolRatio * g_env_light.field_0x11d0);
-            mVrkumoCol.a = kankyo_color_ratio_set(
-                prev_vrboxcol_start_p->field_0x9.a, prev_vrboxcol_end_p->field_0x9.a, color_ratio, next_vrboxcol_start_p->field_0x9.a,
-                next_vrboxcol_end_p->field_0x9.a, g_env_light.pat_ratio, 0, 1.0f);
+            vrbox_kumo_top_col.r = kankyo_color_ratio_set(
+                prev_vrboxcol_start_p->kumo_top_col.r, prev_vrboxcol_end_p->kumo_top_col.r,
+                color_ratio, next_vrboxcol_start_p->kumo_top_col.r,
+                next_vrboxcol_end_p->kumo_top_col.r, g_env_light.pat_ratio, vrbox_addcol_sky0.r,
+                g_env_light.now_vrboxkumocol_ratio * g_env_light.unk_0x11c8);
+            vrbox_kumo_top_col.g = kankyo_color_ratio_set(
+                prev_vrboxcol_start_p->kumo_top_col.g, prev_vrboxcol_end_p->kumo_top_col.g,
+                color_ratio, next_vrboxcol_start_p->kumo_top_col.g,
+                next_vrboxcol_end_p->kumo_top_col.g, g_env_light.pat_ratio, vrbox_addcol_sky0.g,
+                g_env_light.now_vrboxkumocol_ratio * g_env_light.unk_0x11cc);
+            vrbox_kumo_top_col.b = kankyo_color_ratio_set(
+                prev_vrboxcol_start_p->kumo_top_col.b, prev_vrboxcol_end_p->kumo_top_col.b,
+                color_ratio, next_vrboxcol_start_p->kumo_top_col.b,
+                next_vrboxcol_end_p->kumo_top_col.b, g_env_light.pat_ratio, vrbox_addcol_sky0.b,
+                g_env_light.now_vrboxkumocol_ratio * g_env_light.unk_0x11d0);
+            vrbox_kumo_top_col.a = kankyo_color_ratio_set(
+                prev_vrboxcol_start_p->kumo_shadow_col.a, prev_vrboxcol_end_p->kumo_shadow_col.a,
+                color_ratio, next_vrboxcol_start_p->kumo_shadow_col.a,
+                next_vrboxcol_end_p->kumo_shadow_col.a, g_env_light.pat_ratio, 0, 1.0f);
 
-            mVrShitaGumoCol.r = kankyo_color_ratio_set(
-                prev_vrboxcol_start_p->field_0x6.r, prev_vrboxcol_end_p->field_0x6.r, color_ratio, next_vrboxcol_start_p->field_0x6.r,
-                next_vrboxcol_end_p->field_0x6.r, g_env_light.pat_ratio, mVrboxAddcolSky0.r,
-                g_env_light.mColVrboxKumocolRatio * g_env_light.field_0x11c8);
-            mVrShitaGumoCol.g = kankyo_color_ratio_set(
-                prev_vrboxcol_start_p->field_0x6.g, prev_vrboxcol_end_p->field_0x6.g, color_ratio, next_vrboxcol_start_p->field_0x6.g,
-                next_vrboxcol_end_p->field_0x6.g, g_env_light.pat_ratio, mVrboxAddcolSky0.g,
-                g_env_light.mColVrboxKumocolRatio * g_env_light.field_0x11cc);
-            mVrShitaGumoCol.b = kankyo_color_ratio_set(
-                prev_vrboxcol_start_p->field_0x6.b, prev_vrboxcol_end_p->field_0x6.b, color_ratio, next_vrboxcol_start_p->field_0x6.b,
-                next_vrboxcol_end_p->field_0x6.b, g_env_light.pat_ratio, mVrboxAddcolSky0.b,
-                g_env_light.mColVrboxKumocolRatio * g_env_light.field_0x11d0);
+            vrbox_kumo_bottom_col.r = kankyo_color_ratio_set(
+                prev_vrboxcol_start_p->kumo_bottom_col.r, prev_vrboxcol_end_p->kumo_bottom_col.r,
+                color_ratio, next_vrboxcol_start_p->kumo_bottom_col.r,
+                next_vrboxcol_end_p->kumo_bottom_col.r, g_env_light.pat_ratio, vrbox_addcol_sky0.r,
+                g_env_light.now_vrboxkumocol_ratio * g_env_light.unk_0x11c8);
+            vrbox_kumo_bottom_col.g = kankyo_color_ratio_set(
+                prev_vrboxcol_start_p->kumo_bottom_col.g, prev_vrboxcol_end_p->kumo_bottom_col.g,
+                color_ratio, next_vrboxcol_start_p->kumo_bottom_col.g,
+                next_vrboxcol_end_p->kumo_bottom_col.g, g_env_light.pat_ratio, vrbox_addcol_sky0.g,
+                g_env_light.now_vrboxkumocol_ratio * g_env_light.unk_0x11cc);
+            vrbox_kumo_bottom_col.b = kankyo_color_ratio_set(
+                prev_vrboxcol_start_p->kumo_bottom_col.b, prev_vrboxcol_end_p->kumo_bottom_col.b,
+                color_ratio, next_vrboxcol_start_p->kumo_bottom_col.b,
+                next_vrboxcol_end_p->kumo_bottom_col.b, g_env_light.pat_ratio, vrbox_addcol_sky0.b,
+                g_env_light.now_vrboxkumocol_ratio * g_env_light.unk_0x11d0);
 
-            mVrShitaUneiCol.r = kankyo_color_ratio_set(
-                prev_vrboxcol_start_p->field_0x9.r, prev_vrboxcol_end_p->field_0x9.r, color_ratio, next_vrboxcol_start_p->field_0x9.r,
-                next_vrboxcol_end_p->field_0x9.r, g_env_light.pat_ratio, mVrboxAddcolSky0.r,
-                g_env_light.mColVrboxKumocolRatio * g_env_light.field_0x11c8);
-            mVrShitaUneiCol.g = kankyo_color_ratio_set(
-                prev_vrboxcol_start_p->field_0x9.g, prev_vrboxcol_end_p->field_0x9.g, color_ratio, next_vrboxcol_start_p->field_0x9.g,
-                next_vrboxcol_end_p->field_0x9.g, g_env_light.pat_ratio, mVrboxAddcolSky0.g,
-                g_env_light.mColVrboxKumocolRatio * g_env_light.field_0x11cc);
-            mVrShitaUneiCol.b = kankyo_color_ratio_set(
-                prev_vrboxcol_start_p->field_0x9.b, prev_vrboxcol_end_p->field_0x9.b, color_ratio, next_vrboxcol_start_p->field_0x9.b,
-                next_vrboxcol_end_p->field_0x9.b, g_env_light.pat_ratio, mVrboxAddcolSky0.b,
-                g_env_light.mColVrboxKumocolRatio * g_env_light.field_0x11d0);
+            vrbox_kumo_shadow_col.r = kankyo_color_ratio_set(
+                prev_vrboxcol_start_p->kumo_shadow_col.r, prev_vrboxcol_end_p->kumo_shadow_col.r,
+                color_ratio, next_vrboxcol_start_p->kumo_shadow_col.r,
+                next_vrboxcol_end_p->kumo_shadow_col.r, g_env_light.pat_ratio, vrbox_addcol_sky0.r,
+                g_env_light.now_vrboxkumocol_ratio * g_env_light.unk_0x11c8);
+            vrbox_kumo_shadow_col.g = kankyo_color_ratio_set(
+                prev_vrboxcol_start_p->kumo_shadow_col.g, prev_vrboxcol_end_p->kumo_shadow_col.g,
+                color_ratio, next_vrboxcol_start_p->kumo_shadow_col.g,
+                next_vrboxcol_end_p->kumo_shadow_col.g, g_env_light.pat_ratio, vrbox_addcol_sky0.g,
+                g_env_light.now_vrboxkumocol_ratio * g_env_light.unk_0x11cc);
+            vrbox_kumo_shadow_col.b = kankyo_color_ratio_set(
+                prev_vrboxcol_start_p->kumo_shadow_col.b, prev_vrboxcol_end_p->kumo_shadow_col.b,
+                color_ratio, next_vrboxcol_start_p->kumo_shadow_col.b,
+                next_vrboxcol_end_p->kumo_shadow_col.b, g_env_light.pat_ratio, vrbox_addcol_sky0.b,
+                g_env_light.now_vrboxkumocol_ratio * g_env_light.unk_0x11d0);
 
-            mVrKasumiCol.r = kankyo_color_ratio_set(
-                prev_vrboxcol_start_p->field_0xd.r, prev_vrboxcol_end_p->field_0xd.r, color_ratio, next_vrboxcol_start_p->field_0xd.r,
-                next_vrboxcol_end_p->field_0xd.r, g_env_light.pat_ratio, mVrboxAddcolKasumi.r,
-                g_env_light.mColVrboxSoraColRatio * g_env_light.field_0x11c8);
-            mVrKasumiCol.g = kankyo_color_ratio_set(
-                prev_vrboxcol_start_p->field_0xd.g, prev_vrboxcol_end_p->field_0xd.g, color_ratio, next_vrboxcol_start_p->field_0xd.g,
-                next_vrboxcol_end_p->field_0xd.g, g_env_light.pat_ratio, mVrboxAddcolKasumi.g,
-                g_env_light.mColVrboxSoraColRatio * g_env_light.field_0x11cc);
-            mVrKasumiCol.b = kankyo_color_ratio_set(
-                prev_vrboxcol_start_p->field_0xd.b, prev_vrboxcol_end_p->field_0xd.b, color_ratio, next_vrboxcol_start_p->field_0xd.b,
-                next_vrboxcol_end_p->field_0xd.b, g_env_light.pat_ratio, mVrboxAddcolKasumi.b,
-                g_env_light.mColVrboxSoraColRatio * g_env_light.field_0x11d0);
-            mVrKasumiCol.a = kankyo_color_ratio_set(
-                prev_vrboxcol_start_p->field_0xd.a, prev_vrboxcol_end_p->field_0xd.a, color_ratio, next_vrboxcol_start_p->field_0xd.a,
-                next_vrboxcol_end_p->field_0xd.a, g_env_light.pat_ratio, 0, 1.0f);
+            vrbox_kasumi_outer_col.r = kankyo_color_ratio_set(
+                prev_vrboxcol_start_p->kasumi_outer_col.r, prev_vrboxcol_end_p->kasumi_outer_col.r,
+                color_ratio, next_vrboxcol_start_p->kasumi_outer_col.r,
+                next_vrboxcol_end_p->kasumi_outer_col.r, g_env_light.pat_ratio,
+                vrbox_addcol_kasumi.r, g_env_light.now_vrboxsoracol_ratio * g_env_light.unk_0x11c8);
+            vrbox_kasumi_outer_col.g = kankyo_color_ratio_set(
+                prev_vrboxcol_start_p->kasumi_outer_col.g, prev_vrboxcol_end_p->kasumi_outer_col.g,
+                color_ratio, next_vrboxcol_start_p->kasumi_outer_col.g,
+                next_vrboxcol_end_p->kasumi_outer_col.g, g_env_light.pat_ratio,
+                vrbox_addcol_kasumi.g, g_env_light.now_vrboxsoracol_ratio * g_env_light.unk_0x11cc);
+            vrbox_kasumi_outer_col.b = kankyo_color_ratio_set(
+                prev_vrboxcol_start_p->kasumi_outer_col.b, prev_vrboxcol_end_p->kasumi_outer_col.b,
+                color_ratio, next_vrboxcol_start_p->kasumi_outer_col.b,
+                next_vrboxcol_end_p->kasumi_outer_col.b, g_env_light.pat_ratio,
+                vrbox_addcol_kasumi.b, g_env_light.now_vrboxsoracol_ratio * g_env_light.unk_0x11d0);
+            vrbox_kasumi_outer_col.a = kankyo_color_ratio_set(
+                prev_vrboxcol_start_p->kasumi_outer_col.a, prev_vrboxcol_end_p->kasumi_outer_col.a,
+                color_ratio, next_vrboxcol_start_p->kasumi_outer_col.a,
+                next_vrboxcol_end_p->kasumi_outer_col.a, g_env_light.pat_ratio, 0, 1.0f);
 
-            mVrOkuKasumiCol.r = kankyo_color_ratio_set(
-                prev_vrboxcol_start_p->field_0x11.r, prev_vrboxcol_end_p->field_0x11.r, color_ratio, next_vrboxcol_start_p->field_0x11.r,
-                next_vrboxcol_end_p->field_0x11.r, g_env_light.pat_ratio, mVrboxAddcolKasumi.r,
-                g_env_light.mColVrboxSoraColRatio * g_env_light.field_0x11c8);
-            mVrOkuKasumiCol.g = kankyo_color_ratio_set(
-                prev_vrboxcol_start_p->field_0x11.g, prev_vrboxcol_end_p->field_0x11.g, color_ratio, next_vrboxcol_start_p->field_0x11.g,
-                next_vrboxcol_end_p->field_0x11.g, g_env_light.pat_ratio, mVrboxAddcolKasumi.g,
-                g_env_light.mColVrboxSoraColRatio * g_env_light.field_0x11cc);
-            mVrOkuKasumiCol.b = kankyo_color_ratio_set(
-                prev_vrboxcol_start_p->field_0x11.b, prev_vrboxcol_end_p->field_0x11.b, color_ratio, next_vrboxcol_start_p->field_0x11.b,
-                next_vrboxcol_end_p->field_0x11.b, g_env_light.pat_ratio, mVrboxAddcolKasumi.b,
-                g_env_light.mColVrboxSoraColRatio * g_env_light.field_0x11d0);
-            mVrOkuKasumiCol.a = kankyo_color_ratio_set(
-                prev_vrboxcol_start_p->field_0x11.a, prev_vrboxcol_end_p->field_0x11.a, color_ratio, next_vrboxcol_start_p->field_0x11.a,
-                next_vrboxcol_end_p->field_0x11.a, g_env_light.pat_ratio, 0, 1.0f);
+            vrbox_kasumi_inner_col.r = kankyo_color_ratio_set(
+                prev_vrboxcol_start_p->kasumi_inner_col.r, prev_vrboxcol_end_p->kasumi_inner_col.r,
+                color_ratio, next_vrboxcol_start_p->kasumi_inner_col.r,
+                next_vrboxcol_end_p->kasumi_inner_col.r, g_env_light.pat_ratio,
+                vrbox_addcol_kasumi.r, g_env_light.now_vrboxsoracol_ratio * g_env_light.unk_0x11c8);
+            vrbox_kasumi_inner_col.g = kankyo_color_ratio_set(
+                prev_vrboxcol_start_p->kasumi_inner_col.g, prev_vrboxcol_end_p->kasumi_inner_col.g,
+                color_ratio, next_vrboxcol_start_p->kasumi_inner_col.g,
+                next_vrboxcol_end_p->kasumi_inner_col.g, g_env_light.pat_ratio,
+                vrbox_addcol_kasumi.g, g_env_light.now_vrboxsoracol_ratio * g_env_light.unk_0x11cc);
+            vrbox_kasumi_inner_col.b = kankyo_color_ratio_set(
+                prev_vrboxcol_start_p->kasumi_inner_col.b, prev_vrboxcol_end_p->kasumi_inner_col.b,
+                color_ratio, next_vrboxcol_start_p->kasumi_inner_col.b,
+                next_vrboxcol_end_p->kasumi_inner_col.b, g_env_light.pat_ratio,
+                vrbox_addcol_kasumi.b, g_env_light.now_vrboxsoracol_ratio * g_env_light.unk_0x11d0);
+            vrbox_kasumi_inner_col.a = kankyo_color_ratio_set(
+                prev_vrboxcol_start_p->kasumi_inner_col.a, prev_vrboxcol_end_p->kasumi_inner_col.a,
+                color_ratio, next_vrboxcol_start_p->kasumi_inner_col.a,
+                next_vrboxcol_end_p->kasumi_inner_col.a, g_env_light.pat_ratio, 0, 1.0f);
 
             if (daPy_py_c::checkNowWolfPowerUp()) {
-                mVrSkyCol.r = 0;
-                mVrSkyCol.g = 0;
-                mVrSkyCol.b = 0;
+                vrbox_sky_col.r = 0;
+                vrbox_sky_col.g = 0;
+                vrbox_sky_col.b = 0;
 
-                mVrkumoCol.r = 0;
-                mVrkumoCol.g = 0;
-                mVrkumoCol.b = 0;
+                vrbox_kumo_top_col.r = 0;
+                vrbox_kumo_top_col.g = 0;
+                vrbox_kumo_top_col.b = 0;
 
-                mVrShitaGumoCol.r = 0;
-                mVrShitaGumoCol.g = 0;
-                mVrShitaGumoCol.b = 0;
+                vrbox_kumo_bottom_col.r = 0;
+                vrbox_kumo_bottom_col.g = 0;
+                vrbox_kumo_bottom_col.b = 0;
 
-                mVrShitaUneiCol.r = 0;
-                mVrShitaUneiCol.g = 0;
-                mVrShitaUneiCol.b = 0;
+                vrbox_kumo_shadow_col.r = 0;
+                vrbox_kumo_shadow_col.g = 0;
+                vrbox_kumo_shadow_col.b = 0;
 
-                mVrKasumiCol.r = 0;
-                mVrKasumiCol.g = 0;
-                mVrKasumiCol.b = 0;
+                vrbox_kasumi_outer_col.r = 0;
+                vrbox_kasumi_outer_col.g = 0;
+                vrbox_kasumi_outer_col.b = 0;
 
-                mVrOkuKasumiCol.r = 0;
-                mVrOkuKasumiCol.g = 0;
-                mVrOkuKasumiCol.b = 0;
+                vrbox_kasumi_inner_col.r = 0;
+                vrbox_kasumi_inner_col.g = 0;
+                vrbox_kasumi_inner_col.b = 0;
             }
         }
     }
@@ -2272,7 +2338,8 @@ void dScnKy_env_light_c::setLight_bg(dKy_tevstr_c* tevstr_p, GXColorS10* bg_col_
     int end_pat_pal_id;
     int i;
     setLight_palno_get(&tevstr_p->PrevCol, &tevstr_p->UseCol, &tevstr_p->wether_pat0,
-                       &tevstr_p->wether_pat1, &prev_pal_start_id, &prev_pal_end_id, &next_pal_start_id, &next_pal_end_id, &color_ratio, &start_pat_pal_id,
+                       &tevstr_p->wether_pat1, &prev_pal_start_id, &prev_pal_end_id,
+                       &next_pal_start_id, &next_pal_end_id, &color_ratio, &start_pat_pal_id,
                        &end_pat_pal_id, &tevstr_p->pat_ratio, &tevstr_p->mInitTimer);
 
     if (prev_pal_start_id == 0xFF) {
@@ -2282,15 +2349,16 @@ void dScnKy_env_light_c::setLight_bg(dKy_tevstr_c* tevstr_p, GXColorS10* bg_col_
             bg_col_p[i].b = 0;
         }
     } else {
-        stage_palette_info_class* prev_pal_start_p = &g_env_light.mpDmPalet[prev_pal_start_id];
-        stage_palette_info_class* prev_pal_end_p = &g_env_light.mpDmPalet[prev_pal_end_id];
-        stage_palette_info_class* next_pal_start_p = &g_env_light.mpDmPalet[next_pal_start_id];
-        stage_palette_info_class* next_pal_end_p = &g_env_light.mpDmPalet[next_pal_end_id];
+        stage_palette_info_class* prev_pal_start_p = &g_env_light.stage_palette_info[prev_pal_start_id];
+        stage_palette_info_class* prev_pal_end_p = &g_env_light.stage_palette_info[prev_pal_end_id];
+        stage_palette_info_class* next_pal_start_p = &g_env_light.stage_palette_info[next_pal_start_id];
+        stage_palette_info_class* next_pal_end_p = &g_env_light.stage_palette_info[next_pal_end_id];
 
         for (int i = 0; i < 4; i++) {
-            dKy_calc_color_set(&bg_col_p[i], &prev_pal_start_p->mBgAmbColor[i], &next_pal_start_p->mBgAmbColor[i],
-                               &prev_pal_end_p->mBgAmbColor[i], &next_pal_end_p->mBgAmbColor[i], color_ratio,
-                               tevstr_p->pat_ratio, mBgAddColAmb, g_env_light.mColBgColRatio);
+            dKy_calc_color_set(&bg_col_p[i], &prev_pal_start_p->bg_amb_col[i],
+                               &next_pal_start_p->bg_amb_col[i], &prev_pal_end_p->bg_amb_col[i],
+                               &next_pal_end_p->bg_amb_col[i], color_ratio, tevstr_p->pat_ratio,
+                               bg_addcol_amb, g_env_light.now_bgcol_ratio);
         }
 
         if (daPy_py_c::checkNowWolfEyeUp()) {
@@ -2304,9 +2372,10 @@ void dScnKy_env_light_c::setLight_bg(dKy_tevstr_c* tevstr_p, GXColorS10* bg_col_
 
         GXColorS10 plight_colors[6];
         for (i = 0; i < 6; i++) {
-            dKy_calc_color_set(&plight_colors[i], &prev_pal_start_p->mPlightColor[i], &next_pal_start_p->mPlightColor[i],
-                               &prev_pal_end_p->mPlightColor[i], &next_pal_end_p->mPlightColor[i], color_ratio,
-                               tevstr_p->pat_ratio, mBgAddColAmb, g_env_light.mColBgColRatio);
+            dKy_calc_color_set(&plight_colors[i], &prev_pal_start_p->plight_col[i],
+                               &next_pal_start_p->plight_col[i], &prev_pal_end_p->plight_col[i],
+                               &next_pal_end_p->plight_col[i], color_ratio, tevstr_p->pat_ratio,
+                               bg_addcol_amb, g_env_light.now_bgcol_ratio);
 
             if (daPy_py_c::checkNowWolfEyeUp()) {
                 plight_colors[i].r = 0;
@@ -2324,17 +2393,18 @@ void dScnKy_env_light_c::setLight_bg(dKy_tevstr_c* tevstr_p, GXColorS10* bg_col_
             light_info.mColor = dKy_light_influence_col(&light_color, tevstr_p->field_0x374);
         }
 
-        dKy_calc_color_set(fog_col_p, &prev_pal_start_p->mFogColor, &next_pal_start_p->mFogColor, &prev_pal_end_p->mFogColor,
-                           &next_pal_end_p->mFogColor, color_ratio, tevstr_p->pat_ratio, mFogAddCol,
-                           g_env_light.mColFogColRatio);
+        dKy_calc_color_set(fog_col_p, &prev_pal_start_p->fog_col, &next_pal_start_p->fog_col,
+                           &prev_pal_end_p->fog_col, &next_pal_end_p->fog_col, color_ratio,
+                           tevstr_p->pat_ratio, addcol_fog, g_env_light.now_fogcol_ratio);
 
         *fog_near_p = float_kankyo_color_ratio_set(
-            prev_pal_start_p->mFogStartZ, prev_pal_end_p->mFogStartZ, color_ratio, next_pal_start_p->mFogStartZ,
-            next_pal_end_p->mFogStartZ, tevstr_p->pat_ratio, g_env_light.field_0x11ec,
-            g_env_light.field_0x11f4);
+            prev_pal_start_p->fog_start_z, prev_pal_end_p->fog_start_z, color_ratio,
+            next_pal_start_p->fog_start_z, next_pal_end_p->fog_start_z, tevstr_p->pat_ratio,
+            g_env_light.field_0x11ec, g_env_light.field_0x11f4);
         *fog_far_p = float_kankyo_color_ratio_set(
-            prev_pal_start_p->mFogEndZ, prev_pal_end_p->mFogEndZ, color_ratio, next_pal_start_p->mFogEndZ, next_pal_end_p->mFogEndZ,
-            tevstr_p->pat_ratio, g_env_light.field_0x11f0, g_env_light.field_0x11f4);
+            prev_pal_start_p->fog_end_z, prev_pal_end_p->fog_end_z, color_ratio,
+            next_pal_start_p->fog_end_z, next_pal_end_p->fog_end_z, tevstr_p->pat_ratio,
+            g_env_light.field_0x11f0, g_env_light.field_0x11f4);
 
         if (daPy_py_c::checkNowWolfEyeUp()) {
             fog_col_p->r = 0;
@@ -2367,8 +2437,9 @@ void dScnKy_env_light_c::setLight_actor(dKy_tevstr_c* tevstr_p, GXColorS10* fog_
     }
 
     setLight_palno_get(&tevstr_p->PrevCol, &tevstr_p->UseCol, &tevstr_p->wether_pat0,
-                       &tevstr_p->wether_pat1, &prev_pal_start_id, &prev_pal_end_id, &next_pal_start_id, &next_pal_end_id, &color_ratio,
-                       &start_pat_pal_id, &end_pat_pal_id, &tevstr_p->pat_ratio, &tevstr_p->mInitTimer);
+                       &tevstr_p->wether_pat1, &prev_pal_start_id, &prev_pal_end_id,
+                       &next_pal_start_id, &next_pal_end_id, &color_ratio, &start_pat_pal_id,
+                       &end_pat_pal_id, &tevstr_p->pat_ratio, &tevstr_p->mInitTimer);
 
     if (prev_pal_start_id == 0xFF) {
         for (i = 0; i < 4; i++) {
@@ -2377,24 +2448,25 @@ void dScnKy_env_light_c::setLight_actor(dKy_tevstr_c* tevstr_p, GXColorS10* fog_
             tevstr_p->AmbCol.b = 0;
         }
     } else {
-        stage_palette_info_class* prev_pal_start_p = &g_env_light.mpDmPalet[prev_pal_start_id];
-        stage_palette_info_class* prev_pal_end_p = &g_env_light.mpDmPalet[prev_pal_end_id];
-        stage_palette_info_class* next_pal_start_p = &g_env_light.mpDmPalet[next_pal_start_id];
-        stage_palette_info_class* next_pal_end_p = &g_env_light.mpDmPalet[next_pal_end_id];
+        stage_palette_info_class* prev_pal_start_p = &g_env_light.stage_palette_info[prev_pal_start_id];
+        stage_palette_info_class* prev_pal_end_p = &g_env_light.stage_palette_info[prev_pal_end_id];
+        stage_palette_info_class* next_pal_start_p = &g_env_light.stage_palette_info[next_pal_start_id];
+        stage_palette_info_class* next_pal_end_p = &g_env_light.stage_palette_info[next_pal_end_id];
 
-        if (tevstr_p->Type == 10 || tevstr_p->Type == 9 || tevstr_p->Material_id != 0)
-        {
-            dKy_calc_color_set(&tevstr_p->AmbCol, &prev_pal_start_p->mActorAmbColor,
-                               &next_pal_start_p->mActorAmbColor, &prev_pal_end_p->mActorAmbColor,
-                               &next_pal_end_p->mActorAmbColor, color_ratio, tevstr_p->pat_ratio,
-                               mActorAddColAmb,
-                               tevstr_p->field_0x374 * (g_env_light.mColActColRatio * g_env_light.mColActColRatio));
+        if (tevstr_p->Type == 10 || tevstr_p->Type == 9 || tevstr_p->Material_id != 0) {
+            dKy_calc_color_set(&tevstr_p->AmbCol, &prev_pal_start_p->actor_amb_col,
+                               &next_pal_start_p->actor_amb_col, &prev_pal_end_p->actor_amb_col,
+                               &next_pal_end_p->actor_amb_col, color_ratio, tevstr_p->pat_ratio,
+                               actor_addcol_amb,
+                               tevstr_p->field_0x374 *
+                                   (g_env_light.now_actcol_ratio * g_env_light.now_actcol_ratio));
         } else {
-            dKy_calc_color_set(
-                &tevstr_p->AmbCol, &prev_pal_start_p->mActorAmbColor, &next_pal_start_p->mActorAmbColor,
-                &prev_pal_end_p->mActorAmbColor, &next_pal_end_p->mActorAmbColor, color_ratio, tevstr_p->pat_ratio,
-                mActorAddColAmb,
-                tevstr_p->field_0x374 * (g_env_light.field_0x1210 * (g_env_light.mColActColRatio * g_env_light.mColActColRatio)));
+            dKy_calc_color_set(&tevstr_p->AmbCol, &prev_pal_start_p->actor_amb_col,
+                               &next_pal_start_p->actor_amb_col, &prev_pal_end_p->actor_amb_col,
+                               &next_pal_end_p->actor_amb_col, color_ratio, tevstr_p->pat_ratio,
+                               actor_addcol_amb,
+                               tevstr_p->field_0x374 *
+                                   (g_env_light.field_0x1210 * (g_env_light.now_actcol_ratio * g_env_light.now_actcol_ratio)));
         }
 
         if (daPy_py_c::checkNowWolfPowerUp()) {
@@ -2406,13 +2478,12 @@ void dScnKy_env_light_c::setLight_actor(dKy_tevstr_c* tevstr_p, GXColorS10* fog_
             J3DLightInfo* light_info = &tevstr_p->mLights[i].getLightInfo();
 
             if (i == 0) {
-                if (tevstr_p->Type == 10 || tevstr_p->Type == 9 ||
-                    tevstr_p->Material_id != 0)
-                {
-                    dKy_calc_color_set(&plight_col[i], &prev_pal_start_p->mPlightColor[i],
-                                       &next_pal_start_p->mPlightColor[i], &prev_pal_end_p->mPlightColor[i],
-                                       &next_pal_end_p->mPlightColor[i], color_ratio, tevstr_p->pat_ratio,
-                                       mActorAddColAmb, 1.0f);
+                if (tevstr_p->Type == 10 || tevstr_p->Type == 9 || tevstr_p->Material_id != 0) {
+                    dKy_calc_color_set(&plight_col[i], &prev_pal_start_p->plight_col[i],
+                                       &next_pal_start_p->plight_col[i],
+                                       &prev_pal_end_p->plight_col[i],
+                                       &next_pal_end_p->plight_col[i], color_ratio,
+                                       tevstr_p->pat_ratio, actor_addcol_amb, 1.0f);
 
                     if (daPy_py_c::checkNowWolfPowerUp()) {
                         plight_col[i].r = 0;
@@ -2429,10 +2500,11 @@ void dScnKy_env_light_c::setLight_actor(dKy_tevstr_c* tevstr_p, GXColorS10* fog_
                     light_col.a = plight_col[i].a;
                     light_info->mColor = dKy_light_influence_col(&light_col, tevstr_p->field_0x374);
                 } else {
-                    dKy_calc_color_set(&plight_col[i], &prev_pal_start_p->mPlightColor[i],
-                                       &next_pal_start_p->mPlightColor[i], &prev_pal_end_p->mPlightColor[i],
-                                       &next_pal_end_p->mPlightColor[i], color_ratio, tevstr_p->pat_ratio,
-                                       mActorAddColAmb, g_env_light.field_0x1210);
+                    dKy_calc_color_set(
+                        &plight_col[i], &prev_pal_start_p->plight_col[i],
+                        &next_pal_start_p->plight_col[i], &prev_pal_end_p->plight_col[i],
+                        &next_pal_end_p->plight_col[i], color_ratio, tevstr_p->pat_ratio,
+                        actor_addcol_amb, g_env_light.field_0x1210);
 
                     if (daPy_py_c::checkNowWolfPowerUp()) {
                         plight_col[i].r = 0;
@@ -2443,13 +2515,12 @@ void dScnKy_env_light_c::setLight_actor(dKy_tevstr_c* tevstr_p, GXColorS10* fog_
                     kankyo_color_ratio_calc(&light_info->mColor, plight_col[i],
                                             field_0x1210 * tevstr_p->field_0x374);
                 }
-            } else if (tevstr_p->Type == 10 || tevstr_p->Type == 9 ||
-                       tevstr_p->Material_id != 0)
-            {
-                dKy_calc_color_set(&plight_col[i], &prev_pal_start_p->mPlightColor[i], &next_pal_start_p->mPlightColor[i],
-                                   &prev_pal_end_p->mPlightColor[i], &next_pal_end_p->mPlightColor[i], color_ratio,
-                                   tevstr_p->pat_ratio, mActorAddColAmb,
-                                   g_env_light.mColActColRatio * g_env_light.mColActColRatio);
+            } else if (tevstr_p->Type == 10 || tevstr_p->Type == 9 || tevstr_p->Material_id != 0) {
+                dKy_calc_color_set(&plight_col[i], &prev_pal_start_p->plight_col[i],
+                                   &next_pal_start_p->plight_col[i], &prev_pal_end_p->plight_col[i],
+                                   &next_pal_end_p->plight_col[i], color_ratio, tevstr_p->pat_ratio,
+                                   actor_addcol_amb,
+                                   g_env_light.now_actcol_ratio * g_env_light.now_actcol_ratio);
 
                 if (daPy_py_c::checkNowWolfPowerUp()) {
                     plight_col[i].r = 0;
@@ -2464,11 +2535,12 @@ void dScnKy_env_light_c::setLight_actor(dKy_tevstr_c* tevstr_p, GXColorS10* fog_
                 light_col.a = plight_col[i].a;
                 light_info->mColor = dKy_light_influence_col(&light_col, tevstr_p->field_0x374);
             } else {
-                dKy_calc_color_set(&plight_col[i], &prev_pal_start_p->mPlightColor[i], &next_pal_start_p->mPlightColor[i],
-                                   &prev_pal_end_p->mPlightColor[i], &next_pal_end_p->mPlightColor[i], color_ratio,
-                                   tevstr_p->pat_ratio, mActorAddColAmb,
-                                   g_env_light.field_0x1210 *
-                                       (g_env_light.mColActColRatio * g_env_light.mColActColRatio));
+                dKy_calc_color_set(&plight_col[i], &prev_pal_start_p->plight_col[i],
+                                   &next_pal_start_p->plight_col[i], &prev_pal_end_p->plight_col[i],
+                                   &next_pal_end_p->plight_col[i], color_ratio, tevstr_p->pat_ratio,
+                                   actor_addcol_amb,
+                                   g_env_light.field_0x1210 * (g_env_light.now_actcol_ratio *
+                                                               g_env_light.now_actcol_ratio));
 
                 if (daPy_py_c::checkNowWolfPowerUp()) {
                     plight_col[i].r = 0;
@@ -2481,26 +2553,27 @@ void dScnKy_env_light_c::setLight_actor(dKy_tevstr_c* tevstr_p, GXColorS10* fog_
             }
         }
 
-        dKy_calc_color_set(fog_col_p, &prev_pal_start_p->mFogColor, &next_pal_start_p->mFogColor,
-                           &prev_pal_end_p->mFogColor, &next_pal_end_p->mFogColor, color_ratio,
-                           tevstr_p->pat_ratio, mFogAddCol, g_env_light.mColFogColRatio);
-        if ((tevstr_p->Type != 10 && tevstr_p->Type != 9) ||
-            g_env_light.field_0x1210 == 1.0f)
-        {
+        dKy_calc_color_set(fog_col_p, &prev_pal_start_p->fog_col, &next_pal_start_p->fog_col,
+                           &prev_pal_end_p->fog_col, &next_pal_end_p->fog_col, color_ratio,
+                           tevstr_p->pat_ratio, addcol_fog, g_env_light.now_fogcol_ratio);
+        if ((tevstr_p->Type != 10 && tevstr_p->Type != 9) || g_env_light.field_0x1210 == 1.0f) {
             *fog_near_p = float_kankyo_color_ratio_set(
-                prev_pal_start_p->mFogStartZ, prev_pal_end_p->mFogStartZ, color_ratio, next_pal_start_p->mFogStartZ,
-                next_pal_end_p->mFogStartZ, tevstr_p->pat_ratio, g_env_light.field_0x11ec,
-                g_env_light.field_0x11f4);
+                prev_pal_start_p->fog_start_z, prev_pal_end_p->fog_start_z, color_ratio,
+                next_pal_start_p->fog_start_z, next_pal_end_p->fog_start_z, tevstr_p->pat_ratio,
+                g_env_light.field_0x11ec, g_env_light.field_0x11f4);
             *fog_far_p = float_kankyo_color_ratio_set(
-                prev_pal_start_p->mFogEndZ, prev_pal_end_p->mFogEndZ, color_ratio, next_pal_start_p->mFogEndZ, next_pal_end_p->mFogEndZ,
-                tevstr_p->pat_ratio, g_env_light.field_0x11f0, g_env_light.field_0x11f4);
+                prev_pal_start_p->fog_end_z, prev_pal_end_p->fog_end_z, color_ratio,
+                next_pal_start_p->fog_end_z, next_pal_end_p->fog_end_z, tevstr_p->pat_ratio,
+                g_env_light.field_0x11f0, g_env_light.field_0x11f4);
         } else {
             *fog_near_p = float_kankyo_color_ratio_set(
-                prev_pal_start_p->mFogStartZ, prev_pal_end_p->mFogStartZ, color_ratio, next_pal_start_p->mFogStartZ,
-                next_pal_end_p->mFogStartZ, tevstr_p->pat_ratio, g_env_light.field_0x11ec, 0.0f);
+                prev_pal_start_p->fog_start_z, prev_pal_end_p->fog_start_z, color_ratio,
+                next_pal_start_p->fog_start_z, next_pal_end_p->fog_start_z, tevstr_p->pat_ratio,
+                g_env_light.field_0x11ec, 0.0f);
             *fog_far_p = float_kankyo_color_ratio_set(
-                prev_pal_start_p->mFogEndZ, prev_pal_end_p->mFogEndZ, color_ratio, next_pal_start_p->mFogEndZ, next_pal_end_p->mFogEndZ,
-                tevstr_p->pat_ratio, g_env_light.field_0x11f0, 0.0f);
+                prev_pal_start_p->fog_end_z, prev_pal_end_p->fog_end_z, color_ratio,
+                next_pal_start_p->fog_end_z, next_pal_end_p->fog_end_z, tevstr_p->pat_ratio,
+                g_env_light.field_0x11f0, 0.0f);
         }
 
         if (daPy_py_c::checkNowWolfPowerUp()) {
@@ -2516,8 +2589,9 @@ void dScnKy_env_light_c::setLight_actor(dKy_tevstr_c* tevstr_p, GXColorS10* fog_
  * settingTevStruct_colget_actor__18dScnKy_env_light_cFP4cXyzP12dKy_tevstr_cP11_GXColorS10P11_GXColorS10PfPf
  */
 void dScnKy_env_light_c::settingTevStruct_colget_actor(cXyz* unused, dKy_tevstr_c* tevstr_p,
-                                                       GXColorS10* out_color_p, GXColorS10* fog_col_p,
-                                                       f32* fog_near_p, f32* fog_far_p) {
+                                                       GXColorS10* out_color_p,
+                                                       GXColorS10* fog_col_p, f32* fog_near_p,
+                                                       f32* fog_far_p) {
     if (tevstr_p->YukaCol != 0xFF) {
         f32 target = tevstr_p->YukaCol / 100.0f;
 
@@ -2619,8 +2693,8 @@ static void cLib_addCalcU8(u8* i_value, u8 i_target, s16 i_scale, s16 i_maxStep)
  * settingTevStruct_plightcol_plus__18dScnKy_env_light_cFP4cXyzP12dKy_tevstr_c11_GXColorS1011_GXColorS10Uc
  */
 void dScnKy_env_light_c::settingTevStruct_plightcol_plus(cXyz* pos_p, dKy_tevstr_c* tevstr_p,
-                                                         GXColorS10 param_2,
-                                                         GXColorS10 param_3, u8 init_timer) {
+                                                         GXColorS10 param_2, GXColorS10 param_3,
+                                                         u8 init_timer) {
     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
     cXyz light_pos;
     Vec spDC;
@@ -2642,7 +2716,11 @@ void dScnKy_env_light_c::settingTevStruct_plightcol_plus(cXyz* pos_p, dKy_tevstr
         light_inf_id = dKy_light_influence_id(*pos_p, 0);
         BOOL sp44 = 0;
 
-        if (tevstr_p->Type == 7 || tevstr_p->Type == 1 || ((tevstr_p->Type == 2 || tevstr_p->Type == 6 || tevstr_p->Type == 3) && dKy_darkworld_check()) || tevstr_p->Type == 4 || tevstr_p->Type == 5) {
+        if (tevstr_p->Type == 7 || tevstr_p->Type == 1 ||
+            ((tevstr_p->Type == 2 || tevstr_p->Type == 6 || tevstr_p->Type == 3) &&
+             dKy_darkworld_check()) ||
+            tevstr_p->Type == 4 || tevstr_p->Type == 5)
+        {
             light_inf_id = -2;
         } else if (tevstr_p->Type == 9 && dKy_darkworld_check()) {
             light_inf_id = -2;
@@ -2662,16 +2740,18 @@ void dScnKy_env_light_c::settingTevStruct_plightcol_plus(cXyz* pos_p, dKy_tevstr
         }
 
         if (sp44 == 0) {
-            light_pos = kankyo->mBaseLightInfluence.mPosition;
-            light_dist = kankyo->mBaseLightInfluence.mPosition.abs(*pos_p);
-            light_power = kankyo->mBaseLightInfluence.mPow;
-            light_yuragi = kankyo->mBaseLightInfluence.mFluctuation;
+            light_pos = kankyo->base_light.mPosition;
+            light_dist = kankyo->base_light.mPosition.abs(*pos_p);
+            light_power = kankyo->base_light.mPow;
+            light_yuragi = kankyo->base_light.mFluctuation;
 
             field_0x10f8.r = 0;
             field_0x10f8.g = 0;
             field_0x10f8.b = 0;
 
-            if ((light_inf_id <= -2 || (light_inf_id == -1 && dKy_Outdoor_check() == TRUE) || strcmp(dComIfGp_getStartStageName(), "D_MN09A") == 0)) {
+            if ((light_inf_id <= -2 || (light_inf_id == -1 && dKy_Outdoor_check() == TRUE) ||
+                 strcmp(dComIfGp_getStartStageName(), "D_MN09A") == 0))
+            {
                 cXyz camfwd;
                 camera_class* camera = (camera_class*)dComIfGp_getCamera(0);
                 J3DLightInfo* light0_info = &tevstr_p->mLights[0].getLightInfo();
@@ -2817,7 +2897,7 @@ void dScnKy_env_light_c::settingTevStruct_plightcol_plus(cXyz* pos_p, dKy_tevstr
         }
 
         var_f31 = (1.0f - var_f31);
-        var_f31 *= g_env_light.mColActColRatio;
+        var_f31 *= g_env_light.now_actcol_ratio;
 
         if ((tevstr_p->Type != 10 && tevstr_p->Type != 9) || tevstr_p->Material_id != 0) {
             field_0x10f0.r = field_0x10f8.r * (var_f31 * kankyo->field_0x1210);
@@ -2897,21 +2977,29 @@ void dScnKy_env_light_c::settingTevStruct_plightcol_plus(cXyz* pos_p, dKy_tevstr
         cMtx_multVec(view_mtx, &spB8, &spDC);
 
         if (dKy_shadow_mode_check(4) == 0) {
-            if ((tevstr_p->Type == 9 || tevstr_p->Type == 10) && (player->getSinkShapeOffset() < -20.0f || player->checkSinkDead() || dKy_camera_water_in_status_check() || !player->checkSwimUp())) {
+            if ((tevstr_p->Type == 9 || tevstr_p->Type == 10) &&
+                (player->getSinkShapeOffset() < -20.0f || player->checkSinkDead() || dKy_camera_water_in_status_check() || !player->checkSwimUp()))
+            {
                 cLib_addCalc(&tevstr_p->mLightPosWorld.x, pos_p->x, 0.5f, 5000.0f, 0.1f);
                 cLib_addCalc(&tevstr_p->mLightPosWorld.y, 1000.0f + pos_p->y, 0.5f, 5000.0f, 0.1f);
                 cLib_addCalc(&tevstr_p->mLightPosWorld.z, pos_p->z, 0.5f, 5000.0f, 0.1f);
-            } else if ((kankyo->mShadowMode & 1) || (kankyo->mShadowMode & 2)) {
-                cLib_addCalc(&tevstr_p->mLightPosWorld.x, g_env_light.field_0x10a0.x, 0.5f, 5000.0f, 0.1f);
-                cLib_addCalc(&tevstr_p->mLightPosWorld.y, g_env_light.field_0x10a0.y, 0.5f, 5000.0f, 0.1f);
-                cLib_addCalc(&tevstr_p->mLightPosWorld.z, g_env_light.field_0x10a0.z, 0.5f, 5000.0f, 0.1f);
+            } else if ((kankyo->shadow_mode & 1) || (kankyo->shadow_mode & 2)) {
+                cLib_addCalc(&tevstr_p->mLightPosWorld.x, g_env_light.field_0x10a0.x, 0.5f, 5000.0f,
+                             0.1f);
+                cLib_addCalc(&tevstr_p->mLightPosWorld.y, g_env_light.field_0x10a0.y, 0.5f, 5000.0f,
+                             0.1f);
+                cLib_addCalc(&tevstr_p->mLightPosWorld.z, g_env_light.field_0x10a0.z, 0.5f, 5000.0f,
+                             0.1f);
             } else if (sp9 != 0) {
                 if (init_timer != 0 || tevstr_p->field_0x384 != 0) {
-                    tevstr_p->mLightPosWorld = kankyo->mBaseLightInfluence.mPosition;
+                    tevstr_p->mLightPosWorld = kankyo->base_light.mPosition;
                 } else {
-                    cLib_addCalc(&tevstr_p->mLightPosWorld.x, kankyo->mBaseLightInfluence.mPosition.x, 0.25f, 1000.0f, 0.0001f);
-                    cLib_addCalc(&tevstr_p->mLightPosWorld.y, kankyo->mBaseLightInfluence.mPosition.y, 0.25f, 1000.0f, 0.0001f);
-                    cLib_addCalc(&tevstr_p->mLightPosWorld.z, kankyo->mBaseLightInfluence.mPosition.z, 0.25f, 1000.0f, 0.0001f);
+                    cLib_addCalc(&tevstr_p->mLightPosWorld.x, kankyo->base_light.mPosition.x, 0.25f,
+                                 1000.0f, 0.0001f);
+                    cLib_addCalc(&tevstr_p->mLightPosWorld.y, kankyo->base_light.mPosition.y, 0.25f,
+                                 1000.0f, 0.0001f);
+                    cLib_addCalc(&tevstr_p->mLightPosWorld.z, kankyo->base_light.mPosition.z, 0.25f,
+                                 1000.0f, 0.0001f);
                 }
             } else {
                 cXyz spAC;
@@ -2920,7 +3008,9 @@ void dScnKy_env_light_c::settingTevStruct_plightcol_plus(cXyz* pos_p, dKy_tevstr
 
                 for (int i = 0; i < 6; i++) {
                     if (kankyo->field_0x0c18[i].field_0x26 == 1) {
-                        if (kankyo->field_0x0c18[i].mPos.abs(*pos_p) < spAC.abs(*pos_p) && kankyo->field_0x0c18[i].mPos.abs(*pos_p) < 1000.0f) {
+                        if (kankyo->field_0x0c18[i].mPos.abs(*pos_p) < spAC.abs(*pos_p) &&
+                            kankyo->field_0x0c18[i].mPos.abs(*pos_p) < 1000.0f)
+                        {
                             spAC = kankyo->field_0x0c18[i].mPos;
                             sp8 = i + 1;
                         }
@@ -2931,17 +3021,23 @@ void dScnKy_env_light_c::settingTevStruct_plightcol_plus(cXyz* pos_p, dKy_tevstr
                     if (init_timer != 0 || tevstr_p->field_0x384 != 0) {
                         tevstr_p->mLightPosWorld = tevstr_p->field_0x32c;
                     } else {
-                        cLib_addCalc(&tevstr_p->mLightPosWorld.x, tevstr_p->field_0x32c.x, 0.25f, 1000.0f, 0.0001f);
-                        cLib_addCalc(&tevstr_p->mLightPosWorld.y, tevstr_p->field_0x32c.y, 0.25f, 1000.0f, 0.0001f);
-                        cLib_addCalc(&tevstr_p->mLightPosWorld.z, tevstr_p->field_0x32c.z, 0.25f, 1000.0f, 0.0001f);
+                        cLib_addCalc(&tevstr_p->mLightPosWorld.x, tevstr_p->field_0x32c.x, 0.25f,
+                                     1000.0f, 0.0001f);
+                        cLib_addCalc(&tevstr_p->mLightPosWorld.y, tevstr_p->field_0x32c.y, 0.25f,
+                                     1000.0f, 0.0001f);
+                        cLib_addCalc(&tevstr_p->mLightPosWorld.z, tevstr_p->field_0x32c.z, 0.25f,
+                                     1000.0f, 0.0001f);
                     }
                 } else {
                     if (init_timer != 0 || tevstr_p->field_0x384 != 0) {
                         tevstr_p->mLightPosWorld = kankyo->field_0x0c18[sp8 - 1].mPos;
                     } else {
-                        cLib_addCalc(&tevstr_p->mLightPosWorld.x, kankyo->field_0x0c18[sp8 - 1].mPos.x, 0.25f, 1000.0f, 0.0001f);
-                        cLib_addCalc(&tevstr_p->mLightPosWorld.y, kankyo->field_0x0c18[sp8 - 1].mPos.y, 0.25f, 1000.0f, 0.0001f);
-                        cLib_addCalc(&tevstr_p->mLightPosWorld.z, kankyo->field_0x0c18[sp8 - 1].mPos.z, 0.25f, 1000.0f, 0.0001f);
+                        cLib_addCalc(&tevstr_p->mLightPosWorld.x,
+                                     kankyo->field_0x0c18[sp8 - 1].mPos.x, 0.25f, 1000.0f, 0.0001f);
+                        cLib_addCalc(&tevstr_p->mLightPosWorld.y,
+                                     kankyo->field_0x0c18[sp8 - 1].mPos.y, 0.25f, 1000.0f, 0.0001f);
+                        cLib_addCalc(&tevstr_p->mLightPosWorld.z,
+                                     kankyo->field_0x0c18[sp8 - 1].mPos.z, 0.25f, 1000.0f, 0.0001f);
                     }
 
                     var_f31 = kankyo->field_0x0c18[sp8 - 1].mPos.abs(*pos_p) / 500.0f;
@@ -2952,16 +3048,23 @@ void dScnKy_env_light_c::settingTevStruct_plightcol_plus(cXyz* pos_p, dKy_tevstr
                 }
             }
 
-            if ((tevstr_p->Type == 9 || tevstr_p->Type == 10) && (player->checkSinkDead() || dComIfGp_checkPlayerStatus0(0, 0x02000308) || dComIfGp_checkPlayerStatus1(0, 0x02000000) || player->checkMagneBootsOn())) {
+            if ((tevstr_p->Type == 9 || tevstr_p->Type == 10) &&
+                (player->checkSinkDead() || dComIfGp_checkPlayerStatus0(0, 0x02000308) ||
+                 dComIfGp_checkPlayerStatus1(0, 0x02000000) || player->checkMagneBootsOn()))
+            {
                 cLib_addCalc(&tevstr_p->field_0x344, 0.0f, 0.75f, 0.21f, 0.0001f);
             } else if (tevstr_p->Type == 9 && player->getSinkShapeOffset() < -35.0f) {
                 cLib_addCalc(&tevstr_p->field_0x344, 0.0f, 0.1f, 0.001f, 0.00001f);
             } else if (tevstr_p->Type == 10 && player->getSinkShapeOffset() < -100.0f) {
                 cLib_addCalc(&tevstr_p->field_0x344, 0.0f, 0.1f, 0.001f, 0.00001f);
             } else if (init_timer != 0) {
-                tevstr_p->field_0x344 = kankyo->field_0x1238 + (var_f31 * (kankyo->field_0x123c - kankyo->field_0x1238));
+                tevstr_p->field_0x344 = kankyo->field_0x1238 +
+                                        (var_f31 * (kankyo->field_0x123c - kankyo->field_0x1238));
             } else {
-                cLib_addCalc(&tevstr_p->field_0x344, kankyo->field_0x1238 + (var_f31 * (kankyo->field_0x123c - kankyo->field_0x1238)), 0.75f, 0.04f, 0.000001f);
+                cLib_addCalc(&tevstr_p->field_0x344,
+                             kankyo->field_0x1238 +
+                                 (var_f31 * (kankyo->field_0x123c - kankyo->field_0x1238)),
+                             0.75f, 0.04f, 0.000001f);
             }
 
             if (tevstr_p->field_0x344 > 1.0f) {
@@ -2995,7 +3098,7 @@ void dScnKy_env_light_c::settingTevStruct(int tevstrType, cXyz* pos_p, dKy_tevst
     u8 init_timer = tevstr_p->mInitTimer;
 
     GXColorS10 amb_col;
-    GXColorS10 fog_col;
+    GXColorS10 fog_tev_col;
 
     f32 fog_near;
     f32 fog_far;
@@ -3019,11 +3122,12 @@ void dScnKy_env_light_c::settingTevStruct(int tevstrType, cXyz* pos_p, dKy_tevst
 
     if (tevstr_p->Material_use_fg != 123 && tevstr_p->Material_use_fg != 124) {
         dKy_tevstr_init(tevstr_p, dComIfGp_roomControl_getStayNo(), 0xFF);
-        OS_REPORT_ERROR("\n\ntevstr init Non. Material_use_fg[%d] setroom=[%d]\n", tevstr_p->Material_use_fg, dComIfGp_roomControl_getStayNo());
+        OS_REPORT_ERROR("\n\ntevstr init Non. Material_use_fg[%d] setroom=[%d]\n",
+                        tevstr_p->Material_use_fg, dComIfGp_roomControl_getStayNo());
     }
 
     tevstr_p->Material_use_fg = 124;
-    mActorAmbience.a = 255;
+    actor_amb_col.a = 255;
 
     if (tevstrType == 14) {
         camera_class* camera_p = (camera_class*)dComIfGp_getCamera(0);
@@ -3048,9 +3152,9 @@ void dScnKy_env_light_c::settingTevStruct(int tevstrType, cXyz* pos_p, dKy_tevst
             field_0x10f0.b = 77;
         }
 
-        fog_col.r = 255;
-        fog_col.g = 255;
-        fog_col.b = 255;
+        fog_tev_col.r = 255;
+        fog_tev_col.g = 255;
+        fog_tev_col.b = 255;
 
         fog_near = 30000.0f;
         fog_far = 30000.0f;
@@ -3167,9 +3271,9 @@ void dScnKy_env_light_c::settingTevStruct(int tevstrType, cXyz* pos_p, dKy_tevst
 
         field_0x10f0.a = 0xFF;
 
-        fog_col.r = 255;
-        fog_col.g = 255;
-        fog_col.b = 255;
+        fog_tev_col.r = 255;
+        fog_tev_col.g = 255;
+        fog_tev_col.b = 255;
 
         fog_near = 30000.0f;
         fog_far = 30000.0f;
@@ -3257,8 +3361,8 @@ void dScnKy_env_light_c::settingTevStruct(int tevstrType, cXyz* pos_p, dKy_tevst
     } else if (!(tevstrType & 0xF0)) {
         tevstr_p->mLightMode = 1;
 
-        amb_col = mActorAmbience;
-        fog_col = mFogColor;
+        amb_col = actor_amb_col;
+        fog_tev_col = fog_col;
 
         fog_near = mFogNear;
         fog_far = mFogFar;
@@ -3267,11 +3371,11 @@ void dScnKy_env_light_c::settingTevStruct(int tevstrType, cXyz* pos_p, dKy_tevst
             tevstrType == 1 || tevstrType == 2 || tevstrType == 3 || tevstrType == 5 ||
             tevstrType == 4 || tevstrType == 11)
         {
-            settingTevStruct_colget_actor(pos_p, tevstr_p, &amb_col, &fog_col, &fog_near,
+            settingTevStruct_colget_actor(pos_p, tevstr_p, &amb_col, &fog_tev_col, &fog_near,
                                           &fog_far);
         } else if (tevstrType == 10 || tevstrType == 9) {
-            if (g_env_light.field_0x98c != (u8)dComIfGp_roomControl_getStayNo()) {
-                g_env_light.field_0x98c = dComIfGp_roomControl_getStayNo();
+            if (g_env_light.player_room_no != (u8)dComIfGp_roomControl_getStayNo()) {
+                g_env_light.player_room_no = dComIfGp_roomControl_getStayNo();
                 mDoAud_setSceneName(
                     dComIfGp_getStartStageName(), dComIfGp_roomControl_getStayNo(),
                     dComIfG_play_c::getLayerNo_common(dComIfGp_getStartStageName(),
@@ -3282,9 +3386,9 @@ void dScnKy_env_light_c::settingTevStruct(int tevstrType, cXyz* pos_p, dKy_tevst
                     mDoAud_load2ndDynamicWave();
                 }
             }
-            init_timer = g_env_light.mInitAnmTimer;
+            init_timer = g_env_light.light_init_timer;
             settingTevStruct_colget_player(tevstr_p);
-            settingTevStruct_colget_actor(pos_p, tevstr_p, &amb_col, &fog_col, &fog_near,
+            settingTevStruct_colget_actor(pos_p, tevstr_p, &amb_col, &fog_tev_col, &fog_near,
                                           &fog_far);
         }
 
@@ -3298,12 +3402,12 @@ void dScnKy_env_light_c::settingTevStruct(int tevstrType, cXyz* pos_p, dKy_tevst
         }
 
         if (tevstrType == 10 || tevstrType == 9) {
-            g_env_light.mPLightNearPos = tevstr_p->mLightPosWorld;
+            g_env_light.plight_near_pos = tevstr_p->mLightPosWorld;
         }
     } else {
         tevstr_p->mLightMode = 0;
         if (tevstr_p->Type != 20) {
-            tevstr_p->field_0x374 = g_env_light.mPaletteTerrainLightEffect;
+            tevstr_p->field_0x374 = g_env_light.bg_light_influence;
         } else {
             switch (tevstr_p->mLightInf.r) {
             case 0:
@@ -3344,7 +3448,7 @@ void dScnKy_env_light_c::settingTevStruct(int tevstrType, cXyz* pos_p, dKy_tevst
         }
 
         GXColorS10 BG_col[4];
-        setLight_bg(tevstr_p, BG_col, &fog_col, &fog_near, &fog_far);
+        setLight_bg(tevstr_p, BG_col, &fog_tev_col, &fog_near, &fog_far);
 
         field_0x10f0 = BG_col[tevstrType & 3];
 
@@ -3357,12 +3461,12 @@ void dScnKy_env_light_c::settingTevStruct(int tevstrType, cXyz* pos_p, dKy_tevst
         pos.x = 0.0f;
 
         int light_inf_id = dKy_light_influence_id(pos, 0);
-        if (light_inf_id >= 0 && g_env_light.mPointLight[light_inf_id]->mIndex < 0) {
+        if (light_inf_id >= 0 && g_env_light.pointlight[light_inf_id]->mIndex < 0) {
             var_r25_3 = 1;
         }
 
         if (var_r25_3 == 1) {
-            pos = g_env_light.mPointLight[light_inf_id]->mPosition;
+            pos = g_env_light.pointlight[light_inf_id]->mPosition;
             J3DLightInfo& light_info = tevstr_p->mLightObj.getLightInfo();
 
             cMtx_multVec(view_mtx, &pos, &sp5C);
@@ -3371,13 +3475,14 @@ void dScnKy_env_light_c::settingTevStruct(int tevstrType, cXyz* pos_p, dKy_tevst
             tevstr_p->field_0x32c = pos;
             light_info.mLightDirection = g_env_light.field_0x1064;
 
-            light_info.mColor.a = g_env_light.mPointLight[light_inf_id]->mColor.a;
-            light_info.mColor.r = g_env_light.mPointLight[light_inf_id]->mColor.r;
-            light_info.mColor.g = g_env_light.mPointLight[light_inf_id]->mColor.g;
-            light_info.mColor.b = g_env_light.mPointLight[light_inf_id]->mColor.b;
+            light_info.mColor.a = g_env_light.pointlight[light_inf_id]->mColor.a;
+            light_info.mColor.r = g_env_light.pointlight[light_inf_id]->mColor.r;
+            light_info.mColor.g = g_env_light.pointlight[light_inf_id]->mColor.g;
+            light_info.mColor.b = g_env_light.pointlight[light_inf_id]->mColor.b;
             dKy_GXInitLightSpot(&light_info, 90.0f, GX_SP_OFF);
-            dKy_GXInitLightDistAttn(&light_info, g_env_light.mPointLight[light_inf_id]->mPow * 0.001f,
-                                    0.99999f, GX_DA_STEEP);
+            dKy_GXInitLightDistAttn(&light_info,
+                                    g_env_light.pointlight[light_inf_id]->mPow * 0.001f, 0.99999f,
+                                    GX_DA_STEEP);
         } else {
             MtxP view_mtx = j3dSys.getViewMtx();
             J3DLightInfo& light_info = tevstr_p->mLightObj.getLightInfo();
@@ -3401,12 +3506,12 @@ void dScnKy_env_light_c::settingTevStruct(int tevstrType, cXyz* pos_p, dKy_tevst
             light_info.mDistAtten.z = 0.0f;
         }
 
-        tevstr_p->mLightPosWorld = kankyo->mBaseLightInfluence.mPosition;
+        tevstr_p->mLightPosWorld = kankyo->base_light.mPosition;
     }
 
     field_0x10f0.a = 255;
     tevstr_p->AmbCol = field_0x10f0;
-    tevstr_p->FogCol = fog_col;
+    tevstr_p->FogCol = fog_tev_col;
     tevstr_p->mFogStartZ = fog_near;
     tevstr_p->mFogEndZ = fog_far;
 }
@@ -3431,7 +3536,10 @@ static void setLightTevColorType_MAJI_sub(J3DMaterial* material_p, dKy_tevstr_c*
         amb_col.b = tevstr_p->AmbCol.b;
         amb_col.a = tevstr_p->AmbCol.a;
 
-        if (((tevstr_p->Type >= 1 && tevstr_p->Type <= 7) || tevstr_p->Type == 5 || tevstr_p->Type == 15 || (tevstr_p->Type == 9 && dKy_darkworld_check())) && ((tevstr_p->Type != 2 && tevstr_p->Type != 3) || dKy_darkworld_check())) {
+        if (((tevstr_p->Type >= 1 && tevstr_p->Type <= 7) || tevstr_p->Type == 5 ||
+             tevstr_p->Type == 15 || (tevstr_p->Type == 9 && dKy_darkworld_check())) &&
+            ((tevstr_p->Type != 2 && tevstr_p->Type != 3) || dKy_darkworld_check()))
+        {
             amb_col.r = 0;
             amb_col.g = 0;
             amb_col.b = 0;
@@ -3491,37 +3599,38 @@ static void setLightTevColorType_MAJI_sub(J3DMaterial* material_p, dKy_tevstr_c*
                 for (int i = 0; i < 6; i++) {
                     material_p->setLight(i + 2, &tevstr_p->mLights[i]);
                 }
-            } else if (g_env_light.mPondSeason >= 1 && g_env_light.mPondSeason <= 4) {
+            } else if (g_env_light.fishing_hole_season >= 1 && g_env_light.fishing_hole_season <= 4)
+            {
                 color_RGB_class maple_color;
-                maple_color.r = dKyd_maple_col_getp()[g_env_light.mPondSeason + 7].r;
-                maple_color.g = dKyd_maple_col_getp()[g_env_light.mPondSeason + 7].g;
-                maple_color.b = dKyd_maple_col_getp()[g_env_light.mPondSeason + 7].b;
+                maple_color.r = dKyd_maple_col_getp()[g_env_light.fishing_hole_season + 7].r;
+                maple_color.g = dKyd_maple_col_getp()[g_env_light.fishing_hole_season + 7].g;
+                maple_color.b = dKyd_maple_col_getp()[g_env_light.fishing_hole_season + 7].b;
 
                 amb_col.r = 0xA;
                 amb_col.g = 0xA;
                 amb_col.b = 0xA;
 
                 f32 var_f31;
-                var_f31 = (amb_col.r * g_env_light.mColBgColRatio) / 10.0f;
+                var_f31 = (amb_col.r * g_env_light.now_bgcol_ratio) / 10.0f;
                 var_f31 *= var_f31;
                 if (var_f31 > 1.0f) {
                     var_f31 = 1.0f;
                 }
-                amb_col.r = g_env_light.mColBgColRatio * (maple_color.r * var_f31);
+                amb_col.r = g_env_light.now_bgcol_ratio * (maple_color.r * var_f31);
 
-                var_f31 = (amb_col.g * g_env_light.mColBgColRatio) / 10.0f;
+                var_f31 = (amb_col.g * g_env_light.now_bgcol_ratio) / 10.0f;
                 var_f31 *= var_f31;
                 if (var_f31 > 1.0f) {
                     var_f31 = 1.0f;
                 }
-                amb_col.g = g_env_light.mColBgColRatio * (maple_color.g * var_f31);
-                
-                var_f31 = (amb_col.b * g_env_light.mColBgColRatio) / 10.0f;
+                amb_col.g = g_env_light.now_bgcol_ratio * (maple_color.g * var_f31);
+
+                var_f31 = (amb_col.b * g_env_light.now_bgcol_ratio) / 10.0f;
                 var_f31 *= var_f31;
                 if (var_f31 > 1.0f) {
                     var_f31 = 1.0f;
                 }
-                amb_col.b = g_env_light.mColBgColRatio * (maple_color.b * var_f31);
+                amb_col.b = g_env_light.now_bgcol_ratio * (maple_color.b * var_f31);
 
                 material_p->setAmbColor(0, &amb_col);
 
@@ -3529,19 +3638,23 @@ static void setLightTevColorType_MAJI_sub(J3DMaterial* material_p, dKy_tevstr_c*
                     if (i <= 1) {
                         J3DLightInfo* var_r28;
                         if (i == 0) {
-                            kankyo->field_0xf50[i].field_0x0 = tevstr_p->mLights[i];
+                            kankyo->global_maple_col_change[i].light_obj = tevstr_p->mLights[i];
 
-                            J3DLightInfo* sp8 = &kankyo->field_0xf50[1].field_0x0.getLightInfo();
-                            var_r28 = &kankyo->field_0xf50[i].field_0x0.getLightInfo();
+                            J3DLightInfo* sp8 =
+                                &kankyo->global_maple_col_change[1].light_obj.getLightInfo();
+                            var_r28 = &kankyo->global_maple_col_change[i].light_obj.getLightInfo();
                             sp8->mColor = var_r28->mColor;
                         } else {
-                            var_r28 = &kankyo->field_0xf50[i].field_0x0.getLightInfo();
+                            var_r28 = &kankyo->global_maple_col_change[i].light_obj.getLightInfo();
                         }
 
                         color_RGB_class maple_color;
-                        maple_color.r = dKyd_maple_col_getp()[(g_env_light.mPondSeason + (i * 4))].r;
-                        maple_color.g = dKyd_maple_col_getp()[(g_env_light.mPondSeason + (i * 4))].g;
-                        maple_color.b = dKyd_maple_col_getp()[(g_env_light.mPondSeason + (i * 4))].b;
+                        maple_color.r =
+                            dKyd_maple_col_getp()[(g_env_light.fishing_hole_season + (i * 4))].r;
+                        maple_color.g =
+                            dKyd_maple_col_getp()[(g_env_light.fishing_hole_season + (i * 4))].g;
+                        maple_color.b =
+                            dKyd_maple_col_getp()[(g_env_light.fishing_hole_season + (i * 4))].b;
 
                         var_f31 = var_r28->mColor.r / 95.0f;
                         var_f31 *= var_f31;
@@ -3567,7 +3680,7 @@ static void setLightTevColorType_MAJI_sub(J3DMaterial* material_p, dKy_tevstr_c*
                         var_r28->mColor.b = maple_color.b;
                         var_r28->mColor.b *= var_f31;
 
-                        material_p->setLight(i + 2, &kankyo->field_0xf50[i].field_0x0);
+                        material_p->setLight(i + 2, &kankyo->global_maple_col_change[i].light_obj);
                     } else {
                         material_p->setLight(i + 2, &tevstr_p->mLights[i]);
                     }
@@ -3641,7 +3754,8 @@ void dKy_cloudshadow_scroll(J3DModelData* modelData_p, dKy_tevstr_c* tevstr_p, i
             }
 
             if (mat_p->getTexGenBlock()->getTexMtx(1) != NULL) {
-                J3DTexMtxInfo* tex_mtx_inf = &mat_p->getTexGenBlock()->getTexMtx(1)->getTexMtxInfo();
+                J3DTexMtxInfo* tex_mtx_inf =
+                    &mat_p->getTexGenBlock()->getTexMtx(1)->getTexMtxInfo();
 
                 if (tex_mtx_inf != NULL && g_env_light.mpVrkumoPacket != NULL) {
                     tex_mtx_inf->mSRT.mTranslationX = g_env_light.mpVrkumoPacket->field_0x1150;
@@ -3657,7 +3771,8 @@ void dKy_cloudshadow_scroll(J3DModelData* modelData_p, dKy_tevstr_c* tevstr_p, i
 void dScnKy_env_light_c::setLightTevColorType_MAJI(J3DModelData* modelData_p,
                                                    dKy_tevstr_c* tevstr_p) {
     if (tevstr_p->Material_use_fg != 124) {
-        OS_REPORT_ERROR("\ncoltype tevstr init Non. Material_use_fg[%d]\n", tevstr_p->Material_use_fg);
+        OS_REPORT_ERROR("\ncoltype tevstr init Non. Material_use_fg[%d]\n",
+                        tevstr_p->Material_use_fg);
         if (tevstr_p->Material_use_fg != 123) {
             dKy_tevstr_init(tevstr_p, dComIfGp_roomControl_getStayNo(), 0xFF);
         }
@@ -3678,7 +3793,8 @@ void dScnKy_env_light_c::setLightTevColorType_MAJI(J3DModelData* modelData_p,
         dKy_cloudshadow_scroll(modelData_p, tevstr_p, lightType);
     } else {
         for (int i = modelData_p->getMaterialNum() - 1; i >= 0; i--) {
-            setLightTevColorType_MAJI_sub(modelData_p->getMaterialNodePointer(i), tevstr_p, lightType);
+            setLightTevColorType_MAJI_sub(modelData_p->getMaterialNodePointer(i), tevstr_p,
+                                          lightType);
         }
     }
 }
@@ -3695,9 +3811,9 @@ void dScnKy_env_light_c::CalcTevColor() {
 
 /* 801A4F24-801A4F64 19F864 0040+00 1/1 0/0 0/0 .text            Sndpos__18dScnKy_env_light_cFv */
 void dScnKy_env_light_c::Sndpos() {
-    if (mSound.timer != 0) {
-        mSound.timer--;
-        if (mSound.timer == 0) {
+    if (sound_influence.timer != 0) {
+        sound_influence.timer--;
+        if (sound_influence.timer == 0) {
             dKy_Sound_init();
         }
     }
@@ -3717,23 +3833,23 @@ void dScnKy_env_light_c::Eflight_flush_proc() {
     f32 fluctuation;
     flush_info* info;
 
-    if (mSwordLight.mLightType == 0) {
+    if (eflight.mLightType == 0) {
         static flush_info flush_col[] = {
-            1,  0x00, 0x00, 0x00,
-            4,  0x43, 0x73, 0x58,
-            10, 0x25, 0x3E, 0x2D,
-            20, 0x00, 0x00, 0x00,
+            {1, 0x00, 0x00, 0x00},
+            {4, 0x43, 0x73, 0x58},
+            {10, 0x25, 0x3E, 0x2D},
+            {20, 0x00, 0x00, 0x00},
         };
 
         info = flush_col;
         fluctuation = 100.0f;
         power = 120.0f;
-    } else if (mSwordLight.mLightType == 1) {
+    } else if (eflight.mLightType == 1) {
         static flush_info flush_col2[] = {
-            1,  0x00, 0x00, 0x00,
-            4,  0x6E, 0x5A, 0x00,
-            8,  0x4B, 0x22, 0x00,
-            15, 0x00, 0x00, 0x00,
+            {1, 0x00, 0x00, 0x00},
+            {4, 0x6E, 0x5A, 0x00},
+            {8, 0x4B, 0x22, 0x00},
+            {15, 0x00, 0x00, 0x00},
         };
 
         info = flush_col2;
@@ -3741,10 +3857,10 @@ void dScnKy_env_light_c::Eflight_flush_proc() {
         power = 120.0f;
     } else {
         static flush_info flush_col3[] = {
-            1,  0x00, 0x00, 0x00,
-            4,  0x46, 0x4D, 0x43,
-            15, 0x22, 0x1E, 0x00,
-            20, 0x00, 0x00, 0x00,
+            {1, 0x00, 0x00, 0x00},
+            {4, 0x46, 0x4D, 0x43},
+            {15, 0x22, 0x1E, 0x00},
+            {20, 0x00, 0x00, 0x00},
         };
 
         info = flush_col3;
@@ -3752,45 +3868,47 @@ void dScnKy_env_light_c::Eflight_flush_proc() {
         power = 80.0f;
     }
 
-    switch (mSwordLight.mState) {
+    switch (eflight.mState) {
     case 0:
         break;
     case 1:
-        mSwordLight.mFrame = 0;
-        mSwordLight.field_0x8.mColor.r = info[0].r;
-        mSwordLight.field_0x8.mColor.g = info[0].g;
-        mSwordLight.field_0x8.mColor.b = info[0].b;
-        mSwordLight.field_0x8.mPow = power;
-        mSwordLight.field_0x8.mFluctuation = fluctuation;
+        eflight.mFrame = 0;
+        eflight.field_0x8.mColor.r = info[0].r;
+        eflight.field_0x8.mColor.g = info[0].g;
+        eflight.field_0x8.mColor.b = info[0].b;
+        eflight.field_0x8.mPow = power;
+        eflight.field_0x8.mFluctuation = fluctuation;
 
-        dKy_efplight_set(&mSwordLight.field_0x8);
-        mSwordLight.mState++;
+        dKy_efplight_set(&eflight.field_0x8);
+        eflight.mState++;
         break;
     case 2:
         for (int i = 0; i < 3; i++) {
-            if (mSwordLight.mFrame >= info[i].start_frame && mSwordLight.mFrame <= info[i + 1].start_frame) {
-                f32 ratio = 1.0f - (f32)(info[i + 1].start_frame - mSwordLight.mFrame) / (f32)(info[i + 1].start_frame - info[i].start_frame);
-                
-                mSwordLight.field_0x8.mColor.r = u8_data_ratio_set(info[i].r, info[i + 1].r, ratio);
-                mSwordLight.field_0x8.mColor.g = u8_data_ratio_set(info[i].g, info[i + 1].g, ratio);
-                mSwordLight.field_0x8.mColor.b = u8_data_ratio_set(info[i].b, info[i + 1].b, ratio);
+            if (eflight.mFrame >= info[i].start_frame && eflight.mFrame <= info[i + 1].start_frame)
+            {
+                f32 ratio = 1.0f - (f32)(info[i + 1].start_frame - eflight.mFrame) /
+                                       (f32)(info[i + 1].start_frame - info[i].start_frame);
+
+                eflight.field_0x8.mColor.r = u8_data_ratio_set(info[i].r, info[i + 1].r, ratio);
+                eflight.field_0x8.mColor.g = u8_data_ratio_set(info[i].g, info[i + 1].g, ratio);
+                eflight.field_0x8.mColor.b = u8_data_ratio_set(info[i].b, info[i + 1].b, ratio);
                 break;
             }
         }
 
-        if (mSwordLight.mFrame > info[3].start_frame) {
-            mSwordLight.mState++;
+        if (eflight.mFrame > info[3].start_frame) {
+            eflight.mState++;
         }
 
-        mSwordLight.mFrame++;
+        eflight.mFrame++;
         break;
     case 3:
-        dKy_efplight_cut(&mSwordLight.field_0x8);
-        mSwordLight.mState = 0;
+        dKy_efplight_cut(&eflight.field_0x8);
+        eflight.mState = 0;
         break;
     case 4:
-        dKy_efplight_cut(&mSwordLight.field_0x8);
-        mSwordLight.mState = 1;
+        dKy_efplight_cut(&eflight.field_0x8);
+        eflight.mState = 1;
         break;
     }
 }
@@ -3809,22 +3927,22 @@ void dScnKy_env_light_c::SetBaseLight() {
     if (dKy_SunMoon_Light_Check() == TRUE) {
         f32 daytime = g_env_light.getDaytime();
         if (daytime > 67.5f && daytime < 292.5f) {
-            mBaseLightInfluence.mPosition = kankyo->mSunPos2;
+            base_light.mPosition = kankyo->sun_light_pos;
         } else if (camera != NULL) {
-            mBaseLightInfluence.mPosition = camera->lookat.eye + kankyo->mMoonPos;
+            base_light.mPosition = camera->lookat.eye + kankyo->moon_pos;
         } else {
-            mBaseLightInfluence.mPosition = kankyo->mMoonPos;
+            base_light.mPosition = kankyo->moon_pos;
         }
     } else {
-        mBaseLightInfluence.mPosition = lightStatusPt[2].position;
+        base_light.mPosition = lightStatusPt[2].position;
     }
 
-    mBaseLightInfluence.mColor.r = 0xFF;
-    mBaseLightInfluence.mColor.g = 0xFF;
-    mBaseLightInfluence.mColor.b = 0xFF;
-    mBaseLightInfluence.mColor.a = 0xFF;
-    mBaseLightInfluence.mPow = 0.0f;
-    mBaseLightInfluence.mFluctuation = 0.0f;
+    base_light.mColor.r = 0xFF;
+    base_light.mColor.g = 0xFF;
+    base_light.mColor.b = 0xFF;
+    base_light.mColor.a = 0xFF;
+    base_light.mPow = 0.0f;
+    base_light.mFluctuation = 0.0f;
 }
 
 /* 801A5288-801A56DC 19FBC8 0454+00 1/1 0/0 0/0 .text            exeKankyo__18dScnKy_env_light_cFv
@@ -3895,29 +4013,29 @@ void dScnKy_env_light_c::exeKankyo() {
 
     g_env_light.field_0x1210 = g_env_light.field_0x122c;
 
-    cLib_addCalc(&g_env_light.mColAllcolRatio, g_env_light.mAllcolRatio, 0.5f, 0.25f, 0.01f);
-    cLib_addCalc(&g_env_light.mColActColRatio, g_env_light.mActcolRatio, 0.5f, 0.25f, 0.01f);
-    cLib_addCalc(&g_env_light.mColBgColRatio, g_env_light.mBgcolRatio * g_env_light.field_0x1210,
+    cLib_addCalc(&g_env_light.now_allcol_ratio, g_env_light.allcol_ratio, 0.5f, 0.25f, 0.01f);
+    cLib_addCalc(&g_env_light.now_actcol_ratio, g_env_light.actcol_ratio, 0.5f, 0.25f, 0.01f);
+    cLib_addCalc(&g_env_light.now_bgcol_ratio, g_env_light.bgcol_ratio * g_env_light.field_0x1210,
                  0.5f, 0.25f, 0.01f);
-    cLib_addCalc(&g_env_light.mColFogColRatio, g_env_light.mFogcolRatio * g_env_light.field_0x1210,
+    cLib_addCalc(&g_env_light.now_fogcol_ratio, g_env_light.fogcol_ratio * g_env_light.field_0x1210,
                  0.5f, 0.25f, 0.01f);
-    cLib_addCalc(&g_env_light.mColVrboxSoraColRatio,
-                 g_env_light.mVrboxSoracolRatio * g_env_light.field_0x1210, 0.5f, 0.25f, 0.01f);
-    cLib_addCalc(&g_env_light.mColVrboxKumocolRatio,
-                 g_env_light.mVrboxKumocolRatio * g_env_light.field_0x1210, 0.5f, 0.25f, 0.01f);
+    cLib_addCalc(&g_env_light.now_vrboxsoracol_ratio,
+                 g_env_light.vrboxsoracol_ratio * g_env_light.field_0x1210, 0.5f, 0.25f, 0.01f);
+    cLib_addCalc(&g_env_light.now_vrboxkumocol_ratio,
+                 g_env_light.vrboxkumocol_ratio * g_env_light.field_0x1210, 0.5f, 0.25f, 0.01f);
 
-    g_env_light.mAllcolRatio = 1.0f;
-    g_env_light.mActcolRatio = 1.0f;
-    g_env_light.mBgcolRatio = 1.0f;
-    g_env_light.mFogcolRatio = 1.0f;
-    g_env_light.mVrboxSoracolRatio = 1.0f;
-    g_env_light.mVrboxKumocolRatio = 1.0f;
+    g_env_light.allcol_ratio = 1.0f;
+    g_env_light.actcol_ratio = 1.0f;
+    g_env_light.bgcol_ratio = 1.0f;
+    g_env_light.fogcol_ratio = 1.0f;
+    g_env_light.vrboxsoracol_ratio = 1.0f;
+    g_env_light.vrboxkumocol_ratio = 1.0f;
     g_env_light.field_0x122c = 1.0f;
     g_env_light.field_0x126c = g_env_light.field_0x1268;
     g_env_light.field_0x1268 = 999999.9f;
 
     for (int i = 50; i < 100; i++) {
-        g_env_light.mPointLight[i] = NULL;
+        g_env_light.pointlight[i] = NULL;
     }
 
     g_env_light.field_0x130b = 0;
@@ -3941,8 +4059,7 @@ void dScnKy_env_light_c::exeKankyo() {
     }
 
     if (strcmp(dComIfGp_getStartStageName(), "R_SP127") == 0) {
-        if ((dCam_getBody()->Mode() == 4 || dCam_getBody()->Mode() == 7) &&
-            dComIfGp_event_runCheck())
+        if ((dCam_getBody()->Mode() == 4 || dCam_getBody()->Mode() == 7) && dComIfGp_event_runCheck())
         {
             cLib_addCalc(&g_env_light.mDemoAttentionPoint, 0.0f, 0.5f, 0.1f, 1E-05f);
         } else {
@@ -3975,7 +4092,8 @@ void dKy_undwater_filter_draw() {
         }
 
         if (g_env_light.field_0x1258 > 1.0f - (dist_to_old / 100.0f)) {
-            cLib_addCalc(&g_env_light.field_0x1258, 1.0f - (dist_to_old / 100.0f), 0.5f, 0.05f, 0.0001f);
+            cLib_addCalc(&g_env_light.field_0x1258, 1.0f - (dist_to_old / 100.0f), 0.5f, 0.05f,
+                         0.0001f);
         }
 
         dist_to_old = camera->lookat.center.abs(S_old_camctr);
@@ -3984,7 +4102,8 @@ void dKy_undwater_filter_draw() {
         }
 
         if (g_env_light.field_0x1258 > 1.0f - (dist_to_old / 100.0f)) {
-            cLib_addCalc(&g_env_light.field_0x1258, 1.0f - (dist_to_old / 100.0f), 0.5f, 0.05f, 0.0001f);
+            cLib_addCalc(&g_env_light.field_0x1258, 1.0f - (dist_to_old / 100.0f), 0.5f, 0.05f,
+                         0.0001f);
         }
 
         S_old_cameye = camera->lookat.eye;
@@ -3996,18 +4115,18 @@ void dKy_undwater_filter_draw() {
         size.y = 0.00524f;
         size.z = 0.00524f;
 
-        if (g_env_light.mpUndwaterEfModel != NULL) {
+        if (g_env_light.undwater_ef_model != NULL) {
             J3DGXColor sp8;
-            g_env_light.mpUndwaterEfModel->setBaseScale(size);
-            g_env_light.mpUndwaterEfModel->setBaseTRMtx(mDoMtx_stack_c::get());
+            g_env_light.undwater_ef_model->setBaseScale(size);
+            g_env_light.undwater_ef_model->setBaseTRMtx(mDoMtx_stack_c::get());
 
-            if (g_env_light.mpUndwaterBtk != NULL) {
-                g_env_light.mpUndwaterBtk->setPlaySpeed(2.0f + (35.0f * (1.0f - g_env_light.field_0x1258)));
-                g_env_light.mpUndwaterBtk->entry(g_env_light.mpUndwaterEfModel->getModelData());
-                g_env_light.mpUndwaterBtk->play();
+            if (g_env_light.undwater_btk != NULL) {
+                g_env_light.undwater_btk->setPlaySpeed(2.0f + (35.0f * (1.0f - g_env_light.field_0x1258)));
+                g_env_light.undwater_btk->entry(g_env_light.undwater_ef_model->getModelData());
+                g_env_light.undwater_btk->play();
 
                 dComIfGd_setXluList2DScreen();
-                mDoExt_modelUpdateDL(g_env_light.mpUndwaterEfModel);
+                mDoExt_modelUpdateDL(g_env_light.undwater_ef_model);
                 dComIfGd_setList();
             }
         }
@@ -4041,8 +4160,8 @@ static int dKy_Delete(sub_kankyo__class* i_this) {
     plight_init();
     mDoAud_mEnvse_resetScene();
 
-    if (g_env_light.mpUndwaterEfHeap != NULL) {
-        mDoExt_destroySolidHeap(g_env_light.mpUndwaterEfHeap);
+    if (g_env_light.undwater_ef_heap != NULL) {
+        mDoExt_destroySolidHeap(g_env_light.undwater_ef_heap);
     }
 
     return 1;
@@ -4054,7 +4173,7 @@ static int dKy_Create(void* i_this) {
 
     stage_envr_info_class* stage_envr_p = dComIfGp_getStageEnvrInfo();
     if (stage_envr_p != NULL && dComIfGp_getStartStageRoomNo() != -1) {
-        if (stage_envr_p[dComIfGp_getStartStageRoomNo()].m_pselectID[64] != 0) {
+        if (stage_envr_p[dComIfGp_getStartStageRoomNo()].pselect_id[64] != 0) {
             mDoGph_gInf_c::getBloom()->create();
         }
     }
@@ -4062,12 +4181,12 @@ static int dKy_Create(void* i_this) {
     envcolor_init();
     g_env_light.field_0x12b0 = 0;
     g_env_light.field_0x1254 = 1.0f;
-    g_env_light.mPLightNearPos.x = 0.0f;
-    g_env_light.mPLightNearPos.y = 0.0f;
-    g_env_light.mPLightNearPos.z = 0.0f;
-    g_env_light.field_0xf3c = 0;
-    g_env_light.field_0xf40 = 0.0f;
-    g_env_light.field_0xf3d = 0;
+    g_env_light.plight_near_pos.x = 0.0f;
+    g_env_light.plight_near_pos.y = 0.0f;
+    g_env_light.plight_near_pos.z = 0.0f;
+    g_env_light.senses_mode = 0;
+    g_env_light.senses_effect_strength = 0.0f;
+    g_env_light.now_senses_effect = 0;
 
     dKy_setLight_init();
     dKy_Sound_init();
@@ -4075,31 +4194,31 @@ static int dKy_Create(void* i_this) {
     dungeonlight_init();
     dKy_setLight_nowroom(dComIfGp_roomControl_getStayNo());
 
-    g_env_light.mResPolEfftbl = (dKy_pol_efftbl_struct*)dComIfG_getStageRes("pol_efftbl.dat");
-    g_env_light.mResPolEffcol = (dKy_pol_effcol_struct*)dComIfG_getStageRes("pol_effcol.dat");
-    g_env_light.mResPolEfftbl2 = (dKy_pol_efftbl_struct*)dComIfG_getStageRes("pol_efftbl2.dat");
-    g_env_light.mResPolEffcol2 = (dKy_pol_effcol_struct*)dComIfG_getStageRes("pol_effcol2.dat");
-    g_env_light.mResPolSound = (dKy_pol_sound_struct*)dComIfG_getStageRes("pol_sound.dat");
-    g_env_light.mResPolArg = (dKy_pol_arg_struct*)dComIfG_getStageRes("pol_arg.dat");
-    g_env_light.mResColorDataTbl = (dKy_color_data_struct*)dComIfG_getStageRes("colordata_tbl.dat");
+    g_env_light.pol_efftbl = (dKy_pol_efftbl_struct*)dComIfG_getStageRes("pol_efftbl.dat");
+    g_env_light.pol_effcol = (dKy_pol_effcol_struct*)dComIfG_getStageRes("pol_effcol.dat");
+    g_env_light.pol_efftbl2 = (dKy_pol_efftbl_struct*)dComIfG_getStageRes("pol_efftbl2.dat");
+    g_env_light.pol_effcol2 = (dKy_pol_effcol_struct*)dComIfG_getStageRes("pol_effcol2.dat");
+    g_env_light.pol_sound = (dKy_pol_sound_struct*)dComIfG_getStageRes("pol_sound.dat");
+    g_env_light.pol_arg = (dKy_pol_arg_struct*)dComIfG_getStageRes("pol_arg.dat");
+    g_env_light.colordata_tbl = (dKy_color_data_struct*)dComIfG_getStageRes("colordata_tbl.dat");
 
-    if (g_env_light.mNexttime != -1.0f) {
+    if (g_env_light.nexttime != -1.0f) {
         next_time_set = true;
-        dComIfGs_setTime(g_env_light.mNexttime);
+        dComIfGs_setTime(g_env_light.nexttime);
     }
 
     if (dKy_darkworld_check()) {
-        if (g_env_light.mTime == -1.0f) {
-            g_env_light.mTime = dComIfGs_getTime();
+        if (g_env_light.old_time == -1.0f) {
+            g_env_light.old_time = dComIfGs_getTime();
         }
-    } else if (g_env_light.mTime != -1.0f) {
+    } else if (g_env_light.old_time != -1.0f) {
         if (!next_time_set) {
-            dComIfGs_setTime(g_env_light.mTime);
+            dComIfGs_setTime(g_env_light.old_time);
         }
-        g_env_light.mTime = -1.0f;
+        g_env_light.old_time = -1.0f;
     }
 
-    g_env_light.mNexttime = -1.0f;
+    g_env_light.nexttime = -1.0f;
     return cPhs_COMPLEATE_e;
 }
 
@@ -4112,7 +4231,7 @@ void dKy_setLight_init() {
 
 /* 801A60BC-801A60E0 1A09FC 0024+00 0/0 1/1 0/0 .text            dKy_setLight__Fv */
 void dKy_setLight() {
-    g_env_light.mSunPos2 = g_env_light.mSunPos;
+    g_env_light.sun_light_pos = g_env_light.sun_pos;
 }
 
 /* 801A60E0-801A61F4 1A0A20 0114+00 2/2 0/0 0/0 .text            dKy_GlobalLight_set__Fv */
@@ -4132,7 +4251,7 @@ void dKy_GlobalLight_set() {
         GXInitLightColor(&light_obj, light_status->color);
 
         if (light_status->mRefDist <= 0.0f) {
-            light_status->mRefDist = 1.0E-6f;
+            light_status->mRefDist = 0.000001f;
         }
 
         GXInitLightDistAttn(&light_obj, light_status->mRefDist, light_status->mRefBrightness,
@@ -4143,7 +4262,7 @@ void dKy_GlobalLight_set() {
 }
 
 inline u8 dLVI_getSWLight(stage_pure_lightvec_info_class* i_info) {
-    return i_info->field_0x1e & 0x80;
+    return i_info->flags & 0x80;
 }
 
 /* 801A61F4-801A6278 1A0B34 0084+00 3/3 0/0 0/0 .text
@@ -4151,12 +4270,12 @@ inline u8 dLVI_getSWLight(stage_pure_lightvec_info_class* i_info) {
 BOOL dKy_lightswitch_check(stage_pure_lightvec_info_class* stage_light_info_p, char room_no) {
     BOOL is_switch = TRUE;
 
-    if (stage_light_info_p->field_0x1f != 0xFF) {
+    if (stage_light_info_p->switch_no != 0xFF) {
         if (!dLVI_getSWLight(stage_light_info_p)) {
-            if (dComIfGs_isSwitch(stage_light_info_p->field_0x1f, room_no)) {
+            if (dComIfGs_isSwitch(stage_light_info_p->switch_no, room_no)) {
                 is_switch = FALSE;
             }
-        } else if (!dComIfGs_isSwitch(stage_light_info_p->field_0x1f, room_no)) {
+        } else if (!dComIfGs_isSwitch(stage_light_info_p->switch_no, room_no)) {
             is_switch = FALSE;
         }
     }
@@ -4196,20 +4315,20 @@ void dKy_setLight_nowroom_common(char room_no, f32 light_ratio) {
             room_light_info_num = 2;
         }
 
-        if (g_env_light.mBGpartsActiveLight[0].mIndex != 0) {
+        if (g_env_light.bgparts_active_light[0].mIndex != 0) {
             lightMask |= 1;
         }
 
-        if (g_env_light.mBGpartsActiveLight[1].mIndex != 0) {
+        if (g_env_light.bgparts_active_light[1].mIndex != 0) {
             lightMask |= 2;
         }
 
         if (camera != 0) {
             int eflight_id = dKy_eflight_influence_id(camera->lookat.eye, 0);
             if (eflight_id >= 0) {
-                dKy_bgparts_activelight_set(g_env_light.mEfPLight[eflight_id], 1);
+                dKy_bgparts_activelight_set(g_env_light.efplight[eflight_id], 1);
                 if (dKy_Indoor_check() == TRUE) {
-                    g_env_light.field_0x10a0 = g_env_light.mEfPLight[eflight_id]->mPosition;
+                    g_env_light.field_0x10a0 = g_env_light.efplight[eflight_id]->mPosition;
                     dKy_shadow_mode_set(1);
                 }
             } else {
@@ -4221,22 +4340,25 @@ void dKy_setLight_nowroom_common(char room_no, f32 light_ratio) {
         }
 
         for (int i = 0; i < 2; i++) {
-            if (g_env_light.mBGpartsActiveLight[i].mIndex != 0 && 0.0f != g_env_light.mBGpartsActiveLight[i].mPow && (i != 1 || dMeter2Info_getWindowStatus() != 3)) {
-                lightStatusPt[i].position = g_env_light.mBGpartsActiveLight[i].mPosition;
+            if (g_env_light.bgparts_active_light[i].mIndex != 0 &&
+                0.0f != g_env_light.bgparts_active_light[i].mPow &&
+                (i != 1 || dMeter2Info_getWindowStatus() != 3))
+            {
+                lightStatusPt[i].position = g_env_light.bgparts_active_light[i].mPosition;
 
                 if (i == 0) {
-                    lightStatusPt[i].mRefDist = g_env_light.mBGpartsActiveLight[i].mPow * 0.01f;
+                    lightStatusPt[i].mRefDist = g_env_light.bgparts_active_light[i].mPow * 0.01f;
                 } else {
-                    lightStatusPt[i].mRefDist = g_env_light.mBGpartsActiveLight[i].mPow * 0.01f;
+                    lightStatusPt[i].mRefDist = g_env_light.bgparts_active_light[i].mPow * 0.01f;
                 }
 
                 lightStatusPt[i].mRefBrightness = 0.99999f;
                 lightStatusPt[i].field_0x1c = 1;
                 lightStatusPt[i].mDistFn = GX_DA_STEEP;
                 lightStatusPt[i].mSpotFn = GX_SP_OFF;
-                lightStatusPt[i].color.r = g_env_light.mBGpartsActiveLight[i].mColor.r;
-                lightStatusPt[i].color.g = g_env_light.mBGpartsActiveLight[i].mColor.g;
-                lightStatusPt[i].color.b = g_env_light.mBGpartsActiveLight[i].mColor.b;
+                lightStatusPt[i].color.r = g_env_light.bgparts_active_light[i].mColor.r;
+                lightStatusPt[i].color.g = g_env_light.bgparts_active_light[i].mColor.g;
+                lightStatusPt[i].color.b = g_env_light.bgparts_active_light[i].mColor.b;
             } else {
                 lightStatusPt[i].color.r = 0;
                 lightStatusPt[i].color.g = 0;
@@ -4247,22 +4369,23 @@ void dKy_setLight_nowroom_common(char room_no, f32 light_ratio) {
         for (int i = 0; i < 6; i++) {
             if (room_light_info != 0) {
                 if (i < room_light_info_num) {
-                    lightStatusPt[i + 2].position.x = room_light_info[i].m_position.x;
-                    lightStatusPt[i + 2].position.y = room_light_info[i].m_position.y;
-                    lightStatusPt[i + 2].position.z = room_light_info[i].m_position.z;
+                    lightStatusPt[i + 2].position.x = room_light_info[i].position.x;
+                    lightStatusPt[i + 2].position.y = room_light_info[i].position.y;
+                    lightStatusPt[i + 2].position.z = room_light_info[i].position.z;
 
                     if (dKy_lightswitch_check(&room_light_info[i], room_no) == TRUE) {
-                        lightStatusPt[i + 2].mRefDist = room_light_info[i].m_radius;
+                        lightStatusPt[i + 2].mRefDist = room_light_info[i].radius;
                     } else {
                         lightStatusPt[i + 2].mRefDist = 0.000001f;
                     }
 
                     lightStatusPt[i + 2].mRefBrightness = 0.99999f;
                     lightStatusPt[i + 2].field_0x1c = 0;
-                    lightStatusPt[i + 2].mSpotFn = (GXSpotFn)room_light_info[i].field_0x1c;
-                    lightStatusPt[i + 2].mDistFn = (GXDistAttnFn)room_light_info[i].field_0x1d;
-                    lightStatusPt[i + 2].mCutoff = room_light_info[i].m_spotCutoff;
-                    dKy_lightdir_set(room_light_info[i].m_directionX, room_light_info[i].m_directionY, &lightStatusPt[i + 2].mLightDir);
+                    lightStatusPt[i + 2].mSpotFn = (GXSpotFn)room_light_info[i].spot_type;
+                    lightStatusPt[i + 2].mDistFn = (GXDistAttnFn)room_light_info[i].dist_atten_type;
+                    lightStatusPt[i + 2].mCutoff = room_light_info[i].spotCutoff;
+                    dKy_lightdir_set(room_light_info[i].directionX, room_light_info[i].directionY,
+                                     &lightStatusPt[i + 2].mLightDir);
                 } else {
                     lightStatusPt[i + 2].mRefDist = 0.0f;
                     lightStatusPt[i + 2].mRefBrightness = 0.99999f;
@@ -4278,11 +4401,11 @@ void dKy_setLight_nowroom_common(char room_no, f32 light_ratio) {
                 lightMask |= lightMaskData[3];
 
                 if (i == 0) {
-                    lightStatusPt[i + 2].position = kankyo->mSunPos;
+                    lightStatusPt[i + 2].position = kankyo->sun_pos;
                 } else if (camera != 0) {
-                    lightStatusPt[i + 2].position = camera->lookat.eye + kankyo->mMoonPos;
+                    lightStatusPt[i + 2].position = camera->lookat.eye + kankyo->moon_pos;
                 } else {
-                    lightStatusPt[i + 2].position = kankyo->mMoonPos;
+                    lightStatusPt[i + 2].position = kankyo->moon_pos;
                 }
 
                 lightStatusPt[i + 2].mRefDist = 10000.0f;
@@ -4299,19 +4422,23 @@ void dKy_setLight_nowroom_common(char room_no, f32 light_ratio) {
 
                 J3DLightInfo* room_light = &room_tevstr->mLights[i].getLightInfo();
                 if (room_light != NULL) {
-                    lightStatusPt[i + 2].color = dKy_light_influence_col(&room_light->mColor, light_ratio);
+                    lightStatusPt[i + 2].color =
+                        dKy_light_influence_col(&room_light->mColor, light_ratio);
                 } else {
-                    lightStatusPt[i + 2].color = dKy_light_influence_col(&g_env_light.mDungeonLights[i].mColor, light_ratio);
+                    lightStatusPt[i + 2].color =
+                        dKy_light_influence_col(&g_env_light.dungeonlight[i].mColor, light_ratio);
                 }
 
-                if (room_no == dComIfGp_roomControl_getStayNo() && room_light_info != NULL && i < room_light_info_num) {
-                    g_env_light.mDungeonLights[i].mPosition = lightStatusPt[i + 2].position;
-                    g_env_light.mDungeonLights[i].mRefDistance = lightStatusPt[i + 2].mRefDist;
-                    g_env_light.mDungeonLights[i].mCutoffAngle = lightStatusPt[i + 2].mCutoff;
-                    g_env_light.mDungeonLights[i].mAngleAttenuation = lightStatusPt[i + 2].mSpotFn;
-                    g_env_light.mDungeonLights[i].mDistAttenuation = lightStatusPt[i + 2].mDistFn;
-                    g_env_light.mDungeonLights[i].mAngleX = room_light_info[i].m_directionX;
-                    g_env_light.mDungeonLights[i].mAngleY = room_light_info[i].m_directionY;
+                if (room_no == dComIfGp_roomControl_getStayNo() && room_light_info != NULL &&
+                    i < room_light_info_num)
+                {
+                    g_env_light.dungeonlight[i].mPosition = lightStatusPt[i + 2].position;
+                    g_env_light.dungeonlight[i].mRefDistance = lightStatusPt[i + 2].mRefDist;
+                    g_env_light.dungeonlight[i].mCutoffAngle = lightStatusPt[i + 2].mCutoff;
+                    g_env_light.dungeonlight[i].mAngleAttenuation = lightStatusPt[i + 2].mSpotFn;
+                    g_env_light.dungeonlight[i].mDistAttenuation = lightStatusPt[i + 2].mDistFn;
+                    g_env_light.dungeonlight[i].mAngleX = room_light_info[i].directionX;
+                    g_env_light.dungeonlight[i].mAngleY = room_light_info[i].directionY;
                 }
             } else {
                 lightStatusPt[i + 2].color.r = 0;
@@ -4326,7 +4453,9 @@ void dKy_setLight_nowroom_common(char room_no, f32 light_ratio) {
                     if (!(lightMask & lightMaskData[j + 2])) {
                         lightMask |= lightMaskData[j + 2];
 
-                        if (kankyo->field_0x0c18[i].mColor.a == 254 || kankyo->field_0x0c18[i].mColor.a == 253) {
+                        if (kankyo->field_0x0c18[i].mColor.a == 254 ||
+                            kankyo->field_0x0c18[i].mColor.a == 253)
+                        {
                             dKy_twi_wolflight_set(i);
                         }
 
@@ -4337,9 +4466,11 @@ void dKy_setLight_nowroom_common(char room_no, f32 light_ratio) {
                         } else {
                             lightStatusPt[j + 2].position.x = kankyo->field_0x0c18[i].mPos.x;
                             if (i == 0) {
-                                lightStatusPt[j + 2].position.y = kankyo->field_0x0c18[i].mPos.y + g_env_light.field_0x127c;
+                                lightStatusPt[j + 2].position.y =
+                                    kankyo->field_0x0c18[i].mPos.y + g_env_light.field_0x127c;
                             } else {
-                                lightStatusPt[j + 2].position.y = 200.0f + kankyo->field_0x0c18[i].mPos.y;
+                                lightStatusPt[j + 2].position.y =
+                                    200.0f + kankyo->field_0x0c18[i].mPos.y;
                             }
                             lightStatusPt[j + 2].position.z = kankyo->field_0x0c18[i].mPos.z;
                         }
@@ -4352,7 +4483,9 @@ void dKy_setLight_nowroom_common(char room_no, f32 light_ratio) {
                         lightStatusPt[j + 2].mDistFn = (GXDistAttnFn)kankyo->field_0x0c18[i].mDistAttenuation;
                         lightStatusPt[j + 2].mCutoff = kankyo->field_0x0c18[i].mCutoffAngle;
 
-                        dKy_lightdir_set(kankyo->field_0x0c18[i].mAngleX, kankyo->field_0x0c18[i].mAngleY, &lightStatusPt[j + 2].mLightDir);
+                        dKy_lightdir_set(kankyo->field_0x0c18[i].mAngleX,
+                                         kankyo->field_0x0c18[i].mAngleY,
+                                         &lightStatusPt[j + 2].mLightDir);
                         break;
                     }
                 }
@@ -4383,7 +4516,7 @@ void dKy_setLight_nowroom_grass(char room_no, f32 light_ratio) {
         if (filelist == NULL) {
             return;
         }
-        
+
         int grass_light = dStage_FileList_dt_GRASSLIGHT(filelist);
 
         f32 grass_light_ratio;
@@ -4404,8 +4537,11 @@ void dKy_setLight_nowroom_grass(char room_no, f32 light_ratio) {
 /* 801A6D4C-801A6E9C 1A168C 0150+00 1/1 1/1 0/0 .text dKy_move_room_ratio__FP12dKy_tevstr_cPSc */
 f32 dKy_move_room_ratio(dKy_tevstr_c* tevstr_p, s8* room_no_p) {
     f32 ratio = 1.0f;
-    
-    if (memcmp(dComIfGp_getStartStageName(), "D_MN", 4) == 0 && g_env_light.mColPatMode == 0 && g_env_light.mColPatModeGather == 0 && tevstr_p->pat_ratio > 0.0f && tevstr_p->pat_ratio < 1.0f) {
+
+    if (memcmp(dComIfGp_getStartStageName(), "D_MN", 4) == 0 && g_env_light.mColPatMode == 0 &&
+        g_env_light.mColPatModeGather == 0 && tevstr_p->pat_ratio > 0.0f &&
+        tevstr_p->pat_ratio < 1.0f)
+    {
         if (tevstr_p->pat_ratio < 0.5f) {
             if (tevstr_p->YukaCol == 0xFF) {
                 *room_no_p = tevstr_p->PrevCol;
@@ -4471,21 +4607,23 @@ void dKy_setLight_nowroom_actor(dKy_tevstr_c* tevstr_p) {
             light = &tevstr_p->mLights[i].getLightInfo();
             if (view_mtx != NULL) {
                 if (room_lights != 0 && i < room_light_num) {
-                    sp3C.x = room_lights[i].m_position.x;
-                    sp3C.y = room_lights[i].m_position.y;
-                    sp3C.z = room_lights[i].m_position.z;
+                    sp3C.x = room_lights[i].position.x;
+                    sp3C.y = room_lights[i].position.y;
+                    sp3C.z = room_lights[i].position.z;
 
-                    dKy_GXInitLightSpot(light, room_lights[i].m_spotCutoff, room_lights[i].field_0x1c);
-                    
+                    dKy_GXInitLightSpot(light, room_lights[i].spotCutoff, room_lights[i].spot_type);
+
                     f32 var_f29;
                     if (dKy_lightswitch_check(&room_lights[i], room_no) == TRUE) {
-                        var_f29 = light_ratio * room_lights[i].m_radius;
+                        var_f29 = light_ratio * room_lights[i].radius;
                     } else {
                         var_f29 = 0.000001f;
                     }
 
-                    dKy_GXInitLightDistAttn(light, var_f29, 0.99999f, room_lights[i].field_0x1d);
-                    dKy_lightdir_set(room_lights[i].m_directionX, room_lights[i].m_directionY, &light->mLightDirection);
+                    dKy_GXInitLightDistAttn(light, var_f29, 0.99999f,
+                                            room_lights[i].dist_atten_type);
+                    dKy_lightdir_set(room_lights[i].directionX, room_lights[i].directionY,
+                                     &light->mLightDirection);
                     light->mLightDirection.x = -light->mLightDirection.x;
                     light->mLightDirection.y = -light->mLightDirection.y;
                     light->mLightDirection.z = -light->mLightDirection.z;
@@ -4496,17 +4634,17 @@ void dKy_setLight_nowroom_actor(dKy_tevstr_c* tevstr_p) {
                     lightMask |= lightMaskData[3];
 
                     if (i == 0) {
-                        sp3C.x = kankyo->mSunPos.x;
-                        sp3C.y = kankyo->mSunPos.y;
-                        sp3C.z = kankyo->mSunPos.z;
+                        sp3C.x = kankyo->sun_pos.x;
+                        sp3C.y = kankyo->sun_pos.y;
+                        sp3C.z = kankyo->sun_pos.z;
                     } else if (camera != NULL) {
-                        sp3C.x = camera->lookat.eye.x + kankyo->mMoonPos.x;
-                        sp3C.y = camera->lookat.eye.y + kankyo->mMoonPos.y;
-                        sp3C.z = camera->lookat.eye.z + kankyo->mMoonPos.z;
+                        sp3C.x = camera->lookat.eye.x + kankyo->moon_pos.x;
+                        sp3C.y = camera->lookat.eye.y + kankyo->moon_pos.y;
+                        sp3C.z = camera->lookat.eye.z + kankyo->moon_pos.z;
                     } else {
-                        sp3C.x = kankyo->mMoonPos.x;
-                        sp3C.y = kankyo->mMoonPos.y;
-                        sp3C.z = kankyo->mMoonPos.z;
+                        sp3C.x = kankyo->moon_pos.x;
+                        sp3C.y = kankyo->moon_pos.y;
+                        sp3C.z = kankyo->moon_pos.z;
                     }
 
                     dKy_GXInitLightSpot(light, 90.0f, GX_SP_OFF);
@@ -4544,11 +4682,14 @@ void dKy_setLight_nowroom_actor(dKy_tevstr_c* tevstr_p) {
                         lightMask |= lightMaskData[j + 2];
 
                         light = &tevstr_p->mLights[j].getLightInfo();
-                        if (kankyo->field_0x0c18[i].mColor.a == 254 || kankyo->field_0x0c18[i].mColor.a == 253) {
+                        if (kankyo->field_0x0c18[i].mColor.a == 254 ||
+                            kankyo->field_0x0c18[i].mColor.a == 253)
+                        {
                             dKy_twi_wolflight_set(i);
                         }
 
-                        light->mColor = dKy_light_influence_col(&kankyo->field_0x0c18[i].mColor, tevstr_p->field_0x374);
+                        light->mColor = dKy_light_influence_col(&kankyo->field_0x0c18[i].mColor,
+                                                                tevstr_p->field_0x374);
 
                         if (tevstr_p->Type < 16) {
                             sp3C.x = kankyo->field_0x0c18[i].mPos.x;
@@ -4570,17 +4711,20 @@ void dKy_setLight_nowroom_actor(dKy_tevstr_c* tevstr_p) {
                             sp3C.z = kankyo->field_0x0c18[i].mPos.z;
                         }
 
-                        dKy_GXInitLightSpot(light, kankyo->field_0x0c18[i].mCutoffAngle, kankyo->field_0x0c18[i].mAngleAttenuation);
+                        dKy_GXInitLightSpot(light, kankyo->field_0x0c18[i].mCutoffAngle,
+                                            kankyo->field_0x0c18[i].mAngleAttenuation);
                         f32 var_f30 = kankyo->field_0x0c18[i].mRefDistance * light_ratio;
                         if (var_f30 <= 0.0f) {
                             var_f30 = 0.000001f;
                         }
 
-                        dKy_GXInitLightDistAttn(light, var_f30, 0.99999f, kankyo->field_0x0c18[i].mDistAttenuation);
+                        dKy_GXInitLightDistAttn(light, var_f30, 0.99999f,
+                                                kankyo->field_0x0c18[i].mDistAttenuation);
                         cMtx_multVec(view_mtx, &sp3C, &light_pos);
                         light->mLightPosition = light_pos;
-                        
-                        dKy_lightdir_set(kankyo->field_0x0c18[i].mAngleX, kankyo->field_0x0c18[i].mAngleY, &light->mLightDirection);
+
+                        dKy_lightdir_set(kankyo->field_0x0c18[i].mAngleX,
+                                         kankyo->field_0x0c18[i].mAngleY, &light->mLightDirection);
                         light->mLightDirection.x = -light->mLightDirection.x;
                         light->mLightDirection.y = -light->mLightDirection.y;
                         light->mLightDirection.z = -light->mLightDirection.z;
@@ -4638,21 +4782,21 @@ cXyz dKy_light_influence_pos(int light_id) {
     }
 
     dScnKy_env_light_c* kankyo = &g_env_light;
-    return kankyo->mPointLight[light_id]->mPosition;
+    return kankyo->pointlight[light_id]->mPosition;
 }
 
 /* 801A7714-801A7738 1A2054 0024+00 0/0 1/1 0/0 .text            dKy_plight_near_pos__Fv */
 cXyz dKy_plight_near_pos() {
-    return g_env_light.mPLightNearPos;
+    return g_env_light.plight_near_pos;
 }
 
 /* 801A7738-801A7790 1A2078 0058+00 0/0 0/0 1/1 .text
  * dKy_mock_light_every_set__FP15LIGHT_INFLUENCE                */
 void dKy_mock_light_every_set(LIGHT_INFLUENCE* light_inf_p) {
     for (int i = 50; i < 100; i++) {
-        if (g_env_light.mPointLight[i] == NULL) {
-            g_env_light.mPointLight[i] = light_inf_p;
-            g_env_light.mPointLight[i]->mIndex = i + 1;
+        if (g_env_light.pointlight[i] == NULL) {
+            g_env_light.pointlight[i] = light_inf_p;
+            g_env_light.pointlight[i]->mIndex = i + 1;
             break;
         }
     }
@@ -4661,15 +4805,15 @@ void dKy_mock_light_every_set(LIGHT_INFLUENCE* light_inf_p) {
 /* 801A7790-801A7814 1A20D0 0084+00 1/1 1/1 18/18 .text dKy_plight_set__FP15LIGHT_INFLUENCE */
 void dKy_plight_set(LIGHT_INFLUENCE* light_inf_p) {
     for (int i = 0; i < 100; i++) {
-        if (g_env_light.mPointLight[i] == light_inf_p) {
+        if (g_env_light.pointlight[i] == light_inf_p) {
             return;
         }
     }
 
     for (int i = 0; i < 50; i++) {
-        if (g_env_light.mPointLight[i] == NULL) {
-            g_env_light.mPointLight[i] = light_inf_p;
-            g_env_light.mPointLight[i]->mIndex = i + 1;
+        if (g_env_light.pointlight[i] == NULL) {
+            g_env_light.pointlight[i] = light_inf_p;
+            g_env_light.pointlight[i]->mIndex = i + 1;
             break;
         }
     }
@@ -4679,9 +4823,9 @@ void dKy_plight_set(LIGHT_INFLUENCE* light_inf_p) {
  */
 void dKy_dalkmist_inf_set(DALKMIST_INFLUENCE* dalkmist_inf_p) {
     for (int i = 0; i < 10; i++) {
-        if (g_env_light.mDalkmistInf[i] == NULL) {
-            g_env_light.mDalkmistInf[i] = dalkmist_inf_p;
-            g_env_light.mDalkmistInf[i]->mIndex = i;
+        if (g_env_light.dalkmist_influence[i] == NULL) {
+            g_env_light.dalkmist_influence[i] = dalkmist_inf_p;
+            g_env_light.dalkmist_influence[i]->mIndex = i;
             break;
         }
     }
@@ -4692,7 +4836,7 @@ void dKy_dalkmist_inf_set(DALKMIST_INFLUENCE* dalkmist_inf_p) {
 void dKy_dalkmist_inf_cut(DALKMIST_INFLUENCE* dalkmist_inf_p) {
     if (dalkmist_inf_p != NULL) {
         if (dalkmist_inf_p->mIndex < 10) {
-            g_env_light.mDalkmistInf[dalkmist_inf_p->mIndex] = NULL;
+            g_env_light.dalkmist_influence[dalkmist_inf_p->mIndex] = NULL;
         }
     }
 }
@@ -4703,9 +4847,9 @@ void dKy_plight_priority_set(LIGHT_INFLUENCE* light_inf_p) {
     int i = 0;
 
     for (; i < 50; i++) {
-        if (g_env_light.mPointLight[i] == NULL) {
-            g_env_light.mPointLight[i] = light_inf_p;
-            g_env_light.mPointLight[i]->mIndex = -(i + 1);
+        if (g_env_light.pointlight[i] == NULL) {
+            g_env_light.pointlight[i] = light_inf_p;
+            g_env_light.pointlight[i]->mIndex = -(i + 1);
             break;
         }
     }
@@ -4725,7 +4869,7 @@ void dKy_plight_cut(LIGHT_INFLUENCE* light_inf_p) {
 
             int idx = (light_inf_p->mIndex & 0xFFF) - 1;
             if (idx < 50) {
-                g_env_light.mPointLight[idx] = NULL;
+                g_env_light.pointlight[idx] = NULL;
             }
         }
     }
@@ -4734,15 +4878,15 @@ void dKy_plight_cut(LIGHT_INFLUENCE* light_inf_p) {
 /* 801A797C-801A7A00 1A22BC 0084+00 1/1 1/1 3/3 .text dKy_efplight_set__FP15LIGHT_INFLUENCE */
 void dKy_efplight_set(LIGHT_INFLUENCE* light_inf_p) {
     for (int i = 0; i < 5; i++) {
-        if (g_env_light.mEfPLight[i] == light_inf_p) {
+        if (g_env_light.efplight[i] == light_inf_p) {
             return;
         }
     }
 
     for (int i = 0; i < 5; i++) {
-        if (g_env_light.mEfPLight[i] == NULL) {
-            g_env_light.mEfPLight[i] = light_inf_p;
-            g_env_light.mEfPLight[i]->mIndex = i + 1;
+        if (g_env_light.efplight[i] == NULL) {
+            g_env_light.efplight[i] = light_inf_p;
+            g_env_light.efplight[i]->mIndex = i + 1;
             break;
         }
     }
@@ -4754,7 +4898,7 @@ void dKy_efplight_cut(LIGHT_INFLUENCE* light_inf_p) {
         if (light_inf_p->mIndex != 0) {
             int idx = light_inf_p->mIndex - 1;
             if (idx >= 0 && idx < 5) {
-                g_env_light.mEfPLight[idx] = NULL;
+                g_env_light.efplight[idx] = NULL;
             }
         }
     }
@@ -4764,63 +4908,57 @@ void dKy_efplight_cut(LIGHT_INFLUENCE* light_inf_p) {
  * dKy_bgparts_activelight_set__FP15LIGHT_INFLUENCEi            */
 void dKy_bgparts_activelight_set(LIGHT_INFLUENCE* light_inf_p, int bgpart_id) {
     if (light_inf_p != NULL) {
-        memcpy(&g_env_light.mBGpartsActiveLight[bgpart_id], light_inf_p, sizeof(LIGHT_INFLUENCE));
-        g_env_light.mBGpartsActiveLight[bgpart_id].mIndex = bgpart_id + 1;
+        memcpy(&g_env_light.bgparts_active_light[bgpart_id], light_inf_p, sizeof(LIGHT_INFLUENCE));
+        g_env_light.bgparts_active_light[bgpart_id].mIndex = bgpart_id + 1;
     }
 }
 
 /* 801A7AAC-801A7AC8 1A23EC 001C+00 1/1 0/0 0/0 .text            dKy_bgparts_activelight_cut__Fi */
 void dKy_bgparts_activelight_cut(int bgpart_id) {
-    g_env_light.mBGpartsActiveLight[bgpart_id].mIndex = 0;
+    g_env_light.bgparts_active_light[bgpart_id].mIndex = 0;
 }
 
 /* 801A7AC8-801A7B68 1A2408 00A0+00 1/1 1/1 1/1 .text            dKy_actor_addcol_amb_set__Fsssf */
 void dKy_actor_addcol_amb_set(s16 r, s16 g, s16 b, f32 ratio) {
-    g_env_light.mActorAddColAmb.r = r * ratio;
-    g_env_light.mActorAddColAmb.g = g * ratio;
-    g_env_light.mActorAddColAmb.b = b * ratio;
+    g_env_light.actor_addcol_amb.r = r * ratio;
+    g_env_light.actor_addcol_amb.g = g * ratio;
+    g_env_light.actor_addcol_amb.b = b * ratio;
 }
-
 
 /* 801A7B68-801A7C08 1A24A8 00A0+00 1/1 1/1 1/1 .text            dKy_bg_addcol_amb_set__Fsssf */
 void dKy_bg_addcol_amb_set(s16 r, s16 g, s16 b, f32 ratio) {
-    g_env_light.mBgAddColAmb.r = r * ratio;
-    g_env_light.mBgAddColAmb.g = g * ratio;
-    g_env_light.mBgAddColAmb.b = b * ratio;
+    g_env_light.bg_addcol_amb.r = r * ratio;
+    g_env_light.bg_addcol_amb.g = g * ratio;
+    g_env_light.bg_addcol_amb.b = b * ratio;
 }
-
 
 /* 801A7C08-801A7CA8 1A2548 00A0+00 1/1 1/1 0/0 .text            dKy_bg1_addcol_amb_set__Fsssf */
 void dKy_bg1_addcol_amb_set(s16 r, s16 g, s16 b, f32 ratio) {
-    g_env_light.mBg1AddColAmb.r = r * ratio;
-    g_env_light.mBg1AddColAmb.g = g * ratio;
-    g_env_light.mBg1AddColAmb.b = b * ratio;
+    g_env_light.bg1_addcol_amb.r = r * ratio;
+    g_env_light.bg1_addcol_amb.g = g * ratio;
+    g_env_light.bg1_addcol_amb.b = b * ratio;
 }
-
 
 /* 801A7CA8-801A7D48 1A25E8 00A0+00 1/1 0/0 0/0 .text            dKy_bg2_addcol_amb_set__Fsssf */
 void dKy_bg2_addcol_amb_set(s16 r, s16 g, s16 b, f32 ratio) {
-    g_env_light.mBg2AddColAmb.r = r * ratio;
-    g_env_light.mBg2AddColAmb.g = g * ratio;
-    g_env_light.mBg2AddColAmb.b = b * ratio;
+    g_env_light.bg2_addcol_amb.r = r * ratio;
+    g_env_light.bg2_addcol_amb.g = g * ratio;
+    g_env_light.bg2_addcol_amb.b = b * ratio;
 }
-
 
 /* 801A7D48-801A7DE8 1A2688 00A0+00 1/1 0/0 0/0 .text            dKy_bg3_addcol_amb_set__Fsssf */
 void dKy_bg3_addcol_amb_set(s16 r, s16 g, s16 b, f32 ratio) {
-    g_env_light.mBg3AddColAmb.r = r * ratio;
-    g_env_light.mBg3AddColAmb.g = g * ratio;
-    g_env_light.mBg3AddColAmb.b = b * ratio;
+    g_env_light.bg3_addcol_amb.r = r * ratio;
+    g_env_light.bg3_addcol_amb.g = g * ratio;
+    g_env_light.bg3_addcol_amb.b = b * ratio;
 }
-
 
 /* 801A7DE8-801A7E88 1A2728 00A0+00 1/1 1/1 0/0 .text            dKy_addcol_fog_set__Fsssf */
 void dKy_addcol_fog_set(s16 r, s16 g, s16 b, f32 ratio) {
-    g_env_light.mFogAddCol.r = r * ratio;
-    g_env_light.mFogAddCol.g = g * ratio;
-    g_env_light.mFogAddCol.b = b * ratio;
+    g_env_light.addcol_fog.r = r * ratio;
+    g_env_light.addcol_fog.g = g * ratio;
+    g_env_light.addcol_fog.b = b * ratio;
 }
-
 
 /* 801A7E88-801A7F20 1A27C8 0098+00 2/2 0/0 2/2 .text            dKy_actor_addcol_set__Fsssf */
 void dKy_actor_addcol_set(s16 r, s16 g, s16 b, f32 ratio) {
@@ -4833,20 +4971,18 @@ void dKy_actor_addcol_set(s16 r, s16 g, s16 b, f32 ratio) {
 
 /* 801A7F20-801A7FC0 1A2860 00A0+00 1/1 1/1 0/0 .text            dKy_vrbox_addcol_sky0_set__Fsssf */
 void dKy_vrbox_addcol_sky0_set(s16 r, s16 g, s16 b, f32 ratio) {
-    g_env_light.mVrboxAddcolSky0.r = r * ratio;
-    g_env_light.mVrboxAddcolSky0.g = g * ratio;
-    g_env_light.mVrboxAddcolSky0.b = b * ratio;
+    g_env_light.vrbox_addcol_sky0.r = r * ratio;
+    g_env_light.vrbox_addcol_sky0.g = g * ratio;
+    g_env_light.vrbox_addcol_sky0.b = b * ratio;
 }
-
 
 /* 801A7FC0-801A8060 1A2900 00A0+00 1/1 1/1 0/0 .text            dKy_vrbox_addcol_kasumi_set__Fsssf
  */
 void dKy_vrbox_addcol_kasumi_set(s16 r, s16 g, s16 b, f32 ratio) {
-    g_env_light.mVrboxAddcolKasumi.r = r * ratio;
-    g_env_light.mVrboxAddcolKasumi.g = g * ratio;
-    g_env_light.mVrboxAddcolKasumi.b = b * ratio;
+    g_env_light.vrbox_addcol_kasumi.r = r * ratio;
+    g_env_light.vrbox_addcol_kasumi.g = g * ratio;
+    g_env_light.vrbox_addcol_kasumi.b = b * ratio;
 }
-
 
 /* 801A8060-801A80D0 1A29A0 0070+00 1/1 0/0 0/0 .text            dKy_vrbox_addcol_set__Fsssf */
 void dKy_vrbox_addcol_set(s16 r, s16 g, s16 b, f32 ratio) {
@@ -4871,22 +5007,21 @@ void dKy_fog_startendz_set(f32 param_0, f32 param_1, f32 ratio) {
     g_env_light.field_0x11f4 = ratio;
 }
 
-
 /* 801A8168-801A8190 1A2AA8 0028+00 0/0 1/1 0/0 .text            dKy_Itemgetcol_chg_on__Fv */
 void dKy_Itemgetcol_chg_on() {
-    if (g_env_light.mItemGetCol_chg == 0 || g_env_light.mItemGetCol_chg == 6) {
-        g_env_light.mItemGetCol_chg = 1;
+    if (g_env_light.Itemgetcol_chg == 0 || g_env_light.Itemgetcol_chg == 6) {
+        g_env_light.Itemgetcol_chg = 1;
     }
 }
 
 /* 801A8190-801A81C0 1A2AD0 0030+00 2/2 0/0 0/0 .text            dKy_Sound_init__Fv */
 void dKy_Sound_init() {
-    g_env_light.mSound.position.x = 999999.9f;
-    g_env_light.mSound.position.y = 999999.9f;
-    g_env_light.mSound.position.z = 999999.9f;
-    g_env_light.mSound.field_0xc = 0;
-    g_env_light.mSound.actor_id = fpcM_ERROR_PROCESS_ID_e;
-    g_env_light.mSound.timer = 0;
+    g_env_light.sound_influence.position.x = 999999.9f;
+    g_env_light.sound_influence.position.y = 999999.9f;
+    g_env_light.sound_influence.position.z = 999999.9f;
+    g_env_light.sound_influence.field_0xc = 0;
+    g_env_light.sound_influence.actor_id = fpcM_ERROR_PROCESS_ID_e;
+    g_env_light.sound_influence.timer = 0;
 }
 
 /* 801A81C0-801A8474 1A2B00 02B4+00 0/0 5/5 27/27 .text            dKy_Sound_set__F4cXyziUii */
@@ -4894,27 +5029,27 @@ void dKy_Sound_set(cXyz pos, int param_1, fpc_ProcID actor_id, int timer) {
     camera_class* camera_p = (camera_class*)dComIfGp_getCamera(0);
     BOOL set_sound = FALSE;
     f32 dist_pos_to_eye = pos.abs(camera_p->lookat.eye);
-    f32 dist_sndpos_to_eye = g_env_light.mSound.position.abs(camera_p->lookat.eye);
+    f32 dist_sndpos_to_eye = g_env_light.sound_influence.position.abs(camera_p->lookat.eye);
 
     if (dist_pos_to_eye < dist_sndpos_to_eye) {
         if (dist_sndpos_to_eye < 1500.0f) {
             set_sound = TRUE;
-        } else if (g_env_light.mSound.field_0xc < param_1) {
+        } else if (g_env_light.sound_influence.field_0xc < param_1) {
             set_sound = TRUE;
         }
     }
 
     if (set_sound) {
-        g_env_light.mSound.position = pos;
-        g_env_light.mSound.field_0xc = param_1;
-        g_env_light.mSound.actor_id = actor_id;
-        g_env_light.mSound.timer = timer;
+        g_env_light.sound_influence.position = pos;
+        g_env_light.sound_influence.field_0xc = param_1;
+        g_env_light.sound_influence.actor_id = actor_id;
+        g_env_light.sound_influence.timer = timer;
     }
 }
 
 /* 801A8474-801A8484 1A2DB4 0010+00 0/0 1/1 8/8 .text            dKy_Sound_get__Fv */
 SND_INFLUENCE* dKy_Sound_get() {
-    return &g_env_light.mSound;
+    return &g_env_light.sound_influence;
 }
 
 /* 801A8484-801A8538 1A2DC4 00B4+00 0/0 2/2 0/0 .text            dKy_SordFlush_set__F4cXyzi */
@@ -4924,12 +5059,12 @@ void dKy_SordFlush_set(cXyz light_pos, int light_type) {
     if (!dKy_darkworld_check() &&
         (light->mThunderEff.mState >= 10 || light->mThunderEff.mFlashTimer <= 0.0f))
     {
-        if (g_env_light.mSwordLight.mState == 0) {
-            g_env_light.mSwordLight.mState = 1;
-            g_env_light.mSwordLight.mLightType = light_type;
-            g_env_light.mSwordLight.field_0x8.mPosition = light_pos;
-        } else if (g_env_light.mSwordLight.mState == 2) {
-            g_env_light.mSwordLight.mState = 4;
+        if (g_env_light.eflight.mState == 0) {
+            g_env_light.eflight.mState = 1;
+            g_env_light.eflight.mLightType = light_type;
+            g_env_light.eflight.field_0x8.mPosition = light_pos;
+        } else if (g_env_light.eflight.mState == 2) {
+            g_env_light.eflight.mState = 4;
         }
     }
 }
@@ -4956,9 +5091,9 @@ static void GxFogSet_Sub(GXColor* fog_col_p) {
 /* 801A85E8-801A862C 1A2F28 0044+00 1/1 0/0 0/0 .text            GxFog_set__Fv */
 static void GxFog_set() {
     GXColor color;
-    color.r = g_env_light.mFogColor.r;
-    color.g = g_env_light.mFogColor.g;
-    color.b = g_env_light.mFogColor.b;
+    color.r = g_env_light.fog_col.r;
+    color.g = g_env_light.fog_col.g;
+    color.b = g_env_light.fog_col.b;
 
     GxFogSet_Sub(&color);
 }
@@ -5018,8 +5153,7 @@ void dKy_GfFog_tevstr_set(dKy_tevstr_c* tevstr_p) {
 /* 801A87A0-801A87E4 1A30E0 0044+00 3/3 0/0 0/0 .text            GxXFog_set__Fv */
 static void GxXFog_set() {
     dKyd_xfog_table_set(g_env_light.mFogAdjTableType);
-    GXSetFogRangeAdj(g_env_light.mFogAdjEnable, g_env_light.mFogAdjCenter,
-                     &g_env_light.mXFogTbl);
+    GXSetFogRangeAdj(g_env_light.mFogAdjEnable, g_env_light.mFogAdjCenter, &g_env_light.mXFogTbl);
 }
 
 /* 801A87E4-801A880C 1A3124 0028+00 0/0 0/0 52/52 .text            dKy_change_colpat__FUc */
@@ -5032,7 +5166,7 @@ void dKy_change_colpat(u8 colpat) {
 
 /* 801A880C-801A8854 1A314C 0048+00 0/0 0/0 25/25 .text            dKy_custom_colset__FUcUcf */
 void dKy_custom_colset(u8 prevGather, u8 curGather, f32 blend) {
-    if (g_env_light.mInitAnmTimer != 1) {
+    if (g_env_light.light_init_timer != 1) {
         if (blend < 1.0f) {
             g_env_light.mColpatPrevGather = prevGather;
         } else {
@@ -5110,30 +5244,29 @@ void dKy_tevstr_init(dKy_tevstr_c* tevstr_p, s8 room_no, u8 floorCol) {
     }
 }
 
-
 /* 801A8A34-801A8A44 1A3374 0010+00 0/0 1/1 0/0 .text            dKy_rain_check__Fv */
 int dKy_rain_check() {
-    return g_env_light.mRainCount;
+    return g_env_light.raincnt;
 }
 
 /* 801A8A44-801A8A54 1A3384 0010+00 0/0 0/0 5/5 .text            dKy_set_allcol_ratio__Ff */
 void dKy_set_allcol_ratio(f32 ratio) {
-    g_env_light.mAllcolRatio = ratio;
+    g_env_light.allcol_ratio = ratio;
 }
 
 /* 801A8A54-801A8A64 1A3394 0010+00 0/0 1/1 1/1 .text            dKy_set_actcol_ratio__Ff */
 void dKy_set_actcol_ratio(f32 ratio) {
-    g_env_light.mActcolRatio = ratio;
+    g_env_light.actcol_ratio = ratio;
 }
 
 /* 801A8A64-801A8A74 1A33A4 0010+00 0/0 1/1 1/1 .text            dKy_set_bgcol_ratio__Ff */
 void dKy_set_bgcol_ratio(f32 ratio) {
-    g_env_light.mBgcolRatio = ratio;
+    g_env_light.bgcol_ratio = ratio;
 }
 
 /* 801A8A74-801A8A84 1A33B4 0010+00 0/0 1/1 1/1 .text            dKy_set_fogcol_ratio__Ff */
 void dKy_set_fogcol_ratio(f32 ratio) {
-    g_env_light.mFogcolRatio = ratio;
+    g_env_light.fogcol_ratio = ratio;
 }
 
 /* 801A8A84-801A8AB8 1A33C4 0034+00 0/0 1/1 0/0 .text            dKy_set_vrboxcol_ratio__Ff */
@@ -5144,18 +5277,18 @@ void dKy_set_vrboxcol_ratio(f32 ratio) {
 
 /* 801A8AB8-801A8AC8 1A33F8 0010+00 1/1 0/0 0/0 .text            dKy_set_vrboxsoracol_ratio__Ff */
 void dKy_set_vrboxsoracol_ratio(f32 ratio) {
-    g_env_light.mVrboxSoracolRatio = ratio;
+    g_env_light.vrboxsoracol_ratio = ratio;
 }
 
 /* 801A8AC8-801A8AD8 1A3408 0010+00 1/1 0/0 0/0 .text            dKy_set_vrboxkumocol_ratio__Ff */
 void dKy_set_vrboxkumocol_ratio(f32 ratio) {
-    g_env_light.mVrboxKumocolRatio = ratio;
+    g_env_light.vrboxkumocol_ratio = ratio;
 }
 
 /* 801A8AD8-801A8B38 1A3418 0060+00 0/0 1/1 0/0 .text            dKy_itudemo_se__Fv */
 void dKy_itudemo_se() {
-    if (g_env_light.mMoyaSE != 0) {
-        mDoAud_seStart(g_env_light.mMoyaSE, NULL, 0, 0);
+    if (g_env_light.moya_se != 0) {
+        mDoAud_seStart(g_env_light.moya_se, NULL, 0, 0);
     }
 }
 
@@ -5166,7 +5299,7 @@ int dKy_get_dayofweek() {
 
 /* 801A8B58-801A8B68 1A3498 0010+00 0/0 3/3 0/0 .text            dKy_set_nexttime__Ff */
 void dKy_set_nexttime(f32 nexttime) {
-    g_env_light.mNexttime = nexttime;
+    g_env_light.nexttime = nexttime;
 }
 
 /* 801A8B68-801A8BC8 1A34A8 0060+00 0/0 1/1 0/0 .text            dKy_instant_timechg__Ff */
@@ -5256,8 +5389,7 @@ static f32 dummy() {
 /* 801A8E20-801A9BE4 1A3760 0DC4+00 2/2 0/0 0/0 .text
  * dKy_ParticleColor_get_base__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf */
 void dKy_ParticleColor_get_base(cXyz* param_0, dKy_tevstr_c* param_1, GXColor* param_2,
-                                       GXColor* param_3, GXColor* param_4, GXColor* param_5,
-                                       f32 param_6) {
+                                GXColor* param_3, GXColor* param_4, GXColor* param_5, f32 param_6) {
     GXColor sp70[3];
     cXyz sp64;
     f32 sp58[] = {100000000.0f, 100000000.0f, 100000000.0f};
@@ -5280,12 +5412,13 @@ void dKy_ParticleColor_get_base(cXyz* param_0, dKy_tevstr_c* param_1, GXColor* p
         } else {
             sp38 = dComIfGp_roomControl_getStayNo();
             if (dKy_SunMoon_Light_Check() == TRUE && i <= 1) {
-                sp40 = g_env_light.mDungeonLights[i].mColor;
+                sp40 = g_env_light.dungeonlight[i].mColor;
             } else if (dComIfGp_roomControl_getStatusRoomDt(sp38) != NULL) {
-                stage_light_info_p = dComIfGp_roomControl_getStatusRoomDt(sp38)->mRoomDt.getLightVecInfo();
+                stage_light_info_p =
+                    dComIfGp_roomControl_getStatusRoomDt(sp38)->mRoomDt.getLightVecInfo();
                 sp30 = dComIfGp_roomControl_getStatusRoomDt(sp38)->mRoomDt.getLightVecInfoNum();
                 if (i < sp30) {
-                    sp40 = g_env_light.mDungeonLights[i].mColor;
+                    sp40 = g_env_light.dungeonlight[i].mColor;
                 } else {
                     sp40.r = 0;
                     sp40.g = 0;
@@ -5296,7 +5429,7 @@ void dKy_ParticleColor_get_base(cXyz* param_0, dKy_tevstr_c* param_1, GXColor* p
 
         f32 var_f31;
         if (dKy_SunMoon_Light_Check() == TRUE && i <= 1) {
-            if (g_env_light.mDaytime >= 90.0f && g_env_light.mDaytime <= 285.0f) {
+            if (g_env_light.daytime >= 90.0f && g_env_light.daytime <= 285.0f) {
                 if (i == 0) {
                     var_f31 = 1.0f;
                 } else {
@@ -5324,8 +5457,10 @@ void dKy_ParticleColor_get_base(cXyz* param_0, dKy_tevstr_c* param_1, GXColor* p
         } else if (sp40.r != 0 || sp40.g != 0 || sp40.b != 0) {
             stage_pure_lightvec_info_class* stage_light_info_p;
             if (param_1 != NULL && param_1->room_no >= 0) {
-                stage_light_info_p = dComIfGp_roomControl_getStatusRoomDt(param_1->room_no)->mRoomDt.getLightVecInfo();
-                sp3C = dComIfGp_roomControl_getStatusRoomDt(param_1->room_no)->mRoomDt.getLightVecInfoNum();
+                stage_light_info_p = dComIfGp_roomControl_getStatusRoomDt(param_1->room_no)
+                                         ->mRoomDt.getLightVecInfo();
+                sp3C = dComIfGp_roomControl_getStatusRoomDt(param_1->room_no)
+                           ->mRoomDt.getLightVecInfoNum();
             } else {
                 s32 room_no = dComIfGp_roomControl_getStayNo();  // fakematch, fixes instruction order
                 stage_light_info_p = dComIfGp_roomControl_getStatusRoomDt(room_no)->mRoomDt.getLightVecInfo();
@@ -5337,9 +5472,9 @@ void dKy_ParticleColor_get_base(cXyz* param_0, dKy_tevstr_c* param_1, GXColor* p
             f32 var_f26;
             if (stage_light_info_p != 0) {
                 if (i < sp3C) {
-                    sp64.x = stage_light_info_p[i].m_position.x;
-                    sp64.y = stage_light_info_p[i].m_position.y;
-                    sp64.z = stage_light_info_p[i].m_position.z;
+                    sp64.x = stage_light_info_p[i].position.x;
+                    sp64.y = stage_light_info_p[i].position.y;
+                    sp64.z = stage_light_info_p[i].position.z;
 
                     if (param_1 != NULL && param_1->room_no >= 0) {
                         room_no = param_1->room_no;
@@ -5348,7 +5483,7 @@ void dKy_ParticleColor_get_base(cXyz* param_0, dKy_tevstr_c* param_1, GXColor* p
                     }
 
                     if (dKy_lightswitch_check(&stage_light_info_p[i], room_no) == TRUE) {
-                        var_f27 = 190.0f * stage_light_info_p[i].m_radius;
+                        var_f27 = 190.0f * stage_light_info_p[i].radius;
                     } else {
                         var_f27 = 0.0f;
                     }
@@ -5367,7 +5502,7 @@ void dKy_ParticleColor_get_base(cXyz* param_0, dKy_tevstr_c* param_1, GXColor* p
 
             var_f31 = param_0->abs(sp64);
             if (var_f31 <= 0.0f) {
-                var_f31 = 9.9999998E-14f;
+                var_f31 = 0.0000000000001f;
             }
 
             if (var_f27 > 0.0f) {
@@ -5493,7 +5628,7 @@ void dKy_ParticleColor_get_actor(cXyz* param_0, dKy_tevstr_c* tevstr_p, GXColor*
     if (tevstr_p != NULL) {
         *param_2 = NewAmbColGet(&tevstr_p->AmbCol);
     } else {
-        *param_2 = NewAmbColGet(&g_env_light.mActorAmbience);
+        *param_2 = NewAmbColGet(&g_env_light.actor_amb_col);
     }
 
     dKy_ParticleColor_get_base(param_0, tevstr_p, param_2, param_3, param_4, param_5, param_6);
@@ -5502,9 +5637,8 @@ void dKy_ParticleColor_get_actor(cXyz* param_0, dKy_tevstr_c* tevstr_p, GXColor*
 /* 801A9CBC-801A9D60 1A45FC 00A4+00 0/0 6/6 0/0 .text
  * dKy_ParticleColor_get_bg__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf */
 void dKy_ParticleColor_get_bg(cXyz* param_0, dKy_tevstr_c* tevstr_p, GXColor* param_2,
-                              GXColor* param_3, GXColor* param_4, GXColor* param_5,
-                              f32 param_6) {
-    *param_2 = NewAmbColGet(&g_env_light.mTerrainAmbienceBG[0]);
+                              GXColor* param_3, GXColor* param_4, GXColor* param_5, f32 param_6) {
+    *param_2 = NewAmbColGet(&g_env_light.bg_amb_col[0]);
     dKy_ParticleColor_get_base(param_0, tevstr_p, param_2, param_3, param_4, param_5, param_6);
 }
 
@@ -5517,7 +5651,7 @@ int dKy_BossLight_set(cXyz* pos_p, GXColor* color_p, f32 ref_dist, u8 param_3) {
     u8 spA = 0xFF;
     int stage_light_info_num = 0;
     int i;
-    
+
     if (strcmp(dComIfGp_getStartStageName(), "F_SP118") != 0) {
         u8 room_no = dComIfGp_roomControl_getStayNo();
         if (dComIfGp_roomControl_getStatusRoomDt(room_no) == NULL) {
@@ -5529,7 +5663,7 @@ int dKy_BossLight_set(cXyz* pos_p, GXColor* color_p, f32 ref_dist, u8 param_3) {
             stage_light_info_num = 6;
         }
     }
-    
+
     BOSS_LIGHT* boss_light_p;
     if (param_3 == 0) {
         boss_light_p = kankyo->field_0x0c18;
@@ -5538,7 +5672,9 @@ int dKy_BossLight_set(cXyz* pos_p, GXColor* color_p, f32 ref_dist, u8 param_3) {
     }
 
     for (i = 1; i < 6 - stage_light_info_num; i++) {
-        if (boss_light_p[i].field_0x26 == 1 && pos_p->x == boss_light_p[i].mPos.x && pos_p->y == boss_light_p[i].mPos.y && pos_p->z == boss_light_p[i].mPos.z) {
+        if (boss_light_p[i].field_0x26 == 1 && pos_p->x == boss_light_p[i].mPos.x &&
+            pos_p->y == boss_light_p[i].mPos.y && pos_p->z == boss_light_p[i].mPos.z)
+        {
             return 0;
         }
     }
@@ -5615,8 +5751,8 @@ int dKy_BossLight_set(cXyz* pos_p, GXColor* color_p, f32 ref_dist, u8 param_3) {
 
 /* 801AA664-801AAC5C 1A4FA4 05F8+00 0/0 0/0 3/3 .text
  * dKy_BossSpotLight_set__FP4cXyzfffP8_GXColorfUcUc             */
-int dKy_BossSpotLight_set(cXyz* pos_p, f32 angle_x, f32 angle_y, f32 cutoff,
-                          GXColor* color_p, f32 ref_dist, u8 spot_type, u8 distattn_type) {
+int dKy_BossSpotLight_set(cXyz* pos_p, f32 angle_x, f32 angle_y, f32 cutoff, GXColor* color_p,
+                          f32 ref_dist, u8 spot_type, u8 distattn_type) {
     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
     camera_class* camera = (camera_class*)dComIfGp_getCamera(0);
     int spC = 0;
@@ -5646,7 +5782,9 @@ int dKy_BossSpotLight_set(cXyz* pos_p, f32 angle_x, f32 angle_y, f32 cutoff,
 
     if (spC == 0) {
         for (i = 1; i < 6; i++) {
-            if (kankyo->field_0x0c18[i].field_0x26 != 0 && kankyo->field_0x0c18[i].mPos.abs(camera->lookat.eye) > var_f31) {
+            if (kankyo->field_0x0c18[i].field_0x26 != 0 &&
+                kankyo->field_0x0c18[i].mPos.abs(camera->lookat.eye) > var_f31)
+            {
                 var_f31 = kankyo->field_0x0c18[i].mPos.abs(camera->lookat.eye);
                 sp8 = i;
             }
@@ -5654,7 +5792,9 @@ int dKy_BossSpotLight_set(cXyz* pos_p, f32 angle_x, f32 angle_y, f32 cutoff,
 
         if (sp8 != 0xFF) {
             i = sp8;
-            if (i < 6 && pos_p->abs(camera->lookat.eye) < kankyo->field_0x0c18[i].mPos.abs(camera->lookat.eye)) {
+            if (i < 6 && pos_p->abs(camera->lookat.eye) <
+                             kankyo->field_0x0c18[i].mPos.abs(camera->lookat.eye))
+            {
                 kankyo->field_0x0c18[i].mPos = *pos_p;
                 kankyo->field_0x0c18[i].mColor.r = color_p->r;
                 kankyo->field_0x0c18[i].mColor.g = color_p->g;
@@ -5737,7 +5877,9 @@ void dKy_twilight_camelight_set() {
     camera_class* camera_p = (camera_class*)dComIfGp_getCamera(0);
     u8 sp8 = 0;
 
-    if (strcmp(dComIfGp_getStartStageName(), "R_SP107") != 0 || dComIfGp_roomControl_getStayNo() != 3 || dComIfGp_getStartStageLayer() != 12) {
+    if (strcmp(dComIfGp_getStartStageName(), "R_SP107") != 0 ||
+        dComIfGp_roomControl_getStayNo() != 3 || dComIfGp_getStartStageLayer() != 12)
+    {
         if (!dKy_darkworld_check() || memcmp(dComIfGp_getStartStageName(), "D_MN08", 6) == 0) {
             return;
         }
@@ -5748,7 +5890,7 @@ void dKy_twilight_camelight_set() {
                     dKy_twi_wolflight_set(i);
                     kankyo->field_0x0c18[i].field_0x14 = 0.99f;
                     kankyo->field_0x0c18[i].mColor.a = 254;
-                    
+
                     f32 var_f31 = 0.0f;
                     if (player_p != NULL) {
                         f32 var_f30 = camera_p->lookat.eye.y - player_p->current.pos.y;
@@ -5760,34 +5902,38 @@ void dKy_twilight_camelight_set() {
                         }
                         var_f31 = var_f30 / 450.0f;
                     }
-    
+
                     switch (g_env_light.light_size) {
                     case LIGHT_SIZE_S:
                         kankyo->field_0x0c18[i].mColor.r = 0x19;
                         kankyo->field_0x0c18[i].mColor.g = 0x5A;
                         kankyo->field_0x0c18[i].mColor.b = 0xB7;
-                        cLib_addCalc(&kankyo->field_0x0c18[i].mRefDistance, 1.0625f + (0.75f * var_f31), 0.2f, 10.0f, 0.0001f);
+                        cLib_addCalc(&kankyo->field_0x0c18[i].mRefDistance,
+                                     1.0625f + (0.75f * var_f31), 0.2f, 10.0f, 0.0001f);
                         kankyo->field_0x0c18[i].mCutoffAngle = 90.0f;
                         break;
                     case LIGHT_SIZE_M:
                         kankyo->field_0x0c18[i].mColor.r = 0x48;
                         kankyo->field_0x0c18[i].mColor.g = 0x87;
                         kankyo->field_0x0c18[i].mColor.b = 0xCE;
-                        cLib_addCalc(&kankyo->field_0x0c18[i].mRefDistance, 1.7f + (0.75f * var_f31), 0.2f, 10.0f, 0.0001f);
+                        cLib_addCalc(&kankyo->field_0x0c18[i].mRefDistance,
+                                     1.7f + (0.75f * var_f31), 0.2f, 10.0f, 0.0001f);
                         kankyo->field_0x0c18[i].mCutoffAngle = 70.0f;
                         break;
                     case LIGHT_SIZE_L:
                         kankyo->field_0x0c18[i].mColor.r = 0x48;
                         kankyo->field_0x0c18[i].mColor.g = 0x87;
                         kankyo->field_0x0c18[i].mColor.b = 0xCE;
-                        cLib_addCalc(&kankyo->field_0x0c18[i].mRefDistance, 2.5500002f + (0.75f * var_f31), 0.2f, 10.0f, 0.0001f);
+                        cLib_addCalc(&kankyo->field_0x0c18[i].mRefDistance,
+                                     2.5500002f + (0.75f * var_f31), 0.2f, 10.0f, 0.0001f);
                         kankyo->field_0x0c18[i].mCutoffAngle = 70.0f;
                         break;
                     case LIGHT_SIZE_LL:
                         kankyo->field_0x0c18[i].mColor.r = 0x50;
                         kankyo->field_0x0c18[i].mColor.g = 0x87;
                         kankyo->field_0x0c18[i].mColor.b = 0xCE;
-                        cLib_addCalc(&kankyo->field_0x0c18[i].mRefDistance, 3.4f + (0.75f * var_f31), 0.2f, 10.0f, 0.0001f);
+                        cLib_addCalc(&kankyo->field_0x0c18[i].mRefDistance,
+                                     3.4f + (0.75f * var_f31), 0.2f, 10.0f, 0.0001f);
                         kankyo->field_0x0c18[i].mCutoffAngle = 65.0f;
                         break;
                     }
@@ -5813,7 +5959,10 @@ void dKy_WaterIn_Light_set() {
     int spC = 0;
 
     int sp8 = 1;
-    if (strcmp(dComIfGp_getStartStageName(), "F_SP109") == 0 || strcmp(dComIfGp_getStartStageName(), "F_SP115") == 0 || strcmp(dComIfGp_getStartStageName(), "F_SP122") == 0) {
+    if (strcmp(dComIfGp_getStartStageName(), "F_SP109") == 0 ||
+        strcmp(dComIfGp_getStartStageName(), "F_SP115") == 0 ||
+        strcmp(dComIfGp_getStartStageName(), "F_SP122") == 0)
+    {
         sp8 = 3;
     }
 
@@ -5896,12 +6045,12 @@ void dKy_WaterIn_Light_set() {
 /* 801AB270-801AB280 1A5BB0 0010+00 0/0 2/2 0/0 .text            dKy_camera_water_in_status_set__FUc
  */
 void dKy_camera_water_in_status_set(u8 status) {
-    g_env_light.mCameraInWater = status;
+    g_env_light.camera_water_in_status = status;
 }
 
 /* 801AB280-801AB290 1A5BC0 0010+00 3/3 1/1 5/5 .text dKy_camera_water_in_status_check__Fv */
 BOOL dKy_camera_water_in_status_check() {
-    return g_env_light.mCameraInWater;
+    return g_env_light.camera_water_in_status;
 }
 
 /* 801AB290-801AB3A8 1A5BD0 0118+00 0/0 5/5 0/0 .text dKy_pol_efftype_get__FPC13cBgS_PolyInfo */
@@ -5912,18 +6061,22 @@ u8 dKy_pol_efftype_get(const cBgS_PolyInfo* polyinfo_p) {
     }
 
     int z0 = dComIfG_Bgsp().GetPolyAtt0(*polyinfo_p);
-    if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0 && g_env_light.mPondSeason == 4) {
+    if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0 &&
+        g_env_light.fishing_hole_season == 4)
+    {
         if (z0 == 4) {
             z0 = 13;
         }
-    } else if (strcmp(dComIfGp_getStartStageName(), "D_MN05A") == 0 && dComIfGs_isStageBossEnemy() && z0 == 11) {
+    } else if (strcmp(dComIfGp_getStartStageName(), "D_MN05A") == 0 &&
+               dComIfGs_isStageBossEnemy() && z0 == 11)
+    {
         z0 = 7;
     }
 
     u8 efftype;
     int z1 = dComIfG_Bgsp().GetPolyAtt1(*polyinfo_p);
-    if (kankyo->mResPolEfftbl != 0) {
-        efftype = kankyo->mResPolEfftbl[z0].data[z1];
+    if (kankyo->pol_efftbl != 0) {
+        efftype = kankyo->pol_efftbl[z0].data[z1];
     } else {
         efftype = 0xFF;
     }
@@ -5932,25 +6085,29 @@ u8 dKy_pol_efftype_get(const cBgS_PolyInfo* polyinfo_p) {
 }
 
 /* 801AB3A8-801AB4C0 1A5CE8 0118+00 0/0 2/2 0/0 .text dKy_pol_efftype2_get__FPC13cBgS_PolyInfo */
-u8 dKy_pol_efftype2_get(cBgS_PolyInfo const* polyinfo_p) {
+u8 dKy_pol_efftype2_get(const cBgS_PolyInfo* polyinfo_p) {
     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
     if (polyinfo_p == NULL || &dComIfG_Bgsp() == NULL) {
         return 0xFF;
     }
 
     int z0 = dComIfG_Bgsp().GetPolyAtt0(*polyinfo_p);
-    if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0 && g_env_light.mPondSeason == 4) {
+    if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0 &&
+        g_env_light.fishing_hole_season == 4)
+    {
         if (z0 == 4) {
             z0 = 13;
         }
-    } else if (strcmp(dComIfGp_getStartStageName(), "D_MN05A") == 0 && dComIfGs_isStageBossEnemy() && z0 == 11) {
+    } else if (strcmp(dComIfGp_getStartStageName(), "D_MN05A") == 0 &&
+               dComIfGs_isStageBossEnemy() && z0 == 11)
+    {
         z0 = 7;
     }
 
     u8 efftype;
     int z1 = dComIfG_Bgsp().GetPolyAtt1(*polyinfo_p);
-    if (kankyo->mResPolEfftbl2 != 0) {
-        efftype = kankyo->mResPolEfftbl2[z0].data[z1];
+    if (kankyo->pol_efftbl2 != 0) {
+        efftype = kankyo->pol_efftbl2[z0].data[z1];
     } else {
         efftype = 0xFF;
     }
@@ -5959,21 +6116,23 @@ u8 dKy_pol_efftype2_get(cBgS_PolyInfo const* polyinfo_p) {
 }
 
 /* 801AB4C0-801AB59C 1A5E00 00DC+00 0/0 9/9 21/21 .text dKy_pol_sound_get__FPC13cBgS_PolyInfo */
-u8 dKy_pol_sound_get(cBgS_PolyInfo const* polyinfo_p) {
+u8 dKy_pol_sound_get(const cBgS_PolyInfo* polyinfo_p) {
     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
     if (polyinfo_p == NULL || &dComIfG_Bgsp() == NULL) {
         return 0;
     }
 
     int z0 = dComIfG_Bgsp().GetPolyAtt0(*polyinfo_p);
-    if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") && g_env_light.mPondSeason == 4 && z0 == 4) {
+    if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") && g_env_light.fishing_hole_season == 4 &&
+        z0 == 4)
+    {
         z0 = 13;
     }
 
     u8 sound;
     int z1 = dComIfG_Bgsp().GetPolyAtt1(*polyinfo_p);
-    if (kankyo->mResPolSound != NULL) {
-        sound = kankyo->mResPolSound[z0].data[z1];
+    if (kankyo->pol_sound != NULL) {
+        sound = kankyo->pol_sound[z0].data[z1];
     } else {
         sound = 0;
     }
@@ -5986,20 +6145,22 @@ u8 dKy_pol_sound_get(cBgS_PolyInfo const* polyinfo_p) {
 }
 
 /* 801AB59C-801AB668 1A5EDC 00CC+00 0/0 5/5 0/0 .text dKy_pol_argument_get__FPC13cBgS_PolyInfo */
-u8 dKy_pol_argument_get(cBgS_PolyInfo const* polyinfo_p) {
+u8 dKy_pol_argument_get(const cBgS_PolyInfo* polyinfo_p) {
     dScnKy_env_light_c* kankyo = &g_env_light;
     if (polyinfo_p == NULL || &dComIfG_Bgsp() == NULL) {
         return 0;
     }
 
     int z0 = dComIfG_Bgsp().GetPolyAtt0(*polyinfo_p);
-    if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") && g_env_light.mPondSeason == 4 && z0 == 4) {
+    if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") && g_env_light.fishing_hole_season == 4 &&
+        z0 == 4)
+    {
         z0 = 13;
     }
 
     int z1 = dComIfG_Bgsp().GetPolyAtt1(*polyinfo_p);
-    if (kankyo->mResPolArg != NULL) {
-        return kankyo->mResPolArg[z0].data[z1];
+    if (kankyo->pol_arg != NULL) {
+        return kankyo->pol_arg[z0].data[z1];
     }
 
     return 0;
@@ -6007,25 +6168,29 @@ u8 dKy_pol_argument_get(cBgS_PolyInfo const* polyinfo_p) {
 
 /* 801AB668-801AB7D0 1A5FA8 0168+00 0/0 1/1 2/2 .text
  * dKy_pol_eff_prim_get__FPC13cBgS_PolyInfoP8_GXColor           */
-u8 dKy_pol_eff_prim_get(cBgS_PolyInfo const* polyinfo_p, GXColor* out_color_p) {
+u8 dKy_pol_eff_prim_get(const cBgS_PolyInfo* polyinfo_p, GXColor* out_color_p) {
     dScnKy_env_light_c* kankyo = &g_env_light;
     if (polyinfo_p == NULL || out_color_p == NULL || &dComIfG_Bgsp() == NULL) {
         return 0xFF;
     }
 
     int z0 = dComIfG_Bgsp().GetPolyAtt0(*polyinfo_p);
-    if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0 && g_env_light.mPondSeason == 4) {
+    if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0 &&
+        g_env_light.fishing_hole_season == 4)
+    {
         if (z0 == 4) {
             z0 = 13;
         }
-    } else if (strcmp(dComIfGp_getStartStageName(), "D_MN05A") == 0 && dComIfGs_isStageBossEnemy() && z0 == 11) {
+    } else if (strcmp(dComIfGp_getStartStageName(), "D_MN05A") == 0 &&
+               dComIfGs_isStageBossEnemy() && z0 == 11)
+    {
         z0 = 7;
     }
 
     int z1 = dComIfG_Bgsp().GetPolyAtt1(*polyinfo_p);
     u8 eff_id;
-    if (kankyo->mResPolEffcol != NULL) {
-        eff_id = kankyo->mResPolEffcol[z0].data[z1];
+    if (kankyo->pol_effcol != NULL) {
+        eff_id = kankyo->pol_effcol[z0].data[z1];
     } else {
         return 0xFF;
     }
@@ -6034,33 +6199,37 @@ u8 dKy_pol_eff_prim_get(cBgS_PolyInfo const* polyinfo_p, GXColor* out_color_p) {
         return 0xFF;
     }
 
-    out_color_p->r = kankyo->mResColorDataTbl[eff_id].data[0];
-    out_color_p->g = kankyo->mResColorDataTbl[eff_id].data[1];
-    out_color_p->b = kankyo->mResColorDataTbl[eff_id].data[2];
+    out_color_p->r = kankyo->colordata_tbl[eff_id].data[0];
+    out_color_p->g = kankyo->colordata_tbl[eff_id].data[1];
+    out_color_p->b = kankyo->colordata_tbl[eff_id].data[2];
     return eff_id;
 }
 
 /* 801AB7D0-801AB93C 1A6110 016C+00 0/0 1/1 2/2 .text
  * dKy_pol_eff_env_get__FPC13cBgS_PolyInfoP8_GXColor            */
-u8 dKy_pol_eff_env_get(cBgS_PolyInfo const* polyinfo_p, GXColor* out_color_p) {
+u8 dKy_pol_eff_env_get(const cBgS_PolyInfo* polyinfo_p, GXColor* out_color_p) {
     dScnKy_env_light_c* kankyo = &g_env_light;
     if (polyinfo_p == NULL || out_color_p == NULL || &dComIfG_Bgsp() == NULL) {
         return 0xFF;
     }
 
     int z0 = dComIfG_Bgsp().GetPolyAtt0(*polyinfo_p);
-    if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0 && g_env_light.mPondSeason == 4) {
+    if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0 &&
+        g_env_light.fishing_hole_season == 4)
+    {
         if (z0 == 4) {
             z0 = 13;
         }
-    } else if (strcmp(dComIfGp_getStartStageName(), "D_MN05A") == 0 && dComIfGs_isStageBossEnemy() && z0 == 11) {
+    } else if (strcmp(dComIfGp_getStartStageName(), "D_MN05A") == 0 &&
+               dComIfGs_isStageBossEnemy() && z0 == 11)
+    {
         z0 = 7;
     }
 
     int z1 = dComIfG_Bgsp().GetPolyAtt1(*polyinfo_p);
     u8 eff_id;
-    if (kankyo->mResPolEffcol != NULL) {
-        eff_id = kankyo->mResPolEffcol[z0].data[z1];
+    if (kankyo->pol_effcol != NULL) {
+        eff_id = kankyo->pol_effcol[z0].data[z1];
     } else {
         return 0xFF;
     }
@@ -6069,33 +6238,37 @@ u8 dKy_pol_eff_env_get(cBgS_PolyInfo const* polyinfo_p, GXColor* out_color_p) {
         return 0xFF;
     }
 
-    out_color_p->r = kankyo->mResColorDataTbl[eff_id].data[3];
-    out_color_p->g = kankyo->mResColorDataTbl[eff_id].data[4];
-    out_color_p->b = kankyo->mResColorDataTbl[eff_id].data[5];
+    out_color_p->r = kankyo->colordata_tbl[eff_id].data[3];
+    out_color_p->g = kankyo->colordata_tbl[eff_id].data[4];
+    out_color_p->b = kankyo->colordata_tbl[eff_id].data[5];
     return eff_id;
 }
 
 /* 801AB93C-801ABAA4 1A627C 0168+00 0/0 1/1 2/2 .text
  * dKy_pol_eff2_prim_get__FPC13cBgS_PolyInfoP8_GXColor          */
-u8 dKy_pol_eff2_prim_get(cBgS_PolyInfo const* polyinfo_p, GXColor* out_color_p) {
+u8 dKy_pol_eff2_prim_get(const cBgS_PolyInfo* polyinfo_p, GXColor* out_color_p) {
     dScnKy_env_light_c* kankyo = &g_env_light;
     if (polyinfo_p == NULL || out_color_p == NULL || &dComIfG_Bgsp() == NULL) {
         return 0xFF;
     }
 
     int z0 = dComIfG_Bgsp().GetPolyAtt0(*polyinfo_p);
-    if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0 && g_env_light.mPondSeason == 4) {
+    if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0 &&
+        g_env_light.fishing_hole_season == 4)
+    {
         if (z0 == 4) {
             z0 = 13;
         }
-    } else if (strcmp(dComIfGp_getStartStageName(), "D_MN05A") == 0 && dComIfGs_isStageBossEnemy() && z0 == 11) {
+    } else if (strcmp(dComIfGp_getStartStageName(), "D_MN05A") == 0 &&
+               dComIfGs_isStageBossEnemy() && z0 == 11)
+    {
         z0 = 7;
     }
 
     int z1 = dComIfG_Bgsp().GetPolyAtt1(*polyinfo_p);
     u8 eff_id;
-    if (kankyo->mResPolEffcol2 != NULL) {
-        eff_id = kankyo->mResPolEffcol2[z0].data[z1];
+    if (kankyo->pol_effcol2 != NULL) {
+        eff_id = kankyo->pol_effcol2[z0].data[z1];
     } else {
         return 0xFF;
     }
@@ -6104,33 +6277,37 @@ u8 dKy_pol_eff2_prim_get(cBgS_PolyInfo const* polyinfo_p, GXColor* out_color_p) 
         return 0xFF;
     }
 
-    out_color_p->r = kankyo->mResColorDataTbl[eff_id].data[0];
-    out_color_p->g = kankyo->mResColorDataTbl[eff_id].data[1];
-    out_color_p->b = kankyo->mResColorDataTbl[eff_id].data[2];
+    out_color_p->r = kankyo->colordata_tbl[eff_id].data[0];
+    out_color_p->g = kankyo->colordata_tbl[eff_id].data[1];
+    out_color_p->b = kankyo->colordata_tbl[eff_id].data[2];
     return eff_id;
 }
 
 /* 801ABAA4-801ABC10 1A63E4 016C+00 0/0 1/1 2/2 .text
  * dKy_pol_eff2_env_get__FPC13cBgS_PolyInfoP8_GXColor           */
-u8 dKy_pol_eff2_env_get(cBgS_PolyInfo const* polyinfo_p, GXColor* out_color_p) {
+u8 dKy_pol_eff2_env_get(const cBgS_PolyInfo* polyinfo_p, GXColor* out_color_p) {
     dScnKy_env_light_c* kankyo = &g_env_light;
     if (polyinfo_p == NULL || out_color_p == NULL || &dComIfG_Bgsp() == NULL) {
         return 0xFF;
     }
 
     int z0 = dComIfG_Bgsp().GetPolyAtt0(*polyinfo_p);
-    if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0 && g_env_light.mPondSeason == 4) {
+    if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0 &&
+        g_env_light.fishing_hole_season == 4)
+    {
         if (z0 == 4) {
             z0 = 13;
         }
-    } else if (strcmp(dComIfGp_getStartStageName(), "D_MN05A") == 0 && dComIfGs_isStageBossEnemy() && z0 == 11) {
+    } else if (strcmp(dComIfGp_getStartStageName(), "D_MN05A") == 0 &&
+               dComIfGs_isStageBossEnemy() && z0 == 11)
+    {
         z0 = 7;
     }
 
     int z1 = dComIfG_Bgsp().GetPolyAtt1(*polyinfo_p);
     u8 eff_id;
-    if (kankyo->mResPolEffcol2 != NULL) {
-        eff_id = kankyo->mResPolEffcol2[z0].data[z1];
+    if (kankyo->pol_effcol2 != NULL) {
+        eff_id = kankyo->pol_effcol2[z0].data[z1];
     } else {
         return 0xFF;
     }
@@ -6139,32 +6316,36 @@ u8 dKy_pol_eff2_env_get(cBgS_PolyInfo const* polyinfo_p, GXColor* out_color_p) {
         return 0xFF;
     }
 
-    out_color_p->r = kankyo->mResColorDataTbl[eff_id].data[3];
-    out_color_p->g = kankyo->mResColorDataTbl[eff_id].data[4];
-    out_color_p->b = kankyo->mResColorDataTbl[eff_id].data[5];
+    out_color_p->r = kankyo->colordata_tbl[eff_id].data[3];
+    out_color_p->g = kankyo->colordata_tbl[eff_id].data[4];
+    out_color_p->b = kankyo->colordata_tbl[eff_id].data[5];
     return eff_id;
 }
 
 /* 801ABC10-801ABD4C 1A6550 013C+00 0/0 1/1 2/2 .text dKy_pol_eff_alpha_get__FPC13cBgS_PolyInfo */
-u8 dKy_pol_eff_alpha_get(cBgS_PolyInfo const* polyinfo_p) {
+u8 dKy_pol_eff_alpha_get(const cBgS_PolyInfo* polyinfo_p) {
     dScnKy_env_light_c* kankyo = &g_env_light;
     if (polyinfo_p == NULL || &dComIfG_Bgsp() == NULL) {
         return 0xFF;
     }
 
     int z0 = dComIfG_Bgsp().GetPolyAtt0(*polyinfo_p);
-    if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0 && g_env_light.mPondSeason == 4) {
+    if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0 &&
+        g_env_light.fishing_hole_season == 4)
+    {
         if (z0 == 4) {
             z0 = 13;
         }
-    } else if (strcmp(dComIfGp_getStartStageName(), "D_MN05A") == 0 && dComIfGs_isStageBossEnemy() && z0 == 11) {
+    } else if (strcmp(dComIfGp_getStartStageName(), "D_MN05A") == 0 &&
+               dComIfGs_isStageBossEnemy() && z0 == 11)
+    {
         z0 = 7;
     }
 
     int z1 = dComIfG_Bgsp().GetPolyAtt1(*polyinfo_p);
     u8 eff_id;
-    if (kankyo->mResPolEffcol != NULL) {
-        eff_id = kankyo->mResPolEffcol[z0].data[z1];
+    if (kankyo->pol_effcol != NULL) {
+        eff_id = kankyo->pol_effcol[z0].data[z1];
     } else {
         return 0xFF;
     }
@@ -6173,12 +6354,12 @@ u8 dKy_pol_eff_alpha_get(cBgS_PolyInfo const* polyinfo_p) {
         return 0xFF;
     }
 
-    eff_id = kankyo->mResColorDataTbl[eff_id].data[6];
+    eff_id = kankyo->colordata_tbl[eff_id].data[6];
     return eff_id;
 }
 
 /* 801ABD4C-801ABEA8 1A668C 015C+00 0/0 1/1 2/2 .text dKy_pol_eff_ratio_get__FPC13cBgS_PolyInfo */
-f32 dKy_pol_eff_ratio_get(cBgS_PolyInfo const* polyinfo_p) {
+f32 dKy_pol_eff_ratio_get(const cBgS_PolyInfo* polyinfo_p) {
     dScnKy_env_light_c* kankyo = &g_env_light;
     f32 ratio = 0.0f;
 
@@ -6187,18 +6368,22 @@ f32 dKy_pol_eff_ratio_get(cBgS_PolyInfo const* polyinfo_p) {
     }
 
     int z0 = dComIfG_Bgsp().GetPolyAtt0(*polyinfo_p);
-    if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0 && g_env_light.mPondSeason == 4) {
+    if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0 &&
+        g_env_light.fishing_hole_season == 4)
+    {
         if (z0 == 4) {
             z0 = 13;
         }
-    } else if (strcmp(dComIfGp_getStartStageName(), "D_MN05A") == 0 && dComIfGs_isStageBossEnemy() && z0 == 11) {
+    } else if (strcmp(dComIfGp_getStartStageName(), "D_MN05A") == 0 &&
+               dComIfGs_isStageBossEnemy() && z0 == 11)
+    {
         z0 = 7;
     }
 
     int z1 = dComIfG_Bgsp().GetPolyAtt1(*polyinfo_p);
     u8 eff_id;
-    if (kankyo->mResPolEffcol != NULL) {
-        eff_id = kankyo->mResPolEffcol[z0].data[z1];
+    if (kankyo->pol_effcol != NULL) {
+        eff_id = kankyo->pol_effcol[z0].data[z1];
     } else {
         return ratio;
     }
@@ -6207,32 +6392,36 @@ f32 dKy_pol_eff_ratio_get(cBgS_PolyInfo const* polyinfo_p) {
         return ratio;
     }
 
-    ratio = (f32)kankyo->mResColorDataTbl[eff_id].data[7];
+    ratio = (f32)kankyo->colordata_tbl[eff_id].data[7];
     ratio = 0.01f * ratio;
     return ratio;
 }
 
 /* 801ABEA8-801ABFE4 1A67E8 013C+00 0/0 1/1 2/2 .text dKy_pol_eff2_alpha_get__FPC13cBgS_PolyInfo
  */
-u8 dKy_pol_eff2_alpha_get(cBgS_PolyInfo const* polyinfo_p) {
+u8 dKy_pol_eff2_alpha_get(const cBgS_PolyInfo* polyinfo_p) {
     dScnKy_env_light_c* kankyo = &g_env_light;
     if (polyinfo_p == NULL || &dComIfG_Bgsp() == NULL) {
         return 0xFF;
     }
 
     int z0 = dComIfG_Bgsp().GetPolyAtt0(*polyinfo_p);
-    if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0 && g_env_light.mPondSeason == 4) {
+    if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0 &&
+        g_env_light.fishing_hole_season == 4)
+    {
         if (z0 == 4) {
             z0 = 13;
         }
-    } else if (strcmp(dComIfGp_getStartStageName(), "D_MN05A") == 0 && dComIfGs_isStageBossEnemy() && z0 == 11) {
+    } else if (strcmp(dComIfGp_getStartStageName(), "D_MN05A") == 0 &&
+               dComIfGs_isStageBossEnemy() && z0 == 11)
+    {
         z0 = 7;
     }
 
     int z1 = dComIfG_Bgsp().GetPolyAtt1(*polyinfo_p);
     u8 var_r30;
-    if (kankyo->mResPolEffcol2 != NULL) {
-        var_r30 = kankyo->mResPolEffcol2[z0].data[z1];
+    if (kankyo->pol_effcol2 != NULL) {
+        var_r30 = kankyo->pol_effcol2[z0].data[z1];
     } else {
         return 0xFF;
     }
@@ -6241,13 +6430,13 @@ u8 dKy_pol_eff2_alpha_get(cBgS_PolyInfo const* polyinfo_p) {
         return 0xFF;
     }
 
-    var_r30 = kankyo->mResColorDataTbl[var_r30].data[6];
+    var_r30 = kankyo->colordata_tbl[var_r30].data[6];
     return var_r30;
 }
 
 /* 801ABFE4-801AC140 1A6924 015C+00 0/0 1/1 2/2 .text dKy_pol_eff2_ratio_get__FPC13cBgS_PolyInfo
  */
-f32 dKy_pol_eff2_ratio_get(cBgS_PolyInfo const* polyinfo_p) {
+f32 dKy_pol_eff2_ratio_get(const cBgS_PolyInfo* polyinfo_p) {
     dScnKy_env_light_c* kankyo = &g_env_light;
     f32 ratio = 0.0f;
 
@@ -6256,18 +6445,22 @@ f32 dKy_pol_eff2_ratio_get(cBgS_PolyInfo const* polyinfo_p) {
     }
 
     int z0 = dComIfG_Bgsp().GetPolyAtt0(*polyinfo_p);
-    if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0 && g_env_light.mPondSeason == 4) {
+    if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0 &&
+        g_env_light.fishing_hole_season == 4)
+    {
         if (z0 == 4) {
             z0 = 13;
         }
-    } else if (strcmp(dComIfGp_getStartStageName(), "D_MN05A") == 0 && dComIfGs_isStageBossEnemy() && z0 == 11) {
+    } else if (strcmp(dComIfGp_getStartStageName(), "D_MN05A") == 0 &&
+               dComIfGs_isStageBossEnemy() && z0 == 11)
+    {
         z0 = 7;
     }
 
     int z1 = dComIfG_Bgsp().GetPolyAtt1(*polyinfo_p);
     u8 eff_id;
-    if (kankyo->mResPolEffcol2 != NULL) {
-        eff_id = kankyo->mResPolEffcol2[z0].data[z1];
+    if (kankyo->pol_effcol2 != NULL) {
+        eff_id = kankyo->pol_effcol2[z0].data[z1];
     } else {
         return ratio;
     }
@@ -6276,18 +6469,18 @@ f32 dKy_pol_eff2_ratio_get(cBgS_PolyInfo const* polyinfo_p) {
         return ratio;
     }
 
-    ratio = (f32)kankyo->mResColorDataTbl[eff_id].data[7];
+    ratio = (f32)kankyo->colordata_tbl[eff_id].data[7];
     ratio = 0.01f * ratio;
     return ratio;
 }
 
 /* 801AC140-801AC168 1A6A80 0028+00 0/0 2/2 0/0 .text            dKy_TeachWind_existence_chk__Fv */
 BOOL dKy_TeachWind_existence_chk() {
-    if (g_env_light.mTeachWindExist == 0xFF) {
+    if (g_env_light.TeachWind_existence == 0xFF) {
         return -1;
     }
 
-    return g_env_light.mTeachWindExist ? TRUE : FALSE;
+    return g_env_light.TeachWind_existence ? TRUE : FALSE;
 }
 
 /* 801AC168-801AC228 1A6AA8 00C0+00 4/4 0/0 2/2 .text            dKy_SunMoon_Light_Check__Fv */
@@ -6402,7 +6595,7 @@ int dKy_F_SP121Check(char const* stageName, int roomNo, u8* out_darkLv, int tblI
     int result = 0;
 
     if (out_darkLv != NULL) {
-        *out_darkLv = UNCLEARABLE;
+        *out_darkLv = KY_DARKLV_UNCLEARABLE;
     }
 
     // Stage is Hyrule Field
@@ -6415,7 +6608,7 @@ int dKy_F_SP121Check(char const* stageName, int roomNo, u8* out_darkLv, int tblI
         // - Outside Hidden Village (7)
         if (roomNo == 0 || (2 <= roomNo && roomNo <= 5) || roomNo == 7) {
             if (out_darkLv != NULL) {
-                *out_darkLv = ELDIN;
+                *out_darkLv = KY_DARKLV_ELDIN;
             }
             result = 1;
         }
@@ -6429,7 +6622,7 @@ int dKy_F_SP121Check(char const* stageName, int roomNo, u8* out_darkLv, int tblI
         else if (roomNo >= 9 && roomNo <= 14)
         {
             if (out_darkLv != NULL) {
-                *out_darkLv = LANAYRU;
+                *out_darkLv = KY_DARKLV_LANAYRU;
             }
             result = 1;
         }
@@ -6452,7 +6645,7 @@ int dKy_F_SP121Check(char const* stageName, int roomNo, u8* out_darkLv, int tblI
 
     // Prevent twilight if stage depends on Faron Twilight cleared status (Faron Woods, Coro's
     // Lantern Shop, Faron Woods Cave) but haven't finished Ordon Day 2.
-    if (darkworldTbl[tblIndex].darkLv == FARON && !dComIfGs_isEventBit(0x4510)) {
+    if (darkworldTbl[tblIndex].darkLv == KY_DARKLV_FARON && !dComIfGs_isEventBit(0x4510)) {
         result = -1;
     }
 
@@ -6477,7 +6670,7 @@ u8 dKy_darkworld_stage_check(char const* stageName, int roomNo) {
 
     for (int i = 0; i < 34; i++) {
         if (!strcmp(stageName, darkworldTbl[i].stageName)) {
-            if (darkworldTbl[i].darkLv != ALWAYS_DARK) {
+            if (darkworldTbl[i].darkLv != KY_DARKLV_ALWAYS) {
                 int fsp121CheckResult = dKy_F_SP121Check(stageName, roomNo, darkLv, i);
                 if (fsp121CheckResult >= 0) {
                     if (fsp121CheckResult == 0) {
@@ -6489,7 +6682,7 @@ u8 dKy_darkworld_stage_check(char const* stageName, int roomNo) {
                     break;
                 }
             } else {
-                // ALWAYS_DARK is used to force twilight (likely for testing). This will
+                // KY_DARKLV_ALWAYS is used to force twilight (likely for testing). This will
                 // never normally run since it is not present in l_darkworld_tbl.
                 result = TRUE;
                 break;
@@ -6560,11 +6753,11 @@ void dKy_murky_set(J3DMaterial* material_p) {
 
     JUT_ASSERT(0x43DB, material_p != 0);
 
-    tev_col.r = g_env_light.mTerrainAmbienceBG[1].r;
-    tev_col.g = g_env_light.mTerrainAmbienceBG[1].g;
-    tev_col.b = g_env_light.mTerrainAmbienceBG[1].b;
-    tev_col.a = g_env_light.mTerrainAmbienceBG[2].a;
-    tev_kcol.a = g_env_light.mTerrainAmbienceBG[1].a;
+    tev_col.r = g_env_light.bg_amb_col[1].r;
+    tev_col.g = g_env_light.bg_amb_col[1].g;
+    tev_col.b = g_env_light.bg_amb_col[1].b;
+    tev_col.a = g_env_light.bg_amb_col[2].a;
+    tev_kcol.a = g_env_light.bg_amb_col[1].a;
 
     f32 var_f29 = 1.0f;
 
@@ -6577,7 +6770,9 @@ void dKy_murky_set(J3DMaterial* material_p) {
     }
 
     if (lenz_packet != NULL && sun_packet->mVisibility > 0.000001f) {
-        tev_col.a = (u8)(tev_col.a * (1.0f - (sun_packet->mVisibility * (1.0f - (lenz_packet->mDistFalloff * lenz_packet->mDistFalloff * lenz_packet->mDistFalloff)))));
+        tev_col.a = (u8)(tev_col.a *
+                         (1.0f - (sun_packet->mVisibility *
+                                  (1.0f - (lenz_packet->mDistFalloff * lenz_packet->mDistFalloff * lenz_packet->mDistFalloff)))));
     }
 
     // Diababa room handling
@@ -6611,7 +6806,7 @@ void dKy_murky_set(J3DMaterial* material_p) {
         }
 
         tev_col.a = (u8)(tev_col.a + (s16)(-(f32)tev_col.a * var_f31));
-        
+
         tev_kcol.a = 0xFF;
         tev_kcol.a = (u8)(tev_kcol.a + (s16)((140.0f - tev_kcol.a) * var_f31));
     }
@@ -6626,17 +6821,17 @@ void dKy_murky_set(J3DMaterial* material_p) {
 
 /* 801ACCDC-801ACCF4 1A761C 0018+00 2/2 1/1 0/0 .text            dKy_shadow_mode_set__FUc */
 void dKy_shadow_mode_set(u8 mode) {
-    g_env_light.mShadowMode |= mode;
+    g_env_light.shadow_mode |= mode;
 }
 
 /* 801ACCF4-801ACD0C 1A7634 0018+00 2/2 1/1 0/0 .text            dKy_shadow_mode_reset__FUc */
 void dKy_shadow_mode_reset(u8 mode) {
-    g_env_light.mShadowMode &= ~mode;
+    g_env_light.shadow_mode &= ~mode;
 }
 
 /* 801ACD0C-801ACD24 1A764C 0018+00 3/3 0/0 1/1 .text            dKy_shadow_mode_check__FUc */
 u8 dKy_shadow_mode_check(u8 mode) {
-    return g_env_light.mShadowMode & mode;
+    return g_env_light.shadow_mode & mode;
 }
 
 /* 80450708-8045070C 000188 0004+00 1/1 0/0 0/0 .sdata           l_zmodeUpEnable */
@@ -6706,12 +6901,12 @@ void dKy_bg_MAxx_proc(void* bg_model_p) {
 
                                 J3DGXColorS10 spA0;
                                 J3DGXColor sp40;
-                                spA0.r = g_env_light.mTerrainAmbienceBG[2].r;
-                                spA0.g = g_env_light.mTerrainAmbienceBG[2].g;
-                                spA0.b = g_env_light.mTerrainAmbienceBG[2].b;
-                                spA0.a = g_env_light.mTerrainAmbienceBG[2].a;
+                                spA0.r = g_env_light.bg_amb_col[2].r;
+                                spA0.g = g_env_light.bg_amb_col[2].g;
+                                spA0.b = g_env_light.bg_amb_col[2].b;
+                                spA0.a = g_env_light.bg_amb_col[2].a;
 
-                                sp40.a = g_env_light.mTerrainAmbienceBG[1].a;
+                                sp40.a = g_env_light.bg_amb_col[1].a;
                                 sp40.r = 0;
                                 sp40.g = 0;
                                 sp40.b = 0;
@@ -6740,7 +6935,8 @@ void dKy_bg_MAxx_proc(void* bg_model_p) {
                     dComIfGd_setListInvisisble();
 
                     if (mat_p->getTexGenBlock()->getTexMtx(0) != NULL) {
-                        J3DTexMtxInfo* tex_mtx_inf = &mat_p->getTexGenBlock()->getTexMtx(0)->getTexMtxInfo();
+                        J3DTexMtxInfo* tex_mtx_inf =
+                            &mat_p->getTexGenBlock()->getTexMtx(0)->getTexMtxInfo();
                         if (tex_mtx_inf != NULL) {
                             cXyz* sp34 = dKyw_get_wind_vec();
                             cXyz sp108;
@@ -6763,7 +6959,6 @@ void dKy_bg_MAxx_proc(void* bg_model_p) {
                 if (memcmp(&mat_name[3], "MA00", 4) == 0 || memcmp(&mat_name[3], "MA01", 4) == 0 ||
                     memcmp(&mat_name[3], "MA04", 4) == 0 || memcmp(&mat_name[3], "MA16", 4) == 0)
                 {
-                    
                     sp5C.r = g_env_light.mFogDensity;
                     sp5C.g = 0;
                     sp5C.b = 0;
@@ -6824,10 +7019,10 @@ void dKy_bg_MAxx_proc(void* bg_model_p) {
                         sp90.a = 255;
                         mat_p->setTevColor(2, &sp90);
 
-                        if (kankyo->field_0x1060 != NULL) {
-                            spF0 = kankyo->field_0x1060->mAvoidPos;
-                            f32 var_f28 = kankyo->field_0x1060->mSize.x *
-                                          kankyo->field_0x1060->mSizeScale;
+                        if (kankyo->fog_avoid_tag != NULL) {
+                            spF0 = kankyo->fog_avoid_tag->mAvoidPos;
+                            f32 var_f28 =
+                                kankyo->fog_avoid_tag->mSize.x * kankyo->fog_avoid_tag->mSizeScale;
                             if (var_f28 < 0.1f) {
                                 var_f28 = 0.1f;
                             }
@@ -6863,9 +7058,9 @@ void dKy_bg_MAxx_proc(void* bg_model_p) {
                         }
 
                         J3DGXColorS10 sp88;
-                        sp88.r = g_env_light.mTerrainAmbienceBG[3].r;
-                        sp88.g = g_env_light.mTerrainAmbienceBG[3].g;
-                        sp88.b = g_env_light.mTerrainAmbienceBG[3].b;
+                        sp88.r = g_env_light.bg_amb_col[3].r;
+                        sp88.g = g_env_light.bg_amb_col[3].g;
+                        sp88.b = g_env_light.bg_amb_col[3].b;
                         sp88.a = 255;
 
                         mat_p->setTevColor(1, &sp88);
@@ -6892,34 +7087,34 @@ void dKy_bg_MAxx_proc(void* bg_model_p) {
                     }
                 } else if (memcmp(&mat_name[3], "MA13", 4) == 0) {
                     J3DGXColorS10 sp80;
-                    sp80.r = g_env_light.mTerrainAmbienceBG[3].r;
-                    sp80.g = g_env_light.mTerrainAmbienceBG[3].g;
-                    sp80.b = g_env_light.mTerrainAmbienceBG[3].b;
-                    sp80.a = g_env_light.mTerrainAmbienceBG[3].a;
+                    sp80.r = g_env_light.bg_amb_col[3].r;
+                    sp80.g = g_env_light.bg_amb_col[3].g;
+                    sp80.b = g_env_light.bg_amb_col[3].b;
+                    sp80.a = g_env_light.bg_amb_col[3].a;
                     mat_p->setTevColor(1, &sp80);
                 } else if (memcmp(&mat_name[3], "MA14", 4) == 0) {
                     J3DGXColorS10 sp78;
                     J3DGXColor sp1C;
-                    sp78.r = g_env_light.mFogColor.r;
-                    sp78.g = g_env_light.mFogColor.g;
-                    sp78.b = g_env_light.mFogColor.b;
-                    sp78.a = g_env_light.mFogColor.a;
+                    sp78.r = g_env_light.fog_col.r;
+                    sp78.g = g_env_light.fog_col.g;
+                    sp78.b = g_env_light.fog_col.b;
+                    sp78.a = g_env_light.fog_col.a;
                     mat_p->setTevColor(1, &sp78);
 
                     sp1C.r = sp1C.g = sp1C.b = 0;
-                    sp1C.a = g_env_light.mTerrainAmbienceBG[3].a;
+                    sp1C.a = g_env_light.bg_amb_col[3].a;
                     mat_p->setTevKColor(3, &sp1C);
                 } else if (memcmp(&mat_name[3], "MA16", 4) == 0) {
                     J3DGXColorS10 sp70;
                     J3DGXColor sp18;
-                    sp70.r = g_env_light.mTerrainAmbienceBG[1].r;
-                    sp70.g = g_env_light.mTerrainAmbienceBG[1].g;
-                    sp70.b = g_env_light.mTerrainAmbienceBG[1].b;
-                    sp70.a = g_env_light.mTerrainAmbienceBG[1].a;
+                    sp70.r = g_env_light.bg_amb_col[1].r;
+                    sp70.g = g_env_light.bg_amb_col[1].g;
+                    sp70.b = g_env_light.bg_amb_col[1].b;
+                    sp70.a = g_env_light.bg_amb_col[1].a;
                     mat_p->setTevColor(1, &sp70);
 
                     sp18.r = sp18.g = sp18.b = 0;
-                    sp18.a = g_env_light.mTerrainAmbienceBG[3].a;
+                    sp18.a = g_env_light.bg_amb_col[3].a;
                     mat_p->setTevKColor(3, &sp18);
                 }
             }

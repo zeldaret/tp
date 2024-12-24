@@ -365,7 +365,7 @@ static int daKytag03_Execute(kytag03_class* i_this) {
                 i_this->mpEmitter->setGlobalEnvColor(0x44, 0x1A, 0x6B);
             }
 
-            i_this->mpEmitter->setGlobalAlpha(kankyo->field_0xf40 * 223.0f + 32.0f);
+            i_this->mpEmitter->setGlobalAlpha(kankyo->senses_effect_strength * 223.0f + 32.0f);
         }
 
         if (i_this->field_0x585 != dComIfGs_getCollectSmell()) {

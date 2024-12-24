@@ -57,9 +57,9 @@ static int dKyeff_Create(kankyo_class* i_this) {
     dKyw_wether_init();
     if (!strcmp(dComIfGp_getStartStageName(), "Name")) {
         OSTicksToCalendarTime(OSGetTime(), &time);
-        g_env_light.mWind.vec.set(1.0f, 0.0f, 0.0f);
-        g_env_light.mWind.pow = 0.7f;
-        g_env_light.mDaytime = time.hours * 15.0f;
+        g_env_light.global_wind_influence.vec.set(1.0f, 0.0f, 0.0f);
+        g_env_light.global_wind_influence.pow = 0.7f;
+        g_env_light.daytime = time.hours * 15.0f;
     }
 
     return cPhs_COMPLEATE_e;

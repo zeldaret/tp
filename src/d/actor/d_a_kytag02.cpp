@@ -22,7 +22,7 @@ static int daKytag02_Execute(kytag02_class* i_this) {
         dKyw_evt_wind_set(0, i_this->current.angle.y);
 
         if (i_this->field_0x578 != 99) {
-            env_light->mTeachWindExist = 1;
+            env_light->TeachWind_existence = 1;
             env_light->mMoyaMode = 4;
             env_light->mMoyaCount = 50;
 
@@ -57,18 +57,18 @@ static int daKytag02_Execute(kytag02_class* i_this) {
                 i_this->field_0x574--;
             }
         } else {
-            env_light->mTeachWindExist = 0xFF;
+            env_light->TeachWind_existence = 0xFF;
             env_light->custom_windpower = 0.3f;
         }
     } else {
         env_light = dKy_getEnvlight();
-        env_light->mEvtWindSet = 0;
+        env_light->evt_wind_go = 0;
 
         if (i_this->field_0x578 != 99) {
             env_light->mMoyaCount = 0;
         }
 
-        env_light->mTeachWindExist = 0;
+        env_light->TeachWind_existence = 0;
     }
 
     if (i_this->field_0x578 != 99) {
@@ -91,9 +91,9 @@ static int daKytag02_IsDelete(kytag02_class* i_this) {
 static int daKytag02_Delete(kytag02_class* i_this) {
     dScnKy_env_light_c* env_light = dKy_getEnvlight();
 
-    env_light->mEvtWindSet = 0;
+    env_light->evt_wind_go = 0;
     env_light->mMoyaCount = 0;
-    env_light->mTeachWindExist = 0;
+    env_light->TeachWind_existence = 0;
     return 1;
 }
 
@@ -118,9 +118,9 @@ static int daKytag02_Create(fopAc_ac_c* i_this) {
         dKyw_evt_wind_set(0, a_this->current.angle.y);
 
         if (a_this->field_0x578 == 99) {
-            env_light->mTeachWindExist = 0xFF;
+            env_light->TeachWind_existence = 0xFF;
         } else {
-            env_light->mTeachWindExist = 1;
+            env_light->TeachWind_existence = 1;
             env_light->mMoyaMode = 4;
             env_light->mMoyaCount = 50;
         }

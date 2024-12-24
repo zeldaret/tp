@@ -150,7 +150,7 @@ void dKyr_lenzflare_move() {
 /* 8005BED8-8005BF08 056818 0030+00 1/1 0/0 0/0 .text            dKyr_moon_arrival_check__Fv */
 static BOOL dKyr_moon_arrival_check() {
     BOOL rv = FALSE;
-    if (g_env_light.mDaytime > 285.0f || g_env_light.mDaytime < 67.5f) {
+    if (g_env_light.daytime > 285.0f || g_env_light.daytime < 67.5f) {
         rv = TRUE;
     }
     return rv;
@@ -175,11 +175,11 @@ void dKyr_sun_move() {
 
     u32 stage_type = dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo());
 
-    if (g_env_light.mBaseLightInfluence.mColor.r == 0 && stage_type != ST_ROOM) {
-        dKyr_get_vectle_calc(&camera_p2->lookat.eye, &g_env_light.mBaseLightInfluence.mPosition,
+    if (g_env_light.base_light.mColor.r == 0 && stage_type != ST_ROOM) {
+        dKyr_get_vectle_calc(&camera_p2->lookat.eye, &g_env_light.base_light.mPosition,
                              &lightDir);
     } else {
-        dKyr_get_vectle_calc(&camera_p2->lookat.eye, &g_env_light.mSunPos2, &lightDir);
+        dKyr_get_vectle_calc(&camera_p2->lookat.eye, &g_env_light.sun_light_pos, &lightDir);
     }
 
     sun_packet->mPos[0].x = camera_p2->lookat.eye.x + 8000.0f * lightDir.x;
@@ -209,7 +209,7 @@ void dKyr_sun_move() {
 
     sun_packet->field_0x29 = 0;
 
-    if (g_env_light.mDaytime > 77.5f && g_env_light.mDaytime < 285.0f && dKy_rain_check() < 20 &&
+    if (g_env_light.daytime > 77.5f && g_env_light.daytime < 285.0f && dKy_rain_check() < 20 &&
         strcmp(dComIfGp_getStartStageName(), "F_SP200") != 0 &&
         strcmp(dComIfGp_getStartStageName(), "D_MN09B") != 0)
     {
@@ -334,7 +334,7 @@ void dKyr_sun_move() {
         }
     }
 
-    if (g_env_light.mDaytime < 255.0f && g_env_light.mColpatWeather == 0) {
+    if (g_env_light.daytime < 255.0f && g_env_light.mColpatWeather == 0) {
         cLib_addCalc(&sun_packet->field_0x6c, 1.0f, 0.1f, 0.01f, 0.0001f);
     } else {
         cLib_addCalc(&sun_packet->field_0x6c, 0.0f, 0.5f, 0.1f, 0.001f);
@@ -351,12 +351,12 @@ void dKyr_sun_move() {
         {255, 78, 0, 255},
     };
 
-    if (g_env_light.mDaytime < 180.0f) {
+    if (g_env_light.daytime < 180.0f) {
         f32 parcent;
-        if (g_env_light.mDaytime < 90.0f) {
+        if (g_env_light.daytime < 90.0f) {
             parcent = 0.0f;
-        } else if (g_env_light.mDaytime < 105.0f) {
-            parcent = dKy_get_parcent(105.0f, 90.0f, g_env_light.mDaytime);
+        } else if (g_env_light.daytime < 105.0f) {
+            parcent = dKy_get_parcent(105.0f, 90.0f, g_env_light.daytime);
         } else {
             parcent = 1.0f;
         }
@@ -376,10 +376,10 @@ void dKyr_sun_move() {
             (f32)sun_color2[0].b + parcent * ((f32)sun_color2[1].b - (f32)sun_color2[0].b);
     } else {
         f32 parcent;
-        if (g_env_light.mDaytime < 247.5f) {
+        if (g_env_light.daytime < 247.5f) {
             parcent = 1.0f;
-        } else if (g_env_light.mDaytime < 270.0f) {
-            parcent = 1.0f - dKy_get_parcent(270.0f, 247.5f, g_env_light.mDaytime);
+        } else if (g_env_light.daytime < 270.0f) {
+            parcent = 1.0f - dKy_get_parcent(270.0f, 247.5f, g_env_light.daytime);
         } else {
             parcent = 0.0f;
         }
@@ -413,11 +413,11 @@ void dKyr_sun_move() {
         cLib_addCalc(&sun_packet->mMoonAlpha, 0.0f, 0.2f, 0.01f, 0.001f);
     }
 
-    if (g_env_light.mCameraInWater == 0 && g_env_light.mDaytime > 255.0f &&
+    if (g_env_light.camera_water_in_status == 0 && g_env_light.daytime > 255.0f &&
         sun_packet->mSunAlpha >= 0.2f)
     {
         cXyz sp24;
-        dKyr_get_vectle_calc(&camera_p2->lookat.eye, &g_env_light.mSunPos2, &lightDir);
+        dKyr_get_vectle_calc(&camera_p2->lookat.eye, &g_env_light.sun_light_pos, &lightDir);
         sp24.x = camera_p2->lookat.eye.x + 30160.0f * lightDir.x;
         sp24.y = camera_p2->lookat.eye.y + 30160.0f * lightDir.y;
         sp24.z = camera_p2->lookat.eye.z + 30160.0f * lightDir.z;
@@ -447,7 +447,7 @@ void dKyr_rain_init() {
     for (int i = 0; i < 250; i++) {
         g_env_light.mpRainPacket->mRainEff[i].mStatus = 0;
     }
-    g_env_light.mpRainPacket->mRainCount = 0;
+    g_env_light.mpRainPacket->raincnt = 0;
 }
 
 /* 8005CDA8-8005CDD0 0576E8 0028+00 1/1 0/0 0/0 .text rain_bg_chk__FP19dKankyo_rain_Packeti */
@@ -557,11 +557,11 @@ void dKyr_rain_move() {
     spA4.y = -2.5f;
     spA4.z = 0.0f;
 
-    if (rain_packet->mRainCount <= g_env_light.mRainCount) {
-        rain_packet->mRainCount = g_env_light.mRainCount;
+    if (rain_packet->raincnt <= g_env_light.raincnt) {
+        rain_packet->raincnt = g_env_light.raincnt;
     }
 
-    if (rain_packet->mRainCount != 0) {
+    if (rain_packet->raincnt != 0) {
         dKyr_get_vectle_calc(&camera->lookat.center, &rain_packet->mCamCenterPos, &spB0);
 
         f32 var_f1 = rain_packet->mCamEyePos.abs(camera->lookat.eye);
@@ -674,7 +674,7 @@ void dKyr_rain_move() {
         }
 
         f32 temp_f30 = 1.0f;
-        for (int i = rain_packet->mRainCount - 1; i >= 0; i--) {
+        for (int i = rain_packet->raincnt - 1; i >= 0; i--) {
             rain_packet->mRainEff[i].mBasePos.y = spE0.y;
             RAIN_EFF* effect = &rain_packet->mRainEff[i];
 
@@ -767,9 +767,9 @@ void dKyr_rain_move() {
             spBC.y = effect->mBasePos.y + effect->mPosition.y;
             spBC.z = effect->mBasePos.z + effect->mPosition.z;
 
-            if (i > g_env_light.mRainCount - 1) {
-                if (i == rain_packet->mRainCount - 1) {
-                    rain_packet->mRainCount--;
+            if (i > g_env_light.raincnt - 1) {
+                if (i == rain_packet->raincnt - 1) {
+                    rain_packet->raincnt--;
                 }
             }
 
@@ -969,7 +969,7 @@ void dKyr_housi_move() {
     if (g_env_light.field_0xea9 == 1) {
         var_f31 = 0.0f;
 
-        if (g_env_light.mCameraInWater) {
+        if (g_env_light.camera_water_in_status) {
             dBgS_CamGndChk_Wtr sp90;
 
             cXyz sp48;
@@ -1052,7 +1052,7 @@ void dKyr_housi_move() {
                     effect->mPosition.y -= var_f23 * 0.6f;
 
                     if (g_env_light.field_0xea9 == 2) {
-                        if (g_env_light.mPondSeason == 3) {
+                        if (g_env_light.fishing_hole_season == 3) {
                             effect->mPosition.y -= var_f23 * 3.0f;
                         } else {
                             effect->mPosition.y -= var_f23 * 1.5f;
@@ -1183,7 +1183,7 @@ void dKyr_housi_move() {
                             effect->mPosition.y = 3200.0f - effect->mBasePos.y;
                         }
 
-                        if (g_env_light.mPondSeason == 1) {
+                        if (g_env_light.fishing_hole_season == 1) {
                             if (sp6C.x > 600.0f || sp6C.z > 1600.0f) {
                                 effect->mStatus = 1;
                             } else {
@@ -1791,7 +1791,7 @@ void cloud_shadow_move() {
             } else if (g_env_light.mMoyaMode == 4) {
                 alpha_max = 0.38f * dKyw_get_wind_pow();
             } else if (g_env_light.mMoyaMode == 50) {
-                alpha_max = 0.25f * (envlight->field_0xf40 * envlight->field_0xf40 * envlight->field_0xf40);
+                alpha_max = 0.25f * (envlight->senses_effect_strength * envlight->senses_effect_strength * envlight->senses_effect_strength);
                 packet->mCloudEff[i].mAlpha = alpha_max * alpha_target;
             } else if (g_env_light.mMoyaMode == 5) {
                 alpha_max = 0.09f;
@@ -2058,8 +2058,8 @@ static void dKyr_draw_rev_moon(Mtx drawMtx, u8** tex) {
     cXyz pos[4];
 
     u16 date = dComIfGs_getDate();
-    cXyz sp60 = camera->lookat.eye + g_env_light.mMoonPos;
-    sp60.y = camera->lookat.eye.y - g_env_light.mMoonPos.y;
+    cXyz sp60 = camera->lookat.eye + g_env_light.moon_pos;
+    sp60.y = camera->lookat.eye.y - g_env_light.moon_pos.y;
 
     cXyz moon_pos;
     moon_pos.x = sp60.x - camera->lookat.eye.x;
@@ -2117,9 +2117,9 @@ static void dKyr_draw_rev_moon(Mtx drawMtx, u8** tex) {
         }
 
         GXColor color_reg0;
-        color_reg0.r = g_env_light.mFogColor.r;
-        color_reg0.g = g_env_light.mFogColor.g;
-        color_reg0.b = g_env_light.mFogColor.b;
+        color_reg0.r = g_env_light.fog_col.r;
+        color_reg0.g = g_env_light.fog_col.g;
+        color_reg0.b = g_env_light.fog_col.b;
         color_reg0.a = 0xFF;
 
         GXColor color_reg1;
@@ -2368,8 +2368,8 @@ void dKyr_drawSun(Mtx drawMtx, cXyz* ppos, GXColor& unused, u8** tex) {
         sunpos.z = ppos->z;
 
         u32 stage_type = dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo());
-        if (g_env_light.mBaseLightInfluence.mColor.r == 0 && stage_type != ST_ROOM) {
-            if (g_env_light.mDaytime > 285.0f || g_env_light.mDaytime < 105.0f) {
+        if (g_env_light.base_light.mColor.r == 0 && stage_type != ST_ROOM) {
+            if (g_env_light.daytime > 285.0f || g_env_light.daytime < 105.0f) {
                 draw_moon = false;
             }
 
@@ -2378,10 +2378,10 @@ void dKyr_drawSun(Mtx drawMtx, cXyz* ppos, GXColor& unused, u8** tex) {
             spB4.z = ppos->z;
         } else {
             if (strcmp(dComIfGp_getStartStageName(), "F_SP200") == 0 && dComIfG_play_c::getLayerNo(0) == 0) {
-                spB4 = envlight->mMoonPos;
+                spB4 = envlight->moon_pos;
                 moon_pos = spB4;
             } else {
-                spB4 = camera->lookat.eye + envlight->mMoonPos;
+                spB4 = camera->lookat.eye + envlight->moon_pos;
                 moon_pos.x = spB4.x - camera->lookat.eye.x;
                 moon_pos.y = spB4.y - camera->lookat.eye.y;
                 moon_pos.z = spB4.z - camera->lookat.eye.z;
@@ -2460,9 +2460,9 @@ void dKyr_drawSun(Mtx drawMtx, cXyz* ppos, GXColor& unused, u8** tex) {
             }
 
             GXColor color_reg0;
-            color_reg0.r = g_env_light.mFogColor.r;
-            color_reg0.g = g_env_light.mFogColor.g;
-            color_reg0.b = g_env_light.mFogColor.b;
+            color_reg0.r = g_env_light.fog_col.r;
+            color_reg0.g = g_env_light.fog_col.g;
+            color_reg0.b = g_env_light.fog_col.b;
             color_reg0.a = 0xFF;
 
             GXColor color_reg1;
@@ -3124,12 +3124,12 @@ void dKyr_drawRain(Mtx drawMtx, u8** tex) {
     cXyz sp3C;
     cXyz sp30;
 
-    if (g_env_light.mSnowCount == 0 && !g_env_light.mCameraInWater) {
+    if (g_env_light.mSnowCount == 0 && !g_env_light.camera_water_in_status) {
         sp30.x = 0.0f;
         sp30.y = -2.0f;
         sp30.z = 0.0f;
 
-        if (rain_packet->mRainCount != 0) {
+        if (rain_packet->raincnt != 0) {
             GXColor color_reg0;
             color_reg0.r = 0xFF;
             color_reg0.g = 0xFF;
@@ -3166,7 +3166,7 @@ void dKyr_drawRain(Mtx drawMtx, u8** tex) {
             GXLoadPosMtxImm(drawMtx, GX_PNMTX0);
             GXSetCurrentMtx(GX_PNMTX0);
 
-            for (int i = 0; i < rain_packet->mRainCount; i++) {
+            for (int i = 0; i < rain_packet->raincnt; i++) {
                 f32 temp_f30 = -1.0f;
 
                 if (!(rain_packet->mRainEff[i].mAlpha <= 0.0f)) {
@@ -3263,7 +3263,7 @@ void dKyr_drawSibuki(Mtx drawMtx, u8** tex) {
     cXyz eyevect;
     cXyz sp38;    
 
-    if (g_env_light.mSnowCount == 0 && g_env_light.mCameraInWater == 0 && dComIfGd_getView() != NULL) {
+    if (g_env_light.mSnowCount == 0 && g_env_light.camera_water_in_status == 0 && dComIfGd_getView() != NULL) {
         Mtx camMtx;
         MTXInverse(dComIfGd_getView()->viewMtxNoTrans, camMtx);   
     } else {
@@ -3340,7 +3340,7 @@ void dKyr_drawSibuki(Mtx drawMtx, u8** tex) {
         scale = 0.2f;
     }
 
-    for (int i = 0; i < g_env_light.mRainCount >> 1; i++) {
+    for (int i = 0; i < g_env_light.raincnt >> 1; i++) {
         cXyz pos[4];
         f32 size = scale * (15.0f + cM_rndF(10.0f));
         cXyz sp20;
@@ -3415,7 +3415,7 @@ void dKyr_drawHousi(Mtx drawMtx, u8** tex) {
 
             if (g_env_light.field_0xea9 == 1) {
                 var_f25 = 140.0f;
-            } else if (g_env_light.mCameraInWater != 0) {
+            } else if (g_env_light.camera_water_in_status != 0) {
                 return;
             }
 
@@ -3452,13 +3452,13 @@ void dKyr_drawHousi(Mtx drawMtx, u8** tex) {
                 color_reg1.g = 0x50;
                 color_reg1.b = 0x50;
             } else if (g_env_light.field_0xea9 == 2 &&
-                       (g_env_light.mPondSeason == 1 || g_env_light.mPondSeason == 3))
+                       (g_env_light.fishing_hole_season == 1 || g_env_light.fishing_hole_season == 3))
             {
                 GXColor sp1C = {0x32, 0x32, 0x32, 0xFF};
                 GXColor sp18 = {0xFF, 0xD7, 0xF0, 0xFF};
 
                 camera_class* cam_p = dComIfGp_getCamera(0);
-                if (g_env_light.mPondSeason == 3) {
+                if (g_env_light.fishing_hole_season == 3) {
                     sp1C.r = 0x78;
                     sp1C.g = 0x0A;
                     sp1C.b = 0x14;
@@ -3630,7 +3630,7 @@ void dKyr_drawHousi(Mtx drawMtx, u8** tex) {
                                 }
 
                                 f32 var_f2;
-                                if (g_env_light.mPondSeason == 3) {
+                                if (g_env_light.fishing_hole_season == 3) {
                                     var_f2 = 15.0f;
 
                                     if (housi_packet->mHousiEff[j].mStatus == 1) {
@@ -3665,7 +3665,7 @@ void dKyr_drawHousi(Mtx drawMtx, u8** tex) {
                                     mDoMtx_stack_c::ZrotM(housi_packet->mHousiEff[j].field_0x38);
                                 } else {
                                     if (housi_packet->mHousiEff[j].mStatus == 2) {
-                                        if (g_env_light.mPondSeason == 3) {
+                                        if (g_env_light.fishing_hole_season == 3) {
                                             housi_packet->mHousiEff[j].field_0x38 += var_f24 * 30.0f;
                                         } else {
                                             housi_packet->mHousiEff[j].field_0x38 +=
@@ -3793,7 +3793,7 @@ void dKyr_drawSnow(Mtx drawMtx, u8** tex) {
                 sp54 = snow_packet->field_0x6d88;
             }
     
-            if (!g_env_light.mCameraInWater) {
+            if (!g_env_light.camera_water_in_status) {
                 dKy_ParticleColor_get_bg(&camera->lookat.eye, NULL, &sp64, &sp60, &sp5C, &sp58, 0.0f);
                 color_reg0.r = 178.5f + (0.3f * sp60.r);
                 color_reg0.g = 178.5f + (0.3f * sp60.g);
@@ -4113,9 +4113,9 @@ void dKyr_drawStar(Mtx drawMtx, u8** tex) {
         }
 
         if (strcmp(dComIfGp_getStartStageName(), "F_SP200") == 0 && dComIfG_play_c::getLayerNo(0) == 0) {
-            moon_pos = envlight->mMoonPos;
+            moon_pos = envlight->moon_pos;
         } else {
-            moon_pos = camera->lookat.eye + envlight->mMoonPos;
+            moon_pos = camera->lookat.eye + envlight->moon_pos;
             if (sp38) {
                 moon_pos.x = 3900.0f + camera->lookat.eye.x;
                 moon_pos.y = 8052.0f + camera->lookat.eye.y;
@@ -4615,7 +4615,7 @@ void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
         unused = 1.0f - (0.09f * (camera->lookat.eye.y - sp70));
     }
 
-    if (g_env_light.mDaytime > 105.0f && g_env_light.mDaytime < 240.0f && !dComIfGp_event_runCheck() && sun_packet != NULL && sun_packet->mSunAlpha > 0.0f) {
+    if (g_env_light.daytime > 105.0f && g_env_light.daytime < 240.0f && !dComIfGp_event_runCheck() && sun_packet != NULL && sun_packet->mSunAlpha > 0.0f) {
         mDoLib_project(&sun_packet->mPos[0], &proj);
         if (proj.x > 0.0f && proj.x < 608.0f && proj.y > spC4 && proj.y < (458.0f - spC4)) {
             pass = 0;
@@ -4631,9 +4631,9 @@ void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
         }
 
         for (j = 0; j < 3; j++) {
-            color.r = g_env_light.mVrShitaGumoCol.r;
-            color.g = g_env_light.mVrShitaGumoCol.g;
-            color.b = g_env_light.mVrShitaGumoCol.b;
+            color.r = g_env_light.vrbox_kumo_bottom_col.r;
+            color.g = g_env_light.vrbox_kumo_bottom_col.g;
+            color.b = g_env_light.vrbox_kumo_bottom_col.b;
 
             GXColor color_reg1;
             color_reg1.r = 0;
@@ -4736,9 +4736,9 @@ void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
                     } else {
                         f32 sp4C = 1.0f - vrkumo_packet->mVrkumoEff[k].mDistFalloff;
 
-                        color.r = (f32)g_env_light.mVrkumoCol.r + (sp4C * ((f32)g_env_light.mVrShitaGumoCol.r - (f32)g_env_light.mVrkumoCol.r));
-                        color.g = (f32)g_env_light.mVrkumoCol.g + (sp4C * ((f32)g_env_light.mVrShitaGumoCol.g - (f32)g_env_light.mVrkumoCol.g));
-                        color.b = (f32)g_env_light.mVrkumoCol.b + (sp4C * ((f32)g_env_light.mVrShitaGumoCol.b - (f32)g_env_light.mVrkumoCol.b));
+                        color.r = (f32)g_env_light.vrbox_kumo_top_col.r + (sp4C * ((f32)g_env_light.vrbox_kumo_bottom_col.r - (f32)g_env_light.vrbox_kumo_top_col.r));
+                        color.g = (f32)g_env_light.vrbox_kumo_top_col.g + (sp4C * ((f32)g_env_light.vrbox_kumo_bottom_col.g - (f32)g_env_light.vrbox_kumo_top_col.g));
+                        color.b = (f32)g_env_light.vrbox_kumo_top_col.b + (sp4C * ((f32)g_env_light.vrbox_kumo_bottom_col.b - (f32)g_env_light.vrbox_kumo_top_col.b));
                         color.a = 255.0f * vrkumo_packet->mVrkumoEff[k].mAlpha;
 
                         if (j == 1) {
@@ -5308,7 +5308,7 @@ void dKyr_odour_draw(Mtx drawMtx, u8** tex) {
         return;
     }
 
-    if (envlight->field_0xf40 <= 0.0f || envlight->field_0xf3d != 1) {
+    if (envlight->senses_effect_strength <= 0.0f || envlight->now_senses_effect != 1) {
         return;
     }
 
@@ -5449,7 +5449,7 @@ void dKyr_odour_draw(Mtx drawMtx, u8** tex) {
                 var_f31 = 1.0f;
             }
 
-            f32 temp_f29 = var_f31 * (effect->field_0x28 * (effect->field_0x24 * (envlight->field_0xf40 * envlight->field_0xf40 * envlight->field_0xf40)));
+            f32 temp_f29 = var_f31 * (effect->field_0x28 * (effect->field_0x24 * (envlight->senses_effect_strength * envlight->senses_effect_strength * envlight->senses_effect_strength)));
 
             if (effect->mStatus != 0) {
                 if (!(temp_f29 <= 0.000001f)) {
@@ -5690,7 +5690,7 @@ void dKyr_mud_draw(Mtx drawMtx, u8** tex) {
     GXColor color_reg1;
 
     camera_class* sp34 = (camera_class*)dComIfGp_getCamera(0);
-    s16 spC = g_env_light.mTerrainAmbienceBG[1].a;
+    s16 spC = g_env_light.bg_amb_col[1].a;
     dKankyo_sunlenz_Packet* lenz_packet = g_env_light.mpSunLenzPacket;
 
     if (mud_packet->mEffectNum != 0) {
@@ -5701,9 +5701,9 @@ void dKyr_mud_draw(Mtx drawMtx, u8** tex) {
             spC = g_env_light.field_0x1300;
         }
     
-        sp50.r = 1.3f * g_env_light.mTerrainAmbienceBG[1].r;
-        sp50.g = 1.3f * g_env_light.mTerrainAmbienceBG[1].g;
-        sp50.b = 1.3f * g_env_light.mTerrainAmbienceBG[1].b;
+        sp50.r = 1.3f * g_env_light.bg_amb_col[1].r;
+        sp50.g = 1.3f * g_env_light.bg_amb_col[1].g;
+        sp50.b = 1.3f * g_env_light.bg_amb_col[1].b;
 
         if (sp50.r >= 0xFF) {
             sp50.r = 0xFF;
@@ -5728,9 +5728,9 @@ void dKyr_mud_draw(Mtx drawMtx, u8** tex) {
             var_f31 = (u8)(var_f31 * (1.0f - (sun_packet->mVisibility * (1.0f - (lenz_packet->mDistFalloff * lenz_packet->mDistFalloff * lenz_packet->mDistFalloff)))));
         }
 
-        color_reg1.r = 0.5f * g_env_light.mTerrainAmbienceBG[1].r;
-        color_reg1.g = 0.5f * g_env_light.mTerrainAmbienceBG[1].g;
-        color_reg1.b = 0.5f * g_env_light.mTerrainAmbienceBG[1].b;
+        color_reg1.r = 0.5f * g_env_light.bg_amb_col[1].r;
+        color_reg1.g = 0.5f * g_env_light.bg_amb_col[1].g;
+        color_reg1.b = 0.5f * g_env_light.bg_amb_col[1].b;
         color_reg1.a = 0xFF;
 
         if (strcmp(dComIfGp_getStartStageName(), "D_MN05A") == 0) {
@@ -5765,7 +5765,7 @@ void dKyr_mud_draw(Mtx drawMtx, u8** tex) {
             return;
         }
     
-        if (g_env_light.mCameraInWater == 0) {
+        if (g_env_light.camera_water_in_status == 0) {
             for (int i = 0; i < 1; i++) {
                 GXTexObj texobj;
                 dKyr_set_btitex(&texobj, (ResTIMG*)tex[0]);
@@ -5784,7 +5784,7 @@ void dKyr_mud_draw(Mtx drawMtx, u8** tex) {
                 GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_SET);
                 GXSetAlphaCompare(GX_GREATER, 0, GX_AOP_OR, GX_GREATER, 0);
 
-                if (g_env_light.mCameraInWater != 0) {
+                if (g_env_light.camera_water_in_status != 0) {
                     GXSetZMode(GX_DISABLE, GX_LEQUAL, GX_ENABLE);
                 } else {
                     GXSetZMode(GX_ENABLE, GX_LEQUAL, GX_DISABLE);
