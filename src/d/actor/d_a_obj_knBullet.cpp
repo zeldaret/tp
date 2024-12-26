@@ -229,7 +229,7 @@ bool daObjKnBullet_c::Delete() {
 }
 
 /* 80C47490-80C474E8 0003F0 0058+00 2/2 0/0 0/0 .text            setBaseMtx__15daObjKnBullet_cFv */
-void daObjKnBullet_c::setBaseMtx() {
+void ::setBaseMtx() {
     // NONMATCHING
 }
 

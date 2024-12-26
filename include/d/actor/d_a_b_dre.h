@@ -70,7 +70,7 @@ private:
     /* 0x637 */ u8 field_0x637;
     /* 0x638 */ u8 field_0x638;
     /* 0x639 */ u8 field_0x639[0x63C - 0x639];
-    /* 0x63C */ request_of_phase_process_class mPhase;
+    /* 0x63C */ request_of_phase_process_class* mPhase;
     /* 0x644 */ Z2CreatureEnemy mSound;
     /* 0x6E8 */ u8 field_0x6E8[0x6EC - 0x6E8];
     /* 0x6EC */ mDoExt_McaMorfSO* field_0x6ec;

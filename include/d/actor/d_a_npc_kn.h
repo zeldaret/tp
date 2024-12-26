@@ -43,7 +43,7 @@ public:
     /* 0x06D0 */ dBgS_ObjAcch mAcch;
     /* 0x08A8 */ dCcD_Stts mCcStts;
     /* 0x08E4 */ dBgS_AcchCir mAcchCir;
-    /* 0x0924 */ u8 field_0x924[0x964 - 0x924];
+    /* 0x0924 */ request_of_phase_process_class mPhase[8];
     /* 0x0964 */ cBgS_GndChk mGndChk;
     /* 0x09A0 */ daNpcT_MatAnm_c* mpMatAnm;
     /* 0x09A4 */ u8 field_0x9a4[4];
@@ -64,8 +64,8 @@ public:
     /* 0x0BD4 */ daNpcT_ActorMngr_c mActorMngr2;
     /* 0x0BDC */ daNpcT_JntAnm_c mJntAnm;
     /* 0x0D3C */ daNpcT_DmgStagger_c mDmgStagger;
-    /* 0x0D58 */ int field_0xd58;
-    /* 0x0D5C */ u8 field_0xd5c[0xd64 - 0xd5c];
+    /* 0x0D58 */ cXyz field_0xd58;
+    // /* 0x0D5C */ u8 field_0xd5c[0xd64 - 0xd5c];
     /* 0x0D64 */ cXyz field_0xD64; // these cXyz / csXyz members are probably wrong
     /* 0x0D70 */ cXyz field_0xD70;
     /* 0x0D7C */ cXyz field_0xD7C;
@@ -77,9 +77,12 @@ public:
     /* 0x0DB8 */ csXyz field_0xDB8;
     /* 0x0DBE */ csXyz field_0xDBE;
     /* 0x0DC4 */ s32 field_0xdc4;
-    /* 0x0DC8 */ u8 field_0xDC8[0xDD4 - 0xDC8];
+    /* 0x0DC8 */ u8 field_0xDC8[0xDcc - 0xDC8];
+    /* 0x0DCC */ u32 field_0xdcc;
+    /* 0x0DD0 */ u32 field_0xdd0;
     /* 0x0DD4 */ s32 mStaffId;
-    /* 0x0DD8 */ u8 field_0xdd8[0xdec - 0xdd8];
+    /* 0x0DD8 */ int mCutType;
+    /* 0x0DDC */ u8 field_0xddc[0xdec - 0xddc];
     /* 0x0DEC */ int field_0xdec;
     /* 0x0DF0 */ u8 field_0xdf0[0xe];
     /* 0x0DFE */ s16 field_0xdfe;
@@ -87,11 +90,15 @@ public:
     /* 0x0E0C */ f32 field_0xe0c;
     /* 0x0E10 */ f32 mRadius;
     /* 0x0E14 */ f32 field_0xe14;
-    /* 0x0E18 */ u8 field_0xe18[0xe2a - 0xe18];
+    /* 0x0E18 */ u8 field_0xe18[0xe26 - 0xe18];
+    /* 0x0E26 */ u16 field_0xe26;
+    /* 0x0E28 */ u16 field_0xe28;
     /* 0x0E2A */ u16 field_0xe2a;
     /* 0x0E2C */ u8 field_0xe2c;
     /* 0x0E2D */ u8 field_0xe2d;
-    /* 0x0E2E */ u8 field_0xe2e[0xe32 - 0xe2e];
+    /* 0x0E2E */ u8 field_0xe2e[0xe30 - 0xe2e];
+    /* 0x0E30 */ u8 field_0xe30;
+    /* 0x0E31 */ u8 field_0xe31;
     /* 0x0E32 */ u8 field_0xe32;
     /* 0x0E33 */ u8 field_0xe33[0xe36 - 0xe33];
     /* 0x0E36 */ s16 field_0xe36;
@@ -141,6 +148,8 @@ public:
     int getBackboneJointNo() {
         return 1;
     }
+
+    void setCutType(int i_type) { mCutType = i_type;}
     
     /* 80A2AFD4 */ void create();
     /* 80A2B278 */ void CreateHeap();
@@ -227,8 +236,8 @@ public:
     /* 80A363C0 */ int ECut_seventhSkillExplain(int);
     /* 80A36C20 */ int ECut_seventhSkillGet(int);
     /* 80A372D0 */ void setPrtcl();
-    /* 80A37430 */ void setSlipPrtcl();
-    /* 80A37558 */ void setLandingPrtcl();
+    /* 80A37430 */ int setSlipPrtcl();
+    /* 80A37558 */ int setLandingPrtcl();
     /* 80A37598 */ void calcMagicBallPos();
     /* 80A37670 */ void setSwordChargePtcl();
     /* 80A37B08 */ void calcSlip();
@@ -240,17 +249,17 @@ public:
     /* 80A385C8 */ void getTexPtrnAnmP(char const*, int);
     /* 80A38604 */ void getTexSRTKeyAnmP(char const*, int);
     /* 80A38640 */ void setBckAnm(J3DAnmTransform*, f32, int, int, int, bool);
-    /* 80A38684 */ void setMcaMorfAnm(J3DAnmTransformKey*, f32, f32, int, int, int);
+    /* 80A38684 */ int setMcaMorfAnm(J3DAnmTransformKey*, f32, f32, int, int, int);
     /* 80A3877C */ void setBtpAnm(J3DAnmTexPattern*, J3DModelData*, f32, int);
     /* 80A387BC */ void setBtkAnm(J3DAnmTextureSRTKey*, J3DModelData*, f32, int);
-    /* 80A387FC */ void loadRes(s8 const*, char const**);
+    /* 80A387FC */ cPhs__Step loadRes(s8 const*, char const**);
     /* 80A388B0 */ void deleteRes(s8 const*, char const**);
     /* 80A38930 */ s32 execute();
     /* 80A38BB8 */ void draw(int, int, f32, _GXColorS10*, f32, int, int, int);
     /* 80A38FAC */ void setEnvTevColor();
     /* 80A39008 */ void setRoomNo();
-    /* 80A3904C */ void checkEndAnm(f32);
-    /* 80A390F8 */ void checkEndAnm(J3DFrameCtrl*, f32);
+    /* 80A3904C */ bool checkEndAnm(f32);
+    /* 80A390F8 */ BOOL checkEndAnm(J3DFrameCtrl*, f32);
     /* 80A3917C */ void playAllAnm();
     /* 80A39558 */ void setMtx();
     /* 80A395DC */ void ctrlFaceMotion();
@@ -283,7 +292,7 @@ public:
     /* 80A3CDFC */ int teach01_attackWait(void*);
     /* 80A3CF78 */ int teach01_swordAttackWait(void*);
     /* 80A3D32C */ int teach01_swordFinishWait(void*);
-    /* 80A3D6D8 */ void ctrlWarp();
+    /* 80A3D6D8 */ int ctrlWarp();
     /* 80A3DCEC */ void ECut_firstEncount(int);
     /* 80A3DEC4 */ void ECut_attackFailed(int);
     /* 80A3E550 */ void ECut_firstSkillGet(int);
@@ -296,7 +305,7 @@ public:
     /* 80A3F99C */ void ECut_secondSkillExplain(int);
     /* 80A3FFB4 */ void ECut_reflectExplain(int);
     /* 80A403B8 */ void ECut_secondSkillGet(int);
-    /* 80A3949C */ virtual void ctrlBtk();
+    /* 80A3949C */ virtual int ctrlBtk();
     /* 80A3B7B4 */ virtual s32 getFootLJointNo();
     /* 80A3B7AC */ virtual s32 getFootRJointNo();
     /* 80A3BD1C */ virtual int getEyeballLMaterialNo();
@@ -338,7 +347,7 @@ private:
     /* 0x1318 */ dCcD_Sph field_0x1318[2];
     /* 0x1588 */ mDoExt_bckAnm field_0x1588;
     /* 0x15A4 */ u32 field_0x15a4;
-    /* 0x15A8 */ u8 field_0x15A8[4];
+    /* 0x15A8 */ u32 field_0x15A8;
     /* 0x15AC */ u8 mType;
     /* 0x15AD */ u8 field_0x15ad;
     /* 0x15AE */ s8 field_0x15ae;

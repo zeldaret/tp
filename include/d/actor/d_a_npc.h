@@ -42,13 +42,19 @@ class daNpcT_MatAnm_c : public J3DMaterialAnm {
 private:
     /* 0x0F4 */ mutable f32 field_0xF4;
     /* 0x0F8 */ mutable f32 field_0xF8;
-    /* 0x0FC */ f32 mTranslationX;
-    /* 0x100 */ f32 mTranslationY;
-    /* 0x104 */ u8 field_0x104;
-    /* 0x105 */ u8 field_0x105;
+    /* 0x0FC */ f32 mNowOffsetX;
+    /* 0x100 */ f32 mNowOffsetY;
+    /* 0x104 */ u8 mEyeMoveFlag;
+    /* 0x105 */ u8 mMorfFrm;
 
 public:
     daNpcT_MatAnm_c() { initialize(); }
+    void setNowOffsetX(f32 i_offset) { mNowOffsetX = i_offset; }
+    void setNowOffsetY(f32 i_offset) { mNowOffsetY = i_offset; }
+    void setMorfFrm(u8 i_form) { mMorfFrm = i_form; }
+    void onEyeMoveFlag() { mEyeMoveFlag = 1; }
+    void offEyeMoveFlag() { mEyeMoveFlag = 0; }
+
     /* 80145764 */ void initialize();
     /* 80145788 */ virtual void calc(J3DMaterial*) const;
     /* 8014D24C */ ~daNpcT_MatAnm_c();
@@ -173,6 +179,9 @@ public:
 
     void clrDirectFlag() { mDirectFlag = 0; }
     int getMode() { return mMode; }
+
+    s16 getEyeAngleY() { return mEyeAngle.y; }
+    s16 getEyeAngleX() { return mEyeAngle.x; }
 
     int setMode(int mode, int param_2) {
         if (mode >= 0 && (param_2 != 0 || mode != mMode)) {

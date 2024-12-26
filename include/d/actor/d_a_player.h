@@ -356,11 +356,10 @@ public:
         FLG3_UNK_100 = 0x100,
         FLG3_UNK_80 = 0x80,
         FLG3_UNK_40 = 0x40,
-        FLG3_UNK_20 = 0x20,
+        FL3_TRANING_CUT_BACK = 0x20,
         FLG3_UNK_10 = 0x10,
         FLG3_UNK_8 = 8,
         FLG3_UNK_4 = 4,
-        FL3_TRANING_CUT_BACK = 2,
         FLG3_UNK_1 = 1,
     };
 
