@@ -69,7 +69,7 @@ static int dThunder_Draw(dThunder_c* i_this) {
 int dThunder_c::execute(dThunder_c* i_thunder) {
     dScnKy_env_light_c* env_light = dKy_getEnvlight();
 
-    if (env_light->mThunderEff.mStateTimer < 10) {
+    if (env_light->mThunderEff.mState < 10) {
         cLib_addCalc(&mBrkSpeed, 0.1f, 0.05f, 0.017f, 9.999999747378752e-06f);
     }
 
@@ -93,7 +93,7 @@ int dThunder_c::execute(dThunder_c* i_thunder) {
 
     fvar7 *= mBrkSpeed;
 
-    if (env_light->mThunderEff.mStateTimer < 10) {
+    if (env_light->mThunderEff.mState < 10) {
         field_0x138.x += fvar7 * field_0x138.x * 0.01f * cM_ssin(field_0x16a);
         field_0x138.y += fvar7 * field_0x138.y * 0.01f * cM_scos(field_0x16c);
         field_0x16a += -25000;
@@ -180,7 +180,7 @@ int dThunder_c::create() {
     mBrkSpeed = 1.0f;
     mModelInfo.mBrk.setPlaySpeed(mBrkSpeed);
 
-    if (env_light->mThunderEff.mStateTimer < 10) {
+    if (env_light->mThunderEff.mState < 10) {
         var_f29 = 1.0f;
     } else {
         var_f29 = 0.25f;
@@ -199,7 +199,7 @@ int dThunder_c::create() {
     spC4.set(60000.0f, -5000.0f, 0.0f);
     field_0x15c = 2000.0f;
 
-    if (env_light->mThunderEff.mStateTimer >= 10) {
+    if (env_light->mThunderEff.mState >= 10) {
         var_f31 = var_r27;
         var_f30 = 24.0f;
         field_0x15c = 2500.0f;

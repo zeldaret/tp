@@ -130,15 +130,15 @@ s32 daTag_BottleItem_c::chkEvent() {
 s32 daTag_BottleItem_c::orderEvent() {
     makeSoup();
 
-    if (!daPy_py_c::i_checkNowWolf() && mBottleItemType != EMPTY_BOTTLE) {
+    if (!daPy_py_c::i_checkNowWolf() && mBottleItemType != fpcNm_ITEM_EMPTY_BOTTLE) {
         attention_info.flags = 0x20000008;
     } else {
         attention_info.flags = 0;
     }
 
     if (attention_info.flags == 0x20000008) {
-        attention_info.distances[fopAc_attn_TALK_e] = EMPTY_BOTTLE;
-        attention_info.distances[fopAc_attn_SPEAK_e] = EMPTY_BOTTLE;
+        attention_info.distances[fopAc_attn_TALK_e] = fpcNm_ITEM_EMPTY_BOTTLE;
+        attention_info.distances[fopAc_attn_SPEAK_e] = fpcNm_ITEM_EMPTY_BOTTLE;
         eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
     }
 
@@ -147,12 +147,12 @@ s32 daTag_BottleItem_c::orderEvent() {
 
 /* 80D56418-80D564A0 0004B8 0088+00 2/2 0/0 0/0 .text            makeSoup__18daTag_BottleItem_cFv */
 void daTag_BottleItem_c::makeSoup() {
-    if (mBottleItemType == LV1_SOUP && dComIfGs_isEventBit(2)) {
-        mBottleItemType = LV2_SOUP;
+    if (mBottleItemType == fpcNm_ITEM_LV1_SOUP && dComIfGs_isEventBit(2)) {
+        mBottleItemType = fpcNm_ITEM_LV2_SOUP;
     }
 
-    if (mBottleItemType == LV2_SOUP && dComIfGs_isEventBit(1)) {
-        mBottleItemType = LV3_SOUP;
+    if (mBottleItemType == fpcNm_ITEM_LV2_SOUP && dComIfGs_isEventBit(1)) {
+        mBottleItemType = fpcNm_ITEM_LV3_SOUP;
     }
 }
 

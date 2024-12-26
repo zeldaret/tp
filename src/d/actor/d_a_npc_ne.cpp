@@ -2993,7 +2993,7 @@ static int message(npc_ne_class* i_this) {
             i_this->mIsTalking = 0;
             if (i_this->mIsGengle == 1 && (i_this->mMsgFlow.getNowMsgNo() == 0x18a1 ||
                                            i_this->mMsgFlow.getNowMsgNo() == 0x18a2)) {
-                fopAcM_createItem(&dComIfGp_getPlayer(0)->eyePos, SILVER_RUPEE, -1,
+                fopAcM_createItem(&dComIfGp_getPlayer(0)->eyePos, fpcNm_ITEM_SILVER_RUPEE, -1,
                                   fopAcM_GetRoomNo(i_this), NULL, NULL, 3);
             }
         }

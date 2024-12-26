@@ -394,7 +394,7 @@ static int phase_1(dScnPly_c* i_this) {
         dComIfGp_getStartStagePoint() == 3)
     {
         dComIfGs_onDarkClearLV(0);
-        execItemGet(WEAR_KOKIRI);
+        execItemGet(fpcNm_ITEM_WEAR_KOKIRI);
     }
     // Stage: Kakariko Village, Room: Kakariko Village
     else if (!strcmp(dComIfGp_getStartStageName(), "F_SP109") &&
@@ -419,8 +419,8 @@ static int phase_1(dScnPly_c* i_this) {
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP104") && dComIfGp_getStartStageRoomNo() == 1 &&
         dComIfGp_getStartStagePoint() == 23 && dComIfGp_getStartStageLayer() == 12)
     {
-        dComIfGs_onItemFirstBit(HORSE_FLUTE);
-        dComIfGs_setItem(SLOT_21, HORSE_FLUTE);
+        dComIfGs_onItemFirstBit(fpcNm_ITEM_HORSE_FLUTE);
+        dComIfGs_setItem(SLOT_21, fpcNm_ITEM_HORSE_FLUTE);
     }
 
     if ((u8)dKy_darkworld_stage_check(dComIfGp_getStartStageName(),
@@ -503,15 +503,15 @@ static int phase_1(dScnPly_c* i_this) {
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") && dComIfGp_getStartStageRoomNo() == 0 &&
         dComIfGp_getStartStagePoint() == 2)
     {
-        g_env_light.mPondSeason++;
+        g_env_light.fishing_hole_season++;
 
-        if (g_env_light.mPondSeason > 4) {
-            g_env_light.mPondSeason = 1;
+        if (g_env_light.fishing_hole_season > 4) {
+            g_env_light.fishing_hole_season = 1;
         }
     }
 
     dComIfGs_BossLife_public_Set(0xFF);
-    g_env_light.field_0x1308 = 0;
+    g_env_light.light_mask_type = 0;
 
     JUTReportConsole_f("Start StageName:RoomNo [%s:%d]\n", dComIfGp_getStartStageName(),
                        dComIfGp_getStartStageRoomNo());
@@ -616,9 +616,9 @@ static int phase_4(dScnPly_c* i_this) {
         dComIfGs_init();
         dComIfGs_setOptPointer(0);
         dComIfGs_setLife(12);
-        dMeter2Info_setCloth(WEAR_KOKIRI, false);
-        dMeter2Info_setSword(SWORD, false);
-        dMeter2Info_setShield(HYLIA_SHIELD, false);
+        dMeter2Info_setCloth(fpcNm_ITEM_WEAR_KOKIRI, false);
+        dMeter2Info_setSword(fpcNm_ITEM_SWORD, false);
+        dMeter2Info_setShield(fpcNm_ITEM_HYLIA_SHIELD, false);
         dComIfGs_onEventBit(0x0601);  // Epona Tamed
     }
 

@@ -144,6 +144,9 @@ dCamParam_c::dCamParam_c(s32 i_styleID) {
     mMapToolArg2 = -1;
 }
 
+/* 8008858C-800885D4 082ECC 0048+00 1/0 1/1 0/0 .text            __dt__11dCamParam_cFv */
+dCamParam_c::~dCamParam_c() {}
+
 /* 800885D4-80088620 082F14 004C+00 1/1 7/7 0/0 .text            Change__11dCamParam_cFl */
 int dCamParam_c::Change(s32 i_styleID) {
     if (i_styleID >= 0 && i_styleID < mStyleNum) {
@@ -255,6 +258,9 @@ dCamSetup_c::dCamSetup_c() {
 
     dCam_getBody()->EventRecoverNotime();
 }
+
+/* 800888B8-80088918 0831F8 0060+00 1/0 1/1 0/0 .text            __dt__11dCamSetup_cFv */
+dCamSetup_c::~dCamSetup_c() {}
 
 /* 80088918-80088988 083258 0070+00 0/0 1/1 0/0 .text CheckLatitudeRange__11dCamSetup_cFPs */
 bool dCamSetup_c::CheckLatitudeRange(s16* param_0) {

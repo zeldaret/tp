@@ -2,6 +2,7 @@
 #define D_D_MODEL_H
 
 #include "JSystem/J3DGraphBase/J3DPacket.h"
+#include "m_Do/m_Do_mtx.h"
 
 class J3DModelData;
 class dKy_tevstr_c;
@@ -9,6 +10,7 @@ class dKy_tevstr_c;
 class dMdl_obj_c {
 public:
     MtxP getMtx() { return mMtx; }
+    void setMtx(Mtx mtx) { cMtx_copy(mtx, mMtx); }
 
     /* 0x00 */ Mtx mMtx;
     /* 0x30 */ dMdl_obj_c* mpObj;

@@ -1180,8 +1180,8 @@ int daObjMovebox::Act_c::Execute(Mtx** param_0) {
 
         mBgc.proc_vertical(this);
         if (mBgc.field_0x5c >= 0) {
-            tevStr.mRoomNo = current.roomNo;
-            tevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mBgc.M_gnd_work[mBgc.field_0x5c]);
+            tevStr.room_no = current.roomNo;
+            tevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(mBgc.M_gnd_work[mBgc.field_0x5c]);
         }
 
         if (field_0x8fc > 0) {

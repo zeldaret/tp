@@ -328,13 +328,13 @@ int daTagStatue_c::demoProc() {
             case DEMO_ACTION_AWARD_ITEM:
                 // If the player already has 5 Sky Characters, reward them with the completed Ancient Sky Book,
                 //  otherwise, reward another character
-                enum ItemTable item;
+                int item;
                 if(getLetterCount() == 5) {
-                    item = ANCIENT_DOCUMENT2;
+                    item = fpcNm_ITEM_ANCIENT_DOCUMENT2;
                     dComIfGs_onEventBit(dSv_event_flag_c::F_0796);
                 }
                 else {
-                    item = AIR_LETTER;
+                    item = fpcNm_ITEM_AIR_LETTER;
                 }
 
                 mTreasureDemoItemId = fopAcM_createItemForTrBoxDemo(&fopAcM_GetPosition(this), item, -1, fopAcM_GetRoomNo(this), 0, 0);

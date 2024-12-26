@@ -1495,7 +1495,7 @@ void daAlink_c::resetFairyEffect() {
 
 /* 80124BA4-80124E28 11F4E4 0284+00 1/1 0/0 0/0 .text            setBottleEffect__9daAlink_cFv */
 void daAlink_c::setBottleEffect() {
-    if (mEquipItem == FAIRY) {
+    if (mEquipItem == fpcNm_ITEM_FAIRY) {
         if (mpHookTipModel != NULL) {
             cXyz sp2C;
             mDoMtx_multVecZero(mpHookTipModel->getAnmMtx(2), &sp2C);
@@ -1507,7 +1507,7 @@ void daAlink_c::setBottleEffect() {
 
             setEmitter(&field_0x325c, 0x734, &sp2C, NULL);
         }
-    } else if (mEquipItem == CHUCHU_RARE && mProcID == PROC_BOTTLE_GET) {
+    } else if (mEquipItem == fpcNm_ITEM_CHUCHU_RARE && mProcID == PROC_BOTTLE_GET) {
         if (field_0x072c != NULL && field_0x072c->getFrame() < 2.0f) {
             cXyz sp20;
             mDoMtx_multVec(mHeldItemModel->getAnmMtx(0), &chuchuLocalOffset, &sp20);
@@ -1517,7 +1517,7 @@ void daAlink_c::setBottleEffect() {
                 temp_r3_2->setGlobalScale(chuchuScale);
             }
         }
-    } else if (mProcID == PROC_BOTTLE_OPEN && mProcVar3.field_0x300e != 0 && mEquipItem == WATER_BOTTLE) {
+    } else if (mProcID == PROC_BOTTLE_OPEN && mProcVar3.field_0x300e != 0 && mEquipItem == fpcNm_ITEM_WATER_BOTTLE) {
         JPABaseEmitter* temp_r3_3 = setEmitter(&field_0x325c, 0x344, &current.pos, NULL);
         if (temp_r3_3 != NULL) {
             temp_r3_3->setGlobalRTMatrix(mHeldItemModel->getBaseTRMtx());

@@ -1932,7 +1932,7 @@ static void demo_camera(b_bq_class* i_this) {
                 dComIfGp_getVibration().StartShock(5, 1, cXyz(0.0f, 1.0f, 0.0f));
 
                 cXyz sp120(1.0f, 1.0f, 1.0f);
-                fopAcM_createItemForBoss(&i_this->field_0x5cc, UTAWA_HEART,
+                fopAcM_createItemForBoss(&i_this->field_0x5cc, fpcNm_ITEM_UTAWA_HEART,
                                          fopAcM_GetRoomNo(a_this), &a_this->shape_angle, &sp120,
                                          0.0f, 0.0f, -1);
 
@@ -2510,13 +2510,13 @@ static int daB_BQ_Create(fopAc_ac_c* i_this) {
             if (!dComIfGs_isStageLife()) {
                 cXyz scale(1.0f, 1.0f, 1.0f);
                 pos.set(60.0f, 0.0f, 1778.0f);
-                fopAcM_createItemForBoss(&pos, UTAWA_HEART, fopAcM_GetRoomNo(i_this),
+                fopAcM_createItemForBoss(&pos, fpcNm_ITEM_UTAWA_HEART, fopAcM_GetRoomNo(i_this),
                                          &i_this->shape_angle, &scale, 0.0f, 0.0f, -1);
             }
 
             g_env_light.mColpatWeather = 6;
-            g_env_light.mColPatPrev = 6;
-            g_env_light.mColPatCurr = 6;
+            g_env_light.wether_pat0 = 6;
+            g_env_light.wether_pat1 = 6;
             fish_set(a_this);
             return cPhs_ERROR_e;
         }

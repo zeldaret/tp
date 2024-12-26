@@ -267,7 +267,7 @@ static int daKytag08_Create(fopAc_ac_c* i_this) {
         a_this->mAvoidPos.y = 100.0f;
         a_this->mTargetAvoidPos = a_this->mAvoidPos;
 
-        env_light->field_0x1060 = a_this;
+        env_light->fog_avoid_tag = a_this;
     }
 
     return phase;

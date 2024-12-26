@@ -11,63 +11,52 @@ struct sBgPc {
     /* 0x10 */ u32 code4;
 };  // Size: 0x14
 
-enum dBgPc_ECode {
-    /* 0x00004000 */ CODE_OBJ_THRU = 0x4000,
-    /* 0x00008000 */ CODE_CAM_THRU = 0x8000,
-    /* 0x00010000 */ CODE_LINK_THRU = 0x10000,
-    /* 0x00020000 */ CODE_ARROW_THRU = 0x20000,
-    /* 0x00040000 */ CODE_HS_STICK = 0x40000,
-    /* 0x00080000 */ CODE_BOOMERANG_THRU = 0x80000,
-    /* 0x00100000 */ CODE_ROPE_THRU = 0x100000,
-    /* 0x00200000 */ CODE_HORSE_NO_ENTRY = 0x200000,
-    /* 0x00400000 */ CODE_SHDW_THRU = 0x400000,
-    /* 0x00800000 */ CODE_BOMB_THRU = 0x800000,
-    /* 0x01000000 */ CODE_IRON_BALL_THRU = 0x1000000,
-    /* 0x02000000 */ CODE_ATTACK_THRU = 0x2000000,
-    /* 0x40000000 */ CODE_UNDERWATER_ROOF = 0x40000000,
-};
+#define BGPC_GET_BITS(code, shift, bits) \
+    ((code >> shift) & ((1 << bits) - 1))
+
+#define BGPC_CHECK_BIT(code, bit) \
+    (code & (1 << bit))
 
 class dBgPc {
 public:
     void setCode(sBgPc&);
+    
+    u8 getExit() const { return BGPC_GET_BITS(m_code.code0, 0, 6); }
+    u8 getPolyCol() const { return BGPC_GET_BITS(m_code.code0, 6, 8); }
+    u32 getObjThrough() const { return BGPC_CHECK_BIT(m_code.code0, 14); }
+    u32 getCamThrough() const { return BGPC_CHECK_BIT(m_code.code0, 15); }
+    u32 getLinkThrough() const { return BGPC_CHECK_BIT(m_code.code0, 16); }
+    u32 getArrowThrough() const { return BGPC_CHECK_BIT(m_code.code0, 17); }
+    u32 getHSStick() const { return BGPC_CHECK_BIT(m_code.code0, 18); }
+    u32 getBoomerangThrough() const { return BGPC_CHECK_BIT(m_code.code0, 19); }
+    u32 getRopeThrough() const { return BGPC_CHECK_BIT(m_code.code0, 20); }
+    u32 getHorseNoEntry() const { return BGPC_CHECK_BIT(m_code.code0, 21) != 0; }
+    u32 getShdwThrough() const { return BGPC_CHECK_BIT(m_code.code0, 22); }
+    u32 getBombThrough() const { return BGPC_CHECK_BIT(m_code.code0, 23); }
+    s32 getSpl() const { return BGPC_GET_BITS(m_code.code0, 24, 4); }
+    u32 getMagnet() const { return BGPC_GET_BITS(m_code.code0, 28, 2); }
+    u32 getUnderwaterRoof() const { return BGPC_CHECK_BIT(m_code.code0, 30); }
+    u32 getMonkeyBars() const { return BGPC_CHECK_BIT(m_code.code0, 31) != 0; }
 
-    u32 getHorseNoEntry() const { return m_code.code0 >> 0x15 & 1; }
-    s32 getSpl() const { return m_code.code0 >> 0x18 & 0xF; }
-    u32 getMagnet() const { return m_code.code0 >> 0x1C & 0x3; }
-    u32 getMonkeyBars() const { return m_code.code0 >> 0x1F; }
-    s32 getWallCode() const { return m_code.code1 >> 0x8 & 0xF; }
-    u32 getAtt0Code() const { return m_code.code1 >> 0xC & 0xF; }
-    u32 getAtt1Code() const { return m_code.code1 >> 0x10 & 0x7; }
-    u32 getGroundCode() const { return m_code.code1 >> 0x13 & 0x1F; }
-    u32 getObjThrough() const { return m_code.code0 & CODE_OBJ_THRU; }
-    u32 getCamThrough() const { return m_code.code0 & CODE_CAM_THRU; }
-    u32 getLinkThrough() const { return m_code.code0 & CODE_LINK_THRU; }
-    u32 getArrowThrough() const { return m_code.code0 & CODE_ARROW_THRU; }
-    u32 getHSStick() const { return m_code.code0 & CODE_HS_STICK; }
-    u32 getBoomerangThrough() const { return m_code.code0 & CODE_BOOMERANG_THRU; }
-    u32 getRopeThrough() const { return m_code.code0 & CODE_ROPE_THRU; }
-    u32 getBombThrough() const { return m_code.code0 & CODE_BOMB_THRU; }
-    u32 getIronBallThrough() const { return m_code.code1 & CODE_IRON_BALL_THRU; }
-    u32 getShdwThrough() const { return m_code.code0 & CODE_SHDW_THRU; }
-    u32 getUnderwaterRoof() const { return m_code.code0 & CODE_UNDERWATER_ROOF; }
-    u32 getAttackThrough() const { return m_code.code1 & CODE_ATTACK_THRU; }
-    u8 getRoom() const { return m_code.code4 >> 0x14; }
-    u8 getExit() const { return m_code.code0 & 0x3F; }
-    u8 getPolyCol() const { return m_code.code0 >> 6; }
-    u8 getLinkNo() const { return m_code.code1; }
-    u8 getCamMoveBG() const { return m_code.code2; }
-    u8 getRoomCam() const { return m_code.code2 >> 8; }
-    u8 getRoomPath() const { return m_code.code2 >> 0x10; }
-    u8 getRoomPathPnt() const { return m_code.code2 >> 0x18; }
-    u8 getRoomInf() const { return m_code.code4; }
-    u8 getSnd() const { return m_code.code4 >> 0xB; }
-    u32 maskNrm() { return m_code.code4 & 0x100; }
+    u8 getLinkNo() const { return BGPC_GET_BITS(m_code.code1, 0, 8); }
+    s32 getWallCode() const { return BGPC_GET_BITS(m_code.code1, 8, 4); }
+    u32 getAtt0Code() const { return BGPC_GET_BITS(m_code.code1, 12, 4); }
+    u32 getAtt1Code() const { return BGPC_GET_BITS(m_code.code1, 16, 3); }
+    u32 getGroundCode() const { return BGPC_GET_BITS(m_code.code1, 19, 5); }
+    u32 getIronBallThrough() const { return BGPC_CHECK_BIT(m_code.code1, 24); }
+    u32 getAttackThrough() const { return BGPC_CHECK_BIT(m_code.code1, 25); }
 
+    u8 getCamMoveBG() const { return BGPC_GET_BITS(m_code.code2, 0, 8); }
+    u8 getRoomCam() const { return BGPC_GET_BITS(m_code.code2, 8, 8); }
+    u8 getRoomPath() const { return BGPC_GET_BITS(m_code.code2, 16, 8); }
+    u8 getRoomPathPnt() const { return BGPC_GET_BITS(m_code.code2, 24, 8); }
+
+    u8 getRoomInf() const { return BGPC_GET_BITS(m_code.code4, 0, 8); }
+    u32 maskNrm() { return BGPC_CHECK_BIT(m_code.code4, 8); }
     // BUG: Seems like this uses the same mask as maskNrm
-    u32 getWtr() { return m_code.code4 & 0x100; }
-    u32 getObjThrough() { return m_code.code0 & 0x4000; }
-    u32 getCamThrough() { return m_code.code0 & 0x8000; }
-    u32 getLinkThrough() { return m_code.code0 & 0x10000; }
+    u32 getWtr() { return BGPC_CHECK_BIT(m_code.code4, 8); }
+    u8 getSnd() const { return BGPC_GET_BITS(m_code.code4, 11, 8); }
+    u8 getRoom() const { return BGPC_GET_BITS(m_code.code4, 20, 8); }
 
     /* 0x0 */ sBgPc m_code;
 };

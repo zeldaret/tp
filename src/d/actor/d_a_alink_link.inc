@@ -23,7 +23,7 @@ int daAlink_c::procPreActionUnequipInit(int i_procAfter, fopAc_ac_c* param_1) {
         mProcVar3.field_0x300e = 1;
 
         if (fopAcM_GetName(param_1) == PROC_Tag_Lv8Gate) {
-            if (mEquipItem == KANTERA) {
+            if (mEquipItem == fpcNm_ITEM_KANTERA) {
                 mProcVar4.field_0x3010 = 1;
             } else if (checkNoResetFlg2(FLG2_UNK_1)) {
                 offKandelaarModel();
@@ -559,7 +559,7 @@ int daAlink_c::procSideStepLandInit() {
         field_0x2fb0 = 8;
         field_0x2fcc = 0;
 
-        if (checkEnemyGroup(mTargetedActor) && mEquipItem == EQUIP_SWORD && checkNoUpperAnime()) {
+        if (checkEnemyGroup(mTargetedActor) && mEquipItem == 0x103 && checkNoUpperAnime()) {
             setUpperAnimeBaseSpeed(uvar3, daAlinkHIO_atnMove_c0::m.mWaitAnmSpeed, -1.0f);
             seStartSwordCut(Z2SE_AL_WAIT_SWORD_SWING);
         }
@@ -1190,7 +1190,7 @@ int daAlink_c::procBackJump() {
         offModeFlg(0x2000);
     }
 
-    if (checkCutTurnInput() && mEquipItem == EQUIP_SWORD) {
+    if (checkCutTurnInput() && mEquipItem == 0x103) {
         field_0x3198 = getCutTurnDirection();
     }
 
@@ -1247,7 +1247,7 @@ int daAlink_c::procBackJumpLand() {
             checkNextAction(0);
         }
     } else if (frameCtrl->getFrame() > daAlinkHIO_backJump_c0::m.mLandAnm.mCheckFrame) {
-        if (mEquipItem == EQUIP_SWORD && (field_0x3198 != 2 || checkCutTurnInput())) {
+        if (mEquipItem == 0x103 && (field_0x3198 != 2 || checkCutTurnInput())) {
             return procCutTurnInit(1, field_0x3198);
         }
 
@@ -1448,7 +1448,7 @@ int daAlink_c::procAutoJump() {
 
     setLandPassiveData();
 
-    if (!checkModeFlg(4) && checkSetItemTrigger(HVY_BOOTS)) {
+    if (!checkModeFlg(4) && checkSetItemTrigger(fpcNm_ITEM_HVY_BOOTS)) {
         setHeavyBoots(1);
     }
 
@@ -2428,7 +2428,7 @@ int daAlink_c::execute() {
         shape_angle.y = field_0x3108;
     }
 
-    if (checkNoResetFlg2(FLG2_UNK_1) && mEquipItem != KANTERA && checkItemSetButton(KANTERA) == 2) {
+    if (checkNoResetFlg2(FLG2_UNK_1) && mEquipItem != fpcNm_ITEM_KANTERA && checkItemSetButton(fpcNm_ITEM_KANTERA) == 2) {
         offKandelaarModel();
     }
 
@@ -2439,7 +2439,7 @@ int daAlink_c::execute() {
         field_0x3184 = dComIfGp_evmng_getMyStaffId("Alink", this, 0);
 
         if (eventInfo.checkCommandDoor() && !dComIfGp_event_chkEventFlag(4) &&
-            mEquipItem == noentry71)
+            mEquipItem == 0x102)
         {
             deleteEquipItem(FALSE, FALSE);
         }
@@ -2515,7 +2515,7 @@ int daAlink_c::execute() {
     field_0x2f9d = 0;
     field_0x2fc1 = 6;
 
-    if (!checkSwordGet() && mEquipItem == EQUIP_SWORD) {
+    if (!checkSwordGet() && mEquipItem == 0x103) {
         deleteEquipItem(FALSE, FALSE);
     }
 
@@ -2709,7 +2709,7 @@ int daAlink_c::execute() {
         }
     }
 
-    if (checkEndResetFlg0(ERFLG0_UNK_1000000) && mEquipItem == EQUIP_SWORD) {
+    if (checkEndResetFlg0(ERFLG0_UNK_1000000) && mEquipItem == 0x103) {
         mSwordFlourishTimer = daAlinkHIO_cut_c0::m.mFlourishTime;
     }
 
@@ -2733,7 +2733,7 @@ int daAlink_c::execute() {
     }
 
     if (checkEquipHeavyBoots()) {
-        int temp_r3_22 = checkItemSetButton(HVY_BOOTS);
+        int temp_r3_22 = checkItemSetButton(fpcNm_ITEM_HVY_BOOTS);
         if (temp_r3_22 == 2 || checkNotHeavyBootsStage()) {
             if (!dComIfGp_checkPlayerStatus1(0, 0x10000) || !checkHookshotRoofLv7Boss()) {
                 setHeavyBoots(0);
@@ -2784,7 +2784,7 @@ int daAlink_c::execute() {
             resetUpperAnime(UPPER_2, 5.0f);
         }
 
-        if (mEquipItem == KANTERA && checkNoUpperAnime() && !checkKandelaarEquipAnime() &&
+        if (mEquipItem == fpcNm_ITEM_KANTERA && checkNoUpperAnime() && !checkKandelaarEquipAnime() &&
             (checkModeFlg(MODE_UNK_1000) || mProcID == PROC_CROUCH))
         {
             if (checkReinRide()) {
@@ -3056,7 +3056,7 @@ int daAlink_c::execute() {
                     field_0x2fcb--;
 
                     if (field_0x2fcb == 0) {
-                        dMeter2Info_setShield(NO_ITEM, true);
+                        dMeter2Info_setShield(fpcNm_ITEM_NONE, true);
                         stickArrowIncrement(1);
                         setWoodShieldBurnOutEffect();
 
@@ -3065,7 +3065,7 @@ int daAlink_c::execute() {
 
                         stage_stag_info_class* pstag = dComIfGp_getStage()->getStagInfo();
                         if (dStage_stagInfo_GetSaveTbl(pstag) == 0x11 &&
-                            !dComIfGs_isItemFirstBit(HYLIA_SHIELD))
+                            !dComIfGs_isItemFirstBit(fpcNm_ITEM_HYLIA_SHIELD))
                         {
                             fopAcM_onSwitch(this, 0x6F);
                         }
@@ -3239,8 +3239,8 @@ int daAlink_c::execute() {
         if (!checkWolf()) {
             for (u8 i = 0; i < 2; i++) {
                 u8 tmp = (i + 1) % 2;
-                if (dComIfGp_getSelectItem(i) == EMPTY_BOTTLE && (field_0x2fae & (1 << i)) &&
-                    dComIfGp_getSelectItem(tmp) == EMPTY_BOTTLE)
+                if (dComIfGp_getSelectItem(i) == fpcNm_ITEM_EMPTY_BOTTLE && (field_0x2fae & (1 << i)) &&
+                    dComIfGp_getSelectItem(tmp) == fpcNm_ITEM_EMPTY_BOTTLE)
                 {
                     field_0x2fae |= (u8)(1 << tmp);
                 }
@@ -3352,7 +3352,7 @@ int daAlink_c::execute() {
     }
 
     if (dComIfGp_att_getCatghTarget() != NULL && !checkWolf()) {
-        if (!checkRideOn() && checkCastleTownUseItem(EMPTY_BOTTLE)) {
+        if (!checkRideOn() && checkCastleTownUseItem(fpcNm_ITEM_EMPTY_BOTTLE)) {
             dComIfGp_setBottleStatus(0x6C, 0);
         }
     }
@@ -3541,7 +3541,7 @@ bool daAlink_c::checkShieldDraw() {
 
 /* 800CB5F8-800CB694 0C5F38 009C+00 2/2 0/0 0/0 .text            checkItemDraw__9daAlink_cFv */
 bool daAlink_c::checkItemDraw() {
-    if (mHeldItemModel != NULL && (mEquipItem != IRONBALL || !checkSwordEquipAnime())) {
+    if (mHeldItemModel != NULL && (mEquipItem != fpcNm_ITEM_IRONBALL || !checkSwordEquipAnime())) {
         if (!checkBowAndSlingItem(mEquipItem) || checkBowGrabLeftHand() || !i_checkShieldGet() ||
             field_0x2e44.checkPassNum(15))
         {
@@ -3759,12 +3759,12 @@ void daAlink_c::shadowDraw() {
                     dComIfGd_addRealShadow(var_r29, mpDemoHRTmpModel);
                 }
 
-                if (mEquipItem == BOOMERANG) {
+                if (mEquipItem == fpcNm_ITEM_BOOMERANG) {
                     if (mItemAcKeep.getActor() != NULL) {
                         dComIfGd_addRealShadow(var_r29, mItemAcKeep.getActor()->model);
                     }
                 } else if (checkItemDraw()) {
-                    if (mEquipItem == IRONBALL) {
+                    if (mEquipItem == fpcNm_ITEM_IRONBALL) {
                         if (mItemVar0.field_0x3018 == 0 || mItemVar0.field_0x3018 == 8) {
                             dComIfGd_addRealShadow(var_r29, mHeldItemModel);
                         } else {
@@ -3781,7 +3781,7 @@ void daAlink_c::shadowDraw() {
                                 dComIfGd_addRealShadow(var_r29, mpHookTipModel);
                             }
 
-                            if (mEquipItem == W_HOOKSHOT && !checkPlayerGuardAndAttack() && !checkNoResetFlg0(FLG0_UNK_2)) {
+                            if (mEquipItem == fpcNm_ITEM_W_HOOKSHOT && !checkPlayerGuardAndAttack() && !checkNoResetFlg0(FLG0_UNK_2)) {
                                 dComIfGd_addRealShadow(var_r29, field_0x0710);
 
                                 if (!dComIfGp_checkPlayerStatus1(0, 0x10000)) {
@@ -3910,12 +3910,12 @@ void daAlink_c::setWaterDropColor(const J3DGXColorS10* i_color) {
 
 /* 800CC7DC-800CC7FC 0C711C 0020+00 2/2 0/0 0/0 .text            initTevCustomColor__9daAlink_cFv */
 void daAlink_c::initTevCustomColor() {
-    tevStr.field_0x367 = 0;
-    tevStr.mFogColor.r = 0;
-    tevStr.mFogColor.g = 0;
-    tevStr.mFogColor.b = 0;
-    tevStr.field_0x360 = 0;
-    tevStr.field_0x362 = 0;
+    tevStr.mLightInf.a = 0;
+    tevStr.TevColor.r = 0;
+    tevStr.TevColor.g = 0;
+    tevStr.TevColor.b = 0;
+    tevStr.TevKColor.r = 0;
+    tevStr.TevKColor.b = 0;
 }
 
 /* 800CC7FC-800CD78C 0C713C 0F90+00 1/1 0/0 0/0 .text            draw__9daAlink_cFv */
@@ -3946,13 +3946,13 @@ int daAlink_c::draw() {
     if (mClothesChangeWaitTimer != 0) {
         if (mProcID == PROC_METAMORPHOSE) {
             if (mProcVar3.field_0x300e > 0) {
-                tevStr.mFogColor.r = 255;
+                tevStr.TevColor.r = 255;
             } else {
-                tevStr.mFogColor.r = -255;
+                tevStr.TevColor.r = -255;
             }
 
-            tevStr.mFogColor.g = tevStr.mFogColor.r;
-            tevStr.mFogColor.b = tevStr.mFogColor.r;
+            tevStr.TevColor.g = tevStr.TevColor.r;
+            tevStr.TevColor.b = tevStr.TevColor.r;
 
             g_env_light.setLightTevColorType_MAJI(mpWlChangeModel, &tevStr);
             mDoExt_modelEntryDL(mpWlChangeModel);
@@ -3965,22 +3965,22 @@ int daAlink_c::draw() {
     BOOL var_r31 = 1;
 
     if (field_0x06f4 != NULL) {
-        field_0x06f4->getTevColorReg(0, &tevStr.mFogColor);
+        field_0x06f4->getTevColorReg(0, &tevStr.TevColor);
     } else if (mProcID == PROC_METAMORPHOSE || mProcID == PROC_DUNGEON_WARP ||
                mProcID == PROC_DUNGEON_WARP_SCN_START)
     {
-        tevStr.mFogColor.r = mProcVar3.field_0x300e;
-        tevStr.mFogColor.g = mProcVar3.field_0x300e;
-        tevStr.mFogColor.b = mProcVar3.field_0x300e;
+        tevStr.TevColor.r = mProcVar3.field_0x300e;
+        tevStr.TevColor.g = mProcVar3.field_0x300e;
+        tevStr.TevColor.b = mProcVar3.field_0x300e;
     } else if (field_0x346c != 0.0f) {
         f32 var_f2 = fabsf(field_0x346c);
-        tevStr.mFogColor.r = var_f2 * daAlinkHIO_wolf_c0::m.mLightDropR;
-        tevStr.mFogColor.g = var_f2 * daAlinkHIO_wolf_c0::m.mLightDropG;
-        tevStr.mFogColor.b = var_f2 * daAlinkHIO_wolf_c0::m.mLightDropB;
+        tevStr.TevColor.r = var_f2 * daAlinkHIO_wolf_c0::m.mLightDropR;
+        tevStr.TevColor.g = var_f2 * daAlinkHIO_wolf_c0::m.mLightDropG;
+        tevStr.TevColor.b = var_f2 * daAlinkHIO_wolf_c0::m.mLightDropB;
     } else if (checkFreezeDamage()) {
-        tevStr.mFogColor.r = daAlinkHIO_damage_c0::m.mFreezeR;
-        tevStr.mFogColor.g = daAlinkHIO_damage_c0::m.mFreezeG;
-        tevStr.mFogColor.b = daAlinkHIO_damage_c0::m.mFreezeB;
+        tevStr.TevColor.r = daAlinkHIO_damage_c0::m.mFreezeR;
+        tevStr.TevColor.g = daAlinkHIO_damage_c0::m.mFreezeG;
+        tevStr.TevColor.b = daAlinkHIO_damage_c0::m.mFreezeB;
     } else if (mDamageTimer != 0) {
         if (!checkMagicArmorNoDamage()) {
             int color_timer = mDamageTimer + mDamageColorTime;
@@ -4001,25 +4001,25 @@ int daAlink_c::draw() {
             }
 
             f32 var_f2 = fabsf(cM_ssin(color_timer * 0x800));
-            tevStr.field_0x360 = r * var_f2;
-            tevStr.field_0x361 = g * var_f2;
-            tevStr.field_0x362 = b * var_f2;
+            tevStr.TevKColor.r = r * var_f2;
+            tevStr.TevKColor.g = g * var_f2;
+            tevStr.TevKColor.b = b * var_f2;
             var_r31 = 0;
         }
     } else if (mIceDamageWaitTimer != 0) {
         f32 temp_f4 = 1.0f - (mIceDamageWaitTimer * (1.0f / daAlinkHIO_damage_c0::m.mFreezeTime));
         f32 temp_f3 = 1.0f - temp_f4;
 
-        tevStr.mFogColor.r = (temp_f4 * daAlinkHIO_damage_c0::m.mFreezeInitR) +
+        tevStr.TevColor.r = (temp_f4 * daAlinkHIO_damage_c0::m.mFreezeInitR) +
                               (temp_f3 * daAlinkHIO_damage_c0::m.mFreezeR);
-        tevStr.mFogColor.g = (temp_f4 * daAlinkHIO_damage_c0::m.mFreezeInitG) +
+        tevStr.TevColor.g = (temp_f4 * daAlinkHIO_damage_c0::m.mFreezeInitG) +
                               (temp_f3 * daAlinkHIO_damage_c0::m.mFreezeG);
-        tevStr.mFogColor.b = (temp_f4 * daAlinkHIO_damage_c0::m.mFreezeInitB) +
+        tevStr.TevColor.b = (temp_f4 * daAlinkHIO_damage_c0::m.mFreezeInitB) +
                               (temp_f3 * daAlinkHIO_damage_c0::m.mFreezeB);
     } else if (field_0x32b0[0].r != 0) {
-        tevStr.mFogColor.r = field_0x32b0[0].r;
-        tevStr.mFogColor.g = field_0x32b0[0].g;
-        tevStr.mFogColor.b = field_0x32b0[0].b;
+        tevStr.TevColor.r = field_0x32b0[0].r;
+        tevStr.TevColor.g = field_0x32b0[0].g;
+        tevStr.TevColor.b = field_0x32b0[0].b;
         var_r29 = 1;
     } else {
         var_r31 = 0;
@@ -4036,7 +4036,7 @@ int daAlink_c::draw() {
                 setWaterDropColor(&field_0x32b0[1]);
             } else {
                 mSwordUpColorIntensity = 0.0f;
-                setWaterDropColor((J3DGXColorS10*)&tevStr.mFogColor);
+                setWaterDropColor((J3DGXColorS10*)&tevStr.TevColor);
             }
         } else {
             if (checkMagicArmorWearAbility()) {
@@ -4060,9 +4060,9 @@ int daAlink_c::draw() {
             }
         }
 
-        tevStr.field_0x360 = 0;
-        tevStr.field_0x361 = 0;
-        tevStr.field_0x362 = 0;
+        tevStr.TevKColor.r = 0;
+        tevStr.TevKColor.g = 0;
+        tevStr.TevKColor.b = 0;
 
         if (checkSwordDraw()) {
             modelDraw(mSwordModel, temp_r30);
@@ -4147,9 +4147,9 @@ int daAlink_c::draw() {
             modelDraw(mpLinkFaceModel, var_r3);
         }
 
-        tevStr.field_0x360 = 0;
-        tevStr.field_0x361 = 0;
-        tevStr.field_0x362 = 0;
+        tevStr.TevKColor.r = 0;
+        tevStr.TevKColor.g = 0;
+        tevStr.TevKColor.b = 0;
 
         if (checkSwordDraw()) {
             if (!checkNoResetFlg3(FLG3_UNK_80000000)) {
@@ -4164,9 +4164,9 @@ int daAlink_c::draw() {
         if (checkShieldDraw()) {
             BOOL var_r24_2;
             if (checkWoodShieldEquip() && field_0x2fcb != 0 && mProcID != PROC_METAMORPHOSE) {
-                tevStr.mFogColor.r = -((120 - field_0x2fcb) * 32) / 120;
-                tevStr.mFogColor.g = tevStr.mFogColor.r;
-                tevStr.mFogColor.b = tevStr.mFogColor.r;
+                tevStr.TevColor.r = -((120 - field_0x2fcb) * 32) / 120;
+                tevStr.TevColor.g = tevStr.TevColor.r;
+                tevStr.TevColor.b = tevStr.TevColor.r;
                 var_r24_2 = 1;
             } else {
                 var_r24_2 = 0;
@@ -4174,16 +4174,16 @@ int daAlink_c::draw() {
 
             modelDraw(mShieldModel, var_r3);
             if (var_r24_2) {
-                tevStr.mFogColor.r = 0;
-                tevStr.mFogColor.g = 0;
-                tevStr.mFogColor.b = 0;
+                tevStr.TevColor.r = 0;
+                tevStr.TevColor.g = 0;
+                tevStr.TevColor.b = 0;
             }
         }
 
         if (var_r29) {
-            tevStr.mFogColor.r = 0;
-            tevStr.mFogColor.g = 0;
-            tevStr.mFogColor.b = 0;
+            tevStr.TevColor.r = 0;
+            tevStr.TevColor.g = 0;
+            tevStr.TevColor.b = 0;
         }
 
         if (checkItemDraw()) {
@@ -4194,7 +4194,7 @@ int daAlink_c::draw() {
                 modelDraw(mpHookTipModel, temp_r30);
             }
 
-            if (mEquipItem == W_HOOKSHOT && !checkPlayerGuardAndAttack() &&
+            if (mEquipItem == fpcNm_ITEM_W_HOOKSHOT && !checkPlayerGuardAndAttack() &&
                 !checkNoResetFlg0(FLG0_UNK_2))
             {
                 if (field_0x0710 != NULL) {
@@ -4211,7 +4211,7 @@ int daAlink_c::draw() {
             if (mpHookChain != NULL && !temp_r30 &&
                 ((checkHookshotItem(mEquipItem) && (mHeldItemRootPos.abs(mHookshotTopPos) > 1.0f ||
                                                     field_0x3810.abs(mIronBallBgChkPos) > 1.0f)) ||
-                 mEquipItem == IRONBALL))
+                 mEquipItem == fpcNm_ITEM_IRONBALL))
             {
                 dComIfGd_getOpaListDark()->entryImm(mpHookChain, 0);
             }
@@ -4228,22 +4228,22 @@ int daAlink_c::draw() {
         }
 
         if (checkEquipHeavyBoots()) {
-            GXColorS10 color = tevStr.mFogColor;
+            GXColorS10 color = tevStr.TevColor;
             for (int i = 0; i < 2; i++) {
                 JPABaseEmitter* emitter_p = dComIfGp_particle_getEmitter(field_0x3228[i][0]);
 
                 if (emitter_p != NULL) {
-                    tevStr.mFogColor.r = 5;
-                    tevStr.mFogColor.g = tevStr.mFogColor.r;
-                    tevStr.mFogColor.b = tevStr.mFogColor.r;
+                    tevStr.TevColor.r = 5;
+                    tevStr.TevColor.g = tevStr.TevColor.r;
+                    tevStr.TevColor.b = tevStr.TevColor.r;
                 } else {
-                    tevStr.mFogColor = color;
+                    tevStr.TevColor = color;
                 }
 
                 modelDraw(mpLinkBootModels[i], temp_r30);
             }
 
-            tevStr.mFogColor = color;
+            tevStr.TevColor = color;
         }
     }
 
@@ -4440,7 +4440,7 @@ BOOL daAlink_c::setBodyAngleToCamera() {
         }
 
         s16 var_r29;
-        if (!dComIfGp_checkPlayerStatus0(0, 0x202000) && mEquipItem == IRONBALL) {
+        if (!dComIfGp_checkPlayerStatus0(0, 0x202000) && mEquipItem == fpcNm_ITEM_IRONBALL) {
             var_r29 = -10000;
         } else {
             var_r29 = daAlinkHIO_item_c0::m.mItemFPUpMaxUnk;
@@ -4478,7 +4478,7 @@ BOOL daAlink_c::subjectCancelTrigger() {
 int daAlink_c::checkSubjectEnd(BOOL i_playSound) {
     setDoStatus(0x12);
 
-    if (checkEventRun() || checkEquipAnime() || doTrigger() || checkSetItemTrigger(HAWK_EYE) || subjectCancelTrigger() || checkEndResetFlg0(ERFLG0_UNK_80000000) || dComIfGp_checkCameraAttentionStatus(field_0x317c, 0x2000)) {
+    if (checkEventRun() || checkEquipAnime() || doTrigger() || checkSetItemTrigger(fpcNm_ITEM_HAWK_EYE) || subjectCancelTrigger() || checkEndResetFlg0(ERFLG0_UNK_80000000) || dComIfGp_checkCameraAttentionStatus(field_0x317c, 0x2000)) {
         if (i_playSound) {
             seStartSystem(Z2SE_SUBJ_VIEW_OUT);
         }
@@ -4537,7 +4537,7 @@ int daAlink_c::procCoSubjectivity() {
         return 1;
     }
 
-    if (checkSubjectEnd(FALSE) || (dComIfGp_checkPlayerStatus0(0, 0x200000) && checkSetItemTrigger(HAWK_EYE))) {
+    if (checkSubjectEnd(FALSE) || (dComIfGp_checkPlayerStatus0(0, 0x200000) && checkSetItemTrigger(fpcNm_ITEM_HAWK_EYE))) {
         seStartSystem(Z2SE_SUBJ_VIEW_OUT);
         checkWaitAction();
     } else if (!checkWolf() && (checkItemAction() || checkItemChangeFromButton())) {
@@ -4994,7 +4994,7 @@ extern "C" s32 getItemID__9daAlink_cCFv(daAlink_c* this_) {
 
 /* 800D0370-800D038C 0CACB0 001C+00 1/0 0/0 0/0 .text            getGrabActorID__9daAlink_cCFv */
 extern "C" s32 getGrabActorID__9daAlink_cCFv(daAlink_c* this_) {
-    if (this_->mEquipItem == noentry71) {
+    if (this_->mEquipItem == 0x102) {
         return this_->mItemAcKeep.getID();
     } else {
         return this_->mGrabItemAcKeep.getID();
@@ -5063,7 +5063,7 @@ extern "C" BOOL checkElecDamage__9daAlink_cCFv(daAlink_c* this_) {
 
 /* 800D04CC-800D04F4 0CAE0C 0028+00 1/0 0/0 0/0 .text checkEmptyBottleSwing__9daAlink_cCFv */
 extern "C" BOOL checkEmptyBottleSwing__9daAlink_cCFv(daAlink_c* this_) {
-    return this_->mEquipItem == EMPTY_BOTTLE && this_->mProcID == daAlink_c::PROC_BOTTLE_SWING;
+    return this_->mEquipItem == fpcNm_ITEM_EMPTY_BOTTLE && this_->mProcID == daAlink_c::PROC_BOTTLE_SWING;
 }
 
 /* 800D04F4-800D0508 0CAE34 0014+00 1/0 0/0 0/0 .text            checkBottleSwingMode__9daAlink_cCFv
@@ -5233,7 +5233,7 @@ extern "C" void onSceneChangeDead__9daAlink_cFUci(daAlink_c* this_, u8 param_0, 
 
 /* 800D084C-800D0860 0CB18C 0014+00 1/0 0/0 0/0 .text            checkNoEquipItem__9daAlink_cCFv */
 extern "C" bool checkNoEquipItem__9daAlink_cCFv(daAlink_c* this_) {
-    return this_->mEquipItem == NO_ITEM;
+    return this_->mEquipItem == fpcNm_ITEM_NONE;
 }
 
 /* 800D0860-800D087C 0CB1A0 001C+00 1/0 0/0 0/0 .text getBoardCutTurnOffsetAngleY__9daAlink_cCFv
@@ -5318,7 +5318,7 @@ extern "C" void setSumouGraspCancelCount__9daAlink_cFi(daAlink_c* this_, int par
 /* 800D0998-800D09AC 0CB2D8 0014+00 1/0 0/0 0/0 .text            checkItemSwordEquip__9daAlink_cCFv
  */
 extern "C" bool checkItemSwordEquip__9daAlink_cCFv(daAlink_c* this_) {
-    return this_->mEquipItem == EQUIP_SWORD;
+    return this_->mEquipItem == 0x103;
 }
 
 /* 800D09AC-800D09B4 0CB2EC 0008+00 1/0 0/0 0/0 .text            getSinkShapeOffset__9daAlink_cCFv
@@ -5365,7 +5365,7 @@ extern "C" void getMidnaAtnPos__9daAlink_cCFv() {
 
 /* 800D0A30-800D0A44 0CB370 0014+00 1/0 0/0 0/0 .text            checkCopyRodEquip__9daAlink_cCFv */
 extern "C" bool checkCopyRodEquip__9daAlink_cCFv(daAlink_c* this_) {
-    return this_->mEquipItem == COPY_ROD;
+    return this_->mEquipItem == fpcNm_ITEM_COPY_ROD;
 }
 
 /* 800D0A44-800D0A6C 0CB384 0028+00 1/0 0/0 0/0 .text checkCanoeFishingGetLeft__9daAlink_cCFv */

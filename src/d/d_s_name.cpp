@@ -251,13 +251,13 @@ void dScnName_c::brightCheck() {
         field_0x41f = 0;
         field_0x41d = 5;
 
-        dComIfGs_offItemFirstBit(GREEN_RUPEE);
-        dComIfGs_offItemFirstBit(BLUE_RUPEE);
-        dComIfGs_offItemFirstBit(YELLOW_RUPEE);
-        dComIfGs_offItemFirstBit(RED_RUPEE);
-        dComIfGs_offItemFirstBit(PURPLE_RUPEE);
-        dComIfGs_offItemFirstBit(ORANGE_RUPEE);
-        dComIfGs_offItemFirstBit(SILVER_RUPEE);
+        dComIfGs_offItemFirstBit(fpcNm_ITEM_GREEN_RUPEE);
+        dComIfGs_offItemFirstBit(fpcNm_ITEM_BLUE_RUPEE);
+        dComIfGs_offItemFirstBit(fpcNm_ITEM_YELLOW_RUPEE);
+        dComIfGs_offItemFirstBit(fpcNm_ITEM_RED_RUPEE);
+        dComIfGs_offItemFirstBit(fpcNm_ITEM_PURPLE_RUPEE);
+        dComIfGs_offItemFirstBit(fpcNm_ITEM_ORANGE_RUPEE);
+        dComIfGs_offItemFirstBit(fpcNm_ITEM_SILVER_RUPEE);
     }
 }
 

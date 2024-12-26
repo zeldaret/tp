@@ -1465,26 +1465,26 @@ int daNpcT_c::draw(int param_0, int i_setEffMtx, f32 param_2, GXColorS10* i_colo
         return 1;
     }
 
-    tevStr.mFogColor.r = 0;
-    tevStr.mFogColor.g = 0;
-    tevStr.mFogColor.b = 0;
-    tevStr.mFogColor.a = 0;
+    tevStr.TevColor.r = 0;
+    tevStr.TevColor.g = 0;
+    tevStr.TevColor.b = 0;
+    tevStr.TevColor.a = 0;
 
     if (i_color != NULL) {
-        tevStr.mFogColor.r = i_color->r;
-        tevStr.mFogColor.g = i_color->g;
-        tevStr.mFogColor.b = i_color->b;
-        tevStr.mFogColor.a = i_color->a;
+        tevStr.TevColor.r = i_color->r;
+        tevStr.TevColor.g = i_color->g;
+        tevStr.TevColor.b = i_color->b;
+        tevStr.TevColor.a = i_color->a;
     }
 
     if (field_0xdb8 != 0 && mTimer != 0) {
         f32 r = (f32)mTimer / (f32)field_0xdb8;
 
         if (cM3d_IsZero(r) == false) {
-            tevStr.mFogColor.r = r * 20.0f;
+            tevStr.TevColor.r = r * 20.0f;
         }
     } else if (param_0 != 0) {
-        tevStr.mFogColor.g = 20;
+        tevStr.TevColor.g = 20;
     }
 
     if (field_0xd98 & 0x800) {
@@ -1555,8 +1555,8 @@ int daNpcT_c::draw(int param_0, int i_setEffMtx, f32 param_2, GXColorS10* i_colo
 
 /* 80148C70-80148CCC 1435B0 005C+00 1/1 0/0 58/58 .text            setEnvTevColor__8daNpcT_cFv */
 void daNpcT_c::setEnvTevColor() {
-    tevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(field_0x930);
-    tevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(field_0x930);
+    tevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(field_0x930);
+    tevStr.room_no = dComIfG_Bgsp().GetRoomId(field_0x930);
 }
 
 /* 80148CCC-80148D10 14360C 0044+00 1/1 0/0 58/58 .text            setRoomNo__8daNpcT_cFv */
@@ -2507,12 +2507,12 @@ extern "C" int func_8014D364(int param_0, int param_1) {
 
 /* ############################################################################################## */
 /* 80392680-803926B0 01ECE0 0030+00 1/1 0/0 4/4 .rodata          mCcDObjData__8daNpcT_c */
-SECTION_RODATA u8 const daNpcT_c::mCcDObjData[48] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+const dCcD_SrcGObjInf daNpcT_c::mCcDObjData = {
+    {0, {{0, 0, 0}, {0, 0x00}, {0x79}}},
+    {dCcD_SE_NONE, 0, 0, 0, 0},
+    {dCcD_SE_NONE, 0, 0, 0, 0},
+    {0},
 };
-COMPILER_STRIP_GATE(0x80392680, &daNpcT_c::mCcDObjData);
 
 /* 8014D3D8-8014D538 147D18 0160+00 0/0 1/0 0/0 .text            __sinit_d_a_npc_cpp */
 void __sinit_d_a_npc_cpp(){// NONMATCHING
@@ -2861,8 +2861,8 @@ void daBaseNpc_c::mainProc() {
 
 /* 8014F0A0-8014F0FC 1499E0 005C+00 1/1 0/0 2/2 .text            setEnvTevColor__11daBaseNpc_cFv */
 void daBaseNpc_c::setEnvTevColor() {
-    tevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mBgSPolyInfo);
-    tevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(mBgSPolyInfo);
+    tevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(mBgSPolyInfo);
+    tevStr.room_no = dComIfG_Bgsp().GetRoomId(mBgSPolyInfo);
 }
 
 /* 8014F0FC-8014F140 149A3C 0044+00 1/1 0/0 2/2 .text            setRoomNo__11daBaseNpc_cFv */
@@ -3708,19 +3708,19 @@ int daNpcF_c::draw(BOOL i_isTest, BOOL param_1, f32 i_shadowDepth, _GXColorS10* 
         }
 
         if (cM3d_IsZero_inverted(damage_ratio)) {
-            tevStr.mFogColor.r = (s16)(damage_ratio * 20.0f);
-            tevStr.mFogColor.g = 0;
+            tevStr.TevColor.r = (s16)(damage_ratio * 20.0f);
+            tevStr.TevColor.g = 0;
         } else if (i_isTest) {
-            tevStr.mFogColor.g = 20;
-            tevStr.mFogColor.r = 0;
+            tevStr.TevColor.g = 20;
+            tevStr.TevColor.r = 0;
         } else if (i_fogColor != NULL) {
-            tevStr.mFogColor.r = i_fogColor->r;
-            tevStr.mFogColor.g = i_fogColor->g;
-            tevStr.mFogColor.b = i_fogColor->b;
-            tevStr.mFogColor.a = i_fogColor->a;
+            tevStr.TevColor.r = i_fogColor->r;
+            tevStr.TevColor.g = i_fogColor->g;
+            tevStr.TevColor.b = i_fogColor->b;
+            tevStr.TevColor.a = i_fogColor->a;
         } else {
-            tevStr.mFogColor.g = 0;
-            tevStr.mFogColor.r = 0;
+            tevStr.TevColor.g = 0;
+            tevStr.TevColor.r = 0;
         }
 
         if (mTwilight) {
@@ -4000,8 +4000,8 @@ BOOL daNpcF_c::setBrkAnm(J3DAnmTevRegKey* i_brk, J3DModelData* i_modelData, f32 
 
 /* 80152D84-80152DE0 14D6C4 005C+00 1/1 0/0 40/40 .text            setEnvTevColor__8daNpcF_cFv */
 void daNpcF_c::setEnvTevColor() {
-    tevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mGndChk);
-    tevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(mGndChk);
+    tevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(mGndChk);
+    tevStr.room_no = dComIfG_Bgsp().GetRoomId(mGndChk);
 }
 
 /* 80152DE0-80152E24 14D720 0044+00 1/1 0/0 40/40 .text            setRoomNo__8daNpcF_cFv */

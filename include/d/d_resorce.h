@@ -10,21 +10,29 @@ class JKRSolidHeap;
 
 class dRes_info_c {
 public:
-    /* 8003A260 */ dRes_info_c();
-    /* 8003A280 */ ~dRes_info_c();
-    /* 8003A348 */ int set(char const*, char const*, u8, JKRHeap*);
-    /* 8003AB30 */ static void onWarpMaterial(J3DModelData*);
-    /* 8003AC1C */ static void offWarpMaterial(J3DModelData*);
-    /* 8003AD08 */ static void setWarpSRT(J3DModelData*, cXyz const&, f32, f32);
-    /* 8003AE14 */ static J3DModelData* loaderBasicBmd(u32, void*);
-    /* 8003B30C */ int loadResource();
-    /* 8003B998 */ void deleteArchiveRes();
-    /* 8003BAC4 */ int setRes(JKRArchive*, JKRHeap*);
-    /* 8003BAF8 */ int setRes();
-    /* 8003BD2C */ static void dump_long(dRes_info_c*, int);
-    /* 8003BE38 */ static void dump(dRes_info_c*, int);
+    dRes_info_c();
+    ~dRes_info_c();
 
-    void* getRes(u32 resIdx) { return *(mRes + resIdx); }
+    int set(char const* i_arcName, char const* i_path, u8 i_mountDirection, JKRHeap* i_heap);
+    int loadResource();
+    void deleteArchiveRes();
+    int setRes(JKRArchive* i_archive, JKRHeap* i_heap);
+    int setRes();
+
+    static void onWarpMaterial(J3DModelData* i_modelData);
+    static void offWarpMaterial(J3DModelData* i_modelData);
+    static void setWarpSRT(J3DModelData* i_modelData, const cXyz& i_pos, f32 i_transX, f32 i_transY);
+    static J3DModelData* loaderBasicBmd(u32 i_tag, void* i_data);
+    static void dump_long(dRes_info_c* i_resInfo, int i_infoNum);
+    static void dump(dRes_info_c* i_resInfo, int i_infoNum);
+
+    void* getRes(s32 i_index) {
+        JUT_ASSERT(25, i_index >= 0 && i_index < getResNum());
+        return *(mRes + i_index);
+    }
+
+    s32 getResNum() { return mArchive->countFile(); }
+
     int getCount() { return mCount; }
     char* getArchiveName() { return mArchiveName; }
     mDoDvdThd_mountArchive_c* getDMCommand() { return mDMCommand; }
@@ -33,6 +41,8 @@ public:
     u16 decCount() {
         return --mCount;
     }
+
+    static const int NAME_MAX = 8;
 
 private:
     /* 0x00 */ char mArchiveName[11];
@@ -49,71 +59,73 @@ STATIC_ASSERT(sizeof(dRes_info_c) == 0x24);
 class dRes_control_c {
 public:
     dRes_control_c() {}
-    /* 8003BFB0 */ ~dRes_control_c();
-    /* 8003C078 */ static int setRes(char const*, dRes_info_c*, int, char const*, u8, JKRHeap*);
-    /* 8003C160 */ static int syncRes(char const*, dRes_info_c*, int);
-    /* 8003C194 */ static int deleteRes(char const*, dRes_info_c*, int);
-    /* 8003C37C */ static void* getRes(char const*, char const*, dRes_info_c*, int);
-    /* 8003C1E4 */ static dRes_info_c* getResInfo(char const*, dRes_info_c*, int);
-    /* 8003C260 */ static dRes_info_c* newResInfo(dRes_info_c*, int);
-    /* 8003C288 */ static dRes_info_c* getResInfoLoaded(char const*, dRes_info_c*, int);
-    /* 8003C2EC */ static void* getRes(char const*, s32, dRes_info_c*, int);
-    /* 8003C400 */ static void* getIDRes(char const*, u16, dRes_info_c*, int);
-    /* 8003C470 */ static int syncAllRes(dRes_info_c*, int);
-    /* 8003C4E4 */ int setObjectRes(char const*, void*, u32, JKRHeap*);
-    /* 8003C5BC */ int setStageRes(char const*, JKRHeap*);
-    /* 8003C638 */ void dump();
-    /* 8003C6B8 */ int getObjectResName2Index(char const*, char const*);
+    ~dRes_control_c();
 
-    int setObjectRes(const char* name, u8 param_1, JKRHeap* heap) {
-        return setRes(name, &mObjectInfo[0], ARRAY_SIZE(mObjectInfo), "/res/Object/", param_1,
-                      heap);
+    int setObjectRes(char const* i_arcName, void* i_archiveRes, u32 i_bufferSize, JKRHeap* i_heap);
+    int setStageRes(char const* i_arcName, JKRHeap* i_heap);
+    void dump();
+    int getObjectResName2Index(char const* i_arcName, char const* i_resName);
+
+    static int setRes(char const* i_arcName, dRes_info_c* i_resInfo, int i_infoNum, char const* i_path, u8 i_mountDirection, JKRHeap* i_heap);
+    static int syncRes(char const* i_arcName, dRes_info_c* i_resInfo, int i_infoNum);
+    static int deleteRes(char const* i_arcName, dRes_info_c* i_resInfo, int i_infoNum);
+    static void* getRes(char const* i_arcName, char const* i_resName, dRes_info_c* i_resInfo, int i_infoNum);
+    static dRes_info_c* getResInfo(char const* i_arcName, dRes_info_c* i_resInfo, int i_infoNum);
+    static dRes_info_c* newResInfo(dRes_info_c* i_resInfo, int i_infoNum);
+    static dRes_info_c* getResInfoLoaded(char const* i_arcName, dRes_info_c* i_resInfo, int i_infoNum);
+    static void* getRes(char const* i_arcName, s32 i_index, dRes_info_c* i_resInfo, int i_infoNum);
+    static void* getIDRes(char const* i_arcName, u16 i_resID, dRes_info_c* i_resInfo, int i_infoNum);
+    static int syncAllRes(dRes_info_c* i_resInfo, int i_infoNum);
+
+    int setObjectRes(const char* i_arcName, u8 i_mountDirection, JKRHeap* i_heap) {
+        return setRes(i_arcName, mObjectInfo, ARRAY_SIZE(mObjectInfo), "/res/Object/", i_mountDirection,
+                      i_heap);
     }
 
-    void* getObjectRes(const char* arcName, const char* resName) {
-        return getRes(arcName, resName, &mObjectInfo[0], ARRAY_SIZE(mObjectInfo));
+    void* getObjectRes(const char* i_arcName, const char* resName) {
+        return getRes(i_arcName, resName, mObjectInfo, ARRAY_SIZE(mObjectInfo));
     }
 
-    void* getObjectRes(const char* arcName, s32 resIdx) {
-        return getRes(arcName, resIdx, &mObjectInfo[0], ARRAY_SIZE(mObjectInfo));
+    void* getObjectRes(const char* i_arcName, s32 i_index) {
+        return getRes(i_arcName, i_index, mObjectInfo, ARRAY_SIZE(mObjectInfo));
     }
 
-    void* getObjectIDRes(const char* arcName, u16 id) {
-        return getIDRes(arcName, id, &mObjectInfo[0], ARRAY_SIZE(mObjectInfo));
+    void* getObjectIDRes(const char* i_arcName, u16 i_resID) {
+        return getIDRes(i_arcName, i_resID, mObjectInfo, ARRAY_SIZE(mObjectInfo));
     }
 
-    int syncObjectRes(const char* name) {
-        return syncRes(name, &mObjectInfo[0], ARRAY_SIZE(mObjectInfo));
+    int syncObjectRes(const char* i_arcName) {
+        return syncRes(i_arcName, mObjectInfo, ARRAY_SIZE(mObjectInfo));
     }
 
-    int syncStageRes(const char* name) {
-        return syncRes(name, &mStageInfo[0], ARRAY_SIZE(mStageInfo));
+    int syncStageRes(const char* i_arcName) {
+        return syncRes(i_arcName, mStageInfo, ARRAY_SIZE(mStageInfo));
     }
 
-    int syncAllObjectRes() { return syncAllRes(&mObjectInfo[0], ARRAY_SIZE(mObjectInfo)); }
+    int syncAllObjectRes() { return syncAllRes(mObjectInfo, ARRAY_SIZE(mObjectInfo)); }
 
-    int deleteObjectRes(const char* name) {
-        return deleteRes(name, &mObjectInfo[0], ARRAY_SIZE(mObjectInfo));
+    int deleteObjectRes(const char* i_arcName) {
+        return deleteRes(i_arcName, mObjectInfo, ARRAY_SIZE(mObjectInfo));
     }
 
-    int deleteStageRes(const char* name) {
-        return deleteRes(name, &mStageInfo[0], ARRAY_SIZE(mStageInfo));
+    int deleteStageRes(const char* i_arcName) {
+        return deleteRes(i_arcName, mStageInfo, ARRAY_SIZE(mStageInfo));
     }
 
-    void* getStageRes(const char* arcName, const char* resName) {
-        return getRes(arcName, resName, &mStageInfo[0], ARRAY_SIZE(mStageInfo));
+    void* getStageRes(const char* i_arcName, const char* i_resName) {
+        return getRes(i_arcName, i_resName, mStageInfo, ARRAY_SIZE(mStageInfo));
     }
 
-    dRes_info_c* getObjectResInfo(const char* arcName) {
-        return getResInfo(arcName, &mObjectInfo[0], ARRAY_SIZE(mObjectInfo));
+    dRes_info_c* getObjectResInfo(const char* i_arcName) {
+        return getResInfo(i_arcName, mObjectInfo, ARRAY_SIZE(mObjectInfo));
     }
 
-    dRes_info_c* getStageResInfo(const char* arcName) {
-        return getResInfo(arcName, &mStageInfo[0], ARRAY_SIZE(mStageInfo));
+    dRes_info_c* getStageResInfo(const char* i_arcName) {
+        return getResInfo(i_arcName, mStageInfo, ARRAY_SIZE(mStageInfo));
     }
 
-    /* 0x0000 */ dRes_info_c mObjectInfo[0x80];
-    /* 0x1200 */ dRes_info_c mStageInfo[0x40];
+    /* 0x0000 */ dRes_info_c mObjectInfo[128];
+    /* 0x1200 */ dRes_info_c mStageInfo[64];
 };  // Size: 0x1B00
 
 #endif /* D_D_RESORCE_H */

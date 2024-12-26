@@ -49,7 +49,7 @@ static int daKytag12_Draw(kytag12_class* param_0) {
 static void daKytag12_light_swprd_proc(kytag12_class* i_this) {
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
 
-    if (dComIfGs_getSelectEquipSword() == LIGHT_SWORD) {
+    if (dComIfGs_getSelectEquipSword() == fpcNm_ITEM_LIGHT_SWORD) {
         if (player->getCutType() != 0) {
             if (i_this->field_0x576 == 0) {
                 cXyz sp28(player->current.pos);
@@ -278,9 +278,9 @@ static int daKytag12_Execute_standard(kytag12_class* i_this) {
         }
 
         for (int j = 0; j < 10; j++) {
-            if (g_env_light.mDalkmistInf[j] != NULL &&
-                g_env_light.mDalkmistInf[j]->mPos.abs(effect_p->mBasePos) <
-                    g_env_light.mDalkmistInf[j]->field_0xc + 100.0f)
+            if (g_env_light.dalkmist_influence[j] != NULL &&
+                g_env_light.dalkmist_influence[j]->mPos.abs(effect_p->mBasePos) <
+                    g_env_light.dalkmist_influence[j]->field_0xc + 100.0f)
             {
                 if (effect_p->mStatus != 2 && effect_p->field_0x40 == 0 && var_r23 < 1) {
                     cXyz spF4;
@@ -587,9 +587,9 @@ static int daKytag12_Execute_arrival(kytag12_class* i_this) {
         }
 
         for (int j = 0; j < 10; j++) {
-            if (g_env_light.mDalkmistInf[j] != NULL &&
-                g_env_light.mDalkmistInf[j]->mPos.abs(effect_p->mBasePos) <
-                    g_env_light.mDalkmistInf[j]->field_0xc + 100.0f)
+            if (g_env_light.dalkmist_influence[j] != NULL &&
+                g_env_light.dalkmist_influence[j]->mPos.abs(effect_p->mBasePos) <
+                    g_env_light.dalkmist_influence[j]->field_0xc + 100.0f)
             {
                 if (effect_p->mStatus != 3 && effect_p->field_0x40 == 0 && var_r21 < 1) {
                     sp80 = effect_p->mBasePos;
@@ -878,7 +878,7 @@ static int daKytag12_Execute_R00(kytag12_class* i_this) {
         sp80.y = player->current.pos.y;
 
         if (player->current.pos.abs(sp80) < 600.0f &&
-            dComIfGs_getSelectEquipSword() == LIGHT_SWORD && player->getCutType() != 0 &&
+            dComIfGs_getSelectEquipSword() == fpcNm_ITEM_LIGHT_SWORD && player->getCutType() != 0 &&
             d_kytag12_cut_turn_check())
         {
             i_this->field_0x575 = 1;
@@ -892,9 +892,9 @@ static int daKytag12_Execute_R00(kytag12_class* i_this) {
         }
 
         for (int j = 0; j < 10; j++) {
-            if (g_env_light.mDalkmistInf[j] != NULL &&
-                g_env_light.mDalkmistInf[j]->mPos.abs(effect_p->mBasePos) <
-                    g_env_light.mDalkmistInf[j]->field_0xc + 100.0f)
+            if (g_env_light.dalkmist_influence[j] != NULL &&
+                g_env_light.dalkmist_influence[j]->mPos.abs(effect_p->mBasePos) <
+                    g_env_light.dalkmist_influence[j]->field_0xc + 100.0f)
             {
                 if (effect_p->mStatus != 2 && effect_p->field_0x40 == 0 && var_r24 < 1) {
                     cXyz spA4;

@@ -641,7 +641,7 @@ int daBg_c::draw() {
                     const char* name = modelData->getMaterialName()->getName(j);
 
                     if (!memcmp(&name[3], "MA12", 4)) {
-                        if (g_env_light.mColPatCurr == 6) {
+                        if (g_env_light.wether_pat1 == 6) {
                             field_0x5f0 = 0;
                         }
                     } else if (!memcmp(&name[3], "MA18", 4)) {
@@ -661,7 +661,7 @@ int daBg_c::draw() {
                     } else if (!memcmp(&name[3], "MA09", 4)) {
                         bgData->mBtkAnmSpeed = 1.0f - (1.0f - g_env_light.mWaterSurfaceShineRate) * 0.9f;
                     } else if (!memcmp(&name[3], "MA05", 4)) {
-                        bgData->mpTevStr->field_0x378 |= (u8)j;
+                        bgData->mpTevStr->Material_id |= (u8)j;
                     }
 
                     if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") ||
@@ -675,7 +675,7 @@ int daBg_c::draw() {
                             s16 var_r0;
                             s16 var_r3;
                             s16 var_r5;
-                            switch (g_env_light.mPondSeason) {
+                            switch (g_env_light.fishing_hole_season) {
                             case 2:
                                 var_r5 = -3;
                                 var_r0 = 0;
@@ -698,21 +698,21 @@ int daBg_c::draw() {
                                 break;
                             }
 
-                            f32 temp_f2 = bgData->mpTevStr->mColorC0.r / 10.0f;
+                            f32 temp_f2 = bgData->mpTevStr->AmbCol.r / 10.0f;
                             f32 var_f2 = temp_f2 * temp_f2;
                             if (var_f2 > 1.0f) {
                                 var_f2 = 1.0f;
                             }
                             colorS10.r = var_r5 * var_f2;
 
-                            f32 temp_f2_2 = bgData->mpTevStr->mColorC0.g / 10.0f;
+                            f32 temp_f2_2 = bgData->mpTevStr->AmbCol.g / 10.0f;
                             f32 var_f2_2 = temp_f2_2 * temp_f2_2;
                             if (var_f2_2 > 1.0f) {
                                 var_f2_2 = 1.0f;
                             }
                             colorS10.g = var_r0 * var_f2_2;
 
-                            f32 temp_f2_3 = bgData->mpTevStr->mColorC0.b / 10.0f;
+                            f32 temp_f2_3 = bgData->mpTevStr->AmbCol.b / 10.0f;
                             f32 var_f2_3 = temp_f2_3 * temp_f2_3;
                             if (var_f2_3 > 1.0f) {
                                 var_f2_3 = 1.0f;

@@ -463,7 +463,7 @@ void Z2WolfHowlMgr::startWindStoneSound(s8 param_0, Vec* param_1) {
     if (param_1 == NULL || Z2GetLink() == NULL || Z2GetLink()->getCurrentPos() == NULL) {
         return; 
     }
-    Vec local_60 = Z2GetAudience()->getAudioCamPos();
+    Vec local_60 = Z2GetAudience()->getAudioCamPos(0);
     f32 dVar13 = sqrtf(VECSquareDistance(param_1, &local_60));
     if (dVar13 > 2100.0f && field_0x04) {
         field_0x04->stop();

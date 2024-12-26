@@ -44,7 +44,7 @@ cPhs__Step daObjWchain_c::create() {
         if (!fopAcM_entrySolidHeap(this, daObjWchain_createHeap, 0x820)) {
             return cPhs_ERROR_e;
         }
-        tevStr.mRoomNo = dStage_roomControl_c::mStayNo;
+        tevStr.room_no = dStage_roomControl_c::mStayNo;
         attention_info.position = current.pos;
         eyePos = attention_info.position;
         attention_info.distances[fopAc_attn_LOCK_e] = 0x1c;
@@ -317,10 +317,10 @@ void daObjWchain_shape_c::draw() {
     material->loadSharedDL();
     material->getShape()->loadPreDrawSetting();
     GXColor amb_color;
-    amb_color.r = tevstr.mColorC0.r;
-    amb_color.g = tevstr.mColorC0.g;
-    amb_color.b = tevstr.mColorC0.b;
-    amb_color.a = tevstr.mColorC0.a;
+    amb_color.r = tevstr.AmbCol.r;
+    amb_color.g = tevstr.AmbCol.g;
+    amb_color.b = tevstr.AmbCol.b;
+    amb_color.a = tevstr.AmbCol.a;
     GXSetChanAmbColor(GX_COLOR0A0, amb_color);
     GXSetChanMatColor(GX_COLOR0A0, g_whiteColor);
     dKy_setLight_again();

@@ -91,6 +91,10 @@ inline cXyz* fopCamM_GetCenter_p(camera_class* i_camera) {
     return &i_camera->lookat.center;
 }
 
+inline s16 fopCamM_GetBank(camera_class* i_camera) {
+    return i_camera->bank;
+}
+
 fpc_ProcID fopCamM_Create(int i_cameraIdx, s16 i_procName, void* i_append);
 void fopCamM_Management();
 u32 fopCamM_GetParam(camera_class* i_this);

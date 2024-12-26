@@ -24,6 +24,23 @@ struct JUTDataFileHeader {  // actual struct name unknown
     /* 0x20 */ JUTDataBlockHeader mFirstBlock;
 };
 
+// unknown name. refers to ANK1 chunk of BCK files
+struct J3DAnmTransform_ANK1 {
+    /* 0x00 */ u32 magic;
+    /* 0x04 */ u32 size;
+    /* 0x08 */ u8 attribute;
+    /* 0x09 */ u8 rotation_frac;
+    /* 0x0A */ s16 duration;
+    /* 0x0C */ s16 keyframe_num;
+    /* 0x0E */ s16 scale_entries;
+    /* 0x10 */ s16 rotation_entries;
+    /* 0x12 */ s16 translation_entries;
+    /* 0x14 */ u32 anm_data_offset;
+    /* 0x18 */ u32 scale_data_offset;
+    /* 0x1C */ u32 rotation_data_offset;
+    /* 0x20 */ u32 translation_data_offset;
+};
+
 typedef struct _GXColor GXColor;
 typedef struct _GXColorS10 GXColorS10;
 

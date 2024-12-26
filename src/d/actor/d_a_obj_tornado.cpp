@@ -206,7 +206,7 @@ int daObjTrnd_c::draw() {
 
 /* 80D1C298-80D1C2CC 000978 0034+00 1/1 0/0 0/0 .text            _delete__11daObjTrnd_cFv */
 int daObjTrnd_c::_delete() {
-    dKy_getEnvlight()->mEvtWindSet = 0;
+    dKy_getEnvlight()->evt_wind_go = 0;
     cutPntWind();
     return 1;
 }

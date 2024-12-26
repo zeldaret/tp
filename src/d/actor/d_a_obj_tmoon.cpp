@@ -77,7 +77,7 @@ int daObjTMoon_c::execute() {
 
 /* 80D12EB4-80D12EDC 000394 0028+00 1/1 0/0 0/0 .text            draw__12daObjTMoon_cFv */
 int daObjTMoon_c::draw() {
-    g_env_light.mMoonPos = current.pos;
+    g_env_light.moon_pos = current.pos;
     return 1;
 }
 

@@ -140,7 +140,103 @@ class daBoomerang_c;
 class daPy_demo_c {
 public:
     enum {
-        DEMO_LAST_e = 0x5F,
+        DEMO_UNK_0_e,
+        DEMO_UNK_1_e,
+        DEMO_UNK_2_e,
+        DEMO_UNK_3_e,
+        DEMO_UNK_4_e,
+        DEMO_WAIT_TURN_e,
+        DEMO_UNK_6_e,
+        DEMO_UNK_7_e,
+        DEMO_UNK_8_e,
+        DEMO_UNK_9_e,
+        DEMO_OPEN_TREASURE_e,
+        DEMO_GET_ITEM_e,
+        DEMO_UNEQUIP_e,
+        DEMO_GRAB_PUT_e,
+        DEMO_UNK_14_e,
+        DEMO_UNK_15_e,
+        DEMO_UNK_16_e,
+        DEMO_UNK_17_e,
+        DEMO_UNK_18_e,
+        DEMO_MONKEY_MOVE_e,
+        DEMO_LOOK_AROUND_e,
+        DEMO_UNK_21_e,
+        DEMO_UNK_22_e,
+        DEMO_UNK_23_e,
+        DEMO_UNK_24_e,
+        DEMO_TURN_BACK_e,
+        DEMO_UNK_26_e,
+        DEMO_UNK_27_e,
+        DEMO_BOOMERANG_CATCH_e,
+        DEMO_HAWK_CATCH_e,
+        DEMO_SWORD_UNEQUIP_SP_e,
+        DEMO_UNK_31_e,
+        DEMO_PUSH_PULL_WAIT_e,
+        DEMO_PUSH_MOVE_e,
+        DEMO_BOSS_ATN_WAIT_e,
+        DEMO_DOOR_OPEN_e,
+        DEMO_UNK_36_e,
+        DEMO_TRADE_ITEM_OUT_e,
+        DEMO_UNK_38_e,
+        DEMO_KANDELAAR_SWING_e,
+        DEMO_FRONT_ROLL_e,
+        DEMO_CROUCH_e,
+        DEMO_UNK_42_e,
+        DEMO_UNK_43_e,
+        DEMO_UNK_44_e,
+        DEMO_UNK_45_e,
+        DEMO_CAUGHT_e,
+        DEMO_LOOK_UP_e,
+        DEMO_LOOK_UP_TO_GET_ITEM_e,
+        DEMO_HAND_PAT_e,
+        DEMO_WOLF_MIDNA_RIDE_SHOCK_e,
+        DEMO_SUMOU_SHIKO_e,
+        DEMO_FOG_DEAD_e,
+        DEMO_WOLF_SMELL_WAIT_e,
+        DEMO_UNK_54_e,
+        DEMO_UNK_55_e,
+        DEMO_WOLF_CARGO_CARRY_e,
+        DEMO_METAMORPHOSE_UNK1_e,
+        DEMO_METAMORPHOSE_UNK2_e,
+        DEMO_HORSE_GET_KEY_e,
+        DEMO_NOD_e,
+        DEMO_GLARE_e,
+        DEMO_EYE_AWAY_e,
+        DEMO_GOAT_STOP_READY_e,
+        DEMO_GET_READY_SIT_e,
+        DEMO_UNK_65_e,
+        DEMO_TWGATE_e,
+        DEMO_FM_CHAIN_STRONG_PULL_e,
+        DEMO_WOLF_SNOW_ESCAPE_e,
+        DEMO_ZORA_MOVE_e,
+        DEMO_METAMORPHOSE_ONLY_UNK1_e,
+        DEMO_METAMORPHOSE_ONLY_UNK2_e,
+        DEMO_LOOK_AROUND_TURN_e,
+        DEMO_UNK_73_e,
+        DEMO_QUAKE_INIT_e,
+        DEMO_GUARD_ATTACK_e,
+        DEMO_SWORD_READY_e,
+        DEMO_DUNGEON_WARP_e,
+        DEMO_DUNGEON_WARP_SCENE_START_e,
+        DEMO_MASTER_SWORD_STICK_e,
+        DEMO_MASTER_SWORD_PULL_e,
+        DEMO_CUT_DOWN_e,
+        DEMO_UNK_82_e,
+        DEMO_CUT_HEAD_e,
+        DEMO_UNK_84_e,
+        DEMO_UNK_85_e,
+        DEMO_CUT_LARGE_JUMP_e,
+        DEMO_CUT_FAST_READY_e,
+        DEMO_COPY_ROD_REVIVE_e,
+        DEMO_SWORD_PUSH_e,
+        DEMO_GANON_FINISH_e,
+        DEMO_UNK_91_e,
+        DEMO_UNK_92_e,
+        DEMO_HORSE_LOOK_DOWN_e,
+        DEMO_UNK_94_e,
+        DEMO_LAST_e,
+
         DEMO_NEW_ANM0_e = 0x200,
     };
 
@@ -367,7 +463,7 @@ public:
         ERFLG0_UNK_80000000 = 0x80000000,
         ERFLG0_UNK_40000000 = 0x40000000,
         ERFLG0_UNK_20000000 = 0x20000000,
-        ERFLG0_UNK_10000000 = 0x10000000,
+        ERFLG0_WOLF_FCHAIN_PULL = 0x10000000,
         ERFLG0_UNK_8000000 = 0x8000000,
         ERFLG0_UNK_4000000 = 0x4000000,
         ERFLG0_BOSS_ROOM_WAIT = 0x2000000,
@@ -718,7 +814,7 @@ public:
     virtual s16 getBoardCutTurnOffsetAngleY() const;
     virtual cXyz* getMagneHitPos();
     virtual cXyz* getMagneBootsTopVec();
-    virtual cXyz* getKandelaarFlamePos();
+    virtual cXyz* getKandelaarFlamePos() { return NULL; }
     virtual bool checkUseKandelaar(int);
     virtual void setDkCaught(fopAc_ac_c*);
     virtual void onPressedDamage(cXyz const&, short);
@@ -798,6 +894,7 @@ public:
     bool checkCargoCarry() const { return mSpecialMode == SMODE_CARGO_CARRY; }
     bool getHeavyStateAndBoots() { return checkNoResetFlg0(FLG0_HVY_STATE); }
     bool checkEnemyAttentionLock() const { return checkResetFlg0(RFLG0_ENEMY_ATTN_LOCK); }
+    bool getGrabUpStart() const { return checkResetFlg0(RFLG0_UNK_8000); }
     bool checkCanoeSlider() const { return mSpecialMode == 0x2D; }
     bool checkGoatStopGame() const { return mSpecialMode == 0x2A; }
     u8 getCutType() const { return mCutType; }
@@ -824,6 +921,7 @@ public:
     void onForceAutoJump() { onEndResetFlg0(ERFLG0_FORCE_AUTO_JUMP); }
     void onNotAutoJump() { onEndResetFlg0(ERFLG0_NOT_AUTO_JUMP); }
     void onNotHang() { onEndResetFlg0(ERFLG0_NOT_HANG); }
+    void onWolfFchainPull() { onEndResetFlg0(ERFLG0_WOLF_FCHAIN_PULL); }
     void onShieldBackBone() { onEndResetFlg1(ERFLG1_GANON_FINISH); }
     void onWolfEyeKeep() { onEndResetFlg1(ERFLG1_WOLF_EYE_KEEP); }
     void onPortalWarpMidnaAtnKeep() { onEndResetFlg2(ERFLG2_PORTAL_WARP_MIDNA_ATN_KEEP); }

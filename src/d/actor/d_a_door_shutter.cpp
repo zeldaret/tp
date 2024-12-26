@@ -790,7 +790,7 @@ int daDoor20_c::CreateInit() {
                      &field_0x8b8, fopAcM_GetSpeed_p(this), NULL, NULL);
     int rt = dComIfG_Bgsp().Regist(field_0x5c4, this);
     JUT_ASSERT(1512, !rt);
-    tevStr.mRoomNo = current.roomNo;
+    tevStr.room_no = current.roomNo;
     setAction(ACTION_INIT);
     attention_info.position.y += 150.0f;
     eyePos.y += 150.0f;
@@ -1314,7 +1314,7 @@ int daDoor20_c::execute() {
     } else {
         lightInf = door_param2_c::getBLightInf(this);
     }
-    tevStr.mLightInf = lightInf;
+    tevStr.mLightInf.r = lightInf;
     if (strcmp(dComIfGp_getStartStageName(), "D_MN05") != 0 && strcmp(dComIfGp_getStartStageName(), "D_MN04") != 0) {
         field_0x6de.CrrPos(dComIfG_Bgsp());
     }
@@ -1541,19 +1541,19 @@ int daDoor20_c::drawCheck(int param_1) {
     door_param2_c::getBackOption(this);
     int stayNo = dComIfGp_roomControl_getStayNo();
     if (fRoomNo == stayNo || bRoomNo == stayNo) {
-        tevStr.mRoomNo = stayNo;
+        tevStr.room_no = stayNo;
     } else {
         if (dComIfGp_roomControl_checkRoomDisp(fRoomNo)) {
-            tevStr.mRoomNo = fRoomNo;
+            tevStr.room_no = fRoomNo;
         } else if (dComIfGp_roomControl_checkRoomDisp(bRoomNo)) {
-            tevStr.mRoomNo = bRoomNo;
+            tevStr.room_no = bRoomNo;
         }
     }
     if (field_0x678 != -1) {
-        tevStr.mRoomNo = field_0x674;
+        tevStr.room_no = field_0x674;
     }
-    fopAcM_SetRoomNo(this, tevStr.mRoomNo);
-    if (!dComIfGp_roomControl_checkRoomDisp(tevStr.mRoomNo)) {
+    fopAcM_SetRoomNo(this, tevStr.room_no);
+    if (!dComIfGp_roomControl_checkRoomDisp(tevStr.room_no)) {
         return 1;
     } else {
         return 1;

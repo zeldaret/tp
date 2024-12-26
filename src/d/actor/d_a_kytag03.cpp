@@ -262,8 +262,8 @@ static void odour_move(kytag03_class* i_this) {
                                         }
 
                                         effect->mBasePos.z += temp_f22 * cM_rndFX(50.0f);
-                                        effect->field_0x1c = spFC.x;
-                                        effect->field_0x1e = spFC.y;
+                                        effect->mRotX = spFC.x;
+                                        effect->mRotY = spFC.y;
 
                                         effect->field_0x2c = cM_rndF(20.0f) + 45.0f +
                                                              temp_f22 * (cM_rndF(20.0f) + 100.0f);
@@ -365,7 +365,7 @@ static int daKytag03_Execute(kytag03_class* i_this) {
                 i_this->mpEmitter->setGlobalEnvColor(0x44, 0x1A, 0x6B);
             }
 
-            i_this->mpEmitter->setGlobalAlpha(kankyo->field_0xf40 * 223.0f + 32.0f);
+            i_this->mpEmitter->setGlobalAlpha(kankyo->senses_effect_strength * 223.0f + 32.0f);
         }
 
         if (i_this->field_0x585 != dComIfGs_getCollectSmell()) {

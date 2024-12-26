@@ -450,22 +450,22 @@ int daNpc_zrZ_c::draw(int i_isTest, int param_1, f32 i_shadowDepth, _GXColorS10*
         }
 
         if (cM3d_IsZero_inverted(damage_ratio)) {
-            tevStr.mFogColor.r = (s16)(damage_ratio * 20.0f);
-            tevStr.mFogColor.g = 0;
+            tevStr.TevColor.r = (s16)(damage_ratio * 20.0f);
+            tevStr.TevColor.g = 0;
         } else if (i_isTest) {
-            tevStr.mFogColor.g = 20;
-            tevStr.mFogColor.r = 0;
+            tevStr.TevColor.g = 20;
+            tevStr.TevColor.r = 0;
         } else if (i_fogColor != NULL) {
-            tevStr.mFogColor.r = i_fogColor->r;
-            tevStr.mFogColor.g = i_fogColor->g;
-            tevStr.mFogColor.b = i_fogColor->b;
-            tevStr.mFogColor.a = i_fogColor->a;
+            tevStr.TevColor.r = i_fogColor->r;
+            tevStr.TevColor.g = i_fogColor->g;
+            tevStr.TevColor.b = i_fogColor->b;
+            tevStr.TevColor.a = i_fogColor->a;
         } else {
-            tevStr.mFogColor.g = 0;
-            tevStr.mFogColor.r = 0;
+            tevStr.TevColor.g = 0;
+            tevStr.TevColor.r = 0;
         }
 
-        if (tevStr.mFogColor.a == 0) {
+        if (tevStr.TevColor.a == 0) {
             return 1;
         }
 
@@ -656,7 +656,7 @@ void daNpc_zrZ_c::setParam() {
     mAcchCir.SetWallH(daNpc_zrZ_Param_c::m.mWallH);
     gravity = daNpc_zrZ_Param_c::m.mGravity;
 
-    u32 uvar4 = cLib_minMaxLimit<u32>(tevStr.mFogColor.a * 100 / 0xff, 1, 100);
+    u32 uvar4 = cLib_minMaxLimit<u32>(tevStr.TevColor.a * 100 / 0xff, 1, 100);
     mCreatureSound.startCreatureSoundLevel(Z2SE_ZRZ_MV, uvar4, -1);
 }
 
@@ -1053,14 +1053,14 @@ void daNpc_zrZ_c::reset() {
 
     if (mDemoMode == DEMO_WAIT) {
         mIsLeading = false;
-        tevStr.mFogColor.a = 0;
+        tevStr.TevColor.a = 0;
         mpNextActionFn = &wait;
     } else if (mDemoMode == DEMO_COME_HERE || mDemoMode == DEMO_COME_HERE_2) {
         mIsLeading = false;
-        tevStr.mFogColor.a = 0xff;
+        tevStr.TevColor.a = 0xff;
     } else {
         mIsLeading = true;
-        tevStr.mFogColor.a = 0xff;
+        tevStr.TevColor.a = 0xff;
     }
 
     setLookMode(LOOK_NONE);
@@ -1688,20 +1688,20 @@ BOOL daNpc_zrZ_c::ECut_helpPrince(int i_staffID) {
     case 40:
         if (cLib_calcTimer(&mEventTimer) == 0) {
             ret = true;
-            tevStr.mFogColor.a = 0xff;
+            tevStr.TevColor.a = 0xff;
         } else {
-            tevStr.mFogColor.a = (u8)((60 - mEventTimer) / 60.0f * 255.0f);
+            tevStr.TevColor.a = (u8)((60 - mEventTimer) / 60.0f * 255.0f);
         }
         break;
 
     case 103:
         if (cLib_calcTimer(&mEventTimer) == 0) {
             ret = true;
-            tevStr.mFogColor.a = 0;
+            tevStr.TevColor.a = 0;
         } else if (mEventTimer > 30) {
-            tevStr.mFogColor.a = (u8)((mEventTimer - 30) / 30.0f * 255.0f);
+            tevStr.TevColor.a = (u8)((mEventTimer - 30) / 30.0f * 255.0f);
         } else {
-            tevStr.mFogColor.a = 0;
+            tevStr.TevColor.a = 0;
         }
         break;
 
@@ -1988,11 +1988,11 @@ BOOL daNpc_zrZ_c::ECut_clothesGet(int i_staffID) {
     case 90:
         if (cLib_calcTimer(&mEventTimer) == 0) {
             ret = true;
-            tevStr.mFogColor.a = 0;
+            tevStr.TevColor.a = 0;
         } else if (mEventTimer > 0) {
-            tevStr.mFogColor.a = (u8)(mEventTimer / 120.0f * 255.0f);
+            tevStr.TevColor.a = (u8)(mEventTimer / 120.0f * 255.0f);
         } else {
-            tevStr.mFogColor.a = 0;
+            tevStr.TevColor.a = 0;
         }
         break;
 
@@ -2074,11 +2074,11 @@ BOOL daNpc_zrZ_c::ECut_getAfter(int i_staffID) {
     case 90:
         if (cLib_calcTimer(&mEventTimer) == 0) {
             ret = true;
-            tevStr.mFogColor.a = 0;
+            tevStr.TevColor.a = 0;
         } else if (mEventTimer > 0) {
-            tevStr.mFogColor.a = (u8)(mEventTimer / 120.0f * 255.0f);
+            tevStr.TevColor.a = (u8)(mEventTimer / 120.0f * 255.0f);
         } else {
-            tevStr.mFogColor.a = 0;
+            tevStr.TevColor.a = 0;
         }
         break;
 
@@ -2131,7 +2131,7 @@ BOOL daNpc_zrZ_c::ECut_sealRelease(int i_staffID) {
         break;
 
     case 10:
-        if (tevStr.mFogColor.a <= 0x1e) {
+        if (tevStr.TevColor.a <= 0x1e) {
             ret = true;
         }
         break;
@@ -2150,7 +2150,7 @@ BOOL daNpc_zrZ_c::ECut_sealRelease(int i_staffID) {
     if (prm >= 10) {
         cXyz pos = mPath.getPntPos(mPath.getIdx());
         if (!mPath.chkPassedDst(current.pos)) {
-            cLib_chaseS(&tevStr.mFogColor.a, 8, 8);
+            cLib_chaseS(&tevStr.TevColor.a, 8, 8);
             cLib_addCalc2(&mSpeed, daNpc_zrZ_Param_c::m.mMaxSpeed, 0.1f, 1.0f);
             s16 ang_y = cLib_targetAngleY(&current.pos, &pos);
             s16 ang_x = cLib_targetAngleX(&pos, &current.pos);
@@ -2158,7 +2158,7 @@ BOOL daNpc_zrZ_c::ECut_sealRelease(int i_staffID) {
             cLib_addCalcAngleS2(&mMoveAngle.x, ang_x, 2, 0x800);
         } else {
             mSpeed = 0.0f;
-            cLib_chaseS(&tevStr.mFogColor.a, 0xff, 8);
+            cLib_chaseS(&tevStr.TevColor.a, 0xff, 8);
             mIsMoving = false;
         }
     } else {
@@ -2191,7 +2191,7 @@ BOOL daNpc_zrZ_c::ECut_srSkip(int i_staffID) {
             current.pos = mPath.getPntPos(mPath.getIdx());
             old.pos = current.pos;
             setAngle(fopAcM_searchPlayerAngleY(this));
-            tevStr.mFogColor.a = 0xff;
+            tevStr.TevColor.a = 0xff;
             mIsMoving = false;
             if (mpRockActor != NULL) {
                 fopAcM_delete(mpRockActor);
@@ -2344,8 +2344,8 @@ BOOL daNpc_zrZ_c::comeHere(void* param_0) {
                 if (!dComIfGs_isSwitch(mSwitch1, fopAcM_GetRoomNo(this))) {
                     dComIfGs_onSwitch(mSwitch1, fopAcM_GetRoomNo(this));
                 }
-                cLib_chaseS(&tevStr.mFogColor.a, 0, 4);
-                if (tevStr.mFogColor.a == 0) {
+                cLib_chaseS(&tevStr.TevColor.a, 0, 4);
+                if (tevStr.TevColor.a == 0) {
                     fopAcM_delete(this);
                 }
             }
@@ -2446,10 +2446,10 @@ BOOL daNpc_zrZ_c::comeHere2(void* param_0) {
                         mOrderEvtNo = EVT_SEAL_RELEASE;
                         break;
                     } else {
-                        cLib_chaseS(&tevStr.mFogColor.a, 0x14, 8);
+                        cLib_chaseS(&tevStr.TevColor.a, 0x14, 8);
                     }
                 } else {
-                    cLib_chaseS(&tevStr.mFogColor.a, 0xff, 8);
+                    cLib_chaseS(&tevStr.TevColor.a, 0xff, 8);
                 }
 
                 cLib_addCalc2(&mSpeed, daNpc_zrZ_Param_c::m.mMaxSpeed, 0.1f, 1.0f);
@@ -2459,7 +2459,7 @@ BOOL daNpc_zrZ_c::comeHere2(void* param_0) {
                 cLib_addCalcAngleS2(&mMoveAngle.x, angle_x, 2, 0x800);
             } else {
                 cLib_chaseF(&mSpeed, 0.0f, 3.0f);
-                cLib_chaseS(&tevStr.mFogColor.a, 0xff, 8);
+                cLib_chaseS(&tevStr.TevColor.a, 0xff, 8);
             }
 
             cXyz move_speed(0.0f, 0.0f, mSpeed);

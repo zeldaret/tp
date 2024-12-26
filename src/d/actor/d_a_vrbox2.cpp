@@ -240,10 +240,10 @@ static int daVrbox2_Draw(vrbox2_class* i_this) {
         fogInfo_p->mType = 2;
     }
 
-    if ((g_env_light.mVrKasumiCol.r + g_env_light.mVrKasumiCol.g +
-         g_env_light.mVrKasumiCol.b + g_env_light.mVrSkyCol.r + g_env_light.mVrSkyCol.g +
-         g_env_light.mVrSkyCol.b + g_env_light.mVrkumoCol.r + g_env_light.mVrkumoCol.g +
-         g_env_light.mVrkumoCol.b) == 0)
+    if ((g_env_light.vrbox_kasumi_outer_col.r + g_env_light.vrbox_kasumi_outer_col.g +
+         g_env_light.vrbox_kasumi_outer_col.b + g_env_light.vrbox_sky_col.r + g_env_light.vrbox_sky_col.g +
+         g_env_light.vrbox_sky_col.b + g_env_light.vrbox_kumo_top_col.r + g_env_light.vrbox_kumo_top_col.g +
+         g_env_light.vrbox_kumo_top_col.b) == 0)
     {
         return 1;
     }
@@ -283,7 +283,7 @@ static int daVrbox2_Draw(vrbox2_class* i_this) {
         sp14 = sun_p->mPos[0];
 
         if (strcmp(dComIfGp_getStartStageName(), "F_SP102") == 0) {
-            dKyr_get_vectle_calc(&camera_p->lookat.eye, &g_env_light.mSunPos, &sp8);
+            dKyr_get_vectle_calc(&camera_p->lookat.eye, &g_env_light.sun_pos, &sp8);
             sp14.x = camera_p->lookat.eye.x + (8000.0f * sp8.x);
             sp14.y = camera_p->lookat.eye.y + (8000.0f * sp8.y);
             sp14.z = camera_p->lookat.eye.z + (8000.0f * sp8.z);
@@ -296,7 +296,7 @@ static int daVrbox2_Draw(vrbox2_class* i_this) {
         mDoMtx_stack_c::XrotM(0x7FFF - temp_r19);
 
         f32 scale;
-        if (g_env_light.mDaytime < 255.0f) {
+        if (g_env_light.daytime < 255.0f) {
             f32 temp_f4 = 1.0f - lenz_p->mDistFalloff;
             scale = 1.0f;
 
@@ -305,8 +305,8 @@ static int daVrbox2_Draw(vrbox2_class* i_this) {
             }
         } else {
             f32 var_f1;
-            if (g_env_light.mDaytime < 270.0f) {
-                var_f1 = dKy_get_parcent(270.0f, 240.0f, g_env_light.mDaytime);
+            if (g_env_light.daytime < 270.0f) {
+                var_f1 = dKy_get_parcent(270.0f, 240.0f, g_env_light.daytime);
             } else {
                 var_f1 = 1.0f;
             }
@@ -420,10 +420,10 @@ SECTION_DEAD static char const* const stringBase_80499AD4 = "R_SP30";
 static int daVrbox2_color_set(vrbox2_class* i_this) {
     dKankyo_sun_Packet* sun_p = g_env_light.mpSunPacket;
 
-    if ((g_env_light.mVrKasumiCol.r + g_env_light.mVrKasumiCol.g +
-         g_env_light.mVrKasumiCol.b + g_env_light.mVrSkyCol.r + g_env_light.mVrSkyCol.g +
-         g_env_light.mVrSkyCol.b + g_env_light.mVrkumoCol.r + g_env_light.mVrkumoCol.g +
-         g_env_light.mVrkumoCol.b) == 0)
+    if ((g_env_light.vrbox_kasumi_outer_col.r + g_env_light.vrbox_kasumi_outer_col.g +
+         g_env_light.vrbox_kasumi_outer_col.b + g_env_light.vrbox_sky_col.r + g_env_light.vrbox_sky_col.g +
+         g_env_light.vrbox_sky_col.b + g_env_light.vrbox_kumo_top_col.r + g_env_light.vrbox_kumo_top_col.g +
+         g_env_light.vrbox_kumo_top_col.b) == 0)
     {
         return 1;
     }
@@ -500,16 +500,16 @@ static int daVrbox2_color_set(vrbox2_class* i_this) {
         kumo_material0->setCullMode(0);
         kumo_material0->change();
 
-        k_color.r = g_env_light.mVrShitaGumoCol.r;
-        k_color.g = g_env_light.mVrShitaGumoCol.g;
-        k_color.b = g_env_light.mVrShitaGumoCol.b;
-        k_color.a = g_env_light.mVrkumoCol.a;
+        k_color.r = g_env_light.vrbox_kumo_bottom_col.r;
+        k_color.g = g_env_light.vrbox_kumo_bottom_col.g;
+        k_color.b = g_env_light.vrbox_kumo_bottom_col.b;
+        k_color.a = g_env_light.vrbox_kumo_top_col.a;
         kumo_material0->setTevKColor(0, &k_color);
 
-        color.r = g_env_light.mVrShitaUneiCol.r;
-        color.g = g_env_light.mVrShitaUneiCol.g;
-        color.b = g_env_light.mVrShitaUneiCol.b;
-        color.a = (u8)g_env_light.mVrkumoCol.a;
+        color.r = g_env_light.vrbox_kumo_shadow_col.r;
+        color.g = g_env_light.vrbox_kumo_shadow_col.g;
+        color.b = g_env_light.vrbox_kumo_shadow_col.b;
+        color.a = (u8)g_env_light.vrbox_kumo_top_col.a;
         kumo_material0->setTevColor(0, &color);
     }
 
@@ -518,16 +518,16 @@ static int daVrbox2_color_set(vrbox2_class* i_this) {
         kumo_material1->setCullMode(0);
         kumo_material1->change();
 
-        k_color.r = g_env_light.mVrShitaGumoCol.r;
-        k_color.g = g_env_light.mVrShitaGumoCol.g;
-        k_color.b = g_env_light.mVrShitaGumoCol.b;
-        k_color.a = g_env_light.mVrkumoCol.a;
+        k_color.r = g_env_light.vrbox_kumo_bottom_col.r;
+        k_color.g = g_env_light.vrbox_kumo_bottom_col.g;
+        k_color.b = g_env_light.vrbox_kumo_bottom_col.b;
+        k_color.a = g_env_light.vrbox_kumo_top_col.a;
         kumo_material1->setTevKColor(0, &k_color);
 
-        color.r = g_env_light.mVrShitaUneiCol.r;
-        color.g = g_env_light.mVrShitaUneiCol.g;
-        color.b = g_env_light.mVrShitaUneiCol.b;
-        color.a = g_env_light.mVrkumoCol.a;
+        color.r = g_env_light.vrbox_kumo_shadow_col.r;
+        color.g = g_env_light.vrbox_kumo_shadow_col.g;
+        color.b = g_env_light.vrbox_kumo_shadow_col.b;
+        color.a = g_env_light.vrbox_kumo_top_col.a;
         kumo_material1->setTevColor(0, &color);
     }
 
@@ -537,10 +537,10 @@ static int daVrbox2_color_set(vrbox2_class* i_this) {
         kasumim_material0->setCullMode(0);
         kasumim_material0->change();
 
-        color.r = g_env_light.mVrKasumiCol.r;
-        color.g = g_env_light.mVrKasumiCol.g;
-        color.b = g_env_light.mVrKasumiCol.b;
-        color.a = g_env_light.mVrKasumiCol.a;
+        color.r = g_env_light.vrbox_kasumi_outer_col.r;
+        color.g = g_env_light.vrbox_kasumi_outer_col.g;
+        color.b = g_env_light.vrbox_kasumi_outer_col.b;
+        color.a = g_env_light.vrbox_kasumi_outer_col.a;
         kasumim_material0->setTevColor(0, &color);
     }
 
@@ -563,7 +563,7 @@ static int daVrbox2_color_set(vrbox2_class* i_this) {
                 k_color.a = sun_p->field_0x74.a;
 
                 if (i == 1) {
-                    if (g_env_light.mDaytime > 255.0f || g_env_light.mDaytime < 97.5f) {
+                    if (g_env_light.daytime > 255.0f || g_env_light.daytime < 97.5f) {
                         cLib_addCalc(&sun_p->field_0x64, 1.0f, 0.2f, 0.1f, 0.0001f);
                     } else {
                         cLib_addCalc(&sun_p->field_0x64, 0.0f, 0.2f, 0.1f, 0.0001f);
@@ -599,7 +599,7 @@ static int daVrbox2_color_set(vrbox2_class* param_0) {
 /* 804997E8-8049982C 000DE8 0044+00 1/0 0/0 0/0 .text            daVrbox2_Execute__FP12vrbox2_class
  */
 static int daVrbox2_Execute(vrbox2_class* i_this) {
-    if (g_env_light.mDaytime > FLOAT_LABEL(lit_3837)) {
+    if (g_env_light.daytime > FLOAT_LABEL(lit_3837)) {
         i_this->mSunBtk.play();
     }
 

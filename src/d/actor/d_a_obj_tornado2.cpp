@@ -390,7 +390,7 @@ int daObjTrnd2_c::draw() {
 
 /* 80D1D2E8-80D1D330 000E88 0048+00 1/1 0/0 0/0 .text            _delete__12daObjTrnd2_cFv */
 int daObjTrnd2_c::_delete() {
-    dKy_getEnvlight()->mEvtWindSet = 0;
+    dKy_getEnvlight()->evt_wind_go = 0;
     cutPntWind();
     endParticle();
     return 1;

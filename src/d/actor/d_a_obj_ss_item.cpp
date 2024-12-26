@@ -295,8 +295,8 @@ void daObj_SSItem_c::setParam() {
 /* 80CE7C24-80CE7C80 001084 005C+00 2/2 0/0 0/0 .text            setEnvTevColor__14daObj_SSItem_cFv
  */
 void daObj_SSItem_c::setEnvTevColor() {
-    tevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mGndChk);
-    tevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(mGndChk);
+    tevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(mGndChk);
+    tevStr.room_no = dComIfG_Bgsp().GetRoomId(mGndChk);
 }
 
 /* 80CE7C80-80CE7CC4 0010E0 0044+00 2/2 0/0 0/0 .text            setRoomNo__14daObj_SSItem_cFv */

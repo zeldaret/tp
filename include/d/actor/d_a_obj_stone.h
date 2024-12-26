@@ -18,6 +18,8 @@ enum {
  */
 class daObjStone_c : public fopAc_ac_c {
 public:
+    typedef void (daObjStone_c::*modeFunc)();
+
     u8 getType() { return fopAcM_GetParamBit(this,0,4); }
     u8 getItemType() { return fopAcM_GetParamBit(this,4,2); }
     u8 getItemNo() { return fopAcM_GetParamBit(this,8,8); }
@@ -67,7 +69,7 @@ private:
     /* 0x0908 */ u8 field_0x0908;
     /* 0x090C */ u32 mMode; // maybe a better name for this
     /* 0x0910 */ cXyz field_0x0910;
-    /* 0x091C */ u16 field_0x091c;
+    /* 0x091C */ s16 field_0x091c;
     /* 0x091E */ u8 field_0x091E[0x0920 - 0x091E];
     /* 0x0920 */ Quaternion field_0x0920;
     /* 0x0930 */ Quaternion field_0x0930;
@@ -75,11 +77,14 @@ private:
     /* 0x0944 */ f32 mLastPosY; 
     /* 0x0948 */ f32 mLastSpeedY; // maybe a better name for this
     /* 0x094C */ u8 field_0x094c;
-    /* 0x094C */ u8 field_0x094d;
+    /* 0x094D */ u8 field_0x094d;
     /* 0x094E */ bool mIsInWater;
     /* 0x094F */ u8 field_0x094f;
     /* 0x0950 */ u8 field_0x0950;
-    /* 0x0951 */ u8 field_0x0951[0x0960 - 0x0951];
+    /* 0x0951 */ u8 field_0x0951;
+    /* 0x0954 */ u32 field_0x0954;
+    /* 0x0954 */ u32 field_0x0958;
+    /* 0x0954 */ u32 field_0x095c;
     /* 0x0960 */ u32 field_0x0960;
     /* 0x0964 */ JPABaseEmitter* field_0x0964[3];
     /* 0x0970 */ Z2SoundObjSimple mSound;

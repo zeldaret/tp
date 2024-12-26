@@ -839,13 +839,13 @@ extern GXColor g_saftyWhiteColor;
 int dComLbG_PhaseHandler(request_of_phase_process_class*, request_of_phase_process_fn*, void*);
 BOOL dComIfG_resetToOpening(scene_class* scene);
 char* dComIfG_getRoomArcName(int roomNo);
-void* dComIfG_getStageRes(char const* resName);
-void* dComIfG_getOldStageRes(char const* resName);
+void* dComIfG_getStageRes(char const* i_resName);
+void* dComIfG_getOldStageRes(char const* i_resName);
 void dComIfG_get_timelayer(int* layer);
-int dComIfG_resDelete(request_of_phase_process_class* i_phase, char const* resName);
+int dComIfG_resDelete(request_of_phase_process_class* i_phase, char const* i_resName);
 int dComIfG_changeOpeningScene(scene_class* scene, s16 procName);
-int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* arc_name);
-int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* resName, JKRHeap* heap);
+int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* i_arcName);
+int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* i_resName, JKRHeap* heap);
 int dComIfG_TimerDeleteRequest(int i_mode);
 int dComIfG_TimerStart(int i_mode, s16 i_time);
 bool dComIfGp_isLightDropMapVisible();
@@ -888,44 +888,57 @@ inline void dComIfG_setTimerLimitTimeMs(int i_time) {
     g_dComIfG_gameInfo.play.setTimerLimitTimeMs(i_time);
 }
 
-inline int dComIfG_setObjectRes(const char* name, u8 param_1, JKRHeap* heap) {
-    return g_dComIfG_gameInfo.mResControl.setObjectRes(name, param_1, heap);
+/**
+ * Attempts to add a new Object Resource Archive (*.arc) into the Resource Control.
+ * @param i_arcName Name of archive to be added
+ * @param i_mountDirection The direction to mount the archive. mDoDvd_MOUNT_DIRECTION_HEAD or mDoDvd_MOUNT_DIRECTION_TAIL
+ * @param i_heap Pointer to heap to load resources into
+ * @return TRUE if successful, FALSE otherwise
+ */
+inline int dComIfG_setObjectRes(const char* i_arcName, u8 i_mountDirection, JKRHeap* i_heap) {
+    return g_dComIfG_gameInfo.mResControl.setObjectRes(i_arcName, i_mountDirection, i_heap);
 }
 
-inline int dComIfG_setObjectRes(const char* name, void* param_1, u32 param_2) {
-    return g_dComIfG_gameInfo.mResControl.setObjectRes(name, param_1, param_2, NULL);
+inline int dComIfG_setObjectRes(const char* i_arcName, void* i_archiveRes, u32 i_bufferSize) {
+    return g_dComIfG_gameInfo.mResControl.setObjectRes(i_arcName, i_archiveRes, i_bufferSize, NULL);
 }
 
-inline int dComIfG_setStageRes(const char* name, JKRHeap* heap) {
-    return g_dComIfG_gameInfo.mResControl.setStageRes(name, heap);
+/**
+ * Attempts to add a new Stage Resource Archive (*.arc) into the Resource Control.
+ * @param i_arcName Name of archive to be added
+ * @param i_heap Pointer to heap to load resources into
+ * @return TRUE if successful, FALSE otherwise
+ */
+inline int dComIfG_setStageRes(const char* i_arcName, JKRHeap* i_heap) {
+    return g_dComIfG_gameInfo.mResControl.setStageRes(i_arcName, i_heap);
 }
 
-inline int dComIfG_syncObjectRes(const char* name) {
-    return g_dComIfG_gameInfo.mResControl.syncObjectRes(name);
+inline int dComIfG_syncObjectRes(const char* i_arcName) {
+    return g_dComIfG_gameInfo.mResControl.syncObjectRes(i_arcName);
 }
 
-inline int dComIfG_syncStageRes(const char* name) {
-    return g_dComIfG_gameInfo.mResControl.syncStageRes(name);
+inline int dComIfG_syncStageRes(const char* i_arcName) {
+    return g_dComIfG_gameInfo.mResControl.syncStageRes(i_arcName);
 }
 
-inline int dComIfG_deleteObjectResMain(const char* res) {
-    return g_dComIfG_gameInfo.mResControl.deleteObjectRes(res);
+inline int dComIfG_deleteObjectResMain(const char* i_arcName) {
+    return g_dComIfG_gameInfo.mResControl.deleteObjectRes(i_arcName);
 }
 
-inline int dComIfG_deleteStageRes(const char* res) {
-    return g_dComIfG_gameInfo.mResControl.deleteStageRes(res);
+inline int dComIfG_deleteStageRes(const char* i_arcName) {
+    return g_dComIfG_gameInfo.mResControl.deleteStageRes(i_arcName);
 }
 
-inline void* dComIfG_getStageRes(const char* arcName, const char* resName) {
-    return g_dComIfG_gameInfo.mResControl.getStageRes(arcName, resName);
+inline void* dComIfG_getStageRes(const char* i_arcName, const char* i_resName) {
+    return g_dComIfG_gameInfo.mResControl.getStageRes(i_arcName, i_resName);
 }
 
-inline void* dComIfG_getObjectRes(const char* arcName, const char* resName) {
-    return g_dComIfG_gameInfo.mResControl.getObjectRes(arcName, resName);
+inline void* dComIfG_getObjectRes(const char* i_arcName, const char* i_resName) {
+    return g_dComIfG_gameInfo.mResControl.getObjectRes(i_arcName, i_resName);
 }
 
-inline void* dComIfG_getObjectRes(const char* arcName, int resIdx) {
-    return g_dComIfG_gameInfo.mResControl.getObjectRes(arcName, resIdx);
+inline void* dComIfG_getObjectRes(const char* i_arcName, int i_index) {
+    return g_dComIfG_gameInfo.mResControl.getObjectRes(i_arcName, i_index);
 }
 
 inline dBgS& dComIfG_Bgsp() {
@@ -940,20 +953,20 @@ inline dCcS& dComIfG_Ccsp2() {
     return g_dComIfG_gameInfo.play.mCcs;
 }
 
-inline dRes_info_c* dComIfG_getObjectResInfo(const char* arc_name) {
-    return g_dComIfG_gameInfo.mResControl.getObjectResInfo(arc_name);
+inline dRes_info_c* dComIfG_getObjectResInfo(const char* i_arcName) {
+    return g_dComIfG_gameInfo.mResControl.getObjectResInfo(i_arcName);
 }
 
-inline dRes_info_c* dComIfG_getStageResInfo(const char* arc_name) {
-    return g_dComIfG_gameInfo.mResControl.getStageResInfo(arc_name);
+inline dRes_info_c* dComIfG_getStageResInfo(const char* i_arcName) {
+    return g_dComIfG_gameInfo.mResControl.getStageResInfo(i_arcName);
 }
 
 inline int dComIfG_syncAllObjectRes() {
     return g_dComIfG_gameInfo.mResControl.syncAllObjectRes();
 }
 
-inline void* dComIfG_getObjectIDRes(const char* arc_name, u16 id) {
-    return g_dComIfG_gameInfo.mResControl.getObjectIDRes(arc_name, id);
+inline void* dComIfG_getObjectIDRes(const char* i_arcName, u16 i_resID) {
+    return g_dComIfG_gameInfo.mResControl.getObjectIDRes(i_arcName, i_resID);
 }
 
 inline u8 dComIfG_getBrightness() {
@@ -3944,6 +3957,10 @@ inline void dComIfGd_setListInvisisble() {
 
 inline void dComIfGd_setListDarkBG() {
     g_dComIfG_gameInfo.drawlist.setOpaListDarkBG();
+    g_dComIfG_gameInfo.drawlist.setXluListDarkBG();
+}
+
+inline void dComIfGd_setXluListDarkBG() {
     g_dComIfG_gameInfo.drawlist.setXluListDarkBG();
 }
 

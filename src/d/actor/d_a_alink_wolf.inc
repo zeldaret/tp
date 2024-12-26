@@ -9453,21 +9453,21 @@ int daAlink_c::procWolfDigThrough() {
 
 /* 8013F90C-8013FA14 13A24C 0108+00 1/1 0/0 0/0 .text            setSmellSave__9daAlink_cFv */
 void daAlink_c::setSmellSave() {
-    if (dComIfGs_getCollectSmell() == SMELL_MEDICINE) {
+    if (dComIfGs_getCollectSmell() == fpcNm_ITEM_SMELL_MEDICINE) {
         dComIfGs_offEventBit(0x2F04);  // OFF: Got Medicine Scent
     }
 
     dMsgObject_setSmellType(mProcVar5.field_0x3012);
 
-    if (mProcVar5.field_0x3012 == SMELL_MEDICINE) {
+    if (mProcVar5.field_0x3012 == fpcNm_ITEM_SMELL_MEDICINE) {
         dComIfGs_onEventBit(0x2F04);  // ON: Got Medicine Scent
-    } else if (mProcVar5.field_0x3012 == SMELL_CHILDREN) {
+    } else if (mProcVar5.field_0x3012 == fpcNm_ITEM_SMELL_CHILDREN) {
         fopAcM_onSwitch(this, 102);
-    } else if (mProcVar5.field_0x3012 == SMELL_YELIA_POUCH) {
+    } else if (mProcVar5.field_0x3012 == fpcNm_ITEM_SMELL_YELIA_POUCH) {
         fopAcM_onSwitch(this, 103);
-    } else if (mProcVar5.field_0x3012 == SMELL_FISH) {
+    } else if (mProcVar5.field_0x3012 == fpcNm_ITEM_SMELL_FISH) {
         dComIfGs_onEventBit(0x6120);  // ON: Got Reekfish scent
-    } else if (mProcVar5.field_0x3012 == SMELL_POH) {
+    } else if (mProcVar5.field_0x3012 == fpcNm_ITEM_SMELL_POH) {
         dComIfGs_onEventBit(0x6210);  // ON: Got Poe scent
     }
 
@@ -9502,7 +9502,7 @@ int daAlink_c::procWolfGetSmellInit() {
     dComIfGp_setPlayerStatus1(0, 0x4000000);
     mProcVar2.field_0x300c = 0;
 
-    if (dComIfGs_getCollectSmell() == NO_ITEM) {
+    if (dComIfGs_getCollectSmell() == fpcNm_ITEM_NONE) {
         field_0x3198 = 0xBBC;
     } else {
         field_0x3198 = 0xBBB;
@@ -9510,9 +9510,9 @@ int daAlink_c::procWolfGetSmellInit() {
 
     field_0x319c = -1;
 
-    if (mProcVar5.field_0x3012 == SMELL_YELIA_POUCH) {
+    if (mProcVar5.field_0x3012 == fpcNm_ITEM_SMELL_YELIA_POUCH) {
         field_0x319c = 0x2220;
-    } else if (mProcVar5.field_0x3012 == SMELL_CHILDREN) {
+    } else if (mProcVar5.field_0x3012 == fpcNm_ITEM_SMELL_CHILDREN) {
         field_0x319c = 0x2240;
     }
 
@@ -9536,7 +9536,7 @@ int daAlink_c::procWolfGetSmell() {
             dComIfGp_getEvent().reset(this);
             dComIfGp_clearPlayerStatus1(0, 0x4000000);
 
-            if (mProcVar5.field_0x3012 == SMELL_YELIA_POUCH) {
+            if (mProcVar5.field_0x3012 == fpcNm_ITEM_SMELL_YELIA_POUCH) {
                 fopAcM_orderOtherEvent(this, "SMELL_1st", 0xFFFF, 0x400, 1);
             } else {
                 fopAcM_orderOtherEvent(this, "SMELL_Child", 0xFFFF, 0x400, 1);

@@ -32,7 +32,7 @@ int daObjBombf_c::create() {
         }
 
         fopAcM_SetMtx(this, field_0x570->getBaseTRMtx());
-        tevStr.mRoomNo = fopAcM_GetRoomNo(this);
+        tevStr.room_no = fopAcM_GetRoomNo(this);
         attention_info.position = current.pos;
         eyePos = attention_info.position;
         field_0x574 = 0xffffffff;

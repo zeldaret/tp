@@ -10,12 +10,12 @@
 class JKRExpHeap;
 
 struct stage_vrboxcol_info_class {
-    /* 0x00 */ color_RGB_class field_0x0;
-    /* 0x03 */ color_RGB_class field_0x3;
-    /* 0x06 */ color_RGB_class field_0x6;
-    /* 0x09 */ GXColor field_0x9;
-    /* 0x0D */ GXColor field_0xd;
-    /* 0x11 */ GXColor field_0x11;
+    /* 0x00 */ color_RGB_class sky_col;
+    /* 0x03 */ color_RGB_class kumo_top_col;
+    /* 0x06 */ color_RGB_class kumo_bottom_col;
+    /* 0x09 */ GXColor kumo_shadow_col;
+    /* 0x0D */ GXColor kasumi_outer_col;
+    /* 0x11 */ GXColor kasumi_inner_col;
 };  // Size: 0x18
 
 // Virt
@@ -90,48 +90,45 @@ struct stage_scls_info_dummy_class {
 
 struct stage_pure_lightvec_info_class {
     // LGT
-    /* 0x00 */ Vec m_position;
-    /* 0x0C */ f32 m_radius;
-    /* 0x10 */ f32 m_directionX;
-    /* 0x14 */ f32 m_directionY;
-    /* 0x18 */ f32 m_spotCutoff;
-    /* 0x1C */ u8 field_0x1c;
-    /* 0x1D */ u8 field_0x1d;
-    /* 0x1E */ u8 field_0x1e;
-    /* 0x1F */ u8 field_0x1f;
+    /* 0x00 */ Vec position;
+    /* 0x0C */ f32 radius;
+    /* 0x10 */ f32 directionX;
+    /* 0x14 */ f32 directionY;
+    /* 0x18 */ f32 spotCutoff;
+    /* 0x1C */ u8 spot_type;
+    /* 0x1D */ u8 dist_atten_type;
+    /* 0x1E */ u8 flags;
+    /* 0x1F */ u8 switch_no;
 };  // Size: 0x20
 
-// Col
 struct stage_pselect_info_class {
-    /* 0x0 */ u8 mPalIdx[8];
-    /* 0x8 */ f32 mChangeRate;
+    /* 0x0 */ u8 palette_id[8];
+    /* 0x8 */ f32 change_rate;
 };  // Size: 0xC
 
 struct stage_plight_info_class {
-    // LGHT
-    /* 0x00 */ Vec m_position;
-    /* 0x0C */ f32 m_radius;
-    /* 0x10 */ u8 field_0x10[0x18 - 0x10];
-    /* 0x18 */ color_RGB_class m_color;
-    /* 0x1B */ u8 m_fluctuation;
+    /* 0x00 */ Vec position;
+    /* 0x0C */ f32 power;
+    /* 0x10 */ u8 unk_0x10[0x18 - 0x10];
+    /* 0x18 */ color_RGB_class color;
+    /* 0x1B */ u8 fluctuation;
 };  // Size: 0x1C
 
-// PALE
 struct stage_palette_info_class {
-    /* 0x00 */ color_RGB_class mActorAmbColor;
-    /* 0x03 */ color_RGB_class mBgAmbColor[4];
-    /* 0x0F */ color_RGB_class mPlightColor[6];
-    /* 0x21 */ color_RGB_class mFogColor;
-    /* 0x24 */ f32 mFogStartZ;
-    /* 0x28 */ f32 mFogEndZ;
-    /* 0x2C */ u8 mVirtIdx;
-    /* 0x2D */ u8 mTerrainLightInfluence;
-    /* 0x2E */ u8 mCloudShadowDensity;
-    /* 0x2F */ u8 field_0x2f;
-    /* 0x30 */ u8 mBloomTblIdx;
-    /* 0x31 */ u8 mBgAmbColor1A;
-    /* 0x32 */ u8 mBgAmbColor2A;
-    /* 0x33 */ u8 mBgAmbColor3A;
+    /* 0x00 */ color_RGB_class actor_amb_col;
+    /* 0x03 */ color_RGB_class bg_amb_col[4];
+    /* 0x0F */ color_RGB_class plight_col[6];
+    /* 0x21 */ color_RGB_class fog_col;
+    /* 0x24 */ f32 fog_start_z;
+    /* 0x28 */ f32 fog_end_z;
+    /* 0x2C */ u8 vrboxcol_id;
+    /* 0x2D */ u8 bg_light_influence;
+    /* 0x2E */ u8 cloud_shadow_density;
+    /* 0x2F */ u8 unk_0x2f;
+    /* 0x30 */ u8 bloom_tbl_id;
+    /* 0x31 */ u8 BG1_amb_alpha;
+    /* 0x32 */ u8 BG2_amb_alpha;
+    /* 0x33 */ u8 BG3_amb_alpha;
 };  // Size: 0x34
 
 struct stage_map_info_class {
@@ -146,7 +143,7 @@ struct stage_map_info_dummy_class {
 };
 
 struct stage_envr_info_class {
-    /* 0x0 */ u8 m_pselectID[65];
+    /* 0x0 */ u8 pselect_id[65];
 };  // Size: 0x41
 
 struct stage_camera2_data_class {
@@ -1112,6 +1109,10 @@ inline u8 dStage_stagInfo_DefaultCameraType(stage_stag_info_class* pstag) {
     return pstag->mCameraType;
 }
 
+inline u16 dStage_stagInfo_GetCullPoint(stage_stag_info_class* pstag) {
+    return pstag->field_0x10 & 0xFFFF;
+}
+
 inline u8 dStage_sclsInfo_getSceneLayer(stage_scls_info_class* p_info) {
     return p_info->field_0xb & 0xF;
 }
@@ -1154,6 +1155,10 @@ inline int dStage_FileList_dt_GlobalWindDir(dStage_FileList_dt_c* i_fili) {
 
 inline u8 dStage_FileList_dt_GetDefaultCamera(dStage_FileList_dt_c* p_fList) {
     return p_fList->mDefaultCamera;
+}
+
+inline u8 dStage_FileList_dt_GRASSLIGHT(dStage_FileList_dt_c* p_fList) {
+    return (p_fList->mParameters >> 7) & 0xFF;
 }
 
 inline f32 dStage_FileList2_dt_GetLeftRmX(dStage_FileList2_dt_c* p_fList2) {

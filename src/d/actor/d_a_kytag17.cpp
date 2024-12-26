@@ -35,7 +35,7 @@ static int daKytag17_Create(fopAc_ac_c* i_this) {
     fopAcM_SetupActor(a_this, kytag17_class);
 
     a_this->mParameters = fopAcM_GetParam(a_this);
-    g_env_light.field_0x1308 = a_this->mParameters;
+    g_env_light.light_mask_type = a_this->mParameters;
     return cPhs_COMPLEATE_e;
 }
 

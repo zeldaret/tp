@@ -25,7 +25,7 @@ struct dKyd_l_vr_box_data_struct {
 //
 
 /* 803A8E98-803A9198 005FB8 0300+00 1/1 0/0 0/0 .data            l_kydata_BloomInf_tbl */
-static dkydata_bloomInfo_info_class l_kydata_BloomInf_tbl[BLOOMINFO_MAX] = {
+static dKydata_BloomInfo_c l_kydata_BloomInf_tbl[BLOOMINFO_MAX] = {
     {BLOOM_SOFT, 0xFF, 0x40, 0x80, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00},
     {BLOOM_CLEAR, 0x28, 0x46, 0x87, 0xCF, 0xB1, 0x38, 0xD2, 0xFF, 0xFF, 0xFF, 0x60},  // Twilight
     {BLOOM_CLEAR, 0x2D, 0x46, 0x73, 0xCF, 0xB1, 0x38, 0xD2, 0xFF, 0xFF, 0xFF,
@@ -120,40 +120,40 @@ static dkydata_bloomInfo_info_class l_kydata_BloomInf_tbl[BLOOMINFO_MAX] = {
 
 /* 803A9198-803A92A8 -00001 0110+00 1/1 0/0 0/0 .data            l_darkworld_tbl */
 static dKydata_darkworldInfo_c l_darkworld_tbl[34] = {
-    {"R_SP30", UNCLEARABLE},   // UNUSED - Unknown Room
-    {"T_SP05", TEST},          // UNUSED - E3 2005 Warp Test (Old)
-    {"T_SP05A", TEST},         // UNUSED - Ito Warp Test
-    {"T_WARP2", TEST},         // UNUSED - Unknown Test
-    {"T_IMAI", TEST},          // UNUSED - Imai Shape Check (Level 2)
-    {"T_IMAI0", TEST},         // UNUSED - Imai Shape Check (Level 3)
-    {"T_TOMI", TEST},          // UNUSED - Tominaga Test 1
-    {"T_TOMI", TEST},          // UNUSED - Same as above
-    {"T_TOMI", TEST},          // UNUSED - Same as above
-    {"T_SASA1", TEST},         // UNUSED - Sasaki Test 1
-    {"F_SP105", FARON},        // UNUSED - L1 Forest Field
-    {"F_SP05", TEST},          // UNUSED - Statue Forest
-    {"R_SP107", LANAYRU},      // Castle Sewers/Rooftops/Tower
-    {"F_SP108", FARON},        // Faron Woods
-    {"R_SP108", FARON},        // Coro's Lantern Shop
-    {"TEST11", TEST},          // UNUSED - Local Map C
-    {"F_SP109", ELDIN},        // Kakariko Village
-    {"F_SP110", ELDIN},        // Death Mountain
-    {"R_SP109", ELDIN},        // Kakariko Interiors
-    {"F_SP111", ELDIN},        // Kakariko Graveyard
-    {"F_SP112", LANAYRU},      // Zora's River
-    {"F_SP113", LANAYRU},      // Zora's Domain
-    {"F_SP115", LANAYRU},      // Lake Hylia
-    {"F_SP116", LANAYRU},      // Hyrule Castle Town
-    {"F_SP122", LANAYRU},      // Castle Town Gates
-    {"F_SP121", ELDIN},        // Hyrule Field
-    {"F_SP126", LANAYRU},      // Upper Zora's River
-    {"R_SP209", ELDIN},        // Sanctuary Basement
-    {"R_SP116", LANAYRU},      // Hyrule Castle Town Interiors
-    {"D_MN08", UNCLEARABLE},   // Palace of Twilight
-    {"D_MN08B", UNCLEARABLE},  // Palace of Twilight Miniboss A
-    {"D_MN08C", UNCLEARABLE},  // Palace of Twilight Miniboss B
-    {"D_MN08A", UNCLEARABLE},  // Palace of Twilight Throne Room
-    {"D_SB10", FARON},         // Faron Woods Cave
+    {"R_SP30", KY_DARKLV_UNCLEARABLE},   // UNUSED - Unknown Room
+    {"T_SP05", KY_DARKLV_TEST},          // UNUSED - E3 2005 Warp Test (Old)
+    {"T_SP05A", KY_DARKLV_TEST},         // UNUSED - Ito Warp Test
+    {"T_WARP2", KY_DARKLV_TEST},         // UNUSED - Unknown Test
+    {"T_IMAI", KY_DARKLV_TEST},          // UNUSED - Imai Shape Check (Level 2)
+    {"T_IMAI0", KY_DARKLV_TEST},         // UNUSED - Imai Shape Check (Level 3)
+    {"T_TOMI", KY_DARKLV_TEST},          // UNUSED - Tominaga Test 1
+    {"T_TOMI", KY_DARKLV_TEST},          // UNUSED - Same as above
+    {"T_TOMI", KY_DARKLV_TEST},          // UNUSED - Same as above
+    {"T_SASA1", KY_DARKLV_TEST},         // UNUSED - Sasaki Test 1
+    {"F_SP105", KY_DARKLV_FARON},        // UNUSED - L1 Forest Field
+    {"F_SP05", KY_DARKLV_TEST},          // UNUSED - Statue Forest
+    {"R_SP107", KY_DARKLV_LANAYRU},      // Castle Sewers/Rooftops/Tower
+    {"F_SP108", KY_DARKLV_FARON},        // Faron Woods
+    {"R_SP108", KY_DARKLV_FARON},        // Coro's Lantern Shop
+    {"TEST11", KY_DARKLV_TEST},          // UNUSED - Local Map C
+    {"F_SP109", KY_DARKLV_ELDIN},        // Kakariko Village
+    {"F_SP110", KY_DARKLV_ELDIN},        // Death Mountain
+    {"R_SP109", KY_DARKLV_ELDIN},        // Kakariko Interiors
+    {"F_SP111", KY_DARKLV_ELDIN},        // Kakariko Graveyard
+    {"F_SP112", KY_DARKLV_LANAYRU},      // Zora's River
+    {"F_SP113", KY_DARKLV_LANAYRU},      // Zora's Domain
+    {"F_SP115", KY_DARKLV_LANAYRU},      // Lake Hylia
+    {"F_SP116", KY_DARKLV_LANAYRU},      // Hyrule Castle Town
+    {"F_SP122", KY_DARKLV_LANAYRU},      // Castle Town Gates
+    {"F_SP121", KY_DARKLV_ELDIN},        // Hyrule Field
+    {"F_SP126", KY_DARKLV_LANAYRU},      // Upper Zora's River
+    {"R_SP209", KY_DARKLV_ELDIN},        // Sanctuary Basement
+    {"R_SP116", KY_DARKLV_LANAYRU},      // Hyrule Castle Town Interiors
+    {"D_MN08", KY_DARKLV_UNCLEARABLE},   // Palace of Twilight
+    {"D_MN08B", KY_DARKLV_UNCLEARABLE},  // Palace of Twilight Miniboss A
+    {"D_MN08C", KY_DARKLV_UNCLEARABLE},  // Palace of Twilight Miniboss B
+    {"D_MN08A", KY_DARKLV_UNCLEARABLE},  // Palace of Twilight Throne Room
+    {"D_SB10", KY_DARKLV_FARON},         // Faron Woods Cave
 };
 
 /* 803A92A8-803A93C8 -00001 0120+00 1/1 0/0 0/0 .data            l_light_size_tbl */
@@ -211,22 +211,22 @@ static dKydata_lightsizeInfo_c l_light_size_tbl_tw[9] = {
 
 // Maple color. Used in Fishing Hole. Values are RGB. TODO: struct here?
 /* 803A9410-803A9434 006530 0024+00 1/1 0/0 0/0 .data            l_maple_col */
-static u8 l_maple_col[36] = {
+static color_RGB_class l_maple_col[] = {
     // leaf color blend major
-    0x56, 0x4B, 0x39,  // spring
-    0x37, 0x28, 0x1E,  // summer
-    0x6E, 0x32, 0x0F,  // fall
-    0x64, 0x64, 0x80,  // winter
+    {0x56, 0x4B, 0x39},  // spring
+    {0x37, 0x28, 0x1E},  // summer
+    {0x6E, 0x32, 0x0F},  // fall
+    {0x64, 0x64, 0x80},  // winter
     // leaf color blend minor
-    0x52, 0x41, 0x66,  // spring
-    0x19, 0x0F, 0x00,  // summer
-    0x46, 0x00, 0x0F,  // fall
-    0x64, 0x64, 0x80,  // winter
+    {0x52, 0x41, 0x66},  // spring
+    {0x19, 0x0F, 0x00},  // summer
+    {0x46, 0x00, 0x0F},  // fall
+    {0x64, 0x64, 0x80},  // winter
     // leaf color base
-    0x65, 0x5E, 0x69,  // spring
-    0x0E, 0x23, 0x0B,  // summer
-    0x28, 0x14, 0x05,  // fall
-    0x5A, 0x5A, 0x6E,  // winter
+    {0x65, 0x5E, 0x69},  // spring
+    {0x0E, 0x23, 0x0B},  // summer
+    {0x28, 0x14, 0x05},  // fall
+    {0x5A, 0x5A, 0x6E},  // winter
 };
 
 /* 803A9434-803A94B8 006554 0084+00 1/1 0/0 0/0 .data            l_time_attribute */
@@ -817,7 +817,7 @@ void dKyd_xfog_table_set(u8 tblIdx) {
 }
 
 /* 80056A64-80056A70 0513A4 000C+00 0/0 1/1 0/0 .text            dKyd_maple_col_getp__Fv */
-void* dKyd_maple_col_getp() {
+color_RGB_class* dKyd_maple_col_getp() {
     return l_maple_col;
 }
 
@@ -837,7 +837,7 @@ dKydata_lightsizeInfo_c* dKyd_light_tw_size_tbl_getp() {
 }
 
 /* 80056A94-80056AA8 0513D4 0014+00 0/0 1/1 0/0 .text            dKyd_BloomInf_tbl_getp__Fi */
-dkydata_bloomInfo_info_class* dKyd_BloomInf_tbl_getp(int tblIdx) {
+dKydata_BloomInfo_c* dKyd_BloomInf_tbl_getp(int tblIdx) {
     return &l_kydata_BloomInf_tbl[tblIdx];
 }
 

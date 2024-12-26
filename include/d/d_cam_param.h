@@ -106,7 +106,7 @@ public:
     int Algorythmn() { return mCurrentStyle->field_0x4; }
     bool Flag(s32 param_0, u16 param_1) { return mCamStyleData[param_0].field_0x6 & param_1; }
 
-    /* 8008858C */ virtual ~dCamParam_c() {}
+    /* 8008858C */ virtual ~dCamParam_c();
 };
 
 class dCamSetup_c {
@@ -202,7 +202,7 @@ public:
     /* 0x0F8 */ f32 field_0xf8;
     /* 0x0FC vtable */
 
-    /* 800888B8 */ virtual ~dCamSetup_c() {}
+    /* 800888B8 */ virtual ~dCamSetup_c();
 
     /* 0x100 */ dCstick_c mCStick;
     /* 0x114 */ dCamBGChk_c mBGChk;

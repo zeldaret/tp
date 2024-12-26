@@ -143,7 +143,7 @@ public:
     void action() { (this->*mpActionFn)(); }
 
 private:
-    /* 0x718 */ bool field_0x718;
+    /* 0x718 */ u8 field_0x718;
     /* 0x71C */ request_of_phase_process_class mPhase;
     /* 0x724 */ J3DModel* mpModel;
     /* 0x728 */ J3DModel* mpSlimeModel;
@@ -151,7 +151,7 @@ private:
     /* 0x730 */ J3DModel* mpEffectModel;
     /* 0x734 */ mDoExt_brkAnm* mpEffectAnm;
     /* 0x738 */ dBgW* mpOpenBgW;
-    /* 0x73C */ dBgW* mpBgCollider;
+    /* 0x73C */ dBgW* mpBgCollision;
     /* 0x740 */ daTbox_actionFn mpActionFn;
     /* 0x74C */ int mStaffId;
     /* 0x750 */ f32 field_0x750;

@@ -85,7 +85,7 @@ BOOL daAlink_c::exchangeGrabActor(fopAc_ac_c* p_actor) {
 /* 800E3A9C-800E3BCC 0DE3DC 0130+00 1/0 0/0 0/0 .text setForceGrab__9daAlink_cFP10fopAc_ac_cii */
 BOOL daAlink_c::setForceGrab(fopAc_ac_c* p_actor, int param_1, int param_2) {
     if (((param_1 != 0 || !checkEventRun()) && !checkWolf()) &&
-        (((mEquipItem == NO_ITEM || (param_2 != 0 && checkHookshotItem(mEquipItem)))) &&
+        (((mEquipItem == fpcNm_ITEM_NONE || (param_2 != 0 && checkHookshotItem(mEquipItem)))) &&
          ((checkModeFlg(MODE_UNK_10000000) &&
            (checkHorseNoUpperAnime() || checkHorseTurnAnime())) ||
           param_2 != 0 && checkHookshotAnime())))
@@ -206,8 +206,8 @@ void daAlink_c::setGrabItemPos() {
         daPy_frameCtrl_c* sp1C = &mUnderFrameCtrl[0];
 
         s8 sp8 = fopAcM_GetRoomNo(this);
-        temp_r3->tevStr.mRoomNo = sp8;
-        temp_r3->tevStr.mEnvrIdxOverride = tevStr.mEnvrIdxOverride;
+        temp_r3->tevStr.room_no = sp8;
+        temp_r3->tevStr.YukaCol = tevStr.YukaCol;
         fopAcM_SetRoomNo(temp_r3, sp8);
     
         BOOL sp18 = checkGrabCarryActor();
@@ -723,7 +723,7 @@ int daAlink_c::procGrabReadyInit() {
         return checkWaitAction();
     }
 
-    if (mEquipItem != NO_ITEM) {
+    if (mEquipItem != fpcNm_ITEM_NONE) {
         return procPreActionUnequipInit(PROC_GRAB_READY, field_0x27f4);
     }
 
@@ -1210,7 +1210,7 @@ int daAlink_c::procInsectCatchInit() {
         return checkWaitAction();
     }
 
-    if (mEquipItem != NO_ITEM) {
+    if (mEquipItem != fpcNm_ITEM_NONE) {
         return procPreActionUnequipInit(PROC_INSECT_CATCH, field_0x27f4);
     }
 
@@ -1252,7 +1252,7 @@ int daAlink_c::procPickUpInit() {
         return checkWaitAction();
     }
 
-    if (mEquipItem != NO_ITEM) {
+    if (mEquipItem != fpcNm_ITEM_NONE) {
         return procPreActionUnequipInit(PROC_PICK_UP, field_0x27f4);
     }
 
@@ -1323,7 +1323,7 @@ int daAlink_c::procPickUp() {
             onResetFlg0(RFLG0_UNK_8000);
 
             if (mProcVar4.field_0x3010 != 0) {
-                mEquipItem = KANTERA;
+                mEquipItem = fpcNm_ITEM_KANTERA;
                 setKandelaarModel();
             }
         }
@@ -1345,7 +1345,7 @@ int daAlink_c::procPickUp() {
 
 /* 800E75EC-800E76E0 0E1F2C 00F4+00 3/3 0/0 0/0 .text            procPickPutInit__9daAlink_cFi */
 int daAlink_c::procPickPutInit(int param_0) {
-    if (param_0 != 0 && mEquipItem != NO_ITEM) {
+    if (param_0 != 0 && mEquipItem != fpcNm_ITEM_NONE) {
         return procPreActionUnequipInit(PROC_PICK_PUT, NULL);
     }
 
@@ -1363,7 +1363,7 @@ int daAlink_c::procPickPutInit(int param_0) {
     mProcVar2.field_0x300c = param_0;
 
     if (mProcVar2.field_0x300c != 0) {
-        mEquipItem = POKE_BOMB;
+        mEquipItem = fpcNm_ITEM_POKE_BOMB;
     } else {
         onResetFlg0(RFLG0_GRAB_PUT_START);
     }
@@ -1397,7 +1397,7 @@ int daAlink_c::procPickPut() {
                 dComIfGp_addSelectItemNum(mSelectItemId, -1);
                 field_0x2fcf++;
             }
-            mEquipItem = NO_ITEM;
+            mEquipItem = fpcNm_ITEM_NONE;
         } else {
             field_0x3198 = 0;
             temp_r3->speedF = 0.0f;
@@ -1490,7 +1490,7 @@ bool daAlink_c::checkChainBlockPushPull() {
 
 /* 800E7C30-800E7CC0 0E2570 0090+00 2/2 0/0 0/0 .text            procFmChainUpInit__9daAlink_cFv */
 int daAlink_c::procFmChainUpInit() {
-    if (mEquipItem != NO_ITEM) {
+    if (mEquipItem != fpcNm_ITEM_NONE) {
         return procPreActionUnequipInit(PROC_CHAIN_UP, NULL);
     }
 
@@ -1722,7 +1722,7 @@ f32 daAlink_c::getPushPullAnimeSpeed() {
 
 /* 800E8428-800E857C 0E2D68 0154+00 4/4 0/0 0/0 .text procCoPushPullWaitInit__9daAlink_cFi */
 int daAlink_c::procCoPushPullWaitInit(int param_0) {
-    if (mEquipItem != NO_ITEM) {
+    if (mEquipItem != fpcNm_ITEM_NONE) {
         return procPreActionUnequipInit(PROC_PUSH_PULL_WAIT, NULL);
     }
 
@@ -2518,7 +2518,7 @@ int daAlink_c::procGoatCatch() {
 
 /* 800EA2A8-800EA3AC 0E4BE8 0104+00 2/2 0/0 0/0 .text            procGoatStrokeInit__9daAlink_cFv */
 int daAlink_c::procGoatStrokeInit() {
-    if (mEquipItem != NO_ITEM) {
+    if (mEquipItem != fpcNm_ITEM_NONE) {
         return procPreActionUnequipInit(PROC_GOAT_STROKE, field_0x27f4);
     }
 
@@ -2552,7 +2552,7 @@ int daAlink_c::procGoatStroke() {
 
 /* 800EA3F4-800EA4CC 0E4D34 00D8+00 2/2 0/0 0/0 .text            procGoronMoveInit__9daAlink_cFv */
 int daAlink_c::procGoronMoveInit() {
-    if (mEquipItem != NO_ITEM) {
+    if (mEquipItem != fpcNm_ITEM_NONE) {
         return procPreActionUnequipInit(PROC_GORON_MOVE, NULL);
     }
 
@@ -2594,7 +2594,7 @@ int daAlink_c::procGoronMove() {
         current.angle.y = shape_angle.y + 0x4000;
     }
 
-    if (checkSetItemTrigger(HVY_BOOTS)) {
+    if (checkSetItemTrigger(fpcNm_ITEM_HVY_BOOTS)) {
         return procBootsEquipInit();
     }
 

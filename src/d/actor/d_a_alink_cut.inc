@@ -117,7 +117,7 @@ bool daAlink_c::checkCutFastReady() {
 
     fopAc_ac_c* target_p = mAttention->LockonTarget(0);
 
-    if (mEquipItem == NO_ITEM && (dComIfGs_isEventBit(0x2A80) || checkNoResetFlg3(FLG3_UNK_80)))
+    if (mEquipItem == fpcNm_ITEM_NONE && (dComIfGs_isEventBit(0x2A80) || checkNoResetFlg3(FLG3_UNK_80)))
     {
         if (checkModeFlg(1) && !checkRideOn() && i_checkSwordGet() && checkModeFlg(4) &&
             !checkModeFlg(0x40000) && mTargetedActor == NULL && checkEnemyGroup(target_p))
@@ -140,7 +140,7 @@ bool daAlink_c::checkCutFastReady() {
 /* 800D1268-800D1310 0CBBA8 00A8+00 9/9 0/0 0/0 .text            setSwordModel__9daAlink_cFv */
 void daAlink_c::setSwordModel() {
     field_0x2fde = 0xFF;
-    mEquipItem = EQUIP_SWORD;
+    mEquipItem = 0x103;
 
     mDoAud_bgmSetSwordUsing(1);
     field_0x2f94 = 0;
@@ -192,7 +192,7 @@ void daAlink_c::resetCombo(int param_0) {
 
 /* 800D1454-800D152C 0CBD94 00D8+00 1/1 0/0 0/0 .text            checkComboCnt__9daAlink_cFv */
 void daAlink_c::checkComboCnt() {
-    if ((mEquipItem == EQUIP_SWORD && mComboCutCount == 2) &&
+    if ((mEquipItem == 0x103 && mComboCutCount == 2) &&
         (checkAttentionLock() &&
          (mAtCps[0].ChkAtHit() || mAtCps[1].ChkAtHit() || mAtCps[2].ChkAtHit())))
     {
@@ -227,7 +227,7 @@ void daAlink_c::setCylAtParam(u32 i_AtType, dCcG_At_Spl i_spl, u8 i_hitMark, u8 
         } else {
             mtrl = dCcD_MTRL_NONE;
         }
-    } else if (mEquipItem == WATER_BOTTLE) {
+    } else if (mEquipItem == fpcNm_ITEM_WATER_BOTTLE) {
         mtrl = dCcD_MTRL_UNK_6;
     } else {
         mtrl = dCcD_MTRL_NONE;
@@ -366,11 +366,11 @@ BOOL daAlink_c::checkCutReverseAt(dCcD_GObjInf* param_0) {
 /* 800D19C8-800D1E1C 0CC308 0454+00 5/5 0/0 0/0 .text
  * changeCutReverseProc__9daAlink_cFQ29daAlink_c11daAlink_ANM   */
 BOOL daAlink_c::changeCutReverseProc(daAlink_c::daAlink_ANM param_0) {
-    if (checkCutReverseAt(&mAtCps[0]) || (mEquipItem != COPY_ROD && (checkCutReverseAt(&mAtCps[1]) || checkCutReverseAt(&mAtCps[2])))) {
+    if (checkCutReverseAt(&mAtCps[0]) || (mEquipItem != fpcNm_ITEM_COPY_ROD && (checkCutReverseAt(&mAtCps[1]) || checkCutReverseAt(&mAtCps[2])))) {
         return procCutReverseInit(param_0);
     }
 
-    if (checkNoResetFlg0(FLG0_UNK_40) || mEquipItem == COPY_ROD) {
+    if (checkNoResetFlg0(FLG0_UNK_40) || mEquipItem == fpcNm_ITEM_COPY_ROD) {
         cXyz sp28;
         Vec sp1C;
 
@@ -501,7 +501,7 @@ void daAlink_c::setCutDash(int param_0, int param_1) {
 /* 800D20B4-800D20FC 0CC9F4 0048+00 4/4 0/0 0/0 .text            checkForceSwordSwing__9daAlink_cFv
  */
 BOOL daAlink_c::checkForceSwordSwing() {
-    return mEquipItem == EQUIP_SWORD && swordSwingTrigger();
+    return mEquipItem == 0x103 && swordSwingTrigger();
 }
 
 /* 800D20FC-800D2188 0CCA3C 008C+00 7/7 0/0 0/0 .text            setComboReserb__9daAlink_cFv */

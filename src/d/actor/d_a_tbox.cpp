@@ -6,37 +6,40 @@
 #include "d/actor/d_a_tbox.h"
 #include "d/d_tresure.h"
 #include "d/d_item_data.h"
-#include "f_op/f_op_actor.h"
-#include "f_pc/f_pc_base.h"
 #include "d/actor/d_a_midna.h"
-#include "d/d_procname.h"
 #include "d/d_path.h"
 #include "d/d_bg_w.h"
 #include "SSystem/SComponent/c_math.h"
+#include "Z2AudioLib/Z2Instances.h"
+#include <cmath.h>
+
+UNK_REL_DATA
+
+UNK_BSS(1109)
+UNK_BSS(1107)
+UNK_BSS(1105)
+UNK_BSS(1104)
+UNK_BSS(1099)
+UNK_BSS(1097)
+UNK_BSS(1095)
+UNK_BSS(1094)
+UNK_BSS(1057)
+UNK_BSS(1055)
+UNK_BSS(1053)
+UNK_BSS(1052)
+UNK_BSS(1014)
+UNK_BSS(1012)
+UNK_BSS(1010)
+UNK_BSS(1009)
 
 /* 804961D4-804961EC 000000 0018+00 16/16 0/0 0/0 .rodata          l_cull_size_box */
-static f32 const l_cull_size_box[6] = { -150.0f, -10.0f, -150.0f, 150.0f, 300.0f, 100.0f };
+static const f32 l_cull_size_box[6] = { -150.0f, -10.0f, -150.0f, 150.0f, 300.0f, 100.0f };
 
 /* 804961EC-80496228 000018 003C+00 1/2 0/0 0/0 .rodata          l_cyl_info */
-static cM3dGCylS const l_cyl_info[3] = {
+static const cM3dGCylS l_cyl_info[3] = {
     { 0.0f, 0.0f, -40.0f, 40.0f, 60.0f },
     { 0.0f, 0.0f, -60.0f, 50.0f, 70.0f },
     { 0.0f, 0.0f, -60.0f, 70.0f, 80.0f },
-};
-
-/* 80496494-804964A0 000000 000C+00 4/4 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 804964A0-804964B4 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
 };
 
 /* 804964B4-804964B8 -00001 0004+00 2/4 0/0 0/0 .data            l_staff_name */
@@ -94,65 +97,75 @@ daTbox_ModelInfo* daTbox_c::getModelInfo() {
     return &l_modelInfo[getShapeType()];
 }
 
-/* ############################################################################################## */
 /* 80496238-80496244 000064 000C+00 0/1 0/0 0/0 .rodata          l_open_se_id */
-static u32 const l_open_se_id[3] = { 0x8001f, 0x80020, 0x80022 };
+static const u32 l_open_se_id[3] = { Z2SE_OBJ_TBOX_OPEN_A, Z2SE_OBJ_TBOX_OPEN_B, Z2SE_OBJ_TBOX_OPEN_C };
 
 /* 80490E6C-80491170 00022C 0304+00 1/1 0/0 0/0 .text            commonShapeSet__8daTbox_cFv */
 cPhs__Step daTbox_c::commonShapeSet() {
     daTbox_ModelInfo* model_info = getModelInfo();
-    J3DModelData* model_data =
-        (J3DModelData*)dComIfG_getObjectRes(model_info->mArcName, model_info->mModelResNo);
+
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(model_info->mArcName, model_info->mModelResNo);
+    JUT_ASSERT(0x191, modelData != 0);
+
     mpAnm = new mDoExt_bckAnm();
     if (mpAnm == NULL) {
         return cPhs_ERROR_e;
     }
-    J3DAnmTransform* bck_anm_transform =
-        (J3DAnmTransform*)dComIfG_getObjectRes(model_info->mArcName, model_info->mBckResNo);
-    if (!mpAnm->init(bck_anm_transform, 1, 0, 1.0f, 0, -1, false)) {
+
+    J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes(model_info->mArcName, model_info->mBckResNo);
+    if (!mpAnm->init(bck, TRUE, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1, false)) {
         return cPhs_ERROR_e;
     }
+
     mOpenSeId = l_open_se_id[getShapeType()];
     u32 model_flag = 0x80000;
     if (getShapeType() == SHAPE_BOSSKEY) {
         model_flag = 0;
     }
-    mpModel = mDoExt_J3DModel__create(model_data, model_flag, 0x11000084);
+
+    mpModel = mDoExt_J3DModel__create(modelData, model_flag, 0x11000084);
     if (mpModel == NULL) {
         return cPhs_ERROR_e;
     }
+
     if (!strcmp(dComIfGp_getStartStageName(), "D_MN01B")) {  // Deku Toad chest
-        J3DModelData* model_data2 =
-            (J3DModelData*)dComIfG_getObjectRes("Dalways", 15);
-        mpSlimeModel = mDoExt_J3DModel__create(model_data2, 0x80000, 0x11000084);
+        J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Dalways", 15);
+        JUT_ASSERT(0x1BD, modelData != 0);
+        mpSlimeModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
         if (mpSlimeModel == NULL) {
             return cPhs_ERROR_e;
         }
     }
+
     if (checkAppear()) {
-        J3DModelData* eff_model_data =
-            (J3DModelData*)dComIfG_getObjectRes(model_info->mArcName, model_info->mEffectResNo);
-        mpEffectModel = mDoExt_J3DModel__create(eff_model_data, 0x80000, 0x11000084);
+        J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(model_info->mArcName, model_info->mEffectResNo);
+        JUT_ASSERT(0x1CE, modelData != 0);
+        mpEffectModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
         if (mpEffectModel == NULL) {
             return cPhs_ERROR_e;
         }
+
         mpEffectAnm = new mDoExt_brkAnm();
         if (mpEffectAnm == NULL) {
             return cPhs_ERROR_e;
         }
-        J3DAnmTevRegKey* brk_data =
-            (J3DAnmTevRegKey*)dComIfG_getObjectRes(model_info->mArcName, model_info->mBrkResNo);
-        if (!mpEffectAnm->init(eff_model_data, brk_data, 1, 0, 0.0f, 0, -1)) {
+
+        J3DAnmTevRegKey* brk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(model_info->mArcName, model_info->mBrkResNo);
+        JUT_ASSERT(0x1E1, brk != 0);
+        if (!mpEffectAnm->init(modelData, brk, TRUE, J3DFrameCtrl::LOOP_ONCE_e, 0.0f, 0, -1)) {
             return cPhs_ERROR_e;
         }
     }
+
     mpModel->setBaseScale(scale);
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(home.angle.y);
     mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
+
     if (mpEffectModel != NULL) {
         mpEffectModel->setBaseTRMtx(mDoMtx_stack_c::get());
     }
+
     mDoMtx_copy(mDoMtx_stack_c::get(), mBgMtx);
     return cPhs_COMPLEATE_e;
 }
@@ -170,17 +183,21 @@ cPhs__Step daTbox_c::envShapeSet() {
 /* 804911C8-8049129C 000588 00D4+00 1/1 0/0 0/0 .text            bgCheckSet__8daTbox_cFv */
 cPhs__Step daTbox_c::bgCheckSet() {
     daTbox_ModelInfo* model_info = getModelInfo();
-    cBgD_t* cbgd = (cBgD_t*)dComIfG_getObjectRes(model_info->mArcName, model_info->mOpenDzbResNo);
+
+    cBgD_t* bgd = (cBgD_t*)dComIfG_getObjectRes(model_info->mArcName, model_info->mOpenDzbResNo);
+    JUT_ASSERT(0x210, bgd != 0);
     mpOpenBgW = new dBgW();
     if (mpOpenBgW == NULL) {
         return cPhs_ERROR_e;
     }
-    if (mpOpenBgW->Set(cbgd, 1, &mBgMtx) == 1) {
+
+    if (mpOpenBgW->Set(bgd, 1, &mBgMtx) == 1) {
         return cPhs_ERROR_e;
     }
+
     mpOpenBgW->SetCrrFunc(dBgS_MoveBGProc_TypicalRotY);
     mpOpenBgW->Move();
-    mpBgCollider = NULL;
+    mpBgCollision = NULL;
     return cPhs_COMPLEATE_e;
 }
 
@@ -197,7 +214,7 @@ void daTbox_c::lightReady() {
 
 /* 804912EC-8049135C 0006AC 0070+00 2/2 0/0 0/0 .text            setLightPos__8daTbox_cFv */
 void daTbox_c::setLightPos() {
-    cXyz offset = *(cXyz*)&l_light_offset; // temp workaround
+    cXyz offset(l_light_offset);
     cXyz pos;
     cLib_offsetPos(&pos, &current.pos, current.angle.y, &offset);
     mLight.mPosition.set(pos.x, pos.y, pos.z);
@@ -223,36 +240,44 @@ int daTbox_c::checkOpen() {
 
 /* 804913D0-8049141C 000790 004C+00 3/3 0/0 0/0 .text            clrDzb__8daTbox_cFv */
 void daTbox_c::clrDzb() {
-    if (mpBgCollider != NULL) {
-        dComIfG_Bgsp().Release(mpBgCollider);
-        mpBgCollider = NULL;
+    if (mpBgCollision != NULL) {
+        dComIfG_Bgsp().Release(mpBgCollision);
+        mpBgCollision = NULL;
     }
 }
 
 /* 8049141C-80491484 0007DC 0068+00 6/6 0/0 0/0 .text            setDzb__8daTbox_cFv */
 void daTbox_c::setDzb() {
     clrDzb();
+
     if (checkOpen()) {
-        mpBgCollider = mpOpenBgW;
+        mpBgCollision = mpOpenBgW;
+        // "Opened Check Set\n"
+        OS_REPORT("開いたチェックセット\n");
     } else {
-        mpBgCollider = mpBgW;
+        mpBgCollision = mpBgW;
+        // "Closed Check Set\n"
+        OS_REPORT("閉じたチェックセット\n");
     }
-    dComIfG_Bgsp().Regist(mpBgCollider, this);
+
+    bool rt = dComIfG_Bgsp().Regist(mpBgCollision, this);
+    JUT_ASSERT(0x285, !rt);
 }
 
 /* 80491484-80491544 000844 00C0+00 1/1 0/0 0/0 .text            surfaceProc__8daTbox_cFv */
 void daTbox_c::surfaceProc() {
-    if (mpBgCollider != NULL && flagCheck(0x20)) {
+    if (mpBgCollision != NULL && flagCheck(0x20)) {
         if (field_0x750 < -1.0f) {
             field_0x750 += 1.0f;
         } else {
             flagOff(0x20);
             field_0x750 = 0.0f;
         }
+
         mDoMtx_stack_c::transS(current.pos.x, current.pos.y + field_0x750, current.pos.z);
         mDoMtx_stack_c::YrotM(home.angle.y);
-        mDoMtx_copy(mDoMtx_stack_c::get(), mBgMtx);
-        mpBgCollider->Move();
+        MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
+        mpBgCollision->Move();
     }
 }
 
@@ -262,9 +287,11 @@ int daTbox_c::checkNormal() {
     if (func_type == 0 || func_type == 6 || func_type == 5 || func_type == 3) {
         return true;
     }
-    if (getSwNo() >= 0xc0) {
+
+    if (getSwNo() >= 0xC0) {
         return false;
     }
+
     if (dComIfGs_isSwitch(getSwNo(), fopAcM_GetRoomNo(this))) {
         return true;
     } else {
@@ -277,12 +304,15 @@ int daTbox_c::checkEnvEffectTbox() {
     if (getShapeType() == SHAPE_SMALL) {
         return false;
     }
-    if (getItemNo() == 0x40 || getItemNo() == 0x23 || getItemNo() == 0x24) {
+
+    if (getItemNo() == fpcNm_ITEM_BOOMERANG || getItemNo() == fpcNm_ITEM_MAP || getItemNo() == fpcNm_ITEM_COMPUS) {
         return true;
     }
+
     if (getShapeType() == SHAPE_BOSSKEY) {
         return true;
     }
+
     return dItem_data::chkFlag(getItemNo(), 0x40);
 }
 
@@ -291,6 +321,7 @@ u32 daTbox_c::calcHeapSize() {
     int shape_type = getShapeType();
     checkOpen();
     checkAppear();
+
     u32 heap_size = 0;
     switch (shape_type) {
         case SHAPE_SMALL:
@@ -303,6 +334,7 @@ u32 daTbox_c::calcHeapSize() {
             heap_size = 0x3060;
             break;
     }
+
     return heap_size;
 }
 
@@ -312,22 +344,26 @@ int daTbox_c::CreateHeap() {
     if (step != cPhs_COMPLEATE_e) {
         return false;
     }
+
     if (checkEnv()) {
         step = envShapeSet();
         if (step != cPhs_COMPLEATE_e) {
             return false;
         }
     }
+
     if (!checkOpen()) {
         step = effectShapeSet();
         if (step != cPhs_COMPLEATE_e) {
             return false;
         }
     }
+
     step = bgCheckSet();
     if (step != cPhs_COMPLEATE_e) {
         return false;
     }
+
     return true;
 }
 
@@ -335,9 +371,11 @@ int daTbox_c::CreateHeap() {
 void daTbox_c::CreateInit() {
     int func_type = getFuncType();
     flagClr();
+
     mpAnm->setPlaySpeed(0.0f);
     initPos();
     initAnm();
+
     shape_angle.z = 0;
     shape_angle.x = 0;
     current.angle.z = 0;
@@ -346,27 +384,29 @@ void daTbox_c::CreateInit() {
     mStts.Init(0xff, 0xff, this);
     mCyl.Set(l_cyl_src);
     mCyl.SetStts(&mStts);
-    ((cM3dGCyl*)&mCyl)->Set(l_cyl_info[getShapeType()]);
+    mCyl.cM3dGCyl::Set(l_cyl_info[getShapeType()]);
 
     if (mpBgW != NULL) {
         dComIfG_Bgsp().Release(mpBgW);
     }
+
     if (flagCheck(2)) {
         clrDzb();
-    } else if (mpBgCollider == NULL) {
+    } else if (mpBgCollision == NULL) {
         setDzb();
     }
 
     if (func_type == 5 || func_type == 6 || field_0x9cc == 1) {
         mAcchCir.SetWall(500.0f, 0.0f);
-        mAcch.Set(&current.pos, &old.pos, this, 1, &mAcchCir,
-                  &speed, &current.angle, &shape_angle);
+        mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
+                  fopAcM_GetSpeed_p(this), &current.angle, &shape_angle);
         gravity = -2.0f;
         field_0x97d = true;
         field_0x97c = true;
     } else if (func_type == 3) {
         mAcchCir.SetWall(500.0f, 0.0f);
-        mAcch.Set(&current.pos, &old.pos, this, 1, &mAcchCir, &speed, NULL, NULL);
+        mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
+                  fopAcM_GetSpeed_p(this), NULL, NULL);
     }
 
     mTboxNo = getTboxNo();
@@ -378,8 +418,10 @@ void daTbox_c::CreateInit() {
     }
 
     initBaseMtx();
+
     lightReady();
     mAllcolRatio = 1.0f;
+
     fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
     fopAcM_setCullSizeBox(this, l_cull_size_box[0], l_cull_size_box[1], l_cull_size_box[2],
                           l_cull_size_box[3], l_cull_size_box[4], l_cull_size_box[5]);
@@ -389,28 +431,44 @@ void daTbox_c::CreateInit() {
 void daTbox_c::initPos() {
     int func_type = getFuncType();
     if ((func_type == 6 && getSwType() == 15) || func_type == 7) {
-        dPath* path = dPath_GetRoomPath(getPathId(), -1);
+        dPath* path_p = dPath_GetRoomPath(getPathId(), -1);
+        JUT_ASSERT(0x3B7, path_p != 0);
+
+        if (func_type == 6 && path_p->m_num != 2 && path_p->m_num != 3) {
+            fopAcM_setWarningMessage(this, __FILE__, 0x3BD, "Num of Jump TBox's path point must be 2 or 3!");
+        }
+
         if (dComIfGs_isSwitch(getSwNo(), fopAcM_GetRoomNo(this))) {
-            dStage_dPnt_c* pnt = &path->m_points[path->m_num - 1];
+            dStage_dPnt_c* pnt = &path_p->m_points[path_p->m_num - 1];
             current.pos = pnt->m_position;
             home.pos = pnt->m_position;
         }
     } else if (func_type == 6 && getSwType() == 0 && checkDrop()) {
         cXyz pos;
-        calcJumpGoalAndAngle(&pos, &current.angle.y);
+        if (!calcJumpGoalAndAngle(&pos, &current.angle.y)) {
+            // "Jump Treasure Chest: Failed to get Jump Goal!\n"
+            OS_REPORT_ERROR("ジャンプ宝箱：ジャンプ先の取得に失敗しました！\n");
+        }
+
         current.pos = pos;
         home.pos = pos;
         getDropSAngle(&home.angle.y);
     }
-    cXyz vec1 = home.pos;
-    cXyz vec2 = home.pos;
-    vec1.y += 5.0f;
-    vec2.y -= 30.0f;
-    bool line_check = fopAcM_lc_c::lineCheck(&vec1, &vec2, this);
+
+    cXyz start = home.pos;
+    cXyz end = home.pos;
+    start.y += 5.0f;
+    end.y -= 30.0f;
+
+    bool line_check = fopAcM_lc_c::lineCheck(&start, &end, this);
     if ((line_check && fopAcM_lc_c::checkMoveBG()) || (!line_check && func_type != 3)) {
+        // "Treasure Chest position initialization: No BG within 25cm, waiting for MoveBG!\n"
+        OS_REPORT("宝箱位置初期設定：２５ｃｍ以内にＢＧが無いのでMoveBGを待ちます！\n");
         field_0x9cc = 1;
         mMode = MODE_EXEC_WAIT;
     } else {
+        // "Treasure Chest position initialization complete!\n"
+        OS_REPORT("宝箱位置初期設定完了！\n");
         field_0x9cc = 0;
         mMode = MODE_EXEC;
     }
@@ -419,6 +477,7 @@ void daTbox_c::initPos() {
 /* 80491BB0-80491F68 000F70 03B8+00 1/1 0/0 0/0 .text            initAnm__8daTbox_cFv */
 void daTbox_c::initAnm() {
     int func_type = getFuncType();
+
     if (checkOpen()) {
         mpAnm->setFrame(mpAnm->getEndFrame());
         if (func_type == 3) {
@@ -428,18 +487,20 @@ void daTbox_c::initAnm() {
                 shape_angle.z = 0;
                 shape_angle.x = 0;
             }
+
             home.pos = current.pos;
             attention_info.position = current.pos;
             eyePos = current.pos;
         }
-        setAction(&actionWait);
+
+        setAction(&daTbox_c::actionWait);
         int tbox_no = getTboxNo();
         dTres_c::offStatus(0, tbox_no, 1);
     } else if (!checkEnv()) {
-        setAction(&actionOpenWait);
+        setAction(&daTbox_c::actionOpenWait);
     } else if (checkNormal()) {
         if (func_type == 6 && !checkDrop()) {
-            setAction(&actionDropWait);
+            setAction(&daTbox_c::actionDropWait);
         } else if (func_type == 3) {
             if (fopAcM_isSwitch(this, getSwNo())) {
                 cXyz pos = current.pos;
@@ -448,41 +509,44 @@ void daTbox_c::initAnm() {
                     shape_angle.z = 0;
                     shape_angle.x = 0;
                 }
+
                 home.pos = current.pos;
                 attention_info.position = current.pos;
                 eyePos = current.pos;
-                setAction(&actionOpenWait);
+                setAction(&daTbox_c::actionOpenWait);
             } else {
-                setAction(&actionDropWaitForWeb);
+                setAction(&daTbox_c::actionDropWaitForWeb);
                 flagOn(2);
                 field_0x9fd = 1;
             }
         } else if (func_type == 0) {
-            setAction(&actionOpenWait);
+            setAction(&daTbox_c::actionOpenWait);
         } else {
-            setAction(&actionOpenWait);
+            setAction(&daTbox_c::actionOpenWait);
         }
+
         int tbox_no = getTboxNo();
         dTres_c::onStatus(0, tbox_no, 1);
     } else {
         int tbox_no = getTboxNo();
         dTres_c::offStatus(0, tbox_no, 1);
+
         switch (func_type) {
-            case 2:
-                setAction(&actionGenocide);
-                mTimer = 65;
-                flagOn(3);
-                field_0x75a = 120;
-                break;
-            case 1:
-                if (getSwType() == 15) {
-                    setAction(&actionSwOnWait);
-                } else {
-                    setAction(&actionSwOnWait2);
-                }
-                field_0x75a = 120;
-                flagOn(3);
-                break;
+        case 2:
+            setAction(&daTbox_c::actionGenocide);
+            mTimer = 65;
+            flagOn(3);
+            field_0x75a = 120;
+            break;
+        case 1:
+            if (getSwType() == 15) {
+                setAction(&daTbox_c::actionSwOnWait);
+            } else {
+                setAction(&daTbox_c::actionSwOnWait2);
+            }
+            field_0x75a = 120;
+            flagOn(3);
+            break;
         }
     }
 }
@@ -494,6 +558,7 @@ int daTbox_c::boxCheck() {
                                                            player->getKandelaarFlamePos() == NULL) {
         return false;
     }
+
     cXyz vec = player->attention_info.position - current.pos;
     f32 dist2_xz = vec.abs2XZ();
     f32 dist_y = fabsf(player->current.pos.y - current.pos.y);
@@ -510,24 +575,27 @@ void daTbox_c::demoProcOpen() {
     if (mDemoFrame < 1000) {
         mDemoFrame++;
     }
-    if (mDemoFrame == 0x98) {
+
+    if (mDemoFrame == 152) {
         dKy_efplight_cut(&mLight);
-    } else if (mDemoFrame > 0x70) {
+    } else if (mDemoFrame > 112) {
         lightDownProc();
     } else if (mDemoFrame > 2) {
         lightUpProc();
     }
-    if (mDemoFrame > 0x16) {
+
+    if (mDemoFrame > 22) {
         mLight.mPow = cM_ssin(mDemoFrame * 7500) * 21.0f + 70.0f;
     }
+
     lightColorProc();
     environmentProc();
 }
 
 /* 8049216C-8049233C 00152C 01D0+00 1/1 0/0 0/0 .text            lightColorProc__8daTbox_cFv */
-// very badly nonmatching
+// NONMATCHING - regalloc
 void daTbox_c::lightColorProc() {
-    static s32 const key_frame[7] = {0x00, 0x07, 0x1e, 0x25, 0x2c, 0x5c, 0x8c};
+    static int const key_frame[7] = {0x00, 0x07, 0x1e, 0x25, 0x2c, 0x5c, 0x8c};
     static GXColorS10 const key_color[7] = {
         {0x00, 0x00, 0x00, 0xff},
         {0xff, 0xc3, 0x8a, 0xff},
@@ -537,31 +605,37 @@ void daTbox_c::lightColorProc() {
         {0xff, 0xc3, 0x8a, 0xff},
         {0x00, 0x00, 0x00, 0xff},
     };
-    s32 next_key_frame, prev_key_frame, next_key_index, prev_key_index;
-    if (mDemoFrame < 0x8c) {
-        for (prev_key_index = 0; prev_key_index < 7; prev_key_index++) {
-            if (key_frame[prev_key_index] <= mDemoFrame && key_frame[prev_key_index + 1] > mDemoFrame) {
-                next_key_frame = key_frame[prev_key_index + 1];
-                prev_key_frame = key_frame[prev_key_index];
-                next_key_index = prev_key_index + 1;
+
+    int var_r25, var_r24, var_r28, var_r30;
+    if (mDemoFrame < 140) {
+        for (var_r30 = 0; var_r30 < 7; var_r30++) {
+            if (key_frame[var_r30] <= mDemoFrame && key_frame[var_r30 + 1] > mDemoFrame) {
+                var_r25 = key_frame[var_r30];
+                var_r24 = key_frame[var_r30 + 1];
+                var_r28 = var_r30 + 1;
                 break;
             }
         }
-        u32 num_frames = next_key_frame - prev_key_frame;
-        s16 step_r = fabs(key_color[prev_key_index + 1].r - key_color[prev_key_index].r) / num_frames;
-        s16 step_g = fabs(key_color[prev_key_index + 1].g - key_color[prev_key_index].g) / num_frames;
-        s16 step_b = fabs(key_color[prev_key_index + 1].b - key_color[prev_key_index].b) / num_frames;
-        cLib_chaseS(&mLight.mColor.r, key_color[next_key_index].r, step_r + 1);
-        cLib_chaseS(&mLight.mColor.g, key_color[next_key_index].g, step_g + 1);
-        cLib_chaseS(&mLight.mColor.b, key_color[next_key_index].b, step_b + 1);
+
+        int num_frames = var_r25 - var_r24;
+        s16 step_r = std::fabs<int>(key_color[var_r30 + 1].r - key_color[var_r30].r) / num_frames;
+        s16 step_g = std::fabs<int>(key_color[var_r30 + 1].g - key_color[var_r30].g) / num_frames;
+        s16 step_b = std::fabs<int>(key_color[var_r30 + 1].b - key_color[var_r30].b) / num_frames;
+        step_r++;
+        step_g++;
+        step_b++;
+
+        cLib_chaseS(&mLight.mColor.r, key_color[var_r28].r, step_r);
+        cLib_chaseS(&mLight.mColor.g, key_color[var_r28].g, step_g);
+        cLib_chaseS(&mLight.mColor.b, key_color[var_r28].b, step_b);
     }
 }
 
 /* 8049233C-80492398 0016FC 005C+00 1/1 0/0 0/0 .text            environmentProc__8daTbox_cFv */
 void daTbox_c::environmentProc() {
-    if (mDemoFrame > 0x8b) {
+    if (mDemoFrame > 139) {
         cLib_addCalc(&mAllcolRatio, 1.0f, 0.05f, 0.1f, 0.05f);
-    } else if (mDemoFrame > 0xa9) {
+    } else if (mDemoFrame > 169) {
         mAllcolRatio = 1.0f;
     }
 }
@@ -579,63 +653,78 @@ void daTbox_c::lightDownProc() {
 /* 80492408-80492450 0017C8 0048+00 2/2 0/0 0/0 .text            dropProcInitCall__8daTbox_cFv */
 void daTbox_c::dropProcInitCall() {
     switch (getSwType()) {
-        case 0:
-            dropProcInit2();
-            break;
-        case 15:
-            dropProcInit();
-            break;
+    case 0:
+        dropProcInit2();
+        break;
+    case 15:
+        dropProcInit();
+        break;
     }
 }
 
 /* 80492450-804928DC 001810 048C+00 1/1 0/0 0/0 .text            dropProcInit__8daTbox_cFv */
 void daTbox_c::dropProcInit() {
-    dPath* path = dPath_GetRoomPath(getPathId(), -1);
+    dPath* path_p = dPath_GetRoomPath(getPathId(), -1);
+    JUT_ASSERT(0x56A, path_p != 0);
+
     cXyz pos = current.pos;
-    cXyz pnt1 = path->m_points[1].m_position;
-    cXyz pnt2;
-    f32 temp;
-    if (path->m_num == 2) {
+    cXyz pnt1 = path_p->m_points[1].m_position;
+
+    f32 var_f30;
+    if (path_p->m_num == 2) {
         field_0x97c = false;
+
         f32 delta_y = pos.y - pnt1.y;
-        f32 abs_gravity = fabsf(fopAcM_GetGravity(this));
-        temp = JMAFastSqrt(2.0f * delta_y / abs_gravity);
-        speedF = pos.absXZ(pnt1) / temp;
+        f32 abs_gravity = std::fabsf(fopAcM_GetGravity(this));
+
+        var_f30 = JMAFastSqrt(2.0f * delta_y / abs_gravity);
+        speedF = pos.absXZ(pnt1) / var_f30;
         setRotAxis(&pos, &pnt1);
-    } else if (path->m_num == 3) {
-        pnt2 = path->m_points[2].m_position;
+    } else if (path_p->m_num == 3) {
+        cXyz pnt2(path_p->m_points[2].m_position);
+        if (pos.y < pnt2.y) {
+            OS_REPORT_ERROR("落下開始点より落下点の方が上にあります！！！\n");
+            JUT_ASSERT(0x58F, 0);
+        }
+
         f32 delta_y1 = pos.y - pnt2.y;
         f32 delta_y2 = pnt1.y - pos.y;
         f32 abs_gravity = fabsf(fopAcM_GetGravity(this));
         f32 dist_xz = pos.absXZ(pnt2);
+
         speedF = dist_xz * JMAFastSqrt(abs_gravity) /
             (JMAFastSqrt(2.0f * delta_y2) + JMAFastSqrt(2.0f * (delta_y1 + delta_y2)));
         speed.y = JMAFastSqrt(2.0f * abs_gravity * delta_y2);
         setRotAxis(&pos, &pnt1);
-        temp = JMAFastSqrt(2.0f / abs_gravity) *
+        var_f30 = JMAFastSqrt(2.0f / abs_gravity) *
             (JMAFastSqrt(delta_y1) + JMAFastSqrt(delta_y1 + delta_y2));
     }
-    field_0x9c8 = temp / 19.0f;
+
+    field_0x9c8 = var_f30 / 19.0f;
 }
 
 /* 804928DC-80492B10 001C9C 0234+00 2/2 0/0 0/0 .text calcJumpGoalAndAngle__8daTbox_cFP4cXyzPs */
 int daTbox_c::calcJumpGoalAndAngle(cXyz* i_pos, s16* i_angle) {
-    dPath* path = dPath_GetRoomPath(getPathId(), -1);
-    if (path != NULL) {
-        cXyz vec1 = current.pos;
-        cXyz vec2 = path->m_points[1].m_position;
-        f32 dist_xz = vec1.absXZ(vec2);
+    dPath* path_p = dPath_GetRoomPath(getPathId(), -1);
+    if (path_p != NULL) {
+        cXyz home_pos = home.pos;
+        cXyz vec2 = path_p->m_points[1].m_position;
+        f32 dist_xz = home_pos.absXZ(vec2);
+
         s16 angle;
         getDropSAngle(&angle);
-        cXyz vec3(0.0f, 0.0f, dist_xz);
+
+        cXyz goal(0.0f, 0.0f, dist_xz);
         mDoMtx_stack_c::YrotS(angle);
-        mDoMtx_stack_c::multVec(&vec3, &vec3);
-        vec3 += vec1;
-        vec3.y = vec2.y;
-        *i_pos = vec3;
+        mDoMtx_stack_c::multVec(&goal, &goal);
+        goal += home_pos;
+        goal.y = vec2.y;
+
+        *i_pos = goal;
         *i_angle = angle;
         return true;
     }
+
     return false;
 }
 
@@ -645,6 +734,7 @@ bool daTbox_c::getDropSAngle(s16* i_angle) {
         *i_angle = cM_deg2s((getDir() - 1) * 24 + 12);
         return true;
     }
+
     return false;
 }
 
@@ -681,25 +771,31 @@ void daTbox_c::setRotAxis(cXyz const* i_pos, cXyz const* i_goalPos) {
 void daTbox_c::dropProcInit2() {
     cXyz goal_pos;
     if (!calcJumpGoalAndAngle(&goal_pos, &current.angle.y)) {
+        // "Jump Treasure Chest: Failed to get jump goal!\n"
         OSReport_Error("ジャンプ宝箱：ジャンプ先の取得に失敗しました！\n");
     }
-    dPath* path = dPath_GetRoomPath(getPathId(), -1);
+
+    dPath* path_p = dPath_GetRoomPath(getPathId(), -1);
     f32 temp;
-    if (path->m_num == 2) {
+    if (path_p->m_num == 2) {
         cXyz vec1 = current.pos;
-        cXyz vec2 = path->m_points[1].m_position;
+        cXyz vec2 = path_p->m_points[1].m_position;
         field_0x97c = false;
         f32 delta_y = vec1.y - vec2.y;
         f32 abs_gravity = fabsf(fopAcM_GetGravity(this));
         temp = JMAFastSqrt(2.0f * delta_y / abs_gravity);
         speedF = vec1.absXZ(vec2) / temp;
         setRotAxis(&vec1, &goal_pos);
+    } else {
+        // "Falling Memory Treasure Chest: There's not 2 points!\n"
+        OS_REPORT_ERROR("落下方向記憶宝箱：ポイントが２点ではありません！\n");
+        JUT_ASSERT(0x641, 0);
     }
+
     field_0x9c8 = temp / 19.0f;
 }
 
 /* 80492F50-804932C0 002310 0370+00 2/2 0/0 0/0 .text            dropProc__8daTbox_cFv */
-// needs ~dBgS_ObjGngChk to be inlined
 void daTbox_c::dropProc() {
     if (field_0x9c8 != 0) {
         s16 temp = field_0x9c6;
@@ -718,23 +814,29 @@ void daTbox_c::dropProc() {
         field_0x9c4 = 0;
         mDoMtx_identity(field_0x988);
         speedF = 0.0f;
+
         cXyz vec1(2.0f, 2.0f, 2.0f);
         dComIfGp_particle_setPolyColor(0xe7, mAcch.m_gnd, &current.pos, &tevStr, &home.angle,
                                        &vec1, 0, NULL, fopAcM_GetRoomNo(this), NULL);
         dComIfGp_getVibration().StartShock(4, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
+
         u32 sound_id = 0;
-        cXyz vec2 = current.pos;
-        vec2.y += 10.0f;
+        cXyz chkpos = current.pos;
+        chkpos.y += 10.0f;
+
         dBgS_ObjGndChk gnd_chk;
-        gnd_chk.SetPos(&vec2);
+        gnd_chk.SetPos(&chkpos);
         gnd_chk.SetActorPid(base.id);
         dComIfG_Bgsp().GroundCross(&gnd_chk);
+
         int bg_index = gnd_chk.GetBgIndex();
         if (bg_index >= 0 && bg_index < 0x100) {
             sound_id = dComIfG_Bgsp().GetMtrlSndId(gnd_chk);
         }
-        mDoAud_seStart(0x8002f, &eyePos, sound_id, dComIfGp_getReverb(home.roomNo));
+
+        mDoAud_seStart(JA_SE_OBJ_BLOCK_FALL_NORMAL, &eyePos, sound_id, dComIfGp_getReverb(home.roomNo));
     }
+
     if (home.pos.abs(current.pos) > 400.0f) {
         field_0x97c = true;
         field_0x97d = true;
@@ -745,15 +847,18 @@ void daTbox_c::dropProc() {
 void daTbox_c::demoInitAppear() {
     mpEffectAnm->setFrame(0.0f);
     mpEffectAnm->setPlaySpeed(1.0f);
-    cXyz vec1(current.pos.x, current.pos.y + 55.0f, current.pos.z);
-    csXyz vec2 = home.angle;
+
+    cXyz particle_pos(current.pos.x, current.pos.y + 55.0f, current.pos.z);
+    csXyz particle_rot = home.angle;
+
     static u16 const eff_id[6] = {0x8840, 0x8841, 0x8842, 0x8843, 0x8844, 0x8845};
     for (u32 i = 0; i < 6; i++) {
-        dComIfGp_particle_set(eff_id[i], &vec1, &vec2, &scale, 0xff, NULL, -1, NULL, NULL, NULL);
+        dComIfGp_particle_set(eff_id[i], &particle_pos, &particle_rot, &scale, 0xff, NULL, -1, NULL, NULL, NULL);
     }
+
     flagOff(0x40);
     flagOn(1);
-    fopAcM_seStart(this, 0x801fd, 0);
+    fopAcM_seStart(this, Z2SE_OBJ_T_BOX_EMERGE, 0);
 }
 
 /* 80493484-80493518 002844 0094+00 1/1 0/0 0/0 .text            demoProcAppear__8daTbox_cFv */
@@ -761,9 +866,11 @@ void daTbox_c::demoProcAppear() {
     if (field_0x75a != 0) {
         field_0x75a--;
     }
+
     if (mpEffectAnm->getFrame() == 110.0f) {
         flagOff(1);
     }
+
     if (mpEffectAnm->play()) {
         mpEffectAnm->setPlaySpeed(0.0f);
         dComIfGp_evmng_cutEnd(mStaffId);
@@ -773,117 +880,133 @@ void daTbox_c::demoProcAppear() {
 /* 80493518-80493838 0028D8 0320+00 7/7 0/0 0/0 .text            demoProc__8daTbox_cFv */
 int daTbox_c::demoProc() {
     static char* action_table[] = {"WAIT", "OPEN", "APPEAR", "OPEN_SHORT", "DROP"};
-    int act_idx = dComIfGp_evmng_getMyActIdx(mStaffId, action_table, 5, 0, 0);
+    int act_idx = dComIfGp_evmng_getMyActIdx(mStaffId, action_table, ARRAY_SIZE(action_table), 0, 0);
     int tbox_no;
+
     if (dComIfGp_evmng_getIsAddvance(mStaffId)) {
         field_0x758 = false;
         switch (act_idx) {
-            case 1:
-                OpenInit();
-                tbox_no = getTboxNo();
-                dTres_c::offStatus(0, tbox_no, 1);
-                break;
-            case 2:
-                flagOn(0x20);
-                field_0x750 = -130.0f;
-                setDzb();
-                flagOff(2);
-                tbox_no = getTboxNo();
-                dTres_c::onStatus(0, tbox_no, 1);
-                demoInitAppear();
-                break;
-            case 3:
-                OpenInit_com();
-                tbox_no = getTboxNo();
-                dTres_c::offStatus(0, tbox_no, 1);
-                break;
-            case 4:
-                field_0x9ca = 7;
-        }
-    }
-    switch (act_idx) {
-        case 2:
-            demoProcAppear();
-            surfaceProc();
-            break;
         case 1:
-            if (field_0x758) {
-                dComIfGp_evmng_cutEnd(mStaffId);
-            } else {
-                if (field_0x97e != 0) {
-                    mpAnm->setFrame(daPy_getPlayerActorClass()->getBaseAnimeFrame());
-                }
-                mpAnm->play();
-                if (mpAnm->getFrameCtrl()->checkState(1)) {
-                    field_0x758 = true;
-                    dComIfGp_evmng_cutEnd(mStaffId);
-                }
-            }
-            field_0x97e++;
+            OpenInit();
+            tbox_no = getTboxNo();
+            dTres_c::offStatus(0, tbox_no, 1);
+            break;
+        case 2:
+            flagOn(0x20);
+            field_0x750 = -130.0f;
+            setDzb();
+            flagOff(2);
+            tbox_no = getTboxNo();
+            dTres_c::onStatus(0, tbox_no, 1);
+            demoInitAppear();
             break;
         case 3:
-            if (field_0x758) {
-                dComIfGp_evmng_cutEnd(mStaffId);
-            } else {
-                if (field_0x97e != 0) {
-                    mpAnm->setFrame(daPy_getPlayerActorClass()->getBaseAnimeFrame());
-                }
-                mpAnm->play();
-                if (mpAnm->getFrameCtrl()->checkState(1)) {
-                    field_0x758 = true;
-                    dComIfGp_evmng_cutEnd(mStaffId);
-                }
-            }
-            field_0x97e++;
+            OpenInit_com();
+            tbox_no = getTboxNo();
+            dTres_c::offStatus(0, tbox_no, 1);
             break;
         case 4:
-            if (field_0x9ca > -2) {
-                field_0x9ca--;
-            }
-            if (field_0x9ca == 0) {
-                dropProcInitCall();
-            } else if (field_0x9ca < 0) {
-                dropProc();
-                if (mAcch.ChkGroundHit() && field_0x97d) {
-                    dComIfGp_evmng_cutEnd(mStaffId);
-                }
-            }
-            break;
-        default:
-            dComIfGp_evmng_cutEnd(mStaffId);
-            break;
+            field_0x9ca = 7;
+        }
     }
+
+    switch (act_idx) {
+    case 2:
+        demoProcAppear();
+        surfaceProc();
+        break;
+    case 1:
+        if (field_0x758) {
+            dComIfGp_evmng_cutEnd(mStaffId);
+        } else {
+            if (field_0x97e != 0) {
+                mpAnm->setFrame(daPy_getPlayerActorClass()->getBaseAnimeFrame());
+            }
+
+            mpAnm->play();
+
+            if (mpAnm->getFrameCtrl()->checkState(1)) {
+                field_0x758 = true;
+                dComIfGp_evmng_cutEnd(mStaffId);
+            }
+        }
+
+        field_0x97e++;
+        break;
+    case 3:
+        if (field_0x758) {
+            dComIfGp_evmng_cutEnd(mStaffId);
+        } else {
+            if (field_0x97e != 0) {
+                mpAnm->setFrame(daPy_getPlayerActorClass()->getBaseAnimeFrame());
+            }
+
+            mpAnm->play();
+
+            if (mpAnm->getFrameCtrl()->checkState(1)) {
+                field_0x758 = true;
+                dComIfGp_evmng_cutEnd(mStaffId);
+            }
+        }
+
+        field_0x97e++;
+        break;
+    case 4:
+        if (field_0x9ca > -2) {
+            field_0x9ca--;
+        }
+
+        if (field_0x9ca == 0) {
+            dropProcInitCall();
+        } else if (field_0x9ca < 0) {
+            dropProc();
+            if (mAcch.ChkGroundHit() && field_0x97d) {
+                dComIfGp_evmng_cutEnd(mStaffId);
+            }
+        }
+        break;
+    default:
+        dComIfGp_evmng_cutEnd(mStaffId);
+        break;
+    }
+
     if (flagCheck(0x10)) {
         demoProcOpen();
     }
+
     if (flagCheck(8)) {
         dKy_set_allcol_ratio(mAllcolRatio);
     }
+
     return false;
 }
 
 /* 80493838-804939A4 002BF8 016C+00 2/2 0/0 0/0 .text            OpenInit_com__8daTbox_cFv */
 void daTbox_c::OpenInit_com() {
     field_0x97e = 0;
+
     if (!field_0x718) {
         dComIfGs_onTbox(getTboxNo());
         setDzb();
-        if (mpBgCollider != NULL) {
-            mpBgCollider->Move();
+        if (mpBgCollision != NULL) {
+            mpBgCollision->Move();
         }
     }
+
     if (checkEnvEffectTbox()) {
         mAllcolRatio = 0.55f;
         dKy_set_allcol_ratio(mAllcolRatio);
         flagOn(8);
         dKy_efplight_set(&mLight);
+
         if (getShapeType() == SHAPE_LARGE) {
             J3DAnmTransform* bck =
                 (J3DAnmTransform*)dComIfG_getObjectRes(getModelInfo()->mArcName, 9);
-            mpAnm->init(bck, 1, 0, 1.0f, 0, bck->getFrameMax(), true);
-            mOpenSeId = 0x80021;
+            mpAnm->init(bck, TRUE, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, bck->getFrameMax(), true);
+            mOpenSeId = Z2SE_OBJ_TBOX_OPEN_B_SLOW;
         }
     }
+
     mpAnm->setPlaySpeed(0.0f);
     fopAcM_seStart(this, mOpenSeId, 0);
 }
@@ -908,41 +1031,44 @@ int daTbox_c::actionDemo() {
         if (field_0x718) {
             mpAnm->setPlaySpeed(0.0f);
             mpAnm->setFrame(0.0f);
-            setAction(&actionOpenWait);
+            setAction(&daTbox_c::actionOpenWait);
         } else {
-            setAction(&actionWait);
+            setAction(&daTbox_c::actionWait);
         }
+
         dComIfGp_event_reset();
         dKy_set_allcol_ratio(1.0f);
         flagOff(0x18);
         dComIfGp_event_setItemPartner(NULL);
-        int item_no = getItemNo();
-        if (item_no == 0x21) {
+
+        if (getItemNo() == fpcNm_ITEM_KAKERA_HEART) {
             if (!strcmp(dComIfGp_getStartStageName(), "F_SP121")) {
                 if (fopAcM_GetRoomNo(this) == 0) {
                     switch (getTboxNo()) {
-                        case 3:
-                            dComIfGs_setEventReg(0xedff, dComIfGs_getEventReg(0xedff) | 0x40);
-                            break;
-                        case 2:
-                            dComIfGs_setEventReg(0xebff, dComIfGs_getEventReg(0xebff) | 0x10);
-                            break;
-                        default:
-                            OSReport_Error("ハートの欠片：想定外の配置です。イベントビットセットできませんでした！\n");
-                            break;
+                    case 3:
+                        dComIfGs_setEventReg(0xedff, dComIfGs_getEventReg(0xedff) | 0x40);
+                        break;
+                    case 2:
+                        dComIfGs_setEventReg(0xebff, dComIfGs_getEventReg(0xebff) | 0x10);
+                        break;
+                    default:
+                        // "Piece of Heart: Unexpected configuration. Couldn't set Event Bit!\n"
+                        OSReport_Error("ハートの欠片：想定外の配置です。イベントビットセットできませんでした！\n");
+                        break;
                     }
                 } else if (fopAcM_GetRoomNo(this) == 3) {
                     switch (getTboxNo()) {
-                        case 5:
-                            dComIfGs_setEventReg(0xf0ff, dComIfGs_getEventReg(0xf0ff) | 0x80);
-                            break;
-                        default:
-                            OSReport_Error("ハートの欠片：想定外の配置です。イベントビットセットできませんでした！\n");
-                            break;
+                    case 5:
+                        dComIfGs_setEventReg(0xf0ff, dComIfGs_getEventReg(0xf0ff) | 0x80);
+                        break;
+                    default:
+                        // "Piece of Heart: Unexpected configuration. Couldn't set Event Bit!\n"
+                        OSReport_Error("ハートの欠片：想定外の配置です。イベントビットセットできませんでした！\n");
+                        break;
                     }
                 }
             } else if (!strcmp(dComIfGp_getStartStageName(), "F_SP109")) {
-                if (fopAcM_GetRoomNo(this) == 0 && getTboxNo() == 0x15) {
+                if (fopAcM_GetRoomNo(this) == 0 && getTboxNo() == 21) {
                     dComIfGs_setEventReg(0xefff, dComIfGs_getEventReg(0xefff) | 0x10);
                 }
             }
@@ -950,19 +1076,21 @@ int daTbox_c::actionDemo() {
     } else {
         demoProc();
     }
+
     field_0x9f4++;
     return true;
 }
 
 /* 80493CC8-80493D90 003088 00C8+00 2/0 0/0 0/0 .text            actionDemo2__8daTbox_cFv */
 int daTbox_c::actionDemo2() {
-    if ((getEvent() == 0xff && dComIfGp_evmng_endCheck("DEFAULT_TREASURE_APPEAR")) ||
-                (getEvent() != 0xff && dComIfGp_evmng_endCheck(mEventId))) {
-        setAction(&actionOpenWait);
+    if ((getEvent() == 0xFF && dComIfGp_evmng_endCheck("DEFAULT_TREASURE_APPEAR")) ||
+                (getEvent() != 0xFF && dComIfGp_evmng_endCheck(mEventId))) {
+        setAction(&daTbox_c::actionOpenWait);
         dComIfGp_event_reset();
     } else {
         demoProc();
     }
+
     return true;
 }
 
@@ -970,10 +1098,11 @@ int daTbox_c::actionDemo2() {
 int daTbox_c::actionDropDemo() {
     if (mEventId != -1) {
         if (dComIfGp_evmng_endCheck(mEventId)) {
-            setAction(&actionOpenWait);
+            setAction(&daTbox_c::actionOpenWait);
             dComIfGp_event_reset();
             setDzb();
             home.pos = current.pos;
+
             if (field_0x9c9 != 0) {
                 camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
                 camera->mCamera.Start();
@@ -986,7 +1115,7 @@ int daTbox_c::actionDropDemo() {
     } else {
         dropProc();
         if (mAcch.ChkGroundLanding() && field_0x97d) {
-            setAction(&actionOpenWait);
+            setAction(&daTbox_c::actionOpenWait);
             home.pos = current.pos;
         }
     }
@@ -994,276 +1123,359 @@ int daTbox_c::actionDropDemo() {
 }
 
 /* 80493ED8-80493FE8 003298 0110+00 5/3 0/0 0/0 .text            getBombItemNo__8daTbox_cFUcUc */
-u8 daTbox_c::getBombItemNo(u8 i_bombType, u8 i_slot) {
-    u8 item_no = i_slot;
+u8 daTbox_c::getBombItemNo(u8 i_bombType, u8 i_itemNo) {
+    u8 new_item_no = i_itemNo;
     switch (i_bombType) {
-        case 0x70:
-            switch (i_slot) {
-                case 0x16:
-                case 0x19:
-                case 0x1a:
-                case 0x1c:
-                    item_no = 0xa;
-                    break;
-                case 0x17:
-                case 0x1b:
-                    item_no = 0xb;
-                    break;
-                case 0x18:
-                    item_no = 0xc;
-                    break;
-                case 0x1d:
-                    item_no = 0xd;
-                    break;
-            }
+    case fpcNm_ITEM_NORMAL_BOMB:
+        switch (i_itemNo) {
+        case fpcNm_ITEM_WATER_BOMB_5:
+        case fpcNm_ITEM_WATER_BOMB_30:
+        case fpcNm_ITEM_BOMB_INSECT_5:
+        case fpcNm_ITEM_BOMB_INSECT_20:
+            new_item_no = fpcNm_ITEM_BOMB_5;
             break;
-        case 0x71:
-            switch (i_slot) {
-                case 0x1c:
-                case 0x1d:
-                    item_no = 0x19;
-                    break;
-                case 0xa:
-                case 0x1a:
-                    item_no = 0x16;
-                    break;
-                case 0xb:
-                case 0x1b:
-                    item_no = 0x17;
-                    break;
-                case 0xc:
-                case 0xd:
-                    item_no = 0x18;
-                    break;
-            }
+        case fpcNm_ITEM_WATER_BOMB_10:
+        case fpcNm_ITEM_BOMB_INSECT_10:
+            new_item_no = fpcNm_ITEM_BOMB_10;
             break;
-        case 0x72:
-            switch (i_slot) {
-                case 0x19:
-                    item_no = 0x1c;
-                    break;
-                case 0xa:
-                case 0x16:
-                    item_no = 0x1a;
-                    break;
-                case 0xb:
-                case 0xc:
-                case 0xd:
-                case 0x17:
-                case 0x18:
-                    item_no = 0x1b;
-                    break;
-            }
+        case fpcNm_ITEM_WATER_BOMB_20:
+            new_item_no = fpcNm_ITEM_BOMB_20;
             break;
-        case 0x50:
+        case fpcNm_ITEM_BOMB_INSECT_30:
+            new_item_no = fpcNm_ITEM_BOMB_30;
             break;
+        }
+        break;
+    case fpcNm_ITEM_WATER_BOMB:
+        switch (i_itemNo) {
+        case fpcNm_ITEM_BOMB_INSECT_20:
+        case fpcNm_ITEM_BOMB_INSECT_30:
+            new_item_no = fpcNm_ITEM_WATER_BOMB_30;
+            break;
+        case fpcNm_ITEM_BOMB_5:
+        case fpcNm_ITEM_BOMB_INSECT_5:
+            new_item_no = fpcNm_ITEM_WATER_BOMB_5;
+            break;
+        case fpcNm_ITEM_BOMB_10:
+        case fpcNm_ITEM_BOMB_INSECT_10:
+            new_item_no = fpcNm_ITEM_WATER_BOMB_10;
+            break;
+        case fpcNm_ITEM_BOMB_20:
+        case fpcNm_ITEM_BOMB_30:
+            new_item_no = fpcNm_ITEM_WATER_BOMB_20;
+            break;
+        }
+        break;
+    case fpcNm_ITEM_POKE_BOMB:
+        switch (i_itemNo) {
+        case fpcNm_ITEM_WATER_BOMB_30:
+            new_item_no = fpcNm_ITEM_BOMB_INSECT_20;
+            break;
+        case fpcNm_ITEM_BOMB_5:
+        case fpcNm_ITEM_WATER_BOMB_5:
+            new_item_no = fpcNm_ITEM_BOMB_INSECT_5;
+            break;
+        case fpcNm_ITEM_BOMB_10:
+        case fpcNm_ITEM_BOMB_20:
+        case fpcNm_ITEM_BOMB_30:
+        case fpcNm_ITEM_WATER_BOMB_10:
+        case fpcNm_ITEM_WATER_BOMB_20:
+            new_item_no = fpcNm_ITEM_BOMB_INSECT_10;
+            break;
+        }
+        break;
+    case fpcNm_ITEM_BOMB_BAG_LV1:
+        break;
     }
-    return item_no;
+
+    // "Bomb Check\n"
+    OS_REPORT("\x1b[43;30m爆弾チェック\n");
+    if (i_itemNo == new_item_no) {
+        // "Get bomb %d as is\n"
+        OS_REPORT("爆弾 %d をそのままゲットします\n\x1b[m", new_item_no);
+    } else {
+        // "Bomb %d replaced by %d\n"
+        OS_REPORT("爆弾 %d を %d に差し替えました\n\x1b[m", i_itemNo, new_item_no);
+    }
+
+    return new_item_no;
 }
 
 /* 80493FE8-80494144 0033A8 015C+00 1/1 0/0 0/0 .text            getBombItemNo2__8daTbox_cFUcUcUc */
-u8 daTbox_c::getBombItemNo2(u8 i_bombType1, u8 i_bombType2, u8 i_slot) {
-    u8 temp, item_no = i_slot;
-    switch (i_slot) {
-        case 0xa:
-        case 0xb:
-        case 0xc:
-        case 0xd:
-            temp = 0x70;
-            break;
-        case 0x16:
-        case 0x17:
-        case 0x18:
-        case 0x19:
-            temp = 0x71;
-            break;
-        case 0x1a:
-        case 0x1b:
-        case 0x1c:
-        case 0x1d:
-            temp = 0x72;
-            break;
+u8 daTbox_c::getBombItemNo2(u8 i_bombType1, u8 i_bombType2, u8 i_itemNo) {
+    u8 new_type, new_item_no = i_itemNo;
+    switch (i_itemNo) {
+    case fpcNm_ITEM_BOMB_5:
+    case fpcNm_ITEM_BOMB_10:
+    case fpcNm_ITEM_BOMB_20:
+    case fpcNm_ITEM_BOMB_30:
+        new_type = fpcNm_ITEM_NORMAL_BOMB;
+        break;
+    case fpcNm_ITEM_WATER_BOMB_5:
+    case fpcNm_ITEM_WATER_BOMB_10:
+    case fpcNm_ITEM_WATER_BOMB_20:
+    case fpcNm_ITEM_WATER_BOMB_30:
+        new_type = fpcNm_ITEM_WATER_BOMB;
+        break;
+    case fpcNm_ITEM_BOMB_INSECT_5:
+    case fpcNm_ITEM_BOMB_INSECT_10:
+    case fpcNm_ITEM_BOMB_INSECT_20:
+    case fpcNm_ITEM_BOMB_INSECT_30:
+        new_type = fpcNm_ITEM_POKE_BOMB;
+        break;
     }
 
-    if (i_bombType1 != temp && i_bombType2 != temp && i_bombType1 != 0x50 && i_bombType2 != 0x50) {
-        switch (temp) {
-            case 0x70:
-                if (i_bombType1 == 0x71 || i_bombType2 == 0x71) {
-                    item_no = getBombItemNo(0x71, i_slot);
-                } else {
-                    item_no = getBombItemNo(0x72, i_slot);
-                }
-                break;
-            case 0x71:
-                if (i_bombType1 == 0x70 || i_bombType2 == 0x70) {
-                    item_no = getBombItemNo(0x70, i_slot);
-                } else {
-                    item_no = getBombItemNo(0x72, i_slot);
-                }
-                break;
-            case 0x72:
-                if (i_bombType1 == 0x70 || i_bombType2 == 0x70) {
-                    item_no = getBombItemNo(0x70, i_slot);
-                } else {
-                    item_no = getBombItemNo(0x71, i_slot);
-                }
-                break;
+    // "Bomb Check - 2 Bags\n"
+    OS_REPORT("\x1b[43;30m爆弾チェック・袋２個\n");
+    // "Bomb Type is %d\n"
+    OS_REPORT("爆弾の種別は %d です\n", new_type);
+
+    if (i_bombType1 == new_type || i_bombType2 == new_type) {
+        // "There's a bag with the same bomb in it\n"
+        OS_REPORT("同じ爆弾入りの袋があるのでそこに入れます\n");
+    } else if (i_bombType1 == fpcNm_ITEM_BOMB_BAG_LV1 || i_bombType2 == fpcNm_ITEM_BOMB_BAG_LV1) {
+        // "This is an empty bag so put it in\n"
+        OS_REPORT("空の袋があるのでそこに入れます\n");
+    } else {
+        switch (new_type) {
+        case fpcNm_ITEM_NORMAL_BOMB:
+            if (i_bombType1 == fpcNm_ITEM_WATER_BOMB || i_bombType2 == fpcNm_ITEM_WATER_BOMB) {
+                new_item_no = getBombItemNo(fpcNm_ITEM_WATER_BOMB, i_itemNo);
+            } else {
+                new_item_no = getBombItemNo(fpcNm_ITEM_POKE_BOMB, i_itemNo);
+            }
+            break;
+        case fpcNm_ITEM_WATER_BOMB:
+            if (i_bombType1 == fpcNm_ITEM_NORMAL_BOMB || i_bombType2 == fpcNm_ITEM_NORMAL_BOMB) {
+                new_item_no = getBombItemNo(fpcNm_ITEM_NORMAL_BOMB, i_itemNo);
+            } else {
+                new_item_no = getBombItemNo(fpcNm_ITEM_POKE_BOMB, i_itemNo);
+            }
+            break;
+        case fpcNm_ITEM_POKE_BOMB:
+            if (i_bombType1 == fpcNm_ITEM_NORMAL_BOMB || i_bombType2 == fpcNm_ITEM_NORMAL_BOMB) {
+                new_item_no = getBombItemNo(fpcNm_ITEM_NORMAL_BOMB, i_itemNo);
+            } else {
+                new_item_no = getBombItemNo(fpcNm_ITEM_WATER_BOMB, i_itemNo);
+            }
+            break;
         }
     }
-    return item_no;
+
+    OS_REPORT("\x1b[m\n");
+    return new_item_no;
 }
 
 /* 80494144-804942CC 003504 0188+00 1/1 0/0 0/0 .text            getBombItemNo3__8daTbox_cFUcUcUcUc
  */
-u8 daTbox_c::getBombItemNo3(u8 i_bombType1, u8 i_bombType2, u8 i_bombType3, u8 i_slot) {
-    u8 temp, item_no = i_slot;
-    switch (i_slot) {
-        case 0xa:
-        case 0xb:
-        case 0xc:
-        case 0xd:
-            temp = 0x70;
-            break;
-        case 0x16:
-        case 0x17:
-        case 0x18:
-        case 0x19:
-            temp = 0x71;
-            break;
-        case 0x1a:
-        case 0x1b:
-        case 0x1c:
-        case 0x1d:
-            temp = 0x72;
-            break;
+u8 daTbox_c::getBombItemNo3(u8 i_bombType1, u8 i_bombType2, u8 i_bombType3, u8 i_itemNo) {
+    u8 new_type, new_item_no = i_itemNo;
+    switch (i_itemNo) {
+    case fpcNm_ITEM_BOMB_5:
+    case fpcNm_ITEM_BOMB_10:
+    case fpcNm_ITEM_BOMB_20:
+    case fpcNm_ITEM_BOMB_30:
+        new_type = fpcNm_ITEM_NORMAL_BOMB;
+        break;
+    case fpcNm_ITEM_WATER_BOMB_5:
+    case fpcNm_ITEM_WATER_BOMB_10:
+    case fpcNm_ITEM_WATER_BOMB_20:
+    case fpcNm_ITEM_WATER_BOMB_30:
+        new_type = fpcNm_ITEM_WATER_BOMB;
+        break;
+    case fpcNm_ITEM_BOMB_INSECT_5:
+    case fpcNm_ITEM_BOMB_INSECT_10:
+    case fpcNm_ITEM_BOMB_INSECT_20:
+    case fpcNm_ITEM_BOMB_INSECT_30:
+        new_type = fpcNm_ITEM_POKE_BOMB;
+        break;
     }
 
-    if (i_bombType1 != temp && i_bombType2 != temp && i_bombType3 != temp &&
-                i_bombType1 != 0x50 && i_bombType2 != 0x50 && i_bombType3 != 0x50) {
-        switch (temp) {
-            case 0x70:
-                if (i_bombType1 == 0x71 || i_bombType2 == 0x71 || i_bombType3 == 0x71) {
-                    item_no = getBombItemNo(0x71, i_slot);
-                } else {
-                    item_no = getBombItemNo(0x72, i_slot);
-                }
-                break;
-            case 0x71:
-                if (i_bombType1 == 0x70 || i_bombType2 == 0x70 || i_bombType3 == 0x70) {
-                    item_no = getBombItemNo(0x70, i_slot);
-                } else {
-                    item_no = getBombItemNo(0x72, i_slot);
-                }
-                break;
-            case 0x72:
-                if (i_bombType1 == 0x70 || i_bombType2 == 0x70 || i_bombType3 == 0x70) {
-                    item_no = getBombItemNo(0x70, i_slot);
-                } else {
-                    item_no = getBombItemNo(0x71, i_slot);
-                }
-                break;
+    // "Bomb Check - 3 Bags\n"
+    OS_REPORT("\x1b[43;30m爆弾チェック・袋３個\n");
+    // "Bomb Type is %d\n"
+    OS_REPORT("爆弾の種別は %d です\n", new_type);
+
+    if (i_bombType1 == new_type || i_bombType2 == new_type || i_bombType3 == new_type) {
+        // "There's a bag with the same bomb in it\n"
+        OS_REPORT("同じ爆弾入りの袋があるのでそこに入れます\n");
+    } else if (i_bombType1 == fpcNm_ITEM_BOMB_BAG_LV1 || i_bombType2 == fpcNm_ITEM_BOMB_BAG_LV1 || i_bombType3 == fpcNm_ITEM_BOMB_BAG_LV1) {
+        // "This is an empty bag so put it in\n"
+        OS_REPORT("空の袋があるのでそこに入れます\n");
+    } else {
+        switch (new_type) {
+        case fpcNm_ITEM_NORMAL_BOMB:
+            if (i_bombType1 == fpcNm_ITEM_WATER_BOMB || i_bombType2 == fpcNm_ITEM_WATER_BOMB || i_bombType3 == fpcNm_ITEM_WATER_BOMB) {
+                new_item_no = getBombItemNo(fpcNm_ITEM_WATER_BOMB, i_itemNo);
+            } else {
+                new_item_no = getBombItemNo(fpcNm_ITEM_POKE_BOMB, i_itemNo);
+            }
+            break;
+        case fpcNm_ITEM_WATER_BOMB:
+            if (i_bombType1 == fpcNm_ITEM_NORMAL_BOMB || i_bombType2 == fpcNm_ITEM_NORMAL_BOMB || i_bombType3 == fpcNm_ITEM_NORMAL_BOMB) {
+                new_item_no = getBombItemNo(fpcNm_ITEM_NORMAL_BOMB, i_itemNo);
+            } else {
+                new_item_no = getBombItemNo(fpcNm_ITEM_POKE_BOMB, i_itemNo);
+            }
+            break;
+        case fpcNm_ITEM_POKE_BOMB:
+            if (i_bombType1 == fpcNm_ITEM_NORMAL_BOMB || i_bombType2 == fpcNm_ITEM_NORMAL_BOMB || i_bombType3 == fpcNm_ITEM_NORMAL_BOMB) {
+                new_item_no = getBombItemNo(fpcNm_ITEM_NORMAL_BOMB, i_itemNo);
+            } else {
+                new_item_no = getBombItemNo(fpcNm_ITEM_WATER_BOMB, i_itemNo);
+            }
+            break;
         }
     }
-    return item_no;
+
+    OS_REPORT("\x1b[m\n");
+    return new_item_no;
 }
 
 /* 804942CC-804945C8 00368C 02FC+00 1/1 0/0 0/0 .text            getBombItemNoMain__8daTbox_cFUc */
-// nonmatching
-u8 daTbox_c::getBombItemNoMain(u8 i_slot) {
-    u8 bomb_type[3], bomb_max[3], bomb_num[3], bomb_count;
+u8 daTbox_c::getBombItemNoMain(u8 i_itemNo) {
+    u8 bomb_type[3], bomb_max[3], bomb_num[3];
+    u8 bag_count = 0;
+
     for (int i = 0; i < 3; i++) {
-        bomb_type[i] = dComIfGs_getItem(0xf + i, false);
+        bomb_type[i] = dComIfGs_getItem(SLOT_15 + i, false);
         bomb_max[i] = dComIfGs_getBombMax(bomb_type[i]);
         bomb_num[i] = dComIfGs_getBombNum(i);
-        if (bomb_type[i] != 0xff) {
-            bomb_count++;
+
+        if (bomb_type[i] != fpcNm_ITEM_NONE) {
+            bag_count++;
         }
     }
 
-    u8 item_no = i_slot;
-    switch (bomb_count) {
-        case 0:
-            break;
-        case 1:
-            item_no = getBombItemNo(bomb_type[0], i_slot);
-            break;
-        case 2:
-            if (bomb_num[0] == bomb_max[0] && bomb_max[0] != 0) {
-                if (bomb_num[1] != bomb_max[1] || bomb_max[1] == 0) {
-                    item_no = getBombItemNo(bomb_type[1], i_slot);
-                }
-            } else if (bomb_num[1] == bomb_max[1] && bomb_max[1] != 0) {
-                item_no = getBombItemNo(bomb_type[0], i_slot);
+#ifdef DEBUG
+    // "====Bomb Bag count is %d====\n"
+    OS_REPORT("====バクダン袋の数は %d 個です====\n", bag_count);
+    for (int i = 0; i < 3; i++) {
+        // "Bomb Bag<%d> : Type <%d> Max <%d> Current <%d>\n"
+        OS_REPORT("爆弾袋<%d> : 種別 <%d> 最大 <%d> 現在 <%d>\n", i, bomb_type[i], bomb_max[i], dComIfGs_getBombNum(i));
+    }
+    OS_REPORT("==================================\n");
+#endif
+
+    switch (bag_count) {
+    case 0:
+        break;
+    case 1:
+        i_itemNo = getBombItemNo(bomb_type[0], i_itemNo);
+        break;
+    case 2:
+        if (bomb_num[0] == bomb_max[0] && bomb_max[0] != 0) {
+            if (bomb_num[1] == bomb_max[1] && bomb_max[1] != 0) {
+                // "Both Bomb Bags are full!\n"
+                OS_REPORT("\x1b[43;30mバクダン袋２つ共一杯でした！\n\x1b[m");
             } else {
-                item_no = getBombItemNo2(bomb_type[0], bomb_type[1], i_slot);
+                // "Bag 2 Get Bomb!\n"
+                OS_REPORT("\x1b[43;30m袋２のバクダンをゲット！\n\x1b[m");
+                i_itemNo = getBombItemNo(bomb_type[1], i_itemNo);
             }
-            break;
-        case 3:
-            if (bomb_num[0] == bomb_max[0] && bomb_max[0] != 0) {
-                if (bomb_num[1] == bomb_max[1] && bomb_max[1] != 0) {
-                    if (bomb_num[2] != bomb_max[2] || bomb_max[2] == 0) {
-                        item_no = getBombItemNo(bomb_type[2], i_slot);
-                    }
-                } else if (bomb_num[2] == bomb_max[2] && bomb_max[2] != 0) {
-                    item_no = getBombItemNo(bomb_type[1], i_slot);
-                } else {
-                    item_no = getBombItemNo2(bomb_type[1], bomb_type[2], i_slot);
-                }
-            } else if (bomb_num[1] == bomb_max[1] && bomb_max[1] != 0) {
+        } else if (bomb_num[1] == bomb_max[1] && bomb_max[1] != 0) {
+            // "Bag 1 Get Bomb!\n"
+            OS_REPORT("\x1b[43;30m袋１のバクダンをゲット！\n\x1b[m");
+            i_itemNo = getBombItemNo(bomb_type[0], i_itemNo);
+        } else {
+            // "Bag 1 and 2 Get Bomb!\n"
+            OS_REPORT("\x1b[43;30m袋１と２のバクダンをゲット！\n\x1b[m");
+            i_itemNo = getBombItemNo2(bomb_type[0], bomb_type[1], i_itemNo);
+        }
+        break;
+    case 3:
+        if (bomb_num[0] == bomb_max[0] && bomb_max[0] != 0) {
+            if (bomb_num[1] == bomb_max[1] && bomb_max[1] != 0) {
                 if (bomb_num[2] == bomb_max[2] && bomb_max[2] != 0) {
-                    item_no = getBombItemNo(bomb_type[0], i_slot);
+                    // "All 3 Bomb Bags are full!\n"
+                    OS_REPORT("\x1b[43;30mバクダン袋３つ共一杯でした！\n\x1b[m");
                 } else {
-                    item_no = getBombItemNo2(bomb_type[0], bomb_type[2], i_slot);
+                    // "Bag 3 Get Bomb!\n"
+                    OS_REPORT("\x1b[43;30m袋３のバクダンをゲット！\n\x1b[m");
+                    i_itemNo = getBombItemNo(bomb_type[2], i_itemNo);
                 }
             } else if (bomb_num[2] == bomb_max[2] && bomb_max[2] != 0) {
-                item_no = getBombItemNo2(bomb_type[0], bomb_type[1], i_slot);
+                // "Bag 2 Get Bomb!\n"
+                OS_REPORT("\x1b[43;30m袋２のバクダンをゲット！\n\x1b[m");
+                i_itemNo = getBombItemNo(bomb_type[1], i_itemNo);
             } else {
-                item_no = getBombItemNo3(bomb_type[0], bomb_type[1], bomb_type[2], i_slot);
+                // "Bag 2 or 3 Get Bomb!\n"
+                OS_REPORT("\x1b[43;30m袋２か３のバクダンをゲット！\n\x1b[m");
+                i_itemNo = getBombItemNo2(bomb_type[1], bomb_type[2], i_itemNo);
             }
-            break;
+        } else if (bomb_num[1] == bomb_max[1] && bomb_max[1] != 0) {
+            if (bomb_num[2] == bomb_max[2] && bomb_max[2] != 0) {
+                // "Bag 1 Get Bomb!\n"
+                OS_REPORT("\x1b[43;30m袋１のバクダンをゲット！\n\x1b[m");
+                i_itemNo = getBombItemNo(bomb_type[0], i_itemNo);
+            } else {
+                // "Bag 1 and 3 Get Bomb!\n"
+                OS_REPORT("\x1b[43;30m袋１と３のバクダンをゲット！\n\x1b[m");
+                i_itemNo = getBombItemNo2(bomb_type[0], bomb_type[2], i_itemNo);
+            }
+        } else if (bomb_num[2] == bomb_max[2] && bomb_max[2] != 0) {
+            // "Bag 1 and 2 Get Bomb!\n"
+            OS_REPORT("\x1b[43;30m袋１と２のバクダンをゲット！\n\x1b[m");
+            i_itemNo = getBombItemNo2(bomb_type[0], bomb_type[1], i_itemNo);
+        } else {
+            // "Bag 1, 2 and 3 Get Bomb!\n"
+            OS_REPORT("\x1b[43;30m袋１と２と３のバクダンをゲット！\n\x1b[m");
+            i_itemNo = getBombItemNo3(bomb_type[0], bomb_type[1], bomb_type[2], i_itemNo);
+        }
+        break;
+    default:
+        // "Get Item: Wrong number of bomb bags!<%d>\n"
+        OS_REPORT("\x1b[41;37mゲットアイテム：バクダン袋の数がおかしい！<%d>\n\x1b[m", bag_count);
+        JUT_ASSERT(0xABD, 0);
+        break;
     }
-    return item_no;
+
+    return i_itemNo;
 }
 
 /* 804945C8-804946A4 003988 00DC+00 1/1 0/0 0/0 .text            setGetDemoItem__8daTbox_cFv */
 int daTbox_c::setGetDemoItem() {
     u8 item_no = getItemNo();
-    if ((u8)(item_no - 0xa) <= 3 || (u8)(item_no - 0x16) <= 0x6 || item_no == 0x1d) {
+    if (item_no == fpcNm_ITEM_BOMB_5 || item_no == fpcNm_ITEM_BOMB_10 || item_no == fpcNm_ITEM_BOMB_20 || item_no == fpcNm_ITEM_BOMB_30 ||
+        item_no == fpcNm_ITEM_WATER_BOMB_5 || item_no == fpcNm_ITEM_WATER_BOMB_10 || item_no == fpcNm_ITEM_WATER_BOMB_20 || item_no == fpcNm_ITEM_WATER_BOMB_30 ||
+        item_no == fpcNm_ITEM_BOMB_INSECT_5 || item_no == fpcNm_ITEM_BOMB_INSECT_10 || item_no == fpcNm_ITEM_BOMB_INSECT_20 || item_no == fpcNm_ITEM_BOMB_INSECT_30)
+    {
         item_no = getBombItemNoMain(item_no);
     }
 
-    u32 item_id;
+    fpc_ProcID item_id;
     if (field_0x718) {
         item_id = fopAcM_createItemForPresentDemo(&current.pos, item_no, 1, -1, -1, NULL, NULL);
     } else {
         item_id = fopAcM_createItemForTrBoxDemo(&current.pos, item_no, -1, -1, NULL, NULL);
     }
 
-    if (item_id != -1) {
+    if (item_id != fpcM_ERROR_PROCESS_ID_e) {
         dComIfGp_event_setItemPartnerId(item_id);
     }
+
     return true;
 }
 
 /* 804946A4-804948CC 003A64 0228+00 11/0 0/0 0/0 .text            actionOpenWait__8daTbox_cFv */
-// nonmatching -- matches if checkTreasureRupeeReturn has return type bool,
-// but that breaks daAlink_c::procCoGetItem
 int daTbox_c::actionOpenWait() {
     daMidna_c* midna = daPy_py_c::getMidnaActor();
     daPy_py_c* player = daPy_getPlayerActorClass();
+
     if (eventInfo.i_checkCommandDoor()) {
         dComIfGp_event_onEventFlag(4);
+
         if (getShapeType() != SHAPE_SMALL && player->i_checkNowWolf() &&
                                              !midna->checkMetamorphoseEnable()) {
-            setAction(&actionNotOpenDemo);
-            mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, 0, 0);
+            setAction(&daTbox_c::actionNotOpenDemo);
+            mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
             demoProc();
             field_0x9f4 = 0;
         } else {
             field_0x718 = player->checkTreasureRupeeReturn(getItemNo());
             setGetDemoItem();
-            setAction(&actionDemo);
-            mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, 0, 0);
+            setAction(&daTbox_c::actionDemo);
+            mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
             demoProc();
             field_0x9f4 = 0;
         }
@@ -1281,13 +1493,14 @@ int daTbox_c::actionOpenWait() {
             eventInfo.setEventName("DEFAULT_TREASURE_NORMAL");
         }
     }
+
     return true;
 }
 
 /* 804948CC-80494950 003C8C 0084+00 1/0 0/0 0/0 .text            actionNotOpenDemo__8daTbox_cFv */
 int daTbox_c::actionNotOpenDemo() {
     if (dComIfGp_evmng_endCheck(mEventId)) {
-        setAction(&actionOpenWait);
+        setAction(&daTbox_c::actionOpenWait);
         dComIfGp_event_reset();
     } else {
         demoProc();
@@ -1308,58 +1521,80 @@ int daTbox_c::checkDrop() {
             }
         }
     }
+
     return false;
 }
 
 /* 80494A0C-80494D88 003DCC 037C+00 1/1 0/0 0/0 .text            settingDropDemoCamera__8daTbox_cFv
  */
-// nonmatching (regalloc)
 void daTbox_c::settingDropDemoCamera() {
     camera_class* player_camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     player_camera->mCamera.Stop();
-    dStage_MapEvent_dt_c* event_data =
-        dEvt_control_c::searchMapEventData(getEvent(), fopAcM_GetRoomNo(this));
-    player_camera->mCamera.SetTrimSize(event_data->field_0x1);
-    dStage_roomStatus_c* room_status = dComIfGp_roomControl_getStatusRoomDt(fopAcM_GetRoomNo(this));
-    stage_camera_class* stage_camera = room_status->mRoomDt.getCamera();
-    stage_camera2_data_class* stage_camera_data = &stage_camera->mEntries[event_data->field_0x16];
-    stage_arrow_class* stage_arrow = room_status->mRoomDt.getArrow();
-    stage_arrow_data_class* stage_arrow_data =
-        &stage_arrow->mEntries[stage_camera_data->field_0x10];
-    cXyz vec1, vec2, vec4, vec3, vec5, vec6;
-    vec1.x = stage_arrow_data->mPosition.x;
-    vec1.z = stage_arrow_data->mPosition.z;
-    vec2.x = home.pos.x;
-    vec2.z = home.pos.z;
-    f32 dist_xz = vec1.abs(vec2);
-    vec3 = cXyz::BaseY;
+
+    dStage_MapEvent_dt_c* maptooldata = dEvt_control_c::searchMapEventData(getEvent(), fopAcM_GetRoomNo(this));
+    JUT_ASSERT(0xB89, maptooldata != 0);
+
+    player_camera->mCamera.SetTrimSize(maptooldata->field_0x1);
+
+    dStage_roomStatus_c* roomdt = dComIfGp_roomControl_getStatusRoomDt(fopAcM_GetRoomNo(this));
+    JUT_ASSERT(0xB8E, roomdt != 0);
+    
+    stage_camera_class* stage_camera = roomdt->mRoomDt.getCamera();
+    stage_camera2_data_class* stage_camera_data = stage_camera->mEntries;
+    stage_camera_data += maptooldata->field_0x16;
+    
+    stage_arrow_class* stage_arrow = roomdt->mRoomDt.getArrow();
+    stage_arrow_data_class* stage_arrow_data = stage_arrow->mEntries;
+    stage_arrow_data += stage_camera_data->field_0x10;
+
+    cXyz spA0;
+    cXyz spAC;
+
+    spA0.x = stage_arrow_data->mPosition.x;
+    spA0.z = stage_arrow_data->mPosition.z;
+    spAC.x = home.pos.x;
+    spAC.z = home.pos.z;
+    f32 var_f30 = spA0.abs(spAC);
+
+    cXyz spB8;
+    cXyz spC4(cXyz::BaseY);
+
     s16 angle;
     getDropSAngle(&angle);
-    vec4.x = stage_arrow_data->mPosition.x;
-    vec4.y = 0.0f;
-    vec4.z = stage_arrow_data->mPosition.z;
-    vec4 -= home.pos;
+
+    spB8.x = stage_arrow_data->mPosition.x;
+    spB8.y = 0.0f;
+    spB8.z = stage_arrow_data->mPosition.z;
+    spB8 -= home.pos;
+
     Mtx mtx;
-    PSMTXRotAxisRad(mtx, &vec3, cM_s2rad(angle));
-    mDoMtx_multVec(mtx, &vec4, &vec4);
-    vec4 += home.pos;
-    vec4.y = stage_arrow_data->mPosition.y;
-    vec5 = vec4;
-    vec6 = home.pos;
-    s16 arrow_angle = stage_arrow_data->mAngle.x;
-    f32 dist = dist_xz * (cM_ssin(arrow_angle) / cM_scos(arrow_angle));
-    if (arrow_angle > 0) {
+    MTXRotAxisRad(mtx, &spC4, cM_s2rad(angle));
+    mDoMtx_multVec(mtx, &spB8, &spB8);
+    spB8 += home.pos;
+    spB8.y = stage_arrow_data->mPosition.y;
+
+    cXyz cam_eye;
+    cXyz cam_center;
+
+    cam_eye = spB8;
+    cam_center = home.pos;
+
+    f32 var_f29 = cM_ssin(stage_arrow_data->mAngle.x);
+    f32 var_f28 = cM_scos(stage_arrow_data->mAngle.x);
+    f32 dist = var_f30 * (var_f29 / var_f28);
+    if (stage_arrow_data->mAngle.x > 0) {
         dist = -dist;
     }
-    vec6.y = vec5.y + dist;
-    player_camera->mCamera.Set(vec6, vec5, 0, (f32)stage_camera_data->field_0x11);
+
+    cam_center.y = cam_eye.y + dist;
+    player_camera->mCamera.Set(cam_center, cam_eye, 0, (f32)stage_camera_data->field_0x11);
     field_0x9c9 = 1;
 }
 
 /* 80494D88-80494E98 004148 0110+00 1/0 0/0 0/0 .text            actionSwOnWait__8daTbox_cFv */
 int daTbox_c::actionSwOnWait() {
     if (eventInfo.i_checkCommandDemoAccrpt()) {
-        setAction(&actionDemo2);
+        setAction(&daTbox_c::actionDemo2);
         mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
         demoProc();
     } else if (dComIfGs_isSwitch(getSwNo(), fopAcM_GetRoomNo(this))) {
@@ -1370,13 +1605,14 @@ int daTbox_c::actionSwOnWait() {
         }
         eventInfo.i_onCondition(2);
     }
+
     return true;
 }
 
 /* 80494E98-80494F44 004258 00AC+00 1/0 0/0 0/0 .text            actionSwOnWait2__8daTbox_cFv */
 int daTbox_c::actionSwOnWait2() {
     if (dComIfGs_isSwitch(getSwNo(), fopAcM_GetRoomNo(this))) {
-        setAction(&actionOpenWait);
+        setAction(&daTbox_c::actionOpenWait);
         setDzb();
         flagOff(0x43);
         int tbox_no = getTboxNo();
@@ -1384,13 +1620,14 @@ int daTbox_c::actionSwOnWait2() {
     } else {
         flagOn(0x40);
     }
+
     return true;
 }
 
 /* 80494F44-80495058 004304 0114+00 1/0 0/0 0/0 .text            actionDropWait__8daTbox_cFv */
 int daTbox_c::actionDropWait() {
     if (eventInfo.i_checkCommandDemoAccrpt()) {
-        setAction(&actionDropDemo);
+        setAction(&daTbox_c::actionDropDemo);
         clrDzb();
         field_0x97d = false;
         mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
@@ -1403,17 +1640,18 @@ int daTbox_c::actionDropWait() {
             eventInfo.i_onCondition(2);
         } else {
             dropProcInitCall();
-            setAction(&actionDropDemo);
+            setAction(&daTbox_c::actionDropDemo);
             field_0x97d = false;
         }
     }
+
     return true;
 }
 
 /* 80495058-8049518C 004418 0134+00 1/0 0/0 0/0 .text            actionGenocide__8daTbox_cFv */
 int daTbox_c::actionGenocide() {
     if (eventInfo.i_checkCommandDemoAccrpt()) {
-        setAction(&actionDemo2);
+        setAction(&daTbox_c::actionDemo2);
         mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
         demoProc();
     } else if (!fopAcM_myRoomSearchEnemy(fopAcM_GetRoomNo(this))) {
@@ -1442,13 +1680,17 @@ int daTbox_c::actionDropWaitForWeb() {
         }
     } else {
         if (field_0x9fc == 0) {
-            setAction(&actionDropForWeb);
+            setAction(&daTbox_c::actionDropForWeb);
             shape_angle.z = 0;
             shape_angle.x = 0;
             fopAcM_SetGravity(this, -2.0f);
             fopAcM_onSwitch(this, getSwNo());
+
+            // "Treasure Chest: Falling!<%d>\n"
+            OS_REPORT("宝箱：落下！<%d>\n", getSwNo());
         }
     }
+
     setBaseMtx();
     field_0x9fc = 0;
     return true;
@@ -1458,22 +1700,27 @@ int daTbox_c::actionDropWaitForWeb() {
 int daTbox_c::actionDropForWeb() {
     fopAcM_posMoveF(this, NULL);
     mAcch.CrrPos(dComIfG_Bgsp());
+
     home.pos = current.pos;
     attention_info.position = current.pos;
     eyePos = current.pos;
+
     setBaseMtx();
+
     if (mAcch.ChkGroundLanding()) {
         cXyz vec(2.0f, 2.0f, 2.0f);
-        s32 room_no = fopAcM_GetRoomNo(this);
         dComIfGp_particle_setPolyColor(0xe7, mAcch.m_gnd, &current.pos, &tevStr, &home.angle,
-                                       &vec, 0, NULL, room_no, NULL);
+                                       &vec, 0, NULL, fopAcM_GetRoomNo(this), NULL);
         dComIfGp_getVibration().StartShock(4, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
         setDzb();
-        if (mpBgCollider != NULL) {
-            mpBgCollider->Move();
+
+        if (mpBgCollision != NULL) {
+            mpBgCollision->Move();
         }
-        setAction(&actionOpenWait);
+    
+        setAction(&daTbox_c::actionOpenWait);
     }
+
     dTres_c::setPosition(getTboxNo(), &current.pos);
     return true;
 }
@@ -1483,11 +1730,14 @@ void daTbox_c::initBaseMtx() {
     field_0x9c4 = 0;
     mRotAxis = cXyz::BaseX;
     mDoMtx_identity(field_0x988);
+
     mpModel->setBaseScale(scale);
     if (mpSlimeModel != NULL) {
         mpSlimeModel->setBaseScale(scale);
     }
+
     setBaseMtx();
+
     if (mpBgW != NULL) {
         mpBgW->Move();
     }
@@ -1502,26 +1752,31 @@ void daTbox_c::setBaseMtx() {
     if (field_0x9c4 == 0) {
         mDoMtx_identity(mtx);
     } else {
-        PSMTXRotAxisRad(mtx, &mRotAxis, cM_s2rad(field_0x9c4));
+        MTXRotAxisRad(mtx, &mRotAxis, cM_s2rad(field_0x9c4));
     }
+
     s16 angle;
-    if (getDropSAngle(&angle) && fabsf(speed.y) > 2.0f) {
+    if (getDropSAngle(&angle) && std::fabs(speed.y) > 2.0f) {
         cLib_addCalcAngleS(&home.angle.y, angle, 10, 0xc00, 0x400);
         shape_angle = home.angle;
     }
+
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::transM(0.0f, 50.0f, 0.0f);
     mDoMtx_stack_c::concat(mtx);
     mDoMtx_stack_c::concat(field_0x988);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::transM(0.0f, -50.0f, 0.0f);
+
     if (field_0x9fc != 0) {
         mpModel->setBaseTRMtx(field_0xa00);
     } else {
         mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     }
+
     mDoMtx_concat(mtx, field_0x988, field_0x988);
-    mDoMtx_copy(mpModel->getBaseTRMtx(), mBgMtx);
+    MTXCopy(mpModel->getBaseTRMtx(), mBgMtx);
+
     if (mpSlimeModel != NULL) {
         mDoMtx_stack_c::transS(current.pos.x, current.pos.y + 15.0f, current.pos.z);
         mDoMtx_stack_c::ZXYrotM(shape_angle);
@@ -1544,18 +1799,21 @@ void daTbox_c::mode_proc_call() {
 /* 804956EC-80495818 004AAC 012C+00 1/0 0/0 0/0 .text            mode_exec_wait__8daTbox_cFv */
 void daTbox_c::mode_exec_wait() {
     bool bvar1 = false;
+
     if (field_0x9cc != 0) {
         flagOn(0x40);
-        cXyz vec1(home.pos);
-        cXyz vec2(home.pos);
-        vec1.y += 5.0f;
-        vec2.y -= 30.0f;
-        if (fopAcM_lc_c::lineCheck(&vec1, &vec2, this) && fopAcM_lc_c::checkMoveBG()) {
+        cXyz start(home.pos);
+        cXyz end(home.pos);
+        start.y += 5.0f;
+        end.y -= 30.0f;
+
+        if (fopAcM_lc_c::lineCheck(&start, &end, this) && fopAcM_lc_c::checkMoveBG()) {
             bvar1 = true;
             home.pos = *fopAcM_lc_c::getCrossP();
             current.pos = home.pos;
         }
     }
+
     if (bvar1) {
         flagOff(0x40);
         mMode = MODE_EXEC;
@@ -1566,19 +1824,24 @@ void daTbox_c::mode_exec_wait() {
 /* 80495818-80495910 004BD8 00F8+00 2/1 0/0 0/0 .text            mode_exec__8daTbox_cFv */
 void daTbox_c::mode_exec() {
     action();
+
     if (getFuncType() == 5 || getFuncType() == 6 || field_0x9cc == 1) {
         fopAcM_posMoveF(this, NULL);
+
         if (field_0x97c) {
             mAcch.CrrPos(dComIfG_Bgsp());
         } else {
             mAcch.i_ClrGroundHit();
         }
+
         attention_info.position = current.pos;
         eyePos = current.pos;
         setBaseMtx();
-        if (mpBgCollider == mpOpenBgW) {
-            mpBgCollider->Move();
+
+        if (mpBgCollision == mpOpenBgW) {
+            mpBgCollision->Move();
         }
+
         dTres_c::setPosition(getTboxNo(), &current.pos);
     }
 }
@@ -1592,16 +1855,24 @@ cPhs__Step daTbox_c::create1st() {
         home.angle.x = 0;
         mParamsInit = true;
     }
+
+    if (getShapeType() > 2) {
+        OS_REPORT("\x1b[43;30mTbox Type Error!!!<%d>\n\x1b[m", getShapeType());
+        JUT_ASSERT(0xDD8, 0);
+    }
+
     daTbox_ModelInfo* model_info = getModelInfo();
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhase, model_info->mArcName);
     if (step != cPhs_COMPLEATE_e) {
         return step;
     }
+
     step = (cPhs__Step)MoveBGCreate(model_info->mArcName, model_info->mClosedDzbResNo,
                                     dBgS_MoveBGProc_TypicalRotY, calcHeapSize(), NULL);
     if (step == cPhs_ERROR_e) {
         return step;
     }
+
     CreateInit();
     attention_info.flags = 0x40;
     attention_info.flags |= 0x400000;
@@ -1609,17 +1880,20 @@ cPhs__Step daTbox_c::create1st() {
 }
 
 /* 804959EC-80495AF0 004DAC 0104+00 1/0 0/0 0/0 .text            Execute__8daTbox_cFPPA3_A4_f */
-int daTbox_c::Execute(f32 (**param_0)[3][4]) {
+int daTbox_c::Execute(Mtx** param_0) {
     mode_proc_call();
     *param_0 = &mBgMtx;
+
     cXyz center(l_cyl_info[getShapeType()].mCenter);
     mDoMtx_stack_c::YrotS(shape_angle.y);
     mDoMtx_stack_c::multVec(&center, &center);
     center += current.pos;
+
     if ((getSwNo() != 0xff && fopAcM_isSwitch(this, getSwNo())) || getSwNo() == 0xff) {
         mCyl.SetC(center);
         dComIfG_Ccsp()->Set(&mCyl);
     }
+
     return true;
 }
 
@@ -1628,26 +1902,34 @@ int daTbox_c::Draw() {
     if (flagCheck(0x40)) {
         return true;
     }
+
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+
     if (mpEffectModel != NULL && mpEffectAnm->getPlaySpeed() != 0.0f) {
         g_env_light.setLightTevColorType_MAJI(mpEffectModel, &tevStr);
         mpEffectAnm->entry(mpEffectModel->getModelData());
         mDoExt_modelUpdateDL(mpEffectModel);
         mDoExt_brkAnmRemove(mpEffectModel->getModelData());
     }
+
     if (flagCheck(1)) {
         return true;
     }
+
     g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
+
     if (mpSlimeModel != NULL) {
         dComIfGd_setXluListBG();
         mDoExt_modelUpdateDL(mpSlimeModel);
         dComIfGd_setList();
     }
+
     mpAnm->entry(mpModel->getModelData());
+
     if (getShapeType() == SHAPE_BOSSKEY) {
         fopAcM_setEffectMtx(this, mpModel->getModelData());
     }
+
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);
     dComIfGd_setList();
@@ -1656,9 +1938,10 @@ int daTbox_c::Draw() {
 
 /* 80495C9C-80495CFC 00505C 0060+00 1/0 0/0 0/0 .text            Delete__8daTbox_cFv */
 int daTbox_c::Delete() {
-    if (mpBgCollider != NULL) {
-        dComIfG_Bgsp().Release(mpBgCollider);
+    if (mpBgCollision != NULL) {
+        dComIfG_Bgsp().Release(mpBgCollision);
     }
+
     dComIfG_resDelete(&mPhase, getModelInfo()->mArcName);
     return true;
 }
@@ -1670,19 +1953,19 @@ cPhs__Step daTbox_create1st(daTbox_c* i_this) {
 }
 
 /* 80496004-80496024 0053C4 0020+00 1/0 0/0 0/0 .text            daTbox_MoveBGDelete__FP8daTbox_c */
-static void daTbox_MoveBGDelete(daTbox_c* i_this) {
-    i_this->MoveBGDelete();
+static int daTbox_MoveBGDelete(daTbox_c* i_this) {
+    return i_this->MoveBGDelete();
 }
 
 /* 80496024-80496044 0053E4 0020+00 1/0 0/0 0/0 .text            daTbox_MoveBGExecute__FP8daTbox_c
  */
-static void daTbox_MoveBGExecute(daTbox_c* i_this) {
-    i_this->MoveBGExecute();
+static int daTbox_MoveBGExecute(daTbox_c* i_this) {
+    return i_this->MoveBGExecute();
 }
 
 /* 80496044-80496070 005404 002C+00 1/0 0/0 0/0 .text            daTbox_MoveBGDraw__FP8daTbox_c */
-static void daTbox_MoveBGDraw(daTbox_c* i_this) {
-    i_this->MoveBGDraw();
+static int daTbox_MoveBGDraw(daTbox_c* i_this) {
+    return i_this->MoveBGDraw();
 }
 
 /* 804961B0-804961B8 005570 0008+00 1/0 0/0 0/0 .text            Create__8daTbox_cFv */
@@ -1721,3 +2004,5 @@ extern actor_process_profile_definition g_profile_TBOX = {
     fopAc_ACTOR_e,
     fopAc_CULLBOX_CUSTOM_e,
 };
+
+AUDIO_INSTANCES

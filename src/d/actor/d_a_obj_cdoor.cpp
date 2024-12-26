@@ -82,7 +82,7 @@ cPhs__Step daObjCdoor_c::create() {
             return cPhs_ERROR_e;
         }
         fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
-        tevStr.mRoomNo = dStage_roomControl_c::mStayNo;
+        tevStr.room_no = dStage_roomControl_c::mStayNo;
         fopAcM_setCullSizeBox2(this, mpModel->getModelData());
         mSw = fopAcM_GetParam(this) & 0xff;
         mChainID = -1;

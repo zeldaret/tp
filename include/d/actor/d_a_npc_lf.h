@@ -8,8 +8,8 @@ struct lf_s {
     /* 80A6A8E0 */ lf_s();
 
     /* 0x00 */ J3DModel* mpModel;
-    /* 0x04 */ cXyz field_0x04;
-    /* 0x10 */ csXyz field_0x10;
+    /* 0x04 */ cXyz mPos;
+    /* 0x10 */ csXyz mAngle;
     /* 0x16 */ s8 field_0x16;
     /* 0x17 */ s8 field_0x17;
     /* 0x18 */ s16 field_0x18;

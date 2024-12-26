@@ -53,6 +53,10 @@ public:
     f32 getRndValue(f32 param_0, f32 param_1) { return mRnd.getValue(param_0, param_1); }
     f32 getRndFX(f32 param_0) { return mRnd.getFX(param_0); }
 
+    void initRnd(int r0, int r1, int r2) {
+        mRnd.init(r0, r1, r2);
+    }
+
 private:
     /* 0x04 */ cM_rnd_c mRnd;
     /* 0x10 */ cXyz field_0x10;

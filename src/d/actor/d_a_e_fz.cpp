@@ -66,7 +66,7 @@ daE_FZ_HIO_c::daE_FZ_HIO_c() {
 
 /* 806BE9D4-806BEAD8 000174 0104+00 1/1 0/0 0/0 .text            draw__8daE_FZ_cFv */
 s32 daE_FZ_c::draw() {
-    if (field_0x714 == 2 && !checkItemGet(IRONBALL,1)) {
+    if (field_0x714 == 2 && !checkItemGet(fpcNm_ITEM_IRONBALL,1)) {
         return 1;
     }
 
@@ -827,7 +827,7 @@ void daE_FZ_c::cc_set() {
 /* 806C08C4-806C0B00 002064 023C+00 1/1 0/0 0/0 .text            execute__8daE_FZ_cFv */
 s32 daE_FZ_c::execute() {
     if (field_0x714 == 2) {
-        if (checkItemGet(IRONBALL,1) == 0) {
+        if (checkItemGet(fpcNm_ITEM_IRONBALL,1) == 0) {
             return 1;
         }
 
@@ -1012,7 +1012,7 @@ s32 daE_FZ_c::create() {
       field_0x67c[i].set(current.pos);
     }
 
-    if (field_0x714 == 2 && !checkItemGet(IRONBALL,1)) {
+    if (field_0x714 == 2 && !checkItemGet(fpcNm_ITEM_IRONBALL,1)) {
       attention_info.distances[fopAc_attn_BATTLE_e] = 0;
       fopAcM_SetGroup(this,0);
       fopAcM_OffStatus(this,0);

@@ -18,6 +18,7 @@ enum CcG_Tg_HitMark {
     CcG_Tg_UNK_MARK_3 = 3,
     CcG_Tg_UNK_MARK_6 = 6,
     CcG_Tg_UNK_MARK_8 = 8,
+    CcG_Tg_UNK_MARK_9 = 9,
 };
 
 class cCcD_PntAttr;
@@ -45,6 +46,7 @@ enum cCcD_ObjAtType {
     /* 0x00004000 */ AT_TYPE_HOOKSHOT = (1 << 14),
     /* 0x00008000 */ AT_TYPE_8000 = (1 << 15),
     /* 0x00010000 */ AT_TYPE_BOOMERANG = (1 << 16),
+    /* 0x00020000 */ AT_TYPE_20000 = (1 << 17),
     /* 0x00040000 */ AT_TYPE_40000 = (1 << 18),
     /* 0x00080000 */ AT_TYPE_SPINNER = (1 << 19),
     /* 0x00100000 */ AT_TYPE_CSTATUE_BOSS_SWING = (1 << 20),

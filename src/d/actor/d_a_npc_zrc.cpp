@@ -1179,7 +1179,7 @@ BOOL daNpc_zrC_c::doEvent() {
                 (this->*mpActionFn)(NULL);
             } else if (dComIfGp_event_chkTalkXY()) {
                 if (dComIfGp_evmng_ChkPresentEnd()) {
-                    if (mType == 2 && dComIfGp_event_getPreItemNo() == ASHS_SCRIBBLING) {
+                    if (mType == 2 && dComIfGp_event_getPreItemNo() == fpcNm_ITEM_ASHS_SCRIBBLING) {
                         mFlowID = 0x35;
                         mOrderEvtNo = EVT_EARRING_GET;
                         changeEvent(l_resNames[l_evtGetParamList[mOrderEvtNo].arcIdx],
