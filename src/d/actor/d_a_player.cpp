@@ -493,8 +493,8 @@ void daPy_py_c::forceRestartRoom(int param_0, u32 param_1, int param_2) {
 
 /* 8015F478-8015F4B8 159DB8 0040+00 0/0 0/0 3/3 .text
  * setFmChainPos__9daPy_py_cFP10fopAc_ac_cP4cXyzi               */
-void daPy_py_c::setFmChainPos(fopAc_ac_c* param_0, cXyz* param_1, int param_2) {
-    daAlink_getAlinkActorClass()->setFmChainPosFromOut(param_0, param_1, param_2);
+BOOL daPy_py_c::setFmChainPos(fopAc_ac_c* param_0, cXyz* param_1, int param_2) {
+    return daAlink_getAlinkActorClass()->setFmChainPosFromOut(param_0, param_1, param_2);
 }
 
 /* 8015F4B8-8015F4F0 159DF8 0038+00 0/0 0/0 1/1 .text            cancelFmChainGrab__9daPy_py_cFv */
