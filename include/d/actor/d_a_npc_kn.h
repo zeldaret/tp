@@ -50,7 +50,7 @@ public:
     /* 0x09A8 */ dMsgFlow_c mFlow;
     /* 0x09F4 */ u8 field_0x9F4[0xa74 - 0x9f4];
     /* 0x0A74 */ dCcD_Stts mCcStts2;
-    /* 0x0AB0 */ u32 field_0xAB0;
+    /* 0x0AB0 */ u32 mFlowNodeNo;
     /* 0x0AB4 */ f32 field_0xab4;
     /* 0x0AB8 */ f32 field_0xab8;
     /* 0x0ABC */ u8 field_0xABC;
@@ -65,8 +65,7 @@ public:
     /* 0x0BDC */ daNpcT_JntAnm_c mJntAnm;
     /* 0x0D3C */ daNpcT_DmgStagger_c mDmgStagger;
     /* 0x0D58 */ cXyz field_0xd58;
-    // /* 0x0D5C */ u8 field_0xd5c[0xd64 - 0xd5c];
-    /* 0x0D64 */ cXyz field_0xD64; // these cXyz / csXyz members are probably wrong
+    /* 0x0D64 */ cXyz field_0xD64;
     /* 0x0D70 */ cXyz field_0xD70;
     /* 0x0D7C */ cXyz field_0xD7C;
     /* 0x0D88 */ cXyz field_0xD88;
@@ -77,19 +76,23 @@ public:
     /* 0x0DB8 */ csXyz field_0xDB8;
     /* 0x0DBE */ csXyz field_0xDBE;
     /* 0x0DC4 */ s32 field_0xdc4;
-    /* 0x0DC8 */ u8 field_0xDC8[0xDcc - 0xDC8];
+    /* 0x0DC8 */ u32 mShadowKey;
     /* 0x0DCC */ u32 field_0xdcc;
     /* 0x0DD0 */ u32 field_0xdd0;
     /* 0x0DD4 */ s32 mStaffId;
     /* 0x0DD8 */ int mCutType;
-    /* 0x0DDC */ u8 field_0xddc[0xdec - 0xddc];
+    /* 0x0DDC */ int field_0xddc;
+    /* 0x0DE0 */ int field_0xde0;
+    /* 0x0DE4 */ int field_0xde4;
+    /* 0x0DE8 */ int field_0xde8;
     /* 0x0DEC */ int field_0xdec;
-    /* 0x0DF0 */ u8 field_0xdf0[0xe];
+    /* 0x0DF0 */ s16 field_0xdf0;
+    /* 0x0DF2 */ u8 field_0xdf2[0xc];
     /* 0x0DFE */ s16 field_0xdfe;
     /* 0x0E00 */ u8 field_0xe00[0xC];
     /* 0x0E0C */ f32 field_0xe0c;
     /* 0x0E10 */ f32 mRadius;
-    /* 0x0E14 */ f32 field_0xe14;
+    /* 0x0E14 */ f32 mGroundHeight;
     /* 0x0E18 */ u8 field_0xe18[0xe26 - 0xe18];
     /* 0x0E26 */ u16 field_0xe26;
     /* 0x0E28 */ u16 field_0xe28;
@@ -100,7 +103,8 @@ public:
     /* 0x0E30 */ u8 field_0xe30;
     /* 0x0E31 */ u8 field_0xe31;
     /* 0x0E32 */ u8 field_0xe32;
-    /* 0x0E33 */ u8 field_0xe33[0xe36 - 0xe33];
+    /* 0x0E33 */ u8 field_0xe33;
+    /* 0x0E33 */ u8 field_0xe34[0xe36 - 0xe34];
     /* 0x0E36 */ s16 field_0xe36;
     /* 0x0E38 */ u8 field_0xe38;
     /* 0x0E39 */ u8 field_0xe39;
@@ -111,10 +115,7 @@ public:
 
 public:
     void initialize() {
-        // probably fake match
-        void* tmp = &field_0xd58;
-        void* tmp2 = &field_0xe3c;
-        memset(tmp, 0, ((int)tmp2 - (int)tmp));
+        memset(&field_0xd58, 0, (int)&field_0xe3c - (int)&field_0xd58);
 
         mMotionSeqMngr1.initialize();
         mMotionSeqMngr2.initialize();
@@ -151,18 +152,18 @@ public:
 
     void setCutType(int i_type) { mCutType = i_type;}
     
-    /* 80A2AFD4 */ void create();
-    /* 80A2B278 */ void CreateHeap();
+    /* 80A2AFD4 */ s32 create();
+    /* 80A2B278 */ s32 CreateHeap();
     /* 80A2B620 */ s32 Delete();
     /* 80A2B654 */ s32 Execute();
     /* 80A2B6B0 */ void Draw();
-    /* 80A2B764 */ void createHeapCallBack(fopAc_ac_c*);
+    /* 80A2B764 */ static int createHeapCallBack(fopAc_ac_c*);
     /* 80A2B784 */ static int ctrlJointCallBack(J3DJoint*, int);
     /* 80A2B7DC */ u8 getType();
     /* 80A2B844 */ u8 getDivideNo();
     /* 80A2B850 */ u32 getFlowNodeNo();
     /* 80A2B86C */ u8 getPath();
-    /* 80A2B878 */ bool isDelete();
+    /* 80A2B878 */ BOOL isDelete();
     /* 80A2B91C */ void resetCol();
     /* 80A2B9E0 */ void reset();
     /* 80A2BC5C */ void resetType();
@@ -191,7 +192,7 @@ public:
     /* 80A2CD78 */ int drawDbgInfo();
     /* 80A2CD80 */ void drawOtherMdl();
     /* 80A2CF9C */ void drawGhost();
-    /* 80A2D198 */ void selectAction();
+    /* 80A2D198 */ int selectAction();
     /* 80A2D3A4 */ void teach03_selectAction();
     /* 80A2D3FC */ void teach04_selectAction();
     /* 80A2D4A0 */ void teach05_selectAction();
@@ -245,7 +246,7 @@ public:
     /* 80A3805C */ void setSe();
     /* 80A38520 */ static void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
     /* 80A38550 */ void getTrnsfrmAnmP(char const*, int);
-    /* 80A3858C */ void getTrnsfrmKeyAnmP(char const*, int);
+    /* 80A3858C */ void* getTrnsfrmKeyAnmP(char const*, int);
     /* 80A385C8 */ void getTexPtrnAnmP(char const*, int);
     /* 80A38604 */ void getTexSRTKeyAnmP(char const*, int);
     /* 80A38640 */ void setBckAnm(J3DAnmTransform*, f32, int, int, int, bool);
@@ -293,18 +294,18 @@ public:
     /* 80A3CF78 */ int teach01_swordAttackWait(void*);
     /* 80A3D32C */ int teach01_swordFinishWait(void*);
     /* 80A3D6D8 */ int ctrlWarp();
-    /* 80A3DCEC */ void ECut_firstEncount(int);
-    /* 80A3DEC4 */ void ECut_attackFailed(int);
-    /* 80A3E550 */ void ECut_firstSkillGet(int);
+    /* 80A3DCEC */ int ECut_firstEncount(int);
+    /* 80A3DEC4 */ int ECut_attackFailed(int);
+    /* 80A3E550 */ int ECut_firstSkillGet(int);
     /* 80A3EB84 */ u32 setParamTeach02();
     /* 80A3EE38 */ void setCollisionTeach02();
     /* 80A3EF1C */ void teach02_selectAction();
     /* 80A3EFE0 */ int teach02_shieldBashWait(void*);
     /* 80A3F358 */ int teach02_finishWait(void*);
     /* 80A3F5A4 */ int teach02_shieldReflectWait(void*);
-    /* 80A3F99C */ void ECut_secondSkillExplain(int);
-    /* 80A3FFB4 */ void ECut_reflectExplain(int);
-    /* 80A403B8 */ void ECut_secondSkillGet(int);
+    /* 80A3F99C */ int ECut_secondSkillExplain(int);
+    /* 80A3FFB4 */ int ECut_reflectExplain(int);
+    /* 80A403B8 */ int ECut_secondSkillGet(int);
     /* 80A3949C */ virtual int ctrlBtk();
     /* 80A3B7B4 */ virtual s32 getFootLJointNo();
     /* 80A3B7AC */ virtual s32 getFootRJointNo();
@@ -315,7 +316,7 @@ public:
     /* 80A3B720 */ virtual void afterJntAnm(int);
     /* 80A3B7A4 */ virtual bool checkChangeEvt();
     /* 80A39BBC */ virtual int evtProc();
-    /* 80A3B79C */ virtual bool evtEndProc();
+    /* 80A3B79C */ virtual BOOL evtEndProc();
     /* 80A39DBC */ virtual void setFootPos();
     /* 80A39F84 */ virtual void setFootPrtcl(cXyz*, f32);
     /* 80A3A254 */ virtual bool checkCullDraw();
@@ -339,7 +340,7 @@ public:
     static u8 mFindCount[4];
 
 private:
-    /* 0x0E44 */ u8 field_0xe44[4];
+    /* 0x0E44 */ J3DModel* mpModel;
     /* 0x0E48 */ mDoExt_invisibleModel mInvisModel;
     /* 0x0E50 */ dKy_tevstr_c mTevStr;
     /* 0x11D8 */ u8 field_0x11D8[0x11DC - 0x11D8];
@@ -349,7 +350,7 @@ private:
     /* 0x15A4 */ u32 field_0x15a4;
     /* 0x15A8 */ u32 field_0x15A8;
     /* 0x15AC */ u8 mType;
-    /* 0x15AD */ u8 field_0x15ad;
+    /* 0x15AD */ u8 mDivideNo;
     /* 0x15AE */ s8 field_0x15ae;
     /* 0x15AF */ u8 field_0x15af;
     /* 0x15B0 */ cXyz field_0x15b0;
@@ -361,7 +362,7 @@ private:
     /* 0x15CD */ u8 field_0x15cd;
     /* 0x15CE */ u8 field_0x15ce;
     /* 0x15CF */ u8 field_0x15cf;
-    /* 0x15D0 */ u8 field_0x15d0[4];
+    /* 0x15D0 */ u16 field_0x15d0;
     /* 0x15D4 */ s32 field_0x15d4[3];
     /* 0x15E0 */ daNpc_Kn_prtclMngr_c mParticleMngr[3];
     /* 0x16F4 */ cXyz field_0x16f4;
@@ -374,11 +375,10 @@ private:
     /* 0x1714 */ actionFunc mpTeachAction;
     /* 0x1720 */ actionFunc mpActionFunc;
     /* 0x172C */ daNpcT_Path_c mPath;
+    /* 0x1754 */ u8 field_0x1754;
 };
 
-// STATIC_ASSERT(sizeof(daNpc_Kn_c) == 0x1758);
-
-int i = sizeof(daNpc_Kn_c);
+STATIC_ASSERT(sizeof(daNpc_Kn_c) == 0x1758);
 
 class daNpc_Kn_Param_c {
 public:
@@ -415,7 +415,9 @@ public:
         /* 0x62 */ s16 field_0x62;
         /* 0x64 */ s16 field_0x64;
         /* 0x66 */ s16 field_0x66;
-        /* 0x68 */ s32 field_0x68;
+        /* 0x68 */ s16 field_0x68;
+        /* 0x6A */ u8 field_0x6a;
+        /* 0x6B */ s8 field_0x6b;
         /* 0x6C */ f32 field_0x6C;
         /* 0x70 */ s32 field_0x70;
         /* 0x74 */ s32 field_0x74;
@@ -428,14 +430,14 @@ public:
         /* 0x8E */ s16 field_0x8e;
         /* 0x90 */ s16 field_0x90;
         /* 0x92 */ s16 field_0x92;
-        /* 0x94 */ s16 field_0x94;
+        /* 0x94 */ f32 field_0x94;
         /* 0x98 */ f32 field_0x98;
         /* 0x9C */ f32 field_0x9c;
-        /* 0xA0 */ f32 field_0xa0;
-        /* 0xA4 */ f32 field_0xa4;
+        /* 0xA0 */ f32 mSpeedF;
+        /* 0xA4 */ f32 mSpeedY;
         /* 0xA8 */ f32 field_0xa8;
-        /* 0xAC */ s16 field_0xac;
-        /* 0xAE */ s16 field_0xae;
+        /* 0xAC */ s16 mMinRndVal;
+        /* 0xAE */ s16 mRndValRange;
         /* 0xB0 */ s16 field_0xb0;
         /* 0xB2 */ s16 field_0xb2;
         /* 0xB4 */ f32 field_0xb4;

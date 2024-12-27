@@ -1033,7 +1033,7 @@ private:
     /* 0x0FC */ f32 mNowOffsetX;
     /* 0x100 */ f32 mNowOffsetY;
     /* 0x104 */ u8 mEyeMoveFlag;
-    /* 0x105 */ u8 field_0x105;
+    /* 0x105 */ u8 mMorfFrm;
 
 public:
     daNpcF_MatAnm_c() { initialize(); }

@@ -5997,7 +5997,7 @@ int daAlink_c::procWolfLargeDamageUp() {
             }
         } else if (temp_r29->getFrame() > field_0x3478) {
             checkNextActionWolf(1);
-        } else if (checkEndResetFlg1(ERFLG1_UNK_8000000) && temp_r29->getFrame() > field_0x3484) {
+        } else if (checkEndResetFlg1(ERFLG1_LARGE_DAMAGE_UP_STOP) && temp_r29->getFrame() > field_0x3484) {
             temp_r29->setFrame(field_0x3484);
             getNowAnmPackUnder(UNDER_0)->setFrame(field_0x3484);
         }

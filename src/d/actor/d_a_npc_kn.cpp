@@ -10,536 +10,7 @@
 #include "JSystem//J3DGraphBase/J3DMaterial.h"
 #include "dol2asm.h"
 
-//
-// Forward References:
-//
-
-extern "C" void __dt__10daNpc_Kn_cFv();
-extern "C" void __dt__8dCcD_SphFv();
-extern "C" void __dt__Q210daNpc_Kn_c20daNpc_Kn_prtclMngr_cFv();
-extern "C" void create__10daNpc_Kn_cFv();
-extern "C" void CreateHeap__10daNpc_Kn_cFv();
-extern "C" void Delete__10daNpc_Kn_cFv();
-extern "C" void Execute__10daNpc_Kn_cFv();
-extern "C" void Draw__10daNpc_Kn_cFv();
-extern "C" void createHeapCallBack__10daNpc_Kn_cFP10fopAc_ac_c();
-extern "C" void ctrlJointCallBack__10daNpc_Kn_cFP8J3DJointi();
-extern "C" void getType__10daNpc_Kn_cFv();
-extern "C" void getDivideNo__10daNpc_Kn_cFv();
-extern "C" void getFlowNodeNo__10daNpc_Kn_cFv();
-extern "C" void getPath__10daNpc_Kn_cFv();
-extern "C" void isDelete__10daNpc_Kn_cFv();
-extern "C" void resetCol__10daNpc_Kn_cFv();
-extern "C" void reset__10daNpc_Kn_cFv();
-extern "C" void resetType__10daNpc_Kn_cFv();
-extern "C" void setParam__10daNpc_Kn_cFv();
-extern "C" void setParamTeach03__10daNpc_Kn_cFv();
-extern "C" void setParamTeach04__10daNpc_Kn_cFv();
-extern "C" void setParamTeach05__10daNpc_Kn_cFv();
-extern "C" void setParamTeach06__10daNpc_Kn_cFv();
-extern "C" void setParamTeach07__10daNpc_Kn_cFv();
-extern "C" void setAfterTalkMotion__10daNpc_Kn_cFv();
-extern "C" void srchActors__10daNpc_Kn_cFv();
-extern "C" void evtTalk__10daNpc_Kn_cFv();
-extern "C" void evtCutProc__10daNpc_Kn_cFv();
-extern "C" void action__10daNpc_Kn_cFv();
-extern "C" void beforeMove__10daNpc_Kn_cFv();
-extern "C" void afterMoved__10daNpc_Kn_cFv();
-extern "C" void setAttnPos__10daNpc_Kn_cFv();
-extern "C" void setCollision__10daNpc_Kn_cFv();
-extern "C" void setCollisionSword__10daNpc_Kn_cFv();
-extern "C" void checkCollisionSword__10daNpc_Kn_cFv();
-extern "C" void setCollisionTeach03__10daNpc_Kn_cFv();
-extern "C" void setCollisionTeach04__10daNpc_Kn_cFv();
-extern "C" void setCollisionTeach05__10daNpc_Kn_cFv();
-extern "C" void setCollisionTeach06__10daNpc_Kn_cFv();
-extern "C" void setCollisionTeach07__10daNpc_Kn_cFv();
-extern "C" bool drawDbgInfo__10daNpc_Kn_cFv();
-extern "C" void drawOtherMdl__10daNpc_Kn_cFv();
-extern "C" void drawGhost__10daNpc_Kn_cFv();
-extern "C" void afterSetMotionAnm__10daNpc_Kn_cFiifi();
-extern "C" void selectAction__10daNpc_Kn_cFv();
-extern "C" void teach03_selectAction__10daNpc_Kn_cFv();
-extern "C" void teach04_selectAction__10daNpc_Kn_cFv();
-extern "C" void teach05_selectAction__10daNpc_Kn_cFv();
-extern "C" void teach06_selectAction__10daNpc_Kn_cFv();
-extern "C" void teach07_selectAction__10daNpc_Kn_cFv();
-extern "C" void chkAction__10daNpc_Kn_cFM10daNpc_Kn_cFPCvPvPv_i();
-extern "C" void setAction__10daNpc_Kn_cFM10daNpc_Kn_cFPCvPvPv_i();
-extern "C" void wait__10daNpc_Kn_cFPv();
-extern "C" void talk__10daNpc_Kn_cFPv();
-extern "C" void test__10daNpc_Kn_cFPv();
-extern "C" void setSceneChange__10daNpc_Kn_cFi();
-extern "C" void ECut_noneEquipChangeTalk__10daNpc_Kn_cFi();
-extern "C" void ECut_noneEquipChangeTalkStand__10daNpc_Kn_cFi();
-extern "C" void ECut_largeDamageTalk__10daNpc_Kn_cFi();
-extern "C" void teach02_start__10daNpc_Kn_cFPv();
-extern "C" void teach03_attackWait__10daNpc_Kn_cFPv();
-extern "C" void teach04_attackWait__10daNpc_Kn_cFPv();
-extern "C" void teach04_headBreakWait__10daNpc_Kn_cFPv();
-extern "C" void teach04_finishWait__10daNpc_Kn_cFPv();
-extern "C" void teach05_surpriseAttackWait__10daNpc_Kn_cFPv();
-extern "C" static void s_sub6__FPvPv();
-extern "C" static void s_subEnd6__FPvPv();
-extern "C" void teach06_superJumpWait__10daNpc_Kn_cFPv();
-extern "C" void teach06_divideMove__10daNpc_Kn_cFPv();
-extern "C" void teach06_waitDivide__10daNpc_Kn_cFPv();
-extern "C" void teach06_superJumpWaitDivide__10daNpc_Kn_cFPv();
-extern "C" void teach06_superJumpedDivide__10daNpc_Kn_cFPv();
-extern "C" void teach06_warpDelete__10daNpc_Kn_cFPv();
-extern "C" static void s_sub7__FPvPv();
-extern "C" static void s_subEnd7__FPvPv();
-extern "C" void teach07_superTurnAttackWait__10daNpc_Kn_cFPv();
-extern "C" void teach07_divideMove__10daNpc_Kn_cFPv();
-extern "C" void teach07_waitDivide__10daNpc_Kn_cFPv();
-extern "C" void teach07_superTurnAttackWaitDivide__10daNpc_Kn_cFPv();
-extern "C" void teach07_superTurnAttackedDivide__10daNpc_Kn_cFPv();
-extern "C" void teach07_warpDelete__10daNpc_Kn_cFPv();
-extern "C" void ECut_secondEncount__10daNpc_Kn_cFi();
-extern "C" void ECut_thirdSkillExplain__10daNpc_Kn_cFi();
-extern "C" void ECut_thirdSkillGet__10daNpc_Kn_cFi();
-extern "C" void ECut_fourthSkillExplain__10daNpc_Kn_cFi();
-extern "C" void ECut_fourthSkillGet__10daNpc_Kn_cFi();
-extern "C" void ECut_fifthSkillExplain__10daNpc_Kn_cFi();
-extern "C" void ECut_fifthSkillGet__10daNpc_Kn_cFi();
-extern "C" void ECut_sixthSkillExplain__10daNpc_Kn_cFi();
-extern "C" void ECut_sixthSkillGet__10daNpc_Kn_cFi();
-extern "C" void ECut_seventhSkillExplain__10daNpc_Kn_cFi();
-extern "C" void ECut_seventhSkillGet__10daNpc_Kn_cFi();
-extern "C" void setPrtcl__10daNpc_Kn_cFv();
-extern "C" void setSlipPrtcl__10daNpc_Kn_cFv();
-extern "C" void setLandingPrtcl__10daNpc_Kn_cFv();
-extern "C" void calcMagicBallPos__10daNpc_Kn_cFv();
-extern "C" void setSwordChargePtcl__10daNpc_Kn_cFv();
-extern "C" void calcSlip__10daNpc_Kn_cFv();
-extern "C" void calcSwordAttackMove__10daNpc_Kn_cFi();
-extern "C" void setSe__10daNpc_Kn_cFv();
-extern "C" static void daNpc_Kn_Create__FPv();
-extern "C" static void daNpc_Kn_Delete__FPv();
-extern "C" static void daNpc_Kn_Execute__FPv();
-extern "C" static void daNpc_Kn_Draw__FPv();
-extern "C" static bool daNpc_Kn_IsDelete__FPv();
-extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" void
-tgHitCallBack__10daNpc_Kn_cFP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf();
-extern "C" void getTrnsfrmAnmP__10daNpc_Kn_cFPCci();
-extern "C" void getTrnsfrmKeyAnmP__10daNpc_Kn_cFPCci();
-extern "C" void getTexPtrnAnmP__10daNpc_Kn_cFPCci();
-extern "C" void getTexSRTKeyAnmP__10daNpc_Kn_cFPCci();
-extern "C" void setBckAnm__10daNpc_Kn_cFP15J3DAnmTransformfiiib();
-extern "C" void setMcaMorfAnm__10daNpc_Kn_cFP18J3DAnmTransformKeyffiii();
-extern "C" void setBtpAnm__10daNpc_Kn_cFP16J3DAnmTexPatternP12J3DModelDatafi();
-extern "C" void setBtkAnm__10daNpc_Kn_cFP19J3DAnmTextureSRTKeyP12J3DModelDatafi();
-extern "C" void loadRes__10daNpc_Kn_cFPCScPPCc();
-extern "C" void deleteRes__10daNpc_Kn_cFPCScPPCc();
-extern "C" void execute__10daNpc_Kn_cFv();
-extern "C" void draw__10daNpc_Kn_cFiifP11_GXColorS10fiii();
-extern "C" void setEnvTevColor__10daNpc_Kn_cFv();
-extern "C" void setRoomNo__10daNpc_Kn_cFv();
-extern "C" void checkEndAnm__10daNpc_Kn_cFf();
-extern "C" void checkEndAnm__10daNpc_Kn_cFP12J3DFrameCtrlf();
-extern "C" void playAllAnm__10daNpc_Kn_cFv();
-extern "C" void ctrlBtk__10daNpc_Kn_cFv();
-extern "C" void setMtx__10daNpc_Kn_cFv();
-extern "C" void ctrlFaceMotion__10daNpc_Kn_cFv();
-extern "C" void ctrlMotion__10daNpc_Kn_cFv();
-extern "C" void ctrlMsgAnm__10daNpc_Kn_cFPiPiP10fopAc_ac_ci();
-extern "C" void ctrlJoint__10daNpc_Kn_cFP8J3DJointP8J3DModel();
-extern "C" void evtProc__10daNpc_Kn_cFv();
-extern "C" void setFootPos__10daNpc_Kn_cFv();
-extern "C" void setFootPrtcl__10daNpc_Kn_cFP4cXyzf();
-extern "C" bool checkCullDraw__10daNpc_Kn_cFv();
-extern "C" void twilight__10daNpc_Kn_cFv();
-extern "C" void evtOrder__10daNpc_Kn_cFv();
-extern "C" void evtChange__10daNpc_Kn_cFv();
-extern "C" void clrParam__10daNpc_Kn_cFv();
-extern "C" void setFaceMotionAnm__10daNpc_Kn_cFib();
-extern "C" void setMotionAnm__10daNpc_Kn_cFifi();
-extern "C" void setPos__10daNpc_Kn_cF4cXyz();
-extern "C" void setAngle__10daNpc_Kn_cFs();
-extern "C" void chkActorInSight__10daNpc_Kn_cFP10fopAc_ac_cfs();
-extern "C" void chkPointInArea__10daNpc_Kn_cF4cXyz4cXyzfffs();
-extern "C" void chkPointInArea__10daNpc_Kn_cF4cXyz4cXyz4cXyzs();
-extern "C" void chkFindPlayer__10daNpc_Kn_cFis();
-extern "C" void getDistTable__12dAttention_cFi();
-extern "C" void srchPlayerActor__10daNpc_Kn_cFv();
-extern "C" void getAttnPos__10daNpc_Kn_cFP10fopAc_ac_c();
-extern "C" void turn__10daNpc_Kn_cFsii();
-extern "C" void step__10daNpc_Kn_cFsiiii();
-extern "C" void initTalk__10daNpc_Kn_cFiPP10fopAc_ac_c();
-extern "C" void talkProc__10daNpc_Kn_cFPiiPP10fopAc_ac_ci();
-extern "C" void setHitodamaPrtcl__10daNpc_Kn_cFv();
-extern "C" void decTmr__10daNpc_Kn_cFv();
-extern "C" void afterJntAnm__10daNpc_Kn_cFi();
-extern "C" void __dt__5csXyzFv();
-extern "C" void __dt__4cXyzFv();
-extern "C" bool evtEndProc__10daNpc_Kn_cFv();
-extern "C" bool checkChangeEvt__10daNpc_Kn_cFv();
-extern "C" s32 getFootRJointNo__10daNpc_Kn_cFv();
-extern "C" s32 getFootLJointNo__10daNpc_Kn_cFv();
-extern "C" bool chkXYItems__10daNpc_Kn_cFv();
-extern "C" bool afterSetFaceMotionAnm__10daNpc_Kn_cFiifi();
-extern "C" void getFaceMotionAnm__10daNpc_Kn_cF26daNpcT_faceMotionAnmData_c();
-extern "C" void getMotionAnm__10daNpc_Kn_cF22daNpcT_motionAnmData_c();
-extern "C" void
-__ct__10daNpc_Kn_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc();
-extern "C" s32 getEyeballMaterialNo__10daNpc_Kn_cFv();
-extern "C" bool getEyeballLMaterialNo__10daNpc_Kn_cFv();
-extern "C" bool getEyeballRMaterialNo__10daNpc_Kn_cFv();
-extern "C" void func_80A3BD2C(void* _this, s16*);
-extern "C" void func_80A3BD48(void* _this, int*);
-extern "C" void func_80A3BD64(void* _this, s16, s16);
-extern "C" void func_80A3BDE8(void* _this, int, int);
-extern "C" void __sinit_d_a_npc_kn_cpp();
-extern "C" void __dt__16daNpc_Kn_Param_cFv();
-extern "C" static void func_80A3C16C();
-extern "C" static void func_80A3C174();
-extern "C" void __dt__13daNpcT_Path_cFv();
-extern "C" void __ct__Q210daNpc_Kn_c20daNpc_Kn_prtclMngr_cFv();
-extern "C" void __ct__8dCcD_SphFv();
-extern "C" void __dt__8cM3dGSphFv();
-extern "C" void __dt__8cM3dGCylFv();
-extern "C" void __dt__8cM3dGAabFv();
-extern "C" void __ct__11J3DLightObjFv();
-extern "C" void __ct__5csXyzFv();
-extern "C" void __dt__15daNpcT_JntAnm_cFv();
-extern "C" void __ct__4cXyzFv();
-extern "C" void __dt__18daNpcT_ActorMngr_cFv();
-extern "C" void __dt__22daNpcT_MotionSeqMngr_cFv();
-extern "C" void __dt__12dBgS_AcchCirFv();
-extern "C" void __dt__10dCcD_GSttsFv();
-extern "C" void __dt__12dBgS_ObjAcchFv();
-extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" void setEyeAngleY__15daNpcT_JntAnm_cF4cXyzsifs();
-extern "C" void setEyeAngleX__15daNpcT_JntAnm_cF4cXyzfs();
-extern "C" void setParamTeach01__10daNpc_Kn_cFv();
-extern "C" void setCollisionTeach01__10daNpc_Kn_cFv();
-extern "C" void teach01_selectAction__10daNpc_Kn_cFv();
-extern "C" void teach01_start__10daNpc_Kn_cFPv();
-extern "C" void teach01_attackWait__10daNpc_Kn_cFPv();
-extern "C" void teach01_swordAttackWait__10daNpc_Kn_cFPv();
-extern "C" void teach01_swordFinishWait__10daNpc_Kn_cFPv();
-extern "C" void ctrlWarp__10daNpc_Kn_cFv();
-extern "C" void ECut_firstEncount__10daNpc_Kn_cFi();
-extern "C" void ECut_attackFailed__10daNpc_Kn_cFi();
-extern "C" void ECut_firstSkillGet__10daNpc_Kn_cFi();
-extern "C" void setParamTeach02__10daNpc_Kn_cFv();
-extern "C" void setCollisionTeach02__10daNpc_Kn_cFv();
-extern "C" void teach02_selectAction__10daNpc_Kn_cFv();
-extern "C" void teach02_shieldBashWait__10daNpc_Kn_cFPv();
-extern "C" void teach02_finishWait__10daNpc_Kn_cFPv();
-extern "C" void teach02_shieldReflectWait__10daNpc_Kn_cFPv();
-extern "C" void ECut_secondSkillExplain__10daNpc_Kn_cFi();
-extern "C" void ECut_reflectExplain__10daNpc_Kn_cFi();
-extern "C" void ECut_secondSkillGet__10daNpc_Kn_cFi();
-extern "C" u8 const mCcDObjData__10daNpc_Kn_c[48];
-extern "C" u8 const m__16daNpc_Kn_Param_c[180];
-extern "C" extern char const* const d_a_npc_kn__stringBase0;
-extern "C" u8 mCcDCyl__10daNpc_Kn_c[68];
-extern "C" u8 mCcDSph__10daNpc_Kn_c[64];
-extern "C" void* mCutNameList__10daNpc_Kn_c[21];
-extern "C" u8 mCutList__10daNpc_Kn_c[252];
-extern "C" u8 mFindActorPtrs__10daNpc_Kn_c[200];
-extern "C" u8 mFindCount__10daNpc_Kn_c[4];
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_ZXYrotS__FPA4_fsss();
-extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
-extern "C" void mDoMtx_YrotS__FPA4_fs();
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void scaleM__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();
-extern "C" void play__14mDoExt_baseAnmFv();
-extern "C" void entry__13mDoExt_bpkAnmFP16J3DMaterialTablef();
-extern "C" void init__13mDoExt_btpAnmFP16J3DMaterialTableP16J3DAnmTexPatterniifss();
-extern "C" void entry__13mDoExt_btpAnmFP16J3DMaterialTables();
-extern "C" void init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss();
-extern "C" void entry__13mDoExt_btkAnmFP16J3DMaterialTablef();
-extern "C" void entry__13mDoExt_brkAnmFP16J3DMaterialTablef();
-extern "C" void init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb();
-extern "C" void changeBckOnly__13mDoExt_bckAnmFP15J3DAnmTransform();
-extern "C" void entry__13mDoExt_bckAnmFP12J3DModelDataf();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void create__21mDoExt_invisibleModelFP8J3DModelUc();
-extern "C" void entryDL__21mDoExt_invisibleModelFP4cXyz();
-extern "C" void setMorf__13mDoExt_morf_cFf();
-extern "C" void
-__ct__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl();
-extern "C" void setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff();
-extern "C" void play__16mDoExt_McaMorfSOFUlSc();
-extern "C" void entryDL__16mDoExt_McaMorfSOFv();
-extern "C" void modelCalc__16mDoExt_McaMorfSOFv();
-extern "C" void stopZelAnime__16mDoExt_McaMorfSOFv();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void __dt__10fopAc_ac_cFv();
-extern "C" void fopAc_IsActor__FPv();
-extern "C" void fopAcM_SearchByID__FUiPP10fopAc_ac_c();
-extern "C" void fopAcM_delete__FP10fopAc_ac_c();
-extern "C" void fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff();
-extern "C" void fopAcM_posMove__FP10fopAc_ac_cPC4cXyz();
-extern "C" void fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz();
-extern "C" void fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_orderSpeakEvent__FP10fopAc_ac_cUsUs();
-extern "C" void fopAcM_orderChangeEventId__FP10fopAc_ac_csUsUs();
-extern "C" void fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs();
-extern "C" void fopAcM_setEffectMtx__FPC10fopAc_ac_cPC12J3DModelData();
-extern "C" void fopAcM_getPolygonAngle__FRC13cBgS_PolyInfos();
-extern "C" void gndCheck__11fopAcM_gc_cFPC4cXyz();
-extern "C" void fopKyM_create__FsiP4cXyzP4cXyzPFPv_i();
-extern "C" void fpcEx_Search__FPFPvPv_PvPv();
-extern "C" void fpcEx_SearchByID__FUi();
-extern "C" void dStage_changeScene__FifUlScsi();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfGp_getReverb__Fi();
-extern "C" void dComIfGd_setSimpleShadow__FP4cXyzffR13cBgS_PolyInfosfP9_GXTexObj();
-extern "C" void
-dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj();
-extern "C" void dComIfGs_wolfeye_effect_check__Fv();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void reset__14dEvt_control_cFv();
-extern "C" void reset__14dEvt_control_cFPv();
-extern "C" void convPId__14dEvt_control_cFUi();
-extern "C" void setPtT__14dEvt_control_cFPv();
-extern "C" void setPtI_Id__14dEvt_control_cFUi();
-extern "C" void setObjectArchive__16dEvent_manager_cFPc();
-extern "C" void getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc();
-extern "C" void endCheck__16dEvent_manager_cFs();
-extern "C" void getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci();
-extern "C" void getIsAddvance__16dEvent_manager_cFi();
-extern "C" void getMyActIdx__16dEvent_manager_cFiPCPCciii();
-extern "C" void getMySubstanceP__16dEvent_manager_cFiPCci();
-extern "C" void cutEnd__16dEvent_manager_cFi();
-extern "C" void getRunEventName__16dEvent_manager_cFv();
-extern "C" void ChkPresentEnd__16dEvent_manager_cFv();
-extern "C" void getEmitter__Q213dPa_control_c7level_cFUl();
-extern "C" void
-set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf();
-extern "C" void init__7dPaPo_cFP9dBgS_Acchff();
-extern "C" void setEffectCenter__7dPaPo_cFPC12dKy_tevstr_cPC4cXyzUlUlPC4cXyzPC5csXyzPC4cXyzScff();
-extern "C" void
-setEffectTwo__8dPaPoT_cFPC12dKy_tevstr_cPC4cXyzUlUlPC4cXyzPC4cXyzPC4cXyzPC5csXyzPC4cXyzScff();
-extern "C" void addReal__21dDlst_shadowControl_cFUlP8J3DModel();
-extern "C" void LockonTruth__12dAttention_cFv();
-extern "C" void LineCross__4cBgSFP11cBgS_LinChk();
-extern "C" void GroundCross__4cBgSFP11cBgS_GndChk();
-extern "C" void GetPolyColor__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void GetPolyAtt0__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void GetRoomId__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void __ct__12dBgS_AcchCirFv();
-extern "C" void SetWallR__12dBgS_AcchCirFf();
-extern "C" void __dt__9dBgS_AcchFv();
-extern "C" void __ct__9dBgS_AcchFv();
-extern "C" void Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz();
-extern "C" void CrrPos__9dBgS_AcchFR4dBgS();
-extern "C" void __ct__11dBgS_GndChkFv();
-extern "C" void __dt__11dBgS_GndChkFv();
-extern "C" void __ct__11dBgS_LinChkFv();
-extern "C" void __dt__11dBgS_LinChkFv();
-extern "C" void Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c();
-extern "C" void SetObj__16dBgS_PolyPassChkFv();
-extern "C" void GetAc__22dCcD_GAtTgCoCommonBaseFv();
-extern "C" void __ct__10dCcD_GSttsFv();
-extern "C" void Move__10dCcD_GSttsFv();
-extern "C" void Init__9dCcD_SttsFiiP10fopAc_ac_c();
-extern "C" void __ct__12dCcD_GObjInfFv();
-extern "C" void __dt__12dCcD_GObjInfFv();
-extern "C" void ChkAtHit__12dCcD_GObjInfFv();
-extern "C" void ChkTgHit__12dCcD_GObjInfFv();
-extern "C" void GetTgHitObj__12dCcD_GObjInfFv();
-extern "C" void Set__8dCcD_CylFRC11dCcD_SrcCyl();
-extern "C" void Set__8dCcD_SphFRC11dCcD_SrcSph();
-extern "C" void initialize__18daNpcT_ActorMngr_cFv();
-extern "C" void entry__18daNpcT_ActorMngr_cFP10fopAc_ac_c();
-extern "C" void remove__18daNpcT_ActorMngr_cFv();
-extern "C" void getActorP__18daNpcT_ActorMngr_cFv();
-extern "C" void initialize__15daNpcT_MatAnm_cFv();
-extern "C" void initialize__22daNpcT_MotionSeqMngr_cFv();
-extern "C" void play__22daNpcT_MotionSeqMngr_cFUsPiPf();
-extern "C" void initialize__13daNpcT_Path_cFv();
-extern "C" void setPathInfo__13daNpcT_Path_cFUcScUc();
-extern "C" void initialize__15daNpcT_JntAnm_cFv();
-extern "C" void setParam__15daNpcT_JntAnm_cFP10fopAc_ac_cP8J3DModelP4cXyziiiffffffffffP4cXyz();
-extern "C" void calcJntRad__15daNpcT_JntAnm_cFfff();
-extern "C" void daNpcT_chkPointInArea__F4cXyz4cXyz4cXyzsi();
-extern "C" void daNpcT_getDistTableIdx__Fii();
-extern "C" void daNpcT_onEvtBit__FUl();
-extern "C" void daNpcT_chkEvtBit__FUl();
-extern "C" void daNpcT_offTmpBit__FUl();
-extern "C" void daNpcT_chkTmpBit__FUl();
-extern "C" void getAttentionOffsetY__9daPy_py_cFv();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void dKy_tevstr_init__FP12dKy_tevstr_cScUc();
-extern "C" void dKy_darkworld_check__Fv();
-extern "C" void dMeter2Info_getNowLifeGauge__Fv();
-extern "C" void getActor__12dMsgObject_cFv();
-extern "C" void offMsgSendControl__12dMsgObject_cFv();
-extern "C" void isMsgSendControl__12dMsgObject_cFv();
-extern "C" void isMouthCheck__12dMsgObject_cFv();
-extern "C" void __ct__10dMsgFlow_cFv();
-extern "C" void __dt__10dMsgFlow_cFv();
-extern "C" void init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c();
-extern "C" void doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci();
-extern "C" void checkEventRender__10dMsgFlow_cFPiPiPiPi();
-extern "C" void getEventId__10dMsgFlow_cFPi();
-extern "C" void getMsgNo__10dMsgFlow_cFv();
-extern "C" void getMsg__10dMsgFlow_cFv();
-extern "C" void Set__4cCcSFP8cCcD_Obj();
-extern "C" void __pl__4cXyzCFRC3Vec();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void __ml__4cXyzCFf();
-extern "C" void __dv__4cXyzCFf();
-extern "C" void cM_rad2s__Ff();
-extern "C" void cM_atan2s__Fff();
-extern "C" void cM_rndF__Ff();
-extern "C" void __ct__11cBgS_GndChkFv();
-extern "C" void __dt__11cBgS_GndChkFv();
-extern "C" void SetPos__11cBgS_GndChkFPC4cXyz();
-extern "C" void __dt__13cBgS_PolyInfoFv();
-extern "C" void __dt__8cM3dGCirFv();
-extern "C" void SetC__8cM3dGCylFRC4cXyz();
-extern "C" void SetH__8cM3dGCylFf();
-extern "C" void SetR__8cM3dGCylFf();
-extern "C" void SetC__8cM3dGSphFRC4cXyz();
-extern "C" void SetR__8cM3dGSphFf();
-extern "C" void cLib_addCalcPos2__FP4cXyzRC4cXyzff();
-extern "C" void cLib_addCalcAngleS2__FPssss();
-extern "C" void cLib_chasePos__FP4cXyzRC4cXyzf();
-extern "C" void cLib_chaseAngleS__FPsss();
-extern "C" void cLib_targetAngleY__FPC3VecPC3Vec();
-extern "C" void __ct__7cSAngleFRC7cSAngle();
-extern "C" void __ct__7cSAngleFs();
-extern "C" void Inv__7cSAngleCFv();
-extern "C" void __mi__7cSAngleCFs();
-extern "C" void __ct__7cSGlobeFRC4cXyz();
-extern "C" void func_802807E0();
-extern "C" void bgmStart__8Z2SeqMgrFUlUll();
-extern "C" void bgmStop__8Z2SeqMgrFUll();
-extern "C" void bgmStreamPrepare__8Z2SeqMgrFUl();
-extern "C" void bgmStreamPlay__8Z2SeqMgrFv();
-extern "C" void __ct__10Z2CreatureFv();
-extern "C" void __dt__10Z2CreatureFv();
-extern "C" void init__10Z2CreatureFP3VecP3VecUcUc();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void __as__12J3DLightInfoFRC12J3DLightInfo();
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void removeMatColorAnimator__16J3DMaterialTableFP11J3DAnmColor();
-extern "C" void removeTexNoAnimator__16J3DMaterialTableFP16J3DAnmTexPattern();
-extern "C" void removeTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey();
-extern "C" void removeTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
-extern "C" void __destroy_arr();
-extern "C" void __construct_array();
-extern "C" void __ptmf_test();
-extern "C" void __ptmf_cmpr();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_22();
-extern "C" void _savegpr_23();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_22();
-extern "C" void _restgpr_23();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" u8 dist_table__12dAttention_c[6552];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" u8 BaseX__4cXyz[12];
-extern "C" u8 mCurrentMtx__6J3DSys[48];
-extern "C" u8 sincosTable___5JMath[65536];
-extern "C" f32 mGroundY__11fopAcM_gc_c;
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" void __register_global_object();
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 80A40AF8-80A40AF8 000230 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DEAD static char const* const stringBase_80A40AF8 = "DEFAULT_GETITEM";
-// SECTION_DEAD static char const* const stringBase_80A40B08 = "";
-// SECTION_DEAD static char const* const stringBase_80A40B09 = "NONE_EQUIP_CHANGE_TALK";
-// SECTION_DEAD static char const* const stringBase_80A40B20 = "NONE_EQUIP_CHANGE_TALK_WAIT";
-// SECTION_DEAD static char const* const stringBase_80A40B3C = "NO_EQ_CHNGE_TLK_STD";
-// SECTION_DEAD static char const* const stringBase_80A40B50 = "LARGE_DAMAGE_TALK";
-// SECTION_DEAD static char const* const stringBase_80A40B62 = "FIRST_ENCOUNT";
-// SECTION_DEAD static char const* const stringBase_80A40B70 = "ATTACK_FAILED";
-// SECTION_DEAD static char const* const stringBase_80A40B7E = "FIRST_SKILL_GET";
-// SECTION_DEAD static char const* const stringBase_80A40B8E = "SECOND_ENCOUNT";
-// SECTION_DEAD static char const* const stringBase_80A40B9D = "SECOND_SKILL_EXPLAIN";
-// SECTION_DEAD static char const* const stringBase_80A40BB2 = "REFLECT_EXPLAIN";
-// SECTION_DEAD static char const* const stringBase_80A40BC2 = "SECOND_SKILL_GET";
-// SECTION_DEAD static char const* const stringBase_80A40BD3 = "THIRD_SKILL_EXPLAIN";
-// SECTION_DEAD static char const* const stringBase_80A40BE7 = "THIRD_SKILL_FIRST";
-// SECTION_DEAD static char const* const stringBase_80A40BF9 = "THIRD_SKILL_GET";
-// SECTION_DEAD static char const* const stringBase_80A40C09 = "FOURTH_SKILL_EXPLAIN";
-// SECTION_DEAD static char const* const stringBase_80A40C1E = "FOURTH_SKILL_GET";
-// SECTION_DEAD static char const* const stringBase_80A40C2F = "FIFTH_SKILL_EXPLAIN";
-// SECTION_DEAD static char const* const stringBase_80A40C43 = "FIFTH_SKILL_FIRST";
-// SECTION_DEAD static char const* const stringBase_80A40C55 = "FIFTH_SKILL_GET";
-// SECTION_DEAD static char const* const stringBase_80A40C65 = "SIXTH_SKILL_EXPLAIN";
-// SECTION_DEAD static char const* const stringBase_80A40C79 = "SIXTH_SKILL_GET";
-// SECTION_DEAD static char const* const stringBase_80A40C89 = "SIXTH_SKILL_GET_STAND";
-// SECTION_DEAD static char const* const stringBase_80A40C9F = "SEVENTH_SKILL_EXPLAIN";
-// SECTION_DEAD static char const* const stringBase_80A40CB5 = "SEVENTH_SKILL_GET";
-// SECTION_DEAD static char const* const stringBase_80A40CC7 = "SEVENTH_SKILL_GET_STAND";
-// SECTION_DEAD static char const* const stringBase_80A40CDF = "KN_a";
-// SECTION_DEAD static char const* const stringBase_80A40CE4 = "KN_tch01D";
-// SECTION_DEAD static char const* const stringBase_80A40CEE = "KN_tch02D";
-// SECTION_DEAD static char const* const stringBase_80A40CF8 = "KN_tch03D";
-// SECTION_DEAD static char const* const stringBase_80A40D02 = "KN_tch04D";
-// SECTION_DEAD static char const* const stringBase_80A40D0C = "KN_tch05D";
-// SECTION_DEAD static char const* const stringBase_80A40D16 = "KN_tch06D";
-// SECTION_DEAD static char const* const stringBase_80A40D20 = "KN_tch07D";
-// #pragma pop
-
-/* 80A40D34-80A40D40 000000 000C+00 10/10 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 
-    0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00,
-};
-
-// /* 80A40D40-80A40D54 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-//     0x02000201,
-//     /* padding */
-//     0x40080000,
-//     0x00000000,
-//     0x3FE00000,
-//     0x00000000,
-// };
-// #pragma pop
+UNK_REL_DATA
 
 /* 80A40D54-80A40D98 000020 0044+00 1/1 0/0 0/0 .data            mCcDCyl__10daNpc_Kn_c */
 dCcD_SrcCyl daNpc_Kn_c::mCcDCyl = {
@@ -573,96 +44,113 @@ static int l_bmdData[3][2] = {
 };
 
 /* 80A40DF0-80A40EC0 -00001 00D0+00 0/1 0/0 0/0 .data            l_evtList */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtList[52] = {
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x10),  (void*)NULL,
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x11),  (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x28),  (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x44),  (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x58),  (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x6A),  (void*)0x00000002,
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x78),  (void*)0x00000002,
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x86),  (void*)0x00000002,
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x96),  (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0xA5),  (void*)0x00000003,
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0xBA),  (void*)0x00000003,
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0xCA),  (void*)0x00000003,
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0xDB),  (void*)0x00000004,
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0xEF),  (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x101), (void*)0x00000004,
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x111), (void*)0x00000005,
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x126), (void*)0x00000005,
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x137), (void*)0x00000006,
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x14B), (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x15D), (void*)0x00000006,
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x16D), (void*)0x00000007,
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x181), (void*)0x00000007,
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x191), (void*)0x00000007,
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x1A7), (void*)0x00000008,
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x1BD), (void*)0x00000008,
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x1CF), (void*)0x00000008,
+static daNpcT_evtData_c l_evtList[26] = {
+    {"", 0},
+    {"NONE_EQUIP_CHANGE_TALK",1},
+    {"NONE_EQUIP_CHANGE_TALK_WAIT",1},
+    {"NO_EQ_CHNGE_TLK_STD",1},
+    {"LARGE_DAMAGE_TALK",1},
+    {"FIRST_ENCOUNT",2},
+    {"ATTACK_FAILED",2},
+    {"FIRST_SKILL_GET",2},
+    {"SECOND_ENCOUNT",1},
+    {"SECOND_SKILL_EXPLAIN",3},
+    {"REFLECT_EXPLAIN",3},
+    {"SECOND_SKILL_GET",3},
+    {"THIRD_SKILL_EXPLAIN",4},
+    {"THIRD_SKILL_FIRST",1},
+    {"THIRD_SKILL_GET",4},
+    {"FOURTH_SKILL_EXPLAIN",5},
+    {"FOURTH_SKILL_GET",5},
+    {"FIFTH_SKILL_EXPLAIN",6},
+    {"FIFTH_SKILL_FIRST",1},
+    {"FIFTH_SKILL_GET",6},
+    {"SIXTH_SKILL_EXPLAIN",7},
+    {"SIXTH_SKILL_GET",7},
+    {"SIXTH_SKILL_GET_STAND",7},
+    {"SEVENTH_SKILL_EXPLAIN",8},
+    {"SEVENTH_SKILL_GET",8},
+    {"SEVENTH_SKILL_GET_STAND",8},
 };
-#pragma pop
 
 /* 80A40EC0-80A40EE4 -00001 0024+00 2/4 0/0 0/0 .data            l_resNameList */
-SECTION_DATA static void* l_resNameList[9] = {
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x10),
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x1E7),
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x1EC),
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x1F6),
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x200),
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x20A),
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x214),
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x21E),
-    (void*)(((char*)&d_a_npc_kn__stringBase0) + 0x228),
+static char* l_resNameList[9] = {
+    "",
+    "KN_a",
+    "KN_tch01D",
+    "KN_tch02D",
+    "KN_tch03D",
+    "KN_tch04D",
+    "KN_tch05D",
+    "KN_tch06D",
+    "KN_tch07D",
 };
 
 /* 80A40EE4-80A40EE8 0001B0 0003+01 1/0 0/0 0/0 .data            l_loadResPtrnTeach01 */
-SECTION_DATA static u8 l_loadResPtrnTeach01[3 + 1 /* padding */] = {
+static s8 l_loadResPtrnTeach01[3] = {
     0x01,
     0x02,
     0xFF,
-    /* padding */
-    0x00,
 };
 
 /* 80A40EE8-80A40EEC 0001B4 0004+00 1/0 0/0 0/0 .data            l_loadResPtrnTeach02 */
-SECTION_DATA static u32 l_loadResPtrnTeach02 = 0x010203FF;
+static s8 l_loadResPtrnTeach02[4] = {
+    0x01,
+    0x02,
+    0x03,
+    0xFF,
+};
 
 /* 80A40EEC-80A40EF0 0001B8 0004+00 1/0 0/0 0/0 .data            l_loadResPtrnTeach03 */
-SECTION_DATA static u32 l_loadResPtrnTeach03 = 0x010304FF;
+static s8 l_loadResPtrnTeach03[4] = {
+    0x01,
+    0x03,
+    0x04,
+    0xFF,
+};
 
 /* 80A40EF0-80A40EF4 0001BC 0004+00 1/0 0/0 0/0 .data            l_loadResPtrnTeach04 */
-SECTION_DATA static u32 l_loadResPtrnTeach04 = 0x010405FF;
+static s8 l_loadResPtrnTeach04[4] = {
+    0x01,
+    0x04,
+    0x05,
+    0xFF,
+};
 
 /* 80A40EF4-80A40EF8 0001C0 0004+00 1/0 0/0 0/0 .data            l_loadResPtrnTeach05 */
-SECTION_DATA static u32 l_loadResPtrnTeach05 = 0x010506FF;
+static s8 l_loadResPtrnTeach05[4] = {
+    0x01,
+    0x05,
+    0x06,
+    0xFF,
+};
 
 /* 80A40EF8-80A40EFC 0001C4 0004+00 1/0 0/0 0/0 .data            l_loadResPtrnTeach06 */
-SECTION_DATA static u32 l_loadResPtrnTeach06 = 0x010607FF;
+static s8 l_loadResPtrnTeach06[4] = {
+    0x01,
+    0x06,
+    0x07,
+    0xFF,
+};
 
 /* 80A40EFC-80A40F00 0001C8 0003+01 1/0 0/0 0/0 .data            l_loadResPtrnTeach07 */
-SECTION_DATA static u8 l_loadResPtrnTeach07[3 + 1 /* padding */] = {
+static s8 l_loadResPtrnTeach07[3] = {
     0x01,
     0x08,
     0xFF,
-    /* padding */
-    0x00,
 };
 
 /* 80A40F00-80A40F04 0001CC 0002+02 1/0 0/0 0/0 .data            l_loadResPtrn0 */
-SECTION_DATA static u16 l_loadResPtrn0[1 + 1 /* padding */] = {
-    0x01FF,
-    /* padding */
-    0x0000,
+static s8 l_loadResPtrn0[2] = {
+    0x01,
+    0xFF,
 };
 
 /* 80A40F04-80A40F24 -00001 0020+00 1/2 0/0 0/0 .data            l_loadResPtrnList */
-SECTION_DATA static void* l_loadResPtrnList[8] = {
-    (void*)&l_loadResPtrnTeach01, (void*)&l_loadResPtrnTeach02, (void*)&l_loadResPtrnTeach03,
-    (void*)&l_loadResPtrnTeach04, (void*)&l_loadResPtrnTeach05, (void*)&l_loadResPtrnTeach06,
-    (void*)&l_loadResPtrnTeach07, (void*)&l_loadResPtrn0,
+static s8* l_loadResPtrnList[8] = {
+    l_loadResPtrnTeach01, l_loadResPtrnTeach02, l_loadResPtrnTeach03,
+    l_loadResPtrnTeach04, l_loadResPtrnTeach05, l_loadResPtrnTeach06,
+    l_loadResPtrnTeach07, l_loadResPtrn0,
 };
 
 /* 80A40F24-80A40F5C 0001F0 0038+00 0/1 0/0 0/0 .data            l_faceMotionAnmData */
@@ -690,17 +178,17 @@ static int l_motionAnmData[245] = {
 };
 
 /* 80A41330-80A41358 0005FC 0028+00 1/2 0/0 0/0 .data            l_podBckData */
-SECTION_DATA static u8 l_podBckData[40] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 
-    0x00, 0x00, 0x00, 0x01,
-    0x00, 0x00, 0x00, 0x22,
-    0x00, 0x00, 0x00, 0x01,
-    0x00, 0x00, 0x00, 0x21,
-    0x00, 0x00, 0x00, 0x01,
-    0x00, 0x00, 0x00, 0x1F,
-    0x00, 0x00, 0x00, 0x01,
-    0x00, 0x00, 0x00, 0x20,
-    0x00, 0x00, 0x00, 0x01,
+static s32 l_podBckData[10] = {
+    -1, 
+    1,
+    34,
+    1,
+    33,
+    1,
+    31,
+    1,
+    32,
+    1,
 };
 
 /* 80A41358-80A41378 000624 0020+00 0/1 0/0 0/0 .data            l_faceMotionSequenceData */
@@ -876,283 +364,51 @@ char* daNpc_Kn_c::mCutNameList[21] = {
     "SEVENTH_SKILL_GETT",
 };
 
-// /* 80A415DC-80A415E8 -00001 000C+00 0/1 0/0 0/0 .data            @5884 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DATA static void* lit_5884[3] = {
-//     (void*)NULL,
-//     (void*)0xFFFFFFFF,
-//     (void*)ECut_noneEquipChangeTalk__10daNpc_Kn_cFi,
-// };
-// #pragma pop
-
-// /* 80A415E8-80A415F4 -00001 000C+00 0/1 0/0 0/0 .data            @5885 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DATA static void* lit_5885[3] = {
-//     (void*)NULL,
-//     (void*)0xFFFFFFFF,
-//     (void*)ECut_noneEquipChangeTalkStand__10daNpc_Kn_cFi,
-// };
-// #pragma pop
-
-// /* 80A415F4-80A41600 -00001 000C+00 0/1 0/0 0/0 .data            @5886 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DATA static void* lit_5886[3] = {
-//     (void*)NULL,
-//     (void*)0xFFFFFFFF,
-//     (void*)ECut_largeDamageTalk__10daNpc_Kn_cFi,
-// };
-// #pragma pop
-
-// /* 80A41600-80A4160C -00001 000C+00 0/1 0/0 0/0 .data            @5887 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DATA static void* lit_5887[3] = {
-//     (void*)NULL,
-//     (void*)0xFFFFFFFF,
-//     (void*)ECut_firstEncount__10daNpc_Kn_cFi,
-// };
-// #pragma pop
-
-// /* 80A4160C-80A41618 -00001 000C+00 0/1 0/0 0/0 .data            @5888 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DATA static void* lit_5888[3] = {
-//     (void*)NULL,
-//     (void*)0xFFFFFFFF,
-//     (void*)ECut_attackFailed__10daNpc_Kn_cFi,
-// };
-// #pragma pop
-
-// /* 80A41618-80A41624 -00001 000C+00 0/1 0/0 0/0 .data            @5889 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DATA static void* lit_5889[3] = {
-//     (void*)NULL,
-//     (void*)0xFFFFFFFF,
-//     (void*)ECut_firstSkillGet__10daNpc_Kn_cFi,
-// };
-// #pragma pop
-
-// /* 80A41624-80A41630 -00001 000C+00 0/1 0/0 0/0 .data            @5890 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DATA static void* lit_5890[3] = {
-//     (void*)NULL,
-//     (void*)0xFFFFFFFF,
-//     (void*)ECut_secondEncount__10daNpc_Kn_cFi,
-// };
-// #pragma pop
-
-// /* 80A41630-80A4163C -00001 000C+00 0/1 0/0 0/0 .data            @5891 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DATA static void* lit_5891[3] = {
-//     (void*)NULL,
-//     (void*)0xFFFFFFFF,
-//     (void*)ECut_secondSkillExplain__10daNpc_Kn_cFi,
-// };
-// #pragma pop
-
-// /* 80A4163C-80A41648 -00001 000C+00 0/1 0/0 0/0 .data            @5892 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DATA static void* lit_5892[3] = {
-//     (void*)NULL,
-//     (void*)0xFFFFFFFF,
-//     (void*)ECut_reflectExplain__10daNpc_Kn_cFi,
-// };
-// #pragma pop
-
-// /* 80A41648-80A41654 -00001 000C+00 0/1 0/0 0/0 .data            @5893 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DATA static void* lit_5893[3] = {
-//     (void*)NULL,
-//     (void*)0xFFFFFFFF,
-//     (void*)ECut_secondSkillGet__10daNpc_Kn_cFi,
-// };
-// #pragma pop
-
-// /* 80A41654-80A41660 -00001 000C+00 0/1 0/0 0/0 .data            @5894 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DATA static void* lit_5894[3] = {
-//     (void*)NULL,
-//     (void*)0xFFFFFFFF,
-//     (void*)ECut_thirdSkillExplain__10daNpc_Kn_cFi,
-// };
-// #pragma pop
-
-// /* 80A41660-80A4166C -00001 000C+00 0/1 0/0 0/0 .data            @5895 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DATA static void* lit_5895[3] = {
-//     (void*)NULL,
-//     (void*)0xFFFFFFFF,
-//     (void*)ECut_thirdSkillGet__10daNpc_Kn_cFi,
-// };
-// #pragma pop
-
-// /* 80A4166C-80A41678 -00001 000C+00 0/1 0/0 0/0 .data            @5896 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DATA static void* lit_5896[3] = {
-//     (void*)NULL,
-//     (void*)0xFFFFFFFF,
-//     (void*)ECut_fourthSkillExplain__10daNpc_Kn_cFi,
-// };
-// #pragma pop
-
-// /* 80A41678-80A41684 -00001 000C+00 0/1 0/0 0/0 .data            @5897 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DATA static void* lit_5897[3] = {
-//     (void*)NULL,
-//     (void*)0xFFFFFFFF,
-//     (void*)ECut_fourthSkillGet__10daNpc_Kn_cFi,
-// };
-// #pragma pop
-
-// /* 80A41684-80A41690 -00001 000C+00 0/1 0/0 0/0 .data            @5898 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DATA static void* lit_5898[3] = {
-//     (void*)NULL,
-//     (void*)0xFFFFFFFF,
-//     (void*)ECut_fifthSkillExplain__10daNpc_Kn_cFi,
-// };
-// #pragma pop
-
-// /* 80A41690-80A4169C -00001 000C+00 0/1 0/0 0/0 .data            @5899 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DATA static void* lit_5899[3] = {
-//     (void*)NULL,
-//     (void*)0xFFFFFFFF,
-//     (void*)ECut_fifthSkillGet__10daNpc_Kn_cFi,
-// };
-// #pragma pop
-
-// /* 80A4169C-80A416A8 -00001 000C+00 0/1 0/0 0/0 .data            @5900 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DATA static void* lit_5900[3] = {
-//     (void*)NULL,
-//     (void*)0xFFFFFFFF,
-//     (void*)ECut_sixthSkillExplain__10daNpc_Kn_cFi,
-// };
-// #pragma pop
-
-// /* 80A416A8-80A416B4 -00001 000C+00 0/1 0/0 0/0 .data            @5901 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DATA static void* lit_5901[3] = {
-//     (void*)NULL,
-//     (void*)0xFFFFFFFF,
-//     (void*)ECut_sixthSkillGet__10daNpc_Kn_cFi,
-// };
-// #pragma pop
-
-// /* 80A416B4-80A416C0 -00001 000C+00 0/1 0/0 0/0 .data            @5902 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DATA static void* lit_5902[3] = {
-//     (void*)NULL,
-//     (void*)0xFFFFFFFF,
-//     (void*)ECut_seventhSkillExplain__10daNpc_Kn_cFi,
-// };
-// #pragma pop
-
-// /* 80A416C0-80A416CC -00001 000C+00 0/1 0/0 0/0 .data            @5903 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DATA static void* lit_5903[3] = {
-//     (void*)NULL,
-//     (void*)0xFFFFFFFF,
-//     (void*)ECut_seventhSkillGet__10daNpc_Kn_cFi,
-// };
-// #pragma pop
-
 /* 80A416CC-80A417C8 000998 00FC+00 1/2 0/0 0/0 .data            mCutList__10daNpc_Kn_c */
 daNpc_Kn_c::cutFunc daNpc_Kn_c::mCutList[21] = {
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
+    &daNpc_Kn_c::ECut_noneEquipChangeTalk,
+    &daNpc_Kn_c::ECut_noneEquipChangeTalkStand,
+    &daNpc_Kn_c::ECut_largeDamageTalk,
+    &daNpc_Kn_c::ECut_firstEncount,
+    &daNpc_Kn_c::ECut_attackFailed,
+    &daNpc_Kn_c::ECut_firstSkillGet,
+    &daNpc_Kn_c::ECut_secondEncount,
+    &daNpc_Kn_c::ECut_secondSkillExplain,
+    &daNpc_Kn_c::ECut_reflectExplain,
+    &daNpc_Kn_c::ECut_secondSkillGet,
+    &daNpc_Kn_c::ECut_thirdSkillExplain,
+    &daNpc_Kn_c::ECut_thirdSkillGet,
+    &daNpc_Kn_c::ECut_fourthSkillExplain,
+    &daNpc_Kn_c::ECut_fourthSkillGet,
+    &daNpc_Kn_c::ECut_fifthSkillExplain,
+    &daNpc_Kn_c::ECut_fifthSkillGet,
+    &daNpc_Kn_c::ECut_sixthSkillExplain,
+    &daNpc_Kn_c::ECut_sixthSkillGet,
+    &daNpc_Kn_c::ECut_seventhSkillExplain,
+    &daNpc_Kn_c::ECut_seventhSkillGet,
+    NULL
 };
 
-// /* 80A417C8-80A417E8 -00001 0020+00 1/1 0/0 0/0 .data            @6623 */
-// SECTION_DATA static void* lit_6623[8] = {
-//     (void*)(((char*)getType__10daNpc_Kn_cFv) + 0x60),
-//     (void*)(((char*)getType__10daNpc_Kn_cFv) + 0x28),
-//     (void*)(((char*)getType__10daNpc_Kn_cFv) + 0x30),
-//     (void*)(((char*)getType__10daNpc_Kn_cFv) + 0x38),
-//     (void*)(((char*)getType__10daNpc_Kn_cFv) + 0x40),
-//     (void*)(((char*)getType__10daNpc_Kn_cFv) + 0x48),
-//     (void*)(((char*)getType__10daNpc_Kn_cFv) + 0x50),
-//     (void*)(((char*)getType__10daNpc_Kn_cFv) + 0x58),
-// };
-
 /* 80A417E8-80A417F8 000AB4 000E+02 1/1 0/0 0/0 .data            l_appearFlag$6644 */
-SECTION_DATA static u8 l_appearFlag[14 + 2 /* padding */] = {
-    0xFF,
-    0xFF,
-    0x01,
-    0x53,
-    0x01,
-    0x52,
-    0x01,
-    0x54,
-    0x01,
-    0x55,
-    0x01,
-    0x56,
-    0x01,
-    0x57,
-    /* padding */
-    0x00,
-    0x00,
+static s16 l_appearFlag[7] = {
+    0xFFFF,
+    0x0153,
+    0x0152,
+    0x0154,
+    0x0155,
+    0x0156,
+    0x0157,
 };
 
 /* 80A417F8-80A41808 000AC4 000E+02 1/1 0/0 0/0 .data            l_delFlag$6645 */
-SECTION_DATA static u8 l_delFlag[14 + 2 /* padding */] = {
-    0x01,
-    0x53,
-    0x01,
-    0x52,
-    0x01,
-    0x54,
-    0x01,
-    0x55,
-    0x01,
-    0x56,
-    0x01,
-    0x57,
-    0x01,
-    0x58,
-    /* padding */
-    0x00,
-    0x00,
+static s16 l_delFlag[7] = {
+    0x0153,
+    0x0152,
+    0x0154,
+    0x0155,
+    0x0156,
+    0x0157,
+    0x0158,
 };
 
 // /* 80A41808-80A41824 -00001 001C+00 1/1 0/0 0/0 .data            @6752 */
@@ -2787,9 +2043,7 @@ static f32 l_swordOffset[2] = {
 // #pragma pop
 
 /* 80A42C38-80A42C74 001F04 003C+00 0/1 0/0 0/0 .data            l_checkOffset$13216 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_checkOffset[60] = {
+static u8 l_checkOffset[60] = {
     0x00, 0x00, 0x00, 0x00, 
     0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00,
@@ -2806,12 +2060,9 @@ SECTION_DATA static u8 l_checkOffset[60] = {
     0x00, 0x00, 0x00, 0x00,
     0xC2, 0x48, 0x00, 0x00,
 };
-#pragma pop
 
 /* 80A42C74-80A42CD4 001F40 0060+00 0/1 0/0 0/0 .data            l_WarpInScaleTable$13228 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_WarpInScaleTable[96] = {
+static u8 l_WarpInScaleTable[96] = {
     0x3F, 0x80, 0x00, 0x00,
     0x3F, 0x80, 0x00, 0x00,
     0x3F, 0x80, 0x00, 0x00,
@@ -2837,12 +2088,9 @@ SECTION_DATA static u8 l_WarpInScaleTable[96] = {
     0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00,
 };
-#pragma pop
 
 /* 80A42CD4-80A42CDC 001FA0 0008+00 0/1 0/0 0/0 .data            l_warpInTimeTable$13229 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_warpInTimeTable[8] = {
+static u8 l_warpInTimeTable[8] = {
     0x01,
     0x04,
     0x08,
@@ -2852,12 +2100,9 @@ SECTION_DATA static u8 l_warpInTimeTable[8] = {
     0x0F,
     0x10,
 };
-#pragma pop
 
 /* 80A42CDC-80A42D0C 001FA8 0030+00 0/1 0/0 0/0 .data            l_WarpOutScaleTable$13245 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_WarpOutScaleTable[48] = {
+static u8 l_WarpOutScaleTable[48] = {
     0x00, 0x00, 0x00, 0x00,
     0x3F, 0x80, 0x00, 0x00, 
     0x00, 0x00, 0x00, 0x00, 
@@ -2871,18 +2116,14 @@ SECTION_DATA static u8 l_WarpOutScaleTable[48] = {
     0x3F, 0x80, 0x00, 0x00,
     0x3F, 0x80, 0x00, 0x00,
 };
-#pragma pop
 
 /* 80A42D0C-80A42D10 001FD8 0004+00 0/1 0/0 0/0 .data            l_warpOutTimeTable$13246 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_warpOutTimeTable[4] = {
+static u8 l_warpOutTimeTable[4] = {
     0x01,
     0x03,
     0x05,
     0x06,
 };
-#pragma pop
 
 // /* 80A42D10-80A42E04 -00001 00F4+00 1/1 0/0 0/0 .data            @13764 */
 // SECTION_DATA static void* lit_13764[61] = {
@@ -3209,33 +2450,6 @@ SECTION_DATA static u8 l_warpOutTimeTable[4] = {
 //     (void*)(((char*)ECut_secondSkillGet__10daNpc_Kn_cFi) + 0x27C),
 // };
 
-/* 80A43148-80A43168 -00001 0020+00 1/0 0/0 0/0 .data            daNpc_Kn_MethodTable */
-static actor_method_class daNpc_Kn_MethodTable = {
-    (process_method_func)daNpc_Kn_Create__FPv,
-    (process_method_func)daNpc_Kn_Delete__FPv,
-    (process_method_func)daNpc_Kn_Execute__FPv,
-    (process_method_func)daNpc_Kn_IsDelete__FPv,
-    (process_method_func)daNpc_Kn_Draw__FPv,
-};
-
-/* 80A43168-80A43198 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_KN */
-extern actor_process_profile_definition g_profile_NPC_KN = {
-  fpcLy_CURRENT_e,        // mLayerID
-  7,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_NPC_KN,            // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  sizeof(daNpc_Kn_c),     // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  347,                    // mPriority
-  &daNpc_Kn_MethodTable,  // sub_method
-  0x00044107,             // mStatus
-  fopAc_ENEMY_e,          // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
-};
-
 // /* 80A43198-80A431A4 002464 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGSph */
 // SECTION_DATA extern void* __vt__8cM3dGSph[3] = {
 //     (void*)NULL /* RTTI */,
@@ -3358,7 +2572,11 @@ extern actor_process_profile_definition g_profile_NPC_KN = {
 
 /* 80A2AA0C-80A2AECC 0000EC 04C0+00 1/0 0/0 0/0 .text            __dt__10daNpc_Kn_cFv */
 daNpc_Kn_c::~daNpc_Kn_c() {
-    // NONMATCHING
+    if (heap) {
+        mpMorf[0]->stopZelAnime();
+        mpMorf[1]->stopZelAnime();
+    }
+    deleteRes(l_loadResPtrnList[mType], (const char**)l_resNameList);
 }
 
 /* 80A2AECC-80A2AF98 0005AC 00CC+00 2/2 0/0 0/0 .text            __dt__8dCcD_SphFv */
@@ -3375,12 +2593,11 @@ daNpc_Kn_c::~daNpc_Kn_c() {
 
 /* ############################################################################################## */
 /* 80A408C8-80A408F8 000000 0030+00 50/50 0/0 0/0 .rodata          mCcDObjData__10daNpc_Kn_c */
-SECTION_RODATA u8 const daNpc_Kn_c::mCcDObjData[48] = {
+const u8 daNpc_Kn_c::mCcDObjData[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(0x80A408C8, &daNpc_Kn_c::mCcDObjData);
 
 // /* 80A408F8-80A40900 000030 0008+00 6/11 0/0 0/0 .rodata          @4095 */
 // SECTION_RODATA static u8 const lit_4095[8] = {
@@ -3535,16 +2752,15 @@ COMPILER_STRIP_GATE(0x80A408C8, &daNpc_Kn_c::mCcDObjData);
 // #pragma pop
 
 /* 80A4096C-80A40970 0000A4 0004+00 1/1 0/0 0/0 .rodata          id$5838 */
-SECTION_RODATA static u8 const id[4] = {
+static u8 const id[4] = {
     0x84,
     0x97,
     0x84,
     0x98,
 };
-COMPILER_STRIP_GATE(0x80A4096C, &id);
 
 /* 80A40970-80A40A24 0000A8 00B4+00 8/29 0/0 0/0 .rodata          m__16daNpc_Kn_Param_c */
-    daNpc_Kn_Param_c::param const daNpc_Kn_Param_c::m = {
+daNpc_Kn_Param_c::param const daNpc_Kn_Param_c::m = {
     50.0f,
     -5.0f,
     1.0f,
@@ -3602,20 +2818,16 @@ COMPILER_STRIP_GATE(0x80A4096C, &id);
 };
 
 /* 80A40A24-80A40A44 00015C 0020+00 0/1 0/0 0/0 .rodata          heapSize$6094 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const heapSize[32] = {
-    0x00, 0x00, 0x4B, 0x10, 
-    0x00, 0x00, 0x4B, 0x20, 
-    0x00, 0x00, 0x4B, 0x10, 
-    0x00, 0x00, 0x4B, 0x10,
-    0x00, 0x00, 0x5A, 0x00, 
-    0x00, 0x00, 0x4B, 0x10, 
-    0x00, 0x00, 0x4B, 0x20, 
-    0x00, 0x00, 0x00, 0x00,
+static int const heapSize[8] = {
+    0x4B10, 
+    0x4B20, 
+    0x4B10, 
+    0x4B10,
+    0x5A00, 
+    0x4B10, 
+    0x4B20, 
+    0x0000,
 };
-COMPILER_STRIP_GATE(0x80A40A24, &heapSize);
-#pragma pop
 
 // /* 80A40A44-80A40A48 00017C 0004+00 0/1 0/0 0/0 .rodata          @6139 */
 // #pragma push
@@ -3646,18 +2858,139 @@ COMPILER_STRIP_GATE(0x80A40A24, &heapSize);
 // #pragma pop
 
 /* 80A2AFD4-80A2B278 0006B4 02A4+00 1/1 0/0 0/0 .text            create__10daNpc_Kn_cFv */
-void daNpc_Kn_c::create() {
-    // NONMATCHING
+s32 daNpc_Kn_c::create() {
+    cPhs__Step step;
+    
+    fopAcM_SetupActor2(this, daNpc_Kn_c, l_faceMotionAnmData, (daNpcT_motionAnmData_c*)l_motionAnmData, l_faceMotionSequenceData, 4, l_motionSequenceData, 4, l_evtList, l_resNameList);
+
+    mType = getType();
+    mDivideNo = getDivideNo();
+    mFlowNodeNo = getFlowNodeNo();
+    field_0xABD = 0;
+
+    if (isDelete()) {
+        return cPhs_ERROR_e;
+    } else {
+        step = (cPhs__Step)loadRes(l_loadResPtrnList[mType], (const char**)l_resNameList);
+
+        if (step == cPhs_COMPLEATE_e) {
+            if (!fopAcM_entrySolidHeap(this, createHeapCallBack, heapSize[mType])) {
+                return cPhs_ERROR_e;
+            } else {
+                J3DModelData* model_data = mpMorf[0]->getModel()->getModelData();
+                fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+                fopAcM_setCullSizeBox(this, -300.0f, -50.0f, -300.0f, 300.0f, 450.0f, 300.0f);
+                fopAcM_OnStatus(this, fopAcM_STATUS_UNK_80000000);
+                mCreature.init(&current.pos,&eyePos,3,1);
+                dKy_tevstr_init(&tevStr, fopAcM_GetRoomNo(this), 0xFF);
+                mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
+                mAcch.CrrPos(dComIfG_Bgsp());
+                mGndChk = mAcch.m_gnd;
+                mGroundHeight = mAcch.GetGroundH();
+                setEnvTevColor();
+                setRoomNo();
+                mCcStts.Init(daNpc_Kn_Param_c::m.mWeight,0, this);
+                resetCol();
+                reset();
+                field_0xABC = 1;
+                Execute();
+                field_0xABC = 0;
+            }
+        }
+    }
+
+    return step;
 }
 
 /* 80A2B278-80A2B620 000958 03A8+00 1/1 0/0 0/0 .text            CreateHeap__10daNpc_Kn_cFv */
-void daNpc_Kn_c::CreateHeap() {
-    // NONMATCHING
+// NONMATCHING - Waiting to fix data before finishing
+s32 daNpc_Kn_c::CreateHeap() {
+    J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_resNameList[l_bmdData[0][1]], l_bmdData[0][0]));
+
+    mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mCreature, 0x80000, 0x11020284);
+
+    if (mpMorf[0] != NULL && mpMorf[0]->getModel() == NULL) {
+        mpMorf[0]->stopZelAnime();
+        mpMorf[0] = NULL;
+    }
+
+    if (mpMorf[0] == NULL) {
+        return 0;
+    } else {
+        J3DModel* model = mpMorf[0]->getModel();
+
+        for (u16 i = 0; i < modelData->getJointNum(); i++) {
+            modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
+        }
+
+        model->setUserArea((u32)this);
+        model = mpMorf[0]->getModel();
+
+        if (!mInvisModel.create(model, 1)) {
+            return 0;
+        } else {
+            modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_resNameList[l_bmdData[1][1]], l_bmdData[1][0]));
+            mpMorf[1] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mCreature, 0x80000, 0x11020284);
+
+            if (mpMorf[1] == NULL || mpMorf[1]->getModel() == NULL) {
+                mpMorf[1] = NULL;
+            }
+
+            if (mpMorf[1] == NULL) {
+                if (mpMorf[0] != NULL) {
+                    mpMorf[0]->stopZelAnime();
+                }
+                return 0;
+            } else {
+                J3DModel* model = mpMorf[1]->getModel();
+
+                for (u16 i = 0; i < modelData->getJointNum(); i++) {
+                    modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
+                }
+
+                model->setUserArea((u32)this);
+
+                if (mType == 4) {
+                    modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_resNameList[l_bmdData[2][1]], l_bmdData[2][0]));
+
+                    if (modelData != NULL) {
+                        mpModel = mDoExt_J3DModel__create(modelData,0x80000,0x11000084);
+                        if (mpModel == NULL) {
+                            return 0;
+                        }                        
+                    } else {
+                        return 0;
+                    }
+                }
+
+                if (setFaceMotionAnm(1, false)) {
+                    if (mType == 4) {
+                        J3DAnmTransform* anm_transform = static_cast<J3DAnmTransform*>(getTrnsfrmKeyAnmP(l_resNameList[l_bmdData[1][1]],l_bmdData[1][0]));
+
+                        if (anm_transform != NULL && field_0x1588.init(anm_transform, 1, 2, 1.0f, 0, -1,false)) {
+                            field_0x15a4 |= 0x41;
+                            return 1;
+                        }
+
+                        if (anm_transform == NULL && l_podBckData[2] != -1) {
+                            return 0;
+                        }
+                    }
+
+                    if (setMotionAnm(0,0.0f,0)) {
+                        return 1;
+                    }
+                }
+            }
+        }
+    }
+
+    return 0;
 }
 
 /* 80A2B620-80A2B654 000D00 0034+00 1/1 0/0 0/0 .text            Delete__10daNpc_Kn_cFv */
 s32 daNpc_Kn_c::Delete() {
-    // NONMATCHING
+    this->~daNpc_Kn_c();
     return 1;
 }
 
@@ -3672,6 +3005,7 @@ s32 daNpc_Kn_c::Execute() {
 }
 
 /* 80A2B6B0-80A2B764 000D90 00B4+00 1/1 0/0 0/0 .text            Draw__10daNpc_Kn_cFv */
+// NONMATCHING - missing param_c access
 void daNpc_Kn_c::Draw() {
     if (mpMatAnm) {
         J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
@@ -3688,8 +3022,8 @@ void daNpc_Kn_c::Draw() {
 
 /* 80A2B764-80A2B784 000E44 0020+00 1/1 0/0 0/0 .text
  * createHeapCallBack__10daNpc_Kn_cFP10fopAc_ac_c               */
-void daNpc_Kn_c::createHeapCallBack(fopAc_ac_c* param_0) {
-    CreateHeap();
+int daNpc_Kn_c::createHeapCallBack(fopAc_ac_c* i_this) {
+    return static_cast<daNpc_Kn_c*>(i_this)->CreateHeap();
 }
 
 /* 80A2B784-80A2B7DC 000E64 0058+00 1/1 0/0 0/0 .text ctrlJointCallBack__10daNpc_Kn_cFP8J3DJointi
@@ -3751,20 +3085,24 @@ u8 daNpc_Kn_c::getPath() {
 }
 
 /* 80A2B878-80A2B91C 000F58 00A4+00 1/1 0/0 0/0 .text            isDelete__10daNpc_Kn_cFv */
-bool daNpc_Kn_c::isDelete() {
+BOOL daNpc_Kn_c::isDelete() {
     switch (mType) {
     case 0:
-        if (daNpcT_chkEvtBit(0x153) == 0) {
+        if (daNpcT_chkEvtBit(0x153) ==  FALSE) {
             return 0;
-        }
-
+        } 
         break;
-    case 7:
-        if (daNpcT_chkEvtBit(l_appearFlag[mType] != 0) || daNpcT_chkEvtBit(l_delFlag[mType] != 0)) {
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+        if (daNpcT_chkEvtBit(l_appearFlag[mType*1]) && !daNpcT_chkEvtBit(l_delFlag[mType])) {
             return 0;
         }
     }
-    
+
     return 1;
 }
 
@@ -3788,10 +3126,9 @@ void daNpc_Kn_c::resetCol() {
 }
 
 /* 80A2B9E0-80A2BC5C 0010C0 027C+00 1/1 0/0 0/0 .text            reset__10daNpc_Kn_cFv */
-// NONMATCHING -- issue with memset
 void daNpc_Kn_c::reset() {
     initialize();
-    // memset(&field_0x1714, 0, 0xe3c - 0x); // figure this out later
+    memset(&mpTeachAction, 0, (int)&field_0x1754 - (int)&mpTeachAction); // maybe fake match?
 
     if (mpMatAnm) {
         mpMatAnm->initialize();
@@ -3827,7 +3164,7 @@ void daNpc_Kn_c::reset() {
 
     field_0x15c0 = current.pos;
 
-    if (mType <= 6 && (field_0x15ad == 0 || field_0x15ad > 2)) {
+    if (mType <= 6 && (mDivideNo == 0 || mDivideNo > 2)) {
         field_0xe2c = 1;
         parentActorID = fopAcM_createChild(PROC_NPC_GWOLF, fopAcM_GetID(this), 0xffffff02, &current.pos, fopAcM_GetRoomNo(this), &current.angle, 0, -1, 0);
     }
@@ -3854,7 +3191,7 @@ void daNpc_Kn_c::resetType() {
             field_0x15ae = 4;
             return;
         case 5:
-            if (field_0x15ad != 0 && field_0x15ad <= 2) {
+            if (mDivideNo != 0 && mDivideNo <= 2) {
                 field_0x15ae = 0xe;
                 field_0x15af = 0;
             } else {
@@ -3862,7 +3199,7 @@ void daNpc_Kn_c::resetType() {
             }
             break;
         case 6:
-            if (field_0x15ad != 0 && field_0x15ad <= 2) {
+            if (mDivideNo != 0 && mDivideNo <= 2) {
                 field_0x15ae = 0x14;
                 field_0x15af = 0;
                 return;
@@ -3875,7 +3212,6 @@ void daNpc_Kn_c::resetType() {
 }
 
 /* 80A2BD30-80A2BFB0 001410 0280+00 2/1 0/0 0/0 .text            setParam__10daNpc_Kn_cFv */
-// NONMATCHING - small issue accessing daNpc_Kn_Param_c::m.mRadius in case 0/1 ?
 void daNpc_Kn_c::setParam() {
     selectAction();
     srchActors();
@@ -3890,13 +3226,13 @@ void daNpc_Kn_c::setParam() {
     switch (mType) {
     case 0:
         attention_info.flags = setParamTeach01();
-        mAcchCir.SetWallR(daNpc_Kn_Param_c::m.mRadius);
+        mAcchCir.SetWallR(135.0f);
         mAcchCir.SetWallH(daNpc_Kn_Param_c::m.mHeight);
         break;
     case 1:
         if (field_0x15ae < 4) {
             attention_info.flags = setParamTeach01();
-            mAcchCir.SetWallR(daNpc_Kn_Param_c::m.mRadius);
+            mAcchCir.SetWallR(135.0f);
             mAcchCir.SetWallH(daNpc_Kn_Param_c::m.mHeight);
         } else {
             attention_info.flags = setParamTeach02();
@@ -4034,7 +3370,7 @@ bool daNpc_Kn_c::evtTalk() {
 /* 80A2C318-80A2C3FC 0019F8 00E4+00 1/1 0/0 0/0 .text            evtCutProc__10daNpc_Kn_cFv */
 bool daNpc_Kn_c::evtCutProc() {
     bool ret;
-    if (field_0x15ad != 0 && field_0x15ad <= 2) {
+    if (mDivideNo != 0 && mDivideNo <= 2) {
         return false;
     } else {
         ret = false;
@@ -4056,7 +3392,14 @@ bool daNpc_Kn_c::evtCutProc() {
 
 /* 80A2C3FC-80A2C484 001ADC 0088+00 1/1 0/0 0/0 .text            action__10daNpc_Kn_cFv */
 void daNpc_Kn_c::action() {
-    // NONMATCHING
+    if (mpTeachAction) {
+        if (mpActionFunc == mpTeachAction) {
+            (this->*mpActionFunc)(0);
+            
+        } else {
+            setAction(mpTeachAction);
+        }
+    }
 }
 
 /* 80A2C484-80A2C4FC 001B64 0078+00 1/1 0/0 0/0 .text            beforeMove__10daNpc_Kn_cFv */
@@ -4068,9 +3411,9 @@ void daNpc_Kn_c::beforeMove() {
 
 /* 80A2C4FC-80A2C56C 001BDC 0070+00 1/1 0/0 0/0 .text            afterMoved__10daNpc_Kn_cFv */
 void daNpc_Kn_c::afterMoved() {
-    if (field_0xe14 != 1e+09f) {
-        mTevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mGndChk);
-        mTevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(mGndChk);
+    if (mGroundHeight != 1e+09f) {
+        mTevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(mGndChk);
+        mTevStr.room_no = dComIfG_Bgsp().GetRoomId(mGndChk);
     }
 }
 
@@ -4197,8 +3540,33 @@ void daNpc_Kn_c::setCollision() {
 
 /* 80A2C984-80A2CB30 002064 01AC+00 1/1 0/0 0/0 .text            setCollisionSword__10daNpc_Kn_cFv
  */
+ // NONMATCHING - regalloc
 void daNpc_Kn_c::setCollisionSword() {
-    // NONMATCHING
+    
+    if (mMotionSeqMngr2.getNo() == 0x19 && mMotionSeqMngr2.getStepNo() == 0 && mMotionSeqMngr2.checkEntryNewMotion() == 0) {
+        field_0x15ce = 1;
+    } else {
+        field_0x15ce = 0;
+    }
+
+    for (s32 i = 0; i < 2; i++) {
+        if (field_0xe2c == 0) {
+            if (field_0x15ce && mpMorf[0]->getFrame() >= 30.0f && mpMorf[0]->getFrame() <= 40.0f) {
+                    cXyz pos(l_swordOffset[i], 0.0f, 0.0f);
+                    field_0x1318[i].OnAtSetBit();
+                    mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(0xd));
+                    mDoMtx_stack_c::scaleM(scale);
+                    mDoMtx_stack_c::multVec(&pos,&pos);
+                    field_0x1318[i].SetC(pos);
+                    field_0x1318[i].SetR(30.0f);
+                    dComIfG_Ccsp()->Set(&field_0x1318[i]);
+            } else {
+                field_0x1318[i].OffAtSetBit();
+            }
+        }
+
+        field_0x1318[i].ClrAtHit();
+    }
 }
 
 /* 80A2CB30-80A2CBEC 002210 00BC+00 9/9 0/0 0/0 .text            checkCollisionSword__10daNpc_Kn_cFv
@@ -4298,7 +3666,47 @@ int daNpc_Kn_c::drawDbgInfo() {
 
 /* 80A2CD80-80A2CF9C 002460 021C+00 1/1 0/0 0/0 .text            drawOtherMdl__10daNpc_Kn_cFv */
 void daNpc_Kn_c::drawOtherMdl() {
-    // NONMATCHING
+    J3DModel* model = mpMorf[1]->getModel();
+
+    mTevStr.TevColor.r = 0;
+    mTevStr.TevColor.g = 0;
+    mTevStr.TevColor.b = 0;
+    mTevStr.TevColor.a = 0;
+
+    if (field_0xde0 && field_0xde4) {
+        f32 fval = (f32)field_0xde4 / (f32)field_0xde0;
+
+        if (cM3d_IsZero(fval) == 0) {
+            mTevStr.TevColor.r = fval * 20.0f;
+        }
+    }
+
+    g_env_light.settingTevStruct(0, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(model->getModelData(), &tevStr);
+    mpMorf[1]->entryDL();
+    // where is the rodata access happening here?
+    mShadowKey = dComIfGd_setShadow(mShadowKey, 1, model, &current.pos, daNpc_Kn_Param_c::m.field_0x0c, 20.0f, current.pos.y, mGroundHeight, mGndChk, &tevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
+
+    if (field_0x15cd && mpModel) {
+        mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(0xd));
+        mDoMtx_stack_c::scaleM(scale);
+        mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
+        g_env_light.setLightTevColorType_MAJI(mpModel,&tevStr);
+        J3DModelData* modelData2 = mpModel->getModelData();
+
+        if (field_0x15a4 & 0x40) {
+            mBckAnm.entry(modelData2);
+        }
+
+        mDoExt_modelUpdateDL(mpModel);
+
+        if (field_0x15a4 & 0x40) {
+            mBckAnm.remove(modelData2);
+        }
+
+        dComIfGd_addRealShadow(mShadowKey,mpModel);
+    }
+    
 }
 
 /* 80A2CF9C-80A2D060 00267C 00C4+00 1/1 0/0 0/0 .text            drawGhost__10daNpc_Kn_cFv */
@@ -4318,12 +3726,108 @@ void daNpc_Kn_c::drawGhost() {
 
 /* 80A2D060-80A2D198 002740 0138+00 1/0 0/0 0/0 .text afterSetMotionAnm__10daNpc_Kn_cFiifi */
 bool daNpc_Kn_c::afterSetMotionAnm(int param_0, int param_1, f32 param_2, int param_3) {
-    // NONMATCHING
+    field_0x15a4 &= 0xfffffc30;
+    J3DAnmTransform* anm_tranform = NULL;
+    int i = 0;
+
+    switch (param_0) {
+    case 30:
+        i = 1;
+        break;
+    case 31:
+        i = 2;
+        break;
+    case 32:
+        i = 3;
+        break;
+    case 33:
+        i = 4;
+        break;
+    }
+
+    if (l_podBckData[i*2] != -1) {
+        anm_tranform = static_cast<J3DAnmTransform*>(getTrnsfrmKeyAnmP(l_resNameList[l_podBckData[1+i*2]], l_podBckData[i*2]));
+    }
+
+    if (anm_tranform && field_0x1588.init(anm_tranform, 1, param_1, 1.0f, 0, -1, true)) {
+        field_0x15a4 |= 0x41;
+        return true;
+    } else {
+        if (anm_tranform == NULL && l_podBckData[i*2] != -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
 
 /* 80A2D198-80A2D3A4 002878 020C+00 2/1 0/0 0/0 .text            selectAction__10daNpc_Kn_cFv */
-void daNpc_Kn_c::selectAction() {
-    // NONMATCHING
+int daNpc_Kn_c::selectAction() {
+    mpTeachAction = NULL;
+
+    if (daNpc_Kn_Param_c::m.field_0x6a != 0) {
+        mpTeachAction = &daNpc_Kn_c::test;
+    } else {
+        switch (mType) {
+        case 0:
+            teach01_selectAction();
+            break;
+        case 1:
+            if (field_0x15ae < 4) {
+                teach01_selectAction();
+            } else {
+                teach02_selectAction();
+            }
+            break;
+        case 2:
+            if (field_0x15ae < 8) {
+                teach02_selectAction();
+            } else {
+                teach03_selectAction();
+            }
+            break;
+        case 3:
+            if (field_0x15ae == 4) {
+                mpTeachAction = &daNpc_Kn_c::teach02_start;
+            } else if (field_0x15ae < 9) {
+                teach03_selectAction();
+            } else {
+                teach04_selectAction();
+            }
+            break;
+        case 4:
+            if (field_0x15ae == 4) {
+                mpTeachAction = &daNpc_Kn_c::teach02_start;
+            } else if (field_0x15ae < 12) {
+                teach04_selectAction();
+            } else {
+                teach05_selectAction();
+            }
+            break;
+        case 5:
+            if (field_0x15ae == 4) {
+                mpTeachAction = &daNpc_Kn_c::teach02_start;
+            } else if (field_0x15ae < 13) {
+                teach05_selectAction();
+            } else {
+                teach06_selectAction();
+            }
+            break;
+        case 6:
+            if (field_0x15ae == 4) {
+                mpTeachAction = &daNpc_Kn_c::teach02_start;
+            } else if (field_0x15ae < 19) {
+                teach06_selectAction();
+            } else {
+                teach07_selectAction();
+            }
+            break;
+        default:
+            mpTeachAction = &daNpc_Kn_c::wait;
+        }
+    }
+
+    return 1;
 }
 
 /* 80A2D3A4-80A2D3FC 002A84 0058+00 1/1 0/0 0/0 .text teach03_selectAction__10daNpc_Kn_cFv */
@@ -4442,7 +3946,6 @@ BOOL daNpc_Kn_c::setAction(daNpc_Kn_c::actionFunc i_action) {
 }
 
 /* 80A2D7DC-80A2D9C4 002EBC 01E8+00 8/0 0/0 0/0 .text            wait__10daNpc_Kn_cFPv */
-// NONMATCHING - switch statement is wrong (missing instruction)
 int daNpc_Kn_c::wait(void* param_0) {
     switch(field_0xe2a) {
     case 0:
@@ -4461,20 +3964,20 @@ int daNpc_Kn_c::wait(void* param_0) {
             }
             mJntAnm.lookNone(0);
         };
+    case 3:
+    default:
+        return 1;
     }
-
-    return 1;
 }
 
 /* 80A2D9C4-80A2DB94 0030A4 01D0+00 2/0 0/0 0/0 .text            talk__10daNpc_Kn_cFPv */
-// NONMATCHING - switch statement is wrong (missing instruction)
 int daNpc_Kn_c::talk(void* param_0) {
     int bVar = 0;
 
     switch(field_0xe2a) {
     case 0:
     case 1:
-        initTalk(field_0xAB0, 0);
+        initTalk(mFlowNodeNo, 0);
         field_0xe2a = 2;
     case 2:
         if (field_0xABD == 0) {
@@ -4498,15 +4001,16 @@ int daNpc_Kn_c::talk(void* param_0) {
             dComIfGp_event_reset();
             field_0xe2a = 3;
         };
+    
+    case 3:
+    default:
+        return 0;
     }
-
-    return 0;
 }
 
 /* 80A2DB94-80A2DCB4 003274 0120+00 1/0 0/0 0/0 .text            test__10daNpc_Kn_cFPv */
-// NONMATCHING - switch statement is wrong (missing instruction)
 int daNpc_Kn_c::test(void* param_0) {
-     switch(field_0xe2a) {
+    switch(field_0xe2a) {
     case 0:
     case 1:
         speedF = 0.0f;
@@ -4515,11 +4019,12 @@ int daNpc_Kn_c::test(void* param_0) {
     case 2:
         mMotionSeqMngr1.setNo(daNpc_Kn_Param_c::m.field_0x64,-1.0f,0,0);
         mMotionSeqMngr2.setNo(daNpc_Kn_Param_c::m.field_0x66,-1.0f,0,0);
+        mJntAnm.lookNone(0);
+        attention_info.flags = 0;
+    case 3:
+    default:
+        return 0;
     }
-
-    mJntAnm.lookNone(0);
-    attention_info.flags = 0;
-    return 0;
 }
 
 /* 80A2DCB4-80A2DD70 003394 00BC+00 7/7 0/0 0/0 .text            setSceneChange__10daNpc_Kn_cFi */
@@ -4567,7 +4072,7 @@ int daNpc_Kn_c::ECut_noneEquipChangeTalk(int i_idx) {
             break;
         case 10:
             field_0xdfe = 2;
-            initTalk(field_0xAB0,NULL);
+            initTalk(mFlowNodeNo,NULL);
             break;
         }
     }
@@ -4624,7 +4129,7 @@ int daNpc_Kn_c::ECut_noneEquipChangeTalkStand(int i_idx) {
             break;
         case 20:
             field_0xdfe = 2;
-            initTalk(field_0xAB0,NULL);
+            initTalk(mFlowNodeNo,NULL);
             break;
         }
     }
@@ -4687,7 +4192,7 @@ int daNpc_Kn_c::ECut_largeDamageTalk(int i_idx) {
             break;
         case 20:
             field_0xdfe = 2;
-            initTalk(field_0xAB0,NULL);
+            initTalk(mFlowNodeNo,NULL);
             break;
         }
     }
@@ -4735,7 +4240,6 @@ int daNpc_Kn_c::ECut_largeDamageTalk(int i_idx) {
 }
 
 /* 80A2E528-80A2E664 003C08 013C+00 5/0 0/0 0/0 .text            teach02_start__10daNpc_Kn_cFPv */
-// NONMATCHING - switch statement
 int daNpc_Kn_c::teach02_start(void* param_0) {
     switch (field_0xe2a) {
     case 0:
@@ -5562,16 +5066,10 @@ void daNpc_Kn_c::calcMagicBallPos() {
 // #pragma pop
 
 /* 80A43300-80A433C8 000048 00C8+00 0/0 0/0 0/0 .bss             mFindActorPtrs__10daNpc_Kn_c */
-#pragma push
-#pragma force_active on
 fopAc_ac_c* daNpc_Kn_c::mFindActorPtrs[50];
-#pragma pop
 
 /* 80A433C8-80A433CC 000110 0004+00 0/0 0/0 0/0 .bss             mFindCount__10daNpc_Kn_c */
-#pragma push
-#pragma force_active on
 u8 daNpc_Kn_c::mFindCount[4];
-#pragma pop
 
 /* 80A433CC-80A433D8 000114 000C+00 1/1 0/0 0/0 .bss             @5904 */
 // static u8 lit_5904[12];
@@ -5585,11 +5083,12 @@ static u8 l_HIO[4];
 // static u8 lit_12316[12 + 4 /* padding */];
 // #pragma pop
 
+static bool lit_12316;
+
 /* 80A433EC-80A433F8 000134 000C+00 0/1 0/0 0/0 .bss             lightAParticleScale$12315 */
-#pragma push
-#pragma force_active on
-static u8 lightAParticleScale[12];
-#pragma pop
+static cXyz lightAParticleScale;
+
+static bool lit_12320;
 
 /* 80A433F8-80A43408 000140 000C+04 0/1 0/0 0/0 .bss             @12320 */
 // #pragma push
@@ -5598,15 +5097,85 @@ static u8 lightAParticleScale[12];
 // #pragma pop
 
 /* 80A43408-80A43414 000150 000C+00 0/1 0/0 0/0 .bss             lightALocalTrans$12319 */
-#pragma push
-#pragma force_active on
-static u8 lightALocalTrans[12];
-#pragma pop
+static cXyz lightALocalTrans;
 
 /* 80A37670-80A37B08 00CD50 0498+00 1/1 0/0 0/0 .text            setSwordChargePtcl__10daNpc_Kn_cFv
  */
 void daNpc_Kn_c::setSwordChargePtcl() {
-    // NONMATCHING
+    if (mMotionSeqMngr2.getNo() == 10 && mMotionSeqMngr2.getStepNo() == 0 && !mMotionSeqMngr2.checkEntryNewMotion()) {
+        f32 frame = mpMorf[0]->getFrame();
+        if (frame >= 17.0f || frame < 37.0f) {
+            if (!lit_12316) {
+                lightAParticleScale = cXyz(1.5223,1.3f,1.3f);
+                lit_12316 = true;
+            }
+
+            if (!lit_12320) {
+                lightALocalTrans = cXyz(88.399994f, 0.0f, 0.0f);
+                lit_12320 = true;
+            }
+
+            field_0x15d4[0] = dComIfGp_particle_set(field_0x15d4[0],0x368, &current.pos, &tevStr);
+            JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(field_0x15d4[0]);
+
+            if (emitter) {
+                emitter->setGlobalRTMatrix(mpMorf[0]->getModel()->getAnmMtx(0xd));
+                emitter->setGlobalParticleScale(lightAParticleScale); // may need a tvec cast here
+                emitter->setLocalTranslation(lightALocalTrans);
+            }
+
+            cXyz pos1;
+            cXyz pos2;
+
+            mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(0xd));
+            mDoMtx_stack_c::multVecSR(&pos1.BaseX,&pos1);
+            mDoMtx_stack_c::multVecZero(&pos2);
+
+            f32 frame_copy = frame;
+            if (frame >= 31.0f)
+                frame_copy = 31.0f;
+
+            pos1 *= (frame_copy + 1.0f) - 17.0f;
+            pos1 += 10.4;
+            pos1 += pos2;
+
+            field_0x15d4[1] = dComIfGp_particle_set(field_0x15d4[1],0x36a, &pos1, &tevStr);
+
+            if (frame >= 31.0f) {
+                field_0x15d4[2] = dComIfGp_particle_set(field_0x15d4[2],0x36b, &pos1, &tevStr);
+            }
+            
+        } else {
+            JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(field_0x15d4[0]);
+
+            if (emitter) {
+                if (emitter->getGlobalAlpha() < 0x12) {
+                    emitter->setGlobalAlpha(0);
+                } else {
+                    field_0x15d4[0] = dComIfGp_particle_set(field_0x15d4[0],0x368, &current.pos, &tevStr);
+                    emitter = dComIfGp_particle_getEmitter(field_0x15d4[0]);
+
+                    if (emitter) {
+                        emitter->setGlobalRTMatrix(mpMorf[0]->getModel()->getAnmMtx(0xd));
+                        emitter->setGlobalAlpha(emitter->getGlobalAlpha() - 0x11);
+
+                    }
+                }
+            }
+
+            emitter = dComIfGp_particle_getEmitter(field_0x15d4[1]);
+
+            if (emitter) {
+                emitter->stopDrawParticle();
+            }
+
+            emitter = dComIfGp_particle_getEmitter(field_0x15d4[2]);
+
+            if (emitter) {
+                emitter->stopDrawParticle();
+            }
+        }
+    }
 }
 
 /* ############################################################################################## */
@@ -5783,8 +5352,8 @@ void daNpc_Kn_c::getTrnsfrmAnmP(char const* i_arcName, int i_resIdx) {
 }
 
 /* 80A3858C-80A385C8 00DC6C 003C+00 3/3 0/0 0/0 .text getTrnsfrmKeyAnmP__10daNpc_Kn_cFPCci */
-void daNpc_Kn_c::getTrnsfrmKeyAnmP(char const* i_arcName, int i_resIdx) {
-    dComIfG_getObjectRes(i_arcName, i_resIdx);
+void* daNpc_Kn_c::getTrnsfrmKeyAnmP(char const* i_arcName, int i_resIdx) {
+   return dComIfG_getObjectRes(i_arcName, i_resIdx);
 }
 
 /* 80A385C8-80A38604 00DCA8 003C+00 1/1 0/0 0/0 .text            getTexPtrnAnmP__10daNpc_Kn_cFPCci
@@ -5882,7 +5451,57 @@ void daNpc_Kn_c::deleteRes(s8 const* param_0, char const** param_1) {
 
 /* 80A38930-80A38BB8 00E010 0288+00 1/1 0/0 0/0 .text            execute__10daNpc_Kn_cFv */
 s32 daNpc_Kn_c::execute() {
-    // NONMATCHING
+    setParam();
+
+    if (!evtEndProc()) {
+        action();
+    }
+
+    beforeMove();
+
+    if (speedF != 0.0f) {
+        fopAcM_posMoveF(this, mCcStts.GetCCMoveP());
+    } else {
+        fopAcM_posMove(this, mCcStts.GetCCMoveP());
+    }
+
+    mAcch.CrrPos(dComIfG_Bgsp());
+    mGndChk = mAcch.m_gnd;
+    field_0xdf0 = fopAcM_getPolygonAngle(mGndChk,current.angle.y);
+    mGroundHeight = mAcch.GetGroundH();
+    afterMoved();
+
+    if (mGroundHeight !=  -1e+09f) {
+        setEnvTevColor();
+        setRoomNo();
+    }
+
+    if (mMotionSeqMngr1.checkEntryNewMotion()) {
+        ctrlFaceMotion();
+    }
+
+    if (mMotionSeqMngr2.checkEntryNewMotion()) {
+        ctrlMotion();
+    }
+
+    playAllAnm();
+    ctrlFaceMotion();
+    ctrlMotion();
+    setAttnPos();
+    twilight();
+    setCollision();
+
+    if (field_0xe33 == 0) {
+        if (field_0xe39 != 0 && dComIfGp_getEvent().isOrderOK() || g_dComIfG_gameInfo.play.mEvent.mEventStatus == 0) {
+            evtOrder();
+        }
+    }
+        
+    clrParam();
+    decTmr();
+
+
+    return 1;
 }
 
 /* 80A38BB8-80A38FAC 00E298 03F4+00 1/1 0/0 0/0 .text draw__10daNpc_Kn_cFiifP11_GXColorS10fiii */
@@ -5893,8 +5512,8 @@ void daNpc_Kn_c::draw(int param_0, int param_1, f32 param_2, _GXColorS10* param_
 
 /* 80A38FAC-80A39008 00E68C 005C+00 2/2 0/0 0/0 .text            setEnvTevColor__10daNpc_Kn_cFv */
 void daNpc_Kn_c::setEnvTevColor() {
-    tevStr.mEnvrIdxOverride = dComIfG_Bgsp().GetPolyColor(mGndChk);
-    tevStr.mRoomNo = dComIfG_Bgsp().GetRoomId(mGndChk);
+    tevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(mGndChk);
+    tevStr.room_no = dComIfG_Bgsp().GetRoomId(mGndChk);
 }
 
 /* 80A39008-80A3904C 00E6E8 0044+00 2/2 0/0 0/0 .text            setRoomNo__10daNpc_Kn_cFv */
@@ -6222,8 +5841,8 @@ void daNpc_Kn_c::afterJntAnm(int param_0) {
 // }
 
 /* 80A3B79C-80A3B7A4 010E7C 0008+00 1/0 0/0 0/0 .text            evtEndProc__10daNpc_Kn_cFv */
-bool daNpc_Kn_c::evtEndProc() {
-    return true;
+BOOL daNpc_Kn_c::evtEndProc() {
+    return TRUE;
 }
 
 /* 80A3B7A4-80A3B7AC 010E84 0008+00 1/0 0/0 0/0 .text            checkChangeEvt__10daNpc_Kn_cFv */
@@ -6460,7 +6079,41 @@ daNpc_Kn_Param_c::~daNpc_Kn_Param_c() {
 
 /* 80A3C998-80A3CB14 012078 017C+00 1/1 0/0 0/0 .text            setParamTeach01__10daNpc_Kn_cFv */
 u32 daNpc_Kn_c::setParamTeach01() {
-    // NONMATCHING
+    s16 field48 = daNpc_Kn_Param_c::m.field_0x48;
+    s16 field4a = daNpc_Kn_Param_c::m.field_0x4a;
+    s16 field4c = daNpc_Kn_Param_c::m.field_0x4c;
+    s16 field4e = daNpc_Kn_Param_c::m.field_0x4e;
+
+    switch(field_0x15ae) {
+    case 0:
+        attention_info.distances[0] = daNpcT_getDistTableIdx(field4c, field4e);
+        attention_info.distances[2] = 0xe4;
+        attention_info.distances[1] = attention_info.distances[0];
+        attention_info.distances[3] = daNpcT_getDistTableIdx(field48, field4a);
+        return 0;
+    case 1:
+        if (field_0x170c != 0) {
+            return 0;
+        }
+    case 2:
+        attention_info.distances[0] = daNpcT_getDistTableIdx(field4c, field4e);
+        attention_info.distances[2] = 0xe4;
+        attention_info.distances[1] = attention_info.distances[0];
+        attention_info.distances[3] = daNpcT_getDistTableIdx(field48, field4a);
+        mAcchCir.SetWallR(daNpc_Kn_Param_c::m.mRadius);
+        mAcchCir.SetWallH(daNpc_Kn_Param_c::m.mHeight);
+        return 4;
+    case 3:
+        attention_info.distances[0] = daNpcT_getDistTableIdx(field4c, field4e);
+        attention_info.distances[2] = 0xe4;
+        attention_info.distances[1] = attention_info.distances[0];
+        attention_info.distances[3] = daNpcT_getDistTableIdx(field48, field4a);
+        mAcchCir.SetWallR(135.0f);
+        mAcchCir.SetWallH(daNpc_Kn_Param_c::m.mHeight);
+        return 4;
+    }
+
+    return 10;
 }
 
 /* 80A3CB14-80A3CBFC 0121F4 00E8+00 1/1 0/0 0/0 .text            setCollisionTeach01__10daNpc_Kn_cFv
@@ -6572,23 +6225,61 @@ int daNpc_Kn_c::teach01_swordAttackWait(void* param_0) {
     switch(field_0xe2a) {
     case 0:
     case 1:
-        mMotionSeqMngr2.setNo(1,-1.0f,0,0);
-        mMotionSeqMngr1.setNo(9,-1.0f,0,0);
+        mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+        mMotionSeqMngr2.setNo(9,-1.0f,0,0);
         mJntAnm.lookPlayer(0);
-        // field_0xdec = 
+        field_0xdec = daNpc_Kn_Param_c::m.field_0x8e;
+        field_0x15b0 = current.pos;
+        field_0x15bc = 0;
+        field_0x15d0 = cLib_getRndValue(daNpc_Kn_Param_c::m.mMinRndVal,daNpc_Kn_Param_c::m.mRndValRange);
+        speedF = 0.0f;
+        speed.zero();
+        field_0xe2a = 2;
     case 2:
-    if (!ctrlWarp()) {
-        cLib_addCalcAngleS2(&field_0xDAC.y,fopAcM_searchPlayerAngleY(this),2,0x800);
-        setAngle(field_0xDAC.y);
+        calcSlip();
+        mCcStts.Move();
         if (field_0x11DC.ChkTgHit()) {
+            int cut_type = daPy_getPlayerActorClass()->getCutType();
+            if (cut_type == daPy_py_c::CUT_TYPE_JUMP || cut_type == daPy_py_c::CUT_TYPE_TURN_RIGHT || cut_type == daPy_py_c::CUT_TYPE_TURN_LEFT || daPy_getPlayerActorClass()->getCutCount() >= 4) {
+                field_0x15ae = 0x3;
+                setAngle(fopAcM_searchPlayerAngleY(this));
+                speedF = -daNpc_Kn_Param_c::m.mSpeedF;
+                speed.y = daNpc_Kn_Param_c::m.mSpeedY;
+                mCreature.startCollisionSE(Z2SE_HIT_SWORD,0x1f);
+            } else {
+                fopAc_ac_c* hit_ac = field_0x11DC.GetTgHitAc();
+                s16 angle = cLib_targetAngleY(&hit_ac->current.pos,&current.pos);
+                cXyz pos(0.0f,0.0f,daNpc_Kn_Param_c::m.field_0x94);
+                mDoMtx_stack_c::YrotS(angle);
+                mDoMtx_stack_c::multVec(&pos,&field_0x15b0);
+                field_0x15b0 += current.pos;
+                field_0x15bc = 1;
+                mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+                mMotionSeqMngr2.setNo(0x1f,-1.0f,1,0);
+                mCreature.startCollisionSE(Z2SE_HIT_SWORD,0x1e);
+            }
+        } else {
+            if (cLib_calcTimer(&field_0xdec) == 0 || checkCollisionSword()) {
+                field_0x15b0 = current.pos;
+                int check = 0;
+                
+                if (dComIfGp_getAttention().LockonTruth()) {
+                    check = 1;
+                }
 
-            field_0xe36 = 6;
-            field_0x16f4.set(1.0f,1.0f,1.0f);
-            field_0x170c = 0;
-            field_0x170d = 0;
-            mCreature.startCollisionSE(Z2SE_HIT_SWORD,0x28);
+                checkCollisionSword() != 0 ? field_0xe36 = 4 : field_0xe36 = 1;
+                
+                mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+                mMotionSeqMngr2.setNo(0,-1.0f,1,0);
+
+                check != 0 ?mFlowNodeNo = 0x2da: mFlowNodeNo = 0x2db;
+                
+            } else {
+                calcSwordAttackMove(1);         
+            }
+
+            
         }
-    }
     case 3:
     default:
         return 1;
@@ -6597,7 +6288,76 @@ int daNpc_Kn_c::teach01_swordAttackWait(void* param_0) {
 
 /* 80A3D32C-80A3D6D8 012A0C 03AC+00 1/0 0/0 0/0 .text teach01_swordFinishWait__10daNpc_Kn_cFPv */
 int daNpc_Kn_c::teach01_swordFinishWait(void* param_0) {
-    // NONMATCHING
+    switch(field_0xe2a) {
+    case 0:
+    case 1:
+        mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+        mMotionSeqMngr2.setNo(0x12,-1.0f,0,0);
+        mCreature.startCreatureVoice(Z2SE_KN_V_DAMAGE_L, -1);
+        mJntAnm.lookNone(0);
+        field_0xdec = daNpc_Kn_Param_c::m.field_0x8e;
+        field_0xe2a = 2;
+    case 2:
+        field_0x15b0 = current.pos;
+        int no = mMotionSeqMngr2.getNo();
+        if (no == 0x12) {
+            if (speed.y <= 0.0f && mAcch.ChkGroundHit()) {
+                speedF = 0.0f;
+                speed.zero();
+                mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+                mMotionSeqMngr2.setNo(0x13,-1.0f,0,0);
+                setLandingPrtcl();
+            }
+        } else if (no == 0x13) {
+            if (mMotionSeqMngr2.getStepNo() == 0) {
+                if (mpMorf[0]->getFrame() >= 13.0f && mpMorf[0]->getFrame() < 14.0f) {
+                    setLandingPrtcl();
+                }
+            } else {
+                // both downFlg inlines are generating extra instructions?
+                // if (!checkDownFlg())
+                if (!(mFlags & 0x1)) {
+                    cXyz pos(10.0f,0.0f,0.0f);
+                    mFlags |= 1;
+                    // onDownFlg();
+                    u8 backbone_joint = getBackboneJointNo();
+                    J3DModel* model = mpMorf[0]->getModel();
+                    mDoMtx_stack_c::copy(model->getAnmMtx(backbone_joint));
+                    mDoMtx_stack_c::multVec(&pos,&field_0x15c0);
+                    setDownPos(&field_0x15c0);
+                } else {
+                    if (checkCutDownHitFlg()) {
+                        mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+                        mMotionSeqMngr2.setNo(0x14,-1.0f,0,0);
+                        
+                        if (mType == 0) {
+                            field_0xe36 = 7;
+                        } else if (mType == 1) {
+                            field_0xe36 = 9;
+                        }
+                        
+                        mCreature.startCollisionSE(Z2SE_HIT_SWORD_STAB,0x1e);
+                        break;
+                    }
+                }   
+            }
+        }
+
+        if (cLib_calcTimer(&field_0xdec) == 0) {
+            if (daPy_getPlayerActorClass()->getCutType() != daPy_py_c::CUT_TYPE_DOWN) {
+                offDownFlg();
+                field_0x15b0 = current.pos;
+                field_0xe36 = 3;
+                mFlowNodeNo = 0x2dc;
+                field_0x15ae = 2;
+            }
+        }
+    case 3:
+    default:
+        break;
+    }
+
+    return 1;
 }
 
 /* ############################################################################################## */
@@ -6636,19 +6396,19 @@ int daNpc_Kn_c::ctrlWarp() {
 
 /* 80A3DCEC-80A3DEC4 0133CC 01D8+00 1/0 0/0 0/0 .text            ECut_firstEncount__10daNpc_Kn_cFi
  */
-void daNpc_Kn_c::ECut_firstEncount(int param_0) {
+int daNpc_Kn_c::ECut_firstEncount(int param_0) {
     // NONMATCHING
 }
 
 /* 80A3DEC4-80A3E550 0135A4 068C+00 1/0 0/0 0/0 .text            ECut_attackFailed__10daNpc_Kn_cFi
  */
-void daNpc_Kn_c::ECut_attackFailed(int param_0) {
+int daNpc_Kn_c::ECut_attackFailed(int param_0) {
     // NONMATCHING
 }
 
 /* 80A3E550-80A3EB84 013C30 0634+00 3/0 0/0 0/0 .text            ECut_firstSkillGet__10daNpc_Kn_cFi
  */
-void daNpc_Kn_c::ECut_firstSkillGet(int param_0) {
+int daNpc_Kn_c::ECut_firstSkillGet(int param_0) {
     // NONMATCHING
 }
 
@@ -6669,31 +6429,31 @@ u32 daNpc_Kn_c::setParamTeach02() {
  */
 void daNpc_Kn_c::setCollisionTeach02() {
     switch (field_0x15ae) {
-        case 4:
-            break;
-        case 5:
-            field_0x11DC.SetTgType(-1);
-            field_0x11DC.SetTgHitMark(CcG_Tg_UNK_MARK_2);
-            field_0x11DC.SetTgSPrm(0x13);
-            field_0x11DC.OnTgShield();
-            field_0x11DC.OffTgNoAtHitInfSet();
-            field_0x11DC.OnTgNoConHit();
-            break;
-        case 6:
-            field_0x11DC.SetTgType(-1);
-            field_0x11DC.SetTgHitMark(CcG_Tg_UNK_MARK_1);
-            field_0x11DC.SetTgSPrm(0x13);
-            field_0x11DC.OffTgShield();
-            field_0x11DC.OffTgNoAtHitInfSet();
-            field_0x11DC.OnTgNoConHit();
-            break;
-        case 7:
-            field_0x11DC.SetTgType(-1);
-            field_0x11DC.SetTgHitMark(CcG_Tg_UNK_MARK_2);
-            field_0x11DC.SetTgSPrm(0x13);
-            field_0x11DC.OffTgShield();
-            field_0x11DC.OnTgNoConHit();
-            break;
+    case 4:
+        break;
+    case 5:
+        field_0x11DC.SetTgType(-1);
+        field_0x11DC.SetTgHitMark(CcG_Tg_UNK_MARK_2);
+        field_0x11DC.SetTgSPrm(0x13);
+        field_0x11DC.OnTgShield();
+        field_0x11DC.OffTgNoAtHitInfSet();
+        field_0x11DC.OnTgNoConHit();
+        break;
+    case 6:
+        field_0x11DC.SetTgType(-1);
+        field_0x11DC.SetTgHitMark(CcG_Tg_UNK_MARK_1);
+        field_0x11DC.SetTgSPrm(0x13);
+        field_0x11DC.OffTgShield();
+        field_0x11DC.OffTgNoAtHitInfSet();
+        field_0x11DC.OnTgNoConHit();
+        break;
+    case 7:
+        field_0x11DC.SetTgType(-1);
+        field_0x11DC.SetTgHitMark(CcG_Tg_UNK_MARK_2);
+        field_0x11DC.SetTgSPrm(0x13);
+        field_0x11DC.OffTgShield();
+        field_0x11DC.OnTgNoConHit();
+        break;
     }
 }
 
@@ -6758,226 +6518,45 @@ int daNpc_Kn_c::teach02_shieldReflectWait(void* param_0) {
 }
 
 /* 80A3F99C-80A3FFB4 01507C 0618+00 3/0 0/0 0/0 .text ECut_secondSkillExplain__10daNpc_Kn_cFi */
-void daNpc_Kn_c::ECut_secondSkillExplain(int param_0) {
+int daNpc_Kn_c::ECut_secondSkillExplain(int param_0) {
     // NONMATCHING
 }
 
 /* 80A3FFB4-80A403B8 015694 0404+00 1/0 0/0 0/0 .text            ECut_reflectExplain__10daNpc_Kn_cFi
  */
-void daNpc_Kn_c::ECut_reflectExplain(int param_0) {
+int daNpc_Kn_c::ECut_reflectExplain(int param_0) {
     // NONMATCHING
 }
 
 /* 80A403B8-80A408B4 015A98 04FC+00 2/0 0/0 0/0 .text            ECut_secondSkillGet__10daNpc_Kn_cFi
  */
-void daNpc_Kn_c::ECut_secondSkillGet(int param_0) {
+int daNpc_Kn_c::ECut_secondSkillGet(int param_0) {
     // NONMATCHING
 }
 
-/* ############################################################################################## */
-/* 80A40AF4-80A40AF8 00022C 0004+00 0/0 0/0 0/0 .rodata          @14385 */
-// #pragma push
-// #pragma force_active on
-// SECTION_RODATA static f32 const lit_14385 = 15.0f;
-// COMPILER_STRIP_GATE(0x80A40AF4, &lit_14385);
-// #pragma pop
-
-// /* 80A43414-80A43418 00015C 0004+00 0/0 0/0 0/0 .bss
-//  * sInstance__40JASGlobalInstance<19JASDefaultBankTable>        */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A43414[4];
-// #pragma pop
-
-// /* 80A43418-80A4341C 000160 0004+00 0/0 0/0 0/0 .bss
-//  * sInstance__35JASGlobalInstance<14JASAudioThread>             */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A43418[4];
-// #pragma pop
-
-// /* 80A4341C-80A43420 000164 0004+00 0/0 0/0 0/0 .bss sInstance__27JASGlobalInstance<7Z2SeMgr> */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A4341C[4];
-// #pragma pop
-
-// /* 80A43420-80A43424 000168 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8Z2SeqMgr> */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A43420[4];
-// #pragma pop
-
-// /* 80A43424-80A43428 00016C 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SceneMgr>
-//  */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A43424[4];
-// #pragma pop
-
-// /* 80A43428-80A4342C 000170 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2StatusMgr>
-//  */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A43428[4];
-// #pragma pop
-
-// /* 80A4342C-80A43430 000174 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2DebugSys>
-//  */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A4342C[4];
-// #pragma pop
-
-// /* 80A43430-80A43434 000178 0004+00 0/0 0/0 0/0 .bss
-//  * sInstance__36JASGlobalInstance<15JAISoundStarter>            */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A43430[4];
-// #pragma pop
-
-// /* 80A43434-80A43438 00017C 0004+00 0/0 0/0 0/0 .bss
-//  * sInstance__35JASGlobalInstance<14Z2SoundStarter>             */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A43434[4];
-// #pragma pop
-
-// /* 80A43438-80A4343C 000180 0004+00 0/0 0/0 0/0 .bss
-//  * sInstance__33JASGlobalInstance<12Z2SpeechMgr2>               */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A43438[4];
-// #pragma pop
-
-// /* 80A4343C-80A43440 000184 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8JAISeMgr> */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A4343C[4];
-// #pragma pop
-
-// /* 80A43440-80A43444 000188 0004+00 0/0 0/0 0/0 .bss sInstance__29JASGlobalInstance<9JAISeqMgr> */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A43440[4];
-// #pragma pop
-
-// /* 80A43444-80A43448 00018C 0004+00 0/0 0/0 0/0 .bss
-//  * sInstance__33JASGlobalInstance<12JAIStreamMgr>               */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A43444[4];
-// #pragma pop
-
-// /* 80A43448-80A4344C 000190 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SoundMgr>
-//  */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A43448[4];
-// #pragma pop
-
-// /* 80A4344C-80A43450 000194 0004+00 0/0 0/0 0/0 .bss
-//  * sInstance__33JASGlobalInstance<12JAISoundInfo>               */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A4344C[4];
-// #pragma pop
-
-// /* 80A43450-80A43454 000198 0004+00 0/0 0/0 0/0 .bss
-//  * sInstance__34JASGlobalInstance<13JAUSoundTable>              */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A43450[4];
-// #pragma pop
-
-// /* 80A43454-80A43458 00019C 0004+00 0/0 0/0 0/0 .bss
-//  * sInstance__38JASGlobalInstance<17JAUSoundNameTable>          */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A43454[4];
-// #pragma pop
-
-// /* 80A43458-80A4345C 0001A0 0004+00 0/0 0/0 0/0 .bss
-//  * sInstance__33JASGlobalInstance<12JAUSoundInfo>               */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A43458[4];
-// #pragma pop
-
-// /* 80A4345C-80A43460 0001A4 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SoundInfo>
-//  */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A4345C[4];
-// #pragma pop
-
-// /* 80A43460-80A43464 0001A8 0004+00 0/0 0/0 0/0 .bss
-//  * sInstance__34JASGlobalInstance<13Z2SoundObjMgr>              */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A43460[4];
-// #pragma pop
-
-// /* 80A43464-80A43468 0001AC 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2Audience>
-//  */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A43464[4];
-// #pragma pop
-
-// /* 80A43468-80A4346C 0001B0 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2FxLineMgr>
-//  */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A43468[4];
-// #pragma pop
-
-// /* 80A4346C-80A43470 0001B4 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2EnvSeMgr>
-//  */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A4346C[4];
-// #pragma pop
-
-// /* 80A43470-80A43474 0001B8 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SpeechMgr>
-//  */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A43470[4];
-// #pragma pop
-
-// /* 80A43474-80A43478 0001BC 0004+00 0/0 0/0 0/0 .bss
-//  * sInstance__34JASGlobalInstance<13Z2WolfHowlMgr>              */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A43474[4];
-// #pragma pop
-
-/* 80A40AF8-80A40AF8 000230 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-
 /* 80A43148-80A43168 -00001 0020+00 1/0 0/0 0/0 .data            daNpc_Kn_MethodTable */
-// static actor_method_class daNpc_Kn_MethodTable = {
-//     (process_method_func)daNpc_Kn_Create,
-//     (process_method_func)daNpc_Kn_Delete,
-//     (process_method_func)daNpc_Kn_Execute,
-//     (process_method_func)daNpc_Kn_IsDelete,
-//     (process_method_func)daNpc_Kn_Draw,
-// };
+static actor_method_class daNpc_Kn_MethodTable = {
+    (process_method_func)daNpc_Kn_Create,
+    (process_method_func)daNpc_Kn_Delete,
+    (process_method_func)daNpc_Kn_Execute,
+    (process_method_func)daNpc_Kn_IsDelete,
+    (process_method_func)daNpc_Kn_Draw,
+};
 
-// /* 80A43168-80A43198 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_KN */
-// extern actor_process_profile_definition g_profile_NPC_KN = {
-//   fpcLy_CURRENT_e,        // mLayerID
-//   7,                      // mListID
-//   fpcPi_CURRENT_e,        // mListPrio
-//   PROC_NPC_KN,            // mProcName
-//   &g_fpcLf_Method.mBase,  // sub_method
-//   sizeof(daNpc_Kn_c),     // mSize
-//   0,                      // mSizeOther
-//   0,                      // mParameters
-//   &g_fopAc_Method.base,   // sub_method
-//   347,                    // mPriority
-//   &daNpc_Kn_MethodTable,  // sub_method
-//   0x00044107,             // mStatus
-//   fopAc_ENEMY_e,          // mActorType
-//   fopAc_CULLBOX_CUSTOM_e, // cullType
-// };
+/* 80A43168-80A43198 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_KN */
+extern actor_process_profile_definition g_profile_NPC_KN = {
+  fpcLy_CURRENT_e,        // mLayerID
+  7,                      // mListID
+  fpcPi_CURRENT_e,        // mListPrio
+  PROC_NPC_KN,            // mProcName
+  &g_fpcLf_Method.base,  // sub_method
+  sizeof(daNpc_Kn_c),     // mSize
+  0,                      // mSizeOther
+  0,                      // mParameters
+  &g_fopAc_Method.base,   // sub_method
+  347,                    // mPriority
+  &daNpc_Kn_MethodTable,  // sub_method
+  0x00044107,             // mStatus
+  fopAc_ENEMY_e,          // mActorType
+  fopAc_CULLBOX_CUSTOM_e, // cullType
+};
