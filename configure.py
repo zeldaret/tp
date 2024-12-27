@@ -442,7 +442,7 @@ config.libs = [
         "progress_category": "game",
         "host": True,
         "objects": [
-            Object(NonMatching, "d/d_stage.cpp"),
+            Object(Matching, "d/d_stage.cpp"),
             Object(Matching, "d/d_map.cpp"),
             Object(Matching, "d/d_com_inf_game.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(Matching, "d/d_com_static.cpp"),
