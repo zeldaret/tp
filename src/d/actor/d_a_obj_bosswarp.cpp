@@ -678,8 +678,7 @@ SECTION_DEAD static char const* const stringBase_8057B64F = "Timer";
 #pragma pop
 
 /* 8057AA94-8057B0D8 0014D4 0644+00 11/8 0/0 0/0 .text            demoProc__15daObjBossWarp_cFv */
-#ifdef NONMATCHING
-// regalloc
+// NONMATCHING - regalloc
 int daObjBossWarp_c::demoProc() {
     static char* action_table[15] = {
         "WAIT",
@@ -878,11 +877,6 @@ int daObjBossWarp_c::demoProc() {
 
     return 1;
 }
-#else
-int daObjBossWarp_c::demoProc() {
-    // NONMATCHING
-}
-#endif
 
 /* ############################################################################################## */
 /* 8057B4BC-8057B4C0 00015C 0004+00 0/0 0/0 0/0 .rodata          @4491 */

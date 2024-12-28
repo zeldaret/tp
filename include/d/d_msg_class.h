@@ -63,13 +63,19 @@ struct jmessage_tReference : public JMessage::TReference {
     /* 802298DC */ bool isLightSend();
     /* 8022994C */ bool isLightEnd();
     /* 802299AC */ void decideOutFontRupeeColor(int);
-    /* 80232A20 */ cXyz getActorPos();
+    /* 80232A20 */ cXyz getActorPos() { return mActorPos; }
 
     /* 80238C78 */ void setActorPos(cXyz pos) { mActorPos = pos; }
 
     bool isSelectSetCancelFlag() { return mSelectSetCancelFlag != 0; }
     BOOL isSelectRubyFlag(int i_flag) {
-        return mSelectRubyFlag & (u8)(1 << i_flag) ? 1 : 0;
+        BOOL var_r31;
+        if (mSelectRubyFlag & (u8)(1 << i_flag)) {
+            var_r31 = true;
+        } else {
+            var_r31 = false;
+        }
+        return var_r31;
     }
     bool isBatchFlag() { return mBatchFlag; }
 
@@ -98,7 +104,7 @@ struct jmessage_tReference : public JMessage::TReference {
     void offSelectRubyFlag(int i_flag) { mSelectRubyFlag &= ~(u8)(1 << i_flag); }
     void setPageEndCount(s16 i_endCount) { mPageEndCount = i_endCount; }
     void onBombNameUseFlag() { mBombNameUseFlag = 1; }
-    void onSelectRubyFlag(int i_flag) { mSelectRubyFlag |= (1 << i_flag); }
+    void onSelectRubyFlag(int i_flag) { mSelectRubyFlag |= (u8)(1 << i_flag); }
     void setpStatus(u16* status) { mpStatus = status; }
     void setObjectPtr(dMsgObject_c* ptr) { mpObjectPtr = ptr; }
     void setCountBackUp() { mCharactor.mCountBackUp = mCharactor.field_0x40e; }
@@ -140,6 +146,15 @@ struct jmessage_tReference : public JMessage::TReference {
         }
     }
 
+    void addLineLength(int param_0, f32 param_1, f32 param_2) {
+        mStrLength[param_0] += param_1;
+        mSpaceLength[param_0] += param_2;
+    }
+
+    void addSelLength(int param_0, f32 param_1) {
+        mSelLength[param_0] += param_1;
+    }
+
     dMsgObject_c* getObjectPtr() { return mpObjectPtr; }
     u8 getForm() { return mForm; }
     u8 getNowLightCount() { return mNowLightCount; }
@@ -179,6 +194,9 @@ struct jmessage_tReference : public JMessage::TReference {
     u8 getFukiPosType() { return mFukiPosType; }
     u16 getStatus() { return *mpStatus; }
     u8 getArrange() { return mArrange; }
+    f32 getSelFontSize() { return mSelFontSize; }
+    f32 getSelCharSpace() { return mSelCharSpace; }
+    u16 getLineScale(int i_no) { return mLineScale[i_no]; }
 
     struct CharSoundInfo {
         u16 data[0x200];
@@ -186,7 +204,7 @@ struct jmessage_tReference : public JMessage::TReference {
         s16 field_0x40e;
         s16 mCountBackUp;
     };
-    CharSoundInfo getCharSoundInfo() { return mCharactor;}
+    CharSoundInfo getCharSoundInfo() { return mCharactor; }
     u32 getDemoFrame() { return mDemoFrame; }
     u32 getRevoMessageID() { return mRevoMessageID; }
     f32 getCharAllAlphaRate() { return mCharAllAlphaRate; }
@@ -296,9 +314,9 @@ struct jmessage_tMeasureProcessor : public JMessage::TRenderingProcessor {
     /* 0x45 */ u8 mSelectType;
     /* 0x46 */ u8 field_0x46;
     /* 0x47 */ u8 field_0x47;
-    /* 0x48 */ s8 field_0x48;
+    /* 0x48 */ u8 field_0x48;
     /* 0x49 */ s8 field_0x49;
-    /* 0x4A */ u8 mPageLineMax;
+    /* 0x4A */ s8 mPageLineMax;
     /* 0x4B */ s8 field_0x4b;
     /* 0x4C */ u8 field_0x4c;
     /* 0x4D */ u8 field_0x4d;
@@ -315,7 +333,7 @@ struct jmessage_tSequenceProcessor : public JMessage::TSequenceProcessor,
     /* 8022CB10 */ void messageSePlay(u8, u8, cXyz*);
     /* 8022CBE8 */ void calcStringLength();
 
-    /* 8023299C */ virtual ~jmessage_tSequenceProcessor();
+    /* 8023299C */ virtual ~jmessage_tSequenceProcessor() {}
     /* 8022B654 */ virtual void do_reset();
     /* 8022B658 */ virtual void do_begin(void const*, char const*);
     /* 8022BA3C */ virtual void do_end();
@@ -379,7 +397,7 @@ struct jmessage_tRenderingProcessor : public JMessage::TRenderingProcessor {
     /* 8022F734 */ void push_word();
     /* 8022F784 */ void getCharInfo(f32, f32, f32, f32, f32);
 
-    /* 8023293C */ virtual ~jmessage_tRenderingProcessor();
+    /* 8023293C */ virtual ~jmessage_tRenderingProcessor() {}
     /* 8022CDC8 */ virtual void do_reset();
     /* 8022CDCC */ virtual void do_begin(void const*, char const*);
     /* 8022CFD8 */ virtual void do_end();
@@ -451,7 +469,7 @@ struct jmessage_tRenderingProcessor : public JMessage::TRenderingProcessor {
 struct jmessage_string_tControl : public JMessage::TControl {
     /* 8022FB5C */ jmessage_string_tControl();
 
-    /* 802328DC */ virtual ~jmessage_string_tControl();
+    /* 802328DC */ virtual ~jmessage_string_tControl() {}
 };
 
 struct jmessage_string_tReference : public JMessage::TReference {
@@ -517,7 +535,7 @@ struct jmessage_string_tSequenceProcessor : public JMessage::TSequenceProcessor,
     /* 80230A08 */ jmessage_string_tSequenceProcessor(jmessage_string_tReference const*,
                                                       jmessage_string_tControl*);
 
-    /* 80232858 */ virtual ~jmessage_string_tSequenceProcessor();
+    /* 80232858 */ virtual ~jmessage_string_tSequenceProcessor() {}
     /* 80230ABC */ virtual void do_reset();
     /* 80230AC0 */ virtual void do_begin(void const*, char const*);
     /* 80230B7C */ virtual void do_end();
@@ -545,7 +563,7 @@ struct jmessage_string_tRenderingProcessor : public JMessage::TRenderingProcesso
     /* 802326E4 */ void do_numset(s16);
     /* 802327BC */ void push_word(char const*);
 
-    /* 802327F8 */ virtual ~jmessage_string_tRenderingProcessor();
+    /* 802327F8 */ virtual ~jmessage_string_tRenderingProcessor() {}
     /* 80230C5C */ virtual void do_reset();
     /* 80230CA0 */ virtual void do_begin(void const*, char const*);
     /* 80230CE8 */ virtual void do_end();

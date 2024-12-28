@@ -392,8 +392,7 @@ f64 interpolateValue_hermite(f64 c0, f64 c1, f64 x, f64 c2, f64 x2, f64 c3, f64 
 
 /* 80281774-802817D8 27C0B4 0064+00 1/1 0/0 0/0 .text
  * interpolateValue_BSpline_uniform__Q27JStudio13functionvalueFddddd */
-// really minor regalloc.
-#ifdef NONMATCHING  
+// NONMATCHING - really minor regalloc.
 f64 interpolateValue_BSpline_uniform(f64 f1, f64 f2, f64 f3, f64 f4, f64 f5) {
     // pow3(1.0 - f1)
     f64 f6 = (1.0 - f1);
@@ -412,12 +411,6 @@ f64 interpolateValue_BSpline_uniform(f64 f1, f64 f2, f64 f3, f64 f4, f64 f5) {
     return temp5 + (temp * f2 + f8 * f5) * 0.5 +
            temp3;
 }
-#else
-f64 interpolateValue_BSpline_uniform(f64 param_0, f64 param_1, f64 param_2, f64 param_3,
-                                         f64 param_4) {
-    // NONMATCHING
-}
-#endif
 
 /* 802817D8-802818B8 27C118 00E0+00 1/1 0/0 0/0 .text
  * interpolateValue_BSpline_nonuniform__Q27JStudio13functionvalueFdPCdPCd */
@@ -790,8 +783,7 @@ void TFunctionValue_transition::prepare() {
 
 /* 802824F4-802826BC 27CE34 01C8+00 1/0 0/0 0/0 .text
  * getValue__Q27JStudio25TFunctionValue_transitionFd            */
-// regalloc. Maybe return value related.
-#ifdef NONMATCHING
+// NONMATCHING - regalloc. Maybe return value related.
 f64 TFunctionValue_transition::getValue(f64 param_1) {
     f64 progress = range_getParameter_progress(param_1);
     f64 dVar3 = range_getParameter_outside(progress);
@@ -830,11 +822,6 @@ f64 TFunctionValue_transition::getValue(f64 param_1) {
         }
     }
 }
-#else
-f64 TFunctionValue_transition::getValue(f64 param_0) {
-    // NONMATCHING
-}
-#endif
 
 TFunctionValue_list::TFunctionValue_list() : _44(NULL), uData_(0), _50(NAN), pfnUpdate_(NULL) {}
 

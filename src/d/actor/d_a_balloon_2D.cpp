@@ -550,8 +550,7 @@ COMPILER_STRIP_GATE(0x806555E4, &lit_4175);
 #pragma pop
 
 /* 80654730-80654E8C 001350 075C+00 1/1 0/0 0/0 .text            drawAddScore__13daBalloon2D_cFv */
-// field_0x0.x, regalloc
-#ifdef NONMATCHING
+// NONMATCHING - field_0x0.x, regalloc
 void daBalloon2D_c::drawAddScore() {
     for (int i = 19; i >= 0; i--) {
         if (field_0x5f8[i].field_0xe != 0) {
@@ -633,11 +632,6 @@ void daBalloon2D_c::drawAddScore() {
         }
     }
 }
-#else
-void daBalloon2D_c::drawAddScore() {
-    // NONMATCHING
-}
-#endif
 
 /* 80654E8C-80655250 001AAC 03C4+00 2/2 0/0 0/0 .text            setHIO__13daBalloon2D_cFb */
 void daBalloon2D_c::setHIO(bool param_1) {
@@ -724,16 +718,11 @@ SECTION_DATA extern void* __vt__Q213daBalloon2D_c6c_list[4] = {
 };
 
 /* 80655250-80655304 001E70 00B4+00 1/0 0/0 0/0 .text daBalloon2D_create__FP13daBalloon2D_c */
-#ifdef NONMATCHING
+// NONMATCHING - vtable
 static int daBalloon2D_create(daBalloon2D_c* i_this) {
     fopAcM_SetupActor(i_this, daBalloon2D_c);
     return i_this->create();
 }
-#else
-static int daBalloon2D_create(daBalloon2D_c* param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 80655304-80655340 001F24 003C+00 2/2 0/0 0/0 .text __dt__Q213daBalloon2D_c10CHeadScoreFv */
 daBalloon2D_c::CHeadScore::~CHeadScore() {

@@ -247,7 +247,7 @@ JMessage::TParse::~TParse() {}
 
 /* 802A91B8-802A92F4 2A3AF8 013C+00 1/0 0/0 0/0 .text
  * parseHeader_next__Q28JMessage6TParseFPPCvPUlUl               */
-#ifdef NONMATCHING
+// NONMATCHING
 bool JMessage::TParse::parseHeader_next(void const** ppData_inout, u32* puBlock_out, u32 param_2) {
     const void* pData = *ppData_inout;
 
@@ -287,11 +287,6 @@ bool JMessage::TParse::parseHeader_next(void const** ppData_inout, u32* puBlock_
         return 1;
     }
 }
-#else
-bool JMessage::TParse::parseHeader_next(void const** param_0, u32* param_1, u32 param_2) {
-    // NONMATCHING
-}
-#endif
 
 /* 802A92F4-802A9490 2A3C34 019C+00 1/0 0/0 0/0 .text
  * parseBlock_next__Q28JMessage6TParseFPPCvPUlUl                */

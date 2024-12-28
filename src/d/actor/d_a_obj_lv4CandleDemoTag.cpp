@@ -205,8 +205,7 @@ void dalv4CandleDemoTag_c::setBaseMtx() {
 }
 
 /* 80C5CA90-80C5CBA4 000190 0114+00 1/1 0/0 0/0 .text            create__20dalv4CandleDemoTag_cFv */
-// vtables need work
-#ifdef NONMATCHING
+// NONMATCHING - vtables need work
 int dalv4CandleDemoTag_c::create() {
     fopAcM_SetupActor(this, dalv4CandleDemoTag_c);
 
@@ -230,11 +229,6 @@ int dalv4CandleDemoTag_c::create() {
 
     return cPhs_COMPLEATE_e;
 }
-#else
-int dalv4CandleDemoTag_c::create() {
-    // NONMATCHING
-}
-#endif
 
 /* 80C5CBA4-80C5CBE8 0002A4 0044+00 1/1 0/0 0/0 .text            Execute__20dalv4CandleDemoTag_cFv
  */

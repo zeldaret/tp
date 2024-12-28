@@ -118,7 +118,7 @@ private:
     static OSMessageQueue sMessageQueue;
     static const char* sCpuExpName[17];
     static JSUList<JUTException::JUTExMapFile> sMapFileList;
-    static OSMessage sMessageBuffer[1 + 1 /* padding */];
+    static OSMessage sMessageBuffer[1];
     static JUTException* sErrorManager;
     static OSErrorHandler sPreUserCallback;
     static OSErrorHandler sPostUserCallback;

@@ -10,6 +10,11 @@
 #include "dol2asm.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "string.h"
+#include "d/d_bg_w.h"
+#include "m_Do/m_Do_lib.h"
+#include "d/d_demo.h"
+#include "JSystem/JKernel/JKRExpHeap.h"
+#include "JSystem/JKernel/JKRSolidHeap.h"
 
 //
 // Forward References:
@@ -389,8 +394,7 @@ SECTION_DEAD static char const* const stringBase_804593C6 = "room.plc";
 #pragma pop
 
 /* 804582B8-80458750 000738 0498+00 2/2 0/0 1/1 .text            createHeap__6daBg_cFv */
-// regalloc, but equivalent
-#ifdef NONMATCHING
+// NONMATCHING - regalloc, but equivalent
 int daBg_c::createHeap() {
     const char* arcName = setArcName();
     s32 prm = fopAcM_GetParam(this);
@@ -505,11 +509,6 @@ int daBg_c::createHeap() {
 
     return 1;
 }
-#else
-int daBg_c::createHeap() {
-    // NONMATCHING
-}
-#endif
 
 /* 80458750-80458788 000BD0 0038+00 1/1 0/0 0/0 .text            __ct__11J3DLightObjFv */
 // J3DLightObj::J3DLightObj() {
@@ -590,8 +589,7 @@ SECTION_DEAD static char const* const stringBase_80459418 = "MA00_Kusa";
 #pragma pop
 
 /* 804588C4-80458F38 000D44 0674+00 1/1 0/0 0/0 .text            draw__6daBg_cFv */
-// just regalloc + some reorder issues
-#ifdef NONMATCHING
+// NONMATCHING - just regalloc + some reorder issues
 int daBg_c::draw() {
     int roomNo = fopAcM_GetParam(this);
     daBg_unkData* bgData = mBgData;
@@ -742,11 +740,6 @@ int daBg_c::draw() {
 
     return 1;
 }
-#else
-int daBg_c::draw() {
-    // NONMATCHING
-}
-#endif
 
 /* ############################################################################################## */
 /* 804593A4-804593A8 000030 0004+00 1/1 0/0 0/0 .rodata          @4524 */
@@ -801,14 +794,13 @@ static int daBg_Create(fopAc_ac_c* i_this) {
 }
 
 /* 8045906C-8045933C 0014EC 02D0+00 1/1 0/0 0/0 .text            create__6daBg_cFv */
-// regalloc
-#ifdef NONMATCHING
+// NONMATCHING - regalloc
 int daBg_c::create() {
     int roomNo = fopAcM_GetParam(this);
     field_0x5f0 = 0;
     field_0x5f1 = 0;
 
-    if (mHeap == NULL) {
+    if (this->heap == NULL) {
         fopAcM_SetupActor(this, daBg_c);
 
         home.roomNo = roomNo;
@@ -816,13 +808,13 @@ int daBg_c::create() {
 
         JKRExpHeap* heap = dStage_roomControl_c::getMemoryBlock(roomNo);
         if (heap != NULL) {
-            mHeap = JKRSolidHeap::create(-1, heap, false);
+            this->heap = JKRSolidHeap::create(-1, heap, false);
 
-            JKRHeap* old = mDoExt_setCurrentHeap(mHeap);
+            JKRHeap* old = mDoExt_setCurrentHeap(this->heap);
             createHeap();
 
             mDoExt_setCurrentHeap(old);
-            mHeap->adjustSize();
+            this->heap->adjustSize();
         } else if (!fopAcM_entrySolidHeap(this, checkCreateHeap, 0x80020040)) {
             return cPhs_ERROR_e;
         }
@@ -888,11 +880,6 @@ int daBg_c::create() {
     dComIfGp_roomControl_onStatusFlag(roomNo, 0x10);
     return cPhs_COMPLEATE_e;
 }
-#else
-int daBg_c::create() {
-    // NONMATCHING
-}
-#endif
 
 /* 8045933C-8045936C 0017BC 0030+00 1/0 0/0 0/0 .text            calc__11J3DTexNoAnmCFPUs */
 // void J3DTexNoAnm::calc(u16* param_0) const {

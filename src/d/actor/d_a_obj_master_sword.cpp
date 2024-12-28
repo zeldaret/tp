@@ -437,8 +437,7 @@ void daObjMasterSword_c::setAction(daObjMasterSword_c::Mode_e i_mode) {
 
 /* 80C90F6C-80C9120C 0004EC 02A0+00 1/1 0/0 0/0 .text            create_init__18daObjMasterSword_cFv
  */
-// matches, but weak function emission is hella weird. cant be linked til its fixed
-#ifdef NONMATCHING
+// NONMATCHING - matches, but weak function emission is hella weird. cant be linked til its fixed
 void daObjMasterSword_c::create_init() {
     fopAcM_setCullSizeBox2(this, mpModel->getModelData());
     initCollision();
@@ -464,11 +463,6 @@ void daObjMasterSword_c::create_init() {
 
     setAction(MODE_0_e);
 }
-#else
-void daObjMasterSword_c::create_init() {
-    // NONMATCHING
-}
-#endif
 
 /* 80C9120C-80C9127C 00078C 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
 // dBgS_ObjAcch::~dBgS_ObjAcch() {
@@ -514,16 +508,10 @@ static int daObjMasterSword_Delete(daObjMasterSword_c* i_this) {
 }
 
 /* 80C91448-80C915E8 0009C8 01A0+00 1/1 0/0 0/0 .text            __dt__18daObjMasterSword_cFv */
-// vtables issues
-#ifdef NONMATCHING
+// NONMATCHING - vtables issues
 daObjMasterSword_c::~daObjMasterSword_c() {
     dComIfG_resDelete(&mPhase, l_arcName);
 }
-#else
-daObjMasterSword_c::~daObjMasterSword_c() {
-    // NONMATCHING
-}
-#endif
 
 /* ############################################################################################## */
 /* 80C91960-80C91968 000020 0008+00 1/1 0/0 0/0 .rodata          @4030 */

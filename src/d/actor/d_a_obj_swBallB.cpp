@@ -640,7 +640,7 @@ void daObjSwBallB_c::PutCrrPos() {
 
 
 /* 80CF56A4-80CF582C 001164 0188+00 1/1 0/0 0/0 .text            draw__14daObjSwBallB_cFv */
-#ifdef NONMATCHING
+// NONMATCHING
 int daObjSwBallB_c::draw() {
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(mModel, &tevStr);
@@ -662,11 +662,6 @@ int daObjSwBallB_c::draw() {
     dComIfGd_setList();
     return 1;
 }
-#else
-int daObjSwBallB_c::draw() {
-    // NONMATCHING
-}
-#endif
 
 /* 80CF582C-80CF5860 0012EC 0034+00 1/1 0/0 0/0 .text            _delete__14daObjSwBallB_cFv */
 int daObjSwBallB_c::_delete() {

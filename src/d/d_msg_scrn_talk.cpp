@@ -417,8 +417,7 @@ SECTION_SDATA2 static f32 lit_4278 = 4.0f / 5.0f;
 SECTION_SDATA2 static f32 lit_4279 = -1.0f;
 
 /* 80247E4C-802480F0 24278C 02A4+00 1/0 0/0 0/0 .text            drawSelf__14dMsgScrnTalk_cFv */
-// regalloc
-#ifdef NONMATCHING
+// NONMATCHING - regalloc
 void dMsgScrnTalk_c::drawSelf() {
     CharInfo_c* pCharInfo;
     J2DGrafContext* grafContext = dComIfGp_getCurrentGrafPort();
@@ -474,11 +473,6 @@ void dMsgScrnTalk_c::drawSelf() {
     }
     mpArrow_c->draw();
 }
-#else
-void dMsgScrnTalk_c::drawSelf() {
-    // NONMATCHING
-}
-#endif
 
 /* 802480F0-80248114 242A30 0024+00 1/0 0/0 0/0 .text            arwAnimeInit__14dMsgScrnTalk_cFv */
 void dMsgScrnTalk_c::arwAnimeInit() {

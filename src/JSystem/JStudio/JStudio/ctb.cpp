@@ -7,6 +7,7 @@
 #include "iterator.h"
 #include "string.h"
 #include "dol2asm.h"
+#include <algorithm.h>
 
 //
 // Types:
@@ -166,8 +167,7 @@ void JStudio::ctb::TControl::destroyObject_all() {
 }
 
 /* 80281190-80281230 27BAD0 00A0+00 1/1 0/0 0/0 .text getObject__Q37JStudio3ctb8TControlFPCvUl */
-// TPRObject_ID_equal issues
-#ifdef NONMATCHING
+// NONMATCHING - TPRObject_ID_equal issues
 JStudio::ctb::TObject* JStudio::ctb::TControl::getObject(void const* param_0, u32 param_1) {
     JGadget::TLinkList<TObject, -12>::iterator begin = mList.begin();
     JGadget::TLinkList<TObject, -12>::iterator end = mList.end();
@@ -177,11 +177,6 @@ JStudio::ctb::TObject* JStudio::ctb::TControl::getObject(void const* param_0, u3
     }
     return NULL;
 }
-#else
-JStudio::ctb::TObject* JStudio::ctb::TControl::getObject(void const* param_0, u32 param_1) {
-    // NONMATCHING
-}
-#endif
 
 /* 80281230-80281274 27BB70 0044+00 0/0 1/1 0/0 .text getObject_index__Q37JStudio3ctb8TControlFUl
  */

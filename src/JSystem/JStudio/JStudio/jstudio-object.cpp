@@ -1589,19 +1589,13 @@ void JStudio::TObject::forward_value(u32 param_0) {
 }
 
 /* 8028679C-802867D4 2810DC 0038+00 9/0 0/0 0/0 .text            do_begin__Q27JStudio7TObjectFv */
-#ifdef NONMATCHING
+// NONMATCHING
 void JStudio::TObject::do_begin() {
     TAdaptor* adaptor = getAdaptor();
     if (adaptor != NULL) {
         adaptor->adaptor_do_begin();
     }
 }
-#else
-// void JStudio::TObject::do_begin() {
-extern "C" void do_begin__Q27JStudio7TObjectFv() {
-    // NONMATCHING
-}
-#endif
 
 /* 802867D4-8028680C 281114 0038+00 9/0 0/0 0/0 .text            do_end__Q27JStudio7TObjectFv */
 void JStudio::TObject::do_end() {
@@ -1633,14 +1627,9 @@ JStudio::TObject::TObject(JStudio::stb::data::TParse_TBlock_object const& param_
 
 /* 802868B0-80286910 2811F0 0060+00 0/0 1/1 0/0 .text            __dt__Q27JStudio14TAdaptor_actorFv
  */
-#ifdef NONMATCHING
+// NONMATCHING
 JStudio::TAdaptor_actor::~TAdaptor_actor() {
 }
-#else
-JStudio::TAdaptor_actor::~TAdaptor_actor() {
-    // NONMATCHING
-}
-#endif
 
 /* 80286910-8028694C 281250 003C+00 0/0 1/1 0/0 .text
  * __ct__Q27JStudio13TObject_actorFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio14TAdaptor_actor
@@ -1686,13 +1675,8 @@ void JStudio::TObject_actor::do_paragraph(u32 param_0, void const* param_1, u32 
 }
 
 /* 80286C9C-80286CFC 2815DC 0060+00 0/0 1/1 0/0 .text __dt__Q27JStudio21TAdaptor_ambientLightFv */
-#ifdef NONMATCHING
+// NONMATCHING
 JStudio::TAdaptor_ambientLight::~TAdaptor_ambientLight() {}
-#else
-JStudio::TAdaptor_ambientLight::~TAdaptor_ambientLight() {
-    // NONMATCHING
-}
-#endif
 
 /* 80286CFC-80286D38 28163C 003C+00 0/0 1/1 0/0 .text
  * __ct__Q27JStudio20TObject_ambientLightFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio21TAdaptor_ambientLight
@@ -1740,13 +1724,8 @@ void JStudio::TObject_ambientLight::do_paragraph(u32 param_0, void const* param_
 
 /* 80286E1C-80286E7C 28175C 0060+00 0/0 1/1 0/0 .text            __dt__Q27JStudio15TAdaptor_cameraFv
  */
-#ifdef NONMATCHING
+// NONMATCHING
 JStudio::TAdaptor_camera::~TAdaptor_camera() {}
-#else
-JStudio::TAdaptor_camera::~TAdaptor_camera() {
-    // NONMATCHING
-}
-#endif
 
 /* 80286E7C-80286EB8 2817BC 003C+00 0/0 1/1 0/0 .text
  * __ct__Q27JStudio14TObject_cameraFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio15TAdaptor_camera
@@ -1803,13 +1782,8 @@ void JStudio::TObject_camera::do_paragraph(u32 param_0, void const* param_1, u32
 }
 
 /* 8028717C-802871DC 281ABC 0060+00 0/0 1/1 0/0 .text            __dt__Q27JStudio12TAdaptor_fogFv */
-#ifdef NONMATCHING
+// NONMATCHING
 JStudio::TAdaptor_fog::~TAdaptor_fog() {}
-#else
-JStudio::TAdaptor_fog::~TAdaptor_fog() {
-    // NONMATCHING
-}
-#endif
 
 /* 802871DC-80287218 281B1C 003C+00 0/0 1/1 0/0 .text
  * __ct__Q27JStudio11TObject_fogFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio12TAdaptor_fog
@@ -1846,13 +1820,8 @@ void JStudio::TObject_fog::do_paragraph(u32 param_0, void const* param_1, u32 pa
 
 /* 80287308-80287368 281C48 0060+00 0/0 1/1 0/0 .text            __dt__Q27JStudio14TAdaptor_lightFv
  */
-#ifdef NONMATCHING
+// NONMATCHING
 JStudio::TAdaptor_light::~TAdaptor_light() {}
-#else
-JStudio::TAdaptor_light::~TAdaptor_light() {
-    // NONMATCHING
-}
-#endif
 
 /* 80287368-802873A4 281CA8 003C+00 0/0 1/1 0/0 .text
  * __ct__Q27JStudio13TObject_lightFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio14TAdaptor_light
@@ -1895,8 +1864,7 @@ JStudio::TObject_message::TObject_message(JStudio::stb::data::TParse_TBlock_obje
 
 /* 8028767C-8028770C 281FBC 0090+00 1/0 0/0 0/0 .text
  * do_paragraph__Q27JStudio15TObject_messageFUlPCvUl            */
-// param_1 &= 0x1f is out of place + unsure about the pmfn
-#ifdef NONMATCHING
+// NONMATCHING - param_1 &= 0x1f is out of place + unsure about the pmfn
 void JStudio::TObject_message::do_paragraph(u32 param_1, void const* param_2, u32 param_3) {
     TAdaptor* adaptor = getAdaptor();
     if (adaptor != NULL) {
@@ -1915,20 +1883,10 @@ void JStudio::TObject_message::do_paragraph(u32 param_1, void const* param_2, u3
     }
 
 }
-#else
-void JStudio::TObject_message::do_paragraph(u32 param_0, void const* param_1, u32 param_2) {
-    // NONMATCHING
-}
-#endif
 
 /* 8028770C-8028776C 28204C 0060+00 0/0 1/1 0/0 .text __dt__Q27JStudio17TAdaptor_particleFv */
-#ifdef NONMATCHING
+// NONMATCHING
 JStudio::TAdaptor_particle::~TAdaptor_particle() {}
-#else
-JStudio::TAdaptor_particle::~TAdaptor_particle() {
-    // NONMATCHING
-}
-#endif
 
 /* 8028776C-802877A8 2820AC 003C+00 0/0 1/1 0/0 .text
  * __ct__Q27JStudio16TObject_particleFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio17TAdaptor_particle
@@ -1944,13 +1902,8 @@ void JStudio::TObject_particle::do_paragraph(u32 param_0, void const* param_1, u
 
 /* 80287B3C-80287B9C 28247C 0060+00 0/0 1/1 0/0 .text            __dt__Q27JStudio14TAdaptor_soundFv
  */
-#ifdef NONMATCHING
+// NONMATCHING
 JStudio::TAdaptor_sound::~TAdaptor_sound() {}
-#else
-JStudio::TAdaptor_sound::~TAdaptor_sound() {
-    // NONMATCHING
-}
-#endif
 
 /* 80287B9C-80287BD8 2824DC 003C+00 0/0 1/1 0/0 .text
  * __ct__Q27JStudio13TObject_soundFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio14TAdaptor_sound

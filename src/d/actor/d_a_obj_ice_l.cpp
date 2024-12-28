@@ -182,8 +182,7 @@ COMPILER_STRIP_GATE(0x80C207C8, &lit_3741);
 
 /* 80C1FA60-80C1FCCC 0000E0 026C+00 1/1 0/0 0/0 .text            Check_RideOn__12daObjIce_l_cF4cXyz
  */
-// float match issues
-#ifdef NONMATCHING
+// NONMATCHING - float match issues
 int daObjIce_l_c::Check_RideOn(cXyz param_0) {
     fopAc_ac_c* player_p = (fopAc_ac_c*)daPy_getPlayerActorClass();
     s16 var_r29 = 0;
@@ -212,11 +211,6 @@ int daObjIce_l_c::Check_RideOn(cXyz param_0) {
     cLib_addCalc(&field_0x5a0, var_r29, 0.015f, 100.0f, 0.0f);
     return 0;
 }
-#else
-int daObjIce_l_c::Check_RideOn(cXyz param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 80C1FCCC-80C1FCF8 00034C 002C+00 1/1 0/0 0/0 .text            initBaseMtx__12daObjIce_l_cFv */
 void daObjIce_l_c::initBaseMtx() {
@@ -562,7 +556,7 @@ COMPILER_STRIP_GATE(0x80C20818, &lit_4003);
 
 /* 80C203C4-80C206AC 000A44 02E8+00 1/0 0/0 0/0 .text            Execute__12daObjIce_l_cFPPA3_A4_f
  */
-#ifdef NONMATCHING
+// NONMATCHING
 int daObjIce_l_c::Execute(Mtx** param_0) {
     daPy_py_c* player_p = daPy_getPlayerActorClass();
     fopAcM_GetPosition(player_p);
@@ -597,11 +591,6 @@ int daObjIce_l_c::Execute(Mtx** param_0) {
     setBaseMtx();
     return 1;
 }
-#else
-int daObjIce_l_c::Execute(Mtx** param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 80C206AC-80C20750 000D2C 00A4+00 1/0 0/0 0/0 .text            Draw__12daObjIce_l_cFv */
 int daObjIce_l_c::Draw() {

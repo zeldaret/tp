@@ -2134,8 +2134,7 @@ COMPILER_STRIP_GATE(0x8047A394, &lit_3962);
 
 /* 8046F3E4-8046F4AC 000464 00C8+00 1/0 0/0 0/0 .text
  * CoHitCallBackBokkuri__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
-#ifdef NONMATCHING
-// literals
+// NONMATCHING - literals
 static void CoHitCallBackBokkuri(fopAc_ac_c* param_0, dCcD_GObjInf* param_1,
                                      fopAc_ac_c* param_2, dCcD_GObjInf* param_3) {
     daObjCarry_c* _param_0 = static_cast<daObjCarry_c*>(param_0);
@@ -2155,12 +2154,6 @@ static void CoHitCallBackBokkuri(fopAc_ac_c* param_0, dCcD_GObjInf* param_1,
         }
     }
 }
-#else
-static void CoHitCallBackBokkuri(fopAc_ac_c* param_0, dCcD_GObjInf* param_1,
-                                     fopAc_ac_c* param_2, dCcD_GObjInf* param_3) {
-    // NONMATCHING
-}
-#endif
 
 /* 8046F4AC-8046F52C 00052C 0080+00 1/1 0/0 0/0 .text            s_swA_sub__FPvPv */
 static void* s_swA_sub(void* param_0, void* param_1) {
@@ -2728,8 +2721,7 @@ s32 daObjCarry_c::CreateInit_Lv8Ball() {
 }
 
 /* 80470B5C-80470BF4 001BDC 0098+00 1/1 0/0 0/0 .text            CreateHeap__12daObjCarry_cFv */
-#ifdef NONMATCHING
-// 1 instruction in wrong place
+// NONMATCHING - 1 instruction in wrong place
 s32 daObjCarry_c::CreateHeap() {
     s32 l_modelFlag;
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(getArcName(),getBmdName());    
@@ -2748,14 +2740,9 @@ s32 daObjCarry_c::CreateHeap() {
 
     return 1;
 }
-#else
-s32 daObjCarry_c::CreateHeap() {
-    // NONMATCHING
-}
-#endif
 
 /* 80470BF4-80470CF0 001C74 00FC+00 1/1 0/0 0/0 .text            create__12daObjCarry_cFv */
-#ifdef NONMATCHING
+// NONMATCHING
 cPhs__Step daObjCarry_c::create() {
     cPhs__Step step;
     preInit();
@@ -2770,16 +2757,11 @@ cPhs__Step daObjCarry_c::create() {
     }
 
     if (step == cPhs_NEXT_e) {
-        return;
+        return step;
     }
 
     return step;
 }
-#else
-cPhs__Step daObjCarry_c::create() {
-    // NONMATCHING
-}
-#endif
 
 /* ############################################################################################## */
 /* 8047A3D4-8047A3E0 000AC8 000C+00 1/1 0/0 0/0 .rodata          l_event_bitA$4815 */
@@ -2973,15 +2955,9 @@ COMPILER_STRIP_GATE(0x8047A424, &lit_5876);
 #pragma pop
 
 /* 80472B54-80472D8C 003BD4 0238+00 1/1 0/0 0/0 .text            crr_pos__12daObjCarry_cFv */
-#ifdef NONMATCHING
-void daObjCarry_c::crr_pos() {
-    
-}
-#else
 void daObjCarry_c::crr_pos() {
     // NONMATCHING
 }
-#endif
 
 /* 80472D8C-80472E5C 003E0C 00D0+00 1/1 0/0 0/0 .text            check_sink__12daObjCarry_cFPf */
 void daObjCarry_c::check_sink(f32* param_0) {

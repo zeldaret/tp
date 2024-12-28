@@ -518,8 +518,7 @@ static u8* firstSrcData() {
 }
 
 /* 802DB49C-802DB580 2D5DDC 00E4+00 1/1 0/0 0/0 .text            nextSrcData__FPUc */
-// regalloc
-#ifdef NONMATCHING
+// NONMATCHING - regalloc
 static u8* nextSrcData(u8* src) {
     u8* dest;
     u32 size = szpEnd - src;
@@ -547,11 +546,6 @@ static u8* nextSrcData(u8* src) {
     }
     return dest;
 }
-#else
-static u8* nextSrcData(u8* param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 802DB580-802DB5E8 2D5EC0 0068+00 1/1 0/0 0/0 .text            dmaBufferFlush__FUl */
 static u32 dmaBufferFlush(u32 param_1) {

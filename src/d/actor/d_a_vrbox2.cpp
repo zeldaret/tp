@@ -186,8 +186,7 @@ SECTION_DEAD static char const* const stringBase_80499ACC = "F_SP127";
 static s16 mangZ;
 
 /* 80498ACC-804990DC 0000CC 0610+00 1/0 0/0 0/0 .text            daVrbox2_Draw__FP12vrbox2_class */
-// reg alloc
-#ifdef NONMATCHING
+// NONMATCHING - reg alloc
 static int daVrbox2_Draw(vrbox2_class* i_this) {
     cXyz sp14;
     cXyz sp8;
@@ -345,11 +344,6 @@ static int daVrbox2_Draw(vrbox2_class* i_this) {
 
     return 1;
 }
-#else
-static int daVrbox2_Draw(vrbox2_class* param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* ############################################################################################## */
 /* 80499AA4-80499AA8 000038 0004+00 0/1 0/0 0/0 .rodata          @4069 */
@@ -415,8 +409,7 @@ SECTION_DEAD static char const* const stringBase_80499AD4 = "R_SP30";
 #pragma pop
 
 /* 804990DC-804997E8 0006DC 070C+00 1/1 0/0 0/0 .text daVrbox2_color_set__FP12vrbox2_class */
-// some regalloc at the end
-#ifdef NONMATCHING
+// NONMATCHING - some regalloc at the end
 static int daVrbox2_color_set(vrbox2_class* i_this) {
     dKankyo_sun_Packet* sun_p = g_env_light.mpSunPacket;
 
@@ -590,11 +583,6 @@ static int daVrbox2_color_set(vrbox2_class* i_this) {
 
     return 1;
 }
-#else
-static int daVrbox2_color_set(vrbox2_class* param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 804997E8-8049982C 000DE8 0044+00 1/0 0/0 0/0 .text            daVrbox2_Execute__FP12vrbox2_class
  */

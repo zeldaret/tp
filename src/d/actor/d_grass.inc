@@ -1,3 +1,6 @@
+#include "d/actor/d_a_grass.h"
+#include "d/d_com_inf_game.h"
+#include "d/actor/d_a_player.h"
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "SSystem/SComponent/c_lib.h"
 #include "f_op/f_op_overlap_mng.h"
@@ -23,8 +26,7 @@ void dGrass_data_c::Direction_Set(fopAc_ac_c* param_0, u32 param_1, int param_2,
 
 /* 8051E1C8-8051EB4C 002568 0984+00 1/1 0/0 0/0 .text
  * WorkAt__13dGrass_data_cFP10fopAc_ac_cUliP15dCcMassS_HitInfUs */
-// literals / regswap, equivalent?
-#ifdef NONMATCHING
+// NONMATCHING - literals / regswap, equivalent?
 void dGrass_data_c::WorkAt(fopAc_ac_c* param_0, u32 param_1, int i_roomNo, dCcMassS_HitInf* param_3,
                            u16 i_particleID) {
     cCcD_Obj* hit_obj = param_3->GetAtHitObj();
@@ -47,8 +49,8 @@ void dGrass_data_c::WorkAt(fopAc_ac_c* param_0, u32 param_1, int i_roomNo, dCcMa
             WorkAt_NoCutAnim(param_0, param_1, i_roomNo, param_3, hit_obj);
             return;
         }
-    } else if (daPy_getPlayerActorClass()->getCutType() >= CUT_TYPE_NM_RIGHT &&
-               daPy_getPlayerActorClass()->getCutType() <= CUT_TYPE_FINISH_VERTICAL)
+    } else if (daPy_getPlayerActorClass()->getCutType() >= daPy_py_c::CUT_TYPE_NM_RIGHT &&
+               daPy_getPlayerActorClass()->getCutType() <= daPy_py_c::CUT_TYPE_FINISH_VERTICAL)
     {
         if (m_pos.abs(player_p->current.pos) > 158.0f) {
             if (m_pos.abs(player_p->current.pos) < 200.0f) {
@@ -56,22 +58,22 @@ void dGrass_data_c::WorkAt(fopAc_ac_c* param_0, u32 param_1, int i_roomNo, dCcMa
             }
             return;
         }
-    } else if (daPy_getPlayerActorClass()->getCutType() == CUT_TYPE_TURN_RIGHT ||
-               daPy_getPlayerActorClass()->getCutType() == CUT_TYPE_TURN_LEFT)
+    } else if (daPy_getPlayerActorClass()->getCutType() == daPy_py_c::CUT_TYPE_TURN_RIGHT ||
+               daPy_getPlayerActorClass()->getCutType() == daPy_py_c::CUT_TYPE_TURN_LEFT)
     {
         if (m_pos.abs(player_p->current.pos) > 200.0f) {
             WorkAt_NoCutAnim(param_0, param_1, i_roomNo, param_3, hit_obj);
             return;
         }
-    } else if (daPy_getPlayerActorClass()->getCutType() == CUT_TYPE_LARGE_TURN_RIGHT ||
-               daPy_getPlayerActorClass()->getCutType() == CUT_TYPE_LARGE_TURN_LEFT)
+    } else if (daPy_getPlayerActorClass()->getCutType() == daPy_py_c::CUT_TYPE_LARGE_TURN_RIGHT ||
+               daPy_getPlayerActorClass()->getCutType() == daPy_py_c::CUT_TYPE_LARGE_TURN_LEFT)
     {
         if (m_pos.abs(player_p->current.pos) > 500.0f) {
             WorkAt_NoCutAnim(param_0, param_1, i_roomNo, param_3, hit_obj);
             return;
         }
-    } else if (daPy_getPlayerActorClass()->getCutType() == CUT_TYPE_NM_VERTICAL ||
-               daPy_getPlayerActorClass()->getCutType() == CUT_TYPE_NM_STAB)
+    } else if (daPy_getPlayerActorClass()->getCutType() == daPy_py_c::CUT_TYPE_NM_VERTICAL ||
+               daPy_getPlayerActorClass()->getCutType() == daPy_py_c::CUT_TYPE_NM_STAB)
     {
         if (m_pos.abs(player_p->current.pos) > 158.0f) {
             return;
@@ -117,12 +119,6 @@ void dGrass_data_c::WorkAt(fopAc_ac_c* param_0, u32 param_1, int i_roomNo, dCcMa
         mDoAud_seStart(JA_SE_LK_CUT_GRASS, &m_pos, 0, dComIfGp_getReverb(i_roomNo));
     }
 }
-#else
-void dGrass_data_c::WorkAt(fopAc_ac_c* param_0, u32 param_1, int param_2,
-                               dCcMassS_HitInf* param_3, u16 param_4) {
-    // NONMATCHING
-}
-#endif
 
 /* 8051EB4C-8051EB88 002EEC 003C+00 3/3 0/0 0/0 .text            __dt__5csXyzFv */
 // csXyz::~csXyz() {
@@ -227,8 +223,7 @@ static f32 checkGroundY(cXyz& param_0) {
 }
 
 /* 80520030-8052067C 0043D0 064C+00 1/1 0/0 0/0 .text            update__15dGrass_packet_cFv */
-// mostly matches except literals, some regalloc, and one out of order block
-#ifdef NONMATCHING
+// NONMATCHING - mostly matches except literals, some regalloc, and one out of order block
 void dGrass_packet_c::update() {
     static s16 mAngleZ[1500];
 
@@ -347,11 +342,6 @@ void dGrass_packet_c::update() {
     mDoLib_clipper::resetFar();
     dComIfGd_getListPacket()->entryImm(this, 0);
 }
-#else
-void dGrass_packet_c::update() {
-    // NONMATCHING
-}
-#endif
 
 /* 8052067C-80520770 004A1C 00F4+00 1/1 0/0 0/0 .text
  * setData__15dGrass_packet_cFP13dGrass_data_ciR4cXyziUcUcsUc   */

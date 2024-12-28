@@ -66,7 +66,7 @@ int JMessage::TControl::update() {
 }
 
 /* 802A76BC-802A77E8 2A1FFC 012C+00 0/0 5/5 0/0 .text            render__Q28JMessage8TControlFv */
-#ifdef NONMATCHING
+// NONMATCHING
 void JMessage::TControl::render() {
     if (isReady_render_()) {
         pRenderingProcessor_->setBegin_messageEntryText(pResourceCache_, pEntry_, field_0x20);
@@ -74,11 +74,6 @@ void JMessage::TControl::render() {
         pRenderingProcessor_->process(pszText_update_current_);
     }
 }
-#else
-void JMessage::TControl::render() {
-    // NONMATCHING
-}
-#endif
 
 /* 802A77E8-802A78F4 2A2128 010C+00 0/0 1/1 0/0 .text setMessageCode__Q28JMessage8TControlFUsUs */
 int JMessage::TControl::setMessageCode(u16 param_0, u16 param_1) {

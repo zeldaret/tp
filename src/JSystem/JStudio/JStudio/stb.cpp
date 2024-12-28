@@ -359,8 +359,7 @@ void TControl::destroyObject_all() {
 }
 
 /* 80289364-80289404 283CA4 00A0+00 1/1 0/0 0/0 .text getObject__Q37JStudio3stb8TControlFPCvUl */
-// TPRObject_ID_equal copy issue
-#ifdef NONMATCHING
+// NONMATCHING - TPRObject_ID_equal copy issue
 TObject* TControl::getObject(void const* param_0, u32 param_1) {
     JGadget::TLinkList<TObject, -12>::iterator begin = mObjectContainer.begin();
     JGadget::TLinkList<TObject, -12>::iterator end = mObjectContainer.end();
@@ -370,11 +369,6 @@ TObject* TControl::getObject(void const* param_0, u32 param_1) {
     }
     return NULL;
 }
-#else
-TObject* TControl::getObject(void const* param_0, u32 param_1) {
-    // NONMATCHING
-}
-#endif
 
 /* 80289404-802894B4 283D44 00B0+00 0/0 1/1 0/0 .text            reset__Q37JStudio3stb8TControlFv */
 void TControl::reset() {
@@ -388,8 +382,7 @@ void TControl::reset() {
 
 /* 802894B4-802895B4 283DF4 0100+00 0/0 2/2 0/0 .text            forward__Q37JStudio3stb8TControlFUl
  */
-// regalloc
-#ifdef NONMATCHING
+// NONMATCHING - regalloc
 u8 TControl::forward(u32 param_0) {
     _54 = mObject_control.getSuspend();
     u8 rv = mObject_control.forward(param_0);
@@ -411,11 +404,6 @@ u8 TControl::forward(u32 param_0) {
     setStatus_(uVar7 | (uVar6 << 0x10));
     return rv;
 }
-#else
-u8 TControl::forward(u32 param_0) {
-    // NONMATCHING
-}
-#endif
 
 TFactory::~TFactory() {}
 

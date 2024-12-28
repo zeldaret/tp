@@ -127,7 +127,7 @@ public:
     GXVtxDescList* getVtxDesc() const { return mVtxDesc; }
 
     J3DMaterial* getMaterial() const { return mMaterial; }
-    u32 getIndex() const { return mIndex; }
+    u16 getIndex() const { return mIndex; }
     u32 getPipeline() const { return (mFlags >> 2) & 0x07; }
     u32 getTexMtxLoadType() const { return mFlags & 0xF000; }
     u32 getMtxGroupNum() const { return mMtxGroupNum; }

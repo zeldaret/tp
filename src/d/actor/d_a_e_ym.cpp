@@ -669,8 +669,7 @@ COMPILER_STRIP_GATE(0x808159E8, &lit_4102);
 #pragma pop
 
 /* 808083CC-80808678 00038C 02AC+00 1/1 0/0 0/0 .text            draw__8daE_YM_cFv */
-// one instruction order mismatch (probably causes regalloc issue)
-#ifdef NONMATCHING
+// NONMATCHING - one instruction order mismatch (probably causes regalloc issue)
 int daE_YM_c::draw() {
     if (field_0x71d) {
         return 1;
@@ -738,11 +737,6 @@ int daE_YM_c::draw() {
 
     return 1;
 }
-#else
-int daE_YM_c::draw() {
-    // NONMATCHING
-}
-#endif
 
 /* 80808678-80808698 000638 0020+00 1/0 0/0 0/0 .text            daE_YM_Draw__FP8daE_YM_c */
 static int daE_YM_Draw(daE_YM_c* i_this) {
@@ -753,11 +747,8 @@ static int daE_YM_Draw(daE_YM_c* i_this) {
 /* 80815D28-80815D2C 000008 0004+00 2/2 0/0 0/0 .bss             None */
 static u8 data_80815D28[4];
 
-/* 80815D2C-80815D38 00000C 000C+00 1/1 0/0 0/0 .bss             @3941 */
-static u8 lit_3941[12];
-
 /* 80815D38-80815D5C 000018 0024+00 18/18 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[36];
+static daE_YM_HIO_c l_HIO;
 
 /* 80815D5C-80815D60 00003C 0004+00 3/3 0/0 0/0 .bss             m_near_obj */
 static fopAc_ac_c* m_near_obj;
@@ -1850,8 +1841,7 @@ SECTION_DEAD static char const* const stringBase_80815AFE = "E_ym";
 #pragma pop
 
 /* 80814BA4-80815224 00CB64 0680+00 2/1 0/0 0/0 .text            create__8daE_YM_cFv */
-// literals / small issue
-#ifdef NONMATCHING
+// NONMATCHING - literals / small issue
 int daE_YM_c::create() {
     fopAcM_SetupActor(this, daE_YM_c);
 
@@ -2023,11 +2013,6 @@ int daE_YM_c::create() {
 
     return phase;
 }
-#else
-int daE_YM_c::create() {
-    // NONMATCHING
-}
-#endif
 
 /* 80815224-8081526C 00D1E4 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGSphFv */
 // cM3dGSph::~cM3dGSph() {
@@ -2063,60 +2048,3 @@ extern "C" void __dt__12dBgS_AcchCirFv() {
 static int daE_YM_Create(daE_YM_c* i_this) {
     return i_this->create();
 }
-
-/* 80815410-80815458 00D3D0 0048+00 1/0 0/0 0/0 .text            __dt__10cCcD_GSttsFv */
-// cCcD_GStts::~cCcD_GStts() {
-extern "C" void __dt__10cCcD_GSttsFv() {
-    // NONMATCHING
-}
-
-/* 80815458-808154A0 00D418 0048+00 2/1 0/0 0/0 .text            __dt__12daE_YM_HIO_cFv */
-daE_YM_HIO_c::~daE_YM_HIO_c() {
-    // NONMATCHING
-}
-
-/* 808154A0-808154DC 00D460 003C+00 0/0 1/0 0/0 .text            __sinit_d_a_e_ym_cpp */
-void __sinit_d_a_e_ym_cpp(){// NONMATCHING
-}
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x808154A0, __sinit_d_a_e_ym_cpp);
-#pragma pop
-
-/* 808154DC-808154E4 00D49C 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
-static void func_808154DC() {
-    // NONMATCHING
-}
-
-/* 808154E4-808154EC 00D4A4 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
-static void func_808154E4() {
-    // NONMATCHING
-}
-
-/* 808154EC-80815900 00D4AC 0414+00 1/1 0/0 0/0 .text
- * setMidnaBindEffect__FP13fopEn_enemy_cP15Z2CreatureEnemyP4cXyzP4cXyz */
-static void setMidnaBindEffect(fopEn_enemy_c* param_0, Z2CreatureEnemy* param_1, cXyz* param_2,
-                                   cXyz* param_3) {
-    // NONMATCHING
-}
-
-/* 80815900-8081593C 00D8C0 003C+00 1/1 0/0 0/0 .text            __dt__4cXyzFv */
-// cXyz::~cXyz() {
-extern "C" void __dt__4cXyzFv() {
-    // NONMATCHING
-}
-
-/* 8081593C-80815958 00D8FC 001C+00 2/2 0/0 0/0 .text            getLeftHandPos__9daPy_py_cCFv */
-// void daPy_py_c::getLeftHandPos() const {
-extern "C" void getLeftHandPos__9daPy_py_cCFv() {
-    // NONMATCHING
-}
-
-/* 80815958-80815980 00D918 0028+00 1/1 0/0 0/0 .text            getPos__13daTag_FWall_cFUc */
-// void daTag_FWall_c::getPos(u8 param_0) {
-extern "C" void getPos__13daTag_FWall_cFUc() {
-    // NONMATCHING
-}
-
-/* 80815AEC-80815AEC 000158 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
