@@ -111,7 +111,7 @@ void daMagLift_c::moveLift() {
     // NONMATCHING
     if (field_0x5ae != 0xff) {
         typedef void (daMagLift_c::*modeFunc)();
-        static modeFunc mode_proc[] = {&daMagLift_c::modeAcc, &daMagLift_c::modeMove,
+        static modeFunc mode_proc[8] = {&daMagLift_c::modeAcc, &daMagLift_c::modeMove,
                                        &daMagLift_c::modeBrk, &daMagLift_c::modeWait,
                                        &daMagLift_c::modeWaitInit, &daMagLift_c::modeDead,
                                        &daMagLift_c::modeMoveWait};
