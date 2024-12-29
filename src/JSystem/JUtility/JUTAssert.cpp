@@ -9,6 +9,9 @@
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "stdio.h"
 
+/* 804508F8-80450900 000378 0008+00 0/0 3/3 0/0 .sdata           None */
+bool sAssertVisible = true;
+
 namespace JUTAssertion {
 
 /* 802E495C-802E4960 2DF29C 0004+00 0/0 1/1 0/0 .text            create__12JUTAssertionFv */

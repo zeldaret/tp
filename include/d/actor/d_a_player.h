@@ -670,7 +670,7 @@ public:
     static f32 getAttentionOffsetY();
     static int checkNowWolfEyeUp();
     static void forceRestartRoom(int, u32, int);
-    static void setFmChainPos(fopAc_ac_c*, cXyz*, int);
+    static BOOL setFmChainPos(fopAc_ac_c*, cXyz*, int);
     static void cancelFmChainGrab();
     static void setLookPos(cXyz*);
     static void setPlayerSe(u32);
@@ -698,7 +698,7 @@ public:
     cXyz* getLeftFootPosP() { return &mLeftFootPos; }
     BOOL checkCopyRodThrowAfter() const { return checkNoResetFlg3(FLG3_COPY_ROD_THROW_AFTER); }
     BOOL checkRide() const { return checkHorseRide() || checkBoarRide() || checkSpinnerRide() || checkCanoeRide() || checkBoardRide(); }
-    const cXyz& getRightHandPos() const { return mRightHandPos; }
+    cXyz getRightHandPos() const { return mRightHandPos; }
     const cXyz getLeftHandPos() const { return mLeftHandPos; }
     const cXyz getItemPos() const { return mItemPos; }
 

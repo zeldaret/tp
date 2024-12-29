@@ -36,13 +36,10 @@ public:
     u8 getChangeItem() { return mChangeItem; }
 
 private:
-    /* 0x00 */ u32 field_0x0;
+    /* 0x00 */ fpc_ProcID mRequestActorID;
     /* 0x04 */ int field_0x4;
-    /* 0x08 */ f32 field_0x8;
-    /* 0x0C */ u8 field_0xc;
-    /* 0x0D */ u8 field_0xd;
-    /* 0x0E */ u8 field_0xe;
-    /* 0x0F */ u8 field_0xf;
+    /* 0x08 */ f32 mDistance;
+    /* 0x0C */ u8 mCatchItemNo;
     /* 0x10 */ fpc_ProcID mCatghTargetID;
     /* 0x14 */ u8 mChangeItem;
 };  // Size: 0x18
@@ -70,8 +67,17 @@ public:
 public:
     dAttParam_c() {}
     /* 80070038 */ dAttParam_c(s32);
-
     /* 80070110 */ virtual ~dAttParam_c();
+
+    enum EFlag {
+        EFlag_HOLD_MODE    = (1 << 0),
+        EFlag_SWMODE_DEBUG = (1 << 1),
+        EFlag_VALID        = (1 << 2),
+        EFlag_KEEP         = (1 << 3),
+        EFlag_ARROW_OFF    = (1 << 4),
+        EFlag_LIST_DEBUG   = (1 << 14),
+        EFlag_MARGIN_DEBUG = (1 << 15),
+    };
 
     bool CheckFlag(u16 flag) { return mFlags & flag; }
 
@@ -88,9 +94,9 @@ public:
     fopAc_ac_c* getLookTarget() { return convPId(mLookTargetID); }
 
 private:
-    u32 field_0x0;
-    s32 field_0x4;
-    f32 field_0x8;
+    fpc_ProcID mRequestActorID;
+    int field_0x4;
+    f32 mDistance;
     fpc_ProcID mLookTargetID;
 };  // Size: 0x10
 
@@ -129,12 +135,14 @@ public:
     /* 0x11C */ mDoExt_bpkAnm mImpactBpk;
     /* 0x134 */ mDoExt_brkAnm mImpactBrk;
     /* 0x14C */ mDoExt_btkAnm mImpactBtk;
-    /* 0x164 */ cXyz field_0x164;
-    /* 0x170 */ u8 field_0x170;
-    /* 0x171 */ u8 field_0x171;
-    /* 0x172 */ u8 field_0x172;
+    /* 0x164 */ f32 mCursorSizeX;
+    /* 0x168 */ f32 mCursorSizeY;
+    /* 0x16C */ f32 mCursorOffsetY;
+    /* 0x170 */ u8 mDrawType;
+    /* 0x171 */ u8 mAlphaAnmFrameMax;
+    /* 0x172 */ u8 mAlphaAnmFrame;
     /* 0x173 */ u8 field_0x173;
-    /* 0x174 */ u8 field_0x174;
+    /* 0x174 */ u8 mAlphaAnmPlayDirection;
     /* 0x175 */ u8 field_0x175;
 };
 
@@ -156,16 +164,16 @@ struct dist_entry {
 };  // Size: 0x1C
 
 struct type_tbl_entry {
-    s16 field_0x0;
-    u16 field_0x2;
+    s16 type;
+    u16 mask;
 };
 
 class dAttention_c {
 public:
     enum EState {
-        ST_NONE,
-        ST_LOCK,
-        ST_RELEASE,
+        EState_NONE,
+        EState_LOCK,
+        EState_RELEASE,
     };
 
     dAttention_c() {}

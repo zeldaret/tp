@@ -7,6 +7,7 @@
 #include "d/d_bg_w.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_procname.h"
+#include "SSystem/SComponent/c_math.h"
 #include "dol2asm.h"
 
 //
@@ -138,8 +139,7 @@ COMPILER_STRIP_GATE(0x8057CF70, &lit_3745);
 
 /* 8057CDE0-8057CF60 000280 0180+00 1/0 0/0 0/0 .text            daObj_Fmobj_Create__FP10fopAc_ac_c
  */
-// reg alloc
-#ifdef NONMATCHING
+// NONMATCHING - reg alloc
 static int daObj_Fmobj_Create(fopAc_ac_c* i_this) {
     obj_fmobj_class* a_this = (obj_fmobj_class*)i_this;
     fopAcM_SetupActor(a_this, obj_fmobj_class);
@@ -168,18 +168,13 @@ static int daObj_Fmobj_Create(fopAc_ac_c* i_this) {
         a_this->mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 
         mDoMtx_stack_c::transM(0.0f, -30.0f, 0.0f);
-        MTXCopy(mDoMtx_stack_c::get(), a_this->mDzbMtx);
+        MTXCopy(mDoMtx_stack_c::get(), a_this->mBgMtx);
 
         a_this->mpBgW->Move();
     }
 
     return phase;
 }
-#else
-static int daObj_Fmobj_Create(fopAc_ac_c* param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* ############################################################################################## */
 /* 8057CF80-8057CFA0 -00001 0020+00 1/0 0/0 0/0 .data            l_daObj_Fmobj_Method */

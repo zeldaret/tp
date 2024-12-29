@@ -294,12 +294,10 @@ static bool checkCharInfoCharactor(int c) {
     return false;
 }
 
-/* ############################################################################################## */
-/* 804510C0-804510C8 0005C0 0003+05 1/1 0/0 0/0 .sbss            mMoji$3770 */
-static char mMoji[3];
-
 /* 802285CC-80228608 222F0C 003C+00 3/3 0/0 0/0 .text            changeCodeToChar__FUs */
-static const char* changeCodeToChar(u16 param_0) {
+static char* changeCodeToChar(u16 param_0) {
+    static char mMoji[3];
+
     mMoji[0] = mMoji[1] = mMoji[2] = '\0';
     mMoji[0] = param_0 >> 8;
 
@@ -313,88 +311,129 @@ static const char* changeCodeToChar(u16 param_0) {
     return mMoji;
 }
 
-/* ############################################################################################## */
-/* 803BFDF8-803BFE78 01CF18 0080+00 1/1 0/0 0/0 .data            char_table$3795 */
-SECTION_DATA static u16 char_table[64] = {
-    0x0000, 0x8142, 0x8175, 0x8176, 0x8141, 0x8145, 0x8392, 0x8340, 0x8342, 0x8344, 0x8346,
-    0x8348, 0x8383, 0x8385, 0x8387, 0x8362, 0x815B, 0x8341, 0x8343, 0x8345, 0x8347, 0x8349,
-    0x834A, 0x834C, 0x834E, 0x8350, 0x8352, 0x8354, 0x8356, 0x8358, 0x835A, 0x835C, 0x835E,
-    0x8360, 0x8363, 0x8365, 0x8367, 0x8369, 0x836A, 0x836B, 0x836C, 0x836D, 0x836E, 0x8371,
-    0x8374, 0x8377, 0x837A, 0x837D, 0x837E, 0x8380, 0x8381, 0x8382, 0x8384, 0x8386, 0x8388,
-    0x8389, 0x838A, 0x838B, 0x838C, 0x838D, 0x838F, 0x8393, 0x814A, 0x814B,
-};
-
-/* 803BFE78-803BFF78 -00001 0100+00 1/1 0/0 0/0 .data            @3831 */
-SECTION_DATA static void* lit_3831[64] = {
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0xB0),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0xBC),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0xC8),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0xD4),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0xE0),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0xEC),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0xF8),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x104),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x110),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x11C),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x128),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x134),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x140),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x14C),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x158),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x164),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x170),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x17C),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x188),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x194),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x1A0),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x1AC),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x1B8),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x1C4),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x1D0),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x1DC),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x1E8),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x228),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x1F4),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x200),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x20C),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x218),
-    (void*)(((char*)change1ByteTo2Bytes__Fi) + 0x224),
-};
-
 /* 80228608-80228838 222F48 0230+00 5/4 0/0 0/0 .text            change1ByteTo2Bytes__Fi */
 static u16 change1ByteTo2Bytes(int param_0) {
-    // NONMATCHING
+    static u16 char_table[] = {
+        0x0000, 0x8142, 0x8175, 0x8176, 0x8141, 0x8145, 0x8392, 0x8340, 0x8342, 0x8344, 0x8346,
+        0x8348, 0x8383, 0x8385, 0x8387, 0x8362, 0x815B, 0x8341, 0x8343, 0x8345, 0x8347, 0x8349,
+        0x834A, 0x834C, 0x834E, 0x8350, 0x8352, 0x8354, 0x8356, 0x8358, 0x835A, 0x835C, 0x835E,
+        0x8360, 0x8363, 0x8365, 0x8367, 0x8369, 0x836A, 0x836B, 0x836C, 0x836D, 0x836E, 0x8371,
+        0x8374, 0x8377, 0x837A, 0x837D, 0x837E, 0x8380, 0x8381, 0x8382, 0x8384, 0x8386, 0x8388,
+        0x8389, 0x838A, 0x838B, 0x838C, 0x838D, 0x838F, 0x8393, 0x814A, 0x814B,
+    };
+
+    u16 var_r30 = param_0;
+    if (param_0 >= '0' && param_0 <= '9') {
+        var_r30 = param_0 + 0x821F;
+    } else if (param_0 >= 'A' && param_0 <= 'Z') {
+        var_r30 = param_0 + 0x8230;
+    } else if (param_0 >= 'a' && param_0 <= 'z') {
+        var_r30 = param_0 + 0x8251;
+    } else if (param_0 >= 0xA0 && param_0 <= 0xDF) {
+        int sp8 = param_0 - 0xA0;
+        var_r30 = char_table[sp8];
+    } else {
+        switch (param_0) {
+        case 0x20:
+            var_r30 = 0x8140;
+            break;
+        case 0x21:
+            var_r30 = 0x8149;
+            break;
+        case 0x22:
+            var_r30 = 0x8168;
+            break;
+        case 0x23:
+            var_r30 = 0x8194;
+            break;
+        case 0x24:
+            var_r30 = 0x8190;
+            break;
+        case 0x25:
+            var_r30 = 0x8193;
+            break;
+        case 0x26:
+            var_r30 = 0x8195;
+            break;
+        case 0x27:
+            var_r30 = 0x8166;
+            break;
+        case 0x28:
+            var_r30 = 0x8169;
+            break;
+        case 0x29:
+            var_r30 = 0x816a;
+            break;
+        case 0x2A:
+            var_r30 = 0x8196;
+            break;
+        case 0x2B:
+            var_r30 = 0x817b;
+            break;
+        case 0x2C:
+            var_r30 = 0x8143;
+            break;
+        case 0x2D:
+            var_r30 = 0x817c;
+            break;
+        case 0x2E:
+            var_r30 = 0x8144;
+            break;
+        case 0x2F:
+            var_r30 = 0x815e;
+            break;
+        case 0x3A:
+            var_r30 = 0x8146;
+            break;
+        case 0x3B:
+            var_r30 = 0x8147;
+            break;
+        case 0x3C:
+            var_r30 = 0x8171;
+            break;
+        case 0x3D:
+            var_r30 = 0x8181;
+            break;
+        case 0x3E:
+            var_r30 = 0x8172;
+            break;
+        case 0x3F:
+            var_r30 = 0x8148;
+            break;
+        case 0x4B:
+            var_r30 = 0x816d;
+            break;
+        case 0x4C:
+            var_r30 = 0x818f;
+            break;
+        case 0x4D:
+            var_r30 = 0x816e;
+            break;
+        case 0x4E:
+            var_r30 = 0x813f;
+            break;
+        case 0x4F:
+            var_r30 = 0x8151;
+            break;
+        case 0x5B:
+            var_r30 = 0x816f;
+            break;
+        case 0x5C:
+            var_r30 = 0x8162;
+            break;
+        case 0x5D:
+            var_r30 = 0x8170;
+            break;
+        case 0x5E:
+            var_r30 = 0x8140;
+            break;
+        case 0x5F:
+            var_r30 = 0;
+            break;
+        }
+    }
+
+    return var_r30;
 }
 
 /* 80228838-802288A8 223178 0070+00 8/8 0/0 0/0 .text            changeKataToHira__Fi */
@@ -537,212 +576,6 @@ static u8 getPohNum() {
     return num;
 }
 
-/* ############################################################################################## */
-/* 803BFFA0-803BFFD0 -00001 0030+00 1/1 0/0 0/0 .data            @5158 */
-SECTION_DATA static void* lit_5158[12] = {
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xCE8),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xCF8),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xD08),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xD24),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xD40),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xD5C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xD78),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xD94),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xDB0),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xDCC),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xDE8),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xDE8),
-};
-
-/* 803BFFD0-803C000C -00001 003C+00 1/1 0/0 0/0 .data            @5157 */
-SECTION_DATA static void* lit_5157[15] = {
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x9DC),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xA60),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xA84),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xB5C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xB98),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xBB4),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xBD8),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xC84),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xC14),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xAA8),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xADC),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xAFC),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xB1C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xC38),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0xC5C),
-};
-
-/* 803C000C-803C0044 -00001 0038+00 1/1 0/0 0/0 .data            @5156 */
-SECTION_DATA static void* lit_5156[14] = {
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x7FC),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x818),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x834),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x850),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x870),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x890),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x8B0),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x8D0),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x8F0),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x910),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x930),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x950),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x970),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x990),
-};
-
-/* 803C0044-803C0144 -00001 0100+00 1/1 0/0 0/0 .data            @5155 */
-SECTION_DATA static void* lit_5155[64] = {
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x2A8),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x1D8),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x1E8),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x278),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x278),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x1E8),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x1E8),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x1E8),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x450),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x510),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x65C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x65C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x65C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x65C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x65C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x65C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x65C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x65C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x65C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x65C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x65C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x65C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x65C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x65C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x65C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x65C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x65C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x65C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x65C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x65C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x5E0),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x5CC),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x610),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x64C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x2E4),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x65C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x65C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x69C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x6C0),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x65C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x298),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x34C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x65C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x37C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x65C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x3AC),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x65C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x65C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x66C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x6C8),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x700),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x5E0),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x5CC),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x320),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x1E8),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x734),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x79C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x65C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x65C),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x3F0),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x420),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x1E8),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x1F0),
-    (void*)(((char*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl) + 0x230),
-};
-
-/* 803C0144-803C0208 -00001 00C4+00 1/1 0/0 0/0 .data            @5269 */
-SECTION_DATA static void* lit_5269[49] = {
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x90),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x98),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0xA0),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0xA8),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0xB0),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0xB8),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0xC0),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0xC8),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0xD0),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0xD8),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0xE0),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0xE8),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0xF0),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0xF8),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x100),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x108),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x110),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x118),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x120),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x128),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x13C),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x13C),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x13C),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x13C),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x13C),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x13C),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x13C),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x13C),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x13C),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x13C),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x13C),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x13C),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x13C),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x13C),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x13C),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x13C),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x13C),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x13C),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x13C),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x13C),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x13C),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x13C),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x13C),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x13C),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x13C),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x13C),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x13C),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x130),
-    (void*)(((char*)do_space__26jmessage_tMeasureProcessorFUl) + 0x138),
-};
-
-/* 803C0208-803C0230 -00001 0028+00 1/1 0/0 0/0 .data            @5735 */
-SECTION_DATA static void* lit_5735[10] = {
-    (void*)(((char*)do_isReady__27jmessage_tSequenceProcessorFv) + 0x314),
-    (void*)(((char*)do_isReady__27jmessage_tSequenceProcessorFv) + 0x350),
-    (void*)(((char*)do_isReady__27jmessage_tSequenceProcessorFv) + 0x36C),
-    (void*)(((char*)do_isReady__27jmessage_tSequenceProcessorFv) + 0x350),
-    (void*)(((char*)do_isReady__27jmessage_tSequenceProcessorFv) + 0x380),
-    (void*)(((char*)do_isReady__27jmessage_tSequenceProcessorFv) + 0x314),
-    (void*)(((char*)do_isReady__27jmessage_tSequenceProcessorFv) + 0x314),
-    (void*)(((char*)do_isReady__27jmessage_tSequenceProcessorFv) + 0x380),
-    (void*)(((char*)do_isReady__27jmessage_tSequenceProcessorFv) + 0x350),
-    (void*)(((char*)do_isReady__27jmessage_tSequenceProcessorFv) + 0x350),
-};
-
-/* 80454A58-80454A5C 003058 0004+00 1/1 0/0 0/0 .sdata2          @4025 */
-SECTION_SDATA2 static f32 lit_4025 = 9.0f / 10.0f;
-
-/* 80454A5C-80454A60 00305C 0004+00 14/14 0/0 0/0 .sdata2          @4026 */
-SECTION_SDATA2 static f32 lit_4026 = 0.5f;
-
-/* 80454A60-80454A64 003060 0004+00 25/25 0/0 0/0 .sdata2          @4027 */
-SECTION_SDATA2 static u8 lit_4027[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80454A64-80454A68 003064 0004+00 23/23 0/0 0/0 .sdata2          @4028 */
-SECTION_SDATA2 static f32 lit_4028 = 1.0f;
-
 /* 80228B04-80228CB4 223444 01B0+00 0/0 1/1 0/0 .text            __ct__19jmessage_tReferenceFv */
 jmessage_tReference::jmessage_tReference() {
     mpStick = new STControl(5, 2, 3, 2, 0.9f, 0.5f, 0, 0x2000);
@@ -805,18 +638,11 @@ jmessage_tReference::jmessage_tReference() {
     mNowTagScale = 0;
 }
 
-
 /* 80228CB4-80228D28 2235F4 0074+00 1/0 0/0 0/0 .text            __dt__19jmessage_tReferenceFv */
-// jmessage_tReference::~jmessage_tReference() {
-extern "C" void __dt__19jmessage_tReferenceFv() {
-    // NONMATCHING
+jmessage_tReference::~jmessage_tReference() {
+    delete mpStick;
+    mpStick = NULL;
 }
-
-/* ############################################################################################## */
-/* 80454A68-80454A70 003068 0008+00 1/1 0/0 0/0 .sdata2          @4078 */
-SECTION_SDATA2 static u8 lit_4078[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 /* 80228D28-80228DE0 223668 00B8+00 1/1 0/0 0/0 .text calcDistance__19jmessage_tReferenceFv */
 void jmessage_tReference::calcDistance() {
@@ -828,7 +654,6 @@ void jmessage_tReference::calcDistance() {
         mDistanceScale = 1.0f;
     }
 }
-
 
 /* 80228DE0-80228E6C 223720 008C+00 5/5 0/0 0/0 .text            getLineMax__19jmessage_tReferenceFv
  */
@@ -982,7 +807,6 @@ void jmessage_tReference::pageSend() {
     mTopTagScale = mNowTagScale;
 }
 
-
 /* ############################################################################################## */
 /* 80454A78-80454A7C 003078 0004+00 4/4 0/0 0/0 .sdata2          @4291 */
 SECTION_SDATA2 static f32 lit_4291 = -1.0f;
@@ -1045,7 +869,6 @@ void jmessage_tReference::selectMessage() {
         }
     }
 }
-
 
 /* 802294A8-80229730 223DE8 0288+00 0/0 1/1 0/0 .text inputNumber__19jmessage_tReferenceFv */
 void jmessage_tReference::inputNumber() {
@@ -1123,7 +946,6 @@ void jmessage_tReference::inputNumber() {
     decideOutFontRupeeColor(new_input_val);
     getObjectPtr()->setInputValue(new_input_val);
 }
-
 
 /* 80229730-80229744 224070 0014+00 5/5 0/0 0/0 .text            getWord__19jmessage_tReferenceFi */
 char* jmessage_tReference::getWord(int i_no) {
@@ -1290,7 +1112,7 @@ jmessage_tMeasureProcessor::jmessage_tMeasureProcessor(jmessage_tReference const
     jmessage_tReference* reference_p = (jmessage_tReference*)getReference();
 
     reference_p->resetCharactor();
-    field_0x38 = lit_4028;
+    field_0x38 = 1.0f;
     mTotalLineCnt = 0;
     field_0x3e = 0;
     field_0x40 = 0;
@@ -1371,36 +1193,118 @@ void jmessage_tMeasureProcessor::do_begin(void const* param_0, char const* param
     }
 }
 
-
 /* 80229CB4-80229E3C 2245F4 0188+00 1/0 0/0 0/0 .text do_end__26jmessage_tMeasureProcessorFv */
 void jmessage_tMeasureProcessor::do_end() {
-    // NONMATCHING
+    if (field_0x49 == 0) {
+        field_0x3e++;
+    }
+
+    jmessage_tReference* ref = (jmessage_tReference*)getReference();
+    
+    if (field_0x46 == 0) {
+        if (field_0x49 > 1) {
+            ref->setPageLine(field_0x40, field_0x3e - (field_0x49 - 1));
+            ref->setPageLineMax(field_0x40, field_0x3e - (field_0x49 - 1));
+        } else {
+            ref->setPageLine(field_0x40, field_0x3e);
+            ref->setPageLineMax(field_0x40, field_0x3e);
+        }
+    }
+
+    ref->setPageEndCount(field_0x40);
+    do_pageType(field_0x3e);
+    Z2GetSpeechMgr2()->setString(ref->getCharSoundInfo().data, ref->getCharSoundInfo().field_0x40c, field_0x4c, field_0x42);
 }
 
 /* 80229E3C-8022A268 22477C 042C+00 1/0 0/0 0/0 .text do_character__26jmessage_tMeasureProcessorFi
  */
 void jmessage_tMeasureProcessor::do_character(int param_0) {
-    // NONMATCHING
+    jmessage_tReference* ref = (jmessage_tReference*)getReference();
+    JUTFont* font = ref->getFont();
+
+    if (field_0x44 == 0) {
+        if (font->isLeadByte_ShiftJIS(param_0)) {
+            if (!isOutfontKanjiCode(param_0)) {
+                u16 var_r25 = change1ByteTo2Bytes(param_0);
+                ref->setCharactor(changeKataToHira(var_r25));
+            }
+        } else if (param_0 < 0x8800 && !isOutfontKanjiCode(param_0)) {
+            ref->setCharactor(changeKataToHira(param_0));
+        }
+    }
+
+    if (param_0 == 10) {
+        mTotalLineCnt++;
+        field_0x3e++;
+
+        if (field_0x44 != 0) {
+            ref->setLineArrange(mTotalLineCnt, 1);
+            field_0x44--;
+        }
+
+        field_0x48 = 0;
+
+        if (field_0x49 != 0) {
+            field_0x49++;
+        } else {
+            field_0x49 = 1;
+        }
+
+        if (mSelectType == 0 && field_0x3e >= mPageLineMax) {
+            ref->setPageLine(field_0x40, mPageLineMax - (field_0x49 - 1));
+            ref->setPageLineMax(field_0x40, field_0x3e);
+            do_pageType(mPageLineMax - (field_0x49 - 1));
+
+            if (field_0x46 == 0) {
+                field_0x40++;
+            }
+
+            field_0x3e = 0;
+            mPageLineMax = ref->getLineMax();
+            field_0x49 = 0;
+
+            if (field_0x46 == 0 && field_0x38 > 1.0f && field_0x48 == 0) {
+                field_0x48 = 1;
+                mPageLineMax--;
+                JUT_ASSERT(0x665, mPageLineMax > 0);
+                ref->setPageType(field_0x40, 2);
+            }
+        }
+
+        if (mTotalLineCnt < ((4)*10)) {
+            JUT_ASSERT(0x672, mTotalLineCnt < ((4)*10));
+        }
+    } else {
+        if (field_0x49 != 0) {
+            field_0x49 = 0;
+        }
+
+        ref->addLineLength(mTotalLineCnt, field_0x38 * font->getWidth(param_0) / (f32)font->getCellWidth(), 1.0f);
+
+        if (field_0x46 != 0) {
+            f32 var_f31 = ref->getSelFontSize() / (f32)font->getCellWidth();
+            ref->addSelLength(field_0x46 - 1, (var_f31 * (field_0x38 * font->getWidth(param_0))) + ref->getSelCharSpace());
+        }
+
+        if (field_0x38 > 1.0f) {
+            if (field_0x3e == 1 && ref->getPageType(field_0x40) == 2) {
+                ref->setPageType(field_0x40, 4);
+                ref->setLineScale(mTotalLineCnt, ref->getLineScale(0));
+            } else if (field_0x3e == 2 && ref->getPageType(field_0x40) == 4) {
+                ref->setPageType(field_0x40, 5);
+                ref->setLineScale(mTotalLineCnt, ref->getLineScale(0));
+            }
+        }
+    }
 }
 
-/* ############################################################################################## */
-/* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80399610 = "'";
-SECTION_DEAD static char const* const stringBase_80399612 = "s";
-SECTION_DEAD static char const* const stringBase_80399614 = "%d";
-#pragma pop
-
-/* 80454A7C-80454A80 00307C 0004+00 5/5 0/0 0/0 .sdata2          @5151 */
-SECTION_SDATA2 static f32 lit_5151 = 100.0f;
-
-/* 80454A80-80454A88 003080 0008+00 5/5 0/0 0/0 .sdata2          @5154 */
-SECTION_SDATA2 static f64 lit_5154 = 4503599627370496.0 /* cast u32 to float */;
+static void dummyString() {
+    DEAD_STRING("'");
+    DEAD_STRING("s");
+}
 
 /* 8022A268-8022B0B0 224BA8 0E48+00 5/0 0/0 0/0 .text do_tag__26jmessage_tMeasureProcessorFUlPCvUl
  */
-#ifdef NONMATCHING
 bool jmessage_tMeasureProcessor::do_tag(u32 i_tag, void const* i_data, u32 i_size) {
     jmessage_tReference* reference_p = (jmessage_tReference*)getReference();
 
@@ -1648,9 +1552,10 @@ bool jmessage_tMeasureProcessor::do_tag(u32 i_tag, void const* i_data, u32 i_siz
         case 0x37:
             u8 bomb_type = fpcNm_ITEM_NORMAL_BOMB;
 
-            if (*(u8*)i_data == 1) {
+            const u8 spA = *(u8*)i_data;
+            if (spA == 1) {
                 bomb_type = fpcNm_ITEM_WATER_BOMB;
-            } else if (*(u8*)i_data == 2) {
+            } else if (spA == 2) {
                 bomb_type = fpcNm_ITEM_POKE_BOMB;
             }
 
@@ -1717,10 +1622,11 @@ bool jmessage_tMeasureProcessor::do_tag(u32 i_tag, void const* i_data, u32 i_siz
         char buffer_0[40];
         switch (i_tag & 0xFF00FFFF) {
         case 0:
-            if (*(u8*)i_data == 0) {
+            const u8 sp9 = *(u8*)i_data;
+            if (sp9 == 0) {
                 int msg_time_ms = dMeter2Info_getMsgTimeMs();
                 dMsgUnit_setTag(4, msg_time_ms, buffer_0);
-            } else if (*(u8*)i_data == 2) {
+            } else if (sp9 == 2) {
                 int race_time = dComIfGs_getRaceGameTime();
                 dMsgUnit_setTag(4, race_time, buffer_0);
             } else {
@@ -1790,7 +1696,7 @@ bool jmessage_tMeasureProcessor::do_tag(u32 i_tag, void const* i_data, u32 i_siz
             dMsgUnit_setTag(0x10001, (u32)dComIfGp_getMessageCountNumber(), buffer_0);
             break;
         case 7:
-            int now_count = dMeter2Info_getNowCount();
+            u8 now_count = dMeter2Info_getNowCount();
             dMsgUnit_setTag(8, now_count, buffer_0);
             break;
         default:
@@ -1868,20 +1774,162 @@ bool jmessage_tMeasureProcessor::do_tag(u32 i_tag, void const* i_data, u32 i_siz
 
     return false;
 }
-#else
-bool jmessage_tMeasureProcessor::do_tag(u32 param_0, void const* param_1, u32 param_2) {
-    // NONMATCHING
-}
-#endif
 
 /* 8022B0B0-8022B18C 2259F0 00DC+00 2/2 0/0 0/0 .text do_scale__26jmessage_tMeasureProcessorFf */
 void jmessage_tMeasureProcessor::do_scale(f32 param_0) {
-    // NONMATCHING
+    jmessage_tReference* ref = (jmessage_tReference*)getReference();
+    field_0x38 = param_0 * ref->getDistanceScale();
+
+    if (field_0x38 > 1.0f && field_0x48 == 0) {
+        field_0x48 = 1;
+        mPageLineMax--;
+        JUT_ASSERT(0x930, mPageLineMax > 0);
+
+        if (field_0x3e == 0) {
+            ref->setPageType(field_0x40, 2);
+        } else if (field_0x3e == 2 && mPageLineMax == 3) {
+            if (ref->getPageType(field_0x40) == 4) {
+                ref->setPageType(field_0x40, 5);
+            } else {
+                ref->setPageType(field_0x40, 8);
+            }
+        } else {
+            ref->setPageType(field_0x40, 3);
+            if (field_0x3e == 1 && ref->getPageType(field_0x40) == 2) {
+                ref->setPageType(field_0x40, 4);
+            }
+        }
+    }
 }
 
 /* 8022B18C-8022B3EC 225ACC 0260+00 2/1 0/0 0/0 .text do_space__26jmessage_tMeasureProcessorFUl */
-void jmessage_tMeasureProcessor::do_space(u32 param_0) {
-    // NONMATCHING
+void jmessage_tMeasureProcessor::do_space(u32 i_tag) {
+    jmessage_tReference* ref = (jmessage_tReference*)getReference();
+    f32 var_f31 = field_0x38;
+
+    if (field_0x44 == 0) {
+        u16 var_r30 = 0xFFFF;
+        switch (i_tag & 0xFF0000) {
+        case 0:
+            switch (i_tag) {
+            case 10:
+                var_r30 = 0xFFE0;
+                break;
+            case 11:
+                var_r30 = 0xFFE1;
+                break;
+            case 12:
+                var_r30 = 0xFFE2;
+                break;
+            case 13:
+                var_r30 = 0xFFE3;
+                break;
+            case 14:
+                var_r30 = 0xFFE4;
+                break;
+            case 15:
+                var_r30 = 0xFFE5;
+                break;
+            case 16:
+                var_r30 = 0xFFE6;
+                break;
+            case 17:
+                var_r30 = 0xFFE7;
+                break;
+            case 18:
+                var_r30 = 0xFFE8;
+                break;
+            case 19:
+                var_r30 = 0xFFE9;
+                break;
+            case 20:
+                var_r30 = 0xFFEA;
+                break;
+            case 21:
+                var_r30 = 0xFFEB;
+                break;
+            case 22:
+                var_r30 = 0xFFEC;
+                break;
+            case 23:
+                var_r30 = 0xFFED;
+                break;
+            case 24:
+                var_r30 = 0xFFEE;
+                break;
+            case 25:
+                var_r30 = 0xFFF0;
+                break;
+            case 26:
+                var_r30 = 0xFFF1;
+                break;
+            case 27:
+                var_r30 = 0xFFF2;
+                break;
+            case 28:
+                var_r30 = 0xFFF3;
+                break;
+            case 29:
+                var_r30 = 0xFFF4;
+                break;
+            case 57:
+                var_r30 = 0xFFF5;
+                break;
+            case 58:
+                var_r30 = 0xFFF6;
+                break;
+            }
+
+            ref->setCharactor(var_r30);
+            break;
+        case 0x30000:
+            switch (i_tag & 0xFF00FFFF) {
+            case 3:
+            case 4:
+            case 5:
+                ref->setCharactor(0xFFFF);
+                break;
+            case 8:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+            case 13:
+            case 14:
+            case 15:
+                ref->setCharactor(0xFFFF);
+                break;
+            case 16:
+            case 17:
+            case 18:
+            case 19:
+            case 20:
+            case 6:
+            case 7:
+            case 1:
+            case 2:
+                ref->setCharactor(0xFFFF);
+            }
+            break;
+        case 0x60000:
+            switch (i_tag) {
+            case 10:
+            case 11:
+                ref->setCharactor(0xFFFF);
+                break;
+            }
+            break;
+        }
+    }
+
+    if (field_0x49 != 0) {
+        field_0x49 = 0;
+    }
+
+    ref->addLineLength(mTotalLineCnt, var_f31, 1.0f);
+    if (field_0x46 != 0) {
+        ref->addSelLength(field_0x46 - 1, var_f31);
+    }
 }
 
 /* 8022B3EC-8022B454 225D2C 0068+00 3/3 0/0 0/0 .text do_pageType__26jmessage_tMeasureProcessorFi
@@ -1906,8 +1954,25 @@ void jmessage_tMeasureProcessor::do_name1() {}
 
 /* 8022B458-8022B4E0 225D98 0088+00 1/1 0/0 0/0 .text
  * do_rubyset__26jmessage_tMeasureProcessorFPCvUl               */
+// NONMATCHING - issue with or
 void jmessage_tMeasureProcessor::do_rubyset(void const* param_0, u32 param_1) {
-    // NONMATCHING
+    if (field_0x44 == 0) {
+        u8 var_r28 = param_1 - 1;
+        u8* var_r30 = (u8*)param_0;
+        int var_r29 = 0;
+
+        var_r30++;
+
+        jmessage_tReference* ref = (jmessage_tReference*)getReference();
+        while (var_r29 < var_r28) {
+            s8 sp10 = var_r30[var_r29++];
+            s8 sp11 = var_r30[var_r29++];
+            s8 sp12 = 0;
+
+            int var_r26 = (sp10 << 8) | sp11;
+            ref->setCharactor(changeKataToHira(var_r26));
+        }
+    }
 }
 
 /* 8022B4E0-8022B558 225E20 0078+00 1/1 0/0 0/0 .text push_word__26jmessage_tMeasureProcessorFPc
@@ -1921,7 +1986,7 @@ void jmessage_tMeasureProcessor::push_word(char* param_0) {
 
 /* 8022B558-8022B5F4 225E98 009C+00 0/0 1/1 0/0 .text
  * __ct__27jmessage_tSequenceProcessorFPC19jmessage_tReferenceP17jmessage_tControl */
-#ifdef NONMATCHING
+// NONMATCHING
 jmessage_tSequenceProcessor::jmessage_tSequenceProcessor(jmessage_tReference const* param_0,
                                                          jmessage_tControl* param_1)
     : JMessage::TSequenceProcessor(param_0, param_1), jmessage_tMeasureProcessor(param_0) {
@@ -1940,19 +2005,9 @@ jmessage_tSequenceProcessor::jmessage_tSequenceProcessor(jmessage_tReference con
     field_0xb3 = 0;
     field_0xb4 = 0;
 }
-#else
-jmessage_tSequenceProcessor::jmessage_tSequenceProcessor(jmessage_tReference const* param_0,
-                                                             jmessage_tControl* param_1)
-    : JMessage::TSequenceProcessor(param_0, param_1), jmessage_tMeasureProcessor(param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 8022B5F4-8022B654 225F34 0060+00 1/0 0/0 0/0 .text __dt__26jmessage_tMeasureProcessorFv */
-// jmessage_tMeasureProcessor::~jmessage_tMeasureProcessor() {
-extern "C" void __dt__26jmessage_tMeasureProcessorFv() {
-    // NONMATCHING
-}
+jmessage_tMeasureProcessor::~jmessage_tMeasureProcessor() {}
 
 /* 8022B654-8022B658 225F94 0004+00 1/0 0/0 0/0 .text do_reset__27jmessage_tSequenceProcessorFv */
 void jmessage_tSequenceProcessor::do_reset() {}
@@ -2388,8 +2443,7 @@ void jmessage_tSequenceProcessor::do_space(u32 param_0) {
 
 /* 8022CA24-8022CAAC 227364 0088+00 1/1 0/0 0/0 .text
  * do_rubyset__27jmessage_tSequenceProcessorFPCvUl              */
-// or logic
-#ifdef NONMATCHING
+// NONMATCHING - or logic
 void jmessage_tSequenceProcessor::do_rubyset(void const* param_0, u32 param_1) {
     if (field_0xac == 0) {
         u8 size = param_1 - 1;
@@ -2404,11 +2458,6 @@ void jmessage_tSequenceProcessor::do_rubyset(void const* param_0, u32 param_1) {
         }
     }
 }
-#else
-void jmessage_tSequenceProcessor::do_rubyset(void const* param_0, u32 param_1) {
-    // NONMATCHING
-}
-#endif
 
 /* 8022CAAC-8022CB10 2273EC 0064+00 1/1 0/0 0/0 .text push_word__27jmessage_tSequenceProcessorFv
  */
@@ -2584,7 +2633,6 @@ void jmessage_tRenderingProcessor::resetRendering() {
     *mpCharInfoCnt = 0;
 }
 
-
 /* ############################################################################################## */
 /* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 #pragma push
@@ -2728,8 +2776,7 @@ void jmessage_tRenderingProcessor::do_strcat(char* param_0, bool param_1, bool p
 
 /* 8022F148-8022F384 229A88 023C+00 1/1 0/0 0/0 .text
  * do_rubyset__28jmessage_tRenderingProcessorFPCvUl             */
-// buffer initialization
-#ifdef NONMATCHING
+// NONMATCHING - buffer initialization
 void jmessage_tRenderingProcessor::do_rubyset(void const* param_0, u32 param_1) {
     jmessage_tReference* pRef = (jmessage_tReference*) getReference();
     JUTFont* pFont = pRef->getFont();
@@ -2764,11 +2811,6 @@ void jmessage_tRenderingProcessor::do_rubyset(void const* param_0, u32 param_1) 
         field_0x130 = field_0x48 - mTextInitPosX;
     }
 }
-#else
-void jmessage_tRenderingProcessor::do_rubyset(void const* param_0, u32 param_1) {
-    // NONMATCHING
-}
-#endif
 
 /* ############################################################################################## */
 /* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -2806,7 +2848,6 @@ void jmessage_tRenderingProcessor::do_rubystrcat(char* param_1, char* param_2, f
         strcat(param_2, param_1);
     }
 }
-
 
 /* 8022F53C-8022F540 229E7C 0004+00 1/1 0/0 0/0 .text do_name1__28jmessage_tRenderingProcessorFv
  */
@@ -2884,7 +2925,6 @@ jmessage_string_tReference::jmessage_string_tReference() {
     resetCharactor();
 }
 
-
 /* 8022F94C-8022F9AC 22A28C 0060+00 1/0 0/0 0/0 .text __dt__26jmessage_string_tReferenceFv */
 // jmessage_string_tReference::~jmessage_string_tReference() {
 extern "C" void __dt__26jmessage_string_tReferenceFv() {
@@ -2916,7 +2956,6 @@ void jmessage_string_tReference::init(J2DTextBox* panePtr, J2DTextBox* runyPaneP
     }
 }
 
-
 /* 8022FA2C-8022FA30 22A36C 0004+00 3/3 0/0 0/0 .text
  * setCharactor__26jmessage_string_tReferenceFUs                */
 void jmessage_string_tReference::setCharactor(u16 param_0) {}
@@ -2943,7 +2982,6 @@ f32 jmessage_string_tReference::getLineLength(int lineNo) {
     return 0.0f;
 }
 
-
 /* 8022FA6C-8022FA98 22A3AC 002C+00 2/2 0/0 0/0 .text
  * addLineLength__26jmessage_string_tReferenceFif               */
 void jmessage_string_tReference::addLineLength(int lineNo, f32 length) {
@@ -2961,7 +2999,6 @@ f32 jmessage_string_tReference::getOutfontLength(int param_0) {
     }
     return 0.0f;
 }
-
 
 /* 8022FACC-8022FAF0 22A40C 0024+00 1/1 0/0 0/0 .text
  * setOutfontLength__26jmessage_string_tReferenceFif            */
@@ -2981,7 +3018,6 @@ void jmessage_string_tReference::clearOutfontLength(int param_0) {
         mOutfontLength[param_0] = 0.0f;
     }
 }
-
 
 /* 8022FB24-8022FB5C 22A464 0038+00 4/4 0/0 0/0 .text
  * getLineCountNowPage__26jmessage_string_tReferenceFv          */
@@ -3057,7 +3093,6 @@ void jmessage_string_tMeasureProcessor::do_character(int param_0) {
         mpReference->clearOutfontLength(mpReference->getLineCountNowPage());
     }
 }
-
 
 /* 803C056C-803C059C -00001 0030+00 1/1 0/0 0/0 .data            @7487 */
 SECTION_DATA static void* lit_7487[12] = {
@@ -3203,8 +3238,7 @@ jmessage_string_tSequenceProcessor::jmessage_string_tSequenceProcessor(
 
 /* 80230A5C-80230ABC 22B39C 0060+00 1/0 0/0 0/0 .text __dt__33jmessage_string_tMeasureProcessorFv
  */
-// jmessage_string_tMeasureProcessor::~jmessage_string_tMeasureProcessor() {
-extern "C" void __dt__33jmessage_string_tMeasureProcessorFv() {
+jmessage_string_tMeasureProcessor::~jmessage_string_tMeasureProcessor() {
     // NONMATCHING
 }
 
@@ -3298,7 +3332,6 @@ void jmessage_string_tRenderingProcessor::do_reset() {
     field_0x552 = 0;
     field_0x486[0] = 0;
 }
-
 
 /* 80230CA0-80230CE8 22B5E0 0048+00 1/0 0/0 0/0 .text
  * do_begin__35jmessage_string_tRenderingProcessorFPCvPCc       */
@@ -3483,8 +3516,7 @@ bool jmessage_string_tRenderingProcessor::do_tag(u32 param_0, void const* param_
 
 /* 80231D70-80231EF0 22C6B0 0180+00 2/2 0/0 0/0 .text
  * do_widthcenter__35jmessage_string_tRenderingProcessorFv      */
-// float load order
-#ifdef NONMATCHING
+// NONMATCHING - float load order
 void jmessage_string_tRenderingProcessor::do_widthcenter() {
      if (getLineCountNowPage() >= 0 && mpReference->getPanePtr() != NULL) {
         if (mpReference->isFlag(1) == 0) {
@@ -3510,16 +3542,10 @@ void jmessage_string_tRenderingProcessor::do_widthcenter() {
         }
     }
 }
-#else
-void jmessage_string_tRenderingProcessor::do_widthcenter() {
-    // NONMATCHING
-}
-#endif
 
 /* 80231EF0-80232044 22C830 0154+00 1/1 0/0 0/0 .text
  * do_heightcenter__35jmessage_string_tRenderingProcessorFv     */
-// Instruction order
-#ifdef NONMATCHING
+// NONMATCHING - Instruction order
 void jmessage_string_tRenderingProcessor::do_heightcenter() {
     if (mpReference->getLineCountNowPage() >= 0 && mpReference->getPanePtr() != NULL) {
         if (mpReference->isFlag(2) == 0) {
@@ -3543,11 +3569,6 @@ void jmessage_string_tRenderingProcessor::do_heightcenter() {
         }
     }
 }
-#else
-void jmessage_string_tRenderingProcessor::do_heightcenter() {
-    // NONMATCHING
-}
-#endif
 
 /* 80232044-802320B0 22C984 006C+00 7/7 0/0 0/0 .text
  * do_strcat__35jmessage_string_tRenderingProcessorFPc          */
@@ -3562,8 +3583,7 @@ void jmessage_string_tRenderingProcessor::do_strcat(char* param_0) {
 
 /* 802320B0-80232260 22C9F0 01B0+00 1/1 0/0 0/0 .text
  * do_rubyset__35jmessage_string_tRenderingProcessorFPCvUl      */
-// array char assignment
-#ifdef NONMATCHING
+// NONMATCHING - array char assignment
 void jmessage_string_tRenderingProcessor::do_rubyset(void const* param_0, u32 param_1) {
     if (getLineCountNowPage() >= 0) {
         if (mpReference->getRubyPanePtr() != NULL) {
@@ -3594,11 +3614,6 @@ void jmessage_string_tRenderingProcessor::do_rubyset(void const* param_0, u32 pa
         }
     }
 }
-#else
-void jmessage_string_tRenderingProcessor::do_rubyset(void const* param_0, u32 param_1) {
-    // NONMATCHING
-}
-#endif
 
 /* 80232260-802322CC 22CBA0 006C+00 2/2 0/0 0/0 .text
  * do_rubystrcat__35jmessage_string_tRenderingProcessorFPc      */
@@ -3646,7 +3661,6 @@ void jmessage_string_tRenderingProcessor::do_scale(f32 param_0) {
     do_strcat(buffer);
 }
 
-
 /* 80232690-802326E4 22CFD0 0054+00 1/1 0/0 0/0 .text
  * do_linedown__35jmessage_string_tRenderingProcessorFs         */
 void jmessage_string_tRenderingProcessor::do_linedown(s16 param_0) {
@@ -3676,205 +3690,3 @@ void jmessage_string_tRenderingProcessor::push_word(char const* param_0) {
     strcpy(field_0x486, param_0);
     stack_pushCurrent(field_0x486);
 }
-
-/* 802327F8-80232858 22D138 0060+00 1/0 0/0 0/0 .text
- * __dt__35jmessage_string_tRenderingProcessorFv                */
-// jmessage_string_tRenderingProcessor::~jmessage_string_tRenderingProcessor() {
-extern "C" void __dt__35jmessage_string_tRenderingProcessorFv() {
-    // NONMATCHING
-}
-
-/* 80232858-802328DC 22D198 0084+00 1/0 0/0 0/0 .text __dt__34jmessage_string_tSequenceProcessorFv
- */
-// jmessage_string_tSequenceProcessor::~jmessage_string_tSequenceProcessor() {
-extern "C" void __dt__34jmessage_string_tSequenceProcessorFv() {
-    // NONMATCHING
-}
-
-/* 802328DC-8023293C 22D21C 0060+00 1/0 0/0 0/0 .text            __dt__24jmessage_string_tControlFv
- */
-// jmessage_string_tControl::~jmessage_string_tControl() {
-extern "C" void __dt__24jmessage_string_tControlFv() {
-    // NONMATCHING
-}
-
-/* 8023293C-8023299C 22D27C 0060+00 1/0 0/0 0/0 .text __dt__28jmessage_tRenderingProcessorFv */
-// jmessage_tRenderingProcessor::~jmessage_tRenderingProcessor() {
-extern "C" void __dt__28jmessage_tRenderingProcessorFv() {
-    // NONMATCHING
-}
-
-/* 8023299C-80232A20 22D2DC 0084+00 1/0 0/0 0/0 .text __dt__27jmessage_tSequenceProcessorFv */
-// jmessage_tSequenceProcessor::~jmessage_tSequenceProcessor() {
-extern "C" void __dt__27jmessage_tSequenceProcessorFv() {
-    // NONMATCHING
-}
-
-/* 80232A20-80232A3C 22D360 001C+00 2/2 0/0 0/0 .text getActorPos__19jmessage_tReferenceFv */
-cXyz jmessage_tReference::getActorPos() {
-    // NONMATCHING
-}
-
-/* 803C0908-803C0948 01DA28 0040+00 2/2 0/0 0/0 .data __vt__35jmessage_string_tRenderingProcessor
- */
-SECTION_DATA extern void* __vt__35jmessage_string_tRenderingProcessor[16] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__35jmessage_string_tRenderingProcessorFv,
-    (void*)do_reset__35jmessage_string_tRenderingProcessorFv,
-    (void*)do_begin__35jmessage_string_tRenderingProcessorFPCvPCc,
-    (void*)do_end__35jmessage_string_tRenderingProcessorFv,
-    (void*)do_character__35jmessage_string_tRenderingProcessorFi,
-    (void*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl,
-    (void*)do_select_begin__Q28JMessage10TProcessorFUl,
-    (void*)do_select_end__Q28JMessage10TProcessorFv,
-    (void*)do_select_separate__Q28JMessage10TProcessorFv,
-    (void*)do_resetStatus___Q28JMessage10TProcessorFPCc,
-    (void*)do_setBegin_isReady___Q28JMessage10TProcessorCFv,
-    (void*)do_begin___Q28JMessage19TRenderingProcessorFPCvPCc,
-    (void*)do_end___Q28JMessage19TRenderingProcessorFv,
-    (void*)do_tag___Q28JMessage19TRenderingProcessorFUlPCvUl,
-};
-
-/* 803C0948-803C09A0 01DA68 0058+00 2/2 0/0 0/0 .data __vt__34jmessage_string_tSequenceProcessor
- */
-SECTION_DATA extern void* __vt__34jmessage_string_tSequenceProcessor[22] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__34jmessage_string_tSequenceProcessorFv,
-    (void*)do_reset__34jmessage_string_tSequenceProcessorFv,
-    (void*)do_begin__34jmessage_string_tSequenceProcessorFPCvPCc,
-    (void*)do_end__34jmessage_string_tSequenceProcessorFv,
-    (void*)do_character__34jmessage_string_tSequenceProcessorFi,
-    (void*)do_tag__34jmessage_string_tSequenceProcessorFUlPCvUl,
-    (void*)do_select_begin__Q28JMessage10TProcessorFUl,
-    (void*)do_select_end__Q28JMessage10TProcessorFv,
-    (void*)do_select_separate__Q28JMessage10TProcessorFv,
-    (void*)do_resetStatus___Q28JMessage18TSequenceProcessorFPCc,
-    (void*)do_setBegin_isReady___Q28JMessage18TSequenceProcessorCFv,
-    (void*)do_begin___Q28JMessage18TSequenceProcessorFPCvPCc,
-    (void*)do_end___Q28JMessage18TSequenceProcessorFv,
-    (void*)do_tag___Q28JMessage18TSequenceProcessorFUlPCvUl,
-    (void*)do_isReady__34jmessage_string_tSequenceProcessorFv,
-    (void*)do_jump_isReady__34jmessage_string_tSequenceProcessorFv,
-    (void*)do_jump__34jmessage_string_tSequenceProcessorFPCvPCc,
-    (void*)do_branch_query__Q28JMessage18TSequenceProcessorFUl,
-    (void*)do_branch_queryResult__Q28JMessage18TSequenceProcessorFv,
-    (void*)do_branch__Q28JMessage18TSequenceProcessorFPCvPCc,
-};
-
-/* 803C09A0-803C09E0 01DAC0 0040+00 3/3 0/0 0/0 .data __vt__33jmessage_string_tMeasureProcessor */
-SECTION_DATA extern void* __vt__33jmessage_string_tMeasureProcessor[16] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__33jmessage_string_tMeasureProcessorFv,
-    (void*)do_reset__Q28JMessage10TProcessorFv,
-    (void*)do_begin__33jmessage_string_tMeasureProcessorFPCvPCc,
-    (void*)do_end__33jmessage_string_tMeasureProcessorFv,
-    (void*)do_character__33jmessage_string_tMeasureProcessorFi,
-    (void*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl,
-    (void*)do_select_begin__Q28JMessage10TProcessorFUl,
-    (void*)do_select_end__Q28JMessage10TProcessorFv,
-    (void*)do_select_separate__Q28JMessage10TProcessorFv,
-    (void*)do_resetStatus___Q28JMessage10TProcessorFPCc,
-    (void*)do_setBegin_isReady___Q28JMessage10TProcessorCFv,
-    (void*)do_begin___Q28JMessage19TRenderingProcessorFPCvPCc,
-    (void*)do_end___Q28JMessage19TRenderingProcessorFv,
-    (void*)do_tag___Q28JMessage19TRenderingProcessorFUlPCvUl,
-};
-
-/* 803C09E0-803C09EC 01DB00 000C+00 2/2 0/0 0/0 .data            __vt__24jmessage_string_tControl */
-SECTION_DATA extern void* __vt__24jmessage_string_tControl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__24jmessage_string_tControlFv,
-};
-
-/* 803C09EC-803C09FC 01DB0C 0010+00 2/2 0/0 0/0 .data            __vt__26jmessage_string_tReference
- */
-SECTION_DATA extern void* __vt__26jmessage_string_tReference[4] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__26jmessage_string_tReferenceFv,
-    (void*)do_word__Q28JMessage10TReferenceCFUl,
-};
-
-/* 803C09FC-803C0A3C 01DB1C 0040+00 2/2 0/0 0/0 .data __vt__28jmessage_tRenderingProcessor */
-SECTION_DATA extern void* __vt__28jmessage_tRenderingProcessor[16] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__28jmessage_tRenderingProcessorFv,
-    (void*)do_reset__28jmessage_tRenderingProcessorFv,
-    (void*)do_begin__28jmessage_tRenderingProcessorFPCvPCc,
-    (void*)do_end__28jmessage_tRenderingProcessorFv,
-    (void*)do_character__28jmessage_tRenderingProcessorFi,
-    (void*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl,
-    (void*)do_select_begin__Q28JMessage10TProcessorFUl,
-    (void*)do_select_end__Q28JMessage10TProcessorFv,
-    (void*)do_select_separate__Q28JMessage10TProcessorFv,
-    (void*)do_resetStatus___Q28JMessage10TProcessorFPCc,
-    (void*)do_setBegin_isReady___Q28JMessage10TProcessorCFv,
-    (void*)do_begin___Q28JMessage19TRenderingProcessorFPCvPCc,
-    (void*)do_end___Q28JMessage19TRenderingProcessorFv,
-    (void*)do_tag___Q28JMessage19TRenderingProcessorFUlPCvUl,
-};
-
-/* 803C0A3C-803C0A94 01DB5C 0058+00 2/2 0/0 0/0 .data            __vt__27jmessage_tSequenceProcessor
- */
-SECTION_DATA extern void* __vt__27jmessage_tSequenceProcessor[22] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__27jmessage_tSequenceProcessorFv,
-    (void*)do_reset__27jmessage_tSequenceProcessorFv,
-    (void*)do_begin__27jmessage_tSequenceProcessorFPCvPCc,
-    (void*)do_end__27jmessage_tSequenceProcessorFv,
-    (void*)do_character__27jmessage_tSequenceProcessorFi,
-    (void*)do_tag__27jmessage_tSequenceProcessorFUlPCvUl,
-    (void*)do_select_begin__Q28JMessage10TProcessorFUl,
-    (void*)do_select_end__Q28JMessage10TProcessorFv,
-    (void*)do_select_separate__Q28JMessage10TProcessorFv,
-    (void*)do_resetStatus___Q28JMessage18TSequenceProcessorFPCc,
-    (void*)do_setBegin_isReady___Q28JMessage18TSequenceProcessorCFv,
-    (void*)do_begin___Q28JMessage18TSequenceProcessorFPCvPCc,
-    (void*)do_end___Q28JMessage18TSequenceProcessorFv,
-    (void*)do_tag___Q28JMessage18TSequenceProcessorFUlPCvUl,
-    (void*)do_isReady__27jmessage_tSequenceProcessorFv,
-    (void*)do_jump_isReady__27jmessage_tSequenceProcessorFv,
-    (void*)do_jump__27jmessage_tSequenceProcessorFPCvPCc,
-    (void*)do_branch_query__Q28JMessage18TSequenceProcessorFUl,
-    (void*)do_branch_queryResult__Q28JMessage18TSequenceProcessorFv,
-    (void*)do_branch__Q28JMessage18TSequenceProcessorFPCvPCc,
-};
-
-/* 803C0A94-803C0AD4 01DBB4 0040+00 3/3 0/0 0/0 .data            __vt__26jmessage_tMeasureProcessor
- */
-SECTION_DATA extern void* __vt__26jmessage_tMeasureProcessor[16] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__26jmessage_tMeasureProcessorFv,
-    (void*)do_reset__Q28JMessage10TProcessorFv,
-    (void*)do_begin__26jmessage_tMeasureProcessorFPCvPCc,
-    (void*)do_end__26jmessage_tMeasureProcessorFv,
-    (void*)do_character__26jmessage_tMeasureProcessorFi,
-    (void*)do_tag__26jmessage_tMeasureProcessorFUlPCvUl,
-    (void*)do_select_begin__Q28JMessage10TProcessorFUl,
-    (void*)do_select_end__Q28JMessage10TProcessorFv,
-    (void*)do_select_separate__Q28JMessage10TProcessorFv,
-    (void*)do_resetStatus___Q28JMessage10TProcessorFPCc,
-    (void*)do_setBegin_isReady___Q28JMessage10TProcessorCFv,
-    (void*)do_begin___Q28JMessage19TRenderingProcessorFPCvPCc,
-    (void*)do_end___Q28JMessage19TRenderingProcessorFv,
-    (void*)do_tag___Q28JMessage19TRenderingProcessorFUlPCvUl,
-};
-
-/* 803C0AD4-803C0AE8 01DBF4 0010+04 2/2 0/0 0/0 .data            __vt__19jmessage_tReference */
-SECTION_DATA extern void* __vt__19jmessage_tReference[4 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__19jmessage_tReferenceFv,
-    (void*)do_word__Q28JMessage10TReferenceCFUl,
-    /* padding */
-    NULL,
-};
-
-/* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

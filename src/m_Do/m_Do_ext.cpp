@@ -4,6 +4,7 @@
  */
 
 #include "m_Do/m_Do_ext.h"
+#include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/JKernel/JKRAssertHeap.h"
@@ -16,6 +17,7 @@
 #include "d/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "dolphin/gx/GXDraw.h"
+#include <dolphin/gf/GFPixel.h>
 #include "global.h"
 #include "m_Do/m_Do_mtx.h"
 
@@ -209,49 +211,8 @@ void mDoExt_brkAnm::entry(J3DMaterialTable* i_matTable, f32 i_frame) {
     i_matTable->entryTevRegAnimator(mpAnm);
 }
 
-/* ############################################################################################## */
-/* 803A3020-803A30C0 000140 0085+1B 1/1 0/0 0/0 .data            l_invisibleMat$7041 */
-static u8 l_invisibleMat[133] ALIGN_DECL(32) = {
-    0x10, 0x00, 0x00, 0x10, 0x0E, 0x00, 0x00, 0x04, 0x00, 0x10, 0x00, 0x00, 0x10, 0x10, 0x00,
-    0x00, 0x04, 0x00, 0x61, 0x28, 0x38, 0x00, 0x00, 0x61, 0xC0, 0x08, 0xFF, 0xFC, 0x61, 0xC1,
-    0x08, 0xFF, 0xF0, 0x61, 0xF3, 0x7F, 0x00, 0x00, 0x61, 0x43, 0x00, 0x00, 0x41, 0x61, 0x40,
-    0x00, 0x00, 0x17, 0x61, 0xEE, 0x00, 0x00, 0x00, 0x61, 0xEF, 0x00, 0x00, 0x00, 0x61, 0xF0,
-    0x00, 0x00, 0x00, 0x61, 0xF1, 0x00, 0x00, 0x00, 0x61, 0xF2, 0x00, 0x00, 0x00, 0x61, 0x41,
-    0x00, 0x00, 0x04, 0x10, 0x00, 0x00, 0x10, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00,
-    0x10, 0x09, 0x00, 0x00, 0x00, 0x01, 0x61, 0x00, 0x00, 0x40, 0x10, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 803A30C0-803A3160 0001E0 0084+1C 1/1 0/0 0/0 .data            l_matDL */
-static u8 l_matDL[132] ALIGN_DECL(32) = {
-    0x08, 0x30, 0x3C, 0xF3, 0xCF, 0x00, 0x10, 0x00, 0x00, 0x10, 0x18, 0x3C, 0xF3, 0xCF, 0x00,
-    0x10, 0x00, 0x00, 0x10, 0x0E, 0x00, 0x00, 0x7F, 0x32, 0x10, 0x00, 0x00, 0x10, 0x10, 0x00,
-    0x00, 0x05, 0x00, 0x10, 0x00, 0x00, 0x10, 0x0C, 0xFF, 0xFF, 0xFF, 0xFF, 0x61, 0x28, 0x38,
-    0x00, 0x00, 0x61, 0xC0, 0x28, 0xF6, 0xAF, 0x61, 0xC1, 0x08, 0xFF, 0xE0, 0x61, 0x43, 0x00,
-    0x00, 0x41, 0x61, 0x40, 0x00, 0x00, 0x17, 0x61, 0x41, 0x00, 0x00, 0x0C, 0x61, 0xF3, 0x7F,
-    0x00, 0x00, 0x10, 0x00, 0x00, 0x10, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x10,
-    0x09, 0x00, 0x00, 0x00, 0x01, 0x61, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 803A3160-803A31F0 000280 008D+03 1/1 0/0 0/0 .data            l_mat1DL */
-static u8 l_mat1DL[141] ALIGN_DECL(32) = {
-    0x10, 0x00, 0x00, 0x10, 0x40, 0xFF, 0xFF, 0x42, 0x00, 0x00, 0x00, 0x00, 0xF3, 0xCF, 0x00, 0x10,
-    0x00, 0x00, 0x10, 0x18, 0x3C, 0xF3, 0xCF, 0x00, 0x10, 0x00, 0x00, 0x10, 0x0E, 0x00, 0x00, 0x7F,
-    0x32, 0x10, 0x00, 0x00, 0x10, 0x10, 0x00, 0x00, 0x05, 0x00, 0x10, 0x00, 0x00, 0x10, 0x0C, 0xFF,
-    0xFF, 0xFF, 0xFF, 0x61, 0x28, 0x38, 0x00, 0x40, 0x61, 0xC0, 0x28, 0xFA, 0x8F, 0x61, 0xC1, 0x08,
-    0xFF, 0xF0, 0x61, 0x43, 0x00, 0x00, 0x41, 0x61, 0x40, 0x00, 0x00, 0x17, 0x61, 0x41, 0x00, 0x00,
-    0x0C, 0x61, 0xF3, 0x7F, 0x00, 0x00, 0x10, 0x00, 0x00, 0x10, 0x3F, 0x00, 0x00, 0x00, 0x01, 0x10,
-    0x00, 0x00, 0x10, 0x09, 0x00, 0x00, 0x00, 0x01, 0x61, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
 /* 8000D7DC-8000D8E4 00811C 0108+00 0/0 18/18 85/85 .text
  * init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb               */
-// NONMATCHING J3DMtxCalcAnimation inheritance
 int mDoExt_bckAnm::init(J3DAnmTransform* i_bck, int i_play, int i_attr, f32 i_rate,
                         s16 i_startF, s16 i_endF, bool i_modify) {
     JUT_ASSERT(614, (i_modify || isCurrentSolidHeap()) && i_bck != 0);
@@ -1150,66 +1111,77 @@ int mDoExt_McaMorf::create(J3DModelData* modelData, mDoExt_McaMorfCallBack1_c* c
 /* 80010074-8001037C 00A9B4 0308+00 1/0 0/0 0/0 .text            calc__14mDoExt_McaMorfFv */
 // NONMATCHING regalloc
 void mDoExt_McaMorf::calc() {
-    if (!mpModel) {
+    if (mpModel == NULL) {
         return;
     }
+
     u16 jntNo = getJoint()->getJntNo();
     j3dSys.setCurrentMtxCalc(this);
-    J3DTransformInfo info1;
-    J3DTransformInfo* infoPtr;
+
+    Mtx sp68;
+    J3DTransformInfo sp48;
+    J3DTransformInfo sp28;
+    J3DTransformInfo* var_r29;
     if (mpTransformInfo == NULL) {
-        infoPtr = &info1;
+        var_r29 = &sp48;
     } else {
-        infoPtr = &mpTransformInfo[jntNo];
+        var_r29 = &mpTransformInfo[jntNo];
     }
-    Quaternion quat1;
-    Quaternion* quatPtr;
+
+    Quaternion sp18;
+    Quaternion* var_r27;
     if (mpQuat == NULL) {
-        quatPtr = &quat1;
+        var_r27 = &sp18;
     } else {
-        quatPtr = &mpQuat[jntNo];
+        var_r27 = &mpQuat[jntNo];
     }
-    if (!mpAnm) {
-        *infoPtr = mpModel->getModelData()->getJointNodePointer(jntNo)->getTransformInfo();
-        if (mpCallback1) {
-            mpCallback1->execute(jntNo, infoPtr);
+
+    if (mpAnm == NULL) {
+        *var_r29 = mpModel->getModelData()->getJointNodePointer(jntNo)->getTransformInfo();
+        if (mpCallback1 != NULL) {
+            mpCallback1->execute(jntNo, var_r29);
         }
-        JMAEulerToQuat(infoPtr->mRotation.x, infoPtr->mRotation.y, infoPtr->mRotation.z, quatPtr);
-        J3DMtxCalcCalcTransformMaya::calcTransform(*infoPtr);
-    } else if (mCurMorf >= 1.0f || !mpTransformInfo || !mpQuat) {
-        getTransform(jntNo, infoPtr);
-        if (mpCallback1) {
-            mpCallback1->execute(jntNo, infoPtr);
+
+        JMAEulerToQuat(var_r29->mRotation.x, var_r29->mRotation.y, var_r29->mRotation.z, var_r27);
+        J3DMtxCalcCalcTransformMaya::calcTransform(*var_r29);
+    } else if (mCurMorf >= 1.0f || mpTransformInfo == NULL || mpQuat == NULL) {
+        getTransform(jntNo, var_r29);
+        if (mpCallback1 != NULL) {
+            mpCallback1->execute(jntNo, var_r29);
         }
-        JMAEulerToQuat(infoPtr->mRotation.x, infoPtr->mRotation.y, infoPtr->mRotation.z, quatPtr);
-        J3DMtxCalcCalcTransformMaya::calcTransform(*infoPtr);
+        JMAEulerToQuat(var_r29->mRotation.x, var_r29->mRotation.y, var_r29->mRotation.z, var_r27);
+        J3DMtxCalcCalcTransformMaya::calcTransform(*var_r29);
     } else {
-        f32 f31;
+        f32 var_f31;
         if (field_0x52) {
-            f31 = 1.0f;
+            var_f31 = 1.0f;
         } else {
-            f31 = (mCurMorf - mPrevMorf) / (1.0f - mPrevMorf);
+            var_f31 = (mCurMorf - mPrevMorf) / (1.0f - mPrevMorf);
         }
-        f32 f30 = 1.0f - f31;
-        J3DTransformInfo info2;
-        Quaternion quat2;
-        getTransform(jntNo, &info2);
-        if (mpCallback1) {
-            mpCallback1->execute(jntNo, &info2);
+        f32 var_f30 = 1.0f - var_f31;
+
+        Quaternion sp8;
+        getTransform(jntNo, &sp28);
+
+        if (mpCallback1 != NULL) {
+            mpCallback1->execute(jntNo, &sp28);
         }
-        JMAEulerToQuat(info2.mRotation.x, info2.mRotation.y, info2.mRotation.z, &quat2);
-        JMAQuatLerp(quatPtr, &quat2, f31, quatPtr);
-        Mtx mtx;
-        mDoMtx_quat(mtx, quatPtr);
-        infoPtr->mTranslate.x = infoPtr->mTranslate.x * f30 + info2.mTranslate.x * f31;
-        infoPtr->mTranslate.y = infoPtr->mTranslate.y * f30 + info2.mTranslate.y * f31;
-        infoPtr->mTranslate.z = infoPtr->mTranslate.z * f30 + info2.mTranslate.z * f31;
-        infoPtr->mScale.x = infoPtr->mScale.x * f30 + info2.mScale.x * f31;
-        infoPtr->mScale.y = infoPtr->mScale.y * f30 + info2.mScale.y * f31;
-        infoPtr->mScale.z = infoPtr->mScale.z * f30 + info2.mScale.z * f31;
-        mDoExt_setJ3DData(mtx, infoPtr, jntNo);
+
+        JMAEulerToQuat(sp28.mRotation.x, sp28.mRotation.y, sp28.mRotation.z, &sp8);
+        JMAQuatLerp(var_r27, &sp8, var_f31, var_r27);
+
+        mDoMtx_quat(sp68, var_r27);
+
+        var_r29->mTranslate.x = var_r29->mTranslate.x * var_f30 + sp28.mTranslate.x * var_f31;
+        var_r29->mTranslate.y = var_r29->mTranslate.y * var_f30 + sp28.mTranslate.y * var_f31;
+        var_r29->mTranslate.z = var_r29->mTranslate.z * var_f30 + sp28.mTranslate.z * var_f31;
+        var_r29->mScale.x = var_r29->mScale.x * var_f30 + sp28.mScale.x * var_f31;
+        var_r29->mScale.y = var_r29->mScale.y * var_f30 + sp28.mScale.y * var_f31;
+        var_r29->mScale.z = var_r29->mScale.z * var_f30 + sp28.mScale.z * var_f31;
+        mDoExt_setJ3DData(sp68, var_r29, jntNo);
     }
-    if (mpCallback2) {
+
+    if (mpCallback2 != NULL) {
         mpCallback2->execute(jntNo);
     }
 }
@@ -1631,11 +1603,72 @@ mDoExt_McaMorf2::~mDoExt_McaMorf2() {
 /* 80011464-800116B4 00BDA4 0250+00 1/1 0/0 0/0 .text
  * create__15mDoExt_McaMorf2FP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformP15J3DAnmTransformifiiP10Z2CreatureUlUl
  */
-void mDoExt_McaMorf2::create(J3DModelData* param_0, mDoExt_McaMorfCallBack1_c* param_1,
+ int mDoExt_McaMorf2::create(J3DModelData* param_0, mDoExt_McaMorfCallBack1_c* param_1,
                                  mDoExt_McaMorfCallBack2_c* param_2, J3DAnmTransform* param_3,
                                  J3DAnmTransform* param_4, int param_5, f32 param_6, int param_7,
                                  int param_8, Z2Creature* param_9, u32 param_10, u32 param_11) {
-    // NONMATCHING
+    mpModel = NULL;
+    mpTransformInfo = NULL;
+    mpQuat = NULL;
+    mpSound = NULL;
+
+    if (param_0 == NULL) {
+        return 0;
+    }
+
+    if (param_0->getMaterialNodePointer(0)->getSharedDisplayListObj() != NULL && param_10 == 0) {
+        if (param_0->isLocked()) {
+            param_10 = 0x20000;
+        } else {
+            param_10 = 0x80000;
+        }
+    }
+
+    mpModel = mDoExt_J3DModel__create(param_0, param_10, param_11);
+    if (mpModel == NULL) {
+        return 0;
+    }
+
+    if (param_10 != 0x80000) {
+        mDoExt_changeMaterial(mpModel);
+    }
+
+    mpSound = param_9;
+
+    setAnm(param_3, param_4, 0.0f, param_5, 0.0f, param_6, param_7, param_8);
+    mPrevMorf = -1.0f;
+
+    mpTransformInfo = new J3DTransformInfo[param_0->getJointNum()];
+    if (mpTransformInfo == NULL) {
+        ERROR_EXIT();
+        return 0;
+    }
+
+    mpQuat = new Quaternion[param_0->getJointNum()];
+    if (mpQuat == NULL) {
+        ERROR_EXIT();
+        return 0;
+    }
+
+    J3DTransformInfo* var_r29 = mpTransformInfo;
+    Quaternion* var_r26 = mpQuat;
+    J3DModelData* model_data = mpModel->getModelData();
+    int sp3C = model_data->getJointNum();
+
+    for (int i = 0; i < sp3C; i++) {
+        J3DJoint* sp30 = model_data->getJointNodePointer(i);
+        J3DTransformInfo* sp2C = &sp30->getTransformInfo();
+
+        *var_r29 = *sp2C;
+        JMAEulerToQuat(var_r29->mRotation.x, var_r29->mRotation.y, var_r29->mRotation.z, var_r26);
+        
+        var_r29++;
+        var_r26++;
+    }
+
+    mpCallback1 = param_1;
+    mpCallback2 = param_2;
+    return 1;
 }
 
 /* 800116B4-800116F4 00BFF4 0040+00 1/1 0/0 0/0 .text            ERROR_EXIT__15mDoExt_McaMorf2Fv */
@@ -1654,15 +1687,217 @@ void mDoExt_McaMorf2::ERROR_EXIT() {
 }
 
 /* 800116F4-80011D70 00C034 067C+00 1/0 0/0 0/0 .text            calc__15mDoExt_McaMorf2Fv */
+// NONMATCHING - float regswap, equivalent
 void mDoExt_McaMorf2::calc() {
-    // NONMATCHING
+    if (mpModel != NULL) {
+        u16 jnt_no = J3DMtxCalc::getJoint()->getJntNo();
+        j3dSys.setCurrentMtxCalc(this);
+
+        J3DTransformInfo spF0[2];
+        Mtx spC0;
+
+        J3DTransformInfo spA0;
+        J3DTransformInfo sp80;
+        J3DTransformInfo* var_r30;
+        if (mpTransformInfo == NULL) {
+            var_r30 = &spA0;
+        } else {
+            var_r30 = &mpTransformInfo[jnt_no];
+        }
+
+        Quaternion sp60[2];
+        Quaternion sp40[2];
+
+        Quaternion sp30;
+        Quaternion sp20;
+        Quaternion* var_r27;
+        if (mpQuat == NULL) {
+            var_r27 = &sp30;
+        } else {
+            var_r27 = &mpQuat[jnt_no];
+        }
+
+        if (mpAnm == NULL) {
+            *var_r30 = mpModel->getModelData()->getJointNodePointer(jnt_no)->getTransformInfo();
+
+            if (mpCallback1 != NULL) {
+                mpCallback1->execute(jnt_no, var_r30);
+            }
+
+            JMAEulerToQuat(var_r30->mRotation.x, var_r30->mRotation.y, var_r30->mRotation.z,
+                           var_r27);
+            J3DMtxCalcCalcTransformMaya::calcTransform(*var_r30);
+        } else if (mCurMorf >= 1.0f || mpTransformInfo == NULL || mpQuat == NULL) {
+            mpAnm->getTransform(jnt_no, &spF0[0]);
+            if (field_0x40 == NULL) {
+                if (mpCallback1 != NULL) {
+                    mpCallback1->execute(jnt_no, &spF0[0]);
+                }
+    
+                JMAEulerToQuat(spF0[0].mRotation.x, spF0[0].mRotation.y, spF0[0].mRotation.z,
+                               var_r27);
+                J3DMtxCalcCalcTransformMaya::calcTransform(spF0[0]);
+                *var_r30 = spF0[0];
+            } else {
+                field_0x40->getTransform(jnt_no, &spF0[1]);
+
+                f32 sp1C;
+                f32 sp18;
+                sp18 = 1.0f - field_0x44;
+                sp1C = field_0x44;
+
+                var_r30->mScale.x = spF0[0].mScale.x * sp18
+                                    + spF0[1].mScale.x * sp1C;
+                var_r30->mScale.y = spF0[0].mScale.y * sp18
+                                    + spF0[1].mScale.y * sp1C;
+                var_r30->mScale.z = spF0[0].mScale.z * sp18
+                                    + spF0[1].mScale.z * sp1C;
+                var_r30->mTranslate.x = spF0[0].mTranslate.x * sp18
+                                    + spF0[1].mTranslate.x * sp1C;
+                var_r30->mTranslate.y = spF0[0].mTranslate.y * sp18
+                                        + spF0[1].mTranslate.y * sp1C;
+                var_r30->mTranslate.z = spF0[0].mTranslate.z * sp18
+                                        + spF0[1].mTranslate.z * sp1C;
+
+                for (int i = 0; i < 2; i++) {
+                    JMAEulerToQuat(spF0[i].mRotation.x, spF0[i].mRotation.y, spF0[i].mRotation.z, &sp60[i]);
+                }
+
+                f32 var_f29 = sp1C / (sp18 + sp1C);
+
+                JMAQuatLerp(&sp60[0], &sp60[1], var_f29, var_r27);
+                mDoMtx_quat(spC0, var_r27);
+                mDoExt_setJ3DData(spC0, var_r30, jnt_no);
+            }
+        } else if (field_0x40 == NULL) {
+            f32 var_f31 = (mCurMorf - mPrevMorf) / (1.0f - mPrevMorf);
+            f32 var_f30 = 1.0f - var_f31;
+
+            mpAnm->getTransform(jnt_no, &sp80);
+            if (mpCallback1 != NULL) {
+                mpCallback1->execute(jnt_no, &sp80);
+            }
+
+            JMAEulerToQuat(sp80.mRotation.x, sp80.mRotation.y, sp80.mRotation.z, &sp20);
+            JMAQuatLerp(var_r27, &sp20, var_f31, var_r27);
+            mDoMtx_quat(spC0, var_r27);
+
+            var_r30->mTranslate.x = var_r30->mTranslate.x * var_f30
+                                    + sp80.mTranslate.x * var_f31;
+            var_r30->mTranslate.y = var_r30->mTranslate.y * var_f30
+                                    + sp80.mTranslate.y * var_f31;
+            var_r30->mTranslate.z = var_r30->mTranslate.z * var_f30
+                                    + sp80.mTranslate.z * var_f31;
+            var_r30->mScale.x = var_r30->mScale.x * var_f30
+                                + sp80.mScale.x * var_f31;
+            var_r30->mScale.y = var_r30->mScale.y * var_f30
+                                + sp80.mScale.y * var_f31;
+            var_r30->mScale.z = var_r30->mScale.z * var_f30
+                                + sp80.mScale.z * var_f31;
+
+            mDoExt_setJ3DData(spC0, var_r30, jnt_no);
+        } else {
+            mpAnm->getTransform(jnt_no, &spF0[0]);
+            field_0x40->getTransform(jnt_no, &spF0[1]);
+
+            f32 sp14, sp10;
+            sp10 = 1.0f - field_0x44;
+            sp14 = field_0x44;
+
+            sp80.mScale.x = spF0[0].mScale.x * sp10
+                                + spF0[1].mScale.x * sp14;
+            sp80.mScale.y = spF0[0].mScale.y * sp10
+                                + spF0[1].mScale.y * sp14;
+            sp80.mScale.z = spF0[0].mScale.z * sp10
+                                + spF0[1].mScale.z * sp14;
+            sp80.mTranslate.x = spF0[0].mTranslate.x * sp10
+                                + spF0[1].mTranslate.x * sp14;
+            sp80.mTranslate.y = spF0[0].mTranslate.y * sp10
+                                    + spF0[1].mTranslate.y * sp14;
+            sp80.mTranslate.z = spF0[0].mTranslate.z * sp10
+                                    + spF0[1].mTranslate.z * sp14;
+
+            for (int i = 0; i < 2; i++) {
+                JMAEulerToQuat(spF0[i].mRotation.x, spF0[i].mRotation.y, spF0[i].mRotation.z, &sp40[i]);
+            }
+
+            f32 var_f31 = sp14 / (sp10 + sp14);
+            JMAQuatLerp(&sp40[0], &sp40[1], var_f31, &sp20);
+
+            var_f31 = (mCurMorf - mPrevMorf) / (1.0f - mPrevMorf);
+            f32 var_f30 = 1.0f - var_f31;
+            JMAQuatLerp(var_r27, &sp20, var_f31, var_r27);
+
+            var_r30->mTranslate.x = var_r30->mTranslate.x * var_f30
+                                    + sp80.mTranslate.x * var_f31;
+            var_r30->mTranslate.y = var_r30->mTranslate.y * var_f30
+                                    + sp80.mTranslate.y * var_f31;
+            var_r30->mTranslate.z = var_r30->mTranslate.z * var_f30
+                                    + sp80.mTranslate.z * var_f31;
+            var_r30->mScale.x = var_r30->mScale.x * var_f30
+                                + sp80.mScale.x * var_f31;
+            var_r30->mScale.y = var_r30->mScale.y * var_f30
+                                + sp80.mScale.y * var_f31;
+            var_r30->mScale.z = var_r30->mScale.z * var_f30
+                                + sp80.mScale.z * var_f31;
+
+            mDoMtx_quat(spC0, var_r27);
+            mDoExt_setJ3DData(spC0, var_r30, jnt_no);
+        }
+
+        if (mpCallback2 != NULL) {
+            mpCallback2->execute(jnt_no);
+        }
+    }
 }
 
 /* 80011D70-80011FCC 00C6B0 025C+00 1/1 0/0 2/2 .text
  * setAnm__15mDoExt_McaMorf2FP15J3DAnmTransformP15J3DAnmTransformfiffff */
 void mDoExt_McaMorf2::setAnm(J3DAnmTransform* param_0, J3DAnmTransform* param_1, f32 param_2,
-                                 int param_3, f32 param_4, f32 param_5, f32 param_6, f32 param_7) {
-    // NONMATCHING
+                             int i_attr, f32 i_morf, f32 i_speed, f32 i_start, f32 i_end) {
+    mpAnm = param_0;
+    field_0x40 = param_1;
+    field_0x44 = param_2;
+
+    setStartFrame(i_start);
+
+    if (i_end < 0.0f) {
+        if (mpAnm == NULL) {
+            mFrameCtrl.init(0);
+        } else {
+            mFrameCtrl.init(mpAnm->getFrameMax());
+        }
+    } else {
+        mFrameCtrl.init(i_end);
+    }
+
+    if (i_attr < 0) {
+        i_attr = param_0->getAttribute();
+    }
+
+    setPlayMode(i_attr);
+    setPlaySpeed(i_speed);
+    
+    if (i_speed >= 0.0f) {
+        setFrame(i_start);
+    } else {
+        setFrame(mFrameCtrl.getEnd());
+    }
+
+    setLoopFrame(getFrame());
+    setMorf(i_morf);
+
+    if (mpSound != NULL) {
+        if (param_2 < 0.5f) {
+            mpBas = ((mDoExt_transAnmBas*)param_0)->getBas();
+        } else {
+            mpBas = ((mDoExt_transAnmBas*)param_1)->getBas();
+        }
+
+        if (mpBas != NULL) {
+            mpSound->initAnime(mpBas, getPlaySpeed() >= 0.0f, getLoopFrame(), getFrame());
+        }
+    }
 }
 
 /* 80011FCC-800120A0 00C90C 00D4+00 0/0 0/0 2/2 .text            setAnmRate__15mDoExt_McaMorf2Ff */
@@ -1735,26 +1970,187 @@ void mDoExt_McaMorf2::stopZelAnime() {
 }
 
 /* 80012220-800123D0 00CB60 01B0+00 1/0 0/0 0/0 .text            draw__19mDoExt_invJntPacketFv */
-// void mDoExt_invJntPacket::draw() {
-extern "C" void draw__19mDoExt_invJntPacketFv() {
-    // NONMATCHING
+void mDoExt_invJntPacket::draw() {
+    J3DShape::resetVcdVatCache();
+
+    if (field_0x16) {
+        J3DModelData* sp20 = field_0x10->getModelData();
+        J3DJoint* sp1C = sp20->getJointNodePointer(field_0x14);
+
+        for (J3DMaterial* mesh = sp1C->getMesh(); mesh != NULL; mesh = mesh->getNext()) {
+            mesh->load();
+            J3DMatPacket* sp18 = field_0x10->getMatPacket(mesh->getIndex());
+            sp18->callDL();
+            GFSetZMode(1, GX_LEQUAL, 1);
+            GFSetBlendModeEtc(GX_BM_NONE, GX_BL_ZERO, GX_BL_ZERO, GX_LO_CLEAR, 0, 0, 1);
+
+            J3DShapePacket* shapePkt = sp18->getShapePacket();
+            JUT_ASSERT(0x1393, shapePkt != 0);
+            shapePkt->getShape()->loadPreDrawSetting();
+
+            do {
+                if (!shapePkt->getShape()->checkFlag(1)) {
+                    if (shapePkt->getDisplayListObj() != NULL) {
+                        shapePkt->getDisplayListObj()->callDL();
+                    }
+
+                    shapePkt->drawFast();
+                }
+
+                shapePkt = (J3DShapePacket*)shapePkt->getNextPacket();
+            } while (shapePkt != NULL);
+        }
+    } else {
+        static u8 l_invisibleMat[] ALIGN_DECL(32) = {
+            0x10, 0x00, 0x00, 0x10, 0x0E, 0x00, 0x00, 0x04, 0x00, 0x10, 0x00, 0x00, 0x10, 0x10, 0x00,
+            0x00, 0x04, 0x00, 0x61, 0x28, 0x38, 0x00, 0x00, 0x61, 0xC0, 0x08, 0xFF, 0xFC, 0x61, 0xC1,
+            0x08, 0xFF, 0xF0, 0x61, 0xF3, 0x7F, 0x00, 0x00, 0x61, 0x43, 0x00, 0x00, 0x41, 0x61, 0x40,
+            0x00, 0x00, 0x17, 0x61, 0xEE, 0x00, 0x00, 0x00, 0x61, 0xEF, 0x00, 0x00, 0x00, 0x61, 0xF0,
+            0x00, 0x00, 0x00, 0x61, 0xF1, 0x00, 0x00, 0x00, 0x61, 0xF2, 0x00, 0x00, 0x00, 0x61, 0x41,
+            0x00, 0x00, 0x04, 0x10, 0x00, 0x00, 0x10, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00,
+            0x10, 0x09, 0x00, 0x00, 0x00, 0x01, 0x61, 0x00, 0x00, 0x40, 0x10, 0x00, 0x00, 0x00, 0x00,
+            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
+        };
+
+        GXCallDisplayList(l_invisibleMat, 0x80);
+
+        J3DModelData* sp14 = field_0x10->getModelData();
+        J3DJoint* sp10 = sp14->getJointNodePointer(field_0x14);
+        J3DMaterial* mesh = sp10->getMesh();
+
+        sp14->getShapeNodePointer(0)->loadPreDrawSetting();
+
+        for (; mesh != NULL; mesh = mesh->getNext()) {
+            J3DShape* spC = mesh->getShape();
+            if (!spC->checkFlag(1)) {
+                J3DShapePacket* shapePkt = field_0x10->getShapePacket(spC->getIndex());
+                shapePkt->drawFast();
+            }
+        }
+    }
+
+    J3DShape::resetVcdVatCache();
+    GFSetBlendModeEtc(GX_BM_NONE, GX_BL_ZERO, GX_BL_ZERO, GX_LO_CLEAR, 1, 0, 1);
 }
 
 /* 800123D0-800125DC 00CD10 020C+00 2/2 0/0 0/0 .text            init__15mDoExt_3Dline_cFUsii */
-void mDoExt_3Dline_c::init(u16 param_0, int param_1, int param_2) {
-    // NONMATCHING
+// NONMATCHING - regalloc, probably some types are wrong
+int mDoExt_3Dline_c::init(u16 param_0, int param_1, int param_2) {
+    field_0x0 = new cXyz[param_0];
+    if (field_0x0 == NULL) {
+        return 0;
+    }
+
+    if (param_1 != 0) {
+        field_0x4 = new f32[param_1];
+        if (field_0x4 == NULL) {
+            return 0;
+        }
+    } else {
+        field_0x4 = NULL;
+    }
+
+    int sp20 = param_0 * 2;
+
+    field_0x8 = new cXyz[sp20];
+    if (field_0x8 == NULL) {
+        return 0;
+    }
+
+    field_0xc = new cXyz[sp20];
+    if (field_0xc == NULL) {
+        return 0;
+    }
+
+    field_0x10 = new u8[param_0 * 3];
+    if (field_0x10 == NULL) {
+        return 0;
+    }
+
+    field_0x14 = new u8[param_0 * 3];
+    if (field_0x14 == NULL) {
+        return 0;
+    }
+
+    if (param_2 != 0) {
+        field_0x18 = new f32[sp20];
+        if (field_0x18 == NULL) {
+            return 0;
+        }
+
+        field_0x1c = new f32[sp20];
+        if (field_0x1c == NULL) {
+            return 0;
+        }
+
+        f32* var_r28 = field_0x18;
+        f32* var_r27 = field_0x1c;
+        for (int i = 0; i < param_0; i++) {
+            var_r28[0] = 0.0f;
+            var_r27[0] = 0.0f;
+
+            var_r28[2] = 1.0f;
+            var_r27[2] = 1.0f;
+
+            var_r28 += 4;
+            var_r27 += 4;
+        }
+    }
+
+    return 1;
 }
 
 /* 800125E0-800126BC 00CF20 00DC+00 0/0 0/0 12/12 .text            init__19mDoExt_3DlineMat0_cFUsUsi
  */
 int mDoExt_3DlineMat0_c::init(u16 param_0, u16 param_1, int param_2) {
-    // NONMATCHING
+    field_0x10 = param_0;
+    field_0x12 = param_1;
+
+    field_0x18 = new mDoExt_3Dline_c[param_0];
+    if (field_0x18 == NULL) {
+        return 0;
+    }
+
+    for (int i = 0; i < param_0; i++) {
+        if (!field_0x18[i].init(param_1, param_2, 0)) {
+            return 0;
+        }
+    }
+
+    field_0x4 = NULL;
+    field_0x16 = 0;
+    return 1;
 }
 
 /* 800126BC-800126C0 00CFFC 0004+00 2/2 0/0 0/0 .text            __ct__15mDoExt_3Dline_cFv */
-mDoExt_3Dline_c::mDoExt_3Dline_c() {
-    /* empty function */
-}
+mDoExt_3Dline_c::mDoExt_3Dline_c() {}
+
+/* 803A30C0-803A3160 0001E0 0084+1C 1/1 0/0 0/0 .data            l_matDL */
+static u8 l_matDL[132] ALIGN_DECL(32) = {
+    0x08, 0x30, 0x3C, 0xF3, 0xCF, 0x00, 0x10, 0x00, 0x00, 0x10, 0x18, 0x3C, 0xF3, 0xCF, 0x00,
+    0x10, 0x00, 0x00, 0x10, 0x0E, 0x00, 0x00, 0x7F, 0x32, 0x10, 0x00, 0x00, 0x10, 0x10, 0x00,
+    0x00, 0x05, 0x00, 0x10, 0x00, 0x00, 0x10, 0x0C, 0xFF, 0xFF, 0xFF, 0xFF, 0x61, 0x28, 0x38,
+    0x00, 0x00, 0x61, 0xC0, 0x28, 0xF6, 0xAF, 0x61, 0xC1, 0x08, 0xFF, 0xE0, 0x61, 0x43, 0x00,
+    0x00, 0x41, 0x61, 0x40, 0x00, 0x00, 0x17, 0x61, 0x41, 0x00, 0x00, 0x0C, 0x61, 0xF3, 0x7F,
+    0x00, 0x00, 0x10, 0x00, 0x00, 0x10, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x10,
+    0x09, 0x00, 0x00, 0x00, 0x01, 0x61, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
+/* 803A3160-803A31F0 000280 008D+03 1/1 0/0 0/0 .data            l_mat1DL */
+static u8 l_mat1DL[141] ALIGN_DECL(32) = {
+    0x10, 0x00, 0x00, 0x10, 0x40, 0xFF, 0xFF, 0x42, 0x00, 0x00, 0x00, 0x00, 0xF3, 0xCF, 0x00, 0x10,
+    0x00, 0x00, 0x10, 0x18, 0x3C, 0xF3, 0xCF, 0x00, 0x10, 0x00, 0x00, 0x10, 0x0E, 0x00, 0x00, 0x7F,
+    0x32, 0x10, 0x00, 0x00, 0x10, 0x10, 0x00, 0x00, 0x05, 0x00, 0x10, 0x00, 0x00, 0x10, 0x0C, 0xFF,
+    0xFF, 0xFF, 0xFF, 0x61, 0x28, 0x38, 0x00, 0x40, 0x61, 0xC0, 0x28, 0xFA, 0x8F, 0x61, 0xC1, 0x08,
+    0xFF, 0xF0, 0x61, 0x43, 0x00, 0x00, 0x41, 0x61, 0x40, 0x00, 0x00, 0x17, 0x61, 0x41, 0x00, 0x00,
+    0x0C, 0x61, 0xF3, 0x7F, 0x00, 0x00, 0x10, 0x00, 0x00, 0x10, 0x3F, 0x00, 0x00, 0x00, 0x01, 0x10,
+    0x00, 0x00, 0x10, 0x09, 0x00, 0x00, 0x00, 0x01, 0x61, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
 
 /* 800126C0-80012774 00D000 00B4+00 1/0 0/0 0/0 .text setMaterial__19mDoExt_3DlineMat0_cFv */
 void mDoExt_3DlineMat0_c::setMaterial() {
@@ -1773,21 +2169,151 @@ void mDoExt_3DlineMat0_c::setMaterial() {
 }
 
 /* 80012774-80012874 00D0B4 0100+00 1/0 0/0 0/0 .text            draw__19mDoExt_3DlineMat0_cFv */
+// NONMATCHING - issues with the iterators
 void mDoExt_3DlineMat0_c::draw() {
-    // NONMATCHING
+    GXSetTevColor(GX_TEVREG2, field_0x8);
+
+    if (field_0xc != NULL) {
+        dKy_Global_amb_set(field_0xc);
+    }
+
+    mDoExt_3Dline_c* var_r28 = field_0x18;
+    int var_r26 = (field_0x14 & 0x7FFF) << 1;
+
+    for (int i = 0; i < field_0x10; i++) {
+        GXSetArray(GX_VA_POS, var_r28[field_0x16].field_0x8, sizeof(cXyz));
+        GXSetArray(GX_VA_NRM, var_r28[field_0x16].field_0x10, 3);
+
+        GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, var_r26);
+        for (u16 j = 0; j < (u16)var_r26;) {
+            GXPosition1x16(j);
+            GXNormal1x16(j);
+            j++;
+
+            GXPosition1x16(j);
+            GXNormal1x16(j);
+            j++;
+        }
+        GXEnd();
+        var_r28++;
+    }
+
+    field_0x16 ^= 1;
 }
 
 /* 80012874-80012E3C 00D1B4 05C8+00 0/0 0/0 2/2 .text
  * update__19mDoExt_3DlineMat0_cFifR8_GXColorUsP12dKy_tevstr_c  */
-void mDoExt_3DlineMat0_c::update(int param_0, f32 param_1, _GXColor& param_2, u16 param_3,
+void mDoExt_3DlineMat0_c::update(int param_0, f32 param_1, GXColor& param_2, u16 param_3,
                                      dKy_tevstr_c* param_4) {
     // NONMATCHING
 }
 
 /* 80012E3C-80013360 00D77C 0524+00 0/0 0/0 9/9 .text
  * update__19mDoExt_3DlineMat0_cFiR8_GXColorP12dKy_tevstr_c     */
-void mDoExt_3DlineMat0_c::update(int param_0, _GXColor& param_1, dKy_tevstr_c* param_2) {
-    // NONMATCHING
+// NONMATCHING
+void mDoExt_3DlineMat0_c::update(int param_0, GXColor& param_1, dKy_tevstr_c* param_2) {
+    field_0x8 = param_1;
+    field_0xc = param_2;
+
+    if (param_0 < 0) {
+        field_0x14 = field_0x12;
+    } else if (param_0 > field_0x12) {
+        field_0x14 = field_0x12;
+    } else {
+        field_0x14 = param_0;
+    }
+
+    view_class* view_p = dComIfGd_getView();
+    mDoExt_3Dline_c* sp30 = field_0x18;
+    int sp2C = field_0x14 * 2;
+    int sp28 = field_0x14 * 12;
+
+    cXyz sp134;
+    cXyz sp128;
+    cXyz sp11C;
+    cXyz sp110;
+
+    for (int i = 0; i < field_0x10; i++) {
+        cXyz* pos_p = sp30->field_0x0;
+        f32* size_p = sp30->field_0x4;
+        JUT_ASSERT(0x1545, size_p != 0);
+
+        cXyz* sp20 = &sp30->field_0x8[field_0x16];
+        cXyz* sp24 = sp20;
+
+        u8* sp1C = &sp30->field_0x10[field_0x16];
+
+        u8* var_r30 = sp1C;
+        u8* var_r29 = var_r30 + 3;
+
+        sp128 = pos_p[1] - pos_p[0];
+        sp134 = pos_p[0] - view_p->lookat.eye;
+        sp128 = sp128.outprod(sp134);
+        sp128.normalizeZP();
+
+        var_r30[0] = sp128.x * 64.0f;
+        var_r30[1] = sp128.y * 64.0f;
+        var_r30[2] = sp128.z * 64.0f;
+        var_r29[0] = -sp1C[0];
+        var_r29[1] = -sp1C[1];
+        var_r29[2] = -sp1C[2];
+
+        sp128 *= *size_p;
+        sp20[0] = pos_p[0] + sp128;
+        sp20[1] = pos_p[0] - sp128;
+        
+        pos_p++;
+
+        sp11C = pos_p[0] + sp128;
+        sp110 = pos_p[0] - sp128;
+
+        for (int sp10 = field_0x14 - 2; sp10 > 0; sp10--) {
+            sp128 = pos_p[1] - pos_p[0];
+            sp134 = pos_p[0] - view_p->lookat.eye;
+            sp128 = sp128.outprod(sp134);
+            sp128.normalizeZP();
+
+            var_r30 += 6;
+            var_r29 += 6;
+
+            var_r30[0] = sp128.x * 64.0f;
+            var_r30[1] = sp128.y * 64.0f;
+            var_r30[2] = sp128.z * 64.0f;
+            var_r29[0] = -sp1C[0];
+            var_r29[1] = -sp1C[1];
+            var_r29[2] = -sp1C[2];
+
+            sp128 *= *size_p;
+            sp11C += pos_p[0] + sp128;
+            sp110 += pos_p[0] - sp128;
+            *sp24 = sp11C * 0.5f;
+            *sp20 = sp110 * 0.5f;
+            
+            pos_p++;
+
+            sp11C = pos_p[0] + sp128;
+            sp110 = pos_p[0] - sp128;
+        }
+
+        var_r29 += 3;
+
+        var_r29[0] = var_r30[0];
+        var_r29[1] = var_r30[1];
+        var_r29[2] = var_r30[2];
+
+        var_r30 += 3;
+        var_r29 += 3;
+
+        var_r29[0] = var_r30[0];
+        var_r29[1] = var_r30[1];
+        var_r29[2] = var_r30[2];
+
+        *sp24 = sp11C;
+        *sp20 = sp110;
+
+        DCStoreRangeNoSync(sp20, sp2C);
+        DCStoreRangeNoSync(sp1C, sp28);
+    }
 }
 
 /* 80013360-800134F8 00DCA0 0198+00 0/0 0/0 19/19 .text init__19mDoExt_3DlineMat1_cFUsUsP7ResTIMGi
@@ -1815,8 +2341,37 @@ void mDoExt_3DlineMat1_c::setMaterial() {
 }
 
 /* 800135D0-8001373C 00DF10 016C+00 1/0 0/0 0/0 .text            draw__19mDoExt_3DlineMat1_cFv */
+// NONMATCHING- some smaller issues
 void mDoExt_3DlineMat1_c::draw() {
-    // NONMATCHING
+    GXLoadTexObj(&mTextureObject, GX_TEXMAP0);
+    GXSetTexCoordScaleManually(GX_TEXCOORD0, 1, GXGetTexObjWidth(&mTextureObject), GXGetTexObjHeight(&mTextureObject));
+    GXSetTevColor(GX_TEVREG2, mColor);
+    if (mpTevStr != NULL) {
+        dKy_Global_amb_set(mpTevStr);
+    }
+    mDoExt_3Dline_c* lines = mpLines;
+    s32 vert_num = (field_0x34 & 0x7fff) << 1;
+    for (s32 i = 0; i < mNumLines; i++) {
+        GXSetArray(GX_VA_POS, lines[mIsDrawn].field_0x8, 0xC);
+        GXSetArray(GX_VA_NRM, lines[mIsDrawn].field_0x10, 0x3);
+        GXSetArray(GX_VA_TEX0, lines[mIsDrawn].field_0x18, 0x8);
+        GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, vert_num);
+
+        s16 tempJ;
+        for (u32 j = 0; j < (u32)field_0x34; j += 1) {
+            GXPosition1x16(j);
+            GXNormal1x16(j);
+            GXTexCoord1x16(j);
+            tempJ = j + 1;
+            GXPosition1x16(tempJ);
+            GXNormal1x16(tempJ);
+            GXTexCoord1x16(tempJ);
+        }
+        GXEnd();
+        lines++;
+    }
+    GXSetTexCoordScaleManually(GX_TEXCOORD0, 0, 0, 0);
+    mIsDrawn ^= 1;
 }
 
 /* 8001373C-80013FB0 00E07C 0874+00 0/0 0/0 6/6 .text
@@ -1834,8 +2389,12 @@ void mDoExt_3DlineMat1_c::update(int param_0, _GXColor& param_1, dKy_tevstr_c* p
 
 /* 80014738-8001479C 00F078 0064+00 0/0 0/0 29/29 .text
  * setMat__26mDoExt_3DlineMatSortPacketFP18mDoExt_3DlineMat_c   */
-void mDoExt_3DlineMatSortPacket::setMat(mDoExt_3DlineMat_c* param_0) {
-    // NONMATCHING
+void mDoExt_3DlineMatSortPacket::setMat(mDoExt_3DlineMat_c* i_3DlineMat) {
+    if (mp3DlineMat == NULL) {
+        dComIfGd_getListPacket()->entryImm(this, 0);
+    }
+    i_3DlineMat->field_0x4 = mp3DlineMat;
+    mp3DlineMat = i_3DlineMat;
 }
 
 /* 8001479C-80014804 00F0DC 0068+00 1/0 0/0 0/0 .text draw__26mDoExt_3DlineMatSortPacketFv */
@@ -1849,6 +2408,7 @@ void mDoExt_3DlineMatSortPacket::draw() {
     J3DShape::resetVcdVatCache();
 }
 
+#ifdef DEBUG
 void drawCube(MtxP mtx, cXyz* pos, const GXColor& color) {
     GXSetArray(GX_VA_POS, pos, sizeof(cXyz));
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
@@ -1940,6 +2500,7 @@ void mDoExt_cylinderPacket::draw() {
     GXSetCurrentMtx(0);
     GXDrawCylinder(8);
 }
+#endif
 
 /* 80014804-8001494C 00F144 0148+00 3/3 0/0 0/0 .text
  * mDoExt_initFontCommon__FPP7JUTFontPP7ResFONTP7JKRHeapPCcP10JKRArchiveUcUlUl */

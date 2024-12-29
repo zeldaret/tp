@@ -412,19 +412,19 @@ extern "C" void __dt__12J3DFrameCtrlFv() {
 }
 
 /* 80CF3970-80CF3A90 0006F0 0120+00 1/1 0/0 0/0 .text            create__14daObjSwBallA_cFv */
-#ifdef NONMATCHING
+// NONMATCHING
 int daObjSwBallA_c::create() {
     fopAcM_SetupActor(this, daObjSwBallA_c);
     if (field_0x5c4 == 0) {
         field_0x5c4 = 1;
-        field_0x5c6 = orig.angle.x;
-        field_0x5c8 = orig.angle.z;
+        field_0x5c6 = home.angle.x;
+        field_0x5c8 = home.angle.z;
         shape_angle.x = 0;
         current.angle.x = 0;
-        orig.angle.x = 0;
+        home.angle.x = 0;
         shape_angle.z = 0;
         current.angle.z = 0;
-        orig.angle.z = 0;
+        home.angle.z = 0;
     }
     int res = dComIfG_resLoad(&field_0x57c, l_arcName);
     if (res == cPhs_COMPLEATE_e) {
@@ -436,11 +436,6 @@ int daObjSwBallA_c::create() {
     }
     return res;
 }
-#else
-int daObjSwBallA_c::create() {
-    // NONMATCHING
-}
-#endif
 
 /* ############################################################################################## */
 /* 80CF452C-80CF4530 000024 0004+00 1/1 0/0 0/0 .bss             None */

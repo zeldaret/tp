@@ -64,10 +64,9 @@ inline int daSwc00_getShape(daSwc00_c* i_this) {
 }
 
 /* 805A13F8-805A15DC 000078 01E4+00 1/1 0/0 0/0 .text            hitCheck__FP9daSwc00_c */
-// r30 / r31 swap
-#ifdef NONMATCHING
+// NONMATCHING - r30 / r31 swap
 static bool hitCheck(daSwc00_c* i_swc) {
-    fopAc_ac_c* playerAc = daPy_getPlayerActorClass();
+    fopAc_ac_c* playerAc = (fopAc_ac_c*)daPy_getPlayerActorClass();
     fopAc_ac_c* player;
 
     if (daSwc00_getCondition(i_swc) == 2) {
@@ -105,11 +104,6 @@ static bool hitCheck(daSwc00_c* i_swc) {
 
     return false;
 }
-#else
-static bool hitCheck(daSwc00_c* param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 805A15DC-805A15FC 00025C 0020+00 1/0 0/0 0/0 .text            daSwc00_Execute__FP9daSwc00_c */
 static int daSwc00_Execute(daSwc00_c* i_this) {

@@ -2248,8 +2248,7 @@ SECTION_DEAD static char const* const stringBase_805231CE = "D_MN07A";
 #pragma pop
 
 /* 8051C304-8051D6CC 0006A4 13C8+00 1/1 0/0 0/0 .text            create__9daGrass_cFv */
-// matches except for static data
-#ifdef NONMATCHING
+// NONMATCHING - matches except for static data
 int daGrass_c::create() {
     static csXyz l_setType0[] = {
         csXyz(0, 0, 0),    csXyz(3, 0, -50),  csXyz(-2, 0, 50),   csXyz(50, 0, 27),
@@ -2414,11 +2413,6 @@ int daGrass_c::create() {
     fopAcM_setStageLayer(this);
     return cPhs_COMPLEATE_e;
 }
-#else
-int daGrass_c::create() {
-    // NONMATCHING
-}
-#endif
 
 int daGrass_c::Delete() {
     if (m_myObj == this) {

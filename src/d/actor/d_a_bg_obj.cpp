@@ -318,16 +318,14 @@ SECTION_DEAD static char const* const stringBase_8045CA86 = "データブロッ�
 
 /* 80459904-80459B64 000324 0260+00 1/1 0/0 1/1 .text            Set__Q29daBgObj_c11spec_data_cFPv
  */
-// close-ish
-#ifdef NONMATCHING
-
-int daBgObj_c::spec_data_c::Set(void* i_ptr) {
+// NONMATCHING - close-ish
+bool daBgObj_c::spec_data_c::Set(void* i_ptr) {
     spec_dat* data = (spec_dat*)i_ptr;
 
     mSpecType = data->field_0x0;
 
     switch (mSpecType) {
-    case 0:
+    case 0: {
         u8 block_type = data->field_0x4;
         u8* block_p = (u8*)data + 4;
 
@@ -350,7 +348,8 @@ int daBgObj_c::spec_data_c::Set(void* i_ptr) {
             block_type = *block_p;
         } while (1);
         break;
-    case 1:
+    }
+    case 1: {
         u16 temp_r3 = data->field_0x2;
         field_0x02 = temp_r3 & 0xF;
         field_0x03 = (temp_r3 >> 0xE) & 3;
@@ -386,7 +385,8 @@ int daBgObj_c::spec_data_c::Set(void* i_ptr) {
             block_type = *block_p;
         } while (1);
         break;
-    case 2:
+    }
+    case 2: {
         u16 temp_r3_2 = data->field_0x2;
         field_0x02 = temp_r3_2 & 0xF;
         field_0x03 = (temp_r3_2 >> 0xE) & 3;
@@ -426,17 +426,13 @@ int daBgObj_c::spec_data_c::Set(void* i_ptr) {
             block_type = *block_p;
         } while (1);
         break;
+    }
     default:
         return 0;
     }
 
     return 1;
 }
-#else
-bool daBgObj_c::spec_data_c::Set(void* param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 80459B64-80459BB4 000584 0050+00 4/4 0/0 0/0 .text            release__9daBgObj_cFP4dBgW */
 void daBgObj_c::release(dBgW* param_0) {
@@ -968,7 +964,7 @@ BOOL daBgObj_c::checkDestroy() {
 
 /* 8045B534-8045B5E0 001F54 00AC+00 2/2 0/0 0/0 .text            checkHitAt__9daBgObj_cFP8cCcD_Obj
  */
-#ifdef NONMATCHING
+// NONMATCHING
 BOOL daBgObj_c::checkHitAt(cCcD_Obj* i_hitObj) {
     u32 hit_flags = 0;
     u32 var_r8 = 0;
@@ -995,11 +991,6 @@ BOOL daBgObj_c::checkHitAt(cCcD_Obj* i_hitObj) {
 
     return hit_flags != 0;
 }
-#else
-BOOL daBgObj_c::checkHitAt(cCcD_Obj* param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 8045B5E0-8045B7FC 002000 021C+00 1/1 0/0 0/0 .text            orderWait_tri__9daBgObj_cFv */
 void daBgObj_c::orderWait_tri() {
@@ -1047,8 +1038,7 @@ void daBgObj_c::orderWait_tri() {
 
 
 /* 8045B7FC-8045B9C4 00221C 01C8+00 1/1 0/0 0/0 .text            orderWait_cyl__9daBgObj_cFv */
-// r30/r31 swap
-#ifdef NONMATCHING
+// NONMATCHING - r30/r31 swap
 void daBgObj_c::orderWait_cyl() {
     if (mCyl.ChkTgHit()) {
         if (checkHitAt(mCyl.GetTgHitObj())) {
@@ -1086,11 +1076,6 @@ void daBgObj_c::orderWait_cyl() {
 
     dComIfG_Ccsp()->Set(&mCyl);
 }
-#else
-void daBgObj_c::orderWait_cyl() {
-    // NONMATCHING
-}
-#endif
 
 /* 8045B9C4-8045BB38 0023E4 0174+00 1/1 0/0 0/0 .text            orderWait_spec__9daBgObj_cFv */
 void daBgObj_c::orderWait_spec() {

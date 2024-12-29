@@ -4,18 +4,19 @@
 //
 
 #include "d/d_attention.h"
-#include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_com_inf_game.h"
-#include "dol2asm.h"
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_controller_pad.h"
+
+#define DRAW_TYPE_YELLOW 0
+#define DRAW_TYPE_RED    1
 
 class dAttDrawParam_c {
 public:
     /* 80070158 */ dAttDrawParam_c();
-    /* 80073FC4 */ virtual ~dAttDrawParam_c();
+    /* 80073FC4 */ virtual ~dAttDrawParam_c() {}
 
     /* 0x4 */ s8 field_0x4;
     /* 0x8 */ f32 mCursorDistance;
@@ -32,22 +33,25 @@ static bool padLockButton(s32 i_padNo) {
 
 /* 803A9BF8-803A9C04 006D18 000C+00 2/2 0/0 0/0 .data            loc_type_tbl__12dAttention_c */
 type_tbl_entry dAttention_c::loc_type_tbl[3] = {
-    {0, 1},
-    {1, 2},
-    {2, 4},
+    {fopAc_attn_LOCK_e, 0x1},
+    {fopAc_attn_TALK_e, 0x2},
+    {fopAc_attn_BATTLE_e, 0x4},
 };
 
 /* 803A9C04-803A9C18 006D24 0014+00 1/1 0/0 0/0 .data            act_type_tbl__12dAttention_c */
 type_tbl_entry dAttention_c::act_type_tbl[5] = {
-    {3, 8}, {4, 16}, {5, 32}, {6, 64}, {7, 128},
+    {fopAc_attn_SPEAK_e, 0x8},
+    {fopAc_attn_CARRY_e, 0x10},
+    {fopAc_attn_DOOR_e, 0x20},
+    {fopAc_attn_JUEL_e, 0x40},
+    {fopAc_attn_ETC_e, 0x80},
 };
 
 /* 80450F58-80450F60 000458 0008+00 0/0 2/2 0/0 .sbss            None */
-extern bool on_final_boss_stg;
-bool on_final_boss_stg;
+static bool l_isFinalBossStg;
 
 /* 80070038-80070110 06A978 00D8+00 1/1 0/0 0/0 .text            __ct__11dAttParam_cFl */
-dAttParam_c::dAttParam_c(s32 param_0) {
+dAttParam_c::dAttParam_c(s32) {
     field_0x4 = 45.0f;
     field_0x8 = 30.0f;
     field_0xc = 90.0f;
@@ -72,9 +76,8 @@ dAttParam_c::dAttParam_c(s32 param_0) {
     field_0x38 = 1.7f;
     field_0x3c = 1.0f;
 
-    on_final_boss_stg = strcmp(dComIfGp_getStartStageName(), "D_MN09B") == 0;
+    l_isFinalBossStg = strcmp(dComIfGp_getStartStageName(), "D_MN09B") == 0;
 }
-
 
 /* 80070110-80070158 06AA50 0048+00 2/1 0/0 0/0 .text            __dt__11dAttParam_cFv */
 dAttParam_c::~dAttParam_c() {}
@@ -87,95 +90,103 @@ dAttDrawParam_c::dAttDrawParam_c() {
 
 /* 80070178-80070198 06AAB8 0020+00 1/0 0/0 0/0 .text
  * execute__19dAttDraw_CallBack_cFUsP16J3DTransformInfo         */
-int dAttDraw_CallBack_c::execute(u16 param_0, J3DTransformInfo* param_1) {
+int dAttDraw_CallBack_c::execute(u16 param_0, J3DTransformInfo* transform) {
     if (param_0 == 0) {
-        param_1->mTranslate.y *= 0.6f;
+        transform->mTranslate.y *= 0.6f;
     }
 
     return 1;
 }
 
 /* 80424B0C-80424B20 05182C 0010+04 3/3 0/0 0/0 .bss             g_AttDwHIO */
-static dAttDrawParam_c g_AttDwHIO;
+dAttDrawParam_c g_AttDwHIO;
 
 /* 80070198-80070774 06AAD8 05DC+00 0/0 1/1 0/0 .text __ct__12dAttention_cFP10fopAc_ac_cUl */
 dAttention_c::dAttention_c(fopAc_ac_c* i_player, u32 i_padNo) {
     mpPlayer = i_player;
     mPadNo = i_padNo;
 
-    mLockTargetID = -1;
+    mLockTargetID = fpcM_ERROR_PROCESS_ID_e;
     field_0x32e = 0;
     field_0x32f = 0;
 
     mCheckObjectOffset = 0;
     mActionOffset = 0;
     mLockOnOffset = 0;
-    initList(-1);
+    initList(0xFFFFFFFF);
 
     mPlayerAttentionFlags = 0;
     field_0x32a = 0;
-    mAttnStatus = ST_NONE;
+    mAttnStatus = EState_NONE;
     field_0x32b = 4;
     field_0x32c = 0;
     mAttnBlockTimer = 0;
 
     heap = mDoExt_createSolidHeapFromGameToCurrent(0x9000, 0);
+    JUT_ASSERT(0x198, heap != 0);
 
     J3DModelData* modelDataR = (J3DModelData*)dComIfG_getObjectRes("Always", 0x25);
+    JUT_ASSERT(0x1BB, modelDataR);
+
     J3DModelData* modelDataY = (J3DModelData*)dComIfG_getObjectRes("Always", 0x26);
+    JUT_ASSERT(0x1BF, modelDataY);
 
     for (int i = 0; i < 2; i++) {
-        draw[i].mModel[0] = mDoExt_J3DModel__create(modelDataY, 0x80000, 0x11000285);
-        draw[i].mModel[1] = mDoExt_J3DModel__create(modelDataR, 0x80000, 0x11000285);
+        draw[i].mModel[DRAW_TYPE_YELLOW] = mDoExt_J3DModel__create(modelDataY, 0x80000, 0x11000285);
+        JUT_ASSERT(0x1CA, draw[i].mModel[DRAW_TYPE_YELLOW] != 0);
 
-        void* res = dComIfG_getObjectRes("Always", 0x11);
-        draw[i].mNoticeCursorBck[0].init((J3DAnmTransform*)res, TRUE, 2, 1.0f, 0, -1, false);
+        draw[i].mModel[DRAW_TYPE_RED] = mDoExt_J3DModel__create(modelDataR, 0x80000, 0x11000285);
+        JUT_ASSERT(0x1D4, draw[i].mModel[DRAW_TYPE_RED] != 0);
 
-        res = dComIfG_getObjectRes("Always", 0x2B);
-        draw[i].mNoticeCursorBpk[0].init(modelDataY, (J3DAnmColor*)res, TRUE, 2, 1.0f, 0, -1);
+        int res;
+        res = draw[i].mNoticeCursorBck[DRAW_TYPE_YELLOW].init((J3DAnmTransform*)dComIfG_getObjectRes("Always", 0x11), TRUE, 2, 1.0f, 0, -1, false);
+        JUT_ASSERT(0x1DC, res == 1);
 
-        res = dComIfG_getObjectRes("Always", 0x37);
-        draw[i].mNoticeCursorBrk[0].init(modelDataY, (J3DAnmTevRegKey*)res, TRUE, 2, 1.0f, 0, -1);
+        res = draw[i].mNoticeCursorBpk[DRAW_TYPE_YELLOW].init(modelDataY, (J3DAnmColor*)dComIfG_getObjectRes("Always", 0x2B), TRUE, 2, 1.0f, 0, -1);
+        JUT_ASSERT(0x1E4, res == 1);
 
-        res = dComIfG_getObjectRes("Always", 0x3F);
-        draw[i].mNoticeCursorBtk[0].init(modelDataY, (J3DAnmTextureSRTKey*)res, TRUE, 2, 1.0f, 0,
+        res = draw[i].mNoticeCursorBrk[DRAW_TYPE_YELLOW].init(modelDataY, (J3DAnmTevRegKey*)dComIfG_getObjectRes("Always", 0x37), TRUE, 2, 1.0f, 0, -1);
+        JUT_ASSERT(0x1EC, res == 1);
+
+        res = draw[i].mNoticeCursorBtk[DRAW_TYPE_YELLOW].init(modelDataY, (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Always", 0x3F), TRUE, 2, 1.0f, 0,
                                          -1);
+        JUT_ASSERT(0x1F4, res == 1);
 
-        res = dComIfG_getObjectRes("Always", 0x38);
-        draw[i].mNoticeCursor02Brk[0].init(modelDataY, (J3DAnmTevRegKey*)res, TRUE, 2, 1.0f, 0, -1);
+        res = draw[i].mNoticeCursor02Brk[DRAW_TYPE_YELLOW].init(modelDataY, (J3DAnmTevRegKey*)dComIfG_getObjectRes("Always", 0x38), TRUE, 2, 1.0f, 0, -1);
+        JUT_ASSERT(0x1FC, res == 1);
+        
+        res = draw[i].mNoticeCursorBck[DRAW_TYPE_RED].init((J3DAnmTransform*)dComIfG_getObjectRes("Always", 0x10), TRUE, 2, 1.0f, 0, -1, false);
+        JUT_ASSERT(0x204, res == 1);
 
-        res = dComIfG_getObjectRes("Always", 0x10);
-        draw[i].mNoticeCursorBck[1].init((J3DAnmTransform*)res, TRUE, 2, 1.0f, 0, -1, false);
+        res = draw[i].mNoticeCursorBpk[DRAW_TYPE_RED].init(modelDataR, (J3DAnmColor*)dComIfG_getObjectRes("Always", 0x2A), TRUE, 2, 1.0f, 0, -1);
+        JUT_ASSERT(0x20B, res == 1);
 
-        res = dComIfG_getObjectRes("Always", 0x2A);
-        draw[i].mNoticeCursorBpk[1].init(modelDataR, (J3DAnmColor*)res, TRUE, 2, 1.0f, 0, -1);
+        res = draw[i].mNoticeCursorBrk[DRAW_TYPE_RED].init(modelDataR, (J3DAnmTevRegKey*)dComIfG_getObjectRes("Always", 0x35), TRUE, 2, 1.0f, 0, -1);
+        JUT_ASSERT(0x212, res == 1);
 
-        res = dComIfG_getObjectRes("Always", 0x35);
-        draw[i].mNoticeCursorBrk[1].init(modelDataR, (J3DAnmTevRegKey*)res, TRUE, 2, 1.0f, 0, -1);
-
-        res = dComIfG_getObjectRes("Always", 0x3E);
-        draw[i].mNoticeCursorBtk[1].init(modelDataR, (J3DAnmTextureSRTKey*)res, TRUE, 2, 1.0f, 0,
+        res = draw[i].mNoticeCursorBtk[DRAW_TYPE_RED].init(modelDataR, (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Always", 0x3E), TRUE, 2, 1.0f, 0,
                                          -1);
+        JUT_ASSERT(0x219, res == 1);
 
-        res = dComIfG_getObjectRes("Always", 0x36);
-        draw[i].mNoticeCursor02Brk[1].init(modelDataR, (J3DAnmTevRegKey*)res, TRUE, 2, 1.0f, 0, -1);
+        res = draw[i].mNoticeCursor02Brk[DRAW_TYPE_RED].init(modelDataR, (J3DAnmTevRegKey*)dComIfG_getObjectRes("Always", 0x36), TRUE, 2, 1.0f, 0, -1);
+        JUT_ASSERT(0x220, res == 1);
 
-        res = dComIfG_getObjectRes("Always", 0xC);
-        draw[i].mImpactBck.init((J3DAnmTransform*)res, TRUE, 0, 1.0f, 0, -1, false);
+        res = draw[i].mImpactBck.init((J3DAnmTransform*)dComIfG_getObjectRes("Always", 0xC), TRUE, 0, 1.0f, 0, -1, false);
+        JUT_ASSERT(0x228, res == 1);
 
-        res = dComIfG_getObjectRes("Always", 0x29);
-        draw[i].mImpactBpk.init(modelDataR, (J3DAnmColor*)res, TRUE, 0, 1.0f, 0, -1);
+        res = draw[i].mImpactBpk.init(modelDataR, (J3DAnmColor*)dComIfG_getObjectRes("Always", 0x29), TRUE, 0, 1.0f, 0, -1);
+        JUT_ASSERT(0x22F, res == 1);
 
-        res = dComIfG_getObjectRes("Always", 0x32);
-        draw[i].mImpactBrk.init(modelDataR, (J3DAnmTevRegKey*)res, TRUE, 0, 1.0f, 0, -1);
+        res = draw[i].mImpactBrk.init(modelDataR, (J3DAnmTevRegKey*)dComIfG_getObjectRes("Always", 0x32), TRUE, 0, 1.0f, 0, -1);
+        JUT_ASSERT(0x236, res == 1);
 
-        res = dComIfG_getObjectRes("Always", 0x3D);
-        draw[i].mImpactBtk.init(modelDataR, (J3DAnmTextureSRTKey*)res, TRUE, 0, 1.0f, 0, -1);
+        res = draw[i].mImpactBtk.init(modelDataR, (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Always", 0x3D), TRUE, 0, 1.0f, 0, -1);
+        JUT_ASSERT(0x23D, res == 1);
 
-        draw[i].field_0x170 = 0;
-        draw[i].field_0x171 = 1;
-        draw[i].field_0x172 = 0;
-        draw[i].field_0x174 = 1;
+        draw[i].mDrawType = DRAW_TYPE_YELLOW;
+        draw[i].mAlphaAnmFrameMax = 1;
+        draw[i].mAlphaAnmFrame = 0;
+        draw[i].mAlphaAnmPlayDirection = 1;
         draw[i].field_0x173 = 2;
         draw[i].field_0x175 = 0;
     }
@@ -196,7 +207,6 @@ dAttention_c::dAttention_c(fopAc_ac_c* i_player, u32 i_padNo) {
     g_AttDwHIO.field_0x4 = -1;
 }
 
-
 /* 80070774-80070844 06B0B4 00D0+00 0/0 2/2 0/0 .text            __dt__12dAttention_cFv */
 dAttention_c::~dAttention_c() {
     if (heap != NULL) {
@@ -206,9 +216,9 @@ dAttention_c::~dAttention_c() {
 }
 
 /* 80070844-80070880 06B184 003C+00 2/2 2/2 8/8 .text            GetLockonList__12dAttention_cFl */
-dAttList_c* dAttention_c::GetLockonList(s32 param_0) {
+dAttList_c* dAttention_c::GetLockonList(s32 i_no) {
     if (mLockonCount != 0) {
-        return &mLockOnList[(mLockOnOffset + param_0) % mLockonCount];
+        return &mLockOnList[(mLockOnOffset + i_no) % mLockonCount];
     }
 
     return NULL;
@@ -219,8 +229,10 @@ dAttList_c* dAttention_c::getActionBtnB() {
     int i;
     dAttList_c* list = GetLockonList(0);
 
-    if (list != NULL && list->getActor() != NULL && list->mType == 1 && LockonTruth() &&
-        !(list->getActor()->attention_info.flags & 0x2000000)) {
+    if (list != NULL && list->getActor() != NULL &&
+        list->mType == fopAc_attn_TALK_e && LockonTruth() &&
+        !(list->getActor()->attention_info.flags & 0x2000000))
+    {
         return list;
     }
 
@@ -229,7 +241,7 @@ dAttList_c* dAttention_c::getActionBtnB() {
     }
 
     for (i = 0; i < mActionCount; i++) {
-        if (mActionList[i].mType == 3) {
+        if (mActionList[i].mType == fopAc_attn_SPEAK_e) {
             if (!(mActionList[i].getActor()->attention_info.flags & 0x2000000)) {
                 return &mActionList[i];
             }
@@ -246,7 +258,7 @@ dAttList_c* dAttention_c::getActionBtnXY() {
     int i;
     dAttList_c* list = GetLockonList(0);
 
-    if (list != NULL && list->getActor() != NULL && list->mType == 1 && LockonTruth()) {
+    if (list != NULL && list->getActor() != NULL && list->mType == fopAc_attn_TALK_e && LockonTruth()) {
         if (list->getActor()->eventInfo.chkCondition(dEvtCnd_CANTALKITEM_e)) {
             return list;
         }
@@ -259,7 +271,7 @@ dAttList_c* dAttention_c::getActionBtnXY() {
     }
 
     for (i = 0; i < mActionCount; i++) {
-        if (mActionList[i].mType == 3) {
+        if (mActionList[i].mType == fopAc_attn_SPEAK_e) {
             if (mActionList[i].getActor()->eventInfo.chkCondition(dEvtCnd_CANTALKITEM_e)) {
                 return &mActionList[i];
             }
@@ -273,10 +285,10 @@ dAttList_c* dAttention_c::getActionBtnXY() {
 int dAttention_c::loc_type_num = 3;
 
 /* 80070A70-80070AC0 06B3B0 0050+00 1/1 0/0 0/0 .text            chkAttMask__12dAttention_cFUlUl */
-int dAttention_c::chkAttMask(u32 param_0, u32 param_1) {
+int dAttention_c::chkAttMask(u32 i_type, u32 i_mask) {
     for (int i = 0; i < loc_type_num; i++) {
-        if (param_0 == loc_type_tbl[i].field_0x0) {
-            return param_1 & loc_type_tbl[i].field_0x2;
+        if (i_type == loc_type_tbl[i].type) {
+            return i_mask & loc_type_tbl[i].mask;
         }
     }
 
@@ -284,24 +296,24 @@ int dAttention_c::chkAttMask(u32 param_0, u32 param_1) {
 }
 
 /* 80070AC0-80070B2C 06B400 006C+00 2/2 0/0 0/0 .text            check_event_condition__FUlUs */
-static int check_event_condition(u32 i_listType, u16 i_condition) {
-    switch (i_listType) {
-    case 3:
-    case 1:
-        if (!(i_condition & 1)) {
+static int check_event_condition(u32 i_attnType, u16 i_condition) {
+    switch (i_attnType) {
+    case fopAc_attn_SPEAK_e:
+    case fopAc_attn_TALK_e:
+        if (!(i_condition & dEvtCnd_CANTALK_e)) {
             return true;
         }
         break;
-    case 4:
-    case 2:
+    case fopAc_attn_CARRY_e:
+    case fopAc_attn_BATTLE_e:
         break;
-    case 5:
-        if (!(i_condition & 4)) {
+    case fopAc_attn_DOOR_e:
+        if (!(i_condition & dEvtCnd_CANDOOR_e)) {
             return true;
         }
         break;
-    case 6:
-        if (!(i_condition & 4)) {
+    case fopAc_attn_JUEL_e:
+        if (!(i_condition & dEvtCnd_CANDOOR_e)) {
             return true;
         }
         break;
@@ -315,7 +327,7 @@ int dAttention_c::act_type_num = 5;
 
 /* 80450668-8045066C 0000E8 0004+00 1/1 0/0 0/0 .sdata           chk_type_tbl__12dAttention_c */
 type_tbl_entry dAttention_c::chk_type_tbl[1] = {
-    {8, 256},
+    {fopAc_attn_CHECK_e, 0x100},
 };
 
 /* 8045066C-80450670 0000EC 0004+00 1/1 0/0 0/0 .sdata           chk_type_num__12dAttention_c */
@@ -325,9 +337,9 @@ int dAttention_c::chk_type_num = 1;
 static bool attn_opt_hold = true;
 
 /* 80070B2C-80070BF4 06B46C 00C8+00 2/2 0/0 0/0 .text            check_flontofplayer__FUlss */
-static int check_flontofplayer(u32 param_0, s16 param_1, s16 param_2) {
+static int check_flontofplayer(u32 i_checkMask, s16 i_ang1, s16 i_ang2) {
     static int ftp_table[9] = {
-        4, 1, 2, 8, 16, 32, 64, 128, 256,
+        0x4, 0x1, 0x2, 0x8, 0x10, 0x20, 0x40, 0x80, 0x100,
     };
 
     static s16 ang_table[3] = {
@@ -338,25 +350,25 @@ static int check_flontofplayer(u32 param_0, s16 param_1, s16 param_2) {
         0x0AAA, 0x2000, 0x2AAA, 0x4000, 0x4E38, 0x6000,
     };
 
-    if (param_1 < 0) {
-        param_1 = -param_1;
+    if (i_ang1 < 0) {
+        i_ang1 = -i_ang1;
     }
 
-    if (param_2 < 0) {
-        param_2 = -param_2;
+    if (i_ang2 < 0) {
+        i_ang2 = -i_ang2;
     }
 
     for (int i = 0; i < 3; i++) {
-        if (param_0 & ftp_table[i]) {
-            if (param_1 > ang_table[i]) {
+        if (i_checkMask & ftp_table[i]) {
+            if (i_ang1 > ang_table[i]) {
                 return true;
             }
         }
     }
 
     for (int i = 8; i > 2; i--) {
-        if (param_0 & ftp_table[i]) {
-            if (param_2 > ang_table2[i - 3]) {
+        if (i_checkMask & ftp_table[i]) {
+            if (i_ang2 > ang_table2[i - 3]) {
                 return true;
             }
         }
@@ -366,34 +378,33 @@ static int check_flontofplayer(u32 param_0, s16 param_1, s16 param_2) {
 }
 
 /* 80070BF4-80070C40 06B534 004C+00 2/2 0/0 0/0 .text            distace_weight__Ffsf */
-static f32 distace_weight(f32 param_0, s16 param_1, f32 param_2) {
-    f32 tmp = param_1 / 32768.0f;
-    return param_0 * ((1.0f - param_2) + (param_2 * (tmp * tmp)));
+static f32 distace_weight(f32 i_distance, s16 i_angle, f32 i_ratio) {
+    f32 tmp = i_angle / (f32)0x8000;
+    return i_distance * ((1.0f - i_ratio) + (i_ratio * (tmp * tmp)));
 }
 
-
 /* 80070C40-80070CA0 06B580 0060+00 2/2 0/0 0/0 .text            distace_angle_adjust__Ffsf */
-static f32 distace_angle_adjust(f32 param_0, s16 param_1, f32 param_2) {
-    f32 tmp = param_1 / 32768.0f;
+static f32 distace_angle_adjust(f32 i_distAdjust, s16 i_angle, f32 i_ratio) {
+    f32 tmp = i_angle / (f32)0x8000;
     if (tmp < 0.0f) {
         tmp = -tmp;
     }
 
-    return param_0 * ((1.0f - param_2) + (param_2 * ((1.0f - tmp) * (1.0f - tmp))));
+    return i_distAdjust * ((1.0f - i_ratio) + (i_ratio * ((1.0f - tmp) * (1.0f - tmp))));
 }
 
 /* 80070CA0-80070E90 06B5E0 01F0+00 3/3 0/0 0/0 .text            check_distace__FP4cXyzsP4cXyzffff
  */
-static BOOL check_distace(cXyz* param_0, s16 param_1, cXyz* param_2, f32 param_3, f32 param_4,
-                          f32 param_5, f32 param_6) {
-    cXyz tmp = *param_2 - *param_0;
+static BOOL check_distace(cXyz* i_pos, s16 i_angle, cXyz* i_attnPos, f32 i_distMax, f32 i_distAdjust,
+                          f32 i_max_y, f32 i_min_y) {
+    cXyz dist = *i_attnPos - *i_pos;
 
-    if (tmp.y <= param_6 || tmp.y >= param_5) {
+    if (dist.y <= i_min_y || dist.y >= i_max_y) {
         return false;
     }
 
-    f32 adjust = param_3 + distace_angle_adjust(param_4, param_1, 1.0f);
-    if (adjust < tmp.absXZ()) {
+    f32 adjust = i_distMax + distace_angle_adjust(i_distAdjust, i_angle, 1.0f);
+    if (adjust < dist.absXZ()) {
         return false;
     }
 
@@ -402,14 +413,14 @@ static BOOL check_distace(cXyz* param_0, s16 param_1, cXyz* param_2, f32 param_3
 
 /* 80070E90-800710C0 06B7D0 0230+00 2/2 0/0 0/0 .text
  * calcWeight__12dAttention_cFiP10fopAc_ac_cfssPUl              */
-f32 dAttention_c::calcWeight(int param_0, fopAc_ac_c* param_1, f32 param_2, s16 param_3,
-                             s16 param_4, u32* param_5) {
+f32 dAttention_c::calcWeight(int i_listType, fopAc_ac_c* i_actor, f32 i_distance, s16 i_angle,
+                             s16 i_invAngle, u32* i_attnType) {
     int i;
     int num;
     type_tbl_entry* table;
 
-    switch (param_0) {
-    case 0x4C:
+    switch (i_listType) {
+    case 'L':
         if (chkFlag(0x4000)) {
             return 0.0f;
         }
@@ -418,52 +429,53 @@ f32 dAttention_c::calcWeight(int param_0, fopAc_ac_c* param_1, f32 param_2, s16 
         table = loc_type_tbl;
         break;
     default:
-    case 0x41:
+        OS_REPORT("attention: %d: illegal type\n", 0x419);
+    case 'A':
         num = act_type_num;
         table = act_type_tbl;
         break;
-    case 0x43:
+    case 'C':
         num = chk_type_num;
         table = chk_type_tbl;
         break;
     }
 
     f32 weight = 0.0f;
-    f32 dvar14 = -1.0f;
+    f32 max_weight = -1.0f;
 
     daPy_py_c* player = daPy_getPlayerActorClass();
     if (player != NULL) {
-        if (param_1 == fopAcM_SearchByID(player->getGrabActorID())) {
+        if (i_actor == fopAcM_SearchByID(player->getGrabActorID())) {
             return 0.0f;
         }
     }
 
     for (i = 0; i < num; i++) {
-        f32 dvar12;
-        type_tbl_entry* entry = &table[i];
+        f32 dist_weight;
+        type_tbl_entry* type_tbl_entry = &table[i];
 
-        if (mPlayerAttentionFlags & entry->field_0x2 & param_1->attention_info.flags) {
-            u8 index = param_1->attention_info.distances[entry->field_0x0];
-            dist_entry* d_entry = &dist_table[index];
+        if (mPlayerAttentionFlags & type_tbl_entry->mask & i_actor->attention_info.flags) {
+            u8 dist_index = i_actor->attention_info.distances[type_tbl_entry->type];
+            dist_entry* dist_tbl_entry = &dist_table[dist_index];
 
-            if (fopAcM_checkStatus(param_1, 0x20000000) ||
-                check_event_condition(entry->field_0x0, param_1->eventInfo.getCondition())) {
-                dvar12 = 0.0f;
-            } else if (check_flontofplayer(d_entry->mAngleSelect, param_3, param_4)) {
-                dvar12 = 0.0f;
-            } else if (!check_distace(&mOwnerAttnPos, param_3, &param_1->attention_info.position,
-                                      d_entry->mDistMax, d_entry->mDistanceAdjust, d_entry->mUpperY,
-                                      d_entry->mLowerY)) {
-                dvar12 = 0.0f;
+            if (fopAcM_checkStatus(i_actor, 0x20000000) ||
+                check_event_condition(type_tbl_entry->type, i_actor->eventInfo.getCondition())) {
+                dist_weight = 0.0f;
+            } else if (check_flontofplayer(dist_tbl_entry->mAngleSelect, i_angle, i_invAngle)) {
+                dist_weight = 0.0f;
+            } else if (!check_distace(&mOwnerAttnPos, i_angle, &i_actor->attention_info.position,
+                                      dist_tbl_entry->mDistMax, dist_tbl_entry->mDistanceAdjust, dist_tbl_entry->mUpperY,
+                                      dist_tbl_entry->mLowerY)) {
+                dist_weight = 0.0f;
             } else {
-                dvar12 = distace_weight(param_2, param_3, 0.5f);
+                dist_weight = distace_weight(i_distance, i_angle, 0.5f);
             }
 
-            f32 dvar13 = d_entry->mWeight;
-            if (dvar12 > 0.0f && dvar13 > dvar14) {
-                dvar14 = dvar13;
-                weight = dvar12 / dvar13;
-                *param_5 = entry->field_0x0;
+            f32 dist_tbl_weight = dist_tbl_entry->mWeight;
+            if (dist_weight > 0.0f && dist_tbl_weight > max_weight) {
+                max_weight = dist_tbl_weight;
+                weight = dist_weight / dist_tbl_weight;
+                *i_attnType = type_tbl_entry->type;
             }
         }
     }
@@ -473,42 +485,42 @@ f32 dAttention_c::calcWeight(int param_0, fopAc_ac_c* param_1, f32 param_2, s16 
 
 /* 800710C0-80071240 06BA00 0180+00 1/1 0/0 0/0 .text
  * setList__12dAttention_cFiP10fopAc_ac_cff7cSAngleUl           */
-void dAttention_c::setList(int param_0, fopAc_ac_c* param_1, f32 param_2, f32 param_3,
-                           cSAngle param_4, u32 param_5) {
+void dAttention_c::setList(int i_listType, fopAc_ac_c* i_actor, f32 i_weight, f32 i_distance,
+                           cSAngle i_angle, u32 i_attnType) {
     int max;
-    int* num;
+    int* list_count;
     s32 maxIndex;
     dAttList_c* list;
 
-    switch (param_0) {
-    case 0x4C:
+    switch (i_listType) {
+    case 'L':
         if (chkFlag(0x4000)) return;
-        if (mLockonCount >= 1 && param_1 == mLockOnList[0].getActor() && param_5 == mLockOnList[0].mType) {
+        if (mLockonCount >= 1 && i_actor == mLockOnList[0].getActor() && i_attnType == mLockOnList[0].mType) {
             return;
         }
         max = 8;
-        num = &mLockonCount;
+        list_count = &mLockonCount;
         list = mLockOnList;
         break;
     default:
-    case 0x41:
+    case 'A':
         max = 4;
-        num = &mActionCount;
+        list_count = &mActionCount;
         list = mActionList;
         break;
-    case 0x43:
+    case 'C':
         max = 4;
-        num = &mCheckObjectCount;
+        list_count = &mCheckObjectCount;
         list = mCheckObjectList;
         break;
     }
 
     f32 weight = 0.0f;
 
-    if (param_2 > weight) {
-        if (*num < max) {
-            maxIndex = *num;
-            (*num)++;
+    if (i_weight > weight) {
+        if (*list_count < max) {
+            maxIndex = *list_count;
+            (*list_count)++;
         } else {
             f32 maxWeight = weight;
             s32 i = 0;
@@ -521,12 +533,12 @@ void dAttention_c::setList(int param_0, fopAc_ac_c* param_1, f32 param_2, f32 pa
             }
         }
 
-        if (list[maxIndex].mWeight > param_2) {
-            list[maxIndex].setActor(param_1);
-            list[maxIndex].mWeight = param_2;
-            list[maxIndex].mDistance = param_3;
-            list[maxIndex].mAngle = param_4;
-            list[maxIndex].mType = param_5;
+        if (list[maxIndex].mWeight > i_weight) {
+            list[maxIndex].setActor(i_actor);
+            list[maxIndex].mWeight = i_weight;
+            list[maxIndex].mDistance = i_distance;
+            list[maxIndex].mAngle = i_angle;
+            list[maxIndex].mType = i_attnType;
         }
     }
 }
@@ -534,41 +546,46 @@ void dAttention_c::setList(int param_0, fopAc_ac_c* param_1, f32 param_2, f32 pa
 /* 80071240-8007138C 06BB80 014C+00 6/6 0/0 0/0 .text            initList__12dAttention_cFUl */
 void dAttention_c::initList(u32 flags) {
     mPlayerAttentionFlags = flags;
-    if (chkFlag(0x4000) == 0) {
+
+    if (!chkFlag(0x4000)) {
         int lockonIndex;
-        mLockonCount = lockonIndex = mLockTargetID != -1 ? 1 : 0;
+        mLockonCount = lockonIndex = mLockTargetID != fpcM_ERROR_PROCESS_ID_e ? 1 : 0;
         if (mLockOnOffset != 0) {
             memcpy(mLockOnList, mLockOnList + mLockOnOffset, sizeof(dAttList_c));
             mLockOnList[0].mWeight = 0.0f;
         }
+
         mLockOnOffset = 0;
         for (; lockonIndex < 8; lockonIndex++) {
             mLockOnList[lockonIndex].setActor(NULL);
             mLockOnList[lockonIndex].mWeight = FLT_MAX;
         }
     }
+
     int i;
     mActionCount = mActionOffset = i = 0;
     for (; i < 4; i++) {
         mActionList[i].setActor(NULL);
         mActionList[i].mWeight = FLT_MAX;
     }
+
     mCheckObjectCount = mCheckObjectOffset = i = 0;
     for (; i < 4; i++) {
         mCheckObjectList[i].setActor(NULL);
         mCheckObjectList[i].mWeight = FLT_MAX;
     }
+
     setFlag(0x1000);
 }
 
 /* 8007138C-800713CC 06BCCC 0040+00 1/1 0/0 0/0 .text            select_attention__FP10fopAc_ac_cPv
  */
-static int select_attention(fopAc_ac_c* param_0, void* i_attention) {
-    if (param_0->attention_info.flags == 0) {
+static int select_attention(fopAc_ac_c* i_actor, void* i_attention) {
+    if (i_actor->attention_info.flags == 0) {
         return 0;
     }
 
-    return ((dAttention_c*)i_attention)->SelectAttention(param_0);
+    return ((dAttention_c*)i_attention)->SelectAttention(i_actor);
 }
 
 /* 800713CC-80071424 06BD0C 0058+00 4/4 0/0 0/0 .text            makeList__12dAttention_cFv */
@@ -589,30 +606,35 @@ void dAttention_c::setOwnerAttentionPos() {
 
 /* 80071488-8007167C 06BDC8 01F4+00 1/1 0/0 0/0 .text
  * SelectAttention__12dAttention_cFP10fopAc_ac_c                */
-int dAttention_c::SelectAttention(fopAc_ac_c* param_0) {
-    cSAngle acStack_4c;
-    cSAngle acStack_50;
-    if (param_0 == mpPlayer || mpPlayer == NULL) {
+int dAttention_c::SelectAttention(fopAc_ac_c* i_actor) {
+    cSAngle angle;
+    cSAngle inv_angle;
+    if (i_actor == mpPlayer || mpPlayer == NULL) {
         return 0;
     }
+
     mPlayerAttentionFlags = mpPlayer->attention_info.flags;
-    cSGlobe acStack_40(param_0->attention_info.position - mOwnerAttnPos);
-    acStack_4c = acStack_40.U() - fopAcM_GetShapeAngle_p(mpPlayer)->y;
-    acStack_50 = cSAngle(acStack_40.U().Inv()) - fopAcM_GetShapeAngle_p(param_0)->y;
-    u32 local_48;
-    if ((param_0->attention_info.flags & 7) != 0 && chkFlag(0x4000) == 0)
-    {
-        f32 dVar5 = calcWeight(0x4c, param_0, acStack_40.R(), acStack_4c.Val(), acStack_50.Val(), &local_48);
-        setList(0x4c, param_0, dVar5, acStack_40.R(), acStack_4c, local_48);
+
+    cSGlobe globe(i_actor->attention_info.position - mOwnerAttnPos);
+    angle = globe.U() - fopAcM_GetShapeAngle_p(mpPlayer)->y;
+    inv_angle = cSAngle(globe.U().Inv()) - fopAcM_GetShapeAngle_p(i_actor)->y;
+
+    u32 attn_type;
+    if ((i_actor->attention_info.flags & 7) && !chkFlag(0x4000)) {
+        f32 weight = calcWeight('L', i_actor, globe.R(), angle.Val(), inv_angle.Val(), &attn_type);
+        setList('L', i_actor, weight, globe.R(), angle, attn_type);
     }
-    if ((param_0->attention_info.flags & 0xf8) != 0) {
-        f32 dVar5 = calcWeight(0x41, param_0, acStack_40.R(), acStack_4c.Val(), acStack_50.Val(), &local_48);
-        setList(0x41, param_0, dVar5, acStack_40.R(), acStack_4c, local_48);
+
+    if (i_actor->attention_info.flags & 0xF8) {
+        f32 weight = calcWeight('A', i_actor, globe.R(), angle.Val(), inv_angle.Val(), &attn_type);
+        setList('A', i_actor, weight, globe.R(), angle, attn_type);
     }
-    if (((param_0->attention_info).flags & 0x100) != 0) {
-        f32 dVar5 = calcWeight(0x43, param_0, acStack_40.R(), acStack_4c.Val(), acStack_50.Val(), &local_48);
-        setList(0x43, param_0, dVar5, acStack_40.R(), acStack_4c, local_48);
+
+    if (i_actor->attention_info.flags & 0x100) {
+        f32 weight = calcWeight('C', i_actor, globe.R(), angle.Val(), inv_angle.Val(), &attn_type);
+        setList('C', i_actor, weight, globe.R(), angle, attn_type);
     }
+
     return 0;
 }
 
@@ -621,17 +643,17 @@ void dAttention_c::sortList() {
     int i;
     int j;
     int count;
-    dAttList_c temp;
+    dAttList_c swap;
     dAttList_c* list;
 
     if (!chkFlag(0x4000)) {
         list = mLockOnList;
-        for (i = (mLockTargetID != -1) ? 1 : 0, count = mLockonCount; i < count - 1; i++) {
+        for (i = (mLockTargetID != fpcM_ERROR_PROCESS_ID_e) ? 1 : 0, count = mLockonCount; i < count - 1; i++) {
             for (j = i + 1; j < count; j++) {
                 if (list[i].mWeight > list[j].mWeight) {
-                    memcpy(&temp, &list[j], sizeof(dAttList_c));
+                    memcpy(&swap, &list[j], sizeof(dAttList_c));
                     memcpy(&list[j], &list[i], sizeof(dAttList_c));
-                    memcpy(&list[i], &temp, sizeof(dAttList_c));
+                    memcpy(&list[i], &swap, sizeof(dAttList_c));
                 }
             }
         }
@@ -642,9 +664,9 @@ void dAttention_c::sortList() {
     for (i = 0; i < count - 1; i++) {
         for (j = i + 1; j < count; j++) {
             if (list[i].mWeight > list[j].mWeight) {
-                memcpy(&temp, &list[j], sizeof(dAttList_c));
+                memcpy(&swap, &list[j], sizeof(dAttList_c));
                 memcpy(&list[j], &list[i], sizeof(dAttList_c));
-                memcpy(&list[i], &temp, sizeof(dAttList_c));
+                memcpy(&list[i], &swap, sizeof(dAttList_c));
             }
         }
     }
@@ -654,9 +676,9 @@ void dAttention_c::sortList() {
     for (i = 0; i < count - 1; i++) {
         for (j = i + 1; j < count; j++) {
             if (list[i].mWeight > list[j].mWeight) {
-                memcpy(&temp, &list[j], sizeof(dAttList_c));
+                memcpy(&swap, &list[j], sizeof(dAttList_c));
                 memcpy(&list[j], &list[i], sizeof(dAttList_c));
-                memcpy(&list[i], &temp, sizeof(dAttList_c));
+                memcpy(&list[i], &swap, sizeof(dAttList_c));
             }
         }
     }
@@ -664,15 +686,15 @@ void dAttention_c::sortList() {
 
 /* 800718A4-80071960 06C1E4 00BC+00 2/2 0/0 0/0 .text            stockAttention__12dAttention_cFv */
 void dAttention_c::stockAttention() {
-    fopAc_ac_c* target = LockonTarget(0);
+    fopAc_ac_c* lockon_actor = LockonTarget(0);
 
-    initList(-1);
+    initList(0xFFFFFFFF);
     if (makeList()) {
         sortList();
     }
 
-    if (target != mLockOnList[0].getActor()) {
-        if (target != NULL) {
+    if (lockon_actor != mLockOnList[0].getActor()) {
+        if (lockon_actor != NULL) {
             if (mLockOnList[0].getActor() != NULL) {
                 setFlag(2);
             }
@@ -702,7 +724,7 @@ fopAc_ac_c* dAttention_c::nextAttention() {
     }
 
     fopAc_ac_c* actor = fopAcM_SearchByID(mLockTargetID);
-    initList(-1);
+    initList(0xFFFFFFFF);
 
     if (makeList()) {
         sortList();
@@ -717,8 +739,8 @@ fopAc_ac_c* dAttention_c::nextAttention() {
 
 /* 80071A68-80071A98 06C3A8 0030+00 3/3 0/0 0/0 .text            freeAttention__12dAttention_cFv */
 int dAttention_c::freeAttention() {
-    mLockTargetID = -1;
-    initList(-1);
+    mLockTargetID = fpcM_ERROR_PROCESS_ID_e;
+    initList(0xFFFFFFFF);
     return 0;
 }
 
@@ -741,7 +763,7 @@ bool dAttention_c::chaseAttention() {
         a2 = g2.U() - fopAcM_GetShapeAngle_p(actor)->y;
 
         u32 type;
-        f32 weight = calcWeight(0x4C, actor, g1.R(), a1.Val(), a2.Val(), &type);
+        f32 weight = calcWeight('L', actor, g1.R(), a1.Val(), a2.Val(), &type);
         if (weight <= 0.0f) {
             type = mLockOnList[offset].mType;
             int tbl_idx = actor->attention_info.distances[type];
@@ -800,18 +822,17 @@ f32 dAttention_c::EnemyDistance(fopAc_ac_c* i_actor) {
     return distance;
 }
 
-
 /* 80071D6C-80071DEC 06C6AC 0080+00 1/1 0/0 0/0 .text            sound_attention__FP10fopAc_ac_cPv
  */
-static int sound_attention(fopAc_ac_c* param_0, void* i_attention) {
-    f32 dist = ((dAttention_c*)i_attention)->EnemyDistance(param_0);
+static int sound_attention(fopAc_ac_c* i_actor, void* i_attention) {
+    f32 dist = ((dAttention_c*)i_attention)->EnemyDistance(i_actor);
 
     if (dist < 0.0f) {
         return 0;
     }
 
     if (dist < ((dAttention_c*)i_attention)->mEnemyDist) {
-        ((dAttention_c*)i_attention)->mEnemyActorID = fopAcM_GetID(param_0);
+        ((dAttention_c*)i_attention)->mEnemyActorID = fopAcM_GetID(i_actor);
         ((dAttention_c*)i_attention)->mEnemyDist = dist;
     }
 
@@ -821,7 +842,7 @@ static int sound_attention(fopAc_ac_c* param_0, void* i_attention) {
 
 /* 80071DEC-80071E84 06C72C 0098+00 1/1 0/0 0/0 .text            runSoundProc__12dAttention_cFv */
 void dAttention_c::runSoundProc() {
-    mEnemyActorID = -1;
+    mEnemyActorID = fpcM_ERROR_PROCESS_ID_e;
     mEnemyDist = 10000.0f;
 
     if (!chkFlag(0x80000000)) {
@@ -838,10 +859,10 @@ void dAttention_c::runSoundProc() {
 void dAttention_c::runDrawProc() {
     if ((mFlags >> 3) & 1) {
         draw[0].setAlphaAnm(mAttParam.mAttnCursorAppearFrames, 0);
-        draw[0].setAnm(1, mAttParam.field_0x3c);
-        draw[0].field_0x164.x = mAttParam.mAttnCursorScaleX;
-        draw[0].field_0x164.y = mAttParam.mAttnCursorScaleY;
-        draw[0].field_0x164.z = mAttParam.mAttnCursorOffsetY;
+        draw[0].setAnm(DRAW_TYPE_RED, mAttParam.field_0x3c);
+        draw[0].mCursorSizeX = mAttParam.mAttnCursorScaleX;
+        draw[0].mCursorSizeY = mAttParam.mAttnCursorScaleY;
+        draw[0].mCursorOffsetY = mAttParam.mAttnCursorOffsetY;
         draw[0].field_0x175 = 1;
 
         if (!dComIfGp_checkPlayerStatus0(0, 0x36a02311) ||
@@ -860,22 +881,22 @@ void dAttention_c::runDrawProc() {
             lockSoundStart(Z2SE_SY_L_FOCUS_RESET);
         }
     } else if (chkFlag(0x1)) {
-        draw[0].setAnm(0, mAttParam.field_0x38);
+        draw[0].setAnm(DRAW_TYPE_YELLOW, mAttParam.field_0x38);
         draw[0].setAlphaAnm(mAttParam.mAttnCursorAppearFrames, 0);
 
-        draw[0].field_0x164.x = mAttParam.mSelCursorScaleX;
-        draw[0].field_0x164.y = mAttParam.mSelCursorScaleY;
-        draw[0].field_0x164.z = mAttParam.mSelCursorOffsetY;
+        draw[0].mCursorSizeX = mAttParam.mSelCursorScaleX;
+        draw[0].mCursorSizeY = mAttParam.mSelCursorScaleY;
+        draw[0].mCursorOffsetY = mAttParam.mSelCursorOffsetY;
         draw[0].field_0x175 = 0;
         setFlag(0x40000000);
     } else if (chkFlag(0x2)) {
         draw[0].setAlphaAnm(mAttParam.mAttnCursorAppearFrames, 0);
-        draw[1].setAnm(0, mAttParam.field_0x38);
+        draw[1].setAnm(DRAW_TYPE_YELLOW, mAttParam.field_0x38);
         draw[1].setAlphaAnm(mAttParam.mAttnCursorDisappearFrames, 1);
 
-        draw[1].field_0x164.x = mAttParam.mSelCursorScaleX;
-        draw[1].field_0x164.y = mAttParam.mSelCursorScaleY;
-        draw[1].field_0x164.z = mAttParam.mSelCursorOffsetY;
+        draw[1].mCursorSizeX = mAttParam.mSelCursorScaleX;
+        draw[1].mCursorSizeY = mAttParam.mSelCursorScaleY;
+        draw[1].mCursorOffsetY = mAttParam.mSelCursorOffsetY;
         draw[1].field_0x175 = 0;
         setFlag(0x40000000);
     } else if (mLockonCount <= 0 && field_0x328 == 0) {
@@ -884,7 +905,7 @@ void dAttention_c::runDrawProc() {
         setFlag(0x40000000);
     }
 
-    if (mAttnStatus == ST_LOCK) {
+    if (mAttnStatus == EState_LOCK) {
         if (draw[0].field_0x173 == 3) {
             draw[0].field_0x173 = 4;
             clrFlag(0x40000000);
@@ -901,7 +922,7 @@ void dAttention_c::runDebugDisp() {}
 
 /* 800720F8-800722A0 06CA38 01A8+00 1/1 0/0 0/0 .text            checkButton__12dAttention_cFv */
 void dAttention_c::checkButton() {
-    if (on_final_boss_stg && dComIfGp_roomControl_getStayNo() == 0 &&
+    if (l_isFinalBossStg && dComIfGp_roomControl_getStayNo() == 0 &&
         !dComIfGs_isSaveDunSwitch(1)) {
         if (field_0x32b == 1 && LockonTarget(0) != NULL && chkFlag(0x20000000)) {
             setFlag(0x1000000);
@@ -969,38 +990,38 @@ int dAttention_c::lostCheck() {
 /* 80072344-800725F0 06CC84 02AC+00 1/1 0/0 0/0 .text judgementStatus4Hold__12dAttention_cFv */
 void dAttention_c::judgementStatus4Hold() {
     switch (mAttnStatus) {
-    case ST_NONE:
+    case EState_NONE:
         field_0x32f = 0;
         field_0x32e = 0;
-        mLockTargetID = -1;
+        mLockTargetID = fpcM_ERROR_PROCESS_ID_e;
         stockAttention();
 
         if (field_0x32b == 0 && triggerProc()) {
-            mAttnStatus = ST_LOCK;
+            mAttnStatus = EState_LOCK;
             field_0x32e = 15;
         }
         break;
-    case ST_LOCK:
+    case EState_LOCK:
         mLockTargetID = LockonTargetPId(0);
         field_0x32f = 0;
 
         if (lostCheck()) {
-            mLockTargetID = -1;
+            mLockTargetID = fpcM_ERROR_PROCESS_ID_e;
             stockAttention();
 
             if (triggerProc()) {
-                mAttnStatus = ST_LOCK;
+                mAttnStatus = EState_LOCK;
             } else {
-                mAttnStatus = ST_NONE;
+                mAttnStatus = EState_NONE;
                 freeAttention();
                 setFlag(0x800000);
             }
         } else if (field_0x32b == 4) {
-            mAttnStatus = ST_RELEASE;
+            mAttnStatus = EState_RELEASE;
             setFlag(0x10);
             field_0x32f = 10;
         } else if (field_0x32e == 0) {
-            initList(-1);
+            initList(0xFFFFFFFF);
 
             if (makeList()) {
                 sortList();
@@ -1012,31 +1033,31 @@ void dAttention_c::judgementStatus4Hold() {
         }
 
         break;
-    case ST_RELEASE:
+    case EState_RELEASE:
         setFlag(0x40);
 
         if (lostCheck()) {
-            mLockTargetID = -1;
+            mLockTargetID = fpcM_ERROR_PROCESS_ID_e;
             stockAttention();
 
             if (triggerProc()) {
-                mAttnStatus = ST_LOCK;
+                mAttnStatus = EState_LOCK;
             } else {
-                mAttnStatus = ST_NONE;
+                mAttnStatus = EState_NONE;
                 freeAttention();
                 setFlag(0x800000);
             }
         } else if (field_0x32b == 0) {
             if (nextAttention()) {
                 setFlag(0x8);
-                mAttnStatus = ST_LOCK;
+                mAttnStatus = EState_LOCK;
                 field_0x32e = 15;
             } else {
-                mAttnStatus = ST_NONE;
+                mAttnStatus = EState_NONE;
                 freeAttention();
             }
         } else if (LockonTarget(0) == NULL || field_0x32f == 0) {
-            mAttnStatus = ST_NONE;
+            mAttnStatus = EState_NONE;
             freeAttention();
         }
 
@@ -1049,7 +1070,7 @@ void dAttention_c::judgementStatus4Hold() {
 
     if (!chkFlag(0x1000)) {
         setFlag(0x4000);
-        initList(-1);
+        initList(0xFFFFFFFF);
 
         if (makeList()) {
             sortList();
@@ -1060,49 +1081,49 @@ void dAttention_c::judgementStatus4Hold() {
 /* 800725F0-80072924 06CF30 0334+00 1/1 0/0 0/0 .text judgementStatus4Switch__12dAttention_cFv */
 void dAttention_c::judgementStatus4Switch() {
     switch (mAttnStatus) {
-    case ST_NONE:
-        mLockTargetID = -1;
+    case EState_NONE:
+        mLockTargetID = fpcM_ERROR_PROCESS_ID_e;
         stockAttention();
         field_0x32f = 0;
         field_0x32e = 0;
 
         if (field_0x32b == 0 && triggerProc()) {
-            mAttnStatus = ST_LOCK;
+            mAttnStatus = EState_LOCK;
             field_0x32e = 15;
             field_0x32f = 15;
         }
         break;
-    case ST_LOCK:
+    case EState_LOCK:
         mLockTargetID = LockonTargetPId(0);
 
         if (field_0x32f == 0) {
-            mAttnStatus = ST_NONE;
+            mAttnStatus = EState_NONE;
             freeAttention();
         } else if (lostCheck()) {
-            mLockTargetID = -1;
+            mLockTargetID = fpcM_ERROR_PROCESS_ID_e;
             stockAttention();
 
             if (triggerProc()) {
-                mAttnStatus = ST_LOCK;
+                mAttnStatus = EState_LOCK;
             } else {
-                mAttnStatus = ST_NONE;
+                mAttnStatus = EState_NONE;
                 freeAttention();
                 setFlag(0x800000);
             }
         } else if (field_0x32b == 0) {
             if (mDoCPd_c::getStickY(mPadNo) < -0.9f) {
-                mAttnStatus = ST_NONE;
+                mAttnStatus = EState_NONE;
                 freeAttention();
             } else if (nextAttention()) {
                 setFlag(0x8);
-                mAttnStatus = ST_LOCK;
+                mAttnStatus = EState_LOCK;
                 field_0x32e = 15;
             } else {
-                mAttnStatus = ST_NONE;
+                mAttnStatus = EState_NONE;
                 freeAttention();
             }
         } else if (field_0x32e == 0) {
-            initList(-1);
+            initList(0xFFFFFFFF);
 
             if (makeList()) {
                 sortList();
@@ -1122,30 +1143,30 @@ void dAttention_c::judgementStatus4Switch() {
         }
 
         break;
-    case ST_RELEASE:
+    case EState_RELEASE:
         setFlag(0x40);
 
         if (lostCheck()) {
-            mLockTargetID = -1;
+            mLockTargetID = fpcM_ERROR_PROCESS_ID_e;
             stockAttention();
 
             if (triggerProc()) {
-                mAttnStatus = ST_LOCK;
+                mAttnStatus = EState_LOCK;
             } else {
-                mAttnStatus = ST_NONE;
+                mAttnStatus = EState_NONE;
                 freeAttention();
                 setFlag(0x800000);
             }
         } else if (field_0x32b == 0) {
-            mAttnStatus = ST_NONE;
+            mAttnStatus = EState_NONE;
 
             if (triggerProc()) {
-                mAttnStatus = ST_LOCK;
+                mAttnStatus = EState_LOCK;
                 field_0x32e = 15;
                 field_0x32f = 15;
             }
         } else if (LockonTarget(0) == NULL || field_0x32f == 0) {
-            mAttnStatus = ST_NONE;
+            mAttnStatus = EState_NONE;
             freeAttention();
         }
 
@@ -1154,7 +1175,7 @@ void dAttention_c::judgementStatus4Switch() {
 
     if (!chkFlag(0x1000)) {
         setFlag(0x4000);
-        initList(-1);
+        initList(0xFFFFFFFF);
 
         if (makeList()) {
             sortList();
@@ -1186,12 +1207,12 @@ int dAttention_c::Run() {
     setOwnerAttentionPos();
 
     if (dComIfGp_event_runCheck() || chkFlag(0x10000)) {
-        mAttnStatus = ST_NONE;
+        mAttnStatus = EState_NONE;
         field_0x32b = 4;
         field_0x32c = 0;
         clrFlag(0x20000000);
         clrFlag(0x10000000);
-        mLockTargetID = -1;
+        mLockTargetID = fpcM_ERROR_PROCESS_ID_e;
         freeAttention();
     } else {
         checkButton();
@@ -1236,7 +1257,7 @@ int dAttention_c::Run() {
     runDrawProc();
     runDebugDisp();
 
-    if (mAttnStatus == ST_LOCK) {
+    if (mAttnStatus == EState_LOCK) {
         dComIfGp_onCameraAttentionStatus(mPadNo, 1);
     } else {
         dComIfGp_offCameraAttentionStatus(mPadNo, 1);
@@ -1251,19 +1272,19 @@ int dAttention_c::Run() {
 
 /* 80072BD4-80072D80 06D514 01AC+00 0/0 1/1 0/0 .text            Draw__12dAttention_cFv */
 void dAttention_c::Draw() {
-    if (mAttParam.CheckFlag(0x10)) {
+    if (mAttParam.CheckFlag(dAttParam_c::EFlag_ARROW_OFF)) {
         draw[0].field_0x173 = 3;
         draw[1].field_0x173 = 3;
         return;
     }
 
-    Mtx tmp;
-    MTXInverse(dComIfGd_getViewRotMtx(), tmp);
-    fopAc_ac_c* target = LockonTarget(0);
+    Mtx inv_m;
+    MTXInverse(dComIfGd_getViewRotMtx(), inv_m);
+    fopAc_ac_c* lockon_actor = LockonTarget(0);
 
     if (!dComIfGp_event_runCheck()) {
-        if (target != NULL) {
-            draw[0].draw(target->attention_info.position, tmp);
+        if (lockon_actor != NULL) {
+            draw[0].draw(lockon_actor->attention_info.position, inv_m);
 
             if (mLockonCount >= 2 && draw[1].field_0x173 == 2) {
                 int listIdx = mLockOnOffset;
@@ -1275,21 +1296,21 @@ void dAttention_c::Draw() {
                 }
                 if (mLockOnList[listIdx].getActor() != NULL) {
                     fopAc_ac_c* actor = mLockOnList[listIdx].getActor();
-                    draw[1].draw(actor->attention_info.position, tmp);
+                    draw[1].draw(actor->attention_info.position, inv_m);
                 }
             }
 
-            mTargetActorID = fopAcM_GetID(target);
-            mDrawAttnPos = target->attention_info.position;
+            mTargetActorID = fopAcM_GetID(lockon_actor);
+            mDrawAttnPos = lockon_actor->attention_info.position;
             field_0x328 = 0;
         } else if (field_0x328 > 0) {
             fopAc_ac_c* actor = fopAcM_SearchByID(mTargetActorID);
 
             if (actor != NULL) {
-                draw[0].draw(actor->attention_info.position, tmp);
+                draw[0].draw(actor->attention_info.position, inv_m);
                 mDrawAttnPos = actor->attention_info.position;
             } else {
-                draw[0].draw(mDrawAttnPos, tmp);
+                draw[0].draw(mDrawAttnPos, inv_m);
             }
         }
     }
@@ -1304,20 +1325,20 @@ void dAttention_c::lockSoundStart(u32 i_sfxID) {
 }
 
 /* 80072DD8-80072FE8 06D718 0210+00 1/1 0/0 0/0 .text            setAnm__10dAttDraw_cFUcf */
-void dAttDraw_c::setAnm(u8 param_0, f32 param_1) {
-    field_0x170 = param_0;
-    mNoticeCursorBck[field_0x170].reset();
-    mNoticeCursorBck[field_0x170].setPlaySpeed(param_1);
-    mNoticeCursorBpk[field_0x170].reset();
-    mNoticeCursorBpk[field_0x170].setPlaySpeed(param_1);
-    mNoticeCursorBrk[field_0x170].reset();
-    mNoticeCursorBrk[field_0x170].setPlaySpeed(param_1);
-    mNoticeCursor02Brk[field_0x170].reset();
-    mNoticeCursor02Brk[field_0x170].setPlaySpeed(param_1);
-    mNoticeCursorBtk[field_0x170].reset();
-    mNoticeCursorBtk[field_0x170].setPlaySpeed(param_1);
+void dAttDraw_c::setAnm(u8 i_drawType, f32 i_anmSpeed) {
+    mDrawType = i_drawType;
+    mNoticeCursorBck[mDrawType].reset();
+    mNoticeCursorBck[mDrawType].setPlaySpeed(i_anmSpeed);
+    mNoticeCursorBpk[mDrawType].reset();
+    mNoticeCursorBpk[mDrawType].setPlaySpeed(i_anmSpeed);
+    mNoticeCursorBrk[mDrawType].reset();
+    mNoticeCursorBrk[mDrawType].setPlaySpeed(i_anmSpeed);
+    mNoticeCursor02Brk[mDrawType].reset();
+    mNoticeCursor02Brk[mDrawType].setPlaySpeed(i_anmSpeed);
+    mNoticeCursorBtk[mDrawType].reset();
+    mNoticeCursorBtk[mDrawType].setPlaySpeed(i_anmSpeed);
 
-    if (field_0x170 == 1) {
+    if (mDrawType == DRAW_TYPE_RED) {
         mImpactBck.reset();
         mImpactBpk.reset();
         mImpactBrk.reset();
@@ -1326,24 +1347,25 @@ void dAttDraw_c::setAnm(u8 param_0, f32 param_1) {
 }
 
 /* 80072FE8-80073004 06D928 001C+00 1/1 0/0 0/0 .text            setAlphaAnm__10dAttDraw_cFUcUc */
-void dAttDraw_c::setAlphaAnm(u8 param_0, u8 param_1) {
-    field_0x171 = param_0;
-    field_0x172 = 0;
+void dAttDraw_c::setAlphaAnm(u8 i_frameMax, u8 i_playDirection) {
+    mAlphaAnmFrameMax = i_frameMax;
+    mAlphaAnmFrame = 0;
     field_0x173 = 2;
-    field_0x174 = param_1;
+    mAlphaAnmPlayDirection = i_playDirection;
 }
 
 /* 80073004-800732AC 06D944 02A8+00 1/1 0/0 0/0 .text            alphaAnm__10dAttDraw_cFv */
 void dAttDraw_c::alphaAnm() {
-    f32 dVar9 = (f32)field_0x172 / (f32)field_0x171;
-    f32 dVar8;
-    if (field_0x174 == 1) {
-        dVar8 = 1.0f - dVar9;
+    f32 anm_ratio = (f32)mAlphaAnmFrame / (f32)mAlphaAnmFrameMax;
+    f32 alpha_ratio;
+    if (mAlphaAnmPlayDirection == 1) {
+        alpha_ratio = 1.0f - anm_ratio;
     } else {
-        dVar8 = dVar9;
+        alpha_ratio = anm_ratio;
     }
-    if (dVar9 == 1.0f) {
-        if (field_0x170 == 1 && field_0x174 == 0) {
+
+    if (anm_ratio == 1.0f) {
+        if (mDrawType == DRAW_TYPE_RED && mAlphaAnmPlayDirection == 0) {
             if (mImpactBck.isStop() && mImpactBpk.isStop() && mImpactBrk.isStop() && mImpactBtk.isStop()) {
                 field_0x175 = 0;
                 field_0x173 = 3;
@@ -1352,22 +1374,25 @@ void dAttDraw_c::alphaAnm() {
             field_0x173 = 3;
         }
     }
-    if (field_0x172 < field_0x171) {
-        field_0x172++;
+
+    if (mAlphaAnmFrame < mAlphaAnmFrameMax) {
+        mAlphaAnmFrame++;
     }
-    J3DModelData* modelData = mModel[field_0x170]->getModelData();
-    for (int iVar4 = 0; iVar4 < modelData->getMaterialNum(); iVar4++) {
-        J3DMaterial* material = modelData->getMaterialNodePointer(iVar4);
-        J3DGXColor* pJVar5 = (J3DGXColor*)material->getTevKColor(0);
-        pJVar5->a = 255.0f * dVar8;
-        material->setTevKColor(0, pJVar5);
+
+    J3DModelData* modelData = mModel[mDrawType]->getModelData();
+    for (int i = 0; i < modelData->getMaterialNum(); i++) {
+        J3DMaterial* material = modelData->getMaterialNodePointer(i);
+        J3DGXColor* color = (J3DGXColor*)material->getTevKColor(0);
+        color->a = 255.0f * alpha_ratio;
+        material->setTevKColor(0, color);
     }
+
     if (field_0x175 == 0) {
-        mNoticeCursorBck[field_0x170].play();
-        mNoticeCursorBpk[field_0x170].play();
-        mNoticeCursorBrk[field_0x170].play();
-        mNoticeCursorBtk[field_0x170].play();
-        mNoticeCursor02Brk[field_0x170].play();
+        mNoticeCursorBck[mDrawType].play();
+        mNoticeCursorBpk[mDrawType].play();
+        mNoticeCursorBrk[mDrawType].play();
+        mNoticeCursorBtk[mDrawType].play();
+        mNoticeCursor02Brk[mDrawType].play();
     } else {
         mImpactBck.play();
         mImpactBpk.play();
@@ -1377,27 +1402,26 @@ void dAttDraw_c::alphaAnm() {
 }
 
 /* 800732B0-8007353C 06DBF0 028C+00 1/1 0/0 0/0 .text            draw__10dAttDraw_cFR4cXyzPA4_f */
-void dAttDraw_c::draw(cXyz& param_0, Mtx param_1) {
-    J3DModelData* modelData = mModel[field_0x170]->getModelData();
+void dAttDraw_c::draw(cXyz& i_pos, Mtx i_mtx) {
+    J3DModelData* modelData = mModel[mDrawType]->getModelData();
 
-    mDoMtx_stack_c::transS(param_0.x, param_0.y + field_0x164.z, param_0.z);
-    mDoMtx_stack_c::concat(param_1);
-    mModel[field_0x170]->setBaseTRMtx(mDoMtx_stack_c::get());
+    mDoMtx_stack_c::transS(i_pos.x, i_pos.y + mCursorOffsetY, i_pos.z);
+    mDoMtx_stack_c::concat(i_mtx);
+    mModel[mDrawType]->setBaseTRMtx(mDoMtx_stack_c::get());
 
     view_class* view = dComIfGd_getView();
-    f32 temp_f31 = tan(0.01745329238474369f * (0.5f * view->fovy));
+    f32 temp_f31 = tan(DEG_TO_RAD(0.5f * view->fovy));
     f32 temp_f30 = (-100.0f - g_AttDwHIO.mCursorDistance) / temp_f31;
 
-    cXyz tmp;
-    MTXMultVec(dComIfGd_getViewMtx(), &param_0, &tmp);
+    cXyz view_pos;
+    MTXMultVec(dComIfGd_getViewMtx(), &i_pos, &view_pos);
 
-    f32 var_f2 = 1.0f;
-    if (tmp.z < temp_f30) {
-        var_f2 = (tmp.z * temp_f31) / (-100.0f - g_AttDwHIO.mCursorDistance);
+    f32 size = 1.0f;
+    if (view_pos.z < temp_f30) {
+        size = (view_pos.z * temp_f31) / (-100.0f - g_AttDwHIO.mCursorDistance);
     }
 
-    mModel[field_0x170]->setBaseScale(
-        cXyz(field_0x164.x * var_f2, field_0x164.y * var_f2, field_0x164.x * var_f2));
+    mModel[mDrawType]->setBaseScale(cXyz(mCursorSizeX * size, mCursorSizeY * size, mCursorSizeX * size));
 
     alphaAnm();
 
@@ -1407,30 +1431,30 @@ void dAttDraw_c::draw(cXyz& param_0, Mtx param_1) {
         mImpactBrk.entry(modelData);
         mImpactBtk.entry(modelData);
     } else {
-        mNoticeCursorBck[field_0x170].entry(modelData);
-        mNoticeCursorBpk[field_0x170].entry(modelData);
-        mNoticeCursorBrk[field_0x170].entry(modelData);
-        mNoticeCursorBtk[field_0x170].entry(modelData);
-        mNoticeCursor02Brk[field_0x170].entry(modelData);
+        mNoticeCursorBck[mDrawType].entry(modelData);
+        mNoticeCursorBpk[mDrawType].entry(modelData);
+        mNoticeCursorBrk[mDrawType].entry(modelData);
+        mNoticeCursorBtk[mDrawType].entry(modelData);
+        mNoticeCursor02Brk[mDrawType].entry(modelData);
     }
 
     dComIfGd_setList3Dlast();
-    mDoExt_modelUpdateDL(mModel[field_0x170]);
+    mDoExt_modelUpdateDL(mModel[mDrawType]);
     dComIfGd_setList();
 }
 
 /* 8007353C-800735DC 06DE7C 00A0+00 8/8 13/13 21/21 .text            LockonTarget__12dAttention_cFl
  */
-fopAc_ac_c* dAttention_c::LockonTarget(s32 param_0) {
+fopAc_ac_c* dAttention_c::LockonTarget(s32 i_no) {
     if (dComIfGp_checkPlayerStatus0(0, 0x36A02311) || dComIfGp_checkPlayerStatus1(0, 0x11)) {
         return NULL;
     }
 
-    if (param_0 >= mLockonCount) {
+    if (i_no >= mLockonCount) {
         return NULL;
     }
 
-    int listIdx = mLockOnOffset + param_0;
+    int listIdx = mLockOnOffset + i_no;
     if (listIdx >= mLockonCount) {
         listIdx -= mLockonCount;
     }
@@ -1455,24 +1479,24 @@ f32 dAttention_c::LockonReleaseDistanse() {
     }
 
     int idx =  actor->attention_info.distances[mLockOnList[mLockOnOffset].mType];
-    cSGlobe tmp_g(actor->attention_info.position - mOwnerAttnPos);
-    cSAngle tmp_a(tmp_g.U() - fopAcM_GetShapeAngle_p(mpPlayer)->y);
+    cSGlobe globe(actor->attention_info.position - mOwnerAttnPos);
+    cSAngle angle(globe.U() - fopAcM_GetShapeAngle_p(mpPlayer)->y);
 
-    return distace_angle_adjust(dist_table[idx].mDistanceAdjust, tmp_a, 1.0f) + dist_table[idx].mDistMaxRelease;
+    return distace_angle_adjust(dist_table[idx].mDistanceAdjust, angle, 1.0f) + dist_table[idx].mDistMaxRelease;
 }
 
 /* 800736CC-80073734 06E00C 0068+00 2/2 0/0 0/0 .text            LockonTargetPId__12dAttention_cFl
  */
-fpc_ProcID dAttention_c::LockonTargetPId(s32 param_0) {
+fpc_ProcID dAttention_c::LockonTargetPId(s32 i_no) {
     if (dComIfGp_checkPlayerStatus0(0, 0x36A02311) || dComIfGp_checkPlayerStatus1(0, 0x11)) {
         return fpcM_ERROR_PROCESS_ID_e;
     }
 
-    if (param_0 >= mLockonCount) {
+    if (i_no >= mLockonCount) {
         return fpcM_ERROR_PROCESS_ID_e;
     }
 
-    int listIdx = mLockOnOffset + param_0;
+    int listIdx = mLockOnOffset + i_no;
     if (listIdx >= mLockonCount) {
         listIdx -= mLockonCount;
     }
@@ -1481,12 +1505,12 @@ fpc_ProcID dAttention_c::LockonTargetPId(s32 param_0) {
 }
 
 /* 80073734-8007378C 06E074 0058+00 0/0 3/3 2/2 .text            ActionTarget__12dAttention_cFl */
-fopAc_ac_c* dAttention_c::ActionTarget(s32 param_0) {
-    if (param_0 >= mActionCount) {
+fopAc_ac_c* dAttention_c::ActionTarget(s32 i_no) {
+    if (i_no >= mActionCount) {
         return NULL;
     }
 
-    int listIdx = mActionOffset + param_0;
+    int listIdx = mActionOffset + i_no;
     if (listIdx >= mActionCount) {
         listIdx -= mActionCount;
     }
@@ -1496,12 +1520,12 @@ fopAc_ac_c* dAttention_c::ActionTarget(s32 param_0) {
 
 /* 8007378C-800737E4 06E0CC 0058+00 0/0 3/3 0/0 .text            CheckObjectTarget__12dAttention_cFl
  */
-fopAc_ac_c* dAttention_c::CheckObjectTarget(s32 param_0) {
-    if (param_0 >= mCheckObjectCount) {
+fopAc_ac_c* dAttention_c::CheckObjectTarget(s32 i_no) {
+    if (i_no >= mCheckObjectCount) {
         return NULL;
     }
 
-    int listIdx = mCheckObjectOffset + param_0;
+    int listIdx = mCheckObjectOffset + i_no;
     if (listIdx >= mCheckObjectCount) {
         listIdx -= mCheckObjectCount;
     }
@@ -1512,14 +1536,14 @@ fopAc_ac_c* dAttention_c::CheckObjectTarget(s32 param_0) {
 /* 800737E4-80073838 06E124 0054+00 3/3 53/53 37/37 .text            LockonTruth__12dAttention_cFv
  */
 bool dAttention_c::LockonTruth() {
-    return (mAttnStatus == ST_LOCK || mAttnStatus == ST_RELEASE) && LockonTarget(0);
+    return (mAttnStatus == EState_LOCK || mAttnStatus == EState_RELEASE) && LockonTarget(0) != NULL;
 }
 
 /* 80073838-80073864 06E178 002C+00 0/0 1/1 0/0 .text
  * checkDistance__12dAttention_cFP4cXyzsP4cXyzffff              */
-int dAttention_c::checkDistance(cXyz* param_0, s16 param_1, cXyz* param_2, f32 param_3, f32 param_4,
-                                f32 param_5, f32 param_6) {
-    return check_distace(param_0, param_1, param_2, param_3, param_4, param_5, param_6);
+int dAttention_c::checkDistance(cXyz* i_pos, s16 i_angle, cXyz* i_attnPos, f32 i_distMax, f32 i_distAdjust,
+                                f32 i_max_y, f32 i_min_y) {
+    return check_distace(i_pos, i_angle, i_attnPos, i_distMax, i_distAdjust, i_max_y, i_min_y);
 }
 
 /* 80073864-80073898 06E1A4 0034+00 11/11 3/3 8/8 .text            getActor__10dAttList_cFv */
@@ -1558,15 +1582,15 @@ int dAttHint_c::request(fopAc_ac_c* i_actor, int i_priority) {
 
 /* 80073958-80073970 06E298 0018+00 1/1 0/0 0/0 .text            init__10dAttHint_cFv */
 void dAttHint_c::init() {
-    mHintActorID = -1;
-    field_0x8 = -1;
+    mHintActorID = fpcM_ERROR_PROCESS_ID_e;
+    field_0x8 = fpcM_ERROR_PROCESS_ID_e;
     mPriority = 0x200;
 }
 
 /* 80073970-8007398C 06E2B0 001C+00 1/1 0/0 0/0 .text            proc__10dAttHint_cFv */
 void dAttHint_c::proc() {
     field_0x8 = mHintActorID;
-    mHintActorID = -1;
+    mHintActorID = fpcM_ERROR_PROCESS_ID_e;
     mPriority = 0x200;
 }
 
@@ -1577,61 +1601,72 @@ fopAc_ac_c* dAttCatch_c::convPId(fpc_ProcID i_id) {
 
 /* 800739BC-800739DC 06E2FC 0020+00 1/1 0/0 0/0 .text            init__11dAttCatch_cFv */
 void dAttCatch_c::init() {
-    field_0xc = 0x67;
-    field_0x0 = -1;
-    mCatghTargetID = -1;
+    mCatchItemNo = fpcNm_ITEM_WATER_BOTTLE;
+    mRequestActorID = fpcM_ERROR_PROCESS_ID_e;
+    mCatghTargetID = fpcM_ERROR_PROCESS_ID_e;
     field_0x4 = 3;
 }
 
 /* 800739DC-80073A08 06E31C 002C+00 1/1 0/0 0/0 .text            proc__11dAttCatch_cFv */
 void dAttCatch_c::proc() {
-    mCatghTargetID = field_0x0;
-    mChangeItem = field_0xc;
-    field_0x0 = -1;
+    mCatghTargetID = mRequestActorID;
+    mChangeItem = mCatchItemNo;
+    mRequestActorID = fpcM_ERROR_PROCESS_ID_e;
     field_0x4 = 3;
-    field_0xc = 0x67;
+    mCatchItemNo = fpcNm_ITEM_WATER_BOTTLE;
+}
+
+// FAKEMATCH: this fixes regalloc in `dAttCatch_c::request` but breaks most other calls
+// some more accurate fix should be found eventually
+inline fopAc_ac_c* dComIfGp_getPlayer_fakematch(int idx) {
+    daAlink_c* const link = (daAlink_c* const)g_dComIfG_gameInfo.play.getPlayer(idx);
+    fopAc_ac_c* player = (fopAc_ac_c*)link;
+    return player;
 }
 
 /* 80073A08-80073CA4 06E348 029C+00 0/0 0/0 10/10 .text
  * request__11dAttCatch_cFP10fopAc_ac_cUcfffsi                  */
-// NONMATCHING regalloc
-// This is a weird one. Some solution was found that changes dComIfGp_getPlayer but it is incompatible
-// with other calls.
-// https://decomp.me/scratch/aMCEI
-int dAttCatch_c::request(fopAc_ac_c* param_1, u8 param_2, f32 param_3, f32 param_4,
-                              f32 param_5, s16 param_6, int param_7) {
-    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+int dAttCatch_c::request(fopAc_ac_c* i_reqActor, u8 i_itemNo, f32 i_horizontalDist, f32 i_upDist,
+                         f32 i_downDist, s16 i_angle, int param_7) {
+    fopAc_ac_c* player = (fopAc_ac_c*)dComIfGp_getPlayer_fakematch(0);
     if (param_7 > field_0x4) {
         return 0;
     } 
-    cXyz acStack_48 = param_1->attention_info.position - player->attention_info.position;
-    if (acStack_48.y < param_5 || acStack_48.y > param_4) {
+
+    cXyz vec_to_player = i_reqActor->attention_info.position - player->attention_info.position;
+    if (vec_to_player.y < i_downDist || vec_to_player.y > i_upDist) {
         return 0;
     }
-    f32 dVar7 = acStack_48.absXZ();
-    if (dVar7 > param_3) {
+
+    f32 player_xz_dist = vec_to_player.absXZ();
+    if (player_xz_dist > i_horizontalDist) {
         return 0;
     }
-    if (param_6 != 0) {
-        cSGlobe acStack_50(acStack_48);
-        s16 sVar5 = acStack_50.U() - fopAcM_GetShapeAngle_p(player)->y;
-        if (sVar5 < 0) {
-            sVar5 = -sVar5;
+
+    if (i_angle != 0) {
+        cSGlobe globe(vec_to_player);
+        csXyz* player_angle_p = fopAcM_GetShapeAngle_p(player);
+
+        s16 angle = globe.U() - player_angle_p->y;
+        if (angle < 0) {
+            angle = -angle;
         }
-        if (sVar5 == -0x8000) {
-            sVar5 = 0x7fff;
+        if (angle == -0x8000) {
+            angle = 0x7fff;
         }
-        if (sVar5 > param_6) {
+        if (angle > i_angle) {
             return 0;
         }
     }
-    if (param_7 < field_0x4 || dVar7 < field_0x8) {
+
+    if (param_7 < field_0x4 || player_xz_dist < mDistance) {
         field_0x4 = param_7;
-        field_0xc = param_2;
-        field_0x0 = fopAcM_GetID(param_1);
-        field_0x8 = dVar7;
+        mCatchItemNo = i_itemNo;
+        mRequestActorID = fopAcM_GetID(i_reqActor);
+        mDistance = player_xz_dist;
         return 1;
     }
+
     return 0;
 }
 
@@ -1642,55 +1677,57 @@ fopAc_ac_c* dAttLook_c::convPId(fpc_ProcID i_id) {
 
 /* 80073CD4-80073CEC 06E614 0018+00 1/1 0/0 0/0 .text            init__10dAttLook_cFv */
 void dAttLook_c::init() {
-    field_0x0 = -1;
-    mLookTargetID = -1;
+    mRequestActorID = fpcM_ERROR_PROCESS_ID_e;
+    mLookTargetID = fpcM_ERROR_PROCESS_ID_e;
     field_0x4 = 3;
 }
 
 /* 80073CEC-80073D08 06E62C 001C+00 1/1 0/0 0/0 .text            proc__10dAttLook_cFv */
 void dAttLook_c::proc() {
-    mLookTargetID = field_0x0;
-    field_0x0 = -1;
+    mLookTargetID = mRequestActorID;
+    mRequestActorID = fpcM_ERROR_PROCESS_ID_e;
     field_0x4 = 3;
 }
 
 /* 80073D08-80073FC4 06E648 02BC+00 0/0 0/0 7/7 .text request__10dAttLook_cFP10fopAc_ac_cfffsi */
-int dAttLook_c::request(fopAc_ac_c* param_1, f32 param_2, f32 param_3, f32 param_4,
-                             s16 param_5, int param_6) {
+int dAttLook_c::request(fopAc_ac_c* i_reqActor, f32 i_horizontalDist, f32 i_upDist, f32 i_downDist,
+                        s16 i_angle, int param_6) {
     fopAc_ac_c* player = (fopAc_ac_c*)dComIfGp_getPlayer(0);
     if (param_6 > field_0x4) {
         return 0;
     } 
-    cXyz acStack_48 = param_1->eyePos - player->eyePos;
-    if (acStack_48.y < param_4 || acStack_48.y > param_3) {
+
+    cXyz vec_to_player = i_reqActor->eyePos - player->eyePos;
+    if (vec_to_player.y < i_downDist || vec_to_player.y > i_upDist) {
         return 0;
     }
-    f32 dVar7 = acStack_48.absXZ();
-    if (dVar7 > param_2) {
+
+    f32 player_xz_dist = vec_to_player.absXZ();
+    if (player_xz_dist > i_horizontalDist) {
         return 0;
     }
-    if (param_5 != 0) {
-        acStack_48 = param_1->current.pos - player->current.pos;
-        cSGlobe acStack_50(acStack_48);
-        s16 sVar5 = acStack_50.U() - fopAcM_GetShapeAngle_p(player)->y;
-        if (sVar5 < 0) {
-            sVar5 = -sVar5;
+
+    if (i_angle != 0) {
+        vec_to_player = i_reqActor->current.pos - player->current.pos;
+        cSGlobe globe(vec_to_player);
+        s16 angle = globe.U() - fopAcM_GetShapeAngle_p(player)->y;
+        if (angle < 0) {
+            angle = -angle;
         }
-        if (sVar5 == -0x8000) {
-            sVar5 = 0x7fff;
+        if (angle == -0x8000) {
+            angle = 0x7fff;
         }
-        if (sVar5 > param_5) {
+        if (angle > i_angle) {
             return 0;
         }
     }
-    if (param_6 < field_0x4 || dVar7 < field_0x8) {
+
+    if (param_6 < field_0x4 || player_xz_dist < mDistance) {
         field_0x4 = param_6;
-        field_0x0 = fopAcM_GetID(param_1);
-        field_0x8 = dVar7;
+        mRequestActorID = fopAcM_GetID(i_reqActor);
+        mDistance = player_xz_dist;
         return 1;
     }
+
     return 0;
 }
-
-/* 80073FC4-8007400C 06E904 0048+00 2/1 0/0 0/0 .text            __dt__15dAttDrawParam_cFv */
-dAttDrawParam_c::~dAttDrawParam_c() {}

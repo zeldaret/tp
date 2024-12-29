@@ -5,6 +5,7 @@
 
 #include "d/d_npc_lib.h"
 #include "dol2asm.h"
+#include "SSystem/SComponent/c_math.h"
 
 //
 // Forward References:
@@ -114,8 +115,7 @@ SECTION_SDATA2 static f64 lit_3873 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80251534-80251B60 24BE74 062C+00 0/0 0/0 2/2 .text
  * action__16dNpcLib_lookat_cF4cXyz4cXyzP10fopAc_ac_cPA4_fi     */
-// regswap, equivalent
-#ifdef NONMATCHING
+// NONMATCHING - regswap, equivalent
 void dNpcLib_lookat_c::action(cXyz param_0, cXyz param_1, fopAc_ac_c* param_2, Mtx param_3,
                               int param_4) {
     cXyz spA0;
@@ -190,12 +190,6 @@ void dNpcLib_lookat_c::action(cXyz param_0, cXyz param_1, fopAc_ac_c* param_2, M
         field_0x64[i].z = 0;
     }
 }
-#else
-void dNpcLib_lookat_c::action(cXyz param_0, cXyz param_1, fopAc_ac_c* param_2, Mtx param_3,
-                                  int param_4) {
-    // NONMATCHING
-}
-#endif
 
 /* 80251B60-80251B64 24C4A0 0004+00 0/0 0/0 2/2 .text            dbView__16dNpcLib_lookat_cFv */
 void dNpcLib_lookat_c::dbView() {}

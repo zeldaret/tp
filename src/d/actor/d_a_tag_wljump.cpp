@@ -7,6 +7,8 @@
 #include "dol2asm.h"
 #include "d/d_path.h"
 #include "d/d_procname.h"
+#include "d/actor/d_a_player.h"
+#include "d/actor/d_a_midna.h"
 #include "JSystem/JKernel/JKRHeap.h"
 
 //
@@ -104,8 +106,7 @@ static int daTagWljump_Delete(daTagWljump_c* param_0) {
 /* ############################################################################################## */
 
 /* 80D65090-80D6587C 000250 07EC+00 1/1 0/0 0/0 .text            execute__13daTagWljump_cFv */
-// reg swap
-#ifdef NONMATCHING
+// NONMATCHING - reg swap
 int daTagWljump_c::execute() {
     attention_info.flags = 0;
     if (field_0x56c[1]) {
@@ -203,8 +204,8 @@ int daTagWljump_c::execute() {
                 if (uVar6 == field_0x5c4->m_num) {
                     field_0x568 = -1;
                 }
-            } else if (field_0x56b) {
-                field_0x56b = 0;
+            } else if (mNextCheckFlg) {
+                mNextCheckFlg = 0;
                 if (field_0x56a < field_0x568) {
                     field_0x568++;
                     if (field_0x5c4->m_num == field_0x568) {
@@ -220,7 +221,7 @@ int daTagWljump_c::execute() {
             eyePos.set(pPoint->m_position.x, pPoint->m_position.y, pPoint->m_position.z);
             attention_info.position = eyePos;
             attention_info.position.y += 220.0f;
-            field_0x5c8 = pPoint->field_0x3 * 10.0f;
+            mLandArea = pPoint->mArg0 * 10.0f;
             if (pPoint->field_0x1 == 1) {
                 shape_angle.z = 1;
             } else {
@@ -260,109 +261,6 @@ int daTagWljump_c::execute() {
     
     return 1;
 }
-#else
-/* 80D658CC-80D658D0 000000 0004+00 1/1 0/0 0/0 .rodata          @4044 */
-SECTION_RODATA static f32 const lit_4044 = 1.0f;
-COMPILER_STRIP_GATE(0x80D658CC, &lit_4044);
-
-/* 80D658D0-80D658D4 000004 0004+00 0/1 0/0 0/0 .rodata          @4045 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4045 = -1.0f;
-COMPILER_STRIP_GATE(0x80D658D0, &lit_4045);
-#pragma pop
-
-/* 80D658D4-80D658DC 000008 0004+04 0/1 0/0 0/0 .rodata          @4046 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4046[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80D658D4, &lit_4046);
-#pragma pop
-
-/* 80D658DC-80D658E4 000010 0008+00 0/1 0/0 0/0 .rodata          @4047 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4047[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D658DC, &lit_4047);
-#pragma pop
-
-/* 80D658E4-80D658EC 000018 0008+00 0/1 0/0 0/0 .rodata          @4048 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4048[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D658E4, &lit_4048);
-#pragma pop
-
-/* 80D658EC-80D658F4 000020 0008+00 0/1 0/0 0/0 .rodata          @4049 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4049[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D658EC, &lit_4049);
-#pragma pop
-
-/* 80D658F4-80D658F8 000028 0004+00 0/1 0/0 0/0 .rodata          @4050 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4050 = 5.0f;
-COMPILER_STRIP_GATE(0x80D658F4, &lit_4050);
-#pragma pop
-
-/* 80D658F8-80D658FC 00002C 0004+00 0/1 0/0 0/0 .rodata          @4051 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4051 = 10.0f;
-COMPILER_STRIP_GATE(0x80D658F8, &lit_4051);
-#pragma pop
-
-/* 80D658FC-80D65904 000030 0004+04 0/1 0/0 0/0 .rodata          @4052 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4052[1 + 1 /* padding */] = {
-    220.0f,
-    /* padding */
-    0.0f,
-};
-COMPILER_STRIP_GATE(0x80D658FC, &lit_4052);
-#pragma pop
-
-/* 80D65904-80D6590C 000038 0008+00 0/1 0/0 0/0 .rodata          @4054 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4054[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D65904, &lit_4054);
-#pragma pop
-
-/* 80D6590C-80D65914 000040 0008+00 0/1 0/0 0/0 .rodata          @4055 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4055[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D6590C, &lit_4055);
-#pragma pop
-
-int daTagWljump_c::execute() {
-    // NONMATCHING
-}
-#endif
 
 /* 80D6587C-80D6589C 000A3C 0020+00 1/0 0/0 0/0 .text daTagWljump_Execute__FP13daTagWljump_c */
 static int daTagWljump_Execute(daTagWljump_c* param_0) {

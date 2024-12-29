@@ -71,8 +71,7 @@ SECTION_SDATA2 static f32 lit_3704[1 + 1 /* padding */] = {
 SECTION_SDATA2 static f64 lit_3707 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 80238CEC-8023907C 23362C 0390+00 0/0 5/5 0/0 .text            setTag__10dMsgUnit_cFiiPcb */
-// regalloc + mulli issue
-#ifdef NONMATCHING
+// NONMATCHING - regalloc + mulli issue
 void dMsgUnit_c::setTag(int param_1, int param_2, char* param_3, bool param_4) {
     *param_3 = 0;
     if (param_1 == 0x10000) {
@@ -149,11 +148,6 @@ void dMsgUnit_c::setTag(int param_1, int param_2, char* param_3, bool param_4) {
         }
     }
 }
-#else
-void dMsgUnit_c::setTag(int param_0, int param_1, char* param_2, bool param_3) {
-    // NONMATCHING
-}
-#endif
 
 /* 804510D0-804510D8 0005D0 0004+04 1/1 5/5 0/0 .sbss            g_msg_unit */
 dMsgUnit_c g_msg_unit;
