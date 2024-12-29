@@ -1989,7 +1989,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_smallkey"),
     ActorRel(NonMatching, "d_a_obj_smgdoor"),
     ActorRel(Matching, "d_a_obj_smoke"),
-    ActorRel(NonMatching, "d_a_obj_smtile"),
+    ActorRel(Matching, "d_a_obj_smtile"),
     ActorRel(Matching, "d_a_obj_smw_stone"),
     ActorRel(Matching, "d_a_obj_snowEffTag"),
     ActorRel(Matching, "d_a_obj_snow_soup"),
