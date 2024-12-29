@@ -94,9 +94,9 @@ public:
     fopAc_ac_c* getLookTarget() { return convPId(mLookTargetID); }
 
 private:
-    fpc_ProcID field_0x0;
-    s32 field_0x4;
-    f32 field_0x8;
+    fpc_ProcID mRequestActorID;
+    int field_0x4;
+    f32 mDistance;
     fpc_ProcID mLookTargetID;
 };  // Size: 0x10
 
@@ -135,12 +135,14 @@ public:
     /* 0x11C */ mDoExt_bpkAnm mImpactBpk;
     /* 0x134 */ mDoExt_brkAnm mImpactBrk;
     /* 0x14C */ mDoExt_btkAnm mImpactBtk;
-    /* 0x164 */ cXyz field_0x164;
+    /* 0x164 */ f32 mCursorSizeX;
+    /* 0x168 */ f32 mCursorSizeY;
+    /* 0x16C */ f32 mCursorOffsetY;
     /* 0x170 */ u8 mDrawType;
-    /* 0x171 */ u8 field_0x171;
-    /* 0x172 */ u8 field_0x172;
+    /* 0x171 */ u8 mAlphaAnmFrameMax;
+    /* 0x172 */ u8 mAlphaAnmFrame;
     /* 0x173 */ u8 field_0x173;
-    /* 0x174 */ u8 field_0x174;
+    /* 0x174 */ u8 mAlphaAnmPlayDirection;
     /* 0x175 */ u8 field_0x175;
 };
 

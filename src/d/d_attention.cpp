@@ -10,6 +10,9 @@
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_controller_pad.h"
 
+#define DRAW_TYPE_YELLOW 0
+#define DRAW_TYPE_RED    1
+
 class dAttDrawParam_c {
 public:
     /* 80070158 */ dAttDrawParam_c();
@@ -48,7 +51,7 @@ type_tbl_entry dAttention_c::act_type_tbl[5] = {
 static bool l_isFinalBossStg;
 
 /* 80070038-80070110 06A978 00D8+00 1/1 0/0 0/0 .text            __ct__11dAttParam_cFl */
-dAttParam_c::dAttParam_c(s32 param_0) {
+dAttParam_c::dAttParam_c(s32) {
     field_0x4 = 45.0f;
     field_0x8 = 30.0f;
     field_0xc = 90.0f;
@@ -129,43 +132,43 @@ dAttention_c::dAttention_c(fopAc_ac_c* i_player, u32 i_padNo) {
     JUT_ASSERT(0x1BF, modelDataY);
 
     for (int i = 0; i < 2; i++) {
-        draw[i].mModel[0] = mDoExt_J3DModel__create(modelDataY, 0x80000, 0x11000285);
-        JUT_ASSERT(0x1CA, draw[i].mModel[0] != 0);
+        draw[i].mModel[DRAW_TYPE_YELLOW] = mDoExt_J3DModel__create(modelDataY, 0x80000, 0x11000285);
+        JUT_ASSERT(0x1CA, draw[i].mModel[DRAW_TYPE_YELLOW] != 0);
 
-        draw[i].mModel[1] = mDoExt_J3DModel__create(modelDataR, 0x80000, 0x11000285);
-        JUT_ASSERT(0x1D4, draw[i].mModel[1] != 0);
+        draw[i].mModel[DRAW_TYPE_RED] = mDoExt_J3DModel__create(modelDataR, 0x80000, 0x11000285);
+        JUT_ASSERT(0x1D4, draw[i].mModel[DRAW_TYPE_RED] != 0);
 
         int res;
-        res = draw[i].mNoticeCursorBck[0].init((J3DAnmTransform*)dComIfG_getObjectRes("Always", 0x11), TRUE, 2, 1.0f, 0, -1, false);
+        res = draw[i].mNoticeCursorBck[DRAW_TYPE_YELLOW].init((J3DAnmTransform*)dComIfG_getObjectRes("Always", 0x11), TRUE, 2, 1.0f, 0, -1, false);
         JUT_ASSERT(0x1DC, res == 1);
 
-        res = draw[i].mNoticeCursorBpk[0].init(modelDataY, (J3DAnmColor*)dComIfG_getObjectRes("Always", 0x2B), TRUE, 2, 1.0f, 0, -1);
+        res = draw[i].mNoticeCursorBpk[DRAW_TYPE_YELLOW].init(modelDataY, (J3DAnmColor*)dComIfG_getObjectRes("Always", 0x2B), TRUE, 2, 1.0f, 0, -1);
         JUT_ASSERT(0x1E4, res == 1);
 
-        res = draw[i].mNoticeCursorBrk[0].init(modelDataY, (J3DAnmTevRegKey*)dComIfG_getObjectRes("Always", 0x37), TRUE, 2, 1.0f, 0, -1);
+        res = draw[i].mNoticeCursorBrk[DRAW_TYPE_YELLOW].init(modelDataY, (J3DAnmTevRegKey*)dComIfG_getObjectRes("Always", 0x37), TRUE, 2, 1.0f, 0, -1);
         JUT_ASSERT(0x1EC, res == 1);
 
-        res = draw[i].mNoticeCursorBtk[0].init(modelDataY, (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Always", 0x3F), TRUE, 2, 1.0f, 0,
+        res = draw[i].mNoticeCursorBtk[DRAW_TYPE_YELLOW].init(modelDataY, (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Always", 0x3F), TRUE, 2, 1.0f, 0,
                                          -1);
         JUT_ASSERT(0x1F4, res == 1);
 
-        res = draw[i].mNoticeCursor02Brk[0].init(modelDataY, (J3DAnmTevRegKey*)dComIfG_getObjectRes("Always", 0x38), TRUE, 2, 1.0f, 0, -1);
+        res = draw[i].mNoticeCursor02Brk[DRAW_TYPE_YELLOW].init(modelDataY, (J3DAnmTevRegKey*)dComIfG_getObjectRes("Always", 0x38), TRUE, 2, 1.0f, 0, -1);
         JUT_ASSERT(0x1FC, res == 1);
         
-        res = draw[i].mNoticeCursorBck[1].init((J3DAnmTransform*)dComIfG_getObjectRes("Always", 0x10), TRUE, 2, 1.0f, 0, -1, false);
+        res = draw[i].mNoticeCursorBck[DRAW_TYPE_RED].init((J3DAnmTransform*)dComIfG_getObjectRes("Always", 0x10), TRUE, 2, 1.0f, 0, -1, false);
         JUT_ASSERT(0x204, res == 1);
 
-        res = draw[i].mNoticeCursorBpk[1].init(modelDataR, (J3DAnmColor*)dComIfG_getObjectRes("Always", 0x2A), TRUE, 2, 1.0f, 0, -1);
+        res = draw[i].mNoticeCursorBpk[DRAW_TYPE_RED].init(modelDataR, (J3DAnmColor*)dComIfG_getObjectRes("Always", 0x2A), TRUE, 2, 1.0f, 0, -1);
         JUT_ASSERT(0x20B, res == 1);
 
-        res = draw[i].mNoticeCursorBrk[1].init(modelDataR, (J3DAnmTevRegKey*)dComIfG_getObjectRes("Always", 0x35), TRUE, 2, 1.0f, 0, -1);
+        res = draw[i].mNoticeCursorBrk[DRAW_TYPE_RED].init(modelDataR, (J3DAnmTevRegKey*)dComIfG_getObjectRes("Always", 0x35), TRUE, 2, 1.0f, 0, -1);
         JUT_ASSERT(0x212, res == 1);
 
-        res = draw[i].mNoticeCursorBtk[1].init(modelDataR, (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Always", 0x3E), TRUE, 2, 1.0f, 0,
+        res = draw[i].mNoticeCursorBtk[DRAW_TYPE_RED].init(modelDataR, (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Always", 0x3E), TRUE, 2, 1.0f, 0,
                                          -1);
         JUT_ASSERT(0x219, res == 1);
 
-        res = draw[i].mNoticeCursor02Brk[1].init(modelDataR, (J3DAnmTevRegKey*)dComIfG_getObjectRes("Always", 0x36), TRUE, 2, 1.0f, 0, -1);
+        res = draw[i].mNoticeCursor02Brk[DRAW_TYPE_RED].init(modelDataR, (J3DAnmTevRegKey*)dComIfG_getObjectRes("Always", 0x36), TRUE, 2, 1.0f, 0, -1);
         JUT_ASSERT(0x220, res == 1);
 
         res = draw[i].mImpactBck.init((J3DAnmTransform*)dComIfG_getObjectRes("Always", 0xC), TRUE, 0, 1.0f, 0, -1, false);
@@ -180,10 +183,10 @@ dAttention_c::dAttention_c(fopAc_ac_c* i_player, u32 i_padNo) {
         res = draw[i].mImpactBtk.init(modelDataR, (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Always", 0x3D), TRUE, 0, 1.0f, 0, -1);
         JUT_ASSERT(0x23D, res == 1);
 
-        draw[i].mDrawType = 0;
-        draw[i].field_0x171 = 1;
-        draw[i].field_0x172 = 0;
-        draw[i].field_0x174 = 1;
+        draw[i].mDrawType = DRAW_TYPE_YELLOW;
+        draw[i].mAlphaAnmFrameMax = 1;
+        draw[i].mAlphaAnmFrame = 0;
+        draw[i].mAlphaAnmPlayDirection = 1;
         draw[i].field_0x173 = 2;
         draw[i].field_0x175 = 0;
     }
@@ -640,7 +643,7 @@ void dAttention_c::sortList() {
     int i;
     int j;
     int count;
-    dAttList_c temp;
+    dAttList_c swap;
     dAttList_c* list;
 
     if (!chkFlag(0x4000)) {
@@ -648,9 +651,9 @@ void dAttention_c::sortList() {
         for (i = (mLockTargetID != fpcM_ERROR_PROCESS_ID_e) ? 1 : 0, count = mLockonCount; i < count - 1; i++) {
             for (j = i + 1; j < count; j++) {
                 if (list[i].mWeight > list[j].mWeight) {
-                    memcpy(&temp, &list[j], sizeof(dAttList_c));
+                    memcpy(&swap, &list[j], sizeof(dAttList_c));
                     memcpy(&list[j], &list[i], sizeof(dAttList_c));
-                    memcpy(&list[i], &temp, sizeof(dAttList_c));
+                    memcpy(&list[i], &swap, sizeof(dAttList_c));
                 }
             }
         }
@@ -661,9 +664,9 @@ void dAttention_c::sortList() {
     for (i = 0; i < count - 1; i++) {
         for (j = i + 1; j < count; j++) {
             if (list[i].mWeight > list[j].mWeight) {
-                memcpy(&temp, &list[j], sizeof(dAttList_c));
+                memcpy(&swap, &list[j], sizeof(dAttList_c));
                 memcpy(&list[j], &list[i], sizeof(dAttList_c));
-                memcpy(&list[i], &temp, sizeof(dAttList_c));
+                memcpy(&list[i], &swap, sizeof(dAttList_c));
             }
         }
     }
@@ -673,9 +676,9 @@ void dAttention_c::sortList() {
     for (i = 0; i < count - 1; i++) {
         for (j = i + 1; j < count; j++) {
             if (list[i].mWeight > list[j].mWeight) {
-                memcpy(&temp, &list[j], sizeof(dAttList_c));
+                memcpy(&swap, &list[j], sizeof(dAttList_c));
                 memcpy(&list[j], &list[i], sizeof(dAttList_c));
-                memcpy(&list[i], &temp, sizeof(dAttList_c));
+                memcpy(&list[i], &swap, sizeof(dAttList_c));
             }
         }
     }
@@ -683,15 +686,15 @@ void dAttention_c::sortList() {
 
 /* 800718A4-80071960 06C1E4 00BC+00 2/2 0/0 0/0 .text            stockAttention__12dAttention_cFv */
 void dAttention_c::stockAttention() {
-    fopAc_ac_c* target = LockonTarget(0);
+    fopAc_ac_c* lockon_actor = LockonTarget(0);
 
     initList(0xFFFFFFFF);
     if (makeList()) {
         sortList();
     }
 
-    if (target != mLockOnList[0].getActor()) {
-        if (target != NULL) {
+    if (lockon_actor != mLockOnList[0].getActor()) {
+        if (lockon_actor != NULL) {
             if (mLockOnList[0].getActor() != NULL) {
                 setFlag(2);
             }
@@ -819,18 +822,17 @@ f32 dAttention_c::EnemyDistance(fopAc_ac_c* i_actor) {
     return distance;
 }
 
-
 /* 80071D6C-80071DEC 06C6AC 0080+00 1/1 0/0 0/0 .text            sound_attention__FP10fopAc_ac_cPv
  */
-static int sound_attention(fopAc_ac_c* param_0, void* i_attention) {
-    f32 dist = ((dAttention_c*)i_attention)->EnemyDistance(param_0);
+static int sound_attention(fopAc_ac_c* i_actor, void* i_attention) {
+    f32 dist = ((dAttention_c*)i_attention)->EnemyDistance(i_actor);
 
     if (dist < 0.0f) {
         return 0;
     }
 
     if (dist < ((dAttention_c*)i_attention)->mEnemyDist) {
-        ((dAttention_c*)i_attention)->mEnemyActorID = fopAcM_GetID(param_0);
+        ((dAttention_c*)i_attention)->mEnemyActorID = fopAcM_GetID(i_actor);
         ((dAttention_c*)i_attention)->mEnemyDist = dist;
     }
 
@@ -857,10 +859,10 @@ void dAttention_c::runSoundProc() {
 void dAttention_c::runDrawProc() {
     if ((mFlags >> 3) & 1) {
         draw[0].setAlphaAnm(mAttParam.mAttnCursorAppearFrames, 0);
-        draw[0].setAnm(1, mAttParam.field_0x3c);
-        draw[0].field_0x164.x = mAttParam.mAttnCursorScaleX;
-        draw[0].field_0x164.y = mAttParam.mAttnCursorScaleY;
-        draw[0].field_0x164.z = mAttParam.mAttnCursorOffsetY;
+        draw[0].setAnm(DRAW_TYPE_RED, mAttParam.field_0x3c);
+        draw[0].mCursorSizeX = mAttParam.mAttnCursorScaleX;
+        draw[0].mCursorSizeY = mAttParam.mAttnCursorScaleY;
+        draw[0].mCursorOffsetY = mAttParam.mAttnCursorOffsetY;
         draw[0].field_0x175 = 1;
 
         if (!dComIfGp_checkPlayerStatus0(0, 0x36a02311) ||
@@ -879,22 +881,22 @@ void dAttention_c::runDrawProc() {
             lockSoundStart(Z2SE_SY_L_FOCUS_RESET);
         }
     } else if (chkFlag(0x1)) {
-        draw[0].setAnm(0, mAttParam.field_0x38);
+        draw[0].setAnm(DRAW_TYPE_YELLOW, mAttParam.field_0x38);
         draw[0].setAlphaAnm(mAttParam.mAttnCursorAppearFrames, 0);
 
-        draw[0].field_0x164.x = mAttParam.mSelCursorScaleX;
-        draw[0].field_0x164.y = mAttParam.mSelCursorScaleY;
-        draw[0].field_0x164.z = mAttParam.mSelCursorOffsetY;
+        draw[0].mCursorSizeX = mAttParam.mSelCursorScaleX;
+        draw[0].mCursorSizeY = mAttParam.mSelCursorScaleY;
+        draw[0].mCursorOffsetY = mAttParam.mSelCursorOffsetY;
         draw[0].field_0x175 = 0;
         setFlag(0x40000000);
     } else if (chkFlag(0x2)) {
         draw[0].setAlphaAnm(mAttParam.mAttnCursorAppearFrames, 0);
-        draw[1].setAnm(0, mAttParam.field_0x38);
+        draw[1].setAnm(DRAW_TYPE_YELLOW, mAttParam.field_0x38);
         draw[1].setAlphaAnm(mAttParam.mAttnCursorDisappearFrames, 1);
 
-        draw[1].field_0x164.x = mAttParam.mSelCursorScaleX;
-        draw[1].field_0x164.y = mAttParam.mSelCursorScaleY;
-        draw[1].field_0x164.z = mAttParam.mSelCursorOffsetY;
+        draw[1].mCursorSizeX = mAttParam.mSelCursorScaleX;
+        draw[1].mCursorSizeY = mAttParam.mSelCursorScaleY;
+        draw[1].mCursorOffsetY = mAttParam.mSelCursorOffsetY;
         draw[1].field_0x175 = 0;
         setFlag(0x40000000);
     } else if (mLockonCount <= 0 && field_0x328 == 0) {
@@ -1278,11 +1280,11 @@ void dAttention_c::Draw() {
 
     Mtx inv_m;
     MTXInverse(dComIfGd_getViewRotMtx(), inv_m);
-    fopAc_ac_c* target = LockonTarget(0);
+    fopAc_ac_c* lockon_actor = LockonTarget(0);
 
     if (!dComIfGp_event_runCheck()) {
-        if (target != NULL) {
-            draw[0].draw(target->attention_info.position, inv_m);
+        if (lockon_actor != NULL) {
+            draw[0].draw(lockon_actor->attention_info.position, inv_m);
 
             if (mLockonCount >= 2 && draw[1].field_0x173 == 2) {
                 int listIdx = mLockOnOffset;
@@ -1298,8 +1300,8 @@ void dAttention_c::Draw() {
                 }
             }
 
-            mTargetActorID = fopAcM_GetID(target);
-            mDrawAttnPos = target->attention_info.position;
+            mTargetActorID = fopAcM_GetID(lockon_actor);
+            mDrawAttnPos = lockon_actor->attention_info.position;
             field_0x328 = 0;
         } else if (field_0x328 > 0) {
             fopAc_ac_c* actor = fopAcM_SearchByID(mTargetActorID);
@@ -1336,7 +1338,7 @@ void dAttDraw_c::setAnm(u8 i_drawType, f32 i_anmSpeed) {
     mNoticeCursorBtk[mDrawType].reset();
     mNoticeCursorBtk[mDrawType].setPlaySpeed(i_anmSpeed);
 
-    if (mDrawType == 1) {
+    if (mDrawType == DRAW_TYPE_RED) {
         mImpactBck.reset();
         mImpactBpk.reset();
         mImpactBrk.reset();
@@ -1345,24 +1347,25 @@ void dAttDraw_c::setAnm(u8 i_drawType, f32 i_anmSpeed) {
 }
 
 /* 80072FE8-80073004 06D928 001C+00 1/1 0/0 0/0 .text            setAlphaAnm__10dAttDraw_cFUcUc */
-void dAttDraw_c::setAlphaAnm(u8 param_0, u8 param_1) {
-    field_0x171 = param_0;
-    field_0x172 = 0;
+void dAttDraw_c::setAlphaAnm(u8 i_frameMax, u8 i_playDirection) {
+    mAlphaAnmFrameMax = i_frameMax;
+    mAlphaAnmFrame = 0;
     field_0x173 = 2;
-    field_0x174 = param_1;
+    mAlphaAnmPlayDirection = i_playDirection;
 }
 
 /* 80073004-800732AC 06D944 02A8+00 1/1 0/0 0/0 .text            alphaAnm__10dAttDraw_cFv */
 void dAttDraw_c::alphaAnm() {
-    f32 dVar9 = (f32)field_0x172 / (f32)field_0x171;
-    f32 dVar8;
-    if (field_0x174 == 1) {
-        dVar8 = 1.0f - dVar9;
+    f32 anm_ratio = (f32)mAlphaAnmFrame / (f32)mAlphaAnmFrameMax;
+    f32 alpha_ratio;
+    if (mAlphaAnmPlayDirection == 1) {
+        alpha_ratio = 1.0f - anm_ratio;
     } else {
-        dVar8 = dVar9;
+        alpha_ratio = anm_ratio;
     }
-    if (dVar9 == 1.0f) {
-        if (mDrawType == 1 && field_0x174 == 0) {
+
+    if (anm_ratio == 1.0f) {
+        if (mDrawType == DRAW_TYPE_RED && mAlphaAnmPlayDirection == 0) {
             if (mImpactBck.isStop() && mImpactBpk.isStop() && mImpactBrk.isStop() && mImpactBtk.isStop()) {
                 field_0x175 = 0;
                 field_0x173 = 3;
@@ -1371,16 +1374,19 @@ void dAttDraw_c::alphaAnm() {
             field_0x173 = 3;
         }
     }
-    if (field_0x172 < field_0x171) {
-        field_0x172++;
+
+    if (mAlphaAnmFrame < mAlphaAnmFrameMax) {
+        mAlphaAnmFrame++;
     }
+
     J3DModelData* modelData = mModel[mDrawType]->getModelData();
-    for (int iVar4 = 0; iVar4 < modelData->getMaterialNum(); iVar4++) {
-        J3DMaterial* material = modelData->getMaterialNodePointer(iVar4);
-        J3DGXColor* pJVar5 = (J3DGXColor*)material->getTevKColor(0);
-        pJVar5->a = 255.0f * dVar8;
-        material->setTevKColor(0, pJVar5);
+    for (int i = 0; i < modelData->getMaterialNum(); i++) {
+        J3DMaterial* material = modelData->getMaterialNodePointer(i);
+        J3DGXColor* color = (J3DGXColor*)material->getTevKColor(0);
+        color->a = 255.0f * alpha_ratio;
+        material->setTevKColor(0, color);
     }
+
     if (field_0x175 == 0) {
         mNoticeCursorBck[mDrawType].play();
         mNoticeCursorBpk[mDrawType].play();
@@ -1399,7 +1405,7 @@ void dAttDraw_c::alphaAnm() {
 void dAttDraw_c::draw(cXyz& i_pos, Mtx i_mtx) {
     J3DModelData* modelData = mModel[mDrawType]->getModelData();
 
-    mDoMtx_stack_c::transS(i_pos.x, i_pos.y + field_0x164.z, i_pos.z);
+    mDoMtx_stack_c::transS(i_pos.x, i_pos.y + mCursorOffsetY, i_pos.z);
     mDoMtx_stack_c::concat(i_mtx);
     mModel[mDrawType]->setBaseTRMtx(mDoMtx_stack_c::get());
 
@@ -1415,7 +1421,7 @@ void dAttDraw_c::draw(cXyz& i_pos, Mtx i_mtx) {
         size = (view_pos.z * temp_f31) / (-100.0f - g_AttDwHIO.mCursorDistance);
     }
 
-    mModel[mDrawType]->setBaseScale(cXyz(field_0x164.x * size, field_0x164.y * size, field_0x164.x * size));
+    mModel[mDrawType]->setBaseScale(cXyz(mCursorSizeX * size, mCursorSizeY * size, mCursorSizeX * size));
 
     alphaAnm();
 
@@ -1473,10 +1479,10 @@ f32 dAttention_c::LockonReleaseDistanse() {
     }
 
     int idx =  actor->attention_info.distances[mLockOnList[mLockOnOffset].mType];
-    cSGlobe tmp_g(actor->attention_info.position - mOwnerAttnPos);
-    cSAngle tmp_a(tmp_g.U() - fopAcM_GetShapeAngle_p(mpPlayer)->y);
+    cSGlobe globe(actor->attention_info.position - mOwnerAttnPos);
+    cSAngle angle(globe.U() - fopAcM_GetShapeAngle_p(mpPlayer)->y);
 
-    return distace_angle_adjust(dist_table[idx].mDistanceAdjust, tmp_a, 1.0f) + dist_table[idx].mDistMaxRelease;
+    return distace_angle_adjust(dist_table[idx].mDistanceAdjust, angle, 1.0f) + dist_table[idx].mDistMaxRelease;
 }
 
 /* 800736CC-80073734 06E00C 0068+00 2/2 0/0 0/0 .text            LockonTargetPId__12dAttention_cFl
@@ -1671,55 +1677,55 @@ fopAc_ac_c* dAttLook_c::convPId(fpc_ProcID i_id) {
 
 /* 80073CD4-80073CEC 06E614 0018+00 1/1 0/0 0/0 .text            init__10dAttLook_cFv */
 void dAttLook_c::init() {
-    field_0x0 = fpcM_ERROR_PROCESS_ID_e;
+    mRequestActorID = fpcM_ERROR_PROCESS_ID_e;
     mLookTargetID = fpcM_ERROR_PROCESS_ID_e;
     field_0x4 = 3;
 }
 
 /* 80073CEC-80073D08 06E62C 001C+00 1/1 0/0 0/0 .text            proc__10dAttLook_cFv */
 void dAttLook_c::proc() {
-    mLookTargetID = field_0x0;
-    field_0x0 = fpcM_ERROR_PROCESS_ID_e;
+    mLookTargetID = mRequestActorID;
+    mRequestActorID = fpcM_ERROR_PROCESS_ID_e;
     field_0x4 = 3;
 }
 
 /* 80073D08-80073FC4 06E648 02BC+00 0/0 0/0 7/7 .text request__10dAttLook_cFP10fopAc_ac_cfffsi */
-int dAttLook_c::request(fopAc_ac_c* param_1, f32 param_2, f32 param_3, f32 param_4,
-                        s16 param_5, int param_6) {
+int dAttLook_c::request(fopAc_ac_c* i_reqActor, f32 i_horizontalDist, f32 i_upDist, f32 i_downDist,
+                        s16 i_angle, int param_6) {
     fopAc_ac_c* player = (fopAc_ac_c*)dComIfGp_getPlayer(0);
     if (param_6 > field_0x4) {
         return 0;
     } 
 
-    cXyz acStack_48 = param_1->eyePos - player->eyePos;
-    if (acStack_48.y < param_4 || acStack_48.y > param_3) {
+    cXyz vec_to_player = i_reqActor->eyePos - player->eyePos;
+    if (vec_to_player.y < i_downDist || vec_to_player.y > i_upDist) {
         return 0;
     }
 
-    f32 dVar7 = acStack_48.absXZ();
-    if (dVar7 > param_2) {
+    f32 player_xz_dist = vec_to_player.absXZ();
+    if (player_xz_dist > i_horizontalDist) {
         return 0;
     }
 
-    if (param_5 != 0) {
-        acStack_48 = param_1->current.pos - player->current.pos;
-        cSGlobe globe(acStack_48);
-        s16 sVar5 = globe.U() - fopAcM_GetShapeAngle_p(player)->y;
-        if (sVar5 < 0) {
-            sVar5 = -sVar5;
+    if (i_angle != 0) {
+        vec_to_player = i_reqActor->current.pos - player->current.pos;
+        cSGlobe globe(vec_to_player);
+        s16 angle = globe.U() - fopAcM_GetShapeAngle_p(player)->y;
+        if (angle < 0) {
+            angle = -angle;
         }
-        if (sVar5 == -0x8000) {
-            sVar5 = 0x7fff;
+        if (angle == -0x8000) {
+            angle = 0x7fff;
         }
-        if (sVar5 > param_5) {
+        if (angle > i_angle) {
             return 0;
         }
     }
 
-    if (param_6 < field_0x4 || dVar7 < field_0x8) {
+    if (param_6 < field_0x4 || player_xz_dist < mDistance) {
         field_0x4 = param_6;
-        field_0x0 = fopAcM_GetID(param_1);
-        field_0x8 = dVar7;
+        mRequestActorID = fopAcM_GetID(i_reqActor);
+        mDistance = player_xz_dist;
         return 1;
     }
 
