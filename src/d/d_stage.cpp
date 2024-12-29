@@ -2729,7 +2729,6 @@ stage_scls_info_dummy_class* dStage_stageDt_c::getSclsInfo() const {
 }
 
 /* 800272F0-800274B0 021C30 01C0+00 0/0 1/1 0/0 .text dStage_changeScene4Event__FiScibfUlsi */
-// NONMATCHING regalloc
 int dStage_changeScene4Event(int i_exitId, s8 room_no, int i_wipe, bool param_3, f32 speed,
                              u32 mode, s16 angle, int param_7) {
     stage_scls_info_dummy_class* scls;
@@ -2748,19 +2747,8 @@ int dStage_changeScene4Event(int i_exitId, s8 room_no, int i_wipe, bool param_3,
 
     stage_scls_info_class* scls_info = &scls->mEntries[i_exitId];
 
-    s32 wipe;
-    s32 wipe_time;
-    if (i_wipe == -1) {
-        wipe = dStage_sclsInfo_getWipe(scls_info);
-    } else {
-        wipe = i_wipe;
-    }
-
-    if (i_wipe == -1) {
-        wipe_time = dStage_sclsInfo_getWipeTime(scls_info);
-    } else {
-        wipe_time = 0;
-    }
+    s32 wipe = i_wipe == -1 ? dStage_sclsInfo_getWipe(scls_info) : i_wipe;
+    s32 wipe_time = i_wipe == -1 ? dStage_sclsInfo_getWipeTime(scls_info) : 0;
 
     s32 layer = dStage_sclsInfo_getSceneLayer(scls_info);
     int timeH = dStage_sclsInfo_getTimeH(scls_info);
@@ -3495,12 +3483,3 @@ int dStage_stageDt_c::getMapPath(void) {
 void dStage_stageDt_c::setElst(dStage_Elst_c* i_Elst) {
     mElst = i_Elst;
 }
-
-/* ############################################################################################## */
-/* 80450D7C-80450D80 -00001 0004+00 0/0 0/0 0/0 .sbss            None */
-#pragma push
-#pragma force_active on
-static u8 pad_80450D7C[4];
-#pragma pop
-
-/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
