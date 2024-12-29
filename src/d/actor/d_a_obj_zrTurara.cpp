@@ -7,6 +7,7 @@
 #include "d/d_bg_w.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_procname.h"
+#include "SSystem/SComponent/c_math.h"
 #include "dol2asm.h"
 
 //
@@ -500,8 +501,7 @@ COMPILER_STRIP_GATE(0x80D415F8, &lit_4060);
 #pragma pop
 
 /* 80D410E0-80D412A0 000C60 01C0+00 1/0 0/0 0/0 .text            modeBreak__12daZrTurara_cFv */
-#ifdef NONMATCHING
-// regalloc
+// NONMATCHING - regalloc
 void daZrTurara_c::modeBreak() {
     cXyz scale(mScaleF, mScaleF, mScaleF);
     mParticleKey = dComIfGp_particle_set(mParticleKey, 0x8a98, &current.pos, NULL, &scale);
@@ -525,11 +525,6 @@ void daZrTurara_c::modeBreak() {
         }
     }
 }
-#else
-void daZrTurara_c::modeBreak() {
-    // NONMATCHING
-}
-#endif
 
 /* 80D412A0-80D412AC 000E20 000C+00 2/2 0/0 0/0 .text            init_modeEnd__12daZrTurara_cFv */
 void daZrTurara_c::init_modeEnd() {

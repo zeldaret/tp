@@ -322,8 +322,7 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_prepare() {
 
 /* 8028A7B4-8028A8D8 2850F4 0124+00 1/0 0/0 0/0 .text
  * adaptor_do_begin__Q214JStudio_JStage14TAdaptor_actorFv       */
-// instruction order
-#ifdef NONMATCHING
+// NONMATCHING - instruction order
 void JStudio_JStage::TAdaptor_actor::adaptor_do_begin() {
     adaptor_object_begin_();
     JStage::TActor* pActor = get_pJSG_();
@@ -345,11 +344,6 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_begin() {
         pAnimOutput++;
     }
 }
-#else
-void JStudio_JStage::TAdaptor_actor::adaptor_do_begin() {
-    // NONMATCHING
-}
-#endif
 
 /* 8028A8D8-8028A92C 285218 0054+00 1/0 0/0 0/0 .text
  * adaptor_do_end__Q214JStudio_JStage14TAdaptor_actorFv         */
@@ -676,14 +670,9 @@ void JStudio_JStage::TAdaptor_actor::TVVOutput_ANIMATION_FRAME_::operator()(
 
 /* 8028B138-8028B198 285A78 0060+00 2/1 0/0 0/0 .text
  * __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv */
-#ifdef NONMATCHING
+// NONMATCHING
 JStudio_JStage::TAdaptor_actor::TVVOutput_ANIMATION_FRAME_::~TVVOutput_ANIMATION_FRAME_() {
 }
-#else
-JStudio_JStage::TAdaptor_actor::TVVOutput_ANIMATION_FRAME_::~TVVOutput_ANIMATION_FRAME_() {
-    // NONMATCHING
-}
-#endif
 
 /* ############################################################################################## */
 /* 803C5864-803C5888 022984 0010+14 2/2 0/0 0/0 .data

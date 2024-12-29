@@ -93,7 +93,7 @@ public:
     void scrollToFirstLine() { scroll(-mMaxLines); }
 
     /* 0x18 */ JGadget::TLinkListNode mListNode;
-    /* 0x20 */ u32 field_0x20;
+    /* 0x20 */ unsigned int field_0x20;
     /* 0x24 */ int mMaxLines;
     /* 0x28 */ u8* mBuf;
     /* 0x2C */ bool field_0x2c;
@@ -133,11 +133,16 @@ public:
 
     JUTConsole* getDirectConsole() const { return mDirectConsole; }
 
-    static JUTConsoleManager* getManager() { return sManager; }
+    static JUTConsoleManager* const getManager() { return sManager; }
 
     static JUTConsoleManager* sManager;
 
+#ifdef __MWERKS__
     typedef JGadget::TLinkList<JUTConsole, -offsetof(JUTConsole, mListNode)> ConsoleList;
+#else
+    // clangd does not support offsetof in template arguments.
+    typedef JGadget::TLinkList<JUTConsole, -sizeof(JKRDisposer)> ConsoleList;
+#endif
 
 private:
     /* 0x00 */ ConsoleList soLink_;

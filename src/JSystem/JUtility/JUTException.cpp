@@ -6,69 +6,20 @@
 #include "JSystem/JUtility/JUTException.h"
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
-#include "math.h"
-#include "stdio.h"
-#include "stdlib.h"
-#include "dol2asm.h"
-#include "dolphin/base/PPCArch.h"
-#include "dolphin/os.h"
-#include "global.h"
-
-//
-// Forward References:
-//
-
-extern "C" void run__12JUTExceptionFv();
-extern "C" void __dt__12JUTExceptionFv();
-extern "C" void printContext__12JUTExceptionFUsP9OSContextUlUl();
-extern "C" void createFB__12JUTExceptionFv();
-extern "C" void panic_f_va__12JUTExceptionFPCciPCcP16__va_list_struct();
-
-extern "C" extern char const* const JUTException__stringBase0;
-extern "C" u8 sMessageQueue__12JUTException[32];
-extern "C" u8 sMessageBuffer__12JUTException[4 + 4 /* padding */];
-extern "C" u8 sErrorManager__12JUTException[4];
-
-extern "C" u8 msr__12JUTException[4];
-extern "C" u8 fpscr__12JUTException[4];
-extern "C" u8 sPreUserCallback__12JUTException[4];
-extern "C" u8 sConsole__12JUTException[4];
-
-//
-// External References:
-//
-
-extern "C" void changeFrameBuffer__14JUTDirectPrintFPvUsUs();
-extern "C" void _savegpr_25();
-extern "C" void _restgpr_25();
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_28();
-extern "C" void OSYieldThread();
-extern "C" void OSFillFPUContext(OSContext*);
-extern "C" void print_f__10JUTConsoleFPCce();
-extern "C" OSContext* OSGetCurrentContext();
-extern "C" extern _GXRenderModeObj GXNtsc480Int;
-extern "C" void _restgpr_16();
-extern "C" void fopen__13JUTDirectFileFPCc();
-extern "C" void fclose__13JUTDirectFileFv();
-extern "C" void fgets__13JUTDirectFileFPvi();
-extern "C" void print__10JUTConsoleFPCc();
-extern "C" void __ct__13JUTDirectFileFv();
-extern "C" void __dt__13JUTDirectFileFv();
-extern "C" void _savegpr_16();
-
-//
-// Declarations:
-//
+#include "JSystem/JUtility/JUTDirectFile.h"
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <dolphin.h>
 
 /* 803CC620-803CC640 029740 0020+00 3/3 0/0 0/0 .data            sMessageQueue__12JUTException */
-SECTION_DATA OSMessageQueue JUTException::sMessageQueue = {0};
+OSMessageQueue JUTException::sMessageQueue = {0};
 
 /* 803CC640-803CC660 029760 0020+00 1/1 0/0 0/0 .data            c3bcnt */
-SECTION_DATA static OSTime c3bcnt[4] = {0, 0, 0, 0};
+static OSTime c3bcnt[4] = {0, 0, 0, 0};
 
 /* 803CC660-803CC6A4 -00001 0044+00 1/1 0/0 0/0 .data            sCpuExpName__12JUTException */
-SECTION_DATA const char* JUTException::sCpuExpName[17] = {
+const char* JUTException::sCpuExpName[17] = {
     "SYSTEM RESET",
     "MACHINE CHECK",
     "DSI",
@@ -132,9 +83,8 @@ JUTException* JUTException::create(JUTDirectPrint* directPrint) {
     return sErrorManager;
 }
 
-/* ############################################################################################## */
 /* 804508F0-804508F8 000370 0004+04 1/1 0/0 0/0 .sdata           sMessageBuffer__12JUTException */
-SECTION_SDATA OSMessage JUTException::sMessageBuffer[1 + 1 /* padding */] = {0};
+OSMessage JUTException::sMessageBuffer[1] = {0};
 
 struct CallbackObject {
     /* 0x00 */ OSErrorHandler callback;
@@ -179,9 +129,7 @@ void* JUTException::run() {
     }
 }
 
-/* ############################################################################################## */
 /* 80434578-8043458C 061298 0014+00 2/2 0/0 0/0 .bss             exCallbackObject */
-
 STATIC_ASSERT(sizeof(CallbackObject) == 0x14);
 static CallbackObject exCallbackObject;
 
@@ -303,16 +251,6 @@ void JUTException::showFloatSub(int index, f32 value) {
         sConsole->print_f("F%02d:%+.3E", index, value);
     }
 }
-
-/* ############################################################################################## */
-/* 8039D490-8039D490 029AF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039D5B7 =
-    "-------------------------------- FPR\n";
-SECTION_DEAD static char const* const stringBase_8039D5DD = " ";
-SECTION_DEAD static char const* const stringBase_8039D5DF = "\n";
-#pragma pop
 
 /* 802E2454-802E2578 2DCD94 0124+00 1/1 0/0 0/0 .text showFloat__12JUTExceptionFP9OSContext */
 void JUTException::showFloat(OSContext* context) {
@@ -968,147 +906,132 @@ bool JUTException::queryMapAddress(char* mapPath, u32 address, s32 section_id, u
     return false;
 }
 
-/* ############################################################################################## */
-/* 8039D490-8039D490 029AF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039D97E = "  [%08X]: .%s [%08X: %XH]\n  %s\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039D99E = "\0";
-#pragma pop
-
 /* 802E3C90-802E3FEC 2DE5D0 035C+00 1/1 0/0 0/0 .text
  * queryMapAddress_single__12JUTExceptionFPcUllPUlPUlPcUlbb     */
 // 2 additional instructions (addi r5,r1,8) related to section_name variable.
-#ifdef NONMATCHING
 bool JUTException::queryMapAddress_single(char* mapPath, u32 address, s32 section_id, u32* out_addr,
                                           u32* out_size, char* out_line, u32 line_length,
                                           bool print, bool begin_with_newline) {
     if (!mapPath) {
-        return false;
-    }
+		return false;
+	}
 
-    char section_name[16];
-    char buffer[0x200];
-    JUTDirectFile file;
-    int i = 0;
-    if (!file.fopen(mapPath)) {
-        return false;
-    }
+	char section_name[16];
+	char buffer[0x200];
+	JUTDirectFile file;
+	int section_idx = 0;
+	if (!file.fopen(mapPath)) {
+		return false;
+	}
 
-    bool result = 0;
-    do {
-        char* src = buffer;
-        int found_section = 0;
-        do {
-            i++;
-            while (true) {
-                while (true) {
-                    int length = file.fgets(buffer, ARRAY_SIZE(buffer));
-                    if (length < 0)
-                        goto next_section;
-                    if (buffer[0] == '.')
-                        break;
-                }
+	bool result = false;
+	bool found_section;
 
-                int i = 0;
-                char* src = buffer + 1;
-                for (; *src != '\0'; i++, src++) {
-                    section_name[i] = *src;
-                    if (*src == ' ' || i == 0xf)
-                        break;
-                }
+	while (true) {
+		section_idx++;
+		found_section = false;
+		while (true) {
+			char* src;
+			char* dst;
 
-                section_name[i] = 0;
-                if (*src == 0)
-                    break;
+			if (file.fgets(buffer, ARRAY_SIZE(buffer)) < 0)
+				break;
+			if (buffer[0] != '.')
+				continue;
 
-                if (src[1] == 's' && src[2] == 'e' && src[3] == 'c' && src[4] == 't') {
-                    found_section = true;
-                    break;
-                }
-            }
-            if ((found_section & 0xFF) == 0)
-                goto end;
-        } while (section_id >= 0 && section_id != i);
-    next_section:;
+			int i = 0;
+			src   = buffer + 1;
+			while (*src != '\0') {
+				section_name[i] = *src;
+				if (*src == ' ' || i == 0xf)
+					break;
+				i++;
+				src++;
+			}
 
-        u32 addr;
-        int size;
-        do {
-            int length;
-            do {
-                length = file.fgets(buffer, ARRAY_SIZE(buffer));
-                if (length <= 4)
-                    goto next_symbol;
-            } while ((length < 28) || (buffer[28] != '4'));
+			section_name[i] = 0;
+			if (*src == 0)
+				break;
 
-            addr = strtol(buffer + 19, NULL, 16);
-            addr = ((buffer[18] - '0') << 28) | addr;
-            size = strtol(buffer + 11, NULL, 16);
-        } while (addr > address || address >= addr + size);
+			if (src[1] == 's' && src[2] == 'e' && src[3] == 'c' && src[4] == 't') {
+				found_section = true;
+				break;
+			}
+		}
 
-        if (out_addr)
-            *out_addr = addr;
+		if (!found_section)
+			break;
 
-        if (out_size)
-            *out_size = size;
+		if (section_id >= 0 && section_id != section_idx)
+			continue;
 
-        if (out_line) {
-            src = buffer + 0x1e;
-            char* dst = out_line;
-            u32 length = 0;
-            for (; length < line_length - 1; src++) {
-                u32 ch = *(u8*)src;
-                if (ch < ' ' && ch != '\t')
-                    break;
-                if (((int)ch == ' ' || ch == '\t') && (length != 0)) {
-                    if (dst[-1] != ' ') {
-                        *dst = ' ';
-                        dst++;
-                        length++;
-                    }
-                } else {
-                    *dst = ch;
-                    dst++;
-                    length++;
-                }
-            }
-            if (length != 0 && dst[-1] == ' ') {
-                dst--;
-            }
-            *dst = 0;
-            if (print) {
-                if (begin_with_newline) {
-                    sConsole->print("\n");
-                }
-                sConsole->print_f("  [%08X]: .%s [%08X: %XH]\n  %s\n", address, section_name, addr,
-                                  size, out_line);
-                begin_with_newline = false;
-            }
-        }
+		int length;
 
-        result = true;
+		while (true) {
+			if ((length = file.fgets(buffer, ARRAY_SIZE(buffer))) <= 4)
+				break;
+			if ((length < 28))
+				continue;
+			if (buffer[28] == '4') {
+				u32 addr = ((buffer[18] - '0') << 28) | strtol(buffer + 19, NULL, 16);
+				int size = strtol(buffer + 11, NULL, 16);
+				if ((addr <= address && address < addr + size)) {
+					if (out_addr)
+						*out_addr = addr;
 
-    next_symbol:;
-    } while ((result & 0xFF) == 0 && section_id >= 0 && section_id != i);
+					if (out_size)
+						*out_size = size;
 
-    if (print && begin_with_newline) {
-        sConsole->print("\n");
-    }
+					if (out_line) {
+						const u8* src = (const u8*)&buffer[0x1e];
+						u8* dst       = (u8*)out_line;
+						u32 i         = 0;
 
-end:
-    file.fclose();
-    bool bresult = result != false;
-    return bresult;
+						for (i = 0; i < line_length - 1; ++src) {
+							if ((u32)(*src) < ' ' && (u32)*src != '\t')
+								break;
+							if ((*src == ' ' || (u32)*src == '\t') && (i != 0)) {
+								if (dst[-1] != ' ') {
+									*dst = ' ';
+									dst++;
+									++i;
+								}
+							} else {
+								*dst++ = *src;
+								i++;
+							}
+						}
+						if (i != 0 && dst[-1] == ' ') {
+							dst--;
+							i--;
+						}
+						*dst = 0;
+						if (print) {
+							if (begin_with_newline) {
+								sConsole->print("\n");
+							}
+							sConsole->print_f("  [%08X]: .%s [%08X: %XH]\n  %s\n", address, section_name, addr, size, out_line);
+							begin_with_newline = false;
+						}
+					}
+					result = true;
+					break;
+				}
+			}
+		}
+
+		if (!result && (section_id < 0 || section_id != section_idx)) {
+			continue;
+		}
+		if (print && begin_with_newline) {
+			sConsole->print("\n");
+		}
+		break;
+	}
+
+	file.fclose();
+	return result ? true : false;
 }
-#else
-bool JUTException::queryMapAddress_single(char* param_0, u32 param_1, s32 param_2, u32* param_3,
-                                              u32* param_4, char* param_5, u32 param_6,
-                                              bool param_7, bool param_8) {
-    // NONMATCHING
-}
-#endif
 
 /* 802E3FEC-802E40CC 2DE92C 00E0+00 0/0 1/1 0/0 .text            createConsole__12JUTExceptionFPvUl
  */
@@ -1146,8 +1069,3 @@ JUTExternalFB::JUTExternalFB(_GXRenderModeObj* renderMode, GXGamma gamma, void* 
 
 /* 802E40EC-802E414C 2DEA2C 0060+00 1/0 0/0 0/0 .text            __dt__12JUTExceptionFv */
 JUTException::~JUTException() {}
-
-/* ##############################################################################################
- */
-/* 804508F8-80450900 000378 0008+00 0/0 3/3 0/0 .sdata           None */
-SECTION_SDATA extern bool sAssertVisible = true;

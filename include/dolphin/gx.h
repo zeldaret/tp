@@ -111,6 +111,10 @@ static inline void GXNormal3f32(const f32 x, const f32 y, const f32 z) {
     GXWGFifo.f32 = z;
 }
 
+static inline void GXNormal1x16(const u16 x) {
+    GXWGFifo.u16 = x;
+}
+
 static inline void GXPosition2f32(const f32 x, const f32 z) {
     GXWGFifo.f32 = x;
     GXWGFifo.f32 = z;

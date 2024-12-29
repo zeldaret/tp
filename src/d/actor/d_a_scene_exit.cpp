@@ -6,6 +6,7 @@
 #include "d/actor/d_a_scene_exit.h"
 #include "dol2asm.h"
 #include "d/d_com_inf_game.h"
+#include "d/actor/d_a_player.h"
 #include "m_Do/m_Do_mtx.h"
 
 //
@@ -120,9 +121,7 @@ COMPILER_STRIP_GATE(0x80485CA8, &lit_3842);
 #pragma pop
 
 /* 80485A50-80485C90 000290 0240+00 1/1 0/0 0/0 .text            execute__8daScex_cFv */
-// regalloc
-// this matches debug but not retail :/
-#ifdef NONMATCHING
+// NONMATCHING - regalloc, this matches debug but not retail :/
 int daScex_c::execute() {
     daPy_py_c* player = daPy_getPlayerActorClass();
     cXyz spC;
@@ -164,11 +163,6 @@ int daScex_c::execute() {
 
     return 1;
 }
-#else
-int daScex_c::execute() {
-    // NONMATCHING
-}
-#endif
 
 /* ############################################################################################## */
 /* 80485CAC-80485CCC -00001 0020+00 1/0 0/0 0/0 .data            l_daScex_Method */

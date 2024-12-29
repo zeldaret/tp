@@ -5,6 +5,7 @@
 
 #include "JSystem/JMessage/processor.h"
 #include "JSystem/JMessage/control.h"
+#include "JSystem/JUtility/JUTAssert.h"
 
 //
 // Forward References:
@@ -151,8 +152,7 @@ const JMessage::TResource* JMessage::TProcessor::getResource_groupID(u16 groupID
 
 /* 802A7CD4-802A7E38 2A2614 0164+00 0/0 1/1 0/0 .text
  * toMessageCode_messageID__Q28JMessage10TProcessorCFUlUlPb     */
-// TContainerEnumerator_const stack issues
-#ifdef NONMATCHING
+// NONMATCHING - TContainerEnumerator_const stack issues
 u32 JMessage::TProcessor::toMessageCode_messageID(u32 param_0, u32 param_1,
                                                       bool* param_2) const {
     const TResource* this_00 = getResourceCache();
@@ -177,12 +177,6 @@ u32 JMessage::TProcessor::toMessageCode_messageID(u32 param_0, u32 param_1,
     }
     return -1;
 }
-#else
-u32 JMessage::TProcessor::toMessageCode_messageID(u32 param_0, u32 param_1,
-                                                      bool* param_2) const {
-    // NONMATCHING
-}
-#endif
 
 /* 802A7E38-802A7EDC 2A2778 00A4+00 1/1 0/0 0/0 .text
  * on_select_begin__Q28JMessage10TProcessorFPFPQ28JMessage10TProcessor_PCcPCvPCcUl */
@@ -611,18 +605,13 @@ void JMessage::TSequenceProcessor::do_tag_(u32 uTag, void const* data, u32 uSize
 
 /* 802A892C-802A8944 2A326C 0018+00 1/1 0/0 0/0 .text
  * process_setMessageIndex_reserved___Q28JMessage18TSequenceProcessorFUs */
-#ifdef NONMATCHING
+// NONMATCHING
 void JMessage::TSequenceProcessor::process_setMessageIndex_reserved_(u16 u16Index) {
     JUT_ASSERT(890, u16Index >= 0xff00);
     if (u16Index != -1) {
         return;
     } 
 }
-#else
-void JMessage::TSequenceProcessor::process_setMessageIndex_reserved_(u16 param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 802A8944-802A89B8 2A3284 0074+00 4/4 0/0 0/0 .text
  * process_setMessageCode___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUsUs */

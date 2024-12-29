@@ -106,9 +106,8 @@ void daItem_c::setBaseMtx_1() {
 
 /* 8015B254-8015B320 155B94 00CC+00 2/2 0/0 0/0 .text
  * itemGetCoCallBack__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
-// matches, but pushes up weak daPy_py_c functions incorrectly
+// NONMATCHING - matches, but pushes up weak daPy_py_c functions incorrectly
 // might need other TUs that use daPy_py_c weaks to be finished first
-#ifdef NONMATCHING
 static void itemGetCoCallBack(fopAc_ac_c* i_coActorA, dCcD_GObjInf* i_coObjInfA,
                               fopAc_ac_c* i_coActorB, dCcD_GObjInf* i_coObjInfB) {
     daItem_c* a_coActorA = (daItem_c*)i_coActorA;
@@ -127,12 +126,6 @@ static void itemGetCoCallBack(fopAc_ac_c* i_coActorA, dCcD_GObjInf* i_coObjInfA,
         }
     }
 }
-#else
-static void itemGetCoCallBack(fopAc_ac_c* param_0, dCcD_GObjInf* param_1, fopAc_ac_c* param_2,
-                                  dCcD_GObjInf* param_3) {
-    // NONMATCHING
-}
-#endif
 
 /* 8015B320-8015B3D8 155C60 00B8+00 2/2 0/0 0/0 .text
  * itemGetTgCallBack__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */

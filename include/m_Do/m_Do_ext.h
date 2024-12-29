@@ -375,7 +375,7 @@ public:
     /* 80011348 */ mDoExt_McaMorf2(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
                                    mDoExt_McaMorfCallBack2_c*, J3DAnmTransform*, J3DAnmTransform*,
                                    int, f32, int, int, Z2Creature*, u32, u32);
-    /* 80011464 */ void create(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
+    /* 80011464 */ int create(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
                                mDoExt_McaMorfCallBack2_c*, J3DAnmTransform*, J3DAnmTransform*, int,
                                f32, int, int, Z2Creature*, u32, u32);
     /* 800116B4 */ void ERROR_EXIT();
@@ -479,14 +479,14 @@ STATIC_ASSERT(sizeof(mDoExt_MtxCalcAnmBlendTblOld) == 0x10);
 
 class mDoExt_3Dline_c {
 public:
-    /* 800123D0 */ void init(u16, int, int);
+    /* 800123D0 */ int init(u16, int, int);
     /* 800126BC */ mDoExt_3Dline_c();
 
     /* 0x00 */ cXyz* field_0x0;
     /* 0x04 */ f32* field_0x4;
     /* 0x08 */ cXyz* field_0x8;
     /* 0x0C */ cXyz* field_0xc;
-    /* 0x10 */ void* field_0x10;
+    /* 0x10 */ u8* field_0x10;
     /* 0x14 */ void* field_0x14;
     /* 0x18 */ f32* field_0x18;
     /* 0x1C */ f32* field_0x1c;

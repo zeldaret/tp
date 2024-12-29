@@ -125,8 +125,7 @@ SECTION_SDATA2 static f32 lit_850 = 57.295780181884766f;
 
 /* 8028CCB0-8028CF68 2875F0 02B8+00 1/0 0/0 0/0 .text
  * adaptor_do_begin__Q214JStudio_JStage14TAdaptor_lightFv       */
-// regalloc
-#ifdef NONMATCHING
+// NONMATCHING - regalloc
 void JStudio_JStage::TAdaptor_light::adaptor_do_begin() {
     adaptor_object_begin_();
     JStage::TLight* pLightObj = get_pJSG_();
@@ -154,11 +153,6 @@ void JStudio_JStage::TAdaptor_light::adaptor_do_begin() {
     VECAdd(&finalTransform->position, &finalTransform->direction, &VStack_c4);
     adaptor_setVariableValue_Vec(sauVariableValue_3_TARGET_POSITION_XYZ, VStack_c4);
 }
-#else
-void JStudio_JStage::TAdaptor_light::adaptor_do_begin() {
-    // NONMATCHING
-}
-#endif
 
 /* 8028CF68-8028CFBC 2878A8 0054+00 1/0 0/0 0/0 .text
  * adaptor_do_end__Q214JStudio_JStage14TAdaptor_lightFv         */
@@ -172,8 +166,7 @@ SECTION_SDATA2 static f32 lit_898 = 0.01745329238474369f;
 
 /* 8028CFBC-8028D18C 2878FC 01D0+00 1/0 0/0 0/0 .text
  * adaptor_do_update__Q214JStudio_JStage14TAdaptor_lightFUl     */
-// float regalloc
-#ifdef NONMATCHING
+// NONMATCHING - float regalloc
 void JStudio_JStage::TAdaptor_light::adaptor_do_update(u32 param_1) {
     JStage::TLight* lightObj = get_pJSG_();
     const JStudio::TObject* pObject = adaptor_getObject();
@@ -209,11 +202,6 @@ void JStudio_JStage::TAdaptor_light::adaptor_do_update(u32 param_1) {
     lightObj->JSGSetDirection(pTrans->direction);
     pJSGObject_->JSGUpdate();
 }
-#else
-void JStudio_JStage::TAdaptor_light::adaptor_do_update(u32 param_0) {
-    // NONMATCHING
-}
-#endif
 
 /* 8028D18C-8028D1B0 287ACC 0024+00 1/0 0/0 0/0 .text
  * adaptor_do_data__Q214JStudio_JStage14TAdaptor_lightFPCvUlPCvUl */

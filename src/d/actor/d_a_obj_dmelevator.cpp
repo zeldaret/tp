@@ -846,17 +846,10 @@ SECTION_DEAD static char const* const stringBase_80BDF93C = "Timer";
 #pragma pop
 
 /* 80BDFAB0-80BDFAB8 -00001 0008+00 1/1 0/0 0/0 .data            action_table$4279 */
-#ifdef NONMATCHING
 static char* action_table[2] = {
     "WAIT",
     "MOVE",
 };
-#else
-SECTION_DATA static void* action_table[2] = {
-    (void*)(((char*)&d_a_obj_dmelevator__stringBase0) + 0x46),
-    (void*)(((char*)&d_a_obj_dmelevator__stringBase0) + 0x4B),
-};
-#endif
 
 /* 80BDF16C-80BDF320 0018EC 01B4+00 3/3 0/0 0/0 .text            demoProc__17daObjDmElevator_cFv */
 int daObjDmElevator_c::demoProc() {

@@ -21,7 +21,6 @@ public:
     /* 805A1A94 */ void actionEvent();
     /* 805A1AF0 */ void actionDead();
 
-private: 
     /* 0x568 */ cXyz field_0x568;
     /* 0x574 */ cXyz field_0x574;
     /* 0x580 */ u16 mEventID;

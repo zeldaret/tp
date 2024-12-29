@@ -2580,7 +2580,7 @@ JSystem/JUtility/JUTException.cpp:
 	.rodata     start:0x8039D490 end:0x8039D9A0
 	.data       start:0x803CC620 end:0x803CC6B8
 	.bss        start:0x80434578 end:0x80434870
-	.sdata      start:0x804508F0 end:0x80450900
+	.sdata      start:0x804508F0 end:0x804508F8
 	.sbss       start:0x80451508 end:0x80451528
 	.sdata2     start:0x80456050 end:0x80456060
 
@@ -2594,6 +2594,7 @@ JSystem/JUtility/JUTDirectPrint.cpp:
 JSystem/JUtility/JUTAssert.cpp:
 	.text       start:0x802E495C end:0x802E4C54
 	.bss        start:0x80434870 end:0x804349B0
+	.sdata      start:0x804508F8 end:0x80450900
 	.sbss       start:0x80451530 end:0x80451538
 	.sdata2     start:0x804560B8 end:0x804560D0
 

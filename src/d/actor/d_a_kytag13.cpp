@@ -446,8 +446,7 @@ SECTION_DATA extern void* __vt__14dBgS_ObjGndChk[12] = {
 
 /* 8085F2B0-80860148 000130 0E98+00 1/1 0/0 0/0 .text
  * daKytag13_Execute_standard__FP13kytag13_class                */
-// some regalloc
-#ifdef NONMATCHING
+// NONMATCHING - some regalloc
 static int daKytag13_Execute_standard(kytag13_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
     dKankyo_snow_Packet* snow_packet = g_env_light.mpSnowPacket;
@@ -536,7 +535,7 @@ static int daKytag13_Execute_standard(kytag13_class* i_this) {
 
         switch (snow_packet->mSnowEff[i].mStatus) {
         case 0:
-            snow_packet->mSnowEff[i].mWindSpeed = (4.0f * i_this->field_0x574) + cM_rndF(6.0f);
+            snow_packet->mSnowEff[i].mWindSpeed = (4.0f * i_this->mSpeed) + cM_rndF(6.0f);
             snow_packet->mSnowEff[i].mGravity = temp_f28;
             snow_packet->mSnowEff[i].mTimer = 0;
             snow_packet->mSnowEff[i].mPosition.x = sp40.x + cM_rndFX(500.0f * a_this->scale.x);
@@ -754,11 +753,6 @@ static int daKytag13_Execute_standard(kytag13_class* i_this) {
 
     return 1;
 }
-#else
-static void daKytag13_Execute_standard(kytag13_class* i_this) {
-    // NONMATCHING
-}
-#endif
 
 /* 80860148-808601C0 000FC8 0078+00 4/3 0/0 0/0 .text            __dt__14dBgS_ObjGndChkFv */
 // dBgS_ObjGndChk::~dBgS_ObjGndChk() {
@@ -851,19 +845,4 @@ static int daKytag13_Create(fopAc_ac_c* i_this) {
     }
 
     return cPhs_COMPLEATE_e;
-}
-
-/* 80860450-80860458 0012D0 0008+00 1/0 0/0 0/0 .text            @20@__dt__14dBgS_ObjGndChkFv */
-static void func_80860450() {
-    // NONMATCHING
-}
-
-/* 80860458-80860460 0012D8 0008+00 1/0 0/0 0/0 .text            @76@__dt__14dBgS_ObjGndChkFv */
-static void func_80860458() {
-    // NONMATCHING
-}
-
-/* 80860460-80860468 0012E0 0008+00 1/0 0/0 0/0 .text            @60@__dt__14dBgS_ObjGndChkFv */
-static void func_80860460() {
-    // NONMATCHING
 }

@@ -22,24 +22,10 @@ struct TNodeLinkList {
     struct iterator {
         explicit iterator(TLinkListNode* pNode) { node = pNode; }
 
-        iterator& operator++() {
-            node = node->getNext();
-            return *this;
-        }
-        iterator& operator--() {
-            node = node->getPrev();
-            return *this;
-        }
-        iterator operator++(int) {
-            const iterator old(*this);
-            (void)++*this;
-            return old;
-        }
-        iterator operator--(int) {
-            const iterator old(*this);
-            (void)--*this;
-            return old;
-        }
+        iterator& operator++() { node = node->getNext(); return *this; }
+        iterator& operator--() { node = node->getPrev(); return *this; }
+        iterator operator++(int) { const iterator old(*this); (void)++*this; return old; }
+        iterator operator--(int) { const iterator old(*this); (void)--*this; return old; }
         friend bool operator==(iterator a, iterator b) { return a.node == b.node; }
         friend bool operator!=(iterator a, iterator b) { return !(a == b); }
 
@@ -52,27 +38,12 @@ struct TNodeLinkList {
 
     struct const_iterator {
         explicit const_iterator(TLinkListNode* pNode) { node = pNode; }
-        const_iterator(const const_iterator& iter) { *this = iter; }
         explicit const_iterator(iterator it) { node = it.node; }
 
-        const_iterator& operator++() {
-            node = node->getNext();
-            return *this;
-        }
-        const_iterator& operator--() {
-            node = node->getPrev();
-            return *this;
-        }
-        const_iterator operator++(int) {
-            const const_iterator old(*this);
-            (void)++*this;
-            return old;
-        }
-        const_iterator operator--(int) {
-            const const_iterator old(*this);
-            (void)--*this;
-            return old;
-        }
+        const_iterator& operator++() { node = node->getNext(); return *this; }
+        const_iterator& operator--() { node = node->getPrev(); return *this; }
+        const_iterator operator++(int) { const const_iterator old(*this); (void)++*this; return old; }
+        const_iterator operator--(int) { const const_iterator old(*this); (void)--*this; return old; }
         friend bool operator==(const_iterator a, const_iterator b) { return a.node == b.node; }
         friend bool operator!=(const_iterator a, const_iterator b) { return !(a == b); }
 

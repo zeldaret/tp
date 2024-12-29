@@ -302,7 +302,7 @@ namespace fvb {
 
 TObject::~TObject() {}
 
-#ifdef NONMATCHING
+// NONMATCHING
 void TObject::prepare(data::TParse_TBlock const& rBlock, TControl* pControl) {
     ASSERT(pfv_ != 0);
 
@@ -449,14 +449,6 @@ void TObject::prepare(data::TParse_TBlock const& rBlock, TControl* pControl) {
     JUT_EXPECT(pData == pNext);
     pfv_->prepare();
 }
-#else
-/* 80283FC8-802841EC 27E908 0224+00 2/1 0/0 0/0 .text
- * prepare__Q37JStudio3fvb7TObjectFRCQ47JStudio3fvb4data13TParse_TBlockPQ37JStudio3fvb8TControl */
-void TObject::prepare(data::TParse_TBlock const& param_0, TControl* param_1) {
-    // NONMATCHING
-}
-
-#endif
 namespace {
 
 TFunctionValue_composite::TData getCompositeData_raw_(const void* arg1) {

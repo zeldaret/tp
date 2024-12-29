@@ -401,15 +401,10 @@ static int daObjCrope_Create(fopAc_ac_c* i_this) {
 }
 
 /* 80BCD524-80BCD69C 0008C4 0178+00 1/1 0/0 0/0 .text            __dt__12daObjCrope_cFv */
-#ifdef NONMATCHING
+// NONMATCHING
 daObjCrope_c::~daObjCrope_c() {
     dComIfG_resDelete(&mPhase, l_arcName);
 }
-#else
-daObjCrope_c::~daObjCrope_c() {
-    // NONMATCHING
-}
-#endif
 
 /* 80BCD69C-80BCD6C4 000A3C 0028+00 1/0 0/0 0/0 .text            daObjCrope_Delete__FP12daObjCrope_c
  */
@@ -457,8 +452,7 @@ COMPILER_STRIP_GATE(0x80BCEB24, &lit_4119);
 
 /* 80BCD6C4-80BCD9EC 000A64 0328+00 3/3 0/0 0/0 .text            setNormalRopePos__12daObjCrope_cFv
  */
-// Horrible regalloc
-#ifdef NONMATCHING
+// NONMATCHING - Horrible regalloc
 void daObjCrope_c::setNormalRopePos() {
     cXyz* pdVar4;
     cXyz* pVVar5;
@@ -522,11 +516,6 @@ void daObjCrope_c::setNormalRopePos() {
         this_01++;
     }
 }
-#else
-void daObjCrope_c::setNormalRopePos() {
-    // NONMATCHING
-}
-#endif
 
 /* ############################################################################################## */
 /* 80BCEB28-80BCEB2C 00005C 0004+00 1/2 0/0 0/0 .rodata          @4407 */

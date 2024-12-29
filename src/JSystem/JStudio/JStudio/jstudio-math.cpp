@@ -4,6 +4,8 @@
 //
 
 #include "JSystem/JStudio/JStudio/jstudio-math.h"
+#include "JSystem/JGeometry.h"
+#include "JSystem/TPosition3.hh"
 #include "dol2asm.h"
 #include "math.h"
 
@@ -41,8 +43,7 @@ SECTION_SDATA2 static u8 lit_489[4] = {
 };
 
 /* 802859DC-80285B44 28031C 0168+00 1/1 0/0 0/0 .text getRotation_xyz__Q27JStudio4mathFPA4_ffff */
-// regalloc
-#ifdef NONMATCHING
+// NONMATCHING - regalloc
 void JStudio::math::getRotation_xyz(MtxP param_1, f32 x, f32 y, f32 z) {
     x = DEG_TO_RAD(x);
     f32 cosx = cos(x);
@@ -71,11 +72,6 @@ void JStudio::math::getRotation_xyz(MtxP param_1, f32 x, f32 y, f32 z) {
     param_1[1][3] = 0.0f;
     param_1[2][3] = 0.0f;
 }
-#else
-void JStudio::math::getRotation_xyz(MtxP param_0, f32 param_1, f32 param_2, f32 param_3) {
-    // NONMATCHING
-}
-#endif
 
 /* 80285B44-80285BCC 280484 0088+00 0/0 2/2 0/0 .text
  * getTransformation_SRxyzT__Q27JStudio4mathFPA4_fRC3VecRC3VecRC3Vec */
@@ -115,8 +111,7 @@ SECTION_SDATA2 static f64 lit_628 = 57.29577951308232;
 
 /* 80285BCC-80285E0C 28050C 0240+00 0/0 2/2 0/0 .text
  * getFromTransformation_SRxyzT__Q27JStudio4mathFP3VecP3VecP3VecPA4_Cf */
-// getEulerXYZ is not inlined
-#ifdef NONMATCHING
+// NONMATCHING - getEulerXYZ is not inlined
 void JStudio::math::getFromTransformation_SRxyzT(Vec* param_1, Vec* param_2, Vec* param_3,
                                                      CMtxP param_4) {
     getFromTransformation_S(param_4, param_1);
@@ -145,9 +140,3 @@ void JStudio::math::getFromTransformation_SRxyzT(Vec* param_1, Vec* param_2, Vec
     param_2->y = local_a0.y;
     param_2->z = local_a0.z;
 }
-#else
-void JStudio::math::getFromTransformation_SRxyzT(Vec* param_0, Vec* param_1, Vec* param_2,
-                                                     CMtxP param_3) {
-    // NONMATCHING
-}
-#endif

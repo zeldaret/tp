@@ -119,13 +119,7 @@ JGadget::TNodeLinkList::iterator JGadget::TNodeLinkList::Erase(TLinkListNode* p)
 
 /* 802DCBF8-802DCCC8 2D7538 00D0+00 0/0 2/2 0/0 .text
  * Remove__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode */
-// missing stack
-#ifdef NONMATCHING
+// NONMATCHING - missing stack
 void JGadget::TNodeLinkList::Remove(TLinkListNode* p) {
     remove_if(TPRIsEqual_pointer_<TLinkListNode>(p));
 }
-#else
-void JGadget::TNodeLinkList::Remove(JGadget::TLinkListNode* param_0) {
-    // NONMATCHING
-}
-#endif
