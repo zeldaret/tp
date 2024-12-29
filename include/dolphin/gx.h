@@ -99,10 +99,6 @@ volatile PPCWGPipe GXWGFifo AT_ADDRESS(GXFIFO_ADDR);
         GX_XF_LOAD_REG_HDR(cmd);                                                                   \
     }
 
-static inline void GXNormal1x16(const u16 x) {
-    GXWGFifo.u16 = x;
-}
-
 static inline void GXPosition3f32(const f32 x, const f32 y, const f32 z) {
     GXWGFifo.f32 = x;
     GXWGFifo.f32 = y;
