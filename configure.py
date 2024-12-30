@@ -2008,7 +2008,7 @@ config.libs = [
     ActorRel(Matching, "d_a_obj_swBallC"),
     ActorRel(NonMatching, "d_a_obj_swLight"),
     ActorRel(NonMatching, "d_a_obj_swchain"),
-    ActorRel(NonMatching, "d_a_obj_swhang"),
+    ActorRel(Equivalent, "d_a_obj_swhang"),
     ActorRel(NonMatching, "d_a_obj_sword"),
     ActorRel(NonMatching, "d_a_obj_swpush2"),
     ActorRel(Matching, "d_a_obj_swspinner"),
