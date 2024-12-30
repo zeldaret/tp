@@ -83,7 +83,7 @@ public:
     /* 0x0DD8 */ int mCutType;
     /* 0x0DDC */ int field_0xddc;
     /* 0x0DE0 */ int field_0xde0;
-    /* 0x0DE4 */ int field_0xde4;
+    /* 0x0DE4 */ int mTimer;
     /* 0x0DE8 */ int field_0xde8;
     /* 0x0DEC */ int field_0xdec;
     /* 0x0DF0 */ s16 field_0xdf0;
@@ -151,6 +151,9 @@ public:
     }
 
     void setCutType(int i_type) { mCutType = i_type;}
+
+    void setActionMode(s8 i_actionMode) { mActionMode = i_actionMode;}
+    s8 getActionMode() { return mActionMode; }
     
     /* 80A2AFD4 */ s32 create();
     /* 80A2B278 */ s32 CreateHeap();
@@ -279,7 +282,7 @@ public:
     /* 80A3B000 */ void getAttnPos(fopAc_ac_c*);
     /* 80A3B074 */ void turn(s16, int, int);
     /* 80A3B220 */ s32 step(s16, int, int, int, int);
-    /* 80A3B3E8 */ void initTalk(int, fopAc_ac_c**);
+    /* 80A3B3E8 */ s32 initTalk(int, fopAc_ac_c**);
     /* 80A3B448 */ BOOL talkProc(int*, int, fopAc_ac_c**, int);
     /* 80A3B5EC */ void setHitodamaPrtcl();
     /* 80A3B82C */ daNpc_Kn_c(daNpcT_faceMotionAnmData_c const*, daNpcT_motionAnmData_c const*,
@@ -351,7 +354,7 @@ private:
     /* 0x15A8 */ u32 field_0x15A8;
     /* 0x15AC */ u8 mType;
     /* 0x15AD */ u8 mDivideNo;
-    /* 0x15AE */ s8 field_0x15ae;
+    /* 0x15AE */ s8 mActionMode;
     /* 0x15AF */ u8 field_0x15af;
     /* 0x15B0 */ cXyz field_0x15b0;
     /* 0x15BC */ u8 field_0x15bc;
