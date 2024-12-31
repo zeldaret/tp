@@ -29,17 +29,16 @@ static daMagLift_HIO_c l_HIO;
 
 /* 80C8DA2C-80C8DA58 0000EC 002C+00 1/1 0/0 0/0 .text            __ct__15daMagLift_HIO_cFv */
 daMagLift_HIO_c::daMagLift_HIO_c() {
-    // NONMATCHING
     field_0x4 = 0x3c;
     field_0x5 = 1;
 }
 
 /* 80C8DAA0-80C8DB28 000160 0088+00 2/2 0/0 0/0 .text            setBaseMtx__11daMagLift_cFv */
 void daMagLift_c::setBaseMtx() {
-    PSMTXTrans(mDoMtx_stack_c::get(), current.pos.x, current.pos.y, current.pos.z);
+    MTXTrans(mDoMtx_stack_c::get(), current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_ZXYrotM(mDoMtx_stack_c::get(), current.angle.x, current.angle.y, current.angle.z);
-    mpModel->mBaseScale = scale;
-    PSMTXCopy(mDoMtx_stack_c::get(), mpModel->mBaseTransformMtx);
+    mpModel->setBaseScale(scale);
+    MTXCopy(mDoMtx_stack_c::get(), mpModel->mBaseTransformMtx);
 }
 
 /* 80C8DB28-80C8DB94 0001E8 006C+00 1/0 0/0 0/0 .text            CreateHeap__11daMagLift_cFv */
@@ -90,25 +89,23 @@ int daMagLift_c::create() {
                 init_modeMoveWait();
             }
         }
-        cullMtx = mpModel->mBaseTransformMtx;
+        cullMtx = mpModel->getBaseTRMtx();
         fopAcM_setCullSizeBox2(this, mpModel->getModelData());
         setBaseMtx();
     }
-    // NONMATCHING
     return phase;
 }
 
 /* 80C8DD38-80C8DD88 0003F8 0050+00 1/0 0/0 0/0 .text            Execute__11daMagLift_cFPPA3_A4_f */
 int daMagLift_c::Execute(Mtx** i_mtx) {
     moveLift();
-    *i_mtx = &mpModel->mBaseTransformMtx;
+    *i_mtx = &mpModel->getBaseTRMtx();
     setBaseMtx();
     return 1;
 }
 
 /* 80C8DD88-80C8DE98 000448 0110+00 1/1 0/0 0/0 .text            moveLift__11daMagLift_cFv */
 void daMagLift_c::moveLift() {
-    // NONMATCHING
     if (field_0x5ae != 0xff) {
         typedef void (daMagLift_c::*modeFunc)();
         static modeFunc mode_proc[8] = {&daMagLift_c::modeAcc, &daMagLift_c::modeMove,
@@ -122,8 +119,7 @@ void daMagLift_c::moveLift() {
 
 /* 80C8DE98-80C8DF20 000558 0088+00 1/0 0/0 0/0 .text            modeAcc__11daMagLift_cFv */
 void daMagLift_c::modeAcc() {
-    // NONMATCHING
-    if (1 == cLib_chaseF(&speedF, mMoveSpeed, mMoveSpeed / 30.0f) || current.pos == field_0x5b4) {
+    if (TRUE == cLib_chaseF(&speedF, mMoveSpeed, mMoveSpeed / 30.0f) || current.pos == field_0x5b4) {
         init_modeMove();
     }
     cLib_addCalcPos(&current.pos, field_0x5b4, 1.0f, fopAcM_GetSpeedF(this), 0.1f);
@@ -136,7 +132,6 @@ void daMagLift_c::init_modeMove() {
 
 /* 80C8DF2C-80C8E1EC 0005EC 02C0+00 1/0 0/0 0/0 .text            modeMove__11daMagLift_cFv */
 void daMagLift_c::modeMove() {
-    // NONMATCHING
     cXyz sp54(field_0x5c0);
     cXyz sp60(field_0x5b4);
 
@@ -166,8 +161,7 @@ void daMagLift_c::init_modeBrk() {
 
 /* 80C8E1F8-80C8E260 0008B8 0068+00 1/0 0/0 0/0 .text            modeBrk__11daMagLift_cFv */
 void daMagLift_c::modeBrk() {
-    // NONMATCHING
-    float val = cLib_addCalcPos(&current.pos, field_0x5b4, 0.1f, fopAcM_GetSpeedF(this), 0.5f);
+    f32 val = cLib_addCalcPos(&current.pos, field_0x5b4, 0.1f, fopAcM_GetSpeedF(this), 0.5f);
     if (val == 0.0f) {
         fopAcM_SetSpeedF(this, 0.0f);
         init_modeWaitInit();
@@ -204,7 +198,6 @@ void daMagLift_c::init_modeMoveWait() {
 
 /* 80C8E2C4-80C8E318 000984 0054+00 1/0 0/0 0/0 .text            modeMoveWait__11daMagLift_cFv */
 void daMagLift_c::modeMoveWait() {
-    // NONMATCHING
     if (fopAcM_isSwitch(this, fopAcM_GetParamBit(this, 0xc, 8)) & 0xff) {
         init_modeWaitInit();
     }
@@ -259,7 +252,6 @@ int daMagLift_c::Draw() {
 
 /* 80C8E4F4-80C8E524 000BB4 0030+00 1/0 0/0 0/0 .text            Delete__11daMagLift_cFv */
 int daMagLift_c::Delete() {
-    // NONMATCHING
     dComIfG_resDelete(&mPhaseReq, "L_maglift");
     return 1;
 }

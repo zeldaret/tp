@@ -56,13 +56,11 @@ private:
     /* 0x5ae */ u8 field_0x5ae;
     /* 0x5af */ s8 field_0x5af;
     /* 0x5b0 */ s16 mPoint;
-    // two bytes of padding.
     /* 0x5b4 */ cXyz field_0x5b4;
     /* 0x5c0 */ cXyz field_0x5c0;
-    /* 0x5cc */ float mMoveSpeed;
+    /* 0x5cc */ f32 mMoveSpeed;
     /* 0x5d0 */ u8 mMode;
     /* 0x5d1 */ u8 is_switch;
-    // The rest is word padding.
 };
 
 STATIC_ASSERT(sizeof(daMagLift_c) == 0x5d4);
