@@ -526,18 +526,18 @@ public:
     /* 800134F8 */ void setMaterial();
     /* 800135D0 */ void draw();
 
-    cXyz* getPos(int i_idx) { return field_0x38[i_idx].field_0x0; }
-    f32* getSize(int i_idx) { return field_0x38[i_idx].field_0x4; }
+    cXyz* getPos(int i_idx) { return mpLines[i_idx].field_0x0; }
+    f32* getSize(int i_idx) { return mpLines[i_idx].field_0x4; }
 
 private:
-    /* 0x08 */ GXTexObj field_0x8;
-    /* 0x28 */ GXColor field_0x28;
-    /* 0x2C */ dKy_tevstr_c* field_0x2c;
-    /* 0x30 */ u16 field_0x30;
+    /* 0x08 */ GXTexObj mTextureObject;
+    /* 0x28 */ GXColor mColor;
+    /* 0x2C */ dKy_tevstr_c* mpTevStr;
+    /* 0x30 */ u16 mNumLines;
     /* 0x32 */ u16 field_0x32;
     /* 0x34 */ u16 field_0x34;
-    /* 0x36 */ u8 field_0x36;
-    /* 0x38 */ mDoExt_3Dline_c* field_0x38;
+    /* 0x36 */ u8 mIsDrawn;
+    /* 0x38 */ mDoExt_3Dline_c* mpLines;
 };
 
 class mDoExt_3DlineMat0_c : public mDoExt_3DlineMat_c {

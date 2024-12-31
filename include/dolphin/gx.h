@@ -145,6 +145,10 @@ static inline void GXTexCoord1x8(const u8 s) {
     GXWGFifo.u8 = s;
 }
 
+static inline void GXTexCoord1x16(const u16 s) {
+    GXWGFifo.u16 = s;
+}
+
 static inline void GXPosition2u16(const u16 x, const u16 y) {
     GXWGFifo.u16 = x;
     GXWGFifo.u16 = y;

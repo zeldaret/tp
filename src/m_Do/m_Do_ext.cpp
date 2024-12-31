@@ -4,6 +4,7 @@
  */
 
 #include "m_Do/m_Do_ext.h"
+#include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/JKernel/JKRAssertHeap.h"
@@ -2340,8 +2341,37 @@ void mDoExt_3DlineMat1_c::setMaterial() {
 }
 
 /* 800135D0-8001373C 00DF10 016C+00 1/0 0/0 0/0 .text            draw__19mDoExt_3DlineMat1_cFv */
+// NONMATCHING- some smaller issues
 void mDoExt_3DlineMat1_c::draw() {
-    // NONMATCHING
+    GXLoadTexObj(&mTextureObject, GX_TEXMAP0);
+    GXSetTexCoordScaleManually(GX_TEXCOORD0, 1, GXGetTexObjWidth(&mTextureObject), GXGetTexObjHeight(&mTextureObject));
+    GXSetTevColor(GX_TEVREG2, mColor);
+    if (mpTevStr != NULL) {
+        dKy_Global_amb_set(mpTevStr);
+    }
+    mDoExt_3Dline_c* lines = mpLines;
+    s32 vert_num = (field_0x34 & 0x7fff) << 1;
+    for (s32 i = 0; i < mNumLines; i++) {
+        GXSetArray(GX_VA_POS, lines[mIsDrawn].field_0x8, 0xC);
+        GXSetArray(GX_VA_NRM, lines[mIsDrawn].field_0x10, 0x3);
+        GXSetArray(GX_VA_TEX0, lines[mIsDrawn].field_0x18, 0x8);
+        GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, vert_num);
+
+        s16 tempJ;
+        for (u32 j = 0; j < (u32)field_0x34; j += 1) {
+            GXPosition1x16(j);
+            GXNormal1x16(j);
+            GXTexCoord1x16(j);
+            tempJ = j + 1;
+            GXPosition1x16(tempJ);
+            GXNormal1x16(tempJ);
+            GXTexCoord1x16(tempJ);
+        }
+        GXEnd();
+        lines++;
+    }
+    GXSetTexCoordScaleManually(GX_TEXCOORD0, 0, 0, 0);
+    mIsDrawn ^= 1;
 }
 
 /* 8001373C-80013FB0 00E07C 0874+00 0/0 0/0 6/6 .text
@@ -2359,8 +2389,12 @@ void mDoExt_3DlineMat1_c::update(int param_0, _GXColor& param_1, dKy_tevstr_c* p
 
 /* 80014738-8001479C 00F078 0064+00 0/0 0/0 29/29 .text
  * setMat__26mDoExt_3DlineMatSortPacketFP18mDoExt_3DlineMat_c   */
-void mDoExt_3DlineMatSortPacket::setMat(mDoExt_3DlineMat_c* param_0) {
-    // NONMATCHING
+void mDoExt_3DlineMatSortPacket::setMat(mDoExt_3DlineMat_c* i_3DlineMat) {
+    if (mp3DlineMat == NULL) {
+        dComIfGd_getListPacket()->entryImm(this, 0);
+    }
+    i_3DlineMat->field_0x4 = mp3DlineMat;
+    mp3DlineMat = i_3DlineMat;
 }
 
 /* 8001479C-80014804 00F0DC 0068+00 1/0 0/0 0/0 .text draw__26mDoExt_3DlineMatSortPacketFv */
