@@ -2012,7 +2012,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_sword"),
     ActorRel(NonMatching, "d_a_obj_swpush2"),
     ActorRel(Matching, "d_a_obj_swspinner"),
-    ActorRel(NonMatching, "d_a_obj_swturn"),
+    ActorRel(Matching, "d_a_obj_swturn"),
     ActorRel(NonMatching, "d_a_obj_syRock"),
     ActorRel(NonMatching, "d_a_obj_szbridge"),
     ActorRel(NonMatching, "d_a_obj_taFence"),
