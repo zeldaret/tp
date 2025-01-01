@@ -1968,7 +1968,7 @@ config.libs = [
     ActorRel(Matching, "d_a_obj_rcircle"),
     ActorRel(NonMatching, "d_a_obj_rfHole"),
     ActorRel(Matching, "d_a_obj_rgate"),
-    ActorRel(NonMatching, "d_a_obj_riverrock"),
+    ActorRel(Matching, "d_a_obj_riverrock"),
     ActorRel(Matching, "d_a_obj_rock"),
     ActorRel(NonMatching, "d_a_obj_rotBridge"),
     ActorRel(NonMatching, "d_a_obj_rotTrap"),
