@@ -201,8 +201,8 @@ int daWtPillar_c::execute() {
     effectSet();
     effectSet2();
 
-    field_0xAD4 = scale.x;
-    field_0xADC = scale.z;
+    mScaleX = scale.x;
+    mScaleZ = scale.z;
 
     cXyz currentHeightVector(0.0f, 1.0f, 0.0f);
     currentHeightVector.y *= mCurrentHeight;

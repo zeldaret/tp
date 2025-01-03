@@ -194,11 +194,7 @@ public:
     // inline dupe
     void i_ClrGroundHit() { m_flags &= ~GROUND_HIT; }
     u32 i_ChkGroundHit() const { return m_flags & GROUND_HIT; }
-
-    // fake inlines
-    const u32 i_ChkGroundHit_fake() const { return i_ChkGroundHit() ? TRUE : FALSE; }
-    const u32 i_ChkWaterHit_fake() { return MaskWaterHit() ? TRUE : FALSE; }
-    const u32 i_ChkWaterIn_fake() { return MaskWaterIn() ? TRUE : FALSE; }
+    
 public:
     /* 0x02C */ u32 m_flags;
     /* 0x030 */ cXyz* pm_pos;

@@ -89,9 +89,9 @@ private:
     /* 0x818 */ dCcD_Cps mCapsuleCollider;
     /* 0x95C */ dCcD_Cyl mCylinderCollider;
     /* 0xA98 */ u8 pad0[0x3C];
-    /* 0xAD4 */ f32 field_0xAD4;    // mScaleX (Modified but never read; unused?)
+    /* 0xAD4 */ f32 mScaleX;    // Modified but never read; unused?
     /* 0xAD8 */ u8 pad1[0x4];
-    /* 0xADC */ f32 field_0xADC;    // mScaleZ (Modified but never read; unused?)
+    /* 0xADC */ f32 mScaleZ;    // Modified but never read; unused?
     /* 0xAE0 */ f32 mCurrentHeight;
     /* 0xAE4 */ cM3dGCpsS mCapsuleSource;
     /* 0xB00 */ u8 mAction;
@@ -145,7 +145,6 @@ private:
 };
 
 
-//STATIC_ASSERT(sizeof(daWtPillar_c) == 0xb7c);
 STATIC_ASSERT(sizeof(daWtPillar_c) == 0xb7c);
 
 struct daWtPillar_HIO_c : public mDoHIO_entry_c {

@@ -401,10 +401,9 @@ BOOL daSyRock_c::chkWaterLineIn() {
 /* 80D036DC-80D03984 00151C 02A8+00 2/2 0/0 0/0 .text            bgCheck__10daSyRock_cFv */
 void daSyRock_c::bgCheck() {
     // Note stack ordering issues arise if fopAcM_seStartCurrent() is used instead of mDoAud_seStart()
-    // TODO: Fakematch, fake inlines are used to make check functions return u32
-    const u32 hitGround = mAcch.i_ChkGroundHit_fake();
-    const u32 hitWater = mAcch.i_ChkWaterHit_fake();
-    const u32 inWater = mAcch.i_ChkWaterIn_fake();
+    const u32 hitGround = mAcch.ChkGroundHit() ? TRUE : FALSE;
+    const u32 hitWater = mAcch.ChkWaterHit() ? TRUE : FALSE;
+    const u32 inWater = mAcch.ChkWaterIn() ? TRUE : FALSE;
     bool inWaterPillar = false;
 
     if(mMode == MODE_DROP) {
