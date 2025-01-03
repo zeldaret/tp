@@ -1930,7 +1930,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_lv8OptiLift"),
     ActorRel(NonMatching, "d_a_obj_lv8UdFloor"),
     ActorRel(NonMatching, "d_a_obj_lv9SwShutter"),
-    ActorRel(NonMatching, "d_a_obj_magLift"),
+    ActorRel(Matching, "d_a_obj_magLift"),
     ActorRel(NonMatching, "d_a_obj_magLiftRot"),
     ActorRel(NonMatching, "d_a_obj_maki"),
     ActorRel(NonMatching, "d_a_obj_master_sword"),
