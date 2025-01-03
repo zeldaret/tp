@@ -1,6 +1,7 @@
 #ifndef D_A_OBJ_ROTEN_H
 #define D_A_OBJ_ROTEN_H
 
+#include "d/d_bg_s_movebg_actor.h"
 #include "f_op/f_op_actor_mng.h"
 
 /**
@@ -11,21 +12,26 @@
  * @details
  *
  */
-class daObj_Roten_c : public fopAc_ac_c {
+class daObj_Roten_c : public dBgS_MoveBgActor {
 public:
     /* 80CC0B58 */ void initBaseMtx();
     /* 80CC0B94 */ void setBaseMtx();
-    /* 80CC0C20 */ void Create();
-    /* 80CC0EC4 */ void CreateHeap();
-    /* 80CC0F40 */ void create();
-    /* 80CC1038 */ void Execute(f32 (**)[3][4]);
-    /* 80CC1138 */ void Draw();
-    /* 80CC1254 */ void Delete();
-    /* 80CC12E4 */ void getResName();
-    /* 80CC1388 */ ~daObj_Roten_c();
+    /* 80CC0C20 */ int Create();
+    /* 80CC0EC4 */ int CreateHeap();
+    /* 80CC0F40 */ int create();
+    /* 80CC1038 */ int Execute(Mtx**);
+    /* 80CC1138 */ int Draw();
+    /* 80CC1254 */ int Delete();
+    /* 80CC12E4 */ char* getResName();
+    /* 80CC1388 */ virtual ~daObj_Roten_c();
 
 private:
-    /* 0x568 */ u8 field_0x568[0x5c8 - 0x568];
+    /* 0x5A0 */ request_of_phase_process_class mPhase;
+    /* 0x5A8 */ J3DModel* mModel;
+    /* 0x5AC */ JPABaseEmitter* mEmitters[2];
+    /* 0x5B4 */ f32 mBossLightRefDist;
+    /* 0x5B8 */ cXyz mParticlePos;
+    /* 0x5C4 */ bool mWithinTime;
 };
 
 STATIC_ASSERT(sizeof(daObj_Roten_c) == 0x5c8);

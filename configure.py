@@ -1972,7 +1972,7 @@ config.libs = [
     ActorRel(Matching, "d_a_obj_rock"),
     ActorRel(NonMatching, "d_a_obj_rotBridge"),
     ActorRel(NonMatching, "d_a_obj_rotTrap"),
-    ActorRel(NonMatching, "d_a_obj_roten"),
+    ActorRel(Matching, "d_a_obj_roten"),
     ActorRel(Matching, "d_a_obj_rstair"),
     ActorRel(NonMatching, "d_a_obj_rw"),
     ActorRel(Matching, "d_a_obj_saidan"),
