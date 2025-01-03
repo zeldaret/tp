@@ -75,22 +75,22 @@ private:
     /* 0x99C */ u8 mIsUnbroken;
 
     // Stalactite should search for an associated water pillar on creation
-    inline BOOL getArg0() {
+    BOOL getArg0() {
         return shape_angle.x & 0xF;
     }
 
     // Switch to determine whether or not the stalactite has been broken
-    inline u32 getSwBit1() {
+    u32 getSwBit1() {
         return fopAcM_GetParamBit(this, 0, 8);
     }
 
     // Switch to determine whether or not the stalactite should be broken automatically when player is in range
-    inline u32 getSwBit2() {
+    u32 getSwBit2() {
         return fopAcM_GetParamBit(this, 8, 8);
     }
 
     // Event ID for Midna to stop and note the stalactite that fell by itself
-    inline s32 getEvetID() {
+    s32 getEvetID() {
         return fopAcM_GetParamBit(this, 16, 8);
     }
 

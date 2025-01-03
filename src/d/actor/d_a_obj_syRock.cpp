@@ -49,7 +49,7 @@ void daSyRock_c::setBaseMtx() {
 
     // Set base transform matrix of current model and the background matrix both to the contents of now
     mpModels[mIsUnbroken]->setBaseTRMtx(mDoMtx_stack_c::get());
-    PSMTXCopy(mDoMtx_stack_c::get(), mBgMtx);
+    MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
 
 /* 80D02454-80D02584 000294 0130+00 1/0 0/0 0/0 .text            CreateHeap__10daSyRock_cFv */
