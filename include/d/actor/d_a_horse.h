@@ -266,10 +266,9 @@ public:
 
     u32 getShadowID() const { return mShadowID; }
 
-    static u8 const m_footJointTable[8];
+    static u16 const m_footJointTable[];
     static f32 const m_callLimitDistance2;
 
-//private:
     /* 0x0568 */ u8 field_0x568[8];
     /* 0x0570 */ J3DModel* field_0x570;
     /* 0x0574 */ void* field_0x574;
@@ -351,9 +350,93 @@ public:
     /* 0x18F8 */ void (daHorse_c::*mpOffRideFlgFn)();
 };
 
+class daHorse_hio_c1 {
+public:
+    /* 0x000 */ s16 max_turn;
+    /* 0x002 */ s16 min_turn;
+    /* 0x004 */ s16 lash_acceleration_time;
+    /* 0x006 */ s16 jump_end_frame;
+    /* 0x008 */ s16 air_end_frame;
+    /* 0x00A */ s16 land_end_frame;
+    /* 0x00C */ s16 spur_recovery_time;
+    /* 0x00E */ s16 full_spur_recovery_time;
+    /* 0x010 */ s16 continuous_spur_recovery_time;
+    /* 0x012 */ s16 cliff_jump_end_frame;
+    /* 0x014 */ s16 cliff_air_end_frame;
+    /* 0x016 */ s16 cliff_land_end_frame;
+    /* 0x018 */ s16 min_jump_time;
+    /* 0x01A */ s16 kakariko_lash_acceleration_time;
+    /* 0x01C */ f32 max_speed;
+    /* 0x020 */ f32 wait_anm_speed;
+    /* 0x024 */ f32 walk_anm_speed;
+    /* 0x028 */ f32 fast_walk_anm_speed;
+    /* 0x02C */ f32 run_anm_speed;
+    /* 0x030 */ f32 fast_run_anm_speed;
+    /* 0x034 */ f32 backwalk_anm_speed;
+    /* 0x038 */ f32 wait_to_walk_rate;
+    /* 0x03C */ f32 walk_to_fastwalk_rate;
+    /* 0x040 */ f32 fastwalk_to_run_rate;
+    /* 0x044 */ f32 run_to_fastrun_rate;
+    /* 0x048 */ f32 walk_run_interpolation;
+    /* 0x04C */ f32 acceleration;
+    /* 0x050 */ f32 deceleration;
+    /* 0x054 */ f32 stopping_deceleration;
+    /* 0x058 */ f32 max_backward_speed;
+    /* 0x05C */ f32 max_backward_acceleration;
+    /* 0x060 */ f32 backward_idle_to_walk_rate;
+    /* 0x064 */ f32 faststop_anm_speed;
+    /* 0x068 */ f32 faststop_stand_anm_speed;
+    /* 0x06C */ f32 faststop_interpolation;
+    /* 0x070 */ f32 fast_stop_CF;
+    /* 0x074 */ f32 faststop_deceleration_slow;
+    /* 0x078 */ f32 faststop_deceleration;
+    /* 0x07C */ f32 stand_anm_speed;
+    /* 0x080 */ f32 stand_interpolation;
+    /* 0x084 */ f32 faststop_stand_CF;
+    /* 0x088 */ f32 stand_CF;
+    /* 0x08C */ f32 add_lash_speed;
+    /* 0x090 */ f32 lash_acceleration;
+    /* 0x094 */ f32 min_lash_speed;
+    /* 0x098 */ f32 jump_anm_speed;
+    /* 0x09C */ f32 jump_start_frame;
+    /* 0x0A0 */ f32 jump_interpolation;
+    /* 0x0A4 */ f32 air_start_frame;
+    /* 0x0A8 */ f32 air_interpolation;
+    /* 0x0AC */ f32 land_anm_speed;
+    /* 0x0B0 */ f32 land_start_frame;
+    /* 0x0B4 */ f32 land_interpolation;
+    /* 0x0B8 */ f32 land_CF;
+    /* 0x0BC */ f32 cliff_rise_rate;
+    /* 0x0C0 */ f32 boar_jump_horizontal;
+    /* 0x0C4 */ f32 boar_jump_height;
+    /* 0x0C8 */ f32 water_depth_limit;
+    /* 0x0CC */ f32 enemy_search_range;
+    /* 0x0D0 */ f32 m0D0;
+    /* 0x0D4 */ f32 floor_angle_limit;
+    /* 0x0D8 */ f32 dash_anm_speed;
+    /* 0x0DC */ f32 m0DC;
+    /* 0x0E0 */ f32 wak_min_speed;
+    /* 0x0E4 */ f32 cliff_jump_anm_speed;
+    /* 0x0E8 */ f32 cliff_jump_start_frame;
+    /* 0x0EC */ f32 cliff_jump_interpolation;
+    /* 0x0F0 */ f32 cliff_air_anm_speed;
+    /* 0x0F4 */ f32 cliff_air_start_frame;
+    /* 0x0F8 */ f32 cliff_air_interpolation;
+    /* 0x0FC */ f32 cliff_land_anm_speed;
+    /* 0x100 */ f32 cliff_land_start_frame;
+    /* 0x104 */ f32 cliff_land_interpolation;
+    /* 0x108 */ f32 cliff_land_CF;
+    /* 0x10C */ f32 cliff_jump_horizontal;
+    /* 0x110 */ f32 cliff_jump_vertical;
+    /* 0x114 */ f32 kakariko_max_speed;
+    /* 0x118 */ f32 kakariko_run_anm_speed;
+    /* 0x11C */ f32 kakariko_fastrun_anm_speed;
+    /* 0x120 */ f32 kakariko_add_lash_speed;
+};
+
 class daHorse_hio_c0 {
 public:
-    static u8 const m[292];
+    static const daHorse_hio_c1 m;
 };
 
 class dBgS_HorseAcch {

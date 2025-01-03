@@ -4,437 +4,109 @@
 */
 
 #include "d/actor/d_a_horse.h"
-#include "d/d_stage.h"
+#include "d/d_com_inf_game.h"
+#include "Z2AudioLib/Z2Instances.h"
 #include "dol2asm.h"
 
-//
-// Forward References:
-//
-
-extern "C" void setReinPos__13daHorseRein_cFi();
-extern "C" void __dt__4cXyzFv();
-extern "C" void setReinPosPart__13daHorseRein_cFi();
-extern "C" void coHitCallbackBoarJump__9daHorse_cFP10fopAc_ac_c();
-extern "C" void __dt__8cM3dGPlaFv();
-extern "C" void coHitCallbackBoarHit__9daHorse_cFP10fopAc_ac_cP12dCcD_GObjInf();
-extern "C" void coHitCallbackCowHit__9daHorse_cFP10fopAc_ac_c();
-extern "C" static void
-daHorse_coHitCallbackBoarJump__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf();
-extern "C" static void
-daHorse_coHitCallbackCowHit__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf();
-extern "C" static void
-daHorse_coHitCallbackAll__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf();
-extern "C" static void daHorse_searchEnemy__FP10fopAc_ac_cPv();
-extern "C" void modelCallBack__9daHorse_cFi();
-extern "C" static void daHorse_modelCallBack__FP8J3DJointi();
-extern "C" static void daHorse_searchSingleBoar__FP10fopAc_ac_cPv();
-extern "C" void createHeap__9daHorse_cFv();
-extern "C" void __ct__4cXyzFv();
-extern "C" void func_808392DC(void* _this);
-extern "C" void __dt__19J3DMtxCalcNoAnmBaseFv();
-extern "C" void __dt__10J3DMtxCalcFv();
-extern "C" static void daHorse_createHeap__FP10fopAc_ac_c();
-extern "C" void checkEnding__9daHorse_cFv();
-extern "C" void create__9daHorse_cFv();
-extern "C" static void daHorse_Create__FP10fopAc_ac_c();
-extern "C" void setBasAnime__9daHorse_cFi();
-extern "C" void resetBasAnime__9daHorse_cFv();
-extern "C" void setDoubleAnime__9daHorse_cFfffUsUsf();
-extern "C" void setSingleAnime__9daHorse_cFUsffsfi();
-extern "C" void animePlay__9daHorse_cFv();
-extern "C" void checkDemoAction__9daHorse_cFv();
-extern "C" void setStickRodeoMove__9daHorse_cFv();
-extern "C" void setStickCallMove__9daHorse_cFv();
-extern "C" void setDemoMoveData__9daHorse_cFPUlPC4cXyz();
-extern "C" void setDemoData__9daHorse_cFv();
-extern "C" void acceptPlayerRide__9daHorse_cFv();
-extern "C" void setStickData__9daHorse_cFv();
-extern "C" void setTurnStartVibration__9daHorse_cFv();
-extern "C" void setTurnVibration__9daHorse_cFv();
-extern "C" void setMoveAnime__9daHorse_cFf();
-extern "C" void checkHorseNoMove__9daHorse_cFi();
-extern "C" void checkTurnPlayerState__9daHorse_cFv();
-extern "C" void setSpeedAndAngle__9daHorse_cFv();
-extern "C" void checkWaitTurn__9daHorse_cCFv();
-extern "C" void setRoomInfo__9daHorse_cFi();
-extern "C" void setBodyPart__9daHorse_cFv();
-extern "C" void setMatrix__9daHorse_cFv();
-extern "C" void setDashEffect__9daHorse_cFPUl();
-extern "C" void setEffect__9daHorse_cFv();
-extern "C" void setCollision__9daHorse_cFv();
-extern "C" void autoGroundHit__9daHorse_cFv();
-extern "C" void setTailAngle__9daHorse_cFv();
-extern "C" void setNeckAngle__9daHorse_cFv();
-extern "C" void copyFootMatrix__9daHorse_cFv();
-extern "C" void setFootMatrix__9daHorse_cFv();
-extern "C" void setLegAngle__9daHorse_cFfiiPs();
-extern "C" void footBgCheck__9daHorse_cFv();
-extern "C" void setReinPosMoveInit__9daHorse_cFi();
-extern "C" void copyReinPos__9daHorse_cFv();
-extern "C" void setReinPosHandSubstance__9daHorse_cFi();
-extern "C" void setReinPosNormalSubstance__9daHorse_cFv();
-extern "C" void bgCheck__9daHorse_cFv();
-extern "C" void checkSpecialWallHitSubstance__9daHorse_cCFRC4cXyz();
-extern "C" void setServiceWaitTimer__9daHorse_cFv();
-extern "C" void checkServiceWaitAnime__9daHorse_cFv();
-extern "C" void checkTurnInput__9daHorse_cFv();
-extern "C" void checkTgHitTurn__9daHorse_cFv();
-extern "C" void checkTurnAfterFastMove__9daHorse_cFf();
-extern "C" void setNeckAnimeMorf__9daHorse_cFv();
-extern "C" void setNeckAnime__9daHorse_cFUsffs();
-extern "C" void resetNeckAnime__9daHorse_cFv();
-extern "C" void setLashCnt__9daHorse_cFv();
-extern "C" void setTalkModeWolf__9daHorse_cFv();
-extern "C" void setBoarHit__9daHorse_cFP10fopAc_ac_ci();
-extern "C" void savePos__9daHorse_cFv();
-extern "C" void callHorseSubstance__9daHorse_cFPC4cXyz();
-extern "C" void setHorsePosAndAngleSubstance__9daHorse_cFPC4cXyzs();
-extern "C" void checkPlayerHeavy__9daHorse_cFv();
-extern "C" void setTgCoGrp__9daHorse_cFUlUl();
-extern "C" void onRideFlgSubstance__9daHorse_cFv();
-extern "C" void offRideFlgSubstance__9daHorse_cFv();
-extern "C" void procWaitInit__9daHorse_cFv();
-extern "C" void procWait__9daHorse_cFv();
-extern "C" void procMoveInit__9daHorse_cFv();
-extern "C" void procMove__9daHorse_cFv();
-extern "C" void procStopInit__9daHorse_cFv();
-extern "C" void procStop__9daHorse_cFv();
-extern "C" void procTurnInit__9daHorse_cFi();
-extern "C" void procTurn__9daHorse_cFv();
-extern "C" void procJumpInit__9daHorse_cFi();
-extern "C" void procJump__9daHorse_cFv();
-extern "C" void procLandInit__9daHorse_cFfi();
-extern "C" void procLand__9daHorse_cFv();
-extern "C" void procLargeDamageInit__9daHorse_cFv();
-extern "C" void procLargeDamage__9daHorse_cFv();
-extern "C" void procToolDemoInit__9daHorse_cFv();
-extern "C" void procToolDemo__9daHorse_cFv();
-extern "C" void searchSceneChangeArea__9daHorse_cFP10fopAc_ac_c();
-extern "C" static void daHorse_searchSceneChangeArea__FP10fopAc_ac_cPv();
-extern "C" void execute__9daHorse_cFv();
-extern "C" static void daHorse_Execute__FP9daHorse_c();
-extern "C" void draw__9daHorse_cFv();
-extern "C" static void daHorse_Draw__FP9daHorse_c();
-extern "C" void __dt__9daHorse_cFv();
-extern "C" static void daHorse_Delete__FP9daHorse_c();
-extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" void setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform();
-extern "C" void setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform();
-extern "C" bool getAnmTransform__10J3DMtxCalcFUc();
-extern "C" bool getAnmTransform__10J3DMtxCalcFv();
-extern "C" void setWeight__10J3DMtxCalcFUcf();
-extern "C" void getWeight__10J3DMtxCalcCFUc();
-extern "C" void func_80844BB4(void* _this, Vec const&, f32 const (&)[3][4]);
-extern "C" void func_80844BDC(void* _this);
-extern "C" void __sinit_d_a_horse_cpp();
-extern "C" static void func_80844CA0();
-extern "C" static void func_80844CA8();
-extern "C" void __ct__9daHorse_cFv();
-extern "C" void __dt__17daHorseFootData_cFv();
-extern "C" void __ct__17daHorseFootData_cFv();
-extern "C" void __dt__13daHorseRein_cFv();
-extern "C" void __ct__13daHorseRein_cFv();
-extern "C" void __dt__8cM3dGSphFv();
-extern "C" void __dt__8cM3dGCylFv();
-extern "C" void __dt__8cM3dGAabFv();
-extern "C" void __dt__8dCcD_CylFv();
-extern "C" void __ct__8dCcD_CylFv();
-extern "C" void __dt__10dCcD_GSttsFv();
-extern "C" void __dt__14dBgS_HorseAcchFv();
-extern "C" void __dt__12dBgS_AcchCirFv();
-extern "C" void __dt__16daPy_frameCtrl_cFv();
-extern "C" void __ct__16daPy_frameCtrl_cFv();
-extern "C" void __dt__19mDoExt_AnmRatioPackFv();
-extern "C" void __ct__19mDoExt_AnmRatioPackFv();
-extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" u8 const m_footJointTable__9daHorse_c[8];
-extern "C" f32 const m_callLimitDistance2__9daHorse_c;
-extern "C" u8 const m__14daHorse_hio_c0[292];
-extern "C" extern char const* const d_a_horse__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
-extern "C" void mDoMtx_YrotS__FPA4_fs();
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void mDoMtx_ZrotS__FPA4_fs();
-extern "C" void mDoMtx_ZrotM__FPA4_fs();
-extern "C" void mDoMtx_QuatConcat__FPC10QuaternionPC10QuaternionP10Quaternion();
-extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void transM__14mDoMtx_stack_cFfff();
-extern "C" void scaleM__14mDoMtx_stack_cFfff();
-extern "C" void quatM__14mDoMtx_stack_cFPC10Quaternion();
-extern "C" void init__13mDoExt_btpAnmFP16J3DMaterialTableP16J3DAnmTexPatterniifss();
-extern "C" void entry__13mDoExt_btpAnmFP16J3DMaterialTables();
-extern "C" void mDoExt_modelEntryDL__FP8J3DModel();
-extern "C" void initOldFrameMorf__22mDoExt_MtxCalcOldFrameFfUsUs();
-extern "C" void init__19mDoExt_3DlineMat1_cFUsUsP7ResTIMGi();
-extern "C" void update__19mDoExt_3DlineMat1_cFifR8_GXColorUsP12dKy_tevstr_c();
-extern "C" void setMat__26mDoExt_3DlineMatSortPacketFP18mDoExt_3DlineMat_c();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void __dt__10fopAc_ac_cFv();
-extern "C" void fopAcIt_Executor__FPFPvPv_iPv();
-extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
-extern "C" void fopAcM_setStageLayer__FPv();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz();
-extern "C" void fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_seenActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_searchActorDistanceXZ2__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fpoAcM_relativePos__FPC10fopAc_ac_cPC4cXyzP4cXyz();
-extern "C" void fopAcM_getPolygonAngle__FRC13cBgS_PolyInfos();
-extern "C" void fopAcM_getPolygonAngle__FPC8cM3dGPlas();
-extern "C" void gndCheck__11fopAcM_gc_cFPC4cXyz();
-extern "C" void waterCheck__11fopAcM_wt_cFPC4cXyz();
-extern "C" void getLayerNo__14dComIfG_play_cFi();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfGp_getReverb__Fi();
-extern "C" void
-dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj();
-extern "C" void set__17dSv_horse_place_cFPCcRC4cXyzsSc();
-extern "C" void isEventBit__11dSv_event_cCFUs();
-extern "C" void getDemoIDData__13dDemo_actor_cFPiPiPiPUsPUc();
-extern "C" void getActor__14dDemo_object_cFUc();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void getIDRes__14dRes_control_cFPCcUsP11dRes_info_ci();
-extern "C" void reset__14dEvt_control_cFv();
-extern "C" void getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci();
-extern "C" void getMyNowCutName__16dEvent_manager_cFi();
-extern "C" void getMySubstanceP__16dEvent_manager_cFiPCci();
-extern "C" void cutEnd__16dEvent_manager_cFi();
-extern "C" void getGoal__16dEvent_manager_cFv();
-extern "C" void getEmitter__Q213dPa_control_c7level_cFUl();
-extern "C" void
-set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf();
-extern "C" void init__7dPaPo_cFP9dBgS_Acchff();
-extern "C" void
-setEffectFour__8dPaPoF_cFPC12dKy_tevstr_cPC4cXyzUlUlPC4cXyzPC4cXyzPC4cXyzPC4cXyzPC4cXyzPC5csXyzPC4cXyzScff();
-extern "C" void dPath_GetRoomPath__Fii();
-extern "C" void dPath_GetNextRoomPath__FPC5dPathi();
-extern "C" void StartShock__12dVibration_cFii4cXyz();
-extern "C" void StartQuake__12dVibration_cFii4cXyz();
-extern "C" void StopQuake__12dVibration_cFi();
-extern "C" void GetLockonList__12dAttention_cFl();
-extern "C" void LockonTruth__12dAttention_cFv();
-extern "C" void getActor__10dAttList_cFv();
-extern "C" void LineCross__4cBgSFP11cBgS_LinChk();
-extern "C" void ChkPolySafe__4cBgSFRC13cBgS_PolyInfo();
-extern "C" void GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla();
-extern "C" void GetExitId__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void GetPolyColor__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void GetHorseNoEntry__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void GetSpecialCode__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void GetGroundCode__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void GetRoomId__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void __ct__12dBgS_AcchCirFv();
-extern "C" void SetWall__12dBgS_AcchCirFff();
-extern "C" void __dt__9dBgS_AcchFv();
-extern "C" void __ct__9dBgS_AcchFv();
-extern "C" void Set__9dBgS_AcchFP10fopAc_ac_ciP12dBgS_AcchCir();
-extern "C" void CrrPos__9dBgS_AcchFR4dBgS();
-extern "C" void Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c();
-extern "C" void __ct__16dBgS_HorseLinChkFv();
-extern "C" void __dt__16dBgS_HorseLinChkFv();
-extern "C" void SetHorse__16dBgS_PolyPassChkFv();
-extern "C" void __ct__10dCcD_GSttsFv();
-extern "C" void Move__10dCcD_GSttsFv();
-extern "C" void Init__9dCcD_SttsFiiP10fopAc_ac_c();
-extern "C" void __ct__12dCcD_GObjInfFv();
-extern "C" void __dt__12dCcD_GObjInfFv();
-extern "C" void ResetAtHit__12dCcD_GObjInfFv();
-extern "C" void ChkTgHit__12dCcD_GObjInfFv();
-extern "C" void Set__8dCcD_CylFRC11dCcD_SrcCyl();
-extern "C" void MoveCAt__8dCcD_CylFR4cXyz();
-extern "C" void Set__8dCcD_SphFRC11dCcD_SrcSph();
-extern "C" void Set__12dCcMassS_MngFP8cCcD_ObjUc();
-extern "C" void checkStageName__9daAlink_cFPCc();
-extern "C" void getMoveBGActorName__9daAlink_cFR13cBgS_PolyInfoi();
-extern "C" void checkUnderMove0BckNoArc__9daAlink_cCFQ29daAlink_c11daAlink_ANM();
-extern "C" void checkHorseWaitLashAnime__9daAlink_cCFv();
-extern "C" void checkHorseLieAnime__9daAlink_cCFv();
-extern "C" void checkHorseSubjectivity__9daAlink_cCFv();
-extern "C" void getHorseReinHandPos__9daAlink_cFP4cXyzP4cXyz();
-extern "C" void checkAnmEnd__16daPy_frameCtrl_cFv();
-extern "C" void updateFrame__16daPy_frameCtrl_cFv();
-extern "C" void setFrameCtrl__16daPy_frameCtrl_cFUcssff();
-extern "C" void setActor__16daPy_actorKeep_cFv();
-extern "C" void clearData__16daPy_actorKeep_cFv();
-extern "C" void setLookPos__9daPy_py_cFP4cXyz();
-extern "C" void dCam_getControledAngleY__FP12camera_class();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void dKy_pol_sound_get__FPC13cBgS_PolyInfo();
-extern "C" void __ct__10dMsgFlow_cFv();
-extern "C" void __dt__10dMsgFlow_cFv();
-extern "C" void init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c();
-extern "C" void doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci();
-extern "C" void ClrCcMove__9cCcD_SttsFv();
-extern "C" void SetGrp__10cCcD_ObjTgFUl();
-extern "C" void SetVsGrp__10cCcD_ObjCoFUl();
-extern "C" void Set__4cCcSFP8cCcD_Obj();
-extern "C" void __pl__4cXyzCFRC3Vec();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void __ml__4cXyzCFf();
-extern "C" void normalizeZP__4cXyzFv();
-extern "C" void atan2sX_Z__4cXyzCFv();
-extern "C" void atan2sY_XZ__4cXyzCFv();
-extern "C" void cM_rad2s__Ff();
-extern "C" void cM_atan2s__Fff();
-extern "C" void cM_rnd__Fv();
-extern "C" void cM_rndF__Ff();
-extern "C" void cM_rndFX__Ff();
-extern "C" void __dt__13cBgS_PolyInfoFv();
-extern "C" void cBgW_CheckBWall__Ff();
-extern "C" void __dt__8cM3dGCirFv();
-extern "C" void SetC__8cM3dGCylFRC4cXyz();
-extern "C" void SetH__8cM3dGCylFf();
-extern "C" void SetR__8cM3dGCylFf();
-extern "C" void SetC__8cM3dGSphFRC4cXyz();
-extern "C" void cLib_addCalcAngleS__FPsssss();
-extern "C" void cLib_chaseF__FPfff();
-extern "C" void cLib_chaseAngleS__FPsss();
-extern "C" void cLib_targetAngleY__FPC3VecPC3Vec();
-extern "C" void cLib_distanceAngleS__Fss();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void subBgmStart__8Z2SeqMgrFUl();
-extern "C" void initAnime__10Z2CreatureFPvbff();
-extern "C" void updateAnime__10Z2CreatureFff();
-extern "C" void __ct__14Z2CreatureRideFv();
-extern "C" void __dt__14Z2CreatureRideFv();
-extern "C" void init__14Z2CreatureRideFP3VecP3VecUcUc();
-extern "C" void setLinkRiding__14Z2CreatureRideFb();
-extern "C" void* __nw__FUl();
-extern "C" void* __nwa__FUl();
-extern "C" void __dl__FPv();
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void checkPass__12J3DFrameCtrlFf();
-extern "C" void init__24J3DMtxCalcJ3DSysInitMayaFRC3VecRA3_A4_Cf();
-extern "C" void calcTransform__27J3DMtxCalcCalcTransformMayaFRC16J3DTransformInfo();
-extern "C" void JMAEulerToQuat__FsssP10Quaternion();
-extern "C" void __destroy_arr();
-extern "C" void __construct_array();
-extern "C" void __construct_new_array();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_14();
-extern "C" void _savegpr_19();
-extern "C" void _savegpr_21();
-extern "C" void _savegpr_23();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_14();
-extern "C" void _restgpr_19();
-extern "C" void _restgpr_21();
-extern "C" void _restgpr_23();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" u8 const m_handLeftInSidePos__9daAlink_c[12];
-extern "C" u8 const m_handRightInSidePos__9daAlink_c[12];
-extern "C" extern void* __vt__19mDoExt_3DlineMat1_c[5];
-extern "C" extern void* __vt__28mDoExt_MtxCalcAnmBlendTblOld[11];
-extern "C" extern void* __vt__25mDoExt_MtxCalcAnmBlendTbl[11];
-extern "C" u8 m_typeFourData__8dPaPoF_c[60];
-extern "C" u8 m_emitterFourData__8dPaPoF_c[60 + 28 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mGndCheck__11fopAcM_gc_c[84];
-extern "C" u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" f32 Zero__4cXyz[3];
-extern "C" u8 BaseX__4cXyz[12];
-extern "C" u8 mCurrentMtx__6J3DSys[48];
-extern "C" u8 sincosTable___5JMath[65536];
-extern "C" f32 mGroundY__11fopAcM_gc_c;
-extern "C" f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
-extern "C" u8 m_top__12daTagHstop_c[4 + 4 /* padding */];
-extern "C" u8 m_object__7dDemo_c[4];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" u8 mJoint__10J3DMtxCalc[4];
-extern "C" void isAngry__7daCow_cFv();
-extern "C" void setAngryHit__7daCow_cFv();
-extern "C" void __register_global_object();
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
 /* 808454AC-808454B8 000000 000C+00 41/41 0/0 0/0 .rodata          @3894 */
-SECTION_RODATA static u8 const lit_3894[12] = {
+static u8 const lit_3894[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(0x808454AC, &lit_3894);
 
 /* 808454B8-808454C0 00000C 0006+02 2/6 0/0 0/0 .rodata          l_arcName */
-SECTION_RODATA static u8 const l_arcName[6 + 2 /* padding */] = {
-    0x48,
-    0x6F,
-    0x72,
-    0x73,
-    0x65,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x808454B8, &l_arcName);
+static char const l_arcName[] = "Horse";
 
 /* 808454C0-808454C8 000014 0008+00 2/5 0/0 0/0 .rodata          m_footJointTable__9daHorse_c */
-SECTION_RODATA u8 const daHorse_c::m_footJointTable[8] = {
-    0x00, 0x03, 0x00, 0x07, 0x00, 0x1B, 0x00, 0x1F,
+const u16 daHorse_c::m_footJointTable[] = {
+    0x0003, 0x0007, 0x001B, 0x001F,
 };
-COMPILER_STRIP_GATE(0x808454C0, &daHorse_c::m_footJointTable);
 
 /* 808454C8-808454CC 00001C 0004+00 0/0 0/0 0/0 .rodata          m_callLimitDistance2__9daHorse_c */
-#pragma push
-#pragma force_active on
-SECTION_RODATA f32 const daHorse_c::m_callLimitDistance2 = 640000.0f;
-COMPILER_STRIP_GATE(0x808454C8, &daHorse_c::m_callLimitDistance2);
-#pragma pop
+const f32 daHorse_c::m_callLimitDistance2 = 640000.0f;
 
 /* 808454CC-808455F0 000020 0124+00 1/20 0/0 0/0 .rodata          m__14daHorse_hio_c0 */
-SECTION_RODATA u8 const daHorse_hio_c0::m[292] = {
-    0x02, 0x58, 0x00, 0x32, 0x00, 0x2D, 0x00, 0x07, 0x00, 0x0E, 0x00, 0x08, 0x00, 0x5A, 0x00, 0xD2,
-    0x00, 0x0F, 0x00, 0x07, 0x00, 0x0D, 0x00, 0x08, 0x00, 0x03, 0x00, 0x2D, 0x42, 0x28, 0x00, 0x00,
-    0x3F, 0x80, 0x00, 0x00, 0x3F, 0x4C, 0xCC, 0xCD, 0x3F, 0xC0, 0x00, 0x00, 0x3F, 0x99, 0x99, 0x9A,
-    0x3F, 0xC0, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3D, 0xA3, 0xD7, 0x0A, 0x3E, 0xE6, 0x66, 0x66,
-    0x3F, 0x66, 0x66, 0x66, 0x3F, 0x8C, 0xCC, 0xCD, 0x40, 0xA0, 0x00, 0x00, 0x3F, 0xB3, 0x33, 0x33,
-    0x3E, 0xCC, 0xCC, 0xCD, 0x40, 0x00, 0x00, 0x00, 0x40, 0xD0, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
-    0x3F, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x8C, 0xCC, 0xCD, 0x40, 0xA0, 0x00, 0x00,
-    0x42, 0x34, 0x00, 0x00, 0x3F, 0xD9, 0x99, 0x9A, 0x40, 0x20, 0x00, 0x00, 0x3F, 0x8C, 0xCC, 0xCD,
-    0x40, 0xA0, 0x00, 0x00, 0x42, 0x64, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x41, 0xF8, 0x00, 0x00,
-    0x40, 0x00, 0x00, 0x00, 0x41, 0x40, 0x00, 0x00, 0x3F, 0xD9, 0x99, 0x9A, 0x40, 0x80, 0x00, 0x00,
-    0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
-    0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x41, 0x10, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00,
-    0x43, 0xAF, 0x00, 0x00, 0x43, 0x16, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00, 0x44, 0x7A, 0x00, 0x00,
-    0x42, 0x48, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00, 0x3F, 0xA6, 0x66, 0x66, 0x3F, 0x00, 0x00, 0x00,
-    0x40, 0x80, 0x00, 0x00, 0x3F, 0x33, 0x33, 0x33, 0x40, 0x00, 0x00, 0x00, 0x40, 0x40, 0x00, 0x00,
-    0x3E, 0x99, 0x99, 0x9A, 0x40, 0xE0, 0x00, 0x00, 0x40, 0xC0, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
-    0x40, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x00, 0x41, 0x10, 0x00, 0x00, 0x42, 0xFA, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x3F, 0x8C, 0xCC, 0xCD, 0x3F, 0xA6, 0x66, 0x66,
-    0x41, 0x70, 0x00, 0x00,
+const daHorse_hio_c1 daHorse_hio_c0::m = {
+    600,
+    50,
+    45,
+    7,
+    14,
+    8,
+    90,
+    210,
+    15,
+    7,
+    13,
+    8,
+    3,
+    45,
+    42.0f,
+    1.0f,
+    0.8f,
+    1.5f,
+    1.2f,
+    1.5f,
+    1.0f,
+    0.08f,
+    0.45f,
+    0.9f,
+    1.1f,
+    5.0f,
+    1.4f,
+    0.4f,
+    2.0f,
+    6.5f,
+    1.0f,
+    0.5f,
+    1.0f,
+    1.1f,
+    5.0f,
+    45.0f,
+    1.7f,
+    2.5f,
+    1.1f,
+    5.0f,
+    57.0f,
+    50.0f,
+    31.0f,
+    2.0f,
+    12.0f,
+    1.7f,
+    4.0f,
+    1.0f,
+    0.0f,
+    1.0f,
+    1.0f,
+    1.0f,
+    1.0f,
+    9.0f,
+    40.0f,
+    350.0f,
+    150.0f,
+    100.0f,
+    1000.0f,
+    50.0f,
+    40.0f,
+    1.3f,
+    0.5f,
+    4.0f,
+    0.7f,
+    2.0f,
+    3.0f,
+    0.3f,
+    7.0f,
+    6.0f,
+    1.0f,
+    2.0f,
+    2.0f,
+    9.0f,
+    125.0f,
+    0.0f,
+    35.0f,
+    1.1f,
+    1.3f,
+    15.0f,
 };
-COMPILER_STRIP_GATE(0x808454CC, &daHorse_hio_c0::m);
 
 /* 808455F0-808455F4 000144 0004+00 3/11 0/0 0/0 .rodata          @4303 */
 SECTION_RODATA static f32 const lit_4303 = 3.0f;
@@ -626,292 +298,12 @@ static dCcD_SrcSph l_sphSrc = {
 };
 #pragma pop
 
-/* 8084597C-80845988 -00001 000C+00 0/1 0/0 0/0 .data            @4886 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4886[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)checkSpecialWallHitSubstance__9daHorse_cCFRC4cXyz,
-};
-#pragma pop
-
-/* 80845988-80845994 -00001 000C+00 0/1 0/0 0/0 .data            @4887 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4887[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)setReinPosHandSubstance__9daHorse_cFi,
-};
-#pragma pop
-
-/* 80845994-808459A0 -00001 000C+00 0/1 0/0 0/0 .data            @4888 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4888[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)setReinPosNormalSubstance__9daHorse_cFv,
-};
-#pragma pop
-
-/* 808459A0-808459AC -00001 000C+00 0/1 0/0 0/0 .data            @4889 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4889[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)callHorseSubstance__9daHorse_cFPC4cXyz,
-};
-#pragma pop
-
-/* 808459AC-808459B8 -00001 000C+00 0/1 0/0 0/0 .data            @4890 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4890[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)setHorsePosAndAngleSubstance__9daHorse_cFPC4cXyzs,
-};
-#pragma pop
-
-/* 808459B8-808459C4 -00001 000C+00 0/1 0/0 0/0 .data            @4891 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4891[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)onRideFlgSubstance__9daHorse_cFv,
-};
-#pragma pop
-
-/* 808459C4-808459D0 -00001 000C+00 0/1 0/0 0/0 .data            @4892 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4892[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)offRideFlgSubstance__9daHorse_cFv,
-};
-#pragma pop
-
-/* 808459D0-808459DC -00001 000C+00 1/1 0/0 0/0 .data            @9343 */
-SECTION_DATA static void* lit_9343[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)procWait__9daHorse_cFv,
-};
-
-/* 808459DC-808459E8 -00001 000C+00 1/1 0/0 0/0 .data            @9546 */
-SECTION_DATA static void* lit_9546[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)procMove__9daHorse_cFv,
-};
-
-/* 808459E8-808459F4 -00001 000C+00 1/1 0/0 0/0 .data            @9680 */
-SECTION_DATA static void* lit_9680[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)procStop__9daHorse_cFv,
-};
-
-/* 808459F4-80845A00 -00001 000C+00 1/1 0/0 0/0 .data            @9802 */
-SECTION_DATA static void* lit_9802[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)procTurn__9daHorse_cFv,
-};
-
-/* 80845A00-80845A0C -00001 000C+00 1/1 0/0 0/0 .data            @9992 */
-SECTION_DATA static void* lit_9992[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)procJump__9daHorse_cFv,
-};
-
-/* 80845A0C-80845A18 -00001 000C+00 1/1 0/0 0/0 .data            @10113 */
-SECTION_DATA static void* lit_10113[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)procLand__9daHorse_cFv,
-};
-
-/* 80845A18-80845A24 -00001 000C+00 1/1 0/0 0/0 .data            @10171 */
-SECTION_DATA static void* lit_10171[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)procLargeDamage__9daHorse_cFv,
-};
-
-/* 80845A24-80845A30 -00001 000C+00 1/1 0/0 0/0 .data            @10185 */
-SECTION_DATA static void* lit_10185[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)procToolDemo__9daHorse_cFv,
-};
-
 /* 80845A30-80845A34 00015C 0004+00 1/1 0/0 0/0 .data            reinLineColor$10541 */
 SECTION_DATA static u8 reinLineColor[4] = {
     0x00,
     0x00,
     0x00,
     0xFF,
-};
-
-/* 80845A34-80845A54 -00001 0020+00 1/0 0/0 0/0 .data            l_daHorse_Method */
-static actor_method_class l_daHorse_Method = {
-    (process_method_func)daHorse_Create__FP10fopAc_ac_c,
-    (process_method_func)daHorse_Delete__FP9daHorse_c,
-    (process_method_func)daHorse_Execute__FP9daHorse_c,
-    0,
-    (process_method_func)daHorse_Draw__FP9daHorse_c,
-};
-
-/* 80845A54-80845A84 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_HORSE */
-extern actor_process_profile_definition g_profile_HORSE = {
-  fpcLy_CURRENT_e,        // mLayerID
-  4,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_HORSE,             // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  sizeof(daHorse_c),      // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  90,                     // mPriority
-  &l_daHorse_Method,      // sub_method
-  0x00060000,             // mStatus
-  fopAc_UNK_GROUP_5_e,    // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
-};
-
-/* 80845A84-80845A90 0001B0 000C+00 2/2 0/0 0/0 .data            __vt__16daPy_frameCtrl_c */
-SECTION_DATA extern void* __vt__16daPy_frameCtrl_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__16daPy_frameCtrl_cFv,
-};
-
-/* 80845A90-80845A9C 0001BC 000C+00 1/1 0/0 0/0 .data            __vt__12dBgS_AcchCir */
-SECTION_DATA extern void* __vt__12dBgS_AcchCir[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_AcchCirFv,
-};
-
-/* 80845A9C-80845AA8 0001C8 000C+00 3/3 0/0 0/0 .data            __vt__10cCcD_GStts */
-SECTION_DATA extern void* __vt__10cCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10cCcD_GSttsFv,
-};
-
-/* 80845AA8-80845AB4 0001D4 000C+00 2/2 0/0 0/0 .data            __vt__10dCcD_GStts */
-SECTION_DATA extern void* __vt__10dCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10dCcD_GSttsFv,
-};
-
-/* 80845AB4-80845AC8 0001E0 0014+00 1/1 0/0 0/0 .data            __vt__18mDoExt_3DlineMat_c */
-SECTION_DATA extern void* __vt__18mDoExt_3DlineMat_c[5] = {
-    (void*)NULL /* RTTI */, (void*)NULL, (void*)NULL, (void*)NULL, (void*)NULL,
-};
-
-/* 80845AC8-80845AD4 0001F4 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGSph */
-SECTION_DATA extern void* __vt__8cM3dGSph[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGSphFv,
-};
-
-/* 80845AD4-80845AE0 000200 000C+00 5/5 0/0 0/0 .data            __vt__8cM3dGCyl */
-SECTION_DATA extern void* __vt__8cM3dGCyl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGCylFv,
-};
-
-/* 80845AE0-80845AEC 00020C 000C+00 5/5 0/0 0/0 .data            __vt__8cM3dGAab */
-SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGAabFv,
-};
-
-/* 80845AEC-80845B10 000218 0024+00 3/3 0/0 0/0 .data            __vt__14dBgS_HorseAcch */
-SECTION_DATA extern void* __vt__14dBgS_HorseAcch[9] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__14dBgS_HorseAcchFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80844CA8,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80844CA0,
-};
-
-/* 80845B10-80845B1C 00023C 000C+00 5/5 0/0 0/0 .data            __vt__12J3DFrameCtrl */
-SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12J3DFrameCtrlFv,
-};
-
-/* 80845B1C-80845B48 000248 002C+00 2/2 0/0 0/0 .data
- * __vt__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya> */
-SECTION_DATA extern void* data_80845B1C[11] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)func_808392DC,
-    (void*)setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform,
-    (void*)getAnmTransform__10J3DMtxCalcFv,
-    (void*)setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform,
-    (void*)getAnmTransform__10J3DMtxCalcFUc,
-    (void*)setWeight__10J3DMtxCalcFUcf,
-    (void*)getWeight__10J3DMtxCalcCFUc,
-    (void*)func_80844BB4,
-    (void*)func_80844BDC,
-};
-
-/* 80845B48-80845B74 000274 002C+00 3/3 0/0 0/0 .data            __vt__19J3DMtxCalcNoAnmBase */
-SECTION_DATA extern void* __vt__19J3DMtxCalcNoAnmBase[11] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__19J3DMtxCalcNoAnmBaseFv,
-    (void*)setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform,
-    (void*)getAnmTransform__10J3DMtxCalcFv,
-    (void*)setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform,
-    (void*)getAnmTransform__10J3DMtxCalcFUc,
-    (void*)setWeight__10J3DMtxCalcFUcf,
-    (void*)getWeight__10J3DMtxCalcCFUc,
-    (void*)NULL,
-    (void*)NULL,
-};
-
-/* 80845B74-80845BA0 0002A0 002C+00 4/4 0/0 0/0 .data            __vt__10J3DMtxCalc */
-SECTION_DATA extern void* __vt__10J3DMtxCalc[11] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10J3DMtxCalcFv,
-    (void*)setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform,
-    (void*)getAnmTransform__10J3DMtxCalcFv,
-    (void*)setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform,
-    (void*)getAnmTransform__10J3DMtxCalcFUc,
-    (void*)setWeight__10J3DMtxCalcFUcf,
-    (void*)getWeight__10J3DMtxCalcCFUc,
-    (void*)NULL,
-    (void*)NULL,
-};
-
-/* 80845BA0-80845BAC 0002CC 000C+00 5/5 0/0 0/0 .data            __vt__8cM3dGPla */
-SECTION_DATA extern void* __vt__8cM3dGPla[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGPlaFv,
 };
 
 /* 80838498-80838750 000658 02B8+00 2/2 0/0 0/0 .text
@@ -2454,345 +1846,31 @@ static void daHorse_Delete(daHorse_c* param_0) {
     // NONMATCHING
 }
 
-/* 80844B44-80844B8C 00CD04 0048+00 1/0 0/0 0/0 .text            __dt__10cCcD_GSttsFv */
-// cCcD_GStts::~cCcD_GStts() {
-extern "C" void __dt__10cCcD_GSttsFv() {
-    // NONMATCHING
-}
+/* 80845A34-80845A54 -00001 0020+00 1/0 0/0 0/0 .data            l_daHorse_Method */
+static actor_method_class l_daHorse_Method = {
+    (process_method_func)daHorse_Create,
+    (process_method_func)daHorse_Delete,
+    (process_method_func)daHorse_Execute,
+    0,
+    (process_method_func)daHorse_Draw,
+};
 
-/* 80844BB4-80844BDC 00CD74 0028+00 1/0 0/0 0/0 .text
- * init__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>FRC3VecRA3_A4_Cf
- */
-extern "C" void func_80844BB4(void* _this, Vec const& param_0, f32 const (&param_1)[3][4]) {
-    // NONMATCHING
-}
+/* 80845A54-80845A84 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_HORSE */
+extern actor_process_profile_definition g_profile_HORSE = {
+  fpcLy_CURRENT_e,        // mLayerID
+  4,                      // mListID
+  fpcPi_CURRENT_e,        // mListPrio
+  PROC_HORSE,             // mProcName
+  &g_fpcLf_Method.base,  // sub_method
+  sizeof(daHorse_c),      // mSize
+  0,                      // mSizeOther
+  0,                      // mParameters
+  &g_fopAc_Method.base,   // sub_method
+  90,                     // mPriority
+  &l_daHorse_Method,      // sub_method
+  0x00060000,             // mStatus
+  fopAc_UNK_GROUP_5_e,    // mActorType
+  fopAc_CULLBOX_CUSTOM_e, // cullType
+};
 
-/* 80844BDC-80844C0C 00CD9C 0030+00 1/0 0/0 0/0 .text
- * calc__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>Fv */
-extern "C" void func_80844BDC(void* _this) {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80845850-80845854 0003A4 0004+00 0/1 0/0 0/0 .rodata          @10703 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10703 = 23.5f;
-COMPILER_STRIP_GATE(0x80845850, &lit_10703);
-#pragma pop
-
-/* 80845854-80845858 0003A8 0004+00 0/1 0/0 0/0 .rodata          @10704 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10704 = -20.0f;
-COMPILER_STRIP_GATE(0x80845854, &lit_10704);
-#pragma pop
-
-/* 80845858-8084585C 0003AC 0004+00 0/1 0/0 0/0 .rodata          @10705 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10705 = 25.5f;
-COMPILER_STRIP_GATE(0x80845858, &lit_10705);
-#pragma pop
-
-/* 80844C0C-80844CA0 00CDCC 0094+00 0/0 1/0 0/0 .text            __sinit_d_a_horse_cpp */
-void __sinit_d_a_horse_cpp() {
-    // NONMATCHING
-}
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80844C0C, __sinit_d_a_horse_cpp);
-#pragma pop
-
-/* 80844CA0-80844CA8 00CE60 0008+00 1/0 0/0 0/0 .text            @36@__dt__14dBgS_HorseAcchFv */
-static void func_80844CA0() {
-    // NONMATCHING
-}
-
-/* 80844CA8-80844CB0 00CE68 0008+00 1/0 0/0 0/0 .text            @20@__dt__14dBgS_HorseAcchFv */
-static void func_80844CA8() {
-    // NONMATCHING
-}
-
-/* 80844CB0-80844F70 00CE70 02C0+00 1/1 0/0 0/0 .text            __ct__9daHorse_cFv */
-daHorse_c::daHorse_c() {
-    // NONMATCHING
-}
-
-/* 80844F70-80844FAC 00D130 003C+00 2/2 0/0 0/0 .text            __dt__17daHorseFootData_cFv */
-daHorseFootData_c::~daHorseFootData_c() {
-    // NONMATCHING
-}
-
-/* 80844FAC-80844FB0 00D16C 0004+00 1/1 0/0 0/0 .text            __ct__17daHorseFootData_cFv */
-daHorseFootData_c::daHorseFootData_c() {
-    /* empty function */
-}
-
-/* 80844FB0-80844FEC 00D170 003C+00 2/2 0/0 0/0 .text            __dt__13daHorseRein_cFv */
-// daHorseRein_c::~daHorseRein_c() {
-extern "C" void __dt__13daHorseRein_cFv() {
-    // NONMATCHING
-}
-
-/* 80844FEC-80844FF0 00D1AC 0004+00 1/1 0/0 0/0 .text            __ct__13daHorseRein_cFv */
-// daHorseRein_c::daHorseRein_c() {
-extern "C" void __ct__13daHorseRein_cFv() {
-    /* empty function */
-}
-
-/* 80844FF0-80845038 00D1B0 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGSphFv */
-// cM3dGSph::~cM3dGSph() {
-extern "C" void __dt__8cM3dGSphFv() {
-    // NONMATCHING
-}
-
-/* 80845038-80845080 00D1F8 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGCylFv */
-// cM3dGCyl::~cM3dGCyl() {
-extern "C" void __dt__8cM3dGCylFv() {
-    // NONMATCHING
-}
-
-/* 80845080-808450C8 00D240 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
-// cM3dGAab::~cM3dGAab() {
-extern "C" void __dt__8cM3dGAabFv() {
-    // NONMATCHING
-}
-
-/* 808450C8-80845194 00D288 00CC+00 2/2 0/0 0/0 .text            __dt__8dCcD_CylFv */
-// dCcD_Cyl::~dCcD_Cyl() {
-extern "C" void __dt__8dCcD_CylFv() {
-    // NONMATCHING
-}
-
-/* 80845194-80845218 00D354 0084+00 1/1 0/0 0/0 .text            __ct__8dCcD_CylFv */
-// dCcD_Cyl::dCcD_Cyl() {
-extern "C" void __ct__8dCcD_CylFv() {
-    // NONMATCHING
-}
-
-/* 80845218-80845274 00D3D8 005C+00 1/0 0/0 0/0 .text            __dt__10dCcD_GSttsFv */
-// dCcD_GStts::~dCcD_GStts() {
-extern "C" void __dt__10dCcD_GSttsFv() {
-    // NONMATCHING
-}
-
-/* 80845274-808452E4 00D434 0070+00 3/2 0/0 0/0 .text            __dt__14dBgS_HorseAcchFv */
-dBgS_HorseAcch::~dBgS_HorseAcch() {
-    // NONMATCHING
-}
-
-/* 808452E4-80845354 00D4A4 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_AcchCirFv */
-// dBgS_AcchCir::~dBgS_AcchCir() {
-extern "C" void __dt__12dBgS_AcchCirFv() {
-    // NONMATCHING
-}
-
-/* 80845354-808453B0 00D514 005C+00 3/2 0/0 0/0 .text            __dt__16daPy_frameCtrl_cFv */
-// daPy_frameCtrl_c::~daPy_frameCtrl_c() {
-extern "C" void __dt__16daPy_frameCtrl_cFv() {
-    // NONMATCHING
-}
-
-/* 808453B0-808453FC 00D570 004C+00 1/1 0/0 0/0 .text            __ct__16daPy_frameCtrl_cFv */
-daPy_frameCtrl_c::daPy_frameCtrl_c() {
-    // NONMATCHING
-}
-
-/* 808453FC-80845438 00D5BC 003C+00 2/2 0/0 0/0 .text            __dt__19mDoExt_AnmRatioPackFv */
-mDoExt_AnmRatioPack::~mDoExt_AnmRatioPack() {
-    // NONMATCHING
-}
-
-/* 80845438-80845450 00D5F8 0018+00 1/1 0/0 0/0 .text            __ct__19mDoExt_AnmRatioPackFv */
-mDoExt_AnmRatioPack::mDoExt_AnmRatioPack() {
-    // NONMATCHING
-}
-
-/* 80845450-80845498 00D610 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
-// J3DFrameCtrl::~J3DFrameCtrl() {
-extern "C" void __dt__12J3DFrameCtrlFv() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80845DB0-80845DB4 000200 0004+00 0/0 0/0 0/0 .bss
- * sInstance__40JASGlobalInstance<19JASDefaultBankTable>        */
-#pragma push
-#pragma force_active on
-static u8 data_80845DB0[4];
-#pragma pop
-
-/* 80845DB4-80845DB8 000204 0004+00 0/0 0/0 0/0 .bss
- * sInstance__35JASGlobalInstance<14JASAudioThread>             */
-#pragma push
-#pragma force_active on
-static u8 data_80845DB4[4];
-#pragma pop
-
-/* 80845DB8-80845DBC 000208 0004+00 0/0 0/0 0/0 .bss sInstance__27JASGlobalInstance<7Z2SeMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_80845DB8[4];
-#pragma pop
-
-/* 80845DBC-80845DC0 00020C 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8Z2SeqMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_80845DBC[4];
-#pragma pop
-
-/* 80845DC0-80845DC4 000210 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SceneMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80845DC0[4];
-#pragma pop
-
-/* 80845DC4-80845DC8 000214 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2StatusMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80845DC4[4];
-#pragma pop
-
-/* 80845DC8-80845DCC 000218 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2DebugSys>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80845DC8[4];
-#pragma pop
-
-/* 80845DCC-80845DD0 00021C 0004+00 0/0 0/0 0/0 .bss
- * sInstance__36JASGlobalInstance<15JAISoundStarter>            */
-#pragma push
-#pragma force_active on
-static u8 data_80845DCC[4];
-#pragma pop
-
-/* 80845DD0-80845DD4 000220 0004+00 0/0 0/0 0/0 .bss
- * sInstance__35JASGlobalInstance<14Z2SoundStarter>             */
-#pragma push
-#pragma force_active on
-static u8 data_80845DD0[4];
-#pragma pop
-
-/* 80845DD4-80845DD8 000224 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12Z2SpeechMgr2>               */
-#pragma push
-#pragma force_active on
-static u8 data_80845DD4[4];
-#pragma pop
-
-/* 80845DD8-80845DDC 000228 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8JAISeMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_80845DD8[4];
-#pragma pop
-
-/* 80845DDC-80845DE0 00022C 0004+00 0/0 0/0 0/0 .bss sInstance__29JASGlobalInstance<9JAISeqMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_80845DDC[4];
-#pragma pop
-
-/* 80845DE0-80845DE4 000230 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAIStreamMgr>               */
-#pragma push
-#pragma force_active on
-static u8 data_80845DE0[4];
-#pragma pop
-
-/* 80845DE4-80845DE8 000234 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SoundMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80845DE4[4];
-#pragma pop
-
-/* 80845DE8-80845DEC 000238 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAISoundInfo>               */
-#pragma push
-#pragma force_active on
-static u8 data_80845DE8[4];
-#pragma pop
-
-/* 80845DEC-80845DF0 00023C 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13JAUSoundTable>              */
-#pragma push
-#pragma force_active on
-static u8 data_80845DEC[4];
-#pragma pop
-
-/* 80845DF0-80845DF4 000240 0004+00 0/0 0/0 0/0 .bss
- * sInstance__38JASGlobalInstance<17JAUSoundNameTable>          */
-#pragma push
-#pragma force_active on
-static u8 data_80845DF0[4];
-#pragma pop
-
-/* 80845DF4-80845DF8 000244 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAUSoundInfo>               */
-#pragma push
-#pragma force_active on
-static u8 data_80845DF4[4];
-#pragma pop
-
-/* 80845DF8-80845DFC 000248 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SoundInfo>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80845DF8[4];
-#pragma pop
-
-/* 80845DFC-80845E00 00024C 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13Z2SoundObjMgr>              */
-#pragma push
-#pragma force_active on
-static u8 data_80845DFC[4];
-#pragma pop
-
-/* 80845E00-80845E04 000250 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2Audience>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80845E00[4];
-#pragma pop
-
-/* 80845E04-80845E08 000254 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2FxLineMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80845E04[4];
-#pragma pop
-
-/* 80845E08-80845E0C 000258 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2EnvSeMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80845E08[4];
-#pragma pop
-
-/* 80845E0C-80845E10 00025C 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SpeechMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80845E0C[4];
-#pragma pop
-
-/* 80845E10-80845E14 000260 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13Z2WolfHowlMgr>              */
-#pragma push
-#pragma force_active on
-static u8 data_80845E10[4];
-#pragma pop
-
-/* 80845E14-80845E18 000264 0004+00 0/0 0/0 0/0 .bss
- * sInstance__35JASGlobalInstance<14JAUSectionHeap>             */
-#pragma push
-#pragma force_active on
-static u8 data_80845E14[4];
-#pragma pop
-
-/* 8084585C-8084585C 0003B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+AUDIO_INSTANCES;
