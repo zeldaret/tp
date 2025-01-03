@@ -22,8 +22,12 @@ public:
     /* 80C47558 */ void col_chk();
     /* 80C477B4 */ void hitPrtclSet();
 
+    u8 getActionMode() { return mActionMode; }
+
 private:
-    /* 0x568 */ u8 field_0x568[0x71c - 0x568];
+    /* 0x568 */ u8 field_0x568[0x70c - 0x568];
+    /* 0x70C */ u8 mActionMode;
+    /* 0x70D */ u8 field_0x70d[0x71c - 0x70d];
 };
 
 STATIC_ASSERT(sizeof(daObjKnBullet_c) == 0x71c);
