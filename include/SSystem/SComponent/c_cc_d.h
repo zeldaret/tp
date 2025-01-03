@@ -37,6 +37,7 @@ enum cCcD_ObjAtType {
     /* 0x00000020 */ AT_TYPE_BOMB = (1 << 5),
     /* 0x00000040 */ AT_TYPE_40 = (1 << 6),
     /* 0x00000080 */ AT_TYPE_SLINGSHOT = (1 << 7),
+    /* 0x00000100 */ AT_TYPE_100 = (1 << 8),
     /* 0x00000200 */ AT_TYPE_LANTERN_SWING = (1 << 9),
     /* 0x00000400 */ AT_TYPE_CSTATUE_SWING = (1 << 10),
     /* 0x00000800 */ AT_TYPE_800 = (1 << 11),
