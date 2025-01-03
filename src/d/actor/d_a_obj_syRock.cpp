@@ -4,332 +4,525 @@
 */
 
 #include "d/actor/d_a_obj_syRock.h"
-#include "dol2asm.h"
+#include "d/actor/d_a_obj_eff.h"
+#include "d/d_bg_w.h"
+#include "d/d_com_inf_game.h"
+#include "f_op/f_op_kankyo_mng.h"
+#include "SSystem/SComponent/c_math.h"
 
-
-
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__14daSyRock_HIO_cFv();
-extern "C" void __dt__14mDoHIO_entry_cFv();
-extern "C" void setBaseMtx__10daSyRock_cFv();
-extern "C" void CreateHeap__10daSyRock_cFv();
-extern "C" void create__10daSyRock_cFv();
-extern "C" void __dt__12dBgS_ObjAcchFv();
-extern "C" void __dt__12dBgS_AcchCirFv();
-extern "C" void __dt__8cM3dGCylFv();
-extern "C" void __dt__8cM3dGAabFv();
-extern "C" void __dt__10dCcD_GSttsFv();
-extern "C" void setFallStat__10daSyRock_cFv();
-extern "C" void Execute__10daSyRock_cFPPA3_A4_f();
-extern "C" void move__10daSyRock_cFv();
-extern "C" void init_modeWait__10daSyRock_cFv();
-extern "C" void modeWait__10daSyRock_cFv();
-extern "C" void eventStart__10daSyRock_cFv();
-extern "C" void init_modeDropInit__10daSyRock_cFv();
-extern "C" void modeDropInit__10daSyRock_cFv();
-extern "C" void searchWaterPillar__10daSyRock_cFPvPv();
-extern "C" void init_modeDrop__10daSyRock_cFv();
-extern "C" void modeDrop__10daSyRock_cFv();
-extern "C" void init_modeSink__10daSyRock_cFv();
-extern "C" void modeSink__10daSyRock_cFv();
-extern "C" void init_modeMove__10daSyRock_cFv();
-extern "C" void modeMove__10daSyRock_cFv();
-extern "C" void chkWaterLineIn__10daSyRock_cFv();
-extern "C" void bgCheck__10daSyRock_cFv();
-extern "C" void init_modeDropEnd__10daSyRock_cFv();
-extern "C" void modeDropEnd__10daSyRock_cFv();
-extern "C" void Draw__10daSyRock_cFv();
-extern "C" void Delete__10daSyRock_cFv();
-extern "C" static void daSyRock_Draw__FP10daSyRock_c();
-extern "C" static void daSyRock_Execute__FP10daSyRock_c();
-extern "C" static void daSyRock_Delete__FP10daSyRock_c();
-extern "C" static void daSyRock_Create__FP10fopAc_ac_c();
-extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" void __dt__14daSyRock_HIO_cFv();
-extern "C" void __sinit_d_a_obj_syRock_cpp();
-extern "C" static void func_80D03D10();
-extern "C" static void func_80D03D18();
-extern "C" static void func_80D03D20();
-extern "C" static void func_80D03D28();
-extern "C" void __dt__17dEvLib_callback_cFv();
-extern "C" bool eventStart__17dEvLib_callback_cFv();
-extern "C" bool eventRun__17dEvLib_callback_cFv();
-extern "C" bool eventEnd__17dEvLib_callback_cFv();
-extern "C" void getPos__12daWtPillar_cFv();
-extern "C" void __dt__10daSyRock_cFv();
-extern "C" u8 const mCcDObjInfo__10daSyRock_c[48];
-extern "C" extern char const* const d_a_obj_syRock__stringBase0;
-extern "C" u8 mCcDCyl__10daSyRock_c[68];
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
-extern "C" void transM__14mDoMtx_stack_cFfff();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void __dt__10fopAc_ac_cFv();
-extern "C" void fopAc_IsActor__FPv();
-extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
-extern "C" void fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc();
-extern "C" void fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData();
-extern "C" void fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz();
-extern "C" void fopKyM_createWpillar__FPC4cXyzfi();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfGp_getReverb__Fi();
-extern "C" void onSwitch__10dSv_info_cFii();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void eventUpdate__17dEvLib_callback_cFv();
-extern "C" void orderEvent__17dEvLib_callback_cFiii();
-extern "C" void
-set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf();
-extern "C" void StartShock__12dVibration_cFii4cXyz();
-extern "C" void Release__4cBgSFP9dBgW_Base();
-extern "C" void Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c();
-extern "C" void dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz();
-extern "C" void __ct__12dBgS_AcchCirFv();
-extern "C" void SetWall__12dBgS_AcchCirFff();
-extern "C" void __dt__9dBgS_AcchFv();
-extern "C" void __ct__9dBgS_AcchFv();
-extern "C" void Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz();
-extern "C" void CrrPos__9dBgS_AcchFR4dBgS();
-extern "C" void __ct__16dBgS_MoveBgActorFv();
-extern "C" bool Create__16dBgS_MoveBgActorFv();
-extern "C" bool IsDelete__16dBgS_MoveBgActorFv();
-extern "C" bool ToFore__16dBgS_MoveBgActorFv();
-extern "C" bool ToBack__16dBgS_MoveBgActorFv();
-extern "C" void
-MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f();
-extern "C" void MoveBGDelete__16dBgS_MoveBgActorFv();
-extern "C" void MoveBGExecute__16dBgS_MoveBgActorFv();
-extern "C" void SetObj__16dBgS_PolyPassChkFv();
-extern "C" void Set__4cBgWFP6cBgD_tUlPA3_A4_f();
-extern "C" void __ct__4dBgWFv();
-extern "C" void Move__4dBgWFv();
-extern "C" void __ct__10dCcD_GSttsFv();
-extern "C" void Init__9dCcD_SttsFiiP10fopAc_ac_c();
-extern "C" void __ct__12dCcD_GObjInfFv();
-extern "C" void __dt__12dCcD_GObjInfFv();
-extern "C" void ChkTgHit__12dCcD_GObjInfFv();
-extern "C" void GetTgHitGObj__12dCcD_GObjInfFv();
-extern "C" void Set__8dCcD_CylFRC11dCcD_SrcCyl();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void Set__4cCcSFP8cCcD_Obj();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void __dt__13cBgS_PolyInfoFv();
-extern "C" void ChkUsed__9cBgW_BgIdCFv();
-extern "C" void __dt__8cM3dGCirFv();
-extern "C" void SetC__8cM3dGCylFRC4cXyz();
-extern "C" void SetH__8cM3dGCylFf();
-extern "C" void SetR__8cM3dGCylFf();
-extern "C" void cLib_addCalc__FPfffff();
-extern "C" void cLib_addCalcAngleS__FPsssss();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__16dBgS_MoveBgActor[10];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" u8 sincosTable___5JMath[65536];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" void __register_global_object();
-extern "C" void getPillarHeight__12daWtPillar_cFv();
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 80D03F90-80D03F94 000000 0004+00 6/6 0/0 0/0 .rodata          @3662 */
-SECTION_RODATA static f32 const lit_3662 = 450.0f;
-COMPILER_STRIP_GATE(0x80D03F90, &lit_3662);
-
-/* 80D03F94-80D03F98 000004 0004+00 0/1 0/0 0/0 .rodata          @3663 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3663 = 90.0f;
-COMPILER_STRIP_GATE(0x80D03F94, &lit_3663);
-#pragma pop
-
-/* 80D03F98-80D03F9C 000008 0004+00 0/1 0/0 0/0 .rodata          @3664 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3664 = 45.0f;
-COMPILER_STRIP_GATE(0x80D03F98, &lit_3664);
-#pragma pop
-
-/* 80D03F9C-80D03FA0 00000C 0004+00 0/1 0/0 0/0 .rodata          @3665 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3665 = 1.0f / 20.0f;
-COMPILER_STRIP_GATE(0x80D03F9C, &lit_3665);
-#pragma pop
-
-/* 80D03FA0-80D03FA4 000010 0004+00 0/1 0/0 0/0 .rodata          @3666 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3666 = 5.0f;
-COMPILER_STRIP_GATE(0x80D03FA0, &lit_3666);
-#pragma pop
-
-/* 80D03FA4-80D03FA8 000014 0004+00 0/1 0/0 0/0 .rodata          @3667 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3667 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(0x80D03FA4, &lit_3667);
-#pragma pop
-
-/* 80D03FA8-80D03FAC 000018 0004+00 0/1 0/0 0/0 .rodata          @3668 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3668 = 10.0f;
-COMPILER_STRIP_GATE(0x80D03FA8, &lit_3668);
-#pragma pop
-
-/* 80D03FAC-80D03FB0 00001C 0004+00 1/2 0/0 0/0 .rodata          @3669 */
-SECTION_RODATA static f32 const lit_3669 = 200.0f;
-COMPILER_STRIP_GATE(0x80D03FAC, &lit_3669);
-
-/* 80D03FB0-80D03FB4 000020 0004+00 0/1 0/0 0/0 .rodata          @3670 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3670 = 4.0f;
-COMPILER_STRIP_GATE(0x80D03FB0, &lit_3670);
-#pragma pop
-
-/* 80D03FB4-80D03FB8 000024 0004+00 0/2 0/0 0/0 .rodata          @3671 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3671 = 3.0f;
-COMPILER_STRIP_GATE(0x80D03FB4, &lit_3671);
-#pragma pop
+typedef void (daSyRock_c::*actionFunc)();
 
 /* 80D0403C-80D04048 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+UNK_REL_DATA
 
-/* 80D04048-80D0405C 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
+/* 80D0426C-80D042A0 000014 0034+00 8/8 0/0 0/0 .bss             l_HIO */
+static daSyRock_HIO_c l_HIO;
 
 /* 80D0405C-80D040A0 000020 0044+00 2/2 0/0 0/0 .data            mCcDCyl__10daSyRock_c */
-SECTION_DATA u8 daSyRock_c::mCcDCyl[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+dCcD_SrcCyl daSyRock_c::mCcDCyl = {mCcDObjInfo};
+
+/* 80D022AC-80D02334 0000EC 0088+00 1/1 0/0 0/0 .text            __ct__14daSyRock_HIO_cFv */
+daSyRock_HIO_c::daSyRock_HIO_c() {
+    mShakeAmplitude = 450.0f;
+    mShakeXOscillationAngle = 90.0f;
+    mShakeZOscillationAngle = 45.0f;
+    mShakeDamping = 1.0f / 20.0f;
+    mShakeMaxDecay = 5.0f;
+    mShakeMinDecay = 1.0f / 10.0f;
+    mFallAcceleration = 10.0f;
+    mMaxFallSpeed = 200.0f;
+    mWaitFrames = 30;
+    mEffectScale = 4.0f;
+    mShockStrength = 4;
+    mFallWaterBouyancy = 3.0f;
+    mMaxWaterPillarRange = 5.0f;
+}
+
+/* 80D0237C-80D02454 0001BC 00D8+00 2/2 0/0 0/0 .text            setBaseMtx__10daSyRock_cFv */
+void daSyRock_c::setBaseMtx() {
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::ZXYrotM(0, shape_angle.y, shape_angle.z);
+    mDoMtx_stack_c::ZXYrotM(mShakeXZAngleOffset.x, mShakeXZAngleOffset.y, mShakeXZAngleOffset.z);
+    mDoMtx_stack_c::transM(mUnderwaterRotatedStalactiteOffset.x, mUnderwaterRotatedStalactiteOffset.y, mUnderwaterRotatedStalactiteOffset.z);
+
+    mpModels[mIsUnbroken]->setBaseScale(scale);
+
+    // Set base transform matrix of current model and the background matrix both to the contents of now
+    mpModels[mIsUnbroken]->setBaseTRMtx(mDoMtx_stack_c::get());
+    PSMTXCopy(mDoMtx_stack_c::get(), mBgMtx);
+}
+
+/* 80D02454-80D02584 000294 0130+00 1/0 0/0 0/0 .text            CreateHeap__10daSyRock_cFv */
+int daSyRock_c::CreateHeap() {
+    J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("syourock", 4));
+    JUT_ASSERT(271, modelData != 0);
+    mpModels[0] = mDoExt_J3DModel__create(modelData, 1 << 19, 0x11000084);
+    
+    if(!mpModels[0])
+        return 0;
+
+    modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("syourock", 5));
+    JUT_ASSERT(282, modelData != 0);
+    mpModels[1] = mDoExt_J3DModel__create(modelData, 1 << 19, 0x11000084);
+
+    if(!mpModels[1])
+        return 0;
+    
+    mpBrokenCollision = new dBgW;
+
+    if(!mpBrokenCollision || mpBrokenCollision->Set(static_cast<cBgD_t*>(dComIfG_getObjectRes("syourock", 9)), 1, &mBgMtx)) {
+        mpBrokenCollision = NULL;
+        return 0;
+    }
+
+    return 1;
+}
+
+dCcD_SrcGObjInf const daSyRock_c::mCcDObjInfo = {
+    {0x0, {{AT_TYPE_BOMB, 0x1, 0x1F}, {AT_TYPE_IRON_BALL | AT_TYPE_BOMB, 0x11}, 0x79}},    // mObj
+    {dCcD_SE_SWORD, 0x0, 0x1, dCcD_MTRL_NONE, 0x0},      // mGObjAt
+    {dCcD_SE_STONE, 0x0, 0x0, dCcD_MTRL_NONE, 0x2},      // mGObjTg
+    {},  // mGObjCo
 };
 
-/* 80D040A0-80D040AC -00001 000C+00 0/1 0/0 0/0 .data            @3922 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3922[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeWait__10daSyRock_cFv,
-};
-#pragma pop
+/* 80D02584-80D02930 0003C4 03AC+00 1/1 0/0 0/0 .text            create__10daSyRock_cFv */
+cPhs__Step daSyRock_c::create() {
+    fopAcM_SetupActor(this, daSyRock_c);
 
-/* 80D040AC-80D040B8 -00001 000C+00 0/1 0/0 0/0 .data            @3923 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3923[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeDropInit__10daSyRock_cFv,
-};
-#pragma pop
+    if(getArg0() == TRUE) {
+        mpWaterPillar = static_cast<daWtPillar_c*>(fopAcIt_Judge(searchWaterPillar, this));
 
-/* 80D040B8-80D040C4 -00001 000C+00 0/1 0/0 0/0 .data            @3924 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3924[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeDrop__10daSyRock_cFv,
-};
-#pragma pop
+        if(!mpWaterPillar)
+            return cPhs_INIT_e;
+    }
 
-/* 80D040C4-80D040D0 -00001 000C+00 0/1 0/0 0/0 .data            @3925 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3925[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeSink__10daSyRock_cFv,
-};
-#pragma pop
+    const cPhs__Step requestedPhaseProcess = static_cast<cPhs__Step>(dComIfG_resLoad(&mPhase, "syourock"));
+    if(requestedPhaseProcess == cPhs_COMPLEATE_e) {
+        const cPhs__Step bgCreatePhaseProcess = static_cast<cPhs__Step>(MoveBGCreate("syourock", 0x8, dBgS_MoveBGProc_TypicalRotY, 0x2100, NULL));
+        if(bgCreatePhaseProcess == cPhs_ERROR_e)
+            return cPhs_ERROR_e;
 
-/* 80D040D0-80D040DC -00001 000C+00 0/1 0/0 0/0 .data            @3926 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3926[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeMove__10daSyRock_cFv,
-};
-#pragma pop
+        mAcchCir.SetWall(150.0f, 150.0f);
+        mAcch.Set(&current.pos, &old.pos, this, 0x1, &mAcchCir, &speed, NULL, NULL);
+        mAcch.SetWaterCheckOffset(10000.0f);
+        mShakeOscillationAngleStep = 0;
+        mShakeXZAngleOffset.setall(0);
 
-/* 80D040DC-80D040E8 -00001 000C+00 0/1 0/0 0/0 .data            @3927 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3927[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeDropEnd__10daSyRock_cFv,
-};
-#pragma pop
+        mShakeXOscillationAngle = mShakeZOscillationAngle = mShakeAmplitude = 0.0f;
+        mShakeMinDecay = mShakeMaxDecay = mShakeDamping =  0.0f;
+        mUnderwaterRotatedStalactiteOffset.setall(0.0f);
 
-/* 80D040E8-80D04130 0000AC 0048+00 0/1 0/0 0/0 .data            mode_proc$3921 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 mode_proc[72] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-#pragma pop
+        mStts.Init(0xFF, 0xFF, this);
+        mUnbrokenCylinderCollider.Set(mCcDCyl);
+        mUnbrokenCylinderCollider.SetStts(&mStts);
+        mUnbrokenCylinderCollider.OffAtSetBit();
+
+        const u32 wasBrokenSwitchNo = getSwBit1();
+        if(dComIfGs_isSwitch(wasBrokenSwitchNo, fopAcM_GetHomeRoomNo(this))) {
+            mIsUnbroken = false;
+            mUnbrokenCylinderCollider.OffCoSetBit();
+            if(mpBrokenCollision && mpBrokenCollision->ChkUsed()) {
+                dComIfG_Bgsp().Release(mpBrokenCollision);
+                mpBrokenCollision->Move();
+            }
+
+            // Snap already broken stalactite to its appropriate location and set its mode accordingly
+            setFallStat();
+        }
+        else {
+            mIsUnbroken = true;
+
+            if(mpBgW)
+                dComIfG_Bgsp().Release(mpBgW);
+                
+            if(mpBrokenCollision) {
+                dComIfG_Bgsp().Regist(mpBrokenCollision, this);
+                mpBrokenCollision->Move();
+            }
+
+            mDropAutomaticallySwitchNo = getSwBit2();
+            init_modeWait();
+
+        }
+
+        field_0x779 = 2;
+        fopAcM_SetMtx(this, mpModels[mIsUnbroken]->getBaseTRMtx());
+        fopAcM_setCullSizeBox2(this, mpModels[mIsUnbroken]->getModelData());
+        setBaseMtx();
+    }
+
+    return requestedPhaseProcess;
+}
+
+/* 80D02AFC-80D02BE0 00093C 00E4+00 1/1 0/0 0/0 .text            setFallStat__10daSyRock_cFv */
+void daSyRock_c::setFallStat() {
+    mpWaterPillar = static_cast<daWtPillar_c*>(fopAcIt_Judge(searchWaterPillar, this));
+    if(mpWaterPillar) {
+        mpWaterPillar->onRockFlag();
+        mMode = MODE_MOVE;
+    }
+    else {
+        mAcch.CrrPos(dComIfG_Bgsp());
+
+        if(mAcch.ChkWaterHit()) {
+            if(mAcch.m_wtr.GetHeight() - mAcch.GetGroundH() >= 200.0f) {
+                mUnderwaterRotatedStalactiteOffset.x = 150.0f;
+                shape_angle.z = 0x4000;
+            }
+            current.pos.y = mAcch.GetGroundH();
+        }
+        else {
+            current.pos.y = mAcch.GetGroundH();
+        }
+
+        mAcch.CrrPos(dComIfG_Bgsp());
+        mMode = MODE_DROP_END;
+    }
+}
+
+/* 80D02BE0-80D02C54 000A20 0074+00 1/0 0/0 0/0 .text            Execute__10daSyRock_cFPPA3_A4_f */
+int daSyRock_c::Execute(Mtx** i_mtx) {
+    eventUpdate();
+    move();
+
+    *i_mtx = &mpModels[mIsUnbroken]->getBaseTRMtx();
+
+    mInWaterPreviousFrame = mAcch.ChkWaterIn();
+    setBaseMtx();
+
+    return 1;
+}
+
+/* 80D02C54-80D02E70 000A94 021C+00 1/1 0/0 0/0 .text            move__10daSyRock_cFv */
+void daSyRock_c::move() {
+    static actionFunc mode_proc[] = {
+    &daSyRock_c::modeWait, &daSyRock_c::modeDropInit,
+    &daSyRock_c::modeDrop, &daSyRock_c::modeSink,
+    &daSyRock_c::modeMove, &daSyRock_c::modeDropEnd
+    };
+
+    (this->*mode_proc[mMode])(); 
+
+    mShakeXZAngleOffset.x = mShakeAmplitude * cM_ssin(mShakeOscillationAngleStep * cM_deg2s(mShakeXOscillationAngle));
+    mShakeXZAngleOffset.z = mShakeAmplitude * cM_scos(mShakeOscillationAngleStep * cM_deg2s(mShakeZOscillationAngle));
+
+    cLib_addCalc(&mShakeAmplitude, 0.0f, mShakeDamping, mShakeMaxDecay, mShakeMinDecay);
+
+    mShakeOscillationAngleStep++;
+
+    mUnbrokenCylinderCollider.SetR(150.0f);
+    mUnbrokenCylinderCollider.SetH(680.0f);
+
+    cXyz currentPos = current.pos;
+    currentPos.y -= 250.0f;
+
+    mUnbrokenCylinderCollider.SetC(currentPos);
+
+    dComIfG_Ccsp()->Set(&mUnbrokenCylinderCollider);
+}
+
+/* 80D02E70-80D02E7C 000CB0 000C+00 1/1 0/0 0/0 .text            init_modeWait__10daSyRock_cFv */
+void daSyRock_c::init_modeWait() {
+    mMode = MODE_WAIT;
+}
+
+/* 80D02E7C-80D02F88 000CBC 010C+00 1/0 0/0 0/0 .text            modeWait__10daSyRock_cFv */
+void daSyRock_c::modeWait() {
+    if(mDropAutomaticallySwitchNo != 0xFF && dComIfGs_isSwitch(mDropAutomaticallySwitchNo, fopAcM_GetHomeRoomNo(this))) {
+        field_0x779 = 0;
+        if(getEvetID() != 0xFF){
+            orderEvent(getEvetID(), 0xFF, 1);
+        } else {
+            eventStart();
+        }
+    }
+    else if(mUnbrokenCylinderCollider.ChkTgHit()) {
+        if(mUnbrokenCylinderCollider.GetTgHitGObj()->GetAtType() == AT_TYPE_BOMB) {
+            field_0x779 = 0;
+            if(getEvetID() != 0xFF)
+                orderEvent(getEvetID(), 0xFF, 1);
+            else {
+                eventStart();
+            }
+        }
+        mUnbrokenCylinderCollider.ClrTgHit();
+    }
+}
+
+/* 80D02F88-80D02FB8 000DC8 0030+00 2/1 0/0 0/0 .text            eventStart__10daSyRock_cFv */
+BOOL daSyRock_c::eventStart() {
+    // field_0x779 is always 0 when eventStart() is called (see modeWait())
+    if(!field_0x779)
+        init_modeDropInit();
+
+    return TRUE;
+}
+
+/* 80D02FB8-80D03070 000DF8 00B8+00 1/1 0/0 0/0 .text            init_modeDropInit__10daSyRock_cFv
+ */
+void daSyRock_c::init_modeDropInit() {
+    fopAcM_seStartCurrent(this, Z2SE_OBJ_STALAC_BREAK, 0);
+
+    mUnbrokenCylinderCollider.OffCoSetBit();
+    mUnbrokenCylinderCollider.OffTgSetBit();
+
+    mWaitFrames = 0;
+
+    mpWaterPillar = static_cast<daWtPillar_c*>(fopAcIt_Judge(searchWaterPillar, this));
+
+    mMode = MODE_DROP_INIT;
+}
+
+/* 80D03070-80D030A8 000EB0 0038+00 1/0 0/0 0/0 .text            modeDropInit__10daSyRock_cFv */
+void daSyRock_c::modeDropInit() {
+    if(mWaitFrames)
+        mWaitFrames--;
+    else
+        init_modeDrop();
+}
+
+/* 80D030A8-80D03250 000EE8 01A8+00 3/3 0/0 0/0 .text searchWaterPillar__10daSyRock_cFPvPv */
+void* daSyRock_c::searchWaterPillar(void* i_proc, void* i_this) {
+    daSyRock_c* const syRock = static_cast<daSyRock_c*>(i_this);
+    daWtPillar_c* const wtPillar = static_cast<daWtPillar_c*>(i_proc);
+
+    if(wtPillar && fopAcM_IsActor(wtPillar) && fopAcM_GetProfName(wtPillar) == PROC_Obj_WaterPillar) {
+        const cXyz vectorToWaterPillar = fopAcM_GetPosition(syRock) - fopAcM_GetPosition(wtPillar);
+        const f32 horizontalDistanceToWaterPillar = sqrtf(vectorToWaterPillar.getMagXZ());
+         
+        if(horizontalDistanceToWaterPillar <= l_HIO.mMaxWaterPillarRange)
+            return wtPillar;
+        else
+            return NULL;
+    }
+    return NULL;
+}
+
+/* 80D03250-80D03384 001090 0134+00 1/1 0/0 0/0 .text            init_modeDrop__10daSyRock_cFv */
+void daSyRock_c::init_modeDrop() {
+    gravity = -l_HIO.mFallAcceleration;
+    maxFallSpeed = -l_HIO.mMaxFallSpeed;
+    speedF = 0.0f;
+
+    if(mpBrokenCollision) {
+        dComIfG_Bgsp().Release(mpBrokenCollision);
+        mpBrokenCollision->Move();
+    }
+
+    mIsUnbroken = false;
+    fopAcM_SetMtx(this, mpModels[mIsUnbroken]->getBaseTRMtx());
+    fopAcM_setCullSizeBox2(this, mpModels[mIsUnbroken]->getModelData());
+
+    const cXyz particlePos = current.pos;
+    dComIfGp_particle_set(0x8616, &particlePos, NULL, NULL);
+    mUnbrokenCylinderCollider.OnAtSetBit();
+    mMode = MODE_DROP;
+}
+
+/* 80D03384-80D033D0 0011C4 004C+00 1/0 0/0 0/0 .text            modeDrop__10daSyRock_cFv */
+void daSyRock_c::modeDrop() {
+    fopAcM_posMoveF(this, mStts.GetCCMoveP());
+    mAcch.CrrPos(dComIfG_Bgsp());
+    bgCheck();
+}
+
+/* 80D033D0-80D03440 001210 0070+00 1/1 0/0 0/0 .text            init_modeSink__10daSyRock_cFv */
+void daSyRock_c::init_modeSink() {
+    gravity = -l_HIO.mFallAcceleration + l_HIO.mFallWaterBouyancy;
+    speed.y = cLib_minMaxLimit(speed.y, -15.0f, 13.0f);
+
+    if(!mpWaterPillar)
+        mUnderwaterRotatedStalactiteOffset.x = 150.0f;
+
+    mMode = MODE_SINK;
+}
+
+/* 80D03440-80D034E8 001280 00A8+00 1/0 0/0 0/0 .text            modeSink__10daSyRock_cFv */
+void daSyRock_c::modeSink() {
+    if(!mpWaterPillar)
+        cLib_addCalcAngleS(&shape_angle.z, 0x4000, 1, 0x444, 1);
+
+    speed.y = cLib_minMaxLimit(speed.y, -15.0f, 13.0f);
+
+    fopAcM_posMoveF(this, mStts.GetCCMoveP());
+    mAcch.CrrPos(dComIfG_Bgsp());
+
+    bgCheck();
+}
+
+/* 80D034E8-80D035F8 001328 0110+00 1/1 0/0 0/0 .text            init_modeMove__10daSyRock_cFv */
+void daSyRock_c::init_modeMove() {
+    fopAcM_seStartCurrent(this, Z2SE_OBJ_STALAC_LAND_WATER, 0);
+
+    if(mpBgW)
+        dComIfG_Bgsp().Regist(mpBgW, this);
+
+    mpWaterPillar->onRockFlag();
+
+    mShakeAmplitude = l_HIO.mShakeAmplitude;
+    mShakeZOscillationAngle = l_HIO.mShakeZOscillationAngle;
+    mShakeXOscillationAngle = l_HIO.mShakeXOscillationAngle;
+    mShakeDamping = l_HIO.mShakeDamping;
+    mShakeMaxDecay = l_HIO.mShakeMaxDecay;
+    mShakeMinDecay = l_HIO.mShakeMinDecay;
+
+    mUnbrokenCylinderCollider.OffAtSetBit();
+
+    const u32 swBit = getSwBit1();
+    dComIfGs_onSwitch(swBit, fopAcM_GetHomeRoomNo(this));
+
+    mMode = MODE_MOVE;
+}
+
+/* 80D035F8-80D036B8 001438 00C0+00 1/0 0/0 0/0 .text            modeMove__10daSyRock_cFv */
+void daSyRock_c::modeMove() {
+    mpWaterPillar->onRockFlag();
+
+    current.pos = mpWaterPillar->getPos();
+    current.pos.y -= 50.0f;
+    
+    if(mpWaterPillar->isRockYure()) {
+        mShakeAmplitude = l_HIO.mShakeAmplitude;
+        mShakeZOscillationAngle = l_HIO.mShakeZOscillationAngle;
+        mShakeXOscillationAngle = l_HIO.mShakeXOscillationAngle;
+        mShakeDamping = l_HIO.mShakeDamping;
+        mShakeMaxDecay = l_HIO.mShakeMaxDecay;
+        mShakeMinDecay = l_HIO.mShakeMinDecay;
+
+        mpWaterPillar->clearRockYure();
+    }
+}
+
+/* 80D036B8-80D036DC 0014F8 0024+00 1/1 0/0 0/0 .text            chkWaterLineIn__10daSyRock_cFv */
+BOOL daSyRock_c::chkWaterLineIn() {
+    return mAcch.m_wtr.GetHeight() > current.pos.y + 150.0f;
+}
+
+/* 80D036DC-80D03984 00151C 02A8+00 2/2 0/0 0/0 .text            bgCheck__10daSyRock_cFv */
+void daSyRock_c::bgCheck() {
+    // Note stack ordering issues arise if fopAcM_seStartCurrent() is used instead of mDoAud_seStart()
+    // TODO: Fakematch, fake inlines are used to make check functions return u32
+    const u32 hitGround = mAcch.i_ChkGroundHit_fake();
+    const u32 hitWater = mAcch.i_ChkWaterHit_fake();
+    const u32 inWater = mAcch.i_ChkWaterIn_fake();
+    bool inWaterPillar = false;
+
+    if(mMode == MODE_DROP) {
+        if(mpWaterPillar) {
+            const f32 waterPillarHeight = mpWaterPillar->getPillarHeight();
+            const f32 waterPillarVerticalPos = fopAcM_GetPosition(mpWaterPillar).y;
+            if(waterPillarVerticalPos + waterPillarHeight - 50.0f >= current.pos.y)
+                inWaterPillar = true;
+        }
+
+        const f32 waterHeight = mAcch.m_wtr.GetHeight();
+        if(hitWater) {
+            const f32 verticalSpeed = speed.y;
+            
+            if(chkWaterLineIn())
+                init_modeSink();
+
+            if(inWater && !mInWaterPreviousFrame) {
+                cXyz currentRockPos = current.pos;
+                currentRockPos.y = waterHeight;
+                fopKyM_createWpillar(&currentRockPos, l_HIO.mEffectScale, 3);
+
+                if(verticalSpeed < -15.0f)
+                    fopAcM_seStart(this, Z2SE_OBJ_FALL_WATER_M, 0);
+                else
+                    mDoAud_seStart(Z2SE_OBJ_STALAC_LAND_WATER, &current.pos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+            }
+        }
+
+        if(inWaterPillar)
+            init_modeMove();
+    }
+
+    if(hitGround) {
+        if(!hitWater && !mpWaterPillar) {
+            mDoAud_seStart(Z2SE_OBJ_STALAC_LAND, &current.pos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+            daObjEff::Act_c::make_land_smoke(&current.pos, l_HIO.mEffectScale);
+        }
+
+        if(mpWaterPillar)
+            init_modeMove();
+        else
+            init_modeDropEnd();
+    }
+}
+
+/* 80D03984-80D03A48 0017C4 00C4+00 1/1 0/0 0/0 .text            init_modeDropEnd__10daSyRock_cFv */
+void daSyRock_c::init_modeDropEnd() {
+    if(!mAcch.ChkWaterIn()) {
+        dComIfGp_getVibration().StartShock(l_HIO.mShockStrength, 0xF, cXyz(0.0f, 1.0f, 0.0f));
+    }
+
+    if(mpBgW)
+        dComIfG_Bgsp().Regist(mpBgW, this);
+
+    mUnbrokenCylinderCollider.OffAtSetBit();
+
+    const u32 switchBitIndex = getSwBit1(); 
+    dComIfGs_onSwitch(switchBitIndex, fopAcM_GetHomeRoomNo(this));
+
+    mMode = MODE_DROP_END;
+}
+
+/* 80D03A48-80D03A4C 001888 0004+00 1/0 0/0 0/0 .text            modeDropEnd__10daSyRock_cFv */
+void daSyRock_c::modeDropEnd() {
+    /* empty function */
+}
+
+/* 80D03A4C-80D03B08 00188C 00BC+00 1/0 0/0 0/0 .text            Draw__10daSyRock_cFv */
+int daSyRock_c::Draw() {
+    g_env_light.settingTevStruct(0x10, fopAcM_GetPosition_p(this), &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModels[mIsUnbroken], &tevStr);
+    
+    dComIfGd_setListBG();
+    mDoExt_modelUpdateDL(mpModels[mIsUnbroken]);
+    dComIfGd_setList();
+
+    return 1;
+}
+
+/* 80D03B08-80D03B70 001948 0068+00 1/0 0/0 0/0 .text            Delete__10daSyRock_cFv */
+int daSyRock_c::Delete() {
+    dComIfG_resDelete(&mPhase, "syourock");
+
+    if(mpBrokenCollision && mpBrokenCollision->ChkUsed())
+        dComIfG_Bgsp().Release(mpBrokenCollision);
+
+    return 1;
+}
+
+/* 80D03B70-80D03B9C 0019B0 002C+00 1/0 0/0 0/0 .text            daSyRock_Draw__FP10daSyRock_c */
+static int daSyRock_Draw(daSyRock_c* i_this) {
+    return i_this->Draw();
+    return 1;
+}
+
+/* 80D03B9C-80D03BBC 0019DC 0020+00 1/0 0/0 0/0 .text            daSyRock_Execute__FP10daSyRock_c */
+static int daSyRock_Execute(daSyRock_c* i_this) {
+    return i_this->MoveBGExecute();
+}
+
+/* 80D03BBC-80D03BDC 0019FC 0020+00 1/0 0/0 0/0 .text            daSyRock_Delete__FP10daSyRock_c */
+static int daSyRock_Delete(daSyRock_c* i_this) {
+    return i_this->MoveBGDelete();
+}
+
+/* 80D03BDC-80D03BFC 001A1C 0020+00 1/0 0/0 0/0 .text            daSyRock_Create__FP10fopAc_ac_c */
+static int daSyRock_Create(fopAc_ac_c* i_this) {
+    return static_cast<daSyRock_c*>(i_this)->create();
+}
 
 /* 80D04130-80D04150 -00001 0020+00 1/0 0/0 0/0 .data            l_daSyRock_Method */
 static actor_method_class l_daSyRock_Method = {
-    (process_method_func)daSyRock_Create__FP10fopAc_ac_c,
-    (process_method_func)daSyRock_Delete__FP10daSyRock_c,
-    (process_method_func)daSyRock_Execute__FP10daSyRock_c,
+    (process_method_func)daSyRock_Create,
+    (process_method_func)daSyRock_Delete,
+    (process_method_func)daSyRock_Execute,
     0,
-    (process_method_func)daSyRock_Draw__FP10daSyRock_c,
+    (process_method_func)daSyRock_Draw,
 };
 
 /* 80D04150-80D04180 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_SyRock */
@@ -349,484 +542,3 @@ extern actor_process_profile_definition g_profile_Obj_SyRock = {
   fopAc_ACTOR_e,          // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 80D04180-80D0418C 000144 000C+00 3/3 0/0 0/0 .data            __vt__10cCcD_GStts */
-SECTION_DATA extern void* __vt__10cCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10cCcD_GSttsFv,
-};
-
-/* 80D0418C-80D04198 000150 000C+00 2/2 0/0 0/0 .data            __vt__10dCcD_GStts */
-SECTION_DATA extern void* __vt__10dCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10dCcD_GSttsFv,
-};
-
-/* 80D04198-80D041A4 00015C 000C+00 2/2 0/0 0/0 .data            __vt__12dBgS_AcchCir */
-SECTION_DATA extern void* __vt__12dBgS_AcchCir[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_AcchCirFv,
-};
-
-/* 80D041A4-80D041C8 000168 0024+00 3/3 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
-SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_ObjAcchFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80D03D28,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80D03D20,
-};
-
-/* 80D041C8-80D041D4 00018C 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGCyl */
-SECTION_DATA extern void* __vt__8cM3dGCyl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGCylFv,
-};
-
-/* 80D041D4-80D041E0 000198 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGAab */
-SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGAabFv,
-};
-
-/* 80D041E0-80D041F8 0001A4 0018+00 3/3 0/0 0/0 .data            __vt__17dEvLib_callback_c */
-SECTION_DATA extern void* __vt__17dEvLib_callback_c[6] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__17dEvLib_callback_cFv,
-    (void*)eventStart__17dEvLib_callback_cFv,
-    (void*)eventRun__17dEvLib_callback_cFv,
-    (void*)eventEnd__17dEvLib_callback_cFv,
-};
-
-/* 80D041F8-80D04240 0001BC 0048+00 2/2 0/0 0/0 .data            __vt__10daSyRock_c */
-SECTION_DATA extern void* __vt__10daSyRock_c[18] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)CreateHeap__10daSyRock_cFv,
-    (void*)Create__16dBgS_MoveBgActorFv,
-    (void*)Execute__10daSyRock_cFPPA3_A4_f,
-    (void*)Draw__10daSyRock_cFv,
-    (void*)Delete__10daSyRock_cFv,
-    (void*)IsDelete__16dBgS_MoveBgActorFv,
-    (void*)ToFore__16dBgS_MoveBgActorFv,
-    (void*)ToBack__16dBgS_MoveBgActorFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80D03D18,
-    (void*)func_80D03D10,
-    (void*)eventRun__17dEvLib_callback_cFv,
-    (void*)eventEnd__17dEvLib_callback_cFv,
-    (void*)__dt__10daSyRock_cFv,
-    (void*)eventStart__10daSyRock_cFv,
-};
-
-/* 80D04240-80D0424C 000204 000C+00 2/2 0/0 0/0 .data            __vt__14daSyRock_HIO_c */
-SECTION_DATA extern void* __vt__14daSyRock_HIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__14daSyRock_HIO_cFv,
-};
-
-/* 80D0424C-80D04258 000210 000C+00 3/3 0/0 0/0 .data            __vt__14mDoHIO_entry_c */
-SECTION_DATA extern void* __vt__14mDoHIO_entry_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__14mDoHIO_entry_cFv,
-};
-
-/* 80D022AC-80D02334 0000EC 0088+00 1/1 0/0 0/0 .text            __ct__14daSyRock_HIO_cFv */
-daSyRock_HIO_c::daSyRock_HIO_c() {
-    // NONMATCHING
-}
-
-/* 80D02334-80D0237C 000174 0048+00 1/0 0/0 0/0 .text            __dt__14mDoHIO_entry_cFv */
-// mDoHIO_entry_c::~mDoHIO_entry_c() {
-extern "C" void __dt__14mDoHIO_entry_cFv() {
-    // NONMATCHING
-}
-
-/* 80D0237C-80D02454 0001BC 00D8+00 2/2 0/0 0/0 .text            setBaseMtx__10daSyRock_cFv */
-void daSyRock_c::setBaseMtx() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80D04030-80D04030 0000A0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80D04030 = "syourock";
-#pragma pop
-
-/* 80D02454-80D02584 000294 0130+00 1/0 0/0 0/0 .text            CreateHeap__10daSyRock_cFv */
-void daSyRock_c::CreateHeap() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80D03FB8-80D03FE8 000028 0030+00 1/1 0/0 0/0 .rodata          mCcDObjInfo__10daSyRock_c */
-SECTION_RODATA u8 const daSyRock_c::mCcDObjInfo[48] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x20, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1F,
-    0x00, 0x40, 0x00, 0x20, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x79, 0x01, 0x00, 0x01, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D03FB8, &daSyRock_c::mCcDObjInfo);
-
-/* 80D03FE8-80D03FEC 000058 0004+00 2/5 0/0 0/0 .rodata          @3805 */
-SECTION_RODATA static f32 const lit_3805 = 150.0f;
-COMPILER_STRIP_GATE(0x80D03FE8, &lit_3805);
-
-/* 80D03FEC-80D03FF0 00005C 0004+00 0/1 0/0 0/0 .rodata          @3806 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3806 = 10000.0f;
-COMPILER_STRIP_GATE(0x80D03FEC, &lit_3806);
-#pragma pop
-
-/* 80D03FF0-80D03FF4 000060 0004+00 2/5 0/0 0/0 .rodata          @3807 */
-SECTION_RODATA static u8 const lit_3807[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80D03FF0, &lit_3807);
-
-/* 80D02584-80D02930 0003C4 03AC+00 1/1 0/0 0/0 .text            create__10daSyRock_cFv */
-void daSyRock_c::create() {
-    // NONMATCHING
-}
-
-/* 80D02930-80D029A0 000770 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
-// dBgS_ObjAcch::~dBgS_ObjAcch() {
-extern "C" void __dt__12dBgS_ObjAcchFv() {
-    // NONMATCHING
-}
-
-/* 80D029A0-80D02A10 0007E0 0070+00 1/0 0/0 0/0 .text            __dt__12dBgS_AcchCirFv */
-// dBgS_AcchCir::~dBgS_AcchCir() {
-extern "C" void __dt__12dBgS_AcchCirFv() {
-    // NONMATCHING
-}
-
-/* 80D02A10-80D02A58 000850 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGCylFv */
-// cM3dGCyl::~cM3dGCyl() {
-extern "C" void __dt__8cM3dGCylFv() {
-    // NONMATCHING
-}
-
-/* 80D02A58-80D02AA0 000898 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
-// cM3dGAab::~cM3dGAab() {
-extern "C" void __dt__8cM3dGAabFv() {
-    // NONMATCHING
-}
-
-/* 80D02AA0-80D02AFC 0008E0 005C+00 1/0 0/0 0/0 .text            __dt__10dCcD_GSttsFv */
-// dCcD_GStts::~dCcD_GStts() {
-extern "C" void __dt__10dCcD_GSttsFv() {
-    // NONMATCHING
-}
-
-/* 80D02AFC-80D02BE0 00093C 00E4+00 1/1 0/0 0/0 .text            setFallStat__10daSyRock_cFv */
-void daSyRock_c::setFallStat() {
-    // NONMATCHING
-}
-
-/* 80D02BE0-80D02C54 000A20 0074+00 1/0 0/0 0/0 .text            Execute__10daSyRock_cFPPA3_A4_f */
-void daSyRock_c::Execute(f32 (**param_0)[3][4]) {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80D03FF4-80D03FF8 000064 0004+00 0/1 0/0 0/0 .rodata          @3948 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_3948 = 0x43360B61;
-COMPILER_STRIP_GATE(0x80D03FF4, &lit_3948);
-#pragma pop
-
-/* 80D03FF8-80D03FFC 000068 0004+00 0/1 0/0 0/0 .rodata          @3949 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3949 = 680.0f;
-COMPILER_STRIP_GATE(0x80D03FF8, &lit_3949);
-#pragma pop
-
-/* 80D03FFC-80D04000 00006C 0004+00 0/1 0/0 0/0 .rodata          @3950 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3950 = 250.0f;
-COMPILER_STRIP_GATE(0x80D03FFC, &lit_3950);
-#pragma pop
-
-/* 80D04260-80D0426C 000008 000C+00 1/1 0/0 0/0 .bss             @3656 */
-static u8 lit_3656[12];
-
-/* 80D0426C-80D042A0 000014 0034+00 8/8 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[52];
-
-/* 80D042A0-80D042A4 000048 0004+00 1/1 0/0 0/0 .bss             None */
-static u8 data_80D042A0[4];
-
-/* 80D02C54-80D02E70 000A94 021C+00 1/1 0/0 0/0 .text            move__10daSyRock_cFv */
-void daSyRock_c::move() {
-    // NONMATCHING
-}
-
-/* 80D02E70-80D02E7C 000CB0 000C+00 1/1 0/0 0/0 .text            init_modeWait__10daSyRock_cFv */
-void daSyRock_c::init_modeWait() {
-    // NONMATCHING
-}
-
-/* 80D02E7C-80D02F88 000CBC 010C+00 1/0 0/0 0/0 .text            modeWait__10daSyRock_cFv */
-void daSyRock_c::modeWait() {
-    // NONMATCHING
-}
-
-/* 80D02F88-80D02FB8 000DC8 0030+00 2/1 0/0 0/0 .text            eventStart__10daSyRock_cFv */
-void daSyRock_c::eventStart() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80D04000-80D04004 000070 0004+00 4/5 0/0 0/0 .rodata          @4014 */
-SECTION_RODATA static f32 const lit_4014 = 1.0f;
-COMPILER_STRIP_GATE(0x80D04000, &lit_4014);
-
-/* 80D04004-80D04008 000074 0004+00 2/3 0/0 0/0 .rodata          @4015 */
-SECTION_RODATA static f32 const lit_4015 = -1.0f;
-COMPILER_STRIP_GATE(0x80D04004, &lit_4015);
-
-/* 80D02FB8-80D03070 000DF8 00B8+00 1/1 0/0 0/0 .text            init_modeDropInit__10daSyRock_cFv
- */
-void daSyRock_c::init_modeDropInit() {
-    // NONMATCHING
-}
-
-/* 80D03070-80D030A8 000EB0 0038+00 1/0 0/0 0/0 .text            modeDropInit__10daSyRock_cFv */
-void daSyRock_c::modeDropInit() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80D04008-80D04010 000078 0008+00 0/1 0/0 0/0 .rodata          @4078 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4078[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D04008, &lit_4078);
-#pragma pop
-
-/* 80D04010-80D04018 000080 0008+00 0/1 0/0 0/0 .rodata          @4079 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4079[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D04010, &lit_4079);
-#pragma pop
-
-/* 80D04018-80D04020 000088 0008+00 0/1 0/0 0/0 .rodata          @4080 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4080[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D04018, &lit_4080);
-#pragma pop
-
-/* 80D030A8-80D03250 000EE8 01A8+00 3/3 0/0 0/0 .text searchWaterPillar__10daSyRock_cFPvPv */
-void daSyRock_c::searchWaterPillar(void* param_0, void* param_1) {
-    // NONMATCHING
-}
-
-/* 80D03250-80D03384 001090 0134+00 1/1 0/0 0/0 .text            init_modeDrop__10daSyRock_cFv */
-void daSyRock_c::init_modeDrop() {
-    // NONMATCHING
-}
-
-/* 80D03384-80D033D0 0011C4 004C+00 1/0 0/0 0/0 .text            modeDrop__10daSyRock_cFv */
-void daSyRock_c::modeDrop() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80D04020-80D04024 000090 0004+00 1/3 0/0 0/0 .rodata          @4138 */
-SECTION_RODATA static f32 const lit_4138 = -15.0f;
-COMPILER_STRIP_GATE(0x80D04020, &lit_4138);
-
-/* 80D04024-80D04028 000094 0004+00 1/2 0/0 0/0 .rodata          @4139 */
-SECTION_RODATA static f32 const lit_4139 = 13.0f;
-COMPILER_STRIP_GATE(0x80D04024, &lit_4139);
-
-/* 80D033D0-80D03440 001210 0070+00 1/1 0/0 0/0 .text            init_modeSink__10daSyRock_cFv */
-void daSyRock_c::init_modeSink() {
-    // NONMATCHING
-}
-
-/* 80D03440-80D034E8 001280 00A8+00 1/0 0/0 0/0 .text            modeSink__10daSyRock_cFv */
-void daSyRock_c::modeSink() {
-    // NONMATCHING
-}
-
-/* 80D034E8-80D035F8 001328 0110+00 1/1 0/0 0/0 .text            init_modeMove__10daSyRock_cFv */
-void daSyRock_c::init_modeMove() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80D04028-80D0402C 000098 0004+00 1/2 0/0 0/0 .rodata          @4197 */
-SECTION_RODATA static f32 const lit_4197 = 50.0f;
-COMPILER_STRIP_GATE(0x80D04028, &lit_4197);
-
-/* 80D035F8-80D036B8 001438 00C0+00 1/0 0/0 0/0 .text            modeMove__10daSyRock_cFv */
-void daSyRock_c::modeMove() {
-    // NONMATCHING
-}
-
-/* 80D036B8-80D036DC 0014F8 0024+00 1/1 0/0 0/0 .text            chkWaterLineIn__10daSyRock_cFv */
-void daSyRock_c::chkWaterLineIn() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80D0402C-80D04030 00009C 0004+00 0/1 0/0 0/0 .rodata          @4275 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4275 = 5.0f / 3.0f;
-COMPILER_STRIP_GATE(0x80D0402C, &lit_4275);
-#pragma pop
-
-/* 80D036DC-80D03984 00151C 02A8+00 2/2 0/0 0/0 .text            bgCheck__10daSyRock_cFv */
-void daSyRock_c::bgCheck() {
-    // NONMATCHING
-}
-
-/* 80D03984-80D03A48 0017C4 00C4+00 1/1 0/0 0/0 .text            init_modeDropEnd__10daSyRock_cFv */
-void daSyRock_c::init_modeDropEnd() {
-    // NONMATCHING
-}
-
-/* 80D03A48-80D03A4C 001888 0004+00 1/0 0/0 0/0 .text            modeDropEnd__10daSyRock_cFv */
-void daSyRock_c::modeDropEnd() {
-    /* empty function */
-}
-
-/* 80D03A4C-80D03B08 00188C 00BC+00 1/0 0/0 0/0 .text            Draw__10daSyRock_cFv */
-void daSyRock_c::Draw() {
-    // NONMATCHING
-}
-
-/* 80D03B08-80D03B70 001948 0068+00 1/0 0/0 0/0 .text            Delete__10daSyRock_cFv */
-void daSyRock_c::Delete() {
-    // NONMATCHING
-}
-
-/* 80D03B70-80D03B9C 0019B0 002C+00 1/0 0/0 0/0 .text            daSyRock_Draw__FP10daSyRock_c */
-static void daSyRock_Draw(daSyRock_c* param_0) {
-    // NONMATCHING
-}
-
-/* 80D03B9C-80D03BBC 0019DC 0020+00 1/0 0/0 0/0 .text            daSyRock_Execute__FP10daSyRock_c */
-static void daSyRock_Execute(daSyRock_c* param_0) {
-    // NONMATCHING
-}
-
-/* 80D03BBC-80D03BDC 0019FC 0020+00 1/0 0/0 0/0 .text            daSyRock_Delete__FP10daSyRock_c */
-static void daSyRock_Delete(daSyRock_c* param_0) {
-    // NONMATCHING
-}
-
-/* 80D03BDC-80D03BFC 001A1C 0020+00 1/0 0/0 0/0 .text            daSyRock_Create__FP10fopAc_ac_c */
-static void daSyRock_Create(fopAc_ac_c* param_0) {
-    // NONMATCHING
-}
-
-/* 80D03BFC-80D03C44 001A3C 0048+00 1/0 0/0 0/0 .text            __dt__10cCcD_GSttsFv */
-// cCcD_GStts::~cCcD_GStts() {
-extern "C" void __dt__10cCcD_GSttsFv() {
-    // NONMATCHING
-}
-
-/* 80D03C44-80D03CA0 001A84 005C+00 2/1 0/0 0/0 .text            __dt__14daSyRock_HIO_cFv */
-daSyRock_HIO_c::~daSyRock_HIO_c() {
-    // NONMATCHING
-}
-
-/* 80D03CA0-80D03D10 001AE0 0070+00 0/0 1/0 0/0 .text            __sinit_d_a_obj_syRock_cpp */
-void __sinit_d_a_obj_syRock_cpp() {
-    // NONMATCHING
-}
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80D03CA0, __sinit_d_a_obj_syRock_cpp);
-#pragma pop
-
-/* 80D03D10-80D03D18 001B50 0008+00 1/0 0/0 0/0 .text            @1448@eventStart__10daSyRock_cFv */
-static void func_80D03D10() {
-    // NONMATCHING
-}
-
-/* 80D03D18-80D03D20 001B58 0008+00 1/0 0/0 0/0 .text            @1448@__dt__10daSyRock_cFv */
-static void func_80D03D18() {
-    // NONMATCHING
-}
-
-/* 80D03D20-80D03D28 001B60 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
-static void func_80D03D20() {
-    // NONMATCHING
-}
-
-/* 80D03D28-80D03D30 001B68 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
-static void func_80D03D28() {
-    // NONMATCHING
-}
-
-/* 80D03D30-80D03D78 001B70 0048+00 1/0 0/0 0/0 .text            __dt__17dEvLib_callback_cFv */
-// dEvLib_callback_c::~dEvLib_callback_c() {
-extern "C" void __dt__17dEvLib_callback_cFv() {
-    // NONMATCHING
-}
-
-/* 80D03D78-80D03D80 001BB8 0008+00 1/0 0/0 0/0 .text            eventStart__17dEvLib_callback_cFv
- */
-// bool dEvLib_callback_c::eventStart() {
-extern "C" bool eventStart__17dEvLib_callback_cFv() {
-    return true;
-}
-
-/* 80D03D80-80D03D88 001BC0 0008+00 2/0 0/0 0/0 .text            eventRun__17dEvLib_callback_cFv */
-// bool dEvLib_callback_c::eventRun() {
-extern "C" bool eventRun__17dEvLib_callback_cFv() {
-    return true;
-}
-
-/* 80D03D88-80D03D90 001BC8 0008+00 2/0 0/0 0/0 .text            eventEnd__17dEvLib_callback_cFv */
-// bool dEvLib_callback_c::eventEnd() {
-extern "C" bool eventEnd__17dEvLib_callback_cFv() {
-    return true;
-}
-
-/* 80D03D90-80D03DAC 001BD0 001C+00 1/1 0/0 0/0 .text            getPos__12daWtPillar_cFv */
-// void daWtPillar_c::getPos() {
-extern "C" void getPos__12daWtPillar_cFv() {
-    // NONMATCHING
-}
-
-/* 80D03DAC-80D03F7C 001BEC 01D0+00 2/1 0/0 0/0 .text            __dt__10daSyRock_cFv */
-daSyRock_c::~daSyRock_c() {
-    // NONMATCHING
-}
-
-/* 80D04030-80D04030 0000A0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
