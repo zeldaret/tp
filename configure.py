@@ -1984,7 +1984,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_sekidoor"),
     ActorRel(Matching, "d_a_obj_sekizo"),
     ActorRel(NonMatching, "d_a_obj_sekizoa"),
-    ActorRel(NonMatching, "d_a_obj_shield"),
+    ActorRel(Matching, "d_a_obj_shield"),
     ActorRel(Equivalent, "d_a_obj_sm_door"),
     ActorRel(NonMatching, "d_a_obj_smallkey"),
     ActorRel(NonMatching, "d_a_obj_smgdoor"),
