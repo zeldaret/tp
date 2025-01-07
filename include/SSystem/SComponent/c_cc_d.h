@@ -496,6 +496,7 @@ public:
     u32 ChkCoNoCrr() const { return mObjCo.ChkNoCrr(); }
     void OnCoNoCrrBit() { mObjCo.OnNoCrrBit(); }
     u32 ChkCoSph3DCrr() const { return mObjCo.ChkSph3DCrr(); }
+    void OnCoNoCoHitInfSet() { mObjCo.OnSPrmBit(0x200); }
     void OnAtSPrmBit(u32 flag) { mObjAt.OnSPrmBit(flag); }
     void OffAtSPrmBit(u32 flag) { mObjAt.OffSPrmBit(flag); }
     void OffTgSPrmBit(u32 flag) { mObjTg.OffSPrmBit(flag); }
@@ -518,6 +519,7 @@ public:
     void OnCoSPrmBit(u32 flag) { mObjCo.OnSPrmBit(flag); }
     void SetCoVsGrp(u32 grp) { mObjCo.SetVsGrp(grp); }
     void SetCoIGrp(u32 grp) { mObjCo.SetIGrp(grp); }
+    void SetTgGrp(u32 grp) { mObjTg.SetGrp(grp); }
     void SetAtSPrm(u32 prm) { mObjAt.SetSPrm(prm); }
     void SetTgSPrm(u32 prm) { mObjTg.SetSPrm(prm); }
     void SetCoSPrm(u32 prm) { mObjCo.SetSPrm(prm); }

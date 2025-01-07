@@ -265,4 +265,13 @@ public:
     virtual ~dBgS_BombAcch() {}
 };
 
+class dBgS_HorseAcch : public dBgS_Acch {
+public:
+    dBgS_HorseAcch() {
+        SetHorse();
+    }
+
+    /* 80845274 */ virtual ~dBgS_HorseAcch() {}
+};
+
 #endif /* D_BG_D_BG_S_ACCH_H */
