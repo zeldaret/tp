@@ -4226,7 +4226,7 @@ struct daAlinkHIO_anm_c {
     /* 0x04 */ f32 mSpeed;
     /* 0x08 */ f32 mStartFrame;
     /* 0x0C */ f32 mInterpolation;
-    /* 0x10 */ f32 mCheckFrame;  // name maybe wrong
+    /* 0x10 */ f32 mCancelFrame;
 }; // size: 0x14
 
 struct daAlinkHIO_basic_c1 {

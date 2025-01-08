@@ -1112,7 +1112,7 @@ int daAlink_c::procIronBallReturn() {
             setIronBallWaitUpperAnime(1);
             checkNextAction(0);
         }
-    } else if (mItemVar0.field_0x3018 == 8 && frameCtrl->getFrame() > daAlinkHIO_ironBall_c0::m.mCatchAnm.mCheckFrame) {
+    } else if (mItemVar0.field_0x3018 == 8 && frameCtrl->getFrame() > daAlinkHIO_ironBall_c0::m.mCatchAnm.mCancelFrame) {
         mItemVar0.field_0x3018 = 0;
         setIronBallWaitUpperAnime(1);
         

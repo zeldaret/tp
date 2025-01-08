@@ -13046,9 +13046,9 @@ BOOL daAlink_c::checkItemAction() {
         if (mEquipItem == 0x103) {
             daPy_frameCtrl_c* frame_ctrl = &mUpperFrameCtrl[2];
 
-            if ((checkUpperAnime(0x80) && frame_ctrl->getFrame() <= daAlinkHIO_cutDaL_c0::m.mCutAnm.mCheckFrame) ||
-                (checkUpperAnime(0x81) && frame_ctrl->getFrame() <= daAlinkHIO_cutDaR_c0::m.mCutAnm.mCheckFrame) ||
-                (checkUpperAnime(0x82) && frame_ctrl->getFrame() <= daAlinkHIO_cutDaCharge_c0::m.mCutAnm.mCheckFrame) ||
+            if ((checkUpperAnime(0x80) && frame_ctrl->getFrame() <= daAlinkHIO_cutDaL_c0::m.mCutAnm.mCancelFrame) ||
+                (checkUpperAnime(0x81) && frame_ctrl->getFrame() <= daAlinkHIO_cutDaR_c0::m.mCutAnm.mCancelFrame) ||
+                (checkUpperAnime(0x82) && frame_ctrl->getFrame() <= daAlinkHIO_cutDaCharge_c0::m.mCutAnm.mCancelFrame) ||
                 checkModeFlg(0x40000))
             {
                 return false;
@@ -13791,25 +13791,25 @@ void daAlink_c::setItemAction() {
             setCopyRodControllUpperSpeedRate();
         }
     } else if (checkBoomerangCatchAnime()) {
-        if (checkAnmEnd(frame_ctrl) || (checkInputOnR() && frame_ctrl->getFrame() > daAlinkHIO_boom_c0::m.mCatchAnm.mCheckFrame)) {
+        if (checkAnmEnd(frame_ctrl) || (checkInputOnR() && frame_ctrl->getFrame() > daAlinkHIO_boom_c0::m.mCatchAnm.mCancelFrame)) {
             resetUpperAnime(UPPER_2, 3.0f);
         } else if (frame_ctrl->getFrame() >= 20.0f) {
             field_0x2f97 = 6;
         }
     } else if (checkBoomerangThrowAnime()) {
-        if (checkAnmEnd(frame_ctrl) || (checkInputOnR() && frame_ctrl->getFrame() > daAlinkHIO_boom_c0::m.mThrowAnm.mCheckFrame)) {
+        if (checkAnmEnd(frame_ctrl) || (checkInputOnR() && frame_ctrl->getFrame() > daAlinkHIO_boom_c0::m.mThrowAnm.mCancelFrame)) {
             resetUpperAnime(UPPER_2, 3.0f);
         } else if (frame_ctrl->checkPass(5.5f)) {
             throwBoomerang();
         }
     } else if (checkCopyRodThrowAnime()) {
-        if (checkAnmEnd(frame_ctrl) || (checkInputOnR() && frame_ctrl->getFrame() > daAlinkHIO_boom_c0::m.mThrowAnm.mCheckFrame)) {
+        if (checkAnmEnd(frame_ctrl) || (checkInputOnR() && frame_ctrl->getFrame() > daAlinkHIO_boom_c0::m.mThrowAnm.mCancelFrame)) {
             resetUpperAnime(UPPER_2, 3.0f);
         } else if (frame_ctrl->checkPass(6.5f)) {
             throwCopyRod();
         }
     } else if (checkKandelaarSwingAnime()) {
-        if (checkAnmEnd(frame_ctrl) || (checkInputOnR() && frame_ctrl->getFrame() > daAlinkHIO_kandelaar_c0::m.mShakeAnm.mCheckFrame)) {
+        if (checkAnmEnd(frame_ctrl) || (checkInputOnR() && frame_ctrl->getFrame() > daAlinkHIO_kandelaar_c0::m.mShakeAnm.mCancelFrame)) {
             resetUpperAnime(UPPER_2, 3.0f);
         }
     } else if (checkEquipAnime()) {
