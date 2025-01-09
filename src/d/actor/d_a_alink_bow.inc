@@ -424,7 +424,7 @@ BOOL daAlink_c::checkUpperItemActionBow() {
         }
 
         if (checkAnmEnd(&mUpperFrameCtrl[2]) ||
-            (mUpperFrameCtrl[2].getFrame() > daAlinkHIO_bow_c0::m.mShootAnm.mCheckFrame &&
+            (mUpperFrameCtrl[2].getFrame() > daAlinkHIO_bow_c0::m.mShootAnm.mCancelFrame &&
              itemButton()))
         {
             setBowReadyAnime();

@@ -3244,7 +3244,7 @@ public:
     bool checkHorseTiredAnime() const { return checkUpperAnime(0x263); }
     bool checkHorseSwordUpAnime() const { return checkUpperAnime(0xCC); }
     bool checkHorseUnderItemAnime() const { return checkUnderAnime(0x19); }
-    bool checkHorseWalkStartAnm() const { return checkUnderMove0BckNoArc(ANM_WSTARTH); }
+    BOOL checkHorseWalkStartAnm() const { return checkUnderMove0BckNoArc(ANM_WSTARTH); }
     bool checkIronBallPreSwingAnime() const { return checkUpperAnime(0x19A); }
     bool checkIronBallSwingAnime() const { return checkUpperAnime(0x19B); }
     bool checkDashDamageAnime() const { return checkUpperAnime(0xAD); }
@@ -3382,6 +3382,18 @@ public:
         return var_r4;
     }
 
+    BOOL checkSlideMode() {
+        return mProcID == PROC_SLIDE ||
+               mProcID == PROC_SLIDE_LAND ||
+               mProcID == PROC_WOLF_SLIDE_READY ||
+               mProcID == PROC_WOLF_SLIDE_LAND ||
+               mProcID == PROC_WOLF_SLIDE;
+    }
+
+    BOOL checkHorseGetItem() const {
+        return (mProcID == PROC_GET_ITEM && checkHorseRide()) || mProcID == PROC_HORSE_GET_KEY;
+    }
+
     bool checkFisingRodJewl() const {
         return (mEquipItem == 0x5C || mEquipItem == 0x5F) || mEquipItem == 0x5E;
     }
@@ -3418,7 +3430,10 @@ public:
 
     bool checkCopyRodRevive() const { return mProcID == PROC_COPY_ROD_REVIVE; }
     bool checkHorseGetOffMode() const { return mProcID == PROC_HORSE_GETOFF; }
+    bool checkHorseHangMode() const { return mProcID == PROC_HORSE_HANG; }
+    bool checkHorseBackInput() const { return mProcID == PROC_HORSE_WAIT; }
     bool checkHorseRideOn() const { return mProcID == PROC_HORSE_RIDE; }
+    bool checkHorseTurnMode() const { return mProcID == PROC_HORSE_TURN; }
     bool checkGrabUp() const { return mProcID == PROC_GRAB_UP; }
     bool checkSpinnerRideWait() const {
         return mProcID == PROC_SPINNER_WAIT && mProcVar2.field_0x300c == 0;
@@ -3519,6 +3534,8 @@ public:
     int getIronBallHandChainNum() const { return mItemMode; }
     const cXyz& getIronBallChainHandRootPos() const { return mHookshotTopPos; }
 
+    fopAc_ac_c* getAtnActor() { return mTargetedActor; }
+
     void itemHitSE(u32 param_1, u32 param_2, Z2SoundObjBase* param_3) { mZ2Link.startHitItemSE(param_1, param_2, param_3, -1.0f); }
 
     BOOL checkStartFall() { return getStartMode() == 3; }
@@ -3527,6 +3544,16 @@ public:
     void setRStatus(u8 param_0, u8 param_1) { dComIfGp_setRStatus(param_0, param_1); }
 
     BOOL checkWindSpeedMoveXZ() const { return mWindSpeed.abs2XZ() > 1.0f; }
+
+    BOOL checkHorseRideReady() const { return checkHorseRideOn() || checkHorseGetOffMode(); }
+
+    void getHorseReinCenterLeftPos(cXyz* o_pos) {
+        mDoMtx_multVec(getLeftHandMatrix(), &m_handLeftInSidePos, o_pos);
+    }
+
+    void getHorseReinCenterRightPos(cXyz* o_pos) {
+        mDoMtx_multVec(getRightHandMatrix(), &m_handRightInSidePos, o_pos);
+    }
 
     inline bool checkWindSpeedOnXZ() const;
     inline void startRestartRoomFromOut(int, u32, int);
@@ -4199,7 +4226,7 @@ struct daAlinkHIO_anm_c {
     /* 0x04 */ f32 mSpeed;
     /* 0x08 */ f32 mStartFrame;
     /* 0x0C */ f32 mInterpolation;
-    /* 0x10 */ f32 mCheckFrame;  // name maybe wrong
+    /* 0x10 */ f32 mCancelFrame;
 }; // size: 0x14
 
 struct daAlinkHIO_basic_c1 {

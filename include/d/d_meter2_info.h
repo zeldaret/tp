@@ -192,6 +192,7 @@ public:
     u8 getTableMapRegionNo() { return mTableMapRegionNo; }
     u8 getGoldWolfMapType() { return mGoldWolfMapType; }
     bool isWindowAccept(int param_0) { return mWindowAccept & (1 << param_0); }
+    void setHorseLifeCount(s16 i_count) { mHorseLifeCount = i_count; }
 
 public:
     /* 0x04 */ u8 unk4[4];
@@ -792,6 +793,10 @@ inline u8 dMeter2Info_getGoldWolfMapType() {
 
 inline bool dMeter2Info_isWindowAccept(int param_0) {
     return g_meter2_info.isWindowAccept(param_0);
+}
+
+inline void dMeter2Info_setHorseLifeCount(s16 i_count) {
+    g_meter2_info.setHorseLifeCount(i_count);
 }
 
 const char* dMeter2Info_getPlusTextureName();

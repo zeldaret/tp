@@ -303,7 +303,7 @@ int daAlink_c::procBootsEquip() {
         }
 
         offModeFlg(2);
-    } else if (frameCtrl_p->getFrame() > daAlinkHIO_magneBoots_c0::m.mEquipAnm.mCheckFrame) {
+    } else if (frameCtrl_p->getFrame() > daAlinkHIO_magneBoots_c0::m.mEquipAnm.mCancelFrame) {
         onModeFlg(4);
         checkNextAction(1);
     } else if (frameCtrl_p->getFrame() >= 5.0f) {

@@ -1808,7 +1808,7 @@ void daCow_c::action_enter() {
 }
 
 /* 8065CFBC-8065D03C 004ADC 0080+00 4/4 0/0 1/1 .text            isAngry__7daCow_cFv */
-void daCow_c::isAngry() {
+bool daCow_c::isAngry() {
     // NONMATCHING
 }
 

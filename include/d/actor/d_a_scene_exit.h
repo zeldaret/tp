@@ -25,6 +25,16 @@ public:
     u8 getPathID() { return (fopAcM_GetParam(this) >> 0x10) & 0xFF; }
     void setSceneChangeOK() { mSceneChangeOK = true; }
 
+    BOOL checkArea(const cXyz* param_0) {
+        cXyz spC;
+        mDoMtx_multVec(mMatrix, param_0, &spC);
+        if (spC.y >= 0.0f && spC.y <= scale.y && fabsf(spC.x) <= scale.x && fabsf(spC.z) <= scale.z) {
+            return TRUE;
+        }
+
+        return FALSE;
+    }
+
     /* 0x568 */ Mtx mMatrix;
     /* 0x598 */ u8 field_0x598;
     /* 0x599 */ bool mSceneChangeOK;
