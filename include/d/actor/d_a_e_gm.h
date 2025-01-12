@@ -12,6 +12,7 @@
  * 
  */
 class daE_GM_c : public fopEn_enemy_c {
+public:
     /* 806D12C8 */ void setAction(void (daE_GM_c::*)());
     /* 806D136C */ void action();
     /* 806D1580 */ void egg_wait();
@@ -45,8 +46,25 @@ class daE_GM_c : public fopEn_enemy_c {
     /* 806D6980 */ void _delete();
     /* 806D6AC8 */ void CreateHeap();
     /* 806D6CF0 */ void create();
+
+    void InstantKill() { field_0xa76 = 1; }
+    u8 CheckDeath() { return field_0xa68; }
+    
+    void MoveStart(u8 param_0) {
+        field_0xa71 = 1;
+        field_0xa5e = param_0;
+    }
+
 private:
-    /* 0x5ac */ u8 field_0x5ac[0xa78 - 0x5ac];
+    /* 0x5AC */ u8 field_0x5ac[0xa5e - 0x5ac];
+    /* 0xA5E */ u16 field_0xa5e;
+    /* 0xA60 */ u8 field_0xa60[0xa68 - 0xa60];
+    /* 0xA68 */ u8 field_0xa68;
+    /* 0xA69 */ u8 field_0xa69[0xa71 - 0xa69];
+    /* 0xA71 */ u8 field_0xa71;
+    /* 0xA72 */ u8 field_0xa72[0xa76 - 0xA72];
+    /* 0xA76 */ u8 field_0xa76;
+    /* 0xA77 */ u8 field_0xa77[0xa78 - 0xA77];
 };
 
 STATIC_ASSERT(sizeof(daE_GM_c) == 0xa78);

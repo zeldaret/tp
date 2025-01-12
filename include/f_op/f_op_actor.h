@@ -233,7 +233,7 @@ public:
     /* 0x562 */ s16 health;
     /* 0x564 */ u8 field_0x564;
     /* 0x565 */ u8 field_0x565;
-    /* 0x566 */ u8 field_0x566;
+    /* 0x566 */ s8 field_0x566;
     /* 0x567 */ s8 field_0x567;
 
     fopAc_ac_c();
