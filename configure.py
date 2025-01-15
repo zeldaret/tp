@@ -344,7 +344,7 @@ config.libs = [
             Object(NonMatching, "m_Do/m_Do_printf.cpp"),
             Object(Matching, "m_Do/m_Do_audio.cpp"),
             Object(Matching, "m_Do/m_Do_controller_pad.cpp"),
-            Object(Equivalent, "m_Do/m_Do_graphic.cpp"),
+            Object(Equivalent, "m_Do/m_Do_graphic.cpp"), # weak func order
             Object(NonMatching, "m_Do/m_Do_machine.cpp"),
             Object(Matching, "m_Do/m_Do_mtx.cpp"),
             Object(NonMatching, "m_Do/m_Do_ext.cpp"),
@@ -498,7 +498,7 @@ config.libs = [
             Object(Matching, "d/d_bg_w_base.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(NonMatching, "d/d_bg_w_kcol.cpp"),
             Object(Matching, "d/d_bg_w_sv.cpp"),
-            Object(Equivalent, "d/d_cc_d.cpp"),
+            Object(Equivalent, "d/d_cc_d.cpp"), # weak func order
             Object(Matching, "d/d_cc_mass_s.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(NonMatching, "d/d_cc_s.cpp"),
             Object(Matching, "d/d_cc_uty.cpp"),
@@ -528,7 +528,7 @@ config.libs = [
             Object(Matching, "d/d_file_sel_info.cpp"),
             Object(Matching, "d/d_bright_check.cpp"),
             Object(NonMatching, "d/d_scope.cpp", extra_cflags=['-pragma "nosyminline on"']),
-            Object(Equivalent, "d/d_select_cursor.cpp"),
+            Object(Matching, "d/d_select_cursor.cpp"),
             Object(Matching, "d/d_select_icon.cpp"),
             Object(Matching, "d/d_shop_camera.cpp"),
             Object(Matching, "d/d_shop_item_ctrl.cpp"),
@@ -553,7 +553,7 @@ config.libs = [
             Object(NonMatching, "d/d_menu_letter.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(Matching, "d/d_menu_option.cpp"),
             Object(Matching, "d/d_menu_ring.cpp"),
-            Object(Equivalent, "d/d_menu_save.cpp"),
+            Object(Equivalent, "d/d_menu_save.cpp"), # missing 0x30 bytes of padding between vtables, likely some abstract base class vtable that gets stripped out
             Object(Matching, "d/d_menu_skill.cpp"),
             Object(Matching, "d/d_menu_window_HIO.cpp"),
             Object(NonMatching, "d/d_menu_window.cpp"),
@@ -668,7 +668,7 @@ config.libs = [
     JSystemLib(
         "JFramework",
         [
-            Object(Equivalent, "JSystem/JFramework/JFWSystem.cpp"),
+            Object(Equivalent, "JSystem/JFramework/JFWSystem.cpp"), # regalloc
             Object(Matching, "JSystem/JFramework/JFWDisplay.cpp"),
         ],
     ),
@@ -693,7 +693,7 @@ config.libs = [
             Object(Matching, "JSystem/JParticle/JPAKeyBlock.cpp"),
             Object(Matching, "JSystem/JParticle/JPATexture.cpp"),
             Object(Matching, "JSystem/JParticle/JPAResourceLoader.cpp"),
-            Object(Equivalent, "JSystem/JParticle/JPAEmitterManager.cpp"),
+            Object(Equivalent, "JSystem/JParticle/JPAEmitterManager.cpp", extra_cflags=['-pragma "nosyminline off"']), # weak func order
             Object(Matching, "JSystem/JParticle/JPAEmitter.cpp"),
             Object(NonMatching, "JSystem/JParticle/JPAParticle.cpp"),
             Object(Matching, "JSystem/JParticle/JPAMath.cpp"),
@@ -927,7 +927,7 @@ config.libs = [
         [
             Object(NonMatching, "JSystem/JGadget/binary.cpp"),
             Object(NonMatching, "JSystem/JGadget/linklist.cpp"),
-            Object(Equivalent, "JSystem/JGadget/std-vector.cpp"),  # just weak order
+            Object(Equivalent, "JSystem/JGadget/std-vector.cpp", extra_cflags=['-pragma "nosyminline off"']),  # just weak order
         ],
     ),
     JSystemLib(
@@ -947,7 +947,7 @@ config.libs = [
             Object(Matching, "JSystem/JUtility/JUTDirectPrint.cpp"),
             Object(Matching, "JSystem/JUtility/JUTAssert.cpp"),
             Object(Matching, "JSystem/JUtility/JUTVideo.cpp"),
-            Object(Equivalent, "JSystem/JUtility/JUTXfb.cpp"),
+            Object(Matching, "JSystem/JUtility/JUTXfb.cpp"),
             Object(Matching, "JSystem/JUtility/JUTFader.cpp"),
             Object(Matching, "JSystem/JUtility/JUTProcBar.cpp", extra_cflags=['-pragma "nosyminline off"']),
             Object(Matching, "JSystem/JUtility/JUTConsole.cpp"),
@@ -1005,7 +1005,7 @@ config.libs = [
             Object(Matching, "JSystem/J3DGraphAnimator/J3DModelData.cpp", extra_cflags=['-pragma "nosyminline off"']),
             Object(NonMatching, "JSystem/J3DGraphAnimator/J3DMtxBuffer.cpp"),
             Object(Matching, "JSystem/J3DGraphAnimator/J3DModel.cpp"),
-            Object(Equivalent, "JSystem/J3DGraphAnimator/J3DAnimation.cpp"),
+            Object(Matching, "JSystem/J3DGraphAnimator/J3DAnimation.cpp", extra_cflags=['-pragma "nosyminline off"']),
             Object(Matching, "JSystem/J3DGraphAnimator/J3DMaterialAnm.cpp"),
             Object(NonMatching, "JSystem/J3DGraphAnimator/J3DSkinDeform.cpp"),
             Object(NonMatching, "JSystem/J3DGraphAnimator/J3DCluster.cpp"),
@@ -1417,8 +1417,8 @@ config.libs = [
     ActorRel(Matching, "d_a_disappear"),
     ActorRel(NonMatching, "d_a_mg_rod"),
     ActorRel(NonMatching, "d_a_midna"),
-    ActorRel(Equivalent, "d_a_nbomb"),
-    ActorRel(Equivalent, "d_a_obj_life_container"),  # vtable ordering
+    ActorRel(Equivalent, "d_a_nbomb"), # weak func order
+    ActorRel(Matching, "d_a_obj_life_container"),
     ActorRel(NonMatching, "d_a_obj_yousei"),
     ActorRel(NonMatching, "d_a_spinner"),
     ActorRel(Matching, "d_a_suspend"),
@@ -1518,8 +1518,8 @@ config.libs = [
     ActorRel(NonMatching, "d_a_b_oh"),
     ActorRel(Matching, "d_a_b_oh2"),
     ActorRel(NonMatching, "d_a_b_tn"),
-    ActorRel(Equivalent, "d_a_b_yo"),
-    ActorRel(Equivalent, "d_a_b_yo_ice"),
+    ActorRel(Equivalent, "d_a_b_yo"), # weak func order
+    ActorRel(Equivalent, "d_a_b_yo_ice"), # weak func order
     ActorRel(Matching, "d_a_b_zant"),
     ActorRel(Matching, "d_a_b_zant_magic"),
     ActorRel(Matching, "d_a_b_zant_mobile"),
@@ -1530,14 +1530,14 @@ config.libs = [
     ActorRel(Matching, "d_a_coach_fire"),
     ActorRel(NonMatching, "d_a_cow"),
     ActorRel(NonMatching, "d_a_cstatue"),
-    ActorRel(Equivalent, "d_a_do"),
+    ActorRel(Equivalent, "d_a_do"), # Z2SoundObjSimple dtor
     ActorRel(Matching, "d_a_door_boss"),
     ActorRel(Matching, "d_a_door_bossL5"),
-    ActorRel(Equivalent, "d_a_door_mbossL1"),
+    ActorRel(Matching, "d_a_door_mbossL1"),
     ActorRel(Matching, "d_a_door_push"),
     ActorRel(NonMatching, "d_a_e_ai"),
     ActorRel(Matching, "d_a_e_arrow"),
-    ActorRel(Equivalent, "d_a_e_ba"),
+    ActorRel(Equivalent, "d_a_e_ba"), # weak func order
     ActorRel(NonMatching, "d_a_e_bee"),
     ActorRel(NonMatching, "d_a_e_bg"),
     ActorRel(NonMatching, "d_a_e_bi"),
@@ -1556,7 +1556,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_e_fb"),
     ActorRel(NonMatching, "d_a_e_fk"),
     ActorRel(NonMatching, "d_a_e_fs"),
-    ActorRel(Equivalent, "d_a_e_fz"),
+    ActorRel(Equivalent, "d_a_e_fz"), # weak func order
     ActorRel(NonMatching, "d_a_e_gb"),
     ActorRel(NonMatching, "d_a_e_ge"),
     ActorRel(NonMatching, "d_a_e_gi"),
@@ -1617,7 +1617,7 @@ config.libs = [
     ActorRel(Matching, "d_a_e_yd_leaf"),
     ActorRel(NonMatching, "d_a_e_yg"),
     ActorRel(NonMatching, "d_a_e_yh"),
-    ActorRel(Equivalent, "d_a_e_yk"),
+    ActorRel(Equivalent, "d_a_e_yk"), # weak func order
     ActorRel(NonMatching, "d_a_e_ym"),
     ActorRel(Matching, "d_a_e_ym_tag"),
     ActorRel(NonMatching, "d_a_e_ymb"),
@@ -1728,7 +1728,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_shaman"),
     ActorRel(NonMatching, "d_a_npc_shoe"),
     ActorRel(NonMatching, "d_a_npc_shop0"),
-    ActorRel(Equivalent, "d_a_npc_shop_maro"),
+    ActorRel(Equivalent, "d_a_npc_shop_maro"), # daNpcT_c base functions missing
     ActorRel(NonMatching, "d_a_npc_sola"),
     ActorRel(NonMatching, "d_a_npc_soldierA"),
     ActorRel(NonMatching, "d_a_npc_soldierB"),
@@ -1783,7 +1783,7 @@ config.libs = [
     ActorRel(Matching, "d_a_obj_bsGate"),
     ActorRel(Matching, "d_a_obj_bubblePilar"),
     ActorRel(Matching, "d_a_obj_catdoor"),
-    ActorRel(Equivalent, "d_a_obj_cb"),
+    ActorRel(Matching, "d_a_obj_cb"),
     ActorRel(NonMatching, "d_a_obj_cblock"),
     ActorRel(Matching, "d_a_obj_cdoor"),
     ActorRel(Matching, "d_a_obj_chandelier"),
@@ -1798,7 +1798,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_crvlh_up"),
     ActorRel(Matching, "d_a_obj_crvsteel"),
     ActorRel(Matching, "d_a_obj_crystal"),
-    ActorRel(Equivalent, "d_a_obj_cwall"),
+    ActorRel(Equivalent, "d_a_obj_cwall"), # weak func order
     ActorRel(Matching, "d_a_obj_damCps"),
     ActorRel(Matching, "d_a_obj_dan"),
     ActorRel(Matching, "d_a_obj_digholl"),
@@ -1830,7 +1830,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_gomikabe"),
     ActorRel(NonMatching, "d_a_obj_gra2"),
     ActorRel(Matching, "d_a_obj_graWall"),
-    ActorRel(Equivalent, "d_a_obj_gra_rock"),
+    ActorRel(Matching, "d_a_obj_gra_rock"),
     ActorRel(Matching, "d_a_obj_grave_stone"),
     ActorRel(Matching, "d_a_obj_groundwater"),
     ActorRel(NonMatching, "d_a_obj_grz_rock"),
@@ -1985,7 +1985,7 @@ config.libs = [
     ActorRel(Matching, "d_a_obj_sekizo"),
     ActorRel(NonMatching, "d_a_obj_sekizoa"),
     ActorRel(Matching, "d_a_obj_shield"),
-    ActorRel(Equivalent, "d_a_obj_sm_door"),
+    ActorRel(Equivalent, "d_a_obj_sm_door"), # vtable order
     ActorRel(NonMatching, "d_a_obj_smallkey"),
     ActorRel(NonMatching, "d_a_obj_smgdoor"),
     ActorRel(Matching, "d_a_obj_smoke"),
@@ -1998,7 +1998,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_ss_drink"),
     ActorRel(Matching, "d_a_obj_ss_item"),
     ActorRel(NonMatching, "d_a_obj_stairBlock"),
-    ActorRel(Equivalent, "d_a_obj_stone"),
+    ActorRel(Matching, "d_a_obj_stone"),
     ActorRel(NonMatching, "d_a_obj_stopper"),
     ActorRel(NonMatching, "d_a_obj_stopper2"),
     ActorRel(Matching, "d_a_obj_suisya"),
@@ -2008,12 +2008,12 @@ config.libs = [
     ActorRel(Matching, "d_a_obj_swBallC"),
     ActorRel(NonMatching, "d_a_obj_swLight"),
     ActorRel(NonMatching, "d_a_obj_swchain"),
-    ActorRel(Equivalent, "d_a_obj_swhang"),
+    ActorRel(Equivalent, "d_a_obj_swhang"), # vtable order
     ActorRel(NonMatching, "d_a_obj_sword"),
     ActorRel(NonMatching, "d_a_obj_swpush2"),
     ActorRel(Matching, "d_a_obj_swspinner"),
     ActorRel(Matching, "d_a_obj_swturn"),
-    ActorRel(Equivalent, "d_a_obj_syRock"),
+    ActorRel(Equivalent, "d_a_obj_syRock"), # weak func order
     ActorRel(NonMatching, "d_a_obj_szbridge"),
     ActorRel(NonMatching, "d_a_obj_taFence"),
     ActorRel(Matching, "d_a_obj_table"),
@@ -2045,7 +2045,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_warp_kbrg"),
     ActorRel(NonMatching, "d_a_obj_warp_obrg"),
     ActorRel(NonMatching, "d_a_obj_waterGate"),
-    ActorRel(Equivalent, "d_a_obj_waterPillar"),
+    ActorRel(Equivalent, "d_a_obj_waterPillar"), # vtable order
     ActorRel(Matching, "d_a_obj_waterfall"),
     ActorRel(NonMatching, "d_a_obj_wchain"),
     ActorRel(Matching, "d_a_obj_wdStick"),
@@ -2064,7 +2064,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_zdoor"),
     ActorRel(NonMatching, "d_a_obj_zrTurara"),
     ActorRel(Matching, "d_a_obj_zrTuraraRock"),
-    ActorRel(Equivalent, "d_a_obj_zraMark"),
+    ActorRel(Equivalent, "d_a_obj_zraMark"), # weak func order
     ActorRel(Matching, "d_a_obj_zra_freeze"),
     ActorRel(NonMatching, "d_a_obj_zra_rock"),
     ActorRel(NonMatching, "d_a_passer_mng"),

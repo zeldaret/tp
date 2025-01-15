@@ -7,6 +7,12 @@
 #include "d/actor/d_a_npc.h"
 #include "d/d_bg_w.h"
 
+static void dummy() {
+    // fakematch to fix weak function order
+    cLib_calcTimer<u8>(0);
+    cLib_calcTimer<s16>(0);
+}
+
 /* 80C123BC-80C12400 000000 0044+00 3/3 0/0 0/0 .rodata          mCcDCyl__14daObjGraRock_c */
 dCcD_SrcCyl const daObjGraRock_c::mCcDCyl = {
     {

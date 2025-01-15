@@ -254,10 +254,10 @@ char* daMBdoorL1_c::getArcName() {
     case 5:
     case 11:
         return "L5MBdoor";
+    case 8:
+        return "L8MBdoor";
     case 7:
     case 10:
-        return "L8MBdoor";
-    case 8:
         return "L7MBdoor";
     }
 }
@@ -714,7 +714,7 @@ void daMBdoorL1_c::demoProc() {
         case 20:
             openInitKnob(3);
             break;
-        case 21:
+        case 22:
             if (field_0x5df == 0) {
                 shape_angle.y += 0x7fff;
             }
@@ -736,7 +736,7 @@ void daMBdoorL1_c::demoProc() {
                 }
             }
             break;
-        case 22:
+        case 21:
             if (field_0x5df == 0) {
                 shape_angle.y += 0x7fff;
             }
@@ -960,7 +960,6 @@ void daMBdoorL1_c::demoProc() {
 }
 
 /* 80674AF4-80674DA4 002334 02B0+00 1/1 0/0 0/0 .text            openInit__12daMBdoorL1_cFv */
-// NONMATCHING regalloc
 int daMBdoorL1_c::openInit() {
     static u16 const l_eff_id[2] = {0x8295, 0x8296};
     static u16 const l_eff_id_lv3[5] = {0x8762, 0x8763, 0x8764, 0x8765, 0x8766};
@@ -1551,7 +1550,6 @@ int daMBdoorL1_c::checkMBossRoom() {
 }
 
 /* 806769D0-80676AB4 004210 00E4+00 1/1 0/0 0/0 .text            checkStopClose__12daMBdoorL1_cFv */
-// NONMATCHING regalloc
 int daMBdoorL1_c::checkStopClose() {
     u8 FRoomNo = door_param2_c::getFRoomNo(this);
     door_param2_c::getFRoomNo(this);
