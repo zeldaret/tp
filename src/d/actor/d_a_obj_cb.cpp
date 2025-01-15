@@ -29,9 +29,8 @@ static void ride_call_back(dBgW* param_0, fopAc_ac_c* i_this, fopAc_ac_c* param_
 }
 
 /* 80BC4BB4-80BC51B8 000174 0604+00 1/1 0/0 0/0 .text            action__FP12obj_cb_class */
-// NONMATCHING - i_this regalloc. Assigning i_this to a variable with a conversion 
-// fixes the regalloc but the assignment is in wrong place
 static void action(obj_cb_class* i_this) {
+    fopAc_ac_c* a_this = i_this;
     cXyz local_60;
     int local_78 = 0;
     switch(i_this->field_0x596) {
@@ -113,7 +112,7 @@ static void action(obj_cb_class* i_this) {
                 // !@bug field_0x594 is never initialized
                 i_this->field_0x594++;
                 if (i_this->field_0x594 > 150) {
-                    fopAcM_delete(i_this);
+                    fopAcM_delete(a_this);
                 }
             }
             cLib_addCalc0(&i_this->field_0x5a8, 1.0f, 5.0f);
