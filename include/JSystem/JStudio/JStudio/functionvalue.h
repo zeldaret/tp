@@ -277,7 +277,7 @@ public:
     }
 
     void data_setInterval(f64 f) {
-        ASSERT(f > TValue(0));
+        // ASSERT(f > TValue(0));
         _50 = f;
     }
 

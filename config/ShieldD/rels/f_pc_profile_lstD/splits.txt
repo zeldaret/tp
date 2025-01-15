@@ -7,6 +7,6 @@ Sections:
 REL/executor.c:
 	.text       start:0x00000000 end:0x00000080
 
-d/actor/f_pc_profile_lst.cpp:
+f_pc/f_pc_profile_lst.cpp:
 	.text       start:0x00000080 end:0x000000B0
 	.data       start:0x00000000 end:0x00000C64

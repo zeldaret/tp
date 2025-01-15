@@ -212,7 +212,7 @@ cflags_base = [
 ]
 
 if config.version == "ShieldD":
-    cflags_base.extend(["-O0", "-inline off", "-RTTI on", "-str reuse", "-enc SJIS"])
+    cflags_base.extend(["-O0", "-inline off", "-RTTI on", "-str reuse", "-enc SJIS", "-DDEBUG=1"])
 else:
     cflags_base.extend(["-O4,p", "-inline auto", "-RTTI off", "-str reuse", "-multibyte"])
 
@@ -270,7 +270,6 @@ cflags_dolphin = [
 cflags_framework = [
     *cflags_base,
     "-use_lmw_stmw off",
-    "-str reuse,pool,readonly",
     "-inline noauto",
     "-schedule off",
     "-sym on",
@@ -278,7 +277,7 @@ cflags_framework = [
 ]
 
 if config.version != "ShieldD":
-    cflags_framework.extend(["-O3,s"])
+    cflags_framework.extend(["-O3,s", "-str reuse,pool,readonly"])
 
 # REL flags
 cflags_rel = [
@@ -296,7 +295,7 @@ def MWVersion(cfg_version: str):
         case "GZ2J01":
             return "GC/2.7"
         case "ShieldD":
-            return "GC/3.0a3"
+            return "Wii/1.0"
         case _:
             return "GC/2.7"
 

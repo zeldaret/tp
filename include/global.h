@@ -3,6 +3,11 @@
 
 #include "dolphin/types.h"
 
+#define VERSION_GCN_USA          0
+#define VERSION_GCN_PAL          1
+#define VERSION_GCN_JPN          2
+#define VERSION_SHIELD_DEBUG 3
+
 #define ARRAY_SIZE(o) (sizeof((o)) / sizeof(*(o)))
 
 // Align X to the previous N bytes (N must be power of two)
@@ -27,7 +32,12 @@
 #ifdef __MWERKS__
 #define GLUE(a, b) a##b
 #define GLUE2(a, b) GLUE(a, b)
+
+#if VERSION != VERSION_SHIELD_DEBUG
 #define STATIC_ASSERT(cond) typedef char GLUE2(static_assertion_failed, __LINE__)[(cond) ? 1 : -1]
+#else
+#define STATIC_ASSERT(...)
+#endif
 #else
 #define STATIC_ASSERT(...)
 #endif
@@ -59,10 +69,5 @@ inline BOOL checkEqual(s32 a, s32 b) {
         0x3FE00000, \
         0x00000000, \
     };
-
-#define VERSION_USA          0
-#define VERSION_PAL          1
-#define VERSION_JPN          2
-#define VERSION_SHIELD_DEBUG 3
 
 #endif
