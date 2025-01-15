@@ -60,4 +60,9 @@ inline BOOL checkEqual(s32 a, s32 b) {
         0x00000000, \
     };
 
+#define VERSION_USA          0
+#define VERSION_PAL          1
+#define VERSION_JPN          2
+#define VERSION_SHIELD_DEBUG 3
+
 #endif
