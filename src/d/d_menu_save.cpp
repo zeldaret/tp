@@ -358,8 +358,9 @@ void dMenu_save_c::screenSet() {
     mSelIcon = new dSelect_cursor_c(0, 1.0f, NULL);
     mSelIcon->setParam(0.96f, 0.94f, 0.03f, 0.7f, 0.7f);
 
-    Vec* pos = &mpSelData[mSelectedFile]->getGlobalVtxCenter(false, 0);
-    mSelIcon->setPos(pos->x, pos->y, mpSelData[mSelectedFile]->getPanePtr(), true);
+    Vec pos;
+    pos = mpSelData[mSelectedFile]->getGlobalVtxCenter(false, 0);
+    mSelIcon->setPos(pos.x, pos.y, mpSelData[mSelectedFile]->getPanePtr(), true);
     mSelIcon->setAlphaRate(0.0f);
 
     J2DPane* pane = mSaveSel.Scr->search('Nm_02');

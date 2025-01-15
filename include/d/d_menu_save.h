@@ -328,11 +328,11 @@ private:
     /* 0x0132 */ u8 mNoYesWakuEndAlpha[2];
     /* 0x0134 */ u8 mNoYesWakuAnmTimer[2];
     /* 0x0138 */ CPaneMgr* mpNoYesTxt[2];
-    /* 0x0140 */ J2DAnmColorKey* mpFileWakuAnm;
+    /* 0x0140 */ J2DAnmColor* mpFileWakuAnm;
     /* 0x0144 */ int mFileWakuAnmFrame;
     /* 0x0148 */ J2DAnmTextureSRTKey* mpFileWakuRotAnm;
     /* 0x014C */ int mFileWakuRotAnmFrame;
-    /* 0x0150 */ J2DAnmColorKey* field_0x150;
+    /* 0x0150 */ J2DAnmColor* field_0x150;
     /* 0x0154 */ int field_0x154;
     /* 0x0158 */ J2DAnmTextureSRTKey* field_0x158;
     /* 0x015C */ int field_0x15c;

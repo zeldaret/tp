@@ -1014,7 +1014,7 @@ void daB_YO_c::executeOpening() {
         }
         break;
 
-    case 14:
+    case 15:
         cam_pos.set(51.0f, 207.0f, -2082.0f);
         cLib_chasePos(&mCamCenter, cam_pos, mCamCenterSpeed);
         cam_pos.set(51.0f, 207.0f, -1562.0f);

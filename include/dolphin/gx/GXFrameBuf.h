@@ -13,7 +13,7 @@ void GXSetDispCopyDst(u16 arg0, u16 arg1);
 void GXSetTexCopyDst(u16 width, u16 height, GXTexFmt format, GXBool useMIPmap);
 void GXSetDispCopyFrame2Field(GXCopyMode mode);
 void GXSetCopyClamp(GXFBClamp clamp);
-u16 GXGetNumXfbLines(const u16 efbHeight, f32 yScale);
+u16 GXGetNumXfbLines(u16 efbHeight, f32 yScale);
 f32 GXGetYScaleFactor(u16 efb_height, u16 xfb_height);
 u32 GXSetDispCopyYScale(f32 y_scale);
 void GXSetCopyClear(GXColor color, u32 clear_z);
