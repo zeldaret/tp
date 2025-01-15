@@ -1438,7 +1438,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_mg_rod"),
     ActorRel(NonMatching, "d_a_midna"),
     ActorRel(Equivalent, "d_a_nbomb"), # weak func order
-    ActorRel(Matching, "d_a_obj_life_container"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_life_container"),
     ActorRel(NonMatching, "d_a_obj_yousei"),
     ActorRel(NonMatching, "d_a_spinner"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_suspend"),
@@ -2018,7 +2018,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_ss_drink"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_ss_item"),
     ActorRel(NonMatching, "d_a_obj_stairBlock"),
-    ActorRel(Matching, "d_a_obj_stone"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_stone"),
     ActorRel(NonMatching, "d_a_obj_stopper"),
     ActorRel(NonMatching, "d_a_obj_stopper2"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_suisya"),
