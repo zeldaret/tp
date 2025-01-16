@@ -187,6 +187,8 @@ public:
 
     int remove(J3DModelData* i_modelData) { return i_modelData->removeTexNoAnimator(mpAnm); }
 
+    J3DAnmTexPattern* getBtpAnm() const { return mpAnm; }
+
 private:
     /* 0x14 */ J3DAnmTexPattern* mpAnm;
 };
@@ -210,8 +212,11 @@ class J3DTransformInfo;
 
 class mDoExt_AnmRatioPack {
 public:
-    /* 80140DF0 */ ~mDoExt_AnmRatioPack();
-    /* 80140E2C */ mDoExt_AnmRatioPack();
+    ~mDoExt_AnmRatioPack() {}
+    mDoExt_AnmRatioPack() {
+        mRatio = 0.0f;
+        mAnmTransform = NULL;
+    }
 
     void setRatio(f32 ratio) { mRatio = ratio; }
     f32 getRatio() { return mRatio; }

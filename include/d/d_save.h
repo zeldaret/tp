@@ -211,12 +211,17 @@ public:
     void init();
     void set(const char* i_name, const cXyz& i_pos, s16 i_angle, s8 i_roomNo);
 
+    cXyz& getPos() { return mPos; }
+    s16 getAngleY() const { return mAngleY; }
+    const char* getStageName() const { return mName; }
+    s8 getRoomNo() const { return mRoomNo; }
+
 private:
     /* 0x00 */ cXyz mPos;
-    /* 0x0C */ u16 mAngleY;
+    /* 0x0C */ s16 mAngleY;
     /* 0x0E */ char mName[8];
     /* 0x16 */ u8 mSpawnId;
-    /* 0x17 */ u8 mRoomNo;
+    /* 0x17 */ s8 mRoomNo;
 };  // Size: 0x18
 
 class dSv_player_return_place_c {
@@ -514,6 +519,7 @@ public:
     dSv_player_info_c& getPlayerInfo() { return mPlayerInfo; }
     dSv_player_status_a_c& getPlayerStatusA() { return mPlayerStatusA; }
     dSv_player_status_b_c& getPlayerStatusB() { return mPlayerStatusB; }
+    dSv_horse_place_c& getHorsePlace() { return mHorsePlace; }
     dSv_player_item_c& getItem() { return mItem; }
     dSv_player_collect_c& getCollect() { return mCollect; }
     dSv_player_item_record_c& getItemRecord() { return mItemRecord; }

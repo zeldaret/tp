@@ -3,6 +3,8 @@
 // Translation Unit: d/d_select_cursor
 //
 
+#define NO_INLINE_DLSTBASE_DRAW
+
 #include "d/d_select_cursor.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "d/d_com_inf_game.h"
@@ -57,7 +59,7 @@ dSelect_cursor_c::dSelect_cursor_c(u8 param_0, f32 param_1, JKRArchive* param_2)
         "",
     };
 
-    static char* btk2_name[4 + 12 /* padding */] = {
+    static char* btk2_name[4] = {
         "",
         "zelda_store_select_icon_02.btk",
         "",
@@ -206,6 +208,13 @@ dSelect_cursor_c::dSelect_cursor_c(u8 param_0, f32 param_1, JKRArchive* param_2)
     mPositionX = 0.0f;
 }
 
+static void dummy() {
+    // Need 0x30 bytes of padding with no symbol between btk2_name$3688 and dSelect_cursor_c::__vtable
+    // This is likely caused by the vtables of abstract base classes getting put there and then stripped out.
+    // Not sure which abstract base classes could go there though.
+    static u8 padding_fakematch[0x30] = {};
+}
+
 
 /* 801949EC-80194C30 18F32C 0244+00 1/0 0/0 0/0 .text            __dt__16dSelect_cursor_cFv */
 dSelect_cursor_c::~dSelect_cursor_c() {
@@ -254,7 +263,6 @@ dSelect_cursor_c::~dSelect_cursor_c() {
 }
 
 /* 80194C30-80194CC0 18F570 0090+00 1/0 0/0 0/0 .text            draw__16dSelect_cursor_cFv */
-// NONMATCHING
 void dSelect_cursor_c::draw() {
     mpPaneMgr->getAlphaRate();
     update();

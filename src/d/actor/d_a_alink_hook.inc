@@ -1813,7 +1813,7 @@ int daAlink_c::procHookshotRoofWait() {
         daPy_frameCtrl_c* frameCtrl_p = mUnderFrameCtrl;
         if (frameCtrl_p->checkAnmEnd() ||
             ((checkInputOnR() || mProcVar5.field_0x3012 != 0 || checkHookshotRoofLv7Boss()) &&
-             frameCtrl_p->getFrame() > daAlinkHIO_hookshot_c0::m.mRoofHangAnm.mCheckFrame))
+             frameCtrl_p->getFrame() > daAlinkHIO_hookshot_c0::m.mRoofHangAnm.mCancelFrame))
         {
             setHookshotRoofWaitAnime();
             mProcVar2.field_0x300c = 1;
@@ -2090,7 +2090,7 @@ int daAlink_c::procHookshotWallWait() {
         daPy_frameCtrl_c* frameCtrl_p = mUnderFrameCtrl;
         if (frameCtrl_p->checkAnmEnd() ||
             ((checkInputOnR() || mProcVar5.field_0x3012 != 0) &&
-             frameCtrl_p->getFrame() > daAlinkHIO_hookshot_c0::m.mWallHangAnm.mCheckFrame))
+             frameCtrl_p->getFrame() > daAlinkHIO_hookshot_c0::m.mWallHangAnm.mCancelFrame))
         {
             setHookshotWallWaitAnime();
             mProcVar2.field_0x300c = 1;

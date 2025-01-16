@@ -113,8 +113,8 @@ private:
 
 class daPy_frameCtrl_c : public J3DFrameCtrl {
 public:
-    /* 80140D24 */ ~daPy_frameCtrl_c();
-    /* 80140D80 */ daPy_frameCtrl_c();
+    /* 80140D24 */ virtual ~daPy_frameCtrl_c() {}
+    /* 80140D80 */ daPy_frameCtrl_c() {}
     bool checkAnmEnd();
     void updateFrame();
     void setFrameCtrl(u8, short, short, f32, f32);
@@ -929,6 +929,7 @@ public:
     BOOL checkStickArrowReset() const { return checkResetFlg0(RFLG0_UNK_1); }
     u32 getCutAtFlg() const { return checkNoResetFlg0(FLG0_UNK_40); }
     u32 checkBoarSingleBattleFirst() const { return checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE); }
+    u32 checkBoarSingleBattleSecond() const { return checkNoResetFlg2(FLG2_UNK_1000000); }
 
     void offWolfEnemyHangBite() { offNoResetFlg2(FLG2_WOLF_ENEMY_HANG_BITE); }
     bool onWolfEnemyHangBite(fopAc_ac_c* param_0) { return onWolfEnemyBiteAll(param_0, FLG2_WOLF_ENEMY_HANG_BITE); }

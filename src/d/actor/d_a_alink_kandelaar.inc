@@ -398,12 +398,12 @@ int daAlink_c::procKandelaarSwingInit() {
          fopAcIt_Judge((fopAcIt_JudgeFunc)daAlink_searchTagKtOnFire, NULL) != NULL))
     {
         setSingleAnimeParam(ANM_BOTTLE_SWING_DOWN, &daAlinkHIO_bottle_c0::m.mSwingDownAnm);
-        field_0x3478 = daAlinkHIO_bottle_c0::m.mSwingDownAnm.mCheckFrame;
+        field_0x3478 = daAlinkHIO_bottle_c0::m.mSwingDownAnm.mCancelFrame;
         field_0x347c = 5.0f;
         field_0x3480 = 12.0f;
     } else {
         setSingleAnimeParam(ANM_LANTERN_SWING, &daAlinkHIO_kandelaar_c0::m.mShakeAnm);
-        field_0x3478 = daAlinkHIO_kandelaar_c0::m.mShakeAnm.mCheckFrame;
+        field_0x3478 = daAlinkHIO_kandelaar_c0::m.mShakeAnm.mCancelFrame;
         field_0x347c = 4.0f;
         field_0x3480 = 11.0f;
     }

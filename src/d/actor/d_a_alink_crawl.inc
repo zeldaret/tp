@@ -482,10 +482,10 @@ int daAlink_c::procCrawlStartInit() {
     current.pos.x = field_0x34ec.x + (35.0f * cM_ssin(field_0x306e));
     current.pos.z = field_0x34ec.z + (35.0f * cM_scos(field_0x306e));
 
-    if (daAlinkHIO_crouch_c0::m.mCrawlStartAnm.mCheckFrame > daAlinkHIO_crouch_c0::m.mCrawlStartAnm.mEndFrame) {
+    if (daAlinkHIO_crouch_c0::m.mCrawlStartAnm.mCancelFrame > daAlinkHIO_crouch_c0::m.mCrawlStartAnm.mEndFrame) {
         field_0x347c = daAlinkHIO_crouch_c0::m.mCrawlStartAnm.mEndFrame;
     } else {
-        field_0x347c = daAlinkHIO_crouch_c0::m.mCrawlStartAnm.mCheckFrame;
+        field_0x347c = daAlinkHIO_crouch_c0::m.mCrawlStartAnm.mCancelFrame;
     }
 
     field_0x3478 = 1.0f / (field_0x347c - daAlinkHIO_crouch_c0::m.mCrawlStartAnm.mStartFrame);
@@ -819,8 +819,8 @@ int daAlink_c::procCrawlEndInit(int param_0, s16 param_1, s16 param_2) {
     shape_angle.x = param_1;
     shape_angle.z = param_2;
 
-    if (temp_r30->mCheckFrame > temp_r30->mStartFrame) {
-        field_0x347c = temp_r30->mCheckFrame;
+    if (temp_r30->mCancelFrame > temp_r30->mStartFrame) {
+        field_0x347c = temp_r30->mCancelFrame;
     } else {
         field_0x347c = temp_r30->mStartFrame;
     }
@@ -841,7 +841,7 @@ int daAlink_c::procCrawlEnd() {
         if (!checkNextActionFromCrouch(0)) {
             procWaitInit();
         }
-    } else if (frame_ctrl->getFrame() < daAlinkHIO_crouch_c0::m.mCrawlEndAnm.mCheckFrame) {
+    } else if (frame_ctrl->getFrame() < daAlinkHIO_crouch_c0::m.mCrawlEndAnm.mCancelFrame) {
         checkNextActionFromCrouch(1);
     }
 

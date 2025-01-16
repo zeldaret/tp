@@ -537,7 +537,7 @@ int daAlink_c::procSideStepLandInit() {
     if (field_0x2f98 == 1) {
         field_0x2f9d = 4;
         setSingleAnimeParam(ANM_BACK_JUMP_LAND, &daAlinkHIO_sideStep_c0::m.mBackLandAnm);
-        field_0x3478 = daAlinkHIO_sideStep_c0::m.mBackLandAnm.mCheckFrame;
+        field_0x3478 = daAlinkHIO_sideStep_c0::m.mBackLandAnm.mCancelFrame;
         field_0x2f98 = 2;
         mProcVar1.field_0x300a = 0;
         field_0x2fb0 = 0;
@@ -554,7 +554,7 @@ int daAlink_c::procSideStepLandInit() {
         }
 
         setSingleAnimeParam(anm_id, &daAlinkHIO_sideStep_c0::m.mSideLandAnm);
-        field_0x3478 = daAlinkHIO_sideStep_c0::m.mSideLandAnm.mCheckFrame;
+        field_0x3478 = daAlinkHIO_sideStep_c0::m.mSideLandAnm.mCancelFrame;
         mProcVar1.field_0x300a = 1;
         field_0x2fb0 = 8;
         field_0x2fcc = 0;
@@ -713,13 +713,13 @@ int daAlink_c::procSlideLandInit(int param_0) {
 
     if (param_0 != 0) {
         setSingleAnimeParam(ANM_SLIDE_FORWARD_END, &daAlinkHIO_slide_c0::m.mForwardLandAnm);
-        field_0x3478 = daAlinkHIO_slide_c0::m.mForwardLandAnm.mCheckFrame;
+        field_0x3478 = daAlinkHIO_slide_c0::m.mForwardLandAnm.mCancelFrame;
         field_0x3198 = 1;
         field_0x2f99 = 4;
         field_0x3588 = l_waitBaseAnime;
     } else {
         setSingleAnimeParam(ANM_SLIDE_BACKWARD_END, &daAlinkHIO_slide_c0::m.mBackwardLandAnm);
-        field_0x3478 = daAlinkHIO_slide_c0::m.mBackwardLandAnm.mCheckFrame;
+        field_0x3478 = daAlinkHIO_slide_c0::m.mBackwardLandAnm.mCancelFrame;
         field_0x3198 = 0;
     }
 
@@ -844,7 +844,7 @@ int daAlink_c::procFrontRoll() {
 
             checkNextAction(0);
         }
-    } else if (frameCtrl_p->getFrame() > daAlinkHIO_frontRoll_c0::m.mRollAnm.mCheckFrame) {
+    } else if (frameCtrl_p->getFrame() > daAlinkHIO_frontRoll_c0::m.mRollAnm.mCancelFrame) {
         onModeFlg(4);
         cLib_chaseF(&mNormalSpeed, 0.0f, 2.5f);
 
@@ -937,7 +937,7 @@ int daAlink_c::procFrontRollCrash() {
     if (!checkModeFlg(2)) {
         if (frameCtrl->checkAnmEnd()) {
             checkNextAction(0);
-        } else if (frameCtrl->getFrame() > daAlinkHIO_frontRoll_c0::m.mCrashAnm.mCheckFrame) {
+        } else if (frameCtrl->getFrame() > daAlinkHIO_frontRoll_c0::m.mCrashAnm.mCancelFrame) {
             onModeFlg(4);
             checkNextAction(1);
         } else if (frameCtrl->getFrame() >= 18.0f) {
@@ -997,7 +997,7 @@ int daAlink_c::procFrontRollSuccess() {
     if (frameCtrl->checkAnmEnd()) {
         current.angle.y = shape_angle.y;
         checkNextAction(0);
-    } else if (frameCtrl->getFrame() > daAlinkHIO_frontRoll_c0::m.mCrashHitAnm.mCheckFrame) {
+    } else if (frameCtrl->getFrame() > daAlinkHIO_frontRoll_c0::m.mCrashHitAnm.mCancelFrame) {
         onModeFlg(4);
         current.angle.y = shape_angle.y;
         checkNextAction(1);
@@ -1092,10 +1092,10 @@ int daAlink_c::procSideRoll() {
             checkNextAction(0);
         }
     } else if (mProcVar2.field_0x300c != 0 && !checkNotJumpSinkLimit() &&
-               frameCtrl_p->getFrame() > daAlinkHIO_turnMove_c0::m.mTurnAnm.mCheckFrame)
+               frameCtrl_p->getFrame() > daAlinkHIO_turnMove_c0::m.mTurnAnm.mCancelFrame)
     {
         procCutFinishJumpUpInit();
-    } else if (frameCtrl_p->getFrame() > daAlinkHIO_turnMove_c0::m.mTurnAnm.mCheckFrame) {
+    } else if (frameCtrl_p->getFrame() > daAlinkHIO_turnMove_c0::m.mTurnAnm.mCancelFrame) {
         onModeFlg(4);
         if (!checkNextAction(1)) {
             cLib_chaseF(&mNormalSpeed, 0.0f, 7.5f);
@@ -1246,7 +1246,7 @@ int daAlink_c::procBackJumpLand() {
             }
             checkNextAction(0);
         }
-    } else if (frameCtrl->getFrame() > daAlinkHIO_backJump_c0::m.mLandAnm.mCheckFrame) {
+    } else if (frameCtrl->getFrame() > daAlinkHIO_backJump_c0::m.mLandAnm.mCancelFrame) {
         if (mEquipItem == 0x103 && (field_0x3198 != 2 || checkCutTurnInput())) {
             return procCutTurnInit(1, field_0x3198);
         }
@@ -1824,7 +1824,7 @@ int daAlink_c::procLand() {
 
     if (frameCtrl->checkAnmEnd()) {
         checkNextAction(0);
-    } else if (frameCtrl->getFrame() > daAlinkHIO_autoJump_c0::m.mLandAnm.mCheckFrame) {
+    } else if (frameCtrl->getFrame() > daAlinkHIO_autoJump_c0::m.mLandAnm.mCancelFrame) {
         checkNextAction(1);
     } else if (frameCtrl->checkPass(4.0f)) {
         int var_r4;
@@ -1958,7 +1958,7 @@ int daAlink_c::procStepMove() {
             return checkNextAction(0);
         }
 
-        if (frameCtrl->getFrame() > daAlinkHIO_smallJump_c0::m.mStepLandAnm.mCheckFrame) {
+        if (frameCtrl->getFrame() > daAlinkHIO_smallJump_c0::m.mStepLandAnm.mCancelFrame) {
             mNormalSpeed = field_0x3478;
 
             if (checkNextAction(1)) {
@@ -2350,7 +2350,7 @@ int daAlink_c::procFloorDownRebound() {
 
     if (frameCtrl->checkAnmEnd()) {
         checkNextAction(0);
-    } else if (frameCtrl->getFrame() > daAlinkHIO_autoJump_c0::m.mLandAnm.mCheckFrame) {
+    } else if (frameCtrl->getFrame() > daAlinkHIO_autoJump_c0::m.mLandAnm.mCancelFrame) {
         checkNextAction(1);
     }
 

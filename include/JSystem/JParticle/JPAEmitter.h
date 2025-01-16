@@ -168,6 +168,9 @@ public:
         JPASetRMtxSTVecfromMtx(matrix, mGlobalRot, &mGlobalScl, &mGlobalTrs);
         mGlobalPScl.set(mGlobalScl.x, mGlobalScl.y);
     }
+    void setDirection(const JGeometry::TVec3<f32>& direction) {
+        mLocalDir.set(direction);
+    }
 
     void setLocalScale(const JGeometry::TVec3<f32>& scale) {
         mLocalScl.set(scale);

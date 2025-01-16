@@ -2001,7 +2001,7 @@ int daAlink_c::procHorseCutInit() {
     field_0x3478 = var_r29->mAttackStartFrame;
     field_0x347c = var_r29->mAttackEndFrame;
     field_0x3480 = var_r29->mAfterCutMorf;
-    field_0x3484 = var_r29->mCutAnm.mCheckFrame;
+    field_0x3484 = var_r29->mCutAnm.mCancelFrame;
 
     if (checkBoarSingleBattle()) {
         setSwordAtParam(dCcG_At_Spl_UNK_0, 1, 1, 2, daAlinkHIO_cut_c0::m.mSwordLengthHorsebackFight, daAlinkHIO_cut_c0::m.mSwordRadiusHorsebackFight);
@@ -2167,7 +2167,7 @@ int daAlink_c::procHorseCutTurn() {
         procHorseWaitInit();
         field_0x2060->initOldFrameMorf(4.0f, 0, 0x23);
     } else {
-        if (temp_r30->getFrame() > daAlinkHIO_hoCutCharge_c0::m.field_0x28.mCheckFrame) {
+        if (temp_r30->getFrame() > daAlinkHIO_hoCutCharge_c0::m.field_0x28.mCancelFrame) {
             if (orderTalk(1)) {
                 return 1;
             }

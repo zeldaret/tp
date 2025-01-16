@@ -251,7 +251,7 @@ void daAlink_c::checkUpperItemActionCopyRodFly() {
 /* 800E1C44-800E1D6C 0DC584 0128+00 2/2 0/0 0/0 .text checkNextActionCopyRod__9daAlink_cFv */
 int daAlink_c::checkNextActionCopyRod() {
     if ((checkBoomerangCatchAnime() &&
-         mUpperFrameCtrl[2].getFrame() <= daAlinkHIO_boom_c0::m.mCatchAnm.mCheckFrame) ||
+         mUpperFrameCtrl[2].getFrame() <= daAlinkHIO_boom_c0::m.mCatchAnm.mCancelFrame) ||
         checkNoResetFlg1(FLG1_UNK_10000)) {
         return 0;
     }
@@ -386,13 +386,13 @@ int daAlink_c::procCopyRodSwingInit() {
         setSingleAnimeParam(ANM_COPYROD_SWING_LARGE, &daAlinkHIO_copyRod_c0::m.mBigSwingAnm);
         field_0x3478 = 13.0f;
         field_0x347c = 21.0f;
-        field_0x3480 = daAlinkHIO_copyRod_c0::m.mBigSwingAnm.mCheckFrame;
+        field_0x3480 = daAlinkHIO_copyRod_c0::m.mBigSwingAnm.mCancelFrame;
         field_0x3484 = 27.0f;
     } else {
         setSingleAnimeParam(ANM_COPYROD_SWING, &daAlinkHIO_copyRod_c0::m.mSwingAnm);
         field_0x3478 = 4.0f;
         field_0x347c = 8.0f;
-        field_0x3480 = daAlinkHIO_copyRod_c0::m.mSwingAnm.mCheckFrame;
+        field_0x3480 = daAlinkHIO_copyRod_c0::m.mSwingAnm.mCancelFrame;
         field_0x3484 = 14.0f;
     }
 

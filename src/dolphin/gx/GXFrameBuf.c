@@ -353,7 +353,7 @@ static u32 __GXGetNumXfbLines(u32 height, u32 scale) {
 }
 
 /* 8035CCDC-8035CD6C 35761C 0090+00 0/0 2/2 0/0 .text            GXGetNumXfbLines */
-u16 GXGetNumXfbLines(const u16 efbHeight, f32 yScale) {
+u16 GXGetNumXfbLines(u16 efbHeight, f32 yScale) {
     u32 scale = (u32)(256.0f / yScale) & 0x1FF;
 
     return __GXGetNumXfbLines(efbHeight, scale);

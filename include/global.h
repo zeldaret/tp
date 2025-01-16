@@ -40,6 +40,8 @@ inline BOOL checkEqual(s32 a, s32 b) {
 
 #define FAST_DIV(x, n) (x >> (n / 2))
 
+#define SQUARE(x) ((x) * (x))
+
 // hack to make strings with no references compile properly
 #define DEAD_STRING(s) OSReport(s)
 

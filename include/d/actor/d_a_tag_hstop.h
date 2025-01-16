@@ -16,6 +16,12 @@ public:
     daTagHstop_c* getNext() { return mNext; }
     bool getActiveFlg() const { return mActive; }
 
+    void onTagStop() {
+        if (field_0x573 == 0) {
+            field_0x573 = 1;
+        }
+    }
+
     static daTagHstop_c* m_top;
     static dMsgFlow_c m_msgFlow;
 

@@ -187,6 +187,7 @@ public:
     }
     J2DIndTexCoordScale& operator=(const J2DIndTexCoordScaleInfo& info) {
         mInfo = info;
+        return *this;
     }
     /* 802EA0CC */ void load(u8);
 
