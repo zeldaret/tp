@@ -176,7 +176,7 @@ public:
     fopAc_ac_c* getMyAc() { return m_my_ac; }
     
     cM3dGCir* GetWallCirP(int index) {
-        JUT_ASSERT(index <= m_tbl_size);
+        JUT_ASSERT(0, index <= m_tbl_size);
         return pm_acch_cir[index].GetCirP();
     }
 

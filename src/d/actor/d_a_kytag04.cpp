@@ -236,7 +236,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     kytag04_class* a_this = (kytag04_class*)i_this;
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Kytag04", 5);
-    JUT_ASSERT(modelData != 0);
+    JUT_ASSERT(0, modelData != 0);
 
     a_this->mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11020202);
     if (a_this->mpModel != NULL) {

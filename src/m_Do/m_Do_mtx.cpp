@@ -338,8 +338,8 @@ bool mDoMtx_stack_c::push() {
         JUT_ASSERT(729, next < end)
         return false;
     }
-    Mtx* old = next++;
-    mDoMtx_copy(now, *old);
+
+    mDoMtx_copy(now, *next++);
     return true;
 }
 
@@ -349,8 +349,8 @@ bool mDoMtx_stack_c::pop() {
         JUT_ASSERT(751, next > buffer);
         return false;
     }
-    next--;
-    mDoMtx_copy(*next, now);
+
+    mDoMtx_copy(*--next, now);
     return true;
 }
 

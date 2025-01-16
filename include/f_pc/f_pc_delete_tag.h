@@ -3,6 +3,7 @@
 #define F_PC_DELETE_TAG_H_
 
 #include "SSystem/SComponent/c_tag.h"
+#include "global.h"
 
 typedef struct layer_class layer_class;
 
@@ -12,6 +13,10 @@ typedef struct delete_tag_class {
     /* 0x00 */ create_tag_class base;
     /* 0x14 */ layer_class* layer;
     /* 0x18 */ s16 timer;
+
+#if VERSION == VERSION_SHIELD_DEBUG
+    /* 0x1C */ int unk_0x1c;
+#endif
 } delete_tag_class;
 
 BOOL fpcDtTg_IsEmpty();

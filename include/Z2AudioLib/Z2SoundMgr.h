@@ -40,7 +40,9 @@ private:
     /* 0x80C */ JAISoundID mSoundID;
 };  // Size: 0x810
 
+#if VERSION != VERSION_SHIELD_DEBUG
 STATIC_ASSERT(sizeof(Z2SoundMgr) == 0x810);
+#endif
 
 inline Z2SoundMgr* Z2GetSoundMgr() {
     return JASGlobalInstance<Z2SoundMgr>::getInstance();
