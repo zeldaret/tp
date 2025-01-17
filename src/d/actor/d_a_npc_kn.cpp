@@ -32,7 +32,7 @@ dCcD_SrcSph daNpc_Kn_c::mCcDSph = {
         {0x0},                                      // mGObjCo
     },                                              // mObjInf
     {
-        {{0.0f, 0.0f, 0.0f}, 0.0f}  // mSph
+        {{0.0f, 0.0f, 0.0f}, 0.0f}  // mSphCc
     }  
 };
 
@@ -2752,11 +2752,9 @@ const u8 daNpc_Kn_c::mCcDObjData[48] = {
 // #pragma pop
 
 /* 80A4096C-80A40970 0000A4 0004+00 1/1 0/0 0/0 .rodata          id$5838 */
-static u8 const id[4] = {
-    0x84,
-    0x97,
-    0x84,
-    0x98,
+static u16 const id[2] = {
+    0x8497,
+    0x8498,
 };
 
 /* 80A40970-80A40A24 0000A8 00B4+00 8/29 0/0 0/0 .rodata          m__16daNpc_Kn_Param_c */
@@ -3109,26 +3107,26 @@ BOOL daNpc_Kn_c::isDelete() {
 /* 80A2B91C-80A2B9E0 000FFC 00C4+00 1/1 0/0 0/0 .text            resetCol__10daNpc_Kn_cFv */
 void daNpc_Kn_c::resetCol() {
 
-    field_0x11DC.Set(mCcDCyl);
-    field_0x11DC.SetStts(&mCcStts);
-    field_0x11DC.SetTgHitCallback(tgHitCallBack);
+    mCylCc.Set(mCcDCyl);
+    mCylCc.SetStts(&mCcStts);
+    mCylCc.SetTgHitCallback(tgHitCallBack);
 
     for (int i = 0; i < 2; i++) {
-        field_0x1318[i].Set(mCcDSph);
-        field_0x1318[i].SetStts(&mCcStts);
-        field_0x1318[i].SetAtSe(dCcD_SE_HARD_BODY);
-        field_0x1318[i].SetAtSpl(dCcG_At_Spl_UNK_1);
-        field_0x1318[i].SetAtType(0x800);
-        field_0x1318[i].OnAtSPrmBit(0xc);
-        field_0x1318[i].OffAtNoConHit();
-        field_0x1318[i].OffCoSetBit();
+        mSphCc[i].Set(mCcDSph);
+        mSphCc[i].SetStts(&mCcStts);
+        mSphCc[i].SetAtSe(dCcD_SE_HARD_BODY);
+        mSphCc[i].SetAtSpl(dCcG_At_Spl_UNK_1);
+        mSphCc[i].SetAtType(AT_TYPE_800);
+        mSphCc[i].OnAtSPrmBit(0xc);
+        mSphCc[i].OffAtNoConHit();
+        mSphCc[i].OffCoSetBit();
     }
 }
 
 /* 80A2B9E0-80A2BC5C 0010C0 027C+00 1/1 0/0 0/0 .text            reset__10daNpc_Kn_cFv */
 void daNpc_Kn_c::reset() {
     initialize();
-    memset(&mpTeachAction, 0, (int)&field_0x1754 - (int)&mpTeachAction); // maybe fake match?
+    memset(&mpTeachAction, 0, (int)&field_0x1754 - (int)&mpTeachAction);
 
     if (mpMatAnm) {
         mpMatAnm->initialize();
@@ -3150,7 +3148,7 @@ void daNpc_Kn_c::reset() {
     field_0x15af = 1;
 
     for (int i = 0; i < 3; i++) {
-        mParticleMngr[i].field_0x24.init(&mAcch, 0.0f, 0.0f);
+        mParticleMngr[i].mManager.init(&mAcch, 0.0f, 0.0f);
     }
 
     for (int i = 0; i < 3; i++) {
@@ -3175,39 +3173,39 @@ void daNpc_Kn_c::reset() {
 /* 80A2BC5C-80A2BD30 00133C 00D4+00 2/1 0/0 0/0 .text            resetType__10daNpc_Kn_cFv */
 void daNpc_Kn_c::resetType() {
     switch (mType) {
-        case 0:
-            mActionMode = 0;
+    case 0:
+        mActionMode = 0;
+        return;
+    case 1:
+        mActionMode = 4;
+        return;
+    case 2:
+        mActionMode = 4;
+        return;
+    case 3:
+        mActionMode = 4;
+        return;
+    case 4:
+        mActionMode = 4;
+        return;
+    case 5:
+        if (mDivideNo != 0 && mDivideNo <= 2) {
+            mActionMode = 0xe;
+            field_0x15af = 0;
+        } else {
+            mActionMode = 0x4;
+        }
+        break;
+    case 6:
+        if (mDivideNo != 0 && mDivideNo <= 2) {
+            mActionMode = 0x14;
+            field_0x15af = 0;
             return;
-        case 1:
-            mActionMode = 4;
-            return;
-        case 2:
-            mActionMode = 4;
-            return;
-        case 3:
-            mActionMode = 4;
-            return;
-        case 4:
-            mActionMode = 4;
-            return;
-        case 5:
-            if (mDivideNo != 0 && mDivideNo <= 2) {
-                mActionMode = 0xe;
-                field_0x15af = 0;
-            } else {
-                mActionMode = 0x4;
-            }
-            break;
-        case 6:
-            if (mDivideNo != 0 && mDivideNo <= 2) {
-                mActionMode = 0x14;
-                field_0x15af = 0;
-                return;
-            }
-            mActionMode = 4;
-            return;
-        default:
-            mActionMode = -1;
+        }
+        mActionMode = 4;
+        return;
+    default:
+        mActionMode = -1;
     }
 }
 
@@ -3442,12 +3440,12 @@ void daNpc_Kn_c::setAttnPos() {
         0.0f, daNpc_Kn_Param_c::m.field_0x40,
         0);
     
-    mJntAnm.calcJntRad(0.2f, 1.0f,cM_s2rad(field_0xDAC.y - field_0xDB2.y));
+    mJntAnm.calcJntRad(0.2f, 1.0f,cM_s2rad(mTargetAngle.y - field_0xDB2.y));
     setMtx();
     model = mpMorf[1]->getModel();
     J3DModelData* modelData = model->getModelData();
     mDoMtx_stack_c::transS(current.pos);
-    mDoMtx_stack_c::ZXYrotM(field_0xDAC);
+    mDoMtx_stack_c::ZXYrotM(mTargetAngle);
     mDoMtx_stack_c::scaleM(scale);
     model->setBaseTRMtx(mDoMtx_stack_c::get());
     model->setUserArea((u32)modelData);
@@ -3455,7 +3453,7 @@ void daNpc_Kn_c::setAttnPos() {
     mDoMtx_stack_c::copy(mpMorf[1]->getModel()->getAnmMtx(getHeadJointNo()));
     mDoMtx_stack_c::multVec(&pos, &eyePos);
     mJntAnm.setEyeAngleX(eyePos, 1.0f, 0);
-    mJntAnm.setEyeAngleY(eyePos, field_0xDAC.y, 1, 1.0f, 0);
+    mJntAnm.setEyeAngleY(eyePos, mTargetAngle.y, 1, 1.0f, 0);
     mDoMtx_stack_c::copy(mpMorf[1]->getModel()->getAnmMtx(getHeadJointNo()));
     mDoMtx_stack_c::multVecZero(&attention_info.position);
     attention_info.position.y += daNpc_Kn_Param_c::m.field_0x00;
@@ -3474,7 +3472,7 @@ void daNpc_Kn_c::setCollision() {
             param = 0x79;
         }
 
-        field_0x11DC.SetCoSPrm(param);
+        mCylCc.SetCoSPrm(param);
 
         switch (mType) {
         case 0:
@@ -3519,14 +3517,14 @@ void daNpc_Kn_c::setCollision() {
         mDoMtx_stack_c::multVecZero(&centerPos);
         centerPos.y = current.pos.y;
         f32 radius = daNpc_Kn_Param_c::m.mRadius;
-        field_0x11DC.SetH(daNpc_Kn_Param_c::m.field_0x14);
-        field_0x11DC.SetR(radius);
-        field_0x11DC.SetC(centerPos);
-        dComIfG_Ccsp()->Set(&field_0x11DC);
+        mCylCc.SetH(daNpc_Kn_Param_c::m.field_0x14);
+        mCylCc.SetR(radius);
+        mCylCc.SetC(centerPos);
+        dComIfG_Ccsp()->Set(&mCylCc);
     }
 
-    field_0x11DC.ClrCoHit();
-    field_0x11DC.ClrTgHit();
+    mCylCc.ClrCoHit();
+    mCylCc.ClrTgHit();
     setCollisionSword();
 }
 
@@ -3553,19 +3551,19 @@ void daNpc_Kn_c::setCollisionSword() {
         if (field_0xe2c == 0) {
             if (field_0x15ce && mpMorf[0]->getFrame() >= 30.0f && mpMorf[0]->getFrame() <= 40.0f) {
                     cXyz pos(l_swordOffset[i], 0.0f, 0.0f);
-                    field_0x1318[i].OnAtSetBit();
+                    mSphCc[i].OnAtSetBit();
                     mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(0xd));
                     mDoMtx_stack_c::scaleM(scale);
                     mDoMtx_stack_c::multVec(&pos,&pos);
-                    field_0x1318[i].SetC(pos);
-                    field_0x1318[i].SetR(30.0f);
-                    dComIfG_Ccsp()->Set(&field_0x1318[i]);
+                    mSphCc[i].SetC(pos);
+                    mSphCc[i].SetR(30.0f);
+                    dComIfG_Ccsp()->Set(&mSphCc[i]);
             } else {
-                field_0x1318[i].OffAtSetBit();
+                mSphCc[i].OffAtSetBit();
             }
         }
 
-        field_0x1318[i].ClrAtHit();
+        mSphCc[i].ClrAtHit();
     }
 }
 
@@ -3578,13 +3576,13 @@ BOOL daNpc_Kn_c::checkCollisionSword() {
     for (int iVar3 = 0; iVar3 < 2; iVar3++) {
         // Check shield hit
         
-        if (field_0x1318[iVar3].ChkAtShieldHit()) {
+        if (mSphCc[iVar3].ChkAtShieldHit()) {
             iVar2 = 1;
             break;
         }
         
         // Check regular hit
-        if (field_0x1318[iVar3].ChkAtHit()) {
+        if (mSphCc[iVar3].ChkAtHit()) {
             iVar2 = 2;
         }
     }
@@ -3592,7 +3590,7 @@ BOOL daNpc_Kn_c::checkCollisionSword() {
     // If shield was hit, clear hit
     if (iVar2 == 1) {
         for (int iVar3 = 0; iVar3 < 2; iVar3++) {
-            field_0x1318[iVar3].ClrAtHit();
+            mSphCc[iVar3].ClrAtHit();
         }
     }
     
@@ -3602,11 +3600,11 @@ BOOL daNpc_Kn_c::checkCollisionSword() {
 /* 80A2CBEC-80A2CC24 0022CC 0038+00 1/1 0/0 0/0 .text            setCollisionTeach03__10daNpc_Kn_cFv
  */
 void daNpc_Kn_c::setCollisionTeach03() {
-    field_0x11DC.SetTgType(-1);
-    field_0x11DC.SetTgSPrm(19);
-    field_0x11DC.OffTgNoAtHitInfSet();
-    field_0x11DC.OnTgNoConHit();
-    field_0x11DC.OnCoSetBit();
+    mCylCc.SetTgType(-1);
+    mCylCc.SetTgSPrm(19);
+    mCylCc.OffTgNoAtHitInfSet();
+    mCylCc.OnTgNoConHit();
+    mCylCc.OnCoSetBit();
 }
 
 /* 80A2CC24-80A2CD00 002304 00DC+00 1/1 0/0 0/0 .text            setCollisionTeach04__10daNpc_Kn_cFv
@@ -3615,36 +3613,36 @@ void daNpc_Kn_c::setCollisionTeach04() {
     switch (mActionMode) {
     case 9:
         if (dComIfGp_event_runCheck() && eventInfo.i_checkCommandDemoAccrpt()) {
-            field_0x11DC.OffTgSetBit();
-            field_0x11DC.OffCoSetBit();
+            mCylCc.OffTgSetBit();
+            mCylCc.OffCoSetBit();
         } else {
-            field_0x11DC.SetTgType(-1);
-            field_0x11DC.SetTgHitMark(CcG_Tg_UNK_MARK_2);
-            field_0x11DC.SetTgSPrm(19);
-            field_0x11DC.OnTgShield();
-            field_0x11DC.OffTgNoAtHitInfSet();
-            field_0x11DC.OnTgNoConHit();
+            mCylCc.SetTgType(-1);
+            mCylCc.SetTgHitMark(CcG_Tg_UNK_MARK_2);
+            mCylCc.SetTgSPrm(19);
+            mCylCc.OnTgShield();
+            mCylCc.OffTgNoAtHitInfSet();
+            mCylCc.OnTgNoConHit();
         }
         break;
     case 11:
     case 10:
-       field_0x11DC.SetTgType(-1);
-       field_0x11DC.SetTgHitMark(CcG_Tg_UNK_MARK_1);
-       field_0x11DC.SetTgSPrm(19);
-       field_0x11DC.OffTgShield();
-       field_0x11DC.OffTgNoAtHitInfSet();
-       field_0x11DC.OnTgNoConHit();
+       mCylCc.SetTgType(-1);
+       mCylCc.SetTgHitMark(CcG_Tg_UNK_MARK_1);
+       mCylCc.SetTgSPrm(19);
+       mCylCc.OffTgShield();
+       mCylCc.OffTgNoAtHitInfSet();
+       mCylCc.OnTgNoConHit();
     }
 }
 
 /* 80A2CD00-80A2CD38 0023E0 0038+00 3/3 0/0 0/0 .text            setCollisionTeach05__10daNpc_Kn_cFv
  */
 void daNpc_Kn_c::setCollisionTeach05() {
-    field_0x11DC.SetTgType(-1);
-    field_0x11DC.SetTgSPrm(19);
-    field_0x11DC.OffTgNoAtHitInfSet();
-    field_0x11DC.OnTgNoConHit();
-    field_0x11DC.OnCoSetBit();
+    mCylCc.SetTgType(-1);
+    mCylCc.SetTgSPrm(19);
+    mCylCc.OffTgNoAtHitInfSet();
+    mCylCc.OnTgNoConHit();
+    mCylCc.OnCoSetBit();
 }
 
 /* 80A2CD38-80A2CD58 002418 0020+00 1/1 0/0 0/0 .text            setCollisionTeach06__10daNpc_Kn_cFv
@@ -3957,7 +3955,7 @@ int daNpc_Kn_c::wait(void* param_0) {
         if (field_0xABD == 0 && srchPlayerActor()) {
             mJntAnm.lookPlayer(0);
         } else {
-            if (home.angle.y != field_0xDAC.y && step(home.angle.y, 1, 0x20, 0x14, 0) != 0) {
+            if (home.angle.y != mTargetAngle.y && step(home.angle.y, 1, 0x20, 0x14, 0) != 0) {
                 field_0xe2a = 1;
                 mMotionSeqMngr1.setNo(1,-1.0f,0,0);
                 mMotionSeqMngr2.setNo(0,-1.0f,0,0);
@@ -3983,7 +3981,7 @@ int daNpc_Kn_c::talk(void* param_0) {
         if (field_0xABD == 0) {
             mJntAnm.lookPlayer(0);
 
-            if (field_0xDAC.y == fopAcM_searchPlayerAngleY(this)) {
+            if (mTargetAngle.y == fopAcM_searchPlayerAngleY(this)) {
                 bVar = 1;
             } else {
                 if (step(fopAcM_searchPlayerAngleY(this), 1, 0x20, 0x14, 0) != 0) {
@@ -4079,7 +4077,7 @@ int daNpc_Kn_c::ECut_noneEquipChangeTalk(int i_idx) {
 
     switch (intP) {
     case 0:
-        if (field_0xDAC.y != fopAcM_searchPlayerAngleY(this)) {
+        if (mTargetAngle.y != fopAcM_searchPlayerAngleY(this)) {
             if (step(fopAcM_searchPlayerAngleY(this),1,0x20,0x14,0) != 0) {
                 ret = 1;
                 mMotionSeqMngr1.setNo(1,-1.0f,0,0);
@@ -4146,7 +4144,7 @@ int daNpc_Kn_c::ECut_noneEquipChangeTalkStand(int i_idx) {
 
         break;
     case 10:
-        if (field_0xDAC.y != fopAcM_searchPlayerAngleY(this)) {
+        if (mTargetAngle.y != fopAcM_searchPlayerAngleY(this)) {
             if (step(fopAcM_searchPlayerAngleY(this),1,0x20,0x14,0) != 0) {
                 ret = 1;
                 mMotionSeqMngr1.setNo(1,-1.0f,0,0);
@@ -4206,7 +4204,7 @@ int daNpc_Kn_c::ECut_largeDamageTalk(int i_idx) {
         daPy_getPlayerActorClass()->onLargeDamageUpStop();
         break;
     case 10:
-        if (field_0xDAC.y != fopAcM_searchPlayerAngleY(this)) {
+        if (mTargetAngle.y != fopAcM_searchPlayerAngleY(this)) {
             if (step(fopAcM_searchPlayerAngleY(this),1,0x20,0x14,0) != 0) {
                 ret = 1;
                 mMotionSeqMngr1.setNo(1,-1.0f,0,0);
@@ -4227,8 +4225,8 @@ int daNpc_Kn_c::ECut_largeDamageTalk(int i_idx) {
             ret = 1;
         }
         
-        cLib_addCalcAngleS2(&field_0xDAC.y,fopAcM_searchPlayerAngleY(this),2,0x800);
-        setAngle(field_0xDAC.y);
+        cLib_addCalcAngleS2(&mTargetAngle.y,fopAcM_searchPlayerAngleY(this),2,0x800);
+        setAngle(mTargetAngle.y);
         daPy_getPlayerActorClass()->onLargeDamageUpStop();
 
         break;
@@ -4249,10 +4247,10 @@ int daNpc_Kn_c::teach02_start(void* param_0) {
         mJntAnm.lookPlayer(0);
         field_0xe2a = 2;
     case 2:
-        field_0xe36 = 8;
+        mEvtIdx = 8;
         field_0xe39 = 1;
-        cLib_addCalcAngleS2(&field_0xDAC.y,fopAcM_searchPlayerAngleY(this),2,0x800);
-        setAngle(field_0xDAC.y);
+        cLib_addCalcAngleS2(&mTargetAngle.y,fopAcM_searchPlayerAngleY(this),2,0x800);
+        setAngle(mTargetAngle.y);
     case 3:
     default:
         return 1;
@@ -4269,9 +4267,9 @@ int daNpc_Kn_c::teach03_attackWait(void* param_0) {
         mMotionSeqMngr2.setNo(9,-1.0f,0,0);
         mJntAnm.lookPlayer(0);
         field_0xdec = daNpc_Kn_Param_c::m.field_0x8e;
-        field_0x15b0 = current.pos;
+        mTargetPos = current.pos;
         field_0x15bc = 0;
-        field_0x15d0 = cLib_getRndValue(daNpc_Kn_Param_c::m.mMinRndVal,daNpc_Kn_Param_c::m.mRndValRange); // fetch from data later
+        field_0x15d0 = cLib_getRndValue(daNpc_Kn_Param_c::m.mMinRndVal,daNpc_Kn_Param_c::m.mRndValRange);
         speedF = 0;
         speed.zero();
         field_0x15cc = 0;
@@ -4282,19 +4280,19 @@ int daNpc_Kn_c::teach03_attackWait(void* param_0) {
         int cut_type = daPy_getPlayerActorClass()->getCutType();
         
         if (cut_type == daPy_py_c::CUT_TYPE_TWIRL) { // backslice
-            field_0x11DC.SetTgHitMark(CcG_Tg_UNK_MARK_1);
-            field_0x11DC.OffTgShield();
+            mCylCc.SetTgHitMark(CcG_Tg_UNK_MARK_1);
+            mCylCc.OffTgShield();
         } else {
-            field_0x11DC.SetTgHitMark(CcG_Tg_UNK_MARK_2);
-            field_0x11DC.OnTgShield();
+            mCylCc.SetTgHitMark(CcG_Tg_UNK_MARK_2);
+            mCylCc.OnTgShield();
         }
 
-        if (field_0x11DC.ChkTgHit()) {
+        if (mCylCc.ChkTgHit()) {
             if (cut_type == daPy_py_c::CUT_TYPE_TWIRL) {
                 if (mType == 2) {
-                        field_0xe36 = 14;
+                        mEvtIdx = 14;
                     } else if (mType == 3) {
-                        field_0xe36 = 15;
+                        mEvtIdx = 15;
                     }
                     
                     s16 angle = fopAcM_searchPlayerAngleY(this) - current.angle.y;
@@ -4338,7 +4336,7 @@ int daNpc_Kn_c::teach03_attackWait(void* param_0) {
             }
 
             if (!cLib_calcTimer(&field_0xdec) || checkCollisionSword()) {
-                field_0x15b0 = current.pos;
+                mTargetPos = current.pos;
                 field_0x15bc = 0;
 
                 BOOL truth = FALSE;
@@ -4348,9 +4346,9 @@ int daNpc_Kn_c::teach03_attackWait(void* param_0) {
                 }
 
                 if (checkCollisionSword()) {
-                    field_0xe36 = 4;
+                    mEvtIdx = 4;
                 } else {
-                    field_0xe36 = 1;
+                    mEvtIdx = 1;
                 }
 
                 mMotionSeqMngr1.setNo(1,-1.0f,0,0);
@@ -4385,7 +4383,7 @@ int daNpc_Kn_c::teach04_attackWait(void* param_0) {
         mMotionSeqMngr2.setNo(9,-1.0f,0,0);
         mJntAnm.lookPlayer(0);
         field_0xdec = daNpc_Kn_Param_c::m.field_0x8e;
-        field_0x15b0 = current.pos;
+        mTargetPos = current.pos;
         field_0x15bc = 0;
         field_0x15d0 = cLib_getRndValue(daNpc_Kn_Param_c::m.mMinRndVal,daNpc_Kn_Param_c::m.mRndValRange); // fetch from data later
         speedF = 0;
@@ -4394,17 +4392,17 @@ int daNpc_Kn_c::teach04_attackWait(void* param_0) {
     case 2:
           calcSlip();
           mCcStts.Move();
-          if (field_0x11DC.ChkTgShieldHit()) {
+          if (mCylCc.ChkTgShieldHit()) {
             u8 cut_type = daPy_getPlayerActorClass()->getCutType();
 
             if (cut_type == daPy_py_c::CUT_TYPE_GUARD_ATTACK) {
-                s16 angle = cLib_targetAngleY(&field_0x11DC.GetTgHitAc()->current.pos, &current.pos);
+                s16 angle = cLib_targetAngleY(&mCylCc.GetTgHitAc()->current.pos, &current.pos);
                 cXyz pos(0.0f,0.0f, daNpc_Kn_Param_c::m.field_0x9c);
                 mDoMtx_stack_c::YrotS(angle);
-                mDoMtx_stack_c::multVec(&pos, &field_0x15b0);
-                field_0x15b0 += current.pos;
+                mDoMtx_stack_c::multVec(&pos, &mTargetPos);
+                mTargetPos += current.pos;
                 field_0x15bc = 1;
-                field_0x11DC.ClrTgHit();
+                mCylCc.ClrTgHit();
                 mCreature.startCollisionSE(Z2SE_HIT_SHIELD_ATTACK, 0x28);
                 mActionMode = 10;
                 break;
@@ -4419,9 +4417,9 @@ int daNpc_Kn_c::teach04_attackWait(void* param_0) {
             }
 
             if (checkCollisionSword()) {
-                field_0xe36 = 4;
+                mEvtIdx = 4;
             } else {
-                field_0xe36 = 1;
+                mEvtIdx = 1;
             }
 
             mMotionSeqMngr1.setNo(1,-1.0f,0,0);
@@ -4434,8 +4432,8 @@ int daNpc_Kn_c::teach04_attackWait(void* param_0) {
             }
 
         } else {
-            if (field_0x11DC.ChkTgHit()) {
-                if (field_0x11DC.GetTgHitObj()->ChkAtType(AT_TYPE_SHIELD_ATTACK) == 0) {
+            if (mCylCc.ChkTgHit()) {
+                if (mCylCc.GetTgHitObj()->ChkAtType(AT_TYPE_SHIELD_ATTACK) == 0) {
                     mMotionSeqMngr1.setNo(1,-1.0f,0,0);
                     mMotionSeqMngr2.setNo(0x1b,-1.0f,1,0);
                     mCreature.startCollisionSE(Z2SE_HIT_SWORD, 0x28);
@@ -4487,20 +4485,20 @@ int daNpc_Kn_c::teach04_headBreakWait(void* param_0) {
         setHeadLockPos(&field_0x15c0);
         mCcStts.Move();
 
-        if (field_0x11DC.ChkTgHit() && daPy_getPlayerActorClass()->getCutType() == daPy_py_c::CUT_TYPE_HEAD_JUMP) {
+        if (mCylCc.ChkTgHit() && daPy_getPlayerActorClass()->getCutType() == daPy_py_c::CUT_TYPE_HEAD_JUMP) {
             s16 angle = cLib_targetAngleY(&daPy_getPlayerActorClass()->current.pos, &attention_info.position);
             cXyz pos(0.0f,0.0f,daNpc_Kn_Param_c::m.field_0x9c);
             mDoMtx_stack_c::YrotS(angle);
-            mDoMtx_stack_c::multVec(&pos,&field_0x15b0);
-            field_0x15b0 += current.pos;
+            mDoMtx_stack_c::multVec(&pos,&mTargetPos);
+            mTargetPos += current.pos;
             field_0x15bc = 1;
-            field_0x11DC.ClrTgHit();
+            mCylCc.ClrTgHit();
             mCreature.startCollisionSE(Z2SE_HIT_SWORD, 0x1e);
             mActionMode = 11;
             break;
         } else {
             if (!cLib_calcTimer(&field_0xdec)) {
-                field_0xe36 = 1;
+                mEvtIdx = 1;
                 mMotionSeqMngr1.setNo(1,-1.0f,0,0);
                 mMotionSeqMngr2.setNo(0,-1.0f,1,0);
                 mFlowNodeNo = 0x2f2;
@@ -4532,14 +4530,14 @@ int daNpc_Kn_c::teach04_finishWait(void* param_0) {
         calcSlip();
         mCcStts.Move();
 
-        if (field_0x11DC.ChkTgHit() && daPy_getPlayerActorClass()->getCutType() == daPy_py_c::CUT_TYPE_GUARD_ATTACK) {
+        if (mCylCc.ChkTgHit() && daPy_getPlayerActorClass()->getCutType() == daPy_py_c::CUT_TYPE_GUARD_ATTACK) {
             if (mType == 3) {
-                field_0xe36 = 16;
+                mEvtIdx = 16;
             } else {
-                field_0xe36 = 17;
+                mEvtIdx = 17;
             }
 
-            cXyz* pos_p = field_0x11DC.GetTgHitPosP();
+            cXyz* pos_p = mCylCc.GetTgHitPosP();
             s16 angle = (pos_p ? cLib_targetAngleY(&current.pos, pos_p) : fopAcM_searchPlayerAngleY(this)) - current.angle.y;
             int absAngle = angle < 0 ? -angle : angle;
             
@@ -4553,7 +4551,7 @@ int daNpc_Kn_c::teach04_finishWait(void* param_0) {
                 mCreature.startCreatureVoice(Z2SE_KN_V_DAMAGE_L, -1);
             } else {
                 mMotionSeqMngr1.setNo(1,-1.0f,0,0);
-                mMotionSeqMngr2.setNo(0xe,-1.0f,0,0); // missing instructions here?? wtf?
+                mMotionSeqMngr2.setNo(0xe,-1.0f,0,0);
                 setAngle(fopAcM_searchPlayerAngleY(this) + 0x8000);
                 speedF = daNpc_Kn_Param_c::m.mSpeedF;
                 mCreature.startCreatureVoice(Z2SE_KN_V_DAMAGE_L, -1);
@@ -4564,7 +4562,7 @@ int daNpc_Kn_c::teach04_finishWait(void* param_0) {
             break;
         } else {
             if (!cLib_calcTimer(&field_0xdec)) {
-                field_0xe36 = 1;
+                mEvtIdx = 1;
                 mFlowNodeNo = 0x306;
                 mActionMode = 9;
                 mMotionSeqMngr1.setNo(1,-1.0f,0,0);
@@ -4583,11 +4581,126 @@ int daNpc_Kn_c::teach04_finishWait(void* param_0) {
 /* 80A2F600-80A2FBB4 004CE0 05B4+00 1/0 0/0 0/0 .text teach05_surpriseAttackWait__10daNpc_Kn_cFPv
  */
 int daNpc_Kn_c::teach05_surpriseAttackWait(void* param_0) {
-    // NONMATCHING
+    switch (field_0xe2a) {
+    case 0:
+    case 1:
+        mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+        mMotionSeqMngr2.setNo(9,-1.0f,0,0);
+        mJntAnm.lookPlayer(0);
+        field_0xdec = daNpc_Kn_Param_c::m.field_0x90;
+        mTargetPos = current.pos;
+        field_0x15bc = 0;
+        field_0x15d0 = cLib_getRndValue(daNpc_Kn_Param_c::m.mMinRndVal,daNpc_Kn_Param_c::m.mRndValRange);
+        speedF = 0.0f;
+        speed.zero();
+        field_0xe2a = 2;
+    case 2:
+        calcSlip();
+        mCcStts.Move();
+
+        int cut_type = daPy_getPlayerActorClass()->getCutType();
+
+        if (cut_type == daPy_py_c::CUT_TYPE_MORTAL_DRAW_B || cut_type == daPy_py_c::CUT_TYPE_MORTAL_DRAW_A) {
+            mCylCc.SetTgHitMark(CcG_Tg_UNK_MARK_1);
+            mCylCc.OffTgShield();
+        } else {
+            mCylCc.SetTgHitMark(CcG_Tg_UNK_MARK_2);
+            mCylCc.OnTgShield();
+        }
+
+        if (mCylCc.ChkTgHit()){
+            if (cut_type == daPy_py_c::CUT_TYPE_MORTAL_DRAW_B || cut_type == daPy_py_c::CUT_TYPE_MORTAL_DRAW_A) {
+                if (mType == 4) {
+                    mEvtIdx = 0x13;
+                } else {
+                    mEvtIdx = 0x14;
+                }
+
+                s16 angle = fopAcM_searchPlayerAngleY(this) - current.angle.y;
+                int absAngle = angle < 0 ? -angle : angle;
+
+                if (absAngle < 0x4000) {
+                    mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+                    mMotionSeqMngr2.setNo(0x12,-1.0f,0,0);
+                    setAngle(fopAcM_searchPlayerAngleY(this));
+
+                    speedF = -daNpc_Kn_Param_c::m.mSpeedF;
+                    mCreature.startCreatureVoice(Z2SE_KN_V_DAMAGE_L,-1);
+                } else {
+                    mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+                    mMotionSeqMngr2.setNo(14,-1.0f,0,0);
+                    setAngle(fopAcM_searchPlayerAngleY(this) + 0x8000);
+
+                    speedF = daNpc_Kn_Param_c::m.mSpeedF;
+                    mCreature.startCreatureVoice(Z2SE_KN_V_DAMAGE_L,-1);
+                }
+
+                mCreature.startCollisionSE(Z2SE_HIT_SWORD,0x1f);
+                mJntAnm.lookNone(0);
+                speed.y = daNpc_Kn_Param_c::m.mSpeedY;
+            } else {
+                setAngle(fopAcM_searchPlayerAngleY(this));
+                mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+                mMotionSeqMngr2.setNo(0x1b,-1.0f,1,0);
+            
+                if (cut_type == daPy_py_c::CUT_TYPE_GUARD_ATTACK) {
+                    mCreature.startCollisionSE(Z2SE_HIT_SHIELD_ATTACK,0x28);
+                } else {
+                    mCreature.startCollisionSE(Z2SE_HIT_SWORD,0x28);
+                }
+                break;
+            }
+
+        } else {
+            if (daPy_getPlayerActorClass()->checkSideStep()) {
+                field_0x15cc = 1;
+            }
+
+            calcSwordAttackMove(1);
+
+            if (cLib_calcTimer(&field_0xdec) == 0 || checkCollisionSword()) {
+                mTargetPos = current.pos;
+                field_0x15bc = 0;
+            
+                BOOL check = FALSE;
+                
+                if (dComIfGp_getAttention().LockonTruth()) {
+                    check = TRUE;
+                }
+
+                if (checkCollisionSword()) {
+                    mEvtIdx = 4;
+                } else {
+                    mEvtIdx = 1;
+                }
+
+                mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+                mMotionSeqMngr2.setNo(0,-1.0f,1,0);
+            
+                if (check != FALSE) {
+                    mFlowNodeNo = 0x2ec;
+                    
+                } else {
+                    if (!daPy_getPlayerActorClass()->checkSideStep()) {
+                        mFlowNodeNo = 0x2ea;
+                    } else {
+                        mFlowNodeNo = 0x2eb;
+                    }
+                }
+            }
+        }
+
+        
+    case 3:
+    default:
+        break;
+    }
+
+    return 1;
 }
 
 /* 80A2FBB4-80A2FC14 005294 0060+00 1/1 0/0 0/0 .text            s_sub6__FPvPv */
-static int s_sub6(void* i_this, void* param_1) {
+static void* s_sub6(void* i_this, void* param_1) {
     if (fopAcM_IsActor(i_this) && fopAcM_GetName(i_this) == PROC_NPC_KN && i_this != param_1) {
         static_cast<daNpc_Kn_c*>(i_this)->setActionMode(18);
     }
@@ -4596,7 +4709,7 @@ static int s_sub6(void* i_this, void* param_1) {
 }
 
 /* 80A2FC14-80A2FC80 0052F4 006C+00 2/2 0/0 0/0 .text            s_subEnd6__FPvPv */
-static int s_subEnd6(void* i_this, void* param_1) {
+static void* s_subEnd6(void* i_this, void* param_1) {
     if (fopAcM_IsActor(i_this) && fopAcM_GetName(i_this) == PROC_NPC_KN && i_this != param_1 && static_cast<daNpc_Kn_c*>(i_this)->getActionMode() != 17) {
         static_cast<daNpc_Kn_c*>(i_this)->setActionMode(17);
     }
@@ -4606,7 +4719,143 @@ static int s_subEnd6(void* i_this, void* param_1) {
 
 /* 80A2FC80-80A30398 005360 0718+00 1/0 0/0 0/0 .text teach06_superJumpWait__10daNpc_Kn_cFPv */
 int daNpc_Kn_c::teach06_superJumpWait(void* param_0) {
-    // NONMATCHING
+    switch (field_0xe2a) {
+    case 0:
+    case 1:
+        mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+        mMotionSeqMngr2.setNo(9,-1.0f,0,0);
+        mJntAnm.lookPlayer(0);
+        field_0xdec = daNpc_Kn_Param_c::m.field_0x90;
+        mTargetPos = current.pos;
+        field_0x15bc = 0;
+        field_0x15d0 = cLib_getRndValue(daNpc_Kn_Param_c::m.mMinRndVal,daNpc_Kn_Param_c::m.mRndValRange);
+        speedF = 0.0f;
+        speed.zero();
+        field_0x15bd = 0;
+        field_0xe2a = 2;
+    case 2:
+        calcSlip();
+        mCcStts.Move();
+
+        int cut_type = daPy_getPlayerActorClass()->getCutType();
+
+        if (cut_type == daPy_py_c::CUT_TYPE_LARGE_JUMP_INIT || cut_type == daPy_py_c::CUT_TYPE_LARGE_JUMP || cut_type == daPy_py_c::CUT_TYPE_LARGE_JUMP_FINISH) {
+            mCylCc.SetTgHitMark(CcG_Tg_UNK_MARK_1);
+            mCylCc.OffTgShield();
+        } else {
+            mCylCc.SetTgHitMark(CcG_Tg_UNK_MARK_2);
+            mCylCc.OnTgShield();
+        }
+
+        if (mCylCc.ChkTgHit()) {
+            if (field_0x15bd == 2 && cut_type == daPy_py_c::CUT_TYPE_LARGE_JUMP || cut_type == daPy_py_c::CUT_TYPE_LARGE_JUMP_FINISH) {
+                mEvtIdx = 22;
+                fpcM_Search(s_subEnd6,this);
+            } else {
+                calcSwordAttackMove(1);
+                if (field_0x15bd == 2 || cLib_calcTimer(&field_0xdec) && checkCollisionSword() && field_0x15bd != 1) {
+                    if (daPy_getPlayerActorClass()->checkDamageImpact()) {
+                        BOOL check = FALSE;
+                        
+                        if (dComIfGp_getAttention().LockonTruth()) {
+                            check = TRUE;
+                        }
+
+                        if (daPy_getPlayerActorClass()->checkSideStep()) {
+                            mFlowNodeNo = 0x2fb;
+                            
+                        } else {
+                            if (check == FALSE) {
+                                mFlowNodeNo = 0x2fc;
+                            } else {
+                                mFlowNodeNo = 0x2fd;
+                            }
+                        }
+                    }
+                } else {
+                    mTargetPos = current.pos;
+                    field_0x15bc = 9;
+
+                    BOOL check = FALSE;
+                        
+                    if (dComIfGp_getAttention().LockonTruth()) {
+                        check = TRUE;
+                    }
+
+                    if (checkCollisionSword() && field_0x15bd == 1) {
+                        mEvtIdx = 4;
+                    } else {
+                        mEvtIdx = 1;
+                    }
+
+                    mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+                    mMotionSeqMngr2.setNo(0,-1.0f,1,0);
+                    fpcM_Search(s_sub6,this);
+                }
+            }
+        } else if (cut_type == daPy_py_c::CUT_TYPE_LARGE_JUMP || cut_type == daPy_py_c::CUT_TYPE_LARGE_JUMP_FINISH) {
+            if (mType == 5) {
+                mEvtIdx = 0x15;
+            } else {
+                mEvtIdx = 0x17;
+            }
+
+            s16 angle = fopAcM_searchPlayerAngleY(this) - current.angle.y;
+            int absAngle = angle < 0 ? -angle : angle;
+            
+
+            if (absAngle < 0x4000) {
+                mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+                mMotionSeqMngr2.setNo(0x12,-1.0f,0,0);
+
+                setAngle(fopAcM_searchPlayerAngleY(this));
+                speedF = -daNpc_Kn_Param_c::m.mSpeedF;
+                mCreature.startCreatureVoice(Z2SE_KN_V_DAMAGE_L, -1);
+            } else {
+                mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+                mMotionSeqMngr2.setNo(0xe,-1.0f,0,0);
+                setAngle(fopAcM_searchPlayerAngleY(this) + 0x8000);
+                speedF = daNpc_Kn_Param_c::m.mSpeedF;
+                mCreature.startCreatureVoice(Z2SE_KN_V_DAMAGE_L, -1);
+            }
+            mJntAnm.lookNone(0);
+            speed.y = daNpc_Kn_Param_c::m.mSpeedY;
+            mCreature.startCollisionSE(Z2SE_HIT_SWORD,0x1f);
+            break;
+
+        } else if (cut_type == daPy_py_c::CUT_TYPE_LARGE_JUMP_INIT) {
+            fopAc_ac_c* hit_ac = mCylCc.GetTgHitAc();
+            s16 angle = cLib_targetAngleY(&hit_ac->current.pos, &current.pos);
+            cXyz pos(0.0f,0.0f,daNpc_Kn_Param_c::m.field_0x64);
+            mDoMtx_stack_c::YrotS(angle);
+            mDoMtx_stack_c::multVec(&pos, );
+            }
+                iVar2 = ::dCcD_GObjInf::GetTgHitAc((dCcD_GObjInf *)(this + 0x122c));
+    if (iVar2 == 0) {
+      uVar4 = JUTAssertion::getSDevice();
+      JUTAssertion::showAssert(uVar4,d_a_npc_kn::@126361,0x10be,d_a_npc_kn::@127478);
+      m_Do_printf::OSPanic(d_a_npc_kn::@126361,0x10be,&d_a_npc_kn::@124961);
+    }
+    sVar8 = SComponentD::(iVar2 + 0x4d4,this + 0x4d4);
+    ::cXyz::cXyz(&cStack_2c,0.0,0.0,*(float *)(*(int *)(this + 0x1228) + 0x9c));
+    mDoMtx_stack_c::YrotS(sVar8);
+    mDoMtx_stack_c::multVec(&cStack_2c,(cXyz *)(this + 0x1600));
+    ::cXyz::operator_+=((cXyz *)(this + 0x1600),(Vec *)(this + 0x4d4));
+    this[0x160c] = (daNpc_Kn_c)0x1;
+    (**(code **)(*(int *)(this + 0x1268) + 0x24))();
+    ::daNpcT_MotionSeqMngr_c::setNo((daNpcT_MotionSeqMngr_c *)(this + 0xbd4),1,-1.0,0,0);
+    ::daNpcT_MotionSeqMngr_c::setNo((daNpcT_MotionSeqMngr_c *)(this + 0xbf8),0x1e,-1.0,1,0);
+    (**(code **)(*(int *)(this + 0x5cc) + 0x2c))(this + 0x5cc,0x40000,0x1e);
+        } else {
+
+        }
+        
+    case 3:
+    default:
+        break;
+    }
+
+    return 1;
 }
 
 /* 80A30398-80A305A8 005A78 0210+00 1/0 0/0 0/0 .text            teach06_divideMove__10daNpc_Kn_cFPv
@@ -4630,14 +4879,14 @@ int daNpc_Kn_c::teach06_divideMove(void* param_0) {
         mDoMtx_stack_c::transS(home.pos);
         mDoMtx_stack_c::YrotM(angle);
         mDoMtx_stack_c::multVec(&pos,&pos);
-        field_0x15b0 = pos;
+        mTargetPos = pos;
         field_0xe2a = 2;
     case 2:
         cXyz pos2(current.pos);
-        cLib_chasePos(&pos2, field_0x15b0, 6.0f);
+        cLib_chasePos(&pos2, mTargetPos, 6.0f);
         setPos(pos2);
-        cLib_addCalcAngleS2(&field_0xDAC.y,fopAcM_searchPlayerAngleY(this), 2, 0x800);
-        setAngle(field_0xDAC.y);
+        cLib_addCalcAngleS2(&mTargetAngle.y,fopAcM_searchPlayerAngleY(this), 2, 0x800);
+        setAngle(mTargetAngle.y);
         if (!dComIfGp_event_runCheck()) {
             mActionMode = 15;
         }
@@ -4663,8 +4912,8 @@ int daNpc_Kn_c::teach06_waitDivide(void* param_0) {
         field_0xe2a = 2;
         break;
     case 2:
-        cLib_addCalcAngleS2(&field_0xDAC.y,fopAcM_searchPlayerAngleY(this), 2, 0x800);
-        setAngle(field_0xDAC.y);
+        cLib_addCalcAngleS2(&mTargetAngle.y,fopAcM_searchPlayerAngleY(this), 2, 0x800);
+        setAngle(mTargetAngle.y);
         if (!dComIfGp_event_runCheck()) {
             mActionMode = 15;
         }
@@ -4726,7 +4975,7 @@ int daNpc_Kn_c::teach06_warpDelete(void* param_0) {
 }
 
 /* 80A30F5C-80A30FBC 00663C 0060+00 1/1 0/0 0/0 .text            s_sub7__FPvPv */
-static int s_sub7(void* i_this, void* param_1) {
+static void* s_sub7(void* i_this, void* param_1) {
     if (fopAcM_IsActor(i_this) && fopAcM_GetName(i_this) == PROC_NPC_KN && i_this != param_1) {
         static_cast<daNpc_Kn_c*>(i_this)->setActionMode(24);
     }
@@ -4735,7 +4984,7 @@ static int s_sub7(void* i_this, void* param_1) {
 }
 
 /* 80A30FBC-80A31028 00669C 006C+00 2/2 0/0 0/0 .text            s_subEnd7__FPvPv */
-static int s_subEnd7(void* i_this, void* param_1) {
+static void* s_subEnd7(void* i_this, void* param_1) {
     if (fopAcM_IsActor(i_this) && fopAcM_GetName(i_this) == PROC_NPC_KN && i_this != param_1 && static_cast<daNpc_Kn_c*>(i_this)->getActionMode() != 23) {
         static_cast<daNpc_Kn_c*>(i_this)->setActionMode(23);
     }
@@ -4777,8 +5026,8 @@ int daNpc_Kn_c::teach07_waitDivide(void* param_0) {
         field_0xe2a = 2;
         break;
     case 2:
-        cLib_addCalcAngleS2(&field_0xDAC.y,fopAcM_searchPlayerAngleY(this), 2, 0x800);
-        setAngle(field_0xDAC.y);
+        cLib_addCalcAngleS2(&mTargetAngle.y,fopAcM_searchPlayerAngleY(this), 2, 0x800);
+        setAngle(mTargetAngle.y);
         if (!dComIfGp_event_runCheck()) {
             mActionMode = 21;
         }
@@ -5027,9 +5276,9 @@ int daNpc_Kn_c::ECut_thirdSkillExplain(int i_idx) {
     switch (intP) {
         case 0:
             if (cLib_calcTimer(&field_0xdec) == 0) {
-                if (field_0xDAC.y == fopAcM_searchPlayerAngleY(this)) {
+                if (mTargetAngle.y == fopAcM_searchPlayerAngleY(this)) {
                     ret = 1;
-                    field_0x15b0 = current.pos;
+                    mTargetPos = current.pos;
                     field_0x15bc = 0;
                     speedF = 0.0f;
                     speed.zero();
@@ -5047,7 +5296,7 @@ int daNpc_Kn_c::ECut_thirdSkillExplain(int i_idx) {
 
             break;
         case 6:
-            if (field_0xDAC.y == fopAcM_searchPlayerAngleY(this)) {
+            if (mTargetAngle.y == fopAcM_searchPlayerAngleY(this)) {
                 ret = 1;
             } else {
                 if (step(fopAcM_searchPlayerAngleY(this),1,0x20,0x14,0) != 0) {
@@ -5177,7 +5426,143 @@ int daNpc_Kn_c::ECut_sixthSkillExplain(int i_idx) {
 /* 80A35D88-80A363C0 00B468 0638+00 3/0 0/0 0/0 .text            ECut_sixthSkillGet__10daNpc_Kn_cFi
  */
 int daNpc_Kn_c::ECut_sixthSkillGet(int i_idx) {
-    // NONMATCHING
+    dEvent_manager_c* event_manager =  &dComIfGp_getEventManager();
+
+    int ret = 0;
+    int intP = -1;
+
+    int* intP2 = dComIfGp_evmng_getMyIntegerP(i_idx,"prm");
+
+    if (intP2) {
+        intP = *intP2;
+    }
+
+    if (event_manager->getIsAddvance(i_idx)) {
+        switch (intP) {
+        case 0:
+            daNpcT_offTmpBit(0xb);
+            daNpcT_offTmpBit(0xc);
+            break;
+        case 4:
+            mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+
+            if (mMotionSeqMngr2.getNo() == 0x13) {
+                mMotionSeqMngr2.setNo(22,-1.0f,0,0);
+            } else {
+                mMotionSeqMngr2.setNo(16,-1.0f,0,0);
+            }
+            fpcM_Search(s_subEnd6,this);
+            break;
+        case 6:
+            mJntAnm.lookNone(0);
+            break;
+        case 10:
+            field_0xdfe = 2;
+            cXyz pos(0.0f,0.0f,1000.0f);
+            mDoMtx_stack_c::transS(current.pos);
+            mDoMtx_stack_c::YrotM(cLib_targetAngleY(&current.pos,&home.pos));
+            mDoMtx_stack_c::multVec(&pos,&pos);
+            cXyz pos2 = pos;
+            pos2.y += 500.0f;
+
+            if (fopAcM_gc_c::gndCheck(&pos2)) {
+                pos.y = fopAcM_gc_c::getGroundY();
+            }
+
+            daPy_getPlayerActorClass()->setPlayerPosAndAngle(&pos, (s16)cLib_targetAngleY(&home.pos, &current.pos), 0);
+            initTalk(0x2fe,NULL);
+            break;
+        case 12:
+            setAngle(fopAcM_searchPlayerAngleY(this));
+            break;
+        case 15:
+            Z2GetAudioMgr()->bgmStreamPrepare(0x2000038);
+            Z2GetAudioMgr()->bgmStreamPlay();
+            break;
+        case 20:
+            initTalk(0x2fe,0);
+            break;
+        case 30:
+            initTalk(0x2fe,0);
+        }
+    }
+
+    switch (intP) {
+    case 0:
+        if (speed.y <= 0.0f && mAcch.ChkGroundHit()) {
+            speedF = 0.0f;
+            speed.zero();
+
+            if (mMotionSeqMngr2.getNo() == 0x12) {
+                mMotionSeqMngr2.setNo(0x13, -1.0f, 0, 0);
+            } else {
+                mMotionSeqMngr2.setNo(15, -1.0f, 0, 0);
+            }
+
+            mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+            setLandingPrtcl();
+            ret = 1;
+        }
+        break;
+    case 2:
+        if (mMotionSeqMngr2.getNo() == 0x13 || mMotionSeqMngr2.getNo() == 15) {
+            if (mMotionSeqMngr2.getStepNo() > 0) {
+                ret = 1;
+            } else {
+                if (mpMorf[0]->getFrame() >= 13.0f && mpMorf[0]->getFrame() < 14.0f) {
+                    setLandingPrtcl();
+                }
+            }
+        }
+        break;
+    case 4:
+        if (mMotionSeqMngr2.getNo() == 22 || mMotionSeqMngr2.getNo() == 16) {
+            if (mMotionSeqMngr2.getStepNo() > 0) {
+                ret = 1;
+            }
+        }
+        break;
+    case 6:
+        if (mTargetAngle.y != fopAcM_searchPlayerAngleY(this)) {
+            if (step(fopAcM_searchPlayerAngleY(this),1,0x20,0x14,0)) {
+                ret = 1;
+                mMotionSeqMngr1.setNo(1, -1.0f, 0, 0);
+                mMotionSeqMngr2.setNo(0, -1.0f, 0, 0);
+            }
+            
+        } else {
+            ret = 1;
+        }
+        break;
+    case 10:
+        if (talkProc(NULL,0,NULL,0)) {
+            ret = 1;
+
+            if (field_0x170e == 0) {
+                field_0x170e = 1;
+                Z2GetAudioMgr()->bgmStop(0x32,0);
+            } 
+        }
+        break;
+    case 20:
+        if (talkProc(NULL, 0, NULL, 0)) {
+            ret = 1;
+        }
+        cLib_addCalcAngleS2(&mTargetAngle.y, fopAcM_searchPlayerAngleY(this), 2, 0x800);
+        setAngle(mTargetAngle.y);
+        break;
+    case 30:
+        if (talkProc(NULL, 0, NULL, 0)) {
+            setSceneChange(1);
+        }
+        cLib_addCalcAngleS2(&mTargetAngle.y, fopAcM_searchPlayerAngleY(this), 2, 0x800);
+        setAngle(mTargetAngle.y);
+        break;
+    default:
+        ret = 1;
+    }
+
+    return ret;
 }
 
 /* 80A363C0-80A36C20 00BAA0 0860+00 3/0 0/0 0/0 .text ECut_seventhSkillExplain__10daNpc_Kn_cFi */
@@ -5278,8 +5663,41 @@ int daNpc_Kn_c::ECut_seventhSkillGet(int i_idx) {
 // #pragma pop
 
 /* 80A372D0-80A37430 00C9B0 0160+00 1/1 0/0 0/0 .text            setPrtcl__10daNpc_Kn_cFv */
-void daNpc_Kn_c::setPrtcl() {
-    // NONMATCHING
+int daNpc_Kn_c::setPrtcl() {
+    for (int i = 0; i < 3; i++) {
+        BOOL check = i == 2 ? TRUE : FALSE;
+        s8 room_no = fopAcM_GetRoomNo(this);
+
+        csXyz* angle = mParticleMngr[i].mpModel == 1 ? &mParticleMngr[i].mAngle : NULL;
+        cXyz* pos = mParticleMngr[i].mpModel == 1 ? &mParticleMngr[i].mPos : NULL;
+
+        
+        mParticleMngr[i].mManager.setEffectCenter(&tevStr, &mParticleMngr[i].mPos, check, 0, pos, angle, 0, room_no, 0.0f, speedF);
+
+        if (mParticleMngr[i].mpModel) {
+            JPABaseEmitter* emitter = mParticleMngr[i].mManager.getCenterEmitter(0,0);
+
+            if (emitter) {
+                switch (i) {
+                case 0:
+                case 1:
+                    mParticleMngr[i].mScale.set(1.0f,1.0f,1.0f);
+                    emitter->setAwayFromCenterSpeed(0.0f);
+                    emitter->setRandomDirectionSpeed(0.0f);
+                    emitter->setSpread(1.0f);
+                    emitter->setGlobalParticleScale(mParticleMngr[i].mScale);
+                    break;
+                case 2:
+                    mParticleMngr[i].mScale.set(2.0f,2.0f,2.0f);
+                    break;
+                }
+            }
+        }
+
+        mParticleMngr[i].mpModel = NULL;
+    }
+
+    return 1;
 }
 
 /* 80A37430-80A37558 00CB10 0128+00 1/1 0/0 0/0 .text            setSlipPrtcl__10daNpc_Kn_cFv */
@@ -5305,7 +5723,7 @@ int daNpc_Kn_c::setSlipPrtcl() {
  */
 int daNpc_Kn_c::setLandingPrtcl() {
     mParticleMngr[2].mPos = current.pos;
-    mParticleMngr[2].mAngle = field_0xDAC;
+    mParticleMngr[2].mAngle = mTargetAngle;
     mParticleMngr[2].mpModel = true;
     return 1;
 }
@@ -5609,7 +6027,33 @@ void daNpc_Kn_c::setSwordChargePtcl() {
 
 /* 80A37B08-80A37D20 00D1E8 0218+00 13/13 0/0 0/0 .text            calcSlip__10daNpc_Kn_cFv */
 void daNpc_Kn_c::calcSlip() {
-    // NONMATCHING
+    if (field_0x15bc) {
+        if (mAcch.ChkWallHit()) {
+            mTargetPos = current.pos;
+            field_0x15bc = 0;
+            speed.x = 0.0f;
+            speed.z = 0.0f;
+            
+        } else {
+            cXyz pos(current.pos);
+
+            cLib_addCalcPos2(&pos, mTargetPos, 0.25f, 20.0f);
+            pos -= current.pos;
+            speed.x = pos.x;
+            speed.z = pos.z;
+            f32 absxz = (mTargetPos - current.pos).absXZ();
+
+            if (absxz > 25.0f) {
+                setSlipPrtcl();
+            } else {
+                if (absxz < 5.0f) {
+                    field_0x15bc = 0;
+                    speed.x = 0.0f;
+                    speed.z = 0.0f;
+                }
+            }
+        }
+    }
 }
 
 /* ############################################################################################## */
@@ -6014,7 +6458,7 @@ void daNpc_Kn_c::setMtx() {
     J3DModel* model = mpMorf[0]->getModel();
     // J3DModelData* data = model->getModelData(); // debug used this?
     mDoMtx_stack_c::transS(current.pos);
-    mDoMtx_stack_c::ZXYrotM(field_0xDAC);
+    mDoMtx_stack_c::ZXYrotM(mTargetAngle);
     mDoMtx_stack_c::scaleM(scale);
     model->setBaseTRMtx(mDoMtx_stack_c::get());
     model->setUserArea((u32)this);
@@ -6114,19 +6558,51 @@ void daNpc_Kn_c::twilight() {
 
 /* 80A3A2A8-80A3A404 00F988 015C+00 1/0 0/0 0/0 .text            evtOrder__10daNpc_Kn_cFv */
 void daNpc_Kn_c::evtOrder() {
-    // NONMATCHING
+    if (strlen(mpEventData[mEvtIdx].eventName) != 0) {
+        if (strlen(field_0x5B8[mpEventData[mEvtIdx].num])) {
+            eventInfo.setArchiveName(field_0x5B8[mpEventData[mEvtIdx].num]);
+            dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
+        }
+
+        field_0xe24 = dComIfGp_getEventManager().getEventIdx(this, mpEventData[mEvtIdx].eventName,0xff);
+        fopAcM_orderOtherEventId(this,field_0xe24,0xff,0xffff,6,1);
+        
+    } else {
+        u32 flag_check = attention_info.flags;
+
+        if (flag_check & 8 || flag_check & 2) {
+            eventInfo.i_onCondition(1);
+
+            if (chkXYItems()) {
+                eventInfo.i_onCondition(32);
+            }
+
+            if (field_0xe38 != 0) {
+                fopAcM_orderSpeakEvent(this,0,0);
+            }
+        }
+    }
 }
 
 /* 80A3A404-80A3A504 00FAE4 0100+00 1/1 0/0 0/0 .text            evtChange__10daNpc_Kn_cFv */
 void daNpc_Kn_c::evtChange() {
-    // NONMATCHING
+    if (strlen(mpEventData[mEvtIdx].eventName) != 0) {
+        if (strlen(field_0x5B8[mpEventData[mEvtIdx].num])) {
+            eventInfo.setArchiveName(field_0x5B8[mpEventData[mEvtIdx].num]);
+            dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
+        }
+
+        field_0xe24 = dComIfGp_getEventManager().getEventIdx(this, mpEventData[mEvtIdx].eventName,0xff);
+        dComIfGp_getEvent().reset(this);
+        fopAcM_orderChangeEventId(this,field_0xe24,1,0xffff);
+    }
 }
 
 /* 80A3A504-80A3A568 00FBE4 0064+00 1/0 0/0 0/0 .text            clrParam__10daNpc_Kn_cFv */
 void daNpc_Kn_c::clrParam() {
-    field_0xDB2 = field_0xDAC;
+    field_0xDB2 = mTargetAngle;
     mCutType = 0;
-    memset((void*)&field_0xe36,0,(int)(void*)&field_0xe3c - (int)(void*)&field_0xe36); // fake match?
+    memset((void*)&mEvtIdx,0,(int)(void*)&field_0xe3c - (int)(void*)&mEvtIdx); // fake match?
     mJntAnm.clrDirectFlag();
 }
 
@@ -6154,8 +6630,8 @@ void daNpc_Kn_c::setPos(cXyz i_pos) {
 void daNpc_Kn_c::setAngle(s16 i_angle) {
     current.angle.y = i_angle;
     shape_angle.y = current.angle.y;
-    field_0xDAC.y = current.angle.y;
-    field_0xDB2.y = field_0xDAC.y;
+    mTargetAngle.y = current.angle.y;
+    field_0xDB2.y = mTargetAngle.y;
     old.angle.y = current.angle.y;
 }
 
@@ -6195,8 +6671,7 @@ BOOL daNpc_Kn_c::srchPlayerActor() {
 }
 
 /* 80A3B000-80A3B074 0106E0 0074+00 2/2 0/0 0/0 .text getAttnPos__10daNpc_Kn_cFP10fopAc_ac_c */
-// NONMATCHING - param_0 is somehow in r5?
-void daNpc_Kn_c::getAttnPos(fopAc_ac_c* param_0) {
+cXyz daNpc_Kn_c::getAttnPos(fopAc_ac_c* param_0) {
     cXyz pos(param_0->attention_info.position);
 
     if (fopAcM_GetName(param_0) == PROC_ALINK) {
@@ -6204,9 +6679,7 @@ void daNpc_Kn_c::getAttnPos(fopAc_ac_c* param_0) {
         pos.y -= offset;
     }
 
-    // fake match?
-    cXyz* attn_pos = (cXyz*)this;
-    *attn_pos = pos;
+    return pos;
 }
 
 /* 80A3B074-80A3B220 010754 01AC+00 1/1 0/0 0/0 .text            turn__10daNpc_Kn_cFsii */
@@ -6235,7 +6708,24 @@ BOOL daNpc_Kn_c::talkProc(int* param_0, int param_1, fopAc_ac_c** param_2, int p
 
 /* 80A3B5EC-80A3B708 010CCC 011C+00 1/1 0/0 0/0 .text            setHitodamaPrtcl__10daNpc_Kn_cFv */
 void daNpc_Kn_c::setHitodamaPrtcl() {
-    // NONMATCHING
+    cXyz pos(eyePos);
+
+    for (int i = 0; i < 2; i++) {
+        tevStr.mLightObj.mLightObj.field_0x0[i] = dComIfGp_particle_set(tevStr.mLightObj.mLightObj.field_0x0[i], id[i],&pos, &mTargetAngle, 0);
+        JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(tevStr.mLightObj.mLightObj.field_0x0[i]);
+        if (emitter) {
+            u8 alpha;
+
+            if (dComIfGs_wolfeye_effect_check() == 0) {
+                alpha = 0xff;
+            } else {
+                alpha = 0;
+            }
+
+            emitter->setGlobalTranslation(pos.x,pos.y,pos.z);
+            emitter->setGlobalAlpha(alpha);
+        }
+    }
 }
 
 /* 80A3B708-80A3B720 010DE8 0018+00 1/0 0/0 0/0 .text            decTmr__10daNpc_Kn_cFv */
@@ -6285,7 +6775,7 @@ s32 daNpc_Kn_c::getFootLJointNo() {
 }
 
 /* 80A3B7BC-80A3B7C4 010E9C 0008+00 1/0 0/0 0/0 .text            chkXYItems__10daNpc_Kn_cFv */
-bool daNpc_Kn_c::chkXYItems() {
+BOOL daNpc_Kn_c::chkXYItems() {
     return false;
 }
 
@@ -6545,29 +7035,29 @@ void daNpc_Kn_c::setCollisionTeach01() {
     case 0:
         break;
     case 1:
-        field_0x11DC.SetTgType(-1);
-        field_0x11DC.SetTgHitMark(CcG_Tg_UNK_MARK_2);
-        field_0x11DC.SetTgSPrm(0x13);
-        field_0x11DC.OnTgNoConHit();
+        mCylCc.SetTgType(-1);
+        mCylCc.SetTgHitMark(CcG_Tg_UNK_MARK_2);
+        mCylCc.SetTgSPrm(0x13);
+        mCylCc.OnTgNoConHit();
         
         if (field_0x170c == 0) {
-            field_0x11DC.OnTgShield();
+            mCylCc.OnTgShield();
         } else {
-            field_0x11DC.OffTgShield();    
+            mCylCc.OffTgShield();    
         }
         break;
     case 2:
-        field_0x11DC.SetTgType(-1);
-        field_0x11DC.SetTgHitMark(CcG_Tg_UNK_MARK_1);
-        field_0x11DC.SetTgSPrm(0x13);
-        field_0x11DC.OffTgShield();
-        field_0x11DC.OffTgNoAtHitInfSet();
-        field_0x11DC.OnTgNoConHit();
-        field_0x11DC.OnCoSetBit();
+        mCylCc.SetTgType(-1);
+        mCylCc.SetTgHitMark(CcG_Tg_UNK_MARK_1);
+        mCylCc.SetTgSPrm(0x13);
+        mCylCc.OffTgShield();
+        mCylCc.OffTgNoAtHitInfSet();
+        mCylCc.OnTgNoConHit();
+        mCylCc.OnCoSetBit();
         break;
     case 3:
-        field_0x11DC.OffTgSetBit();
-        field_0x11DC.OffCoSetBit();
+        mCylCc.OffTgSetBit();
+        mCylCc.OffCoSetBit();
         break;
     }
 }
@@ -6603,10 +7093,10 @@ int daNpc_Kn_c::teach01_start(void* param_0) {
         mJntAnm.lookPlayer(0);
         field_0xe2a = 2;
     case 2:
-        field_0xe36 = 5;
+        mEvtIdx = 5;
         field_0xe39 = 1;
-        cLib_addCalcAngleS2(&field_0xDAC.y,fopAcM_searchPlayerAngleY(this),2,0x800);
-        setAngle(field_0xDAC.y);
+        cLib_addCalcAngleS2(&mTargetAngle.y,fopAcM_searchPlayerAngleY(this),2,0x800);
+        setAngle(mTargetAngle.y);
     case 3:
     default:
         return 1;
@@ -6625,11 +7115,11 @@ int daNpc_Kn_c::teach01_attackWait(void* param_0) {
         field_0xe2a = 2;
     case 2:
     if (!ctrlWarp()) {
-        cLib_addCalcAngleS2(&field_0xDAC.y,fopAcM_searchPlayerAngleY(this),2,0x800);
-        setAngle(field_0xDAC.y);
-        if (field_0x11DC.ChkTgHit()) {
+        cLib_addCalcAngleS2(&mTargetAngle.y,fopAcM_searchPlayerAngleY(this),2,0x800);
+        setAngle(mTargetAngle.y);
+        if (mCylCc.ChkTgHit()) {
 
-            field_0xe36 = 6;
+            mEvtIdx = 6;
             field_0x16f4.set(1.0f,1.0f,1.0f);
             field_0x170c = 0;
             field_0x170d = 0;
@@ -6651,7 +7141,7 @@ int daNpc_Kn_c::teach01_swordAttackWait(void* param_0) {
         mMotionSeqMngr2.setNo(9,-1.0f,0,0);
         mJntAnm.lookPlayer(0);
         field_0xdec = daNpc_Kn_Param_c::m.field_0x8e;
-        field_0x15b0 = current.pos;
+        mTargetPos = current.pos;
         field_0x15bc = 0;
         field_0x15d0 = cLib_getRndValue(daNpc_Kn_Param_c::m.mMinRndVal,daNpc_Kn_Param_c::m.mRndValRange);
         speedF = 0.0f;
@@ -6660,7 +7150,7 @@ int daNpc_Kn_c::teach01_swordAttackWait(void* param_0) {
     case 2:
         calcSlip();
         mCcStts.Move();
-        if (field_0x11DC.ChkTgHit()) {
+        if (mCylCc.ChkTgHit()) {
             int cut_type = daPy_getPlayerActorClass()->getCutType();
             if (cut_type == daPy_py_c::CUT_TYPE_JUMP || cut_type == daPy_py_c::CUT_TYPE_TURN_RIGHT || cut_type == daPy_py_c::CUT_TYPE_TURN_LEFT || daPy_getPlayerActorClass()->getCutCount() >= 4) {
                 mActionMode = 0x3;
@@ -6669,12 +7159,12 @@ int daNpc_Kn_c::teach01_swordAttackWait(void* param_0) {
                 speed.y = daNpc_Kn_Param_c::m.mSpeedY;
                 mCreature.startCollisionSE(Z2SE_HIT_SWORD,0x1f);
             } else {
-                fopAc_ac_c* hit_ac = field_0x11DC.GetTgHitAc();
+                fopAc_ac_c* hit_ac = mCylCc.GetTgHitAc();
                 s16 angle = cLib_targetAngleY(&hit_ac->current.pos,&current.pos);
                 cXyz pos(0.0f,0.0f,daNpc_Kn_Param_c::m.field_0x94);
                 mDoMtx_stack_c::YrotS(angle);
-                mDoMtx_stack_c::multVec(&pos,&field_0x15b0);
-                field_0x15b0 += current.pos;
+                mDoMtx_stack_c::multVec(&pos,&mTargetPos);
+                mTargetPos += current.pos;
                 field_0x15bc = 1;
                 mMotionSeqMngr1.setNo(1,-1.0f,0,0);
                 mMotionSeqMngr2.setNo(0x1f,-1.0f,1,0);
@@ -6682,14 +7172,14 @@ int daNpc_Kn_c::teach01_swordAttackWait(void* param_0) {
             }
         } else {
             if (cLib_calcTimer(&field_0xdec) == 0 || checkCollisionSword()) {
-                field_0x15b0 = current.pos;
+                mTargetPos = current.pos;
                 int check = 0;
                 
                 if (dComIfGp_getAttention().LockonTruth()) {
                     check = 1;
                 }
 
-                checkCollisionSword() != 0 ? field_0xe36 = 4 : field_0xe36 = 1;
+                checkCollisionSword() != 0 ? mEvtIdx = 4 : mEvtIdx = 1;
                 
                 mMotionSeqMngr1.setNo(1,-1.0f,0,0);
                 mMotionSeqMngr2.setNo(0,-1.0f,1,0);
@@ -6720,7 +7210,7 @@ int daNpc_Kn_c::teach01_swordFinishWait(void* param_0) {
         field_0xdec = daNpc_Kn_Param_c::m.field_0x8e;
         field_0xe2a = 2;
     case 2:
-        field_0x15b0 = current.pos;
+        mTargetPos = current.pos;
         int no = mMotionSeqMngr2.getNo();
         if (no == 0x12) {
             if (speed.y <= 0.0f && mAcch.ChkGroundHit()) {
@@ -6753,9 +7243,9 @@ int daNpc_Kn_c::teach01_swordFinishWait(void* param_0) {
                         mMotionSeqMngr2.setNo(0x14,-1.0f,0,0);
                         
                         if (mType == 0) {
-                            field_0xe36 = 7;
+                            mEvtIdx = 7;
                         } else if (mType == 1) {
-                            field_0xe36 = 9;
+                            mEvtIdx = 9;
                         }
                         
                         mCreature.startCollisionSE(Z2SE_HIT_SWORD_STAB,0x1e);
@@ -6768,8 +7258,8 @@ int daNpc_Kn_c::teach01_swordFinishWait(void* param_0) {
         if (cLib_calcTimer(&field_0xdec) == 0) {
             if (daPy_getPlayerActorClass()->getCutType() != daPy_py_c::CUT_TYPE_DOWN) {
                 offDownFlg();
-                field_0x15b0 = current.pos;
-                field_0xe36 = 3;
+                mTargetPos = current.pos;
+                mEvtIdx = 3;
                 mFlowNodeNo = 0x2dc;
                 mActionMode = 2;
             }
@@ -6844,7 +7334,48 @@ int daNpc_Kn_c::ECut_firstSkillGet(int param_0) {
 
 /* 80A3EB84-80A3EE38 014264 02B4+00 1/1 0/0 0/0 .text            setParamTeach02__10daNpc_Kn_cFv */
 u32 daNpc_Kn_c::setParamTeach02() {
-    // NONMATCHING
+    s16 field48 = daNpc_Kn_Param_c::m.field_0x48;
+    s16 field4a = daNpc_Kn_Param_c::m.field_0x4a;
+    s16 field4c = daNpc_Kn_Param_c::m.field_0x4c;
+    s16 field4e = daNpc_Kn_Param_c::m.field_0x4e;
+    f32 radius = daNpc_Kn_Param_c::m.mRadius;
+    f32 height = daNpc_Kn_Param_c::m.mHeight;
+
+    switch(mActionMode) {
+    case 7:
+    case 6:
+        attention_info.distances[0] = daNpcT_getDistTableIdx(field4c, field4e);
+        attention_info.distances[2] = 0xe4;
+        attention_info.distances[1] = attention_info.distances[0];
+        attention_info.distances[3] = daNpcT_getDistTableIdx(field48, field4a);
+        return 4;
+    case 5:
+        attention_info.distances[0] = daNpcT_getDistTableIdx(field4c, field4e);
+        attention_info.distances[2] = 0xe4;
+        attention_info.distances[1] = attention_info.distances[0];
+        attention_info.distances[3] = daNpcT_getDistTableIdx(field48, field4a);
+        cXyz pos;
+        mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getBackboneJointNo()));
+        mDoMtx_stack_c::multVecZero(&pos);
+
+        f32 absxz = (daPy_getPlayerActorClass()->current.pos - pos).absXZ();
+
+        if (absxz < 255.0f) {
+            return 0x200004;
+        } else {
+            return 4;
+        }
+    case 4:
+        attention_info.distances[0] = daNpcT_getDistTableIdx(field4c, field4e);
+        attention_info.distances[2] = 0xe4;
+        attention_info.distances[1] = attention_info.distances[0];
+        attention_info.distances[3] = daNpcT_getDistTableIdx(field48, field4a);
+        mAcchCir.SetWallR(daNpc_Kn_Param_c::m.mRadius);
+        mAcchCir.SetWallH(daNpc_Kn_Param_c::m.mHeight);
+        return 0;
+    }
+
+    return 10;
 }
 
 /* 80A3EE38-80A3EF1C 014518 00E4+00 1/1 0/0 0/0 .text            setCollisionTeach02__10daNpc_Kn_cFv
@@ -6854,27 +7385,27 @@ void daNpc_Kn_c::setCollisionTeach02() {
     case 4:
         break;
     case 5:
-        field_0x11DC.SetTgType(-1);
-        field_0x11DC.SetTgHitMark(CcG_Tg_UNK_MARK_2);
-        field_0x11DC.SetTgSPrm(0x13);
-        field_0x11DC.OnTgShield();
-        field_0x11DC.OffTgNoAtHitInfSet();
-        field_0x11DC.OnTgNoConHit();
+        mCylCc.SetTgType(-1);
+        mCylCc.SetTgHitMark(CcG_Tg_UNK_MARK_2);
+        mCylCc.SetTgSPrm(0x13);
+        mCylCc.OnTgShield();
+        mCylCc.OffTgNoAtHitInfSet();
+        mCylCc.OnTgNoConHit();
         break;
     case 6:
-        field_0x11DC.SetTgType(-1);
-        field_0x11DC.SetTgHitMark(CcG_Tg_UNK_MARK_1);
-        field_0x11DC.SetTgSPrm(0x13);
-        field_0x11DC.OffTgShield();
-        field_0x11DC.OffTgNoAtHitInfSet();
-        field_0x11DC.OnTgNoConHit();
+        mCylCc.SetTgType(-1);
+        mCylCc.SetTgHitMark(CcG_Tg_UNK_MARK_1);
+        mCylCc.SetTgSPrm(0x13);
+        mCylCc.OffTgShield();
+        mCylCc.OffTgNoAtHitInfSet();
+        mCylCc.OnTgNoConHit();
         break;
     case 7:
-        field_0x11DC.SetTgType(-1);
-        field_0x11DC.SetTgHitMark(CcG_Tg_UNK_MARK_2);
-        field_0x11DC.SetTgSPrm(0x13);
-        field_0x11DC.OffTgShield();
-        field_0x11DC.OnTgNoConHit();
+        mCylCc.SetTgType(-1);
+        mCylCc.SetTgHitMark(CcG_Tg_UNK_MARK_2);
+        mCylCc.SetTgSPrm(0x13);
+        mCylCc.OffTgShield();
+        mCylCc.OnTgNoConHit();
         break;
     }
 }
@@ -6902,13 +7433,131 @@ void daNpc_Kn_c::teach02_selectAction() {
 
 /* 80A3EFE0-80A3F358 0146C0 0378+00 1/0 0/0 0/0 .text teach02_shieldBashWait__10daNpc_Kn_cFPv */
 int daNpc_Kn_c::teach02_shieldBashWait(void* param_0) {
-    // NONMATCHING
+    switch(field_0xe2a) {
+    case 0:
+    case 1:
+        mMotionSeqMngr1.setNo(1, -1.0f, 0, 0);
+        mMotionSeqMngr1.setNo(9, -1.0f, 0, 0);
+        mJntAnm.lookPlayer(0);
+        field_0xdec = daNpc_Kn_Param_c::m.field_0x8e;
+        mTargetPos = current.pos;
+        field_0x15bc = 0;
+        field_0x15d0 = cLib_getRndValue(daNpc_Kn_Param_c::m.mMinRndVal,daNpc_Kn_Param_c::m.mRndValRange);
+        speedF = 0.0f;
+        speed.zero();
+        field_0xe2a = 2;
+    case 2:
+        mCcStts.Move();
+        
+        if (mCylCc.ChkTgShieldHit()) {
+            u8 cut_type = daPy_getPlayerActorClass()->getCutType();
+
+            if (cut_type == daPy_py_c::CUT_TYPE_GUARD_ATTACK) {
+                s16 angle = cLib_targetAngleY(&daPy_getPlayerActorClass()->current.pos, &attention_info.position);
+                cXyz pos(0.0f,0.0f,daNpc_Kn_Param_c::m.field_0x94);
+
+            
+                mDoMtx_stack_c::YrotS(angle);
+                mDoMtx_stack_c::multVec(&pos,&mTargetPos);
+                mTargetPos += current.pos;
+                field_0x15bc = 1;
+                mCylCc.ClrTgHit();
+                mActionMode = 6;
+                mCreature.startCollisionSE(Z2SE_HIT_SHIELD_ATTACK,0x28);
+                break;
+            }
+        }
+
+        if (!cLib_calcTimer(&field_0xdec) || checkCollisionSword()) {
+            BOOL truth = FALSE;
+            
+            if (dComIfGp_getAttention().LockonTruth()) {
+                truth = TRUE;
+            }
+
+            if (checkCollisionSword()) {
+                mEvtIdx = 4;
+            } else {
+                mEvtIdx = 1;
+            }
+
+            mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+            mMotionSeqMngr2.setNo(0,-1.0f,1,0);
+
+            if (truth) {
+                mFlowNodeNo = 0x2c0;
+            } else {
+                mFlowNodeNo = 0x2bf;
+            }
+        } else {
+            if (mCylCc.ChkTgHit()) {
+                if (mCylCc.GetTgHitObj()->ChkAtType(0x10) == 0) {
+                    mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+                    mMotionSeqMngr2.setNo(0x1b,-1.0f,1,0);
+                    mCreature.startCollisionSE(Z2SE_HIT_SWORD,0x28);
+                    break;
+                }
+            }
+            
+            calcSwordAttackMove(1);
+        }
+    case 3:
+    default:
+        break;
+    }
+
+    return 1;
 }
 
 /* 80A3F358-80A3F5A4 014A38 024C+00 1/0 0/0 0/0 .text            teach02_finishWait__10daNpc_Kn_cFPv
  */
 int daNpc_Kn_c::teach02_finishWait(void* param_0) {
-    // NONMATCHING
+    switch(field_0xe2a) {
+    case 0:
+    case 1:
+        mMotionSeqMngr1.setNo(1, -1.0f, 0, 0);
+        mMotionSeqMngr1.setNo(11, -1.0f, 1, 0);
+        mJntAnm.lookPlayer(0);
+        field_0xdec = daNpc_Kn_Param_c::m.field_0x8e;
+        field_0xe2a = 2;
+    case 2:
+        calcSlip();
+        mCcStts.Move();
+        
+        if (mCylCc.ChkTgHit()) {
+            u8 cut_type = daPy_getPlayerActorClass()->getCutType();
+
+            if (cut_type != daPy_py_c::CUT_TYPE_GUARD_ATTACK) {
+                if (mType == 1) {
+                    mEvtIdx = 10;
+                } else if (mType == 2) {
+                    mEvtIdx = 12;
+                }
+
+                cXyz pos(0.0f,0.0f,daNpc_Kn_Param_c::m.field_0x94);
+                mDoMtx_stack_c::YrotS(cLib_targetAngleY(&daPy_getPlayerActorClass()->current.pos, &attention_info.position));
+                mDoMtx_stack_c::multVec(&pos,&mTargetPos);
+                mTargetPos += current.pos;
+                field_0x15bc = 1;
+                mCreature.startCollisionSE(Z2SE_HIT_SWORD,0x1e);
+                break;
+            }
+        }
+
+        if (!cLib_calcTimer(&field_0xdec)) {
+            mEvtIdx = 1;
+            mFlowNodeNo = 0x2c1;
+            mActionMode = 5;
+
+            mMotionSeqMngr1.setNo(1,-1.0f,0,0);
+            mMotionSeqMngr2.setNo(0,-1.0f,1,0);
+        }
+    case 3:
+    default:
+        break;
+    }
+
+    return 1;
 }
 
 /* ############################################################################################## */
@@ -6936,7 +7585,25 @@ int daNpc_Kn_c::teach02_finishWait(void* param_0) {
 /* 80A3F5A4-80A3F99C 014C84 03F8+00 1/0 0/0 0/0 .text teach02_shieldReflectWait__10daNpc_Kn_cFPv
  */
 int daNpc_Kn_c::teach02_shieldReflectWait(void* param_0) {
-    // NONMATCHING
+    switch(field_0xe2a) {
+    case 0:
+    case 1:
+        mMotionSeqMngr1.setNo(1, -1.0f, 0, 0);
+        mMotionSeqMngr1.setNo(32, -1.0f, 1, 0);
+        mJntAnm.lookPlayer(0);
+        field_0xe2a = 2;
+    case 2:
+        mCcStts.Move();
+
+        if (field_0x15bd == 0) {
+            
+        }
+    case 3:
+    default:
+        break;
+    }
+
+    return 1;
 }
 
 /* 80A3F99C-80A3FFB4 01507C 0618+00 3/0 0/0 0/0 .text ECut_secondSkillExplain__10daNpc_Kn_cFi */

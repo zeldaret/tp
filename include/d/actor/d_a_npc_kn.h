@@ -25,7 +25,7 @@ public:
         /* 0x04 */ cXyz mPos;
         /* 0x10 */ csXyz mAngle;
         /* 0x18 */ cXyz mScale;
-        /* 0x24 */ dPaPo_c field_0x24;
+        /* 0x24 */ dPaPo_c mManager;
     };
 
 public:
@@ -71,7 +71,7 @@ public:
     /* 0x0D88 */ cXyz field_0xD88;
     /* 0x0D94 */ cXyz field_0xD94;
     /* 0x0DA0 */ cXyz field_0xDA0;
-    /* 0x0DAC */ csXyz field_0xDAC;
+    /* 0x0DAC */ csXyz mTargetAngle;
     /* 0x0DB2 */ csXyz field_0xDB2;
     /* 0x0DB8 */ csXyz field_0xDB8;
     /* 0x0DBE */ csXyz field_0xDBE;
@@ -93,7 +93,8 @@ public:
     /* 0x0E0C */ f32 field_0xe0c;
     /* 0x0E10 */ f32 mRadius;
     /* 0x0E14 */ f32 mGroundHeight;
-    /* 0x0E18 */ u8 field_0xe18[0xe26 - 0xe18];
+    /* 0x0E18 */ u8 field_0xe18[0xe24 - 0xe18];
+    /* 0x0E24 */ s16 field_0xe24;
     /* 0x0E26 */ u16 field_0xe26;
     /* 0x0E28 */ u16 field_0xe28;
     /* 0x0E2A */ u16 field_0xe2a;
@@ -105,7 +106,7 @@ public:
     /* 0x0E32 */ u8 field_0xe32;
     /* 0x0E33 */ u8 field_0xe33;
     /* 0x0E33 */ u8 field_0xe34[0xe36 - 0xe34];
-    /* 0x0E36 */ s16 field_0xe36;
+    /* 0x0E36 */ u16 mEvtIdx;
     /* 0x0E38 */ u8 field_0xe38;
     /* 0x0E39 */ u8 field_0xe39;
     /* 0x0E3A */ u8 field_0xe3a;
@@ -239,7 +240,7 @@ public:
     /* 80A35D88 */ int ECut_sixthSkillGet(int);
     /* 80A363C0 */ int ECut_seventhSkillExplain(int);
     /* 80A36C20 */ int ECut_seventhSkillGet(int);
-    /* 80A372D0 */ void setPrtcl();
+    /* 80A372D0 */ int setPrtcl();
     /* 80A37430 */ int setSlipPrtcl();
     /* 80A37558 */ int setLandingPrtcl();
     /* 80A37598 */ void calcMagicBallPos();
@@ -279,7 +280,7 @@ public:
     /* 80A3ACD4 */ void chkPointInArea(cXyz, cXyz, cXyz, s16);
     /* 80A3AD50 */ void chkFindPlayer(int, s16);
     /* 80A3AF64 */ BOOL srchPlayerActor();
-    /* 80A3B000 */ void getAttnPos(fopAc_ac_c*);
+    /* 80A3B000 */ cXyz getAttnPos(fopAc_ac_c*);
     /* 80A3B074 */ void turn(s16, int, int);
     /* 80A3B220 */ s32 step(s16, int, int, int, int);
     /* 80A3B3E8 */ s32 initTalk(int, fopAc_ac_c**);
@@ -324,7 +325,7 @@ public:
     /* 80A39F84 */ virtual void setFootPrtcl(cXyz*, f32);
     /* 80A3A254 */ virtual bool checkCullDraw();
     /* 80A3A25C */ virtual void twilight();
-    /* 80A3B7BC */ virtual bool chkXYItems();
+    /* 80A3B7BC */ virtual BOOL chkXYItems();
     /* 80A3A2A8 */ virtual void evtOrder();
     /* 80A3B708 */ virtual void decTmr();
     /* 80A3A504 */ virtual void clrParam();
@@ -347,8 +348,8 @@ private:
     /* 0x0E48 */ mDoExt_invisibleModel mInvisModel;
     /* 0x0E50 */ dKy_tevstr_c mTevStr;
     /* 0x11D8 */ u8 field_0x11D8[0x11DC - 0x11D8];
-    /* 0x11DC */ dCcD_Cyl field_0x11DC;
-    /* 0x1318 */ dCcD_Sph field_0x1318[2];
+    /* 0x11DC */ dCcD_Cyl mCylCc;
+    /* 0x1318 */ dCcD_Sph mSphCc[2];
     /* 0x1588 */ mDoExt_bckAnm field_0x1588;
     /* 0x15A4 */ u32 field_0x15a4;
     /* 0x15A8 */ u32 field_0x15A8;
@@ -356,7 +357,7 @@ private:
     /* 0x15AD */ u8 mDivideNo;
     /* 0x15AE */ s8 mActionMode;
     /* 0x15AF */ u8 field_0x15af;
-    /* 0x15B0 */ cXyz field_0x15b0;
+    /* 0x15B0 */ cXyz mTargetPos;
     /* 0x15BC */ u8 field_0x15bc;
     /* 0x15BD */ u8 field_0x15bd;
     /* 0x15BE */ u16 field_0x15be;

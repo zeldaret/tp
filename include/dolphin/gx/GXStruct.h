@@ -57,7 +57,8 @@ typedef struct _GXTlutObj {
 } GXTlutObj;
 
 typedef struct _GXLightObj {
-    /* 0x00 */ u8 field_0x0[0xc];
+    /* 0x00 */ u32 field_0x0[2];
+    /* 0x08 */ u8 field_0x8[4];
     /* 0x0C */ GXColor color;
     /* 0x10 */ f32 a0;
     /* 0x14 */ f32 a1;

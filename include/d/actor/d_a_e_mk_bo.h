@@ -5,7 +5,7 @@
 /**
  * @ingroup actors-enemies
  * @class e_mk_bo_class
- * @brief Ook?
+ * @brief Ook's Boomerang
  * 
  * @details 
  * 

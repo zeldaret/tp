@@ -569,7 +569,7 @@ public:
     };
 
     enum daPy_RFLG1 {
-        RFLG1_UNK_400 = 0x400,
+        RFLG1_DAMAGE_IMPACT = 0x400,
         RFLG1_UNK_200 = 0x200,
         RFLG1_UNK_100 = 0x100,
         RFLG1_UNK_80 = 0x80,
@@ -906,6 +906,7 @@ public:
     bool checkWolfAttackReverse() const { return checkResetFlg1(RFLG1_WOLF_ATTACK_REVERSE); }
     bool checkFreezeDamage() const { return checkNoResetFlg1(FLG1_ICE_FREEZE); }
     bool checkWolfTagLockJumpReady() const { return checkResetFlg0(RFLG0_UNK_20000); }
+    bool checkDamageImpact() const { return checkResetFlg1(RFLG1_DAMAGE_IMPACT); }
     bool getGrabUpEnd() const { return checkResetFlg0(RFLG0_GRAB_UP_END); }
     bool getGrabPutStart() const { return checkResetFlg0(RFLG0_GRAB_PUT_START); }
     bool checkSwimUp() const { return checkNoResetFlg0(FLG0_SWIM_UP); }
