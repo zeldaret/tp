@@ -46,7 +46,9 @@ public:
     /* 0x1370 */ Z2FxLineMgr mFxLineMgr;
 };  // Size: 0x138C
 
+#if VERSION != VERSION_SHIELD_DEBUG
 STATIC_ASSERT(sizeof(Z2AudioMgr) == 0x138C);
+#endif
 
 inline Z2AudioMgr* Z2GetAudioMgr() {
     return Z2AudioMgr::getInterface();

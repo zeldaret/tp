@@ -1027,6 +1027,7 @@ public:
     void onDoPutEmphasys() { onEndResetFlg1(ERFLG1_UNK_10000000); }
     void onNsScream() { onEndResetFlg1(ERFLG1_UNK_1); }
     void onNsScreamAnm() { onEndResetFlg1(daPy_ERFLG1(ERFLG1_UNK_1 | ERFLG1_UNK_2)); }
+    void onNeckSearchWide() { onEndResetFlg0(ERFLG0_UNK_400); }
 
     u32 checkBoarSingleBattle() const { return checkNoResetFlg2(daPy_FLG2(FLG2_UNK_1000000 | FLG2_BOAR_SINGLE_BATTLE)); }
     u32 checkWolfDashAutoJump() const { return checkNoResetFlg2(FLG2_WOLF_DASH_AUTO_JUMP); }
@@ -1041,6 +1042,10 @@ public:
         mDemo.setParam0(i_param0);
         mDemo.setParam1(i_param1);
         mDemo.setParam2(i_param2);
+    }
+
+    void changeDemoParam1(s16 i_param1) {
+        mDemo.setParam1(i_param1);
     }
 
     void i_changeDemoParam2(s16 i_param2) {

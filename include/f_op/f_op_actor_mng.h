@@ -721,14 +721,14 @@ inline void fopAcM_effSmokeSet2(u32* param_0, u32* param_1, cXyz const* param_2,
 
 inline void fopAcM_setWarningMessage_f(const fopAc_ac_c* i_actor, const char* i_filename, int i_line, const char* i_msg, ...) {
 #ifdef DEBUG
-    va_list args;
+    /* va_list args;
     va_start(args, i_msg);
 
     char buf[64];
     snprintf(buf, sizeof(buf), "<%s> %s", dStage_getName(fopAcM_GetProfName(i_actor), i_actor->subtype), i_msg);
     setWarningMessage_f_va(JUTAssertion::getSDevice(), i_filename, i_line, buf, args);
 
-    va_end(args);
+    va_end(args); */
 #endif
 }
 

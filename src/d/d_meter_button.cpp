@@ -1024,13 +1024,14 @@ void dMeterButton_c::screenInitButton() {
     OS_REPORT("enter dMeterButton_c::screenInitButton\n");
 
     mpButtonScreen = new J2DScreen();
-    JUT_ASSERT(mpButtonScreen != 0);
+    JUT_ASSERT(0, mpButtonScreen != 0);
 
     OS_REPORT("load zelda_game_image_button_info.blo");
 
     bool fg = mpButtonScreen->setPriority("zelda_game_image_button_info.blo", 0x20000,
                                           dComIfGp_getMeterButtonArchive());
-    JUT_ASSERT_REPORT(fg != false);
+    JUT_ASSERT(0, fg != false);
+    OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
 
     dPaneClass_showNullPane(mpButtonScreen);
     field_0x00c = NULL;
@@ -1040,7 +1041,7 @@ void dMeterButton_c::screenInitButton() {
         OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
     }
 
-    JUT_ASSERT(mpParent != 0);
+    JUT_ASSERT(0, mpParent != 0);
 
     for (int i = 0; i < BUTTON_NUM; i++) {
         field_0x18c[i] = 0.0f;
@@ -1066,7 +1067,7 @@ void dMeterButton_c::screenInitButton() {
     if (mpButtonA == NULL) {
         OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
     }
-    JUT_ASSERT(mpButtonA != 0);
+    JUT_ASSERT(0, mpButtonA != 0);
     mpButtonA->setAlphaRate(0.0f);
     mpButtonA->show();
 
@@ -1074,7 +1075,7 @@ void dMeterButton_c::screenInitButton() {
     if (mpButtonB == NULL) {
         OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
     }
-    JUT_ASSERT(mpButtonB != 0);
+    JUT_ASSERT(0, mpButtonB != 0);
     mpButtonB->setAlphaRate(0.0f);
     mpButtonB->show();
 
@@ -1082,12 +1083,12 @@ void dMeterButton_c::screenInitButton() {
     if (mpButtonR == NULL) {
         OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
     }
-    JUT_ASSERT(mpButtonR != 0);
+    JUT_ASSERT(0, mpButtonR != 0);
     mpButtonR->setAlphaRate(0.0f);
     mpButtonR->show();
 
     mpMidona = new CPaneMgr(mpButtonScreen, 'midona', 0, NULL);
-    JUT_ASSERT(mpMidona != 0);
+    JUT_ASSERT(0, mpMidona != 0);
     if (mpMidona == NULL) {
         OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
     }
@@ -1103,12 +1104,12 @@ void dMeterButton_c::screenInitButton() {
     if (mpButtonZ == NULL) {
         OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
     }
-    JUT_ASSERT(mpButtonZ != 0);
+    JUT_ASSERT(0, mpButtonZ != 0);
     mpButtonZ->setAlphaRate(0.0f);
     mpButtonZ->show();
 
     mpButton3D = new CPaneMgr(mpButtonScreen, 'asbtn_n', 2, NULL);
-    JUT_ASSERT(mpButton3D != 0);
+    JUT_ASSERT(0, mpButton3D != 0);
     mpButton3D->setAlphaRate(0.0f);
     mpButton3D->show();
 
@@ -1118,7 +1119,7 @@ void dMeterButton_c::screenInitButton() {
     mpButtonScreen->search('yaji_r_n')->hide();
 
     mpButtonC = new CPaneMgr(mpButtonScreen, 'cbtn_n', 2, NULL);
-    JUT_ASSERT(mpButtonC != 0);
+    JUT_ASSERT(0, mpButtonC != 0);
     mpButtonC->setAlphaRate(0.0f);
     mpButtonC->show();
 
@@ -1128,15 +1129,15 @@ void dMeterButton_c::screenInitButton() {
     mpButtonScreen->search('yaji_rn')->hide();
 
     mpButtonS = new CPaneMgr(mpButtonScreen, 'sbtn_n', 2, NULL);
-    JUT_ASSERT(mpButtonS != 0);
+    JUT_ASSERT(0, mpButtonS != 0);
     mpButtonS->setAlphaRate(0.0f);
 
     mpButtonX = new CPaneMgr(mpButtonScreen, 'xbtn_n', 2, NULL);
-    JUT_ASSERT(mpButtonX != 0);
+    JUT_ASSERT(0, mpButtonX != 0);
     mpButtonX->setAlphaRate(0.0f);
 
     mpButtonY = new CPaneMgr(mpButtonScreen, 'ybtn_n', 2, NULL);
-    JUT_ASSERT(mpButtonY != 0);
+    JUT_ASSERT(0, mpButtonY != 0);
     mpButtonY->setAlphaRate(0.0f);
 
     mpButtonNun = NULL;
@@ -1145,7 +1146,7 @@ void dMeterButton_c::screenInitButton() {
     mpButtonAR = NULL;
 
     mpButton3DB = new CPaneMgr(mpButtonScreen, 'as_b_n', 2, NULL);
-    JUT_ASSERT(mpButton3DB != 0);
+    JUT_ASSERT(0, mpButton3DB != 0);
     mpButton3DB->setAlphaRate(0.0f);
 
     mpButtonNURE = NULL;
@@ -1157,24 +1158,24 @@ void dMeterButton_c::screenInitButton() {
     mpButtonNunC = NULL;
 
     mpButtonBin = new CPaneMgr(mpButtonScreen, 'bottl_n', 2, NULL);
-    JUT_ASSERT(mpButtonBin != 0);
+    JUT_ASSERT(0, mpButtonBin != 0);
     mpButtonBin->setAlphaRate(0.0f);
 
     mpText[0] = new CPaneMgr(mpButtonScreen, 'text_n', 2, NULL);
-    JUT_ASSERT(mpText[0] != 0);
+    JUT_ASSERT(0, mpText[0] != 0);
     mpText[0]->setAlphaRate(0.0f);
 
     mpText[1] = new CPaneMgr(mpButtonScreen, 'text2_n', 2, NULL);
-    JUT_ASSERT(mpText[1] != 0);
+    JUT_ASSERT(0, mpText[1] != 0);
     mpText[1]->setAlphaRate(0.0f);
 
     mpItem_c = new CPaneMgr(mpButtonScreen, 'fishing', 0, NULL);
-    JUT_ASSERT(mpItem_c != 0);
+    JUT_ASSERT(0, mpItem_c != 0);
     mpItem_c->setAlphaRate(0.0f);
 
     mpHeap = mDoExt_getCurrentHeap();
     mpFishingTex = mpHeap->alloc(0xC00, 0x20);
-    JUT_ASSERT(mpFishingTex != 0);
+    JUT_ASSERT(0, mpFishingTex != 0);
 
     u8 fishing_item = dComIfGs_getItem(SLOT_20, false);
     if (dMeter2Info_getMeterClass()->getMeterDrawPtr()->getCanoeFishing()) {
@@ -1416,19 +1417,19 @@ void dMeterButton_c::screenInitButton() {
  */
 void dMeterButton_c::screenInitText() {
     mpScreen = new J2DScreen();
-    JUT_ASSERT(mpScreen != 0);
+    JUT_ASSERT(0, mpScreen != 0);
 
     OS_REPORT("enter dMeterButton_c::screenInitText(void)\n");
 
     bool fg =
         mpScreen->setPriority("zelda_message_window_new.blo", 0x20000, dComIfGp_getMsgArchive(1));
     OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
-    JUT_ASSERT(fg != false);
+    JUT_ASSERT(0, fg != false);
     dPaneClass_showNullPane(mpScreen);
 
     mpFkAll_c = new CPaneMgr(mpScreen, 'n_all', 2, NULL);
     OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
-    JUT_ASSERT(mpFkAll_c != 0);
+    JUT_ASSERT(0, mpFkAll_c != 0);
     mpFkAll_c->setAlphaRate(0.0f);
     OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
 
@@ -1438,28 +1439,28 @@ void dMeterButton_c::screenInitText() {
     OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
 
     mpFkRoot_c = new CPaneMgr(mpScreen, 'mg_null', 0, NULL);
-    JUT_ASSERT(mpFkRoot_c != 0);
+    JUT_ASSERT(0, mpFkRoot_c != 0);
     OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
 
     mpTextScreen = new J2DScreen();
-    JUT_ASSERT(mpTextScreen != 0);
+    JUT_ASSERT(0, mpTextScreen != 0);
     OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
 
     fg = mpTextScreen->setPriority("zelda_message_window_text.blo", 0x20000,
                                    dComIfGp_getMsgCommonArchive());
     OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
-    JUT_ASSERT(fg != false);
+    JUT_ASSERT(0, fg != false);
     dPaneClass_showNullPane(mpTextScreen);
     OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
 
     mpTmRoot_c = new CPaneMgr(mpTextScreen, 'mg_null', 0, NULL);
-    JUT_ASSERT(mpTmRoot_c != 0);
+    JUT_ASSERT(0, mpTmRoot_c != 0);
 
     mpTm_c[0] = new CPaneMgr(mpTextScreen, 'mg_e4lin', 0, NULL);
-    JUT_ASSERT(mpTm_c[0] != 0);
+    JUT_ASSERT(0, mpTm_c[0] != 0);
 
     mpTm_c[1] = new CPaneMgr(mpTextScreen, 't4_s', 0, NULL);
-    JUT_ASSERT(mpTm_c[1] != 0);
+    JUT_ASSERT(0, mpTm_c[1] != 0);
 
     field_0x0ec[0] = NULL;
     field_0x0ec[1] = NULL;
@@ -1490,7 +1491,7 @@ void dMeterButton_c::screenInitText() {
     OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
 
     mpOutFont = new COutFont_c(0);
-    JUT_ASSERT(mpOutFont != 0);
+    JUT_ASSERT(0, mpOutFont != 0);
     mpOutFont->createPane();
 
     OS_REPORT("exit dMeterButton_c::screenInitText(void)\n");
