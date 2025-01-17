@@ -35,15 +35,19 @@ daMagLift_HIO_c::daMagLift_HIO_c() {
 
 /* 80C8DAA0-80C8DB28 000160 0088+00 2/2 0/0 0/0 .text            setBaseMtx__11daMagLift_cFv */
 void daMagLift_c::setBaseMtx() {
-    MTXTrans(mDoMtx_stack_c::get(), current.pos.x, current.pos.y, current.pos.z);
-    mDoMtx_ZXYrotM(mDoMtx_stack_c::get(), current.angle.x, current.angle.y, current.angle.z);
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::ZXYrotM(current.angle.x, current.angle.y, current.angle.z);
     mpModel->setBaseScale(scale);
-    MTXCopy(mDoMtx_stack_c::get(), mpModel->mBaseTransformMtx);
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80C8DB28-80C8DB94 0001E8 006C+00 1/0 0/0 0/0 .text            CreateHeap__11daMagLift_cFv */
 int daMagLift_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("L_maglift", 4);
+
+    if (modelData == NULL) {
+        // FIXME: For shield decomp matching, needs a JUT assert.
+    }
 
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel == NULL) {
@@ -70,7 +74,7 @@ int daMagLift_c::create() {
         }
         field_0x5ae = fopAcM_GetParam(this);
         dPath* path = dPath_GetRoomPath(field_0x5ae, fopAcM_GetRoomNo(this));
-        if (!path) {
+        if (path == NULL) {
             return cPhs_INIT_e;
         }
         current.pos = path->m_points->m_position;
@@ -89,7 +93,7 @@ int daMagLift_c::create() {
                 init_modeMoveWait();
             }
         }
-        cullMtx = mpModel->getBaseTRMtx();
+        fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
         fopAcM_setCullSizeBox2(this, mpModel->getModelData());
         setBaseMtx();
     }
@@ -198,7 +202,7 @@ void daMagLift_c::init_modeMoveWait() {
 
 /* 80C8E2C4-80C8E318 000984 0054+00 1/0 0/0 0/0 .text            modeMoveWait__11daMagLift_cFv */
 void daMagLift_c::modeMoveWait() {
-    if (fopAcM_isSwitch(this, fopAcM_GetParamBit(this, 0xc, 8)) & 0xff) {
+    if (fopAcM_isSwitch(this, (fopAcM_GetParam(this) & 0xff000) >> 0xc) & 0xff) {
         init_modeWaitInit();
     }
 }
