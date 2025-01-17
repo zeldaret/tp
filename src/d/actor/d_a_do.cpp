@@ -558,7 +558,7 @@ static void do_walk(do_class* i_this) {
     i_this->mTailWagTarget = 1000.0f;
 
     switch (i_this->mMode) {
-    case 11:
+    case -1:
         i_this->mTargetPos = i_this->home.pos;
         if (i_this->speedF >= l_HIO.mRunSpeed) {
             i_this->mAnmSpeed = 4.0f;
@@ -571,7 +571,7 @@ static void do_walk(do_class* i_this) {
         i_this->mMode = 3;
         break;
 
-    case -1:
+    case 0:
         if (i_this->field_0x5f4 == 8) {
             anm_init(i_this, ANM_SIT, 5.0f, 0, 1.0f);
         } else {
@@ -581,13 +581,13 @@ static void do_walk(do_class* i_this) {
         i_this->mMode++;
         break;
 
-    case 0:
+    case 1:
         if (i_this->mpMorf->isStop()) {
             i_this->mMode++;
         }
         break;
 
-    case 1:
+    case 2:
         local_5c.x = 0.0f;
         local_5c.y = 20.0f;
 
@@ -611,7 +611,7 @@ static void do_walk(do_class* i_this) {
         anm_init(i_this, ANM_WALK, 5.0f, 2, i_this->mAnmSpeed);
         i_this->mMode++;
 
-    case 2:
+    case 3:
         local_5c = i_this->mTargetPos - i_this->current.pos;
 
         cLib_addCalcAngleS2(&i_this->current.angle.y, (s16)cM_atan2s(local_5c.x, local_5c.z), 0x10,
@@ -633,7 +633,7 @@ static void do_walk(do_class* i_this) {
 
         break;
 
-    case 3:
+    case 4:
         cLib_addCalc0(&i_this->speedF, 1.0f, 1.0f);
 
         if (i_this->mTimer[0] == 0) {
@@ -642,7 +642,7 @@ static void do_walk(do_class* i_this) {
 
         break;
 
-    case 9:
+    case 10:
         cLib_addCalc0(&i_this->speedF, 1.0f, 1.0f);
         cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mTargetAngleY, 4, 0x400);
 
@@ -664,7 +664,7 @@ static void do_walk(do_class* i_this) {
 
         break;
 
-    case 10:
+    case 11:
         i_this->field_0x616 = 1;
         i_this->mTailWagTarget = 3000.0f;
         if (i_this->mTimer[0] == 0) {

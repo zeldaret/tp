@@ -1590,6 +1590,26 @@ inline void dComIfGs_setRestartRoomParam(u32 i_param) {
     g_dComIfG_gameInfo.info.getRestart().setRoomParam(i_param);
 }
 
+inline cXyz& dComIfGs_getHorseRestartPos() {
+    return g_dComIfG_gameInfo.info.getPlayer().getHorsePlace().getPos();
+}
+
+inline s16 dComIfGs_getHorseRestartAngleY() {
+    return g_dComIfG_gameInfo.info.getPlayer().getHorsePlace().getAngleY();
+}
+
+inline const char* dComIfGs_getHorseRestartStageName() {
+    return g_dComIfG_gameInfo.info.getPlayer().getHorsePlace().getStageName();
+}
+
+inline s8 dComIfGs_getHorseRestartRoomNo() {
+    return g_dComIfG_gameInfo.info.getPlayer().getHorsePlace().getRoomNo();
+}
+
+inline void dComIfGs_setHorseRestart(const char* i_stageName, cXyz& i_pos, s16 i_angle, s8 i_roomNo) {
+    g_dComIfG_gameInfo.info.getPlayer().getHorsePlace().set(i_stageName, i_pos, i_angle, i_roomNo);
+}
+
 inline u8 dComIfGs_getMagic() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getMagic();
 }
@@ -2119,6 +2139,10 @@ inline int dComIfGp_getPlayerCameraID(int idx) {
 
 inline daHorse_c* dComIfGp_getHorseActor() {
     return (daHorse_c*)g_dComIfG_gameInfo.play.getPlayerPtr(1);
+}
+
+inline void dComIfGp_setHorseActor(fopAc_ac_c* i_horse) {
+    g_dComIfG_gameInfo.play.setPlayerPtr(1, i_horse);
 }
 
 inline dMsgObject_c* dComIfGp_getMsgObjectClass() {

@@ -59,8 +59,11 @@ public:
     /* 80848B64 */ void draw();
 
     MtxP getRightHandMtx() { return mpZeldaModel->getAnmMtx(22); }
+    MtxP getRightFingerMtx() { return mpZeldaModel->getAnmMtx(23); }
+
     u8 checkBowMode() const { return field_0x6d8; }
     void setDamageInit() { field_0x6db = 1; }
+    u8 checkSingleRide() const { return field_0x6df; }
 
     /* 0x568 */ request_of_phase_process_class mPhase;
     /* 0x570 */ J3DModel* mpZeldaModel;

@@ -970,7 +970,7 @@ int daAlink_c::procSwimUp() {
         }
     } else if (checkAnmEnd(frame_ctrl)) {
         procSwimWaitInit(0);
-    } else if (frame_ctrl->getFrame() > daAlinkHIO_swim_c0::m.mResurfaceAnm.mCheckFrame &&
+    } else if (frame_ctrl->getFrame() > daAlinkHIO_swim_c0::m.mResurfaceAnm.mCancelFrame &&
                checkInputOnR())
     {
         procSwimMoveInit();
@@ -1468,21 +1468,21 @@ int daAlink_c::procSwimDamageInit(dCcD_GObjInf* param_0) {
     int dir = getDirectionFromAngle(cM_atan2s(-sp24.x, -sp24.z));
     if (bvar4) {
         setSingleAnimeParam(ANM_SWIM_DMG_FREEZE, &daAlinkHIO_damSwim_c0::m.field_0x64);
-        field_0x3478 = daAlinkHIO_damSwim_c0::m.field_0x64.mCheckFrame;
+        field_0x3478 = daAlinkHIO_damSwim_c0::m.field_0x64.mCancelFrame;
         mProcVar0.field_0x3008 = 0;
         mProcVar1.field_0x300a = 0;
     } else if (dir == DIR_FORWARD) {
         setSingleAnimeParam(ANM_SWIM_DMG_FRONT, &daAlinkHIO_damSwim_c0::m.field_0x0);
-        field_0x3478 = daAlinkHIO_damSwim_c0::m.field_0x0.mCheckFrame;
+        field_0x3478 = daAlinkHIO_damSwim_c0::m.field_0x0.mCancelFrame;
     } else if (dir == DIR_BACKWARD) {
         setSingleAnimeParam(ANM_SWIM_DMG_BACK, &daAlinkHIO_damSwim_c0::m.field_0x14);
-        field_0x3478 = daAlinkHIO_damSwim_c0::m.field_0x14.mCheckFrame;
+        field_0x3478 = daAlinkHIO_damSwim_c0::m.field_0x14.mCancelFrame;
     } else if (dir == DIR_LEFT) {
         setSingleAnimeParam(ANM_SWIM_DMG_LEFT, &daAlinkHIO_damSwim_c0::m.field_0x28);
-        field_0x3478 = daAlinkHIO_damSwim_c0::m.field_0x28.mCheckFrame;
+        field_0x3478 = daAlinkHIO_damSwim_c0::m.field_0x28.mCancelFrame;
     } else {
         setSingleAnimeParam(ANM_SWIM_DMG_RIGHT, &daAlinkHIO_damSwim_c0::m.field_0x3C);
-        field_0x3478 = daAlinkHIO_damSwim_c0::m.field_0x3C.mCheckFrame;
+        field_0x3478 = daAlinkHIO_damSwim_c0::m.field_0x3C.mCancelFrame;
     }
 
     mNormalSpeed = 0.0f;

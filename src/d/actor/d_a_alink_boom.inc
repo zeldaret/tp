@@ -313,7 +313,7 @@ void daAlink_c::checkUpperItemActionBoomerangFly() {
 /* 800E0BE4-800E0D8C 0DB524 01A8+00 4/4 0/0 0/0 .text checkNextActionBoomerang__9daAlink_cFv */
 int daAlink_c::checkNextActionBoomerang() {
     if ((checkBoomerangCatchAnime() &&
-         mUpperFrameCtrl[2].getFrame() <= daAlinkHIO_boom_c0::m.mCatchAnm.mCheckFrame) ||
+         mUpperFrameCtrl[2].getFrame() <= daAlinkHIO_boom_c0::m.mCatchAnm.mCancelFrame) ||
         checkNoResetFlg1(FLG1_UNK_2)) {
         return 0;
     }
@@ -495,7 +495,7 @@ int daAlink_c::procBoomerangCatch() {
     daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
     onEndResetFlg0(ERFLG0_UNK_8000000);
 
-    if (frameCtrl->getFrame() > daAlinkHIO_boom_c0::m.mCatchAnm.mCheckFrame) {
+    if (frameCtrl->getFrame() > daAlinkHIO_boom_c0::m.mCatchAnm.mCancelFrame) {
         onModeFlg(4);
     }
 

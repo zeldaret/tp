@@ -175,6 +175,11 @@ struct actor_place {
 
 struct actor_attention_types {
     /* 0x00 */ u8 distances[9];
+
+#if VERSION > VERSION_GCN_JPN
+    u8 unk_0x9[4];
+#endif
+
     /* 0x0A */ s16 field_0xa;
     /* 0x0C */ cXyz position;
     /* 0x18 */ u32 flags;
@@ -233,7 +238,7 @@ public:
     /* 0x562 */ s16 health;
     /* 0x564 */ u8 field_0x564;
     /* 0x565 */ u8 field_0x565;
-    /* 0x566 */ u8 field_0x566;
+    /* 0x566 */ s8 field_0x566;
     /* 0x567 */ s8 field_0x567;
 
     fopAc_ac_c();

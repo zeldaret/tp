@@ -113,8 +113,8 @@ private:
 
 class daPy_frameCtrl_c : public J3DFrameCtrl {
 public:
-    /* 80140D24 */ ~daPy_frameCtrl_c();
-    /* 80140D80 */ daPy_frameCtrl_c();
+    /* 80140D24 */ virtual ~daPy_frameCtrl_c() {}
+    /* 80140D80 */ daPy_frameCtrl_c() {}
     bool checkAnmEnd();
     void updateFrame();
     void setFrameCtrl(u8, short, short, f32, f32);
@@ -930,6 +930,7 @@ public:
     BOOL checkStickArrowReset() const { return checkResetFlg0(RFLG0_UNK_1); }
     u32 getCutAtFlg() const { return checkNoResetFlg0(FLG0_UNK_40); }
     u32 checkBoarSingleBattleFirst() const { return checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE); }
+    u32 checkBoarSingleBattleSecond() const { return checkNoResetFlg2(FLG2_UNK_1000000); }
 
     void offWolfEnemyHangBite() { offNoResetFlg2(FLG2_WOLF_ENEMY_HANG_BITE); }
     bool onWolfEnemyHangBite(fopAc_ac_c* param_0) { return onWolfEnemyBiteAll(param_0, FLG2_WOLF_ENEMY_HANG_BITE); }
@@ -1029,6 +1030,7 @@ public:
     void onNsScreamAnm() { onEndResetFlg1(daPy_ERFLG1(ERFLG1_UNK_1 | ERFLG1_UNK_2)); }
     void onLargeDamageUpStop() { onEndResetFlg1(ERFLG1_LARGE_DAMAGE_UP_STOP); }
     void onTraningCutBack() { onNoResetFlg3(FL3_TRANING_CUT_BACK); }
+    void onNeckSearchWide() { onEndResetFlg0(ERFLG0_UNK_400); }
 
     u32 checkBoarSingleBattle() const { return checkNoResetFlg2(daPy_FLG2(FLG2_UNK_1000000 | FLG2_BOAR_SINGLE_BATTLE)); }
     u32 checkWolfDashAutoJump() const { return checkNoResetFlg2(FLG2_WOLF_DASH_AUTO_JUMP); }
@@ -1043,6 +1045,10 @@ public:
         mDemo.setParam0(i_param0);
         mDemo.setParam1(i_param1);
         mDemo.setParam2(i_param2);
+    }
+
+    void changeDemoParam1(s16 i_param1) {
+        mDemo.setParam1(i_param1);
     }
 
     void i_changeDemoParam2(s16 i_param2) {

@@ -86,63 +86,6 @@ public:
 
 dBgS& dComIfG_Bgsp();
 
-class fopAcM_lc_c {
-public:
-    fopAcM_lc_c() { mLineCheck.ClrSttsRoofOff(); }
-
-    static dBgS_ObjLinChk* getLineCheck() { return &mLineCheck; }
-    static bool checkMoveBG() { return dComIfG_Bgsp().ChkMoveBG(mLineCheck); }
-    static cXyz* getCrossP() { return mLineCheck.GetCrossP(); }
-    static bool lineCheck(const cXyz*, const cXyz*, const fopAc_ac_c*);
-    static bool getTriPla(cM3dGPla* o_tri) { return dComIfG_Bgsp().GetTriPla(mLineCheck, o_tri); }
-    static bool checkWallHit() {
-        cM3dGPla poly;
-        getTriPla(&poly);
-        return cBgW_CheckBWall(poly.mNormal.y);
-    }
-
-    static dBgS_ObjLinChk mLineCheck;
-};
-
-class dBgS_RoofChk;
-class fopAcM_rc_c {
-public:
-    static dBgS_ObjRoofChk* getRoofCheck() { return &mRoofCheck; }
-    static f32 getRoofY() { return mRoofY; }
-    static bool roofCheck(const cXyz*);
-
-    static dBgS_ObjRoofChk mRoofCheck;
-    static f32 mRoofY;
-};
-
-class dBgS_GndChk;
-class fopAcM_gc_c {
-public:
-    static bool gndCheck(const cXyz*);
-    static dBgS_ObjGndChk mGndCheck;
-    static f32 mGroundY;
-
-    static bool getTriPla(cM3dGPla* i_plane) {
-        return dComIfG_Bgsp().GetTriPla(mGndCheck, i_plane);
-    }
-    static int getRoomId() { return dComIfG_Bgsp().GetRoomId(mGndCheck); }
-    static int getPolyColor() { return dComIfG_Bgsp().GetPolyColor(mGndCheck); }
-    static int getPolyAtt0() { return dComIfG_Bgsp().GetPolyAtt0(mGndCheck); }
-    static dBgS_ObjGndChk* getGroundCheck() { return &mGndCheck; }
-    static f32 getGroundY() { return mGroundY; }
-};
-
-class fopAcM_wt_c {
-public:
-    static dBgS_WtrChk* getWaterCheck() { return &mWaterCheck; }
-    static f32 getWaterY() { return mWaterY; }
-    static int getPolyAtt0() { return dComIfG_Bgsp().GetPolyAtt0(mWaterCheck); }
-
-    static bool waterCheck(const cXyz*);
-    static dBgS_WtrChk mWaterCheck;
-    static f32 mWaterY;
-};
-
 class dKy_tevstr_c;
 class cBgS_PolyInfo;
 typedef int (*heapCallbackFunc)(fopAc_ac_c*);
@@ -785,14 +728,14 @@ inline void fopAcM_effSmokeSet2(u32* param_0, u32* param_1, cXyz const* param_2,
 
 inline void fopAcM_setWarningMessage_f(const fopAc_ac_c* i_actor, const char* i_filename, int i_line, const char* i_msg, ...) {
 #ifdef DEBUG
-    va_list args;
+    /* va_list args;
     va_start(args, i_msg);
 
     char buf[64];
     snprintf(buf, sizeof(buf), "<%s> %s", dStage_getName(fopAcM_GetProfName(i_actor), i_actor->subtype), i_msg);
     setWarningMessage_f_va(JUTAssertion::getSDevice(), i_filename, i_line, buf, args);
 
-    va_end(args);
+    va_end(args); */
 #endif
 }
 
@@ -802,5 +745,70 @@ inline void fopAcM_setWarningMessage_f(const fopAc_ac_c* i_actor, const char* i_
 #else
 #define fopAcM_setWarningMessage(...)
 #endif
+
+class fopAcM_lc_c {
+public:
+    fopAcM_lc_c() { mLineCheck.ClrSttsRoofOff(); }
+
+    static dBgS_ObjLinChk* getLineCheck() { return &mLineCheck; }
+    static bool checkMoveBG() { return dComIfG_Bgsp().ChkMoveBG(mLineCheck); }
+    static cXyz* getCrossP() { return mLineCheck.GetCrossP(); }
+    static bool lineCheck(const cXyz*, const cXyz*, const fopAc_ac_c*);
+    static bool getTriPla(cM3dGPla* o_tri) { return dComIfG_Bgsp().GetTriPla(mLineCheck, o_tri); }
+    static bool checkWallHit() {
+        cM3dGPla poly;
+        getTriPla(&poly);
+        return cBgW_CheckBWall(poly.mNormal.y);
+    }
+
+    static dBgS_ObjLinChk mLineCheck;
+};
+
+class dBgS_RoofChk;
+class fopAcM_rc_c {
+public:
+    static dBgS_ObjRoofChk* getRoofCheck() { return &mRoofCheck; }
+    static f32 getRoofY() { return mRoofY; }
+    static bool roofCheck(const cXyz*);
+
+    static dBgS_ObjRoofChk mRoofCheck;
+    static f32 mRoofY;
+};
+
+class dBgS_GndChk;
+class fopAcM_gc_c {
+public:
+    static bool gndCheck(const cXyz*);
+    static dBgS_ObjGndChk mGndCheck;
+    static f32 mGroundY;
+
+    static bool getTriPla(cM3dGPla* i_plane) {
+        return dComIfG_Bgsp().GetTriPla(mGndCheck, i_plane);
+    }
+
+    static s16 getGroundAngleDirection(s16 param_0) {
+        cM3dGPla spC;
+        getTriPla(&spC);
+        return fopAcM_getPolygonAngle(&spC, param_0);
+    }
+
+    static int getRoomId() { return dComIfG_Bgsp().GetRoomId(mGndCheck); }
+    static int getPolyColor() { return dComIfG_Bgsp().GetPolyColor(mGndCheck); }
+    static int getPolyAtt0() { return dComIfG_Bgsp().GetPolyAtt0(mGndCheck); }
+    static int getHorseNoEntry() { return dComIfG_Bgsp().GetHorseNoEntry(mGndCheck); }
+    static dBgS_ObjGndChk* getGroundCheck() { return &mGndCheck; }
+    static f32 getGroundY() { return mGroundY; }
+};
+
+class fopAcM_wt_c {
+public:
+    static dBgS_WtrChk* getWaterCheck() { return &mWaterCheck; }
+    static f32 getWaterY() { return mWaterY; }
+    static int getPolyAtt0() { return dComIfG_Bgsp().GetPolyAtt0(mWaterCheck); }
+
+    static bool waterCheck(const cXyz*);
+    static dBgS_WtrChk mWaterCheck;
+    static f32 mWaterY;
+};
 
 #endif

@@ -3,20 +3,20 @@
 
 #include "Z2AudioLib/Z2Creature.h"
 #include "d/actor/d_a_player.h"
+#include "d/actor/d_a_scene_exit.h"
 #include "d/d_bg_s_acch.h"
 #include "d/d_bg_s_lin_chk.h"
 #include "d/d_cc_d.h"
 #include "d/d_msg_flow.h"
 #include "m_Do/m_Do_audio.h"
+#include "d/d_path.h"
+#include "d/d_particle_copoly.h"
 
 class daHorseRein_c {
 public:
     /* 80837F2C */ void setReinPos(int);
     /* 808383A8 */ void setReinPosPart(int);
-    /* 80844FB0 */ ~daHorseRein_c();
-    /* 80844FEC */ daHorseRein_c();
 
-private:
     /* 0x00 */ cXyz* field_0x0[2];
     /* 0x08 */ int field_0x8[2];
     /* 0x10 */ f32 field_0x10;
@@ -27,14 +27,17 @@ private:
 
 class daHorseFootData_c {
 public:
-    /* 80844F70 */ ~daHorseFootData_c();
-    /* 80844FAC */ daHorseFootData_c();
-
-private:
-    /* 0x0 */ u8 field_0x0[0xE4];
+    /* 0x00 */ u8 field_0x0;
+    /* 0x00 */ u8 field_0x1;
+    /* 0x02 */ u8 field_0x2[0x4 - 0x2];
+    /* 0x04 */ s16 field_0x4[4];
+    /* 0x0C */ cXyz field_0xc;
+    /* 0x18 */ cXyz field_0x18;
+    /* 0x24 */ Mtx field_0x24[4];
 };  // Size: 0xE4
 
 class daHoZelda_c;
+class daHorse_hio_c;
 
 /**
  * @ingroup actors-unsorted
@@ -48,35 +51,90 @@ class daHorse_c : public fopAc_ac_c {
 public:
     enum daHorse_ERFLG0 {
         /* 0x001 */ ERFLG0_UNK_1 = 0x1,
+        /* 0x002 */ ERFLG0_UNK_2 = 0x2,
+        /* 0x004 */ ERFLG0_UNK_4 = 0x4,
+        /* 0x008 */ ERFLG0_UNK_8 = 0x8,
         /* 0x010 */ ERFLG0_MOVE_ACCEPT = 0x10,
+        /* 0x020 */ ERFLG0_UNK_20 = 0x20,
+        /* 0x040 */ ERFLG0_UNK_40 = 0x40,
         /* 0x080 */ ERFLG0_RIDE_RUN_FLG = 0x80,
         /* 0x100 */ ERFLG0_CUT_TURN_CANCEL = 0x100,
+        /* 0x200 */ ERFLG0_UNK_200 = 0x200,
+        /* 0x400 */ ERFLG0_UNK_400 = 0x400,
+        /* 0x800 */ ERFLG0_UNK_800 = 0x800,
 
         ERFLG0_UNK_18 = 0x18,
     };
 
     enum daHorse_RFLG0 {
-        /* 0x02 */ RFLG0_ENEMY_SEARCH = 2,
-        /* 0x08 */ RFLG0_LASH_DASH_START = 8,
-        /* 0x10 */ RFLG0_TURN_STAND = 0x10,
-        /* 0x40 */ RFLG0_TURN_STAND_CAMERA = 0x40,
+        /* 0x001 */ RFLG0_UNK_1 = 1,
+        /* 0x002 */ RFLG0_ENEMY_SEARCH = 2,
+        /* 0x004 */ RFLG0_UNK_4 = 4,
+        /* 0x008 */ RFLG0_LASH_DASH_START = 8,
+        /* 0x010 */ RFLG0_TURN_STAND = 0x10,
+        /* 0x020 */ RFLG0_UNK_20 = 0x20,
+        /* 0x040 */ RFLG0_TURN_STAND_CAMERA = 0x40,
+        /* 0x080 */ RFLG0_UNK_80 = 0x80,
+        /* 0x100 */ RFLG0_UNK_100 = 0x100,
+        /* 0x200 */ RFLG0_UNK_200 = 0x200,
     };
 
     enum daHorse_FLG0 {
+        /* 0x00000001 */ FLG0_UNK_1 = 0x1,
+        /* 0x00000002 */ FLG0_UNK_2 = 0x2,
+        /* 0x00000004 */ FLG0_UNK_4 = 0x4,
+        /* 0x00000008 */ FLG0_UNK_8 = 0x8,
+        /* 0x00000010 */ FLG0_UNK_10 = 0x10,
         /* 0x00000020 */ FLG0_RODEO_LEFT = 0x20,
         /* 0x00000040 */ FLG0_RIDE_START_FLG = 0x40,
         /* 0x00000080 */ FLG0_NO_DRAW_WAIT = 0x80,
+        /* 0x00000100 */ FLG0_UNK_100 = 0x100,
+        /* 0x00000200 */ FLG0_UNK_200 = 0x200,
+        /* 0x00000400 */ FLG0_UNK_400 = 0x400,
+        /* 0x00000800 */ FLG0_UNK_800 = 0x800,
+        /* 0x00001000 */ FLG0_UNK_1000 = 0x1000,
+        /* 0x00002000 */ FLG0_UNK_2000 = 0x2000,
+        /* 0x00004000 */ FLG0_UNK_4000 = 0x4000,
+        /* 0x00008000 */ FLG0_UNK_8000 = 0x8000,
         /* 0x00010000 */ FLG0_PLAYER_BACK_RIDE_LASH = 0x10000,
+        /* 0x00020000 */ FLG0_UNK_20000 = 0x20000,
+        /* 0x00040000 */ FLG0_UNK_40000 = 0x40000,
+        /* 0x00080000 */ FLG0_UNK_80000 = 0x80000,
+        /* 0x00100000 */ FLG0_UNK_100000 = 0x100000,
+        /* 0x00200000 */ FLG0_UNK_200000 = 0x200000,
         /* 0x00400000 */ FLG0_UNK_400000 = 0x400000,
+        /* 0x02000000 */ FLG0_UNK_2000000 = 0x2000000,
+        /* 0x04000000 */ FLG0_UNK_4000000 = 0x4000000,
+        /* 0x08000000 */ FLG0_CALL_HORSE = 0x8000000,
+        /* 0x10000000 */ FLG0_UNK_10000000 = 0x10000000,
         /* 0x20000000 */ FLG0_TURN_CANCEL_KEEP = 0x20000000,
+        /* 0x40000000 */ FLG0_UNK_40000000 = 0x40000000,
         /* 0x80000000 */ FLG0_RODEO_MODE = 0x80000000
+    };
+
+    enum daHorse_DEMOMODE {
+        DEMO_LAST_e = 0x11,
+        DEMO_NEW_ANM0_e = 0x200,
+    };
+
+    enum daHorse_PROC {
+        PROC_WAIT_e,
+        PROC_MOVE_e,
+        PROC_STOP_e,
+        PROC_TURN_e,
+        PROC_JUMP_e,
+        PROC_LAND_e,
+        PROC_LARGE_DAMAGE_e,
+        PROC_TOOL_DEMO_e,
+
+        PROC_NONE_e = 8,
     };
 
     fopAc_ac_c* getZeldaActor();
 
     void cancelOriginalDemo() { 
         field_0x16b8 = 2;
-        field_0x1740 = 1;
+        m_demoMode = 1;
     }
 
     /* 807E27F8 */ void onDemoJumpDistance(f32, f32);
@@ -85,16 +143,16 @@ public:
     /* 80838498 */ void coHitCallbackBoarJump(fopAc_ac_c*);
     /* 80838798 */ void coHitCallbackBoarHit(fopAc_ac_c*, dCcD_GObjInf*);
     /* 80838904 */ void coHitCallbackCowHit(fopAc_ac_c*);
-    /* 80838B78 */ void modelCallBack(int);
-    /* 80838F98 */ void createHeap();
-    /* 8083940C */ void checkEnding();
-    /* 80839498 */ void create();
+    /* 80838B78 */ int modelCallBack(int);
+    /* 80838F98 */ int createHeap();
+    /* 8083940C */ static BOOL checkEnding();
+    /* 80839498 */ int create();
     /* 80839D1C */ void setBasAnime(int);
     /* 80839EBC */ void resetBasAnime();
-    /* 80839ED4 */ void setDoubleAnime(f32, f32, f32, u16, u16, f32);
-    /* 8083A20C */ void setSingleAnime(u16, f32, f32, s16, f32, int);
+    /* 80839ED4 */ int setDoubleAnime(f32, f32, f32, u16, u16, f32);
+    /* 8083A20C */ int setSingleAnime(u16, f32, f32, s16, f32, int);
     /* 8083A3C4 */ void animePlay();
-    /* 8083A5AC */ void checkDemoAction();
+    /* 8083A5AC */ int checkDemoAction();
     /* 8083A890 */ void setStickRodeoMove();
     /* 8083AC7C */ void setStickCallMove();
     /* 8083ACEC */ void setDemoMoveData(u32*, cXyz const*);
@@ -104,10 +162,10 @@ public:
     /* 8083B828 */ void setTurnStartVibration();
     /* 8083B82C */ void setTurnVibration();
     /* 8083B830 */ void setMoveAnime(f32);
-    /* 8083BF48 */ void checkHorseNoMove(int);
-    /* 8083CA80 */ void checkTurnPlayerState();
-    /* 8083CB38 */ void setSpeedAndAngle();
-    /* 8083D748 */ void checkWaitTurn() const;
+    /* 8083BF48 */ int checkHorseNoMove(int);
+    /* 8083CA80 */ BOOL checkTurnPlayerState();
+    /* 8083CB38 */ int setSpeedAndAngle();
+    /* 8083D748 */ BOOL checkWaitTurn() const;
     /* 8083D774 */ void setRoomInfo(int);
     /* 8083D918 */ void setBodyPart();
     /* 8083D9D8 */ void setMatrix();
@@ -118,20 +176,20 @@ public:
     /* 8083E760 */ void setTailAngle();
     /* 8083E8A4 */ void setNeckAngle();
     /* 8083EA78 */ void copyFootMatrix();
-    /* 8083EB10 */ void setFootMatrix();
-    /* 8083ED88 */ void setLegAngle(f32, int, int, s16*);
+    /* 8083EB10 */ int setFootMatrix();
+    /* 8083ED88 */ int setLegAngle(f32, int, int, s16*);
     /* 8083F3B0 */ void footBgCheck();
     /* 8083F9AC */ void setReinPosMoveInit(int);
     /* 8083FDAC */ void copyReinPos();
     /* 8083FEB4 */ void setReinPosHandSubstance(int);
     /* 8084010C */ void setReinPosNormalSubstance();
     /* 808402F8 */ void bgCheck();
-    /* 80840714 */ void checkSpecialWallHitSubstance(cXyz const&) const;
+    /* 80840714 */ bool checkSpecialWallHitSubstance(cXyz const&) const;
     /* 808407B0 */ void setServiceWaitTimer();
-    /* 80840800 */ void checkServiceWaitAnime();
-    /* 80840844 */ void checkTurnInput();
-    /* 808408F0 */ void checkTgHitTurn();
-    /* 808409C0 */ void checkTurnAfterFastMove(f32);
+    /* 80840800 */ BOOL checkServiceWaitAnime();
+    /* 80840844 */ BOOL checkTurnInput();
+    /* 808408F0 */ BOOL checkTgHitTurn();
+    /* 808409C0 */ BOOL checkTurnAfterFastMove(f32);
     /* 80840B28 */ void setNeckAnimeMorf();
     /* 80840B88 */ void setNeckAnime(u16, f32, f32, s16);
     /* 80840CA4 */ void resetNeckAnime();
@@ -139,67 +197,67 @@ public:
     /* 80840FE0 */ void setTalkModeWolf();
     /* 80841084 */ void setBoarHit(fopAc_ac_c*, int);
     /* 8084116C */ void savePos();
-    /* 808411D0 */ void callHorseSubstance(cXyz const*);
-    /* 80841468 */ void setHorsePosAndAngleSubstance(cXyz const*, s16);
-    /* 808415B4 */ void checkPlayerHeavy();
+    /* 808411D0 */ int callHorseSubstance(cXyz const*);
+    /* 80841468 */ int setHorsePosAndAngleSubstance(cXyz const*, s16);
+    /* 808415B4 */ BOOL checkPlayerHeavy();
     /* 80841628 */ void setTgCoGrp(u32, u32);
     /* 80841698 */ void onRideFlgSubstance();
     /* 808416D4 */ void offRideFlgSubstance();
-    /* 80841708 */ void procWaitInit();
-    /* 808417B8 */ void procWait();
-    /* 80841F04 */ void procMoveInit();
-    /* 80841F80 */ void procMove();
-    /* 808423DC */ void procStopInit();
-    /* 808425BC */ void procStop();
-    /* 80842878 */ void procTurnInit(int);
-    /* 80842AB0 */ void procTurn();
-    /* 80843008 */ void procJumpInit(int);
-    /* 808432E0 */ void procJump();
-    /* 80843604 */ void procLandInit(f32, int);
-    /* 80843770 */ void procLand();
-    /* 808438AC */ void procLargeDamageInit();
-    /* 8084396C */ void procLargeDamage();
-    /* 808439C8 */ void procToolDemoInit();
-    /* 80843A44 */ void procToolDemo();
+    /* 80841708 */ int procWaitInit();
+    /* 808417B8 */ int procWait();
+    /* 80841F04 */ int procMoveInit();
+    /* 80841F80 */ int procMove();
+    /* 808423DC */ int procStopInit();
+    /* 808425BC */ int procStop();
+    /* 80842878 */ int procTurnInit(int);
+    /* 80842AB0 */ int procTurn();
+    /* 80843008 */ int procJumpInit(int);
+    /* 808432E0 */ int procJump();
+    /* 80843604 */ int procLandInit(f32, int);
+    /* 80843770 */ int procLand();
+    /* 808438AC */ int procLargeDamageInit();
+    /* 8084396C */ int procLargeDamage();
+    /* 808439C8 */ int procToolDemoInit();
+    /* 80843A44 */ int procToolDemo();
     /* 80843BFC */ void searchSceneChangeArea(fopAc_ac_c*);
-    /* 80843C74 */ void execute();
-    /* 80844590 */ void draw();
+    /* 80843C74 */ int execute();
+    /* 80844590 */ int draw();
     /* 8084478C */ ~daHorse_c();
-    /* 80844CB0 */ daHorse_c();
     
     /* 80182D04 */ void getLashDashStart() const;
     
 
-    bool checkNoBombProc() const { return field_0x16b4 == 0 || field_0x16b4 == 1; }
-    bool checkResetStateFlg0(daHorse_RFLG0 flag) const { return mResetStateFlg0 & flag; }
-    bool checkEndResetStateFlg0(daHorse_ERFLG0 flag) const { return mEndResetStateFlg0 & flag; }
-    u32 checkStateFlg0(daHorse_FLG0 flag) const { return mStateFlg0 & flag; }
-    f32 getNormalMaxSpeedF() { return mNormalMaxSpeedF; }
-    f32 getLashMaxSpeedF() { return mLashMaxSpeedF; }
-    void changeDemoMoveAngle(s16 angle) { mDemoMoveAngle = angle; }
-    void setDemoStickR(f32 stick) { mDemoStickR = stick; }
-    void changeDemoMode(u32 param_0, int param_1) { field_0x1740 = param_0; field_0x1728 = param_1; }
+    bool checkNoBombProc() const { return m_procID == PROC_WAIT_e || m_procID == PROC_MOVE_e; }
+    bool checkResetStateFlg0(daHorse_RFLG0 flag) const { return m_resetStateFlg0 & flag; }
+    bool checkEndResetStateFlg0(daHorse_ERFLG0 flag) const { return m_endResetStateFlg0 & flag; }
+    u32 checkStateFlg0(daHorse_FLG0 flag) const { return m_stateFlg0 & flag; }
+    f32 getNormalMaxSpeedF() { return m_normalMaxSpeedF; }
+    f32 getLashMaxSpeedF() { return m_lashMaxSpeedF; }
+    void changeDemoMoveAngle(s16 angle) { m_demoMoveAngle = angle; }
+    void setDemoStickR(f32 stick) { m_demoStickR = stick; }
+    void changeDemoMode(u32 param_0, int param_1) { m_demoMode = param_0; field_0x1728 = param_1; }
     void changeOriginalDemo() { field_0x16b8 = 3; field_0x1728 = 0; }
-    void i_setHorsePosAndAngle(cXyz const* i_pos, s16 i_angle) { (this->*mpSetHorsePosAngleFn)(i_pos, i_angle); }
-    void onRideFlg() { (this->*mpOnRideFlgFn)(); }
-    void offRideFlg() { (this->*mpOffRideFlgFn)(); }
-    void onStateFlg0(daHorse_FLG0 flag) { mStateFlg0 |= flag; }
-    void offStateFlg0(daHorse_FLG0 flag) { mStateFlg0 &= ~flag; }
-    void onEndResetStateFlg0(daHorse_ERFLG0 i_flag) { mEndResetStateFlg0 |= i_flag;}
-    void offEndResetStateFlg0(daHorse_ERFLG0 i_flag) { mEndResetStateFlg0 &= ~i_flag;}
+    void i_setHorsePosAndAngle(cXyz const* i_pos, s16 i_angle) { (this->*m_setHorsePosAngle)(i_pos, i_angle); }
+    void onRideFlg() { (this->*m_onRideFlg)(); }
+    void offRideFlg() { (this->*m_offRideFlg)(); }
+    void onStateFlg0(daHorse_FLG0 flag) { m_stateFlg0 |= flag; }
+    void offStateFlg0(daHorse_FLG0 flag) { m_stateFlg0 &= ~flag; }
+    void onEndResetStateFlg0(daHorse_ERFLG0 i_flag) { m_endResetStateFlg0 |= i_flag;}
+    void offEndResetStateFlg0(daHorse_ERFLG0 i_flag) { m_endResetStateFlg0 &= ~i_flag;}
+    void onResetStateFlg0(daHorse_RFLG0 i_flag) { m_resetStateFlg0 |= i_flag;}
     void offNoDrawWait() { offStateFlg0(FLG0_NO_DRAW_WAIT); }
-    bool checkSpecialWallHit(const cXyz& param_0) { return (this->*mpCheckSpecialWallHitFn)(param_0); }
-    MtxP getSaddleMtx() { return field_0x570->getAnmMtx(21); }
-    MtxP getRootMtx() { return field_0x570->getAnmMtx(0); }
-    f32 getAnmFrameMax(int i_idx) const { return field_0x5b0[i_idx].getEnd(); }
-    f32 getAnmFrame(int i_idx) const { return field_0x5b0[i_idx].getFrame(); }
-    s16 getAimNeckAngleY() const { return mAimNeckAngleY; }
-    f32 getMorfFrame() const { return mMorfFrame; }
-    f32 getBlendRate() { return field_0x594[1].getRatio(); }
-    u16 getAnmIdx(int i_idx) const { return mAnmIdx[i_idx]; }
-    int callHorse(const cXyz* param_0) { return (this->*mpCallHorseFn)(param_0); }
+    bool checkSpecialWallHit(const cXyz& param_0) { return (this->*m_checkSpecialWallHit)(param_0); }
+    MtxP getSaddleMtx() { return m_model->getAnmMtx(21); }
+    MtxP getRootMtx() { return m_model->getAnmMtx(0); }
+    f32 getAnmFrameMax(int i_idx) const { return m_frameCtrl[i_idx].getEnd(); }
+    f32 getAnmFrame(int i_idx) const { return m_frameCtrl[i_idx].getFrame(); }
+    s16 getAimNeckAngleY() const { return m_aimNeckAngleY; }
+    f32 getMorfFrame() const { return m_morf_frame; }
+    f32 getBlendRate() { return m_anmRatio[1].getRatio(); }
+    u16 getAnmIdx(int i_idx) const { return m_anmIdx[i_idx]; }
+    int callHorse(const cXyz* param_0) { return (this->*m_callHorse)(param_0); }
 
-    daHoZelda_c* i_getZeldaActor() { return (daHoZelda_c*)mZeldaActorKeep.getActor(); }
+    daHoZelda_c* i_getZeldaActor() { return (daHoZelda_c*)m_zeldaActorKeep.getActor(); }
 
     bool checkTurnStandCamera() const { return checkResetStateFlg0(RFLG0_TURN_STAND_CAMERA); }
     bool checkTurnStand() const { return checkResetStateFlg0(RFLG0_TURN_STAND); }
@@ -207,17 +265,18 @@ public:
     bool checkCutTurnCancel() const { return checkEndResetStateFlg0(ERFLG0_CUT_TURN_CANCEL); }
     bool checkTurnCancelKeep() const { return checkStateFlg0(FLG0_TURN_CANCEL_KEEP); }
     BOOL checkRodeoLeft() const { return checkStateFlg0(FLG0_RODEO_LEFT); }
-    BOOL checkTurn() const { return field_0x16b4 == 3 && field_0x1720 == 0; }
-    BOOL checkStop() const { return field_0x16b4 == 2; }
-    bool checkJump() const { return field_0x16b4 == 4; }
-    bool checkWait() const { return field_0x16b4 == 0; }
-    bool checkLand() const { return field_0x16b4 == 5 && field_0x171a == 0; }
+    BOOL checkTurn() const { return m_procID == PROC_TURN_e && field_0x1720 == 0; }
+    BOOL checkStop() const { return m_procID == PROC_STOP_e; }
+    bool checkJump() const { return m_procID == PROC_JUMP_e; }
+    bool checkWait() const { return m_procID == PROC_WAIT_e; }
+    bool checkLand() const { return m_procID == PROC_LAND_e && field_0x171a == 0; }
     bool checkGetOff() const { return fabsf(speedF) < 3.0f; }
     bool checkEnemySearch() { return checkResetStateFlg0(RFLG0_ENEMY_SEARCH); }
     bool checkOriginalDemo() const { return field_0x16b8 == 3; }
-    s16 checkCowHit() const { return mCowHit; }
-    s16 getCowHitAngle() const { return mCowHitAngle; }
-    u8 getRodeoPointCnt() const { return mRodeoPointCnt; }
+    bool checkHorseDemoMode() { return field_0x16b8 != 0; }
+    s16 checkCowHit() const { return m_cowHit; }
+    s16 getCowHitAngle() const { return m_cowHitAngle; }
+    u8 getRodeoPointCnt() const { return m_rodeoPointCnt; }
 
     void onTagJump(f32 param_0, f32 param_1, f32 param_2) {
         field_0x1768 = param_0;
@@ -238,14 +297,14 @@ public:
     void onTurnCancelKeep() { onStateFlg0(FLG0_TURN_CANCEL_KEEP); }
     void offTurnCancelKeep() { offStateFlg0(FLG0_TURN_CANCEL_KEEP); }
 
-    BOOL checkTurnCancelFrame() const { return checkTurn() && field_0x177C < field_0x5b0[0].getFrame(); }
-    BOOL checkStopCancelFrame() const { return checkStop() && field_0x177C < field_0x5b0[0].getFrame(); }
+    BOOL checkTurnCancelFrame() const { return checkTurn() && field_0x177C < m_frameCtrl[0].getFrame(); }
+    BOOL checkStopCancelFrame() const { return checkStop() && field_0x177C < m_frameCtrl[0].getFrame(); }
 
     void initHorseMtx() {
         mDoMtx_stack_c::transS(current.pos);
         mDoMtx_stack_c::ZXYrotM(shape_angle);
-        field_0x570->setBaseTRMtx(mDoMtx_stack_c::get());
-        field_0x570->calc();
+        m_model->setBaseTRMtx(mDoMtx_stack_c::get());
+        m_model->calc();
     }
 
     void offRodeoMode() {
@@ -257,108 +316,238 @@ public:
     void setSpeedF(f32 i_speed) { speedF = i_speed; }
     void setWalkSpeedF() { speedF = field_0x1764; }
 
-    MtxP getLeftStirrupMtx() { return field_0x570->getAnmMtx(0x17); }
-    MtxP getRightStirrupMtx() { return field_0x570->getAnmMtx(0x19); }
-    void calcWeightEnvMtx() { field_0x570->calcWeightEnvelopeMtx(); }
+    MtxP getLeftStirrupMtx() { return m_model->getAnmMtx(0x17); }
+    MtxP getRightStirrupMtx() { return m_model->getAnmMtx(0x19); }
+    void calcWeightEnvMtx() { m_model->calcWeightEnvelopeMtx(); }
 
-    void setReinPosNormal() { (this->*mpSetReinPosNormalFn)(); }
-    void setReinPosHand(int param_0) { (this->*mpSetReinPosHandFn)(param_0); }
+    void setReinPosNormal() { (this->*m_setReinPosNormal)(); }
+    void setReinPosHand(int param_0) { (this->*m_setReinPosHand)(param_0); }
 
-    u32 getShadowID() const { return mShadowID; }
+    u32 getShadowID() const { return m_shadowID; }
 
-    static u8 const m_footJointTable[8];
+    bool checkInputOnR() const { return m_padStickValue > 0.05f; }
+
+    static u16 const m_footJointTable[];
     static f32 const m_callLimitDistance2;
 
-//private:
-    /* 0x0568 */ u8 field_0x568[8];
-    /* 0x0570 */ J3DModel* field_0x570;
-    /* 0x0574 */ void* field_0x574;
-    /* 0x0578 */ J3DFrameCtrl field_0x578;
-    /* 0x058C */ int field_0x58c;
-    /* 0x0590 */ u8 field_0x590[4];
-    /* 0x0594 */ mDoExt_AnmRatioPack field_0x594[3];
-    /* 0x05AC */ void* field_0x5ac;
-    /* 0x05B0 */ daPy_frameCtrl_c field_0x5b0[3];
-    /* 0x05F8 */ u8 field_0x5f8[4];
-    /* 0x05FC */ dBgS_AcchCir field_0x5fc[3];
-    /* 0x06BC */ dBgS_Acch field_0x6bc;
-    /* 0x0894 */ dCcD_Stts field_0x894;
-    /* 0x08D0 */ dBgS_HorseLinChk field_0x8d0;
-    /* 0x0940 */ dCcD_Cyl field_0x940[3];
-    /* 0x0CF4 */ dCcD_Cyl field_0xcf4;
-    /* 0x0E30 */ dCcD_Cyl field_0xe30;
-    /* 0x0F6C */ dCcD_Sph field_0xf6c;
-    /* 0x10A4 */ Z2CreatureRide field_0x10a4;
-    /* 0x1140 */ u8 field_0x1140[0x10];
-    /* 0x1150 */ daHorseRein_c field_0x1150[3];
-    /* 0x11C8 */ u8 field_0x11c8[0x40];
-    /* 0x1208 */ dMsgFlow_c field_0x1208;
-    /* 0x1254 */ daPy_actorKeep_c mZeldaActorKeep;
-    /* 0x125C */ u8 field_0x125c[0xC8];
-    /* 0x1324 */ daHorseFootData_c mFootData[4];
-    /* 0x16B4 */ u8 field_0x16b4;
-    /* 0x16B5 */ u8 field_0x16b5[3];
+    /* 0x0568 */ request_of_phase_process_class m_phase;
+    /* 0x0570 */ J3DModel* m_model;
+    /* 0x0574 */ J3DModelData* m_modelData;
+    /* 0x0578 */ mDoExt_btpAnm m_btp;
+    /* 0x0590 */ mDoExt_MtxCalcAnmBlendTblOld* m_mtxcalc;
+    /* 0x0594 */ mDoExt_AnmRatioPack m_anmRatio[3];
+    /* 0x05AC */ mDoExt_MtxCalcOldFrame* m_oldFrame;
+    /* 0x05B0 */ daPy_frameCtrl_c m_frameCtrl[3];
+    /* 0x05F8 */ daHorse_hio_c* m_hio;
+    /* 0x05FC */ dBgS_AcchCir m_acchcir[3];
+    /* 0x06BC */ dBgS_HorseAcch m_acch;
+    /* 0x0894 */ dCcD_Stts m_cc_stts;
+    /* 0x08D0 */ dBgS_HorseLinChk m_linechk;
+    /* 0x0940 */ dCcD_Cyl m_tgco_cyl[3];
+    /* 0x0CF4 */ dCcD_Cyl m_boar_cyl;
+    /* 0x0E30 */ dCcD_Cyl m_at_cyl;
+    /* 0x0F6C */ dCcD_Sph m_head_sph;
+    /* 0x10A4 */ Z2CreatureRide m_sound;
+    /* 0x1140 */ void* field_0x1140;
+    /* 0x1144 */ daPy_frameCtrl_c* field_0x1144;
+    /* 0x1148 */ dPath* m_path;
+    /* 0x114C */ dPath* m_rodeoPath;
+    /* 0x1150 */ daHorseRein_c m_rein[3];
+    /* 0x11C8 */ mDoExt_3DlineMat1_c m_reinLine;
+    /* 0x1204 */ int field_0x1204;
+    /* 0x1208 */ dMsgFlow_c m_msgflow;
+    /* 0x1254 */ daPy_actorKeep_c m_zeldaActorKeep;
+    /* 0x125C */ daScex_c* m_scnChg_buffer[50];
+    /* 0x1324 */ daHorseFootData_c m_footData[4];
+    /* 0x16B4 */ u8 m_procID;
+    /* 0x16B5 */ s8 m_reverb;
+    /* 0x16B6 */ u8 field_0x16b6;
+    /* 0x16B7 */ u8 field_0x16b7;
     /* 0x16B8 */ u8 field_0x16b8;
-    /* 0x16B9 */ u8 field_0x16b9[2];
-    /* 0x16BB */ u8 mRodeoPointCnt;
+    /* 0x16B9 */ u8 m_poly_sound;
+    /* 0x16BA */ u8 m_rodeoPoint;
+    /* 0x16BB */ u8 m_rodeoPointCnt;
     /* 0x16BC */ u8 field_0x16bc;
-    /* 0x16BD */ u8 field_0x16bd[0x16C4 - 0x16BD];
-    /* 0x16C4 */ u16 mAnmIdx[3];
-    /* 0x16CA */ u8 field_0x16ca[0x16F2 - 0x16CA];
-    /* 0x16F2 */ s16 mAimNeckAngleY;
-    /* 0x16F4 */ u8 field_0x16f4[0x8];
-    /* 0x16FC */ s16 mDemoMoveAngle;
-    /* 0x16FE */ u8 field_0x16fe[4];
+    /* 0x16BD */ u8 field_0x16bd;
+    /* 0x16BE */ s8 m_scnChg_num;
+    /* 0x16C0 */ u16 m_flowID;
+    /* 0x16C2 */ s16 field_0x16c2;
+    /* 0x16C4 */ u16 m_anmIdx[3];
+    /* 0x16CA */ u8 field_0x16ca[0x16CE - 0x16CA];
+    /* 0x16CE */ s16 field_0x16ce;
+    /* 0x16CE */ s16 field_0x16d0;
+    /* 0x16D2 */ u8 field_0x16d2[0x16D4 - 0x16D2];
+    /* 0x16D4 */ s16 field_0x16d4[3];
+    /* 0x16DA */ u8 field_0x16da[0x16E0 - 0x16DA];
+    /* 0x16E0 */ s16 field_0x16e0[3];
+    /* 0x16E6 */ u8 field_0x16e6[0x16E8 - 0x16E6];
+    /* 0x16E8 */ s16 field_0x16e8;
+    /* 0x16EA */ s16 field_0x16ea;
+    /* 0x16EC */ s16 m_padStickAngleY;
+    /* 0x16EE */ s16 m_serviceWaitTimer;
+    /* 0x16F0 */ s16 field_0x16f0;
+    /* 0x16F2 */ s16 m_aimNeckAngleY;
+    /* 0x16F4 */ s16 m_btpFrame;
+    /* 0x16F6 */ u16 field_0x16f6;
+    /* 0x16F8 */ s16 m_lashAccelerationTime;
+    /* 0x16FA */ s16 field_0x16fa;
+    /* 0x16FC */ s16 m_demoMoveAngle;
+    /* 0x16FE */ s16 m_lashRecoverTime;
+    /* 0x1700 */ s16 m_lashCnt;
     /* 0x1702 */ s16 field_0x1702;
-    /* 0x1704 */ u8 field_0x1704[2];
-    /* 0x1706 */ s16 mCowHitAngle;
-    /* 0x1708 */ s16 mCowHit;
-    /* 0x170A */ u8 field_0x170a[0x171A - 0x170A];
+    /* 0x1704 */ s16 field_0x1704;
+    /* 0x1706 */ s16 m_cowHitAngle;
+    /* 0x1708 */ s16 m_cowHit;
+    /* 0x170A */ s16 field_0x170a;
+    /* 0x170C */ s16 field_0x170c;
+    /* 0x170E */ s16 field_0x170e;
+    /* 0x1710 */ s16 field_0x1710;
+    /* 0x1712 */ s16 field_0x1712;
+    /* 0x1714 */ s16 field_0x1714;
+    /* 0x1716 */ s16 m_callMoveTimer;
+    /* 0x1718 */ s16 field_0x1718;
     /* 0x171A */ s16 field_0x171a;
-    /* 0x171C */ u8 field_0x171c[0x1720 - 0x171C];
+    /* 0x171C */ s16 field_0x171c;
+    /* 0x171E */ s16 field_0x171e;
     /* 0x1720 */ s16 field_0x1720;
-    /* 0x1722 */ u8 field_0x1722[0x1728 - 0x1722];
+    /* 0x1722 */ s16 field_0x1722;
+    /* 0x1724 */ u8 field_0x1724[0x1728 - 0x1724];
     /* 0x1728 */ int field_0x1728;
-    /* 0x172C */ u8 field_0x172c[0x1734 - 0x172C];
-    /* 0x1734 */ u32 mShadowID;
-    /* 0x1738 */ u8 field_0x1738[0x1740 - 0x1738];
-    /* 0x1740 */ u32 field_0x1740;
-    /* 0x1744 */ u32 mStateFlg0;
-    /* 0x1748 */ u32 mResetStateFlg0;
-    /* 0x174C */ u32 mEndResetStateFlg0;
-    /* 0x1750 */ f32 mMorfFrame;
-    /* 0x1754 */ u8 field_0x1754[0x1764 - 0x1754];
+    /* 0x172C */ int m_demoStaffId;
+    /* 0x1730 */ int field_0x1730;
+    /* 0x1734 */ u32 m_shadowID;
+    /* 0x1738 */ u32 field_0x1738[2];
+    /* 0x1740 */ u32 m_demoMode;
+    /* 0x1744 */ u32 m_stateFlg0;
+    /* 0x1748 */ u32 m_resetStateFlg0;
+    /* 0x174C */ u32 m_endResetStateFlg0;
+    /* 0x1750 */ f32 m_morf_frame;
+    /* 0x1754 */ f32 field_0x1754;
+    /* 0x1758 */ f32 m_padStickValue;
+    /* 0x175C */ f32 field_0x175c;
+    /* 0x1760 */ f32 field_0x1760;
     /* 0x1764 */ f32 field_0x1764;
     /* 0x1768 */ f32 field_0x1768;
     /* 0x176C */ f32 field_0x176c;
     /* 0x1770 */ f32 field_0x1770;
-    /* 0x1774 */ u8 field_0x1774[0x177C - 0x1774];
+    /* 0x1774 */ f32 field_0x1774;
+    /* 0x1778 */ f32 field_0x1778;
     /* 0x177C */ f32 field_0x177C;
-    /* 0x1780 */ u8 field_0x1780[0x1788 - 0x1780];
-    /* 0x1788 */ f32 mDemoStickR;
-    /* 0x178C */ f32 mNormalMaxSpeedF;
-    /* 0x1790 */ f32 mLashMaxSpeedF;
-    /* 0x1794 */ u8 field_0x1794[0x30];
-    /* 0x17C4 */ cXyz mDemoPos0;
-    /* 0x17D0 */ u8 field_0x17d0[0x18A4 - 0x17D0];
-    /* 0x18A4 */ int (daHorse_c::*mpProcFn)();
-    /* 0x18B0 */ bool (daHorse_c::*mpCheckSpecialWallHitFn)(const cXyz&);
-    /* 0x18BC */ void (daHorse_c::*mpSetReinPosHandFn)(int);
-    /* 0x18C8 */ void (daHorse_c::*mpSetReinPosNormalFn)();
-    /* 0x18D4 */ int (daHorse_c::*mpCallHorseFn)(const cXyz*);
-    /* 0x18E0 */ int (daHorse_c::*mpSetHorsePosAngleFn)(const cXyz* i_pos, s16 i_angle);
-    /* 0x18EC */ void (daHorse_c::*mpOnRideFlgFn)();
-    /* 0x18F8 */ void (daHorse_c::*mpOffRideFlgFn)();
+    /* 0x1780 */ f32 field_0x1780;
+    /* 0x1784 */ f32 field_0x1784;
+    /* 0x1788 */ f32 m_demoStickR;
+    /* 0x178C */ f32 m_normalMaxSpeedF;
+    /* 0x1790 */ f32 m_lashMaxSpeedF;
+    /* 0x1794 */ f32 field_0x1794;
+    /* 0x1798 */ f32 field_0x1798;
+    /* 0x179C */ f32 m_lashAddSpeed;
+    /* 0x17A0 */ cXyz field_0x17a0;
+    /* 0x17AC */ cXyz m_bodyEyePos;
+    /* 0x17B8 */ cXyz field_0x17b8;
+    /* 0x17C4 */ cXyz m_demoPos0;
+    /* 0x17D0 */ cXyz field_0x17d0;
+    /* 0x17DC */ dPaPoF_c field_0x17dc;
+    /* 0x18A4 */ int (daHorse_c::*m_proc)();
+    /* 0x18B0 */ bool (daHorse_c::*m_checkSpecialWallHit)(const cXyz&) const;
+    /* 0x18BC */ void (daHorse_c::*m_setReinPosHand)(int);
+    /* 0x18C8 */ void (daHorse_c::*m_setReinPosNormal)();
+    /* 0x18D4 */ int (daHorse_c::*m_callHorse)(const cXyz*);
+    /* 0x18E0 */ int (daHorse_c::*m_setHorsePosAngle)(const cXyz* i_pos, s16 i_angle);
+    /* 0x18EC */ void (daHorse_c::*m_onRideFlg)();
+    /* 0x18F8 */ void (daHorse_c::*m_offRideFlg)();
+};
+
+class daHorse_hio_c1 {
+public:
+    /* 0x000 */ s16 max_turn;
+    /* 0x002 */ s16 min_turn;
+    /* 0x004 */ s16 lash_acceleration_time;
+    /* 0x006 */ s16 jump_end_frame;
+    /* 0x008 */ s16 air_end_frame;
+    /* 0x00A */ s16 land_end_frame;
+    /* 0x00C */ s16 spur_recovery_time;
+    /* 0x00E */ s16 full_spur_recovery_time;
+    /* 0x010 */ s16 continuous_spur_recovery_time;
+    /* 0x012 */ s16 cliff_jump_end_frame;
+    /* 0x014 */ s16 cliff_air_end_frame;
+    /* 0x016 */ s16 cliff_land_end_frame;
+    /* 0x018 */ s16 min_jump_time;
+    /* 0x01A */ s16 kakariko_lash_acceleration_time;
+    /* 0x01C */ f32 max_speed;
+    /* 0x020 */ f32 wait_anm_speed;
+    /* 0x024 */ f32 walk_anm_speed;
+    /* 0x028 */ f32 fast_walk_anm_speed;
+    /* 0x02C */ f32 run_anm_speed;
+    /* 0x030 */ f32 fast_run_anm_speed;
+    /* 0x034 */ f32 backwalk_anm_speed;
+    /* 0x038 */ f32 wait_to_walk_rate;
+    /* 0x03C */ f32 walk_to_fastwalk_rate;
+    /* 0x040 */ f32 fastwalk_to_run_rate;
+    /* 0x044 */ f32 run_to_fastrun_rate;
+    /* 0x048 */ f32 walk_run_interpolation;
+    /* 0x04C */ f32 acceleration;
+    /* 0x050 */ f32 deceleration;
+    /* 0x054 */ f32 stopping_deceleration;
+    /* 0x058 */ f32 max_backward_speed;
+    /* 0x05C */ f32 max_backward_acceleration;
+    /* 0x060 */ f32 backward_idle_to_walk_rate;
+    /* 0x064 */ f32 faststop_anm_speed;
+    /* 0x068 */ f32 faststop_stand_anm_speed;
+    /* 0x06C */ f32 faststop_interpolation;
+    /* 0x070 */ f32 fast_stop_cancel_frame;
+    /* 0x074 */ f32 faststop_deceleration_slow;
+    /* 0x078 */ f32 faststop_deceleration;
+    /* 0x07C */ f32 stand_anm_speed;
+    /* 0x080 */ f32 stand_interpolation;
+    /* 0x084 */ f32 faststop_stand_cancel_frame;
+    /* 0x088 */ f32 stand_cancel_frame;
+    /* 0x08C */ f32 add_lash_speed;
+    /* 0x090 */ f32 lash_acceleration;
+    /* 0x094 */ f32 min_lash_speed;
+    /* 0x098 */ f32 jump_anm_speed;
+    /* 0x09C */ f32 jump_start_frame;
+    /* 0x0A0 */ f32 jump_interpolation;
+    /* 0x0A4 */ f32 air_start_frame;
+    /* 0x0A8 */ f32 air_interpolation;
+    /* 0x0AC */ f32 land_anm_speed;
+    /* 0x0B0 */ f32 land_start_frame;
+    /* 0x0B4 */ f32 land_interpolation;
+    /* 0x0B8 */ f32 land_cancel_frame;
+    /* 0x0BC */ f32 cliff_rise_rate;
+    /* 0x0C0 */ f32 boar_jump_horizontal;
+    /* 0x0C4 */ f32 boar_jump_height;
+    /* 0x0C8 */ f32 water_depth_limit;
+    /* 0x0CC */ f32 enemy_search_range;
+    /* 0x0D0 */ f32 m0D0;
+    /* 0x0D4 */ f32 floor_angle_limit;
+    /* 0x0D8 */ f32 dash_anm_speed;
+    /* 0x0DC */ f32 field_0xdc;
+    /* 0x0E0 */ f32 walk_min_speed;
+    /* 0x0E4 */ f32 cliff_jump_anm_speed;
+    /* 0x0E8 */ f32 cliff_jump_start_frame;
+    /* 0x0EC */ f32 cliff_jump_interpolation;
+    /* 0x0F0 */ f32 cliff_air_anm_speed;
+    /* 0x0F4 */ f32 cliff_air_start_frame;
+    /* 0x0F8 */ f32 cliff_air_interpolation;
+    /* 0x0FC */ f32 cliff_land_anm_speed;
+    /* 0x100 */ f32 cliff_land_start_frame;
+    /* 0x104 */ f32 cliff_land_interpolation;
+    /* 0x108 */ f32 cliff_land_cancel_frame;
+    /* 0x10C */ f32 cliff_jump_horizontal;
+    /* 0x110 */ f32 cliff_jump_vertical;
+    /* 0x114 */ f32 kakariko_max_speed;
+    /* 0x118 */ f32 kakariko_run_anm_speed;
+    /* 0x11C */ f32 kakariko_fastrun_anm_speed;
+    /* 0x120 */ f32 kakariko_add_lash_speed;
 };
 
 class daHorse_hio_c0 {
 public:
-    static u8 const m[292];
+    static const daHorse_hio_c1 m;
 };
 
-class dBgS_HorseAcch {
+class daHorse_hio_c {
 public:
-    /* 80845274 */ ~dBgS_HorseAcch();
 };
 
 #endif /* D_A_HORSE_H */

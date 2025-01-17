@@ -119,6 +119,8 @@ private:
     /* 0x6D4 */ JAISoundParamsMove mParams;
 };  // Size: 0x724
 
+#if VERSION != VERSION_SHIELD_DEBUG
 STATIC_ASSERT(sizeof(JAISeMgr) == 0x724);
+#endif
 
 #endif /* JAISEMGR_H */

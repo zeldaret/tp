@@ -412,7 +412,7 @@ int daAlink_c::procGuardAttackInit() {
         field_0x3484 = 1000.0f;
         field_0x3488 = 1000.0f;
     } else {
-        field_0x3484 = temp_r30->mAttackAnm.mCheckFrame;
+        field_0x3484 = temp_r30->mAttackAnm.mCancelFrame;
         field_0x3488 = temp_r30->mSlashCheckFrame;
     }
 
@@ -537,7 +537,7 @@ int daAlink_c::procGuardBreak() {
             onEndResetFlg1(ERFLG1_UNK_20);
         }
         checkNextAction(0);
-    } else if (temp_r30->getFrame() > daAlinkHIO_guard_c0::m.mGuardBreakAnm.mCheckFrame) {
+    } else if (temp_r30->getFrame() > daAlinkHIO_guard_c0::m.mGuardBreakAnm.mCancelFrame) {
         if (!checkGuardActionChange()) {
             onEndResetFlg1(ERFLG1_UNK_20);
         }
@@ -660,7 +660,7 @@ int daAlink_c::procTurnMove() {
         procCutFinishJumpUpInit();
         dComIfGp_setPlayerStatus0(0, 4);
     } else {
-        if (temp_r30->getFrame() > daAlinkHIO_turnMove_c0::m.mTurnAnm.mCheckFrame) {
+        if (temp_r30->getFrame() > daAlinkHIO_turnMove_c0::m.mTurnAnm.mCancelFrame) {
             onModeFlg(4);
 
             if (checkNextAction(1)) {

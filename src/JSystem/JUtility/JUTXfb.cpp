@@ -55,7 +55,6 @@ void JUTXfb::common_init(int bufNum) {
 
 /* 802E5260-802E5308 2DFBA0 00A8+00 1/1 0/0 0/0 .text
  * __ct__6JUTXfbFPC16_GXRenderModeObjP7JKRHeapQ26JUTXfb10EXfbNumber */
-// NONMATCHING - regswap, equivalent
 JUTXfb::JUTXfb(GXRenderModeObj const* pObj, JKRHeap* pHeap, JUTXfb::EXfbNumber xfbNum) {
     common_init(xfbNum);
 
@@ -63,7 +62,7 @@ JUTXfb::JUTXfb(GXRenderModeObj const* pObj, JKRHeap* pHeap, JUTXfb::EXfbNumber x
         initiate(pObj->fb_width, pObj->xfb_height, pHeap, xfbNum);
     } else {
         u16 fb_width = JUTVideo::getManager()->getRenderMode()->fb_width;
-        u16 efb_height = JUTVideo::getManager()->getRenderMode()->efb_height;
+        u16 efb_height = (u32)JUTVideo::getManager()->getRenderMode()->efb_height;
         u16 xfb_height = JUTVideo::getManager()->getRenderMode()->xfb_height;
         f32 scale_factor = GXGetYScaleFactor(efb_height, xfb_height);
         u16 xfb_lines = GXGetNumXfbLines(efb_height, scale_factor);

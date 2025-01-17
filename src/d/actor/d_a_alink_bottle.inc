@@ -604,7 +604,7 @@ int daAlink_c::procBottleSwingInit(fopAc_ac_c* param_0, int param_1) {
             }
         }
 
-        field_0x3478 = daAlinkHIO_bottle_c0::m.mScoopAnm.mCheckFrame;
+        field_0x3478 = daAlinkHIO_bottle_c0::m.mScoopAnm.mCancelFrame;
         field_0x347c = 14.0f;
 
         if (var_r31 != NULL) {
@@ -620,11 +620,11 @@ int daAlink_c::procBottleSwingInit(fopAc_ac_c* param_0, int param_1) {
         }
     } else if (temp_r3) {
         setSingleAnimeParam(ANM_BOTTLE_SWING_DOWN, &daAlinkHIO_bottle_c0::m.mSwingDownAnm);
-        field_0x3478 = daAlinkHIO_bottle_c0::m.mSwingDownAnm.mCheckFrame;
+        field_0x3478 = daAlinkHIO_bottle_c0::m.mSwingDownAnm.mCancelFrame;
         field_0x347c = 8.0f;
     } else {
         setSingleAnimeParam(ANM_BOTTLE_SWING, &daAlinkHIO_bottle_c0::m.mSwingSideAnm);
-        field_0x3478 = daAlinkHIO_bottle_c0::m.mSwingSideAnm.mCheckFrame;
+        field_0x3478 = daAlinkHIO_bottle_c0::m.mSwingSideAnm.mCancelFrame;
         field_0x347c = 4.0f;
     }
 

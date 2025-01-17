@@ -46,8 +46,8 @@ public:
     /* 804CE19C */ int draw();
     /* 804CE214 */ int _delete();
 
-    /* 804CE1F0 */ virtual void setListStart();
     /* 804CCFD8 */ virtual int __CreateHeap();
+    /* 804CE1F0 */ virtual void setListStart();
 
     bool chkStatus(u8 i_status) { return mStatus == i_status; }
     void setStatus(u8 i_status) { mStatus = i_status; }

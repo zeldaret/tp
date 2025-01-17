@@ -317,7 +317,7 @@ void daObjStone_c::mode_proc_call() {
         &daObjStone_c::modeDrop,
         &daObjStone_c::modeCarry,
         &daObjStone_c::modePutWait,
-        &daObjStone_c::modeWait,
+        &daObjStone_c::modeWalk,
         &daObjStone_c::modeBreak,
         &daObjStone_c::modeYogan,
     };

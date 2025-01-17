@@ -846,7 +846,7 @@ int daAlink_c::procCutNormalInit(int i_type) {
         field_0x3480 *= mHeavySpeedMultiplier;
     }
 
-    field_0x3484 = cutData->mCutAnm.mCheckFrame;
+    field_0x3484 = cutData->mCutAnm.mCancelFrame;
 
     f32 morf;
     if (!checkZoraWearAbility() && checkNoResetFlg0(FLG0_UNDERWATER)) {
@@ -1045,7 +1045,7 @@ int daAlink_c::procCutFinishInit(int i_type) {
                         daAlinkHIO_cut_c0::m.mSwordLength, daAlinkHIO_cut_c0::m.mSwordRadius);
         field_0x32d0 = Z2SE_AL_SWORD_SWING_S;
     } else {
-        field_0x3484 = cutData->mCutAnm.mCheckFrame;
+        field_0x3484 = cutData->mCutAnm.mCancelFrame;
         mProcVar0.field_0x3008 = cutData->mStopTime;
         setSwordAtParam(dCcG_At_Spl_UNK_1, 3, cutParams->m_atSe, (var_r30 ? TRUE : FALSE) + 3,
                         daAlinkHIO_cut_c0::m.mSwordLength, daAlinkHIO_cut_c0::m.mSwordRadius);
@@ -1267,7 +1267,7 @@ int daAlink_c::procCutFinishJumpUpLandInit() {
         field_0x3484 = daAlinkHIO_cutFnJU_c0::m.mComboCheckFrame;
         mProcVar0.field_0x3008 = daAlinkHIO_cutFnJU_c0::m.mComboStopTime;
     } else {
-        field_0x3484 = daAlinkHIO_cutFnJU_c0::m.mLandAnm.mCheckFrame;
+        field_0x3484 = daAlinkHIO_cutFnJU_c0::m.mLandAnm.mCancelFrame;
         mProcVar0.field_0x3008 = daAlinkHIO_cutFnJU_c0::m.mStopTime;
     }
 
@@ -1338,13 +1338,13 @@ int daAlink_c::procCutReverseInit(daAlink_c::daAlink_ANM i_anmID) {
     if (i_anmID == ANM_SHIELD_ATTACK_RECOIL) {
         setSingleAnimeParam(i_anmID, &daAlinkHIO_guard_c0::m.mRecoilAnm);
         mProcVar2.field_0x300c = 1;
-        field_0x3478 = daAlinkHIO_guard_c0::m.mRecoilAnm.mCheckFrame;
+        field_0x3478 = daAlinkHIO_guard_c0::m.mRecoilAnm.mCancelFrame;
         field_0x2f98 = 2;
         setUpperGuardAnime(-1.0f);
     } else {
         setSingleAnimeParam(i_anmID, &daAlinkHIO_cut_c0::m.mRecoilAnm);
         mProcVar2.field_0x300c = 0;
-        field_0x3478 = daAlinkHIO_cut_c0::m.mRecoilAnm.mCheckFrame;
+        field_0x3478 = daAlinkHIO_cut_c0::m.mRecoilAnm.mCancelFrame;
         field_0x2f98 = 4;
     }
 
@@ -1509,7 +1509,7 @@ int daAlink_c::procCutJumpLand() {
     {
         procCutTurnInit(1, field_0x3198);
     } else {
-        if (frameCtrl->getFrame() > daAlinkHIO_cutJump_c0::m.mLandAnm.mCheckFrame) {
+        if (frameCtrl->getFrame() > daAlinkHIO_cutJump_c0::m.mLandAnm.mCancelFrame) {
             onModeFlg(4);
 
             if (checkNextAction(1)) {
@@ -1569,7 +1569,7 @@ int daAlink_c::procCutTurnInit(int param_0, int param_1) {
         mProcVar1.field_0x300a = 8;
     }
 
-    field_0x3480 = anm_data->mCheckFrame;
+    field_0x3480 = anm_data->mCancelFrame;
     resetCombo(1);
 
     f32 morf;
@@ -2065,7 +2065,7 @@ int daAlink_c::procCutDownLand() {
             seStartSwordCut(Z2SE_SWORD_STICK_PULLOUT);
         }
 
-        if (frameCtrl_p->getFrame() > daAlinkHIO_cutDown_c0::m.mMissAnm.mCheckFrame) {
+        if (frameCtrl_p->getFrame() > daAlinkHIO_cutDown_c0::m.mMissAnm.mCancelFrame) {
             onModeFlg(4);
             checkNextAction(1);
         }
@@ -2186,7 +2186,7 @@ int daAlink_c::procCutHeadLand() {
         } else {
             checkNextAction(0);
         }
-    } else if (frameCtrl->getFrame() > daAlinkHIO_cutHead_c0::m.mLandAnm.mCheckFrame) {
+    } else if (frameCtrl->getFrame() > daAlinkHIO_cutHead_c0::m.mLandAnm.mCancelFrame) {
         checkNextAction(1);
     }
 
@@ -2366,7 +2366,7 @@ int daAlink_c::procCutLargeJumpLand() {
                field_0x3198 != 2)
     {
         procCutTurnInit(1, field_0x3198);
-    } else if (frameCtrl->getFrame() > daAlinkHIO_cutLargeJump_c0::m.mLandAnm.mCheckFrame) {
+    } else if (frameCtrl->getFrame() > daAlinkHIO_cutLargeJump_c0::m.mLandAnm.mCancelFrame) {
         checkNextAction(1);
     } else if (frameCtrl->getFrame() < daAlinkHIO_cutLargeJump_c0::m.mLandAttackEndFrame) {
         onResetFlg0(RFLG0_UNK_2);
