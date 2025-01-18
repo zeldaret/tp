@@ -49,12 +49,11 @@ static dCcD_SrcCyl ccCylSrc = {
     } // mCyl
 };
 
-static u8 lbl_584_bss_0 = 0;
+static s8 lbl_584_bss_0 = 0;
 
 /* 80CA4BB8-80CA4D98 000078 01E0+00 1/1 0/0 0/0 .text            initCcCylinder__15daObjOCTHASHI_cFv
  */
 void daObjOCTHASHI_c::initCcCylinder() {
-    // NONMATCHING
     if (lbl_584_bss_0 == 0) {
         ccCylSrc.mCyl.mHeight = (f32)(mCylinders + 1) * 800.0f - 100.f;
         lbl_584_bss_0 = 1;
@@ -71,6 +70,7 @@ void daObjOCTHASHI_c::initCcCylinder() {
         mColliders[idx].OnCoSameActorHit();
     }
     mCyl.Set(ccCylSrc);
+    mCyl.SetStts(&field_0x7ac[0]);
     mCyl.SetC(current.pos);
     mCyl.OnCoSameActorHit();
 }
@@ -82,16 +82,15 @@ static int daObjOCTHASHI_Create(fopAc_ac_c* i_this) {
 
 /* 80CA4DB8-80CA4DFC 000278 0044+00 1/0 0/0 0/0 .text daObjOCTHASHI_Delete__FP15daObjOCTHASHI_c */
 static int daObjOCTHASHI_Delete(daObjOCTHASHI_c* i_this) {
-    // NONMATCHING
     fopAcM_GetID(i_this);
     i_this->MoveBGDelete();
+    i_this->GetSound()->deleteObject();
     return 1;
 }
 
 /* 80CA4DFC-80CA4EA4 0002BC 00A8+00 1/1 0/0 0/0 .text            SetCoSph__15daObjOCTHASHI_cFv */
 void daObjOCTHASHI_c::SetCoSph() {
-    // NONMATCHING
-    for (unsigned idx = 0; idx < mCylinders; ++idx) {
+    for (int idx = 0; idx < mCylinders; ++idx) {
         mColliders[idx].OffCoSameActorHit();
         mColliders[idx].SetR(470.0f);
         mColliders[idx].SetC(field_0x5a0[idx]);
@@ -99,19 +98,15 @@ void daObjOCTHASHI_c::SetCoSph() {
     }
 }
 
-/* ############################################################################################## */
-/* 80CA64DC-80CA64E0 00005C 0004+00 1/1 0/0 0/0 .rodata          @3718 */
-SECTION_RODATA static f32 const lit_3718 = 790.0f;
-COMPILER_STRIP_GATE(0x80CA64DC, &lit_3718);
-
 /* 80CA4EA4-80CA4F24 000364 0080+00 1/1 0/0 0/0 .text            SetCoCyl__15daObjOCTHASHI_cFv */
 void daObjOCTHASHI_c::SetCoCyl() {
-    // NONMATCHING
+    mCyl.SetC(current.pos);
+    mCyl.SetH(mCylinders * 790.0f);
+    dComIfG_Ccsp()->Set(&mCyl);
 }
 
 /* 80CA4F24-80CA52F0 0003E4 03CC+00 1/1 0/0 0/0 .text            HakaiSet2__15daObjOCTHASHI_cFi */
 void daObjOCTHASHI_c::HakaiSet2(int param_0) {
-    // NONMATCHING
     for (int idx = param_0 - 1; idx >= 0; --idx) {
         field_0x6d8 += 10.0f;
         field_0x600[idx].set(0.0f, field_0x600[idx + 1].y * 0.8f, field_0x6d8);
@@ -149,10 +144,9 @@ void daObjOCTHASHI_c::HakaiSet2(int param_0) {
 /* 80CA52F0-80CA546C 0007B0 017C+00 1/1 0/0 0/0 .text            HakaiMotion2__15daObjOCTHASHI_cFv
  */
 void daObjOCTHASHI_c::HakaiMotion2() {
-    // NONMATCHING
+    int num_processed = 0;
     cXyz cStack_20(7.0f, 7.0f, 7.0f);
     csXyz cStack_28(0, 0, 0);
-    int num_processed = 0;
     for (int idx = 0; idx < mCylinders; ++idx) {
         field_0x660[idx] += field_0x690[idx];
         field_0x600[idx].y += gravity;
@@ -188,6 +182,17 @@ void daObjOCTHASHI_c::CylAction() {
         }
     }
 }
+
+/* ############################################################################################## */
+/* 80CA64FC-80CA6500 000078 0004+04 0/1 0/0 0/0 .rodata          @3823 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3823 = {
+    /* padding */
+    0.0f,
+};
+COMPILER_STRIP_GATE(0x80CA64FC, &lit_3823);
+#pragma pop
 
 /* ############################################################################################## */
 /* 80CA6500-80CA6508 000080 0008+00 0/0 0/0 0/0 .rodata          @3887 */
@@ -240,18 +245,16 @@ COMPILER_STRIP_GATE(0x80CA6520, &lit_3904);
 
 /* 80CA55C4-80CA5844 000A84 0280+00 1/1 0/0 0/0 .text            SphAction__15daObjOCTHASHI_cFv */
 void daObjOCTHASHI_c::SphAction() {
-    // NONMATCHING
     for (int idx = 0; idx < mCylinders; ++idx) {
-        dCcD_Sph* sph = &mColliders[idx];
-        if (sph->ChkCoHit()) {
-            fopAc_ac_c* hit_actor = dCc_GetAc(sph->GetCoHitObj()->GetAc());
-            if (sph->GetCoHitObj()->GetStts()->GetWeightUc() == 0xff) {
+        if (mColliders[idx].ChkCoHit()) {
+            fopAc_ac_c* hit_actor = dCc_GetAc(mColliders[idx].GetCoHitObj()->GetAc());
+            if (mColliders[idx].GetCoHitObj()->GetStts()->GetWeightUc() == 0xff) {
                 cXyz& hit_actor_pos = fopAcM_GetPosition(hit_actor);
                 field_0x6cc = cLib_targetAngleY(&field_0x5a0[idx], &hit_actor_pos);
                 if (field_0x6c8 == 0) {
                     field_0x6d4 = -40.0f;
                     field_0x6d8 = -40.0f;
-                    field_0x600[idx].set(0.0f, (field_0x5a0[idx].y - hit_actor_pos.y)*0.8f, field_0x6d4);
+                    field_0x600[idx].set(0.0f, (field_0x5a0[idx].y - hit_actor_pos.y)*0.08f, field_0x6d4);
                     field_0x690[idx].x = 0x200;
                     field_0x6dc = -field_0x690[idx].x;
                     field_0x690[idx].y = 0;
@@ -327,7 +330,6 @@ void daObjOCTHASHI_c::Action() {
 
 /* 80CA59BC-80CA5A88 000E7C 00CC+00 1/1 0/0 0/0 .text            setBaseMtx__15daObjOCTHASHI_cFv */
 void daObjOCTHASHI_c::setBaseMtx() {
-    // NONMATCHING
     for (int idx = 0; idx < mCylinders; ++idx) {
         mDoMtx_stack_c::transS(field_0x5a0[idx]);
         mDoMtx_stack_c::ZXYrotM(shape_angle);
@@ -357,7 +359,6 @@ static int daObjOCTHASHI_Execute(daObjOCTHASHI_c* i_this) {
 
 /* 80CA5AE0-80CA5B98 000FA0 00B8+00 1/0 0/0 0/0 .text            CreateHeap__15daObjOCTHASHI_cFv */
 int daObjOCTHASHI_c::CreateHeap() {
-    // NONMATCHING
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName[0], "S_octhashi00.bmd");
 
     if (modelData == NULL) {
@@ -408,7 +409,6 @@ extern actor_process_profile_definition g_profile_OCTHASHI = {
 
 /* 80CA5B98-80CA5EE4 001058 034C+00 1/1 0/0 0/0 .text            create__15daObjOCTHASHI_cFv */
 int daObjOCTHASHI_c::create() {
-    // NONMATCHING
     fopAcM_SetupActor(this, daObjOCTHASHI_c);
     mCylinders = fopAcM_GetParam(this) & 0xff;
     if (mCylinders == 0xff) {
@@ -454,7 +454,6 @@ static bool daObjOCTHASHI_IsDelete(daObjOCTHASHI_c* param_0) {
 
 /* 80CA62A4-80CA62F8 001764 0054+00 1/0 0/0 0/0 .text            Create__15daObjOCTHASHI_cFv */
 int daObjOCTHASHI_c::Create() {
-    // NONMATCHING
     mpBgW->SetRideCallback(rideCallBack);
     fopAcM_setCullSizeBox(this, -1000.0f, -500.0f, -1000.0f, 1000.0f, 500.0f, 1000.0f);
     return 4;
@@ -462,9 +461,8 @@ int daObjOCTHASHI_c::Create() {
 
 /* 80CA62F8-80CA636C 0017B8 0074+00 1/0 0/0 0/0 .text Execute__15daObjOCTHASHI_cFPPA3_A4_f */
 int daObjOCTHASHI_c::Execute(Mtx **i_mtx) {
-    // NONMATCHING
     Action();
-    *i_mtx = &mpModel[0]->getBaseTRMtx();
+    *i_mtx = &mBgMtx;
     setBaseMtx();
     s8 reverb = dComIfGp_getReverb(fopAcM_GetRoomNo(this));
     mSound.framework(0, reverb);
@@ -473,7 +471,6 @@ int daObjOCTHASHI_c::Execute(Mtx **i_mtx) {
 
 /* 80CA636C-80CA6444 00182C 00D8+00 1/0 0/0 0/0 .text            Draw__15daObjOCTHASHI_cFv */
 int daObjOCTHASHI_c::Draw() {
-    // NONMATCHING
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
     for (int idx = 0; idx < mCylinders; ++idx) {
         g_env_light.setLightTevColorType_MAJI(mpModel[idx], &tevStr);

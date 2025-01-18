@@ -32,6 +32,7 @@ public:
     /* 80CA6444 */ int Delete();
 
     void Set_0x6e8(s16 val) { field_0x6e8 = val; }
+    Z2Creature* GetSound() { return &mSound; }
 
 private:
     /* 0x5a0 */ cXyz field_0x5a0[8];
