@@ -31,9 +31,6 @@ public:
     /* 80CA636C */ int Draw();
     /* 80CA6444 */ int Delete();
 
-    void Set_0x6e8(s16 val) { field_0x6e8 = val; }
-    Z2Creature* GetSound() { return &mSound; }
-
 private:
     /* 0x5a0 */ cXyz field_0x5a0[8];
     /* 0x600 */ cXyz field_0x600[8];
@@ -49,10 +46,12 @@ private:
     /* 0x6d8 */ f32 field_0x6d8;
     /* 0x6dc */ s16 field_0x6dc;
     /* 0x6de */ s16 field_0x6de;
-    /* 0x6e0 */ int mCylinders;
+    /* 0x6e0 */ int mPieceNum;
     /* 0x6e4 */ u32 field_0x6e4;
+public:
     /* 0x6e8 */ s16 field_0x6e8;
     /* 0x6ec */ Z2Creature mSound;
+private:
     /* 0x77c */ u8 field_0x77c[4];
     /* 0x780 */ J3DModel* mpModel[8];
     /* 0x7a0 */ u8 field_0x7a0[0x7a4 - 0x7a0];
