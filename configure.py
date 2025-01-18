@@ -1968,7 +1968,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_nan"),
     ActorRel(NonMatching, "d_a_obj_ndoor"),
     ActorRel(NonMatching, "d_a_obj_nougu"),
-    ActorRel(NonMatching, "d_a_obj_octhashi"),
+    ActorRel(Equivalent, "d_a_obj_octhashi"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_oiltubo"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_onsen"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_onsenFire"),

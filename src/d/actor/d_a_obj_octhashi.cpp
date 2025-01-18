@@ -10,6 +10,7 @@
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_bg_w.h"
 #include "d/d_cc_uty.h"
+#include "Z2AudioLib/Z2Instances.h"
 
 //
 // Declarations:
@@ -183,68 +184,16 @@ void daObjOCTHASHI_c::CylAction() {
     }
 }
 
-/* ############################################################################################## */
-/* 80CA64FC-80CA6500 000078 0004+04 0/1 0/0 0/0 .rodata          @3823 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3823 = {
-    /* padding */
-    0.0f,
-};
-COMPILER_STRIP_GATE(0x80CA64FC, &lit_3823);
-#pragma pop
-
-/* ############################################################################################## */
-/* 80CA6500-80CA6508 000080 0008+00 0/0 0/0 0/0 .rodata          @3887 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3887[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80CA6500, &lit_3887);
-#pragma pop
-
-/* 80CA6508-80CA6510 000088 0008+00 0/0 0/0 0/0 .rodata          @3888 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3888[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80CA6508, &lit_3888);
-#pragma pop
-
-/* 80CA6510-80CA6518 000090 0008+00 0/0 0/0 0/0 .rodata          @3889 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3889[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80CA6510, &lit_3889);
-#pragma pop
-
-/* 80CA6518-80CA651C 000098 0004+00 0/0 0/0 0/0 .rodata          @3890 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3890 = 2000.0f;
-COMPILER_STRIP_GATE(0x80CA6518, &lit_3890);
-#pragma pop
-
-/* 80CA651C-80CA6520 00009C 0004+00 0/0 0/0 0/0 .rodata          @3903 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3903 = 608.0f;
-COMPILER_STRIP_GATE(0x80CA651C, &lit_3903);
-#pragma pop
-
-/* 80CA6520-80CA6524 0000A0 0004+00 0/0 0/0 0/0 .rodata          @3904 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3904 = 448.0f;
-COMPILER_STRIP_GATE(0x80CA6520, &lit_3904);
-#pragma pop
-
 /* 80CA55C4-80CA5844 000A84 0280+00 1/1 0/0 0/0 .text            SphAction__15daObjOCTHASHI_cFv */
 void daObjOCTHASHI_c::SphAction() {
+    // The following replace the unused rodata lits:
+    f32 padding[1] = {0.0f};
+    f32 fvals_3887[2] = {1.75f, 0.0f};
+    f32 fvals_3888[2] = {2.125f, 0.0f};
+    f32 fvals_3889[2] = {0.0f, 0.0f};
+    f32 fval_3890[1] = {2000.0f};
+    f32 fval_3903[1] = {608.0f};
+    f32 fval_3904[1] = {448.0f};
     for (int idx = 0; idx < mCylinders; ++idx) {
         if (mColliders[idx].ChkCoHit()) {
             fopAc_ac_c* hit_actor = dCc_GetAc(mColliders[idx].GetCoHitObj()->GetAc());
@@ -357,6 +306,9 @@ static int daObjOCTHASHI_Execute(daObjOCTHASHI_c* i_this) {
     return i_this->MoveBGExecute();
 }
 
+// FIXME: Does this go here?
+static bool daObjOCTHASHI_IsDelete(daObjOCTHASHI_c* param_0);
+
 /* 80CA5AE0-80CA5B98 000FA0 00B8+00 1/0 0/0 0/0 .text            CreateHeap__15daObjOCTHASHI_cFv */
 int daObjOCTHASHI_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName[0], "S_octhashi00.bmd");
@@ -376,9 +328,6 @@ int daObjOCTHASHI_c::CreateHeap() {
 
     return 1;
 }
-
-// FIXME: Does this go here?
-static bool daObjOCTHASHI_IsDelete(daObjOCTHASHI_c* param_0);
 
 /* 80CA65CC-80CA65EC -00001 0020+00 1/0 0/0 0/0 .data            l_daObjOCTHASHI_Method */
 static actor_method_class l_daObjOCTHASHI_Method = {
@@ -425,7 +374,7 @@ int daObjOCTHASHI_c::create() {
             }
         }
         gravity = -1.0f;
-        int dzb_id = dComIfG_getObjctResName2Index(l_arcName[0], "S_octhashi100.dzb");
+        int dzb_id = dComIfG_getObjctResName2Index(l_arcName[0], "S_octhashi00.dzb");
         JUT_ASSERT(958, dzb_id != -1);
         phase = MoveBGCreate(l_arcName[0], dzb_id, dBgS_MoveBGProc_TypicalRotY, iVar1, NULL);
         if (phase == cPhs_ERROR_e) {
@@ -487,5 +436,7 @@ int daObjOCTHASHI_c::Delete() {
     dComIfG_resDelete(&mPhaseReq, l_arcName[0]);
     return 1;
 }
+
+AUDIO_INSTANCES
 
 /* 80CA6550-80CA6550 0000D0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

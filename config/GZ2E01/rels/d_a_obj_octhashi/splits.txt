@@ -11,6 +11,6 @@ REL/executor.c:
 
 d/actor/d_a_obj_octhashi.cpp:
 	.text       start:0x00000078 end:0x00001938
-	.rodata     start:0x00000000 end:0x00000104
+	.rodata     start:0x00000000 end:0x00000103
 	.data       start:0x00000000 end:0x000000FC
-	.bss        start:0x00000000 end:0x00000004
+	.bss        start:0x00000000 end:0x00000001
