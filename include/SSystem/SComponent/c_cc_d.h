@@ -453,6 +453,9 @@ public:
     u32 ChkNoCrr() const { return MskSPrm(0x100); }
     void OnNoCrrBit() { OnSPrmBit(0x100); }
     u32 ChkSph3DCrr() const { return MskSPrm(0x80); }
+    u32 ChkCoSameActorHit() const { return MskSPrm(cCcD_ObjCommonBase::CO_SPRM_SAME_ACTOR_HIT); }
+    void OnCoSameActorHit() { OnSPrmBit(cCcD_ObjCommonBase::CO_SPRM_SAME_ACTOR_HIT); }
+    void OffCoSameActorHit() { OffSPrmBit(cCcD_ObjCommonBase::CO_SPRM_SAME_ACTOR_HIT); }
     void ClrSet() { OffSPrmBit(1); }
     u32 ChkHit() { return MskRPrm(1); }
 
@@ -481,7 +484,9 @@ public:
     bool ChkTgSet() const { return mObjTg.ChkSet(); }
     bool ChkAtSet() const { return mObjAt.ChkSet(); }
     bool ChkCoSet() const { return mObjCo.ChkSet(); }
-    u32 ChkCoSameActorHit() const { return mObjCo.MskSPrm(0x400); }
+    u32 ChkCoSameActorHit() const { return mObjCo.ChkCoSameActorHit(); }
+    void OnCoSameActorHit() { mObjCo.OnCoSameActorHit(); }
+    void OffCoSameActorHit() { mObjCo.OffCoSameActorHit(); }
     u32 GetCoVsGrp() const { return mObjCo.GetVsGrp(); }
     u32 GetCoIGrp() const { return mObjCo.GetIGrp(); }
     u8 GetAtAtp() const { return mObjAt.GetAtp(); }
