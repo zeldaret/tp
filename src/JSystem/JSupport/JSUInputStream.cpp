@@ -5,6 +5,7 @@
 
 #include "JSystem/JSupport/JSUInputStream.h"
 #include "JSystem/JSupport/JSURandomInputStream.h"
+#include <dolphin.h>
 
 //
 // Forward References:
@@ -38,7 +39,11 @@ extern void* __vt__20JSURandomInputStream[9] = {
 };
 
 /* 802DC23C-802DC298 2D6B7C 005C+00 1/0 6/6 0/0 .text            __dt__14JSUInputStreamFv */
-JSUInputStream::~JSUInputStream() {}
+JSUInputStream::~JSUInputStream() {
+    if (!isGood()) {
+        OS_REPORT("JSUInputStream: occur error.\n");
+    }
+}
 
 /* 802DC298-802DC2F0 2D6BD8 0058+00 1/1 20/20 0/0 .text            read__14JSUInputStreamFPvl */
 s32 JSUInputStream::read(void* buffer, s32 numBytes) {
@@ -49,29 +54,46 @@ s32 JSUInputStream::read(void* buffer, s32 numBytes) {
     return bytesRead;
 }
 
+char* JSUInputStream::read(char* str) {
+    u16 sp8;
+    if (readData(&sp8, sizeof(sp8)) != sizeof(sp8)) {
+        *str = 0;
+        setState(IOS_STATE_1);
+        return 0;
+    }
+
+    s32 len = readData(str, sp8);
+    str[len] = 0;
+    if (len != sp8) {
+        setState(IOS_STATE_1);
+    }
+    return str;
+}
+
 /* 802DC2F0-802DC370 2D6C30 0080+00 1/0 0/0 0/0 .text            skip__14JSUInputStreamFl */
 s32 JSUInputStream::skip(s32 count) {
+    u8 buffer;
     s32 skipCount = 0;
-    u8 buffer[1];
-    while (count > skipCount) {
-        if (readData(&buffer, 1) != 1) {
+    for (; skipCount < count; skipCount++) {
+        if (readData(&buffer, sizeof(buffer)) != sizeof(buffer)) {
             setState(IOS_STATE_1);
             break;
         }
-        skipCount++;
     }
+
     return skipCount;
 }
 
 /* 802DC370-802DC3FC 2D6CB0 008C+00 0/0 1/1 0/0 .text            align__20JSURandomInputStreamFl */
 s32 JSURandomInputStream::align(s32 alignment) {
+    s32 seekLen = 0;
     s32 currentPos = getPosition();
-    s32 offset = (alignment + currentPos);
-    offset -= 1;
-    offset &= ~(alignment - 1);
+
+    s32 offset = (alignment - 1 + currentPos) & ~(alignment - 1);
     s32 alignmentOffset = offset - currentPos;
+
     if (alignmentOffset != 0) {
-        s32 seekLen = seekPos(offset, JSUStreamSeekFrom_SET);
+        seekLen = seekPos(offset, JSUStreamSeekFrom_SET);
         if (seekLen != alignmentOffset) {
             setState(IOS_STATE_1);
         }

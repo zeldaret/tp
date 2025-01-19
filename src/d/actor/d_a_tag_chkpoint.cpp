@@ -4,7 +4,7 @@
  */
 
 #include "d/actor/d_a_tag_chkpoint.h"
-#include "cmath.h"
+#include <cmath.h>
 #include "d/actor/d_a_player.h"
 
 /* 8048A6F8-8048A9EC 000078 02F4+00 1/1 0/0 0/0 .text            execute__11daTag_Chk_cFv */

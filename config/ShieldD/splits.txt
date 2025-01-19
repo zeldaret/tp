@@ -4501,10 +4501,7 @@ PowerPC_EABI_Support/Runtime/Src/__va_arg.c:
 
 PowerPC_EABI_Support/Runtime/Src/global_destructor_chain.c:
 	.text       start:0x8061B5BC end:0x8061B61C
-	.sbss       start:0x8074D698 end:0x8074D6A8
-
-PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/errno.c:
-	.sbss       start:0x8074D6A8 end:0x8074D6B0
+	.sbss       start:0x8074D698 end:0x8074D6A0
 
 PowerPC_EABI_Support/Runtime/Src/NMWException.cp:
 	extab       start:0x800067C0 end:0x80006808
@@ -4537,7 +4534,11 @@ PowerPC_EABI_Support/Runtime/Src/GCN_mem_alloc.c:
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/alloc.c:
 	.text       start:0x8061C498 end:0x8061C9AC
 	.rodata     start:0x8065EF58 end:0x8065EF70
+	.sbss       start:0x8074D6A0 end:0x8074D6A8
 	.bss        start:0x8080E550 end:0x8080E588
+
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/errno.c:
+	.sbss       start:0x8074D6A8 end:0x8074D6B0
 
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/ansi_files.c:
 	.text       start:0x8061C9AC end:0x8061CABC

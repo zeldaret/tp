@@ -3,8 +3,10 @@
 
 #include "dolphin/types.h"
 
-enum EIoState {
-    IOS_STATE_1 = 1,
+enum JSUStreamSeekFrom {
+    JSUStreamSeekFrom_SET = 0,  // absolute
+    JSUStreamSeekFrom_CUR = 1,  // relative
+    JSUStreamSeekFrom_END = 2,  // relative to end
 };
 
 /**
@@ -13,6 +15,11 @@ enum EIoState {
 */
 class JSUIosBase {
 public:
+    enum EIoState {
+        IOS_STATE_1 = 1,
+        IOS_STATE_2 = 2,
+    };
+
     JSUIosBase() { mState = false; }
 
     virtual ~JSUIosBase() {}
@@ -22,7 +29,7 @@ public:
     void setState(EIoState state) { mState |= state; }
 
 private:
-    u8 mState;
+    bool mState;
 };  // Size = 0x8
 
 #endif

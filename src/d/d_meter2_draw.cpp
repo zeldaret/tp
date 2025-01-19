@@ -804,7 +804,8 @@ void dMeter2Draw_c::initMagic() {
     JUT_ASSERT(mpMagicFrameL != 0);
 
     mpMagicFrameR =
-        new CPaneMgr(mpKanteraScreen, 'm_w_r_n', 2, NULL) JUT_ASSERT(mpMagicFrameR != 0);
+        new CPaneMgr(mpKanteraScreen, 'm_w_r_n', 2, NULL);
+    JUT_ASSERT(mpMagicFrameR != 0);
 
     mpMagicMeter = new CPaneMgr(mpKanteraScreen, 'mm_00', 0, NULL);
     JUT_ASSERT(mpMagicMeter != 0);

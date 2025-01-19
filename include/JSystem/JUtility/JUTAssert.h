@@ -21,7 +21,7 @@
     JUTAssertion::setConfirmMessage(JUTAssertion::getSDevice(), __FILE__, LINE, COND, #COND)
 
 #else
-#define JUT_ASSERT(...)
+#define JUT_ASSERT(...) (void)0;
 #define JUT_PANIC(...)
 #define JUT_WARN(...)
 #define JUT_LOG(...)

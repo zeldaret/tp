@@ -241,9 +241,11 @@ cflags_runtime = [
     "-str reuse,pool,readonly",
     "-gccinc",
     "-common off",
-    "-inline deferred,auto",
     "-char signed",
 ]
+
+if config.version != "ShieldD":
+    cflags_runtime.extend(["-inline deferred,auto"])
 
 cflags_trk = [
     *cflags_base,
@@ -277,7 +279,7 @@ cflags_framework = [
 ]
 
 if config.version != "ShieldD":
-    cflags_framework.extend(["-O3,s", "-str reuse,pool,readonly"])
+    cflags_framework.extend(["-O3,s", "-sym on", "-str reuse,pool,readonly"])
 
 # REL flags
 cflags_rel = [
@@ -374,6 +376,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01"), "m_Do/m_Do_MemCard.cpp"),
             Object(MatchingFor("GZ2E01"), "m_Do/m_Do_MemCardRWmng.cpp"),
             Object(MatchingFor("GZ2E01"), "m_Do/m_Do_machine_exception.cpp"),
+            Object(NonMatching, "m_Do/m_Do_hostIO.cpp"),
         ],
     },
     {
@@ -937,6 +940,7 @@ config.libs = [
         [
             Object(MatchingFor("GZ2E01"), "JSystem/JSupport/JSUList.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JSupport/JSUInputStream.cpp"),
+            Object(NonMatching, "JSystem/JSupport/JSUOutputStream.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JSupport/JSUMemoryStream.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JSupport/JSUFileStream.cpp"),
         ],
@@ -1051,6 +1055,23 @@ config.libs = [
             Object(MatchingFor("GZ2E01"), "JSystem/JMath/JMath.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JMath/random.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JMath/JMATrigonometric.cpp"),
+        ],
+    ),
+    JSystemLib(
+        "JHostIO",
+        [
+            Object(NonMatching, "JSystem/JHostIO/JHIComm.cpp"),
+            Object(NonMatching, "JSystem/JHostIO/JHICommonMem.cpp"),
+            Object(NonMatching, "JSystem/JHostIO/JORServer.cpp"),
+            Object(NonMatching, "JSystem/JHostIO/JOREntry.cpp"),
+            Object(NonMatching, "JSystem/JHostIO/JORFile.cpp"),
+            Object(NonMatching, "JSystem/JHostIO/JORMessageBox.cpp"),
+            Object(NonMatching, "JSystem/JHostIO/JORHostInfo.cpp"),
+            Object(NonMatching, "JSystem/JHostIO/JORShellExecute.cpp"),
+            Object(NonMatching, "JSystem/JHostIO/JHIMemBuf.cpp"),
+            Object(NonMatching, "JSystem/JHostIO/JHIhioASync.cpp"),
+            Object(NonMatching, "JSystem/JHostIO/JHIMccBuf.cpp"),
+            Object(NonMatching, "JSystem/JHostIO/JHIRMcc.cpp"),
         ],
     ),
     DolphinLib(
