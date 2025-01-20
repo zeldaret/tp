@@ -1393,7 +1393,7 @@ void dMsgObject_c::talkStartInit() {
             mpScrnDraw = pData;
             break;
         case 7:
-            pData = new dMsgScrnStaff_c(((jmessage_tReference*)mpRenProc->getReference())->getArrange())
+            pData = new dMsgScrnStaff_c(((jmessage_tReference*)mpRenProc->getReference())->getArrange());
             JUT_ASSERT(3083, pData != 0);
             mpScrnDraw = pData;
             break;

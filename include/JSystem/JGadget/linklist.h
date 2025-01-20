@@ -1,7 +1,7 @@
 #ifndef LINKLIST_H
 #define LINKLIST_H
 
-#include "dolphin/types.h"
+#include "JSystem/JUtility/JUTAssert.h"
 
 namespace JGadget {
 struct TLinkListNode {
@@ -9,6 +9,8 @@ struct TLinkListNode {
         mNext = NULL;
         mPrev = NULL;
     }
+
+    ~TLinkListNode() {}
 
     TLinkListNode* getNext() const { return mNext; }
     TLinkListNode* getPrev() const { return mPrev; }
@@ -177,21 +179,21 @@ struct TLinkList : public TNodeLinkList {
         /* 0x00 */ TNodeLinkList::const_iterator base;
     };
 
-    static const TLinkListNode* Element_toNode(const T* element) {
-        (void)element;  // Debug-only assert
-        return reinterpret_cast<const TLinkListNode*>(reinterpret_cast<const char*>(element) - I);
+    static TLinkListNode* Element_toNode(T* p) {
+        JUT_ASSERT(0x2F1, p!=0);
+        return reinterpret_cast<TLinkListNode*>(reinterpret_cast<char*>(p) - I);
     }
-    static TLinkListNode* Element_toNode(T* element) {
-        (void)element;  // Debug-only assert
-        return reinterpret_cast<TLinkListNode*>(reinterpret_cast<char*>(element) - I);
+    static const TLinkListNode* Element_toNode(const T* p) {
+        JUT_ASSERT(0x2F6, p!=0);
+        return reinterpret_cast<const TLinkListNode*>(reinterpret_cast<const char*>(p) - I);
     }
-    static const T* Element_toValue(const TLinkListNode* node) {
-        (void)node;  // Debug-only assert
-        return reinterpret_cast<const T*>(reinterpret_cast<const char*>(node) + I);
+    static T* Element_toValue(TLinkListNode* p) {
+        JUT_ASSERT(0x2FB, p!=0);
+        return reinterpret_cast<T*>(reinterpret_cast<char*>(p) + I);
     }
-    static T* Element_toValue(TLinkListNode* node) {
-        (void)node;  // Debug-only assert
-        return reinterpret_cast<T*>(reinterpret_cast<char*>(node) + I);
+    static const T* Element_toValue(const TLinkListNode* p) {
+        JUT_ASSERT(0x300, p!=0);
+        return reinterpret_cast<const T*>(reinterpret_cast<const char*>(p) + I);
     }
 
     iterator Insert(iterator iter, T* element) {
