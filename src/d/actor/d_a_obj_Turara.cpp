@@ -144,7 +144,6 @@ extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
@@ -439,15 +438,11 @@ SECTION_RODATA static u8 const l_bmdIdx[8] = {
 };
 COMPILER_STRIP_GATE(0x80B9E938, &l_bmdIdx);
 
-/* 80B9E970-80B9E970 00007C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80B9E970 = "M_Turara";
-#pragma pop
 
 /* 80B9CD74-80B9CED8 0002D4 0164+00 1/0 0/0 0/0 .text            CreateHeap__10daTurara_cFv */
-void daTurara_c::CreateHeap() {
+int daTurara_c::CreateHeap() {
     // NONMATCHING
+    return 0;
 }
 
 /* ############################################################################################## */
@@ -475,8 +470,22 @@ SECTION_RODATA static u8 const lit_3825[4] = {
 COMPILER_STRIP_GATE(0x80B9E948, &lit_3825);
 
 /* 80B9CED8-80B9D29C 000438 03C4+00 1/1 0/0 0/0 .text            create__10daTurara_cFv */
-void daTurara_c::create() {
+int daTurara_c::create() {
     // NONMATCHING
+    fopAcM_SetupActor(this, daTurara_c);
+    //getSwBit3(this);
+    u8 my_bit = getSwBit3();
+    if (fopAcM_isSwitch(this, my_bit)) {
+        return cPhs_ERROR_e;
+    }
+    int phase = dComIfG_resLoad(&mPhaseReq,"M_Turara");
+    if (phase == cPhs_COMPLEATE_e) {
+        field_0x98c = shape_angle.x;
+        if (MoveBGCreate("M_Turara", 0xc, dBgS_MoveBGProc_TypicalRotY, 0x2180, NULL) == cPhs_ERROR_e) {
+            return cPhs_ERROR_e;
+        }
+    }
+    return 0;
 }
 
 /* 80B9D29C-80B9D30C 0007FC 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
@@ -515,7 +524,7 @@ void daTurara_c::setFallStat() {
 }
 
 /* 80B9D4CC-80B9D548 000A2C 007C+00 1/0 0/0 0/0 .text            Execute__10daTurara_cFPPA3_A4_f */
-void daTurara_c::Execute(f32 (**param_0)[3][4]) {
+int daTurara_c::Execute(Mtx**) {
     // NONMATCHING
 }
 
@@ -589,8 +598,9 @@ void daTurara_c::modeWait() {
 }
 
 /* 80B9D998-80B9D9BC 000EF8 0024+00 2/1 0/0 0/0 .text            eventStart__10daTurara_cFv */
-void daTurara_c::eventStart() {
+BOOL daTurara_c::eventStart() {
     // NONMATCHING
+    return FALSE;
 }
 
 /* 80B9D9BC-80B9DA00 000F1C 0044+00 1/1 0/0 0/0 .text            init_modeDropInit__10daTurara_cFv
@@ -656,13 +666,15 @@ void daTurara_c::modeDropEnd2() {
 }
 
 /* 80B9E388-80B9E478 0018E8 00F0+00 1/0 0/0 0/0 .text            Draw__10daTurara_cFv */
-void daTurara_c::Draw() {
+int daTurara_c::Draw() {
     // NONMATCHING
+    return 0;
 }
 
 /* 80B9E478-80B9E4E0 0019D8 0068+00 1/0 0/0 0/0 .text            Delete__10daTurara_cFv */
-void daTurara_c::Delete() {
+int daTurara_c::Delete() {
     // NONMATCHING
+    return 0;
 }
 
 /* 80B9E4E0-80B9E50C 001A40 002C+00 1/0 0/0 0/0 .text            daTurara_Draw__FP10daTurara_c */
