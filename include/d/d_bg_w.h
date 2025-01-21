@@ -220,6 +220,7 @@ public:
     bool ChkNoCalcVtx() { return mFlags & NO_CALC_VTX_e; }
     bool ChkFlush() { return field_0x91 & 8; }
     void SetLock() { mFlags |= LOCK_e; }
+    void OffRoofRegist() { field_0x91 |= 0x4; }
     bool ChkRoofRegist() { return field_0x91 & 4;}
     cBgD_Vtx_t* GetVtxTbl() const { return pm_vtx_tbl; }
     int GetVtxNum() const { return pm_bgd->m_v_num; }

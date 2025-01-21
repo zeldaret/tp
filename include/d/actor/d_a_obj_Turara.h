@@ -21,6 +21,7 @@ struct fakeTuraraPadding {
 class daTurara_c : public dBgS_MoveBgActor, public fakeTuraraPadding, public dEvLib_callback_c {
 public:
     daTurara_c() : dEvLib_callback_c(this) {}
+    /* 80B9E710 */ ~daTurara_c() {}
 
     /* 80B9CC9C */ void setBaseMtx();
     /* 80B9CD74 */ int CreateHeap();
@@ -42,7 +43,6 @@ public:
     /* 80B9E338 */ void modeDropEnd2();
     /* 80B9E388 */ int Draw();
     /* 80B9E478 */ int Delete();
-    /* 80B9E710 */ ~daTurara_c();
 
     u8 getSwBit1() { return fopAcM_GetParamBit(this, 0, 8); }
     u8 getSwBit2() { return fopAcM_GetParamBit(this, 8, 8); }
@@ -54,8 +54,10 @@ public:
     }
 
     u8 getWaitTime() { return shape_angle.z; }
+    // return (uint)(int)*(short *)(this + 0x4e8) >> 8 & 0xff;
+    int getItemTbleNum() { return shape_angle.x >> 8 & 0xff; }
 
-    static u8 const mCcDObjInfo[48];
+    static const dCcD_SrcGObjInf mCcDObjInfo;
     static dCcD_SrcCyl mCcDCyl;
 
 private:
@@ -90,13 +92,13 @@ STATIC_ASSERT(sizeof(daTurara_c) == 0x998);
 class daTurara_HIO_c : public fOpAcm_HIO_entry_c {
 public:
     /* 80B9CB8C */ daTurara_HIO_c();
-    /* 80B9E5B4 */ virtual ~daTurara_HIO_c();
+    /* 80B9E5B4 */ virtual ~daTurara_HIO_c() {}
 
     /* 0x04 */ f32 field_0x04;
     /* 0x08 */ f32 mGravity;
     /* 0x0c */ f32 mMaxGravity;
     /* 0x10 */ u8 mWaitTime;
-    /* 0x11 */ u8 field_0x11;
+    /* 0x11 */ u8 mShockStrength;
     /* 0x14 */ f32 field_0x14;
     /* 0x18 */ f32 field_0x18;
     /* 0x1c */ f32 field_0x1c;
