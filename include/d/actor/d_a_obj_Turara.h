@@ -44,35 +44,64 @@ public:
     /* 80B9E478 */ int Delete();
     /* 80B9E710 */ ~daTurara_c();
 
-    u8 getSwBit3() { return fopAcM_GetParamBit(this, 8, 8); }
+    u8 getSwBit1() { return fopAcM_GetParamBit(this, 0, 8); }
+    u8 getSwBit2() { return fopAcM_GetParamBit(this, 8, 8); }
+    u8 getSwBit3() { return fopAcM_GetParamBit(this, 16, 8); }
+
+    // Copied from syRock.
+    s32 getEvetID() {
+        return fopAcM_GetParamBit(this, 0x18, 8);
+    }
+
+    u8 getWaitTime() { return shape_angle.z; }
 
     static u8 const mCcDObjInfo[48];
-    static u8 mCcDCyl[68];
+    static dCcD_SrcCyl mCcDCyl;
 
 private:
     /* 0x5b8 */ request_of_phase_process_class mPhaseReq;
-    /* 0x5c0 */ J3DModel* mpModel;
-    /* 0x5c4 */ int field_0x5c4;
-    /* 0x5c8 */ u8 field_0x5c8;
+    /* 0x5c0 */ J3DModel* mpModel[2];
+    /* 0x5c8 */ u8 mMode;
     /* 0x5c9 */ u8 field_0x5c9;
     /* 0x5cc */ dCcD_Stts mColliderStts;
     /* 0x608 */ dCcD_Cyl mCylCollider;
-    /* match_right */ u8 field_match_right[0x768 - 0x744];
+    /* 0x744 */ u8 mWaitTime;
+    /* 0x748 */ u32 field_0x748;
+    /* 0x74c */ f32 field_0x74c;
+    /* 0x750 */ s16 field_0x750;
+    /* 0x752 */ s16 field_0x752;
+    /* 0x754 */ s16 field_0x754;
+    /* 0x758 */ f32 field_0x758;
+    /* 0x75c */ f32 field_0x75c;
+    /* 0x760 */ f32 field_0x760;
+    /* 0x764 */ u8 mInWater;
     /* 0x768 */ dBgS_AcchCir mAcchCir;
     /* 0x7a8 */ dBgS_ObjAcch mAcch;
-    /* 0x980 */ cBgW* field_0x980;
+    /* 0x980 */ dBgW* field_0x980;
     /* 0x984 */ u8 field_0x984;
     /* 0x988 */ u32 field_0x988;
     /* 0x98c */ u8 field_0x98c;
-    /* match_right */ u8 field_match_right2[0x998 - 0x98f];
+    /* 0x98d */ u8 field_0x98d[0x994 - 0x98d];
+    /* 0x994 */ u8 field_0x994;
 };
 
 STATIC_ASSERT(sizeof(daTurara_c) == 0x998);
 
-class daTurara_HIO_c {
+class daTurara_HIO_c : public fOpAcm_HIO_entry_c {
 public:
     /* 80B9CB8C */ daTurara_HIO_c();
-    /* 80B9E5B4 */ ~daTurara_HIO_c();
+    /* 80B9E5B4 */ virtual ~daTurara_HIO_c();
+
+    /* 0x04 */ f32 field_0x04;
+    /* 0x08 */ f32 mGravity;
+    /* 0x0c */ f32 mMaxGravity;
+    /* 0x10 */ u8 mWaitTime;
+    /* 0x11 */ u8 field_0x11;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 field_0x18;
+    /* 0x1c */ f32 field_0x1c;
 };
+
+STATIC_ASSERT(sizeof(daTurara_HIO_c) == 0x20);
 
 #endif /* D_A_OBJ_TURARA_H */
