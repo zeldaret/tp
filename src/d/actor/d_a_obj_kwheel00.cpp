@@ -17,7 +17,6 @@ static int daObjKWheel00_MoveBGDraw(daObjKWheel00_c*);
 
 #ifdef DEBUG
 static daObjKWheel00_HIO_c l_HIO;
-#endif
 
 daObjKWheel00_HIO_c::daObjKWheel00_HIO_c() {
     mTargetZAngularSpeed = 64;
@@ -34,6 +33,7 @@ void daObjKWheel00_HIO_c::genMessage(JORMContext* ctx) {
     // "Rotational acceleration(short)"
     ctx->genSlider("回転加速度(short)",&mZAngularAcceleration, 0, 32, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 }
+#endif
 
 /* ############################################################################################## */
 /* 80C4E800-80C4E808 000000 0008+00 2/2 0/0 0/0 .rodata          l_dzbidx */
@@ -56,8 +56,10 @@ int daObjKWheel00_c::create1st() {
         if(phase == cPhs_ERROR_e)
             return phase;
 
+        #ifdef DEBUG
         // "Water wheel(Lv3)"
         l_HIO.entryHIO("水車(Lv3)");
+        #endif
     }
     return phase;
 
@@ -337,7 +339,10 @@ int daObjKWheel00_c::Draw() {
 /* 80C4E254-80C4E298 000BD4 0044+00 1/0 0/0 0/0 .text            Delete__15daObjKWheel00_cFv */
 int daObjKWheel00_c::Delete() {
     dComIfG_resDelete(this, l_arcName[m_type]);
+
+    #ifdef DEBUG
     l_HIO.removeHIO();
+    #endif
 
     return 1;
 }

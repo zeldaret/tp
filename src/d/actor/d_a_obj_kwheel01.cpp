@@ -28,12 +28,11 @@ static const int l_bmdidx[2] = {4, 5};
 /* 80C4F6F8-80C4F6FC -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 static const char* l_arcName = "K_Wheel01";
 
-#ifdef DEBUG
-static daObjKWheel01_HIO_c l_HIO;
-#endif
-
 // Likely to have been a macro; matches for loop at beginning of create1st for both debug and retail, despite retail only calling getArg4567()
 #define CHECK_KLIFT_EXISTS(kLiftNum) (!((1 << kLiftNum) & getArg4567()))
+
+#ifdef DEBUG
+static daObjKWheel01_HIO_c l_HIO;
 
 daObjKWheel01_HIO_c::daObjKWheel01_HIO_c() {
     mTargetYAngularSpeed = 64;
@@ -50,6 +49,7 @@ void daObjKWheel01_HIO_c::genMessage(JORMContext* ctx) {
     // "Rotational acceleration"
     ctx->genSlider("回転加速度", &mYAngularAcceleration, 0, 0x20, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 }
+#endif
 
 /* 80C4F6FC-80C4F72C 000004 0030+00 3/3 0/0 0/0 .data            l_pos */
 static Vec l_pos[4] = {
@@ -99,8 +99,10 @@ cPhs__Step daObjKWheel01_c::create1st() {
         }
     }
 
+    #ifdef DEBUG
     // "Pulley(Lv3)"
     l_HIO.entryHIO("滑車(Lv3)");
+    #endif
 
     return phase;
 }
@@ -309,7 +311,10 @@ int daObjKWheel01_c::Draw() {
 /* 80C4F3E8-80C4F498 0009E8 00B0+00 1/0 0/0 0/0 .text            Delete__15daObjKWheel01_cFv */
 int daObjKWheel01_c::Delete() {
     dComIfG_resDelete(this, l_arcName);
+
+    #ifdef DEBUG
     l_HIO.removeHIO();
+    #endif
 
     for(int i = 0; i < 4; i++) {
         if(CHECK_KLIFT_EXISTS(i) && mKLiftCollisions[i] && mKLiftCollisions[i]->ChkUsed())

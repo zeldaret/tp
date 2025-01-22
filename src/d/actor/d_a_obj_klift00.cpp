@@ -17,9 +17,7 @@ static int daObjKLift00_MoveBGDraw(daObjKLift00_c*);
 
 #ifdef DEBUG
 static daObjKLift00_HIO_c l_HIO;
-#endif
 
-#ifdef DEBUG
 daObjKLift00_HIO_c::daObjKLift00_HIO_c() {
     mChainGravity = -20.0f;
     mRideParameters = 0.0025f;
@@ -29,7 +27,6 @@ daObjKLift00_HIO_c::daObjKLift00_HIO_c() {
     mChainHitSpeed = 15.0f;
     field_0x1C = 1.0f;
 }
-#endif
 
 void daObjKLift00_HIO_c::genMessage(JORMContext* ctx) {
     // "Foothold"
@@ -56,6 +53,7 @@ void daObjKLift00_HIO_c::genMessage(JORMContext* ctx) {
     // "Hammer adjustment"
     ctx->genSlider("ハンマー調整", &field_0x1C, 0.0, 10.0, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 }
+#endif
 
 /* 8058AF38-8058AF60 000078 0028+00 1/1 0/0 0/0 .text
  * rideCallBack__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c              */
@@ -145,7 +143,9 @@ cPhs__Step daObjKLift00_c::create1st() {
     }
 
     // "Foothold(Lv3)"
+    #ifdef DEBUG
     l_HIO.entryHIO("足場(Lv3)");
+    #endif
 
     return phase;
 }
@@ -485,7 +485,10 @@ int daObjKLift00_c::Draw() {
 /* 8058C014-8058C050 001154 003C+00 1/0 0/0 0/0 .text            Delete__14daObjKLift00_cFv */
 int daObjKLift00_c::Delete() {
     dComIfG_resDelete(this, l_arcName);
+
+    #ifdef DEBUG
     l_HIO.removeHIO();
+    #endif
 
     return 1;
 }
