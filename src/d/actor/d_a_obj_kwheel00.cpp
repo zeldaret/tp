@@ -4,9 +4,11 @@
 */
 
 #include "d/actor/d_a_obj_kwheel00.h"
+#include "JSystem/JHostIO/JORMContext.h"
 #include "d/actor/d_a_obj_lv3Water.h"
 #include "d/d_com_inf_game.h"
 #include "SSystem/SComponent/c_math.h"
+#include "m_Do/m_Do_hostIO.h"
 
 static int daObjKWheel00_create1st(daObjKWheel00_c*);
 static int daObjKWheel00_MoveBGDelete(daObjKWheel00_c*);
@@ -20,6 +22,17 @@ static daObjKWheel00_HIO_c l_HIO;
 daObjKWheel00_HIO_c::daObjKWheel00_HIO_c() {
     mTargetZAngularSpeed = 64;
     mZAngularAcceleration = 2;
+}
+
+void daObjKWheel00_HIO_c::genMessage(JORMContext* ctx) {
+    // "Water wheel"
+    ctx->genLabel("水車", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+
+    // "Rotational speed(short)"
+    ctx->genSlider("回転速度(short)",&mTargetZAngularSpeed, 0, 0x4000, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+
+    // "Rotational acceleration(short)"
+    ctx->genSlider("回転加速度(short)",&mZAngularAcceleration, 0, 32, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 }
 
 /* ############################################################################################## */
@@ -43,13 +56,8 @@ int daObjKWheel00_c::create1st() {
         if(phase == cPhs_ERROR_e)
             return phase;
 
-        /* 
-        TODO
-        "Waterwheel(Lv3)"
-
-        if(phase != cPhs_ERROR_e)
-            entryHIO(&l_HIO, "水車(Lv3)")
-        */
+        // "Water wheel(Lv3)"
+        l_HIO.entryHIO("水車(Lv3)");
     }
     return phase;
 
@@ -329,6 +337,7 @@ int daObjKWheel00_c::Draw() {
 /* 80C4E254-80C4E298 000BD4 0044+00 1/0 0/0 0/0 .text            Delete__15daObjKWheel00_cFv */
 int daObjKWheel00_c::Delete() {
     dComIfG_resDelete(this, l_arcName[m_type]);
+    l_HIO.removeHIO();
 
     return 1;
 }

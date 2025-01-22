@@ -72,13 +72,15 @@ struct daObjKLift00_HIO_c : public mDoHIO_entry_c {
     daObjKLift00_HIO_c();
     ~daObjKLift00_HIO_c() {};
 
-    /* 0x04 */ f32 mChainGravity;  // "チェイン重力" "Chain gravity" | Slider
-    /* 0x08 */ f32 mRideParameters;  // "Ride パラメータ" "Ride parameters" | Slider
-    /* 0x0C */ f32 mWindSwayOccuranceFactor;  // "風影響発生率" "Wind effect occurence rate" | Slider
-    /* 0x10 */ f32 mWindMagnitudeChain;  // "鎖・風" "Chain・Wind" | Slider
-    /* 0x14 */ f32 mWindMagnitudeFoundation;  // "土台・風" "Foundation・Wind" | Slider
-    /* 0x18 */ f32 mChainHitSpeed;  // "鎖ヒット速度" "Chain hit speed" | Slider
-    /* 0x1C */ f32 field_0x1C;  // "ハンマー調整" "Hammer adjustment" | Slider
+    void genMessage(JORMContext*);
+
+    /* 0x04 */ f32 mChainGravity;
+    /* 0x08 */ f32 mRideParameters;
+    /* 0x0C */ f32 mWindSwayOccuranceFactor;
+    /* 0x10 */ f32 mWindMagnitudeChain;
+    /* 0x14 */ f32 mWindMagnitudeFoundation;
+    /* 0x18 */ f32 mChainHitSpeed;
+    /* 0x1C */ f32 field_0x1C;
 };
 
 #endif /* D_A_OBJ_KLIFT00_H */

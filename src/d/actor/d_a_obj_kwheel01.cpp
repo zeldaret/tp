@@ -4,6 +4,7 @@
 */
 
 #include "d/actor/d_a_obj_kwheel01.h"
+#include "JSystem/JHostIO/JORMContext.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_obj_klift00.h"
 #include "d/actor/d_a_obj_kwheel00.h"
@@ -19,6 +20,10 @@ static int daObjKWheel01_MoveBGDraw(daObjKWheel01_c*);
 /* 80C4F6B8-80C4F6C4 000000 000C+00 2/2 0/0 0/0 .rodata          l_dzbidx */
 static const u32 l_dzbidx[3] = {9, 8, 10};
 
+/* ############################################################################################## */
+/* 80C4F6C4-80C4F6CC 00000C 0008+00 1/1 0/0 0/0 .rodata          l_bmdidx */
+static const int l_bmdidx[2] = {4, 5};
+
 
 /* 80C4F6F8-80C4F6FC -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 static const char* l_arcName = "K_Wheel01";
@@ -33,6 +38,17 @@ static daObjKWheel01_HIO_c l_HIO;
 daObjKWheel01_HIO_c::daObjKWheel01_HIO_c() {
     mTargetYAngularSpeed = 64;
     mYAngularAcceleration = 2;
+}
+
+void daObjKWheel01_HIO_c::genMessage(JORMContext* ctx) {
+    // "Pulley"
+    ctx->genLabel("滑車", 0, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+
+    // "Rotational speed"
+    ctx->genSlider("回転速度", &mTargetYAngularSpeed, 0, 0x2000, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+
+    // "Rotational acceleration"
+    ctx->genSlider("回転加速度", &mYAngularAcceleration, 0, 0x20, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 }
 
 /* 80C4F6FC-80C4F72C 000004 0030+00 3/3 0/0 0/0 .data            l_pos */
@@ -82,6 +98,9 @@ cPhs__Step daObjKWheel01_c::create1st() {
                 return cPhs_ERROR_e;
         }
     }
+
+    // "Pulley(Lv3)"
+    l_HIO.entryHIO("滑車(Lv3)");
 
     return phase;
 }
@@ -290,6 +309,7 @@ int daObjKWheel01_c::Draw() {
 /* 80C4F3E8-80C4F498 0009E8 00B0+00 1/0 0/0 0/0 .text            Delete__15daObjKWheel01_cFv */
 int daObjKWheel01_c::Delete() {
     dComIfG_resDelete(this, l_arcName);
+    l_HIO.removeHIO();
 
     for(int i = 0; i < 4; i++) {
         if(CHECK_KLIFT_EXISTS(i) && mKLiftCollisions[i] && mKLiftCollisions[i]->ChkUsed())

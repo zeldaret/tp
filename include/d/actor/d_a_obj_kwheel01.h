@@ -72,8 +72,10 @@ struct daObjKWheel01_HIO_c : public mDoHIO_entry_c {
     daObjKWheel01_HIO_c();
     ~daObjKWheel01_HIO_c() {};
 
-    /* 0x4 */ s16 mTargetYAngularSpeed;    // "回転速度(short)" "Rotational speed(short)" | Slider
-    /* 0x6 */ s16 mYAngularAcceleration;    // "回転加速度(short) "Rotational acceleration(short)" | Slider
+    void genMessage(JORMContext*);
+
+    /* 0x4 */ s16 mTargetYAngularSpeed;
+    /* 0x6 */ s16 mYAngularAcceleration;
 };
 
 #endif /* D_A_OBJ_KWHEEL01_H */

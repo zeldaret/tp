@@ -4,6 +4,7 @@
 */
 
 #include "d/actor/d_a_obj_klift00.h"
+#include "JSystem/JHostIO/JORMContext.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_bg_w.h"
 #include "d/d_cc_uty.h"
@@ -29,6 +30,32 @@ daObjKLift00_HIO_c::daObjKLift00_HIO_c() {
     field_0x1C = 1.0f;
 }
 #endif
+
+void daObjKLift00_HIO_c::genMessage(JORMContext* ctx) {
+    // "Foothold"
+    ctx->genLabel("足場", 0, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+
+    // "Chain gravity"
+    ctx->genSlider("チェイン重力", &mChainGravity, -40.0, 0.0, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+
+    // "Ride parameters"
+    ctx->genSlider("Ride パラメータ", &mRideParameters, 0.0, 0.1, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+
+    // "Wind effect occurence rate"
+    ctx->genSlider("風影響発生率", &mWindSwayOccuranceFactor, 0.0, 0.5, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+
+    // "Chain・Wind"
+    ctx->genSlider("鎖・風", &mWindMagnitudeChain, 0.0, 1000.0, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+
+    // "Foundation・Wind"
+    ctx->genSlider("土台・風", &mWindMagnitudeFoundation, 0.0, 1000.0, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+
+    // "Chain hit speed"
+    ctx->genSlider("鎖ヒット速度", &mChainHitSpeed, 0.0, 50.0, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+
+    // "Hammer adjustment"
+    ctx->genSlider("ハンマー調整", &field_0x1C, 0.0, 10.0, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+}
 
 /* 8058AF38-8058AF60 000078 0028+00 1/1 0/0 0/0 .text
  * rideCallBack__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c              */
@@ -116,6 +143,9 @@ cPhs__Step daObjKLift00_c::create1st() {
         if(phase == cPhs_ERROR_e)
             return phase;
     }
+
+    // "Foothold(Lv3)"
+    l_HIO.entryHIO("足場(Lv3)");
 
     return phase;
 }
@@ -455,6 +485,8 @@ int daObjKLift00_c::Draw() {
 /* 8058C014-8058C050 001154 003C+00 1/0 0/0 0/0 .text            Delete__14daObjKLift00_cFv */
 int daObjKLift00_c::Delete() {
     dComIfG_resDelete(this, l_arcName);
+    l_HIO.removeHIO();
+
     return 1;
 }
 
