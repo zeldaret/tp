@@ -4,23 +4,10 @@
 */
 
 #include "d/actor/d_a_obj_klift00.h"
-#include "SSystem/SComponent/c_cc_d.h"
-#include "SSystem/SComponent/c_m3d.h"
 #include "SSystem/SComponent/c_math.h"
-#include "Z2AudioLib/Z2AudioMgr.h"
-#include "d/actor/d_a_player.h"
 #include "d/d_bg_w.h"
-#include "d/d_cc_d.h"
 #include "d/d_cc_uty.h"
 #include "d/d_com_inf_game.h"
-#include "d/d_kankyo_wether.h"
-#include "f_op/f_op_actor.h"
-#include "f_op/f_op_actor_mng.h"
-#include "m_Do/m_Do_audio.h"
-#include "m_Do/m_Do_controller_pad.h"
-#include "mtx/vec.h"
-#include "os.h"
-
 
 static int daObjKLift00_create1st(daObjKLift00_c*);
 static int daObjKLift00_MoveBGDelete(daObjKLift00_c*);

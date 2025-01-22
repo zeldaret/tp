@@ -1,13 +1,10 @@
 #ifndef D_A_OBJ_KWHEEL01_H
 #define D_A_OBJ_KWHEEL01_H
 
-#include "SSystem/SComponent/c_phase.h"
-#include "d/actor/d_a_obj_klift00.h"
+
 #include "d/d_bg_s_movebg_actor.h"
 #include "d/d_event_lib.h"
-#include "f_op/f_op_actor.h"
 #include "f_op/f_op_actor_mng.h"
-#include "d/d_bg_w.h"
 
 /**
  * @ingroup actors-objects
