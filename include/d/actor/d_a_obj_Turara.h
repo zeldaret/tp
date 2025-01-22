@@ -48,13 +48,11 @@ public:
     u8 getSwBit2() { return fopAcM_GetParamBit(this, 8, 8); }
     u8 getSwBit3() { return fopAcM_GetParamBit(this, 16, 8); }
 
-    // Copied from syRock.
     s32 getEvetID() {
         return fopAcM_GetParamBit(this, 0x18, 8);
     }
 
     u8 getWaitTime() { return shape_angle.z; }
-    // return (uint)(int)*(short *)(this + 0x4e8) >> 8 & 0xff;
     int getItemTbleNum() { return shape_angle.x >> 8 & 0xff; }
 
     static const dCcD_SrcGObjInf mCcDObjInfo;

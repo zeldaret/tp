@@ -44,14 +44,14 @@ daTurara_HIO_c::daTurara_HIO_c() {
 
 /* 80B9CC9C-80B9CD74 0001FC 00D8+00 2/2 0/0 0/0 .text            setBaseMtx__10daTurara_cFv */
 void daTurara_c::setBaseMtx() {
-    // NONMATCHING
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(0, shape_angle.y, 0);
     mDoMtx_stack_c::ZXYrotM(field_0x750, field_0x752, field_0x754);
     mDoMtx_stack_c::transM(field_0x758, field_0x75c, field_0x760);
     mpModel[field_0x984]->setBaseScale(scale);
     mpModel[field_0x984]->setBaseTRMtx(mDoMtx_stack_c::get());
-    // FIXME: Shouldn't the following be C_MTXCopy for shield debug?
+    // when compiling in debug mode, the macro uses the C (C_) equivalent functions
+    //  and in retail it uses the PS versions.
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
 
@@ -88,7 +88,6 @@ static u32 const l_bmdIdx[2] = {5, 8};
 
 /* 80B9CD74-80B9CED8 0002D4 0164+00 1/0 0/0 0/0 .text            CreateHeap__10daTurara_cFv */
 int daTurara_c::CreateHeap() {
-    // NONMATCHING
     J3DModelData* modelData = (J3DModelData*) dComIfG_getObjectRes("M_Turara", l_bmdIdx[field_0x98c]);
 
     if (modelData == NULL) {
@@ -123,7 +122,6 @@ int daTurara_c::CreateHeap() {
 
 /* 80B9CED8-80B9D29C 000438 03C4+00 1/1 0/0 0/0 .text            create__10daTurara_cFv */
 int daTurara_c::create() {
-    // NONMATCHING
     fopAcM_SetupActor(this, daTurara_c);
     u8 my_bit = getSwBit3();
     if (fopAcM_isSwitch(this, my_bit)) {
@@ -194,7 +192,6 @@ int daTurara_c::create() {
 
 /* 80B9D468-80B9D4CC 0009C8 0064+00 1/1 0/0 0/0 .text            setFallStat__10daTurara_cFv */
 void daTurara_c::setFallStat() {
-    // NONMATCHING
     mAcch.CrrPos(dComIfG_Bgsp());
     current.pos.y = mAcch.GetGroundH();
     mAcch.CrrPos(dComIfG_Bgsp());
@@ -203,7 +200,6 @@ void daTurara_c::setFallStat() {
 
 /* 80B9D4CC-80B9D548 000A2C 007C+00 1/0 0/0 0/0 .text            Execute__10daTurara_cFPPA3_A4_f */
 int daTurara_c::Execute(Mtx** i_mtx) {
-    // NONMATCHING
     eventUpdate();
     move();
     *i_mtx = &mpModel[field_0x984]->getBaseTRMtx();
@@ -215,7 +211,6 @@ int daTurara_c::Execute(Mtx** i_mtx) {
 
 /* 80B9D548-80B9D72C 000AA8 01E4+00 1/1 0/0 0/0 .text            move__10daTurara_cFv */
 void daTurara_c::move() {
-    // NONMATCHING
     typedef void (daTurara_c::*modeFunc)();
     static modeFunc mode_proc[] = {&daTurara_c::modeWait, &daTurara_c::modeDropInit,
                                    &daTurara_c::modeDrop, &daTurara_c::modeDropEnd,
@@ -239,13 +234,11 @@ void daTurara_c::move() {
 
 /* 80B9D72C-80B9D738 000C8C 000C+00 1/1 0/0 0/0 .text            init_modeWait__10daTurara_cFv */
 void daTurara_c::init_modeWait() {
-    // NONMATCHING
     mMode = 0;
 }
 
 /* 80B9D738-80B9D998 000C98 0260+00 1/0 0/0 0/0 .text            modeWait__10daTurara_cFv */
 void daTurara_c::modeWait() {
-    // NONMATCHING
     if (field_0x5c9 != 0xff && fopAcM_isSwitch(this, field_0x5c9)) {
         if (getEvetID() != 0xff) {
             orderEvent(getEvetID(), 0xFF, 1);
@@ -266,7 +259,7 @@ void daTurara_c::modeWait() {
             dComIfGp_particle_set(0x8a90, &current.pos, NULL, NULL, NULL, 0xff, NULL, -1, NULL, NULL, NULL);
             dComIfGp_particle_set(0x8a91, &current.pos, NULL, NULL, NULL, 0xff, NULL, -1, NULL, NULL, NULL);
             s8 roomNo = fopAcM_GetRoomNo(this);
-            mDoAud_seStart(0x802ad, &current.pos, 0, dComIfGp_getReverb(roomNo));
+            mDoAud_seStart(Z2SE_OBJ_ICICLE_BRK, &current.pos, 0, dComIfGp_getReverb(roomNo));
             u8 swbit3 = getSwBit3();
             fopAcM_onSwitch(this, swbit3);
             fopAcM_delete(this);
@@ -312,7 +305,7 @@ void daTurara_c::init_modeDrop() {
     mCylCollider.OnAtSetBit();
     mpBgW->OffRoofRegist();
     s8 roomNo = fopAcM_GetRoomNo(this);
-    mDoAud_seStart(0x802ab, &current.pos, 0, dComIfGp_getReverb(roomNo));
+    mDoAud_seStart(Z2SE_OBJ_ICICLE_FALL, &current.pos, 0, dComIfGp_getReverb(roomNo));
     mMode = 2;
 }
 
@@ -336,7 +329,6 @@ void daTurara_c::bgCheck() {
 
 /* 80B9DBD0-80B9DE48 001130 0278+00 1/1 0/0 0/0 .text            init_modeDropEnd__10daTurara_cFv */
 void daTurara_c::init_modeDropEnd() {
-    // NONMATCHING
     if (mAcch.ChkWaterIn() == 0) {
         dComIfGp_getVibration().StartShock(l_HIO.mShockStrength, 0xf, cXyz(0.0f, 1.0f, 0.0f));
     }
@@ -357,7 +349,7 @@ void daTurara_c::init_modeDropEnd() {
     u8 swbit1 = getSwBit1();
     fopAcM_onSwitch(this, swbit1);
     s8 roomNo = fopAcM_GetRoomNo(this);
-    mDoAud_seStart(0x802ac, &current.pos, 0, dComIfGp_getReverb(roomNo));
+    mDoAud_seStart(Z2SE_OBJ_ICICLE_LAND, &current.pos, 0, dComIfGp_getReverb(roomNo));
     mMode = 3;
 }
 
@@ -380,7 +372,7 @@ void daTurara_c::modeDropEnd() {
         dComIfGp_particle_set(0x8a90, &current.pos, NULL, NULL);
         dComIfGp_particle_set(0x8a91, &current.pos, NULL, NULL);
         s8 roomNo = fopAcM_GetRoomNo(this);
-        mDoAud_seStart(0x802ad, &current.pos, 0, dComIfGp_getReverb(roomNo));
+        mDoAud_seStart(Z2SE_OBJ_ICICLE_BRK, &current.pos, 0, dComIfGp_getReverb(roomNo));
         u8 swbit3 = getSwBit3();
         fopAcM_onSwitch(this, swbit3);
         fopAcM_delete(this);
@@ -390,7 +382,6 @@ void daTurara_c::modeDropEnd() {
 /* 80B9E078-80B9E338 0015D8 02C0+00 1/1 0/0 0/0 .text            init_modeDropEnd2__10daTurara_cFv
  */
 void daTurara_c::init_modeDropEnd2() {
-    // NONMATCHING
     if (mAcch.ChkWaterIn() == 0) {
         dComIfGp_getVibration().StartShock(l_HIO.mShockStrength, 0xf, cXyz(0.0f, 1.0f, 0.0f));
     }
@@ -400,7 +391,7 @@ void daTurara_c::init_modeDropEnd2() {
     mCylCollider.OffCoSetBit();
     mCylCollider.OffAtSetBit();
     s8 roomNo = fopAcM_GetRoomNo(this);
-    mDoAud_seStart(0x802ad, &current.pos, 0, dComIfGp_getReverb(roomNo));
+    mDoAud_seStart(Z2SE_OBJ_ICICLE_BRK, &current.pos, 0, dComIfGp_getReverb(roomNo));
     current.pos.y -= 100.0f;
     cXyz first_vec(current.pos);
     first_vec.y += 100.0f;
