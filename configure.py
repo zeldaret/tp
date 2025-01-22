@@ -1546,7 +1546,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_b_bh"),
     ActorRel(NonMatching, "d_a_b_bq"),
     ActorRel(NonMatching, "d_a_b_dr"),
-    ActorRel(NonMatching, "d_a_b_dre"),
+    ActorRel(Equivalent, "d_a_b_dre"), # weak func order
     ActorRel(NonMatching, "d_a_b_ds"),
     ActorRel(NonMatching, "d_a_b_gg"),
     ActorRel(NonMatching, "d_a_b_gm"),
