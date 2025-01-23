@@ -1799,7 +1799,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_zrc"),
     ActorRel(NonMatching, "d_a_npc_zrz"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_Lv5Key"),
-    ActorRel(NonMatching, "d_a_obj_Turara"),
+    ActorRel(Equivalent, "d_a_obj_Turara"),
     ActorRel(NonMatching, "d_a_obj_TvCdlst"),
     ActorRel(NonMatching, "d_a_obj_Y_taihou"),
     ActorRel(NonMatching, "d_a_obj_amiShutter"),
