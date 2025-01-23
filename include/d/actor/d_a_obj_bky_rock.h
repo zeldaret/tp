@@ -17,8 +17,6 @@ class daBkyRock_c : public fopAc_ac_c, public request_of_phase_process_class {
 public:
     struct _pieceData {
     public:
-        /* 80BB6914 */ _pieceData() { mMdlObj.mpObj = NULL; }
-
         /* 0x00 */ dMdl_obj_c mMdlObj;
         /* 0x34 */ Vec position;
         /* 0x40 */ f32 targetX;

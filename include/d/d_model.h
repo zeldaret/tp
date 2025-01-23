@@ -9,6 +9,7 @@ class dKy_tevstr_c;
 
 class dMdl_obj_c {
 public:
+    dMdl_obj_c() : mpObj(NULL) {}
     MtxP getMtx() { return mMtx; }
     void setMtx(Mtx mtx) { cMtx_copy(mtx, mMtx); }
 

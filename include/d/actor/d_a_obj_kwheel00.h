@@ -1,33 +1,81 @@
 #ifndef D_A_OBJ_KWHEEL00_H
 #define D_A_OBJ_KWHEEL00_H
 
+#include "d/d_bg_s_movebg_actor.h"
+#include "d/d_cc_d.h"
+#include "d/d_event_lib.h"
 #include "f_op/f_op_actor_mng.h"
 
 /**
  * @ingroup actors-objects
  * @class daObjKWheel00_c
- * @brief Water Wheel 00?
+ * @brief Water Wheel/Gear
  *
- * @details
- *
+ * @details Lakebed temple water wheels/gears without clawshot targets.
+ * There are two types:
+ *  1.) Larger gold-colored ones that are completely solid and lie near the end of the long axle
+ *  2.) Smaller dark-colored ones where the largest gear teeth are grated and lie centered on a short axle (seen on bridges to/from central room)
  */
-class daObjKWheel00_c : public fopAc_ac_c {
+
+class daObjKWheel00_c : public dBgS_MoveBgActor, public request_of_phase_process_class, public dEvLib_callback_c {
 public:
-    /* 80C4D6F8 */ void create1st();
+    daObjKWheel00_c() : dEvLib_callback_c(this) {}
+    ~daObjKWheel00_c() {}
+
+    /* 80C4D6F8 */ int create1st();
     /* 80C4D86C */ void setMtx();
-    /* 80C4D9B8 */ void CreateHeap();
-    /* 80C4DA38 */ void Create();
-    /* 80C4DBBC */ void Execute(f32 (**)[3][4]);
-    /* 80C4E1B0 */ void Draw();
-    /* 80C4E254 */ void Delete();
-    /* 80C4E298 */ void eventStart();
-    /* 80C4E6E4 */ ~daObjKWheel00_c();
+    /* 80C4D9B8 */ int CreateHeap();
+    /* 80C4DA38 */ int Create();
+    /* 80C4DBBC */ int Execute(Mtx**);
+    /* 80C4E1B0 */ int Draw();
+    /* 80C4E254 */ int Delete();
+    /* 80C4E298 */ BOOL eventStart();
+
+    int getSwNo() {
+        return fopAcM_GetParamBit(this, 0, 8);
+    }
+
+    u32 getType() {
+        return fopAcM_GetParamBit(this,17,1);
+    }
+
+    enum Type_e { TYPE_LARGE_GOLD, TYPE_SMALL_PLATINUM };
 
 private:
-    /* 0x568 */ u8 field_0x568[0xb44 - 0x568];
+    enum QuadrantalAngle_e { DEG_INVALID = -1, DEG_0, DEG_90, DEG_180, DEG_270, DEG_MAX};
+
+    /* 0x5B8 */ Mtx mNewBgMtx;
+    /* 0x5E8 */ Mtx mTransformMtx;
+    /* 0x618 */ J3DModel* mpModel;
+    /* 0x61C */ s16 mZAngularVelocity;
+    /* 0x620 */ Type_e m_type;    // JUT_ASSERT string shows this was called m_type
+    /* 0x624 */ dCcD_Stts mStts;
+    /* 0x660 */ dCcD_Sph mLargeGearTeethSphereColliders[4];
+    /* 0xB40 */ QuadrantalAngle_e mPrevQuadrantalZAngle;
+
+    // Determines rotational direction of gear; 0 = counter-clockwise, 1 = clockwise
+    u32 getArg0() {
+        return fopAcM_GetParamBit(this, 8, 1);
+    }
+
+    s32 getEvent() {
+        return fopAcM_GetParamBit(this, 9, 8);
+    }
+
+    
 };
+
 
 STATIC_ASSERT(sizeof(daObjKWheel00_c) == 0xb44);
 
+struct daObjKWheel00_HIO_c : public mDoHIO_entry_c {
+    daObjKWheel00_HIO_c();
+    ~daObjKWheel00_HIO_c();
+
+    void genMessage(JORMContext*);
+
+    /* 0x4 */ s16 mTargetZAngularSpeed;
+    /* 0x6 */ s16 mZAngularAcceleration;
+};
 
 #endif /* D_A_OBJ_KWHEEL00_H */
