@@ -57,6 +57,7 @@ enum cCcD_ObjAtType {
     /* 0x04000000 */ AT_TYPE_MASTER_SWORD = (1 << 26),
     /* 0x08000000 */ AT_TYPE_MIDNA_LOCK = (1 << 27),
     /* 0x10000000 */ AT_TYPE_10000000 = (1 << 28),
+    /* 0x10000000 */ AT_TYPE_20000000 = (1 << 29),
     /* 0x40000000 */ AT_TYPE_WOLF_CUT_TURN = (1 << 30),
     /* 0x80000000 */ AT_TYPE_WOLF_ATTACK = (1 << 31),
     /* 0xD8000000 */ AT_TYPE_UNK = 0xD8000000
