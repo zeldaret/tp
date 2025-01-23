@@ -50,8 +50,6 @@ void daTurara_c::setBaseMtx() {
     mDoMtx_stack_c::transM(field_0x758, field_0x75c, field_0x760);
     mpModel[field_0x984]->setBaseScale(scale);
     mpModel[field_0x984]->setBaseTRMtx(mDoMtx_stack_c::get());
-    // when compiling in debug mode, the macro uses the C (C_) equivalent functions
-    //  and in retail it uses the PS versions.
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
 
@@ -397,7 +395,6 @@ void daTurara_c::init_modeDropEnd2() {
     first_vec.y += 100.0f;
     s16 my_proc = PROC_E_KK;
     field_0x988 = fopAcM_create(my_proc, getSwBit1() << 0x10 | 3, &first_vec, fopAcM_GetRoomNo(this), 0, 0, 0xffffffff);
-    //field_0x988 = my_proc;
     // FIXME: JUT assert needed here
     cXyz second_vec(0.7f, 0.7f, 0.7f);
     dComIfGp_particle_set(0x8a8f, &first_vec, NULL, &second_vec);
