@@ -5,6 +5,10 @@
 #include "d/d_event_lib.h"
 #include "f_op/f_op_actor_mng.h"
 
+struct fakeLv3Water2Padding {
+    u8 a[8];
+};
+
 /**
  * @ingroup actors-objects
  * @class daLv3Water2_c
@@ -13,7 +17,7 @@
  * @details Water in the central room (where the boss entrance is). It can be raised twice.
  *
  */
-class daLv3Water2_c : public dBgS_MoveBgActor, public request_of_phase_process_class, public dEvLib_callback_c {
+class daLv3Water2_c : public dBgS_MoveBgActor, public fakeLv3Water2Padding, public dEvLib_callback_c {
 public:
     daLv3Water2_c() : dEvLib_callback_c(this) {}
     ~daLv3Water2_c() {}
