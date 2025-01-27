@@ -2819,8 +2819,6 @@ void jmessage_tRenderingProcessor::do_rubyset(void const* param_0, u32 param_1) 
 SECTION_DEAD static char const* const stringBase_80399652 = ""
                                                             "\x1B"
                                                             "CL[%d]";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039965A = "\0\0\0\0\0";
 #pragma pop
 
 /* 8022F384-8022F53C 229CC4 01B8+00 3/3 0/0 0/0 .text

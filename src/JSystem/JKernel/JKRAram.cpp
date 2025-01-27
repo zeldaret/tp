@@ -536,5 +536,3 @@ static u8* nextSrcData(u8* current) {
 /* ############################################################################################## */
 /* 8039D0A6-8039D0B8 029706 000E+04 0/0 0/0 0/0 .rodata          None */
 static const char* stringBase_8039D0A6 = "bad aramSync\n";
-/* @stringBase0 padding */
-static const char* pad_8039D0B4 = "\0\0\0";

@@ -1033,8 +1033,6 @@ SECTION_DEAD static char const* const stringBase_80399F99 = "zelda_player_name.b
 SECTION_DEAD static char const* const stringBase_80399FAF = "zelda_player_name.bpk";
 SECTION_DEAD static char const* const stringBase_80399FC5 = "zelda_player_name.btk";
 SECTION_DEAD static char const* const stringBase_80399FDB = "";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80399FDC = "\0\0\0";
 #pragma pop
 
 /* 80454DD4-80454DD8 0033D4 0004+00 1/1 0/0 0/0 .sdata2          @4722 */

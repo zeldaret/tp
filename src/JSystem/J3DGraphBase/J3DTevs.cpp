@@ -556,7 +556,7 @@ extern const J3DColorChanInfo j3dDefaultColorChanInfo = {
 };
 
 /* 804563F8-804563FA 0049F8 0002+00 0/0 1/1 0/0 .sdata2          None */
-extern const u8 data_804563F8 = 0x1B;
+extern const u8 j3dDefaultTevSwapTableID = 0x1B;
 
 /* 804563FA-804563FC 0049FA 0002+00 0/0 1/1 0/0 .sdata2          j3dDefaultAlphaCmpID */
 const u16 j3dDefaultAlphaCmpID = 0x00E7;

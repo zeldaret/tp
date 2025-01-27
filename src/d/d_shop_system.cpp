@@ -179,7 +179,7 @@ static shop_item_data item_seira_shop = {
     },
 };
 
-static processFunc process[22] = {
+static processFunc process[] = {
     &dShopSystem_c::seq_wait,        &dShopSystem_c::seq_start,
     &dShopSystem_c::seq_select_wait, &dShopSystem_c::seq_select_start,
     &dShopSystem_c::seq_select,      &dShopSystem_c::seq_moving,
@@ -1661,3 +1661,72 @@ bool dShopSystem_c::dpdMove() {
 }
 
 #pragma nosyminline on
+
+// Need 0x78 bytes of padding with no symbol between process and dShopSystem_c::__vtable
+// This is likely caused by the vtables of abstract base classes getting put there and then stripped out.
+// Not sure which abstract base class could go there though, so we simulate it with some dummy classes for now.
+class dummy_abstract_class {
+public:
+    virtual void virt_func_0() = 0;
+    virtual void virt_func_1() = 0;
+    virtual void virt_func_2() = 0;
+    virtual void virt_func_3() = 0;
+    virtual void virt_func_4() = 0;
+    virtual void virt_func_5() = 0;
+    virtual void virt_func_6() = 0;
+    virtual void virt_func_7() = 0;
+    virtual void virt_func_8() = 0;
+    virtual void virt_func_9() = 0;
+    virtual void virt_func_10() = 0;
+    virtual void virt_func_11() = 0;
+    virtual void virt_func_12() = 0;
+    virtual void virt_func_13() = 0;
+    virtual void virt_func_14() = 0;
+    virtual void virt_func_15() = 0;
+    virtual void virt_func_16() = 0;
+    virtual void virt_func_17() = 0;
+    virtual void virt_func_18() = 0;
+    virtual void virt_func_19() = 0;
+    virtual void virt_func_20() = 0;
+    virtual void virt_func_21() = 0;
+    virtual void virt_func_22() = 0;
+    virtual void virt_func_23() = 0;
+    virtual void virt_func_24() = 0;
+    virtual void virt_func_25() = 0;
+    virtual void virt_func_26() = 0;
+    virtual void virt_func_27() = 0;
+};
+class dummy_child_class : dummy_abstract_class {
+    virtual void virt_func_0();
+    virtual void virt_func_1();
+    virtual void virt_func_2();
+    virtual void virt_func_3();
+    virtual void virt_func_4();
+    virtual void virt_func_5();
+    virtual void virt_func_6();
+    virtual void virt_func_7();
+    virtual void virt_func_8();
+    virtual void virt_func_9();
+    virtual void virt_func_10();
+    virtual void virt_func_11();
+    virtual void virt_func_12();
+    virtual void virt_func_13();
+    virtual void virt_func_14();
+    virtual void virt_func_15();
+    virtual void virt_func_16();
+    virtual void virt_func_17();
+    virtual void virt_func_18();
+    virtual void virt_func_19();
+    virtual void virt_func_20();
+    virtual void virt_func_21();
+    virtual void virt_func_22();
+    virtual void virt_func_23();
+    virtual void virt_func_24();
+    virtual void virt_func_25();
+    virtual void virt_func_26();
+    virtual void virt_func_27();
+};
+static dummy_child_class dummy() {
+    dummy_child_class temp;
+    return temp;
+}

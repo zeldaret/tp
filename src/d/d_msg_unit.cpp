@@ -50,8 +50,6 @@ SECTION_DEAD static char const* const stringBase_803996F1 = "%d:%02d";
 SECTION_DEAD static char const* const stringBase_803996F9 = "";
 SECTION_DEAD static char const* const stringBase_803996FA = "%d%s";
 SECTION_DEAD static char const* const stringBase_803996FF = "%d %s";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80399705 = "\0\0";
 #pragma pop
 
 /* 80454B40-80454B44 003140 0004+00 1/1 0/0 0/0 .sdata2          @3702 */

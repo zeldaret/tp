@@ -240,14 +240,14 @@ struct J3DTevOrder : public J3DTevOrderInfo {
 };
 
 extern u8 j3dTevSwapTableTable[1024];
-extern u8 const data_804563F8;
+extern u8 const j3dDefaultTevSwapTableID;
 
 /**
  * @ingroup jsystem-j3d
  * 
  */
 struct J3DTevSwapModeTable {
-    /* 8000E134 */ J3DTevSwapModeTable() { mIdx = data_804563F8; }
+    /* 8000E134 */ J3DTevSwapModeTable() { mIdx = j3dDefaultTevSwapTableID; }
     J3DTevSwapModeTable(J3DTevSwapModeTableInfo const& info) {
         mIdx = calcTevSwapTableID(info.field_0x0, info.field_0x1, info.field_0x2, info.field_0x3);
     }

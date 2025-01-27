@@ -25,12 +25,6 @@ public:
     /* 80192F10 */ dBrightCheck_c(JKRArchive*);
     /* 80192F98 */ virtual ~dBrightCheck_c();
 
-    // TODO: probably fake, probably going to break some other function
-    // need to figure out this weird vtable padding issue
-    virtual void dummy() = 0;
-    virtual void dummy2() = 0;
-    virtual void dummy3() = 0;
-
     /* 80193030 */ void screenSet();
     /* 801934D0 */ void _move();
     /* 80193508 */ void modeWait();

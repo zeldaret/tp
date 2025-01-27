@@ -2321,8 +2321,6 @@ void func_8028892C() {
 #pragma push
 #pragma force_active on
 SECTION_DEAD static char const* const stringBase_8039AB78 = "(unnamed)";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039AB82 = "\0\0\0\0\0";
 #pragma pop
 
 /* 804511F8-80451200 0006F8 0008+00 0/0 1/1 0/0 .sbss            None */

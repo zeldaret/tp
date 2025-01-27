@@ -131,7 +131,7 @@ void J3DSys::setTexCacheRegion(GXTexCacheSize size) {
 }
 
 /* 803CD8A0-803CD8B0 02A9C0 0010+00 1/1 0/0 0/0 .data            NullTexData */
-SECTION_DATA static u8 NullTexData[16] = {
+SECTION_DATA static u8 NullTexData[16] ALIGN_DECL(32) = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 

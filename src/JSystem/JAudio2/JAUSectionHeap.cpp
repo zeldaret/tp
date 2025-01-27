@@ -310,8 +310,6 @@ void* JAUSection::newCopy(void const* param_0, u32 param_1, s32 param_2) {
 #pragma force_active on
 SECTION_DEAD static char const* const stringBase_8039B974 = "index out of range of bitset::test";
 SECTION_DEAD static char const* const stringBase_8039B997 = "index out of range of bitset::set";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039B9B9 = "\0\0\0\0\0\0";
 #pragma pop
 
 /* 802A5854-802A5948 2A0194 00F4+00 0/0 1/1 0/0 .text            newWaveBank__10JAUSectionFUlPCv */
