@@ -18,9 +18,9 @@ public:
     /* 8072C630 */ int ctrlJoint(J3DJoint*, J3DModel*);
     /* 8072C6E8 */ int JointCallBack(J3DJoint*, int);
     /* 8072C734 */ int draw();
-    /* 8072CBD4 */ void getVisionAngle(fopAc_ac_c*);
+    /* 8072CBD4 */ int getVisionAngle(fopAc_ac_c*);
     /* 8072CC10 */ void searchOtherOc();
-    /* 8072CDA8 */ void setWatchMode();
+    /* 8072CDA8 */ int setWatchMode();
     /* 8072CE00 */ void searchPlayer();
     /* 8072CF90 */ void searchPlayer2();
     /* 8072D100 */ void searchPlayerShakeHead();
@@ -55,7 +55,7 @@ public:
     /* 80731124 */ void executeBigDamage();
     /* 807316F8 */ void executeWatch();
     /* 807319E4 */ void executeSoundWatch();
-    /* 80731D18 */ void checkBeforeDeath();
+    /* 80731D18 */ int checkBeforeDeath();
     /* 80731D4C */ void executeDeath();
     /* 80731F5C */ void setWaterEffect();
     /* 80732074 */ void executeWaterDeath();
@@ -74,29 +74,55 @@ public:
     /* 80734B6C */ void _delete();
     /* 80734C10 */ void CreateHeap();
     /* 80734DA8 */ int create();
+
+    u8 isHomeWait() { return mIsHomeWait; }
+    u8 isBattleOn() { return mBattleOn; }
+    f32 getMoveRange() { return mMoveRange; }
+    f32 getPlayerRange() { return mPlayerRange; }
+    int getActionMode() { return mActionMode; }
+    daE_OC_c* getTalkOc() { return mpTalk; }
+
 private:
     /* 0x5a0 */ request_of_phase_process_class mPhaseReqs[2];
     /* 0x5bc */ mDoExt_McaMorfSO* mpMorf;
     /* 0x5c0 */ J3DModel* mpModel;
     /* 0x5c4 */ Z2CreatureEnemy mSound;
-    /* 0x668 */ u8 field_0x668[0x690 - 0x668];
-    /* 0x690 */ f32 field_0x690;
-    /* 0x690 */ f32 field_0x694;
+    /* 0x668 */ daE_OC_c* mpBattle;
+    /* 0x66c */ daE_OC_c* mpDamage;
+    /* 0x670 */ daE_OC_c* mpTalk;
+    /* 0x674 */ u8 field_0x674[0x67c - 0x674];
+    /* 0x67c */ cXyz field_0x67c;
+    /* 0x688 */ csXyz field_0x688;
+    /* 0x690 */ f32 mMoveRange;
+    /* 0x690 */ f32 mPlayerRange;
     /* 0x698 */ u8 field_0x698[0x6a4 - 0x698];
-    /* 0x6a4 */ char* field_0x6a4;
-    /* 0x6a8 */u8 field_0x6a8[0x6b4 - 0x6a8];
+    /* 0x6a4 */ const char* field_0x6a4;
+    /* 0x6a8 */ int mActionMode;
+    /* 0x6ac */ u8 field_0x6ac[0x6b4 - 0x6ac];
     /* 0x6b4 */ s32 field_0x6b4;
     /* 0x6b8 */ u32 mShadowKey;
-    /* 0x6bc */ u8 field_0x6bc[0x6d0 - 0x6bc];
+    /* 0x6bc */ u8 field_0x6bc[0x6be - 0x6bc];
+    /* 0x6be */ s16 field_0x6be;
+    /* 0x6c0 */ u8 field_0x6c0[0x6c6 - 0x6c0];
+    /* 0x6c6 */ s16 field_0x6c6;
+    /* 0x6c8 */ u8 field_0x6c8[0x6d0 - 0x6c8];
     /* 0x6d0 */ s16 field_0x6d0;
     /* 0x6d2 */ s16 field_0x6d2;
-    /* 0x6d4 */ u8 field_0x6d4[0x6e0 - 0x6d4];
+    /* 0x6d4 */ u8 field_0x6d4[0x6d8 - 0x6d4];
+    /* 0x6d8 */ s16 field_0x6d8;
+    /* 0x6da */ u8 field_0x6da[0x6dc - 0x6da];
+    /* 0x6dc */ u8 field_0x6dc;
+    /* 0x6dd */ u8 field_0x6dd;
+    /* 0x6de */ u8 field_0x6de;
+    /* 0x6df */ u8 field_0x6df;
     /* 0x6e0 */ u8 field_0x6e0;
     /* 0x6e1 */ u8 field_0x6e1;
+    /* 0x6e2 */ u8 field_0x6e2;
+    /* 0x6e3 */ u8 field_0x6e3;
     /* 0x6e4 */ f32 field_0x6e4;
     /* 0x6e8 */ u8 field_0x6e8;
-    /* 0x6e9 */ u8 field_0x6e9;
-    /* 0x6ea */ u8 field_0x6ea;
+    /* 0x6e9 */ u8 mIsHomeWait;
+    /* 0x6ea */ u8 mBattleOn;
     /* 0x6eb */ u8 field_0x6eb;
     /* 0x6ec */ u8 field_0x6ec[0x708 - 0x6ec];
     /* 0x708 */ dBgS_AcchCir mAcchCir;
@@ -139,10 +165,10 @@ struct E_OC_n {
     static u8 const oc_attackc_trans[40];
     static dCcD_SrcSph cc_sph_src;
     static dCcD_SrcSph at_sph_src;
-    static u8 m_battle_oc[4];
-    static u8 m_damage_oc[4];
-    static u8 m_death_oc[4];
-    static u8 m_talk_oc[4];
+    static daE_OC_c* m_battle_oc;
+    static daE_OC_c* m_damage_oc;
+    static daE_OC_c* m_death_oc;
+    static daE_OC_c* m_talk_oc;
 };
 
 
