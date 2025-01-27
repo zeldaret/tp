@@ -4,157 +4,48 @@
 */
 
 #include "d/actor/d_a_obj_lv3Water2.h"
-#include "dol2asm.h"
+#include "d/d_com_inf_game.h"
+#include "f_op/f_op_msg_mng.h"
+#include "m_Do/m_Do_graphic.h"
 
+typedef void (daLv3Water2_c::*actionFunc)(void);
 
+static int daLv3Water2_Draw(daLv3Water2_c* i_this);
+static int daLv3Water2_Execute(daLv3Water2_c* i_this);
+static int daLv3Water2_Delete(daLv3Water2_c* i_this);
+static int daLv3Water2_Create(fopAc_ac_c* i_this);
 
-//
-// Forward References:
-//
+static daLv3Water2_HIO_c l_HIO;
 
-extern "C" void __ct__17daLv3Water2_HIO_cFv();
-extern "C" void __dt__14mDoHIO_entry_cFv();
-extern "C" void setBaseMtx__13daLv3Water2_cFv();
-extern "C" void CreateHeap__13daLv3Water2_cFv();
-extern "C" void create__13daLv3Water2_cFv();
-extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" void Execute__13daLv3Water2_cFPPA3_A4_f();
-extern "C" void mode_proc_wait__13daLv3Water2_cFv();
-extern "C" void mode_init_levelCtrl__13daLv3Water2_cFv();
-extern "C" void mode_proc_levelCtrl__13daLv3Water2_cFv();
-extern "C" void Draw__13daLv3Water2_cFv();
-extern "C" void Delete__13daLv3Water2_cFv();
-extern "C" void eventStart__13daLv3Water2_cFv();
-extern "C" static void daLv3Water2_Draw__FP13daLv3Water2_c();
-extern "C" static void daLv3Water2_Execute__FP13daLv3Water2_c();
-extern "C" static void daLv3Water2_Delete__FP13daLv3Water2_c();
-extern "C" static void daLv3Water2_Create__FP10fopAc_ac_c();
-extern "C" void __dt__17daLv3Water2_HIO_cFv();
-extern "C" void __sinit_d_a_obj_lv3Water2_cpp();
-extern "C" static void func_80C5B228();
-extern "C" static void func_80C5B230();
-extern "C" void __dt__17dEvLib_callback_cFv();
-extern "C" bool eventStart__17dEvLib_callback_cFv();
-extern "C" bool eventRun__17dEvLib_callback_cFv();
-extern "C" bool eventEnd__17dEvLib_callback_cFv();
-extern "C" void __dt__13daLv3Water2_cFv();
-extern "C" extern char const* const d_a_obj_lv3Water2__stringBase0;
+/* 80C5A40C-80C5A430 0000EC 0024+00 1/1 0/0 0/0 .text            __ct__17daLv3Water2_HIO_cFv */
+daLv3Water2_HIO_c::daLv3Water2_HIO_c() {
+    mLevelControlWaitFrames = 0;
+}
 
-//
-// External References:
-//
-
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void play__14mDoExt_baseAnmFv();
-extern "C" void init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss();
-extern "C" void entry__13mDoExt_btkAnmFP16J3DMaterialTablef();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void __dt__10fopAc_ac_cFv();
-extern "C" void fopMsgM_valueIncrease__FiiUc();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfGp_getReverb__Fi();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void eventUpdate__17dEvLib_callback_cFv();
-extern "C" void orderEvent__17dEvLib_callback_cFiii();
-extern "C" void
-set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf();
-extern "C" void __ct__16dBgS_MoveBgActorFv();
-extern "C" bool Create__16dBgS_MoveBgActorFv();
-extern "C" bool IsDelete__16dBgS_MoveBgActorFv();
-extern "C" bool ToFore__16dBgS_MoveBgActorFv();
-extern "C" bool ToBack__16dBgS_MoveBgActorFv();
-extern "C" void
-MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f();
-extern "C" void MoveBGDelete__16dBgS_MoveBgActorFv();
-extern "C" void MoveBGExecute__16dBgS_MoveBgActorFv();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void __dl__FPv();
-extern "C" void setEffectMtx__13J3DTexMtxInfoFPA4_f();
-extern "C" void simpleCalcMaterial__12J3DModelDataFUsPA4_f();
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__16dBgS_MoveBgActor[10];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" void __register_global_object();
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 80C5B398-80C5B398 000034 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80C5B398 = "Kr03wat04";
-#pragma pop
+#ifdef DEBUG
+void daLv3Water2_HIO_c::genMessage(JORMContext* ctx) {
+    ctx->genSlider("wait time", &mLevelControlWaitFrames, 0, 255, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+}
+#endif
 
 /* 80C5B3A4-80C5B3B0 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80C5B3B0-80C5B3C4 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
+UNK_REL_DATA;
 
 /* 80C5B3C4-80C5B3C8 -00001 0004+00 3/3 0/0 0/0 .data            l_resNameIdx */
-SECTION_DATA static void* l_resNameIdx = (void*)&d_a_obj_lv3Water2__stringBase0;
-
-/* 80C5B3C8-80C5B3D4 -00001 000C+00 0/1 0/0 0/0 .data            @3767 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3767[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)mode_proc_wait__13daLv3Water2_cFv,
-};
-#pragma pop
-
-/* 80C5B3D4-80C5B3E0 -00001 000C+00 0/1 0/0 0/0 .data            @3768 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3768[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)mode_proc_levelCtrl__13daLv3Water2_cFv,
-};
-#pragma pop
+static char* l_resNameIdx[] = {"Kr03wat04"};
 
 /* 80C5B3E0-80C5B3F8 00003C 0018+00 1/2 0/0 0/0 .data            l_mode_func */
-SECTION_DATA static u8 l_mode_func[24] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+static actionFunc l_mode_func[] = {
+    &daLv3Water2_c::mode_proc_wait, &daLv3Water2_c::mode_proc_levelCtrl 
 };
 
 /* 80C5B3F8-80C5B418 -00001 0020+00 1/0 0/0 0/0 .data            l_daLv3Water2_Method */
 static actor_method_class l_daLv3Water2_Method = {
-    (process_method_func)daLv3Water2_Create__FP10fopAc_ac_c,
-    (process_method_func)daLv3Water2_Delete__FP13daLv3Water2_c,
-    (process_method_func)daLv3Water2_Execute__FP13daLv3Water2_c,
+    (process_method_func)daLv3Water2_Create,
+    (process_method_func)daLv3Water2_Delete,
+    (process_method_func)daLv3Water2_Execute,
     0,
-    (process_method_func)daLv3Water2_Draw__FP13daLv3Water2_c,
+    (process_method_func)daLv3Water2_Draw,
 };
 
 /* 80C5B418-80C5B448 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Lv3Water2 */
@@ -175,281 +66,243 @@ extern actor_process_profile_definition g_profile_Obj_Lv3Water2 = {
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
 
-/* 80C5B448-80C5B454 0000A4 000C+00 3/3 0/0 0/0 .data            __vt__12J3DFrameCtrl */
-SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12J3DFrameCtrlFv,
-};
-
-/* 80C5B454-80C5B46C 0000B0 0018+00 3/3 0/0 0/0 .data            __vt__17dEvLib_callback_c */
-SECTION_DATA extern void* __vt__17dEvLib_callback_c[6] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__17dEvLib_callback_cFv,
-    (void*)eventStart__17dEvLib_callback_cFv,
-    (void*)eventRun__17dEvLib_callback_cFv,
-    (void*)eventEnd__17dEvLib_callback_cFv,
-};
-
-/* 80C5B46C-80C5B4B4 0000C8 0048+00 2/2 0/0 0/0 .data            __vt__13daLv3Water2_c */
-SECTION_DATA extern void* __vt__13daLv3Water2_c[18] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)CreateHeap__13daLv3Water2_cFv,
-    (void*)Create__16dBgS_MoveBgActorFv,
-    (void*)Execute__13daLv3Water2_cFPPA3_A4_f,
-    (void*)Draw__13daLv3Water2_cFv,
-    (void*)Delete__13daLv3Water2_cFv,
-    (void*)IsDelete__16dBgS_MoveBgActorFv,
-    (void*)ToFore__16dBgS_MoveBgActorFv,
-    (void*)ToBack__16dBgS_MoveBgActorFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80C5B230,
-    (void*)func_80C5B228,
-    (void*)eventRun__17dEvLib_callback_cFv,
-    (void*)eventEnd__17dEvLib_callback_cFv,
-    (void*)__dt__13daLv3Water2_cFv,
-    (void*)eventStart__13daLv3Water2_cFv,
-};
-
-/* 80C5B4B4-80C5B4C0 000110 000C+00 2/2 0/0 0/0 .data            __vt__17daLv3Water2_HIO_c */
-SECTION_DATA extern void* __vt__17daLv3Water2_HIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__17daLv3Water2_HIO_cFv,
-};
-
-/* 80C5B4C0-80C5B4CC 00011C 000C+00 3/3 0/0 0/0 .data            __vt__14mDoHIO_entry_c */
-SECTION_DATA extern void* __vt__14mDoHIO_entry_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__14mDoHIO_entry_cFv,
-};
-
-/* 80C5A40C-80C5A430 0000EC 0024+00 1/1 0/0 0/0 .text            __ct__17daLv3Water2_HIO_cFv */
-daLv3Water2_HIO_c::daLv3Water2_HIO_c() {
-    // NONMATCHING
-}
-
-/* 80C5A430-80C5A478 000110 0048+00 1/0 0/0 0/0 .text            __dt__14mDoHIO_entry_cFv */
-// mDoHIO_entry_c::~mDoHIO_entry_c() {
-extern "C" void __dt__14mDoHIO_entry_cFv() {
-    // NONMATCHING
-}
-
 /* 80C5A478-80C5A4F8 000158 0080+00 2/2 0/0 0/0 .text            setBaseMtx__13daLv3Water2_cFv */
 void daLv3Water2_c::setBaseMtx() {
-    // NONMATCHING
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::YrotM(shape_angle.y);
+
+    mpModel->setBaseScale(scale);
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* ############################################################################################## */
 /* 80C5B364-80C5B368 000000 0004+00 3/3 0/0 0/0 .rodata          l_bmdIdx */
-SECTION_RODATA static u32 const l_bmdIdx = 0x00000005;
-COMPILER_STRIP_GATE(0x80C5B364, &l_bmdIdx);
+static const int l_bmdIdx[] = {5};
 
 /* 80C5B368-80C5B36C 000004 0004+00 1/1 0/0 0/0 .rodata          l_dzbIdx */
-SECTION_RODATA static u32 const l_dzbIdx = 0x0000000D;
-COMPILER_STRIP_GATE(0x80C5B368, &l_dzbIdx);
+static const int l_dzbIdx[] = {13};
 
 /* 80C5B36C-80C5B370 000008 0004+00 0/1 0/0 0/0 .rodata          l_btkIdx */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const l_btkIdx = 0x00000009;
-COMPILER_STRIP_GATE(0x80C5B36C, &l_btkIdx);
-#pragma pop
-
-/* 80C5B370-80C5B374 00000C 0004+00 2/5 0/0 0/0 .rodata          @3682 */
-SECTION_RODATA static f32 const lit_3682 = 1.0f;
-COMPILER_STRIP_GATE(0x80C5B370, &lit_3682);
+static const int l_btkIdx[] = {9};
 
 /* 80C5A4F8-80C5A5E4 0001D8 00EC+00 1/0 0/0 0/0 .text            CreateHeap__13daLv3Water2_cFv */
-void daLv3Water2_c::CreateHeap() {
-    // NONMATCHING
+int daLv3Water2_c::CreateHeap() {
+    J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_resNameIdx[mResourceIndex], l_bmdIdx[mResourceIndex]));
+    JUT_ASSERT(171, modelData != 0);
+    mpModel = mDoExt_J3DModel__create(modelData, (1 << 19), 0x19000284);
+    if(!mpModel)
+        return 0;
+
+    int res = mWaterSurfaceRefractionAnm.init(modelData, static_cast<J3DAnmTextureSRTKey*>(dComIfG_getObjectRes(l_resNameIdx[mResourceIndex], l_btkIdx[mResourceIndex])), 1, 2, 1.0f, 0, -1);
+    JUT_ASSERT(188, res == 1);
+
+    return 1;
 }
-
-/* ############################################################################################## */
-/* 80C5B374-80C5B37C 000010 0004+04 1/2 0/0 0/0 .rodata          @3747 */
-SECTION_RODATA static f32 const lit_3747[1 + 1 /* padding */] = {
-    5.0f,
-    /* padding */
-    0.0f,
-};
-COMPILER_STRIP_GATE(0x80C5B374, &lit_3747);
-
-/* 80C5B37C-80C5B384 000018 0008+00 1/2 0/0 0/0 .rodata          @3749 */
-SECTION_RODATA static u8 const lit_3749[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80C5B37C, &lit_3749);
 
 /* 80C5A5E4-80C5A7FC 0002C4 0218+00 1/1 0/0 0/0 .text            create__13daLv3Water2_cFv */
-void daLv3Water2_c::create() {
-    // NONMATCHING
-}
+cPhs__Step daLv3Water2_c::create() {
+    fopAcM_SetupActor(this, daLv3Water2_c);
+    mResourceIndex = getParam(0, 4);
 
-/* 80C5A7FC-80C5A844 0004DC 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
-// J3DFrameCtrl::~J3DFrameCtrl() {
-extern "C" void __dt__12J3DFrameCtrlFv() {
-    // NONMATCHING
+    cPhs__Step resPhase = static_cast<cPhs__Step>(dComIfG_resLoad(&mPhase, l_resNameIdx[mResourceIndex]));
+    if(resPhase == cPhs_COMPLEATE_e) {
+        if(MoveBGCreate(l_resNameIdx[mResourceIndex], l_dzbIdx[mResourceIndex], NULL, 0x2D00, NULL) == cPhs_ERROR_e)
+            return cPhs_ERROR_e;
+
+        mEastSwInitialStatus = fopAcM_isSwitch(this, getParamSw1());
+        mWestSwInitialStatus = fopAcM_isSwitch(this, getParamSw2());
+
+        setBaseMtx();
+        fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
+
+        if(mEastSwInitialStatus)
+            current.pos.y = home.pos.y + getParamLevel1() * 5.0f;
+
+        if(mWestSwInitialStatus)
+            current.pos.y = home.pos.y + getParamLevel1() * 5.0f + getParamLevel1() * 5.0f;
+
+        mMode = WAIT;
+
+        // "LV3 Water surface (2SW)"
+        #ifdef DEBUG
+        l_HIO.entryHIO("ＬＶ３水面(2SW)");
+        #endif
+    }
+
+    return resPhase;
 }
 
 /* 80C5A844-80C5AC10 000524 03CC+00 1/0 0/0 0/0 .text            Execute__13daLv3Water2_cFPPA3_A4_f
  */
-void daLv3Water2_c::Execute(f32 (**param_0)[3][4]) {
-    // NONMATCHING
+int daLv3Water2_c::Execute(Mtx** i_mtx) {
+    mWaterSurfaceRefractionAnm.play();
+
+    eventUpdate();
+
+    mEastSwCurrentStatus = fopAcM_isSwitch(this, getParamSw1());
+    mWestSwCurrentStatus = fopAcM_isSwitch(this, getParamSw2());
+
+    (this->*l_mode_func[mMode])();
+
+    if(fopAcM_isSwitch(this, 0xE)) {
+        mEastWaterParticles[0] = dComIfGp_particle_set(mEastWaterParticles[0], 0x8AAC, &current.pos, NULL, NULL);
+        mEastWaterParticles[1] = dComIfGp_particle_set(mEastWaterParticles[1], 0x8AAD, &current.pos, NULL, NULL);
+        mEastWaterParticles[2] = dComIfGp_particle_set(mEastWaterParticles[2], 0x8AAE, &current.pos, NULL, NULL);
+        mEastWaterParticles[3] = dComIfGp_particle_set(mEastWaterParticles[3], 0x8AAF, &current.pos, NULL, NULL);
+    }
+
+    if(fopAcM_isSwitch(this, 0xF)) {
+        mWestWaterParticles[0] = dComIfGp_particle_set(mWestWaterParticles[0], 0x8AA8, &current.pos, NULL, NULL);
+        mWestWaterParticles[1] = dComIfGp_particle_set(mWestWaterParticles[1], 0x8AA9, &current.pos, NULL, NULL);
+        mWestWaterParticles[2] = dComIfGp_particle_set(mWestWaterParticles[2], 0x8AAA, &current.pos, NULL, NULL);
+        mWestWaterParticles[3] = dComIfGp_particle_set(mWestWaterParticles[3], 0x8AAB, &current.pos, NULL, NULL);
+    }
+
+    *i_mtx = &mpModel->getBaseTRMtx();
+    setBaseMtx();
+
+    return 1;
 }
 
 /* 80C5AC10-80C5ACB8 0008F0 00A8+00 1/0 0/0 0/0 .text            mode_proc_wait__13daLv3Water2_cFv
  */
 void daLv3Water2_c::mode_proc_wait() {
-    // NONMATCHING
+    if(mEastSwInitialStatus != mEastSwCurrentStatus) {
+        if(getParamEvent() != 0xFF)
+            orderEvent(getParamEvent(), 0xFF, 1);
+        else
+            eventStart();
+    }
+    else if(mWestSwInitialStatus != mWestSwCurrentStatus) {
+        if(getParamEvent2() != 0xFF)
+            orderEvent(getParamEvent2(), 0xFF, 1);
+        else
+            eventStart();
+    }
 }
-
-/* ############################################################################################## */
-/* 80C5B4D8-80C5B4E4 000008 000C+00 1/1 0/0 0/0 .bss             @3637 */
-static u8 lit_3637[12];
-
-/* 80C5B4E4-80C5B4EC 000014 0008+00 2/2 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[8];
 
 /* 80C5ACB8-80C5ACE4 000998 002C+00 1/1 0/0 0/0 .text mode_init_levelCtrl__13daLv3Water2_cFv */
 void daLv3Water2_c::mode_init_levelCtrl() {
-    // NONMATCHING
+    mCurrentWaterLvFrame = 0;
+    mLevelControlWaitFrames = l_HIO.mLevelControlWaitFrames;
+    mBaseYPos = current.pos.y;
+    mMode = LEVEL_CTRL;
 }
-
-/* ############################################################################################## */
-/* 80C5B384-80C5B38C 000020 0008+00 1/1 0/0 0/0 .rodata          @3899 */
-SECTION_RODATA static u8 const lit_3899[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80C5B384, &lit_3899);
 
 /* 80C5ACE4-80C5ADA4 0009C4 00C0+00 1/0 0/0 0/0 .text mode_proc_levelCtrl__13daLv3Water2_cFv */
 void daLv3Water2_c::mode_proc_levelCtrl() {
-    // NONMATCHING
+    if(mLevelControlWaitFrames) {
+        mLevelControlWaitFrames--;
+    }
+    else {
+        f32 currentRatio = fopMsgM_valueIncrease(mWaterLvFrame, mCurrentWaterLvFrame, mFullRatio);
+
+        if(!mEastSwInitialStatus)
+            currentRatio = 1.0f - currentRatio;
+
+        mCurrentWaterLvFrame++;
+
+        if(mCurrentWaterLvFrame >= mWaterLvFrame) {
+            currentRatio = mFullRatio;
+            mMode = WAIT;
+        }
+
+        current.pos.y = mWaterLv * currentRatio + mBaseYPos;
+    }
 }
 
-/* ############################################################################################## */
-/* 80C5B38C-80C5B390 000028 0004+00 0/1 0/0 0/0 .rodata          @3951 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3951 = -1.0f / 100.0f;
-COMPILER_STRIP_GATE(0x80C5B38C, &lit_3951);
-#pragma pop
-
-/* 80C5B390-80C5B394 00002C 0004+00 0/1 0/0 0/0 .rodata          @3952 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3952[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80C5B390, &lit_3952);
-#pragma pop
-
 /* 80C5ADA4-80C5AEFC 000A84 0158+00 1/0 0/0 0/0 .text            Draw__13daLv3Water2_cFv */
-void daLv3Water2_c::Draw() {
-    // NONMATCHING
+int daLv3Water2_c::Draw() {
+    g_env_light.settingTevStruct(16, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
+
+    J3DModelData* modelData = mpModel->getModelData();
+    mWaterSurfaceRefractionAnm.entry(modelData);
+    J3DMaterial* const btkMaterial = modelData->getMaterialNodePointer(0);
+
+    dComIfGd_setListInvisisble();
+
+    if(btkMaterial->getTexGenBlock()->getTexMtx(0)) {
+        J3DTexMtxInfo* texMtxInfo = &btkMaterial->getTexGenBlock()->getTexMtx(0)->getTexMtxInfo();
+        if(texMtxInfo) {
+            Mtx lightProjMtx;
+            C_MTXLightPerspective(lightProjMtx, dComIfGd_getView()->fovy, dComIfGd_getView()->aspect, 1.0f, 1.0f, -0.01f, 0);
+
+            #ifdef DEBUG
+            mDoGph_gInf_c::setWideZoomLightProjection(lightProjMtx);
+            /* TODO: Handle screen capture perspective calculations */
+            #endif
+
+            texMtxInfo->setEffectMtx(lightProjMtx);
+            modelData->simpleCalcMaterial(const_cast<MtxP>(j3dDefaultMtx));
+        }
+    }
+
+    mDoExt_modelUpdateDL(mpModel);
+
+    dComIfGd_setList();
+
+    return 1;
 }
 
 /* 80C5AEFC-80C5AF3C 000BDC 0040+00 1/0 0/0 0/0 .text            Delete__13daLv3Water2_cFv */
-void daLv3Water2_c::Delete() {
-    // NONMATCHING
+int daLv3Water2_c::Delete() {
+    dComIfG_resDelete(&mPhase, l_resNameIdx[mResourceIndex]);
+
+    #ifdef DEBUG
+    l_HIO.removeHIO();
+    #endif
+
+    return 1;
 }
 
-/* ############################################################################################## */
-/* 80C5B394-80C5B398 000030 0004+00 0/1 0/0 0/0 .rodata          @3983 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3983 = -1.0f;
-COMPILER_STRIP_GATE(0x80C5B394, &lit_3983);
-#pragma pop
-
 /* 80C5AF3C-80C5B0C0 000C1C 0184+00 2/1 0/0 0/0 .text            eventStart__13daLv3Water2_cFv */
-void daLv3Water2_c::eventStart() {
-    // NONMATCHING
+BOOL daLv3Water2_c::eventStart() {
+    if(mEastSwInitialStatus != mEastSwCurrentStatus) {
+        mWaterLv = getParamLevel1() * 5.0f;
+        mWaterLvFrame = static_cast<u8>(getParamFrame1());
+        mFullRatio = mEastSwCurrentStatus;
+        mEastSwInitialStatus = mEastSwCurrentStatus;
+
+        mDoAud_seStart(Z2SE_ENV_FILL_UP_LV3WTR1, &current.pos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    }
+    else {
+        mWaterLv = getParamLevel1() * 5.0f;
+        mWaterLvFrame = static_cast<u8>(getParamFrame2());
+        mFullRatio = mWestSwCurrentStatus;
+        mWestSwInitialStatus = mWestSwCurrentStatus;
+
+        mDoAud_seStart(Z2SE_ENV_FILL_UP_LV3WTR2, &current.pos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    }
+
+    OS_REPORT("== mWaterLv %f mWaterLvFrame %d ==\n", mWaterLv, mWaterLvFrame);
+
+    mode_init_levelCtrl();
+
+    return TRUE;
 }
 
 /* 80C5B0C0-80C5B0EC 000DA0 002C+00 1/0 0/0 0/0 .text            daLv3Water2_Draw__FP13daLv3Water2_c
  */
-static void daLv3Water2_Draw(daLv3Water2_c* param_0) {
-    // NONMATCHING
+static int daLv3Water2_Draw(daLv3Water2_c* i_this) {
+    return i_this->MoveBGDraw();
 }
 
 /* 80C5B0EC-80C5B10C 000DCC 0020+00 1/0 0/0 0/0 .text daLv3Water2_Execute__FP13daLv3Water2_c */
-static void daLv3Water2_Execute(daLv3Water2_c* param_0) {
-    // NONMATCHING
+static int daLv3Water2_Execute(daLv3Water2_c* i_this) {
+    return i_this->MoveBGExecute();
 }
 
 /* 80C5B10C-80C5B12C 000DEC 0020+00 1/0 0/0 0/0 .text daLv3Water2_Delete__FP13daLv3Water2_c */
-static void daLv3Water2_Delete(daLv3Water2_c* param_0) {
-    // NONMATCHING
+static int daLv3Water2_Delete(daLv3Water2_c* i_this) {
+    const fpc_ProcID procID = fopAcM_GetID(i_this);
+    return i_this->MoveBGDelete();
 }
 
 /* 80C5B12C-80C5B14C 000E0C 0020+00 1/0 0/0 0/0 .text            daLv3Water2_Create__FP10fopAc_ac_c
  */
-static void daLv3Water2_Create(fopAc_ac_c* param_0) {
-    // NONMATCHING
+static int daLv3Water2_Create(fopAc_ac_c* i_this) {
+    daLv3Water2_c* const lv3Water2 = static_cast<daLv3Water2_c*>(i_this);
+    const fpc_ProcID procID = fopAcM_GetID(i_this);
+    return lv3Water2->create();
 }
-
-/* 80C5B14C-80C5B1A8 000E2C 005C+00 2/1 0/0 0/0 .text            __dt__17daLv3Water2_HIO_cFv */
-daLv3Water2_HIO_c::~daLv3Water2_HIO_c() {
-    // NONMATCHING
-}
-
-/* 80C5B1A8-80C5B228 000E88 0080+00 0/0 1/0 0/0 .text            __sinit_d_a_obj_lv3Water2_cpp */
-void __sinit_d_a_obj_lv3Water2_cpp() {
-    // NONMATCHING
-}
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80C5B1A8, __sinit_d_a_obj_lv3Water2_cpp);
-#pragma pop
-
-/* 80C5B228-80C5B230 000F08 0008+00 1/0 0/0 0/0 .text            @1448@eventStart__13daLv3Water2_cFv
- */
-static void func_80C5B228() {
-    // NONMATCHING
-}
-
-/* 80C5B230-80C5B238 000F10 0008+00 1/0 0/0 0/0 .text            @1448@__dt__13daLv3Water2_cFv */
-static void func_80C5B230() {
-    // NONMATCHING
-}
-
-/* 80C5B238-80C5B280 000F18 0048+00 1/0 0/0 0/0 .text            __dt__17dEvLib_callback_cFv */
-// dEvLib_callback_c::~dEvLib_callback_c() {
-extern "C" void __dt__17dEvLib_callback_cFv() {
-    // NONMATCHING
-}
-
-/* 80C5B280-80C5B288 000F60 0008+00 1/0 0/0 0/0 .text            eventStart__17dEvLib_callback_cFv
- */
-// bool dEvLib_callback_c::eventStart() {
-extern "C" bool eventStart__17dEvLib_callback_cFv() {
-    return true;
-}
-
-/* 80C5B288-80C5B290 000F68 0008+00 2/0 0/0 0/0 .text            eventRun__17dEvLib_callback_cFv */
-// bool dEvLib_callback_c::eventRun() {
-extern "C" bool eventRun__17dEvLib_callback_cFv() {
-    return true;
-}
-
-/* 80C5B290-80C5B298 000F70 0008+00 2/0 0/0 0/0 .text            eventEnd__17dEvLib_callback_cFv */
-// bool dEvLib_callback_c::eventEnd() {
-extern "C" bool eventEnd__17dEvLib_callback_cFv() {
-    return true;
-}
-
-/* 80C5B298-80C5B350 000F78 00B8+00 2/1 0/0 0/0 .text            __dt__13daLv3Water2_cFv */
-daLv3Water2_c::~daLv3Water2_c() {
-    // NONMATCHING
-}
-
-/* 80C5B398-80C5B398 000034 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

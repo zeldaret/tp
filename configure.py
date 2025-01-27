@@ -1924,7 +1924,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv1Candle01"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv3Candle"),
     ActorRel(NonMatching, "d_a_obj_lv3Water"),
-    ActorRel(NonMatching, "d_a_obj_lv3Water2"),
+    ActorRel(Equivalent, "d_a_obj_lv3Water2"), # weak func order
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv3WaterB"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv3saka00"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv3waterEff"),
@@ -2084,7 +2084,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_volcbom"),
     ActorRel(NonMatching, "d_a_obj_warp_kbrg"),
     ActorRel(NonMatching, "d_a_obj_warp_obrg"),
-    ActorRel(NonMatching, "d_a_obj_waterGate"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_waterGate"),
     ActorRel(Equivalent, "d_a_obj_waterPillar"), # vtable order
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_waterfall"),
     ActorRel(NonMatching, "d_a_obj_wchain"),

@@ -22,12 +22,13 @@ public:
     /* 80325E14 */ s32 newSharedDisplayList(u32);
     /* 80325EC8 */ void indexToPtr();
     /* 80325F94 */ void makeSharedDL();
-    /* 8032600C */ void simpleCalcMaterial(u16, f32 (*)[4]);
+    /* 8032600C */ void simpleCalcMaterial(u16, Mtx);
     /* 803260CC */ void syncJ3DSysPointers() const;
     /* 803260F8 */ void syncJ3DSysFlags() const;
 
     /* 8032617C */ virtual ~J3DModelData() {}
 
+    void simpleCalcMaterial(Mtx mtx) { simpleCalcMaterial(0, mtx); }
     J3DMaterialTable& getMaterialTable() { return mMaterialTable; }
     JUTNameTab* getMaterialName() const { return mMaterialTable.getMaterialName(); }
     J3DVertexData& getVertexData() { return mVertexData; }
