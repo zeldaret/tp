@@ -3,6 +3,7 @@
 
 #include "SSystem/SComponent/c_xyz.h"
 #include "dolphin/mtx.h"
+#include "SSystem/SComponent/c_math.h"
 
 inline bool cLib_IsZero(f32 value) {
     return fabsf(value) < 8e-11f;

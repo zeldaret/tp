@@ -56,18 +56,22 @@ struct J3DTextureSRTInfo {
         register const f32* src = &other.mScaleX;
         register f32* dst = &mScaleX;
         register f32 xy;
+#ifdef __MWERKS__
         asm {
             psq_l xy, 0(src), 0, 0
             psq_st xy, 0(dst), 0, 0
         };
+#endif
         // Unclear why there's a 4 byte copy here.
         *(u32*)&mRotation = *(u32*)&other.mRotation;
         src = &other.mTranslationX;
         dst = &mTranslationX;
+#ifdef __MWERKS__
         asm {
             psq_l xy, 0(src), 0, 0
             psq_st xy, 0(dst), 0, 0
         };
+#endif
     }
 };  // Size: 0x14
 

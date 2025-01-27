@@ -117,12 +117,14 @@ inline void setTVec3f(const f32* vec_a, f32* vec_b) {
     register f32 a_x;
     register f32 b_x;
 
+#ifdef __MWERKS__
     asm {
         psq_l a_x, 0(v_a), 0, 0
         lfs b_x, 8(v_a)
         psq_st a_x, 0(v_b), 0, 0
         stfs b_x, 8(v_b)
     };
+#endif
 }
 
 // Until we figure out TVec3 ctors
@@ -188,6 +190,7 @@ struct TVec3<f32> : public Vec {
         register f32 za;
         register f32 zb;
         register f32 z;
+#ifdef __MWERKS__
         asm {
             psq_l  a_x_y, 0(srca), 0, 0
             psq_l  b_x_y, 0(srcb), 0, 0
@@ -198,6 +201,7 @@ struct TVec3<f32> : public Vec {
             fmuls  z, za, zb
             stfs   z,   8(dst)
         };
+#endif
     }
 
     inline void mul(const TVec3<f32>& a) {
@@ -273,6 +277,7 @@ struct TVec3<f32> : public Vec {
         register f32 x_y;
         register f32* dst = &x;
         register f32 zres;
+#ifdef __MWERKS__
         asm {
             psq_l    x_y, 0(dst),  0, 0
             psq_l    z,   8(dst),  1, 0
@@ -281,6 +286,7 @@ struct TVec3<f32> : public Vec {
             ps_muls0 zres,       z, sc
             psq_st   zres,  8(dst),  1, 0
         };
+#endif
     }
 
     void scale(register f32 sc, const TVec3<f32>& other) {
@@ -289,6 +295,7 @@ struct TVec3<f32> : public Vec {
         register f32 x_y;
         register f32* dst = &x;
         register f32 zres;
+#ifdef __MWERKS__
         asm {
             psq_l    x_y, 0(src),  0, 0
             psq_l    z,   8(src),  1, 0
@@ -297,6 +304,7 @@ struct TVec3<f32> : public Vec {
             ps_muls0 zres,       z, sc
             psq_st   zres,  8(dst),  1, 0
         };
+#endif
     }
 
     void scaleAdd(register f32 sc, const TVec3<f32>& a, const TVec3<f32>& b) {
@@ -308,6 +316,7 @@ struct TVec3<f32> : public Vec {
         const register f32* src = &x;
         register f32 x_y;
         register f32 z;
+#ifdef __MWERKS__
         asm {
             psq_l  x_y, 0(src), 0, 0
             ps_neg x_y, x_y
@@ -316,6 +325,7 @@ struct TVec3<f32> : public Vec {
             fneg   z,   z
             stfs   z,   8(rdst)
         };
+#endif
     }
 
     void negate() {
@@ -371,6 +381,7 @@ struct TVec3<f32> : public Vec {
         register f32 otheryz;
         register f32 otherxy;
         register f32 thisxy;
+#ifdef __MWERKS__
         asm {
             psq_l thisyz, 4(pThis), 0, 0
             psq_l otheryz, 4(pOther), 0, 0
@@ -380,6 +391,7 @@ struct TVec3<f32> : public Vec {
             ps_madd otheryz, thisxy, otherxy, thisyz
             ps_sum0 res, otheryz, thisyz, thisyz
         };
+#endif
         return res;
     }
 
@@ -462,7 +474,7 @@ struct TVec2 {
 template <class T>
 struct TBox {
     TBox() : i(), f() {}
-    TBox(const TBox& other) : i(other.f), f(other.y) {}
+    TBox(const TBox& other) : i(other.i), f(other.f) {}
 
     T i, f;
 };
@@ -510,7 +522,7 @@ struct TBox2 : TBox<TVec2<T> > {
 
     void set(const TBox2& other) { set(other.i, other.f); }
     void set(const TVec2<f32>& i, const TVec2<f32>& f) { this->i.set(i), this->f.set(f); }
-    void set(f32 x0, f32 y0, f32 x1, f32 y1) { i.set(x0, y0); f.set(x1, y1); }
+    void set(f32 x0, f32 y0, f32 x1, f32 y1) { this->i.set(x0, y0); this->f.set(x1, y1); }
 };
 
 // clang-format on

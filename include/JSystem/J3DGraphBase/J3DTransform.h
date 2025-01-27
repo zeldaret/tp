@@ -76,6 +76,7 @@ inline void J3DPSMtx33Copy(register Mtx3P src, register Mtx3P dst) {
     register f32 fr2;
     register f32 fr1;
     register f32 fr0;
+#ifdef __MWERKS__
     asm {
         psq_l fr4, 0(src), 0, 0
         psq_l fr3, 8(src), 0, 0
@@ -88,6 +89,7 @@ inline void J3DPSMtx33Copy(register Mtx3P src, register Mtx3P dst) {
         psq_st fr1, 0x18(dst), 0, 0
         stfs fr0, 0x20(dst)
     }
+#endif
 }
 
 inline void J3DPSMtx33CopyFrom34(register MtxP src, register Mtx3P dst) {
@@ -97,6 +99,7 @@ inline void J3DPSMtx33CopyFrom34(register MtxP src, register Mtx3P dst) {
     register f32 z2;
     register f32 x_y3;
     register f32 z3;
+#ifdef __MWERKS__
     asm {
         psq_l x_y1, 0(src), 0, 0
         lfs z1, 8(src)
@@ -111,6 +114,7 @@ inline void J3DPSMtx33CopyFrom34(register MtxP src, register Mtx3P dst) {
         psq_st x_y3, 24(dst), 0, 0
         stfs z3, 0x20(dst)
     }
+#endif
 }
 
 // regalloc issues
@@ -131,6 +135,7 @@ inline void J3DPSMulMtxVec(register MtxP mtx, register Vec* vec, register Vec* d
     register f32 fra2;
     register f32 fr01;
     register f32 fr00;
+#ifdef __MWERKS__
     asm {
         psq_l fr00, 0(vec), 0, 0
     	psq_l fr2, 0(mtx), 0, 0
@@ -153,6 +158,7 @@ inline void J3DPSMulMtxVec(register MtxP mtx, register Vec* vec, register Vec* d
     	ps_sum0 fra6, fra5, fra6, fra5
     	psq_st fra6, 8(dst), 1, 0
     }
+#endif
 }
 
 // regalloc issues
@@ -173,6 +179,7 @@ inline void J3DPSMulMtxVec(register MtxP mtx, register SVec* vec, register SVec*
     register f32 fra2;
     register f32 fr01;
     register f32 fr00;
+#ifdef __MWERKS__
     asm {
         psq_l fr00, 0(vec), 0, 7
     	psq_l fr2, 0(mtx), 0, 0
@@ -195,6 +202,7 @@ inline void J3DPSMulMtxVec(register MtxP mtx, register SVec* vec, register SVec*
     	ps_sum0 fra6, fra5, fra6, fra5
     	psq_st fra6, 4(dst), 1, 7
     }
+#endif
 }
 
 // regalloc issues
@@ -213,6 +221,7 @@ inline void J3DPSMulMtxVec(register Mtx3P mtx, register Vec* vec, register Vec* 
     register f32 fr2;
     register f32 fr01;
     register f32 fr00;
+#ifdef __MWERKS__
     asm {
         lis punit, PSMulUnit01@ha
         psq_l fr00, 0(vec), 0, 0
@@ -239,6 +248,7 @@ inline void J3DPSMulMtxVec(register Mtx3P mtx, register Vec* vec, register Vec* 
         ps_sum0 fr6, fr5, fr6, fr5
         psq_st fr6, 8(dst), 1, 0
     }
+#endif
 }
 
 // regalloc issues
@@ -252,6 +262,7 @@ inline void J3DPSMulMtxVec(register Mtx3P mtx, register SVec* vec, register SVec
     register f32 fr2;
     register f32 fr01;
     register f32 fr00;
+#ifdef __MWERKS__
     asm {
         lis punit, PSMulUnit01@ha
         psq_l fr00, 0(vec), 0, 7
@@ -278,6 +289,7 @@ inline void J3DPSMulMtxVec(register Mtx3P mtx, register SVec* vec, register SVec
         ps_sum0 fr6, fr5, fr6, fr5
         psq_st fr6, 4(dst), 1, 7
     }
+#endif
 }
 
 #endif /* J3DTRANSFORM_H */

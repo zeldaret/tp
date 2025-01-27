@@ -114,7 +114,7 @@ struct TResourceContainer {
     static JMessage::locale::parseCharacter_function sapfnParseCharacter_[5];
 
     /* 0x00 */ u8 mEncodingType;
-    /* 0x04 */ int (*pfnParseCharacter_)(const char** string) const;
+    /* 0x04 */ int (*pfnParseCharacter_)(const char** string);
     /* 0x08 */ TCResource resContainer_;
     /* 0x18 */ TResource_color resColor_;
 };

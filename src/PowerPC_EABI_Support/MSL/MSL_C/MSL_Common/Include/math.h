@@ -28,6 +28,10 @@ double cos(double);
 float cosf(float);
 double exp(double);
 
+extern double __frsqrte(double);
+extern float __fres(float);
+
+extern double __fabs(double);
 extern float __fabsf(float);
 inline double fabs(double f) {
     return __fabs(f);
