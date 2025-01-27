@@ -182,7 +182,5 @@ static char const* const stringBase_8039A9B8 = " J3DUClipper::mNear = %f";
 
 /* 8039A9D1-8039A9F0 027031 0018+07 0/0 0/0 0/0 .rodata          None */
 static char const* const stringBase_8039A9D1 = " J3DUClipper::mFar = %f";
-/* @stringBase0 padding */
-static char const* const pad_8039A9E9 = "\0\0\0\0\0\0";
 
 /* 8039A984-8039A984 026FE4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

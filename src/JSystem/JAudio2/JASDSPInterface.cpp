@@ -428,7 +428,7 @@ void JASDsp::initBuffer() {
 }
 
 /* 803C78F0-803C7920 024A10 0018+18 1/1 0/0 0/0 .data            SEND_TABLE__6JASDsp */
-u16 JASDsp::SEND_TABLE[12 + 12 /* padding */] = {
+u16 JASDsp::SEND_TABLE[] = {
     0x0D00,
     0x0D60,
     0x0DC8,
@@ -440,19 +440,6 @@ u16 JASDsp::SEND_TABLE[12 + 12 /* padding */] = {
     0x0FA0,
     0x0B00,
     0x09A0,
-    0x0000,
-    /* padding */
-    0x0000,
-    0x0000,
-    0x0000,
-    0x0000,
-    0x0000,
-    0x0000,
-    0x0000,
-    0x0000,
-    0x0000,
-    0x0000,
-    0x0000,
     0x0000,
 };
 

@@ -39,6 +39,7 @@ inline void C_VECAdd(register const Vec* a, register const Vec* b, register Vec*
     register f32 az;
     register f32 sumz;
     register f32 bz;
+#ifdef __MWERKS__
     asm {
         psq_l axy, 0(a), 0, 0
         psq_l bxy, 0(b), 0, 0
@@ -49,6 +50,7 @@ inline void C_VECAdd(register const Vec* a, register const Vec* b, register Vec*
         ps_add sumz, az, bz
         psq_st sumz, 8(ab), 1, 0
     }
+#endif
 }
 
 inline void C_VECSubtract(register const Vec* a, register const Vec* b, register Vec* ab) {
@@ -57,6 +59,7 @@ inline void C_VECSubtract(register const Vec* a, register const Vec* b, register
     register f32 az;
     register f32 subz;
     register f32 bz;
+#ifdef __MWERKS__
     asm {
         psq_l axy, 0(a), 0, 0
         psq_l bxy, 0(b), 0, 0
@@ -67,6 +70,7 @@ inline void C_VECSubtract(register const Vec* a, register const Vec* b, register
         ps_sub subz, az, bz
         psq_st subz, 8(ab), 1, 0
     }
+#endif
 }
 
 inline f32 C_VECSquareMag(const Vec* v) {
@@ -74,6 +78,7 @@ inline f32 C_VECSquareMag(const Vec* v) {
     register f32 z;
     register f32 res;
     register const f32* src = &v->x;
+#ifdef __MWERKS__
     asm {
         psq_l   x_y, 0(src), 0, 0
         ps_mul  x_y, x_y, x_y
@@ -81,7 +86,7 @@ inline f32 C_VECSquareMag(const Vec* v) {
         ps_madd res, z, z, x_y
         ps_sum0 res, res, x_y, x_y
     }
-    ;
+#endif
     return res;
 }
 

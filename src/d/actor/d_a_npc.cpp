@@ -5364,8 +5364,6 @@ SECTION_DEAD static char const* const stringBase_803929DA = "%d,   \t//  デバ�
 #pragma push
 #pragma force_active on
 SECTION_DEAD static char const* const stringBase_803929F7 = "%d,   \t//  デバグ情報ＯＮ\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80392A12 = "\0\0\0\0\0";
 #pragma pop
 
 /* 80450FF8-80451000 0004F8 0008+00 0/0 1/1 0/0 .sbss            None */

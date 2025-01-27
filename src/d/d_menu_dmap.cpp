@@ -1782,8 +1782,6 @@ void dMenu_Dmap_c::mapControl() {
 #pragma force_active on
 SECTION_DEAD static char const* const stringBase_80395826 = "/res/FieldMap/res-d.arc";
 SECTION_DEAD static char const* const stringBase_8039583E = "dat/data.dat";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039584B = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
 #pragma pop
 
 /* 801BE328-801BE670 1B8C68 0348+00 0/0 1/1 0/0 .text            isOpen__12dMenu_Dmap_cFv */

@@ -3745,8 +3745,6 @@ bool dCamera_c::eventCamera(s32 param_0){
 #pragma push
 #pragma force_active on
 SECTION_DEAD static char const* const stringBase_803942FB = "Continue";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80394304 = "\0\0\0";
 #pragma pop
 
 /* 8018050C-801806D4 17AE4C 01C8+00 1/0 0/0 0/0 .text            currentEvCamera__9dCamera_cFv */

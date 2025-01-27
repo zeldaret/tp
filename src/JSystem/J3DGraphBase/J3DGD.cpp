@@ -485,8 +485,7 @@ void J3DGDSetTevOrder(GXTevStageID stage, GXTexCoordID coord0, GXTexMapID map0,
     coord0 = coord0 >= GX_MAXCOORD ? GX_TEXCOORD0 : coord0;
     coord1 = coord1 >= GX_MAXCOORD ? GX_TEXCOORD0 : coord1;
     GDOverflowCheck(5);
-    static u8 c2r[32] = {0, 1, 0, 1, 0, 1, 7, 5, 6, 0, 0, 0, 0, 0, 0, 7,
-                         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    static u8 c2r[] = {0, 1, 0, 1, 0, 1, 7, 5, 6, 0, 0, 0, 0, 0, 0, 7};
     J3DGDWriteBPCmd((map0 & 7) | coord0 << 3 |
                     (map0 != GX_TEXMAP_NULL && !(map0 & GX_TEXMAP_DISABLE)) << 6 |
                     c2r[channel0 & 0xf] << 7 | (map1 & 7) << 0xc | coord1 << 0xf |

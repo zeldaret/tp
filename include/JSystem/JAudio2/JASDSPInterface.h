@@ -114,7 +114,7 @@ namespace JASDsp {
 
     extern u8 const DSPADPCM_FILTER[64];
     extern u32 const DSPRES_FILTER[320];
-    extern u16 SEND_TABLE[12 + 12 /* padding */];
+    extern u16 SEND_TABLE[];
     extern TChannel* CH_BUF;
     extern FxBuf* FX_BUF;
     extern f32 sDSPVolume;

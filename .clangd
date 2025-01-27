@@ -1,5 +1,8 @@
 CompileFlags:
   Add: [-Wno-c++11-compat-deprecated-writable-strings, -Wno-extern-initializer, -Wno-multichar]
+Diagnostics:
+  Suppress:
+    - "warn_char_constant_too_large"
 ---
 If:
   PathMatch: .*/*.inc

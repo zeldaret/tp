@@ -294,16 +294,16 @@ void daPy_anmHeap_c::createHeap(daPy_anmHeap_c::daAlinkHEAP_TYPE i_heapType) {
 
 /* 8015EF84-8015F068 1598C4 00E4+00 3/3 0/0 0/0 .text            loadData__14daPy_anmHeap_cFUs */
 void* daPy_anmHeap_c::loadData(u16 i_resId) {
-    static const char twglArcName[12] = "TWGate_Lk";
-    static const char twgwArcName[12] = "TWGate_Wf";
-    static const char sumouArcName[8] = "alSumou";
-    static const char ocArcName[8] = "B_oh";
-    static const char drArcName[8] = "B_DR";
-    static const char msDemoArcName[8] = "Lv6Gate";
-    static const char lastGanonArcName[8] = "B_gnd";
-    static const char pigGanonArcName[8] = "B_mgn";
+    static const char twglArcName[] = "TWGate_Lk";
+    static const char twgwArcName[] = "TWGate_Wf";
+    static const char sumouArcName[] = "alSumou";
+    static const char ocArcName[] = "B_oh";
+    static const char drArcName[] = "B_DR";
+    static const char msDemoArcName[] = "Lv6Gate";
+    static const char lastGanonArcName[] = "B_gnd";
+    static const char pigGanonArcName[] = "B_mgn";
 
-    static const char* arcName[8] = {
+    static const char* arcName[] = {
         sumouArcName, ocArcName,     twglArcName,      twgwArcName,
         drArcName,    msDemoArcName, lastGanonArcName, pigGanonArcName,
     };

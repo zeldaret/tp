@@ -11,6 +11,21 @@
 #include "d/d_msg_string.h"
 #include "m_Do/m_Do_controller_pad.h"
 
+// Need 0xC bytes of padding with no symbol between dMenu_Calibration_c::__vtable and the end of .data
+// This is likely caused by the vtable of an abstract base class getting put there and then stripped out.
+// Not sure which abstract base class could go there though, so we simulate it with some dummy classes for now.
+class dummy_abstract_class {
+public:
+    virtual void virt_func_0() = 0;
+};
+class dummy_child_class : dummy_abstract_class {
+    virtual void virt_func_0();
+};
+static dummy_child_class dummy() {
+    dummy_child_class temp;
+    return temp;
+}
+
 /* 803BC238-803BC244 019358 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,

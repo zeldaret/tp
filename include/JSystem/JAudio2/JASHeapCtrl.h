@@ -99,6 +99,8 @@ public:
     void free(void* ptr, u32 n) { JASGenericMemPool::free(ptr, n); }
 };
 
+namespace JASKernel { JKRHeap* getSystemHeap(); };
+
 /**
  * @ingroup jsystem-jaudio
  * 
@@ -183,7 +185,7 @@ public:
     }
 
     void* alloc(u32 size) {
-        T::Lock lock(&mMutex);
+        typename T::Lock lock(&mMutex);
         if (field_0x18->getFreeSize() < size) {
             if (ChunkSize < size) {
                 return NULL;
@@ -196,7 +198,7 @@ public:
     }
 
     void free(void* ptr) {
-        T::Lock lock(&mMutex);
+        typename T::Lock lock(&mMutex);
         MemoryChunk* chunk = field_0x18;
         MemoryChunk* prevChunk = NULL;
         while (chunk != NULL) {
@@ -269,17 +271,17 @@ template <typename T>
 class JASMemPool_MultiThreaded : public JASGenericMemPool {
 public:
     void newMemPool(int param_0) {
-        JASThreadingModel::InterruptsDisable<JASMemPool_MultiThreaded<T> >::Lock lock(*this);
+        typename JASThreadingModel::InterruptsDisable<JASMemPool_MultiThreaded<T> >::Lock lock(*this);
         JASGenericMemPool::newMemPool(sizeof(T), param_0);
     }
 
     void* alloc(size_t count) {
-        JASThreadingModel::InterruptsDisable<JASMemPool_MultiThreaded<T> >::Lock lock(*this);
+        typename JASThreadingModel::InterruptsDisable<JASMemPool_MultiThreaded<T> >::Lock lock(*this);
         return JASGenericMemPool::alloc(count);
     }
 
     void free(void* ptr, u32 param_1) {
-        JASThreadingModel::InterruptsDisable<JASMemPool_MultiThreaded<T> >::Lock lock(*this);
+        typename JASThreadingModel::InterruptsDisable<JASMemPool_MultiThreaded<T> >::Lock lock(*this);
         JASGenericMemPool::free(ptr, param_1);
     }
 };

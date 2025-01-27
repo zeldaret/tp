@@ -4,15 +4,29 @@
  */
 
 #define NO_INLINE_DLSTBASE_DRAW
-#define DFILE_INFO_C_DUMMY_VIRTUAL
 
 #include "d/d_file_sel_info.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_meter2_info.h"
-#include "d/d_pane_class.h"
+#include "d/d_pane_class_alpha.h"
 #include "stdio.h"
+
+// Need 0xC bytes of padding with no symbol between dFile_info_c::__vtable and the end of .data
+// This is likely caused by the vtable of an abstract base class getting put there and then stripped out.
+// Not sure which abstract base class could go there though, so we simulate it with some dummy classes for now.
+class dummy_abstract_class {
+public:
+    virtual void virt_func_0() = 0;
+};
+class dummy_child_class : dummy_abstract_class {
+    virtual void virt_func_0();
+};
+static dummy_child_class dummy() {
+    dummy_child_class temp;
+    return temp;
+}
 
 /* 803BB498-803BB4A8 0185B8 000C+04 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 static u8 cNullVec__6Z2Calc[] = {

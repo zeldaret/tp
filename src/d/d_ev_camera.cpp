@@ -2044,8 +2044,6 @@ SECTION_DEAD static char const* const stringBase_8037AD4F = "ooxxxx";
 SECTION_DEAD static char const* const stringBase_8037AD56 = "Set2";
 SECTION_DEAD static char const* const stringBase_8037AD5B = "Use2";
 SECTION_DEAD static char const* const stringBase_8037AD60 = "xxooox";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8037AD67 = "";
 #pragma pop
 
 /* 80096EDC-80097694 09181C 07B8+00 0/0 1/0 0/0 .text            bspTransEvCamera__9dCamera_cFv */

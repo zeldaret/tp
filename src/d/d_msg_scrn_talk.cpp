@@ -128,8 +128,6 @@ SECTION_DEAD static char const* const stringBase_80399BB0 = "zelda_message_windo
 SECTION_DEAD static char const* const stringBase_80399BCD = "zelda_message_window_text_seirei.blo";
 SECTION_DEAD static char const* const stringBase_80399BF2 = "zelda_message_window_text.blo";
 SECTION_DEAD static char const* const stringBase_80399C10 = "";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80399C11 = "\0\0\0\0\0\0";
 #pragma pop
 
 /* 803C13C8-803C1420 01E4E8 0058+00 2/2 0/0 0/0 .data            __vt__14dMsgScrnTalk_c */

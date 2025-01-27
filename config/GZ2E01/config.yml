@@ -6,6 +6,9 @@ splits: config/GZ2E01/splits.txt
 symbols: config/GZ2E01/symbols.txt
 mw_comment_version: 11 # GC Linker 2.7
 quick_analysis: true # Initial analysis completed
+force_active: [
+  _MetroTRK_Has_Framing,
+]
 modules:
 - object: files/RELS.arc:rels/mmem/f_pc_profile_lst.rel
   hash: 183231361986731ad6bd26624a03a44dceda905b
