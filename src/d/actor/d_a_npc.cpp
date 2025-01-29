@@ -640,10 +640,10 @@ void daNpcT_MatAnm_c::initialize() {
 
     field_0xF4 = value;
     field_0xF8 = value;
-    mTranslationX = value;
-    mTranslationY = value;
-    field_0x104 = 0;
-    field_0x105 = 0;
+    mNowOffsetX = value;
+    mNowOffsetY = value;
+    mEyeMoveFlag = 0;
+    mMorfFrm = 0;
 }
 
 /* 80145788-80145898 1400C8 0110+00 1/0 0/0 0/0 .text calc__15daNpcT_MatAnm_cCFP11J3DMaterial */
@@ -655,13 +655,13 @@ void daNpcT_MatAnm_c::calc(J3DMaterial* param_0) const {
             J3DTexMtxInfo* curr_mtx_info =
                 &param_0->getTexGenBlock()->getTexMtx(i)->getTexMtxInfo();
 
-            if (field_0x104 != 0) {
-                curr_mtx_info->mSRT.mTranslationX = mTranslationX;
-                curr_mtx_info->mSRT.mTranslationY = mTranslationY;
+            if (mEyeMoveFlag != 0) {
+                curr_mtx_info->mSRT.mTranslationX = mNowOffsetX;
+                curr_mtx_info->mSRT.mTranslationY = mNowOffsetY;
             }
 
-            if (field_0x105 != 0) {
-                f32 tmp8 = 1.0f / (field_0x105 + 1);
+            if (mMorfFrm != 0) {
+                f32 tmp8 = 1.0f / (mMorfFrm + 1);
 
                 curr_mtx_info->mSRT.mTranslationX =
                     field_0xF4 * (1.0f - tmp8) + curr_mtx_info->mSRT.mTranslationX * tmp8;
@@ -3224,7 +3224,7 @@ void daNpcF_MatAnm_c::initialize() {
     mNowOffsetX = value;
     mNowOffsetY = value;
     mEyeMoveFlag = 0;
-    field_0x105 = 0;
+    mMorfFrm = 0;
 }
 
 /* 8015075C-80150870 14B09C 0114+00 1/0 0/0 0/0 .text calc__15daNpcF_MatAnm_cCFP11J3DMaterial */
@@ -3236,8 +3236,8 @@ void daNpcF_MatAnm_c::calc(J3DMaterial* param_0) const {
             J3DTexMtxInfo* curr_mtx_info =
                 &param_0->getTexGenBlock()->getTexMtx(i)->getTexMtxInfo();
 
-            if (field_0x105 != 0) {
-                f32 tmp8 = 1.0f / (field_0x105 + 1);
+            if (mMorfFrm != 0) {
+                f32 tmp8 = 1.0f / (mMorfFrm + 1);
                 f32 tmp9 = (1.0f - tmp8);
                 f32 tmp10 = field_0xF4 * (1.0f - tmp8);
 

@@ -464,7 +464,7 @@ SECTION_DATA static daNpcT_faceMotionAnmData_c l_faceMotionAnmData[10] = {
 #pragma pop
 
 /* 80A00B34-80A00DB8 0001F4 0284+00 1/2 0/0 0/0 .data            l_motionAnmData */
-SECTION_DATA static int l_motionAnmData[161] = {
+    SECTION_DATA static int l_motionAnmData[161] = {
     11, 2, 1, 17, 0, 1, 65536, 22, 2, 2, 17, 0, 1, 65536, 16, 2, 2, 17, 0, 1, 65536,
     13, 2, 2, 17, 0, 1, 65536, 21, 2, 2, 31, 2, 2, 0,     20, 0, 2, 30, 0, 2, 0,
     14, 0, 2, 29, 0, 2, 0,     8,  2, 1, 17, 0, 1, 65536, 6,  0, 1, 17, 0, 1, 65536,

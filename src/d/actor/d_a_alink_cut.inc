@@ -699,7 +699,7 @@ BOOL daAlink_c::checkDoCutAction() {
 /* 800D2890-800D28F4 0CD1D0 0064+00 2/2 0/0 0/0 .text            checkCutBackState__9daAlink_cFv */
 BOOL daAlink_c::checkCutBackState() {
     // event flag 0x2902: Learned Backslice
-    return dComIfGs_isEventBit(0x2902) || checkNoResetFlg3(FLG3_UNK_20);
+    return dComIfGs_isEventBit(0x2902) || checkNoResetFlg3(FL3_TRANING_CUT_BACK);
 }
 
 /* 800D28F4-800D29D4 0CD234 00E0+00 6/6 0/0 0/0 .text            checkCutHeadState__9daAlink_cFv */

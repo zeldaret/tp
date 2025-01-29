@@ -452,7 +452,7 @@ public:
         FLG3_UNK_100 = 0x100,
         FLG3_UNK_80 = 0x80,
         FLG3_UNK_40 = 0x40,
-        FLG3_UNK_20 = 0x20,
+        FL3_TRANING_CUT_BACK = 0x20,
         FLG3_UNK_10 = 0x10,
         FLG3_UNK_8 = 8,
         FLG3_UNK_4 = 4,
@@ -497,7 +497,7 @@ public:
         ERFLG1_UNK_40000000 = 0x40000000,
         ERFLG1_UNK_20000000 = 0x20000000,
         ERFLG1_UNK_10000000 = 0x10000000,
-        ERFLG1_UNK_8000000 = 0x8000000,
+        ERFLG1_LARGE_DAMAGE_UP_STOP = 0x8000000,
         ERFLG1_UNK_4000000 = 0x4000000,
         ERFLG1_UNK_2000000 = 0x2000000,
         ERFLG1_UNK_1000000 = 0x1000000,
@@ -569,7 +569,7 @@ public:
     };
 
     enum daPy_RFLG1 {
-        RFLG1_UNK_400 = 0x400,
+        RFLG1_DAMAGE_IMPACT = 0x400,
         RFLG1_UNK_200 = 0x200,
         RFLG1_UNK_100 = 0x100,
         RFLG1_UNK_80 = 0x80,
@@ -906,6 +906,7 @@ public:
     bool checkWolfAttackReverse() const { return checkResetFlg1(RFLG1_WOLF_ATTACK_REVERSE); }
     bool checkFreezeDamage() const { return checkNoResetFlg1(FLG1_ICE_FREEZE); }
     bool checkWolfTagLockJumpReady() const { return checkResetFlg0(RFLG0_UNK_20000); }
+    bool checkDamageImpact() const { return checkResetFlg1(RFLG1_DAMAGE_IMPACT); }
     bool getGrabUpEnd() const { return checkResetFlg0(RFLG0_GRAB_UP_END); }
     bool getGrabPutStart() const { return checkResetFlg0(RFLG0_GRAB_PUT_START); }
     bool checkSwimUp() const { return checkNoResetFlg0(FLG0_SWIM_UP); }
@@ -1027,6 +1028,8 @@ public:
     void onDoPutEmphasys() { onEndResetFlg1(ERFLG1_UNK_10000000); }
     void onNsScream() { onEndResetFlg1(ERFLG1_UNK_1); }
     void onNsScreamAnm() { onEndResetFlg1(daPy_ERFLG1(ERFLG1_UNK_1 | ERFLG1_UNK_2)); }
+    void onLargeDamageUpStop() { onEndResetFlg1(ERFLG1_LARGE_DAMAGE_UP_STOP); }
+    void onTraningCutBack() { onNoResetFlg3(FL3_TRANING_CUT_BACK); }
     void onNeckSearchWide() { onEndResetFlg0(ERFLG0_UNK_400); }
 
     u32 checkBoarSingleBattle() const { return checkNoResetFlg2(daPy_FLG2(FLG2_UNK_1000000 | FLG2_BOAR_SINGLE_BATTLE)); }
