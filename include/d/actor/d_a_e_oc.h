@@ -13,6 +13,8 @@
  * @details 
  * 
  */
+class daRotBridge_c;
+
 class daE_OC_c : public fopEn_enemy_c {
 public:
     /* 8072C630 */ int ctrlJoint(J3DJoint*, J3DModel*);
@@ -21,10 +23,10 @@ public:
     /* 8072CBD4 */ int getVisionAngle(fopAc_ac_c*);
     /* 8072CC10 */ void searchOtherOc();
     /* 8072CDA8 */ int setWatchMode();
-    /* 8072CE00 */ void searchPlayer();
-    /* 8072CF90 */ void searchPlayer2();
-    /* 8072D100 */ void searchPlayerShakeHead();
-    /* 8072D1DC */ void searchSound();
+    /* 8072CE00 */ int searchPlayer();
+    /* 8072CF90 */ int searchPlayer2();
+    /* 8072D100 */ int searchPlayerShakeHead();
+    /* 8072D1DC */ int searchSound();
     /* 8072D364 */ void checkBeforeBg();
     /* 8072D640 */ void checkBeforeBgFind();
     /* 8072D87C */ void checkBeforeFloorBg(f32);
@@ -37,7 +39,7 @@ public:
     /* 8072E274 */ void setBck(int, u8, f32, f32);
     /* 8072E31C */ void checkBck(int);
     /* 8072E37C */ void setSpitEffect();
-    /* 8072E42C */ void getHeadAngle();
+    /* 8072E42C */ s16 getHeadAngle();
     /* 8072E498 */ void setStabPos();
     /* 8072E528 */ void setWaitSound();
     /* 8072E5A4 */ void setWalkSound();
@@ -75,12 +77,12 @@ public:
     /* 80734C10 */ void CreateHeap();
     /* 80734DA8 */ int create();
 
-    u8 isHomeWait() { return mIsHomeWait; }
-    u8 isBattleOn() { return mBattleOn; }
-    f32 getMoveRange() { return mMoveRange; }
-    f32 getPlayerRange() { return mPlayerRange; }
-    int getActionMode() { return mActionMode; }
-    daE_OC_c* getTalkOc() { return mpTalk; }
+    u8 isHomeWait() const { return mIsHomeWait; }
+    u8 isBattleOn() const { return mBattleOn; }
+    f32 getMoveRange() const { return mMoveRange; }
+    f32 getPlayerRange() const { return mPlayerRange; }
+    int getActionMode() const { return mActionMode; }
+    daE_OC_c* getTalkOc() const { return mpTalk; }
 
 private:
     /* 0x5a0 */ request_of_phase_process_class mPhaseReqs[2];
@@ -90,7 +92,8 @@ private:
     /* 0x668 */ daE_OC_c* mpBattle;
     /* 0x66c */ daE_OC_c* mpDamage;
     /* 0x670 */ daE_OC_c* mpTalk;
-    /* 0x674 */ u8 field_0x674[0x67c - 0x674];
+    /* 0x674 */ u8 field_0x674[0x678 - 0x674];
+    /* 0x678 */ daRotBridge_c* mpBridge;
     /* 0x67c */ cXyz field_0x67c;
     /* 0x688 */ csXyz field_0x688;
     /* 0x690 */ f32 mMoveRange;

@@ -9,6 +9,8 @@
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/d_com_inf_game.h"
 #include "SSystem/SComponent/c_math.h"
+#include "d/actor/d_a_alink.h"
+#include "d/actor/d_a_obj_rotBridge.h"
 
 
 //
@@ -246,24 +248,12 @@ extern "C" void __register_global_object();
 //
 
 static f32 dummyFunc_0() {
-    cXyz my_vec(100.0f, 0.0f, 100.0f);
-    return my_vec.x;
-}
-
-static f32* dummyFunc_1() {
-    static f32 vals[2];
-    vals[0] = 1.0f;
-    vals[1] = 0.0f;
-    return vals;
-}
-
-static s16 dummyFunc_2() {
-    cXyz my_vec(100.0f, 0.0f, 100.0f);
+    cXyz my_vec(100.0f, 0.0f, 1.0f);
     cXyz o_vec(0.0f, 0.0f, 0.0f);
     return my_vec.absXZ(o_vec);
 }
 
-static f32 dummyFunc_3() {
+static f32 dummyFunc_1() {
     f32 val = 0.01f;
     return val;
 }
@@ -681,14 +671,13 @@ static daE_OC_HIO_c l_HIO;
 
 /* 8072C938-8072CBD4 000458 029C+00 1/1 0/0 0/0 .text            s_other_oc__FPvPv */
 static void* s_other_oc(void* arg_lhs, void* arg_rhs) {
-    // NONMATCHING
-    daE_OC_c* actor_rhs = static_cast<daE_OC_c*>(arg_rhs);
-    daE_OC_c* actor_lhs = static_cast<daE_OC_c*>(arg_lhs);
-    if (actor_lhs != actor_rhs && fopAcM_IsActor(actor_lhs)) {
+    if (arg_lhs != arg_rhs && fopAcM_IsActor(arg_lhs)) {
+        fopAc_ac_c* actor_rhs = static_cast<fopAc_ac_c*>(arg_rhs);
+        daE_OC_c* actor_lhs = static_cast<daE_OC_c*>(arg_lhs);
         if (fpcM_IsCreating(fopAcM_GetID(actor_lhs)) == 0 && fopAcM_GetName(actor_lhs) == 0x1fe) {
             if (actor_lhs->isBattleOn() && fopAcM_searchActorDistance(actor_lhs, actor_rhs) < l_HIO.field_0x14) {
                 f32 abs_val = actor_lhs->current.pos.absXZ(actor_rhs->home.pos);
-                if (abs_val < actor_rhs->getMoveRange()) {
+                if (abs_val < ((daE_OC_c*) arg_rhs)->getMoveRange()) {
                     if (fopAcM_searchPlayerDistance(actor_lhs) < actor_lhs->getPlayerRange()) {
                         E_OC_n::m_battle_oc = actor_lhs;
                     }
@@ -716,7 +705,6 @@ static void* s_other_oc(void* arg_lhs, void* arg_rhs) {
                 default:
                     break;
             }
-            // TODO.
         }
     }
     return NULL;
@@ -776,35 +764,109 @@ int daE_OC_c::setWatchMode() {
     return 0;
 }
 
-/* ############################################################################################## */
-/* 80735BC8-80735BCC 0000A0 0004+00 1/1 0/0 0/0 .rodata          @4206 */
-SECTION_RODATA static f32 const lit_4206 = 12.0f;
-COMPILER_STRIP_GATE(0x80735BC8, &lit_4206);
-
 /* 8072CE00-8072CF00 000920 0100+00 1/1 0/0 0/0 .text            searchPlayer__8daE_OC_cFv */
-void daE_OC_c::searchPlayer() {
-    // NONMATCHING
+int daE_OC_c::searchPlayer() {
+    if (fopAcM_searchPlayerDistance(this) < mPlayerRange) {
+        s16 diff = shape_angle.y - fopAcM_searchPlayerAngleY(this);
+        if (fopAcM_searchPlayerDistance(this) < l_HIO.field_0x10) {
+            if (daPy_getPlayerActorClass()->speedF > 12.0f)
+                return 1;
+            if (abs(diff) < 0x5000) {
+                if (fopAcM_otherBgCheck(this,dComIfGp_getPlayer(0)) == 0)
+                    return 1;
+            }
+        } else {
+            if (abs(diff) < 0x4000) {
+                if (fopAcM_otherBgCheck(this,dComIfGp_getPlayer(0)) == 0)
+                    return 1;
+            }
+        }
+    }
+    return 0;
 }
 
 /* 8072CF00-8072CF90 000A20 0090+00 1/1 0/0 0/0 .text            s_obj_sub__FPvPv */
-static void s_obj_sub(void* param_0, void* param_1) {
-    // NONMATCHING
+static void* s_obj_sub(void* arg_lhs, void* arg_rhs) {
+    if (fopAcM_IsActor(arg_lhs)) {
+        if (fpcM_IsCreating(fopAcM_GetID(arg_lhs)) == 0 && fopAcM_GetName(arg_lhs) == 0x36) {
+            fopAc_ac_c* actor_lhs = static_cast<fopAc_ac_c*>(arg_lhs);
+            fopAc_ac_c* actor_rhs = static_cast<fopAc_ac_c*>(arg_rhs);
+            if (fopAcM_GetRoomNo(actor_lhs) == fopAcM_GetRoomNo(actor_rhs))
+                return arg_lhs;
+        }
+    }
+    return NULL;
 }
 
 /* 8072CF90-8072D100 000AB0 0170+00 6/6 0/0 0/0 .text            searchPlayer2__8daE_OC_cFv */
-void daE_OC_c::searchPlayer2() {
-    // NONMATCHING
+int daE_OC_c::searchPlayer2() {
+    field_0x6e2 = 0;
+    if (field_0x6b4 == 2) {
+        mpBridge = (daRotBridge_c *) fpcM_Search(s_obj_sub, this);
+        if (mpBridge && mpBridge->getPlayerRide()) {
+            if (mpBridge->getBridgeAngle()) {
+                if (field_0x6e1 != 0xff) {
+                    if (dComIfGs_isSwitch(field_0x6e1, fopAcM_GetRoomNo(this)) == 0) {
+                        dComIfGs_onSwitch(field_0x6e1, fopAcM_GetRoomNo(this));
+                    }
+                }
+                field_0x6e2 = 1;
+                return 1;
+            }
+            return 0;
+        }
+    }
+    if (searchPlayer() & 0xff) {
+        if (field_0x6b4 == 2 && field_0x6e1 != 0xff) {
+            if (dComIfGs_isSwitch(field_0x6e1, fopAcM_GetRoomNo(this)) == 0) {
+                dComIfGs_onSwitch(field_0x6e1, fopAcM_GetRoomNo(this));
+                field_0x6e2 = 1;
+            }
+        }
+        return 1;
+    }
+    if (mpBattle) {
+        if (mpBattle->getActionMode() != 3)
+            return 1;
+        if (mpBattle->searchPlayer() & 0xff)
+            return 1;
+    }
+    return 0;
 }
 
 /* 8072D100-8072D1DC 000C20 00DC+00 2/2 0/0 0/0 .text            searchPlayerShakeHead__8daE_OC_cFv
  */
-void daE_OC_c::searchPlayerShakeHead() {
+int daE_OC_c::searchPlayerShakeHead() {
     // NONMATCHING
+    if (field_0x6e3 != 0)
+        return 0;
+    if (field_0x6b4 == 2 && mpBridge && mpBridge->getPlayerRide())
+        return 0;
+    if (fopAcM_searchPlayerDistance(this) < mPlayerRange) {
+        s16 diff = getHeadAngle() - fopAcM_searchPlayerAngleY(this);
+        if (abs(diff) < 0x2000) {
+            if (fopAcM_otherBgCheck(this, dComIfGp_getPlayer(0)) == 0)
+                return 1;
+        }
+    }
+    return 0;
 }
 
 /* 8072D1DC-8072D2E8 000CFC 010C+00 3/3 0/0 0/0 .text            searchSound__8daE_OC_cFv */
-void daE_OC_c::searchSound() {
-    // NONMATCHING
+int daE_OC_c::searchSound() {
+    if (field_0x6b4 == 2 && mpBridge && mpBridge->getPlayerRide())
+        return 0;
+    if (daPy_getPlayerActorClass()->getCutType() != 0 && fopAcM_searchPlayerDistance(this) < mPlayerRange) {
+        field_0x67c = dComIfGp_getPlayer(0)->current.pos;
+        setActionMode(8, 0);
+        return 1;
+    }
+    if (fopAcM_otoCheck(this, 1000.0f)) {
+        field_0x67c = dKy_Sound_get()->position;
+        setActionMode(8, 0);
+        return 1;
+    }
+    return 0;
 }
 
 /* 8072D2E8-8072D364 000E08 007C+00 1/1 0/0 0/0 .text            s_demo_oc__FPvPv */
@@ -931,7 +993,7 @@ void daE_OC_c::setSpitEffect() {
 }
 
 /* 8072E42C-8072E498 001F4C 006C+00 1/1 0/0 0/0 .text            getHeadAngle__8daE_OC_cFv */
-void daE_OC_c::getHeadAngle() {
+s16 daE_OC_c::getHeadAngle() {
     // NONMATCHING
 }
 
