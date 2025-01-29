@@ -115,12 +115,12 @@ void daTvCdlst_c::lightInit() {
     field_0x700 = field_0x6ec;
     field_0x700.y += 10.0f;
     if (mLightType) {
-        field_0x714 = field_0x700;
-        field_0x720.x = 0xbc;
-        field_0x720.y = 0x66;
-        field_0x720.z = 0x42;
-        field_0x728 = 500.0f;
-        field_0x72c = 1.0f;
+        mLight.mPosition = field_0x700;
+        mLight.mColor.r = 0xbc;
+        mLight.mColor.g = 0x66;
+        mLight.mColor.b = 0x42;
+        mLight.mPow = 500.0f;
+        mLight.mFluctuation = 1.0f;
         return;
     }
     field_0x710 = 0.0f;
@@ -129,14 +129,14 @@ void daTvCdlst_c::lightInit() {
 /* 80B9F1F0-80B9F220 000610 0030+00 2/2 0/0 0/0 .text            setLight__11daTvCdlst_cFv */
 void daTvCdlst_c::setLight() {
     if (mLightType) {
-        dKy_plight_set((LIGHT_INFLUENCE *) &field_0x714);
+        dKy_plight_set(&mLight);
     }
 }
 
 /* 80B9F220-80B9F250 000640 0030+00 1/1 0/0 0/0 .text            cutLight__11daTvCdlst_cFv */
 void daTvCdlst_c::cutLight() {
     if (mLightType) {
-        dKy_plight_cut((LIGHT_INFLUENCE *) &field_0x714);
+        dKy_plight_cut(&mLight);
     }
 }
 
@@ -212,7 +212,7 @@ int daTvCdlst_c::Delete() {
     mSound.deleteObject();
     dComIfG_resDelete(&mPhaseReq, "HShokudai");
     if (mLightType) {
-        dKy_plight_cut((LIGHT_INFLUENCE *) &field_0x714);
+        dKy_plight_cut(&mLight);
     }
     return 1;
 }

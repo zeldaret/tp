@@ -48,11 +48,7 @@ private:
     /* 0x700 */ cXyz field_0x700;
     /* 0x70c */ u8 mLightType;
     /* 0x710 */ f32 field_0x710;
-    /* 0x714 */ cXyz field_0x714;
-    /* 0x720 */ csXyz field_0x720;
-    /* 0x728 */ f32 field_0x728;
-    /* 0x72c */ f32 field_0x72c;
-    /* 0x730 */ u8 field_0x70d[0x734 - 0x730];
+    /* 0x714 */ LIGHT_INFLUENCE mLight;
     /* 0x734 */ Z2SoundObjSimple mSound;
 };
 
