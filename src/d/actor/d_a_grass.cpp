@@ -1178,8 +1178,8 @@ SECTION_DATA static u8 l_flowerTexCoord[] = {
 #include "assets/l_J_hana00_cDL.h"  // ALIGN 32
 
 /* 80525AD8-80525B78 002900 0099+07 0/2 0/0 0/0 .data            l_matDL */
-#include "assets/l_matDL.h"
-l_matDL(l_J_Ohana00_64TEX)
+#include "assets/l_matDL__d_a_grass.h"
+l_matDL__d_a_grass(l_J_Ohana00_64TEX)
 
 /* 80525B78-80525C18 0029A0 0099+07 0/2 0/0 0/0 .data            l_matLight4DL */
 #include "assets/l_matLight4DL.h"
@@ -1341,8 +1341,8 @@ SECTION_DATA static u8 l_flowerTexCoord2[] = {
 #include "assets/l_J_hana01_c_01DL.h"  // ALIGN 32
 
 /* 80527698-80527738 0044C0 0099+07 0/2 0/0 0/0 .data            l_mat2DL */
-#include "assets/l_mat2DL.h"
-l_mat2DL(l_J_Ohana01_64128_0419TEX)
+#include "assets/l_mat2DL__d_a_grass.h"
+l_mat2DL__d_a_grass(l_J_Ohana01_64128_0419TEX)
 
 /* 80527738-805277D4 004560 0099+03 0/2 0/0 0/0 .data            l_mat2Light4DL */
 #include "assets/l_mat2Light4DL.h"

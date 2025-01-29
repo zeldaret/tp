@@ -35,7 +35,7 @@ static void messageSet(u32 status, bool i_drawBg) {
     BMG_INF1* inf1 = (BMG_INF1*)&msg_data[0x20];
     const char* msg_p = (const char*)((u8*)inf1->getNext() + sizeof(JUTDataBlockHeader) + inf1->entries[status]);
 
-    JUT_ASSERT(std::strlen(msg_p)-1 < 512);
+    JUT_ASSERT(102, std::strlen(msg_p)-1 < 512);
 
     J2DTextBox tpane('TEXT1', JGeometry::TBox2<f32>(0.0f, 0.0f, 608.0f, 200.0f), (ResFONT*)font_data, msg_p, 512, HBIND_CENTER, VBIND_CENTER);
     J2DTextBox spane('TEXT2', JGeometry::TBox2<f32>(0.0f, 0.0f, 608.0f, 200.0f), (ResFONT*)font_data, msg_p, 512, HBIND_CENTER, VBIND_CENTER);
@@ -85,7 +85,7 @@ static void messageSet(u32 status, bool i_drawBg) {
         if (*msg_p == '\n') {
             height += 23.0f;
             cnt++;
-            JUT_ASSERT(cnt < lineMax);
+            JUT_ASSERT(191, cnt < lineMax);
             continue;
         }
 

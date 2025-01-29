@@ -1083,6 +1083,19 @@ modules:
   symbols: config/ShieldD/rels/d_a_mantD/symbols.txt
   splits: config/ShieldD/rels/d_a_mantD/splits.txt
   # map: orig/ShieldD/fixed_maps/d_a_mantD.map
+  extract:
+  - symbol: l_Egnd_mantTEX
+    binary: assets/l_Egnd_mantTEX.bin
+    header: assets/l_Egnd_mantTEX.h
+  - symbol: l_Egnd_mantTEX_U
+    binary: assets/l_Egnd_mantTEX_U.bin
+    header: assets/l_Egnd_mantTEX_U.h
+  - symbol: l_Egnd_mantPAL
+    binary: assets/l_Egnd_mantPAL.bin
+    header: assets/l_Egnd_mantPAL.h
+  - symbol: l_Egnd_mantDL
+    binary: assets/l_Egnd_mantDL.bin
+    header: assets/l_Egnd_mantDL.h
 
 - object: files/rel/RVL/Debug/d_a_mg_fishD.rel
   hash: 23e9ec4daf37074c32c6dbfc681e8a6bf66a6c9c
@@ -4497,3 +4510,86 @@ modules:
   symbols: config/ShieldD/rels/f_pc_profile_lstD/symbols.txt
   splits: config/ShieldD/rels/f_pc_profile_lstD/splits.txt
   # map: orig/ShieldD/fixed_maps/f_pc_profile_lstD.map
+
+extract:
+- symbol: black_tex
+  binary: assets/black_tex.bin
+  header: assets/black_tex.h
+- symbol: msg_data
+  binary: assets/msg_data.bin
+  header: assets/msg_data.h
+- symbol: font_data
+  binary: assets/font_data.bin
+  header: assets/font_data.h
+
+- symbol: l_M_kusa05_RGBATEX
+  binary: assets/l_M_kusa05_RGBATEX.bin
+  header: assets/l_M_kusa05_RGBATEX.h
+- symbol: l_M_Hijiki00TEX
+  binary: assets/l_M_Hijiki00TEX.bin
+  header: assets/l_M_Hijiki00TEX.h
+- symbol: l_M_Kusa_9qDL
+  binary: assets/l_M_Kusa_9qDL.bin
+  header: assets/l_M_Kusa_9qDL.h
+- symbol: l_M_Kusa_9q_cDL
+  binary: assets/l_M_Kusa_9q_cDL.bin
+  header: assets/l_M_Kusa_9q_cDL.h
+- symbol: l_M_TenGusaDL
+  binary: assets/l_M_TenGusaDL.bin
+  header: assets/l_M_TenGusaDL.h
+- symbol: l_Tengusa_matDL
+  binary: assets/l_Tengusa_matDL.bin
+  header: assets/l_Tengusa_matDL.h
+  header_type: none
+  custom_type: matDL
+- symbol: l_kusa9q_matDL
+  binary: assets/l_kusa9q_matDL.bin
+  header: assets/l_kusa9q_matDL.h
+  header_type: none
+  custom_type: matDL
+- symbol: l_kusa9q_l4_matDL
+  binary: assets/l_kusa9q_l4_matDL.bin
+  header: assets/l_kusa9q_l4_matDL.h
+  header_type: none
+  custom_type: matDL
+- symbol: l_J_Ohana00_64TEX
+  binary: assets/l_J_Ohana00_64TEX.bin
+  header: assets/l_J_Ohana00_64TEX.h
+- symbol: l_J_hana00DL
+  binary: assets/l_J_hana00DL.bin
+  header: assets/l_J_hana00DL.h
+- symbol: l_J_hana00_cDL
+  binary: assets/l_J_hana00_cDL.bin
+  header: assets/l_J_hana00_cDL.h
+- symbol: l_matDL!.data:0x806be780
+  binary: assets/l_matDL__d_a_grass.bin
+  header: assets/l_matDL__d_a_grass.h
+  header_type: none
+  custom_type: matDL
+- symbol: l_matLight4DL
+  binary: assets/l_matLight4DL.bin
+  header: assets/l_matLight4DL.h
+  header_type: none
+  custom_type: matDL
+- symbol: l_J_Ohana01_64128_0419TEX
+  binary: assets/l_J_Ohana01_64128_0419TEX.bin
+  header: assets/l_J_Ohana01_64128_0419TEX.h
+- symbol: l_J_hana01DL
+  binary: assets/l_J_hana01DL.bin
+  header: assets/l_J_hana01DL.h
+- symbol: l_J_hana01_c_00DL
+  binary: assets/l_J_hana01_c_00DL.bin
+  header: assets/l_J_hana01_c_00DL.h
+- symbol: l_J_hana01_c_01DL
+  binary: assets/l_J_hana01_c_01DL.bin
+  header: assets/l_J_hana01_c_01DL.h
+- symbol: l_mat2DL!.data:0x806c0340
+  binary: assets/l_mat2DL__d_a_grass.bin
+  header: assets/l_mat2DL__d_a_grass.h
+  header_type: none
+  custom_type: matDL
+- symbol: l_mat2Light4DL
+  binary: assets/l_mat2Light4DL.bin
+  header: assets/l_mat2Light4DL.h
+  header_type: none
+  custom_type: matDL
