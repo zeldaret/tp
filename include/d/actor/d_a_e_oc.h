@@ -5,6 +5,7 @@
 #include "d/d_bg_s_acch.h"
 #include "d/d_cc_d.h"
 
+
 /**
  * @ingroup actors-enemies
  * @class daE_OC_c
@@ -37,7 +38,7 @@ public:
     /* 8072DD8C */ void offTgSph();
     /* 8072DDF4 */ void damage_check();
     /* 8072E274 */ void setBck(int, u8, f32, f32);
-    /* 8072E31C */ void checkBck(int);
+    /* 8072E31C */ bool checkBck(int);
     /* 8072E37C */ void setSpitEffect();
     /* 8072E42C */ s16 getHeadAngle();
     /* 8072E498 */ void setStabPos();
@@ -148,7 +149,9 @@ private:
     /* 0xe58 */ u16 field_0xe58;
     /* 0xe5a */ u8 field_0xe5a;
     /* 0xe5b */ u8 field_0xe5b; // might be unused.
-    /* 0xe5c */ u8 field_0xe5c[0xe84 - 0xe5c];
+    /* 0xe5c */ u8 field_0xe5c[0xe68 - 0xe5c];
+    /* 0xe68 */ u32 mParticleKey;
+    /* 0xe6c */ u8 field_0xe6c[0xe84 - 0xe6c];
     /* 0xe84 */ u8 field_0xe84;
 };
 
