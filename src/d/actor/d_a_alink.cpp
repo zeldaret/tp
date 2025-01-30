@@ -5509,10 +5509,6 @@ static int daAlink_createHeap(fopAc_ac_c* i_this) {
     return ((daAlink_c*)i_this)->createHeap();
 }
 
-bool daPy_py_c::checkWoodSwordEquip() {
-    return dComIfGs_getSelectEquipSword() == fpcNm_ITEM_WOOD_STICK;
-}
-
 bool daPy_py_c::checkLightMasterSwordEquip() {
     return dComIfGs_getSelectEquipSword() == fpcNm_ITEM_LIGHT_SWORD;
 }

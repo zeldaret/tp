@@ -12,10 +12,6 @@
 #include "d/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
 
-bool daPy_py_c::checkWoodSwordEquip() {
-    return dComIfGs_getSelectEquipSword() == fpcNm_ITEM_WOOD_STICK;
-}
-
 BOOL daPy_py_c::checkNowWolf() {
     return dComIfGp_getLinkPlayer()->checkWolf();
 }
