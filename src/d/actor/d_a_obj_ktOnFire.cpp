@@ -226,7 +226,8 @@ void daKtOnFire_c::lightInit() {
 
 /* 8058C9D4-8058C9F8 0004B4 0024+00 2/2 0/0 0/0 .text            setLight__12daKtOnFire_cFv */
 void daKtOnFire_c::setLight() {
-    // NONMATCHING
+    LIGHT_INFLUENCE* lightData = (LIGHT_INFLUENCE*)((char*)this + 0x708);
+    dKy_plight_set(lightData);
 }
 
 /* 8058C9F8-8058CA1C 0004D8 0024+00 1/1 0/0 0/0 .text            cutLight__12daKtOnFire_cFv */
