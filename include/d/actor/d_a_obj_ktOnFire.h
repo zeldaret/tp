@@ -26,7 +26,8 @@ public:
     static u8 mCcDCyl[68];
 
 private:
-    /* 0x568 */ u8 field_0x568[0x728 - 0x568];
+    /* 0x568 */ u8 field_0x568[0x708 - 0x568];
+    /* 0x708 */ LIGHT_INFLUENCE mLight;
 };
 
 STATIC_ASSERT(sizeof(daKtOnFire_c) == 0x728);
