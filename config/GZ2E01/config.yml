@@ -343,8 +343,8 @@ modules:
     binary: assets/l_J_hana00_cDL.bin
     header: assets/l_J_hana00_cDL.h
   - symbol: l_matDL
-    binary: assets/l_matDL.bin
-    header: assets/l_matDL.h
+    binary: assets/l_matDL__d_a_grass.bin
+    header: assets/l_matDL__d_a_grass.h
     header_type: none
     custom_type: matDL
   - symbol: l_matLight4DL
@@ -365,8 +365,8 @@ modules:
     binary: assets/l_J_hana01_c_01DL.bin
     header: assets/l_J_hana01_c_01DL.h
   - symbol: l_mat2DL
-    binary: assets/l_mat2DL.bin
-    header: assets/l_mat2DL.h
+    binary: assets/l_mat2DL__d_a_grass.bin
+    header: assets/l_mat2DL__d_a_grass.h
     header_type: none
     custom_type: matDL
   - symbol: l_mat2Light4DL
