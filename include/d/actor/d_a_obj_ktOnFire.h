@@ -20,7 +20,7 @@ public:
     /* 8058C9F8 */ void cutLight();
     /* 8058CA1C */ void Execute();
     /* 8058CDF8 */ bool Draw();
-    /* 8058CE00 */ void Delete();
+    /* 8058CE00 */ bool Delete();
 
     static u8 const mCcDObjInfo[48];
     static u8 mCcDCyl[68];
