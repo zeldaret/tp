@@ -99,7 +99,8 @@ private:
     /* 0x688 */ csXyz field_0x688;
     /* 0x690 */ f32 mMoveRange;
     /* 0x690 */ f32 mPlayerRange;
-    /* 0x698 */ u8 field_0x698[0x6a4 - 0x698];
+    /* 0x698 */ u8 field_0x698[0x6a0 - 0x698];
+    /* 0x6a0 */ f32 field_0x6a0;
     /* 0x6a4 */ const char* mName;
     /* 0x6a8 */ int mActionMode;
     /* 0x6ac */ int mOldActionMode;
@@ -152,7 +153,8 @@ private:
     /* 0xe5b */ u8 field_0xe5b; // might be unused.
     /* 0xe5c */ u8 field_0xe5c[0xe68 - 0xe5c];
     /* 0xe68 */ u32 mParticleKey;
-    /* 0xe6c */ u8 field_0xe6c[0xe84 - 0xe6c];
+    /* 0xe6c */ u32 field_0xe6c;
+    /* 0xe70 */ u8 field_0xe70[0xe84 - 0xe70];
     /* 0xe84 */ u8 field_0xe84;
 };
 
@@ -176,8 +178,8 @@ public:
 };
 
 struct E_OC_n {
-    static u8 const oc_attackb_trans[40];
-    static u8 const oc_attackc_trans[40];
+    static f32 const oc_attackb_trans[10];
+    static f32 const oc_attackc_trans[10];
     static dCcD_SrcSph cc_sph_src;
     static dCcD_SrcSph at_sph_src;
     static daE_OC_c* m_battle_oc;

@@ -21,26 +21,16 @@ UNK_REL_DATA;
 //
 
 /* 80735B54-80735B7C 00002C 0028+00 0/1 0/0 0/0 .rodata          oc_attackb_trans__6E_OC_n */
-#pragma push
-#pragma force_active on
-SECTION_RODATA u8 const E_OC_n::oc_attackb_trans[40] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x41, 0x74, 0xCC, 0xCD, 0x42, 0x19, 0x99, 0x9A, 0x42, 0x7D, 0x33, 0x33,
-    0x42, 0xAC, 0x66, 0x66, 0x42, 0xCE, 0x99, 0x9A, 0x42, 0xE0, 0x00, 0x00,
+f32 const E_OC_n::oc_attackb_trans[10] = {
+    0.0f, 0.0f, 0.0f, 0.0f, 15.3f, 
+    38.4f, 63.3f, 86.2f, 103.3f, 112.0f
 };
-COMPILER_STRIP_GATE(0x80735B54, &E_OC_n::oc_attackb_trans);
-#pragma pop
 
 /* 80735B7C-80735BA4 000054 0028+00 0/1 0/0 0/0 .rodata          oc_attackc_trans__6E_OC_n */
-#pragma push
-#pragma force_active on
-SECTION_RODATA u8 const E_OC_n::oc_attackc_trans[40] = {
-    0x00, 0x00, 0x00, 0x00, 0x41, 0xFA, 0x66, 0x66, 0x42, 0x91, 0x66, 0x66, 0x42, 0xB7,
-    0x00, 0x00, 0x42, 0xB7, 0x00, 0x00, 0x42, 0xB7, 0x00, 0x00, 0x42, 0xB7, 0x00, 0x00,
-    0x42, 0xB7, 0x00, 0x00, 0x42, 0xB7, 0x00, 0x00, 0x42, 0xB7, 0x00, 0x00,
+f32 const E_OC_n::oc_attackc_trans[10] = {
+    0.0f, 31.3f, 72.7f, 91.5f, 91.5f,
+    91.5f, 91.5f, 91.5f, 91.5f, 91.5f
 };
-COMPILER_STRIP_GATE(0x80735B7C, &E_OC_n::oc_attackc_trans);
-#pragma pop
 
 /* 80735D64-80735DA4 000038 0040+00 1/1 0/0 0/0 .data            cc_sph_src__6E_OC_n */
 dCcD_SrcSph E_OC_n::cc_sph_src = {
@@ -715,7 +705,7 @@ void daE_OC_c::setSpitEffect() {
     MtxP my_mtx_p = mpMorf->getModel()->getAnmMtx(0x11);
     cXyz my_vec(my_mtx_p[0][3], my_mtx_p[1][3], my_mtx_p[2][3]);
     mParticleKey = dComIfGp_particle_set(mParticleKey, 0x837b, &my_vec, &tevStr, &shape_angle, NULL,
-                                         0xff, NULL, 0xffffffff, NULL, NULL, NULL);
+                                         0xff, NULL, -1, NULL, NULL, NULL);
 }
 
 /* 8072E42C-8072E498 001F4C 006C+00 1/1 0/0 0/0 .text            getHeadAngle__8daE_OC_cFv */
@@ -742,18 +732,17 @@ void daE_OC_c::setStabPos() {
 /* 8072E528-8072E5A4 002048 007C+00 1/1 0/0 0/0 .text            setWaitSound__8daE_OC_cFv */
 void daE_OC_c::setWaitSound() {
     if (checkBck(0x1b) && mpMorf->checkFrame(0.0f)) {
-        mSound.startCreatureVoice(0x70180, 0xffffffff);
+        mSound.startCreatureVoice(0x70180, -1);
     }
 }
 
 /* 8072E5A4-8072E670 0020C4 00CC+00 1/1 0/0 0/0 .text            setWalkSound__8daE_OC_cFv */
 void daE_OC_c::setWalkSound() {
-    // NONMATCHING
     if (checkBck(0x1d)) {
         if (mpMorf->checkFrame(14.0f)) {
-            mSound.startCreatureSound(0x70178, 0, 0xffffffff);
+            mSound.startCreatureSound(0x70178, 0, -1);
         } else if (mpMorf->checkFrame(30.0f)) {
-            mSound.startCreatureSound(0x70179, 0, 0xffffffff);
+            mSound.startCreatureSound(0x70179, 0, -1);
         }
     }
 }
@@ -762,11 +751,11 @@ void daE_OC_c::setWalkSound() {
 void daE_OC_c::setWalkStSound() {
     if (checkBck(0x1e)) {
         if (mpMorf->checkFrame(0.0f)) {
-            mSound.startCreatureVoice(0x7018e, 0xffffffff);
+            mSound.startCreatureVoice(0x7018e, -1);
         } else if (mpMorf->checkFrame(1.0f)) {
-            mSound.startCreatureSound(0x70178, 0, 0xffffffff);
+            mSound.startCreatureSound(0x70178, 0, -1);
         } else if (mpMorf->checkFrame(9.0f)) {
-            mSound.startCreatureSound(0x70179, 0, 0xffffffff);
+            mSound.startCreatureSound(0x70179, 0, -1);
         }
     }
 }
@@ -775,16 +764,16 @@ void daE_OC_c::setWalkStSound() {
 void daE_OC_c::setDashSound() {
     if (checkBck(0xb)) {
         if (mpMorf->checkFrame(0.0f)) {
-            mSound.startCreatureVoice(0x7017f, 0xffffffff);
+            mSound.startCreatureVoice(0x7017f, -1);
         } else if (mpMorf->checkFrame(1.0f)) {
-            mSound.startCreatureSound(0x70178, 0, 0xffffffff);
+            mSound.startCreatureSound(0x70178, 0, -1);
         } else if (mpMorf->checkFrame(8.5f)) {
-            mSound.startCreatureSound(0x70179, 0, 0xffffffff);
+            mSound.startCreatureSound(0x70179, 0, -1);
         }
         if (mName == "E_OC") {
-            mSound.startCreatureSoundLevel(0x70193, 0, 0xffffffff);
+            mSound.startCreatureSoundLevel(0x70193, 0, -1);
         } else {
-            mSound.startCreatureSoundLevel(0x70537, 0, 0xffffffff);
+            mSound.startCreatureSoundLevel(0x70537, 0, -1);
         }
     }
 }
@@ -793,11 +782,11 @@ void daE_OC_c::setDashSound() {
 void daE_OC_c::setWaitStSound() {
     if (checkBck(0x1c)) {
         if (mpMorf->checkFrame(0.0f)) {
-            mSound.startCreatureVoice(0x7018d, 0xffffffff);
+            mSound.startCreatureVoice(0x7018d, -1);
         } else if (mpMorf->checkFrame(6.5f) || mpMorf->checkFrame(20.0f)) {
-            mSound.startCreatureSound(0x70178, 0, 0xffffffff);
+            mSound.startCreatureSound(0x70178, 0, -1);
         } else if (mpMorf->checkFrame(13.0f) || mpMorf->checkFrame(28.5f)) {
-            mSound.startCreatureSound(0x70179, 0, 0xffffffff);
+            mSound.startCreatureSound(0x70179, 0, -1);
         }
     }
 }
@@ -833,10 +822,10 @@ void daE_OC_c::executeWait() {
         case 0:
             if (field_0x6b4 == 0) {
                 setBck(0x1b, 2, 5.0f, 1.0f);
-                mSound.startCreatureVoice(0x70180, 0xffffffff);
+                mSound.startCreatureVoice(0x70180, -1);
             } else {
                 setBck(0x18, 2, 5.0f, 1.0f);
-                mSound.startCreatureVoice(0x7018b, 0xffffffff);
+                mSound.startCreatureVoice(0x7018b, -1);
             }
             speedF = 0.0f;
             field_0x6bc = shape_angle.y;
@@ -860,7 +849,7 @@ void daE_OC_c::executeWait() {
             cLib_addCalcAngleS(&shape_angle.y, field_0x6bc, 4, 0x800, 0x100);
             if (field_0x6c0 == 0) {
                 setBck(0x16, 0, 5.0f, 1.0f);
-                mSound.startCreatureVoice(0x7017c, 0xffffffff);
+                mSound.startCreatureVoice(0x7017c, -1);
                 mOcState = 2;
             }
             break;
@@ -870,7 +859,7 @@ void daE_OC_c::executeWait() {
             } else {
                 if (mpMorf->isStop()) {
                     setBck(0x1b, 2, 5.0f, 1.0f);
-                    mSound.startCreatureVoice(0x70180, 0xffffffff);
+                    mSound.startCreatureVoice(0x70180, -1);
                     if (field_0x6b4 == 0) {
                         field_0x6c0 = cM_rndF(10.0f) + 10.0f;
                         mOcState = 3;
@@ -989,15 +978,15 @@ void daE_OC_c::executeTalk() {
             if (rand_val < 0.2f) {
                 setBck(0x1a, 0, 5.0f, 1.0f);
                 mOcState = 3;
-                mSound.startCreatureVoice(0x7018f, 0xffffffff);
+                mSound.startCreatureVoice(0x7018f, -1);
             } else if (rand_val < 0.6f) {
                 setBck(0x19, 2, 5.0f, 1.0f);
-                mSound.startCreatureVoice(0x7018a, 0xffffffff);
+                mSound.startCreatureVoice(0x7018a, -1);
                 mOcState = 2;
                 field_0x6c0 = cM_rndF(30.0f) + 30.0f;
             } else {
                 setBck(0x18, 2, 5.0f, 1.0f);
-                mSound.startCreatureVoice(0x7018b, 0xffffffff);
+                mSound.startCreatureVoice(0x7018b, -1);
                 mOcState = 2;
                 field_0x6c0 = cM_rndF(30.0f) + 30.0f;
             }
@@ -1037,8 +1026,6 @@ void daE_OC_c::executeTalk() {
 
 /* 8072F914-807302E8 003434 09D4+00 1/1 0/0 0/0 .text            executeFind__8daE_OC_cFv */
 void daE_OC_c::executeFind() {
-    // NONMATCHING
-    // field_0x
     s16 pl_ang = fopAcM_searchPlayerAngleY(this);
     f32 pl_dist = fopAcM_searchPlayerDistance(this);
     if (mOcState < 3 || (setWatchMode() & 0xff) == 0) {
@@ -1057,7 +1044,7 @@ void daE_OC_c::executeFind() {
                     field_0x6c2 = field_0x6c0 + 0x14;
                     if (checkBck(0x1c) == 0) {
                         setBck(0x1c, 2, 5.0f, 1.0f);
-                        mSound.startCreatureVoice(0x7018d, 0xffffffff);
+                        mSound.startCreatureVoice(0x7018d, -1);
                     }
                     field_0x6de = 1;
                 } else if (mOcState == 1) {
@@ -1069,11 +1056,11 @@ void daE_OC_c::executeFind() {
                     field_0x6e2 = 0;
                     field_0x6ca = 0x96;
                     setBck(0xd, 0, 5.0f, 1.0f);
-                    mSound.startCreatureVoice(0x7017e, 0xffffffff);
+                    mSound.startCreatureVoice(0x7017e, -1);
                 } else {
                     field_0x6c0 = cM_rndF(5.0f) + 5.0f;
                     setBck(0xd, 0, 5.0f, 1.0f);
-                    mSound.startCreatureVoice(0x7017e, 0xffffffff);
+                    mSound.startCreatureVoice(0x7017e, -1);
                 }
                 mOcState = 3;
                 speedF = 0.0f;
@@ -1082,10 +1069,10 @@ void daE_OC_c::executeFind() {
                     if (field_0x6de || pl_dist < 400.0f) {
                         setBck(0x1e, 2, 5.0f, 1.3f);
                         field_0x6de = 1;
-                        mSound.startCreatureVoice(0x7018e, 0xffffffff);
+                        mSound.startCreatureVoice(0x7018e, -1);
                     } else {
                         setBck(0xb, 2, 5.0f, 1.2f);
-                        mSound.startCreatureVoice(0x7017f, 0xffffffff);
+                        mSound.startCreatureVoice(0x7017f, -1);
                     }
                     mOcState = 4;
                     field_0x6c0 = 0x1e;
@@ -1109,7 +1096,9 @@ void daE_OC_c::executeFind() {
                             field_0x6ce = 0x14;
                         }
                     }
-                    if (dComIfGp_event_runCheck() == 0) {
+                    dEvt_control_c& evt_ctrl = dComIfGp_getEvent();
+                    u8& my_status = evt_ctrl.mEventStatus;
+                    if (my_status == 0) {
                         if (field_0x6c2 == 0) {
                             if (pl_dist < 300.0f)
                                 cLib_chaseF(&speedF, -3.0f, 1.0f);
@@ -1118,9 +1107,9 @@ void daE_OC_c::executeFind() {
                             if (pl_dist < 400.0f && pl_dist > 200.0f) {
                                 if (abs(shape_angle.y - fopAcM_searchPlayerAngleY(this)) >= 0x1000)
                                     return;
-                                if (dComIfGp_event_runCheck() != 0)
-                                    return;
-                                setActionMode(4, 0);
+                                if (my_status == 0) {
+                                    setActionMode(4, 0);
+                                }
                                 return;
                             }
                         } else {
@@ -1135,17 +1124,17 @@ void daE_OC_c::executeFind() {
                             if (speedF < 0.0f) {
                                 if (checkBck(0x1c) == 0 || mpMorf->getPlaySpeed() != 1.0f) {
                                     setBck(0x1c, 2, 5.0f, 1.0f);
-                                    mSound.startCreatureVoice(0x7018d, 0xffffffff);
+                                    mSound.startCreatureVoice(0x7018d, -1);
                                 }
-                            } else if (speedF == 0.0f && (s16)cLib_distanceAngleS(shape_angle.y, pl_ang) < 0x1000) {
+                            } else if (!speedF && (s16)cLib_distanceAngleS(shape_angle.y, pl_ang) < 0x1000) {
                                 if (checkBck(0x1c) == 0) {
                                     setBck(0x1c, 2, 5.0f, 1.0f);
-                                    mSound.startCreatureVoice(0x7018d, 0xffffffff);
+                                    mSound.startCreatureVoice(0x7018d, -1);
                                 }
                             } else {
                                 if (checkBck(0x1e) == 0 || mpMorf->getPlaySpeed() != 1.3f) {
                                     setBck(0x1e, 2, 5.0f, 1.3f);
-                                    mSound.startCreatureVoice(0x7018e, 0xffffffff);
+                                    mSound.startCreatureVoice(0x7018e, -1);
                                 }
                             }
                         }
@@ -1160,19 +1149,19 @@ void daE_OC_c::executeFind() {
                             cLib_chaseF(&speedF, 0.0f, 1.0f);
                         }
                         if (speedF < 0.0f) {
-                            if (checkBck(0x1c) == 0 || mpMorf->getPlaySpeed() != -1.0f) {
+                            if (checkBck(0x1e) == 0 || mpMorf->getPlaySpeed() != -1.0f) {
                                 setBck(0x1e, 2, 5.0f, -1.0f);
-                                mSound.startCreatureVoice(0x7018e, 0xffffffff);
+                                mSound.startCreatureVoice(0x7018e, -1);
                             }
-                        } else if (speedF == 0.0f && (s16)cLib_distanceAngleS(shape_angle.y, pl_ang) < 0x1000) {
+                        } else if (!speedF && (s16)cLib_distanceAngleS(shape_angle.y, pl_ang) < 0x1000) {
                             if (checkBck(0x1c) == 0) {
                                 setBck(0x1c, 2, 5.0f, 1.0f);
-                                mSound.startCreatureVoice(0x7018d, 0xffffffff);
+                                mSound.startCreatureVoice(0x7018d, -1);
                             }
                         } else {
                             if (checkBck(0x1e) == 0 || mpMorf->getPlaySpeed() != 1.3f) {
                                 setBck(0x1e, 2, 5.0f, 1.3f);
-                                mSound.startCreatureVoice(0x7018e, 0xffffffff);
+                                mSound.startCreatureVoice(0x7018e, -1);
                             }
                         }
                         if (0 == strcmp("D_MN05", dComIfGp_getStartStageName())
@@ -1198,7 +1187,7 @@ void daE_OC_c::executeFind() {
                 break;
             case 5:
                 setBck(0x16, 0, 5.0f, 1.0f);
-                mSound.startCreatureVoice(0x7017c, 0xffffffff);
+                mSound.startCreatureVoice(0x7017c, -1);
                 mOcState = 6;
                 field_0x6de = 0;
                 // fallthrough intentional.
@@ -1221,59 +1210,166 @@ void daE_OC_c::executeFind() {
     }
 }
 
-/* ############################################################################################## */
-/* 80735C40-80735C44 000118 0004+00 0/3 0/0 0/0 .rodata          @5645 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5645 = 45.0f;
-COMPILER_STRIP_GATE(0x80735C40, &lit_5645);
-#pragma pop
-
 /* 807302E8-807305C0 003E08 02D8+00 1/1 0/0 0/0 .text            setWeaponGroundAngle__8daE_OC_cFv
  */
 void daE_OC_c::setWeaponGroundAngle() {
-    // NONMATCHING
+    s16 my_val = 0;
+    if (checkBck(5) && mpMorf->getFrame() >= 30.0f && mpMorf->getFrame() <= 45.0f) {
+        dBgS_GndChk gnd_chk;
+        cXyz my_vec_0;
+        cXyz my_vec_1;
+        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(0xc));
+        mDoMtx_stack_c::multVecZero(&my_vec_0);
+        my_vec_0.y += 100.0f;
+        mDoMtx_stack_c::transM(0.0f,0.0f,100.0f);
+        mDoMtx_stack_c::multVecZero(&my_vec_1);
+        my_vec_1.y += 100.0f;
+        gnd_chk.SetPos(&my_vec_0);
+        my_vec_0.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
+        if (my_vec_0.y != -1e+09f) {
+            gnd_chk.SetPos(&my_vec_1);
+            my_vec_1.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
+            if (my_vec_1.y != -1e+09f) {
+                f32 my_float = my_vec_0.absXZ(my_vec_1);
+                my_val = (s16) -cM_atan2s(my_vec_1.y - my_vec_0.y, my_float);
+                if (my_val < -0x2000) {
+                    my_val = -0x2000;
+                }
+                if (my_val > 0x2000) {
+                    my_val = 0x2000;
+                }
+            }
+        }
+    }
+    cLib_addCalcAngleS(&field_0x6d0, my_val, 4, 0x1000, 0x100);
 }
-
-/* ############################################################################################## */
-/* 80735C44-80735C48 00011C 0004+00 0/1 0/0 0/0 .rodata          @5849 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5849 = 12.5f;
-COMPILER_STRIP_GATE(0x80735C44, &lit_5849);
-#pragma pop
-
-/* 80735C48-80735C4C 000120 0004+00 0/1 0/0 0/0 .rodata          @5850 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5850 = 19.0f;
-COMPILER_STRIP_GATE(0x80735C48, &lit_5850);
-#pragma pop
-
-/* 80735C4C-80735C50 000124 0004+00 0/1 0/0 0/0 .rodata          @5851 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5851 = 7.0f;
-COMPILER_STRIP_GATE(0x80735C4C, &lit_5851);
-#pragma pop
-
-/* 80735C50-80735C54 000128 0004+00 0/1 0/0 0/0 .rodata          @5852 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5852 = 11.5f;
-COMPILER_STRIP_GATE(0x80735C50, &lit_5852);
-#pragma pop
-
-/* 80735C54-80735C58 00012C 0004+00 0/1 0/0 0/0 .rodata          @5853 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5853 = 22.0f;
-COMPILER_STRIP_GATE(0x80735C54, &lit_5853);
-#pragma pop
 
 /* 807305C0-80730DC0 0040E0 0800+00 1/1 0/0 0/0 .text            executeAttack__8daE_OC_cFv */
 void daE_OC_c::executeAttack() {
-    // NONMATCHING
+    f32 my_float = 0.0f;
+    int frame_ctrl = (mpMorf->getFrame() - 9.0f);
+    if (frame_ctrl >= 0) {
+        if (frame_ctrl >= 9) {
+            frame_ctrl = 9;
+        }
+        if (checkBck(5)) {
+            my_float = E_OC_n::oc_attackb_trans[frame_ctrl];
+        } else {
+            my_float = E_OC_n::oc_attackc_trans[frame_ctrl];
+        }
+    }
+    mBattleOn = 1;
+    field_0x6d4 = shape_angle.y;
+    switch (mOcState) {
+        case 0:
+            if (cLib_chaseF(&speedF, 0.0f, 1.0f)) {
+                if (cM_rndF(1.0f) < 0.5f) {
+                    setBck(5, 0, 5.0f, 1.0f);
+                    mSound.startCreatureVoice(0x70184, -1);
+                    mOcState = 1;
+                } else {
+                    setBck(6, 0, 5.0f, 1.0f);
+                    mSound.startCreatureVoice(0x70185, -1);
+                    mOcState = 2;
+                }
+                field_0x6a0 = 0.0f;
+            }
+            break;
+        case 2:
+            MtxP my_mtx_p = mpMorf->getModel()->getAnmMtx(0);
+            cXyz my_vec_0(my_mtx_p[0][3], my_mtx_p[1][3], my_mtx_p[2][3]);
+            mParticleKey = dComIfGp_particle_set(mParticleKey, 0x8379, &my_vec_0, &tevStr,
+                                                 &shape_angle, NULL, 0xff, NULL, -1,
+                                                 NULL, NULL, NULL);
+            field_0xe6c = dComIfGp_particle_set(field_0xe6c, 0x837a, &my_vec_0, &tevStr,
+                                                 &shape_angle, NULL, 0xff, NULL, -1,
+                                                 NULL, NULL, NULL);
+        case 1:
+            if (mOcState == 1) {
+                if (mpMorf->checkFrame(10.0f)) {
+                    mSound.startCreatureVoice(0x70186, -1);
+                } else if (mpMorf->checkFrame(12.5f)) {
+                    mSound.startCreatureSound(0x70188, 0, -1);
+                } else if (mpMorf->checkFrame(19.0f)) {
+                    if (mName == "E_OC") {
+                        mSound.startCreatureSound(0x70192, 0, -1);
+                    } else {
+                        mSound.startCreatureSound(0x70536, 0, -1);
+                    }
+                }
+            } else {
+                if (mpMorf->checkFrame(7.0f)) {
+                    mSound.startCreatureVoice(0x70187, -1);
+                } else if (mpMorf->checkFrame(11.5f)) {
+                    mSound.startCreatureSound(0x70189, 0, -1);
+                }
+            }
+            if (mpMorf->getFrame() >= 14.0f && mpMorf->getFrame() <= 22.0f) {
+                mSphs_at[0].OnAtSetBit();
+                mSphs_at[1].OnAtSetBit();
+            }
+            if (mpMorf->getFrame() >= 22.0f) {
+                field_0x6d4 = fopAcM_searchPlayerAngleY(this);
+            }
+            u8 my_bool = 0;
+            if (mSphs_at[0].ChkAtHit()) {
+                fopAc_ac_c* hit_actor = dCc_GetAc(mSphs_at[0].GetAtHitObj()->GetAc());
+                if (fopAcM_GetName(hit_actor) == 0xfd) {
+                    my_bool = 1;
+                }
+            }
+            if (mSphs_at[1].ChkAtHit()) {
+                fopAc_ac_c* hit_actor = dCc_GetAc(mSphs_at[1].GetAtHitObj()->GetAc());
+                if (fopAcM_GetName(hit_actor) == 0xfd) {
+                    my_bool = 1;
+                }
+            }
+            if (my_bool && daPy_getPlayerActorClass()->checkPlayerGuard()) {
+                mpMorf->setPlaySpeed(-1.0);
+                mOcState = 3;
+                dComIfGp_getVibration().StartShock(3, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
+            }
+            current.pos.x += (my_float - field_0x6a0) * cM_ssin(shape_angle.y);
+            current.pos.z += (my_float - field_0x6a0) * cM_scos(shape_angle.y);
+            field_0x6a0 = my_float;
+            if (mpMorf->isStop()) {
+                setBck(0x1c, 2, 0.0f, 1.0f);
+                mSound.startCreatureVoice(0x7018d, -1);
+                if (field_0x6e3) {
+                    setActionMode(0x10, 0);
+                } else {
+                    if (field_0x6ca && fopAcM_searchPlayerDistance(this) < 500.0f) {
+                        mOcState = 0;
+                    } else {
+                        setActionMode(3, 0);
+                    }
+                }
+            }
+            break;
+        case 3:
+            current.pos.x += (my_float - field_0x6a0) * cM_ssin(shape_angle.y);
+            current.pos.z += (my_float - field_0x6a0) * cM_scos(shape_angle.y);
+            field_0x6a0 = my_float;
+            if (mpMorf->isStop()) {
+                setBck(0x1c, 2, 5.0f, 1.0f);
+                mSound.startCreatureVoice(0x7018d, -1);
+                if (field_0x6e3) {
+                    setActionMode(0x10, 0);
+                } else {
+                    if (field_0x6ca && fopAcM_searchPlayerDistance(this) < 500.0f) {
+                        if (abs(shape_angle.y - fopAcM_searchPlayerAngleY(this)) < 0x1000) {
+                            mOcState = 0;
+                            break;
+                        }
+                    }
+                    setActionMode(3, 0);
+                }
+            }
+            break;
+        default:
+            break;
+    }
+    current.angle.y = shape_angle.y;
 }
 
 extern "C" void executeDamage__8daE_OC_cFv();
