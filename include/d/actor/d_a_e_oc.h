@@ -19,7 +19,7 @@ class daRotBridge_c;
 class daE_OC_c : public fopEn_enemy_c {
 public:
     /* 8072C630 */ int ctrlJoint(J3DJoint*, J3DModel*);
-    /* 8072C6E8 */ int JointCallBack(J3DJoint*, int);
+    /* 8072C6E8 */ static int JointCallBack(J3DJoint*, int);
     /* 8072C734 */ int draw();
     /* 8072CBD4 */ int getVisionAngle(fopAc_ac_c*);
     /* 8072CC10 */ void searchOtherOc();
@@ -73,9 +73,9 @@ public:
     /* 80733F20 */ void action();
     /* 807345D8 */ void mtx_set();
     /* 80734698 */ void cc_set();
-    /* 807348DC */ void execute();
-    /* 80734B6C */ void _delete();
-    /* 80734C10 */ void CreateHeap();
+    /* 807348DC */ int execute();
+    /* 80734B6C */ int _delete();
+    /* 80734C10 */ int CreateHeap();
     /* 80734DA8 */ int create();
 
     u8 isHomeWait() const { return mIsHomeWait; }
@@ -99,7 +99,8 @@ private:
     /* 0x688 */ csXyz field_0x688;
     /* 0x690 */ f32 mMoveRange;
     /* 0x690 */ f32 mPlayerRange;
-    /* 0x698 */ u8 field_0x698[0x6a0 - 0x698];
+    /* 0x698 */ f32 field_0x698;
+    /* 0x69c */ u8 field_0x69c[0x6a0 - 0x69c];
     /* 0x6a0 */ f32 field_0x6a0;
     /* 0x6a4 */ const char* mName;
     /* 0x6a8 */ int mActionMode;
@@ -113,7 +114,7 @@ private:
     /* 0x6c2 */ s16 field_0x6c2;
     /* 0x6c4 */ s16 field_0x6c4;
     /* 0x6c6 */ s16 field_0x6c6;
-    /* 0x6c8 */ u8 field_0x6c8[0x6ca - 0x6c8];
+    /* 0x6c8 */ s16 field_0x6c8;
     /* 0x6ca */ s16 field_0x6ca;
     /* 0x6cc */ s16 field_0x6cc;
     /* 0x6ce */ s16 field_0x6ce;
@@ -136,7 +137,9 @@ private:
     /* 0x6e9 */ u8 mIsHomeWait;
     /* 0x6ea */ u8 mBattleOn;
     /* 0x6eb */ u8 field_0x6eb;
-    /* 0x6ec */ u8 field_0x6ec[0x708 - 0x6ec];
+    /* 0x6ec */ cXyz mPlayerPos;
+    /* 0x6f8 */ cXyz field_0x6f8;
+    /* 0x704 */ f32 field_0x704;
     /* 0x708 */ dBgS_AcchCir mAcchCir;
     /* 0x748 */ dBgS_ObjAcch mAcch;
     /* 0x920 */ dCcD_Stts mStts;
@@ -151,10 +154,13 @@ private:
     /* 0xe58 */ u16 field_0xe58;
     /* 0xe5a */ u8 field_0xe5a;
     /* 0xe5b */ u8 field_0xe5b; // might be unused.
-    /* 0xe5c */ u8 field_0xe5c[0xe68 - 0xe5c];
+    /* 0xe5c */ u8 field_0xe5c[0xe60 - 0xe5c];
+    /* 0xe60 */ u32 field_0xe60;
+    /* 0xe64 */ u32 field_0xe64;
     /* 0xe68 */ u32 mParticleKey;
     /* 0xe6c */ u32 field_0xe6c;
-    /* 0xe70 */ u8 field_0xe70[0xe84 - 0xe70];
+    /* 0xe70 */ u32 field_0xe70[4];
+    /* 0xe80 */ u8 field_0xe80[0xe84 - 0xe80];
     /* 0xe84 */ u8 field_0xe84;
 };
 
