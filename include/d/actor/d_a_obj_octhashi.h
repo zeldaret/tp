@@ -1,8 +1,10 @@
 #ifndef D_A_OBJ_OCTHASHI_H
 #define D_A_OBJ_OCTHASHI_H
 
+#include "SSystem/SComponent/c_phase.h"
 #include "d/d_bg_s_movebg_actor.h"
-#include "d/d_com_inf_game.h"
+#include "d/d_cc_d.h"
+#include "d/d_cc_uty.h"
 
 /**
  * @ingroup actors-objects
@@ -52,14 +54,15 @@ public:
     /* 0x6e8 */ s16 field_0x6e8;
     /* 0x6ec */ Z2Creature mSound;
 private:
-    /* 0x77c */ u8 field_0x77c[4];
-    /* 0x780 */ J3DModel* mpModel[8];
-    /* 0x7a0 */ u8 field_0x7a0[0x7a4 - 0x7a0];
-    /* 0x7a4 */ request_of_phase_process_class mPhaseReq;
-    /* 0x7ac */ dCcD_Stts field_0x7ac[8];
-    /* 0x98c */ dCcD_Sph mColliders[8];
+    /* 0x077c */ u8 field_0x77c[4];
+    /* 0x0780 */ J3DModel* mpModel[8];
+    /* 0x07a0 */ u8 field_0x7a0[0x7a4 - 0x7a0];
+    /* 0x07a4 */ request_of_phase_process_class mPhaseReq;
+    /* 0x07ac */ dCcD_Stts field_0x7ac[8];
+    /* 0x098c */ dCcD_Sph mColliders[8];
     /* 0x134c */ dCcD_Cyl mCyl;
-    /* 0x1488 */ u8 field_0x1488[0x14b0 - 0x1488];
+    /* 0x1488 */ dCcU_AtInfo field_0x1488;
+    /* 0x148C */ int field_0x148c;
 };
 
 STATIC_ASSERT(sizeof(daObjOCTHASHI_c) == 0x14b0);
