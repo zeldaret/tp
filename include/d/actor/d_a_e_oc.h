@@ -76,7 +76,7 @@ public:
     /* 807348DC */ int execute();
     /* 80734B6C */ int _delete();
     /* 80734C10 */ int CreateHeap();
-    /* 80734DA8 */ int create();
+    /* 80734DA8 */ cPhs__Step create();
 
     u8 isHomeWait() const { return mIsHomeWait; }
     u8 isBattleOn() const { return mBattleOn; }
@@ -93,14 +93,14 @@ private:
     /* 0x668 */ daE_OC_c* mpBattle;
     /* 0x66c */ daE_OC_c* mpDamage;
     /* 0x670 */ daE_OC_c* mpTalk;
-    /* 0x674 */ u8 field_0x674[0x678 - 0x674];
+    /* 0x674 */ daE_OC_c* mpParent;
     /* 0x678 */ daRotBridge_c* mpBridge;
     /* 0x67c */ cXyz field_0x67c;
     /* 0x688 */ csXyz field_0x688;
     /* 0x690 */ f32 mMoveRange;
     /* 0x690 */ f32 mPlayerRange;
     /* 0x698 */ f32 field_0x698;
-    /* 0x69c */ u8 field_0x69c[0x6a0 - 0x69c];
+    /* 0x69c */ f32 field_0x69c;
     /* 0x6a0 */ f32 field_0x6a0;
     /* 0x6a4 */ const char* mName;
     /* 0x6a8 */ int mActionMode;
@@ -120,7 +120,7 @@ private:
     /* 0x6ce */ s16 field_0x6ce;
     /* 0x6d0 */ s16 field_0x6d0;
     /* 0x6d2 */ s16 field_0x6d2;
-    /* 0x6d4 */ s16 field_0x6d4;
+    /* 0x6d4 */ s16 mPrevShapeAngle;
     /* 0x6d6 */ s16 field_0x6d6;
     /* 0x6d8 */ s16 field_0x6d8;
     /* 0x6da */ s16 field_0x6da;
@@ -160,7 +160,7 @@ private:
     /* 0xe68 */ u32 mParticleKey;
     /* 0xe6c */ u32 field_0xe6c;
     /* 0xe70 */ u32 field_0xe70[4];
-    /* 0xe80 */ u8 field_0xe80[0xe84 - 0xe80];
+    /* 0xe80 */ u32 mRippleKey;
     /* 0xe84 */ u8 field_0xe84;
 };
 
