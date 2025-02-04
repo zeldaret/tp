@@ -4,7 +4,6 @@
 */
 
 #include "d/actor/d_a_e_oc.h"
-#include "dol2asm.h"
 #include "d/d_camera.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/d_com_inf_game.h"
@@ -1734,7 +1733,7 @@ void daE_OC_c::executeDeath() {
 
 /* 80731F5C-80732074 005A7C 0118+00 1/1 0/0 0/0 .text            setWaterEffect__8daE_OC_cFv */
 void daE_OC_c::setWaterEffect() {
-    cXyz my_vec_0(current.pos.x, field_0x698, current.pos.z);
+    cXyz my_vec_0(current.pos.x, mWaterLvl, current.pos.z);
     static cXyz sc(1.0f, 1.0f, 1.0f);
     static u16 w_eff_id[4] = {
         0x01B8, 0x01B9, 0x01BA, 0x01BB,
@@ -1771,8 +1770,8 @@ void daE_OC_c::executeWaterDeath() {
                 setWaterEffect();
             }
 
-            if (speed.y > 0.0f && current.pos.y > field_0x698) {
-                current.pos.y = field_0x698;
+            if (speed.y > 0.0f && current.pos.y > mWaterLvl) {
+                current.pos.y = mWaterLvl;
                 mOcState = 2;
                 speed.y = 0.0f;
             }
@@ -1800,8 +1799,8 @@ void daE_OC_c::executeWaterDeath() {
             break;
     }
     
-    if (current.pos.y - 140.0f < field_0x698 && field_0x698 < current.pos.y + 50.0f) {
-        cXyz hamon_pos(current.pos.x, field_0x698, current.pos.z);
+    if (current.pos.y - 140.0f < mWaterLvl && mWaterLvl < current.pos.y + 50.0f) {
+        cXyz hamon_pos(current.pos.x, mWaterLvl, current.pos.z);
         fopAcM_effHamonSet(&mRippleKey, &hamon_pos, 1.0f, 1.0f);
     }
 }
@@ -2244,37 +2243,152 @@ void daE_OC_c::executeMoveOut() {
 }
 
 /* 80733E48-80733F20 007968 00D8+00 1/1 0/0 0/0 .text            checkWaterSurface__8daE_OC_cFv */
-void daE_OC_c::checkWaterSurface() {
-    // NONMATCHING
+bool daE_OC_c::checkWaterSurface() {
+    dBgS_ObjGndChk_Spl gnd_chk_spl;
+    cXyz my_vec_0 = current.pos;
+    my_vec_0.y += 500.0f;
+    gnd_chk_spl.SetPos((Vec*)&my_vec_0);
+    mWaterLvl = dComIfG_Bgsp().GroundCross(&gnd_chk_spl);
+    if (mAcch.ChkGroundHit()) {
+        mWaterLvl = -1e9f;
+    }
+    if (mWaterLvl > (current.pos.y - 140.0f)) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
-
-extern "C" void action__8daE_OC_cFv();
-/* 80735EEC-80735F30 -00001 0044+00 1/1 0/0 0/0 .data            @7106 */
-SECTION_DATA static void* lit_7106[17] = {
-    (void*)(((char*)action__8daE_OC_cFv) + 0x4A0), (void*)(((char*)action__8daE_OC_cFv) + 0x4AC),
-    (void*)(((char*)action__8daE_OC_cFv) + 0x4B8), (void*)(((char*)action__8daE_OC_cFv) + 0x4C4),
-    (void*)(((char*)action__8daE_OC_cFv) + 0x4D8), (void*)(((char*)action__8daE_OC_cFv) + 0x4EC),
-    (void*)(((char*)action__8daE_OC_cFv) + 0x4F8), (void*)(((char*)action__8daE_OC_cFv) + 0x504),
-    (void*)(((char*)action__8daE_OC_cFv) + 0x510), (void*)(((char*)action__8daE_OC_cFv) + 0x51C),
-    (void*)(((char*)action__8daE_OC_cFv) + 0x528), (void*)(((char*)action__8daE_OC_cFv) + 0x534),
-    (void*)(((char*)action__8daE_OC_cFv) + 0x548), (void*)(((char*)action__8daE_OC_cFv) + 0x55C),
-    (void*)(((char*)action__8daE_OC_cFv) + 0x568), (void*)(((char*)action__8daE_OC_cFv) + 0x574),
-    (void*)(((char*)action__8daE_OC_cFv) + 0x588),
-};
 
 /* 80733F20-807345D8 007A40 06B8+00 2/1 0/0 0/0 .text            action__8daE_OC_cFv */
 void daE_OC_c::action() {
-    // NONMATCHING
+    mSphs_at[0].OffAtSetBit();
+    mSphs_at[1].OffAtSetBit();
+    damage_check();
+
+    if (mMoveRange) {
+        if (field_0x6e3 == 0) {
+            if (home.pos.absXZ(current.pos) > mMoveRange) {
+                if (home.pos.absXZ(current.pos) > mMoveRange + 300.0f) {
+                    field_0x6e3 = 2;
+                } else {
+                    field_0x6e3 = 1;
+                }
+            }
+        } else if (home.pos.absXZ(current.pos) < mMoveRange - 100.0f) {
+            field_0x6e3 = 0;
+        }
+    }
+
+    searchOtherOc();
+    mIsHomeWait = false;
+    mBattleOn = false;
+    field_0x6df = 0;
+
+    if (mActionMode != 10 && checkWaterSurface()) {
+        setActionMode(10, 0);
+    }
+
+    if (mActionMode == 3 || mActionMode == 1) {
+        mAcchCir.SetWallR(60.0f);
+    } else {
+        mAcchCir.SetWallR(100.0f);
+    }
+    checkFall();
+    field_0x566 = 0;
+    switch (mActionMode) {
+        case 0: executeWait(); break;
+        case 1: executeWalk(); break;
+        case 2: executeTalk(); break;
+        case 3: field_0x566 = 1; executeFind(); break;
+        case 4: field_0x566 = 1; executeAttack(); break;
+        case 5: executeDamage(); break;
+        case 6: executeBigDamage(); break;
+        case 7: executeWatch(); break;
+        case 8: executeSoundWatch(); break;
+        case 9: executeDeath(); break;
+        case 10: executeWaterDeath(); break;
+        case 11: field_0x566 = 1; executeDemoMaster(); break;
+        case 12: field_0x566 = 1; executeDemoChild(); break;
+        case 13: executeFallDead(); break;
+        case 14: executeFall(); break;
+        case 15: field_0x566 = 1; executeFindStay(); break;
+        case 16: field_0x566 = 1; executeMoveOut(); break;
+    }
+    mSound.setLinkSearch(field_0x566);
+    setFootNoteSound();
+    s16 angle_diff = shape_angle.y - mPrevShapeAngle;
+    if (field_0x6df == 0) {
+        cLib_addCalcAngleS(&field_0x6d2, angle_diff, 4, 0x1000, 0x400);
+    } else {
+        cLib_addCalcAngleS(&field_0x6d2, angle_diff, 8, 0x800, 0x400);
+    }
+
+    if (field_0x6d2 >= 0x3000) {
+        field_0x6d2 = 0x3000;
+    }
+    if (field_0x6d2 < -0x3000) {
+        field_0x6d2 = 0xd000;
+    }
+
+    fopAcM_posMoveF(this, mStts.GetCCMoveP());
+    mAcch.CrrPos(dComIfG_Bgsp());
+    cXyz head_lock_pos(eyePos);
+    head_lock_pos.y += 300.0f;
+    setHeadLockPos(&head_lock_pos);
+    setWeaponGroundAngle();
+    s8 reverb = dComIfGp_getReverb(static_cast<int>(fopAcM_GetRoomNo(this)));
+    mpMorf->play(0, reverb);
 }
 
 /* 807345D8-80734698 0080F8 00C0+00 1/1 0/0 0/0 .text            mtx_set__8daE_OC_cFv */
 void daE_OC_c::mtx_set() {
-    // NONMATCHING
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::ZXYrotM(field_0x688);
+    mDoMtx_stack_c::ZXYrotM(shape_angle);
+    mDoMtx_stack_c::YrotM(field_0x6d8);
+    mDoMtx_stack_c::scaleM(l_HIO.field_0x1c, l_HIO.field_0x1c, l_HIO.field_0x1c);
+    J3DModel* model = mpMorf->getModel();
+    model->setBaseTRMtx(mDoMtx_stack_c::get());
+    mpMorf->modelCalc();
+    if (mpModel) {
+        mpModel->setBaseTRMtx(model->getAnmMtx(0xc));
+    }
 }
 
 /* 80734698-807348DC 0081B8 0244+00 1/1 0/0 0/0 .text            cc_set__8daE_OC_cFv */
 void daE_OC_c::cc_set() {
-    // NONMATCHING
+    cXyz my_vec_lhs;
+    cXyz my_vec_rhs;
+    J3DModel *model = mpMorf->getModel();
+    mDoMtx_stack_c::copy(model->getAnmMtx(0x11));
+    my_vec_lhs.set(10.0f, 0.0f, 0.0f);
+    mDoMtx_stack_c::multVec(&my_vec_lhs, &eyePos);
+    attention_info.position = eyePos;
+    attention_info.position.y += 30.0f;
+    mDoMtx_stack_c::copy(model->getAnmMtx(1));
+    my_vec_lhs.set(10.0f, 10.0f, 0.0f);
+    mDoMtx_stack_c::multVec(&my_vec_lhs, &my_vec_rhs);
+    mSphs_cc[0].SetC(my_vec_rhs);
+    mSphs_cc[0].SetR(50.0f);
+    dComIfG_Ccsp()->Set(&mSphs_cc[0]);
+    mDoMtx_stack_c::copy(model->getAnmMtx(0x11));
+    my_vec_lhs.set(10.0f, 0.0f, 0.0f);
+    mDoMtx_stack_c::multVec(&my_vec_lhs, &my_vec_rhs);
+    mSphs_cc[1].SetC(my_vec_rhs);
+    mSphs_cc[1].SetR(45.0f);
+    dComIfG_Ccsp()->Set(&mSphs_cc[1]);
+    mDoMtx_stack_c::copy(model->getAnmMtx(0xc));
+    my_vec_lhs.set(0.0f, 0.0f, 70.0f);
+    mDoMtx_stack_c::multVec(&my_vec_lhs, &my_vec_rhs);
+    mSphs_at[0].SetC(my_vec_rhs);
+    mSphs_at[0].SetR(45.0f);
+    mDoMtx_stack_c::copy(model->getAnmMtx(0xc));
+    my_vec_lhs.set(0.0f, 0.0f, 20.0f);
+    mDoMtx_stack_c::multVec(&my_vec_lhs, &my_vec_rhs);
+    mSphs_at[1].SetC(my_vec_rhs);
+    mSphs_at[1].SetR(30.0f);
+    dComIfG_Ccsp()->Set(&mSphs_at[0]);
+    dComIfG_Ccsp()->Set(&mSphs_at[1]);
 }
 
 /* 807348DC-80734B44 0083FC 0268+00 1/1 0/0 0/0 .text            execute__8daE_OC_cFv */
@@ -2392,33 +2506,10 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     return static_cast<daE_OC_c*>(i_this)->CreateHeap();
 }
 
-static f32 dummy_lit_6501_thru_6512_func(u8 fake) {
-    if      (fake ==  0) return 16450.0f;   // lit_6501
-    else if (fake ==  1) return 3050.0f;    // lit_6502
-    else if (fake ==  2) return 8250.0f;    // lit_6503
-    else if (fake ==  3) return 16310.0f;   // lit_6504
-    else if (fake ==  4) return 2970.0f;    // lit_6505
-    else if (fake ==  5) return 7500.0f;    // lit_6506
-    else if (fake ==  6) return 16449.0f;   // lit_6507
-    else if (fake ==  7) return 3300.0f;    // lit_6508
-    else if (fake ==  8) return 7879.0f;    // lit_6509
-    else if (fake ==  9) return 2950.0f;    // lit_6510    
-    else if (fake == 10) return 47.0f;      // lit_6511
-    else                 return 34.0f;      // lit_6512
-}
-static f64 dummy_lit_6515_func() {
-    // The following number is 2^52.
-    return 4503599627370496.0;
-}
-static f32 dummy_lit_6590_thru_6592_func(u8 fake) {
-    if      (fake ==  0) return 16249.0f;   // lit_6590
-    else if (fake ==  1) return 4000.0f;    // lit_6591
-    else                 return 8036.0f;    // lit_6592
-}
-
 /* 80734DA8-807352AC 0088C8 0504+00 1/1 0/0 0/0 .text            create__8daE_OC_cFv */
 cPhs__Step daE_OC_c::create() {
-    // NONMATCHING
+    // NONMATCHING. regalloc issue
+    f32 mult_val = 100.0f;
     fopAc_ac_c* a_this = this;
     fopAcM_SetupActor(this, daE_OC_c);
     field_0x6b4 = fopAcM_GetParam(this) & 0xff;
@@ -2442,13 +2533,14 @@ cPhs__Step daE_OC_c::create() {
     if (u_var == 0xff) {
         u_var = 0;
     }
-    mMoveRange = 100.0f * u_var;
+    mMoveRange = mult_val * u_var;
     u_var = current.angle.x >> 8 & 0xff;
     if (u_var == 0xff || u_var == 0) {
         mName = "E_OC";
     } else {
         mName = "E_OC2";
     }
+
     cPhs__Step phase = (cPhs__Step) dComIfG_resLoad(&mPhaseReqs[0], mName);
     if (phase == cPhs_COMPLEATE_e) {
         phase = (cPhs__Step) dComIfG_resLoad(&mPhaseReqs[1], "E_ocb");
@@ -2456,17 +2548,16 @@ cPhs__Step daE_OC_c::create() {
             if (!fopAcM_entrySolidHeap(this, useHeapInit, 0x2e40)) {
                 return cPhs_ERROR_e;
             }
-            if (lbl_216_bss_58 == 0) {
+            if (!lbl_216_bss_58) {
                 field_0xe84 = 1;
                 lbl_216_bss_58 = 1;
-                l_HIO.field_0x04 = -1;
+                l_HIO.field_0x04 = 0xFF;
             }
             attention_info.flags = 4;
             fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
             fopAcM_SetMin(this, -200.0f, -200.0f, -200.0f);
             fopAcM_SetMax(this, 200.0f, 200.0f, 200.0f);
-            mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), a_this, 1,
-                      &mAcchCir, fopAcM_GetSpeed_p(this), NULL, NULL);
+            mAcch.Set(&current.pos, &old.pos, a_this, 1, &mAcchCir, &speed, NULL, NULL);
             if (0 == strcmp("D_MN05", dComIfGp_getStartStageName())
                 && dComIfGp_getStartStageRoomNo() == 0xc) {
                 mAcchCir.SetWallH(95.0f);
@@ -2475,11 +2566,11 @@ cPhs__Step daE_OC_c::create() {
             }
             mAcchCir.SetWallR(100.0f);
             if (mName == "E_OC") {
-                health = 0x28;
-                field_0x560 = 0x28;
+                health = 40;
+                field_0x560 = 40;
             } else {
-                health = 0xdc;
-                field_0x560 = 0xdc;
+                health = 220;
+                field_0x560 = 220;
             }
             mStts.Init(100.0f, 0, this);
             mSphs_cc[0].Set(E_OC_n::cc_sph_src);

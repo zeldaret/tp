@@ -69,7 +69,7 @@ public:
     /* 807331CC */ void executeFall();
     /* 8073332C */ void executeFindStay();
     /* 807335B4 */ void executeMoveOut();
-    /* 80733E48 */ void checkWaterSurface();
+    /* 80733E48 */ bool checkWaterSurface();
     /* 80733F20 */ void action();
     /* 807345D8 */ void mtx_set();
     /* 80734698 */ void cc_set();
@@ -99,7 +99,7 @@ private:
     /* 0x688 */ csXyz field_0x688;
     /* 0x690 */ f32 mMoveRange;
     /* 0x690 */ f32 mPlayerRange;
-    /* 0x698 */ f32 field_0x698;
+    /* 0x698 */ f32 mWaterLvl;
     /* 0x69c */ f32 field_0x69c;
     /* 0x6a0 */ f32 field_0x6a0;
     /* 0x6a4 */ const char* mName;
