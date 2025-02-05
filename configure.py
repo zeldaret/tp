@@ -924,7 +924,7 @@ config.libs = [
         "cflags": cflags_noopt,
         "progress_category": "sdk",
         "objects": [
-            Object(NonMatching, "dolphin/gf/GFGeometry.cpp", extra_cflags=["-O3"]),
+            Object(MatchingFor("GZ2E01"), "dolphin/gf/GFGeometry.cpp", extra_cflags=["-O3"]),
             Object(MatchingFor("GZ2E01"), "dolphin/gf/GFLight.cpp", extra_cflags=["-O3"]),
             Object(MatchingFor("GZ2E01"), "dolphin/gf/GFPixel.cpp", extra_cflags=["-O3"]),
             Object(MatchingFor("GZ2E01"), "dolphin/gf/GFTev.cpp", extra_cflags=["-O3"]),

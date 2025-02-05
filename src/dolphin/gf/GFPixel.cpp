@@ -1,60 +1,74 @@
-#include "dolphin/gf/GFPixel.h"
-#include "dolphin/gf/GFGeometry.h"
-#include "dolphin/gx.h"
+#include <dolphin/gf.h>
+#include <dolphin/gd.h>
 
-/* 802CDE9C-802CE004 2C87DC 0168+00 0/0 1/1 0/0 .text GFSetFog__F10_GXFogTypeffff8_GXColor */
-void GFSetFog(GXFogType param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4,
-              GXColor param_5) {
-    s32 r30;
-    s32 r30shift2;
-    u32 stack_c_u32;
-    f32 stack_c;
-    f32 r30shift;
-    f32 f3;
-    f32 f5;
-    if (param_4 == param_3 || param_2 == param_1) {
-        f5 = 0.0f;
-        f3 = 0.5f;
-        stack_c = 0.0f;
+void GFSetFog(GXFogType type, f32 startz, f32 endz, f32 nearz, f32 farz, GXColor color) {
+    f32 A;
+    f32 B;
+    f32 B_mant;
+    f32 C;
+    f32 A_f;
+    u32 b_expn;
+    u32 b_m;
+    u32 a_hex;
+    u32 c_hex;
+
+    ASSERTMSGLINE(62, farz >= 0.0f, "GFSetFog: The farz should be positive value");
+    ASSERTMSGLINE(63, farz >= nearz, "GFSetFog: The farz should be larger than nearz");
+
+    if (farz == nearz || endz == startz) {
+        A = 0.0f;
+        B = 0.5f;
+        C = 0.0f;
     } else {
-        f5 = (param_4 * param_3) / ((param_4 - param_3) * (param_2 - param_1));
-        f3 = param_4 / (param_4 - param_3);
-        stack_c = param_1 / (param_2 - param_1);
+        A = (farz * nearz) / ((farz - nearz) * (endz - startz));
+        B = farz / (farz - nearz);
+        C = startz / (endz - startz);
     }
 
-    r30 = 1;
+    B_mant = B;
+    b_expn = 1;
 
-    while (f3 > 1.0) {
-        f3 *= 0.5f;
-        r30++;
+    while (B_mant > 1.0) {
+        B_mant *= 0.5f;
+        b_expn++;
     }
 
-    while (f3 > 0.0f && f3 < 0.5) {
-        f3 *= 2.0f;
-        r30--;
+    while (B_mant > 0.0f && B_mant < 0.5) {
+        B_mant *= 2.0f;
+        b_expn--;
     }
 
-    r30shift = (f5 / (1 << r30));
-    r30shift2 = *(s32*)&r30shift;
-    stack_c_u32 = (*(u32*)&stack_c);
-    GFWriteBPCmd(((r30shift2 >> 12) & 0xfffff) | 0xee000000);
-    GFWriteBPCmd((u32)(8388638.0f * f3) | 0xef000000);
-    GFWriteBPCmd(r30 | 0xf0000000);
-    GFWriteBPCmd(((stack_c_u32 >> 12) & 0xfffff) | (((u32)param_0 << 21) & 0xffe00000) |
-                 0xf1000000);
-    GFWriteBPCmd(param_5.b | param_5.g << 8 | param_5.r << 16 | 0xf2000000);
+    A_f = A / (1 << b_expn);
+    b_m = (u32) (8388638.0f * B_mant);
+
+    a_hex = *(u32*)&A_f;
+    c_hex = *(u32*)&C;
+
+    GFWriteBPCmd(BP_FOG_UNK0(a_hex >> 12, 0xEE));
+    GFWriteBPCmd(BP_FOG_UNK1(b_m, 0xEF));
+    GFWriteBPCmd(BP_FOG_UNK2(b_expn, 0xF0));
+    GFWriteBPCmd(BP_FOG_UNK3(c_hex >> 12, 0, type, 0xF1));
+    GFWriteBPCmd(BP_FOG_COLOR(color.r, color.g, color.b, 0xF2));
 }
 
-/* 802CE004-802CE0A4 2C8944 00A0+00 0/0 1/1 0/0 .text
- * GFSetBlendModeEtc__F12_GXBlendMode14_GXBlendFactor14_GXBlendFactor10_GXLogicOpUcUcUc */
-void GFSetBlendModeEtc(GXBlendMode param_0, GXBlendFactor param_1, GXBlendFactor param_2,
-                       GXLogicOp param_3, u8 param_4, u8 param_5, u8 param_6) {
-    GFWriteBPCmd(((param_0 == 1) || (param_0 == 3)) | (param_0 == 2) << 1 | param_6 << 2 |
-                 param_4 << 3 | param_5 << 4 | param_2 << 5 | param_1 << 8 | (param_0 == 3) << 11 |
-                 param_3 << 12 | 0x41000000);
+void GFSetBlendModeEtc(GXBlendMode type, GXBlendFactor src_factor,
+                       GXBlendFactor dst_factor, GXLogicOp logic_op,
+                       u8 color_update_enable, u8 alpha_update_enable,
+                       u8 dither_enable) {
+    GFWriteBPCmd(BP_BLEND_MODE(
+        type == GX_BM_BLEND || type == GX_BM_SUBTRACT,
+        type == GX_BM_LOGIC,
+        dither_enable,
+        color_update_enable,
+        alpha_update_enable,
+        dst_factor,
+        src_factor,
+        type == GX_BM_SUBTRACT,
+        logic_op,
+        0x41
+    ));
 }
 
-/* 802CE0A4-802CE0D0 2C89E4 002C+00 0/0 1/1 0/0 .text            GFSetZMode__FUc10_GXCompareUc */
-void GFSetZMode(u8 param_0, GXCompare param_1, u8 param_2) {
-    GFWriteBPCmd(param_0 | param_1 << 1 | param_2 << 4 | 0x40000000);
+void GFSetZMode(u8 compare_enable, GXCompare func, u8 update_enable) {
+    GFWriteBPCmd(BP_Z_MODE(compare_enable, func, update_enable, 0x40));
 }

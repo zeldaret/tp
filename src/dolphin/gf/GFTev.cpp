@@ -1,15 +1,15 @@
-#include "dolphin/gf/GFTev.h"
-#include "dolphin/gf/GFGeometry.h"
-#include "dolphin/gx.h"
+#include <dolphin/gf.h>
+#include <dolphin/gd.h>
 
-/* 802CE0D0-802CE138 2C8A10 0068+00 0/0 0/0 1/1 .text
- * GFSetTevColorS10__F11_GXTevRegID11_GXColorS10                */
-void GFSetTevColorS10(_GXTevRegID param_0, _GXColorS10 param_1) {
-    u32 uVar1 = (param_1.r & 0x7ffU) | ((param_1.a & 0x7ffU) << 12) | ((param_0 * 2 + 0xe0) << 24);
-    u32 uVar2 = (param_1.b & 0x7ffU) | ((param_1.g & 0x7ffU) << 12) | ((param_0 * 2 + 0xe1) << 24);
+void GFSetTevColorS10(GXTevRegID reg, GXColorS10 color) {
+    u32 regRA;
+    u32 regBG;
 
-    GFWriteBPCmd(uVar1);
-    GFWriteBPCmd(uVar2);
-    GFWriteBPCmd(uVar2);
-    GFWriteBPCmd(uVar2);
+    regRA = BP_TEV_COLOR_REG_RA(color.r & 0x7FF, color.a & 0x7FF, 0, 0xE0 + reg * 2);
+    regBG = BP_TEV_COLOR_REG_BG(color.b & 0x7FF, color.g & 0x7FF, 0, 0xE1 + reg * 2);
+
+    GFWriteBPCmd(regRA);
+    GFWriteBPCmd(regBG);
+    GFWriteBPCmd(regBG);
+    GFWriteBPCmd(regBG);
 }

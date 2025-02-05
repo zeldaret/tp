@@ -7,6 +7,8 @@
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTException.h"
 
+bool data_804508B0 = 1;
+
 /* 80451370-80451374 000870 0004+00 3/3 44/44 0/0 .sbss            sSystemHeap__7JKRHeap */
 JKRHeap* JKRHeap::sSystemHeap;
 

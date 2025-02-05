@@ -2338,7 +2338,7 @@ Z2AudioLib/Z2AudioMgr.cpp:
 
 dolphin/gf/GFGeometry.cpp:
 	.text       start:0x802CDDC8 end:0x802CDE54
-	.sdata      start:0x804508A8 end:0x804508B8
+	.sdata      start:0x804508A8 end:0x804508B0
 
 dolphin/gf/GFLight.cpp:
 	.text       start:0x802CDE54 end:0x802CDE9C
@@ -2354,6 +2354,7 @@ JSystem/JKernel/JKRHeap.cpp:
 	.text       start:0x802CE138 end:0x802CEDB4
 	.rodata     start:0x8039CAD8 end:0x8039CAF0
 	.data       start:0x803CBF70 end:0x803CBFD0
+	.sdata      start:0x804508B0 end:0x804508B8
 	.sbss       start:0x80451370 end:0x80451398
 
 JSystem/JKernel/JKRExpHeap.cpp:
