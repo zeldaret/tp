@@ -1,9 +1,9 @@
 #ifndef J3DSTRUCT_H
 #define J3DSTRUCT_H
 
-#include "dolphin/gx/GXStruct.h"
+#include <dolphin/gx.h>
 #include "dolphin/mtx.h"
-#include "dolphin/mtx/vec.h"
+#include "dolphin/mtx.h"
 
 /**
  * @ingroup jsystem-j3d

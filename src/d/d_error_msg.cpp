@@ -211,7 +211,7 @@ static void drawCapture(u8 alpha) {
     GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
     GXSetZCompLoc(GX_TRUE);
     GXSetZMode(GX_DISABLE, GX_ALWAYS, GX_DISABLE);
-    GXSetBlendMode(GX_BM_NONE, GX_BL_SRC_ALPHA, GX_BL_ONE, GX_LO_CLEAR);
+    GXSetBlendMode(GX_BM_NONE, GX_BL_SRCALPHA, GX_BL_ONE, GX_LO_CLEAR);
     GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
     GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, g_clearColor);
     GXSetFogRangeAdj(GX_DISABLE, 0, NULL);

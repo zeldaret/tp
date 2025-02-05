@@ -87,7 +87,7 @@ int daTag_ShopItem_c::Delete() {
 
 /* 80D60E04-80D61024 000304 0220+00 1/1 0/0 0/0 .text            Execute__16daTag_ShopItem_cFv */
 int daTag_ShopItem_c::Execute() {
-    if (mProcessID == UINT32_MAX) {
+    if (mProcessID == fpcM_ERROR_PROCESS_ID_e) {
         if (mCreateTimer == 0) {
             mProcessID =
                 fopAcM_create(PROC_ShopItem, (getType() & 0xFF) | (getGroupID() << 0x1C),

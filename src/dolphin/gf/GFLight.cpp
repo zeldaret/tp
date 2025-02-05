@@ -1,4 +1,5 @@
 #include "dolphin/gf/GFLight.h"
+#include "dolphin/gf/GFGeometry.h"
 #include "dolphin/gx.h"
 
 /* 802CDE54-802CDE9C 2C8794 0048+00 0/0 0/0 1/1 .text GFSetChanAmbColor__F12_GXChannelID8_GXColor

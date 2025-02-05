@@ -6,7 +6,10 @@
 #include "JSystem/JAudio2/osdsp.h"
 #include "JSystem/JAudio2/osdsp_task.h"
 #include "dolphin/os.h"
-#include "dolphin/dsp/dsp_task.h"
+#include <dolphin/dsp.h>
+
+extern "C" void __DSP_insert_task(DSPTaskInfo*);
+extern "C" void __DSP_boot_task(DSPTaskInfo*);
 
 /* 8029EA00-8029EA84 299340 0084+00 0/0 1/1 0/0 .text            DSPAddTask */
 DSPTaskInfo* DSPAddTask(DSPTaskInfo* task) {
@@ -32,8 +35,8 @@ void DSPAddPriorTask(STRUCT_DSP_TASK* task) {
     }
     BOOL status = OSDisableInterrupts();
     DSP_prior_task = (DSPTaskInfo*)task;
-    task->info.state = 0;
-    task->info.flags = 1;
+    task->state = 0;
+    task->flags = 1;
     __DSP_boot_task((DSPTaskInfo*)task);
     OSRestoreInterrupts(status);
 }

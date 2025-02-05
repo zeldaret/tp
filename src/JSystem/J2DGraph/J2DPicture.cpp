@@ -1086,7 +1086,7 @@ void J2DPicture::setTevMode() {
     }
 
     GXSetNumTevStages(u8(i));
-    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_SET);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_SET);
 
     for (i = 0; i < mTextureNum; i++) {
         GXSetTexCoordGen(GXTexCoordID(i), GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY);
@@ -1333,7 +1333,7 @@ u8 J2DPicture::getUsableTlut(u8 param_0) {
 
             if (img != NULL && img->indexTexture != 0) {
                 int name = mTexture[i]->getTlutName();
-                int var_r0 = name >= GX_MAX_TLUT ? GX_MAX_TLUT : GX_TLUT0;
+                int var_r0 = name >= GX_BIGTLUT0 ? GX_BIGTLUT0 : GX_TLUT0;
 
                 u8 temp_r0 = name - var_r0;
                 if (temp_r0 < 2) {

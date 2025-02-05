@@ -1,4 +1,5 @@
 #include "dolphin/gf/GFTev.h"
+#include "dolphin/gf/GFGeometry.h"
 #include "dolphin/gx.h"
 
 /* 802CE0D0-802CE138 2C8A10 0068+00 0/0 0/0 1/1 .text

@@ -1,39 +1,57 @@
-#include "dolphin/si/SISamplingRate.h"
-#include "dolphin/os.h"
-#include "dolphin/vi.h"
+#include <dolphin.h>
+#include <dolphin/si.h>
 
-u32 VIGetTvFormat();
+#include "__os.h"
 
-/* ############################################################################################## */
-/* 803D12D0-803D1300 02E3F0 0030+00 1/1 0/0 0/0 .data            XYNTSC */
+#define LATENCY 8
+
+static u32 SamplingRate = 0;
+
+typedef struct XY {
+    u16 line;
+    u8 count;
+} XY;
+
 static XY XYNTSC[12] = {
-    {263 - 17, 2}, {14, 19}, {30, 9}, {44, 6},  {52, 5},  {65, 4},
-    {87, 3},       {87, 3},  {87, 3}, {131, 2}, {131, 2}, {131, 2},
+    {0x00F6, 0x02},
+    {0x000E, 0x13},
+    {0x001E, 0x09},
+    {0x002C, 0x06},
+    {0x0034, 0x05},
+    {0x0041, 0x04},
+    {0x0057, 0x03},
+    {0x0057, 0x03},
+    {0x0057, 0x03},
+    {0x0083, 0x02},
+    {0x0083, 0x02},
+    {0x0083, 0x02},
 };
 
-/* 803D1300-803D1330 02E420 0030+00 0/1 0/0 0/0 .data            XYPAL */
-#pragma push
-#pragma force_active on
 static XY XYPAL[12] = {
-    {313 - 17, 2}, {15, 21}, {29, 11}, {45, 7},  {52, 6},  {63, 5},
-    {78, 4},       {104, 3}, {104, 3}, {104, 3}, {104, 3}, {156, 2},
+    {0x0128, 0x02},
+    {0x000F, 0x15},
+    {0x001D, 0x0B},
+    {0x002D, 0x07},
+    {0x0034, 0x06},
+    {0x003F, 0x05},
+    {0x004E, 0x04},
+    {0x0068, 0x03},
+    {0x0068, 0x03},
+    {0x0068, 0x03},
+    {0x0068, 0x03},
+    {0x009C, 0x02},
 };
-#pragma pop
 
-/* 80451700-80451708 000C00 0004+04 2/2 0/0 0/0 .sbss            SamplingRate */
-static u32 SamplingRate;
-
-/* 80346290-80346374 340BD0 00E4+00 1/1 1/1 0/0 .text            SISetSamplingRate */
 void SISetSamplingRate(u32 msec) {
     XY* xy;
+    BOOL progressive;
     BOOL enabled;
 
+    ASSERTMSGLINE(377, 0 <= msec && msec <= 11, "SISetSamplingRate(): out of rage (0 <= msec <= 11)");
     if (msec > 11) {
         msec = 11;
     }
-
     enabled = OSDisableInterrupts();
-
     SamplingRate = msec;
 
     switch (VIGetTvFormat()) {
@@ -52,11 +70,56 @@ void SISetSamplingRate(u32 msec) {
         break;
     }
 
-    SISetXY((__VIRegs[54] & 1 ? 2u : 1u) * xy[msec].line, xy[msec].count);
+    progressive = __VIRegs[VI_CLOCK_SEL] & 1;
+    SISetXY((progressive ? 2 : 1) * xy[msec].line, xy[msec].count);
     OSRestoreInterrupts(enabled);
 }
 
-/* 80346374-80346398 340CB4 0024+00 0/0 2/2 0/0 .text            SIRefreshSamplingRate */
-void SIRefreshSamplingRate() {
+void SIRefreshSamplingRate(void) {
     SISetSamplingRate(SamplingRate);
 }
+
+#if DEBUG
+void __SITestSamplingRate(u32 tvmode) {
+    u32 msec;
+    u32 line;
+    u32 count;
+    XY* xy;
+
+    switch (tvmode) {
+    case VI_NTSC:
+    case VI_MPAL:
+        xy = XYNTSC;
+        for (msec = 0; msec <= 11; msec++) {
+            line = xy[msec].line;
+            count = xy[msec].count;
+            OSReport("%2d[msec]: count %3d, line %3d, last %3d, diff0 %2d.%03d, diff1 %2d.%03d\n",
+                msec, count, line, line * (count - 1) + LATENCY, (line * 636) / 10000, (line * 636) % 10000,
+                ((263 - line * (count - 1)) * 636) / 10000, ((263 - line * (count - 1)) * 636) % 10000);
+            ASSERTLINE(446, line * (count - 1) + LATENCY < 263);
+            
+            if (msec != 0) {
+                ASSERTLINE(449, 636 * line < msec * 10000);
+                ASSERTLINE(450, 636 * (263 - line * (count - 1)) < msec * 10000);
+            }
+        }
+    break;
+    case VI_PAL:
+        xy = XYPAL;
+        for (msec = 0; msec <= 11; msec++) {
+            line = xy[msec].line;
+            count = xy[msec].count;
+            OSReport("%2d[msec]: count %3d, line %3d, last %3d, diff0 %2d.%03d, diff1 %2d.%03d\n",
+                msec, count, line, line * (count - 1) + LATENCY, (line * 640) / 10000, (line * 640) % 10000,
+                ((313 - line * (count - 1)) * 640) / 10000, ((313 - line * (count - 1)) * 640) % 10000);
+            ASSERTLINE(470, line * (count - 1) + LATENCY < 313);
+            
+            if (msec != 0) {
+                ASSERTLINE(473, 640 * line < msec * 10000);
+                ASSERTLINE(474, 640 * (313 - line * (count - 1)) < msec * 10000);
+            }
+        }
+        break;
+    }
+}
+#endif

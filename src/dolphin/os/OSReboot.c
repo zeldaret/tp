@@ -1,34 +1,39 @@
-#include "dolphin/os/OSReboot.h"
-#include "dolphin/os/OSContext.h"
-#include "dolphin/os/OSExec.h"
+#include <dolphin.h>
+#include <dolphin/os.h>
 
-/* 8033F5D0-8033F640 339F10 0070+00 0/0 1/1 0/0 .text            __OSReboot */
+#include "__os.h"
+
+static void* SaveStart;
+static void* SaveEnd;
+
 void __OSReboot(u32 resetCode, u32 bootDol) {
-    struct OSContext context;
-    char* iVar1;
+    OSContext exceptionContext;
+    char* argvToPass;
+
 	OSDisableInterrupts();
     OSSetArenaLo((void*)0x81280000);
     OSSetArenaHi((void*)0x812f0000);
-    OSClearContext(&context);
-    OSSetCurrentContext(&context);
-    iVar1 = NULL;
-    __OSBootDol(bootDol, resetCode | 0x80000000, &iVar1);
+    OSClearContext(&exceptionContext);
+    OSSetCurrentContext(&exceptionContext);
+    argvToPass = NULL;
+    __OSBootDol(bootDol, resetCode | 0x80000000, &argvToPass);
 }
 
-/* 80451688-8045168C 000B88 0004+00 2/2 0/0 0/0 .sbss            SaveStart */
-static void* SaveStart;
-
-/* 8045168C-80451690 000B8C 0004+00 2/2 0/0 0/0 .sbss            SaveEnd */
-static void* SaveEnd;
-
-/* 8033F640-8033F64C 339F80 000C+00 0/0 1/1 0/0 .text            OSSetSaveRegion */
 void OSSetSaveRegion(void* start, void* end) {
+    ASSERTMSGLINE(134, (u32)start >= 0x80700000 || start == NULL, "OSSetSaveRegion(): start address should be NULL or higher than 0x80700000\n");
+    ASSERTMSGLINE(135, 0x81200000 >= (u32)end || end == NULL, "OSSetSaveRegion(): end address should be NULL or lower than 0x81200000\n");
+    ASSERTMSGLINE(136, ((start == NULL) ^ (end == NULL)) == 0, "OSSetSaveRegion(): if either start or end is NULL, both should be NULL\n");
+
     SaveStart = start;
     SaveEnd = end;
 }
 
-/* 8033F64C-8033F660 339F8C 0014+00 0/0 1/1 0/0 .text            OSGetSaveRegion */
 void OSGetSaveRegion(void** start, void** end) {
     *start = SaveStart;
     *end = SaveEnd;
+}
+
+void OSGetSavedRegion(void** start, void** end) {
+    *start = __OSRebootParams.regionStart;
+    *end = __OSRebootParams.regionEnd;
 }

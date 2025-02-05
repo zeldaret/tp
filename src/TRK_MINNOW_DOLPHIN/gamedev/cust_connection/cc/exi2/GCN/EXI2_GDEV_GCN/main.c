@@ -1,6 +1,7 @@
 #include "TRK_MINNOW_DOLPHIN/utils/common/CircleBuffer.h"
 #include "TRK_MINNOW_DOLPHIN/utils/common/MWTrace.h"
-#include "dolphin/db.h"
+#include <dolphin/db.h>
+#include <dolphin/amc/AmcExi2Comm.h>
 
 #define GDEV_BUF_SIZE (0x500)
 
@@ -14,9 +15,9 @@ static u8 gRecvBuf[GDEV_BUF_SIZE];
 static BOOL gIsInitialized;
 
 /* 80372BCC-80372C54 36D50C 0088+00 0/0 1/1 0/0 .text            gdev_cc_initialize */
-int gdev_cc_initialize(void* inputPendingPtrRef, AmcEXICallback monitorCallback) {
+int gdev_cc_initialize(void* inputPendingPtrRef, EXICallback monitorCallback) {
     MWTRACE(1, "CALLING EXI2_Init\n");
-    DBInitComm(inputPendingPtrRef, monitorCallback);
+    DBInitComm(inputPendingPtrRef, (int*)monitorCallback);
     MWTRACE(1, "DONE CALLING EXI2_Init\n");
     CircleBufferInitialize(&gRecvCB, gRecvBuf, GDEV_BUF_SIZE);
     return 0;
@@ -129,7 +130,7 @@ int gdev_cc_peek() {
         return 0;
     }
 
-    if (DBRead(buff, poll) == 0) {
+    if ((int)DBRead(buff, poll) == 0) {
         CircleBufferWriteBytes(&gRecvCB, buff, poll);
     } else {
         return -0x2719;

@@ -161,8 +161,8 @@ static void mDoMemCdRWm_BuildHeader(mDoMemCdRWm_HeaderData* header) {
 
     OSCalendarTime time;
     OSTicksToCalendarTime(OSGetTime(), &time);
-    snprintf(header->mComment, sizeof(header->mComment), "%d/%d Save Data", time.month + 1,
-             time.day_of_month);
+    snprintf(header->mComment, sizeof(header->mComment), "%d/%d Save Data", time.mon + 1,
+             time.mday);
 
     ResTIMG* banner_data =
         (ResTIMG*)g_dComIfG_gameInfo.play.mCardIconResArchive->getResource("zelda2_gc_banner.bti");

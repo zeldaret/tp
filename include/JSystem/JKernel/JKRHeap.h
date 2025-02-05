@@ -2,7 +2,7 @@
 #define JKRHEAP_H
 
 #include "JSystem/JKernel/JKRDisposer.h"
-#include "dolphin/os/OSMutex.h"
+#include <dolphin/os.h>
 
 class JKRHeap;
 typedef void (*JKRErrorHandler)(void*, u32, int);

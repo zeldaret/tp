@@ -1,28 +1,15 @@
-#include "dolphin/os/OSResetSW.h"
-#include "dolphin/os.h"
-#include "dolphin/os/OSReset.h"
+#include <dolphin.h>
+#include <dolphin/os.h>
 
-u8 GameChoice : (OS_BASE_CACHED | 0x30E3);
+#include "__os.h"
 
-void __OSResetSWInterruptHandler(__OSInterrupt interrupt, OSContext* context);
-
-/* 804516A0-804516A4 000BA0 0004+00 1/1 0/0 0/0 .sbss            ResetCallback */
 static OSResetCallback ResetCallback;
-
-/* 804516A4-804516A8 000BA4 0004+00 2/2 0/0 0/0 .sbss            Down */
 static BOOL Down;
-
-/* 804516A8-804516B0 000BA8 0004+04 2/2 0/0 0/0 .sbss            LastState */
 static BOOL LastState;
-
-/* 804516B0-804516B4 000BB0 0004+00 1/1 0/0 0/0 .sbss            HoldUp */
 static OSTime HoldUp;
-
-/* 804516B8-804516BC 000BB8 0004+00 2/2 0/0 0/0 .sbss            HoldDown */
 static OSTime HoldDown;
 
-/* 8033FAE4-8033FBD8 33A424 00F4+00 0/0 1/1 0/0 .text            __OSResetSWInterruptHandler */
-void __OSResetSWInterruptHandler(__OSInterrupt interrupt, OSContext* context) {
+void __OSResetSWInterruptHandler(s16 exception, OSContext* context) {
     OSResetCallback callback;
 
     HoldDown = __OSGetSystemTime();
@@ -42,13 +29,36 @@ void __OSResetSWInterruptHandler(__OSInterrupt interrupt, OSContext* context) {
     __PIRegs[0] = 2;
 }
 
-/* 8033FBD8-8033FE70 33A518 0298+00 1/1 0/0 0/0 .text            OSGetResetButtonState */
+OSResetCallback OSSetResetCallback(OSResetCallback callback) {
+    BOOL enabled;
+    OSResetCallback prevCallback;
+
+    enabled = OSDisableInterrupts();
+    prevCallback = ResetCallback;
+    ResetCallback = callback;
+
+    if (callback) {
+        __PIRegs[0] = 2;
+        __OSUnmaskInterrupts(0x200);
+    } else {
+        __OSMaskInterrupts(0x200);
+    }
+    OSRestoreInterrupts(enabled);
+    return prevCallback;
+}
+
 BOOL OSGetResetButtonState(void) {
     BOOL enabled = OSDisableInterrupts();
-    BOOL state;
-    OSTime now = __OSGetSystemTime();
-    u32 reg = __PIRegs[0];
+    int state;
+    u32 reg;
+    OSTime now;
 
+    now = __OSGetSystemTime();
+    ASSERTLINE(158, 0 <= now);
+    ASSERTLINE(159, HoldUp == 0 || HoldUp < now);
+    ASSERTLINE(160, HoldDown == 0 || HoldDown < now);
+
+    reg = __PIRegs[0];
     if (!(reg & 0x00010000)) {
         if (!Down) {
             Down = TRUE;
@@ -76,8 +86,8 @@ BOOL OSGetResetButtonState(void) {
 
     LastState = state;
 
-    if (GameChoice & 0x1F) {
-        OSTime fire = (GameChoice & 0x1F) * 60;
+    if (__gUnknown800030E3 & 0x1F) {
+        OSTime fire = (__gUnknown800030E3 & 0x1F) * 60;
         fire = __OSStartTime + OSSecondsToTicks(fire);
         if (fire < now) {
             now -= fire;
@@ -94,7 +104,17 @@ BOOL OSGetResetButtonState(void) {
     return state;
 }
 
-/* 8033FE70-8033FE90 33A7B0 0020+00 0/0 1/1 0/0 .text            OSGetResetSwitchState */
-BOOL OSGetResetSwitchState(void) {
+int OSGetResetSwitchState(void) {
     return OSGetResetButtonState();
+}
+
+void __OSSetResetButtonTimer(u8 min) {
+    BOOL enabled = OSDisableInterrupts();
+    if (min > 0x1F) {
+        min = 0x1F;
+    }
+
+    __gUnknown800030E3 &= ~0x1F;
+    __gUnknown800030E3 |= min;
+    OSRestoreInterrupts(enabled);
 }

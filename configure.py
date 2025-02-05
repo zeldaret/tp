@@ -201,6 +201,7 @@ cflags_base = [
     "-i include",
     f"-i build/{config.version}/include",
     "-i src",
+    "-ir src/dolphin",
     "-i src/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include",
     "-i src/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Include",
     "-i src/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include",
@@ -209,6 +210,7 @@ cflags_base = [
     "-i src/PowerPC_EABI_Support/MetroTRK",
     "-Iinclude/dolphin",
     f"-DVERSION={version_num}",
+    "-D__GEKKO__",
 ]
 
 if config.version == "ShieldD":
@@ -262,10 +264,33 @@ cflags_trk = [
 
 # Dolphin library flags
 cflags_dolphin = [
-    *cflags_base,
-    "-use_lmw_stmw on",
-    "-str reuse,pool,readonly",
+    "-nodefaults",
+    "-proc gekko",
+    "-align powerpc",
+    "-enum int",
+    "-fp hardware",
+    "-Cpp_exceptions off",
+    '-pragma "cats off"',
+    '-pragma "warn_notinlined off"',
+    "-maxerrors 1",
+    "-nosyspath",
+    "-char unsigned",
+    "-O4,p",
+    "-sym on",
     "-inline auto",
+    "-i include",
+    f"-i build/{config.version}/include",
+    "-ir src/dolphin",
+    "-i src/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include",
+    "-i src/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Include",
+    "-i src/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include",
+    "-i src/PowerPC_EABI_Support/MSL/MSL_C++/MSL_Common/Include",
+    "-i src/PowerPC_EABI_Support/Runtime/Inc",
+    "-i src/PowerPC_EABI_Support/MetroTRK",
+    "-Iinclude/dolphin",
+    f"-DVERSION={version_num}",
+    "-D__GEKKO__",
+    "-DSDK_REVISION=2",
 ]
 
 # Framework flags
@@ -309,7 +334,7 @@ def DolphinLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
         "mw_version": "GC/1.2.5n",
-        "cflags": cflags_base,
+        "cflags": cflags_dolphin,
         "progress_category": "sdk",
         "objects": objects,
     }
@@ -1135,24 +1160,24 @@ config.libs = [
     DolphinLib(
         "mtx",
         [
-            Object(MatchingFor("GZ2E01"), "dolphin/mtx/mtx.c", extra_cflags=["-fp_contract off"]),
+            Object(MatchingFor("GZ2E01"), "dolphin/mtx/mtx.c", extra_cflags=["-char signed"]),
             Object(MatchingFor("GZ2E01"), "dolphin/mtx/mtxvec.c"),
-            Object(MatchingFor("GZ2E01"), "dolphin/mtx/mtx44.c"),
-            Object(MatchingFor("GZ2E01"), "dolphin/mtx/vec.c", extra_cflags=["-fp_contract off"]),
-            Object(MatchingFor("GZ2E01"), "dolphin/mtx/quat.c", extra_cflags=["-fp_contract off"]),
+            Object(MatchingFor("GZ2E01"), "dolphin/mtx/mtx44.c", extra_cflags=["-char signed"]),
+            Object(MatchingFor("GZ2E01"), "dolphin/mtx/vec.c"),
+            Object(MatchingFor("GZ2E01"), "dolphin/mtx/quat.c"),
         ],
     ),
     DolphinLib(
         "dvd",
         [
-            Object(MatchingFor("GZ2E01"), "dolphin/dvd/dvdlow.c"),
-            Object(MatchingFor("GZ2E01"), "dolphin/dvd/dvdfs.c"),
-            Object(MatchingFor("GZ2E01"), "dolphin/dvd/dvd.c"),
-            Object(MatchingFor("GZ2E01"), "dolphin/dvd/dvdqueue.c"),
-            Object(MatchingFor("GZ2E01"), "dolphin/dvd/dvderror.c"),
-            Object(MatchingFor("GZ2E01"), "dolphin/dvd/dvdidutils.c"),
-            Object(MatchingFor("GZ2E01"), "dolphin/dvd/dvdFatal.c"),
-            Object(MatchingFor("GZ2E01"), "dolphin/dvd/fstload.c"),
+            Object(MatchingFor("GZ2E01"), "dolphin/dvd/dvdlow.c", extra_cflags=["-char signed"]),
+            Object(MatchingFor("GZ2E01"), "dolphin/dvd/dvdfs.c", extra_cflags=["-char signed"]),
+            Object(MatchingFor("GZ2E01"), "dolphin/dvd/dvd.c", extra_cflags=["-char signed"]),
+            Object(MatchingFor("GZ2E01"), "dolphin/dvd/dvdqueue.c", extra_cflags=["-char signed"]),
+            Object(MatchingFor("GZ2E01"), "dolphin/dvd/dvderror.c", extra_cflags=["-char signed"]),
+            Object(MatchingFor("GZ2E01"), "dolphin/dvd/dvdidutils.c", extra_cflags=["-char signed"]),
+            Object(MatchingFor("GZ2E01"), "dolphin/dvd/dvdFatal.c", extra_cflags=["-char signed"]),
+            Object(MatchingFor("GZ2E01"), "dolphin/dvd/fstload.c", extra_cflags=["-char signed"]),
         ],
     ),
     DolphinLib(
@@ -1164,8 +1189,8 @@ config.libs = [
     DolphinLib(
         "pad",
         [
-            Object(MatchingFor("GZ2E01"), "dolphin/pad/Padclamp.c", extra_cflags=["-fp_contract off"]),
-            Object(MatchingFor("GZ2E01"), "dolphin/pad/Pad.c", extra_cflags=["-inline noauto"]),
+            Object(MatchingFor("GZ2E01"), "dolphin/pad/Padclamp.c"),
+            Object(MatchingFor("GZ2E01"), "dolphin/pad/Pad.c"),
         ],
     ),
     DolphinLib(
@@ -1200,7 +1225,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01"), "dolphin/card/CARDCheck.c"),
             Object(MatchingFor("GZ2E01"), "dolphin/card/CARDMount.c"),
             Object(MatchingFor("GZ2E01"), "dolphin/card/CARDFormat.c"),
-            Object(MatchingFor("GZ2E01"), "dolphin/card/CARDOpen.c", extra_cflags=["-inline noauto"]),
+            Object(MatchingFor("GZ2E01"), "dolphin/card/CARDOpen.c", extra_cflags=["-char signed"]),
             Object(MatchingFor("GZ2E01"), "dolphin/card/CARDCreate.c"),
             Object(MatchingFor("GZ2E01"), "dolphin/card/CARDRead.c"),
             Object(MatchingFor("GZ2E01"), "dolphin/card/CARDWrite.c"),

@@ -3,8 +3,8 @@
 
 #include "JSystem/JKernel/JKRFile.h"
 #include "dolphin/dvd.h"
-#include "dolphin/os/OSMessage.h"
-#include "dolphin/os/OSMutex.h"
+#include <dolphin/os.h>
+#include <dolphin/os.h>
 
 struct OSThread;
 
@@ -26,9 +26,9 @@ public:
     void initiate(void);
     s32 sync(void);
 
-    u32 getFileID() const { return mFileInfo.start_address; }
+    u32 getFileID() const { return mFileInfo.startAddr; }
     DVDFileInfo* getFileInfo() { return &mFileInfo; }
-    int getStatus() { return DVDGetCommandBlockStatus(&mFileInfo.block); }
+    int getStatus() { return DVDGetCommandBlockStatus(&mFileInfo.cb); }
 
 public:
     /* vt[03] */ virtual bool open(const char*);               /* override */

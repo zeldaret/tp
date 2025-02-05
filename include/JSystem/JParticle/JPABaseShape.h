@@ -1,7 +1,7 @@
 #ifndef JPABASESHAPE_H
 #define JPABASESHAPE_H
 
-#include "dolphin/gx/GXStruct.h"
+#include <dolphin/gx.h>
 
 class JPAEmitterWorkData;
 class JPABaseParticle;

@@ -65,8 +65,6 @@ struct dPa_levelEcallBack {};
 
 struct csXyz {};
 
-struct _GXColor {};
-
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
                             u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
@@ -143,8 +141,6 @@ struct cBgS {
     /* 800743B4 */ void LineCross(cBgS_LinChk*);
     /* 800744A0 */ void GroundCross(cBgS_GndChk*);
 };
-
-struct _GXTexObj {};
 
 struct LIGHT_INFLUENCE {};
 

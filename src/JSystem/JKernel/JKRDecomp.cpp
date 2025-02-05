@@ -1,5 +1,6 @@
 #include "JSystem/JKernel/JKRDecomp.h"
 #include "JSystem/JKernel/JKRAramPiece.h"
+#include "global.h"
 
 /* ############################################################################################## */
 /* 804514B0-804514B8 0009B0 0004+04 1/1 0/0 0/0 .sbss            sDecompObject__9JKRDecomp */

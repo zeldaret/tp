@@ -535,9 +535,9 @@ s32 d_GameOver_Create(u8 i_gameoverType) {
 
 /* 8019C008-8019C06C 196948 0064+00 0/0 1/1 0/0 .text            d_GameOver_Delete__FRUi */
 bool d_GameOver_Delete(fpc_ProcID& i_id) {
-    if (i_id != UINT32_MAX) {
+    if (i_id != fpcM_ERROR_PROCESS_ID_e) {
         fopMsgM_Delete(fopMsgM_SearchByID(i_id));
-        i_id = -1;
+        i_id = fpcM_ERROR_PROCESS_ID_e;
         dMeter2Info_setGameOverType(0);
         return true;
     }

@@ -12,7 +12,7 @@
 #include "JSystem/JAudio2/osdsp_task.h"
 #include "JSystem/JAudio2/JASCriticalSection.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
-#include "dolphin/os/OSCache.h"
+#include <dolphin/os.h>
 
 /* 804512E8-804512EC 0007E8 0004+00 5/5 0/0 0/0 .sbss            CH_BUF__6JASDsp */
 JASDsp::TChannel* JASDsp::CH_BUF;

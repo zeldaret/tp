@@ -1,7 +1,7 @@
 #ifndef JASCRITICALSECTION_H
 #define JASCRITICALSECTION_H
 
-#include "dolphin/os/OSInterrupt.h"
+#include <dolphin/os.h>
 
 /**
  * @ingroup jsystem-jaudio

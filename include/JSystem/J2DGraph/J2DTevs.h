@@ -1,7 +1,7 @@
 #ifndef J2DTEVS_H
 #define J2DTEVS_H
 
-#include "dolphin/gx/GXStruct.h"
+#include <dolphin/gx.h>
 #include "dolphin/mtx.h"
 
 /**

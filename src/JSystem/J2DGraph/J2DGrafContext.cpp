@@ -101,14 +101,14 @@ void J2DGrafContext::setColor(JUtility::TColor colorTL, JUtility::TColor colorTR
     mColorBR = colorBR;
     mColorBL = colorBL;
     field_0xb0.mType = GX_BM_BLEND;
-    field_0xb0.mSrcFactor = GX_BL_SRC_ALPHA;
-    field_0xb0.mDstFactor = GX_BL_INV_SRC_ALPHA;
+    field_0xb0.mSrcFactor = GX_BL_SRCALPHA;
+    field_0xb0.mDstFactor = GX_BL_INVSRCALPHA;
     mLinePart.mType = GX_BM_BLEND;
-    mLinePart.mSrcFactor = GX_BL_SRC_ALPHA;
-    mLinePart.mDstFactor = GX_BL_INV_SRC_ALPHA;
+    mLinePart.mSrcFactor = GX_BL_SRCALPHA;
+    mLinePart.mDstFactor = GX_BL_INVSRCALPHA;
     mBoxPart.mType = GX_BM_BLEND;
-    mBoxPart.mSrcFactor = GX_BL_SRC_ALPHA;
-    mBoxPart.mDstFactor = GX_BL_INV_SRC_ALPHA;
+    mBoxPart.mSrcFactor = GX_BL_SRCALPHA;
+    mBoxPart.mDstFactor = GX_BL_INVSRCALPHA;
     if ((mColorTL & 0xFF) != 0xFF) {
         return;
     }

@@ -133,7 +133,7 @@ void dDrawPath_c::drawPath() {
  * makeResTIMG__15dRenderingMap_cCFP7ResTIMGUsUsPUcPUcUs        */
 void dRenderingMap_c::makeResTIMG(ResTIMG* p_image, u16 width, u16 height, u8* p_data,
                                   u8* p_palette, u16 param_5) const {
-    p_image->format = GX_TF_CI14;
+    p_image->format = GX_TF_C8;
     p_image->alphaEnabled = 2;
     p_image->width = width;
     p_image->height = height;
@@ -232,7 +232,7 @@ void dRenderingFDAmap_c::preRenderingMap() {
     GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
     GXSetZCompLoc(GX_TRUE);
     GXSetZMode(GX_FALSE, GX_ALWAYS, GX_FALSE);
-    GXSetBlendMode(GX_BM_NONE, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_CLEAR);
+    GXSetBlendMode(GX_BM_NONE, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
     GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, g_clearColor);
     GXSetCullMode(GX_CULL_NONE);
     GXSetDither(GX_FALSE);
@@ -253,7 +253,7 @@ void dRenderingFDAmap_c::preRenderingMap() {
 void dRenderingFDAmap_c::postRenderingMap() {
     GXSetCopyFilter(GX_FALSE, NULL, GX_FALSE, NULL);
     GXSetTexCopySrc(0, 0, mTexWidth, mTexHeight);
-    GXSetTexCopyDst(mTexWidth, mTexHeight, GX_CTF_G8, GX_FALSE);
+    GXSetTexCopyDst(mTexWidth, mTexHeight, GX_CTF_R8, GX_FALSE);
     GXCopyTex(field_0x4, GX_TRUE);
     GXPixModeSync();
     GXSetClipMode(GX_CLIP_ENABLE);

@@ -15,6 +15,7 @@
 #include "JSystem/JParticle/JPAParticle.h"
 #include "JSystem/JParticle/JPAResourceManager.h"
 #include "dolphin/gx.h"
+#include "global.h"
 
 /* 80274010-80274080 26E950 0070+00 0/0 1/1 0/0 .text            __ct__11JPAResourceFv */
 JPAResource::JPAResource() {
@@ -957,8 +958,7 @@ void JPAResource::setPTev() {
         if (mpExTexShape->isUseIndirect()) {
             GXSetIndTexOrder(GX_INDTEXSTAGE0, GX_TEXCOORD1, GX_TEXMAP2);
             GXSetIndTexCoordScale(GX_INDTEXSTAGE0, GX_ITS_1, GX_ITS_1);
-            GXSetIndTexMtx(GX_ITM_0, (f32*)mpExTexShape->getIndTexMtx(),
-                           mpExTexShape->getExpScale());
+            GXSetIndTexMtx(GX_ITM_0, (f32(*)[3])mpExTexShape->getIndTexMtx(), mpExTexShape->getExpScale());
             GXSetTevIndirect(GX_TEVSTAGE0, GX_INDTEXSTAGE0, GX_ITF_8, GX_ITB_STU, GX_ITM_0,
                              GX_ITW_OFF, GX_ITW_OFF, 0, 0, GX_ITBA_OFF);
             ind_stages++;

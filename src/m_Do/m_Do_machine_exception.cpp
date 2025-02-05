@@ -68,18 +68,18 @@ void dispDateInfo() {
 
     OSCalendarTime time;
     OSTicksToCalendarTime(mDoMain::sPowerOnTime, &time);
-    print_f("PowerOnTime: %04d/%2d/%2d %2d:%2d:%2d`%03d\"%03d\n", time.year, time.month,
-            time.day_of_month, time.hours, time.minutes, time.seconds, time.milliseconds,
-            time.microseconds);
+    print_f("PowerOnTime: %04d/%2d/%2d %2d:%2d:%2d`%03d\"%03d\n", time.year, time.mon,
+            time.mday, time.hour, time.min, time.sec, time.msec,
+            time.usec);
 
     OSTicksToCalendarTime(mDoMain::sHungUpTime, &time);
-    print_f("HungUpTime : %04d/%2d/%2d %2d:%2d:%2d`%03d\"%03d\n", time.year, time.month,
-            time.day_of_month, time.hours, time.minutes, time.seconds, time.milliseconds,
-            time.microseconds);
+    print_f("HungUpTime : %04d/%2d/%2d %2d:%2d:%2d`%03d\"%03d\n", time.year, time.mon,
+            time.mday, time.hour, time.min, time.sec, time.msec,
+            time.usec);
 
     OSTicksToCalendarTime(mDoMain::sHungUpTime - mDoMain::sPowerOnTime, &time);
-    print_f("PlayTime   : %4d days, %2d:%2d:%2d`%03d\"%03d\n", time.year_day, time.hours,
-            time.minutes, time.seconds, time.milliseconds, time.microseconds);
+    print_f("PlayTime   : %4d days, %2d:%2d:%2d`%03d\"%03d\n", time.yday, time.hour,
+            time.min, time.sec, time.msec, time.usec);
     print("---------------------------------------\n");
 }
 

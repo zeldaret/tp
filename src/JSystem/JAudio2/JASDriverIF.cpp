@@ -6,7 +6,7 @@
 #include "JSystem/JAudio2/JASDriverIF.h"
 #include "JSystem/JAudio2/JASAiCtrl.h"
 #include "JSystem/JAudio2/JASDSPInterface.h"
-#include "dolphin/os/OSThread.h"
+#include <dolphin/os.h>
 
 //
 // Declarations:

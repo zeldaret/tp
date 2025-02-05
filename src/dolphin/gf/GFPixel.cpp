@@ -1,4 +1,5 @@
 #include "dolphin/gf/GFPixel.h"
+#include "dolphin/gf/GFGeometry.h"
 #include "dolphin/gx.h"
 
 /* 802CDE9C-802CE004 2C87DC 0168+00 0/0 1/1 0/0 .text GFSetFog__F10_GXFogTypeffff8_GXColor */

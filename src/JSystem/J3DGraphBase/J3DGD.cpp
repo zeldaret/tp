@@ -96,89 +96,89 @@ void J3DGDSetVtxAttrFmtv(GXVtxFmt fmt, GXVtxAttrFmtList const* fmtList, bool par
     u32 tex7_cnt = GX_TEX_ST;
     u32 tex7_type = GX_F32;
     u32 tex7_shift = 0;
-    for (; fmtList->mAttrib != GX_VA_NULL; fmtList++) {
-        switch (fmtList->mAttrib) {
+    for (; fmtList->attr != GX_VA_NULL; fmtList++) {
+        switch (fmtList->attr) {
         case GX_VA_POS:
-            pos_cnt = fmtList->mCompCnt;
-            pos_type = fmtList->mCompType;
-            pos_shift = fmtList->mCompShift;
+            pos_cnt = fmtList->cnt;
+            pos_type = fmtList->type;
+            pos_shift = fmtList->frac;
             break;
         case GX_VA_NRM:
         case GX_VA_NBT:
-            nrm_type = fmtList->mCompType;
-            if (fmtList->mCompCnt == GX_NRM_NBT3) {
+            nrm_type = fmtList->type;
+            if (fmtList->cnt == GX_NRM_NBT3) {
                 nrm_cnt = GX_NRM_NBT;
                 local_34 = 1;
             } else {
                 if (param_2) {
                     nrm_cnt = GX_NRM_NBT;
                 } else {
-                    nrm_cnt = fmtList->mCompCnt;
+                    nrm_cnt = fmtList->cnt;
                 }
                 local_34 = 0;
             }
             break;
         case GX_VA_CLR0:
-            clr0_cnt = fmtList->mCompCnt;
-            clr0_type = fmtList->mCompType;
+            clr0_cnt = fmtList->cnt;
+            clr0_type = fmtList->type;
             break;
         case GX_VA_CLR1:
-            clr1_cnt = fmtList->mCompCnt;
-            clr1_type = fmtList->mCompType;
+            clr1_cnt = fmtList->cnt;
+            clr1_type = fmtList->type;
             break;
         case GX_VA_TEX0:
-            tex0_cnt = fmtList->mCompCnt;
-            tex0_type = fmtList->mCompType;
-            tex0_shift = fmtList->mCompShift;
+            tex0_cnt = fmtList->cnt;
+            tex0_type = fmtList->type;
+            tex0_shift = fmtList->frac;
             break;
         case GX_VA_TEX1:
-            tex1_cnt = fmtList->mCompCnt;
-            tex1_type = fmtList->mCompType;
-            tex1_shift = fmtList->mCompShift;
+            tex1_cnt = fmtList->cnt;
+            tex1_type = fmtList->type;
+            tex1_shift = fmtList->frac;
             break;
         case GX_VA_TEX2:
-            tex2_cnt = fmtList->mCompCnt;
-            tex2_type = fmtList->mCompType;
-            tex2_shift = fmtList->mCompShift;
+            tex2_cnt = fmtList->cnt;
+            tex2_type = fmtList->type;
+            tex2_shift = fmtList->frac;
             break;
         case GX_VA_TEX3:
-            tex3_cnt = fmtList->mCompCnt;
-            tex3_type = fmtList->mCompType;
-            tex3_shift = fmtList->mCompShift;
+            tex3_cnt = fmtList->cnt;
+            tex3_type = fmtList->type;
+            tex3_shift = fmtList->frac;
             break;
         case GX_VA_TEX4:
-            tex4_cnt = fmtList->mCompCnt;
-            tex4_type = fmtList->mCompType;
-            tex4_shift = fmtList->mCompShift;
+            tex4_cnt = fmtList->cnt;
+            tex4_type = fmtList->type;
+            tex4_shift = fmtList->frac;
             break;
         case GX_VA_TEX5:
-            tex5_cnt = fmtList->mCompCnt;
-            tex5_type = fmtList->mCompType;
-            tex5_shift = fmtList->mCompShift;
+            tex5_cnt = fmtList->cnt;
+            tex5_type = fmtList->type;
+            tex5_shift = fmtList->frac;
             break;
         case GX_VA_TEX6:
-            tex6_cnt = fmtList->mCompCnt;
-            tex6_type = fmtList->mCompType;
-            tex6_shift = fmtList->mCompShift;
+            tex6_cnt = fmtList->cnt;
+            tex6_type = fmtList->type;
+            tex6_shift = fmtList->frac;
             break;
         case GX_VA_TEX7:
-            tex7_cnt = fmtList->mCompCnt;
-            tex7_type = fmtList->mCompType;
-            tex7_shift = fmtList->mCompShift;
+            tex7_cnt = fmtList->cnt;
+            tex7_type = fmtList->type;
+            tex7_shift = fmtList->frac;
             break;
         }
     }
     GDOverflowCheck(0x12);
-    J3DGDWriteCPCmd(GX_CP_REG_VAT_GRP0 + fmt,
+    J3DGDWriteCPCmd(CP_REG_VAT_GRP0_ID + fmt,
                     pos_cnt | pos_type << 1 | pos_shift << 4 | nrm_cnt << 9 | nrm_type << 0xa |
                         clr0_cnt << 0xd | clr0_type << 0xe | clr1_cnt << 0x11 | clr1_type << 0x12 |
                         tex0_cnt << 0x15 | tex0_type << 0x16 | tex0_shift << 0x19 | 0x40000000 |
                         local_34 << 0x1f);
-    J3DGDWriteCPCmd(GX_CP_REG_VAT_GRP1 + fmt,
+    J3DGDWriteCPCmd(CP_REG_VAT_GRP1_ID + fmt,
                     tex1_cnt | tex1_type << 1 | tex1_shift << 4 | tex2_cnt << 9 | tex2_type << 0xa |
                         tex2_shift << 0xd | tex3_cnt << 0x12 | tex3_type << 0x13 |
                         tex3_shift << 0x16 | tex4_cnt << 0x1b | tex4_type << 0x1c | 0x80000000);
-    J3DGDWriteCPCmd(GX_CP_REG_VAT_GRP2 + fmt,
+    J3DGDWriteCPCmd(CP_REG_VAT_GRP2_ID + fmt,
                     tex4_shift | tex5_cnt << 5 | tex5_type << 6 | tex5_shift << 9 |
                         tex6_cnt << 0xe | tex6_type << 0xf | tex6_shift << 0x12 | tex7_cnt << 0x17 |
                         tex7_type << 0x18 | tex7_shift << 0x1b);
@@ -482,14 +482,14 @@ void J3DGDSetIndTexOrder(u32 count, GXTexCoordID coord0, GXTexMapID map0, GXTexC
 void J3DGDSetTevOrder(GXTevStageID stage, GXTexCoordID coord0, GXTexMapID map0,
                       GXChannelID channel0, GXTexCoordID coord1, GXTexMapID map1,
                       GXChannelID channel1) {
-    coord0 = coord0 >= GX_MAXCOORD ? GX_TEXCOORD0 : coord0;
-    coord1 = coord1 >= GX_MAXCOORD ? GX_TEXCOORD0 : coord1;
+    coord0 = coord0 >= GX_MAX_TEXCOORD ? GX_TEXCOORD0 : coord0;
+    coord1 = coord1 >= GX_MAX_TEXCOORD ? GX_TEXCOORD0 : coord1;
     GDOverflowCheck(5);
     static u8 c2r[] = {0, 1, 0, 1, 0, 1, 7, 5, 6, 0, 0, 0, 0, 0, 0, 7};
     J3DGDWriteBPCmd((map0 & 7) | coord0 << 3 |
-                    (map0 != GX_TEXMAP_NULL && !(map0 & GX_TEXMAP_DISABLE)) << 6 |
+                    (map0 != GX_TEXMAP_NULL && !(map0 & GX_TEX_DISABLE)) << 6 |
                     c2r[channel0 & 0xf] << 7 | (map1 & 7) << 0xc | coord1 << 0xf |
-                    (map1 != GX_TEXMAP_NULL && !(map1 & GX_TEXMAP_DISABLE)) << 0x12 |
+                    (map1 != GX_TEXMAP_NULL && !(map1 & GX_TEX_DISABLE)) << 0x12 |
                     c2r[channel1 & 0xf] << 0x13 | (stage / 2 + GX_BP_REG_RAS1_TREF0) << 0x18);
 }
 
@@ -552,8 +552,8 @@ void J3DGDSetFog(GXFogType fogType, f32 param_1, f32 param_2, f32 nearZ, f32 far
 void J3DGDSetFogRangeAdj(u8 param_0, u16 param_1, GXFogAdjTable* table) {
     if (param_0 != 0) {
         for (int i = 0; i < 0xa; i += 2) {
-            J3DGDWriteBPCmd((i / 2 + GX_BP_REG_FOGRANGEK0) << 0x18 | table->fogVals[i + 1] << 0xc |
-                            table->fogVals[i]);
+            J3DGDWriteBPCmd((i / 2 + GX_BP_REG_FOGRANGEK0) << 0x18 | table->r[i + 1] << 0xc |
+                            table->r[i]);
         }
     }
     u32 cmd = GX_BP_REG_FOGRANGE << 0x18 | (param_1 + 0x156) | param_0 << 0xa;

@@ -1,7 +1,7 @@
 #ifndef C_BG_S_CHK_H
 #define C_BG_S_CHK_H
 
-#include "dolphin/mtx/vec.h"
+#include "dolphin/mtx.h"
 #include "f_pc/f_pc_base.h"
 
 struct cBgD_Vtx_t : public Vec {};

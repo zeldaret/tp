@@ -1,13 +1,13 @@
 #ifndef OS_DOLPHIN_DDH_STUBS_H
 #define OS_DOLPHIN_DDH_STUBS_H
 
-#include "amcstubs/AmcExi2Stubs.h"
+#include <dolphin/amc/AmcExi2Comm.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-int ddh_cc_initialize(void* inputPendingPtrRef, AmcEXICallback monitorCallback);
+int ddh_cc_initialize(void* inputPendingPtrRef, EXICallback monitorCallback);
 int ddh_cc_shutdown();
 int ddh_cc_open();
 int ddh_cc_close();

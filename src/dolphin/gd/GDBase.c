@@ -1,45 +1,45 @@
-/**
- * GDBase.c
- * Description:
- */
+#include <dolphin/gd.h>
+#include <dolphin/os.h>
 
-#include "dolphin/gd/GDBase.h"
+GDLObj* __GDCurrentDL = NULL;
+static GDOverflowCb overflowcb = NULL;
 
-/* 80360F98-80360FB0 35B8D8 0018+00 0/0 6/6 0/0 .text            GDInitGDLObj */
-void GDInitGDLObj(GDLObj* obj, u8* start, u32 len) {
-    obj->start = start;
-    obj->ptr = start;
-    obj->end = start + len;
-    obj->length = len;
+void GDInitGDLObj(GDLObj* dl, void* start, u32 length) {
+    ASSERTMSGLINE(40, !((u32)start & 0x1F), "start must be aligned to 32 bytes");
+    ASSERTMSGLINE(41, !((u32)length & 0x1F), "length must be aligned to 32 bytes");
+    dl->start = start;
+    dl->ptr = start;
+    dl->top = (u8*)start + length;
+    dl->length = length;
 }
 
-/* ############################################################################################## */
-/* 80451980-80451984 000E80 0004+00 2/2 100/100 0/0 .sbss            __GDCurrentDL */
-GDLObj* __GDCurrentDL = NULL;
-
-/* ############################################################################################## */
-/* 80451984-80451988 000E84 0004+00 1/1 0/0 0/0 .sbss            overflowcb */
-static GDOverflowCallback overflowcb = NULL;
-
-/* 80360FB0-80360FDC 35B8F0 002C+00 0/0 2/2 0/0 .text            GDFlushCurrToMem */
 void GDFlushCurrToMem(void) {
     DCFlushRange(__GDCurrentDL->start, __GDCurrentDL->length);
 }
 
-/* 80360FDC-803610D4 35B91C 00F8+00 0/0 2/2 0/0 .text            GDPadCurr32 */
 void GDPadCurr32(void) {
-    u32 i = ((u32)__GDCurrentDL->ptr & 31);
+    u32 n;
 
-    if (i) {
-        for (i; i < 32; i++) {
+    n = (u32)__GDCurrentDL->ptr & 0x1F;
+    if (n != 0) {
+        for (; n < 32; n = n + 1) {
             __GDWrite(0);
         }
     }
 }
 
-/* 803610D4-80361104 35BA14 0030+00 0/0 41/41 0/0 .text            GDOverflowed */
 void GDOverflowed(void) {
-    if (overflowcb != NULL) {
-        overflowcb();
+    if (overflowcb) {
+        (*overflowcb)();
+    } else {
+        ASSERTMSGLINE(77, 0, "GDWrite: display list overflowed");
     }
+}
+
+void GDSetOverflowCallback(GDOverflowCb callback) {
+    overflowcb = callback;
+}
+
+GDOverflowCb GDGetOverflowCallback(void) {
+    return overflowcb;
 }

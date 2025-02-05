@@ -535,9 +535,9 @@ void main() {
     if (mDoMain::developmentMode < 0) {
         DVDDiskID* disk_id = DVDGetCurrentDiskID();
 
-        if (disk_id->game_version > 0x90) {
+        if (disk_id->gameVersion > 0x90) {
             mDoMain::developmentMode = 1;
-        } else if (disk_id->game_version > 0x80) {
+        } else if (disk_id->gameVersion > 0x80) {
             u32 consoleType = OSGetConsoleType();
             mDoMain::developmentMode = (consoleType >> 0x1C) & 1;
         } else {
@@ -546,7 +546,7 @@ void main() {
     }
 
     s32 priority = OSGetThreadPriority(current_thread);
-    OSCreateThread(&mainThread, main01, 0, stack + sizeof(mainThreadStack), sizeof(mainThreadStack), priority, 0);
+    OSCreateThread(&mainThread, (void*(*)(void*))main01, 0, stack + sizeof(mainThreadStack), sizeof(mainThreadStack), priority, 0);
     OSResumeThread(&mainThread);
     OSSetThreadPriority(current_thread, 0x1F);
     OSSuspendThread(current_thread);

@@ -1,7 +1,7 @@
 #ifndef JUTTEXTURE_H
 #define JUTTEXTURE_H
 
-#include "dolphin/gx/GXStruct.h"
+#include <dolphin/gx.h>
 
 class JUTPalette;
 

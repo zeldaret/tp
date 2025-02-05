@@ -1,7 +1,7 @@
-#ifndef OSRESETSW_H
-#define OSRESETSW_H
+#ifndef _DOLPHIN_OSRESETSW_H_
+#define _DOLPHIN_OSRESETSW_H_
 
-#include "dolphin/os/OSInterrupt.h"
+#include <dolphin/types.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -9,12 +9,12 @@ extern "C" {
 
 typedef void (*OSResetCallback)(void);
 
-static BOOL OSGetResetButtonState(void);
+OSResetCallback OSSetResetCallback(OSResetCallback callback);
 BOOL OSGetResetSwitchState(void);
-void __OSResetSWInterruptHandler(__OSInterrupt interrupt, OSContext* context);
+BOOL OSGetResetButtonState(void);
 
 #ifdef __cplusplus
-};
+}
 #endif
 
-#endif /* OSRESETSW_H */
+#endif

@@ -3,7 +3,7 @@
 //
 
 #include "JSystem/JAudio2/JASCalc.h"
-#include "dolphin/os/OSCache.h"
+#include <dolphin/os.h>
 #include "math.h"
 #include "limits.h"
 

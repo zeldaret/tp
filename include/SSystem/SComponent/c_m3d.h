@@ -2,7 +2,7 @@
 #define C_M3D_H_
 
 #include "math.h"
-#include "dolphin/mtx/vec.h"
+#include "dolphin/mtx.h"
 
 class cM3dGAab;
 class cM3dGCps;
@@ -18,8 +18,6 @@ struct cM3d_Range {
     /* 0x0 */ f32 mMin;
     /* 0x4 */ f32 mMax;
 };
-
-struct Vec;
 
 extern const f32 G_CM3D_F_ABS_MIN;
 

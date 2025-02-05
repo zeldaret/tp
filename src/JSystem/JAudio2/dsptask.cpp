@@ -5,6 +5,7 @@
 
 #include "JSystem/JAudio2/dsptask.h"
 #include "JSystem/JAudio2/osdsp.h"
+#include "global.h"
 
 //
 // Forward References:
@@ -531,7 +532,7 @@ static u8 jdsp[7936] ALIGN_DECL(32) = {
 };
 
 /* 80431F80-80431FE0 05ECA0 0050+10 1/1 0/0 0/0 .bss             audio_task */
-static STRUCT_DSP_TASK audio_task ALIGN_DECL(32);
+static DSPTaskInfo audio_task ALIGN_DECL(32);
 
 /* 80431FE0-80433FE0 05ED00 2000+00 1/1 0/0 0/0 .bss             AUDIO_YIELD_BUFFER */
 static u8 AUDIO_YIELD_BUFFER[8192] ALIGN_DECL(32);
@@ -539,19 +540,19 @@ static u8 AUDIO_YIELD_BUFFER[8192] ALIGN_DECL(32);
 /* 8029E720-8029E7CC 299060 00AC+00 0/0 1/1 0/0 .text            DspBoot__FPFPv_v */
 void DspBoot(void (*param_0)(void*)) {
     DspInitWork();
-    audio_task.info.priority = 0xf0;
-    audio_task.info.iram_mmem_addr = (u16*)(jdsp + 0x80000000);
-    audio_task.info.iram_length = sizeof(jdsp);
-    audio_task.info.iram_addr = 0;
-    audio_task.info.dram_mmem_addr = (u16*)(AUDIO_YIELD_BUFFER + 0x80000000);
-    audio_task.info.dram_length = sizeof(AUDIO_YIELD_BUFFER);
-    audio_task.info.dram_addr = 0;
-    audio_task.info.dsp_init_vector = 0;
-    audio_task.info.dsp_resume_vector = 0x10;
-    audio_task.info.init_cb = DspHandShake;
-    audio_task.info.res_cb = NULL;
-    audio_task.info.done_cb = NULL;
-    audio_task.info.req_cb = param_0;
+    audio_task.priority = 0xf0;
+    audio_task.iram_mmem_addr = (u16*)(jdsp + 0x80000000);
+    audio_task.iram_length = sizeof(jdsp);
+    audio_task.iram_addr = 0;
+    audio_task.dram_mmem_addr = (u16*)(AUDIO_YIELD_BUFFER + 0x80000000);
+    audio_task.dram_length = sizeof(AUDIO_YIELD_BUFFER);
+    audio_task.dram_addr = 0;
+    audio_task.dsp_init_vector = 0;
+    audio_task.dsp_resume_vector = 0x10;
+    audio_task.init_cb = DspHandShake;
+    audio_task.res_cb = NULL;
+    audio_task.done_cb = NULL;
+    audio_task.req_cb = param_0;
     DSPInit();
     DSPAddPriorTask(&audio_task);
 }

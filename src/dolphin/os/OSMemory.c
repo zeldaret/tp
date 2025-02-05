@@ -1,14 +1,41 @@
-#include "dolphin/os/OSMemory.h"
-#include "dolphin/os.h"
+#include <dolphin.h>
+#include <dolphin/os.h>
+#include <dolphin/dvd.h>
+
+#include "__os.h"
 
 #define TRUNC(n, a) (((u32)(n)) & ~((a)-1))
 #define ROUND(n, a) (((u32)(n) + (a)-1) & ~((a)-1))
 
-vu16 __MEMRegs[64] AT_ADDRESS(0xCC004000);
+static BOOL OnReset(BOOL final);
 
-extern OSErrorHandlerEx __OSErrorTable[16];
+static OSResetFunctionInfo ResetFunctionInfo = {
+    OnReset,
+    0x7F,
+    NULL,
+    NULL
+};
 
-/* 8033EC6C-8033ECA8 3395AC 003C+00 1/0 0/0 0/0 .text            OnReset */
+u32 OSGetPhysicalMemSize(void) {
+#if DEBUG
+    OSBootInfo* BootInfo = (OSBootInfo*)OSPhysicalToCached(0);
+
+    return BootInfo->memorySize;
+#else
+    return __OSPhysicalMemSize;
+#endif
+}
+
+u32 OSGetConsoleSimulatedMemSize(void) {
+#if DEBUG
+    u32* memSize = (u32*)OSPhysicalToCached(0xF0);
+
+    return *memSize;
+#else
+    return __OSSimulatedMemSize;
+#endif
+}
+
 static BOOL OnReset(BOOL final) {
     if (final != FALSE) {
         __MEMRegs[8] = 0xFF;
@@ -17,7 +44,8 @@ static BOOL OnReset(BOOL final) {
     return TRUE;
 }
 
-/* 8033ECA8-8033ED14 3395E8 006C+00 1/1 0/0 0/0 .text            MEMIntrruptHandler */
+void (*__OSErrorTable[])(u16, OSContext*, ...);
+
 static void MEMIntrruptHandler(__OSInterrupt interrupt, OSContext* context) {
     u32 addr;
     u32 cause;
@@ -26,26 +54,28 @@ static void MEMIntrruptHandler(__OSInterrupt interrupt, OSContext* context) {
     addr = (((u32)__MEMRegs[0x12] & 0x3ff) << 16) | __MEMRegs[0x11];
     __MEMRegs[0x10] = 0;
 
-    if (__OSErrorTable[EXCEPTION_MEMORY_PROTECTION]) {
-        __OSErrorTable[EXCEPTION_MEMORY_PROTECTION](EXCEPTION_MEMORY_PROTECTION, context, cause,
-                                                    addr);
+    if (__OSErrorTable[__OS_EXCEPTION_MEMORY_PROTECTION]) {
+        __OSErrorTable[__OS_EXCEPTION_MEMORY_PROTECTION](__OS_EXCEPTION_MEMORY_PROTECTION, context, cause, addr);
         return;
     }
 
-    __OSUnhandledException(EXCEPTION_MEMORY_PROTECTION, context, cause, addr);
+    __OSUnhandledException(__OS_EXCEPTION_MEMORY_PROTECTION, context, cause, addr);
 }
 
-/* 8033ED14-8033EDD8 339654 00C4+00 0/0 1/1 0/0 .text            OSProtectRange */
 void OSProtectRange(u32 chan, void* addr, u32 nBytes, u32 control) {
     BOOL enabled;
     u32 start;
     u32 end;
     u16 reg;
+
+    ASSERTLINE(206, chan < 4);
+    ASSERTLINE(207, (control & ~(OS_PROTECT_CONTROL_RDWR)) == 0);
+
     if (4 <= chan) {
         return;
     }
 
-    control &= OS_PROTECT_CONTROL_RDWR;
+    control &= 3;
 
     end = (u32)addr + nBytes;
     start = TRUNC(addr, 1u << 10);
@@ -55,138 +85,120 @@ void OSProtectRange(u32 chan, void* addr, u32 nBytes, u32 control) {
 
     enabled = OSDisableInterrupts();
 
-    __OSMaskInterrupts(OS_INTERRUPTMASK(OS_INTR_MEM_0 + chan));
+    __OSMaskInterrupts(OS_INTERRUPTMASK(__OS_INTERRUPT_MEM_0 + chan));
 
     __MEMRegs[0 + 2 * chan] = (u16)(start >> 10);
     __MEMRegs[1 + 2 * chan] = (u16)(end >> 10);
 
     reg = __MEMRegs[8];
-    reg &= ~(OS_PROTECT_CONTROL_RDWR << 2 * chan);
+    reg &= ~(3 << 2 * chan);
     reg |= control << 2 * chan;
     __MEMRegs[8] = reg;
 
-    if (control != OS_PROTECT_CONTROL_RDWR) {
-        __OSUnmaskInterrupts(OS_INTERRUPTMASK(OS_INTR_MEM_0 + chan));
+    if (control != 3) {
+        __OSUnmaskInterrupts(OS_INTERRUPTMASK(__OS_INTERRUPT_MEM_0 + chan));
     }
 
     OSRestoreInterrupts(enabled);
 }
 
-/* 8033EDD8-8033EE58 339718 0080+00 1/1 0/0 0/0 .text            Config24MB */
+#ifdef __GEKKO__
 static asm void Config24MB(void) {
-    // clang-format off
     nofralloc
-
-    li r7, 0
-    lis r4, 0x0000
-    addi r4, r4, 0x0002
+    li r7, 0x0
+    lis r4, 0x0
+    addi r4, r4, 0x2
     lis r3, 0x8000
-    addi r3, r3, 0x01FF
-    lis r6, 0x0100
-    addi r6, r6, 0x0002
+    addi r3, r3, 0x1ff
+    lis r6, 0x100
+    addi r6, r6, 0x2
     lis r5, 0x8100
-    addi r5, r5, 0x00FF
-    isync 
+    addi r5, r5, 0xff
+    isync
     mtdbatu 0, r7
     mtdbatl 0, r4
     mtdbatu 0, r3
-    isync 
+    isync
     mtibatu 0, r7
     mtibatl 0, r4
     mtibatu 0, r3
-    isync 
+    isync
     mtdbatu 2, r7
     mtdbatl 2, r6
     mtdbatu 2, r5
-    isync 
+    isync
     mtibatu 2, r7
     mtibatl 2, r6
     mtibatu 2, r5
-    isync 
+    isync
     mfmsr r3
     ori r3, r3, 0x30
-    mtspr 0x1b, r3
+    mtsrr1 r3
     mflr r3
-    mtspr 0x1a, r3
+    mtsrr0 r3
     rfi
-    // clang-format on
 }
+#endif
 
-/* 8033EE58-8033EED8 339798 0080+00 1/1 0/0 0/0 .text            Config48MB */
+#ifdef __GEKKO__
 static asm void Config48MB(void) {
-    // clang-format off
     nofralloc
-
-    li r7, 0
-    lis r4, 0x0000
-    addi r4, r4, 0x0002
+    li r7, 0x0
+    lis r4, 0x0
+    addi r4, r4, 0x2
     lis r3, 0x8000
-    addi r3, r3, 0x03FF
-    lis r6, 0x0200
-    addi r6, r6, 0x0002
+    addi r3, r3, 0x3ff
+    lis r6, 0x200
+    addi r6, r6, 0x2
     lis r5, 0x8200
-    addi r5, r5, 0x01FF
-    isync 
+    addi r5, r5, 0x1ff
+    isync
     mtdbatu 0, r7
     mtdbatl 0, r4
     mtdbatu 0, r3
-    isync 
+    isync
     mtibatu 0, r7
     mtibatl 0, r4
     mtibatu 0, r3
-    isync 
+    isync
     mtdbatu 2, r7
     mtdbatl 2, r6
     mtdbatu 2, r5
-    isync 
+    isync
     mtibatu 2, r7
     mtibatl 2, r6
     mtibatu 2, r5
-    isync 
+    isync
     mfmsr r3
     ori r3, r3, 0x30
-    mtspr 0x1b, r3
+    mtsrr1 r3
     mflr r3
-    mtspr 0x1a, r3
+    mtsrr0 r3
     rfi
-    // clang-format on
 }
+#endif
 
-/* 8033EED8-8033EEF0 339818 0018+00 1/1 0/0 0/0 .text            RealMode */
-static asm void RealMode(register u32 config) {
-    // clang-format off
+#ifdef __GEKKO__
+static asm void RealMode(register u32 addr) {
     nofralloc
-
-    clrlwi config, config, 2
-    mtspr 0x1a, config
-    mfmsr config
-    rlwinm config, config, 0, 0x1c, 0x19
-    mtspr 0x1b, config
+    clrlwi addr, addr, 2
+    mtsrr0 addr
+    mfmsr addr
+    rlwinm addr, addr, 0, 28, 25
+    mtsrr1 addr
     rfi
-    // clang-format on
 }
+#endif
 
-/* ############################################################################################## */
-/* 803D07D8-803D07E8 -00001 0010+00 1/1 0/0 0/0 .data            ResetFunctionInfo */
-static OSResetFunctionInfo ResetFunctionInfo = {
-    OnReset,
-    0x7F,
-};
-
-inline u32 OSGetPhysicalMemSize() {
-    return *(u32*)(OSPhysicalToCached(0x0028));
-}
-
-inline u32 OSGetConsoleSimulatedMemSize() {
-    return *(u32*)(OSPhysicalToCached(0x00F0));
-}
-
-/* 8033EEF0-8033F008 339830 0118+00 0/0 1/1 0/0 .text            __OSInitMemoryProtection */
-void __OSInitMemoryProtection() {
-    u32 padding[8];
-    u32 simulatedSize;
+void __OSInitMemoryProtection(void) {
+#ifndef DEBUG
+    u32 padding[9];
+    u32 temp;
+#endif
     BOOL enabled;
-    simulatedSize = OSGetConsoleSimulatedMemSize();
+    u32 size;
+
+    size = OSGetConsoleSimulatedMemSize();
     enabled = OSDisableInterrupts();
 
     __MEMRegs[16] = 0;
@@ -194,23 +206,27 @@ void __OSInitMemoryProtection() {
 
     __OSMaskInterrupts(OS_INTERRUPTMASK_MEM_0 | OS_INTERRUPTMASK_MEM_1 | OS_INTERRUPTMASK_MEM_2 |
                        OS_INTERRUPTMASK_MEM_3);
-    __OSSetInterruptHandler(OS_INTR_MEM_0, MEMIntrruptHandler);
-    __OSSetInterruptHandler(OS_INTR_MEM_1, MEMIntrruptHandler);
-    __OSSetInterruptHandler(OS_INTR_MEM_2, MEMIntrruptHandler);
-    __OSSetInterruptHandler(OS_INTR_MEM_3, MEMIntrruptHandler);
-    __OSSetInterruptHandler(OS_INTR_MEM_ADDRESS, MEMIntrruptHandler);
+    __OSSetInterruptHandler(__OS_INTERRUPT_MEM_0, MEMIntrruptHandler);
+    __OSSetInterruptHandler(__OS_INTERRUPT_MEM_1, MEMIntrruptHandler);
+    __OSSetInterruptHandler(__OS_INTERRUPT_MEM_2, MEMIntrruptHandler);
+    __OSSetInterruptHandler(__OS_INTERRUPT_MEM_3, MEMIntrruptHandler);
+    __OSSetInterruptHandler(__OS_INTERRUPT_MEM_ADDRESS, MEMIntrruptHandler);
     OSRegisterResetFunction(&ResetFunctionInfo);
 
-    if (OSGetConsoleSimulatedMemSize() < OSGetPhysicalMemSize() &&
-        OSGetConsoleSimulatedMemSize() == 0x1800000)
+#ifdef DEBUG
+    if (OSGetConsoleSimulatedMemSize() < OSGetPhysicalMemSize() && OSGetConsoleSimulatedMemSize() == 0x1800000)
+#else
+    temp = OSGetConsoleSimulatedMemSize();  // not sure how else to get the order right on retail
+    if (temp < OSGetPhysicalMemSize() && temp == 0x1800000)
+#endif
     {
         DCInvalidateRange((void*)0x81800000, 0x1800000);
         __MEMRegs[20] = 2;
     }
 
-    if (simulatedSize <= 0x1800000) {
+    if (size <= 0x1800000) {
         RealMode((u32)&Config24MB);
-    } else if (simulatedSize <= 0x3000000) {
+    } else if (size <= 0x3000000) {
         RealMode((u32)&Config48MB);
     }
 

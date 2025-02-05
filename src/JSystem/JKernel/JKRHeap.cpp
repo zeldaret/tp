@@ -104,13 +104,13 @@ bool JKRHeap::initArena(char** memory, u32* size, int maxHeaps) {
     ram_start = (void*)ALIGN_NEXT((u32)arenaStart, 0x20);
     ram_end = (void*)ALIGN_PREV((u32)arenaHi, 0x20);
 
-    GLOBAL_MEMORY* codeStart = (GLOBAL_MEMORY*)OSPhysicalToCached(0);
+    OSBootInfo* codeStart = (OSBootInfo*)OSPhysicalToCached(0);
     mCodeStart = codeStart;
     mCodeEnd = ram_start;
 
     mUserRamStart = ram_start;
     mUserRamEnd = ram_end;
-    mMemorySize = codeStart->memory_size;
+    mMemorySize = codeStart->memorySize;
 
     OSSetArenaLo(ram_end);
     OSSetArenaHi(ram_end);

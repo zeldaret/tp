@@ -37,7 +37,7 @@ static u8 padding[0x18];
 
 /* 80015858-800158B4 010198 005C+00 0/0 1/1 0/0 .text            create__9mDoDvdThdFl */
 void mDoDvdThd::create(s32 param_0) {
-    OSCreateThread(&l_thread, mDoDvdThd::main, &l_param,
+    OSCreateThread(&l_thread, (void*(*)(void*))mDoDvdThd::main, &l_param,
                    l_threadStack.stack + sizeof(l_threadStack), sizeof(l_threadStack), param_0, 1);
     OSResumeThread(&l_thread);
 }

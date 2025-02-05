@@ -8,6 +8,8 @@
 #define VERSION_GCN_JPN          2
 #define VERSION_SHIELD_DEBUG 3
 
+#define ALIGN_DECL(ALIGNMENT) __attribute__((aligned(ALIGNMENT)))
+
 #define ARRAY_SIZE(o) (sizeof((o)) / sizeof(*(o)))
 
 // Align X to the previous N bytes (N must be power of two)
@@ -73,5 +75,8 @@ void* __memcpy(void*, const void*, int);
         0x3FE00000, \
         0x00000000, \
     };
+
+#define READU32_BE(ptr, offset) \
+    (((u32)ptr[offset] << 24) | ((u32)ptr[offset + 1] << 16) | ((u32)ptr[offset + 2] << 8) | (u32)ptr[offset + 3]);
 
 #endif

@@ -1,35 +1,25 @@
-#ifndef OSRTC_H
-#define OSRTC_H
+#ifndef _DOLPHIN_OSRTC_H_
+#define _DOLPHIN_OSRTC_H_
 
-#include "dolphin/types.h"
+#include <dolphin/types.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-typedef u32 OSSoundMode;
-
+// make the assert happy
 #define OS_SOUND_MODE_MONO 0
 #define OS_SOUND_MODE_STEREO 1
 
-#define RTC_CMD_READ 0x20000000
-#define RTC_CMD_WRITE 0xa0000000
+// make the asserts happy
+#define OS_VIDEO_MODE_NTSC 0
+#define OS_VIDEO_MODE_MPAL 2
 
-#define RTC_SRAM_ADDR 0x00000100
-#define RTC_SRAM_SIZE 64
+#define OS_PROGRESSIVE_MODE_OFF 0
+#define OS_PROGRESSIVE_MODE_ON  1
 
-#define RTC_CHAN 0
-#define RTC_DEV 1
-#define RTC_FREQ 3  // EXI_FREQ_8M
-
-typedef struct SramControlBlock {
-    u8 sram[RTC_SRAM_SIZE];
-    u32 offset;
-    BOOL enabled;
-    BOOL locked;
-    BOOL sync;
-    void (*callback)(void);
-} SramControlBlock;
+#define OS_EURGB60_OFF 0
+#define OS_EURGB60_ON  1
 
 typedef struct OSSram {
     u16 checkSum;
@@ -54,23 +44,34 @@ typedef struct OSSramEx {
     u8 _padding1[2];
 } OSSramEx;
 
-void __OSInitSram(void);
-OSSram* __OSLockSram(void);
-OSSramEx* __OSLockSramEx(void);
-BOOL __OSUnlockSram(BOOL commit);
-BOOL __OSUnlockSramEx(BOOL commit);
-BOOL __OSSyncSram(void);
+#define SRAM_SIZE (sizeof(OSSram) + sizeof(OSSramEx))
+
+typedef struct SramControl {
+    u8 sram[SRAM_SIZE];  // dummy for OSSram + OSSramEx
+    u32 offset;
+    BOOL enabled;
+    BOOL locked;
+    int sync;
+    void (*callback)();
+} SramControl;
+
 u32 OSGetSoundMode(void);
-void OSSetSoundMode(OSSoundMode mode);
+void OSSetSoundMode(u32 mode);
+u32 OSGetVideoMode(void);
+void OSSetVideoMode(u32 mode);
+u8 OSGetLanguage(void);
+void OSSetLanguage(u8 language);
+u16 OSGetGbsMode(void);
+void OSSetGbsMode(u16 mode);
 u32 OSGetProgressiveMode(void);
-void OSSetProgressiveMode(u32 mode);
-u16 OSGetWirelessID(s32 channel);
-void OSSetWirelessID(s32 channel, u16 id);
-static u16 OSGetGbsMode(void);
-static void OSSetGbsMode(u16 mode);
+void OSSetProgressiveMode(u32 on);
+u32 OSGetEuRgb60Mode(void);
+void OSSetEuRgb60Mode(u32 on);
+u16 OSGetWirelessID(s32 chan);
+void OSSetWirelessID(s32 chan, u16 id);
 
 #ifdef __cplusplus
-};
+}
 #endif
 
-#endif /* OSRTC_H */
+#endif // _DOLPHIN_OSRTC_H_

@@ -3,10 +3,10 @@
  * Description:
  */
 
-#include "amcstubs/AmcExi2Stubs.h"
+#include <dolphin/amc/AmcExi2Comm.h>
 
 /* 80372CFC-80372D00 36D63C 0004+00 0/0 1/1 0/0 .text            EXI2_Init */
-void EXI2_Init(vu8**, AmcEXICallback) {}
+void EXI2_Init(vu8**, EXICallback) {}
 
 /* 80372D00-80372D04 36D640 0004+00 0/0 1/1 0/0 .text            EXI2_EnableInterrupts */
 void EXI2_EnableInterrupts(void) {}

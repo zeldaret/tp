@@ -2,7 +2,7 @@
 #define J3DTEVS_H
 
 #include "dolphin/types.h"
-#include "dolphin/gx/GXStruct.h"
+#include <dolphin/gx.h>
 #include "JSystem/J3DGraphBase/J3DGD.h"
 
 /**

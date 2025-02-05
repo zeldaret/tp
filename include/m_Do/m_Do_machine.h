@@ -1,7 +1,7 @@
 #ifndef M_DO_M_DO_MACHINE_H
 #define M_DO_M_DO_MACHINE_H
 
-#include "dolphin/gx/GXStruct.h"
+#include <dolphin/gx.h>
 
 typedef struct OSContext OSContext;
 class JKRHeap;
@@ -21,8 +21,8 @@ class mDoMch_render_c {
 public:
     static void setRenderModeObj(GXRenderModeObj* obj) { mRenderModeObj = obj; }
     static void setProgressiveMode() { setRenderModeObj(&g_ntscZeldaProg); }
-    static u16 getEfbHeight() { return mRenderModeObj->efb_height; }
-    static u16 getFbWidth() { return mRenderModeObj->fb_width; }
+    static u16 getEfbHeight() { return mRenderModeObj->efbHeight; }
+    static u16 getFbWidth() { return mRenderModeObj->fbWidth; }
 
     static GXRenderModeObj* getRenderModeObj() { return mRenderModeObj; }
 

@@ -689,7 +689,7 @@ const GXColor* dMenu_FmapMap_c::getColor(int param_0) {
 void dMenu_FmapMap_c::setTexture(u16 i_width, u16 i_height, u16 param_2, u16 param_3) {
     mMapImage_p = NULL;
     mResTIMG = NULL;
-    int size = GXGetTexBufferSize(i_width, i_height, GX_TF_CI14, 0, 0);
+    int size = GXGetTexBufferSize(i_width, i_height, GX_TF_C8, 0, 0);
     mMapImage_p = new (0x20) u8[size];
     init(mMapImage_p, i_width, i_height, param_2, param_3);
     mResTIMG = new (0x20) ResTIMG();

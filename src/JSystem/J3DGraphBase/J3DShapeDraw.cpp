@@ -7,7 +7,7 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "string.h"
 #include "dolphin/gx.h"
-#include "dolphin/os/OSCache.h"
+#include <dolphin/os.h>
 #include "global.h"
 
 //

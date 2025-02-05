@@ -1,54 +1,58 @@
-#ifndef OSFONT_H
-#define OSFONT_H
+#ifndef _DOLPHIN_OSFONT_H_
+#define _DOLPHIN_OSFONT_H_
 
-#include "dolphin/types.h"
+#include <dolphin/types.h>
+#include <dolphin/os/OSUtf.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-typedef enum {
-    OS_FONT_ENCODE_ANSI,
-    OS_FONT_ENCODE_SJIS,
-    OS_FONT_ENCODE_2,
-    OS_FONT_ENCODE_UTF8,
-    OS_FONT_ENCODE_UTF16,
-    OS_FONT_ENCODE_UTF32,
-    OS_FONT_ENCODE_MAX
-} OSFontEncode;
+#define OS_FONT_ENCODE_ANSI 0u
+#define OS_FONT_ENCODE_SJIS 1u
+#define OS_FONT_ENCODE_MAX  5u
+#define OS_FONT_SIZE_ANSI (288 + 131072)    // 9 sheets
+#define OS_FONT_SIZE_SJIS (3840 + 1179648)  // 1 sheet
+#define OS_FONT_ROM_SIZE_ANSI 0x03000
+#define OS_FONT_ROM_SIZE_SJIS 0x4D000
 
 typedef struct OSFontHeader {
-    /* 0x00 */ u16 type;          
-    /* 0x02 */ u16 firstChar;     
-    /* 0x04 */ u16 lastChar;      
-    /* 0x06 */ u16 invalidChar;   
-    /* 0x08 */ u16 ascent;        
-    /* 0x0A */ u16 descent;       
-    /* 0x0C */ u16 width;         
-    /* 0x0E */ u16 leading;       
-    /* 0x10 */ u16 cellWidth;     
-    /* 0x12 */ u16 cellHeight;    
-    /* 0x14 */ u32 sheetSize;     
-    /* 0x18 */ u16 sheetFormat;   
-    /* 0x1A */ u16 sheetNumCol;   
-    /* 0x1C */ u16 sheetNumRow;   
-    /* 0x1E */ u16 sheetWidth;    
-    /* 0x20 */ u16 sheetHeight;   
-    /* 0x22 */ u16 widthTableOfs; 
-    /* 0x24 */ u32 sheetImageOfs; 
-    /* 0x28 */ u32 sheetFullSize; 
-    /* 0x2C */ u8 c0;             
-    /* 0x2D */ u8 c1;             
-    /* 0x2E */ u8 c2;             
-    /* 0x2F */ u8 c3;             
+    u16 fontType;
+    u16 firstChar;
+    u16 lastChar;
+    u16 invalChar;
+    u16 ascent;
+    u16 descent;
+    u16 width;
+    u16 leading;
+    u16 cellWidth;
+    u16 cellHeight;
+    u32 sheetSize;
+    u16 sheetFormat;
+    u16 sheetColumn;
+    u16 sheetRow;
+    u16 sheetWidth;
+    u16 sheetHeight;
+    u16 widthTable;
+    u32 sheetImage;
+    u32 sheetFullSize;
+    u8 c0;
+    u8 c1;
+    u8 c2;
+    u8 c3;
 } OSFontHeader;
 
-static u32 GetFontCode(u16 param_0, u16 param_1);
 u16 OSGetFontEncode(void);
-static const u8* ParseStringS(u16 encode, const u8* str, OSFontHeader** fontOut, u32* codeOut);
+u16 OSSetFontEncode(u16 encode);
+BOOL OSInitFont(OSFontHeader* fontData);
+u32 OSLoadFont(OSFontHeader* fontData, void* tmp);
+char* OSGetFontTexture(const char* string, void** image, s32* x, s32* y, s32* width);
+char* OSGetFontWidth(const char* string, s32* width);
+char* OSGetFontTexel(const char* string, void* image, s32 pos, s32 stride, s32* width);
+int OSSetFontWidth(int fixed);
 
 #ifdef __cplusplus
-};
+}
 #endif
 
-#endif /* OSFONT_H */
+#endif

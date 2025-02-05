@@ -1,38 +1,52 @@
-#include "dolphin/os/OSArena.h"
-#include "dolphin/os/OSAlloc.h"
+#include <dolphin.h>
+#include <dolphin/os.h>
 
-/* 80451650-80451658 000B50 0004+04 2/1 0/0 0/0 .sbss            __OSArenaHi */
+#define ROUND(n, a) (((u32)(n) + (a)-1) & ~((a)-1))
+#define TRUNC(n, a) (((u32)(n)) & ~((a)-1))
+
 static void* __OSArenaHi;
+static void* __OSArenaLo = (void*)-1;
 
-/* 8033B28C-8033B294 -00001 0008+00 0/0 0/0 0/0 .text            OSGetArenaHi */
 void* OSGetArenaHi(void) {
+    ASSERTMSGLINE(55, (u32)__OSArenaLo != -1, "OSGetArenaHi(): OSInit() must be called in advance.");
+    ASSERTMSGLINE(57, (u32)__OSArenaLo <= (u32)__OSArenaHi, "OSGetArenaHi(): invalid arena (hi < lo).");
     return __OSArenaHi;
 }
 
-/* 80450998-804509A0 000418 0004+04 3/2 0/0 0/0 .sdata           __OSArenaLo */
-static void* __OSArenaLo = (void*)0xFFFFFFFF;
-
-/* 8033B294-8033B29C -00001 0008+00 0/0 0/0 0/0 .text            OSGetArenaLo */
 void* OSGetArenaLo(void) {
+    ASSERTMSGLINE(73, (u32)__OSArenaLo != -1, "OSGetArenaLo(): OSInit() must be called in advance.");
+    ASSERTMSGLINE(75, (u32)__OSArenaLo <= (u32)__OSArenaHi, "OSGetArenaLo(): invalid arena (hi < lo).");
     return __OSArenaLo;
 }
 
-/* 8033B29C-8033B2A4 335BDC 0008+00 0/0 5/5 0/0 .text            OSSetArenaHi */
-void OSSetArenaHi(void* hi) {
-    __OSArenaHi = hi;
+void OSSetArenaHi(void* newHi) {
+    __OSArenaHi = newHi;
 }
 
-/* 8033B2A4-8033B2AC 335BE4 0008+00 0/0 5/5 0/0 .text            OSSetArenaLo */
-void OSSetArenaLo(void* lo) {
-    __OSArenaLo = lo;
+void OSSetArenaLo(void* newLo) {
+    __OSArenaLo = newLo;
 }
 
-/* 8033B2AC-8033B2D8 335BEC 002C+00 0/0 4/4 0/0 .text            OSAllocFromArenaLo */
-void* OSAllocFromArenaLo(u32 size, s32 alignment) {
-    u8* blk_start = OSRoundUpPtr(__OSArenaLo, alignment);
-    u8* blk_end = blk_start + size;
-    blk_end = OSRoundUpPtr(blk_end, alignment);
+void* OSAllocFromArenaLo(u32 size, u32 align) {
+  void* ptr;
+  u8* arenaLo;
 
-    __OSArenaLo = blk_end;
-    return blk_start;
+  ptr = OSGetArenaLo();
+  arenaLo = ptr = (void*)ROUND(ptr, align);
+  arenaLo += size;
+  arenaLo = (u8*)ROUND(arenaLo, align);
+  OSSetArenaLo(arenaLo);
+  return ptr;
+}
+
+void* OSAllocFromArenaHi(u32 size, u32 align) {
+  void* ptr;
+  u8* arenaHi;
+
+  arenaHi = OSGetArenaHi();
+  arenaHi = (u8*)TRUNC(arenaHi, align);
+  arenaHi -= size;
+  arenaHi = ptr = (void*)TRUNC(arenaHi, align);
+  OSSetArenaHi(arenaHi);
+  return ptr;
 }

@@ -2735,7 +2735,7 @@ static BOOL daMP_VideoDecodeThreadCreated;
 /* 80875B18-80875BC8 003438 00B0+00 1/1 0/0 0/0 .text            daMP_CreateReadThread__Fl */
 static BOOL daMP_CreateReadThread(s32 param_0) {
     // NONMATCHING
-    if (!OSCreateThread(&daMP_ReadThread, daMP_Reader, 0, daMP_ReadThreadStack + sizeof(daMP_ReadThreadStack), sizeof(daMP_ReadThreadStack), param_0, 1)) {
+    if (!OSCreateThread(&daMP_ReadThread, (void*(*)(void*))daMP_Reader, 0, daMP_ReadThreadStack + sizeof(daMP_ReadThreadStack), sizeof(daMP_ReadThreadStack), param_0, 1)) {
         OSReport("Can't create read thread\n");
         return 0;
     }
@@ -2817,12 +2817,12 @@ static void daMP_VideoDecoderForOnMemory(void* param_0) {
  */
 static int daMP_CreateVideoDecodeThread(s32 param_0, u8* param_1) {
     if (param_1 != NULL) {
-        if (!OSCreateThread(&daMP_VideoDecodeThread, daMP_VideoDecoderForOnMemory, param_1, daMP_VideoDecodeThreadStack + sizeof(daMP_VideoDecodeThreadStack), sizeof(daMP_VideoDecodeThreadStack), param_0, 1)) {
+        if (!OSCreateThread(&daMP_VideoDecodeThread, (void*(*)(void*))daMP_VideoDecoderForOnMemory, param_1, daMP_VideoDecodeThreadStack + sizeof(daMP_VideoDecodeThreadStack), sizeof(daMP_VideoDecodeThreadStack), param_0, 1)) {
             OSReport("Can't create video decode thread\n");
             return 0;
         }
     } else {
-        if (!OSCreateThread(&daMP_VideoDecodeThread, daMP_VideoDecoder, NULL, daMP_VideoDecodeThreadStack + sizeof(daMP_VideoDecodeThreadStack), sizeof(daMP_VideoDecodeThreadStack), param_0, 1)) {
+        if (!OSCreateThread(&daMP_VideoDecodeThread, (void*(*)(void*))daMP_VideoDecoder, NULL, daMP_VideoDecodeThreadStack + sizeof(daMP_VideoDecodeThreadStack), sizeof(daMP_VideoDecodeThreadStack), param_0, 1)) {
             OSReport("Can't create video decode thread\n");
             return 0;
         }
@@ -2924,11 +2924,11 @@ static OSMessage daMP_DecodedAudioBufferMessage[3];
  */
 static int daMP_CreateAudioDecodeThread(s32 param_0, u8* param_1) {
     if (param_1 != NULL) {
-        if (!OSCreateThread(&daMP_AudioDecodeThread, daMP_AudioDecoderForOnMemory, param_1, daMP_AudioDecodeThreadStack + sizeof(daMP_AudioDecodeThreadStack), sizeof(daMP_AudioDecodeThreadStack), param_0, 1)) {
+        if (!OSCreateThread(&daMP_AudioDecodeThread, (void*(*)(void*))daMP_AudioDecoderForOnMemory, param_1, daMP_AudioDecodeThreadStack + sizeof(daMP_AudioDecodeThreadStack), sizeof(daMP_AudioDecodeThreadStack), param_0, 1)) {
             return 0;
         }
     } else {
-        if (!OSCreateThread(&daMP_AudioDecodeThread, daMP_AudioDecoder, NULL, daMP_AudioDecodeThreadStack + sizeof(daMP_AudioDecodeThreadStack), sizeof(daMP_AudioDecodeThreadStack), param_0, 1)) {
+        if (!OSCreateThread(&daMP_AudioDecodeThread, (void*(*)(void*))daMP_AudioDecoder, NULL, daMP_AudioDecodeThreadStack + sizeof(daMP_AudioDecodeThreadStack), sizeof(daMP_AudioDecodeThreadStack), param_0, 1)) {
             OSReport("Can't create audio decode thread\n");
             return 0;
         }
@@ -2985,8 +2985,8 @@ static f32 dummyLiteral() {
  * daMP_THPGXYuv2RgbSetup__FPC16_GXRenderModeObj                */
 // NONMATCHING - stack slightly too small
 static void daMP_THPGXYuv2RgbSetup(GXRenderModeObj const* param_0) {
-    int width = param_0->fb_width;
-    int height = param_0->efb_height;
+    int width = param_0->fbWidth;
+    int height = param_0->efbHeight;
     f32 var_f31 = 0.0f;
     Mtx sp50;
     Mtx sp20;
@@ -3452,7 +3452,7 @@ static void daMP_THPPlayerStop() {
         VISetPostRetraceCallback(daMP_OldVIPostCallback);
 
         if (daMP_ActivePlayer.field_0xb0 == 0) {
-            DVDCancel(&daMP_ActivePlayer.mFileInfo.block);
+            DVDCancel(&daMP_ActivePlayer.mFileInfo.cb);
             daMP_ReadThreadCancel();
         }
 
@@ -3557,8 +3557,8 @@ static BOOL daMP_ActivePlayer_Init(char const* moviePath) {
     daMP_THPPlayerGetVideoInfo(&daMP_videoInfo);
     daMP_THPPlayerGetAudioInfo(&daMP_audioInfo);
 
-    u16 var_r31 = JUTVideo::getManager()->getRenderMode()->fb_width;
-    u16 temp_r4 = JUTVideo::getManager()->getRenderMode()->efb_height;
+    u16 var_r31 = JUTVideo::getManager()->getRenderMode()->fbWidth;
+    u16 temp_r4 = JUTVideo::getManager()->getRenderMode()->efbHeight;
 
     daMP_DrawPosX = (var_r31 - daMP_videoInfo.field_0x0) >> 1;
     daMP_DrawPosY = (temp_r4 - daMP_videoInfo.field_0x4) >> 1;

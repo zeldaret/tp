@@ -451,7 +451,7 @@ int daAlink_c::jointControll(int param_0) {
         mDoMtx_stack_c::inverse();
         cMtx_concat(temp_r26, mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
 
-        MTXQuat(temp_r26, (PSQuaternion*)spC);
+        MTXQuat(temp_r26, spC);
 
         temp_r26[0][3] = var_r25->mTranslate.x;
         temp_r26[1][3] = var_r25->mTranslate.y;
@@ -478,7 +478,7 @@ void daAlink_c::setUpperFront() {
 
             Quaternion sp8;
             JMAEulerToQuat(sp18.mRotation.x, sp18.mRotation.y, sp18.mRotation.z, &sp8);
-            MTXQuat(temp_r28, (PSQuaternion*)&sp8);
+            MTXQuat(temp_r28, &sp8);
 
             cMtx_concat(mpLinkModel->getBaseTRMtx(), temp_r28, J3DSys::mCurrentMtx);
             J3DSys::mCurrentMtx[0][3] = mRootMtx[0][3];

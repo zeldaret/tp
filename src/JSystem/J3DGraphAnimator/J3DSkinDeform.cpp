@@ -552,9 +552,9 @@ void J3DSkinDeform::deformVtxPos_S16(J3DVertexBuffer* param_0, J3DMtxBuffer* par
     void* transformedVtxPos = param_0->getTransformedVtxPos(0);
     for (int i = 0; i < vtxNum; i++) {
         Mtx* anmMtx = anmMtxs[jointTree->getDrawMtxFlag(mPosData[i])];
-        J3DPSMulMtxVec(anmMtx[jointTree->getDrawMtxIndex(mPosData[i])], ((SVec*)currentVtxPos) + i, ((SVec*)transformedVtxPos) + i);
+        J3DPSMulMtxVec(anmMtx[jointTree->getDrawMtxIndex(mPosData[i])], ((S16Vec*)currentVtxPos) + i, ((S16Vec*)transformedVtxPos) + i);
     }
-    DCStoreRange(param_0->getTransformedVtxPos(0), param_0->getVertexData()->getVtxNum() * sizeof(SVec));
+    DCStoreRange(param_0->getTransformedVtxPos(0), param_0->getVertexData()->getVtxNum() * sizeof(S16Vec));
     param_0->setCurrentVtxPos(transformedVtxPos);
 }
 
@@ -584,9 +584,9 @@ void J3DSkinDeform::deformVtxNrm_S16(J3DVertexBuffer* param_0) const {
     void* currentVtxNrm = param_0->getCurrentVtxNrm();
     void* transformedVtxNrm = param_0->getTransformedVtxNrm(0);
     for (int i = 0; i < nrmNum; i++) {
-        J3DPSMulMtxVec(mNrmMtx[mNrmData[i]], ((SVec*)currentVtxNrm) + i, ((SVec*)transformedVtxNrm) + i);
+        J3DPSMulMtxVec(mNrmMtx[mNrmData[i]], ((S16Vec*)currentVtxNrm) + i, ((S16Vec*)transformedVtxNrm) + i);
     }
-    DCStoreRange(param_0->getTransformedVtxNrm(0), param_0->getVertexData()->getNrmNum() * sizeof(SVec));
+    DCStoreRange(param_0->getTransformedVtxNrm(0), param_0->getVertexData()->getNrmNum() * sizeof(S16Vec));
     param_0->setCurrentVtxNrm(transformedVtxNrm);
 }
 

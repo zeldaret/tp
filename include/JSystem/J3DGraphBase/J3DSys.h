@@ -1,7 +1,8 @@
 #ifndef J3DSYS_H
 #define J3DSYS_H
 
-#include "dolphin/gx.h"
+#include <dolphin/gx.h>
+#include <dolphin/mtx.h>
 
 // Perhaps move to a new J3DEnum.h?
 enum J3DError {

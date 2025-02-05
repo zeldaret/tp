@@ -5,8 +5,8 @@
 #include "JSystem/JKernel/JKRDecomp.h"
 #include "JSystem/JKernel/JKRDvdFile.h"
 #include "JSystem/JSupport/JSUFileStream.h"
-#include "dolphin/os/OSCache.h"
-#include "dolphin/os/OSInterrupt.h"
+#include <dolphin/os.h>
+#include <dolphin/os.h>
 #include "dolphin/vi.h"
 #include "global.h"
 #include "string.h"

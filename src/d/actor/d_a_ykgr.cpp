@@ -22,19 +22,19 @@ inline daYkgr_HIO_c::daYkgr_HIO_c() {
 }
 
 inline dPa_YkgrPcallBack::dPa_YkgrPcallBack() {
-    field_0x4 = 0.5f;
-    field_0x8 = 0.0f;
-    field_0xc = 0.0f;
-    field_0x10 = 0.0f;
-    field_0x14 = 0.5f;
-    field_0x18 = 0.0f;
+    field_0x4[0][0] = 0.5f;
+    field_0x4[0][1] = 0.0f;
+    field_0x4[0][2] = 0.0f;
+    field_0x4[1][0] = 0.0f;
+    field_0x4[1][1] = 0.5f;
+    field_0x4[1][2] = 0.0f;
     field_0x1c = 1;
 }
 
 /* 805A848C-805A84D4 0000EC 0048+00 1/0 0/0 0/0 .text
  * draw__17dPa_YkgrPcallBackFP14JPABaseEmitterP15JPABaseParticle */
 void dPa_YkgrPcallBack::draw(JPABaseEmitter* param_0, JPABaseParticle* param_1) {
-    GXSetIndTexMtx(GX_ITM_0, &field_0x4, field_0x1c);
+    GXSetIndTexMtx(GX_ITM_0, field_0x4, field_0x1c);
     GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_A0);
 }
 
@@ -44,19 +44,19 @@ void dPa_YkgrPcallBack::setParam(f32 param_1) {
         if (param_1 >= 0.0f) {
             field_0x1c = param_1;
             f32 fVar1 = (param_1 - field_0x1c) * 0.5f + 0.5f;
-            field_0x14 = fVar1;
-            field_0x4 = fVar1;
+            field_0x4[1][1] = fVar1;
+            field_0x4[0][0] = fVar1;
         } else {
             f32 x = param_1 - 1.0f;
             field_0x1c = x;
             f32 fVar1 = (x - field_0x1c) * 0.5f + 1.0f;
-            field_0x14 = fVar1;
-            field_0x4 = fVar1;
+            field_0x4[1][1] = fVar1;
+            field_0x4[0][0] = fVar1;
         }
-        field_0x8 = 0.0f;
-        field_0xc = 0.0f;
-        field_0x10 = 0.0f;
-        field_0x18 = 0.0f;
+        field_0x4[0][1] = 0.0f;
+        field_0x4[0][2] = 0.0f;
+        field_0x4[1][0] = 0.0f;
+        field_0x4[1][2] = 0.0f;
     }
 }
 

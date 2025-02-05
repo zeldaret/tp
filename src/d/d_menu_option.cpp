@@ -15,7 +15,7 @@
 #include "d/d_meter_HIO.h"
 #include "d/d_meter_haihai.h"
 #include "d/d_msg_string.h"
-#include "dolphin/os/OSRtc.h"
+#include <dolphin/os.h>
 #include "dolphin/types.h"
 #include "f_op/f_op_msg_mng.h"
 #include "m_Do/m_Do_controller_pad.h"

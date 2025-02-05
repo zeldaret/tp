@@ -11,6 +11,7 @@
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "JSystem/JSupport/JSupport.h"
 #include "dolphin/os.h"
+#include "global.h"
 
 
 /* 80336794-803367D4 3310D4 0040+00 0/0 3/0 0/0 .text countMaterialNum__14J3DModelLoaderFPCv */

@@ -177,8 +177,8 @@ static procFunc fileWarningProc[] = {&dFile_info_c::modeWait, &dFile_info_c::mod
 void dFile_info_c::setSaveDate(dSv_save_c* i_savedata) {
     OSCalendarTime time;
     OSTicksToCalendarTime(i_savedata->getPlayer().getPlayerStatusB().getDateIpl(), &time);
-    sprintf(mSaveDate, "%02d/%02d/%d %02d:%02d", time.month + 1, time.day_of_month, time.year,
-            time.hours, time.minutes);
+    sprintf(mSaveDate, "%02d/%02d/%d %02d:%02d", time.mon + 1, time.mday, time.year,
+            time.hour, time.min);
 }
 
 /* 80192C70-80192D58 18D5B0 00E8+00 1/1 0/0 0/0 .text setPlayTime__12dFile_info_cFP10dSv_save_c */
