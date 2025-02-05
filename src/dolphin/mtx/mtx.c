@@ -1037,8 +1037,6 @@ void C_MTXReflect(Mtx m, const Vec* p, const Vec* n) {
     f32 vyz;
     f32 pdotn;
 
-// -2.0f literal not present in this version, so function must have been changed between Apr 2004 -> Nov 2004
-#if 0
     vxy = -2 * n->x * n->y;
     vxz = -2 * n->x * n->z;
     vyz = -2 * n->y * n->z;
@@ -1055,7 +1053,6 @@ void C_MTXReflect(Mtx m, const Vec* p, const Vec* n) {
     m[2][1] = vyz;
     m[2][2] = (1 - (2 * n->z * n->z));
     m[2][3] = (pdotn * n->z);
-#endif
 }
 
 void PSMTXReflect(register Mtx m, const register Vec* p, const register Vec* n) {
