@@ -3,6 +3,7 @@
 
 #include "d/d_drawlist.h"
 #include "f_op/f_op_actor.h"
+#include "d/d_com_inf_game.h"
 
 struct ResTIMG;
 
@@ -1065,7 +1066,9 @@ public:
 
     inline static u32 i_getLastSceneMode();
     inline static u32 getLastSceneMode();
-    inline static bool checkWoodSwordEquip();
+    inline static bool checkWoodSwordEquip() {
+        return dComIfGs_getSelectEquipSword() == fpcNm_ITEM_WOOD_STICK;
+    }
     inline static bool checkLightMasterSwordEquip();
     inline BOOL i_checkSwordGet();
     inline bool i_checkShieldGet() const;
