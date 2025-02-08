@@ -64,6 +64,25 @@ void* __memcpy(void*, const void*, int);
 #define UNK_BSS(name) \
     static u8 lit_##name[1 + 3 /* padding */];
 
+#define UNK_REL_BSS \
+    static u8 lit_1109[1]; \
+    static u8 lit_1107[1]; \
+    static u8 lit_1105[1]; \
+    static u8 lit_1104[1]; \
+    static u8 lit_1099[1]; \
+    static u8 lit_1097[1]; \
+    static u8 lit_1095[1]; \
+    static u8 lit_1094[1]; \
+    static u8 lit_1057[1]; \
+    static u8 lit_1055[1]; \
+    static u8 lit_1053[1]; \
+    static u8 lit_1052[1]; \
+    static u8 lit_1014[1]; \
+    static u8 lit_1012[1]; \
+    static u8 lit_1010[1]; \
+    static u8 lit_1009[1];
+
+
 #define UNK_REL_DATA \
     static u8 cNullVec__6Z2Calc[12] = { \
         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, \

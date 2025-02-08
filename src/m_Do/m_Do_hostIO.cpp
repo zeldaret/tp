@@ -3,10 +3,6 @@
 
 #ifdef DEBUG
 
-void mDoHIO_updateChild(s8 i_no);
-void mDoHIO_deleteChild(s8 i_no);
-s8 mDoHIO_createChild(const char*, JORReflexible*);
-
 mDoHIO_root_c mDoHIO_root;
 
 mDoHIO_root_c::~mDoHIO_root_c() {}

@@ -92,7 +92,7 @@ void PSMTXReflect(Mtx m, const Vec* p, const Vec* n);
 #define MTXInvXpose   C_MTXInvXpose
 #define MTXRotRad     C_MTXRotRad
 #define MTXRotTrig    C_MTXRotTrig
-#define MTXRotAxisRad C_MTXRotRad
+#define MTXRotAxisRad C_MTXRotAxisRad
 #define MTXTrans      C_MTXTrans
 #define MTXTransApply C_MTXTransApply
 #define MTXScale      C_MTXScale
