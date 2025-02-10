@@ -5,8 +5,8 @@
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "dolphin/ar.h"
-#include "dolphin/os/OSCache.h"
-#include "dolphin/os/OSInterrupt.h"
+#include <dolphin/os.h>
+#include <dolphin/os.h>
 #include "string.h"
 
 static u8* firstSrcData();

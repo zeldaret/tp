@@ -272,8 +272,8 @@ u32 JKRFileCache::getResSize(const void* resource) const {
 
 /* 802D52A0-802D531C 2CFBE0 007C+00 1/0 0/0 0/0 .text            countFile__12JKRFileCacheCFPCc */
 u32 JKRFileCache::countFile(const char* path) const {
-    DVDDirectory dir;
-    DVDDirectoryEntry dirEntry;
+    DVDDir dir;
+    DVDDirEntry dirEntry;
 
     u32 count = 0;
     char* name = getDvdPathName(path);
@@ -334,14 +334,14 @@ JKRFileCache::CCacheBlock* JKRFileCache::findCacheBlock(u32 fileID) const {
 
 /* 802D5410-802D551C 2CFD50 010C+00 2/2 0/0 0/0 .text            findFile__12JKRFileCacheCFPcPCc */
 bool JKRFileCache::findFile(char* path, const char* fileName) const {
-    DVDDirectory dir;
-    DVDDirectoryEntry dirEntry;
+    DVDDir dir;
+    DVDDirEntry dirEntry;
 
     bool result = false;
     u32 pathLength = strlen(path);
     if (DVDOpenDir(path, &dir)) {
         while (DVDReadDir(&dir, &dirEntry)) {
-            if (dirEntry.is_directory) {
+            if (dirEntry.isDir) {
                 char* endOfPath = path + pathLength;
                 *endOfPath = '/';
                 strcpy(path + pathLength + 1, dirEntry.name);

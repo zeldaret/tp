@@ -1,9 +1,9 @@
 #ifndef JUTVIDEO_H
 #define JUTVIDEO_H
 
-#include "dolphin/gx/GXStruct.h"
-#include "dolphin/os/OSMessage.h"
-#include "dolphin/os/OSTime.h"
+#include <dolphin/gx.h>
+#include <dolphin/os.h>
+#include <dolphin/os.h>
 
 typedef u8 (*Pattern)[2];
 
@@ -30,14 +30,14 @@ public:
     /* 802E5144 */ static void postRetraceProc(u32);
     /* 802E50BC */ static void drawDoneCallback();
 
-    u16 getFbWidth() const { return mRenderObj->fb_width; }
-    u16 getEfbHeight() const { return mRenderObj->efb_height; }
+    u16 getFbWidth() const { return mRenderObj->fbWidth; }
+    u16 getEfbHeight() const { return mRenderObj->efbHeight; }
     void getBounds(u16& width, u16& height) const {
         width = (u16)getFbWidth();
         height = (u16)getEfbHeight();
     }
-    u16 getXfbHeight() const { return mRenderObj->xfb_height; }
-    u32 isAntiAliasing() const { return mRenderObj->antialiasing; }
+    u16 getXfbHeight() const { return mRenderObj->xfbHeight; }
+    u32 isAntiAliasing() const { return mRenderObj->aa; }
     Pattern getSamplePattern() const { return mRenderObj->sample_pattern; }
     u8* getVFilter() const { return mRenderObj->vfilter; }
     OSMessageQueue* getMessageQueue() { return &mMessageQueue; }

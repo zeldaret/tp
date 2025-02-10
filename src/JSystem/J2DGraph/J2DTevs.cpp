@@ -69,7 +69,7 @@ void J2DIndTevStage::load(u8 tevStage) {
 
 /* 802EA098-802EA0CC 2E49D8 0034+00 0/0 1/1 0/0 .text            load__12J2DIndTexMtxFUc */
 void J2DIndTexMtx::load(u8 indTexMtx) {
-    GXSetIndTexMtx((GXIndTexMtxID)(GX_ITM_0 + indTexMtx), (f32*)mIndTexMtxInfo.mMtx,
+    GXSetIndTexMtx((GXIndTexMtxID)(GX_ITM_0 + indTexMtx), mIndTexMtxInfo.mMtx,
                    mIndTexMtxInfo.mScaleExp);
 }
 
@@ -165,7 +165,7 @@ extern const J2DTevSwapModeTableInfo j2dDefaultTevSwapModeTable = {
     GX_CH_RED, GX_CH_GREEN, GX_CH_BLUE, GX_CH_ALPHA};
 
 /* 804561A0-804561A4 0047A0 0004+00 0/0 3/3 0/0 .sdata2          j2dDefaultBlendInfo */
-extern const J2DBlendInfo j2dDefaultBlendInfo = {GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA,
+extern const J2DBlendInfo j2dDefaultBlendInfo = {GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA,
                                                  GX_LO_NOOP};
 
 /* 804561A4-804561A8 0047A4 0004+00 0/0 1/1 0/0 .sdata2          None */

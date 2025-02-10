@@ -123,8 +123,8 @@ void mDoPrintf_vprintf(char const* fmt, va_list args) {
     if (currentThread == NULL) {
         mDoPrintf_vprintf_Interrupt(fmt, args);
     } else {
-        u8* stackPtr = OSGetStackPointer();
-        if (stackPtr < (u8*)currentThread->stack_end + 0xA00 || stackPtr > currentThread->stack_base) {
+        u8* stackPtr = (u8*)OSGetStackPointer();
+        if (stackPtr < (u8*)currentThread->stackEnd + 0xA00 || stackPtr > currentThread->stackBase) {
             mDoPrintf_vprintf_Interrupt(fmt, args);
         } else {
             mDoPrintf_vprintf_Thread(fmt, args);
@@ -221,7 +221,7 @@ void OSReport_System(const char* fmt, ...) {
 }
 
 /* 80006E7C-80006FB4 0017BC 0138+00 0/0 9/9 0/0 .text            OSPanic */
-void OSPanic(const char* file, s32 line, const char* fmt, ...) {
+void OSPanic(const char* file, int line, const char* fmt, ...) {
     va_list args;
     u32 i;
     u32* p;

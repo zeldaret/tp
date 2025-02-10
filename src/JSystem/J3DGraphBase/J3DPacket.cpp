@@ -3,9 +3,10 @@
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "dolphin/os/OSCache.h"
-#include "dolphin/os/OSInterrupt.h"
+#include <dolphin/os.h>
+#include <dolphin/os.h>
 #include "string.h"
+#include "global.h"
 
 J3DError J3DDisplayListObj::newDisplayList(u32 capacity) {
     mCapacity = ALIGN_NEXT(capacity, 0x20);

@@ -4,7 +4,9 @@
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "JSystem/JUtility/JUTVideo.h"
+#include <dolphin/vi.h>
 #include <stdio.h>
+#include "global.h"
 
 /* 80451570-80451574 000A70 0004+00 4/4 7/7 0/0 .sbss            sManager__17JUTConsoleManager */
 JUTConsoleManager* JUTConsoleManager::sManager;

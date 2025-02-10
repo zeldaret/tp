@@ -92,8 +92,8 @@ void mDoGph_gInf_c::create() {
     JFWDisplay::createManager(NULL, JKRHeap::sCurrentHeap, JUTXfb::UNK_2, true);
     JFWDisplay::getManager()->setDrawDoneMethod(JFWDisplay::UNK_METHOD_1);
 
-    JUTFader* faderPtr = new JUTFader(0, 0, JUTVideo::getManager()->getRenderMode()->fb_width,
-                                      JUTVideo::getManager()->getRenderMode()->efb_height,
+    JUTFader* faderPtr = new JUTFader(0, 0, JUTVideo::getManager()->getRenderMode()->fbWidth,
+                                      JUTVideo::getManager()->getRenderMode()->efbHeight,
                                       JUtility::TColor(0, 0, 0, 0));
     setFader(faderPtr);
     JFWDisplay::getManager()->setFader(faderPtr);
@@ -198,7 +198,7 @@ static void darwFilter(GXColor matColor) {
     GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_ENABLE, GX_TEVPREV);
     GXSetZCompLoc(GX_ENABLE);
     GXSetZMode(GX_DISABLE, GX_ALWAYS, GX_DISABLE);
-    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_OR);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_OR);
     GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
     GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, g_clearColor);
     GXSetFogRangeAdj(GX_DISABLE, 0, NULL);
@@ -296,7 +296,7 @@ int mDoGph_AfterOfDraw() {
 
     GXSetZCompLoc(GX_ENABLE);
     GXSetZMode(GX_DISABLE, GX_ALWAYS, GX_DISABLE);
-    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_CLEAR);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
     GXSetAlphaCompare(GX_GREATER, 0, GX_AOP_OR, GX_GREATER, 0);
     GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, g_clearColor);
     GXSetFogRangeAdj(GX_DISABLE, 0, NULL);
@@ -473,10 +473,10 @@ static void drawDepth2(view_class* param_0, view_port_class* param_1, int param_
         GXSetZCompLoc(GX_TRUE);
         GXSetZMode(GX_FALSE, GX_ALWAYS, GX_FALSE);
         if (g_env_light.mDemoAttentionPoint >= 0.0f) {
-            GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_CLEAR);
+            GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
             GXSetAlphaCompare(GX_GREATER, 0, GX_AOP_OR, GX_GREATER, 0);
         } else {
-            GXSetBlendMode(GX_BM_BLEND, GX_BL_INV_SRC_ALPHA, GX_BL_SRC_ALPHA, GX_LO_CLEAR);
+            GXSetBlendMode(GX_BM_BLEND, GX_BL_INVSRCALPHA, GX_BL_SRCALPHA, GX_LO_CLEAR);
             GXSetAlphaCompare(GX_LESS, 0xff, GX_AOP_OR, GX_LESS, 0xff);
         }
 
@@ -546,7 +546,7 @@ static void trimming(view_class* param_0, view_port_class* param_1) {
         GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
         GXSetZCompLoc(1);
         GXSetZMode(GX_FALSE, GX_ALWAYS, GX_FALSE);
-        GXSetBlendMode(GX_BM_NONE, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_CLEAR);
+        GXSetBlendMode(GX_BM_NONE, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
         GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
         GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, g_clearColor);
         GXSetCullMode(GX_CULL_NONE);
@@ -656,7 +656,7 @@ void mDoGph_gInf_c::bloom_c::draw() {
                             GX_TEVPREV);
             GXSetTevSwapMode(GX_TEVSTAGE0, GX_TEV_SWAP1, GX_TEV_SWAP1);
             GXSetTevColor(GX_TEVREG2, mMonoColor);
-            GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_OR);
+            GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_OR);
             mDoGph_drawFilterQuad(4, 4);
         }
         if (enabled) {
@@ -711,7 +711,7 @@ void mDoGph_gInf_c::bloom_c::draw() {
             u32 iVar11 = 0x1e;
             s16 sVar10 = 0;
             GXSetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 0x3c);
-            for (int texCoord = (int)GX_TEXCOORD1; texCoord < (int)GX_MAXCOORD;
+            for (int texCoord = (int)GX_TEXCOORD1; texCoord < (int)GX_MAX_TEXCOORD;
                  texCoord++, iVar11 += 3, sVar10 += 0x2492)
             {
                 GXSetTexCoordGen((GXTexCoordID)texCoord, GX_TG_MTX2x4, GX_TG_TEX0, iVar11);
@@ -751,7 +751,7 @@ void mDoGph_gInf_c::bloom_c::draw() {
             GXInitTexObjLOD(&auStack_c0, GX_LINEAR, GX_LINEAR, 0.0f, 0.0f, 0.0f, GX_FALSE, GX_FALSE,
                             GX_ANISO_1);
             GXLoadTexObj(&auStack_e0, GX_TEXMAP0);
-            GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_OR);
+            GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_OR);
             GXPixModeSync();
             GXInvalidateTexAll();
             mDoGph_drawFilterQuad(1, 1);
@@ -787,11 +787,11 @@ void mDoGph_gInf_c::bloom_c::draw() {
                             GX_TEVPREV);
             GXBlendFactor blendFactor;
             if (mMode == 1) {
-                blendFactor = GX_BL_INV_DST_COLOR;
+                blendFactor = GX_BL_INVDSTCLR;
             } else {
                 blendFactor = GX_BL_ONE;
             }
-            GXSetBlendMode(GX_BM_BLEND, blendFactor, GX_BL_SRC_ALPHA, GX_LO_OR);
+            GXSetBlendMode(GX_BM_BLEND, blendFactor, GX_BL_SRCALPHA, GX_LO_OR);
             GXPixModeSync();
             GXInvalidateTexAll();
             mDoGph_drawFilterQuad(4, 4);
@@ -852,7 +852,7 @@ static void motionBlure(view_class* param_0) {
         GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
         GXSetZCompLoc(1);
         GXSetZMode(GX_FALSE, GX_ALWAYS, GX_FALSE);
-        GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_CLEAR);
+        GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
         GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
         GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, g_clearColor);
         GXSetCullMode(GX_CULL_NONE);

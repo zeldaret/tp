@@ -2,7 +2,7 @@
 #define Z2STATUSMGR_H
 
 #include "JSystem/JAudio2/JASGadget.h"
-#include "dolphin/mtx/vec.h"
+#include "dolphin/mtx.h"
 
 struct Z2StatusMgr : public JASGlobalInstance<Z2StatusMgr> {
     Z2StatusMgr();

@@ -3,7 +3,7 @@
 
 #include "string.h"
 #include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/os/OSTime.h"
+#include <dolphin/os.h>
 #include "global.h"
 #include "f_pc/f_pc_name.h"
 

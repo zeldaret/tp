@@ -5,6 +5,7 @@
 #include "d/d_menu_save.h"
 #include "f_op/f_op_msg.h"
 #include "f_op/f_op_msg_mng.h"
+#include "f_pc/f_pc_manager.h"
 #include "m_Do/m_Do_hostIO.h"
 
 class dDlst_Gameover_CAPTURE_c : public dDlst_base_c {
@@ -84,7 +85,7 @@ s32 d_GameOver_Create(u8 param_0);
 bool d_GameOver_Delete(fpc_ProcID& i_id);
 
 inline s32 d_GameOver_CheckDelete(fpc_ProcID& id) {
-    if (id != UINT32_MAX) {
+    if (id != fpcM_ERROR_PROCESS_ID_e) {
         dGameover_c* gameover = (dGameover_c*)fopMsgM_SearchByID(id);
 
         if (gameover != NULL) {
@@ -98,7 +99,7 @@ inline s32 d_GameOver_CheckDelete(fpc_ProcID& id) {
 }
 
 inline s32 d_GameOver_animeStart(fpc_ProcID& id) {
-    if (id != UINT32_MAX) {
+    if (id != fpcM_ERROR_PROCESS_ID_e) {
         dGameover_c* gameover = (dGameover_c*)fopMsgM_SearchByID(id);
 
         if (gameover != NULL) {

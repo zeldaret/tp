@@ -2,7 +2,9 @@
 #include "TRK_MINNOW_DOLPHIN/MetroTRK/Portable/main_TRK.h"
 #include "TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue.h"
 #include "TRK_MINNOW_DOLPHIN/ppc/Generic/targimpl.h"
-#include "dolphin/ar.h"
+#include <dolphin/ar.h>
+#include "global.h"
+#include "__ar.h"
 
 #define EXCEPTIONMASK_ADDR 0x80000044
 

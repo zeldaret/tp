@@ -5,7 +5,7 @@
 
 #include "m_Do/m_Do_DVDError.h"
 #include "JSystem/JKernel/JKRAssertHeap.h"
-#include "dolphin/os/OSInterrupt.h"
+#include <dolphin/os.h>
 #include "m_Do/m_Do_dvd_thread.h"
 #include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_Reset.h"
@@ -29,7 +29,7 @@ void mDoDvdErr_ThdInit() {
         OSThread* curThread = OSGetCurrentThread();
         s32 priority = OSGetThreadPriority(curThread);
 
-        OSCreateThread(&DvdErr_thread, mDoDvdErr_Watch, NULL, DvdErr_stack + sizeof(DvdErr_stack),
+        OSCreateThread(&DvdErr_thread, (void*(*)(void*))mDoDvdErr_Watch, NULL, DvdErr_stack + sizeof(DvdErr_stack),
                        sizeof(DvdErr_stack), priority - 3, 1);
         OSResumeThread(&DvdErr_thread);
         OSCreateAlarm(&Alarm);

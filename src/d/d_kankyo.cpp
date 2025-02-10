@@ -1,5 +1,6 @@
 #include "d/d_kankyo.h"
 #include <dolphin.h>
+#include <dolphin/gf/GFPixel.h>
 #include "SSystem/SComponent/c_counter.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_kytag08.h"

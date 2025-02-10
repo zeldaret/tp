@@ -319,7 +319,7 @@ void J2DScreen::drawSelf(f32 param_0, f32 param_1, Mtx* param_2) {
         JUtility::TColor sp8(alpha | ((u32)color & 0xFFFFFF00));
         color = sp8;
 
-        GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_SET);
+        GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_SET);
         GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
         GXBegin(GX_QUADS, GX_VTXFMT0, 4);
 

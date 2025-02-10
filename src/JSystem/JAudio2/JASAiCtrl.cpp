@@ -18,8 +18,8 @@
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "dol2asm.h"
 #include "dolphin/ai.h"
-#include "dolphin/os/OSCache.h"
-#include "dolphin/os/OSTime.h"
+#include <dolphin/os.h>
+#include <dolphin/os.h>
 
 /* 80431C58-80431C68 05E978 000C+04 2/2 0/0 0/0 .bss             sDmaDacBuffer__9JASDriver */
 s16* JASDriver::sDmaDacBuffer[3];

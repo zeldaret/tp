@@ -1,20 +1,20 @@
-#ifndef OSEXEC_H
-#define OSEXEC_H
+#ifndef _DOLPHIN_OSEXEC_H_
+#define _DOLPHIN_OSEXEC_H_
 
-#include "dolphin/types.h"
+#include <dolphin/types.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 typedef struct {
-    /* 0x00 */ BOOL valid;
-    /* 0x04 */ u32 restartCode;
-    /* 0x08 */ u32 bootDol;
-    /* 0x0C */ void* regionStart;
-    /* 0x10 */ void* regionEnd;
-    /* 0x18 */ BOOL argsUseDefault;
-    /* 0x14 */ void* argsAddr;  // valid only when argsUseDefault = FALSE
+    BOOL valid;
+    u32 restartCode;
+    u32 bootDol;
+    void* regionStart;
+    void* regionEnd;
+    int argsUseDefault;
+    void* argsAddr;
 } OSExecParams;
 
 typedef int (*appGetNextCallback)(void*, u32*, u32*);
@@ -22,12 +22,14 @@ typedef void (*appInitCallback)(void (*)(char*));
 typedef void* (*appGetEntryCallback)();
 typedef void (*AppLoaderCallback)(appInitCallback*, appGetNextCallback*, appGetEntryCallback*);
 
-void __OSGetExecParams(OSExecParams* param_0);
-void __OSBootDolSimple(u32 doloffset, u32 restartCode, void* regionStart, void* regionEnd, BOOL argsUseDefault, s32 argc, char** argv);
-void __OSBootDol(u32 doloffset, u32 restartCode, const char** argv);
+OSExecParams* __OSExecParams AT_ADDRESS(0x800030F0);
+s32 __OSAppLoaderOffset AT_ADDRESS(0x800030F4);
+
+void OSExecv(const char* dolfile, const char** argv);
+void OSExecl(const char* dolfile, const char* arg0, ...);
 
 #ifdef __cplusplus
-};
+}
 #endif
 
-#endif /* OSEXEC_H */
+#endif

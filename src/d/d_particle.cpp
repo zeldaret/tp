@@ -284,7 +284,7 @@ static void drawSecond_light8(JPABaseEmitter* param_0) {
     GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_AND, GX_ALWAYS, 0);
     GXSetZMode(true, GX_LEQUAL, false);
     GXSetZCompLoc(0);
-    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_SET);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_SET);
     GXSetNumChans(1);
     GXColor local_14;
     local_14.r = g_env_light.bg_amb_col[0].r;

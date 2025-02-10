@@ -6,7 +6,7 @@
 #include "JSystem/J3DGraphBase/J3DSys.h"
 
 #include "dol2asm.h"
-#include "dolphin/gx/GXPixel.h"
+#include <dolphin/gx.h>
 #include "dolphin/os.h"
 #include "dolphin/types.h"
 #include "global.h"
@@ -84,12 +84,12 @@ J3DSys::J3DSys() {
 
 /* 8030FEC0-8030FEE4 30A800 0024+00 0/0 1/1 0/0 .text            loadPosMtxIndx__6J3DSysCFiUs */
 void J3DSys::loadPosMtxIndx(int addr, u16 indx) const {
-    J3DFifoLoadIndx(GX_CMD_LOAD_INDX_A, indx, 0xB000 | ((u16)(addr * 0x0C)));
+    J3DFifoLoadIndx(GX_LOAD_INDX_A, indx, 0xB000 | ((u16)(addr * 0x0C)));
 }
 
 /* 8030FEE4-8030FF0C 30A824 0028+00 0/0 1/1 0/0 .text            loadNrmMtxIndx__6J3DSysCFiUs */
 void J3DSys::loadNrmMtxIndx(int addr, u16 indx) const {
-    J3DFifoLoadIndx(GX_CMD_LOAD_INDX_B, indx, 0x8000 | ((u16)((addr * 0x09) + 0x400)));
+    J3DFifoLoadIndx(GX_LOAD_INDX_B, indx, 0x8000 | ((u16)((addr * 0x09) + 0x400)));
 }
 
 /* 8030FF0C-803100BC 30A84C 01B0+00 1/1 0/0 0/0 .text setTexCacheRegion__6J3DSysF15_GXTexCacheSize
@@ -149,7 +149,7 @@ void J3DSys::drawInit() {
     GXSetClipMode(GX_CLIP_ENABLE);
     GXSetColorUpdate(GX_TRUE);
     GXSetDither(GX_TRUE);
-    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_NOOP);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_NOOP);
     GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_AND, GX_ALWAYS, 0);
     GXSetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
     GXSetZCompLoc(GX_TRUE);
@@ -196,7 +196,7 @@ void J3DSys::drawInit() {
 
     u8 i;
     for (i = 0; i < 3; i++)
-        GXSetIndTexMtx((GXIndTexMtxID)(GX_ITM_0 + i), (f32*)indTexMtx, 1);
+        GXSetIndTexMtx((GXIndTexMtxID)(GX_ITM_0 + i), indTexMtx, 1);
 
     GXSetChanMatColor(GX_COLOR0A0, j3dDefaultColInfo);
     GXSetChanMatColor(GX_COLOR1A1, j3dDefaultColInfo);
@@ -378,14 +378,14 @@ void J3DSys::reinitIndStages() {
     GXSetIndTexCoordScale(GX_INDTEXSTAGE1, GX_ITS_1, GX_ITS_1);
     GXSetIndTexCoordScale(GX_INDTEXSTAGE2, GX_ITS_1, GX_ITS_1);
     GXSetIndTexCoordScale(GX_INDTEXSTAGE3, GX_ITS_1, GX_ITS_1);
-    GXSetIndTexMtx(GX_ITM_0, (f32*)IndMtx, 1);
-    GXSetIndTexMtx(GX_ITM_1, (f32*)IndMtx, 1);
-    GXSetIndTexMtx(GX_ITM_2, (f32*)IndMtx, 1);
+    GXSetIndTexMtx(GX_ITM_0, IndMtx, 1);
+    GXSetIndTexMtx(GX_ITM_1, IndMtx, 1);
+    GXSetIndTexMtx(GX_ITM_2, IndMtx, 1);
 }
 
 /* 80310E3C-80310ED0 30B77C 0094+00 1/1 0/0 0/0 .text            reinitPixelProc__6J3DSysFv */
 void J3DSys::reinitPixelProc() {
-    GXSetBlendMode(GX_BM_NONE, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_CLEAR);
+    GXSetBlendMode(GX_BM_NONE, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
     GXSetColorUpdate(GX_TRUE);
     GXSetAlphaUpdate(GX_FALSE);
     GXSetDither(GX_TRUE);

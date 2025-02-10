@@ -73,4 +73,16 @@ public:
 
 extern mDoHIO_root_c mDoHIO_root;
 
+void mDoHIO_updateChild(s8 i_no);
+void mDoHIO_deleteChild(s8 i_no);
+s8 mDoHIO_createChild(const char*, JORReflexible*);
+
+#ifdef DEBUG
+#define mDoHIO_CREATE_CHILD(i_name, i_node) mDoHIO_createChild(i_name, i_node)
+#define mDoHIO_DELETE_CHILD(i_no)           mDoHIO_deleteChild(i_no)
+#else
+#define mDoHIO_CREATE_CHILD(i_name, i_node) (-1)
+#define mDoHIO_DELETE_CHILD(i_no)           (void)0
+#endif
+
 #endif /* M_DO_M_DO_HOSTIO_H */

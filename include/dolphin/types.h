@@ -1,51 +1,56 @@
-#ifndef TYPES_H_
-#define TYPES_H_
+#ifndef _DOLPHIN_TYPES_H_
+#define _DOLPHIN_TYPES_H_
 
-typedef signed char s8;
-typedef signed short s16;
-typedef signed long s32;
-typedef signed long long s64;
-typedef unsigned char u8;
-typedef unsigned short u16;
-typedef unsigned long u32;
-typedef unsigned long long u64;
+typedef signed   char          s8;
+typedef unsigned char          u8;
+typedef signed   short int     s16;
+typedef unsigned short int     u16;
+typedef signed   long          s32;
+typedef unsigned long          u32;
+typedef signed   long long int s64;
+typedef unsigned long long int u64;
 
-typedef volatile u8 vu8;
+typedef volatile u8  vu8;
 typedef volatile u16 vu16;
 typedef volatile u32 vu32;
 typedef volatile u64 vu64;
-typedef volatile s8 vs8;
+typedef volatile s8  vs8;
 typedef volatile s16 vs16;
 typedef volatile s32 vs32;
 typedef volatile s64 vs64;
 
-typedef float f32;
+typedef float  f32;
 typedef double f64;
+
 typedef volatile f32 vf32;
 typedef volatile f64 vf64;
 
+typedef char *Ptr;
+
 typedef int BOOL;
 
-#define TRUE 1
 #define FALSE 0
+#define TRUE 1
 
-#define READU32_BE(ptr, offset) \
-    (((u32)ptr[offset] << 24) | ((u32)ptr[offset + 1] << 16) | ((u32)ptr[offset + 2] << 8) | (u32)ptr[offset + 3]);
+#if defined(__MWERKS__)
+#define AT_ADDRESS(addr) : (addr)
+#elif defined(__GNUC__)
+//#define AT_ADDRESS(addr) __attribute__((address((addr))))
+#define AT_ADDRESS(addr)  // was removed in GCC. define in linker script instead.
+#else
+#error unknown compiler
+#endif
 
-#define ALIGN_DECL(ALIGNMENT) __attribute__((aligned(ALIGNMENT)))
+#define ATTRIBUTE_ALIGN(num) __attribute__((aligned(num)))
+
+#ifndef NULL
+#ifdef  __cplusplus
+#define NULL 0
+#else
+#define NULL ((void*)0)
+#endif
+#endif
 
 #include "stddef.h"
-
-#define INT32_MAX (0x7fffffff)
-#define UINT32_MAX (0xffffffff)
-
-#define FLOAT_MIN (1.175494351e-38f)
-#define FLOAT_MAX (3.40282346638528860e+38f)
-
-#ifdef __MWERKS__
-#define AT_ADDRESS(xyz) : (xyz)
-#else
-#define AT_ADDRESS(xyz)
-#endif
 
 #endif

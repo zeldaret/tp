@@ -1,4 +1,4 @@
-#include "dolphin/exi/EXIBios.h"
+#include <dolphin/exi.h>
 #include "dolphin/os.h"
 
 typedef void (*MTRCallbackType)(int);

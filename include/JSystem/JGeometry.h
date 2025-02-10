@@ -1,7 +1,7 @@
 #ifndef JGEOMETRY_H
 #define JGEOMETRY_H
 
-#include "dolphin/mtx/vec.h"
+#include "dolphin/mtx.h"
 #include "math.h"
 #include "JSystem/JMath/JMath.h"
 
@@ -175,7 +175,7 @@ struct TVec3<f32> : public Vec {
     }
 
     inline void add(const TVec3<f32>& b) {
-        C_VECAdd((Vec*)&x, (Vec*)&b.x, (Vec*)&x);
+        JMathInlineVEC::C_VECAdd((Vec*)&x, (Vec*)&b.x, (Vec*)&x);
     }
 
     void zero() { x = y = z = 0.0f; }
@@ -236,7 +236,7 @@ struct TVec3<f32> : public Vec {
     // }
 
     f32 squared() const {
-        return C_VECSquareMag((Vec*)&x);
+        return JMathInlineVEC::C_VECSquareMag((Vec*)&x);
     }
 
     void normalize() {
@@ -333,11 +333,11 @@ struct TVec3<f32> : public Vec {
     }
 
     void sub(const TVec3<f32>& b) {
-        C_VECSubtract((Vec*)&x, (Vec*)&b.x, (Vec*)&x);
+        JMathInlineVEC::C_VECSubtract((Vec*)&x, (Vec*)&b.x, (Vec*)&x);
     }
 
     void sub(const TVec3<f32>& a, const TVec3<f32>& b) {
-        C_VECSubtract((Vec*)&a.x, (Vec*)&b.x, (Vec*)&x);
+        JMathInlineVEC::C_VECSubtract((Vec*)&a.x, (Vec*)&b.x, (Vec*)&x);
     }
 
     bool isZero() const {

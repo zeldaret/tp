@@ -7,6 +7,7 @@
 #include "JSystem/J3DGraphBase/J3DMatBlock.h"
 #include "JSystem/J3DGraphBase/J3DSys.h"
 #include "JSystem/J3DGraphBase/J3DTransform.h"
+#include "global.h"
 
 static void J3DGDLoadTexMtxImm(f32 (*)[4], u32, _GXTexMtxType);
 static void J3DGDLoadPostTexMtxImm(f32 (*)[4], u32);
@@ -548,7 +549,7 @@ extern J3DTevSwapModeInfo const j3dDefaultTevSwapMode = {
 extern const J3DTevSwapModeTableInfo j3dDefaultTevSwapModeTable = {0x00, 0x01, 0x02, 0x03};
 
 /* 804563EC-804563F0 0049EC 0004+00 0/0 3/3 0/0 .sdata2          j3dDefaultBlendInfo */
-extern const J3DBlendInfo j3dDefaultBlendInfo = {GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_NOOP};
+extern const J3DBlendInfo j3dDefaultBlendInfo = {GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_NOOP};
 
 /* 804563F0-804563F8 0049F0 0008+00 0/0 3/3 0/0 .sdata2          j3dDefaultColorChanInfo */
 extern const J3DColorChanInfo j3dDefaultColorChanInfo = {

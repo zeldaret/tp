@@ -3,8 +3,8 @@
 
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JSupport/JSUList.h"
-#include "dolphin/os/OSInterrupt.h"
-#include "dolphin/os/OSMutex.h"
+#include <dolphin/os.h>
+#include <dolphin/os.h>
 
 class JASDisposer;
 class JKRHeap;

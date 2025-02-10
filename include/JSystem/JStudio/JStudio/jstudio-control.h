@@ -4,7 +4,8 @@
 #include "JSystem/JStudio/JStudio/fvb.h"
 #include "JSystem/JStudio/JStudio/stb.h"
 #include "JSystem/JStudio/JStudio/ctb.h"
-#include "dolphin/gx.h"
+#include <dolphin/gx.h>
+#include <dolphin/mtx.h>
 
 namespace JStudio {
 struct TObject;

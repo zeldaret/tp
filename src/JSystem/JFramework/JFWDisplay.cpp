@@ -5,6 +5,8 @@
 #include "JSystem/JUtility/JUTDbPrint.h"
 #include "JSystem/JUtility/JUTProcBar.h"
 #include "dolphin/gx.h"
+#include <dolphin/vi.h>
+#include "global.h"
 
 /* 80272040-802720F8 26C980 00B8+00 1/1 0/0 0/0 .text            ctor_subroutine__10JFWDisplayFb */
 void JFWDisplay::ctor_subroutine(bool enableAlpha) {

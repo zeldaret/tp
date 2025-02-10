@@ -398,10 +398,10 @@ void J2DTevBlock1::setGX() {
     }
     GXSetTevSwapMode(GX_TEVSTAGE0, GXTevSwapSel(mTevStage[0].getRasSel()), GXTevSwapSel(mTevStage[0].getTexSel()));
     for (int i = 0; i < 4; i++) {
-        GXSetTevSwapModeTable(GXTevSwapSel(i), GXTevColor(mTevSwapModeTable[i].getR()),
-                              GXTevColor(mTevSwapModeTable[i].getG()),
-                              GXTevColor(mTevSwapModeTable[i].getB()),
-                              GXTevColor(mTevSwapModeTable[i].getA()));
+        GXSetTevSwapModeTable(GXTevSwapSel(i), GXTevColorChan(mTevSwapModeTable[i].getR()),
+        GXTevColorChan(mTevSwapModeTable[i].getG()),
+        GXTevColorChan(mTevSwapModeTable[i].getB()),
+        GXTevColorChan(mTevSwapModeTable[i].getA()));
     }
     mIndTevStage->load(0);
 }
@@ -636,7 +636,7 @@ bool J2DTevBlock2::setTexture(u32 param_0, ResTIMG const* p_timg) {
             const ResTIMG* timg = mTexture[param_0 == 0]->getTexInfo();
             if (timg != NULL && timg->indexTexture) {
                 int tlutname = mTexture[param_0 == 0]->getTlutName();
-                u8 tlut_no = tlutname - (tlutname >= GX_MAX_TLUT ? GX_BIGTLUT0 : GX_TLUT0);
+                u8 tlut_no = tlutname - (tlutname >= GX_BIGTLUT0 ? GX_BIGTLUT0 : GX_TLUT0);
 
                 if (tlut_no == 0) {
                     tlutid = 1;
@@ -845,10 +845,10 @@ void J2DTevBlock2::setGX() {
         GXSetTevSwapMode(GXTevStageID(i), GXTevSwapSel(mTevStage[i].getRasSel()), GXTevSwapSel(mTevStage[i].getTexSel()));
     }
     for (int i = 0; i < 4; i++) {
-        GXSetTevSwapModeTable(GXTevSwapSel(i), GXTevColor(mTevSwapModeTable[i].getR()),
-                              GXTevColor(mTevSwapModeTable[i].getG()),
-                              GXTevColor(mTevSwapModeTable[i].getB()),
-                              GXTevColor(mTevSwapModeTable[i].getA()));
+        GXSetTevSwapModeTable(GXTevSwapSel(i), GXTevColorChan(mTevSwapModeTable[i].getR()),
+                              GXTevColorChan(mTevSwapModeTable[i].getG()),
+                              GXTevColorChan(mTevSwapModeTable[i].getB()),
+                              GXTevColorChan(mTevSwapModeTable[i].getA()));
     }
     for (u8 i = 0; i < mTevStageNum; i++) {
         mIndTevStage[i].load(i);
@@ -977,7 +977,7 @@ bool J2DTevBlock4::insertTexture(u32 param_0, ResTIMG const* p_timg, JUTPalette*
                 continue;
             }
             int tlutName = mTexture[i]->getTlutName();
-            u8 tlut_no = tlutName - (tlutName >= GX_MAX_TLUT ? GX_BIGTLUT0 : GX_TLUT0);
+            u8 tlut_no = tlutName - (tlutName >= GX_BIGTLUT0 ? GX_BIGTLUT0 : GX_TLUT0);
             if (tlut_no < 4) {
                 local_44 |= 1 << tlut_no;
             }
@@ -1095,7 +1095,7 @@ bool J2DTevBlock4::setTexture(u32 param_0, ResTIMG const* p_timg) {
                 const ResTIMG* timg = mTexture[i]->getTexInfo();
                 if (timg != NULL && timg->indexTexture) {
                     int tlutname = mTexture[i]->getTlutName();
-                    u8 tlut_no = tlutname - (tlutname >= GX_MAX_TLUT ? GX_BIGTLUT0 : GX_TLUT0);
+                    u8 tlut_no = tlutname - (tlutname >= GX_BIGTLUT0 ? GX_BIGTLUT0 : GX_TLUT0);
 
                     if (tlut_no < 4) {
                         used_tlut |= 1 << tlut_no;
@@ -1312,10 +1312,10 @@ void J2DTevBlock4::setGX() {
         GXSetTevSwapMode(GXTevStageID(i), GXTevSwapSel(mTevStage[i].getRasSel()), GXTevSwapSel(mTevStage[i].getTexSel()));
     }
     for (int i = 0; i < 4; i++) {
-        GXSetTevSwapModeTable(GXTevSwapSel(i), GXTevColor(mTevSwapModeTable[i].getR()),
-                              GXTevColor(mTevSwapModeTable[i].getG()),
-                              GXTevColor(mTevSwapModeTable[i].getB()),
-                              GXTevColor(mTevSwapModeTable[i].getA()));
+        GXSetTevSwapModeTable(GXTevSwapSel(i), GXTevColorChan(mTevSwapModeTable[i].getR()),
+                              GXTevColorChan(mTevSwapModeTable[i].getG()),
+                              GXTevColorChan(mTevSwapModeTable[i].getB()),
+                              GXTevColorChan(mTevSwapModeTable[i].getA()));
     }
     for (u8 i = 0; i < mTevStageNum; i++) {
         mIndTevStage[i].load(i);
@@ -1413,7 +1413,7 @@ bool J2DTevBlock8::insertTexture(u32 param_0, ResTIMG const* p_timg, JUTPalette*
                 continue;
             }
             int tlutName = mTexture[i]->getTlutName();
-            u8 tlut_no = tlutName - (tlutName >= GX_MAX_TLUT ? GX_BIGTLUT0 : GX_TLUT0);
+            u8 tlut_no = tlutName - (tlutName >= GX_BIGTLUT0 ? GX_BIGTLUT0 : GX_TLUT0);
             if (tlut_no < 8) {
                 local_44 |= 1 << tlut_no;
             }
@@ -1531,7 +1531,7 @@ bool J2DTevBlock8::setTexture(u32 param_0, ResTIMG const* p_timg) {
                 const ResTIMG* timg = mTexture[i]->getTexInfo();
                 if (timg != NULL && timg->indexTexture) {
                     int tlutname = mTexture[i]->getTlutName();
-                    u8 tlut_no = tlutname - (tlutname >= GX_MAX_TLUT ? GX_BIGTLUT0 : GX_TLUT0);
+                    u8 tlut_no = tlutname - (tlutname >= GX_BIGTLUT0 ? GX_BIGTLUT0 : GX_TLUT0);
 
                     if (tlut_no < 8) {
                         used_tlut |= 1 << tlut_no;
@@ -1743,10 +1743,10 @@ void J2DTevBlock8::setGX() {
         GXSetTevSwapMode(GXTevStageID(i), GXTevSwapSel(mTevStage[i].getRasSel()), GXTevSwapSel(mTevStage[i].getTexSel()));
     }
     for (int i = 0; i < 4; i++) {
-        GXSetTevSwapModeTable(GXTevSwapSel(i), GXTevColor(mTevSwapModeTable[i].getR()),
-                              GXTevColor(mTevSwapModeTable[i].getG()),
-                              GXTevColor(mTevSwapModeTable[i].getB()),
-                              GXTevColor(mTevSwapModeTable[i].getA()));
+        GXSetTevSwapModeTable(GXTevSwapSel(i), GXTevColorChan(mTevSwapModeTable[i].getR()),
+                              GXTevColorChan(mTevSwapModeTable[i].getG()),
+                              GXTevColorChan(mTevSwapModeTable[i].getB()),
+                              GXTevColorChan(mTevSwapModeTable[i].getA()));
     }
     for (u8 i = 0; i < mTevStageNum; i++) {
         mIndTevStage[i].load(i);
@@ -1844,7 +1844,7 @@ bool J2DTevBlock16::insertTexture(u32 param_0, ResTIMG const* p_timg, JUTPalette
                 continue;
             }
             int tlutName = mTexture[i]->getTlutName();
-            u8 tlut_no = tlutName - (tlutName >= GX_MAX_TLUT ? GX_BIGTLUT0 : GX_TLUT0);
+            u8 tlut_no = tlutName - (tlutName >= GX_BIGTLUT0 ? GX_BIGTLUT0 : GX_TLUT0);
             if (tlut_no < 8) {
                 local_44 |= 1 << tlut_no;
             }
@@ -1962,7 +1962,7 @@ bool J2DTevBlock16::setTexture(u32 param_0, ResTIMG const* p_timg) {
                 const ResTIMG* timg = mTexture[i]->getTexInfo();
                 if (timg != NULL && timg->indexTexture) {
                     int tlutname = mTexture[i]->getTlutName();
-                    u8 tlut_no = tlutname - (tlutname >= GX_MAX_TLUT ? GX_BIGTLUT0 : GX_TLUT0);
+                    u8 tlut_no = tlutname - (tlutname >= GX_BIGTLUT0 ? GX_BIGTLUT0 : GX_TLUT0);
 
                     if (tlut_no < 8) {
                         used_tlut |= 1 << tlut_no;
@@ -2174,10 +2174,10 @@ void J2DTevBlock16::setGX() {
         GXSetTevSwapMode(GXTevStageID(i), GXTevSwapSel(mTevStage[i].getRasSel()), GXTevSwapSel(mTevStage[i].getTexSel()));
     }
     for (int i = 0; i < 4; i++) {
-        GXSetTevSwapModeTable(GXTevSwapSel(i), GXTevColor(mTevSwapModeTable[i].getR()),
-                              GXTevColor(mTevSwapModeTable[i].getG()),
-                              GXTevColor(mTevSwapModeTable[i].getB()),
-                              GXTevColor(mTevSwapModeTable[i].getA()));
+        GXSetTevSwapModeTable(GXTevSwapSel(i), GXTevColorChan(mTevSwapModeTable[i].getR()),
+                              GXTevColorChan(mTevSwapModeTable[i].getG()),
+                              GXTevColorChan(mTevSwapModeTable[i].getB()),
+                              GXTevColorChan(mTevSwapModeTable[i].getA()));
     }
     for (u8 i = 0; i < mTevStageNum; i++) {
         mIndTevStage[i].load(i);

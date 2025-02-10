@@ -5,8 +5,13 @@
 
 #include "JSystem/JAudio2/osdsp_task.h"
 #include "JSystem/JAudio2/dspproc.h"
-#include "dolphin/dsp/dsp_task.h"
-#include "dolphin/os/OSContext.h"
+#include <dolphin/dsp.h>
+#include <dolphin/os.h>
+
+extern DSPTaskInfo* __DSP_first_task;
+extern DSPTaskInfo* __DSP_curr_task;
+extern "C" void __DSP_exec_task(DSPTaskInfo*, DSPTaskInfo*);
+extern "C" void __DSP_remove_task(DSPTaskInfo* task);
 
 static void Dsp_Update_Request();
 
@@ -20,7 +25,7 @@ static u8 struct_80451309;
 DSPTaskInfo* DSP_prior_task;
 
 /* 8029EB20-8029EE24 299460 0304+00 0/0 1/1 0/0 .text            __DSPHandler */
-void __DSPHandler(__OSInterrupt interrupt, OSContext* context) {
+extern "C" void __DSPHandler(__OSInterrupt interrupt, OSContext* context) {
     OSContext funcContext;
     __DSPRegs[5] = ((u16)(__DSPRegs[5]) & ~0x28) | 0x80;
     OSClearContext(&funcContext);

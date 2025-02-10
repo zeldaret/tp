@@ -1,131 +1,151 @@
-#include "dolphin/os/OSReset.h"
-#include "dolphin/os.h"
+#include <dolphin.h>
+#include <dolphin/os.h>
 
-vu16 __VIRegs[59] AT_ADDRESS(0xCC002000);
-OSThreadQueue __OSActiveThreadQueue : (OS_BASE_CACHED | 0x00DC);
+#include "__os.h"
 
-extern OSExecParams __OSRebootParams;
+// These macros are copied from OSThread.c. Or ARE they the same
+// macros? They dont seem to be in the SDK headers.
+#define ENQUEUE_INFO(info, queue)                            \
+    do {                                                     \
+        OSResetFunctionInfo* __prev = (queue)->tail; \
+        if (__prev == 0) {                                   \
+            (queue)->head = (info);                          \
+        } else {                                             \
+            __prev->next = (info);                           \
+        }                                                    \
+        (info)->prev = __prev;                               \
+        (info)->next = 0;                                    \
+        (queue)->tail = (info);                              \
+    } while(0);
 
-/* 80451690-80451698 000B90 0008+00 2/2 0/0 0/0 .sbss            ResetFunctionQueue */
-static OSResetQueue ResetFunctionQueue;
+#define DEQUEUE_INFO(info, queue)                           \
+    do {                                                    \
+        OSResetFunctionInfo* __next = (info)->next; \
+        OSResetFunctionInfo* __prev = (info)->prev; \
+        if (__next == 0) {                                  \
+            (queue)->tail = __prev;                         \
+        } else {                                            \
+            __next->prev = __prev;                          \
+        }                                                   \
+        if (__prev == 0) {                                  \
+            (queue)->head = __next;                         \
+        } else {                                            \
+            __prev->next = __next;                          \
+        }                                                   \
+    } while(0);
 
-/* 8033F660-8033F6E4 339FA0 0084+00 0/0 5/5 0/0 .text            OSRegisterResetFunction */
-void OSRegisterResetFunction(OSResetFunctionInfo* func) {
-    OSResetFunctionInfo* tmp;
-    OSResetFunctionInfo* iter;
+#define ENQUEUE_INFO_PRIO(info, queue)               \
+    do {                                             \
+        OSResetFunctionInfo* __prev;         \
+        OSResetFunctionInfo* __next;         \
+        for(__next = (queue)->head; __next           \
+          && (__next->priority <= (info)->priority); \
+                __next = __next->next) ;             \
+                                                     \
+        if (__next == 0) {                           \
+            ENQUEUE_INFO(info, queue);               \
+        } else {                                     \
+            (info)->next = __next;                   \
+            __prev = __next->prev;                   \
+            __next->prev = (info);                   \
+            (info)->prev = __prev;                   \
+            if (__prev == 0) {                       \
+                (queue)->head = (info);              \
+            } else {                                 \
+                __prev->next = (info);               \
+            }                                        \
+        }                                            \
+    } while(0);
 
-    for (iter = ResetFunctionQueue.first; iter && iter->priority <= func->priority;
-         iter = iter->next)
-        ;
+static OSResetFunctionQueue ResetFunctionQueue;
+static u32 bootThisDol;
 
-    if (iter == NULL) {
-        tmp = ResetFunctionQueue.last;
-        if (tmp == NULL) {
-            ResetFunctionQueue.first = func;
-        } else {
-            tmp->next = func;
-        }
-        func->prev = tmp;
-        func->next = NULL;
-        ResetFunctionQueue.last = func;
-        return;
-    }
+// prototypes
+static int CallResetFunctions(int final);
+static void Reset(u32 resetCode);
 
-    func->next = iter;
-    tmp = iter->prev;
-    iter->prev = func;
-    func->prev = tmp;
-    if (tmp == NULL) {
-        ResetFunctionQueue.first = func;
-        return;
-    }
-    tmp->next = func;
+void OSRegisterResetFunction(OSResetFunctionInfo* info) {
+    ASSERTLINE(208, info->func);
+
+    ENQUEUE_INFO_PRIO(info, &ResetFunctionQueue);
 }
 
-/* 8033F6E4-8033F78C 33A024 00A8+00 1/1 0/0 0/0 .text            __OSCallResetFunctions */
-BOOL __OSCallResetFunctions(u32 arg0) {
-    OSResetFunctionInfo* iter;
-    s32 retCode = 0;
-    u32 priority = 0;
-    s32 temp;
+void OSUnregisterResetFunction(OSResetFunctionInfo* info) {
+    DEQUEUE_INFO(info, &ResetFunctionQueue);
+}
 
-    for (iter = ResetFunctionQueue.first; iter != NULL;) {
-        if (retCode != 0 && priority != iter->priority)
+int __OSCallResetFunctions(BOOL final) {
+    OSResetFunctionInfo* info;
+    int err;
+    u32 priority;
+
+    priority = 0;
+    err = 0;
+
+    for (info = ResetFunctionQueue.head; info != 0;) {
+        if (err != 0 && priority != info->priority)
             break;
-        temp = !iter->func(arg0);
-        priority = iter->priority;
-        iter = iter->next;
-        retCode |= temp;
+        err |= !info->func(final);
+        priority = info->priority;
+        info = info->next;
     }
-    retCode |= !__OSSyncSram();
-    if (retCode) {
+
+    err |= !__OSSyncSram();
+    if (err) {
         return 0;
     }
     return 1;
 }
 
-/* 8033F78C-8033F7FC 33A0CC 0070+00 2/2 0/0 0/0 .text            Reset */
-static asm void Reset(register s32 param_0) {
-    // clang-format off
+#ifdef __GEKKO__
+static asm void Reset(u32 resetCode) {
     nofralloc
-
-    b lbl_8033F7AC
-
-lbl_8033F790:
-    mfspr r8, 0x3f0
-    ori r8, r8, 8
-    mtspr 0x3f0, r8
-    isync 
+    b L_000001BC
+L_000001A0:
+    mfspr r8, HID0
+    ori r8, r8, 0x8
+    mtspr HID0, r8
+    isync
     sync
     nop
-    b lbl_8033F7B0
-
-lbl_8033F7AC:
-    b lbl_8033F7CC
-
-lbl_8033F7B0:
-    mftb r5, 0x10c
-
-lbl_8033F7B4:
-    mftb r6, 0x10c
+    b L_000001C0
+L_000001BC:
+    b L_000001DC
+L_000001C0:
+    mftb r5, 268
+L_000001C4:
+    mftb r6, 268
     subf r7, r5, r6
     cmplwi r7, 0x1124
-    blt lbl_8033F7B4
-    nop 
-    b lbl_8033F7D0
-
-lbl_8033F7CC:
-    b lbl_8033F7EC
-
-lbl_8033F7D0:
-    lis r8, 0xCC00
+    blt L_000001C4
+    nop
+    b L_000001E0
+L_000001DC:
+    b L_000001FC
+L_000001E0:
+    lis r8, 0xcc00
     ori r8, r8, 0x3000
-    li r4, 3
+    li r4, 0x3
     stw r4, 0x24(r8)
-    stw param_0, 0x24(r8)
-    nop 
-    b lbl_8033F7F0
-
-lbl_8033F7EC:
-    b lbl_8033F7F8
-
-lbl_8033F7F0:
-    nop 
-    b lbl_8033F7F0
-
-lbl_8033F7F8:
-    b lbl_8033F790
-    // clang-format on
+    stw r3, 0x24(r8)
+    nop
+    b L_00000200
+L_000001FC:
+    b L_00000208
+L_00000200:
+    nop
+    b L_00000200
+L_00000208:
+    b L_000001A0
 }
+#endif
 
-/* 8033F7FC-8033F864 33A13C 0068+00 1/1 0/0 0/0 .text            KillThreads */
-#pragma dont_inline on
 static void KillThreads(void) {
     OSThread* thread;
     OSThread* next;
 
     for (thread = __OSActiveThreadQueue.head; thread; thread = next) {
-        next = thread->active_threads_link.next;
+        next = thread->linkActive.next;
         switch (thread->state) {
         case 1:
         case 4:
@@ -136,33 +156,49 @@ static void KillThreads(void) {
         }
     }
 }
-#pragma dont_inline reset
 
-/* 8033F864-8033F8AC 33A1A4 0048+00 0/0 3/3 0/0 .text            __OSDoHotReset */
-void __OSDoHotReset(s32 arg0) {
+void __OSDoHotReset(u32 resetCode) {
     OSDisableInterrupts();
     __VIRegs[1] = 0;
     ICFlashInvalidate();
-    Reset(arg0 * 8);
+    Reset(resetCode * 8);
 }
 
-/* ############################################################################################## */
-/* 80451698-804516A0 000B98 0004+04 1/1 0/0 0/0 .sbss            bootThisDol */
-static u32 bootThisDol;
-
-/* 8033F8AC-8033FAAC 33A1EC 0200+00 0/0 5/5 0/0 .text            OSResetSystem */
-void OSResetSystem(int reset, u32 resetCode, BOOL forceMenu) {
-    BOOL rc;
+void __OSShutdownDevices(BOOL doRecal) {
+    int rc;
     BOOL disableRecalibration;
-    u32 unk;
+
+    __OSStopAudioSystem();
+
+    if (!doRecal) {
+        disableRecalibration = __PADDisableRecalibration(TRUE);
+    }
+
+    do {} while (!__OSCallResetFunctions(FALSE));
+    do {} while (!__OSSyncSram());
+
+    OSDisableInterrupts();
+
+    rc = __OSCallResetFunctions(TRUE);
+    ASSERTLINE(408, rc);
+
+    LCDisable();
+    if (!doRecal) {
+        __PADDisableRecalibration(disableRecalibration);
+    }
+
+    KillThreads();
+}
+
+void OSResetSystem(BOOL reset, u32 resetCode, BOOL forceMenu) {
+    OSSram* sram;
+
     OSDisableScheduler();
 
-    if (reset == OS_RESET_HOTRESET && forceMenu) {
-        OSSram* sram;
-
+    if (reset == TRUE && forceMenu) {
         sram = __OSLockSram();
         sram->flags |= 0x40;
-        __OSUnlockSram(TRUE);
+        __OSUnlockSram(1);
 
         resetCode = 0;
     }
@@ -170,39 +206,21 @@ void OSResetSystem(int reset, u32 resetCode, BOOL forceMenu) {
     if (reset == OS_RESET_SHUTDOWN ||
         (reset == OS_RESET_RESTART && (bootThisDol || resetCode + 0x3fff0000 == 0)))
     {
-        __OSStopAudioSystem();
-        disableRecalibration = __PADDisableRecalibration(TRUE);
-        while (!__OSCallResetFunctions(FALSE))
-            ;
-        while (!__OSSyncSram())
-            ;
-        OSDisableInterrupts();
-        __OSCallResetFunctions(TRUE);
-        LCDisable();
-        __PADDisableRecalibration(disableRecalibration);
-        KillThreads();
+        __OSShutdownDevices(FALSE);
     } else {
-        __OSStopAudioSystem();
-        while (!__OSCallResetFunctions(FALSE))
-            ;
-        while (!__OSSyncSram())
-            ;
-        OSDisableInterrupts();
-        __OSCallResetFunctions(TRUE);
-        LCDisable();
-        KillThreads();
+        __OSShutdownDevices(TRUE);
     }
 
     if (reset == OS_RESET_HOTRESET) {
         __OSDoHotReset(resetCode);
     } else if (reset == OS_RESET_RESTART) {
         if (forceMenu == TRUE) {
-            OSReport(
-                "OSResetSystem(): You can't specify TRUE to forceMenu if you restart. Ignored\n");
+            OSReport("OSResetSystem(): You can't specify TRUE to forceMenu if you restart. Ignored\n");
         }
         OSEnableScheduler();
         __OSReboot(resetCode, bootThisDol);
     }
+
     memset(OSPhysicalToCached(0x40), 0, 0xcc - 0x40);
     memset(OSPhysicalToCached(0xd4), 0, 0xe8 - 0xd4);
     memset(OSPhysicalToCached(0xf4), 0, 0xf8 - 0xf4);
@@ -211,10 +229,20 @@ void OSResetSystem(int reset, u32 resetCode, BOOL forceMenu) {
     memset(OSPhysicalToCached(0x30e2), 0, 1);
 }
 
-/* 8033FAAC-8033FAE4 33A3EC 0038+00 0/0 3/3 0/0 .text            OSGetResetCode */
-u32 OSGetResetCode(void) {
+u32 OSGetResetCode() {
+    u32 resetCode;
     if (__OSRebootParams.valid)
-        return 0x80000000 | __OSRebootParams.restartCode;
+        resetCode = 0x80000000 | __OSRebootParams.restartCode;
+    else
+        resetCode = (__PIRegs[9] & 0xFFFFFFF8) / 8;
 
-    return ((__PIRegs[9] & ~7) >> 3);
+    return resetCode;
+}
+
+u32 OSSetBootDol(u32 dolOffset) {
+    u32 oldDol;
+
+    oldDol = bootThisDol;
+    bootThisDol = dolOffset;
+    return oldDol;
 }

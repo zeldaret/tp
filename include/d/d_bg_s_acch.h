@@ -199,6 +199,9 @@ public:
     /* 0x02C */ u32 m_flags;
     /* 0x030 */ cXyz* pm_pos;
     /* 0x034 */ cXyz* pm_old_pos;
+#ifdef DEBUG
+    /* 0x038 */ cXyz unk_0x38;
+#endif
     /* 0x038 */ cXyz* pm_speed;
     /* 0x03C */ csXyz* pm_angle;
     /* 0x040 */ csXyz* pm_shape_angle;
@@ -224,6 +227,9 @@ public:
     /* 0x0CC */ f32 field_0xcc;
     /* 0x0D0 */ f32 m_wtr_chk_offset;
     /* 0x0D4 */ cBgS_PolyInfo* pm_out_poly_info;
+#ifdef DEBUG
+    /* 0x0E4 */ cXyz unk_0xe4;
+#endif
     /* 0x0D8 */ f32 field_0xd8;
     /* 0x0DC */ dBgS_GndChk m_gnd;
     /* 0x130 */ dBgS_RoofChk m_roof;

@@ -13,7 +13,7 @@ struct J3DTextureSRTInfo;
 
 struct J3DTransformInfo {
     /* 0x00 */ Vec mScale;
-    /* 0x0C */ SVec mRotation;
+    /* 0x0C */ S16Vec mRotation;
     /* 0x14 */ Vec mTranslate;
 
     /* inline J3DTransformInfo& operator=(const J3DTransformInfo& b) {
@@ -162,7 +162,7 @@ inline void J3DPSMulMtxVec(register MtxP mtx, register Vec* vec, register Vec* d
 }
 
 // regalloc issues
-inline void J3DPSMulMtxVec(register MtxP mtx, register SVec* vec, register SVec* dst) {
+inline void J3DPSMulMtxVec(register MtxP mtx, register S16Vec* vec, register S16Vec* dst) {
     register f32 fr12;
     register f32 fr11;
     register f32 fr10;
@@ -252,7 +252,7 @@ inline void J3DPSMulMtxVec(register Mtx3P mtx, register Vec* vec, register Vec* 
 }
 
 // regalloc issues
-inline void J3DPSMulMtxVec(register Mtx3P mtx, register SVec* vec, register SVec* dst) {
+inline void J3DPSMulMtxVec(register Mtx3P mtx, register S16Vec* vec, register S16Vec* dst) {
     register f32* punit;
     register f32 unit;
     register f32 fr6;

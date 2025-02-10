@@ -16,7 +16,7 @@
 #include "Z2AudioLib/Z2Creature.h"
 #include "d/d_com_inf_game.h"
 #include "dol2asm.h"
-#include "dolphin/gx/GXDraw.h"
+#include <dolphin/gx.h>
 #include <dolphin/gf/GFPixel.h>
 #include "global.h"
 #include "m_Do/m_Do_mtx.h"
@@ -858,7 +858,7 @@ void mDoExt_MtxCalcAnmBlendTbl::calc() {
         }
     }
     Mtx mtx;
-    MTXQuat(mtx, (PSQuaternion*)&quat3);
+    MTXQuat(mtx, &quat3);
     mDoExt_setJ3DData(mtx, &info2, jntNo);
 }
 
@@ -2426,7 +2426,7 @@ void drawCube(MtxP mtx, cXyz* pos, const GXColor& color) {
     GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_A0);
     GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_ENABLE, GX_TEVPREV);
     GXSetZMode(GX_ENABLE, GX_LEQUAL, GX_ENABLE);
-    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_CLEAR);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
     GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
     GXSetCullMode(GX_CULL_BACK);
     GXSetClipMode(GX_CLIP_ENABLE);
@@ -2483,7 +2483,7 @@ void mDoExt_cylinderPacket::draw() {
         GXSetZMode(GX_DISABLE, GX_LEQUAL, GX_DISABLE);
     }
 
-    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_CLEAR);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
     GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
     GXSetCullMode(GX_CULL_BACK);
     GXSetClipMode(GX_CLIP_ENABLE);

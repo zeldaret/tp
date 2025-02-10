@@ -23,7 +23,7 @@ JASHeap::JASHeap(JASDisposer* disposer) : mTree(this) {
 void JASHeap::initRootHeap(void* param_0, u32 param_1) {
     JUT_ASSERT(97, ! isAllocated());
     JASMutexLock lock(&mMutex);
-    mBase = (u8*)OSRoundUpPtr(param_0, 0x20);
+    mBase = (u8*)OSRoundUp32B(param_0);
     field_0x40 = NULL;
     mSize = param_1 - (u32(mBase) - u32(param_0));
 }

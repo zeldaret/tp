@@ -171,4 +171,63 @@ inline void gekko_ps_copy16(register void* dst, register const void* src) {
 
 };  // namespace JMath
 
+namespace JMathInlineVEC {
+    inline void C_VECAdd(register const Vec* a, register const Vec* b, register Vec* ab) {
+        register f32 axy;
+        register f32 bxy;
+        register f32 az;
+        register f32 sumz;
+        register f32 bz;
+    #ifdef __MWERKS__
+        asm {
+            psq_l axy, 0(a), 0, 0
+            psq_l bxy, 0(b), 0, 0
+            ps_add bxy, axy, bxy
+            psq_st bxy, 0(ab), 0, 0
+            psq_l az, 8(a), 1, 0
+            psq_l bz, 8(b), 1, 0
+            ps_add sumz, az, bz
+            psq_st sumz, 8(ab), 1, 0
+        }
+    #endif
+    }
+
+    inline void C_VECSubtract(register const Vec* a, register const Vec* b, register Vec* ab) {
+        register f32 axy;
+        register f32 bxy;
+        register f32 az;
+        register f32 subz;
+        register f32 bz;
+    #ifdef __MWERKS__
+        asm {
+            psq_l axy, 0(a), 0, 0
+            psq_l bxy, 0(b), 0, 0
+            ps_sub bxy, axy, bxy
+            psq_st bxy, 0(ab), 0, 0
+            psq_l az, 8(a), 1, 0
+            psq_l bz, 8(b), 1, 0
+            ps_sub subz, az, bz
+            psq_st subz, 8(ab), 1, 0
+        }
+    #endif
+    }
+
+    inline f32 C_VECSquareMag(const Vec* v) {
+        register f32 x_y;
+        register f32 z;
+        register f32 res;
+        register const f32* src = &v->x;
+    #ifdef __MWERKS__
+        asm {
+            psq_l   x_y, 0(src), 0, 0
+            ps_mul  x_y, x_y, x_y
+            lfs     z,   8(src)
+            ps_madd res, z, z, x_y
+            ps_sum0 res, res, x_y, x_y
+        }
+    #endif
+        return res;
+    }
+};
+
 #endif /* JMATH_H */

@@ -18,7 +18,7 @@
 #include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "JSystem/JKernel/JKRThread.h"
-#include "dolphin/os/OSRtc.h"
+#include <dolphin/os.h>
 
 /* 802A4AD0-802A4B28 29F410 0058+00 0/0 1/1 0/0 .text            __ct__18JAU_JASInitializerFv */
 JAU_JASInitializer::JAU_JASInitializer() {

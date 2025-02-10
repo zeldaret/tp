@@ -66,7 +66,6 @@ extern "C" void __construct_array();
 extern "C" void __cvt_fp2unsigned();
 extern "C" void _savegpr_26();
 extern "C" void _restgpr_26();
-extern "C" void sprintf();
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mCurrentMtx__6J3DSys[48];

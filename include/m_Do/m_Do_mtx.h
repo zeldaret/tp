@@ -3,7 +3,7 @@
 
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/mtx.h"
+#include <dolphin/mtx.h>
 
 void mDoMtx_XYZrotS(Mtx, s16, s16, s16);
 void mDoMtx_XYZrotM(Mtx, s16, s16, s16);
@@ -135,7 +135,7 @@ inline void mDoMtx_scale(Mtx m, f32 x, f32 y, f32 z) {
 }
 
 inline void mDoMtx_quat(Mtx m, const Quaternion* q) {
-    MTXQuat(m, (PSQuaternion*)q);
+    MTXQuat(m, q);
 }
 
 inline void cMtx_inverse(const Mtx a, Mtx b) {
@@ -213,7 +213,7 @@ public:
     /* 8000CF44 */ static void ZXYrotM(csXyz const& xyz);
 
     static void quatS(const Quaternion* quat) {
-        MTXQuat(now, (PSQuaternion*)quat);
+        MTXQuat(now, quat);
     }
 
     /* 8000CF7C */ static void quatM(Quaternion const*);

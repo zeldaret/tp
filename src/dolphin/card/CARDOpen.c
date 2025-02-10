@@ -1,124 +1,86 @@
-#include "dolphin/card/CARDOpen.h"
-#include "dolphin/card.h"
-#include "dolphin/card/CARDPriv.h"
-#include "dolphin/dvd.h"
+#include <dolphin/card.h>
 
-/* 80357C74-80357CDC 3525B4 0068+00 1/1 1/1 0/0 .text            __CARDCompareFileName */
+#include "__card.h"
+
 BOOL __CARDCompareFileName(CARDDir* ent, const char* fileName) {
-    char* entName;
+    char* entName = (char*)ent->fileName;
     char c1;
     char c2;
-    int n;
+    int n = CARD_FILENAME_MAX;
 
-    entName = (char*)ent->fileName;
-    n = CARD_FILENAME_MAX;
-    while (0 <= --n) {
-        if ((c1 = *entName++) != (c2 = *fileName++)) {
+    while (--n >= 0) {
+        if ((c1 = *entName++) != (c2 = *fileName++))
             return FALSE;
-        } else if (c2 == '\0') {
+        else if (c2 == '\0')
             return TRUE;
-        }
     }
 
-    if (*fileName == '\0') {
+    if (*fileName == '\0')
         return TRUE;
-    }
-
     return FALSE;
 }
 
-/* 80357CDC-80357D70 35261C 0094+00 2/2 0/0 0/0 .text            __CARDAccess */
 s32 __CARDAccess(CARDControl* card, CARDDir* ent) {
-    const DVDDiskID* diskId = card->diskID;
-    if (ent->gameName[0] == 0xFF) {
-        return CARD_RESULT_NOFILE;
-    }
+    const DVDDiskID* diskID = card->diskID;
 
-    if (diskId == &__CARDDiskNone || (memcmp(ent->gameName, diskId->game_name, 4) == 0 &&
-                                      memcmp(ent->company, diskId->company, 2) == 0))
-    {
+    if (ent->gameName[0] == 0xFF)
+        return CARD_RESULT_NOFILE;
+
+    if (diskID == &__CARDDiskNone
+     || (memcmp(ent->gameName, diskID->gameName, sizeof(ent->gameName)) == 0
+      && memcmp(ent->company, diskID->company, sizeof(ent->company)) == 0))
         return CARD_RESULT_READY;
-    }
 
     return CARD_RESULT_NOPERM;
 }
 
-/* 80357D70-80357EA4 3526B0 0134+00 0/0 2/2 0/0 .text            __CARDIsWritable */
 s32 __CARDIsWritable(CARDControl* card, CARDDir* ent) {
-    s32 retVal;
-    const DVDDiskID* diskId = card->diskID;
-    u8 val;
-    if ((u8)ent->gameName[0] == 0xFFu) {
-        retVal = CARD_RESULT_NOFILE;
-    } else if (diskId == &__CARDDiskNone || (memcmp(ent->gameName, diskId->game_name, 4) == 0 &&
-                                             memcmp(ent->company, diskId->company, 2) == 0))
-    {
-        retVal = CARD_RESULT_READY;
-    } else {
-        retVal = CARD_RESULT_NOPERM;
-    }
+    const DVDDiskID* diskID = card->diskID;
+    s32 result;
+    u8 perm;
 
-    if (retVal == CARD_RESULT_NOPERM) {
-        val = ent->permission & data_80450A72;
-        if (val & 0x20u && (memcmp(ent->gameName, __CARDDiskNone.game_name, 4) == 0 &&
-                            memcmp(ent->company, __CARDDiskNone.company, 2) == 0))
+    result = __CARDAccess(card, ent);
+    if (result == CARD_RESULT_NOPERM) {
+        perm = ent->permission & __CARDPermMask;
+        if (perm & 0x20 && (memcmp(ent->gameName, __CARDDiskNone.gameName, sizeof(ent->gameName)) == 0 &&
+                            memcmp(ent->company, __CARDDiskNone.company, sizeof(ent->company)) == 0))
         {
             return CARD_RESULT_READY;
-        } else if (val & 0x40 && (memcmp(ent->gameName, __CARDDiskNone.game_name, 4) == 0 &&
-                                  memcmp(ent->company, diskId->company, 2) == 0))
+        } else if (perm & 0x40 && (memcmp(ent->gameName, __CARDDiskNone.gameName, sizeof(ent->gameName)) == 0 &&
+                                  memcmp(ent->company, diskID->company, sizeof(ent->company)) == 0))
         {
             return CARD_RESULT_READY;
         }
     }
 
-    return retVal;
+    return result;
 }
 
-/* 80357EA4-80357F98 3527E4 00F4+00 0/0 2/2 0/0 .text            __CARDIsReadable */
 s32 __CARDIsReadable(CARDControl* card, CARDDir* ent) {
-    u8 val;
-    s32 retVal;
-    const DVDDiskID* diskId = card->diskID;
-
-    retVal = __CARDAccess(card, ent);
-
-    if (retVal == CARD_RESULT_NOPERM) {
-        val = ent->permission & data_80450A72;
-        if (val & 0x20u && (memcmp(ent->gameName, __CARDDiskNone.game_name, 4) == 0 &&
-                            memcmp(ent->company, __CARDDiskNone.company, 2) == 0))
-        {
-            retVal = CARD_RESULT_READY;
-        } else if (val & 0x40 && (memcmp(ent->gameName, __CARDDiskNone.game_name, 4) == 0 &&
-                                  memcmp(ent->company, diskId->company, 2) == 0))
-        {
-            retVal = CARD_RESULT_READY;
-        }
-    }
-
-    if (retVal == CARD_RESULT_NOPERM && (ent->permission & 0x4)) {
+    s32 result = __CARDIsWritable(card, ent);
+    if (result == CARD_RESULT_NOPERM && (ent->permission & 0x4)) {
         return CARD_RESULT_READY;
     }
 
-    return retVal;
+    return result;
 }
 
-static inline s32 __CARDGetFileNo(CARDControl* card, const char* fileName, s32* pfileNo) {
+s32 __CARDGetFileNo(CARDControl* card, const char* fileName, s32* pfileNo) {
     CARDDir* dir;
     CARDDir* ent;
     s32 fileNo;
     s32 result;
 
-    if (!card->attached) {
+    if (!card->attached)
         return CARD_RESULT_NOCARD;
-    }
 
     dir = __CARDGetDirBlock(card);
     for (fileNo = 0; fileNo < CARD_MAX_FILE; fileNo++) {
         ent = &dir[fileNo];
         result = __CARDAccess(card, ent);
-        if (result < 0) {
+
+        if (result < 0)
             continue;
-        }
         if (__CARDCompareFileName(ent, fileName)) {
             *pfileNo = fileNo;
             return CARD_RESULT_READY;
@@ -128,26 +90,30 @@ static inline s32 __CARDGetFileNo(CARDControl* card, const char* fileName, s32* 
     return CARD_RESULT_NOFILE;
 }
 
-/* 80357F98-803580B4 3528D8 011C+00 0/0 3/3 0/0 .text            CARDOpen */
-s32 CARDOpen(s32 chan, const char* fileName, CARDFileInfo* fileInfo) {
+s32 CARDFastOpen(s32 chan, s32 fileNo, CARDFileInfo* fileInfo) {
     CARDControl* card;
     CARDDir* dir;
     CARDDir* ent;
     s32 result;
-    s32 fileNo;
+
+    ASSERTLINE(278, 0 <= fileNo && fileNo < CARD_MAX_FILE);
+    ASSERTLINE(279, 0 <= chan && chan < 2);
+
+    if (fileNo < 0 || fileNo >= CARD_MAX_FILE)
+        return CARD_RESULT_FATAL_ERROR;
 
     fileInfo->chan = -1;
     result = __CARDGetControlBlock(chan, &card);
-    if (result < 0) {
+    if (result < 0)
         return result;
-    }
-    result = __CARDGetFileNo(card, fileName, &fileNo);
+
+    dir = __CARDGetDirBlock(card);
+    ent = &dir[fileNo];
+    result = __CARDIsReadable(card, ent);
     if (0 <= result) {
-        dir = __CARDGetDirBlock(card);
-        ent = &dir[fileNo];
-        if (!CARDIsValidBlockNo(card, ent->startBlock)) {
+        if (!CARDIsValidBlockNo(card, ent->startBlock))
             result = CARD_RESULT_BROKEN;
-        } else {
+        else {
             fileInfo->chan = chan;
             fileInfo->fileNo = fileNo;
             fileInfo->offset = 0;
@@ -157,16 +123,52 @@ s32 CARDOpen(s32 chan, const char* fileName, CARDFileInfo* fileInfo) {
     return __CARDPutControlBlock(card, result);
 }
 
-/* 803580B4-80358108 3529F4 0054+00 0/0 3/3 0/0 .text            CARDClose */
+s32 CARDOpen(s32 chan, const char* fileName, CARDFileInfo* fileInfo) {
+    CARDControl* card;
+    s32 fileNo;
+    s32 result;
+    CARDDir* dir;
+    CARDDir* ent;
+
+    ASSERTLINE(336, 0 <= chan && chan < 2);
+
+    fileInfo->chan = -1;
+    result = __CARDGetControlBlock(chan, &card);
+    if (result < 0)
+        return result;
+
+    result = __CARDGetFileNo(card, fileName, &fileNo);
+    if (result >= 0) {
+        dir = __CARDGetDirBlock(card);
+        ent = &dir[fileNo];
+        if (!CARDIsValidBlockNo(card, ent->startBlock))
+            result = CARD_RESULT_BROKEN;
+        else {
+            fileInfo->chan = chan;
+            fileInfo->fileNo = fileNo;
+            fileInfo->offset = 0;
+            fileInfo->iBlock = ent->startBlock;
+        }
+    }
+
+    return __CARDPutControlBlock(card, result);
+}
+
 s32 CARDClose(CARDFileInfo* fileInfo) {
     CARDControl* card;
     s32 result;
 
+    ASSERTLINE(380, 0 <= fileInfo->chan && fileInfo->chan < 2);
+    ASSERTLINE(381, 0 <= fileInfo->fileNo && fileInfo->fileNo < CARD_MAX_FILE);
+
     result = __CARDGetControlBlock(fileInfo->chan, &card);
-    if (result < 0) {
+    if (result < 0)
         return result;
-    }
 
     fileInfo->chan = -1;
     return __CARDPutControlBlock(card, CARD_RESULT_READY);
+}
+
+BOOL __CARDIsOpened(CARDControl* card, s32 fileNo) {
+    return FALSE;
 }

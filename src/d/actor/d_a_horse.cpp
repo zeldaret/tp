@@ -456,7 +456,7 @@ int daHorse_c::modelCallBack(int i_jntNo) {
 
         MtxP m = m_model->getAnmMtx(i_jntNo);
         cMtx_concat(m, mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
-        MTXQuat(m, (PSQuaternion*)&sp20);
+        MTXQuat(m, &sp20);
         m[0][3] = var_r27->mTranslate.x;
         m[1][3] = var_r27->mTranslate.y;
         m[2][3] = var_r27->mTranslate.z;
