@@ -4,6 +4,13 @@
 */
 
 #include "d/actor/d_a_npc_jagar.h"
+#include "d/actor/d_a_npc.h"
+#include "f_op/f_op_actor_mng.h"
+#include "Z2AudioLib/Z2Creature.h"
+#include "d/d_particle_copoly.h"
+#include "d/d_bg_s_acch.h"
+#include "d/d_cc_d.h"
+#include "d/d_com_inf_game.h"
 #include "dol2asm.h"
 
 //
@@ -330,25 +337,26 @@ SECTION_DATA static u8 l_bmdData[8] = {
 /* 80A1A570-80A1A5B8 -00001 0048+00 0/1 0/0 0/0 .data            l_evtList */
 #pragma push
 #pragma force_active on
-SECTION_DATA static void* l_evtList[18] = {
-    (void*)&d_a_npc_jagar__stringBase0,
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_jagar__stringBase0) + 0x1),
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_jagar__stringBase0) + 0xD),
-    (void*)0x00000002,
-    (void*)(((char*)&d_a_npc_jagar__stringBase0) + 0x15),
-    (void*)0x00000002,
-    (void*)(((char*)&d_a_npc_jagar__stringBase0) + 0x24),
-    (void*)0x00000002,
-    (void*)(((char*)&d_a_npc_jagar__stringBase0) + 0x2A),
-    (void*)0x00000003,
-    (void*)(((char*)&d_a_npc_jagar__stringBase0) + 0x40),
-    (void*)0x00000003,
-    (void*)(((char*)&d_a_npc_jagar__stringBase0) + 0x5A),
-    (void*)0x00000003,
-    (void*)(((char*)&d_a_npc_jagar__stringBase0) + 0x64),
-    (void*)0x00000003,
+SECTION_DATA static daNpcT_evtData_c l_evtList[18] = {
+    {"", 0},
+    {"NO_RESPONSE", 0},
+    {"CLIMBUP", 2},
+    {"NEED_YOUR_HELP", 2},
+    {"ANGER", 2},
+    {"CONVERSATION_WITH_BOU", 3},
+    {"CONFIDENTIAL_CONVERSATION", 3},
+    {"FIND_WOLF", 3},
+    {"FIND_WOLF_VER2", 3},
+    // (void*)(((char*)&d_a_npc_jagar__stringBase0) + 0x24),
+    // (void*)0x00000002,
+    // (void*)(((char*)&d_a_npc_jagar__stringBase0) + 0x2A),
+    // (void*)0x00000003,
+    // (void*)(((char*)&d_a_npc_jagar__stringBase0) + 0x40),
+    // (void*)0x00000003,
+    // (void*)(((char*)&d_a_npc_jagar__stringBase0) + 0x5A),
+    // (void*)0x00000003,
+    // (void*)(((char*)&d_a_npc_jagar__stringBase0) + 0x64),
+    // (void*)0x00000003,
 };
 #pragma pop
 
@@ -820,33 +828,109 @@ SECTION_DATA extern void* __vt__13daNpc_Jagar_c[49] = {
 
 /* 80A1470C-80A14858 0000EC 014C+00 1/0 0/0 0/0 .text            __dt__13daNpc_Jagar_cFv */
 daNpc_Jagar_c::~daNpc_Jagar_c() {
+    short in_r4;
+    if (this == NULL) return;
+
+        // Assign pointer at offset 0xe3c
+        *(void**)((char*)this + 0xe3c) = __vt__13daNpc_Jagar_c;
+
+        // Stop animation if it exists
+        mDoExt_McaMorfSO* animation = *(mDoExt_McaMorfSO**)((char*)this + 0x578);
+        if (animation != NULL) {
+            animation->stopZelAnime();
+        }
+
+        // Delete resources
+        // void deleteRes(
+        //     // reinterpret_cast<daNpcT_c*>(this),
+        //     l_loadResPtrn9[*(unsigned int*)((char*)this + 0xf80)],
+        //     (const char **)l_resNameList
+        // );
+
+        // Assign pointer at offset 0xfd0 (if not specific memory location)
+        if (this != reinterpret_cast<daNpc_Jagar_c*>(0xfffff054)) {
+            *(void**)((char*)this + 0xfd0) = __vt__13daNpcT_Path_c;
+        }
+
+        // Destroy an array of `daNpcT_ActorMngr_c` objects
+        // __destroy_arr(
+        //     (char*)this + 0xf84, 
+        //     ~daNpcT_ActorMngr_c, 
+        //     8, 5
+        // );
+
+        // Assign virtual tables and pointers for collision objects
+        // if (this != reinterpret_cast<daNpc_Jagar_c*>(0xfffff1bc)) {
+        //     *(void**)((char*)this + 0xe80) = &dCcD_Cyl::__vt;
+        //     *(void**)((char*)this + 0xf64) = &PTR_803ac07c;
+        //     *(void**)((char*)this + 0xf7c) = &PTR_803ac0d4;
+
+        //     if (this != reinterpret_cast<daNpc_Jagar_c*>(0xfffff0b8)) {
+        //         *(void**)((char*)this + 0xf64) = &cCcD_CylAttr::__vt;
+        //         *(void**)((char*)this + 0xf7c) = &PTR_803c35fc;
+
+        //         if (this != reinterpret_cast<daNpc_Jagar_c*>(0xfffff098)) {
+        //             *(void**)((char*)this + 0xf7c) = &DAT_80a1acf0;
+        //         }
+
+        //         if (this != reinterpret_cast<daNpc_Jagar_c*>(0xfffff0b8)) {
+        //             *(void**)((char*)this + 0xf64) = &cCcD_ShapeAttr::__vt;
+                    
+        //             if (this != reinterpret_cast<daNpc_Jagar_c*>(0xfffff0b8)) {
+        //                 *(void**)((char*)this + 0xf60) = &DAT_80a1ace4;
+        //             }
+        //         }
+        //     }
+        // }
+
+        // Destroy collision object
+        reinterpret_cast<dCcD_GObjInf*>((char*)this + 0xe44)->~dCcD_GObjInf();
+
+        // Call base class destructor
+        reinterpret_cast<daNpcT_c*>(this)->~daNpcT_c();
+
+        // Free memory if in_r4 > 0
+        // if (in_r4 > 0) {
+        //     JKernel::operator_delete(this);
+        // }
     // NONMATCHING
 }
 
 /* ############################################################################################## */
 /* 80A1A330-80A1A3D0 000000 00A0+00 13/13 0/0 1/1 .rodata          m__19daNpc_Jagar_Param_c */
-SECTION_RODATA u8 const daNpc_Jagar_Param_c::m[160] = {
-    0x43, 0x2A, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0xC8, 0x00, 0x00,
-    0x43, 0x7F, 0x00, 0x00, 0x43, 0x20, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00,
-    0x41, 0xF0, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00, 0x42, 0x34, 0x00, 0x00, 0xC2, 0x34, 0x00, 0x00,
-    0x3F, 0x19, 0x99, 0x9A, 0x41, 0x40, 0x00, 0x00, 0x00, 0x03, 0x00, 0x06, 0x00, 0x05, 0x00, 0x06,
-    0x42, 0xDC, 0x00, 0x00, 0x43, 0xFA, 0x00, 0x00, 0x43, 0x96, 0x00, 0x00, 0xC3, 0x96, 0x00, 0x00,
-    0x00, 0x3C, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x80, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x44, 0xAF, 0x00, 0x00,
-    0x43, 0x48, 0x00, 0x00, 0xC4, 0x48, 0x00, 0x00, 0x41, 0x80, 0x00, 0x00, 0x44, 0xE1, 0x00, 0x00,
+daNpc_Jagar_Param_c::param const daNpc_Jagar_Param_c::m = {
+    160.0f, -3.0f, 1.0f, 400.0f, 255.0f, 160.0f,
+    35.0f, 30.0f, 0.0f, 0.0f, 10.0f, -10.0f,
+    30.0f, -10.0f, 45.0f, -45.0f, 0.6f, 12.0f,
+    3, 6, 5, 6, 110.0f, 500.0f, 300.0f, -300.0f,
+    60, 8, 0.0f, 0.0f, 0.0f, 4.0f, 0.0f, 0.0f,
+    0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1400.0f,
+    200.0f, -800.0f, 16.0f, 1800.0f
+    // 0x43, 0x2A, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0xC8, 0x00, 0x00,
+    // 0x43, 0x7F, 0x00, 0x00, 0x43, 0x20, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00,
+    // 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00,
+    // 0x41, 0xF0, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00, 0x42, 0x34, 0x00, 0x00, 0xC2, 0x34, 0x00, 0x00,
+    // 0x3F, 0x19, 0x99, 0x9A, 0x41, 0x40, 0x00, 0x00, 0x00, 0x03, 0x00, 0x06, 0x00, 0x05, 0x00, 0x06,
+    // 0x42, 0xDC, 0x00, 0x00, 0x43, 0xFA, 0x00, 0x00, 0x43, 0x96, 0x00, 0x00, 0xC3, 0x96, 0x00, 0x00,
+    // 0x00, 0x3C, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x80, 0x00, 0x00,
+    // 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    // 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x44, 0xAF, 0x00, 0x00,
+    // 0x43, 0x48, 0x00, 0x00, 0xC4, 0x48, 0x00, 0x00, 0x41, 0x80, 0x00, 0x00, 0x44, 0xE1, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(0x80A1A330, &daNpc_Jagar_Param_c::m);
+// COMPILER_STRIP_GATE(0x80A1A330, &daNpc_Jagar_Param_c::m);
 
 /* 80A1A3D0-80A1A3E0 0000A0 0010+00 0/1 0/0 0/0 .rodata          heapSize$4099 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const heapSize[16] = {
-    0x00, 0x00, 0x38, 0x50, 0x00, 0x00, 0x38, 0x70, 0x00, 0x00, 0x38, 0x70, 0x00, 0x00, 0x00, 0x00,
+// #pragma push
+// #pragma force_active on
+static int const heapSize[4] = {
+    0x3850, 0x3870, 0x3870, 0
+    // 0x00, 0x00, 0x38, 0x50, 
+    // 0x00, 0x00, 0x38, 0x70, 
+    // 0x00, 0x00, 0x38, 0x70, 
+    // 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(0x80A1A3D0, &heapSize);
-#pragma pop
+// COMPILER_STRIP_GATE(0x80A1A3D0, &heapSize);
+// #pragma pop
 
 /* 80A1A3E0-80A1A3E4 0000B0 0004+00 0/2 0/0 0/0 .rodata          @4165 */
 #pragma push
@@ -877,13 +961,16 @@ COMPILER_STRIP_GATE(0x80A1A3EC, &lit_4168);
 #pragma pop
 
 /* 80A1A3F0-80A1A3F4 0000C0 0004+00 4/15 0/0 0/0 .rodata          @4169 */
-SECTION_RODATA static u8 const lit_4169[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+// SECTION_RODATA static u8 const lit_4169[4] = {
+//     0x00,
+//     0x00,
+//     0x00,
+//     0x00,
+// };
+// COMPILER_STRIP_GATE(0x80A1A3F0, &lit_4169);
+static u8 const lit_4169[4] = {
+    0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(0x80A1A3F0, &lit_4169);
 
 /* 80A1A3F4-80A1A3F8 0000C4 0004+00 0/1 0/0 0/0 .rodata          @4170 */
 #pragma push
@@ -893,8 +980,112 @@ COMPILER_STRIP_GATE(0x80A1A3F4, &lit_4170);
 #pragma pop
 
 /* 80A14858-80A14B20 000238 02C8+00 1/1 0/0 0/0 .text            create__13daNpc_Jagar_cFv */
-void daNpc_Jagar_c::create() {
+int daNpc_Jagar_c::create() {
     // NONMATCHING
+    fopAcM_SetupActor2(this, daNpc_Jagar_c, (const daNpcT_faceMotionAnmData_c *)l_faceMotionAnmData,
+        (const daNpcT_motionAnmData_c *)l_motionAnmData, (const daNpcT_MotionSeqMngr_c::sequenceStepData_c *) l_faceMotionSequenceData, 4,
+        (const daNpcT_MotionSeqMngr_c::sequenceStepData_c *)l_motionSequenceData, 4, (const daNpcT_evtData_c *)l_evtList, (char **)l_resNameList
+    );
+// daNpc_Jagar_c* self = this;
+unsigned int uVar1;
+// daNpc_Jagar_c dVar4;
+// int iVar2;
+// int iVar3;
+// bool bVar5;
+
+// extern daNpcT_faceMotionAnmData_c DAT_80a1a5ec;
+// extern daNpcT_motionAnmData_c DAT_80a1a704;
+// extern daNpcT_MotionSeqMngr_c::sequenceStepData_c DAT_80a1a8fc;
+// extern daNpcT_MotionSeqMngr_c::sequenceStepData_c DAT_80a1a98c;
+// extern daNpcT_evtData_c d_a_npc_jagar_l_bmdData;
+// // extern char* PTR_6305_80a1a5b8;
+// // l_resNameList;
+// // void* base = (char*)l_resNameList - 0x70;
+// // void* adjustedPointer = (char*)base + 0x70;
+
+// if ((*(unsigned int *)(this + 0x4a0) & 8) == 0) {
+//   if (this != (daNpc_Jagar_c *)0x0) {
+//     new (this) daNpc_Jagar_c(
+//         &DAT_80a1a5ec,  // Face Motion Animation Data
+//         &DAT_80a1a704,  // Motion Animation Data
+//         &DAT_80a1a8fc,  // Sequence Step Data
+//         4,              // Integer Parameter
+//         &DAT_80a1a98c,  // More Sequence Step Data
+//         4,              // Another Integer Parameter
+//         &d_a_npc_jagar_l_bmdData,  // Event Data
+//         (char**)l_resNameList         // Pointer to additional data
+//     );
+//     // daNpc_Jagar_c(this,(daNpcT_faceMotionAnmData_c *)&DAT_80a1a5ec,
+//     //               (daNpcT_motionAnmData_c *)&DAT_80a1a704,(sequenceStepData_c *)&DAT_80a1a8fc,4,
+//     //               (sequenceStepData_c *)&DAT_80a1a98c,4,
+//     //               (daNpcT_evtData_c *)&d_a_npc_jagar::l_bmdData,&PTR_@6305_80a1a5b8);
+//   }
+//   *(unsigned int *)(this + 0x4a0) = *(unsigned int *)(this + 0x4a0) | 8;
+// }
+// // dVar4 = (daNpc_Jagar_c)getType(this);
+// // this[0xf80] = dVar4;
+// uVar1 = 0xffffffff;
+// if (*(unsigned short *)(this + 0x4b4) != 0xffff) {
+//   uVar1 = (unsigned int)*(unsigned short *)(this + 0x4b4);
+// }
+// *(unsigned int *)(this + 0xa7c) = uVar1;
+// *(unsigned char*)((char*)this + 0xa89) = 0;  // Set the byte at offset 0xA89 to 0
+// iVar2 = ((daNpcT_c *)this)->loadRes((const signed char*)&l_loadResPtrn9[*(char*)(this + 0xf80)],(const char **)l_resNameList);
+// if (iVar2 == 4) {
+// //   iVar3 = isDelete(this);
+//   if (iVar3 == 0) {
+//     bVar5 = fopAcM_entrySolidHeap
+//                       ((fopAc_ac_c *)this,createHeapCallBack,
+//                       *(u32 *)(&heapSize + (unsigned int)(*(unsigned char*)(this + 0xf80)) * 4));
+//     if (bVar5) {
+//       *(int *)(this + 0x504) = *(int *)(*(int *)(this + 0x578) + 4) + 0x24;
+//       fopAcM_setCullSizeBox
+//                 ((fopAc_ac_c *)this,-200.0,-100.0,-200.0,200.0,300.0,200.0);
+//                 ((Z2Creature *)(this + 0x580))->init((Vec *)(this + 0x4d0), (Vec *)(this + 0x538), '\x03', '\x01');
+//                 ((dPaPo_c *)(this + 0x9c0))->init((dBgS_Acch *)(this + 0x68c),0.0f,0.0f);
+//     (this)->reset();
+//     ((dBgS_Acch *)(this + 0x68c))->Set((cXyz *)(this + 0x4d0),(cXyz *)(this + 0x4bc),
+//                      (fopAc_ac_c *)this,1,(dBgS_AcchCir *)(this + 0x8a0),(cXyz *)(this + 0x4f8),
+//                      (csXyz *)(this + 0x4dc),(csXyz *)(this + 0x4e4));
+//     ((dCcD_Stts *)(this + 0x864))->Init(0xff,0,(fopAc_ac_c *)this);
+//     ((dCcD_Cyl *)(this + 0xe44))->Set(daNpcT_c::mCcDCyl);
+//     *(daNpc_Jagar_c **)(this + 0xe88) = this + 0x864;
+//     *(void (**)(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*))(this + 0xee8) = ::daNpcT_c::tgHitCallBack;
+//     ((dBgS_Acch *)(this + 0x68c))->CrrPos(dComIfG_Bgsp())
+//     ;
+//       *(unsigned int *)(this + 0x930) = *(unsigned int *)(this + 0x768);
+//       *(unsigned int *)(this + 0x934) = *(unsigned int *)(this + 0x76c);
+//       *(unsigned int *)(this + 0x938) = *(unsigned int *)(this + 0x770);
+//       this[0x93c] = this[0x774];
+//       *(unsigned short *)(this + 0x944) = *(unsigned short *)(this + 0x77c);
+//       *(unsigned short *)(this + 0x946) = *(unsigned short *)(this + 0x77e);
+//       *(unsigned int *)(this + 0x948) = *(unsigned int *)(this + 0x780);
+//       *(unsigned int *)(this + 0x94c) = *(unsigned int *)(this + 0x784);
+//       *(unsigned int *)(this + 0x954) = *(unsigned int *)(this + 0x78c);
+//       *(unsigned int *)(this + 0x958) = *(unsigned int *)(this + 0x790);
+//       *(unsigned int *)(this + 0x95c) = *(unsigned int *)(this + 0x794);
+//       *(unsigned int *)(this + 0x960) = *(unsigned int *)(this + 0x798);
+//       *(unsigned int *)(this + 0x964) = *(unsigned int *)(this + 0x79c);
+//       *(unsigned int *)(this + 0x968) = *(unsigned int *)(this + 0x7a0);
+//       *(unsigned int *)(this + 0xdf4) = *(unsigned int *)(this + 0x724);
+//       if (*(float *)(this + 0xdf4) != -1e+09) {
+//         ((daNpcT_c *)this)->setEnvTevColor();
+//         ((daNpcT_c *)this)->setRoomNo();
+//       }
+//       *(unsigned char *)(this + 0xa88) = 0x1;
+//     //   Execute(this);
+//     *(unsigned char *)(this + 0xa88) = 0x0;
+//     }
+//     else {
+//       iVar2 = 5;
+//     }
+//   }
+//   else {
+//     iVar2 = 5;
+//   }
+// }
+// return iVar2;
+    return 0;
 }
 
 /* ############################################################################################## */

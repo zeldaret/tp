@@ -14,7 +14,7 @@
 class daNpc_Jagar_c : public fopAc_ac_c {
 public:
     /* 80A1470C */ ~daNpc_Jagar_c();
-    /* 80A14858 */ void create();
+    /* 80A14858 */ int create();
     /* 80A14B20 */ void CreateHeap();
     /* 80A14F4C */ void Delete();
     /* 80A14F80 */ void Execute();
@@ -79,7 +79,53 @@ class daNpc_Jagar_Param_c {
 public:
     /* 80A1A2C4 */ ~daNpc_Jagar_Param_c();
 
-    static u8 const m[160];
+    struct param {
+        float field_0;  // 160.0f
+        float field_1;  // -3.0f
+        float field_2;  // 1.0f
+        float field_3;  // 400.0f
+        float field_4;  // 255.0f
+        float field_5;  // 160.0f
+        float field_6;  // 35.0f
+        float field_7;  // 30.0f
+        float field_8;  // 0.0f
+        float field_9;  // 0.0f
+        float field_10; // 10.0f
+        float field_11; // -10.0f
+        float field_12; // 30.0f
+        float field_13; // -10.0f
+        float field_14; // 45.0f
+        float field_15; // -45.0f
+        float field_16; // 0.6f
+        float field_17; // 12.0f
+        int field_18;   // 3
+        int field_19;   // 6
+        int field_20;   // 5
+        int field_21;   // 6
+        float field_22; // 110.0f
+        float field_23; // 500.0f
+        float field_24; // 300.0f
+        float field_25; // -300.0f
+        float field_26; // 60
+        int field_27;   // 8
+        float field_28; // 0.0f
+        float field_29; // 0.0f
+        float field_30; // 0.0f
+        float field_31; // 4.0f
+        float field_32; // 0.0f
+        float field_33; // 0.0f
+        float field_34; // 0.0f
+        float field_35; // 0.0f
+        float field_36; // 0.0f
+        float field_37; // 0.0f
+        float field_38; // 0.0f
+        float field_39; // 1400.0f
+        float field_40; // 200.0f
+        float field_41; // -800.0f
+        float field_42; // 16.0f
+        float field_43; // 1800.0f
+    };
+    static daNpc_Jagar_Param_c::param const m;
 };
 
 #endif /* D_A_NPC_JAGAR_H */
