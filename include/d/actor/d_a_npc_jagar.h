@@ -15,14 +15,14 @@ class daNpc_Jagar_c : public fopAc_ac_c {
 public:
     /* 80A1470C */ ~daNpc_Jagar_c();
     /* 80A14858 */ int create();
-    /* 80A14B20 */ void CreateHeap();
-    /* 80A14F4C */ void Delete();
-    /* 80A14F80 */ void Execute();
-    /* 80A14FA0 */ void Draw();
-    /* 80A15034 */ void createHeapCallBack(fopAc_ac_c*);
-    /* 80A15054 */ void ctrlJointCallBack(J3DJoint*, int);
+    /* 80A14B20 */ int CreateHeap();
+    /* 80A14F4C */ int Delete();
+    /* 80A14F80 */ int Execute();
+    /* 80A14FA0 */ int Draw();
+    /* 80A15034 */ static int createHeapCallBack(fopAc_ac_c*);
+    /* 80A15054 */ static int ctrlJointCallBack(J3DJoint*, int);
     /* 80A150AC */ void getType();
-    /* 80A150F8 */ void isDelete();
+    /* 80A150F8 */ int isDelete();
     /* 80A15198 */ void reset();
     /* 80A15364 */ void afterJntAnm(int);
     /* 80A153E8 */ void setParam();
@@ -71,6 +71,9 @@ public:
 
 private:
     /* 0x568 */ u8 field_0x568[0x100c - 0x568];
+    /* 0x0F80 */ u8 mType;
+    /* 0x0F84 */ daNpcF_ActorMngr_c mActorMngr[5];
+    
 };
 
 STATIC_ASSERT(sizeof(daNpc_Jagar_c) == 0x100c);
