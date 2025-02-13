@@ -1009,32 +1009,23 @@ int daNpc_Jagar_c::create() {
         // J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
         // fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -200.0f, -100.0f, -200.0f, 200.0f, 300.0f, 200.0f);
-        Z2Creature field_0x580; // <-- Move into header file
         field_0x580.init(&current.pos, &eyePos, 3, 1);
-        dPaPo_c field_0x9c0; // <-- Move into header file
         field_0x9c0.init(&field_0x68c, 60.0f, 0.0f);
         reset();
-        /* WIP */
-        // field_0x68c.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1,
-        //                 &field_0x8a0, fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this),
-        //                 fopAcM_GetShapeAngle_p(this));
-        dCcD_Stts field_0x864; // <-- Move into header file
-        field_0x864.Init(-1, 0, this);
-        dCcD_Cyl mCyl1; // <-- Move into header file
-        dCcD_SrcCyl mCcDCyl; // <-- Move into header file
+        field_0x68c.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1,
+                        &field_0x8a0, fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this),
+                        fopAcM_GetShapeAngle_p(this));
+        field_0x864.Init(daNpc_Jagar_Param_c::m.field_0x10, 0, this);
+        // dCcD_SrcCyl mCcDCyl; // <-- Move into header file?
         mCyl1.Set(mCcDCyl); // <-- Check value??
-        /* WIP */
-        // mCyl1.SetStts(&field_0x8B4); // <-- 864 or 8B4?
-        /* WIP */
-        // mCyl1.SetTgHitCallback(tgHitCallBack);
+        mCyl1.SetStts(&field_0x8B4); // <-- 864 or 8B4?
+        mCyl1.SetTgHitCallback(tgHitCallBack);
         field_0x68c.CrrPos(dComIfG_Bgsp());
-        // dBgS_GndChk field_0x930; // <-- Move into header file
-        // field_0x930 = field_0x68c.m_gnd;
+        field_0x930 = field_0x68c.m_gnd;
         field_0xdf4 = field_0x68c.GetGroundH();
         if (field_0xdf4 != -1e9f) {
-            /* WIP */
-            // setEnvTevColor();
-            // setRoomNo();
+            setEnvTevColor();
+            setRoomNo();
         }
         field_0xa88 = 1;
         Execute();

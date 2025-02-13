@@ -11,7 +11,7 @@
  * @details
  *
  */
-class daNpc_Jagar_c : public fopAc_ac_c {
+class daNpc_Jagar_c : public daNpcT_c {
 public:
     /* 80A1470C */ ~daNpc_Jagar_c();
     /* 80A14858 */ int create();
@@ -78,28 +78,28 @@ public:
 
     static void* mCutNameList[7];
     static u8 mCutList[84];
-
 private:
-    /* 0x568 */ u8 field_0x568[0x100c - 0x568];
+    /* 0x0568 */ u8 field_0x568[0x100c - 0x568];
     /* 0x0F80 */ u8 mType;
     /* 0x0F84 */ daNpcF_ActorMngr_c mActorMngr[5];
-    int field_0xa7c;
-    int field_0xa89;
-    dBgS_AcchCir field_0x580;
-    dBgS_Acch field_0x68c;
-    dBgS_AcchCir field_0x9c0;
-    cXyz field_0x8a0;
-    cXyz field_0x8B4;
-    int field_0x768;
-    int field_0x930;
-    int field_0x76C;
-    int field_0x934;
-    float field_0xdf4;
-    int field_0xa88;
+    // int field_0xa7c;
+    // int field_0xa89;
+    /* 0x0E44 */ dCcD_Cyl mCyl1;
+
+    /* WIP */
+    // dBgS_AcchCir field_0x580;
+    // dBgS_AcchCir field_0x9c0;
+    // cXyz field_0x8a0;
+    // cXyz field_0x8B4;
+    // int field_0x768;
+    // int field_0x76C;
+    // int field_0x934;
+    // float field_0xdf4;
+    // int field_0xa88;
     
 };
 
-// STATIC_ASSERT(sizeof(daNpc_Jagar_c) == 0x100c);
+STATIC_ASSERT(sizeof(daNpc_Jagar_c) == 0x1018);
 
 class daNpc_Jagar_Param_c {
 public:
