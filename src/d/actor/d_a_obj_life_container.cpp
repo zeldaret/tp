@@ -212,7 +212,7 @@ void daObjLife_c::bg_check() {
         fopAcM_seStart(this, Z2SE_OBJ_KEY_BOUND, fabsf(mPrevSpeed.y) * 2.0f);
     }
 
-    if (mGndLandCount >= 2 || (!mAcch.ChkGroundLanding() && mAcch.i_ChkGroundHit())) {
+    if (mGndLandCount >= 2 || (!mAcch.ChkGroundLanding() && mAcch.ChkGroundHit())) {
         endEffect02();
     }
 }
@@ -252,7 +252,7 @@ int daObjLife_c::actionWait() {
         fopAcM_posMoveF(this, mCcStts.GetCCMoveP());
         mAcch.CrrPos(dComIfG_Bgsp());
 
-        if (mAcch.ChkGroundLanding() || mAcch.i_ChkGroundHit()) {
+        if (mAcch.ChkGroundLanding() || mAcch.ChkGroundHit()) {
             fopAcM_SetSpeed(this, 0.0f, -1.0f, 0.0f);
             fopAcM_SetSpeedF(this, 0.0f);
         } else if (speed.y < 0.0f) {
@@ -270,7 +270,7 @@ int daObjLife_c::actionWait() {
         mAcch.CrrPos(dComIfG_Bgsp());
         bg_check();
 
-        if (mAcch.i_ChkGroundHit()) {
+        if (mAcch.ChkGroundHit()) {
             speedF *= 0.9f;
             if (speedF < 1.0f) {
                 speedF = 0.0f;

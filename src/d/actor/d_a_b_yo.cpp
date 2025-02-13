@@ -1214,7 +1214,7 @@ void daB_YO_c::executeOpening() {
             mActionTimer2 = 31;
             player->changeDemoMode(40, 0, 0, 0);
         }
-        if (mAcch.i_ChkGroundHit()) {
+        if (mAcch.ChkGroundHit()) {
             mRoomType = 1;
             mColorMode = 4;
             mColBlend = 0.0f;
@@ -2550,7 +2550,7 @@ void daB_YO_c::executeDeath() {
     case 6:
         mCamCenter.y = current.pos.y + 540.0f;
         cLib_chaseF(&speed.y, -100.0f, 10.0f);
-        if (mAcch.i_ChkGroundHit()) {
+        if (mAcch.ChkGroundHit()) {
             dComIfGp_getVibration().StartQuake(8, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
             mQuakeTimer = 30;
             speed.y = 0.0f;

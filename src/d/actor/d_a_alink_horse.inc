@@ -1648,7 +1648,7 @@ int daAlink_c::procHorseGetOff() {
     } else {
         field_0x2f99 = 7;
 
-        if (mLinkAcch.i_ChkGroundHit()) {
+        if (mLinkAcch.ChkGroundHit()) {
             horseGetOffEnd();
             return procLandInit(0.0f);
         }

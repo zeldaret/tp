@@ -3059,7 +3059,7 @@ f32 dCamera_c::getWaterSurfaceHeight(cXyz* param_0) {
     cXyz spF8(*param_0);
     dBgS_RoofChk roofchk;
     roofchk.SetUnderwaterRoof();
-    roofchk.i_SetPos(spF8);
+    roofchk.SetPos(spF8);
 
     f32 roof_y = dComIfG_Bgsp().RoofChk(&roofchk);
     if (spF8.y < roof_y) {

@@ -6,6 +6,7 @@
 #include "d/actor/d_a_obj_swBallB.h"
 #include "d/actor/d_a_obj_carry.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "d/d_com_inf_game.h"
 #include "d/d_meter2_info.h"
 #include "d/d_item.h"
 #include "d/actor/d_a_player.h"

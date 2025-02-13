@@ -1631,7 +1631,7 @@ static BOOL npc_ne_home(npc_ne_class* i_this) {
     case 4:
         i_this->current.angle.x = 0x3000;
         target_speed = l_HIO.mRunSpeed;
-        if (i_this->mTimers[1] == 0 && i_this->mAcch.i_ChkGroundHit()) {
+        if (i_this->mTimers[1] == 0 && i_this->mAcch.ChkGroundHit()) {
             i_this->mMode = 1;
             anm_init(i_this, npc_ne_class::ANM_RUN, 2.0f, 2, 1.5f);
         }
@@ -2114,7 +2114,7 @@ static void npc_ne_drop(npc_ne_class* i_this) {
 
     case 1:
         i_this->current.angle.x = 0x3000;
-        if (i_this->mAcch.i_ChkGroundHit()) {
+        if (i_this->mAcch.ChkGroundHit()) {
             i_this->shape_angle.x = 0;
             i_this->current.angle.x = 0;
             i_this->mpMorf->setPlaySpeed(2.0f);
@@ -2167,7 +2167,7 @@ static void npc_ne_s_drop(npc_ne_class* i_this) {
         } else {
             max_speed_step = target_speed = 2.0f;
         }
-        if (i_this->mTimers[0] == 0 && i_this->mAcch.i_ChkGroundHit()) {
+        if (i_this->mTimers[0] == 0 && i_this->mAcch.ChkGroundHit()) {
             anm_init(i_this, npc_ne_class::ANM_JUMP_END, 3.0f, 0, 1.0f);
             i_this->mpMorf->setFrame(4.0f);
             i_this->mMode++;

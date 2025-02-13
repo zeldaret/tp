@@ -539,6 +539,8 @@ public:
     cCcD_Obj* GetTgHitObj() { return mObjTg.GetHitObj(); }
     cCcD_Obj* GetCoHitObj() { return mObjCo.GetHitObj(); }
     u32 ChkAtSPrm(u32 prm) { return mObjAt.ChkSPrm(prm); }
+    u32 ChkCoSPrm(u32 prm) const { return mObjCo.ChkSPrm(prm); }
+    void OnTgNoSlingHitInfSet() { mObjTg.OnSPrmBit(0x40); }
 
 };  // Size = 0x40
 

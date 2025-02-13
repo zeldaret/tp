@@ -275,7 +275,7 @@ void daAlink_c::setIronBallChainPos() {
         sp274 = mIronBallBgChkPos;
         field_0x0778->CrrPos(dComIfG_Bgsp());
     
-        if (field_0x0778->i_ChkGroundHit()) {
+        if (field_0x0778->ChkGroundHit()) {
             *mIronBallChainPos += mIronBallBgChkPos - sp274;
         }
 
@@ -679,8 +679,8 @@ void daAlink_c::setIronBallPos() {
                         mZ2Link.startHitItemSE(Z2SE_HIT_HAMMER, var_r29, mpHookSound, var_f31);
                     }
 
-                    if (field_0x0778->ChkWallHit() || field_0x0778->i_ChkGroundHit() || field_0x0778->ChkRoofHit() || (mItemVar0.field_0x3018 == 5 && (var_r26 != 0 || mItemMode > var_r23))) {
-                        if (field_0x0778->ChkWallHit() || field_0x0778->i_ChkGroundHit() || field_0x0778->ChkRoofHit()) {
+                    if (field_0x0778->ChkWallHit() || field_0x0778->ChkGroundHit() || field_0x0778->ChkRoofHit() || (mItemVar0.field_0x3018 == 5 && (var_r26 != 0 || mItemMode > var_r23))) {
+                        if (field_0x0778->ChkWallHit() || field_0x0778->ChkGroundHit() || field_0x0778->ChkRoofHit()) {
                             *mIronBallChainPos += mIronBallBgChkPos - sp10C;
 
                             if (field_0x0778->ChkWallHit()) {
@@ -692,7 +692,7 @@ void daAlink_c::setIronBallPos() {
                                 }
                             }
 
-                            if (field_0x0778->i_ChkGroundHit()) {
+                            if (field_0x0778->ChkGroundHit()) {
                                 field_0x3848->x *= 0.5f;
                                 field_0x3848->z *= 0.5f;
 
@@ -787,7 +787,7 @@ void daAlink_c::setIronBallPos() {
 
     if (mItemVar0.field_0x3018 == 4) {     
         field_0x0778->CrrPos(dComIfG_Bgsp());
-        if (field_0x0778->i_ChkGroundHit() || field_0x0778->ChkRoofHit() || field_0x0778->ChkWallHit()) {
+        if (field_0x0778->ChkGroundHit() || field_0x0778->ChkRoofHit() || field_0x0778->ChkWallHit()) {
             mItemVar0.field_0x3018 = 8;
             dComIfGp_getVibration().StartShock(4, 1, cXyz(0.0f, 1.0f, 0.0f));
         }

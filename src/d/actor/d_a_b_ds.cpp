@@ -605,7 +605,7 @@ void daB_DS_c::mSmokeSet() {
         return;
     }
 
-    if (mAcch.i_ChkGroundHit()) {
+    if (mAcch.ChkGroundHit()) {
         if (field_0x84d == 0 && mAcch.GetGroundH() != -1000000000.0f) {
             cXyz particle_scale(1.0f, 1.0f, 1.0f);
             cXyz particle_pos(current.pos);
@@ -3617,7 +3617,7 @@ void daB_DS_c::executeBattle2Damage() {
         // fallthrough
     case 2:
         mCameraCenter = current.pos;
-        if (!mAcch.i_ChkGroundHit() && current.pos.y - 100.0f > chk_pos.y) {
+        if (!mAcch.ChkGroundHit() && current.pos.y - 100.0f > chk_pos.y) {
             break;
         }
 

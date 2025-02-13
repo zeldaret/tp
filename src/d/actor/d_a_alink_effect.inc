@@ -318,7 +318,7 @@ void daAlink_c::setEffect() {
         setElecDamageEffect();
     }
 
-    if (checkMagneBootsOn() || (checkEquipHeavyBoots() && mLinkAcch.i_ChkGroundHit() &&
+    if (checkMagneBootsOn() || (checkEquipHeavyBoots() && mLinkAcch.ChkGroundHit() &&
                                 dComIfG_Bgsp().GetMagnetCode(mLinkAcch.m_gnd) == 2))
     {
         if (!checkMagneBootsOn() && !checkNoResetFlg3(FLG3_UNK_1)) {
@@ -543,7 +543,7 @@ void daAlink_c::setEffect() {
     }
 
     f32 temp_f30 = field_0x3798.absXZ(current.pos);
-    if ((!checkModeFlg(0x70C52) && (mLinkAcch.i_ChkGroundHit() || checkMagneBootsOn())) ||
+    if ((!checkModeFlg(0x70C52) && (mLinkAcch.ChkGroundHit() || checkMagneBootsOn())) ||
         mProcID == PROC_SUMOU_WIN_LOSE || (checkBoardRide() && !checkModeFlg(2)) ||
         mProcID == PROC_WOLF_TAG_JUMP)
     {

@@ -99,7 +99,7 @@ BOOL daAlink_c::hangMoveBgCheck(s16 param_0, cXyz* param_1) {
 
 /* 800FA338-800FA5C8 0F4C78 0290+00 3/3 0/0 0/0 .text            changeHangMoveProc__9daAlink_cFi */
 BOOL daAlink_c::changeHangMoveProc(int i_direction) {
-    if (!mLinkAcch.i_ChkGroundHit() || !dComIfG_Bgsp().ChkPolySafe(mLinkAcch.m_gnd)) {
+    if (!mLinkAcch.ChkGroundHit() || !dComIfG_Bgsp().ChkPolySafe(mLinkAcch.m_gnd)) {
         return false;
     }
 
@@ -1792,7 +1792,7 @@ void daAlink_c::changeClimbMoveProc(int param_0) {
         if (field_0x2f98 == DIR_FORWARD || field_0x2f98 == DIR_BACKWARD) {
             cXyz sp44(current.pos.x - cM_ssin(shape_angle.y) * 15.0f, current.pos.y + field_0x598,
                       current.pos.z - cM_scos(shape_angle.y) * 15.0f);
-            mLinkRoofChk.i_SetPos(sp44);
+            mLinkRoofChk.SetPos(sp44);
 
             f32 roof_y = dComIfG_Bgsp().RoofChk(&mLinkRoofChk);
             if (field_0x2f98 == DIR_FORWARD && roof_y < sp44.y + 110.0f &&
@@ -1886,7 +1886,7 @@ int daAlink_c::setMoveBGClimbCorrect() {
         return 0;
     }
 
-    if (mLinkAcch.i_ChkGroundHit()) {
+    if (mLinkAcch.ChkGroundHit()) {
         return procFallInit(1, daAlinkHIO_autoJump_c0::m.mFallInterpolation);
     }
 
@@ -1961,7 +1961,7 @@ int daAlink_c::checkBgCorrectClimbMove(cXyz* i_startPos, cXyz* i_endPos) {
 BOOL daAlink_c::checkClimbRoof(f32 param_0) {
     cXyz sp44(current.pos.x - cM_ssin(shape_angle.y) * 30.0f, param_0 - 30.0f,
               current.pos.z - cM_scos(shape_angle.y) * 30.0f);
-    mLinkRoofChk.i_SetPos(sp44);
+    mLinkRoofChk.SetPos(sp44);
 
     if (dComIfG_Bgsp().RoofChk(&mLinkRoofChk) < param_0 + 30.0f &&
         dComIfG_Bgsp().GetMonkeyBarsCode(mLinkRoofChk))
@@ -2049,7 +2049,7 @@ BOOL daAlink_c::checkBgClimbMove(int i_direction) {
 
     sp8C.set(var_f26 + (current.pos.x + var_f31), current.pos.y,
              var_f25 + (current.pos.z + var_f30));
-    mLinkRoofChk.i_SetPos(sp8C);
+    mLinkRoofChk.SetPos(sp8C);
 
     f32 var_f29 = dComIfG_Bgsp().RoofChk(&mLinkRoofChk) - field_0x598;
     if (var_f29 < current.pos.y) {
@@ -2058,7 +2058,7 @@ BOOL daAlink_c::checkBgClimbMove(int i_direction) {
 
     sp8C.set(var_f26 + (current.pos.x - var_f31), current.pos.y,
              var_f25 + (current.pos.z - var_f30));
-    mLinkRoofChk.i_SetPos(sp8C);
+    mLinkRoofChk.SetPos(sp8C);
 
     var_f29 = dComIfG_Bgsp().RoofChk(&mLinkRoofChk) - field_0x598;
     if (var_f29 < current.pos.y) {
@@ -2597,7 +2597,7 @@ int daAlink_c::procClimbToRoof() {
 
         cXyz sp38(current.pos.x + cM_ssin(shape_angle.y) * 95.0f, current.pos.y,
                   current.pos.z + cM_scos(shape_angle.y) * 95.0f);
-        mLinkRoofChk.i_SetPos(sp38);
+        mLinkRoofChk.SetPos(sp38);
 
         sp38.y = dComIfG_Bgsp().RoofChk(&mLinkRoofChk);
         if (sp38.y < current.pos.y + 214.0f + 110.0f) {
@@ -2644,7 +2644,7 @@ int daAlink_c::checkRoofHangMovePos() {
 
     cXyz sp38(current.pos.x + cM_ssin(angle) * 60.0f, (current.pos.y + 214.0f) - 10.0f,
               current.pos.z + cM_scos(angle) * 60.0f);
-    mLinkRoofChk.i_SetPos(sp38);
+    mLinkRoofChk.SetPos(sp38);
 
     if (dComIfG_Bgsp().RoofChk(&mLinkRoofChk) < sp38.y + 50.0f) {
         if (dComIfG_Bgsp().GetMonkeyBarsCode(mLinkRoofChk)) {
@@ -2669,7 +2669,7 @@ int daAlink_c::commonRoofHangProc() {
     }
 
     cXyz sp28(current.pos.x, (current.pos.y + 214.0f) - 10.0f, current.pos.z);
-    mLinkRoofChk.i_SetPos(sp28);
+    mLinkRoofChk.SetPos(sp28);
 
     f32 roof_y = dComIfG_Bgsp().RoofChk(&mLinkRoofChk);
     if (roof_y < sp28.y + 50.0f && dComIfG_Bgsp().GetMonkeyBarsCode(mLinkRoofChk) &&

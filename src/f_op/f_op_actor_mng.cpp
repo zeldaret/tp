@@ -2103,7 +2103,7 @@ bool fopAcM_gc_c::gndCheck(cXyz const* i_pos) {
 
 /* 8001DD1C-8001DD84 01865C 0068+00 0/0 0/0 3/3 .text            roofCheck__11fopAcM_rc_cFPC4cXyz */
 bool fopAcM_rc_c::roofCheck(cXyz const* i_pos) {
-    mRoofCheck.i_SetPos(*i_pos);
+    mRoofCheck.SetPos(*i_pos);
     mRoofY = dComIfG_Bgsp().RoofChk(&mRoofCheck);
     return 1000000000.0f != mRoofY;
 }

@@ -22,7 +22,7 @@ public:
     /* 8046EABC */ void Draw();
     /* 8046EC10 */ void Delete();
 
-    static void make_prm_burnbox(u32* param_0, u8 param_1) {
+    static void make_prm_burnBox(u32* param_0, u8 param_1) {
         *param_0 = param_1;
     }
 

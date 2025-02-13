@@ -190,7 +190,7 @@ public:
     static void setModel(JPABaseEmitter* param_0, J3DModelData* param_1,
                          const dKy_tevstr_c& param_2, u8 param_3, J3DAnmTexPattern* param_4,
                          u8 param_5) {
-        setModel(param_0, param_1, param_2, param_3, param_4, param_5);
+        setModel(param_0, param_1, param_2, param_3, param_4, 0, param_5);
     }
 
     static dPa_modelEcallBack& getEcallback() { return mEcallback; }

@@ -2105,13 +2105,13 @@ void daHorse_c::setRoomInfo(int param_0) {
 
         if (m_acch.ChkWaterHit() && m_acch.m_wtr.GetHeight() > current.pos.y) {
             m_poly_sound = dKy_pol_sound_get(&m_acch.m_wtr);
-        } else if (m_acch.i_ChkGroundHit()) {
+        } else if (m_acch.ChkGroundHit()) {
             m_poly_sound = dKy_pol_sound_get(&m_acch.m_gnd);
         } else {
             m_poly_sound = 0;
         }
 
-        if (m_acch.i_ChkGroundHit() && m_procID != PROC_LARGE_DAMAGE_e && m_procID != PROC_JUMP_e) {
+        if (m_acch.ChkGroundHit() && m_procID != PROC_LARGE_DAMAGE_e && m_procID != PROC_JUMP_e) {
             savePos();
         }
 
@@ -2278,7 +2278,7 @@ void daHorse_c::setEffect() {
         sp40 |= 0x20000;
     }
 
-    if (m_acch.i_ChkGroundHit()) {
+    if (m_acch.ChkGroundHit()) {
         field_0x17dc.setEffectFour(&tevStr,
                                    &current.pos,
                                    sp44,
@@ -2417,7 +2417,7 @@ void daHorse_c::setCollision() {
 void daHorse_c::autoGroundHit() {
     if (checkStateFlg0(FLG0_UNK_10) && m_procID != PROC_LARGE_DAMAGE_e && m_procID != PROC_JUMP_e) {
         f32 dist_to_ground = m_acch.GetGroundH() - current.pos.y;
-        if (!m_acch.i_ChkGroundHit() && dist_to_ground < 0.0f && dist_to_ground >= -l_autoUpHeight) {
+        if (!m_acch.ChkGroundHit() && dist_to_ground < 0.0f && dist_to_ground >= -l_autoUpHeight) {
             current.pos.y = m_acch.GetGroundH();
             m_acch.SetGroundHit();
             speed.y = 0.0f;
@@ -2741,7 +2741,7 @@ void daHorse_c::footBgCheck() {
         }
     }
 
-    if (!m_acch.i_ChkGroundHit() || m_procID == PROC_TOOL_DEMO_e) {
+    if (!m_acch.ChkGroundHit() || m_procID == PROC_TOOL_DEMO_e) {
         sp24 = 4;
     } else {
         f32 var_f30 = 1000.0f + current.pos.y;
@@ -3632,7 +3632,7 @@ int daHorse_c::procMove() {
         speedF = daHorse_hio_c0::m.fastwalk_to_run_rate * m_normalMaxSpeedF;
     }
 
-    if (checkStateFlg0(daHorse_FLG0(FLG0_UNK_200000 | FLG0_UNK_100000)) && !m_acch.i_ChkGroundHit()) {
+    if (checkStateFlg0(daHorse_FLG0(FLG0_UNK_200000 | FLG0_UNK_100000)) && !m_acch.ChkGroundHit()) {
         field_0x1768 = 350.0f;
         field_0x176c = 0.0f;
         field_0x1770 = field_0x1768;
@@ -4068,7 +4068,7 @@ int daHorse_c::procJump() {
         field_0x1722--;
     }
 
-    if ((field_0x171c != 0) && ((speed.y < 0.0f && field_0x17d0.abs2XZ(current.pos) > field_0x1778) || field_0x1722 == 0) && m_acch.i_ChkGroundHit()) {
+    if ((field_0x171c != 0) && ((speed.y < 0.0f && field_0x17d0.abs2XZ(current.pos) > field_0x1778) || field_0x1722 == 0) && m_acch.ChkGroundHit()) {
         return procLandInit(field_0x1774, field_0x1720);
     }
 
@@ -4289,7 +4289,7 @@ int daHorse_c::execute() {
         onStateFlg0(FLG0_UNK_200000);
     }
 
-    if (m_acch.i_ChkGroundHit()) {
+    if (m_acch.ChkGroundHit()) {
         onStateFlg0(FLG0_UNK_10);
     } else {
         offStateFlg0(FLG0_UNK_10);
@@ -4390,7 +4390,7 @@ int daHorse_c::execute() {
         speed.y = old_speed_y;
     }
 
-    if (checkStateFlg0(FLG0_UNK_1) && m_acch.i_ChkGroundHit() && checkStateFlg0(FLG0_UNK_2)) {
+    if (checkStateFlg0(FLG0_UNK_1) && m_acch.ChkGroundHit() && checkStateFlg0(FLG0_UNK_2)) {
         if (!checkStateFlg0(FLG0_UNK_1000)) {
             dComIfGp_getVibration().StartQuake(VIBMODE_S_DOKUTT, 1, cXyz(0.0f, 1.0f, 0.0f));
             onStateFlg0(FLG0_UNK_1000);

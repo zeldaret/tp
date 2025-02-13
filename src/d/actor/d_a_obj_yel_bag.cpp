@@ -141,7 +141,7 @@ int daObj_YBag_c::Execute() {
     gravity = daObj_YBag_Param_c::m[1];
     if (local_8c != 0) {
         mAcch.ClrWallHit();
-        mAcch.i_ClrGroundHit();
+        mAcch.ClrGroundHit();
         mAcch.SetWallNone();
         mAcch.SetGrndNone();
         speed.setall(0.0f);
@@ -191,7 +191,7 @@ int daObj_YBag_c::Execute() {
                     current.pos.y + daObj_YBag_Param_c::m[10])
                 {
                     field_0x9dc.y = 0x100;
-                    mAcch.i_ClrGroundHit();
+                    mAcch.ClrGroundHit();
                     field_0xa31 = 1;
                 }
             }

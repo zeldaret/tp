@@ -244,7 +244,7 @@ void daItem_c::CreateInit() {
     speed = old_speed;
 
     mAcch.ClrGroundLanding();
-    mAcch.i_ClrGroundHit();
+    mAcch.ClrGroundHit();
     mAcch.ClrWaterHit();
     mAcch.ClrWaterIn();
     mAcch.ClrWallHit();
@@ -726,7 +726,7 @@ void daItem_c::move_proc_call() {
     }
 
     bool update_pos = true;
-    if (mAcch.i_ChkGroundHit() && !mAcch.ChkGroundLanding() && !mAcch.ChkWallHit() &&
+    if (mAcch.ChkGroundHit() && !mAcch.ChkGroundLanding() && !mAcch.ChkWallHit() &&
         !dComIfG_Bgsp().ChkMoveBG_NoDABg(mAcch.m_gnd) && !mCcCyl.ChkCoHit() &&
         mLastPos == current.pos)
     {
@@ -1040,7 +1040,7 @@ int daItem_c::itemActionForHeart() {
 
     mAcch.CrrPos(dComIfG_Bgsp());
 
-    if (mAcch.ChkGroundLanding() || mAcch.i_ChkGroundHit()) {
+    if (mAcch.ChkGroundLanding() || mAcch.ChkGroundHit()) {
         clrFlag(FLAG_UNK_2_e);
         shape_angle.z = 0;
         fopAcM_SetSpeed(this, 0.0f, -1.0f, 0.0f);
@@ -1059,7 +1059,7 @@ int daItem_c::itemActionForArrow() {
     mAcch.CrrPos(dComIfG_Bgsp());
     bg_check();
 
-    if (mAcch.i_ChkGroundHit() && !mAcch.ChkGroundLanding()) {
+    if (mAcch.ChkGroundHit() && !mAcch.ChkGroundLanding()) {
         fopAcM_SetSpeedF(this, 0.0f);
         RotateYBase();
     }

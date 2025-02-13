@@ -78,6 +78,14 @@ public:
         setPosition(i_tboxNo, 4, i_pos, -1);
     }
 
+    static void setIconPositionOfCarryLight(int i_tboxNo, const Vec* i_pos, int param_2) {
+        setPosition(i_tboxNo, 12, i_pos, param_2);
+    }
+
+    static void setCarryIron(int i_tboxNo, const Vec* i_pos) {
+        setPosition(i_tboxNo, 11, i_pos, -1);
+    }
+
     static u8 const typeToTypeGroup[17][2];
     static type_group_list mTypeGroupListAll[17];
     static typeGroupData_c* mTypeGroupData;

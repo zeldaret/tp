@@ -7,6 +7,7 @@
 #include "d/d_save_init.h"
 #include "JSystem/JUtility/JUTGamePad.h"
 #include "stdio.h"
+#include "d/d_com_inf_game.h"
 #include "d/d_meter2_info.h"
 #include "d/actor/d_a_obj_carry.h"
 
