@@ -1286,7 +1286,7 @@ BOOL daAlink_c::checkDeadHP() {
 BOOL daAlink_c::checkDeadAction(int param_0) {
     if (!checkEventRun()) {
         if (checkDeadHP() && mProcID != PROC_HORSE_RIDE && mProcID != PROC_HORSE_GETOFF && mProcID != PROC_LARGE_DAMAGE && mProcID != PROC_LARGE_DAMAGE_WALL && (param_0 || (mProcID != PROC_LARGE_DAMAGE_UP && mProcID != PROC_WOLF_LARGE_DAMAGE_UP))) {
-            if (mLinkAcch.i_ChkGroundHit() || checkModeFlg(0x40000) || checkBoarRide() || (checkHorseRide() && !dComIfGp_getHorseActor()->checkJump())) { 
+            if (mLinkAcch.ChkGroundHit() || checkModeFlg(0x40000) || checkBoarRide() || (checkHorseRide() && !dComIfGp_getHorseActor()->checkJump())) { 
                 return procCoDeadInit(1);
             }
 

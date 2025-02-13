@@ -1195,7 +1195,7 @@ static void do_hang(do_class* i_this) {
 
         if (i_this->mTimer[0] == 0) {
             i_this->mBgS_Acch.CrrPos(dComIfG_Bgsp());
-            if (i_this->mBgS_Acch.i_ChkGroundHit()) {
+            if (i_this->mBgS_Acch.ChkGroundHit()) {
                 i_this->current.angle.x = 0;
                 anm_init(i_this, ANM_DOWN, 2.0f, 0, 2.0f);
                 i_this->mMode = 6;
@@ -1723,7 +1723,7 @@ static s8 do_boat(do_class* i_this) {
         break;
 
     case 7:
-        if (i_this->mBgS_Acch.i_ChkGroundHit()) {
+        if (i_this->mBgS_Acch.ChkGroundHit()) {
             i_this->mAction = ACT_HELP;
             i_this->mMode = 0;
             _this->speedF = 0.0f;

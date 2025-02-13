@@ -272,7 +272,7 @@ static void sq_fly(sq_class* i_this) {
     }
 
     cLib_addCalc2(&i_this->speedF, l_HIO.mFallSpeedXZ, 1.0f, 10.0f);
-    if (i_this->mAcch.i_ChkGroundHit()) {
+    if (i_this->mAcch.ChkGroundHit()) {
         i_this->mAction = sq_class::ACT_NORMAL;
         i_this->mMode = -1;
     }

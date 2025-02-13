@@ -98,7 +98,7 @@ int daObj_SSItem_c::Execute() {
         setParam();
         if (field_0xAFC != 0) {
             mAcch.ClrWallHit();
-            mAcch.i_ClrGroundHit();
+            mAcch.ClrGroundHit();
             speedF = 0.0f;
             speed.set(0.0f, 0.0f, 0.0f);
         } else {

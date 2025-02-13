@@ -1615,7 +1615,7 @@ int daAlink_c::procRollJumpInit() {
     shape_angle.y = field_0x30ee;
     current.angle.y = shape_angle.y;
 
-    mLinkAcch.i_ClrGroundHit();
+    mLinkAcch.ClrGroundHit();
     field_0x347c = 0.0f;
     shape_angle.x = 1;
 
@@ -2139,7 +2139,7 @@ int daAlink_c::procCoMetamorphose() {
     }
 
     daPy_frameCtrl_c* temp_r29 = mUnderFrameCtrl;
-    if (!mLinkAcch.i_ChkGroundHit()) {
+    if (!mLinkAcch.ChkGroundHit()) {
         current.pos.y = field_0x3484;
         speed.y = 0.0f;
     } else {
@@ -4338,7 +4338,7 @@ bool daAlink_c::acceptSubjectModeChange() {
            !checkEventRun() &&
            !checkModeFlg(0x310040) &&
            (checkNoUpperAnime() || checkHorseTiredAnime() || checkGrabAnime() || checkWolfGrabAnime()) &&
-           !(checkWolf() && checkWolfWaitSlipPolygon() && mLinkAcch.i_ChkGroundHit());
+           !(checkWolf() && checkWolfWaitSlipPolygon() && mLinkAcch.ChkGroundHit());
 }
 
 /* 800CE628-800CE728 0C8F68 0100+00 5/5 0/0 0/0 .text            checkSubjectAction__9daAlink_cFv */

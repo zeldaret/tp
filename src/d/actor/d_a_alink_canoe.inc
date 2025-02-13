@@ -545,7 +545,7 @@ int daAlink_c::procCanoeGetOff() {
     }
 
     if (checkModeFlg(2)) {
-        if (mLinkAcch.i_ChkGroundHit()) {
+        if (mLinkAcch.ChkGroundHit()) {
             checkLandAction(0);
         } else if (speed.y < -gravity) {
             procFallInit(2, daAlinkHIO_smallJump_c0::m.mFallInterpolation);

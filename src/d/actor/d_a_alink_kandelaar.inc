@@ -393,7 +393,7 @@ int daAlink_c::procKandelaarSwingInit() {
     mNormalSpeed = 0.0f;
     current.angle.y = shape_angle.y;
 
-    if ((mLinkAcch.i_ChkGroundHit() && getMoveBGActorName(mLinkAcch.m_gnd, FALSE) == PROC_OBJ_WEB1) ||
+    if ((mLinkAcch.ChkGroundHit() && getMoveBGActorName(mLinkAcch.m_gnd, FALSE) == PROC_OBJ_WEB1) ||
         (checkStageName("F_SP108") &&
          fopAcIt_Judge((fopAcIt_JudgeFunc)daAlink_searchTagKtOnFire, NULL) != NULL))
     {

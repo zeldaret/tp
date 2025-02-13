@@ -466,7 +466,7 @@ static BOOL overhead_bg_chk() {
     cXyz chkPos = camera->lookat.eye;
     chkPos.y += 50.0f;
 
-    roofchk.i_SetPos(chkPos);
+    roofchk.SetPos(chkPos);
     if (dComIfG_Bgsp().RoofChk(&roofchk) != 1.0e9f) {
         chk = true;
         // Outside East Castle Town
@@ -504,7 +504,7 @@ static BOOL forward_overhead_bg_chk(cXyz* ppos, f32 dist) {
     chk_pos.y = 50.0f + camera->lookat.eye.y;
     *ppos = chk_pos;
 
-    roofchk.i_SetPos(chk_pos);
+    roofchk.SetPos(chk_pos);
     if (1000000000.0f != dComIfG_Bgsp().RoofChk(&roofchk)) {
         chk = TRUE;
         if (strcmp(dComIfGp_getStartStageName(), "F_SP122") == 0) {

@@ -1092,7 +1092,7 @@ void daAlink_c::setBlendWolfAtnMoveAnime(f32 param_0) {
         field_0x2fc1 = 0;
 
         s16 var_r28;
-        if (field_0x3174 == 8 || !mLinkAcch.i_ChkGroundHit()) {
+        if (field_0x3174 == 8 || !mLinkAcch.ChkGroundHit()) {
             var_r28 = 0;
         } else {
             var_r28 = getGroundAngle(&mLinkAcch.m_gnd, current.angle.y);
@@ -1754,7 +1754,7 @@ void daAlink_c::wolfBgCheck() {
         int i = 0;
         for (; i < 2; i++) {
             sp38.set(current.pos.x, current.pos.y + mAcchCir[2].GetWallH(), current.pos.z);
-            if (mLinkAcch.i_ChkGroundHit()) {
+            if (mLinkAcch.ChkGroundHit()) {
                 sp38.y -= speed.y;
             }
 
@@ -1938,8 +1938,8 @@ void daAlink_c::wolfFootBgCheck() {
         mDoMtx_multVec(mpLinkModel->getAnmMtx(0x1F), &localFootOffset, &spE0);
         mDoMtx_multVec(mpLinkModel->getAnmMtx(0x24), &localFootOffset, &spEC);
 
-        BOOL sp28 = !mLinkAcch.i_ChkGroundHit() || checkModeFlg(0x78C52);
-        BOOL sp24 = sp28 || (mLinkAcch.i_ChkGroundHit() && mSinkShapeOffset < 0.0f);
+        BOOL sp28 = !mLinkAcch.ChkGroundHit() || checkModeFlg(0x78C52);
+        BOOL sp24 = sp28 || (mLinkAcch.ChkGroundHit() && mSinkShapeOffset < 0.0f);
 
         f32* sp20 = &spA0[0][0];
         cXyz* var_r26 = &spC8;
@@ -5061,7 +5061,7 @@ int daAlink_c::getWolfTagJumpTime() const {
 
 /* 80133EF0-80134000 12E830 0110+00 3/3 1/1 1/1 .text checkMidnaLockJumpPoint__9daAlink_cCFv */
 const cXyz* daAlink_c::checkMidnaLockJumpPoint() const {
-    if ((!mLinkAcch.i_ChkGroundHit() && mProcID != PROC_WOLF_TAG_JUMP) || checkMidnaUseAbility() ||
+    if ((!mLinkAcch.ChkGroundHit() && mProcID != PROC_WOLF_TAG_JUMP) || checkMidnaUseAbility() ||
         getMidnaActor()->eventInfo.checkCommandTalk())
     {
         return NULL;
@@ -9285,7 +9285,7 @@ int daAlink_c::procWolfDig() {
     onEndResetFlg1(ERFLG1_WOLF_EYE_KEEP);
 
     cXyz sp14(field_0x37c8);
-    dComIfG_Bgsp().MoveBgCrrPos(mLinkAcch.m_gnd, mLinkAcch.i_ChkGroundHit(), &field_0x37c8, NULL, NULL, false, false);
+    dComIfG_Bgsp().MoveBgCrrPos(mLinkAcch.m_gnd, mLinkAcch.ChkGroundHit(), &field_0x37c8, NULL, NULL, false, false);
     field_0x37d4 += field_0x37c8 - sp14;
 
     if (mProcVar3.mDigChangeArea) {

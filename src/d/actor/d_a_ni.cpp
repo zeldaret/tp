@@ -752,7 +752,7 @@ static void ni_away(ni_class* i_this) {
             if (a_this->mDistToPlayer > l_HIO.mRecognizeRange + 50.0f) {
                 a_this->mAction = ACTION_NORMAL_e;
                 a_this->mMode = 0;
-            } else if (a_this->mAcch.i_ChkGroundHit() &&
+            } else if (a_this->mAcch.ChkGroundHit() &&
                        (target != NULL || a_this->mDistToPlayer < l_HIO.mRecognizeRange - 100.0f))
             {
                 anm_init(a_this, BCK_FLY, 1.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
@@ -780,7 +780,7 @@ static void ni_away(ni_class* i_this) {
         if (i_this->speed.y <= 0.0f) {
             i_this->gravity = l_HIO.mFleeJumpGravity;
 
-            if (a_this->mAcch.i_ChkGroundHit() || a_this->field_0x848 != 0) {
+            if (a_this->mAcch.ChkGroundHit() || a_this->field_0x848 != 0) {
                 a_this->mMode = 0;
             }
         }
@@ -951,7 +951,7 @@ static void ni_fly(ni_class* i_this) {
     if (i_this->checkGold() && i_this->mTimers[0] == 0) {
         i_this->mAction = ACTION_RETURN_e;
         i_this->mMode = 0;
-    } else if (i_this->mAcch.i_ChkGroundHit() || i_this->mAcch.ChkWallHit() ||
+    } else if (i_this->mAcch.ChkGroundHit() || i_this->mAcch.ChkWallHit() ||
                i_this->field_0x848 != 0)
     {
         i_this->mAction = ACTION_DAMAGE_e;
@@ -974,7 +974,7 @@ static void ni_drop(ni_class* i_this) {
     }
 
     i_this->gravity = l_HIO.mFleeJumpGravity;
-    if (i_this->mAcch.i_ChkGroundHit() || i_this->field_0x848 != 0) {
+    if (i_this->mAcch.ChkGroundHit() || i_this->field_0x848 != 0) {
         i_this->mAction = ACTION_NORMAL_e;
         i_this->mMode = 0;
     }
@@ -1337,7 +1337,7 @@ static int ni_play(ni_class* i_this) {
             i_this->gravity = -2.0f;
         }
 
-        if (i_this->mAcch.i_ChkGroundHit() || i_this->field_0x848) {
+        if (i_this->mAcch.ChkGroundHit() || i_this->field_0x848) {
             i_this->mMode = 0;
             i_this->field_0xaf0 = 0.0f;
         }
@@ -1916,7 +1916,7 @@ static void action(ni_class* i_this) {
         }
 
         i_this->mAcch.CrrPos(dComIfG_Bgsp());
-        if (i_this->mAcch.i_ChkGroundHit()) {
+        if (i_this->mAcch.ChkGroundHit()) {
             a_this->home.pos.y = a_this->current.pos.y;
         }
     }

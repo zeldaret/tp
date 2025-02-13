@@ -1693,7 +1693,7 @@ int daObjCarry_c::execute() {
         dTres_c::setIconPositionOfCarryLight(getTrboxBit(), &current.pos, fopAcM_GetRoomNo(this));
         fopAcM_seStartLevel(this, Z2SE_OBJ_L8_L_BALL, 0);
 
-        if (mAcch.i_ChkGroundHit() && !mAcch.ChkGroundLanding()) {
+        if (mAcch.ChkGroundHit() && !mAcch.ChkGroundLanding()) {
             cLib_chaseF(&field_0xe20, 1.0f, 0.05f + KREG_F(1));
         } else {
             cLib_chaseF(&field_0xe20, 2.0f, 0.05f + KREG_F(1));
@@ -2132,7 +2132,7 @@ void daObjCarry_c::crr_pos() {
         mAcch.ClrRoofHit();
         mAcch.ClrWallHit();
         mAcch.ClrGroundLanding();
-        mAcch.i_ClrGroundHit();
+        mAcch.ClrGroundHit();
         mAcch.ClrWaterHit();
         mAcch.ClrWaterIn();
         return;
@@ -2166,7 +2166,7 @@ void daObjCarry_c::crr_pos() {
     }
 
     if (mType == TYPE_IRON_BALL) {
-        if (mAcch.i_ChkGroundHit()) {
+        if (mAcch.ChkGroundHit()) {
             switch (dComIfG_Bgsp().GetPolyAtt0(mAcch.m_gnd)) {
             case 13:
                 field_0xddc = -20.0f;
@@ -2419,7 +2419,7 @@ void daObjCarry_c::mode_init_walk(u8 unused) {
 
 /* 804737CC-80473ED8 00484C 070C+00 1/0 0/0 0/0 .text            mode_proc_walk__12daObjCarry_cFv */
 int daObjCarry_c::mode_proc_walk() {
-    bool gnd_hit = mAcch.i_ChkGroundHit() != 0;
+    bool gnd_hit = mAcch.ChkGroundHit() != 0;
     bool gnd_landing = mAcch.ChkGroundLanding() != 0;
     bool gnd_away = mAcch.ChkGroundAway() != 0;
 
@@ -2851,7 +2851,7 @@ int daObjCarry_c::mode_proc_sink() {
     cLib_addCalc(&speedF, speed_target, 0.05f, 0.1f, 0.01f);
     speed.y = cLib_minMaxLimit<f32>(speed.y, -15.0f - KREG_F(3), 13.0f + KREG_F(4));
 
-    if (mAcch.i_ChkGroundHit()) {
+    if (mAcch.ChkGroundHit()) {
         speedF *= 0.9f;
     }
 
@@ -2863,7 +2863,7 @@ int daObjCarry_c::mode_proc_sink() {
 
     fopAcM_posMoveF(this, mStts.GetCCMoveP());
 
-    if (mAcch.i_ChkGroundHit()) {
+    if (mAcch.ChkGroundHit()) {
         cLib_onBit<u32>(attention_info.flags, 0x10);
     } else {
         cLib_offBit<u32>(attention_info.flags, 0x10);
@@ -3175,7 +3175,7 @@ BOOL daObjCarry_c::chkSinkObj() {
 // NONMATCHING - regalloc, equivalent?
 void daObjCarry_c::bg_check() {
     bool roof_hit = mAcch.ChkRoofHit();
-    bool wall_hit = mAcch.ChkWallHit() != 0;
+    bool wall_hit = mAcch.ChkWallHit();
     bool gnd_landing = mAcch.ChkGroundLanding();
     bool gnd_hit = mAcch.ChkGroundHit();
     bool water_hit = mAcch.ChkWaterHit();
@@ -3583,7 +3583,7 @@ bool daObjCarry_c::cc_damage_proc_kibako() {
         dCcD_GObjInf* tg_hit_gobj = mCyl.GetTgHitGObj();
         if (tg_hit_gobj != NULL) {
             if (!tg_hit_gobj->ChkAtType(AT_TYPE_LANTERN_SWING) && tg_hit_gobj->GetAtMtrl() == dCcD_MTRL_FIRE) {
-                if (mAcch.i_ChkGroundHit()) {
+                if (mAcch.ChkGroundHit()) {
                     u32 params;
                     daObjBurnBox_c::make_prm_burnBox(&params, 0);
                     fopAcM_createChild(PROC_Obj_BurnBox, fopAcM_GetID(this), params, &current.pos, fopAcM_GetRoomNo(this), &shape_angle, &scale, -1, NULL);
@@ -3622,7 +3622,7 @@ bool daObjCarry_c::cc_damage_proc_ironball() {
     bool var_r26 = false;
     bool var_r27 = true;
 
-    if (mAcch.i_ChkGroundHit() && dComIfG_Bgsp().ChkPolySafe(mAcch.m_gnd) && dComIfG_Bgsp().ChkMoveBG_NoDABg(mAcch.m_gnd) && dComIfG_Bgsp().GetActorPointer(mAcch.m_gnd)) {
+    if (mAcch.ChkGroundHit() && dComIfG_Bgsp().ChkPolySafe(mAcch.m_gnd) && dComIfG_Bgsp().ChkMoveBG_NoDABg(mAcch.m_gnd) && dComIfG_Bgsp().GetActorPointer(mAcch.m_gnd)) {
         s16 name = fopAcM_GetName(dComIfG_Bgsp().GetActorPointer(mAcch.m_gnd));
         if (name == PROC_Obj_YIblltray) {
             var_r27 = false;
@@ -3659,7 +3659,7 @@ bool daObjCarry_c::cc_damage_proc_taru() {
         dCcD_GObjInf* tg_hit_gobj = mCyl.GetTgHitGObj();
         if (tg_hit_gobj != NULL) {
             if (!tg_hit_gobj->ChkAtType(AT_TYPE_LANTERN_SWING) && tg_hit_gobj->GetAtMtrl() == dCcD_MTRL_FIRE) {
-                if (mAcch.i_ChkGroundHit()) {
+                if (mAcch.ChkGroundHit()) {
                     u32 params;
                     daObjBurnBox_c::make_prm_burnBox(&params, 2);
                     fopAcM_createChild(PROC_Obj_BurnBox, fopAcM_GetID(this), params, &current.pos, fopAcM_GetRoomNo(this), &shape_angle, &scale, -1, NULL);

@@ -2626,7 +2626,7 @@ void daE_VA_c::executeOpaciDamage() {
         }
         break;
     case 2:
-        if (mAcch.i_ChkGroundHit() || speed.y <= nREG_F(4) + -30.0f) {
+        if (mAcch.ChkGroundHit() || speed.y <= nREG_F(4) + -30.0f) {
             setActionMode(ACTION_OPACI_CHASE_e, 0);
         }
         break;
@@ -2697,7 +2697,7 @@ void daE_VA_c::executeOpaciChase() {
                 field_0x1324 = 0;
             }
 
-            if (mAcch.i_ChkGroundHit()) {
+            if (mAcch.ChkGroundHit()) {
                 field_0x1324 = 2;
                 gravity = -5.0f;
             }
@@ -3237,7 +3237,7 @@ void daE_VA_c::calcMagicMove() {
             mDoMtx_stack_c::multVecZero(&mMagicPos[i]);
             mMagicOldPos[i] = mMagicPos[i];
 
-            mMagicAcch[i].i_ClrGroundHit();
+            mMagicAcch[i].ClrGroundHit();
             mMagicAcch[i].ClrWallHit();
             mMagicSphs[i].ClrAtHit();
 
@@ -3258,7 +3258,7 @@ void daE_VA_c::calcMagicMove() {
             mMagicSphs[i].SetR(50.0f);
             dComIfG_Ccsp()->Set(&mMagicSphs[i]);
 
-            if (mMagicAcch[i].i_ChkGroundHit() || mMagicAcch[i].ChkWallHit() ||
+            if (mMagicAcch[i].ChkGroundHit() || mMagicAcch[i].ChkWallHit() ||
                 mMagicSphs[i].ChkAtHit())
             {
                 Z2GetAudioMgr()->seStart(Z2SE_EN_VA_FIRE_BURST, &mMagicPos[i], 0, 0, 1.0f, 1.0f,

@@ -179,7 +179,7 @@ void daObjDAN_c::DamageAction() {
         break;
 
     case 1:
-        if (mAcch.i_ChkGroundHit()) {
+        if (mAcch.ChkGroundHit()) {
             speed.y *= -0.5f;
             mAcch.ClrGroundLanding();
             mBounceCount++;

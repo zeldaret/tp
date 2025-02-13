@@ -2547,7 +2547,7 @@ void daB_ZANT_c::executeSimaJump() {
         cLib_addCalcAngleS(&shape_angle.y, fopAcM_searchPlayerAngleY(this), 8, 0x800, 0x80);
 
         if (fopAcM_searchPlayerDistance(this) < 550.0f) {
-            if (mAcch.i_ChkGroundHit()) {
+            if (mAcch.ChkGroundHit()) {
                 mMode = 11;
                 return;
             }
@@ -2559,7 +2559,7 @@ void daB_ZANT_c::executeSimaJump() {
         }
 
         if (mMode == 1) {
-            if (mAcch.i_ChkGroundHit() && field_0x6ec == 0) {
+            if (mAcch.ChkGroundHit() && field_0x6ec == 0) {
                 setBck(ANM_JUMP_A, J3DFrameCtrl::LOOP_ONCE_e, 3.0f, 1.0f);
                 mMode = 2;
             }
@@ -2582,7 +2582,7 @@ void daB_ZANT_c::executeSimaJump() {
                 mpModelMorf->setPlaySpeed(0.0f);
             }
 
-            if (mAcch.i_ChkGroundHit()) {
+            if (mAcch.ChkGroundHit()) {
                 mSound.startCreatureSound(Z2SE_EN_ZAN_MG_LAND, 0, -1);
                 mpModelMorf->setPlaySpeed(1.0f);
                 mpModelMorf->setFrame(8.0f);
@@ -2594,7 +2594,7 @@ void daB_ZANT_c::executeSimaJump() {
             field_0x6ec = 5;
         }
 
-        if (mAcch.i_ChkGroundHit() && mModeTimer == 0) {
+        if (mAcch.ChkGroundHit() && mModeTimer == 0) {
             mMode = 11;
         }
         break;
@@ -2765,7 +2765,7 @@ void daB_ZANT_c::executeIceJump() {
                 mFoot2Cc[4].SetAtAtp(4);
             }
         } else {
-            if (mAcch.i_ChkGroundHit()) {
+            if (mAcch.ChkGroundHit()) {
                 field_0x70e = 1;
                 mSound.startCreatureSound(Z2SE_EN_ZAN_YO_LAND_HUGE, 0, -1);
                 dComIfGp_getVibration().StartShock(8, 31, cXyz(0.0f, 1.0f, 0.0f));
@@ -3140,7 +3140,7 @@ void daB_ZANT_c::executeIceDamage() {
         }
         break;
     case 4:
-        if (mAcch.i_ChkGroundHit()) {
+        if (mAcch.ChkGroundHit()) {
             s16 sp8 = fopAcM_searchPlayerAngleY(this) + (4096.0f * cM_rndFX(4.9f)) + 32768.0f;
 
             if (current.pos.absXZ() > 1200.0f) {
@@ -3457,7 +3457,7 @@ void daB_ZANT_c::executeMonkey() {
     case 6:
         cLib_addCalcAngleS2(&shape_angle.y, cLib_targetAngleY(&current.pos, &field_0x6ac), 8, 0x800);
 
-        if (mModeTimer == 0 && mAcch.i_ChkGroundHit()) {
+        if (mModeTimer == 0 && mAcch.ChkGroundHit()) {
             setBck(ANM_LV1_JUMP_A, J3DFrameCtrl::LOOP_ONCE_e, 3.0f, 1.0f);
             mMode = 8;
         }
@@ -3488,7 +3488,7 @@ void daB_ZANT_c::executeMonkey() {
             setBck(ANM_LB1_JUMP_B, J3DFrameCtrl::LOOP_ONCE_e, 3.0f, 1.0f);
         }
 
-        if (mAcch.i_ChkGroundHit()) {
+        if (mAcch.ChkGroundHit()) {
             current.pos = field_0x6ac;
             field_0x707 = 1;
             field_0x70a = field_0x709;
@@ -3571,7 +3571,7 @@ void daB_ZANT_c::executeMonkeyFall() {
         }
         break;
     case 12:
-        if (mAcch.i_ChkGroundHit()) {
+        if (mAcch.ChkGroundHit()) {
             mSound.startCreatureSound(Z2SE_EN_ZAN_MK_UMARU, 0, -1);
             setMonkeyFallEffect();
             dComIfGp_getVibration().StartShock(3, 31, cXyz(0.0f, 1.0f, 0.0f));
@@ -3858,7 +3858,7 @@ void daB_ZANT_c::executeLastStartDemo() {
         sp1C.set(0.0f, 90.0f, -900.0f);
         cLib_addCalcPos(&mDemoCamCenter, sp1C, 0.2f, 5.0f, 1.0f);
 
-        if (mAcch.i_ChkGroundHit()) {
+        if (mAcch.ChkGroundHit()) {
             speed.y = 0.0f;
             speedF = 0.0f;
             dComIfGp_getVibration().StartShock(4, 31, cXyz(0.0f, 1.0f, 0.0f));
@@ -4148,7 +4148,7 @@ void daB_ZANT_c::executeLastAttack() {
         }
 
         if (field_0x70b != 0) {
-            if (mAcch.i_ChkGroundHit()) {
+            if (mAcch.ChkGroundHit()) {
                 field_0x70b--;
 
                 if (field_0x70b != 0) {

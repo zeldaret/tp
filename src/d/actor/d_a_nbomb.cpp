@@ -937,7 +937,7 @@ BOOL daNbomb_c::procWait() {
 
     f32 prev_speedf = speedF;
 
-    if (mAcch.i_ChkGroundHit() && !mAcch.ChkGroundLanding()) {
+    if (mAcch.ChkGroundHit() && !mAcch.ChkGroundLanding()) {
         s16 var_r28 = fopAcM_getPolygonAngle(mAcch.m_gnd, current.angle.y);
 
         speed.y -= speedF * fabsf(cM_ssin(var_r28));
@@ -1009,12 +1009,12 @@ BOOL daNbomb_c::procWait() {
     setRoomInfo();
 
     if (checkStateFlg0(FLG0_INSECT_BOMB) &&
-        (mAcch.i_ChkGroundHit() || mAcch.ChkWallHit() || mAcch.ChkRoofHit()))
+        (mAcch.ChkGroundHit() || mAcch.ChkWallHit() || mAcch.ChkRoofHit()))
     {
         return procExplodeInit();
     }
 
-    if (mAcch.i_ChkGroundHit()) {
+    if (mAcch.ChkGroundHit()) {
         cM3dGPla plane;
         dComIfG_Bgsp().GetTriPla(mAcch.m_gnd, &plane);
 
@@ -1047,7 +1047,7 @@ BOOL daNbomb_c::procWait() {
             speedF *= player->getBombBoundRate();
             current.angle.y = (var_r27 * 2) - (current.angle.y + 0x8000);
             mAcch.ClrGroundLanding();
-            mAcch.i_ClrGroundHit();
+            mAcch.ClrGroundHit();
             speed.y = prev_speedY;
         }
     }
@@ -1083,7 +1083,7 @@ BOOL daNbomb_c::procWait() {
         }
 
         fopAcM_seStartCurrent(this, Z2SE_OBJ_BOMB_BOUND, 0);
-    } else if (mAcch.i_ChkGroundHit()) {
+    } else if (mAcch.ChkGroundHit()) {
         cM3dGPla plane;
         dComIfG_Bgsp().GetTriPla(mAcch.m_gnd, &plane);
 
@@ -1275,7 +1275,7 @@ BOOL daNbomb_c::procInsectMove() {
         speed.y = field_0xbfc.y;
         speedF = field_0xbfc.absXZ();
         current.angle.y = field_0xbfc.atan2sX_Z();
-        mAcch.i_ClrGroundHit();
+        mAcch.ClrGroundHit();
         mAcch.ClrWallHit();
         mAcch.ClrRoofHit();
         mAcch.ClrRoofNone();
@@ -1450,7 +1450,7 @@ int daNbomb_c::execute() {
     }
 
     if ((mAcch.ChkWallHit() && daAlink_c::checkIcePolygonDamage(&mAcchCir)) ||
-        (mAcch.i_ChkGroundHit() && daAlink_c::checkIcePolygonDamage(&mAcch.m_gnd)) ||
+        (mAcch.ChkGroundHit() && daAlink_c::checkIcePolygonDamage(&mAcch.m_gnd)) ||
         (mAcch.ChkRoofHit() && daAlink_c::checkIcePolygonDamage(&mAcch.m_roof)))
     {
         setFreeze();
@@ -1547,7 +1547,7 @@ int daNbomb_c::execute() {
                 var_f27 = speedF;
                 temp_r3 = current.angle.y;
 
-                if (mAcch.i_ChkGroundHit()) {
+                if (mAcch.ChkGroundHit()) {
                     var_r27 = 0;
                 }
             }

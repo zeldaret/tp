@@ -2351,7 +2351,7 @@ int daAlink_c::procGoatCatch() {
         return procWaitInit();
     }
 
-    if (!mLinkAcch.i_ChkGroundHit() && mProcVar5.field_0x3012 == 0 && (!checkMagneBootsOn() || !checkNoResetFlg0(FLG0_UNK_2000))) {
+    if (!mLinkAcch.ChkGroundHit() && mProcVar5.field_0x3012 == 0 && (!checkMagneBootsOn() || !checkNoResetFlg0(FLG0_UNK_2000))) {
         setGoatStopGameFail(temp_r3);
         return 1;
     }
@@ -2415,7 +2415,7 @@ int daAlink_c::procGoatCatch() {
         return 1;
     }
 
-    if (!doButton() || (!mLinkAcch.i_ChkGroundHit() && (!checkMagneBootsOn() || !checkNoResetFlg0(FLG0_UNK_2000))) || field_0x3198 > 0 && mNormalSpeed >= 30.0f) {
+    if (!doButton() || (!mLinkAcch.ChkGroundHit() && (!checkMagneBootsOn() || !checkNoResetFlg0(FLG0_UNK_2000))) || field_0x3198 > 0 && mNormalSpeed >= 30.0f) {
 
         if (checkMagneBootsOn()) {
             cancelMagneBootsOn();

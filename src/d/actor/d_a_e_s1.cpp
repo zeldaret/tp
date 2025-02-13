@@ -553,7 +553,7 @@ static void e_s1_roof(e_s1_class* i_this) {
         if (i_this->mTimers[0] == 0) {
             i_this->mDrawShadow = true;
 
-            if (i_this->mAcch.i_ChkGroundHit()) {
+            if (i_this->mAcch.ChkGroundHit()) {
                 anm_init(i_this, ANM_DOWN, 1.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
                 i_this->mMode = 4;
                 i_this->mSound.startCreatureSound(Z2SE_EN_NS_DOSA, 0, -1);
@@ -1211,7 +1211,7 @@ static void e_s1_warpappear(e_s1_class* i_this) {
             break;
         }
 
-        if (!i_this->mAcch.i_ChkGroundHit()) {
+        if (!i_this->mAcch.ChkGroundHit()) {
             break;
         }
 

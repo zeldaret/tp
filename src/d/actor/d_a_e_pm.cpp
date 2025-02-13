@@ -914,7 +914,7 @@ void daE_PM_c::DemoAfterEscape() {
                                              &current.angle, &scale, 0xff, NULL,
                                              -1, NULL, NULL, NULL);
         mCamCenterTarget.y = current.pos.y + 50.0f;
-        if (mAcch.i_ChkGroundHit()) {
+        if (mAcch.ChkGroundHit()) {
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_L, 0, -1);
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_R, 0, -1);
             SetAnm(ANM_APPEAR02, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
@@ -1286,7 +1286,7 @@ void daE_PM_c::DemoBossStart2() {
         }
         mCamCenterTarget.y = current.pos.y + 100.0f;
 
-        if (mAcch.i_ChkGroundHit() && mAnm == ANM_APPEAR01) {
+        if (mAcch.ChkGroundHit() && mAnm == ANM_APPEAR01) {
             SetAnm(ANM_APPEAR02, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_L, 0, -1);
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_R, 0, -1);
@@ -1503,7 +1503,7 @@ void daE_PM_c::DemoBossStart() {
             mDemoMode++;
         }
 
-        if (mAcch.i_ChkGroundHit() && mAnm == ANM_APPEAR01) {
+        if (mAcch.ChkGroundHit() && mAnm == ANM_APPEAR01) {
             SetAnm(ANM_APPEAR02, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_L, 0, -1);
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_R, 0, -1);
@@ -1613,7 +1613,7 @@ void daE_PM_c::BossEscapeAction() {
         cLib_addCalcAngleS2(&current.angle.y, mTargetAngleY, 0x10, 0x1000);
         shape_angle.y = current.angle.y;
 
-        if (mAcch.i_ChkGroundHit()) {
+        if (mAcch.ChkGroundHit()) {
             SetAnm(ANM_APPEAR02, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
             mMode++;
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_L, 0, -1);
@@ -1754,7 +1754,7 @@ void daE_PM_c::BossDamageAction() {
         cLib_addCalcAngleS2(&current.angle.y, mTargetAngleY, 0x10, 0x1000);
         shape_angle.y = current.angle.y;
 
-        if (mAcch.i_ChkGroundHit()) {
+        if (mAcch.ChkGroundHit()) {
             SetAnm(ANM_APPEAR02, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
             mMode++;
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_L, 0, -1);
@@ -2103,7 +2103,7 @@ void daE_PM_c::StartAction() {
         break;
 
     case 1:
-        if (mTimer[0] == 0 && mAcch.i_ChkGroundHit()) {
+        if (mTimer[0] == 0 && mAcch.ChkGroundHit()) {
             SetAnm(ANM_APPEAR02, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_L, 0, -1);
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_R, 0, -1);

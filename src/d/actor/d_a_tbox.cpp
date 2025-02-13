@@ -1831,7 +1831,7 @@ void daTbox_c::mode_exec() {
         if (field_0x97c) {
             mAcch.CrrPos(dComIfG_Bgsp());
         } else {
-            mAcch.i_ClrGroundHit();
+            mAcch.ClrGroundHit();
         }
 
         attention_info.position = current.pos;

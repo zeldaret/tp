@@ -1066,7 +1066,7 @@ static int core_chance(b_ob_class* i_this) {
         }
         break;
     case 1:
-        if (i_this->mAcch.i_ChkGroundHit()) {
+        if (i_this->mAcch.ChkGroundHit()) {
             if (i_this->mTimers[0] == 0) {
                 i_this->mMode = 2;
             } else {

@@ -295,7 +295,7 @@ int daAlink_c::checkPolyDamage() {
     }
 
     int var_r29;
-    if (!checkBoardRide() && mLinkAcch.i_ChkGroundHit()) {
+    if (!checkBoardRide() && mLinkAcch.ChkGroundHit()) {
         if (dComIfG_Bgsp().ChkPolySafe(mLinkAcch.m_gnd) && (dKy_pol_argument_get(&mLinkAcch.m_gnd) & 0x60)) {
             var_r29 = 1;
             if (checkIcePolygonDamage(&mLinkAcch.m_gnd)) {
@@ -545,7 +545,7 @@ BOOL daAlink_c::checkDamageAction() {
                 seStartOnlyReverb(Z2SE_AL_DAMAGE_NORMAL);
             }
         } else {
-            if (!checkModeFlg(0x40000) && ((sp2C & 0x40) || (!mLinkAcch.i_ChkGroundHit() && (sp28 == 3 || sp28 == 4)))) {
+            if (!checkModeFlg(0x40000) && ((sp2C & 0x40) || (!mLinkAcch.ChkGroundHit() && (sp28 == 3 || sp28 == 4)))) {
                 dComIfGp_getVibration().StartShock(2, 0x1F, cXyz(0.0f, 1.0f, 0.0f));
 
                 int sp24;
@@ -730,7 +730,7 @@ BOOL daAlink_c::checkDamageAction() {
                 } else if (!armor_no_dmg) {
                     return procSwimDamageInit(var_r29);
                 }
-            } else if (dmg == 0 && !checkWolf() && (at_spl == 10 || at_spl == 11 || at_spl == 9) && mLinkAcch.i_ChkGroundHit() && !checkModeFlg(0x70C52)) {
+            } else if (dmg == 0 && !checkWolf() && (at_spl == 10 || at_spl == 11 || at_spl == 9) && mLinkAcch.ChkGroundHit() && !checkModeFlg(0x70C52)) {
                 return procGuardBreakInit();
             } else if (checkHugeAttack(at_spl)) {
                 return procCoLargeDamageInit(-1, 0, 0, 0, var_r29, 0);
@@ -1197,7 +1197,7 @@ int daAlink_c::procCoLargeDamage() {
         setFallVoice();
     }
 
-    if ((mLinkAcch.i_ChkGroundHit() || checkEndResetFlg2(ERFLG2_UNK_100)) && !checkBoarSingleBattle()) {
+    if ((mLinkAcch.ChkGroundHit() || checkEndResetFlg2(ERFLG2_UNK_100)) && !checkBoarSingleBattle()) {
         if (checkWolf()) {
             procWolfLargeDamageUpInit(field_0x3198, mProcVar1.field_0x300a, field_0x3080, field_0x3082);
         } else {
@@ -1669,7 +1669,7 @@ int daAlink_c::procCoElecDamageInit(fopAc_ac_c* param_0, dCcD_GObjInf* param_1, 
 
     daAlink_ANM var_r29;
     daAlink_WANM var_r28;
-    if ((mLinkAcch.i_ChkGroundHit() && !temp_r27) || checkMagneBootsOn()) {
+    if ((mLinkAcch.ChkGroundHit() && !temp_r27) || checkMagneBootsOn()) {
         if (mEquipItem == fpcNm_ITEM_IRONBALL) {
             setIronBallWaitUpperAnime(1);
         }

@@ -113,9 +113,6 @@ public:
     /* 800773EC */ void OnWallSort();
     /* 800773FC */ bool ChkWallSort();
     /* 80077408 */ bool ChkLineDown();
-    /* 800D00D0 */ bool ChkRoofHit() const;
-    /* 800D00DC */ void ClrGroundHit();
-    /* 80141404 */ bool ChkGroundHit() const;
 
     /* 80075F94 */ virtual ~dBgS_Acch();
 
@@ -126,37 +123,37 @@ public:
     int GetTblSize() { return m_tbl_size; }
     void SetLin() { m_lin.SetStartEnd(*pm_old_pos, *pm_pos); }
     bool ChkGroundFind() { return m_flags & GROUND_FIND; }
-    bool ChkGroundHit() { return m_flags & GROUND_HIT; }
-    bool ChkGroundLanding() { return m_flags & GROUND_LANDING; }
+    bool ChkGroundHit() const { return m_flags & GROUND_HIT; }
+    bool ChkGroundLanding() const { return m_flags & GROUND_LANDING; }
     void ClrGroundLanding() { m_flags &= ~GROUND_LANDING; }
     void ClrGroundAway() { m_flags &= ~GROUND_AWAY; }
     void ClrWallHit() { m_flags &= ~WALL_HIT; }
     void SetRoofNone() { m_flags |= ROOF_NONE; }
     void SetRoofHit() { m_flags |= ROOF_HIT; }
     void SetWaterNone() { m_flags |= WATER_NONE; }
-    bool ChkWallHit() { return m_flags & WALL_HIT; }
+    u32 ChkWallHit() const { return m_flags & WALL_HIT; }
     void OffLineCheckHit() { m_flags &= ~LINE_CHECK_HIT; }
     void OffLineCheck() { m_flags &= ~LINE_CHECK; }
-    bool ChkLineCheckNone() { return m_flags & LINE_CHECK_NONE; }
-    bool ChkLineCheck() { return m_flags & LINE_CHECK; }
+    u32 ChkLineCheckNone() const { return m_flags & LINE_CHECK_NONE; }
+    u32 ChkLineCheck() const { return m_flags & LINE_CHECK; }
     void ClrRoofHit() { m_flags &= ~ROOF_HIT; }
     void ClrWaterHit() { m_flags &= ~WATER_HIT; }
     void SetWaterHit() { m_flags |= WATER_HIT; }
     void ClrWaterIn() { m_flags &= ~WATER_IN; }
     void SetWaterIn() { m_flags |= WATER_IN; }
-    const u32 MaskWaterIn() { return m_flags & WATER_IN; }
-    const bool ChkWaterIn() { return MaskWaterIn();}
+    const u32 MaskWaterIn() const { return m_flags & WATER_IN; }
+    const bool ChkWaterIn() const { return MaskWaterIn();}
     void ClrGroundFind() { m_flags &= ~GROUND_FIND; }
-    u32 MaskRoofHit() { return m_flags & ROOF_HIT; }
-    bool ChkRoofHit() { return MaskRoofHit(); }
+    u32 MaskRoofHit() const { return m_flags & ROOF_HIT; }
+    bool ChkRoofHit() const { return MaskRoofHit(); }
     void OffClrSpeedY() { m_flags |= CLR_SPEED_Y; }
-    bool ChkClrSpeedY() { return !(m_flags & CLR_SPEED_Y); }
+    bool ChkClrSpeedY() const { return !(m_flags & CLR_SPEED_Y); }
     void SetGroundFind() { m_flags |= GROUND_FIND; }
     void SetGroundHit() { m_flags |= GROUND_HIT; }
     void SetGroundLanding() { m_flags |= GROUND_LANDING; }
     void SetGroundAway() { m_flags |= GROUND_AWAY; }
-    const u32 MaskWaterHit() { return m_flags & WATER_HIT; }
-    const bool ChkWaterHit() { return MaskWaterHit(); }
+    const u32 MaskWaterHit() const { return m_flags & WATER_HIT; }
+    const bool ChkWaterHit() const { return MaskWaterHit(); }
     void ClrWaterNone() { m_flags &= ~WATER_NONE; }
     void SetWaterCheckOffset(f32 offset) { m_wtr_chk_offset = offset; }
     void OnLineCheck() { m_flags |= LINE_CHECK; }
@@ -172,12 +169,14 @@ public:
     void OffLineCheckNone() { m_flags &= ~LINE_CHECK_NONE; }
     void SetWallNone() { m_flags |= WALL_NONE; }
     void OnLineCheckHit() { m_flags |= LINE_CHECK_HIT; }
-    u32 ChkGroundAway() const { return m_flags & GROUND_AWAY; }
+    bool ChkGroundAway() const { return m_flags & GROUND_AWAY; }
+    void ClrGroundHit() { m_flags &= ~GROUND_HIT; }
+
     cM3dGCyl* GetWallBmdCylP() { return &m_wall_cyl; }
     fopAc_ac_c* getMyAc() { return m_my_ac; }
     
     cM3dGCir* GetWallCirP(int index) {
-        JUT_ASSERT(0, index <= m_tbl_size);
+        JUT_ASSERT(730, index <= m_tbl_size);
         return pm_acch_cir[index].GetCirP();
     }
 
@@ -191,10 +190,6 @@ public:
 
     f32 GetCx() const { return pm_pos->x; }
     f32 GetCz() const { return pm_pos->z; }
-
-    // inline dupe
-    void i_ClrGroundHit() { m_flags &= ~GROUND_HIT; }
-    u32 i_ChkGroundHit() const { return m_flags & GROUND_HIT; }
     
 public:
     /* 0x02C */ u32 m_flags;
@@ -219,7 +214,7 @@ public:
     /* 0x098 */ f32 m_ground_h;
     /* 0x09C */ f32 field_0x9c;
     /* 0x0A0 */ cM3dGPla field_0xa0;
-    /* 0x0B4 */ u8 field_0xb4;
+    /* 0x0B4 */ bool field_0xb4;
     /* 0x0B8 */ f32 field_0xb8;
     /* 0x0BC */ f32 field_0xbc;
     /* 0x0C0 */ u8 field_0xc0;

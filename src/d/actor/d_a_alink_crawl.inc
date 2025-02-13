@@ -293,7 +293,7 @@ void daAlink_c::decideCrawlDoStatus() {
 
 /* 800F89E0-800F8A50 0F3320 0070+00 3/3 0/0 0/0 .text checkNotCrawlStand__9daAlink_cFP4cXyz */
 BOOL daAlink_c::checkNotCrawlStand(cXyz* param_0) {
-    mLinkRoofChk.i_SetPos(*param_0);
+    mLinkRoofChk.SetPos(*param_0);
     return dComIfG_Bgsp().RoofChk(&mLinkRoofChk) - current.pos.y <= field_0x598;
 }
 
