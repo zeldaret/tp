@@ -588,13 +588,12 @@ public:
 
 class mDoExt_cylinderPacket : public J3DPacket {
 public:
-    mDoExt_cylinderPacket(cXyz& i_position, f32 i_radius, f32 i_height, const GXColor& i_color,
-                          u8 param_4) {
+    mDoExt_cylinderPacket(cXyz& i_position, f32 i_radius, f32 i_height, const GXColor& i_color, u8 i_clipZ) {
         mPosition = i_position;
         mRadius = i_radius;
         mHeight = i_height;
         mColor = i_color;
-        field_0x28 = param_4;
+        mClipZ = i_clipZ;
     }
 
     virtual void draw();
@@ -604,7 +603,186 @@ public:
     /* 0x1C */ f32 mRadius;
     /* 0x20 */ f32 mHeight;
     /* 0x24 */ GXColor mColor;
-    /* 0x28 */ u8 field_0x28;
+    /* 0x28 */ u8 mClipZ;
+};
+
+class mDoExt_spherePacket : public J3DPacket {
+public:
+    mDoExt_spherePacket(cXyz& i_position, f32 i_size, const GXColor& i_color, u8 i_clipZ) {
+        mPosition = i_position;
+        mSize = i_size;
+        mColor = i_color;
+        mClipZ = i_clipZ;
+    }
+
+    virtual void draw();
+    virtual ~mDoExt_spherePacket() {}
+
+    /* 0x10 */ cXyz mPosition;
+    /* 0x1C */ f32 mSize;
+    /* 0x20 */ GXColor mColor;
+    /* 0x24 */ u8 mClipZ;
+};
+
+class mDoExt_cube8pPacket : public J3DPacket {
+public:
+    mDoExt_cube8pPacket(cXyz* i_points, const GXColor& i_color) {
+        cXyz* pnt_array = i_points;
+
+        for (int i = 0; i < 8; i++) {
+            mPoints[i] = *pnt_array;
+            pnt_array++;
+        }
+
+        DCStoreRangeNoSync(mPoints, sizeof(cXyz) * 8);
+        mColor = i_color;
+    }
+
+    virtual void draw();
+    virtual ~mDoExt_cube8pPacket() {}
+
+    /* 0x10 */ cXyz mPoints[8];
+    /* 0x70 */ GXColor mColor;
+};
+
+class mDoExt_trianglePacket : public J3DPacket {
+public:
+    mDoExt_trianglePacket(cXyz* i_points, const GXColor& i_color, u8 i_clipZ) {
+        cXyz* pnt_array = i_points;
+
+        for (int i = 0; i < 3; i++) {
+            mPoints[i] = *pnt_array;
+            pnt_array++;
+        }
+
+        DCStoreRangeNoSync(mPoints, sizeof(cXyz) * 3);
+        mColor = i_color;
+        mClipZ = i_clipZ;
+    }
+
+    virtual void draw();
+    virtual ~mDoExt_trianglePacket() {}
+
+    /* 0x10 */ cXyz mPoints[3];
+    /* 0x34 */ GXColor mColor;
+    /* 0x38 */ u8 mClipZ;
+};
+
+class mDoExt_quadPacket : public J3DPacket {
+public:
+    mDoExt_quadPacket(cXyz* i_points, const GXColor& i_color, u8 i_clipZ) {
+        cXyz* pnt_array = i_points;
+
+        for (int i = 0; i < 4; i++) {
+            mPoints[i] = *pnt_array;
+            pnt_array++;
+        }
+
+        DCStoreRangeNoSync(mPoints, sizeof(cXyz) * 4);
+        mColor = i_color;
+        mClipZ = i_clipZ;
+    }
+
+    virtual void draw();
+    virtual ~mDoExt_quadPacket() {}
+
+    /* 0x10 */ cXyz mPoints[4];
+    /* 0x40 */ GXColor mColor;
+    /* 0x44 */ u8 mClipZ;
+};
+
+class mDoExt_linePacket : public J3DPacket {
+public:
+    mDoExt_linePacket(cXyz& i_start, cXyz& i_end, const GXColor& i_color, u8 i_clipZ, u8 i_width) {
+        mStart = i_start;
+        mEnd = i_end;
+        mColor = i_color;
+        mClipZ = i_clipZ;
+        mWidth = i_width;
+    }
+
+    virtual void draw();
+    virtual ~mDoExt_linePacket() {}
+
+    /* 0x10 */ cXyz mStart;
+    /* 0x1C */ cXyz mEnd;
+    /* 0x28 */ GXColor mColor;
+    /* 0x2C */ u8 mClipZ;
+    /* 0x2D */ u8 mWidth;
+};
+
+class mDoExt_cylinderMPacket : public J3DPacket {
+public:
+    mDoExt_cylinderMPacket(Mtx i_mtx, const GXColor& i_color, u8 i_clipZ) {
+        PSMTXCopy(i_mtx, mMatrix);
+        mColor = i_color;
+        mClipZ = i_clipZ;
+    }
+
+    virtual void draw();
+    virtual ~mDoExt_cylinderMPacket() {}
+
+    /* 0x10 */ Mtx mMatrix;
+    /* 0x40 */ GXColor mColor;
+    /* 0x44 */ u8 mClipZ;
+};
+
+class mDoExt_circlePacket : public J3DPacket {
+public:
+    mDoExt_circlePacket(cXyz& i_position, f32 i_radius, const GXColor& i_color, u8 i_clipZ, u8 i_lineWidth) {
+        mPosition = i_position;
+        mRadius = i_radius;
+        mColor = i_color;
+        mClipZ = i_clipZ;
+        mLineWidth = i_lineWidth;
+    }
+
+    virtual void draw();
+    virtual ~mDoExt_circlePacket() {}
+
+    /* 0x10 */ cXyz mPosition;
+    /* 0x1C */ f32 mRadius;
+    /* 0x20 */ GXColor mColor;
+    /* 0x24 */ u8 mClipZ;
+    /* 0x25 */ u8 mLineWidth;
+};
+
+class mDoExt_ArrowPacket : public J3DPacket {
+public:
+    mDoExt_ArrowPacket(cXyz& i_position, cXyz& param_1, const GXColor& i_color, u8 i_clipZ, u8 i_lineWidth) {
+        mPosition = i_position;
+        field_0x1c = param_1;
+        mColor = i_color;
+        mClipZ = i_clipZ;
+        m_lineWidth = i_lineWidth;
+    }
+
+    virtual void draw();
+    virtual ~mDoExt_ArrowPacket() {}
+
+    /* 0x10 */ cXyz mPosition;
+    /* 0x1C */ cXyz field_0x1c;
+    /* 0x28 */ GXColor mColor;
+    /* 0x2C */ u8 mClipZ;
+    /* 0x2D */ u8 m_lineWidth;
+};
+
+class mDoExt_pointPacket : public J3DPacket {
+public:
+    mDoExt_pointPacket(cXyz& i_position, const GXColor& i_color, u8 i_clipZ, u8 i_lineWidth) {
+        mPosition = i_position;
+        mColor = i_color;
+        mClipZ = i_clipZ;
+        mLineWidth = i_lineWidth;
+    }
+
+    virtual void draw();
+    virtual ~mDoExt_pointPacket() {}
+
+    /* 0x10 */ cXyz mPosition;
+    /* 0x1C */ GXColor mColor;
+    /* 0x20 */ u8 mClipZ;
+    /* 0x21 */ u8 mLineWidth;
 };
 
 inline void mDoExt_bckAnmRemove(J3DModelData* i_modelData) {

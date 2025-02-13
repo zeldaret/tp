@@ -6,6 +6,7 @@
 #include "dolphin/types.h"
 
 enum J3DMdlFlag {
+    J3DMdlFlag_None = 0x0,
     /* 0x00001 */ J3DMdlFlag_Unk00001 = 0x1,
     /* 0x00002 */ J3DMdlFlag_Unk00002 = 0x2,
     /* 0x00004 */ J3DMdlFlag_SkinPosCpu = 0x4,

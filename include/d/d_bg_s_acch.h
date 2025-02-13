@@ -172,6 +172,7 @@ public:
     void OffLineCheckNone() { m_flags &= ~LINE_CHECK_NONE; }
     void SetWallNone() { m_flags |= WALL_NONE; }
     void OnLineCheckHit() { m_flags |= LINE_CHECK_HIT; }
+    u32 ChkGroundAway() const { return m_flags & GROUND_AWAY; }
     cM3dGCyl* GetWallBmdCylP() { return &m_wall_cyl; }
     fopAc_ac_c* getMyAc() { return m_my_ac; }
     

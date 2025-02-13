@@ -311,6 +311,10 @@ inline void fopAcM_SetModel(fopAc_ac_c* actor, J3DModel* model) {
     actor->model = model;
 }
 
+inline J3DModel* fopAcM_GetModel(fopAc_ac_c* actor) {
+    return actor->model;
+}
+
 inline fopAcM_prm_class* fopAcM_GetAppend(void* actor) {
     return (fopAcM_prm_class*)fpcM_GetAppend(actor);
 }
@@ -711,6 +715,10 @@ inline void fopAcM_offActor(fopAc_ac_c* i_actor, u32 flag) {
 
 inline void fopAcM_OnCarryType(fopAc_ac_c* i_actor, fopAcM_CARRY param_2) {
     i_actor->carryType |= param_2;
+}
+
+inline void fopAcM_OffCarryType(fopAc_ac_c* i_actor, fopAcM_CARRY param_2) {
+    i_actor->carryType &= ~param_2;
 }
 
 enum fopAcM_FOOD {

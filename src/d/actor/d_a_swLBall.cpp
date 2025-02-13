@@ -7,6 +7,7 @@
 #include "SSystem/SComponent/c_phase.h"
 #include "d/actor/d_a_obj_carry.h"
 #include "d/actor/d_a_player.h"
+#include "d/d_com_inf_game.h"
 #include "d/d_lib.h"
 #include "f_op/f_op_actor_mng.h"
 

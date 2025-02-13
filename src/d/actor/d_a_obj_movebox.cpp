@@ -1117,7 +1117,7 @@ int daObjMovebox::Act_c::Execute(Mtx** param_0) {
         if (mCcCyl.ChkTgHit() && hit_obj != NULL) {
             if (!hit_obj->ChkAtType(AT_TYPE_LANTERN_SWING) && hit_obj->GetAtMtrl() == dCcD_MTRL_FIRE) {
                 u32 params;
-                daObjBurnBox_c::make_prm_burnbox(&params, 1);
+                daObjBurnBox_c::make_prm_burnBox(&params, 1);
 
                 fopAcM_createChild(PROC_Obj_BurnBox, fopAcM_GetID(this), params, &current.pos,
                                    fopAcM_GetRoomNo(this), &shape_angle, &scale, -1, NULL);

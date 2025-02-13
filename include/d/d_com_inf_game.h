@@ -822,7 +822,7 @@ public:
     /* 0x1DE08 */ u8 field_0x1de08;
     /* 0x1DE09 */ u8 field_0x1de09;
     /* 0x1DE0A */ u8 field_0x1de0a;
-    /* 0x1DE0B */ u8 field_0x1de0b;
+    /* 0x1DE0B */ u8 mIsDebugMode;
     /* 0x1DE0C */ u8 field_0x1de0c;
 
     static __d_timer_info_c dComIfG_mTimerInfo;
@@ -886,6 +886,10 @@ inline int dComIfG_getTimerLimitTimeMs() {
 
 inline void dComIfG_setTimerLimitTimeMs(int i_time) {
     g_dComIfG_gameInfo.play.setTimerLimitTimeMs(i_time);
+}
+
+inline BOOL dComIfG_isDebugMode() {
+    return g_dComIfG_gameInfo.mIsDebugMode;
 }
 
 /**
