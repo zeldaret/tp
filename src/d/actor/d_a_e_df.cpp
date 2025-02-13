@@ -6,7 +6,8 @@
 #include "d/actor/d_a_e_df.h"
 #include "d/d_cc_d.h"
 #include "dol2asm.h"
-
+UNK_REL_DATA;
+#include "f_op/f_op_actor_enemy.h"
 
 
 //
@@ -56,7 +57,6 @@ extern "C" static void daE_DF_Create__FP10fopAc_ac_c();
 extern "C" void __dt__10cCcD_GSttsFv();
 extern "C" void __dt__12daE_DF_HIO_cFv();
 extern "C" void __sinit_d_a_e_df_cpp();
-extern "C" static void setMidnaBindEffect__FP13fopEn_enemy_cP15Z2CreatureEnemyP4cXyzP4cXyz();
 extern "C" extern char const* const d_a_e_df__stringBase0;
 
 //
@@ -149,7 +149,6 @@ extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" f32 mGroundY__11fopAcM_gc_c;
@@ -161,69 +160,6 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
-/* 806A9F30-806A9F34 000000 0004+00 11/11 0/0 0/0 .rodata          @3916 */
-SECTION_RODATA static f32 const lit_3916 = 100.0f;
-COMPILER_STRIP_GATE(0x806A9F30, &lit_3916);
-
-/* 806A9F34-806A9F38 000004 0004+00 2/12 0/0 0/0 .rodata          @3917 */
-SECTION_RODATA static u8 const lit_3917[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x806A9F34, &lit_3917);
-
-/* 806AA004-806AA010 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 806AA010-806AA024 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
-
-/* 806AA024-806AA02C 000020 0008+00 0/1 0/0 0/0 .data            e_prim$3795 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 e_prim[8] = {
-    0xFF, 0x78, 0x00, 0x00, 0xFF, 0x64, 0x78, 0x00,
-};
-#pragma pop
-
-/* 806AA02C-806AA034 000028 0008+00 0/1 0/0 0/0 .data            e_env$3796 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 e_env[8] = {
-    0x5A, 0x2D, 0x2D, 0x00, 0x3C, 0x1E, 0x1E, 0x00,
-};
-#pragma pop
-
-/* 806AA034-806AA03C 000030 0006+02 0/1 0/0 0/0 .data            eff_id$3804 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 eff_id[6 + 2 /* padding */] = {
-    0x02,
-    0x9D,
-    0x02,
-    0x9E,
-    0x02,
-    0x9F,
-    /* padding */
-    0x00,
-    0x00,
-};
-#pragma pop
-
 /* 806AA03C-806AA05C -00001 0020+00 1/0 0/0 0/0 .data            l_daE_DF_Method */
 static actor_method_class l_daE_DF_Method = {
     (process_method_func)daE_DF_Create__FP10fopAc_ac_c,
@@ -292,14 +228,6 @@ daE_DF_HIO_c::daE_DF_HIO_c() {
 }
 
 /* ############################################################################################## */
-/* 806A9F38-806A9F40 000008 0004+04 2/10 0/0 0/0 .rodata          @3918 */
-SECTION_RODATA static f32 const lit_3918[1 + 1 /* padding */] = {
-    1.0f,
-    /* padding */
-    0.0f,
-};
-COMPILER_STRIP_GATE(0x806A9F38, &lit_3918);
-
 /* 806A9FFC-806A9FFC 0000CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 #pragma push
 #pragma force_active on
@@ -317,40 +245,6 @@ static void useHeapInit(fopAc_ac_c* param_0) {
 }
 
 /* ############################################################################################## */
-/* 806A9F40-806A9F48 000010 0008+00 0/3 0/0 0/0 .rodata          @3919 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3919[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x806A9F40, &lit_3919);
-#pragma pop
-
-/* 806A9F48-806A9F50 000018 0008+00 0/3 0/0 0/0 .rodata          @3920 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3920[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x806A9F48, &lit_3920);
-#pragma pop
-
-/* 806A9F50-806A9F58 000020 0008+00 0/3 0/0 0/0 .rodata          @3921 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3921[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x806A9F50, &lit_3921);
-#pragma pop
-
-/* 806A9F58-806A9F5C 000028 0004+00 0/1 0/0 0/0 .rodata          @3922 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3922 = 1.0f / 100.0f;
-COMPILER_STRIP_GATE(0x806A9F58, &lit_3922);
-#pragma pop
-
 /* 806A9F5C-806A9FA0 00002C 0044+00 1/1 0/0 0/0 .rodata          ccCylSrc$3961 */
 const static dCcD_SrcCyl ccCylSrc = {
     {
@@ -727,12 +621,5 @@ void __sinit_d_a_e_df_cpp() {
 #pragma force_active on
 REGISTER_CTORS(0x806A9ACC, __sinit_d_a_e_df_cpp);
 #pragma pop
-
-/* 806A9B08-806A9F1C 002508 0414+00 1/1 0/0 0/0 .text
- * setMidnaBindEffect__FP13fopEn_enemy_cP15Z2CreatureEnemyP4cXyzP4cXyz */
-static void setMidnaBindEffect(fopEn_enemy_c* param_0, Z2CreatureEnemy* param_1, cXyz* param_2,
-                                   cXyz* param_3) {
-    // NONMATCHING
-}
 
 /* 806A9FFC-806A9FFC 0000CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
