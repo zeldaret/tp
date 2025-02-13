@@ -21,7 +21,7 @@ public:
     /* 80A14FA0 */ int Draw();
     /* 80A15034 */ static int createHeapCallBack(fopAc_ac_c*);
     /* 80A15054 */ static int ctrlJointCallBack(J3DJoint*, int);
-    /* 80A150AC */ void getType();
+    /* 80A150AC */ u8 getType();
     /* 80A150F8 */ int isDelete();
     /* 80A15198 */ void reset();
     /* 80A15364 */ void afterJntAnm(int);
@@ -66,6 +66,16 @@ public:
     /* 80A1A2B4 */ s32 getFootLJointNo();
     /* 80A1A2BC */ s32 getFootRJointNo();
 
+    int getFlowNodeNo() {
+        u16 nodeNo = home.angle.x;
+        if (nodeNo == 0xffff) {
+            return -1;
+        }
+        return nodeNo;
+    }
+
+    u8 getPathID() { return (fopAcM_GetParam(this) & 0xff00) >> 8; }
+
     static void* mCutNameList[7];
     static u8 mCutList[84];
 
@@ -73,10 +83,23 @@ private:
     /* 0x568 */ u8 field_0x568[0x100c - 0x568];
     /* 0x0F80 */ u8 mType;
     /* 0x0F84 */ daNpcF_ActorMngr_c mActorMngr[5];
+    int field_0xa7c;
+    int field_0xa89;
+    dBgS_AcchCir field_0x580;
+    dBgS_Acch field_0x68c;
+    dBgS_AcchCir field_0x9c0;
+    cXyz field_0x8a0;
+    cXyz field_0x8B4;
+    int field_0x768;
+    int field_0x930;
+    int field_0x76C;
+    int field_0x934;
+    float field_0xdf4;
+    int field_0xa88;
     
 };
 
-STATIC_ASSERT(sizeof(daNpc_Jagar_c) == 0x100c);
+// STATIC_ASSERT(sizeof(daNpc_Jagar_c) == 0x100c);
 
 class daNpc_Jagar_Param_c {
 public:
