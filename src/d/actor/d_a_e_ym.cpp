@@ -8,7 +8,8 @@
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_com_inf_game.h"
 #include "dol2asm.h"
-
+UNK_REL_DATA;
+#include "f_op/f_op_actor_enemy.h"
 
 
 //
@@ -102,7 +103,6 @@ extern "C" void __dt__12daE_YM_HIO_cFv();
 extern "C" void __sinit_d_a_e_ym_cpp();
 extern "C" static void func_808154DC();
 extern "C" static void func_808154E4();
-extern "C" static void setMidnaBindEffect__FP13fopEn_enemy_cP15Z2CreatureEnemyP4cXyzP4cXyz();
 extern "C" void __dt__4cXyzFv();
 extern "C" void getLeftHandPos__9daPy_py_cCFv();
 extern "C" void getPos__13daTag_FWall_cFUc();
@@ -266,154 +266,6 @@ extern "C" void checkNextPath__8daKago_cF4cXyz();
 //
 
 /* ############################################################################################## */
-/* 80815994-80815998 000000 0004+00 48/48 0/0 0/0 .rodata          @3925 */
-SECTION_RODATA static f32 const lit_3925 = 100.0f;
-COMPILER_STRIP_GATE(0x80815994, &lit_3925);
-
-/* 80815998-8081599C 000004 0004+00 3/41 0/0 0/0 .rodata          @3926 */
-SECTION_RODATA static u8 const lit_3926[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80815998, &lit_3926);
-
-/* 8081599C-808159A4 000008 0004+04 3/29 0/0 0/0 .rodata          @3927 */
-SECTION_RODATA static f32 const lit_3927[1 + 1 /* padding */] = {
-    1.0f,
-    /* padding */
-    0.0f,
-};
-COMPILER_STRIP_GATE(0x8081599C, &lit_3927);
-
-/* 808159A4-808159AC 000010 0008+00 0/25 0/0 0/0 .rodata          @3928 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3928[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x808159A4, &lit_3928);
-#pragma pop
-
-/* 808159AC-808159B4 000018 0008+00 0/25 0/0 0/0 .rodata          @3929 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3929[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x808159AC, &lit_3929);
-#pragma pop
-
-/* 808159B4-808159BC 000020 0008+00 0/25 0/0 0/0 .rodata          @3930 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3930[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x808159B4, &lit_3930);
-#pragma pop
-
-/* 808159BC-808159C0 000028 0004+00 0/1 0/0 0/0 .rodata          @3931 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3931 = 1.0f / 100.0f;
-COMPILER_STRIP_GATE(0x808159BC, &lit_3931);
-#pragma pop
-
-/* 808159C0-808159C4 00002C 0004+00 0/7 0/0 0/0 .rodata          @3946 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3946 = 20.0f;
-COMPILER_STRIP_GATE(0x808159C0, &lit_3946);
-#pragma pop
-
-/* 808159C4-808159C8 000030 0004+00 1/15 0/0 0/0 .rodata          @3947 */
-SECTION_RODATA static f32 const lit_3947 = 30.0f;
-COMPILER_STRIP_GATE(0x808159C4, &lit_3947);
-
-/* 808159C8-808159CC 000034 0004+00 0/2 0/0 0/0 .rodata          @3948 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3948 = 3.0f / 5.0f;
-COMPILER_STRIP_GATE(0x808159C8, &lit_3948);
-#pragma pop
-
-/* 808159CC-808159D0 000038 0004+00 1/11 0/0 0/0 .rodata          @3949 */
-SECTION_RODATA static f32 const lit_3949 = 3.0f;
-COMPILER_STRIP_GATE(0x808159CC, &lit_3949);
-
-/* 808159D0-808159D4 00003C 0004+00 0/1 0/0 0/0 .rodata          @3950 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3950 = 13.0f;
-COMPILER_STRIP_GATE(0x808159D0, &lit_3950);
-#pragma pop
-
-/* 808159D4-808159D8 000040 0004+00 0/5 0/0 0/0 .rodata          @3951 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3951 = 400.0f;
-COMPILER_STRIP_GATE(0x808159D4, &lit_3951);
-#pragma pop
-
-/* 808159D8-808159DC 000044 0004+00 0/3 0/0 0/0 .rodata          @3952 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3952 = 300.0f;
-COMPILER_STRIP_GATE(0x808159D8, &lit_3952);
-#pragma pop
-
-/* 80815B04-80815B10 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80815B10-80815B24 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
-
-/* 80815B24-80815B2C 000020 0008+00 0/1 0/0 0/0 .data            e_prim$3804 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 e_prim[8] = {
-    0xFF, 0x78, 0x00, 0x00, 0xFF, 0x64, 0x78, 0x00,
-};
-#pragma pop
-
-/* 80815B2C-80815B34 000028 0008+00 0/1 0/0 0/0 .data            e_env$3805 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 e_env[8] = {
-    0x5A, 0x2D, 0x2D, 0x00, 0x3C, 0x1E, 0x1E, 0x00,
-};
-#pragma pop
-
-/* 80815B34-80815B3C 000030 0006+02 0/1 0/0 0/0 .data            eff_id$3813 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 eff_id[6 + 2 /* padding */] = {
-    0x02,
-    0x9D,
-    0x02,
-    0x9E,
-    0x02,
-    0x9F,
-    /* padding */
-    0x00,
-    0x00,
-};
-#pragma pop
-
 /* 80815B3C-80815B7C 000038 0040+00 1/1 0/0 0/0 .data            cc_sph_src__6E_YM_n */
 dCcD_SrcSph E_YM_n::cc_sph_src = {
     {
@@ -604,18 +456,6 @@ BOOL daE_YM_c::checkBck(char const* i_arcName, int i_resNo) {
     return field_0x5b4->getAnm() == (J3DAnmTransform*)dComIfG_getObjectRes(i_arcName, i_resNo);
 }
 
-/* ############################################################################################## */
-/* 808159DC-808159E0 000048 0004+00 0/4 0/0 0/0 .rodata          @3987 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3987 = 2.0f;
-COMPILER_STRIP_GATE(0x808159DC, &lit_3987);
-#pragma pop
-
-/* 808159E0-808159E4 00004C 0004+00 1/2 0/0 0/0 .rodata          @3988 */
-SECTION_RODATA static f32 const lit_3988 = -1.0f;
-COMPILER_STRIP_GATE(0x808159E0, &lit_3988);
-
 /* 808081E0-80808328 0001A0 0148+00 18/18 0/0 0/0 .text            bckSet__8daE_YM_cFiUcff */
 void daE_YM_c::bckSet(int i_resID, u8 i_attribute, f32 i_morf, f32 i_speed) {
     int tm_res_id;
@@ -629,7 +469,7 @@ void daE_YM_c::bckSet(int i_resID, u8 i_attribute, f32 i_morf, f32 i_speed) {
             tm_res_id = 9;
             break;
         case 16:
-            i_speed = FLOAT_LABEL(lit_3987);
+            i_speed = 2.0f;
             tm_res_id = 10;
             break;
         case 14:
@@ -640,36 +480,20 @@ void daE_YM_c::bckSet(int i_resID, u8 i_attribute, f32 i_morf, f32 i_speed) {
         }
 
         field_0x5b4->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_TM", tm_res_id), i_attribute,
-                            i_morf, i_speed, FLOAT_LABEL(lit_3926), FLOAT_LABEL(lit_3988));
+                            i_morf, i_speed, 0.0f, -1.0f);
     } else {
         field_0x5b4->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_YM", i_resID), i_attribute,
-                            i_morf, i_speed, FLOAT_LABEL(lit_3926), FLOAT_LABEL(lit_3988));
+                            i_morf, i_speed, 0.0f, -1.0f);
     }
 }
 
 /* 80808328-808083CC 0002E8 00A4+00 4/4 0/0 0/0 .text            bckSetFly__8daE_YM_cFiUcff */
 void daE_YM_c::bckSetFly(int i_resID, u8 i_attribute, f32 i_morf, f32 i_speed) {
     field_0x5b4->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_TM", i_resID), i_attribute,
-                        i_morf, i_speed, FLOAT_LABEL(lit_3926), FLOAT_LABEL(lit_3988));
+                        i_morf, i_speed, 0.0f, -1.0f);
 }
 
-/* ############################################################################################## */
-/* 808159E4-808159E8 000050 0004+00 0/1 0/0 0/0 .rodata          @4101 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4101 = 255.0f;
-COMPILER_STRIP_GATE(0x808159E4, &lit_4101);
-#pragma pop
-
-/* 808159E8-808159EC 000054 0004+00 0/6 0/0 0/0 .rodata          @4102 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4102 = -70.0f;
-COMPILER_STRIP_GATE(0x808159E8, &lit_4102);
-#pragma pop
-
 /* 808083CC-80808678 00038C 02AC+00 1/1 0/0 0/0 .text            draw__8daE_YM_cFv */
-// NONMATCHING - one instruction order mismatch (probably causes regalloc issue)
 int daE_YM_c::draw() {
     if (field_0x71d) {
         return 1;
@@ -686,7 +510,7 @@ int daE_YM_c::draw() {
     bool bvar = true;
 
     if (field_0x710 != 0) {
-        if (field_0x6d4 == 0.0f) {
+        if (!field_0x6d4) {
             return 1;
         }
 
@@ -768,8 +592,8 @@ static void* s_obj_sub(void* param_0, void* param_1) {
         if (!fpcM_IsCreating(fopAcM_GetID(near_obj))) {
             f32 obj_dist = fopAcM_searchActorDistanceXZ(near_obj, e_ym);
 
-            if (obj_dist < FLOAT_LABEL(lit_3925) && obj_dist < m_obj_dist &&
-                fabsf(fopAcM_searchActorDistanceY(near_obj, e_ym)) < FLOAT_LABEL(lit_3947))
+            if (obj_dist < 100.0f && obj_dist < m_obj_dist &&
+                fabsf(fopAcM_searchActorDistanceY(near_obj, e_ym)) < 30.0f)
             {
                 m_near_obj = near_obj;
                 m_obj_dist = obj_dist;
@@ -790,22 +614,6 @@ void daE_YM_c::setDigEffect() {
     field_0xadc = dComIfGp_particle_set(field_0xadc, 0x83A9, &sp28, &shape_angle, &sp1C);
 }
 
-
-/* ############################################################################################## */
-/* 808159EC-808159F0 000058 0004+00 0/16 0/0 0/0 .rodata          @4214 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4214 = 10.0f;
-COMPILER_STRIP_GATE(0x808159EC, &lit_4214);
-#pragma pop
-
-/* 808159F0-808159F4 00005C 0004+00 0/4 0/0 0/0 .rodata          @4215 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4215 = 6.0f;
-COMPILER_STRIP_GATE(0x808159F0, &lit_4215);
-#pragma pop
-
 /* 80808884-808089DC 000844 0158+00 8/8 0/0 0/0 .text            setElecEffect1__8daE_YM_cFv */
 void daE_YM_c::setElecEffect1() {
     f32 fVar3 = (field_0x68c * 10.0f) / 6.0f;
@@ -819,9 +627,9 @@ void daE_YM_c::setElecEffect1() {
 
     cXyz cStack_38(iVar5[0][3], iVar5[1][3], iVar5[2][3]);
     field_0xad8 = dComIfGp_particle_set(field_0xad8, 0x8393, &cStack_38, &tevStr, &shape_angle, &cStack_2c,
-                                        0xff, 0, 0xffffffff, 0, 0, 0);
+                                        0xff, 0, -1, 0, 0, 0);
     field_0xadc = dComIfGp_particle_set(field_0xadc, 0x8394, &cStack_38, &tevStr, &shape_angle, &cStack_2c,
-                                        0xff, 0, 0xffffffff, 0, 0, 0);
+                                        0xff, 0, -1, 0, 0, 0);
 }
 
 
@@ -838,9 +646,9 @@ void daE_YM_c::setElecEffect2() {
     cXyz cStack_38(iVar5[0][3], iVar5[1][3], iVar5[2][3]);
     setElecEffect1();
     field_0xae0 = dComIfGp_particle_set(field_0xae0, 0x8395, &cStack_38, &tevStr, &shape_angle, &cStack_2c,
-                                        0xff, 0, 0xffffffff, 0, 0, 0);
+                                        0xff, 0, -1, 0, 0, 0);
     field_0xae4 = dComIfGp_particle_set(field_0xae4, 0x8396, &cStack_38, &tevStr, &shape_angle, &cStack_2c,
-                                        0xff, 0, 0xffffffff, 0, 0, 0);
+                                        0xff, 0, -1, 0, 0, 0);
 }
 
 
@@ -848,14 +656,6 @@ void daE_YM_c::setElecEffect2() {
 void daE_YM_c::setFireEffect() {
     // NONMATCHING
 }
-
-/* ############################################################################################## */
-/* 808159F4-808159F8 000060 0004+00 0/1 0/0 0/0 .rodata          @4416 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4416 = 600.0f;
-COMPILER_STRIP_GATE(0x808159F4, &lit_4416);
-#pragma pop
 
 /* 80808E34-80809000 000DF4 01CC+00 3/3 0/0 0/0 .text            checkWallCrash__8daE_YM_cFv */
 bool daE_YM_c::checkWallCrash() {
@@ -1357,7 +1157,7 @@ void daE_YM_c::checkFlyTerritory() {
 /* 8080E630-8080E6A0 0065F0 0070+00 1/1 0/0 0/0 .text            initFly__8daE_YM_cFv */
 void daE_YM_c::initFly() {
     attention_info.distances[fopAc_attn_BATTLE_e] = 46;
-    gravity = FLOAT_LABEL(lit_3926);
+    gravity = 0.0f;
     field_0x6e4 = 0;
 
     if (mTagPosP != NULL) {
@@ -1809,7 +1609,7 @@ void daE_YM_c::setHideType() {
     mSphCc.SetTgType(0x10000);
 
     m_near_obj = NULL;
-    m_obj_dist = FLOAT_LABEL(lit_3925);
+    m_obj_dist = 100.0f;
 
     fpcM_Search(s_obj_sub, this);
 
