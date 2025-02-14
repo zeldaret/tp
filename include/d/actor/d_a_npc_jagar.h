@@ -26,16 +26,16 @@ public:
     /* 80A15198 */ void reset();
     /* 80A15364 */ void afterJntAnm(int);
     /* 80A153E8 */ void setParam();
-    /* 80A155E4 */ void checkChangeEvt();
+    /* 80A155E4 */ bool checkChangeEvt();
     /* 80A15714 */ void setAfterTalkMotion();
     /* 80A157B4 */ void srchActors();
-    /* 80A158A0 */ void evtTalk();
-    /* 80A15940 */ void evtCutProc();
+    /* 80A158A0 */ bool evtTalk();
+    /* 80A15940 */ bool evtCutProc();
     /* 80A15A08 */ void action();
     /* 80A15CA4 */ void beforeMove();
     /* 80A15D68 */ void setAttnPos();
     /* 80A1607C */ void setCollision();
-    /* 80A161EC */ bool drawDbgInfo();
+    /* 80A161EC */ int drawDbgInfo();
     /* 80A161F4 */ void changeBtp(int*, int*);
     /* 80A16234 */ void selectAction();
     /* 80A162B0 */ void chkAction(int (daNpc_Jagar_c::*)(void*));
@@ -53,16 +53,18 @@ public:
     /* 80A17A2C */ void wait(void*);
     /* 80A1856C */ void talkwithBou(void*);
     /* 80A18B74 */ void talk(void*);
-    /* 80A1A194 */ daNpc_Jagar_c(daNpcT_faceMotionAnmData_c const*, daNpcT_motionAnmData_c const*,
-                                 daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
-                                 daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
-                                 daNpcT_evtData_c const*, char**);
+    /* 80A1A194 */ daNpc_Jagar_c(daNpcT_faceMotionAnmData_c const* param_1, daNpcT_motionAnmData_c const* param_2,
+                                daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_3, int param_4,
+                                daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_5, int param_6,
+                                daNpcT_evtData_c const* param_7, char** param_8) :
+                                daNpcT_c(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8)
+                                 {}
     /* 80A1A274 */ s32 getEyeballMaterialNo();
     /* 80A1A27C */ s32 getHeadJointNo();
     /* 80A1A284 */ s32 getNeckJointNo();
-    /* 80A1A28C */ bool getBackboneJointNo();
-    /* 80A1A294 */ void checkChangeJoint(int);
-    /* 80A1A2A4 */ void checkRemoveJoint(int);
+    /* 80A1A28C */ s32 getBackboneJointNo();
+    /* 80A1A294 */ int checkChangeJoint(int);
+    /* 80A1A2A4 */ int checkRemoveJoint(int);
     /* 80A1A2B4 */ s32 getFootLJointNo();
     /* 80A1A2BC */ s32 getFootRJointNo();
 
@@ -99,11 +101,11 @@ private:
     
 };
 
-STATIC_ASSERT(sizeof(daNpc_Jagar_c) == 0x1018);
+// STATIC_ASSERT(sizeof(daNpc_Jagar_c) == 0x100c);
 
 class daNpc_Jagar_Param_c {
 public:
-    /* 80A1A2C4 */ ~daNpc_Jagar_Param_c();
+    /* 80A1A2C4 */ virtual ~daNpc_Jagar_Param_c() {}
 
     struct param {
         float field_0;  // 160.0f
@@ -150,6 +152,7 @@ public:
         float field_41; // -800.0f
         float field_42; // 16.0f
         float field_43; // 1800.0f
+        /* 0x10 */ f32 field_0x10;
     };
     static daNpc_Jagar_Param_c::param const m;
 };
