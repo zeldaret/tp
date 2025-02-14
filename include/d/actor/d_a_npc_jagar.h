@@ -2,6 +2,7 @@
 #define D_A_NPC_JAGAR_H
 
 #include "d/actor/d_a_npc.h"
+#include "f_op/f_op_actor_mng.h" // <-- Does this get the GetParam function?
 
 /**
  * @ingroup actors-npcs
@@ -13,6 +14,13 @@
  */
 class daNpc_Jagar_c : public daNpcT_c {
 public:
+    enum Type {
+        TYPE_0,
+        TYPE_1,
+        TYPE_2,
+        TYPE_3,
+    };
+
     /* 80A1470C */ ~daNpc_Jagar_c();
     /* 80A14858 */ int create();
     /* 80A14B20 */ int CreateHeap();
@@ -87,6 +95,7 @@ private:
     // int field_0xa7c;
     // int field_0xa89;
     /* 0x0E44 */ dCcD_Cyl mCyl1;
+    /* 0x0FE0 */ actionFunc field_0x0fe0;
 
     /* WIP */
     // dBgS_AcchCir field_0x580;

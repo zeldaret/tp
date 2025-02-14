@@ -1093,8 +1093,16 @@ int daNpc_Jagar_c::ctrlJointCallBack(J3DJoint* param_0, int param_1) {
 
 /* 80A150AC-80A150F8 000A8C 004C+00 1/1 0/0 2/2 .text            getType__13daNpc_Jagar_cFv */
 u8 daNpc_Jagar_c::getType() {
-    // NONMATCHING
-    return 0; // Placeholder value
+    switch ((u8)fopAcM_GetParam(this)) {
+        case 0:
+            return TYPE_0;
+        case 1:
+            return TYPE_1;
+        case 2:
+            return TYPE_2;
+        case 3:
+            return TYPE_3;
+    }
 }
 
 /* 80A150F8-80A15198 000AD8 00A0+00 1/1 0/0 0/0 .text            isDelete__13daNpc_Jagar_cFv */
@@ -1236,8 +1244,14 @@ void __thiscall daNpc_Hanjo_c::reset(daNpc_Hanjo_c *this)
 
 
 /* 80A15364-80A153E8 000D44 0084+00 1/0 0/0 0/0 .text            afterJntAnm__13daNpc_Jagar_cFi */
-void daNpc_Jagar_c::afterJntAnm(int param_0) {
-    // NONMATCHING
+void daNpc_Jagar_c::afterJntAnm(int param_1) {
+    if (param_1 == 1) {
+        mDoMtx_stack_c::YrotM(field_0xd08.getAngleZ(1));
+        mDoMtx_stack_c::ZrotM(-field_0xd08.getAngleX(1));
+    } else if (param_1 == 4) {
+        mDoMtx_stack_c::YrotM(field_0xd08.getAngleZ(0));
+        mDoMtx_stack_c::ZrotM(field_0xd08.getAngleX(0));
+    }
 }
 
 /* 80A153E8-80A155E4 000DC8 01FC+00 1/0 0/0 0/0 .text            setParam__13daNpc_Jagar_cFv */
@@ -1259,18 +1273,38 @@ COMPILER_STRIP_GATE(0x80A1A408, &lit_4718);
 
 /* 80A15714-80A157B4 0010F4 00A0+00 1/0 0/0 0/0 .text setAfterTalkMotion__13daNpc_Jagar_cFv */
 void daNpc_Jagar_c::setAfterTalkMotion() {
-    // NONMATCHING
+    int iVar2 = 8;
+    switch(field_0xb50.getNo()) {
+        case 0:
+            iVar2 = 6;
+            break;
+        case 1:
+            break;
+        case 2:
+            iVar2 = 7;
+            break;
+        case 3:
+            iVar2 = 5;
+            break;
+    }
+    field_0xb50.setNo(iVar2, -1.0f, 0, 0);
 }
 
 /* 80A157B4-80A158A0 001194 00EC+00 1/1 0/0 0/0 .text            srchActors__13daNpc_Jagar_cFv */
 void daNpc_Jagar_c::srchActors() {
-    // NONMATCHING
+    switch(mType) {
+
+    }
 }
 
 /* 80A158A0-80A15940 001280 00A0+00 1/0 0/0 0/0 .text            evtTalk__13daNpc_Jagar_cFv */
 bool daNpc_Jagar_c::evtTalk() {
-    // NONMATCHING
-    return true; // Placeholder value
+    if (chkAction(&daNpc_Jagar_c::talk)) {
+        (this->*field_0x0fe0)(NULL);
+    } else {
+        setAction(&daNpc_Jagar_c::talk);
+    }
+    return 1;
 }
 
 /* 80A15940-80A15A08 001320 00C8+00 1/0 0/0 0/0 .text            evtCutProc__13daNpc_Jagar_cFv */
