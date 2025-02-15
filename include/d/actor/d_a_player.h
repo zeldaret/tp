@@ -38,6 +38,7 @@ public:
 
     static void initDropAngleY() { m_dropAngleY = 0x4000; }
     static void offEventKeepFlg() { m_eventKeepFlg = 0; }
+    static void onEventKeepFlg() { m_eventKeepFlg = 1; }
 
     static s16 m_dropAngleY;
     static s16 m_eventKeepFlg;
@@ -934,6 +935,8 @@ public:
 
     void offWolfEnemyHangBite() { offNoResetFlg2(FLG2_WOLF_ENEMY_HANG_BITE); }
     bool onWolfEnemyHangBite(fopAc_ac_c* param_0) { return onWolfEnemyBiteAll(param_0, FLG2_WOLF_ENEMY_HANG_BITE); }
+
+    u32 checkItemSightBgHit() const { return checkResetFlg0(RFLG0_UNK_2000000); }
 
     void setCanoeSlider() { mSpecialMode = 0x2D; }
     

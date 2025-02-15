@@ -3555,6 +3555,22 @@ public:
         mDoMtx_multVec(getRightHandMatrix(), &m_handRightInSidePos, o_pos);
     }
 
+    cXyz* getLineTopPosP() {
+        return mSight.getPosP();
+    }
+
+    cXyz* getBoomerangLockPosP() {
+        return &mHeldItemRootPos;
+    }
+
+    BOOL boomerangLockTrigger() {
+        return itemActionTrigger();
+    }
+
+    BOOL checkBoomerangLockTrigger() {
+        return boomerangLockTrigger();
+    }
+
     inline bool checkWindSpeedOnXZ() const;
     inline void startRestartRoomFromOut(int, u32, int);
     inline u16 getReadyItem();
