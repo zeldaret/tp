@@ -214,7 +214,7 @@ void daObjYtaihou_c::setMtx() {
 /* 80BA0208-80BA045C 000808 0254+00 1/1 0/0 0/0 .text            rotateCheck__14daObjYtaihou_cFv */
 void daObjYtaihou_c::rotateCheck() {
     // NONMATCHING
-    if (shape_angle.y != current.angle.y) {
+    if (shape_angle.y != current.angle.z) {
         cLib_chaseAngleS(&current.angle.x, 0xbe, 5);
         if (cLib_chaseAngleS(&shape_angle.y, current.angle.z, current.angle.x)) {
             field_0x772 = 0;
@@ -235,15 +235,11 @@ void daObjYtaihou_c::rotateCheck() {
                 field_0x774 = 0;
             }
         }
-    } else if (mAddAngle == 0 || mAddAngle != field_0x777) {
+    } else if (mAddAngle == 0 || mAddAngle != mOldAddAngle) {
         field_0x772 = 0;
     } else if (mStartBomb == 0 && ++field_0x772 > 10) {
-        // TODO.
-        int anglesum = field_0x775;
-        anglesum += mAddAngle + 4;
-        int lshift = anglesum << 30;
-        int rshift = anglesum >> 31;
-        field_0x775 = ((rshift - lshift) >> 2) + rshift;
+        // FIXME: Order of registers in add statement:
+        field_0x775 = (4 + field_0x775 + mAddAngle) % 4;
         current.angle.x = 0;
         setNextAngle();
         saveAngle();
@@ -384,7 +380,7 @@ int daObjYtaihou_c::Execute(Mtx** i_mtx) {
     cMtx_multVec(mMtx, &l_cc_offset, &my_vec_0);
     mCyl.SetC(my_vec_0);
     dComIfG_Ccsp()->Set(&mCyl);
-    field_0x777 = mAddAngle;
+    mOldAddAngle = mAddAngle;
     mAddAngle = 0;
     return 1;
 }
