@@ -274,7 +274,7 @@ public:
     void startCtrl() { mCtrl = 1; }
     void endCtrl() { mCtrl = 0; }
     void setDrop() { field_0xcf2 = 3; }
-
+    void offDraw() { mDraw = 1; }
     bool isDraw() { return mDraw == false; }
 
     static void make_prm(csXyz* param_1, u8 param_2, u8 param_3, u8 param_4, u8 param_5,
