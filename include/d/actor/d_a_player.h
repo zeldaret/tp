@@ -1026,6 +1026,7 @@ public:
     void onForceGameOver() { onNoResetFlg2(FLG2_FORCE_GAMEOVER); }
     void onForceWolfChange() { onEndResetFlg0(ERFLG0_UNK_2); }
     void onDoPutEmphasys() { onEndResetFlg1(ERFLG1_UNK_10000000); }
+    void onDoExchangePutIn() { onEndResetFlg1(ERFLG1_UNK_4000000); }
     void onNsScream() { onEndResetFlg1(ERFLG1_UNK_1); }
     void onNsScreamAnm() { onEndResetFlg1(daPy_ERFLG1(ERFLG1_UNK_1 | ERFLG1_UNK_2)); }
     void onNeckSearchWide() { onEndResetFlg0(ERFLG0_UNK_400); }
