@@ -72,7 +72,7 @@ public:
     /* 808089DC */ void setElecEffect2();
     /* 80808B3C */ void setFireEffect();
     /* 80808E34 */ bool checkWallCrash();
-    /* 80809000 */ void checkWolfBark();
+    /* 80809000 */ int checkWolfBark();
     /* 80809228 */ void checkSurpriseLock();
     /* 8080963C */ void checkRailSurprise();
     /* 808096EC */ void checkSurpriseNear();
@@ -218,7 +218,7 @@ private:
     /* 0xADC */ u32 field_0xadc;
     /* 0xAE0 */ u32 field_0xae0;
     /* 0xAE4 */ u32 field_0xae4;
-    /* 0xAE8 */ u32 field_0xae8[3];
+    /* 0xAE8 */ u32 mParticleKeys[3];
     /* 0xAF4 */ u8 field_0xaf4;
 };
 
