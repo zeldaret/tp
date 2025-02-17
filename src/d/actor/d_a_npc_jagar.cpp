@@ -19,6 +19,7 @@
 #include "d/d_bg_s_acch.h"
 #include "d/d_cc_d.h"
 #include "d/d_com_inf_game.h"
+#include "d/d_a_npc_bou.h" // For action method?
 #include "dol2asm.h"
 
 //
@@ -1262,8 +1263,9 @@ void daNpc_Jagar_c::setParam() {
 /* 80A155E4-80A15714 000FC4 0130+00 1/0 0/0 0/0 .text            checkChangeEvt__13daNpc_Jagar_cFv
  */
 bool daNpc_Jagar_c::checkChangeEvt() {
-    // NONMATCHING
-    return true; // Placeholder value
+    if (!chkAction(&daNpc_Jagar_c::talk)) {
+        field_0xe2e[0] = 0;
+    }
 }
 
 /* ############################################################################################## */
@@ -1309,18 +1311,55 @@ bool daNpc_Jagar_c::evtTalk() {
 
 /* 80A15940-80A15A08 001320 00C8+00 1/0 0/0 0/0 .text            evtCutProc__13daNpc_Jagar_cFv */
 bool daNpc_Jagar_c::evtCutProc() {
-    // NONMATCHING
-    return true; // Placeholder value
+    int staffId = dComIfGp_getEventManager().getMyStaffId("Jagar", this, -1);
+    if (staffId != -1) {
+        field_0xdac = staffId;
+        int actIdx =
+            dComIfGp_getEventManager().getMyActIdx(field_0xdac, (char**)mCutNameList, 7, 0, 0);
+        if ((this->*(mCutList[actIdx]))(field_0xdac) != 0) {
+            dComIfGp_getEventManager().cutEnd(field_0xdac);
+        }
+        return true;
+    } 
+    return false;
 }
 
 /* 80A15A08-80A15CA4 0013E8 029C+00 1/0 0/0 0/0 .text            action__13daNpc_Jagar_cFv */
 void daNpc_Jagar_c::action() {
-    // NONMATCHING
+    fopAc_ac_c* hitActor = hitChk(&mCyl1, 0xffffffff);
+    /* WIP */
+    if (hitActor != NULL) {
+        if (mType == 1) {
+            daNpc_Bou_c* this_00 = getActorP(field_0xf94)
+            if (this_00 && this_00->getType() == 1 && field_0xd08.mStagger == 0) {
+                if (field_0xb50.mNo != 1) {
+                    field_0xb50.intialize();
+                    field_0xb50.mNo = 1;
+                    field_0xb50.field_0x18 = -1;
+                }
+                if (field_0xb74.mNo != 3) {
+                    field_0xb74.initialize();
+                    field_0xb74.mNo = 3;
+                    field_0xb74.field_0x18 = -1;
+                }
+                // *(undefined2 *)(this + 0xcd4) = 0;
+                // *(undefined2 *)(this + 0xcd6) = 0;
+                // this[0xcff] = (daNpc_Jagar_c)0x1;
+            }
+
+        }
+    }
 }
 
 /* 80A15CA4-80A15D68 001684 00C4+00 1/0 0/0 0/0 .text            beforeMove__13daNpc_Jagar_cFv */
 void daNpc_Jagar_c::beforeMove() {
-    // NONMATCHING
+    fopAcM_OffStatus(this, 0x8000000);
+    if (checkHide()) {
+        fopAcM_OnStatus(this, 0x8000000);
+    }
+    if (checkHide() || field_0xe2b != 0) {
+        attention_info.flags = 0;
+    }
 }
 
 /* ############################################################################################## */

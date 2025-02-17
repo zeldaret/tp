@@ -92,8 +92,7 @@ private:
     /* 0x0568 */ u8 field_0x568[0x100c - 0x568];
     /* 0x0F80 */ u8 mType;
     /* 0x0F84 */ daNpcF_ActorMngr_c mActorMngr[5];
-    // int field_0xa7c;
-    // int field_0xa89;
+    /* 0x0F94 */ daNpcT_ActorMngr_c field_0x0f94;
     /* 0x0E44 */ dCcD_Cyl mCyl1;
     /* 0x0FE0 */ actionFunc field_0x0fe0;
 
