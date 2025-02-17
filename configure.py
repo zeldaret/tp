@@ -1827,7 +1827,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_Lv5Key"),
     ActorRel(Equivalent, "d_a_obj_Turara"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_TvCdlst"),
-    ActorRel(NonMatching, "d_a_obj_Y_taihou"),
+    ActorRel(Equivalent, "d_a_obj_Y_taihou"), # weak func ordering.
     ActorRel(NonMatching, "d_a_obj_amiShutter"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_ari"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_automata"),
