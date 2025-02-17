@@ -1029,6 +1029,7 @@ u8 dComIfGs_checkGetInsectNum();
 u8 dComIfGs_getSelectMixItemNoArrowIndex(int i_selmixItemIdx);
 BOOL dComIfGs_isStageTbox(int i_stageNo, int i_no);
 s8 dComIfGs_PolyDamageOff_Check();
+void dComIfGs_Grass_hide_Set(s8 param_0);
 
 inline void dComIfGs_init() {
     g_dComIfG_gameInfo.info.init();

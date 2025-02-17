@@ -49,6 +49,15 @@ public:
     u32 GetMassResultCam() { return mMass_Mng.GetResultCam(); }
     void PrepareMass() { mMass_Mng.Prepare(); }
 
+    u32 ChkMass(cXyz* param_0, fopAc_ac_c** param_1, dCcMassS_HitInf* param_2) {
+        u32 rt = mMass_Mng.Chk(param_0, param_1, param_2);
+        return rt;
+    }
+
+    void SetMassAttr(f32 radius, f32 height, u8 param_2, u8 param_3) {
+        mMass_Mng.SetAttr(radius, height, param_2, param_3);
+    }
+
     static bool m_mtrl_hit_tbl[64];
 
     // /* 0x0000 */ cCcS mCCcS;

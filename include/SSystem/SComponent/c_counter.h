@@ -6,7 +6,7 @@
 struct counter_class {
     u32 mCounter0;
     s32 mCounter1;
-    s32 mTimer;
+    u32 mTimer;
 };
 
 extern counter_class g_Counter;
