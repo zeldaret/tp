@@ -75,7 +75,7 @@ static void* searchIronBallCallback(void* i_actor, void* i_data) {
             if ( pCarry->isDraw() == 0
                 && fopAcM_searchActorDistance2(taihou_rhs, pCarry) < 40000.0f) {
                 taihou_rhs->setIronBall(pCarry);
-                return i_actor;
+                return pCarry;
             }
         }
     }
@@ -239,7 +239,10 @@ void daObjYtaihou_c::rotateCheck() {
         field_0x772 = 0;
     } else if (mStartBomb == 0 && ++field_0x772 > 10) {
         // FIXME: Order of registers in add statement:
-        field_0x775 = (4 + field_0x775 + mAddAngle) % 4;
+        int temp = field_0x775;
+        temp = mAddAngle + temp;
+        temp += 4;
+        field_0x775 = (temp) % 4;
         current.angle.x = 0;
         setNextAngle();
         saveAngle();
