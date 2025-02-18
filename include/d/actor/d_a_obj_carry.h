@@ -274,8 +274,17 @@ public:
     void startCtrl() { mCtrl = 1; }
     void endCtrl() { mCtrl = 0; }
     void setDrop() { field_0xcf2 = 3; }
-
+    void offDraw() { mDraw = 1; }
+    void onDraw() { mDraw = 0; }
     bool isDraw() { return mDraw == false; }
+
+    void setPower(fopAc_ac_c* cannon_actor, f32 my_0xde0, f32 my_0xde4, s16 my_0xde8) {
+        mpCannonActor = cannon_actor;
+        field_0xde0 = my_0xde0;
+        field_0xde4 = my_0xde4;
+        field_0xde8 = my_0xde8;
+        field_0xdea = 1;
+    }
 
     static void make_prm(csXyz* param_1, u8 param_2, u8 param_3, u8 param_4, u8 param_5,
                          u8 param_6 = 0) {
