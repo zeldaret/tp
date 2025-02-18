@@ -9,6 +9,7 @@
 #include "d/d_event_manager.h"
 #include "d/d_particle.h"
 #include "f_op/f_op_camera_mng.h"
+#include "m_Do/m_Do_controller_pad.h"
 #include "global.h"
 
 class JKRAramArchive;
@@ -848,6 +849,8 @@ int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* i_arcNa
 int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* i_resName, JKRHeap* heap);
 int dComIfG_TimerDeleteRequest(int i_mode);
 int dComIfG_TimerStart(int i_mode, s16 i_time);
+u32 dComIfG_getTrigA(u32 i_padNo);
+
 bool dComIfGp_isLightDropMapVisible();
 int dComIfG_TimerEnd(int i_mode, int param_1);
 void dComIfGs_onStageBossEnemy(int i_stageNo);
@@ -979,6 +982,10 @@ inline u8 dComIfG_getBrightness() {
 
 inline int dComIfG_getObjctResName2Index(const char* i_arcName, const char* i_resName) {
     return g_dComIfG_gameInfo.mResControl.getObjectResName2Index(i_arcName, i_resName);
+}
+
+inline u32 dComIfG_getTrigB(u32 i_padNo) {
+    return mDoCPd_c::getTrig(i_padNo) & PAD_BUTTON_B;
 }
 
 u8 dComIfGs_getMixItemIndex(int i_no);

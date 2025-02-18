@@ -15,6 +15,15 @@
  */
 class daSpinner_c : public fopAc_ac_c {
 public:
+    enum daSpinner_TAG {
+        TAG_NONE,
+        TAG_START,
+        TAG_2,
+        TAG_INTO,
+        TAG_INTO_INC_ROT,
+        TAG_END,
+    };
+
     /* 804D198C */ int createHeap();
     /* 804D1A70 */ int create();
     /* 804D1FD0 */ ~daSpinner_c();
@@ -40,28 +49,28 @@ public:
 
     static u32 getWaitArg() { return 0; }
 
-    int getDeleteFlg() const { return mDeleteFlg; }
+    BOOL getDeleteFlg() const { return mDeleteFlg; }
 
-    bool checkSpinnerTagEnd() const { return mSpinnerTag == 5; }
-    bool checkSpinnerTagIntoIncRot() const { return mSpinnerTag == 4; }
-    bool checkSpinnerTagInto() const { return mSpinnerTag == 3; }
+    bool checkSpinnerTagEnd() const { return mSpinnerTag == TAG_END; }
+    bool checkSpinnerTagIntoIncRot() const { return mSpinnerTag == TAG_INTO_INC_ROT; }
+    bool checkSpinnerTagInto() const { return mSpinnerTag == TAG_INTO; }
     bool checkGroundHit() { return mAcch.ChkGroundHit(); }
 
     u8 getButtonJump() const { return mButtonJump; }
     u8 getJumpFlg() const { return mJumpFlg; }
 
-    void setMove(f32 i_speed, s16 param_1) {
+    void setMove(f32 i_speed, s16 i_moveTime) {
         fopAcM_SetParam(this, 1);
         speedF = i_speed;
-        field_0xa7a = param_1;
+        mRideMoveTime = i_moveTime;
         mCyl.OnAtSetBit();
     }
 
     void clearPathMove() { mpPathMove = NULL; }
 
     void setSpinnerTag(const cXyz& param_0) {
-        if (!mSpinnerTag) {
-            mSpinnerTag = 1;
+        if (mSpinnerTag == TAG_NONE) {
+            mSpinnerTag = TAG_START;
         }
 
         clearPathMove();
@@ -69,61 +78,61 @@ public:
     }
 
     void offSpinnerTag() {
-        if (mSpinnerTag != 0) {
-            mSpinnerTag = 5;
+        if (mSpinnerTag != TAG_NONE) {
+            mSpinnerTag = TAG_END;
         }
     }
 
     bool reflectAccept() {
         bool accept = false;
-        if (!mBck.isStop() && mSpinnerTag == 0) {
+        if (!mBck.isStop() && mSpinnerTag == TAG_NONE) {
             accept = true;
         }
 
         return accept;
     }
 
-    MtxP getModelMtx() { return mpModel->getBaseTRMtx(); }
+    MtxPtr getModelMtx() { return mpModel->getBaseTRMtx(); }
 
-    s16 getAngleY() { return shape_angle.y + field_0xa7e; }
+    s16 getAngleY() { return shape_angle.y + mRotY; }
 
-    void forceDelete() { mDeleteFlg = 1; }
+    void forceDelete() { mDeleteFlg = true; }
 
 private:
     /* 0x568 */ J3DModel* mpModel;
     /* 0x56C */ mDoExt_bckAnm mBck;
-    /* 0x588 */ J3DAnmTransform* field_0x588;
+    /* 0x588 */ J3DAnmTransform* mpSpoutBck;
     /* 0x58C */ dBgS_AcchCir mAcchCir[3];
-    /* 0x64C */ dBgS_Acch mAcch;
+    /* 0x64C */ dBgS_LinkAcch mAcch;
     /* 0x824 */ dBgS_LinkLinChk mLinChk;
-    /* 0x894 */ dPaPo_c field_0x894;
-    /* 0x8CC */ Z2SoundObjSimple field_0x8cc;
+    /* 0x894 */ dPaPo_c mPaPo;
+    /* 0x8CC */ Z2SoundObjSimple mSound;
     /* 0x8EC */ dCcD_Stts mStts;
     /* 0x928 */ dCcD_Cyl mCyl;
     /* 0xA64 */ dPath* mpPathMove;
     /* 0xA68 */ dPath* field_0xa68;
     /* 0xA6C */ u8 field_0xa6c;
     /* 0xA6D */ u8 mJumpFlg;
-    /* 0xA6E */ s8 field_0xa6e;
+    /* 0xA6E */ s8 mReverb;
     /* 0xA6F */ u8 mSpinnerTag;
     /* 0xA70 */ u8 mButtonJump;
     /* 0xA71 */ u8 mDeleteFlg;
-    /* 0xA72 */ u8 field_0xa72;
-    /* 0xA73 */ s8 field_0xa73;
+    /* 0xA72 */ u8 mPathNo;
+    /* 0xA73 */ s8 mPathDirection;
     /* 0xA74 */ u8 field_0xa74;
-    /* 0xA75 */ u8 field_0xa75;
-    /* 0xA76 */ u8 field_0xa76;
+    /* 0xA75 */ u8 mTrigJump;
+    /* 0xA76 */ s8 field_0xa76;
     /* 0xA77 */ u8 mPathForceRemove;
     /* 0xA78 */ u8 field_0xa78;
     /* 0xA79 */ u8 field_0xa79;
-    /* 0xA7A */ s16 field_0xa7a;
+    /* 0xA7A */ s16 mRideMoveTime;
     /* 0xA7C */ s16 field_0xa7c;
-    /* 0xA7E */ s16 field_0xa7e;
+    /* 0xA7E */ s16 mRotY;
     /* 0xA80 */ s16 field_0xa80;
     /* 0xA82 */ s16 field_0xa82;
     /* 0xA84 */ f32 field_0xa84;
     /* 0xA88 */ f32 field_0xa88;
-    /* 0xA8C */ u32 field_0xa8c[2];
+    /* 0xA8C */ u32 mSpreadEmitterIDs[2];
     /* 0xA94 */ u32 field_0xa94;
     /* 0xA98 */ cXyz field_0xa98;
     /* 0xAA4 */ cXyz field_0xaa4;
