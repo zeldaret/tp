@@ -14,11 +14,15 @@
  */
 class daNpc_Jagar_c : public daNpcT_c {
 public:
+    typedef int (daNpc_Jagar_c::*cutFunc)(int);
+    typedef int (daNpc_Jagar_c::*actionFunc)(void*);
+
     enum Type {
         TYPE_0,
         TYPE_1,
         TYPE_2,
         TYPE_3,
+        TYPE_4,
     };
 
     /* 80A1470C */ ~daNpc_Jagar_c();
@@ -46,21 +50,21 @@ public:
     /* 80A161EC */ int drawDbgInfo();
     /* 80A161F4 */ void changeBtp(int*, int*);
     /* 80A16234 */ void selectAction();
-    /* 80A162B0 */ void chkAction(int (daNpc_Jagar_c::*)(void*));
+    /* 80A162B0 */ int chkAction(int (daNpc_Jagar_c::*)(void*));
     /* 80A162DC */ void setAction(int (daNpc_Jagar_c::*)(void*));
-    /* 80A16384 */ void cutClimbUp(int);
-    /* 80A16544 */ void cutNeedYourHelp(int);
-    /* 80A16CD8 */ void cutAnger(int);
-    /* 80A16EFC */ void cutConversationWithBou(int);
-    /* 80A1705C */ void cutConfidentialConversation(int);
-    /* 80A173D8 */ void cutFindWolf(int);
+    /* 80A16384 */ int cutClimbUp(int);
+    /* 80A16544 */ int cutNeedYourHelp(int);
+    /* 80A16CD8 */ int cutAnger(int);
+    /* 80A16EFC */ int cutConversationWithBou(int);
+    /* 80A1705C */ int cutConfidentialConversation(int);
+    /* 80A173D8 */ int cutFindWolf(int);
     /* 80A17898 */ void chkSitMotion();
     /* 80A17924 */ void chkSitMotion2();
     /* 80A17984 */ void chkChuMotion();
     /* 80A179F8 */ void chkToMotion();
     /* 80A17A2C */ void wait(void*);
     /* 80A1856C */ void talkwithBou(void*);
-    /* 80A18B74 */ void talk(void*);
+    /* 80A18B74 */ int talk(void*);
     /* 80A1A194 */ daNpc_Jagar_c(daNpcT_faceMotionAnmData_c const* param_1, daNpcT_motionAnmData_c const* param_2,
                                 daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_3, int param_4,
                                 daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_5, int param_6,
@@ -86,15 +90,19 @@ public:
 
     u8 getPathID() { return (fopAcM_GetParam(this) & 0xff00) >> 8; }
 
-    static void* mCutNameList[7];
-    static u8 mCutList[84];
+    static char* mCutNameList[7];
+    static cutFunc mCutList[7];
 private:
+    /* 0x00B0 */ int field_0xb0;
     /* 0x0568 */ u8 field_0x568[0x100c - 0x568];
+    /* 0x0BA0 */ daNpcT_ActorMngr_c field_0x0ba0;
+    /* 0x0E30 */ int field_0xe30;
+    /* 0x0E44 */ dCcD_Cyl mCyl1;
     /* 0x0F80 */ u8 mType;
     /* 0x0F84 */ daNpcF_ActorMngr_c mActorMngr[5];
-    /* 0x0F94 */ daNpcT_ActorMngr_c field_0x0f94;
-    /* 0x0E44 */ dCcD_Cyl mCyl1;
-    /* 0x0FE0 */ actionFunc field_0x0fe0;
+    /* 0x0F94 */ daNpcT_ActorMngr_c field_0xf94;
+    /* 0x0FE0 */ actionFunc field_0xfe0;
+    /* 0x0FE4 */ actionFunc field_0xfe4;
 
     /* WIP */
     // dBgS_AcchCir field_0x580;
@@ -109,58 +117,63 @@ private:
     
 };
 
-// STATIC_ASSERT(sizeof(daNpc_Jagar_c) == 0x100c);
+// STATIC_ASSERT(sizeof(daNpc_Jagar_c) == 0x172c);
 
 class daNpc_Jagar_Param_c {
 public:
     /* 80A1A2C4 */ virtual ~daNpc_Jagar_Param_c() {}
 
     struct param {
-        float field_0;  // 160.0f
-        float field_1;  // -3.0f
-        float field_2;  // 1.0f
-        float field_3;  // 400.0f
-        float field_4;  // 255.0f
-        float field_5;  // 160.0f
-        float field_6;  // 35.0f
-        float field_7;  // 30.0f
-        float field_8;  // 0.0f
-        float field_9;  // 0.0f
-        float field_10; // 10.0f
-        float field_11; // -10.0f
-        float field_12; // 30.0f
-        float field_13; // -10.0f
-        float field_14; // 45.0f
-        float field_15; // -45.0f
-        float field_16; // 0.6f
-        float field_17; // 12.0f
-        int field_18;   // 3
-        int field_19;   // 6
-        int field_20;   // 5
-        int field_21;   // 6
-        float field_22; // 110.0f
-        float field_23; // 500.0f
-        float field_24; // 300.0f
-        float field_25; // -300.0f
-        float field_26; // 60
-        int field_27;   // 8
-        float field_28; // 0.0f
-        float field_29; // 0.0f
-        float field_30; // 0.0f
-        float field_31; // 4.0f
-        float field_32; // 0.0f
-        float field_33; // 0.0f
-        float field_34; // 0.0f
-        float field_35; // 0.0f
-        float field_36; // 0.0f
-        float field_37; // 0.0f
-        float field_38; // 0.0f
-        float field_39; // 1400.0f
-        float field_40; // 200.0f
-        float field_41; // -800.0f
-        float field_42; // 16.0f
-        float field_43; // 1800.0f
+        /* 0x00 */ f32 field_0x00;
+        /* 0x04 */ f32 field_0x04;
+        /* 0x08 */ f32 field_0x08;
+        /* 0x0C */ f32 field_0x0c;
         /* 0x10 */ f32 field_0x10;
+        /* 0x14 */ f32 field_0x14;
+        /* 0x18 */ f32 field_0x18;
+        /* 0x1C */ f32 field_0x1c;
+        /* 0x20 */ f32 field_0x20;
+        /* 0x24 */ f32 field_0x24;
+        /* 0x28 */ f32 field_0x28;
+        /* 0x2C */ f32 field_0x2c;
+        /* 0x30 */ f32 field_0x30;
+        /* 0x34 */ f32 field_0x34;
+        /* 0x38 */ f32 field_0x38;
+        /* 0x3C */ f32 field_0x3c;
+        /* 0x40 */ f32 field_0x40;
+        /* 0x44 */ f32 field_0x44;
+        /* 0x48 */ s16 field_0x48;
+        /* 0x4A */ s16 field_0x4a;
+        /* 0x4C */ s16 field_0x4c;
+        /* 0x4E */ s16 field_0x4e;
+        /* 0x50 */ f32 field_0x50;
+        /* 0x54 */ f32 field_0x54;
+        /* 0x58 */ f32 field_0x58;
+        /* 0x5C */ f32 field_0x5c;
+        /* 0x60 */ s16 field_0x60;
+        /* 0x62 */ s16 field_0x62;
+        /* 0x64 */ int field_0x64;
+        /* 0x68 */ int field_0x68;
+        /* 0x6C */ f32 field_0x6c;
+        /* 0x70 */ f32 field_0x70;
+        /* 0x74 */ f32 field_0x74;
+        /* 0x78 */ f32 field_0x78;
+        /* 0x7C */ f32 field_0x7c;
+        /* 0x80 */ f32 field_0x80;
+        /* 0x84 */ f32 field_0x84;
+        /* 0x88 */ f32 field_0x88;
+        /* 0x8C */ f32 field_0x8c;
+        /* 0x90 */ f32 field_0x90;
+        /* 0x94 */ f32 field_0x94;
+        /* 0x98 */ f32 field_0x98;
+        /* 0x9C */ f32 field_0x9c;
+        /* 0xA0 */ f32 field_0xa0;
+        /* 0xA4 */ f32 field_0xa4;
+        /* 0xA8 */ f32 field_0xa8;
+        /* 0xAC */ s16 field_0xac;
+        /* 0xAE */ s16 field_0xae;
+        /* 0xB0 */ s16 field_0xb0;
+        /* 0xB2 */ s16 field_0xb2;
     };
     static daNpc_Jagar_Param_c::param const m;
 };
