@@ -18,24 +18,32 @@ public:
     /* 8058C960 */ void lightInit();
     /* 8058C9D4 */ void setLight();
     /* 8058C9F8 */ void cutLight();
-    /* 8058CA1C */ void Execute();
-    /* 8058CDF8 */ bool Draw();
-    /* 8058CE00 */ bool Delete();
+    /* 8058CA1C */ int Execute();
+    /* 8058CDF8 */ int Draw();
+    /* 8058CE00 */ int Delete();
 
     static u8 const mCcDObjInfo[48];
     static u8 mCcDCyl[68];
 
 private:
-    /* 0x568 */ u8 field_0x568[0x708 - 0x568];
+    /* 0x568 */ u8 field_0x568[0x6E4 - 0x568];
+    /* 0x6E4 */ cXyz mTorchPos;
+    /* 0x6F0 */ u8 field_0x6E4[0x6FC - 0x6F0];
+    /* 0x6FC */ cXyz mLightPos;
     /* 0x708 */ LIGHT_INFLUENCE mLight;
 };
 
 STATIC_ASSERT(sizeof(daKtOnFire_c) == 0x728);
 
-class daKtOnFire_HIO_c {
+class daKtOnFire_HIO_c : public mDoHIO_entry_c {
 public:
     /* 8058C60C */ daKtOnFire_HIO_c();
-    /* 8058CEA8 */ ~daKtOnFire_HIO_c();
+    /* 8058CEA8 */ ~daKtOnFire_HIO_c() {}
+
+            u8 mTimer;
+            u8 mColor1R;
+            u8 mColor1G;
+            u8 mColor1B;
 };
 
 

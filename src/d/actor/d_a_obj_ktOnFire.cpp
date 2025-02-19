@@ -24,10 +24,10 @@ extern "C" void cutLight__12daKtOnFire_cFv();
 extern "C" void Execute__12daKtOnFire_cFv();
 extern "C" bool Draw__12daKtOnFire_cFv();
 extern "C" void Delete__12daKtOnFire_cFv();
-extern "C" static void daKtOnFire_Draw__FP12daKtOnFire_c();
-extern "C" static void daKtOnFire_Execute__FP12daKtOnFire_c();
-extern "C" static void daKtOnFire_Delete__FP12daKtOnFire_c();
-extern "C" static void daKtOnFire_Create__FP10fopAc_ac_c();
+extern "C" void daKtOnFire_Draw__FP12daKtOnFire_c();
+extern "C" void daKtOnFire_Execute__FP12daKtOnFire_c();
+extern "C" void daKtOnFire_Delete__FP12daKtOnFire_c();
+extern "C" void daKtOnFire_Create__FP10fopAc_ac_c();
 extern "C" void __dt__16daKtOnFire_HIO_cFv();
 extern "C" void __sinit_d_a_obj_ktOnFire_cpp();
 extern "C" u8 const mCcDObjInfo__12daKtOnFire_c[48];
@@ -161,7 +161,8 @@ extern "C" void __dt__14mDoHIO_entry_cFv() {
 
 /* 8058C678-8058C6D0 000158 0058+00 1/1 0/0 0/0 .text            setBaseMtx__12daKtOnFire_cFv */
 void daKtOnFire_c::setBaseMtx() {
-    // NONMATCHING
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
 }
 
 /* ############################################################################################## */
@@ -222,6 +223,14 @@ COMPILER_STRIP_GATE(0x8058CFCC, &lit_3798);
 /* 8058C960-8058C9D4 000440 0074+00 1/1 0/0 0/0 .text            lightInit__12daKtOnFire_cFv */
 void daKtOnFire_c::lightInit() {
     // NONMATCHING
+    mLightPos = mTorchPos;
+    mLightPos.y += lit_3710[0];
+    mLight.mPosition = mLightPos;
+    mLight.mColor.r = 0xbc;
+    mLight.mColor.g = 0x66;
+    mLight.mColor.b = 0x42;
+    mLight.mPow = lit_3797;
+    mLight.mFluctuation = lit_3798;
 }
 
 /* 8058C9D4-8058C9F8 0004B4 0024+00 2/2 0/0 0/0 .text            setLight__12daKtOnFire_cFv */
@@ -263,47 +272,43 @@ static u8 lit_3619[12];
 static u8 l_HIO[8];
 
 /* 8058CA1C-8058CDF8 0004FC 03DC+00 1/1 0/0 0/0 .text            Execute__12daKtOnFire_cFv */
-void daKtOnFire_c::Execute() {
+int daKtOnFire_c::Execute() {
     // NONMATCHING
+    return true;
 }
 
 /* 8058CDF8-8058CE00 0008D8 0008+00 1/1 0/0 0/0 .text            Draw__12daKtOnFire_cFv */
-bool daKtOnFire_c::Draw() {
+int daKtOnFire_c::Draw() {
     return true;
 }
 
 /* 8058CE00-8058CE28 0008E0 0028+00 1/1 0/0 0/0 .text            Delete__12daKtOnFire_cFv */
-bool daKtOnFire_c::Delete() {
+int daKtOnFire_c::Delete() {
     dKy_plight_cut(&mLight);
     return true;
 }
 
 /* 8058CE28-8058CE48 000908 0020+00 1/0 0/0 0/0 .text            daKtOnFire_Draw__FP12daKtOnFire_c
  */
-static void daKtOnFire_Draw(daKtOnFire_c* param_0) {
-    param_0->Draw();
+static int daKtOnFire_Draw(daKtOnFire_c* param_0) {
+    return param_0->Draw();
 }
 
 /* 8058CE48-8058CE68 000928 0020+00 1/0 0/0 0/0 .text daKtOnFire_Execute__FP12daKtOnFire_c */
-static void daKtOnFire_Execute(daKtOnFire_c* param_0) {
-    param_0->Execute();
+static int daKtOnFire_Execute(daKtOnFire_c* param_0) {
+    return param_0->Execute();
 }
 
 /* 8058CE68-8058CE88 000948 0020+00 1/0 0/0 0/0 .text            daKtOnFire_Delete__FP12daKtOnFire_c
  */
-static void daKtOnFire_Delete(daKtOnFire_c* param_0) {
-    param_0->Delete();
+static int daKtOnFire_Delete(daKtOnFire_c* param_0) {
+    return param_0->Delete();
 }
 
 /* 8058CE88-8058CEA8 000968 0020+00 1/0 0/0 0/0 .text            daKtOnFire_Create__FP10fopAc_ac_c
  */
 static void daKtOnFire_Create(fopAc_ac_c* param_0) {
-    ((daKtOnFire_c*)param_0)->create();
-}
-
-/* 8058CEA8-8058CF04 000988 005C+00 2/1 0/0 0/0 .text            __dt__16daKtOnFire_HIO_cFv */
-daKtOnFire_HIO_c::~daKtOnFire_HIO_c() {
-    // NONMATCHING
+    return ((daKtOnFire_c*)param_0)->create();
 }
 
 /* 8058CF04-8058CF74 0009E4 0070+00 0/0 1/0 0/0 .text            __sinit_d_a_obj_ktOnFire_cpp */
