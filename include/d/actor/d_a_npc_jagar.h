@@ -98,8 +98,8 @@ public:
 private:
     /* 0x00B0 */ int field_0xb0;
     /* 0x0568 */ u8 field_0x568[0x100c - 0x568];
+    /* 0x0B58 */ int field_0xb58;                   // CutAnger field
     /* 0x0B7C */ int field_0xb7c;
-    /* 0x0BA0 */ daNpcT_ActorMngr_c field_0x0ba0;
     /* 0x0E30 */ int field_0xe30;
     /* 0x0E44 */ dCcD_Cyl mCyl1;
     /* 0x0F80 */ u8 mType;
@@ -109,6 +109,7 @@ private:
     /* 0x0FE4 */ actionFunc field_0xfe4;
     /* 0x1001 */ u8 field_0x1001;
     /* 0x1002 */ u8 field_0x1002; // Not sure if u8
+    /* 0x1003 */ u8 field_0x1003;                   // CutAnger field
 };
 
 // STATIC_ASSERT(sizeof(daNpc_Jagar_c) == 0x172c);
