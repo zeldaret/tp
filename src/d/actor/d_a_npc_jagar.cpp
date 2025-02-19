@@ -339,8 +339,9 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 #pragma pop
 
 /* 80A1A568-80A1A570 000020 0008+00 1/1 0/0 0/0 .data            l_bmdData */
-static int l_bmdData[8] = {
-    0x00, 0x00, 0x00, 0x0D, 0x00, 0x00, 0x00, 0x01,
+static int l_bmdData[1][2] = {
+    // 0x00, 0x00, 0x00, 0x0D, 0x00, 0x00, 0x00, 0x01,
+    13, 1,
 };
 
 /* 80A1A570-80A1A5B8 -00001 0048+00 0/1 0/0 0/0 .data            l_evtList */
@@ -954,12 +955,30 @@ int daNpc_Jagar_c::create() {
 
 /* 80A14B20-80A14D90 000500 0270+00 1/1 0/0 0/0 .text            CreateHeap__13daNpc_Jagar_cFv */
 int daNpc_Jagar_c::CreateHeap() {
-    // mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &field_0x580,
-    //     0x80000, 0x11020284);
-    // if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
-    // return 0;
-    // }
-    return 0; // Placeholder value
+    J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(
+        l_resNameList[l_bmdData[0][1]], l_bmdData[0][0]));
+    if (modelData == NULL) {
+        return 0;
+    }
+    mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &field_0x580,
+        0x80000, 0x11020284);
+    if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
+        return 0;
+    }
+    J3DModel* model = mpMorf[0]->getModel();
+    for (u16 i = 0; i < modelData->getJointNum(); i++) {
+        modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
+    }
+    model->setUserArea((u32)this);
+    field_0x96c = new daNpcT_MatAnm_c();
+    if (field_0x96c == NULL) {
+        return 0;
+    }
+    if (setFaceMotionAnm(1, false) && setMotionAnm(0, 0.0f, 0))
+    {
+        return 1;
+    }
+    return 0;
 }
 
 /* 80A14D90-80A14DCC 000770 003C+00 1/1 0/0 0/0 .text            __dt__15J3DTevKColorAnmFv */
