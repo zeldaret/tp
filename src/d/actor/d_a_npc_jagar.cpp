@@ -1067,15 +1067,20 @@ int daNpc_Jagar_c::Draw() {
 /* 80A15034-80A15054 000A14 0020+00 1/1 0/0 0/0 .text
  * createHeapCallBack__13daNpc_Jagar_cFP10fopAc_ac_c            */
 int daNpc_Jagar_c::createHeapCallBack(fopAc_ac_c* i_this) {
-    // NONMATCHING
-    return 0; // Placeholder value
+    return static_cast<daNpc_Hanjo_c*>(i_this)->CreateHeap();
 }
 
 /* 80A15054-80A150AC 000A34 0058+00 1/1 0/0 0/0 .text
  * ctrlJointCallBack__13daNpc_Jagar_cFP8J3DJointi               */
 int daNpc_Jagar_c::ctrlJointCallBack(J3DJoint* param_0, int param_1) {
-    // NONMATCHING
-    return 0; // Placeholder value
+    if (param_2 == 0) {
+        J3DModel* model = j3dSys.getModel();
+        daNpc_Hanjo_c* i_this = reinterpret_cast<daNpc_Hanjo_c*>(model->getUserArea());
+        if (i_this != 0) {
+            i_this->ctrlJoint(param_1, model);
+        }
+    }
+    return 1;
 }
 
 /* 80A150AC-80A150F8 000A8C 004C+00 1/1 0/0 2/2 .text            getType__13daNpc_Jagar_cFv */
