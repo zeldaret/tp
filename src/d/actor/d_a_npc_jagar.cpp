@@ -2148,20 +2148,6 @@ long daNpc_Jagar_c::getBackboneJointNo() {
     return 0; // Placeholder value
 }
 
-/* 80A1A294-80A1A2A4 005C74 0010+00 1/0 0/0 0/0 .text            checkChangeJoint__13daNpc_Jagar_cFi
- */
-int daNpc_Jagar_c::checkChangeJoint(int param_0) {
-    // NONMATCHING
-    return 0; // Placeholder value
-}
-
-/* 80A1A2A4-80A1A2B4 005C84 0010+00 1/0 0/0 0/0 .text            checkRemoveJoint__13daNpc_Jagar_cFi
- */
-int daNpc_Jagar_c::checkRemoveJoint(int param_0) {
-    // NONMATCHING
-    return 0; // Placeholder value
-}
-
 /* 80A1A2B4-80A1A2BC 005C94 0008+00 1/0 0/0 0/0 .text            getFootLJointNo__13daNpc_Jagar_cFv
  */
 s32 daNpc_Jagar_c::getFootLJointNo() {

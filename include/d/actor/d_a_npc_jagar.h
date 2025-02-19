@@ -12,6 +12,9 @@
  * @details
  *
  */
+
+class daNpc_Bou_c; // For action method?
+
 class daNpc_Jagar_c : public daNpcT_c {
 public:
     typedef int (daNpc_Jagar_c::*cutFunc)(int);
@@ -75,8 +78,8 @@ public:
     /* 80A1A27C */ s32 getHeadJointNo();
     /* 80A1A284 */ s32 getNeckJointNo();
     /* 80A1A28C */ s32 getBackboneJointNo();
-    /* 80A1A294 */ int checkChangeJoint(int);
-    /* 80A1A2A4 */ int checkRemoveJoint(int);
+    /* 80A1A294 */ int checkChangeJoint(int param_1) { return param_1 == 4; }
+    /* 80A1A2A4 */ int checkRemoveJoint(int param_1) { return param_1 == 8; }
     /* 80A1A2B4 */ s32 getFootLJointNo();
     /* 80A1A2BC */ s32 getFootRJointNo();
 
