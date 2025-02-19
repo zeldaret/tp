@@ -1764,8 +1764,16 @@ int daNpc_Jagar_c::chkChuMotion() {
 }
 
 /* 80A179F8-80A17A2C 0033D8 0034+00 1/1 0/0 0/0 .text            chkToMotion__13daNpc_Jagar_cFv */
-void daNpc_Jagar_c::chkToMotion() {
-    // NONMATCHING
+int daNpc_Jagar_c::chkToMotion() {
+    switch(field_0xb7c) {
+        case 10:
+        case 11:
+        case 12:
+        case 13:
+            return 1;
+        default:
+            return 0;
+    }
 }
 
 /* ############################################################################################## */

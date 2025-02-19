@@ -64,7 +64,7 @@ public:
     /* 80A17898 */ int chkSitMotion();
     /* 80A17924 */ int chkSitMotion2();
     /* 80A17984 */ int chkChuMotion();
-    /* 80A179F8 */ void chkToMotion();
+    /* 80A179F8 */ int chkToMotion();
     /* 80A17A2C */ void wait(void*);
     /* 80A1856C */ void talkwithBou(void*);
     /* 80A18B74 */ int talk(void*);
@@ -98,6 +98,7 @@ public:
 private:
     /* 0x00B0 */ int field_0xb0;
     /* 0x0568 */ u8 field_0x568[0x100c - 0x568];
+    /* 0x0B7C */ int field_0xb7c;
     /* 0x0BA0 */ daNpcT_ActorMngr_c field_0x0ba0;
     /* 0x0E30 */ int field_0xe30;
     /* 0x0E44 */ dCcD_Cyl mCyl1;
