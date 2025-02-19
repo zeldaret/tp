@@ -54,7 +54,7 @@ public:
     /* 80A161F4 */ void changeBtp(int*, int*);
     /* 80A16234 */ void selectAction();
     /* 80A162B0 */ int chkAction(int (daNpc_Jagar_c::*)(void*));
-    /* 80A162DC */ void setAction(int (daNpc_Jagar_c::*)(void*));
+    /* 80A162DC */ int setAction(int (daNpc_Jagar_c::*)(void*));
     /* 80A16384 */ int cutClimbUp(int);
     /* 80A16544 */ int cutNeedYourHelp(int);
     /* 80A16CD8 */ int cutAnger(int);

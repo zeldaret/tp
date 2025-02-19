@@ -1611,13 +1611,22 @@ void daNpc_Jagar_c::selectAction() {
 /* 80A162B0-80A162DC 001C90 002C+00 2/2 0/0 0/0 .text
  * chkAction__13daNpc_Jagar_cFM13daNpc_Jagar_cFPCvPvPv_i        */
 int daNpc_Jagar_c::chkAction(int (daNpc_Jagar_c::*action)(void*)) {
-    return 0; // Placeholder value
+    return field_0xfe0 == action;
 }
 
 /* 80A162DC-80A16384 001CBC 00A8+00 2/2 0/0 0/0 .text
  * setAction__13daNpc_Jagar_cFM13daNpc_Jagar_cFPCvPvPv_i        */
-void daNpc_Jagar_c::setAction(int (daNpc_Jagar_c::*param_0)(void*)) {
-    // NONMATCHING
+int daNpc_Jagar_c::setAction(int (daNpc_Jagar_c::*action)(void*)) {
+    field_0xe22 = 3;
+    if (field_0xfe0 != NULL) {
+        (this->*field_0xfe0)(NULL);
+    }
+    field_0xe22 = 0;
+    field_0xfe0 = action;
+    if (field_0xfe0 != NULL) {
+        (this->*field_0xfe0)(NULL);
+    }
+    return 1;
 }
 
 /* ############################################################################################## */
