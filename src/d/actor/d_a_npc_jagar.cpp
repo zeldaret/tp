@@ -1596,7 +1596,11 @@ int daNpc_Jagar_c::drawDbgInfo() {
 
 /* 80A161F4-80A16234 001BD4 0040+00 1/0 0/0 0/0 .text            changeBtp__13daNpc_Jagar_cFPiPi */
 void daNpc_Jagar_c::changeBtp(int* param_0, int* param_1) {
-    // NONMATCHING
+    if (((mType == TYPE_1 || mType == TYPE_2) && param_0 == 19) && param_1 == 1) {
+        param_0 = 17;
+        param_1 = 3;
+    }
+    return;
 }
 
 /* 80A16234-80A162B0 001C14 007C+00 1/1 0/0 0/0 .text            selectAction__13daNpc_Jagar_cFv */
