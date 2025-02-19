@@ -63,7 +63,7 @@ public:
     /* 80A173D8 */ int cutFindWolf(int);
     /* 80A17898 */ void chkSitMotion();
     /* 80A17924 */ void chkSitMotion2();
-    /* 80A17984 */ void chkChuMotion();
+    /* 80A17984 */ int chkChuMotion();
     /* 80A179F8 */ void chkToMotion();
     /* 80A17A2C */ void wait(void*);
     /* 80A1856C */ void talkwithBou(void*);
@@ -106,18 +106,7 @@ private:
     /* 0x0F94 */ daNpcT_ActorMngr_c field_0xf94;
     /* 0x0FE0 */ actionFunc field_0xfe0;
     /* 0x0FE4 */ actionFunc field_0xfe4;
-
-    /* WIP */
-    // dBgS_AcchCir field_0x580;
-    // dBgS_AcchCir field_0x9c0;
-    // cXyz field_0x8a0;
-    // cXyz field_0x8B4;
-    // int field_0x768;
-    // int field_0x76C;
-    // int field_0x934;
-    // float field_0xdf4;
-    // int field_0xa88;
-    
+    /* 0x1001 */ u8 field_0x1001;
 };
 
 // STATIC_ASSERT(sizeof(daNpc_Jagar_c) == 0x172c);

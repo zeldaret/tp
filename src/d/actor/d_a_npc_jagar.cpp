@@ -1730,8 +1730,16 @@ void daNpc_Jagar_c::chkSitMotion2() {
 }
 
 /* 80A17984-80A179F8 003364 0074+00 3/3 0/0 0/0 .text            chkChuMotion__13daNpc_Jagar_cFv */
-void daNpc_Jagar_c::chkChuMotion() {
-    // NONMATCHING
+int daNpc_Jagar_c::chkChuMotion() {
+    if (daNpcT_chkEvtBit(0x235) == 0 && daNpcT_chkEvtBit(0x1c) != 0) {
+        if (daNpcT_chkEvtBit(0x87) == 0) {
+            return (field_0x1001 = 0) ? 1 : 0; // Is this right?
+        } else {
+            return 0;
+        }
+    } else {
+        return 0;
+    }
 }
 
 /* 80A179F8-80A17A2C 0033D8 0034+00 1/1 0/0 0/0 .text            chkToMotion__13daNpc_Jagar_cFv */
