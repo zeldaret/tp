@@ -3555,6 +3555,40 @@ public:
         mDoMtx_multVec(getRightHandMatrix(), &m_handRightInSidePos, o_pos);
     }
 
+    cXyz* getLineTopPosP() {
+        return mSight.getPosP();
+    }
+
+    cXyz* getBoomerangLockPosP() {
+        return &mHeldItemRootPos;
+    }
+
+    BOOL boomerangLockTrigger() {
+        return itemActionTrigger();
+    }
+
+    BOOL checkBoomerangLockTrigger() {
+        return boomerangLockTrigger();
+    }
+
+    BOOL checkDemoSpinnerKeep() const {
+        return mDemo.getDemoMode() == 14 && mDemo.getParam0() == 1;
+    }
+
+    BOOL checkDemoSpinnerKeepSpeed() const {
+        return mDemo.getDemoMode() == 14 && mDemo.getParam0() == 2;
+    }
+
+    bool checkSpinnerRideOwn(const fopAc_ac_c* param_0) {
+        return checkSpinnerRide() && mRideAcKeep.getActorConst() == param_0;
+    }
+
+    BOOL checkSpinnerReady() const { return mProcID == PROC_SPINNER_READY; }
+
+    BOOL checkGameOverWindow() const { return mProcID == PROC_DEAD && field_0x3478 < 0.01f; }
+
+    f32 getSlideLimit() const { return field_0x3470; }
+
     inline bool checkWindSpeedOnXZ() const;
     inline void startRestartRoomFromOut(int, u32, int);
     inline u16 getReadyItem();

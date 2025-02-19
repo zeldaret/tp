@@ -35,6 +35,8 @@ public:
     /* 8051EDF0 */ void deleteData();
     /* 80520928 */ dGrass_room_c();
 
+    dGrass_data_c* getData() { return mp_data; }
+
     /* 0x0 */ dGrass_data_c* mp_data;
 };
 
@@ -60,17 +62,19 @@ public:
     /* 805208E4 */ void setAnm(int, s16);
 
     /* 8051F03C */ virtual void draw();
-    /* 8051BFBC */ virtual ~dGrass_packet_c();
+    /* 8051BFBC */ virtual ~dGrass_packet_c() {}
 
     typedef void (dGrass_packet_c::*deleteFunc)(int);
     static deleteFunc m_deleteRoom;
 
     dGrass_anm_c* getAnm() { return m_anm; }
+    dGrass_anm_c* getAnm(int i_no) { return &m_anm[i_no]; }
+
     dGrass_data_c* getData() { return m_data; }
 
     void deleteAnm(int i_idx) { m_anm[i_idx].m_state = 0; }
 
-    /* 0x00010 */ u16 field_0x10;
+    /* 0x00010 */ u16 m_dataNum;
     /* 0x00014 */ dGrass_data_c m_data[1500];
     /* 0x1BD64 */ dGrass_anm_c m_anm[112];
     /* 0x1D5E4 */ dGrass_room_c m_room[64];
@@ -86,7 +90,7 @@ public:
     /* 0x1D708 */ u32 m_Mkusa_9q_DL_size;
     /* 0x1D70C */ u8* mp_Mkusa_9q_cDL;
     /* 0x1D710 */ u32 m_Mkusa_9q_cDL_size;
-    /* 0x1D714 */ u16 field_0x1d714;
+    /* 0x1D714 */ s16 field_0x1d714;
 };  // Size: 0x1D718
 
 STATIC_ASSERT(sizeof(dGrass_packet_c) == 0x1D718);
@@ -116,6 +120,8 @@ public:
     /* 80521BF8 */ void newData(dFlower_data_c*);
     /* 80521C08 */ void deleteData();
     /* 80522FB4 */ dFlower_room_c();
+
+    dFlower_data_c* getData() { return mp_data; }
 
     /* 0x0 */ dFlower_data_c* mp_data;
 };
@@ -148,11 +154,18 @@ public:
     static deleteFunc m_deleteRoom;
 
     dFlower_anm_c* getAnm(int i_idx) { return &m_anm[i_idx]; }
+    dFlower_anm_c* getAnm() { return &m_anm[0]; }
     dFlower_data_c* getData() { return m_data; }
 
     void deleteAnm(int i_idx) { m_anm[i_idx].m_state = 0; }
 
-    /* 0x00010 */ u16 field_0x10;
+    void setPlayerCutFlg(int i_flag) { m_playerCutFlg = i_flag != 0; }
+    void setPlayerSwordAngY(s16 i_angY) { m_playerSwordAngY = i_angY; }
+    void setPlayerSwordMoveAngY(s16 i_angY) { m_playerSwordMoveAngY = i_angY; }
+    void setPlayerSwordTop(cXyz& i_pos) { m_playerSwordTop = i_pos; }
+    cXyz& getPlayerSwordTop() { return m_playerSwordTop; }
+
+    /* 0x00010 */ u16 m_dataNum;
     /* 0x00014 */ dFlower_data_c m_data[1000];
     /* 0x11954 */ dFlower_anm_c m_anm[72];
     /* 0x12914 */ dFlower_room_c m_room[64];
@@ -183,17 +196,18 @@ public:
  */
 class daGrass_c : public fopAc_ac_c {
 public:
-    /* 8051BEFC */ int createGrass();
+    /* 8051BEFC */ bool createGrass();
     /* 8051BF68 */ void deleteGrass();
     /* 8051C040 */ void executeGrass();
     /* 8051C074 */ void drawGrass();
     /* 8051C0A8 */ void newGrassData(cXyz&, int, u8, u8, s16, u8);
-    /* 8051C0D4 */ int createFlower();
+    /* 8051C0D4 */ bool createFlower();
     /* 8051C140 */ void deleteFlower();
     /* 8051C218 */ void executeFlower();
     /* 8051C24C */ void drawFlower();
     /* 8051C280 */ void newFlowerData(s8, cXyz&, int, s8, s16);
-    /* 8051C304 */ int create();
+
+    /* 8051C304 */ inline int create();
 
     inline int Delete();
     inline int execute();
@@ -217,7 +231,7 @@ namespace daGrass_prm {
     inline u8 getItemBitNo(daGrass_c* i_this) { return (fopAcM_GetParam(i_this) >> 8) & 0xFF; }
 };
 
-struct offset_data {
+struct daGrass_offsetData {
     /* 0x0 */ u8 num;
     /* 0x4 */ csXyz* set_type;
 };

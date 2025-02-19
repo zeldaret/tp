@@ -13,6 +13,7 @@ struct dPath {
     /* 0x4 */ u8 field_0x4;
     /* 0x5 */ bool m_closed;
     /* 0x6 */ u8 field_0x6;
+    /* 0x7 */ u8 field_0x7;
     /* 0x8 */ dStage_dPnt_c* m_points;
 };
 
