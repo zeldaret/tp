@@ -61,8 +61,8 @@ public:
     /* 80A16EFC */ int cutConversationWithBou(int);
     /* 80A1705C */ int cutConfidentialConversation(int);
     /* 80A173D8 */ int cutFindWolf(int);
-    /* 80A17898 */ void chkSitMotion();
-    /* 80A17924 */ void chkSitMotion2();
+    /* 80A17898 */ int chkSitMotion();
+    /* 80A17924 */ int chkSitMotion2();
     /* 80A17984 */ int chkChuMotion();
     /* 80A179F8 */ void chkToMotion();
     /* 80A17A2C */ void wait(void*);
@@ -107,6 +107,7 @@ private:
     /* 0x0FE0 */ actionFunc field_0xfe0;
     /* 0x0FE4 */ actionFunc field_0xfe4;
     /* 0x1001 */ u8 field_0x1001;
+    /* 0x1002 */ u8 field_0x1002; // Not sure if u8
 };
 
 // STATIC_ASSERT(sizeof(daNpc_Jagar_c) == 0x172c);

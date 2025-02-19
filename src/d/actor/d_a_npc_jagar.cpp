@@ -1720,13 +1720,34 @@ int daNpc_Jagar_c::cutFindWolf(int param_0) {
 }
 
 /* 80A17898-80A17924 003278 008C+00 1/1 0/0 0/0 .text            chkSitMotion__13daNpc_Jagar_cFv */
-void daNpc_Jagar_c::chkSitMotion() {
-    // NONMATCHING
+int daNpc_Jagar_c::chkSitMotion() {
+    if (daNpcT_chkEvtBit(0x235) == 0) {
+        if (daNpcT_chkEvtBit(0x1c) != 0) {
+            if (daNpcT_chkEvtBit(0x87) != 0) {
+                return 0;
+            }
+            if (field_0x1002 != 0) { // 0 or TYPE_0?
+                return 0;
+            }
+        }
+    } else if (field_0x1002 != 0) { // 0 or TYPE_0?
+        return 0;
+    }
+    return 1;
 }
 
 /* 80A17924-80A17984 003304 0060+00 1/1 0/0 0/0 .text            chkSitMotion2__13daNpc_Jagar_cFv */
-void daNpc_Jagar_c::chkSitMotion2() {
-    // NONMATCHING
+int daNpc_Jagar_c::chkSitMotion2() {
+    if (daNpcT_chkEvtBit(0x235) == 0) {
+        if (daNpcT_chkEvtBit(0x8a) != 0) {
+            return 1;
+        }
+    } else {
+        if (daNpcT_chkEvtBit(0x224) != 0) {
+            return 1;
+        }
+    }
+    return 0;
 }
 
 /* 80A17984-80A179F8 003364 0074+00 3/3 0/0 0/0 .text            chkChuMotion__13daNpc_Jagar_cFv */
