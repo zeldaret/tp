@@ -114,6 +114,7 @@ private:
     /* 0x1001 */ u8 field_0x1001;
     /* 0x1002 */ u8 field_0x1002; // Not sure if u8
     /* 0x1003 */ u8 field_0x1003;                   // CutAnger u8
+    /* 0x1004 */ u8 field_0x1004;
 };
 
 // STATIC_ASSERT(sizeof(daNpc_Jagar_c) == 0x172c);
@@ -123,56 +124,50 @@ public:
     /* 80A1A2C4 */ virtual ~daNpc_Jagar_Param_c() {}
 
     struct param {
-        /* 0x00 */ f32 field_0x00;
-        /* 0x04 */ f32 field_0x04;
-        /* 0x08 */ f32 field_0x08;
-        /* 0x0C */ f32 field_0x0c;
-        /* 0x10 */ f32 field_0x10;
-        /* 0x14 */ f32 field_0x14;
-        /* 0x18 */ f32 field_0x18;
-        /* 0x1C */ f32 field_0x1c;
-        /* 0x20 */ f32 field_0x20;
-        /* 0x24 */ f32 field_0x24;
-        /* 0x28 */ f32 field_0x28;
-        /* 0x2C */ f32 field_0x2c;
-        /* 0x30 */ f32 field_0x30;
-        /* 0x34 */ f32 field_0x34;
-        /* 0x38 */ f32 field_0x38;
-        /* 0x3C */ f32 field_0x3c;
-        /* 0x40 */ f32 field_0x40;
-        /* 0x44 */ f32 field_0x44;
-        /* 0x48 */ s16 field_0x48;
-        /* 0x4A */ s16 field_0x4a;
-        /* 0x4C */ s16 field_0x4c;
-        /* 0x4E */ s16 field_0x4e;
-        /* 0x50 */ f32 field_0x50;
-        /* 0x54 */ f32 field_0x54;
-        /* 0x58 */ f32 field_0x58;
-        /* 0x5C */ f32 field_0x5c;
-        /* 0x60 */ s16 field_0x60;
-        /* 0x62 */ s16 field_0x62;
-        /* 0x64 */ int field_0x64;
-        /* 0x68 */ int field_0x68;
-        /* 0x6C */ f32 field_0x6c;
-        /* 0x70 */ f32 field_0x70;
-        /* 0x74 */ f32 field_0x74;
-        /* 0x78 */ f32 field_0x78;
-        /* 0x7C */ f32 field_0x7c;
-        /* 0x80 */ f32 field_0x80;
-        /* 0x84 */ f32 field_0x84;
-        /* 0x88 */ f32 field_0x88;
-        /* 0x8C */ f32 field_0x8c;
-        /* 0x90 */ f32 field_0x90;
-        /* 0x94 */ f32 field_0x94;
-        /* 0x98 */ f32 field_0x98;
-        /* 0x9C */ f32 field_0x9c;
-        /* 0xA0 */ f32 field_0xa0;
-        /* 0xA4 */ f32 field_0xa4;
-        /* 0xA8 */ f32 field_0xa8;
-        /* 0xAC */ s16 field_0xac;
-        /* 0xAE */ s16 field_0xae;
-        /* 0xB0 */ s16 field_0xb0;
-        /* 0xB2 */ s16 field_0xb2;
+        /* 0x00 */ f32 field_0x00;  // 170.0f
+        /* 0x04 */ f32 field_0x04;  // -3.0f
+        /* 0x08 */ f32 field_0x08;  // 1.0f
+        /* 0x0C */ f32 field_0x0c;  // 400.0f
+        /* 0x10 */ f32 field_0x10;  // 255.0f
+        /* 0x14 */ f32 field_0x14;  // 160.0f
+        /* 0x18 */ f32 field_0x18;  // 35.0f
+        /* 0x1C */ f32 field_0x1c;  // 30.0f
+        /* 0x20 */ f32 field_0x20;  // 0.0f
+        /* 0x24 */ f32 field_0x24;  // 0.0f
+        /* 0x28 */ f32 field_0x28;  // 10.0f
+        /* 0x2C */ f32 field_0x2c;  // -10.0f
+        /* 0x30 */ f32 field_0x30;  // 30.0f
+        /* 0x34 */ f32 field_0x34;  // -10.0f
+        /* 0x38 */ f32 field_0x38;  // 45.0f
+        /* 0x3C */ f32 field_0x3c;  // -45.0f
+        /* 0x40 */ f32 field_0x40;  // 0.6f
+        /* 0x44 */ f32 field_0x44;  // 12.0f
+        /* 0x48 */ s16 field_0x48;  // 3
+        /* 0x4A */ s16 field_0x4a;  // 6
+        /* 0x4C */ s16 field_0x4c;  // 5
+        /* 0x4E */ s16 field_0x4e;  // 6
+        /* 0x50 */ f32 field_0x50;  // 110.0f
+        /* 0x54 */ f32 field_0x54;  // 500.0f
+        /* 0x58 */ f32 field_0x58;  // 300.0f
+        /* 0x5C */ f32 field_0x5c;  // -300.0f
+        /* 0x60 */ s16 field_0x60;  // 60
+        /* 0x62 */ s16 field_0x62;  // 8
+        /* 0x64 */ f32 field_0x64;  // 0.0f
+        /* 0x68 */ f32 field_0x68;  // 0.0f
+        /* 0x6C */ f32 field_0x6c;  // 4.0f
+        /* 0x70 */ f32 field_0x70;  // 0.0f
+        /* 0x74 */ f32 field_0x74;  // 0.0f
+        /* 0x78 */ f32 field_0x78;  // 0.0f
+        /* 0x7C */ f32 field_0x7c;  // 0.0f
+        /* 0x80 */ f32 field_0x80;  // 0.0f
+        /* 0x84 */ f32 field_0x84;  // 0.0f
+        /* 0x88 */ f32 field_0x88;  // 0.0f
+        /* 0x8C */ f32 field_0x8c;  // 1400.0f
+        /* 0x90 */ f32 field_0x90;  // 200.0f
+        /* 0x94 */ f32 field_0x94;  // -800.0f
+        /* 0x98 */ f32 field_0x98;  // 16.0f
+        /* 0x9C */ f32 field_0x9c;  // 1800.0f
+        
     };
     static daNpc_Jagar_Param_c::param const m;
 };
