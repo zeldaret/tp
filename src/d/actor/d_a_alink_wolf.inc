@@ -5868,7 +5868,7 @@ int daAlink_c::procWolfLargeDamageUpInit(int param_0, int param_1, s16 param_2, 
             field_0x3478 = daAlinkHIO_wlDamLarge_c0::m.field_0x0.mCancelFrame;
 
             if (param_0 == -4) {
-                onNoResetFlg2(FLG2_UNK_1000);
+                onNoResetFlg2(FLG2_PRESSED_DAMAGE);
                 mProcVar0.field_0x3008 = 0;
                 var_f31 = 0.0f;
             } else if (param_0 == -5 && mDemo.getParam1() > 0) {
@@ -5958,7 +5958,7 @@ int daAlink_c::procWolfLargeDamageUp() {
     }
 
     if (field_0x319c == -4) {
-        if (checkNoResetFlg2(FLG2_UNK_1000)) {
+        if (checkNoResetFlg2(FLG2_PRESSED_DAMAGE)) {
             return 1;
         }
         temp_r29->setRate(daAlinkHIO_wlDamLarge_c0::m.field_0x0.mSpeed);

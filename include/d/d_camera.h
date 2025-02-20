@@ -408,7 +408,7 @@ public:
     /* 80181E64 */ cXyz Eye();
     /* 80181E98 */ cXyz Center();
     /* 8018295C */ void footHeightOf(fopAc_ac_c*);
-    /* 801829AC */ void Bank();
+    /* 801829AC */ cSAngle Bank() { return mBank + mShake.field_0x40; }
 
     bool Active() { return field_0x24 == 0; }
     f32 TrimHeight() { return mTrimHeight; }
@@ -453,6 +453,8 @@ public:
             return field_0x8c;
         }
     }
+
+    void U2(s16 i_val) { field_0x8c = i_val; }
 
     static engine_fn engine_tbl[];
 

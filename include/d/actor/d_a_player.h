@@ -410,7 +410,7 @@ public:
         FLG2_SCN_CHG_START = 0x8000,
         FLG2_UNK_4000 = 0x4000,
         FLG2_UNK_2000 = 0x2000,
-        FLG2_UNK_1000 = 0x1000,
+        FLG2_PRESSED_DAMAGE = 0x1000,
         FLG2_UNK_800 = 0x800,
         FLG2_PLAYER_SHADOW = 0x400,
         FLG2_UNK_200 = 0x200,
@@ -462,7 +462,7 @@ public:
     };
 
     enum daPy_ERFLG0 {
-        ERFLG0_UNK_80000000 = 0x80000000,
+        ERFLG0_FORCE_SUBJECT_CANCEL = 0x80000000,
         ERFLG0_UNK_40000000 = 0x40000000,
         ERFLG0_UNK_20000000 = 0x20000000,
         ERFLG0_WOLF_FCHAIN_PULL = 0x10000000,
@@ -1035,6 +1035,8 @@ public:
     void onNsScream() { onEndResetFlg1(ERFLG1_UNK_1); }
     void onNsScreamAnm() { onEndResetFlg1(daPy_ERFLG1(ERFLG1_UNK_1 | ERFLG1_UNK_2)); }
     void onNeckSearchWide() { onEndResetFlg0(ERFLG0_UNK_400); }
+    void offPressedDamage() { offNoResetFlg2(FLG2_PRESSED_DAMAGE); }
+    void onForceSubjectCancel() { onEndResetFlg0(ERFLG0_FORCE_SUBJECT_CANCEL); }
 
     u32 checkBoarSingleBattle() const { return checkNoResetFlg2(daPy_FLG2(FLG2_UNK_1000000 | FLG2_BOAR_SINGLE_BATTLE)); }
     u32 checkWolfDashAutoJump() const { return checkNoResetFlg2(FLG2_WOLF_DASH_AUTO_JUMP); }

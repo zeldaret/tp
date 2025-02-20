@@ -61,7 +61,7 @@ void daAlink_c::freezeTimerDamage() {
 
 /* 800D6F00-800D6F2C 0D1840 002C+00 1/0 0/0 0/0 .text onPressedDamage__9daAlink_cFRC4cXyzs */
 void daAlink_c::onPressedDamage(cXyz const& param_0, s16 param_1) {
-    onNoResetFlg2(FLG2_UNK_1000);
+    onNoResetFlg2(FLG2_PRESSED_DAMAGE);
     field_0x3104 = param_1;
     field_0x3744 = param_0;
 }
@@ -478,7 +478,7 @@ BOOL daAlink_c::checkDamageAction() {
         return procCoSandWallHitInit();
     }
 
-    if (checkNoResetFlg2(FLG2_UNK_1000)) {
+    if (checkNoResetFlg2(FLG2_PRESSED_DAMAGE)) {
         if (commonLargeDamageUpInit(-4, 1, 0, 0)) {
             current.pos = field_0x3744;
             shape_angle.y = field_0x3104;
@@ -1261,7 +1261,7 @@ int daAlink_c::procLargeDamageUpInit(int param_0, int param_1, s16 param_2, s16 
     mProcVar4.field_0x3010 = 0;
 
     if (param_0 == -4) {
-        onNoResetFlg2(FLG2_UNK_1000);
+        onNoResetFlg2(FLG2_PRESSED_DAMAGE);
         mProcVar0.field_0x3008 = 0;
         mProcVar1.field_0x300a = 1;
         mProcVar2.field_0x300c = 1;
@@ -1380,7 +1380,7 @@ int daAlink_c::procLargeDamageUp() {
     onEndResetFlg0(ERFLG0_UNK_8000000);
 
     if (field_0x3198 == -4) {
-        if (checkNoResetFlg2(FLG2_UNK_1000)) {
+        if (checkNoResetFlg2(FLG2_PRESSED_DAMAGE)) {
             return 1;
         }
 
