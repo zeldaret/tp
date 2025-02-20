@@ -1067,17 +1067,17 @@ int daNpc_Jagar_c::Draw() {
 /* 80A15034-80A15054 000A14 0020+00 1/1 0/0 0/0 .text
  * createHeapCallBack__13daNpc_Jagar_cFP10fopAc_ac_c            */
 int daNpc_Jagar_c::createHeapCallBack(fopAc_ac_c* i_this) {
-    return static_cast<daNpc_Hanjo_c*>(i_this)->CreateHeap();
+    return static_cast<daNpc_Jagar_c*>(i_this)->CreateHeap();
 }
 
 /* 80A15054-80A150AC 000A34 0058+00 1/1 0/0 0/0 .text
  * ctrlJointCallBack__13daNpc_Jagar_cFP8J3DJointi               */
 int daNpc_Jagar_c::ctrlJointCallBack(J3DJoint* param_0, int param_1) {
-    if (param_2 == 0) {
+    if (param_1 == 0) {
         J3DModel* model = j3dSys.getModel();
-        daNpc_Hanjo_c* i_this = reinterpret_cast<daNpc_Hanjo_c*>(model->getUserArea());
+        daNpc_Jagar_c* i_this = reinterpret_cast<daNpc_Jagar_c*>(model->getUserArea());
         if (i_this != 0) {
-            i_this->ctrlJoint(param_1, model);
+            i_this->ctrlJoint(param_0, model);
         }
     }
     return 1;
@@ -1620,9 +1620,9 @@ int daNpc_Jagar_c::drawDbgInfo() {
 
 /* 80A161F4-80A16234 001BD4 0040+00 1/0 0/0 0/0 .text            changeBtp__13daNpc_Jagar_cFPiPi */
 void daNpc_Jagar_c::changeBtp(int* param_0, int* param_1) {
-    if (((mType == TYPE_1 || mType == TYPE_2) && param_0 == 19) && param_1 == 1) {
-        param_0 = 17;
-        param_1 = 3;
+    if (((mType == TYPE_1 || mType == TYPE_2) && *param_0 == 19) && *param_1 == 1) {
+        *param_0 = 17;
+        *param_1 = 3;
     }
     return;
 }
@@ -1653,16 +1653,39 @@ int daNpc_Jagar_c::setAction(int (daNpc_Jagar_c::*action)(void*)) {
     return 1;
 }
 
-/* ############################################################################################## */
-/* 80A1A49C-80A1A49C 00016C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DEAD static char const* const stringBase_80A1A52A = "prm";
-// #pragma pop
-
 /* 80A16384-80A16544 001D64 01C0+00 1/0 0/0 0/0 .text            cutClimbUp__13daNpc_Jagar_cFi */
 int daNpc_Jagar_c::cutClimbUp(int param_0) {
-    return 0; // Placeholder value
+    int rv = 0;
+    int iVar4 = -1;
+    int* piVar1 = dComIfGp_evmng_getMyIntegerP(param_0, "prm");
+    if (piVar1) {
+        iVar4 = *piVar1;
+    }
+    if (dComIfGp_getEventManager().getIsAddvance(param_0)) {
+        switch (iVar4) {
+            case 0:
+                field_0xb50.setNo(8, 0.0f, 0, 0);
+                field_0xb74.setNo(2, 0.0f, 0, 0);
+                field_0xba8.lookNone(1);
+                field_0x1003 = 1;
+                setAngle(field_0x4b6);
+                initTalk(field_0xa7c, NULL);
+                break;
+            case 2:
+                break;
+        }
+    }
+    switch (iVar4) {
+        case 0:
+            if (talkProc(NULL, 0, NULL, 0) && mFlow.checkEndFlow()) {
+                rv = 1;
+            }
+            break;
+        case 2:
+            rv = 1;
+            break;
+    }
+    return rv;
 }
 
 /* ############################################################################################## */
@@ -1693,11 +1716,11 @@ int daNpc_Jagar_c::cutNeedYourHelp(int param_0) {
 int daNpc_Jagar_c::cutAnger(int param_0) {
     int rv = 0;
     int local_b4 = -1;
-    int* piVar1 = dComIfGp_evmng_getMyIntegerP(param_1, "prm");
+    int* piVar1 = dComIfGp_evmng_getMyIntegerP(param_0, "prm");
     if (piVar1 != NULL) {
         local_b4 = *piVar1;
     }
-    if ((((dComIfGp_getEventManager().getIsAddvance(param_1)) && local_b4 != 1) && local_b4 < 1) && local_b4 > -1) {
+    if ((((dComIfGp_getEventManager().getIsAddvance(param_0)) && local_b4 != 1) && local_b4 < 1) && local_b4 > -1) {
         if (field_0xb58 != 8) {
             field_0xb50.setNo(8, 0.0, 0, 0);
         }
@@ -1706,23 +1729,23 @@ int daNpc_Jagar_c::cutAnger(int param_0) {
         }
         field_0x1003 = 0;
         s16 sVar3 = fopAcM_searchActorAngleY(this, dComIfGp_getPlayer(0)); // Correct?
-        setAngle((daNpcT_c *)this, sVar3);
+        setAngle(sVar3);
         initTalk(field_0xa7c, NULL);
     }
     if (local_b4 == 1) {
         field_0xba8.lookNone(0);
-        if (field_0x4b6 == field_0xd7a) {
-            rv = 1;
-        } else {
-            step(field_0x4b6, 8, 14, 15, 0);
-        }
+        // if (field_0x4b6 == field_0xd7a) {
+        //     rv = 1;
+        // } else {
+        //     step(field_0x4b6, 8, 14, 15, 0);
+        // }
     } else if (local_b4 < 1 && local_b4 > -1) {
-        if (field_0xce0 != 1) {
-            field_0xba8.lookPlayer(0);
-            if (talkProc(NULL, 0, NULL, 0) &&  && mFlow.checkEndFlow()) {
-                rv = 1;
-            }
-        }
+        // if (field_0xce0 != 1) {
+        //     field_0xba8.lookPlayer(0);
+        //     if (talkProc(NULL, 0, NULL, 0) && mFlow.checkEndFlow()) {
+        //         rv = 1;
+        //     }
+        // }
     }
     return rv;
 }
@@ -1761,7 +1784,20 @@ int daNpc_Jagar_c::cutConversationWithBou(int param_0) {
 /* 80A1705C-80A173D8 002A3C 037C+00 1/0 0/0 0/0 .text
  * cutConfidentialConversation__13daNpc_Jagar_cFi               */
 int daNpc_Jagar_c::cutConfidentialConversation(int param_0) {
-    return 0; // Placeholder value
+    int rv = 0;
+    int iVar9 = -1;
+    int iVar8 = 0;
+    int* piVar2 = dComIfGp_evmng_getMyIntegerP(param_0, "prm");
+    if(piVar2) {
+        iVar9 = *piVar2;
+    }
+    piVar2 = dComIfGp_evmng_getMyIntegerP(param_0, "msgNo");
+    if(piVar2) {
+        iVar8 = *piVar2;
+    }
+    // field_0xf94.getActorP();  // Check this?
+    dComIfGp_setMesgCameraInfoActor(field_0xf94.getActorP(), (fopAc_ac_c *)this, 0, 0, 0, 0, 0, 0, 0, 0);
+    
 }
 
 /* ############################################################################################## */
