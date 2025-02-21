@@ -4478,7 +4478,7 @@ BOOL daAlink_c::subjectCancelTrigger() {
 int daAlink_c::checkSubjectEnd(BOOL i_playSound) {
     setDoStatus(0x12);
 
-    if (checkEventRun() || checkEquipAnime() || doTrigger() || checkSetItemTrigger(fpcNm_ITEM_HAWK_EYE) || subjectCancelTrigger() || checkEndResetFlg0(ERFLG0_UNK_80000000) || dComIfGp_checkCameraAttentionStatus(field_0x317c, 0x2000)) {
+    if (checkEventRun() || checkEquipAnime() || doTrigger() || checkSetItemTrigger(fpcNm_ITEM_HAWK_EYE) || subjectCancelTrigger() || checkEndResetFlg0(ERFLG0_FORCE_SUBJECT_CANCEL) || dComIfGp_checkCameraAttentionStatus(field_0x317c, 0x2000)) {
         if (i_playSound) {
             seStartSystem(Z2SE_SUBJ_VIEW_OUT);
         }

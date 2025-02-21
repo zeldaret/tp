@@ -12,6 +12,7 @@
  *
  */
 class daAmiShutter_c : public fopAc_ac_c {
+public:
     /* 80BA155C */ void setBaseMtx();
     /* 80BA15E4 */ void CreateHeap();
     /* 80BA1650 */ void create();
@@ -34,8 +35,12 @@ class daAmiShutter_c : public fopAc_ac_c {
     /* 80BA2080 */ void Draw();
     /* 80BA2124 */ void Delete();
     /* 80BA22E8 */ ~daAmiShutter_c();
+
+    bool isShutterOpen() { return mOpen; }
+
 private:
-    /* 0x568 */ u8 field_0x568[0x5dc - 0x568];
+    /* 0x568 */ u8 field_0x568[0x5d9 - 0x568];
+    /* 0x5D9 */ bool mOpen;
 };
 
 STATIC_ASSERT(sizeof(daAmiShutter_c) == 0x5dc);
