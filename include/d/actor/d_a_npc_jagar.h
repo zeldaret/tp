@@ -109,14 +109,18 @@ private:
     /* 0x0E30 */ int field_0xe30;
     /* 0x0E44 */ dCcD_Cyl mCyl1;
     /* 0x0F80 */ u8 mType;
-    /* 0x0F84 */ daNpcF_ActorMngr_c mActorMngr[5];
+    /* 0x0F84 */ daNpcT_ActorMngr_c mActorMngr[5];
     /* 0x0F94 */ daNpcT_ActorMngr_c field_0xf94;
+    /* 0x0FD4 */ actionFunc field_0xfd4;
     /* 0x0FE0 */ actionFunc field_0xfe0;
     /* 0x0FE4 */ actionFunc field_0xfe4;
+    /* 0x0FF0 */ int field_0xff0;
+    /* 0x0FF4 */ int field_0xff4;
     /* 0x1001 */ u8 field_0x1001;
-    /* 0x1002 */ u8 field_0x1002; // Not sure if u8
+    /* 0x1002 */ u8 field_0x1002;                   // Not sure if u8
     /* 0x1003 */ u8 field_0x1003;                   // CutAnger u8
     /* 0x1004 */ u8 field_0x1004;
+    /* 0x1008 */ int field_0x1008;
 };
 
 // STATIC_ASSERT(sizeof(daNpc_Jagar_c) == 0x100c);
@@ -144,10 +148,10 @@ public:
         /* 0x3C */ f32 field_0x3c;  // -45.0f
         /* 0x40 */ f32 field_0x40;  // 0.6f
         /* 0x44 */ f32 field_0x44;  // 12.0f
-        /* 0x48 */ s16 field_0x48;  // 3
-        /* 0x4A */ s16 field_0x4a;  // 6
-        /* 0x4C */ s16 field_0x4c;  // 5
-        /* 0x4E */ s16 field_0x4e;  // 6
+        /* 0x48 */ s16 field_0x48;
+        /* 0x4A */ s16 field_0x4a;
+        /* 0x4C */ s16 field_0x4c;
+        /* 0x4E */ s16 field_0x4e;
         /* 0x50 */ f32 field_0x50;  // 110.0f
         /* 0x54 */ f32 field_0x54;  // 500.0f
         /* 0x58 */ f32 field_0x58;  // 300.0f
