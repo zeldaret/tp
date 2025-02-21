@@ -341,7 +341,7 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 /* 80A1A568-80A1A570 000020 0008+00 1/1 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[1][2] = {
     // 0x00, 0x00, 0x00, 0x0D, 0x00, 0x00, 0x00, 0x01,
-    13, 1,
+    {13, 1},
 };
 
 /* 80A1A570-80A1A5B8 -00001 0048+00 0/1 0/0 0/0 .data            l_evtList */
@@ -368,7 +368,7 @@ static char* l_resNameList[5] = {
 
 /* 80A1A5CC-80A1A5D0 000084 0004+00 1/0 0/0 0/0 .data            l_loadResPtrn0 */
 // SECTION_DATA static u32 l_loadResPtrn0 = 0x010204FF;
-static s8 l_loadResPtrn0[] = {
+static s8 l_loadResPtrn0[4] = {
     1, 2, 4, -1,
 };
 
@@ -656,38 +656,38 @@ extern actor_process_profile_definition g_profile_NPC_JAGAR = {
 };
 
 // /* 80A1AC60-80A1AC6C 000718 000C+00 2/2 0/0 0/0 .data            __vt__11J3DTexNoAnm */
-// SECTION_DATA extern void* __vt__11J3DTexNoAnm[3] = {
-//     (void*)NULL /* RTTI */,
-//     (void*)NULL,
-//     (void*)calc__11J3DTexNoAnmCFPUs,
-// };
+SECTION_DATA extern void* __vt__11J3DTexNoAnm[3] = {
+    (void*)NULL /* RTTI */,
+    (void*)NULL,
+    (void*)calc__11J3DTexNoAnmCFPUs,
+};
 
-// /* 80A1AC6C-80A1AC78 000724 000C+00 3/3 0/0 0/0 .data            __vt__12J3DFrameCtrl */
-// SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
-//     (void*)NULL /* RTTI */,
-//     (void*)NULL,
-//     (void*)__dt__12J3DFrameCtrlFv,
-// };
+/* 80A1AC6C-80A1AC78 000724 000C+00 3/3 0/0 0/0 .data            __vt__12J3DFrameCtrl */
+SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
+    (void*)NULL /* RTTI */,
+    (void*)NULL,
+    (void*)__dt__12J3DFrameCtrlFv,
+};
 
-// /* 80A1AC78-80A1AC9C 000730 0024+00 3/3 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
-// SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
-//     (void*)NULL /* RTTI */,
-//     (void*)NULL,
-//     (void*)__dt__12dBgS_ObjAcchFv,
-//     (void*)NULL,
-//     (void*)NULL,
-//     (void*)func_80A1A314,
-//     (void*)NULL,
-//     (void*)NULL,
-//     (void*)func_80A1A30C,
-// };
+/* 80A1AC78-80A1AC9C 000730 0024+00 3/3 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
+SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
+    (void*)NULL /* RTTI */,
+    (void*)NULL,
+    (void*)__dt__12dBgS_ObjAcchFv,
+    (void*)NULL,
+    (void*)NULL,
+    (void*)func_80A1A314,
+    (void*)NULL,
+    (void*)NULL,
+    (void*)func_80A1A30C,
+};
 
-// /* 80A1AC9C-80A1ACA8 000754 000C+00 2/2 0/0 0/0 .data            __vt__12dBgS_AcchCir */
-// SECTION_DATA extern void* __vt__12dBgS_AcchCir[3] = {
-//     (void*)NULL /* RTTI */,
-//     (void*)NULL,
-//     (void*)__dt__12dBgS_AcchCirFv,
-// };
+/* 80A1AC9C-80A1ACA8 000754 000C+00 2/2 0/0 0/0 .data            __vt__12dBgS_AcchCir */
+SECTION_DATA extern void* __vt__12dBgS_AcchCir[3] = {
+    (void*)NULL /* RTTI */,
+    (void*)NULL,
+    (void*)__dt__12dBgS_AcchCirFv,
+};
 
 // /* 80A1ACA8-80A1ACB4 000760 000C+00 3/3 0/0 0/0 .data            __vt__10cCcD_GStts */
 // SECTION_DATA extern void* __vt__10cCcD_GStts[3] = {
@@ -731,19 +731,19 @@ extern actor_process_profile_definition g_profile_NPC_JAGAR = {
 //     (void*)__dt__8cM3dGAabFv,
 // };
 
-// /* 80A1ACF0-80A1ACFC 0007A8 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGCyl */
-// SECTION_DATA extern void* __vt__8cM3dGCyl[3] = {
-//     (void*)NULL /* RTTI */,
-//     (void*)NULL,
-//     (void*)__dt__8cM3dGCylFv,
-// };
+/* 80A1ACF0-80A1ACFC 0007A8 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGCyl */
+SECTION_DATA extern void* __vt__8cM3dGCyl[3] = {
+    (void*)NULL /* RTTI */,
+    (void*)NULL,
+    (void*)__dt__8cM3dGCylFv,
+};
 
-// /* 80A1ACFC-80A1AD08 0007B4 000C+00 3/3 0/0 0/0 .data            __vt__13daNpcT_Path_c */
-// SECTION_DATA extern void* __vt__13daNpcT_Path_c[3] = {
-//     (void*)NULL /* RTTI */,
-//     (void*)NULL,
-//     (void*)__dt__13daNpcT_Path_cFv,
-// };
+/* 80A1ACFC-80A1AD08 0007B4 000C+00 3/3 0/0 0/0 .data            __vt__13daNpcT_Path_c */
+SECTION_DATA extern void* __vt__13daNpcT_Path_c[3] = {
+    (void*)NULL /* RTTI */,
+    (void*)NULL,
+    (void*)__dt__13daNpcT_Path_cFv,
+};
 
 /* 80A1AD08-80A1ADCC 0007C0 00C4+00 2/2 0/0 0/0 .data            __vt__13daNpc_Jagar_c */
 // SECTION_DATA extern void* __vt__13daNpc_Jagar_c[49] = {
@@ -1612,7 +1612,26 @@ COMPILER_STRIP_GATE(0x80A1A45C, &lit_5412);
 
 /* 80A16EFC-80A1705C 0028DC 0160+00 1/0 0/0 0/0 .text cutConversationWithBou__13daNpc_Jagar_cFi */
 int daNpc_Jagar_c::cutConversationWithBou(int param_0) {
-    return 0; // Placeholder value
+    fopAc_ac_c* iVar1 = field_0xba0.getActorP();
+    int iVar5 = -1;
+    int iVar6 = 0;
+    int* piVar2 = dComIfGp_evmng_getMyIntegerP(param_0, "prm");
+    if (piVar2 != NULL) {
+        iVar5 = *piVar2;
+    }
+    fopAc_ac_c* Bo = field_0xf94.getActorP();
+    fopAc_ac_c* Jaggle = (fopAc_ac_c *) this;
+    dComIfGp_setMesgCameraInfoActor(Bo, Jaggle, 0, 0, 0, 0, 0, 0, 0, 0);
+    if ((dComIfGp_getEventManager().getIsAddvance(param_0) != 0) && iVar5 == 0) {
+        if (field_0x4b4 != -1) {
+            int uVar4 = field_0x4b4;
+        }
+        initTalk(field_0x4b4, &Jaggle);
+    }
+    if (talkProc(NULL, 0, &Jaggle, 0) && mFlow.checkEndFlow()) {
+        return 1;
+    }
+    return 0;
 }
 
 /* ############################################################################################## */

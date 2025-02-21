@@ -97,10 +97,12 @@ public:
     static cutFunc mCutList[7];
 private:
     /* 0x00B0 */ int field_0xb0;
+    /* 0x04B4 */ short field_0x4b4;
     /* 0x04B6 */ s16 field_0x4b6;
     /* 0x0568 */ u8 field_0x568[0x100c - 0x568];
     /* 0x0B58 */ int field_0xb58;                   // CutAnger int
     /* 0x0B7C */ int field_0xb7c;
+    /* 0x0BA0 */ daNpcT_ActorMngr_c field_0xba0;
     /* 0x0CE0 */ int field_0xce0;                   // CutAnger int
     /* 0x0CFF */ u8 field_0xcff;
     /* 0x0D7A */ short field_0xd7a;                 // CutAnger short
@@ -117,7 +119,7 @@ private:
     /* 0x1004 */ u8 field_0x1004;
 };
 
-// STATIC_ASSERT(sizeof(daNpc_Jagar_c) == 0x172c);
+// STATIC_ASSERT(sizeof(daNpc_Jagar_c) == 0x100c);
 
 class daNpc_Jagar_Param_c {
 public:
