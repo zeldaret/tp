@@ -114,6 +114,7 @@ private:
     /* 0x0FD4 */ actionFunc field_0xfd4;
     /* 0x0FE0 */ actionFunc field_0xfe0;
     /* 0x0FE4 */ actionFunc field_0xfe4;
+    /* 0x0FEC */ int field_0xfec;
     /* 0x0FF0 */ int field_0xff0;
     /* 0x0FF4 */ int field_0xff4;
     /* 0x1001 */ u8 field_0x1001;

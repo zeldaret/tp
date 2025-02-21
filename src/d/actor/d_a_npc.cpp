@@ -2092,13 +2092,14 @@ int daNpcT_c::getActorDistance(fopAc_ac_c* param_0, int param_1, int param_2) {
     double dVar6 = (double)*reinterpret_cast<float*>(&::dAttention_c::getDistTable(param_2));
     double dVar5 = (double)fopAcM_searchActorDistanceXZ(this, param_0);
     if (dVar5 < dVar7) {
-        for (int i = 0; i < 5;) {
-            if (((float)(dVar5 - dVar7)) / 6.0f < ((double)(dVar6 - dVar7)) * (float)(i + 1 ^ 2147483648)) {
-                return rv;
-            }
-            i++;
-            rv++;
+        return 0;
+    }
+    for (int i = 0; i < 5;) {
+        if (((float)(dVar5 - dVar7)) < ((double)(dVar6 - dVar7)) * (float)(i + 1 ^ 2147483648)) {
+            return rv;
         }
+        i++;
+        rv++;
     }
     return rv;
 }

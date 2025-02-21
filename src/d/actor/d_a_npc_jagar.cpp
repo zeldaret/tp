@@ -21,6 +21,7 @@
 #include "d/d_com_inf_game.h"
 #include "d/actor/d_a_npc_bou.h" // For action method?
 #include "dol2asm.h"
+#include "d/d_meter2_info.h"
 
 //
 // Forward References:
@@ -292,7 +293,6 @@ extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_meter2_info[248];
 extern "C" void getType__11daNpc_Bou_cFv();
 extern "C" u8 const m__17daNpc_Bou_Param_c[156];
 extern "C" void __register_global_object();
@@ -1075,6 +1075,9 @@ void daNpc_Jagar_c::setParam() {
     if (mType == TYPE_1) {
         // daNpcT_getDistTableIdx(field_0xff0, field_0xff4);
         int uVar4 = getActorDistance(player, daNpcT_getDistTableIdx(field_0xff0, field_0xff4), attention_info.distances[1]);
+        if (field_0xfec < 4) {
+            g_meter2_info.mBlinkButton |= 1;
+        }
     }
 }
 
