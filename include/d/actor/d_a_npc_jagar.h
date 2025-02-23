@@ -2,7 +2,6 @@
 #define D_A_NPC_JAGAR_H
 
 #include "d/actor/d_a_npc.h"
-#include "f_op/f_op_actor_mng.h" // <-- Does this get the GetParam function?
 
 /**
  * @ingroup actors-npcs
@@ -25,7 +24,6 @@ public:
         TYPE_1,
         TYPE_2,
         TYPE_3,
-        TYPE_4,
     };
 
     /* 80A1470C */ ~daNpc_Jagar_c();
@@ -52,7 +50,7 @@ public:
     /* 80A1607C */ void setCollision();
     /* 80A161EC */ int drawDbgInfo();
     /* 80A161F4 */ void changeBtp(int*, int*);
-    /* 80A16234 */ void selectAction();
+    /* 80A16234 */ int selectAction();
     /* 80A162B0 */ int chkAction(int (daNpc_Jagar_c::*)(void*));
     /* 80A162DC */ int setAction(int (daNpc_Jagar_c::*)(void*));
     /* 80A16384 */ int cutClimbUp(int);
@@ -65,8 +63,8 @@ public:
     /* 80A17924 */ int chkSitMotion2();
     /* 80A17984 */ int chkChuMotion();
     /* 80A179F8 */ int chkToMotion();
-    /* 80A17A2C */ void wait(void*);
-    /* 80A1856C */ void talkwithBou(void*);
+    /* 80A17A2C */ int wait(void*);
+    /* 80A1856C */ int talkwithBou(void*);
     /* 80A18B74 */ int talk(void*);
     /* 80A1A194 */ daNpc_Jagar_c(daNpcT_faceMotionAnmData_c const* param_1, daNpcT_motionAnmData_c const* param_2,
                                 daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_3, int param_4,
@@ -96,21 +94,9 @@ public:
     static char* mCutNameList[7];
     static cutFunc mCutList[7];
 private:
-    /* 0x00B0 */ int field_0xb0;
-    /* 0x04B4 */ short field_0x4b4;
-    /* 0x04B6 */ s16 field_0x4b6;
-    /* 0x0568 */ u8 field_0x568[0x100c - 0x568];
-    /* 0x0B58 */ int field_0xb58;                   // CutAnger int
-    /* 0x0B7C */ int field_0xb7c;
-    /* 0x0BA0 */ daNpcT_ActorMngr_c field_0xba0;
-    /* 0x0CE0 */ int field_0xce0;                   // CutAnger int
-    /* 0x0CFF */ u8 field_0xcff;
-    /* 0x0D7A */ short field_0xd7a;                 // CutAnger short
-    /* 0x0E30 */ int field_0xe30;
     /* 0x0E44 */ dCcD_Cyl mCyl1;
     /* 0x0F80 */ u8 mType;
     /* 0x0F84 */ daNpcT_ActorMngr_c mActorMngr[5];
-    /* 0x0F94 */ daNpcT_ActorMngr_c field_0xf94;
     /* 0x0FD4 */ actionFunc field_0xfd4;
     /* 0x0FE0 */ actionFunc field_0xfe0;
     /* 0x0FE4 */ actionFunc field_0xfe4;
