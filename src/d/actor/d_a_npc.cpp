@@ -1859,6 +1859,7 @@ SECTION_DEAD static char const* const stringBase_80392710 = "DEFAULT_GETITEM";
 /* 8014997C-80149BB4 1442BC 0238+00 1/0 1/0 58/0 .text            evtProc__8daNpcT_cFv */
 int daNpcT_c::evtProc() {
     // NONMATCHING
+    return 0; // Return Placeholder
 }
 
 /* 80149BB4-80149D7C 1444F4 01C8+00 1/0 1/0 60/0 .text            setFootPos__8daNpcT_cFv */
@@ -1908,11 +1909,13 @@ void daNpcT_c::clrParam() {
 /* 8014A388-8014A628 144CC8 02A0+00 1/1 0/0 57/57 .text            setFaceMotionAnm__8daNpcT_cFib */
 bool daNpcT_c::setFaceMotionAnm(int param_0, bool param_1) {
     // NONMATCHING
+    return false; // Return Placeholder
 }
 
 /* 8014A628-8014A908 144F68 02E0+00 1/0 1/0 59/0 .text            setMotionAnm__8daNpcT_cFifi */
 bool daNpcT_c::setMotionAnm(int param_0, f32 param_1, int param_2) {
     // NONMATCHING
+    return false; // Return Placeholder
 }
 
 /* ############################################################################################## */
@@ -1980,6 +1983,7 @@ SECTION_SDATA2 static f32 lit_6775 = 180.0f;
  */
 BOOL daNpcT_c::chkActorInSight(fopAc_ac_c* param_0, f32 param_1, s16 param_2) {
     // NONMATCHING
+    return false; // Return Placeholder
 }
 
 /* 8014ACF0-8014ADA0 145630 00B0+00 2/2 0/0 12/12 .text chkPointInArea__8daNpcT_cF4cXyz4cXyzfffs
@@ -1987,12 +1991,14 @@ BOOL daNpcT_c::chkActorInSight(fopAc_ac_c* param_0, f32 param_1, s16 param_2) {
 BOOL daNpcT_c::chkPointInArea(cXyz param_0, cXyz param_1, f32 param_2, f32 param_3, f32 param_4,
                                   s16 param_5) {
     // NONMATCHING
+    return false; // Return Placeholder
 }
 
 /* 8014ADA0-8014AE1C 1456E0 007C+00 1/1 0/0 1/1 .text chkPointInArea__8daNpcT_cF4cXyz4cXyz4cXyzs
  */
 BOOL daNpcT_c::chkPointInArea(cXyz param_0, cXyz param_1, cXyz param_2, s16 param_3) {
     // NONMATCHING
+    return false; // Return Placeholder
 }
 
 /* ############################################################################################## */
@@ -2021,7 +2027,7 @@ void daNpcT_c::chkFindActor(fopAc_ac_c* param_0, int param_1, s16 param_2) {
 
 /* 8014B010-8014B024 145950 0014+00 5/5 1/1 0/0 .text            getDistTable__12dAttention_cFi */
 dist_entry& dAttention_c::getDistTable(int param_0) {
-    // NONMATCHING
+    return *(dist_table + param_0);
 }
 
 /* 8014B024-8014B0C8 145964 00A4+00 1/1 0/0 0/0 .text            chkWolfAction__8daNpcT_cFv */
@@ -2038,6 +2044,7 @@ void daNpcT_c::chkFindWolf(s16 param_0, int param_1, int param_2, f32 param_3, f
 /* 8014B338-8014B3EC 145C78 00B4+00 0/0 0/0 75/75 .text            srchPlayerActor__8daNpcT_cFv */
 BOOL daNpcT_c::srchPlayerActor() {
     // NONMATCHING
+    return false; // Return Placeholder
 }
 
 /* 8014B3EC-8014B4A4 145D2C 00B8+00 3/3 0/0 5/5 .text            getAttnPos__8daNpcT_cFP10fopAc_ac_c
@@ -2064,6 +2071,7 @@ void daNpcT_c::turn(s16 param_0, int param_1, int param_2) {
 /* 8014B648-8014B808 145F88 01C0+00 0/0 0/0 177/177 .text            step__8daNpcT_cFsiiii */
 int daNpcT_c::step(s16 param_0, int param_1, int param_2, int param_3, int param_4) {
     // NONMATCHING
+    return 0; // Return Placeholder
 }
 
 /* ############################################################################################## */
@@ -2076,13 +2084,24 @@ void daNpcT_c::calcSpeedAndAngle(cXyz param_0, int param_1, s16 param_2, s16 par
 }
 
 /* ############################################################################################## */
-/* 80453478-8045347C 001A78 0004+00 1/1 0/0 0/0 .sdata2          @7242 */
-SECTION_SDATA2 static f32 lit_7242 = 6.0f;
-
 /* 8014BB00-8014BBF0 146440 00F0+00 0/0 0/0 2/2 .text getActorDistance__8daNpcT_cFP10fopAc_ac_cii
  */
-void daNpcT_c::getActorDistance(fopAc_ac_c* param_0, int param_1, int param_2) {
-    // NONMATCHING
+int daNpcT_c::getActorDistance(fopAc_ac_c* param_0, int param_1, int param_2) {
+    int rv = 0;
+    double dVar7 = (double)*reinterpret_cast<float*>(&::dAttention_c::getDistTable(param_1));
+    double dVar6 = (double)*reinterpret_cast<float*>(&::dAttention_c::getDistTable(param_2));
+    double dVar5 = (double)fopAcM_searchActorDistanceXZ(this, param_0);
+    if (dVar5 < dVar7) {
+        return 0;
+    }
+    for (int i = 0; i < 5;) {
+        if (((float)(dVar5 - dVar7)) < ((double)(dVar6 - dVar7)) * (float)(i + 1 ^ 2147483648)) {
+            return rv;
+        }
+        i++;
+        rv++;
+    }
+    return rv;
 }
 
 /* 8014BBF0-8014BC78 146530 0088+00 0/0 1/1 180/180 .text initTalk__8daNpcT_cFiPP10fopAc_ac_c */

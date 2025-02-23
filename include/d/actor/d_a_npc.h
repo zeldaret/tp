@@ -492,7 +492,7 @@ public:
     /* 8014B4A4 */ void turn(s16, int, int);
     /* 8014B648 */ int step(s16, int, int, int, int);
     /* 8014B808 */ void calcSpeedAndAngle(cXyz, int, s16, s16);
-    /* 8014BB00 */ void getActorDistance(fopAc_ac_c*, int, int);
+    /* 8014BB00 */ int getActorDistance(fopAc_ac_c*, int, int);
     /* 8014BBF0 */ int initTalk(int, fopAc_ac_c**);
     /* 8014BC78 */ int talkProc(int*, int, fopAc_ac_c**, int);
     /* 8014BE2C */ fopAc_ac_c* getNearestActorP(s16);
