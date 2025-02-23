@@ -1145,20 +1145,10 @@ extern "C" bool getEyeballRMaterialNo__8daNpcT_cFv() {
     return false;
 }
 
-/* 80AB8BA8-80AB8BB0 002FE8 0008+00 1/0 0/0 0/0 .text            checkChangeEvt__8daNpcT_cFv */
-bool daNpcT_c::checkChangeEvt() {
-    return false;
-}
-
 /* 80AB8BB0-80AB8BB8 002FF0 0008+00 1/0 0/0 0/0 .text            evtEndProc__8daNpcT_cFv */
 // bool daNpcT_c::evtEndProc() {
 extern "C" bool evtEndProc__8daNpcT_cFv() {
     return true;
-}
-
-/* 80AB8BB8-80AB8BBC 002FF8 0004+00 1/0 0/0 0/0 .text            afterMoved__8daNpcT_cFv */
-void daNpcT_c::afterMoved() {
-    /* empty function */
 }
 
 /* 80AB8BBC-80AB8BC4 002FFC 0008+00 1/0 0/0 0/0 .text            chkXYItems__8daNpcT_cFv */

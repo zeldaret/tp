@@ -1536,14 +1536,14 @@ void daTbox_c::settingDropDemoCamera() {
 
     player_camera->mCamera.SetTrimSize(maptooldata->field_0x1);
 
-    dStage_roomStatus_c* roomdt = dComIfGp_roomControl_getStatusRoomDt(fopAcM_GetRoomNo(this));
+    dStage_roomDt_c* roomdt = dComIfGp_roomControl_getStatusRoomDt(fopAcM_GetRoomNo(this));
     JUT_ASSERT(0xB8E, roomdt != 0);
     
-    stage_camera_class* stage_camera = roomdt->mRoomDt.getCamera();
+    stage_camera_class* stage_camera = roomdt->getCamera();
     stage_camera2_data_class* stage_camera_data = stage_camera->mEntries;
     stage_camera_data += maptooldata->field_0x16;
     
-    stage_arrow_class* stage_arrow = roomdt->mRoomDt.getArrow();
+    stage_arrow_class* stage_arrow = roomdt->getArrow();
     stage_arrow_data_class* stage_arrow_data = stage_arrow->mEntries;
     stage_arrow_data += stage_camera_data->field_0x10;
 

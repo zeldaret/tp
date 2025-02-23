@@ -1357,16 +1357,6 @@ extern "C" void ctrlSubFaceMotion__8daNpcT_cFi() {
     /* empty function */
 }
 
-/* 80AC41EC-80AC41F4 003EAC 0008+00 1/0 0/0 0/0 .text            getFootLJointNo__8daNpcT_cFv */
-s32 daNpcT_c::getFootLJointNo() {
-    return -1;
-}
-
-/* 80AC41F4-80AC41FC 003EB4 0008+00 1/0 0/0 0/0 .text            getFootRJointNo__8daNpcT_cFv */
-s32 daNpcT_c::getFootRJointNo() {
-    return -1;
-}
-
 /* 80AC41FC-80AC4204 003EBC 0008+00 1/0 0/0 0/0 .text            getEyeballLMaterialNo__8daNpcT_cFv
  */
 // bool daNpcT_c::getEyeballLMaterialNo() {
@@ -1386,11 +1376,6 @@ extern "C" bool getEyeballRMaterialNo__8daNpcT_cFv() {
 // bool daNpcT_c::evtEndProc() {
 extern "C" bool evtEndProc__8daNpcT_cFv() {
     return true;
-}
-
-/* 80AC421C-80AC4220 003EDC 0004+00 1/0 0/0 0/0 .text            afterMoved__8daNpcT_cFv */
-void daNpcT_c::afterMoved() {
-    /* empty function */
 }
 
 /* 80AC4220-80AC4228 003EE0 0008+00 1/0 0/0 0/0 .text            chkXYItems__8daNpcT_cFv */

@@ -2972,11 +2972,6 @@ extern "C" bool getEyeballRMaterialNo__8daNpcT_cFv() {
     return false;
 }
 
-/* 80571190-80571194 00B3F0 0004+00 1/0 0/0 0/0 .text            afterMoved__8daNpcT_cFv */
-void daNpcT_c::afterMoved() {
-    /* empty function */
-}
-
 /* 80571194-8057119C 00B3F4 0008+00 1/0 0/0 0/0 .text            chkXYItems__8daNpcT_cFv */
 // bool daNpcT_c::chkXYItems() {
 extern "C" bool chkXYItems__8daNpcT_cFv() {

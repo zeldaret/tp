@@ -190,7 +190,7 @@ int dEnvSe_c::execute_common(dStage_SoundInfo_c* i_soundInf, s8* param_1, u8 par
 /* 80183480-801835A0 17DDC0 0120+00 1/1 0/0 0/0 .text            execute__8dEnvSe_cFv */
 int dEnvSe_c::execute() {
     s32 roomNo = dComIfGp_roomControl_getStayNo();
-    dStage_roomDt_c* roomDt_p = &dComIfGp_roomControl_getStatusRoomDt(roomNo)->mRoomDt;
+    dStage_roomDt_c* roomDt_p = dComIfGp_roomControl_getStatusRoomDt(roomNo);
 
     if (roomDt_p == NULL) {
         return 1;

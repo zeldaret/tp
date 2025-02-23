@@ -795,31 +795,6 @@ extern "C" void ctrlSubFaceMotion__8daNpcT_cFi() {
     /* empty function */
 }
 
-/* 80A45304-80A4530C 001E84 0008+00 1/0 0/0 0/0 .text            getBackboneJointNo__8daNpcT_cFv */
-s32 daNpcT_c::getBackboneJointNo() {
-    return -1;
-}
-
-/* 80A4530C-80A45314 001E8C 0008+00 1/0 0/0 0/0 .text            getNeckJointNo__8daNpcT_cFv */
-s32 daNpcT_c::getNeckJointNo() {
-    return -1;
-}
-
-/* 80A45314-80A4531C 001E94 0008+00 1/0 0/0 0/0 .text            getHeadJointNo__8daNpcT_cFv */
-s32 daNpcT_c::getHeadJointNo() {
-    return -1;
-}
-
-/* 80A4531C-80A45324 001E9C 0008+00 1/0 0/0 0/0 .text            getFootLJointNo__8daNpcT_cFv */
-s32 daNpcT_c::getFootLJointNo() {
-    return -1;
-}
-
-/* 80A45324-80A4532C 001EA4 0008+00 1/0 0/0 0/0 .text            getFootRJointNo__8daNpcT_cFv */
-s32 daNpcT_c::getFootRJointNo() {
-    return -1;
-}
-
 /* 80A4532C-80A45334 001EAC 0008+00 1/0 0/0 0/0 .text            getEyeballLMaterialNo__8daNpcT_cFv
  */
 // bool daNpcT_c::getEyeballLMaterialNo() {
@@ -834,35 +809,10 @@ extern "C" bool getEyeballRMaterialNo__8daNpcT_cFv() {
     return false;
 }
 
-/* 80A4533C-80A45340 001EBC 0004+00 1/0 0/0 0/0 .text            afterJntAnm__8daNpcT_cFi */
-void daNpcT_c::afterJntAnm(int param_0) {
-    /* empty function */
-}
-
-/* 80A45340-80A45348 001EC0 0008+00 1/0 0/0 0/0 .text            checkChangeEvt__8daNpcT_cFv */
-bool daNpcT_c::checkChangeEvt() {
-    return false;
-}
-
 /* 80A45348-80A45350 001EC8 0008+00 1/0 0/0 0/0 .text            evtEndProc__8daNpcT_cFv */
 // bool daNpcT_c::evtEndProc() {
 extern "C" bool evtEndProc__8daNpcT_cFv() {
     return true;
-}
-
-/* 80A45350-80A45354 001ED0 0004+00 1/0 0/0 0/0 .text            setAfterTalkMotion__8daNpcT_cFv */
-void daNpcT_c::setAfterTalkMotion() {
-    /* empty function */
-}
-
-/* 80A45354-80A45358 001ED4 0004+00 1/0 0/0 0/0 .text            afterMoved__8daNpcT_cFv */
-void daNpcT_c::afterMoved() {
-    /* empty function */
-}
-
-/* 80A45358-80A4535C 001ED8 0004+00 1/0 0/0 0/0 .text            setCollision__8daNpcT_cFv */
-void daNpcT_c::setCollision() {
-    /* empty function */
 }
 
 /* 80A4535C-80A45364 001EDC 0008+00 1/0 0/0 0/0 .text            chkXYItems__8daNpcT_cFv */

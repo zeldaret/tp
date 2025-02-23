@@ -804,7 +804,7 @@ public:
     void init(void);
     static int getZoneNo(int i_roomNo) { return mStatus[i_roomNo].getZoneNo(); }
     /* 80024338 */ void initZone();
-    /* 80024384 */ dStage_roomStatus_c* getStatusRoomDt(int);
+    /* 80024384 */ dStage_roomDt_c* getStatusRoomDt(int);
     /* 800243B0 */ static JKRExpHeap* getMemoryBlock(int);
     /* 800243E8 */ static void setStayNo(int);
     /* 80024424 */ static void setNextStayNo(int);

@@ -216,7 +216,7 @@ public:
     /* 8016E424 */ void LockEdge();
     /* 80182994 */ void GetCheckObjectCount();
     /* 80182AD0 */ void keepLock(int);
-    /* 8014B010 */ static dist_entry& getDistTable(int);
+    /* 8014B010 */ static dist_entry& getDistTable(int i_no) { return dist_table[i_no]; }
 
     fopAc_ac_c* getCatghTarget() { return mCatghTarget.getCatghTarget(); }
     fopAc_ac_c* getZHintTarget() { return mZHintTarget.getZHintTarget(); }
@@ -252,8 +252,6 @@ public:
         mpPlayer = param_0;
         mPadNo = i_padNo;
     }
-
-    static dist_entry& i_getDistTable(int i_no) { return dist_table[i_no]; }
 
     static type_tbl_entry loc_type_tbl[3];
     static type_tbl_entry act_type_tbl[5];

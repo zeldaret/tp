@@ -940,13 +940,13 @@ int dShopSystem_c::seq_start(fopAc_ac_c* actor, dMsgFlow_c* i_flow) {
             if (i_flow->doFlow(actor, NULL, 0)) {
                 int itemNo;
                 if (mFlow.getEventId(&itemNo) == 1) {
-                    if (field_0xd90 == -1) {
-                        field_0xd90 = fopAcM_createItemForPresentDemo(&current.pos, itemNo, 0, -1,
+                    if (mItemId == -1) {
+                        mItemId = fopAcM_createItemForPresentDemo(&current.pos, itemNo, 0, -1,
                                                                       -1, NULL, NULL);
                     }
 
-                    if (fpcEx_IsExist(field_0xd90)) {
-                        field_0xe30 = 1;
+                    if (fpcEx_IsExist(mItemId)) {
+                        mEvtNo = 1;
                         evtChange();
                         return 1;
                     } else {
@@ -1244,15 +1244,15 @@ int dShopSystem_c::seq_decide_yes(fopAc_ac_c* actor, dMsgFlow_c* i_flow) {
     int itemNo;
     if (mFlow.getEventId(&itemNo) == 1) {
         if (i_flow->doFlow(actor, NULL, 0)) {
-            if (field_0xd90 == -1) {
-                field_0xd90 =
+            if (mItemId == -1) {
+                mItemId =
                     fopAcM_createItemForPresentDemo(&current.pos, itemNo, 0, -1, -1, NULL, NULL);
             }
 
-            if (fpcEx_IsExist(field_0xd90)) {
+            if (fpcEx_IsExist(mItemId)) {
                 offFlag(8);
                 setSoldOutItemHide();
-                field_0xe30 = 1;
+                mEvtNo = 1;
                 evtChange();
                 return 2;
             }
@@ -1303,7 +1303,7 @@ int dShopSystem_c::seq_finish(fopAc_ac_c* actor, dMsgFlow_c* i_flow) {
 /* 8019A0C0-8019A0D0 194A00 0010+00 1/0 0/0 0/0 .text
  * seq_event__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c        */
 bool dShopSystem_c::seq_event(fopAc_ac_c*, dMsgFlow_c*) {
-    return field_0xe30 == 0;
+    return mEvtNo == 0;
 }
 
 /* 8019A0D0-8019A158 194A10 0088+00 0/0 0/0 9/9 .text            shop_init__13dShopSystem_cFb */
@@ -1658,75 +1658,4 @@ bool dShopSystem_c::checkRightTrigger(STControl* i_stick) {
 /* 8019ABA8-8019ABB0 1954E8 0008+00 1/1 0/0 0/0 .text            dpdMove__13dShopSystem_cFv */
 bool dShopSystem_c::dpdMove() {
     return false;
-}
-
-#pragma nosyminline on
-
-// Need 0x78 bytes of padding with no symbol between process and dShopSystem_c::__vtable
-// This is likely caused by the vtables of abstract base classes getting put there and then stripped out.
-// Not sure which abstract base class could go there though, so we simulate it with some dummy classes for now.
-class dummy_abstract_class {
-public:
-    virtual void virt_func_0() = 0;
-    virtual void virt_func_1() = 0;
-    virtual void virt_func_2() = 0;
-    virtual void virt_func_3() = 0;
-    virtual void virt_func_4() = 0;
-    virtual void virt_func_5() = 0;
-    virtual void virt_func_6() = 0;
-    virtual void virt_func_7() = 0;
-    virtual void virt_func_8() = 0;
-    virtual void virt_func_9() = 0;
-    virtual void virt_func_10() = 0;
-    virtual void virt_func_11() = 0;
-    virtual void virt_func_12() = 0;
-    virtual void virt_func_13() = 0;
-    virtual void virt_func_14() = 0;
-    virtual void virt_func_15() = 0;
-    virtual void virt_func_16() = 0;
-    virtual void virt_func_17() = 0;
-    virtual void virt_func_18() = 0;
-    virtual void virt_func_19() = 0;
-    virtual void virt_func_20() = 0;
-    virtual void virt_func_21() = 0;
-    virtual void virt_func_22() = 0;
-    virtual void virt_func_23() = 0;
-    virtual void virt_func_24() = 0;
-    virtual void virt_func_25() = 0;
-    virtual void virt_func_26() = 0;
-    virtual void virt_func_27() = 0;
-};
-class dummy_child_class : dummy_abstract_class {
-    virtual void virt_func_0();
-    virtual void virt_func_1();
-    virtual void virt_func_2();
-    virtual void virt_func_3();
-    virtual void virt_func_4();
-    virtual void virt_func_5();
-    virtual void virt_func_6();
-    virtual void virt_func_7();
-    virtual void virt_func_8();
-    virtual void virt_func_9();
-    virtual void virt_func_10();
-    virtual void virt_func_11();
-    virtual void virt_func_12();
-    virtual void virt_func_13();
-    virtual void virt_func_14();
-    virtual void virt_func_15();
-    virtual void virt_func_16();
-    virtual void virt_func_17();
-    virtual void virt_func_18();
-    virtual void virt_func_19();
-    virtual void virt_func_20();
-    virtual void virt_func_21();
-    virtual void virt_func_22();
-    virtual void virt_func_23();
-    virtual void virt_func_24();
-    virtual void virt_func_25();
-    virtual void virt_func_26();
-    virtual void virt_func_27();
-};
-static dummy_child_class dummy() {
-    dummy_child_class temp;
-    return temp;
 }

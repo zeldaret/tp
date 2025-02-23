@@ -825,31 +825,6 @@ extern "C" void ctrlSubFaceMotion__8daNpcT_cFi() {
     /* empty function */
 }
 
-/* 80541A78-80541A80 001BF8 0008+00 1/0 0/0 0/0 .text            getBackboneJointNo__8daNpcT_cFv */
-s32 daNpcT_c::getBackboneJointNo() {
-    return -1;
-}
-
-/* 80541A80-80541A88 001C00 0008+00 1/0 0/0 0/0 .text            getNeckJointNo__8daNpcT_cFv */
-s32 daNpcT_c::getNeckJointNo() {
-    return -1;
-}
-
-/* 80541A88-80541A90 001C08 0008+00 1/0 0/0 0/0 .text            getHeadJointNo__8daNpcT_cFv */
-s32 daNpcT_c::getHeadJointNo() {
-    return -1;
-}
-
-/* 80541A90-80541A98 001C10 0008+00 1/0 0/0 0/0 .text            getFootLJointNo__8daNpcT_cFv */
-s32 daNpcT_c::getFootLJointNo() {
-    return -1;
-}
-
-/* 80541A98-80541AA0 001C18 0008+00 1/0 0/0 0/0 .text            getFootRJointNo__8daNpcT_cFv */
-s32 daNpcT_c::getFootRJointNo() {
-    return -1;
-}
-
 /* 80541AA0-80541AA8 001C20 0008+00 1/0 0/0 0/0 .text            getEyeballLMaterialNo__8daNpcT_cFv
  */
 // bool daNpcT_c::getEyeballLMaterialNo() {
@@ -864,30 +839,10 @@ extern "C" bool getEyeballRMaterialNo__8daNpcT_cFv() {
     return false;
 }
 
-/* 80541AB8-80541ABC 001C38 0004+00 1/0 0/0 0/0 .text            afterJntAnm__8daNpcT_cFi */
-void daNpcT_c::afterJntAnm(int param_0) {
-    /* empty function */
-}
-
-/* 80541ABC-80541AC4 001C3C 0008+00 1/0 0/0 0/0 .text            checkChangeEvt__8daNpcT_cFv */
-bool daNpcT_c::checkChangeEvt() {
-    return false;
-}
-
 /* 80541AC4-80541ACC 001C44 0008+00 1/0 0/0 0/0 .text            evtEndProc__8daNpcT_cFv */
 // bool daNpcT_c::evtEndProc() {
 extern "C" bool evtEndProc__8daNpcT_cFv() {
     return true;
-}
-
-/* 80541ACC-80541AD0 001C4C 0004+00 1/0 0/0 0/0 .text            setAfterTalkMotion__8daNpcT_cFv */
-void daNpcT_c::setAfterTalkMotion() {
-    /* empty function */
-}
-
-/* 80541AD0-80541AD4 001C50 0004+00 1/0 0/0 0/0 .text            afterMoved__8daNpcT_cFv */
-void daNpcT_c::afterMoved() {
-    /* empty function */
 }
 
 /* 80541AD4-80541ADC 001C54 0008+00 1/0 0/0 0/0 .text            chkXYItems__8daNpcT_cFv */

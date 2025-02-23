@@ -1254,7 +1254,7 @@ void daNpc_Kolin_c::setParam() {
 
 /* 80555118-8055523C 001218 0124+00 1/0 0/0 0/0 .text            checkChangeEvt__13daNpc_Kolin_cFv
  */
-bool daNpc_Kolin_c::checkChangeEvt() {
+BOOL daNpc_Kolin_c::checkChangeEvt() {
     // NONMATCHING
 }
 
@@ -1274,12 +1274,12 @@ void daNpc_Kolin_c::srchActors() {
 }
 
 /* 80555448-805554E8 001548 00A0+00 1/0 0/0 0/0 .text            evtTalk__13daNpc_Kolin_cFv */
-bool daNpc_Kolin_c::evtTalk() {
+BOOL daNpc_Kolin_c::evtTalk() {
     // NONMATCHING
 }
 
 /* 805554E8-805555B0 0015E8 00C8+00 1/0 0/0 0/0 .text            evtCutProc__13daNpc_Kolin_cFv */
-bool daNpc_Kolin_c::evtCutProc() {
+BOOL daNpc_Kolin_c::evtCutProc() {
     // NONMATCHING
 }
 
@@ -2038,11 +2038,6 @@ extern "C" bool getEyeballRMaterialNo__8daNpcT_cFv() {
 // bool daNpcT_c::evtEndProc() {
 extern "C" bool evtEndProc__8daNpcT_cFv() {
     return true;
-}
-
-/* 8055A124-8055A128 006224 0004+00 1/0 0/0 0/0 .text            afterMoved__8daNpcT_cFv */
-void daNpcT_c::afterMoved() {
-    /* empty function */
 }
 
 /* 8055A128-8055A130 006228 0008+00 1/0 0/0 0/0 .text            chkXYItems__8daNpcT_cFv */

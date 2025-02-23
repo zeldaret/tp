@@ -903,35 +903,10 @@ extern "C" void setEyeAngleX__15daNpcT_JntAnm_cF4cXyzfs() {
     // NONMATCHING
 }
 
-/* 80B6E694-80B6E69C 0025D4 0008+00 1/0 0/0 0/0 .text            getHeadJointNo__8daNpcT_cFv */
-s32 daNpcT_c::getHeadJointNo() {
-    return -1;
-}
-
-/* 80B6E69C-80B6E6A4 0025DC 0008+00 1/0 0/0 0/0 .text            getNeckJointNo__8daNpcT_cFv */
-s32 daNpcT_c::getNeckJointNo() {
-    return -1;
-}
-
-/* 80B6E6A4-80B6E6AC 0025E4 0008+00 1/0 0/0 0/0 .text            getBackboneJointNo__8daNpcT_cFv */
-s32 daNpcT_c::getBackboneJointNo() {
-    return -1;
-}
-
 /* 80B6E6AC-80B6E6B0 0025EC 0004+00 1/0 0/0 0/0 .text            ctrlSubFaceMotion__8daNpcT_cFi */
 // void daNpcT_c::ctrlSubFaceMotion(int param_0) {
 extern "C" void ctrlSubFaceMotion__8daNpcT_cFi() {
     /* empty function */
-}
-
-/* 80B6E6C0-80B6E6C8 002600 0008+00 1/0 0/0 0/0 .text            getFootLJointNo__8daNpcT_cFv */
-s32 daNpcT_c::getFootLJointNo() {
-    return -1;
-}
-
-/* 80B6E6C8-80B6E6D0 002608 0008+00 1/0 0/0 0/0 .text            getFootRJointNo__8daNpcT_cFv */
-s32 daNpcT_c::getFootRJointNo() {
-    return -1;
 }
 
 /* 80B6E6D0-80B6E6D8 002610 0008+00 1/0 0/0 0/0 .text            getEyeballLMaterialNo__8daNpcT_cFv
@@ -948,20 +923,10 @@ extern "C" bool getEyeballRMaterialNo__8daNpcT_cFv() {
     return false;
 }
 
-/* 80B6E6E0-80B6E6E8 002620 0008+00 1/0 0/0 0/0 .text            checkChangeEvt__8daNpcT_cFv */
-bool daNpcT_c::checkChangeEvt() {
-    return false;
-}
-
 /* 80B6E6E8-80B6E6F0 002628 0008+00 1/0 0/0 0/0 .text            evtEndProc__8daNpcT_cFv */
 // bool daNpcT_c::evtEndProc() {
 extern "C" bool evtEndProc__8daNpcT_cFv() {
     return true;
-}
-
-/* 80B6E6F0-80B6E6F4 002630 0004+00 1/0 0/0 0/0 .text            afterMoved__8daNpcT_cFv */
-void daNpcT_c::afterMoved() {
-    /* empty function */
 }
 
 /* 80B6E6F4-80B6E6FC 002634 0008+00 1/0 0/0 0/0 .text            chkXYItems__8daNpcT_cFv */

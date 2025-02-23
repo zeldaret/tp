@@ -38,10 +38,10 @@ public:
     /* 80A021DC */ void setParam();
     /* 80A0236C */ void setAfterTalkMotion();
     /* 80A02370 */ void srchActors();
-    /* 80A02374 */ bool checkChangeEvt();
-    /* 80A023EC */ bool evtTalk();
-    /* 80A024D0 */ bool evtEndProc();
-    /* 80A0260C */ bool evtCutProc();
+    /* 80A02374 */ BOOL checkChangeEvt();
+    /* 80A023EC */ BOOL evtTalk();
+    /* 80A024D0 */ BOOL evtEndProc();
+    /* 80A0260C */ BOOL evtCutProc();
     /* 80A026D4 */ int evtProc();
     /* 80A02918 */ void action();
     /* 80A029A0 */ void beforeMove();

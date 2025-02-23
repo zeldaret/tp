@@ -146,7 +146,7 @@ static int dEvDt_Next_Stage(int index, int wipe_type) {
         if (room_no == -1) {
             info = dComIfGp_getStageSclsInfo();
         } else {
-            info = dComIfGp_roomControl_getStatusRoomDt(room_no)->mRoomDt.getSclsInfo();
+            info = dComIfGp_roomControl_getStatusRoomDt(room_no)->getSclsInfo();
         }
 
         if (info != NULL && id >= 0 && id < info->numEntries) {

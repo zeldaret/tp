@@ -54,10 +54,10 @@ public:
     /* 809727B4 */ virtual s32 getEyeballMaterialNo();
     /* 8096DD44 */ virtual void afterJntAnm(int);
     /* 8096DDC8 */ virtual void setParam();
-    /* 8096DF9C */ virtual bool checkChangeEvt();
-    /* 8096E27C */ virtual bool evtTalk();
-    /* 8096E31C */ virtual bool evtEndProc();
-    /* 8096E324 */ virtual bool evtCutProc();
+    /* 8096DF9C */ virtual BOOL checkChangeEvt();
+    /* 8096E27C */ virtual BOOL evtTalk();
+    /* 8096E31C */ virtual BOOL evtEndProc();
+    /* 8096E324 */ virtual BOOL evtCutProc();
     /* 8096E0EC */ virtual void setAfterTalkMotion();
     /* 8096E3EC */ virtual void action();
     /* 8096E7E0 */ virtual void beforeMove();
@@ -71,15 +71,15 @@ public:
 
     BOOL speakTo() {
         if (field_0xf80 == 4) {
-            if (current.pos.absXZ(daPy_getPlayerActorClass()->current.pos) < 1100.0f && strlen(field_0x570[5].eventName) != 0) {
-                u32 len = strlen(field_0x574[field_0x570[5].num]);
+            if (current.pos.absXZ(daPy_getPlayerActorClass()->current.pos) < 1100.0f && strlen(mpEvtData[5].eventName) != 0) {
+                u32 len = strlen(mpArcNames[mpEvtData[5].num]);
                 if (len != 0) {
-                    eventInfo.setArchiveName(field_0x574[field_0x570[5].num]);
+                    eventInfo.setArchiveName(mpArcNames[mpEvtData[5].num]);
                     dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
                 }
 
-                field_0xe1c = dComIfGp_getEventManager().getEventIdx(this, field_0x570[5].eventName, 0xFF);
-                fopAcM_orderOtherEventId(this, field_0xe1c, 0xFF, 0xFFFF, 4, 1);
+                mEvtId = dComIfGp_getEventManager().getEventIdx(this, mpEvtData[5].eventName, 0xFF);
+                fopAcM_orderOtherEventId(this, mEvtId, 0xFF, 0xFFFF, 4, 1);
                 return 1;
             }
         }

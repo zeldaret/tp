@@ -138,7 +138,7 @@ static bool isCreating(fpc_ProcID param_0) {
 /* 8025B1D0-8025B2EC 255B10 011C+00 1/1 0/0 0/0 .text            loadDemoArchive__Fi */
 static int loadDemoArchive(int room_no) {
     if (*dStage_roomControl_c::getDemoArcName() == 0) {
-        dStage_Lbnk_c* lbnk = dComIfGp_roomControl_getStatusRoomDt(room_no)->mRoomDt.getLbnk();
+        dStage_Lbnk_c* lbnk = dComIfGp_roomControl_getStatusRoomDt(room_no)->getLbnk();
 
         if (lbnk != NULL) {
             dStage_Lbnk_dt_c* entries = lbnk->entries;
@@ -293,7 +293,7 @@ inline const char* setArcName(room_of_scene_class* i_room) {
 static int dScnRoom_Delete(room_of_scene_class* i_this) {
     int roomNo = fopScnM_GetParam(i_this);
     dComIfGp_roomControl_setStatusFlag(roomNo, 0);
-    dComIfGp_roomControl_getStatusRoomDt(roomNo)->mRoomDt.init();
+    dComIfGp_roomControl_getStatusRoomDt(roomNo)->init();
 
     if (mDoRst::isReset() || !dComIfGp_isEnableNextStage() ||
         strcmp(dComIfGp_getNextStageName(), dComIfGp_getStartStageName()) ||
@@ -307,7 +307,7 @@ static int dScnRoom_Delete(room_of_scene_class* i_this) {
         }
     }
 
-    dComIfGp_roomControl_getStatusRoomDt(roomNo)->mRoomDt.init();
+    dComIfGp_roomControl_getStatusRoomDt(roomNo)->init();
     dComIfGp_getPEvtManager()->roomFinish(roomNo);
     return 1;
 }
@@ -367,7 +367,7 @@ static int phase_2(room_of_scene_class* i_this) {
         dComIfGp_roomControl_setZoneNo(roomNo, dComIfGs_createZone(roomNo));
     }
 
-    i_this->mpRoomDt = &dComIfGp_roomControl_getStatusRoomDt(roomNo)->mRoomDt;
+    i_this->mpRoomDt = dComIfGp_roomControl_getStatusRoomDt(roomNo);
     i_this->mpRoomDt->setRoomNo(roomNo);
     i_this->mpDzrRes = dComIfG_getStageRes(arcName, "room.dzr");
 

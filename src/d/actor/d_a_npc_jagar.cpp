@@ -1696,11 +1696,6 @@ extern "C" bool evtEndProc__8daNpcT_cFv() {
     return true;
 }
 
-/* 80A19F98-80A19F9C 005978 0004+00 1/0 0/0 0/0 .text            afterMoved__8daNpcT_cFv */
-void daNpcT_c::afterMoved() {
-    /* empty function */
-}
-
 /* 80A19F9C-80A19FA4 00597C 0008+00 1/0 0/0 0/0 .text            chkXYItems__8daNpcT_cFv */
 // bool daNpcT_c::chkXYItems() {
 extern "C" bool chkXYItems__8daNpcT_cFv() {

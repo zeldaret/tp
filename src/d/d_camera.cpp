@@ -963,9 +963,9 @@ void dCamera_c::initialize(camera_class* i_camera, fopAc_ac_c* i_player, u32 i_c
     int sp108 = 0xFF;
     int sp10C = dComIfGp_roomControl_getStayNo();
 
-    dStage_roomStatus_c* room_dt = dComIfGp_roomControl_getStatusRoomDt(sp10C);
+    dStage_roomDt_c* room_dt = dComIfGp_roomControl_getStatusRoomDt(sp10C);
     if (room_dt != NULL) {
-        dStage_FileList_dt_c* filelist = room_dt->mRoomDt.getFileListInfo();
+        dStage_FileList_dt_c* filelist = room_dt->getFileListInfo();
         if (filelist != NULL) {
             sp108 = dStage_FileList_dt_GetDefaultCamera(filelist);
         }
@@ -2323,9 +2323,9 @@ int dCamera_c::onRoomChange(s32 i_roomNo) {
     setFlag(0x1000);
 
     int var_r29 = 0xFF;
-    dStage_roomStatus_c* room_status = dComIfGp_roomControl_getStatusRoomDt(i_roomNo);
-    if (room_status != NULL) {
-        dStage_FileList_dt_c* filelist = room_status->mRoomDt.getFileListInfo();
+    dStage_roomDt_c* room_dt = dComIfGp_roomControl_getStatusRoomDt(i_roomNo);
+    if (room_dt != NULL) {
+        dStage_FileList_dt_c* filelist = room_dt->getFileListInfo();
         if (filelist != NULL) {
             var_r29 = dStage_FileList_dt_GetDefaultCamera(filelist);
         }

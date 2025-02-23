@@ -22,12 +22,12 @@ dPath* dPath_GetRoomPath(int path_index, int room_no) {
     if (room_no == -1) {
         path = dComIfGp_getStage()->getPath2Inf();
     } else {
-        dStage_roomStatus_c* roomSt = dComIfGp_roomControl_getStatusRoomDt(room_no);
-        if (roomSt == NULL) {
+        dStage_roomDt_c* roomDt = dComIfGp_roomControl_getStatusRoomDt(room_no);
+        if (roomDt == NULL) {
             return NULL;
         }
 
-        path = roomSt->mRoomDt.getPath2Inf();
+        path = roomDt->getPath2Inf();
     }
 
     if (path == NULL || path_index < 0 || path_index >= path->m_num) {
@@ -45,12 +45,12 @@ dPath* dPath_GetNextRoomPath(dPath const* p_path, int room_no) {
     if (room_no == -1) {
         path = dComIfGp_getStage()->getPath2Inf();
     } else {
-        dStage_roomStatus_c* roomSt = dComIfGp_roomControl_getStatusRoomDt(room_no);
-        if (roomSt == NULL) {
+        dStage_roomDt_c* roomDt = dComIfGp_roomControl_getStatusRoomDt(room_no);
+        if (roomDt == NULL) {
             return NULL;
         }
 
-        path = roomSt->mRoomDt.getPath2Inf();
+        path = roomDt->getPath2Inf();
     }
 
     int next_id = p_path->m_nextID;

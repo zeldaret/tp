@@ -1169,24 +1169,24 @@ bool dComIfGp_getMapTrans(int i_roomNo, f32* o_transX, f32* o_transY, s16* o_ang
 
 /* 8002D25C-8002D2AC 027B9C 0050+00 0/0 3/3 3/3 .text            dComIfGp_getRoomCamera__Fi */
 stage_camera_class* dComIfGp_getRoomCamera(int i_roomNo) {
-    dStage_roomStatus_c* status = dComIfGp_roomControl_getStatusRoomDt(i_roomNo);
+    dStage_roomDt_c* room_dt = dComIfGp_roomControl_getStatusRoomDt(i_roomNo);
 
-    if (status == NULL) {
+    if (room_dt == NULL) {
         return NULL;
     }
 
-    return status->mRoomDt.getCamera();
+    return room_dt->getCamera();
 }
 
 /* 8002D2AC-8002D2FC 027BEC 0050+00 0/0 3/3 3/3 .text            dComIfGp_getRoomArrow__Fi */
 stage_arrow_class* dComIfGp_getRoomArrow(int i_roomNo) {
-    dStage_roomStatus_c* status = dComIfGp_roomControl_getStatusRoomDt(i_roomNo);
+    dStage_roomDt_c* room_dt = dComIfGp_roomControl_getStatusRoomDt(i_roomNo);
 
-    if (status == NULL) {
+    if (room_dt == NULL) {
         return NULL;
     }
 
-    return status->mRoomDt.getArrow();
+    return room_dt->getArrow();
 }
 
 /* 8002D2FC-8002D554 027C3C 0258+00 2/2 7/7 4/4 .text dComIfGp_setNextStage__FPCcsScScfUliScsii */

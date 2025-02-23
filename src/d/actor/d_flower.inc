@@ -600,7 +600,7 @@ void dFlower_packet_c::draw() {
             int sp4C = 6;
 
             if (dComIfGp_roomControl_getStatusRoomDt(i) != NULL) {
-                sp4C = dComIfGp_roomControl_getStatusRoomDt(i)->mRoomDt.getLightVecInfoNum();
+                sp4C = dComIfGp_roomControl_getStatusRoomDt(i)->getLightVecInfoNum();
             }
         
             if (dKy_SunMoon_Light_Check() == TRUE && sp4C < 2) {
@@ -689,7 +689,7 @@ void dFlower_packet_c::draw() {
             int sp7C = 0;
 
             if (dComIfGp_roomControl_getStatusRoomDt(i) != NULL) {
-                sp2C = dComIfGp_roomControl_getStatusRoomDt(i)->mRoomDt.getLightVecInfoNum();
+                sp2C = dComIfGp_roomControl_getStatusRoomDt(i)->getLightVecInfoNum();
             }
 
             if (dKy_SunMoon_Light_Check() == TRUE && sp2C < 2) {
