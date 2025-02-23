@@ -16,7 +16,7 @@
 #include "d/d_particle_copoly.h"
 #include "d/d_bg_s_acch.h"
 #include "d/d_cc_d.h"
-#include "d/actor/d_a_npc_bou.h" // For action method?
+#include "d/actor/d_a_npc_bou.h" // Temporary - will be removed
 #include "dol2asm.h"
 #include "d/d_meter2_info.h"
 #include "d/d_meter_button.h"

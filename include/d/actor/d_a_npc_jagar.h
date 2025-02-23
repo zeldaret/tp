@@ -12,7 +12,7 @@
  *
  */
 
-class daNpc_Bou_c; // For action method?
+class daNpc_Bou_c; // Temporary
 
 class daNpc_Jagar_c : public daNpcT_c {
 public:
@@ -76,8 +76,8 @@ public:
     /* 80A1A27C */ s32 getHeadJointNo();
     /* 80A1A284 */ s32 getNeckJointNo();
     /* 80A1A28C */ s32 getBackboneJointNo();
-    /* 80A1A294 */ int checkChangeJoint(int param_1) { return param_1 == 4; }
-    /* 80A1A2A4 */ int checkRemoveJoint(int param_1) { return param_1 == 8; }
+    /* 80A1A294 */ bool checkChangeJoint(int param_1) { return param_1 == 4; }
+    /* 80A1A2A4 */ bool checkRemoveJoint(int param_1) { return param_1 == 8; }
     /* 80A1A2B4 */ s32 getFootLJointNo();
     /* 80A1A2BC */ s32 getFootRJointNo();
 
@@ -104,13 +104,13 @@ private:
     /* 0x0FF0 */ int field_0xff0;
     /* 0x0FF4 */ int field_0xff4;
     /* 0x1001 */ u8 field_0x1001;
-    /* 0x1002 */ u8 field_0x1002;                   // Not sure if u8
-    /* 0x1003 */ u8 field_0x1003;                   // CutAnger u8
+    /* 0x1002 */ u8 field_0x1002;
+    /* 0x1003 */ u8 field_0x1003;
     /* 0x1004 */ u8 field_0x1004;
     /* 0x1008 */ int field_0x1008;
 };
 
-// STATIC_ASSERT(sizeof(daNpc_Jagar_c) == 0x100c);
+// STATIC_ASSERT(sizeof(daNpc_Jagar_c) == 0x100c); // Temporary omission
 
 class daNpc_Jagar_Param_c {
 public:
