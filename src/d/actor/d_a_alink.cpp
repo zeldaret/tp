@@ -10309,7 +10309,7 @@ void daAlink_c::setBgCheckParam() {
             mAcchCir[0].SetWallH(-50.0f);
             mAcchCir[1].SetWallH(-25.0f);
             mAcchCir[2].SetWallH(0.0f);
-            mAcchCir[0].SetWallR(35.0f);
+            mAcchCir[0].35.0f);
         } else if (checkModeFlg(0x1000000)) {
             if (mProcID == PROC_WOLF_LIE_AUTO_MOVE) {
                 mAcchCir[0].SetWallR(11.655f);

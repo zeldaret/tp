@@ -1102,6 +1102,8 @@ public:
         onNoResetFlg3(FLG3_UNK_200000);
     }
 
+    BOOL checkClimbEndHang() { return checkResetFlg0(RFLG0_UNK_40000); }
+
     static daMidna_c* m_midnaActor;
 };
 

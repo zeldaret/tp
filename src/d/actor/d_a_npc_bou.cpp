@@ -1088,8 +1088,21 @@ void daNpc_Bou_c::getCowP() {
 }
 
 /* 8096DA78-8096DADC 000BD8 0064+00 1/1 0/0 2/2 .text            getType__11daNpc_Bou_cFv */
-void daNpc_Bou_c::getType() {
-    // NONMATCHING
+u8 daNpc_Bou_c::getType() {
+    switch ((u8)fopAcM_GetParam(this)) {
+        case 0:
+            return TYPE_0;
+        case 1:
+            return TYPE_1;
+        case 2:
+            return TYPE_2;
+        case 3:
+            return TYPE_3;
+        case 4:
+            return TYPE_4;
+        default:
+            return TYPE_5;
+    }
 }
 
 /* 8096DADC-8096DBBC 000C3C 00E0+00 1/1 0/0 0/0 .text            isDelete__11daNpc_Bou_cFv */
