@@ -1891,7 +1891,7 @@ void vrkumo_move() {
 
         dStage_FileList_dt_c* filelist = NULL;
         if (dComIfGp_roomControl_getStayNo() >= 0) {
-            filelist = dComIfGp_roomControl_getStatusRoomDt(dComIfGp_roomControl_getStayNo())->mRoomDt.getFileListInfo();
+            filelist = dComIfGp_roomControl_getStatusRoomDt(dComIfGp_roomControl_getStayNo())->getFileListInfo();
         }
 
         if (filelist != NULL) {
@@ -4605,7 +4605,7 @@ void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
         f32 sp70 = 0.0f;
         dStage_FileList_dt_c* filelist = NULL;
         if (dComIfGp_roomControl_getStayNo() >= 0) {
-            filelist = dComIfGp_roomControl_getStatusRoomDt(dComIfGp_roomControl_getStayNo())->mRoomDt.getFileListInfo();
+            filelist = dComIfGp_roomControl_getStatusRoomDt(dComIfGp_roomControl_getStayNo())->getFileListInfo();
         }
 
         if (filelist != NULL) {

@@ -194,11 +194,11 @@ void dStage_roomControl_c::initZone() {
 
 /* 80024384-800243B0 01ECC4 002C+00 2/2 27/27 6/6 .text getStatusRoomDt__20dStage_roomControl_cFi
  */
-dStage_roomStatus_c* dStage_roomControl_c::getStatusRoomDt(int i_statusIdx) {
+dStage_roomDt_c* dStage_roomControl_c::getStatusRoomDt(int i_statusIdx) {
     if (i_statusIdx < 0 || i_statusIdx >= 0x40) {
         return NULL;
     }
-    return &mStatus[i_statusIdx];
+    return &mStatus[i_statusIdx].mRoomDt;
 }
 
 // clang-format off
@@ -2685,7 +2685,7 @@ int dStage_changeScene(int i_exitId, f32 speed, u32 mode, s8 room_no, s16 angle,
     if (room_no == -1) {
         scls = dComIfGp_getStageSclsInfo();
     } else {
-        scls = dComIfGp_roomControl_getStatusRoomDt(room_no)->mRoomDt.getSclsInfo();
+        scls = dComIfGp_roomControl_getStatusRoomDt(room_no)->getSclsInfo();
     }
 
     if (scls == NULL) {
@@ -2736,7 +2736,7 @@ int dStage_changeScene4Event(int i_exitId, s8 room_no, int i_wipe, bool param_3,
     if (room_no == -1) {
         scls = dComIfGp_getStageSclsInfo();
     } else {
-        scls = dComIfGp_roomControl_getStatusRoomDt(room_no)->mRoomDt.getSclsInfo();
+        scls = dComIfGp_roomControl_getStatusRoomDt(room_no)->getSclsInfo();
     }
 
     if (scls == NULL) {

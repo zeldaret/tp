@@ -121,11 +121,11 @@ public:
     /* 809F9D9C */ void reset();
     /* 809F9FCC */ void afterJntAnm(int);
     /* 809FA050 */ void setParam();
-    /* 809FA1C4 */ bool checkChangeEvt();
+    /* 809FA1C4 */ BOOL checkChangeEvt();
     /* 809FA3B8 */ void setAfterTalkMotion();
     /* 809FA45C */ void srchActors();
-    /* 809FA55C */ bool evtTalk();
-    /* 809FA5FC */ bool evtCutProc();
+    /* 809FA55C */ BOOL evtTalk();
+    /* 809FA5FC */ BOOL evtCutProc();
     /* 809FA6C4 */ void action();
     /* 809FA88C */ void beforeMove();
     /* 809FAABC */ void afterMoved();

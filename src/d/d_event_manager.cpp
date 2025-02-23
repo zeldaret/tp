@@ -43,8 +43,8 @@ const char* dEvent_exception_c::getEventName() {
     };
 
     s32 roomNo = dComIfGp_roomControl_getStayNo();
-    dStage_roomStatus_c* roomStatus = dComIfGp_roomControl_getStatusRoomDt(roomNo);
-    dStage_MapEventInfo_c* eventInfo = roomStatus->mRoomDt.getMapEventInfo();
+    dStage_roomDt_c* roomDt = dComIfGp_roomControl_getStatusRoomDt(roomNo);
+    dStage_MapEventInfo_c* eventInfo = roomDt->getMapEventInfo();
     if (mEventInfoIdx == -1) {
         return "(!NO REGIST!)";
     }

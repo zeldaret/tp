@@ -1260,7 +1260,7 @@ void dKyw_wind_set() {
 
         if (dComIfGp_roomControl_getStayNo() >= 0) {
             fili_p = dComIfGp_roomControl_getStatusRoomDt(dComIfGp_roomControl_getStayNo())
-                         ->mRoomDt.getFileListInfo();
+                         ->getFileListInfo();
         }
 
         var_r30 = 0;
@@ -1273,7 +1273,7 @@ void dKyw_wind_set() {
         if (dComIfGp_roomControl_getStatusRoomDt(var_r4) != NULL) {
             s32 var_r4_2 = dComIfGp_roomControl_getStayNo();
             dStage_Lbnk_c* lbnk_p =
-                dComIfGp_roomControl_getStatusRoomDt(var_r4_2)->mRoomDt.getLbnk();
+                dComIfGp_roomControl_getStatusRoomDt(var_r4_2)->getLbnk();
             if (lbnk_p != NULL) {
                 dStage_Lbnk_dt_c* data_p = lbnk_p->entries;
 
@@ -1322,7 +1322,7 @@ void dKyw_wind_set() {
         if (dComIfGp_roomControl_getStatusRoomDt(var_r4_3) != NULL) {
             s32 var_r4_4 = dComIfGp_roomControl_getStayNo();
             dStage_Lbnk_c* lbnk_p =
-                dComIfGp_roomControl_getStatusRoomDt(var_r4_4)->mRoomDt.getLbnk();
+                dComIfGp_roomControl_getStatusRoomDt(var_r4_4)->getLbnk();
             if (lbnk_p != NULL) {
                 dStage_Lbnk_dt_c* data_p = lbnk_p->entries;
 

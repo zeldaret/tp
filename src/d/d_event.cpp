@@ -1160,24 +1160,24 @@ dStage_MapEvent_dt_c* dEvt_control_c::searchMapEventData(u8 mapToolID, s32 roomN
         return NULL;
     }
 
-    dStage_roomStatus_c* room = dComIfGp_roomControl_getStatusRoomDt(roomNo);
-    if (room != NULL) {
-        dStage_MapEventInfo_c* roomDt = room->mRoomDt.getMapEventInfo();
+    dStage_roomDt_c* room_dt = dComIfGp_roomControl_getStatusRoomDt(roomNo);
+    if (room_dt != NULL) {
+        dStage_MapEventInfo_c* roomInfo = room_dt->getMapEventInfo();
 
-        if (roomDt != NULL) {
-            for (int i = 0; i < roomDt->mCount; i++) {
-                if (mapToolID == roomDt->mData[i].field_0x4) {
-                    return &roomDt->mData[i];
+        if (roomInfo != NULL) {
+            for (int i = 0; i < roomInfo->mCount; i++) {
+                if (mapToolID == roomInfo->mData[i].field_0x4) {
+                    return &roomInfo->mData[i];
                 }
             }
         }
     }
 
-    dStage_MapEventInfo_c* stageDt = dComIfGp_getStage()->getMapEventInfo();
-    if (stageDt != NULL) {
-        for (int i = 0; i < stageDt->mCount; i++) {
-            if (mapToolID == stageDt->mData[i].field_0x4) {
-                return &stageDt->mData[i];
+    dStage_MapEventInfo_c* stageInfo = dComIfGp_getStage()->getMapEventInfo();
+    if (stageInfo != NULL) {
+        for (int i = 0; i < stageInfo->mCount; i++) {
+            if (mapToolID == stageInfo->mData[i].field_0x4) {
+                return &stageInfo->mData[i];
             }
         }
     }

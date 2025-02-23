@@ -23,7 +23,7 @@ static int daVrbox_Draw(vrbox_class* i_this) {
 
     if (dComIfGp_roomControl_getStayNo() >= 0) {
         s32 stayNo = dComIfGp_roomControl_getStayNo();
-        filelist_p = dComIfGp_roomControl_getStatusRoomDt(stayNo)->mRoomDt.getFileListInfo();
+        filelist_p = dComIfGp_roomControl_getStatusRoomDt(stayNo)->getFileListInfo();
     }
 
     if (filelist_p != NULL) {

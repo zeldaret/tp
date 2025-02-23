@@ -58,9 +58,9 @@ public:
     /* 80CD5B74 */ s32 getHeadJointNo();
     /* 80CCF358 */ void afterJntAnm(int);
     /* 80CCF3E4 */ void setParam();
-    /* 80CCF6BC */ bool checkChangeEvt();
-    /* 80CCF9A8 */ bool evtTalk();
-    /* 80CCFAA8 */ bool evtCutProc();
+    /* 80CCF6BC */ BOOL checkChangeEvt();
+    /* 80CCF9A8 */ BOOL evtTalk();
+    /* 80CCFAA8 */ BOOL evtCutProc();
     /* 80CCF704 */ void setAfterTalkMotion();
     /* 80CCFBA0 */ void action();
     /* 80CCFD08 */ void beforeMove();

@@ -593,7 +593,7 @@ int dMsgFlow_c::eventNodeProc(fopAc_ac_c* param_0, fopAc_ac_c** param_1) {
             if (daAlink_getAlinkActorClass()->getMidnaMsgNum() == 0xFFFF) {
                 s32 stayNo = dComIfGp_roomControl_getStayNo();
                 msgNum =
-                    dComIfGp_roomControl_getStatusRoomDt(stayNo)->mRoomDt.getFileListInfo()->mMsg;
+                    dComIfGp_roomControl_getStatusRoomDt(stayNo)->getFileListInfo()->mMsg;
             } else {
                 msgNum = daAlink_getAlinkActorClass()->getMidnaMsgNum();
                 daAlink_getAlinkActorClass()->setMidnaMsg();
@@ -1615,10 +1615,10 @@ int dMsgFlow_c::event019(mesg_flow_node_event*, fopAc_ac_c*) {
 int dMsgFlow_c::event020(mesg_flow_node_event* flow_node, fopAc_ac_c* actor) {
     int prm0 = getParam(flow_node->params);
     daPy_py_c* player = daPy_getPlayerActorClass();
-    dStage_roomStatus_c* room = dComIfGp_roomControl_getStatusRoomDt(fopAcM_GetRoomNo(actor));
-    stage_actor_data_class* actor_data = room->mRoomDt.getPlayer()->mEntries;
+    dStage_roomDt_c* room = dComIfGp_roomControl_getStatusRoomDt(fopAcM_GetRoomNo(actor));
+    stage_actor_data_class* actor_data = room->getPlayer()->mEntries;
 
-    for (int i = 0; i < room->mRoomDt.getPlayerNum(); i++, actor_data++) {
+    for (int i = 0; i < room->getPlayerNum(); i++, actor_data++) {
         if ((u8)actor_data->mAngle.z == prm0) {
             player->setPlayerPosAndAngle(&actor_data->mSpawnPos, player->current.angle.y, 0);
             break;

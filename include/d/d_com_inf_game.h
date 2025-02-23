@@ -3258,7 +3258,7 @@ inline void dComIfGp_roomControl_init() {
     g_dComIfG_gameInfo.play.getRoomControl()->init();
 }
 
-inline dStage_roomStatus_c* dComIfGp_roomControl_getStatusRoomDt(int room_no) {
+inline dStage_roomDt_c* dComIfGp_roomControl_getStatusRoomDt(int room_no) {
     return g_dComIfG_gameInfo.play.getRoomControl()->getStatusRoomDt(room_no);
 }
 

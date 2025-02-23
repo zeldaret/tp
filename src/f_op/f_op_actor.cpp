@@ -177,13 +177,13 @@ static int fopAc_Create(void* i_this) {
 
         int roomNo = dComIfGp_roomControl_getStayNo();
         if (roomNo >= 0) {
-            dComIfGp_roomControl_getStatusRoomDt(roomNo)->mRoomDt.getFileListInfo();
+            dComIfGp_roomControl_getStatusRoomDt(roomNo)->getFileListInfo();
         }
 
         dStage_FileList_dt_c* filelist = NULL;
         if (a_this->home.roomNo >= 0) {
             filelist =
-                dComIfGp_roomControl_getStatusRoomDt(a_this->home.roomNo)->mRoomDt.getFileListInfo();
+                dComIfGp_roomControl_getStatusRoomDt(a_this->home.roomNo)->getFileListInfo();
         }
 
         if (filelist != NULL) {

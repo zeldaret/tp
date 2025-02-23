@@ -597,7 +597,7 @@ void dGrass_packet_c::draw() {
             GFSetTevColorS10(GX_TEVREG1, sp98);
 
             if (dComIfGp_roomControl_getStatusRoomDt(i) != NULL) {
-                sp48 = dComIfGp_roomControl_getStatusRoomDt(i)->mRoomDt.getLightVecInfoNum();
+                sp48 = dComIfGp_roomControl_getStatusRoomDt(i)->getLightVecInfoNum();
             }
 
             if (dKy_SunMoon_Light_Check() == TRUE && sp48 < 2) {

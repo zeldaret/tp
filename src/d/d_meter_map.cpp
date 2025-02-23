@@ -35,7 +35,7 @@ int dMeterMap_c::getMapDispSizeTypeNo() {
     s32 stayNo = dComIfGp_roomControl_getStayNo();
 
     dStage_FileList_dt_c* fList =
-        dComIfGp_roomControl_getStatusRoomDt(stayNo)->mRoomDt.getFileListInfo();
+        dComIfGp_roomControl_getStatusRoomDt(stayNo)->getFileListInfo();
     if (fList != NULL) {
         uvar6 = dStage_FileList_dt_getMiniMap(fList);
     }
