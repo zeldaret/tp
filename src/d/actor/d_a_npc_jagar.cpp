@@ -1160,7 +1160,7 @@ void daNpc_Jagar_c::setAfterTalkMotion() {
 }
 
 /* 80A157B4-80A158A0 001194 00EC+00 1/1 0/0 0/0 .text            srchActors__13daNpc_Jagar_cFv */
-void daNpc_Jagar_c::srchActors() {
+int daNpc_Jagar_c::srchActors() {
     switch(mType) {
         case TYPE_0:
             if (!mActorMngr[1].getActorP()) {
@@ -1180,6 +1180,7 @@ void daNpc_Jagar_c::srchActors() {
         case TYPE_2:
             break;
     }
+    return 0; // Temporary Placeholder
 }
 
 /* 80A158A0-80A15940 001280 00A0+00 1/0 0/0 0/0 .text            evtTalk__13daNpc_Jagar_cFv */

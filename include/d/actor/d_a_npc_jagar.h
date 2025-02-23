@@ -41,7 +41,7 @@ public:
     /* 80A153E8 */ void setParam();
     /* 80A155E4 */ bool checkChangeEvt();
     /* 80A15714 */ void setAfterTalkMotion();
-    /* 80A157B4 */ void srchActors();
+    /* 80A157B4 */ int srchActors();
     /* 80A158A0 */ bool evtTalk();
     /* 80A15940 */ bool evtCutProc();
     /* 80A15A08 */ void action();
