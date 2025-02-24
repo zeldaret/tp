@@ -39,11 +39,11 @@ public:
     /* 80A15198 */ void reset();
     /* 80A15364 */ void afterJntAnm(int);
     /* 80A153E8 */ void setParam();
-    /* 80A155E4 */ bool checkChangeEvt();
+    /* 80A155E4 */ BOOL checkChangeEvt();
     /* 80A15714 */ void setAfterTalkMotion();
     /* 80A157B4 */ int srchActors();
-    /* 80A158A0 */ bool evtTalk();
-    /* 80A15940 */ bool evtCutProc();
+    /* 80A158A0 */ BOOL evtTalk();
+    /* 80A15940 */ BOOL evtCutProc();
     /* 80A15A08 */ void action();
     /* 80A15CA4 */ void beforeMove();
     /* 80A15D68 */ void setAttnPos();
@@ -76,8 +76,8 @@ public:
     /* 80A1A27C */ s32 getHeadJointNo();
     /* 80A1A284 */ s32 getNeckJointNo();
     /* 80A1A28C */ s32 getBackboneJointNo();
-    /* 80A1A294 */ bool checkChangeJoint(int param_1) { return param_1 == 4; }
-    /* 80A1A2A4 */ bool checkRemoveJoint(int param_1) { return param_1 == 8; }
+    /* 80A1A294 */ BOOL checkChangeJoint(int param_1) { return param_1 == 4; }
+    /* 80A1A2A4 */ BOOL checkRemoveJoint(int param_1) { return param_1 == 8; }
     /* 80A1A2B4 */ s32 getFootLJointNo();
     /* 80A1A2BC */ s32 getFootRJointNo();
 
