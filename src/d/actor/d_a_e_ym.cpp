@@ -23,25 +23,8 @@ extern "C" void bckSetFly__8daE_YM_cFiUcff();
 extern "C" void draw__8daE_YM_cFv();
 extern "C" static void daE_YM_Draw__FP8daE_YM_c();
 extern "C" static void s_obj_sub__FPvPv();
-extern "C" void setDigEffect__8daE_YM_cFv();
-extern "C" void setElecEffect1__8daE_YM_cFv();
-extern "C" void setElecEffect2__8daE_YM_cFv();
-extern "C" void setFireEffect__8daE_YM_cFv();
-extern "C" void setNormalCc__8daE_YM_cFv();
-extern "C" void setAppear__8daE_YM_cFv();
-extern "C" void setMoveSound__8daE_YM_cFi();
-extern "C" void setTurnSound__8daE_YM_cFv();
-extern "C" void setActionMode__8daE_YM_cFi();
-extern "C" void executeWait__8daE_YM_cFv();
-extern "C" void executeMove__8daE_YM_cFv();
-extern "C" void executeEscape__8daE_YM_cFv();
-extern "C" void executeDown__8daE_YM_cFv();
-extern "C" void damage_check__8daE_YM_cFv();
-extern "C" void executeWind__8daE_YM_cFv();
-extern "C" void getSurpriseType__8daE_YM_cFv();
 extern "C" void setSurpriseAway__8daE_YM_cFv();
 extern "C" void setGoHomeType__8daE_YM_cFv();
-extern "C" void executeSurprise__8daE_YM_cFv();
 extern "C" void executeBack__8daE_YM_cFv();
 extern "C" void executeFall__8daE_YM_cFv();
 extern "C" void executeAttack__8daE_YM_cFv();
@@ -50,7 +33,6 @@ extern "C" void executeAttackWall__8daE_YM_cFv();
 extern "C" void executeDefense__8daE_YM_cFv();
 extern "C" void checkFlyTerritory__8daE_YM_cFv();
 extern "C" void initFly__8daE_YM_cFv();
-extern "C" void executeFly__8daE_YM_cFv();
 extern "C" void setInclination__8daE_YM_cFv();
 extern "C" void executeFlyAttack__8daE_YM_cFv();
 extern "C" void setNextPathPoint__8daE_YM_cFv();
@@ -67,7 +49,6 @@ extern "C" void setLockByCargo__8daE_YM_cFv();
 extern "C" void executeRiver__8daE_YM_cFv();
 extern "C" static void s_ym_sub__FPvPv();
 extern "C" void checkFrinedSamePos__8daE_YM_cFv();
-extern "C" void action__8daE_YM_cFv();
 extern "C" void mtx_set__8daE_YM_cFv();
 extern "C" void cc_set__8daE_YM_cFv();
 extern "C" void execute__8daE_YM_cFv();
@@ -247,91 +228,7 @@ dCcD_SrcSph E_YM_n::cc_sph_src = {
 };
 
 /* 80815B7C-80815B84 000078 0008+00 0/0 0/0 0/0 .data            w_eff_id$5427 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 w_eff_id[8] = {
-    0x01, 0xB8, 0x01, 0xB9, 0x01, 0xBA, 0x01, 0xBB,
-};
-#pragma pop
-
-/* 80815B84-80815BA4 -00001 0020+00 1/1 0/0 0/0 .data            @6063 */
-SECTION_DATA static void* lit_6063[8] = {
-    (void*)(((char*)executeSurprise__8daE_YM_cFv) + 0xEC),
-    (void*)(((char*)executeSurprise__8daE_YM_cFv) + 0x1F4),
-    (void*)(((char*)executeSurprise__8daE_YM_cFv) + 0x708),
-    (void*)(((char*)executeSurprise__8daE_YM_cFv) + 0x810),
-    (void*)(((char*)executeSurprise__8daE_YM_cFv) + 0xB44),
-    (void*)(((char*)executeSurprise__8daE_YM_cFv) + 0x83C),
-    (void*)(((char*)executeSurprise__8daE_YM_cFv) + 0xA88),
-    (void*)(((char*)executeSurprise__8daE_YM_cFv) + 0xAEC),
-};
-
-/* 80815BA4-80815BD0 -00001 002C+00 1/1 0/0 0/0 .data            @7049 */
-SECTION_DATA static void* lit_7049[11] = {
-    (void*)(((char*)executeFly__8daE_YM_cFv) + 0x10C),
-    (void*)(((char*)executeFly__8daE_YM_cFv) + 0x13C),
-    (void*)(((char*)executeFly__8daE_YM_cFv) + 0x1EC),
-    (void*)(((char*)executeFly__8daE_YM_cFv) + 0x228),
-    (void*)(((char*)executeFly__8daE_YM_cFv) + 0x798),
-    (void*)(((char*)executeFly__8daE_YM_cFv) + 0xAB0),
-    (void*)(((char*)executeFly__8daE_YM_cFv) + 0x798),
-    (void*)(((char*)executeFly__8daE_YM_cFv) + 0x9BC),
-    (void*)(((char*)executeFly__8daE_YM_cFv) + 0x11DC),
-    (void*)(((char*)executeFly__8daE_YM_cFv) + 0x11DC),
-    (void*)(((char*)executeFly__8daE_YM_cFv) + 0xFCC),
-};
-
-/* 80815BD0-80815BDC 0000CC 000C+00 1/1 0/0 0/0 .data            YM_DIG_POS_Y$7355 */
-SECTION_DATA static Vec YM_DIG_POS_Y = {-15.0f, -30.0f, -70.0f};
-
-/* 80815BDC-80815C28 -00001 004C+00 1/1 0/0 0/0 .data            @8522 */
-SECTION_DATA static void* lit_8522[19] = {
-    (void*)(((char*)action__8daE_YM_cFv) + 0x124), (void*)(((char*)action__8daE_YM_cFv) + 0x130),
-    (void*)(((char*)action__8daE_YM_cFv) + 0x13C), (void*)(((char*)action__8daE_YM_cFv) + 0x148),
-    (void*)(((char*)action__8daE_YM_cFv) + 0x154), (void*)(((char*)action__8daE_YM_cFv) + 0x160),
-    (void*)(((char*)action__8daE_YM_cFv) + 0x16C), (void*)(((char*)action__8daE_YM_cFv) + 0x178),
-    (void*)(((char*)action__8daE_YM_cFv) + 0x184), (void*)(((char*)action__8daE_YM_cFv) + 0x194),
-    (void*)(((char*)action__8daE_YM_cFv) + 0x1A4), (void*)(((char*)action__8daE_YM_cFv) + 0x1B0),
-    (void*)(((char*)action__8daE_YM_cFv) + 0x1BC), (void*)(((char*)action__8daE_YM_cFv) + 0x1CC),
-    (void*)(((char*)action__8daE_YM_cFv) + 0x1D8), (void*)(((char*)action__8daE_YM_cFv) + 0x1E4),
-    (void*)(((char*)action__8daE_YM_cFv) + 0x1F4), (void*)(((char*)action__8daE_YM_cFv) + 0x200),
-    (void*)(((char*)action__8daE_YM_cFv) + 0x20C),
-};
-
-/* 80815C28-80815C48 -00001 0020+00 1/1 0/0 0/0 .data            @9421 */
-SECTION_DATA static void* lit_9421[8] = {
-    (void*)(((char*)create__8daE_YM_cFv) + 0x40C), (void*)(((char*)create__8daE_YM_cFv) + 0x434),
-    (void*)(((char*)create__8daE_YM_cFv) + 0x464), (void*)(((char*)create__8daE_YM_cFv) + 0x47C),
-    (void*)(((char*)create__8daE_YM_cFv) + 0x494), (void*)(((char*)create__8daE_YM_cFv) + 0x524),
-    (void*)(((char*)create__8daE_YM_cFv) + 0x5B4), (void*)(((char*)create__8daE_YM_cFv) + 0x5C4),
-};
-
-/* 80815C48-80815C68 -00001 0020+00 1/0 0/0 0/0 .data            l_daE_YM_Method */
-static actor_method_class l_daE_YM_Method = {
-    (process_method_func)daE_YM_Create__FP8daE_YM_c,
-    (process_method_func)daE_YM_Delete__FP8daE_YM_c,
-    (process_method_func)daE_YM_Execute__FP8daE_YM_c,
-    (process_method_func)daE_YM_IsDelete__FP8daE_YM_c,
-    (process_method_func)daE_YM_Draw__FP8daE_YM_c,
-};
-
-/* 80815C68-80815C98 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_E_YM */
-extern actor_process_profile_definition g_profile_E_YM = {
-  fpcLy_CURRENT_e,        // mLayerID
-  7,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_E_YM,              // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  sizeof(daE_YM_c),       // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  194,                    // mPriority
-  &l_daE_YM_Method,       // sub_method
-  0x00040100,             // mStatus
-  fopAc_ENEMY_e,          // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
-};
+static u16 w_eff_id[] = {0x01B8, 0x01B9, 0x01BA, 0x01BB}; // unused
 
 /* 8080812C-80808184 0000EC 0058+00 1/1 0/0 0/0 .text            __ct__12daE_YM_HIO_cFv */
 daE_YM_HIO_c::daE_YM_HIO_c() {
@@ -440,7 +337,7 @@ int daE_YM_c::draw() {
 
     if (bvar) {
         if (field_0x6dc != -70.0f) {
-            field_0x5b8->entry(model_p->getModelData());
+            mpBrk->entry(model_p->getModelData());
             dComIfGd_setListDark();
             mpMorf->entryDL();
             dComIfGd_setList();
@@ -464,7 +361,7 @@ static int daE_YM_Draw(daE_YM_c* i_this) {
 
 /* ############################################################################################## */
 /* 80815D28-80815D2C 000008 0004+00 2/2 0/0 0/0 .bss             None */
-static u8 data_80815D28[4];
+static u8 lbl_253_bss_8;
 
 /* 80815D38-80815D5C 000018 0024+00 18/18 0/0 0/0 .bss             l_HIO */
 static daE_YM_HIO_c l_HIO;
@@ -1233,7 +1130,6 @@ void daE_YM_c::executeEscape() {
 
 /* 8080B444-8080BB34 003404 06F0+00 2/2 0/0 0/0 .text            executeDown__8daE_YM_cFv */
 void daE_YM_c::executeDown() {
-    // NONMATCHING
     field_0x6f4 = 10;
     field_0x6dc = 0.0f;
     maxFallSpeed = -60.0f;
@@ -1369,31 +1265,25 @@ void daE_YM_c::damage_check() {
     mStts.Move();
     if (mSphCc.ChkTgHit()) {
         mAtInfo.mpCollider = mSphCc.GetTgHitObj();
-
         if (field_0x700 == 0 || !mAtInfo.mpCollider->ChkAtType(0xD8000000)) {
             cc_at_check(this, &mAtInfo);
-
             if (mAtInfo.mpCollider->ChkAtType(0xD8000000)) {
                 field_0x6f4 = 20;
             } else {
                 field_0x6f4 = 10;
             }
-
             if (mAtInfo.mAttackPower <= 1) {
                 field_0x6f4 = 10;
             }
-
             if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_BOOMERANG)) {
                 if (mIsHide) {
                     setActionMode(ACT_WIND);
                 }
             } else if (mType != 2) {
                 mSound.startCreatureSound(Z2SE_EN_YM_DEATH, 0, -1);
-
                 if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_10000000)) {
                     dComIfGp_setHitMark(3, this, &eyePos, NULL, NULL, 0);
                 }
-
                 setActionMode(ACT_DOWN);
                 executeDown();
             }
@@ -1401,93 +1291,305 @@ void daE_YM_c::damage_check() {
     }
 }
 
-/* ############################################################################################## */
-/* 80815A58-80815A5C 0000C4 0004+00 0/5 0/0 0/0 .rodata          @5724 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5724 = 25.0f;
-COMPILER_STRIP_GATE(0x80815A58, &lit_5724);
-#pragma pop
-
-/* 80815A5C-80815A60 0000C8 0004+00 0/2 0/0 0/0 .rodata          @5725 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5725 = 4096.0f;
-COMPILER_STRIP_GATE(0x80815A5C, &lit_5725);
-#pragma pop
-
-/* 80815A60-80815A64 0000CC 0004+00 0/1 0/0 0/0 .rodata          @5726 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5726 = 2048.0f;
-COMPILER_STRIP_GATE(0x80815A60, &lit_5726);
-#pragma pop
-
 /* 8080BCFC-8080C05C 003CBC 0360+00 1/1 0/0 0/0 .text            executeWind__8daE_YM_cFv */
 void daE_YM_c::executeWind() {
-    // NONMATCHING
+    cLib_chaseF(&speed.y, -60.0f, 5.0f);
+    switch (mMode) {
+        case 0:
+            setAppear();
+            setNormalCc();
+            field_0x6f0 = cM_rndFX(5.0f) + 20.0f;
+            field_0x6f2 = 0x28;
+            mMode = 1;
+            field_0x6dc = 0.0f;
+        case 1:
+            if (speed.y < 0.0f) {
+                mAcch.SetGroundUpY(50.0f);
+            }
+            cLib_chaseAngleS(&shape_angle.z, -0x8000, 0x400);
+            if (field_0x6f0) {
+                cLib_chaseAngleS(&field_0x6e6, 4000, 200);
+                speed.y = 25.0f;
+            } else {
+                if (mAcch.ChkGroundHit()) {
+                    mMode = 2;
+                    speedF = 0.0f;
+                    speed.y = 15.0f;
+                }
+            }
+            break;
+        case 2:
+            if (mAcch.ChkGroundHit()) {
+                speed.y = 0.0f;
+                speedF = 0.0f;
+                if (cLib_chaseAngleS(&field_0x6e6, 0, 200)) {
+                    mMode = 3;
+                    field_0x6f0 = 0x32;
+                    field_0x6f2 = (u8)(cM_rndF(5.0f) + 5.0f);
+                    field_0x6e8 = shape_angle.y;
+                    field_0x6a5 = 0;
+                }
+            }
+            break;
+        case 3:
+            if (field_0x6f0 < 0xf) {
+                shape_angle.z = cM_rndF(4096.0f) + 32768.0f;
+                shape_angle.y = field_0x6e8 + cM_rndF(2048.0f);
+            } else {
+                if (field_0x6f2 == 0) {
+                    field_0x6f2 = (u8)(cM_rndF(5.0f) + 5.0f);
+                    field_0x6a5 = field_0x6a5 + 1 & 1;
+                }
+                if (field_0x6a5 == 0) {
+                    shape_angle.z = cM_rndF(2048.0f) + 32768.0f;
+                    shape_angle.y = field_0x6e8 + cM_rndF(2048.0f);
+                }
+            }
+            if (field_0x6f0 == 0) {
+                speedF = cM_rndF(5.0f) + 5.0f;
+                speed.y = 15.0f;
+                mMode = 4;
+                mAcch.SetGroundUpY(0.0f);
+                current.angle.y = shape_angle.y - 0x4000;
+            }
+            break;
+        case 4:
+            if (cLib_chaseAngleS(&shape_angle.z, 0, 0x1000) && mAcch.ChkGroundHit()) {
+                speed.y = 0.0f;
+                speedF = 0.0f;
+                setActionMode(2);
+            }
+            break;
+        default:
+            break;
+    }
+    shape_angle.y += field_0x6e6;
 }
 
 /* 8080C05C-8080C1FC 00401C 01A0+00 1/1 0/0 0/0 .text            getSurpriseType__8daE_YM_cFv */
-void daE_YM_c::getSurpriseType() {
-    // NONMATCHING
+int daE_YM_c::getSurpriseType() {
+    cXyz my_vec_0 = field_0x670 - current.pos;
+    int ret;
+    if (my_vec_0.abs() > l_HIO.mMoveRange) {
+        ret = 2;
+    } else {
+        s16 dist_ang = cLib_distanceAngleS(mAngleToPlayer, shape_angle.y);
+        ret = 1;
+        if (dist_ang < 0x3000 && cM_rndF(10.0f) > 8.0f) {
+            ret = 0;
+        }
+    }
+    return ret;
 }
-
-/* ############################################################################################## */
-/* 80815A64-80815A68 0000D0 0004+00 1/1 0/0 0/0 .rodata          @5774 */
-SECTION_RODATA static f32 const lit_5774 = 12.0f;
-COMPILER_STRIP_GATE(0x80815A64, &lit_5774);
 
 /* 8080C1FC-8080C24C 0041BC 0050+00 2/2 0/0 0/0 .text            setSurpriseAway__8daE_YM_cFv */
 void daE_YM_c::setSurpriseAway() {
     // NONMATCHING
+    field_0x6f0 = 0x1e;
+    mMode = 1;
+    bckSet(0x10, 2, 3.0f, speedF / 12.0f);
 }
-
-/* ############################################################################################## */
-/* 80815A68-80815A6C 0000D4 0004+00 0/1 0/0 0/0 .rodata          @5792 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5792 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(0x80815A68, &lit_5792);
-#pragma pop
-
-/* 80815A6C-80815A70 0000D8 0004+00 0/2 0/0 0/0 .rodata          @5793 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5793 = 4000.0f;
-COMPILER_STRIP_GATE(0x80815A6C, &lit_5793);
-#pragma pop
 
 /* 8080C24C-8080C374 00420C 0128+00 1/1 0/0 0/0 .text            setGoHomeType__8daE_YM_cFv */
 void daE_YM_c::setGoHomeType() {
-    // NONMATCHING
+    s16 tgt_ang = cLib_targetAngleY(&current.pos, &field_0x670);
+    f32 rand_val = cM_rnd();
+    field_0x6a8 = 1;
+    if (field_0x6a8 == 0 && rand_val < 0.1f && mAcch.ChkGroundHit() && mAcch.ChkWallHit() == 0) {
+        field_0x6a8 = 1;
+        field_0x6a5 = 2;
+        shape_angle.y = tgt_ang + cM_rndFX(4000.0f);
+        mMode = 3;
+    } else {
+        if ((s16)(mAngleToPlayer - tgt_ang) < 0) {
+            field_0x6a5 = 2;
+        } else {
+            field_0x6a5 = 3;
+        }
+        if (field_0x6cb) {
+            speedF = 25.0f;
+        } else {
+            speedF = l_HIO.mMoveSpeed;
+        }
+        setSurpriseAway();
+    }
 }
-
-/* ############################################################################################## */
-/* 80815A70-80815A74 0000DC 0004+00 0/2 0/0 0/0 .rodata          @6055 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6055 = -90.0f;
-COMPILER_STRIP_GATE(0x80815A70, &lit_6055);
-#pragma pop
-
-/* 80815A74-80815A78 0000E0 0004+00 0/1 0/0 0/0 .rodata          @6056 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6056 = 28.0f;
-COMPILER_STRIP_GATE(0x80815A74, &lit_6056);
-#pragma pop
-
-/* 80815A78-80815A7C 0000E4 0004+00 0/2 0/0 0/0 .rodata          @6057 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6057 = 17.0f;
-COMPILER_STRIP_GATE(0x80815A78, &lit_6057);
-#pragma pop
 
 /* 8080C374-8080CEE0 004334 0B6C+00 2/1 0/0 0/0 .text            executeSurprise__8daE_YM_cFv */
 void daE_YM_c::executeSurprise() {
     // NONMATCHING
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    if (mType != 1) {
+        cLib_chaseF(&speed.y, -90.0f, 15.0f);
+    }
+    cXyz my_vec_0 = field_0x670 - current.pos;
+    if (daPy_getPlayerActorClass()->checkWolfLock(this) && mAcch.ChkGroundHit()) {
+        cLib_chaseF(&speedF, 0.0f, 5.0f);
+        cLib_chaseAngleS(&shape_angle.y,mAngleToPlayer, 0x400);
+        return;
+    }
+    switch (mMode) {
+        case 0:
+            if (field_0x6a1 == 1 && field_0x708 == 0 && field_0x6c9 == 0) {
+                field_0x708 = 0x78;
+            }
+            if (getSurpriseType() == 2 && field_0x6a9) {
+                setGoHomeType();
+            } else {
+                field_0x6a5 = 0;
+                field_0x6e4 = mAngleToPlayer + 0x8000;
+                s16 sh_ang = player->shape_angle.y;
+                s16 dist_ang = cLib_distanceAngleS(field_0x6e4, sh_ang);
+                if (sh_ang + dist_ang == field_0x6e4) {
+                    field_0x6a5 = 0;
+                } else {
+                    field_0x6a5 = 1;
+                }
+                if (field_0x6cb) {
+                    speedF = 25.0f;
+                    if (field_0x6a9 == 0) {
+                        speedF = 28.0f;
+                        field_0x6a9 = 1;
+                    }
+                } else {
+                    speedF = 17.0f;
+                    if (field_0x6a9 == 0) {
+                        speedF = 20.0f;
+                        field_0x6a9 = 1;
+                    }
+                }
+                setSurpriseAway();
+            }
+            break;
+        case 1:
+            if (mAcch.ChkWallHit() && field_0x6a5 < 2) {
+                setGoHomeType();
+                return;
+            }
+            setMoveSound(0);
+            if (field_0x6a5 == 0) {
+                field_0x6e4 = mAngleToPlayer - 0x6000;
+            } else if (field_0x6a5 == 1) {
+                field_0x6e4 = mAngleToPlayer + 0x6000;
+            } else {
+                s16 sh_val = -0x2000;
+                if (field_0x6a5 == 2) {
+                    sh_val = 0x2000;
+                }
+                if (current.pos.absXZ(field_0x670) < 100.0f) {
+                    field_0x6e4 = sh_val + cLib_targetAngleY(&current.pos, &home.pos);
+                } else {
+                    s16 next_0x6e4 = cLib_targetAngleY(&current.pos, &field_0x670);
+                    next_0x6e4 = sh_val + next_0x6e4;
+                    if (mAcch.ChkWallHit()) {
+                        s16 wall_angle = field_0x720.GetWallAngleY();
+                        if (abs((s16)(next_0x6e4 - wall_angle)) > 0x6000) {
+                            if ((s16)(cLib_targetAngleY(&current.pos, &field_0x670) - wall_angle) > 0) {
+                                next_0x6e4 = wall_angle + 0x4000;
+                            } else {
+                                next_0x6e4 = wall_angle - 0x4000;
+                            }
+                        }
+                    }
+                    field_0x6e4 = next_0x6e4;
+                }
+            }
+            if (field_0x6a5 <= 1 && my_vec_0.abs() >= l_HIO.mMoveRange + 200.0f) {
+                field_0x6f0 = 0;
+            }
+            cLib_addCalcAngleS(&shape_angle.y, field_0x6e4, 8, 0x1000, 0x100);
+            if (field_0x6f0 == 0) {
+                if (!field_0x6d4 && cM_rnd() < 0.3f) {
+                    if (field_0x6a1 == 1) {
+                        setActionMode(0xf);
+                        return;
+                    }
+                    if (field_0x6a1) {
+                        return;
+                    }
+                    if (daPy_getPlayerActorClass()->current.pos.abs(field_0x670) <= l_HIO.mMoveRange + 200.0f) {
+                        setActionMode(8);
+                    }
+                    return;
+                }
+                if (field_0x6c9 && mDistToPlayer < 300.0f) {
+                    setActionMode(0xf);
+                } else {
+                    setActionMode(0);
+                    speedF = 0.0f;
+                    field_0x6f6 = 5;
+                }
+            }
+            break;
+        case 2:
+            field_0x6a5 = getSurpriseType();
+            if (mAcch.ChkWallHit()) {
+                field_0x6a5 = 2;
+            }
+            if (field_0x6a5 == 0) {
+                shape_angle.y = mAngleToPlayer + cM_rndFX(4000.0f);
+            } else if (field_0x6a5 == 1) {
+                shape_angle.y = mAngleToPlayer + 0x8000 + cM_rndFX(4000.0f);
+            } else {
+                shape_angle.y = cLib_targetAngleY(&current.pos, &field_0x670) + cM_rndFX(4000.0f);
+            }
+        case 3:
+            mMode = 5;
+            speedF = 0.0f;
+            bckSet(10, 0, 10.0f, 2.0f);
+            break;
+        case 5:
+            if (mpMorf->isStop()) {
+                bckSet(0xb, 0, 5.0f, 1.0f);
+                mSound.startCreatureSound(0x700f0, 0, -1);
+                mMode = 6;
+                switch (field_0x6a5 & 3) {
+                    case 0:
+                        speedF = (mDistToPlayer + 650.0f) / 12.0f;
+                        speed.y = 90.0f;
+                        break;
+                    case 1:
+                        speedF = (650.0f - mDistToPlayer) / 10.0f;
+                        speed.y = 75.0f;
+                        break;
+                    case 2:
+                        speedF = my_vec_0.abs() / 10.0f;
+                        speed.y = 75.0f;
+                        break;
+                    default:
+                        break;
+                }
+                if (speedF < 35.0f) {
+                    speedF = 35.0f;
+                } else if (speedF >= 50.0f) {
+                    speedF = 50.0f;
+                }
+                if (speed.y < 60.0f) {
+                    speed.y = 60.0f;
+                } else if (speed.y >= 90.0f) {
+                    speed.y = 90.0f;
+                }
+            }
+            break;
+        case 6:
+            if (mAcch.ChkGroundHit()) {
+                mSound.startCreatureSound(0x7011e, 0, -1);
+                bckSet(0xc, 0, 0.0f, 1.0f);
+                mMode = 7;
+                speedF = 0.0f;
+            }
+            break;
+        case 7:
+            if (mpMorf->isStop() && field_0x6f0 == 0) {
+                setActionMode(0);
+                field_0x6f6 = 0xf;
+                field_0x6a7 = 0;
+            }
+            break;
+        default:
+            break;
+    }
+    current.angle.y = shape_angle.y;
 }
 
 /* 8080CEE0-8080CFC8 004EA0 00E8+00 1/1 0/0 0/0 .text            executeBack__8daE_YM_cFv */
@@ -1611,6 +1713,22 @@ SECTION_RODATA static f32 const lit_7043 = -10.0f;
 COMPILER_STRIP_GATE(0x80815A9C, &lit_7043);
 #pragma pop
 
+extern "C" void executeFly__8daE_YM_cFv();
+/* 80815BA4-80815BD0 -00001 002C+00 1/1 0/0 0/0 .data            @7049 */
+SECTION_DATA static void* lit_7049[11] = {
+    (void*)(((char*)executeFly__8daE_YM_cFv) + 0x10C),
+    (void*)(((char*)executeFly__8daE_YM_cFv) + 0x13C),
+    (void*)(((char*)executeFly__8daE_YM_cFv) + 0x1EC),
+    (void*)(((char*)executeFly__8daE_YM_cFv) + 0x228),
+    (void*)(((char*)executeFly__8daE_YM_cFv) + 0x798),
+    (void*)(((char*)executeFly__8daE_YM_cFv) + 0xAB0),
+    (void*)(((char*)executeFly__8daE_YM_cFv) + 0x798),
+    (void*)(((char*)executeFly__8daE_YM_cFv) + 0x9BC),
+    (void*)(((char*)executeFly__8daE_YM_cFv) + 0x11DC),
+    (void*)(((char*)executeFly__8daE_YM_cFv) + 0x11DC),
+    (void*)(((char*)executeFly__8daE_YM_cFv) + 0xFCC),
+};
+
 /* 8080E6A0-8080F8C8 006660 1228+00 2/1 0/0 0/0 .text            executeFly__8daE_YM_cFv */
 void daE_YM_c::executeFly() {
     // NONMATCHING
@@ -1649,6 +1767,9 @@ void daE_YM_c::checkRailDig() {
 void daE_YM_c::executeRail() {
     // NONMATCHING
 }
+
+/* 80815BD0-80815BDC 0000CC 000C+00 1/1 0/0 0/0 .data            YM_DIG_POS_Y$7355 */
+SECTION_DATA static Vec YM_DIG_POS_Y = {-15.0f, -30.0f, -70.0f};
 
 /* 80810690-80810DF8 008650 0768+00 1/1 0/0 0/0 .text            executeBackRail__8daE_YM_cFv */
 void daE_YM_c::executeBackRail() {
@@ -1828,6 +1949,21 @@ void daE_YM_c::checkFrinedSamePos() {
     }
 }
 
+extern "C" void action__8daE_YM_cFv();
+/* 80815BDC-80815C28 -00001 004C+00 1/1 0/0 0/0 .data            @8522 */
+SECTION_DATA static void* lit_8522[19] = {
+    (void*)(((char*)action__8daE_YM_cFv) + 0x124), (void*)(((char*)action__8daE_YM_cFv) + 0x130),
+    (void*)(((char*)action__8daE_YM_cFv) + 0x13C), (void*)(((char*)action__8daE_YM_cFv) + 0x148),
+    (void*)(((char*)action__8daE_YM_cFv) + 0x154), (void*)(((char*)action__8daE_YM_cFv) + 0x160),
+    (void*)(((char*)action__8daE_YM_cFv) + 0x16C), (void*)(((char*)action__8daE_YM_cFv) + 0x178),
+    (void*)(((char*)action__8daE_YM_cFv) + 0x184), (void*)(((char*)action__8daE_YM_cFv) + 0x194),
+    (void*)(((char*)action__8daE_YM_cFv) + 0x1A4), (void*)(((char*)action__8daE_YM_cFv) + 0x1B0),
+    (void*)(((char*)action__8daE_YM_cFv) + 0x1BC), (void*)(((char*)action__8daE_YM_cFv) + 0x1CC),
+    (void*)(((char*)action__8daE_YM_cFv) + 0x1D8), (void*)(((char*)action__8daE_YM_cFv) + 0x1E4),
+    (void*)(((char*)action__8daE_YM_cFv) + 0x1F4), (void*)(((char*)action__8daE_YM_cFv) + 0x200),
+    (void*)(((char*)action__8daE_YM_cFv) + 0x20C),
+};
+
 /* 8081300C-80813528 00AFCC 051C+00 2/1 0/0 0/0 .text            action__8daE_YM_cFv */
 void daE_YM_c::action() {
     // NONMATCHING
@@ -1948,7 +2084,7 @@ int daE_YM_c::_delete() {
     }
 
     if (field_0xaf4) {
-        data_80815D28[0] = 0;
+        lbl_253_bss_8 = 0;
     }
 
     if (heap != NULL) {
@@ -1965,7 +2101,45 @@ static int daE_YM_Delete(daE_YM_c* i_this) {
 
 /* 80813AF0-80813E38 00BAB0 0348+00 1/1 0/0 0/0 .text            CreateHeap__8daE_YM_cFv */
 int daE_YM_c::CreateHeap() {
-    // NONMATCHING
+    if (mFlyType == 1) {
+        J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes("E_TM", 0x11);
+        JUT_ASSERT(model_data != NULL, 0x1094);
+        mpMorf = new mDoExt_McaMorfSO(model_data, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_TM", 10),
+                                      0, 1.0f, 0, -1, &mSound, 0x80000,0x11000084);
+        if (mpMorf == NULL || mpMorf->getModel() == NULL) {
+            return 0;
+        }
+        mpBrk = new mDoExt_brkAnm();
+        if (mpBrk == NULL) {
+            return 0;
+        }
+        if (!mpBrk->init(mpMorf->getModel()->getModelData(),
+                         (J3DAnmTevRegKey*)dComIfG_getObjectRes("E_TM", 0x14),
+                         TRUE, 2, 1.0f, 0, -1)) {
+            return 0;
+        }
+    } else {
+        J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes("E_YM", 0x13);
+        JUT_ASSERT(model_data != NULL, 0x1094);
+        mpMorf = new mDoExt_McaMorfSO(model_data, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_YM", 0x10),
+                                      0, 1.0f, 0, -1, &mSound, 0x80000,0x11000084);
+        if (mpMorf == NULL || mpMorf->getModel() == NULL) {
+            return 0;
+        }
+        mpBrk = new mDoExt_brkAnm();
+        if (mpBrk == NULL) {
+            return 0;
+        }
+        if (!mpBrk->init(mpMorf->getModel()->getModelData(),
+                         (J3DAnmTevRegKey*)dComIfG_getObjectRes("E_YM", 0x16),
+                         TRUE, 2, 1.0f, 0, -1)) {
+            return 0;
+        }
+    }
+    if (mType == 6) {
+        field_0x6d0 = new cXyz[0x2d];
+    }
+    return 1;
 }
 
 /* 80813E84-80813EA4 00BE44 0020+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
@@ -2038,16 +2212,6 @@ void daE_YM_c::setHideType() {
     }
 }
 
-/* ############################################################################################## */
-/* 80815AE4-80815AEC 000150 0008+00 0/1 0/0 0/0 .rodata          @9420 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_9420[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80815AE4, &lit_9420);
-#pragma pop
-
 /* 80815AEC-80815AEC 000158 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 #pragma push
 #pragma force_active on
@@ -2055,8 +2219,8 @@ SECTION_DEAD static char const* const stringBase_80815AFE = "E_ym";
 #pragma pop
 
 /* 80814BA4-80815224 00CB64 0680+00 2/1 0/0 0/0 .text            create__8daE_YM_cFv */
-// NONMATCHING - literals / small issue
 int daE_YM_c::create() {
+    // NONMATCHING - regalloc
     fopAcM_SetupActor(this, daE_YM_c);
 
     mType = fopAcM_GetParam(this);
@@ -2074,11 +2238,9 @@ int daE_YM_c::create() {
     field_0x6e0 = prm2 * 100.0f;
 
     u8 prm1 = fopAcM_GetParam(this) >> 0x8;
-    u8 tmp0 = current.angle.z >> 8;
-
-    mTagNo = (u8)current.angle.z;
+    u8 tmp0 = (current.angle.z >> 8) & 0xff;
+    mTagNo = current.angle.z;
     field_0x6a1 = 1;
-
     if ((current.angle.x & 3) != 0) {
         field_0x6a1 = 0;
     }
@@ -2087,7 +2249,7 @@ int daE_YM_c::create() {
         field_0x6cb = 1;
     }
 
-    field_0x6a3 = (u8)(current.angle.x >> 8);
+    field_0x6a3 = (current.angle.x >> 8) & 0xff;
 
     if (mSwitchBit != 0xFF && dComIfGs_isSwitch(mSwitchBit, fopAcM_GetRoomNo(this))) {
         return cPhs_ERROR_e;
@@ -2116,9 +2278,9 @@ int daE_YM_c::create() {
             return cPhs_ERROR_e;
         }
 
-        if (!data_80815D28[0]) {
+        if (!lbl_253_bss_8) {
             field_0xaf4 = 1;
-            data_80815D28[0] = true;
+            lbl_253_bss_8 = 1;
             l_HIO.field_0x4 = -1;
         }
 
@@ -2232,3 +2394,30 @@ int daE_YM_c::create() {
 static int daE_YM_Create(daE_YM_c* i_this) {
     return i_this->create();
 }
+
+/* 80815C48-80815C68 -00001 0020+00 1/0 0/0 0/0 .data            l_daE_YM_Method */
+static actor_method_class l_daE_YM_Method = {
+    (process_method_func)daE_YM_Create,
+    (process_method_func)daE_YM_Delete,
+    (process_method_func)daE_YM_Execute,
+    (process_method_func)daE_YM_IsDelete,
+    (process_method_func)daE_YM_Draw,
+};
+
+/* 80815C68-80815C98 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_E_YM */
+extern actor_process_profile_definition g_profile_E_YM = {
+  fpcLy_CURRENT_e,        // mLayerID
+  7,                      // mListID
+  fpcPi_CURRENT_e,        // mListPrio
+  PROC_E_YM,              // mProcName
+  &g_fpcLf_Method.base,  // sub_method
+  sizeof(daE_YM_c),       // mSize
+  0,                      // mSizeOther
+  0,                      // mParameters
+  &g_fopAc_Method.base,   // sub_method
+  194,                    // mPriority
+  &l_daE_YM_Method,       // sub_method
+  0x00040100,             // mStatus
+  fopAc_ENEMY_e,          // mActorType
+  fopAc_CULLBOX_CUSTOM_e, // cullType
+};

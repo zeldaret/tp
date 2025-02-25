@@ -87,7 +87,7 @@ public:
     /* 8080B444 */ void executeDown();
     /* 8080BB7C */ void damage_check();
     /* 8080BCFC */ void executeWind();
-    /* 8080C05C */ void getSurpriseType();
+    /* 8080C05C */ int getSurpriseType();
     /* 8080C1FC */ void setSurpriseAway();
     /* 8080C24C */ void setGoHomeType();
     /* 8080C374 */ void executeSurprise();
@@ -136,7 +136,7 @@ public:
 private:
     /* 0x5AC */ request_of_phase_process_class mPhase;
     /* 0x5B4 */ mDoExt_McaMorfSO* mpMorf;
-    /* 0x5B8 */ mDoExt_brkAnm* field_0x5b8;
+    /* 0x5B8 */ mDoExt_brkAnm* mpBrk;
     /* 0x5BC */ Z2CreatureEnemy mSound;
     /* 0x660 */ u8 field_0x660[0x664 - 0x660];
     /* 0x664 */ fopAc_ac_c* field_0x664;
