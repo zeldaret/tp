@@ -13,7 +13,7 @@ class daE_YM_HIO_c {
 public:
     /* 8080812C */ daE_YM_HIO_c();
 
-    /* 80815458 */ virtual ~daE_YM_HIO_c();
+    /* 80815458 */ virtual ~daE_YM_HIO_c() {}
 
     /* 0x04 */ s8 field_0x4;
     /* 0x08 */ f32 mModelSize;
@@ -63,7 +63,7 @@ public:
 
     void setTagPosP() { mTagPosP = &mTagPos; }
 
-    /* 80808184 */ BOOL checkBck(char const*, int);
+    /* 80808184 */ u8 checkBck(char const*, int);
     /* 808081E0 */ void bckSet(int, u8, f32, f32);
     /* 80808328 */ void bckSetFly(int, u8, f32, f32);
     /* 808083CC */ int draw();
@@ -72,10 +72,10 @@ public:
     /* 808089DC */ void setElecEffect2();
     /* 80808B3C */ void setFireEffect();
     /* 80808E34 */ bool checkWallCrash();
-    /* 80809000 */ int checkWolfBark();
-    /* 80809228 */ void checkSurpriseLock();
-    /* 8080963C */ void checkRailSurprise();
-    /* 808096EC */ void checkSurpriseNear();
+    /* 80809000 */ u8 checkWolfBark();
+    /* 80809228 */ u8 checkSurpriseLock();
+    /* 8080963C */ u8 checkRailSurprise();
+    /* 808096EC */ u8 checkSurpriseNear();
     /* 80809D6C */ void setNormalCc();
     /* 80809D84 */ void setAppear();
     /* 80809DA8 */ void setMoveSound(int);
@@ -95,7 +95,7 @@ public:
     /* 8080CFC8 */ void executeFall();
     /* 8080D2C8 */ void executeAttack();
     /* 8080D990 */ void checkAttackEnd();
-    /* 8080DB58 */ void setAttackMotion();
+    /* 8080DB58 */ u8 setAttackMotion();
     /* 8080DC5C */ void executeAttackWall();
     /* 8080E26C */ void executeDefense();
     /* 8080E49C */ void checkFlyTerritory();
@@ -122,7 +122,7 @@ public:
     /* 808138AC */ int execute();
     /* 80813A38 */ int _delete();
     /* 80813AF0 */ int CreateHeap();
-    /* 80813EA4 */ void checkBeforeBg(s16);
+    /* 80813EA4 */ u8 checkBeforeBg(s16);
     /* 808143A0 */ void checkBeforeGround();
     /* 808144D8 */ void checkInitialWall();
     /* 80814758 */ void checkWall();
@@ -135,9 +135,9 @@ public:
     
 private:
     /* 0x5AC */ request_of_phase_process_class mPhase;
-    /* 0x5B4 */ mDoExt_McaMorfSO* field_0x5b4;
+    /* 0x5B4 */ mDoExt_McaMorfSO* mpMorf;
     /* 0x5B8 */ mDoExt_brkAnm* field_0x5b8;
-    /* 0x5BC */ Z2CreatureEnemy field_0x5bc;
+    /* 0x5BC */ Z2CreatureEnemy mSound;
     /* 0x660 */ u8 field_0x660[0x664 - 0x660];
     /* 0x664 */ fopAc_ac_c* field_0x664;
     /* 0x668 */ csXyz field_0x668;
@@ -208,8 +208,8 @@ private:
     /* 0x71D */ u8 field_0x71d;
     /* 0x71E */ u8 field_0x71E[0x720 - 0x71E];
     /* 0x720 */ dBgS_AcchCir field_0x720;
-    /* 0x760 */ dBgS_ObjAcch field_0x760;
-    /* 0x938 */ dCcD_Stts field_0x938;
+    /* 0x760 */ dBgS_ObjAcch mAcch;
+    /* 0x938 */ dCcD_Stts mStts;
     /* 0x974 */ dCcD_Sph mSphCc;
     /* 0xAAC */ dCcU_AtInfo mAtInfo;
     /* 0xAD0 */ u32 field_0xad0;
