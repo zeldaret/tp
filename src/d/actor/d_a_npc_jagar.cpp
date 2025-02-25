@@ -2402,23 +2402,60 @@ LAB_80a18a8c:
 
 /* 80A18B74-80A18F28 004554 03B4+00 3/0 0/0 0/0 .text            talk__13daNpc_Jagar_cFPv */
 int daNpc_Jagar_c::talk(void* param_0) {
-    if (field_0xe22 != 2) {
-        if (field_0xe22 > 1) {
-            return 0;
-        }
-        if (mType == TYPE_1) {
-            daNpc_Bou_c* this_00 = static_cast<daNpc_Bou_c*>(mActorMngr[2].getActorP());
-            if (this_00 && this_00->getType() == TYPE_1 && field_0xd08.checkStagger() != 0) {
-                if (mFaceMotionSeqMngr.getNo() != 10) {
-                    mFaceMotionSeqMngr.setNo(1, -1, 1, 0);
+    switch (field_0xe22) {
+        case 0:
+        case 1:
+            if (!field_0xd08.checkStagger()) {
+                if (mType == TYPE_1) {
+                    daNpc_Bou_c *Bo = (daNpc_Bou_c *)mActorMngr[2].getActorP();
+                    if (Bo && Bo->getType() == TYPE_1 && 
+                        (unsigned int)!Bo->field_0xd08.checkStagger() >> 5) { // Bit shift not correct
+                        mFaceMotionSeqMngr.setNo(10, -1.0f, 0, 0);
+                        if ((cM_rnd() -0.5f) + -10.0f < 0.0f) {
+                            mMotionSeqMngr.setNo(1, -1.0f, 0, 0);
+                        } else {
+                            mMotionSeqMngr.setNo(4, -1.0f, 0, 0);
+                        }
+                    }
+                    switch (field_0xfec) {
+                        case 4:
+                            initTalk(0xd6, NULL); 
+                            break;
+                        default:
+                            initTalk(0xd5, NULL);
+                    }
+                } else {
+                    initTalk(field_0xa7c, NULL);
                 }
-                if (mMotionSeqMngr.getNo() != 4) {
-                    mMotionSeqMngr.setNo(4, -1, 1, 0);
-                }
+                field_0xe22 = 2;
             }
-        }
+        case 2:
+            if (!field_0xd08.checkStagger()) {
+                if ((mTwilight == 0 && field_0xdc8 != mCurAngle.y) && 
+                    (mType != TYPE_1 && field_0x1003 > 0)) {
+                    if (talkProc(NULL, 0, NULL, 0) && mFlow.checkEndFlow()) {
+                        mPlayerActorMngr.entry(daPy_getPlayerActorClass());
+                        dComIfGp_event_reset();
+                        field_0xe22 = 3;
+                    }
+                }
+                if (mType == TYPE_1) {
+                    mJntAnm.lookActor(mActorMngr[2].getActorP(), -40.0f, 0);
+                } else {
+                    mJntAnm.lookPlayer(0);
+                }
+                if (mTwilight == 0 && field_0x1003 == 2) {
+                    mJntAnm.lookNone(0);
+                    break;
+                }
+                mJntAnm.lookPlayer(0);
+                step(field_0xdc8, 8, 0xe, 0xf, 0);
+            }
+        case 3:
+        default:
+            break;
     }
-    return 0; // Placeholder
+    return 0;
 }
 
 /* 80A18F28-80A18F48 004908 0020+00 1/0 0/0 0/0 .text            daNpc_Jagar_Create__FPv */
