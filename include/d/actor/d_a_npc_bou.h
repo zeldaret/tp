@@ -23,7 +23,7 @@ public:
     /* 8096D8C0 */ void ctrlJointCallBack(J3DJoint*, int);
     /* 8096D918 */ void srchCow(void*, void*);
     /* 8096D9B4 */ void getCowP();
-    /* 8096DA78 */ void getType();
+    /* 8096DA78 */ u8 getType();
     /* 8096DADC */ void isDelete();
     /* 8096DBBC */ void reset();
     /* 8096E18C */ void srchActors();
