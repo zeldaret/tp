@@ -94,9 +94,11 @@ public:
     static char* mCutNameList[7];
     static cutFunc mCutList[7];
 private:
+    /* 0x0E40 */ int field_0xe40;
     /* 0x0E44 */ dCcD_Cyl mCyl1;
     /* 0x0F80 */ u8 mType;
     /* 0x0F84 */ daNpcT_ActorMngr_c mActorMngr[5];
+    /* 0x0FAC */ daNpcT_Path_c field_0xfac;
     /* 0x0FD4 */ actionFunc field_0xfd4;
     /* 0x0FE0 */ actionFunc field_0xfe0;
     /* 0x0FE4 */ actionFunc field_0xfe4;
