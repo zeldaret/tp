@@ -94,11 +94,11 @@ public:
     /* 8080CEE0 */ void executeBack();
     /* 8080CFC8 */ void executeFall();
     /* 8080D2C8 */ void executeAttack();
-    /* 8080D990 */ void checkAttackEnd();
+    /* 8080D990 */ u8 checkAttackEnd();
     /* 8080DB58 */ u8 setAttackMotion();
     /* 8080DC5C */ void executeAttackWall();
     /* 8080E26C */ void executeDefense();
-    /* 8080E49C */ void checkFlyTerritory();
+    /* 8080E49C */ u8 checkFlyTerritory();
     /* 8080E630 */ void initFly();
     /* 8080E6A0 */ void executeFly();
     /* 8080F8C8 */ void setInclination();
