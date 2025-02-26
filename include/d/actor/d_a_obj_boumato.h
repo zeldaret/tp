@@ -2,6 +2,7 @@
 #define D_A_OBJ_BOUMATO_H
 
 #include "d/d_bg_s_acch.h"
+#include "d/actor/d_a_arrow.h"
 #include "d/d_jnt_col.h"
 #include "f_op/f_op_actor_mng.h"
 #include "d/d_cc_d.h"
@@ -60,10 +61,34 @@ public:
     /* 80BBC1F8 */ void setRoomNo();
     /* 80BBC23C */ void setMtx();
 
+    int checkCrs(fopAc_ac_c* param_0, cXyz param_1, cXyz param_2, f32 param_3) {
+        daArrow_c* arrow_p = (daArrow_c*)param_0;
+        cXyz sp2C;
+        cXyz sp20;
+
+        JUT_ASSERT(164, 0 != arrow_p);
+
+        if (field_0xa38 != 0) {
+            return 0;
+        }
+
+        mCyl2.cM3dGCyl::Set(current.pos, mCyl.GetShapeP()->GetR() + 120.0f, mCyl.GetShapeP()->GetH() + 30.0f);
+        if ((param_1 - current.pos).abs() < param_3) {
+            mGLin.SetStartEnd(param_1, param_2);
+            if (cM3d_Cross_CylLin(&mCyl2, &mGLin, &sp2C, &sp20)) {
+                return 2;
+            }
+        }
+
+        return 0;
+    }
+
     u8 getType() { return 0; }
     u8 getOffSwBit() { return (fopAcM_GetParam(this) & 0xff00) >> 8; }
     u8 getOnSwBit() { return (fopAcM_GetParam(this) & 0xff0000) >> 16; }
     void setCutType(u8 cutType) { mCutType = cutType; }
+    fpc_ProcID getTgHitAcId() { return mTargetId; }
+    void clrTgHitAcId() { mTargetId = fpcM_ERROR_PROCESS_ID_e; }
 };
 
 STATIC_ASSERT(sizeof(daObj_BouMato_c) == 0xa40);

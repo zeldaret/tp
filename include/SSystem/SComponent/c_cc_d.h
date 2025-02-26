@@ -211,6 +211,8 @@ public:
     /* 8026476C */ virtual bool GetNVec(cXyz const&, cXyz*) const;
     /* 80264808 */ virtual void getShapeAccess(cCcD_ShapeAttr::Shape*) const;
 
+    const cM3dGSph* GetShapeP() const { return this; }
+
 };  // Size = 0x34
 
 STATIC_ASSERT(0x34 == sizeof(cCcD_SphAttr));
@@ -242,6 +244,8 @@ public:
     /* 80264368 */ virtual void CalcAabBox();
     /* 802643D0 */ virtual bool GetNVec(cXyz const&, cXyz*) const;
     /* 802644B8 */ virtual void getShapeAccess(cCcD_ShapeAttr::Shape*) const;
+
+    const cM3dGCyl* GetShapeP() const { return this; }
 
 };  // Size = 0x38
 
