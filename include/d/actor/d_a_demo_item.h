@@ -52,9 +52,12 @@ public:
 
     u32 chkArgFlag(u8 i_flag) { return field_0x93d & i_flag; }
 
+    void setOffsetPos(cXyz i_pos) { mOffsetPos = i_pos; }
+    void setMaxScale(f32 i_scale) { mMaxScale = i_scale; }
+
 private:
-    /* 0x92C */ cXyz field_0x92c;
-    /* 0x938 */ f32 field_0x938;
+    /* 0x92C */ cXyz mOffsetPos;
+    /* 0x938 */ f32 mMaxScale;
     /* 0x93C */ u8 field_0x93c;
     /* 0x93D */ u8 field_0x93d;
     /* 0x93E */ u8 field_0x93e;

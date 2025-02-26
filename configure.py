@@ -1794,7 +1794,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_shaman"),
     ActorRel(NonMatching, "d_a_npc_shoe"),
     ActorRel(NonMatching, "d_a_npc_shop0"),
-    ActorRel(Equivalent, "d_a_npc_shop_maro"), # daNpcT_c base functions missing
+    ActorRel(Equivalent, "d_a_npc_shop_maro"), # weak function order
     ActorRel(NonMatching, "d_a_npc_sola"),
     ActorRel(NonMatching, "d_a_npc_soldierA"),
     ActorRel(NonMatching, "d_a_npc_soldierB"),
@@ -1813,7 +1813,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_yamid"),
     ActorRel(NonMatching, "d_a_npc_yamis"),
     ActorRel(NonMatching, "d_a_npc_yamit"),
-    ActorRel(NonMatching, "d_a_npc_yelia"),
+    ActorRel(Equivalent, "d_a_npc_yelia"), # weak function order
     ActorRel(NonMatching, "d_a_npc_ykm"),
     ActorRel(NonMatching, "d_a_npc_ykw"),
     ActorRel(NonMatching, "d_a_npc_zanb"),

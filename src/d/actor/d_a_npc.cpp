@@ -595,16 +595,16 @@ void daNpcT_JntAnm_c::setParam(fopAc_ac_c* i_actor, J3DModel* i_model, cXyz* i_e
     mAttnPos.setall(0.0f);
 
     switch (mMode) {
-    case 0:
+    case LOOK_NONE:
         mAttnPosP = NULL;
         break;
 
-    case 1:
+    case LOOK_PLAYER:
         mAttnPosP = &daPy_getPlayerActorClass()->attention_info.position;
         mAttnPos = *mAttnPosP;
         break;
 
-    case 2: {
+    case LOOK_ACTOR: {
         fopAc_ac_c* actor = mActrMngr.getActorP();
         if (actor != NULL) {
             mAttnPosP = &actor->attention_info.position;
@@ -616,13 +616,13 @@ void daNpcT_JntAnm_c::setParam(fopAc_ac_c* i_actor, J3DModel* i_model, cXyz* i_e
         break;
     }
 
-    case 3:
+    case LOOK_POS:
         if (mAttnPosP != NULL) {
             mAttnPos = *mAttnPosP;
         }
         break;
 
-    case 4: {
+    case LOOK_CAMERA: {
         camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
         if (camera != NULL) {
             mAttnPosP = fopCamM_GetEye_p(camera);
@@ -631,7 +631,7 @@ void daNpcT_JntAnm_c::setParam(fopAc_ac_c* i_actor, J3DModel* i_model, cXyz* i_e
         break;
     }
 
-    case 5:
+    case LOOK_MODE_5:
         if (mAttnPosP != NULL) {
             mMinRad[2].y = 0.0f;
             mMaxRad[2].y = 0.0f;
@@ -641,7 +641,7 @@ void daNpcT_JntAnm_c::setParam(fopAc_ac_c* i_actor, J3DModel* i_model, cXyz* i_e
         }
         break;
 
-    case 6:
+    case LOOK_MODE_6:
         if (mAttnPosP != NULL) {
             mMinRad[2].y = 0.0f;
             mMaxRad[2].y = 0.0f;
@@ -651,8 +651,8 @@ void daNpcT_JntAnm_c::setParam(fopAc_ac_c* i_actor, J3DModel* i_model, cXyz* i_e
         }
         break;
 
-    case 7:
-    case 8: {
+    case LOOK_MODE_7:
+    case LOOK_MODE_8: {
         if (cLib_calcTimer(&mTimer) == 0) {
             field_0x13c ^= 1;
             mTimer = getTime();
@@ -1177,8 +1177,8 @@ int daNpcT_c::execute() {
 }
 
 /* 8014886C-80148C70 1431AC 0404+00 0/0 0/0 58/58 .text draw__8daNpcT_cFiifP11_GXColorS10fiii */
-int daNpcT_c::draw(int param_0, int i_setEffMtx, f32 param_2, GXColorS10* i_color, f32 param_4,
-                   int i_drawGhost, int i_noShadow, int i_simpleShadow) {
+int daNpcT_c::draw(BOOL param_0, BOOL i_setEffMtx, f32 param_2, GXColorS10* i_color, f32 param_4,
+                   BOOL i_drawGhost, BOOL i_noShadow, BOOL i_simpleShadow) {
     J3DModel* model = mpMorf[0]->getModel();
     J3DModelData* modelData = model->getModelData();
     field_0xe34 = 1;
@@ -1205,7 +1205,7 @@ int daNpcT_c::draw(int param_0, int i_setEffMtx, f32 param_2, GXColorS10* i_colo
         if (cM3d_IsZero(r) == false) {
             tevStr.TevColor.r = r * 20.0f;
         }
-    } else if (param_0 != 0) {
+    } else if (param_0) {
         tevStr.TevColor.g = 20;
     }
 
@@ -1517,11 +1517,11 @@ void daNpcT_c::ctrlMotion() {
             restart = TRUE;
         }
 
-        setMotionAnm(anmIdx, morf < 0.0f ? field_0xa84 : morf, restart);
+        setMotionAnm(anmIdx, morf < 0.0f ? mMorfFrames : morf, restart);
 
         field_0xdfc = 0.0f;
 
-        if (field_0xa88) {
+        if (mCreating) {
             mpMorf[0]->setMorf(0.0f);
 
             field_0xdfc = 0.0f;
@@ -1538,7 +1538,7 @@ int daNpcT_c::ctrlMsgAnm(int* param_0, int* param_1, fopAc_ac_c* param_2, int pa
     *param_0 = -1;
     *param_1 = -1;
 
-    if (param_3 != 0 || eventInfo.checkCommandTalk() || field_0xdac != -1) {
+    if (param_3 != 0 || eventInfo.checkCommandTalk() || mStaffId != -1) {
         fopAc_ac_c* talk_partner = dComIfGp_event_getTalkPartner();
         dMsgObject_c* talk_partner_conv = (dMsgObject_c*)talk_partner;
 
@@ -1691,9 +1691,9 @@ BOOL daNpcT_c::evtProc() {
         field_0xe26 = true;
 
     } else {
-        if (field_0xdac != -1) {
-            field_0xe22 = 1;
-            field_0xdac = -1;
+        if (mStaffId != -1) {
+            mMode = MODE_INIT;
+            mStaffId = -1;
         }
         field_0xdb4 = 0;
         field_0xe26 = true;
@@ -1718,7 +1718,7 @@ void daNpcT_c::setFootPos() {
         mFootROffset = mFootRPos - current.pos;
     }
 
-    if (field_0xa88) {
+    if (mCreating) {
         mOldFootLOffset = mFootLOffset;
         mOldFootROffset = mFootROffset;
     }
@@ -2325,7 +2325,7 @@ int daNpcT_c::getActorDistance(fopAc_ac_c* i_actor, int i_distIndex1, int i_dist
 /* 8014BBF0-8014BC78 146530 0088+00 0/0 1/1 180/180 .text initTalk__8daNpcT_cFiPP10fopAc_ac_c */
 BOOL daNpcT_c::initTalk(int i_flowID, fopAc_ac_c** param_1) {
     mFlow.init(this, i_flowID, 0, param_1);
-    field_0xdc8 = fopAcM_searchPlayerAngleY(this);
+    mPlayerAngle = fopAcM_searchPlayerAngleY(this);
     if (checkStep()) {
         mStepMode = 0;
     }
