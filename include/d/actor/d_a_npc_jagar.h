@@ -99,13 +99,14 @@ private:
     /* 0x0F80 */ u8 mType;
     /* 0x0F84 */ daNpcT_ActorMngr_c mActorMngr[5];
     /* 0x0FAC */ daNpcT_Path_c field_0xfac;
+    /* 0x0FCE */ u8 field_0xfce[0xfd4 - 0xfce];
     /* 0x0FD4 */ actionFunc field_0xfd4;
     /* 0x0FE0 */ actionFunc field_0xfe0;
-    /* 0x0FE4 */ actionFunc field_0xfe4;
     /* 0x0FEC */ int field_0xfec;
     /* 0x0FF0 */ int field_0xff0;
     /* 0x0FF4 */ int field_0xff4;
     /* 0x0FF8 */ int field_0xff8;
+    /* 0x0FFC */ u8 field_0xffc[0x1000 - 0xffc];
     /* 0x1000 */ u8 field_0x1000;
     /* 0x1001 */ u8 field_0x1001;
     /* 0x1002 */ u8 field_0x1002;
@@ -115,7 +116,7 @@ private:
     /* 0x1008 */ int field_0x1008;
 };
 
-// STATIC_ASSERT(sizeof(daNpc_Jagar_c) == 0x100c); // Temporary omission
+STATIC_ASSERT(sizeof(daNpc_Jagar_c) == 0x100c);
 
 class daNpc_Jagar_Param_c {
 public:

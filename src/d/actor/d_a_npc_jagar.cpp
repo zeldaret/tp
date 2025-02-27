@@ -996,7 +996,7 @@ int daNpc_Jagar_c::isDelete() {
 /* 80A15198-80A15364 000B78 01CC+00 1/1 0/0 0/0 .text            reset__13daNpc_Jagar_cFv */
 void daNpc_Jagar_c::reset() {
     csXyz acStack_20;
-    int iVar1 = (u8*)&mpMatAnm - (u8*)&field_0xfd4;
+    int iVar1 = (u8*)field_0x1008 - (u8*)&field_0xfd4;
     if (mpMatAnm != NULL) {
         mpMatAnm->initialize();
     }
@@ -1227,11 +1227,11 @@ void daNpc_Jagar_c::action() {
         field_0x1003 = 0;
         field_0xe22 = 1;
     }
-    if (field_0xfe0) {
-        if (field_0xfe4 == field_0xfe0) {
-            (this->*field_0xfe4)(NULL);
+    if (field_0xfd4) {
+        if (field_0xfe0 == field_0xfd4) {
+            (this->*field_0xfe0)(NULL);
         } else {
-            setAction(field_0xfe0);
+            setAction(field_0xfd4);
         }
     }
     /* WIP */
