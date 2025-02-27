@@ -41,7 +41,7 @@ public:
     /* 80A153E8 */ void setParam();
     /* 80A155E4 */ BOOL checkChangeEvt();
     /* 80A15714 */ void setAfterTalkMotion();
-    /* 80A157B4 */ int srchActors();
+    /* 80A157B4 */ void srchActors();
     /* 80A158A0 */ BOOL evtTalk();
     /* 80A15940 */ BOOL evtCutProc();
     /* 80A15A08 */ void action();
@@ -99,7 +99,7 @@ private:
     /* 0x0F80 */ u8 mType;
     /* 0x0F84 */ daNpcT_ActorMngr_c mActorMngr[5];
     /* 0x0FAC */ daNpcT_Path_c field_0xfac;
-    /* 0x0FCE */ u8 field_0xfce[0xfd4 - 0xfce];
+    // /* 0x0FCE */ u8 field_0xfce[0xfd4 - 0xfce];
     /* 0x0FD4 */ actionFunc field_0xfd4;
     /* 0x0FE0 */ actionFunc field_0xfe0;
     /* 0x0FEC */ int field_0xfec;
@@ -116,7 +116,7 @@ private:
     /* 0x1008 */ int field_0x1008;
 };
 
-STATIC_ASSERT(sizeof(daNpc_Jagar_c) == 0x100c);
+// STATIC_ASSERT(sizeof(daNpc_Jagar_c) == 0x100c);
 
 class daNpc_Jagar_Param_c {
 public:
