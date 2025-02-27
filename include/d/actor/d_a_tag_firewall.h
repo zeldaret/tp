@@ -10,6 +10,10 @@ public:
     /* 80D59078 */ int _delete();
     /* 80D590A8 */ int create();
 
+    u8 getTagNo(u8 idx) { return field_0x65c[idx]; }
+    cXyz getPos(u8 idx) { return mWallPos[idx]; }
+    void setFire(u8 idx) { mWallMode[idx] = 2; }
+
     /* 0x568 */ u8 field_0x568;
     /* 0x569 */ u8 mSetGameoverEff;
     /* 0x56C */ int mWallTimer[20];

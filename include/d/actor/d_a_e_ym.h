@@ -104,7 +104,7 @@ public:
     /* 8080F8C8 */ void setInclination();
     /* 8080F92C */ void executeFlyAttack();
     /* 80810084 */ void setNextPathPoint();
-    /* 8081013C */ void checkRailDig();
+    /* 8081013C */ u8 checkRailDig();
     /* 8081030C */ void executeRail();
     /* 80810690 */ void executeBackRail();
     /* 80810DF8 */ void checkElectricStart();
@@ -123,7 +123,7 @@ public:
     /* 80813A38 */ int _delete();
     /* 80813AF0 */ int CreateHeap();
     /* 80813EA4 */ u8 checkBeforeBg(s16);
-    /* 808143A0 */ void checkBeforeGround();
+    /* 808143A0 */ u8 checkBeforeGround();
     /* 808144D8 */ void checkInitialWall();
     /* 80814758 */ void checkWall();
     /* 80814AF0 */ void setHideType();
@@ -138,11 +138,11 @@ private:
     /* 0x5B4 */ mDoExt_McaMorfSO* mpMorf;
     /* 0x5B8 */ mDoExt_brkAnm* mpBrk;
     /* 0x5BC */ Z2CreatureEnemy mSound;
-    /* 0x660 */ u8 field_0x660[0x664 - 0x660];
+    /* 0x660 */ fopAc_ac_c* field_0x660;
     /* 0x664 */ fopAc_ac_c* field_0x664;
     /* 0x668 */ csXyz field_0x668;
     /* 0x66E */ u8 field_0x66E[0x670 - 0x66E];
-    /* 0x670 */ cXyz field_0x670;
+    /* 0x670 */ cXyz mPrevPos;
     /* 0x67C */ cXyz field_0x67c;
     /* 0x688 */ f32 field_0x688;
     /* 0x68C */ f32 field_0x68c;
@@ -164,7 +164,7 @@ private:
     /* 0x6AB */ u8 field_0x6AB[0x6AC - 0x6AB];
     /* 0x6AC */ dPath* mpPath;
     /* 0x6B0 */ dPath* field_0x6b0;
-    /* 0x6B4 */ s8 field_0x6b4;
+    /* 0x6B4 */ s8 mCurrentPntNo;
     /* 0x6B5 */ u8 field_0x6B5[0x6B8 - 0x6B5];
     /* 0x6B8 */ cXyz mTagPos;
     /* 0x6C4 */ cXyz* mTagPosP;
@@ -207,7 +207,7 @@ private:
     /* 0x71C */ u8 field_0x71c;
     /* 0x71D */ u8 field_0x71d;
     /* 0x71E */ u8 field_0x71E[0x720 - 0x71E];
-    /* 0x720 */ dBgS_AcchCir field_0x720;
+    /* 0x720 */ dBgS_AcchCir mAcchCir;
     /* 0x760 */ dBgS_ObjAcch mAcch;
     /* 0x938 */ dCcD_Stts mStts;
     /* 0x974 */ dCcD_Sph mSphCc;

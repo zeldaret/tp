@@ -7,6 +7,7 @@
 #include "c/c_damagereaction.h"
 #include "d/actor/d_a_player.h"
 #include "SSystem/SComponent/c_math.h"
+#include "d/actor/d_a_tag_firewall.h"
 #include "d/d_com_inf_game.h"
 #include "dol2asm.h"
 UNK_REL_DATA;
@@ -289,7 +290,7 @@ bool daE_YM_c::checkWallCrash() {
     if (mType == 1 && (daPy_getPlayerActorClass()->checkFrontRollCrash() ||
                        daPy_getPlayerActorClass()->checkWolfAttackReverse()))
     {
-        cXyz tmp = daPy_getPlayerActorClass()->current.pos - field_0x670;
+        cXyz tmp = daPy_getPlayerActorClass()->current.pos - mPrevPos;
         if (tmp.absXZ() < 600.0f) {
             if (mTagPosP != NULL) {
                 setActionMode(ACT_FLY);
@@ -311,7 +312,7 @@ u8 daE_YM_c::checkWolfBark() {
     } else if (daPy_getPlayerActorClass()->checkWolfBark() && mDistToPlayer < 900.0f) {
         if (mType == 0) {
             s16 dist_ang = cLib_distanceAngleS(mAngleToPlayer, shape_angle.y);
-            cXyz my_vec_0 = current.pos - field_0x670;
+            cXyz my_vec_0 = current.pos - mPrevPos;
             if (my_vec_0.abs() < l_HIO.mMoveRange && dist_ang < 0x4000 && cM_rndF(10.0f) > 1.0f) {
                 setActionMode(6);
             } else {
@@ -352,8 +353,8 @@ u8 daE_YM_c::checkSurpriseLock() {
         if (truth) {
             fopAc_ac_c* tgt = dComIfGp_getAttention().LockonTarget(0);
             if (tgt == this && mType == 0) {
-                cXyz my_vec_0 = current.pos - field_0x670;
-                cXyz my_vec_1 = player->current.pos - field_0x670;
+                cXyz my_vec_0 = current.pos - mPrevPos;
+                cXyz my_vec_1 = player->current.pos - mPrevPos;
                 if (mType == 4) {
                     return checkRailSurprise();
                 }
@@ -424,7 +425,7 @@ u8 daE_YM_c::checkSurpriseNear() {
             }
             cXyz my_vec_1 = player->current.pos;
             my_vec_1.y += 100.0f;
-            my_vec_0 = field_0x670 - current.pos;
+            my_vec_0 = mPrevPos - current.pos;
             if (my_vec_0.abs() < my_val) {
                 my_vec_0 = my_vec_1 - current.pos;
                 if (my_vec_0.abs() < 350.0f) {
@@ -437,7 +438,7 @@ u8 daE_YM_c::checkSurpriseNear() {
                     }
                 }
             } else {
-                my_vec_0 = field_0x670 - my_vec_1;
+                my_vec_0 = mPrevPos - my_vec_1;
                 if (my_vec_0.abs() < 100.0f) {
                     field_0x6a5 = 1;
                     setActionMode(9);
@@ -581,7 +582,7 @@ void daE_YM_c::executeWait() {
         case 0x65: {
             current.pos = home.pos;
             setHideType();
-            field_0x670 = current.pos;
+            mPrevPos = current.pos;
             if (field_0x6a6 == 1 || field_0x6f0 == 0) {
                 field_0x6f0 = 0;
                 mMode = 0;
@@ -716,7 +717,7 @@ void daE_YM_c::executeMove() {
                 if ((s16)cLib_distanceAngleS(field_0x6e4, shape_angle.y) < 0x2000) {
                     field_0x6e4 = shape_angle.y + 0x4000;
                 }
-                my_vec_0 = field_0x670 - current.pos;
+                my_vec_0 = mPrevPos - current.pos;
                 field_0x6a5 = 0;
                 if (my_vec_0.abs() > my_val) {
                     if (mType == 1) {
@@ -763,7 +764,7 @@ void daE_YM_c::executeMove() {
             case 3: {
                 setMoveSound(0);
                 bool my_bool = false;
-                my_vec_0 = current.pos - field_0x670;
+                my_vec_0 = current.pos - mPrevPos;
                 if (field_0x6a5 == 0) {
                     if (my_vec_0.abs() > field_0x6e0) {
                         my_bool = true;
@@ -916,10 +917,10 @@ void daE_YM_c::executeEscape() {
             }
             field_0x6e8 += field_0x6e6;
             cLib_addCalcAngleS(&shape_angle.y, field_0x6e4 + field_0x6e8, 8, 0x1000, 0x100);
-            my_vec_0 = current.pos - field_0x670;
+            my_vec_0 = current.pos - mPrevPos;
             if (my_vec_0.absXZ() > 500.0f) {
                 speedF = 0.0f;
-                field_0x670 = current.pos;
+                mPrevPos = current.pos;
                 field_0x6dc = 0.0f;
                 setActionMode(0);
                 setNormalCc();
@@ -967,7 +968,7 @@ void daE_YM_c::executeDown() {
             shape_angle.y = mAtInfo.mHitDirection + 0x8000;
             shape_angle.x = 0;
             mAcch.ClrGroundHit();
-            field_0x720.SetWall(40.0f, 60.0f);
+            mAcchCir.SetWall(40.0f, 60.0f);
             if (mType == 1) {
                 cXyz my_vec_0 = daPy_getPlayerActorClass()->current.pos;
                 my_vec_0.y += 50.0f;
@@ -1174,7 +1175,7 @@ void daE_YM_c::executeWind() {
 
 /* 8080C05C-8080C1FC 00401C 01A0+00 1/1 0/0 0/0 .text            getSurpriseType__8daE_YM_cFv */
 int daE_YM_c::getSurpriseType() {
-    cXyz my_vec_0 = field_0x670 - current.pos;
+    cXyz my_vec_0 = mPrevPos - current.pos;
     int ret;
     if (my_vec_0.abs() > l_HIO.mMoveRange) {
         ret = 2;
@@ -1197,7 +1198,7 @@ void daE_YM_c::setSurpriseAway() {
 
 /* 8080C24C-8080C374 00420C 0128+00 1/1 0/0 0/0 .text            setGoHomeType__8daE_YM_cFv */
 void daE_YM_c::setGoHomeType() {
-    s16 tgt_ang = cLib_targetAngleY(&current.pos, &field_0x670);
+    s16 tgt_ang = cLib_targetAngleY(&current.pos, &mPrevPos);
     f32 rand_val = cM_rnd();
     field_0x6a8 = 1;
     if (field_0x6a8 == 0 && rand_val < 0.1f && mAcch.ChkGroundHit() && mAcch.ChkWallHit() == 0) {
@@ -1226,7 +1227,7 @@ void daE_YM_c::executeSurprise() {
     if (mType != 1) {
         cLib_chaseF(&speed.y, -90.0f, 15.0f);
     }
-    cXyz my_vec_0 = field_0x670 - current.pos;
+    cXyz my_vec_0 = mPrevPos - current.pos;
     if (daPy_getPlayerActorClass()->checkWolfLock(this) && mAcch.ChkGroundHit()) {
         cLib_chaseF(&speedF, 0.0f, 5.0f);
         cLib_chaseAngleS(&shape_angle.y,mAngleToPlayer, 0x400);
@@ -1280,14 +1281,14 @@ void daE_YM_c::executeSurprise() {
                 if (field_0x6a5 == 2) {
                     sh_val = 0x2000;
                 }
-                if (current.pos.absXZ(field_0x670) < 100.0f) {
+                if (current.pos.absXZ(mPrevPos) < 100.0f) {
                     field_0x6e4 = sh_val + cLib_targetAngleY(&current.pos, &home.pos);
                 } else {
-                    s16 next_0x6e4 = sh_val + cLib_targetAngleY(&current.pos, &field_0x670);
+                    s16 next_0x6e4 = sh_val + cLib_targetAngleY(&current.pos, &mPrevPos);
                     if (mAcch.ChkWallHit()) {
-                        s16 wall_angle = field_0x720.GetWallAngleY();
+                        s16 wall_angle = mAcchCir.GetWallAngleY();
                         if (abs((s16)(next_0x6e4 - wall_angle)) > 0x6000) {
-                            if ((s16)(cLib_targetAngleY(&current.pos, &field_0x670) - wall_angle) > 0) {
+                            if ((s16)(cLib_targetAngleY(&current.pos, &mPrevPos) - wall_angle) > 0) {
                                 next_0x6e4 = wall_angle + 0x4000;
                             } else {
                                 next_0x6e4 = wall_angle - 0x4000;
@@ -1310,7 +1311,7 @@ void daE_YM_c::executeSurprise() {
                     if (field_0x6a1) {
                         return;
                     }
-                    if (daPy_getPlayerActorClass()->current.pos.abs(field_0x670) <= l_HIO.mMoveRange + 200.0f) {
+                    if (daPy_getPlayerActorClass()->current.pos.abs(mPrevPos) <= l_HIO.mMoveRange + 200.0f) {
                         setActionMode(8);
                     }
                     return;
@@ -1334,7 +1335,7 @@ void daE_YM_c::executeSurprise() {
             } else if (field_0x6a5 == 1) {
                 shape_angle.y = mAngleToPlayer + 0x8000 + cM_rndFX(4000.0f);
             } else {
-                shape_angle.y = cLib_targetAngleY(&current.pos, &field_0x670) + cM_rndFX(4000.0f);
+                shape_angle.y = cLib_targetAngleY(&current.pos, &mPrevPos) + cM_rndFX(4000.0f);
             }
         case 3:
             mMode = 5;
@@ -1437,7 +1438,7 @@ void daE_YM_c::executeFall() {
                 speedF = 30.0f;
                 speed.y = 50.0f;
                 mMode = 2;
-                field_0x720.SetWall(40.0f, 60.0f);
+                mAcchCir.SetWall(40.0f, 60.0f);
                 mAcch.SetGroundUpY(0.0f);
                 shape_angle.x = field_0x668.x;
                 shape_angle.y = field_0x668.z;
@@ -1472,7 +1473,7 @@ void daE_YM_c::executeFall() {
             bckSet(0xf, 2, 2.0f, 1.0f);
             shape_angle.y = current.angle.y;
             shape_angle.x = 0;
-            field_0x670 = current.pos;
+            mPrevPos = current.pos;
             break;
         default:
             break;
@@ -1482,7 +1483,7 @@ void daE_YM_c::executeFall() {
 /* 8080D2C8-8080D990 005288 06C8+00 1/1 0/0 0/0 .text            executeAttack__8daE_YM_cFv */
 void daE_YM_c::executeAttack() {
     daPy_py_c* player = daPy_getPlayerActorClass();
-    cXyz my_vec_0 = player->current.pos - field_0x670;
+    cXyz my_vec_0 = player->current.pos - mPrevPos;
     if (mType != 1) {
         cLib_chaseF(&speed.y, -100.0f, 4.0f);
     }
@@ -1573,7 +1574,7 @@ u8 daE_YM_c::checkAttackEnd() {
         speedF = 0.0f;
         return 1;
     } else {
-        cXyz my_vec_0 = field_0x670 - current.pos;
+        cXyz my_vec_0 = mPrevPos - current.pos;
         if (my_vec_0.abs() > l_HIO.mMoveRange + 50.0f) {
             setActionMode(0);
             speedF = 0.0f;
@@ -1623,7 +1624,7 @@ void daE_YM_c::executeAttackWall() {
                     my_vec_2.y += 100.0f;
                     my_vec_0 = my_vec_2 - current.pos;
                 } else {
-                    my_vec_0 = field_0x670 - current.pos;
+                    my_vec_0 = mPrevPos - current.pos;
                 }
                 mDoMtx_stack_c::ZrotS(-field_0x668.z);
                 mDoMtx_stack_c::XrotM(-field_0x668.x);
@@ -1667,7 +1668,7 @@ void daE_YM_c::executeAttackWall() {
                 if (field_0x6f0 == 0 || checkBeforeBg(field_0x6e4)) {
                     do_stuff = true;
                 } else {
-                    my_vec_0 = field_0x670 - current.pos;
+                    my_vec_0 = mPrevPos - current.pos;
                     if (field_0x6a5 == 0) {
                         if (my_vec_0.abs() > l_HIO.mMoveRange + 100.0f) {
                             do_stuff = true;
@@ -1750,10 +1751,10 @@ void daE_YM_c::executeDefense() {
 
 /* 8080E49C-8080E630 00645C 0194+00 1/1 0/0 0/0 .text            checkFlyTerritory__8daE_YM_cFv */
 u8 daE_YM_c::checkFlyTerritory() {
-    if (field_0x670.absXZ(current.pos) > 300.0f) {
+    if (mPrevPos.absXZ(current.pos) > 300.0f) {
         return 0;
     } else {
-        if (fabsf(field_0x670.y - current.pos.y) > 150.0f) {
+        if (fabsf(mPrevPos.y - current.pos.y) > 150.0f) {
             return 0;
         }
         return 1;
@@ -1766,9 +1767,9 @@ void daE_YM_c::initFly() {
     gravity = 0.0f;
     field_0x6e4 = 0;
     if (mTagPosP != NULL) {
-        field_0x670 = mTagPos;
+        mPrevPos = mTagPos;
     } else {
-        field_0x670 = home.pos;
+        mPrevPos = home.pos;
     }
     mType = 3;
     shape_angle.x = 0;
@@ -1776,12 +1777,11 @@ void daE_YM_c::initFly() {
 
 /* 8080E6A0-8080F8C8 006660 1228+00 2/1 0/0 0/0 .text            executeFly__8daE_YM_cFv */
 void daE_YM_c::executeFly() {
-    // NONMATCHING - regalloc
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
     cXyz player_pos(player->current.pos);
     cXyz my_vec_1 = current.pos - player_pos;
-    cXyz my_vec_2 = current.pos - field_0x670;
-    cXyz my_vec_3 = player_pos - field_0x670;
+    cXyz my_vec_2 = current.pos - mPrevPos;
+    cXyz my_vec_3 = player_pos - mPrevPos;
     mSound.startCreatureSoundLevel(0x70199, 0, -1);
     switch (mMode) {
         case 0:
@@ -1807,7 +1807,7 @@ void daE_YM_c::executeFly() {
                     field_0x6f0 = 0x5a;
                     speed.y = -10.0f;
                     initFly();
-                    current.angle.y = cLib_targetAngleY(&current.pos, &field_0x670);
+                    current.angle.y = cLib_targetAngleY(&current.pos, &mPrevPos);
                 }
             }
             break;
@@ -1823,7 +1823,7 @@ void daE_YM_c::executeFly() {
             if (field_0x6a5) {
                 if (field_0x70c == 0 && cM_rnd() < 0.4f) {
                     field_0x70c = 0x5a;
-                    field_0x67c = field_0x670;
+                    field_0x67c = mPrevPos;
                     if (my_vec_3.absXZ() >= 400.0f) {
                         if (checkFlyTerritory()) {
                             field_0x67c.x += cM_rndFX(300.0f);
@@ -1834,14 +1834,14 @@ void daE_YM_c::executeFly() {
                         if (checkFlyTerritory()) {
                             tgt_ang_y = cLib_targetAngleY(&current.pos, &player_pos) + 0x8000;
                         } else {
-                            tgt_ang_y = cLib_targetAngleY(&current.pos, &field_0x670);
+                            tgt_ang_y = cLib_targetAngleY(&current.pos, &mPrevPos);
                         }
                         field_0x67c.x += cM_ssin(tgt_ang_y) * 300.0f;
                         field_0x67c.z += cM_scos(tgt_ang_y) * 300.0f;
                     }
                     field_0x67c.y = player_pos.y + cM_rndF(50.0f);
-                    if (fabsf(field_0x67c.y - field_0x670.y) > 300.0f) {
-                        field_0x67c.y = field_0x670.y + cM_rndF(75.0f);
+                    if (fabsf(field_0x67c.y - mPrevPos.y) > 300.0f) {
+                        field_0x67c.y = mPrevPos.y + cM_rndF(75.0f);
                     }
                     current.angle.y = cLib_targetAngleY(&current.pos, &field_0x67c);
                     current.angle.x = cLib_targetAngleX(&current.pos, &field_0x67c);
@@ -1855,10 +1855,10 @@ void daE_YM_c::executeFly() {
                 field_0x6a5 += 1;
             }
             if (my_vec_3.absXZ() >= 400.0f) {
-                field_0x67c = field_0x670;
+                field_0x67c = mPrevPos;
                 if (checkFlyTerritory()) {
                     field_0x67c.x += cM_rndFX(300.0f);
-                    if (field_0x670.y < current.pos.y) {
+                    if (mPrevPos.y < current.pos.y) {
                         field_0x67c.y -= cM_rndF(75.0f);
                     } else {
                         field_0x67c.y += cM_rndF(75.0f);
@@ -1872,8 +1872,8 @@ void daE_YM_c::executeFly() {
                     current.angle.y = cLib_targetAngleY(&current.pos, &player_pos) + 0x8000;
                     current.angle.x = cM_rndF(4096.0f);
                 } else {
-                    current.angle.y = cLib_targetAngleY(&current.pos, &field_0x670);
-                    current.angle.x = cLib_targetAngleX(&current.pos, &field_0x670);
+                    current.angle.y = cLib_targetAngleY(&current.pos, &mPrevPos);
+                    current.angle.x = cLib_targetAngleX(&current.pos, &mPrevPos);
                     if ((s16)(cLib_targetAngleY(&current.pos, &player_pos) - current.angle.y) < 0) {
                         current.angle.y += 0x3000;
                     } else {
@@ -1895,7 +1895,7 @@ void daE_YM_c::executeFly() {
             s16 ang_diff = current.angle.y - shape_angle.y;
             cLib_chaseAngleS(&shape_angle.z, cM_ssin(ang_diff) * -3072.0f * fabsf(cM_scos(current.angle.x)), 0x100);
             if (fabsf(cM_scos(current.angle.x)) >= fabsf(cM_ssin(current.angle.x))) {
-                cLib_chaseAngleS(&shape_angle.x, cM_ssin(ang_diff) * 5120.0f * fabsf(cM_scos(current.angle.x)), 0x400);
+                cLib_chaseAngleS(&shape_angle.x, cM_scos(ang_diff) * 5120.0f * fabsf(cM_scos(current.angle.x)), 0x400);
             } else {
                 cLib_chaseAngleS(&shape_angle.x, fabsf(cM_ssin(current.angle.x)) * 5120.0f, 0x400);
             }
@@ -1975,14 +1975,14 @@ void daE_YM_c::executeFly() {
                 }
                 cLib_chaseF(&speedF, 30.0f - fabsf(speed.y), 1.0f);
             } else {
-                s16 tgt_ang = cLib_targetAngleY(&current.pos, &field_0x670);
+                s16 tgt_ang = cLib_targetAngleY(&current.pos, &mPrevPos);
                 if ((s16)(cLib_targetAngleY(&current.pos, &player_pos) - tgt_ang) < 0) {
                     tgt_ang += 0x3000;
                 } else {
                     tgt_ang -= 0x3000;
                 }
                 cLib_chaseAngleS(&current.angle.y, tgt_ang, 0x400);
-                current.angle.x = cLib_targetAngleX(&current.pos, &field_0x670);
+                current.angle.x = cLib_targetAngleX(&current.pos, &mPrevPos);
                 speed.y = l_HIO.mFlyMoveSpeed * cM_ssin(current.angle.x);
                 cLib_chaseF(&speedF, l_HIO.mFlyMoveSpeed * cM_scos(current.angle.x), 1.0f);
             }
@@ -2010,30 +2010,291 @@ void daE_YM_c::setInclination() {
 
 /* 8080F92C-80810084 0078EC 0758+00 1/1 0/0 0/0 .text            executeFlyAttack__8daE_YM_cFv */
 void daE_YM_c::executeFlyAttack() {
-    // NONMATCHING
+    cXyz my_vec_0;
+    mSound.startCreatureSoundLevel(0x70199, 0, -1);
+    switch (mMode) {
+        case 0:
+            field_0x6e4 = 0;
+            bckSetFly(5, 0, 0.0f, 1.0f);
+            mMode = 1;
+            field_0x67c = dComIfGp_getPlayer(0)->current.pos;
+            field_0x67c.y += 50.0f;
+            break;
+        case 1:
+            setElecEffect1();
+            mSound.startCreatureSoundLevel(0x70195, 0, -1);
+            cLib_chaseAngleS(&shape_angle.x, 0, 0x400);
+            cLib_chaseAngleS(&shape_angle.z, 0, 0x400);
+            if (mpMorf->isStop()) {
+                bckSetFly(6, 2, 0.0f, 1.0f);
+                mMode = 2;
+                field_0x6f0 = 300;
+            }
+            break;
+        case 2: {
+            setElecEffect2();
+            mSound.startCreatureSoundLevel(0x70196, 0, -1);
+            mSound.startCreatureSoundLevel(0x7019a, 0, -1);
+            field_0x700 = l_HIO.mElectricInvincibilityTimeExtension;
+            mSphCc.OnAtSetBit();
+            my_vec_0 = field_0x67c - current.pos;
+            cLib_chaseAngleS(&shape_angle.y, cLib_targetAngleY(&current.pos, &field_0x67c), 0x800);
+            current.angle.y = shape_angle.y;
+            int tan_val = cM_atan2s(my_vec_0.absXZ(), my_vec_0.y);
+            cLib_chaseF(&speed.y, l_HIO.mFlyAttackSpeed * cM_scos(tan_val), 5.0f);
+            cLib_chaseF(&speedF, l_HIO.mFlyAttackSpeed * cM_ssin(tan_val), 3.0f);
+            if (mSphCc.ChkAtHit()) {
+                fopAc_ac_c* hit_actor = dCc_GetAc(mSphCc.GetAtHitObj()->GetAc());
+                if (fopAcM_GetName(hit_actor) == PROC_ALINK) {
+                    bckSetFly(7, 0, 0.0f, 1.0f);
+                    speed.y = 0.0f;
+                    speedF = 0.0f;
+                    mMode = 4;
+                    current.angle.y = cLib_targetAngleY(&current.pos, &mPrevPos);
+                    shape_angle.x = 0;
+                    return;
+                }
+            }
+            if (my_vec_0.abs() < 100.0f || field_0x6f0 == 0) {
+                mMode = 5;
+                field_0x700 = l_HIO.mElectricInvincibilityTimeExtension;
+                bckSetFly(0xe, 2, 5.0f, 1.0f);
+                field_0x6f0 = 0x1e;
+            }
+            setInclination();
+            break;
+        }
+        case 4:
+        case 5: {
+            field_0x6e4 += 0x800;
+            current.pos.y += cM_ssin(field_0x6e4) * 3.0f;
+            cLib_chaseF(&speed.y, 0.0f, 3.0f);
+            cLib_chaseF(&speedF, 0.0f, 3.0f);
+            int do_stuff = 0;
+            if (mMode == 4) {
+                if (mpMorf->isStop()) {
+                    do_stuff = true;
+                }
+            } else if (field_0x6f0 == 0) {
+                do_stuff = true;
+            }
+            if (do_stuff) {
+                mMode = 3;
+                bckSetFly(0xe, 2, 5.0f, 1.0f);
+                speedF = 0.0f;
+                speed.y = 0.0f;
+                field_0x6f0 = cM_rndF(10.0f) + 30.0f;
+            }
+            setInclination();
+            break;
+        }
+        case 3: {
+            s16 mang = mAngleToPlayer;
+            cLib_addCalcAngleS(&current.angle.y, mang + 0x8000, 4, 0x1000, 0x100);
+            cLib_chaseAngleS(&shape_angle.y, mang, 0x400);
+            cLib_chaseF(&speed.y, 10.0f, 3.0f);
+            cLib_chaseF(&speedF, 10.0f, 3.0f);
+            if (field_0x6f0 == 0) {
+                setActionMode(0xb);
+                mMode = 2;
+            }
+            s16 tan = cM_atan2s(speedF, speed.y) - 0x4000;
+            if (tan < -6000) {
+                tan = -6000;
+            }
+            if (tan > 6000) {
+                tan = 6000;
+            }
+            cLib_chaseAngleS(&shape_angle.x, tan, 0x180);
+            setInclination();
+            break;
+        }
+        default:
+            break;
+    }
 }
 
 /* 80810084-8081013C 008044 00B8+00 1/1 0/0 0/0 .text            setNextPathPoint__8daE_YM_cFv */
 void daE_YM_c::setNextPathPoint() {
-    // NONMATCHING
+    cXyz my_vec_0;
+    ++mCurrentPntNo;
+    if (mCurrentPntNo >= mpPath->m_num) {
+        mCurrentPntNo = 0;
+    }
+    my_vec_0 = dPath_GetPnt(mpPath, mCurrentPntNo)->m_position;
+    shape_angle.y = current.angle.y = cLib_targetAngleY(&current.pos, &my_vec_0);
+    mMode = 2;
+    bckSet(0x10, 2, 5.0f, 1.0f);
 }
 
 /* 8081013C-8081030C 0080FC 01D0+00 1/1 0/0 0/0 .text            checkRailDig__8daE_YM_cFv */
-void daE_YM_c::checkRailDig() {
-    // NONMATCHING
+u8 daE_YM_c::checkRailDig() {
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    cXyz my_vec_0;
+    if (player->checkWolfDig()) {
+        my_vec_0 = player->getLeftHandPos() - current.pos;
+        if (my_vec_0.abs() < 200.0f) {
+            field_0x714 &= 0xffffff7f;
+            field_0x6f0 = 0x14;
+            mMode = 3;
+            mAcchCir.SetWall(40.0f, 60.0f);
+            fopAcM_OnStatus(this, 0x4000);
+            return 1;
+        }
+    }
+    return 0;
 }
 
 /* 8081030C-80810690 0082CC 0384+00 1/1 0/0 0/0 .text            executeRail__8daE_YM_cFv */
 void daE_YM_c::executeRail() {
-    // NONMATCHING
+    daPy_py_c* player = daPy_getPlayerActorClass();;
+    cXyz my_vec_0;
+    switch (mMode) {
+        case 0:
+            mIsHide = 1;
+            field_0x6a6 = 4;
+            field_0x714 |= 4;
+            field_0x6dc = -70.0f;
+            old.pos = dPath_GetPnt(mpPath, mCurrentPntNo)->m_position;
+            current.pos = old.pos;
+            field_0x6f0 = 0x3c;
+            field_0x714 |= 0x80;
+            mSphCc.SetCoSPrm(0x145);
+            mSphCc.SetTgType(0x10000);
+            setNextPathPoint();
+        case 1:
+            if (checkRailDig() == 0) {
+                mSound.startCreatureSoundLevel(0x700ea, 0, -1);
+                if (player->checkWolfDig() == 0 && field_0x6f0 == 0) {
+                    setNextPathPoint();
+                }
+            }
+            break;
+        case 2:
+            if (checkRailDig() == 0) {
+                speedF = 9.0f;
+                setMoveSound(1);
+                my_vec_0 = dPath_GetPnt(mpPath, mCurrentPntNo)->m_position;
+                if (cLib_chasePos(&current.pos, my_vec_0, speedF) || current.pos.absXZ(my_vec_0) < 10.0f) {
+                    mMode = 1;
+                    field_0x6f0 = 0x3c;
+                    bckSet(0xf, 2, 5.0f, 1.0f);
+                }
+                speedF = 0.0f;
+            }
+            break;
+        case 3:
+            if (field_0x6f0 == 0) {
+                setAppear();
+                mPrevPos = current.pos;
+                setActionMode(2);
+                field_0x704 = 0x1c2;
+                field_0x70e = 0x5a;
+                if (mTagPosP != NULL) {
+                    mType = 0;
+                }
+            }
+            break;
+        default:
+            break;
+    }
 }
 
 /* 80815BD0-80815BDC 0000CC 000C+00 1/1 0/0 0/0 .data            YM_DIG_POS_Y$7355 */
-SECTION_DATA static Vec YM_DIG_POS_Y = {-15.0f, -30.0f, -70.0f};
+static f32 YM_DIG_POS_Y[] = {-15.0f, -30.0f, -70.0f};
 
 /* 80810690-80810DF8 008650 0768+00 1/1 0/0 0/0 .text            executeBackRail__8daE_YM_cFv */
 void daE_YM_c::executeBackRail() {
-    // NONMATCHING
+    cXyz my_vec_0 = dPath_GetPnt(mpPath, mCurrentPntNo)->m_position;
+    switch (mMode) {
+        case 0:
+            if (current.pos.abs(my_vec_0) < 150.0f) {
+                if ((s16)cLib_distanceAngleS(shape_angle.y, cLib_targetAngleY(&current.pos, &my_vec_0)) >= 0x2000) {
+                    ++mCurrentPntNo;
+                    if (mCurrentPntNo >= mpPath->m_num) {
+                        mCurrentPntNo = 0;
+                    }
+                    my_vec_0 = dPath_GetPnt(mpPath, mCurrentPntNo)->m_position;
+                }
+            }
+            bckSet(8, 2, 5.0f, 1.0f);
+            mIsHide = 1;
+            field_0x6a5 = 0;
+            field_0x6f0 = 7;
+            mMode = 1;
+            mAcchCir.SetWall(40.0f, 60.0f);
+        case 1:
+            setDigEffect();
+            mSound.startCreatureSoundLevel(0x70197, 0, -1);
+            cLib_chaseF(&field_0x6dc, YM_DIG_POS_Y[field_0x6a5], 3.0f);
+            cLib_addCalcAngleS(&shape_angle.y, cLib_targetAngleY(&current.pos, &my_vec_0), 8, 0x2000, 0x100);
+            current.angle.y = shape_angle.y;
+            cLib_chaseF(&speedF, 5.0f, 1.0f);
+            if (field_0x6f0 == 0) {
+                field_0x6f0 = 10;
+                mMode = 2;
+                speedF = 0.0f;
+            }
+            break;
+        case 2:
+            setDigEffect();
+            mSound.startCreatureSoundLevel(0x70197, 0, -1);
+            if (field_0x6f0 == 0) {
+                ++field_0x6a5;
+                if (field_0x6a5 >= 3) {
+                    mMode = 3;
+                    field_0x6a5 = 0;
+                    mSphCc.SetCoSPrm(0x145);
+                    mSphCc.SetTgType(0x10000);
+                    field_0x714 &= 0xfffffffb;
+                    bckSet(0x10, 2, 3.0f, 0.0f);
+                } else {
+                    if (field_0x6a5 == 2) {
+                        field_0x6f0 = 0xf;
+                        mSphCc.SetCoSPrm(0x145);
+                        mSphCc.SetTgType(0x10000);
+                        field_0x714 &= 0xfffffffb;
+                    } else {
+                        field_0x6f0 = 7;
+                    }
+                    mMode = 1;
+                }
+            }
+            break;
+        case 3:
+            cLib_chaseF(&field_0x6dc, -70.0f, 2.0f);
+            setMoveSound(1);
+            if (current.pos.absXZ(my_vec_0) < 100.0f) {
+                cLib_chaseAngleS(&shape_angle.y, cLib_targetAngleY(&current.pos, &my_vec_0), 0x1000);
+            } else {
+                cLib_addCalcAngleS(&shape_angle.y, cLib_targetAngleY(&current.pos, &my_vec_0), 8, 0x2000, 0x100);
+            }
+            current.angle.y = shape_angle.y;
+            cLib_chaseF(&speedF, 20.0f, 1.0f);
+            if (mAcch.ChkWallHit()) {
+                field_0x6a5 += 2;
+                if (field_0x6a5 >= 0x14 && checkBeforeGround()) {
+                    field_0x6a5 = 0;
+                }
+            } else if (field_0x6a5) {
+                --field_0x6a5;
+            }
+            if (current.pos.absXZ(my_vec_0) < 30.0f && field_0x6dc == -70.0f) {
+                speedF = 0.0f;
+                mMode = 4;
+                field_0x6f0 = 100;
+                bckSet(0xf, 2, 5.0f, 1.0f);
+            }
+            break;
+        case 4:
+            if (field_0x6f0 == 0) {
+                field_0x714 |= 4;
+                setActionMode(0xd);
+            }
+            break;
+        default:
+            break;
+    }
 }
 
 /* 80810DF8-80810E64 008DB8 006C+00 1/1 0/0 0/0 .text            checkElectricStart__8daE_YM_cFv */
@@ -2055,55 +2316,310 @@ void daE_YM_c::checkElectricStart() {
     }
 }
 
-/* ############################################################################################## */
-/* 80815AB4-80815AB8 000120 0004+00 0/1 0/0 0/0 .rodata          @7556 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7556 = 36.0f;
-COMPILER_STRIP_GATE(0x80815AB4, &lit_7556);
-#pragma pop
-
 /* 80810E64-8081105C 008E24 01F8+00 1/1 0/0 0/0 .text            executeElectric__8daE_YM_cFv */
 void daE_YM_c::executeElectric() {
-    // NONMATCHING
+    switch (mMode) {
+        case 0:
+            field_0x6c9 = 0;
+            bckSet(9, 0, 3.0f, 1.0f);
+            speedF = 0.0f;
+            mMode = 1;
+            break;
+        case 1:
+            if (mpMorf->getFrame() < 36.0f) {
+                setElecEffect1();
+                mSound.startCreatureSoundLevel(0x70195, 0, -1);
+            } else {
+                setElecEffect2();
+                mSound.startCreatureSoundLevel(0x70196, 0, -1);
+            }
+            if (mpMorf->checkFrame(40.0f)) {
+                mMode = 2;
+            }
+            break;
+        case 2:
+            setElecEffect2();
+            mSound.startCreatureSoundLevel(0x70196, 0, -1);
+            field_0x700 = l_HIO.mElectricInvincibilityTimeExtension;
+            mSphCc.OnAtSetBit();
+            if (mpMorf->isStop()) {
+                mMode = 3;
+                field_0x6f0 = 0x1e;
+                bckSet(0xf, 2, 5.0f, 1.0f);
+            }
+            break;
+        case 3:
+            if (field_0x6f0 == 0) {
+                setActionMode(0);
+            }
+        default:
+            break;
+    }
 }
 
 /* 8081105C-80811740 00901C 06E4+00 1/1 0/0 0/0 .text            executeSwitch__8daE_YM_cFv */
 void daE_YM_c::executeSwitch() {
-    // NONMATCHING
+    cXyz my_vec_0;
+    switch (mMode) {
+        case 0:
+            mSphCc.SetCoSPrm(0x145);
+            mSphCc.SetTgType(0);
+            field_0x6dc = -70.0f;
+            mIsHide = 1;
+            if (mpPath != NULL) {
+                if (mpPath->field_0x4 == 1) {
+                    field_0x714 = 4;
+                } else {
+                    field_0x714 = 0;
+                    field_0x6cf = 0;
+                }
+            } else {
+                field_0x714 = 0;
+            }
+            if (dComIfGs_isSwitch(field_0x6a3, fopAcM_GetRoomNo(this))) {
+                if (mpPath == NULL) {
+                    mPrevPos = current.pos;
+                    mMode = 1;
+                    field_0x6f0 = 10;
+                    field_0x6e4 = shape_angle.y;
+                    field_0x6e6 = 0x5dc;
+                    field_0x6e8 = 0;
+                } else {
+                    dStage_dPnt_c* pnt = dPath_GetPnt(mpPath, mCurrentPntNo);
+                    mCurrentPntNo = 0;
+                    ++mCurrentPntNo;
+                    old.pos = pnt->m_position;
+                    current.pos = old.pos;
+                    mMode = 2;
+                }
+                if (field_0x6cb) {
+                    speedF = 25.0f;
+                } else {
+                    speedF = 17.0f;
+                }
+                setAppear();
+                setNormalCc();
+                field_0x70e = 0x5a;
+                bckSet(0x10, 2, 5.0f, 1.0f);
+            }
+            break;
+        case 1:
+            cLib_chaseF(&field_0x6dc, 0.0f, 15.0f);
+            setMoveSound(0);
+            if (mAcch.ChkWallHit()) {
+                field_0x6e4 += 0x800;
+            }
+            if (field_0x6e8 >= 0) {
+                field_0x6e6 -= 200;
+            } else {
+                field_0x6e6 += 200;
+            }
+            field_0x6e8 += field_0x6e6;
+            cLib_addCalcAngleS(&shape_angle.y, field_0x6e4 + field_0x6e8, 4, 0x1000, 0x100);
+            if (current.pos.absXZ(mPrevPos) > 500.0f) {
+                speedF = 0.0f;
+                mPrevPos = current.pos;
+                field_0x6dc = 0.0f;
+                setActionMode(0);
+            }
+            break;
+        case 2:
+            mAcchCir.SetWall(0.0f, 0.0f);
+            if (field_0x70e) {
+                setElecEffect2();
+                mSound.startCreatureSoundLevel(0x70196, 0, -1);
+                field_0x700 = l_HIO.mElectricInvincibilityTimeExtension;
+                mSphCc.OnAtSetBit();
+            }
+            cLib_chaseF(&field_0x6dc, 0.0f, 3.0f);
+            setMoveSound(0);
+            my_vec_0 = dPath_GetPnt(mpPath, mCurrentPntNo)->m_position;
+            cLib_addCalcAngleS(&shape_angle.y, cLib_targetAngleY(&current.pos, &my_vec_0),
+                               4, 0x2000, 0x100);
+            if (current.pos.absXZ(my_vec_0) < 50.0f) {
+                ++mCurrentPntNo;
+                if (mCurrentPntNo >= mpPath->m_num) {
+                    if (mpPath->field_0x4 == 2) {
+                        field_0x71d = 1;
+                        field_0x714 = 0;
+                    } else {
+                        speedF = 0.0f;
+                        mPrevPos = current.pos;
+                        field_0x6dc = 0.0f;
+                        mAcchCir.SetWall(40.0f, 60.0f);
+                        setActionMode(0);
+                    }
+                }
+            }
+            break;
+        case 10:
+            setAppear();
+            setNormalCc();
+            old.pos = dPath_GetPnt(mpPath, mpPath->m_num-1)->m_position;
+            current.pos = old.pos;
+            mPrevPos = current.pos;
+            field_0x6dc = 0.0f;
+            speedF = 0.0f;
+            mAcchCir.SetWall(40.0f, 60.0f);
+            setActionMode(0);
+            break;
+        default:
+            break;
+    }
+    current.angle.y = shape_angle.y;
 }
-
-/* ############################################################################################## */
-/* 80815AB8-80815ABC 000124 0004+00 0/1 0/0 0/0 .rodata          @7719 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7719 = 512.0f;
-COMPILER_STRIP_GATE(0x80815AB8, &lit_7719);
-#pragma pop
 
 /* 80811740-80811838 009700 00F8+00 1/1 0/0 0/0 .text            initFireFly__8daE_YM_cFi */
 void daE_YM_c::initFireFly(int param_0) {
-    // NONMATCHING
+    field_0x6e6 = cM_rndFX(512.0f);
+    if (param_0 && mAcch.ChkWallHit()) {
+        s16 wall_ang = mAcchCir.GetWallAngleY();
+        s16 res = (wall_ang << 1) - (current.angle.y + 0x8000);
+        current.angle.y = res + cM_rndFX(4096.0);
+        speed.y += cM_rndFX(15.0f);
+        field_0x70e = cM_rndFX(5.0f) + 10.0f;
+    }
+    field_0x6f0 = 10;
 }
-
-/* ############################################################################################## */
-/* 80815ABC-80815AC0 000128 0004+00 0/1 0/0 0/0 .rodata          @7942 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7942 = 550.0f;
-COMPILER_STRIP_GATE(0x80815ABC, &lit_7942);
-#pragma pop
-
-/* 80815AC0-80815AC4 00012C 0004+00 0/1 0/0 0/0 .rodata          @7943 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7943 = 250.0f;
-COMPILER_STRIP_GATE(0x80815AC0, &lit_7943);
-#pragma pop
 
 /* 80811838-808120B0 0097F8 0878+00 1/1 0/0 0/0 .text            executeFire__8daE_YM_cFv */
 void daE_YM_c::executeFire() {
-    // NONMATCHING
+    if (current.pos.y >= 550.0f) {
+        current.pos.y = 550.0f;
+        mAcch.SetRoofHit();
+    }
+    switch (mMode) {
+        case 0:
+            if (field_0x6f0) {
+                setElecEffect2();
+                mSound.startCreatureSoundLevel(0x70196, 0, -1);
+            } else if (daPy_getPlayerActorClass()->checkFrontRollCrash() || daPy_getPlayerActorClass()->checkWolfAttackReverse()) {
+                cXyz pos_diff = daPy_getPlayerActorClass()->current.pos - current.pos;
+                if (pos_diff.abs() < 250.0f) {
+                    field_0x6f0 = 10;
+                }
+            }
+            if (field_0x6d4) {
+                field_0x714 = 4;
+            } else {
+                field_0x714 = 0;
+            }
+            mSphCc.SetCoSPrm(0x145);
+            mSphCc.SetTgType(0);
+            field_0x6dc = -70.0f;
+            mIsHide = 1;
+            field_0x71c = 1;
+            current.pos = home.pos;
+            if (field_0x6a3 == 0xff || dComIfGs_isSwitch(field_0x6a3, fopAcM_GetRoomNo(this))) {
+                field_0x71c = 0;
+                mPrevPos = current.pos;
+                field_0x6e4 = 0;
+                setAppear();
+                setNormalCc();
+                mSphCc.SetTgType(0);
+                field_0x6dc = 0.0f;
+                mMode = 1;
+                bckSetFly(0xd, 0, 5.0f, 1.0f);
+                field_0x6a5 = 0;
+            }
+            break;
+        case 1:
+            if (mpMorf->checkFrame(6.0f)) {
+                field_0x6cc = 1;
+            }
+            if (mpMorf->checkFrame(14.0f)) {
+                attention_info.distances[2] = 0x2e;
+                gravity = 0.0f;
+                fopAcM_SearchByName(0x1f7, &field_0x660);
+                if (field_0x660 != NULL) {
+                    for (int idx = 0; idx < 20; ++idx) {
+                        if (((daTag_FWall_c*)field_0x660)->getTagNo(idx) == getTagNo()) {
+                            field_0x67c = ((daTag_FWall_c*)field_0x660)->getPos(idx);
+                            break;
+                        }
+                    }
+                    mMode = 2;
+                } else {
+                    initFireFly(0);
+                    mMode = 3;
+                }
+            }
+        case 2:
+            if (fopAcM_CheckCondition(this, 4) == 0) {
+                setFireEffect();
+                setElecEffect2();
+            }
+            mSound.startCreatureSoundLevel(0x70196, 0, -1);
+            field_0x700 = l_HIO.mElectricInvincibilityTimeExtension;
+            mSphCc.OnAtSetBit();
+            current.angle.y = cLib_targetAngleY(&current.pos, &field_0x67c);
+            current.angle.x = cLib_targetAngleX(&current.pos, &field_0x67c);
+            speedF = cM_scos(current.angle.x) * 40.0f;
+            speed.y = cM_ssin(current.angle.x) * 40.0f;
+            if (field_0x67c.abs(current.pos) < 200.0f && mAcch.ChkWallHit()) {
+                mMode = 3;
+                initFireFly(1);
+                for (int idx = 0; idx < 20; ++idx) {
+                    if (((daTag_FWall_c*)field_0x660)->getTagNo(idx) == getTagNo()) {
+                        ((daTag_FWall_c*)field_0x660)->setFire(idx);
+                    }
+                }
+            }
+            shape_angle.y = current.angle.y;
+            break;
+        case 3:
+            if (dComIfGp_event_runCheck() == 0) {
+                mSphCc.OnCoSetBit();
+            } else {
+                mSphCc.OffCoSetBit();
+            }
+            if (field_0x6a5 == 0 && mpMorf->isStop()) {
+                bckSetFly(0xc, 2, 0.0f, 1.0f);
+                ++field_0x6a5;
+            }
+            if (fopAcM_CheckCondition(this, 4) == 0) {
+                setFireEffect();
+            }
+            if (field_0x70e) {
+                if (fopAcM_CheckCondition(this, 4) == 0) {
+                    setElecEffect2();
+                }
+                mSound.startCreatureSoundLevel(0x70196, 0, -1);
+                field_0x700 = l_HIO.mElectricInvincibilityTimeExtension;
+                mSphCc.OnAtSetBit();
+            }
+            if (current.pos.y > 400.0f) {
+                speed.y -= 1.0f;
+                if (speed.y < -15.0f) {
+                    speed.y = -15.0f;
+                }
+            } else if (current.pos.y < 200.0f) {
+                if (speed.y < 0.0f) {
+                    speed.y = 0.0f;
+                }
+            } else {
+                speed.y += 1.0f;
+                if (speed.y > 15.0f) {
+                    speed.y = 15.0f;
+                }
+            }
+            speedF = 40.0f - fabsf(speed.y);
+            current.angle.y += field_0x6e6;
+            if (mAcch.ChkWallHit()) {
+                initFireFly(1);
+            } else if (field_0x6f0 == 0) {
+                initFireFly(0);
+            }
+            shape_angle.y = current.angle.y;
+            break;
+        default:
+            break;
+    }
+    field_0x6e4 += 0x2000;
+    current.pos.y += cM_ssin(field_0x6e4) * 3.0f;
+    if (mMode) {
+        mSound.startCreatureSoundLevel(0x70199, 0, -1);
+    }
 }
 
 /* ############################################################################################## */
@@ -2393,7 +2909,7 @@ u8 daE_YM_c::checkBeforeBg(s16 param_0) {
 }
 
 /* 808143A0-808144D8 00C360 0138+00 1/1 0/0 0/0 .text            checkBeforeGround__8daE_YM_cFv */
-void daE_YM_c::checkBeforeGround() {
+u8 daE_YM_c::checkBeforeGround() {
     // NONMATCHING
 }
 
@@ -2515,9 +3031,9 @@ int daE_YM_c::create() {
         fopAcM_SetMin(this, -200.0f, -100.0f, -200.0f);
         fopAcM_SetMax(this, 200.0f, 100.0f, 200.0f);
 
-        mAcch.Set(&current.pos, &old.pos, this, 1, &field_0x720, &speed, NULL, NULL);
+        mAcch.Set(&current.pos, &old.pos, this, 1, &mAcchCir, &speed, NULL, NULL);
         mAcch.OnLineCheck();
-        field_0x720.SetWall(30.0f, 60.0f);
+        mAcchCir.SetWall(30.0f, 60.0f);
 
         health = 10;
         field_0x560 = 10;
@@ -2534,12 +3050,12 @@ int daE_YM_c::create() {
 
         switch (mType) {
         case 0:
-            field_0x670 = current.pos;
+            mPrevPos = current.pos;
             setActionMode(ACT_WAIT);
             break;
         case 1:
             checkInitialWall();
-            field_0x670 = current.pos;
+            mPrevPos = current.pos;
             setActionMode(ACT_WAIT);
             break;
         case 2:
@@ -2557,20 +3073,20 @@ int daE_YM_c::create() {
                 if (mpPath != NULL) {
                     attention_info.distances[fopAc_attn_ETC_e] = 31;
                     field_0x6a6 = 4;
-                    field_0x670 = current.pos;
+                    mPrevPos = current.pos;
                     setActionMode(ACT_WAIT);
                     break;
                 }
             }
 
             mType = 0;
-            field_0x670 = current.pos;
+            mPrevPos = current.pos;
             setActionMode(ACT_WAIT);
             break;
         case 5:
             if (field_0x6a3 == 0xFF) {
                 mType = 0;
-                field_0x670 = current.pos;
+                mPrevPos = current.pos;
                 setActionMode(ACT_WAIT);
             } else {
                 if (tmp0 != 0xFF) {
