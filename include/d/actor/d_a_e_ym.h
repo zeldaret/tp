@@ -9,6 +9,8 @@
 #include "d/d_cc_uty.h"
 #include "d/d_path.h"
 
+class daKago_c;
+
 class daE_YM_HIO_c {
 public:
     /* 8080812C */ daE_YM_HIO_c();
@@ -139,7 +141,7 @@ private:
     /* 0x5B8 */ mDoExt_brkAnm* mpBrk;
     /* 0x5BC */ Z2CreatureEnemy mSound;
     /* 0x660 */ fopAc_ac_c* field_0x660;
-    /* 0x664 */ fopAc_ac_c* field_0x664;
+    /* 0x664 */ daKago_c* mpKago;
     /* 0x668 */ csXyz field_0x668;
     /* 0x66E */ u8 field_0x66E[0x670 - 0x66E];
     /* 0x670 */ cXyz mPrevPos;
@@ -173,7 +175,8 @@ private:
     /* 0x6CA */ u8 mFlyType;
     /* 0x6CB */ u8 field_0x6cb;
     /* 0x6CC */ u8 field_0x6cc;
-    /* 0x6CD */ u8 field_0x6CD[0x6CF - 0x6CD];
+    /* 0x6CD */ u8 field_0x6cd;
+    /* 0x6CE */ u8 field_0x6ce;
     /* 0x6CF */ u8 field_0x6cf;
     /* 0x6D0 */ cXyz* field_0x6d0;
     /* 0x6D4 */ f32 field_0x6d4;

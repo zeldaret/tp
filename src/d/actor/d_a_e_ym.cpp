@@ -5,6 +5,7 @@
 
 #include "d/actor/d_a_e_ym.h"
 #include "c/c_damagereaction.h"
+#include "d/actor/d_a_kago.h"
 #include "d/actor/d_a_player.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_tag_firewall.h"
@@ -2622,17 +2623,25 @@ void daE_YM_c::executeFire() {
     }
 }
 
-/* ############################################################################################## */
-/* 80815AC4-80815AC8 000130 0004+00 0/2 0/0 0/0 .rodata          @8040 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_8040 = 2000.0f;
-COMPILER_STRIP_GATE(0x80815AC4, &lit_8040);
-#pragma pop
-
 /* 808120B0-808123C4 00A070 0314+00 1/1 0/0 0/0 .text            setRiverAttention__8daE_YM_cFv */
 void daE_YM_c::setRiverAttention() {
-    // NONMATCHING
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    cXyz player_pos = player->current.pos;
+    attention_info.distances[2] = '<';
+    field_0x714 = 0;
+    if (current.pos.abs(mpKago->current.pos) > 2000.0f) {
+        return;
+    }
+    cXyz my_vec_0;
+    cXyz my_vec_1;
+    mDoMtx_stack_c::YrotS(-shape_angle.y);
+    mDoMtx_stack_c::XrotM(-shape_angle.x);
+    mDoMtx_stack_c::transM(current.pos - mpKago->current.pos);
+    mDoMtx_stack_c::multVecZero(&my_vec_0);
+    my_vec_1.set(my_vec_0.x, my_vec_0.z, my_vec_0.y);
+    if (abs(cM_atan2s(my_vec_1.y, my_vec_1.absXZ()) - 0x4000) < 0x2000) {
+        field_0x714 = 4;
+    }
 }
 
 /* 808123C4-808123D0 00A384 000C+00 0/0 0/0 1/1 .text            setLockByCargo__8daE_YM_cFv */
@@ -2640,24 +2649,197 @@ void daE_YM_c::setLockByCargo() {
     field_0x6f2 = 90;
 }
 
-/* ############################################################################################## */
-/* 80815AC8-80815ACC 000134 0004+00 0/1 0/0 0/0 .rodata          @8350 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_8350 = 1500.0f;
-COMPILER_STRIP_GATE(0x80815AC8, &lit_8350);
-#pragma pop
-
-/* 80815ACC-80815AD0 000138 0004+00 0/1 0/0 0/0 .rodata          @8351 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_8351 = 12.0f / 5.0f;
-COMPILER_STRIP_GATE(0x80815ACC, &lit_8351);
-#pragma pop
-
 /* 808123D0-80812F0C 00A390 0B3C+00 1/1 0/0 0/0 .text            executeRiver__8daE_YM_cFv */
 void daE_YM_c::executeRiver() {
-    // NONMATCHING
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    cXyz player_pos = player->current.pos;
+    cXyz pnt_pos = dPath_GetPnt(mpPath, mCurrentPntNo)->m_position;
+    cXyz my_vec_0;
+    switch (mMode) {
+        case 0:
+            field_0x714 = 0;
+            field_0x6d4 = 0.0f;
+            field_0x6dc = 0.0f;
+            gravity = 0.0f;
+            speedF = 0.0f;
+            speed.y = 0.0f;
+            field_0x6ec = 0.0f;
+            field_0x6f2 = 0;
+            if (mpKago == NULL) {
+                fopAcM_SearchByName(0xf4, (fopAc_ac_c**)&mpKago);
+            } else if ( mpKago->getPathDir() ) {
+                if (dComIfGs_isLightDropGetFlag(dComIfGp_getStartStageDarkArea()) == 0) {
+                    field_0x71d = 1;
+                } else {
+                    if (mpKago->getPathDir() > 0) {
+                        if (mpPath != NULL) {
+                            mMode = 1;
+                        } else {
+                            field_0x71d = 1;
+                            break;
+                        }
+                    } else {
+                        if (field_0x6b0 != NULL) {
+                            mMode = 1;
+                            mpPath = field_0x6b0;
+                        } else {
+                            field_0x71d = 1;
+                            break;
+                        }
+                    }
+                    if (mMode == 1) {
+                        bckSetFly(0xe, 2, 5.0f, 1.0f);
+                        field_0x6cc = 1;
+                        mCurrentPntNo = 0;
+                        pnt_pos = dPath_GetPnt(mpPath, mCurrentPntNo)->m_position;
+                        old.pos = pnt_pos;
+                        current.pos = old.pos;
+                        ++mCurrentPntNo;
+                        pnt_pos = dPath_GetPnt(mpPath, mCurrentPntNo)->m_position;
+                        s16 tgt_ang = cLib_targetAngleY(&current.pos, &pnt_pos);
+                        current.angle.y = tgt_ang;
+                        shape_angle.y = tgt_ang;
+                        setAppear();
+                        setNormalCc();
+                        field_0x6f0 = 0;
+                    }
+                }
+            }
+            break;
+        case 1:
+            setElecEffect1();
+            mSound.startCreatureSoundLevel(0x70199, 0, -1);
+            if (mpKago->isFlying()) {
+                if (field_0x6a3 != 0xff) {
+                    if (dComIfGs_isSwitch(field_0x6a3, fopAcM_GetRoomNo(this))) {
+                        speedF = 0.0f;
+                        speed.y = 0.0f;
+                        mMode = 2;
+                        bckSetFly(0xb, 2, 5.0f, 1.0f);
+                    }
+                } else {
+                    f32 next_path = mpKago->checkNextPath(current.pos);
+                    if (next_path < 2000.0f) {
+                        speedF = 0.0f;
+                        speed.y = 0.0f;
+                        mMode = 2;
+                        bckSetFly(0xb, 2, 5.0f, 1.0f);
+                    }
+                }
+            }
+            break;
+        case 2: {
+            setRiverAttention();
+            field_0x6e8 += 0x200;
+            current.pos.y += cM_ssin(field_0x6e8 << 1) * 15.0f;
+            f32 my_float_val = cM_scos(field_0x6e8) * 15.0f;
+            current.pos.x += my_float_val * cM_ssin(shape_angle.y);
+            current.pos.z += my_float_val * cM_scos(shape_angle.y);
+            s16 tgt_ang = cLib_targetAngleY(&current.pos, &pnt_pos);
+            current.angle.y = tgt_ang;
+            shape_angle.y = tgt_ang;
+            tgt_ang = cLib_targetAngleX(&current.pos, &pnt_pos);
+            current.angle.x = tgt_ang;
+            shape_angle.x = tgt_ang;
+            // The following is necessary for matching, but unused?!
+            abs(mAngleToPlayer - shape_angle.y);
+            f32 next_path = mpKago->checkNextPath(current.pos);
+            if (mpKago->isFlying()) {
+                if (field_0x6f2) {
+                    field_0x714 = 4;
+                    if (next_path < 200.0f) {
+                        cLib_chaseF(&field_0x6ec, 70.0f, 1.0f);
+                    } else if (next_path > 1000.0f) {
+                        cLib_chaseF(&field_0x6ec, 10.0f, 1.0f);
+                    } else {
+                        cLib_chaseF(&field_0x6ec, 30.0f, 1.0f);
+                    }
+                } else {
+                    if (next_path < 0.0f) {
+                        field_0x6f0 = 0x96;
+                        cLib_chaseF(&field_0x6ec, 70.0f, 1.0f);
+                    } else if (field_0x6f0) {
+                        cLib_chaseF(&field_0x6ec, 70.0f, 1.0f);
+                    } else {
+                        if (next_path < 4000.0f) {
+                            if (next_path < 1500.0f) {
+                                f32 abs_val = mpKago->speed.abs();
+                                abs_val -= 10.0f;
+                                if (abs_val < 30.0f) {
+                                    abs_val = 30.0f;
+                                }
+                                cLib_chaseF(&field_0x6ec, abs_val, 1.0f);
+                            } else {
+                                cLib_chaseF(&field_0x6ec, 30.0f, 1.0f);
+                            }
+                        } else {
+                            cLib_chaseF(&field_0x6ec, 0.0f, 1.0f);
+                        }
+                    }
+                }
+            } else {
+                cLib_chaseF(&field_0x6ec, 0.0f, 1.0f);
+                field_0x6d4 = 0.0f;
+            }
+            speed.y = field_0x6ec * cM_ssin(current.angle.x);
+            speedF = field_0x6ec * cM_scos(current.angle.x);
+            if (pnt_pos.abs(current.pos) < 500.0f && ((++mCurrentPntNo), mCurrentPntNo >= mpPath->m_num)) {
+                speedF = 0.0f;
+                mPrevPos = pnt_pos;
+                field_0x6dc = 0.0f;
+                mAcchCir.SetWall(40.0f, 60.0f);
+                current.angle.x = 0;
+                shape_angle.x = 0;
+                setActionMode(0);
+            } else {
+                if (current.pos.abs(mpKago->current.pos) > 2000.0f) {
+                    field_0x68c = 2.4f;
+                    setElecEffect2();
+                    field_0x68c = 1.5f;
+                }
+                mSound.startCreatureSoundLevel(0x70199, 0, -1);
+                if (mSphCc.ChkTgHit()) {
+                    cCcD_Obj * tg_hit_obj = mSphCc.GetTgHitObj();
+                    fopAc_ac_c* hit_actor = dCc_GetAc(tg_hit_obj->GetAc());
+                    if (fopAcM_GetName(hit_actor) == PROC_KAGO) {
+                        if (mpKago == tg_hit_obj->GetAc()) {
+                            if (mpKago->getLockActor() == this) {
+                                mpKago->setLockActor(NULL);
+                            }
+                            setAppear();
+                            speedF = 0.0f;
+                            speed.y = 0.0f;
+                            field_0x714 = 0;
+                            bckSet(0x10, 2, 5.0f, 1.0f);
+                            mpKago->setEatYm();
+                            mMode = 3;
+                            field_0x6ce = 1;
+                        }
+                    }
+                }
+            }
+            break;
+        }
+        case 3:
+            setElecEffect1();
+            if (mpKago != NULL) {
+                mDoMtx_stack_c::copy(mpKago->getMouthMtx());
+                mDoMtx_stack_c::multVecZero(&my_vec_0);
+                current.pos += mpKago->speed;
+                current.pos = my_vec_0;
+                if (cLib_chasePos(&current.pos, my_vec_0, 50.0f)) {
+                    if (mSwitchBit != 0xff && dComIfGs_isSwitch(mSwitchBit, fopAcM_GetRoomNo(this)) == 0) {
+                        dComIfGs_onSwitch(mSwitchBit, fopAcM_GetRoomNo(this));
+                    }
+                    dComIfGp_setHitMark(3, this, &current.pos, NULL, NULL, 0);
+                    fopAcM_delete(this);
+                    fopAcM_createDisappear(this, &current.pos, 0x14, 1, 0xff);
+                }
+            }
+            break;
+        default:
+            break;
+    }
 }
 
 /* 80812F0C-80812FCC 00AECC 00C0+00 1/1 0/0 0/0 .text            s_ym_sub__FPvPv */
