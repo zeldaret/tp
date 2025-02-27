@@ -1457,7 +1457,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_path_line"),
     ActorRel(NonMatching, "d_a_scene_exit"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_set_bgobj"),
-    ActorRel(NonMatching, "d_a_swhit0"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_swhit0"),
     ActorRel(NonMatching, "d_a_tag_allmato", extra_cflags=['-pragma "nosyminline off"']),
     ActorRel(MatchingFor("GZ2E01"), "d_a_tag_camera"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_tag_chkpoint"),

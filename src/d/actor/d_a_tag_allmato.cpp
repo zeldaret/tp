@@ -3,13 +3,8 @@
 #include "d/actor/d_a_obj_boumato.h"
 #include "d/actor/d_a_arrow.h"
 
-struct evtList {
-    const char* name;
-    int resName_idx;
-};
-
 /* 804897BC-804897FC -00001 0040+00 2/2 0/0 0/0 .data            l_evtList */
-static evtList l_evtList[8] = {
+static daNpcT_evtData_c l_evtList[8] = {
     {"", 0},
     {"FOCUS_BOUMATO", 2},
     {"FOCUS_ITAMATO", 2},
@@ -237,16 +232,16 @@ int daTag_AllMato_c::Execute() {
 
             mEventIdx = -1;
 
-            if (getTaroActorP() != NULL && strlen(l_evtList[evt_action].name) != 0 && (!daNpcT_chkEvtBit(76) || !daNpcT_chkEvtBit(75) || evt_action == EVT_FOCUS_BOUMATO)) {
+            if (getTaroActorP() != NULL && strlen(l_evtList[evt_action].eventName) != 0 && (!daNpcT_chkEvtBit(76) || !daNpcT_chkEvtBit(75) || evt_action == EVT_FOCUS_BOUMATO)) {
                 field_0x1d0e = dComIfGp_checkPlayerStatus0(0, 0x200000) != 0;
                 daNpcT_offTmpBit(64);
 
-                if (strlen(l_resNameList[l_evtList[evt_action].resName_idx]) != 0) {
-                    eventInfo.setArchiveName(l_resNameList[l_evtList[evt_action].resName_idx]);
+                if (strlen(l_resNameList[l_evtList[evt_action].num]) != 0) {
+                    eventInfo.setArchiveName(l_resNameList[l_evtList[evt_action].num]);
                     dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
                 }
 
-                mEventIdx = dComIfGp_getEventManager().getEventIdx(this, l_evtList[evt_action].name, 0xFF);
+                mEventIdx = dComIfGp_getEventManager().getEventIdx(this, l_evtList[evt_action].eventName, 0xFF);
                 fopAcM_orderOtherEventId(this, mEventIdx, 0xFF, 0xFFFF, 40, 1);
             }
         }
@@ -566,12 +561,12 @@ int daTag_AllMato_c::checkBrkMato() {
 
 /* 80488FD8-804890B0 001B18 00D8+00 1/1 0/0 0/0 .text            evtChange__15daTag_AllMato_cFUs */
 void daTag_AllMato_c::evtChange(u16 i_action) {
-    if (strlen(l_resNameList[l_evtList[i_action].resName_idx]) != 0) {
-        eventInfo.setArchiveName(l_resNameList[l_evtList[i_action].resName_idx]);
+    if (strlen(l_resNameList[l_evtList[i_action].num]) != 0) {
+        eventInfo.setArchiveName(l_resNameList[l_evtList[i_action].num]);
         dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
     }
 
-    mEventIdx = dComIfGp_getEventManager().getEventIdx(this, l_evtList[i_action].name, 0xFF);
+    mEventIdx = dComIfGp_getEventManager().getEventIdx(this, l_evtList[i_action].eventName, 0xFF);
     dComIfGp_getEvent().reset(this);
     fopAcM_orderChangeEventId(this, mEventIdx, 1, 0xFFFF);
 }

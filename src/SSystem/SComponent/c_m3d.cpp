@@ -1347,11 +1347,6 @@ void cM3d_CalcSphVsTriCrossPoint(const cM3dGSph* pSphere, const cM3dGTri* pTrian
     }
 }
 
-inline bool cM3d_Cross_LinSph(cM3dGLin const* line, cM3dGSph const* sph) {
-    Vec vec;
-    return cM3d_Cross_LinSph(line, sph, &vec);
-}
-
 /* 8026BF04-8026C22C 266844 0328+00 1/1 4/4 0/0 .text
  * cM3d_Cross_SphTri__FPC8cM3dGSphPC8cM3dGTriP3Vec              */
 bool cM3d_Cross_SphTri(cM3dGSph const* sph, cM3dGTri const* tri, Vec* param_2) {
