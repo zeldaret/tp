@@ -11,6 +11,20 @@
  * @details
  *
  */
+ class daNpc_Bou_Param_c {
+    public:
+        /* 809727F4 */ ~daNpc_Bou_Param_c();
+    
+        struct Data {
+            /* 0x58 */ f32 field_0x58;
+            /* 0x5C */ f32 field_0x5c;
+            /* 0x60 */ f32 field_0x60;
+            /* 0x100 */ f32 field_0x100;
+        };
+    
+        static const Data m;
+};
+
 class daNpc_Bou_c : public daNpcT_c {
 public:
     /* 8096CF8C */ ~daNpc_Bou_c();
@@ -69,6 +83,12 @@ public:
     static void* mCutNameList[9];
     static u8 mCutList[108];
 
+    BOOL chkFindWolf() {
+        int iVar1 = daNpcT_getDistTableIdx(field_0xfe0, field_0xfe4);
+        return daNpcT_c::chkFindWolf(mCurAngle.y, iVar1, field_0xfdc, daNpc_Bou_Param_c::m.field_0x5c,
+            daNpc_Bou_Param_c::m.field_0x58, daNpc_Bou_Param_c::m.field_0x60, daNpc_Bou_Param_c::m.field_0x100, 1);
+    }
+
     BOOL speakTo() {
         if (field_0xf80 == 4) {
             if (current.pos.absXZ(daPy_getPlayerActorClass()->current.pos) < 1100.0f && strlen(mpEvtData[5].eventName) != 0) {
@@ -88,22 +108,19 @@ public:
     }
 
 private:
-    /* 0xE40 */ u8 field_0xE40[0xE44 - 0xE40];
+    /* 0xE40 */ int field_0xe40;
     /* 0xE44 */ dCcD_Cyl field_0xe44;
     /* 0xF80 */ u8 field_0xf80;
     /* 0xF84 */ daNpcT_ActorMngr_c field_0xf84[3];
     /* 0xF9C */ daNpcT_Path_c field_0xf9c;
-    /* 0xFC4 */ u8 field_0xfc4[0xFFC - 0xFC4];
+    /* 0xFC4 */ u8 field_0xfc4[0xFDC - 0xFC4];
+    /* 0xFDC */ int field_0xfdc;
+    /* 0xFE0 */ int field_0xfe0;
+    /* 0xFE4 */ int field_0xfe4;
+    /* 0xFE8 */ u8 field_0xfe8[0xFFC - 0xFE8];
 };
 
 STATIC_ASSERT(sizeof(daNpc_Bou_c) == 0xffc);
-
-class daNpc_Bou_Param_c {
-public:
-    /* 809727F4 */ ~daNpc_Bou_Param_c();
-
-    static u8 const m[156];
-};
 
 
 #endif /* D_A_NPC_BOU_H */

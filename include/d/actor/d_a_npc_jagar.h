@@ -165,10 +165,10 @@ public:
         /* 0x90 */ f32 field_0x90;  // 200.0f
         /* 0x94 */ f32 field_0x94;  // -800.0f
         /* 0x98 */ f32 field_0x98;  // 16.0f
-        /* 0x9C */ f32 field_0x9c;  // 1800.0f
-        
+        /* 0x9C */ f32 field_0x9c;  // 1800.0f 
     };
-    static daNpc_Jagar_Param_c::param const m;
+    
+    static const param m;
 };
 
 #endif /* D_A_NPC_JAGAR_H */
