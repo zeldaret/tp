@@ -244,6 +244,7 @@ public:
     s16* GetShieldFrontRangeYAngle() { return mShieldFrontRangeYAngle; }
     s16 GetShieldRange() { return mShieldRange; }
     u8 GetSpl() { return mSpl; }
+    void SetSpl(u8 tg_spl) { mSpl = tg_spl; }
     u8 GetHitMark() { return mHitMark; }
     void SetRVec(cXyz& vec) { mRVec = vec; }
     cXyz* GetVecP() { return &mVec; }
@@ -380,6 +381,7 @@ public:
     bool ChkTgHookShotNoHitMark() { return mGObjTg.ChkSPrm(0x400); }
     bool ChkTgArrowNoHitMark() { return mGObjTg.ChkSPrm(0x1000); }
     dCcG_Tg_Spl GetTgSpl() { return (dCcG_Tg_Spl)mGObjTg.GetSpl(); }
+    void SetTgSpl(u8 tg_spl) { mGObjTg.SetSpl(tg_spl); }
     int GetTgHitMark() { return mGObjTg.GetHitMark(); }
     int GetAtHitMark() { return mGObjAt.GetHitMark(); }
     bool ChkAtEffCounter() { return mGObjAt.ChkEffCounter(); }

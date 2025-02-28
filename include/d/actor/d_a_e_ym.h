@@ -127,7 +127,7 @@ public:
     /* 80813EA4 */ u8 checkBeforeBg(s16);
     /* 808143A0 */ u8 checkBeforeGround();
     /* 808144D8 */ void checkInitialWall();
-    /* 80814758 */ void checkWall();
+    /* 80814758 */ u8 checkWall();
     /* 80814AF0 */ void setHideType();
     /* 80814BA4 */ int create();
 
@@ -206,7 +206,7 @@ private:
     /* 0x710 */ s16 field_0x710;
     /* 0x712 */ u8 field_0x712[0x714 - 0x712];
     /* 0x714 */ int field_0x714;
-    /* 0x718 */ int field_0x718;
+    /* 0x718 */ u32 field_0x718;
     /* 0x71C */ u8 field_0x71c;
     /* 0x71D */ u8 field_0x71d;
     /* 0x71E */ u8 field_0x71E[0x720 - 0x71E];
