@@ -5,7 +5,7 @@
 
 #include "SSystem/SComponent/c_node_iter.h"
 #include "SSystem/SComponent/c_node.h"
-#include "dolphin/types.h"
+#include <dolphin/types.h>
 
 /* 80266324-802663B4 0090+00 s=0 e=1 z=0  None .text
  * cNdIt_Method__FP10node_classPFP10node_classPv_iPv            */
@@ -14,8 +14,7 @@ int cNdIt_Method(node_class* node, cNdIt_MethodFunc method, void* data) {
     node_class* pNext = NODE_GET_NEXT(node);
 
     while (node) {
-        int methodRet = method(node, data);
-        if (!methodRet)
+        if (!method(node, data))
             ret = 0;
         node = pNext;
         pNext = NODE_GET_NEXT(pNext);

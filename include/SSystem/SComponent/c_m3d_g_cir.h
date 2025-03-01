@@ -13,6 +13,12 @@ public:
     f32 GetCy() const { return mPosY; }
     f32 GetR() const { return mRadius; }
 
+    void Set(f32 pos_x, f32 pos_y, f32 radius) {
+        mPosX = pos_x;
+        mPosY = pos_y;
+        mRadius = radius;
+    }
+
     cM2dGCir() {}
     virtual ~cM2dGCir() {}
 };

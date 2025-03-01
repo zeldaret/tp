@@ -23,6 +23,10 @@ inline float sqrt(float x) {
 inline float abs(float x) {
     return ::fabsf(x);
 }
+
+inline float fmod(float x, float y) {
+    return ::fmod(x, y);
+}
 }  // namespace std
 
 #endif

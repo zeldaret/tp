@@ -28,7 +28,9 @@ void cBgS_Chk::SetExtChk(cBgS_Chk& other) {
 bool cBgS_Chk::ChkSameActorPid(fpc_ProcID pid) const {
     if (mActorPid == fpcM_ERROR_PROCESS_ID_e || pid == fpcM_ERROR_PROCESS_ID_e || !mSameActorChk) {
         return FALSE;
+    } else if (mActorPid == pid) {
+        return TRUE;
     } else {
-        return (mActorPid == pid) ? TRUE : FALSE;
+        return FALSE;
     }
 }

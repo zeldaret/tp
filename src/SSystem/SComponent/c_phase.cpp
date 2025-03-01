@@ -35,13 +35,14 @@ int cPhs_Compleate(request_of_phase_process_class* phase) {
 /* 80266678-802666D8 0060+00 s=1 e=0 z=0  None .text cPhs_Next__FP30request_of_phase_process_class
  */
 int cPhs_Next(request_of_phase_process_class* phase) {
-    if (const cPhs__Handler* handlerTable = phase->mpHandlerTable) {
+    if (phase->mpHandlerTable != NULL) {
+        cPhs__Handler* handler = phase->mpHandlerTable;
         phase->id++;
-        cPhs__Handler handler = handlerTable[phase->id];
+        handler += phase->id;
 
         // Double null check here actually matters for emitted assembly.
         // Wee old compilers.
-        if (handler == NULL || handler == NULL) {
+        if (*handler == NULL || *handler == NULL) {
             return cPhs_Compleate(phase);
         } else {
             return cPhs_LOADING_e;
@@ -64,7 +65,11 @@ int cPhs_Do(request_of_phase_process_class* phase, void* data) {
         case cPhs_LOADING_e:
             return cPhs_Next(phase);
         case cPhs_NEXT_e:
-            return cPhs_Next(phase) == cPhs_LOADING_e ? cPhs_NEXT_e : cPhs_COMPLEATE_e;
+            if (cPhs_Next(phase) == cPhs_LOADING_e) {
+                return cPhs_NEXT_e;
+            } else {
+                return cPhs_COMPLEATE_e;
+            }
         case cPhs_COMPLEATE_e:
             return cPhs_Compleate(phase);
         case cPhs_UNK3_e:
