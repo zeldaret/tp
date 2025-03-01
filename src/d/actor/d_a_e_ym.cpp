@@ -337,18 +337,17 @@ u8 daE_YM_c::checkSurpriseLock() {
     if (mType == 2) {
         return 0;
     }
-    int action = mAction;
-    if (action != ACT_WAIT && action != ACT_MOVE && action != ACT_SURPRISE && action != ACT_ATTACK && action != ACT_ATTACK_WALL) {
+    if (mAction != ACT_WAIT && mAction != ACT_MOVE && mAction != ACT_SURPRISE
+        && mAction != ACT_ATTACK && mAction != ACT_ATTACK_WALL) {
         return 0;
     }
     if (field_0x6f6 != 0) {
         return 0;
     }
-    int val = field_0x6fc;
-    if (val != 0) {
+    if (field_0x6fc) {
         return 0;
     }
-    if (action != 8) {
+    if (mAction != 8) {
         bool truth = dComIfGp_getAttention().LockonTruth();
         if (truth) {
             fopAc_ac_c* tgt = dComIfGp_getAttention().LockonTarget(0);
@@ -950,7 +949,7 @@ void daE_YM_c::executeDown() {
     } else {
         gravity = 0.0f;
     }
-#if VERSION == VERSION_SHIELD_DEBUG
+#if DEBUG
     OSReport("YM executeDown %d %f %f \n", gnd_cross, current.pos.z, mMode);
 #endif
     field_0x6cf = 0;
@@ -979,7 +978,7 @@ void daE_YM_c::executeDown() {
                 if (dComIfG_Bgsp().LineCross(&lin_chk)) {
                     cM3dGPla plane;
                     dComIfG_Bgsp().GetTriPla(lin_chk, &plane);
-                    current.pos = *lin_chk.GetCross() + (plane.mNormal * 60.0f);
+                    current.pos = lin_chk.GetCross() + (plane.mNormal * 60.0f);
                     speedF = 0.0f;
                 }
             }
@@ -2134,7 +2133,7 @@ u8 daE_YM_c::checkRailDig() {
     if (player->checkWolfDig()) {
         my_vec_0 = player->getLeftHandPos() - current.pos;
         if (my_vec_0.abs() < 200.0f) {
-            field_0x714 &= 0xffffff7f;
+            field_0x714 &= ~0x80;
             field_0x6f0 = 0x14;
             mMode = 3;
             mAcchCir.SetWall(40.0f, 60.0f);
@@ -2246,14 +2245,14 @@ void daE_YM_c::executeBackRail() {
                     field_0x6a5 = 0;
                     mSphCc.SetCoSPrm(0x145);
                     mSphCc.SetTgType(0x10000);
-                    field_0x714 &= 0xfffffffb;
+                    field_0x714 &= ~0x4;
                     bckSet(0x10, 2, 3.0f, 0.0f);
                 } else {
                     if (field_0x6a5 == 2) {
                         field_0x6f0 = 0xf;
                         mSphCc.SetCoSPrm(0x145);
                         mSphCc.SetTgType(0x10000);
-                        field_0x714 &= 0xfffffffb;
+                        field_0x714 &= ~0x4;
                     } else {
                         field_0x6f0 = 7;
                     }
@@ -2626,7 +2625,7 @@ void daE_YM_c::executeFire() {
 void daE_YM_c::setRiverAttention() {
     daPy_py_c* player = daPy_getPlayerActorClass();
     cXyz player_pos = player->current.pos;
-    attention_info.distances[2] = '<';
+    attention_info.distances[2] = 60;
     field_0x714 = 0;
     if (current.pos.abs(mpKago->current.pos) > 2000.0f) {
         return;
@@ -3181,9 +3180,9 @@ static int daE_YM_Delete(daE_YM_c* i_this) {
 /* 80813AF0-80813E38 00BAB0 0348+00 1/1 0/0 0/0 .text            CreateHeap__8daE_YM_cFv */
 int daE_YM_c::CreateHeap() {
     if (mFlyType == 1) {
-        J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes("E_TM", 0x11);
-        JUT_ASSERT(model_data != NULL, 0x1094);
-        mpMorf = new mDoExt_McaMorfSO(model_data, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_TM", 10),
+        J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_TM", 0x11);
+        JUT_ASSERT(0x1094, modelData != NULL);
+        mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_TM", 10),
                                       0, 1.0f, 0, -1, &mSound, 0x80000,0x11000084);
         if (mpMorf == NULL || mpMorf->getModel() == NULL) {
             return 0;
@@ -3198,9 +3197,9 @@ int daE_YM_c::CreateHeap() {
             return 0;
         }
     } else {
-        J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes("E_YM", 0x13);
-        JUT_ASSERT(model_data != NULL, 0x1094);
-        mpMorf = new mDoExt_McaMorfSO(model_data, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_YM", 0x10),
+        J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_YM", 0x13);
+        JUT_ASSERT(0x10bb, modelData != NULL);
+        mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_YM", 0x10),
                                       0, 1.0f, 0, -1, &mSound, 0x80000,0x11000084);
         if (mpMorf == NULL || mpMorf->getModel() == NULL) {
             return 0;
@@ -3216,7 +3215,7 @@ int daE_YM_c::CreateHeap() {
         }
     }
     if (mType == 6) {
-        field_0x6d0 = new cXyz[0x2d];
+        field_0x6d0 = new cXyz[45];
     }
     return 1;
 }
@@ -3333,7 +3332,7 @@ void daE_YM_c::checkInitialWall() {
             f32 absxz_val = p_vec->absXZ();
             s16 tan_val = cM_atan2s(absxz_val, p_vec->y) + -0x8000;
             if (abs(tan_val + 0x4000) <= 0x1555) {
-                current.pos = *lin_chk.GetCross();
+                current.pos = lin_chk.GetCross();
                 field_0x668.z = cM_atan2s(p_vec->x, p_vec->z) + 0x8000;
                 field_0x668.x = tan_val;
                 mAcchCir.SetWall(20.0f, 10.0f);
@@ -3363,7 +3362,7 @@ u8 daE_YM_c::checkWall() {
         cXyz* p_vec = plane.GetNP();
         s16 tan_val = cM_atan2s(p_vec->absXZ(), p_vec->y) + -0x8000;
         if (abs(tan_val + 0x4000) <= 0x1555) {
-            current.pos = *lin_chk.GetCross();
+            current.pos = lin_chk.GetCross();
             field_0x668.z = cM_atan2s(p_vec->x, p_vec->z) + 0x8000;
             field_0x668.x = cM_atan2s(p_vec->absXZ(), p_vec->y) + -0x8000;
             return 1;
