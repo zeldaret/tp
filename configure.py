@@ -2102,7 +2102,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_tornado"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_tornado2"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_tp"),
-    ActorRel(NonMatching, "d_a_obj_treesh"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_treesh"),
     ActorRel(NonMatching, "d_a_obj_twGate"),
     ActorRel(NonMatching, "d_a_obj_udoor"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_usaku"),
