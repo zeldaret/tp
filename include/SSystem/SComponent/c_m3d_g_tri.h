@@ -34,6 +34,10 @@ public:
     bool cross(const cM3dGLin* lin, Vec* xyz, bool param_2, bool param_3) const {
         return cM3d_Cross_LinTri(lin, this, xyz, param_2, param_3);
     }
+
+    void setUp() {
+        SetupFrom3Vtx(&mA, &mB, &mC);
+    }
 };
 
 #endif

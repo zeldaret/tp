@@ -708,6 +708,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01"), "SSystem/SComponent/c_m3d_g_pla.cpp"),
             Object(MatchingFor("GZ2E01"), "SSystem/SComponent/c_m3d_g_sph.cpp"),
             Object(MatchingFor("GZ2E01"), "SSystem/SComponent/c_m3d_g_tri.cpp"),
+            Object(NonMatching, "SSystem/SComponent/c_m3d_g_vtx.cpp"),
             Object(MatchingFor("GZ2E01"), "SSystem/SComponent/c_lib.cpp"),
             Object(MatchingFor("GZ2E01"), "SSystem/SComponent/c_angle.cpp"),
             Object(MatchingFor("GZ2E01"), "SSystem/SStandard/s_basic.cpp"),

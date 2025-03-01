@@ -37,8 +37,7 @@ bool cM3dGSph::cross(const cM3dGSph* other, cXyz* out) const {
 /* 8026F73C-8026F76C 26A07C 0030+00 0/0 1/1 0/0 .text            cross__8cM3dGSphCFPC8cM3dGCylP4cXyz
  */
 bool cM3dGSph::cross(const cM3dGCyl* cyl, cXyz* out) const {
-    f32 f;
-    return cM3d_Cross_CylSph(cyl, this, out, &f);
+    return cM3d_Cross_CylSph(cyl, this, out);
 }
 
 /* 8026F76C-8026F7B0 26A0AC 0044+00 0/0 1/1 0/0 .text GetMinMaxCube__8cM3dGSphCFR4cXyzR4cXyz */
