@@ -1641,31 +1641,31 @@ int daNpc_Jagar_c::cutClimbUp(int param_0) {
 
 /* 80A16544-80A16CD8 001F24 0794+00 1/0 0/0 0/0 .text            cutNeedYourHelp__13daNpc_Jagar_cFi
  */
-int daNpc_Jagar_c::cutNeedYourHelp(int param_0) {
+int daNpc_Jagar_c::cutNeedYourHelp(int param_1) {
     int rv = 0;
     int iVar12 = -1;
     int iVar11 = 0;
     int iVar10 = 0;
     int iVar9 = 0;
-    fopAc_ac_c* iVar2;
-    int *piVar5 = dComIfGp_evmng_getMyIntegerP(param_0, "prm");
+    void* pvVar7;
+    int* piVar5 = dComIfGp_evmng_getMyIntegerP(param_1, "prm");
     if (piVar5) {
         iVar12 = *piVar5;
     }
-    piVar5 = dComIfGp_evmng_getMyIntegerP(param_0, "msgNo");
+    piVar5 = dComIfGp_evmng_getMyIntegerP(param_1, "msgNo");
     if (piVar5) {
         iVar11 = *piVar5;
     }
-    piVar5 = dComIfGp_evmng_getMyIntegerP(param_0, "msgNo2");
+    piVar5 = dComIfGp_evmng_getMyIntegerP(param_1, "msgNo2");
     if (piVar5) {
         iVar10 = *piVar5;
     }
-    piVar5 = dComIfGp_evmng_getMyIntegerP(param_0, "send");
+    piVar5 = dComIfGp_evmng_getMyIntegerP(param_1, "send");
     if (piVar5) {
         iVar9 = *piVar5;
     }
-    if (dComIfGp_getEventManager().getIsAddvance(param_0)) {
-        switch (iVar12) {
+    if (dComIfGp_getEventManager().getIsAddvance(param_1)) {
+        switch(iVar12) {
             case 0:
                 dComIfGp_getEvent().setPt2(mActorMngr[0].getActorP());
                 break;
@@ -1673,8 +1673,10 @@ int daNpc_Jagar_c::cutNeedYourHelp(int param_0) {
                 initTalk(field_0xa7c, NULL);
                 break;
             case 7:
-                if (mActorMngr[1].getActorP())
-                dComIfGp_getEvent().setPt2(mActorMngr[1].getActorP());
+                pvVar7 = mActorMngr[1].getActorP();
+                if (pvVar7) {
+                    dComIfGp_getEvent().setPt2(pvVar7);
+                }
                 break;
             default:
                 field_0x1002 = 0;
@@ -1684,17 +1686,13 @@ int daNpc_Jagar_c::cutNeedYourHelp(int param_0) {
     switch (iVar12) {
         case 0:
             mJntAnm.lookNone(0);
-            iVar9 = mMotionSeqMngr.getNo();
-            if (iVar9 == 10) {
-                if (mMotionSeqMngr.getNo() < 1) {
+            if (mMotionSeqMngr.getNo() == 10) {
+                if (mMotionSeqMngr.getStepNo()) {
                     return 0;
                 }
                 mFaceMotionSeqMngr.setNo(8, -1.0f, 0, 0);
                 mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
                 return 1;
-            }
-            if (iVar9 == 0) {
-                return 0;
             }
             if (mMotionSeqMngr.getNo() != 0) {
                 return 0;
@@ -1705,53 +1703,146 @@ int daNpc_Jagar_c::cutNeedYourHelp(int param_0) {
             if (field_0xdc8 == mCurAngle.y) {
                 return 1;
             }
-            step(field_0xdc8, 8, 0xe, 0xf, 0);
-            return 0;
-        case 3:
-        case 4:
+            step(field_0xdc8,8,0xe,0xf,0);
+            break;
         case 5:
-            iVar2 = mActorMngr[0].getActorP();
-            if (iVar2) {
-                field_0xd6c.setall(0.0);
-                current.pos.absXZ(iVar2->current.pos);
-                mDoMtx_stack_c::YrotS(mCurAngle.y);
-                mDoMtx_stack_c::multVec(&field_0xd6c, &field_0xd6c);
-                field_0xd6c += current.pos;
-                mJntAnm.setMode(3, 0);
-            }
-            goto LAB_80a16c58;
+        case 4:
         case 6:
-            return 0;
+            mJntAnm.lookPlayer(0);
+            break; // Or LAB_80a16c58:??
         case 7:
-            iVar2 = mActorMngr[1].getActorP();
-            if (iVar2) {
-                field_0xd6c.setall(0.0);
-                current.pos.absXZ(iVar2->current.pos);
-                mDoMtx_stack_c::YrotS(mCurAngle.y);
+            if (mActorMngr[0].getActorP() != 0) {
+                field_0xd6c.setall(0.0f);
+                current.pos.absXZ(mActorMngr[0].getActorP()->current.pos);
+                mDoMtx_stack_c::YrotS(mCurAngle.y  + -0x4000);
                 mDoMtx_stack_c::multVec(&field_0xd6c, &field_0xd6c);
                 field_0xd6c += current.pos;
-                mJntAnm.setMode(3, 0);
+                mJntAnm.lookPos((int)&field_0xd6c, 0);
             }
-            goto LAB_80a16c58;
         case 8:
             return 1;
         default:
-            mJntAnm.lookPlayer(0);
-    }
-LAB_80a16c58:
-    if (talkProc(&iVar11, iVar9, NULL, 0)) {
-        if (iVar11 == 0 && iVar10 == 0) {
-            if (mFlow.checkEndFlow()) {
+        if (talkProc((int*)&iVar11, iVar9, NULL, 0)) {
+            if (mFlow.checkEndFlow() == 1) {
                 rv = 1;
             }
-        } else {
-            rv = 1;
         }
+            break;
     }
     if (iVar12 == 4) {
         rv = 1;
     }
     return rv;
+//     int rv = 0;
+    // int iVar12 = -1;
+    // int iVar11 = 0;
+    // int iVar10 = 0;
+    // int iVar9 = 0;
+//     fopAc_ac_c* iVar2;
+    // int *piVar5 = dComIfGp_evmng_getMyIntegerP(param_0, "prm");
+    // if (piVar5) {
+    //     iVar12 = *piVar5;
+    // }
+    // piVar5 = dComIfGp_evmng_getMyIntegerP(param_0, "msgNo");
+    // if (piVar5) {
+    //     iVar11 = *piVar5;
+    // }
+    // piVar5 = dComIfGp_evmng_getMyIntegerP(param_0, "msgNo2");
+    // if (piVar5) {
+    //     iVar10 = *piVar5;
+    // }
+    // piVar5 = dComIfGp_evmng_getMyIntegerP(param_0, "send");
+    // if (piVar5) {
+    //     iVar9 = *piVar5;
+    // }
+//     if (dComIfGp_getEventManager().getIsAddvance(param_0)) {
+//         switch (iVar12) {
+//             case 0:
+//                 dComIfGp_getEvent().setPt2(mActorMngr[0].getActorP());
+//                 break;
+//             case 1:
+                // initTalk(field_0xa7c, NULL);
+                // break;
+//             case 7:
+//                 if (mActorMngr[1].getActorP())
+//                 dComIfGp_getEvent().setPt2(mActorMngr[1].getActorP());
+//                 break;
+//             default:
+//                 field_0x1002 = 0;
+//                 field_0x1003 = 0;
+//         }
+//     }
+//     switch (iVar12) {
+//         case 0:
+//             mJntAnm.lookNone(0);
+//             iVar9 = mMotionSeqMngr.getNo();
+//             if (iVar9 == 10) {
+//                 if (mMotionSeqMngr.getNo() < 1) {
+//                     return 0;
+//                 }
+                // mFaceMotionSeqMngr.setNo(8, -1.0f, 0, 0);
+                // mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+//                 return 1;
+//             }
+//             if (iVar9 == 0) {
+//                 return 0;
+//             }
+//             if (mMotionSeqMngr.getNo() != 0) {
+//                 return 0;
+//             }
+//             return 1;
+//         case 1:
+//             mJntAnm.lookPlayer(0);
+//             if (field_0xdc8 == mCurAngle.y) {
+//                 return 1;
+//             }
+//             step(field_0xdc8, 8, 0xe, 0xf, 0);
+//             return 0;
+//         case 3:
+//         case 4:
+//         case 5:
+//             iVar2 = mActorMngr[0].getActorP();
+//             if (iVar2) {
+//                 field_0xd6c.setall(0.0);
+//                 current.pos.absXZ(iVar2->current.pos);
+//                 mDoMtx_stack_c::YrotS(mCurAngle.y);
+//                 mDoMtx_stack_c::multVec(&field_0xd6c, &field_0xd6c);
+//                 field_0xd6c += current.pos;
+//                 mJntAnm.setMode(3, 0);
+//             }
+//             goto LAB_80a16c58;
+//         case 6:
+//             return 0;
+//         case 7:
+//             iVar2 = mActorMngr[1].getActorP();
+//             if (iVar2) {
+//                 field_0xd6c.setall(0.0);
+//                 current.pos.absXZ(iVar2->current.pos);
+//                 mDoMtx_stack_c::YrotS(mCurAngle.y);
+//                 mDoMtx_stack_c::multVec(&field_0xd6c, &field_0xd6c);
+//                 field_0xd6c += current.pos;
+//                 mJntAnm.setMode(3, 0);
+//             }
+//             goto LAB_80a16c58;
+//         case 8:
+//             return 1;
+//         default:
+//             mJntAnm.lookPlayer(0);
+//     }
+// LAB_80a16c58:
+    // if (talkProc(&iVar11, iVar9, NULL, 0)) {
+//         if (iVar11 == 0 && iVar10 == 0) {
+            // if (mFlow.checkEndFlow()) {
+            //     rv = 1;
+            // }
+        // } else {
+        //     rv = 1;
+        // }
+//     }
+    // if (iVar12 == 4) {
+    //     rv = 1;
+    // }
+//     return rv;
 }
 
 /* 80A16CD8-80A16EFC 0026B8 0224+00 1/0 0/0 0/0 .text            cutAnger__13daNpc_Jagar_cFi */

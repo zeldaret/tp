@@ -116,7 +116,7 @@ private:
     /* 0x1008 */ int field_0x1008;
 };
 
-// STATIC_ASSERT(sizeof(daNpc_Jagar_c) == 0x100c);
+STATIC_ASSERT(sizeof(daNpc_Jagar_c) == 0x100c);
 
 class daNpc_Jagar_Param_c {
 public:
@@ -165,7 +165,7 @@ public:
         /* 0x90 */ f32 field_0x90;  // 200.0f
         /* 0x94 */ f32 field_0x94;  // -800.0f
         /* 0x98 */ f32 field_0x98;  // 16.0f
-        /* 0x9C */ f32 field_0x9c;  // 1800.0f 
+        /* 0x9C */ f32 field_0x9c;  // 1800.0f
     };
     
     static const param m;
