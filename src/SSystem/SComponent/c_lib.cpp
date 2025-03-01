@@ -41,8 +41,9 @@ void cLib_memSet(void* ptr, int value, unsigned long num) {
  * @return The absolute value of remaining distance to target
  */
 f32 cLib_addCalc(f32* pvalue, f32 target, f32 scale, f32 maxStep, f32 minStep) {
+    f32 step = 0.0f;
     if (*pvalue != target) {
-        f32 step = scale * (target - *pvalue);
+        step = scale * (target - *pvalue);
         if (step >= minStep || step <= -minStep) {
             if (step > maxStep) {
                 step = maxStep;
@@ -54,15 +55,16 @@ f32 cLib_addCalc(f32* pvalue, f32 target, f32 scale, f32 maxStep, f32 minStep) {
         } else {
             if (step > 0) {
                 if (step < minStep) {
-                    *pvalue += minStep;
+                    step = minStep;
+                    *pvalue += step;
                     if (*pvalue > target) {
                         *pvalue = target;
                     }
                 }
             } else {
-                minStep = -minStep;
-                if (step > minStep) {
-                    *pvalue += minStep;
+                if (step > -minStep) {
+                    step = -minStep;
+                    *pvalue += step;
                     if (*pvalue < target) {
                         *pvalue = target;
                     }

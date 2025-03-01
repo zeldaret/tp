@@ -3549,6 +3549,10 @@ inline s16 dComIfGp_evmng_getEventIdx(const char* eventName, u8 mapToolID) {
     return g_dComIfG_gameInfo.play.getEvtManager().getEventIdx(eventName, mapToolID, -1);
 }
 
+inline BOOL dComIfGp_evmng_isMapToolCamera(u8 mapToolID) {
+    return g_dComIfG_gameInfo.play.getEvtManager().isMapToolCamera(mapToolID, -1);
+}
+
 inline void dComIfGp_particle_createCommon(const void* data) {
     g_dComIfG_gameInfo.play.getParticle()->createCommon(data);
 }

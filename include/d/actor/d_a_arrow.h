@@ -60,6 +60,14 @@ public:
     bool checkBombArrow() const { return mArrowType == true; }
     u32 getHitAcID() { return mHitAcID; }
 
+    BOOL checkWait() { return fopAcM_GetParam(this) == 0; }
+
+    f32 getOutLengthRate() { return mOutLengthRate; }
+    f32 getArrowOutLength() { return 95.0f; }
+    f32 getArrowAtR() { return 5.0f; }
+    f32 getFlyMax() { return mFlyMax; }
+    cXyz getStartPos() { return mStartPos; }
+
     void setShoot() { fopAcM_SetParam(this, 1); }
     void setChargeShoot() { fopAcM_SetParam(this, 2); }
 

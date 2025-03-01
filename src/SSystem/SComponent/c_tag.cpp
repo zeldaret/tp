@@ -57,10 +57,10 @@ node_class* cTg_GetFirst(node_list_class* list) {
     create_tag_class* tag = (create_tag_class*)cLs_GetFirst(list);
     if (tag != NULL) {
         tag->mbIsUse = false;
-    } else {
-        tag = NULL;
+        return &tag->mpNode;
     }
-    return &tag->mpNode;
+
+    return NULL;
 }
 
 /* 802669A4-802669E4 0040+00 s=0 e=7 z=0  None .text      cTg_SingleCut__FP16create_tag_class */

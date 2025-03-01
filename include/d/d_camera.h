@@ -456,6 +456,8 @@ public:
 
     void U2(s16 i_val) { field_0x8c = i_val; }
 
+    void CorrectCenter() { setFlag(0x40000000); }
+
     static engine_fn engine_tbl[];
 
     /* 0x000 */ camera_class* field_0x0;

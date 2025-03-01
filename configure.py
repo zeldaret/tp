@@ -708,6 +708,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01"), "SSystem/SComponent/c_m3d_g_pla.cpp"),
             Object(MatchingFor("GZ2E01"), "SSystem/SComponent/c_m3d_g_sph.cpp"),
             Object(MatchingFor("GZ2E01"), "SSystem/SComponent/c_m3d_g_tri.cpp"),
+            Object(NonMatching, "SSystem/SComponent/c_m3d_g_vtx.cpp"),
             Object(MatchingFor("GZ2E01"), "SSystem/SComponent/c_lib.cpp"),
             Object(MatchingFor("GZ2E01"), "SSystem/SComponent/c_angle.cpp"),
             Object(MatchingFor("GZ2E01"), "SSystem/SStandard/s_basic.cpp"),
@@ -1457,8 +1458,8 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_path_line"),
     ActorRel(NonMatching, "d_a_scene_exit"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_set_bgobj"),
-    ActorRel(NonMatching, "d_a_swhit0"),
-    ActorRel(NonMatching, "d_a_tag_allmato"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_swhit0"),
+    ActorRel(NonMatching, "d_a_tag_allmato", extra_cflags=['-pragma "nosyminline off"']),
     ActorRel(MatchingFor("GZ2E01"), "d_a_tag_camera"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_tag_chkpoint"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_tag_event"),
@@ -1794,7 +1795,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_shaman"),
     ActorRel(NonMatching, "d_a_npc_shoe"),
     ActorRel(NonMatching, "d_a_npc_shop0"),
-    ActorRel(Equivalent, "d_a_npc_shop_maro"), # daNpcT_c base functions missing
+    ActorRel(Equivalent, "d_a_npc_shop_maro"), # weak function order
     ActorRel(NonMatching, "d_a_npc_sola"),
     ActorRel(NonMatching, "d_a_npc_soldierA"),
     ActorRel(NonMatching, "d_a_npc_soldierB"),
@@ -1813,7 +1814,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_yamid"),
     ActorRel(NonMatching, "d_a_npc_yamis"),
     ActorRel(NonMatching, "d_a_npc_yamit"),
-    ActorRel(NonMatching, "d_a_npc_yelia"),
+    ActorRel(Equivalent, "d_a_npc_yelia"), # weak function order
     ActorRel(NonMatching, "d_a_npc_ykm"),
     ActorRel(NonMatching, "d_a_npc_ykw"),
     ActorRel(NonMatching, "d_a_npc_zanb"),
@@ -2101,7 +2102,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_tornado"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_tornado2"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_tp"),
-    ActorRel(NonMatching, "d_a_obj_treesh"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_treesh"),
     ActorRel(NonMatching, "d_a_obj_twGate"),
     ActorRel(NonMatching, "d_a_obj_udoor"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_usaku"),
@@ -2138,7 +2139,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_ppolamp"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_skip_2D"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_startAndGoal", extra_cflags=['-pragma "nosyminline off"']),
-    ActorRel(NonMatching, "d_a_swBall"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_swBall"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_swLBall"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_swTime"),
     ActorRel(NonMatching, "d_a_tag_Lv6Gate"),
@@ -2187,7 +2188,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_tag_yami", extra_cflags=['-pragma "nosyminline off"']),
     ActorRel(MatchingFor("GZ2E01"), "d_a_talk"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_tboxSw"),
-    ActorRel(NonMatching, "d_a_title"),
+    ActorRel(Equivalent, "d_a_title"), # weak func order
     ActorRel(MatchingFor("GZ2E01"), "d_a_warp_bug"),
 ]
 

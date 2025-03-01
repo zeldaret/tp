@@ -101,4 +101,14 @@ inline f32 cM3d_LenSq(const Vec* a, const Vec* b) {
     return VECSquareDistance(a, b);
 }
 
+inline bool cM3d_Cross_LinSph(const cM3dGLin* lin_p, const cM3dGSph* sph_p) {
+    Vec sp10;
+    return cM3d_Cross_LinSph(lin_p, sph_p, &sp10);
+}
+
+inline bool cM3d_Cross_CylSph(const cM3dGCyl* cyl, const cM3dGSph* sph, Vec* out) {
+    f32 sp10;
+    return cM3d_Cross_CylSph(cyl, sph, out, &sp10);
+}
+
 #endif
