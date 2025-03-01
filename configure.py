@@ -2139,7 +2139,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_ppolamp"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_skip_2D"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_startAndGoal", extra_cflags=['-pragma "nosyminline off"']),
-    ActorRel(NonMatching, "d_a_swBall"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_swBall"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_swLBall"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_swTime"),
     ActorRel(NonMatching, "d_a_tag_Lv6Gate"),
@@ -2188,7 +2188,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_tag_yami", extra_cflags=['-pragma "nosyminline off"']),
     ActorRel(MatchingFor("GZ2E01"), "d_a_talk"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_tboxSw"),
-    ActorRel(NonMatching, "d_a_title"),
+    ActorRel(Equivalent, "d_a_title"), # weak func order
     ActorRel(MatchingFor("GZ2E01"), "d_a_warp_bug"),
 ]
 
