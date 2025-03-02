@@ -1,7 +1,9 @@
 #ifndef D_A_E_ZS_H
 #define D_A_E_ZS_H
 
-#include "f_op/f_op_actor_mng.h"
+#include "d/d_bg_s_acch.h"
+#include "d/d_cc_d.h"
+#include "f_op/f_op_actor.h"
 
 /**
  * @ingroup actors-enemies
@@ -12,7 +14,8 @@
  * 
  */
 class daE_ZS_c : public fopEn_enemy_c {
-    /* 808330DC */ void draw();
+public:
+    /* 808330DC */ int draw();
     /* 808331E4 */ void setBck(int, u8, f32, f32);
     /* 80833290 */ void setActionMode(int, int);
     /* 8083329C */ void damage_check();
@@ -27,17 +30,44 @@ class daE_ZS_c : public fopEn_enemy_c {
     /* 80834650 */ void execute();
     /* 808346E4 */ void _delete();
     /* 80834778 */ void CreateHeap();
-    /* 80834884 */ void create();
+    /* 80834884 */ int create();
 
 private:
-    /* 0x5ac */ u8 field_0x5ac[0xa3c - 0x5ac];
+    /* 0x5ac */ request_of_phase_process_class mPhase;
+    /* 0x5b4 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x5b8 */ Z2CreatureEnemy mSound;
+    /* 0x65c */ u8 field_0x65c[0x660 - 0x65c];
+    /* 0x660 */ int field_0x660;
+    /* 0x664 */ int field_0x664;
+    /* 0x668 */ int mResIndex;
+    /* 0x66c */ u32 mShadowKey;
+    /* 0x670 */ u8 field_0x670;
+    /* 0x671 */ s8 field_0x671;
+    /* 0x672 */ u8 field_0x672;
+    /* 0x673 */ u8 field_0x673;
+    /* 0x674 */ dBgS_AcchCir mAcchCir;
+    /* 0x6b4 */ dBgS_ObjAcch mAcch;
+    /* 0x88c */ dCcD_Stts mStts;
+    /* 0x8c8 */ dCcD_Cyl mCyl;
+    /* 0xa04 */ u8 field_0xa04[0xa0c - 0xa04];
+    /* 0xa0c */ Z2CreatureEnemy* mpSound;
+    /* 0xa10 */ u8 field_0xa10[0xa22 - 0xa10];
+    /* 0xa22 */ s8 field_0xa22;
+    /* 0xa23 */ u8 field_0xa23[0xa28 - 0xa23];
+    /* 0xa28 */ s8 field_0xa28;
+    /* 0xa29 */ u8 field_0xa29[0xa3c - 0xa29];
 };
 
 STATIC_ASSERT(sizeof(daE_ZS_c) == 0xa3c);
 
 class daE_ZS_HIO_c {
+public:
     /* 808330AC */ daE_ZS_HIO_c();
-    /* 80834DDC */ ~daE_ZS_HIO_c();
+    /* 80834DDC */ virtual ~daE_ZS_HIO_c() {}
+
+    /* 0x4 */ s8 field_0x4;
+    /* 0x8 */ f32 field_0x8;
+    /* 0xc */ f32 field_0xc;
 };
 
 
