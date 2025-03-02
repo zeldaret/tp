@@ -266,12 +266,6 @@ public:
         setMode(LOOK_PLAYER, FALSE);
         setDirect(isDirect);
     }
-
-    void lookPos(u8 param_1, u8 isDirect) {
-        setMode(3, ((int)mAttnPosP == param_1) ? 0 : 1);
-        setMode(1, 0);
-        setDirect(isDirect);
-    }
     
     void lookCamera(u8 isDirect) {
         setMode(LOOK_CAMERA, FALSE);

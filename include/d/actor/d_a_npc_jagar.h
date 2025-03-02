@@ -13,6 +13,7 @@
  */
 
 class daNpc_Bou_c; // Temporary
+class daTag_Push_c;
 
 class daNpc_Jagar_c : public daNpcT_c {
 public:
