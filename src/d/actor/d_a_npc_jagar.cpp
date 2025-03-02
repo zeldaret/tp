@@ -1629,7 +1629,6 @@ int daNpc_Jagar_c::cutClimbUp(int param_0) {
 /* 80A16544-80A16CD8 001F24 0794+00 1/0 0/0 0/0 .text            cutNeedYourHelp__13daNpc_Jagar_cFi
  */
 int daNpc_Jagar_c::cutNeedYourHelp(int param_1) {
-    int local_40[3];
     int rv = 0;
     int iVar12 = -1;
     int local_30 = 0;
@@ -1683,15 +1682,17 @@ int daNpc_Jagar_c::cutNeedYourHelp(int param_1) {
                 return 1;
             }
             if (!mMotionSeqMngr.getNo()) {
-                return 1;
+                rv = 1;
+                return rv;
             }
-        case 8:
         case 1:
             mJntAnm.lookPlayer(0);
             if (mPlayerAngle == mCurAngle.y) {
                 return 1;
             }
             step(mPlayerAngle,8,0xe,0xf,0);
+            break;
+        case 8:
             break;
         default:
             switch (iVar12) {
@@ -1737,7 +1738,7 @@ int daNpc_Jagar_c::cutNeedYourHelp(int param_1) {
                 rv = 1;
             }
     }
-    
+
     return rv;
 }
 
@@ -2029,18 +2030,21 @@ int daNpc_Jagar_c::chkChuMotion() {
 int daNpc_Jagar_c::chkToMotion() {
     // TEMPORARY ASSEMBLY
     // The inline assembly was the only way I could find to get proper regalloc
-    asm {
-        li r0, 0x0          // int rv = 0;
-        lwz r3, 0xb7c(r3)   // Loads mMotionSeqMngr into register 3
-    }
+    // asm {
+    //     li r0, 0x0          // int rv = 0;
+    //     lwz r3, 0xb7c(r3)   // Loads mMotionSeqMngr into register 3
+    // }
+    int rv = 0;
     if (mMotionSeqMngr.getNo() == 10 || mMotionSeqMngr.getNo() == 11 || mMotionSeqMngr.getNo() == 12 || mMotionSeqMngr.getNo() == 13) {
-        asm {
-            li r0, 0x1      // rv = 1;
-        }
+        // asm {
+        //     li r0, 0x1      // rv = 1;
+        // }
+        rv = 1;
     }
-    asm {
-        clrlwi r3, r0, 24   // return rv & ((1U << 8) - 1);
-    }
+    // asm {
+    //     clrlwi r3, r0, 24   // return rv & ((1U << 8) - 1);
+    // }
+    return rv & ((1U << 8) - 1);
 }
 
 /* ############################################################################################## */
