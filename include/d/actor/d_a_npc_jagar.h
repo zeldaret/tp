@@ -12,9 +12,6 @@
  *
  */
 
-class daNpc_Bou_c; // Temporary
-class daTag_Push_c;
-
 class daNpc_Jagar_c : public daNpcT_c {
 public:
     typedef int (daNpc_Jagar_c::*cutFunc)(int);
@@ -100,7 +97,6 @@ private:
     /* 0x0F80 */ u8 mType;
     /* 0x0F84 */ daNpcT_ActorMngr_c mActorMngr[5];
     /* 0x0FAC */ daNpcT_Path_c field_0xfac;
-    // /* 0x0FCE */ u8 field_0xfce[0xfd4 - 0xfce];
     /* 0x0FD4 */ actionFunc field_0xfd4;
     /* 0x0FE0 */ actionFunc field_0xfe0;
     /* 0x0FEC */ int field_0xfec;
