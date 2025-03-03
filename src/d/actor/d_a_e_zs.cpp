@@ -13,6 +13,7 @@ UNK_REL_DATA;
 // Declarations:
 //
 
+namespace {
 /* 80835384-808353C8 000038 0044+00 1/1 0/0 0/0 .data            cc_zs_src__22@unnamed@d_a_e_zs_cpp@
  */
 static dCcD_SrcCyl cc_zs_src = {
@@ -28,15 +29,7 @@ static dCcD_SrcCyl cc_zs_src = {
         130.0f               // mHeight
     }  // mCyl
 };
-
-/* 808353C8-808353D0 00007C 0006+02 1/1 0/0 0/0 .data            eff_Damage_id$3979 */
-static u16 eff_Damage_id[] = {0x8BE9, 0x8BEA, 0x8BEB};
-
-/* 808353D0-808353D4 000084 0004+00 1/1 0/0 0/0 .data            eff_Appear_id$4194 */
-static u16 eff_Appear_id[] = {0x8BE7, 0x8BE8};
-
-/* 808353D4-808353DC 000088 0008+00 1/1 0/0 0/0 .data            w_eff_id$4324 */
-static u16 w_eff_id[] = {0x854C, 0x854D, 0x854E, 0x854F};
+}
 
 /* 808330AC-808330DC 0000EC 0030+00 1/1 0/0 0/0 .text            __ct__12daE_ZS_HIO_cFv */
 daE_ZS_HIO_c::daE_ZS_HIO_c() {
@@ -90,6 +83,9 @@ static daE_ZS_HIO_c l_HIO;
 
 /* 8083329C-8083364C 0002DC 03B0+00 1/1 0/0 0/0 .text            damage_check__8daE_ZS_cFv */
 void daE_ZS_c::damage_check() {
+    /* 808353C8-808353D0 00007C 0006+02 1/1 0/0 0/0 .data            eff_Damage_id$3979 */
+    static u16 eff_Damage_id[] = {0x8BE9, 0x8BEA, 0x8BEB};
+
     if (health > 1 && field_0x670 == 0 && field_0x673 && mAction != 3 && mCyl.ChkTgSet()) {
         cXyz eff_pos;
         mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(1));
@@ -180,6 +176,9 @@ static u8 lbl_259_bss_29;
 
 /* 80833964-80833D30 0009A4 03CC+00 1/1 0/0 0/0 .text            executeAppear__8daE_ZS_cFv */
 void daE_ZS_c::executeAppear() {
+    /* 808353D0-808353D4 000084 0004+00 1/1 0/0 0/0 .data            eff_Appear_id$4194 */
+    static u16 eff_Appear_id[] = {0x8BE7, 0x8BE8};
+
     switch (mMode) {
         case 0: {
             daB_DS_c* stallord_boss = (daB_DS_c*) fpcM_Search(s_BossSearch, this);
@@ -310,6 +309,9 @@ void daE_ZS_c::executeWait() {
 
 /* 80833F1C-80834108 000F5C 01EC+00 1/1 0/0 0/0 .text            executeDamage__8daE_ZS_cFv */
 void daE_ZS_c::executeDamage() {
+    /* 808353D4-808353DC 000088 0008+00 1/1 0/0 0/0 .data            w_eff_id$4324 */
+    static u16 w_eff_id[] = {0x854C, 0x854D, 0x854E, 0x854F};
+
     switch (mMode) {
         case 0:
             setBck(5, 0, 3.0f, 1.0f);
