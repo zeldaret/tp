@@ -13,6 +13,8 @@
  */
 class daObj_Sekizoa_c : public daNpcT_c {
 public:
+    typedef void (daObj_Sekizoa_c::*cutFunc)(int);
+
     /* 80CCE34C */ ~daObj_Sekizoa_c();
     /* 80CCE570 */ void create();
     /* 80CCE8B0 */ void CreateHeap();
@@ -48,14 +50,14 @@ public:
     /* 80CD3F08 */ void wait(void*);
     /* 80CD425C */ void puzzle(void*);
     /* 80CD45B0 */ void talk(void*);
-    /* 80CD5A40 */ daObj_Sekizoa_c(daNpcT_faceMotionAnmData_c const*, daNpcT_motionAnmData_c const*,
-                                   daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
-                                   daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
-                                   daNpcT_evtData_c const*, char**);
+    /* 80CD5A40 */ daObj_Sekizoa_c(daNpcT_faceMotionAnmData_c const* param_1, daNpcT_motionAnmData_c const* param_2,
+             daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_3, int param_4,
+             daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_5, int param_6, daNpcT_evtData_c const* param_7,
+             char** param_8) : daNpcT_c(param_1,param_2,param_3,param_4,param_5,param_6,param_7,param_8){}
     /* 80CD5B84 */ void chkGoal();
 
-    /* 80CD5B7C */ s32 getBackboneJointNo();
-    /* 80CD5B74 */ s32 getHeadJointNo();
+    /* 80CD5B7C */ s32 getBackboneJointNo() { return 1; }
+    /* 80CD5B74 */ s32 getHeadJointNo() { return 3; }
     /* 80CCF358 */ void afterJntAnm(int);
     /* 80CCF3E4 */ void setParam();
     /* 80CCF6BC */ BOOL checkChangeEvt();
@@ -124,8 +126,8 @@ public:
         return type;
     }
 
-    static void* mCutNameList[9];
-    static u8 mCutList[108];
+    static char* mCutNameList[9];
+    static cutFunc mCutList[9];
 
     /* 0x0E40 */ u8 field_0xe40[0x10C8 - 0xE40];
     /* 0x10C8 */ u8 field_0x10c8;
@@ -134,6 +136,12 @@ public:
     /* 0x10EC */ u8 field_0x10ec[0x1173 - 0x10ec];
     /* 0x1173 */ u8 field_0x1173;
     /* 0x1174 */ u8 field_0x1174[0x1180 - 0x1174];
+};
+
+struct daObj_Sekizoa_Param_c {
+    /* 80CD5C30 */ virtual ~daObj_Sekizoa_Param_c() {}
+
+    static u8 const m[156];
 };
 
 #endif /* D_A_OBJ_SEKIZOA_H */
