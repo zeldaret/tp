@@ -1193,6 +1193,7 @@ int daNpc_Jagar_c::cutNeedYourHelp(int param_1) {
     int local_30 = 0;
     int local_34 = 0;
     int local_38 = 0;
+    fopAc_ac_c* actor_p;
     int* piVar5 = dComIfGp_evmng_getMyIntegerP(param_1, "prm");
     if (piVar5) {
         iVar12 = *piVar5;
@@ -1258,7 +1259,7 @@ int daNpc_Jagar_c::cutNeedYourHelp(int param_1) {
                 case 3:
                 case 4:
                 case 5:
-                    fopAc_ac_c* actor_p = mActorMngr[0].getActorP();
+                    actor_p = mActorMngr[0].getActorP();
                     if (actor_p) {
                         field_0xd6c.setall(0.0f);
                         field_0xd6c.z = current.pos.absXZ(actor_p->current.pos);
