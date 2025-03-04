@@ -280,12 +280,10 @@ extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern dMeter2Info_c g_meter2_info;
 extern "C" void getType__11daNpc_Bou_cFv();
 extern "C" u8 const m__17daNpc_Bou_Param_c[156];
 extern "C" void __register_global_object();
 
-UNK_REL_BSS;
 //
 // Declarations:
 //
@@ -494,30 +492,22 @@ daNpc_Jagar_Param_c::param const daNpc_Jagar_Param_c::m = {
     200.0f, -800.0f, 16.0f, 1800.0f,
 };
 
-/* 80A1A3D0-80A1A3E0 0000A0 0010+00 0/1 0/0 0/0 .rodata          heapSize$4099 */
-static int const heapSize[4] = {
-    0x3850, 0x3870, 0x3870, 0
-};
-
 /* 80A14858-80A14B20 000238 02C8+00 1/1 0/0 0/0 .text            create__13daNpc_Jagar_cFv */
 int daNpc_Jagar_c::create() {
+    static int const heapSize[4] = {14416, 14448, 14448, 0};
     fopAcM_SetupActor2(this, daNpc_Jagar_c, l_faceMotionAnmData,
         (const daNpcT_motionAnmData_c *)l_motionAnmData, (const daNpcT_MotionSeqMngr_c::sequenceStepData_c *) l_faceMotionSequenceData, 4,
         (const daNpcT_MotionSeqMngr_c::sequenceStepData_c *)l_motionSequenceData, 4, (const daNpcT_evtData_c *)l_evtList, (char **)l_resNameList
     );
     mType = getType();
     mFlowNodeNo = getFlowNodeNo();
-    mTwilight = 0; /* WIP */
+    mTwilight = 0;
     int rv = loadRes(l_loadResPtrnList[mType], (const char**)l_resNameList);
     if (rv == cPhs_COMPLEATE_e) {
-    //     OS_REPORT("\t(%s:%d) flowNo:%d, PathID:%02x<%08x> ", fopAcM_getProcNameString(this), (uint)mType,
-    //                           field_0xa7c, getPathID(), fopAcM_GetParam(this));
         if (isDelete()) {
             return cPhs_ERROR_e;
         }
-    //     OS_REPORT("\n");
         if (!fopAcM_entrySolidHeap(this, createHeapCallBack, heapSize[mType])) {
-            OS_REPORT("===>isDelete:TRUE\n");
             return cPhs_ERROR_e;
         }
         J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
@@ -656,10 +646,12 @@ void daNpc_Jagar_c::reset() {
     if (mpMatAnm != NULL) {
         mpMatAnm->initialize();
     }
+
     initialize();
     for (int i = 0; i < 5; i++) {
         mActorMngr[i].initialize();
     }
+    
     memset(&field_0xfd4, 0, iVar1);
     acStack_20.setall(0);
     acStack_20.y = home.angle.y;
@@ -918,6 +910,7 @@ void daNpc_Jagar_c::beforeMove() {
     }
 }
 
+UNK_REL_BSS;
 /* ############################################################################################## */
 // /* 80A1ADE0-80A1ADE4 000008 0001+03 1/1 0/0 0/0 .bss             @1109 */
 // static u8 lit_1109[1 + 3 /* padding */];
@@ -1188,6 +1181,7 @@ int daNpc_Jagar_c::cutClimbUp(int param_0) {
 
 /* 80A16544-80A16CD8 001F24 0794+00 1/0 0/0 0/0 .text            cutNeedYourHelp__13daNpc_Jagar_cFi */
 int daNpc_Jagar_c::cutNeedYourHelp(int param_1) {
+    // NONMATCHING
     int rv = 0;
     int iVar12 = -1;
     int local_30 = 0;
@@ -1375,6 +1369,7 @@ int daNpc_Jagar_c::cutConversationWithBou(int param_0) {
 /* 80A1705C-80A173D8 002A3C 037C+00 1/0 0/0 0/0 .text
  * cutConfidentialConversation__13daNpc_Jagar_cFi               */
 int daNpc_Jagar_c::cutConfidentialConversation(int param_0) {
+    // NONMATCHING
     int iVar7 = 0;
     int iVar8 = -1;
     int rv = 0;
@@ -1426,6 +1421,7 @@ int daNpc_Jagar_c::cutConfidentialConversation(int param_0) {
 
 /* 80A173D8-80A17898 002DB8 04C0+00 3/0 0/0 0/0 .text            cutFindWolf__13daNpc_Jagar_cFi */
 int daNpc_Jagar_c::cutFindWolf(int param_0) {
+    // NONMATCHING
     int rv = 0;
     int uVar6 = -1;
     int iVar4 = 0;
@@ -1561,21 +1557,11 @@ int daNpc_Jagar_c::chkChuMotion() {
 
 /* 80A179F8-80A17A2C 0033D8 0034+00 1/1 0/0 0/0 .text            chkToMotion__13daNpc_Jagar_cFv */
 int daNpc_Jagar_c::chkToMotion() {
-    // The inline assembly was the only way I could find to get proper regalloc
-    // asm {
-    //     li r0, 0x0          // int rv = 0;
-    //     lwz r3, 0xb7c(r3)   // Loads mMotionSeqMngr into register 3
-    // }
+    // NONMATCHING
     int rv = 0;
     if (mMotionSeqMngr.getNo() == 10 || mMotionSeqMngr.getNo() == 11 || mMotionSeqMngr.getNo() == 12 || mMotionSeqMngr.getNo() == 13) {
-        // asm {
-        //     li r0, 0x1      // rv = 1;
-        // }
         rv = 1;
     }
-    // asm {
-    //     clrlwi r3, r0, 24   // return rv & ((1U << 8) - 1);
-    // }
     return rv & ((1U << 8) - 1);
 }
 
@@ -1790,6 +1776,7 @@ int daNpc_Jagar_c::wait(void* param_0) {
 
 /* 80A1856C-80A18B74 003F4C 0608+00 1/0 0/0 0/0 .text            talkwithBou__13daNpc_Jagar_cFPv */
 int daNpc_Jagar_c::talkwithBou(void* param_0) {
+    // NONMATCHING
     bool bVar2;
     int uVar3;
     daNpc_Bou_c *bo = (daNpc_Bou_c *)mActorMngr[2].getActorP();
@@ -1815,18 +1802,18 @@ int daNpc_Jagar_c::talkwithBou(void* param_0) {
     }
     if (mHide != 0) {
         fopAcM_setCullSizeBox((fopAc_ac_c *)this, -300.0f, -50.0f, -200.0f, 300.0f, 300.0f, 400.0f);
-        goto LAB_80a18a8c;
+        goto LAB_80a18a8c;  // Fakematch
     }
         uVar3 = (int)daNpcT_getDistTableIdx(field_0xff0, field_0xff4);
         if (!chkFindWolf(mCurAngle.y, uVar3, field_0xfec, daNpc_Jagar_Param_c::m.field_0x54, daNpc_Jagar_Param_c::m.field_0x50, 
             daNpc_Jagar_Param_c::m.field_0x58, daNpc_Jagar_Param_c::m.field_0x5c, 1)) {
             if (bo) {
                 if (bo->chkFindWolf()) {
-                    goto LAB_80a18744;
+                    goto LAB_80a18744;  // Fakematch
                 }
             }
         } else {
-LAB_80a18744:
+LAB_80a18744:   // Fakematch
             mEvtNo = 7;
         }
         if (bo) {
@@ -1841,7 +1828,7 @@ LAB_80a18744:
                         } else if (mMotionSeqMngr.getNo() == 5) {
                             bVar2 = true;
                         } else {
-LAB_80a187c4:
+LAB_80a187c4:   // Fakematch
                             bVar2 = false;
                         }
                     } else {
@@ -1857,13 +1844,13 @@ LAB_80a187c4:
                             } else if (mMotionSeqMngr.getNo() == 1) {
                                 bVar2 = true;
                             } else {
-LAB_80a18824:
+LAB_80a18824:   // Fakematch
                                  bVar2 = false;
                             }
                         } 
                         if (bVar2) {
-                            field_0xff8 = cLib_getRndValue(45.0f, 142.0f);
-                            if ((field_0x1000 ^ 1) & 1 == 1) {
+                            field_0xff8 = cLib_getRndValue(45.0f, 135.0f);
+                            if ((field_0x1000 ^ 1) & (1 == 1)) {
                                 bo->mFaceMotionSeqMngr.setNo(10, -1.0f, 0, 0);
                                 if (0.0f < 0.0f + (cM_rnd() - 0.5f)) {
                                     bo->mMotionSeqMngr.setNo(1, -1.0f, 0, 0);
@@ -1890,7 +1877,7 @@ LAB_80a18824:
             }
         }
         fopAcM_setCullSizeBox((fopAc_ac_c *)this,-300.0f,-50.0f,-300.0f,300.0f,450.0f,300.0f);
-LAB_80a18a8c:
+LAB_80a18a8c:   // Fakematch
     if (bo) {
         mJntAnm.lookActor((fopAc_ac_c *)bo, -50.0f, 0);
     } else {
@@ -1902,6 +1889,7 @@ LAB_80a18a8c:
 /* REGALLOC ISSUE */
 /* 80A18B74-80A18F28 004554 03B4+00 3/0 0/0 0/0 .text            talk__13daNpc_Jagar_cFPv */
 int daNpc_Jagar_c::talk(void* param_0) {
+    // NONMATCHING
     switch(mMode) {
         case 0:
         case 1:
@@ -2016,178 +2004,6 @@ s32 daNpc_Jagar_c::getFootLJointNo() {
 s32 daNpc_Jagar_c::getFootRJointNo() {
     return 26;
 }
-
-// /* ############################################################################################## */
-// /* 80A1AE4C-80A1AE50 000074 0004+00 0/0 0/0 0/0 .bss
-//  * sInstance__40JASGlobalInstance<19JASDefaultBankTable>        */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A1AE4C[4];
-// #pragma pop
-
-// /* 80A1AE50-80A1AE54 000078 0004+00 0/0 0/0 0/0 .bss
-//  * sInstance__35JASGlobalInstance<14JASAudioThread>             */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A1AE50[4];
-// #pragma pop
-
-// /* 80A1AE54-80A1AE58 00007C 0004+00 0/0 0/0 0/0 .bss sInstance__27JASGlobalInstance<7Z2SeMgr> */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A1AE54[4];
-// #pragma pop
-
-// /* 80A1AE58-80A1AE5C 000080 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8Z2SeqMgr> */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A1AE58[4];
-// #pragma pop
-
-// /* 80A1AE5C-80A1AE60 000084 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SceneMgr>
-//  */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A1AE5C[4];
-// #pragma pop
-
-// /* 80A1AE60-80A1AE64 000088 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2StatusMgr>
-//  */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A1AE60[4];
-// #pragma pop
-
-// /* 80A1AE64-80A1AE68 00008C 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2DebugSys>
-//  */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A1AE64[4];
-// #pragma pop
-
-// /* 80A1AE68-80A1AE6C 000090 0004+00 0/0 0/0 0/0 .bss
-//  * sInstance__36JASGlobalInstance<15JAISoundStarter>            */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A1AE68[4];
-// #pragma pop
-
-// /* 80A1AE6C-80A1AE70 000094 0004+00 0/0 0/0 0/0 .bss
-//  * sInstance__35JASGlobalInstance<14Z2SoundStarter>             */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A1AE6C[4];
-// #pragma pop
-
-// /* 80A1AE70-80A1AE74 000098 0004+00 0/0 0/0 0/0 .bss
-//  * sInstance__33JASGlobalInstance<12Z2SpeechMgr2>               */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A1AE70[4];
-// #pragma pop
-
-// /* 80A1AE74-80A1AE78 00009C 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8JAISeMgr> */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A1AE74[4];
-// #pragma pop
-
-// /* 80A1AE78-80A1AE7C 0000A0 0004+00 0/0 0/0 0/0 .bss sInstance__29JASGlobalInstance<9JAISeqMgr> */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A1AE78[4];
-// #pragma pop
-
-// /* 80A1AE7C-80A1AE80 0000A4 0004+00 0/0 0/0 0/0 .bss
-//  * sInstance__33JASGlobalInstance<12JAIStreamMgr>               */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A1AE7C[4];
-// #pragma pop
-
-// /* 80A1AE80-80A1AE84 0000A8 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SoundMgr>
-//  */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A1AE80[4];
-// #pragma pop
-
-// /* 80A1AE84-80A1AE88 0000AC 0004+00 0/0 0/0 0/0 .bss
-//  * sInstance__33JASGlobalInstance<12JAISoundInfo>               */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A1AE84[4];
-// #pragma pop
-
-// /* 80A1AE88-80A1AE8C 0000B0 0004+00 0/0 0/0 0/0 .bss
-//  * sInstance__34JASGlobalInstance<13JAUSoundTable>              */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A1AE88[4];
-// #pragma pop
-
-// /* 80A1AE8C-80A1AE90 0000B4 0004+00 0/0 0/0 0/0 .bss
-//  * sInstance__38JASGlobalInstance<17JAUSoundNameTable>          */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A1AE8C[4];
-// #pragma pop
-
-// /* 80A1AE90-80A1AE94 0000B8 0004+00 0/0 0/0 0/0 .bss
-//  * sInstance__33JASGlobalInstance<12JAUSoundInfo>               */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A1AE90[4];
-// #pragma pop
-
-// /* 80A1AE94-80A1AE98 0000BC 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SoundInfo>
-//  */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A1AE94[4];
-// #pragma pop
-
-// /* 80A1AE98-80A1AE9C 0000C0 0004+00 0/0 0/0 0/0 .bss
-//  * sInstance__34JASGlobalInstance<13Z2SoundObjMgr>              */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A1AE98[4];
-// #pragma pop
-
-// /* 80A1AE9C-80A1AEA0 0000C4 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2Audience>
-//  */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A1AE9C[4];
-// #pragma pop
-
-// /* 80A1AEA0-80A1AEA4 0000C8 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2FxLineMgr>
-//  */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A1AEA0[4];
-// #pragma pop
-
-// /* 80A1AEA4-80A1AEA8 0000CC 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2EnvSeMgr>
-//  */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A1AEA4[4];
-// #pragma pop
-
-// /* 80A1AEA8-80A1AEAC 0000D0 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SpeechMgr>
-//  */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A1AEA8[4];
-// #pragma pop
-
-// /* 80A1AEAC-80A1AEB0 0000D4 0004+00 0/0 0/0 0/0 .bss
-//  * sInstance__34JASGlobalInstance<13Z2WolfHowlMgr>              */
-// #pragma push
-// #pragma force_active on
-// static u8 data_80A1AEAC[4];
-// #pragma pop
 
 /* 80A1AC10-80A1AC30 -00001 0020+00 1/0 0/0 0/0 .data            daNpc_Jagar_MethodTable */
 static actor_method_class daNpc_Jagar_MethodTable = {
