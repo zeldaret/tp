@@ -8,6 +8,7 @@
 #include "d/actor/d_a_e_yc.h"
 #include "d/d_bomb.h"
 #include "d/d_cc_d.h"
+#include "d/d_msg_object.h"
 #include "dol2asm.h"
 #include "d/d_camera.h"
 UNK_REL_DATA;
@@ -1052,168 +1053,916 @@ static void e_rdy_fight(e_rdy_class* i_this) {
 }
 
 /* 8076E418-8076E81C 002738 0404+00 2/1 0/0 0/0 .text            e_rdy_bow_run__FP11e_rdy_class */
-static void e_rdy_bow_run(e_rdy_class* param_0) {
-    // NONMATCHING
+static void e_rdy_bow_run(e_rdy_class* i_this) {
+    f32 target_speed = 0.0f;
+    f32 tmp_hio_14 = l_HIO.field_0x14;
+    s16 target_angle = fopAcM_searchPlayerAngleY(i_this);
+    s8 bVar2 = false;
+
+    switch (i_this->mMode) {
+    case -20:
+        if ((int)i_this->mpMorf->getFrame() == 11) {
+            i_this->field_0x5bb = false;
+        }
+        if (i_this->mpMorf->isStop()) {
+            i_this->mMode = 0;
+        }
+        break;
+
+    case -10:
+        anm_init(i_this, ANM_WAIT01, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        i_this->mTimer[0] = cM_rndF(10.0f) + 15.0f;
+        i_this->mMode = -9;
+        break;
+
+    case -9:
+        i_this->field_0xa98 = 1;
+        if (i_this->mTimer[0] == 0) {
+            i_this->mMode = 0;
+        }
+        break;
+
+    case 0:
+        if (i_this->field_0x5bb) {
+            anm_init(i_this, ANM_ARMAMENT, 2.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            i_this->mMode = -20;
+        } else {
+            anm_init(i_this, ANM_RUN, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            i_this->mTimer[0] = cM_rndF(50.0f) + 20.0f;
+            if (i_this->mPlayerDist < l_HIO.field_0x28 - 100.0f) {
+                i_this->mMode = 1;
+            } else if (i_this->mPlayerDist > l_HIO.field_0x28 + 100.0f) {
+                i_this->mMode = 2;
+            } else {
+                bVar2 = true;
+            }
+        }
+        break;
+
+    case 1:
+        target_speed = tmp_hio_14;
+        target_angle += 0x8000;
+        if (i_this->mPlayerDist > l_HIO.field_0x28 || i_this->mTimer[0] == 0
+            || i_this->mAcch.ChkWallHit())
+        {
+            bVar2 = true;
+        }
+        i_this->mTimer[2] = 20;
+        break;
+
+    case 2:
+        target_speed = tmp_hio_14;
+        if (i_this->mPlayerDist < l_HIO.field_0x28) {
+            bVar2 = true;
+        }
+        break;
+    }
+
+    if (i_this->mMode >= 0) {
+        cLib_addCalcAngleS2(&i_this->current.angle.y, target_angle, 2, 0x1000);
+        s16 angle_diff = i_this->current.angle.y - target_angle;
+        if (angle_diff > 0x800 || angle_diff < -0x800) {
+            target_speed = 0.0f;
+        }
+    }
+    cLib_addCalc2(&i_this->speedF, target_speed, 1.0f, 5.0f);
+
+    if (move_gake_check(i_this, 200.0f)) {
+        bVar2 = true;
+    }
+
+    if (!i_this->field_0x5bb && bVar2) {
+        if (i_this->field_0x5b8 == 3) {
+            i_this->mAction = ACT_BOW2;
+        } else {
+            i_this->mAction = ACT_BOW;
+        }
+        i_this->mMode = 0;
+        i_this->mTimer[1] = cM_rndF(150.0f);
+    } else if (i_this->mTimer[2] == 0 && !pl_check(i_this, i_this->field_0xa50 + 50.0f, 0x7fff)) {
+        i_this->mAction = ACT_NORMAL;
+        i_this->mMode = 0;
+        i_this->mTimer[0] = cM_rndF(50.0f) + 50.0f;
+        anm_init(i_this, ANM_KYORO2, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+    } else if ((i_this->mCounter & 0xf) == 0 && bomb_view_check(i_this)) {
+        i_this->mAction = ACT_BOMB_ACTION;
+        i_this->mMode = 0;
+    }
+
+    if (i_this->mAction != ACT_BOW_RUN) {
+        i_this->field_0xa98 = 0;
+    }
 }
 
-/* ############################################################################################## */
-/* 80779EC4-80779EC8 0000C8 0004+00 0/3 0/0 0/0 .rodata          @5297 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5297 = 9.0f / 10.0f;
-COMPILER_STRIP_GATE(0x80779EC4, &lit_5297);
-#pragma pop
-
-/* 80779EC8-80779ECC 0000CC 0004+00 0/5 0/0 0/0 .rodata          @5298 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5298 = 4.0f;
-COMPILER_STRIP_GATE(0x80779EC8, &lit_5298);
-#pragma pop
-
-/* 80779ECC-80779ED0 0000D0 0004+00 0/2 0/0 0/0 .rodata          @5299 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5299 = -100.0f;
-COMPILER_STRIP_GATE(0x80779ECC, &lit_5299);
-#pragma pop
-
 /* 8076E81C-8076EB4C 002B3C 0330+00 1/1 0/0 0/0 .text            e_rdy_bow__FP11e_rdy_class */
-static void e_rdy_bow(e_rdy_class* param_0) {
-    // NONMATCHING
+static void e_rdy_bow(e_rdy_class* i_this) {
+    J3DAnmTransform* bck;
+    int frame = (int)i_this->mpMorf->getFrame();
+
+    switch (i_this->mMode) {
+    case 0:
+        anm_init(i_this, ANM_SHOOT_READY, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        bck = (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, 8);
+        i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 0.9f, 0.0f, -1.0f);
+        i_this->mMode = 1;
+        i_this->speedF = 0.0f;
+        break;
+
+    case 1:
+        i_this->field_0xa98 = 4;
+        if (frame >= 10) {
+            i_this->field_0xa72 = 1;
+        }
+        if (frame == 20) {
+            i_this->mSound.startCreatureSound(Z2SE_OBJ_ARROW_DRAW_NORMAL, 0, -1);
+        }
+        if (i_this->mpMorf->isStop()) {
+            anm_init(i_this, ANM_SHOOT_WAIT, 4.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            i_this->mTimer[0] = cM_rndF(10.0f) + 10.0f;
+            i_this->mMode = 2;
+        }
+        break;
+
+    case 2:
+        i_this->field_0xa98 = 4;
+        if (i_this->mTimer[0] == 0) {
+            if (i_this->field_0xa74 == 0 && !dMsgObject_isTalkNowCheck()) {
+                anm_init(i_this, ANM_SHOOT, 1.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+                bck = (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, 11);
+                i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 1.0f, 0.0f, -1.0f);
+                i_this->mMode = 3;
+            } else {
+                i_this->mAction = ACT_BOW_RUN;
+                i_this->mMode = 0;
+            }
+        }
+        i_this->field_0xa72 = 1;
+        break;
+
+    case 3:
+        if (frame <= 3) {
+            i_this->field_0xa72 = 1;
+            i_this->field_0xa98 = 4;
+        }
+        if (frame == 2) {
+            i_this->field_0xa73 = 1;
+        }
+        if (i_this->mpMorf->isStop()) {
+            if (i_this->mTimer[1] == 0 && (i_this->mPlayerDist < l_HIO.field_0x28 - 200.0f
+                                            || i_this->mPlayerDist > l_HIO.field_0x28)) {
+                if (!(i_this->mPlayerDist < l_HIO.field_0x28 - 200.0f
+                                            && way_bg_check(i_this, -100.0f))) {
+                    i_this->mAction = ACT_BOW_RUN;
+                }
+                i_this->mMode = 0;
+            } else {
+                i_this->mMode = 0;
+            }
+        }
+        break;
+    }
+
+    cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mPlayerAngle, 4, 0x1000);
 }
 
 /* 8076EB4C-8076EBB8 002E6C 006C+00 1/1 0/0 0/0 .text            s_command3_sub__FPvPv */
-static void s_command3_sub(void* param_0, void* param_1) {
-    // NONMATCHING
+static void* s_command3_sub(void* i_proc, void* i_this) {
+    if (fopAc_IsActor(i_proc) && fopAcM_GetName(i_proc) == PROC_E_RDY) {
+        e_rdy_class* other = static_cast<e_rdy_class*>(i_proc);
+        if (other != i_this && other->mAction == ACT_COMMANDER) {
+            return other;
+        }
+    }
+    return NULL;
 }
-
-/* ############################################################################################## */
-/* 80779ED0-80779ED4 0000D4 0004+00 0/3 0/0 0/0 .rodata          @5429 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5429 = 60.0f;
-COMPILER_STRIP_GATE(0x80779ED0, &lit_5429);
-#pragma pop
-
-/* 80779ED4-80779ED8 0000D8 0004+00 0/8 0/0 0/0 .rodata          @5430 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5430 = 40.0f;
-COMPILER_STRIP_GATE(0x80779ED4, &lit_5430);
-#pragma pop
-
-/* 80779ED8-80779EDC 0000DC 0004+00 0/3 0/0 0/0 .rodata          @5431 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5431 = -200.0f;
-COMPILER_STRIP_GATE(0x80779ED8, &lit_5431);
-#pragma pop
 
 /* 8076EBB8-8076F0E0 002ED8 0528+00 1/1 0/0 0/0 .text            e_rdy_bow2__FP11e_rdy_class */
-static void e_rdy_bow2(e_rdy_class* param_0) {
-    // NONMATCHING
+// NONMATCHING regalloc
+static s8 e_rdy_bow2(e_rdy_class* i_this) {
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+    cXyz vec1, vec2;
+    J3DAnmTransform* bck;
+    int frame = (int)i_this->mpMorf->getFrame();
+
+    s8 ret = false;
+    if (i_this->mMode <= 1) {
+        if (i_this->mPlayerDist < i_this->field_0xa50 && !other_bg_check(i_this, player)) {
+            i_this->mMode = 2;
+        }
+        ret = true;
+    }
+
+    if (i_this->mpPath != NULL) {
+        dStage_dPnt_c* point = i_this->mpPath->m_points;
+        i_this->field_0xaa4.x = point->m_position.x;
+        i_this->field_0xaa4.y = point->m_position.y;
+        i_this->field_0xaa4.z = point->m_position.z;
+        vec1 = i_this->field_0xaa4 - i_this->current.pos;
+        i_this->mPlayerAngle = cM_atan2s(vec1.x, vec1.z);
+    }
+
+    int sw_bit = fopAcM_GetParam(i_this) >> 0x18;
+    BOOL bVar2 = FALSE;
+    if (sw_bit != 0xff && dComIfGs_isSwitch(sw_bit, fopAcM_GetRoomNo(i_this))) {
+        bVar2 = TRUE;
+    }
+
+    switch (i_this->mMode) {
+    case 0:
+        if (i_this->mTimer[0] == 0) {
+            anm_init(i_this, ANM_KYORO2, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            i_this->mMode = 1;
+            i_this->mTimer[0] = cM_rndF(40.0f) + 60.0f;
+        }
+        break;
+
+    case 1:
+        if (i_this->mTimer[0] == 0) {
+            anm_init(i_this, ANM_WAIT01, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            i_this->mTimer[0] = cM_rndF(100.0f) + 100.0f;
+            i_this->mMode = 0;
+        }
+        break;
+
+    case 2:
+        anm_init(i_this, ANM_SHOOT_READY, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        bck = (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, 8);
+        i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 0.9f, 0.0f, -1.0f);
+        i_this->mMode = 3;
+        i_this->speedF = 0.0f;
+        break;
+
+    case 3:
+        i_this->field_0xa98 = 4;
+        if (frame >= 10) {
+            i_this->field_0xa72 = 1;
+        }
+        if (frame == 20) {
+            i_this->mSound.startCreatureSound(Z2SE_OBJ_ARROW_DRAW_NORMAL, 0, -1);
+        }
+        if (i_this->mpMorf->isStop()) {
+            anm_init(i_this, ANM_SHOOT_WAIT, 4.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            i_this->mTimer[0] = cM_rndF(10.0f);
+            i_this->mMode = 4;
+        }
+        break;
+
+    case 4:
+        i_this->field_0xa98 = 4;
+        if (i_this->mTimer[0] == 0) {
+            if (i_this->mpPath == NULL && sw_bit == 0xff
+                && (i_this->mPlayerDist > i_this->field_0xa50 || other_bg_check(i_this, player)))
+            {
+                i_this->mMode = 0;
+                return ret;
+            }
+            if ((sw_bit == 0xff || (sw_bit != 0xff && bVar2)) && !dMsgObject_isTalkNowCheck()
+                && i_this->field_0xa74 == 0)
+            {
+                anm_init(i_this, ANM_SHOOT, 1.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+                bck = (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, 11);
+                i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 1.0f, 0.0f, -1.0f);
+                i_this->mMode = 5;
+            }
+        }
+        i_this->field_0xa72 = 1;
+        break;
+
+    case 5:
+        if (frame <= 3) {
+            i_this->field_0xa72 = 1;
+            i_this->field_0xa98 = 4;
+        }
+        if (frame == 2) {
+            i_this->field_0xa73 = 1;
+        }
+        if (i_this->mpMorf->isStop()) {
+            if (i_this->mTimer[1] == 0 && i_this->mPlayerDist < l_HIO.field_0x28 - 200.0f) {
+                if (!way_bg_check(i_this, -100.0f) && !move_gake_check(i_this, -200.0f)) {
+                    i_this->mAction = ACT_BOW_RUN;
+                    i_this->field_0x1365 = 0;
+                }
+                i_this->mMode = 0;
+            } else {
+                i_this->mMode = 0;
+            }
+        }
+        break;
+    }
+
+    cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mPlayerAngle, 4, 0x1000);
+    if (i_this->field_0xa98 != 0 && i_this->mpPath != NULL) {
+        i_this->field_0xa98 = 14;
+    }
+    return ret;
 }
-
-/* ############################################################################################## */
-/* 80779EDC-80779EE0 0000E0 0004+00 0/1 0/0 0/0 .rodata          @5508 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5508 = -92938.0f;
-COMPILER_STRIP_GATE(0x80779EDC, &lit_5508);
-#pragma pop
-
-/* 80779EE0-80779EE4 0000E4 0004+00 0/1 0/0 0/0 .rodata          @5509 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5509 = 49992.0f;
-COMPILER_STRIP_GATE(0x80779EE0, &lit_5509);
-#pragma pop
 
 /* 8076F0E0-8076F438 003400 0358+00 2/1 0/0 0/0 .text            e_rdy_bow_ikki2__FP11e_rdy_class */
-static void e_rdy_bow_ikki2(e_rdy_class* param_0) {
-    // NONMATCHING
+static void e_rdy_bow_ikki2(e_rdy_class* i_this) {
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+    J3DAnmTransform* bck;
+    int frame = (int)i_this->mpMorf->getFrame();
+
+    switch (i_this->mMode) {
+    case 0:
+        anm_init(i_this, ANM_WAIT01, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        i_this->mMode = 1;
+        i_this->current.pos.x = -92938.0f;
+        i_this->current.pos.z = 49992.0f;
+        break;
+
+    case 1:
+        if (player->current.pos.z > 35000.0f) {
+            i_this->mDemoMode = 20;
+            i_this->mDemoTimer = 0;
+            i_this->mMode = 2;
+        }
+        break;
+
+    case 2:
+        i_this->mCamDist = 0.0f;
+        break;
+
+    case 3:
+        cLib_addCalc2(&i_this->current.pos.x, -93658.0f, 1.0f, 50.0f);
+        cLib_addCalc2(&i_this->current.pos.z, 49894.0f, 1.0f, 50.0f);
+        break;
+
+    case 4:
+        anm_init(i_this, ANM_SHOOT_READY, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        bck = (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, 8);
+        i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 0.9f, 0.0f, -1.0f);
+        i_this->mMode = 5;
+        break;
+
+    case 5:
+        if (frame >= 10) {
+            i_this->field_0xa72 = 1;
+        }
+        if (frame == 20) {
+            i_this->mSound.startCreatureSound(Z2SE_OBJ_ARROW_DRAW_NORMAL, 0, -1);
+        }
+        if (i_this->mpMorf->isStop()) {
+            anm_init(i_this, ANM_SHOOT_WAIT, 4.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            i_this->mMode = 6;
+            i_this->mTimer[0] = 40;
+        }
+        break;
+
+    case 6:
+        if (i_this->mTimer[0] == 0 && i_this->field_0xa74 == 0) {
+            anm_init(i_this, ANM_SHOOT, 1.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            bck = (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, 11);
+            i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 1.0f, 0.0f, -1.0f);
+            i_this->mMode = 7;
+        }
+        i_this->field_0xa72 = 1;
+        break;
+
+    case 7:
+        if (frame <= 3) {
+            i_this->field_0xa72 = 1;
+        }
+        if (frame == 2) {
+            i_this->field_0xa73 = 1;
+        }
+        if (i_this->mpMorf->isStop()) {
+            i_this->mMode = 2;
+            anm_init(i_this, ANM_WAIT01, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        }
+        break;
+    }
+
+    if (i_this->mMode >= 6) {
+        i_this->field_0xa98 = 14;
+        i_this->field_0xaa4.set(-93666.0f, player->current.pos.y + i_this->mCamDist,
+                                player->current.pos.z);
+        f32 fVar2;
+        if (i_this->mDemoMode > 25) {
+            fVar2 = -1000.0f;
+        } else {
+            fVar2 = 5400.0f;
+        }
+        cLib_addCalc2(&i_this->mCamDist, fVar2, 0.1f, 200.0f);
+    }
 }
 
-/* ############################################################################################## */
-/* 80779EE4-80779EE8 0000E8 0004+00 0/0 0/0 0/0 .rodata          @5510 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5510 = 35000.0f;
-COMPILER_STRIP_GATE(0x80779EE4, &lit_5510);
-#pragma pop
-
-/* 80779EE8-80779EEC 0000EC 0004+00 0/0 0/0 0/0 .rodata          @5511 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5511 = -93658.0f;
-COMPILER_STRIP_GATE(0x80779EE8, &lit_5511);
-#pragma pop
-
-/* 80779EEC-80779EF0 0000F0 0004+00 0/0 0/0 0/0 .rodata          @5512 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5512 = 49894.0f;
-COMPILER_STRIP_GATE(0x80779EEC, &lit_5512);
-#pragma pop
-
-/* 80779EF0-80779EF4 0000F4 0004+00 0/0 0/0 0/0 .rodata          @5513 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5513 = -93666.0f;
-COMPILER_STRIP_GATE(0x80779EF0, &lit_5513);
-#pragma pop
-
-/* 80779EF4-80779EF8 0000F8 0004+00 0/0 0/0 0/0 .rodata          @5514 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5514 = -1000.0f;
-COMPILER_STRIP_GATE(0x80779EF4, &lit_5514);
-#pragma pop
-
-/* 80779EF8-80779EFC 0000FC 0004+00 0/0 0/0 0/0 .rodata          @5515 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5515 = 5400.0f;
-COMPILER_STRIP_GATE(0x80779EF8, &lit_5515);
-#pragma pop
-
-/* 80779EFC-80779F00 000100 0004+00 0/2 0/0 0/0 .rodata          @5553 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5553 = -30.0f;
-COMPILER_STRIP_GATE(0x80779EFC, &lit_5553);
-#pragma pop
-
 /* 8076F438-8076F59C 003758 0164+00 1/1 0/0 0/0 .text            e_rdy_avoid__FP11e_rdy_class */
-static void e_rdy_avoid(e_rdy_class* param_0) {
-    // NONMATCHING
+static void e_rdy_avoid(e_rdy_class* i_this) {
+    int frame = (int)i_this->mpMorf->getFrame();
+
+    switch (i_this->mMode) {
+    case 0:
+        anm_init(i_this, ANM_AVOID, 1.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        i_this->mMode = 1;
+        i_this->speedF = -30.0f;
+        i_this->speed.y = 20.0f;
+        i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_DODGE, -1);
+        break;
+
+    case 1:
+        if (frame == 6) {
+            i_this->mpMorf->setPlaySpeed(0.0f);
+            i_this->mMode = 2;
+        }
+        break;
+
+    case 2:
+        if (i_this->mAcch.ChkGroundHit()) {
+            i_this->mpMorf->setPlaySpeed(1.0f);
+            i_this->mMode = 3;
+        }
+        break;
+
+    case 3:
+        cLib_addCalc0(&i_this->speedF, 1.0f, 10.0f);
+        if (i_this->mpMorf->isStop()) {
+            i_this->mAction = ACT_FIGHT_RUN;
+            i_this->mMode = 0;
+            i_this->mTimer[0] = 30;
+        }
+        break;
+    }
 }
 
 /* 8076F59C-8076F71C 0038BC 0180+00 1/1 0/0 0/0 .text            s_kusa_sub__FPvPv */
-static void s_kusa_sub(void* param_0, void* param_1) {
-    // NONMATCHING
+static void* s_kusa_sub(void* i_proc, void* i_this) {
+    if (fopAc_IsActor(i_proc) && fopAcM_GetName(i_proc) == PROC_Obj_Yobikusa) {
+        fopAc_ac_c* grass = static_cast<fopAc_ac_c*>(i_proc);
+        fopAc_ac_c* _this = static_cast<fopAc_ac_c*>(i_this);
+        cXyz delta = grass->current.pos - _this->current.pos;
+        if (delta.abs() < 1000.0f) {
+            return i_proc;
+        }
+    }
+    return NULL;
 }
 
 /* 8076F71C-807701F4 003A3C 0AD8+00 2/1 0/0 0/0 .text            e_rdy_tkusa__FP11e_rdy_class */
-static void e_rdy_tkusa(e_rdy_class* param_0) {
-    // NONMATCHING
+// NONMATCHING regswap
+static void e_rdy_tkusa(e_rdy_class* i_this) {
+    cXyz vec;
+    i_this->mIFrameTimer = 20;
+
+    if (i_this->mKargorokID == fpcM_ERROR_PROCESS_ID_e) {
+        i_this->mKargorokID = fopAcM_GetID(fopAcM_SearchByName(PROC_E_YC));
+    }
+    e_yc_class* kargorok = static_cast<e_yc_class*>(fopAcM_SearchByID(i_this->mKargorokID));
+    if (kargorok != NULL) {
+        kargorok->mRiderID = fopAcM_GetID(i_this);
+    }
+
+    int frame = (int)i_this->mpMorf->getFrame();
+    f32 target_speed = 0.0f;
+
+    fopAc_ac_c* grass = (fopAc_ac_c*)fpcM_Search(s_kusa_sub, i_this);
+    if (grass == NULL) {
+        return;
+    }
+
+    if (i_this->mMode <= 1 && i_this->mPlayerDist < 1300.0f) {
+        i_this->mDemoMode = 10;
+        i_this->mDemoTimer = 0;
+        i_this->mMode = 2;
+        anm_init(i_this, ANM_WAIT01, 7.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+    }
+
+    switch (i_this->mMode) {
+    case 0:
+        if (i_this->mTimer[0] == 0) {
+            anm_init(i_this, ANM_WALK, 7.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            i_this->mTimer[0] = cM_rndF(60.0f) + 60.0f;
+            i_this->mMode = 1;
+            vec.x = i_this->home.pos.x + cM_rndFX(200.0f) - i_this->current.pos.x;
+            vec.z = i_this->home.pos.z + cM_rndFX(200.0f) - i_this->current.pos.z;
+            i_this->mTargetAngleY = cM_atan2s(vec.x, vec.z);
+        }
+        break;
+
+    case 1:
+        target_speed = l_HIO.field_0x10;
+        if (i_this->mTimer[0] == 0) {
+            anm_init(i_this, ANM_KYORO2, 7.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            i_this->mMode = 0;
+            i_this->mTimer[0] = cM_rndF(30.0f) + 60.0f;
+        }
+        break;
+
+    case 2:
+        if (i_this->mDemoMode == 11) {
+            if (i_this->mDemoTimer > 70) {
+                vec = grass->current.pos - i_this->current.pos;
+                i_this->mTargetAngleY = cM_atan2s(vec.x, vec.z) + -1000;
+            } else if (i_this->mDemoTimer > 30) {
+                i_this->mTargetAngleY = i_this->mPlayerAngle;
+                if (i_this->mDemoTimer == 31) {
+                    i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_NOTICE, -1);
+                }
+            }
+        } else if (i_this->mDemoTimer == 110) {
+            anm_init(i_this, ANM_RUN, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            i_this->mMode = 3;
+            i_this->mDemoMode++;
+            i_this->mDemoTimer = 0;
+        }
+        break;
+
+    case 3:
+        target_speed = l_HIO.field_0x14;
+        vec = grass->current.pos - i_this->current.pos;
+        i_this->mTargetAngleY = cM_atan2s(vec.x, vec.z);
+        if (vec.abs() < 160.0f) {
+            anm_init(i_this, ANM_WAIT01, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            i_this->mTimer[0] = 20;
+            i_this->mMode = 4;
+        }
+        break;
+
+    case 4:
+        if (i_this->mTimer[0] == 0) {
+            anm_init(i_this, ANM_PICKUP, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            i_this->mMode = 5;
+        }
+        break;
+
+    case 5:
+        if (frame == 15) {
+            fopAcM_setCarryNow(grass, FALSE);
+            i_this->field_0x69c = 1;
+            i_this->mSound.startCreatureSound(Z2SE_AL_PICKUP_GRASS, 0, -1);
+            i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_CALLING, -1);
+        }
+        if (frame == 30) {
+            i_this->mDemoMode++;
+        }
+        if (i_this->mpMorf->isStop()) {
+            anm_init(i_this, ANM_BLOW, 0.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            i_this->mMode = 6;
+            i_this->mTimer[0] = 220;
+        }
+        break;
+
+    case 6:
+        if (i_this->mTimer[0] == 215) {
+            mDoAud_seStart(Z2SE_PLAY_REED_TOBIKUSA, NULL, 0, 0);
+            i_this->mTimer[2] = 100;
+        }
+        if (i_this->mTimer[0] == 140) {
+            i_this->mDemoMode++;
+            i_this->mDemoTimer = 0;
+        }
+        if (i_this->mTimer[0] == 100) {
+            mDoAud_seStart(Z2SE_PLAY_REED_TOBIKUSA, NULL, 0, 0);
+            i_this->mTimer[2] = 100;
+        }
+        if (i_this->mTimer[0] == 50) {
+            i_this->mMode = 7;
+            i_this->mTimer[0] = 3;
+            kargorok->mMode = 2;
+            kargorok->current = kargorok->home;
+            kargorok->shape_angle = kargorok->current.angle;
+            kargorok->mNoDrawFlag = true;
+            kargorok->mAngleSpeedRatio = 0.0f;
+        }
+        break;
+
+    case 7:
+        if (i_this->mTimer[0] == 1) {
+            i_this->mDemoMode = 16;
+            i_this->mDemoTimer = 0;
+            anm_init(i_this, ANM_WAIT01, 7.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            Z2GetAudioMgr()->setBattleBgmOff(false);
+        }
+        if (i_this->mDemoTimer == 309) {
+            anm_init(i_this, ANM_LOOKBACK, 10.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            i_this->field_0x69c = 0;
+            kargorok->mMode = 4;
+            kargorok->speedF = 30.0f;
+            mDoMtx_YrotS(*calc_mtx, i_this->shape_angle.y);
+            vec.x = 1100.0f;
+            vec.y = 1050.0f;
+            vec.z = -1100.0f;
+            MtxPosition(&vec, &kargorok->current.pos);
+            kargorok->current.pos += i_this->current.pos;
+            vec = i_this->current.pos - kargorok->current.pos;
+            kargorok->current.angle.y = cM_atan2s(vec.x, vec.z);
+            kargorok->shape_angle.y = kargorok->current.angle.y;
+            kargorok->shape_angle.z = 0x2000;
+            kargorok->current.angle.z = 0x2000;
+            i_this->mDemoMode = 17;
+            i_this->mDemoTimer = 0;
+            i_this->mMode = 8;
+        }
+        break;
+
+    case 8:
+        if (i_this->mDemoTimer == 95) {
+            anm_init(i_this, ANM_RUN, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            vec = kargorok->current.pos - i_this->current.pos;
+            i_this->mTargetAngleY = cM_atan2s(vec.x, vec.z);
+            i_this->mDemoMode = 18;
+            i_this->mDemoTimer = 0;
+            i_this->mMode = 9;
+            kargorok->mMode = 5;
+        }
+        break;
+
+    case 9:
+        if (i_this->mDemoTimer == 10) {
+            anm_init(i_this, ANM_JUMP_A, 2.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_JUMP_RIDING, -1);
+            i_this->mMode = 10;
+            i_this->home = i_this->current;
+        }
+        break;
+
+    case 10:
+        if (i_this->mpMorf->isStop()) {
+            i_this->mMode = 11;
+            anm_init(i_this, ANM_JUMP_B, 10.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            i_this->field_0xa8c = 1;
+            i_this->field_0xa94 = 50.0f;
+            i_this->mTimer[3] = 30;
+        }
+        break;
+
+    case 11:
+        if (i_this->field_0xa90 <= 0.0f) {
+            anm_init(i_this, ANM_RJUMP_C, 2.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            i_this->mMode = 12;
+            kargorok->field_0x698 = -27.0f;
+        }
+        break;
+
+    case 12:
+        if (i_this->mpMorf->isStop()) {
+            anm_init(i_this, ANM_RHOVERING, 15.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            i_this->mpMorf->setFrame(kargorok->mpMorf->getFrame());
+            i_this->mMode = 13;
+            kargorok->mMode = 6;
+            i_this->mDemoMode = 19;
+            i_this->mDemoTimer = 0;
+        }
+        break;
+
+    case 13:
+        break;
+    }
+
+    cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mTargetAngleY, 2, 0x1000);
+    s16 angle_diff = i_this->current.angle.y - i_this->mTargetAngleY;
+    if (angle_diff > 0x400 || angle_diff < -0x400) {
+        target_speed = 0.0f;
+    }
+    cLib_addCalc2(&i_this->speedF, target_speed, 1.0f, 5.0f);
 }
 
 /* 807701F4-8077089C 004514 06A8+00 1/1 0/0 0/0 .text            e_rdy_yc_ride__FP11e_rdy_class */
-static void e_rdy_yc_ride(e_rdy_class* param_0) {
-    // NONMATCHING
+static void e_rdy_yc_ride(e_rdy_class* i_this) {
+    int frame = (int)i_this->mpMorf->getFrame();
+    e_yc_class* kargorok = static_cast<e_yc_class*>(fopAcM_SearchByID(i_this->mKargorokID));
+    i_this->mIFrameTimer = 20;
+
+    if (kargorok == NULL) {
+        kargorok = static_cast<e_yc_class*>(fopAcM_SearchByName(PROC_E_YC));
+        i_this->mKargorokID = fopAcM_GetID(kargorok);
+        return;
+    }
+    
+    if (i_this->field_0xa6e != 0) {
+        return;
+    }
+
+    int kargorok_frame = (int)kargorok->mpMorf->getFrame();
+    if (i_this->mAnm != ANM_RHANGED && i_this->mAnm != ANM_RHANGED_BRASH
+        && i_this->mAnm != ANM_RHANGED_BRASH2 && i_this->mAnm != ANM_RHANGED_DAMAGE)
+    {
+        i_this->field_0xa98 = 4;
+    } else {
+        i_this->mSound.startCreatureVoiceLevel(Z2SE_EN_RD_V_SNIPED_DAMAGE, -1);
+    }
+
+    switch (i_this->mMode) {
+    case 0:
+        if (kargorok->mAnm == e_yc_class::ANM_HOVERING && i_this->mAnm != ANM_RHOVERING) {
+            anm_init(i_this, ANM_RHOVERING, 15.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            i_this->mpMorf->setFrame(kargorok->mpMorf->getFrame());
+        } else if (kargorok->mAnm == e_yc_class::ANM_FLY && i_this->mAnm != ANM_RFLY) {
+            anm_init(i_this, ANM_RFLY, 15.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            i_this->mpMorf->setFrame(kargorok->mpMorf->getFrame());
+        } else if (kargorok->mAnm == e_yc_class::ANM_FLY_GLIDE && i_this->mAnm != ANM_RFLY_GLIDE) {
+            anm_init(i_this, ANM_RFLY_GLIDE, 15.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            i_this->mpMorf->setFrame(kargorok->mpMorf->getFrame());
+        } else if (kargorok->mAnm == e_yc_class::ANM_HANGED && kargorok_frame == 1) {
+            anm_init(i_this, ANM_RHANGED, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        } else if (kargorok->mAnm == e_yc_class::ANM_HANGED_WAIT
+                                                            && i_this->mAnm != ANM_RHANGED_WAIT) {
+            anm_init(i_this, ANM_RHANGED_WAIT, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            i_this->mpMorf->setFrame(kargorok->mpMorf->getFrame());
+        } else if (kargorok->mAnm == e_yc_class::ANM_HANGED_DAMAGE && kargorok_frame == 1) {
+            anm_init(i_this, ANM_RHANGED_DAMAGE, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        } else if (kargorok->mAnm == e_yc_class::ANM_HANGED_BRUSH && kargorok_frame == 1) {
+            anm_init(i_this, ANM_RHANGED_BRASH, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        } else if (kargorok->mAnm == e_yc_class::ANM_HANGED_BRUSH2 && kargorok_frame == 1) {
+            anm_init(i_this, ANM_RHANGED_BRASH2, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        }
+        if (i_this->mAnm == ANM_RHOVERING) {
+            i_this->mMode = 1;
+            i_this->mTimer[0] = cM_rndF(30.0f) + 30.0f;
+        }
+        break;
+
+    case 1:
+        if (i_this->mTimer[0] == 0) {
+            anm_init(i_this, ANM_RSHOOT_READY, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, 9);
+            i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f, 0.0f, -1.0f);
+            i_this->mMode = 2;
+        }
+        break;
+
+    case 2:
+        if (frame == 14) {
+            i_this->mSound.startCreatureSound(Z2SE_OBJ_ARROW_DRAW_NORMAL, 0, -1);
+        }
+        if (i_this->mpMorf->isStop()) {
+            i_this->mMode = 3;
+            anm_init(i_this, ANM_RSHOOT_WAIT, 4.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        }
+        i_this->field_0xa72 = 1;
+        break;
+
+    case 3:
+        if (i_this->mTimer[1] == 0 && !dComIfGp_event_runCheck()) {
+            anm_init(i_this, ANM_RSHOOT, 1.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, 11);
+            i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 1.0f, 0.0f, -1.0f);
+            i_this->mMode = 4;
+        }
+        i_this->field_0xa72 = 1;
+        break;
+
+    case 4:
+        if (frame <= 3) {
+            i_this->field_0xa72 = 1;
+        }
+        if (frame == 2) {
+            i_this->field_0xa73 = 1;
+        }
+        if (i_this->mpMorf->isStop()) {
+            if (kargorok->mAnm == e_yc_class::ANM_HOVERING) {
+                anm_init(i_this, ANM_RSHOOT_READY, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+                J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, 9);
+                i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f, 0.0f, -1.0f);
+                i_this->mMode = 2;
+                i_this->mTimer[1] = cM_rndF(30.0f) + 20.0f;
+            } else {
+                i_this->mMode = 0;
+            }
+        }
+        break;
+    }
+
+    i_this->field_0xa8c = 2;
+    i_this->field_0xa8e = 1;
+    kargorok->field_0x6b0 = 1;
+    if (i_this->mAnm == ANM_RFLY || i_this->mAnm == ANM_RFLY_GLIDE) {
+        i_this->mSound.startCreatureVoiceLevel(Z2SE_EN_RD_V_RIDING_YELL, -1);
+    }
 }
 
 /* 8077089C-80770CF8 004BBC 045C+00 2/1 0/0 0/0 .text            e_rdy_bomb_action__FP11e_rdy_class
  */
-static void e_rdy_bomb_action(e_rdy_class* param_0) {
-    // NONMATCHING
+static void e_rdy_bomb_action(e_rdy_class* i_this) {
+    cXyz vec1, vec2;
+    dBomb_c* bomb = bomb_check(i_this);
+    if (bomb == NULL) {
+        i_this->mAction = ACT_FIGHT_RUN;
+        i_this->mMode = 0;
+        return;
+    }
+
+    vec1.x = bomb->current.pos.x - i_this->current.pos.x;
+    vec1.z = bomb->current.pos.z - i_this->current.pos.z;
+    s16 target_angle = cM_atan2s(vec1.x, vec1.z);
+    f32 target_speed = 0.0f;
+
+    switch (i_this->mMode) {
+    case 0:
+        i_this->mMode = 1;
+        anm_init(i_this, ANM_WAIT01, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        i_this->mTimer[1] = cM_rndF(10.0f) + 10.0f;
+        // fallthrough
+
+    case 1:
+        if (i_this->mTimer[1] == 0 && bomb->speedF < 0.1f) {
+            i_this->mMode = 2;
+            anm_init(i_this, ANM_RUN, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, cM_rndFX(0.05f) + 1.0f);
+        }
+        break;
+
+    case 2:
+        if (bomb->speedF < 0.1f && !bomb->checkStateCarry()
+            && JMAFastSqrt(vec1.x * vec1.x + vec1.z * vec1.z) < 250.0f)
+        {
+            s16 angle = i_this->mPlayerAngle - i_this->shape_angle.y;
+            if (angle < 0x4000 && angle > -0x4000) {
+                i_this->mMode = 5;
+                break;
+            }
+        }
+        target_angle += 0x8000;
+        target_speed = l_HIO.field_0x14;
+        if (JMAFastSqrt(vec1.x * vec1.x + vec1.z * vec1.z) > 600.0f) {
+            i_this->mMode = 3;
+            anm_init(i_this, ANM_WAIT01, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        }
+        break;
+
+    case 3:
+        target_angle = i_this->mPlayerAngle;
+        if (JMAFastSqrt(vec1.x * vec1.x + vec1.z * vec1.z) < 500.0f) {
+            i_this->mMode = 0;
+        }
+        break;
+
+    case 5:
+        target_speed = l_HIO.field_0x14;
+        i_this->field_0xa7d = 0;
+        if (bomb->speedF > 0.1f) {
+            i_this->mMode = 0;
+        } else if (JMAFastSqrt(vec1.x * vec1.x + vec1.z * vec1.z) < 100.0f) {
+            i_this->mTimer[0] = 20;
+            i_this->mMode = 6;
+            anm_init(i_this, ANM_KICK, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        }
+        break;
+
+    case 6:
+        i_this->field_0xa7d = 0;
+        target_angle = i_this->mPlayerAngle;
+        if ((int)i_this->mpMorf->getFrame() <= 10) {
+            mDoMtx_YrotS(*calc_mtx, target_angle);
+            vec1.x = -30.0f;
+            vec1.y = 0.0f;
+            vec1.z = 60.0f;
+            MtxPosition(&vec1, &vec2);
+            vec2 += i_this->current.pos;
+            cLib_addCalc2(&bomb->current.pos.x, vec2.x, 1.0f, 15.0f);
+            cLib_addCalc2(&bomb->current.pos.z, vec2.z, 1.0f, 15.0f);
+            if ((int)i_this->mpMorf->getFrame() == 10) {
+                bomb->speedF = 30.0f;
+                bomb->speed.y = 30.0f;
+                bomb->current.angle.y = i_this->shape_angle.y;
+            }
+        }
+        if (i_this->mpMorf->isStop()) {
+            anm_init(i_this, ANM_WAIT01, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            i_this->mMode = 3;
+        }
+        break;
+    }
+
+    cLib_addCalc2(&i_this->speedF, target_speed, 1.0f, 5.0f);
+    cLib_addCalcAngleS2(&i_this->current.angle.y, target_angle, 4, 0x1000);
+    i_this->field_0xa98 = 11;
+    i_this->field_0xaa4 = bomb->current.pos;
 }
 
 /* 80770CF8-80770E48 005018 0150+00 1/1 0/0 0/0 .text            e_rdy_s_damage__FP11e_rdy_class */
-static void e_rdy_s_damage(e_rdy_class* param_0) {
-    // NONMATCHING
+static void e_rdy_s_damage(e_rdy_class* i_this) {
+    switch (i_this->mMode) {
+    case 0:
+        i_this->mMode = 1;
+        i_this->mTimer[0] = 10;
+        if (i_this->field_0xa8e != 0) {
+            e_yc_class* kargorok = static_cast<e_yc_class*>(fopAcM_SearchByID(i_this->mKargorokID));
+            if (kargorok != NULL) {
+                kargorok->field_0x6b0 &= ~i_this->field_0xa8e;
+            }
+            i_this->field_0xa8e = 0;
+            i_this->mKargorokID = fpcM_ERROR_PROCESS_ID_e;
+        }
+        break;
+
+    case 1:
+        if (i_this->mTimer[1] != 0) {
+            i_this->onHeadLockFlg();
+        }
+        if (i_this->mpMorf->isStop()) {
+            if (i_this->mPrevAction == ACT_BOW2) {
+                i_this->mAction = ACT_BOW2;
+            } else if (i_this->mPrevAction == ACT_BOW3) {
+                i_this->mAction = ACT_BOW3;
+            } else {
+                i_this->mAction = ACT_FIGHT_RUN;
+                i_this->mTimer[0] = 40;
+            }
+            i_this->mMode = 0;
+        }
+    }
+    
+    cLib_addCalc0(&i_this->speedF, 1.0f, 3.0f);
 }
 
 /* ############################################################################################## */
