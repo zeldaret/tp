@@ -1691,7 +1691,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_e_yr"),
     ActorRel(NonMatching, "d_a_e_zh"),
     ActorRel(NonMatching, "d_a_e_zm"),
-    ActorRel(NonMatching, "d_a_e_zs"),
+    ActorRel(Equivalent, "d_a_e_zs"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_formation_mng"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_guard_mng"),
     ActorRel(NonMatching, "d_a_horse"),

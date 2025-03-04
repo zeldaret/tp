@@ -178,6 +178,15 @@ public:
     /* 805DB974 */ cPhs__Step create();
     /* 805DC1E8 */ daB_DS_c();
 
+    cXyz getHandPosR();
+    cXyz getHandPosL();
+    BOOL isOpening() { return mAction == ACT_OPENING_DEMO; }
+    bool isDemo() { return mIsDemo; }
+    bool isAppear() { return mIsAppear; }
+    bool isAppearG() { return mIsAppearG; }
+    bool isDead() { return mDead; }
+    bool isArg0() { return arg0; }
+
 private:
     /* 0x05AC */ request_of_phase_process_class mPhase;
     /* 0x05B4 */ mDoExt_McaMorfSO* mpMorf;
@@ -320,6 +329,9 @@ private:
     /* 0x2EC9 */ u8 field_0x2ec9[0x13];
     /* 0x2EDC */ dMsgFlow_c mMsgFlow;
 };
+
+cXyz daB_DS_c::getHandPosR() { return mHandPos[1]; }
+cXyz daB_DS_c::getHandPosL() { return mHandPos[0]; }
 
 STATIC_ASSERT(sizeof(daB_DS_c) == 0x2F28);
 
