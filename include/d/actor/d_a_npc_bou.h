@@ -11,8 +11,70 @@
  * @details
  *
  */
+ class daNpc_Bou_Param_c {
+    public:
+        /* 809727F4 */ ~daNpc_Bou_Param_c();
+    
+        struct Data {
+            /* 0x00 */ f32 field_0x00; // 255.0f
+            /* 0x04 */ f32 field_0x04; // 3.0f
+            /* 0x08 */ f32 field_0x08; // 1.0f
+            /* 0x0C */ f32 field_0x0c; // 600.0f
+            /* 0x10 */ f32 field_0x10; // 255.0f
+            /* 0x14 */ f32 field_0x14; // 200.0f
+            /* 0x18 */ f32 field_0x18; // 35.0f
+            /* 0x1C */ f32 field_0x1c; // 40.0f
+            /* 0x20 */ f32 field_0x20; // 0.0f
+            /* 0x24 */ f32 field_0x24; // 0.0f
+            /* 0x28 */ f32 field_0x28; // 10.0f
+            /* 0x2C */ f32 field_0x2c; // -10.0f
+            /* 0x30 */ f32 field_0x30; // 30.0f
+            /* 0x34 */ f32 field_0x34; // -10.0f
+            /* 0x38 */ f32 field_0x38; // 45.0f
+            /* 0x3C */ f32 field_0x3c; // -45.0f
+            /* 0x40 */ f32 field_0x40; // 0.6f
+            /* 0x44 */ f32 field_0x44; // 12.0f
+            /* 0x48 */ s16 field_0x48; // 3
+            /* 0x4C */ s16 field_0x4c; // 6
+            /* 0x50 */ s16 field_0x50; // 5
+            /* 0x54 */ s16 field_0x54; // 6
+            /* 0x58 */ f32 field_0x58; // 110.0f
+            /* 0x5C */ f32 field_0x5c; // 500.0f
+            /* 0x60 */ f32 field_0x60; // 300.0f
+            /* 0x64 */ f32 field_0x64; // -300.0f
+            /* 0x68 */ s16 field_0x68; // 60
+            /* 0x6C */ s16 field_0x6c; // 8
+            /* 0x70 */ f32 field_0x70; // 0.0f
+            /* 0x74 */ f32 field_0x74; // 0.0f
+            /* 0x78 */ f32 field_0x78; // 4.0f
+            /* 0x7C */ f32 field_0x7c; // 0.0f
+            /* 0x80 */ f32 field_0x80; // 0.0f
+            /* 0x84 */ f32 field_0x84; // 0.0f
+            /* 0x88 */ f32 field_0x88; // 0.0f
+            /* 0x8C */ f32 field_0x8c; // 0.0f
+            /* 0x90 */ f32 field_0x90; // 0.0f
+            /* 0x94 */ f32 field_0x94; // 0.0f
+            /* 0x98 */ f32 field_0x98; // 16.0f
+            /* 0x9C */ f32 field_0x9c; // 1000.0f
+            /* 0x100 */ f32 field_0x100; // 500.0f
+            /* 0x104 */ f32 field_0x104; // -500.0f
+        };
+    
+        static const Data m;
+};
+
 class daNpc_Bou_c : public daNpcT_c {
 public:
+
+    enum Type {
+    TYPE_0,
+    TYPE_1,
+    TYPE_2,
+    TYPE_3,
+    TYPE_4,
+    TYPE_5,
+    };
+
     /* 8096CF8C */ ~daNpc_Bou_c();
     /* 8096D0D8 */ void create();
     /* 8096D38C */ void CreateHeap();
@@ -23,7 +85,7 @@ public:
     /* 8096D8C0 */ void ctrlJointCallBack(J3DJoint*, int);
     /* 8096D918 */ void srchCow(void*, void*);
     /* 8096D9B4 */ void getCowP();
-    /* 8096DA78 */ void getType();
+    /* 8096DA78 */ u8 getType();
     /* 8096DADC */ void isDelete();
     /* 8096DBBC */ void reset();
     /* 8096E18C */ void srchActors();
@@ -69,6 +131,12 @@ public:
     static void* mCutNameList[9];
     static u8 mCutList[108];
 
+    BOOL chkFindWolf() {
+        int iVar1 = daNpcT_getDistTableIdx(field_0xfe0, field_0xfe4);
+        return daNpcT_c::chkFindWolf(mCurAngle.y, iVar1, field_0xfdc, daNpc_Bou_Param_c::m.field_0x5c,
+            daNpc_Bou_Param_c::m.field_0x58, daNpc_Bou_Param_c::m.field_0x60, daNpc_Bou_Param_c::m.field_0x100, 1);
+    }
+
     BOOL speakTo() {
         if (field_0xf80 == 4) {
             if (current.pos.absXZ(daPy_getPlayerActorClass()->current.pos) < 1100.0f && strlen(mpEvtData[5].eventName) != 0) {
@@ -88,22 +156,19 @@ public:
     }
 
 private:
-    /* 0xE40 */ u8 field_0xE40[0xE44 - 0xE40];
+    /* 0xE40 */ int field_0xe40;
     /* 0xE44 */ dCcD_Cyl field_0xe44;
     /* 0xF80 */ u8 field_0xf80;
     /* 0xF84 */ daNpcT_ActorMngr_c field_0xf84[3];
     /* 0xF9C */ daNpcT_Path_c field_0xf9c;
-    /* 0xFC4 */ u8 field_0xfc4[0xFFC - 0xFC4];
+    /* 0xFC4 */ u8 field_0xfc4[0xFDC - 0xFC4];
+    /* 0xFDC */ int field_0xfdc;
+    /* 0xFE0 */ int field_0xfe0;
+    /* 0xFE4 */ int field_0xfe4;
+    /* 0xFE8 */ u8 field_0xfe8[0xFFC - 0xFE8];
 };
 
 STATIC_ASSERT(sizeof(daNpc_Bou_c) == 0xffc);
-
-class daNpc_Bou_Param_c {
-public:
-    /* 809727F4 */ ~daNpc_Bou_Param_c();
-
-    static u8 const m[156];
-};
 
 
 #endif /* D_A_NPC_BOU_H */
