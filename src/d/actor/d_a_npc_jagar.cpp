@@ -482,7 +482,7 @@ daNpc_Jagar_c::~daNpc_Jagar_c() {
 
 /* ############################################################################################## */
 /* 80A1A330-80A1A3D0 000000 00A0+00 13/13 0/0 1/1 .rodata          m__19daNpc_Jagar_Param_c */
-daNpc_Jagar_Param_c::param const daNpc_Jagar_Param_c::m = {
+daNpc_Jagar_Param_c::Data const daNpc_Jagar_Param_c::m = {
     170.0f, -3.0f, 1.0f, 400.0f, 255.0f, 160.0f,
     35.0f, 30.0f, 0.0f, 0.0f, 10.0f, -10.0f,
     30.0f, -10.0f, 45.0f, -45.0f, 0.6f, 12.0f,

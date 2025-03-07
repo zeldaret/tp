@@ -119,7 +119,7 @@ class daNpc_Jagar_Param_c {
 public:
     /* 80A1A2C4 */ virtual ~daNpc_Jagar_Param_c() {}
 
-    struct param {
+    struct Data {
         /* 0x00 */ f32 field_0x00;  // 170.0f
         /* 0x04 */ f32 field_0x04;  // -3.0f
         /* 0x08 */ f32 field_0x08;  // 1.0f
@@ -165,7 +165,7 @@ public:
         /* 0x9C */ f32 field_0x9c;  // 1800.0f
     };
     
-    static const param m;
+    static const Data m;
 };
 
 #endif /* D_A_NPC_JAGAR_H */

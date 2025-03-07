@@ -16,10 +16,48 @@
         /* 809727F4 */ ~daNpc_Bou_Param_c();
     
         struct Data {
-            /* 0x58 */ f32 field_0x58;
-            /* 0x5C */ f32 field_0x5c;
-            /* 0x60 */ f32 field_0x60;
-            /* 0x100 */ f32 field_0x100;
+            /* 0x00 */ f32 field_0x00; // 255.0f
+            /* 0x04 */ f32 field_0x04; // 3.0f
+            /* 0x08 */ f32 field_0x08; // 1.0f
+            /* 0x0C */ f32 field_0x0c; // 600.0f
+            /* 0x10 */ f32 field_0x10; // 255.0f
+            /* 0x14 */ f32 field_0x14; // 200.0f
+            /* 0x18 */ f32 field_0x18; // 35.0f
+            /* 0x1C */ f32 field_0x1c; // 40.0f
+            /* 0x20 */ f32 field_0x20; // 0.0f
+            /* 0x24 */ f32 field_0x24; // 0.0f
+            /* 0x28 */ f32 field_0x28; // 10.0f
+            /* 0x2C */ f32 field_0x2c; // -10.0f
+            /* 0x30 */ f32 field_0x30; // 30.0f
+            /* 0x34 */ f32 field_0x34; // -10.0f
+            /* 0x38 */ f32 field_0x38; // 45.0f
+            /* 0x3C */ f32 field_0x3c; // -45.0f
+            /* 0x40 */ f32 field_0x40; // 0.6f
+            /* 0x44 */ f32 field_0x44; // 12.0f
+            /* 0x48 */ s16 field_0x48; // 3
+            /* 0x4C */ s16 field_0x4c; // 6
+            /* 0x50 */ s16 field_0x50; // 5
+            /* 0x54 */ s16 field_0x54; // 6
+            /* 0x58 */ f32 field_0x58; // 110.0f
+            /* 0x5C */ f32 field_0x5c; // 500.0f
+            /* 0x60 */ f32 field_0x60; // 300.0f
+            /* 0x64 */ f32 field_0x64; // -300.0f
+            /* 0x68 */ s16 field_0x68; // 60
+            /* 0x6C */ s16 field_0x6c; // 8
+            /* 0x70 */ f32 field_0x70; // 0.0f
+            /* 0x74 */ f32 field_0x74; // 0.0f
+            /* 0x78 */ f32 field_0x78; // 4.0f
+            /* 0x7C */ f32 field_0x7c; // 0.0f
+            /* 0x80 */ f32 field_0x80; // 0.0f
+            /* 0x84 */ f32 field_0x84; // 0.0f
+            /* 0x88 */ f32 field_0x88; // 0.0f
+            /* 0x8C */ f32 field_0x8c; // 0.0f
+            /* 0x90 */ f32 field_0x90; // 0.0f
+            /* 0x94 */ f32 field_0x94; // 0.0f
+            /* 0x98 */ f32 field_0x98; // 16.0f
+            /* 0x9C */ f32 field_0x9c; // 1000.0f
+            /* 0x100 */ f32 field_0x100; // 500.0f
+            /* 0x104 */ f32 field_0x104; // -500.0f
         };
     
         static const Data m;
@@ -27,6 +65,16 @@
 
 class daNpc_Bou_c : public daNpcT_c {
 public:
+
+    enum Type {
+    TYPE_0,
+    TYPE_1,
+    TYPE_2,
+    TYPE_3,
+    TYPE_4,
+    TYPE_5,
+    };
+
     /* 8096CF8C */ ~daNpc_Bou_c();
     /* 8096D0D8 */ void create();
     /* 8096D38C */ void CreateHeap();
