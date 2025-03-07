@@ -699,7 +699,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01"), "SSystem/SComponent/c_bg_s_poly_info.cpp"),
             Object(MatchingFor("GZ2E01"), "SSystem/SComponent/c_bg_w.cpp"),
             Object(MatchingFor("GZ2E01"), "SSystem/SComponent/c_m2d.cpp"),
-            Object(NonMatching, "SSystem/SComponent/c_m3d.cpp"),
+            Object(MatchingFor("GZ2E01"), "SSystem/SComponent/c_m3d.cpp"),
             Object(MatchingFor("GZ2E01"), "SSystem/SComponent/c_m3d_g_aab.cpp"),
             Object(MatchingFor("GZ2E01"), "SSystem/SComponent/c_m3d_g_cir.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(MatchingFor("GZ2E01"), "SSystem/SComponent/c_m3d_g_cps.cpp"),

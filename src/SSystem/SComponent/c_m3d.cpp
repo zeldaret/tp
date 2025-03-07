@@ -681,42 +681,45 @@ bool cM3d_InclusionCheckPosIn3PosBox3d(const Vec* pVecA, const Vec* pVecB, const
 /* 80269D64-80269E18 2646A4 00B4+00 11/11 0/0 0/0 .text
  * cM3d_InclusionCheckPosIn3PosBox2d__Ffffffffff                */
 static bool cM3d_InclusionCheckPosIn3PosBox2d(f32 param_1, f32 param_2, f32 param_3,
-                                                  f32 param_4, f32 param_5, f32 param_6,
-                                                  f32 param_7, f32 param_8, f32 param_9) {
-    f32 dVar6 = param_9;
-    f32 dVar7;
+                                              f32 param_4, f32 param_5, f32 param_6,
+                                              f32 param_7, f32 param_8, f32 param_9) {
+    f32 f31;
+    f32 f30;
+    f32 f29;
+    f29 = param_9;
     if (param_1 < param_3) {
-        dVar7 = param_1;
+        f31 = param_1;
+        f30 = param_3;
     } else {
-        dVar7 = param_3;
-        param_3 = param_1;
+        f31 = param_3;
+        f30 = param_1;
     }
 
-    if (dVar7 > param_5) {
-        dVar7 = param_5;   
-    } else if (param_3 < param_5) {
-        param_3 = param_5;
+    if (f31 > param_5) {
+        f31 = param_5;   
+    } else if (f30 < param_5) {
+        f30 = param_5;
     }
 
-    if (dVar7 - dVar6 > param_7 || param_3 + dVar6 < param_7) {
+    if (f31 - f29 > param_7 || f30 + f29 < param_7) {
         return false;
     } 
 
-    f32 f1;
     if (param_2 < param_4) {
-        f1 = param_2;
+        f31 = param_2;
+        f30 = param_4;
     } else {
-        f1 = param_4;
-        param_4 = param_2;
+        f31 = param_4;
+        f30 = param_2;
     }
 
-    if (f1 > param_6) {
-        f1 = param_6;
-    } else if (param_4 < param_6) {
-        param_4 = param_6;
+    if (f31 > param_6) {
+        f31 = param_6;
+    } else if (f30 < param_6) {
+        f30 = param_6;
     }
     
-    if (f1 - dVar6 > param_8 || param_4 + dVar6 < param_8)
+    if (f31 - f29 > param_8 || f30 + f29 < param_8)
     {
         return false;
     }
@@ -1543,11 +1546,26 @@ bool cM3d_Cross_CylTri(cM3dGCyl const* cyl, cM3dGTri const* tri, Vec* param_2) {
 
 /* 8026C944-8026D044 267284 0700+00 1/1 2/2 1/1 .text
  * cM3d_Cross_CylLin__FPC8cM3dGCylPC8cM3dGLinP3VecP3Vec         */
-// NONMATCHING regalloc
 int cM3d_Cross_CylLin(cM3dGCyl const* cyl, cM3dGLin const* line, Vec* param_2, Vec* param_3) {
-    f32 f1 = 0.0f;
-    f32 f2 = 0.0f;
-    u32 uVar11 = 0;
+    f32 ratio;
+    f32 f2;
+    f32 fVar5;
+    f32 fVar2;
+    f32 fVar1;
+    f32 fVar6;
+    f32 fVar4;
+    BOOL bVar4;
+    BOOL bVar3;
+    BOOL bVar6;
+    BOOL bVar5;
+    u32 uVar11;
+    f32 sp28;
+    f32 r_sq;
+    int count;
+
+    ratio = 0.0f;
+    f2 = 0.0f;
+    uVar11 = 0;
 
     if (cM3d_Cross_CylPnt(cyl, &line->GetStartP()) && cM3d_Cross_CylPnt(cyl, &line->GetEndP())) {
         *param_2 = line->GetStartP();
@@ -1561,10 +1579,10 @@ int cM3d_Cross_CylLin(cM3dGCyl const* cyl, cM3dGLin const* line, Vec* param_2, V
     VECSubtract(&line->GetStartP(), center, &vec1);
     VECSubtract(&line->GetEndP(), center, &vec2);
     VECSubtract(&vec2, &vec1, &vec3);
-    f32 r_sq = cyl->GetR() * cyl->GetR();
+    r_sq = cyl->GetR() * cyl->GetR();
 
     if (!cM3d_IsZero(vec3.y)) {
-        f32 ratio = -vec1.y / vec3.y;
+        ratio = -vec1.y / vec3.y;
         if (ratio >= 0.0f && ratio <= 1.0f) {
             f32 x = vec1.x + vec3.x * ratio;
             f32 z = vec1.z + vec3.z * ratio;
@@ -1589,56 +1607,48 @@ int cM3d_Cross_CylLin(cM3dGCyl const* cyl, cM3dGLin const* line, Vec* param_2, V
         }
     }
 
-    f32 fVar5 = vec3.x * vec3.x + vec3.z * vec3.z;
-    f32 fVar2 = (vec3.x * vec1.x + vec3.z * vec1.z) * 2.0f;
-    f32 fVar1 = vec1.x * vec1.x + vec1.z * vec1.z - r_sq;
+    bVar4 = false;
+    bVar3 = false;
+    fVar5 = vec3.x * vec3.x + vec3.z * vec3.z;
+    fVar2 = (vec3.x * vec1.x + vec3.z * vec1.z) * 2.0f;
+    fVar1 = vec1.x * vec1.x + vec1.z * vec1.z - r_sq;
 
-    BOOL bVar4, bVar3;
-    if (!cM3d_IsZero(fVar5 * 2.0f)) {
-        f32 fVar6 = fVar2 * fVar2 - fVar5 * 4.0f * fVar1;
+    f32 sp0C = fVar5 * 2.0f;
+    if (!cM3d_IsZero(sp0C)) {
+        fVar6 = fVar2 * fVar2 - fVar5 * 4.0f * fVar1;
         if (fVar6 < 0.0f) {
             return 0;
         }
         if (fVar6 > 0.0f) {
-            bVar3 = true;
-            bVar4 = true;
+            bVar4 = bVar3 = true;
         } else {
             bVar4 = true;
             bVar3 = false;
         }
-        f32 fVar4 = sqrtf(fVar6);
+        fVar4 = sqrtf(fVar6);
         if (bVar4) {
-            f1 = (-fVar2 + fVar4) / (fVar5 * 2.0f);
+            ratio = (-fVar2 + fVar4) / sp0C;
         }
         if (bVar3) {
-            f2 = (-fVar2 - fVar4) / (fVar5 * 2.0f);
+            f2 = (-fVar2 - fVar4) / sp0C;
         }
     } else {
         if (!cM3d_IsZero(fVar2)) {
             bVar4 = true;
             bVar3 = false;
-            f1 = -fVar1 / fVar2;
+            ratio = -fVar1 / fVar2;
         } else {
             return 0;
         }
     }
 
-    BOOL bVar6, bVar5;
     if (bVar4 && !bVar3) {
-        if (0.0f > f1 || f1 > 1.0f) {
+        if (0.0f > ratio || ratio > 1.0f) {
             return 0;
         }
     } else {
-        bool tmp = false;
-        if (0.0f > f1 || f1 > 1.0f) {
-            tmp = true;
-        }
-        bVar6 = tmp;
-        tmp = false;
-        if (0.0f > f2 || f2 > 1.0f) {
-            tmp = true;
-        }
-        bVar5 = tmp;
+        bVar6 = 0.0f > ratio || ratio > 1.0f;
+        bVar5 = 0.0f > f2 || f2 > 1.0f;
         if (bVar6 && bVar5) {
             return 0;
         }
@@ -1651,14 +1661,14 @@ int cM3d_Cross_CylLin(cM3dGCyl const* cyl, cM3dGLin const* line, Vec* param_2, V
     }
 
     if (bVar4) {
-        f32 tmp = vec1.y + f1 * vec3.y;
-        if (tmp < 0.0f || tmp > cyl->GetH()) {
+        sp28 = vec1.y + ratio * vec3.y;
+        if (sp28 < 0.0f || sp28 > cyl->GetH()) {
             bVar4 = false;
         }
     }
     if (bVar3) {
-        f32 tmp = vec1.y + f2 * vec3.y;
-        if (tmp < 0.0f || tmp > cyl->GetH()) {
+        sp28 = vec1.y + f2 * vec3.y;
+        if (sp28 < 0.0f || sp28 > cyl->GetH()) {
             bVar3 = false;
         }
     }
@@ -1670,15 +1680,16 @@ int cM3d_Cross_CylLin(cM3dGCyl const* cyl, cM3dGLin const* line, Vec* param_2, V
     if (bVar4 && bVar3) {
         Vec vec5, vec6;
         VECAdd(&vec1, center, &vec5);
-        VECScale(&vec3, &vec6, f1);
+        uVar11 |= 4;
+        VECScale(&vec3, &vec6, ratio);
         VECAdd(&vec6, &vec5, &vec[2]);
-        uVar11 |= 0xC;
+        uVar11 |= 8;
         VECScale(&vec3, &vec6, f2);
         VECAdd(&vec6, &vec5, &vec[3]);
     } else if (bVar4) {
         uVar11 |= 4;
         Vec vec5, vec6;
-        VECScale(&vec3, &vec5, f1);
+        VECScale(&vec3, &vec5, ratio);
         VECAdd(&vec5, &vec1, &vec6);
         VECAdd(&vec6, center, &vec[2]);
     } else if (bVar3) {
@@ -1689,7 +1700,7 @@ int cM3d_Cross_CylLin(cM3dGCyl const* cyl, cM3dGLin const* line, Vec* param_2, V
         VECAdd(&vec6, center, &vec[2]);
     }
 
-    int count = 0;
+    count = 0;
     for (int i = 0; i < 4; i++) {
         if (uVar11 & (1 << i)) {
             if (count == 0) {
