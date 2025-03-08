@@ -5,18 +5,11 @@
 
 #include "d/actor/d_a_obj_octhashi.h"
 #include "d/d_cc_d.h"
-#include "dol2asm.h"
-#include "d/d_resorce.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_bg_w.h"
 #include "d/d_cc_uty.h"
-#include "Z2AudioLib/Z2Instances.h"
+#include "d/d_com_inf_game.h"
 
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
 /* 80CA6480-80CA64C0 000000 0040+00 6/6 0/0 0/0 .rodata          ccSphSrc$3655 */
 const static dCcD_SrcSph ccSphSrc = {
     {
@@ -50,14 +43,14 @@ static dCcD_SrcCyl ccCylSrc = {
     } // mCyl
 };
 
-static s8 lbl_584_bss_0 = 0;
+static s8 l_cyl_height_init = 0;
 
 /* 80CA4BB8-80CA4D98 000078 01E0+00 1/1 0/0 0/0 .text            initCcCylinder__15daObjOCTHASHI_cFv
  */
 void daObjOCTHASHI_c::initCcCylinder() {
-    if (lbl_584_bss_0 == 0) {
+    if (l_cyl_height_init == 0) {
         ccCylSrc.mCyl.mHeight = (f32)(mPieceNum + 1) * 800.0f - 100.f;
-        lbl_584_bss_0 = 1;
+        l_cyl_height_init = 1;
     }
     for (int idx = 0; idx < mPieceNum; ++idx) {
         field_0x7ac[idx].Init(200, 0xff, this);
@@ -306,16 +299,10 @@ static int daObjOCTHASHI_Execute(daObjOCTHASHI_c* i_this) {
     return i_this->MoveBGExecute();
 }
 
-// FIXME: Does this go here?
-static bool daObjOCTHASHI_IsDelete(daObjOCTHASHI_c* param_0);
-
 /* 80CA5AE0-80CA5B98 000FA0 00B8+00 1/0 0/0 0/0 .text            CreateHeap__15daObjOCTHASHI_cFv */
 int daObjOCTHASHI_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName[0], "S_octhashi00.bmd");
-
-    if (modelData == NULL) {
-        // FIXME: For shield decomp matching, needs a JUT assert.
-    }
+    JUT_ASSERT(84, modelData != 0);
 
     int idx = 0;
     while (idx < mPieceNum) {
@@ -328,33 +315,6 @@ int daObjOCTHASHI_c::CreateHeap() {
 
     return 1;
 }
-
-/* 80CA65CC-80CA65EC -00001 0020+00 1/0 0/0 0/0 .data            l_daObjOCTHASHI_Method */
-static actor_method_class l_daObjOCTHASHI_Method = {
-    (process_method_func)daObjOCTHASHI_Create,
-    (process_method_func)daObjOCTHASHI_Delete,
-    (process_method_func)daObjOCTHASHI_Execute,
-    (process_method_func)daObjOCTHASHI_IsDelete,
-    (process_method_func)daObjOCTHASHI_Draw,
-};
-
-/* 80CA65EC-80CA661C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OCTHASHI */
-extern actor_process_profile_definition g_profile_OCTHASHI = {
-  fpcLy_CURRENT_e,         // mLayerID
-  3,                       // mListID
-  fpcPi_CURRENT_e,         // mListPrio
-  PROC_OCTHASHI,           // mProcName
-  &g_fpcLf_Method.base,   // sub_method
-  sizeof(daObjOCTHASHI_c), // mSize
-  0,                       // mSizeOther
-  0,                       // mParameters
-  &g_fopAc_Method.base,    // sub_method
-  465,                     // mPriority
-  &l_daObjOCTHASHI_Method, // sub_method
-  0x00040000,              // mStatus
-  fopAc_ACTOR_e,           // mActorType
-  fopAc_CULLBOX_CUSTOM_e,  // cullType
-};
 
 /* 80CA5B98-80CA5EE4 001058 034C+00 1/1 0/0 0/0 .text            create__15daObjOCTHASHI_cFv */
 int daObjOCTHASHI_c::create() {
@@ -397,8 +357,8 @@ int daObjOCTHASHI_c::create() {
 
 /* 80CA6254-80CA625C 001714 0008+00 1/0 0/0 0/0 .text daObjOCTHASHI_IsDelete__FP15daObjOCTHASHI_c
  */
-static bool daObjOCTHASHI_IsDelete(daObjOCTHASHI_c* param_0) {
-    return true;
+static int daObjOCTHASHI_IsDelete(daObjOCTHASHI_c* param_0) {
+    return 1;
 }
 
 /* 80CA62A4-80CA62F8 001764 0054+00 1/0 0/0 0/0 .text            Create__15daObjOCTHASHI_cFv */
@@ -436,5 +396,32 @@ int daObjOCTHASHI_c::Delete() {
     dComIfG_resDelete(&mPhaseReq, l_arcName[0]);
     return 1;
 }
+
+/* 80CA65CC-80CA65EC -00001 0020+00 1/0 0/0 0/0 .data            l_daObjOCTHASHI_Method */
+static actor_method_class l_daObjOCTHASHI_Method = {
+    (process_method_func)daObjOCTHASHI_Create,
+    (process_method_func)daObjOCTHASHI_Delete,
+    (process_method_func)daObjOCTHASHI_Execute,
+    (process_method_func)daObjOCTHASHI_IsDelete,
+    (process_method_func)daObjOCTHASHI_Draw,
+};
+
+/* 80CA65EC-80CA661C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OCTHASHI */
+extern actor_process_profile_definition g_profile_OCTHASHI = {
+  fpcLy_CURRENT_e,         // mLayerID
+  3,                       // mListID
+  fpcPi_CURRENT_e,         // mListPrio
+  PROC_OCTHASHI,           // mProcName
+  &g_fpcLf_Method.base,   // sub_method
+  sizeof(daObjOCTHASHI_c), // mSize
+  0,                       // mSizeOther
+  0,                       // mParameters
+  &g_fopAc_Method.base,    // sub_method
+  465,                     // mPriority
+  &l_daObjOCTHASHI_Method, // sub_method
+  0x00040000,              // mStatus
+  fopAc_ACTOR_e,           // mActorType
+  fopAc_CULLBOX_CUSTOM_e,  // cullType
+};
 
 /* 80CA6550-80CA6550 0000D0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
