@@ -123,14 +123,14 @@ public:
                                 daNpcT_evtData_c const* param_7, char** param_8) :
                                 daNpcT_c(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8)
                                  {}
-    /* 80A1A274 */ s32 getEyeballMaterialNo();
-    /* 80A1A27C */ s32 getHeadJointNo();
-    /* 80A1A284 */ s32 getNeckJointNo();
-    /* 80A1A28C */ s32 getBackboneJointNo();
+    /* 80A1A274 */ s32 getEyeballMaterialNo() { return 1; }
+    /* 80A1A27C */ s32 getHeadJointNo() { return 4; }
+    /* 80A1A284 */ s32 getNeckJointNo() { return 3; }
+    /* 80A1A28C */ s32 getBackboneJointNo() { return 1; }
     /* 80A1A294 */ BOOL checkChangeJoint(int param_1) { return param_1 == 4; }
     /* 80A1A2A4 */ BOOL checkRemoveJoint(int param_1) { return param_1 == 8; }
-    /* 80A1A2B4 */ s32 getFootLJointNo();
-    /* 80A1A2BC */ s32 getFootRJointNo();
+    /* 80A1A2B4 */ s32 getFootLJointNo() { return 22; }
+    /* 80A1A2BC */ s32 getFootRJointNo() { return 26; }
 
     int getFlowNodeNo() {
         u16 nodeNo = home.angle.x;
