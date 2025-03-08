@@ -35,29 +35,29 @@
             /* 0x40 */ f32 field_0x40; // 0.6f
             /* 0x44 */ f32 field_0x44; // 12.0f
             /* 0x48 */ s16 field_0x48; // 3
-            /* 0x4C */ s16 field_0x4c; // 6
-            /* 0x50 */ s16 field_0x50; // 5
-            /* 0x54 */ s16 field_0x54; // 6
-            /* 0x58 */ f32 field_0x58; // 110.0f
-            /* 0x5C */ f32 field_0x5c; // 500.0f
-            /* 0x60 */ f32 field_0x60; // 300.0f
-            /* 0x64 */ f32 field_0x64; // -300.0f
-            /* 0x68 */ s16 field_0x68; // 60
-            /* 0x6C */ s16 field_0x6c; // 8
+            /* 0x4a */ s16 field_0x4a; // 6
+            /* 0x4c */ s16 field_0x4c; // 5
+            /* 0x4e */ s16 field_0x4e; // 6
+            /* 0x50 */ f32 field_0x50; // 110.0f
+            /* 0x54 */ f32 field_0x54; // 500.0f
+            /* 0x58 */ f32 field_0x58; // 300.0f
+            /* 0x5c */ f32 field_0x5c; // -300.0f
+            /* 0x60 */ s16 field_0x60; // 60
+            /* 0x62 */ s16 field_0x62; // 8
+            /* 0x64 */ f32 field_0x64; // 0.0f
+            /* 0x68 */ f32 field_0x68; // 0.0f
+            /* 0x6c */ f32 field_0x6c; // 4.0f
             /* 0x70 */ f32 field_0x70; // 0.0f
             /* 0x74 */ f32 field_0x74; // 0.0f
-            /* 0x78 */ f32 field_0x78; // 4.0f
-            /* 0x7C */ f32 field_0x7c; // 0.0f
+            /* 0x78 */ f32 field_0x78; // 0.0f
+            /* 0x7c */ f32 field_0x7c; // 0.0f
             /* 0x80 */ f32 field_0x80; // 0.0f
             /* 0x84 */ f32 field_0x84; // 0.0f
             /* 0x88 */ f32 field_0x88; // 0.0f
-            /* 0x8C */ f32 field_0x8c; // 0.0f
-            /* 0x90 */ f32 field_0x90; // 0.0f
-            /* 0x94 */ f32 field_0x94; // 0.0f
-            /* 0x98 */ f32 field_0x98; // 16.0f
-            /* 0x9C */ f32 field_0x9c; // 1000.0f
-            /* 0x100 */ f32 field_0x100; // 500.0f
-            /* 0x104 */ f32 field_0x104; // -500.0f
+            /* 0x8c */ f32 field_0x8c; // 16.0f
+            /* 0x90 */ f32 field_0x90; // 1000.0f
+            /* 0x94 */ f32 field_0x94; // 500.0f
+            /* 0x98 */ f32 field_0x98; // -500.0f
         };
     
         static const Data m;
@@ -133,8 +133,27 @@ public:
 
     BOOL chkFindWolf() {
         int iVar1 = daNpcT_getDistTableIdx(field_0xfe0, field_0xfe4);
-        return daNpcT_c::chkFindWolf(mCurAngle.y, iVar1, field_0xfdc, daNpc_Bou_Param_c::m.field_0x5c,
-            daNpc_Bou_Param_c::m.field_0x58, daNpc_Bou_Param_c::m.field_0x60, daNpc_Bou_Param_c::m.field_0x100, 1);
+        return daNpcT_c::chkFindWolf(mCurAngle.y, iVar1, field_0xfdc, daNpc_Bou_Param_c::m.field_0x54,
+            daNpc_Bou_Param_c::m.field_0x50, daNpc_Bou_Param_c::m.field_0x58, daNpc_Bou_Param_c::m.field_0x5c, 1);
+    }
+
+    int chkCondition(int i_val) {
+        if (mStagger.checkStagger()) {
+            return false;
+        } else if (i_val != 0) {
+            return true;
+        } else {
+            if (mMotionSeqMngr.getNo() == 3 ||
+                mMotionSeqMngr.getNo() == 2 ||
+                mMotionSeqMngr.getNo() == 4) {
+                if (mMotionSeqMngr.getStepNo() > 0) {
+                    return true;
+                }
+            } else if (mMotionSeqMngr.getNo() == 1) {
+                return true;
+            }
+        }
+        return false;
     }
 
     BOOL speakTo() {
