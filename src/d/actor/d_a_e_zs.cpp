@@ -57,8 +57,8 @@ int daE_ZS_c::draw() {
 }
 
 /* 808331C4-808331E4 000204 0020+00 1/0 0/0 0/0 .text            daE_ZS_Draw__FP8daE_ZS_c */
-static void daE_ZS_Draw(daE_ZS_c* i_this) {
-    i_this->draw();
+static int daE_ZS_Draw(daE_ZS_c* i_this) {
+    return i_this->draw();
 }
 
 /* 808331E4-80833290 000224 00AC+00 4/4 0/0 0/0 .text            setBck__8daE_ZS_cFiUcff */
@@ -83,7 +83,6 @@ static daE_ZS_HIO_c l_HIO;
 
 /* 8083329C-8083364C 0002DC 03B0+00 1/1 0/0 0/0 .text            damage_check__8daE_ZS_cFv */
 void daE_ZS_c::damage_check() {
-    /* 808353C8-808353D0 00007C 0006+02 1/1 0/0 0/0 .data            eff_Damage_id$3979 */
     static u16 eff_Damage_id[] = {0x8BE9, 0x8BEA, 0x8BEB};
 
     if (health > 1 && field_0x670 == 0 && field_0x673 && mAction != 3 && mCyl.ChkTgSet()) {
@@ -102,7 +101,7 @@ void daE_ZS_c::damage_check() {
                 mDoMtx_stack_c::multVecZero(&eff_pos);
                 for (int idx = 0; idx < 3; ++idx) {
                     dComIfGp_particle_set(eff_Damage_id[idx], &eff_pos, NULL, &shape_angle,
-                                          NULL, 0xff, NULL, -1, NULL, NULL, NULL);
+                                          NULL, 0xFF, NULL, -1, NULL, NULL, NULL);
                 }
             }
 
@@ -114,7 +113,7 @@ void daE_ZS_c::damage_check() {
                 || mCyl.GetTgHitObj()->ChkAtType(AT_TYPE_BOMB)) {
                 health = 0;
                 field_0x560 = 0;
-                def_se_set(&mSound, mpCollider, 0x1f, NULL);
+                def_se_set(&mSound, mpCollider, 0x1F, NULL);
                 dComIfGp_setHitMark(3, this, &my_vec_1, &shape_angle, NULL, 0);
                 if (mCyl.GetTgHitObj()->ChkAtType(AT_TYPE_CSTATUE_BOSS_SWING) == 0
                    && mCyl.GetTgHitObj()->ChkAtType(AT_TYPE_BOMB) == 0) {
@@ -176,7 +175,6 @@ static u8 lbl_259_bss_29;
 
 /* 80833964-80833D30 0009A4 03CC+00 1/1 0/0 0/0 .text            executeAppear__8daE_ZS_cFv */
 void daE_ZS_c::executeAppear() {
-    /* 808353D0-808353D4 000084 0004+00 1/1 0/0 0/0 .data            eff_Appear_id$4194 */
     static u16 eff_Appear_id[] = {0x8BE7, 0x8BE8};
 
     switch (mMode) {
@@ -211,10 +209,10 @@ void daE_ZS_c::executeAppear() {
                     setBck(4, 0, 3.0f, 1.0f);
                 }
 
-                mSound.startCreatureSound(0x704b6, 0, -1);
+                mSound.startCreatureSound(Z2SE_EN_ZS_APPEAR, 0, -1);
                 for (int idx = 0; idx < 2; ++idx) {
                     dComIfGp_particle_set(eff_Appear_id[idx], &current.pos, NULL, &shape_angle,
-                                          NULL, 0xff, NULL, -1, NULL, NULL, NULL);
+                                          NULL, 0xFF, NULL, -1, NULL, NULL, NULL);
                 }
                 field_0x673 = 1;
                 mMode = 2;
@@ -282,7 +280,7 @@ void daE_ZS_c::executeWait() {
             mMode = 1;
         case 1: {
             if ((int)mpMorf->getFrame() == 0) {
-                mSound.startCreatureVoice(0x704ba, -1);
+                mSound.startCreatureVoice(Z2SE_EN_ZS_V_WAIT, -1);
             }
             daB_DS_c* stallord_boss = (daB_DS_c*) fpcM_Search(s_BossSearch, this);
             if (stallord_boss == NULL) {
@@ -309,13 +307,12 @@ void daE_ZS_c::executeWait() {
 
 /* 80833F1C-80834108 000F5C 01EC+00 1/1 0/0 0/0 .text            executeDamage__8daE_ZS_cFv */
 void daE_ZS_c::executeDamage() {
-    /* 808353D4-808353DC 000088 0008+00 1/1 0/0 0/0 .data            w_eff_id$4324 */
     static u16 w_eff_id[] = {0x854C, 0x854D, 0x854E, 0x854F};
 
     switch (mMode) {
         case 0:
             setBck(5, 0, 3.0f, 1.0f);
-            mSound.startCreatureVoice(0x704b8, -1);
+            mSound.startCreatureVoice(Z2SE_EN_ZS_V_DMG, -1);
             mMode = 1;
             break;
         case 1:
@@ -326,7 +323,7 @@ void daE_ZS_c::executeDamage() {
             break;
         case 2:
             setBck(6, 0, 3.0f, 1.0f);
-            mSound.startCreatureVoice(0x704b9, -1);
+            mSound.startCreatureVoice(Z2SE_EN_ZS_V_DEAD, -1);
             mMode = 3;
             break;
         case 3:
@@ -334,7 +331,7 @@ void daE_ZS_c::executeDamage() {
                 cXyz my_vec_0(5.0f, 5.0f, 5.0f);
                 for (int idx = 0; idx < 4; ++idx) {
                     dComIfGp_particle_set(w_eff_id[idx], &current.pos, &tevStr, NULL,
-                                          NULL, 0xff, NULL, -1, NULL, NULL, NULL);
+                                          NULL, 0xFF, NULL, -1, NULL, NULL, NULL);
                 }
                 fopAcM_delete(this);
             }
@@ -362,7 +359,7 @@ void daE_ZS_c::executeDrive() {
 
             onWolfNoLock();
             fopAcM_OffStatus(this, 0x200000);
-            mSound.startCreatureSound(0x704b7, 0, -1);
+            mSound.startCreatureSound(Z2SE_EN_ZS_DISAPPEAR, 0, -1);
             field_0x673 = 1;
             mCyl.OffTgSetBit();
             mCyl.OffCoSetBit();
@@ -462,11 +459,11 @@ void daE_ZS_c::cc_set() {
 
 /* 80834650-808346BC 001690 006C+00 1/1 0/0 0/0 .text            execute__8daE_ZS_cFv */
 int daE_ZS_c::execute() {
-    if (field_0x670) {
+    if (field_0x670 != 0) {
         --field_0x670;
     }
 
-    if (field_0x671) {
+    if (field_0x671 != 0) {
         --field_0x671;
     }
 
@@ -477,12 +474,12 @@ int daE_ZS_c::execute() {
 }
 
 /* 808346BC-808346DC 0016FC 0020+00 2/1 0/0 0/0 .text            daE_ZS_Execute__FP8daE_ZS_c */
-static void daE_ZS_Execute(daE_ZS_c* i_this) {
-    i_this->execute();
+static int daE_ZS_Execute(daE_ZS_c* i_this) {
+    return i_this->execute();
 }
 
 /* 808346DC-808346E4 00171C 0008+00 1/0 0/0 0/0 .text            daE_ZS_IsDelete__FP8daE_ZS_c */
-static bool daE_ZS_IsDelete(daE_ZS_c* i_this) {
+static int daE_ZS_IsDelete(daE_ZS_c* i_this) {
     return true;
 }
 
@@ -501,13 +498,13 @@ int daE_ZS_c::_delete() {
 }
 
 /* 80834758-80834778 001798 0020+00 1/0 0/0 0/0 .text            daE_ZS_Delete__FP8daE_ZS_c */
-static void daE_ZS_Delete(daE_ZS_c* i_this) {
-    i_this->_delete();
+static int daE_ZS_Delete(daE_ZS_c* i_this) {
+    return i_this->_delete();
 }
 
 /* 80834778-80834864 0017B8 00EC+00 1/1 0/0 0/0 .text            CreateHeap__8daE_ZS_cFv */
 int daE_ZS_c::CreateHeap() {
-    J3DModelData* modelData = (J3DModelData*) dComIfG_getObjectRes("E_ZS", 0xc);
+    J3DModelData* modelData = (J3DModelData*) dComIfG_getObjectRes("E_ZS", 0xC);
     JUT_ASSERT(0x3e9, modelData != NULL);
     mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_ZS", 4),
                                   1, 1.0f, 0, -1, &mSound, 0,0x11000084);
@@ -528,7 +525,7 @@ int daE_ZS_c::create() {
     int phase = dComIfG_resLoad(&mPhase, "E_ZS");
     if (phase == cPhs_COMPLEATE_e) {
         OS_REPORT("E_ZS PARAM %x\n", fopAcM_GetParam(this));
-        if (!fopAcM_entrySolidHeap(this, (heapCallbackFunc)useHeapInit, 0xfc0)) {
+        if (!fopAcM_entrySolidHeap(this, (heapCallbackFunc)useHeapInit, 0xFC0)) {
             return cPhs_ERROR_e;
         }
 
@@ -539,7 +536,7 @@ int daE_ZS_c::create() {
         }
 
         field_0x672 = fopAcM_GetParam(this);
-        if (field_0x672 == 0xff) {
+        if (field_0x672 == 0xFF) {
             field_0x672 = 0;
         }
 
@@ -551,7 +548,7 @@ int daE_ZS_c::create() {
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
                   fopAcM_GetSpeed_p(this), NULL, NULL);
         mAcchCir.SetWall(10.0f, 60.0f);
-        mStts.Init(0xff, 0, this);
+        mStts.Init(0xFF, 0, this);
         health = 0x14;
         field_0x560 = 0x14;
         field_0x671 = 5;
@@ -582,8 +579,8 @@ int daE_ZS_c::create() {
 }
 
 /* 80834D74-80834D94 001DB4 0020+00 1/0 0/0 0/0 .text            daE_ZS_Create__FP8daE_ZS_c */
-static void daE_ZS_Create(daE_ZS_c* i_this) {
-    i_this->create();
+static int daE_ZS_Create(daE_ZS_c* i_this) {
+    return i_this->create();
 }
 
 /* 808353DC-808353FC -00001 0020+00 1/0 0/0 0/0 .data            l_daE_ZS_Method */
@@ -612,5 +609,3 @@ extern actor_process_profile_definition g_profile_E_ZS = {
   fopAc_ENEMY_e,          // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 80835344-80835344 000074 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
