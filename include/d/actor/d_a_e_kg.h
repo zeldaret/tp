@@ -34,9 +34,7 @@ public:
     /* 0x68a */ u8 field_0x68a[0x68c - 0x68a];
     /* 0x68c */ s16 mPlayerAngle;
     /* 0x690 */ f32 mPlayerDist;
-    /* 0x694 */ s16 field_0x694;
-    /* 0x696 */ s16 field_0x696;
-    /* 0x698 */ u8 field_0x698[0x69c - 0x698];
+    /* 0x694 */ s16 field_0x694[4];
     /* 0x69c */ s16 field_0x69c;
     /* 0x69e */ s16 field_0x69e;
     /* 0x6a0 */ int mShadowKey;
@@ -61,9 +59,9 @@ public:
     /* 806F9EE8 */ virtual ~daE_KG_HIO_c() {}
 
     /* 0x04 */ s8 field_0x4;
-    /* 0x08 */ f32 field_0x8;
+    /* 0x08 */ f32 mSize;
     /* 0x0c */ f32 field_0xc;
-    /* 0x10 */ f32 field_0x10;
+    /* 0x10 */ f32 mCheckRange;
 };
 
 
