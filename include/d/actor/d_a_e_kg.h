@@ -2,7 +2,8 @@
 #define D_A_E_KG_H
 #include "d/d_bg_s_acch.h"
 #include "d/d_cc_d.h"
-#include "f_op/f_op_actor_mng.h"
+#include "d/d_cc_uty.h"
+#include "f_op/f_op_actor.h"
 
 /**
  * @ingroup actors-enemies
@@ -17,21 +18,33 @@ public:
     /* 0x5ac */ request_of_phase_process_class mPhase;
     /* 0x5b4 */ u8 field_0x5b4;
     /* 0x5b5 */ u8 field_0x5b5;
-    /* 0x5b8 */ mDoExt_McaMorf* mpMorf;
+    /* 0x5b8 */ mDoExt_McaMorfSO* mpMorf;
     /* 0x5bc */ Z2CreatureEnemy mSound;
-    /* 0x660 */ u8 field_0x660[0x674 - 0x660];
+    /* 0x660 */ mDoExt_btpAnm* mpBtp;
+    /* 0x664 */ u8 field_0x664[0x668 - 0x664];
+    /* 0x668 */ int mResIndex;
+    /* 0x66c */ s16 field_0x66c;
+    /* 0x66e */ u8 field_0x66e[0x674 - 0x66e];
     /* 0x674 */ s16 field_0x674;
     /* 0x676 */ s16 field_0x676;
-    /* 0x678 */ u8 field_0x678[0x6a4 - 0x678];
+    /* 0x678 */ s16 field_0x678;
+    /* 0x67a */ u8 field_0x67a[0x688 - 0x67a];
+    /* 0x688 */ s16 field_0x688;
+    /* 0x68a */ u8 field_0x68a[0x68c - 0x68a];
+    /* 0x68c */ s16 field_0x68c;
+    /* 0x690 */ f32 field_0x690;
+    /* 0x694 */ s16 field_0x694;
+    /* 0x696 */ s16 field_0x696;
+    /* 0x698 */ u8 field_0x698[0x69c - 0x698];
+    /* 0x69c */ s16 field_0x69c;
+    /* 0x6a0 */ int mShadowKey;
     /* 0x6a4 */ dBgS_AcchCir mAcchCir;
     /* 0x6e4 */ dBgS_ObjAcch mAcch;
     /* 0x8bc */ dCcD_Stts mStts;
     /* 0x8f8 */ dCcD_Sph mSph;
-    /* 0xa30 */ u8 field_0xa30[0xa38 - 0xa30];
-    /* 0xa38 */ Z2CreatureEnemy* mpSound;
-    /* 0xa3c */ u8 field_0xa3c[0xa4e - 0xa3c];
-    /* 0xa4e */ u8 field_0xa4e;
-    /* 0xa4f */ u8 field_0xa4f[0xa70 - 0xa4f];
+    /* 0xa30 */ dCcU_AtInfo mAtInfo;
+    /* 0xa54 */ s16 field_0xa54;
+    /* 0xa56 */ u8 field_0xa56[0xa70 - 0xa56];
     /* 0xa70 */ u8 field_0xa70;
 };
 
