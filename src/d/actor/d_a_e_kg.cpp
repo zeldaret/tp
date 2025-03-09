@@ -113,7 +113,7 @@ static void damage_check(e_kg_class* i_this) {
                 i_this->field_0xa54 = 15;
             }
 
-            i_this->current.angle.y = i_this->mAtInfo.mHitDirection;
+            i_this->current.angle.y = i_this->mAtInfo.mHitDirection.y;
             i_this->field_0x678 = 0;
         }
 
@@ -384,7 +384,7 @@ static void e_kg_damage(e_kg_class* i_this) {
             anm_init(i_this, 0x6, 5.0f, 2, 1.0f);
             i_this->field_0x678 = 1;
             i_this->speed.y = cM_rndFX(5.0f) + 45.0f;
-            i_this->speedF = cM_rndFX(5.0f) + 35.0f;
+            i_this->speedF = cM_rndFX(5.0f) + -35.0f;
             i_this->field_0x69e = cM_rndFX(1700.0f);
             i_this->mSound.startCreatureVoice(Z2SE_EN_KG_V_DEATH, -1);
             fopAcM_OffStatus(i_this, 0);
@@ -487,11 +487,11 @@ static void e_kg_roof(e_kg_class* i_this) {
 
 /* 806F90F8-806F9400 0012F8 0308+00 2/1 0/0 0/0 .text            action__FP10e_kg_class */
 static void action(e_kg_class* i_this) {
-    // NONMATCHING - regalloc
+    fopAc_ac_c* actor_this = i_this;
     cXyz my_vec_0;
     cXyz my_vec_1;
-    i_this->mPlayerAngle = fopAcM_searchPlayerAngleY(i_this);
-    i_this->mPlayerDist = fopAcM_searchPlayerDistance(i_this);
+    i_this->mPlayerAngle = fopAcM_searchPlayerAngleY(actor_this);
+    i_this->mPlayerDist = fopAcM_searchPlayerDistance(actor_this);
     damage_check(i_this);
     i_this->mSph.OffAtVsPlayerBit();
     s16 max_step = 0;
@@ -544,32 +544,32 @@ static void action(e_kg_class* i_this) {
         }
     }
 
-    cMtx_YrotS(*calc_mtx, i_this->current.angle.y);
+    cMtx_YrotS(*calc_mtx, actor_this->current.angle.y);
     my_vec_0.x = 0.0;
     my_vec_0.y = 0.0;
-    my_vec_0.z = i_this->speedF;
+    my_vec_0.z = actor_this->speedF;
     MtxPosition(&my_vec_0, &my_vec_1);
-    i_this->speed.x = my_vec_1.x;
-    i_this->speed.z = my_vec_1.z;
-    i_this->current.pos += i_this->speed;
-    i_this->speed.y -= 5.0f;
+    actor_this->speed.x = my_vec_1.x;
+    actor_this->speed.z = my_vec_1.z;
+    actor_this->current.pos += actor_this->speed;
+    actor_this->speed.y -= 5.0f;
     cXyz* cc_move_p = i_this->mStts.GetCCMoveP();
     if (cc_move_p != NULL) {
-        i_this->current.pos.x += cc_move_p->x;
-        i_this->current.pos.y += cc_move_p->y;
-        i_this->current.pos.z += cc_move_p->z;
+        actor_this->current.pos.x += cc_move_p->x;
+        actor_this->current.pos.y += cc_move_p->y;
+        actor_this->current.pos.z += cc_move_p->z;
     }
 
     f32 pos_adjust = 0.0f;
-    if (i_this->shape_angle.x) {
-        pos_adjust = cM_ssin(i_this->shape_angle.x / 2) * 30.0f;
+    if (actor_this->shape_angle.x) {
+        pos_adjust = cM_ssin(actor_this->shape_angle.x / 2) * 30.0f;
     }
 
-    i_this->current.pos.y -= pos_adjust;
-    i_this->old.pos.y -= pos_adjust;
+    actor_this->current.pos.y -= pos_adjust;
+    actor_this->old.pos.y -= pos_adjust;
     i_this->mAcch.CrrPos(dComIfG_Bgsp());
-    i_this->current.pos.y += pos_adjust;
-    i_this->old.pos.y += pos_adjust;
+    actor_this->current.pos.y += pos_adjust;
+    actor_this->old.pos.y += pos_adjust;
     if (new_0x670) {
         i_this->field_0x670 = new_0x670;
     } else if (i_this->field_0x66c == 0) {
@@ -651,7 +651,7 @@ static int daE_KG_Execute(e_kg_class* i_this) {
 
 /* 806F97A8-806F97B0 0019A8 0008+00 1/0 0/0 0/0 .text            daE_KG_IsDelete__FP10e_kg_class */
 static int daE_KG_IsDelete(e_kg_class* i_this) {
-    return true;
+    return 1;
 }
 
 /* 806F97B0-806F9818 0019B0 0068+00 1/0 0/0 0/0 .text            daE_KG_Delete__FP10e_kg_class */
