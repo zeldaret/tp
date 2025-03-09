@@ -1,6 +1,7 @@
 #ifndef D_CC_D_CC_UTY_H
 #define D_CC_D_CC_UTY_H
 
+#include "SSystem/SComponent/c_sxyz.h"
 #include "dolphin/types.h"
 
 class cCcD_Obj;
@@ -20,9 +21,8 @@ struct dCcU_AtInfo {
     /* 0x00 */ cCcD_Obj* mpCollider;
     /* 0x04 */ fopAc_ac_c* mpActor;
     /* 0x08 */ Z2Creature* mpSound;
-    /* 0x0C */ u8 field_0xc[2];
-    /* 0x0E */ s16 mHitDirection;
-    /* 0x10 */ u8 field_0x10[4];
+    /* 0x0C */ csXyz mHitDirection;
+    /* 0x12 */ u8 field_0x12[2];
     /* 0x14 */ u32 mHitBit;
     /* 0x18 */ u32 field_0x18;
     /* 0x1C */ u16 mAttackPower;

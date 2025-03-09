@@ -2013,7 +2013,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_mvstair"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_myogan"),
     ActorRel(NonMatching, "d_a_obj_nagaisu"),
-    ActorRel(NonMatching, "d_a_obj_nan"),
+    ActorRel(Equivalent, "d_a_obj_nan"),
     ActorRel(NonMatching, "d_a_obj_ndoor"),
     ActorRel(NonMatching, "d_a_obj_nougu"),
     ActorRel(Equivalent, "d_a_obj_octhashi"),
