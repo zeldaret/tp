@@ -53,7 +53,7 @@ public:
     /* 0x0755 */ u8 field_0x0755[0x0758 - 0x0755];
     /* 0x0758 */ int mAnmID;
     /* 0x075C */ int mHorseAnmID;
-    /* 0x0760 */ f32 field_0x0760;
+    /* 0x0760 */ f32 playSpeed;
     /* 0x0764 */ u8 field_0x0764[0x0768 - 0x0764];
     /* 0x0768 */ J3DModel* field_0x0768;
     /* 0x076C */ J3DModel* field_0x076c;

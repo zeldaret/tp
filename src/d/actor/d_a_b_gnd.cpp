@@ -946,55 +946,77 @@ static void h_anm_init(b_gnd_class* i_this, int i_anmID, f32 i_morf, u8 i_attr, 
     i_this->mpHorseMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("B_hg", i_anmID), i_attr, i_morf, i_speed, 0.0f, -1.0f);
 }
 
-/* ############################################################################################## */
-/* 80602680-80602684 00001C 0004+00 1/1 0/0 0/0 .rodata          @3902 */
-SECTION_RODATA static f32 const lit_3902 = 0.75f;
-COMPILER_STRIP_GATE(0x80602680, &lit_3902);
+// /* ############################################################################################## */
+// /* 80602680-80602684 00001C 0004+00 1/1 0/0 0/0 .rodata          @3902 */
+// SECTION_RODATA static f32 const lit_3902 = 0.75f;
+// COMPILER_STRIP_GATE(0x80602680, &lit_3902);
 
-/* 80602684-8060268C 000020 0008+00 2/4 0/0 0/0 .rodata          @3904 */
-SECTION_RODATA static u8 const lit_3904[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80602684, &lit_3904);
+// /* 80602684-8060268C 000020 0008+00 2/4 0/0 0/0 .rodata          @3904 */
+// SECTION_RODATA static u8 const lit_3904[8] = {
+//     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
+// };
+// COMPILER_STRIP_GATE(0x80602684, &lit_3904);
 
 /* 805F4C00-805F4DCC 0002A0 01CC+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
-static int nodeCallBack(J3DJoint* i_joint, int param_1) {
+static int nodeCallBack(J3DJoint* i_joint, int param_2) {
      // NONMATCHING
-    if (param_1 == 0) {
-        int jnt_no = i_joint->getJntNo();
+    if (param_2 == 0) {
+        int jntNo = i_joint->getJntNo();
         J3DModel* model = j3dSys.getModel();
+        u32 userArea = model->getUserArea();
         
-        b_gnd_class* a_this = (b_gnd_class*)model->getUserArea();
-        if (a_this != NULL) {
-            MTXCopy(model->getAnmMtx(jnt_no), *calc_mtx);
+        if (userArea) {
+            MTXCopy(model->getAnmMtx(jntNo), *calc_mtx);
+            
+            if (jntNo == 1) {
+                cMtx_XrotM(*calc_mtx, 
+                    (*(s16*)(userArea + 0xc8c) >> 2));
+            } else if (jntNo == 4) {
+                cMtx_XrotM(*calc_mtx, 
+                    *(s16*)((userArea + 0xc8c)) * 0.75f);
+                cMtx_ZrotM(*calc_mtx, (userArea + 0xc8e));
+            } else if (jntNo == 28) {
+                cMtx_XrotM(*calc_mtx, *(s16*)(userArea + 0x1fca));
+            } else if (jntNo == 17) {
+                cMtx_YrotM(*calc_mtx, *(s16*)(userArea + 0x1fcc));
+            } else if (jntNo == 37) {
+                cMtx_XrotM(*calc_mtx, *(s16*)(userArea + 0x26c0));
+            } else if (jntNo == 41) {
+                cMtx_XrotM(*calc_mtx, -*(s16*)(userArea + 0x26c0));
+            }
+
+            model->setAnmMtx(jntNo, *calc_mtx);
+            MTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
         }
     }
-
     return 1;
 }
 
 /* 805F4DCC-805F4F38 00046C 016C+00 1/1 0/0 0/0 .text            h_nodeCallBack__FP8J3DJointi */
-static void h_nodeCallBack(J3DJoint* param_1, int param_2) {
-     // NONMATCHING
-    J3DModel* model = j3dSys.getModel();
+static int h_nodeCallBack(J3DJoint* i_joint, int param_2) {
     if (param_2 == 0) {
-        u16 uVar3 = param_1->getJntNo();
-        switch (uVar3) {
-            case 4:
-            case 5:
-                mDoMtx_ZrotM(*calc_mtx, 0); // Temporary 0
-                break;
-            case 8:
-            case 9:
-                mDoMtx_YrotM(*calc_mtx, 0); // Temporary 0
-                break;
-            case 28:
-            case 29:
-                mDoMtx_YrotM(*calc_mtx, 0); // Temporary 0
-                break;
+        int jntNo = i_joint->getJntNo();
+        J3DModel* model = j3dSys.getModel();
+        u32 userArea = model->getUserArea();
+
+        if (userArea) {
+            MTXCopy(model->getAnmMtx(jntNo), *calc_mtx);
+            
+            if (jntNo == 4 || jntNo == 5) {
+                cMtx_ZrotM(*calc_mtx, -*(s16*)(userArea + 0xc5c) * 2);
+            } else if (jntNo == 8 || jntNo == 9) {
+                cMtx_YrotM(*calc_mtx, -*(s16*)(userArea + 0xc5c) * 2);
+            } else if (jntNo == 28 || jntNo == 29) {
+                cMtx_YrotM(*calc_mtx, *(s16*)(userArea + 0xc5c) << 1);
+            } else if (jntNo == 32 || jntNo == 33) {
+                cMtx_YrotM(*calc_mtx, *(s16*)(userArea + 0xc5c) << 1);
+            }
+
+            model->setAnmMtx(jntNo, *calc_mtx);
+            MTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
         }
     }
-    return;
+    return 1;
 }
 
 /* ############################################################################################## */
@@ -1674,7 +1696,7 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
             if (i_this->mAnmID != 73) {
                 anm_init(i_this, 73, 5.0f, 2, 1.0f);
                 h_anm_init(i_this, 9, 5.0f, 2, 1.0f);
-                i_this->field_0x0760 = 1.0f;
+                i_this->playSpeed = 1.0f;
             }
 
             i_this->field_0x05bc = 2;
@@ -1940,11 +1962,11 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
     }
 
     if (i_this->mAnmID == 73) {
-        i_this->mpModelMorf->setPlaySpeed(i_this->field_0x0760);
-        i_this->mpHorseMorf->setPlaySpeed(i_this->field_0x0760);
+        i_this->mpModelMorf->setPlaySpeed(i_this->playSpeed);
+        i_this->mpHorseMorf->setPlaySpeed(i_this->playSpeed);
     }
 
-    cLib_addCalc2(&i_this->field_0x0760, fVar2, 1.0f, 0.1f);
+    cLib_addCalc2(&i_this->playSpeed, fVar2, 1.0f, 0.1f);
     if (bVar3) {
         local_b0.x = 0.0f;
         local_b0.y = 1000.0f;
@@ -2085,10 +2107,191 @@ COMPILER_STRIP_GATE(0x80602748, &lit_5105);
 #pragma pop
 
 /* 805F6FA4-805F74F4 002644 0550+00 1/1 0/0 0/0 .text            b_gnd_h_run_p__FP11b_gnd_class */
-static void b_gnd_h_run_p(b_gnd_class* param_0) {
+static void b_gnd_h_run_p(b_gnd_class* i_this) {
     // NONMATCHING
-}
+    fopAc_ac_c* fopPlayer = dComIfGp_getPlayer(0);
+    f32 fVar2;
+    BOOL bVar5;
+    cXyz local_78;
+    cXyz local_6c;
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    f32 fVar13 = i_this->field_0x0c38;
+    f32 fVar12 = 2.5f;
+    f32 fVar11;
+    f32 fVar10;
+    BOOL bVar6 = FALSE;
 
+    if (player->checkHorseRide() && dComIfGp_getHorseActor()->speedF >= 30.0f) {
+        bVar6 = TRUE;
+    }
+
+    s16 sVar8 = i_this->current.angle.y;
+    fVar11 = 1.0f;
+    BOOL bVar4 = FALSE;
+    s16 sVar7 = i_this->field_0x0c3c - i_this->shape_angle.y;
+
+    if (sVar7 < 0x4000 && -0x4000 < sVar7) {
+        bVar4 = TRUE;
+    }
+
+    if (bVar6) {
+        fVar10 = 0.0f;
+    } else {
+        fVar10 = 400.0f;
+    }
+
+    switch (i_this->field_0x05bc) {
+        case 0:
+        case 1:
+            if (i_this->mAnmID != 73) {
+                i_this->playSpeed = 1.0f;
+                anm_init(i_this, 73, 5.0f, 2, 1.0f);
+                h_anm_init(i_this, 9, 5.0f, 2, 1.0f);
+            }
+            break;
+        case 2:
+            bVar4 = TRUE;
+            if (fVar13 < fVar10 + 1700.0f) {
+                i_this->field_0x05bc = 3;
+            }
+            break;
+        case 3:
+            anm_init(i_this, 52, 3.0f, 0, 1.0f);
+            i_this->field_0x05bc = 4;
+            break;
+        case 4:
+            bVar4 = TRUE;
+            if (fVar10 + 550.0f <= fVar13) {
+                bVar5 = TRUE;
+                if (i_this->mpModelMorf->isStop()) {
+                    bVar5 = FALSE;
+                }
+
+                if (!bVar5) break;
+            }
+
+            anm_init(i_this, 55, 2.0f, 2, 1.0f);
+            i_this->field_0x05bc = 5;
+        case 5:
+            if (bVar4 && fVar13 < fVar10 + 550.0f) {
+                if (sVar7 < 0 || !bVar6) {
+                    anm_init(i_this, 54, 2.0f, 0, 1.0f);
+                } else {
+                    anm_init(i_this, 53, 2.0f, 0, 1.0f);
+                }
+
+                i_this->field_0x05bc = 6;
+            }
+            break;
+        case 6:
+            bVar4 = TRUE;
+            bVar5 = TRUE;
+            i_this->field_0x0c77 = 1;
+
+            if (i_this->mpModelMorf->isStop()) {
+                bVar5 = FALSE;
+            }
+
+            if (bVar5) {
+                bVar4 = FALSE;
+            }
+            break;
+        default:
+            break;
+    }
+
+    cMtx_YrotS(*calc_mtx, i_this->shape_angle.y);
+
+    if (bVar6) {
+        if (sVar7 < 0) {
+            local_6c.x = 200.0f;
+        } else {
+            local_6c.x = -200.0f;
+        }
+    } else {
+        local_6c.x = 0.0f;
+    }
+    local_6c.y = 0.0f;
+    local_6c.z = 0.0f;
+    MtxPosition(&local_78, &local_6c);
+
+    local_78 += player->current.pos;
+    local_78 -= i_this->current.pos;
+
+    i_this->field_0x05cc = (s16)cM_atan2s(local_78.x, local_78.z);
+
+    cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->field_0x05cc, 8, 
+        i_this->field_0x0c68);
+    cLib_addCalcAngleS2(&i_this->field_0x0c68, 0x400, 1, 64);
+
+    if (bVar6) {
+        fVar10 = l_HIO[20];
+        if (fVar13 <= 2000.0f) {
+            if (1000.0f < fVar13) {
+                fVar10 *= 6.0f / 5.0f;
+            }
+        } else {
+            fVar10 *= 7.0f / 5.0f;
+        }
+        fVar11 = i_this->speedF / 40.0f;
+
+        if (fVar11 < 1.0f) {
+            fVar11 = 1.0f;
+        }
+
+        if (13.0f / 10.0f < fVar11) {
+            fVar11 = 13.0f / 10.0f;
+        }
+    } else {
+        fVar12 = 3.0f;
+        fVar10 = l_HIO[12];
+    }
+
+    if ((!bVar4 && i_this->field_0x0c44[3] == 0) || i_this->field_0x0c76 != 0) {
+        i_this->mActionID = ACTION_HRUN_A;
+        
+        switch (i_this->field_0x0c76) {
+            case 2:
+                i_this->field_0x0c72 = 40;
+                i_this->field_0x0c74 = i_this->shape_angle.y + -0x4000;
+                break;
+            case 3:
+                i_this->field_0x0c72 = 40;
+                i_this->field_0x0c74 = i_this->shape_angle.y + 0x4000;
+                break;
+            default:
+                i_this->field_0x0c74 = i_this->shape_angle.y + -0x8000;
+        }
+
+        i_this->field_0x05bc = 0;
+        i_this->field_0x0c44[3] = 100;
+    }
+
+    i_this->field_0x0c6a = 1;
+    cLib_addCalc2(&i_this->speedF, fVar10, 1.0f, fVar12);
+
+    if (10.0f < fVar10) {
+        sVar8 = (i_this->current.angle.y - sVar8) * -8;
+
+        if (sVar8 < 0x7d1) {
+            if (sVar8 < -2000) {
+                sVar8 = -2000;
+            }
+        } else {
+            sVar8 = 2000;
+        }
+
+        cLib_addCalcAngleS2((s16*)&i_this->field_0x0c5c, sVar8, 4, 0x300);
+    }
+
+    i_this->mpHorseMorf->setPlaySpeed(i_this->playSpeed);
+
+    if (i_this->mAnmID == 73) {
+        i_this->mpModelMorf->setPlaySpeed(i_this->playSpeed);
+    }
+
+    cLib_addCalc2(&i_this->playSpeed, fVar11, 1.0f, 0.1f);
+}
 // /* ############################################################################################## */
 // /* 8060274C-80602750 0000E8 0004+00 0/4 0/0 0/0 .rodata          @5137 */
 // #pragma push
@@ -2133,7 +2336,7 @@ static void b_gnd_h_jump(b_gnd_class* i_this) {
             if (i_this->mpModelMorf->isStop()) {
                 i_this->mActionID = i_this->field_0x0b00;
                 i_this->field_0x05bc = 0;
-                i_this->field_0x0760 = 1.5f;
+                i_this->playSpeed = 1.5f;
                 anm_init(i_this, 73, 2.0f, 2, 1.5f);
                 h_anm_init(i_this, 9, 2.0f, 2, 1.5f);
             }
@@ -5445,8 +5648,455 @@ COMPILER_STRIP_GATE(0x80602950, &lit_7757);
 #pragma pop
 
 /* 805FDAE0-805FEC58 009180 1178+00 1/1 0/0 0/0 .text            anm_se_set__FP11b_gnd_class */
-static void anm_se_set(b_gnd_class* param_0) {
+static void anm_se_set(b_gnd_class* i_this) {
     // NONMATCHING
+    if (i_this->mAnmID == 74 && i_this->mpModelMorf->checkFrame(15.0f) ||
+        i_this->mAnmID == 72 && i_this->mpModelMorf->checkFrame(86.0f)) {
+            i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_SPUR, -1);
+    } else if (i_this->mAnmID == 59 && i_this->mpModelMorf->checkFrame(1.0f)) {
+        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_BRAKE, -1);
+    } else if (i_this->mAnmID == 52 && i_this->mpModelMorf->checkFrame(1.0f)) {
+        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_ATTACK01A, -1);
+    } else if (i_this->mAnmID == 53 || i_this->mAnmID == 54 && 
+                i_this->mpModelMorf->checkFrame(1.0f)) {
+        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_ATTACK01B, -1);
+    } else if (i_this->mAnmID == 56 && i_this->mpModelMorf->checkFrame(21.0f)) {
+        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_ATTACK02A, -1);
+    } else if (i_this->mAnmID == 71 && i_this->mpModelMorf->checkFrame(1.0f)) {
+        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_JUMP_START, -1);
+    } else if (i_this->mAnmID == 62 || i_this->mAnmID == 63 && 
+                i_this->mpModelMorf->checkFrame(1.0f)) {
+        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_DAMAGE02, -1);
+    } else if (i_this->mAnmID == 72 && i_this->mpModelMorf->checkFrame(1.0f)) {
+        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_RETURN, -1);
+    } else if (i_this->mAnmID == 93 && i_this->mpModelMorf->checkFrame(1.0f) ||
+                i_this->mpModelMorf->checkFrame(26.0f)) {
+        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_FOOTNOTE, -1);
+    } else if (i_this->mAnmID == 32 && i_this->mpModelMorf->checkFrame(25.0f)) {
+        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_CHOUHATU, -1);
+    } else {
+        switch (i_this->mAnmID) {
+            case 19:
+                if (i_this->mpModelMorf->checkFrame(15.0f)) {
+                    i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_ATTACKA, -1);
+                } else {
+                    if (i_this->mpModelMorf->checkFrame(17.0f)) {
+                        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_ATTACKA, -1);
+                    } else {
+                        if (i_this->mpModelMorf->checkFrame(21.0f)) {
+                            i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_MANTEAU, -1);
+                        }
+                    }
+                }
+                break;
+            case 20:
+                if (i_this->mpModelMorf->checkFrame(14.0f)) {
+                    i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_ATTACKB, -1);
+                } else {
+                    if (i_this->mpModelMorf->checkFrame(21.0f)) {
+                        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_MANTEAU, -1);
+                    }
+                }
+                break;
+            case 21:
+                if (i_this->mpModelMorf->checkFrame(1.0f)) {
+                    i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_ATTACKC_A, -1);
+                } else {
+                    i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_ATTACKC_A, -1);
+                }
+                break;
+            case 22:
+                if (i_this->mpModelMorf->checkFrame(2.0f) || i_this->mpModelMorf->checkFrame(9.5f)) {
+                    i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_FOOTNOTE, -1);
+                }
+                break;
+            case 23:
+                if (i_this->mpModelMorf->checkFrame(1.0f) || i_this->mpModelMorf->checkFrame(5.0f) ||
+                    i_this->mpModelMorf->checkFrame(7.0f)) {
+                    i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_FOOTNOTE, -1);
+                } else {
+                    if (i_this->mpModelMorf->checkFrame(13.0f)) {
+                        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_ATTACKC_C, -1);
+                    } else {
+                        if (i_this->mpModelMorf->checkFrame(19.0f)) {
+                            i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_ATTACKC_C, -1);
+                        } else {
+                            if (i_this->mpModelMorf->checkFrame(21.0f)) {
+                                i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_MANTEAU, -1);
+                            }
+                        }
+                    }
+                }
+                break;
+            case 24:
+                if (i_this->mpModelMorf->checkFrame(3.0f)) {
+                    i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_ATTACKD, -1);
+                    i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_ATTACKD, -1);
+                }
+                break;
+            case 25:
+                if (i_this->mpModelMorf->checkFrame(1.0f)) {
+                    i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_ATTACKE_A, -1);
+                    i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_ATTACKE_A, -1);
+                }
+            default:
+                if (i_this->mAnmID == 26) {
+                    if (i_this->mpModelMorf->checkFrame(2.0f)) {
+                        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_FN_SLIDE, -1);
+                    } else {
+                        if (i_this->mpModelMorf->checkFrame(8.0f)) {
+                            i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_ATTACKE_B, -1);
+                            i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_ATTACKE_B, -1);
+                        } else {
+                            if (i_this->mpModelMorf->checkFrame(21.0f)) {
+                                i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_MANTEAU, -1);
+                            }
+                        }
+                    }
+                } else if (i_this->mAnmID == 29) {
+                    if (i_this->mpModelMorf->checkFrame(8.0f)) {
+                        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_FN_SLIDE, -1);
+                        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_ATTACKE_C2, -1);
+                        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_ATTACKE_C2, -1);
+                    } else {
+                        if (i_this->mpModelMorf->checkFrame(17.0f)) {
+                            i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_MANTEAU, -1);
+                        }
+                    }
+                } else if (i_this->mAnmID == 30) {
+                    if (i_this->mpModelMorf->checkFrame(11.0f)) {
+                        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_ATTACK_F, -1);
+                    } else {
+                        if (i_this->mpModelMorf->checkFrame(13.0f)) {
+                            i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_ATTACK_F, -1);
+                        } else {
+                            if (i_this->mpModelMorf->checkFrame(19.0f) || 
+                                i_this->mpModelMorf->checkFrame(28.0f)) {
+                                i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_FN_SLIDE, -1);
+                            } else {
+                                if (i_this->mpModelMorf->checkFrame(31.0f)) {
+                                    i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_MANTEAU, -1);
+                                }
+                            }
+                        }
+                    }
+                } else if (i_this->mAnmID == 31) {
+                    if (i_this->mpModelMorf->checkFrame(17.0f)) {
+                        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_ATTACK_G1, -1);
+                        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_ATTACK_G1, -1);
+                    } else {
+                        if (i_this->mpModelMorf->checkFrame(32.0f)) {
+                            i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_ATTACK_G2, -1);
+                            i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_ATTACK_G2, -1);
+                        } else {
+                            if (i_this->mpModelMorf->checkFrame(26.0f)) {
+                                i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_MANTEAU, -1);
+                            }
+                        }
+                    }
+                } else if (i_this->mAnmID == 40) {
+                    if (i_this->mpModelMorf->checkFrame(1.0f)) {
+                        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_DAMAGE_DOWN, -1);
+                    }
+                } else if (i_this->mAnmID == 41) {
+                    if (i_this->mpModelMorf->checkFrame(1.0f)) {
+                        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_DOWNB, -1);
+                    } else {
+                        if (i_this->mpModelMorf->checkFrame(17.0f)) {
+                            i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_LAND, -1);
+                        } else {
+                            if (i_this->mpModelMorf->checkFrame(55.0f)) {
+                                i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_MANTEAU, -1);
+                            }
+                        }
+                    }
+                } else if (i_this->mAnmID == 42) {
+                    if (i_this->mpModelMorf->checkFrame(12.0f)) {
+                        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_DOWNUP, -1);
+                    } else {
+                        if (i_this->mpModelMorf->checkFrame(27.0f)) {
+                            i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_LAND, -1);
+                        }
+                    }
+                } else if (i_this->mAnmID == 43) {
+                    if (i_this->mpModelMorf->checkFrame(1.0f)) {
+                        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_DOWNWAIT, -1);
+                    }
+                } else if (i_this->mAnmID == 44) {
+                    if (i_this->mpModelMorf->checkFrame(8.0f)) {
+                        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_JUMP, -1);
+                        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_JUMP, -1);
+                    }
+                } else if (i_this->mAnmID == 78 || i_this->mAnmID == 80) {
+                    if (i_this->mpModelMorf->checkFrame(3.0f)) {
+                        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_JUMP, -1);
+                        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_JUMP, -1);
+                    }
+                } else if (i_this->mAnmID == 88) {
+                    if (i_this->mpModelMorf->checkFrame(12.0f)) {
+                        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_TUBAZERI_LOSE, -1);
+                        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_TUBAZERI_PUSH, -1);
+                    } else {
+                        if (i_this->mpModelMorf->checkFrame(18.0f) ||
+                            i_this->mpModelMorf->checkFrame(24.0f) ||
+                            i_this->mpModelMorf->checkFrame(31.0f) ||
+                            i_this->mpModelMorf->checkFrame(55.0f)) {
+                            i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_FOOTNOTE, -1);  
+                        }
+                    }
+                } else if (i_this->mAnmID == 89) {
+                    if (i_this->mpModelMorf->checkFrame(14.0f)) {
+                        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_TUBAZERI_WIN, -1);
+                        i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_TUBAZERI_PUSH, -1);
+                    }
+                }
+                // switch (i_this->mAnmID) {
+                //     case 26:
+                // if (i_this->mpModelMorf->checkFrame(2.0f)) {
+                //     i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_FN_SLIDE, -1);
+                // } else {
+                //     if (i_this->mpModelMorf->checkFrame(8.0f)) {
+                //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_ATTACKE_B, -1);
+                //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_ATTACKE_B, -1);
+                //     } else {
+                //         if (i_this->mpModelMorf->checkFrame(21.0f)) {
+                //             i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_MANTEAU, -1);
+                //         }
+                //     }
+                // }
+            //     // break;
+            // case 29:
+            //     if (i_this->mpModelMorf->checkFrame(8.0f)) {
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_FN_SLIDE, -1);
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_ATTACKE_C2, -1);
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_ATTACKE_C2, -1);
+            //     } else {
+            //         if (i_this->mpModelMorf->checkFrame(17.0f)) {
+            //             i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_MANTEAU, -1);
+            //         }
+            //     }
+            //     break;
+            // case 30:
+            //     if (i_this->mpModelMorf->checkFrame(11.0f)) {
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_ATTACK_F, -1);
+            //     } else {
+            //         if (i_this->mpModelMorf->checkFrame(13.0f)) {
+            //             i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_ATTACK_F, -1);
+            //         } else {
+            //             if (i_this->mpModelMorf->checkFrame(19.0f) || 
+            //                 i_this->mpModelMorf->checkFrame(28.0f)) {
+            //                 i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_FN_SLIDE, -1);
+            //             } else {
+            //                 if (i_this->mpModelMorf->checkFrame(31.0f)) {
+            //                     i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_MANTEAU, -1);
+            //                 }
+            //             }
+            //         }
+            //     }
+            //     break;
+            // case 31:
+            //     if (i_this->mpModelMorf->checkFrame(17.0f)) {
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_ATTACK_G1, -1);
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_ATTACK_G1, -1);
+            //     } else {
+            //         if (i_this->mpModelMorf->checkFrame(32.0f)) {
+            //             i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_ATTACK_G2, -1);
+            //             i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_ATTACK_G2, -1);
+            //         } else {
+            //             if (i_this->mpModelMorf->checkFrame(26.0f)) {
+            //                 i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_MANTEAU, -1);
+            //             }
+            //         }
+            //     }
+            //     break;
+            // case 40:
+            //     if (i_this->mpModelMorf->checkFrame(1.0f)) {
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_DAMAGE_DOWN, -1);
+            //     }
+            //     break;
+            // case 41:
+            //     if (i_this->mpModelMorf->checkFrame(1.0f)) {
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_DOWNB, -1);
+            //     } else {
+            //         if (i_this->mpModelMorf->checkFrame(17.0f)) {
+            //             i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_LAND, -1);
+            //         } else {
+            //             if (i_this->mpModelMorf->checkFrame(55.0f)) {
+            //                 i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_MANTEAU, -1);
+            //             }
+            //         }
+            //     }
+            //     break;
+            // case 42:
+            //     if (i_this->mpModelMorf->checkFrame(12.0f)) {
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_DOWNUP, -1);
+            //     } else {
+            //         if (i_this->mpModelMorf->checkFrame(27.0f)) {
+            //             i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_LAND, -1);
+            //         }
+            //     }
+            //     break;
+            // case 43:
+            //     if (i_this->mpModelMorf->checkFrame(1.0f)) {
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_DOWNWAIT, -1);
+            //     }
+            //     break;
+            // case 44:
+            //     if (i_this->mpModelMorf->checkFrame(8.0f)) {
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_JUMP, -1);
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_JUMP, -1);
+            //     }
+            //     break;
+            // case 78:
+            // case 80:
+            //     if (i_this->mpModelMorf->checkFrame(3.0f)) {
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_JUMP, -1);
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_JUMP, -1);
+            //     }
+            //     break;
+            // case 88:
+            //     if (i_this->mpModelMorf->checkFrame(12.0f)) {
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_TUBAZERI_LOSE, -1);
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_TUBAZERI_PUSH, -1);
+            //     } else {
+            //         if (i_this->mpModelMorf->checkFrame(18.0f) ||
+            //             i_this->mpModelMorf->checkFrame(24.0f) ||
+            //             i_this->mpModelMorf->checkFrame(31.0f) ||
+            //             i_this->mpModelMorf->checkFrame(55.0f)) {
+            //             i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_FOOTNOTE, -1);  
+            //         }
+            //     }
+            //     break;
+            // case 89:
+            //     if (i_this->mpModelMorf->checkFrame(14.0f)) {
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_TUBAZERI_WIN, -1);
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_TUBAZERI_PUSH, -1);
+            //     }
+            //     }
+            //     break;
+            // case 26:
+            //     if (i_this->mpModelMorf->checkFrame(2.0f)) {
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_FN_SLIDE, -1);
+            //     } else {
+            //         if (i_this->mpModelMorf->checkFrame(8.0f)) {
+            //             i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_ATTACKE_B, -1);
+            //             i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_ATTACKE_B, -1);
+            //         } else {
+            //             if (i_this->mpModelMorf->checkFrame(21.0f)) {
+            //                 i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_MANTEAU, -1);
+            //             }
+            //         }
+            //     }
+            //     break;
+            // case 29:
+            //     if (i_this->mpModelMorf->checkFrame(8.0f)) {
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_FN_SLIDE, -1);
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_ATTACKE_C2, -1);
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_ATTACKE_C2, -1);
+            //     } else {
+            //         if (i_this->mpModelMorf->checkFrame(17.0f)) {
+            //             i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_MANTEAU, -1);
+            //         }
+            //     }
+            //     break;
+            // case 30:
+            //     if (i_this->mpModelMorf->checkFrame(11.0f)) {
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_ATTACK_F, -1);
+            //     } else {
+            //         if (i_this->mpModelMorf->checkFrame(13.0f)) {
+            //             i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_ATTACK_F, -1);
+            //         } else {
+            //             if (i_this->mpModelMorf->checkFrame(19.0f) || 
+            //                 i_this->mpModelMorf->checkFrame(28.0f)) {
+            //                 i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_FN_SLIDE, -1);
+            //             } else {
+            //                 if (i_this->mpModelMorf->checkFrame(31.0f)) {
+            //                     i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_MANTEAU, -1);
+            //                 }
+            //             }
+            //         }
+            //     }
+            //     break;
+            // case 31:
+            //     if (i_this->mpModelMorf->checkFrame(17.0f)) {
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_ATTACK_G1, -1);
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_ATTACK_G1, -1);
+            //     } else {
+            //         if (i_this->mpModelMorf->checkFrame(32.0f)) {
+            //             i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_ATTACK_G2, -1);
+            //             i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_ATTACK_G2, -1);
+            //         } else {
+            //             if (i_this->mpModelMorf->checkFrame(26.0f)) {
+            //                 i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_MANTEAU, -1);
+            //             }
+            //         }
+            //     }
+            //     break;
+            // case 40:
+            //     if (i_this->mpModelMorf->checkFrame(1.0f)) {
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_DAMAGE_DOWN, -1);
+            //     }
+            //     break;
+            // case 41:
+            //     if (i_this->mpModelMorf->checkFrame(1.0f)) {
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_DOWNB, -1);
+            //     } else {
+            //         if (i_this->mpModelMorf->checkFrame(17.0f)) {
+            //             i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_LAND, -1);
+            //         } else {
+            //             if (i_this->mpModelMorf->checkFrame(55.0f)) {
+            //                 i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_MANTEAU, -1);
+            //             }
+            //         }
+            //     }
+            //     break;
+            // case 42:
+            //     if (i_this->mpModelMorf->checkFrame(12.0f)) {
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_DOWNUP, -1);
+            //     } else {
+            //         if (i_this->mpModelMorf->checkFrame(27.0f)) {
+            //             i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_LAND, -1);
+            //         }
+            //     }
+            //     break;
+            // case 43:
+            //     if (i_this->mpModelMorf->checkFrame(1.0f)) {
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_DOWNWAIT, -1);
+            //     }
+            //     break;
+            // case 44:
+            //     if (i_this->mpModelMorf->checkFrame(8.0f)) {
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_JUMP, -1);
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_JUMP, -1);
+            //     }
+            //     break;
+            // case 78:
+            // case 80:
+            //     if (i_this->mpModelMorf->checkFrame(3.0f)) {
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_JUMP, -1);
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_JUMP, -1);
+            //     }
+            //     break;
+            // case 88:
+            //     if (i_this->mpModelMorf->checkFrame(12.0f)) {
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_TUBAZERI_LOSE, -1);
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_TUBAZERI_PUSH, -1);
+            //     } else {
+            //         if (i_this->mpModelMorf->checkFrame(18.0f) ||
+            //             i_this->mpModelMorf->checkFrame(24.0f) ||
+            //             i_this->mpModelMorf->checkFrame(31.0f) ||
+            //             i_this->mpModelMorf->checkFrame(55.0f)) {
+            //             i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_FOOTNOTE, -1);  
+            //         }
+            //     }
+            //     break;
+            // case 89:
+            //     if (i_this->mpModelMorf->checkFrame(14.0f)) {
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_TUBAZERI_WIN, -1);
+            //         i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_TUBAZERI_PUSH, -1);
+            //     }
+        }
+    }
 }
 
 /* ############################################################################################## */
