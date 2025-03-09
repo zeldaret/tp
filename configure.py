@@ -1636,7 +1636,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_e_hz"),
     ActorRel(NonMatching, "d_a_e_hzelda"),
     ActorRel(NonMatching, "d_a_e_is"),
-    ActorRel(NonMatching, "d_a_e_kg"),
+    ActorRel(Equivalent, "d_a_e_kg"),
     ActorRel(NonMatching, "d_a_e_kk"),
     ActorRel(NonMatching, "d_a_e_kr"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_mb"),
