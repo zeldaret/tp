@@ -438,7 +438,7 @@ static void damage_check(e_fs_class* i_this) {
             } else {
                 i_this->mIFrameTimer = 10;
             }
-            i_this->current.angle.y = i_this->mAtInfo.mHitDirection;
+            i_this->current.angle.y = i_this->mAtInfo.mHitDirection.y;
 
             if (i_this->health <= 0) {
                 i_this->mAction = e_fs_class::ACT_END;

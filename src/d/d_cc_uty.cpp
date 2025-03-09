@@ -390,23 +390,23 @@ fopAc_ac_c* cc_at_check(fopAc_ac_c* i_enemy, dCcU_AtInfo* i_AtInfo) {
         if (tmp.abs() > 100.0f) {
             f32 x = i_AtInfo->mpActor->speed.x;
             f32 z = i_AtInfo->mpActor->speed.z;
-            i_AtInfo->mHitDirection = cM_atan2s(-x, -z) + (s16)cM_rndFX(4000.0f);
+            i_AtInfo->mHitDirection.y = cM_atan2s(-x, -z) + (s16)cM_rndFX(4000.0f);
         } else {
             if (fopAcM_GetName(i_AtInfo->mpActor) == PROC_BOOMERANG) {
                 x_diff = i_enemy->current.pos.x - player_p->current.pos.x;
                 z_diff = i_enemy->current.pos.z - player_p->current.pos.z;
-                i_AtInfo->mHitDirection = cM_atan2s(-x_diff, -z_diff) + (s16)cM_rndFX(10000.0f);
+                i_AtInfo->mHitDirection.y = cM_atan2s(-x_diff, -z_diff) + (s16)cM_rndFX(10000.0f);
             } else {
                 x_diff = i_enemy->current.pos.x - i_AtInfo->mpActor->current.pos.x;
                 z_diff = i_enemy->current.pos.z - i_AtInfo->mpActor->current.pos.z;
-                i_AtInfo->mHitDirection = cM_atan2s(-x_diff, -z_diff);
+                i_AtInfo->mHitDirection.y = cM_atan2s(-x_diff, -z_diff);
             }
         }
 
         if (i_AtInfo->mHitType == HIT_TYPE_LINK_NORMAL_ATTACK &&
             player_p->getCutType() == daPy_py_c::CUT_TYPE_HEAD_JUMP)
         {
-            i_AtInfo->mHitDirection = player_p->shape_angle.y;
+            i_AtInfo->mHitDirection.y = player_p->shape_angle.y;
         }
 
         if (i_AtInfo->mpCollider->ChkAtType(AT_TYPE_HOOKSHOT) &&

@@ -964,7 +964,7 @@ void daE_YM_c::executeDown() {
             field_0x668.set(0, 0, 0);
             speedF = cM_rndF(5.0f) + 15.0f;
             speed.y = cM_rndF(5.0f) + 40.0f;
-            shape_angle.y = mAtInfo.mHitDirection + 0x8000;
+            shape_angle.y = mAtInfo.mHitDirection.y + 0x8000;
             shape_angle.x = 0;
             mAcch.ClrGroundHit();
             mAcchCir.SetWall(40.0f, 60.0f);

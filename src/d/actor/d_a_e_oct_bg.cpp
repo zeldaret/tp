@@ -740,7 +740,7 @@ void daE_OctBg_c::damage() {
         field_0x8c0.OffTgSetBit();
         field_0x9f8.OffAtSetBit();
         attention_info.flags = 0;
-        current.angle.y = field_0xb30.mHitDirection + 0x8000;
+        current.angle.y = field_0xb30.mHitDirection.y + 0x8000;
         speedF = 10.0f;
         field_0xb96 = 0x1000;
         speed.y = 0.0f;
