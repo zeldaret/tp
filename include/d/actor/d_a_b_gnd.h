@@ -210,6 +210,14 @@ class daB_GND_HIO_c {
 public:
     /* 805F4A4C */ daB_GND_HIO_c();
     /* 80602230 */ ~daB_GND_HIO_c();
+
+    /* 0x00 */ f32 field_0x0;
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 model_size;
+    /* 0x0C */ f32 field_0xc;
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 field_0x18;
 };
 
 #endif /* D_A_B_GND_H */
