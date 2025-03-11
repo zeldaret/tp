@@ -103,7 +103,7 @@ public:
     /* 0x0C8E */ s16 field_0x0c8e;
     /* 0x0C90 */ s16 field_0x0c90;
     /* 0x0C92 */ s16 field_0x0c92;
-    /* 0x0C94 */ dBgS_AcchCir field_0x0c94;
+    /* 0x0C94 */ dBgS_AcchCir wall;
     /* 0x0CD4 */ dBgS_ObjAcch field_0x0cd4;
     /* 0x0EAC */ s16 field_0x0eac;
     /* 0x0EAE */ u8 field_0x0EAE[0x0EB0 - 0x0EAE];
@@ -112,8 +112,8 @@ public:
     /* 0x0EC0 */ csXyz field_0x0ec0;
     /* 0x0EC6 */ u8 field_0x0EC6[0x0EC8 - 0x0EC6];
     /* 0x0EC8 */ dCcD_Stts field_0x0ec8;
-    /* 0x0F04 */ dCcD_Sph field_0x0f04[2];
-    /* 0x1174 */ dCcD_Sph field_0x1174[4];
+    /* 0x0F04 */ dCcD_Sph horseSpheres1[2];
+    /* 0x1174 */ dCcD_Sph horseSpheres2[4];
     /* 0x1654 */ dCcD_Stts field_0x1654;
     /* 0x1690 */ dCcD_Sph field_0x1690[3];
     /* 0x1A38 */ dCcD_Sph field_0x1a38;
