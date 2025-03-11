@@ -5319,6 +5319,8 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
     cXyz local_134;
     cXyz local_140;
     cXyz local_14c;
+    cXyz cStack_188;
+    f32 fVar1;
     f32 fVar24;
     u32 uVar7;
     daPy_py_c* player = daPy_getPlayerActorClass();
@@ -5347,15 +5349,15 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
             i_this->health = 100;
             i_this->field_0x1e0a = 0;
 
-            Z2AudioMgr().bgmStart(Z2BGM_VS_GANON_04, 0, 0);
+            Z2AudioMgr().mAudioMgrPtr->bgmStart(Z2BGM_VS_GANON_04, 0, 0);
             dComIfGs_onOneZoneSwitch(15, -1);
         }
 
         if (!dComIfGp_event_runCheck()) {
             daPy_py_c* midnaActor = (daPy_py_c *)daPy_py_c::getMidnaActor();
             daPy_py_c* linkActor = daPy_getLinkPlayerActorClass();
-            fopAcM_getTalkEventPartner(linkActor);
-            if (linkActor == midnaActor) {
+            // fopAcM_getTalkEventPartner(linkActor);
+            if (fopAcM_getTalkEventPartner(linkActor) == midnaActor) {
                 return 1;
             }
         }
@@ -5363,7 +5365,7 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
 
         for (int i = 0; i < 10; i++) {
             if (i_this->field_0x0c44[i] != 0) {
-                i_this->field_0x0c44[i]++;
+                i_this->field_0x0c44[i]--;
             }
         }
 
@@ -5382,9 +5384,7 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
         action(i_this);
         demo_camera(i_this);
 
-        if (i_this->field_0x1fc4 == 0) {
-            damage_check(i_this);
-        } else {
+        if (i_this->field_0x1fc4 != 0) {
             h_damage_check(i_this);
             i_this->field_0x0c76 = gake_check(i_this);
 
@@ -5393,6 +5393,9 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
 
                 cMtx_YrotS(*calc_mtx, i_this->shape_angle.y);
                 local_110 = cXyz(0.0f, 200.0f, 200.0f);
+                // local_110.x = 0.0f;
+                // local_110.y = 200.0f;
+                // local_110.z = 200.0f;
                 MtxPosition(&local_110, &local_11c);
                 local_11c += i_this->current.pos;
 
@@ -5400,12 +5403,12 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
                 MtxPosition(&local_110, &local_134);
                 local_134 += i_this->current.pos;
 
-                local_128 = local_11c;
+                // local_128 = local_11c;
 
                 GndChk.SetPos(&local_128);
                 local_11c.y = dComIfG_Bgsp().GroundCross(&GndChk);
 
-                local_128 = local_134;
+                // local_128 = local_134;
 
                 GndChk.SetPos(&local_128);
                 local_134.y = dComIfG_Bgsp().GroundCross(&GndChk);
@@ -5415,9 +5418,11 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
                 }
 
                 i_this->speed.y = -20.0f;
-                // ::dBgS_GndChk::~dBgS_GndChk(&GndChk); - ???
+        } else {
+            damage_check(i_this);
             }
         }
+        
 
         cLib_addCalcAngleS2(&i_this->shape_angle.x, i_this->current.angle.x, 2, 0x1000);
         cLib_addCalcAngleS2(&i_this->shape_angle.z, i_this->current.angle.z, 2, 0x1000);
@@ -5446,8 +5451,6 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
         }
 
         if (i_this->field_0x1fc4 == 0) {
-            i_this->field_0x0cd4.CrrPos(dComIfG_Bgsp());
-        } else {
             cMtx_YrotS(*calc_mtx, i_this->shape_angle.y);
             local_110.set(0.0f, 0.0f, 150.0f);
             MtxPosition(&local_110, &local_11c);
@@ -5460,6 +5463,8 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
 
             i_this->field_0x0eb4 = i_this->current.pos;
             i_this->field_0x0ec0 = i_this->shape_angle;
+        } else {
+            i_this->field_0x0cd4.CrrPos(dComIfG_Bgsp());
         }
 
         if (i_this->field_0x1fc4 != 0) {
@@ -5467,7 +5472,7 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
                 i_this->field_0x0eb4.z);
             cMtx_YrotM(mDoMtx_stack_c::now, (int)i_this->field_0x0ec0.y);
             cMtx_XrotM(mDoMtx_stack_c::now, i_this->field_0x0ec0.x);
-            cMtx_ZrotM(mDoMtx_stack_c::now, (int)(s16)i_this->field_0x0ec0.z + *(s16*)i_this->field_0x0c5c);
+            cMtx_ZrotM(mDoMtx_stack_c::now, (s16)i_this->field_0x0ec0.z + *(s16*)i_this->field_0x0c5c);
 
             cLib_addCalcAngleS2((s16*)&i_this->field_0x0c5c, 0, 8, 0x100);
             mDoMtx_stack_c::scaleM(l_HIO.model_size * i_this->scale.x, 
@@ -5491,10 +5496,10 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
                 }
             }
 
-            i_this->mpHorseMorf->play(uVar7, dComIfGp_getReverb(fopAcM_GetRoomNo((fopAc_ac_c*)i_this)));
+            i_this->mpHorseMorf->play(uVar7, dComIfGp_getReverb((int)fopAcM_GetRoomNo((fopAc_ac_c*)i_this)));
             i_this->mpHorseMorf->modelCalc();
 
-            C_MTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(2), *calc_mtx);
+            PSMTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(2), *calc_mtx);
             
             local_110.set(70.0f, 60.0f, 0.0f);
             MtxPosition(&local_110, &local_11c);
@@ -5502,7 +5507,7 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
             i_this->field_0x0f04[0].SetC(local_11c);
             i_this->field_0x0f04[0].SetR(100.0f);
 
-            C_MTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(26), *calc_mtx);
+            PSMTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(26), *calc_mtx);
 
             local_110.set(10.0f, -30.0f, 0.0f);
             MtxPosition(&local_110, &i_this->field_0x1fb8);
@@ -5525,26 +5530,26 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
             dComIfG_Ccsp()->Set(i_this->field_0x0f04 + 1);
 
             for (int i = 0; i < 4; i++) {
-                C_MTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(footJ[i + 4]), *calc_mtx);
+                PSMTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(footJ[i]), *calc_mtx);
                 local_110.set(0.0f, 0.0f, 0.0f);
                 MtxPosition(&local_110, &local_11c);
 
-                i_this->field_0x1174[i + 0x138].SetC(local_11c);
-                i_this->field_0x1174[i + 0x138].SetR(40.0f);
+                i_this->field_0x1174[i].SetC(local_11c);
+                i_this->field_0x1174[i].SetR(40.0f);
 
                 if ((i_this->field_0x1e08 != 0 || i > 1) || i_this->speedF <= 10.0f) {
-                    i_this->field_0x1174[i + 0x138].OffAtSetBit();
+                    i_this->field_0x1174[i].OffAtSetBit();
                 } else {
-                    i_this->field_0x1174[i + 0x138].OnAtSetBit();
+                    i_this->field_0x1174[i].OnAtSetBit();
                 }
 
                 if (i_this->field_0x1e08 == 0) {
-                    i_this->field_0x1174[i + 0x138].OnTgSetBit();
+                    i_this->field_0x1174[i].OnTgSetBit();
                 } else {
-                    i_this->field_0x1174[i + 0x138].OffTgSetBit();
+                    i_this->field_0x1174[i].OffTgSetBit();
                 }
 
-                dComIfG_Ccsp()->Set(&i_this->field_0x1174[i + 0x138]);
+                dComIfG_Ccsp()->Set(&i_this->field_0x1174[i]);
             }
         }
 
@@ -5554,18 +5559,18 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
             cMtx_XrotM(*calc_mtx, (int)i_this->shape_angle.x);
             cMtx_ZrotM(*calc_mtx, (int)i_this->shape_angle.z);
         } else {
-            C_MTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(21), *calc_mtx);
+            PSMTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(21), *calc_mtx);
             cMtx_ZrotM(*calc_mtx, 0xffffc000);
             MtxTrans(0.0f, 55.0f, -30.0f, 1);
         }
 
-        C_MTXCopy(i_this->mpModelMorf->getModel()->getBaseTRMtx(), *calc_mtx);
-        i_this->mpHorseMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::now);
+        // C_MTXCopy(i_this->mpModelMorf->getModel()->getBaseTRMtx(), *calc_mtx);
+        i_this->mpHorseMorf->getModel()->setBaseTRMtx(*calc_mtx);
         i_this->mpHorseMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo((fopAc_ac_c*)i_this)));
 
         if (i_this->mAnmID == 37 || i_this->mAnmID == 38) {
             cLib_addCalcAngleS2(&i_this->field_0x1fcc, 
-                cM_ssin(*(s16*)i_this->field_0x0afc * 4000), 1, 500);
+                cM_ssin(i_this->field_0x0afc * 4000), 1, 500);
 
             if (i_this->field_0x1fc8 != 0) {
                 i_this->field_0x1fc8--;
@@ -5590,10 +5595,8 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
 
         if (i_this->field_0x0771 == 0) {
             if (i_this->field_0x0772 == 0) {
-                C_MTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(24), *calc_mtx);
-            } else {
                 i_this->field_0x0772++;
-                C_MTXCopy(i_this->field_0x076c->getBaseTRMtx(), *calc_mtx);
+                PSMTXCopy(i_this->field_0x076c->getBaseTRMtx(), *calc_mtx);
                 MtxTrans(10.0f, 0.0f, -5.0f, 1);
                 cMtx_YrotM(*calc_mtx, 800);
                 cMtx_XrotM(*calc_mtx, 0);
@@ -5602,20 +5605,22 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
                 if (i_this->field_0x0772 > 20) {
                     i_this->field_0x0771 = 1;
                 }
+            } else {
+                PSMTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(24), *calc_mtx);
             }
 
-            C_MTXCopy(i_this->field_0x076c->getBaseTRMtx(), *calc_mtx);
+            PSMTXCopy(i_this->field_0x076c->getBaseTRMtx(), *calc_mtx);
         }
 
         if (i_this->field_0x0770 == 1) {
             MtxTrans(81.81f, 2.54f, 2.9f, 1);
-            cMtx_YrotM(*calc_mtx, 0x2a30);
             cMtx_XrotM(*calc_mtx, 0x226);
+            cMtx_YrotM(*calc_mtx, 0x2a30);
             cMtx_ZrotM(*calc_mtx, 0x4e3e);
-            C_MTXCopy(i_this->mpModelMorf->getModel()->getBaseTRMtx(), *calc_mtx);
+            PSMTXCopy(i_this->mpModelMorf->getModel()->getBaseTRMtx(), *calc_mtx);
         } else {
-            C_MTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(33), *calc_mtx);
-            C_MTXCopy(i_this->field_0x0768->getBaseTRMtx(), *calc_mtx);
+            PSMTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(33), *calc_mtx);
+            PSMTXCopy(i_this->field_0x0768->getBaseTRMtx(), *calc_mtx);
         }
 
         if (i_this->field_0x0c24 < 80) {
@@ -5635,8 +5640,8 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
             cMtx_XrotM(*calc_mtx, 0x32dd);
             cMtx_ZrotM(*calc_mtx, (int)(s16)i_this->field_0x0c28 + 0x4ecf);
             MtxTrans(0.0f, 0.0f, -130.0f, 1);
-            C_MTXCopy(i_this->field_0x0c2c[i_this->field_0x0c26]->getBaseTRMtx(), *calc_mtx);
-            C_MTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(33), *calc_mtx);
+            PSMTXCopy(*calc_mtx, i_this->field_0x0c2c[i_this->field_0x0c26]->getBaseTRMtx());
+            PSMTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(33), *calc_mtx);
             i_this->field_0x0c28 = 0;
         }
 
@@ -5647,24 +5652,24 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
             MtxPosition(&local_110, &local_11c);
             i_this->field_0x269c = local_11c;
             if (i_this->field_0x1fc4 == 0) {
-                i_this->field_0x1a38.SetR(100.0f);
-                i_this->field_0x1a38.SetAtSpl((dCcG_At_Spl)10);
-            } else {
                 i_this->field_0x1a38.SetR(120.0f);
                 if (!player->checkHorseRide()) {
                     i_this->field_0x1a38.SetAtSpl((dCcG_At_Spl)0);
                 } else {
                     i_this->field_0x1a38.SetAtSpl((dCcG_At_Spl)13);
                 }
+            } else {
+                i_this->field_0x1a38.SetR(100.0f);
+                i_this->field_0x1a38.SetAtSpl((dCcG_At_Spl)10);
             }
         } else if (i_this->field_0x0c78 == 1) {
-            C_MTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(41), *calc_mtx);
+            PSMTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(41), *calc_mtx);
             local_110.set(0.0f, 0.0f, 0.0f);
             MtxPosition(&local_110, &local_11c);
             i_this->field_0x1a38.SetR(70.0f);
             i_this->field_0x1a38.SetAtSpl((dCcG_At_Spl)10);
         } else if (i_this->field_0x0c78 == 2) {
-            C_MTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(19), *calc_mtx);
+            PSMTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(19), *calc_mtx);
             local_110.set(0.0f, 0.0f, 0.0f);
             MtxPosition(&local_110, &local_11c);
             i_this->field_0x1a38.SetR(70.0f);
@@ -5697,13 +5702,18 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
         MtxPosition(&local_110, &local_11c);
         local_11c += i_this->current.pos;
 
-        if (i_this->field_0x0c79 == 0) {
-            local_11c.y -= 13000.0f;
-        } else {
+        if (i_this->field_0x0c79 != 0) {
+            // local_11c.y -= 13000.0f;
             i_this->field_0x1b70.SetR(50.0f);
             i_this->field_0x1b70.SetC(local_11c);
             dComIfG_Ccsp()->Set(&i_this->field_0x1b70);
             i_this->field_0x0c79 = 0;
+        } else {
+            // i_this->field_0x1b70.SetR(50.0f);
+            // i_this->field_0x1b70.SetC(local_11c);
+            // dComIfG_Ccsp()->Set(&i_this->field_0x1b70);
+            // i_this->field_0x0c79 = 0;
+            local_11c.y -= 13000.0f;
         }
 
         i_this->field_0x1b70.SetC(local_11c);
@@ -5714,12 +5724,12 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
             i_this->field_0x1fc8 = 7;
         }
 
-        C_MTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(4), *calc_mtx);
+        PSMTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(4), *calc_mtx);
         local_110.set(0.0f, 0.0f, 0.0f);
         MtxPosition(&local_110, &i_this->eyePos);
         i_this->attention_info.position = i_this->eyePos;
 
-        f32 fVar1 = 50.0f;
+        // f32 fVar1 = 50.0f;
 
         i_this->attention_info.position.y += 50.0f;
 
@@ -5728,15 +5738,17 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
         }
 
         if (i_this->field_0x0c58 == 0) {
-            local_140.set(0.0f, 0.0f, 0.0f);
-        } else {
             local_140.set(-20000.0f, 100000.0f, -13456.0f);
+            // local_140.set(0.0f, 0.0f, 0.0f);
+        } else {
+            // local_140.set(-20000.0f, 100000.0f, -13456.0f);
+            local_140.set(0.0f, 0.0f, 0.0f);
         }
 
         i_this->field_0x1690[0].SetC((i_this->eyePos + local_140));
         i_this->field_0x1690[0].SetR(40.0f);
 
-        C_MTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(2), *calc_mtx);
+        PSMTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(2), *calc_mtx);
         MtxPosition(&local_110, &local_11c);
 
         i_this->setDownPos(&local_11c);
@@ -5744,7 +5756,7 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
         i_this->field_0x1690[1].SetC((local_11c + local_140));
         i_this->field_0x1690[1].SetR(fVar1);
 
-        C_MTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(1), *calc_mtx);
+        PSMTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(1), *calc_mtx);
         local_110.set(0.0f, 0.0f, 0.0f);
         MtxPosition(&local_110, &local_11c);
 
@@ -5753,20 +5765,20 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
 
         for (int i = 0; i < 3; i++) {
             if (i_this->field_0x1fc4 == 0) {
-                i_this->field_0x1690[i * 0x138].SetTgType(0x12002);
+                i_this->field_0x1690[i].SetTgType(0x12002);
             } else if (i_this->field_0x1e08 == 0) {
-                i_this->field_0x1690[i * 0x138].SetTgType(0x2000);
+                i_this->field_0x1690[i].SetTgType(0x2000);
             } else {
-                i_this->field_0x1690[i * 0x138].SetTgType(2);
+                i_this->field_0x1690[i].SetTgType(2);
             }
 
-            dComIfG_Ccsp()->Set(&i_this->field_0x1690[i * 0x138]);
+            dComIfG_Ccsp()->Set(&i_this->field_0x1690[i]);
         }
 
-        C_MTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(37), mDoMtx_stack_c::now);
+        PSMTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(37), mDoMtx_stack_c::now);
         mDoMtx_stack_c::multVecZero(i_this->field_0x26a8);
 
-        C_MTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(42), mDoMtx_stack_c::now);
+        PSMTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(42), mDoMtx_stack_c::now);
         mDoMtx_stack_c::multVecZero(i_this->field_0x26a8 + 1);
 
         local_110.set(0.0f, 0.0f, 0.0f);
@@ -5780,26 +5792,26 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
 
         if (i_this->field_0x1e0f < 1) {
             if (i_this->field_0x1e0f < 0) {
-                JPABaseEmitter* emitter;
-                for (int i = 0; i < 6; i++) {
-                    emitter = dComIfGp_particle_getEmitter(i_this->field_0x25e4[i * 4 + 12]);
-                    if (emitter) {
-                        emitter->deleteAllParticle();
-                        dComIfGp_particle_levelEmitterOnEventMove(i_this->field_0x25e4[i * 4 + 12]);
-                    }
-                }
+                // JPABaseEmitter* emitter;
+                // for (int i = 0; i < 6; i++) {
+                //     emitter = dComIfGp_particle_getEmitter(i_this->field_0x25e4[i * 4 + 12]);
+                //     if (emitter) {
+                //         emitter->deleteAllParticle();
+                //         dComIfGp_particle_levelEmitterOnEventMove(i_this->field_0x25e4[i * 4 + 12]);
+                //     }
+                // }
 
-                for (int i = 0; i < 5; i++) {
-                    dComIfGp_particle_set(b_id[i * 2], &i_this->field_0x1e20, NULL, NULL);
-                }
+                // for (int i = 0; i < 5; i++) {
+                //     dComIfGp_particle_set(b_id[i * 2], &i_this->field_0x1e20, NULL, NULL);
+                // }
 
-                i_this->field_0x1e0f = 0;
+                // i_this->field_0x1e0f = 0;
             }
         } else {
             i_this->field_0x1e2c.startLevelSound(Z2SE_EN_GND_LIGHTBALL, 0, -1);
 
             if (i_this->field_0x1e0f == 1) {
-                C_MTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(24), *calc_mtx);
+                PSMTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(24), *calc_mtx);
                 local_110.set(0.0f, 0.0f, 0.0f);
                 MtxPosition(&local_110, &i_this->field_0x1e20);
                 cLib_addCalc2(&i_this->field_0x1e10, 1.0f, 1.0f, 0.02f);
@@ -5812,25 +5824,31 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
 
                 if (i_this->field_0x1e0e > 10) {
                     cLib_addCalcAngleS2(&i_this->field_0x1e50.y, 
-                        (s16)cM_atan2s(local_110.x, local_110.z), 4, 0x800);
+                        cM_atan2s(local_110.x, local_110.z), 4, 0x800);
                     cLib_addCalcAngleS2(&i_this->field_0x1e50.x, 
-                        -(s16)cM_atan2s(local_110.y, JMAFastSqrt(local_110.x * local_110.x + local_110.z * local_110.z)),
+                        (s16)-cM_atan2s(local_110.y, JMAFastSqrt(local_110.x * local_110.x + local_110.z * local_110.z)),
                         4, 0x800);
                 }
 
                 cLib_addCalc2(&i_this->field_0x1e4c, 100.0f, 1.0f, 2.0f);
                 cMtx_YrotS(*calc_mtx, i_this->field_0x1e50.y);
-                cMtx_XrotS(*calc_mtx, i_this->field_0x1e50.x);
-                local_110.set(0.0f, 0.0f, i_this->field_0x1e4c);
+                cMtx_XrotM(*calc_mtx, i_this->field_0x1e50.x);
+                local_110.x = 0.0f;
+                local_110.y = 0.0f;
+                local_110.z = i_this->field_0x1e4c;
                 MtxPosition(&local_110, &local_11c);
+
                 i_this->field_0x1e20 += local_11c;
                 i_this->field_0x1e20 += i_this->speed;
 
-                if (i_this->field_0x1e0e == 2) {
+                if (i_this->field_0x1e0e == 50) {
                     i_this->field_0x1e0f = -1;
                     i_this->field_0x1e2c.startSound(Z2SE_EN_GND_LIGHTBALL_SPLIT, 0, -1);
                     cMtx_YrotS(*calc_mtx, i_this->field_0x0c3c);
-                    local_110.set(cM_rndF(10.0f), -50.0f - local_110.y, cM_rndF(20.0f));
+                    local_110.x = cM_rndF(10.0f);
+                    local_110.y -= -50.0f;
+                    local_110.z = cM_rndF(20.0f);
+                    // local_110.set(cM_rndF(10.0f), -50.0f - local_110.y, cM_rndF(20.0f));
 
                     for (int i = 0; i < 5; i++) {
                         i_this->field_0x1e56[i] = 1;
@@ -5845,7 +5863,7 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
 
             for (int i = 0; i < 5; i++) {
                 i_this->field_0x25e4[i * 4 + 12] = dComIfGp_particle_set(i_this->field_0x25e4[i * 4 + 12],
-                    *(s16*)(int)b_id[i * 2], &i_this->field_0x1e20, NULL, NULL);
+                    *(s16*)(int)b_id[i + 2], &i_this->field_0x1e20, NULL, NULL);
             }
         }
 
@@ -5859,7 +5877,138 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
                 cXyz* pcVar18 = (cXyz*)((int)i_this->field_0x1e5c[i * 12].x);
                 i_this->field_0x1e98[i * 12].x = *(f32*)pcVar18;
                 // ::mtx::PSVECAdd((Vec *)pcVar18,(Vec *)((int)&i_this->field272_0x1ed4[0].x + iVar23), (Vec *)pcVar18); - ???
+
+                for (int j = 0; j < 6; j++) {
+                    i_this->field_0x25e4[j * 4 + 0x2608 + i * 24 - 0x25e4] = 
+                        dComIfGp_particle_set(((int)i_this->field_0x25e4[j * 4 + 0x2608 + i * 24 - 0x25e4]),
+                        b_id[j * 2], pcVar18, NULL, &local_14c);
+                }
+
+                if (ball_bg_check(i_this, uVar7)) {
+                    i_this->field_0x1e56[uVar7] = 2;
+
+                    for (int k = 0; k < 5; k++) {
+                        dComIfGp_particle_set(b_id2[k * 2], pcVar18, NULL, &local_14c);
+                    }
+
+                    local_110 = (player->current.pos - *(cXyz*)pcVar18);
+                    cStack_190.y = (s16)cM_atan2s(local_110.x, local_110.z);
+
+                    fopAcM_create(PROC_E_FK, uVar7, pcVar18, 
+                        i_this->current.roomNo, &cStack_190, NULL, -1);
+
+                        i_this->field_0x1f10[i * 32 - 13].startSound(Z2SE_EN_GND_LIGHTBALL_SUB_HIT, 0, -1);
+                }
+            } else if (i_this->field_0x1e56[uVar7] == 2) {
+                i_this->field_0x1e56[uVar7] = 0;
+                JPABaseEmitter* emitter;
+                for (int j = 0; j < 6; j++) {
+                    emitter = dComIfGp_particle_getEmitter(i_this->field_0x25e4[j * 4 + 0x2608 + (i * 24) - 0x25e4]);
+
+                    if (emitter) {
+                        emitter->deleteAllParticle();
+                        dComIfGp_particle_levelEmitterOnEventMove(i_this->field_0x25e4[j * 4 + 0x2608 + (i * 24) - 0x25e4]);
+                    }
+                }
             }
+        }
+
+        b_gnd_class* gndActor = (b_gnd_class*)fopAcM_SearchByID(i_this->mMantChild);
+
+        if (gndActor) {
+            gndActor->current.pos = i_this->current.pos;
+            PSMTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(34), *calc_mtx);
+            // local_110.set(10.0f, 5.0f, -17.0f);
+            // SComponent::MtxPosition(&local_110,(cXyz *)((int)pvVar11 + 0x3928)); - ???
+            PSMTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(25), *calc_mtx);
+            // local_110.set(10.0f, 5.0f, 17.0f);
+            // SComponent::MtxPosition(&local_110,(cXyz *)((int)pvVar11 + 0x3934)); - ???
+
+            for (int i = 0; i < 6; i++) {
+                for (int j = 0; j < 6; j++) {
+                    /*             other = (Vec *)((int)gndActor[7].mTevStr.mLights + iVar21 + iVar22 * 0x180 + -0x30);
+            ::mtx::PSMTXTrans(&::mDoMtx_stack_c::now,other->x,other->y,other->z);
+            ::cXyz::operator_-(&cStack_188,
+                               (cXyz *)((int)gndActor[7].mTevStr.mLights +
+                                       iVar20 * 0xc + iVar22 * 0x180 + -0x24),other);
+            ::cXyz::operator_=(&local_110,&cStack_188);
+            local_a8 = CONCAT44(0x43300000,iVar18 ^ 0x80000000); - ??? */
+                    fVar1 = (f32)(j * 0.25f);
+
+                    cMtx_YrotM(mDoMtx_stack_c::now, cM_atan2s(local_110.x, local_110.z));
+                    cMtx_XrotM(mDoMtx_stack_c::now, cM_atan2s(local_110.y,
+                        JMAFastSqrt(local_110.x * local_110.x + local_110.z * local_110.z)));
+                    mDoMtx_stack_c::scaleM(fVar1, fVar1, fVar1);
+                    i_this->field_0x0b94[i + j * 6]->setBaseTRMtx(mDoMtx_stack_c::now);
+                }
+            }
+        }
+
+        if (i_this->field_0x1fc4 != 0) {
+            i_this->field_0x1fd4 += i_this->field_0x1fd6;
+            cLib_addCalcAngleS2(&i_this->field_0x1fd6, (s16)(i_this->speedF * 50.0f + 1500.0f),
+                1, 60);
+            cLib_addCalc2(&i_this->field_0x1fd0, i_this->speedF * 1.5f, 1.0f, 0.9f);
+
+            C_MTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(19), *calc_mtx);
+
+            MtxPush();
+            local_110.set(0.0f, 7.0f, -15.0f);
+            MtxPosition(&local_110, &local_11c);
+            himo_control1(i_this, &local_11c, 0, 0);
+            MtxPull();
+
+            local_110.set(0.0f, 7.0f, 15.0f);
+            MtxPosition(&local_110, &local_11c);
+            himo_control1(i_this, &local_11c, 1, 0);
+
+            C_MTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(21), *calc_mtx);
+            local_110.set(60.0f, 0.0f, 50.0f);
+            MtxPosition(&local_110, i_this->field_0x1fd8);
+
+            i_this->field_0x1fd8[1] = i_this->field_0x1fd8[0];
+        }
+
+        if (i_this->field_0x1fc4 == 0) {
+            eff_set(i_this);
+        } else {
+            eff_set_h(i_this);
+
+            i_this->field_0x1e2c.framework(0, dComIfGp_getReverb(fopAcM_GetRoomNo((fopAc_ac_c*)i_this)));
+
+            for (int i = 0; i < 5; i++) {
+                i_this->field_0x1f10[i * 12].framework(0, 
+                    dComIfGp_getReverb(fopAcM_GetRoomNo((fopAc_ac_c*)i_this)));
+            }
+        }
+
+        anm_se_set(i_this);
+
+        f32 fVar2 = 1.0f;
+        fVar1 = 0.1f;
+
+        if (i_this->field_0x2739 == 0) {
+            fVar2 = 0.0f;
+            dKy_custom_colset(0, 0, i_this->field_0x273c);
+        } else if (i_this->field_0x2739 == 1) {
+            fVar1 = 0.05f;
+            dKy_custom_colset(0, 5, i_this->field_0x273c);
+        } else if (i_this->field_0x2739 == 2) {
+            fVar2 = 0.0f;
+            dKy_custom_colset(1, 1, i_this->field_0x273c);
+        } else if(i_this->field_0x2739 == 3) {
+            fVar2 = 0.0f;
+            dKy_custom_colset(2, 2, i_this->field_0x273c);
+        } else if (i_this->field_0x2739 == 4) {
+            fVar2 = 0.0f;
+            dKy_custom_colset(3, 3, i_this->field_0x273c);
+        }else if (i_this->field_0x2739 == 5) {
+            fVar2 = 0.0f;
+            dKy_custom_colset(4, 4, i_this->field_0x273c);
+        }
+
+        if (fVar2 >= 0.0f) {
+            cLib_addCalc2(&i_this->field_0x273c, fVar2, 1.0f, fVar1);
         }
     }
 }
