@@ -429,7 +429,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01"), "f_op/f_op_actor.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(MatchingFor("GZ2E01"), "f_op/f_op_actor_iter.cpp"),
             Object(MatchingFor("GZ2E01"), "f_op/f_op_actor_tag.cpp"),
-            Object(NonMatching, "f_op/f_op_actor_mng.cpp", extra_cflags=['-pragma "nosyminline on"']),
+            Object(MatchingFor("GZ2E01"), "f_op/f_op_actor_mng.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(MatchingFor("GZ2E01"), "f_op/f_op_camera.cpp"),
             Object(MatchingFor("GZ2E01"), "f_op/f_op_camera_mng.cpp"),
             Object(MatchingFor("GZ2E01"), "f_op/f_op_overlap.cpp"),
