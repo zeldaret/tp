@@ -803,7 +803,7 @@ static int nodeCallBack(J3DJoint* i_joint, int param_2) {
         b_gnd_class* userArea = (b_gnd_class*)model->getUserArea();
         
         if (userArea) {
-            MTXCopy(model->getAnmMtx(jntNo), *calc_mtx);
+            PSMTXCopy(model->getAnmMtx(jntNo), *calc_mtx);
             
             if (jntNo == 1) {
                 cMtx_XrotM(*calc_mtx, (userArea->field_0x0c8c >> 2) < 0 ? 1 : 0);
@@ -821,7 +821,7 @@ static int nodeCallBack(J3DJoint* i_joint, int param_2) {
             }
 
             model->setAnmMtx(jntNo, *calc_mtx);
-            MTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
+            PSMTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
         }
     }
     return 1;
@@ -835,7 +835,7 @@ static int h_nodeCallBack(J3DJoint* i_joint, int param_2) {
         b_gnd_class* userArea = (b_gnd_class*)model->getUserArea();
 
         if (userArea) {
-            MTXCopy(model->getAnmMtx(jntNo), *calc_mtx);
+            PSMTXCopy(model->getAnmMtx(jntNo), *calc_mtx);
             
             if (jntNo == 4 || jntNo == 5) {
                 cMtx_ZrotM(*calc_mtx, -userArea->field_0x0c5c * 2);
@@ -848,7 +848,7 @@ static int h_nodeCallBack(J3DJoint* i_joint, int param_2) {
             }
 
             model->setAnmMtx(jntNo, *calc_mtx);
-            MTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
+            PSMTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
         }
     }
     return 1;
@@ -3303,6 +3303,7 @@ static void* s_objgbdel_sub(void* param_1, void* param_2) { // Unused second par
 static void h_damage_check(b_gnd_class* i_this) {
     // NONMATCHING
     BOOL bVar1;
+    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
     daPy_py_c* player = daPy_getPlayerActorClass();
     u16 uVar1;
     cXyz local_44;
@@ -3310,17 +3311,18 @@ static void h_damage_check(b_gnd_class* i_this) {
     cXyz local_2c;
     i_this->field_0x1654.Move();
     if (i_this->field_0x0c58 == 0) {
-        b_gnd_class* actor = (b_gnd_class*)fopAcM_SearchByID(i_this->mMantChildID);
+        mant_class* mantActor = (mant_class*)fopAcM_SearchByID(i_this->mMantChildID);
+        bVar1 = FALSE;
         for (int i = 0; i < 3; i++) {
-            if (actor->field_0x1690[i].ChkTgHit()) {
-                i_this->mAtInfo.mpCollider = actor->field_0x1690[i].GetTgHitObj();
-                cc_at_check((fopAc_ac_c*)i_this, &i_this->mAtInfo);
+            if (i_this->field_0x1690[i].ChkTgHit()) {
+                i_this->mAtInfo.mpCollider = i_this->field_0x1690[i].GetTgHitObj();
+                cc_at_check(a_this, &i_this->mAtInfo);
                 i_this->field_0x0c58 = 10;
                 if (i_this->field_0x1e08 != 0) {
-                    i_this->field_0x1e08 += 1;
-                    actor->mHorseSpheres2[0].SetAtSPrm(1);
+                    i_this->field_0x1e0a += 1;
+                    mantActor->field_0x3967 = 1;;
                     i_this->field_0x0c58 = 30;
-                    if (i_this->health < 1) {
+                    if (i_this->health <= 0) {
                         i_this->mActionID = ACTION_HEND;
                         i_this->field_0x05bc = 0;
                         fpcM_Search(s_fkdel_sub, i_this);
@@ -3333,7 +3335,7 @@ static void h_damage_check(b_gnd_class* i_this) {
                     break;
                 }
 
-                if (i_this->mAtInfo.mpCollider->GetObjTg().getRPrm() == 4) {
+                if ((u32)i_this->mAtInfo.mpCollider->GetObjTg().getRPrm() == 4) {
                     if (i_this->field_0x1e0f == 1) {
                         i_this->field_0x1e0f = 0;
                         i_this->field_0x1e10 = 0.0f;
@@ -3349,11 +3351,11 @@ static void h_damage_check(b_gnd_class* i_this) {
 
         if (!bVar1) {
             for (int i = 0; i < 2; i++) {
-                if (actor->field_0x1690[i].ChkTgHit()) {
-                    i_this->mAtInfo.mpCollider = actor->field_0x1690[i].GetTgHitObj();
-                    actor->field_0x1690[i].ClrTgHit();
+                if (i_this->field_0x1690[i].ChkTgHit()) {
+                    i_this->mAtInfo.mpCollider = i_this->field_0x1690[i].GetTgHitObj();
+                    i_this->field_0x1690[i].ClrTgHit();
                     if (i_this->field_0x1fc4 != 0 && i_this->field_0x1e08 == 0 &&
-                        i_this->mAtInfo.mpCollider->GetObjTg().getRPrm() == 4) {
+                        (u32)i_this->mAtInfo.mpCollider->GetObjTg().getRPrm() == 4) {
                             i_this->field_0x0c58 = 10;
                             if (i_this->field_0x1e0f == 1) {
                                 i_this->field_0x1e0f = 0;
@@ -3384,7 +3386,7 @@ static void h_damage_check(b_gnd_class* i_this) {
             local_44.y = cM_rndFX(10.0f) + 50.0f;
             local_44.z = cM_rndFX(10.0f);
             MtxPosition(&local_44, &cStack_38);
-            dComIfGp_setHitMark(uVar1, (fopAc_ac_c*)i_this, &cStack_38, NULL, &local_2c, 0);
+            dComIfGp_setHitMark(uVar1, a_this, &cStack_38, NULL, &local_2c, 0);
         }
     }
 }
@@ -4287,7 +4289,7 @@ static void demo_camera(b_gnd_class* i_this) {
                     &local_64, NULL, &cXyz(2.0f, 2.0f, 2.0f), 0);
                 i_this->mZ2Creature.startCollisionSE(Z2SE_HIT_SWORD, 40);
             } else {
-                C_MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(33), *calc_mtx);
+                PSMTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(33), *calc_mtx);
                 local_40.set(10.0f, 20.0f, 0.0f);
                 MtxPosition(&local_4c, &local_40);
                 for (int i = 0; i < 2; i++) {
@@ -5927,7 +5929,7 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
                 1, 60);
             cLib_addCalc2(&i_this->field_0x1fd0, i_this->speedF * 1.5f, 1.0f, 0.9f);
 
-            C_MTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(19), *calc_mtx);
+            PSMTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(19), *calc_mtx);
 
             MtxPush();
             local_110.set(0.0f, 7.0f, -15.0f);
@@ -5939,7 +5941,7 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
             MtxPosition(&local_110, &local_11c);
             himo_control1(i_this, &local_11c, 1, 0);
 
-            C_MTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(21), *calc_mtx);
+            PSMTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(21), *calc_mtx);
             local_110.set(60.0f, 0.0f, 50.0f);
             MtxPosition(&local_110, i_this->field_0x1fd8);
 
