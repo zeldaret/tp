@@ -2970,7 +2970,7 @@ static void big_damage(e_rdy_class* i_this) {
         }
         i_this->field_0xadc.y = i_this->shape_angle.y + (s16)cM_rndFX(3000.0f);
     } else {
-        i_this->field_0xadc.y = i_this->mAtInfo.mHitDirection;
+        i_this->field_0xadc.y = i_this->mAtInfo.mHitDirection.y;
         i_this->field_0xabc = -l_HIO.field_0x44;
     }
 
@@ -3014,7 +3014,7 @@ static void small_damage(e_rdy_class* i_this, int i_collider) {
     }
 
     i_this->mKnockback = 20.0f;
-    i_this->mHitDirection = i_this->mAtInfo.mHitDirection;
+    i_this->mHitDirection = i_this->mAtInfo.mHitDirection.y;
 }
 
 /* 80773E5C-8077424C 00817C 03F0+00 1/1 0/0 0/0 .text            damage_check__FP11e_rdy_class */
