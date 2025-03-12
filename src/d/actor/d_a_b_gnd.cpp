@@ -13,6 +13,7 @@
 #include "f_op/f_op_msg_mng.h"
 #include "m_Do/m_Do_graphic.h"
 #include "Z2AudioLib/Z2Instances.h"
+#include "d/actor/d_a_mant.h"
 
 enum daB_GND_ACTION {
     ACTION_HWAIT_1 = 1,
@@ -795,29 +796,28 @@ static void h_anm_init(b_gnd_class* i_this, int i_anmID, f32 i_morf, u8 i_attr, 
 /* 805F4C00-805F4DCC 0002A0 01CC+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
 static int nodeCallBack(J3DJoint* i_joint, int param_2) {
      // NONMATCHING
+
     if (param_2 == 0) {
         int jntNo = i_joint->getJntNo();
         J3DModel* model = j3dSys.getModel();
-        u32 userArea = model->getUserArea();
+        b_gnd_class* userArea = (b_gnd_class*)model->getUserArea();
         
         if (userArea) {
             MTXCopy(model->getAnmMtx(jntNo), *calc_mtx);
             
             if (jntNo == 1) {
-                cMtx_XrotM(*calc_mtx, 
-                    (*(s16*)(userArea + 0xc8c) >> 2));
+                cMtx_XrotM(*calc_mtx, (userArea->field_0x0c8c >> 2) < 0 ? 1 : 0);
             } else if (jntNo == 4) {
-                cMtx_XrotM(*calc_mtx, 
-                    *(s16*)((userArea + 0xc8c)) * 0.75f);
-                cMtx_ZrotM(*calc_mtx, (userArea + 0xc8e));
+                cMtx_XrotM(*calc_mtx, userArea->field_0x0c8c * 0.75f);
+                cMtx_ZrotM(*calc_mtx, -userArea->field_0x0c8e);
             } else if (jntNo == 28) {
-                cMtx_XrotM(*calc_mtx, *(s16*)(userArea + 0x1fca));
+                cMtx_XrotM(*calc_mtx, userArea->field_0x1fca);
             } else if (jntNo == 17) {
-                cMtx_YrotM(*calc_mtx, *(s16*)(userArea + 0x1fcc));
+                cMtx_YrotM(*calc_mtx, userArea->field_0x1fcc);
             } else if (jntNo == 37) {
-                cMtx_XrotM(*calc_mtx, *(s16*)(userArea + 0x26c0));
+                cMtx_XrotM(*calc_mtx, userArea->field_0x26c0);
             } else if (jntNo == 41) {
-                cMtx_XrotM(*calc_mtx, -*(s16*)(userArea + 0x26c0));
+                cMtx_XrotM(*calc_mtx, -userArea->field_0x26c0);
             }
 
             model->setAnmMtx(jntNo, *calc_mtx);
@@ -832,19 +832,19 @@ static int h_nodeCallBack(J3DJoint* i_joint, int param_2) {
     if (param_2 == 0) {
         int jntNo = i_joint->getJntNo();
         J3DModel* model = j3dSys.getModel();
-        u32 userArea = model->getUserArea();
+        b_gnd_class* userArea = (b_gnd_class*)model->getUserArea();
 
         if (userArea) {
             MTXCopy(model->getAnmMtx(jntNo), *calc_mtx);
             
             if (jntNo == 4 || jntNo == 5) {
-                cMtx_ZrotM(*calc_mtx, -*(s16*)(userArea + 0xc5c) * 2);
+                cMtx_ZrotM(*calc_mtx, -userArea->field_0x0c5c * 2);
             } else if (jntNo == 8 || jntNo == 9) {
-                cMtx_YrotM(*calc_mtx, -*(s16*)(userArea + 0xc5c) * 2);
+                cMtx_YrotM(*calc_mtx, -userArea->field_0x0c5c * 2);
             } else if (jntNo == 28 || jntNo == 29) {
-                cMtx_YrotM(*calc_mtx, *(s16*)(userArea + 0xc5c) << 1);
+                cMtx_YrotM(*calc_mtx, userArea->field_0x0c5c << 1);
             } else if (jntNo == 32 || jntNo == 33) {
-                cMtx_YrotM(*calc_mtx, *(s16*)(userArea + 0xc5c) << 1);
+                cMtx_YrotM(*calc_mtx, userArea->field_0x0c5c << 1);
             }
 
             model->setAnmMtx(jntNo, *calc_mtx);
@@ -1483,7 +1483,7 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
             if (i_this->mAnmID != 73) {
                 anm_init(i_this, 73, 5.0f, 2, 1.0f);
                 h_anm_init(i_this, 9, 5.0f, 2, 1.0f);
-                i_this->playSpeed = 1.0f;
+                i_this->mPlaySpeed = 1.0f;
             }
 
             i_this->field_0x05bc = 2;
@@ -1745,15 +1745,15 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
         } else {
             sVar12 = 2000;
         }
-        cLib_addCalcAngleS2((s16 *)&i_this->field_0x0c5c, sVar12, 4, 0x300);
+        cLib_addCalcAngleS2(&i_this->field_0x0c5c, sVar12, 4, 0x300);
     }
 
     if (i_this->mAnmID == 73) {
-        i_this->mpModelMorf->setPlaySpeed(i_this->playSpeed);
-        i_this->mpHorseMorf->setPlaySpeed(i_this->playSpeed);
+        i_this->mpModelMorf->setPlaySpeed(i_this->mPlaySpeed);
+        i_this->mpHorseMorf->setPlaySpeed(i_this->mPlaySpeed);
     }
 
-    cLib_addCalc2(&i_this->playSpeed, fVar2, 1.0f, 0.1f);
+    cLib_addCalc2(&i_this->mPlaySpeed, fVar2, 1.0f, 0.1f);
     if (bVar3) {
         local_b0.x = 0.0f;
         local_b0.y = 1000.0f;
@@ -1931,7 +1931,7 @@ static void b_gnd_h_run_p(b_gnd_class* i_this) {
         case 0:
         case 1:
             if (i_this->mAnmID != 73) {
-                i_this->playSpeed = 1.0f;
+                i_this->mPlaySpeed = 1.0f;
                 anm_init(i_this, 73, 5.0f, 2, 1.0f);
                 h_anm_init(i_this, 9, 5.0f, 2, 1.0f);
             }
@@ -2068,16 +2068,16 @@ static void b_gnd_h_run_p(b_gnd_class* i_this) {
             sVar8 = 2000;
         }
 
-        cLib_addCalcAngleS2((s16*)&i_this->field_0x0c5c, sVar8, 4, 0x300);
+        cLib_addCalcAngleS2(&i_this->field_0x0c5c, sVar8, 4, 0x300);
     }
 
-    i_this->mpHorseMorf->setPlaySpeed(i_this->playSpeed);
+    i_this->mpHorseMorf->setPlaySpeed(i_this->mPlaySpeed);
 
     if (i_this->mAnmID == 73) {
-        i_this->mpModelMorf->setPlaySpeed(i_this->playSpeed);
+        i_this->mpModelMorf->setPlaySpeed(i_this->mPlaySpeed);
     }
 
-    cLib_addCalc2(&i_this->playSpeed, fVar11, 1.0f, 0.1f);
+    cLib_addCalc2(&i_this->mPlaySpeed, fVar11, 1.0f, 0.1f);
 }
 // /* ############################################################################################## */
 // /* 8060274C-80602750 0000E8 0004+00 0/4 0/0 0/0 .rodata          @5137 */
@@ -2123,7 +2123,7 @@ static void b_gnd_h_jump(b_gnd_class* i_this) {
             if (i_this->mpModelMorf->isStop()) {
                 i_this->mActionID = i_this->field_0x0b00;
                 i_this->field_0x05bc = 0;
-                i_this->playSpeed = 1.5f;
+                i_this->mPlaySpeed = 1.5f;
                 anm_init(i_this, 73, 2.0f, 2, 1.5f);
                 h_anm_init(i_this, 9, 2.0f, 2, 1.5f);
             }
@@ -2176,7 +2176,7 @@ static void b_gnd_h_jump(b_gnd_class* i_this) {
 /* 805F76C4-805F7A10 002D64 034C+00 1/1 0/0 0/0 .text            b_gnd_h_end__FP11b_gnd_class */
 static void b_gnd_h_end(b_gnd_class* i_this) {
     // NONMATCHING
-    fopAc_ac_c* actor = fopAcM_SearchByID(i_this->mMantChild);
+    fopAc_ac_c* actor = fopAcM_SearchByID(i_this->mMantChildID);
     cXyz local_24;
     int iVar1 = i_this->mpHorseMorf->getFrame();
     switch (i_this->field_0x26c4) {
@@ -2267,7 +2267,7 @@ static void b_gnd_g_wait(b_gnd_class* i_this) {
     // NONMATCHING
     s16 sVar1 = 0x400;
     float fVar1 = 0.0f;
-    fopAc_ac_c* actor1 = fopAcM_SearchByID(i_this->mMantChild);
+    fopAc_ac_c* actor1 = fopAcM_SearchByID(i_this->mMantChildID);
     fopAc_ac_c* actor2 = fopAcM_SearchByName(740);
 
     if (!actor2 || actor2->home.pos.y + 2 == 0) {
@@ -2393,7 +2393,7 @@ static void b_gnd_g_attack(b_gnd_class* i_this) {
     int iVar1 = (int)i_this->mpModelMorf->getFrame();
     s16 sVar1 = 0;
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
-    b_gnd_class* actor = (b_gnd_class*)fopAcM_SearchByID(i_this->mMantChild);
+    b_gnd_class* actor = (b_gnd_class*)fopAcM_SearchByID(i_this->mMantChildID);
 
     switch (i_this->field_0x05bc) {
         case 0:
@@ -2403,11 +2403,11 @@ static void b_gnd_g_attack(b_gnd_class* i_this) {
         case 1:
             if (19 < iVar1 && iVar1 < 29) {
                 i_this->field_0x0c77 = 1;
-                actor->horseSpheres2[0].GetObjAt().SetSPrm(0x3f800000);
+                actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3f800000);
             }
 
             if (43 < iVar1 && iVar1 < 51) {
-                actor->horseSpheres2[0].GetObjAt().SetSPrm(0x3f19999a);
+                actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3f19999a);
             }
 
             if (iVar1 == 25) {
@@ -2434,11 +2434,11 @@ static void b_gnd_g_attack(b_gnd_class* i_this) {
             }
 
             if (16 < iVar1 && iVar1 < 20) {
-                actor->horseSpheres2[0].GetObjAt().SetSPrm(0x3f333333);
+                actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3f333333);
             }
 
             if (36 < iVar1 && iVar1 < 42) {
-                actor->horseSpheres2[0].GetObjAt().SetSPrm(0x3f19999a);
+                actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3f19999a);
             }
 
             if (iVar1 == 20) {
@@ -2456,7 +2456,7 @@ static void b_gnd_g_attack(b_gnd_class* i_this) {
             break;
         case 5:
             if (2 < iVar1 && iVar1 < 11) {
-                actor->horseSpheres2[0].GetObjAt().SetSPrm(0x3f19999a);
+                actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3f19999a);
                 i_this->field_0x0c77 = 1;
                 i_this->field_0x0c78 = 1;
             }
@@ -2482,7 +2482,7 @@ static void b_gnd_g_attack(b_gnd_class* i_this) {
 
             if (15 < iVar1 && iVar1 < 38) {
                 i_this->field_0x0c77 = 1;
-                actor->horseSpheres2[0].GetObjAt().SetSPrm(0x3f333333);
+                actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3f333333);
             }
 
             if (15 < iVar1 && iVar1 < 30) {
@@ -2506,7 +2506,7 @@ static void b_gnd_g_attack(b_gnd_class* i_this) {
         case 9:
             if ((17 < iVar1 && iVar1 < 25) || (26 < iVar1 && iVar1 < 41)) {
                 i_this->field_0x0c77 = 1;
-                actor->horseSpheres2[0].GetObjAt().SetSPrm(0x3f333333);
+                actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3f333333);
                 i_this->field_0x0c24 = 80;
             }
 
@@ -2542,7 +2542,7 @@ static void b_gnd_g_attack(b_gnd_class* i_this) {
         case 12:
             i_this->field_0x0c58 = 10;
             i_this->field_0x0c79 = 1;
-            actor->horseSpheres2[0].GetObjAt().SetSPrm(0x3f800000);
+            actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3f800000);
             fVar2 = 30.0f;
             fVar1 = 15.0f;
             sVar1 = 0x800;
@@ -2562,11 +2562,11 @@ static void b_gnd_g_attack(b_gnd_class* i_this) {
             i_this->field_0x0c79 = 1;
             fVar1 = 10.0f;
             if (17 < iVar1 && iVar1 < 27) {
-                actor->horseSpheres2[0].GetObjAt().SetSPrm(0x3f800000);
+                actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3f800000);
             }
 
             if (42 < iVar1 && iVar1 < 54) {
-                actor->horseSpheres2[0].GetObjAt().SetSPrm(0x3f19999a);
+                actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3f19999a);
             }
 
             if (19 < iVar1 && iVar1 < 33) {
@@ -2626,7 +2626,7 @@ static void b_gnd_g_attack(b_gnd_class* i_this) {
             }
 
             if (4 < iVar1) {
-                actor->horseSpheres2[0].GetObjAt().SetSPrm(0x3f333333);
+                actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3f333333);
             }
             
             if (i_this->mpModelMorf->isStop()) {
@@ -2638,7 +2638,7 @@ static void b_gnd_g_attack(b_gnd_class* i_this) {
             fVar1 = 15.0f;
             if (9 < iVar1 && iVar1 < 21) {
                 i_this->field_0x0c77 = 1;
-                actor->horseSpheres2[0].GetObjAt().SetSPrm(0x3f333333);
+                actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3f333333);
             }
 
             if (i_this->mpModelMorf->isStop()) {
@@ -2720,7 +2720,7 @@ static void b_gnd_g_defence(b_gnd_class* i_this) {
     // NONMATCHING
     int frame = (int)i_this->mpModelMorf->getFrame();
     s16 sVar2 = 0;
-    b_gnd_class* actor = (b_gnd_class*)fopAcM_SearchByID(i_this->mMantChild);
+    b_gnd_class* actor = (b_gnd_class*)fopAcM_SearchByID(i_this->mMantChildID);
     i_this->field_0x0c58 = 10;
     cc_pl_cut_bit_get();
     s16 sVar1 = i_this->field_0x05bc;
@@ -2812,7 +2812,7 @@ static void b_gnd_g_defence(b_gnd_class* i_this) {
             } else {
                 i_this->current.angle.y += 0x1800;
                 i_this->field_0x0eb0 = 30.0f;
-                actor->horseSpheres2[0].GetObjAt().SetSPrm(0x3f99999a);
+                actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3f99999a);
             }
 
             i_this->shape_angle.y = i_this->current.angle.y;
@@ -2824,7 +2824,7 @@ static void b_gnd_g_defence(b_gnd_class* i_this) {
     if (i_this->field_0x1b70.ChkTgHit()) {
         i_this->field_0x0eb0 = 25.0f;
         i_this->field_0x0eac = i_this->shape_angle.y;
-        actor->horseSpheres2[0].GetObjAt().SetSPrm(0x3e99999a);
+        actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3e99999a);
         i_this->field_0x0c7a += 1;
         i_this->field_0x2698 = 1;
     }
@@ -2842,7 +2842,7 @@ static void b_gnd_g_defence(b_gnd_class* i_this) {
 static int b_gnd_g_jump(b_gnd_class* i_this) {
     // NONMATCHING
     int rv = 1;
-    b_gnd_class* actor = (b_gnd_class*)fopAcM_SearchByID(i_this->mMantChild);
+    b_gnd_class* actor = (b_gnd_class*)fopAcM_SearchByID(i_this->mMantChildID);
     switch (i_this->field_0x05bc) {
         case 0:
             anm_init(i_this, 44, 2.0f, 0, 1.0f);
@@ -2868,7 +2868,7 @@ static int b_gnd_g_jump(b_gnd_class* i_this) {
         case 2:
             rv = 0;
             cLib_addCalcAngleS2(&i_this->shape_angle.y, i_this->field_0x0c3c, 2, 0x600);
-            // actor->horseSpheres2[0].SetAtHitCallback(NULL);
+            // actor->mHorseSpheres2[0].SetAtHitCallback(NULL);
             if ((i_this->field_0x0cd4.m_flags & 32) != 0) {
                 if (400.0f <= i_this->field_0x0c38) {
                     i_this->mActionID = ACTION_ATTACK;
@@ -2882,7 +2882,7 @@ static int b_gnd_g_jump(b_gnd_class* i_this) {
 
                 i_this->current.angle.y = i_this->shape_angle.y;
                 i_this->speedF = 0.0f;
-                actor->horseSpheres2[0].GetObjAt().SetSPrm(0x3f800000);
+                actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3f800000);
                 i_this->field_0x0c58 = 0;
                 i_this->field_0x2698 = 1;
                 i_this->mZ2Creature.startCreatureSound(Z2SE_EN_GND_LAND, 0, -1);
@@ -2932,7 +2932,7 @@ static int b_gnd_g_jump(b_gnd_class* i_this) {
 /* 805F8F88-805F9220 004628 0298+00 1/1 0/0 0/0 .text            b_gnd_g_side__FP11b_gnd_class */
 static void b_gnd_g_side(b_gnd_class* i_this) {
     // NONMATCHING
-    b_gnd_class* actor = (b_gnd_class*)fopAcM_SearchByID(i_this->mMantChild);
+    b_gnd_class* actor = (b_gnd_class*)fopAcM_SearchByID(i_this->mMantChildID);
     i_this->field_0x0c58 = 10;
 
     switch (i_this->field_0x05bc) {
@@ -2948,7 +2948,7 @@ static void b_gnd_g_side(b_gnd_class* i_this) {
             i_this->speedF = 30.0f;
             i_this->speed.y = 30.0f;
             i_this->field_0x05bc = 1;
-            actor->horseSpheres2[0].GetObjAt().SetSPrm(0x3f800000);
+            actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3f800000);
             break;
 
         case 1:
@@ -2989,19 +2989,19 @@ static void b_gnd_g_side(b_gnd_class* i_this) {
                 i_this->current.angle.y = i_this->shape_angle.y;
             }
     }
-    // actor->horseSpheres2[0].GetObjAt().SetSPrm(0x3f800000);
+    // actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3f800000);
 }
 
 /* 805F9220-805F92FC 0048C0 00DC+00 1/1 0/0 0/0 .text            b_gnd_g_tuba__FP11b_gnd_class */
 static void b_gnd_g_tuba(b_gnd_class* i_this) {
     // NONMATCHING
-    b_gnd_class* actor = (b_gnd_class*)fopAcM_SearchByID(i_this->mMantChild);
+    b_gnd_class* actor = (b_gnd_class*)fopAcM_SearchByID(i_this->mMantChildID);
     i_this->field_0x0c58 = 10;
     switch (i_this->field_0x05bc) {
         case 0:
             anm_init(i_this, 85, 5.0f, 2, 1.0f);
             i_this->field_0x05bc = 1;
-            actor->horseSpheres2[0].GetObjAt().SetSPrm(0x3fc00000); // Unsure of what goes here
+            actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3fc00000); // Unsure of what goes here
             i_this->field_0x26c4 = 50;
             i_this->speedF = 0.0f;
             dComIfGp_getVibration().StartShock(6, 31, cXyz(0.0f, 1.0f, 0.0f));
@@ -3016,7 +3016,7 @@ static void b_gnd_g_damage(b_gnd_class* i_this) {
     // NONMATCHING
     daPy_py_c* player = daPy_getPlayerActorClass();
     int frame = (int)i_this->mpModelMorf->getFrame();
-    b_gnd_class* actor = (b_gnd_class*)fopAcM_SearchByID(i_this->mMantChild);
+    b_gnd_class* actor = (b_gnd_class*)fopAcM_SearchByID(i_this->mMantChildID);
     switch (i_this->field_0x05bc) {
         case 0:
             i_this->field_0x05bc = 1;
@@ -3029,7 +3029,7 @@ static void b_gnd_g_damage(b_gnd_class* i_this) {
             i_this->current.angle.y = player->shape_angle.y + 0x8000;
             i_this->field_0x0eb0 = 25.0f;
             i_this->field_0x0eac = i_this->current.angle.y;
-            actor->horseSpheres2[0].GetObjAt().SetSPrm(0x3f000000); // Unsure of what goes here
+            actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3f000000); // Unsure of what goes here
             break;
 
         case 1:
@@ -3068,7 +3068,7 @@ static void b_gnd_g_damage(b_gnd_class* i_this) {
 static void b_gnd_g_down(b_gnd_class* i_this) {
     // NONMATCHING
     int frame = (int)i_this->mpModelMorf->getFrame();
-    b_gnd_class* actor = (b_gnd_class*)fopAcM_SearchByID(i_this->mMantChild);
+    b_gnd_class* actor = (b_gnd_class*)fopAcM_SearchByID(i_this->mMantChildID);
     i_this->field_0x0c58 = 10;
 
     switch(i_this->field_0x05bc) {
@@ -3096,7 +3096,7 @@ static void b_gnd_g_down(b_gnd_class* i_this) {
                         &cXyz(mDoMtx_stack_c::now[0][3], mDoMtx_stack_c::now[1][3], mDoMtx_stack_c::now[2][3]),
                         &i_this->shape_angle, 2.5f, &i_this->tevStr, 1);
                     dComIfGp_getVibration().StartShock(6, 31, cXyz(0.0f, 1.0f, 0.0f));
-                    actor->horseSpheres2[0].GetObjAt().SetSPrm(0x41100000);
+                    actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x41100000);
                     if (i_this->mAnmID == 41) {
                         // actor[1].field249_0x1174[0].mBase.mGObjAt.mBase.mGFlag = 0x3f800000; - ???
                     }
@@ -3164,7 +3164,7 @@ static void b_gnd_g_down(b_gnd_class* i_this) {
 static void b_gnd_g_end(b_gnd_class* i_this) {
     // NONMATCHING
     i_this->field_0x0c58 = 10;
-    b_gnd_class* actor = (b_gnd_class*)fopAcM_SearchByID(i_this->mMantChild);
+    b_gnd_class* actor = (b_gnd_class*)fopAcM_SearchByID(i_this->mMantChildID);
     // *(undefined1 *)((int)&actor[1].field249_0x1174[0].mBase.mGObjAt.mBase.mHitCallback + 1) = 1; - ???
 }
 
@@ -3180,13 +3180,13 @@ static void damage_check(b_gnd_class* i_this) {
     }
 
     if (i_this->field_0x0c58 == 0) {
-        b_gnd_class* actor = (b_gnd_class*)fopAcM_SearchByID(i_this->mMantChild);
+        b_gnd_class* actor = (b_gnd_class*)fopAcM_SearchByID(i_this->mMantChildID);
         for (int i = 0; i < 3; i++) {
             if (i_this->field_0x1690[0].ChkTgHit()) {
                 i_this->mAtInfo.mpCollider = i_this->field_0x1690[0].GetTgHitObj();
                 cc_at_check((fopAc_ac_c*)i_this, &i_this->mAtInfo);
                 if (i_this->mAtInfo.mpCollider->ChkAtType(AT_TYPE_BOOMERANG)) {
-                    actor->horseSpheres2[0].GetObjAt().SetSPrm(0x3fa66666);
+                    actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3fa66666);
                     i_this->field_0x0c58 = 6;
                     i_this->mZ2Creature.startCreatureSound(Z2SE_EN_GND_MANTEAU, 0, -1);
                     return;
@@ -3200,9 +3200,9 @@ static void damage_check(b_gnd_class* i_this) {
                     i_this->field_0x05bc = 0;
                     i_this->field_0x2698 = 1;
                     if (i_this->mAtInfo.mHitStatus == 0) {
-                        actor->horseSpheres2[0].SetAtSPrm(3);
+                        actor->mHorseSpheres2[0].SetAtSPrm(3);
                     } else {
-                        actor->horseSpheres2[0].SetAtSPrm(2);
+                        actor->mHorseSpheres2[0].SetAtSPrm(2);
                     }
 
                     if (player->getCutType() == daPy_py_c::CUT_TYPE_JUMP && player->checkCutJumpCancelTurn()) {
@@ -3310,7 +3310,7 @@ static void h_damage_check(b_gnd_class* i_this) {
     cXyz local_2c;
     i_this->field_0x1654.Move();
     if (i_this->field_0x0c58 == 0) {
-        b_gnd_class* actor = (b_gnd_class*)fopAcM_SearchByID(i_this->mMantChild);
+        b_gnd_class* actor = (b_gnd_class*)fopAcM_SearchByID(i_this->mMantChildID);
         for (int i = 0; i < 3; i++) {
             if (actor->field_0x1690[i].ChkTgHit()) {
                 i_this->mAtInfo.mpCollider = actor->field_0x1690[i].GetTgHitObj();
@@ -3318,7 +3318,7 @@ static void h_damage_check(b_gnd_class* i_this) {
                 i_this->field_0x0c58 = 10;
                 if (i_this->field_0x1e08 != 0) {
                     i_this->field_0x1e08 += 1;
-                    actor->horseSpheres2[0].SetAtSPrm(1);
+                    actor->mHorseSpheres2[0].SetAtSPrm(1);
                     i_this->field_0x0c58 = 30;
                     if (i_this->health < 1) {
                         i_this->mActionID = ACTION_HEND;
@@ -3846,14 +3846,9 @@ static void demo_camera(b_gnd_class* i_this) {
     BOOL bVar3;
     u32 uVar7;
     f32 rndF32;
-    cXyz cStack_100;
-    cXyz cStack_f4;
-    cXyz cStack_e8;
-    cXyz cStack_dc;
     cXyz cStack_c4;
     cXyz cStack_b8;
     cXyz cStack_ac;
-    cXyz cStack_a0;
     cXyz cStack_94;
     cXyz cStack_88;
     cXyz cStack_7c;
@@ -3862,10 +3857,12 @@ static void demo_camera(b_gnd_class* i_this) {
     cXyz local_4c;
     cXyz local_40;
 
-    daPy_py_c* player = daPy_getPlayerActorClass();
+    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
+    daPy_py_c* player = (daPy_py_c *)dComIfGp_getPlayer(0);
     camera_class* camera1 = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     camera_class* camera2 = dComIfGp_getCamera(0);
-    b_gnd_class* actor = (b_gnd_class*)fopAcM_SearchByID(i_this->mMantChild);
+    mant_class* mantActor = (mant_class*)fopAcM_SearchByID(i_this->mMantChildID);
+    dScnKy_env_light_c* envLight = dKy_getEnvlight();
 
     daHorse_c* horseActor;
     if (i_this->field_0x26c4 != 0) {
@@ -3890,7 +3887,9 @@ static void demo_camera(b_gnd_class* i_this) {
             camera1->mCamera.SetTrimSize(3);
             local_4c = i_this->current.pos;
             local_4c.x -= 5000.0f;
-            horseActor->setHorsePosAndAngle(&local_4c, 1);
+
+            horseActor->i_setHorsePosAndAngle(&local_4c, 1);
+
             i_this->field_0x26ec.set(0.0f, 0.0f, 0.0f);
             i_this->field_0x2704.set(0.0f, 0.0f, 0.0f);
             i_this->field_0x0c44[9] = 0;
@@ -3943,7 +3942,7 @@ static void demo_camera(b_gnd_class* i_this) {
             if (i_this->field_0x26c4 == 33) {
                 if (i_this->field_0x26c6 == 140) {
                     local_4c.set(0.0f, 1100.0f, -2000.0f);
-                    horseActor->setHorsePosAndAngle(&local_4c, 3);
+                    horseActor->i_setHorsePosAndAngle(&local_4c, 3);
                     horseActor->changeDemoMode(1, 0);
                     player->changeDemoMode(93, 0, 0, 0);
                 }
@@ -3972,7 +3971,7 @@ static void demo_camera(b_gnd_class* i_this) {
                 cLib_addCalc2(&i_this->field_0x26d4.z, player->current.pos.z, 0.2f, 50.0f);
             }
             local_4c.set(0.0f, 1100.0f, i_this->field_0x2710.z + -1500.0f);
-            horseActor->setHorsePosAndAngle(&local_4c, 3);
+            horseActor->i_setHorsePosAndAngle(&local_4c, 0);
             cLib_addCalc0(&i_this->field_0x2710.z, 0.5f, 20.0f);
             if (i_this->field_0x26c6 == 55) {
                 i_this->field_0x26c4 = 33;
@@ -3981,13 +3980,13 @@ static void demo_camera(b_gnd_class* i_this) {
                 i_this->field_0x2710.z = -300.0f;
                 i_this->current.pos.x = 0.0f;
                 local_4c.set(0.0f, 1100.0f, -4000.0f);
-                horseActor->setHorsePosAndAngle(&local_4c, 3);
+                horseActor->i_setHorsePosAndAngle(&local_4c, 0);
             }
             break;
         case 35:
             i_this->field_0x26d4.set(-286.0f, 1364.0f, -1780.0f);
             i_this->field_0x26c8.set(389.0f, 1326.0f, -2356.0f);
-            if (i_this->field_0x26c6 < 2) {
+            if (i_this->field_0x26c6 <= 1) {
                 i_this->field_0x2710.x = 25.0f;
             } else {
                 cLib_addCalc2(&i_this->field_0x2710.x, 20.0f, 0.03f, 0.1f);
@@ -4001,7 +4000,7 @@ static void demo_camera(b_gnd_class* i_this) {
                 i_this->field_0x0771 = 0;
                 i_this->field_0x0770 = 1;
                 for (int i = 0; i < 2; i++) {
-                    dComIfGp_particle_set(0x8b9c + i, &i_this->current.pos, &i_this->shape_angle,
+                    dComIfGp_particle_set(e_name_6757[i], &i_this->current.pos, &i_this->shape_angle,
                         NULL);
                 }
             }
@@ -4013,7 +4012,7 @@ static void demo_camera(b_gnd_class* i_this) {
                 i_this->field_0x26c8.set(86.0f, 1321.0f, -1277.0f);
                 i_this->field_0x2710.x = 55.0f;
                 local_4c.set(0.0f, 1100.0f, -2000.0f);
-                horseActor->setHorsePosAndAngle(&local_4c, -0x2000);
+                horseActor->i_setHorsePosAndAngle(&local_4c, -0x2000);
             }
             break;
         case 40:
@@ -4081,7 +4080,10 @@ static void demo_camera(b_gnd_class* i_this) {
                 i_this->field_0x26c6 = 0;
                 local_4c.set(0.0f, 1100.0f, -1000.0f);
                 player->setPlayerPosAndAngle(&local_4c, 1, 0);
-                // actor->horseSpheres2[0].SetAtHitApid(1);
+
+                mantActor->field_0x3969 = 1;
+            } else {
+                break;
             }
         case 43:
             if (i_this->mpModelMorf->checkFrame(212.0f)) {
@@ -4090,32 +4092,39 @@ static void demo_camera(b_gnd_class* i_this) {
 
             
             if (i_this->field_0x26c6 == 10) {
-                i_this->mMsgFlow.init((fopAc_ac_c*)i_this, 0xbca, 0, NULL);
+                i_this->mMsgFlow.init(a_this, 0xbca, 0, NULL);
             }
-            i_this->mMsgFlow.doFlow((fopAc_ac_c*)i_this, NULL, 0);
+            i_this->mMsgFlow.doFlow(a_this, NULL, 0);
             
 
-            if (i_this->mpModelMorf->getFrame() <= 340.0f) {
+            if (i_this->mpModelMorf->getFrame() > 340.0f) {
+                cLib_addCalc2(&i_this->speedF, 4.3f, 1.0f, 0.7f);
+                mantActor->field_0x3969 = 3;
+            } else {
                 cMtx_YrotS(*calc_mtx, i_this->shape_angle.y);
                 local_40.x = 20.0f;
                 local_40.y = 180.0f;
                 local_40.z = 260.0f;
                 MtxPosition(&i_this->field_0x26c8, &local_40);
                 i_this->field_0x26c8 += i_this->current.pos;
-            } else {
-                cLib_addCalc2(&i_this->speedF, 4.3f, 1.0f, 0.7f);
-                // actor->horseSpheres2[0].SetAtHitApid(3);
+                i_this->field_0x26d4.x = i_this->current.pos.x;
+                i_this->field_0x26d4.z = i_this->current.pos.z - 20.0f;
+                i_this->field_0x26d4.y = i_this->eyePos.y - 50.0f;
             }
 
             if (i_this->field_0x26c6 == 211) {
                 i_this->field_0x0770 = 0;
-                // actor[1].field249_0x1174[0].mBase.mGObjAt.mBase.mGFlag = 0x3f666666; - ???
+                mantActor->field_0x395c = 0.9f;
             }
 
             if (i_this->field_0x26c6 == 215) {
                 i_this->field_0x2739 = 1;
                 i_this->field_0x273c = 0.0f;
-                g_env_light.mThunderEff.field_0x2 = 1;
+                envLight->mThunderEff.field_0x2 = 1;
+            }
+
+            if (i_this->field_0x26c6 == 0x116) {
+                i_this->field_0x0772 = 1;
             }
 
             if (i_this->field_0x26c6 == 0x186) {
@@ -4131,14 +4140,12 @@ static void demo_camera(b_gnd_class* i_this) {
             }
             break;
         case 44:
-            i_this->mMsgFlow.doFlow((fopAc_ac_c*)i_this, NULL, 0);
+            i_this->mMsgFlow.doFlow(a_this, NULL, 0);
             if (i_this->field_0x26c6 == 125) {
-                g_env_light.mThunderEff.field_0x2 = 1;
+                envLight->mThunderEff.field_0x2 = 1;
             }
 
-            if (i_this->field_0x26c6 < 100) {
-                // cLib_addCalc2(&i_this->speedF, 4.3f, 1.0f, 0.7f);
-            } else {
+            if (i_this->field_0x26c6 >= 100) {
                 if (i_this->field_0x26c6 == 100) {
                     anm_init(i_this, 90, 12.0f, 2, 1.0f);
                 }
@@ -4148,7 +4155,7 @@ static void demo_camera(b_gnd_class* i_this) {
                     i_this->field_0x26c6 = 0;
                     local_4c.set(0.0f, 1100.0f, 0.0f);
                     fopAcM_create(PROC_OBJ_GB, 0xf0069600, &local_4c, 
-                        fopAcM_GetRoomNo((fopAc_ac_c*)i_this), 0, 0, -1);
+                        fopAcM_GetRoomNo(a_this), 0, 0, -1);
                 }
 
                 cLib_addCalc0(&i_this->speedF, 1.0f, 0.7f);
@@ -4167,7 +4174,7 @@ static void demo_camera(b_gnd_class* i_this) {
             }
 
             if (i_this->field_0x26c6 == 15) {
-                g_env_light.mThunderEff.field_0x2 = 1;
+                envLight->mThunderEff.field_0x2 = 1;
             }
 
             if (i_this->field_0x26c6 > 24) {
@@ -4185,7 +4192,7 @@ static void demo_camera(b_gnd_class* i_this) {
         case 46:
             cLib_addCalc2(&i_this->field_0x2710.x, 30.0f, 0.1f, 0.2f);
             if (i_this->field_0x26c6 > 0x130) {
-                // actor->horseSpheres2[0].SetAtHitApid(2);
+                mantActor->field_0x3969 = 2;
             }
 
             if (i_this->field_0x26c6 == 255) {
@@ -4196,7 +4203,8 @@ static void demo_camera(b_gnd_class* i_this) {
                 anm_init(i_this, 47, 3.0f, 0, 1.0f);
                 i_this->field_0x0748 = 5;
                 Z2GetAudioMgr()->bgmStart(Z2BGM_VS_GANON_04, 0, 0);
-                g_env_light.field_0x12cc = 3;
+                // g_env_light.field_0x12cc = 3;
+                envLight->field_0x12cc = 3;
             }
 
             if (i_this->field_0x26c6 == 0x140) {
@@ -4205,7 +4213,7 @@ static void demo_camera(b_gnd_class* i_this) {
 
             if (i_this->mAnmID == 47 && i_this->mpModelMorf->isStop()) {
                 anm_init(i_this, 91, 3.0f, 2, 1.0f);
-                g_env_light.mThunderEff.field_0x2 = 1;
+                envLight->mThunderEff.field_0x2 = 1;
             }
 
             if (i_this->field_0x26c6 == 0x19a) {
@@ -4217,7 +4225,7 @@ static void demo_camera(b_gnd_class* i_this) {
                 dComIfGs_onOneZoneSwitch(15, -1);
                 dComIfGs_onSaveDunSwitch(1);
                 Z2GetAudioMgr()->setDemoName("force_end");
-                g_env_light.field_0x12cc = 1;
+                envLight->field_0x12cc = 3;
             }
             break;
         case 50:
@@ -4239,11 +4247,9 @@ static void demo_camera(b_gnd_class* i_this) {
             daPy_getPlayerActorClass()->changeDemoMode(89, 0, 0, 0);
             Z2GetAudioMgr()->changeBgmStatus(1);
         case 51:
-            /* I believe this case is handling the closeup dueling with Ganondorf */
-            // actor->horseSpheres2[0].SetAtHitApid(1);
+            mantActor->field_0x3969 = 1;
             i_this->field_0x0c70 = 20;
-            if (i_this->field_0x26c6 > 4) {
-                // cStack_a0.set(0.0f, 1.0f, 0.0f);
+            if (i_this->field_0x26c6 >= 5) {
                 dComIfGp_getVibration().StartQuake(2, 1, cXyz(0.0f, 1.0f, 0.0f));
             }
 
@@ -4260,12 +4266,12 @@ static void demo_camera(b_gnd_class* i_this) {
             local_40.y = 0.0f;
             local_40.z = 135.0f;
             MtxPosition(&local_4c, &local_40);
-            // i_this->current.pos.x = local_4c.x + player->getViewerCurrentPosP().x;
-            // i_this->current.pos.z = local_4c.z + player->getViewerCurrentPosP().z;
+            i_this->current.pos.x = local_4c.x + player->field_0x5f8.x;
+            i_this->current.pos.z = local_4c.z + player->field_0x5f8.z;
             i_this->current.angle.y = player->shape_angle.y + -0x8000;
-
-            // cStack_ac = player->getViewerCurrentPosP() - i_this->current.pos;
-            cStack_b8 = cStack_ac * 0.5f;
+            player->field_0x5f8 - i_this->current.pos;
+            cStack_ac * 0.5f;
+            i_this->current.pos + cStack_b8;
             local_64 = cStack_c4;
             local_64.y += 150.0f;
             local_40.x = 200.0f;
@@ -4286,7 +4292,7 @@ static void demo_camera(b_gnd_class* i_this) {
                 MtxPosition(&local_4c, &local_40);
                 for (int i = 0; i < 2; i++) {
                     i_this->field_0x268c[i - 12] = dComIfGp_particle_set((i_this->field_0x268c[i + 4 - 12]), 
-                    (0x8b98 + i + 2), &local_4c, NULL, NULL);
+                    e_name_6846[i * 2], &local_4c, NULL, NULL);
                 }
 
                 i_this->mZ2Creature.startCreatureExtraSoundLevel(Z2SE_EN_GND_TUBAZERI_EFF, 0 , -1);
@@ -4306,40 +4312,36 @@ static void demo_camera(b_gnd_class* i_this) {
                     0.1f, 5.0f);
             }
 
-            if (mDoCPd_c::getTrigA(0) == 0) {
-                i_this->field_0x2730 -= 0.02f;
-                if (i_this->field_0x2730 < -1.0f) {
-                    i_this->field_0x2730 = -1.0f;
-                }
-            } else {
+            if (mDoCPd_c::getTrigA(0) != 0) {
                 i_this->field_0x2730 += 0.1f;
                 if (i_this->field_0x2730 > 1.0f) {
                     i_this->field_0x2730 = 1.0f;
                 }
+            } else {
+                i_this->field_0x2730 -= 0.02f;
+                if (i_this->field_0x2730 < -1.0f) {
+                    i_this->field_0x2730 = -1.0f;
+                }
             }
 
             cLib_addCalc2(&i_this->field_0x2734, i_this->field_0x2730 * 50.0f, 0.1f, 2.0f);
-            if (i_this->field_0x2734 > -49.9f) {
-                if (i_this->field_0x2734 < 48.0f) {
-                    if (i_this->field_0x2730 >= -0.4f) {
-                        if (i_this->field_0x2730 <= 0.4f) {
-                            i_this->mZ2Creature.startCreatureVoiceLevel(Z2SE_EN_GND_V_TUBAZERI_A, -1);
-                            if (i_this->mAnmID != 85 && i_this->field_0x0c44[2] == 0) {
-                                anm_init(i_this, 85, 3.0f, 2, 1.0f);
-                                daPy_getPlayerActorClass()->changeDemoMode(89, 0, 0, 0);
-                                i_this->field_0x0c44[2] = 30;
-                                Z2GetAudioMgr()->changeBgmStatus(6);
-                            }
-                        } else {
-                            i_this->mZ2Creature.startCreatureVoiceLevel(Z2SE_EN_GND_V_TUBAZERI_C, -1);
-                            if (i_this->mAnmID != 87 && i_this->field_0x0c44[2] == 0) {
-                                anm_init(i_this, 87, 3.0f, 2, 1.0f);
-                                daPy_getPlayerActorClass()->changeDemoMode(89, 2, 0, 0);
-                                i_this->field_0x0c44[2] = 30;
-                                Z2GetAudioMgr()->changeBgmStatus(5);
-                            }
-                        }
-                    } else {
+            if (i_this->field_0x2734 <= -49.9f) {
+                i_this->field_0x26c4 = 52;
+                i_this->field_0x26c6 = 0;
+                anm_init(i_this, 89, 3.0f, 0, 1.0f);
+                daPy_getPlayerActorClass()->changeDemoMode(89, 4, 0, 0);
+                dComIfGp_getVibration().StopQuake(31);
+                Z2GetAudioMgr()->changeBgmStatus(2);
+            } else {
+                if (i_this->field_0x2734 <= 48.0f) {
+                    i_this->field_0x26c4 = 55;
+                    i_this->field_0x26c6 = 0;
+                    anm_init(i_this, 88, 3.0f, 0, 1.0f);
+                    daPy_getPlayerActorClass()->changeDemoMode(89, 3, 0, 0);
+                    dComIfGp_getVibration().StopQuake(31);
+                    Z2GetAudioMgr()->changeBgmStatus(3);
+                } else {
+                    if (i_this->field_0x2730 < -0.4f) {
                         i_this->mZ2Creature.startCreatureVoiceLevel(Z2SE_EN_GND_V_TUBAZERI_B, -1);
                         if (i_this->mAnmID != 86 && i_this->field_0x0c44[2] == 0) {
                             anm_init(i_this, 86, 3.0f, 2, 1.0f);
@@ -4347,22 +4349,26 @@ static void demo_camera(b_gnd_class* i_this) {
                             i_this->field_0x0c44[2] = 30;
                             Z2GetAudioMgr()->changeBgmStatus(4);
                         }
+                    } else {
+                        if (i_this->field_0x2730 > 0.4f) {
+                            i_this->mZ2Creature.startCreatureVoiceLevel(Z2SE_EN_GND_V_TUBAZERI_C, -1);
+                            if (i_this->mAnmID != 87 && i_this->field_0x0c44[2] == 0) {
+                                anm_init(i_this, 87, 3.0f, 2, 1.0f);
+                                daPy_getPlayerActorClass()->changeDemoMode(89, 2, 0, 0);
+                                i_this->field_0x0c44[2] = 30;
+                                Z2GetAudioMgr()->changeBgmStatus(5);
+                            }
+                        } else {
+                            i_this->mZ2Creature.startCreatureVoiceLevel(Z2SE_EN_GND_V_TUBAZERI_A, -1);
+                            if (i_this->mAnmID != 85 && i_this->field_0x0c44[2] == 0) {
+                                anm_init(i_this, 85, 3.0f, 2, 1.0f);
+                                daPy_getPlayerActorClass()->changeDemoMode(89, 0, 0, 0);
+                                i_this->field_0x0c44[2] = 30;
+                                Z2GetAudioMgr()->changeBgmStatus(6);
+                            }
+                        }
                     }
-                } else {
-                    i_this->field_0x26c4 = 55;
-                    i_this->field_0x26c6 = 0;
-                    anm_init(i_this, 88, 3.0f, 0, 1.0f);
-                    daPy_getPlayerActorClass()->changeDemoMode(89, 3, 0, 0);
-                    dComIfGp_getVibration().StopQuake(31);
-                    Z2GetAudioMgr()->changeBgmStatus(3);
-                }
-            } else {
-                i_this->field_0x26c4 = 52;
-                i_this->field_0x26c6 = 0;
-                anm_init(i_this, 89, 3.0f, 0, 1.0f);
-                daPy_getPlayerActorClass()->changeDemoMode(89, 4, 0, 0);
-                dComIfGp_getVibration().StopQuake(31);
-                Z2GetAudioMgr()->changeBgmStatus(2);
+                }  
             }
             break;
         case 52:
@@ -4383,7 +4389,7 @@ static void demo_camera(b_gnd_class* i_this) {
                 i_this->field_0x26c8 += i_this->current.pos;
                 i_this->field_0x26d4 = player->current.pos;
                 i_this->field_0x26d4.y += 80.0f;
-                // actor[1].field249_0x1174[0].mBase.mGObjAt.mBase.mGFlag = 0x3f99999a; - ???
+                mantActor->field_0x395c = 1.2f;
             }
             break;
         case 53:
@@ -4397,8 +4403,7 @@ static void demo_camera(b_gnd_class* i_this) {
             }
 
             if (i_this->field_0x26c6 == 18) {
-                daPy_getPlayerActorClass()->setThrowDamage(0x4049000000000000,
-                    0x403e000000000000, i_this->shape_angle.y, 8, 1, 0);
+                daPy_getPlayerActorClass()->setThrowDamage(i_this->shape_angle.y, 50.0f, 30.0f, 8, 1, 0);
                 daPy_getPlayerActorClass()->changeDemoMode(1, 0, 0, 0);
                 cStack_7c = player->current.pos;
                 cStack_7c.y += 150.0f;
@@ -4420,10 +4425,11 @@ static void demo_camera(b_gnd_class* i_this) {
                 i_this->field_0x26c8 += i_this->current.pos;
                 i_this->field_0x26d4 = player->current.pos;
                 i_this->field_0x26d4.y += 80.0f;
-                // actor[1].field249_0x1174[0].mBase.mGObjAt.mBase.mGFlag = 0x3f99999a; - ???
+                mantActor->field_0x395c = 1.2f;
+                // mantActor[1].field249_0x1174[0].mBase.mGObjAt.mBase.mGFlag = 0x3f99999a; - ???
             }
 
-            if (i_this->field_0x26c6 > 42) {
+            if (i_this->field_0x26c6 >= 42) {
                 bVar3 = true;
                 i_this->mActionID = ACTION_JUMP;
                 i_this->field_0x05bc = 5;
@@ -4460,7 +4466,7 @@ static void demo_camera(b_gnd_class* i_this) {
             i_this->field_0x26d4 = i_this->current.pos;
         case 61:
             i_this->field_0x0c70 = 20;
-            if (i_this->field_0x26c6 > 0) {
+            if (i_this->field_0x26c6 >= 0) {
                 cLib_addCalc2(&i_this->field_0x26d4.x, player->eyePos.x, 0.3f, 50.0f);
                 local_64.y = player->eyePos.y;
                 if (local_64.y > 1400.0f) {
@@ -4502,7 +4508,7 @@ static void demo_camera(b_gnd_class* i_this) {
             }
 
             local_4c.set(0.0f, 1100.0f, -2000.0f);
-            horseActor->setHorsePosAndAngle(&local_4c, -0x2000);
+            horseActor->i_setHorsePosAndAngle(&local_4c, -0x2000);
             break;
         case 63:
             cMtx_YrotS(*calc_mtx, i_this->shape_angle.y);
@@ -4589,7 +4595,7 @@ static void demo_camera(b_gnd_class* i_this) {
             break;
         case 91:
             local_4c.set(0.0f, 1100.0f, -2000.0f);
-            horseActor->setHorsePosAndAngle(&local_4c, -0x2000);
+            horseActor->i_setHorsePosAndAngle(&local_4c, -0x2000);
             if (i_this->field_0x26c6 == 2) {
                 player->onForceHorseGetOff();
             }
@@ -4619,7 +4625,7 @@ static void demo_camera(b_gnd_class* i_this) {
         case 95:
             if (i_this->eventInfo.checkCommandDemoAccrpt() == 0) {
                 fopAcM_orderPotentialEvent(i_this, 2, 0xffff, 0);
-                i_this->eventInfo.onCondition(2);
+                i_this->eventInfo.mCondition |= 2;
                 return;
             }
 
@@ -4630,10 +4636,11 @@ static void demo_camera(b_gnd_class* i_this) {
             horseActor->changeOriginalDemo();
 
             local_4c.set(0.0f, 1100.0f, -2000.0f);
-            horseActor->setHorsePosAndAngle(&local_4c, -0x2000);
+            horseActor->i_setHorsePosAndAngle(&local_4c, -0x2000);
 
             local_4c.set(600.0f, 1100.0f, 0.0f);
             player->setPlayerPosAndAngle(&local_4c, 0xffffb7fe, 0);
+            local_4c.set(-600.0f, 1100.0f, 0.0f);
 
             i_this->old.pos = i_this->current.pos;
             i_this->current.angle.y = 0x37fe;
@@ -4653,34 +4660,32 @@ static void demo_camera(b_gnd_class* i_this) {
             bVar3 = TRUE;
     }
 
-    if (bVar3) {
-        if (bVar3) {
-            cMtx_YrotS(*calc_mtx, player->shape_angle.y);
-            local_40.x = 0.0f;
-            local_40.y = 100.0f;
-            local_40.z = -250.0f;
-            MtxPosition(&i_this->field_0x26c8, &local_40);
-            i_this->field_0x26c8 += player->current.pos;
-            i_this->field_0x26d4 = player->current.pos;
-            i_this->field_0x26d4.y += 120.0f;
-        }
-        
-        camera1->mCamera.Reset(cStack_dc, cStack_e8);
-        camera1->mCamera.Start();
-        camera1->mCamera.SetTrimSize(0);
-
-        dComIfGp_event_reset();
-
-        daPy_getPlayerActorClass()->cancelOriginalDemo();
-
-        i_this->field_0x26c4 = 0;
+    if (!bVar3) {
+        cMtx_YrotS(*calc_mtx, player->shape_angle.y);
+        local_40.x = 0.0f;
+        local_40.y = 100.0f;
+        local_40.z = -250.0f;
+        MtxPosition(&i_this->field_0x26c8, &local_40);
+        i_this->field_0x26c8 += player->current.pos;
+        i_this->field_0x26d4 = player->current.pos;
+        i_this->field_0x26d4.y += 120.0f;
     }
+
+    camera1->mCamera.Reset(i_this->field_0x26d4, i_this->field_0x26c8);
+    camera1->mCamera.Start();
+    camera1->mCamera.SetTrimSize(0);
+
+    dComIfGp_event_reset();
+
+    daPy_getPlayerActorClass()->cancelOriginalDemo();
+
+    i_this->field_0x26c4 = 0;
 
     if (i_this->field_0x26c4 > 0) {
         cStack_88 = i_this->field_0x26d4;
         cStack_94 = i_this->field_0x26c8;
         
-        camera1->mCamera.Set(cStack_f4, cStack_100, i_this->field_0x2710.x, 0);
+        camera1->mCamera.Set(cStack_88, cStack_94, i_this->field_0x2710.x, 0);
         i_this->field_0x26c6 += 1;
         if (i_this->field_0x26c6 > 1000) {
             i_this->field_0x26c6 = 1000;
@@ -5311,7 +5316,7 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
             i_this->field_0x1fc4 = 0;
             i_this->speedF = 0.0f;
 
-            b_gnd_class* gndActor = (b_gnd_class*)fopAcM_SearchByID(i_this->mMantChild);
+            b_gnd_class* gndActor = (b_gnd_class*)fopAcM_SearchByID(i_this->mMantChildID);
 
             h_anm_init(i_this, 5, 3.0f, 0, 1.0f);
 
@@ -5444,9 +5449,9 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
                 i_this->field_0x0eb4.z);
             cMtx_YrotM(mDoMtx_stack_c::now, (int)i_this->field_0x0ec0.y);
             cMtx_XrotM(mDoMtx_stack_c::now, i_this->field_0x0ec0.x);
-            cMtx_ZrotM(mDoMtx_stack_c::now, (s16)i_this->field_0x0ec0.z + *(s16*)i_this->field_0x0c5c);
+            cMtx_ZrotM(mDoMtx_stack_c::now, i_this->field_0x0ec0.z + i_this->field_0x0c5c);
 
-            cLib_addCalcAngleS2((s16*)&i_this->field_0x0c5c, 0, 8, 0x100);
+            cLib_addCalcAngleS2(&i_this->field_0x0c5c, 0, 8, 0x100);
             mDoMtx_stack_c::scaleM(l_HIO.model_size * i_this->scale.x, 
                 l_HIO.model_size * i_this->scale.x, l_HIO.model_size * i_this->scale.x);
 
@@ -5476,52 +5481,52 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
             local_110.set(70.0f, 60.0f, 0.0f);
             MtxPosition(&local_110, &local_11c);
 
-            i_this->horseSpheres1[0].SetC(local_11c);
-            i_this->horseSpheres1[0].SetR(100.0f);
+            i_this->mHorseSpheres1[0].SetC(local_11c);
+            i_this->mHorseSpheres1[0].SetR(100.0f);
 
             PSMTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(26), *calc_mtx);
 
             local_110.set(10.0f, -30.0f, 0.0f);
             MtxPosition(&local_110, &i_this->field_0x1fb8);
 
-            i_this->horseSpheres1[1].SetC(i_this->field_0x1fb8);
-            i_this->horseSpheres1[1].SetR(90.0f);
+            i_this->mHorseSpheres1[1].SetC(i_this->field_0x1fb8);
+            i_this->mHorseSpheres1[1].SetR(90.0f);
 
-            i_this->horseSpheres1[0].OffAtSetBit();
-            i_this->horseSpheres1[1].OffAtSetBit();
+            i_this->mHorseSpheres1[0].OffAtSetBit();
+            i_this->mHorseSpheres1[1].OffAtSetBit();
 
             if (i_this->field_0x1e08 == 0) {
-                i_this->horseSpheres1[0].OnTgSetBit();
-                i_this->horseSpheres1[1].OnTgSetBit();
+                i_this->mHorseSpheres1[0].OnTgSetBit();
+                i_this->mHorseSpheres1[1].OnTgSetBit();
             } else {
-                i_this->horseSpheres1[0].OffTgSetBit();
-                i_this->horseSpheres1[1].OffTgSetBit();
+                i_this->mHorseSpheres1[0].OffTgSetBit();
+                i_this->mHorseSpheres1[1].OffTgSetBit();
             }
 
-            dComIfG_Ccsp()->Set(i_this->horseSpheres1);
-            dComIfG_Ccsp()->Set(i_this->horseSpheres1 + 1);
+            dComIfG_Ccsp()->Set(i_this->mHorseSpheres1);
+            dComIfG_Ccsp()->Set(i_this->mHorseSpheres1 + 1);
 
             for (int i = 0; i < 4; i++) {
                 PSMTXCopy(i_this->mpHorseMorf->getModel()->getMtxBuffer()->getAnmMtx(footJ[i]), *calc_mtx);
                 local_110.set(0.0f, 0.0f, 0.0f);
                 MtxPosition(&local_110, &local_11c);
 
-                i_this->horseSpheres2[i].SetC(local_11c);
-                i_this->horseSpheres2[i].SetR(40.0f);
+                i_this->mHorseSpheres2[i].SetC(local_11c);
+                i_this->mHorseSpheres2[i].SetR(40.0f);
 
                 if ((i_this->field_0x1e08 != 0 || i > 1) || i_this->speedF <= 10.0f) {
-                    i_this->horseSpheres2[i].OffAtSetBit();
+                    i_this->mHorseSpheres2[i].OffAtSetBit();
                 } else {
-                    i_this->horseSpheres2[i].OnAtSetBit();
+                    i_this->mHorseSpheres2[i].OnAtSetBit();
                 }
 
                 if (i_this->field_0x1e08 == 0) {
-                    i_this->horseSpheres2[i].OnTgSetBit();
+                    i_this->mHorseSpheres2[i].OnTgSetBit();
                 } else {
-                    i_this->horseSpheres2[i].OffTgSetBit();
+                    i_this->mHorseSpheres2[i].OffTgSetBit();
                 }
 
-                dComIfG_Ccsp()->Set(&i_this->horseSpheres2[i]);
+                dComIfG_Ccsp()->Set(&i_this->mHorseSpheres2[i]);
             }
         }
 
@@ -5885,7 +5890,7 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
             }
         }
 
-        b_gnd_class* gndActor = (b_gnd_class*)fopAcM_SearchByID(i_this->mMantChild);
+        b_gnd_class* gndActor = (b_gnd_class*)fopAcM_SearchByID(i_this->mMantChildID);
 
         if (gndActor) {
             gndActor->current.pos = i_this->current.pos;
@@ -6284,8 +6289,8 @@ static int daB_GND_Create(fopAc_ac_c* a_this) {
             fopAcM_SetMax(a_this, 400.0f, 200.0f, 400.0f);
 
             i_this->field_0x0cd4.Set(&i_this->current.pos, &i_this->old.pos, a_this, 1,
-                &i_this->wall, &i_this->speed, NULL, NULL);
-            i_this->wall.SetWall(50.0f, 150.0f);
+                &i_this->mWall, &i_this->speed, NULL, NULL);
+            i_this->mWall.SetWall(50.0f, 150.0f);
             i_this->field_0x0cd4.m_flags = i_this->field_0x0cd4.m_flags & 0xfffffbff;
 
             cXyz local_44;
@@ -6303,7 +6308,7 @@ static int daB_GND_Create(fopAc_ac_c* a_this) {
                 b_path[i].z = local_50.z;
             }
 
-            i_this->mMantChild = fopAcM_createChild(PROC_MANT, fopAcM_GetID(a_this),
+            i_this->mMantChildID = fopAcM_createChild(PROC_MANT, fopAcM_GetID(a_this),
                 0, &i_this->current.pos, fopAcM_GetRoomNo(a_this), NULL, NULL, -1, 0);
             i_this->health = 24;
             i_this->field_0x560 = 24;
@@ -6312,17 +6317,17 @@ static int daB_GND_Create(fopAc_ac_c* a_this) {
             i_this->field_0x0ec8.Init(150, 0, a_this);
 
             for (int i = 0; i < 2; i++) {
-                i_this->horseSpheres1[i].Set(h_cc_sph_src);
-                i_this->horseSpheres1[i].SetStts(&i_this->field_0x0ec8);
-                i_this->horseSpheres1[i].OnTgShield();
-                i_this->horseSpheres1[i].SetTgHitMark(CcG_Tg_UNK_MARK_2);
+                i_this->mHorseSpheres1[i].Set(h_cc_sph_src);
+                i_this->mHorseSpheres1[i].SetStts(&i_this->field_0x0ec8);
+                i_this->mHorseSpheres1[i].OnTgShield();
+                i_this->mHorseSpheres1[i].SetTgHitMark(CcG_Tg_UNK_MARK_2);
             }
 
             for (int i = 0; i < 4; i++) {
-                i_this->horseSpheres2[i].Set(h_cc_sph_src);
-                i_this->horseSpheres2[i].SetStts(&i_this->field_0x0ec8);
-                i_this->horseSpheres2[i].OnTgShield();
-                i_this->horseSpheres2[i].SetTgHitMark(CcG_Tg_UNK_MARK_2);
+                i_this->mHorseSpheres2[i].Set(h_cc_sph_src);
+                i_this->mHorseSpheres2[i].SetStts(&i_this->field_0x0ec8);
+                i_this->mHorseSpheres2[i].OnTgShield();
+                i_this->mHorseSpheres2[i].SetTgHitMark(CcG_Tg_UNK_MARK_2);
             }
 
             for (int i = 0; i < 3; i++) {

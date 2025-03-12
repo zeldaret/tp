@@ -53,7 +53,7 @@ public:
     /* 0x0755 */ u8 field_0x0755[0x0758 - 0x0755];
     /* 0x0758 */ int mAnmID;
     /* 0x075C */ int mHorseAnmID;
-    /* 0x0760 */ f32 playSpeed;
+    /* 0x0760 */ f32 mPlaySpeed;
     /* 0x0764 */ u8 field_0x0764[0x0768 - 0x0764];
     /* 0x0768 */ J3DModel* field_0x0768;
     /* 0x076C */ J3DModel* field_0x076c;
@@ -79,8 +79,8 @@ public:
     /* 0x0C44 */ s16 field_0x0c44[10];
     /* 0x0C58 */ s16 field_0x0c58;
     /* 0x0C5A */ s16 field_0x0c5a;
-    /* 0x0C5C */ u8 field_0x0c5c;
-    /* 0x0C5D */ u8 field_0x0C5D[0x0C60 - 0x0C5D];
+    /* 0x0C5C */ s16 field_0x0c5c;
+    /* 0x0C5D */ u8 field_0x0C5E[0x0C60 - 0x0C5E];
     /* 0x0C60 */ int field_0x0c60;
     /* 0x0C64 */ int field_0x0c64;
     /* 0x0C68 */ s16 field_0x0c68;
@@ -103,7 +103,7 @@ public:
     /* 0x0C8E */ s16 field_0x0c8e;
     /* 0x0C90 */ s16 field_0x0c90;
     /* 0x0C92 */ s16 field_0x0c92;
-    /* 0x0C94 */ dBgS_AcchCir wall;
+    /* 0x0C94 */ dBgS_AcchCir mWall;
     /* 0x0CD4 */ dBgS_ObjAcch field_0x0cd4;
     /* 0x0EAC */ s16 field_0x0eac;
     /* 0x0EAE */ u8 field_0x0EAE[0x0EB0 - 0x0EAE];
@@ -112,8 +112,8 @@ public:
     /* 0x0EC0 */ csXyz field_0x0ec0;
     /* 0x0EC6 */ u8 field_0x0EC6[0x0EC8 - 0x0EC6];
     /* 0x0EC8 */ dCcD_Stts field_0x0ec8;
-    /* 0x0F04 */ dCcD_Sph horseSpheres1[2];
-    /* 0x1174 */ dCcD_Sph horseSpheres2[4];
+    /* 0x0F04 */ dCcD_Sph mHorseSpheres1[2];
+    /* 0x1174 */ dCcD_Sph mHorseSpheres2[4];
     /* 0x1654 */ dCcD_Stts field_0x1654;
     /* 0x1690 */ dCcD_Sph field_0x1690[3];
     /* 0x1A38 */ dCcD_Sph field_0x1a38;
@@ -140,7 +140,7 @@ public:
     /* 0x1F10 */ Z2SoundObjSimple field_0x1f10[5];
     /* 0x1FB0 */ u8 mInitHIO;
     /* 0x1FB0 */ u8 field_0x1FB1[0x1FB4 - 0x1FB1];
-    /* 0x1FB4 */ fpc_ProcID mMantChild;
+    /* 0x1FB4 */ fpc_ProcID mMantChildID;
     /* 0x1FB8 */ cXyz field_0x1fb8;
     /* 0x1FC4 */ int field_0x1fc4;
     /* 0x1FC8 */ s16 field_0x1fc8;
