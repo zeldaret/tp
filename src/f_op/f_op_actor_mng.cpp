@@ -776,25 +776,13 @@ s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
         if (fopAcM_GetCullSize(i_actor) == 23) {
             if (fopAcM_getCullSizeFar(i_actor) > 0.0f) {
                 mDoLib_clipper::changeFar(cullsize_far * mDoLib_clipper::getFar());
-
-                f32 radius = fopAcM_getCullSizeSphereR(i_actor);
-                const Vec& center_p = fopAcM_getCullSizeSphereCenter(i_actor);
-                Vec center;
-                center.x = center_p.x;
-                center.y = center_p.y;
-                center.z = center_p.z;
-
-                u32 ret = mDoLib_clipper::clip(mtx_p, center, radius);
+                u32 ret = mDoLib_clipper::clip(mtx_p, fopAcM_getCullSizeSphereCenter(i_actor),
+                                               fopAcM_getCullSizeSphereR(i_actor));
                 mDoLib_clipper::resetFar();
                 return ret;
             } else {
-                f32 radius = fopAcM_getCullSizeSphereR(i_actor);
-                const Vec& center_p = fopAcM_getCullSizeSphereCenter(i_actor);
-                Vec center;
-                center.x = center_p.x;
-                center.y = center_p.y;
-                center.z = center_p.z;
-                return mDoLib_clipper::clip(mtx_p, center, radius);
+                return mDoLib_clipper::clip(mtx_p, fopAcM_getCullSizeSphereCenter(i_actor),
+                                            fopAcM_getCullSizeSphereR(i_actor));
             }
         } else {
             cull_sphere* sphere = &l_cullSizeSphere[cullsize - 15];
