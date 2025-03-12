@@ -550,7 +550,7 @@ void daE_OT_c::executeDamage() {
         mMode = 1;
         mAnmSpeed = 1.0f;
         gravity = -5.0f;
-        current.angle.y = mAtInfo.mHitDirection + 0x8000 + cM_rndFX(0x2000);
+        current.angle.y = mAtInfo.mHitDirection.y + 0x8000 + cM_rndFX(0x2000);
         break;
 
     case 1:

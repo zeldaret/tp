@@ -146,7 +146,7 @@ static void damage_check(e_ba_class* i_this) {
                         i_this->mIFrames = 10;
                     }
                     i_this->mKnockbackSpeed = 80.0f;
-                    i_this->mKnockbackAngle = i_this->mAtInfo.mHitDirection;
+                    i_this->mKnockbackAngle = i_this->mAtInfo.mHitDirection.y;
                     if (i_this->health <= 0) {
                         i_this->mCreatureSound.startCreatureVoice(Z2SE_EN_BA_V_DEATH, -1);
                         i_this->mpMorf->setPlaySpeed(0.2f);
