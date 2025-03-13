@@ -14,6 +14,7 @@
 #include "m_Do/m_Do_graphic.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/actor/d_a_mant.h"
+#include "d/actor/d_a_mg_rod.h"
 
 enum daB_GND_ACTION {
     ACTION_HWAIT_1 = 1,
@@ -1250,17 +1251,18 @@ static BOOL saku_jump_check(b_gnd_class* i_this) {
     // NONMATCHING
     s16 sVar1;
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
-    dBgS_LinChk line_chk;
-    cM3dGPla plane;
     cXyz local_e8;
-    cXyz local_dc;
     cXyz local_d0;
+    cXyz local_dc;
     cXyz cStack_c4;
     cXyz local_b8;
     cXyz local_ac;
-    if (i_this->field_0x0c76 > 3) {
+    if (3 < i_this->field_0x0c76) {
         return 0;
     }
+
+    dBgS_LinChk line_chk;
+    cM3dGPla plane;
 
     cMtx_YrotS(*calc_mtx, i_this->shape_angle.y);
     cMtx_XrotM(*calc_mtx, i_this->shape_angle.x);
@@ -1268,11 +1270,12 @@ static BOOL saku_jump_check(b_gnd_class* i_this) {
     local_ac.y = 150.0;
     local_ac.z = 900.0;
     MtxPosition(&local_ac, &cStack_c4);
+    
     cStack_c4 += i_this->current.pos;
     cStack_c4.y += 200.0f;
-    local_b8.x = i_this->current.pos.x;
-    local_b8.z = i_this->current.pos.z;
-    local_b8.y = i_this->current.pos.y + 350.0f;
+
+    local_b8 = i_this->current.pos;
+    local_b8.y += 350.0f;
     line_chk.Set(&local_b8, &cStack_c4, a_this);
 
     if (dComIfG_Bgsp().LineCross(&line_chk)) {
@@ -1289,23 +1292,20 @@ static BOOL saku_jump_check(b_gnd_class* i_this) {
     if (dComIfG_Bgsp().LineCross(&line_chk)) {
         if (dComIfG_Bgsp().GetTriPla(line_chk, &plane)) {
             if (!cBgW_CheckBGround(plane.mNormal.y)) {
-                local_d0.x = line_chk.mLin.mEnd.x;
-                local_d0.y = line_chk.mLin.mEnd.y;
-                local_d0.z = line_chk.mLin.mEnd.z;
+                local_d0 = line_chk.mLin.mEnd;
 
                 local_ac.x *= -1.0;
                 MtxPosition(&local_ac, &cStack_c4);
                 cStack_c4 += i_this->current.pos;
                 line_chk.Set(&local_b8, &cStack_c4, a_this);
+                
                 if (dComIfG_Bgsp().LineCross(&line_chk)) {
                     return 0;
                 }
-                // local_dc.x = line_chk.mLin.mEnd.x;
-                // local_dc.y = line_chk.mLin.mEnd.y;
-                // local_dc.z = line_chk.mLin.mEnd.z;
-                local_e8 = local_dc - local_d0;
 
-                sVar1 = cM_atan2s(local_e8.x, local_e8.z);
+                local_e8 = line_chk.GetCross() - local_d0;
+
+                sVar1 = cM_atan2s(local_e8.x, local_e8.z) + 0x4000 - i_this->shape_angle.y;
                 if (sVar1 > -0x3000 && sVar1 < 0x3000) {
                     return 1;
                 }
@@ -1469,11 +1469,6 @@ static cXyz b_path[8];
 /* 805F6290-805F6FA4 001930 0D14+00 2/1 0/0 0/0 .text            b_gnd_h_run_a__FP11b_gnd_class */
 static void b_gnd_h_run_a(b_gnd_class* i_this) {
     // NONMATCHING
-    /*
-        Likely handles Ganondorf's horse's running.
-        Not sure yet of difference between
-        b_gnd_h_run_a and b_gnd_h_run_p.
-    */
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
     float fVar19 = i_this->field_0x0c38;
     float fVar18;
@@ -1487,7 +1482,8 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
     int iVar16;
     cXyz local_104;
     cXyz local_f8;
-    cXyz local_e0;
+    cXyz local_c8;
+    cXyz local_d4;
     cXyz local_bc;
     cXyz local_b0;
     if (iVar13 && dComIfGp_getHorseActor()->speedF >= 30.0f) {
@@ -1496,16 +1492,14 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
 
     s16 sVar12 = i_this->current.angle.y;
     float fVar2 = 1.0f;
-    bool bVar4 = false;
+    BOOL bVar4 = FALSE;
     s16 sVar11 = (i_this->field_0x0c3c + 0x7fff) - player->shape_angle.y;
     if (sVar11 < 0x4000 && sVar11 > -0x4000) {
-        bVar4 = true;
+        bVar4 = TRUE;
     }
 
     bool bVar3 = false;
     s16 sVar15 = 128;
-
-    long local_a0;
 
     switch (i_this->field_0x05bc) {
         case 0:
@@ -1523,16 +1517,16 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
             iVar16 = 12;
             
             for (int i = 0; i < 8; i++) {
-                local_e0 = b_path[iVar13] - i_this->current.pos;
-                if (fVar6 < fVar7) {
-                    iVar13 = iVar14;
+                local_c8 = b_path[i * 12] - i_this->current.pos;
+                local_d4 = b_path[i * 12] - i_this->current.pos;
+
+                if (local_d4.abs() > local_c8.abs()) {
+                    i++;
                 }
             }
 
             i_this->field_0x0c60 = iVar13;
-            fVar18 = cM_rndF(100.0f);
-            local_a0 = (long)(int)(fVar18 + 100.0f);
-            i_this->field_0x0c44[2] = (s16)(int)(fVar18 + 100.0f);
+            i_this->field_0x0c44[2] = cM_rndF(100.0f) + 100.0f;
         case 2:
             if (i_this->field_0x0c44[2] == 0 && bVar8) {
                 i_this->field_0x05bc = 3;
@@ -1541,7 +1535,7 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
                     i_this->field_0x05bc = 20;
                     i_this->field_0x0c44[0] = 10;
                 } else {
-                    i_this->mActionID = 4; // ACT_HRUN_P
+                    i_this->mActionID = ACTION_HRUN_P;
                     i_this->field_0x05bc = 0;
                     i_this->field_0x0c44[3] = 100;
                 }
@@ -1555,11 +1549,7 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
             i_this->field_0x1e0f = 1;
             i_this->field_0x1e10 = 0.0f;
         case 4:
-            bVar4 = true;
             if (i_this->mpModelMorf->isStop()) {
-                bVar4 = false;
-            }
-            if (bVar4) {
                 anm_init(i_this, 57, 3.0f, 2, 1.0f);
                 i_this->field_0x0c44[0] = 20;
                 i_this->field_0x05bc = 5;
@@ -1582,16 +1572,9 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
                 i_this->field_0x1e0e = 0;
             }
 
-            bVar4 = true;
             if (i_this->mpModelMorf->isStop()) {
-                bVar4 = false;
-            }
-
-            if (bVar4) {
                 i_this->field_0x05bc = 2;
-                fVar19 = cM_rndF(100.0f);
-                local_a0 = (long)(int)(fVar19 + 100.0f);
-                i_this->field_0x0c44[2] = (s16)(int)(fVar19 + 100.0f);
+                i_this->field_0x0c44[2] = cM_rndF(100.0f) + 100.0f;
             }
             break;
         case 7:
@@ -1603,12 +1586,8 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
             i_this->field_0x0c44[0] = 300;
         case 8:
             i_this->field_0x1e08 = 10;
-            bVar4 = true;
-            if (i_this->mpModelMorf->isStop()) {
-                bVar4 = false;
-            }
 
-            if (bVar4) {
+            if (i_this->mpModelMorf->isStop()) {
                 anm_init(i_this, 61, 2.0f, 2, 1.0f);
                 i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_DAMAGE01, -1);
                 i_this->field_0x05bc = 9;
@@ -1623,12 +1602,8 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
             break;
         case 10:
             i_this->field_0x0c58 = 10;
-            bVar4 = true;
-            if (i_this->mpModelMorf->isStop()) {
-                bVar4 = false;
-            }
 
-            if (bVar4) {
+            if (i_this->mpModelMorf->isStop()) {
                 i_this->field_0x05bc = 0;
             }
             break;
@@ -1641,12 +1616,8 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
             i_this->field_0x05bc = 12;
         case 12:
             i_this->field_0x0c58 = 10;
-            bVar4 = true;
-            if (i_this->mpModelMorf->isStop()) {
-                bVar4 = false;
-            }
 
-            if (bVar4) {
+            if (i_this->mpModelMorf->isStop()) {
                 i_this->field_0x05bc = 0;
             }
             break;
@@ -1669,7 +1640,7 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
             }
 
             if (i_this->speedF < 2.0f) {
-                i_this->mActionID = 2; // ACT_HWAIT_2
+                i_this->mActionID = ACTION_HWAIT_2;
                 i_this->field_0x05bc = 0;
             }
     }
@@ -1749,7 +1720,7 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
                 fVar2 = fVar2 / 40.0f;
             } else {
                 fVar1 = 2.0f;
-                fVar20 = l_HIO.field_0xc;
+                // fVar20 = l_HIO.field_0xc;
             }
         } else {
             fVar1 = 0.5f;
@@ -1768,12 +1739,12 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
     cLib_addCalc2(&i_this->speedF, fVar20, 1.0f, fVar1);
     if (fVar20 > 10.0f) {
         sVar12 = (i_this->current.angle.y - sVar12) * -8;
-        if (sVar12 < 0x7d1) {
+        if (sVar12 > 0x7d1) {
+            sVar12 = 2000;
+        } else {
             if (sVar12 < -2000) {
                 sVar12 = -2000;
             }
-        } else {
-            sVar12 = 2000;
         }
         cLib_addCalcAngleS2(&i_this->field_0x0c5c, sVar12, 4, 0x300);
     }
@@ -1787,20 +1758,14 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
     if (bVar3) {
         local_b0.x = 0.0f;
         local_b0.y = 1000.0f;
-        iVar16 = 0;
-        iVar13 = 0;
-        sVar12 = 0;
         for (int i = 0; i < 8; i++) {
             cMtx_YrotS(*calc_mtx, (int)(short)(i << 13));
-            local_b0.z = cM_rndF(3000.0f);
-            local_b0.z = local_b0.z + 12000.0f;
+            local_b0.z = cM_rndF(3000.0f) + 12000.0f;
             MtxPosition(&local_b0, &local_bc);
             local_bc.x = local_bc.x + -2989.0f;
             local_bc.z = local_bc.z + 1364.0f;
-            // Something with b_path
-            iVar16++;
-            iVar13 += 12;
-            sVar12 += 0x2000;
+
+            b_path[i * 12] = local_bc;
         }
     }
     return;
@@ -2295,19 +2260,19 @@ static void b_gnd_h_end(b_gnd_class* i_this) {
 /* 805F7A10-805F7E88 0030B0 0478+00 2/1 0/0 0/0 .text            b_gnd_g_wait__FP11b_gnd_class */
 static void b_gnd_g_wait(b_gnd_class* i_this) {
     // NONMATCHING
-    s16 sVar1 = 0x400;
+    s16 sVar1;
     float fVar1 = 0.0f;
-    fopAc_ac_c* actor1 = fopAcM_SearchByID(i_this->mMantChildID);
-    fopAc_ac_c* actor2 = fopAcM_SearchByName(740);
+    mant_class* mantActor = (mant_class*)fopAcM_SearchByID(i_this->mMantChildID);
+    dmg_rod_class* fishingRod = (dmg_rod_class*)fopAcM_SearchByName(740);
 
-    if (!actor2 || actor2->home.pos.y + 2 == 0) {
-        if (i_this->field_0x05bc == 5) {
-                i_this->field_0x05bc = 6;
-                i_this->field_0x0c44[0] = 40;
+    if (!fishingRod || fishingRod->field_0xf7e != 0) {
+        if (i_this->field_0x05bc < 5 && i_this->field_0x0c38 < 600.0f) {
+            i_this->field_0x05bc = 5;
+            i_this->field_0x0c44[0] = 10;
         }
-    } else if (i_this->field_0x05bc < 5 && i_this->field_0x0c38 < 600.0f) {
-        i_this->field_0x05bc = 5;
-        i_this->field_0x0c44[0] = 10;
+    } else if (i_this->field_0x05bc == 5) {
+        i_this->field_0x05bc = 6;
+        i_this->field_0x0c44[0] = 40;
     }
 
     switch (i_this->field_0x05bc) {
@@ -2317,56 +2282,64 @@ static void b_gnd_g_wait(b_gnd_class* i_this) {
             i_this->field_0x0c44[0] = (cM_rndF(100.0f) + 200.0f);
         case 1:
         fVar1 = 43.0f / 10.0f;
-            // if (500.0f <= i_this->field_0x0c38) {
-                // if (i_this->field_0x0c44[0] == 1) {
-                    // if (800.0f <= i_this->field_0x0c38 || 0.3f <= cM_rndF(1.0f)) {
-                    //     i_this->mActionID = 13; // ACT_JUMP
-                    //     i_this->field_0x05bc = 0;
-                    // } else {
-                    //     i_this->mActionID = 11; // ACT_ATTACK
-                    //     i_this->field_0x05bc = 10;
-                    // }
-                // }
-            // } else {
+            if (i_this->field_0x0c38 < 500.0f) {
                 i_this->field_0x05bc = 2;
                 anm_init(i_this, 91, 10.0f, 2, 1.0f);
                 i_this->field_0x0c44[0] = (cM_rndF(50.0f) + 30.0f);
-            // }
-            break;
-        case 2:
-            if (i_this->field_0x0c44[8] == 0) {
-                if (650.0f < i_this->field_0x0c38) {
-                    i_this->field_0x05bc = 0;
-                }
-
-                if (i_this->field_0x0c38 <= 550.0f) {
-                    if (150.0f <= i_this->field_0x0c38) {
-                        if (i_this->field_0x0c44[0] == 0) {
-                            i_this->mActionID = 11; // ACT_ATTACK
-                            if (300.0f <= i_this->field_0x0c38) {
-                                i_this->field_0x05bc = 2;
-                            } else {
-                                if (0.5f <= cM_rndF(1.0f)) {
-                                    i_this->field_0x05bc = 8;
-                                } else {
-                                    i_this->field_0x05bc = 0;
-                                }
-                            }
-                        }
+            } else {
+                if (i_this->field_0x0c44[0] == 1) {
+                    if (800.0f > i_this->field_0x0c38 || 0.3f < cM_rndF(1.0f)) {
+                        i_this->mActionID = ACTION_ATTACK;
+                        i_this->field_0x05bc = 10;
                     } else {
-                        i_this->mActionID = 11; // ACT_ATTACK
+                        i_this->mActionID = ACTION_JUMP;
                         i_this->field_0x05bc = 0;
                     }
                 }
-            } else {
+            }
+            break;
+        case 2:
+            if (i_this->field_0x0c44[8] != 0) {
+
                 if (i_this->field_0x0c38 < 300.0f) {
                     i_this->field_0x0c44[8] = 0;
                 }
 
-                // if (i_this->field_0x0c44[8] == 1) {
-                    i_this->mActionID = 11; // ACT_ATTACK
+                if (i_this->field_0x0c44[8] == 1) {
+                    i_this->mActionID = ACTION_ATTACK;
                     i_this->field_0x05bc = 10;
-                // }
+                }
+            } else {
+                if (i_this->field_0x0c38 > 650.0f) {
+                    i_this->field_0x05bc = 0;
+                }
+
+                if (i_this->field_0x0c38 > 550.0f) {
+                    i_this->mActionID = ACTION_ATTACK;
+                    if (cM_rndF(1.0f) < 0.5) {
+                        i_this->field_0x05bc = 10;
+                    } else {
+                        i_this->field_0x05bc = 15;
+                    }
+                } else {
+                    if (i_this->field_0x0c38 < 150.0f) {
+                        i_this->mActionID = ACTION_ATTACK;
+                        i_this->field_0x05bc = 4;
+                    } else {
+                        if (i_this->field_0x0c44[0] == 0) {
+                            i_this->mActionID = ACTION_ATTACK;
+                            if (i_this->field_0x0c38 < 300.0f) {
+                                if (0.5f < cM_rndF(1.0f)) {
+                                    i_this->field_0x05bc = 0;
+                                } else {
+                                    i_this->field_0x05bc = 8;
+                                }
+                            } else {
+                                i_this->field_0x05bc = 2;
+                            }
+                        }
+                    }
+                }
             }
             break;
         case 3:
@@ -2385,10 +2358,7 @@ static void b_gnd_g_wait(b_gnd_class* i_this) {
 
             i_this->field_0x0c7d = 2;
 
-            // Unsure of what below block would translate to
-            // (i_this->field232_0xc80).x = *(float *)&actor2[3].base.mBase.mLyTg.mCreateTag.mbIsUse;
-            // (i_this->field232_0xc80).y = (float)actor2[3].base.mBase.mLyTg.mpLayer;
-            // (i_this->field232_0xc80).z = *(float *)&actor2[3].base.mBase.mLyTg.mNodeListID;
+            i_this->field_0x0c80 = fishingRod->mHookPosition;
             break;
         case 6:
             sVar1 = 0;
@@ -2402,16 +2372,16 @@ static void b_gnd_g_wait(b_gnd_class* i_this) {
         sVar1 = sVar1 >> 1;
     }
 
-    cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->field_0x0c3c, 2, sVar1);
-    sVar1 = i_this->current.angle.y = i_this->field_0x0c3c;
+    cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->field_0x0c3c, 
+        2, sVar1);
+    sVar1 = i_this->current.angle.y - i_this->field_0x0c3c;
     if (0x100 < sVar1 || sVar1 < -0x100) {
-        i_this->field_0x26c2 = cM_ssin(i_this->field_0x0afc);
+        i_this->field_0x26c2 = 2500.0f * cM_ssin(i_this->field_0x0afc * 5000);
     }
 
-    // Unsure of how to decompile last if statement
-    // if (i_this->mActionID != 10 /* ACT_WAIT */) {
-        
-    // }
+    if (i_this->mActionID != ACTION_WAIT && mantActor->field_0x3969 == 2) {
+        mantActor->field_0x3969 = 1;
+    }
 }
 
 /* 805F7E88-805F878C 003528 0904+00 2/1 0/0 0/0 .text            b_gnd_g_attack__FP11b_gnd_class */
@@ -3098,50 +3068,56 @@ static void b_gnd_g_damage(b_gnd_class* i_this) {
 static void b_gnd_g_down(b_gnd_class* i_this) {
     // NONMATCHING
     int frame = (int)i_this->mpModelMorf->getFrame();
-    b_gnd_class* actor = (b_gnd_class*)fopAcM_SearchByID(i_this->mMantChildID);
+    fopEn_enemy_c* enemyActor = (fopEn_enemy_c *)i_this;
+    mant_class* mantActor = (mant_class*)fopAcM_SearchByID(i_this->mMantChildID);
     i_this->field_0x0c58 = 10;
 
     switch(i_this->field_0x05bc) {
         case 0:
             i_this->field_0x1e0c += 1;
-            if (i_this->field_0x1e0c < 3) {
+            if (i_this->field_0x1e0c >= 3) {
+                anm_init(i_this, 40, 3.0f, 0, 1.0f);
+            } else {
                 anm_init(i_this, 41, 3.0f, 0, 1.0f);
                 i_this->mZ2Creature.startCreatureVoice(Z2SE_EN_GND_V_DAMAGE, -1);
             }
 
             i_this->current.angle.y = i_this->field_0x0c3c + -0x8000;
             i_this->field_0x05bc = 1;
-            // actor[1].field249_0x1174[0].mBase.mGObjAt.mBase.mGFlag = 0x3f800000 - ???
+            
+            mantActor->field_0x395c = 1.0f;
+
             i_this->speedF = 30.0f;
             i_this->speed.y = 35.0f;
             return;
         case 1:
-            if (frame < 16) {
-                // *(undefined1 *)&actor[1].field249_0x1174[0].mBase.mGObjAt.mBase.mHitCallback = 1; - ???
-            } else {
+            if (frame >= 16) {
                 cLib_addCalc0(&i_this->speedF, 1.0f, 3.0f);
                 if (frame == 16) {
                     PSMTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(1), mDoMtx_stack_c::now);
                     fopAcM_effSmokeSet1(&i_this->field_0x25b4, &i_this->field_0x25b8,
                         &cXyz(mDoMtx_stack_c::now[0][3], mDoMtx_stack_c::now[1][3], mDoMtx_stack_c::now[2][3]),
                         &i_this->shape_angle, 2.5f, &i_this->tevStr, 1);
-                    dComIfGp_getVibration().StartShock(6, 31, cXyz(0.0f, 1.0f, 0.0f));
-                    actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x41100000);
+                    dComIfGp_getVibration().StartShock(6, 31, 
+                        cXyz(0.0f, 1.0f, 0.0f));
+                    mantActor->field_0x3960 = 9.0f;
                     if (i_this->mAnmID == 41) {
-                        // actor[1].field249_0x1174[0].mBase.mGObjAt.mBase.mGFlag = 0x3f800000; - ???
+                        mantActor->field_0x395c = 1.0f;
                     }
                 }
 
-                if (i_this->mAnmID == 40 && 21 < frame) {
-                    // *(undefined1 *)((int)&actor[1].field249_0x1174[0].mBase.mGObjAt.mBase.mHitCallback + 1) = 1;
+                if (i_this->mAnmID == 40 && 21 <= frame) {
+                    mantActor->field_0x3965 = 1;
                 }
+            } else {
+                mantActor->field_0x3964 = 1;
             }
 
             if (i_this->mAnmID == 41 && frame == 48) {
-                // actor[1].field249_0x1174[0].mBase.mGObjAt.mBase.mGFlag = 0x3f800000; - ???
+                mantActor->field_0x395c = 1.0f;
             }
 
-            if (i_this->mpModelMorf->isStop()) {
+            if (!i_this->mpModelMorf->isStop()) {
                 return;
             }
 
@@ -3159,8 +3135,10 @@ static void b_gnd_g_down(b_gnd_class* i_this) {
             if (!daPy_getPlayerActorClass()->checkMasterSwordEquip()) {
                 return;
             }
+            
+            enemyActor->onDownFlg();
+            return;
 
-            break;
         case 2:
             if (daPy_getPlayerActorClass()->getCutType() == daPy_py_c::CUT_TYPE_DOWN ) {
                     i_this->field_0x26c4 = 60;
@@ -3176,13 +3154,17 @@ static void b_gnd_g_down(b_gnd_class* i_this) {
             anm_init(i_this, 42, 3.0f, 0, 1.0f);
             i_this->current.angle.y = i_this->shape_angle.y;
             i_this->field_0x05bc = 3;
-            i_this->offDownFlg();
+            enemyActor->offDownFlg();
             break;
         default:
             return;            
     }
 
-    if (frame == 10) { // (*(undefined1 *)((int)&actor[1].field249_0x1174[0].mBase.mGObjAt.mBase.mHitCallback + 1) = 1) - ???
+    if (frame < 11) {
+        mantActor->field_0x3965 = 1;
+    }
+
+    if (frame == 10) {
         if (i_this->mpModelMorf->isStop()) {
             i_this->mActionID = ACTION_WAIT;
             i_this->field_0x05bc = 0;
