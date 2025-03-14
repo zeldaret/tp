@@ -63,7 +63,7 @@ int daItemBase_c::CreateItemHeap(char const* i_arcName, s16 i_bmdName, s16 i_btk
         JUT_ASSERT(pbtk != 0);
 
         mpBtkAnm = new mDoExt_btkAnm();
-        if (mpBtkAnm == NULL || !mpBtkAnm->init(modelData, pbtk, TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1)) {
+        if (mpBtkAnm == NULL || !mpBtkAnm->init(modelData, pbtk, TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1)) {
             return 0;
         }
     }
@@ -74,7 +74,7 @@ int daItemBase_c::CreateItemHeap(char const* i_arcName, s16 i_bmdName, s16 i_btk
         JUT_ASSERT(pbpk != 0);
 
         mpBpkAnm = new mDoExt_bpkAnm();
-        if (mpBpkAnm == NULL || !mpBpkAnm->init(modelData, pbpk, TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1)) {
+        if (mpBpkAnm == NULL || !mpBpkAnm->init(modelData, pbpk, TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1)) {
             return 0;
         }
     }
@@ -85,7 +85,7 @@ int daItemBase_c::CreateItemHeap(char const* i_arcName, s16 i_bmdName, s16 i_btk
         JUT_ASSERT(pbck != 0);
 
         mpBckAnm = new mDoExt_bckAnm();
-        if (mpBckAnm == NULL || !mpBckAnm->init(pbck, TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1, false)) {
+        if (mpBckAnm == NULL || !mpBckAnm->init(pbck, TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1, false)) {
             return 0;
         }
     }
@@ -102,7 +102,7 @@ int daItemBase_c::CreateItemHeap(char const* i_arcName, s16 i_bmdName, s16 i_btk
         }
 
         mpBrkAnm = new mDoExt_brkAnm();
-        if (mpBrkAnm == NULL || !mpBrkAnm->init(modelData, pbrk, anmPlay, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1)) {
+        if (mpBrkAnm == NULL || !mpBrkAnm->init(modelData, pbrk, anmPlay, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1)) {
             return 0;
         }
     }
@@ -113,7 +113,7 @@ int daItemBase_c::CreateItemHeap(char const* i_arcName, s16 i_bmdName, s16 i_btk
         JUT_ASSERT(pbtp != 0);
 
         mpBtpAnm = new mDoExt_btpAnm();
-        if (mpBtpAnm == NULL || !mpBtpAnm->init(modelData, pbtp, TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1)) {
+        if (mpBtpAnm == NULL || !mpBtpAnm->init(modelData, pbtp, TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1)) {
             return 0;
         }
     }

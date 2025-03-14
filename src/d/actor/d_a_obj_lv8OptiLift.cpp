@@ -69,7 +69,7 @@ int daOptiLift_c::CreateHeap() {
     }
 
     int res = mBtk.init(modelData, (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Lv8Lift", 8), TRUE,
-                        J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1);
+                        J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1);
     JUT_ASSERT(0xD4, res == 1);
     return 1;
 }

@@ -164,7 +164,7 @@ int daB_ZANTS_c::CreateHeap() {
     }
 
     J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("MAGNESIMA", 13);
-    if (!mpBtkAnm->init(mpModel->getModelData(), pbtk, TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0,
+    if (!mpBtkAnm->init(mpModel->getModelData(), pbtk, TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0,
                         -1))
     {
         return FALSE;
@@ -176,7 +176,7 @@ int daB_ZANTS_c::CreateHeap() {
     }
 
     J3DAnmTevRegKey* pbrk = (J3DAnmTevRegKey*)dComIfG_getObjectRes("MAGNESIMA", 10);
-    if (!mpBrkAnm->init(mpModel->getModelData(), pbrk, TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0,
+    if (!mpBrkAnm->init(mpModel->getModelData(), pbrk, TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0,
                         -1))
     {
         return FALSE;

@@ -969,7 +969,7 @@ int daMBdoorL1_c::openInit() {
     }
     J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes(getAnmArcName(), getOpenAnm());
     JUT_ASSERT(1550, anm != 0);
-    int rt = mBckAnms[0]->init(anm, TRUE, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1, true);
+    int rt = mBckAnms[0]->init(anm, TRUE, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1, true);
     JUT_ASSERT(1552, rt == 0);
     int level = getNowLevel(this);
     u8 swBit3 = door_param2_c::getSwbit3(this);

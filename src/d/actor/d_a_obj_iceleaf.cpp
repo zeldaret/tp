@@ -181,7 +181,7 @@ int daObjIceLeaf_c::CreateHeap() {
     JUT_ASSERT(0x196, pbck != 0);
 
     mpBck = new mDoExt_bckAnm();
-    if (mpBck == NULL || !mpBck->init(pbck, TRUE, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1, false)) {
+    if (mpBck == NULL || !mpBck->init(pbck, TRUE, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1, false)) {
         return 0;
     }
 

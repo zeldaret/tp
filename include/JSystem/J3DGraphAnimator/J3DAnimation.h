@@ -896,11 +896,11 @@ public:
 class J3DFrameCtrl {
 public:
     enum Attribute_e {
-        LOOP_ONCE_e,
-        LOOP_ONCE_RESET_e,
-        LOOP_REPEAT_e,
-        LOOP_MIRROR_ONCE_e,
-        LOOP_MIRROR_REPEAT_e,
+        EMode_NONE,
+        EMode_RESET,
+        EMode_LOOP,
+        EMode_REVERSE,
+        EMode_LOOP_REVERSE,
     };
 
     J3DFrameCtrl() { this->init(0); }

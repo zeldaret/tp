@@ -5480,7 +5480,7 @@ int daAlink_c::createHeap() {
 
     JKRReadIdxResource(mFaceBckHeap.getBuffer(), 0xC00, 0xE8, dComIfGp_getAnmArchive());
     J3DAnmTransform* bck = (J3DAnmTransform*)J3DAnmLoaderDataBase::load(mFaceBckHeap.getBuffer());
-    if (!field_0x2164.init(bck, FALSE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1, false)) {
+    if (!field_0x2164.init(bck, FALSE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1, false)) {
         return 0;
     }
 
@@ -15273,7 +15273,7 @@ void daAlink_c::setBasAnime(daAlink_c::daAlink_UNDER param_0) {
 void daAlink_c::initBasAnime() {
     if (field_0x2d7c != NULL) {
         f32 var_f31;
-        if (field_0x2d7c->getAttribute() == J3DFrameCtrl::LOOP_REPEAT_e) {
+        if (field_0x2d7c->getAttribute() == J3DFrameCtrl::EMode_LOOP) {
             var_f31 = field_0x2d7c->getFrame() - field_0x2d7c->getRate();
 
             if (var_f31 <= field_0x2d7c->getStart()) {
