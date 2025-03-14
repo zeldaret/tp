@@ -563,6 +563,7 @@ int dKy_getdaytime_minute();
 int dKy_get_dayofweek();
 int dKy_getDarktime_minute();
 int dKy_getDarktime_hour();
+u8 dKy_getDarktime_week();
 void dKy_Sound_init();
 void dKy_setLight_nowroom(char room_no);
 void dKy_setLight_nowroom_actor(dKy_tevstr_c* tevstr_p);
