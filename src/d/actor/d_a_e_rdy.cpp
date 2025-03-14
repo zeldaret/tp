@@ -551,7 +551,7 @@ static void ride_off(e_rdy_class* i_this) {
     i_this->mRideState = 0;
     if (i_this->mpBowMorf != NULL) {
         J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, 11);
-        i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 1.0f, 0.0f, -1.0f);
+        i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::EMode_NONE, 1.0f, 1.0f, 0.0f, -1.0f);
         i_this->mpBowMorf->setFrame(10.0f);
     }
     i_this->home.pos = i_this->current.pos;
@@ -710,7 +710,7 @@ static void e_rdy_normal(e_rdy_class* i_this) {
     switch (i_this->mMode) {
     case 0:
         if (i_this->field_0x5bb) {
-            anm_init(i_this, ANM_ARMAMENT, 2.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_ARMAMENT, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             i_this->mMode = 1;
         } else {
             i_this->mMode = 2;
@@ -733,7 +733,7 @@ static void e_rdy_normal(e_rdy_class* i_this) {
                 i_this->mMode = 0;
                 return;
             } else if (way_check(i_this)) {
-                anm_init(i_this, ANM_WALK, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+                anm_init(i_this, ANM_WALK, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
                 i_this->mMode = 3;
                 i_this->mTimer[0] = cM_rndF(100.0f) + 100.0f;
             }
@@ -747,13 +747,13 @@ static void e_rdy_normal(e_rdy_class* i_this) {
         if (i_this->speedF >= 3.0f && move_gake_check(i_this, 100.0f)) {
             i_this->mMode = 4;
             i_this->mTimer[0] = cM_rndF(100.0f) + 50.0f;
-            anm_init(i_this, ANM_KYORO2, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_KYORO2, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         } else if (i_this->mTimer[0] == 0
             || (i_this->speedF >= 3.0f && way_bg_check(i_this, 200.0f)))
         {
             i_this->mMode = 2;
             i_this->mTimer[0] = cM_rndF(100.0f) + 50.0f;
-            anm_init(i_this, ANM_KYORO2, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_KYORO2, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
         break;
 
@@ -761,7 +761,7 @@ static void e_rdy_normal(e_rdy_class* i_this) {
         i_this->field_0xa98 = -1;
         if (i_this->mTimer[0] == 0) {
             i_this->mTargetAngleY = i_this->current.angle.y + 0x8000 + (int)cM_rndFX(4000.0f);
-            anm_init(i_this, ANM_WALK, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_WALK, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 3;
             i_this->mTimer[0] = cM_rndF(100.0f) + 100.0f;
         }
@@ -827,7 +827,7 @@ static void e_rdy_fight_run(e_rdy_class* i_this) {
         } else {
             i_this->mAction = ACT_NORMAL;
             i_this->mTimer[0] = cM_rndF(50.0f) + 50.0f;
-            anm_init(i_this, ANM_KYORO2, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_KYORO2, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
         i_this->mMode = 0;
         return;
@@ -844,7 +844,7 @@ static void e_rdy_fight_run(e_rdy_class* i_this) {
         break;
 
     case -10:
-        anm_init(i_this, ANM_WAIT01, 7.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, ANM_WAIT01, 7.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mTimer[1] = cM_rndF(10.0f) + 15.0f;
         i_this->mMode = -9;
         break;
@@ -857,10 +857,10 @@ static void e_rdy_fight_run(e_rdy_class* i_this) {
 
     case 0:
         if (i_this->field_0x5bb) {
-            anm_init(i_this, ANM_ARMAMENT, 2.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_ARMAMENT, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             i_this->mMode = -20;
         } else if (i_this->mTimer[1] == 0) {
-            anm_init(i_this, ANM_RUN, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, cM_rndFX(0.05f) + 1.0f);
+            anm_init(i_this, ANM_RUN, 5.0f, J3DFrameCtrl::EMode_LOOP, cM_rndFX(0.05f) + 1.0f);
             i_this->mMode = 1;
         }
         break;
@@ -868,7 +868,7 @@ static void e_rdy_fight_run(e_rdy_class* i_this) {
     case 1:
         target_speed = run_speed;
         if (i_this->mPlayerDist < l_HIO.field_0x18) {
-            anm_init(i_this, ANM_KAMAE, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_KAMAE, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 2;
         }
         break;
@@ -903,7 +903,7 @@ static void e_rdy_fight_run(e_rdy_class* i_this) {
     if (i_this->mMode < 5 && move_gake_check(i_this, 100.0f)) {
         i_this->mMode = 5;
         i_this->mTimer[3] = cM_rndF(15.0f) + 30.0f;
-        anm_init(i_this, ANM_WAIT01, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, ANM_WAIT01, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
     }
 
     if (i_this->mMode >= 0) {
@@ -919,14 +919,14 @@ static void e_rdy_fight_run(e_rdy_class* i_this) {
         i_this->mAction = ACT_NORMAL;
         if (i_this->mMode == 5) {
             i_this->mTargetAngleY = i_this->current.angle.y + 0x8000 + (int)cM_rndFX(4000.0f);
-            anm_init(i_this, ANM_WALK, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_WALK, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 3;
             i_this->mTimer[0] = cM_rndF(100.0f) + 100.0f;
             i_this->mTimer[1] = 40;
         } else {
             i_this->mMode = 0;
             i_this->mTimer[0] = cM_rndF(50.0f) + 50.0f;
-            anm_init(i_this, ANM_KYORO2, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_KYORO2, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
     } else {
         if (i_this->mPlayerDist < l_HIO.field_0x18 && (i_this->field_0xaf0 & cc_pl_cut_bit_get())
@@ -976,7 +976,7 @@ static void e_rdy_fight(e_rdy_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_ATTACK01, 6.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, ANM_ATTACK01, 6.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         if (l_HIO.field_0x38 == 0) {
             i_this->mTimer[0] = 25;
         } else if (l_HIO.field_0x38 == 1) {
@@ -996,7 +996,7 @@ static void e_rdy_fight(e_rdy_class* i_this) {
         if (frame == 30) {
             i_this->mpMorf->setFrame(0.0f);
         } else if (i_this->mTimer[0] == 0) {
-            anm_init(i_this, ANM_ATTACK01, 2.0f, J3DFrameCtrl::LOOP_ONCE_e, l_HIO.mAttackAnmSpeed);
+            anm_init(i_this, ANM_ATTACK01, 2.0f, J3DFrameCtrl::EMode_NONE, l_HIO.mAttackAnmSpeed);
             i_this->mpMorf->setFrame(30.0f);
             i_this->mMode = 2;
         }
@@ -1028,7 +1028,7 @@ static void e_rdy_fight(e_rdy_class* i_this) {
             } else if (l_HIO.field_0x38 == 2) {
                 i_this->mTimer[0] = 10;
             }
-            anm_init(i_this, ANM_KAMAE, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_KAMAE, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
         break;
 
@@ -1075,7 +1075,7 @@ static void e_rdy_bow_run(e_rdy_class* i_this) {
         break;
 
     case -10:
-        anm_init(i_this, ANM_WAIT01, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, ANM_WAIT01, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mTimer[0] = cM_rndF(10.0f) + 15.0f;
         i_this->mMode = -9;
         break;
@@ -1089,10 +1089,10 @@ static void e_rdy_bow_run(e_rdy_class* i_this) {
 
     case 0:
         if (i_this->field_0x5bb) {
-            anm_init(i_this, ANM_ARMAMENT, 2.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_ARMAMENT, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             i_this->mMode = -20;
         } else {
-            anm_init(i_this, ANM_RUN, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_RUN, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mTimer[0] = cM_rndF(50.0f) + 20.0f;
             if (i_this->mPlayerDist < l_HIO.field_0x28 - 100.0f) {
                 i_this->mMode = 1;
@@ -1148,7 +1148,7 @@ static void e_rdy_bow_run(e_rdy_class* i_this) {
         i_this->mAction = ACT_NORMAL;
         i_this->mMode = 0;
         i_this->mTimer[0] = cM_rndF(50.0f) + 50.0f;
-        anm_init(i_this, ANM_KYORO2, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, ANM_KYORO2, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
     } else if ((i_this->mCounter & 0xf) == 0 && bomb_view_check(i_this)) {
         i_this->mAction = ACT_BOMB_ACTION;
         i_this->mMode = 0;
@@ -1166,9 +1166,9 @@ static void e_rdy_bow(e_rdy_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_SHOOT_READY, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, ANM_SHOOT_READY, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         bck = (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, 8);
-        i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 0.9f, 0.0f, -1.0f);
+        i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::EMode_NONE, 5.0f, 0.9f, 0.0f, -1.0f);
         i_this->mMode = 1;
         i_this->speedF = 0.0f;
         break;
@@ -1182,7 +1182,7 @@ static void e_rdy_bow(e_rdy_class* i_this) {
             i_this->mSound.startCreatureSound(Z2SE_OBJ_ARROW_DRAW_NORMAL, 0, -1);
         }
         if (i_this->mpMorf->isStop()) {
-            anm_init(i_this, ANM_SHOOT_WAIT, 4.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_SHOOT_WAIT, 4.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mTimer[0] = cM_rndF(10.0f) + 10.0f;
             i_this->mMode = 2;
         }
@@ -1192,9 +1192,9 @@ static void e_rdy_bow(e_rdy_class* i_this) {
         i_this->field_0xa98 = 4;
         if (i_this->mTimer[0] == 0) {
             if (!i_this->field_0xa74 && !dMsgObject_isTalkNowCheck()) {
-                anm_init(i_this, ANM_SHOOT, 1.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+                anm_init(i_this, ANM_SHOOT, 1.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
                 bck = (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, 11);
-                i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 1.0f, 0.0f, -1.0f);
+                i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::EMode_NONE, 1.0f, 1.0f, 0.0f, -1.0f);
                 i_this->mMode = 3;
             } else {
                 i_this->mAction = ACT_BOW_RUN;
@@ -1275,7 +1275,7 @@ static s8 e_rdy_bow2(e_rdy_class* i_this) {
     switch (i_this->mMode) {
     case 0:
         if (i_this->mTimer[0] == 0) {
-            anm_init(i_this, ANM_KYORO2, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_KYORO2, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 1;
             i_this->mTimer[0] = cM_rndF(40.0f) + 60.0f;
         }
@@ -1283,16 +1283,16 @@ static s8 e_rdy_bow2(e_rdy_class* i_this) {
 
     case 1:
         if (i_this->mTimer[0] == 0) {
-            anm_init(i_this, ANM_WAIT01, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_WAIT01, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mTimer[0] = cM_rndF(100.0f) + 100.0f;
             i_this->mMode = 0;
         }
         break;
 
     case 2:
-        anm_init(i_this, ANM_SHOOT_READY, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, ANM_SHOOT_READY, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         bck = (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, 8);
-        i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 0.9f, 0.0f, -1.0f);
+        i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::EMode_NONE, 5.0f, 0.9f, 0.0f, -1.0f);
         i_this->mMode = 3;
         i_this->speedF = 0.0f;
         break;
@@ -1306,7 +1306,7 @@ static s8 e_rdy_bow2(e_rdy_class* i_this) {
             i_this->mSound.startCreatureSound(Z2SE_OBJ_ARROW_DRAW_NORMAL, 0, -1);
         }
         if (i_this->mpMorf->isStop()) {
-            anm_init(i_this, ANM_SHOOT_WAIT, 4.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_SHOOT_WAIT, 4.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mTimer[0] = cM_rndF(10.0f);
             i_this->mMode = 4;
         }
@@ -1324,9 +1324,9 @@ static s8 e_rdy_bow2(e_rdy_class* i_this) {
             if ((sw_bit == 0xff || (sw_bit != 0xff && bVar2)) && !dMsgObject_isTalkNowCheck()
                 && !i_this->field_0xa74)
             {
-                anm_init(i_this, ANM_SHOOT, 1.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+                anm_init(i_this, ANM_SHOOT, 1.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
                 bck = (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, 11);
-                i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 1.0f, 0.0f, -1.0f);
+                i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::EMode_NONE, 1.0f, 1.0f, 0.0f, -1.0f);
                 i_this->mMode = 5;
             }
         }
@@ -1370,7 +1370,7 @@ static void e_rdy_bow_ikki2(e_rdy_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_WAIT01, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, ANM_WAIT01, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mMode = 1;
         i_this->current.pos.x = -92938.0f;
         i_this->current.pos.z = 49992.0f;
@@ -1394,9 +1394,9 @@ static void e_rdy_bow_ikki2(e_rdy_class* i_this) {
         break;
 
     case 4:
-        anm_init(i_this, ANM_SHOOT_READY, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, ANM_SHOOT_READY, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         bck = (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, 8);
-        i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 0.9f, 0.0f, -1.0f);
+        i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::EMode_NONE, 5.0f, 0.9f, 0.0f, -1.0f);
         i_this->mMode = 5;
         break;
 
@@ -1408,7 +1408,7 @@ static void e_rdy_bow_ikki2(e_rdy_class* i_this) {
             i_this->mSound.startCreatureSound(Z2SE_OBJ_ARROW_DRAW_NORMAL, 0, -1);
         }
         if (i_this->mpMorf->isStop()) {
-            anm_init(i_this, ANM_SHOOT_WAIT, 4.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_SHOOT_WAIT, 4.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 6;
             i_this->mTimer[0] = 40;
         }
@@ -1416,9 +1416,9 @@ static void e_rdy_bow_ikki2(e_rdy_class* i_this) {
 
     case 6:
         if (i_this->mTimer[0] == 0 && !i_this->field_0xa74) {
-            anm_init(i_this, ANM_SHOOT, 1.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_SHOOT, 1.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             bck = (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, 11);
-            i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 1.0f, 0.0f, -1.0f);
+            i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::EMode_NONE, 1.0f, 1.0f, 0.0f, -1.0f);
             i_this->mMode = 7;
         }
         i_this->mHasArrow = true;
@@ -1433,7 +1433,7 @@ static void e_rdy_bow_ikki2(e_rdy_class* i_this) {
         }
         if (i_this->mpMorf->isStop()) {
             i_this->mMode = 2;
-            anm_init(i_this, ANM_WAIT01, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_WAIT01, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
         break;
     }
@@ -1458,7 +1458,7 @@ static void e_rdy_avoid(e_rdy_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_AVOID, 1.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, ANM_AVOID, 1.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mMode = 1;
         i_this->speedF = -30.0f;
         i_this->speed.y = 20.0f;
@@ -1529,13 +1529,13 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
         i_this->mDemoMode = 10;
         i_this->mDemoTimer = 0;
         i_this->mMode = 2;
-        anm_init(i_this, ANM_WAIT01, 7.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, ANM_WAIT01, 7.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
     }
 
     switch (i_this->mMode) {
     case 0:
         if (i_this->mTimer[0] == 0) {
-            anm_init(i_this, ANM_WALK, 7.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_WALK, 7.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mTimer[0] = cM_rndF(60.0f) + 60.0f;
             i_this->mMode = 1;
             vec.x = i_this->home.pos.x + cM_rndFX(200.0f) - i_this->current.pos.x;
@@ -1547,7 +1547,7 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
     case 1:
         target_speed = l_HIO.mWalkSpeed;
         if (i_this->mTimer[0] == 0) {
-            anm_init(i_this, ANM_KYORO2, 7.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_KYORO2, 7.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 0;
             i_this->mTimer[0] = cM_rndF(30.0f) + 60.0f;
         }
@@ -1565,7 +1565,7 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
                 }
             }
         } else if (i_this->mDemoTimer == 110) {
-            anm_init(i_this, ANM_RUN, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_RUN, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 3;
             i_this->mDemoMode++;
             i_this->mDemoTimer = 0;
@@ -1577,7 +1577,7 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
         vec = grass->current.pos - i_this->current.pos;
         i_this->mTargetAngleY = cM_atan2s(vec.x, vec.z);
         if (vec.abs() < 160.0f) {
-            anm_init(i_this, ANM_WAIT01, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_WAIT01, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mTimer[0] = 20;
             i_this->mMode = 4;
         }
@@ -1585,7 +1585,7 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
 
     case 4:
         if (i_this->mTimer[0] == 0) {
-            anm_init(i_this, ANM_PICKUP, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_PICKUP, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             i_this->mMode = 5;
         }
         break;
@@ -1601,7 +1601,7 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
             i_this->mDemoMode++;
         }
         if (i_this->mpMorf->isStop()) {
-            anm_init(i_this, ANM_BLOW, 0.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_BLOW, 0.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 6;
             i_this->mTimer[0] = 220;
         }
@@ -1635,11 +1635,11 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
         if (i_this->mTimer[0] == 1) {
             i_this->mDemoMode = 16;
             i_this->mDemoTimer = 0;
-            anm_init(i_this, ANM_WAIT01, 7.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_WAIT01, 7.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             Z2GetAudioMgr()->setBattleBgmOff(false);
         }
         if (i_this->mDemoTimer == 309) {
-            anm_init(i_this, ANM_LOOKBACK, 10.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_LOOKBACK, 10.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             i_this->mIsHoldingGrass = false;
             kargarok->mMode = 4;
             kargarok->speedF = 30.0f;
@@ -1662,7 +1662,7 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
 
     case 8:
         if (i_this->mDemoTimer == 95) {
-            anm_init(i_this, ANM_RUN, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_RUN, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             vec = kargarok->current.pos - i_this->current.pos;
             i_this->mTargetAngleY = cM_atan2s(vec.x, vec.z);
             i_this->mDemoMode = 18;
@@ -1674,7 +1674,7 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
 
     case 9:
         if (i_this->mDemoTimer == 10) {
-            anm_init(i_this, ANM_JUMP_A, 2.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_JUMP_A, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_JUMP_RIDING, -1);
             i_this->mMode = 10;
             i_this->home = i_this->current;
@@ -1684,7 +1684,7 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
     case 10:
         if (i_this->mpMorf->isStop()) {
             i_this->mMode = 11;
-            anm_init(i_this, ANM_JUMP_B, 10.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_JUMP_B, 10.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             i_this->mRideState = 1;
             i_this->mJumpSpeed = 50.0f;
             i_this->mTimer[3] = 30;
@@ -1693,7 +1693,7 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
 
     case 11:
         if (i_this->mJumpHeight <= 0.0f) {
-            anm_init(i_this, ANM_RJUMP_C, 2.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_RJUMP_C, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             i_this->mMode = 12;
             kargarok->field_0x698 = -27.0f;
         }
@@ -1701,7 +1701,7 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
 
     case 12:
         if (i_this->mpMorf->isStop()) {
-            anm_init(i_this, ANM_RHOVERING, 15.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_RHOVERING, 15.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mpMorf->setFrame(kargarok->mpMorf->getFrame());
             i_this->mMode = 13;
             kargarok->mMode = 6;
@@ -1750,26 +1750,26 @@ static void e_rdy_yc_ride(e_rdy_class* i_this) {
     switch (i_this->mMode) {
     case 0:
         if (kargarok->mAnm == e_yc_class::ANM_HOVERING && i_this->mAnm != ANM_RHOVERING) {
-            anm_init(i_this, ANM_RHOVERING, 15.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_RHOVERING, 15.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mpMorf->setFrame(kargarok->mpMorf->getFrame());
         } else if (kargarok->mAnm == e_yc_class::ANM_FLY && i_this->mAnm != ANM_RFLY) {
-            anm_init(i_this, ANM_RFLY, 15.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_RFLY, 15.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mpMorf->setFrame(kargarok->mpMorf->getFrame());
         } else if (kargarok->mAnm == e_yc_class::ANM_FLY_GLIDE && i_this->mAnm != ANM_RFLY_GLIDE) {
-            anm_init(i_this, ANM_RFLY_GLIDE, 15.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_RFLY_GLIDE, 15.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mpMorf->setFrame(kargarok->mpMorf->getFrame());
         } else if (kargarok->mAnm == e_yc_class::ANM_HANGED && kargarok_frame == 1) {
-            anm_init(i_this, ANM_RHANGED, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_RHANGED, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         } else if (kargarok->mAnm == e_yc_class::ANM_HANGED_WAIT
                                                             && i_this->mAnm != ANM_RHANGED_WAIT) {
-            anm_init(i_this, ANM_RHANGED_WAIT, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_RHANGED_WAIT, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mpMorf->setFrame(kargarok->mpMorf->getFrame());
         } else if (kargarok->mAnm == e_yc_class::ANM_HANGED_DAMAGE && kargarok_frame == 1) {
-            anm_init(i_this, ANM_RHANGED_DAMAGE, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_RHANGED_DAMAGE, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         } else if (kargarok->mAnm == e_yc_class::ANM_HANGED_BRUSH && kargarok_frame == 1) {
-            anm_init(i_this, ANM_RHANGED_BRASH, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_RHANGED_BRASH, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         } else if (kargarok->mAnm == e_yc_class::ANM_HANGED_BRUSH2 && kargarok_frame == 1) {
-            anm_init(i_this, ANM_RHANGED_BRASH2, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_RHANGED_BRASH2, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         }
         if (i_this->mAnm == ANM_RHOVERING) {
             i_this->mMode = 1;
@@ -1779,9 +1779,9 @@ static void e_rdy_yc_ride(e_rdy_class* i_this) {
 
     case 1:
         if (i_this->mTimer[0] == 0) {
-            anm_init(i_this, ANM_RSHOOT_READY, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_RSHOOT_READY, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, 9);
-            i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f, 0.0f, -1.0f);
+            i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f, 0.0f, -1.0f);
             i_this->mMode = 2;
         }
         break;
@@ -1792,16 +1792,16 @@ static void e_rdy_yc_ride(e_rdy_class* i_this) {
         }
         if (i_this->mpMorf->isStop()) {
             i_this->mMode = 3;
-            anm_init(i_this, ANM_RSHOOT_WAIT, 4.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_RSHOOT_WAIT, 4.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
         i_this->mHasArrow = true;
         break;
 
     case 3:
         if (i_this->mTimer[1] == 0 && !dComIfGp_event_runCheck()) {
-            anm_init(i_this, ANM_RSHOOT, 1.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_RSHOOT, 1.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, 11);
-            i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 1.0f, 0.0f, -1.0f);
+            i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::EMode_NONE, 1.0f, 1.0f, 0.0f, -1.0f);
             i_this->mMode = 4;
         }
         i_this->mHasArrow = true;
@@ -1816,9 +1816,9 @@ static void e_rdy_yc_ride(e_rdy_class* i_this) {
         }
         if (i_this->mpMorf->isStop()) {
             if (kargarok->mAnm == e_yc_class::ANM_HOVERING) {
-                anm_init(i_this, ANM_RSHOOT_READY, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+                anm_init(i_this, ANM_RSHOOT_READY, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
                 J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, 9);
-                i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f, 0.0f, -1.0f);
+                i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f, 0.0f, -1.0f);
                 i_this->mMode = 2;
                 i_this->mTimer[1] = cM_rndF(30.0f) + 20.0f;
             } else {
@@ -1855,14 +1855,14 @@ static void e_rdy_bomb_action(e_rdy_class* i_this) {
     switch (i_this->mMode) {
     case 0:
         i_this->mMode = 1;
-        anm_init(i_this, ANM_WAIT01, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, ANM_WAIT01, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mTimer[1] = cM_rndF(10.0f) + 10.0f;
         // fallthrough
 
     case 1:
         if (i_this->mTimer[1] == 0 && bomb->speedF < 0.1f) {
             i_this->mMode = 2;
-            anm_init(i_this, ANM_RUN, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, cM_rndFX(0.05f) + 1.0f);
+            anm_init(i_this, ANM_RUN, 5.0f, J3DFrameCtrl::EMode_LOOP, cM_rndFX(0.05f) + 1.0f);
         }
         break;
 
@@ -1880,7 +1880,7 @@ static void e_rdy_bomb_action(e_rdy_class* i_this) {
         target_speed = l_HIO.mRunSpeed;
         if (JMAFastSqrt(vec1.x * vec1.x + vec1.z * vec1.z) > 600.0f) {
             i_this->mMode = 3;
-            anm_init(i_this, ANM_WAIT01, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_WAIT01, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
         break;
 
@@ -1899,7 +1899,7 @@ static void e_rdy_bomb_action(e_rdy_class* i_this) {
         } else if (JMAFastSqrt(vec1.x * vec1.x + vec1.z * vec1.z) < 100.0f) {
             i_this->mTimer[0] = 20;
             i_this->mMode = 6;
-            anm_init(i_this, ANM_KICK, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_KICK, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         }
         break;
 
@@ -1922,7 +1922,7 @@ static void e_rdy_bomb_action(e_rdy_class* i_this) {
             }
         }
         if (i_this->mpMorf->isStop()) {
-            anm_init(i_this, ANM_WAIT01, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_WAIT01, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 3;
         }
         break;
@@ -2072,7 +2072,7 @@ static void e_rdy_damage(e_rdy_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_DIEB, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, ANM_DIEB, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mMode = 1;
         i_this->speedF = 0.0f;
         ride_off(i_this);
@@ -2126,7 +2126,7 @@ static void e_rdy_damage(e_rdy_class* i_this) {
                 i_this->mMode = 2;
                 s16 angle_y;
                 if (!i_this->mIsUpsideDown) {
-                    anm_init(i_this, ANM_DIEA, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+                    anm_init(i_this, ANM_DIEA, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
                     angle_y = i_this->field_0xadc.y;
                 } else {
                     angle_y = i_this->field_0xadc.y + 0x8000;
@@ -2166,9 +2166,9 @@ static void e_rdy_damage(e_rdy_class* i_this) {
             dKy_Sound_set(i_this->current.pos, 100, fopAcM_GetID(i_this), 5);
             i_this->field_0xaee = 10;
             if (!i_this->mIsUpsideDown) {
-                anm_init(i_this, ANM_DIEA, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+                anm_init(i_this, ANM_DIEA, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             } else {
-                anm_init(i_this, ANM_DIEB, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+                anm_init(i_this, ANM_DIEB, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             }
             i_this->field_0xabc = 0.0f;
             i_this->field_0xadc.x = -0x4000;
@@ -2212,9 +2212,9 @@ static void e_rdy_damage(e_rdy_class* i_this) {
             i_this->offDownFlg();
             i_this->mMode = 20;
             if (!i_this->mIsUpsideDown) {
-                anm_init(i_this, ANM_DIEA_UP, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+                anm_init(i_this, ANM_DIEA_UP, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             } else {
-                anm_init(i_this, ANM_DIEB_UP, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+                anm_init(i_this, ANM_DIEB_UP, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             }
             if (i_this->field_0x5b8 == 12) {
                 i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_CALLING, -1);
@@ -2230,7 +2230,7 @@ static void e_rdy_damage(e_rdy_class* i_this) {
             if (i_this->mAcch.ChkGroundHit()) {
                 i_this->mMode = 2;
                 if (!i_this->mIsUpsideDown) {
-                    anm_init(i_this, ANM_DIEA, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+                    anm_init(i_this, ANM_DIEA, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
                     i_this->field_0xaf4 = -100.0f;
                     i_this->field_0xafc = -100.0f;
                 } else {
@@ -2261,7 +2261,7 @@ static void e_rdy_damage(e_rdy_class* i_this) {
         if (i_this->mpMorf->isStop()) {
             i_this->field_0xadc.y = 0;
             i_this->field_0xadc.x = 0;
-            anm_init(i_this, ANM_WAIT01, 0.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_WAIT01, 0.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mTimer[0] = 5;
             i_this->mMode = 21;
             i_this->offDownFlg();
@@ -2271,7 +2271,7 @@ static void e_rdy_damage(e_rdy_class* i_this) {
     case 21:
         if (i_this->mTimer[0] == 0) {
             i_this->mTimer[0] = cM_rndF(20.0f) + 20.0f;
-            anm_init(i_this, ANM_KYORO2, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_KYORO2, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 22;
         }
         break;
@@ -2282,7 +2282,7 @@ static void e_rdy_damage(e_rdy_class* i_this) {
             i_this->mAction = ACT_NORMAL;
             i_this->mMode = 0;
             i_this->mTimer[0] = cM_rndF(50.0f) + 50.0f;
-            anm_init(i_this, ANM_KYORO2, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_KYORO2, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
         break;
 
@@ -2293,9 +2293,9 @@ static void e_rdy_damage(e_rdy_class* i_this) {
         if (i_this->mTimer[0] == 0) {
             i_this->mMode = 31;
             if (!i_this->mIsUpsideDown) {
-                anm_init(i_this, ANM_DIEA_UP, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+                anm_init(i_this, ANM_DIEA_UP, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             } else {
-                anm_init(i_this, ANM_DIEB_UP, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+                anm_init(i_this, ANM_DIEB_UP, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             }
             i_this->mTimer[0] = 10;
         } else if (i_this->mTimer[1] == 1) {
@@ -2367,7 +2367,7 @@ static void* s_bikkuri_sub(void* i_proc, void* i_this) {
         if (other != _this && other->mAction == ACT_BOW3 && other->mMode <= 2) {
             cXyz delta = other->current.pos - _this->current.pos;
             if (delta.abs() < 350.0f) {
-                anm_init(other, ANM_KYORO2, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.3f);
+                anm_init(other, ANM_KYORO2, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.3f);
                 other->mMode = 3;
                 other->mTimer[0] = cM_rndF(20.0f) + 40.0f;
             }
@@ -2383,14 +2383,14 @@ static void e_rdy_drop(e_rdy_class* i_this) {
     switch (i_this->mMode) {
     case 0:
         i_this->mSound.startCreatureVoiceLevel(Z2SE_EN_RD_V_SNIPED_DAMAGE, -1);
-        anm_init(i_this, ANM_DAMAGE_S, 2.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, ANM_DAMAGE_S, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mMode = 1;
         break;
 
     case 1:
         i_this->mSound.startCreatureVoiceLevel(Z2SE_EN_RD_V_SNIPED_DAMAGE, -1);
         if (i_this->mpMorf->isStop()) {
-            anm_init(i_this, ANM_FURA2, 0.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_FURA2, 0.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 2;
             i_this->mTargetAngleY = gake_check(i_this, 200.0f);
             fpcM_Search(s_bikkuri_sub, i_this);
@@ -2453,7 +2453,7 @@ static void e_rdy_a_damage(e_rdy_class* i_this) {
     switch (i_this->mMode) {
     case 0:
         i_this->mMode = 1;
-        anm_init(i_this, ANM_DEAD_ARROW, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, ANM_DEAD_ARROW, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mTimer[0] = 80;
         dKy_Sound_set(i_this->current.pos, 100, fopAcM_GetID(i_this), 5);
         break;
@@ -2473,7 +2473,7 @@ static void e_rdy_stand(e_rdy_class* i_this) {
     switch (i_this->mMode) {
     case 0:
         if (i_this->mTimer[0] == 0) {
-            anm_init(i_this, ANM_KYORO2, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_KYORO2, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 1;
             i_this->mTimer[0] = cM_rndF(40.0f) + 60.0f;
         }
@@ -2481,7 +2481,7 @@ static void e_rdy_stand(e_rdy_class* i_this) {
 
     case 1:
         if (i_this->mTimer[0] == 0) {
-            anm_init(i_this, ANM_WAIT01, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_WAIT01, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mTimer[0] = cM_rndF(100.0f) + 100.0f;
             i_this->mMode = 0;
         }
@@ -2523,7 +2523,7 @@ static s8 e_rdy_bow3(e_rdy_class* i_this) {
     switch (i_this->mMode) {
     case 0:
         turn_to_player = false;
-        anm_init(i_this, ANM_WAIT01, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, ANM_WAIT01, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mMode = 1;
         break;
 
@@ -2539,10 +2539,10 @@ static s8 e_rdy_bow3(e_rdy_class* i_this) {
 
     case 5:
         if (i_this->mTimer[1] == 1) {
-            anm_init(i_this, ANM_KYORO2, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.3f);
+            anm_init(i_this, ANM_KYORO2, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.3f);
         }
         if (i_this->mTimer[0] == 10) {
-            anm_init(i_this, ANM_WAIT01, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_WAIT01, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
         if (i_this->mTimer[0] == 0) {
             i_this->mAction = ACT_BOW2;
@@ -2552,9 +2552,9 @@ static s8 e_rdy_bow3(e_rdy_class* i_this) {
 
     case 10:
         if (i_this->mTimer[0] == 0) {
-            anm_init(i_this, ANM_SHOOT_READY, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_SHOOT_READY, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, 8);
-            i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 0.9f, 0.0f, -1.0f);
+            i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::EMode_NONE, 5.0f, 0.9f, 0.0f, -1.0f);
             i_this->mMode = 11;
             i_this->speedF = 0.0f;
         }
@@ -2569,7 +2569,7 @@ static s8 e_rdy_bow3(e_rdy_class* i_this) {
             i_this->mSound.startCreatureSound(Z2SE_OBJ_ARROW_DRAW_NORMAL, 0, -1);
         }
         if (i_this->mpMorf->isStop()) {
-            anm_init(i_this, ANM_SHOOT_WAIT, 4.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_SHOOT_WAIT, 4.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mTimer[0] = cM_rndF(10.0f) + 10.0f;
             i_this->mMode = 12;
         }
@@ -2578,9 +2578,9 @@ static s8 e_rdy_bow3(e_rdy_class* i_this) {
     case 12:
         i_this->field_0xa98 = 4;
         if (i_this->mTimer[0] == 0 && !i_this->field_0xa74 && !dMsgObject_isTalkNowCheck()) {
-            anm_init(i_this, ANM_SHOOT, 1.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_SHOOT, 1.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, 11);
-            i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 1.0f, 0.0f, -1.0f);
+            i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::EMode_NONE, 1.0f, 1.0f, 0.0f, -1.0f);
             i_this->mMode = 13;
         }
         i_this->mHasArrow = true;
@@ -2656,7 +2656,7 @@ static void e_rdy_commander(e_rdy_class* i_this) {
     case 1:
         bVar1 = true;
         if (i_this->mTimer[0] == 0) {
-            anm_init(i_this, ANM_KYORO2, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_KYORO2, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 2;
             i_this->mTimer[0] = cM_rndF(40.0f) + 60.0f;
         }
@@ -2665,14 +2665,14 @@ static void e_rdy_commander(e_rdy_class* i_this) {
     case 2:
         bVar1 = true;
         if (i_this->mTimer[0] == 0) {
-            anm_init(i_this, ANM_WAIT01, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_WAIT01, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mTimer[0] = cM_rndF(100.0f) + 100.0f;
             i_this->mMode = 1;
         }
         break;
 
     case 5:
-        anm_init(i_this, ANM_WAIT01, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, ANM_WAIT01, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mTimer[0] = 30;
         i_this->mMode = 6;
         break;
@@ -2680,7 +2680,7 @@ static void e_rdy_commander(e_rdy_class* i_this) {
     case 6:
         turn_to_player = true;
         if (i_this->mTimer[0] == 0) {
-            anm_init(i_this, ANM_GOSIGN, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_GOSIGN, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             mDoAud_seStart(Z2SE_EN_RD_V_CALLING, NULL, 0, 0);
             i_this->mMode = 7;
             if (dComIfGp_event_runCheck()) {
@@ -2697,7 +2697,7 @@ static void e_rdy_commander(e_rdy_class* i_this) {
             fpcM_Search(s_command2_sub, i_this);
         }
         if (i_this->mTimer[0] == 0 && i_this->mpMorf->isStop()) {
-            anm_init(i_this, ANM_WAIT01, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_WAIT01, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             if (!dComIfGp_event_runCheck() && !pl_check(i_this, i_this->mPlayerCheckDist, 0x4000)) {
                 i_this->mMode = 10;
                 i_this->mTimer[1] = 350;
@@ -2713,7 +2713,7 @@ static void e_rdy_commander(e_rdy_class* i_this) {
         break;
 
     case 10:
-        anm_init(i_this, ANM_GOSIGN, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, ANM_GOSIGN, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         mDoAud_seStart(Z2SE_EN_RD_V_CALLING, NULL, 0, 0);
         fpcM_Search(s_command2_sub, i_this);
         i_this->mMode = 11;
@@ -2722,7 +2722,7 @@ static void e_rdy_commander(e_rdy_class* i_this) {
     case 11:
         if (i_this->mpMorf->isStop()) {
             if (i_this->mTimer[1] == 0) {
-                anm_init(i_this, ANM_WAIT01, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+                anm_init(i_this, ANM_WAIT01, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
                 i_this->mTimer[0] = cM_rndF(30.0f) + 30.0f;
                 i_this->mMode = 1;
             } else {
@@ -2751,7 +2751,7 @@ static void e_rdy_excite(e_rdy_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_WAIT01, 4.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, ANM_WAIT01, 4.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mMode = 1;
         i_this->mTimer[0] = cM_rndF(20.0f) + 20.0f;
         i_this->mTargetAngleY = i_this->current.angle.y;
@@ -2764,11 +2764,11 @@ static void e_rdy_excite(e_rdy_class* i_this) {
         if (i_this->mTimer[0] == 0) {
             if (i_this->field_0x1365) {
                 i_this->mMode = 3;
-                anm_init(i_this, ANM_KYORO2, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.3f);
+                anm_init(i_this, ANM_KYORO2, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.3f);
                 i_this->mTimer[0] = cM_rndF(20.0f) + 40.0f;
             } else {
                 i_this->mMode = 2;
-                anm_init(i_this, ANM_RUN, 2.0f, J3DFrameCtrl::LOOP_REPEAT_e,
+                anm_init(i_this, ANM_RUN, 2.0f, J3DFrameCtrl::EMode_LOOP,
                          cM_rndFX(0.05f) + 1.0f);
                 i_this->mTimer[0] = cM_rndF(15.0f) + 30.0f;
             }
@@ -2784,7 +2784,7 @@ static void e_rdy_excite(e_rdy_class* i_this) {
         vec = i_this->field_0x5bc - i_this->current.pos;
         if (i_this->mTimer[0] == 0 || move_gake_check(i_this, 100.0f) || vec.abs() < 100.0f) {
             i_this->mMode = 3;
-            anm_init(i_this, ANM_KYORO2, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.3f);
+            anm_init(i_this, ANM_KYORO2, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.3f);
             i_this->mTimer[0] = cM_rndF(20.0f) + 40.0f;
         }
         break;
@@ -2816,9 +2816,9 @@ static void e_rdy_water(e_rdy_class* i_this) {
     case 0: {
         i_this->speed.y = 0.0f;
         if (!i_this->mIsUpsideDown) {
-            anm_init(i_this, ANM_DROWNEDA, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_DROWNEDA, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         } else {
-            anm_init(i_this, ANM_DROWNEDB, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_DROWNEDB, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
         i_this->mTimer[0] = 60;
         i_this->mMode = 1;
@@ -2849,7 +2849,7 @@ static void e_rdy_jyunkai(e_rdy_class* i_this) {
 
     switch (i_this->mMode) {
     case 0: {
-        anm_init(i_this, ANM_WALK, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, ANM_WALK, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mMode = 1;
         dStage_dPnt_c* point = &i_this->mpPath->m_points[i_this->mPathIndex];
         i_this->field_0x5bc = point->m_position;
@@ -2875,7 +2875,7 @@ static void e_rdy_jyunkai(e_rdy_class* i_this) {
             }
             i_this->mMode = 2;
             i_this->mTimer[0] = cM_rndF(100.0f) + 100.0f;
-            anm_init(i_this, ANM_KYORO2, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_KYORO2, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
         break;
 
@@ -2887,7 +2887,7 @@ static void e_rdy_jyunkai(e_rdy_class* i_this) {
         break;
 
     case 10:
-        anm_init(i_this, ANM_SHOUT, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, ANM_SHOUT, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mMode = 11;
         dKy_Sound_set(i_this->current.pos, 100, fopAcM_GetID(i_this), 3);
         S_find = 20;
@@ -2927,7 +2927,7 @@ static void e_rdy_jyunkai(e_rdy_class* i_this) {
         if (bVar1) {
             i_this->mMode = 2;
             i_this->mTimer[0] = cM_rndF(100.0f) + 100.0f;
-            anm_init(i_this, ANM_KYORO2, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_KYORO2, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         } else if ((i_this->mCounter & 7) == 0 && pl_check(i_this, check_dist, check_angle)) {
             if (S_find == 0) {
                 i_this->mMode = 10;
@@ -3003,14 +3003,14 @@ static void small_damage(e_rdy_class* i_this, int i_collider) {
     if (i_collider == 0) {
         s16 angle_diff = i_this->shape_angle.y - i_this->mPlayerAngle;
         if (angle_diff < -0x4000 || angle_diff > 0x4000) {
-            anm_init(i_this, ANM_DAMAGE_W, 2.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_DAMAGE_W, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         } else if (angle_diff < 0) {
-            anm_init(i_this, ANM_DAMAGE_L, 2.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_DAMAGE_L, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         } else {
-            anm_init(i_this, ANM_DAMAGE_R, 2.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_DAMAGE_R, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         }
     } else {
-        anm_init(i_this, ANM_DAMAGE_W, 2.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, ANM_DAMAGE_W, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
     }
 
     i_this->mKnockback = 20.0f;
@@ -3128,7 +3128,7 @@ static void damage_check(e_rdy_class* i_this) {
                         if (i_this->mpBowMorf != NULL) {
                             J3DAnmTransform* bck =
                                 (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, 11);
-                            i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::LOOP_ONCE_e,
+                            i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::EMode_NONE,
                                                       1.0f, 1.0f, 0.0f, -1.0f);
                             break;
                         } else {
@@ -4206,7 +4206,7 @@ static void demo_camera(e_rdy_class* i_this) {
             player->setPlayerPosAndAngle(&vec2, 0, 0);
             fpcM_Search(s_adel_sub, i_this);
             i_this->mMode = 2;
-            anm_init(i_this, ANM_WAIT01, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_WAIT01, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             csXyz angle(0, 0x4000, 0);
             vec2.set(-93652.0f, -5875.0f, 46674.0f);
             fopAcM_createChild(PROC_E_ARROW, fopAcM_GetID(i_this), 0x80000011, &vec2,
@@ -4713,7 +4713,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     _this->mpMorf = new mDoExt_McaMorfSO(
         (J3DModelData*)dComIfG_getObjectRes(_this->mpArcName, 81), NULL, NULL,
         (J3DAnmTransform*)dComIfG_getObjectRes(_this->mpArcName, 76),
-        J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1, &_this->mSound, 0x80000, 0x11000084);
+        J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1, &_this->mSound, 0x80000, 0x11000084);
     if (_this->mpMorf == NULL || _this->mpMorf->getModel() == NULL) {
         return 0;
     }
@@ -4737,7 +4737,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         _this->mpBowMorf = new mDoExt_McaMorfSO(
             (J3DModelData*)dComIfG_getObjectRes(_this->mpArcName, 84), NULL, NULL,
             (J3DAnmTransform*)dComIfG_getObjectRes(_this->mpArcName, 11),
-            J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1, NULL, 0x80000, 0x11000084);
+            J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1, NULL, 0x80000, 0x11000084);
         if (_this->mpBowMorf == NULL || _this->mpBowMorf->getModel() == NULL) {
             return 0;
         }

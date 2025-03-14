@@ -129,7 +129,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
     J3DAnmTextureSRTKey* btk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("L3_bwater", 8);
     if (!a_this->mpBWaterBtk->init(a_this->mpBWaterModel->getModelData(), btk, TRUE,
-                                   J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1))
+                                   J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1))
     {
         return 0;
     }

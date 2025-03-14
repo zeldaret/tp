@@ -100,7 +100,7 @@ int daLv3Water_c::CreateHeap() {
 
     J3DAnmTextureSRTKey* btk =
         (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_resNameIdx[mType], l_btkIdx[mType]);
-    mBtk1.init(modelData, btk, TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1);
+    mBtk1.init(modelData, btk, TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1);
 
     if (l_bmdIdrIdx[mType] != -1) {
         J3DModelData* modelData =
@@ -114,7 +114,7 @@ int daLv3Water_c::CreateHeap() {
 
         J3DAnmTextureSRTKey* btk =
             (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_resNameIdx[mType], l_btkIdrIdx[mType]);
-        mBtk2.init(modelData, btk, TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1);
+        mBtk2.init(modelData, btk, TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1);
     } else {
         mpModel2 = NULL;
     }

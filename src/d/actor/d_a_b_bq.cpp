@@ -456,7 +456,7 @@ static void damage_check(b_bq_class* i_this) {
             }
 
             def_se_set(&i_this->mSound, i_this->mAtInfo.mpCollider, 0x2D, NULL);
-            anm_init(i_this, ANM_NO_DAMAGE, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_NO_DAMAGE, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             i_this->mSound.startCreatureVoice(Z2SE_EN_BQ_V_NODAMAGE, -1);
             i_this->field_0x6de = 10;
         }
@@ -501,7 +501,7 @@ static s8 b_bq_stay(b_bq_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_APPEAR, 1.0f, J3DFrameCtrl::LOOP_ONCE_e, 0.0f);
+        anm_init(i_this, ANM_APPEAR, 1.0f, J3DFrameCtrl::EMode_NONE, 0.0f);
         i_this->mMode = 1;
         break;
     case 2:
@@ -523,7 +523,7 @@ static s8 b_bq_stay(b_bq_class* i_this) {
         }
 
         if (i_this->mTimers[0] == 0) {
-            anm_init(i_this, ANM_APPEAR, 1.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_APPEAR, 1.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
 
             i_this->mMode = 4;
             i_this->mDisableDraw = false;
@@ -549,7 +549,7 @@ static s8 b_bq_stay(b_bq_class* i_this) {
 
         if (i_this->mpMorf->isStop()) {
             i_this->mAction = ACTION_WAIT;
-            anm_init(i_this, ANM_WAIT_01, 1.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_WAIT_01, 1.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 1;
         }
         break;
@@ -562,7 +562,7 @@ static s8 b_bq_stay(b_bq_class* i_this) {
 static void b_bq_wait(b_bq_class* i_this) {
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_WAIT_01, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, ANM_WAIT_01, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mMode = 1;
         // fallthrough
     case 1:
@@ -582,7 +582,7 @@ static void b_bq_wait(b_bq_class* i_this) {
     }
 
     if (i_this->mAnmID == ANM_NO_DAMAGE && i_this->mpMorf->isStop()) {
-        anm_init(i_this, ANM_WAIT_01, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, ANM_WAIT_01, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
     }
 
     if (i_this->field_0x11fc != 0 && i_this->mTimers[2] == 1) {
@@ -598,7 +598,7 @@ static void b_bq_damage(b_bq_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_BOMB_DAMAGE, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, ANM_BOMB_DAMAGE, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mMode = 1;
         i_this->mTimers[0] = 1000;
         a_this->health = 50;
@@ -629,7 +629,7 @@ static void b_bq_damage(b_bq_class* i_this) {
         }
 
         if (i_this->mpMorf->isStop()) {
-            anm_init(i_this, ANM_DAMAGE_WAIT, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_DAMAGE_WAIT, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 2;
             i_this->mTimers[0] = l_HIO.mChanceTime;
         }
@@ -641,12 +641,12 @@ static void b_bq_damage(b_bq_class* i_this) {
         }
         break;
     case 10:
-        anm_init(i_this, ANM_CORE_DAMAGE, 2.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, ANM_CORE_DAMAGE, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mMode = 11;
         break;
     case 11:
         if (i_this->mpMorf->isStop()) {
-            anm_init(i_this, ANM_DAMAGE_WAIT, JREG_F(15), J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_DAMAGE_WAIT, JREG_F(15), J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 2;
         }
         break;
@@ -661,7 +661,7 @@ static void b_bq_damage(b_bq_class* i_this) {
             return;
         }
 
-        anm_init(i_this, ANM_RETURN_01, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, ANM_RETURN_01, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mMode = 21;
         i_this->mSound.startCreatureVoice(Z2SE_EN_BQ_V_DAMAGEBACK, -1);
         break;
@@ -671,7 +671,7 @@ static void b_bq_damage(b_bq_class* i_this) {
         }
         break;
     case 30:
-        anm_init(i_this, ANM_RETURN_02, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, ANM_RETURN_02, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mMode = 31;
         i_this->mSound.startCreatureVoice(Z2SE_EN_BQ_V_BACK, -1);
         break;
@@ -725,7 +725,7 @@ static void b_bq_damage(b_bq_class* i_this) {
     i_this->setDownPos(&sp5C);
 
     if (i_this->checkCutDownHitFlg()) {
-        anm_init(i_this, ANM_TODOME, 2.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, ANM_TODOME, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mPlayTodomeBtk = true;
         i_this->mMode = 40;
 
@@ -764,7 +764,7 @@ static s8 b_bq_attack(b_bq_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_ATTACK_A, 10.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, ANM_ATTACK_A, 10.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mMode = 1;
 
         if (cM_rndF(1.0f) < 0.5f) {
@@ -788,7 +788,7 @@ static s8 b_bq_attack(b_bq_class* i_this) {
         }
 
         if (i_this->mpMorf->isStop()) {
-            anm_init(i_this, ANM_ATTACK_B, 2.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_ATTACK_B, 2.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 2;
             i_this->mTimers[0] = l_HIO.mWaterSprayTime;
         }
@@ -797,7 +797,7 @@ static s8 b_bq_attack(b_bq_class* i_this) {
         set_dokuhaki = true;
 
         if (i_this->mTimers[0] == 0) {
-            anm_init(i_this, ANM_ATTACK_B, 2.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_ATTACK_B, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             i_this->mMode = 3;
         }
         break;
@@ -901,7 +901,7 @@ static void b_bq_end(b_bq_class* i_this) {
     case 0:
         i_this->mSound.startCreatureVoice(Z2SE_EN_BQ_V_DEAD, -1);
 
-        anm_init(i_this, ANM_DEAD, 1.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, ANM_DEAD, 1.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mpDeadBrk->setPlaySpeed(1.0f);
         i_this->mMode = 1;
 
@@ -2440,7 +2440,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     b_bq_class* a_this = (b_bq_class*)i_this;
 
     a_this->mpMorf = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("B_bq", 0x1D), NULL,
-                                          NULL, NULL, J3DFrameCtrl::LOOP_REPEAT_e, 0.6f, 0, -1,
+                                          NULL, NULL, J3DFrameCtrl::EMode_LOOP, 0.6f, 0, -1,
                                           &a_this->mSound, 0, 0x11000284);
     if (a_this->mpMorf == NULL || a_this->mpMorf->getModel() == NULL) {
         return false;
@@ -2460,7 +2460,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
     if (!a_this->mpDeadBrk->init(a_this->mpMorf->getModel()->getModelData(),
                                  (J3DAnmTevRegKey*)dComIfG_getObjectRes("B_bq", 0x20), TRUE,
-                                 J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1))
+                                 J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1))
     {
         return false;
     }
@@ -2474,7 +2474,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
     if (!a_this->mpTodomeBtk->init(a_this->mpMorf->getModel()->getModelData(),
                                    (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("B_bq", 0x23), TRUE,
-                                   J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1))
+                                   J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1))
     {
         return false;
     }

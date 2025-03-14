@@ -152,7 +152,7 @@ int daE_PM_c::CreateHeap() {
     J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes("E_PM", 0x1d);
     mpMorf = new mDoExt_McaMorfSO(model_data, NULL, NULL,
                                   (J3DAnmTransform*)dComIfG_getObjectRes("E_PM", 0x10),
-                                  J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1,
+                                  J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1,
                                   &mCreatureSound, 0x80000, 0x11020084);
     if (mpMorf == NULL || mpMorf->getModel() == NULL) {
         return 0;
@@ -164,7 +164,7 @@ int daE_PM_c::CreateHeap() {
     }
     if (!mpEyeAnm->init(mpMorf->getModel()->getModelData(),
                         (J3DAnmTexPattern*)dComIfG_getObjectRes("E_PM", 0x23),
-                        TRUE, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1)) {
+                        TRUE, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1)) {
         return 5;
     }
 
@@ -176,7 +176,7 @@ int daE_PM_c::CreateHeap() {
 
     mpTrumpetMorf = new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("E_PM", 0x1f), NULL,
                                        NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_PM", 0x19),
-                                       J3DFrameCtrl::LOOP_ONCE_e, 0.0f, 0, -1, 1, NULL,
+                                       J3DFrameCtrl::EMode_NONE, 0.0f, 0, -1, 1, NULL,
                                        0x80000, 0x11000084);
     if (mpTrumpetMorf == NULL || mpTrumpetMorf->getModel() == NULL) {
         return 0;
@@ -184,7 +184,7 @@ int daE_PM_c::CreateHeap() {
 
     mpGlowEffectMorf = new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("E_PM", 0x1c), NULL,
                                           NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_PM", 5),
-                                          J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1, 1, NULL,
+                                          J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1, 1, NULL,
                                           0x80000, 0x11000084);
     if (mpGlowEffectMorf == NULL || mpGlowEffectMorf->getModel() == NULL) {
         return 0;
@@ -511,7 +511,7 @@ void daE_PM_c::Ap_StartAction() {
             mTargetAngleY = shape_angle.y;
             mMode++;
             gravity = -5.0f;
-            SetAnm(ANM_APPEAR01, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f);
+            SetAnm(ANM_APPEAR01, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
             Particle_Set(0x880D, current.pos);
         }
 
@@ -529,7 +529,7 @@ void daE_PM_c::Ap_StartAction() {
                                              NULL, NULL, NULL);
         
         if (mAnm == ANM_APPEAR02 && mpMorf->isStop()) {
-            SetAnm(ANM_WAIT01, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
+            SetAnm(ANM_WAIT01, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
             mCreatureSound.startCreatureVoice(Z2SE_EN_PM_V_LAUGH, -1);
         }
         
@@ -538,7 +538,7 @@ void daE_PM_c::Ap_StartAction() {
         }
         
         if (mAcch.ChkGroundHit() && mTimer[0] == 0) {
-            SetAnm(ANM_APPEAR02, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
+            SetAnm(ANM_APPEAR02, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
             mTargetHeadAngleX = 0x2000;
             mTimer[0] = 40;
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_L, 0, -1);
@@ -592,14 +592,14 @@ void daE_PM_c::Ap_CreateAction() {
     switch (mMode) {
     case 0:
         if (mAnm != ANM_FOGBLOW_ST) {
-            SetAnm(ANM_FOGBLOW_ST, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
+            SetAnm(ANM_FOGBLOW_ST, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
             mCreatureSound.startCreatureVoice(Z2SE_EN_PM_V_FOGBLOW, -1);
         } else if (mpMorf->isStop() && mAnm == ANM_FOGBLOW_ST) {
-            SetAnm(ANM_FOGBLOW_LP, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f);
+            SetAnm(ANM_FOGBLOW_LP, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
             mTimer[0] = 80;
             mMode++;
             mpTrumpetMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_PM", 0x19),
-                                    J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f, 0.0f, -1.0f, NULL);
+                                    J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f, 0.0f, -1.0f, NULL);
             vec2.set(0.0f, 0.0f, 150.0f);
             vec5 = mCamEyeTarget;
             cLib_offsetPos(&mCamEyeTarget, &vec5, shape_angle.y, &vec2);
@@ -675,7 +675,7 @@ void daE_PM_c::Ap_CreateAction() {
         if (mTimer[0] == 0) {
             field_0x618 = 1;
             mAction = ACT_ESCAPE;
-            SetAnm(ANM_WAIT01, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 1.0f);
+            SetAnm(ANM_WAIT01, J3DFrameCtrl::EMode_LOOP, 1.0f, 1.0f);
             current.pos.set(mPoint.x, mPoint.y, mPoint.z);
             old.pos = current.pos;
             vec1.set(mPoint.x, mPoint.y + 120.0f, mPoint.z);
@@ -705,7 +705,7 @@ void daE_PM_c::Ap_EscapeAction() {
         cLib_addCalcAngleS2(&mHeadAngleZ, -0x500, 4, 0x600);
         
         if (mTimer[0] == 0) {
-            SetAnm(ANM_RUN, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f);
+            SetAnm(ANM_RUN, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
             mMode++;
             mTargetSpeed = 13.0f;
         }
@@ -809,7 +809,7 @@ void daE_PM_c::DemoBeforeEscape() {
         mPuppetDelete = 1;
         attention_info.flags = 0;
         speedF = 0.0f;
-        SetAnm(ANM_DAMAGE, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 0.5f);
+        SetAnm(ANM_DAMAGE, J3DFrameCtrl::EMode_NONE, 5.0f, 0.5f);
         mDemoMode++;
         vec1.set(current.pos.x, current.pos.y + 100.0f, current.pos.z);
         s16 angle = cLib_targetAngleY(&current.pos, s_LinkPos);
@@ -900,7 +900,7 @@ void daE_PM_c::DemoAfterEscape() {
             mTargetAngleY = shape_angle.y;
             current.pos.set(mPoint.x, mPoint.y + 200.0f, mPoint.z);
             old.pos = current.pos;
-            SetAnm(ANM_APPEAR01, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f);
+            SetAnm(ANM_APPEAR01, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
             mDemoMode++;
             gravity = -3.0f;
             speed.y = 0.0f;
@@ -917,7 +917,7 @@ void daE_PM_c::DemoAfterEscape() {
         if (mAcch.ChkGroundHit()) {
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_L, 0, -1);
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_R, 0, -1);
-            SetAnm(ANM_APPEAR02, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
+            SetAnm(ANM_APPEAR02, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
             mDemoMode++;
             mTimer[0] = 50;
             mBossLightOn = true;
@@ -932,7 +932,7 @@ void daE_PM_c::DemoAfterEscape() {
         vec2 = *s_LinkPos - vec1;
 
         if (mpMorf->isStop() && mAnm == ANM_APPEAR02) {
-            SetAnm(ANM_WAIT01, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
+            SetAnm(ANM_WAIT01, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
             player->offPlayerNoDraw();
             player->offPlayerShadowNoDraw();
         }
@@ -952,7 +952,7 @@ void daE_PM_c::DemoAfterEscape() {
         if (mTimer[0] == 0) {
             mDemoMode++;
             mTargetSpeed = 13.0f;
-            SetAnm(ANM_RUN, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f);
+            SetAnm(ANM_RUN, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
         }
 
         SetStopingCam();
@@ -1004,7 +1004,7 @@ void daE_PM_c::WaitAction() {
     switch (mMode) {
     case 0:
         speedF = 0.0f;
-        SetAnm(ANM_GLAD, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f);
+        SetAnm(ANM_GLAD, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
         mTimer[0] = (u8)(cM_rndFX(50.0f) + 200.0f);
         mMode++;
         break;
@@ -1014,7 +1014,7 @@ void daE_PM_c::WaitAction() {
         if (s_dis < l_HIO.mEscapeRange && angle > -0x4000 && angle < 0x4000) {
             mMode++;
             mTimer[0] = 10;
-            SetAnm(ANM_WAIT01, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f);
+            SetAnm(ANM_WAIT01, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
         }
         break;
     }
@@ -1071,7 +1071,7 @@ void daE_PM_c::GroundCheck() {
         if (current.pos.y - vec3.y > 50.0f) {
             speedF = 0.0f;
             mTargetSpeed = 0.0f;
-            SetAnm(ANM_WAIT01, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f);
+            SetAnm(ANM_WAIT01, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
             for (int i = 0; i < 4; i++) {
                 mTargetAngleY = current.angle.y + (i + 1) * 0x4000;
                 vec1.set(0.0f, 50.0f, 300.0f);
@@ -1082,7 +1082,7 @@ void daE_PM_c::GroundCheck() {
                 if (dComIfG_Bgsp().LineCross(&lin_chk)) break;
             }
             mMode = 10;
-            SetAnm(ANM_WAIT01, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f);
+            SetAnm(ANM_WAIT01, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
         } else if (current.pos.y - vec4.y > 50.0f) {
             mTargetAngleY = s_TargetAngle;
         }
@@ -1095,7 +1095,7 @@ void daE_PM_c::GroundCheck() {
 void daE_PM_c::EscapeAction() {
     switch (mMode) {
     case 0:
-        SetAnm(ANM_RUN, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f);
+        SetAnm(ANM_RUN, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
         mTargetSpeed = 13.0f;
         speedF = 10.0f;
         mMode++;
@@ -1176,14 +1176,14 @@ void daE_PM_c::DeathAction() {
     case 0:
         attention_info.flags = 0;
         speedF = 0.0f;
-        SetAnm(ANM_DAMAGE, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
+        SetAnm(ANM_DAMAGE, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
         mMode++;
         break;
 
     case 1:
         if (mpMorf->getFrame() > 20.0f) {
             mMode++;
-            SetAnm(ANM_HIDE, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
+            SetAnm(ANM_HIDE, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
             mCreatureSound.startCreatureVoice(Z2SE_EN_PM_FADEOUT, -1);
         }
         break;
@@ -1270,7 +1270,7 @@ void daE_PM_c::DemoBossStart2() {
                 mDemoMode++;
                 current.pos.y = 2500.0f;
                 old.pos = current.pos;
-                SetAnm(ANM_APPEAR01, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f);
+                SetAnm(ANM_APPEAR01, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
                 speed.y = 0.0f;
                 gravity = -3.0f;
                 Particle_Set(0x880D, current.pos);
@@ -1287,11 +1287,11 @@ void daE_PM_c::DemoBossStart2() {
         mCamCenterTarget.y = current.pos.y + 100.0f;
 
         if (mAcch.ChkGroundHit() && mAnm == ANM_APPEAR01) {
-            SetAnm(ANM_APPEAR02, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
+            SetAnm(ANM_APPEAR02, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_L, 0, -1);
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_R, 0, -1);
         } else if (mpMorf->isStop() && mAnm == ANM_APPEAR02) {
-            SetAnm(ANM_OP, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
+            SetAnm(ANM_OP, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
             mCreatureSound.startCreatureVoice(Z2SE_EN_PM_V_OP, -1);
             mDemoMode++;
             mBossLightOn = true;
@@ -1331,7 +1331,7 @@ void daE_PM_c::DemoBossStart2() {
 
     case 3:
         if (mTimer[0] == 0) {
-            SetAnm(ANM_FOGBLOW_ST, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
+            SetAnm(ANM_FOGBLOW_ST, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
             mCreatureSound.startCreatureVoice(Z2SE_EN_PM_V_FOGBLOW, -1);
             mDemoMode++;
             for (int i = 0; i < mPuppetNum; i++) {
@@ -1358,7 +1358,7 @@ void daE_PM_c::DemoBossStart2() {
 
     case 5:
         if (mpMorf->isStop()) {
-            SetAnm(ANM_WAIT01, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f);
+            SetAnm(ANM_WAIT01, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
             mpTrumpetMorf->setPlaySpeed(0.0f);
             mDemoMode++;
             mTimer[0] = 70;
@@ -1401,7 +1401,7 @@ void daE_PM_c::DemoBossStart() {
         }
 
         if (mAnm == ANM_WAIT01 && mTimer[0] == 0) {
-            SetAnm(ANM_OP, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
+            SetAnm(ANM_OP, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
             mCreatureSound.startCreatureVoice(Z2SE_EN_PM_V_OP, -1);
             mDemoMode++;
         }
@@ -1411,7 +1411,7 @@ void daE_PM_c::DemoBossStart() {
 
     case 1:
         if (mpMorf->isStop()) {
-            SetAnm(ANM_HIDE, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
+            SetAnm(ANM_HIDE, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
             mCreatureSound.startCreatureVoice(Z2SE_EN_PM_FADEOUT, -1);
             mCamCenterTarget.y += 100.0f;
             mDemoMode++;
@@ -1450,7 +1450,7 @@ void daE_PM_c::DemoBossStart() {
         if (mpMorf->isStop() && mAnm == ANM_HIDE) {
             mPoint = dPath_GetPnt(mpPath, 1)->m_position;
             current.pos.set(mPoint.x, mPoint.y + 10000.0f, mPoint.z);
-            SetAnm(ANM_APPEAR01, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f);
+            SetAnm(ANM_APPEAR01, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
             mTimer[1] = 15;
             MTXCopy(mpMorf->getModel()->getAnmMtx(JNT_WAIST), *calc_mtx);
             vec1.set(0.0f, -30.0f, 0.0f);
@@ -1504,14 +1504,14 @@ void daE_PM_c::DemoBossStart() {
         }
 
         if (mAcch.ChkGroundHit() && mAnm == ANM_APPEAR01) {
-            SetAnm(ANM_APPEAR02, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
+            SetAnm(ANM_APPEAR02, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_L, 0, -1);
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_R, 0, -1);
             vec1.set(mPoint.x, mPoint.y, mPoint.z);
             vec2.set(0.0f, 100.0f, 250.0f);
             cLib_offsetPos(&mCamEyeTarget, &vec1, shape_angle.y, &vec2);
         } else if (mpMorf->isStop() && mAnm == ANM_APPEAR02) {
-            SetAnm(ANM_WAIT01, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f);
+            SetAnm(ANM_WAIT01, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
         }
 
         cLib_addCalcAngleS2(&current.angle.y, mTargetAngleY, 0x10, 0x1000);
@@ -1521,7 +1521,7 @@ void daE_PM_c::DemoBossStart() {
 
     case 4:
         if (mTimer[0] == 0) {
-            SetAnm(ANM_FOGBLOW_ST, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
+            SetAnm(ANM_FOGBLOW_ST, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
             mCreatureSound.startCreatureVoice(Z2SE_EN_PM_V_FOGBLOW, -1);
             mDemoMode++;
             for (int i = 0; i < mPuppetNum; i++) {
@@ -1552,7 +1552,7 @@ void daE_PM_c::DemoBossStart() {
 
     case 6:
         if (mpMorf->isStop()) {
-            SetAnm(ANM_WAIT01, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f);
+            SetAnm(ANM_WAIT01, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
             mpTrumpetMorf->setPlaySpeed(0.0f);
             mDemoMode++;
             mTimer[0] = 70;
@@ -1584,7 +1584,7 @@ void daE_PM_c::BossEscapeAction() {
     switch (mMode) {
     case 0:
         attention_info.flags = 0;
-        SetAnm(ANM_HIDE, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
+        SetAnm(ANM_HIDE, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
         mCreatureSound.startCreatureVoice(Z2SE_EN_PM_FADEOUT, -1);
         mCcCyl.OnTgNoHitMark();
         mMode++;
@@ -1599,7 +1599,7 @@ void daE_PM_c::BossEscapeAction() {
 
         if (mpMorf->isStop()) {
             SearchRndP();
-            SetAnm(ANM_APPEAR01, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f);
+            SetAnm(ANM_APPEAR01, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
             current.pos.set(mPoint.x, mPoint.y + 100.0f, mPoint.z);
             old.pos = current.pos;
             mMode++;
@@ -1614,7 +1614,7 @@ void daE_PM_c::BossEscapeAction() {
         shape_angle.y = current.angle.y;
 
         if (mAcch.ChkGroundHit()) {
-            SetAnm(ANM_APPEAR02, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
+            SetAnm(ANM_APPEAR02, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
             mMode++;
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_L, 0, -1);
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_R, 0, -1);
@@ -1677,7 +1677,7 @@ void daE_PM_c::BossDamageAction() {
                 mAction = ACT_DEATH;
                 mMode = 0;
                 mDemoMode = 0;
-                SetAnm(ANM_END, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
+                SetAnm(ANM_END, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
                 mCreatureSound.startCreatureVoice(Z2SE_EN_PM_V_DEATH, -1);
                 mPuppetDelete = 1;
                 mBossLightOn = false;
@@ -1687,7 +1687,7 @@ void daE_PM_c::BossDamageAction() {
                 mCamEyeTarget.y += 100.0f;
 
             } else {
-                SetAnm(ANM_DAMAGE, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
+                SetAnm(ANM_DAMAGE, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
                 mMode++;
                 mPuppetDelete = 1;
                 vec1.set(current.pos.x, current.pos.y + 50.0f, current.pos.z);
@@ -1698,7 +1698,7 @@ void daE_PM_c::BossDamageAction() {
 
     case 1:
         if (mpMorf->isStop()) {
-            SetAnm(ANM_HIDE, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
+            SetAnm(ANM_HIDE, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
             mCreatureSound.startCreatureVoice(Z2SE_EN_PM_FADEOUT, -1);
             mMode++;
             mCamCenterTarget.y += 200.0f;
@@ -1718,7 +1718,7 @@ void daE_PM_c::BossDamageAction() {
 
         if (mpMorf->isStop() && mAnm == ANM_HIDE) {
             SearchFarP();
-            SetAnm(ANM_APPEAR01, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f);
+            SetAnm(ANM_APPEAR01, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
             current.pos.set(mPoint.x, mPoint.y + 10000.0f, mPoint.z);
             mTimer[1] = 20;
             MTXCopy(mpMorf->getModel()->getAnmMtx(JNT_WAIST), *calc_mtx);
@@ -1755,7 +1755,7 @@ void daE_PM_c::BossDamageAction() {
         shape_angle.y = current.angle.y;
 
         if (mAcch.ChkGroundHit()) {
-            SetAnm(ANM_APPEAR02, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
+            SetAnm(ANM_APPEAR02, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
             mMode++;
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_L, 0, -1);
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_R, 0, -1);
@@ -1783,7 +1783,7 @@ void daE_PM_c::BossDamageAction() {
         break;
 
     case 10:
-        SetAnm(ANM_DAMAGE, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
+        SetAnm(ANM_DAMAGE, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
         mMode++;
         break;
 
@@ -1802,9 +1802,9 @@ void daE_PM_c::BossWaitAction() {
     switch (mMode) {
     case 0:
         if (mSecondEncounter) {
-            SetAnm(ANM_GLAD, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f);
+            SetAnm(ANM_GLAD, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
         } else {
-            SetAnm(ANM_WAIT01, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f);
+            SetAnm(ANM_WAIT01, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
         }
         mMode++;
         break;
@@ -2047,7 +2047,7 @@ void daE_PM_c::StartAction() {
         mPuppetNum = 4;
         if (mStage == 1) {
             if (mAnm != ANM_GLAD) {
-                SetAnm(ANM_GLAD, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f);
+                SetAnm(ANM_GLAD, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
             }
 
             daE_PM_c* other = (daE_PM_c*)fpcM_Search(s_obj_sub, this);
@@ -2069,7 +2069,7 @@ void daE_PM_c::StartAction() {
 
         } else if (mStage == 2) {
             if (mAnm != ANM_GLAD) {
-                SetAnm(ANM_GLAD, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f);
+                SetAnm(ANM_GLAD, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
             }
 
             if (dComIfGs_isSwitch(0x81, fopAcM_GetRoomNo(this))
@@ -2081,7 +2081,7 @@ void daE_PM_c::StartAction() {
 
         } else if (mStage == 3) {
             if (mAnm != ANM_GLAD) {
-                SetAnm(ANM_GLAD, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f);
+                SetAnm(ANM_GLAD, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
             }
 
             if (dComIfGs_isSwitch(0x82, fopAcM_GetRoomNo(this))
@@ -2094,7 +2094,7 @@ void daE_PM_c::StartAction() {
         } else if (mStage == 4) {
             SearchNearP();
             mCcStts.Init(0xFA, 0xFF, this);
-            SetAnm(ANM_APPEAR01, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f);
+            SetAnm(ANM_APPEAR01, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
             mMode += 3;
             for (int i = 0; i < mPuppetNum; i++) {
                 mPuppetID[i] = -1;
@@ -2104,12 +2104,12 @@ void daE_PM_c::StartAction() {
 
     case 1:
         if (mTimer[0] == 0 && mAcch.ChkGroundHit()) {
-            SetAnm(ANM_APPEAR02, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
+            SetAnm(ANM_APPEAR02, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_L, 0, -1);
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_R, 0, -1);
             J3DAnmTexPattern* btp = (J3DAnmTexPattern*)dComIfG_getObjectRes("E_PM", 0x22);
             mpEyeAnm->init(mpMorf->getModel()->getModelData(), btp, TRUE,
-                           J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1);
+                           J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1);
             mMode++;
         }
         break;
@@ -2134,11 +2134,11 @@ void daE_PM_c::StartAction() {
         shape_angle.y = s_TargetAngle;
 
         if (mTimer[0] == 0 && mAnm != ANM_KYORO2) {
-            SetAnm(ANM_KYORO2, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
+            SetAnm(ANM_KYORO2, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
         }
 
         if (mpMorf->isStop()) {
-            SetAnm(ANM_WAIT01, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f);
+            SetAnm(ANM_WAIT01, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
             mTimer[0] = (u8)(cM_rndFX(50.0f) + 200.0f);
         }
 
@@ -2185,10 +2185,10 @@ void daE_PM_c::GakkiLoopAction(cXyz param_0, f32 param_1) {
     cXyz vec3;
 
     if (mAnm == ANM_FOGBLOW_ST && mpMorf->isStop()) {
-        SetAnm(ANM_FOGBLOW_LP, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f);
+        SetAnm(ANM_FOGBLOW_LP, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
         mTimer[0] = 0;
         J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes("E_PM", 0x19);
-        mpTrumpetMorf->setAnm(bck, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f, 0.0f, -1.0f, NULL);
+        mpTrumpetMorf->setAnm(bck, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f, 0.0f, -1.0f, NULL);
         dBgS_LinChk lin_chk;
 
         for (int i = 0; i < mPuppetNum; i++) {
@@ -2221,7 +2221,7 @@ void daE_PM_c::GakkiLoopAction(cXyz param_0, f32 param_1) {
         }
 
         if (mTimer[0] == 0) {
-            SetAnm(ANM_FOGBLOW_EN, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
+            SetAnm(ANM_FOGBLOW_EN, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
             mMode++;
             mCreatureSound.startCreatureVoice(Z2SE_EN_PM_V_LAUGH, -1);
         }
@@ -2244,7 +2244,7 @@ void daE_PM_c::DemoCreateAction() {
     cXyz vec1, vec2, vec3;
     switch (mMode) {
     case 0:
-        SetAnm(ANM_FOGBLOW_ST, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
+        SetAnm(ANM_FOGBLOW_ST, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
         mCreatureSound.startCreatureVoice(Z2SE_EN_PM_V_FOGBLOW, -1);
         mMode++;
         speedF = 0.0f;
@@ -2296,7 +2296,7 @@ void daE_PM_c::CreateAction() {
 
     switch (mMode) {
     case 0:
-        SetAnm(ANM_FOGBLOW_ST, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
+        SetAnm(ANM_FOGBLOW_ST, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
         mCreatureSound.startCreatureVoice(Z2SE_EN_PM_V_FOGBLOW, -1);
         mMode++;
         speedF = 0.0f;
@@ -2368,7 +2368,7 @@ void daE_PM_c::DamageAction() {
     switch (mMode) {
     case 0:
         speedF = 0.0f;
-        SetAnm(ANM_DAMAGE, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f);
+        SetAnm(ANM_DAMAGE, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
         mMode++;
         break;
 
@@ -2727,7 +2727,7 @@ void daE_PM_c::SkipChk() {
             mCcCyl.OffTgNoHitMark();
             mAction = ACT_CREATE;
             mMode = 0;
-            SetAnm(ANM_GLAD, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f);
+            SetAnm(ANM_GLAD, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
             current.pos.y = mAcch.GetGroundH();
             old.pos.y = current.pos.y;
             mBossLightOn = true;
@@ -2744,7 +2744,7 @@ void daE_PM_c::SkipChk() {
             mPoint = dPath_GetPnt(mpPath, 1)->m_position;
             current.pos.set(mPoint.x, mPoint.y, mPoint.z);
             old.pos = current.pos;
-            SetAnm(ANM_WAIT01, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f);
+            SetAnm(ANM_WAIT01, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
         }
     }
 }

@@ -74,11 +74,11 @@ int daSwhit0_c::CreateHeap() {
         return 0;
     }
 
-    if (!mBck.init((J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 5), TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1, false)) {
+    if (!mBck.init((J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 5), TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1, false)) {
         return 0;
     }
 
-    if (!mBrk.init(modelData, (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName, 11), FALSE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1)) {
+    if (!mBrk.init(modelData, (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName, 11), FALSE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1)) {
         return 0;
     }
 

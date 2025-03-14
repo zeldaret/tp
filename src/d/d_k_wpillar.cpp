@@ -51,13 +51,13 @@ int dkWpillar_c::create() {
         J3DAnmTransform* bckAnm = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 0xB);
         JUT_ASSERT(106, bckAnm);
 
-        var_r30 = mBck.init(bckAnm, TRUE, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1, false);
+        var_r30 = mBck.init(bckAnm, TRUE, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1, false);
 
         J3DAnmTextureSRTKey* btkAnm = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 0x3B);
-        var_r30 &= mBtk.init(modelData, btkAnm, FALSE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1);
+        var_r30 &= mBtk.init(modelData, btkAnm, FALSE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1);
 
         J3DAnmTevRegKey* brkAnm = (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName, 0x2E);
-        var_r30 &= mBrk.init(modelData, brkAnm, FALSE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1);
+        var_r30 &= mBrk.init(modelData, brkAnm, FALSE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1);
 
         mDoExt_restoreCurrentHeap();
         mDoExt_adjustSolidHeap(mpHeap);

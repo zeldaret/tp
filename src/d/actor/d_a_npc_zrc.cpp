@@ -628,7 +628,7 @@ void daNpc_zrC_c::setAttnPos() {
  */
 bool daNpc_zrC_c::setExpressionAnm(int i_idx, bool i_modify) {
     J3DAnmTransform* bck_anm = NULL;
-    int attr = J3DFrameCtrl::LOOP_ONCE_e;
+    int attr = J3DFrameCtrl::EMode_NONE;
     mAnmFlags &= ~ANM_EXPRESSION_FLAGS;
 
     if (l_bckGetParamList[i_idx].fileIdx >= 0) {
@@ -640,7 +640,7 @@ bool daNpc_zrC_c::setExpressionAnm(int i_idx, bool i_modify) {
     switch (i_idx) {
     case ANM_F_WAIT_A:
         res = setExpressionBtp(0);
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case ANM_F_SIT_TALK:
         res = setExpressionBtp(1);
@@ -671,33 +671,33 @@ bool daNpc_zrC_c::setExpressionAnm(int i_idx, bool i_modify) {
         break;
     case ANM_F_PRAY:
         res = setExpressionBtp(9);
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case ANM_F_GETUP:
         res = setExpressionBtp(10);
         break;
     case ANM_F_SIT:
         res = setExpressionBtp(0);
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case ANM_F_STEP:
         res = setExpressionBtp(11);
         break;
     case ANM_FH_SAD:
         res = setExpressionBtp(12);
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case ANM_FH_SMILE:
         res = setExpressionBtp(13);
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case ANM_FH_KIZUKU:
         res = setExpressionBtp(0);
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case ANM_F_SICK_DEMO_WAIT:
         res = setExpressionBtp(14);
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     default:
         bck_anm = NULL;
@@ -725,7 +725,7 @@ bool daNpc_zrC_c::setExpressionAnm(int i_idx, bool i_modify) {
  */
 bool daNpc_zrC_c::setExpressionBtp(int i_idx) {
     J3DAnmTexPattern* btp_anm = NULL;
-    int attr = J3DFrameCtrl::LOOP_ONCE_e;
+    int attr = J3DFrameCtrl::EMode_NONE;
     mAnmFlags &= ~(ANM_PLAY_BTP | ANM_PAUSE_BTP | ANM_FLAG_800);
 
     if (l_btpGetParamList[i_idx].fileIdx >= 0) {
@@ -735,19 +735,19 @@ bool daNpc_zrC_c::setExpressionBtp(int i_idx) {
 
     switch (i_idx) {
     case 0:
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case 9:
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case 12:
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case 13:
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case 14:
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case 1:
     case 2:
@@ -796,8 +796,8 @@ bool daNpc_zrC_c::setMotionAnm(int i_idx, f32 i_morf) {
     J3DAnmTransformKey* bck_anm = NULL;
     J3DAnmTextureSRTKey* btk_anm = NULL;
     int btk_idx = 0;
-    int attr = J3DFrameCtrl::LOOP_REPEAT_e;
-    int btk_attr = J3DFrameCtrl::LOOP_REPEAT_e;
+    int attr = J3DFrameCtrl::EMode_LOOP;
+    int btk_attr = J3DFrameCtrl::EMode_LOOP;
     mAnmFlags &= ~ANM_MOTION_FLAGS;
 
     if (l_bckGetParamList[i_idx].fileIdx >= 0) {
@@ -809,42 +809,42 @@ bool daNpc_zrC_c::setMotionAnm(int i_idx, f32 i_morf) {
     case ANM_WAIT_A:
         break;
     case ANM_TOPRAY:
-        attr = J3DFrameCtrl::LOOP_ONCE_e;
+        attr = J3DFrameCtrl::EMode_NONE;
         break;
     case ANM_PRAY:
         break;
     case ANM_GETUP:
-        attr = J3DFrameCtrl::LOOP_ONCE_e;
+        attr = J3DFrameCtrl::EMode_NONE;
         break;
     case ANM_STEP:
-        attr = J3DFrameCtrl::LOOP_ONCE_e;
+        attr = J3DFrameCtrl::EMode_NONE;
         break;
     case ANM_SIT:
         break;
     case ANM_SIT_TALK:
-        attr = J3DFrameCtrl::LOOP_ONCE_e;
+        attr = J3DFrameCtrl::EMode_NONE;
         break;
     case ANM_SAD_TALK:
-        attr = J3DFrameCtrl::LOOP_ONCE_e;
+        attr = J3DFrameCtrl::EMode_NONE;
         btk_idx = 1;
-        btk_attr = J3DFrameCtrl::LOOP_ONCE_e;
+        btk_attr = J3DFrameCtrl::EMode_NONE;
         break;
     case ANM_SAD_WAIT:
         btk_idx = 2;
         break;
     case ANM_TALK_A:
-        attr = J3DFrameCtrl::LOOP_ONCE_e;
+        attr = J3DFrameCtrl::EMode_NONE;
         break;
     case ANM_KIZUKU:
-        attr = J3DFrameCtrl::LOOP_ONCE_e;
+        attr = J3DFrameCtrl::EMode_NONE;
         btk_idx = 3;
-        btk_attr = J3DFrameCtrl::LOOP_ONCE_e;
+        btk_attr = J3DFrameCtrl::EMode_NONE;
         break;
     case ANM_KIZUKU_WAIT:
         btk_idx = 4;
         break;
     case ANM_SMILE_TALK:
-        attr = J3DFrameCtrl::LOOP_ONCE_e;
+        attr = J3DFrameCtrl::EMode_NONE;
         break;
     case ANM_SICK_DEMO_WAIT:
         break;

@@ -456,7 +456,7 @@ void daB_YO_c::setBck(int i_anm, u8 i_attr, f32 i_morf, f32 i_rate) {
         brk_idx = 0x25;
     }
     J3DAnmTevRegKey* brk = (J3DAnmTevRegKey*)dComIfG_getObjectRes("B_YO", brk_idx);
-    mpYetaBrkAnm->init(model_data, brk, TRUE, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1);
+    mpYetaBrkAnm->init(model_data, brk, TRUE, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1);
 }
 
 /* 8062FE0C-8062FE18 000A8C 000C+00 11/11 0/0 0/0 .text            setActionMode__8daB_YO_cFii */
@@ -808,7 +808,7 @@ void daB_YO_c::executeOpening() {
         Z2GetAudioMgr()->seStart(Z2SE_EN_YO_DEMO_OP1, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
         fopAcM_OffStatus(this, 0x4000);
         field_0xfb5 = 3;
-        setBck(ANM_WAIT_A, J3DFrameCtrl::LOOP_REPEAT_e, 3.0f, 1.0f);
+        setBck(ANM_WAIT_A, J3DFrameCtrl::EMode_LOOP, 3.0f, 1.0f);
         mMode = 1;
         gravity = 0.0f;
         current.pos.set(100.0f, 0.0f, 1000.0f);
@@ -834,7 +834,7 @@ void daB_YO_c::executeOpening() {
         mCamCenter.y = 180.0f;
         mCamEye.set(0.0f, 250.0f, 1450.0f);
         if (doYoMessage() == 1) {
-            setBck(ANM_WALK, J3DFrameCtrl::LOOP_REPEAT_e, 3.0f, 1.0f);
+            setBck(ANM_WALK, J3DFrameCtrl::EMode_LOOP, 3.0f, 1.0f);
             mMode = 2;
             mActionTimer = 90;
             mActionTimer2 = 300;
@@ -883,7 +883,7 @@ void daB_YO_c::executeOpening() {
             speedF = 0.0f;
             shape_angle.y = field_0xf80;
             player->changeDemoMode(20, 0, 0, 0);
-            setBck(ANM_WAIT_A, J3DFrameCtrl::LOOP_REPEAT_e, 10.0f, 1.0f);
+            setBck(ANM_WAIT_A, J3DFrameCtrl::EMode_LOOP, 10.0f, 1.0f);
             mMode = 4;
         }
         break;
@@ -935,7 +935,7 @@ void daB_YO_c::executeOpening() {
             player->changeDemoMode(1, 0, 0, 0);
         }
         if (mActionTimer == 15) {
-            setBck(ANM_TALK_A, J3DFrameCtrl::LOOP_REPEAT_e, 10.0f, 1.0f);
+            setBck(ANM_TALK_A, J3DFrameCtrl::EMode_LOOP, 10.0f, 1.0f);
         }
         if (mActionTimer == 0) {
             setYoMessage(0x2350);
@@ -972,7 +972,7 @@ void daB_YO_c::executeOpening() {
     case 10:
         if (doYoMessage() == 1) {
             mActionTimer = 150;
-            setBck(ANM_TO_TALK_B, J3DFrameCtrl::LOOP_ONCE_e, 15.0f, 1.0f);
+            setBck(ANM_TO_TALK_B, J3DFrameCtrl::EMode_NONE, 15.0f, 1.0f);
             mMode = 11;
             mActionTimer2 = 10;
             mColorMode = 1;
@@ -982,7 +982,7 @@ void daB_YO_c::executeOpening() {
 
     case 11:
         if (mpYetaMorf->isStop()) {
-            setBck(ANM_TALK_B, J3DFrameCtrl::LOOP_REPEAT_e, 3.0f, 1.0f);
+            setBck(ANM_TALK_B, J3DFrameCtrl::EMode_LOOP, 3.0f, 1.0f);
             mMode = 12;
             setYoMessage(0x235F);
         }
@@ -1008,7 +1008,7 @@ void daB_YO_c::executeOpening() {
         cam_pos.set(51.0f, 207.0f, -1562.0f);
         cLib_chasePos(&mCamEye, cam_pos, mCamEyeSpeed);
         if (mActionTimer == 0) {
-            setBck(ANM_ANGRY, J3DFrameCtrl::LOOP_ONCE_e, 3.0f, 1.0f);
+            setBck(ANM_ANGRY, J3DFrameCtrl::EMode_NONE, 3.0f, 1.0f);
             mMode = 15;
             player->changeDemoMode(1, 0, 0, 0);
         }
@@ -1030,7 +1030,7 @@ void daB_YO_c::executeOpening() {
         if (mpYetaMorf->isStop()) {
             mMode = 16;
             setYoMessage(0x2352);
-            setBck(ANM_ANGRY_WAIT, J3DFrameCtrl::LOOP_REPEAT_e, 3.0f, 1.0f);
+            setBck(ANM_ANGRY_WAIT, J3DFrameCtrl::EMode_LOOP, 3.0f, 1.0f);
         }
         break;
 
@@ -1046,7 +1046,7 @@ void daB_YO_c::executeOpening() {
         if (mActionTimer == 0) {
             mColorMode = 3;
             mColBlend = 1.0f;
-            setBck(ANM_WAIT_B, J3DFrameCtrl::LOOP_REPEAT_e, 16.0f, 1.0f);
+            setBck(ANM_WAIT_B, J3DFrameCtrl::EMode_LOOP, 16.0f, 1.0f);
             shape_angle.y = 0;
             current.angle.y = 0;
             mMode = 20;
@@ -1089,7 +1089,7 @@ void daB_YO_c::executeOpening() {
         if (mActionTimer == 0) {
             dComIfGs_onSwitch(mSwNo, fopAcM_GetRoomNo(this));
             mMode = 22;
-            setBck(ANM_FLOAT, J3DFrameCtrl::LOOP_REPEAT_e, 3.0f, 1.0f);
+            setBck(ANM_FLOAT, J3DFrameCtrl::EMode_LOOP, 3.0f, 1.0f);
             current.pos.set(0.0f, 0.0f, -500.0f);
             mCamEye.set(0.0f, 50.0f, 500.0f);
             mCamCenter.set(0.0f, 500.0f, 400.0f);
@@ -1418,7 +1418,7 @@ void daB_YO_c::executeChase() {
             mpBtkAnm->remove(mpModel[0]->getModelData());
             J3DAnmTextureSRTKey* btk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("B_YO", 0x35);
             mpBtkAnm->init(mpModel[1]->getModelData(), btk, FALSE,
-                              J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1);
+                              J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1);
         } else if (mModelNo == 6) {
             mpBtkAnm->setFrame(2.0f);
         }
@@ -1583,7 +1583,7 @@ void daB_YO_c::executeSeriousDemo() {
         Z2GetAudioMgr()->seStart(Z2SE_EN_YO_DEMO_MID, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
         fpcM_Search(s_frizad_delete, this);
         field_0xfb5 = 1;
-        setBck(ANM_WAIT_C2, J3DFrameCtrl::LOOP_REPEAT_e, 0.0f, 1.0f);
+        setBck(ANM_WAIT_C2, J3DFrameCtrl::EMode_LOOP, 0.0f, 1.0f);
         mColorMode = 5;
         mColBlend = 0.0f;
         return;
@@ -1638,7 +1638,7 @@ void daB_YO_c::executeSeriousDemo() {
         if (mActionTimer == 0) {
             shape_angle.y = 0;
             current.angle.y = 0;
-            setBck(ANM_FLOAT_B, J3DFrameCtrl::LOOP_REPEAT_e, 15.0f, 1.0f);
+            setBck(ANM_FLOAT_B, J3DFrameCtrl::EMode_LOOP, 15.0f, 1.0f);
             mActionTimer = 90;
             mMode = 5;
             mCamCenterSpeed = 3.0f;
@@ -1675,12 +1675,12 @@ void daB_YO_c::executeSeriousDemo() {
                 cLib_chaseF(&speed.y, 5.0f, 0.2f);
             } else {
                 if (cLib_chaseF(&speed.y, 0.0f, 0.2f)) {
-                    setBck(ANM_WAIT_C, J3DFrameCtrl::LOOP_REPEAT_e, 10.0f, 1.0f);
+                    setBck(ANM_WAIT_C, J3DFrameCtrl::EMode_LOOP, 10.0f, 1.0f);
                 }
             }
         }
         if (mActionTimer == 0) {
-            setBck(ANM_SCREAM, J3DFrameCtrl::LOOP_ONCE_e, 3.0f, 1.0f);
+            setBck(ANM_SCREAM, J3DFrameCtrl::EMode_NONE, 3.0f, 1.0f);
             mMode = 11;
         }
         break;
@@ -1714,7 +1714,7 @@ void daB_YO_c::executeSeriousDemo() {
     case 12:
         mActionTimer = 120;
         if (mpYetaMorf->isStop()) {
-            setBck(ANM_SCREAM_WAIT, J3DFrameCtrl::LOOP_REPEAT_e, 3.0f, 1.0f);
+            setBck(ANM_SCREAM_WAIT, J3DFrameCtrl::EMode_LOOP, 3.0f, 1.0f);
             mMode = 17;
         }
         // fallthrough
@@ -1736,7 +1736,7 @@ void daB_YO_c::executeSeriousDemo() {
             current.pos.y -= 350.0f;
             mIceCenterPos.y = current.pos.y - 30.0f;
             mActionTimer = 90;
-            setBck(ANM_WAIT_D, J3DFrameCtrl::LOOP_REPEAT_e, 3.0f, 1.0f);
+            setBck(ANM_WAIT_D, J3DFrameCtrl::EMode_LOOP, 3.0f, 1.0f);
         }
         break;
 
@@ -2393,7 +2393,7 @@ void daB_YO_c::executeDeath() {
             speedF = 0.0f;
             mMode = 3;
             mActionTimer = 30;
-            setBck(ANM_DOWN_A, J3DFrameCtrl::LOOP_ONCE_e, 3.0f, 1.0f);
+            setBck(ANM_DOWN_A, J3DFrameCtrl::EMode_NONE, 3.0f, 1.0f);
             setBreakIceEffect();
             setWallHitEffect();
         }
@@ -2420,7 +2420,7 @@ void daB_YO_c::executeDeath() {
         pos1.y -= 200.0f;
         cLib_addCalcPos2(&mCamCenter, pos1, 0.1f, 3.0f);
         if (mpYetaMorf->isStop()) {
-            setBck(ANM_DOWN_C, J3DFrameCtrl::LOOP_ONCE_e, 15.0f, 1.0f);
+            setBck(ANM_DOWN_C, J3DFrameCtrl::EMode_NONE, 15.0f, 1.0f);
             mMode = 110;
             mBlureRate = 0.0f;
         }
@@ -2453,7 +2453,7 @@ void daB_YO_c::executeDeath() {
         pos1.set(0.0f, 1230.0f, -1400.0f);
         cLib_addCalcPos2(&mCamEye, pos1, 0.1f, 60.0f);
         if (mActionTimer == 0) {
-            setBck(ANM_DOWN_C, J3DFrameCtrl::LOOP_ONCE_e, 15.0f, 1.0f);
+            setBck(ANM_DOWN_C, J3DFrameCtrl::EMode_NONE, 15.0f, 1.0f);
             mMode = 110;
             mBlureRate = 0.0f;
         }
@@ -2493,7 +2493,7 @@ void daB_YO_c::executeDeath() {
             mpYetaMorf->setPlaySpeed(mIceCenterSpeed);
         }
         if (mActionTimer == 0) {
-            setBck(ANM_DOWN_C, J3DFrameCtrl::LOOP_ONCE_e, 15.0f, 1.0f);
+            setBck(ANM_DOWN_C, J3DFrameCtrl::EMode_NONE, 15.0f, 1.0f);
             mMode = 110;
             mBlureRate = 0.0f;
         }
@@ -3179,7 +3179,7 @@ int daB_YO_c::CreateHeap() {
     model_data = (J3DModelData*)dComIfG_getObjectRes("B_YO", 0x1c);
     mpYetaMorf = new mDoExt_McaMorfSO(
         model_data, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("B_YO", 0x14),
-        J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1, &mCreatureSound, 0, 0x11020284
+        J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1, &mCreatureSound, 0, 0x11020284
     );
     if (mpYetaMorf == NULL || mpYetaMorf->getModel() == NULL) {
         return 0;
@@ -3191,7 +3191,7 @@ int daB_YO_c::CreateHeap() {
     }
     J3DAnmTextureSRTKey* btk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("B_YO", 0x35);
     if (!mpBtkAnm->init(mpModel[0]->getModelData(), btk, FALSE,
-                           J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1)) {
+                           J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1)) {
         return 0;
     }
 
@@ -3201,7 +3201,7 @@ int daB_YO_c::CreateHeap() {
         return 0;
     }
     btk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("B_YO", 0x32);
-    if (!mpYetaBtkAnm->init(model_data, btk, TRUE, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1)) {
+    if (!mpYetaBtkAnm->init(model_data, btk, TRUE, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1)) {
         return 0;
     }
 
@@ -3210,7 +3210,7 @@ int daB_YO_c::CreateHeap() {
         return 5;
     }
     J3DAnmTexPattern* btp = (J3DAnmTexPattern*)dComIfG_getObjectRes("B_YO", 0x3f);
-    if (!mpYetaBtpAnm->init(model_data, btp, TRUE, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1)) {
+    if (!mpYetaBtpAnm->init(model_data, btp, TRUE, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1)) {
         return 5;
     }
 
@@ -3219,7 +3219,7 @@ int daB_YO_c::CreateHeap() {
         return 0;
     }
     J3DAnmTevRegKey* brk = (J3DAnmTevRegKey*)dComIfG_getObjectRes("B_YO", 0x24);
-    if (!mpYetaBrkAnm->init(model_data, brk, TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1)) {
+    if (!mpYetaBrkAnm->init(model_data, brk, TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1)) {
         return 0;
     }
 
@@ -3228,7 +3228,7 @@ int daB_YO_c::CreateHeap() {
         return 0;
     }
     brk = (J3DAnmTevRegKey*)dComIfG_getObjectRes("B_YO", 0x27);
-    if (!mpYetaWhiteBrkAnm->init(model_data, brk, TRUE, J3DFrameCtrl::LOOP_ONCE_e, 0.0f, 0, -1)) {
+    if (!mpYetaWhiteBrkAnm->init(model_data, brk, TRUE, J3DFrameCtrl::EMode_NONE, 0.0f, 0, -1)) {
         return 0;
     }
 
@@ -3273,7 +3273,7 @@ int daB_YO_c::CreateHeap() {
     model_data = (J3DModelData*)dComIfG_getObjectRes("ykW", 0xb);
     mpYetaRevertedMorf = new mDoExt_McaMorfSO(
         model_data, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("ykW1", 0x1a),
-        J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1, &mCreatureSound, 0, 0x11000084
+        J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1, &mCreatureSound, 0, 0x11000084
     );
     if (mpYetaRevertedMorf == NULL || mpYetaRevertedMorf->getModel() == NULL) {
         return 0;
@@ -3431,7 +3431,7 @@ cPhs__Step daB_YO_c::create() {
 
             if (cDmr_SkipInfo != 0) {
                 mScale = 1.0f;
-                setBck(ANM_ANGRY, J3DFrameCtrl::LOOP_ONCE_e, 3.0f, 1.0f);
+                setBck(ANM_ANGRY, J3DFrameCtrl::EMode_NONE, 3.0f, 1.0f);
                 cDmr_SkipInfo = 0;
                 field_0xfb5 = 0;
                 setActionMode(ACT_CHASE, 0);

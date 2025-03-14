@@ -1116,7 +1116,7 @@ static void undwater_init() {
             if (g_env_light.undwater_btk != NULL) {
                 J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Always", 0x3C);
                 if (!g_env_light.undwater_btk->init(modelData2, pbtk, TRUE,
-                                                    J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1))
+                                                    J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1))
                 {
                     JUT_ASSERT(1898, 0);
                 }

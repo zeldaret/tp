@@ -22,7 +22,7 @@ int daObjLv5Key_c::CreateHeap() {
         return 0;
     }
 
-    if (!mBck.init(pbck, TRUE, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1, false)) {
+    if (!mBck.init(pbck, TRUE, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1, false)) {
         return 0;
     }
 
