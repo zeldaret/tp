@@ -6,6 +6,7 @@
 #include "d/actor/d_a_b_gnd.h"
 #include "d/d_com_inf_game.h"
 #include "d/actor/d_a_player.h"
+#include "d/actor/d_a_alink.h"
 #include "d/actor/d_a_horse.h"
 #include "dol2asm.h"
 #include "d/d_camera.h"
@@ -873,7 +874,9 @@ static int h_nodeCallBack(J3DJoint* i_joint, int param_2) {
 /* 805F4F38-805F53A4 0005D8 046C+00 1/0 0/0 0/0 .text            daB_GND_Draw__FP11b_gnd_class */
 static int daB_GND_Draw(b_gnd_class* i_this) {
      // NONMATCHING
-    if (!i_this->field_0x2738) {
+    if (i_this->field_0x2738) {
+        return 1;
+    }  else {
         fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
         double in_f6 = 0, in_f8 = 0, in_f10 = 0;
         J3DModel* model = i_this->mpModelMorf->getModel();
@@ -892,7 +895,7 @@ static int daB_GND_Draw(b_gnd_class* i_this) {
         if (10 < i_this->field_0x0c24) {
             g_env_light.setLightTevColorType_MAJI(i_this->field_0x0c2c[i_this->field_0x0c26], &a_this->tevStr);
             model->getModelData()->getMaterialNodePointer(0);
-            J3DGXColor* pJVar4 = model->getModelData()->getMaterialNodePointer(0)->getTevKColor(3);
+            J3DGXColor* pJVar4 = i_this->field_0x0c2c[i_this->field_0x0c26]->getModelData()->getMaterialNodePointer(0)->getTevKColor(3);
             pJVar4->a = i_this->field_0x0c24;
             mDoExt_modelUpdateDL(i_this->field_0x0c2c[i_this->field_0x0c26]);
         }
@@ -920,7 +923,7 @@ static int daB_GND_Draw(b_gnd_class* i_this) {
             }
             cXyz cStack_34;
             cStack_34.set(i_this->current.pos.x, i_this->current.pos.y + 100.0f, i_this->current.pos.z);
-            dDlst_shadowControl_c::getSimpleTex();
+            // dDlst_shadowControl_c::getSimpleTex();
             
             cXyz shadow_pos;
             shadow_pos.set(i_this->current.pos.x, i_this->current.pos.y, i_this->current.pos.z);
@@ -2385,7 +2388,7 @@ static void b_gnd_g_wait(b_gnd_class* i_this) {
 }
 
 /* 805F7E88-805F878C 003528 0904+00 2/1 0/0 0/0 .text            b_gnd_g_attack__FP11b_gnd_class */
-static void b_gnd_g_attack(b_gnd_class* i_this) {
+static bool b_gnd_g_attack(b_gnd_class* i_this) {
     // NONMATCHING
     daPy_py_c* player = daPy_getPlayerActorClass();
     f32 fVar2 = 0.0f;
@@ -2393,28 +2396,30 @@ static void b_gnd_g_attack(b_gnd_class* i_this) {
     int iVar1 = (int)i_this->mpModelMorf->getFrame();
     s16 sVar1 = 0;
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
-    b_gnd_class* actor = (b_gnd_class*)fopAcM_SearchByID(i_this->mMantChildID);
+    mant_class* mantActor = (mant_class*)fopAcM_SearchByID(i_this->mMantChildID);
 
+    bool bVar5 = true;
     switch (i_this->field_0x05bc) {
         case 0:
             i_this->field_0x05bc = 1;
             anm_init(i_this, 19, 3.0f, 0, 1.0f);
             break;
         case 1:
-            if (19 < iVar1 && iVar1 < 29) {
+            if (20 <= iVar1 && iVar1 <= 28) {
                 i_this->field_0x0c77 = 1;
-                actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3f800000);
+                mantActor->field_0x395c = 1.0f;
+                bVar5 = false;
             }
 
-            if (43 < iVar1 && iVar1 < 51) {
-                actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3f19999a);
+            if (44 <= iVar1 && iVar1 <= 50) {
+                mantActor->field_0x395c = 3.0f / 5.0f;
             }
 
             if (iVar1 == 25) {
                 i_this->field_0x2698 = 1;
             }
 
-            if (19 < iVar1 && iVar1 < 27) {
+            if (20 <= iVar1 && iVar1 <= 26) {
                 i_this->field_0x0c24 = 80;
                 i_this->field_0x0c28 = -3000;
             }
@@ -2429,16 +2434,20 @@ static void b_gnd_g_attack(b_gnd_class* i_this) {
             anm_init(i_this, 20, 3.0f, 0, 1.0f);
             break;
         case 3:
-            if (16 < iVar1 && iVar1 < 24) {
+            if (25 > iVar1) {
+                bVar5 = false;
+            }
+
+            if (17 <= iVar1 && iVar1 <= 23) {
                 i_this->field_0x0c77 = 1;
             }
 
-            if (16 < iVar1 && iVar1 < 20) {
-                actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3f333333);
+            if (17 <= iVar1 && iVar1 <= 19) {
+                mantActor->field_0x395c = 0.7f;
             }
 
-            if (36 < iVar1 && iVar1 < 42) {
-                actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3f19999a);
+            if (37 <= iVar1 && iVar1 <= 47) {
+                mantActor->field_0x395c = 0.6f;
             }
 
             if (iVar1 == 20) {
@@ -2455,10 +2464,14 @@ static void b_gnd_g_attack(b_gnd_class* i_this) {
             anm_init(i_this, 24, 3.0f, 0, 1.0f);
             break;
         case 5:
-            if (2 < iVar1 && iVar1 < 11) {
-                actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3f19999a);
+            if (3 <= iVar1 && iVar1 <= 10) {
+                mantActor->field_0x395c = 0.6f;
+            }
+
+            if (3 <= iVar1 && iVar1 <= 10) {
                 i_this->field_0x0c77 = 1;
                 i_this->field_0x0c78 = 1;
+                bVar5 = false;
             }
 
             if (iVar1 == 6) {
@@ -2476,16 +2489,21 @@ static void b_gnd_g_attack(b_gnd_class* i_this) {
             break;
         case 7:
             i_this->field_0x0c58 = 10;
-            if (12 < iVar1 && iVar1 < 34) {
+            if (35 > iVar1) {
+                bVar5 = false;
+            }
+            fVar1 = 0x40551EB8;
+            
+            if (13 <= iVar1 && iVar1 <= 33) {
                 fVar2 = 10.0f;
             }
 
-            if (15 < iVar1 && iVar1 < 38) {
+            if (15 <= iVar1 && iVar1 <= 38) {
                 i_this->field_0x0c77 = 1;
-                actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3f333333);
+                mantActor->field_0x395c = 0.7f;
             }
 
-            if (15 < iVar1 && iVar1 < 30) {
+            if (15 <= iVar1 && iVar1 <= 30) {
                 i_this->field_0x0c24 = 80;
                 i_this->field_0x0c28 = -3000;
             }
@@ -2504,9 +2522,12 @@ static void b_gnd_g_attack(b_gnd_class* i_this) {
             anm_init(i_this, 31, 3.0f, 0, 1.0f);
             break;
         case 9:
-            if ((17 < iVar1 && iVar1 < 25) || (26 < iVar1 && iVar1 < 41)) {
+            if (25 > iVar1) {
+                bVar5 = false;
+            }
+            if ((18 <= iVar1 && iVar1 <= 24) || (33 <= iVar1 && iVar1 <= 40)) {
                 i_this->field_0x0c77 = 1;
-                actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3f333333);
+                mantActor->field_0x395c = 0.7f;
                 i_this->field_0x0c24 = 80;
             }
 
@@ -2527,22 +2548,24 @@ static void b_gnd_g_attack(b_gnd_class* i_this) {
         case 11:
             i_this->field_0x0c58 = 10;
             sVar1 = 0x800;
-            if (14 < iVar1) {
+            if (15 <= iVar1) {
                 fVar2 = 30.0f;
                 fVar1 = 10.0f;
+                bVar5 = false;
             }
 
-            if (i_this->mpModelMorf->isStop()) {
+            if (!i_this->mpModelMorf->isStop()) {
                 break;
             }
 
-            anm_init(i_this, 22, 3.0f, 0, 1.0f);
+            anm_init(i_this, 22, 3.0f, 2, 1.0f);
             i_this->field_0x05bc = 12;
             i_this->field_0x0c44[0] = 50;
         case 12:
+            bVar5 = false;
             i_this->field_0x0c58 = 10;
             i_this->field_0x0c79 = 1;
-            actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3f800000);
+            mantActor->field_0x395c = 1.0f;
             fVar2 = 30.0f;
             fVar1 = 15.0f;
             sVar1 = 0x800;
@@ -2561,19 +2584,24 @@ static void b_gnd_g_attack(b_gnd_class* i_this) {
             i_this->field_0x0c58 = 5;
             i_this->field_0x0c79 = 1;
             fVar1 = 10.0f;
-            if (17 < iVar1 && iVar1 < 27) {
-                actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3f800000);
+
+            if (30 > iVar1) {
+                bVar5 = false;
             }
 
-            if (42 < iVar1 && iVar1 < 54) {
-                actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3f19999a);
+            if (18 <= iVar1 && iVar1 <= 26) {
+                mantActor->field_0x395c = 1.0f;
             }
 
-            if (19 < iVar1 && iVar1 < 33) {
+            if (43 <= iVar1 && iVar1 <= 53) {
+                mantActor->field_0x395c = 0.6f;
+            }
+
+            if (20 <= iVar1 && iVar1 <= 32) {
                 i_this->field_0x0c77 = 2;
             }
 
-            if (17 < iVar1 && iVar1 < 24) {
+            if (18 <= iVar1 && iVar1 <= 23) {
                 i_this->field_0x0c24 = 80;
             }
 
@@ -2603,8 +2631,10 @@ static void b_gnd_g_attack(b_gnd_class* i_this) {
             break;
         case 16:
             i_this->field_0x0c58 = 10;
+            bVar5 = false;
             sVar1 = 0x800;
-            if (4 < sVar1) {
+            
+            if (5 <= iVar1) {
                 fVar2 = 60.0f;
                 fVar1 = 30.0f;
                 if (iVar1 == 5) {
@@ -2617,16 +2647,17 @@ static void b_gnd_g_attack(b_gnd_class* i_this) {
             anm_init(i_this, 26, 1.0f, 0, 1.0f);
             i_this->field_0x05bc = 17;
         case 17:
+            bVar5 = false;
             i_this->field_0x0c58 = 10;
             fVar1 = 15.0f;
             sVar1 = 0x800;
-            if (1 < iVar1 && iVar1 < 13) {
+            if (2 <= iVar1 && iVar1 <= 12) {
                 i_this->field_0x0c78 = 2;
                 i_this->field_0x0c77 = 1;
             }
 
-            if (4 < iVar1) {
-                actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3f333333);
+            if (5 <= iVar1) {
+                mantActor->field_0x395c = 0.7f;
             }
             
             if (i_this->mpModelMorf->isStop()) {
@@ -2636,9 +2667,9 @@ static void b_gnd_g_attack(b_gnd_class* i_this) {
             break;
         case 18:
             fVar1 = 15.0f;
-            if (9 < iVar1 && iVar1 < 21) {
+            if (10 <= iVar1 && iVar1 <= 20) {
                 i_this->field_0x0c77 = 1;
-                actor->mHorseSpheres2[0].GetObjAt().SetSPrm(0x3f333333);
+                mantActor->field_0x395c = 0.7f;
             }
 
             if (i_this->mpModelMorf->isStop()) {
@@ -2649,6 +2680,8 @@ static void b_gnd_g_attack(b_gnd_class* i_this) {
 
     cLib_addCalc2(&i_this->speedF, fVar2, 1.0f, fVar1);
     cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->field_0x0c3c, 4, sVar1);
+
+    return bVar5;
 }
 
 // /* ############################################################################################## */
@@ -3174,10 +3207,13 @@ static void b_gnd_g_down(b_gnd_class* i_this) {
 
 /* 805F98A0-805F98F8 004F40 0058+00 1/1 0/0 0/0 .text            b_gnd_g_end__FP11b_gnd_class */
 static void b_gnd_g_end(b_gnd_class* i_this) {
-    // NONMATCHING
     i_this->field_0x0c58 = 10;
-    b_gnd_class* actor = (b_gnd_class*)fopAcM_SearchByID(i_this->mMantChildID);
-    // *(undefined1 *)((int)&actor[1].field249_0x1174[0].mBase.mGObjAt.mBase.mHitCallback + 1) = 1; - ???
+    mant_class* mantActor = (mant_class*)fopAcM_SearchByID(i_this->mMantChildID);
+    mantActor->field_0x3965 = 1;
+
+    if (i_this->field_0x05bc == 0) {
+        return;
+    }
 }
 
 /* 805F98F8-805F9BE4 004F98 02EC+00 1/1 0/0 0/0 .text            damage_check__FP11b_gnd_class */
@@ -3544,29 +3580,30 @@ static void action(b_gnd_class* i_this) {
     base_process_class* process;
     cXyz local_80;
     cXyz local_74;
-    cXyz cStack_68;
-    f32 local_50;
+    cXyz local_50;
     f32 local_4c;
     f32 local_48;
-    daPy_py_c* player = daPy_getPlayerActorClass();
+    daAlink_c* player = daAlink_getAlinkActorClass();
     char cVar1;
-    char cVar2;
-    f32 distanceFromPlayer = fopAcM_searchActorDistanceXZ(i_this, player);
-    i_this->field_0x0c38 = distanceFromPlayer;
-    s16 actorAngle = fopAcM_searchPlayerAngleY(i_this);
-    cXyz cStack_5c;
     f32 fVar13;
-    BOOL isMasterSwordEquipped = FALSE;
-    i_this->field_0x0c3c = actorAngle;
+    s16 sVar4;
+    s16 sVar5;
+    BOOL isMasterSwordEquipped;
+    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
+    cXyz cStack_5c;
+    cXyz cStack_68;
+
+    i_this->field_0x0c38 = fopAcM_searchPlayerDistanceXZ(a_this);
+    i_this->field_0x0c3c = fopAcM_searchPlayerAngleY(a_this);
     if (i_this->field_0x1e08 != 0) {
-        i_this->field_0x1e08 += 1;
+        i_this->field_0x1e08 -= 1;
     }
 
     int iVar1 = 1;
-    b_gnd_class* pbVar8 = NULL;
+    BOOL bVar9 = FALSE;
+    int iVar11 = i_this->field_0x0c3c;
     BOOL bVar1 = TRUE;
-    s16 sVar4;
-    s16 sVar5;
+
     i_this->field_0x0c7d = 1;
     i_this->field_0x2740 = 0;
 
@@ -3596,11 +3633,10 @@ static void action(b_gnd_class* i_this) {
             break;
         case ACTION_WAIT:
             b_gnd_g_wait(i_this);
-            pbVar8 = i_this; // pbVar8 = (b_gnd_class *)&DAT_00000001; - ???
+            iVar11 = 1;
             break;
         case ACTION_ATTACK:
-            pbVar8 = i_this;
-            b_gnd_g_attack(i_this);
+            iVar11 = b_gnd_g_attack(i_this);
             break;
         case ACTION_DEFENCE:
             b_gnd_g_defence(i_this);
@@ -3632,119 +3668,128 @@ static void action(b_gnd_class* i_this) {
     }
 
     i_this->mZ2Creature.setLinkSearch(true);
-    if (iVar1 == 0) {
-        i_this->actor_status = i_this->actor_status;
-        i_this->attention_info.flags = 0;
-    } else {
+    if (iVar1 != 0) {
+        fopAcM_OnStatus(i_this, 0);
         i_this->attention_info.flags = 4;
+    } else {
+        fopAcM_OffStatus(i_this, 0);
+        i_this->attention_info.flags = 0;
     }
 
-    if (i_this->field_0x1fc4 == 0) {
-        isMasterSwordEquipped = player->checkMasterSwordEquip();
-        if (!isMasterSwordEquipped) {
-            i_this->field_0x0c58 = 10;
-        }
-
-        if (i_this->field_0x0c5a != 0) {
-            pbVar8 = NULL;
-        }
-
-        if (pbVar8) {
-            process = fpcM_Search(shot_s_sub, i_this);
-            cVar1 = process != NULL;
-            if (player->checkHookshotShootReturnMode() && player->checkHookshotReturnMode()) {
-                cVar1 = 2;
+    if (i_this->field_0x1fc4 != 0) {
+        if (isMasterSwordEquipped && saku_jump_check(i_this) != 0) {
+            i_this->field_0x0b00 = i_this->mActionID;
+            i_this->mActionID = ACTION_HJUMP;
+            i_this->field_0x05bc = 0;
+        } else {
+            if (!isMasterSwordEquipped) {
+                i_this->field_0x0c58 = 10;
             }
 
-            cXyz* ppos = player->getIronBallCenterPos();
-            if (ppos != NULL) {
-                // cStack_5c = player->current.pos - ppos;
-                fVar13 = ppos->absXZ(player->current.pos);
-                if (fVar13 > 300.0f) {
-                    isMasterSwordEquipped = TRUE;
+            if (i_this->field_0x0c5a != 0) {
+                iVar11 = 0;
+            }
+
+            if (iVar1 != 0) {
+                process = fpcM_Search(shot_s_sub, i_this);
+                cVar1 = process != NULL;
+                if (daPy_getPlayerActorClass()->checkHookshotShootReturnMode() && !daPy_getPlayerActorClass()->checkHookshotShootReturnMode()) {
+                    cVar1 = 2;
                 }
 
-            //     if ((((fVar3 < 400.0) &&
-            //     ((d_com_inf_game::g_dComIfG_gameInfo.play.mPlayerStatus[0] & 0x400) == 0)) &&
-            //    (cVar9 = (*(code *)(((d_com_inf_game::g_dComIfG_gameInfo.play.mPlayer)->base).vtable )
-            //                       ->checkIronBallReturn)(), cVar9 == '\0')) &&
-            //   (cVar9 = (*(code *)(((d_com_inf_game::g_dComIfG_gameInfo.play.mPlayer)->base).vtable) ->
-            //                      checkIronBallGroundStop)(), cVar9 == '\0')) {
-            //  cVar12 = '\x02';
-            // }
-            }
+                cXyz* ironBallCenterPos = player->getIronBallCenterPos();
+                if (ironBallCenterPos) {
+                    cStack_5c = player->current.pos - *ironBallCenterPos;
+                    if (300.0f < cStack_5c.abs()) {
+                        // cStack_68 = player->current.pos - *ironBallCenterPos;
+                        if (cStack_5c.abs() < 400.0f) {
+                            if (dComIfGp_checkPlayerStatus0(0, 0x400) == 0) {
+                                if (!daPy_getPlayerActorClass()->checkIronBallReturn() && !daPy_getPlayerActorClass()->checkIronBallGroundStop()) {
+                                    cVar1 = 2;
+                                }
+                            }
+                        }
+                    }
+                }
 
-            fVar13 = 0.0f;
-            if (player->mCutType == daPy_py_c::CUT_TYPE_LARGE_TURN_RIGHT || player->mCutType == daPy_py_c::CUT_TYPE_LARGE_TURN_LEFT) {
-                fVar13 = 150.0f;
-            }
+                fVar13 = 0.0f;
+                daPy_py_c::CutType cutType;
+                if (cutType == daPy_py_c::CUT_TYPE_LARGE_TURN_RIGHT || cutType == daPy_py_c::CUT_TYPE_LARGE_TURN_LEFT) {
+                    fVar13 = 150.0f;
+                }
 
-            u16 uVar7 = cc_pl_cut_bit_get();
-            if (uVar7 == 0) {
-                uVar7 = player->mCutType;
-            }
+                int uVar6;
+                if (cc_pl_cut_bit_get() == 0) {
+                    uVar6 = daPy_getPlayerActorClass()->getCutType();
+                }
 
-            if (uVar7 == 0x400 || (uVar7 == 0x100 && player->speed.y > 5.0f)) {
-                uVar7 = 0;
-            }
+                if (uVar6 == 0x400 || (uVar6 == 0x100 && (5.0f < player->speed.y))) {
+                    uVar6 = 0;
+                }
 
-            if (fopAcM_plAngleCheck((fopAc_ac_c*)i_this, 0x4000) == 0) {
-                uVar7 = 0;
-            }
+                if (!fopAcM_plAngleCheck(i_this, 0x4000)) {
+                    uVar6 = 0;
+                }
 
-            isMasterSwordEquipped = player->checkMasterSwordEquip();
-            if (!isMasterSwordEquipped) {
-                uVar7 = 0;
-            }
+                if (!daPy_py_c::checkMasterSwordEquip()) {
+                    uVar6 = 0;
+                }
 
-            if (uVar7 != 0) {
-
+                if ((uVar6 != 0 || cVar1 != 0) && (cVar1 != 0 || i_this->field_0x0c38 < fVar13 + 380.0f)) {
+                    if (cVar1 == 2 || (cVar1 == 1 && cM_rndF(1.0f) < 0.5f) || uVar6 == 0x100) {
+                        if ((cVar1 != 2 || i_this->field_0x0c38 < 700.0f) || 0.5f < cM_rndF(1.0f)) {
+                            i_this->mActionID = ACTION_JUMP;
+                            i_this->field_0x05bc = 0;
+                        } else {
+                            i_this->mActionID = ACTION_SIDE;
+                            i_this->field_0x05bc = 0;
+                            i_this->field_0x0c58 = 15;
+                        }
+                    } else {
+                        i_this->mActionID = ACTION_DEFENCE;
+                        i_this->field_0x05bc = 0;
+                        i_this->field_0x0c58 = 15;
+                        i_this->field_0x0c79 = 1;
+                    }
+                }
             }
         }
-    } else if (isMasterSwordEquipped && saku_jump_check(i_this) != 0) {
-        i_this->field_0x0b00 = i_this->mActionID;
-        i_this->mActionID = ACTION_HJUMP;
-        i_this->field_0x05bc = 0;
     }
 
     sVar4 = 0;
     sVar5 = 0;
     if (i_this->field_0x0c7d != 0) {
         if (i_this->field_0x0c7d == 1) {
-            local_74 = player->eyePos - i_this->current.pos;
-            local_50 = local_74.x;
-            local_4c = local_74.y;
-            local_48 = local_74.z;
+            // local_74 = player->eyePos - i_this->current.pos;
+            local_50 = player->eyePos - i_this->current.pos;
         } else {
-            local_80 = i_this->field_0x0c80 - i_this->current.pos;
-            local_50 = local_80.x;
-            local_4c = local_80.y;
-            local_48 - local_80.z;
+            // local_80 = i_this->field_0x0c80 - i_this->current.pos;
+            local_50 = i_this->field_0x0c80 - i_this->current.pos;
         }
 
-        if (i_this->field_0x1fc4 == 0) {
-            local_4c += -200.0f;
+        if (i_this->field_0x1fc4 != 0) {
+            local_50.y += -450.0f;
         } else {
-            local_4c += -450.0f;
+            local_50.y += -200.0f;
         }
 
-        sVar4 = cM_atan2s(local_50, local_48) - i_this->shape_angle.y;
-        f32 fVar12 = JMAFastSqrt(local_50 * local_50 + local_48 * local_48);
-        sVar5 = i_this->shape_angle.x + cM_atan2s(local_4c, fVar12);
-        if (sVar4 < 0x2af9) {
+        sVar4 = cM_atan2s(local_50.x, local_50.z) - i_this->shape_angle.y;
+        sVar5 = i_this->shape_angle.x + cM_atan2s(local_50.y, JMAFastSqrt(local_50.x * local_50.x + local_50.z * local_50.z));
+        if (sVar4 > 0x2af8) {
+            sVar4 = 11000;
+        } else {
             if (sVar4 < -11000) {
                 sVar4 = -11000;
             }
-        } else {
-            sVar4 = 11000;
+
         }
 
-        if (sVar5 < 0xbb9) {
+        if (sVar5 > 0xbb8) {
+            sVar5 = 3000;
+        } else {
             if (sVar5 < -3000) {
                 sVar5 = -3000;
             }
-        } else {
-            sVar5 = 3000;
         }
     }
 
@@ -3755,15 +3800,15 @@ static void action(b_gnd_class* i_this) {
         cLib_addCalcAngleS2(&i_this->shape_angle.y, i_this->current.angle.y, 2, 0x1000);
     }
 
-    if (i_this->field_0x0c70 == 0) {
-        i_this->field_0x0c6c = 0.0f;
-        i_this->field_0x0c70 = (s16)(cM_rndF(200.0f) + 200.0f);
-    } else {
+    if (i_this->field_0x0c70 != 0) {
         i_this->field_0x0c70 += -1;
-        i_this->field_0x0c6c = (f32)i_this->field_0x0c70;
+        i_this->field_0x0c6c = i_this->field_0x0c70;
         if (i_this->field_0x0c6c > 7.0f) {
             i_this->field_0x0c6c = 0.0f;
         }
+    } else {
+        i_this->field_0x0c6c = 0.0f;
+        i_this->field_0x0c70 = cM_rndF(200.0f) + 200.0f;
     }
 
     cLib_addCalcAngleS2(&i_this->field_0x26c0, i_this->field_0x26c2, 2, 0x600);
@@ -3826,29 +3871,25 @@ static void himo_control1(b_gnd_class* i_this, cXyz* param_2, int param_3, s8 pa
     int iVar2;
     int iVar3;
     g_himo_s *pgVar4;
-    g_himo_s *pgVar5 = &i_this->field_0x1ff0[param_3];
-    int iVar6;
-    int iVar7;
-    f32 dVar8;
+    g_himo_s *pgVar5;
     cXyz local_c8;
     cXyz local_bc;
-    f32 local_b0;
-    f32 local_ac;
-    f32 local_a8;
+    cXyz local_b0;
     cXyz local_a4;
     cXyz local_98;
     cXyz local_8c;
 
+    pgVar5 = (g_himo_s *)i_this->field_0x1ff0[param_3].field_0x0;
     pgVar5->field_0x0[0].x = param_2->x;
     pgVar5->field_0x0[0].y = param_2->y;
     pgVar5->field_0x0[0].z = param_2->z;
 
     cMtx_YrotS(*calc_mtx, i_this->shape_angle.y);
-    cMtx_XrotS(*calc_mtx, i_this->shape_angle.x);
+    cMtx_XrotM(*calc_mtx, i_this->shape_angle.x);
 
     local_8c.x = 20.0f;
     if (param_3 == 0) {
-        local_8c.x = -20.0f;
+        local_8c.x *= -1.0f;
     }
     local_8c.y = 0.0f;
     local_8c.z = 0.0f;
@@ -3859,44 +3900,49 @@ static void himo_control1(b_gnd_class* i_this, cXyz* param_2, int param_3, s8 pa
     local_8c.z = local_8c.y;
     MtxPosition(&local_8c, &local_bc);
 
-    if (i_this->speedF <= 20.0f) {
-        local_8c.x = i_this->field_0x1fd0 * 0.1f;
-    } else {
+    if (i_this->speedF > 20.0f) {
         local_8c.x = i_this->field_0x1fd0 * 0.4f;
+    } else {
+        local_8c.x = i_this->field_0x1fd0 * 0.1f;
     }
+
     if (param_3 == 0) {
-        local_8c *= -1.0f;
+        local_8c.x *= -1.0f;
     }
+    
     local_8c.y = 0.0f;
     local_8c.z = 0.0f;
     MtxPosition(&local_8c, &local_c8);
 
     local_8c.x = 0.0f;
     local_8c.y = 0.0f;
-    if (param_4 == 0) {
-        local_8c.z = 20.0f;
-    } else {
+    if (param_4 != 0) {
         local_8c.z = 15.0f;
+    } else {
+        local_8c.z = 20.0f;
     }
     
     for (int i = 1; i < 16; i++) {
-        // local_a8 = *(float *)((int)&JMath::sincosTable_[0].first + (i_this->field287_0x1fd4 + iVar7 & 0xfff8U)); - ???
-        local_b0 = local_bc.x * local_a8;
-        local_ac = local_bc.y * local_a8;
-        local_a8 = local_bc.z * local_a8;
-        fVar1 = local_c8.x + local_b0 + (pgVar4->field_0x0[0].x - pgVar5->field_0x0[0].x) + local_a4.x * 1.0f;
-        y = local_ac + ((pgVar5->field_0x0[1].y - pgVar5->field_0x0[0].y) - 20.0f);
-        x = local_c8.z + local_a8 + (pgVar5->field_0x0[1].z - pgVar5->field_0x0[0].z) + local_a4.z * 1.0f;
+        fVar1 = cM_ssin(i_this->field_0x1fd4 + i * 6000);
+        local_b0.x *= fVar1;
+        local_b0.y *= fVar1;
+        local_b0.z *= fVar1;
+
+        fVar1 = local_c8.x + local_b0.x + (pgVar4->field_0x0[0].x - pgVar5->field_0x0[0].x) + local_a4.x * 1.0f;
+
+        y = local_b0.y + ((pgVar5->field_0x0[1].y - pgVar5->field_0x0[0].y) - 20.0f);
+        x = local_c8.z + local_b0.z + (pgVar5->field_0x0[1].z - pgVar5->field_0x0[0].z) + local_a4.z * 1.0f;
+
         iVar2 = cM_atan2s(fVar1, x);
-        fVar1 = JMAFastSqrt(fVar1 * fVar1 + x * x);
-        iVar3 = cM_atan2s(y, fVar1);
-        cMtx_YrotS(*calc_mtx, (s16)iVar2);
-        cMtx_XrotM(*calc_mtx, (s16)iVar3);
+        iVar3 = cM_atan2s(y, JMAFastSqrt(fVar1 * fVar1 + x * x));
+
+        cMtx_YrotS(*calc_mtx, iVar2);
+        cMtx_XrotM(*calc_mtx, iVar3);
         MtxPosition(&local_8c, &local_98);
-        pgVar4->field_0x0[0].x = pgVar5->field_0x0[0].x + local_98.x;
+
+        pgVar5->field_0x0[0].x += local_98.x;
         pgVar5->field_0x0[1].y = pgVar5->field_0x0[0].y + local_98.y;
-        dVar8 = pgVar5->field_0x0[0].z;
-        pgVar5->field_0x0[1].z = dVar8 + local_98.z;
+        pgVar5->field_0x0[1].z = pgVar5->field_0x0[0].z + local_98.z;
     }
 }
 
