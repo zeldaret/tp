@@ -1393,23 +1393,23 @@ static void b_gnd_h_wait2(b_gnd_class* i_this) {
     
     switch (sVar3) {
         case 0:
-            if (i_this->field_0x0c76 == 0) {
-                float fVar5 = cM_rndF(1.0f);
-                if (fVar5 >= 0.5f) {
-                    i_this->field_0x05cc = sVar2 + -0x2000;
-                } else {
-                    i_this->field_0x05cc = sVar2 + 0x2000;
-                }
-            } else {
+            if (i_this->field_0x0c76 != 0) {
                 i_this->field_0x05cc = i_this->current.angle.y + -0x8000;
+            } else {
+                float fVar5 = cM_rndF(1.0f);
+                if (fVar5 < 0.5f) {
+                    i_this->field_0x05cc = sVar2 + 0x2000;
+                } else {
+                    i_this->field_0x05cc = sVar2 + -0x2000;
+                }
             }
 
-            if ((s16)i_this->field_0x05cc - i_this->current.angle.y < 1) {
-                anm_init(i_this, 68, 3.0f, 0, 1.0f);
-                h_anm_init(i_this, 13, 3.0f, 0, 1.0f);
-            } else {
+            if (i_this->field_0x05cc - i_this->current.angle.y > 1) {
                 anm_init(i_this, 67, 3.0f, 0, 1.0f);
                 h_anm_init(i_this, 12, 3.0f, 0, 1.0f);
+            } else {
+                anm_init(i_this, 68, 3.0f, 0, 1.0f);
+                h_anm_init(i_this, 13, 3.0f, 0, 1.0f);
             }
 
             i_this->field_0x05bc = 1;
@@ -1417,10 +1417,9 @@ static void b_gnd_h_wait2(b_gnd_class* i_this) {
         case 2:
             break;
         default:
-            if (fVar1 > 11) {
-                cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->field_0x05cc, 4, i_this->field_0x0c68);
-                cLib_addCalcAngleS2(&i_this->field_0x0c68, 0x400, 1, 0x80);
-            }
+            
+            cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->field_0x05cc, 4, i_this->field_0x0c68);
+            cLib_addCalcAngleS2(&i_this->field_0x0c68, 0x400, 1, 0x80);
             
             if (i_this->mpModelMorf->isStop()) {
                 anm_init(i_this, 75, 10.0f, 2, 1.0f);
@@ -3928,21 +3927,21 @@ static void himo_control1(b_gnd_class* i_this, cXyz* param_2, int param_3, s8 pa
         local_b0.y *= fVar1;
         local_b0.z *= fVar1;
 
-        fVar1 = local_c8.x + local_b0.x + (pgVar4->field_0x0[0].x - pgVar5->field_0x0[0].x) + local_a4.x * 1.0f;
+        fVar1 = (pgVar4->field_0x0[i].x * pgVar5->field_0x0[i].x) + local_c8.x + local_b0.x + local_a4.x * 1.0f;
 
-        y = local_b0.y + ((pgVar5->field_0x0[1].y - pgVar5->field_0x0[0].y) - 20.0f);
-        x = local_c8.z + local_b0.z + (pgVar5->field_0x0[1].z - pgVar5->field_0x0[0].z) + local_a4.z * 1.0f;
+        y = local_b0.y + ((pgVar5->field_0x0[i].y - pgVar5->field_0x0[i - 1].y) - 20.0f);
+        x = (pgVar5->field_0x0[i].z - pgVar5->field_0x0[i].z) + local_c8.z + local_b0.z + local_a4.z * 1.0f;
 
         iVar2 = cM_atan2s(fVar1, x);
-        iVar3 = cM_atan2s(y, JMAFastSqrt(fVar1 * fVar1 + x * x));
+        iVar3 = (s16)(-cM_atan2s(y, JMAFastSqrt(fVar1 * fVar1 + x * x)));
 
         cMtx_YrotS(*calc_mtx, iVar2);
         cMtx_XrotM(*calc_mtx, iVar3);
         MtxPosition(&local_8c, &local_98);
 
-        pgVar5->field_0x0[0].x += local_98.x;
-        pgVar5->field_0x0[1].y = pgVar5->field_0x0[0].y + local_98.y;
-        pgVar5->field_0x0[1].z = pgVar5->field_0x0[0].z + local_98.z;
+        pgVar5->field_0x0[i].x = pgVar5->field_0x0[i + 1].x + local_98.x;
+        pgVar5->field_0x0[i].y = pgVar5->field_0x0[i].y + local_98.y;
+        pgVar5->field_0x0[i].z = pgVar5->field_0x0[i + 4].z + local_98.z;
     }
 }
 
@@ -6229,7 +6228,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 
     i_this->mpModelMorf = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("B_gnd", 0x69), 
         NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("B_gnd", 0x4b),
-        2, 0.6f, 0, -1, &i_this->mZ2Creature, 0, 0x11020284);
+        2, 1.0f, 0, -1, &i_this->mZ2Creature, 0, 0x11020284);
 
     if (i_this->mpModelMorf == NULL || i_this->mpModelMorf->getModel() == NULL) {
         return 0;
