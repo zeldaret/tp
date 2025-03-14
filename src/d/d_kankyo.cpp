@@ -1529,7 +1529,7 @@ int dKy_getDarktime_minute() {
 }
 
 /* 8019FBBC-8019FBCC 19A4FC 0010+00 0/0 0/0 8/8 .text            dKy_getDarktime_week__Fv */
-int dKy_getDarktime_week() {
+u8 dKy_getDarktime_week() {
     return g_env_light.darktime_week;
 }
 
