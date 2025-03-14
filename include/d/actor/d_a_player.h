@@ -469,7 +469,7 @@ public:
         ERFLG0_UNK_8000000 = 0x8000000,
         ERFLG0_UNK_4000000 = 0x4000000,
         ERFLG0_BOSS_ROOM_WAIT = 0x2000000,
-        ERFLG0_UNK_1000000 = 0x1000000,
+        ERFLG0_ENEMY_DEAD = 0x1000000,
         ERFLG0_UNK_800000 = 0x800000,
         ERFLG0_BEE_FOLLOW = 0x400000,
         ERFLG0_UNK_200000 = 0x200000,
@@ -1038,6 +1038,7 @@ public:
     void onNeckSearchWide() { onEndResetFlg0(ERFLG0_UNK_400); }
     void offPressedDamage() { offNoResetFlg2(FLG2_PRESSED_DAMAGE); }
     void onForceSubjectCancel() { onEndResetFlg0(ERFLG0_FORCE_SUBJECT_CANCEL); }
+    void onEnemyDead() { onEndResetFlg0(ERFLG0_ENEMY_DEAD); }
 
     u32 checkBoarSingleBattle() const { return checkNoResetFlg2(daPy_FLG2(FLG2_UNK_1000000 | FLG2_BOAR_SINGLE_BATTLE)); }
     u32 checkWolfDashAutoJump() const { return checkNoResetFlg2(FLG2_WOLF_DASH_AUTO_JUMP); }
@@ -1104,6 +1105,8 @@ public:
         onEndResetFlg0(ERFLG0_UNK_20000000);
         onNoResetFlg3(FLG3_UNK_200000);
     }
+
+    BOOL checkClimbEndHang() { return checkResetFlg0(RFLG0_UNK_40000); }
 
     static daMidna_c* m_midnaActor;
 };

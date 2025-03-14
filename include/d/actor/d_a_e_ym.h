@@ -9,11 +9,13 @@
 #include "d/d_cc_uty.h"
 #include "d/d_path.h"
 
+class daKago_c;
+
 class daE_YM_HIO_c {
 public:
     /* 8080812C */ daE_YM_HIO_c();
 
-    /* 80815458 */ virtual ~daE_YM_HIO_c();
+    /* 80815458 */ virtual ~daE_YM_HIO_c() {}
 
     /* 0x04 */ s8 field_0x4;
     /* 0x08 */ f32 mModelSize;
@@ -63,7 +65,7 @@ public:
 
     void setTagPosP() { mTagPosP = &mTagPos; }
 
-    /* 80808184 */ BOOL checkBck(char const*, int);
+    /* 80808184 */ u8 checkBck(char const*, int);
     /* 808081E0 */ void bckSet(int, u8, f32, f32);
     /* 80808328 */ void bckSetFly(int, u8, f32, f32);
     /* 808083CC */ int draw();
@@ -72,10 +74,10 @@ public:
     /* 808089DC */ void setElecEffect2();
     /* 80808B3C */ void setFireEffect();
     /* 80808E34 */ bool checkWallCrash();
-    /* 80809000 */ void checkWolfBark();
-    /* 80809228 */ void checkSurpriseLock();
-    /* 8080963C */ void checkRailSurprise();
-    /* 808096EC */ void checkSurpriseNear();
+    /* 80809000 */ u8 checkWolfBark();
+    /* 80809228 */ u8 checkSurpriseLock();
+    /* 8080963C */ u8 checkRailSurprise();
+    /* 808096EC */ u8 checkSurpriseNear();
     /* 80809D6C */ void setNormalCc();
     /* 80809D84 */ void setAppear();
     /* 80809DA8 */ void setMoveSound(int);
@@ -87,24 +89,24 @@ public:
     /* 8080B444 */ void executeDown();
     /* 8080BB7C */ void damage_check();
     /* 8080BCFC */ void executeWind();
-    /* 8080C05C */ void getSurpriseType();
+    /* 8080C05C */ int getSurpriseType();
     /* 8080C1FC */ void setSurpriseAway();
     /* 8080C24C */ void setGoHomeType();
     /* 8080C374 */ void executeSurprise();
     /* 8080CEE0 */ void executeBack();
     /* 8080CFC8 */ void executeFall();
     /* 8080D2C8 */ void executeAttack();
-    /* 8080D990 */ void checkAttackEnd();
-    /* 8080DB58 */ void setAttackMotion();
+    /* 8080D990 */ u8 checkAttackEnd();
+    /* 8080DB58 */ u8 setAttackMotion();
     /* 8080DC5C */ void executeAttackWall();
     /* 8080E26C */ void executeDefense();
-    /* 8080E49C */ void checkFlyTerritory();
+    /* 8080E49C */ u8 checkFlyTerritory();
     /* 8080E630 */ void initFly();
     /* 8080E6A0 */ void executeFly();
     /* 8080F8C8 */ void setInclination();
     /* 8080F92C */ void executeFlyAttack();
     /* 80810084 */ void setNextPathPoint();
-    /* 8081013C */ void checkRailDig();
+    /* 8081013C */ u8 checkRailDig();
     /* 8081030C */ void executeRail();
     /* 80810690 */ void executeBackRail();
     /* 80810DF8 */ void checkElectricStart();
@@ -122,10 +124,10 @@ public:
     /* 808138AC */ int execute();
     /* 80813A38 */ int _delete();
     /* 80813AF0 */ int CreateHeap();
-    /* 80813EA4 */ void checkBeforeBg(s16);
-    /* 808143A0 */ void checkBeforeGround();
+    /* 80813EA4 */ u8 checkBeforeBg(s16);
+    /* 808143A0 */ u8 checkBeforeGround();
     /* 808144D8 */ void checkInitialWall();
-    /* 80814758 */ void checkWall();
+    /* 80814758 */ u8 checkWall();
     /* 80814AF0 */ void setHideType();
     /* 80814BA4 */ int create();
 
@@ -135,14 +137,14 @@ public:
     
 private:
     /* 0x5AC */ request_of_phase_process_class mPhase;
-    /* 0x5B4 */ mDoExt_McaMorfSO* field_0x5b4;
-    /* 0x5B8 */ mDoExt_brkAnm* field_0x5b8;
-    /* 0x5BC */ Z2CreatureEnemy field_0x5bc;
-    /* 0x660 */ u8 field_0x660[0x664 - 0x660];
-    /* 0x664 */ fopAc_ac_c* field_0x664;
+    /* 0x5B4 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x5B8 */ mDoExt_brkAnm* mpBrk;
+    /* 0x5BC */ Z2CreatureEnemy mSound;
+    /* 0x660 */ fopAc_ac_c* field_0x660;
+    /* 0x664 */ daKago_c* mpKago;
     /* 0x668 */ csXyz field_0x668;
     /* 0x66E */ u8 field_0x66E[0x670 - 0x66E];
-    /* 0x670 */ cXyz field_0x670;
+    /* 0x670 */ cXyz mPrevPos;
     /* 0x67C */ cXyz field_0x67c;
     /* 0x688 */ f32 field_0x688;
     /* 0x68C */ f32 field_0x68c;
@@ -164,7 +166,7 @@ private:
     /* 0x6AB */ u8 field_0x6AB[0x6AC - 0x6AB];
     /* 0x6AC */ dPath* mpPath;
     /* 0x6B0 */ dPath* field_0x6b0;
-    /* 0x6B4 */ s8 field_0x6b4;
+    /* 0x6B4 */ s8 mCurrentPntNo;
     /* 0x6B5 */ u8 field_0x6B5[0x6B8 - 0x6B5];
     /* 0x6B8 */ cXyz mTagPos;
     /* 0x6C4 */ cXyz* mTagPosP;
@@ -173,7 +175,8 @@ private:
     /* 0x6CA */ u8 mFlyType;
     /* 0x6CB */ u8 field_0x6cb;
     /* 0x6CC */ u8 field_0x6cc;
-    /* 0x6CD */ u8 field_0x6CD[0x6CF - 0x6CD];
+    /* 0x6CD */ u8 field_0x6cd;
+    /* 0x6CE */ u8 field_0x6ce;
     /* 0x6CF */ u8 field_0x6cf;
     /* 0x6D0 */ cXyz* field_0x6d0;
     /* 0x6D4 */ f32 field_0x6d4;
@@ -203,13 +206,13 @@ private:
     /* 0x710 */ s16 field_0x710;
     /* 0x712 */ u8 field_0x712[0x714 - 0x712];
     /* 0x714 */ int field_0x714;
-    /* 0x718 */ int field_0x718;
+    /* 0x718 */ u32 field_0x718;
     /* 0x71C */ u8 field_0x71c;
     /* 0x71D */ u8 field_0x71d;
     /* 0x71E */ u8 field_0x71E[0x720 - 0x71E];
-    /* 0x720 */ dBgS_AcchCir field_0x720;
-    /* 0x760 */ dBgS_ObjAcch field_0x760;
-    /* 0x938 */ dCcD_Stts field_0x938;
+    /* 0x720 */ dBgS_AcchCir mAcchCir;
+    /* 0x760 */ dBgS_ObjAcch mAcch;
+    /* 0x938 */ dCcD_Stts mStts;
     /* 0x974 */ dCcD_Sph mSphCc;
     /* 0xAAC */ dCcU_AtInfo mAtInfo;
     /* 0xAD0 */ u32 field_0xad0;
@@ -218,7 +221,7 @@ private:
     /* 0xADC */ u32 field_0xadc;
     /* 0xAE0 */ u32 field_0xae0;
     /* 0xAE4 */ u32 field_0xae4;
-    /* 0xAE8 */ u32 field_0xae8[3];
+    /* 0xAE8 */ u32 mParticleKeys[3];
     /* 0xAF4 */ u8 field_0xaf4;
 };
 

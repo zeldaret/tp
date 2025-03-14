@@ -36,7 +36,7 @@ public:
     /* 8084AF40 */ void createBalloonScore();
     /* 8084AFB0 */ void startBalloonScore();
     /* 8084B024 */ void endBalloonScore();
-    /* 8084B088 */ void checkNextPath(cXyz);
+    /* 8084B088 */ f32 checkNextPath(cXyz);
     /* 8084B108 */ void checkHeight();
     /* 8084B134 */ void checkYaguraPos(cXyz);
     /* 8084B1E0 */ void checkWallHitFall(int);
@@ -88,8 +88,14 @@ public:
     /* 808544D8 */ void create();
 
     void setEvent() {
-        field_0x6e1 = 0;
+        mIsFlying = 0;
         field_0x740 = 2;
+        field_0x744 = 0;
+    }
+
+    void setEvent2() {
+        mIsFlying = 0;
+        field_0x740 = 6;
         field_0x744 = 0;
     }
 
@@ -101,20 +107,32 @@ public:
 
     MtxP getLegR3Mtx() { return mLegR3Mtx; }
     MtxP getMidnaLocaterMtx() { return mpMorf->getModel()->getAnmMtx(4); }
+    s8 getPathDir() { return mPathDir; }
+    u8 isFlying() { return mIsFlying; }
+    fopAc_ac_c* getLockActor() { return mpLockActor; }
+    void setLockActor(fopAc_ac_c* actor) { mpLockActor = actor; }
+    void setEatYm() { field_0x6d8 |= 4; }
+    MtxP getMouthMtx() { return mpMorf->getModel()->getAnmMtx(7); }
 
 private:
     /* 0x568 */ u8 field_0x568[8];
     /* 0x570 */ mDoExt_McaMorfSO* mpMorf;
-    /* 0x574 */ u8 field_0x574[0x620 - 0x574];
+    /* 0x574 */ u8 field_0x574[0x618 - 0x574];
+    /* 0x618 */ fopAc_ac_c* mpLockActor;
+    /* 0x61c */ u8 field_0x61c[0x620 - 0x61c];
     /* 0x620 */ Mtx mLegR3Mtx;
-    /* 0x650 */ u8 field_0x650[0x6E1 - 0x650];
-    /* 0x6E1 */ u8 field_0x6e1;
+    /* 0x650 */ u8 field_0x650[0x6d8 - 0x650];
+    /* 0x6d8 */ u8 field_0x6d8;
+    /* 0x6d9 */ u8 field_0x6d9[0x6E1 - 0x6d9];
+    /* 0x6E1 */ u8 mIsFlying;
     /* 0x6E2 */ u8 field_0x6E2[0x740 - 0x6E2];
     /* 0x740 */ int field_0x740;
     /* 0x744 */ int field_0x744;
     /* 0x748 */ u8 field_0x748[0x76C - 0x748];
     /* 0x76C */ dPath* field_0x76c;
-    /* 0x770 */ u8 field_0x770[0xBA4 - 0x770];
+    /* 0x770 */ u8 field_0x770[0x773 - 0x770];
+    /* 0x773 */ s8 mPathDir;
+    /* 0x774 */ u8 field_0x774[0xBA4 - 0x774];
 };
 
 STATIC_ASSERT(sizeof(daKago_c) == 0xBA4);

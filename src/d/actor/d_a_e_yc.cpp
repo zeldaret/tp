@@ -140,7 +140,7 @@ static void e_yc_fly(e_yc_class* i_this) {
 
     case 3:
         target_speed = 25.0f;
-        if (rider->field_0x1372 > 200) {
+        if (rider->mDemoTimer > 200) {
             target_speed = 35.0f;
             accel = 0.25f;
         }
@@ -150,10 +150,10 @@ static void e_yc_fly(e_yc_class* i_this) {
 
     case 4:
         accel = 0.3f;
-        if (rider->field_0x1372 == 30) {
+        if (rider->mDemoTimer == 30) {
             anm_init(i_this, e_yc_class::ANM_FLY_BRAKE, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
         }
-        if (rider->field_0x1372 == 60) {
+        if (rider->mDemoTimer == 60) {
             anm_init(i_this, e_yc_class::ANM_HOVERING, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
         }
         i_this->mMaxAngleSpeed = 300.0f;
@@ -361,8 +361,8 @@ static void e_yc_attack(e_yc_class* i_this) {
         break;
 
     case 4:
-        if (frame == 11 && rider->field_0x1370 == 0 & i_this->mDistToPlayer < 200.0f) {
-            rider->field_0x1370 = 1;
+        if (frame == 11 && rider->mDemoMode == 0 & i_this->mDistToPlayer < 200.0f) {
+            rider->mDemoMode = 1;
             i_this->mCreatureSound.startCreatureSound(Z2SE_EN_YC_HIT_SIDE, 0, -1);
         }
 
@@ -371,7 +371,7 @@ static void e_yc_attack(e_yc_class* i_this) {
         cLib_addCalc2(&i_this->current.pos.z, i_this->mTargetPos.z, 1.0f, 30.0f);
 
         if (i_this->mpMorf->isStop()) {
-            if (rider->field_0x1370 == 0) {
+            if (rider->mDemoMode == 0) {
                 i_this->mAction = e_yc_class::ACT_HOVERING;
                 i_this->mMode = 0;
             } else {
@@ -394,7 +394,7 @@ static void e_yc_attack(e_yc_class* i_this) {
 
     case 6:
         if (frame == 30) {
-            rider->field_0x1370 = 3;
+            rider->mDemoMode = 3;
         }
 
         if (i_this->mpMorf->isStop()) {
@@ -474,7 +474,7 @@ static void e_yc_wolfbite(e_yc_class* i_this) {
                 anm_init(i_this, e_yc_class::ANM_HANGED_BRUSH2, 3.0f,
                          J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
                 i_this->mMode = 3;
-                rider->field_0x1370 = 5;
+                rider->mDemoMode = 5;
                 dScnPly_c::setPauseTimer(7);
                 i_this->mCreatureSound.startCollisionSE(Z2SE_HIT_WOLFBITE, 0x20);
                 dComIfGp_setHitMark(3, i_this, &player->eyePos, &player->shape_angle, NULL, 0);

@@ -28,7 +28,7 @@ public:
     void ct();
     void Set2(const cXyz*, const cXyz*, unsigned int);
     void PreCalc();
-    void GetCross();
+    cXyz& GetCross() { return mLin.GetEnd(); }
 
     virtual ~cBgS_LinChk();
 

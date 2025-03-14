@@ -2709,7 +2709,7 @@ int daAlink_c::execute() {
         }
     }
 
-    if (checkEndResetFlg0(ERFLG0_UNK_1000000) && mEquipItem == 0x103) {
+    if (checkEndResetFlg0(ERFLG0_ENEMY_DEAD) && mEquipItem == 0x103) {
         mSwordFlourishTimer = daAlinkHIO_cut_c0::m.mFlourishTime;
     }
 

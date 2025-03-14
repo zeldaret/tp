@@ -350,14 +350,14 @@ void daDitem_c::set_pos() {
     };
 
     if (chkArgFlag(0x8)) {
-        current.pos = field_0x92c;
+        current.pos = mOffsetPos;
         return;
     } else if (chkArgFlag(0x2)) {
         offset = offset_tbl[1];
     } else if (chkArgFlag(0x4)) {
         offset = offset_tbl[1];
     } else if (chkArgFlag(0x10)) {
-        offset = field_0x92c;
+        offset = mOffsetPos;
     } else {
         offset = offset_tbl[0];
     }
@@ -508,8 +508,8 @@ int daDitem_c::execute() {
 
     if (chkDraw()) {
         f32 target_scale_x = 1.0f;
-        if (field_0x938 != 0.0f) {
-            target_scale_x = field_0x938;
+        if (mMaxScale != 0.0f) {
+            target_scale_x = mMaxScale;
         }
 
         cLib_chaseF(&scale.x, target_scale_x, 0.35f);

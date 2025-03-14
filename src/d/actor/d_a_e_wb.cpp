@@ -2490,12 +2490,6 @@ static void demo_camera(e_wb_class* param_0) {
     // NONMATCHING
 }
 
-/* 807DFAB4-807DFAD8 00D714 0024+00 1/1 0/0 0/0 .text            fadeIn__13mDoGph_gInf_cFfR8_GXColor
- */
-void mDoGph_gInf_c::fadeIn(f32 param_0, _GXColor& param_1) {
-    // NONMATCHING
-}
-
 /* 807DFAD8-807DFAEC 00D738 0014+00 1/1 0/0 0/0 .text            checkSkipEdge__14dEvt_control_cFv
  */
 extern "C" void checkSkipEdge__14dEvt_control_cFv() {
