@@ -26,6 +26,8 @@ include_dirs = [
     os.path.join(root_dir, "src/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include"),
     os.path.join(root_dir, "src/PowerPC_EABI_Support/MSL/MSL_C++/MSL_Common/Include"),
     os.path.join(root_dir, "src/PowerPC_EABI_Support/Runtime/Inc"),
+    os.path.join(root_dir, "include/dolphin"),
+    os.path.join(root_dir, "src/dolphin"),
     
     # Add additional include directories here
 ]
