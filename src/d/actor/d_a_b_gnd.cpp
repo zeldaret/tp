@@ -98,7 +98,7 @@ static _GXColor l_color = {
 };
 
 /* 806029F4-80602A04 000024 0010+00 1/1 0/0 0/0 .data            chk_x$4163 */
-static f32 chk_x[4] = {
+static f32 chk_x[] = {
     14167.0f, 34775.0f, -24164.0f, -11627.0f
     // 0x46, 0x5D, 0x5C, 0x00, 0x47, 0x07, 0xD7, 0x00, 0xC6, 0xBC, 0xC8, 0x00, 0xC6, 0x35, 0xAC, 0x00,
 };
@@ -797,7 +797,6 @@ static u32 gake_check(b_gnd_class* i_this) {
     dBgS_GndChk dStack_94;
     cXyz local_b8;
     cXyz local_ac;
-    cXyz local_a0;
     
     if (i_this->current.pos.y < -5000.0f) {
         i_this->current.pos = i_this->home.pos;
@@ -806,13 +805,13 @@ static u32 gake_check(b_gnd_class* i_this) {
 
     int iVar9 = 0;
     while (TRUE) {
+        cXyz local_a0;
         local_a0.x = (chk_x[iVar9] - i_this->current.pos.x);
         local_a0.z = (chk_z[iVar9] - i_this->current.pos.z);
         s16 sVar5 = cM_atan2s(local_a0.x, local_a0.z) - i_this->shape_angle.y;
 
-        f32 fVar10 = JMAFastSqrt(local_a0.x * local_a0.x + local_a0.z * local_a0.z);
-
-        if ((fVar10 < 6000.0f && sVar5 < 0x4000) && -0x4000 < sVar5) {
+        if ((JMAFastSqrt(local_a0.x * local_a0.x + local_a0.z * local_a0.z) < 6000.0f && 
+            sVar5 < 0x4000) && -0x4000 < sVar5) {
             if (0 < sVar5) {
                 return 4;
             }
@@ -846,7 +845,7 @@ static u32 gake_check(b_gnd_class* i_this) {
                     MtxPosition(&local_a0, &local_ac);
                     local_ac += i_this->current.pos;
                     dStack_94.SetPos(&local_ac);
-                    if (2000.0f < i_this->current.pos.y - dComIfG_Bgsp().GroundCross(&dStack_94)) {
+                    if (2000.0f > i_this->current.pos.y - dComIfG_Bgsp().GroundCross(&dStack_94)) {
                         local_b8 = local_ac;
                         bVar1 = TRUE;
                     }
@@ -1350,12 +1349,15 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
     if (i_this->field_0x05bc < 20) {
         // Some sort of cXyz - operator
         // Some sort of cXyz = operator
+        local_f8 = b_path[i_this->field_0x0c60] - i_this->current.pos;
         fVar19 = JMAFastSqrt(local_f8.x * local_f8.x + local_f8.z + local_f8.z);
+        
         if (fVar19 < 800.0f) {
             // Some sort of cXyz - operator
             // Some sort of cXyz = operator
+            local_104 = b_path[i_this->field_0x0c60] - i_this->current.pos;
             iVar13 = cM_atan2s(local_104.x, local_104.z);
-            sVar11 = i_this->current.angle.y - (s16)iVar13;
+            sVar11 = i_this->current.angle.y - iVar13;
             if (sVar11 < 0x4000 && sVar11 > -0x4000) {
                 i_this->field_0x0c64 = 1;
             } else {
@@ -1367,23 +1369,24 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
             i_this->field_0x0c68 = 0;
         }
 
-        iVar13 = cM_atan2s(local_b0.x, local_b0.z);
-        i_this->field_0x05cc = (s16)iVar13;
-        if (i_this->field_0x1e0a != 0 && i_this->field_0x05bc < 3) {
+        i_this->field_0x05cc = cM_atan2s(local_b0.x, local_b0.z);
+        if (i_this->field_0x1e0a >= 1 && i_this->field_0x05bc <= 2) {
             fVar20 = (fVar19 - 800.0f) * 2.0f;
             fVar19 = 7000.0f;
-            if (fVar20 <= 7000.0f && fVar19 < 0.0f) {
-                fVar19 = 0.0f;
+            if (fVar20 > 7000.0f) {
+                fVar20 = 7000.0f;
+            } else {
+                if (fVar20 < 0.0f) {
+                    fVar20 = 0.0f;
+                }
             }
 
             i_this->field_0x0c90 = i_this->field_0x0c90 + i_this->field_0x0c92;
             if ((i_this->field_0x0afc & 63U) == 0) {
-                fVar20 = cM_rndF(600.0f);
-                i_this->field_0x0c92 = (s16)(int)(fVar20 + 300.0f);
+                i_this->field_0x0c92 = cM_rndF(600.0f) + 300.0f;
             }
 
-            fVar20 = cM_ssin((s16)i_this->field_0x0c90);
-            i_this->field_0x05cc = i_this->field_0x05cc + (fVar19 * fVar20);
+            i_this->field_0x05cc += (s16)(fVar20 * cM_ssin(i_this->field_0x0c90));
         }
 
         if (i_this->field_0x0c72 != 0) {
@@ -1400,12 +1403,20 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
         }
 
         cLib_addCalcAngleS2(&i_this->field_0x0c68, 0x400, 1, sVar15);
-        if (i_this->field_0x1e08 == 0) {
+        if (i_this->field_0x1e08 != 0) {
+            fVar20 = l_HIO.field_0x18;
+            fVar1 = 0.5f;
+        } else {
             if (bVar8) {
-                fVar19 = player->speedF;
+                fVar19 = dComIfGp_getHorseActor()->speedF;
                 fVar20 = l_HIO.field_0x10;
-                if (fVar19 <= fVar20 && fVar19 <= l_HIO.field_0xc) {
-                    fVar20 = l_HIO.field_0x10;
+                if (fVar19 > fVar20) {
+                    fVar20 = fVar19;
+                    if (fVar19 < l_HIO.field_0xc) {
+                        fVar20 = l_HIO.field_0xc;
+                    }
+                } else {
+                    fVar19 = l_HIO.field_0x10;
                 }
 
                 if (fopAcM_searchActorDistanceXZ((fopAc_ac_c*)i_this, player) < 2000.0f) {
@@ -1413,20 +1424,17 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
                 }
 
                 fVar2 = i_this->speedF;
-                if (l_HIO.field_0xc <= fVar2) {
-                    fVar1 = 2.0f;
-                } else {
+                if (l_HIO.field_0xc < fVar2) {
                     fVar1 = 2.5f;
+                } else {
+                    fVar1 = 2.0f;
                 }
                 
                 fVar2 = fVar2 / 40.0f;
             } else {
                 fVar1 = 2.0f;
-                // fVar20 = l_HIO.field_0xc;
+                fVar20 = l_HIO.field_0xc;
             }
-        } else {
-            fVar1 = 0.5f;
-            // fVar20 = l_HIO.field_0x18;
         }
     }
 
@@ -1441,7 +1449,7 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
     cLib_addCalc2(&i_this->speedF, fVar20, 1.0f, fVar1);
     if (fVar20 > 10.0f) {
         sVar12 = (i_this->current.angle.y - sVar12) * -8;
-        if (sVar12 > 0x7d1) {
+        if (sVar12 > 0x7d0) {
             sVar12 = 2000;
         } else {
             if (sVar12 < -2000) {
