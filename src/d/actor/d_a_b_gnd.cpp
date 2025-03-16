@@ -36,309 +36,6 @@ enum daB_GND_ACTION {
 };
 
 //
-// Forward References:
-//
-
-// extern "C" void __ct__13daB_GND_HIO_cFv();
-// extern "C" static void anm_init__FP11b_gnd_classifUcf();
-// extern "C" static void h_anm_init__FP11b_gnd_classifUcf();
-// extern "C" static void nodeCallBack__FP8J3DJointi();
-// extern "C" static void h_nodeCallBack__FP8J3DJointi();
-// extern "C" static void daB_GND_Draw__FP11b_gnd_class();
-// extern "C" void __dt__4cXyzFv();
-// extern "C" static void shot_s_sub__FPvPv();
-// extern "C" static void gake_check__FP11b_gnd_class();
-// extern "C" static void saku_jump_check__FP11b_gnd_class();
-// extern "C" void __dt__8cM3dGPlaFv();
-// extern "C" static void b_gnd_h_wait__FP11b_gnd_class();
-// extern "C" static void b_gnd_h_wait2__FP11b_gnd_class();
-// extern "C" static void b_gnd_h_run_a__FP11b_gnd_class();
-// extern "C" static void b_gnd_h_run_p__FP11b_gnd_class();
-// extern "C" static void b_gnd_h_jump__FP11b_gnd_class();
-// extern "C" static void b_gnd_h_end__FP11b_gnd_class();
-// extern "C" static void b_gnd_g_wait__FP11b_gnd_class();
-// extern "C" static void b_gnd_g_attack__FP11b_gnd_class();
-// extern "C" static void b_gnd_g_defence__FP11b_gnd_class();
-// extern "C" static void b_gnd_g_jump__FP11b_gnd_class();
-// extern "C" static void b_gnd_g_side__FP11b_gnd_class();
-// extern "C" static void b_gnd_g_tuba__FP11b_gnd_class();
-// extern "C" static void b_gnd_g_damage__FP11b_gnd_class();
-// extern "C" static void b_gnd_g_down__FP11b_gnd_class();
-// extern "C" static void b_gnd_g_end__FP11b_gnd_class();
-// extern "C" static void damage_check__FP11b_gnd_class();
-// extern "C" static void eff_set_h__FP11b_gnd_class();
-// extern "C" static void eff_set__FP11b_gnd_class();
-// extern "C" static void s_fkdel_sub__FPvPv();
-// extern "C" static void s_objgbdel_sub__FPvPv();
-// extern "C" static void h_damage_check__FP11b_gnd_class();
-// extern "C" static void action__FP11b_gnd_class();
-// extern "C" static void ball_bg_check__FP11b_gnd_classi();
-// extern "C" static void himo_control1__FP11b_gnd_classP4cXyziSc();
-// extern "C" static void himo_control2__FP11b_gnd_classP4cXyziSc();
-// extern "C" static void cam_3d_morf__FP11b_gnd_classf();
-// extern "C" static void cam_spd_set__FP11b_gnd_class();
-// extern "C" static void demo_camera__FP11b_gnd_class();
-// extern "C" static void anm_se_set__FP11b_gnd_class();
-// extern "C" static void daB_GND_Execute__FP11b_gnd_class();
-// extern "C" void multVecZero__14mDoMtx_stack_cFP3Vec();
-// extern "C" void setDownPos__13fopEn_enemy_cFPC4cXyz();
-// extern "C" void __as__5csXyzFRC5csXyz();
-// extern "C" static bool daB_GND_IsDelete__FP11b_gnd_class();
-// extern "C" static void daB_GND_Delete__FP11b_gnd_class();
-// extern "C" static void useHeapInit__FP10fopAc_ac_c();
-// extern "C" void __dt__12J3DFrameCtrlFv();
-// extern "C" static void daB_GND_Create__FP10fopAc_ac_c();
-// extern "C" void __ct__11b_gnd_classFv();
-// extern "C" void __ct__19mDoExt_3DlineMat1_cFv();
-// extern "C" void __dt__8g_himo_sFv();
-// extern "C" void __ct__8g_himo_sFv();
-// extern "C" void __ct__4cXyzFv();
-// extern "C" void __dt__16Z2SoundObjSimpleFv();
-// extern "C" void __dt__8cM3dGCylFv();
-// extern "C" void __dt__8cM3dGSphFv();
-// extern "C" void __dt__8cM3dGAabFv();
-// extern "C" void __dt__8dCcD_SphFv();
-// extern "C" void __ct__8dCcD_SphFv();
-// extern "C" void __dt__10dCcD_GSttsFv();
-// extern "C" void __dt__12dBgS_ObjAcchFv();
-// extern "C" void __dt__12dBgS_AcchCirFv();
-// extern "C" void __ct__11J3DLightObjFv();
-// extern "C" void __dt__10cCcD_GSttsFv();
-// extern "C" void __dt__13daB_GND_HIO_cFv();
-// extern "C" void __sinit_d_a_b_gnd_cpp();
-// extern "C" void func_806022F0();
-// extern "C" static void func_80602328();
-// extern "C" static void func_80602330();
-// extern "C" void cancelOriginalDemo__9daPy_py_cFv();
-// extern "C" void __ct__4cXyzFRC4cXyz();
-// extern "C" void getTrigA__8mDoCPd_cFUl();
-// extern "C" static void dComIfGp_particle_set__FUlUsPC4cXyzPC5csXyzPC4cXyz();
-// extern "C" void getAnmMtx__8J3DModelFi();
-// extern "C" static void dComIfGp_setHitMark__FUsP10fopAc_ac_cPC4cXyzPC5csXyzPC4cXyzUl();
-// extern "C" static void dComIfGp_setDoStatusForce__FUcUc();
-// extern "C" void __ct__4cXyzFfff();
-// extern "C" static void daPy_getPlayerActorClass__Fv();
-// extern "C" void setFrame__13mDoExt_morf_cFf();
-// extern "C" void isStop__13mDoExt_morf_cFv();
-// extern "C" static void dComIfGp_particle_set__FUsPC4cXyzPC5csXyzPC4cXyz();
-// extern "C" void changeDemoMode__9daPy_py_cFUliis();
-// extern "C" void changeOriginalDemo__9daPy_py_cFv();
-// extern "C" void changeDemoMode__9daHorse_cFUli();
-// extern "C" void set__4cXyzFfff();
-// extern "C" void __as__4cXyzFRC4cXyz();
-// extern "C" void changeOriginalDemo__9daHorse_cFv();
-// extern "C" static void dComIfGp_getCamera__Fi();
-// extern "C" static void dComIfGp_getPlayerCameraID__Fi();
-// extern "C" static void dComIfGp_getPlayer__Fi();
-// extern "C" extern char const* const d_a_b_gnd__stringBase0;
-
-//
-// External References:
-//
-
-// extern "C" void fadeOut__13mDoGph_gInf_cFfR8_GXColor();
-// extern "C" void mDoMtx_XrotM__FPA4_fs();
-// extern "C" void mDoMtx_YrotS__FPA4_fs();
-// extern "C" void mDoMtx_YrotM__FPA4_fs();
-// extern "C" void mDoMtx_ZrotM__FPA4_fs();
-// extern "C" void scaleM__14mDoMtx_stack_cFfff();
-// extern "C" void play__14mDoExt_baseAnmFv();
-// extern "C" void init__13mDoExt_btpAnmFP16J3DMaterialTableP16J3DAnmTexPatterniifss();
-// extern "C" void entry__13mDoExt_btpAnmFP16J3DMaterialTables();
-// extern "C" void init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss();
-// extern "C" void entry__13mDoExt_btkAnmFP16J3DMaterialTablef();
-// extern "C" void init__13mDoExt_brkAnmFP16J3DMaterialTableP15J3DAnmTevRegKeyiifss();
-// extern "C" void entry__13mDoExt_brkAnmFP16J3DMaterialTablef();
-// extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-// extern "C" void
-// __ct__14mDoExt_McaMorfFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiiPvUlUl();
-// extern "C" void play__14mDoExt_McaMorfFP3VecUlSc();
-// extern "C" void entryDL__14mDoExt_McaMorfFv();
-// extern "C" void modelCalc__14mDoExt_McaMorfFv();
-// extern "C" void
-// __ct__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl();
-// extern "C" void setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff();
-// extern "C" void play__16mDoExt_McaMorfSOFUlSc();
-// extern "C" void entryDL__16mDoExt_McaMorfSOFv();
-// extern "C" void modelCalc__16mDoExt_McaMorfSOFv();
-// extern "C" void stopZelAnime__16mDoExt_McaMorfSOFv();
-// extern "C" void init__19mDoExt_3DlineMat1_cFUsUsP7ResTIMGi();
-// extern "C" void update__19mDoExt_3DlineMat1_cFiR8_GXColorP12dKy_tevstr_c();
-// extern "C" void setMat__26mDoExt_3DlineMatSortPacketFP18mDoExt_3DlineMat_c();
-// extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-// extern "C" void __ct__10fopAc_ac_cFv();
-// extern "C" void fopAc_IsActor__FPv();
-// extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
-// extern "C" void fopAcM_delete__FP10fopAc_ac_c();
-// extern "C" void fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc();
-// extern "C" void fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i();
-// extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-// extern "C" void fopAcM_SetMin__FP10fopAc_ac_cfff();
-// extern "C" void fopAcM_SetMax__FP10fopAc_ac_cfff();
-// extern "C" void fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c();
-// extern "C" void fopAcM_searchActorDistanceXZ__FPC10fopAc_ac_cPC10fopAc_ac_c();
-// extern "C" void fopAcM_orderPotentialEvent__FP10fopAc_ac_cUsUsUs();
-// extern "C" void fopAcM_getTalkEventPartner__FPC10fopAc_ac_c();
-// extern "C" void fopAcM_plAngleCheck__FPC10fopAc_ac_cs();
-// extern "C" void fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci();
-// extern "C" void fopMsgM_messageSetDemo__FUl();
-// extern "C" void fpcEx_Search__FPFPvPv_PvPv();
-// extern "C" void fpcSch_JudgeForPName__FPvPv();
-// extern "C" void fpcSch_JudgeByID__FPvPv();
-// extern "C" void dStage_changeScene__FifUlScsi();
-// extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-// extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-// extern "C" void dComIfGp_getReverb__Fi();
-// extern "C" void dComIfGs_onOneZoneSwitch__Fii();
-// extern "C" void
-// dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj();
-// extern "C" void onSwitch__12dSv_danBit_cFi();
-// extern "C" void isSwitch__12dSv_danBit_cCFi();
-// extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-// extern "C" void reset__14dEvt_control_cFv();
-// extern "C" void forceOnEventMove__Q213dPa_control_c7level_cFUl();
-// extern "C" void getEmitter__Q213dPa_control_c7level_cFUl();
-// extern "C" void setHitMark__13dPa_control_cFUsP10fopAc_ac_cPC4cXyzPC5csXyzPC4cXyzUl();
-// extern "C" void
-// set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf();
-// extern "C" void
-// set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf();
-// extern "C" void addReal__21dDlst_shadowControl_cFUlP8J3DModel();
-// extern "C" void StartShock__12dVibration_cFii4cXyz();
-// extern "C" void StartQuake__12dVibration_cFii4cXyz();
-// extern "C" void StopQuake__12dVibration_cFi();
-// extern "C" void LineCross__4cBgSFP11cBgS_LinChk();
-// extern "C" void GroundCross__4cBgSFP11cBgS_GndChk();
-// extern "C" void GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla();
-// extern "C" void __ct__12dBgS_AcchCirFv();
-// extern "C" void SetWall__12dBgS_AcchCirFff();
-// extern "C" void __dt__9dBgS_AcchFv();
-// extern "C" void __ct__9dBgS_AcchFv();
-// extern "C" void Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz();
-// extern "C" void CrrPos__9dBgS_AcchFR4dBgS();
-// extern "C" void __ct__11dBgS_GndChkFv();
-// extern "C" void __dt__11dBgS_GndChkFv();
-// extern "C" void __ct__18dBgS_ObjGndChk_SplFv();
-// extern "C" void __dt__18dBgS_ObjGndChk_SplFv();
-// extern "C" void __ct__11dBgS_LinChkFv();
-// extern "C" void __dt__11dBgS_LinChkFv();
-// extern "C" void Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c();
-// extern "C" void SetObj__16dBgS_PolyPassChkFv();
-// extern "C" void __ct__10dCcD_GSttsFv();
-// extern "C" void Move__10dCcD_GSttsFv();
-// extern "C" void Init__9dCcD_SttsFiiP10fopAc_ac_c();
-// extern "C" void __ct__12dCcD_GObjInfFv();
-// extern "C" void __dt__12dCcD_GObjInfFv();
-// extern "C" void ChkTgHit__12dCcD_GObjInfFv();
-// extern "C" void GetTgHitObj__12dCcD_GObjInfFv();
-// extern "C" void Set__8dCcD_CylFRC11dCcD_SrcCyl();
-// extern "C" void Set__8dCcD_SphFRC11dCcD_SrcSph();
-// extern "C" void cc_pl_cut_bit_get__Fv();
-// extern "C" void def_se_set__FP10Z2CreatureP8cCcD_ObjUlP10fopAc_ac_c();
-// extern "C" void cc_at_check__FP10fopAc_ac_cP11dCcU_AtInfo();
-// extern "C" void checkMasterSwordEquip__9daPy_py_cFv();
-// extern "C" void Start__9dCamera_cFv();
-// extern "C" void Stop__9dCamera_cFv();
-// extern "C" void SetTrimSize__9dCamera_cFl();
-// extern "C" void Set__9dCamera_cF4cXyz4cXyzfs();
-// extern "C" void Reset__9dCamera_cF4cXyz4cXyz();
-// extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-// extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-// extern "C" void dKy_custom_colset__FUcUcf();
-// extern "C" void dKy_tevstr_init__FP12dKy_tevstr_cScUc();
-// extern "C" void dKy_pol_sound_get__FPC13cBgS_PolyInfo();
-// extern "C" void __ct__10dMsgFlow_cFv();
-// extern "C" void init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c();
-// extern "C" void doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci();
-// extern "C" void Set__4cCcSFP8cCcD_Obj();
-// extern "C" void __pl__4cXyzCFRC3Vec();
-// extern "C" void __mi__4cXyzCFRC3Vec();
-// extern "C" void __ml__4cXyzCFf();
-// extern "C" void __ct__5csXyzFsss();
-// extern "C" void cM_atan2s__Fff();
-// extern "C" void cM_rndF__Ff();
-// extern "C" void cM_rndFX__Ff();
-// extern "C" void SetPos__11cBgS_GndChkFPC3Vec();
-// extern "C" void SetPos__11cBgS_GndChkFPC4cXyz();
-// extern "C" void __dt__13cBgS_PolyInfoFv();
-// extern "C" void cBgW_CheckBGround__Ff();
-// extern "C" void __dt__8cM3dGCirFv();
-// extern "C" void SetC__8cM3dGCylFRC4cXyz();
-// extern "C" void SetH__8cM3dGCylFf();
-// extern "C" void SetR__8cM3dGCylFf();
-// extern "C" void SetC__8cM3dGSphFRC4cXyz();
-// extern "C" void SetR__8cM3dGSphFf();
-// extern "C" void cLib_addCalc2__FPffff();
-// extern "C" void cLib_addCalc0__FPfff();
-// extern "C" void cLib_addCalcAngleS2__FPssss();
-// extern "C" void MtxTrans__FfffUc();
-// extern "C" void MtxPosition__FP4cXyzP4cXyz();
-// extern "C" void MtxPush__Fv();
-// extern "C" void MtxPull__Fv();
-// extern "C" void deleteAllParticle__14JPABaseEmitterFv();
-// extern "C" void seMoveVolumeAll__7Z2SeMgrFfUl();
-// extern "C" void bgmStart__8Z2SeqMgrFUlUll();
-// extern "C" void bgmStop__8Z2SeqMgrFUll();
-// extern "C" void bgmStreamPrepare__8Z2SeqMgrFUl();
-// extern "C" void bgmStreamPlay__8Z2SeqMgrFv();
-// extern "C" void changeBgmStatus__8Z2SeqMgrFl();
-// extern "C" void setDemoName__11Z2StatusMgrFPc();
-// extern "C" void __dt__14Z2SoundObjBaseFv();
-// extern "C" void deleteObject__14Z2SoundObjBaseFv();
-// extern "C" void __ct__16Z2SoundObjSimpleFv();
-// extern "C" void __ct__15Z2CreatureEnemyFv();
-// extern "C" void init__15Z2CreatureEnemyFP3VecP3VecUcUc();
-// extern "C" void init__15Z2CreatureEnemyFP3VecP3VecP3VecUcUcUc();
-// extern "C" void setLinkSearch__15Z2CreatureEnemyFb();
-// extern "C" void setEnemyName__15Z2CreatureEnemyFPCc();
-// extern "C" void* __nw__FUl();
-// extern "C" void __dl__FPv();
-// extern "C" void __as__12J3DLightInfoFRC12J3DLightInfo();
-// extern "C" void init__12J3DFrameCtrlFs();
-// extern "C" void checkPass__12J3DFrameCtrlFf();
-// extern "C" void __destroy_arr();
-// extern "C" void __construct_array();
-// extern "C" void __ptmf_scall();
-// extern "C" void _savegpr_14();
-// extern "C" void _savegpr_20();
-// extern "C" void _savegpr_22();
-// extern "C" void _savegpr_23();
-// extern "C" void _savegpr_24();
-// extern "C" void _savegpr_25();
-// extern "C" void _savegpr_27();
-// extern "C" void _savegpr_28();
-// extern "C" void _savegpr_29();
-// extern "C" void _restgpr_14();
-// extern "C" void _restgpr_20();
-// extern "C" void _restgpr_22();
-// extern "C" void _restgpr_23();
-// extern "C" void _restgpr_24();
-// extern "C" void _restgpr_25();
-// extern "C" void _restgpr_27();
-// extern "C" void _restgpr_28();
-// extern "C" void _restgpr_29();
-// extern "C" extern void* __vt__19mDoExt_3DlineMat1_c[5];
-// extern "C" extern void* __vt__8dCcD_Sph[36];
-// extern "C" extern void* __vt__8dCcD_Cyl[36];
-// extern "C" extern void* __vt__9dCcD_Stts[11];
-// extern "C" extern void* __vt__12cCcD_SphAttr[25];
-// extern "C" extern void* __vt__12cCcD_CylAttr[25];
-// extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-// extern "C" extern void* __vt__9cCcD_Stts[8];
-// extern "C" extern void* __vt__16Z2SoundObjSimple[8];
-// extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
-// extern "C" u8 now__14mDoMtx_stack_c[48];
-// extern "C" extern u8 g_dComIfG_gameInfo[122384];
-// extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-// extern "C" u8 mCurrentMtx__6J3DSys[48];
-// extern "C" u8 sincosTable___5JMath[65536];
-// extern "C" extern u32 g_blackColor;
-// extern "C" u8 m_midnaActor__9daPy_py_c[4];
-// extern "C" extern s8 pauseTimer__9dScnPly_c;
-// extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-// extern "C" void __register_global_object();
-
-//
 // Declarations:
 //
 
@@ -878,7 +575,6 @@ static int daB_GND_Draw(b_gnd_class* i_this) {
         return 1;
     }  else {
         fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
-        double in_f6 = 0, in_f8 = 0, in_f10 = 0;
         J3DModel* model = i_this->mpModelMorf->getModel();
         g_env_light.settingTevStruct(0, &a_this->current.pos, &a_this->tevStr);
 
@@ -901,38 +597,42 @@ static int daB_GND_Draw(b_gnd_class* i_this) {
         }
         
         if (i_this->field_0x0771 == 0) {
-            g_env_light.setLightTevColorType_MAJI(i_this->field_0x076c->getModelData(), &a_this->tevStr);
+            g_env_light.setLightTevColorType_MAJI(i_this->field_0x076c, &a_this->tevStr);
             mDoExt_modelUpdateDL(i_this->field_0x076c);
         }
 
         if (i_this->field_0x0754 != 0) {
-            g_env_light.setLightTevColorType_MAJI(i_this->field_0x05d8->getModel()->getModelData(), &a_this->tevStr);
+            J3DModel* model = i_this->field_0x05d8->getModel();
+            g_env_light.setLightTevColorType_MAJI(model->getModelData(), &a_this->tevStr);
             i_this->field_0x0750->entry(i_this->field_0x05d8->getModel()->getModelData());
             i_this->field_0x074c->entry(i_this->field_0x05d8->getModel()->getModelData());
             i_this->field_0x05d8->entryDL();
         }
 
-        if (i_this->field_0x26c4 < 60) {
+        if (i_this->field_0x26c4 >= 60) {
             for (int i = 0; i < 36; i++) {
                 g_env_light.setLightTevColorType_MAJI(i_this->field_0x0b94[i], &a_this->tevStr);
                 mDoExt_modelUpdateDL(i_this->field_0x0b94[i]);
             }
+            
+            J3DModel* horseModel = NULL;
             if (i_this->field_0x1fc4 != 0) {
-                g_env_light.setLightTevColorType_MAJI(i_this->mpHorseMorf->getModel(), &a_this->tevStr);
+                horseModel = i_this->mpHorseMorf->getModel();
+                g_env_light.setLightTevColorType_MAJI(horseModel, &a_this->tevStr);
                 i_this->mpHorseMorf->entryDL();
             }
-            cXyz cStack_34;
-            cStack_34.set(i_this->current.pos.x, i_this->current.pos.y + 100.0f, i_this->current.pos.z);
-            // dDlst_shadowControl_c::getSimpleTex();
             
-            cXyz shadow_pos;
-            shadow_pos.set(i_this->current.pos.x, i_this->current.pos.y, i_this->current.pos.z);
+            cXyz shadowPos;
+            shadowPos.set(i_this->current.pos.x, i_this->current.pos.y + 100.0f, i_this->current.pos.z);
+            _GXTexObj* texObj = dDlst_shadowControl_c::getSimpleTex();
             i_this->mShadowID = dComIfGd_setShadow(i_this->mShadowID, 1, model,
-                                &shadow_pos, 0.0f, i_this->field_0x0cd4.GetGroundH(),
-                                (float)in_f6, (float)in_f8, i_this->field_0x0cd4.m_gnd,
-                                &a_this->tevStr, 0, (float)in_f10, dDlst_shadowControl_c::getSimpleTex());
+                                &shadowPos, 3000.0f, 0.0f,
+                                i_this->field_0x0cd4.GetGroundH(), 0.0f, i_this->field_0x0cd4.m_gnd,
+                                &a_this->tevStr, 0, 1.0f, texObj);
             dComIfGd_addRealShadow(i_this->mShadowID, i_this->field_0x0768);
-            if (i_this->field_0x1fc4 == 0) {
+            if (i_this->field_0x1fc4 != 0) {
+                dComIfGd_addRealShadow(i_this->mShadowID, horseModel);
+            } else {
                 for (int i = 0; i < 36; i++) {
                     dComIfGd_addRealShadow(i_this->mShadowID, i_this->field_0x0b94[i]);
                 }
