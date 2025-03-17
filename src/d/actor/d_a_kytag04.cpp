@@ -241,13 +241,13 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     a_this->mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11020202);
     if (a_this->mpModel != NULL) {
         J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Kytag04", 14);
-        if (!a_this->mBtk.init(modelData, pbtk, TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1)) {
+        if (!a_this->mBtk.init(modelData, pbtk, TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1)) {
             OS_REPORT("\nkytag04 btk FALSE!!\n");
             return 0;
         }
 
         J3DAnmTevRegKey* pbrk = (J3DAnmTevRegKey*)dComIfG_getObjectRes("Kytag04", 8);
-        if (!a_this->mBrk.init(modelData, pbrk, TRUE, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1)) {
+        if (!a_this->mBrk.init(modelData, pbrk, TRUE, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1)) {
             OS_REPORT("\nkytag04 brk FALSE!!\n");
             return 0;
         }

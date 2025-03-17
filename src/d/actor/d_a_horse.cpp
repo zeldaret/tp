@@ -534,7 +534,7 @@ int daHorse_c::createHeap() {
         return 0;
     }
 
-    if (!m_btp.init(m_modelData, (J3DAnmTexPattern*)dComIfG_getObjectRes(l_arcName, 0x29), FALSE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1)) {
+    if (!m_btp.init(m_modelData, (J3DAnmTexPattern*)dComIfG_getObjectRes(l_arcName, 0x29), FALSE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1)) {
         return 0;
     }
 

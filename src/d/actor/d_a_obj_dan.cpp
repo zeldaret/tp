@@ -61,7 +61,7 @@ int daObjDAN_c::CreateHeap() {
     J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes("I_Dan", 11);
     mpMorf = new mDoExt_McaMorfSO(model_data, NULL, NULL,
                                   static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("I_Dan", 8)),
-                                  J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1,
+                                  J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1,
                                   &mCreatureSound, 0, 0x11000284);
     if (mpMorf == NULL || mpMorf->getModel() == NULL) {
         return 0;
@@ -75,13 +75,13 @@ int daObjDAN_c::CreateHeap() {
     if (mSex == SEX_FEMALE) {
         J3DAnmTevRegKey* tev_anm = static_cast<J3DAnmTevRegKey*>(dComIfG_getObjectRes("I_Dan", 14));
         if (!mpBrkAnm->init(model->getModelData(), tev_anm, TRUE,
-                            J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1)) {
+                            J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1)) {
             return 0;
         }
     } else {
         J3DAnmTevRegKey* tev_anm = static_cast<J3DAnmTevRegKey*>(dComIfG_getObjectRes("I_Dan", 15));
         if (!mpBrkAnm->init(model->getModelData(), tev_anm, TRUE,
-                            J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1)) {
+                            J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1)) {
             return 0;
         }
     }
@@ -94,7 +94,7 @@ int daObjDAN_c::CreateHeap() {
         J3DAnmTextureSRTKey* tex_anm =
             static_cast<J3DAnmTextureSRTKey*>(dComIfG_getObjectRes("I_Dan", 18));
         if (!mpBtkAnm->init(model->getModelData(), tex_anm, TRUE,
-                            J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1)) {
+                            J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1)) {
             return 0;
         }
     } else {
@@ -102,7 +102,7 @@ int daObjDAN_c::CreateHeap() {
         J3DAnmTextureSRTKey* tex_anm =
             static_cast<J3DAnmTextureSRTKey*>(dComIfG_getObjectRes("I_Dan", 19));
         if (!mpBtkAnm->init(model->getModelData(), tex_anm, TRUE,
-                            J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1)) {
+                            J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1)) {
             return 0;
         }
     }
@@ -166,7 +166,7 @@ void daObjDAN_c::DamageAction() {
             mMode++;
             mTargetSpeed = 0.0f;
             mpMorf->setAnm(static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("I_Dan", 6)),
-                           J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f, 0.0f, -1.0f);
+                           J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f, 0.0f, -1.0f);
             mTimer[0] = 100;
             gravity = -3.0f;
             speed.y = player->speedF * 0.5f;
@@ -212,7 +212,7 @@ void daObjDAN_c::DamageAction() {
         if (mTimer[0] == 0 && fopAcM_searchPlayerDistanceXZ(this) > 50.0f) {
             shape_angle.x = 0;
             mpMorf->setAnm(static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("I_Dan", 7)),
-                           J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 1.0f, 0.0f, -1.0f);
+                           J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f, 0.0f, -1.0f);
             mMode++;
             speed.y = 0.0f;
             speedF = 0.0f;
@@ -231,7 +231,7 @@ void daObjDAN_c::DamageAction() {
             mMode = 0;
             mTargetSpeed = 0.5f;
             mpMorf->setAnm(static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("I_Dan", 8)),
-                           J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f, 0.0f, -1.0f);
+                           J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f, 0.0f, -1.0f);
         }
         break;
     }
@@ -337,7 +337,7 @@ void daObjDAN_c::ObjHit() {
             mAction = ACT_DAMAGE;
             mMode = 1;
             mpMorf->setAnm(static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("I_Dan", 6)),
-                           J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f, 0.0f, -1.0f);
+                           J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f, 0.0f, -1.0f);
             mTimer[0] = 100;
         }
         mCcSph.ClrTgHit();
@@ -365,7 +365,7 @@ void daObjDAN_c::BoomChk() {
             mBoomerangHit = false;
             gravity = -3.0f;
             mpMorf->setAnm(static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("I_Dan", 6)),
-                           J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f, 0.0f, -1.0f);
+                           J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f, 0.0f, -1.0f);
             mTimer[0] = 100;
             mAction = ACT_DAMAGE;
             mMode = 1;
@@ -585,7 +585,7 @@ cPhs__Step daObjDAN_c::create() {
             mAction = ACT_DAMAGE;
             mMode = 1;
             mpMorf->setAnm(static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("I_Dan", 6)),
-                           J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f, 0.0f, -1.0f);
+                           J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f, 0.0f, -1.0f);
             mTimer[0] = 100;
         }
 

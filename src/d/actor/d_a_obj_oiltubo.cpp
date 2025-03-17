@@ -85,7 +85,7 @@ int daObj_Oiltubo_c::CreateHeap() {
     }
 
     mBtk.init(mdlBData_p, (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(getResName(), l_bbtkFileName),
-              TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1);
+              TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1);
     mSound.init(&current.pos, 1);
     return 1;
 }

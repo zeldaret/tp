@@ -372,7 +372,7 @@ static void b_gm_wait(b_gm_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_GOMA_WAIT, 20.0f, J3DFrameCtrl::LOOP_REPEAT_e, l_HIO.wait_anm_speed);
+        anm_init(i_this, ANM_GOMA_WAIT, 20.0f, J3DFrameCtrl::EMode_LOOP, l_HIO.wait_anm_speed);
         i_this->mTimers[0] = 100.0f + cM_rndF(100.0f);
         i_this->mMode = 1;
         /* fallthrough */
@@ -405,7 +405,7 @@ static void b_gm_move(b_gm_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_GOMA_DASH, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, l_HIO.dash_anm_speed);
+        anm_init(i_this, ANM_GOMA_DASH, 10.0f, J3DFrameCtrl::EMode_LOOP, l_HIO.dash_anm_speed);
         i_this->mMode = 1;
         i_this->unk_0x5cc = 0;
         /* fallthrough */
@@ -489,7 +489,7 @@ static void b_gm_move(b_gm_class* i_this) {
         move_speed = 0.0f;
         if (i_this->mTimers[0] == 0) {
             if (i_this->mAnmID != ANM_GOMA_DASH) {
-                anm_init(i_this, ANM_GOMA_DASH, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, l_HIO.dash_anm_speed);
+                anm_init(i_this, ANM_GOMA_DASH, 10.0f, J3DFrameCtrl::EMode_LOOP, l_HIO.dash_anm_speed);
             }
 
             i_this->mMode = 3;
@@ -531,12 +531,12 @@ static void b_gm_beam(b_gm_class* i_this) {
     case 0:
         i_this->mMode = 2;
         i_this->field_0x6f4 = 0;
-        anm_init(i_this, ANM_GOMA_ATTACK_A, 10.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, ANM_GOMA_ATTACK_A, 10.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         break;
     case 2:
         i_this->field_0x1ad6 = 1;
         if (i_this->mpModelMorf->isStop()) {
-            anm_init(i_this, ANM_GOMA_ATTACK_B, 2.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_GOMA_ATTACK_B, 2.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 3;
             i_this->mTimers[0] = 200;
         }
@@ -546,7 +546,7 @@ static void b_gm_beam(b_gm_class* i_this) {
         cLib_addCalc2(&i_this->field_0x6c0, 1.0f, 1.0f, 0.1f);
         if (i_this->mTimers[0] == 0) {
             i_this->mMode = 4;
-            anm_init(i_this, ANM_GOMA_ATTACK_C, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_GOMA_ATTACK_C, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         }
         break;
     case 4:
@@ -586,7 +586,7 @@ static void b_gm_kogoma(b_gm_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_GOMA_DASH, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, l_HIO.dash_anm_speed);
+        anm_init(i_this, ANM_GOMA_DASH, 10.0f, J3DFrameCtrl::EMode_LOOP, l_HIO.dash_anm_speed);
         i_this->mTargetMovePos.x = 0.0f;
         i_this->mTargetMovePos.z = 0.0f;
         i_this->mMode = 1;
@@ -601,7 +601,7 @@ static void b_gm_kogoma(b_gm_class* i_this) {
         }
 
         if (sp54.abs() < 200.0f) {
-            anm_init(i_this, ANM_GOMA_LAY_EGGS, 20.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_GOMA_LAY_EGGS, 20.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mTimers[0] = 200;
             i_this->mMode = 2;
         }
@@ -637,7 +637,7 @@ static void b_gm_damage(b_gm_class* i_this) {
     switch (i_this->mMode) {
     case 0:
         i_this->mMode = 1;
-        anm_init(i_this, ANM_GOMA_ROOF_DAMAGE, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, ANM_GOMA_ROOF_DAMAGE, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         break;
     case 1:
         if (anm_frame >= 50) {
@@ -652,7 +652,7 @@ static void b_gm_damage(b_gm_class* i_this) {
         if (i_this->mpModelMorf->isStop()) {
             i_this->mAction = ACTION_DROP;
             i_this->mMode = 0;
-            anm_init(i_this, ANM_GOMA_FALL_LOOP, 0.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_GOMA_FALL_LOOP, 0.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
         break;
     }
@@ -683,7 +683,7 @@ static void b_gm_drop(b_gm_class* i_this) {
             dComIfGp_getVibration().StartShock(VIBMODE_S_POWER8, 0x4F, cXyz(0.0f, 1.0f, 0.0f));
 
             i_this->mMode = 2;
-            anm_init(i_this, ANM_GOMA_LANDING, 0.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_GOMA_LANDING, 0.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             i_this->mTimers[0] = 300;
 
             fopAcM_effSmokeSet1(&i_this->field_0x1c84, &i_this->field_0x1c88, &a_this->current.pos, NULL, 15.0f, &a_this->tevStr, 1);
@@ -693,19 +693,19 @@ static void b_gm_drop(b_gm_class* i_this) {
         break;
     case 2:
         if (i_this->mpModelMorf->isStop()) {
-            anm_init(i_this, ANM_GOMA_LANDING_WAIT, 0.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_GOMA_LANDING_WAIT, 0.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
 
         a_this->current.pos.y = 0.0f;
         if (i_this->mTimers[0] == 0) {
             i_this->mMode = 3;
-            anm_init(i_this, ANM_GOMA_RETURN, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_GOMA_RETURN, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             Z2GetAudioMgr()->changeBgmStatus(2);
         }
         break;
     case 3:
         if (i_this->mpModelMorf->isStop()) {
-            anm_init(i_this, ANM_GOMA_WAIT, 0.0f, J3DFrameCtrl::LOOP_REPEAT_e, l_HIO.wait_anm_speed);
+            anm_init(i_this, ANM_GOMA_WAIT, 0.0f, J3DFrameCtrl::EMode_LOOP, l_HIO.wait_anm_speed);
             a_this->current.angle.x = 0;
             a_this->shape_angle.x = 0;
             i_this->mTimers[0] = 5;
@@ -730,17 +730,17 @@ static void b_gm_drop(b_gm_class* i_this) {
         }
         break;
     case 10:
-        anm_init(i_this, ANM_GOMA_LANDING_DAMAGE, 2.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, ANM_GOMA_LANDING_DAMAGE, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mMode = 11;
     case 11:
         if (i_this->mpModelMorf->isStop()) {
             i_this->mMode = 3;
-            anm_init(i_this, ANM_GOMA_RETURN, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_GOMA_RETURN, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             i_this->mInvincibilityTimer = 200;
         }
         break;
     case 20:
-        anm_init(i_this, ANM_GOMA_DEATH, 2.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, ANM_GOMA_DEATH, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mMode = 21;
     case 21:
         if (i_this->mpModelMorf->getFrame() >= 160.0f) {

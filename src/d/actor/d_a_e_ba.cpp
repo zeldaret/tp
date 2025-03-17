@@ -146,7 +146,7 @@ static void damage_check(e_ba_class* i_this) {
                         i_this->mIFrames = 10;
                     }
                     i_this->mKnockbackSpeed = 80.0f;
-                    i_this->mKnockbackAngle = i_this->mAtInfo.mHitDirection;
+                    i_this->mKnockbackAngle = i_this->mAtInfo.mHitDirection.y;
                     if (i_this->health <= 0) {
                         i_this->mCreatureSound.startCreatureVoice(Z2SE_EN_BA_V_DEATH, -1);
                         i_this->mpMorf->setPlaySpeed(0.2f);
@@ -250,7 +250,7 @@ static void e_ba_roof(e_ba_class* i_this) {
     switch (i_this->mMode) {
     case 0:
         anm_init(i_this, e_ba_class::ANM_WAIT, 15.0f,
-                 J3DFrameCtrl::LOOP_REPEAT_e, cM_rndF(0.1f) + 0.9f);
+                 J3DFrameCtrl::EMode_LOOP, cM_rndF(0.1f) + 0.9f);
         i_this->mMode = 1;
         break;
 
@@ -277,7 +277,7 @@ static void e_ba_fight_fly(e_ba_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, e_ba_class::ANM_FLY, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, e_ba_class::ANM_FLY, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mMode = 1;
         i_this->mSpeedRatio = 0.0f;
         break;
@@ -324,7 +324,7 @@ static void e_ba_fight(e_ba_class* i_this) {
     switch (i_this->mMode) {
     case 0:
         anm_init(i_this, e_ba_class::ANM_HOVERING, 2.0f,
-                 J3DFrameCtrl::LOOP_REPEAT_e, cM_rndF(0.1f) + 1.0f);
+                 J3DFrameCtrl::EMode_LOOP, cM_rndF(0.1f) + 1.0f);
         i_this->mMode = 1;
         i_this->mTimer[0] = 0;
         i_this->mTimer[1] = cM_rndF(100.0f) + 30.0f;
@@ -396,7 +396,7 @@ static void e_ba_attack(e_ba_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, e_ba_class::ANM_FLY, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 2.0f);
+        anm_init(i_this, e_ba_class::ANM_FLY, 3.0f, J3DFrameCtrl::EMode_LOOP, 2.0f);
         i_this->mMode = 1;
         i_this->mTimer[1] = 20;
         break;
@@ -444,7 +444,7 @@ static void e_ba_attack(e_ba_class* i_this) {
 static void e_ba_fly(e_ba_class* i_this) {
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, e_ba_class::ANM_FLY, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, e_ba_class::ANM_FLY, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mMode = 1;
         break;
 
@@ -481,7 +481,7 @@ static void e_ba_fly(e_ba_class* i_this) {
 static void e_ba_return(e_ba_class* i_this) {
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, e_ba_class::ANM_FLY, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, e_ba_class::ANM_FLY, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mMode = 1;
         i_this->mSpeedRatio = 0.0f;
 
@@ -511,7 +511,7 @@ static void e_ba_path_fly(e_ba_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, e_ba_class::ANM_FLY, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, e_ba_class::ANM_FLY, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mMode = 1;
         // fallthrough
 
@@ -565,7 +565,7 @@ static void e_ba_path_fly(e_ba_class* i_this) {
 static void e_ba_chance(e_ba_class* i_this) {
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, e_ba_class::ANM_HOVERING, 2.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.5f);
+        anm_init(i_this, e_ba_class::ANM_HOVERING, 2.0f, J3DFrameCtrl::EMode_LOOP, 1.5f);
         i_this->mMode = 1;
         i_this->mTimer[0] = cM_rndF(30.0f) + 100.0f;
         i_this->speed.x = 0.0f;
@@ -612,7 +612,7 @@ static void e_ba_wolfbite(e_ba_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, e_ba_class::ANM_HOLDWAIT, 0.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, e_ba_class::ANM_HOLDWAIT, 0.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mMode = 1;
         break;
 
@@ -626,7 +626,7 @@ static void e_ba_wolfbite(e_ba_class* i_this) {
             i_this->speedF = 40.0f;
             i_this->speed.y = -20.0f;
             i_this->mCreatureSound.startCreatureVoice(Z2SE_EN_BA_V_DEATH, -1);
-            anm_init(i_this, e_ba_class::ANM_DEAD, 1.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, e_ba_class::ANM_DEAD, 1.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             i_this->mTimer[0] = 60;
             i_this->mMode = 2;
             i_this->health = 0;
@@ -671,7 +671,7 @@ static void e_ba_wind(e_ba_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, e_ba_class::ANM_FURA2, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, e_ba_class::ANM_FURA2, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mMode = 1;
         i_this->mWindSpinSpeed = -(cM_rndFX(1000.0f) + 15000.0f);
         i_this->mWindOffset.x = cM_rndFX(50.0f);
@@ -709,7 +709,7 @@ static void e_ba_appear(e_ba_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, e_ba_class::ANM_APPEAR, 0.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, e_ba_class::ANM_APPEAR, 0.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mMode = 1;
         i_this->mTimer[0] = cM_rndF(20.0f) + 40.0f;
         i_this->speedF = 30.0f;

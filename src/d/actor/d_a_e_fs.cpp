@@ -175,7 +175,7 @@ static void e_fs_appear(e_fs_class* i_this) {
         if (i_this->mTimer[0] == 0) {
             i_this->current.pos.y = i_this->home.pos.y;
             i_this->old.pos = i_this->current.pos;
-            anm_init(i_this, ANM_APPEAR, 10.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_APPEAR, 10.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             i_this->mMode++;
             i_this->current.angle.y = i_this->mPlayerAngleY;
             i_this->attention_info.flags = 4;
@@ -215,7 +215,7 @@ static void e_fs_wait(e_fs_class* i_this) {
         // fallthrough
 
     case 0:
-        anm_init(i_this, ANM_WAIT01, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, ANM_WAIT01, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mMode = 1;
         i_this->mTimer[0] = cM_rndF(60.0f) + 2.0f;
         break;
@@ -249,7 +249,7 @@ static void e_fs_wait(e_fs_class* i_this) {
 static void e_fs_move(e_fs_class* i_this) {
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_MOVE, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, ANM_MOVE, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mMode++;
         // fallthrough
 
@@ -294,7 +294,7 @@ static void e_fs_attack(e_fs_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_ATTACK01, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, ANM_ATTACK01, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mPlayerPos = player->current.pos;
         i_this->mMode++;
         break;
@@ -336,7 +336,7 @@ static void e_fs_attack(e_fs_class* i_this) {
 static void e_fs_damage(e_fs_class* i_this) {
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_DAMAGE, 2.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, ANM_DAMAGE, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mMode++;
         break;
 
@@ -357,7 +357,7 @@ static void e_fs_end(e_fs_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_DIE, 2.0f, J3DFrameCtrl::LOOP_ONCE_e, cM_rndF(0.4f) + 0.7f);
+        anm_init(i_this, ANM_DIE, 2.0f, J3DFrameCtrl::EMode_NONE, cM_rndF(0.4f) + 0.7f);
         i_this->mMode++;
         fopAcM_OffStatus(i_this, 0);
         i_this->attention_info.flags = 0;
@@ -438,7 +438,7 @@ static void damage_check(e_fs_class* i_this) {
             } else {
                 i_this->mIFrameTimer = 10;
             }
-            i_this->current.angle.y = i_this->mAtInfo.mHitDirection;
+            i_this->current.angle.y = i_this->mAtInfo.mHitDirection.y;
 
             if (i_this->health <= 0) {
                 i_this->mAction = e_fs_class::ACT_END;
@@ -492,7 +492,7 @@ static void e_fs_demowait(e_fs_class* i_this) {
         break;
 
     case 1:
-        anm_init(i_this, ANM_APPEAR, 0.0f, J3DFrameCtrl::LOOP_ONCE_e, 0.0f);
+        anm_init(i_this, ANM_APPEAR, 0.0f, J3DFrameCtrl::EMode_NONE, 0.0f);
         i_this->current.pos.y = (fopAcM_GetID(i_this) & 3) * 200.0f + 1300.0f;
         i_this->mMode = 2;
         i_this->field_0x566 = 1;
@@ -511,7 +511,7 @@ static void e_fs_demowait(e_fs_class* i_this) {
 
     case 3:
         if (i_this->mpMorf->isStop()) {
-            anm_init(i_this, ANM_WAIT01, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_WAIT01, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 4;
         }
         break;
@@ -719,7 +719,7 @@ static int useHeapIe_fst(fopAc_ac_c* i_this) {
     e_fs_class* _this = static_cast<e_fs_class*>(i_this);
     _this->mpMorf = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_FS", 0xc), NULL,
                                          NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_FS", 9),
-                                         J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1,
+                                         J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1,
                                          &_this->mCreatureSound, 0x80000, 0x11000084);
     if (_this->mpMorf == NULL || _this->mpMorf->getModel() == NULL) {
         return 0;

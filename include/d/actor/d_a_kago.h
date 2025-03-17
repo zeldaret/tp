@@ -93,6 +93,12 @@ public:
         field_0x744 = 0;
     }
 
+    void setEvent2() {
+        mIsFlying = 0;
+        field_0x740 = 6;
+        field_0x744 = 0;
+    }
+
     void setKagoPath(u8 i_pathNo) {
         if (i_pathNo != 0xFF) {
             field_0x76c = dPath_GetRoomPath(i_pathNo, fopAcM_GetRoomNo(this));

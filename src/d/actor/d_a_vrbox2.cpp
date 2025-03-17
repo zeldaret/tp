@@ -619,7 +619,7 @@ static int daVrbox2_solidHeapCB(fopAc_ac_c* i_this) {
         a_this->model2_und = mDoExt_J3DModel__create(sun_modelData, 0x80000, 0x11020202);
 
         J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getStageRes("vrbox_sun.btk");
-        if (!a_this->mSunBtk.init(sun_modelData, pbtk, TRUE, J3DFrameCtrl::LOOP_REPEAT_e, FLOAT_LABEL(lit_3627), 0, -1)) {
+        if (!a_this->mSunBtk.init(sun_modelData, pbtk, TRUE, J3DFrameCtrl::EMode_LOOP, FLOAT_LABEL(lit_3627), 0, -1)) {
             return 0;
         }
     }

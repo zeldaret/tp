@@ -366,7 +366,7 @@ void daE_OT_c::executeBorn() {
         speedF = 0.0f;
         mHatched = true;
         mMode = 1;
-        setBck(ANM_BORN, J3DFrameCtrl::LOOP_ONCE_e, 3.0f, 1.0f);
+        setBck(ANM_BORN, J3DFrameCtrl::EMode_NONE, 3.0f, 1.0f);
         mMode = 1;
         mSound.startCreatureSound(Z2SE_EN_OT_BORN, 0, -1);
         if (mDemoMode == 3) {
@@ -401,7 +401,7 @@ void daE_OT_c::executeAttack() {
 
     switch (mMode) {
     case 0:
-        setBck(ANM_SWIM, J3DFrameCtrl::LOOP_REPEAT_e, 3.0f, 1.0f);
+        setBck(ANM_SWIM, J3DFrameCtrl::EMode_LOOP, 3.0f, 1.0f);
         // fallthrough
 
     case 10:
@@ -465,7 +465,7 @@ void daE_OT_c::executePanic() {
         }
         gravity = -5.0f;
         mMode = 2;
-        setBck(ANM_BORN, J3DFrameCtrl::LOOP_ONCE_e, 3.0f, 1.0f);
+        setBck(ANM_BORN, J3DFrameCtrl::EMode_NONE, 3.0f, 1.0f);
         break;
 
     case 2:
@@ -481,7 +481,7 @@ void daE_OT_c::executePanic() {
         if (mpMorf->isStop()) {
             speedF = 20.0f;
             mMode = 4;
-            setBck(ANM_SWIM, J3DFrameCtrl::LOOP_REPEAT_e, 3.0f, 1.0f);
+            setBck(ANM_SWIM, J3DFrameCtrl::EMode_LOOP, 3.0f, 1.0f);
         }
         break;
 
@@ -500,7 +500,7 @@ void daE_OT_c::executePanic() {
     case 5:
         mTimer1 = 11.0f + cM_rndFX(3.0f);
         mMode = 6;
-        setBck(ANM_BORN, J3DFrameCtrl::LOOP_ONCE_e, 3.0f, 1.0f);
+        setBck(ANM_BORN, J3DFrameCtrl::EMode_NONE, 3.0f, 1.0f);
         gravity = 0.0f;
         speedF = 0.0f;
         // fallthrough
@@ -543,14 +543,14 @@ void daE_OT_c::executeDamage() {
         attention_info.flags = 0;
         mAtSph.OffAtSetBit();
         mCcSph.OffTgSetBit();
-        setBck(ANM_DAMAGE, J3DFrameCtrl::LOOP_REPEAT_e, 3.0f, 1.0f);
+        setBck(ANM_DAMAGE, J3DFrameCtrl::EMode_LOOP, 3.0f, 1.0f);
         mSound.startCreatureVoice(Z2SE_EN_OT_V_DEATH, -1);
         speedF = 20.0f + cM_rndFX(5.0f);
         speed.y = 40.0f + cM_rndFX(5.0f);
         mMode = 1;
         mAnmSpeed = 1.0f;
         gravity = -5.0f;
-        current.angle.y = mAtInfo.mHitDirection + 0x8000 + cM_rndFX(0x2000);
+        current.angle.y = mAtInfo.mHitDirection.y + 0x8000 + cM_rndFX(0x2000);
         break;
 
     case 1:
@@ -755,7 +755,7 @@ int daE_OT_c::CreateHeap() {
     J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes("E_OT", 14);
     mpMorf = new mDoExt_McaMorfSO(model_data, NULL, NULL,
                                   (J3DAnmTransform*)dComIfG_getObjectRes("E_OT", ANM_BORN),
-                                  J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1, &mSound,
+                                  J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1, &mSound,
                                   0x80000, 0x11000084);
     if (mpMorf == NULL || mpMorf->getModel() == NULL) {
         return 0;
@@ -773,7 +773,7 @@ int daE_OT_c::CreateHeap() {
     }
     J3DAnmTextureSRTKey* btk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("E_OT", 17);
     if (!mpEggAnm->init(mpEggModel->getModelData(), btk, TRUE,
-                        J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1)) {
+                        J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1)) {
         return 0;
     }
 

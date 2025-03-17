@@ -175,7 +175,7 @@ static void damage_check(e_yk_class* i_this) {
                         }
 
                         i_this->field_0x694 = cM_rndF(10.0f) + 70.0f;
-                        i_this->field_0x698 = i_this->mAtColliderInfo.mHitDirection;
+                        i_this->field_0x698 = i_this->mAtColliderInfo.mHitDirection.y;
 
                         // If keese is dead, play death sound
                         if (i_this->health <= 0) {
