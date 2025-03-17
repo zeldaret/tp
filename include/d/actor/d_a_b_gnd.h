@@ -8,13 +8,6 @@
 #include "d/d_cc_uty.h"
 #include "d/d_bg_s_acch.h"
 
-struct g_himo_s {
-    /* 80601D40 */ ~g_himo_s();
-    /* 80601DA0 */ g_himo_s();
-
-    /* 0x0 */ cXyz field_0x0[16];
-};
-
 /**
  * @ingroup actors-enemies
  * @class b_gnd_class
@@ -23,6 +16,14 @@ struct g_himo_s {
  * @details Hyrule Castle dungeon boss.
  * 
  */
+ 
+struct g_himo_s {
+    /* 80601D40 */ ~g_himo_s();
+    /* 80601DA0 */ g_himo_s();
+
+    /* 0x0 */ cXyz field_0x0[16];
+};
+
 class b_gnd_class : public fopEn_enemy_c {
 public:
     /* 80601960 */ b_gnd_class();
@@ -155,21 +156,7 @@ public:
     /* 0x2170 */ mDoExt_3DlineMat1_c field_0x2170[2];
     /* 0x21E8 */ mDoExt_3DlineMat1_c field_0x21e8;
     /* 0x2224 */ dKy_tevstr_c field_0x2224;
-    /* 0x25AC */ u32 field_0x25ac;
-    /* 0x25B0 */ u32 field_0x25b0;
-    /* 0x25B4 */ u32 field_0x25b4;
-    /* 0x25B8 */ u32 field_0x25b8;
-    /* 0x25BC */ u32 field_0x25bc;
-    /* 0x25C0 */ u32 field_0x25c0;
-    /* 0x25C4 */ u32 field_0x25c4;
-    /* 0x25C8 */ u32 field_0x25c8;
-    /* 0x25CC */ u32 field_0x25cc;
-    /* 0x25D0 */ u32 field_0x25d0;
-    /* 0x25D4 */ u32 field_0x25d4;
-    /* 0x25D8 */ u32 field_0x25d8;
-    /* 0x25DC */ u32 field_0x25dc;
-    /* 0x25E0 */ u32 field_0x25e0;
-    /* 0x25E4 */ u32 field_0x25e4[3];
+    /* 0x25AC */ u32 field_0x25ac[17];
     /* 0x25F0 */ u8 field_0x25F0[0x2688 - 0x25F0];
     /* 0x2688 */ u32 field_0x2688;
     /* 0x268C */ u32 field_0x268c[3];

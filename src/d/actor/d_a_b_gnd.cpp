@@ -787,12 +787,11 @@ static daB_GND_HIO_c l_HIO;
 // static char lit_4187;
 
 /* 80602FE0-80602FEC 000080 000C+00 0/1 0/0 0/0 .bss             k_pos$4186 */
-static cXyz k_pos;
+// static cXyz k_pos;
 
 /* 805F5574-805F5BE8 000C14 0674+00 1/1 0/0 0/0 .text            gake_check__FP11b_gnd_class */
 static u32 gake_check(b_gnd_class* i_this) {
      // NONMATCHING
-    
     BOOL bVar1 = FALSE;
     dBgS_GndChk dStack_94;
     cXyz local_b8;
@@ -853,6 +852,7 @@ static u32 gake_check(b_gnd_class* i_this) {
             }
 
             // if (lit_4187 == 0) {
+                static cXyz k_pos;
                 k_pos.set(0.0f, 0.0f, 0.0f);
                 // k_pos = cXyz(0.0f, 0.0f, 0.0f);
                 // lit_4187 = 1;
@@ -949,28 +949,25 @@ static u32 gake_check(b_gnd_class* i_this) {
 // #pragma pop
 
 /* 805F5BE8-805F5EF4 001288 030C+00 1/1 0/0 0/0 .text            saku_jump_check__FP11b_gnd_class */
-static BOOL saku_jump_check(b_gnd_class* i_this) {
+static int saku_jump_check(b_gnd_class* i_this) {
     // NONMATCHING
-    s16 sVar1;
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
-    cXyz local_e8;
-    cXyz local_d0;
-    cXyz local_dc;
-    cXyz cStack_c4;
-    cXyz local_b8;
-    cXyz local_ac;
-    if (3 < i_this->field_0x0c76) {
+    cXyz local_ac, local_b8, cStack_c4, local_d0, local_dc;
+    if (4 <= i_this->field_0x0c76) {
         return 0;
     }
 
-    dBgS_LinChk line_chk;
+    dBgS_LinChk lineChk;
     cM3dGPla plane;
 
     cMtx_YrotS(*calc_mtx, i_this->shape_angle.y);
     cMtx_XrotM(*calc_mtx, i_this->shape_angle.x);
-    local_ac.x = 10.0;
-    local_ac.y = 150.0;
-    local_ac.z = 900.0;
+
+
+    local_ac.x = 10.0f;
+    local_ac.y = 150.0f;
+    local_ac.z = 900.0f;
+
     MtxPosition(&local_ac, &cStack_c4);
     
     cStack_c4 += i_this->current.pos;
@@ -978,10 +975,11 @@ static BOOL saku_jump_check(b_gnd_class* i_this) {
 
     local_b8 = i_this->current.pos;
     local_b8.y += 350.0f;
-    line_chk.Set(&local_b8, &cStack_c4, a_this);
 
-    if (dComIfG_Bgsp().LineCross(&line_chk)) {
-        if (dComIfG_Bgsp().GetTriPla(line_chk, &plane)) {
+    lineChk.Set(&local_b8, &cStack_c4, a_this);
+
+    if (dComIfG_Bgsp().LineCross(&lineChk)) {
+        if (dComIfG_Bgsp().GetTriPla(lineChk, &plane)) {
             if (!cBgW_CheckBGround(plane.mNormal.y)) {
                 return 0;
             }
@@ -990,24 +988,25 @@ static BOOL saku_jump_check(b_gnd_class* i_this) {
 
     local_b8.y -= 250.0f;
     cStack_c4.y -= 200.0f;
-    line_chk.Set(&local_b8, &cStack_c4, a_this);
-    if (dComIfG_Bgsp().LineCross(&line_chk)) {
-        if (dComIfG_Bgsp().GetTriPla(line_chk, &plane)) {
+    lineChk.Set(&local_b8, &cStack_c4, a_this);
+    if (dComIfG_Bgsp().LineCross(&lineChk)) {
+        if (dComIfG_Bgsp().GetTriPla(lineChk, &plane)) {
             if (!cBgW_CheckBGround(plane.mNormal.y)) {
-                local_d0 = line_chk.mLin.mEnd;
+                local_d0 = lineChk.mLin.mEnd;
 
-                local_ac.x *= -1.0;
+                local_ac.x *= -1.0f;
                 MtxPosition(&local_ac, &cStack_c4);
-                cStack_c4 += i_this->current.pos;
-                line_chk.Set(&local_b8, &cStack_c4, a_this);
                 
-                if (dComIfG_Bgsp().LineCross(&line_chk)) {
+                cStack_c4 += i_this->current.pos;
+                lineChk.Set(&local_b8, &cStack_c4, a_this);
+
+                if (dComIfG_Bgsp().LineCross(&lineChk)) {
                     return 0;
                 }
-
-                local_e8 = line_chk.GetCross() - local_d0;
-
-                sVar1 = cM_atan2s(local_e8.x, local_e8.z) + 0x4000 - i_this->shape_angle.y;
+                local_dc = lineChk.GetCross();
+                local_ac = local_dc - local_d0;
+                
+                s16 sVar1 = cM_atan2s(local_ac.x, local_ac.z) + 0x4000 - i_this->shape_angle.y;
                 if (sVar1 > -0x3000 && sVar1 < 0x3000) {
                     return 1;
                 }
@@ -1047,9 +1046,6 @@ static void b_gnd_h_wait(b_gnd_class* i_this) {
                 i_this->mActionID = ACTION_HWAIT_2;
                 i_this->field_0x05bc = 0;
             }
-            break;
-        default:
-            break;
     }
     cLib_addCalc0(&i_this->speedF, 1.0f, 2.0f);
 }
@@ -1157,7 +1153,6 @@ static void b_gnd_h_wait2(b_gnd_class* i_this) {
 // COMPILER_STRIP_GATE(0x80602704, &lit_4962);
 // #pragma pop
 
-UNK_BSS(4509)
 // /* 80602FEC-80602FF8 00008C 000C+00 0/1 0/0 0/0 .bss             @4509 */
 // #pragma push
 // #pragma force_active on
@@ -1181,12 +1176,7 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
     int iVar13 = daPy_getPlayerActorClass()->checkHorseRide();
     int iVar14;
     int iVar16;
-    cXyz local_104;
-    cXyz local_f8;
-    cXyz local_c8;
-    cXyz local_d4;
-    cXyz local_bc;
-    cXyz local_b0;
+    cXyz local_104, local_f8, local_bc, local_b0, local_c8, local_d4;
     if (iVar13 && dComIfGp_getHorseActor()->speedF >= 30.0f) {
         bVar8 = true;
     }
@@ -1347,14 +1337,10 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
     }
 
     if (i_this->field_0x05bc < 20) {
-        // Some sort of cXyz - operator
-        // Some sort of cXyz = operator
         local_f8 = b_path[i_this->field_0x0c60] - i_this->current.pos;
         fVar19 = JMAFastSqrt(local_f8.x * local_f8.x + local_f8.z + local_f8.z);
         
         if (fVar19 < 800.0f) {
-            // Some sort of cXyz - operator
-            // Some sort of cXyz = operator
             local_104 = b_path[i_this->field_0x0c60] - i_this->current.pos;
             iVar13 = cM_atan2s(local_104.x, local_104.z);
             sVar11 = i_this->current.angle.y - iVar13;
@@ -2838,7 +2824,7 @@ static void b_gnd_g_down(b_gnd_class* i_this) {
                 cLib_addCalc0(&i_this->speedF, 1.0f, 3.0f);
                 if (frame == 16) {
                     PSMTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(1), mDoMtx_stack_c::now);
-                    fopAcM_effSmokeSet1(&i_this->field_0x25b4, &i_this->field_0x25b8,
+                    fopAcM_effSmokeSet1(&i_this->field_0x25ac[2], &i_this->field_0x25ac[3],
                         &cXyz(mDoMtx_stack_c::now[0][3], mDoMtx_stack_c::now[1][3], mDoMtx_stack_c::now[2][3]),
                         &i_this->shape_angle, 2.5f, &i_this->tevStr, 1);
                     dComIfGp_getVibration().StartShock(6, 31, 
@@ -2930,7 +2916,7 @@ static void b_gnd_g_end(b_gnd_class* i_this) {
 static void damage_check(b_gnd_class* i_this) {
     // NONMATCHING
     BOOL bVar1;
-    cXyz cStack_44;
+    cXyz local_38, cStack_44, local_50;
     daPy_py_c* player = daPy_getPlayerActorClass();
     i_this->field_0x1654.Move();
     if (i_this->field_0x1e09 != 0) {
@@ -2975,7 +2961,6 @@ static void damage_check(b_gnd_class* i_this) {
                     }
                 }
 
-                cXyz local_38;
                 local_38.setall(1.0f);
                 u8 uVar1;
                 if (bVar1) {
@@ -2985,7 +2970,6 @@ static void damage_check(b_gnd_class* i_this) {
                 }
                 
                 PSMTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(2), *calc_mtx);
-                cXyz local_50;
                 local_50.x = cM_rndFX(10.0f);
                 local_50.y = cM_rndFX(10.0f) + 50.0f;
                 local_50.z = cM_rndFX(10.0f);
@@ -3013,8 +2997,7 @@ static void eff_set_h(b_gnd_class* i_this) {
 
     BOOL bVar4;
     BOOL bVar9;
-    cXyz local_f8;
-    cXyz local_ec;
+    cXyz local_ec, local_f8;
 
     if (i_this->mHorseAnmID == 9) {
         if (i_this->mpHorseMorf->checkFrame(5.0f)) {
@@ -3053,10 +3036,10 @@ static void eff_set_h(b_gnd_class* i_this) {
             if (bVar9) {
                 bVar4 = TRUE;
             } else {
-                fopAcM_effSmokeSet1(&i_this->field_0x25b0, &i_this->field_0x25d0,
+                fopAcM_effSmokeSet1(&i_this->field_0x25ac[1], &i_this->field_0x25ac[9],
                     &local_f8, &i_this->shape_angle, i_this->scale.z * 2.0f, &i_this->tevStr, 0);
                 if (i_this->field_0x0c6a != 0) {
-                    i_this->field_0x25c0 = dComIfGp_particle_set(i_this->field_0x25c0,
+                    i_this->field_0x25ac[5] = dComIfGp_particle_set(i_this->field_0x25ac[5],
                         0x80e3, &local_f8, &i_this->shape_angle, 0);
                 }
             }
@@ -3069,10 +3052,10 @@ static void eff_set_h(b_gnd_class* i_this) {
             if (bVar9) {
                 bVar4 = TRUE;
             } else {
-                fopAcM_effSmokeSet1(&i_this->field_0x25ac, &i_this->field_0x25cc,
+                fopAcM_effSmokeSet1(&i_this->field_0x25ac[0], &i_this->field_0x25ac[8],
                     &local_f8, &i_this->shape_angle, i_this->scale.z * 2.0f, &i_this->tevStr, 0);
                 if (i_this->field_0x0c6a != 0) {
-                    i_this->field_0x25bc = dComIfGp_particle_set(i_this->field_0x25bc,
+                    i_this->field_0x25ac[4] = dComIfGp_particle_set(i_this->field_0x25ac[4],
                         0x80e3, &local_f8, &i_this->shape_angle, 0);
                 }
             }
@@ -3085,10 +3068,10 @@ static void eff_set_h(b_gnd_class* i_this) {
             if (bVar9) {
                 bVar4 = TRUE;
             } else {
-                fopAcM_effSmokeSet1(&i_this->field_0x25b4, &i_this->field_0x25d4,
+                fopAcM_effSmokeSet1(&i_this->field_0x25ac[2], &i_this->field_0x25ac[10],
                     &local_f8, &i_this->shape_angle, i_this->scale.z * 2.0f, &i_this->tevStr, 0);
                 if (i_this->field_0x0c6a != 0) {
-                    i_this->field_0x25c4 = dComIfGp_particle_set(i_this->field_0x25c4,
+                    i_this->field_0x25ac[6] = dComIfGp_particle_set(i_this->field_0x25ac[6],
                         0x80e3, &local_f8, &i_this->shape_angle, 0);
                 }
             }
@@ -3101,10 +3084,10 @@ static void eff_set_h(b_gnd_class* i_this) {
             if (bVar9) {
                 bVar4 = TRUE;
             } else {
-                fopAcM_effSmokeSet1(&i_this->field_0x25b8, &i_this->field_0x25d8,
+                fopAcM_effSmokeSet1(&i_this->field_0x25ac[3], &i_this->field_0x25ac[11],
                     &local_f8, &i_this->shape_angle, i_this->scale.z * 2.0f, &i_this->tevStr, 0);
                 if (i_this->field_0x0c6a != 0) {
-                    i_this->field_0x25c8 = dComIfGp_particle_set(i_this->field_0x25c8,
+                    i_this->field_0x25ac[7] = dComIfGp_particle_set(i_this->field_0x25ac[7],
                         0x80e3, &local_f8, &i_this->shape_angle, 0);
                 }
             }
@@ -3123,7 +3106,7 @@ static void eff_set_h(b_gnd_class* i_this) {
         }
 
         if (bVar9) {
-            fopAcM_effSmokeSet1(&i_this->field_0x25dc, &i_this->field_0x25e0,
+            fopAcM_effSmokeSet1(&i_this->field_0x25ac[12], &i_this->field_0x25ac[13],
                 &local_f8, NULL, fVar1, &i_this->tevStr, 1);
         } else {
             bVar4 = TRUE;
@@ -3136,7 +3119,7 @@ static void eff_set_h(b_gnd_class* i_this) {
         local_f8.y = dComIfG_Bgsp().GroundCross(&dStack_8c);
 
         for (int i = 0; i < 3; i++) {
-            i_this->field_0x25e4[i] = dComIfGp_particle_set(i_this->field_0x25e4[i],
+            i_this->field_0x25ac[i] = dComIfGp_particle_set(i_this->field_0x25ac[i],
                 w_eff_name[i], &local_f8, &i_this->tevStr,
                 &csXyz(0, 0, 0), &cXyz(2.0f, 2.0f, 2.0f), -1, 0,
                  -1, 0, 0, 0);
@@ -3165,13 +3148,13 @@ static void eff_set(b_gnd_class* i_this) {
     // NONMATCHING
     if (i_this->field_0x2698 == 2) {
         if ((i_this->field_0x0afc & 1) != 0) {
-            fopAcM_effSmokeSet2(&i_this->field_0x25ac, &i_this->field_0x25b0,
+            fopAcM_effSmokeSet2(&i_this->field_0x25ac[0], &i_this->field_0x25ac[1],
                 &i_this->field_0x26a8[(i_this->field_0x0afc & 2) >> 1], &i_this->shape_angle,
                 2.0f, &i_this->tevStr);
         }
     } else if (i_this->field_0x2698 == 1) {
         for (int i = 0; i < 2; i++) {
-            fopAcM_effSmokeSet2((&i_this->field_0x25e4[i] + -56), (&i_this->field_0x25e4[i] + -12),
+            fopAcM_effSmokeSet2((&i_this->field_0x25ac[i]), (&i_this->field_0x25ac[i + 2]),
             &i_this->field_0x26a8[i], &i_this->shape_angle, 2.5f, &i_this->tevStr);
         }
     }
@@ -3179,7 +3162,7 @@ static void eff_set(b_gnd_class* i_this) {
 }
 
 /* 805FA3E4-805FA430 005A84 004C+00 2/2 0/0 0/0 .text            s_fkdel_sub__FPvPv */
-static void* s_fkdel_sub(void* param_1, void* param_2) { // Unused second parameter necessary for matching
+static void* s_fkdel_sub(void* param_1, void* param_2) {
     if (fopAc_IsActor(param_1) && fopAcM_GetName(param_1) == 486) {
         fopAcM_delete((fopAc_ac_c*)param_1);
     }
@@ -3187,7 +3170,7 @@ static void* s_fkdel_sub(void* param_1, void* param_2) { // Unused second parame
 }
 
 /* 805FA430-805FA47C 005AD0 004C+00 1/1 0/0 0/0 .text            s_objgbdel_sub__FPvPv */
-static void* s_objgbdel_sub(void* param_1, void* param_2) { // Unused second parameter necessary for matching
+static void* s_objgbdel_sub(void* param_1, void* param_2) {
     if (fopAc_IsActor(param_1) && fopAcM_GetName(param_1) == 45) {
         fopAcM_delete((fopAc_ac_c*)param_1);
     }
@@ -5743,7 +5726,7 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
                 }
 
                 for (int i = 0; i < 5; i++) {
-                    i_this->field_0x25e4[i * 4 + 12] = dComIfGp_particle_set(i_this->field_0x25e4[i * 4 + 12],
+                    i_this->field_0x25ac[i * 4 + 12] = dComIfGp_particle_set(i_this->field_0x25ac[i * 4 + 12],
                         *(s16*)(int)b_id[i + 2], &i_this->field_0x1e20, NULL, NULL);
                 }
             }
@@ -5760,8 +5743,8 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
                     // ::mtx::PSVECAdd((Vec *)pcVar18,(Vec *)((int)&i_this->field272_0x1ed4[0].x + iVar23), (Vec *)pcVar18); - ???
 
                     for (int j = 0; j < 6; j++) {
-                        i_this->field_0x25e4[j * 4 + 0x2608 + i * 24 - 0x25e4] = 
-                            dComIfGp_particle_set(((int)i_this->field_0x25e4[j * 4 + 0x2608 + i * 24 - 0x25e4]),
+                        i_this->field_0x25ac[j * 4 + 0x2608 + i * 24 - 0x25e4] = 
+                            dComIfGp_particle_set(((int)i_this->field_0x25ac[j * 4 + 0x2608 + i * 24 - 0x25e4]),
                             b_id[j * 2], pcVar18, NULL, &local_14c);
                     }
 
@@ -5784,11 +5767,11 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
                     i_this->field_0x1e56[uVar7] = 0;
                     JPABaseEmitter* emitter;
                     for (int j = 0; j < 6; j++) {
-                        emitter = dComIfGp_particle_getEmitter(i_this->field_0x25e4[j * 4 + 0x2608 + (i * 24) - 0x25e4]);
+                        emitter = dComIfGp_particle_getEmitter(i_this->field_0x25ac[j * 4 + 0x2608 + (i * 24) - 0x25e4]);
 
                         if (emitter) {
                             emitter->deleteAllParticle();
-                            dComIfGp_particle_levelEmitterOnEventMove(i_this->field_0x25e4[j * 4 + 0x2608 + (i * 24) - 0x25e4]);
+                            dComIfGp_particle_levelEmitterOnEventMove(i_this->field_0x25ac[j * 4 + 0x2608 + (i * 24) - 0x25e4]);
                         }
                     }
                 }
@@ -6298,15 +6281,15 @@ b_gnd_class::b_gnd_class() {
 //     // NONMATCHING
 // }
 
-/* 80601D40-80601DA0 00D3E0 0060+00 1/1 0/0 0/0 .text            __dt__8g_himo_sFv */
-g_himo_s::~g_himo_s() {
-    // NONMATCHING
-}
+// /* 80601D40-80601DA0 00D3E0 0060+00 1/1 0/0 0/0 .text            __dt__8g_himo_sFv */
+// g_himo_s::~g_himo_s() {
+//     // NONMATCHING
+// }
 
-/* 80601DA0-80601DE8 00D440 0048+00 1/1 0/0 0/0 .text            __ct__8g_himo_sFv */
-g_himo_s::g_himo_s() {
-    // NONMATCHING
-}
+// /* 80601DA0-80601DE8 00D440 0048+00 1/1 0/0 0/0 .text            __ct__8g_himo_sFv */
+// g_himo_s::g_himo_s() {
+//     // NONMATCHING
+// }
 
 // /* 80601DE8-80601DEC 00D488 0004+00 3/3 0/0 0/0 .text            __ct__4cXyzFv */
 // // cXyz::cXyz() {
