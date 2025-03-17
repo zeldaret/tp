@@ -4,6 +4,8 @@
 */
 
 #include "d/actor/d_a_mant.h"
+#include "SSystem/SComponent/c_lib.h"
+#include "SSystem/SComponent/c_math.h"
 #include "dol2asm.h"
 
 //
@@ -77,7 +79,7 @@ extern "C" void _restgpr_29();
 extern "C" extern void* __vt__9J3DPacket[5];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
+// extern "C" extern void* calc_mtx[1 + 1 /* padding */];
 extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 
 //
@@ -723,13 +725,50 @@ COMPILER_STRIP_GATE(0x80862CE0, &lit_4248);
 #pragma pop
 
 /* 80861F9C-80862424 000D7C 0488+00 1/1 0/0 0/0 .text            mant_v_calc__FP10mant_class */
-static void mant_v_calc(mant_class* param_0) {
+static void mant_v_calc(mant_class* i_this) {
     // NONMATCHING
+    mant_j_s* pmVar11;
+    csXyz local_134 = csXyz(0, 0, 0);
+    cXyz local_114 = i_this->field_0x3928[0] - i_this->field_0x3928[1];
+    cXyz local_fc = local_114;
+
+    local_134.y = cM_atan2s(local_114.x, local_114.z) + 0x4000;
+    pmVar11 = i_this->field_0x25a8;
+
+    cXyz cStack_120 = i_this->current.pos - i_this->field_0x3940;
+    cXyz local_108 = cStack_120 * 0.9f;
+
+    if (local_108.abs()) {
+
+    } else {
+
+    }
+
+    if (i_this->field_0x3965 == 0) {
+
+    }
+
+    for (int i = 0; i < 13; i++) {
+        i_this->field_0x25a8[i].field_0x0[i].x = i_this->field_0x3928[i].x + (local_114.x / 12.0f);
+        i_this->field_0x25a8[i].field_0x0[i].y = i_this->field_0x3928[i].y + (local_114.y / 12.0f);
+        i_this->field_0x25a8[i].field_0x0[i].z = i_this->field_0x3928[i].z + (local_114.z / 12.0f);
+
+        cMtx_YrotS(*calc_mtx, local_134.y);
+    }
 }
 
 /* 80862424-808624E8 001204 00C4+00 1/1 0/0 0/0 .text            mant_move__FP10mant_class */
-static void mant_move(mant_class* param_0) {
+static void mant_move(mant_class* i_this) {
     // NONMATCHING
+    cXyz* mantPacket = &i_this->field_0x0570.mPos[0];
+    mant_v_calc(i_this);
+    for (int i = 0; i < 13; i++) {
+        for (int j = 0; j < 13; j++) {
+            mantPacket[i + j * 13] = i_this->field_0x25a8[i].field_0x0[12 - j];
+        }
+    }
+
+    DCStoreRangeNoSync(&i_this->field_0x0570.mPos[0], 0x7ec);
 }
 
 /* ############################################################################################## */
@@ -825,8 +864,8 @@ static bool daMant_IsDelete(mant_class* i_this) {
 }
 
 /* 80862910-80862918 0016F0 0008+00 1/0 0/0 0/0 .text            daMant_Delete__FP10mant_class */
-static bool daMant_Delete(mant_class* i_this) {
-    return true;
+static int daMant_Delete(mant_class* i_this) {
+    return 1;
 }
 
 /* ############################################################################################## */

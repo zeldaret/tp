@@ -36,7 +36,7 @@ struct mant_j_s {
         /* 0x009C */ cXyz field_0x9c[13];
         /* 0x0138 */ u8 field_0x0138[0x180 - 0x138];
 };
- class mant_class : public fopAc_ac_c {
+class mant_class : public fopAc_ac_c {
 public:
     /* 0x0568 */ u8 field_0x568[0x570 - 0x568];
     /* 0x0570 */ daMant_packet_c field_0x0570;
