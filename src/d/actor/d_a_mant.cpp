@@ -159,6 +159,77 @@ static u8 data_8086BF70[4];
 /* 80861298-808616B8 000078 0420+00 1/0 0/0 0/0 .text            draw__15daMant_packet_cFv */
 void daMant_packet_c::draw() {
     // NONMATCHING
+    j3dSys.reinitGX();
+    GXSetNumIndStages(0);
+    dKy_setLight_again();
+    // dKy_GxFog_tevstr_set(&tevStr);
+    GXClearVtxDesc();
+
+    GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
+    GXSetVtxDesc(GX_VA_NRM,GX_INDEX8);
+    GXSetVtxDesc(GX_VA_TEX0,GX_INDEX8);
+
+    GXSetVtxAttrFmt(GX_VTXFMT0,GX_VA_POS,GX_CLR_RGBA,GX_F32,0);
+    GXSetVtxAttrFmt(GX_VTXFMT0,GX_VA_NRM,GX_CLR_RGB,GX_F32,0);
+    GXSetVtxAttrFmt(GX_VTXFMT0,GX_VA_TEX0,GX_CLR_RGBA,GX_F32,0);
+
+
+
+    GXSetZCompLoc(0);
+    GXSetZMode(GX_ENABLE,GX_LEQUAL,GX_ENABLE);
+    GXSetNumChans(1);
+    GXSetChanCtrl(GX_COLOR0,GX_ENABLE,GX_SRC_REG,GX_SRC_REG,0xff,GX_DF_CLAMP,GX_AF_SPOT);
+    GXSetNumTexGens(1);
+    GXSetTexCoordGen2(GX_TEXCOORD0,GX_TG_MTX2x4,GX_TG_TEX0,0x3c,0,0x7d);
+    GXSetNumTevStages(1);
+    GXSetTevSwapMode(GX_TEVSTAGE0,GX_TEV_SWAP0,GX_TEV_SWAP0);
+
+    // dKy_Global_amb_set(&tevStr);
+
+    GXSetTevOrder(GX_TEVSTAGE0,GX_TEXCOORD0,GX_TEXMAP0,GX_COLOR0A0);
+
+
+
+    GXSetTevKColorSel(GX_TEVSTAGE0,GX_TEV_KCSEL_K0);
+    GXSetTevColorIn(GX_TEVSTAGE0,GX_CC_KONST,GX_CC_TEXC,GX_CC_RASC,GX_CC_C0);
+    GXSetTevColorOp(GX_TEVSTAGE0,GX_TEV_ADD,GX_TB_ZERO,GX_CS_SCALE_4,GX_TRUE,GX_TEVPREV);
+    GXSetTevAlphaIn(GX_TEVSTAGE0,GX_CA_ZERO,GX_CA_KONST,GX_CA_TEXA,GX_CA_ZERO);
+    GXSetTevAlphaOp(GX_TEVSTAGE0,GX_TEV_ADD,GX_TB_ZERO,GX_CS_SCALE_1,GX_TRUE,GX_TEVPREV);
+    GXSetTevKAlphaSel(GX_TEVSTAGE0,GX_TEV_KASEL_K3_A);
+    GXSetAlphaCompare(GX_GREATER,0,GX_AOP_OR,GX_GREATER,0);
+
+    GXTlutObj GStack_80;
+    void* lut;
+    GXInitTlutObj(&GStack_80,lut,GX_TL_RGB5A3,0x100);
+
+    GXTexObj GStack_74;
+    void* image;
+    GXInitTexObjCI(&GStack_74,image,0x80,0x80,GX_TF_C8,GX_CLAMP,GX_CLAMP,0,0);
+    GXInitTexObjLOD(&GStack_74,GX_LINEAR,GX_LINEAR,0.0,0.0,0.0,0,0,GX_ANISO_1);
+
+    GXLoadTlut(&GStack_80,0);
+    GXLoadTexObj(&GStack_74,GX_TEXMAP0);
+
+    GXSetCullMode(GX_CULL_BACK);
+
+    
+
+    Mtx MStack_54;
+    GXLoadNrmMtxImm(MStack_54,GX_PNMTX0);
+
+    GXInitTexObjCI(&GStack_74,l_Egnd_mantTEX_U,0x80,0x80,GX_TF_C8,GX_CLAMP,GX_CLAMP,0,0);
+    GXInitTexObjLOD(&GStack_74,GX_LINEAR,GX_LINEAR,0.0,0.0,0.0,0,0,GX_ANISO_1);
+    GXLoadTexObj(&GStack_74,GX_TEXMAP0);
+
+
+
+    GXSetCullMode(GX_CULL_FRONT);
+
+
+
+    GXLoadNrmMtxImm(MStack_54,GX_PNMTX0);
+
+    // data_8086BF70;
 }
 
 /* 808616B8-8086176C 000498 00B4+00 1/0 0/0 0/0 .text            daMant_Draw__FP10mant_class */
@@ -743,17 +814,18 @@ COMPILER_STRIP_GATE(0x80862D0C, &lit_4482);
 static u8 mant_cut_type[4];
 
 /* 808624E8-80862908 0012C8 0420+00 2/1 0/0 0/0 .text            daMant_Execute__FP10mant_class */
-static void daMant_Execute(mant_class* param_0) {
+static int daMant_Execute(mant_class* i_this) {
     // NONMATCHING
+    return 0;
 }
 
 /* 80862908-80862910 0016E8 0008+00 1/0 0/0 0/0 .text            daMant_IsDelete__FP10mant_class */
-static bool daMant_IsDelete(mant_class* param_0) {
+static bool daMant_IsDelete(mant_class* i_this) {
     return true;
 }
 
 /* 80862910-80862918 0016F0 0008+00 1/0 0/0 0/0 .text            daMant_Delete__FP10mant_class */
-static bool daMant_Delete(mant_class* param_0) {
+static bool daMant_Delete(mant_class* i_this) {
     return true;
 }
 
@@ -822,9 +894,32 @@ SECTION_DATA extern void* __vt__15daMant_packet_c[5] = {
     (void*)__dt__15daMant_packet_cFv,
 };
 
+static u8 lbl_277_bss_0;
+
 /* 80862918-80862AC0 0016F8 01A8+00 1/0 0/0 0/0 .text            daMant_Create__FP10fopAc_ac_c */
-static void daMant_Create(fopAc_ac_c* param_0) {
+static int daMant_Create(fopAc_ac_c* i_this) {
     // NONMATCHING
+    mant_class* m_this = (mant_class*)i_this;
+    
+    fopAcM_SetupActor(m_this, mant_class);
+    m_this->field_0x259c = fopAcM_GetParam(i_this);
+
+    fopAcM_SetMin(i_this, -2000.0f, -2000.0f, -2000.0f);
+    fopAcM_SetMax(i_this, 2000.0f, 2000.0f, 2000.0f);
+
+    m_this->field_0x0570.mArg0 = m_this->field_0x259c;
+    m_this->field_0x394c = 30.0f;
+    m_this->field_0x3950 = 0.7f;
+    m_this->field_0x3958 = -10.0f;
+    m_this->scale.set(1.0f, 1.0f, 1.0f);
+
+    for (int i = 0; i < 0x4000; i++) {
+        l_Egnd_mantTEX_U[i] = 6;
+    }
+
+    lbl_277_bss_0 = 0;
+    daMant_Execute(m_this);
+    return 4;
 }
 
 /* 80862AC0-80862B3C 0018A0 007C+00 1/1 0/0 0/0 .text            __dt__8mant_j_sFv */
