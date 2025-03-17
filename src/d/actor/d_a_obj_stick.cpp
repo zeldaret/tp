@@ -4,6 +4,7 @@
 */
 
 #include "d/actor/d_a_obj_stick.h"
+#include "d/d_com_inf_game.h"
 #include "dol2asm.h"
 
 
@@ -89,20 +90,12 @@ extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" void __register_global_object();
 
 //
 // Declarations:
 //
-
-/* ############################################################################################## */
-/* 80599E68-80599E68 00002C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80599E68 = "Taro6";
-#pragma pop
 
 /* 80599E70-80599EB0 000000 0040+00 2/2 0/0 0/0 .data            mCcDSph__13daObj_Stick_c */
 SECTION_DATA u8 daObj_Stick_c::mCcDSph[64] = {
@@ -113,7 +106,7 @@ SECTION_DATA u8 daObj_Stick_c::mCcDSph[64] = {
 };
 
 /* 80599EB0-80599EB4 -00001 0004+00 1/1 0/0 0/0 .data            l_resName */
-SECTION_DATA static void* l_resName = (void*)&d_a_obj_stick__stringBase0;
+static char* l_resName = "Taro6\0\0";
 
 /* 80599EB4-80599ED4 -00001 0020+00 1/0 0/0 0/0 .data            daObj_Stick_MethodTable */
 static actor_method_class daObj_Stick_MethodTable = {
@@ -243,7 +236,7 @@ COMPILER_STRIP_GATE(0x80599E5C, &lit_3922);
 
 /* 805993E8-805996BC 0002A8 02D4+00 1/1 0/0 0/0 .text            create__13daObj_Stick_cFv */
 void daObj_Stick_c::create() {
-    // NONMATCHING
+
 }
 
 /* 805996BC-80599704 00057C 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGSphFv */
@@ -282,8 +275,8 @@ void daObj_Stick_c::CreateHeap() {
 }
 
 /* 80599900-80599934 0007C0 0034+00 1/1 0/0 0/0 .text            Delete__13daObj_Stick_cFv */
-void daObj_Stick_c::Delete() {
-    // NONMATCHING
+int daObj_Stick_c::Delete() {
+    this->~daObj_Stick_c();
 }
 
 /* 80599934-80599A78 0007F4 0144+00 2/2 0/0 0/0 .text            Execute__13daObj_Stick_cFv */
@@ -307,60 +300,90 @@ COMPILER_STRIP_GATE(0x80599E64, &lit_4046);
 #pragma pop
 
 /* 80599A78-80599B3C 000938 00C4+00 1/1 0/0 0/0 .text            Draw__13daObj_Stick_cFv */
-void daObj_Stick_c::Draw() {
-    // NONMATCHING
+int daObj_Stick_c::Draw() {
+    g_env_light.settingTevStruct(0, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
+    mDoExt_modelUpdateDL(mpModel);
+
+    if(mGndHeight != -1e+09) {
+        mShadowKey = dComIfGd_setShadow(mShadowKey, 
+            1, 
+            mpModel, 
+            &current.pos, 
+            100.0f, 
+            20.0f, 
+            current.pos.y,
+            mGndHeight, 
+            mGndChk, 
+            &tevStr, 
+            0, 
+            1.0f, 
+            dDlst_shadowControl_c::getSimpleTex());
+    }
+
+    return 1;
 }
 
 /* 80599B3C-80599B5C 0009FC 0020+00 1/1 0/0 0/0 .text
  * createHeapCallBack__13daObj_Stick_cFP10fopAc_ac_c            */
 void daObj_Stick_c::createHeapCallBack(fopAc_ac_c* param_0) {
-    // NONMATCHING
+    CreateHeap();
 }
 
 /* 80599B5C-80599B6C 000A1C 0010+00 3/3 0/0 0/0 .text            getResName__13daObj_Stick_cFv */
-void daObj_Stick_c::getResName() {
-    // NONMATCHING
+const char* daObj_Stick_c::getResName() {
+    return l_resName;
 }
 
 /* 80599B6C-80599B8C 000A2C 0020+00 1/1 0/0 0/0 .text            isDelete__13daObj_Stick_cFv */
-void daObj_Stick_c::isDelete() {
-    // NONMATCHING
+bool daObj_Stick_c::isDelete() {
+    switch(mDeleteFlag) {
+        case false:
+            return false;
+        default:
+            return false;
+    }
 }
 
 /* 80599B8C-80599BE8 000A4C 005C+00 2/2 0/0 0/0 .text            setEnvTevColor__13daObj_Stick_cFv
  */
 void daObj_Stick_c::setEnvTevColor() {
-    // NONMATCHING
+    tevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(mGndChk);
+    tevStr.room_no = dComIfG_Bgsp().GetRoomId(mGndChk);
 }
 
 /* 80599BE8-80599C28 000AA8 0040+00 2/2 0/0 0/0 .text            setRoomNo__13daObj_Stick_cFv */
 void daObj_Stick_c::setRoomNo() {
-    // NONMATCHING
+    u32 roomId = dComIfG_Bgsp().GetRoomId(mGndChk);
+    fopAcM_SetRoomNo(this, roomId);
 }
 
 /* 80599C28-80599C8C 000AE8 0064+00 1/1 0/0 0/0 .text            setMtx__13daObj_Stick_cFv */
 void daObj_Stick_c::setMtx() {
-    // NONMATCHING
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::ZXYrotM(shape_angle);
+    mDoMtx_stack_c::scaleM(scale);
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80599C8C-80599CAC 000B4C 0020+00 1/0 0/0 0/0 .text            daObj_Stick_Create__FPv */
 static void daObj_Stick_Create(void* param_0) {
-    // NONMATCHING
+    return static_cast<daObj_Stick_c*>(param_0)->create();
 }
 
 /* 80599CAC-80599CCC 000B6C 0020+00 1/0 0/0 0/0 .text            daObj_Stick_Delete__FPv */
 static void daObj_Stick_Delete(void* param_0) {
-    // NONMATCHING
+    static_cast<daObj_Stick_c*>(param_0)->Delete();
 }
 
 /* 80599CCC-80599CEC 000B8C 0020+00 1/0 0/0 0/0 .text            daObj_Stick_Execute__FPv */
 static void daObj_Stick_Execute(void* param_0) {
-    // NONMATCHING
+    static_cast<daObj_Stick_c*>(param_0)->Execute();
 }
 
 /* 80599CEC-80599D0C 000BAC 0020+00 1/0 0/0 0/0 .text            daObj_Stick_Draw__FPv */
 static void daObj_Stick_Draw(void* param_0) {
-    // NONMATCHING
+    static_cast<daObj_Stick_c*>(param_0)->Draw();
 }
 
 /* 80599D0C-80599D14 000BCC 0008+00 1/0 0/0 0/0 .text            daObj_Stick_IsDelete__FPv */
