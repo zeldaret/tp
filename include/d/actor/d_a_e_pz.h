@@ -25,7 +25,7 @@ public:
         ACTION_DEAD_e,
     };
 
-    void onBombArrowHit() { field_0x845 = 1; }
+    void onBombArrowHit() { mBombArrowHit = true; }
 
     /* 807585BC */ int draw();
     /* 80758800 */ void setBck(int, u8, f32, f32);
@@ -101,7 +101,7 @@ public:
     /* 0x842 */ u8 field_0x842;
     /* 0x843 */ u8 field_0x843;
     /* 0x844 */ u8 field_0x844;
-    /* 0x845 */ u8 field_0x845;
+    /* 0x845 */ u8 mBombArrowHit;
     /* 0x846 */ u8 field_0x846;
     /* 0x847 */ u8 field_0x847;
     /* 0x848 */ u8 field_0x848;

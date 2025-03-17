@@ -287,7 +287,7 @@ void daE_PZ_c::mSetFirePos() {
 /* 80758E04-8075923C 000984 0438+00 1/1 0/0 0/0 .text            damage_check__8daE_PZ_cFv */
 void daE_PZ_c::damage_check() {
     if (field_0x7d1 != 0 || mAnm == 0x13 || mPzScale.y != l_HIO.body_model_size || health <= 1) {
-        field_0x845 = 0;
+        mBombArrowHit = false;
         return;
     }
 
@@ -299,12 +299,12 @@ void daE_PZ_c::damage_check() {
     scale.set(l_HIO.body_model_size, l_HIO.body_model_size, l_HIO.body_model_size);
     setMidnaBindEffect(this, &field_0x5dc, &bind_eff_pos, &scale);
 
-    if (mWarpCylCollider.ChkTgHit() || field_0x845 != 0) {
+    if (mWarpCylCollider.ChkTgHit() || mBombArrowHit) {
         mWarpCylCollider.ClrTgHit();
         field_0x7d1 = 10;
         field_0x7d3 = 0;
         setBck(0x13, 0, 0.0f, l_HIO.weapon_hit_warp_speed);
-        field_0x845 = 0;
+        mBombArrowHit = false;
         mColliderStts.Move();
         setActionMode(ACTION_WAIT_e, 11);
         return;
