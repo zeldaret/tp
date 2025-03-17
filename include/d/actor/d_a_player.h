@@ -1039,6 +1039,7 @@ public:
     void offPressedDamage() { offNoResetFlg2(FLG2_PRESSED_DAMAGE); }
     void onForceSubjectCancel() { onEndResetFlg0(ERFLG0_FORCE_SUBJECT_CANCEL); }
     void onEnemyDead() { onEndResetFlg0(ERFLG0_ENEMY_DEAD); }
+    void offDkCaught2() { offNoResetFlg0(FLG0_UNK_20000); }
 
     u32 checkBoarSingleBattle() const { return checkNoResetFlg2(daPy_FLG2(FLG2_UNK_1000000 | FLG2_BOAR_SINGLE_BATTLE)); }
     u32 checkWolfDashAutoJump() const { return checkNoResetFlg2(FLG2_WOLF_DASH_AUTO_JUMP); }
