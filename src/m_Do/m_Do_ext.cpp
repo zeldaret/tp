@@ -68,6 +68,11 @@ static void mDoExt_setJ3DData(Mtx mtx, const J3DTransformInfo* transformInfo, u1
     J3DSys::mParentS.z = transformInfo->mScale.z;
 }
 
+static BOOL isCurrentSolidHeap() {
+    /* Nonmatching */
+    return FALSE;
+}
+
 /* 8000D320-8000D428 007C60 0108+00 6/6 0/0 0/0 .text            initPlay__14mDoExt_baseAnmFsifss */
 int mDoExt_baseAnm::initPlay(s16 i_frameMax, int i_attribute, f32 i_rate, s16 i_startF,
                              s16 i_endF) {
@@ -2477,7 +2482,7 @@ void mDoExt_cylinderPacket::draw() {
     GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_A0);
     GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
 
-    if (field_0x28) {
+    if (mClipZ) {
         GXSetZMode(GX_ENABLE, GX_LEQUAL, GX_ENABLE);
     } else {
         GXSetZMode(GX_DISABLE, GX_LEQUAL, GX_DISABLE);

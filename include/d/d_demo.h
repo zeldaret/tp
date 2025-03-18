@@ -365,6 +365,7 @@ public:
     static void offStatus(u32 status) { m_status &= ~status; }
     static void setBranchData(const u8* p_data) { m_branchData = p_data; }
     static s16 getBranchId() { return m_branchId; }
+    static s16 getBranchNum() { return m_branchNum; }
     static jmessage_tControl* getMesgControl() { return m_mesgControl; }
 
     static dDemo_camera_c* getCamera() {
@@ -373,6 +374,7 @@ public:
     }
 
     static s16 m_branchId;
+    static s16 m_branchNum;
     static dDemo_system_c* m_system;
     static JStudio::TControl* m_control;
     static JStudio_JStage::TCreateObject* m_stage;

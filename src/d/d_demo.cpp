@@ -3,6 +3,7 @@
 #include "m_Do/m_Do_graphic.h"
 #include "d/actor/d_a_movie_player.h"
 #include "JSystem/JGadget/pointer.h"
+#include "JSystem/JGadget/define.h"
 
 namespace {
 /* 80037DE4-80037E44 032724 0060+00 1/0 0/0 0/0 .text
@@ -30,7 +31,6 @@ void jstudio_tAdaptor_message::adaptor_do_MESSAGE(JStudio::data::TEOperationData
         msg << "\n  demo-object : ";
         msg << id_string;
 #endif
-        break;
     }
 }
 
@@ -128,27 +128,27 @@ f32 dDemo_actor_c::getPrm_Morf() {
     dDemo_prm_data* prm = mPrm.mData;
 
     switch (mPrm.field_0x0) {
-    case 1:
+    case ID_UNK_1:
         if (field_0x54 < 4) {
             return 0.0f;
         }
         return prm->field_0x4;
-    case 2:
+    case ID_UNK_2:
         if (field_0x54 < 7) {
             return 0.0f;
         }
         return prm->field_0x7;
-    case 4:
+    case ID_UNK_4:
         if (field_0x54 < 6) {
             return 0.0f;
         }
         return prm->field_0x6;
-    case 5:
+    case ID_UNK_5:
         if (field_0x54 < 0xB) {
             return 0.0f;
         }
         return prm->field_0xb;
-    case 6:
+    case ID_UNK_6:
         if (field_0x54 < 0xF) {
             return 0.0f;
         }
@@ -349,10 +349,12 @@ static void branchFile(char const* resName) {
 /* 80450620-80450628 0000A0 0002+06 3/3 1/1 0/0 .sdata           m_branchId__7dDemo_c */
 s16 dDemo_c::m_branchId = -1;
 
+s16 dDemo_c::m_branchNum = 0;
+
 /* 800387EC-80038920 03312C 0134+00 1/0 0/0 0/0 .text            JSGSetData__13dDemo_actor_cFUlPCvUl
  */
 void dDemo_actor_c::JSGSetData(u32 id, void const* pdata, u32 param_2) {
-    if (id == 1) {
+    if (id == ID_UNK_1) {
         JStudio::stb::TParseData_fixed<50, TValueIterator_misaligned<u16> > data(pdata);
         if (!data.isEnd() && data.isValid()) {
             JGadget::binary::TValueIterator_misaligned<u16> value(data.begin());
@@ -360,7 +362,7 @@ void dDemo_actor_c::JSGSetData(u32 id, void const* pdata, u32 param_2) {
             dDemo_c::setBranchType(*value);
             OS_REPORT("JSGSetData: 分岐条件<%d>\n", *value);
         }
-    } else if (id == 2) {
+    } else if (id == ID_UNK_2) {
         JUT_ASSERT(728, dDemo_c::getBranchId() >= 0);
 
         JStudio::stb::TParseData_string string_data(pdata);
@@ -383,7 +385,7 @@ void dDemo_actor_c::JSGSetData(u32 id, void const* pdata, u32 param_2) {
         if (strcmp(str, "-") != 0) {
             branchFile(str);
         }
-    } else if (id == 3) {
+    } else if (id == ID_UNK_3) {
         JStudio::stb::TParseData_string data(pdata);
 
         u32 num = data.size();
@@ -414,7 +416,8 @@ void dDemo_actor_c::JSGSetTranslation(Vec const& i_trans) {
         onEnable(ENABLE_TRANS_e);
     } else {
         // "\n\n!!JSGSetTranslation outside of range. x[%f]y[%f]z[%f]\n"
-        JUT_ASSERT(789, "\n\n!!JSGSetTranslationで範囲外の指定がされました。x[%f]y[%f]z[%f]\n", i_trans.x, i_trans.y, i_trans.z);
+        OS_REPORT("\n\n!!JSGSetTranslationで範囲外の指定がされました。x[%f]y[%f]z[%f]\n", i_trans.x, i_trans.y, i_trans.z);
+        JUT_ASSERT(789, 0);
     }
 }
 
@@ -740,7 +743,7 @@ JStage::TObject* dDemo_object_c::appendActor(fopAc_ac_c* p_actor) {
     demoActor = new dDemo_actor_c();
     if (demoActor == NULL) {
         // "Failed to get Demo Actor!!\n"
-        OS_REPORT("デモアクター確保失敗！！\n")
+        OS_REPORT("デモアクター確保失敗！！\n");
         return NULL;
     }
 

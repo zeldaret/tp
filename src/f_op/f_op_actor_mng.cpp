@@ -270,7 +270,7 @@ BOOL fopAcM_createHeap(fopAc_ac_c* i_this, u32 size, u32 align) {
     if (i_this->heap == 0) {
         // "fopAcM_createHeap allocation failure\n"
         OSReport_Error("fopAcM_createHeap 確保失敗\n");
-        JUT_CONFIRM(i_this->heap != 0);
+        JUT_CONFIRM(0, i_this->heap != 0);
         return FALSE;
     }
 
@@ -1240,7 +1240,7 @@ fpc_ProcID fopAcM_createItemFromEnemyID(u8 i_enemyID, cXyz const* i_pos, int i_i
 
 /* 8001BF64-8001C078 0168A4 0114+00 1/1 0/0 11/11 .text
  * fopAcM_createItemFromTable__FPC4cXyziiiPC5csXyziPC4cXyzPfPfb */
-fpc_ProcID fopAcM_createItemFromTable(cXyz const* i_pos, int i_tableNo, int i_itemBitNo,
+fpc_ProcID fopAcM_createItemFromTable(cXyz const* i_pos, int i_itemNo, int i_itemBitNo,
                                       int i_roomNo, csXyz const* i_angle, int param_5,
                                       cXyz const* i_scale, f32* i_speedF, f32* i_speedY,
                                       bool i_createDirect) {
@@ -1250,20 +1250,20 @@ fpc_ProcID fopAcM_createItemFromTable(cXyz const* i_pos, int i_tableNo, int i_it
 
     ItemTableList* tableList = (ItemTableList*)dComIfGp_getItemTable();
 
-    if (i_tableNo == 0xFF) {
+    if (i_itemNo == 0xFF) {
         return fpcM_ERROR_PROCESS_ID_e;
     }
 
 #ifdef DEBUG
-    if (tableList->mTableNum - 1 < i_tableNo) {
+    if (tableList->mTableNum - 1 < i_itemNo) {
         // "Table Num<%d>, Specified Table<%d>, over table num!\n"
         OSReport_Error("テーブル数<%d>、指定テーブル番号<%d>で、テーブル数オーバーしています！\n",
-                       tableList->mTableNum, i_tableNo);
-        i_tableNo = 0;
+                       tableList->mTableNum, i_itemNo);
+        i_itemNo = 0;
     }
 #endif
 
-    int itemNo = fopAcM_getItemNoFromTableNo(i_tableNo);
+    int itemNo = fopAcM_getItemNoFromTableNo(i_itemNo);
     if (itemNo == fpcNm_ITEM_NONE) {
         return fpcM_ERROR_PROCESS_ID_e;
     }
