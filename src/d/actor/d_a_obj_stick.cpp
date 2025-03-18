@@ -39,8 +39,6 @@ extern "C" static bool daObj_Stick_IsDelete__FPv();
 extern "C" void __dt__10cCcD_GSttsFv();
 extern "C" void __sinit_d_a_obj_stick_cpp();
 extern "C" void __dt__19daObj_Stick_Param_cFv();
-extern "C" static void func_80599E18();
-extern "C" static void func_80599E20();
 extern "C" u8 const m__19daObj_Stick_Param_c[16];
 extern "C" u8 mCcDSph__13daObj_Stick_c[64];
 
@@ -51,26 +49,19 @@ extern "C" u8 mCcDSph__13daObj_Stick_c[64];
 
 /* 80599E3C-80599E4C 000000 0010+00 3/3 0/0 0/0 .rodata          m__19daObj_Stick_Param_c */
 const f32 daObj_Stick_Param_c::m[4] = {
-    0x00000000, 0xC0400000, 0x3F800000, 0x42C80000
+    0x00000000, 0x00000000, 0x3F800000, 0x42C80000
 };
 
 /* 80599E70-80599EB0 000000 0040+00 2/2 0/0 0/0 .data            mCcDSph__13daObj_Stick_c */
-u8 daObj_Stick_c::mCcDSph[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-static dCcD_SrcSph cc_sph_src = {
+dCcD_SrcSph daObj_Stick_c::mCcDSph = {
     {
-        {0x0, {{0x0, 0x0, 0x0}, {0x8, 0x11}, 0x0}},  // mObj
-        {dCcD_SE_METAL, 0x0, 0x0, 0x0, 0x0},         // mGObjAt
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2},          // mGObjTg
+        {0x0, {{0x0, 0x0, 0x0}, {0x0, 0x0}, 0x0}},  // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},         // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},          // mGObjTg
         {0x0},                                       // mGObjCo
     },                                               // mObjInf
     {
-        {{0.0f, 0.0f, 0.0f}, 40.0f}  // mSph
+        {{0.0f, 0.0f, 0.0f}, 0.0f}  // mSph
     }  // mSphAttr
 };
 
@@ -104,23 +95,9 @@ extern actor_process_profile_definition g_profile_OBJ_STICK = {
   fopAc_CULLBOX_CUSTOM_e,   // cullType
 };
 
-/* 80599F04-80599F28 000094 0024+00 3/3 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
-extern void* __vt__12dBgS_ObjAcch[9] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_ObjAcchFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80599E20,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80599E18,
-};
-
 /* 8059922C-805993E8 0000EC 01BC+00 1/0 0/0 0/0 .text            __dt__13daObj_Stick_cFv */
 daObj_Stick_c::~daObj_Stick_c() {
     dComIfG_resDelete(&mPhase, getResName());
-
 }
 
 /* 805993E8-805996BC 0002A8 02D4+00 1/1 0/0 0/0 .text            create__13daObj_Stick_cFv */
@@ -135,8 +112,6 @@ int daObj_Stick_c::create() {
                 J3DModelData* modelData = mpModel->getModelData();
                 fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
                 fopAcM_setCullSizeBox(this, -50.0, -50.0, -75.0, 50.0, 50.0, 75.0);
-                //vtable shenanigans
-                //entry HIO stuff
                 mAcch.Set(fopAcM_GetPosition_p(this), 
                     fopAcM_GetOldPosition_p(this), 
                     this, 
@@ -146,7 +121,7 @@ int daObj_Stick_c::create() {
                     fopAcM_GetAngle_p(this), 
                     fopAcM_GetShapeAngle_p(this));
                 mStts.Init(0xFF, 0, this);
-                mSph.Set(cc_sph_src);
+                mSph.Set(daObj_Stick_c::mCcDSph);
                 mSph.SetStts(&mStts);
                 mAcch.CrrPos(g_dComIfG_gameInfo.play.mBgs);
                 mGndChk = mAcch.m_gnd;
@@ -158,10 +133,12 @@ int daObj_Stick_c::create() {
                 }
                 Execute();
             }
-
-            return phase_state;
         }
+
+        return phase_state;
     }
+
+    return phase_state;
 }
 
 /* 80599888-80599900 000748 0078+00 1/1 0/0 0/0 .text            CreateHeap__13daObj_Stick_cFv */

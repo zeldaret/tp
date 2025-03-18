@@ -30,12 +30,12 @@ public:
 
     int getType() { return 0; }
 
-    static u8 mCcDSph[64];
+    static dCcD_SrcSph mCcDSph;
 
 private:
     /* 56c */ request_of_phase_process_class mPhase;
     /* 574 */ J3DModel* mpModel;
-    /* 578 */ dBgS_Acch mAcch;
+    /* 578 */ dBgS_ObjAcch mAcch;
     /* 750 */ dCcD_Stts mStts;
     /* 78c */ dBgS_AcchCir mAcchCir;
     /* 7cc */ cBgS_GndChk mGndChk;
