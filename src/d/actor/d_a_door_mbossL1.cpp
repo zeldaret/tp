@@ -338,7 +338,7 @@ J3DModelData* daMBdoorL1_c::getDoorModelData() {
 int daMBdoorL1_c::CreateHeap() {
     int level = getNowLevel(this);
     J3DModelData* modelData = getDoorModelData();
-    JUT_ASSERT(579. modelData != 0);
+    JUT_ASSERT(0, 579. modelData != 0);
     if (getDoorType() == DOOR_TYPE_2) {
         for (int i = 0; i < 2; i++) {
             mModels[i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);

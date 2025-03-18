@@ -115,7 +115,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     obj_lv3WaterB_class* a_this = static_cast<obj_lv3WaterB_class*>(i_this);
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("L3_bwater", 5);
-    JUT_ASSERT(modelData != 0);
+    JUT_ASSERT(0, modelData != 0);
 
     a_this->mpBWaterModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
     if (a_this->mpBWaterModel == NULL) {
@@ -145,7 +145,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes("S_octhibi", 4);
-    JUT_ASSERT(modelData != 0);
+    JUT_ASSERT(0, modelData != 0);
 
     a_this->mpOctHibiModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (a_this->mpOctHibiModel == NULL) {

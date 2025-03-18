@@ -924,32 +924,32 @@ int dDemo_system_c::JSGFindObject(JStage::TObject** p_TObj, char const* actorNam
 /* 80039678-80039910 033FB8 0298+00 0/0 1/1 0/0 .text            create__7dDemo_cFv */
 void dDemo_c::create() {
     m_system = new dDemo_system_c();
-    JUT_ASSERT(m_system != 0);
+    JUT_ASSERT(0, m_system != 0);
 
     m_control = new JStudio::TControl();
-    JUT_ASSERT(m_control != 0);
+    JUT_ASSERT(0, m_control != 0);
 
     m_mesgControl = new jmessage_tControl();
-    JUT_ASSERT(m_mesgControl != 0);
+    JUT_ASSERT(0, m_mesgControl != 0);
 
     m_stage = new JStudio_JStage::TCreateObject(m_system);
-    JUT_ASSERT(m_stage != 0);
+    JUT_ASSERT(0, m_stage != 0);
 
     m_audio = new JStudio_JAudio2::TCreateObject(Z2GetSoundStarter(), m_system);
-    JUT_ASSERT(m_audio != 0);
+    JUT_ASSERT(0, m_audio != 0);
     m_audio->mPermit_onExit_notEnd = true;
 
     m_particle = new dDemo_particle_c(dPa_control_c::getEmitterManager(), m_system);
-    JUT_ASSERT(m_particle != 0);
+    JUT_ASSERT(0, m_particle != 0);
 
     m_message = new jstudio_tCreateObject_message();
-    JUT_ASSERT(m_message != 0);
+    JUT_ASSERT(0, m_message != 0);
 
     m_factory = new JStudio::TFactory();
-    JUT_ASSERT(m_factory != 0);
+    JUT_ASSERT(0, m_factory != 0);
 
     m_object = new dDemo_object_c();
-    JUT_ASSERT(m_object != 0);
+    JUT_ASSERT(0, m_object != 0);
 
     m_control->setSecondPerFrame(1.0f / 30.0f);
     m_control->setFactory(m_factory);
@@ -1022,7 +1022,7 @@ jmessage_tControl::~jmessage_tControl() {}
 
 /* 80039B6C-80039CF8 0344AC 018C+00 1/1 1/1 0/0 .text            start__7dDemo_cFPCUcP4cXyzf */
 int dDemo_c::start(u8 const* p_data, cXyz* p_translation, f32 rotationY) {
-    JUT_ASSERT(m_system != 0);
+    JUT_ASSERT(0, m_system != 0);
 
     m_control->reset();
     JStudio::TParse parser(m_control);
@@ -1060,7 +1060,7 @@ int dDemo_c::start(u8 const* p_data, cXyz* p_translation, f32 rotationY) {
 
 /* 80039CF8-80039D4C 034638 0054+00 1/1 2/2 0/0 .text            end__7dDemo_cFv */
 void dDemo_c::end() {
-    JUT_ASSERT(m_system != 0);
+    JUT_ASSERT(0, m_system != 0);
 
     m_control->destroyObject_all();
     m_object->remove();
@@ -1070,19 +1070,19 @@ void dDemo_c::end() {
 
 /* 80039D4C-80039DA4 03468C 0058+00 1/1 0/0 0/0 .text            branch__7dDemo_cFv */
 void dDemo_c::branch() {
-    JUT_ASSERT(m_system != 0);
+    JUT_ASSERT(0, m_system != 0);
 
     m_control->destroyObject_all();
     const u8* branchData = m_branchData;
     m_branchData = NULL;
 
     int rt = start(branchData, m_translation, m_rotationY);
-    JUT_ASSERT(rt);
+    JUT_ASSERT(0, rt);
 }
 
 /* 80039DA4-80039EDC 0346E4 0138+00 0/0 1/1 0/0 .text            update__7dDemo_cFv */
 int dDemo_c::update() {
-    JUT_ASSERT(m_system != 0);
+    JUT_ASSERT(0, m_system != 0);
 
     if (m_data == NULL) {
         if (m_branchData == NULL) {

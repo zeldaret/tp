@@ -1587,12 +1587,12 @@ static int CallbackCreateHeap(fopAc_ac_c* i_this) {
 
     static const int obj_brg_bmd[] = {5, 6, 7};
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Obj_brg", obj_brg_bmd[sp30]);
-    JUT_ASSERT(modelData != 0);
+    JUT_ASSERT(0, modelData != 0);
 
     J3DModelData* modelData2;
     if (a_this->mType == 8) {
         modelData2 = (J3DModelData*)dComIfG_getObjectRes("Obj_brg", 8);
-        JUT_ASSERT(modelData2 != 0);
+        JUT_ASSERT(0, modelData2 != 0);
     }
     
     br_s* part = a_this->mBr;

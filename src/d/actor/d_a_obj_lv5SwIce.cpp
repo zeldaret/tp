@@ -42,7 +42,7 @@ void daLv5SwIce_c::setBaseMtx() {
 /* 80C6CAA8-80C6CB14 000248 006C+00 1/0 0/0 0/0 .text            CreateHeap__12daLv5SwIce_cFv */
 int daLv5SwIce_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("L5SwIce", 4);
-    JUT_ASSERT(modelData != 0);
+    JUT_ASSERT(0, modelData != 0);
 
     mpModel = mDoExt_J3DModel__create(modelData, 0, 0x11000084);
     if (mpModel == NULL) {
