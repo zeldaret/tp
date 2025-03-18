@@ -19,7 +19,7 @@ void daObjBurnBox_c::initBaseMtx() {
 /* 8046E6D4-8046E738 0000B4 0064+00 2/2 0/0 0/0 .text            setBaseMtx__14daObjBurnBox_cFv */
 void daObjBurnBox_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
-    mDoMtx_YrotM(mDoMtx_stack_c::now, shape_angle.y);
+    mDoMtx_stack_c::YrotM(shape_angle.y);
     mpBoxModel->setBaseTRMtx(mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
@@ -81,11 +81,9 @@ int daObjBurnBox_c::Create() {
         break;
     }
 
-    int index = 0;
-    while (index < 5) {
+    for (int index = 0; index < 5; index++) {
         mpEmitters[index] = dComIfGp_particle_set(particle_id[index], &particlePos, NULL, &particleScale, 0xff,
-                                                  NULL, -1, NULL, NULL, NULL);
-        index++;
+            NULL, -1, NULL, NULL, NULL);
     }
     return 1;
 }
@@ -101,11 +99,10 @@ const char* l_arcName[3] = {
 /* 8046E8BC-8046E93C 00029C 0080+00 1/0 0/0 0/0 .text            CreateHeap__14daObjBurnBox_cFv */
 int daObjBurnBox_c::CreateHeap() {
     u8 type = getType();
-    J3DModelData* boxModelData = (J3DModelData*) dComIfG_getObjectRes(l_arcName[type], l_bmd[type]);
-    if (boxModelData == NULL) {
-        JUT_PANIC(0x106, "modelData != 0");
-    }
-    mpBoxModel = mDoExt_J3DModel__create(boxModelData, J3DMdlFlag_Unk80000, 0x11000084);
+    J3DModelData* modelData = (J3DModelData*) dComIfG_getObjectRes(l_arcName[type], l_bmd[type]);
+    JUT_ASSERT(0x106, modelData != 0);
+
+    mpBoxModel = mDoExt_J3DModel__create(modelData, J3DMdlFlag_Unk80000, 0x11000084);
     if (mpBoxModel == NULL) {
         return 0;
     }
@@ -137,7 +134,7 @@ cPhs__Step daObjBurnBox_c::create1st() {
  */
 int daObjBurnBox_c::Execute(Mtx** mtx) {
     field_0x724++;
-    if (field_0x724 % 3 == 0 && (--field_0x728, field_0x728 == -0x14)) {
+    if (field_0x724 % 3 == 0 && (--field_0x728, field_0x728 == -20)) {
         fopAcM_delete(this);
     }
 
@@ -186,30 +183,27 @@ int daObjBurnBox_c::Delete() {
 
 /* 8046EC50-8046ED44 000630 00F4+00 1/0 0/0 0/0 .text daObjBurnBox_create1st__FP14daObjBurnBox_c
  */
-void daObjBurnBox_create1st(daObjBurnBox_c* i_this) {
+int daObjBurnBox_create1st(daObjBurnBox_c* i_this) {
     fopAcM_SetupActor(i_this, daObjBurnBox_c);
-    i_this->create1st();
+    return i_this->create1st();
 }
 
 /* 8046EDD4-8046EDF4 0007B4 0020+00 1/0 0/0 0/0 .text
  * daObjBurnBox_MoveBGDelete__FP14daObjBurnBox_c                */
-void daObjBurnBox_MoveBGDelete(daObjBurnBox_c* i_this) {
-    i_this->MoveBGDelete();
-    return;
+int daObjBurnBox_MoveBGDelete(daObjBurnBox_c* i_this) {
+    return i_this->MoveBGDelete();
 }
 
 /* 8046EDF4-8046EE14 0007D4 0020+00 1/0 0/0 0/0 .text
  * daObjBurnBox_MoveBGExecute__FP14daObjBurnBox_c               */
-void daObjBurnBox_MoveBGExecute(daObjBurnBox_c* i_this) {
-    i_this->MoveBGExecute();
-    return;
+int daObjBurnBox_MoveBGExecute(daObjBurnBox_c* i_this) {
+    return i_this->MoveBGExecute();
 }
 
 /* 8046EE14-8046EE40 0007F4 002C+00 1/0 0/0 0/0 .text daObjBurnBox_MoveBGDraw__FP14daObjBurnBox_c
  */
-void daObjBurnBox_MoveBGDraw(daObjBurnBox_c* i_this) {
-    i_this->MoveBGDraw();
-    return;
+int daObjBurnBox_MoveBGDraw(daObjBurnBox_c* i_this) {
+    return i_this->MoveBGDraw();
 }
 
 /* ############################################################################################## */
