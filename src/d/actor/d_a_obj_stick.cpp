@@ -8,44 +8,20 @@
 #include "dol2asm.h"
 #include "d/d_resorce.h"
 #include "m_Do/m_Do_ext.h"
+#include "d/actor/d_a_npc.h"
 
 
 //
 // Forward References:
 //
 
-extern "C" void __dt__13daObj_Stick_cFv();
-extern "C" void create__13daObj_Stick_cFv();
-extern "C" void __dt__8cM3dGSphFv();
-extern "C" void __dt__8cM3dGAabFv();
-extern "C" void __dt__12dBgS_AcchCirFv();
-extern "C" void __dt__10dCcD_GSttsFv();
-extern "C" void __dt__12dBgS_ObjAcchFv();
-extern "C" void CreateHeap__13daObj_Stick_cFv();
-extern "C" void Delete__13daObj_Stick_cFv();
-extern "C" void Execute__13daObj_Stick_cFv();
-extern "C" void Draw__13daObj_Stick_cFv();
-extern "C" void createHeapCallBack__13daObj_Stick_cFP10fopAc_ac_c();
-extern "C" void getResName__13daObj_Stick_cFv();
-extern "C" void isDelete__13daObj_Stick_cFv();
-extern "C" void setEnvTevColor__13daObj_Stick_cFv();
-extern "C" void setRoomNo__13daObj_Stick_cFv();
-extern "C" void setMtx__13daObj_Stick_cFv();
-extern "C" static void daObj_Stick_Create__FPv();
-extern "C" static void daObj_Stick_Delete__FPv();
-extern "C" static void daObj_Stick_Execute__FPv();
-extern "C" static void daObj_Stick_Draw__FPv();
-extern "C" static bool daObj_Stick_IsDelete__FPv();
-extern "C" void __dt__10cCcD_GSttsFv();
 extern "C" void __sinit_d_a_obj_stick_cpp();
-extern "C" void __dt__19daObj_Stick_Param_cFv();
-extern "C" u8 const m__19daObj_Stick_Param_c[16];
-extern "C" u8 mCcDSph__13daObj_Stick_c[64];
-
 
 //
 // Declarations:
 //
+
+
 
 /* 80599E3C-80599E4C 000000 0010+00 3/3 0/0 0/0 .rodata          m__19daObj_Stick_Param_c */
 const f32 daObj_Stick_Param_c::m[4] = {
@@ -54,12 +30,7 @@ const f32 daObj_Stick_Param_c::m[4] = {
 
 /* 80599E70-80599EB0 000000 0040+00 2/2 0/0 0/0 .data            mCcDSph__13daObj_Stick_c */
 dCcD_SrcSph daObj_Stick_c::mCcDSph = {
-    {
-        {0x0, {{0x0, 0x0, 0x0}, {0x0, 0x0}, 0x0}},  // mObj
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},         // mGObjAt
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},          // mGObjTg
-        {0x0},                                       // mGObjCo
-    },                                               // mObjInf
+    daNpcT_c::mCcDObjData,                                               // mObjInf
     {
         {{0.0f, 0.0f, 0.0f}, 0.0f}  // mSph
     }  // mSphAttr
@@ -67,33 +38,6 @@ dCcD_SrcSph daObj_Stick_c::mCcDSph = {
 
 /* 80599EB0-80599EB4 -00001 0004+00 1/1 0/0 0/0 .data            l_resName */
 static char* l_resName = "Taro6";
-
-/* 80599EB4-80599ED4 -00001 0020+00 1/0 0/0 0/0 .data            daObj_Stick_MethodTable */
-static actor_method_class daObj_Stick_MethodTable = {
-    (process_method_func)daObj_Stick_Create__FPv,
-    (process_method_func)daObj_Stick_Delete__FPv,
-    (process_method_func)daObj_Stick_Execute__FPv,
-    (process_method_func)daObj_Stick_IsDelete__FPv,
-    (process_method_func)daObj_Stick_Draw__FPv,
-};
-
-/* 80599ED4-80599F04 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OBJ_STICK */
-extern actor_process_profile_definition g_profile_OBJ_STICK = {
-  fpcLy_CURRENT_e,          // mLayerID
-  7,                        // mListID
-  fpcPi_CURRENT_e,          // mListPrio
-  PROC_OBJ_STICK,           // mProcName
-  &g_fpcLf_Method.base,    // sub_method
-  sizeof(daObj_Stick_c),    // mSize
-  0,                        // mSizeOther
-  0,                        // mParameters
-  &g_fopAc_Method.base,     // sub_method
-  85,                       // mPriority
-  &daObj_Stick_MethodTable, // sub_method
-  0x00044100,               // mStatus
-  fopAc_ACTOR_e,            // mActorType
-  fopAc_CULLBOX_CUSTOM_e,   // cullType
-};
 
 /* 8059922C-805993E8 0000EC 01BC+00 1/0 0/0 0/0 .text            __dt__13daObj_Stick_cFv */
 daObj_Stick_c::~daObj_Stick_c() {
@@ -107,46 +51,40 @@ u32 daObj_Stick_c::create() {
     mType = getType();
     
     int phase_state = dComIfG_resLoad(&mPhase, getResName());
-    switch (phase_state) {
-        case cPhs_COMPLEATE_e:
-            break;
-        default:
-            return phase_state;
-    }
-    switch (isDelete()) {
-        case 1:
+
+    if (phase_state == cPhs_COMPLEATE_e) {
+        if (isDelete()) {
             return cPhs_ERROR_e;
-        default:
-            break;
-    }
-    if (!fopAcM_entrySolidHeap(this, createHeapCallBack, 0x810)) {
-        return cPhs_ERROR_e;
-    }
+        }
+        if (!fopAcM_entrySolidHeap(this, createHeapCallBack, 0x810)) {
+            return cPhs_ERROR_e;
+        }
 
-    J3DModelData* modelData;
-    modelData = mpModel->getModelData();
-    fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
-    fopAcM_setCullSizeBox(this, -50.0, -50.0, -75.0, 50.0, 50.0, 75.0);
-    mAcch.Set(fopAcM_GetPosition_p(this), 
-        fopAcM_GetOldPosition_p(this), 
-        this, 
-        1,
-        &mAcchCir, 
-        fopAcM_GetSpeed_p(this), 
-        fopAcM_GetAngle_p(this), 
-        fopAcM_GetShapeAngle_p(this));
-    mStts.Init(0xFF, 0, this);
-    mSph.Set(daObj_Stick_c::mCcDSph);
-    mSph.SetStts(&mStts);
-    mAcch.CrrPos(g_dComIfG_gameInfo.play.mBgs);
-    mGndChk = mAcch.m_gnd;
-    mGroundHeight = mAcch.m_ground_h;
+        J3DModelData* modelData;
+        modelData = mpModel->getModelData();
+        fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
+        fopAcM_setCullSizeBox(this, -50.0, -50.0, -75.0, 50.0, 50.0, 75.0);
+        mAcch.Set(fopAcM_GetPosition_p(this), 
+            fopAcM_GetOldPosition_p(this), 
+            this, 
+            1,
+            &mAcchCir, 
+            fopAcM_GetSpeed_p(this), 
+            fopAcM_GetAngle_p(this), 
+            fopAcM_GetShapeAngle_p(this));
+        mStts.Init(0xFF, 0, this);
+        mSph.Set(daObj_Stick_c::mCcDSph);
+        mSph.SetStts(&mStts);
+        mAcch.CrrPos(g_dComIfG_gameInfo.play.mBgs);
+        mGndChk = mAcch.m_gnd;
+        mGroundHeight = mAcch.m_ground_h;
 
-    if(mGroundHeight != -1000000000.0f) {
-        setEnvTevColor();
-        setRoomNo();
+        if(mGroundHeight != -1000000000.0f) {
+            setEnvTevColor();
+            setRoomNo();
+        }
+        Execute();
     }
-    Execute();
 
     return phase_state;
 }
@@ -286,21 +224,35 @@ static bool daObj_Stick_IsDelete(void* param_0) {
     return true;
 }
 
-/* 80599F88-80599F94 000008 000C+00 1/1 0/0 0/0 .bss             @3805 */
-static u8 lit_3805[12];
+/* 80599EB4-80599ED4 -00001 0020+00 1/0 0/0 0/0 .data            daObj_Stick_MethodTable */
+static actor_method_class daObj_Stick_MethodTable = {
+    (process_method_func)daObj_Stick_Create,
+    (process_method_func)daObj_Stick_Delete,
+    (process_method_func)daObj_Stick_Execute,
+    (process_method_func)daObj_Stick_IsDelete,
+    (process_method_func)daObj_Stick_Draw,
+};
+
+/* 80599ED4-80599F04 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OBJ_STICK */
+extern actor_process_profile_definition g_profile_OBJ_STICK = {
+  fpcLy_CURRENT_e,          // mLayerID
+  7,                        // mListID
+  fpcPi_CURRENT_e,          // mListPrio
+  PROC_OBJ_STICK,           // mProcName
+  &g_fpcLf_Method.base,    // sub_method
+  sizeof(daObj_Stick_c),    // mSize
+  0,                        // mSizeOther
+  0,                        // mParameters
+  &g_fopAc_Method.base,     // sub_method
+  85,                       // mPriority
+  &daObj_Stick_MethodTable, // sub_method
+  0x00044100,               // mStatus
+  fopAc_ACTOR_e,            // mActorType
+  fopAc_CULLBOX_CUSTOM_e,   // cullType
+};
 
 /* 80599F94-80599F98 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[4];
-
-/* 80599D5C-80599DD0 000C1C 0074+00 0/0 1/0 0/0 .text            __sinit_d_a_obj_stick_cpp */
-void __sinit_d_a_obj_stick_cpp() {
-    // NONMATCHING
-}
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80599D5C, __sinit_d_a_obj_stick_cpp);
-#pragma pop
+static daObj_Stick_Param_c l_HIO;
 
 /* 80599DD0-80599E18 000C90 0048+00 2/1 0/0 0/0 .text            __dt__19daObj_Stick_Param_cFv */
 daObj_Stick_Param_c::~daObj_Stick_Param_c() {}

@@ -15,7 +15,7 @@
  */
 class daObj_Stick_c : public fopAc_ac_c {
 private:
-    /* 568 */ u32 pad;
+    /* 568 */ mDoHIO_entry_c* field_0x568;
     /* 56c */ request_of_phase_process_class mPhase;
     /* 574 */ J3DModel* mpModel;
     /* 578 */ dBgS_ObjAcch mAcch;
