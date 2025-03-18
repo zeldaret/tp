@@ -24,6 +24,7 @@ class daMant_packet_c : public J3DPacket {
         /* 0x0075 */ u8 field_0x75[0x78 - 0x75];
         /* 0x0078 */ cXyz mPos[338];
         /* 0x1050 */ cXyz mNrm[338];
+        /* 0x2028 */ u8 field_0x2028;
         /* 0x2029 */ u8 mArg0;
         /* 0x202a */ u8 field_0x202a[0x202b - 0x202a];
 
