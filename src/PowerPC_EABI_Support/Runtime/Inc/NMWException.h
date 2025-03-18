@@ -7,7 +7,8 @@
 extern "C" {
 #endif
 
-#define DTORCALL(dtor, objptr) (((void (*)(void*, int))dtor)(objptr, -1))
+typedef short vbase_ctor_arg_type;
+typedef char local_cond_type;
 
 typedef struct DestructorChain {
     struct DestructorChain* next;

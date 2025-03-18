@@ -21,31 +21,47 @@ s32 fpcLy_ToCancelQ(layer_class* i_layer, process_method_tag_class* i_methods) {
 
 /* 800215CC-800215F8 002C+00 s=1 e=0 z=0  None .text
  * fpcLy_CancelMethod__FP24process_method_tag_class             */
-bool fpcLy_CancelMethod(process_method_tag_class* i_layer) {
-    return fpcMtdTg_Do(i_layer) == 1;
+BOOL fpcLy_CancelMethod(process_method_tag_class* i_layer) {
+    if (fpcMtdTg_Do(i_layer) == 1) {
+        return TRUE;
+    } else {
+        return FALSE;
+    }
 }
 
 /* 800215F8-8002161C 0024+00 s=0 e=1 z=0  None .text
  * fpcLy_IntoQueue__FP11layer_classiP16create_tag_classi        */
 s32 fpcLy_IntoQueue(layer_class* i_layer, int i_treeListNo, create_tag_class* i_createTag, int i_no) {
-    return cTg_InsertToTree(&i_layer->node_tree, i_treeListNo, i_createTag, i_no);
+    int ret = cTg_InsertToTree(&i_layer->node_tree, i_treeListNo, i_createTag, i_no);
+    return ret;
 }
 
 /* 8002161C-80021640 0024+00 s=0 e=1 z=0  None .text
  * fpcLy_ToQueue__FP11layer_classiP16create_tag_class           */
 s32 fpcLy_ToQueue(layer_class* i_layer, int i_treeListNo, create_tag_class* i_createTag) {
-    return cTg_AdditionToTree(&i_layer->node_tree, i_treeListNo, i_createTag);
+    int ret = cTg_AdditionToTree(&i_layer->node_tree, i_treeListNo, i_createTag);
+    return ret;
 }
 
 /* 80021640-80021664 0024+00 s=0 e=1 z=0  None .text
  * fpcLy_QueueTo__FP11layer_classP16create_tag_class            */
 s32 fpcLy_QueueTo(layer_class* i_layer, create_tag_class* i_createTag) {
-    return cTg_SingleCutFromTree(i_createTag);
+    i_layer;
+
+    int ret = cTg_SingleCutFromTree(i_createTag);
+    return ret;
 }
 
 /* 80021664-80021678 0014+00 s=0 e=1 z=0  None .text      fpcLy_IsDeletingMesg__FP11layer_class */
 BOOL fpcLy_IsDeletingMesg(layer_class* i_layer) {
-    return i_layer->counts.delete_count > 0;
+    BOOL ret;
+    if (i_layer->counts.delete_count > 0) {
+        ret = TRUE;
+    } else {
+        ret = FALSE;
+    }
+
+    return ret;
 }
 
 /* 80021678-80021688 0010+00 s=0 e=1 z=0  None .text      fpcLy_DeletingMesg__FP11layer_class */
@@ -62,7 +78,14 @@ void fpcLy_DeletedMesg(layer_class* i_layer) {
 
 /* 800216A0-800216B4 0014+00 s=0 e=2 z=0  None .text      fpcLy_IsCreatingMesg__FP11layer_class */
 BOOL fpcLy_IsCreatingMesg(layer_class* i_layer) {
-    return i_layer->counts.create_count > 0;
+    BOOL ret;
+    if (i_layer->counts.create_count > 0) {
+        ret = TRUE;
+    } else {
+        ret = FALSE;
+    }
+
+    return ret;
 }
 
 /* 800216B4-800216C4 0010+00 s=0 e=2 z=0  None .text      fpcLy_CreatingMesg__FP11layer_class */

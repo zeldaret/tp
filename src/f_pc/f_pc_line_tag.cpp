@@ -25,9 +25,7 @@ void fpcLnTg_QueueTo(line_tag* i_lineTag) {
 
 /* 80023634-8002368C 0058+00 s=1 e=1 z=1  None .text      fpcLnTg_ToQueue__FP8line_tagi */
 s32 fpcLnTg_ToQueue(line_tag* i_lineTag, int lineListID) {
-    s32 ret = cTg_AdditionToTree(&g_fpcLn_Queue, lineListID, &i_lineTag->base);
-
-    if (ret) {
+    if (cTg_AdditionToTree(&g_fpcLn_Queue, lineListID, &i_lineTag->base)) {
         i_lineTag->list_id = lineListID;
         return 1;
     } else {
