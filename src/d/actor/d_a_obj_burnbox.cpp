@@ -134,8 +134,11 @@ cPhs__Step daObjBurnBox_c::create1st() {
  */
 int daObjBurnBox_c::Execute(Mtx** mtx) {
     field_0x724++;
-    if (field_0x724 % 3 == 0 && (--field_0x728, field_0x728 == -20)) {
-        fopAcM_delete(this);
+    if (field_0x724 % 3 == 0) {
+        field_0x728--;
+        if (field_0x728 == -20) {
+            fopAcM_delete(this);
+        }
     }
 
     *mtx = &mBgMtx;
