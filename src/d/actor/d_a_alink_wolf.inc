@@ -434,7 +434,7 @@ void daAlink_c::changeLink(int param_0) {
         mLinkAcch.SetRoofCrrHeight(field_0x598);
         field_0x594 = daAlinkHIO_move_c0::m.mMaxSpeed;
 
-        l_autoUpHeight = daAlinkHIO_wallHang_c0::m.field_0x4 + 0.01f;
+        l_autoUpHeight = daAlinkHIO_wallHang_c0::m.auto_walk_height + 0.01f;
         l_autoDownHeight = -l_autoUpHeight;
         field_0x3470 = cM_scos(cM_deg2s(daAlinkHIO_slide_c0::m.mSlideAngle));
         field_0x3122 = cM_deg2s(daAlinkHIO_slide_c0::m.mClimbAngle);

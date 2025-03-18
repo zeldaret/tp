@@ -197,7 +197,7 @@ void daAlink_c::setHangGroundY() {
 int daAlink_c::changeHangEndProc() {
     setHangGroundY();
 
-    if (current.pos.y < field_0x33d8 + daAlinkHIO_wallHang_c0::m.field_0x18 - 1.0f &&
+    if (current.pos.y < field_0x33d8 + daAlinkHIO_wallHang_c0::m.hang_foot_pos_height - 1.0f &&
         (mProcID != PROC_HANG_FALL_START || !(mUnderFrameCtrl->getFrame() < 3.0f)) &&
         field_0x33d8 < current.pos.y - 5.0f)
     {
