@@ -212,7 +212,7 @@ cflags_base = [
     "-i src/PowerPC_EABI_Support/MSL/MSL_C++/MSL_Common/Include",
     "-i src/PowerPC_EABI_Support/Runtime/Inc",
     "-i src/PowerPC_EABI_Support/MetroTRK",
-    "-Iinclude/dolphin",
+    "-i include/dolphin",
     f"-DVERSION={version_num}",
     "-D__GEKKO__",
 ]
@@ -291,7 +291,7 @@ cflags_dolphin = [
     "-i src/PowerPC_EABI_Support/MSL/MSL_C++/MSL_Common/Include",
     "-i src/PowerPC_EABI_Support/Runtime/Inc",
     "-i src/PowerPC_EABI_Support/MetroTRK",
-    "-Iinclude/dolphin",
+    "-i include/dolphin",
     f"-DVERSION={version_num}",
     "-D__GEKKO__",
     "-DSDK_REVISION=2",
