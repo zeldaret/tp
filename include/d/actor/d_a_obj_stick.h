@@ -16,17 +16,19 @@
 class daObj_Stick_c : public fopAc_ac_c {
 public:
     /* 8059922C */ virtual ~daObj_Stick_c();
-    /* 805993E8 */ void create();
-    /* 80599888 */ void CreateHeap();
+    /* 805993E8 */ int create();
+    /* 80599888 */ int CreateHeap();
     /* 80599900 */ int Delete();
-    /* 80599934 */ void Execute();
+    /* 80599934 */ int Execute();
     /* 80599A78 */ int Draw();
-    /* 80599B3C */ void createHeapCallBack(fopAc_ac_c*);
+    /* 80599B3C */ static int createHeapCallBack(fopAc_ac_c*);
     /* 80599B5C */ const char* getResName();
-    /* 80599B6C */ bool isDelete();
+    /* 80599B6C */ u8 isDelete();
     /* 80599B8C */ void setEnvTevColor();
     /* 80599BE8 */ void setRoomNo();
     /* 80599C28 */ void setMtx();
+
+    int getType() { return 0; }
 
     static u8 mCcDSph[64];
 
@@ -38,20 +40,20 @@ private:
     /* 78c */ dBgS_AcchCir mAcchCir;
     /* 7cc */ cBgS_GndChk mGndChk;
     /* 808 */ dCcD_Sph mSph;
-    /* 940 */ f32 mGndHeight;
+    /* 940 */ f32 mGroundHeight;
     /* 944 */ u32 mShadowKey;
-    /* 948 */ bool mDeleteFlag;
-    /* 949 */ u32 something;
-    /* 94c */ //vtable
+    /* 948 */ u8 mType;
+    /* 949 */ u8 pad[4];
+    /* 94c */ //params
 };
 
 STATIC_ASSERT(sizeof(daObj_Stick_c) == 0x950);
 
 class daObj_Stick_Param_c {
 public:
-    /* 80599DD0 */ ~daObj_Stick_Param_c();
+    /* 80599DD0 */ virtual ~daObj_Stick_Param_c();
 
-    static u8 const m[16];
+    static const f32 m[4];
 };
 
 
