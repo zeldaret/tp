@@ -8,13 +8,6 @@
 #include "d/d_cc_uty.h"
 #include "d/d_bg_s_acch.h"
 
-struct g_himo_s {
-    /* 80601D40 */ ~g_himo_s();
-    /* 80601DA0 */ g_himo_s();
-
-    /* 0x0 */ cXyz field_0x0[16];
-};
-
 /**
  * @ingroup actors-enemies
  * @class b_gnd_class
@@ -23,13 +16,20 @@ struct g_himo_s {
  * @details Hyrule Castle dungeon boss.
  * 
  */
+ 
+struct g_himo_s {
+    /* 80601D40 */ ~g_himo_s();
+    /* 80601DA0 */ g_himo_s();
+
+    /* 0x0 */ cXyz field_0x0[16];
+};
+
 class b_gnd_class : public fopEn_enemy_c {
 public:
     /* 80601960 */ b_gnd_class();
 
     bool checkAttackChance() { return field_0x2740 != 0; }
 
-private:
     /* 0x05AC */ request_of_phase_process_class mPhaseReq;
     /* 0x05B4 */ request_of_phase_process_class mHorsePhaseReq;
     /* 0x05BC */ s16 field_0x05bc;
@@ -38,7 +38,7 @@ private:
     /* 0x05C0 */ cXyz field_0x05c0;
     /* 0x05CC */ s16 field_0x05cc;
     /* 0x05CE */ u8 field_0x05CE[0x05D0 - 0x05CE];
-    /* 0x05D0 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x05D0 */ mDoExt_McaMorfSO* mpModelMorf;
     /* 0x05D4 */ mDoExt_McaMorfSO* mpHorseMorf;
     /* 0x05D8 */ mDoExt_McaMorf* field_0x05d8;
     /* 0x05DC */ Z2CreatureEnemy mZ2Creature;
@@ -50,14 +50,16 @@ private:
     /* 0x0748 */ int field_0x0748;
     /* 0x074C */ mDoExt_btpAnm* field_0x074c;
     /* 0x0750 */ mDoExt_btkAnm* field_0x0750;
-    /* 0x0754 */ u8 field_0x0754[0x0758 - 0x0754];
+    /* 0x0754 */ u8 field_0x0754;
+    /* 0x0755 */ u8 field_0x0755[0x0758 - 0x0755];
     /* 0x0758 */ int mAnmID;
     /* 0x075C */ int mHorseAnmID;
-    /* 0x0760 */ f32 field_0x0760;
+    /* 0x0760 */ f32 mPlaySpeed;
     /* 0x0764 */ u8 field_0x0764[0x0768 - 0x0764];
     /* 0x0768 */ J3DModel* field_0x0768;
     /* 0x076C */ J3DModel* field_0x076c;
-    /* 0x0770 */ u8 field_0x0770[0x0772 - 0x0770];
+    /* 0x0770 */ u8 field_0x0770;
+    /* 0x0771 */ u8 field_0x0771;
     /* 0x0772 */ s16 field_0x0772;
     /* 0x0774 */ dKy_tevstr_c field_0x0774;
     /* 0x0AFC */ s16 field_0x0afc;
@@ -74,11 +76,12 @@ private:
     /* 0x0C38 */ f32 field_0x0c38;
     /* 0x0C3C */ s16 field_0x0c3c;
     /* 0x0C3E */ u8 field_0x0C3E[0x0C40 - 0x0C3E];
-    /* 0x0C40 */ u32 field_0x0c40;
+    /* 0x0C40 */ u32 mShadowID;
     /* 0x0C44 */ s16 field_0x0c44[10];
     /* 0x0C58 */ s16 field_0x0c58;
     /* 0x0C5A */ s16 field_0x0c5a;
-    /* 0x0C5C */ u8 field_0x0C5C[0x0C60 - 0x0C5C];
+    /* 0x0C5C */ s16 field_0x0c5c;
+    /* 0x0C5D */ u8 field_0x0C5E[0x0C60 - 0x0C5E];
     /* 0x0C60 */ int field_0x0c60;
     /* 0x0C64 */ int field_0x0c64;
     /* 0x0C68 */ s16 field_0x0c68;
@@ -87,7 +90,13 @@ private:
     /* 0x0C70 */ s16 field_0x0c70;
     /* 0x0C72 */ s16 field_0x0c72;
     /* 0x0C74 */ s16 field_0x0c74;
-    /* 0x0C76 */ u8 field_0x0C76[0x0C7D - 0x0C76];
+    /* 0x0C76 */ u8 field_0x0c76;
+    /* 0x0C77 */ u8 field_0x0c77;
+    /* 0x0C78 */ u8 field_0x0c78;
+    /* 0x0C79 */ u8 field_0x0c79;
+    /* 0x0C7A */ u8 field_0x0c7a;
+    /* 0x0C7B */ u8 field_0x0c7b;
+    /* 0x0C7C */ u8 field_0x0c7c;
     /* 0x0C7D */ u8 field_0x0c7d;
     /* 0x0C7E */ u8 field_0x0C7E[0x0C80 - 0x0C7E];
     /* 0x0C80 */ cXyz field_0x0c80;
@@ -95,7 +104,7 @@ private:
     /* 0x0C8E */ s16 field_0x0c8e;
     /* 0x0C90 */ s16 field_0x0c90;
     /* 0x0C92 */ s16 field_0x0c92;
-    /* 0x0C94 */ dBgS_AcchCir field_0x0c94;
+    /* 0x0C94 */ dBgS_AcchCir mWall;
     /* 0x0CD4 */ dBgS_ObjAcch field_0x0cd4;
     /* 0x0EAC */ s16 field_0x0eac;
     /* 0x0EAE */ u8 field_0x0EAE[0x0EB0 - 0x0EAE];
@@ -104,18 +113,19 @@ private:
     /* 0x0EC0 */ csXyz field_0x0ec0;
     /* 0x0EC6 */ u8 field_0x0EC6[0x0EC8 - 0x0EC6];
     /* 0x0EC8 */ dCcD_Stts field_0x0ec8;
-    /* 0x0F04 */ dCcD_Sph field_0x0f04[2];
-    /* 0x1174 */ dCcD_Sph field_0x1174[4];
+    /* 0x0F04 */ dCcD_Sph mHorseSpheres1[2];
+    /* 0x1174 */ dCcD_Sph mHorseSpheres2[4];
     /* 0x1654 */ dCcD_Stts field_0x1654;
     /* 0x1690 */ dCcD_Sph field_0x1690[3];
     /* 0x1A38 */ dCcD_Sph field_0x1a38;
     /* 0x1B70 */ dCcD_Sph field_0x1b70;
     /* 0x1CA8 */ dCcD_Cyl field_0x1ca8;
     /* 0x1DE4 */ dCcU_AtInfo mAtInfo;
-    /* 0x1E08 */ u8 field_0x1E08[0x1E0A - 0x1E08];
+    /* 0x1E08 */ u8 field_0x1e08;
+    /* 0x1E09 */ u8 field_0x1e09;
     /* 0x1E0A */ u16 field_0x1e0a;
     /* 0x1E0C */ u16 field_0x1e0c;
-    /* 0x1E0E */ u8 field_0x1E0E[0x1E0F - 0x1E0E];
+    /* 0x1E0E */ u8 field_0x1e0e;
     /* 0x1E0F */ s8 field_0x1e0f;
     /* 0x1E10 */ f32 field_0x1e10;
     /* 0x1E14 */ cXyz field_0x1e14;
@@ -129,8 +139,9 @@ private:
     /* 0x1E98 */ cXyz field_0x1e98[5];
     /* 0x1ED4 */ cXyz field_0x1ed4[5];
     /* 0x1F10 */ Z2SoundObjSimple field_0x1f10[5];
-    /* 0x1FB0 */ u8 field_0x1FB0[0x1FB4 - 0x1FB0];
-    /* 0x1FB4 */ fopAc_ac_c* mMantChild;
+    /* 0x1FB0 */ u8 mInitHIO;
+    /* 0x1FB0 */ u8 field_0x1FB1[0x1FB4 - 0x1FB1];
+    /* 0x1FB4 */ fpc_ProcID mMantChildID;
     /* 0x1FB8 */ cXyz field_0x1fb8;
     /* 0x1FC4 */ int field_0x1fc4;
     /* 0x1FC8 */ s16 field_0x1fc8;
@@ -145,25 +156,12 @@ private:
     /* 0x2170 */ mDoExt_3DlineMat1_c field_0x2170[2];
     /* 0x21E8 */ mDoExt_3DlineMat1_c field_0x21e8;
     /* 0x2224 */ dKy_tevstr_c field_0x2224;
-    /* 0x25AC */ u32 field_0x25ac;
-    /* 0x25B0 */ u32 field_0x25b0;
-    /* 0x25B4 */ u32 field_0x25b4;
-    /* 0x25B8 */ u32 field_0x25b8;
-    /* 0x25BC */ u32 field_0x25bc;
-    /* 0x25C0 */ u32 field_0x25c0;
-    /* 0x25C4 */ u32 field_0x25c4;
-    /* 0x25C8 */ u32 field_0x25c8;
-    /* 0x25CC */ u32 field_0x25cc;
-    /* 0x25D0 */ u32 field_0x25d0;
-    /* 0x25D4 */ u8 field_0x25D4[0x25D8 - 0x25D4];
-    /* 0x25D8 */ u32 field_0x25d8;
-    /* 0x25DC */ u32 field_0x25dc;
-    /* 0x25E0 */ u32 field_0x25e0;
-    /* 0x25E4 */ u32 field_0x25e4[3];
+    /* 0x25AC */ u32 field_0x25ac[17];
     /* 0x25F0 */ u8 field_0x25F0[0x2688 - 0x25F0];
     /* 0x2688 */ u32 field_0x2688;
     /* 0x268C */ u32 field_0x268c[3];
-    /* 0x2698 */ u8 field_0x2698[0x269C - 0x2698];
+    /* 0x2698 */ u8 field_0x2698;
+    /* 0x2699 */ u8 field_0x2699;
     /* 0x269C */ cXyz field_0x269c;
     /* 0x26A8 */ cXyz field_0x26a8[2];
     /* 0x26C0 */ s16 field_0x26c0;
@@ -178,13 +176,15 @@ private:
     /* 0x2704 */ cXyz field_0x2704;
     /* 0x2710 */ cXyz field_0x2710;
     /* 0x271C */ s16 field_0x271c;
-    /* 0x271E */ u8 field_0x271E[0x272C - 0x271E];
+    /* 0x271E */ u8 field_0x271E[0x2720 - 0x271E];
+    /* ox2720 */ cXyz field_0x2720;
     /* 0x272C */ s16 field_0x272c;
     /* 0x272E */ u8 field_0x272E[0x2730 - 0x272E];
     /* 0x2730 */ f32 field_0x2730;
     /* 0x2734 */ f32 field_0x2734;
     /* 0x2738 */ u8 field_0x2738;
-    /* 0x2739 */ u8 field_0x2739[0x273C - 0x2739];
+    /* 0x2739 */ u8 field_0x2739;
+    /* 0x273A */ u8 field_0x273A[0x273C - 0x273A];
     /* 0x273C */ f32 field_0x273c;
     /* 0x2740 */ u8 field_0x2740;
     /* 0x2741 */ u8 field_0x2741[0x2744 - 0x2741];
@@ -197,6 +197,14 @@ class daB_GND_HIO_c {
 public:
     /* 805F4A4C */ daB_GND_HIO_c();
     /* 80602230 */ ~daB_GND_HIO_c();
+
+    /* 0x00 */ f32 field_0x0;
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 model_size;
+    /* 0x0C */ f32 field_0xc;
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 field_0x18;
 };
 
 #endif /* D_A_B_GND_H */

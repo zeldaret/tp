@@ -1116,7 +1116,7 @@ static void undwater_init() {
             if (g_env_light.undwater_btk != NULL) {
                 J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Always", 0x3C);
                 if (!g_env_light.undwater_btk->init(modelData2, pbtk, TRUE,
-                                                    J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1))
+                                                    J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1))
                 {
                     JUT_ASSERT(1898, 0);
                 }
@@ -1529,7 +1529,7 @@ int dKy_getDarktime_minute() {
 }
 
 /* 8019FBBC-8019FBCC 19A4FC 0010+00 0/0 0/0 8/8 .text            dKy_getDarktime_week__Fv */
-int dKy_getDarktime_week() {
+u8 dKy_getDarktime_week() {
     return g_env_light.darktime_week;
 }
 

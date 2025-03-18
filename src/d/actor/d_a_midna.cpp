@@ -441,7 +441,7 @@ int daMidna_c::createHeap() {
                                                      J3DLOADER_UNK_FLAG0);
     J3DModelData* md_bmd = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 14);
     mpMorf = new mDoExt_McaMorfSO(md_bmd, &mMorfCB, NULL, md_anm,
-                                  J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1, NULL, 0, 0x11000284);
+                                  J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1, NULL, 0, 0x11000284);
     if (mpMorf == NULL || mpMorf->getModel() == NULL) {
         return 0;
     }
@@ -449,10 +449,10 @@ int daMidna_c::createHeap() {
     if (!mInvModel.create(mpMorf->getModel(), 1)) {
         return 0;
     }
-    if (!mUpperBck.init(mpMorf->getAnm(), TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1, false)) {
+    if (!mUpperBck.init(mpMorf->getAnm(), TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1, false)) {
         return 0;
     }
-    if (!mFaceBck.init(mpMorf->getAnm(), TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1, false)) {
+    if (!mFaceBck.init(mpMorf->getAnm(), TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1, false)) {
         return 0;
     }
     if (!mBtpHeap.mallocBuffer()) {
@@ -1568,7 +1568,7 @@ BOOL daMidna_c::setDemoAnm() {
                     if (mpDemoFCTmpCluster != cluster) {
                         mpDemoFCTmpCluster = cluster;
                         mpDemoFCTmpBlk->init(mpDemoFCTmpBls, mpDemoFCTmpCluster, FALSE,
-                                             J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1);
+                                             J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1);
                         mpDemoFCTmpBlk->getBlkAnm()->setFrame(0.0f);
                     }
                     ret = TRUE;
@@ -2134,7 +2134,7 @@ void daMidna_c::setAnm() {
                 offStateFlg0(FLG0_UNK_1);
                 u16 res_id = m_anmDataTable[anm].mResID;
                 J3DAnmTransform* bck = (J3DAnmTransform*)mBckHeap[0].loadDataIdx(res_id);
-                setBckAnime(bck, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f);
+                setBckAnime(bck, J3DFrameCtrl::EMode_LOOP, 5.0f);
                 setUpperAnime(mBckHeap[0].getIdx(), 0xffff);
             } else if (checkSetAnime(0, ANM_SWAITB) && mUpperBck.checkFrame(95.0f)
                 && fabsf(speedF) < 0.1f && cM_rnd() < 0.5f)
@@ -2143,7 +2143,7 @@ void daMidna_c::setAnm() {
                 setUpperAnimeAndSe(ANM_SWAITC);
                 u16 res_id = m_anmDataTable[anm].mResID;
                 J3DAnmTransform* bck = (J3DAnmTransform*)mBckHeap[0].loadDataIdx(res_id);
-                setBckAnime(bck, J3DFrameCtrl::LOOP_ONCE_e, 0.0f);
+                setBckAnime(bck, J3DFrameCtrl::EMode_NONE, 0.0f);
             }
         } else if (daPy_py_c::i_checkNowWolf() && !bVar1
             && ((mNeckAngle.y == 0 && mNeckAngle.x == 0 && anm != ANM_LEADWAIT && cM_rnd() < 0.01f)
@@ -2174,7 +2174,7 @@ void daMidna_c::setAnm() {
             u16 res_id = m_anmDataTable[anm].mResID;
             setUpperAnimeAndSe(anm);
             J3DAnmTransform* bck = (J3DAnmTransform*)mBckHeap[0].loadDataIdx(res_id);
-            setBckAnime(bck, J3DFrameCtrl::LOOP_ONCE_e, 5.0f);
+            setBckAnime(bck, J3DFrameCtrl::EMode_NONE, 5.0f);
         }
 
     } else if (checkStateFlg0(FLG0_UNK_2)) {

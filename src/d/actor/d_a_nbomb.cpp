@@ -164,7 +164,7 @@ int daNbomb_c::createHeap() {
             return 0;
         }
 
-        if (!mpBck->init(trans, TRUE, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1, false)) {
+        if (!mpBck->init(trans, TRUE, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1, false)) {
             return 0;
         }
     }

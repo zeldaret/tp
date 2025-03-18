@@ -1524,7 +1524,7 @@ void daB_DS_c::executeOpeningDemo() {
         }
 
         mpZantMorf->setAnm(static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("B_DS", 66)),
-                           J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 1.0f, 0.0f, -1.0f);
+                           J3DFrameCtrl::EMode_LOOP, 1.0f, 1.0f, 0.0f, -1.0f);
         mZantScale.set(0.0f, 5.0f, 0.0f);
         mZantEyePos.set(mZantPos);
         mZantEyePos.y += 200.0f;
@@ -1600,12 +1600,12 @@ void daB_DS_c::executeOpeningDemo() {
         mCameraEye.set(mOpEyeDt[4]);
 
         mpZantMorf->setAnm(static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("B_DS", 64)),
-                           J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 1.0f, 0.0f, -1.0f);
+                           J3DFrameCtrl::EMode_NONE, 1.0f, 1.0f, 0.0f, -1.0f);
         mpSwordMorf->setAnm(static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("B_DS", 63)),
-                            J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 1.0f, 0.0f, -1.0f);
+                            J3DFrameCtrl::EMode_NONE, 1.0f, 1.0f, 0.0f, -1.0f);
         mpSwordBrkAnm->init(mpSwordMorf->getModel()->getModelData(),
                             static_cast<J3DAnmTevRegKey*>(dComIfG_getObjectRes("B_DS", 81)), TRUE,
-                            J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1);
+                            J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1);
 
         particle_angle.x = 0;
         particle_angle.y = field_0x7ca + 5000;
@@ -1687,7 +1687,7 @@ void daB_DS_c::executeOpeningDemo() {
     case 26:
         if (!field_0x85e && mpZantMorf->isStop()) {
             mpZantMorf->setAnm(static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("B_DS", 67)),
-                               J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 1.0f, 0.0f, -1.0f);
+                               J3DFrameCtrl::EMode_LOOP, 1.0f, 1.0f, 0.0f, -1.0f);
             field_0x85e = true;
         }
 
@@ -1705,12 +1705,12 @@ void daB_DS_c::executeOpeningDemo() {
         if (mModeTimer == 100) {
             mpOpPatternBrkAnm->init(mpOpPatternModel->getModelData(),
                                     static_cast<J3DAnmTevRegKey*>(dComIfG_getObjectRes("B_DS", 79)),
-                                    TRUE, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1);
+                                    TRUE, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1);
 
             mpOpPatternBtkAnm->init(
                 mpOpPatternModel->getModelData(),
                 static_cast<J3DAnmTextureSRTKey*>(dComIfG_getObjectRes("B_DS", 85)), TRUE,
-                J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1);
+                J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1);
             mPlayPatternAnm = true;
         }
 
@@ -1722,7 +1722,7 @@ void daB_DS_c::executeOpeningDemo() {
         }
 
         mpZantMorf->setAnm(static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("B_DS", 65)),
-                           J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 1.0f, 0.0f, -1.0f);
+                           J3DFrameCtrl::EMode_NONE, 1.0f, 1.0f, 0.0f, -1.0f);
         mSound.startCreatureSound(Z2SE_EN_ZAN_L4_2, 0, -1);
         mMode = 30;
         field_0x85e = false;

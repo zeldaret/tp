@@ -1680,7 +1680,7 @@ int daAlink_c::procCoToolDemo() {
                             if (field_0x0698 != blk_p) {
                                 field_0x0698 = blk_p;
                                 field_0x069c->init(mpDemoFCTmpBls, field_0x0698, FALSE,
-                                                   J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1);
+                                                   J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1);
                                 field_0x069c->getBlkAnm()->setFrame(0.0f);
                             }
 

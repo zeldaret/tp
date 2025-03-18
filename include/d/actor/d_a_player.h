@@ -469,7 +469,7 @@ public:
         ERFLG0_UNK_8000000 = 0x8000000,
         ERFLG0_UNK_4000000 = 0x4000000,
         ERFLG0_BOSS_ROOM_WAIT = 0x2000000,
-        ERFLG0_UNK_1000000 = 0x1000000,
+        ERFLG0_ENEMY_DEAD = 0x1000000,
         ERFLG0_UNK_800000 = 0x800000,
         ERFLG0_BEE_FOLLOW = 0x400000,
         ERFLG0_UNK_200000 = 0x200000,
@@ -932,6 +932,7 @@ public:
     u32 getCutAtFlg() const { return checkNoResetFlg0(FLG0_UNK_40); }
     u32 checkBoarSingleBattleFirst() const { return checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE); }
     u32 checkBoarSingleBattleSecond() const { return checkNoResetFlg2(FLG2_UNK_1000000); }
+    u32 getFootOnGround() const { return checkResetFlg1(daPy_RFLG1(RFLG1_UNK_10 | RFLG1_UNK_20)); }
 
     void offWolfEnemyHangBite() { offNoResetFlg2(FLG2_WOLF_ENEMY_HANG_BITE); }
     bool onWolfEnemyHangBite(fopAc_ac_c* param_0) { return onWolfEnemyBiteAll(param_0, FLG2_WOLF_ENEMY_HANG_BITE); }
@@ -1037,6 +1038,7 @@ public:
     void onNeckSearchWide() { onEndResetFlg0(ERFLG0_UNK_400); }
     void offPressedDamage() { offNoResetFlg2(FLG2_PRESSED_DAMAGE); }
     void onForceSubjectCancel() { onEndResetFlg0(ERFLG0_FORCE_SUBJECT_CANCEL); }
+    void onEnemyDead() { onEndResetFlg0(ERFLG0_ENEMY_DEAD); }
 
     u32 checkBoarSingleBattle() const { return checkNoResetFlg2(daPy_FLG2(FLG2_UNK_1000000 | FLG2_BOAR_SINGLE_BATTLE)); }
     u32 checkWolfDashAutoJump() const { return checkNoResetFlg2(FLG2_WOLF_DASH_AUTO_JUMP); }
@@ -1072,6 +1074,8 @@ public:
     static int getLastSceneDamage() { return (dComIfGs_getLastSceneMode() >> 4) & 0x7F; }
     static u8 getLastSceneSwordAtUpTime() { return (dComIfGs_getLastSceneMode() >> 11) & 0xFF; }
 
+    static BOOL checkNormalSwordEquip() { return dComIfGs_getSelectEquipSword() == fpcNm_ITEM_SWORD; }
+
     inline static u32 i_getLastSceneMode();
     inline static u32 getLastSceneMode();
     inline static bool checkWoodSwordEquip() {
@@ -1103,6 +1107,10 @@ public:
     }
 
     BOOL checkClimbEndHang() { return checkResetFlg0(RFLG0_UNK_40000); }
+
+    void onForceHorseGetOff() {
+        onEndResetFlg2(ERFLG2_UNK_2);
+    }
 
     static daMidna_c* m_midnaActor;
 };

@@ -8,10 +8,7 @@
 UNK_REL_DATA;
 #include "f_op/f_op_actor_enemy.h"
 
-
-//
-// Declarations:
-//
+// NONMATCHING - weak function order
 
 /* 806F7EEC-806F7F24 0000EC 0038+00 1/1 0/0 0/0 .text            __ct__12daE_KG_HIO_cFv */
 daE_KG_HIO_c::daE_KG_HIO_c() {

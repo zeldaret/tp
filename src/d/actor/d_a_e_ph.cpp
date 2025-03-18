@@ -168,7 +168,7 @@ int daE_PH_c::CreateHeap() {
 
     mpMorf = new mDoExt_McaMorfSO(
         modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_PH", ANM_WAIT),
-        J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1, &mSound, 0x80000, 0x11000084);
+        J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1, &mSound, 0x80000, 0x11000084);
     if (mpMorf == NULL || mpMorf->getModel() == NULL) {
         return 0;
     }
@@ -238,7 +238,7 @@ void daE_PH_c::SearchNearP() {
 void daE_PH_c::FlyAnm() {
     if (mAnmID == ANM_DAMAGE_ARROW || mAnmID == ANM_HANG_START || mAnmID == ANM_HANG_WAIT) {
         if (mpMorf->isStop()) {
-            SetAnm(ANM_WAIT, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, mAnmSpeed);
+            SetAnm(ANM_WAIT, J3DFrameCtrl::EMode_LOOP, 5.0f, mAnmSpeed);
         }
 
         mFlyRockEMKey = dComIfGp_particle_set(mFlyRockEMKey, 0x878C, &current.pos, &tevStr,
@@ -254,17 +254,17 @@ void daE_PH_c::FlyAnm() {
             field_0x5ae = 15;
             field_0x616 = 0x1000;
             field_0x618 = 0x1000;
-            SetAnm(ANM_HANG_WAIT, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, mAnmSpeed);
+            SetAnm(ANM_HANG_WAIT, J3DFrameCtrl::EMode_LOOP, 5.0f, mAnmSpeed);
         } else if (mAnmID != ANM_WAIT) {
-            SetAnm(ANM_WAIT, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, mAnmSpeed);
+            SetAnm(ANM_WAIT, J3DFrameCtrl::EMode_LOOP, 5.0f, mAnmSpeed);
         }
     } else if (mAnmID == ANM_HANG_WAIT) {
         if (!fopAcM_checkHookCarryNow(this) || !dComIfGp_checkPlayerStatus1(0, 0x10000)) {
-            SetAnm(ANM_HANG_END, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, mAnmSpeed);
+            SetAnm(ANM_HANG_END, J3DFrameCtrl::EMode_NONE, 5.0f, mAnmSpeed);
         }
     } else if (mAnmID == ANM_HANG_END) {
         if (mpMorf->isStop()) {
-            SetAnm(ANM_WAIT, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, mAnmSpeed);
+            SetAnm(ANM_WAIT, J3DFrameCtrl::EMode_LOOP, 5.0f, mAnmSpeed);
         }
     }
 }
@@ -587,7 +587,7 @@ void daE_PH_c::S_SetAngle() {
 void daE_PH_c::FlyAnm2() {
     if (mAnmID == ANM_DAMAGE_ARROW || mAnmID == ANM_HANG_START || mAnmID == ANM_HANG_WAIT) {
         if (mpMorf->isStop()) {
-            SetAnm(ANM_WAIT, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, mAnmSpeed);
+            SetAnm(ANM_WAIT, J3DFrameCtrl::EMode_LOOP, 5.0f, mAnmSpeed);
         }
 
         mFlyRockEMKey = dComIfGp_particle_set(mFlyRockEMKey, 0x878C, &current.pos, &tevStr,
@@ -606,21 +606,21 @@ void daE_PH_c::FlyAnm2() {
             field_0x5ae = 15;
             field_0x616 = 0x1000;
             field_0x618 = 0x1000;
-            SetAnm(ANM_HANG_WAIT, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, mAnmSpeed);
+            SetAnm(ANM_HANG_WAIT, J3DFrameCtrl::EMode_LOOP, 5.0f, mAnmSpeed);
         } else if (fopAcM_checkHookCarryNow(this)) {
             attention_info.flags = 0;
         } else if (mAnmID != ANM_WAIT) {
-            SetAnm(ANM_WAIT, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, mAnmSpeed);
+            SetAnm(ANM_WAIT, J3DFrameCtrl::EMode_LOOP, 5.0f, mAnmSpeed);
         }
     } else if (mAnmID == ANM_HANG_WAIT) {
         attention_info.flags = 0;
 
         if (!fopAcM_checkHookCarryNow(this) || !dComIfGp_checkPlayerStatus1(0, 0x10000)) {
-            SetAnm(ANM_HANG_END, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, mAnmSpeed);
+            SetAnm(ANM_HANG_END, J3DFrameCtrl::EMode_NONE, 5.0f, mAnmSpeed);
         }
     } else if (mAnmID == ANM_HANG_END) {
         if (mpMorf->isStop()) {
-            SetAnm(ANM_WAIT, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, mAnmSpeed);
+            SetAnm(ANM_WAIT, J3DFrameCtrl::EMode_LOOP, 5.0f, mAnmSpeed);
         }
     }
 }
@@ -855,7 +855,7 @@ void daE_PH_c::DemoAction() {
         if (mpMorf->isStop()) {
             mCAction++;
             mTimers[0] = 50;
-            SetAnm(ANM_WAIT, J3DFrameCtrl::LOOP_REPEAT_e, 5.0f, 1.0f);
+            SetAnm(ANM_WAIT, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
         }
 
         if (speed.y <= 0.0f) {
@@ -1090,9 +1090,9 @@ void daE_PH_c::ObjHit() {
             if (hit_obj->ChkAtType(AT_TYPE_HOOKSHOT)) {
                 field_0x616 = 0x1000;
                 field_0x618 = 0x1000;
-                SetAnm(ANM_HANG_START, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 1.0f);
+                SetAnm(ANM_HANG_START, J3DFrameCtrl::EMode_NONE, 1.0f, 1.0f);
             } else {
-                SetAnm(ANM_DAMAGE_ARROW, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 1.0f);
+                SetAnm(ANM_DAMAGE_ARROW, J3DFrameCtrl::EMode_NONE, 1.0f, 1.0f);
             }
 
             dComIfGp_particle_set(0x878E, &current.pos, &tevStr, &shape_angle, NULL);
@@ -1312,7 +1312,7 @@ int daE_PH_c::create() {
 
         if (mAction == 4 || mAction == 5) {
             mpMorf->setPlaySpeed(0.0f);
-            SetAnm(ANM_APPEAR, J3DFrameCtrl::LOOP_ONCE_e, 5.0f, 0.0f);
+            SetAnm(ANM_APPEAR, J3DFrameCtrl::EMode_NONE, 5.0f, 0.0f);
             mAnmID = ANM_WAIT;
         }
 

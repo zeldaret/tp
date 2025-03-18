@@ -379,7 +379,7 @@ inline BOOL fopAcM_CULLSIZE_IS_BOX(int i_culltype) {
     return (i_culltype >= 0 && i_culltype < 14) || i_culltype == 14;
 }
 
-inline const Vec& fopAcM_getCullSizeSphereCenter(const fopAc_ac_c* i_actor) {
+inline const cXyz& fopAcM_getCullSizeSphereCenter(const fopAc_ac_c* i_actor) {
     return i_actor->cull.sphere.center;
 }
 

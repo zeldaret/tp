@@ -4,235 +4,606 @@
 */
 
 #include "d/actor/d_a_passer_mng.h"
-#include "dol2asm.h"
-
-
-//
-// Forward References:
-//
-
-extern "C" static void daPasserMng_Execute__FP13daPasserMng_c();
-extern "C" void execute__13daPasserMng_cFv();
-extern "C" void getPasserParam__13daPasserMng_cFv();
-extern "C" void getLuggageParamHigh__13daPasserMng_cFUl();
-extern "C" static bool daPasserMng_IsDelete__FP13daPasserMng_c();
-extern "C" static void daPasserMng_Delete__FP13daPasserMng_c();
-extern "C" static void daPasserMng_Create__FP10fopAc_ac_c();
-extern "C" void create__13daPasserMng_cFv();
-extern "C" void create_init__13daPasserMng_cFv();
-extern "C" void func_80D46B9C(void* _this, int, int);
-extern "C" void* mGroupTbl__13daPasserMng_c[4];
-
-//
-// External References:
-//
-
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void __dt__10fopAc_ac_cFv();
-extern "C" void fopAcM_SearchByID__FUiPP10fopAc_ac_c();
-extern "C" void fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i();
-extern "C" void isEventBit__11dSv_event_cCFUs();
-extern "C" void dPath_GetPnt__FPC5dPathi();
-extern "C" void dPath_GetRoomPath__Fii();
-extern "C" void dKy_getdaytime_hour__Fv();
-extern "C" void dKy_getdaytime_minute__Fv();
-extern "C" void dKy_getDarktime_hour__Fv();
-extern "C" void dKy_getDarktime_minute__Fv();
-extern "C" void dKy_getDarktime_week__Fv();
-extern "C" void dKy_get_dayofweek__Fv();
-extern "C" void dKy_darkworld_check__Fv();
-extern "C" void __ct__5csXyzFsss();
-extern "C" void cM_rndF__Ff();
-extern "C" void cLib_targetAngleY__FRC3VecRC3Vec();
-extern "C" void* __nwa__FUl();
-extern "C" void __dla__FPv();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_29();
-extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-
-//
-// Declarations:
-//
+#include "d/d_com_inf_game.h"
+#include "d/d_path.h"
+#include "d/d_stage.h"
 
 /* 80D45718-80D45738 000078 0020+00 1/0 0/0 0/0 .text daPasserMng_Execute__FP13daPasserMng_c */
-static void daPasserMng_Execute(daPasserMng_c* param_0) {
-    // NONMATCHING
+static int daPasserMng_Execute(daPasserMng_c* i_this) {
+    return i_this->execute();
 }
 
 /* 80D45738-80D4597C 000098 0244+00 1/1 0/0 0/0 .text            execute__13daPasserMng_cFv */
-void daPasserMng_c::execute() {
-    // NONMATCHING
+// NONMATCHING - getTime regalloc
+int daPasserMng_c::execute() {
+    int time = getTime();
+    if ((field_0x596 != 0 || (time >= startTime && time < endTime)) &&
+        dayOfWeek == getDayOfWeek() && mTime <= time)
+    {
+        if (getChildNum() < getMaxNum()) {
+            csXyz cStack_20(field_0x596 != 0 ? 0xff : endTime, current.angle.y, 0);
+            childProcIds[currentChildIndex] =
+                fopAcM_createChild(npcId, fopAcM_GetID(this), getPasserParam(), &current.pos,
+                                   fopAcM_GetRoomNo(this), &cStack_20, 0, 0xffffffff, 0);
+            currentChildIndex = (currentChildIndex + 1) % getMaxNum();
+        }
+        mTime = time + intervalTime;
+        if (mTime > 60 * 24) {
+            mTime -= 60 * 24;
+            dayOfWeek = (dayOfWeek + 1) % 7;
+        } else if (mTime >= endTime) {
+            mTime = startTime;
+            dayOfWeek = (dayOfWeek + 1) % 7;
+        }
+    }
+    return 1;
 }
 
-/* ############################################################################################## */
 /* 80D46C20-80D46C40 000000 0020+00 1/0 0/0 0/0 .rodata          groupA */
-SECTION_RODATA static u8 const groupA[32] = {
+static u8 const groupA[32] = {
     0x07, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x04, 0x50, 0x00, 0x00, 0x06, 0x01, 0x00, 0x00, 0x07,
     0x01, 0x00, 0x00, 0x05, 0x01, 0x00, 0x00, 0x1B, 0x01, 0x00, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x1D,
 };
-COMPILER_STRIP_GATE(0x80D46C20, &groupA);
 
 /* 80D46C40-80D46C64 000020 0024+00 1/0 0/0 0/0 .rodata          groupB */
-SECTION_RODATA static u8 const groupB[36] = {
+static u8 const groupB[36] = {
     0x08, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x10, 0x10, 0x00, 0x00, 0x11,
     0x11, 0x00, 0x00, 0x12, 0x10, 0x00, 0x00, 0x13, 0x40, 0x00, 0x00, 0x09,
     0x40, 0x00, 0x00, 0x08, 0x50, 0x00, 0x00, 0x0A, 0x01, 0x00, 0x00, 0x0B,
 };
-COMPILER_STRIP_GATE(0x80D46C40, &groupB);
 
 /* 80D46C64-80D46C88 000044 0024+00 1/0 0/0 0/0 .rodata          groupC */
-SECTION_RODATA static u8 const groupC[36] = {
+static u8 const groupC[36] = {
     0x08, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x01,
     0x50, 0x00, 0x00, 0x02, 0x01, 0x00, 0x00, 0x03, 0x21, 0x00, 0x00, 0x17,
     0x10, 0x00, 0x00, 0x18, 0x01, 0x00, 0x00, 0x19, 0x10, 0x00, 0x00, 0x1A,
 };
-COMPILER_STRIP_GATE(0x80D46C64, &groupC);
 
 /* 80D46C88-80D46CA8 000068 0020+00 1/0 0/0 0/0 .rodata          groupD */
-SECTION_RODATA static u8 const groupD[32] = {
+static u8 const groupD[32] = {
     0x07, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x14, 0x21, 0x00, 0x00, 0x15, 0x00, 0x00, 0x00, 0x16,
     0x11, 0x00, 0x00, 0x0C, 0x50, 0x00, 0x00, 0x0E, 0x40, 0x00, 0x00, 0x0F, 0x01, 0x00, 0x00, 0x0D,
 };
-COMPILER_STRIP_GATE(0x80D46C88, &groupD);
 
 /* 80D46CB0-80D46CC0 -00001 0010+00 1/1 0/0 0/0 .data            mGroupTbl__13daPasserMng_c */
-SECTION_DATA void* daPasserMng_c::mGroupTbl[4] = {
-    (void*)&groupA,
-    (void*)&groupB,
-    (void*)&groupC,
-    (void*)&groupD,
-};
-
-/* 80D46CC0-80D46D38 -00001 0078+00 1/1 0/0 0/0 .data            @4134 */
-SECTION_DATA static void* lit_4134[30] = {
-    (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x168),
-    (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x168),
-    (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x184),
-    (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x1CC),
-    (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x200),
-    (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x200),
-    (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x248),
-    (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x27C),
-    (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x184),
-    (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x184),
-    (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x184),
-    (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x1CC),
-    (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x200),
-    (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x200),
-    (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x248),
-    (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x184),
-    (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x2B0),
-    (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x2F8),
-    (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x340),
-    (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x394),
-    (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x3C8),
-    (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x3FC),
-    (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x430),
-    (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x2B0),
-    (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x2F8),
-    (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x340),
-    (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x394),
-    (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x3C8),
-    (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x3FC),
-    (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x430),
+daPasserMng_c::Group* daPasserMng_c::mGroupTbl[4] = {
+    (Group*)groupA,
+    (Group*)groupB,
+    (Group*)groupC,
+    (Group*)groupD,
 };
 
 /* 80D4597C-80D45E14 0002DC 0498+00 3/2 0/0 0/0 .text            getPasserParam__13daPasserMng_cFv
  */
-void daPasserMng_c::getPasserParam() {
-    // NONMATCHING
+int daPasserMng_c::getPasserParam() {
+    u32 param = (getPathID() & 0xff) << 16;
+    u8 groupNo = getGroupNo();
+    if (groupNo == 0xff || groupNo >= 4) {
+        // The passerby group specification is invalid.
+        OS_REPORT("\n通行人のグループ指定が不正です！ GroupNo=%d\n\n", groupNo);
+    }
+    bool groupOK = false;
+    if (groupNo != 0xff && groupNo < 4) {
+        groupOK = true;
+    }
+    u32 groupInd;
+    if (groupOK) {
+        groupInd = groupNo;
+    } else {
+        groupInd = 0;
+    }
+    Group* pGroup = mGroupTbl[groupInd];
+    int iVar5;
+    do {
+        iVar5 = cLib_getRndValue(0, (int)pGroup->field_0x00);
+    } while (checkOverlapping(pGroup->field_0x04[iVar5] & 0xff, pGroup->field_0x00));
+    int uVar3 = pGroup->field_0x04[iVar5];
+    param |= uVar3;
+    int local_30;
+    if (pGroup->field_0x00 <= 6) {
+        local_30 = pGroup->field_0x00 - 1;
+    } else {
+        local_30 = 6;
+    }
+    field_0x58a[field_0x597] = pGroup->field_0x04[iVar5];
+    if (++field_0x597 >= local_30) {
+        field_0x597 = 0;
+    }
+    int luggageParam;
+    if (getDetailLevel() == 0) {
+        luggageParam = getLuggageParamHigh(pGroup->field_0x04[iVar5] & 0xff);
+    } else {
+        luggageParam = getLuggageParamLow(pGroup->field_0x04[iVar5] & 0xff);
+    }
+    param |= luggageParam;
+    return param;
 }
 
-/* ############################################################################################## */
-/* 80D46D38-80D46DB0 -00001 0078+00 1/1 0/0 0/0 .data            @4305 */
-SECTION_DATA static void* lit_4305[30] = {
-    (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x34),
-    (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x34),
-    (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x50),
-    (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x110),
-    (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x1B0),
-    (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x1B0),
-    (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x27C),
-    (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x31C),
-    (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x50),
-    (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x50),
-    (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x50),
-    (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x110),
-    (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x1B0),
-    (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x1B0),
-    (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x27C),
-    (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x50),
-    (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x3BC),
-    (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x488),
-    (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x548),
-    (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x620),
-    (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x6C0),
-    (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x760),
-    (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x814),
-    (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x3BC),
-    (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x488),
-    (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x548),
-    (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x620),
-    (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x6C0),
-    (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x760),
-    (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x814),
-};
-
 /* 80D45E14-80D466FC 000774 08E8+00 2/1 0/0 0/0 .text getLuggageParamHigh__13daPasserMng_cFUl */
-void daPasserMng_c::getLuggageParamHigh(u32 param_0) {
-    // NONMATCHING
+int daPasserMng_c::getLuggageParamHigh(u32 param_1) {
+    int paramLow;
+
+    paramLow = 0;
+    switch (param_1) {
+    case 0:
+    case 1:
+        if (cLib_getRndValue(0, 2) != 0) {
+            paramLow = 2;
+        }
+        break;
+    case 2:
+    case 8:
+    case 9:
+    case 10:
+    case 0xf:
+    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x119])) {
+            switch(cLib_getRndValue(0, 4)) {
+            case 0:
+                paramLow = 0;
+                break;
+            case 1:
+                paramLow = 1;
+                break;
+            case 2:
+                paramLow = 4;
+                break;
+            case 3:
+                paramLow = 11;
+                break;
+            }
+        } else {
+            switch(cLib_getRndValue(0, 3)) {
+            case 0:
+                paramLow = 0;
+                break;
+            case 1:
+                paramLow = 1;
+                break;
+            case 2:
+                paramLow = 4;
+                break;
+            }
+        }
+        break;
+    case 3:
+    case 0xb:
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x119])) {
+            switch(cLib_getRndValue(0, 3)) {
+            case 0:
+                paramLow = 0;
+                break;
+            case 1:
+                paramLow = 4;
+                break;
+            case 2:
+                paramLow = 11;
+                break;
+            }
+        } else {
+            switch (cLib_getRndValue(0, 2)) {
+            case 0:
+                paramLow = 0;
+                break;
+            case 1:
+                paramLow = 4;
+                break;
+            }
+        }
+        break;
+    case 4:
+    case 5:
+    case 0xc:
+    case 0xd:
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x119])) {
+            switch(cLib_getRndValue(0, 4)) {
+            case 0:
+                paramLow = 0;
+                break;
+            case 1:
+                paramLow = 1;
+                break;
+            case 2:
+                paramLow = 4;
+                break;
+            case 3:
+                paramLow = 11;
+                break;
+            }
+        } else {
+            switch(cLib_getRndValue(0, 4)) {
+            case 0:
+                paramLow = 0;
+                break;
+            case 1:
+                paramLow = 1;
+                break;
+            case 2:
+                paramLow = 4;
+                break;
+            case 3:
+                paramLow = 9;
+                break;
+            }
+        }
+        break;
+    case 6:
+    case 0xe:
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x119])) {
+            switch(cLib_getRndValue(0, 3)) {
+            case 0:
+                paramLow = 0;
+                break;
+            case 1:
+                paramLow = 1;
+                break;
+            case 2:
+                paramLow = 11;
+                break;
+            }
+        } else {
+            switch (cLib_getRndValue(0, 2)) {
+            case 0:
+                paramLow = 0;
+                break;
+            case 1:
+                paramLow = 1;
+                break;
+            }
+        }
+        break;
+    case 7:
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x119])) {
+            switch(cLib_getRndValue(0, 3)) {
+            case 0:
+                paramLow = 0;
+                break;
+            case 1:
+                paramLow = 4;
+                break;
+            case 2:
+                paramLow = 11;
+                break;
+            }
+        } else {
+            switch (cLib_getRndValue(0, 2)) {
+            case 0:
+                paramLow = 0;
+                break;
+            case 1:
+                paramLow = 4;
+                break;
+            }
+        }
+        break;
+    case 0x10:
+    case 0x17:
+    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x119])) {
+        switch(cLib_getRndValue(0, 4)) {
+            case 0:
+                paramLow = 0;
+                break;
+            case 1:
+                paramLow = 8;
+                break;
+            case 2:
+                paramLow = 5;
+                break;
+            case 3:
+                paramLow = 12;
+                break;
+            }
+        } else {
+            switch(cLib_getRndValue(0, 4)) {
+            case 0:
+                paramLow = 0;
+                break;
+            case 1:
+                paramLow = 8;
+                break;
+            case 2:
+                paramLow = 5;
+                break;
+            case 3:
+                paramLow = 10;
+                break;
+            }
+        }
+        break;
+    case 0x11:
+    case 0x18:
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x119])) {
+            switch(cLib_getRndValue(0, 4)) {
+            case 0:
+                paramLow = 0;
+                break;
+            case 1:
+                paramLow = 8;
+                break;
+            case 2:
+                paramLow = 5;
+                break;
+            case 3:
+                paramLow = 12;
+                break;
+            }
+        } else {
+            switch(cLib_getRndValue(0, 3)) {
+            case 0:
+                paramLow = 0;
+                break;
+            case 1:
+                paramLow = 8;
+                break;
+            case 2:
+                paramLow = 5;
+                break;
+            }
+        }
+        break;
+    case 0x12:
+    case 0x19:
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x119])) {
+            switch(cLib_getRndValue(0, 5)) {
+            case 0:
+                paramLow = 0;
+                break;
+            case 1:
+                paramLow = 8;
+                break;
+            case 2:
+                paramLow = 5;
+                break;
+            case 3:
+                paramLow = 3;
+                break;
+            case 4:
+                paramLow = 12;
+                break;
+            }
+        } else {
+            switch(cLib_getRndValue(0, 4)) {
+            case 0:
+                paramLow = 0;
+                break;
+            case 1:
+                paramLow = 8;
+                break;
+            case 2:
+                paramLow = 5;
+                break;
+            case 3:
+                paramLow = 3;
+                break;
+            }
+        }
+        break;
+    case 0x13:
+    case 0x1a:
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x119])) {
+            switch(cLib_getRndValue(0, 3)) {
+            case 0:
+                paramLow = 0;
+                break;
+            case 1:
+                paramLow = 5;
+                break;
+            case 2:
+                paramLow = 12;
+                break;
+            }
+        } else {
+            switch (cLib_getRndValue(0, 2)) {
+            case 0:
+                paramLow = 0;
+                break;
+            case 1:
+                paramLow = 5;
+                break;
+            }
+        }
+        break;
+    case 0x14:
+    case 0x1b:
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x119])) {
+            switch(cLib_getRndValue(0, 3)) {
+            case 0:
+                paramLow = 0;
+                break;
+            case 1:
+                paramLow = 5;
+                break;
+            case 2:
+                paramLow = 12;
+                break;
+            }
+        } else {
+            switch (cLib_getRndValue(0, 2)) {
+            case 0:
+                paramLow = 0;
+                break;
+            case 1:
+                paramLow = 5;
+                break;
+            }
+        }
+        break;
+    case 0x15:
+    case 0x1c:
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x119])) {
+            switch(cLib_getRndValue(0, 3)) {
+            case 0:
+                paramLow = 0;
+                break;
+            case 1:
+                paramLow = 5;
+                break;
+            case 2:
+                paramLow = 12;
+                break;
+            }
+        } else {
+            switch(cLib_getRndValue(0, 3)) {
+            case 0:
+                paramLow = 0;
+                break;
+            case 1:
+                paramLow = 5;
+                break;
+            case 2:
+                paramLow = 10;
+                break;
+            }
+        }
+        break;
+    case 0x16:
+    case 0x1d:
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x119])) {
+            switch(cLib_getRndValue(0, 4)) {
+            case 0:
+                paramLow = 0;
+                break;
+            case 1:
+                paramLow = 5;
+                break;
+            case 2:
+                paramLow = 3;
+                break;
+            case 3:
+                paramLow = 12;
+                break;
+            }
+        } else {
+            switch(cLib_getRndValue(0, 3)) {
+            case 0:
+                paramLow = 0;
+                break;
+            case 1:
+                paramLow = 5;
+                break;
+            case 2:
+                paramLow = 3;
+                break;
+            }
+        }
+        break;
+    default:
+        OS_REPORT("%s: Line.%d arg=%d\n", "d_a_passer_mng.cpp", 921, param_1);
+        JUT_PANIC(922, 0);
+    }
+    return paramLow << 8;
 }
 
 /* 80D466FC-80D46704 00105C 0008+00 1/0 0/0 0/0 .text daPasserMng_IsDelete__FP13daPasserMng_c */
-static bool daPasserMng_IsDelete(daPasserMng_c* param_0) {
-    return true;
+static int daPasserMng_IsDelete(daPasserMng_c* i_this) {
+    return 1;
 }
 
 /* 80D46704-80D46748 001064 0044+00 1/0 0/0 0/0 .text daPasserMng_Delete__FP13daPasserMng_c */
-static void daPasserMng_Delete(daPasserMng_c* param_0) {
-    // NONMATCHING
+static int daPasserMng_Delete(daPasserMng_c* i_this) {
+    fopAcM_GetID(i_this);
+    i_this->~daPasserMng_c();
+    return 1;
 }
 
 /* 80D46748-80D46768 0010A8 0020+00 1/0 0/0 0/0 .text            daPasserMng_Create__FP10fopAc_ac_c
  */
-static void daPasserMng_Create(fopAc_ac_c* param_0) {
-    // NONMATCHING
+static int daPasserMng_Create(fopAc_ac_c* i_this) {
+    fopAcM_GetID(i_this);
+    return static_cast<daPasserMng_c*>(i_this)->create();
 }
 
 /* 80D46768-80D467C0 0010C8 0058+00 1/1 0/0 0/0 .text            create__13daPasserMng_cFv */
-void daPasserMng_c::create() {
-    // NONMATCHING
+int daPasserMng_c::create() {
+    fopAcM_SetupActor(this, daPasserMng_c);
+    create_init();
+    return cPhs_COMPLEATE_e;
 }
 
 /* 80D467C0-80D46B9C 001120 03DC+00 1/1 0/0 0/0 .text            create_init__13daPasserMng_cFv */
 void daPasserMng_c::create_init() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80D46CA8-80D46CB0 000088 0008+00 1/1 0/0 0/0 .rodata          @4430 */
-SECTION_RODATA static u8 const lit_4430[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D46CA8, &lit_4430);
-
-/* 80D46B9C-80D46C18 0014FC 007C+00 3/3 0/0 0/0 .text            cLib_getRndValue<i>__Fii */
-extern "C" void func_80D46B9C(void* _this, int param_0, int param_1) {
-    // NONMATCHING
+    npcId = getDetailLevel() == 0 ? PROC_NPC_PASSER : PROC_NPC_PASSER2;
+    mPath = dPath_GetRoomPath(getPathID(), fopAcM_GetHomeRoomNo(this));
+    JUT_ASSERT(542, mPath != 0);
+    dStage_dPnt_c* pnt0 = dPath_GetPnt(mPath, 0);
+    dStage_dPnt_c* pnt1 = dPath_GetPnt(mPath, 1);
+    current.pos.set(pnt0->m_position);
+    current.angle.y = cLib_targetAngleY(pnt0->m_position, pnt1->m_position);
+    childProcIds = new fpc_ProcID[getMaxNum()];
+    currentChildIndex = 0;
+    int time = getTime();
+    intervalTime = getIntervalTime() * 5;
+    mTime = time;
+    dayOfWeek = getDayOfWeek();
+    if ((u8)getStartTime() != 0xff && (u8)getEndTime() != 0xff) {
+        startTime = (getStartTime() / 10) * 60 + (getStartTime() % 10) * 10;
+        endTime = (getEndTime() / 10) * 60 + (getEndTime() % 10) * 10;
+        if (mTime > endTime) {
+            dayOfWeek = (dayOfWeek + 1) % 7;
+        }
+        if (mTime < startTime || mTime > endTime) {
+            mTime = startTime;
+        }
+        field_0x596 = 0;
+    } else {
+        field_0x596 = 1;
+    }
+    for (int i = 0; i < 5; i++) {
+        field_0x58a[i] = 0xffff;
+    }
+    field_0x597 = 0;
+    if (field_0x596 != 0 || (startTime < time && endTime > time)) {
+        int max;
+        if (getMaxNum() < mPath->m_num - 2) {
+            max = getMaxNum();
+        } else {
+            max = mPath->m_num - 2;
+        }
+        int i;
+        int* arr = new int[max];
+        int ind = 0;
+        while (ind < max) {
+            int rnd = cLib_getRndValue(1, mPath->m_num - 2);
+            bool bVar1 = true;
+            for (int i = 0; i < ind; i++) {
+                if (rnd == arr[i]) {
+                    bVar1 = false;
+                    break;
+                }
+            }
+            if (bVar1) {
+                arr[ind] = rnd;
+                ind++;
+            }
+        }
+        #ifdef DEBUG
+        OS_REPORT("初期ばらまき位置 Path=%d ", getPathID())
+        for (int i = 0; i < max; i++) {
+            OS_REPORT("%d, ", arr[i]);
+        }
+        #endif
+        OS_REPORT("\n");
+        for (i = 0; i < max; i++) {
+            dStage_dPnt_c* pnti0 = dPath_GetPnt(mPath, arr[i]);
+            dStage_dPnt_c* pnti1 = dPath_GetPnt(mPath, arr[i] + 1);
+            cXyz cStack_28(pnti0->m_position);
+            s16 sVar11 = cLib_targetAngleY(cStack_28, pnti1->m_position);
+            csXyz cStack_30(endTime, sVar11, 0);
+            childProcIds[currentChildIndex] = fopAcM_createChild(npcId, fopAcM_GetID(this), getPasserParam(),
+                                                       &cStack_28, fopAcM_GetRoomNo(this), &cStack_30, 0,
+                                                       -1, 0);
+            currentChildIndex = (currentChildIndex + 1) % getMaxNum();
+        }
+        delete [] arr;
+    }
 }
 
 /* ############################################################################################## */
 /* 80D46DB0-80D46DD0 -00001 0020+00 1/0 0/0 0/0 .data            l_daPasserMng_Method */
 static actor_method_class l_daPasserMng_Method = {
-    (process_method_func)daPasserMng_Create__FP10fopAc_ac_c,
-    (process_method_func)daPasserMng_Delete__FP13daPasserMng_c,
-    (process_method_func)daPasserMng_Execute__FP13daPasserMng_c,
-    (process_method_func)daPasserMng_IsDelete__FP13daPasserMng_c,
+    (process_method_func)daPasserMng_Create,
+    (process_method_func)daPasserMng_Delete,
+    (process_method_func)daPasserMng_Execute,
+    (process_method_func)daPasserMng_IsDelete,
 };
 
 /* 80D46DD0-80D46E00 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_PASSER_MNG */

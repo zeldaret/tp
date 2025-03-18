@@ -863,7 +863,7 @@ bool daNpc_zrZ_c::setExpressionAnm(int i_idx, bool i_modify) {
         return true;
     }
 
-    if (setBckAnm(bck_anm, 1.0f, J3DFrameCtrl::LOOP_ONCE_e, 0, -1, i_modify)) {
+    if (setBckAnm(bck_anm, 1.0f, J3DFrameCtrl::EMode_NONE, 0, -1, i_modify)) {
         mAnmFlags |= ANM_PLAY_BCK | ANM_PAUSE_BCK;
         mExpressionLoops = 0;
         return true;
@@ -876,7 +876,7 @@ bool daNpc_zrZ_c::setExpressionAnm(int i_idx, bool i_modify) {
  */
 bool daNpc_zrZ_c::setExpressionBtp(int i_idx) {
     J3DAnmTexPattern* btp_anm = NULL;
-    int attr = J3DFrameCtrl::LOOP_ONCE_e;
+    int attr = J3DFrameCtrl::EMode_NONE;
     mAnmFlags &= ~(ANM_PLAY_BTP | ANM_PAUSE_BTP | ANM_FLAG_800);
 
     if (mType == 1) {
@@ -893,7 +893,7 @@ bool daNpc_zrZ_c::setExpressionBtp(int i_idx) {
 
     switch (i_idx) {
     case 0:
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     default:
         btp_anm = NULL;
@@ -929,7 +929,7 @@ void daNpc_zrZ_c::setExpression(int i_expression, f32 i_morf) {
 bool daNpc_zrZ_c::setMotionAnm(int i_idx, f32 i_morf) {
     J3DAnmTransformKey* bck_anm = NULL;
     J3DAnmTextureSRTKey* btk_anm = NULL;
-    int attr = J3DFrameCtrl::LOOP_REPEAT_e;
+    int attr = J3DFrameCtrl::EMode_LOOP;
     mAnmFlags &= ~ANM_MOTION_FLAGS;
 
     if (mType == 1) {
@@ -949,7 +949,7 @@ bool daNpc_zrZ_c::setMotionAnm(int i_idx, f32 i_morf) {
     case 3:
         break;
     case 4:
-        attr = J3DFrameCtrl::LOOP_ONCE_e;
+        attr = J3DFrameCtrl::EMode_NONE;
         break;
     default:
         bck_anm = NULL;

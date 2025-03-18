@@ -1730,7 +1730,7 @@ int daMyna_c::chkPlayerInEvtArea(fopAc_ac_c* param_0, cXyz param_1) {
 // NONMATCHING regswap
 void daMyna_c::animeControl() {
     f32 rate = 1.0f;
-    int attr = J3DFrameCtrl::LOOP_REPEAT_e;
+    int attr = J3DFrameCtrl::EMode_LOOP;
     f32 morf = field_0x90C;
     switch (field_0x935) {
     case 1:
@@ -1739,23 +1739,23 @@ void daMyna_c::animeControl() {
         }
         break;
     case 2:
-        attr = J3DFrameCtrl::LOOP_ONCE_e;
+        attr = J3DFrameCtrl::EMode_NONE;
         break;
     case 3:
-        attr = J3DFrameCtrl::LOOP_ONCE_e;
+        attr = J3DFrameCtrl::EMode_NONE;
         break;
     case 4:
         rate = l_HOSTIO.field_0x08;
         break;
     case 7:
-        attr = J3DFrameCtrl::LOOP_ONCE_e;
+        attr = J3DFrameCtrl::EMode_NONE;
         morf = 6.0f;
         break;
     case 8:
-        attr = J3DFrameCtrl::LOOP_ONCE_e;
+        attr = J3DFrameCtrl::EMode_NONE;
         break;
     case 14:
-        attr = J3DFrameCtrl::LOOP_ONCE_e;
+        attr = J3DFrameCtrl::EMode_NONE;
         break;
     }
 

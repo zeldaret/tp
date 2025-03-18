@@ -212,7 +212,7 @@ static void e_hzelda_wait(e_hzelda_class* i_this) {
     case -1:
         Z2GetAudioMgr()->bgmStart(Z2BGM_VS_GANON_01, 0, 0);
     case 0:
-        anm_init(i_this, ANM_FWAIT, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, ANM_FWAIT, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mMode = 1;
         i_this->mTimers[TIMER_ATTACK_WAIT] = cM_rndF(150.0f) + 100.0f;
         i_this->mMoveStep = 0.0f;
@@ -304,7 +304,7 @@ static int e_hzelda_attack_a(e_hzelda_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_BEFORE_ATTACK, 10.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, ANM_BEFORE_ATTACK, 10.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mMode = 1;
         i_this->field_0x5c4 = i_this->mTargetMovePos;
         /* fallthrough */

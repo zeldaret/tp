@@ -113,7 +113,7 @@ cPhs__Step daTbox_c::commonShapeSet() {
     }
 
     J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes(model_info->mArcName, model_info->mBckResNo);
-    if (!mpAnm->init(bck, TRUE, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1, false)) {
+    if (!mpAnm->init(bck, TRUE, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1, false)) {
         return cPhs_ERROR_e;
     }
 
@@ -152,7 +152,7 @@ cPhs__Step daTbox_c::commonShapeSet() {
 
         J3DAnmTevRegKey* brk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(model_info->mArcName, model_info->mBrkResNo);
         JUT_ASSERT(0x1E1, brk != 0);
-        if (!mpEffectAnm->init(modelData, brk, TRUE, J3DFrameCtrl::LOOP_ONCE_e, 0.0f, 0, -1)) {
+        if (!mpEffectAnm->init(modelData, brk, TRUE, J3DFrameCtrl::EMode_NONE, 0.0f, 0, -1)) {
             return cPhs_ERROR_e;
         }
     }
@@ -1002,7 +1002,7 @@ void daTbox_c::OpenInit_com() {
         if (getShapeType() == SHAPE_LARGE) {
             J3DAnmTransform* bck =
                 (J3DAnmTransform*)dComIfG_getObjectRes(getModelInfo()->mArcName, 9);
-            mpAnm->init(bck, TRUE, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, bck->getFrameMax(), true);
+            mpAnm->init(bck, TRUE, J3DFrameCtrl::EMode_NONE, 1.0f, 0, bck->getFrameMax(), true);
             mOpenSeId = Z2SE_OBJ_TBOX_OPEN_B_SLOW;
         }
     }

@@ -103,7 +103,7 @@ int daTagLv8Gate_c::createHeap() {
         J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 5);
         mpBck = new mDoExt_bckAnm();
         if (mpBck == NULL ||
-            !mpBck->init(bck, TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1, false))
+            !mpBck->init(bck, TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1, false))
         {
             return 0;
         }

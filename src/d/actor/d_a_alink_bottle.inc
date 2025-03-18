@@ -67,14 +67,14 @@ void daAlink_c::setBottleModel(u16 i_itemNo) {
     if (i_itemNo == fpcNm_ITEM_FAIRY) {
         J3DAnmTransform* bck = (J3DAnmTransform*)loadAram(0x1E8, 0xC00);
         mpHookTipModel = initModel(loadAramBmd(0x31D, 0x1400), 0);
-        if (!mHookTipBck.init(bck, FALSE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1, false)) {
+        if (!mHookTipBck.init(bck, FALSE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1, false)) {
             JUT_ASSERT(142, 0);
         }
         mHookTipBck.entry(mpHookTipModel->getModelData(), 0.0f);
     } else if (i_itemNo == fpcNm_ITEM_WORM) {
         J3DAnmTransform* bck = (J3DAnmTransform*)loadAram(0x1E9, 0xC00);
         mpHookTipModel = initModel(loadAramBmd(0x31E, 0x2400), 0);
-        if (!mHookTipBck.init(bck, FALSE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1, false)) {
+        if (!mHookTipBck.init(bck, FALSE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1, false)) {
             JUT_ASSERT(151, 0);
         }
         mHookTipBck.entry(mpHookTipModel->getModelData(), 0.0f);
