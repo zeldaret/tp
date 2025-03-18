@@ -1108,6 +1108,10 @@ public:
 
     BOOL checkClimbEndHang() { return checkResetFlg0(RFLG0_UNK_40000); }
 
+    void onForceHorseGetOff() {
+        onEndResetFlg2(ERFLG2_UNK_2);
+    }
+
     static daMidna_c* m_midnaActor;
 };
 
