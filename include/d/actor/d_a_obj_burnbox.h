@@ -30,12 +30,13 @@ public:
 
 private:
     /* 0x5A0 */ request_of_phase_process_class mPhaseReq;
-    /* 0x5A8 */ J3DModel* mpModel;
+    /* 0x5A8 */ J3DModel* mpBoxModel;
     /* 0x5AC */ dCcD_Stts mStts;
     /* 0x5E8 */ dCcD_Cyl mCyl;
-    /* 0x724 */ u32 f_0x724;  // counter?
-    /* 0x728 */ s16 mColor;
-    /* 0x72a */ s16 f_0x72a;  // alpha? not used
+    /* 0x724 */ u32 field_0x724;
+    /* 0x728 */ s16 field_0x728;
+    /* 0x72a */ u8 field_0x72a;
+    /* 0x72b */ u8 field_0x72b;
     /* 0x72c */ JPABaseEmitter* mpEmitters[5];
 };
 
