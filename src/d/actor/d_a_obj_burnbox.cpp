@@ -93,9 +93,9 @@ int daObjBurnBox_c::Create() {
 /* ############################################################################################## */
 /* 8046EED4-8046EEE0 -00001 000C+00 3/3 0/0 0/0 .data            l_arcName */
 const char* l_arcName[3] = {
-    "Kkiba_00", // barrel
+    "Kkiba_00", // crate
     "Kkiba_00",
-    "J_taru00", // crate
+    "J_taru00", // barrel
 };
 
 /* 8046E8BC-8046E93C 00029C 0080+00 1/0 0/0 0/0 .text            CreateHeap__14daObjBurnBox_cFv */
