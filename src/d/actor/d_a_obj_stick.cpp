@@ -49,7 +49,7 @@ extern "C" u8 mCcDSph__13daObj_Stick_c[64];
 
 /* 80599E3C-80599E4C 000000 0010+00 3/3 0/0 0/0 .rodata          m__19daObj_Stick_Param_c */
 const f32 daObj_Stick_Param_c::m[4] = {
-    0x00000000, 0x00000000, 0x3F800000, 0x42C80000
+    0.0f, -3.0f, 1.0f, 100.0f
 };
 
 /* 80599E70-80599EB0 000000 0040+00 2/2 0/0 0/0 .data            mCcDSph__13daObj_Stick_c */
@@ -101,48 +101,58 @@ daObj_Stick_c::~daObj_Stick_c() {
 }
 
 /* 805993E8-805996BC 0002A8 02D4+00 1/1 0/0 0/0 .text            create__13daObj_Stick_cFv */
-int daObj_Stick_c::create() {
+u32 daObj_Stick_c::create() {
     fopAcM_SetupActor(this, daObj_Stick_c);
 
     mType = getType();
+    
     int phase_state = dComIfG_resLoad(&mPhase, getResName());
-    if (phase_state == cPhs_COMPLEATE_e) {
-        if (!isDelete()) {
-            if (fopAcM_entrySolidHeap(this, createHeapCallBack, 0x810)) {
-                J3DModelData* modelData = mpModel->getModelData();
-                fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
-                fopAcM_setCullSizeBox(this, -50.0, -50.0, -75.0, 50.0, 50.0, 75.0);
-                mAcch.Set(fopAcM_GetPosition_p(this), 
-                    fopAcM_GetOldPosition_p(this), 
-                    this, 
-                    1,
-                    &mAcchCir, 
-                    fopAcM_GetSpeed_p(this), 
-                    fopAcM_GetAngle_p(this), 
-                    fopAcM_GetShapeAngle_p(this));
-                mStts.Init(0xFF, 0, this);
-                mSph.Set(daObj_Stick_c::mCcDSph);
-                mSph.SetStts(&mStts);
-                mAcch.CrrPos(g_dComIfG_gameInfo.play.mBgs);
-                mGndChk = mAcch.m_gnd;
-                mGroundHeight = mAcch.m_ground_h;
-
-                if(mGroundHeight != -1000000000.0f) {
-                    setEnvTevColor();
-                    setRoomNo();
-                }
-                Execute();
-            }
-        }
-
-        return phase_state;
+    switch (phase_state) {
+        case cPhs_COMPLEATE_e:
+            break;
+        default:
+            return phase_state;
     }
+    switch (isDelete()) {
+        case 1:
+            return cPhs_ERROR_e;
+        default:
+            break;
+    }
+    if (!fopAcM_entrySolidHeap(this, createHeapCallBack, 0x810)) {
+        return cPhs_ERROR_e;
+    }
+
+    J3DModelData* modelData;
+    modelData = mpModel->getModelData();
+    fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
+    fopAcM_setCullSizeBox(this, -50.0, -50.0, -75.0, 50.0, 50.0, 75.0);
+    mAcch.Set(fopAcM_GetPosition_p(this), 
+        fopAcM_GetOldPosition_p(this), 
+        this, 
+        1,
+        &mAcchCir, 
+        fopAcM_GetSpeed_p(this), 
+        fopAcM_GetAngle_p(this), 
+        fopAcM_GetShapeAngle_p(this));
+    mStts.Init(0xFF, 0, this);
+    mSph.Set(daObj_Stick_c::mCcDSph);
+    mSph.SetStts(&mStts);
+    mAcch.CrrPos(g_dComIfG_gameInfo.play.mBgs);
+    mGndChk = mAcch.m_gnd;
+    mGroundHeight = mAcch.m_ground_h;
+
+    if(mGroundHeight != -1000000000.0f) {
+        setEnvTevColor();
+        setRoomNo();
+    }
+    Execute();
 
     return phase_state;
 }
 
 /* 80599888-80599900 000748 0078+00 1/1 0/0 0/0 .text            CreateHeap__13daObj_Stick_cFv */
-int daObj_Stick_c::CreateHeap() {
+u32 daObj_Stick_c::CreateHeap() {
     J3DModelData* objectRes = (J3DModelData*)dComIfG_getObjectRes(getResName(), 3);
     if (objectRes == NULL) {
         return 0;
@@ -157,14 +167,14 @@ int daObj_Stick_c::CreateHeap() {
 }
 
 /* 80599900-80599934 0007C0 0034+00 1/1 0/0 0/0 .text            Delete__13daObj_Stick_cFv */
-int daObj_Stick_c::Delete() {
+u32 daObj_Stick_c::Delete() {
     this->~daObj_Stick_c();
 
     return 1;
 }
 
 /* 80599934-80599A78 0007F4 0144+00 2/2 0/0 0/0 .text            Execute__13daObj_Stick_cFv */
-int daObj_Stick_c::Execute() {
+u32 daObj_Stick_c::Execute() {
     mAcch.CrrPos(dComIfG_Bgsp());
     mGndChk = mAcch.m_gnd;
     
@@ -185,7 +195,7 @@ int daObj_Stick_c::Execute() {
 }
 
 /* 80599A78-80599B3C 000938 00C4+00 1/1 0/0 0/0 .text            Draw__13daObj_Stick_cFv */
-int daObj_Stick_c::Draw() {
+u32 daObj_Stick_c::Draw() {
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     mDoExt_modelUpdateDL(mpModel);
@@ -221,7 +231,7 @@ const char* daObj_Stick_c::getResName() {
 }
 
 /* 80599B6C-80599B8C 000A2C 0020+00 1/1 0/0 0/0 .text            isDelete__13daObj_Stick_cFv */
-u8 daObj_Stick_c::isDelete() {
+BOOL daObj_Stick_c::isDelete() {
     switch(mType) {
         case 0:
             return 0;
@@ -252,7 +262,7 @@ void daObj_Stick_c::setMtx() {
 }
 
 /* 80599C8C-80599CAC 000B4C 0020+00 1/0 0/0 0/0 .text            daObj_Stick_Create__FPv */
-static int daObj_Stick_Create(void* i_this) {
+static u32 daObj_Stick_Create(void* i_this) {
     return static_cast<daObj_Stick_c*>(i_this)->create();
 }
 
