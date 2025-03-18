@@ -7,6 +7,7 @@
 #include "f_pc/f_pc_node.h"
 #include "f_pc/f_pc_pause.h"
 #include "f_pc/f_pc_searcher.h"
+#include "f_pc/f_pc_debug_sv.h"
 
 /* 80021338-80021358 0020+00 s=1 e=9 z=291  None .text      fpcEx_Search__FPFPvPv_PvPv */
 base_process_class* fpcEx_Search(fpcLyIt_JudgeFunc i_judgeFunc, void* i_data) {
@@ -23,7 +24,11 @@ base_process_class* fpcEx_SearchByID(fpc_ProcID i_id) {
 
 /* 8002139C-800213C4 0028+00 s=0 e=7 z=42  None .text      fpcEx_IsExist__FUi */
 BOOL fpcEx_IsExist(fpc_ProcID i_id) {
-    return fpcEx_SearchByID(i_id) != NULL ? TRUE : FALSE;
+    if (fpcEx_SearchByID(i_id) != NULL) {
+        return TRUE;
+    } else {
+        return FALSE;
+    }
 }
 
 /* 800213C4-80021418 0054+00 s=0 e=1 z=0  None .text      fpcEx_Execute__FP18base_process_class */
@@ -36,20 +41,24 @@ s32 fpcEx_Execute(base_process_class* i_proc) {
 
 /* 80021418-800214C4 00AC+00 s=1 e=0 z=0  None .text      fpcEx_ToLineQ__FP18base_process_class */
 s32 fpcEx_ToLineQ(base_process_class* i_proc) {
-    layer_class* layer = i_proc->layer_tag.layer;
-    base_process_class* process = &layer->process_node->base;
+    base_process_class* process = &i_proc->layer_tag.layer->process_node->base;
 
-    if (layer->layer_id == fpcLy_ROOT_e || cTg_IsUse(&process->line_tag_.base) == TRUE) {
-        s32 ret = fpcLnTg_ToQueue(&i_proc->line_tag_, i_proc->priority.current_info.list_id);
-        if (ret == 0) {
+    if (i_proc->layer_tag.layer->layer_id == fpcLy_ROOT_e || cTg_IsUse(&process->line_tag_.base) == TRUE) {
+        int var_r28 = i_proc->priority.current_info.list_id;
+        if (fpcLnTg_ToQueue(&i_proc->line_tag_, var_r28) == 0) {
             fpcLyTg_QueueTo(&i_proc->layer_tag);
             return 0;
         }
 
+#ifdef DEBUG
+        if (g_fpcDbSv_service[1] != NULL) {
+            g_fpcDbSv_service[1](i_proc);
+        }
+#endif
+
         i_proc->init_state = 2;
         if (fpcBs_Is_JustOfType(g_fpcNd_type, i_proc->subtype)) {
-            process_node_class* node = (process_node_class*)i_proc;
-            fpcLyIt_OnlyHere(&node->layer, (fpcLyIt_OnlyHereFunc)fpcEx_ToLineQ, node);
+            fpcLyIt_OnlyHere(&((process_node_class*)i_proc)->layer, (fpcLyIt_OnlyHereFunc)fpcEx_ToLineQ, i_proc);
         }
 
         return 1;
@@ -61,8 +70,7 @@ s32 fpcEx_ToLineQ(base_process_class* i_proc) {
 /* 800214C4-80021510 004C+00 s=0 e=1 z=0  None .text      fpcEx_ExecuteQTo__FP18base_process_class
  */
 s32 fpcEx_ExecuteQTo(base_process_class* i_proc) {
-    s32 ret = fpcLyTg_QueueTo(&i_proc->layer_tag);
-    if (ret == 1) {
+    if (fpcLyTg_QueueTo(&i_proc->layer_tag) == 1) {
         i_proc->init_state = 3;
         return 1;
     }
@@ -73,9 +81,8 @@ s32 fpcEx_ExecuteQTo(base_process_class* i_proc) {
 /* 80021510-80021568 0058+00 s=0 e=1 z=0  None .text      fpcEx_ToExecuteQ__FP18base_process_class
  */
 s32 fpcEx_ToExecuteQ(base_process_class* i_proc) {
-    s32 ret = fpcLyTg_ToQueue(&i_proc->layer_tag, i_proc->priority.current_info.layer_id,
-                              i_proc->priority.current_info.list_id, i_proc->priority.current_info.list_priority);
-    if (ret == 1) {
+    process_priority_class* priority = &i_proc->priority;
+    if (fpcLyTg_ToQueue(&i_proc->layer_tag, priority->current_info.layer_id, priority->current_info.list_id, priority->current_info.list_priority) == 1) {
         fpcEx_ToLineQ(i_proc);
         return 1;
     }

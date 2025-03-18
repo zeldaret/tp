@@ -5,6 +5,7 @@
 
 #include "f_pc/f_pc_node.h"
 #include "f_pc/f_pc_layer_iter.h"
+#include "f_pc/f_pc_debug_sv.h"
 
 /* 800224F0-80022514 0024+00 s=1 e=1 z=0  None .text fpcNd_DrawMethod__FP21nodedraw_method_classPv
  */
@@ -15,9 +16,11 @@ s32 fpcNd_DrawMethod(nodedraw_method_class* i_method_class, void* i_data) {
 /* 80022514-80022580 006C+00 s=1 e=0 z=0  None .text      fpcNd_Draw__FP18process_node_class */
 s32 fpcNd_Draw(process_node_class* i_procNode) {
     s32 ret = 0;
+    process_node_class* var_r28 = i_procNode;
+
     if (i_procNode->unk_0x1A8 == 0) {
         layer_class* save_layer = fpcLy_CurrentLayer();
-        fpcLy_SetCurrentLayer(&i_procNode->layer);
+        fpcLy_SetCurrentLayer(&var_r28->layer);
         ret = fpcNd_DrawMethod(i_procNode->nodedraw_method, i_procNode);
         fpcLy_SetCurrentLayer(save_layer);
     }
@@ -27,8 +30,18 @@ s32 fpcNd_Draw(process_node_class* i_procNode) {
 
 /* 80022580-800225DC 005C+00 s=1 e=0 z=0  None .text      fpcNd_Execute__FP18process_node_class */
 s32 fpcNd_Execute(process_node_class* i_procNode) {
-    s32 ret;
+    s32 ret = 0;
     layer_class* save_layer = fpcLy_CurrentLayer();
+
+#ifdef DEBUG
+    if (fpcBs_Is_JustOfType(g_fpcNd_type, i_procNode->base.subtype) == 0) {
+        if (g_fpcDbSv_service[11] != NULL) {
+            g_fpcDbSv_service[11](i_procNode);
+        }
+        return 0;
+    }
+#endif
+
     fpcLy_SetCurrentLayer(&i_procNode->layer);
     ret = fpcMtd_Execute(&i_procNode->nodedraw_method->base, i_procNode);
     fpcLy_SetCurrentLayer(save_layer);
@@ -111,4 +124,5 @@ s32 fpcNd_Create(process_node_class* i_procNode) {
 nodedraw_method_class g_fpcNd_Method = {
     (process_method_func)fpcNd_Create, (process_method_func)fpcNd_Delete,
     (process_method_func)fpcNd_Execute, (process_method_func)fpcNd_IsDelete,
-    (process_method_func)fpcNd_Draw};
+    (process_method_func)fpcNd_Draw,
+};

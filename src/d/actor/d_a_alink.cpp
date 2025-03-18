@@ -9780,14 +9780,14 @@ s16 daAlink_c::getRoofAngle(cBgS_PolyInfo* param_0, s16 param_1) {
 
 /* 800B01FC-800B02BC 0AAB3C 00C0+00 2/2 0/0 0/0 .text
  * getWallEdgePos__9daAlink_cFRC4cXyzP8cM3dGPlaP8cM3dGPlaP4cXyzi */
-BOOL daAlink_c::getWallEdgePos(cXyz const& param_0, cM3dGPla* param_1, cM3dGPla* param_2,
-                                   cXyz* param_3, int param_4) {
-    cXyz sp20(param_1->mNormal.z, 0.0f, -param_1->mNormal.x);
-    sp20.normalizeZP();
+BOOL daAlink_c::getWallEdgePos(cXyz const& param_0, cM3dGPla* i_planeA, cM3dGPla* i_planeB,
+                               cXyz* o_outVec, int unused) {
+    cXyz normal(i_planeA->mNormal.z, 0.0f, -i_planeA->mNormal.x);
+    normal.normalizeZP();
 
-    cM3dGPla sp2C(&sp20, -((sp20.z * param_0.z) + ((sp20.x * param_0.x) + (sp20.y * param_0.y))));
+    cM3dGPla planeC(&normal, -((normal.z * param_0.z) + ((normal.x * param_0.x) + (normal.y * param_0.y))));
     
-    return cM3d_3PlaneCrossPos(*param_1, *param_2, sp2C, param_3);
+    return cM3d_3PlaneCrossPos(*i_planeA, *i_planeB, planeC, o_outVec);
 }
 
 /* 800B02BC-800B146C 0AABFC 11B0+00 9/9 0/0 0/0 .text            setFrontWallType__9daAlink_cFv */
@@ -9806,8 +9806,8 @@ void daAlink_c::setFrontWallType() {
     if (field_0x2f91 == 0) {
         field_0x2f91 = 1;
         if (!checkMagneBootsOn()) {
-            cXyz sp98;
-            cXyz sp8C;
+            cXyz chk_start_pos;
+            cXyz chk_end_pos;
             f32 sp64 = cM_ssin(shape_angle.y);
             f32 sp60 = cM_scos(shape_angle.y);
 
@@ -9833,39 +9833,38 @@ void daAlink_c::setFrontWallType() {
                     }
                 }
 
-                sp98.x = mHookshotTopPos.x - (sp64 * var_f31);
-                sp98.z = mHookshotTopPos.z - (sp60 * var_f31);
-                sp8C.x = (2.0f * mHookshotTopPos.x) - sp98.x;
-                sp8C.z = (2.0f * mHookshotTopPos.z) - sp98.z;
+                chk_start_pos.x = mHookshotTopPos.x - (sp64 * var_f31);
+                chk_start_pos.z = mHookshotTopPos.z - (sp60 * var_f31);
+                chk_end_pos.x = (2.0f * mHookshotTopPos.x) - chk_start_pos.x;
+                chk_end_pos.z = (2.0f * mHookshotTopPos.z) - chk_start_pos.z;
                 sp50 = mHookshotTopPos.y;
                 sp54 = 10.0f + mHookshotTopPos.y;
             } else {
-                sp98.x = current.pos.x;
-                sp98.z = current.pos.z;
-                sp8C.x = sp98.x + (sp64 * (25.0f + var_f31));
-                sp8C.z = sp98.z + (sp60 * (25.0f + var_f31));
+                chk_start_pos.x = current.pos.x;
+                chk_start_pos.z = current.pos.z;
+                chk_end_pos.x = chk_start_pos.x + (sp64 * (25.0f + var_f31));
+                chk_end_pos.z = chk_start_pos.z + (sp60 * (25.0f + var_f31));
                 sp50 = current.pos.y;
                 sp54 = 100.0f + current.pos.y;
             }
 
             BOOL sp4C = 0;
-
             
             for (i = 0; i < 3; i++) {
-                sp98.y = sp50 + mAcchCir[i].GetWallH();
-                sp8C.y = sp98.y;
+                chk_start_pos.y = sp50 + mAcchCir[i].GetWallH();
+                chk_end_pos.y = chk_start_pos.y;
 
-                if (commonLineCheck(&sp98, &sp8C)) {
+                if (commonLineCheck(&chk_start_pos, &chk_end_pos)) {
                     var_r27 = dComIfG_Bgsp().GetWallCode(mLinkLinChk);
     
                     if (i == 0 && var_r27 == 3 && checkStageName("D_MN10") != 0 && fopAcM_GetRoomNo(this) == 6) {
                         sp4C = 1;
                     } else if (!checkWolf() && sp5C == 0 && ((i == 0 && mLinkAcch.ChkGroundHit() && !checkModeFlg(0x70C52)) || mProcID == PROC_HOOKSHOT_FLY) && var_r27 == 0) {
                         sp5C = 1;
-                        sp98.y = sp54;
-                        sp8C.y = sp98.y;
+                        chk_start_pos.y = sp54;
+                        chk_end_pos.y = chk_start_pos.y;
 
-                        if (commonLineCheck(&sp98, &sp8C) && checkClimbCode(mLinkLinChk)) {
+                        if (commonLineCheck(&chk_start_pos, &chk_end_pos) && checkClimbCode(mLinkLinChk)) {
                             sp58 = 1;
                             break;
                         }
@@ -9883,24 +9882,24 @@ void daAlink_c::setFrontWallType() {
                     return;
                 }
 
-                sp98.y = sp50 + mAcchCir[0].GetWallH();
-                sp8C.y = sp98.y;
+                chk_start_pos.y = sp50 + mAcchCir[0].GetWallH();
+                chk_end_pos.y = chk_start_pos.y;
 
-                if (!commonLineCheck(&sp98, &sp8C)) {
+                if (!commonLineCheck(&chk_start_pos, &chk_end_pos)) {
                     return;
                 }
             } else {
                 sp4C = 0;
             }
 
-            cM3dGPla spE0;
-            dComIfG_Bgsp().GetTriPla(mLinkLinChk, &spE0);
+            cM3dGPla linchk_tri;
+            dComIfG_Bgsp().GetTriPla(mLinkLinChk, &linchk_tri);
 
-            if ((fabsf(spE0.mNormal.y) > 0.05f)) {
+            if ((fabsf(linchk_tri.mNormal.y) > 0.05f)) {
                 return;
             }
 
-            field_0x306e = spE0.mNormal.atan2sX_Z();
+            field_0x306e = linchk_tri.mNormal.atan2sX_Z();
             BOOL sp48 = 0;
 
             s16 spA;
@@ -9926,29 +9925,28 @@ void daAlink_c::setFrontWallType() {
             if (checkModeFlg(2)) {
                 field_0x34ec = mLinkLinChk.i_GetCross();
             } else {
-                sp40 = spE0.getSignedLenPos(&current.pos);
-                field_0x34ec.set(current.pos.x - (sp40 * spE0.mNormal.x), current.pos.y, current.pos.z - (sp40 * spE0.mNormal.z));
+                sp40 = linchk_tri.getSignedLenPos(&current.pos);
+                field_0x34ec.set(current.pos.x - (sp40 * linchk_tri.mNormal.x), current.pos.y, current.pos.z - (sp40 * linchk_tri.mNormal.z));
 
                 int temp_r3 = dComIfG_Bgsp().GetWallCode(mLinkLinChk);
                 if (temp_r3 != 4 && temp_r3 != 5) {
-                    sp98.x = current.pos.x;
-                    sp98.z = current.pos.z;
-                    sp8C.x = sp98.x - (2.0f * sp40 * spE0.mNormal.x);
-                    sp8C.z = sp98.z - (2.0f * sp40 * spE0.mNormal.z);
+                    chk_start_pos.x = current.pos.x;
+                    chk_start_pos.z = current.pos.z;
+                    chk_end_pos.x = chk_start_pos.x - (2.0f * sp40 * linchk_tri.mNormal.x);
+                    chk_end_pos.z = chk_start_pos.z - (2.0f * sp40 * linchk_tri.mNormal.z);
 
-                    //int i;
                     for (i = 0; i < 3; i++) {
                         if (i == 0 && sp58 != 0) {
-                            sp98.y = sp54;
+                            chk_start_pos.y = sp54;
                         } else {
-                            sp98.y = current.pos.y + mAcchCir[i].GetWallH();
+                            chk_start_pos.y = current.pos.y + mAcchCir[i].GetWallH();
                         }
 
-                        sp8C.y = sp98.y;
+                        chk_end_pos.y = chk_start_pos.y;
 
-                        if (commonLineCheck(&sp98, &sp8C)) {
+                        if (commonLineCheck(&chk_start_pos, &chk_end_pos)) {
                             dComIfG_Bgsp().GetTriPla(mLinkLinChk, &spCC);
-                            cXyz sp80 = spE0.mNormal - spCC.mNormal;
+                            cXyz sp80 = linchk_tri.mNormal - spCC.mNormal;
 
                             if (sp80.abs() < 0.001f) {
                                 break;
@@ -9976,7 +9974,7 @@ void daAlink_c::setFrontWallType() {
                 return;
             }
 
-            cXyz sp74;
+            cXyz wall_edge_pos;
             if (var_r29 != 1 && var_r29 != 5 && var_r29 != 4) {
                 offNoResetFlg3(FLG3_UNK_400000);
             }
@@ -10026,26 +10024,26 @@ void daAlink_c::setFrontWallType() {
                                 sp34 = current.pos.y;
                             }
 
-                            sp98.set(field_0x34ec.x - (15.0f * spE0.mNormal.x), 150.0f + sp34, field_0x34ec.z - (15.0f * spE0.mNormal.z));
-                            mLinkGndChk.SetPos(&sp98);
+                            chk_start_pos.set(field_0x34ec.x - (15.0f * linchk_tri.mNormal.x), 150.0f + sp34, field_0x34ec.z - (15.0f * linchk_tri.mNormal.z));
+                            mLinkGndChk.SetPos(&chk_start_pos);
                             f32 sp38 = dComIfG_Bgsp().GroundCross(&mLinkGndChk);
 
                             if (sp38 >= current.pos.y && dBgS_CheckBGroundPoly(mLinkGndChk)) {
                                 cM3dGPla spB8;
                                 dComIfG_Bgsp().GetTriPla(mLinkGndChk, &spB8);
 
-                                if (getWallEdgePos(field_0x34ec, &spE0, &spB8, &sp74, 0)) {
-                                    if (sp74.y - sp34 <= 150.0f) {
+                                if (getWallEdgePos(field_0x34ec, &linchk_tri, &spB8, &wall_edge_pos, 0)) {
+                                    if (wall_edge_pos.y - sp34 <= 150.0f) {
                                         if (checkModeFlg(0x40000)) {
-                                            field_0x34ec = sp74;
+                                            field_0x34ec = wall_edge_pos;
                                             field_0x2f91 = 7;
                                             return;
                                         } else if (mProcID != PROC_HOOKSHOT_FLY) {
-                                            field_0x34ec = sp74;
+                                            field_0x34ec = wall_edge_pos;
                                             field_0x2f91 = 0xA;
                                             return;
                                         } else {
-                                            current.pos.y = sp74.y - 150.0f;
+                                            current.pos.y = wall_edge_pos.y - 150.0f;
                                         }
                                     }
                                 }
@@ -10075,40 +10073,40 @@ void daAlink_c::setFrontWallType() {
                 return;
             }
 
-            f32 var_f30;
-            f32 sp30;
-            f32 sp2C;
-            f32 sp28;
+            f32 hang_height;
+            f32 small_jump_height;
+            f32 climb_height;
+            f32 body_height;
 
             if (checkWolf()) {
                 if (checkModeFlg(2)) {
-                    var_f30 = daAlinkHIO_wlAutoJump_c0::m.field_0x78;
+                    hang_height = daAlinkHIO_wlAutoJump_c0::m.field_0x78;
                 } else {
-                    var_f30 = daAlinkHIO_wlWallHang_c0::m.field_0x84;
+                    hang_height = daAlinkHIO_wlWallHang_c0::m.field_0x84;
                 }
-                sp30 = daAlinkHIO_wlWallHang_c0::m.field_0x7C;
-                sp2C = daAlinkHIO_wlWallHang_c0::m.field_0x80;
+                small_jump_height = daAlinkHIO_wlWallHang_c0::m.field_0x7C;
+                climb_height = daAlinkHIO_wlWallHang_c0::m.field_0x80;
             } else {
                 if (checkModeFlg(2)) {
-                    var_f30 = daAlinkHIO_autoJump_c0::m.mHangHeightLimit;
+                    hang_height = daAlinkHIO_autoJump_c0::m.mHangHeightLimit;
                 } else {
-                    var_f30 = daAlinkHIO_wallHang_c0::m.field_0x14;
+                    hang_height = daAlinkHIO_wallHang_c0::m.jump_hang_height;
                 }
-                sp30 = daAlinkHIO_wallHang_c0::m.field_0x8;
-                sp2C = daAlinkHIO_wallHang_c0::m.field_0xC;
+                small_jump_height = daAlinkHIO_wallHang_c0::m.small_jump_height;
+                climb_height = daAlinkHIO_wallHang_c0::m.climb_height;
             }
 
-            sp28 = current.pos.y + mSinkShapeOffset;
-            sp98.set(current.pos.x, sp28 + (0.01f + var_f30), current.pos.z);
-            sp8C.set(sp98.x + (sp64 * (50.0f + var_f31)), sp98.y, sp98.z + (sp60 * (50.0f + var_f31)));
+            body_height = current.pos.y + mSinkShapeOffset;
+            chk_start_pos.set(current.pos.x, body_height + (0.01f + hang_height), current.pos.z);
+            chk_end_pos.set(chk_start_pos.x + (sp64 * (50.0f + var_f31)), chk_start_pos.y, chk_start_pos.z + (sp60 * (50.0f + var_f31)));
 
-            BOOL sp24 = commonLineCheck(&sp98, &sp8C);
+            BOOL sp24 = commonLineCheck(&chk_start_pos, &chk_end_pos);
             if (sp24) {
-                sp98 = mLinkLinChk.i_GetCross();
+                chk_start_pos = mLinkLinChk.i_GetCross();
                 dComIfG_Bgsp().GetTriPla(mLinkLinChk, &spCC);
-                sp98.x = (sp98.x + (25.0f * spCC.mNormal.x));
-                sp98.z = (sp98.z + (25.0f * spCC.mNormal.z));
-                mLinkGndChk.SetPos(&sp98);
+                chk_start_pos.x = (chk_start_pos.x + (25.0f * spCC.mNormal.x));
+                chk_start_pos.z = (chk_start_pos.z + (25.0f * spCC.mNormal.z));
+                mLinkGndChk.SetPos(&chk_start_pos);
 
                 if (dComIfG_Bgsp().GroundCross(&mLinkGndChk) > current.pos.y + l_autoUpHeight) {
                     dComIfG_Bgsp().GetTriPla(mLinkGndChk, &spCC);
@@ -10120,51 +10118,51 @@ void daAlink_c::setFrontWallType() {
 
             if (sp24 == 0) {
                 mLinkRoofChk.SetPos(current.pos);
-                sp24 = dComIfG_Bgsp().RoofChk(&mLinkRoofChk) - sp28 > 10.0f + var_f30 ? 0 : 1;
+                sp24 = dComIfG_Bgsp().RoofChk(&mLinkRoofChk) - body_height > 10.0f + hang_height ? 0 : 1;
             }
 
             if (sp24 != 0) {
                 return;
             }
 
-            cM3dGPla spA4;
-            bool sp8 = 0;
+            cM3dGPla gndchk_tri;
+            bool found_gnd_tri = false;
             int sp20 = 0;
 
-            sp98.set(field_0x34ec.x - (7.5f * spE0.mNormal.x), sp28 + (0.01f + var_f30), field_0x34ec.z - (7.5f * spE0.mNormal.z));
-            mLinkGndChk.SetPos(&sp98);
+            chk_start_pos.set(field_0x34ec.x - (7.5f * linchk_tri.mNormal.x), body_height + (0.01f + hang_height), field_0x34ec.z - (7.5f * linchk_tri.mNormal.z));
+            mLinkGndChk.SetPos(&chk_start_pos);
             f32 sp1C = dComIfG_Bgsp().GroundCross(&mLinkGndChk);
 
-            sp98.set(field_0x34ec.x - (1.5f * spE0.mNormal.x), sp28 + (0.01f + var_f30), field_0x34ec.z - (1.5f * spE0.mNormal.z));
-            mLinkGndChk.SetPos(&sp98);
+            chk_start_pos.set(field_0x34ec.x - (1.5f * linchk_tri.mNormal.x), body_height + (0.01f + hang_height), field_0x34ec.z - (1.5f * linchk_tri.mNormal.z));
+            mLinkGndChk.SetPos(&chk_start_pos);
             f32 sp38 = dComIfG_Bgsp().GroundCross(&mLinkGndChk);
 
             if (-1000000000.0f != sp38 && fabsf(sp1C - sp38) < l_autoUpHeight) {
-                sp8 = dComIfG_Bgsp().GetTriPla(mLinkGndChk, &spA4);
+                found_gnd_tri = dComIfG_Bgsp().GetTriPla(mLinkGndChk, &gndchk_tri);
             }
-            if ((!checkModeFlg(0x40000) && sp38 < sp28) || sp8 == 0) {
+            if ((!checkModeFlg(0x40000) && sp38 < body_height) || !found_gnd_tri) {
                 return;
             }
-            if (-1000000000.0f == sp38 || !cBgW_CheckBGround(spA4.mNormal.y)) {
+            if (-1000000000.0f == sp38 || !cBgW_CheckBGround(gndchk_tri.mNormal.y)) {
                 return;
             }
 
-            if (!getWallEdgePos(field_0x34ec, &spE0, &spA4, &sp74, sp20)) {
+            if (!getWallEdgePos(field_0x34ec, &linchk_tri, &gndchk_tri, &wall_edge_pos, sp20)) {
                 return;
             }
 
             if (dComIfG_Bgsp().GetGroundCode(mLinkGndChk) != 6) {
                 f32 sp18 = 36.5f;
-                sp98.set(sp74.x + (10.0f * spE0.mNormal.x), sp74.y + l_autoUpHeight, sp74.z + (10.0f * spE0.mNormal.z));
-                sp8C.set(sp74.x - (spE0.mNormal.x * sp18), sp98.y, sp74.z - (spE0.mNormal.z * sp18));
+                chk_start_pos.set(wall_edge_pos.x + (10.0f * linchk_tri.mNormal.x), wall_edge_pos.y + l_autoUpHeight, wall_edge_pos.z + (10.0f * linchk_tri.mNormal.z));
+                chk_end_pos.set(wall_edge_pos.x - (linchk_tri.mNormal.x * sp18), chk_start_pos.y, wall_edge_pos.z - (linchk_tri.mNormal.z * sp18));
                 
-                if (commonLineCheck(&sp98, &sp8C)) {
+                if (commonLineCheck(&chk_start_pos, &chk_end_pos)) {
                     return;
                 }
             }
 
-            field_0x34ec = sp74;
-            f32 temp_f29 = field_0x34ec.y - sp28;
+            field_0x34ec = wall_edge_pos;
+            f32 temp_f29 = field_0x34ec.y - body_height;
 
             if (checkModeFlg(0x40000)) {
                 f32 sp14;
@@ -10185,19 +10183,19 @@ void daAlink_c::setFrontWallType() {
                     }
                 }
             } else if (checkModeFlg(2)) {
-                if (sp38 - mLinkAcch.GetGroundH() > field_0x598 && temp_f29 < var_f30) {
+                if (sp38 - mLinkAcch.GetGroundH() > field_0x598 && temp_f29 < hang_height) {
                     if (!checkWolf() && mProcID != PROC_HOOKSHOT_FLY && temp_f29 < daAlinkHIO_autoJump_c0::m.mGrabHeightLimit) {
                         field_0x2f91 = 0xB;
                     } else {
                         field_0x2f91 = 0xA;
                     }
                 }
-            } else if (!(temp_f29 >= 0.01f + var_f30) && (!checkGrabAnime() || !(temp_f29 >= 0.01f + sp30))) {
-                if (temp_f29 < 0.01f + sp30) {
+            } else if (!(temp_f29 >= 0.01f + hang_height) && (!checkGrabAnime() || !(temp_f29 >= 0.01f + small_jump_height))) {
+                if (temp_f29 < 0.01f + small_jump_height) {
                     field_0x2f91 = 6;
-                } else if (temp_f29 < 0.01f + sp2C) {
+                } else if (temp_f29 < 0.01f + climb_height) {
                     field_0x2f91 = 7;
-                } else if (checkWolf() || (temp_f29 < 0.01f + daAlinkHIO_wallHang_c0::m.field_0x10)) {
+                } else if (checkWolf() || (temp_f29 < 0.01f + daAlinkHIO_wallHang_c0::m.jump_climb_height)) {
                     field_0x2f91 = 8;
                 } else {
                     field_0x2f91 = 9;
@@ -12199,7 +12197,7 @@ BOOL daAlink_c::checkAutoJumpAction() {
                             }
                         }
 
-                        if (!checkEndResetFlg0(ERFLG0_NOT_HANG) && mSpecialMode != 0x2B && var_r29 && dComIfG_Bgsp().GetWallCode(mLinkLinChk) != 2 && sp28 < -daAlinkHIO_wallHang_c0::m.field_0x18 && current.pos.y - mWaterY > sp18 && (fabsf(sp44.mNormal.y) <= 0.05f || (sp44.mNormal.y < 0.05f && var_r27 && getWallEdgePos(mLinkLinChk.i_GetCross(), &sp44, &sp58, mLinkLinChk.GetCrossP(), 0)))) {
+                        if (!checkEndResetFlg0(ERFLG0_NOT_HANG) && mSpecialMode != 0x2B && var_r29 && dComIfG_Bgsp().GetWallCode(mLinkLinChk) != 2 && sp28 < -daAlinkHIO_wallHang_c0::m.hang_foot_pos_height && current.pos.y - mWaterY > sp18 && (fabsf(sp44.mNormal.y) <= 0.05f || (sp44.mNormal.y < 0.05f && var_r27 && getWallEdgePos(mLinkLinChk.i_GetCross(), &sp44, &sp58, mLinkLinChk.GetCrossP(), 0)))) {
                             current.pos.x = mLinkLinChk.i_GetCross().x;
                             current.pos.z = mLinkLinChk.i_GetCross().z;
 
@@ -12358,7 +12356,7 @@ BOOL daAlink_c::checkFrontWallTypeAction() {
         field_0x3078 = var_r27 + 1;
 
         if (field_0x2f91 == 6) {
-            if (field_0x3078 > daAlinkHIO_wallHang_c0::m.field_0x0) {
+            if (field_0x3078 > daAlinkHIO_wallHang_c0::m.small_jump_input_time) {
                 if (checkWolf()) {
                     return procWolfStepMoveInit();
                 } else {
@@ -12366,7 +12364,7 @@ BOOL daAlink_c::checkFrontWallTypeAction() {
                 }
             }
         } else if (field_0x2f91 == 7 || field_0x2f91 == 8 || field_0x2f91 == 9) {
-            if (field_0x3078 > daAlinkHIO_wallHang_c0::m.field_0x2) {
+            if (field_0x3078 > daAlinkHIO_wallHang_c0::m.grab_input_time) {
                 if (checkWolf()) {
                     if (field_0x2f91 == 7 || field_0x2f91 == 8) {
                         if (checkModeFlg(0x40000)) {

@@ -7,16 +7,21 @@
 #include "f_pc/f_pc_load.h"
 #include "f_pc/f_pc_node.h"
 #include "f_pc/f_pc_manager.h"
+#include "f_pc/f_pc_debug_sv.h"
+#include <dolphin.h>
 
 /* 80023B70-80023BC4 0054+00 s=1 e=0 z=5  None .text
  * fpcSCtRq_phase_Load__FP29standard_create_request_class       */
 s32 fpcSCtRq_phase_Load(standard_create_request_class* i_request) {
-    switch (fpcLd_Load(i_request->process_name)) {
+    int ret = fpcLd_Load(i_request->process_name);
+
+    switch (ret) {
     case cPhs_INIT_e:
         return cPhs_INIT_e;
     case cPhs_COMPLEATE_e:
         return cPhs_NEXT_e;
     case cPhs_ERROR_e:
+        OS_REPORT("fpcSCtRq_phase_Load %d\n", i_request->process_name);
     default:
         return cPhs_ERROR_e;
     }
@@ -28,7 +33,9 @@ s32 fpcSCtRq_phase_CreateProcess(standard_create_request_class* i_request) {
     fpcLy_SetCurrentLayer(i_request->base.layer);
     i_request->base.process =
         fpcBs_Create(i_request->process_name, i_request->base.id, i_request->process_append);
+
     if (i_request->base.process == NULL) {
+        OS_REPORT("fpcSCtRq_phase_CreateProcess %d\n", i_request->process_name);
         fpcLd_Free(i_request->process_name);
         return cPhs_ERROR_e;
     } else {
@@ -41,7 +48,18 @@ s32 fpcSCtRq_phase_CreateProcess(standard_create_request_class* i_request) {
  * fpcSCtRq_phase_SubCreateProcess__FP29standard_create_request_class */
 s32 fpcSCtRq_phase_SubCreateProcess(standard_create_request_class* i_request) {
     fpcLy_SetCurrentLayer(i_request->base.layer);
-    return fpcBs_SubCreate(i_request->base.process);
+    int ret = fpcBs_SubCreate(i_request->base.process);
+
+#ifdef DEBUG
+    if (ret == 0 && i_request->unk_0x60-- <= 0) {
+        i_request->unk_0x60 = 0;
+        if (g_fpcDbSv_service[0] != NULL) {
+            g_fpcDbSv_service[0](i_request->base.process);
+        }
+    }
+#endif
+
+    return ret;
 }
 
 /* 80023C64-80023CBC 0058+00 s=1 e=0 z=14  None .text
@@ -59,13 +77,16 @@ s32 fpcSCtRq_phase_IsComplete(standard_create_request_class* i_request) {
 /* 80023CBC-80023D0C 0050+00 s=1 e=0 z=5  None .text
  * fpcSCtRq_phase_PostMethod__FP29standard_create_request_class */
 s32 fpcSCtRq_phase_PostMethod(standard_create_request_class* i_request) {
-    if (i_request->create_post_method != NULL &&
-        i_request->create_post_method(i_request->base.process, i_request->unk_0x5C) == 0)
-    {
-        return cPhs_INIT_e;
-    } else {
-        return cPhs_NEXT_e;
+    stdCreateFunc create_func = i_request->create_post_method;
+
+    if (create_func != NULL) {
+        int ret = create_func(i_request->base.process, i_request->unk_0x5C);
+        if (ret == 0) {
+            return cPhs_INIT_e;
+        }
     }
+
+    return cPhs_NEXT_e;
 }
 
 /* 80023D0C-80023D14 0008+00 s=1 e=0 z=0  None .text
@@ -138,5 +159,9 @@ fpc_ProcID fpcSCtRq_Request(layer_class* i_layer, s16 i_procName, stdCreateFunc 
     request->create_post_method = i_createFunc;
     request->unk_0x5C = param_4;
     request->process_append = i_append;
+#ifdef DEBUG
+    request->unk_0x60 = 60;
+#endif
+
     return request->base.id;
 }

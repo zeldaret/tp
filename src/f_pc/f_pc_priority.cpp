@@ -49,8 +49,7 @@ process_priority_class* fpcPi_GetFromQueue() {
     process_priority_class* i_procPriority = (process_priority_class*)cTg_GetFirst(&l_fpcPi_Queue);
 
     if (i_procPriority != NULL) {
-        base_process_class* process = (base_process_class*)i_procPriority->base.mpTagData;
-        process_priority_class* ppriority = &process->priority;
+        process_priority_class* ppriority = &((base_process_class*)i_procPriority->base.mpTagData)->priority;
         fpcLy_CancelQTo(&ppriority->method_tag);
         return ppriority;
     }
@@ -61,16 +60,14 @@ process_priority_class* fpcPi_GetFromQueue() {
 /* 80023268-800232B4 004C+00 s=1 e=1 z=0  None .text      fpcPi_Delete__FP22process_priority_class
  */
 s32 fpcPi_Delete(process_priority_class* i_procPriority) {
-    static process_priority_queue_info crear = {
+    static priority_id crear = {
         fpcLy_NONE_e,
         0xFFFF,
         fpcPi_NONE_e,
     };
 
     fpcPi_QueueTo(i_procPriority);
-    i_procPriority->queue_info.layer_id = crear.layer_id;
-    i_procPriority->queue_info.list_id = crear.list_id;
-    i_procPriority->queue_info.list_priority = crear.list_priority;
+    i_procPriority->queue_info = crear;
     return 1;
 }
 
@@ -94,9 +91,7 @@ s32 fpcPi_Change(process_priority_class* i_procPriority, fpc_ProcID i_layerID, u
     if (!fpcPi_IsNormal(i_layerID, i_listID, i_priority))
         return 0;
 
-    i_procPriority->queue_info.layer_id = i_procPriority->current_info.layer_id;
-    i_procPriority->queue_info.list_id = i_procPriority->current_info.list_id;
-    i_procPriority->queue_info.list_priority = i_procPriority->current_info.list_priority;
+    i_procPriority->queue_info = i_procPriority->current_info;
 
     if (i_layerID != fpcLy_CURRENT_e && i_procPriority->current_info.layer_id != i_layerID) {
         i_procPriority->queue_info.layer_id = i_layerID;
@@ -114,16 +109,16 @@ s32 fpcPi_Change(process_priority_class* i_procPriority, fpc_ProcID i_layerID, u
     }
 
     if (process->init_state == 0 || process->init_state == 1) {
-        i_procPriority->current_info.layer_id = i_procPriority->queue_info.layer_id;
-        i_procPriority->current_info.list_id = i_procPriority->queue_info.list_id;
-        i_procPriority->current_info.list_priority = i_procPriority->queue_info.list_priority;
+        i_procPriority->current_info = i_procPriority->queue_info;
         return 1;
     }
 
-    if (changed == TRUE)
-        return fpcPi_ToQueue(i_procPriority);
-    else
-        return 0;
+    if (changed == TRUE) {
+        int ret = fpcPi_ToQueue(i_procPriority);
+        return ret;
+    }
+
+    return 0;
 }
 
 /* 80023428-800234BC 0094+00 s=0 e=1 z=0  None .text      fpcPi_Handler__Fv */
@@ -135,11 +130,10 @@ s32 fpcPi_Handler() {
         line_tag* pLineTag = &process->line_tag_;
 
         if (fpcLyTg_Move(pLayerTag, i_procPriority->queue_info.layer_id, i_procPriority->queue_info.list_id,
-                         i_procPriority->queue_info.list_priority) == 1) {
+                         i_procPriority->queue_info.list_priority) == 1)
+        {
             fpcLnTg_Move(pLineTag, i_procPriority->current_info.list_id);
-            i_procPriority->current_info.layer_id = i_procPriority->queue_info.layer_id;
-            i_procPriority->current_info.list_id = i_procPriority->queue_info.list_id;
-            i_procPriority->current_info.list_priority = i_procPriority->queue_info.list_priority;
+            i_procPriority->current_info = i_procPriority->queue_info;
         } else {
             return 0;
         }
@@ -159,9 +153,8 @@ s32 fpcPi_Init(process_priority_class* i_procPriority, void* i_data, fpc_ProcID 
     i_procPriority->queue_info.list_id = i_listID;
     i_procPriority->queue_info.list_priority = i_priority;
 
-    i_procPriority->current_info.layer_id = i_procPriority->queue_info.layer_id;
-    i_procPriority->current_info.list_id = i_procPriority->queue_info.list_id;
-    i_procPriority->current_info.list_priority = i_procPriority->queue_info.list_priority;
+    i_procPriority->current_info = i_procPriority->queue_info;
+
     cTg_Create(&i_procPriority->base, i_data);
     fpcMtdTg_Init(&i_procPriority->method_tag, (process_method_tag_func)fpcPi_Delete, i_procPriority);
     return 1;

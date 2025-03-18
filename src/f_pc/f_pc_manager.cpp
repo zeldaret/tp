@@ -65,8 +65,13 @@ void fpcM_Management(fpcM_ManagementFunc i_preExecuteFn, fpcM_ManagementFunc i_p
                 dPa_control_c::offStatus(1);
             }
 
-            fpcPi_Handler();
-            fpcCt_Handler();
+            if (!fpcPi_Handler()) {
+                JUT_ASSERT(353, 0);
+            }
+
+            if (!fpcCt_Handler()) {
+                JUT_ASSERT(357, 0);
+            }
 
             if (i_preExecuteFn != NULL) {
                 i_preExecuteFn();
@@ -126,10 +131,10 @@ void* fpcM_JudgeInLayer(fpc_ProcID i_layerID, fpcCtIt_JudgeFunc i_judgeFunc, voi
     if (layer != NULL) {
         void* ret = fpcCtIt_JudgeInLayer(i_layerID, i_judgeFunc, i_data);
         if (ret == NULL) {
-            ret = fpcLyIt_Judge(layer, i_judgeFunc, i_data);
+            return fpcLyIt_Judge(layer, i_judgeFunc, i_data);
         }
         return ret;
-    } else {
-        return NULL;
     }
+
+    return NULL;
 }

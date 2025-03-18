@@ -4904,14 +4904,14 @@ public:
 
 class daAlinkHIO_wallHang_c1 {
 public:
-    /* 0x00 */ s16 field_0x0;
-    /* 0x02 */ s16 field_0x2;
-    /* 0x04 */ f32 field_0x4;
-    /* 0x08 */ f32 field_0x8;
-    /* 0x0C */ f32 field_0xC;
-    /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
+    /* 0x00 */ s16 small_jump_input_time;
+    /* 0x02 */ s16 grab_input_time;
+    /* 0x04 */ f32 auto_walk_height;
+    /* 0x08 */ f32 small_jump_height;
+    /* 0x0C */ f32 climb_height;
+    /* 0x10 */ f32 jump_climb_height;
+    /* 0x14 */ f32 jump_hang_height;
+    /* 0x18 */ f32 hang_foot_pos_height;
 };  // Size: 0x1C
 
 class daAlinkHIO_wallHang_c0 {
