@@ -11,7 +11,7 @@
 #include "d/actor/d_a_npc.h"
 
 /* 80599E3C-80599E4C 000000 0010+00 3/3 0/0 0/0 .rodata          m__19daObj_Stick_Param_c */
-const f32 daObj_Stick_Param_c::m[4] = {
+const daObj_Stick_Param_c::daObj_Stick_HIOParam daObj_Stick_Param_c::m = {
     0.0f, -3.0f, 1.0f, 100.0f
 };
 
@@ -32,7 +32,7 @@ daObj_Stick_c::~daObj_Stick_c() {
 }
 
 /* 805993E8-805996BC 0002A8 02D4+00 1/1 0/0 0/0 .text            create__13daObj_Stick_cFv */
-u32 daObj_Stick_c::create() {
+int daObj_Stick_c::create() {
     fopAcM_SetupActor(this, daObj_Stick_c);
 
     mType = getType();
@@ -77,7 +77,7 @@ u32 daObj_Stick_c::create() {
 }
 
 /* 80599888-80599900 000748 0078+00 1/1 0/0 0/0 .text            CreateHeap__13daObj_Stick_cFv */
-u32 daObj_Stick_c::CreateHeap() {
+int daObj_Stick_c::CreateHeap() {
     J3DModelData* objectRes = (J3DModelData*)dComIfG_getObjectRes(getResName(), 3);
     if (objectRes == NULL) {
         return 0;
@@ -92,14 +92,14 @@ u32 daObj_Stick_c::CreateHeap() {
 }
 
 /* 80599900-80599934 0007C0 0034+00 1/1 0/0 0/0 .text            Delete__13daObj_Stick_cFv */
-u32 daObj_Stick_c::Delete() {
+int daObj_Stick_c::Delete() {
     this->~daObj_Stick_c();
 
     return 1;
 }
 
 /* 80599934-80599A78 0007F4 0144+00 2/2 0/0 0/0 .text            Execute__13daObj_Stick_cFv */
-u32 daObj_Stick_c::Execute() {
+int daObj_Stick_c::Execute() {
     mAcch.CrrPos(dComIfG_Bgsp());
     mGndChk = mAcch.m_gnd;
     
@@ -112,7 +112,7 @@ u32 daObj_Stick_c::Execute() {
     setMtx();
     mSph.ClrCoHit();
     attention_info.position = current.pos;
-    attention_info.position.y += daObj_Stick_Param_c::m[0];
+    attention_info.position.y += daObj_Stick_Param_c::m.attention_offset;
     eyePos = attention_info.position;
     attention_info.flags = 0;
     
@@ -120,7 +120,7 @@ u32 daObj_Stick_c::Execute() {
 }
 
 /* 80599A78-80599B3C 000938 00C4+00 1/1 0/0 0/0 .text            Draw__13daObj_Stick_cFv */
-u32 daObj_Stick_c::Draw() {
+int daObj_Stick_c::Draw() {
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     mDoExt_modelUpdateDL(mpModel);
@@ -130,7 +130,7 @@ u32 daObj_Stick_c::Draw() {
             1, 
             mpModel, 
             &current.pos, 
-            daObj_Stick_Param_c::m[3], 
+            daObj_Stick_Param_c::m.real_shadow_size, 
             20.0f, 
             current.pos.y,
             mGroundHeight, 
@@ -240,6 +240,3 @@ extern actor_process_profile_definition g_profile_OBJ_STICK = {
 
 /* 80599F94-80599F98 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
 static daObj_Stick_Param_c l_HIO;
-
-/* 80599DD0-80599E18 000C90 0048+00 2/1 0/0 0/0 .text            __dt__19daObj_Stick_Param_cFv */
-daObj_Stick_Param_c::~daObj_Stick_Param_c() {}
