@@ -484,6 +484,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01"), "f_pc/f_pc_draw.cpp"),
             Object(MatchingFor("GZ2E01"), "f_pc/f_pc_fstcreate_req.cpp"),
             Object(MatchingFor("GZ2E01"), "f_pc/f_pc_stdcreate_req.cpp"),
+            Object(NonMatching, "f_pc/f_pc_debug_sv.cpp"),
         ],
     },
     {

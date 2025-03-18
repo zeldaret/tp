@@ -10,17 +10,17 @@ enum {
     fpcPi_NONE_e = 0xFFFF,
 };
 
-typedef struct process_priority_queue_info {
+typedef struct priority_id {
     /* 0x0 */ unsigned int layer_id;
     /* 0x4 */ u16 list_id;
     /* 0x6 */ u16 list_priority;
-} process_priority_queue_info;
+} priority_id;
 
 typedef struct process_priority_class {
     /* 0x00 */ create_tag_class base;
     /* 0x14 */ process_method_tag_class method_tag;
-    /* 0x30 */ process_priority_queue_info queue_info;
-    /* 0x38 */ process_priority_queue_info current_info;
+    /* 0x30 */ priority_id queue_info;
+    /* 0x38 */ priority_id current_info;
 } process_priority_class;
 
 s32 fpcPi_IsInQueue(process_priority_class* pPi);
