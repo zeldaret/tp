@@ -11,17 +11,8 @@
 #include "d/actor/d_a_npc.h"
 
 
-//
-// Forward References:
-//
-
-extern "C" void __sinit_d_a_obj_stick_cpp();
-
-//
 // Declarations:
 //
-
-
 
 /* 80599E3C-80599E4C 000000 0010+00 3/3 0/0 0/0 .rodata          m__19daObj_Stick_Param_c */
 const f32 daObj_Stick_Param_c::m[4] = {

@@ -50,7 +50,7 @@ STATIC_ASSERT(sizeof(daObj_Stick_c) == 0x950);
 
 class daObj_Stick_Param_c {
 public:
-    /* 80599DD0 */ virtual ~daObj_Stick_Param_c();
+    /* 80599DD0 */ inline virtual ~daObj_Stick_Param_c();
 
     static const f32 m[4];
 };

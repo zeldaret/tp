@@ -1548,7 +1548,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_ornament_cloth"),
     ActorRel(NonMatching, "d_a_obj_rope_bridge"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_sWallShutter"),
-    ActorRel(NonMatching, "d_a_obj_stick"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_stick"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_stoneMark"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_swpropeller"),
     ActorRel(NonMatching, "d_a_obj_swpush5"),
