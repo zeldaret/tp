@@ -26,7 +26,6 @@ private:
     /* 940 */ f32 mGroundHeight;
     /* 944 */ u32 mShadowKey;
     /* 948 */ u8 mType;
-    /* 94c */ //params
 public:
     /* 8059922C */ virtual ~daObj_Stick_c();
     /* 805993E8 */ u32 create();

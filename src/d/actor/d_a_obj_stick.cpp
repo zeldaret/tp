@@ -10,10 +10,6 @@
 #include "m_Do/m_Do_ext.h"
 #include "d/actor/d_a_npc.h"
 
-
-// Declarations:
-//
-
 /* 80599E3C-80599E4C 000000 0010+00 3/3 0/0 0/0 .rodata          m__19daObj_Stick_Param_c */
 const f32 daObj_Stick_Param_c::m[4] = {
     0.0f, -3.0f, 1.0f, 100.0f
