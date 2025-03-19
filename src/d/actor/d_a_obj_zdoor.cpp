@@ -8,15 +8,6 @@
 #include "d/actor/d_a_player.h"
 
 //
-// Forward References:
-//
-
-extern "C" static void daZdoor_create1st__FP9daZdoor_c();
-extern "C" static void daZdoor_MoveBGDelete__FP9daZdoor_c();
-extern "C" static void daZdoor_MoveBGExecute__FP9daZdoor_c();
-extern "C" static void daZdoor_MoveBGDraw__FP9daZdoor_c();
-
-//
 // Declarations:
 //
 
@@ -100,7 +91,7 @@ static BOOL checkPlayerPos(daZdoor_c* i_this) {
     daPy_py_c* player = daPy_getPlayerActorClass();
     cXyz distance_to_player = player->current.pos - i_this->current.pos;
 
-    mDoMtx_stack_c::YrotS(-(i_this->current.angle.y));
+    mDoMtx_stack_c::YrotS(-i_this->current.angle.y);
     mDoMtx_stack_c::multVec(&distance_to_player, &distance_to_player);
 
     // Variable name could be the opposite; "is_behind".
@@ -219,10 +210,10 @@ void daZdoor_c::init_cyl() {
 /* 80D3F740-80D3F884 000380 0144+00 1/1 0/0 0/0 .text            set_cyl__9daZdoor_cFv */
 void daZdoor_c::set_cyl() {
     cXyz vecs[] = {
-        cXyz(60, 0, 0),
-        cXyz(120, 0, 0),
-        cXyz(180, 0, 0),
-        cXyz(240, 0, 0)
+        cXyz(60.0f, 0.0f, 0.0f),
+        cXyz(120.0f, 0.0f, 0.0f),
+        cXyz(180.0f, 0.0f, 0.0f),
+        cXyz(240.0f, 0.0f, 0.0)
     };
 
     cXyz current_vec;
@@ -249,7 +240,7 @@ void daZdoor_c::setBaseMtx() {
 int daZdoor_c::Create() {
     setBaseMtx();
 
-    cullMtx = mpModel->mBaseTransformMtx;
+    fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
 
     init_cyl();
     fopAcM_setCullSizeBox2(this, mpModel->getModelData());
@@ -313,7 +304,7 @@ int daZdoor_c::create1st() {
         u16 estimate_size = estimateSizeTbl[mDoorType];
         phase_state = MoveBGCreate(l_arcName[mDoorType], res_name_index, 0x0, estimate_size, 0x0);
 
-        if (phase_state == 0x5) {
+        if (phase_state == cPhs_ERROR_e) {
             return phase_state;
         }
     }
@@ -393,14 +384,38 @@ int daZdoor_c::Delete() {
     return 1;
 }
 
+/* 80D3FDCC-80D3FF18 000A0C 014C+00 1/0 0/0 0/0 .text            daZdoor_create1st__FP9daZdoor_c */
+static int daZdoor_create1st(daZdoor_c* i_this) {
+    fopAcM_SetupActor(i_this, daZdoor_c);
+
+    return i_this->create1st();
+}
+
+/* 80D40168-80D40188 000DA8 0020+00 1/0 0/0 0/0 .text            daZdoor_MoveBGDelete__FP9daZdoor_c
+ */
+static int daZdoor_MoveBGDelete(daZdoor_c* i_this) {
+    return i_this->MoveBGDelete();
+}
+
+/* 80D40188-80D401A8 000DC8 0020+00 1/0 0/0 0/0 .text            daZdoor_MoveBGExecute__FP9daZdoor_c
+ */
+static int daZdoor_MoveBGExecute(daZdoor_c* i_this) {
+    return i_this->MoveBGExecute();
+}
+
+/* 80D401A8-80D401D4 000DE8 002C+00 1/0 0/0 0/0 .text            daZdoor_MoveBGDraw__FP9daZdoor_c */
+static int daZdoor_MoveBGDraw(daZdoor_c* i_this) {
+    return i_this->MoveBGDraw();
+}
+
 /* ############################################################################################## */
 /* 80D403BC-80D403DC -00001 0020+00 1/0 0/0 0/0 .data            daZdoor_METHODS */
 static actor_method_class daZdoor_METHODS = {
-    (process_method_func)daZdoor_create1st__FP9daZdoor_c,
-    (process_method_func)daZdoor_MoveBGDelete__FP9daZdoor_c,
-    (process_method_func)daZdoor_MoveBGExecute__FP9daZdoor_c,
+    (process_method_func)daZdoor_create1st,
+    (process_method_func)daZdoor_MoveBGDelete,
+    (process_method_func)daZdoor_MoveBGExecute,
     0,
-    (process_method_func)daZdoor_MoveBGDraw__FP9daZdoor_c,
+    (process_method_func)daZdoor_MoveBGDraw,
 };
 
 /* 80D403DC-80D4040C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_ZDoor */
@@ -420,27 +435,3 @@ extern actor_process_profile_definition g_profile_Obj_ZDoor = {
   fopAc_ACTOR_e,          // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 80D3FDCC-80D3FF18 000A0C 014C+00 1/0 0/0 0/0 .text            daZdoor_create1st__FP9daZdoor_c */
-static int daZdoor_create1st(daZdoor_c* i_this) {
-    fopAcM_SetupActor(i_this, daZdoor_c);
-
-    return i_this->create1st();
-}
-
-/* 80D40168-80D40188 000DA8 0020+00 1/0 0/0 0/0 .text            daZdoor_MoveBGDelete__FP9daZdoor_c
- */
-static int daZdoor_MoveBGDelete(daZdoor_c* i_this) {
-    i_this->MoveBGDelete();
-}
-
-/* 80D40188-80D401A8 000DC8 0020+00 1/0 0/0 0/0 .text            daZdoor_MoveBGExecute__FP9daZdoor_c
- */
-static int daZdoor_MoveBGExecute(daZdoor_c* i_this) {
-    i_this->MoveBGExecute();
-}
-
-/* 80D401A8-80D401D4 000DE8 002C+00 1/0 0/0 0/0 .text            daZdoor_MoveBGDraw__FP9daZdoor_c */
-static int daZdoor_MoveBGDraw(daZdoor_c* i_this) {
-    i_this->MoveBGDraw();
-}
