@@ -28,8 +28,9 @@ int daObjMBox_c::Create() {
     initBaseMtx();
     cullMtx = mpModel->mBaseTransformMtx;
     mAcchCir.SetWall(30.0, 30.0);
-    mAcch.Set(&current.pos, &old.pos, this, 1, &mAcchCir, &speed, NULL, NULL);
-    fopAcM_setCullSizeBox2(this, mpModel->mModelData);
+    mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
+                  fopAcM_GetSpeed_p(this), NULL, NULL);
+    fopAcM_setCullSizeBox2(this, mpModel->getModelData());
 
     return 1;
 }
@@ -51,16 +52,14 @@ int daObjMBox_c::create() {
     fopAcM_SetupActor(this, daObjMBox_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, l_arcName);
-    if (phase_state != cPhs_COMPLEATE_e) {
-        return phase_state;
+    if (phase_state == cPhs_COMPLEATE_e) {
+        phase_state = MoveBGCreate(l_arcName, 7, dBgS_MoveBGProc_TypicalRotY, 0xc40, 0);
+        if (phase_state == cPhs_ERROR_e) {
+            return phase_state;
+        }
     }
 
-    int move_bg = MoveBGCreate(l_arcName, 7, dBgS_MoveBGProc_TypicalRotY, 0xc40, (Mtx *) 0);
-    if (move_bg == 5) {
-        return move_bg;
-    }
-    
-    return move_bg;
+    return phase_state;
 }
 
 /* 805932C4-805932F0 0004A4 002C+00 1/0 0/0 0/0 .text            Execute__11daObjMBox_cFPPA3_A4_f */
