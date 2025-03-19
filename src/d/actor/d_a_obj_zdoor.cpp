@@ -104,16 +104,16 @@ static BOOL checkPlayerPos(daZdoor_c* i_this) {
 
 /* 80D3F4DC-80D3F570 00011C 0094+00 1/1 0/0 0/0 .text
  * doorCoHitCallBack__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
-static void doorCoHitCallBack(fopAc_ac_c* param_0, dCcD_GObjInf* param_1, fopAc_ac_c* player_fopAc,
+static void doorCoHitCallBack(fopAc_ac_c* param_0, dCcD_GObjInf* param_1, fopAc_ac_c* colliding_actor,
                                   dCcD_GObjInf* param_3) {
     daZdoor_c* i_this = static_cast<daZdoor_c*>(param_0);
 
-    fopAc_ac_c* player = dComIfGp_getLinkPlayer();
+    fopAc_ac_c* player_actor = dComIfGp_getLinkPlayer();
     if (i_this != NULL) {
         u32 type = i_this->getType();
         s16 open_speed = l_open_speed[type & 0xFF];
-        if (player_fopAc != NULL && player_fopAc == player) {
-            if (player->speedF > 3.0f) {
+        if (colliding_actor != NULL && colliding_actor == player_actor) {
+            if (player_actor->speedF > 3.0f) {
                 BOOL player_direction = checkPlayerPos(i_this);
                 if (player_direction) {
                     i_this->mOpenSpeed = -open_speed;
@@ -127,16 +127,16 @@ static void doorCoHitCallBack(fopAc_ac_c* param_0, dCcD_GObjInf* param_1, fopAc_
 
 /* 80D3F570-80D3F65C 0001B0 00EC+00 1/1 0/0 0/0 .text
  * doorTgHitCallBack__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
-static void doorTgHitCallBack(fopAc_ac_c* param_0, dCcD_GObjInf* param_1, fopAc_ac_c* player_fopAc,
+static void doorTgHitCallBack(fopAc_ac_c* param_0, dCcD_GObjInf* param_1, fopAc_ac_c* colliding_actor,
                                   dCcD_GObjInf* param_3) {
     daZdoor_c* i_this = static_cast<daZdoor_c*>(param_0);
 
-    fopAc_ac_c* player = dComIfGp_getLinkPlayer();
+    fopAc_ac_c* player_actor = dComIfGp_getLinkPlayer();
     if (i_this == NULL) {
         return;
     }
 
-    if (player_fopAc != player) {
+    if (colliding_actor != player_actor) {
         return;
     }
 
