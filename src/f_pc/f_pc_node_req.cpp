@@ -11,6 +11,7 @@
 #include "f_pc/f_pc_node.h"
 #include "f_pc/f_pc_stdcreate_req.h"
 #include "f_pc/f_pc_manager.h"
+#include "f_pc/f_pc_debug_sv.h"
 
 /* 800227C4-80022804 0040+00 s=1 e=0 z=0  None .text fpcNdRq_RequestQTo__FP19node_create_request
  */
@@ -35,6 +36,15 @@ void fpcNdRq_ToRequestQ(node_create_request* i_request) {
  * fpcNdRq_phase_IsCreated__FP19node_create_request             */
 s32 fpcNdRq_phase_IsCreated(node_create_request* i_request) {
     if (fpcCtRq_IsCreatingByID(i_request->creating_id) == TRUE) {
+#ifdef DEBUG
+        if (i_request->unk_0x64-- <= 0) {
+            i_request->unk_0x64 = 0;
+            if (g_fpcDbSv_service[8] != NULL) {
+                g_fpcDbSv_service[8](&i_request->creating_id);
+            }
+        }
+#endif
+
         return cPhs_INIT_e;
     } else if (fpcEx_IsExist(i_request->creating_id) == TRUE) {
         return cPhs_NEXT_e;
@@ -67,6 +77,14 @@ s32 fpcNdRq_phase_IsDeleteTiming(node_create_request* i_request) {
  * fpcNdRq_phase_IsDeleted__FP19node_create_request             */
 s32 fpcNdRq_phase_IsDeleted(node_create_request* i_request) {
     if (fpcDt_IsComplete() == FALSE) {
+#ifdef DEBUG
+        if (i_request->unk_0x68-- <= 0) {
+            i_request->unk_0x68 = 0;
+            if (g_fpcDbSv_service[7] != NULL) {
+                g_fpcDbSv_service[7](i_request->node_proc.node);
+            }
+        }
+#endif
         return cPhs_INIT_e;
     }
 
@@ -143,6 +161,13 @@ s32 fpcNdRq_Cancel(node_create_request* i_request) {
 /* 80022AFC-80022BE4 00E8+00 s=0 e=1 z=0  None .text      fpcNdRq_Handler__Fv */
 s32 fpcNdRq_Handler() {
     node_class* node = l_fpcNdRq_Queue.mpHead;
+
+#ifdef DEBUG
+    if (g_fpcDbSv_service[9] != NULL) {
+        g_fpcDbSv_service[9](&l_fpcNdRq_Queue.mSize);
+    }
+#endif
+
     while (node != NULL) {
         node_create_request* req = ((request_node_class*)node)->node_create_req;
         switch (req->create_req_methods->execute_method(req)) {
@@ -171,12 +196,10 @@ s32 fpcNdRq_Handler() {
  * fpcNdRq_IsPossibleTarget__FP18process_node_class             */
 s32 fpcNdRq_IsPossibleTarget(process_node_class* i_procNode) {
     fpc_ProcID id = i_procNode->base.id;
-    request_node_class* req_node;
-    node_create_request* create_req;
+    request_node_class* req_node = (request_node_class*)l_fpcNdRq_Queue.mpHead;
 
-    req_node = (request_node_class*)l_fpcNdRq_Queue.mpHead;
     while (req_node != NULL) {
-        create_req = req_node->node_create_req;
+        node_create_request* create_req = req_node->node_create_req;
         if ((create_req->parameters == 2 || create_req->parameters == 4 ||
              create_req->parameters == 1) &&
             create_req->node_proc.id == id)
@@ -221,7 +244,12 @@ node_create_request* fpcNdRq_Create(u32 i_requestSize) {
         cTg_Create(&req->create_tag, req);
         fpcMtdTg_Init(&req->method_tag, (process_method_tag_func)fpcNdRq_Cancel, req);
         req->request_id = request_id++;
+#ifdef DEBUG
+        req->unk_0x64 = 60;
+        req->unk_0x68 = 60;
+#endif
     }
+
     return req;
 }
 
@@ -246,9 +274,9 @@ node_create_request* fpcNdRq_ChangeNode(u32 i_requestSize, process_node_class* i
             req->data = i_data;
         }
         return req;
-    } else {
-        return NULL;
     }
+
+    return NULL;
 }
 
 /* 80022EB0-80022F3C 008C+00 s=1 e=0 z=0  None .text fpcNdRq_DeleteNode__FUlP18process_node_class
@@ -270,9 +298,9 @@ node_create_request* fpcNdRq_DeleteNode(u32 i_requestSize, process_node_class* i
             req->layer = i_procNode->base.layer_tag.layer;
         }
         return req;
-    } else {
-        return NULL;
     }
+
+    return NULL;
 }
 
 /* 80022F3C-80022FE8 00AC+00 s=1 e=0 z=0  None .text      fpcNdRq_CreateNode__FUlsPv */
@@ -285,6 +313,7 @@ node_create_request* fpcNdRq_CreateNode(u32 i_requestSize, s16 i_procName, void*
 
     layer_class* layer = fpcLy_CurrentLayer();
     if (layer->layer_id != fpcLy_ROOT_e && fpcNdRq_IsPossibleTarget(layer->process_node) == 0) {
+        int sp28;
         return NULL;
     }
 
@@ -335,11 +364,10 @@ node_create_request* fpcNdRq_Request(u32 i_requestSize, int i_reqType,
 /* 80023098-80023110 0078+00 s=1 e=0 z=0  None .text      fpcNdRq_ReChangeNode__FUisPv */
 s32 fpcNdRq_ReChangeNode(fpc_ProcID i_requestID, s16 i_procName, void* i_data) {
     request_node_class* req_node;
-    node_create_request* found;
 
     req_node = (request_node_class*)l_fpcNdRq_Queue.mpHead;
     while (req_node != NULL) {
-        found = req_node->node_create_req;
+        node_create_request* found = req_node->node_create_req;
         if (found->parameters == 2 && found->request_id == i_requestID) {
             if (found->creating_id == -2) {
                 found->name = i_procName;

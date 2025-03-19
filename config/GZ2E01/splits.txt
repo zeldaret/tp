@@ -1433,7 +1433,7 @@ d/d_k_wpillar.cpp:
 	.sdata2     start:0x80454FF0 end:0x80455008
 
 PowerPC_EABI_Support/Runtime/Src/__mem.c:
-	.init       start:0x80003458 end:0x800035E4
+	.init       start:0x80003458 end:0x80003590
 
 DynamicLink.cpp:
 	.text       start:0x802621CC end:0x802631D4
@@ -3601,7 +3601,7 @@ TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Generic/flush_cache.
 	.text       start:0x8036F548 end:0x8036F580
 
 TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/mem_TRK.c:
-	.init       start:0x800035E4 end:0x80005544
+	.init       start:0x80003590 end:0x800035E4
 	.text       start:0x8036F580 end:0x8036F638
 
 TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Generic/targimpl.c:
@@ -3610,13 +3610,17 @@ TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Generic/targimpl.c:
 	.data       start:0x803D3238 end:0x803D3268
 	.bss        start:0x8044F290 end:0x8044F810
 
-TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Export/targsupp.c:
+TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Export/targsupp.s:
 	.text       start:0x803711D0 end:0x803711F0
 
 TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Generic/mpc_7xx_603e.c:
 	.text       start:0x803711F0 end:0x80371560
 
+TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Generic/exception.s:
+	.init       start:0x800035E4 end:0x80005518
+
 TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.c:
+	.init       start:0x80005518 end:0x80005544
 	.text       start:0x80371560 end:0x80371B9C
 	.data       start:0x803D3268 end:0x803D32A8
 	.bss        start:0x8044F810 end:0x8044F818
