@@ -2133,7 +2133,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_yel_bag"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_ystone"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_zcloth"),
-    ActorRel(NonMatching, "d_a_obj_zdoor"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_zdoor"),
     ActorRel(NonMatching, "d_a_obj_zrTurara"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_zrTuraraRock"),
     ActorRel(Equivalent, "d_a_obj_zraMark"), # weak func order
