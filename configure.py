@@ -1454,7 +1454,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_kytag04"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_kytag17"),
     ActorRel(NonMatching, "d_a_obj_brakeeff"),
-    ActorRel(NonMatching, "d_a_obj_burnbox"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_burnbox"),
     ActorRel(NonMatching, "d_a_obj_carry"),
     ActorRel(NonMatching, "d_a_obj_ito"),
     ActorRel(NonMatching, "d_a_obj_movebox"),
