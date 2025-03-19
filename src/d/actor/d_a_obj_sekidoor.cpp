@@ -71,7 +71,7 @@ extern "C" void __dl__FPv();
 extern "C" void _savegpr_24();
 extern "C" void _restgpr_24();
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
+// extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
@@ -107,23 +107,29 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 #pragma pop
 
 /* 80CCDA5C-80CCDA64 000020 0008+00 2/3 0/0 0/0 .data            l_bmdData */
-SECTION_DATA static u8 l_bmdData[8] = {
-    0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x01,
+SECTION_DATA static u32 l_bmdData[2] = {
+    0x04, 
+    0x01,
 };
 
 /* 80CCDA64-80CCDA6C 000028 0008+00 0/1 0/0 0/0 .data            l_dzbData */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 l_dzbData[8] = {
-    0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x01,
+SECTION_DATA static u32 l_dzbData[2] = {
+    0x07,
+    0x01,
 };
 #pragma pop
 
 /* 80CCDA6C-80CCDA74 -00001 0008+00 2/3 0/0 0/0 .data            l_resNameList */
-SECTION_DATA static void* l_resNameList[2] = {
-    (void*)&d_a_obj_sekidoor__stringBase0,
-    (void*)(((char*)&d_a_obj_sekidoor__stringBase0) + 0x1),
+SECTION_DATA static char* l_resNameList[2] = {
+    // (void*)&d_a_obj_sekidoor__stringBase0,
+    // (void*)(((char*)&d_a_obj_sekidoor__stringBase0) + 0x1),
+    "",
+    "SekiDoor",
 };
+
+// static char* l_resName = "SekiDoor";
 
 /* 80CCDA74-80CCDA94 -00001 0020+00 1/0 0/0 0/0 .data            daObj_SekiDoor_MethodTable */
 static actor_method_class daObj_SekiDoor_MethodTable = {
@@ -167,22 +173,39 @@ SECTION_DATA extern void* __vt__16daObj_SekiDoor_c[10] = {
 };
 
 /* 80CCD02C-80CCD154 0000EC 0128+00 1/1 0/0 0/0 .text            create__16daObj_SekiDoor_cFv */
-void daObj_SekiDoor_c::create() {
+int daObj_SekiDoor_c::create() {
+    mBitSW = getBitSW();
+    return true;
     // NONMATCHING
 }
 
 /* 80CCD154-80CCD1F0 000214 009C+00 1/0 0/0 0/0 .text            CreateHeap__16daObj_SekiDoor_cFv */
-void daObj_SekiDoor_c::CreateHeap() {
+int daObj_SekiDoor_c::CreateHeap() {
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[mBitSW]], l_bmdData[mBitSW]);
+    mpModel2 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+
+    if (mpModel2 == NULL){
+        return false;
+    }
+    return true;
     // NONMATCHING
 }
 
 /* 80CCD1F0-80CCD23C 0002B0 004C+00 1/0 0/0 0/0 .text            Create__16daObj_SekiDoor_cFv */
-void daObj_SekiDoor_c::Create() {
+int daObj_SekiDoor_c::Create() {
+    initBaseMtx();
+    fopAcM_SetMtx(this, mpModel2->getBaseTRMtx());
+    fopAcM_setCullSizeBox2(this, mpModel2->getModelData());
+
+    return true;
     // NONMATCHING
 }
 
 /* 80CCD23C-80CCD290 0002FC 0054+00 1/0 0/0 0/0 .text            Delete__16daObj_SekiDoor_cFv */
-void daObj_SekiDoor_c::Delete() {
+int daObj_SekiDoor_c::Delete() {
+    dComIfG_resDelete(&mPhaseReq, l_resNameList[l_bmdData[mBitSW + 1]]);
+
+    return true;
     // NONMATCHING
 }
 
@@ -244,69 +267,119 @@ COMPILER_STRIP_GATE(0x80CCDA20, &lit_3962);
 #pragma pop
 
 /* 80CCD290-80CCD51C 000350 028C+00 1/0 0/0 0/0 .text Execute__16daObj_SekiDoor_cFPPA3_A4_f */
-void daObj_SekiDoor_c::Execute(f32 (**param_0)[3][4]) {
+int daObj_SekiDoor_c::Execute(Mtx**) {
+    return true;
     // NONMATCHING
 }
 
 /* 80CCD51C-80CCD538 0005DC 001C+00 1/0 0/0 0/0 .text            dComIfGp_event_runCheck__Fv */
-static void dComIfGp_event_runCheck() {
-    // NONMATCHING
-}
+// static void dComIfGp_event_runCheck() {
+//     // NONMATCHING
+// }
 
 /* 80CCD538-80CCD5DC 0005F8 00A4+00 1/0 0/0 0/0 .text            Draw__16daObj_SekiDoor_cFv */
-void daObj_SekiDoor_c::Draw() {
-    // NONMATCHING
+int daObj_SekiDoor_c::Draw() {
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel2, &tevStr);
+
+    dComIfGd_setListBG();
+    mDoExt_modelUpdateDL(mpModel2);
+    dComIfGd_setList();
+
+    return true;
 }
 
 /* 80CCD5DC-80CCD64C 00069C 0070+00 0/0 0/0 1/1 .text            evtSkip__16daObj_SekiDoor_cFv */
 void daObj_SekiDoor_c::evtSkip() {
-    // NONMATCHING
+    if (mInt != 0){
+        dComIfGp_getVibration().StopQuake(0xf);
+    }
+    mRotation.setall(0);
+    mFlo = 460.;
+    mOpen = true;
+    mDestroyed = true;
 }
 
 /* ############################################################################################## */
 /* 80CCDA28-80CCDA30 000020 0008+00 0/1 0/0 0/0 .rodata          id$4006 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const id[8] = {
-    0x8B, 0x85, 0x8B, 0x86, 0x8B, 0x87, 0x8B, 0x88,
+SECTION_RODATA static u16 const particle_id[4] = {
+    0x8B85, 0x8B86, 0x8B87, 0x8B88,
 };
-COMPILER_STRIP_GATE(0x80CCDA28, &id);
+COMPILER_STRIP_GATE(0x80CCDA28, &particle_id);
 #pragma pop
 
 /* 80CCD64C-80CCD810 00070C 01C4+00 1/1 0/0 0/0 .text            setPrtcls__16daObj_SekiDoor_cFv */
 void daObj_SekiDoor_c::setPrtcls() {
+    // static const u16 particle_id[4] = {
+    //     0x8B85, 0x8B86, 0x8B87, 0x8B88,
+    // };
+
+    cXyz particlePos = current.pos;
+    cXyz particleScale(1,1,1); // or set 1
+
+    particlePos.y += mFlo;
+    
+    if (mOpen == true) {
+        if (mDestroyed == false) {
+            if (mFlo < 460.0) {
+                for (int index = 0; index < 2; index++){
+                    mpEmitters[index] = dComIfGp_particle_set(particle_id[index], &particlePos, NULL, &particleScale, 0xff,
+                        NULL, -1, NULL, NULL, NULL);
+                    
+                    JPABaseEmitter* emitter_p = dComIfGp_particle_getEmitter(particle_id[index]);
+                    if (emitter_p != NULL) {
+                        emitter_p->setGlobalTranslation(particlePos);
+                    }
+                }
+            }
+        }
+        else {
+            for (int index = 2; index < 4; index++){
+                mpEmitters[index] = dComIfGp_particle_set(particle_id[index], &particlePos, NULL, &particleScale, 0xff,
+                    NULL, -1, NULL, NULL, NULL);
+            }
+        }
+    }
     // NONMATCHING
 }
 
 /* 80CCD810-80CCD84C 0008D0 003C+00 1/1 0/0 0/0 .text            initBaseMtx__16daObj_SekiDoor_cFv
  */
 void daObj_SekiDoor_c::initBaseMtx() {
-    // NONMATCHING
+    mpModel2->setBaseScale(scale);
+    setBaseMtx();
 }
 
 /* 80CCD84C-80CCD8D8 00090C 008C+00 2/2 0/0 0/0 .text            setBaseMtx__16daObj_SekiDoor_cFv */
 void daObj_SekiDoor_c::setBaseMtx() {
-    // NONMATCHING
+    mDoMtx_trans(mDoMtx_stack_c::get(), current.pos.x, current.pos.y + mFlo, current.pos.z);
+    mDoMtx_YrotM(mDoMtx_stack_c::get(), shape_angle.y);
+    mDoMtx_ZrotM(mDoMtx_stack_c::get(), mRotation.z);
+
+    mpModel2->setBaseTRMtx(mDoMtx_stack_c::get());
+    mDoMtx_copy(mDoMtx_stack_c::get(), mBgMtx);
 }
 
 /* 80CCD8D8-80CCD8F8 000998 0020+00 1/0 0/0 0/0 .text            daObj_SekiDoor_Create__FPv */
-static void daObj_SekiDoor_Create(void* param_0) {
-    // NONMATCHING
+static int daObj_SekiDoor_Create(void* i_this) {
+    return static_cast<daObj_SekiDoor_c*>(i_this)->create();
 }
 
 /* 80CCD8F8-80CCD918 0009B8 0020+00 1/0 0/0 0/0 .text            daObj_SekiDoor_Delete__FPv */
-static void daObj_SekiDoor_Delete(void* param_0) {
-    // NONMATCHING
+static int daObj_SekiDoor_Delete(void* i_this) {
+    return static_cast<daObj_SekiDoor_c*>(i_this)->MoveBGDelete();
 }
 
 /* 80CCD918-80CCD938 0009D8 0020+00 1/0 0/0 0/0 .text            daObj_SekiDoor_Execute__FPv */
-static void daObj_SekiDoor_Execute(void* param_0) {
-    // NONMATCHING
+static int daObj_SekiDoor_Execute(void* i_this) {
+    return static_cast<daObj_SekiDoor_c*>(i_this)->MoveBGExecute();
 }
 
 /* 80CCD938-80CCD964 0009F8 002C+00 1/0 0/0 0/0 .text            daObj_SekiDoor_Draw__FPv */
-static void daObj_SekiDoor_Draw(void* param_0) {
-    // NONMATCHING
+static int daObj_SekiDoor_Draw(void* i_this) {
+    return static_cast<daObj_SekiDoor_c*>(i_this)->MoveBGDraw();
 }
 
 /* 80CCD964-80CCD96C 000A24 0008+00 1/0 0/0 0/0 .text            daObj_SekiDoor_IsDelete__FPv */
