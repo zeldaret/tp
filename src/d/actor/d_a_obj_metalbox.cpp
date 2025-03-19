@@ -11,23 +11,23 @@ static char const* l_arcName = "L_mbox_00";
 
 /* 80592E98-80592ED4 000078 003C+00 1/1 0/0 0/0 .text            initBaseMtx__11daObjMBox_cFv */
 void daObjMBox_c::initBaseMtx() {
-    mpModel->mBaseScale = scale;
+    mpModel->setBaseScale(scale);
     setBaseMtx();
 }
 
 /* 80592ED4-80592F48 0000B4 0074+00 2/2 0/0 0/0 .text            setBaseMtx__11daObjMBox_cFv */
 void daObjMBox_c::setBaseMtx() {
-    PSMTXTrans(mDoMtx_stack_c::now, current.pos.x, current.pos.y, current.pos.z);
-    mDoMtx_YrotM(mDoMtx_stack_c::now, shape_angle.y);
-    PSMTXCopy(mDoMtx_stack_c::now, mpModel->mBaseTransformMtx);
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::YrotM(shape_angle.y);
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     PSMTXCopy(mDoMtx_stack_c::now, mBgMtx);
 }
 
 /* 80592F48-80592FD4 000128 008C+00 1/0 0/0 0/0 .text            Create__11daObjMBox_cFv */
 int daObjMBox_c::Create() {
     initBaseMtx();
-    cullMtx = mpModel->mBaseTransformMtx;
-    mAcchCir.SetWall(30.0, 30.0);
+    fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
+    mAcchCir.SetWall(30.0f, 30.0f);
     mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
                   fopAcM_GetSpeed_p(this), NULL, NULL);
     fopAcM_setCullSizeBox2(this, mpModel->getModelData());
@@ -64,7 +64,7 @@ int daObjMBox_c::create() {
 
 /* 805932C4-805932F0 0004A4 002C+00 1/0 0/0 0/0 .text            Execute__11daObjMBox_cFPPA3_A4_f */
 int daObjMBox_c::Execute(f32 (**param_0)[3][4]) {
-    *param_0 = (Mtx *) &mBgMtx;
+    *param_0 = &mBgMtx;
     setBaseMtx();
 
     return 1;
@@ -72,8 +72,8 @@ int daObjMBox_c::Execute(f32 (**param_0)[3][4]) {
 
 /* 805932F0-80593394 0004D0 00A4+00 1/0 0/0 0/0 .text            Draw__11daObjMBox_cFv */
 int daObjMBox_c::Draw() {
-    g_env_light.dScnKy_env_light_c::settingTevStruct(0x10, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);
     dComIfGd_setList();
@@ -89,26 +89,26 @@ int daObjMBox_c::Delete() {
 }
 
 /* 805933C8-805933F4 0005A8 002C+00 1/0 0/0 0/0 .text            daObjMBox_Draw__FP11daObjMBox_c */
-static void daObjMBox_Draw(daObjMBox_c* i_this) {
-    i_this->MoveBGDraw();
+static int daObjMBox_Draw(daObjMBox_c* i_this) {
+    return i_this->MoveBGDraw();
 }
 
 /* 805933F4-80593414 0005D4 0020+00 1/0 0/0 0/0 .text            daObjMBox_Execute__FP11daObjMBox_c
  */
-static void daObjMBox_Execute(daObjMBox_c* i_this) {
-    i_this->MoveBGExecute();
+static int daObjMBox_Execute(daObjMBox_c* i_this) {
+    return i_this->MoveBGExecute();
 }
 
 /* 80593414-80593434 0005F4 0020+00 1/0 0/0 0/0 .text            daObjMBox_Delete__FP11daObjMBox_c
  */
-static void daObjMBox_Delete(daObjMBox_c* i_this) {
-    i_this->MoveBGDelete();
+static int daObjMBox_Delete(daObjMBox_c* i_this) {
+    return i_this->MoveBGDelete();
 }
 
 /* 80593434-80593454 000614 0020+00 1/0 0/0 0/0 .text            daObjMBox_Create__FP10fopAc_ac_c */
-static void daObjMBox_Create(fopAc_ac_c* i_this) {
+static int daObjMBox_Create(fopAc_ac_c* i_this) {
     fopAcM_GetID(i_this);
-    static_cast<daObjMBox_c*>(i_this)->create();
+    return static_cast<daObjMBox_c*>(i_this)->create();
 }
 
 /* ############################################################################################## */
