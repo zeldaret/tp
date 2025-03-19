@@ -11,41 +11,41 @@
 #include "d/d_com_inf_game.h"
 #include "dol2asm.h"
 
-/* ############################################################################################## */
-/* 80862C4C-80862C50 000000 0004+00 5/5 0/0 0/0 .rodata          @3815 */
-SECTION_RODATA static u32 const lit_3815 = 0x01000000;
-COMPILER_STRIP_GATE(0x80862C4C, &lit_3815);
+// /* ############################################################################################## */
+// /* 80862C4C-80862C50 000000 0004+00 5/5 0/0 0/0 .rodata          @3815 */
+// SECTION_RODATA static u32 const lit_3815 = 0x01000000;
+// COMPILER_STRIP_GATE(0x80862C4C, &lit_3815);
 
-/* 80862C50-80862C54 000004 0004+00 0/1 0/0 0/0 .rodata          @3818 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_3818 = 0x01000000;
-COMPILER_STRIP_GATE(0x80862C50, &lit_3818);
-#pragma pop
+// /* 80862C50-80862C54 000004 0004+00 0/1 0/0 0/0 .rodata          @3818 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static u32 const lit_3818 = 0x01000000;
+// COMPILER_STRIP_GATE(0x80862C50, &lit_3818);
+// #pragma pop
 
-/* 80862C54-80862C58 000008 0004+00 0/1 0/0 0/0 .rodata          @3821 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3821[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80862C54, &lit_3821);
-#pragma pop
+// /* 80862C54-80862C58 000008 0004+00 0/1 0/0 0/0 .rodata          @3821 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static u8 const lit_3821[4] = {
+//     0x00,
+//     0x00,
+//     0x00,
+//     0x00,
+// };
+// COMPILER_STRIP_GATE(0x80862C54, &lit_3821);
+// #pragma pop
 
-/* 80862C58-80862C5C 00000C 0004+00 0/1 0/0 0/0 .rodata          @3824 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3824[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80862C58, &lit_3824);
-#pragma pop
+// /* 80862C58-80862C5C 00000C 0004+00 0/1 0/0 0/0 .rodata          @3824 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static u8 const lit_3824[4] = {
+//     0x00,
+//     0x00,
+//     0x00,
+//     0x00,
+// };
+// COMPILER_STRIP_GATE(0x80862C58, &lit_3824);
+// #pragma pop
 
 // /* 80862C5C-80862C60 000010 0004+00 1/5 0/0 0/0 .rodata          @3849 */
 // SECTION_RODATA static u8 const lit_3849[4] = {
@@ -56,23 +56,20 @@ COMPILER_STRIP_GATE(0x80862C58, &lit_3824);
 // };
 // COMPILER_STRIP_GATE(0x80862C5C, &lit_3849);
 
-// /* 80862D20-80862D2C 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-// SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-//     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-// };
+/* 80862D20-80862D2C 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
+static u8 cNullVec__6Z2Calc[12] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
 
-// /* 80862D2C-80862D40 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-//     0x02000201,
-//     /* padding */
-//     0x40080000,
-//     0x00000000,
-//     0x3FE00000,
-//     0x00000000,
-// };
-// #pragma pop
+/* 80862D2C-80862D40 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
+static u32 lit_1787[1 + 4 /* padding */] = {
+    0x02000201,
+    /* padding */
+    0x40080000,
+    0x00000000,
+    0x3FE00000,
+    0x00000000,
+};
 
 /* 80862D40-80866D40 000020 4000+00 2/1 0/0 0/0 .data            l_Egnd_mantTEX */
 #include "assets/l_Egnd_mantTEX.h"
@@ -80,14 +77,150 @@ COMPILER_STRIP_GATE(0x80862C58, &lit_3824);
 /* 80866D40-8086AD40 004020 4000+00 3/3 0/0 0/0 .data            l_Egnd_mantTEX_U */
 #include "assets/l_Egnd_mantTEX_U.h"
 
-/* 8086BAE0-8086BECC 008DC0 03EC+00 0/0 0/0 0/0 .data            l_Egnd_mantDL */
-#include "assets/l_Egnd_mantDL.h"
+/* 8086AD40-8086ADA0 008020 0060+00 1/0 0/0 0/0 .data            l_Egnd_mantPAL */
+#include "assets/l_Egnd_mantPAL.h"
+
+/* 8086ADA0-8086B58C 008080 07EC+00 0/0 0/0 0/0 .data            l_pos */
+static u32 l_pos[507] = {
+    0x42480000, 0x3F5CFC93, 0xC365BD9C, 0x4226AAAA,
+    0x3F5CFC93, 0xC365BD9C, 0x42055556, 0x3F5CFC93,
+    0xC365BD9C, 0x41C80000, 0x3F5CFC93, 0xC365BD9C,
+    0x41855556, 0x3F5CFC93, 0xC365BD9C, 0x41055556,
+    0x3F5CFC93, 0xC365BD9C, 0x358637BD, 0x3F5CFC93,
+    0xC365BD9C, 0xC1055554, 0x3F5CFC93, 0xC365BD9C,
+    0xC1855554, 0x3F5CFC93, 0xC365BD9C, 0xC1C7FFFF,
+    0x3F5CFC93, 0xC365BD9C, 0xC2055554, 0x3F5CFC93,
+    0xC365BD9C, 0xC226AAAA, 0x3F5CFC93, 0xC365BD9C,
+    0xC2480000, 0x3F5CFC93, 0xC365BD9C, 0x42480000,
+    0x3F5CFC93, 0xC35292F0, 0x4226AAAA, 0x3F5CFC93,
+    0xC35292F0, 0x42055556, 0x3F5CFC93, 0xC35292F0,
+    0x41C80000, 0x3F5CFC93, 0xC35292F0, 0x41855556,
+    0x3F5CFC93, 0xC35292F0, 0x41055556, 0x3F5CFC93,
+    0xC35292F0, 0x358637BD, 0x3F5CFC93, 0xC35292F0,
+    0xC1055554, 0x3F5CFC93, 0xC35292F0, 0xC1855554,
+    0x3F5CFC93, 0xC35292F0, 0xC1C7FFFF, 0x3F5CFC93,
+    0xC35292F0, 0xC2055554, 0x3F5CFC93, 0xC35292F0,
+    0xC226AAAA, 0x3F5CFC93, 0xC35292F0, 0xC2480000,
+    0x3F5CFC93, 0xC35292F0, 0x42480000, 0x3F5CFC93,
+    0xC33F6846, 0x4226AAAA, 0x3F5CFC93, 0xC33F6846,
+    0x42055556, 0x3F5CFC93, 0xC33F6846, 0x41C80000,
+    0x3F5CFC93, 0xC33F6846, 0x41855556, 0x3F5CFC93,
+    0xC33F6846, 0x41055556, 0x3F5CFC93, 0xC33F6846,
+    0x358637BD, 0x3F5CFC93, 0xC33F6846, 0xC1055554,
+    0x3F5CFC93, 0xC33F6846, 0xC1855554, 0x3F5CFC93,
+    0xC33F6846, 0xC1C7FFFF, 0x3F5CFC93, 0xC33F6846,
+    0xC2055554, 0x3F5CFC93, 0xC33F6846, 0xC226AAAA,
+    0x3F5CFC93, 0xC33F6846, 0xC2480000, 0x3F5CFC93,
+    0xC33F6846, 0x42480000, 0x3F5CFC93, 0xC32C3D9C,
+    0x4226AAAA, 0x3F5CFC93, 0xC32C3D9C, 0x42055556,
+    0x3F5CFC93, 0xC32C3D9C, 0x41C80000, 0x3F5CFC93,
+    0xC32C3D9C, 0x41855556, 0x3F5CFC93, 0xC32C3D9C,
+    0x41055556, 0x3F5CFC93, 0xC32C3D9C, 0x358637BD,
+    0x3F5CFC93, 0xC32C3D9C, 0xC1055554, 0x3F5CFC93,
+    0xC32C3D9C, 0xC1855554, 0x3F5CFC93, 0xC32C3D9C,
+    0xC1C7FFFF, 0x3F5CFC93, 0xC32C3D9C, 0xC2055554,
+    0x3F5CFC93, 0xC32C3D9C, 0xC226AAAA, 0x3F5CFC93,
+    0xC32C3D9C, 0xC2480000, 0x3F5CFC93, 0xC32C3D9C,
+    0x42480000, 0x3F5CFC93, 0xC31912F1, 0x4226AAAA,
+    0x3F5CFC93, 0xC31912F1, 0x42055556, 0x3F5CFC93,
+    0xC31912F1, 0x41C80000, 0x3F5CFC93, 0xC31912F1,
+    0x41855556, 0x3F5CFC93, 0xC31912F1, 0x41055556,
+    0x3F5CFC93, 0xC31912F1, 0x358637BD, 0x3F5CFC93,
+    0xC31912F1, 0xC1055554, 0x3F5CFC93, 0xC31912F1,
+    0xC1855554, 0x3F5CFC93, 0xC31912F1, 0xC1C7FFFF,
+    0x3F5CFC93, 0xC31912F1, 0xC2055554, 0x3F5CFC93,
+    0xC31912F1, 0xC226AAAA, 0x3F5CFC93, 0xC31912F1,
+    0xC2480000, 0x3F5CFC93, 0xC31912F1, 0x42480000,
+    0x3F5CFC93, 0xC305E846, 0x4226AAAA, 0x3F5CFC93,
+    0xC305E846, 0x42055556, 0x3F5CFC93, 0xC305E846,
+    0x41C80000, 0x3F5CFC93, 0xC305E846, 0x41855556,
+    0x3F5CFC93, 0xC305E846, 0x41055556, 0x3F5CFC93,
+    0xC305E846, 0x358637BD, 0x3F5CFC93, 0xC305E846,
+    0xC1055554, 0x3F5CFC93, 0xC305E846, 0xC1855554,
+    0x3F5CFC93, 0xC305E846, 0xC1C7FFFF, 0x3F5CFC93,
+    0xC305E846, 0xC2055554, 0x3F5CFC93, 0xC305E846,
+    0xC226AAAA, 0x3F5CFC93, 0xC305E846, 0xC2480000,
+    0x3F5CFC93, 0xC305E846, 0x42480000, 0x3F5CFC93,
+    0xC2E57B38, 0x4226AAAA, 0x3F5CFC93, 0xC2E57B38,
+    0x42055556, 0x3F5CFC93, 0xC2E57B38, 0x41C80000,
+    0x3F5CFC93, 0xC2E57B38, 0x41855556, 0x3F5CFC93,
+    0xC2E57B38, 0x41055556, 0x3F5CFC93, 0xC2E57B38,
+    0x358637BD, 0x3F5CFC93, 0xC2E57B38, 0xC1055554,
+    0x3F5CFC93, 0xC2E57B38, 0xC1855554, 0x3F5CFC93,
+    0xC2E57B38, 0xC1C7FFFF, 0x3F5CFC93, 0xC2E57B38,
+    0xC2055554, 0x3F5CFC93, 0xC2E57B38, 0xC226AAAA,
+    0x3F5CFC93, 0xC2E57B38, 0xC2480000, 0x3F5CFC93,
+    0xC2E57B38, 0x42480000, 0x3F5CFC93, 0xC2BF25E2,
+    0x4226AAAA, 0x3F5CFC93, 0xC2BF25E2, 0x42055556,
+    0x3F5CFC93, 0xC2BF25E2, 0x41C80000, 0x3F5CFC93,
+    0xC2BF25E2, 0x41855556, 0x3F5CFC93, 0xC2BF25E2,
+    0x41055556, 0x3F5CFC93, 0xC2BF25E2, 0x358637BD,
+    0x3F5CFC93, 0xC2BF25E2, 0xC1055554, 0x3F5CFC93,
+    0xC2BF25E2, 0xC1855554, 0x3F5CFC93, 0xC2BF25E2,
+    0xC1C7FFFF, 0x3F5CFC93, 0xC2BF25E2, 0xC2055554,
+    0x3F5CFC93, 0xC2BF25E2, 0xC226AAAA, 0x3F5CFC93,
+    0xC2BF25E2, 0xC2480000, 0x3F5CFC93, 0xC2BF25E2,
+    0x42480000, 0x3F5CFC93, 0xC298D08D, 0x4226AAAA,
+    0x3F5CFC93, 0xC298D08D, 0x42055556, 0x3F5CFC93,
+    0xC298D08D, 0x41C80000, 0x3F5CFC93, 0xC298D08D,
+    0x41855556, 0x3F5CFC93, 0xC298D08D, 0x41055556,
+    0x3F5CFC93, 0xC298D08D, 0x358637BD, 0x3F5CFC93,
+    0xC298D08D, 0xC1055554, 0x3F5CFC93, 0xC298D08D,
+    0xC1855554, 0x3F5CFC93, 0xC298D08D, 0xC1C7FFFF,
+    0x3F5CFC93, 0xC298D08D, 0xC2055554, 0x3F5CFC93,
+    0xC298D08D, 0xC226AAAA, 0x3F5CFC93, 0xC298D08D,
+    0xC2480000, 0x3F5CFC93, 0xC298D08D, 0x42480000,
+    0x3F5CFC93, 0xC264F66F, 0x4226AAAA, 0x3F5CFC93,
+    0xC264F66F, 0x42055556, 0x3F5CFC93, 0xC264F66F,
+    0x41C80000, 0x3F5CFC93, 0xC264F66F, 0x41855556,
+    0x3F5CFC93, 0xC264F66F, 0x41055556, 0x3F5CFC93,
+    0xC264F66F, 0x358637BD, 0x3F5CFC93, 0xC264F66F,
+    0xC1055554, 0x3F5CFC93, 0xC264F66F, 0xC1855554,
+    0x3F5CFC93, 0xC264F66F, 0xC1C7FFFF, 0x3F5CFC93,
+    0xC264F66F, 0xC2055554, 0x3F5CFC93, 0xC264F66F,
+    0xC226AAAA, 0x3F5CFC93, 0xC264F66F, 0xC2480000,
+    0x3F5CFC93, 0xC264F66F, 0x42480000, 0x3F5CFC93,
+    0xC2184BC4, 0x4226AAAA, 0x3F5CFC93, 0xC2184BC4,
+    0x42055556, 0x3F5CFC93, 0xC2184BC4, 0x41C80000,
+    0x3F5CFC93, 0xC2184BC4, 0x41855556, 0x3F5CFC93,
+    0xC2184BC4, 0x41055556, 0x3F5CFC93, 0xC2184BC4,
+    0x358637BD, 0x3F5CFC93, 0xC2184BC4, 0xC1055554,
+    0x3F5CFC93, 0xC2184BC4, 0xC1855554, 0x3F5CFC93,
+    0xC2184BC4, 0xC1C7FFFF, 0x3F5CFC93, 0xC2184BC4,
+    0xC2055554, 0x3F5CFC93, 0xC2184BC4, 0xC226AAAA,
+    0x3F5CFC93, 0xC2184BC4, 0xC2480000, 0x3F5CFC93,
+    0xC2184BC4, 0x42480000, 0x3F5CFC93, 0xC1974231,
+    0x4226AAAA, 0x3F5CFC93, 0xC1974231, 0x42055556,
+    0x3F5CFC93, 0xC1974231, 0x41C80000, 0x3F5CFC93,
+    0xC1974231, 0x41855556, 0x3F5CFC93, 0xC1974231,
+    0x41055556, 0x3F5CFC93, 0xC1974231, 0x358637BD,
+    0x3F5CFC93, 0xC1974231, 0xC1055554, 0x3F5CFC93,
+    0xC1974231, 0xC1855554, 0x3F5CFC93, 0xC1974231,
+    0xC1C7FFFF, 0x3F5CFC93, 0xC1974231, 0xC2055554,
+    0x3F5CFC93, 0xC1974231, 0xC226AAAA, 0x3F5CFC93,
+    0xC1974231, 0xC2480000, 0x3F5CFC93, 0xC1974231,
+    0x42480000, 0x3F5CFC93, 0x3E84C964, 0x4226AAAA,
+    0x3F5CFC93, 0x3E84C964, 0x42055556, 0x3F5CFC93,
+    0x3E84C964, 0x41C80000, 0x3F5CFC93, 0x3E84C964,
+    0x41855556, 0x3F5CFC93, 0x3E84C964, 0x41055556,
+    0x3F5CFC93, 0x3E84C964, 0x358637BD, 0x3F5CFC93,
+    0x3E84C964, 0xC1055554, 0x3F5CFC93, 0x3E84C964,
+    0xC1855554, 0x3F5CFC93, 0x3E84C964, 0xC1C7FFFF,
+    0x3F5CFC93, 0x3E84C964, 0xC2055554, 0x3F5CFC93,
+    0x3E84C964, 0xC226AAAA, 0x3F5CFC93, 0x3E84C964,
+    0xC2480000, 0x3F5CFC93, 0x3E84C964,
+};
+
+/* 8086B5EC-8086B5F7 .data          l_normal */
+static u32 l_normal[3] = {
+    0x00000000, 0x3F800000, 0x00000000,
+};
 
 // /* 8086BF70-8086BF74 000000 0004+00 3/3 0/0 0/0 .bss             None */
 // static u8 data_8086BF70[4];
 
 /* 8086B598-8086BAE0 008878 0548+00 0/0 0/0 0/0 .data            l_texCoord */
-static u32 l_texCoord[] = {
+static u32 l_texCoord[338] = {
     0x00000000, 0x3F6AAAB0, 0x3DAAAA7E, 0x3F6AAAB0,
     0x3DAAAA7E, 0x3F800000, 0x00000000, 0x3F800000,
     0x3E2AAAC1, 0x3F6AAAB0, 0x3E2AAAC1, 0x3F800000,
@@ -175,11 +308,26 @@ static u32 l_texCoord[] = {
     0x3F800000, 0x00000000,
 };
 
+/* 8086BAE0-8086BECC 008DC0 03EC+00 0/0 0/0 0/0 .data            l_Egnd_mantDL */
+#include "assets/l_Egnd_mantDL.h"
+
+/* 8086BECC-8086BED0 -00001 0004+00 0/0 0/0 0/0 .data            pal_d */
+static void* pal_d = (void*)&l_Egnd_mantPAL;
+
+/* 8086BED0-8086BED8 -00001 0008+00 0/0 0/0 0/0 .data            tex_d */
+static void* tex_d[2] = {
+    (void*)&l_Egnd_mantTEX,
+    (void*)&l_Egnd_mantTEX_U,
+};
+
 static u8 lbl_277_bss_0;
 
 /* 80861298-808616B8 000078 0420+00 1/0 0/0 0/0 .text            draw__15daMant_packet_cFv */
 void daMant_packet_c::draw() {
     // NONMATCHING
+    void* image = tex_d[0];
+    void* lut = pal_d;
+
     j3dSys.reinitGX();
     GXSetNumIndStages(0);
     dKy_setLight_again();
@@ -194,7 +342,7 @@ void daMant_packet_c::draw() {
     GXSetVtxAttrFmt(GX_VTXFMT0,GX_VA_NRM,GX_CLR_RGB,GX_F32,0);
     GXSetVtxAttrFmt(GX_VTXFMT0,GX_VA_TEX0,GX_CLR_RGBA,GX_F32,0);
 
-    GXSetArray(GX_VA_POS, &this->mPos[this->field_0x74 * 0xa9], 12);
+    GXSetArray(GX_VA_POS, this->getPos(), 12);
     GXSetArray(GX_VA_NRM, &this->mNrm[this->field_0x74 * 0xa9], 12);
     GXSetArray(GX_VA_TEX0, &l_texCoord, 8);
 
@@ -210,18 +358,10 @@ void daMant_packet_c::draw() {
     dKy_Global_amb_set(this->field_0x70);
     GXSetTevOrder(GX_TEVSTAGE0,GX_TEXCOORD0,GX_TEXMAP0,GX_COLOR0A0);
 
-    // GXColor local_84;
-    // local_84.r = 1;
-    // local_84.g = 0;
-    // local_84.b = 0;
-    // local_84.a = 0;
-    // GXSetTevColor(GX_TEVREG0, local_84);
-    // GXColor local_8c;
-    // local_8c.r = 1;
-    // local_8c.g = 0;
-    // local_8c.b = 0;
-    // local_8c.a = 0;
-    // GXSetTevKColor(GX_KCOLOR0, local_8c);
+    GXColor local_84 = {1, 0, 0, 0};
+    GXSetTevColor(GX_TEVREG0, local_84);
+    GXColor local_8c = {1, 0, 0, 0};
+    GXSetTevKColor(GX_KCOLOR0, local_8c);
 
     GXSetTevKColorSel(GX_TEVSTAGE0,GX_TEV_KCSEL_K0);
     GXSetTevColorIn(GX_TEVSTAGE0,GX_CC_KONST,GX_CC_TEXC,GX_CC_RASC,GX_CC_C0);
@@ -232,12 +372,10 @@ void daMant_packet_c::draw() {
     GXSetAlphaCompare(GX_GREATER,0,GX_AOP_OR,GX_GREATER,0);
 
     GXTlutObj GStack_80;
-    void* lut;
-    GXInitTlutObj(&GStack_80,lut,GX_TL_RGB5A3,0x100);
+    GXInitTlutObj(&GStack_80,pal_d,GX_TL_RGB5A3,0x100);
 
     GXTexObj GStack_74;
-    void* image;
-    GXInitTexObjCI(&GStack_74,image,0x80,0x80,GX_TF_C8,GX_CLAMP,GX_CLAMP,0,0);
+    GXInitTexObjCI(&GStack_74,lut,0x80,0x80,GX_TF_C8,GX_CLAMP,GX_CLAMP,0,0);
     GXInitTexObjLOD(&GStack_74,GX_LINEAR,GX_LINEAR,0.0,0.0,0.0,0,0,GX_ANISO_1);
 
     GXLoadTlut(&GStack_80,0);
@@ -251,12 +389,15 @@ void daMant_packet_c::draw() {
 
     GXLoadNrmMtxImm(MStack_54,GX_PNMTX0);
     GXCallDisplayList(l_Egnd_mantDL, 0x3e0);
-
-    GXInitTexObjCI(&GStack_74,l_Egnd_mantTEX_U,0x80,0x80,GX_TF_C8,GX_CLAMP,GX_CLAMP,0,0);
+    
+    GXInitTexObjCI(&GStack_74,image,0x80,0x80,GX_TF_C8,GX_CLAMP,GX_CLAMP,0,0);
     GXInitTexObjLOD(&GStack_74,GX_LINEAR,GX_LINEAR,0.0,0.0,0.0,0,0,GX_ANISO_1);
     GXLoadTexObj(&GStack_74,GX_TEXMAP0);
 
-
+    GXColor local_94 = {0, 0, 0, 0};
+    GXSetTevColor(GX_TEVREG0,local_94);
+    GXColor local_9c = {0, 0, 0, 0};
+    GXSetTevKColor(GX_KCOLOR0,local_9c);
 
     GXSetCullMode(GX_CULL_FRONT);
     GXLoadPosMtxImm(this->mMtx2, GX_PNMTX0);
@@ -416,269 +557,37 @@ static int daMant_Draw(mant_class* i_this) {
 // COMPILER_STRIP_GATE(0x80862CA4, &lit_4130);
 // #pragma pop
 
-/* 8086AD40-8086ADA0 008020 0060+00 1/0 0/0 0/0 .data            l_Egnd_mantPAL */
-#include "assets/l_Egnd_mantPAL.h"
-
-/* 8086ADA0-8086B58C 008080 07EC+00 0/0 0/0 0/0 .data            l_pos */
-static u32 l_pos[507] = {
-    0x42480000, 0x3F5CFC93, 0xC365BD9C, 0x4226AAAA,
-    0x3F5CFC93, 0xC365BD9C, 0x42055556, 0x3F5CFC93,
-    0xC365BD9C, 0x41C80000, 0x3F5CFC93, 0xC365BD9C,
-    0x41855556, 0x3F5CFC93, 0xC365BD9C, 0x41055556,
-    0x3F5CFC93, 0xC365BD9C, 0x358637BD, 0x3F5CFC93,
-    0xC365BD9C, 0xC1055554, 0x3F5CFC93, 0xC365BD9C,
-    0xC1855554, 0x3F5CFC93, 0xC365BD9C, 0xC1C7FFFF,
-    0x3F5CFC93, 0xC365BD9C, 0xC2055554, 0x3F5CFC93,
-    0xC365BD9C, 0xC226AAAA, 0x3F5CFC93, 0xC365BD9C,
-    0xC2480000, 0x3F5CFC93, 0xC365BD9C, 0x42480000,
-    0x3F5CFC93, 0xC35292F0, 0x4226AAAA, 0x3F5CFC93,
-    0xC35292F0, 0x42055556, 0x3F5CFC93, 0xC35292F0,
-    0x41C80000, 0x3F5CFC93, 0xC35292F0, 0x41855556,
-    0x3F5CFC93, 0xC35292F0, 0x41055556, 0x3F5CFC93,
-    0xC35292F0, 0x358637BD, 0x3F5CFC93, 0xC35292F0,
-    0xC1055554, 0x3F5CFC93, 0xC35292F0, 0xC1855554,
-    0x3F5CFC93, 0xC35292F0, 0xC1C7FFFF, 0x3F5CFC93,
-    0xC35292F0, 0xC2055554, 0x3F5CFC93, 0xC35292F0,
-    0xC226AAAA, 0x3F5CFC93, 0xC35292F0, 0xC2480000,
-    0x3F5CFC93, 0xC35292F0, 0x42480000, 0x3F5CFC93,
-    0xC33F6846, 0x4226AAAA, 0x3F5CFC93, 0xC33F6846,
-    0x42055556, 0x3F5CFC93, 0xC33F6846, 0x41C80000,
-    0x3F5CFC93, 0xC33F6846, 0x41855556, 0x3F5CFC93,
-    0xC33F6846, 0x41055556, 0x3F5CFC93, 0xC33F6846,
-    0x358637BD, 0x3F5CFC93, 0xC33F6846, 0xC1055554,
-    0x3F5CFC93, 0xC33F6846, 0xC1855554, 0x3F5CFC93,
-    0xC33F6846, 0xC1C7FFFF, 0x3F5CFC93, 0xC33F6846,
-    0xC2055554, 0x3F5CFC93, 0xC33F6846, 0xC226AAAA,
-    0x3F5CFC93, 0xC33F6846, 0xC2480000, 0x3F5CFC93,
-    0xC33F6846, 0x42480000, 0x3F5CFC93, 0xC32C3D9C,
-    0x4226AAAA, 0x3F5CFC93, 0xC32C3D9C, 0x42055556,
-    0x3F5CFC93, 0xC32C3D9C, 0x41C80000, 0x3F5CFC93,
-    0xC32C3D9C, 0x41855556, 0x3F5CFC93, 0xC32C3D9C,
-    0x41055556, 0x3F5CFC93, 0xC32C3D9C, 0x358637BD,
-    0x3F5CFC93, 0xC32C3D9C, 0xC1055554, 0x3F5CFC93,
-    0xC32C3D9C, 0xC1855554, 0x3F5CFC93, 0xC32C3D9C,
-    0xC1C7FFFF, 0x3F5CFC93, 0xC32C3D9C, 0xC2055554,
-    0x3F5CFC93, 0xC32C3D9C, 0xC226AAAA, 0x3F5CFC93,
-    0xC32C3D9C, 0xC2480000, 0x3F5CFC93, 0xC32C3D9C,
-    0x42480000, 0x3F5CFC93, 0xC31912F1, 0x4226AAAA,
-    0x3F5CFC93, 0xC31912F1, 0x42055556, 0x3F5CFC93,
-    0xC31912F1, 0x41C80000, 0x3F5CFC93, 0xC31912F1,
-    0x41855556, 0x3F5CFC93, 0xC31912F1, 0x41055556,
-    0x3F5CFC93, 0xC31912F1, 0x358637BD, 0x3F5CFC93,
-    0xC31912F1, 0xC1055554, 0x3F5CFC93, 0xC31912F1,
-    0xC1855554, 0x3F5CFC93, 0xC31912F1, 0xC1C7FFFF,
-    0x3F5CFC93, 0xC31912F1, 0xC2055554, 0x3F5CFC93,
-    0xC31912F1, 0xC226AAAA, 0x3F5CFC93, 0xC31912F1,
-    0xC2480000, 0x3F5CFC93, 0xC31912F1, 0x42480000,
-    0x3F5CFC93, 0xC305E846, 0x4226AAAA, 0x3F5CFC93,
-    0xC305E846, 0x42055556, 0x3F5CFC93, 0xC305E846,
-    0x41C80000, 0x3F5CFC93, 0xC305E846, 0x41855556,
-    0x3F5CFC93, 0xC305E846, 0x41055556, 0x3F5CFC93,
-    0xC305E846, 0x358637BD, 0x3F5CFC93, 0xC305E846,
-    0xC1055554, 0x3F5CFC93, 0xC305E846, 0xC1855554,
-    0x3F5CFC93, 0xC305E846, 0xC1C7FFFF, 0x3F5CFC93,
-    0xC305E846, 0xC2055554, 0x3F5CFC93, 0xC305E846,
-    0xC226AAAA, 0x3F5CFC93, 0xC305E846, 0xC2480000,
-    0x3F5CFC93, 0xC305E846, 0x42480000, 0x3F5CFC93,
-    0xC2E57B38, 0x4226AAAA, 0x3F5CFC93, 0xC2E57B38,
-    0x42055556, 0x3F5CFC93, 0xC2E57B38, 0x41C80000,
-    0x3F5CFC93, 0xC2E57B38, 0x41855556, 0x3F5CFC93,
-    0xC2E57B38, 0x41055556, 0x3F5CFC93, 0xC2E57B38,
-    0x358637BD, 0x3F5CFC93, 0xC2E57B38, 0xC1055554,
-    0x3F5CFC93, 0xC2E57B38, 0xC1855554, 0x3F5CFC93,
-    0xC2E57B38, 0xC1C7FFFF, 0x3F5CFC93, 0xC2E57B38,
-    0xC2055554, 0x3F5CFC93, 0xC2E57B38, 0xC226AAAA,
-    0x3F5CFC93, 0xC2E57B38, 0xC2480000, 0x3F5CFC93,
-    0xC2E57B38, 0x42480000, 0x3F5CFC93, 0xC2BF25E2,
-    0x4226AAAA, 0x3F5CFC93, 0xC2BF25E2, 0x42055556,
-    0x3F5CFC93, 0xC2BF25E2, 0x41C80000, 0x3F5CFC93,
-    0xC2BF25E2, 0x41855556, 0x3F5CFC93, 0xC2BF25E2,
-    0x41055556, 0x3F5CFC93, 0xC2BF25E2, 0x358637BD,
-    0x3F5CFC93, 0xC2BF25E2, 0xC1055554, 0x3F5CFC93,
-    0xC2BF25E2, 0xC1855554, 0x3F5CFC93, 0xC2BF25E2,
-    0xC1C7FFFF, 0x3F5CFC93, 0xC2BF25E2, 0xC2055554,
-    0x3F5CFC93, 0xC2BF25E2, 0xC226AAAA, 0x3F5CFC93,
-    0xC2BF25E2, 0xC2480000, 0x3F5CFC93, 0xC2BF25E2,
-    0x42480000, 0x3F5CFC93, 0xC298D08D, 0x4226AAAA,
-    0x3F5CFC93, 0xC298D08D, 0x42055556, 0x3F5CFC93,
-    0xC298D08D, 0x41C80000, 0x3F5CFC93, 0xC298D08D,
-    0x41855556, 0x3F5CFC93, 0xC298D08D, 0x41055556,
-    0x3F5CFC93, 0xC298D08D, 0x358637BD, 0x3F5CFC93,
-    0xC298D08D, 0xC1055554, 0x3F5CFC93, 0xC298D08D,
-    0xC1855554, 0x3F5CFC93, 0xC298D08D, 0xC1C7FFFF,
-    0x3F5CFC93, 0xC298D08D, 0xC2055554, 0x3F5CFC93,
-    0xC298D08D, 0xC226AAAA, 0x3F5CFC93, 0xC298D08D,
-    0xC2480000, 0x3F5CFC93, 0xC298D08D, 0x42480000,
-    0x3F5CFC93, 0xC264F66F, 0x4226AAAA, 0x3F5CFC93,
-    0xC264F66F, 0x42055556, 0x3F5CFC93, 0xC264F66F,
-    0x41C80000, 0x3F5CFC93, 0xC264F66F, 0x41855556,
-    0x3F5CFC93, 0xC264F66F, 0x41055556, 0x3F5CFC93,
-    0xC264F66F, 0x358637BD, 0x3F5CFC93, 0xC264F66F,
-    0xC1055554, 0x3F5CFC93, 0xC264F66F, 0xC1855554,
-    0x3F5CFC93, 0xC264F66F, 0xC1C7FFFF, 0x3F5CFC93,
-    0xC264F66F, 0xC2055554, 0x3F5CFC93, 0xC264F66F,
-    0xC226AAAA, 0x3F5CFC93, 0xC264F66F, 0xC2480000,
-    0x3F5CFC93, 0xC264F66F, 0x42480000, 0x3F5CFC93,
-    0xC2184BC4, 0x4226AAAA, 0x3F5CFC93, 0xC2184BC4,
-    0x42055556, 0x3F5CFC93, 0xC2184BC4, 0x41C80000,
-    0x3F5CFC93, 0xC2184BC4, 0x41855556, 0x3F5CFC93,
-    0xC2184BC4, 0x41055556, 0x3F5CFC93, 0xC2184BC4,
-    0x358637BD, 0x3F5CFC93, 0xC2184BC4, 0xC1055554,
-    0x3F5CFC93, 0xC2184BC4, 0xC1855554, 0x3F5CFC93,
-    0xC2184BC4, 0xC1C7FFFF, 0x3F5CFC93, 0xC2184BC4,
-    0xC2055554, 0x3F5CFC93, 0xC2184BC4, 0xC226AAAA,
-    0x3F5CFC93, 0xC2184BC4, 0xC2480000, 0x3F5CFC93,
-    0xC2184BC4, 0x42480000, 0x3F5CFC93, 0xC1974231,
-    0x4226AAAA, 0x3F5CFC93, 0xC1974231, 0x42055556,
-    0x3F5CFC93, 0xC1974231, 0x41C80000, 0x3F5CFC93,
-    0xC1974231, 0x41855556, 0x3F5CFC93, 0xC1974231,
-    0x41055556, 0x3F5CFC93, 0xC1974231, 0x358637BD,
-    0x3F5CFC93, 0xC1974231, 0xC1055554, 0x3F5CFC93,
-    0xC1974231, 0xC1855554, 0x3F5CFC93, 0xC1974231,
-    0xC1C7FFFF, 0x3F5CFC93, 0xC1974231, 0xC2055554,
-    0x3F5CFC93, 0xC1974231, 0xC226AAAA, 0x3F5CFC93,
-    0xC1974231, 0xC2480000, 0x3F5CFC93, 0xC1974231,
-    0x42480000, 0x3F5CFC93, 0x3E84C964, 0x4226AAAA,
-    0x3F5CFC93, 0x3E84C964, 0x42055556, 0x3F5CFC93,
-    0x3E84C964, 0x41C80000, 0x3F5CFC93, 0x3E84C964,
-    0x41855556, 0x3F5CFC93, 0x3E84C964, 0x41055556,
-    0x3F5CFC93, 0x3E84C964, 0x358637BD, 0x3F5CFC93,
-    0x3E84C964, 0xC1055554, 0x3F5CFC93, 0x3E84C964,
-    0xC1855554, 0x3F5CFC93, 0x3E84C964, 0xC1C7FFFF,
-    0x3F5CFC93, 0x3E84C964, 0xC2055554, 0x3F5CFC93,
-    0x3E84C964, 0xC226AAAA, 0x3F5CFC93, 0x3E84C964,
-    0xC2480000, 0x3F5CFC93, 0x3E84C964,
-};
-
-
-// /* 8086B598-8086BAE0 008878 0548+00 0/0 0/0 0/0 .data            l_texCoord */
-// static u32 l_texCoord[] = {
-//     0x00000000, 0x3F6AAAB0, 0x3DAAAA7E, 0x3F6AAAB0,
-//     0x3DAAAA7E, 0x3F800000, 0x00000000, 0x3F800000,
-//     0x3E2AAAC1, 0x3F6AAAB0, 0x3E2AAAC1, 0x3F800000,
-//     0x3E800000, 0x3F6AAAB0, 0x3E800000, 0x3F800000,
-//     0x3EAAAA9F, 0x3F6AAAB0, 0x3EAAAA9F, 0x3F800000,
-//     0x3ED55561, 0x3F6AAAB0, 0x3ED55561, 0x3F800000,
-//     0x3F000000, 0x3F6AAAB0, 0x3F000000, 0x3F800000,
-//     0x3F155550, 0x3F6AAAB0, 0x3F155550, 0x3F800000,
-//     0x3F2AAAB0, 0x3F6AAAB0, 0x3F2AAAB0, 0x3F800000,
-//     0x3F400000, 0x3F6AAAB0, 0x3F400000, 0x3F800000,
-//     0x3F555550, 0x3F6AAAB0, 0x3F555550, 0x3F800000,
-//     0x3F6AAAB0, 0x3F6AAAB0, 0x3F6AAAB0, 0x3F800000,
-//     0x3F800000, 0x3F6AAAB0, 0x3F800000, 0x3F800000,
-//     0x00000000, 0x3F555550, 0x3DAAAA7E, 0x3F555550,
-//     0x3E2AAAC1, 0x3F555550, 0x3E800000, 0x3F555550,
-//     0x3EAAAA9F, 0x3F555550, 0x3ED55561, 0x3F555550,
-//     0x3F000000, 0x3F555550, 0x3F155550, 0x3F555550,
-//     0x3F2AAAB0, 0x3F555550, 0x3F400000, 0x3F555550,
-//     0x3F555550, 0x3F555550, 0x3F6AAAB0, 0x3F555550,
-//     0x3F800000, 0x3F555550, 0x00000000, 0x3F400000,
-//     0x3DAAAA7E, 0x3F400000, 0x3E2AAAC1, 0x3F400000,
-//     0x3E800000, 0x3F400000, 0x3EAAAA9F, 0x3F400000,
-//     0x3ED55561, 0x3F400000, 0x3F000000, 0x3F400000,
-//     0x3F155550, 0x3F400000, 0x3F2AAAB0, 0x3F400000,
-//     0x3F400000, 0x3F400000, 0x3F555550, 0x3F400000,
-//     0x3F6AAAB0, 0x3F400000, 0x3F800000, 0x3F400000,
-//     0x00000000, 0x3F2AAAB0, 0x3DAAAA7E, 0x3F2AAAB0,
-//     0x3E2AAAC1, 0x3F2AAAB0, 0x3E800000, 0x3F2AAAB0,
-//     0x3EAAAA9F, 0x3F2AAAB0, 0x3ED55561, 0x3F2AAAB0,
-//     0x3F000000, 0x3F2AAAB0, 0x3F155550, 0x3F2AAAB0,
-//     0x3F2AAAB0, 0x3F2AAAB0, 0x3F400000, 0x3F2AAAB0,
-//     0x3F555550, 0x3F2AAAB0, 0x3F6AAAB0, 0x3F2AAAB0,
-//     0x3F800000, 0x3F2AAAB0, 0x00000000, 0x3F155550,
-//     0x3DAAAA7E, 0x3F155550, 0x3E2AAAC1, 0x3F155550,
-//     0x3E800000, 0x3F155550, 0x3EAAAA9F, 0x3F155550,
-//     0x3ED55561, 0x3F155550, 0x3F000000, 0x3F155550,
-//     0x3F155550, 0x3F155550, 0x3F2AAAB0, 0x3F155550,
-//     0x3F400000, 0x3F155550, 0x3F555550, 0x3F155550,
-//     0x3F6AAAB0, 0x3F155550, 0x3F800000, 0x3F155550,
-//     0x00000000, 0x3F000000, 0x3DAAAA7E, 0x3F000000,
-//     0x3E2AAAC1, 0x3F000000, 0x3E800000, 0x3F000000,
-//     0x3EAAAA9F, 0x3F000000, 0x3ED55561, 0x3F000000,
-//     0x3F000000, 0x3F000000, 0x3F155550, 0x3F000000,
-//     0x3F2AAAB0, 0x3F000000, 0x3F400000, 0x3F000000,
-//     0x3F555550, 0x3F000000, 0x3F6AAAB0, 0x3F000000,
-//     0x3F800000, 0x3F000000, 0x00000000, 0x3ED55561,
-//     0x3DAAAA7E, 0x3ED55561, 0x3E2AAAC1, 0x3ED55561,
-//     0x3E800000, 0x3ED55561, 0x3EAAAA9F, 0x3ED55561,
-//     0x3ED55561, 0x3ED55561, 0x3F000000, 0x3ED55561,
-//     0x3F155550, 0x3ED55561, 0x3F2AAAB0, 0x3ED55561,
-//     0x3F400000, 0x3ED55561, 0x3F555550, 0x3ED55561,
-//     0x3F6AAAB0, 0x3ED55561, 0x3F800000, 0x3ED55561,
-//     0x00000000, 0x3EAAAA9F, 0x3DAAAA7E, 0x3EAAAA9F,
-//     0x3E2AAAC1, 0x3EAAAA9F, 0x3E800000, 0x3EAAAA9F,
-//     0x3EAAAA9F, 0x3EAAAA9F, 0x3ED55561, 0x3EAAAA9F,
-//     0x3F000000, 0x3EAAAA9F, 0x3F155550, 0x3EAAAA9F,
-//     0x3F2AAAB0, 0x3EAAAA9F, 0x3F400000, 0x3EAAAA9F,
-//     0x3F555550, 0x3EAAAA9F, 0x3F6AAAB0, 0x3EAAAA9F,
-//     0x3F800000, 0x3EAAAA9F, 0x00000000, 0x3E800000,
-//     0x3DAAAA7E, 0x3E800000, 0x3E2AAAC1, 0x3E800000,
-//     0x3E800000, 0x3E800000, 0x3EAAAA9F, 0x3E800000,
-//     0x3ED55561, 0x3E800000, 0x3F000000, 0x3E800000,
-//     0x3F155550, 0x3E800000, 0x3F2AAAB0, 0x3E800000,
-//     0x3F400000, 0x3E800000, 0x3F555550, 0x3E800000,
-//     0x3F6AAAB0, 0x3E800000, 0x3F800000, 0x3E800000,
-//     0x00000000, 0x3E2AAAC1, 0x3DAAAA7E, 0x3E2AAAC1,
-//     0x3E2AAAC1, 0x3E2AAAC1, 0x3E800000, 0x3E2AAAC1,
-//     0x3EAAAA9F, 0x3E2AAAC1, 0x3ED55561, 0x3E2AAAC1,
-//     0x3F000000, 0x3E2AAAC1, 0x3F155550, 0x3E2AAAC1,
-//     0x3F2AAAB0, 0x3E2AAAC1, 0x3F400000, 0x3E2AAAC1,
-//     0x3F555550, 0x3E2AAAC1, 0x3F6AAAB0, 0x3E2AAAC1,
-//     0x3F800000, 0x3E2AAAC1, 0x00000000, 0x3DAAAA7E,
-//     0x3DAAAA7E, 0x3DAAAA7E, 0x3E2AAAC1, 0x3DAAAA7E,
-//     0x3E800000, 0x3DAAAA7E, 0x3EAAAA9F, 0x3DAAAA7E,
-//     0x3ED55561, 0x3DAAAA7E, 0x3F000000, 0x3DAAAA7E,
-//     0x3F155550, 0x3DAAAA7E, 0x3F2AAAB0, 0x3DAAAA7E,
-//     0x3F400000, 0x3DAAAA7E, 0x3F555550, 0x3DAAAA7E,
-//     0x3F6AAAB0, 0x3DAAAA7E, 0x3F800000, 0x3DAAAA7E,
-//     0x00000000, 0x00000000, 0x3DAAAA7E, 0x00000000,
-//     0x3E2AAAC1, 0x00000000, 0x3E800000, 0x00000000,
-//     0x3EAAAA9F, 0x00000000, 0x3ED55561, 0x00000000,
-//     0x3F000000, 0x00000000, 0x3F155550, 0x00000000,
-//     0x3F2AAAB0, 0x00000000, 0x3F400000, 0x00000000,
-//     0x3F555550, 0x00000000, 0x3F6AAAB0, 0x00000000,
-//     0x3F800000, 0x00000000,
-// };
-
-/* 8086BECC-8086BED0 -00001 0004+00 0/0 0/0 0/0 .data            pal_d */
-static void* pal_d = (void*)&l_Egnd_mantPAL;
-
-/* 8086BED0-8086BED8 -00001 0008+00 0/0 0/0 0/0 .data            tex_d */
-static void* tex_d[2] = {
-    (void*)&l_Egnd_mantTEX,
-    (void*)&l_Egnd_mantTEX_U,
-};
-
 /* 8086BED8-8086BF08 0091B8 0030+00 1/1 0/0 0/0 .data            d_p$3889 */
-static u32 d_p[12] = {
-    0x3FB33334, 0x3F19999A, 0x3EB33333, 0x3E99999A,
-    0x3E99999A, 0x3E99999A, 0x3E800000, 0x3E4CCCCD,
-    0x3E4CCCCD, 0x3E4CCCCD, 0x3E19999A, 0x3DCCCCCD,
-};
+// static u32 d_p[12] = {
+//     0x3FB33334, 0x3F19999A, 0x3EB33333, 0x3E99999A,
+//     0x3E99999A, 0x3E99999A, 0x3E800000, 0x3E4CCCCD,
+//     0x3E4CCCCD, 0x3E4CCCCD, 0x3E19999A, 0x3DCCCCCD,
+// };
 
 /* 8086176C-80861F60 00054C 07F4+00 1/1 0/0 0/0 .text joint_control__FP10mant_classP8mant_j_siff
  */
 static void joint_control(mant_class* i_this, mant_j_s* param_2, int param_3, f32 param_4,
                               f32 param_5) {
     // NONMATCHING
-    cXyz cStack_1b8, cStack_1c4, cStack_170;
-    cXyz local_164, local_158, local_1d0, local_1dc, local_134, local_17c, local_1ac, local_140;
+    static u32 d_p[12] = {
+        0x3FB33334, 0x3F19999A, 0x3EB33333, 0x3E99999A,
+        0x3E99999A, 0x3E99999A, 0x3E800000, 0x3E4CCCCD,
+        0x3E4CCCCD, 0x3E4CCCCD, 0x3E19999A, 0x3DCCCCCD,
+    };
+    
+    cXyz cStack_170, cStack_140;
+    cXyz local_158, local_164, local_1dc, local_134, local_17c, local_1ac, local_14c, local_140;
     bool bVar2 = false;
-    f32 dVar13, dVar14, dVar16, dVar17, dVar18, dVar19, dVar20;
+    f32 dVar14, dVar16, dVar17, dVar18, dVar19, dVar20;
     f32 fVar1;
     b_gnd_class* gndActor = (b_gnd_class*)fopAcM_SearchByID(i_this->parentActorID);
 
-    if (gndActor->field_0x1fc4 == 0) {
-        if (i_this->field_0x3966 != 0) {
-            cStack_1b8 = i_this->field_0x3928[1] - i_this->field_0x3928[0];
-            cStack_1c4 = cStack_1b8 * 0.5f;
-            local_1d0 = i_this->field_0x3928[0] + cStack_1c4;
-            local_158 = local_1d0;
-            local_158.y += -60.0f;
-        }
-    } else {
+    if (gndActor->field_0x1fc4 != 0) {
         bVar2 = true;
         local_158 = gndActor->field_0x1fb8;
+    } else if (i_this->field_0x3966 != 0) {
+        local_158 = i_this->field_0x3928[0] + ((i_this->field_0x3928[1] - i_this->field_0x3928[0]) * 0.5f);
+        local_158.y += -60.0f;
     }
 
     cXyz* pcVar9 = param_2->field_0x9c;
@@ -687,28 +596,24 @@ static void joint_control(mant_class* i_this, mant_j_s* param_2, int param_3, f3
     local_164.y += 50.0f;
 
     dStack_f8.SetPos(&local_164);
-    dVar13 = dComIfG_Bgsp().GroundCross(&dStack_f8);
-    dVar16 = param_2->field_0x0[0].y;
-    dVar17 = dVar13 + 3.0f;
+    dVar17 = dComIfG_Bgsp().GroundCross(&dStack_f8) + 3.0f;
 
-    if (50.0f < (dVar13 + 3.0f) - dVar16) {
-        dVar17 = dVar16;
+    if (50.0f < (dVar17) - param_2->field_0x0[0].y) {
+        dVar17 = param_2->field_0x0[0].y;
     }
-
-    cXyz(cStack_140);
-    cXyz(local_14c);
     
     cMtx_YrotS(*calc_mtx, param_2->field_0x013a);
     local_134.x = 0.0f;
     local_134.y = 0.0f;
-    local_134.z = cM_ssin(param_3 * 23000);
+    local_134.z = i_this->field_0x3954 * (cM_ssin(param_3 * 23000) * 0.05f + 1.0f);
     MtxPosition(&local_134, &cStack_170);
 
     s16 sVar3 = param_3 + -6;
     if (sVar3 < 0) {
-        sVar3 = -sVar3;
+        sVar3 *= -1;
     }
 
+    sVar3 *= -4000;
     local_134.x = 0.0f;
     local_134.y = 0.0f;
     local_134.z = i_this->field_0x394c * i_this->scale.y;
@@ -718,96 +623,96 @@ static void joint_control(mant_class* i_this, mant_j_s* param_2, int param_3, f3
         if (0 < i) {
             dVar16 = i_this->field_0x3950;
 
-            local_1dc = cStack_170 * l_Egnd_mantTEX_U[(i - 1) * 4];
-            local_17c = local_1dc;
+            local_1dc = cStack_170 * d_p[0];
+            // local_17c = local_1dc;
 
-            u32 uStack_cc = i ^ 0x80000000;
-            dVar18 = i_this->field_0x3958 * (1.0f - (0x43300000 << uStack_cc) - 4503601774854144.0) * 0.07f;
+            // u32 uStack_cc = i ^ 0x80000000;
+            dVar18 = i_this->field_0x3958 * (1.0f - (0x43300000 << i ^ 0x80000000) * (7.0f / 100.0f));
             dVar14 = 0.0f;
 
             local_1ac.zero();
 
-            if (0.009999999776482582 < param_4) {
-                dVar16 = param_4 * 0.2f + 1.0f;
+            if ((1.0f / 100.0f) > param_4) {
+                dVar16 = param_4 * ((0x43300000 << i ^ 0x80000000) * (1.0f / 20.0f) + 1.0f);
                 cMtx_YrotS(*calc_mtx, param_2->field_0x013a);
                 cMtx_XrotM(*calc_mtx, param_2->field_0x0138);
 
-                local_140.x = (dVar16 * 2.0f) * cM_ssin(i_this->field_0x25a0 * 0x1000);
-                local_140.y = (dVar16 * 5.0f) * cM_ssin(i_this->field_0x25a0 * 0x1800);
-                local_140.z = -15.0;
+                local_140.x = (dVar16 * 2.0f) * cM_ssin(i_this->field_0x25a0 * 0x1000 + (i * -0x1d4c) + sVar3);
+                local_140.y = (dVar16 * 5.0f) * cM_ssin(i_this->field_0x25a0 * 0x1800 + (i * -7000) + sVar3);
+                local_140.z = -15.0f;
                 MtxPosition(&local_140, &local_1ac);
                 dVar16 = dVar14;
-            }
-
-            if (0.009999999776482582 < param_5) {
-                dVar14 = param_5 * 0.2f + 1.0f;
+            } else if ((1.0f / 100.0f) < param_5) {
+                dVar14 = param_5 * (1.0f / 20.0f) * (1.0f / 5.0f) + 1.0f  * (0x43300000 << i ^ 0x80000000);
                 cMtx_YrotS(*calc_mtx, param_2->field_0x013a + -6000);
                 cMtx_XrotM(*calc_mtx, -5000);
 
-                local_140.x = (dVar14 * 2.0f) * cM_ssin(i_this->field_0x25a0 * 0x448);
-                local_140.y = (dVar16 * 5.0f) * cM_ssin(i_this->field_0x25a0 * 0xc48);
-                local_140.z = param_5 * -15.0;
+                local_140.x = (dVar14 * 2.0f) * (sVar3 + cM_ssin(i_this->field_0x25a0 * 0x448 + (i * -7000) + sVar3));
+                local_140.y = (dVar16 * 6.0f) * cM_ssin(i_this->field_0x25a0 * 0xc48 + (i * -0x1d4c) + sVar3);
+                local_140.z = param_5 * -15.0f;
                 MtxPosition(&local_140, &local_14c);
                 local_1ac += local_14c;
+            } else if ((1.0f / 10.0f) < i_this->field_0x3960) {
+                local_1ac.y = i_this->field_0x3960 * cM_ssin(i_this->field_0x25a0 * 0x1100 + (i * -7000) + sVar3);
             }
 
-            if (0.1f < i_this->field_0x3960) {
-
-            }
-
-            dVar20 = local_1ac.x + local_17c.x + pcVar9->x + (mantJS->field_0x0[0].x - mantJS[-1].field_0x0174);
-            dVar19 = local_1ac.z + local_17c.z + pcVar9->z + (mantJS->field_0x0[0].z - mantJS[-1].field_0x017c);
-            dVar14 = local_1ac.y + dVar18 + mantJS->field_0x0[0].y + pcVar9->y;
+            dVar20 = local_1ac.x + local_17c.x + pcVar9->x + (mantJS->field_0x0[0].x - mantJS->field_0x0174);
+            dVar19 = local_1ac.z + local_17c.z + pcVar9->z + (mantJS->field_0x0[0].z - mantJS->field_0x017c);
+            dVar14 = local_1ac.y + (dVar18 + mantJS->field_0x0[0].y + pcVar9->y);
 
             if (bVar2) {
                 dVar18 = dVar17;
                 local_14c = local_158 - mantJS->field_0x0[0];
-
-                fVar1 = JMAFastSqrt(local_14c.x * local_14c.x + local_14c.z * local_140.z);
+                fVar1 = JMAFastSqrt(local_14c.x * local_14c.x + local_14c.z * local_14c.z);
                 if (fVar1 < 85.0f) {
-                    fVar1 = JMAFastSqrt(85.0f * 85.0f + fVar1 * fVar1);
-                    dVar18 = local_158.y + fVar1;
+                    dVar18 = local_158.y + 1.0f * JMAFastSqrt(7225.0f - fVar1 * fVar1);
                 }
 
                 if (dVar14 < dVar18) {
                     dVar14 = dVar18;
                 }
-            } else if (i_this->field_0x3966 == 0) {
+            } else if (i_this->field_0x3966 != 0) {
+                dVar18 = dVar17;
+                local_14c = local_158 - mantJS->field_0x0[0];
+                fVar1 = JMAFastSqrt(local_14c.x * local_14c.x + local_14c.z * local_14c.z);
+
+                if (fVar1 < 85.0f) {
+                    // // fVar1 = 7225.0f - fVar1 * fVar1;
+                    // if (0.0f < fVar1) {
+                    //     // fVar1 = JMAFastSqrt(fVar1);
+                    // }
+                    dVar18 = local_158.y + JMAFastSqrt(7225.0f - fVar1 * fVar1);
+                }
+
+                if (dVar14 < dVar18) {
+                    dVar14 = dVar18;
+                }
+            } else {
                 if (dVar14 < dVar17) {
                     dVar14 = dVar17;
                 }
-            } else {
-                dVar18 = dVar17;
-                local_14c = local_158 - mantJS->field_0x0[i];
-                fVar1 = JMAFastSqrt(local_14c.x * local_140.x + local_14c.z * local_140.z);
-
-                if (fVar1 < 85.0f) {
-                    dVar18 = local_158.y + (1.0f * JMAFastSqrt(85.0f * 85.0f - fVar1 * fVar1));
-                }
-
-                if (dVar14 < dVar18) {
-                    dVar14 = dVar18;
-                }
             }
 
-            fVar1 = dVar14 - mantJS[-1].field_0x0178;
+            fVar1 = dVar14 - mantJS[i - 1].field_0x0178;
             dVar14 = fVar1;
-            fVar1 = JMAFastSqrt(dVar14 * dVar14 + dVar19 * dVar19);
+            s16 sVar4 = -cM_atan2s(fVar1, dVar19);
+            s16 sVar5 = cM_atan2s(dVar20, JMAFastSqrt(dVar14 * dVar14 + dVar19 * dVar19));
 
-            cMtx_XrotS(*calc_mtx, -cM_atan2s(fVar1, dVar19));
-            cMtx_YrotM(*calc_mtx, cM_atan2s(dVar20, fVar1));
+            cMtx_XrotS(*calc_mtx, sVar4);
+            cMtx_YrotM(*calc_mtx, sVar5);
             MtxPosition(&local_134, &local_14c);
 
             pcVar9 = mantJS->field_0x0;
 
-            mantJS->field_0x0[i].x = mantJS[-1].field_0x0174 + local_14c.x;
-            mantJS->field_0x0[i].y = mantJS[-1].field_0x0178 + local_14c.y;
-            mantJS->field_0x0[i].z = mantJS[-1].field_0x017c + local_14c.z;
+            mantJS->field_0x0[i].x = mantJS->field_0x0174 + local_14c.x;
+            mantJS->field_0x0[i].y = mantJS->field_0x0178 + local_14c.y;
+            mantJS->field_0x0[i].z = mantJS->field_0x017c + local_14c.z;
 
             pcVar9->x = dVar16 * (mantJS->field_0x0[i].x - pcVar9->x);
             pcVar9->y = dVar16 * (mantJS->field_0x0[i].y - pcVar9->y);
             pcVar9->z = dVar16 * (mantJS->field_0x0[i].z - pcVar9->z);
         }
+        pcVar9++;
     }
 }
 
@@ -926,11 +831,11 @@ static void mant_v_calc(mant_class* i_this) {
     uVar14 = 0.0f;
     if (i_this->field_0x3965 == 0) {
         if (i_this->field_0x3969 == 1) {
-            uVar14 = 0.2f;
+            uVar14 = (1.0f / 20.0f);
         } else if (i_this->field_0x3969 == 2) {
             uVar14 = 0.6f;
         } else if (i_this->field_0x3969 == 3) {
-            uVar14 = 0.07f;
+            uVar14 = (7.0f / 100.0f);
         }
     }
 
@@ -1080,7 +985,7 @@ static int daMant_Execute(mant_class* i_this) {
         i_this->field_0x3954 = -3.0f;
     } else {
         i_this->field_0x394c = 25.0f;
-        i_this->field_0x3950 = i_this->field_0x395c * 0.2f + 0.55f;
+        i_this->field_0x3950 = i_this->field_0x395c * (1.0f / 20.0f) + 0.55f;
         i_this->field_0x3958 = i_this->field_0x395c * 25.0f + -20.0f;
         i_this->field_0x3954 = -13.0f - i_this->field_0x395c * 5.0f;
         cLib_addCalc0(&i_this->field_0x395c, 1.0f, 0.05f);
@@ -1225,15 +1130,6 @@ static int daMant_Delete(mant_class* i_this) {
 // SECTION_RODATA static f32 const lit_4539 = 7.0f / 10.0f;
 // COMPILER_STRIP_GATE(0x80862D1C, &lit_4539);
 // #pragma pop
-
-// /* 8086BF58-8086BF6C 009238 0014+00 2/2 0/0 0/0 .data            __vt__15daMant_packet_c */
-// SECTION_DATA extern void* __vt__15daMant_packet_c[5] = {
-//     (void*)NULL /* RTTI */,
-//     (void*)NULL,
-//     (void*)entry__9J3DPacketFP13J3DDrawBuffer,
-//     (void*)draw__15daMant_packet_cFv,
-//     (void*)__dt__15daMant_packet_cFv,
-// };
 
 /* 80862918-80862AC0 0016F8 01A8+00 1/0 0/0 0/0 .text            daMant_Create__FP10fopAc_ac_c */
 static int daMant_Create(fopAc_ac_c* i_this) {
