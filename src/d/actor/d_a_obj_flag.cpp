@@ -109,7 +109,15 @@ void daObjFlag_c::create_init() {
 
 /* 80BEB8F0-80BEB984 0001F0 0094+00 1/1 0/0 0/0 .text            initBaseMtx__11daObjFlag_cFv */
 void daObjFlag_c::initBaseMtx() {
-    // NONMATCHING
+    mDoMtx_stack_c::transS(current.pos);
+    PSMTXCopy(mDoMtx_stack_c::now, mpModel2->mBaseTransformMtx);
+    cullMtx = mpModel2->mBaseTransformMtx;
+    if (mpModel1 != NULL) {
+        mDoMtx_stack_c::transS(field_0x5d0);
+        mDoMtx_YrotM(mDoMtx_stack_c::now, shape_angle.y);
+        PSMTXCopy(mDoMtx_stack_c::now, mpModel1->mBaseTransformMtx);
+        cullMtx = mpModel1->mBaseTransformMtx;
+    }
 }
 
 /* 80BEB984-80BEB9AC 000284 0028+00 1/1 0/0 0/0 .text getJointAngle__11daObjFlag_cFP5csXyzi */
