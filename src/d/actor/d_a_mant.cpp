@@ -419,7 +419,7 @@ static int daMant_Draw(mant_class* i_this) {
 
     Mtx* viewMtx = &j3dSys.mViewMtx;
     Mtx* mtx1 = &i_this->field_0x0570.mMtx;
-    PSMTXConcat(*viewMtx, *calc_mtx, *mtx1);
+    cMtx_concat(*viewMtx, *calc_mtx, *mtx1);
 
     Mtx* mtx2 = &i_this->field_0x0570.mMtx2;
     cMtx_concat(*viewMtx, *calc_mtx, *mtx2);
@@ -564,10 +564,8 @@ static int daMant_Draw(mant_class* i_this) {
 //     0x3E4CCCCD, 0x3E4CCCCD, 0x3E19999A, 0x3DCCCCCD,
 // };
 
-/* 8086176C-80861F60 00054C 07F4+00 1/1 0/0 0/0 .text joint_control__FP10mant_classP8mant_j_siff
- */
-static void joint_control(mant_class* i_this, mant_j_s* param_2, int param_3, f32 param_4,
-                              f32 param_5) {
+/* 8086176C-80861F60 00054C 07F4+00 1/1 0/0 0/0 .text joint_control__FP10mant_classP8mant_j_siff */
+static void joint_control(mant_class* i_this, mant_j_s* param_2, int param_3, f32 param_4, f32 param_5) {
     // NONMATCHING
     static u32 d_p[12] = {
         0x3FB33334, 0x3F19999A, 0x3EB33333, 0x3E99999A,
@@ -965,7 +963,6 @@ static int mant_cut_type;
 /* 808624E8-80862908 0012C8 0420+00 2/1 0/0 0/0 .text            daMant_Execute__FP10mant_class */
 static int daMant_Execute(mant_class* i_this) {
     // NONMATCHING
-
     f32 in_f30, in_f31;
     int unaff_r29, iVar2, uVar1;
 
@@ -979,16 +976,16 @@ static int daMant_Execute(mant_class* i_this) {
     b_gnd_class* gndActor = (b_gnd_class*)fopAcM_SearchByID(i_this->parentActorID);
 
     if (!gndActor || gndActor->field_0x1fc4 != 0) {
-        i_this->field_0x394c = 21.0f;
+        i_this->field_0x394c = 16.0f + 15.0f - 8.0f - 2.0f;
         i_this->field_0x3950 = 0.75f;
         i_this->field_0x3958 = -5.0f;
         i_this->field_0x3954 = -3.0f;
     } else {
         i_this->field_0x394c = 25.0f;
-        i_this->field_0x3950 = i_this->field_0x395c * (1.0f / 20.0f) + 0.55f;
+        i_this->field_0x3950 = 0.55f + i_this->field_0x395c * (1.0f / 20.0f);
         i_this->field_0x3958 = i_this->field_0x395c * 25.0f + -20.0f;
         i_this->field_0x3954 = -13.0f - i_this->field_0x395c * 5.0f;
-        cLib_addCalc0(&i_this->field_0x395c, 1.0f, 0.05f);
+        cLib_addCalc0(&i_this->field_0x395c, 1.0f, (1.0f / 20.0f));
         cLib_addCalc0(&i_this->field_0x3960, 1.0f, 0.3f);
     }
 
@@ -1033,7 +1030,7 @@ static int daMant_Execute(mant_class* i_this) {
 
         uVar1 = (int)(in_f31 + 64.0f) | (int)(in_f30 + 64.0f) << 7;
 
-        if (mant_cut_type == 0) {
+        if (mant_cut_type > 0) {
             if (i <= 3 || 36 > i) {
                 iVar2 = 1;
             } else if (i < 12 || 28 < i) {
@@ -1055,27 +1052,28 @@ static int daMant_Execute(mant_class* i_this) {
             iVar2 = 4;
         }
 
-        for (; i != 0; i--) {
-            if (i == 0) {
-                if (i == 1) {
+        int iVar6 = 0;
+        for (; iVar2 != 0; iVar2 += -1) {
+            if (iVar6 != 0) {
+                if (iVar6 == 1) {
                     uVar1++;
-                } else if (i == 2) {
+                } else if (iVar6 == 2) {
                     uVar1 += 0x80;
-                } else if (i == 3) {
+                } else if (iVar6 == 3) {
                     uVar1 += 0x81;
                 } else {
-                    if (i == 3) {
+                    if (iVar6 == 3) {
                         uVar1 += 0x81;
                     } else {
-                        if (i == 4) {
+                        if (iVar6 == 4) {
                             uVar1 += 2; 
-                        } else if (i == 5) {
+                        } else if (iVar6 == 5) {
                             uVar1 += 0x82;
-                        } else if (i == 6) {
+                        } else if (iVar6 == 6) {
                             uVar1 += 0x102;
-                        } else if (i == 7) {
+                        } else if (iVar6 == 7) {
                             uVar1 += 0x101;
-                        } else if (i == 8) {
+                        } else if (iVar6 == 8) {
                             uVar1 += 0x100;
                         }
                     }
@@ -1083,9 +1081,12 @@ static int daMant_Execute(mant_class* i_this) {
             }
 
             if (0 <= uVar1 && uVar1 < 0x4000) {
-                l_Egnd_mantTEX_U[uVar1] = 0;
-                l_Egnd_mantTEX[uVar1] = 0;
+                int iVar5 = (uVar1 & 7) + (uVar1 & 0x78) * 4 + (uVar1 >> 4 & 0x18) + (uVar1 & 0x3e00);
+                l_Egnd_mantTEX_U[iVar5] = 0;
+                l_Egnd_mantTEX[iVar5] = 0;
             }
+
+            iVar6++;
         }
     }
 
@@ -1136,6 +1137,7 @@ static int daMant_Create(fopAc_ac_c* i_this) {
     // NONMATCHING
     mant_class* m_this = (mant_class*)i_this;
     
+    // m_this->field_0x0570.field_0x74 = 0;
     fopAcM_SetupActor(m_this, mant_class);
     m_this->field_0x259c = fopAcM_GetParam(i_this);
 
