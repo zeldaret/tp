@@ -17,7 +17,7 @@ extern "C" void CreateHeap__16daObj_SekiDoor_cFv();
 extern "C" void Create__16daObj_SekiDoor_cFv();
 extern "C" void Delete__16daObj_SekiDoor_cFv();
 extern "C" void Execute__16daObj_SekiDoor_cFPPA3_A4_f();
-extern "C" static void dComIfGp_event_runCheck__Fv();
+// extern "C" static void dComIfGp_event_runCheck__Fv();
 extern "C" void Draw__16daObj_SekiDoor_cFv();
 extern "C" void evtSkip__16daObj_SekiDoor_cFv();
 extern "C" void setPrtcls__16daObj_SekiDoor_cFv();
@@ -122,9 +122,7 @@ SECTION_DATA static u32 l_dzbData[2] = {
 #pragma pop
 
 /* 80CCDA6C-80CCDA74 -00001 0008+00 2/3 0/0 0/0 .data            l_resNameList */
-SECTION_DATA static char* l_resNameList[2] = {
-    // (void*)&d_a_obj_sekidoor__stringBase0,
-    // (void*)(((char*)&d_a_obj_sekidoor__stringBase0) + 0x1),
+static char* l_resNameList[2] = {
     "",
     "SekiDoor",
 };
@@ -174,14 +172,34 @@ SECTION_DATA extern void* __vt__16daObj_SekiDoor_c[10] = {
 
 /* 80CCD02C-80CCD154 0000EC 0128+00 1/1 0/0 0/0 .text            create__16daObj_SekiDoor_cFv */
 int daObj_SekiDoor_c::create() {
+    if (fopAcM_CheckCondition(this, fopAcCnd_INIT_e)){
+        new (this) daObj_SekiDoor_c();
+        fopAcM_OnCondition(this,fopAcCnd_INIT_e);
+    }
+
     mBitSW = getBitSW();
-    return true;
-    // NONMATCHING
+    
+    cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, l_resNameList[l_bmdData[mBitSW+1]]);
+    if (step == cPhs_COMPLEATE_e) {
+        if (dComIfGs_isSwitch(getBitSW(), fopAcM_GetHomeRoomNo(this))) {
+            return cPhs_ERROR_e;
+        }
+        
+
+        step = (cPhs__Step)MoveBGCreate(l_resNameList[l_dzbData[mBitSW+1]], l_dzbData[mBitSW], dBgS_MoveBGProc_TypicalRotY,
+            0xc20, NULL);
+
+        if (step == cPhs_ERROR_e) {
+            return step;
+        }
+    }
+
+    return step;
 }
 
 /* 80CCD154-80CCD1F0 000214 009C+00 1/0 0/0 0/0 .text            CreateHeap__16daObj_SekiDoor_cFv */
 int daObj_SekiDoor_c::CreateHeap() {
-    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[mBitSW]], l_bmdData[mBitSW]);
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[mBitSW+1]], l_bmdData[mBitSW]);
     mpModel2 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
 
     if (mpModel2 == NULL){
@@ -267,8 +285,69 @@ COMPILER_STRIP_GATE(0x80CCDA20, &lit_3962);
 #pragma pop
 
 /* 80CCD290-80CCD51C 000350 028C+00 1/0 0/0 0/0 .text Execute__16daObj_SekiDoor_cFPPA3_A4_f */
-int daObj_SekiDoor_c::Execute(Mtx**) {
-    return true;
+int daObj_SekiDoor_c::Execute(Mtx** i_mtx) {
+    cXyz tempV;
+
+
+    if (mOpen != 0) {
+        if (mDestroyed != 0) {
+            if(!dComIfGp_event_runCheck()){
+                fopAcM_delete(this);
+            }
+        }
+        else {
+            if (!cM3d_IsZero(mFlo) && mInt == 0) {
+                mHalf = 0;
+                mInt++;
+            }
+            else {
+                if (mHalf != 0) {
+                    mRotation.z = mHalf * cM_ssin(mInt * 4000);
+    
+                    if (cLib_chaseS(&mHalf, 0, 0x10)) {
+                        dComIfGp_getVibration().StopQuake(0xf);
+                    }
+                    
+                    mInt ++;
+                }
+                if (mHalf == 0) {
+                    tempV = current.pos;
+                    if (mFlo < 460.0) {
+                        speed.y = 4.0;
+                        cLib_chaseF(&mFlo, 460.0, speed.y);
+    
+                        tempV.y += mFlo;
+                        fopAcM_seStart(this, Z2SE_OBJ_SEKI_DOOR_OP, 0);
+                    }
+                    else {
+                        tempV.y += mFlo;
+    
+                        fopAcM_seStart(this, Z2SE_OBJ_SEKI_DOOR_OP_ST, 0);
+    
+                        dComIfGp_getVibration().StartShock(VIBMODE_S_POWER5, 0xf, cXyz(0.0f, 1.0f, 0.0f));
+                        mDestroyed = 1;
+                    }
+                    
+                }
+            }
+            // else {
+                
+            // }
+        }
+    }
+    else {
+        speed.setall(0.0f);
+
+        mInt = 0; mHalf = 0;
+        mFlo = 0.;
+        mDestroyed = 0;
+    }
+    
+    
+
+    setBaseMtx();
+    setPrtcls();
+    return 1;
     // NONMATCHING
 }
 
@@ -321,28 +400,28 @@ void daObj_SekiDoor_c::setPrtcls() {
 
     particlePos.y += mFlo;
     
-    if (mOpen == true) {
-        if (mDestroyed == false) {
-            if (mFlo < 460.0) {
-                for (int index = 0; index < 2; index++){
-                    mpEmitters[index] = dComIfGp_particle_set(particle_id[index], &particlePos, NULL, &particleScale, 0xff,
-                        NULL, -1, NULL, NULL, NULL);
-                    
-                    JPABaseEmitter* emitter_p = dComIfGp_particle_getEmitter(particle_id[index]);
-                    if (emitter_p != NULL) {
-                        emitter_p->setGlobalTranslation(particlePos);
-                    }
+    if (mOpen == false) {
+        return;
+    }
+    if (mDestroyed != false) {
+        for (int index = 2; index < 4; index++){
+            mpEmitters[index] = dComIfGp_particle_set(particle_id[index], &particlePos, NULL, &particleScale, 0xff,
+                NULL, -1, NULL, NULL, NULL);
+        }
+    }
+    else {
+        if (mFlo < 460.0) {
+            for (int index = 0; index < 2; index++){
+                mpEmitters[index] = dComIfGp_particle_set(particle_id[index], &particlePos, NULL, &particleScale, 0xff,
+                    NULL, -1, NULL, NULL, NULL);
+                
+                JPABaseEmitter* emitter_p = dComIfGp_particle_getEmitter(particle_id[index]);
+                if (emitter_p != NULL) {
+                    emitter_p->setGlobalTranslation(particlePos);
                 }
             }
         }
-        else {
-            for (int index = 2; index < 4; index++){
-                mpEmitters[index] = dComIfGp_particle_set(particle_id[index], &particlePos, NULL, &particleScale, 0xff,
-                    NULL, -1, NULL, NULL, NULL);
-            }
-        }
     }
-    // NONMATCHING
 }
 
 /* 80CCD810-80CCD84C 0008D0 003C+00 1/1 0/0 0/0 .text            initBaseMtx__16daObj_SekiDoor_cFv

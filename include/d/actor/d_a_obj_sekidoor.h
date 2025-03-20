@@ -38,9 +38,9 @@ private:
     /* 0x5AC */ J3DModel* mpModel2;
     /* 0x5B0 */ csXyz mRotation;
     /* 0x5B6 */ u8 field_0x5B6[2];
-    /* 0x5B8 */ int mInt;
-    /* 0x5BC */ float mFlo;
-    /* 0x5C0 */ s16 mHalf;
+    /* 0x5B8 */ int mInt; // Frame counter 
+    /* 0x5BC */ float mFlo; // Speed ?
+    /* 0x5C0 */ s16 mHalf; // Swing speed ?
     /* 0x5C2 */ u8 field_0x5C2[2];
     /* 0x5C4 */ JPABaseEmitter* mpEmitters[4];
     /* 0x5D4 */ u8 mDestroyed;
