@@ -35,14 +35,14 @@ extern "C" void init_modeOpen__14daAmiShutter_cFv();
 extern "C" void modeOpen__14daAmiShutter_cFv();
 extern "C" void Draw__14daAmiShutter_cFv();
 extern "C" void Delete__14daAmiShutter_cFv();
-extern "C" static void daAmiShutter_Draw__FP14daAmiShutter_c();
-extern "C" static void daAmiShutter_Execute__FP14daAmiShutter_c();
-extern "C" static void daAmiShutter_Delete__FP14daAmiShutter_c();
-extern "C" static void daAmiShutter_Create__FP10fopAc_ac_c();
+extern "C"  void daAmiShutter_Draw__FP14daAmiShutter_c();
+extern "C"  void daAmiShutter_Execute__FP14daAmiShutter_c();
+extern "C"  void daAmiShutter_Delete__FP14daAmiShutter_c();
+extern "C"  void daAmiShutter_Create__FP10fopAc_ac_c();
 extern "C" void __dt__18daAmiShutter_HIO_cFv();
 extern "C" void __sinit_d_a_obj_amiShutter_cpp();
-extern "C" static void func_80BA2278();
-extern "C" static void func_80BA2280();
+extern "C"  void func_80BA2278();
+extern "C"  void func_80BA2280();
 extern "C" void __dt__17dEvLib_callback_cFv();
 extern "C" bool eventStart__17dEvLib_callback_cFv();
 extern "C" bool eventRun__17dEvLib_callback_cFv();
@@ -97,13 +97,6 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
-/* 80BA2390-80BA2394 000000 0004+00 5/5 0/0 0/0 .rodata          @3655 */
-SECTION_RODATA static f32 const lit_3655 = 70.0f;
-COMPILER_STRIP_GATE(0x80BA2390, &lit_3655);
-
-/* 80BA2394-80BA2398 000004 0004+00 1/1 0/0 0/0 .rodata          @3656 */
-SECTION_RODATA static f32 const lit_3656 = 400.0f;
-COMPILER_STRIP_GATE(0x80BA2394, &lit_3656);
 
 /* 80BA23DC-80BA23E8 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -270,13 +263,11 @@ SECTION_DATA extern void* __vt__14mDoHIO_entry_c[3] = {
 
 /* 80BA14CC-80BA1514 0000EC 0048+00 1/1 0/0 0/0 .text            __ct__18daAmiShutter_HIO_cFv */
 daAmiShutter_HIO_c::daAmiShutter_HIO_c() {
-    // NONMATCHING
-}
-
-/* 80BA1514-80BA155C 000134 0048+00 1/0 0/0 0/0 .text            __dt__14mDoHIO_entry_cFv */
-// mDoHIO_entry_c::~mDoHIO_entry_c() {
-extern "C" void __dt__14mDoHIO_entry_cFv() {
-    // NONMATCHING
+    mMaxStepOpen = 70.0f;
+    mMaxStepClose = 70.0f;
+    field_0x11 = 3;
+    mRange = 400.f;
+    mWaitTime = 0;
 }
 
 /* 80BA155C-80BA15E4 00017C 0088+00 2/2 0/0 0/0 .text            setBaseMtx__14daAmiShutter_cFv */
@@ -292,7 +283,7 @@ SECTION_DEAD static char const* const stringBase_80BA23D4 = "S_Zami";
 #pragma pop
 
 /* 80BA15E4-80BA1650 000204 006C+00 1/0 0/0 0/0 .text            CreateHeap__14daAmiShutter_cFv */
-void daAmiShutter_c::CreateHeap() {
+int daAmiShutter_c::CreateHeap() {
     // NONMATCHING
 }
 
@@ -312,7 +303,7 @@ void daAmiShutter_c::create() {
 
 /* 80BA182C-80BA1888 00044C 005C+00 1/0 0/0 0/0 .text            Execute__14daAmiShutter_cFPPA3_A4_f
  */
-void daAmiShutter_c::Execute(f32 (**param_0)[3][4]) {
+int daAmiShutter_c::Execute(Mtx** i_mtx) {
     // NONMATCHING
 }
 
@@ -412,7 +403,7 @@ void daAmiShutter_c::modeWaitEvent() {
 }
 
 /* 80BA1C90-80BA1CB4 0008B0 0024+00 2/1 0/0 0/0 .text            eventStart__14daAmiShutter_cFv */
-void daAmiShutter_c::eventStart() {
+BOOL daAmiShutter_c::eventStart() {
     // NONMATCHING
 }
 
@@ -485,12 +476,12 @@ void daAmiShutter_c::modeOpen() {
 }
 
 /* 80BA2080-80BA2124 000CA0 00A4+00 1/0 0/0 0/0 .text            Draw__14daAmiShutter_cFv */
-void daAmiShutter_c::Draw() {
+int daAmiShutter_c::Draw() {
     // NONMATCHING
 }
 
 /* 80BA2124-80BA2154 000D44 0030+00 1/0 0/0 0/0 .text            Delete__14daAmiShutter_cFv */
-void daAmiShutter_c::Delete() {
+int daAmiShutter_c::Delete() {
     // NONMATCHING
 }
 
@@ -531,14 +522,14 @@ REGISTER_CTORS(0x80BA223C, __sinit_d_a_obj_amiShutter_cpp);
 #pragma pop
 
 /* 80BA2278-80BA2280 000E98 0008+00 1/0 0/0 0/0 .text @1448@eventStart__14daAmiShutter_cFv */
-static void func_80BA2278() {
-    // NONMATCHING
-}
+// static void func_80BA2278() {
+//     // NONMATCHING
+// }
 
 /* 80BA2280-80BA2288 000EA0 0008+00 1/0 0/0 0/0 .text            @1448@__dt__14daAmiShutter_cFv */
-static void func_80BA2280() {
-    // NONMATCHING
-}
+// static void func_80BA2280() {
+//     // NONMATCHING
+// }
 
 /* 80BA2288-80BA22D0 000EA8 0048+00 1/0 0/0 0/0 .text            __dt__17dEvLib_callback_cFv */
 // dEvLib_callback_c::~dEvLib_callback_c() {
