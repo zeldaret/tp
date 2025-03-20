@@ -337,11 +337,3 @@ int JAISeMgr::getNumActiveSe() const {
     }
     return sum;
 }
-
-/* 802A0994-802A0A6C 29B2D4 00D8+00 1/1 0/0 0/0 .text            __ct__16JAISeCategoryMgrFv */
-JAISeCategoryMgr::JAISeCategoryMgr() {
-    mParams.init();
-    mMaxActiveSe = 0;
-    mMaxInactiveSe = 0;
-    field_0x4.field_0x0 = 0;
-}

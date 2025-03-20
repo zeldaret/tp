@@ -9,163 +9,6 @@
 #include "JSystem/JAudio2/JASBank.h"
 #include "JSystem/JAudio2/JASAiCtrl.h"
 #include "JSystem/JAudio2/JASDSPInterface.h"
-#include "dol2asm.h"
-
-//
-// Types:
-//
-
-/* JASMemPool_MultiThreaded<JASTrack> */
-struct JASMemPool_MultiThreaded__template0 {
-    /* 802932E0 */ void func_802932E0(void* _this);
-};
-
-/* JASMemPool_MultiThreaded<JASTrack::TChannelMgr> */
-struct JASMemPool_MultiThreaded__template1 {
-    /* 80293334 */ void func_80293334(void* _this);
-};
-
-struct JASBankTable__template0 {
-    /* 80293528 */ void func_80293528(void* _this, u32) /* const */;
-};
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__8JASTrackFv();
-extern "C" void __dt__8JASTrackFv();
-extern "C" void setChannelMgrCount__8JASTrackFUl();
-extern "C" void init__8JASTrackFv();
-extern "C" void initTimed__8JASTrackFv();
-extern "C" void inherit__8JASTrackFRC8JASTrack();
-extern "C" void assignExtBuffer__8JASTrackFUlP14JASSoundParams();
-extern "C" void setSeqData__8JASTrackFPvUl();
-extern "C" void startSeq__8JASTrackFv();
-extern "C" void stopSeq__8JASTrackFv();
-extern "C" void start__8JASTrackFv();
-extern "C" void close__8JASTrackFv();
-extern "C" void connectChild__8JASTrackFUlP8JASTrack();
-extern "C" void closeChild__8JASTrackFUl();
-extern "C" void openChild__8JASTrackFUl();
-extern "C" void connectBus__8JASTrackFii();
-extern "C" void setLatestKey__8JASTrackFUc();
-extern "C" void channelStart__8JASTrackFPQ28JASTrack11TChannelMgrUlUlUl();
-extern "C" void noteOn__8JASTrackFUlUlUl();
-extern "C" void gateOn__8JASTrackFUlUlfUl();
-extern "C" void noteOff__8JASTrackFUlUs();
-extern "C" void checkNoteStop__8JASTrackCFUl();
-extern "C" void overwriteOsc__8JASTrackFP10JASChannel();
-extern "C" void updateTimedParam__8JASTrackFv();
-extern "C" void updateTrack__8JASTrackFf();
-extern "C" void updateTempo__8JASTrackFv();
-extern "C" void updateSeq__8JASTrackFbf();
-extern "C" void seqTimeToDspTime__8JASTrackFf();
-extern "C" void setParam__8JASTrackFUlfUl();
-extern "C" void noteOffAll__8JASTrackFUs();
-extern "C" void mute__8JASTrackFb();
-extern "C" void setOscScale__8JASTrackFUlf();
-extern "C" void setOscTable__8JASTrackFUlPCQ213JASOscillator5Point();
-extern "C" void setOscAdsr__8JASTrackFssssUs();
-extern "C" void setFIR__8JASTrackFPCs();
-extern "C" void setIIR__8JASTrackFPCs();
-extern "C" void readPortSelf__8JASTrackFUl();
-extern "C" void writePortSelf__8JASTrackFUlUs();
-extern "C" void writePort__8JASTrackFUlUs();
-extern "C" void readPort__8JASTrackFUl();
-extern "C" void setChannelPauseFlag__8JASTrackFb();
-extern "C" void pause__8JASTrackFb();
-extern "C" void getTransposeTotal__8JASTrackCFv();
-extern "C" void isMute__8JASTrackCFv();
-extern "C" void setTempo__8JASTrackFUs();
-extern "C" void setTempoRate__8JASTrackFf();
-extern "C" void setTimebase__8JASTrackFUs();
-extern "C" void updateChannel__8JASTrackFP10JASChannelPQ26JASDsp8TChannel();
-extern "C" void channelUpdateCallback__8JASTrackFUlP10JASChannelPQ26JASDsp8TChannelPv();
-extern "C" void getRootTrack__8JASTrackFv();
-extern "C" void tickProc__8JASTrackFv();
-extern "C" void seqMain__8JASTrackFv();
-extern "C" void cbSeqMain__Q28JASTrack5TListFPv();
-extern "C" void append__Q28JASTrack5TListFP8JASTrack();
-extern "C" void seqMain__Q28JASTrack5TListFv();
-extern "C" void __ct__Q28JASTrack11TChannelMgrFP8JASTrack();
-extern "C" void init__Q28JASTrack11TChannelMgrFv();
-extern "C" void releaseAll__Q28JASTrack11TChannelMgrFv();
-extern "C" void noteOff__Q28JASTrack11TChannelMgrFUlUs();
-extern "C" void setPauseFlag__Q28JASTrack11TChannelMgrFb();
-extern "C" void __ct__Q28JASTrack10MoveParam_Fv();
-extern "C" void func_802932E0(void* _this);
-extern "C" void func_80293334(void* _this);
-extern "C" void __sinit_JASTrack_cpp();
-extern "C" void __dt__Q28JASTrack5TListFv();
-extern "C" void __dt__19JASDefaultBankTableFv();
-extern "C" void func_80293528(void* _this, u32);
-extern "C" u8 const sAdsTable__8JASTrack[24];
-extern "C" u8 const sEnvOsc__8JASTrack[24];
-extern "C" u8 const sPitchEnvOsc__8JASTrack[24];
-extern "C" u8 sDefaultBankTable__8JASTrack[1036];
-extern "C" u8 sTrackList__8JASTrack[16];
-extern "C" u32 FILTER_MODE_IIR__6JASDsp;
-
-//
-// External References:
-//
-
-extern "C" void __ct__17JASGenericMemPoolFv();
-extern "C" void __dt__17JASGenericMemPoolFv();
-extern "C" void alloc__17JASGenericMemPoolFUl();
-extern "C" void free__17JASGenericMemPoolFPvUl();
-extern "C" void init__12JASTrackPortFv();
-extern "C" void readImport__12JASTrackPortFUl();
-extern "C" void readExport__12JASTrackPortFUl();
-extern "C" void writeImport__12JASTrackPortFUlUs();
-extern "C" void writeExport__12JASTrackPortFUlUs();
-extern "C" void __ct__16JASRegisterParamFv();
-extern "C" void init__16JASRegisterParamFv();
-extern "C" void __ct__10JASSeqCtrlFv();
-extern "C" void init__10JASSeqCtrlFv();
-extern "C" void start__10JASSeqCtrlFPvUl();
-extern "C" void tickProc__10JASSeqCtrlFP8JASTrack();
-extern "C" void interrupt__10JASSeqCtrlFQ210JASSeqCtrl8IntrType();
-extern "C" void noteOn__7JASBankFPC7JASBankiUcUcUsPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv();
-extern "C" void release__10JASChannelFUs();
-extern "C" void setOscInit__10JASChannelFUlPCQ213JASOscillator4Data();
-extern "C" void setMixConfig__10JASChannelFUlUs();
-extern "C" void setKeySweepTarget__10JASChannelFlUl();
-extern "C" void free__10JASChannelFv();
-extern "C" void getDacRate__9JASDriverFv();
-extern "C" void getSubFrames__9JASDriverFv();
-extern "C" void setFilterMode__Q26JASDsp8TChannelFUs();
-extern "C" void setIIRFilterParam__Q26JASDsp8TChannelFPs();
-extern "C" void setFIR8FilterParam__Q26JASDsp8TChannelFPs();
-extern "C" void setDistFilter__Q26JASDsp8TChannelFs();
-extern "C" void registerSubFrameCallback__9JASDriverFPFPv_lPv();
-extern "C" void __dl__FPv();
-extern "C" void __dt__Q27JGadget13TNodeLinkListFv();
-extern "C" void
-Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode();
-extern "C" void Remove__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode();
-extern "C" void __register_global_object();
-extern "C" void __construct_array();
-extern "C" void __cvt_fp2unsigned();
-extern "C" void _savegpr_20();
-extern "C" void _savegpr_23();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_20();
-extern "C" void _restgpr_23();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern u8 struct_80451230[8];
-extern "C" extern u8 __OSReport_disable;
-
-//
-// Declarations:
-//
 
 /* 80291228-8029131C 28BB68 00F4+00 1/1 3/3 0/0 .text            __ct__8JASTrackFv */
 // NONMATCHING
@@ -301,15 +144,15 @@ void JASTrack::init() {
 
 /* 802918FC-8029194C 28C23C 0050+00 1/1 0/0 0/0 .text            initTimed__8JASTrackFv */
 void JASTrack::initTimed() {
-    mMoveParam[0].mValue = 1.0f;
-    mMoveParam[1].mValue = 0.0f;
-    mMoveParam[3].mValue = 0.5f;
-    mMoveParam[2].mValue = 0.0f;
-    mMoveParam[4].mValue = 0.0f;
-    mMoveParam[5].mValue = 0.0f;
+    mMoveParam.params.volume.mValue = 1.0f;
+    mMoveParam.params.pitch.mValue = 0.0f;
+    mMoveParam.params.pan.mValue = 0.5f;
+    mMoveParam.params.fxmix.mValue = 0.0f;
+    mMoveParam.params.dolby.mValue = 0.0f;
+    mMoveParam.params.distFilter.mValue = 0.0f;
     for (int i = 0; i < 6; i++) {
-        mMoveParam[i].mCount = 0;
-        mMoveParam[i].mTarget = mMoveParam[i].mValue;
+        mMoveParam.array[i].mCount = 0;
+        mMoveParam.array[i].mTarget = mMoveParam.array[i].mValue;
     }
 }
 
@@ -575,7 +418,7 @@ void JASTrack::overwriteOsc(JASChannel* i_channel) {
 /* 802922D8-80292348 28CC18 0070+00 1/1 0/0 0/0 .text            updateTimedParam__8JASTrackFv */
 void JASTrack::updateTimedParam() {
     for (u32 i = 0; i < 6; i++) {
-        MoveParam_* param = &mMoveParam[i];
+        MoveParam_* param = &mMoveParam.array[i];
         if (param->mCount != 0) {
             param->mValue += (param->mTarget - param->mValue) / param->mCount;
             param->mCount--;
@@ -589,13 +432,13 @@ void JASTrack::updateTrack(f32 param_0) {
     for (u32 i = 0; i < mChannelMgrCount; i++) {
         TChannelMgr* channel_mgr = mChannelMgrs[i];
         if (channel_mgr != NULL) {
-            f32 volume = mMoveParam[0].mValue;
+            f32 volume = mMoveParam.params.volume.mValue;
             volume = volume * volume;
             f32 pitch = 1.0f;
-            f32 fvar6 = mMoveParam[1].mValue * mBendSense * (1.0f / 3.0f);
-            f32 pan = (mMoveParam[3].mValue - 0.5f) * mPanPower;
-            f32 fxmix = mMoveParam[2].mValue;
-            f32 dolby = mMoveParam[4].mValue;
+            f32 fvar6 = mMoveParam.params.pitch.mValue * mBendSense * (1.0f / 3.0f);
+            f32 pan = (mMoveParam.params.pan.mValue - 0.5f) * mPanPower;
+            f32 fxmix = mMoveParam.params.fxmix.mValue;
+            f32 dolby = mMoveParam.params.dolby.mValue;
             JASSoundParams* sound_params = channel_mgr->mSoundParams;
             if (sound_params != NULL) {
                 volume *= sound_params->mVolume;
@@ -671,7 +514,7 @@ u32 JASTrack::seqTimeToDspTime(f32 i_seqTime) {
 
 /* 802926E0-80292708 28D020 0028+00 0/0 4/4 0/0 .text            setParam__8JASTrackFUlfUl */
 void JASTrack::setParam(u32 i_index, f32 i_target, u32 i_count) {
-    MoveParam_* param = &mMoveParam[i_index];
+    MoveParam_* param = &mMoveParam.array[i_index];
     param->mTarget = i_target;
     if (i_count == 0) {
         param->mValue = param->mTarget;
@@ -847,7 +690,7 @@ void JASTrack::updateChannel(JASChannel* param_0, JASDsp::TChannel* param_1) {
         param_1->setFIR8FilterParam(mFIR);
     }
     param_1->setFilterMode(mFilterMode);
-    param_1->setDistFilter(mMoveParam[5].mValue * 32767.0f);
+    param_1->setDistFilter(mMoveParam.params.distFilter.mValue * 32767.0f);
 }
 
 
@@ -955,9 +798,12 @@ void JASTrack::TList::append(JASTrack* i_track) {
 }
 
 /* 8029301C-802930DC 28D95C 00C0+00 1/1 0/0 0/0 .text            seqMain__Q28JASTrack5TListFv */
-// NONMATCHING problems with the iterator
+// NONMATCHING missing load instruction
 void JASTrack::TList::seqMain() {
-    for (iterator it = begin(); it != end(); it++) {
+    iterator it, it2;
+    for (it = begin(); it != end(); it = it2) {
+        it2 = it;
+        it2++;
         if (it->seqMain() < 0) {
             Remove(&*it);
             if (it->mFlags.autoDelete) {

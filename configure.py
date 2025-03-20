@@ -823,7 +823,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JASProbe.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JASReport.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JASCmdStack.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASTrack.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASTrack.cpp", extra_cflags=['-pragma "nosyminline off"']),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JASTrackPort.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JASRegisterParam.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JASSeqCtrl.cpp"),
@@ -857,25 +857,25 @@ config.libs = [
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAIAudible.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAIAudience.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAISe.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JAISeMgr.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JAISeq.cpp"),
+            Object(Equivalent, "JSystem/JAudio2/JAISeMgr.cpp", extra_cflags=['-pragma "nosyminline off"']), # bss locations
+            Object(Equivalent, "JSystem/JAudio2/JAISeq.cpp", extra_cflags=['-pragma "nosyminline off"']), # bss locations
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAISeqDataMgr.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JAISeqMgr.cpp"),
+            Object(Equivalent, "JSystem/JAudio2/JAISeqMgr.cpp", extra_cflags=['-pragma "nosyminline off"']), # weak function order, bss locations
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAISound.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAISoundChild.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAISoundHandles.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAISoundInfo.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAISoundParams.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAISoundStarter.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JAIStream.cpp", extra_cflags=["-sym off"]),
+            Object(Equivalent, "JSystem/JAudio2/JAIStream.cpp", extra_cflags=['-pragma "nosyminline off"']), # bss locations
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAIStreamDataMgr.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JAIStreamMgr.cpp"),
+            Object(Equivalent, "JSystem/JAudio2/JAIStreamMgr.cpp", extra_cflags=['-pragma "nosyminline off"']), # bss locations
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAUAudioArcInterpreter.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAUAudioArcLoader.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAUAudioMgr.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAUBankTable.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAUClusterSound.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JAUInitializer.cpp"),
+            Object(Equivalent, "JSystem/JAudio2/JAUInitializer.cpp", extra_cflags=['-pragma "nosyminline off"']), # bss locations
             Object(NonMatching, "JSystem/JAudio2/JAUSectionHeap.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAUSeqCollection.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAUSeqDataBlockMgr.cpp"),
@@ -902,7 +902,7 @@ config.libs = [
         "host": True,
         "objects": [
             Object(MatchingFor("GZ2E01"), "Z2AudioLib/Z2Calc.cpp"),
-            Object(NonMatching, "Z2AudioLib/Z2AudioArcLoader.cpp"),
+            Object(MatchingFor("GZ2E01"), "Z2AudioLib/Z2AudioArcLoader.cpp"),
             Object(MatchingFor("GZ2E01"), "Z2AudioLib/Z2Param.cpp"),
             Object(MatchingFor("GZ2E01"), "Z2AudioLib/Z2SoundMgr.cpp"),
             Object(MatchingFor("GZ2E01"), "Z2AudioLib/Z2SoundStarter.cpp"),
@@ -917,7 +917,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01"), "Z2AudioLib/Z2SoundObject.cpp"),
             Object(MatchingFor("GZ2E01"), "Z2AudioLib/Z2SoundObjMgr.cpp"),
             Object(MatchingFor("GZ2E01"), "Z2AudioLib/Z2Creature.cpp"),
-            Object(NonMatching, "Z2AudioLib/Z2LinkMgr.cpp"),
+            Object(NonMatching, "Z2AudioLib/Z2LinkMgr.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(NonMatching, "Z2AudioLib/Z2EnvSeMgr.cpp"),
             Object(MatchingFor("GZ2E01"), "Z2AudioLib/Z2WolfHowlMgr.cpp"),
             Object(NonMatching, "Z2AudioLib/Z2SpeechMgr2.cpp"),
