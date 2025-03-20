@@ -320,7 +320,7 @@ static void* tex_d[2] = {
     (void*)&l_Egnd_mantTEX_U,
 };
 
-static u8 lbl_277_bss_0;
+static char lbl_277_bss_0;
 
 /* 80861298-808616B8 000078 0420+00 1/0 0/0 0/0 .text            draw__15daMant_packet_cFv */
 void daMant_packet_c::draw() {
@@ -567,44 +567,49 @@ static int daMant_Draw(mant_class* i_this) {
 /* 8086176C-80861F60 00054C 07F4+00 1/1 0/0 0/0 .text joint_control__FP10mant_classP8mant_j_siff */
 static void joint_control(mant_class* i_this, mant_j_s* param_2, int param_3, f32 param_4, f32 param_5) {
     // NONMATCHING
-    static u32 d_p[12] = {
-        0x3FB33334, 0x3F19999A, 0x3EB33333, 0x3E99999A,
-        0x3E99999A, 0x3E99999A, 0x3E800000, 0x3E4CCCCD,
-        0x3E4CCCCD, 0x3E4CCCCD, 0x3E19999A, 0x3DCCCCCD,
+    static f32 d_p[12] = {
+        1.4000001f, 0.6f, 0.35f, 0.3f, 0.3f, 0.3f, 0.25f, 0.2f, 0.2f, 0.2f, 0.15f, 0.1f
     };
     
-    cXyz cStack_170, cStack_140;
-    cXyz local_158, local_164, local_1dc, local_134, local_17c, local_1ac, local_14c, local_140;
-    bool bVar2 = false;
+    cXyz local_134, local_140, local_14c, local_158, local_164;
+    BOOL bVar2 = FALSE;
     f32 dVar14, dVar16, dVar17, dVar18, dVar19, dVar20;
     f32 fVar1;
     b_gnd_class* gndActor = (b_gnd_class*)fopAcM_SearchByID(i_this->parentActorID);
 
     if (gndActor->field_0x1fc4 != 0) {
-        bVar2 = true;
+        bVar2 = TRUE;
         local_158 = gndActor->field_0x1fb8;
     } else if (i_this->field_0x3966 != 0) {
         local_158 = i_this->field_0x3928[0] + ((i_this->field_0x3928[1] - i_this->field_0x3928[0]) * 0.5f);
         local_158.y += -60.0f;
     }
 
+    cXyz* vec_p = param_2->field_0x0;
     cXyz* pcVar9 = param_2->field_0x9c;
     dBgS_GndChk(dStack_f8);
     local_164 = param_2->field_0x0[0];
     local_164.y += 50.0f;
 
-    dStack_f8.SetPos(&local_164);
+    dStack_f8.SetPos((Vec*)&local_164);
     dVar17 = dComIfG_Bgsp().GroundCross(&dStack_f8) + 3.0f;
 
-    if (50.0f < (dVar17) - param_2->field_0x0[0].y) {
+    if (dVar17 - param_2->field_0x0[0].y > 50.0f) {
         dVar17 = param_2->field_0x0[0].y;
     }
+
+    cXyz cStack_170, local_17c;
+    cXyz local_188(0.0f, 0.0f, 0.0f);
+    cXyz local_194(0.0f, 0.0f, 0.0f);
+    cXyz local_1a0(0.0f, 0.0f, 0.0f);
     
     cMtx_YrotS(*calc_mtx, param_2->field_0x013a);
     local_134.x = 0.0f;
     local_134.y = 0.0f;
     local_134.z = i_this->field_0x3954 * (cM_ssin(param_3 * 23000) * 0.05f + 1.0f);
     MtxPosition(&local_134, &cStack_170);
+
+    cXyz local_1ac;
 
     s16 sVar3 = param_3 + -6;
     if (sVar3 < 0) {
@@ -614,53 +619,57 @@ static void joint_control(mant_class* i_this, mant_j_s* param_2, int param_3, f3
     sVar3 *= -4000;
     local_134.x = 0.0f;
     local_134.y = 0.0f;
-    local_134.z = i_this->field_0x394c * i_this->scale.y;
-    mant_j_s* mantJS = param_2; 
+    local_134.z = i_this->field_0x394c;
+    local_134.z *= i_this->scale.y;
 
-    for (int i = 0; i < 13; i++) {
+    for (int i = 0; i < 13; i++, vec_p++, pcVar9++) {
         if (0 < i) {
             dVar16 = i_this->field_0x3950;
 
-            local_1dc = cStack_170 * d_p[0];
-            // local_17c = local_1dc;
+            local_17c = cStack_170 * d_p[i - 1];
 
-            // u32 uStack_cc = i ^ 0x80000000;
-            dVar18 = i_this->field_0x3958 * (1.0f - (0x43300000 << i ^ 0x80000000) * (7.0f / 100.0f));
-            dVar14 = 0.0f;
-
+            dVar18 = i_this->field_0x3958;
+            dVar18 *= 1.0f - i * 0.07f;
+            
             local_1ac.zero();
 
-            if ((1.0f / 100.0f) > param_4) {
-                dVar16 = param_4 * ((0x43300000 << i ^ 0x80000000) * (1.0f / 20.0f) + 1.0f);
+
+            // (1.0f / 100.0f)
+            if (param_4 > 0.01f) {
+                dVar16 = 0.0f;
+                f32 dVar14 = param_4 * (i * 0.05f + 1.0f);
                 cMtx_YrotS(*calc_mtx, param_2->field_0x013a);
                 cMtx_XrotM(*calc_mtx, param_2->field_0x0138);
 
-                local_140.x = (dVar16 * 2.0f) * cM_ssin(i_this->field_0x25a0 * 0x1000 + (i * -0x1d4c) + sVar3);
-                local_140.y = (dVar16 * 5.0f) * cM_ssin(i_this->field_0x25a0 * 0x1800 + (i * -7000) + sVar3);
+                local_140.x = (dVar14 * 2.0f) * cM_ssin(i_this->field_0x25a0 * 0x1000 + (i * -7500) + sVar3);
+                local_140.y = (dVar14 * 5.0f) * cM_ssin(i_this->field_0x25a0 * 0x1800 + (i * -7000) + sVar3);
                 local_140.z = -15.0f;
                 MtxPosition(&local_140, &local_1ac);
-                dVar16 = dVar14;
-            } else if ((1.0f / 100.0f) < param_5) {
-                dVar14 = param_5 * (1.0f / 20.0f) * (1.0f / 5.0f) + 1.0f  * (0x43300000 << i ^ 0x80000000);
+            }
+            
+            if (param_5 > 0.01f) {
+                dVar14 = param_5 * (i * 0.2f + 1.0f);
                 cMtx_YrotS(*calc_mtx, param_2->field_0x013a + -6000);
                 cMtx_XrotM(*calc_mtx, -5000);
 
-                local_140.x = (dVar14 * 2.0f) * (sVar3 + cM_ssin(i_this->field_0x25a0 * 0x448 + (i * -7000) + sVar3));
-                local_140.y = (dVar16 * 6.0f) * cM_ssin(i_this->field_0x25a0 * 0xc48 + (i * -0x1d4c) + sVar3);
+                local_140.x = (dVar14 * 2.0f) * cM_ssin(i_this->field_0x25a0 * 0x448 + (i * -7000) + sVar3);
+                local_140.y = (dVar14 * 6.0f) * cM_ssin(i_this->field_0x25a0 * 0xc48 + (i * -7500) + sVar3);
                 local_140.z = param_5 * -15.0f;
                 MtxPosition(&local_140, &local_14c);
                 local_1ac += local_14c;
-            } else if ((1.0f / 10.0f) < i_this->field_0x3960) {
+            }
+
+            if (i_this->field_0x3960 > 0.1f) {
                 local_1ac.y = i_this->field_0x3960 * cM_ssin(i_this->field_0x25a0 * 0x1100 + (i * -7000) + sVar3);
             }
 
-            dVar20 = local_1ac.x + local_17c.x + pcVar9->x + (mantJS->field_0x0[0].x - mantJS->field_0x0174);
-            dVar19 = local_1ac.z + local_17c.z + pcVar9->z + (mantJS->field_0x0[0].z - mantJS->field_0x017c);
-            dVar14 = local_1ac.y + (dVar18 + mantJS->field_0x0[0].y + pcVar9->y);
+            dVar20 = (vec_p->x - vec_p[-1].x) + pcVar9->x + local_17c.x + local_1ac.x;
+            dVar19 = (vec_p->z - vec_p[-1].z) + pcVar9->z + local_17c.z + local_1ac.z;
+            dVar14 = local_1ac.y + (vec_p->y + pcVar9->y + dVar18);
 
             if (bVar2) {
                 dVar18 = dVar17;
-                local_14c = local_158 - mantJS->field_0x0[0];
+                local_14c = local_158 - *vec_p;
                 fVar1 = JMAFastSqrt(local_14c.x * local_14c.x + local_14c.z * local_14c.z);
                 if (fVar1 < 85.0f) {
                     dVar18 = local_158.y + 1.0f * JMAFastSqrt(7225.0f - fVar1 * fVar1);
@@ -671,14 +680,10 @@ static void joint_control(mant_class* i_this, mant_j_s* param_2, int param_3, f3
                 }
             } else if (i_this->field_0x3966 != 0) {
                 dVar18 = dVar17;
-                local_14c = local_158 - mantJS->field_0x0[0];
+                local_14c = local_158 - *vec_p;
                 fVar1 = JMAFastSqrt(local_14c.x * local_14c.x + local_14c.z * local_14c.z);
 
                 if (fVar1 < 85.0f) {
-                    // // fVar1 = 7225.0f - fVar1 * fVar1;
-                    // if (0.0f < fVar1) {
-                    //     // fVar1 = JMAFastSqrt(fVar1);
-                    // }
                     dVar18 = local_158.y + JMAFastSqrt(7225.0f - fVar1 * fVar1);
                 }
 
@@ -691,26 +696,24 @@ static void joint_control(mant_class* i_this, mant_j_s* param_2, int param_3, f3
                 }
             }
 
-            fVar1 = dVar14 - mantJS[i - 1].field_0x0178;
-            dVar14 = fVar1;
-            s16 sVar4 = -cM_atan2s(fVar1, dVar19);
-            s16 sVar5 = cM_atan2s(dVar20, JMAFastSqrt(dVar14 * dVar14 + dVar19 * dVar19));
+            dVar14 -= vec_p[-1].y;
+            s16 sVar4 = -cM_atan2s(dVar14, dVar19);
+            s16 sVar5 = (s16)cM_atan2s(dVar20, JMAFastSqrt(dVar14 * dVar14 + dVar19 * dVar19));
 
             cMtx_XrotS(*calc_mtx, sVar4);
             cMtx_YrotM(*calc_mtx, sVar5);
             MtxPosition(&local_134, &local_14c);
 
-            pcVar9 = mantJS->field_0x0;
+            *pcVar9 = *vec_p;
 
-            mantJS->field_0x0[i].x = mantJS->field_0x0174 + local_14c.x;
-            mantJS->field_0x0[i].y = mantJS->field_0x0178 + local_14c.y;
-            mantJS->field_0x0[i].z = mantJS->field_0x017c + local_14c.z;
+            vec_p->x = vec_p[-1].x + local_14c.x;
+            vec_p->y = vec_p[-1].y + local_14c.y;
+            vec_p->z = vec_p[-1].z + local_14c.z;
 
-            pcVar9->x = dVar16 * (mantJS->field_0x0[i].x - pcVar9->x);
-            pcVar9->y = dVar16 * (mantJS->field_0x0[i].y - pcVar9->y);
-            pcVar9->z = dVar16 * (mantJS->field_0x0[i].z - pcVar9->z);
+            pcVar9->x = dVar16 * (vec_p->x - pcVar9->x);
+            pcVar9->y = dVar16 * (vec_p->y - pcVar9->y);
+            pcVar9->z = dVar16 * (vec_p->z - pcVar9->z);
         }
-        pcVar9++;
     }
 }
 
@@ -801,16 +804,23 @@ static void joint_control(mant_class* i_this, mant_j_s* param_2, int param_3, f3
 /* 80861F9C-80862424 000D7C 0488+00 1/1 0/0 0/0 .text            mant_v_calc__FP10mant_class */
 static void mant_v_calc(mant_class* i_this) {
     // NONMATCHING
-    cXyz local_114 = i_this->field_0x3928[0] - i_this->field_0x3928[1];
-    cXyz local_fc = local_114;
-    f32 uVar14, uVar15;
-    cXyz local_e4, cStack_f0;
+    cXyz local_e4, cStack_f0, local_fc, local_108;
+    f32 dVar16, dVar15, dVar14, uVar15;
+    csXyz local_134(0, 0, 0);
+    // mant_j_s* mantJS;
 
-    csXyz local_134;
-    local_134.y = cM_atan2s(local_114.x, local_114.z) + 0x4000;
+    local_fc = i_this->field_0x3928[0] - i_this->field_0x3928[1];
+    local_134.y = cM_atan2s(local_fc.x, local_fc.z) + 0x4000;
 
-    cXyz cStack_120 = i_this->current.pos - i_this->field_0x3940;
-    cXyz local_108 = cStack_120 * 0.9f;
+    // mantJS = i_this->field_0x25a8;
+
+    local_e4.x = 0.0f;
+
+    dVar16 = local_fc.x / 12.0f;
+    dVar15 = local_fc.y / 12.0f;
+    dVar14 = local_fc.z / 12.0f;
+
+    local_108 = (i_this->current.pos - i_this->field_0x3940) * 0.9f;
 
     if (10.0f < local_108.abs()) {
         uVar15 = 0.0f;
@@ -826,7 +836,7 @@ static void mant_v_calc(mant_class* i_this) {
         }
     }
 
-    uVar14 = 0.0f;
+    f32 uVar14 = 0.0f;
     if (i_this->field_0x3965 == 0) {
         if (i_this->field_0x3969 == 1) {
             uVar14 = (1.0f / 20.0f);
@@ -838,16 +848,15 @@ static void mant_v_calc(mant_class* i_this) {
     }
 
     for (int i = 0; i < 13; i++) {
-
-        i_this->field_0x25a8[i].field_0x0[i].x = i_this->field_0x3928[1].x  + ((0x43300000) >> 32 | (i ^ 0x80000000));
-        i_this->field_0x25a8[i].field_0x0[i].y = i_this->field_0x3928[1].y  + ((0x43300000) >> 32 | (i ^ 0x80000000));
-        i_this->field_0x25a8[i].field_0x0[i].z = i_this->field_0x3928[1].z  + ((0x43300000) >> 32 | (i ^ 0x80000000));
+        i_this->field_0x25a8[i].field_0x0[0].x = i_this->field_0x3928[1].x  + (dVar16 * i);
+        i_this->field_0x25a8[i].field_0x0[0].y = i_this->field_0x3928[1].y  + (dVar15 * i);
+        i_this->field_0x25a8[i].field_0x0[0].z = i_this->field_0x3928[1].z  + (dVar14 * i);
 
         cMtx_YrotS(*calc_mtx, local_134.y);
 
-        local_e4.z = cM_fsin(176.0f * (i ^ 0x80000000));
+        local_e4.z = cM_fsin(i * 0.2617994f);
         local_e4.y = local_e4.z * -10.0f;
-        local_e4.z *= -20.0f;
+        local_e4.z = local_e4.z * -20.0f;
 
         MtxPosition(&local_e4, &cStack_f0);
 
@@ -861,7 +870,7 @@ static void mant_v_calc(mant_class* i_this) {
             i_this->field_0x25a8[i].field_0x0[j].z += local_108.z;
         }
 
-        joint_control(i_this, &i_this->field_0x25a8[i], i, uVar15, uVar14);
+        joint_control(i_this, i_this->field_0x25a8, i, uVar15, uVar14);
     }
 }
 
@@ -964,7 +973,7 @@ static int mant_cut_type;
 static int daMant_Execute(mant_class* i_this) {
     // NONMATCHING
     f32 in_f30, in_f31;
-    int unaff_r29, iVar2, uVar1;
+    int unaff_r29, iVar2, uVar1, uVar4;
 
     i_this->field_0x25a0++;
     lbl_277_bss_0++;
@@ -975,17 +984,17 @@ static int daMant_Execute(mant_class* i_this) {
 
     b_gnd_class* gndActor = (b_gnd_class*)fopAcM_SearchByID(i_this->parentActorID);
 
-    if (!gndActor || gndActor->field_0x1fc4 != 0) {
-        i_this->field_0x394c = 16.0f + 15.0f - 8.0f - 2.0f;
+    if (gndActor && gndActor->field_0x1fc4 != 0) {
+        i_this->field_0x394c = 21.0f;
         i_this->field_0x3950 = 0.75f;
         i_this->field_0x3958 = -5.0f;
         i_this->field_0x3954 = -3.0f;
     } else {
         i_this->field_0x394c = 25.0f;
-        i_this->field_0x3950 = 0.55f + i_this->field_0x395c * (1.0f / 20.0f);
-        i_this->field_0x3958 = i_this->field_0x395c * 25.0f + -20.0f;
+        i_this->field_0x3950 = 0.55f + i_this->field_0x395c * 0.2f;
+        i_this->field_0x3958 = -20.0f + i_this->field_0x395c * 25.0f;
         i_this->field_0x3954 = -13.0f - i_this->field_0x395c * 5.0f;
-        cLib_addCalc0(&i_this->field_0x395c, 1.0f, (1.0f / 20.0f));
+        cLib_addCalc0(&i_this->field_0x395c, 1.0f, 0.05f);
         cLib_addCalc0(&i_this->field_0x3960, 1.0f, 0.3f);
     }
 
@@ -1028,65 +1037,62 @@ static int daMant_Execute(mant_class* i_this) {
         in_f31 += cM_ssin(unaff_r29);
         in_f30 -= cM_scos(unaff_r29);
 
-        uVar1 = (int)(in_f31 + 64.0f) | (int)(in_f30 + 64.0f) << 7;
+        uVar4 = (int)(in_f31 + 64.0f) | (int)(in_f30 + 64.0f) << 7;
 
-        if (mant_cut_type > 0) {
-            if (i <= 3 || 36 > i) {
+        if (mant_cut_type == 0) {
+            if (i <= 3 || 36 <= i) {
                 iVar2 = 1;
-            } else if (i < 12 || 28 < i) {
-                iVar2 = 4;
-            } else {
+            } else if (i >= 12 && 28 >= i) {
                 iVar2 = 9;
+            } else {
+                iVar2 = 4;
             }
         } else if (mant_cut_type == 1) {
-            if (i < 4 || 25 < i) {
+            if (i <= 3 || 26 <= i) {
                 iVar2 = 1;
-            } else if (i < 12 || 18 < i) {
-                iVar2 = 4;
-            } else {
+            } else if (i >= 12 && 18 >= i) {
                 iVar2 = 9;
+            } else {
+                iVar2 = 4;
             }
-        } else if (i < 4 || 15 < i) {
+        } else if (i <= 3 || 16 <= i) {
             iVar2 = 1;
         } else {
             iVar2 = 4;
         }
 
-        int iVar6 = 0;
-        for (; iVar2 != 0; iVar2 += -1) {
-            if (iVar6 != 0) {
-                if (iVar6 == 1) {
-                    uVar1++;
-                } else if (iVar6 == 2) {
-                    uVar1 += 0x80;
-                } else if (iVar6 == 3) {
-                    uVar1 += 0x81;
+        for (int j = 0; j < iVar2; j++) {
+            if (j != 0) {
+                if (j == 1) {
+                    uVar4 = uVar1++;
+                } else if (j == 2) {
+                    uVar4 = uVar1 + 0x80;
+                } else if (j == 3) {
+                    uVar4 = uVar1 + 0x81;
                 } else {
-                    if (iVar6 == 3) {
-                        uVar1 += 0x81;
+                    if (j == 3) {
+                        uVar4 = uVar1 + 0x81;
                     } else {
-                        if (iVar6 == 4) {
-                            uVar1 += 2; 
-                        } else if (iVar6 == 5) {
-                            uVar1 += 0x82;
-                        } else if (iVar6 == 6) {
-                            uVar1 += 0x102;
-                        } else if (iVar6 == 7) {
-                            uVar1 += 0x101;
-                        } else if (iVar6 == 8) {
-                            uVar1 += 0x100;
+                        if (j == 4) {
+                            uVar4 = uVar1 + 2; 
+                        } else if (j == 5) {
+                            uVar4 = uVar1 + 0x82;
+                        } else if (j == 6) {
+                            uVar4 = uVar1 + 0x102;
+                        } else if (j == 7) {
+                            uVar4 = uVar1 + 0x101;
+                        } else if (j == 8) {
+                            uVar4 = uVar1 + 0x100;
                         }
                     }
                 }
             }
 
-            if (0 <= uVar1 && uVar1 < 0x4000) {
-                int iVar5 = (uVar1 & 7) + (uVar1 & 0x78) * 4 + (uVar1 >> 4 & 0x18) + (uVar1 & 0x3e00);
+            if (0 <= uVar4 && uVar4 < 0x4000) {
+                int iVar5 = (uVar4 & 7) + (uVar4 & 0x78) * 4 + (uVar4 >> 4 & 0x18) + (uVar4 & 0x3e00);
                 l_Egnd_mantTEX_U[iVar5] = 0;
                 l_Egnd_mantTEX[iVar5] = 0;
             }
-
-            iVar6++;
         }
     }
 
@@ -1168,11 +1174,11 @@ mant_j_s::mant_j_s() {}
 /* 80862BA4-80862C40 001984 009C+00 1/0 0/0 0/0 .text            __dt__15daMant_packet_cFv */
 daMant_packet_c::~daMant_packet_c() {}
 
-// /* 80862C40-80862C44 001A20 0004+00 2/2 0/0 0/0 .text            __ct__4cXyzFv */
-// // cXyz::cXyz() {
-// extern "C" void __ct__4cXyzFv() {
-//     /* empty function */
-// }
+/* 80862C40-80862C44 001A20 0004+00 2/2 0/0 0/0 .text            __ct__4cXyzFv */
+// cXyz::cXyz() {
+extern "C" void __ct__4cXyzFv() {
+    /* empty function */
+}
 
 /* 8086BF08-8086BF28 -00001 0020+00 1/0 0/0 0/0 .data            l_daMant_Method */
 static actor_method_class l_daMant_Method = {
