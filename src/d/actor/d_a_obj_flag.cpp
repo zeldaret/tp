@@ -67,7 +67,6 @@ extern "C" void __cvt_fp2unsigned();
 extern "C" void _savegpr_26();
 extern "C" void _restgpr_26();
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
@@ -113,7 +112,7 @@ void daObjFlag_c::initBaseMtx() {
     PSMTXCopy(mDoMtx_stack_c::now, mpModel2->mBaseTransformMtx);
     cullMtx = mpModel2->mBaseTransformMtx;
     if (mpModel1 != NULL) {
-        mDoMtx_stack_c::transS(field_0x5d0);
+        mDoMtx_stack_c::transS(mPos);
         mDoMtx_YrotM(mDoMtx_stack_c::now, shape_angle.y);
         PSMTXCopy(mDoMtx_stack_c::now, mpModel1->mBaseTransformMtx);
         cullMtx = mpModel1->mBaseTransformMtx;
@@ -121,8 +120,8 @@ void daObjFlag_c::initBaseMtx() {
 }
 
 /* 80BEB984-80BEB9AC 000284 0028+00 1/1 0/0 0/0 .text getJointAngle__11daObjFlag_cFP5csXyzi */
-void daObjFlag_c::getJointAngle(csXyz* param_0, int param_1) {
-    // NONMATCHING
+void daObjFlag_c::getJointAngle(csXyz* i_angle, int i_index) {
+    *i_angle = mFlagJoints[i_index].joint1;
 }
 
 /* ############################################################################################## */
@@ -167,7 +166,34 @@ COMPILER_STRIP_GATE(0x80BEC53C, &lit_3764);
 
 /* 80BEB9AC-80BEBC58 0002AC 02AC+00 1/1 0/0 0/0 .text            calcJointAngle__11daObjFlag_cFv */
 void daObjFlag_c::calcJointAngle() {
-    // NONMATCHING
+    cXyz direction;
+    float power;
+    JAISoundID aJStack_80[4];
+    csXyz cStack_60;
+
+    dKyw_get_AllWind_vec(&mPos, &direction, &power);
+    if(power > 0.0f) {
+        Z2GetAudioMgr()->seStartLevel(JAISoundID(Z2SE_OBJ_FLAG_TRAILING), &mPos, power * 127.0f, 0, 1.0, 1.0, -1.0, -1.0, 0);
+    }
+
+    cLib_addCalcAngleS(&field_0x5e0, cM_atan2s(direction.x, direction.y), 4, 0x7fff, 0);
+
+    FlagJoint_c l_joint = mFlagJoints[0];
+    for(int i = 0; i < 4; i++) {
+        if(power != 0.0f && i != 0) {
+            calcAngleSwingZ(&l_joint, power);
+        }
+        if(i == 0) {
+            l_joint.joint2 = l_joint.joint1;
+            l_joint.joint1.y = field_0x5e0 + (getSwingY(power), cM_ssin(l_joint.rv));
+            l_joint.rv += power * M_attr[0x28];
+            cStack_60  = cStack_60 - l_joint.joint2;
+            l_joint.joint3 = cStack_60;
+        }
+        else {
+            
+        }
+    }
 }
 
 /* ############################################################################################## */
@@ -230,19 +256,19 @@ SECTION_DEAD static char const* const stringBase_80BEC572 = "model0.bmd";
 #pragma pop
 
 /* 80BEC0B8-80BEC234 0009B8 017C+00 1/1 0/0 0/0 .text            createSolidHeap__FP10fopAc_ac_c */
-static void createSolidHeap(fopAc_ac_c* param_0) {
+static int createSolidHeap(fopAc_ac_c* param_0) {
     // NONMATCHING
 }
 
 /* 80BEC234-80BEC300 000B34 00CC+00 1/0 0/0 0/0 .text            daObjFlag_Draw__FP11daObjFlag_c */
-static void daObjFlag_Draw(daObjFlag_c* param_0) {
-    // NONMATCHING
+static int daObjFlag_Draw(daObjFlag_c* param_0) {
+    return param_0->draw();
 }
 
 /* 80BEC300-80BEC338 000C00 0038+00 1/0 0/0 0/0 .text            daObjFlag_Execute__FP11daObjFlag_c
  */
-static void daObjFlag_Execute(daObjFlag_c* param_0) {
-    // NONMATCHING
+static int daObjFlag_Execute(daObjFlag_c* param_0) {
+    return param_0->execute();
 }
 
 /* 80BEC338-80BEC340 000C38 0008+00 1/0 0/0 0/0 .text            daObjFlag_IsDelete__FP11daObjFlag_c
@@ -263,8 +289,8 @@ FlagJoint_c::~FlagJoint_c() {
 }
 
 /* 80BEC3F8-80BEC4E0 000CF8 00E8+00 1/0 0/0 0/0 .text            daObjFlag_Create__FP10fopAc_ac_c */
-static void daObjFlag_Create(fopAc_ac_c* param_0) {
-    // NONMATCHING
+static int daObjFlag_Create(fopAc_ac_c* param_0) {
+    return static_cast<daObjFlag_c*>(param_0)->create();
 }
 
 /* 80BEC4E0-80BEC4E4 000DE0 0004+00 1/1 0/0 0/0 .text            __ct__11FlagJoint_cFv */

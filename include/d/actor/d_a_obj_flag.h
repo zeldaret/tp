@@ -2,11 +2,20 @@
 #define D_A_OBJ_FLAG_H
 
 #include "f_op/f_op_actor_mng.h"
+#include "d/d_com_inf_game.h"
+#include "d/actor/d_a_set_bgobj.h"
+
+static int createSolidHeap(fopAc_ac_c*);
 
 class FlagJoint_c {
 public:
     /* 80BEC3BC */ ~FlagJoint_c();
     /* 80BEC4E0 */ FlagJoint_c();
+
+    csXyz joint1;
+    csXyz joint2;
+    csXyz joint3;
+    short rv;
 };
 
 /**
@@ -26,23 +35,60 @@ public:
     /* 80BEBC58 */ void calcAngleSwingZ(FlagJoint_c*, f32);
     /* 80BEBDAC */ void calcAngleSwingX(FlagJoint_c*, f32);
     /* 80BEBE64 */ void getSwingY(f32);
+    inline int create() {
+        fopAcM_SetupActor(this, daObjFlag_c);
+    
+        int phase_state = dComIfG_resLoad(&mPhase, "create");
+        if (phase_state == cPhs_COMPLEATE_e) {
+            phase_state = dComIfG_resLoad(&mPhase, daSetBgObj_c::getArcName(this));
+            
+            if(phase_state == cPhs_COMPLEATE_e) {
+                if(!fopAcM_entrySolidHeap(this, createSolidHeap, 0x4000)) {
+                    return cPhs_ERROR_e;
+                }
+    
+                create_init();
+            }
+        }
+    
+        return phase_state;
+    }
+
+    int execute() {
+        if (mpModel1 == NULL) {
+            return 1;
+        }
+
+        calcJointAngle();
+        return 1;
+    }
+
+    int draw() {
+        g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+        dComIfGd_setListBG();
+        g_env_light.setLightTevColorType_MAJI(mpModel2, &tevStr);
+        mDoExt_modelUpdateDL(mpModel2);
+        
+        if(mpModel1 != NULL) {
+            g_env_light.setLightTevColorType_MAJI(mpModel1, &tevStr);
+            mDoExt_modelUpdateDL(mpModel1);
+        }
+
+        dComIfGd_setList();
+
+        return 1;
+    }
+
 
     static u8 const M_attr[52];
 
 private:
     /* 0x568 */ J3DModel* mpModel1;
     /* 0x56c */ J3DModel* mpModel2;
-    /* 0x570 */ u8 field_0x56c[0x580 - 0x570];
-    /* 0x580 */ csXyz field_0x580;
-    u8 field_0x6c[0x592 - 0x586];
-    /* 0x592 */ short field_0x592;
-    u8 field_0x5d6c[0x5a6 - 0x594];
-    /* 0x5a6 */ short field_0x5a6;
-    u8 field_02x56c[0x5ba - 0x5a8];
-    /* 0x5ba */ short field_0x5ba;
-    u8 field_0xs56c[0x5ce - 0x5bc];
-    /* 0x5ce */ short field_0x5ce;
-    /* 0x5d0 */ cXyz field_0x5d0;
+    /* 0x578 */ request_of_phase_process_class mPhase;
+    /* 0x570 */ u8 field_0x56c[0x580 - 0x578];
+    /* 0x580 */ FlagJoint_c mFlagJoints[4];
+    /* 0x5d0 */ cXyz mPos;
     /* 0x5dc */ float field_0x5dc;
     /* 0x5e0 */ s16 field_0x5e0;
     /* 0x5e2 */ short field_0x5e2;
