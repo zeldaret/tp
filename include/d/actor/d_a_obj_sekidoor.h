@@ -27,24 +27,23 @@ public:
     /* 80CCD810 */ void initBaseMtx(); // Done
     /* 80CCD84C */ void setBaseMtx(); // Done
 
-    u32 getBitSW() { return (fopAcM_GetParam(this) & 0xff00) >> 8; }
-    void open() { mOpen = true; }
+    u16 getBitSW() { return (fopAcM_GetParam(this) & 0xff); }
+    void open() { mOpening = true; }
     bool chkDestroy() { return (mDestroyed == true); }
 
 private:
-    // /* 0x568 */ u8 field_0x568[0x5d8 - 0x568];
-    /* 0x5A0 */ request_of_phase_process_class mPhaseReq;
-    /* 0x5A8 */ J3DModel* mpModel;
-    /* 0x5AC */ J3DModel* mpModel2;
+    /* 0x5A0 */ s32 field_0x5A0;
+    /* 0x5A4 */ request_of_phase_process_class mPhaseReq;
+    /* 0x5AC */ J3DModel* mpModel;
     /* 0x5B0 */ csXyz mRotation;
-    /* 0x5B6 */ u8 field_0x5B6[2];
-    /* 0x5B8 */ int mInt; // Frame counter 
-    /* 0x5BC */ float mFlo; // Speed ?
-    /* 0x5C0 */ s16 mHalf; // Swing speed ?
-    /* 0x5C2 */ u8 field_0x5C2[2];
+    /* 0x5B6 */ s16 field_0x5B6;
+    /* 0x5B8 */ int mFrameCounter; 
+    /* 0x5BC */ float mDoorPosY;
+    /* 0x5C0 */ s16 mOpenSpeed;
+    /* 0x5C2 */ s16 field_0x5C2;
     /* 0x5C4 */ JPABaseEmitter* mpEmitters[4];
     /* 0x5D4 */ u8 mDestroyed;
-    /* 0x5D5 */ u8 mOpen;
+    /* 0x5D5 */ u8 mOpening;
     /* 0x5D6 */ u8 mBitSW;
     /* 0x5D7 */ u8 field_0x5D7;
 };
