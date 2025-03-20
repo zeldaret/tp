@@ -77,13 +77,13 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 /* ############################################################################################## */
 /* 80BEC4EC-80BEC520 000000 0034+00 4/4 0/0 0/0 .rodata          M_attr__11daObjFlag_c */
-SECTION_RODATA u8 const daObjFlag_c::M_attr[52] = {
-    0x45, 0x7A, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3E, 0x99, 0x99, 0x9A, 0x00,
-    0x0F, 0x07, 0xD0, 0x05, 0xDC, 0x0F, 0xA0, 0x07, 0x08, 0x00, 0x00, 0x00, 0x00,
-    0x03, 0xE8, 0x01, 0x90, 0x00, 0x00, 0x00, 0x00, 0x01, 0x2C, 0x01, 0x01, 0x00,
-    0x00, 0x46, 0x3B, 0x80, 0x00, 0x45, 0x3B, 0x80, 0x00, 0x46, 0x3B, 0x80, 0x00,
+s16 const daObjFlag_c::M_attr[26] = {
+    0x457A, 0x0000, 0x3F80, 0x0000, 0x3E99, 0x999A, 0x000F, 
+    0x07D0, 0x05DC, 0x0FA0, 0x0708, 0x0000, 0x0000,
+    0x03E8, 0x0190, 0x0000, 0x0000, 0x012C, 0x0101, 
+    0x0000, 0x463B, 0x8000, 0x453B, 0x8000, 0x463B, 0x8000,
 };
-COMPILER_STRIP_GATE(0x80BEC4EC, &daObjFlag_c::M_attr);
+
 
 /* 80BEC520-80BEC524 000034 0004+00 1/1 0/0 0/0 .rodata          @3637 */
 SECTION_RODATA static f32 const lit_3637 = 65535.0f;
@@ -191,8 +191,19 @@ void daObjFlag_c::calcJointAngle() {
             l_joint.joint3 = cStack_60;
         }
         else {
-            
+            l_joint.joint2 = l_joint.joint1;
+            cStack_60 = cStack_60 * M_attr[0x4];
+            l_joint.joint3 = cStack_60;
         }
+
+        if(M_attr[0x12] == NULL) {
+            l_joint.joint1.x = 0;
+        }
+        else {
+            calcAngleSwingX(&l_joint, power);
+        }
+
+        l_joint = mFlagJoints[i];
     }
 }
 
@@ -237,13 +248,48 @@ COMPILER_STRIP_GATE(0x80BEC550, &lit_3833);
 #pragma pop
 
 /* 80BEBE64-80BEBFC8 000764 0164+00 1/1 0/0 0/0 .text            getSwingY__11daObjFlag_cFf */
-void daObjFlag_c::getSwingY(f32 param_0) {
-    // NONMATCHING
+f32 daObjFlag_c::getSwingY(f32 param_0) {
+    f32 swing = param_0 * 6666.6665f;
+    if(swing > 4000.0f) {
+        swing = 4000.0f;
+    }
+    if(param_0 == 0) {
+        return swing;
+    }
+
+    float var3 = (float)(int)M_attr[10] * cM_ssin(field_0x5e2);
+    float var4 = (float)(int)M_attr[11] * cM_ssin(field_0x5e4);
+    float var5 = (float)(int)M_attr[12] * cM_ssin(field_0x5e6);
+
+    if(M_attr[14] == 0) {
+        var3 = 0.0;
+    }
+    if(M_attr[15] == 0) {
+        var4 = 0.0;
+    }
+    if(M_attr[16] == 0) {
+        var5 = 0.0;
+    }
+
+    field_0x5e2 += M_attr[14];
+    field_0x5e4 += M_attr[15];
+    field_0x5e6 += M_attr[16];
+    
+    return (int)(short)(int)(var5 + var4 + (swing + var3));
 }
 
 /* 80BEBFC8-80BEC0B8 0008C8 00F0+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
-static void nodeCallBack(J3DJoint* param_0, int param_1) {
-    // NONMATCHING
+static int nodeCallBack(J3DJoint* param_0, int param_1) {
+    J3DModel* pJVar1;
+    u32 uVar2;
+    csXyz local_18[2];
+
+    pJVar1 = j3dSys.getModel();
+    if(param_1 == 0) {
+        uVar2 = param_0->getJntNo() & 0xffff;
+    }
+
+    return 1;
 }
 
 /* ############################################################################################## */

@@ -27,6 +27,20 @@ public:
  *
  */
 class daObjFlag_c : public fopAc_ac_c {
+private:
+    /* 0x568 */ J3DModel* mpModel1;
+    /* 0x56c */ J3DModel* mpModel2;
+    /* 0x578 */ request_of_phase_process_class mPhase;
+    /* 0x570 */ u8 field_0x56c[0x580 - 0x578];
+    /* 0x580 */ FlagJoint_c mFlagJoints[4];
+    /* 0x5d0 */ cXyz mPos;
+    /* 0x5dc */ float field_0x5dc;
+    /* 0x5e0 */ s16 field_0x5e0;
+    /* 0x5e2 */ short field_0x5e2;
+    /* 0x5e4 */ short field_0x5e4;
+    /* 0x5e6 */ short field_0x5e6;
+    /* 0x5e8 */ short field_0x5e8;
+    /* 0x5ea */ u8 field_0x568[0x5ec - 0x5ea];
 public:
     /* 80BEB778 */ void create_init();
     /* 80BEB8F0 */ void initBaseMtx();
@@ -34,8 +48,9 @@ public:
     /* 80BEB9AC */ void calcJointAngle();
     /* 80BEBC58 */ void calcAngleSwingZ(FlagJoint_c*, f32);
     /* 80BEBDAC */ void calcAngleSwingX(FlagJoint_c*, f32);
-    /* 80BEBE64 */ void getSwingY(f32);
-    inline int create() {
+    /* 80BEBE64 */ f32 getSwingY(f32);
+
+    int create() {
         fopAcM_SetupActor(this, daObjFlag_c);
     
         int phase_state = dComIfG_resLoad(&mPhase, "create");
@@ -80,22 +95,7 @@ public:
     }
 
 
-    static u8 const M_attr[52];
-
-private:
-    /* 0x568 */ J3DModel* mpModel1;
-    /* 0x56c */ J3DModel* mpModel2;
-    /* 0x578 */ request_of_phase_process_class mPhase;
-    /* 0x570 */ u8 field_0x56c[0x580 - 0x578];
-    /* 0x580 */ FlagJoint_c mFlagJoints[4];
-    /* 0x5d0 */ cXyz mPos;
-    /* 0x5dc */ float field_0x5dc;
-    /* 0x5e0 */ s16 field_0x5e0;
-    /* 0x5e2 */ short field_0x5e2;
-    /* 0x5e4 */ short field_0x5e4;
-    /* 0x5e6 */ short field_0x5e6;
-    /* 0x5e8 */ short field_0x5e8;
-    /* 0x5ea */ u8 field_0x568[0x5ec - 0x5ea];
+    static s16 const M_attr[26];
 };
 
 STATIC_ASSERT(sizeof(daObjFlag_c) == 0x5ec);
