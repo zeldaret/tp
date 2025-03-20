@@ -1543,7 +1543,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_ladder"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv2Candle"),
     ActorRel(NonMatching, "d_a_obj_magne_arm"),
-    ActorRel(NonMatching, "d_a_obj_metalbox"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_metalbox"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_mgate"),
     ActorRel(NonMatching, "d_a_obj_nameplate"),
     ActorRel(NonMatching, "d_a_obj_ornament_cloth"),
