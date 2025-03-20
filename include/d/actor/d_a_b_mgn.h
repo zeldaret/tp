@@ -1,6 +1,8 @@
 #ifndef D_A_B_MGN_H
 #define D_A_B_MGN_H
 
+#include "d/d_bg_s_acch.h"
+#include "d/d_cc_d.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor_mng.h"
 
@@ -38,7 +40,7 @@ public:
     /* 80607A80 */ void setExitMode(int);
     /* 80607B50 */ void onBodyShield();
     /* 80607B80 */ void offBodyShield();
-    /* 80607BB0 */ void onBodySlideAt();
+    /* 80607BB0 */ void onBodySlideAt();    
     /* 80607BFC */ void offBodySlideAt();
     /* 80607C20 */ void checkHitSlideAt();
     /* 80607CB0 */ void onBodyFallAt();
@@ -58,7 +60,7 @@ public:
     /* 8060B430 */ void executeWarp();
     /* 8060B544 */ void executeFall();
     /* 8060BE6C */ void demo_skip(int);
-    /* 8060C034 */ void DemoSkipCallBack(void*, int);
+    /* 8060C034 */ BOOL DemoSkipCallBack(void*, int);
     /* 8060C068 */ void executeOpening();
     /* 8060D078 */ void executeDeath();
     /* 8060D880 */ void executeJump();
@@ -68,15 +70,46 @@ public:
     /* 8060E1D0 */ void cc_set();
     /* 8060E820 */ void execute();
     /* 8060EA38 */ void _delete();
-    /* 8060EAE0 */ void CreateHeap();
-    /* 8060F0D0 */ void create();
+    /* 8060EAE0 */ int CreateHeap();
+    /* 8060F0D0 */ int create();
 
     bool isDown() { return field_0xb01 != 0; }
 
 private:
-    /* 0x05AC */ u8 field_0x5ac[0xB01 - 0x5AC];
+    /* 0x05AC */ request_of_phase_process_class field_0x5ac;
+    /* 0x05B4 */ request_of_phase_process_class field_0x5b4;
+    /* 0x05BC */ mDoExt_McaMorfSO* field_0x5bc;
+    /* 0x05C0 */ u8 field_0x5c0[0x5cc - 0x5c0];
+    /* 0x05CC */ u8 field_0x5cc;
+    /* 0x05CD */ u8 field_0x5cd[0x9E0 - 0x5cd];
+    /* 0x09E0 */ Z2CreatureEnemy field_0x9e0;
+    /* 0x05AC */ u8 field_0xa84[0xAE8 - 0xA84];
+    /* 0x0AE8 */ int field_0xae8;
+    /* 0x0AEC */ u8 field_0xaec[0xaf4 - 0xaec];
+    /* 0x0AF4 */ int field_0xaf4;
+    /* 0x0AF8 */ u8 field_0xaf8;
+    /* 0x0AF9 */ u8 field_0xaf9;
+    /* 0x0AFA */ u8 field_0xafa;
+    /* 0x0AFB */ u8 field_0xafb;
+    /* 0x0AFC */ u8 field_0xafc[0xafe - 0xafc];
+    /* 0x0AFE */ u8 field_0xafe;
+    /* 0x0AFF */ u8 field_0xaff[0xB01 - 0xAFf];
     /* 0x0B01 */ u8 field_0xb01;
-    /* 0x0B02 */ u8 field_0xb02[0x26CC - 0xB02];
+    /* 0x0B02 */ u8 field_0xb02[0xB1C - 0xB02];
+    /* 0x0B1C */ dBgS_AcchCir field_0xb1c;
+    /* 0x0B5C */ dBgS_Acch field_0xb5c;
+    /* 0x0D34 */ dCcD_Stts field_0xd34;
+    /* 0x0D70 */ dCcD_Sph field_0xd70[15];
+    /* 0x1FB8 */ u32 field_0x1fb8;
+    /* 0x1FBC */ dCcD_Sph field_0x1fbc;
+    /* 0x20F4 */ dCcD_Sph field_0x20f4[2];
+    /* 0x2364 */ u8 field_0x2364[0x25dc - 0x2364];
+    /* 0x25DC */ Z2CreatureEnemy* field_0x25dc;
+    /* 0x25E0 */ u8 field_0x25e0[0x2618 - 0x25e0];
+    /* 0x2618 */ u32 field_0x2618;
+    /* 0x25E0 */ u8 field_0x261c[0x26c8 - 0x261c];
+    /* 0x26C8 */ u8 field_0x26c8;
+    /* 0x26C9 */ u8 field_0x26c9[0x26cC - 0x26c9];
 };
 
 STATIC_ASSERT(sizeof(daB_MGN_c) == 0x26cc);
