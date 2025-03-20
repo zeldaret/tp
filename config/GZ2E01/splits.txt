@@ -2067,7 +2067,7 @@ JSystem/JAudio2/osdsp.cpp:
 JSystem/JAudio2/osdsp_task.cpp:
 	.text       start:0x8029EB20 end:0x8029EFAC
 	.bss        start:0x80434060 end:0x80434078
-	.sbss       start:0x80451308 end:0x80451330
+	.sbss       start:0x80451308 end:0x80451310
 
 JSystem/JAudio2/JAIAudible.cpp:
 	.text       start:0x8029EFAC end:0x8029EFF4
@@ -2087,6 +2087,7 @@ JSystem/JAudio2/JAISeMgr.cpp:
 	.rodata     start:0x8039B8F8 end:0x8039B910
 	.data       start:0x803C98B0 end:0x803C98D8
 	.bss        start:0x80434078 end:0x80434098
+	.sbss       start:0x80451310 end:0x80451320
 	.sdata2     start:0x80455788 end:0x80455798
 
 JSystem/JAudio2/JAISeq.cpp:
@@ -2103,6 +2104,7 @@ JSystem/JAudio2/JAISeqMgr.cpp:
 	.text       start:0x802A1804 end:0x802A2184
 	.data       start:0x803C9958 end:0x803C9970
 	.bss        start:0x804340C0 end:0x804340E0
+	.sbss       start:0x80451320 end:0x80451328
 	.sdata2     start:0x804557A8 end:0x804557B8
 
 JSystem/JAudio2/JAISound.cpp:
@@ -2143,6 +2145,7 @@ JSystem/JAudio2/JAIStreamDataMgr.cpp:
 JSystem/JAudio2/JAIStreamMgr.cpp:
 	.text       start:0x802A3B68 end:0x802A4244
 	.bss        start:0x804340F0 end:0x80434110
+	.sbss       start:0x80451328 end:0x80451330
 	.sdata2     start:0x80455800 end:0x80455810
 
 JSystem/JAudio2/JAUAudioArcInterpreter.cpp:

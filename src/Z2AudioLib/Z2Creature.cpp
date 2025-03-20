@@ -200,7 +200,7 @@ Z2SoundHandlePool* Z2Creature::startCreatureSound(JAISoundID i_soundID, u32 para
  * startCreatureSoundLevel__10Z2CreatureF10JAISoundIDUlSc       */
 Z2SoundHandlePool* Z2Creature::startCreatureSoundLevel(JAISoundID i_soundID, u32 param_1, s8 param_2) {
     switch (i_soundID) {
-        case 0x600d6:
+        case Z2SE_FAIRY_S_LV:
             Z2GetAudioMgr()->seStartLevel(i_soundID, mpPos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
             return NULL;
         default:

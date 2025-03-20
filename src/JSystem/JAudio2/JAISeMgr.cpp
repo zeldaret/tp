@@ -337,3 +337,8 @@ int JAISeMgr::getNumActiveSe() const {
     }
     return sum;
 }
+
+u8 data_80451310[8];
+
+/* 80451318-80451320 000818 0008+00 0/0 7/7 0/0 .sbss            None */
+u8 data_80451318[8];
