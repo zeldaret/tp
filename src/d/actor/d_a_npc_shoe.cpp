@@ -605,8 +605,18 @@ void daNpcShoe_c::reset() {
 
 /* 80AE895C-80AE8A04 0010FC 00A8+00 1/1 0/0 0/0 .text
  * setAction__11daNpcShoe_cFM11daNpcShoe_cFPCvPvPv_b            */
-void daNpcShoe_c::setAction(bool (daNpcShoe_c::*param_0)(void*)) {
-    // NONMATCHING
+int daNpcShoe_c::setAction(bool (daNpcShoe_c::*action)(void*)) {
+    mMode = 3;
+    if (field_0xddc != NULL) {
+        (this->*field_0xddc)(NULL);
+    }
+
+    mMode = 0;
+    field_0xddc = action;
+    if (field_0xddc != NULL) {
+        (this->*field_0xddc)(NULL);
+    }
+    return 1;
 }
 
 /* ############################################################################################## */
@@ -837,7 +847,7 @@ void daNpcShoe_c::setParam() {
 }
 
 /* 80AE93A0-80AE9624 001B40 0284+00 1/0 0/0 0/0 .text            main__11daNpcShoe_cFv */
-void daNpcShoe_c::main() {
+BOOL daNpcShoe_c::main() {
     // NONMATCHING
 }
 
@@ -894,8 +904,8 @@ bool daNpcShoe_c::setMotionAnm(int param_0, f32 param_1) {
 }
 
 /* 80AE9AD0-80AE9AD8 002270 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__11daNpcShoe_cFv */
-bool daNpcShoe_c::drawDbgInfo() {
-    return false;
+BOOL daNpcShoe_c::drawDbgInfo() {
+    return FALSE;
 }
 
 /* 80AE9AD8-80AE9B20 002278 0048+00 5/4 0/0 0/0 .text            __dt__18daNpcF_ActorMngr_cFv */
