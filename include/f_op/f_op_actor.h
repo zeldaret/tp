@@ -123,12 +123,12 @@ public:
     void setEventName(char*);
     char* getEventName();
     void beforeProc();
-    void onCondition(u16);
     void offCondition(u16);
     BOOL checkCommandCatch();
     BOOL checkCommandDoor();
     BOOL checkCommandDemoAccrpt() { return mCommand == dEvtCmd_INDEMO_e; }
 
+    void onCondition(u16 condition) { mCondition |= condition; }
     void setCommand(u16 command) { mCommand = command; }
     void setMapToolId(u8 id) { mMapToolId = id; }
     void setEventId(s16 id) { mEventId = id; }
