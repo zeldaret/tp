@@ -42,6 +42,7 @@ private:
     /* 0x5e6 */ short field_0x5e6;
     /* 0x5e8 */ short field_0x5e8;
     /* 0x5ea */ u8 field_0x568[0x5ec - 0x5ea];
+
 public:
     /* 80BEB778 */ void create_init();
     /* 80BEB8F0 */ void initBaseMtx();
@@ -65,15 +66,13 @@ public:
         }
 
         phase_state = dComIfG_resLoad(&mPhase2, daSetBgObj_c::getArcName(this));
-        if(phase_state != cPhs_COMPLEATE_e) {
-            return phase_state;
+        if(phase_state == cPhs_COMPLEATE_e) {
+            if(!fopAcM_entrySolidHeap(this, createSolidHeap, 0x4000)) {
+                return cPhs_ERROR_e;
+            }
+    
+            create_init();
         }
-
-        if(!fopAcM_entrySolidHeap(this, createSolidHeap, 0x4000)) {
-            return cPhs_ERROR_e;
-        }
-
-        create_init();
 
         return phase_state;
     }
@@ -104,27 +103,23 @@ public:
     }
 
     int createHeap() {
-        char acstack[16];
-
         int bvar2 = 0;
-        if(shape_angle.x < '\0' || shape_angle.x > 'c') {
+        char x_angle = shape_angle.x;
+        if(x_angle < '\0' || x_angle > 'c') {
             bvar2 = 0;
         }
         else {
             bvar2 = 1;
+        
+            char resName[24];
+            sprintf(resName, "flag%02d.bmd");
+
             shape_angle.setall(0);
             current.angle.setall(0);
 
-            // J3DModelData* pjvar5 = (J3DModelData*) dRes_control_c::getRes("FlagObj", acstack, g_dComIfG_gameInfo, 0x80); 
-
-            // if(dComIfG_getObjectRes(daSetBgObj_c::getArcName(this), "FlagObj") == 0) {
-                // Debug stuff
-            // }
-        
-            J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(daSetBgObj_c::getArcName(this), "FlagObj");
+            J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("FlagObj", resName);
             mpModel1 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
-            
-            mPhase.mpHandlerTable = (request_of_phase_process_fn*) mpModel1;
+
             for(int i = 0; i < 5; i += 1) {
                 J3DJoint* nodePtr = mpModel1->getModelData()->getJointNodePointer(i);
                 if(nodePtr != NULL) {
@@ -134,6 +129,11 @@ public:
             }
         }
 
+        mpModel2 = mDoExt_J3DModel__create((J3DModelData *)dComIfG_getObjectRes(daSetBgObj_c::getArcName(this), "model0.bmd"), 0x80000, 0x11000084);
+        if(mpModel2 == NULL && bvar2 && mpModel1 == NULL) {
+            return 0;
+        }
+        
         return 1;
     }
 
@@ -143,7 +143,8 @@ public:
         /* 0x08 */ float field_0x08;
         /* 0x0c */ short field_0x0c;
         /* 0x0e */ short field_0x0e;
-        /* 0x10 */ float undefined;
+        /* 0x10 */ short undefined;
+        /* 0x12 */ short undefined_2;
         /* 0x14 */ short field_0x14;
         /* 0x16 */ short field_0x16;
         /* 0x18 */ short field_0x18;
@@ -161,6 +162,8 @@ public:
     };
 
     static M_attrs const M_attr;
+
+    static M_attrs const& attr() { return M_attr; }
 };
 
 STATIC_ASSERT(sizeof(daObjFlag_c) == 0x5ec);
