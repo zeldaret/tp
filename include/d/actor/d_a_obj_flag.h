@@ -103,13 +103,13 @@ public:
     }
 
     int createHeap() {
-        int bvar2 = 0;
-        char x_angle = shape_angle.x;
-        if(x_angle < '\0' || x_angle > 'c') {
-            bvar2 = 0;
+        bool tmp = 0;
+        char xAngle = shape_angle.GetX();
+        if(xAngle <= -1 || xAngle > 'c') {
+            tmp = false;
         }
         else {
-            bvar2 = 1;
+            tmp = true;
         
             char resName[24];
             sprintf(resName, "flag%02d.bmd");
@@ -121,16 +121,16 @@ public:
             mpModel1 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
 
             for(int i = 0; i < 5; i += 1) {
-                J3DJoint* nodePtr = mpModel1->getModelData()->getJointNodePointer(i);
+                J3DJoint* nodePtr = (J3DJoint*)((u64)mpModel1->getModelData()->getJointNodePointer(i));
                 if(nodePtr != NULL) {
                     nodePtr->setCallBack(nodeCallBack);
-                    mpModel1->setUserArea((u32)this);
+                    mpModel1->setUserArea((u64)this);
                 }
             }
         }
 
         mpModel2 = mDoExt_J3DModel__create((J3DModelData *)dComIfG_getObjectRes(daSetBgObj_c::getArcName(this), "model0.bmd"), 0x80000, 0x11000084);
-        if(mpModel2 == NULL && bvar2 && mpModel1 == NULL) {
+        if(mpModel2 == NULL && tmp && mpModel1 == NULL) {
             return 0;
         }
         

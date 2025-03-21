@@ -17,11 +17,11 @@ daObjFlag_c::M_attrs const daObjFlag_c::M_attr = {
     12000.0f, 3000.0f, 12000.0f
 };
 
-/* 80BEC524-80BEC52C 000038 0008+00 1/1 0/0 0/0 .rodata          @3639 */
-SECTION_RODATA static u8 const lit_3639[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80BEC524, &lit_3639);
+// /* 80BEC524-80BEC52C 000038 0008+00 1/1 0/0 0/0 .rodata          @3639 */
+// SECTION_RODATA static u8 const lit_3639[8] = {
+//     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+// };
+// COMPILER_STRIP_GATE(0x80BEC524, &lit_3639);
 
 
 /* 80BEB778-80BEB8F0 000078 0178+00 1/1 0/0 0/0 .text            create_init__11daObjFlag_cFv */
@@ -60,30 +60,29 @@ void daObjFlag_c::getJointAngle(csXyz* i_angle, int i_index) {
     *i_angle = *joint;
 }
 
-/* ############################################################################################## */
-/* 80BEC52C-80BEC530 000040 0004+00 0/3 0/0 0/0 .rodata          @3759 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3759[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80BEC52C, &lit_3759);
-#pragma pop
+// /* ############################################################################################## */
+// /* 80BEC52C-80BEC530 000040 0004+00 0/3 0/0 0/0 .rodata          @3759 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static u8 const lit_3759[4] = {
+//     0x00,
+//     0x00,
+//     0x00,
+//     0x00,
+// };
+// COMPILER_STRIP_GATE(0x80BEC52C, &lit_3759);
+// #pragma pop
 
-/* 80BEC53C-80BEC544 000050 0008+00 1/4 0/0 0/0 .rodata          @3764 */
-SECTION_RODATA static u8 const lit_3764[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80BEC53C, &lit_3764);
+// /* 80BEC53C-80BEC544 000050 0008+00 1/4 0/0 0/0 .rodata          @3764 */
+// SECTION_RODATA static u8 const lit_3764[8] = {
+//     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
+// };
+// COMPILER_STRIP_GATE(0x80BEC53C, &lit_3764);
 
 /* 80BEB9AC-80BEBC58 0002AC 02AC+00 1/1 0/0 0/0 .text            calcJointAngle__11daObjFlag_cFv */
 void daObjFlag_c::calcJointAngle() {
     cXyz direction;
     float power;
-    csXyz cStack_60;
 
     dKyw_get_AllWind_vec(&mPos, &direction, &power);
     if(power > 0.0f) {
@@ -92,25 +91,25 @@ void daObjFlag_c::calcJointAngle() {
 
     cLib_addCalcAngleS(&field_0x5e0, cM_atan2s(direction.x, direction.y), 4, 0x7fff, 0);
     for(int i = 0; i < 4; i++) {
+        FlagJoint_c* joint = &mFlagJoints[i];
         if(power != 0.0f && i != 0) {
             calcAngleSwingZ(&mFlagJoints[i], power);
         }
         if(i == 0) {
-            mFlagJoints[i].joint2 = mFlagJoints[i].joint1;
-            mFlagJoints[i].joint1.y = field_0x5e0 + (getSwingY(power), cM_ssin(mFlagJoints[i].rv));
-            mFlagJoints[i].rv += power * attr().field_0x28;
-            cStack_60  = cStack_60 - mFlagJoints[i].joint2;
-            mFlagJoints[i].joint3 = cStack_60;
+            joint->joint2 = joint->joint1;
+            joint->joint1.y = (field_0x5e0 + getSwingY(power) * cM_ssin(mFlagJoints[i].rv));
+            joint->rv += (short)(int)(power * attr().field_0x28);
+            joint->joint3 = csXyz() - joint->joint2;
         }
         else {
-            mFlagJoints[i].joint2 = mFlagJoints[i].joint1;
-            mFlagJoints[i].joint3 = mFlagJoints[i-1].joint3 * 1;
+            joint->joint2 = joint->joint1;
+            joint->joint3 = mFlagJoints[i-1].joint3 * 1.0f;
             cLib_addCalcAngleS(&mFlagJoints[i].joint1.y, 0, attr().field_0x0c, 0x7fff, 0);
-            mFlagJoints[i].joint3 = mFlagJoints[i].joint1 - mFlagJoints[i].joint2;
+            joint->joint3 = joint->joint1 - joint->joint2;
         }
 
-        if(attr().field_0x25 == NULL) {
-            mFlagJoints[i].joint1.x = 0;
+        if(attr().field_0x25 == '\0') {
+            joint->joint1.x = 0;
         }
         else if(i == 1) {
             calcAngleSwingX(&mFlagJoints[i], power);
@@ -178,7 +177,7 @@ f32 daObjFlag_c::getSwingY(f32 param_0) {
         var5 = 0.0;
     }
 
-    field_0x5e2 += attr().field_0x1c;
+    field_0x5e2 = field_0x5e2 + attr().field_0x1c;
     field_0x5e4 += attr().field_0x1e;
     field_0x5e6 += attr().field_0x20;
     
