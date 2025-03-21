@@ -182,14 +182,31 @@ f32 daObjFlag_c::getSwingY(f32 param_0) {
 }
 
 /* 80BEBFC8-80BEC0B8 0008C8 00F0+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
-static int nodeCallBack(J3DJoint* param_0, int param_1) {
-    J3DModel* pJVar1;
-    u32 uVar2;
-    csXyz local_18[2];
+static int nodeCallBack(J3DJoint* joint, int param_1) {
+    switch(param_1) {
+        default:
+            return 1;
+        case 0:
+            csXyz rotation;
+            u32 jointNo = joint->getJntNo();
+            J3DModel* model = j3dSys.getModel();
 
-    pJVar1 = j3dSys.getModel();
-    if(param_1 == 0) {
-        uVar2 = param_0->getJntNo() & 0xffff;
+            ((daObjFlag_c*)model->getUserArea())->getJointAngle(&rotation, jointNo);
+            mDoMtx_stack_c::copy(model->getAnmMtx(jointNo));
+
+            if(rotation.x != 0) {
+                mDoMtx_stack_c::XrotM(rotation.x);
+            }
+            if(rotation.z != 0) {
+                mDoMtx_stack_c::ZrotM(rotation.z);
+            }
+            if(rotation.y != 0) {
+                mDoMtx_stack_c::YrotM(rotation.y);
+            }
+
+            MtxP now = mDoMtx_stack_c::get();
+            cMtx_copy(now, model->getAnmMtx(jointNo));
+            cMtx_copy(now, j3dSys.mCurrentMtx);
     }
 
     return 1;

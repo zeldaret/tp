@@ -6,6 +6,7 @@
 #include "d/actor/d_a_set_bgobj.h"
 
 static int createSolidHeap(fopAc_ac_c*);
+static int nodeCallBack(J3DJoint*, int);
 
 class FlagJoint_c {
 public:
@@ -103,6 +104,8 @@ public:
     }
 
     int createHeap() {
+        char acstack[16];
+
         int bvar2 = 0;
         if(shape_angle.x < '\0' || shape_angle.x > 'c') {
             bvar2 = 0;
@@ -112,12 +115,23 @@ public:
             shape_angle.setall(0);
             current.angle.setall(0);
 
+            // J3DModelData* pjvar5 = (J3DModelData*) dRes_control_c::getRes("FlagObj", acstack, g_dComIfG_gameInfo, 0x80); 
+
             // if(dComIfG_getObjectRes(daSetBgObj_c::getArcName(this), "FlagObj") == 0) {
                 // Debug stuff
             // }
         
             J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(daSetBgObj_c::getArcName(this), "FlagObj");
             mpModel1 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+            
+            mPhase.mpHandlerTable = (request_of_phase_process_fn*) mpModel1;
+            for(int i = 0; i < 5; i += 1) {
+                J3DJoint* nodePtr = mpModel1->getModelData()->getJointNodePointer(i);
+                if(nodePtr != NULL) {
+                    nodePtr->setCallBack(nodeCallBack);
+                    mpModel1->setUserArea((u32)this);
+                }
+            }
         }
 
         return 1;
