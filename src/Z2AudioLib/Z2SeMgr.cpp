@@ -6,49 +6,14 @@
 #include "Z2AudioLib/Z2SeMgr.h"
 #include "Z2AudioLib/Z2Audience.h"
 #include "Z2AudioLib/Z2Calc.h"
+#include "Z2AudioLib/Z2LinkMgr.h"
 #include "Z2AudioLib/Z2SoundMgr.h"
 #include "Z2AudioLib/Z2SceneMgr.h"
 #include "Z2AudioLib/Z2SpeechMgr2.h"
 #include "Z2AudioLib/Z2StatusMgr.h"
 #include "Z2AudioLib/Z2Param.h"
 #include "Z2AudioLib/Z2SeqMgr.h"
-#include "dol2asm.h"
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__7Z2SeMgrFv();
-extern "C" void __ct__12Z2MultiSeObjFv();
-extern "C" void initSe__7Z2SeMgrFv();
-extern "C" void resetModY__7Z2SeMgrFv();
-extern "C" void modHeightAtCamera__7Z2SeMgrFPPC3Vec();
-extern "C" void incrCrowdSize__7Z2SeMgrFv();
-extern "C" void decrCrowdSize__7Z2SeMgrFv();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void seStop__7Z2SeMgrF10JAISoundIDUl();
-extern "C" void seStopAll__7Z2SeMgrFUl();
-extern "C" void seMoveVolumeAll__7Z2SeMgrFfUl();
-extern "C" void messageSePlay__7Z2SeMgrFUsP3VecSc();
-extern "C" void talkInSe__7Z2SeMgrFv();
-extern "C" void talkOutSe__7Z2SeMgrFv();
-extern "C" void menuInSe__7Z2SeMgrFv();
-extern "C" void setLevObjSE__7Z2SeMgrFUlP3VecSc();
-extern "C" void setMultiTriggerSE__7Z2SeMgrFUlP3VecSc();
-extern "C" void processSeFramework__7Z2SeMgrFv();
-extern "C" void isLevelSe__7Z2SeMgrF10JAISoundID();
-extern "C" void isSoundCulling__7Z2SeMgrF10JAISoundID();
-extern "C" void __ct__12Z2MultiSeMgrFv();
-extern "C" void __dt__12Z2MultiSeMgrFv();
-extern "C" void registMultiSePos__12Z2MultiSeMgrFP3Vec();
-extern "C" void resetMultiSePos__12Z2MultiSeMgrFv();
-extern "C" void getPanPower__12Z2MultiSeMgrFv();
-extern "C" void getDolbyPower__12Z2MultiSeMgrFv();
-
-//
-// Declarations:
-//
+#include "JSystem/J3DU/J3DUD.h"
 
 /* 802AB64C-802AB710 2A5F8C 00C4+00 0/0 1/1 0/0 .text            __ct__7Z2SeMgrFv */
 Z2SeMgr::Z2SeMgr() : JASGlobalInstance(this), mSoundHandles(mSoundHandle, 0x18) {
@@ -145,12 +110,12 @@ void Z2SeMgr::decrCrowdSize() {
 
 /* 802AB984-802AC50C 2A62C4 0B88+00 1/1 196/196 549/549 .text
  * seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc               */
-// NONMATCHING something is wrong with the switch, also isMovieDemo needs to not get inlined
 bool Z2SeMgr::seStart(JAISoundID i_soundID, Vec const* i_pos, u32 param_2, s8 i_reverb,
                       f32 i_pitch, f32 i_volume, f32 i_pan, f32 i_dolby, u8 param_8) {
     if (i_soundID == 0xffffffff) {
         return false;
     }
+
     if (param_8 != 1) {
         switch (i_soundID) {
         case Z2SE_OBJ_L8_STAIR_ON:
@@ -165,6 +130,7 @@ bool Z2SeMgr::seStart(JAISoundID i_soundID, Vec const* i_pos, u32 param_2, s8 i_
             return false;
         }
     }
+
     switch (i_soundID) {
     case Z2SE_QUIT_GAME:
         Z2GetStatusMgr()->menuOut();
@@ -177,7 +143,7 @@ bool Z2SeMgr::seStart(JAISoundID i_soundID, Vec const* i_pos, u32 param_2, s8 i_
         seStop(JA_SE_OBJ_STN_DOOR_MOVE_D, 0);
         break;
     case JA_SE_OBJ_STN_DOOR_STOP_D:
-        seStop(JA_SE_OBJ_STN_DOOR_STOP_D, 0);
+        seStop(JA_SE_OBJ_STN_DOOR_MOVE_U, 0);
         seStop(JA_SE_OBJ_STN_DOOR_MOVE_D, 0);
         break;
     case JA_SE_OBJ_STN_DOOR_MOVE_D:
@@ -185,6 +151,7 @@ bool Z2SeMgr::seStart(JAISoundID i_soundID, Vec const* i_pos, u32 param_2, s8 i_
         seStop(JA_SE_OBJ_STN_DOOR_MOVE_U, 0);
         seStop(JA_SE_OBJ_STN_DOOR_MOVE_D, 0);
         break;
+    case Z2SE_OBJ_WOOD_DOOR_ROLLOPEN:
     case Z2SE_OBJ_WOOD_DOOR_ROLLOPEN2:
     case Z2SE_OBJ_WOOD_DR_OP_MDN:
     case Z2SE_OBJ_WOOD_DR_OP_MDN_FX:
@@ -193,11 +160,10 @@ bool Z2SeMgr::seStart(JAISoundID i_soundID, Vec const* i_pos, u32 param_2, s8 i_
         seStop(Z2SE_OBJ_WOOD_DOOR_ROLLCLOSE, 0);
         break;
     case Z2SE_OBJ_WOOD_DOOR_CLOSE_STOP:
-        seStop(Z2SE_OBJ_WOOD_DOOR_CLOSE_STOP, 0);
+        seStop(Z2SE_OBJ_WOOD_DOOR_ROLLOPEN, 0);
         seStop(Z2SE_OBJ_WOOD_DOOR_ROLLOPEN2, 0);
         seStop(Z2SE_OBJ_WOOD_DOOR_ROLLCLOSE, 0);
         break;
-    case Z2SE_OBJ_WOOD_DOOR_ROLLOPEN:
     case Z2SE_OBJ_WOOD_DOOR_ROLLCLOSE:
     case Z2SE_OBJ_WOOD_DOOR_OPEN_STOP:
         seStop(Z2SE_OBJ_WOOD_DOOR_ROLLOPEN, 0);
@@ -314,12 +280,13 @@ bool Z2SeMgr::seStart(JAISoundID i_soundID, Vec const* i_pos, u32 param_2, s8 i_
         i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 41.0f, 0.4f, 0.3f, 1.0f,
                                          Z2Calc::CURVE_SIGN_2);
         break;
-    case Z2SE_OBJ_L8_B_FOG_FLY:
+    case Z2SE_OBJ_L8_B_FOG_FLY: {
         Vec tmp = Z2GetAudience()->getAudioCamPos(0);
         if (i_pos->y > tmp.y) {
             return false;
         }
         break;
+    }
     case Z2SE_OBJ_BLN_BREAK_S:
     case Z2SE_OBJ_BLN_BREAK_M:
     case Z2SE_OBJ_BLN_BREAK_L:
@@ -354,157 +321,387 @@ bool Z2SeMgr::seStart(JAISoundID i_soundID, Vec const* i_pos, u32 param_2, s8 i_
             i_soundID = Z2SE_OBJ_DARK_GATE_RIPPLE_WLF;
         }
         break;
+    case Z2SE_OBJ_ARMOR_SWING:
+    case Z2SE_OBJ_ARMOR_HIT:
+        break;
     }
+
     if (isLevelSe(i_soundID)) {
         return seStartLevel(i_soundID, i_pos, param_2, i_reverb, i_pitch,
                             i_volume, i_pan, i_dolby, param_8);
     }
+
     if (isSoundCulling(i_soundID)) {
         return false;
     }
+
     JAISoundHandle* handle = mSoundHandles.getFreeHandle();
     if (handle == NULL) {
         return false;
     }
+
     return Z2GetSoundStarter()->startSound(i_soundID, handle, (JGeometry::TVec3<f32>*)i_pos,
                                            param_2, i_reverb / 127.0f,
                                            i_pitch, i_volume, i_pan, i_dolby, 0);
 }
 
-/* ############################################################################################## */
-/* 803C9D98-803C9DF8 -00001 0060+00 1/1 0/0 0/0 .data            @4619 */
-SECTION_DATA static void* lit_4619[24] = {
-    (void*)(((char*)seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc) + 0xF78),
-    (void*)(((char*)seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc) + 0xF78),
-    (void*)(((char*)seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc) + 0xF78),
-    (void*)(((char*)seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc) + 0xF78),
-    (void*)(((char*)seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc) + 0xF84),
-    (void*)(((char*)seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc) + 0xF90),
-    (void*)(((char*)seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc) + 0xF9C),
-    (void*)(((char*)seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc) + 0xFA8),
-    (void*)(((char*)seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc) + 0xFB4),
-    (void*)(((char*)seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc) + 0xFC0),
-    (void*)(((char*)seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc) + 0xFCC),
-    (void*)(((char*)seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc) + 0xFD8),
-    (void*)(((char*)seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc) + 0x1028),
-    (void*)(((char*)seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc) + 0x1028),
-    (void*)(((char*)seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc) + 0x1028),
-    (void*)(((char*)seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc) + 0x1028),
-    (void*)(((char*)seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc) + 0x1028),
-    (void*)(((char*)seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc) + 0x1028),
-    (void*)(((char*)seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc) + 0xFE4),
-    (void*)(((char*)seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc) + 0xFF0),
-    (void*)(((char*)seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc) + 0xFFC),
-    (void*)(((char*)seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc) + 0x1008),
-    (void*)(((char*)seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc) + 0x1014),
-    (void*)(((char*)seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc) + 0x1020),
-};
-
-/* 804558E8-804558EC 003EE8 0004+00 1/1 0/0 0/0 .sdata2          @4586 */
-SECTION_SDATA2 static f32 lit_4586 = 25.0f;
-
-/* 804558EC-804558F0 003EEC 0004+00 1/1 0/0 0/0 .sdata2          @4587 */
-SECTION_SDATA2 static f32 lit_4587 = 1.0f / 10.0f;
-
-/* 804558F0-804558F4 003EF0 0004+00 1/1 0/0 0/0 .sdata2          @4588 */
-SECTION_SDATA2 static f32 lit_4588 = 10.0f;
-
-/* 804558F4-804558F8 003EF4 0004+00 1/1 0/0 0/0 .sdata2          @4589 */
-SECTION_SDATA2 static f32 lit_4589 = 2.0f;
-
-/* 804558F8-80455900 003EF8 0004+04 2/2 0/0 0/0 .sdata2          @4590 */
-SECTION_SDATA2 static f32 lit_4590[1 + 1 /* padding */] = {
-    13.0f / 10.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 80455900-80455908 003F00 0008+00 1/1 0/0 0/0 .sdata2          @4591 */
-SECTION_SDATA2 static f64 lit_4591 = 0.7;
-
-/* 80455908-80455910 003F08 0008+00 1/1 0/0 0/0 .sdata2          @4592 */
-SECTION_SDATA2 static f64 lit_4592 = 0.0006;
-
-/* 80455910-80455918 003F10 0008+00 1/1 0/0 0/0 .sdata2          @4593 */
-SECTION_SDATA2 static f64 lit_4593 = 1.0;
-
-/* 80455918-80455920 003F18 0008+00 1/1 0/0 0/0 .sdata2          @4594 */
-SECTION_SDATA2 static f64 lit_4594 = 0.0015;
-
-/* 80455920-80455928 003F20 0008+00 1/1 0/0 0/0 .sdata2          @4595 */
-SECTION_SDATA2 static f64 lit_4595 = 0.005;
-
-/* 80455928-80455930 003F28 0008+00 1/1 0/0 0/0 .sdata2          @4596 */
-SECTION_SDATA2 static f64 lit_4596 = 0.3;
-
-/* 80455930-80455938 003F30 0008+00 1/1 0/0 0/0 .sdata2          @4597 */
-SECTION_SDATA2 static f64 lit_4597 = 0.001;
-
-/* 80455938-8045593C 003F38 0004+00 1/1 0/0 0/0 .sdata2          @4598 */
-SECTION_SDATA2 static f32 lit_4598 = 4000.0f;
-
-/* 8045593C-80455940 003F3C 0004+00 1/1 0/0 0/0 .sdata2          @4599 */
-SECTION_SDATA2 static f32 lit_4599 = 3500.0f;
-
-/* 80455940-80455944 003F40 0004+00 1/1 0/0 0/0 .sdata2          @4600 */
-SECTION_SDATA2 static f32 lit_4600 = 26.0f;
-
-/* 80455944-80455948 003F44 0004+00 1/1 0/0 0/0 .sdata2          @4601 */
-SECTION_SDATA2 static f32 lit_4601 = 3.0f / 5.0f;
-
-/* 80455948-8045594C 003F48 0004+00 1/1 0/0 0/0 .sdata2          @4602 */
-SECTION_SDATA2 static f32 lit_4602 = 64.0f;
-
-/* 8045594C-80455950 003F4C 0004+00 1/1 0/0 0/0 .sdata2          @4603 */
-SECTION_SDATA2 static f32 lit_4603 = 4500.0f;
-
-/* 80455950-80455954 003F50 0004+00 1/1 0/0 0/0 .sdata2          @4604 */
-SECTION_SDATA2 static f32 lit_4604 = 40.0f;
-
-/* 80455954-80455958 003F54 0004+00 1/1 0/0 0/0 .sdata2          @4605 */
-SECTION_SDATA2 static f32 lit_4605 = 120.0f;
-
-/* 80455958-80455960 003F58 0004+04 1/1 0/0 0/0 .sdata2          @4606 */
-SECTION_SDATA2 static f32 lit_4606[1 + 1 /* padding */] = {
-    5.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 80455960-80455968 003F60 0008+00 1/1 0/0 0/0 .sdata2          @4607 */
-SECTION_SDATA2 static f64 lit_4607 = 0.5;
-
-/* 80455968-80455970 003F68 0008+00 1/1 0/0 0/0 .sdata2          @4608 */
-SECTION_SDATA2 static f64 lit_4608 = 3.0;
-
-/* 80455970-80455978 003F70 0008+00 1/1 0/0 0/0 .sdata2          @4609 */
-SECTION_SDATA2 static u8 lit_4609[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80455978-8045597C 003F78 0004+00 1/1 0/0 0/0 .sdata2          @4610 */
-SECTION_SDATA2 static f32 lit_4610 = 2000.0f;
-
-/* 8045597C-80455980 003F7C 0004+00 1/1 0/0 0/0 .sdata2          @4611 */
-SECTION_SDATA2 static f32 lit_4611 = 5000.0f;
-
-/* 80455980-80455984 003F80 0004+00 1/1 0/0 0/0 .sdata2          @4612 */
-SECTION_SDATA2 static f32 lit_4612 = 9.0f / 20.0f;
-
-/* 80455984-80455988 003F84 0004+00 1/1 0/0 0/0 .sdata2          @4613 */
-SECTION_SDATA2 static f32 lit_4613 = 50.0f;
-
-/* 80455988-8045598C 003F88 0004+00 1/1 0/0 0/0 .sdata2          @4614 */
-SECTION_SDATA2 static f32 lit_4614 = 600.0f;
-
-/* 8045598C-80455990 003F8C 0004+00 1/1 0/0 0/0 .sdata2          @4615 */
-SECTION_SDATA2 static f32 lit_4615 = 90.0f;
-
 /* 802AC50C-802AD8B0 2A6E4C 13A4+00 3/2 19/19 199/199 .text
  * seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc          */
-bool Z2SeMgr::seStartLevel(JAISoundID param_0, Vec const* param_1, u32 param_2, s8 param_3,
-                               f32 param_4, f32 param_5, f32 param_6, f32 param_7, u8 param_8) {
-    // NONMATCHING
+bool Z2SeMgr::seStartLevel(JAISoundID i_soundID, Vec const* i_pos, u32 param_2, s8 i_reverb,
+                           f32 i_pitch, f32 i_volume, f32 i_pan, f32 i_dolby, u8 param_8) {
+    if (param_8 != 1) {
+        switch (i_soundID) {
+        case Z2SE_OBJ_FIRE_BURNING:
+            if (Z2GetStatusMgr()->getDemoStatus() == 2 || !Z2GetSceneMgr()->isInGame()) {
+                return false;
+            }
+            // fallthrough
+        case Z2SE_FAIRY_S_LV:
+        case Z2SE_EN_ZZ_MV:
+        case Z2SE_OBJ_L8_L_BALL_SW:
+        case Z2SE_OBJ_GANON_BARRIER:
+        case Z2SE_OBJ_CRVN_BURNING:
+            setLevObjSE(i_soundID, const_cast<Vec*>(i_pos), i_reverb);
+            return false;
+        }
+    }
+
+    switch (i_soundID) {
+    case Z2SE_OBJ_FLAG_TRAILING:
+        i_volume = Z2Calc::getParamByExp(param_2, 25.0f, 127.0f, 0.4f, 0.1f, 1.0f,
+                                       Z2Calc::CURVE_SIGN_0);
+        i_pitch = Z2Calc::getParamByExp(param_2, 25.0f, 127.0f, 0.4f, 0.7f, 1.2f,
+                                      Z2Calc::CURVE_SIGN_0);
+        break;
+    case Z2SE_OBJ_BRIDGE_TRAILING:
+    case Z2SE_OBJ_BROKENBRIDGE:
+        i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 127.0f, 0.4f, 0.1f, 1.0f,
+                                       Z2Calc::CURVE_SIGN_0);
+        i_pitch = Z2Calc::getParamByExp(param_2, 0.0f, 127.0f, 0.4f, 0.7f, 1.2f,
+                                      Z2Calc::CURVE_SIGN_0);
+        break;
+    case Z2SE_OBJ_BOOMSHTR_SWITCH:
+        if (param_2 < 10) {
+            param_2 = 10;
+        }
+        i_volume = Z2Calc::getParamByExp(param_2, 10.0f, 127.0f, 2.0f, 0.0f, 1.0f,
+                                       Z2Calc::CURVE_SIGN_1);
+        i_pitch = Z2Calc::getParamByExp(param_2, 10.0f, 127.0f, 2.0f, 0.7f, 1.2f,
+                                      Z2Calc::CURVE_SIGN_1);
+        break;
+    case Z2SE_OBJ_FAN_WIND_S:
+        modHeightAtCamera(&i_pos);
+        break;
+    case Z2SE_OBJ_FAN_ROLL_S:
+    case Z2SE_OBJ_FAN_ROLL_M:
+    case Z2SE_OBJ_FAN_ROLL_L:
+        if (param_2 < 10) {
+            param_2 = 10;
+        }
+        i_volume = Z2Calc::getParamByExp(param_2, 10.0f, 127.0f, 2.0f, 0.0f, 1.0f,
+                                       Z2Calc::CURVE_SIGN_1);
+        i_pitch = Z2Calc::getParamByExp(param_2, 10.0f, 127.0f, 2.0f, 0.7f, 1.2f,
+                                      Z2Calc::CURVE_SIGN_1);
+        break;
+    case Z2SE_OBJ_AMI_ROLL:
+        if (param_2 < 10) {
+            param_2 = 10;
+        }
+        i_volume = Z2Calc::getParamByExp(param_2, 10.0f, 127.0f, 2.0f, 0.0f, 1.0f,
+                                       Z2Calc::CURVE_SIGN_1);
+        i_pitch = Z2Calc::getParamByExp(param_2, 10.0f, 127.0f, 2.0f, 0.7f, 1.2f,
+                                      Z2Calc::CURVE_SIGN_1);
+        break;
+    case Z2SE_OBJ_BRDG_MOVE:
+        i_pitch = Z2Calc::getParamByExp(param_2, 0.0f, 127.0f, 2.0f, 0.7f, 1.2f,
+                                      Z2Calc::CURVE_SIGN_1);
+        break;
+    case Z2SE_ENV_WIND_SARUDAN:
+        i_volume = Z2Calc::getParamByExp(param_2, 25.0f, 127.0f, 0.4f, 0.4f, 1.0f,
+                                       Z2Calc::CURVE_SIGN_0);
+        i_pitch = Z2Calc::getParamByExp(param_2, 25.0f, 127.0f, 0.4f, 0.8f, 1.0f,
+                                      Z2Calc::CURVE_SIGN_0);
+        break;
+    case Z2SE_OBJ_CHANDLV9_SWING:
+        if (param_2 < 10) {
+            param_2 = 10;
+        }
+        i_volume = Z2Calc::getParamByExp(param_2, 10.0f, 127.0f, 2.0f, 0.0f, 1.0f,
+                                       Z2Calc::CURVE_SIGN_1);
+        i_pitch = Z2Calc::getParamByExp(param_2, 10.0f, 127.0f, 2.0f, 0.7f, 1.2f,
+                                      Z2Calc::CURVE_SIGN_1);
+        break;
+    case Z2SE_OBJ_BOMB_HOUSE_BURN:
+        if (param_2 > 300) {
+            seStartLevel(Z2SE_OBJ_BOMB_HOUSE_BURN_S, NULL, param_2, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        }
+        if (param_2 > 500) {
+            i_volume = 1.0f;
+            i_pitch = 1.3f;
+        } else {
+            i_volume = param_2 * 0.0006 + 0.7;
+            i_pitch = param_2 * 0.0006 + 1.0;
+        }
+        break;
+    case Z2SE_OBJ_BOMB_HOUSE_BURN_S:
+        if (param_2 > 500) {
+            i_volume = 1.0f;
+            i_pitch = (param_2 - 500) * 0.0015 + 1.0;
+        } else if (param_2 < 300) {
+            i_volume = 0.0f;
+        } else {
+            i_volume = (param_2 - 300) * 0.005;
+        }
+        break;
+    case Z2SE_OBJ_WTR_CLMN_UP:
+        if (param_2 <= 500) {
+            i_pitch = 0.8f;
+        } else if (param_2 > 500 && param_2 <= 1000) {
+            i_pitch = 1.0f;
+        } else if (param_2 > 1000 && param_2 <= 1500) {
+            i_pitch = 1.0f;
+        } else {
+            i_pitch = 1.2f;
+        }
+        modHeightAtCamera(&i_pos);
+        break;
+    case Z2SE_OBJ_WTR_CLMN_DOWN:
+        if (param_2 > 700) {
+            i_pitch = 1.0f;
+        } else {
+            i_pitch = param_2 * 0.001 + 0.3;
+        }
+        modHeightAtCamera(&i_pos);
+        break;
+    case Z2SE_OBJ_STN_SPRL_RAIL:
+    case Z2SE_OBJ_STN_SPRL_RAIL_DW:
+        modHeightAtCamera(&i_pos);
+        break;
+    case Z2SE_OBJ_SPNR_GEAR_S:
+        i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 4000.0f, 0.4f, 0.3f, 1.0f,
+                                       Z2Calc::CURVE_SIGN_0);
+        i_pitch = Z2Calc::getParamByExp(param_2, 0.0f, 4000.0f, 0.4f, 0.7f, 1.2f,
+                                      Z2Calc::CURVE_SIGN_0);
+        break;
+    case Z2SE_OBJ_SPNR_GEAR_L:
+        i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 3500.0f, 0.4f, 0.3f, 1.0f,
+                                       Z2Calc::CURVE_SIGN_0);
+        i_pitch = Z2Calc::getParamByExp(param_2, 0.0f, 3500.0f, 0.4f, 0.7f, 1.2f,
+                                      Z2Calc::CURVE_SIGN_0);
+        break;
+    case Z2SE_OBJ_TOGE_SPIN:
+        i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 26.0f, 0.4f, 0.6f, 1.0f,
+                                       Z2Calc::CURVE_SIGN_0);
+        i_pitch = Z2Calc::getParamByExp(param_2, 0.0f, 26.0f, 0.4f, 0.8f, 1.2f,
+                                      Z2Calc::CURVE_SIGN_0);
+        break;
+    case Z2SE_OBJ_STN_WL_RL:
+    case Z2SE_OBJ_STN_WL_RL_OP:
+        i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 64.0f, 0.4f, 0.3f, 1.0f,
+                                       Z2Calc::CURVE_SIGN_0);
+        i_pitch = Z2Calc::getParamByExp(param_2, 0.0f, 64.0f, 0.4f, 0.6f, 1.2f,
+                                      Z2Calc::CURVE_SIGN_0);
+        break;
+    case Z2SE_OBJ_SPNR_SW_RL:
+        i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 4500.0f, 0.4f, 0.6f, 1.0f,
+                                       Z2Calc::CURVE_SIGN_0);
+        i_pitch = Z2Calc::getParamByExp(param_2, 0.0f, 4500.0f, 0.4f, 0.7f, 1.2f,
+                                      Z2Calc::CURVE_SIGN_0);
+        break;
+    case Z2SE_OBJ_TOGE_ROLL_MV:
+        i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 40.0f, 0.4f, 0.0f, 1.0f,
+                                       Z2Calc::CURVE_SIGN_0);
+        i_pitch = Z2Calc::getParamByExp(param_2, 0.0f, 40.0f, 0.4f, 0.8f, 1.2f,
+                                      Z2Calc::CURVE_SIGN_0);
+        break;
+    case Z2SE_OBJ_L8_L_TORCH_SW:
+        i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 120.0f, 0.4f, 0.0f, 1.0f,
+                                       Z2Calc::CURVE_SIGN_0);
+        i_pitch = Z2Calc::getParamByExp(param_2, 0.0f, 120.0f, 0.4f, 0.9f, 1.0f,
+                                      Z2Calc::CURVE_SIGN_0);
+        break;
+    case Z2SE_OBJ_L8_B_FOG_STAY:
+        i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 100.0f, 0.4f, 0.0f, 1.0f,
+                                       Z2Calc::CURVE_SIGN_0);
+        break;
+    case Z2SE_OBJ_L8_B_FALL_S:
+        i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 100.0f, 0.4f, 0.0f, 1.0f,
+                                       Z2Calc::CURVE_SIGN_0);
+        break;
+    case Z2SE_OBJ_L8_B_FALL_L:
+        i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 100.0f, 0.4f, 0.0f, 1.0f,
+                                       Z2Calc::CURVE_SIGN_0);
+        break;
+    case Z2SE_OBJ_L8_L_LIFT_MV:
+        i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 5.0f, 0.4f, 0.5f, 1.0f,
+                                       Z2Calc::CURVE_SIGN_0);
+        i_pitch = Z2Calc::getParamByExp(param_2, 0.0f, 5.0f, 0.4f, 0.7f, 1.0f,
+                                      Z2Calc::CURVE_SIGN_0);
+        break;
+    case Z2SE_OBJ_AMATA_CRK:
+        i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 400.0f, 0.4f, 0.5f, 1.0f,
+                                       Z2Calc::CURVE_SIGN_0);
+        i_pitch = Z2Calc::getParamByExp(param_2, 0.0f, 400.0f, 0.4f, 0.8f, 1.1f,
+                                      Z2Calc::CURVE_SIGN_0);
+        break;
+    case Z2SE_OBJ_HYRULE_BARRIER:
+        if (Z2GetSceneMgr()->getCurrentSceneNum() != 0x16) {
+            break;
+        }
+        // fallthrough
+    case Z2SE_OBJ_DARK_GATE:
+        if (!Z2GetSceneMgr()->isInDarkness() && i_pos != NULL
+            && Z2GetLink() != NULL && Z2GetLink()->getCurrentPos() != NULL)
+        {
+            f32 dist = sqrtf(VECSquareDistance(i_pos, Z2GetLink()->getCurrentPos()));
+            f32 gate_volume = 1.0f;
+            if (dist < 2000.0f) {
+                gate_volume = 0.0f;
+            } else if (dist < 4000.0f) {
+                gate_volume = Z2Calc::getParamByExp(dist, 2000.0f, 5000.0f, 0.45f, 0.0f, 1.0f,
+                                                    Z2Calc::CURVE_SIGN_0);
+            }
+            Z2GetSeqMgr()->setTwilightGateVol(gate_volume);
+        }
+        break;
+    case Z2SE_OBJ_HASU_WTR:
+        i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 50.0f, 0.4f, 0.5f, 1.0f,
+                                       Z2Calc::CURVE_SIGN_0);
+        break;
+    case Z2SE_ENV_PEOPLE_CROWD: {
+        f32 scale = 1.0f;
+        if (Z2GetSceneMgr()->getCurrentRoomNum() == 3) {
+            scale = Z2Calc::linearTransform(J3DUD::JMAAbs(Z2GetLink()->getCurrentPos()->x),
+                                            600.0f, 3500.0f, 1.0f, 0.1f, false);
+        }
+        switch (Z2GetStatusMgr()->getHour()) {
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+            scale *= 0.1f;
+            break;
+        case 4:
+            scale *= 0.2f;
+            break;
+        case 5:
+            scale *= 0.3f;
+            break;
+        case 6:
+            scale *= 0.4f;
+            break;
+        case 7:
+            scale *= 0.5f;
+            break;
+        case 8:
+            scale *= 0.6f;
+            break;
+        case 9:
+            scale *= 0.7f;
+            break;
+        case 10:
+            scale *= 0.8f;
+            break;
+        case 11:
+            scale *= 0.9f;
+            break;
+        case 18:
+            scale *= 0.9f;
+            break;
+        case 19:
+            scale *= 0.8f;
+            break;
+        case 20:
+            scale *= 0.7f;
+            break;
+        case 21:
+            scale *= 0.5f;
+            break;
+        case 22:
+            scale *= 0.4f;
+            break;
+        case 23:
+            scale *= 0.2f;
+            break;
+        }
+        i_volume = Z2Calc::getParamByExp(mCrowdSize * scale, 5.0f, 90.0f, 0.2f, 0.0f, 1.0f,
+                                       Z2Calc::CURVE_SIGN_0);
+        break;
+    }
+    case Z2SE_AL_COPYROD_WAIT:
+        param_2++;
+        break;
+    }
+
+    for (int i = 0; i < 24; i++) {
+        if (mSoundHandles[i] && mSoundHandles[i]->getID() == i_soundID
+            && i_pos == (Vec*)mSoundHandles[i]->getUserData())
+        {
+            if (param_8 == 1) {
+                i_volume = Z2GetAudience()->calcOffMicSound(i_volume);
+            }
+
+            mSoundHandles[i]->updateLifeTime(1);
+
+            if (i_pos != NULL) {
+                mSoundHandles[i]->setPos((JGeometry::TVec3<f32>)*i_pos);
+            }
+
+            if (param_2 != 0) {
+                JAISoundHandle* handle = &mSoundHandles[i];
+                Z2GetSoundStarter()->setPortData(handle, 6, param_2, -1);
+            }
+
+            if (i_reverb != 0) {
+                mSoundHandles[i]->getAuxiliary().moveFxMix(i_reverb / 127.0f, 0);
+            }
+            if (i_pitch != 1.0f) {
+                mSoundHandles[i]->getAuxiliary().movePitch(i_pitch, 0);
+            }
+            if (i_volume != 1.0f) {
+                mSoundHandles[i]->getAuxiliary().moveVolume(i_volume, 0);
+            }
+            if (i_pan != -1.0f) {
+                mSoundHandles[i]->getAuxiliary().movePan(i_pan, 0);
+            }
+            if (i_dolby != -1.0f) {
+                mSoundHandles[i]->getAuxiliary().moveDolby(i_dolby, 0);
+            }
+
+            return true;
+        }
+    }
+
+    if (isSoundCulling(i_soundID)) {
+        return false;
+    }
+
+    JAISoundHandle* handle = mSoundHandles.getFreeHandle();
+    if (handle == NULL) {
+        return false;
+    }
+
+    bool ret = Z2GetSoundStarter()->startSound(i_soundID, handle, (JGeometry::TVec3<f32>*)i_pos,
+                                               param_2, i_reverb / 127.0f, i_pitch, i_volume,
+                                               i_pan, i_dolby, false);
+    
+    if (handle != NULL && *handle) {
+        if (i_soundID == Z2SE_OBJ_BOMB_HOUSE_BURN) {
+            Z2GetSeqMgr()->bgmStart(Z2BGM_EVENT02, 0, 0);
+        }
+
+        if (param_8 == 1) {
+            Z2GetAudience()->calcOffMicSound(i_volume);
+        }
+
+        (*handle)->setUserData((u32)i_pos);
+
+        if (ret) {
+            (*handle)->setLifeTime(1, false);
+        }
+    }
+
+    return ret;
 }
 
 /* 802AD8B0-802AD94C 2A81F0 009C+00 1/1 0/0 4/4 .text            seStop__7Z2SeMgrF10JAISoundIDUl */

@@ -149,7 +149,8 @@ int daLv1Cdl01_c::Execute(f32 (**param_0)[3][4]) {
                                     g_whiteColor, g_whiteColor, 0, 0.0f);
         dComIfGp_particle_setSimple(0x103, &mTorchPos, 0xff,
                                     g_whiteColor, g_whiteColor, 0, 0.0f);
-        mDoAud_seStartLevel(0x80018, &mTorchPos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+        mDoAud_seStartLevel(Z2SE_OBJ_FIRE_BURNING, &mTorchPos, 0,
+                            dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     }
 
     setBaseMtx();
@@ -159,12 +160,14 @@ int daLv1Cdl01_c::Execute(f32 (**param_0)[3][4]) {
         if (gobj->GetAtType() == AT_TYPE_LANTERN_SWING && gobj->GetAtMtrl() == dCcD_MTRL_FIRE && !mIsLit) {
             mIsLit = true;
             setLight();
-            mDoAud_seStart(0x80017, &mTorchPos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+            mDoAud_seStart(Z2SE_OBJ_FIRE_IGNITION, &mTorchPos, 0,
+                           dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
         }
         if (gobj->GetAtType() == AT_TYPE_BOOMERANG && gobj->GetAtMtrl() == dCcD_MTRL_WIND && mIsLit == true) {
             mTimer = 30;
             mIsLit = false;
-            mDoAud_seStart(0x80019, &mTorchPos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+            mDoAud_seStart(Z2SE_OBJ_FIRE_OFF, &mTorchPos, 0,
+                           dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
             cutLight();
         }
         cCcD_Obj* obj = mCyl.GetTgHitObj();

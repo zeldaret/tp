@@ -4,7 +4,7 @@
 //
 
 #include "Z2AudioLib/Z2SeqMgr.h"
-#include "Z2AudioLib/Z2Creature.h"
+#include "Z2AudioLib/Z2LinkMgr.h"
 #include "Z2AudioLib/Z2Param.h"
 #include "Z2AudioLib/Z2SceneMgr.h"
 #include "Z2AudioLib/Z2SoundMgr.h"
