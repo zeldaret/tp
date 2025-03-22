@@ -89,6 +89,7 @@ extern "C" static void daPy_getPlayerActorClass__Fv();
 extern "C" void Fovy__9dCamera_cFv();
 extern "C" void __as__4cXyzFRC4cXyz();
 extern "C" static void fopAcM_searchPlayerAngleY__FPC10fopAc_ac_c();
+extern "C" void onCondition__11dEvt_info_cFUs();
 extern "C" void checkCommandDemoAccrpt__11dEvt_info_cFv();
 extern "C" void __ct__4cXyzFRC4cXyz();
 extern "C" void __ct__4cXyzFfff();
@@ -3032,6 +3033,11 @@ extern "C" void __as__4cXyzFRC4cXyz() {
  */
 // static void fopAcM_searchPlayerAngleY(fopAc_ac_c const* param_0) {
 extern "C" void fopAcM_searchPlayerAngleY__FPC10fopAc_ac_c() {
+    // NONMATCHING
+}
+
+/* 8075764C-8075765C 00B1EC 0010+00 1/1 0/0 0/0 .text            onCondition__11dEvt_info_cFUs */
+void dEvt_info_c::onCondition(u16 param_0) {
     // NONMATCHING
 }
 
