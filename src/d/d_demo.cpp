@@ -30,6 +30,8 @@ void jstudio_tAdaptor_message::adaptor_do_MESSAGE(JStudio::data::TEOperationData
         msg << iType;
         msg << "\n  demo-object : ";
         msg << id_string;
+#else
+        break;
 #endif
     }
 }
