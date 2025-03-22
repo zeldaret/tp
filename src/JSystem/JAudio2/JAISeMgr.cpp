@@ -258,7 +258,6 @@ void JAISeMgr::resetSeqDataMgr() {
 }
 
 /* 802A0484-802A0574 29ADC4 00F0+00 1/1 0/0 0/0 .text            newSe___8JAISeMgrFiUl */
-// NONMATCHING JASPollAllocObject<_> locations
 JAISe* JAISeMgr::newSe_(int i_category, u32 param_1) {
     if (i_category < 0) {
         i_category = 0;

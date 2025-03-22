@@ -906,7 +906,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01"), "Z2AudioLib/Z2Param.cpp"),
             Object(MatchingFor("GZ2E01"), "Z2AudioLib/Z2SoundMgr.cpp"),
             Object(MatchingFor("GZ2E01"), "Z2AudioLib/Z2SoundStarter.cpp"),
-            Object(NonMatching, "Z2AudioLib/Z2SoundHandles.cpp"),
+            Object(MatchingFor("GZ2E01"), "Z2AudioLib/Z2SoundHandles.cpp"),
             Object(MatchingFor("GZ2E01"), "Z2AudioLib/Z2SeMgr.cpp"),
             Object(NonMatching, "Z2AudioLib/Z2SeqMgr.cpp"),
             Object(MatchingFor("GZ2E01"), "Z2AudioLib/Z2StatusMgr.cpp"),

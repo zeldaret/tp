@@ -2219,7 +2219,7 @@ Z2AudioLib/Z2Calc.cpp:
 
 Z2AudioLib/Z2Param.cpp:
 	.sdata      start:0x804507D8 end:0x80450870
-	.sbss       start:0x80451338 end:0x80451350
+	.sbss       start:0x80451338 end:0x80451348
 
 Z2AudioLib/Z2AudioArcLoader.cpp:
 	.text       start:0x802A9A34 end:0x802A9B58
@@ -2241,6 +2241,7 @@ Z2AudioLib/Z2SoundStarter.cpp:
 Z2AudioLib/Z2SoundHandles.cpp:
 	.text       start:0x802AB07C end:0x802AB64C
 	.bss        start:0x804341B8 end:0x804341D8
+	.sbss       start:0x80451348 end:0x80451350
 
 Z2AudioLib/Z2SeMgr.cpp:
 	.text       start:0x802AB64C end:0x802AEEA0
