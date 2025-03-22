@@ -14,10 +14,10 @@
 
 UNK_REL_DATA;
 
-extern const char* l_arcName = "K_saku00";
+static const char* l_arcName = "K_saku00";
 
-extern const f32 l_cull_box[6] = {-200.f, -100.f, -200.f, 200.f, 100.f, 200.f};
-extern const f32 l_check_area[12] = {
+static const f32 l_cull_box[6] = {-200.f, -100.f, -200.f, 200.f, 100.f, 200.f};
+static const f32 l_check_area[12] = {
     -250.0, 0.0, -100.0,  // min
     200.0,  0.0, -100.0,  // unknown
     200.0,  0.0, 100.0,   // max
@@ -324,7 +324,7 @@ int daObjBmSh_Create(fopAc_ac_c* i_this) {
 }
 
 /* 80BBA8F8-80BBA918 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjBmSh_Method */
-extern actor_method_class l_daObjBmSh_Method = {
+static actor_method_class l_daObjBmSh_Method = {
     (process_method_func)daObjBmSh_Create,   // daObjBmSh_Create__FP10fopAc_ac_c
     (process_method_func)daObjBmSh_Delete,   // daObjBmSh_Delete__FP11daObjBmSh_c
     (process_method_func)daObjBmSh_Execute,  // daObjBmSh_Execute__FP11daObjBmSh_c
