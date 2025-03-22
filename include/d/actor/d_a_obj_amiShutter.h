@@ -15,21 +15,32 @@
  * @details
  *
  */
-class daAmiShutter_c : public dBgS_MoveBgActor, public request_of_phase_process_class, public dEvLib_callback_c {
+struct fakeAmiShutterPadding {
+    u8 a[8];
+};
+
+class daAmiShutter_c : public dBgS_MoveBgActor, public fakeAmiShutterPadding, public dEvLib_callback_c {
 public:
     typedef void (daAmiShutter_c::*modeProc)();
 
     enum Mode {
-        MODE_WAIT=0,
-        MODE_WAIT_EVENT
+        MODE_WAIT = 0,
+        MODE_WAIT_EVENT = 1,
+        MODE_CLOSE = 2,
+        MODE_CLOSE_EVENT = 3,
+        MODE_CLOSE_END = 4,
+        MODE_OPEN = 5
     };
+
+    daAmiShutter_c(): dEvLib_callback_c(this) {}
+    ~daAmiShutter_c() {};
 
     /* 80BA155C */ void setBaseMtx();
     /* 80BA15E4 */ int CreateHeap();
     /* 80BA1650 */ cPhs__Step create();
     /* 80BA182C */ int Execute(Mtx**);
     /* 80BA1888 */ void moveShutter();
-    /* 80BA1974 */ bool playerAreaCheck();
+    /* 80BA1974 */ BOOL playerAreaCheck();
     /* 80BA1B4C */ void init_modeWait();
     /* 80BA1B58 */ void modeWait();
     /* 80BA1BCC */ void init_modeWaitEvent();
@@ -45,16 +56,17 @@ public:
     /* 80BA2004 */ void modeOpen();
     /* 80BA2080 */ int Draw();
     /* 80BA2124 */ int Delete();
-    /* 80BA22E8 */ ~daAmiShutter_c();
-
-    daAmiShutter_c(): dEvLib_callback_c(this) {}
-
+    
     u8 getType() {
         return fopAcM_GetParamBit(this, 16, 4);
     }
 
     u8 getSwBit() {
         return fopAcM_GetParamBit(this, 8, 8);
+    }
+
+    int getEvent() {
+        return fopAcM_GetParamBit(this, 0, 8);
     }
 
     bool isShutterOpen() { return mOpen; }
@@ -68,22 +80,23 @@ private:
     /* 0x5c7 */ u8 mSwitch;
     /* 0x5c8 */ float mPosZ;
     /* 0x5cc */ cXyz mPos;
-    /* 0x5d8 */ u8 field_0x5d8;
+    /* 0x5d8 */ u8 mWaitTime;
     /* 0x5d9 */ bool mOpen;
-    /* 0x5da */ u8 field_0x5da[0x5dc-0x5da];
 };
 
 STATIC_ASSERT(sizeof(daAmiShutter_c) == 0x5dc);
 
 struct daAmiShutter_HIO_c : public mDoHIO_entry_c {
     /* 0x04 */ float mRange;
-    /* 0x08 */ float mMaxStepOpen;
-    /* 0x0c */ float mMaxStepClose;
+    /* 0x08 */ float mMaxOpenSpeed;
+    /* 0x0c */ float mMaxCloseSpeed;
     /* 0x10 */ u8 mWaitTime;
     /* 0x11 */ u8 field_0x11;
 
     /* 80BA14CC */ daAmiShutter_HIO_c();
-    /* 80BA21E0 */ ~daAmiShutter_HIO_c();
+    /* 80BA21E0 */ ~daAmiShutter_HIO_c() {};
+
+    void genMessage(JORMContext*);
 };
 
 
