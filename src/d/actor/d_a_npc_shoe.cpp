@@ -197,16 +197,6 @@ extern "C" void __register_global_object();
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 80AEA51C-80AEA51C 00016C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80AEA51C = "shoe";
-SECTION_DEAD static char const* const stringBase_80AEA521 = "Mgeneral";
-SECTION_DEAD static char const* const stringBase_80AEA52A = "object";
-SECTION_DEAD static char const* const stringBase_80AEA531 = "Shoe";
-#pragma pop
-
 /* 80AEA538-80AEA544 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -242,10 +232,10 @@ SECTION_DATA static u8 l_btpGetParamList[12] = {
 #pragma pop
 
 /* 80AEA5A0-80AEA5AC -00001 000C+00 5/6 0/0 0/0 .data            l_arcNames */
-SECTION_DATA static void* l_arcNames[3] = {
-    (void*)&d_a_npc_shoe__stringBase0,
-    (void*)(((char*)&d_a_npc_shoe__stringBase0) + 0x5),
-    (void*)(((char*)&d_a_npc_shoe__stringBase0) + 0xE),
+static char* l_arcNames[3] = {
+    "shoe",
+    "Mgeneral",
+    "object",
 };
 
 /* 80AEA5AC-80AEA5B0 000074 0004+00 0/1 0/0 0/0 .data            l_evtNames */
@@ -260,10 +250,7 @@ SECTION_DATA static u8 l_evtNames[4] = {
 #pragma pop
 
 /* 80AEA5B0-80AEA5B4 -00001 0004+00 0/2 0/0 0/0 .data            l_myName */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_myName = (void*)(((char*)&d_a_npc_shoe__stringBase0) + 0x15);
-#pragma pop
+static char* l_myName = "Shoe";
 
 /* 80AEA5B4-80AEA5C0 00007C 000C+00 1/2 0/0 0/0 .data            mEvtSeqList__11daNpcShoe_c */
 SECTION_DATA u8 daNpcShoe_c::mEvtSeqList[12] = {
@@ -323,33 +310,6 @@ SECTION_DATA static void* lit_4684[3] = {
     (void*)wait__11daNpcShoe_cFPv,
 };
 #pragma pop
-
-/* 80AEA608-80AEA628 -00001 0020+00 1/0 0/0 0/0 .data            daNpcShoe_MethodTable */
-static actor_method_class daNpcShoe_MethodTable = {
-    (process_method_func)daNpcShoe_Create__FPv,
-    (process_method_func)daNpcShoe_Delete__FPv,
-    (process_method_func)daNpcShoe_Execute__FPv,
-    (process_method_func)daNpcShoe_IsDelete__FPv,
-    (process_method_func)daNpcShoe_Draw__FPv,
-};
-
-/* 80AEA628-80AEA658 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_SHOE */
-extern actor_process_profile_definition g_profile_NPC_SHOE = {
-  fpcLy_CURRENT_e,        // mLayerID
-  7,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_NPC_SHOE,          // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  sizeof(daNpcShoe_c),    // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  417,                    // mPriority
-  &daNpcShoe_MethodTable, // sub_method
-  0x00044107,             // mStatus
-  fopAc_NPC_e,            // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
-};
 
 /* 80AEA658-80AEA6A0 000120 0048+00 2/2 0/0 0/0 .data            __vt__11daNpcShoe_c */
 SECTION_DATA extern void* __vt__11daNpcShoe_c[18] = {
@@ -461,53 +421,105 @@ extern "C" void __dt__8cM3dGAabFv() {
 
 /* 80AE7B60-80AE7D48 000300 01E8+00 1/0 0/0 0/0 .text            __dt__11daNpcShoe_cFv */
 daNpcShoe_c::~daNpcShoe_c() {
-    // NONMATCHING
+    for (int i = 0; i < 3; i++) {
+        dComIfG_resDelete(&mPhases[i], l_arcNames[i]);
+    }
+    if (heap != NULL) {
+        mpMorf->stopZelAnime();
+    }
 }
+
 
 /* ############################################################################################## */
 /* 80AEA3B0-80AEA41C 000000 006C+00 11/11 0/0 0/0 .rodata          m__17daNpcShoe_Param_c */
-SECTION_RODATA u8 const daNpcShoe_Param_c::m[108] = {
-    0x42, 0x5C, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0x96, 0x00, 0x00,
-    0x43, 0x7F, 0x00, 0x00, 0x43, 0x0C, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00,
-    0x41, 0xF0, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00, 0x42, 0x34, 0x00, 0x00, 0xC2, 0x34, 0x00, 0x00,
-    0x3F, 0x19, 0x99, 0x9A, 0x41, 0x40, 0x00, 0x00, 0x00, 0x02, 0x00, 0x02, 0x00, 0x03, 0x00, 0x02,
-    0x42, 0x70, 0x00, 0x00, 0x43, 0xFA, 0x00, 0x00, 0x43, 0x96, 0x00, 0x00, 0xC3, 0x96, 0x00, 0x00,
-    0x00, 0x3C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+daNpcShoe_Param_c::param const daNpcShoe_Param_c::m = {
+    55.0f,
+    -3.0f,
+    1.0f,
+    300.0f,
+    255.0f,
+    140.0f,
+    35.0f,
+    30.0f,
+    0.0f,
+    0.0f,
+    10.0f,
+    -10.0f,
+    30.0f,
+    -10.0f,
+    45.0f,
+    -45.0f,
+    0.6000000238418579f,
+    12.0f,
+    2,
+    2,
+    3,
+    2,
+    60.0,
+    500.0,
+    300.0,
+    -300.0,
+    60,
+    0,
+    0,
+    0,
+    0,
+    false,
 };
-COMPILER_STRIP_GATE(0x80AEA3B0, &daNpcShoe_Param_c::m);
-
-/* 80AEA41C-80AEA420 00006C 0004+00 0/1 0/0 0/0 .rodata          @4166 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4166 = -50.0f;
-COMPILER_STRIP_GATE(0x80AEA41C, &lit_4166);
-#pragma pop
-
-/* 80AEA420-80AEA424 000070 0004+00 0/1 0/0 0/0 .rodata          @4167 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4167 = -10.0f;
-COMPILER_STRIP_GATE(0x80AEA420, &lit_4167);
-#pragma pop
-
-/* 80AEA424-80AEA428 000074 0004+00 0/2 0/0 0/0 .rodata          @4168 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4168 = 50.0f;
-COMPILER_STRIP_GATE(0x80AEA424, &lit_4168);
-#pragma pop
-
-/* 80AEA428-80AEA42C 000078 0004+00 0/1 0/0 0/0 .rodata          @4169 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4169 = 160.0f;
-COMPILER_STRIP_GATE(0x80AEA428, &lit_4169);
-#pragma pop
 
 /* 80AE7D48-80AE7FD8 0004E8 0290+00 1/1 0/0 0/0 .text            Create__11daNpcShoe_cFv */
-void daNpcShoe_c::Create() {
+cPhs__Step daNpcShoe_c::Create() {
     // NONMATCHING
+    cPhs__Step step;
+
+    fopAcM_SetupActor(this, daNpcShoe_c);
+
+    field_0xe0c = getMessageNo();
+
+    step = cPhs_ERROR_e;
+    for (int i = 0; i < 3; i++) {
+        step = (cPhs__Step)dComIfG_resLoad(&mPhases[i], l_arcNames[i]);
+        if (step != cPhs_COMPLEATE_e) {
+            return step;
+        }
+    }
+
+    if (step == cPhs_COMPLEATE_e) {
+        if (!fopAcM_entrySolidHeap(this, createHeapCallBack, 0x2920)) {
+            return cPhs_ERROR_e;
+        }
+
+        fopAcM_SetMtx(this, mpMorf->mpModel->getBaseTRMtx());
+
+        fopAcM_setCullSizeBox(this, -50.0f, -10.0f, -50.0f, 50.0f, 160.0f, 50.0f);
+
+        mCreature.init(&current.pos, &eyePos, 3, 1);
+        mCreature.setMdlType(7, false, (BOOL)(dKy_darkworld_check() != 0));
+
+        mAcchCir.SetWall(daNpcShoe_Param_c::m.mWallR, daNpcShoe_Param_c::m.mWallH);
+
+        mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
+                  fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
+
+        mAcch.CrrPos(dComIfG_Bgsp());
+        mCcStts.Init((int)daNpcShoe_Param_c::m.mCcWeight, 0, this);
+        mCcCyl.Set(mCcDCyl);
+
+        mCcCyl.SetStts(&mCcStts);
+        mCcCyl.SetTgType(0);
+        mCcCyl.SetTgSPrm(0);
+
+        mGndChk = mAcch.m_gnd;
+        mGroundH = mAcch.m_ground_h;
+        gravity = daNpcShoe_Param_c::m.mGravity;
+
+        setEnvTevColor();
+        setRoomNo();
+        reset();
+        execute();
+    }
+
+    return step;
 }
 
 /* ############################################################################################## */
@@ -561,7 +573,7 @@ void daNpcShoe_c::ctrlJoint(J3DJoint* param_0, J3DModel* param_1) {
 
 /* 80AE8598-80AE85B8 000D38 0020+00 1/1 0/0 0/0 .text
  * createHeapCallBack__11daNpcShoe_cFP10fopAc_ac_c              */
-void daNpcShoe_c::createHeapCallBack(fopAc_ac_c* param_0) {
+int daNpcShoe_c::createHeapCallBack(fopAc_ac_c* param_0) {
     // NONMATCHING
 }
 
@@ -908,84 +920,6 @@ BOOL daNpcShoe_c::drawDbgInfo() {
     return FALSE;
 }
 
-/* 80AE9AD8-80AE9B20 002278 0048+00 5/4 0/0 0/0 .text            __dt__18daNpcF_ActorMngr_cFv */
-// daNpcF_ActorMngr_c::~daNpcF_ActorMngr_c() {
-extern "C" void __dt__18daNpcF_ActorMngr_cFv() {
-    // NONMATCHING
-}
-
-/* 80AE9B20-80AE9B5C 0022C0 003C+00 2/2 0/0 0/0 .text            __ct__18daNpcF_ActorMngr_cFv */
-// daNpcF_ActorMngr_c::daNpcF_ActorMngr_c() {
-extern "C" void __ct__18daNpcF_ActorMngr_cFv() {
-    // NONMATCHING
-}
-
-/* 80AE9B5C-80AE9C2C 0022FC 00D0+00 1/0 0/0 0/0 .text            __dt__15daNpcF_Lookat_cFv */
-// daNpcF_Lookat_c::~daNpcF_Lookat_c() {
-extern "C" void __dt__15daNpcF_Lookat_cFv() {
-    // NONMATCHING
-}
-
-/* 80AE9C2C-80AE9C68 0023CC 003C+00 5/5 0/0 0/0 .text            __dt__5csXyzFv */
-// csXyz::~csXyz() {
-extern "C" void __dt__5csXyzFv() {
-    // NONMATCHING
-}
-
-/* 80AE9C68-80AE9C6C 002408 0004+00 2/2 0/0 0/0 .text            __ct__5csXyzFv */
-// csXyz::csXyz() {
-extern "C" void __ct__5csXyzFv() {
-    /* empty function */
-}
-
-/* 80AE9C6C-80AE9CA8 00240C 003C+00 5/5 0/0 0/0 .text            __dt__4cXyzFv */
-// cXyz::~cXyz() {
-extern "C" void __dt__4cXyzFv() {
-    // NONMATCHING
-}
-
-/* 80AE9CA8-80AE9CAC 002448 0004+00 2/2 0/0 0/0 .text            __ct__4cXyzFv */
-// cXyz::cXyz() {
-extern "C" void __ct__4cXyzFv() {
-    /* empty function */
-}
-
-/* 80AE9CAC-80AE9EF8 00244C 024C+00 1/1 0/0 0/0 .text            __dt__8daNpcF_cFv */
-// daNpcF_c::~daNpcF_c() {
-extern "C" void __dt__8daNpcF_cFv() {
-    // NONMATCHING
-}
-
-/* 80AE9EF8-80AEA0E8 002698 01F0+00 1/1 0/0 0/0 .text            __ct__8daNpcF_cFv */
-// daNpcF_c::daNpcF_c() {
-extern "C" void __ct__8daNpcF_cFv() {
-    // NONMATCHING
-}
-
-/* 80AEA0E8-80AEA158 002888 0070+00 1/0 0/0 0/0 .text            __dt__12dBgS_AcchCirFv */
-// dBgS_AcchCir::~dBgS_AcchCir() {
-extern "C" void __dt__12dBgS_AcchCirFv() {
-    // NONMATCHING
-}
-
-/* 80AEA158-80AEA1B4 0028F8 005C+00 1/0 0/0 0/0 .text            __dt__10dCcD_GSttsFv */
-// dCcD_GStts::~dCcD_GStts() {
-extern "C" void __dt__10dCcD_GSttsFv() {
-    // NONMATCHING
-}
-
-/* 80AEA1B4-80AEA224 002954 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
-// dBgS_ObjAcch::~dBgS_ObjAcch() {
-extern "C" void __dt__12dBgS_ObjAcchFv() {
-    // NONMATCHING
-}
-
-/* 80AEA224-80AEA26C 0029C4 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
-// J3DFrameCtrl::~J3DFrameCtrl() {
-extern "C" void __dt__12J3DFrameCtrlFv() {
-    // NONMATCHING
-}
-
 /* 80AEA26C-80AEA274 002A0C 0008+00 1/0 0/0 0/0 .text            ctrlBtk__8daNpcF_cFv */
 // bool daNpcF_c::ctrlBtk() {
 extern "C" bool ctrlBtk__8daNpcF_cFv() {
@@ -1022,12 +956,6 @@ extern "C" void drawOtherMdls__8daNpcF_cFv() {
     /* empty function */
 }
 
-/* 80AEA290-80AEA2D8 002A30 0048+00 1/0 0/0 0/0 .text            __dt__10cCcD_GSttsFv */
-// cCcD_GStts::~cCcD_GStts() {
-extern "C" void __dt__10cCcD_GSttsFv() {
-    // NONMATCHING
-}
-
 /* ############################################################################################## */
 /* 80AEA724-80AEA730 0001EC 000C+00 2/2 0/0 0/0 .data            __vt__17daNpcShoe_Param_c */
 SECTION_DATA extern void* __vt__17daNpcShoe_Param_c[3] = {
@@ -1058,19 +986,29 @@ void daNpcShoe_c::adjustShapeAngle() {
     /* empty function */
 }
 
-/* 80AEA344-80AEA38C 002AE4 0048+00 2/1 0/0 0/0 .text            __dt__17daNpcShoe_Param_cFv */
-daNpcShoe_Param_c::~daNpcShoe_Param_c() {
-    // NONMATCHING
-}
+/* 80AEA608-80AEA628 -00001 0020+00 1/0 0/0 0/0 .data            daNpcShoe_MethodTable */
+static actor_method_class daNpcShoe_MethodTable = {
+    (process_method_func)daNpcShoe_Create__FPv,
+    (process_method_func)daNpcShoe_Delete__FPv,
+    (process_method_func)daNpcShoe_Execute__FPv,
+    (process_method_func)daNpcShoe_IsDelete__FPv,
+    (process_method_func)daNpcShoe_Draw__FPv,
+};
 
-/* 80AEA38C-80AEA394 002B2C 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
-static void func_80AEA38C() {
-    // NONMATCHING
-}
-
-/* 80AEA394-80AEA39C 002B34 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
-static void func_80AEA394() {
-    // NONMATCHING
-}
-
-/* 80AEA51C-80AEA51C 00016C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+/* 80AEA628-80AEA658 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_SHOE */
+extern actor_process_profile_definition g_profile_NPC_SHOE = {
+  fpcLy_CURRENT_e,        // mLayerID
+  7,                      // mListID
+  fpcPi_CURRENT_e,        // mListPrio
+  PROC_NPC_SHOE,          // mProcName
+  &g_fpcLf_Method.base,  // sub_method
+  sizeof(daNpcShoe_c),    // mSize
+  0,                      // mSizeOther
+  0,                      // mParameters
+  &g_fopAc_Method.base,   // sub_method
+  417,                    // mPriority
+  &daNpcShoe_MethodTable, // sub_method
+  0x00044107,             // mStatus
+  fopAc_NPC_e,            // mActorType
+  fopAc_CULLBOX_CUSTOM_e, // cullType
+};

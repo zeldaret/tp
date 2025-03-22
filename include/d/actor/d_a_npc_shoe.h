@@ -17,13 +17,13 @@ public:
 
     /* 80AE794C */ daNpcShoe_c();
     /* 80AE7B60 */ ~daNpcShoe_c();
-    /* 80AE7D48 */ void Create();
+    /* 80AE7D48 */ cPhs__Step Create();
     /* 80AE7FD8 */ void CreateHeap();
     /* 80AE81E8 */ void Delete();
     /* 80AE821C */ void Execute();
     /* 80AE8308 */ void Draw();
     /* 80AE840C */ void ctrlJoint(J3DJoint*, J3DModel*);
-    /* 80AE8598 */ void createHeapCallBack(fopAc_ac_c*);
+    /* 80AE8598 */ static int createHeapCallBack(fopAc_ac_c*);
     /* 80AE85B8 */ void ctrlJointCallBack(J3DJoint*, int);
     /* 80AE8604 */ void setMotion(int, f32, int);
     /* 80AE864C */ void reset();
@@ -40,6 +40,8 @@ public:
     /* 80AE9AD0 */ BOOL drawDbgInfo();
     /* 80AEA340 */ void adjustShapeAngle();
 
+    s16 getMessageNo() { return fopAcM_GetParam(this) >> 0x10; }
+
     static u8 mEvtSeqList[12];
 
 private:
@@ -48,7 +50,7 @@ private:
     /* 0xB50 */ Z2CreatureCitizen mCreature;
     /* 0xBF4 */ u8 field_0xbf4[0xbf8 - 0xbf4];
     /* 0xBF8 */ daNpcF_Lookat_c mLookat;
-    /* 0xC94 */ daNpcF_ActorMngr_c mActorMngr;
+    /* 0xC94 */ daNpcF_ActorMngr_c mActorMngr[1];
     /* 0xC9C */ u8 field_0xc9c[0xca0 - 0xc9c];
     /* 0xCA0 */ dCcD_Cyl mCcCyl;
     /* 0xDDC */ actionFunc field_0xddc;
@@ -69,10 +71,46 @@ STATIC_ASSERT(sizeof(daNpcShoe_c) == 0xe1c);
 
 class daNpcShoe_Param_c {
 public:
-    /* 80AEA344 */ ~daNpcShoe_Param_c();
+    /* 8095D5D4 */ virtual ~daNpcShoe_Param_c() {}
 
-    static u8 const m[108];
+    struct param {
+        /* 0x00 */ f32 mAttnOffsetY;
+        /* 0x04 */ f32 mGravity;
+        /* 0x08 */ f32 mScale;
+        /* 0x0C */ f32 mShadowDepth;
+        /* 0x10 */ f32 mCcWeight;
+        /* 0x14 */ f32 mCylH;
+        /* 0x18 */ f32 mWallH;
+        /* 0x1C */ f32 mWallR;
+        /* 0x20 */ f32 mBodyUpAngle;
+        /* 0x24 */ f32 mBodyDownAngle;
+        /* 0x28 */ f32 mBodyLeftAngle;
+        /* 0x2C */ f32 mBodyRightAngle;
+        /* 0x30 */ f32 mHeadUpAngle;
+        /* 0x34 */ f32 mHeadDownAngle;
+        /* 0x38 */ f32 mHeadLeftAngle;
+        /* 0x3C */ f32 mHeadRightAngle;
+        /* 0x40 */ f32 mNeckAngleScl;
+        /* 0x44 */ f32 mMorfFrames;
+        /* 0x48 */ s16 mSpeakDistIdx;
+        /* 0x4A */ s16 mSpeakAngleIdx;
+        /* 0x4C */ s16 mTalkDistIdx;
+        /* 0x4E */ s16 mTalkAngleIdx;
+        /* 0x50 */ f32 mAttnFovY;
+        /* 0x54 */ f32 mAttnRadius;
+        /* 0x58 */ f32 mAttnUpperY;
+        /* 0x5C */ f32 mAttnLowerY;
+        /* 0x60 */ s16 field_0x60;
+        /* 0x62 */ s16 mDamageTimer;
+        /* 0x64 */ s16 mTestExpression;
+        /* 0x66 */ s16 mTestMotion;
+        /* 0x68 */ s16 mTestLookMode;
+        /* 0x6A */ bool mTest;
+    };
+
+    static param const m;
 };
 
+STATIC_ASSERT(sizeof(daNpcShoe_Param_c::param) == 0x6C);
 
 #endif /* D_A_NPC_SHOE_H */
