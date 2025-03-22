@@ -66,8 +66,6 @@ int daAmiShutter_c::CreateHeap() {
 
 /* ############################################################################################## */
 
-
-
 /* 80BA1650-80BA182C 000270 01DC+00 1/1 0/0 0/0 .text            create__14daAmiShutter_cFv */
 cPhs__Step daAmiShutter_c::create() {
     fopAcM_SetupActor(this, daAmiShutter_c);
@@ -75,7 +73,7 @@ cPhs__Step daAmiShutter_c::create() {
 
     if (phaseStep == cPhs_COMPLEATE_e) {
         cPhs__Step res = (cPhs__Step) MoveBGCreate("S_Zami", 7, 
-            dBgS_MoveBGProc_Typical, 6656, NULL);
+            dBgS_MoveBGProc_Typical, 0x1a00, NULL);
 
         if (res == cPhs_ERROR_e) {
             phaseStep = cPhs_ERROR_e;
@@ -114,7 +112,7 @@ cPhs__Step daAmiShutter_c::create() {
 /* 80BA182C-80BA1888 00044C 005C+00 1/0 0/0 0/0 .text            Execute__14daAmiShutter_cFPPA3_A4_f
  */
 int daAmiShutter_c::Execute(Mtx** i_mtx) {
-    int res = eventUpdate();
+    eventUpdate();
     moveShutter();
     *i_mtx = &mpModel->getBaseTRMtx();
     setBaseMtx();
@@ -122,10 +120,6 @@ int daAmiShutter_c::Execute(Mtx** i_mtx) {
 }
 
 /* ############################################################################################## */
-
-
-
-// static u8 lbl_397_bss_28;
 
 /* 80BA1888-80BA1974 0004A8 00EC+00 1/1 0/0 0/0 .text            moveShutter__14daAmiShutter_cFv */
 void daAmiShutter_c::moveShutter() {
@@ -146,12 +140,12 @@ void daAmiShutter_c::moveShutter() {
 /* 80BA1974-80BA1B4C 000594 01D8+00 1/1 0/0 0/0 .text            playerAreaCheck__14daAmiShutter_cFv
  */
 BOOL daAmiShutter_c::playerAreaCheck() {
-    BOOL inArea = 0;
+    BOOL inArea = FALSE;
     if (mType == 0) {
         fopAc_ac_c* player = dComIfGp_getPlayer(0);
-        cXyz resVec = mPos - player->current.pos;
-        float distance = resVec.absXZ();
-        if (distance >= l_HIO.mRange
+        cXyz posDiff = mPos - player->current.pos;
+        float distance = posDiff.absXZ();
+        if (distance >= l_HIO.mRange 
             && player->current.pos.y > current.pos.y
             && player->current.pos.y < current.pos.y + 50.f){
             inArea = TRUE;
@@ -173,7 +167,7 @@ void daAmiShutter_c::modeWait() {
     u8 isSwitch = fopAcM_isSwitch(this, mSwBit);
     if (mSwitch != isSwitch) {
         mSwitch = isSwitch;
-        mSwitch == 0 ? init_modeClose() : init_modeOpen();
+        mSwitch == FALSE ? init_modeClose() : init_modeOpen();
     }
 }
 
@@ -185,14 +179,13 @@ void daAmiShutter_c::init_modeWaitEvent() {
 /* 80BA1BD8-80BA1C90 0007F8 00B8+00 1/0 0/0 0/0 .text            modeWaitEvent__14daAmiShutter_cFv
  */
 void daAmiShutter_c::modeWaitEvent() {
-    if (playerAreaCheck() == 1) {
+    if (playerAreaCheck() == TRUE) {
         if (getEvent() != 0xff) {
             if (mType == 0 && fopAcM_isSwitch(this, 4) == TRUE) {
                 eventStart();
             } else {
                 orderEvent(getEvent(), 0xff, 1);
             }
-    
         } else {
             eventStart();
         }
@@ -329,7 +322,6 @@ int daAmiShutter_Create(fopAc_ac_c* i_this) {
     fopAcM_GetID(i_this);
     return static_cast<daAmiShutter_c*>(i_this)->create();
 }
-
 
 /* 80BA248C-80BA24AC -00001 0020+00 1/0 0/0 0/0 .data            l_daAmiShutter_Method */
 actor_method_class l_daAmiShutter_Method = {

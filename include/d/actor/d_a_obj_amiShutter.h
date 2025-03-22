@@ -4,7 +4,6 @@
 #include "d/d_bg_s_movebg_actor.h"
 #include "d/d_event_lib.h"
 #include "f_op/f_op_actor_mng.h"
-#include "m_Do/m_Do_hostIO.h"
 
 
 /**
@@ -16,7 +15,7 @@
  *
  */
 struct fakeAmiShutterPadding {
-    u8 a[8];
+    u8 padding[8];
 };
 
 class daAmiShutter_c : public dBgS_MoveBgActor, public fakeAmiShutterPadding, public dEvLib_callback_c {
@@ -33,7 +32,7 @@ public:
     };
 
     daAmiShutter_c(): dEvLib_callback_c(this) {}
-    ~daAmiShutter_c() {};
+    /* 80BA22E8 */ ~daAmiShutter_c() {};
 
     /* 80BA155C */ void setBaseMtx();
     /* 80BA15E4 */ int CreateHeap();
@@ -56,18 +55,13 @@ public:
     /* 80BA2004 */ void modeOpen();
     /* 80BA2080 */ int Draw();
     /* 80BA2124 */ int Delete();
+
     
-    u8 getType() {
-        return fopAcM_GetParamBit(this, 16, 4);
-    }
+    u8 getType() { return fopAcM_GetParamBit(this, 16, 4); }
 
-    u8 getSwBit() {
-        return fopAcM_GetParamBit(this, 8, 8);
-    }
+    u8 getSwBit() { return fopAcM_GetParamBit(this, 8, 8); }
 
-    int getEvent() {
-        return fopAcM_GetParamBit(this, 0, 8);
-    }
+    int getEvent() { return fopAcM_GetParamBit(this, 0, 8); }
 
     bool isShutterOpen() { return mOpen; }
 
