@@ -35,18 +35,18 @@ public:
     /* 80BBA644 */ int Draw();
     /* 80BBA6E8 */ int Delete();
 
-    inline u32 getEvNo() { return fopAcM_GetParamBit(this, 16, 8); }
-    inline u32 getSwbit() { return fopAcM_GetParamBit(this, 0, 8); }
-    inline u32 getSwbit2() { return fopAcM_GetParamBit(this, 8, 8); }
-    inline int getSwbit3() { return this->mHomeX & 0xff; }
+    u32 getEvNo() { return fopAcM_GetParamBit(this, 16, 8); }
+    u32 getSwbit() { return fopAcM_GetParamBit(this, 0, 8); }
+    u32 getSwbit2() { return fopAcM_GetParamBit(this, 8, 8); }
+    int getSwbit3() { return mHomeX & 0xff; }
 
-    inline u32 getSwNum() { return fopAcM_GetParamBit(this, 24, 4); }
-    inline u32 getShtrNum() { return fopAcM_GetParamBit(this, 28, 2); }
+    u32 getSwNum() { return fopAcM_GetParamBit(this, 24, 4); }
+    u32 getShtrNum() { return fopAcM_GetParamBit(this, 28, 2); }
 
-    inline void setAction(u8 action) { this->mAction = action; }
-    inline void setMoveMode(u8 mode) { this->mMoveMode = mode; }
+    void setAction(u8 action) { mAction = action; }
+    void setMoveMode(u8 mode) { mMoveMode = mode; }
 
-    inline bool checkCommandDemoAccrpt() { return eventInfo.mCommand == dEvtCmd_INDEMO_e; }
+    bool checkCommandDemoAccrpt() { return eventInfo.mCommand == dEvtCmd_INDEMO_e; }
 
 private:
     request_of_phase_process_class mPhase;
