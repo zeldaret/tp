@@ -265,7 +265,7 @@ void dBgS_Acch::LineCheck(dBgS& i_bgs) {
         lin_chk.SetExtChk(*this);
 
         if (i_bgs.LineCross(&lin_chk)) {
-            *GetPos() = lin_chk.i_GetCross();
+            *GetPos() = lin_chk.GetCross();
             OnLineCheckHit();
 
             if (pm_out_poly_info != NULL)
@@ -306,7 +306,7 @@ void dBgS_Acch::LineCheck(dBgS& i_bgs) {
             lin_chk.SetExtChk(*this);
 
             if (i_bgs.LineCross(&lin_chk)) {
-                *GetPos() = lin_chk.i_GetCross();
+                *GetPos() = lin_chk.GetCross();
                 OnLineCheckHit();
 
                 if (pm_out_poly_info != NULL)

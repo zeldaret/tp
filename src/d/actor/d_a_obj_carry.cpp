@@ -2602,7 +2602,7 @@ int daObjCarry_c::mode_proc_carry() {
 
         if (0.0f != fopAcM_GetSpeedF(this)) {
             if (current.angle.x == 0) {
-                if (daPy_py_c::i_checkNowWolf()) {
+                if (daPy_py_c::checkNowWolf()) {
                     speedF = data().m_wolfThrowInitSpeedXZ;
                     speed.y = data().m_wolfThrowInitSpeedY;
                 } else {
@@ -2610,7 +2610,7 @@ int daObjCarry_c::mode_proc_carry() {
                     speed.y = data().m_throwInitSpeedY;
                 }
             } else {
-                if (daPy_py_c::i_checkNowWolf()) {
+                if (daPy_py_c::checkNowWolf()) {
                     speedF = data().m_wolfThrowInitSpeedXZ;
                 } else {
                     speedF = data().m_throwInitSpeedXZ;

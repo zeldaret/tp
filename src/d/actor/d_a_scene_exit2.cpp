@@ -88,19 +88,19 @@ void daScExit_c::actionWait() {
     if (checkArea()) {
         setAction(ACTION_ORDER_EVENT_e);
         fopAcM_orderOtherEventId(this, mEventID, mToolID, 0xFFFF, 0, 1);
-        eventInfo.i_onCondition(2);
+        eventInfo.onCondition(2);
     }
 }
 
 /* 8059E408-8059E488 000328 0080+00 1/0 0/0 0/0 .text            actionOrderEvent__10daScExit_cFv */
 void daScExit_c::actionOrderEvent() {
-    if (eventInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.checkCommandDemoAccrpt()) {
         setAction(ACTION_EVENT_e);
         demoProc();
         dComIfGp_setPlayerStatus1(0, 0x4000000);
     } else {
         fopAcM_orderOtherEventId(this, mEventID, mToolID, 0xFFFF, 0, 1);
-        eventInfo.i_onCondition(2);
+        eventInfo.onCondition(2);
     }
 }
 

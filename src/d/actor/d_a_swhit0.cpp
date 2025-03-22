@@ -243,7 +243,7 @@ void daSwhit0_c::orderEvent() {
         fopAcM_orderMapToolAutoNextEvent(this, getEvNo(), mEventId, 0xFFFF, 1, 0);
     }
 
-    eventInfo.i_onCondition(2);
+    eventInfo.onCondition(2);
 }
 
 /* 80486ABC-80486BC4 000B3C 0108+00 1/1 0/0 0/0 .text            actionOffWait__10daSwhit0_cFv */
@@ -289,7 +289,7 @@ int daSwhit0_c::actionToOnReady() {
 
 /* 80486C28-80486CE4 000CA8 00BC+00 1/1 0/0 0/0 .text            actionToOnOrder__10daSwhit0_cFv */
 int daSwhit0_c::actionToOnOrder() {
-    if (eventInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.checkCommandDemoAccrpt()) {
         if (dComIfGp_evmng_isMapToolCamera(getEvNo())) {
             mReadyTimer = 6;
             mAction += 2;

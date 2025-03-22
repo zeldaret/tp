@@ -118,7 +118,7 @@ s32 daTag_BottleItem_c::chkEvent() {
     if (!dComIfGp_getEvent().isOrderOK()) {
         uVar2 = 0;
         
-        if (eventInfo.i_checkCommandCatch()) {
+        if (eventInfo.checkCommandCatch()) {
             return uVar2;
         }
     }
@@ -130,7 +130,7 @@ s32 daTag_BottleItem_c::chkEvent() {
 s32 daTag_BottleItem_c::orderEvent() {
     makeSoup();
 
-    if (!daPy_py_c::i_checkNowWolf() && mBottleItemType != fpcNm_ITEM_EMPTY_BOTTLE) {
+    if (!daPy_py_c::checkNowWolf() && mBottleItemType != fpcNm_ITEM_EMPTY_BOTTLE) {
         attention_info.flags = 0x20000008;
     } else {
         attention_info.flags = 0;
@@ -139,7 +139,7 @@ s32 daTag_BottleItem_c::orderEvent() {
     if (attention_info.flags == 0x20000008) {
         attention_info.distances[fopAc_attn_TALK_e] = fpcNm_ITEM_EMPTY_BOTTLE;
         attention_info.distances[fopAc_attn_SPEAK_e] = fpcNm_ITEM_EMPTY_BOTTLE;
-        eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
+        eventInfo.onCondition(dEvtCnd_CANTALK_e);
     }
 
     return 1;
@@ -160,12 +160,12 @@ void daTag_BottleItem_c::makeSoup() {
 int daTag_BottleItem_c::wait(void* param_0) {
     switch(mEventType) {
     case 1:
-        if (eventInfo.i_checkCommandCatch() == 0){
+        if (eventInfo.checkCommandCatch() == 0){
             fopAc_ac_c* player = dComIfGp_getPlayer(0);
             cXyz pos = attention_info.position - player->attention_info.position;
         
             dComIfGp_att_CatchRequest(this,mBottleItemType,140.0f,pos.y+100.0f,pos.y-100.0f,0x2000,1);
-            eventInfo.i_onCondition(0x40);
+            eventInfo.onCondition(0x40);
         }
     case 2:
     case 0:

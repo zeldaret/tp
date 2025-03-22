@@ -1566,7 +1566,7 @@ void daE_VA_c::executeDemoOpWait() {
         mDrawRopes = true;
     case 1:
         for (int i = 0; i < 190; i++) {
-            if (!daPy_getPlayerActorClass()->i_checkNowWolf()) {
+            if (!daPy_getPlayerActorClass()->checkNowWolf()) {
                 mLineSphs[i].OffTgShield();
             } else {
                 mLineSphs[i].OnTgShield();
@@ -1590,9 +1590,9 @@ void daE_VA_c::executeDemoOp() {
 
     switch (mMode) {
     case 0:
-        if (!eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(this, 2, 0xFFFF, 0);
-            eventInfo.i_onCondition(2);
+            eventInfo.onCondition(2);
             return;
         }
 
@@ -1729,7 +1729,7 @@ void daE_VA_c::executeDemoOp() {
             mWeponEfMode = 1;
             mDemoModeTimer = 130;
 
-            if (!player->i_checkNowWolf()) {
+            if (!player->checkNowWolf()) {
                 player->changeDemoMode(0x17, 0, 0, 0);
             }
 
@@ -2355,9 +2355,9 @@ void daE_VA_c::executeOpaciWait() {
         Z2GetAudioMgr()->changeSubBgmStatus(3);
         break;
     case 10:
-        if (!eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(this, 2, 0xFFFF, 0);
-            eventInfo.i_onCondition(2);
+            eventInfo.onCondition(2);
         } else {
             mAlphaType = 2;
             field_0x1380 = 30;
@@ -2681,7 +2681,7 @@ void daE_VA_c::executeOpaciChase() {
         field_0x1388 = 1;
         mSound.startCreatureVoiceLevel(Z2SE_EN_VA_V_ROTATE, -1);
 
-        if (mDownTimer == 0 && !player->i_checkNowWolf()) {
+        if (mDownTimer == 0 && !player->checkNowWolf()) {
             mBodyCyls[0].OnTgSetBit();
             mBodyCyls[1].OnTgSetBit();
         }
@@ -2747,7 +2747,7 @@ void daE_VA_c::executeOpaciChase() {
     case 12:
         mSound.startCreatureVoiceLevel(Z2SE_EN_VA_V_ROTATE, -1);
 
-        if (!player->i_checkNowWolf()) {
+        if (!player->checkNowWolf()) {
             mBodyCyls[0].OnTgSetBit();
             mBodyCyls[1].OnTgSetBit();
         }
@@ -2767,7 +2767,7 @@ void daE_VA_c::executeOpaciChase() {
     case 13:
         mSound.startCreatureVoiceLevel(Z2SE_EN_VA_V_ROTATE, -1);
 
-        if (!player->i_checkNowWolf()) {
+        if (!player->checkNowWolf()) {
             mBodyCyls[0].OnTgSetBit();
             mBodyCyls[1].OnTgSetBit();
         }
@@ -3087,9 +3087,9 @@ void daE_VA_c::executeOpaciDeath() {
 
     switch (mMode) {
     case 0:
-        if (!eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(this, 2, 0xFFFF, 0);
-            eventInfo.i_onCondition(2);
+            eventInfo.onCondition(2);
             return;
         }
 

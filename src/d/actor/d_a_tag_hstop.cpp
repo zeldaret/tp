@@ -146,7 +146,7 @@ int daTagHstop_c::execute() {
                 }
             } else if (field_0x573 == 2 && !dComIfGp_getHorseActor()->checkTurnStand()) {
                 fopAcM_orderSpeakEvent(this, 0, 0);
-                eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
+                eventInfo.onCondition(dEvtCnd_CANTALK_e);
             }
         } else if (mPrm1 == 2 && !dComIfGp_event_runCheck()) {
             if (dComIfGs_getArrowNum() == 0 && !dComIfGs_isSwitch(0x8D, fopAcM_GetHomeRoomNo(this)))

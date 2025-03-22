@@ -4126,9 +4126,9 @@ extern "C" void changeDemoMode__9daPy_py_cFUliis() {
 }
 
 /* 807E2348-807E2350 -00001 0008+00 0/0 0/0 0/0 .text            changeDemoParam2__9daPy_py_cFs */
-void daPy_py_c::changeDemoParam2(s16 param_0) {
-    *(u16*)(((u8*)this) + 1546) /* this->field_0x60a */ = (u16)(param_0);
-}
+/* void daPy_py_c::changeDemoParam2(s16 param_0) {
+    //*(u16*)(((u8*)this) + 1546)  this->field_0x60a  = (u16)(param_0);
+} */
 
 /* 807E2350-807E235C 00FFB0 000C+00 1/1 0/0 0/0 .text            fabsf__3stdFf */
 extern "C" void fabsf__3stdFf() {
@@ -4339,9 +4339,9 @@ extern "C" void changeDemoMode__9daHorse_cFUli() {
 }
 
 /* 807E28E0-807E2908 010540 0028+00 1/1 0/0 0/0 .text setHorsePosAndAngle__9daHorse_cFPC4cXyzs */
-void daHorse_c::setHorsePosAndAngle(cXyz const* param_0, s16 param_1) {
+/* void daHorse_c::setHorsePosAndAngle(cXyz const* param_0, s16 param_1) {
     // NONMATCHING
-}
+} */
 
 /* 807E2908-807E2934 010568 002C+00 1/1 0/0 0/0 .text startCheckSkipEdge__14dEvt_control_cFPv */
 extern "C" void startCheckSkipEdge__14dEvt_control_cFPv() {

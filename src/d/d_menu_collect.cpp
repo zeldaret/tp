@@ -72,7 +72,7 @@ dMenu_Collect2D_c::dMenu_Collect2D_c(JKRExpHeap* param_0, STControl* param_1, CS
     mpStick = param_1;
     mpCStick = param_2;
     field_0xc = NULL;
-    mIsWolf = daPy_py_c::i_checkNowWolf();
+    mIsWolf = daPy_py_c::checkNowWolf();
     mLinkGlobalCenterPos.set(0.0f, 0.0f, 0.0f);
     for (int i = 0; i < 2; i++) {
         field_0x44[i] = 1.0f;
@@ -2196,7 +2196,7 @@ void dMenu_Collect2D_c::setItemNameStringNull() {
  * __ct__17dMenu_Collect3D_cFP10JKRExpHeapP17dMenu_Collect2D_cP10CSTControl */
 dMenu_Collect3D_c::dMenu_Collect3D_c(JKRExpHeap* param_0, dMenu_Collect2D_c* param_1,
                                      CSTControl* param_2) {
-    mIsWolf = daPy_py_c::i_checkNowWolf();
+    mIsWolf = daPy_py_c::checkNowWolf();
     mpHeap = param_0;
     mpSolidHeap = NULL;
     mpCStick = param_2;

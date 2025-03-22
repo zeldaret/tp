@@ -1133,7 +1133,7 @@ int daBgObj_c::actionOrderWait() {
 
 /* 8045BBE0-8045BD50 002600 0170+00 1/0 0/0 0/0 .text            actionOrder__9daBgObj_cFv */
 int daBgObj_c::actionOrder() {
-    if (eventInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.checkCommandDemoAccrpt()) {
         setAction(2);
 
         if (field_0xd01 < 5) {

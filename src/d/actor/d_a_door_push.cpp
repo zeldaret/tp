@@ -245,19 +245,19 @@ void daDoorPush_c::actionOpenWait() {
     if (mIndex != 2) {
         setAction(1);
         fopAcM_orderOtherEventId(this, field_0x63a[mIndex], field_0x63e[mIndex], 0xffff, 0, 1);
-        eventInfo.i_onCondition(2);
+        eventInfo.onCondition(2);
     }
 }
 
 /* 8067877C-806787F8 000A3C 007C+00 1/0 0/0 0/0 .text            actionOrderEvent__12daDoorPush_cFv
  */
 void daDoorPush_c::actionOrderEvent() {
-    if (eventInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.checkCommandDemoAccrpt()) {
         setAction(2);
         demoProc();
     } else {
         fopAcM_orderOtherEventId(this, field_0x63a[mIndex], field_0x63e[mIndex], 0xffff, 0, 1);
-        eventInfo.i_onCondition(2);
+        eventInfo.onCondition(2);
     }
 }
 

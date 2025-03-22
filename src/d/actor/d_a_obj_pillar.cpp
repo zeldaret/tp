@@ -287,7 +287,7 @@ int daPillar_c::checkShake() {
     f32 player_dist = player->current.pos.abs(current.pos);
     f32 attack_range = 150.0f;
 
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         attack_range = 220.0f;
     }
 

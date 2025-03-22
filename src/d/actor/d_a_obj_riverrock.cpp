@@ -87,7 +87,7 @@ void daObjRIVERROCK_c::CheckBG() {
     adStack_a0.Set(&field_0x5d0, &particlePos, NULL);
     if (dComIfG_Bgsp().LineCross(&adStack_a0)) {
         if (dComIfG_Bgsp().GetSpecialCode(adStack_a0) == 1) {
-            eyePos = adStack_a0.i_GetCross();
+            eyePos = adStack_a0.GetCross();
             fopAcM_seStart(this, Z2SE_OBJ_RG_ROCKPOLE_LAND, 0);
             if (field_0x5a8 != 0xff) {
                 if (!dComIfGs_isSwitch(field_0x5a8, fopAcM_GetRoomNo(this))) {

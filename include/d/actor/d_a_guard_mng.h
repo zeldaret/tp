@@ -24,7 +24,7 @@ public:
             0x00000200, 0x00000201,
         };
 
-        if (!daPy_py_c::i_checkNowWolf() || field_0x573 >= mLimitNum) {
+        if (!daPy_py_c::checkNowWolf() || field_0x573 >= mLimitNum) {
             return 1;
         } else {
             if (field_0x571 < mMerchantNum) {

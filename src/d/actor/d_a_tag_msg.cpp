@@ -129,7 +129,7 @@ int daTag_Msg_c::execute() {
                 dComIfGp_getEventManager().getEventIdx(this, l_evtNameTBL[mOrderEvtNum], 0xFF);
             fopAcM_orderOtherEventId(this, mEventIdx, 0xFF, 0xFFFF, 0, 1);
         } else {
-            eventInfo.i_onCondition(1);
+            eventInfo.onCondition(1);
             field_0x5e4 = 1;
         }
     }

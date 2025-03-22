@@ -923,14 +923,14 @@ int daBdoorL1_c::actionWait() {
 
 /* 804E441C-804E44B4 0026FC 0098+00 1/0 0/0 0/0 .text            actionCloseWait__11daBdoorL1_cFv */
 int daBdoorL1_c::actionCloseWait() {
-    if (eventInfo.i_checkCommandDoor()) {
+    if (eventInfo.checkCommandDoor()) {
         field_0x5a0 = dComIfGp_evmng_getMyStaffId(l_staff_name, 0, 0);
         demoProc();
         setAction(ACTION_OPEN);
     } else if (checkOpen()) {
         eventInfo.setEventId(field_0x59e);
         eventInfo.setMapToolId(0xff);
-        eventInfo.i_onCondition(4);
+        eventInfo.onCondition(4);
     }
     return 1;
 }

@@ -165,7 +165,7 @@ int daTagLv8Gate_c::execute() {
                 break;
             }
 
-            if (eventInfo.i_checkCommandDemoAccrpt() && mEventID != -1) {
+            if (eventInfo.checkCommandDemoAccrpt() && mEventID != -1) {
                 if (dComIfGp_evmng_endCheck(mEventID)) {
                     mEventID = -1;
                 }

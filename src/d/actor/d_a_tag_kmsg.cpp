@@ -89,7 +89,7 @@ int daTag_KMsg_c::Execute() {
             }
         }
         if ((getType() == KMSG_TYPE_1 || getType() == KMSG_TYPE_4 || getType() == KMSG_TYPE_5) &&
-            daPy_py_c::i_checkNowWolf())
+            daPy_py_c::checkNowWolf())
         {
             attention_info.flags = 0;
         }
@@ -149,7 +149,7 @@ int daTag_KMsg_c::Execute() {
                 }
             }
         } else {
-            eventInfo.i_onCondition(1);
+            eventInfo.onCondition(1);
             if (getType() != KMSG_TYPE_1 && daNpcT_chkDoBtnIsSpeak(this)) {
                 if (getChkType() != KMSG_TYPE_0) {
                     dComIfGp_setDoStatusForce(0x80, 2);
@@ -198,7 +198,7 @@ int daTag_KMsg_c::Execute() {
                 if (dComIfG_Bgsp().LineCross(&lin_chk)) {
                     cXyz vec48;
                     cXyz vec30 = vec54 - vec60;
-                    vec48 = lin_chk.i_GetCross() + vec30.norm() * 10.0f;
+                    vec48 = lin_chk.GetCross() + vec30.norm() * 10.0f;
                     attention_info.position.x = vec48.x;
                     attention_info.position.z = vec48.z;
                 }

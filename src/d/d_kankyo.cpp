@@ -1881,7 +1881,7 @@ void dScnKy_env_light_c::setLight() {
             dBgS_CamGndChk_Wtr camchk;
             cXyz chkpos;
 
-            if (checkZoraWearFlg() && !daPy_py_c::i_checkNowWolf()) {
+            if (checkZoraWearFlg() && !daPy_py_c::checkNowWolf()) {
                 dKy_WaterIn_Light_set();
             }
 

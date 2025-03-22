@@ -616,7 +616,7 @@ int daNbomb_c::insectLineCheck() {
 void daNbomb_c::setHitPolygon(BOOL param_0) {
     if (!param_0) {
         mInsectHitPolyInfo.SetPolyInfo(mLineChk);
-        current.pos = mLineChk.i_GetCross();
+        current.pos = mLineChk.GetCross();
     }
 
     cM3dGPla poly;
@@ -1358,7 +1358,7 @@ BOOL daNbomb_c::procInsectMove() {
             }
 
             if (var_r28 == 2) {
-                current.pos = mLineChk.i_GetCross();
+                current.pos = mLineChk.GetCross();
             } else {
                 current.pos += field_0xbfc * speedF;
             }

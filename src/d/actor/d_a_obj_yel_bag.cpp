@@ -477,7 +477,7 @@ int daObj_YBag_c::getWallAngle(s16 param_1, s16* param_2) {
         acStack_40[i] += cStack_50;
         mLinChk.Set(&cStack_50, &acStack_40[i], this);
         if (dComIfG_Bgsp().LineCross(&mLinChk)) {
-            acStack_40[i] = mLinChk.i_GetCross();
+            acStack_40[i] = mLinChk.GetCross();
         } else {
             return 0;
         }

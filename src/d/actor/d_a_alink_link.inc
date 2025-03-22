@@ -3411,13 +3411,13 @@ void daAlink_c::setDrawHand() {
     u8 var_r30;
     u8 var_r29;
     if (checkNoResetFlg2(FLG2_STATUS_WINDOW_DRAW)) {
-        if (i_checkSwordGet()) {
+        if (checkSwordGet()) {
             var_r30 = 0;
         } else {
             var_r30 = 0xFE;
         }
 
-        if (i_checkShieldGet()) {
+        if (checkShieldGet()) {
             var_r29 = 6;
         } else {
             var_r29 = 0xFE;
@@ -3527,14 +3527,14 @@ void daAlink_c::setDrawHand() {
 
 /* 800CB480-800CB53C 0C5DC0 00BC+00 3/3 0/0 0/0 .text            checkSwordDraw__9daAlink_cFv */
 bool daAlink_c::checkSwordDraw() {
-    return ((i_checkSwordGet() && mSwordChangeWaitTimer == 0) &&
+    return ((checkSwordGet() && mSwordChangeWaitTimer == 0) &&
             !checkNoResetFlg2(FLG2_UNK_2080000)) &&
            (!checkWolf() || !dComIfGs_isEventBit(0x0C08));
 }
 
 /* 800CB53C-800CB5F8 0C5E7C 00BC+00 3/3 0/0 0/0 .text            checkShieldDraw__9daAlink_cFv */
 bool daAlink_c::checkShieldDraw() {
-    return ((i_checkShieldGet() && mShieldChangeWaitTimer == 0) &&
+    return ((checkShieldGet() && mShieldChangeWaitTimer == 0) &&
             !checkNoResetFlg2(FLG2_UNK_4080000)) &&
            (!checkWolf() || !dComIfGs_isEventBit(0x0C08));
 }
@@ -3542,7 +3542,7 @@ bool daAlink_c::checkShieldDraw() {
 /* 800CB5F8-800CB694 0C5F38 009C+00 2/2 0/0 0/0 .text            checkItemDraw__9daAlink_cFv */
 bool daAlink_c::checkItemDraw() {
     if (mHeldItemModel != NULL && (mEquipItem != fpcNm_ITEM_IRONBALL || !checkSwordEquipAnime())) {
-        if (!checkBowAndSlingItem(mEquipItem) || checkBowGrabLeftHand() || !i_checkShieldGet() ||
+        if (!checkBowAndSlingItem(mEquipItem) || checkBowGrabLeftHand() || !checkShieldGet() ||
             field_0x2e44.checkPassNum(15))
         {
             return true;
@@ -4397,7 +4397,7 @@ s16 daAlink_c::checkBodyAngleX(s16 param_0) {
     mDoMtx_stack_c::multVec(&sp2C, &sp14);
 
     if (commonLineCheck(&sp20, &sp14)) {
-        cXyz sp8 = sp14 - mLinkLinChk.i_GetCross();
+        cXyz sp8 = sp14 - mLinkLinChk.GetCross();
         multVecMagneBootInvMtx(&sp8);
 
         current.pos.x -= sp8.x;
@@ -4465,7 +4465,7 @@ void daAlink_c::setSubjectMode() {
 /* 800CEB58-800CEBD8 0C9498 0080+00 2/2 0/0 0/0 .text            subjectCancelTrigger__9daAlink_cFv
  */
 BOOL daAlink_c::subjectCancelTrigger() {
-    if (checkWolf() || checkNotBattleStage() || !i_checkSwordGet() ||
+    if (checkWolf() || checkNotBattleStage() || !checkSwordGet() ||
         (checkModeFlg(0x40000) && !checkEquipHeavyBoots()))
     {
         return itemTriggerCheck(BTN_B);

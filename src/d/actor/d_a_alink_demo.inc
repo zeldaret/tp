@@ -199,7 +199,7 @@ int daAlink_c::checkDemoAction() {
             if (mDemo.getParam0() != 0) {
                 freeGrabItem();
 
-                if (mDemo.getParam0() == 1 && i_checkSwordGet()) {
+                if (mDemo.getParam0() == 1 && checkSwordGet()) {
                     if (mEquipItem != 0x103) {
                         deleteEquipItem(FALSE, TRUE);
                         if (checkEquipAnime()) {

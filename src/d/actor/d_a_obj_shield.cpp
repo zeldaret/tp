@@ -253,7 +253,7 @@ int daItemShield_c::initActionOrderGetDemo() {
     mCcCyl.OffCoSPrmBit(1);
     daItemBase_c::hide();
     fopAcM_orderItemEvent(this, 0, 0);
-    eventInfo.i_onCondition(dEvtCnd_CANGETITEM_e);
+    eventInfo.onCondition(dEvtCnd_CANGETITEM_e);
     mItemId =
         fopAcM_createItemForTrBoxDemo(&current.pos, m_itemNo, -1, fopAcM_GetRoomNo(this), 0, 0);
     JUT_ASSERT(682, mItemId != fpcM_ERROR_PROCESS_ID_e)
@@ -270,7 +270,7 @@ int daItemShield_c::actionOrderGetDemo() {
         }
     } else {
         fopAcM_orderItemEvent(this, 0, 0);
-        eventInfo.i_onCondition(dEvtCnd_CANGETITEM_e);
+        eventInfo.onCondition(dEvtCnd_CANGETITEM_e);
     }
     return 1;
 }
@@ -305,7 +305,7 @@ void daItemShield_c::actionWaitCamDemo() {
         setAction(ACTION_ORDER_CAM_DEMO);
         fopAcM_orderOtherEventId(this, mEventIdx, mEvId,
                                                  0xffff, 0, 1);
-        eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+        eventInfo.onCondition(dEvtCnd_CANDEMO_e);
     }
 }
 
@@ -316,7 +316,7 @@ void daItemShield_c::actionOrderCamDemo() {
     } else {
         fopAcM_orderOtherEventId(this, mEventIdx, mEvId,
                                                  0xffff, 0, 1);
-        eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+        eventInfo.onCondition(dEvtCnd_CANDEMO_e);
     }
 }
 

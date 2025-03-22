@@ -291,7 +291,7 @@ int dMeter2_c::_execute() {
     }
 
     dMeter2Info_allUseButton();
-    i_dMeter2Info_offUseButton(0x800);
+    dMeter2Info_offUseButton(0x800);
     dMeter2Info_resetGameStatus();
     dComIfGp_setNunStatus(0, 0, 0);
     dComIfGp_setRemoConStatus(0, 0, 0);

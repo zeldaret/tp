@@ -243,7 +243,7 @@ int dEvt_control_c::talkCheck(dEvt_order_c* p_order) {
         (fopAcM_GetName(actor) == PROC_Tag_Mstop && ((daTagMstop_c*)actor)->checkNoAttention()) ||
         fopAcM_GetName(actor) == PROC_MIDNA) {
         daMidna_c* midna = (daMidna_c*)daPy_py_c::getMidnaActor();
-        if (!daPy_py_c::i_checkNowWolf() || midna->checkNoDraw()) {
+        if (!daPy_py_c::checkNowWolf() || midna->checkNoDraw()) {
             event = "MHINT_TALK";
         }
     }

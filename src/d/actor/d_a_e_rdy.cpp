@@ -2057,7 +2057,7 @@ static void e_rdy_damage(e_rdy_class* i_this) {
 
     i_this->mTargetEyeScale = 0.0f;
 
-    if (!daPy_py_c::i_checkNowWolf() && i_this->checkCutDownHitFlg()) {
+    if (!daPy_py_c::checkNowWolf() && i_this->checkCutDownHitFlg()) {
         i_this->offCutDownHitFlg();
         i_this->mMode = 3;
         i_this->mTimer[0] = 100;
@@ -2160,7 +2160,7 @@ static void e_rdy_damage(e_rdy_class* i_this) {
         i_this->shape_angle.y = i_this->current.angle.y;
         cLib_addCalcAngleS2(&i_this->field_0xadc.x, -0x4000, 1, 0x300);
         if (i_this->mAcch.ChkGroundHit()) {
-            if (i_this->health > 0 && !daPy_py_c::i_checkNowWolf()) {
+            if (i_this->health > 0 && !daPy_py_c::checkNowWolf()) {
                 i_this->onDownFlg();
             }
             dKy_Sound_set(i_this->current.pos, 100, fopAcM_GetID(i_this), 5);
@@ -2182,7 +2182,7 @@ static void e_rdy_damage(e_rdy_class* i_this) {
                 angle_y = i_this->field_0xadc.y + 0x8000;
             }
             i_this->current.angle.y = angle_y;
-            if (daPy_py_c::i_checkNowWolf()) {
+            if (daPy_py_c::checkNowWolf()) {
                 i_this->mTimer[0] = 80;
                 i_this->mTimer[1] = 55;
             } else {
@@ -3726,9 +3726,9 @@ static void demo_camera(e_rdy_class* i_this) {
 
     switch (i_this->mDemoMode) {
     case 1:
-        if (!i_this->eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!i_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(i_this, 2, 0xffef, 0);
-            i_this->eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+            i_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
         player_camera->mCamera.Stop();
@@ -3767,9 +3767,9 @@ static void demo_camera(e_rdy_class* i_this) {
         break;
 
     case 5:
-        if (!i_this->eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!i_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(i_this, 2, 0xffff, 0);
-            i_this->eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+            i_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
         player_camera->mCamera.Stop();
@@ -3812,9 +3812,9 @@ static void demo_camera(e_rdy_class* i_this) {
         break;
 
     case 10:
-        if (!i_this->eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!i_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(i_this, 2, 0xffff, 0);
-            i_this->eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+            i_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
         player_camera->mCamera.Stop();
@@ -3968,9 +3968,9 @@ static void demo_camera(e_rdy_class* i_this) {
         break;
 
     case 20:
-        if (!i_this->eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!i_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(i_this, 2, 0xffff, 0);
-            i_this->eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+            i_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
         player_camera->mCamera.Stop();
@@ -4257,7 +4257,7 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
     if (!c_start && dComIfGp_event_runCheck()) {
         if (fopAcM_getTalkEventPartner(daPy_getLinkPlayerActorClass())
                                                         == daPy_py_c::getMidnaActor()
-            || daPy_getPlayerActorClass()->eventInfo.i_checkCommandDoor())
+            || daPy_getPlayerActorClass()->eventInfo.checkCommandDoor())
         {
             return 1;
         }
@@ -4468,7 +4468,7 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
     vec1.set(20.0f, 0.0f, 0.0f);
     MtxPosition(&vec1, &i_this->eyePos);
 
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         cc_offset.y += 30.0f;
         i_this->mCcSph[0].SetC(i_this->eyePos + cc_offset);
         i_this->mCcSph[0].SetR(50.0f);

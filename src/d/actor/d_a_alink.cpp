@@ -132,12 +132,6 @@ u8 daAlink_matAnm_c::m_morf_frame;
 bool daAlink_c::checkWindSpeedOnXZ() const {
     return field_0x35b8.abs2XZ() > 1.0f;
 }
-bool daPy_py_c::i_checkShieldGet() const {
-    return dComIfGs_getSelectEquipShield() != fpcNm_ITEM_NONE;
-}
-u32 daPy_py_c::getLastSceneMode() {
-    return dComIfGs_getLastSceneMode() & 0xF;
-}
 
 /* 8009D8E4-8009D90C 098224 0028+00 2/2 0/0 0/0 .text            init__16daAlink_matAnm_cFv */
 void daAlink_matAnm_c::init() {
@@ -5513,7 +5507,7 @@ bool daPy_py_c::checkLightMasterSwordEquip() {
     return dComIfGs_getSelectEquipSword() == fpcNm_ITEM_LIGHT_SWORD;
 }
 
-BOOL daPy_py_c::i_checkSwordGet() {
+BOOL daPy_py_c::checkSwordGet() {
     return dComIfGs_getSelectEquipSword() != fpcNm_ITEM_NONE;
 }
 
@@ -5529,14 +5523,14 @@ void daAlink_c::setSelectEquipItem(int param_0) {
             mSwordModel = mpSwMModel;
             mSheathModel = mpSwMSheathModel;
         } else {
-            if (!i_checkSwordGet()) {
+            if (!checkSwordGet()) {
                 mSwordChangeWaitTimer = 100;
             }
             mSwordModel = mpSwAModel;
             mSheathModel = mpSwASheathModel;
         }
 
-        if (!i_checkSwordGet() || checkWoodSwordEquip() || checkNoResetFlg3(FLG3_UNK_1000000)) {
+        if (!checkSwordGet() || checkWoodSwordEquip() || checkNoResetFlg3(FLG3_UNK_1000000)) {
             if (field_0x06ec != NULL) {
                 field_0x06ec->hide();
             }
@@ -5603,7 +5597,7 @@ BOOL daAlink_c::checkCanoeStart() {
     return (checkStageName("F_SP115") && getStartRoomNo() == 0) && dComIfGs_getStartPoint() == 2;
 }
 
-u32 daPy_py_c::i_getLastSceneMode() {
+u32 daPy_py_c::getLastSceneMode() {
     return dComIfGs_getLastSceneMode() & 0xF;
 }
 
@@ -5752,7 +5746,7 @@ void daAlink_c::playerInit() {
     } else if (dComIfGp_getStartStagePoint() == -4) {
         field_0x3188 = dComIfGp_evmng_startDemo(0xD5);
     } else {
-        if (i_getLastSceneMode() == 9) {
+        if (getLastSceneMode() == 9) {
             field_0x3188 = dComIfGp_evmng_startDemo(0xD3);
         } else if (startMode == 10) {
             if (startEvent != 0xFF) {
@@ -5778,9 +5772,9 @@ void daAlink_c::playerInit() {
             }
         } else if (startMode == 12) {
             field_0x3188 = dComIfGp_evmng_startDemo(0xC9);
-        } else if (i_getLastSceneMode() == 11) {
+        } else if (getLastSceneMode() == 11) {
             field_0x3188 = dComIfGp_evmng_startDemo(0xFF);
-        } else if (i_getLastSceneMode() == 12) {
+        } else if (getLastSceneMode() == 12) {
             field_0x3188 = dComIfGp_evmng_startDemo(0xD1);
         } else {
             field_0x3188 = dComIfGp_evmng_startDemo(startEvent);
@@ -5858,7 +5852,7 @@ int daAlink_c::setStartProcInit() {
         }
 
         if (horse_start) {
-            horsep->i_setHorsePosAndAngle(&current.pos, shape_angle.y);
+            horsep->setHorsePosAndAngle(&current.pos, shape_angle.y);
             horsep->initHorseMtx();
             initForceRideHorse();
         }
@@ -6041,7 +6035,7 @@ int daAlink_c::create() {
 
     static int bgWaitFlg = 0;
 
-    u32 sceneMode = i_getLastSceneMode();
+    u32 sceneMode = getLastSceneMode();
     s32 startMode = getStartMode();
     s16 startPoint = dComIfGp_getStartStagePoint();
     BOOL horseStart = checkHorseStart(sceneMode, startMode);
@@ -6404,8 +6398,8 @@ void daAlink_c::iceSlipBgCheck() {
             sp48.z += field_0x35c4.z * var_f31;
 
             if (commonLineCheck(&sp3C, &sp48) && dBgS_CheckBWallPoly(mLinkLinChk)) {
-                current.pos.x = mLinkLinChk.i_GetCross().x - field_0x35c4.x * var_f31;
-                current.pos.z = mLinkLinChk.i_GetCross().z - field_0x35c4.z * var_f31;
+                current.pos.x = mLinkLinChk.GetCross().x - field_0x35c4.x * var_f31;
+                current.pos.z = mLinkLinChk.GetCross().z - field_0x35c4.z * var_f31;
             }
         }
     }
@@ -6573,7 +6567,7 @@ f32 daAlink_c::checkWindWallRate(cXyz const& param_0) {
 
     f32 var_f31;
     if (commonLineCheck(&sp24, &sp18) && dComIfG_Bgsp().GetWallCode(mLinkLinChk) != 0xA) {
-        var_f31 = (1.0f / (daAlinkHIO_basic_c0::m.mMaxWindInfluenceDist - daAlinkHIO_basic_c0::m.mNoWindInfluenceDist)) * (sp24.abs(mLinkLinChk.i_GetCross()) - daAlinkHIO_basic_c0::m.mNoWindInfluenceDist);
+        var_f31 = (1.0f / (daAlinkHIO_basic_c0::m.mMaxWindInfluenceDist - daAlinkHIO_basic_c0::m.mNoWindInfluenceDist)) * (sp24.abs(mLinkLinChk.GetCross()) - daAlinkHIO_basic_c0::m.mNoWindInfluenceDist);
         if (var_f31 < 0.0f) {
             var_f31 = 0.0f;
         }
@@ -7024,7 +7018,7 @@ void daAlink_c::setMatrix() {
         } else if (checkReelAnime()) {
             field_0x2fb6 = 4;
         } else if (checkEquipAnime() && !checkModeFlg(1)) {
-            if (checkSwordEquipAnime() && !i_checkShieldGet()) {
+            if (checkSwordEquipAnime() && !checkShieldGet()) {
                 field_0x2fb6 = 5;
             } else {
                 field_0x2fb6 = 1;
@@ -7037,7 +7031,7 @@ void daAlink_c::setMatrix() {
             field_0x2fb6 = 7;
         } else if (checkUpperAnime(0x96) || checkCutDashChargeAnime() || (checkReinRide() && (checkUpperReadyThrowAnime() || checkGrabAnime()))) {
             field_0x2fb6 = 3;
-        } else if (checkSwordEquipAnime() && !i_checkShieldGet()) {
+        } else if (checkSwordEquipAnime() && !checkShieldGet()) {
             field_0x2fb6 = 2;
         } else if (checkIronBallWaitAnime()) {
             if (checkUnderMove0BckNoArc(ANM_IRONBALL_WAIT)) {
@@ -7152,7 +7146,7 @@ void daAlink_c::setItemMatrix(int param_0) {
     }
 
     int var_r28;
-    if (!i_checkSwordGet()) {
+    if (!checkSwordGet()) {
         var_r28 = 0;
     } else if (checkLightMasterSwordEquip()) {
         var_r28 = 3;
@@ -7168,7 +7162,7 @@ void daAlink_c::setItemMatrix(int param_0) {
         if (param_0 != 0 || (checkPlayerGuardAndAttack() && mEquipItem != fpcNm_ITEM_IRONBALL && !checkModeFlg(0x400)) || checkNoResetFlg0(FLG0_UNK_2) || (mProcID == PROC_TOOL_DEMO && mProcVar4.field_0x3010 != 0) || (mProcID == PROC_CUT_REVERSE && mProcVar2.field_0x300c != 0) || mProcID == PROC_GUARD_BREAK || (mEquipItem == 0x103 && !checkEndResetFlg1(ERFLG1_GANON_FINISH) && !checkModeFlg(0x400))) {
             mShieldModel->setBaseTRMtx(mpLinkModel->getAnmMtx(field_0x30c2));
 
-            if (i_checkShieldGet()) {
+            if (checkShieldGet()) {
                 field_0x2e44.offPassNum(0xF);
                 mDoAud_setLinkShieldType(1, 1);
             } else {
@@ -7187,7 +7181,7 @@ void daAlink_c::setItemMatrix(int param_0) {
             mDoMtx_stack_c::XYZrotM(cM_deg2s(91.0f), cM_deg2s(57.0f), cM_deg2s(180.0f));
             mShieldModel->setBaseTRMtx(mDoMtx_stack_c::get());
 
-            if (!i_checkShieldGet()) {
+            if (!checkShieldGet()) {
                 mDoAud_setLinkShieldType(0, 2);
                 field_0x2e44.onPassNum(0x10);
             } else {
@@ -7469,7 +7463,7 @@ BOOL daAlink_c::checkNoCollisionCorret() {
          (!strcmp(dComIfGp_getEventManager().getRunEventName(), "SCENE_EXIT") ||
           (fopAcM_getTalkEventPartner(this) &&
            fopAcM_getTalkEventPartner(this) == getMidnaActor()))) ||
-        eventInfo.i_checkCommandDoor())
+        eventInfo.checkCommandDoor())
     {
         return true;
     }
@@ -7710,7 +7704,7 @@ void daAlink_c::setAtCollision() {
 
                 mRopeLinChk.Set(&spBC, &spB0, this);
                 if (dComIfG_Bgsp().LineCross(&mRopeLinChk)) {
-                    spB0 = mRopeLinChk.i_GetCross();
+                    spB0 = mRopeLinChk.GetCross();
                 }
 
                 mAtCps[0].SetStartEnd(spBC, spB0);
@@ -9923,7 +9917,7 @@ void daAlink_c::setFrontWallType() {
             f32 sp40;
 
             if (checkModeFlg(2)) {
-                field_0x34ec = mLinkLinChk.i_GetCross();
+                field_0x34ec = mLinkLinChk.GetCross();
             } else {
                 sp40 = linchk_tri.getSignedLenPos(&current.pos);
                 field_0x34ec.set(current.pos.x - (sp40 * linchk_tri.mNormal.x), current.pos.y, current.pos.z - (sp40 * linchk_tri.mNormal.z));
@@ -10102,7 +10096,7 @@ void daAlink_c::setFrontWallType() {
 
             BOOL sp24 = commonLineCheck(&chk_start_pos, &chk_end_pos);
             if (sp24) {
-                chk_start_pos = mLinkLinChk.i_GetCross();
+                chk_start_pos = mLinkLinChk.GetCross();
                 dComIfG_Bgsp().GetTriPla(mLinkLinChk, &spCC);
                 chk_start_pos.x = (chk_start_pos.x + (25.0f * spCC.mNormal.x));
                 chk_start_pos.z = (chk_start_pos.z + (25.0f * spCC.mNormal.z));
@@ -10571,7 +10565,7 @@ void daAlink_c::setPlayerPosAndAngle(cXyz const* p_pos, s16 i_angle, int param_2
         }
 
         if (checkHorseRide()) {
-            dComIfGp_getHorseActor()->i_setHorsePosAndAngle(&current.pos, shape_angle.y);
+            dComIfGp_getHorseActor()->setHorsePosAndAngle(&current.pos, shape_angle.y);
         } else if (checkSpinnerRide()) {
             fopAc_ac_c* rideAc = mRideAcKeep.getActor();
             rideAc->current.pos = current.pos;
@@ -12181,8 +12175,8 @@ BOOL daAlink_c::checkAutoJumpAction() {
                         if (field_0x3178 != 3 && !checkEndResetFlg0(ERFLG0_NOT_AUTO_JUMP)) {
                             if (sp14 >= sp10 && (!checkBootsOrArmorHeavy() || checkIronBallWaitAnime()) && (field_0x33a8 > 0.85f || (checkIronBallWaitAnime() && field_0x33ac > 0.85f) || mProcID == PROC_WOLF_GIANT_PUZZLE || checkEndResetFlg0(ERFLG0_FORCE_AUTO_JUMP)) && cLib_distanceAngleS(temp_r26, shape_angle.y) < 0x800) {
                                 if (var_r29) {
-                                    current.pos.x = mLinkLinChk.i_GetCross().x;
-                                    current.pos.z = mLinkLinChk.i_GetCross().z;
+                                    current.pos.x = mLinkLinChk.GetCross().x;
+                                    current.pos.z = mLinkLinChk.GetCross().z;
                                 }
 
                                 if (checkWolf()) {
@@ -12197,9 +12191,9 @@ BOOL daAlink_c::checkAutoJumpAction() {
                             }
                         }
 
-                        if (!checkEndResetFlg0(ERFLG0_NOT_HANG) && mSpecialMode != 0x2B && var_r29 && dComIfG_Bgsp().GetWallCode(mLinkLinChk) != 2 && sp28 < -daAlinkHIO_wallHang_c0::m.hang_foot_pos_height && current.pos.y - mWaterY > sp18 && (fabsf(sp44.mNormal.y) <= 0.05f || (sp44.mNormal.y < 0.05f && var_r27 && getWallEdgePos(mLinkLinChk.i_GetCross(), &sp44, &sp58, mLinkLinChk.GetCrossP(), 0)))) {
-                            current.pos.x = mLinkLinChk.i_GetCross().x;
-                            current.pos.z = mLinkLinChk.i_GetCross().z;
+                        if (!checkEndResetFlg0(ERFLG0_NOT_HANG) && mSpecialMode != 0x2B && var_r29 && dComIfG_Bgsp().GetWallCode(mLinkLinChk) != 2 && sp28 < -daAlinkHIO_wallHang_c0::m.hang_foot_pos_height && current.pos.y - mWaterY > sp18 && (fabsf(sp44.mNormal.y) <= 0.05f || (sp44.mNormal.y < 0.05f && var_r27 && getWallEdgePos(mLinkLinChk.GetCross(), &sp44, &sp58, mLinkLinChk.GetCrossP(), 0)))) {
+                            current.pos.x = mLinkLinChk.GetCross().x;
+                            current.pos.z = mLinkLinChk.GetCross().z;
 
                             if (!checkWolf() && checkClimbCode(mLinkLinChk)) {
                                 mPolyInfo1.SetPolyInfo(mLinkLinChk);
@@ -13141,7 +13135,7 @@ BOOL daAlink_c::checkItemAction() {
             }
         }
 
-        if (((dComIfGs_isEventBit(0x2908) || checkNoResetFlg3(FLG3_UNK_8)) && checkGuardActionChange() && !checkUpperReadyThrowAnime() && !checkModeFlg(0x70C52) && i_checkShieldGet() && !checkNotBattleStage()) && ((mLinkAcch.ChkGroundHit() || checkMagneBootsOn()) && dComIfGp_getRStatus() == 0)) {
+        if (((dComIfGs_isEventBit(0x2908) || checkNoResetFlg3(FLG3_UNK_8)) && checkGuardActionChange() && !checkUpperReadyThrowAnime() && !checkModeFlg(0x70C52) && checkShieldGet() && !checkNotBattleStage()) && ((mLinkAcch.ChkGroundHit() || checkMagneBootsOn()) && dComIfGp_getRStatus() == 0)) {
             setRStatus(0x3A);
 
             if (spActionTrigger()) {
@@ -13249,7 +13243,7 @@ BOOL daAlink_c::checkSwordTwirlAnime() const {
 
 /* 800B93F4-800B9580 0B3D34 018C+00 7/7 0/0 0/0 .text            swordEquip__9daAlink_cFi */
 void daAlink_c::swordEquip(int param_0) {
-    if (i_checkSwordGet()) {
+    if (checkSwordGet()) {
         field_0x2fde = 0x103;
 
         if (checkReinRide()) {
@@ -14593,7 +14587,7 @@ void daAlink_c::posMove() {
 
             if (commonLineCheck(&spC0, &spB4)) {
                 dComIfG_Bgsp().GetTriPla(mLinkLinChk, &plane);
-                f32 temp_f31 = spB4.abs(mLinkLinChk.i_GetCross());
+                f32 temp_f31 = spB4.abs(mLinkLinChk.GetCross());
 
                 mDoMtx_multVecSR(mMagneBootInvMtx, &plane.mNormal, &spCC);
                 if (cBgW_CheckBWall(spCC.y)) {
@@ -14639,7 +14633,7 @@ void daAlink_c::autoGroundHit() {
         sp5C = current.pos + (sp50 * 100.0f);
 
         if (commonMagneLineCheck(&sp68, &sp5C)) {
-            current.pos = mMagneLineChk.i_GetCross();
+            current.pos = mMagneLineChk.GetCross();
             onNoResetFlg0(FLG0_UNK_2000);
 
             if (checkNoResetFlg1(FLG1_UNK_20000000)) {
@@ -15112,7 +15106,7 @@ int daAlink_c::checkSceneChange(int exitID) {
             exit_mode = 0;
         }
 
-        if (eventInfo.i_checkCommandDoor() || mProcID == PROC_WARP || mProcID == PROC_WOLF_DIG ||
+        if (eventInfo.checkCommandDoor() || mProcID == PROC_WARP || mProcID == PROC_WOLF_DIG ||
             mProcID == PROC_WOLF_DIG_THROUGH || field_0x3106 != 0 ||
             dComIfGp_event_compulsory(this, NULL, -1))
         {
@@ -15146,7 +15140,7 @@ int daAlink_c::checkSceneChange(int exitID) {
             if (scn_changed) {
                 onNoResetFlg0(FLG0_UNK_4000);
 
-                if (!eventInfo.i_checkCommandDoor()) {
+                if (!eventInfo.checkCommandDoor()) {
                     mDemo.setOriginalDemoType();
 
                     if (checkUpperReadyThrowAnime()) {
@@ -15327,7 +15321,7 @@ BOOL daAlink_c::checkSightLine(f32 param_0, cXyz* param_1) {
         mRopeLinChk.Set(&field_0x3834, &mHeldItemRootPos, this);
 
         if (dComIfG_Bgsp().LineCross(&mRopeLinChk)) {
-            *param_1 = mRopeLinChk.i_GetCross();
+            *param_1 = mRopeLinChk.GetCross();
             onResetFlg0(RFLG0_UNK_2000000);
             return 1;
         }
@@ -15352,7 +15346,7 @@ BOOL daAlink_c::checkSightLine(f32 param_0, cXyz* param_1) {
 
     BOOL temp_r3 = dComIfG_Bgsp().LineCross(var_r30);
     if (temp_r3) {
-        *param_1 = var_r30->i_GetCross();
+        *param_1 = var_r30->GetCross();
         onResetFlg0(RFLG0_UNK_2000000);
     }
 
@@ -15913,10 +15907,10 @@ int daAlink_c::checkNewItemChange(u8 param_0) {
                         if (commonLineCheck(&sp38, &sp2C)) {
                             sp2C.x = (sp38.x * 2.0f) - sp2C.x;
                             sp2C.z = (sp38.z * 2.0f) - sp2C.z;
-                            sp20 = mLinkLinChk.i_GetCross();
+                            sp20 = mLinkLinChk.GetCross();
 
                             if (commonLineCheck(&sp38, &sp2C)) {
-                                if (mLinkLinChk.i_GetCross().abs2XZ(sp20) < 14400.0f) {
+                                if (mLinkLinChk.GetCross().abs2XZ(sp20) < 14400.0f) {
                                     return ITEM_PROC_NONE;
                                 }
                             }
@@ -16438,7 +16432,7 @@ void daAlink_c::commonProcInit(daAlink_c::daAlink_PROC i_procID) {
 
     if (prev_proc_fishcast &&
         (mItemAcKeep.getActor() == NULL ||
-         !mItemAcKeep.getActor()->eventInfo.i_checkCommandDemoAccrpt()) &&
+         !mItemAcKeep.getActor()->eventInfo.checkCommandDemoAccrpt()) &&
         !checkEndResetFlg0(ERFLG0_UNK_1000))
     {
         deleteEquipItem(0, 0);

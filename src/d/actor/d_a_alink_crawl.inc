@@ -167,7 +167,7 @@ int daAlink_c::getCrawlMoveVec(cXyz* param_0, cXyz* param_1, cXyz* param_2, int 
 
         int temp_r27 = dComIfG_Bgsp().GetSpecialCode(mLinkLinChk);
         if (cBgW_CheckBWall(sp3C.mNormal.y) || (param_3 == 2 && cBgW_CheckBGround(sp3C.mNormal.y))) {
-            cXyz sp1C = *param_1 - mLinkLinChk.i_GetCross();
+            cXyz sp1C = *param_1 - mLinkLinChk.GetCross();
             s16 temp_r26 = sp3C.mNormal.atan2sX_Z();
             s16 temp_r3 = sp1C.atan2sX_Z();
 
@@ -205,7 +205,7 @@ int daAlink_c::getCrawlMoveVec(cXyz* param_0, cXyz* param_1, cXyz* param_2, int 
         }
 
         if (param_3 == 1 && (temp_r27 == 1 || (sp3C.mNormal.y < field_0x3470 && temp_r27 == 2))) {
-            *param_2 = *param_1 - mLinkLinChk.i_GetCross();
+            *param_2 = *param_1 - mLinkLinChk.GetCross();
             return 1;
         }
     }
@@ -247,7 +247,7 @@ BOOL daAlink_c::checkCrawlSideWall(cXyz* param_0, cXyz* param_1, cXyz* param_2, 
 
     if (commonLineCheck(param_0, param_1)) {
         cM3dGPla sp64;
-        *param_2 = mLinkLinChk.i_GetCross();
+        *param_2 = mLinkLinChk.GetCross();
         dComIfG_Bgsp().GetTriPla(mLinkLinChk, &sp64);
 
         *param_4 = sp64.mNormal.atan2sX_Z();
@@ -255,7 +255,7 @@ BOOL daAlink_c::checkCrawlSideWall(cXyz* param_0, cXyz* param_1, cXyz* param_2, 
         sp4C = *param_2 + (sp64.mNormal * 95.0f);
         sp58 = (sp4C + *param_2) * 0.5f;    
         if (commonLineCheck(&sp58, &sp4C)) {
-            *param_3 = mLinkLinChk.i_GetCross();
+            *param_3 = mLinkLinChk.GetCross();
             dComIfG_Bgsp().GetTriPla(mLinkLinChk, &sp64);
 
             *param_5 = sp64.mNormal.atan2sX_Z();

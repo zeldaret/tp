@@ -185,7 +185,7 @@ struct daFmtMng_c : public fopAc_ac_c {
     }
 
     bool checkEmergency() {
-        if (dKy_darkworld_check() || !daPy_py_c::i_checkNowWolf()) {
+        if (dKy_darkworld_check() || !daPy_py_c::checkNowWolf()) {
             return false;
         }
         FmtMember_c* member = mMember;

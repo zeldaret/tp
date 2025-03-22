@@ -124,7 +124,7 @@ int daTagWljump_c::execute() {
         }
     }
 
-    if (!player->i_checkNowWolf() || !daPy_py_c::i_checkFirstMidnaDemo() || midna->i_checkMidnaTired()) {
+    if (!player->checkNowWolf() || !daPy_py_c::checkFirstMidnaDemo() || midna->checkMidnaTired()) {
         return 1;
     } 
 
@@ -190,7 +190,7 @@ int daTagWljump_c::execute() {
 
             if (field_0x572 == 0) {
                 if (!dComIfGp_event_runCheck()) {
-                    eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
+                    eventInfo.onCondition(dEvtCnd_CANTALK_e);
                     if (!player->checkPlayerFly() && player->eventInfo.chkCondition(dEvtCnd_CANTALK_e)) {
                         dComIfGp_att_ZHintRequest(this, 0x1FF);
 

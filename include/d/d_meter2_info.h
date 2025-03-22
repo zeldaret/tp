@@ -417,7 +417,7 @@ inline void dMeter2Info_allUseButton() {
     g_meter2_info.allUseButton();
 }
 
-inline void i_dMeter2Info_offUseButton(int flag) {
+inline void dMeter2Info_offUseButton(int flag) {
     g_meter2_info.offUseButton(flag);
 }
 

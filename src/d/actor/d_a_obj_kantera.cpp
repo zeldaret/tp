@@ -194,7 +194,7 @@ int daItemKantera_c::initActionOrderGetDemo() {
     mCcCyl.OffCoSPrmBit(1);
     hide();
     fopAcM_orderItemEvent(this, 0, 0);
-    eventInfo.i_onCondition(8);
+    eventInfo.onCondition(8);
     field_0x92c = fopAcM_createItemForTrBoxDemo(&current.pos, m_itemNo, -1, fopAcM_GetRoomNo(this),
                                                 NULL, NULL);
     setStatus(2);
@@ -210,7 +210,7 @@ int daItemKantera_c::actionOrderGetDemo() {
         }
     } else {
         fopAcM_orderItemEvent(this, 0, 0);
-        eventInfo.i_onCondition(8);
+        eventInfo.onCondition(8);
     }
     return 1;
 }

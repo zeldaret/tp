@@ -36,7 +36,6 @@ public:
     void SetHit() { mStts |= STTS_HIT; }
     u32 ChkHit() const { return mStts & STTS_HIT; }
     void SetCross(const cXyz& pos) { mLin.SetEnd(pos); }
-    cXyz& i_GetCross() { return mLin.GetEnd(); }
     cXyz* GetCrossP() { return &mLin.GetEndP(); }
     cM3dGLin* GetLinP() { return &mLin; }
     bool ChkBackFlag() const { return mBackFlag; }

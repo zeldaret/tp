@@ -1662,7 +1662,7 @@ BOOL daNpcT_c::evtProc() {
                 evtTalk();
             }
             ret = TRUE;
-        } else if (eventInfo.i_checkCommandDemoAccrpt()
+        } else if (eventInfo.checkCommandDemoAccrpt()
                         && dComIfGp_getEventManager().endCheck(mEvtId)) {
             if (evtEndProc()) {
                 dComIfGp_event_reset();
@@ -1741,7 +1741,7 @@ void daNpcT_c::setFootPrtcl(cXyz* param_0, f32 param_1, f32 param_2) {
     mLinChk.Set(&start, &end, this);
     cross1 = dComIfG_Bgsp().LineCross(&mLinChk);
     if (cross1) {
-        foot_l_pos.y = mLinChk.i_GetCross().y;
+        foot_l_pos.y = mLinChk.GetCross().y;
         mFootLPolyAngle = fopAcM_getPolygonAngle(mLinChk, mCurAngle.y);
         foot_l_att = dComIfG_Bgsp().GetPolyAtt0(mLinChk);
     } else {
@@ -1754,7 +1754,7 @@ void daNpcT_c::setFootPrtcl(cXyz* param_0, f32 param_1, f32 param_2) {
     mLinChk.Set(&start, &end, this);
     cross2 = dComIfG_Bgsp().LineCross(&mLinChk);
     if (cross2) {
-        foot_r_pos.y = mLinChk.i_GetCross().y;
+        foot_r_pos.y = mLinChk.GetCross().y;
         mFootRPolyAngle = fopAcM_getPolygonAngle(mLinChk, mCurAngle.y);
         foot_r_att = dComIfG_Bgsp().GetPolyAtt0(mLinChk);
     } else {
@@ -1816,9 +1816,9 @@ void daNpcT_c::evtOrder() {
     } else if ((!mTwilight || daPy_py_c::checkNowWolfEyeUp())
         && ((attention_info.flags & 8) || (attention_info.flags & 2)))
     {
-        eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
+        eventInfo.onCondition(dEvtCnd_CANTALK_e);
         if (chkXYItems()) {
-            eventInfo.i_onCondition(dEvtCnd_CANTALKITEM_e);
+            eventInfo.onCondition(dEvtCnd_CANTALKITEM_e);
         }
         if (mSpeakEvent) {
             fopAcM_orderSpeakEvent(this, 0, 0);
@@ -2125,7 +2125,7 @@ BOOL daNpcT_c::chkFindActor(fopAc_ac_c* i_actor, BOOL i_release, s16 i_angleY) {
 /* 8014B024-8014B0C8 145964 00A4+00 1/1 0/0 0/0 .text            chkWolfAction__8daNpcT_cFv */
 // NONMATCHING regswap
 BOOL daNpcT_c::chkWolfAction() {
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         bool ret = false;
         if (!daPy_getPlayerActorClass()->checkWolfWait()
             && !dComIfGp_checkPlayerStatus0(0, 0x8000000)
@@ -2145,7 +2145,7 @@ BOOL daNpcT_c::chkFindWolf(s16 i_angleY, int i_distIndex, int param_2, f32 i_bou
                            f32 i_boundY1, f32 i_boundY2, BOOL param_7) {
     cXyz attn_pos = getAttnPos(daPy_getPlayerActorClass());
 
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         if (chkPointInArea(attn_pos, attention_info.position, i_boundXZ, i_boundY1, i_boundY2, 0)
             && chkActorInSight(daPy_getPlayerActorClass(), i_fovY, i_angleY))
         {
@@ -2193,7 +2193,7 @@ cXyz daNpcT_c::getAttnPos(fopAc_ac_c* i_actor) {
     cXyz attn_pos = i_actor->attention_info.position;
     if (fopAcM_GetName(i_actor) == PROC_ALINK) {
         attn_pos.y -= daPy_py_c::getAttentionOffsetY();
-        if (daPy_py_c::i_checkNowWolf()) {
+        if (daPy_py_c::checkNowWolf()) {
             attn_pos = i_actor->current.pos;
             attn_pos.y = i_actor->attention_info.position.y;
         }
@@ -4502,7 +4502,7 @@ void daNpcF_c::orderEvent(int i_speak, char* i_evtName, u16 param_2, u16 i_prior
         fopAcM_orderOtherEventId(this, mEventIdx, i_mapToolID, param_2, i_priority, i_flag);
     } else if (!mTwilight || daPy_py_c::checkNowWolfEyeUp()) {
         if ((attention_info.flags & 8) || (attention_info.flags & 2)) {
-            eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
+            eventInfo.onCondition(dEvtCnd_CANTALK_e);
             if (i_speak) {
                 fopAcM_orderSpeakEvent(this, 0, 0);
             }

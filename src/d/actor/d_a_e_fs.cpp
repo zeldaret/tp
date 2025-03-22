@@ -263,7 +263,7 @@ static void e_fs_move(e_fs_class* i_this) {
 
     f32 target_speed = l_HIO.mMoveSpeedRatio
                             * (0.8f * fopAcM_GetSpeedF(daPy_getPlayerActorClass()) + 20.0f);
-    if (!daPy_py_c::i_checkNowWolf()) {
+    if (!daPy_py_c::checkNowWolf()) {
         target_speed = 0.7f * (0.8f * fopAcM_GetSpeedF(daPy_getPlayerActorClass()) + 20.0f);
     }
     cLib_addCalc2(&i_this->speedF, target_speed, 1.0f, 0.5f);

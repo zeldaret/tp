@@ -1508,9 +1508,9 @@ void daE_DT_c::executeDeath() {
         break;
 
     case 2:
-        if (!eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(this, 2, 0xffff, 0);
-            eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+            eventInfo.onCondition(dEvtCnd_CANDEMO_e);
         } else {
             setDeadShibukiEffect();
             setDeadYodareEffect();
@@ -1753,9 +1753,9 @@ void daE_DT_c::executeOpening() {
         return;
 
     case 3:
-        if (!eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(this, 2, 0xffff, 0);
-            eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+            eventInfo.onCondition(dEvtCnd_CANDEMO_e);
         } else {
             mMode = 4;
             mTimer = 60;

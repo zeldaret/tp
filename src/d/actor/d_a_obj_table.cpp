@@ -138,7 +138,7 @@ int daObjTable_c::Create() {
 /* 80D0695C-80D06AD8 00059C 017C+00 1/0 0/0 0/0 .text            Execute__12daObjTable_cFPPA3_A4_f
  */
 int daObjTable_c::Execute(Mtx** i_mtx) {
-    eventInfo.i_onCondition(1);
+    eventInfo.onCondition(1);
 
     dComIfG_inf_c& gameInfo = g_dComIfG_gameInfo;
     if (dComIfGp_event_runCheck()) {
@@ -152,7 +152,7 @@ int daObjTable_c::Execute(Mtx** i_mtx) {
                 fopAcM_orderChangeEventId(this, mEventID, 1, -1);
             }
         } else if (dComIfGp_getEventManager().getMyStaffId(l_arcName, NULL, 0) != -1 &&
-                   eventInfo.i_checkCommandDemoAccrpt() && mEventID != -1 &&
+                   eventInfo.checkCommandDemoAccrpt() && mEventID != -1 &&
                    dComIfGp_getEventManager().endCheck(mEventID))
         {
             mEventID = -1;

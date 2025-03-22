@@ -119,7 +119,7 @@ bool daAlink_c::checkCutFastReady() {
 
     if (mEquipItem == fpcNm_ITEM_NONE && (dComIfGs_isEventBit(0x2A80) || checkNoResetFlg3(FLG3_UNK_80)))
     {
-        if (checkModeFlg(1) && !checkRideOn() && i_checkSwordGet() && checkModeFlg(4) &&
+        if (checkModeFlg(1) && !checkRideOn() && checkSwordGet() && checkModeFlg(4) &&
             !checkModeFlg(0x40000) && mTargetedActor == NULL && checkEnemyGroup(target_p))
         {
             f32 xz_dist = target_p->eyePos.abs2XZ(current.pos);

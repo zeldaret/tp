@@ -167,7 +167,7 @@ int daTag_SSDrink_c::chkEvent() {
                 }
             }
             return retVal;
-        } else if (eventInfo.i_checkCommandCatch()) {
+        } else if (eventInfo.checkCommandCatch()) {
             if (field_0x5D4 == 0) {
                 if (getParentPtr() != NULL) {
                     ((daMyna_c*)getParentPtr())->onEventFlag(0);
@@ -195,7 +195,7 @@ int daTag_SSDrink_c::orderEvent() {
         if (fopAcM_searchPlayerDistanceXZ(this) <= 160.0f && fopAcM_seenPlayerAngleY() <= 0x2000) {
             attention_info.distances[fopAc_attn_TALK_e] = 0x9D;
             attention_info.distances[fopAc_attn_SPEAK_e] = 0x9D;
-            eventInfo.i_onCondition(1);
+            eventInfo.onCondition(1);
         }
     }
 
@@ -206,7 +206,7 @@ int daTag_SSDrink_c::orderEvent() {
 int daTag_SSDrink_c::wait(void* param_0) {
     switch (mEventType) {
     case 1:
-        if (!eventInfo.i_checkCommandCatch()) {
+        if (!eventInfo.checkCommandCatch()) {
             if (fopAcM_isSwitch(this, getSwitchFromParam())) {
                 if (fopAcM_searchPlayerDistanceXZ(this) <= 160.0f &&
                     fopAcM_seenPlayerAngleY() <= 0x2000)
@@ -215,7 +215,7 @@ int daTag_SSDrink_c::wait(void* param_0) {
                     cXyz local_28 = attention_info.position - player->attention_info.position;
                     dComIfGp_att_CatchRequest(this, field_0x5D3, 200.0f, local_28.y + 100.0f,
                                               local_28.y - 100.0f, 0x4000, 1);
-                    eventInfo.i_onCondition(0x40);
+                    eventInfo.onCondition(0x40);
                 }
                 if (field_0x5D4 != 0) {
                     field_0x5D4 = 0;

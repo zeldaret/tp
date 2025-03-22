@@ -81,7 +81,7 @@ static int daTagMhint_Delete(daTagMhint_c* i_this) {
 /* 805A5974-805A5AE4 000334 0170+00 1/1 0/0 0/0 .text            eventOrder__12daTagMhint_cFv */
 void daTagMhint_c::eventOrder() {
     if (!dComIfGp_event_runCheck()) {
-        eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
+        eventInfo.onCondition(dEvtCnd_CANTALK_e);
 
         if (!daPy_getPlayerActorClass()->checkPlayerFly() ||
             dComIfGp_checkPlayerStatus0(0, 0x100000))
@@ -129,7 +129,7 @@ int daTagMhint_c::execute() {
         shape_angle.y = fopAcM_searchPlayerAngleY(this);
     }
 
-    if (eventInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.checkCommandDemoAccrpt()) {
         if (dComIfGp_evmng_endCheck(mEventID)) {
             dComIfGp_event_reset();
             fopAcM_orderSpeakEvent(this, 3, 0);
@@ -178,7 +178,7 @@ int daTagMhint_c::execute() {
         }
     } else {
         if (field_0x570 != 0) {
-            eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
+            eventInfo.onCondition(dEvtCnd_CANTALK_e);
             fopAcM_orderSpeakEvent(this, 3, 0);
             return 1;
         }

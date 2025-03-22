@@ -84,7 +84,7 @@ static int daTagMstop_Delete(daTagMstop_c* i_this) {
 
 /* 805A63C4-805A63F8 000304 0034+00 1/1 0/0 0/0 .text            eventOrder__12daTagMstop_cFv */
 void daTagMstop_c::eventOrder() {
-    eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
+    eventInfo.onCondition(dEvtCnd_CANTALK_e);
     fopAcM_orderSpeakEvent(this, 0, 0);
 }
 

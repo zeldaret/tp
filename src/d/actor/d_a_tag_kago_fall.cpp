@@ -101,7 +101,7 @@ void daTagKagoFall_c::actionWaitRiver() {
         if (dComIfGp_checkPlayerStatus0(0, 0x100000) && dComIfGs_getLife()) {
             if (!eventInfo.checkCommandDemoAccrpt()) {
                 fopAcM_orderPotentialEvent(this, 1, -1, 3);
-                eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+                eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             } else {
                 camera->Stop();
                 camera->SetTrimSize(3);
@@ -208,7 +208,7 @@ void daTagKagoFall_c::actionWaitFall() {
         } else if (!eventInfo.checkCommandDemoAccrpt()) {
             mRestartPos = player->current.pos;
             fopAcM_orderPotentialEvent(this, 1, -1, 0);
-            eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+            eventInfo.onCondition(dEvtCnd_CANDEMO_e);
         } else {
             mDoGph_gInf_c::fadeOut(0.05f, static_cast<JUtility::TColor&>(g_blackColor));
             mTimer = 60;
@@ -239,7 +239,7 @@ void daTagKagoFall_c::actionWaitFall() {
             lin_chk.Set(&player->current.pos, &mRestartPos, NULL);
 
             if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-                mRestartPos.y = lin_chk.i_GetCross().y;
+                mRestartPos.y = lin_chk.GetCross().y;
             }
         }
 

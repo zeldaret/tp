@@ -411,7 +411,7 @@ int daObjYobikusa_c::execute() {
             setAction(MODE_PICK_LEAF);
         }
 
-        attention_info.distances[fopAc_attn_CARRY_e] = daPy_py_c::i_checkNowWolf() ? 73 : 42;
+        attention_info.distances[fopAc_attn_CARRY_e] = daPy_py_c::checkNowWolf() ? 73 : 42;
         callExecute();
     }
 

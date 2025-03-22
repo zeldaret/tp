@@ -9,10 +9,6 @@
 #include "d/d_com_inf_game.h"
 #include "stdio.h"
 
-BOOL daPy_py_c::checkNowWolf() {
-    return dComIfGp_getLinkPlayer()->checkWolf();
-}
-
 void dEvent_exception_c::init() {
     mEventInfoIdx = -1;
     mState = 0;

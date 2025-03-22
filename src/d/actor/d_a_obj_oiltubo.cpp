@@ -276,7 +276,7 @@ BOOL daObj_Oiltubo_c::chkEvent() {
     if (!dComIfGp_getEvent().isOrderOK()) {
         var_r5 = 0;
 
-        if (eventInfo.i_checkCommandCatch()) {
+        if (eventInfo.checkCommandCatch()) {
             return var_r5;
         }
     }
@@ -288,9 +288,9 @@ BOOL daObj_Oiltubo_c::chkEvent() {
 int daObj_Oiltubo_c::wait(void* unused) {
     switch (mMode) {
     case 1:
-        if (!eventInfo.i_checkCommandCatch()) {
+        if (!eventInfo.checkCommandCatch()) {
             dComIfGp_att_CatchRequest(this, fpcNm_ITEM_OIL_BOTTLE_2, 100.0f, 50.0f, -50.0f, 0x2000, 1);
-            eventInfo.i_onCondition(0x40);
+            eventInfo.onCondition(0x40);
         }
         break;
     case 2:

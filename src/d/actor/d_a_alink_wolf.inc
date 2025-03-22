@@ -186,7 +186,7 @@ void daAlink_c::changeWolf() {
         field_0x309a[i] = 0;
     }
 
-    mZ2Link.i_setLinkState(1);
+    mZ2Link.setLinkState(1);
     field_0x30d6 = 0;
     field_0x2fa6 = 0;
     field_0x2e54.changeWaterOffset(daAlinkHIO_basic_c0::m.mWolfWaterSurfaceEffectHeight);
@@ -411,7 +411,7 @@ void daAlink_c::changeLink(int param_0) {
     mpKanteraModel->setUserArea((u32)this);
     mpKanteraModel->getModelData()->getJointNodePointer(1)->setCallBack(
         daAlink_kandelaarModelCallBack);
-    mZ2Link.i_setLinkState(var_r27);
+    mZ2Link.setLinkState(var_r27);
 
     if (checkHookshotReadyMaterialOffMode()) {
         setHookshotReadyMaterial();
@@ -1677,7 +1677,7 @@ void daAlink_c::wolfBgCheck() {
             } else {
                 onNoResetFlg3(FLG3_UNK_800000);
                 dComIfG_Bgsp().GetTriPla(mLinkLinChk, &sp44);
-                field_0x378c = mLinkLinChk.i_GetCross();
+                field_0x378c = mLinkLinChk.GetCross();
             }
         }
 
@@ -1695,7 +1695,7 @@ void daAlink_c::wolfBgCheck() {
             } else {
                 onNoResetFlg3(FLG3_UNK_800000);
                 dComIfG_Bgsp().GetTriPla(mLinkLinChk, &sp44);
-                field_0x378c = mLinkLinChk.i_GetCross();
+                field_0x378c = mLinkLinChk.GetCross();
             }
         }
 
@@ -2850,7 +2850,7 @@ int daAlink_c::procWolfWaitTurn() {
 /* 8012DEC8-8012E0AC 128808 01E4+00 2/2 0/0 0/0 .text            procWolfSideStepInit__9daAlink_cFi
  */
 int daAlink_c::procWolfSideStepInit(int param_0) {
-    if (field_0x2f98 == 1 && !param_0 && i_checkFirstMidnaDemo() && !checkWolfGrabAnime() &&
+    if (field_0x2f98 == 1 && !param_0 && checkFirstMidnaDemo() && !checkWolfGrabAnime() &&
         field_0x2fcc != 0)
     {
         return procWolfBackJumpInit(0);
@@ -7203,7 +7203,7 @@ void daAlink_c::setWolfBiteDamage(fopEn_enemy_c* i_enemy) {
 /* 801397A4-801398A8 1340E4 0104+00 1/1 0/0 0/0 .text checkWolfLockAttackChargeState__9daAlink_cFv
  */
 BOOL daAlink_c::checkWolfLockAttackChargeState() {
-    return checkMidnaRide() && checkMidnaChargeAttack() && !daMidna_c::i_checkMidnaTired() &&
+    return checkMidnaRide() && checkMidnaChargeAttack() && !daMidna_c::checkMidnaTired() &&
            daMidna_c::checkMidnaRealBody();
 }
 
@@ -8660,7 +8660,7 @@ int daAlink_c::procWolfGrabPut() {
 
         if (grabLineCheck(&field_0x34e0, &actor_p->current.pos) && dBgS_CheckBWallPoly(mObjLinChk))
         {
-            cXyz sp8 = actor_p->current.pos - mObjLinChk.i_GetCross();
+            cXyz sp8 = actor_p->current.pos - mObjLinChk.GetCross();
             current.pos.x -= sp8.x * 1.5f;
             current.pos.z -= sp8.z * 1.5f;
         }

@@ -1388,7 +1388,7 @@ BOOL daNpcThe_c::main() {
             eventInfo.setArchiveName(l_resNames[l_evtGetParamList[mOrderEvtNo]]);
         }
         if (!strcmp(dComIfGp_getStartStageName(), "R_SP116")) {
-            eventInfo.i_onCondition(0x20);
+            eventInfo.onCondition(0x20);
         }
         orderEvent(field_0xe1c, l_evtNames[mOrderEvtNo], 0xffff, 0x28, 0xff, 1);
     }
@@ -1494,7 +1494,7 @@ BOOL daNpcThe_c::doEvent() {
                 }
                 ret = true;
             }
-            if (eventInfo.i_checkCommandDemoAccrpt() && mEventIdx != -1
+            if (eventInfo.checkCommandDemoAccrpt() && mEventIdx != -1
                                                      && event_manager.endCheck(mEventIdx)) {
                 dComIfGp_event_reset();
                 mOrderEvtNo = 0;

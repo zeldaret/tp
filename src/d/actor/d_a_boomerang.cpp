@@ -756,7 +756,7 @@ void daBoomerang_c::setAimPos() {
 void daBoomerang_c::checkBgHit(cXyz* i_start, cXyz* i_end) {
     m_lineChk.Set(i_start, i_end, this);
     if (dComIfG_Bgsp().LineCross(&m_lineChk)) {
-        current.pos = m_lineChk.i_GetCross();
+        current.pos = m_lineChk.GetCross();
         onStateFlg0(FLG0_1);
         field_0x957 = 0;
         current.angle.y -= -0x8000;
@@ -778,7 +778,7 @@ void daBoomerang_c::checkBgHit(cXyz* i_start, cXyz* i_end) {
     }
 
     if (field_0x718[field_0x951] != 0) {
-        if (m_lockActorsPositions[field_0x951].abs2(m_boomLineChk.i_GetCross()) < 2500.0f) {
+        if (m_lockActorsPositions[field_0x951].abs2(m_boomLineChk.GetCross()) < 2500.0f) {
             if (field_0x951 < m_lockCnt - 1) {
                 field_0x718[field_0x951] = 0;
                 field_0x951++;
@@ -792,7 +792,7 @@ void daBoomerang_c::checkBgHit(cXyz* i_start, cXyz* i_end) {
             return;
         }
 
-        current.pos = m_boomLineChk.i_GetCross();
+        current.pos = m_boomLineChk.GetCross();
         onStateFlg0(FLG0_1);
         field_0x957 = 0;
         current.angle.y -= -0x8000;

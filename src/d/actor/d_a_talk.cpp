@@ -51,7 +51,7 @@ int daTalk_c::execute() {
             mMessageID = -1;
             fopAcM_delete(this);
         } else {
-            eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
+            eventInfo.onCondition(dEvtCnd_CANTALK_e);
         }
     }
 

@@ -568,7 +568,7 @@ void daObjCwall_c::chain_control2() {
         cXyz acStack_98;
         cXyz cStack_a4;
         if (field_0xe90 != 0) {
-            if (daPy_py_c::i_checkNowWolf()) {
+            if (daPy_py_c::checkNowWolf()) {
                 mDoMtx_stack_c::copy(player->getWolfMouthMatrix());
                 mDoMtx_stack_c::multVecZero(&acStack_98);
                 cXyz cStack_b0(0.0f, 0.0f, 60.0f);
@@ -892,7 +892,7 @@ BOOL daObjCwall_c::checkPullNow() {
     mDoMtx_stack_c::multVec(&local_2c, &local_2c);
     cXyz local_38;
     cXyz local_44;
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         local_38 = l_check_min_wolf;
         local_44 = l_check_max_wolf;
     } else {

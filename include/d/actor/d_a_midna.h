@@ -215,7 +215,6 @@ public:
     void onForcePanic() { onEndResetStateFlg0(ERFLG0_FORCE_PANIC); }
     u32 checkForceNormalColor() const;
     u32 checkForceTiredColor() const;
-    static bool checkMidnaTired();
     void onNoServiceWait();
 
     /* 804BC3E0 */ int modelCallBack(int);
@@ -357,7 +356,7 @@ public:
         return dKy_darkworld_check() == true || dComIfGs_isTransformLV(3);
     }
 
-    static bool i_checkMidnaTired() {
+    static bool checkMidnaTired() {
         return dComIfGs_isTransformLV(3) && !dComIfGs_isEventBit(0x1E08);
     }
 

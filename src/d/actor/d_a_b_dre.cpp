@@ -76,9 +76,9 @@ bool daB_DRE_c::CameraSet() {
     camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     dCamera_c* cam_body = dCam_getBody();
 
-    if (!eventInfo.i_checkCommandDemoAccrpt()) {
+    if (!eventInfo.checkCommandDemoAccrpt()) {
         fopAcM_orderPotentialEvent(this, 2, 0xFFFF, 0);
-        eventInfo.i_onCondition(0);
+        eventInfo.onCondition(0);
         return 0;
     }
 

@@ -1329,7 +1329,7 @@ void daHorse_c::setDemoData() {
             if (mode == 5) {
                 speedF = 0.0f;
                 m_cc_stts.ClrCcMove();
-                i_setHorsePosAndAngle(pos_p, angle);
+                setHorsePosAndAngle(pos_p, angle);
                 m_demoMoveAngle = angle;
             } else if (mode == 2 || mode == 10 || mode == 3 || mode == 11 || mode == 4) {
                 setDemoMoveData(&mode, pos_p);
@@ -1390,7 +1390,7 @@ void daHorse_c::setDemoData() {
 
 /* 8083B578-8083B600 003738 0088+00 4/4 0/0 0/0 .text            acceptPlayerRide__9daHorse_cFv */
 void daHorse_c::acceptPlayerRide() {
-    if (!checkStateFlg0(FLG0_UNK_1) && !daPy_py_c::i_checkNowWolf()) {
+    if (!checkStateFlg0(FLG0_UNK_1) && !daPy_py_c::checkNowWolf()) {
         int angle = fopAcM_seenPlayerAngleY(this);
         if (angle > 0x2800 && (!daAlink_getAlinkActorClass()->checkHorseZelda() || angle < 0x5800)) {
             attention_info.flags |= 0x80;
@@ -1704,7 +1704,7 @@ int daHorse_c::checkHorseNoMove(int param_0) {
     if (line_cross) {
         cM3dGPla plane;
         dComIfG_Bgsp().GetTriPla(m_linechk, &plane);
-        sp50 = m_linechk.i_GetCross();
+        sp50 = m_linechk.GetCross();
 
         if (cBgW_CheckBWall(plane.mNormal.y) && ((param_0 != 0 && cLib_distanceAngleS(plane.mNormal.atan2sX_Z(), shape_angle.y) > 0x6000) || (param_0 == 0 && cLib_distanceAngleS(plane.mNormal.atan2sX_Z(), shape_angle.y) < 0x2000))) {
             m_linechk.Set(&start, &end, this);
@@ -2208,7 +2208,7 @@ void daHorse_c::setMatrix() {
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
     m_model->setBaseTRMtx(mDoMtx_stack_c::get());
 
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         attention_info.position.set(current.pos.x + (140.0f * cM_ssin(shape_angle.y)), 200.0f + current.pos.y, current.pos.z + (140.0f * cM_scos(shape_angle.y)));
     } else {
         attention_info.position.set(current.pos.x, 200.0f + current.pos.y, current.pos.z);
@@ -2976,8 +2976,8 @@ void daHorse_c::setReinPosNormalSubstance() {
     static cXyz saddleLeft(29.0f, -2.0f, 30.0f);
     static cXyz saddleRight(29.0f, 2.0f, 30.0f);
 
-    if (!checkStateFlg0(FLG0_UNK_1) && i_getZeldaActor() != NULL) {
-        if (((daHoZelda_c*)i_getZeldaActor())->checkSingleRide()) {
+    if (!checkStateFlg0(FLG0_UNK_1) && getZeldaActor() != NULL) {
+        if (((daHoZelda_c*)getZeldaActor())->checkSingleRide()) {
             offStateFlg0(FLG0_UNK_4000000);
             return;
         }
@@ -3360,7 +3360,7 @@ int daHorse_c::callHorseSubstance(cXyz const* i_pos) {
         }
 
         cXyz pos(farthest_pos->x, farthest_pos->y, farthest_pos->z);
-        i_setHorsePosAndAngle(&pos, shape_angle.y);
+        setHorsePosAndAngle(&pos, shape_angle.y);
         rt = 1;
     } else if (dist_xz2 <= SQUARE(800.0f)) {
         return 3;
@@ -3581,9 +3581,9 @@ int daHorse_c::procWait() {
     }
 
     if (!checkStateFlg0(FLG0_UNK_1)) {
-        if (daPy_py_c::i_checkNowWolf()) {
+        if (daPy_py_c::checkNowWolf()) {
             attention_info.flags |= 0x8;
-            eventInfo.i_onCondition(1);
+            eventInfo.onCondition(1);
         } else if (m_procID == PROC_WAIT_e) {
             acceptPlayerRide();
         }

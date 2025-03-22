@@ -155,7 +155,7 @@ BOOL daObjTEN_c::WallCheck() {
         cM3dGPla acStack_b0;
         dComIfG_Bgsp().GetTriPla(linChk, &acStack_b0);
         cXyz* pfVar4 = acStack_b0.GetNP();
-        current.pos = linChk.i_GetCross();
+        current.pos = linChk.GetCross();
         cXyz cStack_bc(0.0f, 0.0f, 0.0f);
         cXyz cStack_c8(0.0f, pfVar4->y, pfVar4->z);
         field_0x602.z = -cM_atan2s(pfVar4->x, cStack_bc.abs(cStack_c8));
@@ -206,7 +206,7 @@ void daObjTEN_c::WallWalk() {
         cXyz cStack_15c(0.0f, 0.0f, 0.0f);
         cXyz cStack_168(0.0f, pfVar5->y, pfVar5->z);
         f32 uVar11 = cStack_15c.abs(cStack_168);
-        cStack_150 = adStack_a8.i_GetCross();
+        cStack_150 = adStack_a8.GetCross();
         if (0x1000 > sVar7 - field_0x60a && sVar7 - field_0x60a > -0x1000 &&
             cStack_150.abs(current.pos) < speedF * 3.0f)
         {
@@ -494,11 +494,11 @@ void daObjTEN_c::BoomChk() {
             if (dComIfG_Bgsp().LineCross(&linChk)) {
                 cM3dGPla acStack_c0;
                 dComIfG_Bgsp().GetTriPla(linChk, &acStack_c0);
-                current.pos = old.pos = linChk.i_GetCross();
+                current.pos = old.pos = linChk.GetCross();
                 mAction = ACTION_WAIT;
                 field_0x5e9 = 0;
                 cXyz* pfVar7 = acStack_c0.GetNP();
-                current.pos = linChk.i_GetCross();
+                current.pos = linChk.GetCross();
                 cXyz cStack_d8(0.0f, 0.0f, 0.0f);
                 cXyz cStack_e4(0.0f, pfVar7->y, pfVar7->z);
                 field_0x602.z = -cM_atan2s(pfVar7->x, cStack_d8.abs(cStack_e4));
@@ -779,7 +779,7 @@ int daObjTEN_c::create() {
                 cM3dGPla acStack_d0;
                 dComIfG_Bgsp().GetTriPla(linChk, &acStack_d0);
                 cXyz* pfVar13 = acStack_d0.GetNP();
-                current.pos = linChk.i_GetCross();
+                current.pos = linChk.GetCross();
                 cXyz cStack_12c(0.0f, 0.0f, 0.0f);
                 cXyz cStack_138(0.0f, pfVar13->y, pfVar13->z);
                 field_0x602.z = -cM_atan2s(pfVar13->x, cStack_12c.abs(cStack_138));
@@ -798,7 +798,7 @@ int daObjTEN_c::create() {
                 cM3dGPla acStack_e4;
                 dComIfG_Bgsp().GetTriPla(linChk, &acStack_e4);
                 cXyz* pfVar13 = acStack_e4.GetNP();
-                current.pos = linChk.i_GetCross();
+                current.pos = linChk.GetCross();
                 cXyz cStack_144(0.0f, 0.0f, 0.0f);
                 cXyz cStack_150(0.0f, pfVar13->y, pfVar13->z);
                 field_0x602.z = -cM_atan2s(pfVar13->x, cStack_144.abs(cStack_150));

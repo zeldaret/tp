@@ -310,7 +310,7 @@ int daObjLife_c::initActionOrderGetDemo() {
     hide();
 
     fopAcM_orderItemEvent(this, 0, 0);
-    eventInfo.i_onCondition(dEvtCnd_CANGETITEM_e);
+    eventInfo.onCondition(dEvtCnd_CANGETITEM_e);
 
     mItemId = fopAcM_createItemForTrBoxDemo(&current.pos, m_itemNo, -1, fopAcM_GetRoomNo(this), NULL, NULL);
     JUT_ASSERT(699, mItemId != fpcM_ERROR_PROCESS_ID_e);
@@ -330,7 +330,7 @@ int daObjLife_c::actionOrderGetDemo() {
         }
     } else {
         fopAcM_orderItemEvent(this, 0, 0);
-        eventInfo.i_onCondition(dEvtCnd_CANGETITEM_e);
+        eventInfo.onCondition(dEvtCnd_CANGETITEM_e);
     }
 
     return 1;

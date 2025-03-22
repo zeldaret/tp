@@ -60,7 +60,7 @@ bool is_player_wear_magneboots() {
 /* 80489C1C-80489C34 0001FC 0018+00 1/0 0/0 0/0 .text
  * is_player_wolf__28@unnamed@d_a_tag_camera_cpp@Fv             */
 bool is_player_wolf() {
-    return Player->i_checkNowWolf();
+    return Player->checkNowWolf();
 }
 
 /* 80489C34-80489C6C 000214 0038+00 1/0 0/0 0/0 .text
