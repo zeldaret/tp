@@ -134,7 +134,7 @@ int daObjBmSh_c::Execute(f32 (**param_0)[3][4]) {
     mode_proc_call();
     *param_0 = &mBgMtx;
     setBaseMtx();
-    tickCounter++;
+    mTickCounter++;
     mCurrentlyAnySw = checkAnySw();
     mCurrentlyMySw = checkMySw();
     return 1;
@@ -228,8 +228,8 @@ void daObjBmSh_c::mode_proc_call() {
 
     (this->*l_func[mMoveMode])();
 
-    mRotation.x = mShakeIntensity * cM_scos((tickCounter * 0x3000) & 0xfff8U);
-    mRotation.z = mShakeIntensity * cM_ssin((tickCounter * 0x3000) & 0xfff8U);
+    mRotation.x = mShakeIntensity * cM_scos((mTickCounter * 0x3000) & 0xfff8U);
+    mRotation.z = mShakeIntensity * cM_ssin((mTickCounter * 0x3000) & 0xfff8U);
     cLib_addCalc0(&mShakeIntensity, 1.0f / 20.0f, 10.0f);
 }
 

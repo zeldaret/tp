@@ -47,36 +47,22 @@ public:
     void setMoveMode(u8 mode) { mMoveMode = mode; }
 
 private:
-    request_of_phase_process_class mPhase;
-    J3DModel* mModel;
-
-    s16 mEventIdx;
-    u8 mEvent;
-
-    u8 mAction;
-    u8 mMoveMode;
-
-    u8 mCurrentlyAnySw;
-
-    // 2 bytes of padding
-
-    f32 mHeight;
-    f32 mShakeIntensity;
-
-    csXyz mRotation;
-
-    // 2 bytes of padding
-
-    int tickCounter;
-
-    u16 mHomeX;
-    u16 mHomeZ;
-    bool mIsInitialized;
-    u8 mCurrentlyMySw;
-
-    // 2 bytes of padding
-
-    cXyz mSoundPosition;
+    /* 0x5a0 */ request_of_phase_process_class mPhase;
+    /* 0x5a8 */ J3DModel* mModel;
+    /* 0x5ac */ s16 mEventIdx;
+    /* 0x5ae */ u8 mEvent;
+    /* 0x5af */ u8 mAction;
+    /* 0x5b0 */ u8 mMoveMode;
+    /* 0x5b1 */ u8 mCurrentlyAnySw;
+    /* 0x5b4 */ f32 mHeight;
+    /* 0x5b8 */ f32 mShakeIntensity;
+    /* 0x5bc */ csXyz mRotation;
+    /* 0x5c4 */ int mTickCounter;
+    /* 0x5c8 */ u16 mHomeX;
+    /* 0x5ca */ u16 mHomeZ;
+    /* 0x5cc */ bool mIsInitialized;
+    /* 0x5cd */ u8 mCurrentlyMySw;
+    /* 0x5d0 */ cXyz mSoundPosition;
 };
 
 STATIC_ASSERT(sizeof(daObjBmSh_c) == 0x5dc);
