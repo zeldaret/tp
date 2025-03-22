@@ -17,7 +17,7 @@
 class daB_MGN_c : public fopEn_enemy_c {
 public:
     /* 8060577C */ int ctrlJoint(J3DJoint*, J3DModel*);
-    /* 8060584C */ int JointCallBack(J3DJoint*, int);
+    /* 8060584C */ static int JointCallBack(J3DJoint*, int);
     /* 80605898 */ void draw();
     /* 80605D78 */ void setDashSmokeEffect();
     /* 8060601C */ void setBackJumpEffect();
@@ -78,7 +78,7 @@ public:
 private:
     /* 0x05AC */ request_of_phase_process_class field_0x5ac;
     /* 0x05B4 */ request_of_phase_process_class field_0x5b4;
-    /* 0x05BC */ mDoExt_McaMorfSO* field_0x5bc;
+    /* 0x05BC */ mDoExt_McaMorfSO* mpModelMorf;
     /* 0x05C0 */ mDoExt_brkAnm* field_0x5c0;
     /* 0x05C4 */ mDoExt_btkAnm* field_0x5c4;
     /* 0x05C8 */ f32 field_0x5c8;
@@ -87,7 +87,7 @@ private:
     /* 0x05D0 */ J3DModel* field_0x5d0[20];
     /* 0x05CD */ u8 field_0x620[0x990 - 0x620];
     /* 0x0990 */ int field_0x990[20];
-    /* 0x09E0 */ Z2CreatureEnemy field_0x9e0;
+    /* 0x09E0 */ Z2CreatureEnemy mSound;
     /* 0x0A84 */ u8 field_0xa84[0xA92 - 0xA84];
     /* 0x0A92 */ s16 field_0xa92;
     /* 0x0A94 */ u32 field_0xa94;
