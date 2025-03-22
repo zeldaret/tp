@@ -298,23 +298,23 @@ int daObjBmSh_c::Delete() {
 }
 
 /* 80BBA71C-80BBA748 000D3C 002C+00 1/0 0/0 0/0 .text            daObjBmSh_Draw__FP11daObjBmSh_c */
-void daObjBmSh_Draw(daObjBmSh_c* i_this) {
+int daObjBmSh_Draw(daObjBmSh_c* i_this) {
     fopAcM_GetID(i_this);
-    static_cast<daObjBmSh_c*>(i_this)->Draw();
+    return static_cast<daObjBmSh_c*>(i_this)->Draw();
 }
 
 /* 80BBA748-80BBA768 000D68 0020+00 1/0 0/0 0/0 .text            daObjBmSh_Execute__FP11daObjBmSh_c
  */
-void daObjBmSh_Execute(daObjBmSh_c* i_this) {
+int daObjBmSh_Execute(daObjBmSh_c* i_this) {
     fopAcM_GetID(i_this);
-    static_cast<dBgS_MoveBgActor*>(i_this)->MoveBGExecute();
+    return static_cast<dBgS_MoveBgActor*>(i_this)->MoveBGExecute();
 }
 
 /* 80BBA768-80BBA788 000D88 0020+00 1/0 0/0 0/0 .text            daObjBmSh_Delete__FP11daObjBmSh_c
  */
-void daObjBmSh_Delete(daObjBmSh_c* i_this) {
+int daObjBmSh_Delete(daObjBmSh_c* i_this) {
     fopAcM_GetID(i_this);
-    static_cast<dBgS_MoveBgActor*>(i_this)->MoveBGDelete();
+    return static_cast<dBgS_MoveBgActor*>(i_this)->MoveBGDelete();
 }
 
 /* 80BBA788-80BBA7A8 000DA8 0020+00 1/0 0/0 0/0 .text            daObjBmSh_Create__FP10fopAc_ac_c */
