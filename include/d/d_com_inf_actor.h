@@ -5,7 +5,7 @@ class fopAc_ac_c;
 
 class dComIfGoat_info_c {
 public:
-    /* 0x0 */ fopAc_ac_c* field_0x0;
+    /* 0x0 */ fopAc_ac_c* mGoatActor;
 };
 
 class dComIfAc_info_c {
@@ -22,7 +22,11 @@ inline bool dComIfA_PauseCheck() {
 }
 
 inline fopAc_ac_c* dComIfGoat_GetThrow() {
-    return g_dComIfGoat_gameInfo.field_0x0;
+    return g_dComIfGoat_gameInfo.mGoatActor;
+}
+
+inline void dComIfGoat_SetThrow(fopAc_ac_c* actor) {
+    g_dComIfGoat_gameInfo.mGoatActor = actor;
 }
 
 #endif /* D_COM_D_COM_INF_ACTOR_H */

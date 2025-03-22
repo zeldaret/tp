@@ -56,6 +56,13 @@ public:
     typedef u8 (dPaPoT_c::*effTypeFunc)(int) const;
     typedef JPABaseEmitter* (dPaPoT_c::*emitterFunc)(int, int);
 
+    u8 getTypeTwo(int param_0, int param_1) const {
+        return (this->*m_typeTwoData[param_0])(param_1);
+    }
+    JPABaseEmitter* getEmitterTwo(int param_0, int param_1, int param_2) {
+        return (this->*m_emitterTwoData[param_0])(param_1, param_2);
+    }
+
     static effTypeFunc m_typeTwoData[];
     static emitterFunc m_emitterTwoData[];
 

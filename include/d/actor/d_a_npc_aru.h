@@ -74,11 +74,15 @@ public:
     /* 809575F4 */ s32 getFootLJointNo();
     /* 809575FC */ s32 getFootRJointNo();
 
+    void setLastIn() { mLastGoatIn = true; }
+
     static void* mCutNameList[7];
     static u8 mCutList[84];
 
 private:
-    /* 0x568 */ u8 field_0x568[0xfd8 - 0x568];
+    /* 0x568 */ u8 field_0x568[0xfce - 0x568];
+    /* 0xfce */ bool mLastGoatIn;
+    /* 0xfcf */ u8 field_0xfce[0xfd8 - 0xfcf];
 };
 
 STATIC_ASSERT(sizeof(daNpc_Aru_c) == 0xfd8);
@@ -89,6 +93,5 @@ public:
 
     static u8 const m[160];
 };
-
 
 #endif /* D_A_NPC_ARU_H */
