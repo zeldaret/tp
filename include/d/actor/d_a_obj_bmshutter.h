@@ -46,8 +46,6 @@ public:
     void setAction(u8 action) { mAction = action; }
     void setMoveMode(u8 mode) { mMoveMode = mode; }
 
-    bool checkCommandDemoAccrpt() { return eventInfo.mCommand == dEvtCmd_INDEMO_e; }
-
 private:
     request_of_phase_process_class mPhase;
     J3DModel* mModel;

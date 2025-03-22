@@ -195,7 +195,7 @@ void daObjBmSh_c::actionWait() {
 /* 80BBA1A4-80BBA20C 0007C4 0068+00 1/0 0/0 0/0 .text            actionOrderEvent__11daObjBmSh_cFv
  */
 void daObjBmSh_c::actionOrderEvent() {
-    if (checkCommandDemoAccrpt()) {
+    if (eventInfo.checkCommandDemoAccrpt()) {
         setAction(daObjBmSh_Action_EVENT_e);
     } else {
         fopAcM_orderOtherEventId(this, mEventIdx, mEvent, 0xffff, 0, 1);
