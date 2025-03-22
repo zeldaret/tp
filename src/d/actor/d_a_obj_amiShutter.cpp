@@ -4,6 +4,9 @@
 */
 
 #include "d/actor/d_a_obj_amiShutter.h"
+#include "d/actor/d_a_player.h"
+#include "c/c_damagereaction.h"
+
 #include "dol2asm.h"
 
 
@@ -48,7 +51,7 @@ extern "C" bool eventStart__17dEvLib_callback_cFv();
 extern "C" bool eventRun__17dEvLib_callback_cFv();
 extern "C" bool eventEnd__17dEvLib_callback_cFv();
 extern "C" void __dt__14daAmiShutter_cFv();
-extern "C" extern char const* const d_a_obj_amiShutter__stringBase0;
+
 
 //
 // External References:
@@ -87,7 +90,6 @@ extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
 extern "C" extern void* __vt__16dBgS_MoveBgActor[10];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 struct_80450C98[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
@@ -116,77 +118,17 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 };
 #pragma pop
 
-/* 80BA23FC-80BA2408 -00001 000C+00 0/1 0/0 0/0 .data            @3759 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3759[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeWait__14daAmiShutter_cFv,
-};
-#pragma pop
 
-/* 80BA2408-80BA2414 -00001 000C+00 0/1 0/0 0/0 .data            @3760 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3760[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeWaitEvent__14daAmiShutter_cFv,
-};
-#pragma pop
-
-/* 80BA2414-80BA2420 -00001 000C+00 0/1 0/0 0/0 .data            @3761 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3761[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeClose__14daAmiShutter_cFv,
-};
-#pragma pop
-
-/* 80BA2420-80BA242C -00001 000C+00 0/1 0/0 0/0 .data            @3762 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3762[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeCloseEvent__14daAmiShutter_cFv,
-};
-#pragma pop
-
-/* 80BA242C-80BA2438 -00001 000C+00 0/1 0/0 0/0 .data            @3763 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3763[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeCloseEnd__14daAmiShutter_cFv,
-};
-#pragma pop
-
-/* 80BA2438-80BA2444 -00001 000C+00 0/1 0/0 0/0 .data            @3764 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3764[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeOpen__14daAmiShutter_cFv,
-};
-#pragma pop
 
 /* 80BA2444-80BA248C 000068 0048+00 0/1 0/0 0/0 .data            mode_proc$3758 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 mode_proc[72] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-#pragma pop
+// static daAmiShutter_c::modeProc const mode_proc[6] = {
+//     &daAmiShutter_c::modeWait,
+//     &daAmiShutter_c::modeWaitEvent,
+//     &daAmiShutter_c::modeClose,
+//     &daAmiShutter_c::modeCloseEvent,
+//     &daAmiShutter_c::modeCloseEnd,
+//     &daAmiShutter_c::modeOpen,
+// };
 
 /* 80BA248C-80BA24AC -00001 0020+00 1/0 0/0 0/0 .data            l_daAmiShutter_Method */
 static actor_method_class l_daAmiShutter_Method = {
@@ -215,52 +157,6 @@ extern actor_process_profile_definition g_profile_Obj_AmiShutter = {
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
 
-/* 80BA24DC-80BA24F4 000100 0018+00 3/3 0/0 0/0 .data            __vt__17dEvLib_callback_c */
-SECTION_DATA extern void* __vt__17dEvLib_callback_c[6] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__17dEvLib_callback_cFv,
-    (void*)eventStart__17dEvLib_callback_cFv,
-    (void*)eventRun__17dEvLib_callback_cFv,
-    (void*)eventEnd__17dEvLib_callback_cFv,
-};
-
-/* 80BA24F4-80BA253C 000118 0048+00 2/2 0/0 0/0 .data            __vt__14daAmiShutter_c */
-SECTION_DATA extern void* __vt__14daAmiShutter_c[18] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)CreateHeap__14daAmiShutter_cFv,
-    (void*)Create__16dBgS_MoveBgActorFv,
-    (void*)Execute__14daAmiShutter_cFPPA3_A4_f,
-    (void*)Draw__14daAmiShutter_cFv,
-    (void*)Delete__14daAmiShutter_cFv,
-    (void*)IsDelete__16dBgS_MoveBgActorFv,
-    (void*)ToFore__16dBgS_MoveBgActorFv,
-    (void*)ToBack__16dBgS_MoveBgActorFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80BA2280,
-    (void*)func_80BA2278,
-    (void*)eventRun__17dEvLib_callback_cFv,
-    (void*)eventEnd__17dEvLib_callback_cFv,
-    (void*)__dt__14daAmiShutter_cFv,
-    (void*)eventStart__14daAmiShutter_cFv,
-};
-
-/* 80BA253C-80BA2548 000160 000C+00 2/2 0/0 0/0 .data            __vt__18daAmiShutter_HIO_c */
-SECTION_DATA extern void* __vt__18daAmiShutter_HIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__18daAmiShutter_HIO_cFv,
-};
-
-/* 80BA2548-80BA2554 00016C 000C+00 3/3 0/0 0/0 .data            __vt__14mDoHIO_entry_c */
-SECTION_DATA extern void* __vt__14mDoHIO_entry_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__14mDoHIO_entry_cFv,
-};
-
 /* 80BA14CC-80BA1514 0000EC 0048+00 1/1 0/0 0/0 .text            __ct__18daAmiShutter_HIO_cFv */
 daAmiShutter_HIO_c::daAmiShutter_HIO_c() {
     mMaxStepOpen = 70.0f;
@@ -272,128 +168,144 @@ daAmiShutter_HIO_c::daAmiShutter_HIO_c() {
 
 /* 80BA155C-80BA15E4 00017C 0088+00 2/2 0/0 0/0 .text            setBaseMtx__14daAmiShutter_cFv */
 void daAmiShutter_c::setBaseMtx() {
-    // NONMATCHING
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
+    mpModel->setBaseScale(scale);
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* ############################################################################################## */
-/* 80BA23D4-80BA23D4 000044 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80BA23D4 = "S_Zami";
-#pragma pop
 
 /* 80BA15E4-80BA1650 000204 006C+00 1/0 0/0 0/0 .text            CreateHeap__14daAmiShutter_cFv */
 int daAmiShutter_c::CreateHeap() {
-    // NONMATCHING
+    J3DModelData* modelData = (J3DModelData*) dComIfG_getObjectRes("S_Zami", 4);
+    JUT_ASSERT(modelData != 0); 
+    
+    mpModel = mDoExt_J3DModel__create(modelData, J3DMdlFlag_Unk80000, 0x11000084);
+    if (mpModel == NULL) {
+        return 0;
+    }
+    return 1;
 }
 
 /* ############################################################################################## */
-/* 80BA2398-80BA239C 000008 0004+00 1/1 0/0 0/0 .rodata          @3739 */
-SECTION_RODATA static f32 const lit_3739 = -800.0f;
-COMPILER_STRIP_GATE(0x80BA2398, &lit_3739);
 
-/* 80BA239C-80BA23A0 00000C 0004+00 1/2 0/0 0/0 .rodata          @3740 */
-SECTION_RODATA static f32 const lit_3740 = 600.0f;
-COMPILER_STRIP_GATE(0x80BA239C, &lit_3740);
+/* 80BA256C-80BA2580 000014 0014+00 6/6 0/0 0/0 .bss             l_HIO */
+static const daAmiShutter_HIO_c l_HIO;
 
 /* 80BA1650-80BA182C 000270 01DC+00 1/1 0/0 0/0 .text            create__14daAmiShutter_cFv */
-void daAmiShutter_c::create() {
-    // NONMATCHING
+cPhs__Step daAmiShutter_c::create() {
+    fopAcM_SetupActor(this, daAmiShutter_c);
+    cPhs__Step phaseStep = (cPhs__Step) dComIfG_resLoad(&mPhaseReq, "S_Zami");
+
+    if (phaseStep == cPhs_COMPLEATE_e) {
+        cPhs__Step res = (cPhs__Step) MoveBGCreate("S_Zami", 7, 
+            dBgS_MoveBGProc_Typical, 6656, NULL);
+
+        if (res == cPhs_ERROR_e) {
+            phaseStep = cPhs_ERROR_e;
+            return phaseStep;
+        }
+
+        fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
+        fopAcM_setCullSizeBox2(this, mpModel->getModelData());
+        mType = getType();
+        mPosZ = current.pos.z;
+        
+        if (mType == 0 || mType == 1) {
+            if (mType == 0 && cDmr_SkipInfo != 0 
+                && daPy_getPlayerActorClass()->current.pos.y > -800.0f){
+                mMode = 4;
+            } else {
+                mPos = current.pos;
+                current.pos.z -= 600.0f;
+                mOpen = true;
+                init_modeWaitEvent();
+            }
+        } else {
+            mSwBit = getSwBit();
+            mSwitch = fopAcM_isSwitch(this, mSwBit);
+            mOpen = false;
+            init_modeWait();
+        }
+        setBaseMtx();
+        #ifdef DEBUG
+        l_HIO.entryHIO("アミシャッター")
+        #endif
+    }
+    return phaseStep;
 }
 
 /* 80BA182C-80BA1888 00044C 005C+00 1/0 0/0 0/0 .text            Execute__14daAmiShutter_cFPPA3_A4_f
  */
 int daAmiShutter_c::Execute(Mtx** i_mtx) {
-    // NONMATCHING
+    int res = eventUpdate();
+    moveShutter();
+    *i_mtx = &mpModel->getBaseTRMtx();
+    setBaseMtx();
+    return 1;
 }
 
 /* ############################################################################################## */
-/* 80BA2560-80BA256C 000008 000C+00 1/1 0/0 0/0 .bss             @3649 */
-static u8 lit_3649[12];
 
-/* 80BA256C-80BA2580 000014 0014+00 6/6 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[20];
 
-/* 80BA2580-80BA2584 000028 0004+00 1/1 0/0 0/0 .bss             None */
-static u8 data_80BA2580[4];
+
+// static u8 lbl_397_bss_28;
 
 /* 80BA1888-80BA1974 0004A8 00EC+00 1/1 0/0 0/0 .text            moveShutter__14daAmiShutter_cFv */
 void daAmiShutter_c::moveShutter() {
-    // NONMATCHING
+    static daAmiShutter_c::modeProc const mode_proc[6] = {
+        &daAmiShutter_c::modeWait,
+        &daAmiShutter_c::modeWaitEvent,
+        &daAmiShutter_c::modeClose,
+        &daAmiShutter_c::modeCloseEvent,
+        &daAmiShutter_c::modeCloseEnd,
+        &daAmiShutter_c::modeOpen,
+    };
+
+    (this->*mode_proc[mMode])();
+
 }
 
 /* ############################################################################################## */
-/* 80BA23A0-80BA23A8 000010 0004+04 0/4 0/0 0/0 .rodata          @3822 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3822[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80BA23A0, &lit_3822);
-#pragma pop
-
-/* 80BA23A8-80BA23B0 000018 0008+00 0/1 0/0 0/0 .rodata          @3823 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3823[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80BA23A8, &lit_3823);
-#pragma pop
-
-/* 80BA23B0-80BA23B8 000020 0008+00 0/1 0/0 0/0 .rodata          @3824 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3824[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80BA23B0, &lit_3824);
-#pragma pop
-
-/* 80BA23B8-80BA23C0 000028 0008+00 0/1 0/0 0/0 .rodata          @3825 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3825[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80BA23B8, &lit_3825);
-#pragma pop
-
-/* 80BA23C0-80BA23C4 000030 0004+00 0/1 0/0 0/0 .rodata          @3826 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3826 = 50.0f;
-COMPILER_STRIP_GATE(0x80BA23C0, &lit_3826);
-#pragma pop
 
 /* 80BA1974-80BA1B4C 000594 01D8+00 1/1 0/0 0/0 .text            playerAreaCheck__14daAmiShutter_cFv
  */
-void daAmiShutter_c::playerAreaCheck() {
-    // NONMATCHING
+bool daAmiShutter_c::playerAreaCheck() {
+    bool inArea = false;
+    if (mType == 0) {
+        fopAc_ac_c* player = dComIfGp_getPlayer(0);
+        cXyz resVec = mPos - player->current.pos;
+        float distance = resVec.absXZ();
+        if (distance >= l_HIO.mRange
+            && player->current.pos.y > current.pos.y
+            && player->current.pos.y < current.pos.y + 50.f){
+            inArea = true;
+        }
+    } else if (dComIfGp_getLinkPlayer()->getFootOnGround()) {
+        inArea = true;
+    }
+    return inArea;
 }
 
 /* 80BA1B4C-80BA1B58 00076C 000C+00 3/3 0/0 0/0 .text            init_modeWait__14daAmiShutter_cFv
  */
 void daAmiShutter_c::init_modeWait() {
-    // NONMATCHING
+    mMode = MODE_WAIT;
 }
 
 /* 80BA1B58-80BA1BCC 000778 0074+00 1/0 0/0 0/0 .text            modeWait__14daAmiShutter_cFv */
 void daAmiShutter_c::modeWait() {
-    // NONMATCHING
+    u8 isSwitch = fopAcM_isSwitch(this, mSwBit);
+    if (mSwitch != isSwitch) {
+        mSwitch = isSwitch;
+        mSwitch == 0 ? init_modeClose() : init_modeOpen();
+    }
 }
 
 /* 80BA1BCC-80BA1BD8 0007EC 000C+00 1/1 0/0 0/0 .text init_modeWaitEvent__14daAmiShutter_cFv */
 void daAmiShutter_c::init_modeWaitEvent() {
-    // NONMATCHING
+    mMode = MODE_WAIT_EVENT;
 }
 
 /* 80BA1BD8-80BA1C90 0007F8 00B8+00 1/0 0/0 0/0 .text            modeWaitEvent__14daAmiShutter_cFv
@@ -516,10 +428,6 @@ void __sinit_d_a_obj_amiShutter_cpp() {
     // NONMATCHING
 }
 
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80BA223C, __sinit_d_a_obj_amiShutter_cpp);
-#pragma pop
 
 /* 80BA2278-80BA2280 000E98 0008+00 1/0 0/0 0/0 .text @1448@eventStart__14daAmiShutter_cFv */
 // static void func_80BA2278() {
