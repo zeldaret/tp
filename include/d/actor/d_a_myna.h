@@ -189,6 +189,8 @@ public:
     // Must be inlined but defined in .cpp for sinit to match
     inline daMyna_HIO_c();
 
+    void genMessage(JORMContext*);
+
     /* 0x04 */ f32 field_0x04;  // DAT_8094ba40
     /* 0x08 */ f32 field_0x08;  // DAT_8094ba44
     /* 0x0C */ f32 field_0x0C;  // DAT_8094ba48

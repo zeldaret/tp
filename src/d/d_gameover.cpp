@@ -21,6 +21,8 @@ public:
     /* 8019AFE0 */ dGov_HIO_c();
     /* 8019C06C */ virtual ~dGov_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x04 */ u8 unk_0x4;
     /* 0x08 */ f32 mScale;
     /* 0x0C */ f32 mAlpha;

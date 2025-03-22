@@ -58,6 +58,8 @@ public:
     /* 80C5C9EC */ dalv4CandleDemoTag_HIO_c();
     /* 80C5D07C */ virtual ~dalv4CandleDemoTag_HIO_c();
 
+    void genMessage(JORMContext*);
+
     /* 0x4 */ s16 mEnemyWaitTime;
 };
 

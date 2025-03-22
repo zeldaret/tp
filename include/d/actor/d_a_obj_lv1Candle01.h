@@ -53,6 +53,8 @@ public:
     /* 80C56CAC */ daLv1Cdl01_HIO_c();
     /* 80C5777C */ ~daLv1Cdl01_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x4 */ u8 field_0x4;
     /* 0x5 */ u8 field_0x5;
 };

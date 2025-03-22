@@ -40,10 +40,12 @@ public:
     /* 8058C60C */ daKtOnFire_HIO_c();
     /* 8058CEA8 */ ~daKtOnFire_HIO_c() {}
 
-            u8 mTimer;
-            u8 mColor1R;
-            u8 mColor1G;
-            u8 mColor1B;
+    void genMessage(JORMContext*);
+
+    u8 mTimer;
+    u8 mColor1R;
+    u8 mColor1G;
+    u8 mColor1B;
 };
 
 
