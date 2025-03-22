@@ -16,8 +16,8 @@
  */
 class daB_MGN_c : public fopEn_enemy_c {
 public:
-    /* 8060577C */ void ctrlJoint(J3DJoint*, J3DModel*);
-    /* 8060584C */ void JointCallBack(J3DJoint*, int);
+    /* 8060577C */ int ctrlJoint(J3DJoint*, J3DModel*);
+    /* 8060584C */ int JointCallBack(J3DJoint*, int);
     /* 80605898 */ void draw();
     /* 80605D78 */ void setDashSmokeEffect();
     /* 8060601C */ void setBackJumpEffect();
@@ -79,17 +79,22 @@ private:
     /* 0x05AC */ request_of_phase_process_class field_0x5ac;
     /* 0x05B4 */ request_of_phase_process_class field_0x5b4;
     /* 0x05BC */ mDoExt_McaMorfSO* field_0x5bc;
-    /* 0x05C0 */ u8 field_0x5c0[0x5c4 - 0x5c0];
+    /* 0x05C0 */ mDoExt_brkAnm* field_0x5c0;
     /* 0x05C4 */ mDoExt_btkAnm* field_0x5c4;
-    /* 0x05C8 */ u8 field_0x5c8[0x5cc - 0x5c8];
+    /* 0x05C8 */ f32 field_0x5c8;
     /* 0x05CC */ u8 field_0x5cc;
-    /* 0x05CD */ u8 field_0x5cd[0x9E0 - 0x5cd];
+    /* 0x05CD */ u8 field_0x5cd[0x5cf - 0x5cd];
+    /* 0x05D0 */ J3DModel* field_0x5d0[20];
+    /* 0x05CD */ u8 field_0x620[0x990 - 0x620];
+    /* 0x0990 */ int field_0x990[20];
     /* 0x09E0 */ Z2CreatureEnemy field_0x9e0;
-    /* 0x05AC */ u8 field_0xa84[0xA92 - 0xA84];
+    /* 0x0A84 */ u8 field_0xa84[0xA92 - 0xA84];
     /* 0x0A92 */ s16 field_0xa92;
-    /* 0x0A94 */ u8 field_0xa94[0xae8 - 0xa94];
+    /* 0x0A94 */ u32 field_0xa94;
+    /* 0x0A98 */ u8 field_0xa98[0xae8 - 0xa98];
     /* 0x0AE8 */ int field_0xae8;
-    /* 0x0AEC */ u8 field_0xaec[0xaf4 - 0xaec];
+    /* 0x0AEC */ u8 field_0xaec[0xaf0 - 0xaec];
+    /* 0x0AF0 */ f32 field_0xaf0;
     /* 0x0AF4 */ int field_0xaf4;
     /* 0x0AF8 */ u8 field_0xaf8;
     /* 0x0AF9 */ u8 field_0xaf9;
@@ -97,7 +102,8 @@ private:
     /* 0x0AFB */ u8 field_0xafb;
     /* 0x0AFC */ u8 field_0xafc[0xafe - 0xafc];
     /* 0x0AFE */ u8 field_0xafe;
-    /* 0x0AFF */ u8 field_0xaff[0xB01 - 0xAFf];
+    /* 0x0AFF */ u8 field_0xaff;
+    /* 0x0B00 */ u8 field_0xb00;
     /* 0x0B01 */ u8 field_0xb01;
     /* 0x0B02 */ u8 field_0xb02[0xB05 - 0xB02];
     /* 0x0B05 */ u8 field_0xb05;
@@ -116,14 +122,11 @@ private:
     /* 0x2364 */ u8 field_0x2364[0x25dc - 0x2364];
     /* 0x25DC */ Z2CreatureEnemy* field_0x25dc;
     /* 0x25E0 */ u8 field_0x25e0[0x25f8 - 0x25e0];
-    /* 0x25F8 */ u32 field_0x25f8;
-    /* 0x25FC */ u32 field_0x25fc;
-    /* 0x2600 */ u8 field_0x2600[0x2608 - 0x2600];
-    /* 0x2608 */ u32 field_0x2608;
-    /* 0x260C */ u32 field_0x260c;
-    /* 0x2610 */ u8 field_0x2610[0x2618 - 0x2610];
+    /* 0x25F8 */ u32 field_0x25f8[4];
+    /* 0x2608 */ u32 field_0x2608[4];
     /* 0x2618 */ u32 field_0x2618;
-    /* 0x25E0 */ u8 field_0x261c[0x2624 - 0x261c];
+    /* 0x261C */ u32 field_0x261c;
+    /* 0x2620 */ u32 field_0x2620;
     /* 0x2624 */ mDoExt_McaMorfSO* field_0x2624[4];
     /* 0x2634 */ mDoExt_brkAnm* field_0x2634[4];
     /* 0x2644 */ mDoExt_brkAnm* field_0x2644[4];
@@ -131,17 +134,40 @@ private:
     /* 0x2664 */ cXyz* field_0x2664[12];
     /* 0x2670 */ u8 field_0x2694[0x26b4 - 0x2694];
     /* 0x26B4 */ u8 field_0x26b4[4];
-    /* 0x2670 */ u8 field_0x26b8[0x26c8 - 0x26b8];
+    /* 0x2670 */ u8 field_0x26b8[0x26bc - 0x26b8];
+    /* 0x26BC */ u8 field_0x26bc[4];
+    /* 0x26C0 */ s16 field_0x26c0[4];
     /* 0x26C8 */ u8 field_0x26c8;
-    /* 0x26C9 */ u8 field_0x26c9[0x26cC - 0x26c9];
+    /* 0x26C9 */ u8 field_0x26c9[0x26cc - 0x26c9];
+
 };
 
 STATIC_ASSERT(sizeof(daB_MGN_c) == 0x26cc);
 
-class daB_MGN_HIO_c {
+class daB_MGN_HIO_c 
+#ifdef DEBUG
+: public JORReflexible
+#endif
+{
+    
 public:
     /* 8060572C */ daB_MGN_HIO_c();
     /* 8060F8D0 */ ~daB_MGN_HIO_c();
+
+#ifdef DEBUG
+virtual void genMessage(JORMContext*);
+#endif
+
+    /* 0x08 */ f32 field_0x08; // 1.2f
+    /* 0x0C */ f32 field_0x0c; // 50.0f
+    /* 0x10 */ f32 field_0x10; // 70.0f
+    /* 0x14 */ f32 field_0x14; // 1.0f
+    /* 0x18 */ f32 field_0x18; // 100.0f
+    /* 0x1C */ f32 field_0x1c; // 100.0f
+    /* 0x20 */ f32 field_0x20; // 100.0f
+    /* 0x24 */ f32 field_0x24;
+    /* 0x28 */ f32 field_0x28;
+    /* 0x2C */ f32 field_0x2c;
 };
 
 
