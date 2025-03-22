@@ -238,7 +238,7 @@ void daObjBmSh_c::modeWait() {
     checkAnySw();
     int checkedSw = checkSw();
 
-    if ((checkMySw() != 0) && (checkedSw == 0) && (mCurrentlyMySw == 0)) {
+    if (checkMySw() != 0 && checkedSw == 0 && mCurrentlyMySw == 0) {
         mShakeIntensity = 400.0f;
         mSoundPosition.set(0.0f, 150.0f, 0.0f);
         mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
