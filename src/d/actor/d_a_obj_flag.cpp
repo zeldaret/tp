@@ -60,36 +60,17 @@ void daObjFlag_c::getJointAngle(csXyz* i_angle, int i_index) {
     *i_angle = *joint;
 }
 
-// /* ############################################################################################## */
-// /* 80BEC52C-80BEC530 000040 0004+00 0/3 0/0 0/0 .rodata          @3759 */
-// #pragma push
-// #pragma force_active on
-// SECTION_RODATA static u8 const lit_3759[4] = {
-//     0x00,
-//     0x00,
-//     0x00,
-//     0x00,
-// };
-// COMPILER_STRIP_GATE(0x80BEC52C, &lit_3759);
-// #pragma pop
-
-// /* 80BEC53C-80BEC544 000050 0008+00 1/4 0/0 0/0 .rodata          @3764 */
-// SECTION_RODATA static u8 const lit_3764[8] = {
-//     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-// };
-// COMPILER_STRIP_GATE(0x80BEC53C, &lit_3764);
-
 /* 80BEB9AC-80BEBC58 0002AC 02AC+00 1/1 0/0 0/0 .text            calcJointAngle__11daObjFlag_cFv */
 void daObjFlag_c::calcJointAngle() {
-    cXyz direction;
+    cXyz* direction;
     float power;
 
-    dKyw_get_AllWind_vec(&mPos, &direction, &power);
+    dKyw_get_AllWind_vec(&mPos, direction, &power);
     if(power > 0.0f) {
         Z2GetAudioMgr()->seStartLevel(JAISoundID(Z2SE_OBJ_FLAG_TRAILING), &mPos, power * 127.0f, 0, 1.0, 1.0, -1.0, -1.0, 0);
     }
-
-    cLib_addCalcAngleS(&field_0x5e0, cM_atan2s(direction.x, direction.y), 4, 0x7fff, 0);
+    
+    cLib_addCalcAngleS(&field_0x5e0, cM_atan2s(direction->x, direction->y), 4, 0x7fff, 0);
     for(int i = 0; i < 4; i++) {
         FlagJoint_c* joint = &mFlagJoints[i];
         if(power != 0.0f && i != 0) {
@@ -98,12 +79,13 @@ void daObjFlag_c::calcJointAngle() {
         if(i == 0) {
             joint->joint2 = joint->joint1;
             joint->joint1.y = (field_0x5e0 + getSwingY(power) * cM_ssin(mFlagJoints[i].rv));
-            joint->rv += (short)(int)(power * attr().field_0x28);
+            joint->rv += (short)(power * attr().field_0x28);
             joint->joint3 = csXyz() - joint->joint2;
         }
         else {
             joint->joint2 = joint->joint1;
-            joint->joint3 = mFlagJoints[i-1].joint3 * 1.0f;
+            joint->joint3 = mFlagJoints[i].joint3 * attr().field_0x04;
+            joint->joint1 += joint->joint3;
             cLib_addCalcAngleS(&mFlagJoints[i].joint1.y, 0, attr().field_0x0c, 0x7fff, 0);
             joint->joint3 = joint->joint1 - joint->joint2;
         }
@@ -122,7 +104,7 @@ void daObjFlag_c::calcJointAngle() {
  void daObjFlag_c::calcAngleSwingZ(FlagJoint_c* param_0, f32 param_1) {
     f32 swing = param_1 * -(attr().field_0x0e / 0.7f) + attr().field_0x0e / 0.7f;
     f32 tmp = attr().field_0x1a * cM_ssin(field_0x5e8);
-    field_0x5e8 += attr().field_0x22;
+    field_0x5e8 = field_0x5e8 + attr().field_0x22;
     swing += tmp;
     
     if(swing > attr().field_0x2c) {
@@ -140,17 +122,18 @@ void daObjFlag_c::calcJointAngle() {
 
 /* 80BEBDAC-80BEBE64 0006AC 00B8+00 1/1 0/0 0/0 .text
  * calcAngleSwingX__11daObjFlag_cFP11FlagJoint_cf               */
-int daObjFlag_c::calcAngleSwingX(FlagJoint_c* param_0, f32 param_1) {
-    float swing = ((16384.0f / attr().field_0x08) * param_1 - 16384.0f);
+void daObjFlag_c::calcAngleSwingX(FlagJoint_c* param_0, f32 param_1) {
+    float tmp = 16384.0f / attr().field_0x08;
+    float swing = tmp * param_1 - 16384.0f;
     if(swing > 0.0f) {
         swing = 0.0f;
     }
 
-    if((float)(int)(param_0->joint1).x > swing) {
-        return cLib_addCalcAngleS((s16*)param_0, -swing, 0x1e, 0x7fff, -0x7fff);
+    if(param_0->joint1.x > swing) {
+        cLib_addCalcAngleS(&param_0->joint1.x, -swing, 0x1e, 0x7fff, -0x7fff);
+    } else {
+        cLib_chaseS(&param_0->joint1.x, -swing, 500);
     }
-    
-    return cLib_chaseS((s16*)param_0, -swing, 500);
 }
 
 /* 80BEBE64-80BEBFC8 000764 0164+00 1/1 0/0 0/0 .text            getSwingY__11daObjFlag_cFf */
@@ -181,7 +164,7 @@ f32 daObjFlag_c::getSwingY(f32 param_0) {
     field_0x5e4 += attr().field_0x1e;
     field_0x5e6 += attr().field_0x20;
     
-    return (int)(short)(int)(var5 + var4 + (swing + var3));
+    return (int)(short)((swing + var3) + var4 + var5);
 }
 
 /* 80BEBFC8-80BEC0B8 0008C8 00F0+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */

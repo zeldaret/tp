@@ -49,7 +49,7 @@ public:
     /* 80BEB984 */ void getJointAngle(csXyz*, int);
     /* 80BEB9AC */ void calcJointAngle();
     /* 80BEBC58 */ void calcAngleSwingZ(FlagJoint_c*, f32);
-    /* 80BEBDAC */ int calcAngleSwingX(FlagJoint_c*, f32);
+    /* 80BEBDAC */ void calcAngleSwingX(FlagJoint_c*, f32);
     /* 80BEBE64 */ f32 getSwingY(f32);
 
     ~daObjFlag_c() {
@@ -60,7 +60,7 @@ public:
     int create() {
         fopAcM_SetupActor(this, daObjFlag_c);
     
-        int phase_state = dComIfG_resLoad(&mPhase, "create");
+        int phase_state = dComIfG_resLoad(&mPhase, "FlagObj");
         if (phase_state != cPhs_COMPLEATE_e) {
             return phase_state;
         }
@@ -104,14 +104,14 @@ public:
 
     int createHeap() {
         bool tmp = 0;
-        char xAngle = shape_angle.GetX();
-        if(xAngle <= -1 || xAngle > 'c') {
+        char angle = (u8)shape_angle.x;
+        if(angle <= -1 || angle > 'c') {
             tmp = false;
         }
         else {
             tmp = true;
         
-            char resName[24];
+            char resName[12];
             sprintf(resName, "flag%02d.bmd");
 
             shape_angle.setall(0);
@@ -120,7 +120,7 @@ public:
             J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("FlagObj", resName);
             mpModel1 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
 
-            for(int i = 0; i < 5; i += 1) {
+            for(u8 i = 0; i < 5; i += 1) {
                 J3DJoint* nodePtr = (J3DJoint*)((u64)mpModel1->getModelData()->getJointNodePointer(i));
                 if(nodePtr != NULL) {
                     nodePtr->setCallBack(nodeCallBack);
@@ -153,8 +153,8 @@ public:
         /* 0x1e */ short field_0x1e;
         /* 0x20 */ short field_0x20;
         /* 0x22 */ short field_0x22;
-        /* 0x24 */ char field_0x24;
-        /* 0x25 */ char field_0x25;
+        /* 0x24 */ u8 field_0x24;
+        /* 0x25 */ u8 field_0x25;
         /* 0x26 */ short maybe;
         /* 0x28 */ float field_0x28;
         /* 0x2c */ float field_0x2c;
