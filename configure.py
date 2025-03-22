@@ -395,7 +395,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01"), "m_Do/m_Do_controller_pad.cpp"),
             Object(Equivalent, "m_Do/m_Do_graphic.cpp"), # weak func order
             Object(NonMatching, "m_Do/m_Do_machine.cpp"),
-            Object(MatchingFor("GZ2E01"), "m_Do/m_Do_mtx.cpp"),
+            Object(MatchingFor("GZ2E01"), "m_Do/m_Do_mtx.cpp", extra_cflags=["-sym off"]),
             Object(NonMatching, "m_Do/m_Do_ext.cpp"),
             Object(MatchingFor("GZ2E01"), "m_Do/m_Do_lib.cpp"),
             Object(MatchingFor("GZ2E01"), "m_Do/m_Do_Reset.cpp"),

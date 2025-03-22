@@ -9,6 +9,14 @@ mw_comment_version: 14
 write_asm: true
 ldscript_template: config/ShieldD/ldscript.tpl
 
+block_relocations:
+- source: .sdata:0x8073f3f4
+add_relocations:
+- source: .sdata:0x8073f3f4
+  type: abs
+  target: buffer__14mDoMtx_stack_c
+  addend: 0x300
+
 modules:
 - object: files/rel/RVL/Debug/d_a_alldieD.rel
   hash: a2c9e702b4c87ea0efa440a83799cc28eeedcfe2
