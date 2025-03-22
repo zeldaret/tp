@@ -138,13 +138,13 @@ public:
     }
 
     struct M_attrs {
-        /* 0x00 */ float not_sure;
+        /* 0x00 */ float field_0x00;
         /* 0x04 */ float field_0x04;
         /* 0x08 */ float field_0x08;
         /* 0x0c */ short field_0x0c;
         /* 0x0e */ short field_0x0e;
-        /* 0x10 */ short undefined;
-        /* 0x12 */ short undefined_2;
+        /* 0x10 */ short fielx_0x10;
+        /* 0x12 */ short fielx_0x12;
         /* 0x14 */ short field_0x14;
         /* 0x16 */ short field_0x16;
         /* 0x18 */ short field_0x18;
@@ -155,14 +155,13 @@ public:
         /* 0x22 */ short field_0x22;
         /* 0x24 */ u8 field_0x24;
         /* 0x25 */ u8 field_0x25;
-        /* 0x26 */ short maybe;
+        /* 0x26 */ u8 field_0x26;
         /* 0x28 */ float field_0x28;
         /* 0x2c */ float field_0x2c;
         /* 0x30 */ float field_0x30;
     };
 
     static M_attrs const M_attr;
-
     static M_attrs const& attr() { return M_attr; }
 };
 

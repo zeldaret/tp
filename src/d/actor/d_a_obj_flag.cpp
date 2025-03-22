@@ -69,12 +69,12 @@ void daObjFlag_c::calcJointAngle() {
     if(power > 0.0f) {
         Z2GetAudioMgr()->seStartLevel(JAISoundID(Z2SE_OBJ_FLAG_TRAILING), &mPos, power * 127.0f, 0, 1.0, 1.0, -1.0, -1.0, 0);
     }
-    
-    cLib_addCalcAngleS(&field_0x5e0, cM_atan2s(direction->x, direction->y), 4, 0x7fff, 0);
+
+    cLib_addCalcAngleS(&field_0x5e0, cM_atan2s(direction->x, direction->z), 4, 0x7fff, 0);
+    FlagJoint_c* joint = &mFlagJoints[0];
     for(int i = 0; i < 4; i++) {
-        FlagJoint_c* joint = &mFlagJoints[i];
         if(power != 0.0f && i != 0) {
-            calcAngleSwingZ(&mFlagJoints[i], power);
+            calcAngleSwingZ(joint, power);
         }
         if(i == 0) {
             joint->joint2 = joint->joint1;
@@ -84,18 +84,20 @@ void daObjFlag_c::calcJointAngle() {
         }
         else {
             joint->joint2 = joint->joint1;
-            joint->joint3 = mFlagJoints[i].joint3 * attr().field_0x04;
+            joint->joint3 = joint->joint3 * attr().field_0x04;
             joint->joint1 += joint->joint3;
-            cLib_addCalcAngleS(&mFlagJoints[i].joint1.y, 0, attr().field_0x0c, 0x7fff, 0);
+            cLib_addCalcAngleS(&joint->joint1.y, 0, attr().field_0x0c, 0x7fff, 0);
             joint->joint3 = joint->joint1 - joint->joint2;
         }
 
-        if(attr().field_0x25 == '\0') {
+        if((u8)attr().field_0x25 != NULL) {
             joint->joint1.x = 0;
         }
         else if(i == 1) {
-            calcAngleSwingX(&mFlagJoints[i], power);
+            calcAngleSwingX(joint, power);
         }
+
+        joint += 1;
     }
 }
 
