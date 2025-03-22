@@ -1195,101 +1195,190 @@ void daB_MGN_c::drawHideSmokeEffect() {
     }
 }
 
-/* ############################################################################################## */
-/* 8060FE54-8060FE58 000074 0004+00 1/1 0/0 0/0 .rodata          @4762 */
-SECTION_RODATA static f32 const lit_4762 = -1.0f;
-COMPILER_STRIP_GATE(0x8060FE54, &lit_4762);
+// /* ############################################################################################## */
+// /* 8060FE54-8060FE58 000074 0004+00 1/1 0/0 0/0 .rodata          @4762 */
+// SECTION_RODATA static f32 const lit_4762 = -1.0f;
+// COMPILER_STRIP_GATE(0x8060FE54, &lit_4762);
 
-/* 8060FE58-8060FE5C 000078 0004+00 0/2 0/0 0/0 .rodata          @4853 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4853 = 3.0f / 10.0f;
-COMPILER_STRIP_GATE(0x8060FE58, &lit_4853);
-#pragma pop
+// /* 8060FE58-8060FE5C 000078 0004+00 0/2 0/0 0/0 .rodata          @4853 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_4853 = 3.0f / 10.0f;
+// COMPILER_STRIP_GATE(0x8060FE58, &lit_4853);
+// #pragma pop
 
 /* 8060729C-80607498 001C5C 01FC+00 5/5 0/0 0/0 .text            setBloodEffect__9daB_MGN_cFv */
 void daB_MGN_c::setBloodEffect() {
     // NONMATCHING
+    if (field_0xaa4 == 0) {
+        for (int i = 0; i < 20; i++) {
+            if (field_0x990[i] == 0) {
+                field_0x990[i] = 1;
+                break;
+            }
+        }
+
+        f32 fVar2 = 2.0f;
+
+        if (speed.absXZ() > 10.0f) {
+            fVar2 = 1.0f;
+        }
+
+        if (cM_rnd() < 0.3f) {
+            field_0xaa4 = (int)(fVar2 * (cM_rndFX(3.0f) + 3.0f));
+        } else {
+            field_0xaa4 = (int)(fVar2 * (cM_rndFX(10.0f) + 15.0f));
+        }
+    }
 }
 
-/* ############################################################################################## */
-/* 8060FE5C-8060FE60 00007C 0004+00 0/3 0/0 0/0 .rodata          @4926 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4926 = -150.0f;
-COMPILER_STRIP_GATE(0x8060FE5C, &lit_4926);
-#pragma pop
+// /* ############################################################################################## */
+// /* 8060FE5C-8060FE60 00007C 0004+00 0/3 0/0 0/0 .rodata          @4926 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_4926 = -150.0f;
+// COMPILER_STRIP_GATE(0x8060FE5C, &lit_4926);
+// #pragma pop
 
-/* 8060FE60-8060FE64 000080 0004+00 2/3 0/0 0/0 .rodata          @4927 */
-SECTION_RODATA static f32 const lit_4927 = 0.5f;
-COMPILER_STRIP_GATE(0x8060FE60, &lit_4927);
+// /* 8060FE60-8060FE64 000080 0004+00 2/3 0/0 0/0 .rodata          @4927 */
+// SECTION_RODATA static f32 const lit_4927 = 0.5f;
+// COMPILER_STRIP_GATE(0x8060FE60, &lit_4927);
 
-/* 8060FE64-8060FE68 000084 0004+00 0/1 0/0 0/0 .rodata          @4928 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4928 = 255.0f;
-COMPILER_STRIP_GATE(0x8060FE64, &lit_4928);
-#pragma pop
+// /* 8060FE64-8060FE68 000084 0004+00 0/1 0/0 0/0 .rodata          @4928 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_4928 = 255.0f;
+// COMPILER_STRIP_GATE(0x8060FE64, &lit_4928);
+// #pragma pop
 
-/* 8060FE68-8060FE6C 000088 0004+00 0/1 0/0 0/0 .rodata          @4929 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4929 = -60.0f;
-COMPILER_STRIP_GATE(0x8060FE68, &lit_4929);
-#pragma pop
+// /* 8060FE68-8060FE6C 000088 0004+00 0/1 0/0 0/0 .rodata          @4929 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_4929 = -60.0f;
+// COMPILER_STRIP_GATE(0x8060FE68, &lit_4929);
+// #pragma pop
 
-/* 8060FE6C-8060FE70 00008C 0004+00 0/1 0/0 0/0 .rodata          @4930 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4930 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(0x8060FE6C, &lit_4930);
-#pragma pop
+// /* 8060FE6C-8060FE70 00008C 0004+00 0/1 0/0 0/0 .rodata          @4930 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_4930 = 1.0f / 5.0f;
+// COMPILER_STRIP_GATE(0x8060FE6C, &lit_4930);
+// #pragma pop
 
-/* 8060FE70-8060FE74 000090 0004+00 0/1 0/0 0/0 .rodata          @4931 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4931 = 3.0f / 5.0f;
-COMPILER_STRIP_GATE(0x8060FE70, &lit_4931);
-#pragma pop
+// /* 8060FE70-8060FE74 000090 0004+00 0/1 0/0 0/0 .rodata          @4931 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_4931 = 3.0f / 5.0f;
+// COMPILER_STRIP_GATE(0x8060FE70, &lit_4931);
+// #pragma pop
 
-/* 8060FE74-8060FE78 000094 0004+00 0/2 0/0 0/0 .rodata          @4932 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4932 = 11.0f / 10.0f;
-COMPILER_STRIP_GATE(0x8060FE74, &lit_4932);
-#pragma pop
+// /* 8060FE74-8060FE78 000094 0004+00 0/2 0/0 0/0 .rodata          @4932 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_4932 = 11.0f / 10.0f;
+// COMPILER_STRIP_GATE(0x8060FE74, &lit_4932);
+// #pragma pop
 
-/* 8060FE78-8060FE7C 000098 0004+00 0/2 0/0 0/0 .rodata          @4933 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4933 = 7.0f / 10.0f;
-COMPILER_STRIP_GATE(0x8060FE78, &lit_4933);
-#pragma pop
+// /* 8060FE78-8060FE7C 000098 0004+00 0/2 0/0 0/0 .rodata          @4933 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_4933 = 7.0f / 10.0f;
+// COMPILER_STRIP_GATE(0x8060FE78, &lit_4933);
+// #pragma pop
 
-/* 8060FE7C-8060FE80 00009C 0004+00 0/1 0/0 0/0 .rodata          @4934 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4934 = 101.0f / 100.0f;
-COMPILER_STRIP_GATE(0x8060FE7C, &lit_4934);
-#pragma pop
+// /* 8060FE7C-8060FE80 00009C 0004+00 0/1 0/0 0/0 .rodata          @4934 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_4934 = 101.0f / 100.0f;
+// COMPILER_STRIP_GATE(0x8060FE7C, &lit_4934);
+// #pragma pop
 
-/* 8060FE80-8060FE84 0000A0 0004+00 0/3 0/0 0/0 .rodata          @4935 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4935 = 20.0f;
-COMPILER_STRIP_GATE(0x8060FE80, &lit_4935);
-#pragma pop
+// /* 8060FE80-8060FE84 0000A0 0004+00 0/3 0/0 0/0 .rodata          @4935 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_4935 = 20.0f;
+// COMPILER_STRIP_GATE(0x8060FE80, &lit_4935);
+// #pragma pop
 
-/* 8060FE84-8060FE88 0000A4 0004+00 0/1 0/0 0/0 .rodata          @4936 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4936 = 17.0f;
-COMPILER_STRIP_GATE(0x8060FE84, &lit_4936);
-#pragma pop
+// /* 8060FE84-8060FE88 0000A4 0004+00 0/1 0/0 0/0 .rodata          @4936 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_4936 = 17.0f;
+// COMPILER_STRIP_GATE(0x8060FE84, &lit_4936);
+// #pragma pop
 
 /* 80607498-8060778C 001E58 02F4+00 1/1 0/0 0/0 .text            calcBloodMove__9daB_MGN_cFv */
 void daB_MGN_c::calcBloodMove() {
     // NONMATCHING
+    f32 fVar8, fVar7, fVar6;
+    for (int i = 0; i < 20; i++) {
+        switch (field_0x990[i]) {
+            case 1:
+                mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(1));
+
+                fVar8 = cM_rndFX(10.0f);
+                fVar6 = fVar8;
+                fVar8 = cM_rndFX(10.0f);
+                fVar7 = fVar8 + -150.0f;
+                fVar8 = cM_rndFX(10.0f);
+                mDoMtx_stack_c::transM(fVar8 + 200.0f, fVar7, fVar6);
+                mDoMtx_stack_c::multVecZero(&field_0x620[i]);
+
+                field_0x710[i].set(speed.x * 0.5f, 0.0f, speed.z * 0.5f);
+
+                field_0x990[i] = 2;
+                field_0x990[i - 20] = 0x437f0000;
+
+                fVar8 = cM_rnd() + 0.5f;
+                field_0x8f0[i] = fVar8;
+                field_0x800[i].set(fVar8, fVar8, fVar8);
+                break;
+            case 2:
+                if (field_0x710[i].y > -60.0f) {
+                    field_0x710[i].y -= 3.0f;
+                }
+
+                field_0x620[i] += field_0x710[i];
+
+                if (field_0x620[i].y <= 0.0f) {
+                    field_0x620[i].y = 0.0f;
+                    field_0x710[i].set(0.0f, 0.0f, 0.0f);
+                    field_0x990[i] = 3;
+                }
+                break;
+            case 3:
+                if (field_0x8f0[i] * 0.2f < field_0x800[i].y) {
+                    field_0x800[i].y *= 0.6f; 
+                }
+
+                if (field_0x8f0[i] * 2.0f < field_0x800[i].x) {
+                    field_0x800[i].x *= 1.1f; 
+                }
+
+                field_0x800[i].z = field_0x800[i].x;
+
+                if (field_0x800[i].y < field_0x8f0[i] * 0.2f &&
+                    field_0x800[i].x > field_0x8f0[i] * 2.0f) {
+                    field_0x990[i] = 4;
+                }
+                break;
+            case 4:
+                field_0x800[i].y *= 0.7f;
+                field_0x800[i].x *= 1.01f;
+                field_0x800[i].z = field_0x800[i].x;
+
+                if (cLib_chaseF((f32*)field_0x990[i], 0.0f, 20.0f)) {
+                    field_0x990[i] = 0;
+                }
+        }
+
+        if (field_0x990[i] != 0) {
+            mDoMtx_stack_c::transS(field_0x620[i]);
+            mDoMtx_stack_c::scaleM(field_0x800[i]);
+            mDoMtx_stack_c::transM(0.0f, 17.0f, 0.0f);
+            field_0x5d0[i]->setBaseTRMtx(mDoMtx_stack_c::get());
+        }
+    }
 }
 
 // /* ############################################################################################## */
