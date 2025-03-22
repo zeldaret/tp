@@ -40,6 +40,7 @@ public:
     bool isMovieDemo() { return sceneNum == 2 || sceneNum == 8 || sceneNum == 9; }
     s32 getSeLoadStatus(u32 wave) { return getWaveLoadStatus(wave, 0); }
     s32 getBgmLoadStatus(u32 wave) { return getWaveLoadStatus(wave, 1); }
+    u8 getDemoSeWaveNum() { return loadedDemoWave; }
 
 private:
     /* 0x00 */ JAISoundID BGM_ID;

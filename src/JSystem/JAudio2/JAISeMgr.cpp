@@ -258,7 +258,6 @@ void JAISeMgr::resetSeqDataMgr() {
 }
 
 /* 802A0484-802A0574 29ADC4 00F0+00 1/1 0/0 0/0 .text            newSe___8JAISeMgrFiUl */
-// NONMATCHING JASPollAllocObject<_> locations
 JAISe* JAISeMgr::newSe_(int i_category, u32 param_1) {
     if (i_category < 0) {
         i_category = 0;
@@ -338,10 +337,7 @@ int JAISeMgr::getNumActiveSe() const {
     return sum;
 }
 
-/* 802A0994-802A0A6C 29B2D4 00D8+00 1/1 0/0 0/0 .text            __ct__16JAISeCategoryMgrFv */
-JAISeCategoryMgr::JAISeCategoryMgr() {
-    mParams.init();
-    mMaxActiveSe = 0;
-    mMaxInactiveSe = 0;
-    field_0x4.field_0x0 = 0;
-}
+u8 data_80451310[8];
+
+/* 80451318-80451320 000818 0008+00 0/0 7/7 0/0 .sbss            None */
+u8 data_80451318[8];
