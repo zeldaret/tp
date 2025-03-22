@@ -4,13 +4,11 @@
 //
 
 #include "Z2AudioLib/Z2SpeechMgr2.h"
+#include "Z2AudioLib/Z2AudioMgr.h"
+#include "Z2AudioLib/Z2EnvSeMgr.h"
 #include "Z2AudioLib/Z2SceneMgr.h"
 #include "Z2AudioLib/Z2SeMgr.h"
 #include "JSystem/JMath/JMath.h"
-
-//
-// Types:
-//
 
 typedef struct {
     const u8* field_0x0;
@@ -59,386 +57,6 @@ struct Z2MdnPrm {
     static u8 const sReplybTail[7];
     static u8 const sDesideTail[8];
 };
-
-/* 802CBC60-802CBCEC 2C65A0 008C+00 0/0 1/1 0/0 .text            __ct__12Z2SpeechMgr2Fv */
-Z2SpeechMgr2::Z2SpeechMgr2() : JASGlobalInstance<Z2SpeechMgr2>(true), random(0) {
-    field_0x3f8 = 0;
-    field_0x3fa = -1;
-    field_0x3fc = 0;
-    field_0x3fe = 0;
-    field_0x3ff = 0;
-    field_0x401 = 0;
-    for (int i = 0; i < 64; i++) {
-        field_0x402[i] = -1;
-    }
-}
-
-/* 802CBD88-802CBF60 2C66C8 01D8+00 1/0 1/1 0/0 .text            setString__12Z2SpeechMgr2FPCUssUcUs
- */
-void Z2SpeechMgr2::setString(u16 const* param_1, s16 param_2, u8 param_3, u16 param_4) {
-    switch (param_3) {
-    case 0x13:
-    case 0x15:
-        field_0x3fe = 1;
-        break;
-    case 0x12:
-    case 0x14:
-        field_0x3fe = 2;
-        break;
-    case 4:
-    case '\a':
-    case '\n':
-    case 0x16:
-    case 0x19:
-    case 0x1d:
-    case '!':
-    case '$':
-    case ')':
-    case ',':
-    case '-':
-    case '2':
-    case '3':
-    case '?':
-    case '@':
-    case 'A':
-    case 'S':
-    case 'T':
-    case 'U':
-    case 'Y':
-    case 'Z':
-    case '[':
-    case '\\':
-    case '`':
-    case 'a':
-    case 'b':
-    case 'c':
-    case 'd':
-        field_0x3fe = 12;
-        break;
-    case 0x1e:
-    case 0x1f:
-    case '\"':
-    case '%':
-    case '\'':
-    case '=':
-    case 'e':
-    case 'f':
-    case 'g':
-    case 'h':
-    case 'i':
-    case 'j':
-        field_0x3fe = 13;
-        break;
-    case '7':
-    case '8':
-    case '9':
-    case ':':
-    case ';':
-    case '<':
-    case 'l':
-    case 'm':
-        field_0x3fe = 14;
-        break;
-    case '/':
-        field_0x3fe = 15;
-        break;
-    case 0x0f:
-    case 0x10:
-    case '4':
-    case '5':
-    case '6':
-    case 'p':
-        field_0x3fe = 16;
-        break;
-    case 0x0e:
-    case 'B':
-    case 'D':
-        field_0x3fe = 17;
-        break;
-    case '\f':
-        field_0x3fe = 18;
-        break;
-    case '\t':
-    case '&':
-    case 'o':
-        field_0x3fe = 30;
-        break;
-    case '\b':
-        field_0x3fe = 31;
-        break;
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-        field_0x3fe = 99;
-        return;
-    case 'q':
-    default:
-        field_0x3fe = 11;
-        break;
-    }
-    if ((field_0x3fe == 1) || (field_0x3fe == 2)) {
-        if (param_4 == 0) {
-            field_0x3fc = 0;
-        } else {
-            if (param_4 > 0x11) {
-                if ((field_0x3fe == 21) || (field_0x3fe == 20)) {
-                    field_0x3fc = 0;
-                }
-            } else {
-                field_0x3fc = param_4 - 1;
-            }
-        }
-    } else {
-        field_0x3fc = param_4;
-    }
-    for (int i = 0; i < 500; i++) {
-       field_0x10[i] = 0;
-    }
-
-    if (param_2 > 500) {
-        field_0x3f8 = 500;
-        JUT_WARN(387, "TOO MANY TEXT : now(%d) > max(%d)", param_2, 500);
-    } else {
-        field_0x3f8 = param_2;
-    }
-    for (int i = 0; i < field_0x3f8; i++) {
-        field_0x10[i] = param_1[i];
-    }
-    field_0x3fa = 0;
-    field_0x3ff = 0;
-    field_0x400 = 0;
-    field_0x401 = 0;
-    for (int i = 0; i < 64; i++) {
-        field_0x402[i] = -1;
-    }
-    selectUnit(false);
-}
-
-/* 80455EE0-80455EE8 0044E0 0006+02 1/0 0/0 0/0 .sdata2          sBoringTail__8Z2MdnPrm */
-u8 const Z2MdnPrm::sBoringTail[6] = {
-    0x92, 0x58, 0x59, 0x5B, 0x70, 0x71,
-};
-
-/* 80455EE8-80455EF0 0044E8 0006+02 1/0 0/0 0/0 .sdata2          sOrderTail__8Z2MdnPrm */
-u8 const Z2MdnPrm::sOrderTail[6] = {
-    0x60, 0xA8, 0x5B, 0x4E, 0x5D, 0x87,
-};
-
-/* 80455EF0-80455EF8 0044F0 0005+03 1/0 0/0 0/0 .sdata2          sResentTail__8Z2MdnPrm */
-u8 const Z2MdnPrm::sResentTail[5] = {
-    0x4A, 0x98, 0x8A, 0x7E, 0x57,
-};
-
-/* 80455EF8-80455F00 0044F8 0008+00 1/0 0/0 0/0 .sdata2          sCheerfulTail__8Z2MdnPrm */
-u8 const Z2MdnPrm::sCheerfulTail[8] = {
-    0x60, 0x6D, 0x4D, 0x44, 0x9C, 0x54, 0x70, 0x7B,
-};
-
-/* 80455F00-80455F08 004500 0005+03 1/0 0/0 0/0 .sdata2          sConfusedTail__8Z2MdnPrm */
-u8 const Z2MdnPrm::sConfusedTail[5] = {
-    0x2C, 0x42, 0x4C, 0x7C, 0x49,
-};
-
-/* 80455F08-80455F10 004508 0007+01 1/0 0/0 0/0 .sdata2          sHostilityTail__8Z2MdnPrm */
-u8 const Z2MdnPrm::sHostilityTail[7] = {
-    0x97, 0x67, 0x94, 0x6A, 0x66, 0x4F, 0x6A,
-};
-
-/* 80455F10-80455F18 004510 0008+00 1/0 0/0 0/0 .sdata2          sTiredTail__8Z2MdnPrm */
-u8 const Z2MdnPrm::sTiredTail[8] = {
-    0x66, 0x6F, 0x3B, 0x7A, 0x49, 0x91, 0x5C, 0x6A,
-};
-
-/* 80455F18-80455F20 004518 0007+01 1/0 0/0 0/0 .sdata2          sSeriousTail__8Z2MdnPrm */
-u8 const Z2MdnPrm::sSeriousTail[7] = {
-    0x7B, 0x69, 0x4B, 0x61, 0x52, 0x59, 0x87,
-};
-
-/* 80455F20-80455F28 004520 0007+01 1/0 0/0 0/0 .sdata2          sReplybTail__8Z2MdnPrm */
-u8 const Z2MdnPrm::sReplybTail[7] = {
-    0x4F, 0x4A, 0xA2, 0x4F, 0x65, 0x98, 0x5C,
-};
-
-/* 80455F28-80455F30 004528 0008+00 1/0 0/0 0/0 .sdata2          sDesideTail__8Z2MdnPrm */
-u8 const Z2MdnPrm::sDesideTail[8] = {
-    0x64, 0x2E, 0x4A, 0x57, 0x80, 0x48, 0x7C, 0x5F,
-};
-
-/* 802CBF60-802CC190 2C68A0 0230+00 1/0 2/2 0/0 .text            setTextCount__12Z2SpeechMgr2Fs */
-void Z2SpeechMgr2::setTextCount(s16 param_0) {
-    if (field_0x3fe != 0x63) {
-        field_0x3ff = 0x0;
-        param_0 = (param_0 == 0) ? 0 : param_0 - 1;
-        bool bVar1 = false;
-        if (field_0x3fa == 0 && param_0 >= field_0x3f8) {
-            bVar1 = true;
-        }
-        field_0x3fa = param_0;
-        if (field_0x3fa >= field_0x3f8) {
-            field_0x3fa = field_0x3f8;
-        }
-        if ((field_0x3fe == 1) || (field_0x3fe == 2)) {
-            if (!field_0x0.isSoundAttached()) {
-                speakOneWord(false);
-            }
-        } else if (bVar1) {
-            if (field_0x3fc == 0) {
-                mSpeech.startSound(0x7a, &field_0x4, NULL, 0, 0.0f, 1.0f, 1.0f, -1.0f,
-                                   -1.0f, 0);
-            }
-        } else {
-            if (!isNonVerbal() ) {
-                JAISoundID aJStack_18;
-                switch (field_0x3fe) {
-                case 0xb:
-                    aJStack_18 = Z2SE_SY_TEXT_OUT;
-                    break;
-                case 0xc:
-                    aJStack_18 = Z2SE_SY_TEXT_OUT_FEMALE;
-                    break;
-                case 0xd:
-                    aJStack_18 = Z2SE_SY_TEXT_OUT_CHILD;
-                    break;
-                case 0xe:
-                    aJStack_18 = Z2SE_SY_TEXT_OUT_GORON;
-                    break;
-                case 0xf:
-                    aJStack_18 = Z2SE_SY_TEXT_OUT_ZORA;
-                    break;
-                case 0x10:
-                    aJStack_18 = Z2SE_SY_TEXT_OUT_GREY;
-                    break;
-                case 0x11:
-                    aJStack_18 = Z2SE_SY_TEXT_OUT_SPIRIT;
-                    break;
-                case 0x12:
-                    aJStack_18 = Z2SE_SY_TEXT_OUT_BRAVE;
-                    break;
-                case 0x1e:
-                    aJStack_18 = Z2SE_SY_TEXT_OUT_GANON;
-                    break;
-                case 0x1f:
-                    aJStack_18 = Z2SE_SY_TEXT_OUT_ZANT;
-                    break;
-                }
-                mSpeech.startSound(aJStack_18, &field_0x4, NULL, 0, 0.0f, 1.0f, 1.0f, -1.0f, -1.0f,
-                                   0);
-            }
-        }
-    }
-}
-
-/* 802CC190-802CC2FC 2C6AD0 016C+00 1/1 1/1 0/0 .text            speakOneWord__12Z2SpeechMgr2Fb */
-void Z2SpeechMgr2::speakOneWord(bool param_0) {
-    if (Z2GetSceneMgr()->isSceneExist() && (field_0x3fe == 1 || field_0x3fe == 2) &&
-        field_0x400 == 0 && field_0x3ff <= 30)
-    {
-        if (field_0x3fa >= field_0x3f8) {
-            selectTail();
-            field_0x400 = 1;
-        } else if (isNonVerbal()) {
-            return;
-        }
-        u32 sound = field_0x3fc + 0x500a1;
-        f32 fVar1 = Z2GetSceneMgr()->getRoomReverb() / 127.0f;
-        mSpeech.startSound(sound, &field_0x0, NULL, 0,
-                           fVar1, 1.0f, 1.0f, -1.0f, -1.0f, 0);
-        mSpeech.setPortData(&field_0x0, 8, field_0x402[field_0x401 - 1] + 1, -1);
-        if (field_0x400 == 0) {
-            selectUnit(param_0);
-        }
-    }
-}
-
-
-/* 802CC2FC-802CC4C0 2C6C3C 01C4+00 2/2 0/0 0/0 .text            isNonVerbal__12Z2SpeechMgr2Fv */
-bool Z2SpeechMgr2::isNonVerbal() {
-    switch(field_0x10[field_0x3fa]) {
-    case 0:
-    case 0x20:
-    case 0x21:
-    case 0x22:
-    case 0x23:
-    case 0x24:
-    case 0x25:
-    case 0x26:
-    case 0x27:
-    case 0x28:
-    case 0x29:
-    case 0x2a:
-    case 0x2b:
-    case 0x2c:
-    case 0x2d:
-    case 0x2e:
-    case 0x2f:
-    case 0x3a:
-    case 0x3b:
-    case 0x3c:
-    case 0x3d:
-    case 0x3e:
-    case 0x3f:
-    case 0x4b:
-    case 0x4c:
-    case 0x4d:
-    case 0x4e:
-    case 0x4f:
-    case 0x5b:
-    case 0x5c:
-    case 0x5d:
-    case 0x5e:
-    case 0x5f:
-    case 0x813f:
-    case 0x8140:
-    case 0x8141:
-    case 0x8142:
-    case 0x8143:
-    case 0x8144:
-    case 0x8145:
-    case 0x8146:
-    case 0x8147:
-    case 0x8148:
-    case 0x8149:
-    case 0x814a:
-    case 0x814b:
-    case 0x8151:
-    case 0x815e:
-    case 0x8162:
-    case 0x8166:
-    case 0x8168:
-    case 0x8169:
-    case 0x816a:
-    case 0x816d:
-    case 0x816e:
-    case 0x816f:
-    case 0x8170:
-    case 0x8171:
-    case 0x8172:
-    case 0x8175:
-    case 0x8176:
-    case 0x817b:
-    case 0x817c:
-    case 0x8181:
-    case 0x818f:
-    case 0x8190:
-    case 0x8193:
-    case 0x8194:
-    case 0x8195:
-    case 0x8196:
-        return true;
-    }
-
-    if(field_0x10[field_0x3fa] == 10) {
-        switch (field_0x3fe) {
-        case 1:
-        case 2:
-            return false;
-        default:
-            return true;
-        }
-    }
-    return false;
-}
 
 /* 8039C260-8039C2C4 0288C0 0064+00 1/0 0/0 0/0 .rodata          sReply__8Z2MdnPrm */
 u8 const Z2MdnPrm::sReply[100] = {
@@ -514,6 +132,11 @@ u8 const Z2MdnPrm::sBoring[108] = {
     0x5B, 0x5E, 0x70, 0x56, 0x56, 0x4C, 0x4C, 0x59, 0x59, 0x5B, 0x5B, 0x71,
 };
 
+/* 80455EE0-80455EE8 0044E0 0006+02 1/0 0/0 0/0 .sdata2          sBoringTail__8Z2MdnPrm */
+u8 const Z2MdnPrm::sBoringTail[6] = {
+    0x92, 0x58, 0x59, 0x5B, 0x70, 0x71,
+};
+
 /* 8039C48C-8039C4EC 028AEC 005E+02 1/0 0/0 0/0 .rodata          sIrritated__8Z2MdnPrm */
 u8 const Z2MdnPrm::sIrritated[94] = {
     0x6C, 0x91, 0x67, 0x8B, 0x8B, 0xA2, 0xA2, 0xAB, 0x48, 0x64, 0x73, 0x61, 0x61, 0x64, 0x64, 0x6D,
@@ -541,6 +164,11 @@ u8 const Z2MdnPrm::sOrder[114] = {
     0x48, 0x48, 0x69, 0x69, 0x6D, 0x6D, 0x94, 0x94, 0x97,
 };
 
+/* 80455EE8-80455EF0 0044E8 0006+02 1/0 0/0 0/0 .sdata2          sOrderTail__8Z2MdnPrm */
+u8 const Z2MdnPrm::sOrderTail[6] = {
+    0x60, 0xA8, 0x5B, 0x4E, 0x5D, 0x87,
+};
+
 /* 8039C56C-8039C5D8 028BCC 006A+02 1/0 0/0 0/0 .rodata          sResent__8Z2MdnPrm */
 u8 const Z2MdnPrm::sResent[106] = {
     0x6F, 0x5F, 0x5F, 0x66, 0x66, 0x66, 0x66, 0x55, 0x55, 0x55, 0x55, 0x4B, 0x4B, 0x6B, 0x6B, 0x86,
@@ -550,6 +178,11 @@ u8 const Z2MdnPrm::sResent[106] = {
     0x98, 0x9B, 0x9B, 0x6E, 0x6E, 0x61, 0x61, 0x5C, 0x5F, 0x67, 0x62, 0x8A, 0xA9, 0x65, 0x65, 0x31,
     0x31, 0x8C, 0x8C, 0x69, 0x69, 0x7E, 0x67, 0x67, 0x5B, 0x73, 0x73, 0x65, 0x65, 0x56, 0x56, 0x5E,
     0x5E, 0xAA, 0xAA, 0x9E, 0x9E, 0x5A, 0x5A, 0x57, 0x57, 0x57,
+};
+
+/* 80455EF0-80455EF8 0044F0 0005+03 1/0 0/0 0/0 .sdata2          sResentTail__8Z2MdnPrm */
+u8 const Z2MdnPrm::sResentTail[5] = {
+    0x4A, 0x98, 0x8A, 0x7E, 0x57,
 };
 
 /* 8039C5D8-8039C644 028C38 006A+02 1/0 0/0 0/0 .rodata          sCheerful__8Z2MdnPrm */
@@ -563,6 +196,11 @@ u8 const Z2MdnPrm::sCheerful[106] = {
     0x65, 0x70, 0x6B, 0x6B, 0x6B, 0x6D, 0x6D, 0x57, 0x57, 0x7B,
 };
 
+/* 80455EF8-80455F00 0044F8 0008+00 1/0 0/0 0/0 .sdata2          sCheerfulTail__8Z2MdnPrm */
+u8 const Z2MdnPrm::sCheerfulTail[8] = {
+    0x60, 0x6D, 0x4D, 0x44, 0x9C, 0x54, 0x70, 0x7B,
+};
+
 /* 8039C644-8039C6B0 028CA4 006A+02 1/0 0/0 0/0 .rodata          sConfused__8Z2MdnPrm */
 u8 const Z2MdnPrm::sConfused[106] = {
     0x83, 0x80, 0x80, 0x82, 0x82, 0x82, 0x82, 0x5B, 0x75, 0x84, 0x84, 0x84, 0x84, 0x75, 0x75, 0x62,
@@ -572,6 +210,11 @@ u8 const Z2MdnPrm::sConfused[106] = {
     0x40, 0x67, 0x67, 0x69, 0x69, 0x5F, 0x5F, 0x5D, 0x5D, 0x5D, 0xA2, 0xA2, 0xA2, 0xA6, 0xA6, 0x9A,
     0x9A, 0x97, 0x97, 0x97, 0x97, 0x97, 0x97, 0x8E, 0x8E, 0x94, 0x8E, 0x95, 0x95, 0x95, 0x95, 0x42,
     0x38, 0x38, 0x38, 0x83, 0x83, 0x8E, 0x8E, 0x4C, 0x56, 0x56,
+};
+
+/* 80455F00-80455F08 004500 0005+03 1/0 0/0 0/0 .sdata2          sConfusedTail__8Z2MdnPrm */
+u8 const Z2MdnPrm::sConfusedTail[5] = {
+    0x2C, 0x42, 0x4C, 0x7C, 0x49,
 };
 
 /* 8039C6B0-8039C718 028D10 0068+00 1/0 0/0 0/0 .rodata          sHostility__8Z2MdnPrm */
@@ -585,6 +228,11 @@ u8 const Z2MdnPrm::sHostility[104] = {
     0x62, 0x6A, 0x5F, 0x72, 0x72, 0x62, 0x62, 0x65, 0x5E, 0x69, 0x69, 0x63, 0x63, 0x7F,
 };
 
+/* 80455F08-80455F10 004508 0007+01 1/0 0/0 0/0 .sdata2          sHostilityTail__8Z2MdnPrm */
+u8 const Z2MdnPrm::sHostilityTail[7] = {
+    0x97, 0x67, 0x94, 0x6A, 0x66, 0x4F, 0x6A,
+};
+
 /* 8039C718-8039C784 028D78 006A+02 1/0 0/0 0/0 .rodata          sTired__8Z2MdnPrm */
 u8 const Z2MdnPrm::sTired[106] = {
     0x70, 0x70, 0x70, 0x5C, 0x5C, 0x5C, 0x6F, 0x6F, 0x6F, 0x93, 0x8C, 0x9A, 0x9D, 0x89, 0x99, 0x7A,
@@ -594,6 +242,11 @@ u8 const Z2MdnPrm::sTired[106] = {
     0x61, 0x67, 0x67, 0x67, 0x67, 0x65, 0x6A, 0x6A, 0x7B, 0x75, 0x75, 0x75, 0x75, 0x69, 0x69, 0x64,
     0x64, 0x51, 0x67, 0x68, 0x68, 0x6F, 0x6F, 0x6F, 0x7F, 0x95, 0x9C, 0x87, 0x84, 0x8A, 0x72, 0x84,
     0x84, 0x6D, 0x6D, 0x6A, 0x6A, 0x8D, 0x8D, 0x8D, 0x8D, 0x3B,
+};
+
+/* 80455F10-80455F18 004510 0008+00 1/0 0/0 0/0 .sdata2          sTiredTail__8Z2MdnPrm */
+u8 const Z2MdnPrm::sTiredTail[8] = {
+    0x66, 0x6F, 0x3B, 0x7A, 0x49, 0x91, 0x5C, 0x6A,
 };
 
 /* 8039C784-8039C7F0 028DE4 006A+02 1/0 0/0 0/0 .rodata          sSerious__8Z2MdnPrm */
@@ -607,6 +260,11 @@ u8 const Z2MdnPrm::sSerious[106] = {
     0x70, 0x60, 0x3C, 0x81, 0x81, 0x92, 0x92, 0x8E, 0x98, 0x87,
 };
 
+/* 80455F18-80455F20 004518 0007+01 1/0 0/0 0/0 .sdata2          sSeriousTail__8Z2MdnPrm */
+u8 const Z2MdnPrm::sSeriousTail[7] = {
+    0x7B, 0x69, 0x4B, 0x61, 0x52, 0x59, 0x87,
+};
+
 /* 8039C7F0-8039C844 028E50 0054+00 1/0 0/0 0/0 .rodata          sReplyb__8Z2MdnPrm */
 u8 const Z2MdnPrm::sReplyb[84] = {
     0x5C, 0x45, 0x45, 0x71, 0x9F, 0x57, 0xB4, 0xB4, 0x56, 0x62, 0x8E, 0x61, 0x61, 0xB0,
@@ -615,6 +273,11 @@ u8 const Z2MdnPrm::sReplyb[84] = {
     0x76, 0x6C, 0x6C, 0x9B, 0x6E, 0x84, 0x6F, 0x9B, 0x9B, 0x90, 0x90, 0x76, 0x76, 0x72,
     0x72, 0x8A, 0x2C, 0x1F, 0x1F, 0x95, 0x95, 0x69, 0x4C, 0x59, 0x59, 0x79, 0x5B, 0x44,
     0x44, 0x4F, 0x52, 0x58, 0x5A, 0x6F, 0x6E, 0x8A, 0x8E, 0x8E, 0x8E, 0x8C, 0x8C, 0x9B,
+};
+
+/* 80455F20-80455F28 004520 0007+01 1/0 0/0 0/0 .sdata2          sReplybTail__8Z2MdnPrm */
+u8 const Z2MdnPrm::sReplybTail[7] = {
+    0x4F, 0x4A, 0xA2, 0x4F, 0x65, 0x98, 0x5C,
 };
 
 /* 8039C844-8039C8A8 028EA4 0064+00 1/0 0/0 0/0 .rodata          sApologize__8Z2MdnPrm */
@@ -642,6 +305,11 @@ u8 const Z2MdnPrm::sDeside[100] = {
     0x84, 0x6C, 0x6C, 0x5F, 0x69, 0x76, 0x76, 0x6C, 0x75, 0x82, 0x64, 0x75, 0x72, 0x80, 0x69,
     0x62, 0x5D, 0x67, 0x5D, 0x5F, 0x62, 0x59, 0x5D, 0x55, 0x55, 0x48, 0x5F, 0x5F, 0x5F, 0x5D,
     0x75, 0x6A, 0x66, 0x76, 0x69, 0x69, 0x69, 0x60, 0x60, 0x5F,
+};
+
+/* 80455F28-80455F30 004528 0008+00 1/0 0/0 0/0 .sdata2          sDesideTail__8Z2MdnPrm */
+u8 const Z2MdnPrm::sDesideTail[8] = {
+    0x64, 0x2E, 0x4A, 0x57, 0x80, 0x48, 0x7C, 0x5F,
 };
 
 /* 8039C918-8039C980 028F78 0068+00 1/0 0/0 0/0 .rodata          sAfford__8Z2MdnPrm */
@@ -681,74 +349,472 @@ sPrmStruct const Z2MdnPrm::sPrm[17] = {
     { Z2MdnPrm::sAfford,    Z2MdnPrm::sAffordTail,    0x34, 0x02, 0x0A, 0x00},
 };
 
+/* 802CBC60-802CBCEC 2C65A0 008C+00 0/0 1/1 0/0 .text            __ct__12Z2SpeechMgr2Fv */
+Z2SpeechMgr2::Z2SpeechMgr2() : JASGlobalInstance<Z2SpeechMgr2>(true), random(0) {
+    mTextNum = 0;
+    mTextCount = -1;
+    mMood = 0;
+    mVoice = 0;
+    field_0x3ff = 0;
+    field_0x401 = 0;
+    for (int i = 0; i < 64; i++) {
+        field_0x402[i] = -1;
+    }
+}
+
+/* 802CBD88-802CBF60 2C66C8 01D8+00 1/0 1/1 0/0 .text            setString__12Z2SpeechMgr2FPCUssUcUs
+ */
+void Z2SpeechMgr2::setString(u16 const* i_text, s16 i_textNum, u8 i_speaker, u16 i_mood) {
+    switch (i_speaker) {
+    case 0x13:
+    case 0x15:
+        mVoice = 1;
+        break;
+    case 0x12:
+    case 0x14:
+        mVoice = 2;
+        break;
+    case 0x04:
+    case 0x07:
+    case 0x0a:
+    case 0x16:
+    case 0x19:
+    case 0x1d:
+    case 0x21:
+    case 0x24:
+    case 0x29:
+    case 0x2c:
+    case 0x2d:
+    case 0x32:
+    case 0x33:
+    case 0x3f:
+    case 0x40:
+    case 0x41:
+    case 0x53:
+    case 0x54:
+    case 0x55:
+    case 0x59:
+    case 0x5a:
+    case 0x5b:
+    case 0x5c:
+    case 0x60:
+    case 0x61:
+    case 0x62:
+    case 0x63:
+    case 0x64:
+        mVoice = 12;
+        break;
+    case 0x1e:
+    case 0x1f:
+    case 0x22:
+    case 0x25:
+    case 0x27:
+    case 0x3d:
+    case 0x65:
+    case 0x66:
+    case 0x67:
+    case 0x68:
+    case 0x69:
+    case 0x6a:
+        mVoice = 13;
+        break;
+    case 0x37:
+    case 0x38:
+    case 0x39:
+    case 0x3a:
+    case 0x3b:
+    case 0x3c:
+    case 0x6c:
+    case 0x6d:
+        mVoice = 14;
+        break;
+    case 0x2f:
+        mVoice = 15;
+        break;
+    case 0x0f:
+    case 0x10:
+    case 0x34:
+    case 0x35:
+    case 0x36:
+    case 0x70:
+        mVoice = 16;
+        break;
+    case 0x0e:
+    case 0x42:
+    case 0x44:
+        mVoice = 17;
+        break;
+    case 0x0c:
+        mVoice = 18;
+        break;
+    case 0x09:
+    case 0x26:
+    case 0x6f:
+        mVoice = 30;
+        break;
+    case 0x08:
+        mVoice = 31;
+        break;
+    case 0x00:
+    case 0x01:
+    case 0x02:
+    case 0x03:
+        mVoice = 99;
+        return;
+    case 0x71:
+    default:
+        mVoice = 11;
+        break;
+    }
+
+    if (mVoice == 1 || mVoice == 2) {
+        if (i_mood == 0) {
+            mMood = 0;
+        } else {
+            if (i_mood > 17) {
+                if ((mVoice == 21) || (mVoice == 20)) {
+                    mMood = 0;
+                }
+            } else {
+                mMood = i_mood - 1;
+            }
+        }
+    } else {
+        mMood = i_mood;
+    }
+    
+    for (int i = 0; i < 500; i++) {
+       mText[i] = 0;
+    }
+
+    if (i_textNum > 500) {
+        mTextNum = 500;
+        JUT_WARN(387, "TOO MANY TEXT : now(%d) > max(%d)", param_2, 500);
+    } else {
+        mTextNum = i_textNum;
+    }
+
+    for (int i = 0; i < mTextNum; i++) {
+        mText[i] = i_text[i];
+    }
+    
+    mTextCount = 0;
+    field_0x3ff = 0;
+    field_0x400 = 0;
+    field_0x401 = 0;
+    
+    for (int i = 0; i < 64; i++) {
+        field_0x402[i] = -1;
+    }
+    
+    selectUnit(false);
+}
+
+/* 802CBF60-802CC190 2C68A0 0230+00 1/0 2/2 0/0 .text            setTextCount__12Z2SpeechMgr2Fs */
+void Z2SpeechMgr2::setTextCount(s16 i_textCount) {
+    if (mVoice != 99) {
+        field_0x3ff = 0x0;
+        i_textCount = (i_textCount == 0) ? 0 : i_textCount - 1;
+        bool all_text = false;
+        if (mTextCount == 0 && i_textCount >= mTextNum) {
+            all_text = true;
+        }
+        mTextCount = i_textCount;
+        if (mTextCount >= mTextNum) {
+            mTextCount = mTextNum;
+        }
+        if (mVoice == 1 || mVoice == 2) {
+            if (!field_0x0.isSoundAttached()) {
+                speakOneWord(false);
+            }
+        } else if (all_text) {
+            if (mMood == 0) {
+                mSpeech.startSound(Z2SE_SY_TEXT_DISP_ALL, &field_0x4, NULL, 0, 0.0f, 1.0f, 1.0f,
+                                   -1.0f, -1.0f, 0);
+            }
+        } else {
+            if (!isNonVerbal()) {
+                JAISoundID sound_id;
+                switch (mVoice) {
+                case 0xb:
+                    sound_id = Z2SE_SY_TEXT_OUT;
+                    break;
+                case 0xc:
+                    sound_id = Z2SE_SY_TEXT_OUT_FEMALE;
+                    break;
+                case 0xd:
+                    sound_id = Z2SE_SY_TEXT_OUT_CHILD;
+                    break;
+                case 0xe:
+                    sound_id = Z2SE_SY_TEXT_OUT_GORON;
+                    break;
+                case 0xf:
+                    sound_id = Z2SE_SY_TEXT_OUT_ZORA;
+                    break;
+                case 0x10:
+                    sound_id = Z2SE_SY_TEXT_OUT_GREY;
+                    break;
+                case 0x11:
+                    sound_id = Z2SE_SY_TEXT_OUT_SPIRIT;
+                    break;
+                case 0x12:
+                    sound_id = Z2SE_SY_TEXT_OUT_BRAVE;
+                    break;
+                case 0x1e:
+                    sound_id = Z2SE_SY_TEXT_OUT_GANON;
+                    break;
+                case 0x1f:
+                    sound_id = Z2SE_SY_TEXT_OUT_ZANT;
+                    break;
+                }
+                mSpeech.startSound(sound_id, &field_0x4, NULL, 0, 0.0f, 1.0f, 1.0f, -1.0f, -1.0f,
+                                   0);
+            }
+        }
+    }
+}
+
+/* 802CC190-802CC2FC 2C6AD0 016C+00 1/1 1/1 0/0 .text            speakOneWord__12Z2SpeechMgr2Fb */
+void Z2SpeechMgr2::speakOneWord(bool param_0) {
+    if (Z2GetSceneMgr()->isSceneExist() && (mVoice == 1 || mVoice == 2) &&
+        field_0x400 == 0 && field_0x3ff <= 30)
+    {
+        if (mTextCount >= mTextNum) {
+            selectTail();
+            field_0x400 = 1;
+        } else if (isNonVerbal()) {
+            return;
+        }
+        u32 sound = mMood + Z2SE_HYL_MDN_RPLY;
+        f32 fVar1 = Z2GetSceneMgr()->getRoomReverb() / 127.0f;
+        mSpeech.startSound(sound, &field_0x0, NULL, 0,
+                           fVar1, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        mSpeech.setPortData(&field_0x0, 8, field_0x402[field_0x401 - 1] + 1, -1);
+        if (field_0x400 == 0) {
+            selectUnit(param_0);
+        }
+    }
+}
+
+/* 802CC2FC-802CC4C0 2C6C3C 01C4+00 2/2 0/0 0/0 .text            isNonVerbal__12Z2SpeechMgr2Fv */
+bool Z2SpeechMgr2::isNonVerbal() {
+    switch(mText[mTextCount]) {
+    case 0:
+    case 0x20:
+    case 0x21:
+    case 0x22:
+    case 0x23:
+    case 0x24:
+    case 0x25:
+    case 0x26:
+    case 0x27:
+    case 0x28:
+    case 0x29:
+    case 0x2a:
+    case 0x2b:
+    case 0x2c:
+    case 0x2d:
+    case 0x2e:
+    case 0x2f:
+    case 0x3a:
+    case 0x3b:
+    case 0x3c:
+    case 0x3d:
+    case 0x3e:
+    case 0x3f:
+    case 0x4b:
+    case 0x4c:
+    case 0x4d:
+    case 0x4e:
+    case 0x4f:
+    case 0x5b:
+    case 0x5c:
+    case 0x5d:
+    case 0x5e:
+    case 0x5f:
+    case 0x813f:
+    case 0x8140:
+    case 0x8141:
+    case 0x8142:
+    case 0x8143:
+    case 0x8144:
+    case 0x8145:
+    case 0x8146:
+    case 0x8147:
+    case 0x8148:
+    case 0x8149:
+    case 0x814a:
+    case 0x814b:
+    case 0x8151:
+    case 0x815e:
+    case 0x8162:
+    case 0x8166:
+    case 0x8168:
+    case 0x8169:
+    case 0x816a:
+    case 0x816d:
+    case 0x816e:
+    case 0x816f:
+    case 0x8170:
+    case 0x8171:
+    case 0x8172:
+    case 0x8175:
+    case 0x8176:
+    case 0x817b:
+    case 0x817c:
+    case 0x8181:
+    case 0x818f:
+    case 0x8190:
+    case 0x8193:
+    case 0x8194:
+    case 0x8195:
+    case 0x8196:
+        return true;
+    }
+
+    if(mText[mTextCount] == 0x0a) {
+        switch (mVoice) {
+        case 1:
+        case 2:
+            return false;
+        default:
+            return true;
+        }
+    }
+    return false;
+}
+
 typedef struct {
-    u8 field_0x0;
+    s8 field_0x0;
     u8 field_0x1;
 } Z2ConnectCost;
 
 /* 802CC4C0-802CC738 2C6E00 0278+00 2/2 0/0 0/0 .text            selectUnit__12Z2SpeechMgr2Fb */
-// NONMATCHING This one is a mess
+// NONMATCHING minor regalloc
 void Z2SpeechMgr2::selectUnit(bool param_0) {
-    Z2ConnectCost local_3c[5];
+    Z2ConnectCost cost[5];
+
     if (field_0x401 >= 64) {
         field_0x0->stop();
-    } else {
-        int best = random.get_uint8(Z2MdnPrm::sPrm[field_0x3fc].field_0x8);
+        return;
+    }
 
-        if (field_0x401 != 0 && param_0) {
-            int cVar5 = 0;
-            int ZVar2 = field_0x402[field_0x401 - 1];
+    s8 ZVar2 = random.get_uint8(Z2MdnPrm::sPrm[mMood].field_0x8);
+    s8 ZVar3;
+    s8 cVar5;
 
-            do {
-                bool bVar1;
-                int ZVar3;
-                do {
-                    do {
-                        bVar1 = false;
-                        ZVar3 = random.get_uint8(Z2MdnPrm::sPrm[field_0x3fc].field_0x8);
-                        for (int iVar4 = 0; iVar4 < field_0x401; iVar4++) {
-                            if (ZVar3 == field_0x402[iVar4]) {
-                                bVar1 = true;
-                                break;
-                            }
-                        }
-                    } while (bVar1);
-                    for (int iVar4 = 0; iVar4 < cVar5; iVar4++) {
-                        if (ZVar3 == local_3c[iVar4].field_0x0) {
-                            bVar1 = true;
-                            break;
-                        }
-                    }
-                } while (bVar1);
-                u8 diff = JMAAbs(Z2MdnPrm::sPrm[field_0x3fc].field_0x0[ZVar3 * 2]
-                                        - Z2MdnPrm::sPrm[field_0x3fc].field_0x0[ZVar2 * 2 + 1]);
-                local_3c[cVar5] = (Z2ConnectCost){ZVar3, diff};
-                cVar5++;
-            } while ((s8)cVar5 != 5);
+    if (field_0x401 != 0 && param_0) {
+        cVar5 = 0;
+        ZVar2 = field_0x402[field_0x401 - 1];
 
-            best = local_3c[0].field_0x0;
-            u16 min = local_3c[0].field_0x1;
-            for (int iVar4 = 0; iVar4 < 5; iVar4++) {
-                if (local_3c[iVar4].field_0x1 < min) {
-                    min = local_3c[iVar4].field_0x1;
-                    best = local_3c[iVar4].field_0x0;
+        while (true) {
+            bool bVar1 = false;
+            ZVar3 = random.get_uint8(Z2MdnPrm::sPrm[mMood].field_0x8);
+
+            for (int i = 0; i < field_0x401; i++) {
+                if (field_0x402[i] == ZVar3) {
+                    bVar1 = true;
+                    break;
                 }
             }
-        }
 
-        field_0x402[field_0x401] = best;
-        field_0x401++;
+            if (bVar1) {
+                continue;
+            }
+
+            for (int i = 0; i < cVar5; i++) {
+                if (ZVar3 == cost[i].field_0x0) {
+                    bVar1 = true;
+                    break;
+                }
+            }
+
+            if (bVar1) {
+                continue;
+            }
+
+            u8 local_3f = JMAAbs(Z2MdnPrm::sPrm[mMood].field_0x0[ZVar3 * 2]
+                                    - Z2MdnPrm::sPrm[mMood].field_0x0[ZVar2 * 2 + 1]);
+            cost[cVar5] = (Z2ConnectCost){ZVar3, local_3f};
+            cVar5++;
+
+            if (cVar5 == 5) {
+                u16 tmp = cost[0].field_0x1;
+                ZVar2 = cost[0].field_0x0;
+                for (int i = 0; i < 5; i++) {
+                    if (cost[i].field_0x1 < tmp) {
+                        tmp = cost[i].field_0x1;
+                        ZVar2 = cost[i].field_0x0;
+                    }
+                }
+                break;
+            }
+        }
     }
+
+    field_0x402[field_0x401] = ZVar2;
+    field_0x401++;
 }
 
 /* 802CC738-802CC9D0 2C7078 0298+00 1/1 0/0 0/0 .text            selectTail__12Z2SpeechMgr2Fv */
+// NONMATCHING minor regalloc
 void Z2SpeechMgr2::selectTail() {
-    // NONMATCHING
+    Z2ConnectCost cost[5];
+    s8 cVar9 = 0;
+    s8 ZVar1 = field_0x402[field_0x401 - 1];
+    s8 ZVar6;
+    u8 bVar3;
+
+    while (true) {
+        bool bVar5 = false;
+
+        switch (mVoice) {
+        case 2:
+            bVar3 = Z2MdnPrm::sPrm[mMood].field_0x9;
+            ZVar6 = random.get_uint8(bVar3);
+            break;
+        case 1:
+            bVar3 = Z2MdnPrm::sPrm[mMood].field_0xa;
+            ZVar6 = Z2MdnPrm::sPrm[mMood].field_0x9 + random.get_uint8(bVar3);
+            break;
+        default:
+            return;
+        }
+
+        for (int i = 0; i < cVar9; i++) {
+            if (ZVar6 == cost[i].field_0x0) {
+                bVar5 = true;
+                break;
+            }
+        }
+
+        if (!bVar5) {
+            u8 local_3f = JMAAbs(Z2MdnPrm::sPrm[mMood].field_0x4[ZVar6]
+                                    - Z2MdnPrm::sPrm[mMood].field_0x0[ZVar1 * 2 + 1]);
+            cost[cVar9] = (Z2ConnectCost){ZVar6, local_3f};
+            cVar9++;
+
+            if (cVar9 == bVar3 || cVar9 == 5) {
+                s8 tmp_r8;
+                u16 tmp_r9 = cost[0].field_0x1;
+                tmp_r8 = cost[0].field_0x0;
+                int local_3c = bVar3 >= 5 ? 5 : bVar3;
+                for (int i = 0; i < local_3c; i++) {
+                    if (cost[i].field_0x1 < tmp_r9) {
+                        tmp_r9 = cost[i].field_0x1;
+                        tmp_r8 = cost[i].field_0x0;
+                    }
+                }
+                field_0x402[field_0x401 - 1] = tmp_r8 + Z2MdnPrm::sPrm[mMood].field_0x8;
+                return;
+            }
+        }
+    }
 }
 
 /* 802CC9D0-802CCA18 2C7310 0048+00 0/0 1/1 0/0 .text            framework__12Z2SpeechMgr2Fv */
 void Z2SpeechMgr2::framework() {
-    switch (field_0x3fe) {
+    switch (mVoice) {
     case 1:
     case 2:
         if (field_0x0) {
@@ -757,7 +823,7 @@ void Z2SpeechMgr2::framework() {
                 return;
             }
         } else {
-            field_0x3fa = 0;
+            mTextCount = 0;
         }
         break;
     }
@@ -765,13 +831,163 @@ void Z2SpeechMgr2::framework() {
 
 /* 802CCA18-802CCF88 2C7358 0570+00 0/0 2/2 0/0 .text playOneShotVoice__12Z2SpeechMgr2FUcUsP3VecSc
  */
-void Z2SpeechMgr2::playOneShotVoice(u8 param_0, u16 param_1, Vec* param_2, s8 param_3) {
-    // NONMATCHING
+void Z2SpeechMgr2::playOneShotVoice(u8 i_speaker, u16 param_1, Vec* i_pos, s8 param_3) {
+    if (i_speaker == 0) {
+        return;
+    }
+
+    f32 fxmix = Z2GetSceneMgr()->getRoomReverb() / 127.0f;
+
+    if (mVoice == 1 || mVoice == 2) {
+        JAISoundID sound_id;
+        switch (param_1) {
+        case 25:
+            sound_id = Z2SE_MSG_V_MDN_D21;
+            break;
+        case 30:
+            sound_id = Z2SE_MSG_V_MDN_LAUGH_30;
+            break;
+        case 31:
+            sound_id = Z2SE_MSG_V_MDN_LAUGH_31;
+            break;
+        case 32:
+            sound_id = Z2SE_MSG_V_MDN_LAUGH_32;
+            break;
+        case 100:
+            sound_id = Z2SE_MSG_V_A_MDN_1;
+            break;
+        case 101:
+            sound_id = Z2SE_MSG_V_A_MDN_2;
+            break;
+        case 102:
+            sound_id = Z2SE_MSG_V_A_MDN_102;
+            break;
+        case 103:
+            sound_id = Z2SE_MSG_V_A_MDN_103;
+            break;
+        case 104:
+            sound_id = Z2SE_MSG_V_A_MDN_104;
+            break;
+        default:
+            return;
+        }
+
+        if (sound_id != -1) {
+            mSpeech.startSound(sound_id, &field_0x0, (JGeometry::TVec3<f32>*)i_pos,
+                               i_speaker, fxmix, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        }
+    
+    } else {
+        JAISoundID sound_id = Z2SE_MESSAGE_SE_COMMON;
+        switch (i_speaker) {
+        case 3:
+            if (param_1 == 1) {
+                Z2GetSeqMgr()->subBgmStart(Z2BGM_ITEM_GET_MINI);
+                return;
+            }
+            break;
+        case 30:
+            if (param_1 == 15) {
+                sound_id = Z2SE_TAMABE_V_TUTO_BIKKURI;
+            }
+            break;
+        case 29:
+            if (param_1 == 4) {
+                sound_id = Z2SE_KYURY_MV_ZEKKU;
+            } else if (param_1 == 5) {
+                sound_id = Z2SE_KYURY_MV_WORRY;
+            }
+            break;
+        case 32:
+            if (param_1 == 6) {
+                sound_id = Z2SE_MOI_MV_WOUND_UMEKI;
+            }
+            break;
+        case 35:
+            if (param_1 == 10) {
+                sound_id = Z2SE_HANJO_MV_CRY;
+            }
+            break;
+        case 37:
+            if (param_1 == 10) {
+                sound_id = Z2SE_BESU_MV_DOUYOU;
+            }
+            break;
+        case 47:
+            if (param_1 == 15) {
+                sound_id = Z2SE_ZRA_MV_WOUND_BREATH;
+            } else if (param_1 == 17) {
+                sound_id = Z2SE_ZRA_MV_WOUND_COUGH;
+            }
+            break;
+        case 69:
+            if (param_1 == 1) {
+                sound_id = Z2SE_MSG_V_CAT;
+            } else if (param_1 == 2) {
+                sound_id = Z2SE_MSG_V_PERU;
+            }
+            break;
+        case 70:
+            if (param_1 == 1) {
+                sound_id = Z2SE_MSG_V_DOG;
+            }
+            break;
+        case 71:
+            if (param_1 == 1) {
+                sound_id = Z2SE_MSG_V_KOKKO;
+            }
+            break;
+        case 72:
+            if (param_1 == 1) {
+                sound_id = Z2SE_MSG_V_SQUIRREL;
+            }
+            break;
+        case 73:
+            if (param_1 == 1) {
+                sound_id = Z2SE_MSG_V_MONKEY;
+            }
+            break;
+        case 74:
+            if (param_1 == 1) {
+                sound_id = Z2SE_MSG_V_FROG;
+            }
+            break;
+        case 107:
+            if (param_1 == 1) {
+                sound_id = Z2SE_MSG_V_MYNA;
+            }
+            break;
+        case 113:
+            if (param_1 == 1) {
+                sound_id = Z2SE_HS_V_CRY_UMAKUSA;
+            }
+            break;
+        case 112:
+            if (param_1 == 1) {
+                sound_id = Z2SE_TKJ_V_SHOP_TALK;
+            }
+            break;
+        case 38:
+            if (param_1 == 4) {
+                sound_id = Z2SE_D21V_MDN_HATTOSURU;
+            }
+            break;
+        }
+
+        if (field_0x0) {
+            field_0x0.releaseSound();
+        }
+        mSpeech.startSound(sound_id, &field_0x0, (JGeometry::TVec3<f32>*)i_pos, i_speaker,
+                           fxmix, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        if (field_0x0) {
+            mSpeech.setPortData(&field_0x0, 8, param_1, -1);
+        }
+    }
 }
 
 /* 802CCF88-802CCFB8 2C78C8 0030+00 0/0 1/1 0/0 .text            isMidnaSpeak__12Z2SpeechMgr2Fv */
 bool Z2SpeechMgr2::isMidnaSpeak() {
-    if ((field_0x3fe == 1 || field_0x3fe == 2) && field_0x0) {
+    if ((mVoice == 1 || mVoice == 2) && field_0x0) {
         return true;
     } 
     return false;
@@ -782,9 +998,50 @@ Z2SpeechStarter::Z2SpeechStarter() : Z2SoundStarter(false) {}
 
 /* 802CCFF8-802CD248 2C7938 0250+00 1/0 0/0 0/0 .text
  * startSound__15Z2SpeechStarterF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3<f>UlfffffUl */
-bool Z2SpeechStarter::startSound(JAISoundID param_0, JAISoundHandle* param_1,
-                                     JGeometry::TVec3<f32> const* param_2, u32 param_3, f32 param_4,
-                                     f32 param_5, f32 param_6, f32 param_7, f32 param_8,
-                                     u32 param_9) {
-    // NONMATCHING
+bool Z2SpeechStarter::startSound(JAISoundID i_soundID, JAISoundHandle* i_handle,
+                                 JGeometry::TVec3<f32> const* i_pos, u32 param_3, f32 i_fxmix,
+                                 f32 i_pitch, f32 i_volume, f32 i_pan, f32 i_dolby, u32 i_count) {
+    if (Z2GetSceneMgr()->isInDarkness() && Z2GetSceneMgr()->getDemoSeWaveNum() != 0x77
+                                        && Z2GetSceneMgr()->getDemoSeWaveNum() != 0x78) {
+        i_fxmix = 1.0f;
+    } else {
+        f32 tmp = Z2GetStatusMgr()->getCameraInWaterDepthRatio() > 0.0f;
+        if (tmp) {
+            i_fxmix = tmp;
+        } else if (Z2GetSceneMgr()->getDemoSeWaveNum() == 0x6c
+                || Z2GetSceneMgr()->getDemoSeWaveNum() == 0x77)
+        {
+            i_fxmix = 0.07f;
+        } else {
+            i_fxmix += Z2GetEnvSeMgr()->getFogDensity() * 0.5f;
+            if (i_fxmix > 1.0f) {
+                i_fxmix = 1.0f;
+            }
+        }
+    }
+
+    bool ret = Z2GetAudioMgr()->startSound(i_soundID, i_handle, i_pos);
+
+    if (*i_handle) {
+        if (param_3 != 0) {
+            setPortData(i_handle, 6, param_3, -1);
+        }
+        if (i_fxmix > 0.0f) {
+            (*i_handle)->getAuxiliary().moveFxMix(i_fxmix, i_count);
+        }
+        if (i_pitch != 1.0f) {
+            (*i_handle)->getAuxiliary().movePitch(i_pitch, i_count);
+        }
+        if (i_volume != 1.0f) {
+            (*i_handle)->getAuxiliary().moveVolume(i_volume, i_count);
+        }
+        if (i_pan != -1.0f) {
+            (*i_handle)->getAuxiliary().movePan(i_pan, i_count);
+        }
+        if (i_dolby != -1.0f) {
+            (*i_handle)->getAuxiliary().moveDolby(i_dolby, i_count);
+        }
+    }
+
+    return ret;
 }

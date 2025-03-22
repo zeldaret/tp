@@ -282,199 +282,26 @@ static void createHeapCallBack(fopAc_ac_c* param_0) {
     // NONMATCHING
 }
 
-/* ############################################################################################## */
-/* 8097F6A8-8097F6B4 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 8097F6B4-8097F6C8 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
-
-/* 8097F6C8-8097F6D4 -00001 000C+00 0/1 0/0 0/0 .data            @3940 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3940[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)initWait__11daNpcCdn3_cFv,
-};
-#pragma pop
-
-/* 8097F6D4-8097F6E0 -00001 000C+00 0/1 0/0 0/0 .data            @3941 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3941[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)executeWait__11daNpcCdn3_cFv,
-};
-#pragma pop
-
-/* 8097F6E0-8097F6EC -00001 000C+00 0/1 0/0 0/0 .data            @3942 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3942[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)initPath__11daNpcCdn3_cFv,
-};
-#pragma pop
-
-/* 8097F6EC-8097F6F8 -00001 000C+00 0/1 0/0 0/0 .data            @3943 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3943[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)executePath__11daNpcCdn3_cFv,
-};
-#pragma pop
-
-/* 8097F6F8-8097F704 -00001 000C+00 0/1 0/0 0/0 .data            @3944 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3944[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)initTalk__11daNpcCdn3_cFv,
-};
-#pragma pop
-
-/* 8097F704-8097F710 -00001 000C+00 0/1 0/0 0/0 .data            @3945 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3945[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)executeTalk__11daNpcCdn3_cFv,
-};
-#pragma pop
-
-/* 8097F710-8097F71C -00001 000C+00 0/1 0/0 0/0 .data            @3946 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3946[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)initEscape__11daNpcCdn3_cFv,
-};
-#pragma pop
-
-/* 8097F71C-8097F728 -00001 000C+00 0/1 0/0 0/0 .data            @3947 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3947[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)executeEscape__11daNpcCdn3_cFv,
-};
-#pragma pop
-
-/* 8097F728-8097F734 -00001 000C+00 0/1 0/0 0/0 .data            @3948 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3948[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)initFear__11daNpcCdn3_cFv,
-};
-#pragma pop
-
-/* 8097F734-8097F740 -00001 000C+00 0/1 0/0 0/0 .data            @3949 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3949[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)executeFear__11daNpcCdn3_cFv,
-};
-#pragma pop
-
-/* 8097F740-8097F74C -00001 000C+00 0/1 0/0 0/0 .data            @3950 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3950[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)initFear2__11daNpcCdn3_cFv,
-};
-#pragma pop
-
-/* 8097F74C-8097F758 -00001 000C+00 0/1 0/0 0/0 .data            @3951 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3951[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)executeFear2__11daNpcCdn3_cFv,
-};
-#pragma pop
-
-/* 8097F758-8097F764 -00001 000C+00 0/1 0/0 0/0 .data            @3952 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3952[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)initFight__11daNpcCdn3_cFv,
-};
-#pragma pop
-
-/* 8097F764-8097F770 -00001 000C+00 0/1 0/0 0/0 .data            @3953 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3953[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)executeFight__11daNpcCdn3_cFv,
-};
-#pragma pop
-
-/* 8097F770-8097F77C -00001 000C+00 0/1 0/0 0/0 .data            @3954 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3954[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)initRelief__11daNpcCdn3_cFv,
-};
-#pragma pop
-
-/* 8097F77C-8097F788 -00001 000C+00 0/1 0/0 0/0 .data            @3955 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3955[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)executeRelief__11daNpcCdn3_cFv,
-};
-#pragma pop
+UNK_REL_DATA
 
 /* 8097F788-8097F848 0000E0 00C0+00 1/2 0/0 0/0 .data            ActionTable__11daNpcCdn3_c */
-SECTION_DATA u8 daNpcCdn3_c::ActionTable[192] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+daNpcCdn3_c::actionFunc daNpcCdn3_c::ActionTable[16] = {
+    &daNpcCdn3_c::initWait,
+    &daNpcCdn3_c::executeWait,
+    &daNpcCdn3_c::initPath,
+    &daNpcCdn3_c::executePath,
+    &daNpcCdn3_c::initTalk,
+    &daNpcCdn3_c::executeTalk,
+    &daNpcCdn3_c::initEscape,
+    &daNpcCdn3_c::executeEscape,
+    &daNpcCdn3_c::initFear,
+    &daNpcCdn3_c::executeFear,
+    &daNpcCdn3_c::initFear2,
+    &daNpcCdn3_c::executeFear2,
+    &daNpcCdn3_c::initFight,
+    &daNpcCdn3_c::executeFight,
+    &daNpcCdn3_c::initRelief,
+    &daNpcCdn3_c::executeRelief,
 };
 
 /* 80978DD4-80978E18 000174 0044+00 9/9 0/0 0/0 .text

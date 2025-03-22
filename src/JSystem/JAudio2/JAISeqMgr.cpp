@@ -48,7 +48,6 @@ JAISeqMgr::JAISeqMgr(bool param_1) : JASGlobalInstance<JAISeqMgr>(param_1), mAud
 }
 
 /* 802A1A08-802A1AF4 29C348 00EC+00 1/1 0/0 0/0 .text            freeDeadSeq___9JAISeqMgrFv */
-// NONMATCHING JASPoolAllocObject<_> locations
 void JAISeqMgr::freeDeadSeq_() {
     JSULink<JAISeq>* link = mSeqList.getFirst();
     while (link != NULL) {
@@ -132,7 +131,6 @@ void JAISeqMgr::mixOut() {
 }
 
 /* 802A1F58-802A1FE8 29C898 0090+00 1/1 0/0 0/0 .text            beginStartSeq___9JAISeqMgrFv */
-// NONMATCHING JASPoolAllocObject<_> locations
 JAISeq* JAISeqMgr::beginStartSeq_() {
     JAISeq* seq = new JAISeq(this, field_0x10);
     if (seq == NULL) {
@@ -143,7 +141,6 @@ JAISeq* JAISeqMgr::beginStartSeq_() {
 
 /* 802A1FE8-802A20F0 29C928 0108+00 1/1 0/0 0/0 .text
  * endStartSeq___9JAISeqMgrFP6JAISeqP14JAISoundHandle           */
-// NONMATCHING JASPoolAllocObject<_> locations
 bool JAISeqMgr::endStartSeq_(JAISeq* param_1, JAISoundHandle* param_2) {
     JAISeq* sound = param_1->getObject();
     if (sound != NULL) {
