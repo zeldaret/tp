@@ -60,8 +60,7 @@ static const Vec l_cull_box[4] = {
 int daObjKJgjs_c::Create() {
     fopAcM_SetMtx(this, mMtx[1]);
     MTXCopy(mMtx[1], mpModel->mBaseTransformMtx);
-    dBgW* bgw_p = mpBgW;
-    bgw_p->field_0x91 |= 4;
+    mpBgW->OffRoofRegist();
     if (!field_0x60c) {
         fopAcM_setCullSizeBox(this, l_cull_box[0].x, l_cull_box[0].y, l_cull_box[0].z,
                               l_cull_box[1].x, l_cull_box[1].y, l_cull_box[1].z);
