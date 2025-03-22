@@ -573,7 +573,7 @@ int daArrow_c::procWait() {
             }
         }
 
-        mSoundObjArrow.startLevelSound(0x8000a, 0, mReverb);
+        mSoundObjArrow.startLevelSound(Z2SE_OBJ_BOMB_IGNITION, 0, mReverb);
     }
 
     if(dComIfGp_checkCameraAttentionStatus(dComIfGp_getPlayerCameraID(0), 2)) {
@@ -614,7 +614,7 @@ int daArrow_c::procMove() {
                 bVar14 = TRUE;
             } else if (water_next_pos == 1) {
                 fopKyM_createWpillar(field_0x5dc.GetCrossP(), 0.3f, 0);
-                mDoAud_seStart(0x60031, field_0x5dc.GetCrossP(), 0, mReverb);
+                mDoAud_seStart(Z2SE_CM_BODYFALL_WATER_S, field_0x5dc.GetCrossP(), 0, mReverb);
             }
 
             field_0x945 = 1;
@@ -787,13 +787,13 @@ int daArrow_c::procMove() {
                 0.0f
             );
             if (mArrowType == 4) {
-                se_id = 0x40018;
+                se_id = Z2SE_HIT_PACHINKO;
                 current.angle = angle;
                 procSlingHitInit(&current.pos, NULL);
             } else {
                 procReturnInit(0);
                 dComIfGp_setHitMark(9, this, &current.pos, &angle, NULL, 0);
-                se_id = 0x40017;
+                se_id = Z2SE_HIT_AL_ARROW_REBOUND;
             }
         } else {
             setBlur();
@@ -860,7 +860,7 @@ int daArrow_c::procMove() {
 
             u32 sound_id;
             if (mArrowType == 2) {
-                sound_id = 0x6001c;
+                sound_id = Z2SE_ZELDA_ARROW_FLY;
             } else {
                 if (fopAcM_GetParam(this) == 2) {
                     if (mArrowType == 1) {
@@ -1032,7 +1032,7 @@ int daArrow_c::procSlingHitInit(cXyz* param_0, dCcD_GObjInf* param_1) {
             hitmark = 9;
             if (hit_ac != NULL && param_1->GetAtHitGObj() != NULL) {
                 if (param_1->GetAtHitGObj()->ChkTgNoSlingHitInfSet()) {
-                    mDoAud_seStart(0x40018, param_0, 0x2d, mReverb);
+                    mDoAud_seStart(Z2SE_HIT_PACHINKO, param_0, 0x2d, mReverb);
                 }
             }
         }

@@ -3,7 +3,7 @@
 
 #include "Z2AudioLib/Z2AudioMgr.h"
 #include "Z2AudioLib/Z2EnvSeMgr.h"
-#include "Z2AudioLib/Z2Creature.h"
+#include "Z2AudioLib/Z2LinkMgr.h"
 
 class mDoAud_zelAudio_c : public Z2AudioMgr {
 public:
