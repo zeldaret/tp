@@ -757,8 +757,8 @@ inline void fopAcM_setWarningMessage_f(const fopAc_ac_c* i_actor, const char* i_
 }
 
 #ifdef DEBUG
-#define fopAcM_setWarningMessage(i_actor, i_filename, i_line, i_msg, ...) \
-    fopAcM_setWarningMessage_f(i_actor, i_filename, i_line, i_msg, __VA_ARGS__)
+#define fopAcM_setWarningMessage(i_actor, i_filename, i_line, i_msg) \
+    fopAcM_setWarningMessage_f(i_actor, i_filename, i_line, i_msg)
 #else
 #define fopAcM_setWarningMessage(...)
 #endif

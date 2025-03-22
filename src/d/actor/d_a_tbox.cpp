@@ -435,7 +435,7 @@ void daTbox_c::initPos() {
         JUT_ASSERT(0x3B7, path_p != 0);
 
         if (func_type == 6 && path_p->m_num != 2 && path_p->m_num != 3) {
-            fopAcM_setWarningMessage_f(this, __FILE__, 0x3BD, "Num of Jump TBox's path point must be 2 or 3!");
+            fopAcM_setWarningMessage(this, __FILE__, 0x3BD, "Num of Jump TBox's path point must be 2 or 3!");
         }
 
         if (dComIfGs_isSwitch(getSwNo(), fopAcM_GetRoomNo(this))) {
