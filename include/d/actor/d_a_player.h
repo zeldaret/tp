@@ -1070,6 +1070,8 @@ public:
 
     void setItemPos(cXyz* i_itemPos) { mItemPos = *i_itemPos; }
 
+    cXyz* getViewerCurrentPosP() { return &field_0x5f8; }
+
     static bool checkPeepEndSceneChange() { return getLastSceneMode() == 7; }
 
     static int getLastSceneDamage() { return (dComIfGs_getLastSceneMode() >> 4) & 0x7F; }
