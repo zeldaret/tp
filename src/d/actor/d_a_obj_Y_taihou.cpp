@@ -31,12 +31,12 @@ static void ccHitCallback(fopAc_ac_c* param_0, dCcD_GObjInf* param_1, fopAc_ac_c
         int iVar1 = ((daObjYtaihou_c*)param_0)->getIronBallId();
         if (iVar1 == 0xffffffff && ((daObjCarry_c*)param_2)->getType() == daObjCarry_c::TYPE_IRON_BALL) {
             ((daObjYtaihou_c*)param_0)->setIronBall((daObjCarry_c*)param_2);
-            fopAcM_seStartCurrent(param_0, 0x801c9, 0);
+            fopAcM_seStartCurrent(param_0, Z2SE_OBJ_CANNON_CHARGE, 0);
         }
     } else if (fopAcM_GetProfName(param_2) == 0x221) {
         ((daObjYtaihou_c*)param_0)->startBomb();
         fopAcM_delete(param_2);
-        fopAcM_seStartCurrent(param_0, 0x801c9, 0);
+        fopAcM_seStartCurrent(param_0, Z2SE_OBJ_CANNON_CHARGE, 0);
     }
 }
 
@@ -220,9 +220,9 @@ void daObjYtaihou_c::rotateCheck() {
             field_0x772 = 0;
             daPy_getLinkPlayerActorClass()->offPushPullKeep();
             field_0x774 = -1;
-            fopAcM_seStartCurrent(this, 0x801cb, 0);
+            fopAcM_seStartCurrent(this, Z2SE_OBJ_CANNON_STOP, 0);
         } else {
-            fopAcM_seStartCurrentLevel(this, 0x801ca, 0);
+            fopAcM_seStartCurrentLevel(this, Z2SE_OBJ_CANNON_MOVE, 0);
         }
     } else if (field_0x774) {
         daPy_py_c* player_class = daPy_getLinkPlayerActorClass();
@@ -301,7 +301,7 @@ void daObjYtaihou_c::shotCheck() {
                 mParticleKeys[1] = dComIfGp_particle_set(mParticleKeys[1], 0x1df, &my_vec_0, &tevStr,
                                                      NULL, &l_effectScale, 0xff, NULL, -1,
                                                      NULL, NULL, NULL);
-                fopAcM_seStartCurrentLevel(this, 0x8000a, 0);
+                fopAcM_seStartCurrentLevel(this, Z2SE_OBJ_BOMB_IGNITION, 0);
             } else if (mStartBomb == 4) {
                 daObjCarry_c* pCarry = (daObjCarry_c*) fopAcM_SearchByID(mIronBallId);
                 if (pCarry) {
@@ -323,7 +323,7 @@ void daObjYtaihou_c::shotCheck() {
                 dComIfGp_particle_set(0x8ae5, &my_vec_1, &tevStr, &shape_angle, 0);
                 dComIfGp_particle_set(0x8ae6, &my_vec_1, &tevStr, &shape_angle, 0);
                 dComIfGp_getVibration().StartShock(8, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
-                fopAcM_seStartCurrent(this, 0x8000b, 0);
+                fopAcM_seStartCurrent(this, Z2SE_OBJ_BOMB_EXPLODE, 0);
                 speed.y = 40.0f;
             }
         }

@@ -1369,7 +1369,7 @@ static int daB_BH_Execute(b_bh_class* i_this) {
                     }
                 }
             } else {
-                i_this->mSound.startCreatureSoundLevel(0x70109, 0, -1);
+                i_this->mSound.startCreatureSoundLevel(Z2SE_EN_BH_BURST, 0, -1);
 
                 if (i_this->field_0x909[i] == 0) {
                     i_this->field_0x909[i] = (YREG_S(5) + 1);
