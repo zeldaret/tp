@@ -3364,12 +3364,6 @@ f32 dCamera_c::radiusActorInSight(fopAc_ac_c* param_0, fopAc_ac_c* param_1,
     return var_f29;
 }
 
-/* 80167CB8-80167CD8 1625F8 0020+00 2/2 0/0 0/0 .text
- * is_player__22@unnamed@d_camera_cpp@FP10fopAc_ac_c            */
-static void func_80167CB8(fopAc_ac_c* param_0) {
-    // NONMATCHING
-}
-
 /* 80167CD8-80167E3C 162618 0164+00 2/2 0/0 0/0 .text            jutOutCheck__9dCamera_cFP4cXyzf */
 BOOL dCamera_c::jutOutCheck(cXyz* param_0, f32 param_1) {
     cXyz spB4 = attentionPos(mpPlayerActor);
@@ -3424,13 +3418,115 @@ f32 dCamera_c::getWaterSurfaceHeight(cXyz* param_0) {
     return var_f31;
 }
 
-/* ############################################################################################## */
-/* 80453768-8045376C 001D68 0004+00 8/8 0/0 0/0 .sdata2          @9788 */
-SECTION_SDATA2 static f32 lit_9788 = 20.0f;
-
 /* 80167FEC-80168744 16292C 0758+00 3/3 0/0 0/0 .text            checkGroundInfo__9dCamera_cFv */
 void dCamera_c::checkGroundInfo() {
-    // NONMATCHING
+    daAlink_c* player = (daAlink_c*)mpPlayerActor;
+    cXyz gnd_chk_pos = positionOf(mpPlayerActor);
+    if (check_owner_action(mPadID, 0x8000000)) {
+        gnd_chk_pos = eyePos(mpPlayerActor);
+        gnd_chk_pos.y = positionOf(mpPlayerActor).y;
+    }
+
+    cXyz roof_chk_pos = gnd_chk_pos;
+    gnd_chk_pos.y += 20.0f;
+    dBgS_RoofChk roof_chk;
+    roof_chk.SetUnderwaterRoof();
+    roof_chk.SetPos(roof_chk_pos);
+    f32 roof_y = dComIfG_Bgsp().RoofChk(&roof_chk);
+    if (roof_chk_pos.y < roof_y) {
+        roof_chk_pos.y = roof_y;
+    }
+
+    dBgS_CamGndChk gnd_chk;
+    gnd_chk.ClrCam();
+    gnd_chk.SetObj();
+    gnd_chk.SetPos(&gnd_chk_pos);
+    f32 ground_y = dComIfG_Bgsp().GroundCross(&gnd_chk);
+
+    mBG.field_0x5c.field_0x4.SetCam();
+    mBG.field_0x5c.field_0x4.ClrObj();
+    mBG.field_0x5c.field_0x4.SetPos(&gnd_chk_pos);
+    mBG.field_0x5c.field_0x58 = dComIfG_Bgsp().GroundCross(&mBG.field_0x5c.field_0x4);
+    if (mBG.field_0x5c.field_0x58 < ground_y) {
+        mBG.field_0x5c.field_0x58 = ground_y;
+        mBG.field_0x5c.field_0x4 = gnd_chk;
+    }
+    mBG.field_0x5c.field_0x0 = mBG.field_0x5c.field_0x58 != -1.0e9f;
+
+    mBG.field_0x0.field_0x4.SetPos(&roof_chk_pos);
+    mBG.field_0x0.field_0x58 = dComIfG_Bgsp().GroundCross(&mBG.field_0x0.field_0x4);
+    mBG.field_0x0.field_0x0 = mBG.field_0x0.field_0x58 != -1.0e9f;
+
+    if (check_owner_action(mPadID, 0x100000)
+        && mBG.field_0x0.field_0x58 < attentionPos(mpPlayerActor).y + 40.0f)
+    {
+        setComStat(0x800);
+        mBG.field_0xc0.field_0x44 = 1;
+    } else if (player->checkRide() || player->checkRoofSwitchHang() || player->checkWolfRope()) {
+        mBG.field_0xc0.field_0x44 = 1;
+    } else if (check_owner_action1(mPadID, 0x2110000)) {
+        mBG.field_0xc0.field_0x44 = 1;
+    } else if (player->checkSpinnerRide()) {
+        mBG.field_0xc0.field_0x44 = 1;
+    } else if (player->checkMagneBootsOn()) {
+        if (!cBgW_CheckBWall(player->getMagneBootsTopVec()->y)) {
+            mBG.field_0xc0.field_0x44 = 1;
+        }
+    } else if (footHeightOf(mpPlayerActor) - mBG.field_0x5c.field_0x58 > mCamSetup.mBGChk.FloorMargin()) {
+        mBG.field_0xc0.field_0x44 = 0;
+    } else {
+        mBG.field_0xc0.field_0x44 = 1;
+    }
+
+    mBG.field_0xc0.field_0x1 = 0;
+    mBG.field_0xc0.field_0x20 = NULL;
+
+    if (dComIfG_Bgsp().ChkMoveBG(mBG.field_0x5c.field_0x4)) {
+        mBG.field_0xc0.field_0x20 = dComIfG_Bgsp().GetActorPointer(mBG.field_0x5c.field_0x4);
+        if (mBG.field_0xc0.field_0x20 != NULL) {
+            cXyz pos = positionOf(mBG.field_0xc0.field_0x20);
+            cSAngle angle = directionOf(mBG.field_0xc0.field_0x20);
+            if (mBG.field_0xc0.field_0x0 != 0) {
+                mBG.field_0xc0.field_0x4 = mBG.field_0xc0.field_0x10 - pos;
+                mBG.field_0xc0.field_0x1c = mBG.field_0xc0.field_0x1e - angle;
+            }
+            mBG.field_0xc0.field_0x0 = 1;
+            if (!dComIfGp_evmng_cameraPlay() && !chkFlag(0x20000000) && mBG.field_0xc0.field_0x44 != 0) {
+                mBG.field_0xc0.field_0x1 = 1;
+            }
+            if (mBG.field_0xc0.field_0x1 != 0) {
+                dComIfG_Bgsp().MoveBgMatrixCrrPos(mBG.field_0x5c.field_0x4, true,
+                                                  &field_0x5c.mCenter, NULL, NULL);
+                dComIfG_Bgsp().MoveBgMatrixCrrPos(mBG.field_0x5c.field_0x4, true,
+                                                  &field_0x5c.mEye, NULL, NULL);
+                field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
+            }
+            mBG.field_0xc0.field_0x10 = pos;
+            mBG.field_0xc0.field_0x1e = angle;
+        }
+    } else {
+        mBG.field_0xc0.field_0x0 = 0;
+    }
+
+    if (mBG.field_0x5c.field_0x0) {
+        mBG.field_0xc0.field_0x34 = dComIfG_Bgsp().GetCamMoveBG(mBG.field_0x5c.field_0x4);
+    } else {
+        mBG.field_0xc0.field_0x34 = 0;
+    }
+
+    if (mBG.field_0x0.field_0x0 && check_owner_action(mPadID, 0x100000)) {
+        mBG.field_0xc0.field_0x3c = dComIfG_Bgsp().GetRoomCamId(mBG.field_0x0.field_0x4);
+    } else {
+        mBG.field_0xc0.field_0x3c = 0xff;
+    }
+
+    if (mBG.field_0xc0.field_0x44 == 0 && field_0xa8 != 0 && !check_owner_action(mPadID, 0x100000)) {
+        mBG.field_0xc0.field_0x40 = 0x1ff;
+    } else if (mBG.field_0x5c.field_0x0) {
+        mBG.field_0xc0.field_0x40 = dComIfG_Bgsp().GetRoomCamId(mBG.field_0x5c.field_0x4);
+    } else {
+        mBG.field_0xc0.field_0x40 = 0xff;
+    }
 }
 
 /* ############################################################################################## */
@@ -4822,11 +4918,6 @@ void __ct__Q29dCamera_c10dCamInfo_cFv() {
 /* 80182920-8018295C 17D260 003C+00 2/2 0/0 0/0 .text            __dt__Q29dCamera_c10dCamInfo_cFv */
 // dCamera_c::dCamInfo_c::~dCamInfo_c() {
 void __dt__Q29dCamera_c10dCamInfo_cFv() {
-    // NONMATCHING
-}
-
-/* 8018295C-80182964 17D29C 0008+00 1/1 0/0 0/0 .text footHeightOf__9dCamera_cFP10fopAc_ac_c */
-void dCamera_c::footHeightOf(fopAc_ac_c* param_0) {
     // NONMATCHING
 }
 

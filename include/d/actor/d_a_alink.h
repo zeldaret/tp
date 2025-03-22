@@ -3438,6 +3438,7 @@ public:
     bool checkSpinnerRideWait() const {
         return mProcID == PROC_SPINNER_WAIT && mProcVar2.field_0x300c == 0;
     }
+    bool checkRoofSwitchHang() const { return mProcID == PROC_ROOF_SWITCH_HANG; }
 
     fopAc_ac_c* getCopyRodActor() { return mCopyRodAcKeep.getActor(); }
     fopAc_ac_c* getHookshotRoofWaitActor() { return mCargoCarryAcKeep.getActor(); }

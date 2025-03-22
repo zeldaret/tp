@@ -7,9 +7,8 @@
 #include "d/d_cam_param.h"
 #include "d/d_drawlist.h"
 #include "d/d_stage.h"
-#include "dolphin/types.h"
+#include "f_op/f_op_actor.h"
 
-class fopAc_ac_c;
 dAttention_c& dComIfGp_getAttention();
 
 struct dCamMapToolData {
@@ -190,13 +189,13 @@ public:
     struct BG {
         class {
         public:
-            /* 0x00 */ u8 field_0x0;
+            /* 0x00 */ bool field_0x0;
             /* 0x04 */ dBgS_CamGndChk field_0x4;
             /* 0x58 */ f32 field_0x58;
         } /* 0x000 */ field_0x0;
         class {
         public:
-            /* 0x00 */ u8 field_0x0;
+            /* 0x00 */ bool field_0x0;
             /* 0x04 */ dBgS_CamGndChk field_0x4;
             /* 0x58 */ f32 field_0x58;
         } /* 0x05C */ field_0x5c;
@@ -209,7 +208,7 @@ public:
             /* 0x10 */ cXyz field_0x10;
             /* 0x1C */ cSAngle field_0x1c;
             /* 0x1E */ cSAngle field_0x1e;
-            /* 0x20 */ int field_0x20;
+            /* 0x20 */ fopAc_ac_c* field_0x20;
             /* 0x24 */ cSGlobe field_0x24;
             /* 0x2C */ cSGlobe field_0x2c;
             /* 0x34 */ int field_0x34;
@@ -290,7 +289,7 @@ public:
     /* 8009771C */ cXyz attentionPos(fopAc_ac_c*);
     /* 80097738 */ cSAngle directionOf(fopAc_ac_c*);
     /* 8009775C */ cXyz positionOf(fopAc_ac_c*);
-    /* 8009778C */ void eyePos(fopAc_ac_c*);
+    /* 8009778C */ cXyz eyePos(fopAc_ac_c*);
     /* 8016008C */ dCamera_c(camera_class*);
     /* 80160304 */ ~dCamera_c();
     /* 80160470 */ void initialize(camera_class*, fopAc_ac_c*, u32, u32);
@@ -407,7 +406,7 @@ public:
     /* 80181E20 */ cXyz Up();
     /* 80181E64 */ cXyz Eye();
     /* 80181E98 */ cXyz Center();
-    /* 8018295C */ void footHeightOf(fopAc_ac_c*);
+    /* 8018295C */ f32 footHeightOf(fopAc_ac_c* i_actor) { return i_actor->current.pos.y; }
     /* 801829AC */ cSAngle Bank() { return mBank + mShake.field_0x40; }
 
     bool Active() { return field_0x24 == 0; }
@@ -487,7 +486,7 @@ public:
     /* 0x08C */ cSAngle field_0x8c;
     /* 0x090 */ cXyz field_0x90;
     /* 0x09C */ cXyz field_0x9c;
-    /* 0x0A8 */ int field_0xa8;
+    /* 0x0A8 */ u32 field_0xa8;
     /* 0x0AC */ u32 field_0xac;
     /* 0x0B0 */ dCamInfo_c field_0xb0;
     /* 0x0D0 */ dCamInfo_c field_0xd0[2];

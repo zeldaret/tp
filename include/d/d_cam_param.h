@@ -42,6 +42,7 @@ public:
     f32 WallBackCushion() { return mWallBackCushion; }
     f32 CornerCushion() { return mCornerCushion; }
     f32 CornerAngleMax() { return mCornerAngleMax; }
+    f32 FloorMargin() { return mFloorMargin; }
 
     // name is a guess for now
     struct ChkInfo {

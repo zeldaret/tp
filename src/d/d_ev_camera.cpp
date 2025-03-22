@@ -2090,7 +2090,7 @@ extern "C" void setFlag__9dCamera_cFUl() {
 }
 
 /* 8009778C-800977A8 0920CC 001C+00 1/1 2/2 0/0 .text            eyePos__9dCamera_cFP10fopAc_ac_c */
-void dCamera_c::eyePos(fopAc_ac_c* param_0) {
+cXyz dCamera_c::eyePos(fopAc_ac_c* param_0) {
     // NONMATCHING
 }
 
