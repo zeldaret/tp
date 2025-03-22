@@ -692,6 +692,12 @@ static cull_box l_cullSizeBox[] = {
         {-60.0f, -20.0f, -60.0f},
         {60.0f, 160.0f, 60.0f},
     },
+#ifdef DEBUG
+    {
+        {-200.0f, 0.0f, -200.0f},
+        {200.0f, 400.0f, 200.0f},
+    },
+#endif
 };
 
 /* 803A3740-803A37C0 000860 0080+00 1/1 0/0 0/0 .data            l_cullSizeSphere */
@@ -728,6 +734,12 @@ static cull_sphere l_cullSizeSphere[] = {
         {0.0f, 0.0f, 0.0f},
         400.0f,
     },
+#ifdef DEBUG
+    {
+        {0.0f, 0.0f, 0.0f},
+        400.0f,
+    },
+#endif
 };
 
 /* 8001ACEC-8001B058 01562C 036C+00 0/0 1/1 1/1 .text fopAcM_cullingCheck__FPC10fopAc_ac_c */

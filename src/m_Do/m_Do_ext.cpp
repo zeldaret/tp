@@ -1048,7 +1048,7 @@ int mDoExt_McaMorf::create(J3DModelData* modelData, mDoExt_McaMorfCallBack1_c* c
         return 0;
     }
     if (modelData->getMaterialNodePointer(0)->getSharedDisplayListObj() && param_10 == 0) {
-        if (param_10 = modelData->isLocked()) {
+        if (modelData->isLocked()) {
             param_10 = 0x20000;
         } else {
             param_10 = 0x80000;
@@ -1088,7 +1088,8 @@ int mDoExt_McaMorf::create(J3DModelData* modelData, mDoExt_McaMorfCallBack1_c* c
     J3DModelData* r23 = mpModel->getModelData();
     u16 jointNum = r23->getJointNum();
     for (int i = 0; i < jointNum; i++) {
-        *info = r23->getJointNodePointer(i)->getTransformInfo();
+        J3DJoint* joint = r23->getJointNodePointer(i);
+        *info = joint->getTransformInfo();
         JMAEulerToQuat(info->mRotation.x, info->mRotation.y, info->mRotation.z, quat);
         info++;
         quat++;
@@ -1716,6 +1717,13 @@ void mDoExt_McaMorf2::calc() {
         Quaternion sp30;
         Quaternion sp20;
         Quaternion* var_r27;
+        f32 var_f31;
+        f32 var_f30;
+        f32 var_f29;
+        f32 sp1C;
+        f32 sp18;
+        f32 sp14;
+        f32 sp10;
         if (mpQuat == NULL) {
             var_r27 = &sp30;
         } else {
@@ -1746,8 +1754,6 @@ void mDoExt_McaMorf2::calc() {
             } else {
                 field_0x40->getTransform(jnt_no, &spF0[1]);
 
-                f32 sp1C;
-                f32 sp18;
                 sp18 = 1.0f - field_0x44;
                 sp1C = field_0x44;
 
@@ -1768,15 +1774,15 @@ void mDoExt_McaMorf2::calc() {
                     JMAEulerToQuat(spF0[i].mRotation.x, spF0[i].mRotation.y, spF0[i].mRotation.z, &sp60[i]);
                 }
 
-                f32 var_f29 = sp1C / (sp18 + sp1C);
+                var_f29 = sp1C / (sp18 + sp1C);
 
                 JMAQuatLerp(&sp60[0], &sp60[1], var_f29, var_r27);
                 mDoMtx_quat(spC0, var_r27);
                 mDoExt_setJ3DData(spC0, var_r30, jnt_no);
             }
         } else if (field_0x40 == NULL) {
-            f32 var_f31 = (mCurMorf - mPrevMorf) / (1.0f - mPrevMorf);
-            f32 var_f30 = 1.0f - var_f31;
+            var_f31 = (mCurMorf - mPrevMorf) / (1.0f - mPrevMorf);
+            var_f30 = 1.0f - var_f31;
 
             mpAnm->getTransform(jnt_no, &sp80);
             if (mpCallback1 != NULL) {
@@ -1805,7 +1811,6 @@ void mDoExt_McaMorf2::calc() {
             mpAnm->getTransform(jnt_no, &spF0[0]);
             field_0x40->getTransform(jnt_no, &spF0[1]);
 
-            f32 sp14, sp10;
             sp10 = 1.0f - field_0x44;
             sp14 = field_0x44;
 
@@ -1826,11 +1831,11 @@ void mDoExt_McaMorf2::calc() {
                 JMAEulerToQuat(spF0[i].mRotation.x, spF0[i].mRotation.y, spF0[i].mRotation.z, &sp40[i]);
             }
 
-            f32 var_f31 = sp14 / (sp10 + sp14);
+            var_f31 = sp14 / (sp10 + sp14);
             JMAQuatLerp(&sp40[0], &sp40[1], var_f31, &sp20);
 
             var_f31 = (mCurMorf - mPrevMorf) / (1.0f - mPrevMorf);
-            f32 var_f30 = 1.0f - var_f31;
+            var_f30 = 1.0f - var_f31;
             JMAQuatLerp(var_r27, &sp20, var_f31, var_r27);
 
             var_r30->mTranslate.x = var_r30->mTranslate.x * var_f30
