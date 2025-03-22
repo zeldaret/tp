@@ -1531,14 +1531,14 @@ int dCamera_c::stbWaitEvCamera() {
 
     if (demo_cam != NULL) {
         if (demo_cam->checkEnable(0x40)) {
-            field_0x5c.field_0x8 = demo_cam->getTarget();
+            field_0x5c.mCenter = demo_cam->getTarget();
 #if DEBUG
             enabled_report[0] = 'C';
 #endif
         }
 
         if (demo_cam->checkEnable(0x10)) {
-            field_0x5c.field_0x14 = demo_cam->getTrans();
+            field_0x5c.mEye = demo_cam->getTrans();
 #if DEBUG
             enabled_report[1] = 'E';
 #endif
@@ -1559,7 +1559,7 @@ int dCamera_c::stbWaitEvCamera() {
         }
 
         if (demo_cam->checkEnable(0x80)) {
-            field_0x5c.field_0x20 = cAngle::d2s(-demo_cam->getRoll());
+            field_0x5c.mBank = cAngle::d2s(-demo_cam->getRoll());
 #if DEBUG
             enabled_report[4] = 'B';
 #endif
@@ -1571,7 +1571,7 @@ int dCamera_c::stbWaitEvCamera() {
         }
 #endif
 
-        field_0x5c.field_0x0.Val(field_0x5c.field_0x14 - field_0x5c.field_0x8);
+        field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
     }
 
     return true;
@@ -1584,7 +1584,7 @@ int dCamera_c::saveEvCamera() {
     getEvIntData(&slot, "Slot", 0);
 
     if (slot == 9) {
-        dComIfGp_saveCameraPosition(0, &field_0x5c.field_0x8, &field_0x5c.field_0x14, field_0x80, field_0x5c.field_0x20.Val());
+        dComIfGp_saveCameraPosition(0, &field_0x5c.mCenter, &field_0x5c.mEye, field_0x80, field_0x5c.mBank.Val());
     } else {
         pushInfo(&field_0xd0[slot], 1);
     }

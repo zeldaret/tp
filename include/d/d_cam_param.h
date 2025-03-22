@@ -37,6 +37,11 @@ public:
     f32 FwdWeightL(s32 param_0) { return mChkInfo[param_0].mWeightL; }
     f32 FwdBackMargin() { return mFwdBackMargin; }
     f32 FwdCushion() { return mFwdCushion; }
+    f32 GazeBackMargin() { return mGazeBackMargin; }
+    f32 WallCushion() { return mWallCushion; }
+    f32 WallBackCushion() { return mWallBackCushion; }
+    f32 CornerCushion() { return mCornerCushion; }
+    f32 CornerAngleMax() { return mCornerAngleMax; }
 
     // name is a guess for now
     struct ChkInfo {
@@ -94,7 +99,7 @@ public:
     /* 0x00 */ u8 mMapToolFovy;
     /* 0x01 */ u8 mMapToolArg0;
     /* 0x02 */ u8 mMapToolArg1;
-    /* 0x04 */ int mMapToolArg2;
+    /* 0x04 */ s16 mMapToolArg2;
     /* 0x08 */ dCamStyleData::StyleData* mCamStyleData;
     /* 0x0C */ s32 mStyleNum;
     /* 0x10 */ dCamStyleData::StyleData* mCurrentStyle;
@@ -134,6 +139,8 @@ public:
     f32 ForceLockOffDist() { return mForceLockOffDist; }
     f32 USOValue() { return mFalseValue; }
     f32 USOAngle() { return mFalseAngle; }
+    f32 WindShakeGap4Ctr() { return mWindShakeCtr; }
+    f32 WindShakeGap4Fvy() { return mWindShakeFvy; }
 
     /* 0x000 */ f32 mDrawNear;
     /* 0x004 */ f32 mDrawFar;

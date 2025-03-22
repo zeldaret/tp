@@ -347,7 +347,7 @@ public:
     /* 80165EF4 */ int defaultTriming();
     /* 80165FB4 */ void setView(f32, f32, f32, f32);
     /* 8016608C */ cSAngle forwardCheckAngle();
-    /* 80166764 */ void bumpCheck(u32);
+    /* 80166764 */ bool bumpCheck(u32);
     /* 80167BF8 */ bool lineBGCheckBoth(cXyz*, cXyz*, dBgS_LinChk*, u32);
     /* 80167CD8 */ BOOL jutOutCheck(cXyz*, f32);
     /* 80167E3C */ void tooNearEscape(cXyz*);
@@ -448,7 +448,7 @@ public:
 
     s16 U2() {
         if (chkFlag(0x10)) {
-            return field_0x5c.field_0x0.U();
+            return field_0x5c.mDirection.U();
         } else {
             return field_0x8c;
         }
@@ -475,10 +475,10 @@ public:
     /* 0x058 */ f32 mFovY;
     class {
     public:
-        /* 0x00 */ cSGlobe field_0x0;
-        /* 0x08 */ cXyz field_0x8;
-        /* 0x14 */ cXyz field_0x14;
-        /* 0x20 */ cSAngle field_0x20;
+        /* 0x00 */ cSGlobe mDirection;
+        /* 0x08 */ cXyz mCenter;
+        /* 0x14 */ cXyz mEye;
+        /* 0x20 */ cSAngle mBank;
     }
     /* 0x05C */ field_0x5c;
     /* 0x080 */ f32 field_0x80;
@@ -512,7 +512,7 @@ public:
         /* 0x4 */ cSAngle field_0x4;
     }
     /* 0x158 */ field_0x158;
-    /* 0x160 */ int field_0x160;
+    /* 0x160 */ u32 field_0x160;
     /* 0x164 */ int field_0x164;
     /* 0x168 */ u8 field_0x168;
     /* 0x169 */ int field_0x16c;
@@ -522,8 +522,8 @@ public:
     /* 0x17C */ u32 mPadID;
     /* 0x180 */ fopAc_ac_c* mpPlayerActor;
     /* 0x184 */ fopAc_ac_c* mpLockonTarget;
-    /* 0x188 */ u32 field_0x188;
-    /* 0x18C */ u32 field_0x18c;
+    /* 0x188 */ fopAc_ac_c* field_0x188;
+    /* 0x18C */ fopAc_ac_c* field_0x18c;
     /* 0x190 */ int field_0x190;
     /* 0x194 */ bool field_0x194;
     /* 0x198 */ fpc_ProcID mLockOnActorID;
@@ -650,7 +650,7 @@ public:
     /* 0x92C */ f32 field_0x92c;
     /* 0x930 */ u8 field_0x930[0x930 - 0x92c];
     /* 0x934 */ f32 field_0x934;
-    /* 0x938 */ u8 field_0x938[0x93C - 0x938];
+    /* 0x938 */ int field_0x938;
     /* 0x93C */ int field_0x93c;
     /* 0x940 */ int field_0x940;
     /* 0x944 */ u8 field_0x944;
@@ -660,7 +660,8 @@ public:
     /* 0x954 */ u8 field_0x954[0x958 - 0x954];
     /* 0x958 */ int field_0x958;
     /* 0x95C */ cXyz field_0x95c;
-    /* 0x968 */ u8 field_0x968[0x970 - 0x968];
+    /* 0x968 */ f32 field_0x968;
+    /* 0x96C */ f32 field_0x96c;
     /* 0x970 */ dCamSetup_c mCamSetup;
     /* 0xAEC */ dCamParam_c mCamParam;
     /* 0xB0C */ u8 field_0xb0c;

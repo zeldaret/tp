@@ -133,6 +133,7 @@ public:
 
     void R(f32 i_radius) { mRadius = i_radius; }
     void U(cSAngle const& i_azimuth) { mAzimuth = i_azimuth.Val(); }
+    void V(cSAngle const& i_inclination) { mInclination = i_inclination.Val(); }
 
     cSGlobe(const cSGlobe&);
     cSGlobe(float, short, short);

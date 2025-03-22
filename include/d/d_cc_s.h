@@ -47,6 +47,7 @@ public:
     void SetMass(cCcD_Obj* i_obj, u8 i_priority) { mMass_Mng.Set(i_obj, i_priority); }
     void SetMassCam(cM3dGCps& i_cps) { mMass_Mng.SetCam(i_cps); }
     u32 GetMassResultCam() { return mMass_Mng.GetResultCam(); }
+    void GetMassCamTopPos(Vec* o_pos) { mMass_Mng.GetCamTopPos(o_pos); }
     void PrepareMass() { mMass_Mng.Prepare(); }
 
     u32 ChkMass(cXyz* param_0, fopAc_ac_c** param_1, dCcMassS_HitInf* param_2) {
