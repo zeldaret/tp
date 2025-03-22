@@ -1848,7 +1848,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_bk_leaf"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_bky_rock"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_bmWindow"),
-    ActorRel(NonMatching, "d_a_obj_bmshutter"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_bmshutter"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_bombf"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_boumato"),
     ActorRel(NonMatching, "d_a_obj_brg"),
