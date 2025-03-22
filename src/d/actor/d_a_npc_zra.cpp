@@ -1067,7 +1067,7 @@ BOOL daNpc_zrA_c::main() {
         orderEvent(mOrderSpeakEvt, l_evtNames[l_evtGetParamList[mOrderEvtNo].fileIdx],
                    0xffff, 4, 0xff, 2);
         if (!mTwilight && mType == TYPE_WAIT && !field_0x1550) {
-            eventInfo.i_onCondition(dEvtCnd_CANTALKITEM_e);
+            eventInfo.onCondition(dEvtCnd_CANTALKITEM_e);
         }
     }
 
@@ -2163,7 +2163,7 @@ BOOL daNpc_zrA_c::doEvent() {
 
     if (dComIfGp_event_runCheck() != false) {
         dEvent_manager_c& event_manager = dComIfGp_getEventManager();
-        if (eventInfo.checkCommandTalk() || eventInfo.i_checkCommandDemoAccrpt()) {
+        if (eventInfo.checkCommandTalk() || eventInfo.checkCommandDemoAccrpt()) {
             mOrderNewEvt = false;
         }
 
@@ -2237,7 +2237,7 @@ BOOL daNpc_zrA_c::doEvent() {
                 ret = true;
             }
 
-            if (eventInfo.i_checkCommandDemoAccrpt()) {
+            if (eventInfo.checkCommandDemoAccrpt()) {
                 if (mEventIdx != -1 && event_manager.endCheck(mEventIdx)) {
                     switch (mOrderEvtNo) {
                     case EVT_TALK_SWIM:

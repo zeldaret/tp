@@ -120,7 +120,7 @@ int daTag_EvtMsg_c::Execute() {
                         fopAcM_orderOtherEventId(this, mEventID, 0xFF, 0xFFFF, 0, 1);
                     }
                 } else {
-                    eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
+                    eventInfo.onCondition(dEvtCnd_CANTALK_e);
                     fopAcM_orderSpeakEvent(this, 0, 0);
                 }
             }

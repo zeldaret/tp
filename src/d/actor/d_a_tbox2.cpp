@@ -379,7 +379,7 @@ void daTbox2_c::actionOpenWait() {
     daMidna_c* midna_p = (daMidna_c*)daPy_py_c::getMidnaActor();  // cast needed for reg alloc
     daPy_py_c* player_p = daPy_getPlayerActorClass();
 
-    if (eventInfo.i_checkCommandDoor()) {
+    if (eventInfo.checkCommandDoor()) {
         dComIfGp_event_onEventFlag(4);
 
         if (mModelType != TYPE_SMALL_e && daPy_py_c::i_checkNowWolf() &&
@@ -396,7 +396,7 @@ void daTbox2_c::actionOpenWait() {
             init_actionOpenDemo();
         }
     } else if (boxCheck()) {
-        eventInfo.i_onCondition(dEvtCnd_CANDOOR_e);
+        eventInfo.onCondition(dEvtCnd_CANDOOR_e);
 
         if (mModelType == TYPE_SMALL_e) {
             eventInfo.setEventName("DEFAULT_TREASURE_SIMPLE");

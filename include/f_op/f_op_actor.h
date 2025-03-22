@@ -123,11 +123,13 @@ public:
     void setEventName(char*);
     char* getEventName();
     void beforeProc();
-    void onCondition(u16);
-    void offCondition(u16);
-    BOOL checkCommandCatch();
-    BOOL checkCommandDoor();
+    void onCondition(u16 cond) { mCondition |= cond; }
+    void offCondition(u16 cond) { mCondition &= ~cond; }
+    BOOL checkCommandCatch() { return mCommand == dEvtCmd_INCATCH_e; }
+    BOOL checkCommandDoor() { return mCommand == dEvtCmd_INDOOR_e; }
     BOOL checkCommandDemoAccrpt() { return mCommand == dEvtCmd_INDEMO_e; }
+    bool checkCommandTalk() { return mCommand == dEvtCmd_INTALK_e; }
+    bool checkCommandItem() { return mCommand == dEvtCmd_INGETITEM_e; }
 
     void setCommand(u16 command) { mCommand = command; }
     void setMapToolId(u8 id) { mMapToolId = id; }
@@ -141,14 +143,6 @@ public:
     void setIdx(u8 i_idx) { mIndex = i_idx; }
     char* getArchiveName() { return mArchiveName; }
     BOOL chkCondition(u16 condition) { return (mCondition & condition) == condition; }
-    void i_onCondition(u16 cond) { mCondition |= cond; }
-    void i_offCondition(u16 cond) { mCondition &= ~cond; }
-
-    bool checkCommandTalk() { return mCommand == dEvtCmd_INTALK_e; }
-    bool checkCommandItem() { return mCommand == dEvtCmd_INGETITEM_e; }
-    BOOL i_checkCommandDoor() { return mCommand == dEvtCmd_INDOOR_e; }
-    bool i_checkCommandDemoAccrpt() { return mCommand == dEvtCmd_INDEMO_e; }
-    bool i_checkCommandCatch() { return mCommand == dEvtCmd_INCATCH_e; }
 
     void suspendProc(void* actor) {
         if (field_0x10 != NULL) {

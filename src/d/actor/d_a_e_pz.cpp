@@ -480,7 +480,7 @@ void daE_PZ_c::executeOpeningDemo() {
     case 101:
         if (!eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(this, 2, 0xFFFF, 0);
-            eventInfo.i_onCondition(2);
+            eventInfo.onCondition(2);
             mDemoCameraEye = camera0->lookat.eye;
             mDemoCameraCenter = camera0->lookat.center;
             break;
@@ -732,7 +732,7 @@ void daE_PZ_c::executeOpeningDemo() {
         data_80761E29 = 2;
         data_80761E28 = 0;
     case 30:
-        if (!eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(this, 2, 0xFFFF, 3);
             break;
         }
@@ -1577,9 +1577,9 @@ void daE_PZ_c::executeDead() {
     case 0:
     case 10:
         field_0x7d0 = 0;
-        if (!eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(this, 2, 0xFFFF, 0);
-            eventInfo.i_onCondition(2);
+            eventInfo.onCondition(2);
             mDemoCameraEye = sp18->lookat.eye;
             mDemoCameraCenter = sp18->lookat.center;
 

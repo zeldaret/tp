@@ -890,7 +890,7 @@ bool daNpcAshB_c::wait(void* param_0) {
             orderEvent(field_0xdec,l_evtNames[mOrderEvtNo*1],-1, 40, -1, 1);
 
             if (daNpcF_chkEvtBit(0x14f)) {
-                eventInfo.i_onCondition(0x20);
+                eventInfo.onCondition(0x20);
             }
             
         }

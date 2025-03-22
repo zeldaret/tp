@@ -7469,7 +7469,7 @@ BOOL daAlink_c::checkNoCollisionCorret() {
          (!strcmp(dComIfGp_getEventManager().getRunEventName(), "SCENE_EXIT") ||
           (fopAcM_getTalkEventPartner(this) &&
            fopAcM_getTalkEventPartner(this) == getMidnaActor()))) ||
-        eventInfo.i_checkCommandDoor())
+        eventInfo.checkCommandDoor())
     {
         return true;
     }
@@ -15112,7 +15112,7 @@ int daAlink_c::checkSceneChange(int exitID) {
             exit_mode = 0;
         }
 
-        if (eventInfo.i_checkCommandDoor() || mProcID == PROC_WARP || mProcID == PROC_WOLF_DIG ||
+        if (eventInfo.checkCommandDoor() || mProcID == PROC_WARP || mProcID == PROC_WOLF_DIG ||
             mProcID == PROC_WOLF_DIG_THROUGH || field_0x3106 != 0 ||
             dComIfGp_event_compulsory(this, NULL, -1))
         {
@@ -15146,7 +15146,7 @@ int daAlink_c::checkSceneChange(int exitID) {
             if (scn_changed) {
                 onNoResetFlg0(FLG0_UNK_4000);
 
-                if (!eventInfo.i_checkCommandDoor()) {
+                if (!eventInfo.checkCommandDoor()) {
                     mDemo.setOriginalDemoType();
 
                     if (checkUpperReadyThrowAnime()) {
@@ -16438,7 +16438,7 @@ void daAlink_c::commonProcInit(daAlink_c::daAlink_PROC i_procID) {
 
     if (prev_proc_fishcast &&
         (mItemAcKeep.getActor() == NULL ||
-         !mItemAcKeep.getActor()->eventInfo.i_checkCommandDemoAccrpt()) &&
+         !mItemAcKeep.getActor()->eventInfo.checkCommandDemoAccrpt()) &&
         !checkEndResetFlg0(ERFLG0_UNK_1000))
     {
         deleteEquipItem(0, 0);

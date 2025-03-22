@@ -1590,9 +1590,9 @@ void daE_VA_c::executeDemoOp() {
 
     switch (mMode) {
     case 0:
-        if (!eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(this, 2, 0xFFFF, 0);
-            eventInfo.i_onCondition(2);
+            eventInfo.onCondition(2);
             return;
         }
 
@@ -2355,9 +2355,9 @@ void daE_VA_c::executeOpaciWait() {
         Z2GetAudioMgr()->changeSubBgmStatus(3);
         break;
     case 10:
-        if (!eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(this, 2, 0xFFFF, 0);
-            eventInfo.i_onCondition(2);
+            eventInfo.onCondition(2);
         } else {
             mAlphaType = 2;
             field_0x1380 = 30;
@@ -3087,9 +3087,9 @@ void daE_VA_c::executeOpaciDeath() {
 
     switch (mMode) {
     case 0:
-        if (!eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(this, 2, 0xFFFF, 0);
-            eventInfo.i_onCondition(2);
+            eventInfo.onCondition(2);
             return;
         }
 

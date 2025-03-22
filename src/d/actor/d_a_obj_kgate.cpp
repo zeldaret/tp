@@ -878,7 +878,7 @@ void daObjKGate_c::action_typeB() {
 /* 8058A1B0-8058A294 0021B0 00E4+00 1/0 0/0 0/0 .text            actionWaitEvent__12daObjKGate_cFv
  */
 void daObjKGate_c::actionWaitEvent() {
-    if (eventInfo.i_checkCommandDoor()) {
+    if (eventInfo.checkCommandDoor()) {
         setAction(ACT_EVENT);
         dComIfGp_setItemKeyNumCount(-1);
         fopAcM_onSwitch(this, getSwNo());
@@ -886,7 +886,7 @@ void daObjKGate_c::actionWaitEvent() {
     } else if (checkOpen()) {
         eventInfo.setEventId(mEventID);
         eventInfo.setMapToolId(mMapToolID);
-        eventInfo.i_onCondition(dEvtCnd_CANDOOR_e);
+        eventInfo.onCondition(dEvtCnd_CANDOOR_e);
     }
 }
 

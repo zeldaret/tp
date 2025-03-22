@@ -1510,9 +1510,9 @@ static void play_camera(ni_class* i_this) {
         i_this->field_0xa00 = a_this->current.pos.y;
         // fallthrough
     case 1:
-        if (!a_this->eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
-            a_this->eventInfo.i_onCondition(2);
+            a_this->eventInfo.onCondition(2);
             return;
         }
 
@@ -2050,7 +2050,7 @@ static int message(ni_class* i_this) {
     if (i_this->field_0xa50 == 2 && i_this->mFlowNo != -1 && daPy_py_c::i_checkNowWolf()) {
         fopAcM_OnStatus(i_this, 0);
         cLib_onBit<u32>(i_this->attention_info.flags, 10);
-        i_this->eventInfo.i_onCondition(1);
+        i_this->eventInfo.onCondition(1);
     } else {
         fopAcM_OffStatus(i_this, 0);
         cLib_offBit<u32>(i_this->attention_info.flags, 10);

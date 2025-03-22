@@ -212,7 +212,7 @@ void daTagTWGate_c::executeDemoFilone1() {
             event_manager.cutEnd(staffId);
         }
 
-        if (eventInfo.i_checkCommandDemoAccrpt() && mEventID != -1 &&
+        if (eventInfo.checkCommandDemoAccrpt() && mEventID != -1 &&
             event_manager.endCheck(mEventID))
         {
             mActionID = ACT_DEMO_FILONE_2;
@@ -276,7 +276,7 @@ void daTagTWGate_c::executeDemoFilone2() {
             break;
         }
 
-        if (eventInfo.i_checkCommandDemoAccrpt() && mEventID != -1 &&
+        if (eventInfo.checkCommandDemoAccrpt() && mEventID != -1 &&
             dComIfGp_evmng_endCheck(mEventID)) {
             dComIfGp_getEvent().reset();
             field_0x5e0 = 0;
@@ -379,7 +379,7 @@ void daTagTWGate_c::executeDemoFilone3() {
             break;
         }
 
-        if (eventInfo.i_checkCommandDemoAccrpt() && mEventID != -1 &&
+        if (eventInfo.checkCommandDemoAccrpt() && mEventID != -1 &&
             dComIfGp_evmng_endCheck(mEventID)) {
             dComIfGp_getEvent().reset();
             field_0x5e0 = 0;

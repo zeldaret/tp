@@ -605,12 +605,12 @@ static void e_nest_hahen(e_nest_class* i_this) {
                     a_this->current.pos = i_this->mDebris[i].mPos;
                     a_this->attention_info.position = a_this->current.pos;
                     a_this->eyePos = a_this->attention_info.position;
-                    if (a_this->eventInfo.i_checkCommandCatch()) {
+                    if (a_this->eventInfo.checkCommandCatch()) {
                         i_this->mMode = 2;
                         i_this->mTimers[0] = 60;
                     } else {
                         dComIfGp_att_CatchRequest(a_this, 0x76, 100.0f, 50.0f, -150.0f, 0x5000, 1);
-                        a_this->eventInfo.i_onCondition(0x40);
+                        a_this->eventInfo.onCondition(0x40);
                     }
                     break;
                 }
@@ -809,7 +809,7 @@ static void demo_camera(e_nest_class* i_this) {
     case 1:
         if (!i_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(i_this, 2, -1, 0);
-            i_this->eventInfo.i_onCondition(2);
+            i_this->eventInfo.onCondition(2);
             return;
         }
         camera->mCamera.Stop();

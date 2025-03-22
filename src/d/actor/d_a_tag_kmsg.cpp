@@ -149,7 +149,7 @@ int daTag_KMsg_c::Execute() {
                 }
             }
         } else {
-            eventInfo.i_onCondition(1);
+            eventInfo.onCondition(1);
             if (getType() != KMSG_TYPE_1 && daNpcT_chkDoBtnIsSpeak(this)) {
                 if (getChkType() != KMSG_TYPE_0) {
                     dComIfGp_setDoStatusForce(0x80, 2);

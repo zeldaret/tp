@@ -506,7 +506,7 @@ BOOL daNpc_zrC_c::main() {
                    0xffff, 0x28, 0xff, 1);
 
         if (mType == 2) {
-            eventInfo.i_onCondition(dEvtCnd_CANTALKITEM_e);
+            eventInfo.onCondition(dEvtCnd_CANTALKITEM_e);
         }
     }
 
@@ -1169,7 +1169,7 @@ BOOL daNpc_zrC_c::doEvent() {
 
     if (dComIfGp_event_runCheck() != FALSE) {
         dEvent_manager_c& event_mgr = dComIfGp_getEventManager();
-        if ((eventInfo.checkCommandTalk() || eventInfo.i_checkCommandDemoAccrpt()) && !mSpeakEvent)
+        if ((eventInfo.checkCommandTalk() || eventInfo.checkCommandDemoAccrpt()) && !mSpeakEvent)
         {
             mOrderNewEvt = false;
         }
@@ -1212,7 +1212,7 @@ BOOL daNpc_zrC_c::doEvent() {
                 ret = TRUE;
             }
 
-            if (eventInfo.i_checkCommandDemoAccrpt() && mEventIdx != -1
+            if (eventInfo.checkCommandDemoAccrpt() && mEventIdx != -1
                                                      && event_mgr.endCheck(mEventIdx)) {
                 dComIfGp_event_reset();
                 mOrderEvtNo = EVT_NONE;

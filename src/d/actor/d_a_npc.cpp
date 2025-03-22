@@ -1662,7 +1662,7 @@ BOOL daNpcT_c::evtProc() {
                 evtTalk();
             }
             ret = TRUE;
-        } else if (eventInfo.i_checkCommandDemoAccrpt()
+        } else if (eventInfo.checkCommandDemoAccrpt()
                         && dComIfGp_getEventManager().endCheck(mEvtId)) {
             if (evtEndProc()) {
                 dComIfGp_event_reset();
@@ -1816,9 +1816,9 @@ void daNpcT_c::evtOrder() {
     } else if ((!mTwilight || daPy_py_c::checkNowWolfEyeUp())
         && ((attention_info.flags & 8) || (attention_info.flags & 2)))
     {
-        eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
+        eventInfo.onCondition(dEvtCnd_CANTALK_e);
         if (chkXYItems()) {
-            eventInfo.i_onCondition(dEvtCnd_CANTALKITEM_e);
+            eventInfo.onCondition(dEvtCnd_CANTALKITEM_e);
         }
         if (mSpeakEvent) {
             fopAcM_orderSpeakEvent(this, 0, 0);
@@ -4502,7 +4502,7 @@ void daNpcF_c::orderEvent(int i_speak, char* i_evtName, u16 param_2, u16 i_prior
         fopAcM_orderOtherEventId(this, mEventIdx, i_mapToolID, param_2, i_priority, i_flag);
     } else if (!mTwilight || daPy_py_c::checkNowWolfEyeUp()) {
         if ((attention_info.flags & 8) || (attention_info.flags & 2)) {
-            eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
+            eventInfo.onCondition(dEvtCnd_CANTALK_e);
             if (i_speak) {
                 fopAcM_orderSpeakEvent(this, 0, 0);
             }

@@ -436,7 +436,7 @@ int daBdoorL5_c::actionWait() {
 
 /* 80671E78-80671F58 0012B8 00E0+00 1/0 0/0 0/0 .text            actionCloseWait__11daBdoorL5_cFv */
 int daBdoorL5_c::actionCloseWait() {
-    if (eventInfo.i_checkCommandDoor()) {
+    if (eventInfo.checkCommandDoor()) {
         field_0x59c = dComIfGp_evmng_getMyStaffId(l_staff_name, 0, 0);
         demoProc();
         setAction(ACTION_OPEN);
@@ -449,7 +449,7 @@ int daBdoorL5_c::actionCloseWait() {
                 eventInfo.setEventId(field_0x598);
                 eventInfo.setMapToolId(field_0x593);
             }
-            eventInfo.i_onCondition(4);
+            eventInfo.onCondition(4);
         }
     }
     return 1;

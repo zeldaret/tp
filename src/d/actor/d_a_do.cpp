@@ -2331,7 +2331,7 @@ static void message(do_class* i_this) {
         if (i_this->mMessageState == 2 && i_this->mFlowID != -1 && daPy_py_c::i_checkNowWolf()) {
             fopAcM_OnStatus(i_this, 0);
             cLib_onBit<u32>(i_this->attention_info.flags, 0xa);
-            i_this->eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
+            i_this->eventInfo.onCondition(dEvtCnd_CANTALK_e);
         } else {
             fopAcM_OffStatus(i_this, 0);
             cLib_offBit<u32>(i_this->attention_info.flags, 0xa);

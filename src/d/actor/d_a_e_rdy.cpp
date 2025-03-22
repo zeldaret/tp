@@ -3726,9 +3726,9 @@ static void demo_camera(e_rdy_class* i_this) {
 
     switch (i_this->mDemoMode) {
     case 1:
-        if (!i_this->eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!i_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(i_this, 2, 0xffef, 0);
-            i_this->eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+            i_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
         player_camera->mCamera.Stop();
@@ -3767,9 +3767,9 @@ static void demo_camera(e_rdy_class* i_this) {
         break;
 
     case 5:
-        if (!i_this->eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!i_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(i_this, 2, 0xffff, 0);
-            i_this->eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+            i_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
         player_camera->mCamera.Stop();
@@ -3812,9 +3812,9 @@ static void demo_camera(e_rdy_class* i_this) {
         break;
 
     case 10:
-        if (!i_this->eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!i_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(i_this, 2, 0xffff, 0);
-            i_this->eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+            i_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
         player_camera->mCamera.Stop();
@@ -3968,9 +3968,9 @@ static void demo_camera(e_rdy_class* i_this) {
         break;
 
     case 20:
-        if (!i_this->eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!i_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(i_this, 2, 0xffff, 0);
-            i_this->eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+            i_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
         player_camera->mCamera.Stop();
@@ -4257,7 +4257,7 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
     if (!c_start && dComIfGp_event_runCheck()) {
         if (fopAcM_getTalkEventPartner(daPy_getLinkPlayerActorClass())
                                                         == daPy_py_c::getMidnaActor()
-            || daPy_getPlayerActorClass()->eventInfo.i_checkCommandDoor())
+            || daPy_getPlayerActorClass()->eventInfo.checkCommandDoor())
         {
             return 1;
         }

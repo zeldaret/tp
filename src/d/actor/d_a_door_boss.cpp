@@ -324,14 +324,14 @@ static char const l_staff_name[13] = "SHUTTER_DOOR";
 
 /* 80670328-806703C0 000F88 0098+00 1/0 0/0 0/0 .text            actionCloseWait__9daBdoor_cFv */
 BOOL daBdoor_c::actionCloseWait() {
-    if (eventInfo.i_checkCommandDoor()) {
+    if (eventInfo.checkCommandDoor()) {
         mStaffID = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
         demoProc();
         setAction(ACT_OPEN);
     } else {
         if (checkOpen()) {
             eventInfo.setEventName((char*)l_door_open_demo);
-            eventInfo.i_onCondition(dEvtCnd_CANDOOR_e);
+            eventInfo.onCondition(dEvtCnd_CANDOOR_e);
         }
     }
     return 1;

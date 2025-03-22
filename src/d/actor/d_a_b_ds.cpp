@@ -1323,7 +1323,7 @@ bool daB_DS_c::startDemoCheck() {
 
     if (!eventInfo.checkCommandDemoAccrpt()) {
         fopAcM_orderPotentialEvent(this, 2, 0xFFFF, 0);
-        eventInfo.i_onCondition(2);
+        eventInfo.onCondition(2);
         mCameraEye = dCam_getBody()->Center();
         mCameraCenter = dCam_getBody()->Eye();
         mCameraFovy = dCam_getBody()->Fovy();

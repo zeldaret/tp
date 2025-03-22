@@ -764,7 +764,7 @@ void daObjRgate_c::action_typeA() {
 /* 80CBBA10-80CBBAF4 001DF0 00E4+00 1/0 0/0 0/0 .text            actionWaitEvent__12daObjRgate_cFv
  */
 void daObjRgate_c::actionWaitEvent() {
-    if (eventInfo.i_checkCommandDoor()) {
+    if (eventInfo.checkCommandDoor()) {
         setAction(ACT_EVENT);
         dComIfGp_setItemKeyNumCount(-1);
         fopAcM_onSwitch(this, getSwNo());
@@ -772,7 +772,7 @@ void daObjRgate_c::actionWaitEvent() {
     } else if (checkOpen()) {
         eventInfo.setEventId(mEventID);
         eventInfo.setMapToolId(mMapToolID);
-        eventInfo.i_onCondition(dEvtCnd_CANDOOR_e);
+        eventInfo.onCondition(dEvtCnd_CANDOOR_e);
     }
 }
 

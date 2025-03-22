@@ -2922,7 +2922,7 @@ static void demo_camera(b_gnd_class* i_this) {
     case 30:
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xffff, 0);
-            a_this->eventInfo.i_onCondition(2);
+            a_this->eventInfo.onCondition(2);
             return;
         }
 
@@ -3291,7 +3291,7 @@ static void demo_camera(b_gnd_class* i_this) {
     case 50:
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFEF, 0);
-            a_this->eventInfo.i_onCondition(2);
+            a_this->eventInfo.onCondition(2);
             return;
         }
 
@@ -3497,7 +3497,7 @@ static void demo_camera(b_gnd_class* i_this) {
     case 60:
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xffff, 0);
-            a_this->eventInfo.i_onCondition(2);
+            a_this->eventInfo.onCondition(2);
             return;
         }
         
@@ -3643,7 +3643,7 @@ static void demo_camera(b_gnd_class* i_this) {
     case 90:
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xffff, 0);
-            a_this->eventInfo.i_onCondition(2);
+            a_this->eventInfo.onCondition(2);
             return;
         }
 
@@ -3691,7 +3691,7 @@ static void demo_camera(b_gnd_class* i_this) {
     case 95:
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xffff, 0);
-            a_this->eventInfo.i_onCondition(2);
+            a_this->eventInfo.onCondition(2);
             return;
         }
 

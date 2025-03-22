@@ -3359,7 +3359,7 @@ public:
             var_r5 = 0;
 
             if (mItemAcKeep.getActor() != NULL &&
-                mItemAcKeep.getActor()->eventInfo.i_checkCommandDemoAccrpt() != 0) {
+                mItemAcKeep.getActor()->eventInfo.checkCommandDemoAccrpt() != 0) {
                 var_r5 = 1;
             }
 

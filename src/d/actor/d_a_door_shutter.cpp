@@ -318,7 +318,7 @@ void daDoor20_c::setEventPrm() {
             if (checkArea(getSize2X(), 12100.0f, 62500.0f)) {
                 eventInfo.setEventId(field_0x692[field_0x6cb]);
                 eventInfo.setMapToolId(field_0x6b8[field_0x6cb]);
-                eventInfo.i_onCondition(4);
+                eventInfo.onCondition(4);
             }
         }
     }
@@ -1211,7 +1211,7 @@ int daDoor20_c::orderStopEvent() {
 
 /* 80463FBC-80464118 0034FC 015C+00 2/2 0/0 0/0 .text            actionWait__10daDoor20_cFv */
 int daDoor20_c::actionWait() {
-    if (eventInfo.i_checkCommandDoor()) {
+    if (eventInfo.checkCommandDoor()) {
         initOpenDemo(1);
         setAction(ACTION_DEMO);
         demoProc();
@@ -1344,7 +1344,7 @@ int daDoor20_c::draw() {
         return 1;
     }
     calcMtx();
-    if (!eventInfo.i_checkCommandDoor() && field_0x5c8 != dComIfGp_roomControl_getStayNo()) {
+    if (!eventInfo.checkCommandDoor() && field_0x5c8 != dComIfGp_roomControl_getStayNo()) {
         field_0x5c4->Move();
         field_0x5c8 = dComIfGp_roomControl_getStayNo();
     }
@@ -1531,7 +1531,7 @@ int daDoor20_c::frontCheck() {
 
 /* 80464CEC-80464E18 00422C 012C+00 1/1 0/0 0/0 .text            drawCheck__10daDoor20_cFi */
 int daDoor20_c::drawCheck(int param_1) {
-    if (!adjoinPlayer() && !eventInfo.i_checkCommandDemoAccrpt() && !eventInfo.i_checkCommandDoor())
+    if (!adjoinPlayer() && !eventInfo.checkCommandDemoAccrpt() && !eventInfo.checkCommandDoor())
     {
         return 0;
     }
@@ -1566,7 +1566,7 @@ int daDoor20_c::checkExecute() {
     if (fopAcM_checkStatus(this, 0x1000)) {
         return 1;
     }
-    if (eventInfo.i_checkCommandDemoAccrpt() || eventInfo.i_checkCommandDoor()) {
+    if (eventInfo.checkCommandDemoAccrpt() || eventInfo.checkCommandDoor()) {
         return 2;
     }
     if (field_0x67d != dComIfGp_roomControl_getStayNo()) {

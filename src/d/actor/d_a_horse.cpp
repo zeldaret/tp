@@ -3583,7 +3583,7 @@ int daHorse_c::procWait() {
     if (!checkStateFlg0(FLG0_UNK_1)) {
         if (daPy_py_c::i_checkNowWolf()) {
             attention_info.flags |= 0x8;
-            eventInfo.i_onCondition(1);
+            eventInfo.onCondition(1);
         } else if (m_procID == PROC_WAIT_e) {
             acceptPlayerRide();
         }

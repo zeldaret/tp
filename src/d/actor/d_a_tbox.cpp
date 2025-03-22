@@ -1462,7 +1462,7 @@ int daTbox_c::actionOpenWait() {
     daMidna_c* midna = daPy_py_c::getMidnaActor();
     daPy_py_c* player = daPy_getPlayerActorClass();
 
-    if (eventInfo.i_checkCommandDoor()) {
+    if (eventInfo.checkCommandDoor()) {
         dComIfGp_event_onEventFlag(4);
 
         if (getShapeType() != SHAPE_SMALL && player->i_checkNowWolf() &&
@@ -1480,7 +1480,7 @@ int daTbox_c::actionOpenWait() {
             field_0x9f4 = 0;
         }
     } else if (boxCheck()) {
-        eventInfo.i_onCondition(4);
+        eventInfo.onCondition(4);
         if (getShapeType() == SHAPE_SMALL) {
             eventInfo.setEventName("DEFAULT_TREASURE_SIMPLE");
         } else if (player->i_checkNowWolf() && !midna->checkMetamorphoseEnable()) {
@@ -1593,7 +1593,7 @@ void daTbox_c::settingDropDemoCamera() {
 
 /* 80494D88-80494E98 004148 0110+00 1/0 0/0 0/0 .text            actionSwOnWait__8daTbox_cFv */
 int daTbox_c::actionSwOnWait() {
-    if (eventInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.checkCommandDemoAccrpt()) {
         setAction(&daTbox_c::actionDemo2);
         mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
         demoProc();
@@ -1603,7 +1603,7 @@ int daTbox_c::actionSwOnWait() {
         } else {
             fopAcM_orderOtherEventId(this, mEventId, getEvent(), 0xffff, 0, 1);
         }
-        eventInfo.i_onCondition(2);
+        eventInfo.onCondition(2);
     }
 
     return true;
@@ -1626,7 +1626,7 @@ int daTbox_c::actionSwOnWait2() {
 
 /* 80494F44-80495058 004304 0114+00 1/0 0/0 0/0 .text            actionDropWait__8daTbox_cFv */
 int daTbox_c::actionDropWait() {
-    if (eventInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.checkCommandDemoAccrpt()) {
         setAction(&daTbox_c::actionDropDemo);
         clrDzb();
         field_0x97d = false;
@@ -1637,7 +1637,7 @@ int daTbox_c::actionDropWait() {
     } else if (checkDrop()) {
         if (mEventId != -1) {
             fopAcM_orderOtherEventId(this, mEventId, getEvent(), 0xffff, 0, 1);
-            eventInfo.i_onCondition(2);
+            eventInfo.onCondition(2);
         } else {
             dropProcInitCall();
             setAction(&daTbox_c::actionDropDemo);
@@ -1650,7 +1650,7 @@ int daTbox_c::actionDropWait() {
 
 /* 80495058-8049518C 004418 0134+00 1/0 0/0 0/0 .text            actionGenocide__8daTbox_cFv */
 int daTbox_c::actionGenocide() {
-    if (eventInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.checkCommandDemoAccrpt()) {
         setAction(&daTbox_c::actionDemo2);
         mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
         demoProc();
@@ -1663,7 +1663,7 @@ int daTbox_c::actionGenocide() {
             } else {
                 fopAcM_orderOtherEventId(this, mEventId, getEvent(), 0xffff, 0, 1);
             }
-            eventInfo.i_onCondition(2);
+            eventInfo.onCondition(2);
             dComIfGs_onSwitch(getSwNo(), fopAcM_GetRoomNo(this));
         }
     }

@@ -3187,12 +3187,12 @@ int daMidna_c::execute() {
                 }
             }
         }
-    } else if (eventInfo.i_checkCommandDemoAccrpt() && !link->checkMetamorphose()) {
+    } else if (eventInfo.checkCommandDemoAccrpt() && !link->checkMetamorphose()) {
         dComIfGp_getEvent().reset(this);
     }
 
     if (link->checkMidnaRide()) {
-        eventInfo.i_onCondition(1);
+        eventInfo.onCondition(1);
     }
 
     if (mpModel != NULL && !checkStateFlg0(FLG0_NO_DRAW)) {

@@ -2756,9 +2756,9 @@ static void demo_camera(npc_ne_class* i_this) {
         break;
 
     case 1:
-        if (!_this->eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(_this, 2, 0xffff, 0);
-            _this->eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+            _this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
 
@@ -2820,9 +2820,9 @@ static void demo_camera(npc_ne_class* i_this) {
         break;
 
     case 10:
-        if (!_this->eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(_this, 2, 0xffff, 0);
-            _this->eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+            _this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
 
@@ -3011,7 +3011,7 @@ static int message(npc_ne_class* i_this) {
             if (i_this->mResName == "Npc_net") {
                 cLib_onBit<u32>(i_this->attention_info.flags, 0xc00000);
             }
-            i_this->eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
+            i_this->eventInfo.onCondition(dEvtCnd_CANTALK_e);
         } else {
             fopAcM_OffStatus(i_this, 0);
             cLib_offBit<u32>(i_this->attention_info.flags, 0xc0000a);
