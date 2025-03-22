@@ -1317,7 +1317,7 @@ bool daB_DS_c::mCutTypeCheck() {
 bool daB_DS_c::startDemoCheck() {
     camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
 
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         return false;
     }
 
@@ -5273,7 +5273,7 @@ void daB_DS_c::mBattle2_mtx_set() {
         lin_chk.Set(&mMouthPos, &field_0x6d0, this);
 
         if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-            field_0x6d0 = lin_chk.i_GetCross();
+            field_0x6d0 = lin_chk.GetCross();
         }
     }
 

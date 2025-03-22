@@ -574,7 +574,7 @@ cPhs__Step daMidna_c::create() {
         daPy_py_c::setMidnaActor(this);
         mpMorf->setMorf(1.0f);
         
-        if (fopAcM_GetParam(this) == 1 && checkMidnaRealBody() && !i_checkMidnaTired()) {
+        if (fopAcM_GetParam(this) == 1 && checkMidnaRealBody() && !checkMidnaTired()) {
             changeOriginalDemo();
             changeDemoMode(11);
         }
@@ -767,7 +767,7 @@ void daMidna_c::setMatrix() {
         mDoMtx_stack_c::transM(0.0f, -98.0f, 17.0f);
         mpShadowModel->setBaseTRMtx(mDoMtx_stack_c::get());
     } else if (!checkStateFlg0(FLG0_WOLF_NO_POS) &&
-                            (!daPy_py_c::i_checkNowWolf() || checkShadowModelDrawSmode())) {
+                            (!daPy_py_c::checkNowWolf() || checkShadowModelDrawSmode())) {
         if (field_0x84e != 4) {
             f32 sin_link_y = cM_ssin(link->shape_angle.y);
             f32 cos_link_y = cM_scos(link->shape_angle.y);
@@ -1060,7 +1060,7 @@ void daMidna_c::setBodyPartPos() {
     }
     if (field_0x84e == 1 || (checkSetAnime(0, ANM_S_APPEAR) && mpMorf->getFrame() < 3.0f)) {
         daAlink_c* link = daAlink_getAlinkActorClass();
-        f32 fvar1 = daPy_py_c::i_checkNowWolf() ? 250.0f : 50.0f;
+        f32 fvar1 = daPy_py_c::checkNowWolf() ? 250.0f : 50.0f;
         attention_info.position.set(
             link->current.pos.x + fvar1 * cM_ssin(link->shape_angle.y),
             link->current.pos.y - 30.0f,
@@ -1083,7 +1083,7 @@ void daMidna_c::setBodyPartPos() {
 
 /* 804BEFA0-804BF070 002E00 00D0+00 1/1 0/0 0/0 .text            checkAppear__9daMidna_cFv */
 BOOL daMidna_c::checkAppear() {
-    if (daPy_py_c::i_checkNowWolf() && daPy_py_c::i_checkFirstMidnaDemo() &&
+    if (daPy_py_c::checkNowWolf() && daPy_py_c::checkFirstMidnaDemo() &&
         (!daAlink_getAlinkActorClass()->checkMidnaDisappearMode()
             || checkStateFlg0(FLG0_WOLF_NO_POS)
             || (checkSetAnime(0, ANM_RETURN) && !mpMorf->isStop())))
@@ -1207,7 +1207,7 @@ void daMidna_c::checkMidnaPosState() {
     }
 
     if (mDemoMode == 12) {
-        if (daPy_py_c::i_checkNowWolf()) {
+        if (daPy_py_c::checkNowWolf()) {
             onStateFlg0(FLG0_WOLF_NO_POS);
             Vec vec1 = {0.0f, daMidna_hio_c0::m.field_0x18, daMidna_hio_c0::m.field_0x1c};
             cXyz vec2;
@@ -1795,7 +1795,7 @@ void daMidna_c::setAnm() {
     }
     BOOL bVar2 = FALSE;
     BOOL bVar3 = TRUE;
-    bool tired = i_checkMidnaTired();
+    bool tired = checkMidnaTired();
     daMidna_ANM anm;
 
     if (link->checkMidnaWolfDeadAnime() && !checkStateFlg0(FLG0_TAG_WAIT)) {
@@ -2049,7 +2049,7 @@ void daMidna_c::setAnm() {
         }
 
         if (anm == ANM_WARPIN) {
-            if (daPy_py_c::i_checkNowWolf()) {
+            if (daPy_py_c::checkNowWolf()) {
                 u32 sound_id;
                 if (checkStateFlg1(FLG1_SIDE_WARP)) {
                     sound_id = Z2SE_MDN_WARP_IN_YOKO;
@@ -2145,7 +2145,7 @@ void daMidna_c::setAnm() {
                 J3DAnmTransform* bck = (J3DAnmTransform*)mBckHeap[0].loadDataIdx(res_id);
                 setBckAnime(bck, J3DFrameCtrl::EMode_NONE, 0.0f);
             }
-        } else if (daPy_py_c::i_checkNowWolf() && !bVar1
+        } else if (daPy_py_c::checkNowWolf() && !bVar1
             && ((mNeckAngle.y == 0 && mNeckAngle.x == 0 && anm != ANM_LEADWAIT && cM_rnd() < 0.01f)
             || (anm == ANM_LEADWAIT && !checkStateFlg0(FLG0_NO_HAIR_LEAD) && cM_rnd() < 0.0125f)))
         {
@@ -2455,7 +2455,7 @@ void daMidna_c::setNeckAngle() {
     s16 eye_y = 0;
     cXyz* pos;
 
-    if (field_0x84e == 2 || i_checkMidnaTired() || checkSetAnime(0, ANM_CLINGB)
+    if (field_0x84e == 2 || checkMidnaTired() || checkSetAnime(0, ANM_CLINGB)
         || (checkStateFlg0((daMidna_FLG0)(FLG0_NO_HAIR_SCALE | FLG0_UNK_200000))
             && !checkEndResetStateFlg0(ERFLG0_UNK_100))
         || (clear_eye_move && !checkStateFlg0(FLG0_NO_DRAW))
@@ -2546,7 +2546,7 @@ void daMidna_c::setHairAngle() {
 
     cXyz* atn_pos = NULL;
     daAlink_c* link = daAlink_getAlinkActorClass();
-    if (link->checkMidnaHairAtnPos() && !i_checkMidnaTired() && !checkStateFlg0((daMidna_FLG0)
+    if (link->checkMidnaHairAtnPos() && !checkMidnaTired() && !checkStateFlg0((daMidna_FLG0)
                         (FLG0_NO_HAIR_SCALE | FLG0_UNK_200000 | FLG0_TAG_WAIT | FLG0_UNK_100))) {
         atn_pos = link->getMidnaHairAtnPos();
         onStateFlg0(FLG0_UNK_10000000);
@@ -3033,7 +3033,7 @@ void daMidna_c::setSound() {
         mSound.updateAnime(mpMorf->getFrame(), mpMorf->getPlaySpeed());
     }
 
-    if (i_checkMidnaTired() && !dComIfGp_checkPlayerStatus0(0, 0x20000000)) {
+    if (checkMidnaTired() && !dComIfGp_checkPlayerStatus0(0, 0x20000000)) {
         mSound.startCreatureVoiceLevel(Z2SE_MDN_V_WAITD, -1);
     }
 }
@@ -3042,7 +3042,7 @@ void daMidna_c::setSound() {
 int daMidna_c::execute() {
     daAlink_c* link = daAlink_getAlinkActorClass();
     if (!link->checkMetamorphose()) {
-        if (daPy_py_c::i_checkNowWolf()) {
+        if (daPy_py_c::checkNowWolf()) {
             onStateFlg0(FLG0_UNK_40000000);
         } else {
             offStateFlg0(FLG0_UNK_40000000);
@@ -3059,7 +3059,7 @@ int daMidna_c::execute() {
     }
     daMidna_matAnm_c::decMorfFrame();
     checkMidnaPosState();
-    if (daPy_py_c::i_checkFirstMidnaDemo() && !checkStateFlg0(FLG0_WOLF_NO_POS)) {
+    if (daPy_py_c::checkFirstMidnaDemo() && !checkStateFlg0(FLG0_WOLF_NO_POS)) {
         link->onMidnaRide();
     } else {
         link->offMidnaRide();
@@ -3115,7 +3115,7 @@ int daMidna_c::execute() {
         field_0x84e = 0;
     }
 
-    if (checkSetAnime(0, ANM_LEADTOWAITA) && mpMorf->checkFrame(2.0f) && daPy_py_c::i_checkNowWolf()
+    if (checkSetAnime(0, ANM_LEADTOWAITA) && mpMorf->checkFrame(2.0f) && daPy_py_c::checkNowWolf()
                                      && mpKago == NULL) {
         dComIfGp_getVibration().StartShock(2, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
     }

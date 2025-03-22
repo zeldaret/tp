@@ -676,7 +676,7 @@ int daObjIceBlk_c::checkWallPre(s16 i_angle) {
         linchk.Set(&start, &end, this);
         if (dComIfG_Bgsp().LineCross(&linchk)) {
             end = start + spC8;
-            mWallPrePos = end - linchk.i_GetCross();
+            mWallPrePos = end - linchk.GetCross();
             var_r29 = i;
         }
     }

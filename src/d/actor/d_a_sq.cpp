@@ -344,7 +344,7 @@ static void action(sq_class* i_this) {
             break;
         }
 
-        if (i_this->mMessageState == 1 && daPy_py_c::i_checkNowWolf()
+        if (i_this->mMessageState == 1 && daPy_py_c::checkNowWolf()
                                        && i_this->mPlayerDist < 300.0f) {
             i_this->mAction = sq_class::ACT_MESSAGE;
             i_this->mMode = 0;
@@ -413,7 +413,7 @@ static int message(sq_class* i_this) {
         i_this->mIsTalking = 1;
     }
 
-    if (i_this->mMessageState == 2 && i_this->mFlowID != -1 && daPy_py_c::i_checkNowWolf()) {
+    if (i_this->mMessageState == 2 && i_this->mFlowID != -1 && daPy_py_c::checkNowWolf()) {
         fopAcM_OnStatus(i_this, 0);
         cLib_onBit<u32>(i_this->attention_info.flags, 0xa);
         i_this->eventInfo.onCondition(1);

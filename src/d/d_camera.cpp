@@ -884,7 +884,7 @@ void dCamera_c::initialize(camera_class* i_camera, fopAc_ac_c* i_player, u32 i_c
     specialType[41] = GetCameraTypeFromCameraName("Peep");
     field_0x698 = 0xFF;
     field_0x69c = 0;
-    field_0x190 = daPy_py_c::i_checkNowWolf() != 0;
+    field_0x190 = daPy_py_c::checkNowWolf() != 0;
     mCurMode = 0;
     field_0x680 = 0;
     field_0x1ac = 11;
@@ -1467,7 +1467,7 @@ bool dCamera_c::Run() {
     bool bVar9 = false;
     clrComStat(0x804);
     int iVar8 = field_0x190;
-    field_0x190 = daPy_py_c::i_checkNowWolf() ? 1 : 0;
+    field_0x190 = daPy_py_c::checkNowWolf() ? 1 : 0;
     mFocusLine.Off();
     clrFlag(0x10168C21);
     clrFlag(0x10);
@@ -2744,7 +2744,7 @@ bool dCamera_c::lineBGCheck(cXyz* i_start, cXyz* i_end, cXyz* o_cross, u32 i_fla
     if (lineBGCheck(i_start, i_end, &lin_chk, i_flags)) {
         cM3dGPla plane;
         dComIfG_Bgsp().GetTriPla(lin_chk, &plane);
-        *o_cross = lin_chk.i_GetCross() + *plane.GetNP();
+        *o_cross = lin_chk.GetCross() + *plane.GetNP();
         return true;
     } else {
         *o_cross = *i_end;
@@ -3033,7 +3033,7 @@ BOOL dCamera_c::jutOutCheck(cXyz* param_0, f32 param_1) {
         cM3dGPla plane;
         dComIfG_Bgsp().GetTriPla(linchk, &plane);
 
-        *param_0 = linchk.i_GetCross();
+        *param_0 = linchk.GetCross();
         *param_0 += *plane.GetNP() * param_1;
         return TRUE;
     }

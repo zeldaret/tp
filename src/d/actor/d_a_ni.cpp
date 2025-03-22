@@ -1673,7 +1673,7 @@ static void play_camera(ni_class* i_this) {
                 sp1D8.y = 0.0f;
                 sp1D8.z = hREG_F(10) + 50.0f;
                 MtxPosition(&sp1D8, &sp1E4);
-                sp214 = cam_line_chk.i_GetCross() - sp1E4;
+                sp214 = cam_line_chk.GetCross() - sp1E4;
             }
 
             if (var_r27 == 0) {
@@ -1808,7 +1808,7 @@ static void action(ni_class* i_this) {
             var_r25 = true;
         }
 
-        if (i_this->field_0xa50 == 1 && daPy_py_c::i_checkNowWolf() &&
+        if (i_this->field_0xa50 == 1 && daPy_py_c::checkNowWolf() &&
             i_this->mDistToPlayer < 300.0f)
         {
             i_this->mAction = ACTION_MESSAGE_e;
@@ -1993,7 +1993,7 @@ static void action(ni_class* i_this) {
     line_chk.Set(&a_this->current.pos, &sp148, a_this);
 
     if (dComIfG_Bgsp().LineCross(&line_chk)) {
-        sp148.y = line_chk.i_GetCross().y - 10.0f;
+        sp148.y = line_chk.GetCross().y - 10.0f;
     }
 
     gnd_chk_spl.SetPos(&sp148);
@@ -2047,7 +2047,7 @@ static int message(ni_class* i_this) {
         OS_REPORT("////////NI MSG FNO %d\n", i_this->mFlowNo);
     }
 
-    if (i_this->field_0xa50 == 2 && i_this->mFlowNo != -1 && daPy_py_c::i_checkNowWolf()) {
+    if (i_this->field_0xa50 == 2 && i_this->mFlowNo != -1 && daPy_py_c::checkNowWolf()) {
         fopAcM_OnStatus(i_this, 0);
         cLib_onBit<u32>(i_this->attention_info.flags, 10);
         i_this->eventInfo.onCondition(1);

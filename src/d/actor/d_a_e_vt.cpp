@@ -1566,7 +1566,7 @@ void daE_VA_c::executeDemoOpWait() {
         mDrawRopes = true;
     case 1:
         for (int i = 0; i < 190; i++) {
-            if (!daPy_getPlayerActorClass()->i_checkNowWolf()) {
+            if (!daPy_getPlayerActorClass()->checkNowWolf()) {
                 mLineSphs[i].OffTgShield();
             } else {
                 mLineSphs[i].OnTgShield();
@@ -1729,7 +1729,7 @@ void daE_VA_c::executeDemoOp() {
             mWeponEfMode = 1;
             mDemoModeTimer = 130;
 
-            if (!player->i_checkNowWolf()) {
+            if (!player->checkNowWolf()) {
                 player->changeDemoMode(0x17, 0, 0, 0);
             }
 
@@ -2681,7 +2681,7 @@ void daE_VA_c::executeOpaciChase() {
         field_0x1388 = 1;
         mSound.startCreatureVoiceLevel(Z2SE_EN_VA_V_ROTATE, -1);
 
-        if (mDownTimer == 0 && !player->i_checkNowWolf()) {
+        if (mDownTimer == 0 && !player->checkNowWolf()) {
             mBodyCyls[0].OnTgSetBit();
             mBodyCyls[1].OnTgSetBit();
         }
@@ -2747,7 +2747,7 @@ void daE_VA_c::executeOpaciChase() {
     case 12:
         mSound.startCreatureVoiceLevel(Z2SE_EN_VA_V_ROTATE, -1);
 
-        if (!player->i_checkNowWolf()) {
+        if (!player->checkNowWolf()) {
             mBodyCyls[0].OnTgSetBit();
             mBodyCyls[1].OnTgSetBit();
         }
@@ -2767,7 +2767,7 @@ void daE_VA_c::executeOpaciChase() {
     case 13:
         mSound.startCreatureVoiceLevel(Z2SE_EN_VA_V_ROTATE, -1);
 
-        if (!player->i_checkNowWolf()) {
+        if (!player->checkNowWolf()) {
             mBodyCyls[0].OnTgSetBit();
             mBodyCyls[1].OnTgSetBit();
         }

@@ -593,7 +593,7 @@ void daE_PZ_c::executeOpeningDemo() {
         current.angle.y = fopAcM_searchPlayerAngleY(this);
 
         if (field_0x7d0 == 1) {
-            if (!daPy_py_c::i_checkNowWolf()) {
+            if (!daPy_py_c::checkNowWolf()) {
                 daPy_getPlayerActorClass()->changeDemoMode(0x17, 1, 2, 0);
             } else {
                 daPy_getPlayerActorClass()->changeDemoMode(0x17, 1, 0, 0);
@@ -674,7 +674,7 @@ void daE_PZ_c::executeOpeningDemo() {
                 ((daE_PZ_c*)parent)->mMoveMode = 20;
                 dComIfGp_particle_set(0x889D, &parent->current.pos, &shape_angle, NULL);
 
-                if (!daPy_py_c::i_checkNowWolf()) {
+                if (!daPy_py_c::checkNowWolf()) {
                     daPy_getPlayerActorClass()->changeDemoMode(0x17, 1, 2, 0);
                 } else {
                     daPy_getPlayerActorClass()->changeDemoMode(0x17, 1, 0, 0);
@@ -741,7 +741,7 @@ void daE_PZ_c::executeOpeningDemo() {
         sp120.set(0.0f, player->current.pos.y, -1300.0f);
         daPy_getPlayerActorClass()->setPlayerPosAndAngle(&sp120, -0x8000, 0);
 
-        if (!daPy_py_c::i_checkNowWolf()) {
+        if (!daPy_py_c::checkNowWolf()) {
             daPy_getPlayerActorClass()->changeDemoMode(0x17, 1, 2, 0);
         } else {
             daPy_getPlayerActorClass()->changeDemoMode(0x17, 1, 0, 0);
@@ -772,7 +772,7 @@ void daE_PZ_c::executeOpeningDemo() {
     case 31:
     case 131:
         if (mMoveMode == 31) {
-            if (!daPy_py_c::i_checkNowWolf()) {
+            if (!daPy_py_c::checkNowWolf()) {
                 sp120.set(-70.0f, 250.0f + XREG_F(1), -950.0f + XREG_F(2));
             } else {
                 sp120.set(-70.0f, 200.0f + XREG_F(3), -700.0f + XREG_F(4));
@@ -809,7 +809,7 @@ void daE_PZ_c::executeOpeningDemo() {
             if (field_0x7d7 == 0) {
                 if (field_0x7d0 >= 30) {
                     if (arg0 == 0) {
-                        if (!daPy_py_c::i_checkNowWolf()) {
+                        if (!daPy_py_c::checkNowWolf()) {
                             sp120.set(0.0f, 0.0f, -800.0f);
                         } else {
                             sp120.set(0.0f, 0.0f, -700.0f);
@@ -1015,7 +1015,7 @@ void daE_PZ_c::executeOpeningDemo() {
             break;
         }
 
-        if (!daPy_py_c::i_checkNowWolf()) {
+        if (!daPy_py_c::checkNowWolf()) {
             current.pos.set(0.0f, 0.0f, -2850.0f);
         } else {
             current.pos.set(0.0f, 0.0f, -3000.0f);
@@ -1030,7 +1030,7 @@ void daE_PZ_c::executeOpeningDemo() {
     case 110:
         mSetFirePos();
 
-        if (!daPy_py_c::i_checkNowWolf()) {
+        if (!daPy_py_c::checkNowWolf()) {
             mDemoCameraCenter.set(mPzCenterInit_dt[14]);
             mDemoCameraEye.set(mPzEyeInit_dt[14]);
         } else {
@@ -1050,7 +1050,7 @@ void daE_PZ_c::executeOpeningDemo() {
     case 111:
         if (field_0x7d0 != 0) {
             if (field_0x7d0 == 1) {
-                if (!daPy_py_c::i_checkNowWolf()) {
+                if (!daPy_py_c::checkNowWolf()) {
                     daPy_getPlayerActorClass()->changeDemoMode(0xC, 1, 1, 0);
                 } else {
                     daPy_getPlayerActorClass()->changeDemoMode(0x2B, 0, 0, 0);
@@ -1062,7 +1062,7 @@ void daE_PZ_c::executeOpeningDemo() {
             break;
         }
 
-        if (field_0x7d7 < 10 && !daPy_py_c::i_checkNowWolf()) {
+        if (field_0x7d7 < 10 && !daPy_py_c::checkNowWolf()) {
             field_0x7d7++;
             if (field_0x7d7 == 10) {
                 daPy_getPlayerActorClass()->changeDemoMode(0x24, 0x16, 0, 0);
@@ -1127,7 +1127,7 @@ void daE_PZ_c::executeOpeningDemo() {
         break;
     case 114:
         if (field_0x7d0 == 0) {
-            if (!daPy_py_c::i_checkNowWolf()) {
+            if (!daPy_py_c::checkNowWolf()) {
                 daPy_getPlayerActorClass()->changeDemoMode(0x22, 1, 0, 0);
             } else {
                 daPy_getPlayerActorClass()->changeDemoMode(0x17, 1, 0, 0);

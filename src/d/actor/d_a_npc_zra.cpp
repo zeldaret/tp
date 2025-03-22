@@ -990,7 +990,7 @@ void daNpc_zrA_c::setParam() {
 
     selectAction();
 
-    if (!mTwilight && daPy_py_c::i_checkNowWolf()) {
+    if (!mTwilight && daPy_py_c::checkNowWolf()) {
         attn_flags = 0;
     }
 

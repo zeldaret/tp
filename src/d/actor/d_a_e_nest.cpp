@@ -359,7 +359,7 @@ static s16 wall_angle_get(e_nest_class* i_this) {
         vec3[i] += vec2;
         lin_chk.Set(&vec2, &vec3[i], a_this);
         if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-            vec3[i] = lin_chk.i_GetCross();
+            vec3[i] = lin_chk.GetCross();
         } else {
             return 0x23;
         }
@@ -492,7 +492,7 @@ static int water_check(e_nest_class* i_this) {
     vec.z = i_this->current.pos.z;
     lin_chk.Set(&i_this->current.pos, &vec, i_this);
     if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-        vec.y = lin_chk.i_GetCross().y - 10.0f;
+        vec.y = lin_chk.GetCross().y - 10.0f;
     }
     dBgS_ObjGndChk_Spl gnd_chk;
     gnd_chk.SetPos(&vec);

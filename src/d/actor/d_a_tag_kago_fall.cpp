@@ -239,7 +239,7 @@ void daTagKagoFall_c::actionWaitFall() {
             lin_chk.Set(&player->current.pos, &mRestartPos, NULL);
 
             if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-                mRestartPos.y = lin_chk.i_GetCross().y;
+                mRestartPos.y = lin_chk.GetCross().y;
             }
         }
 

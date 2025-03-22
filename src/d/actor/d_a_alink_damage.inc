@@ -106,7 +106,7 @@ void daAlink_c::checkCutLandDamage() {
 
 /* 800D70A0-800D7160 0D19E0 00C0+00 2/2 0/0 0/0 .text checkCaughtEscapeCutTurn__9daAlink_cFv */
 BOOL daAlink_c::checkCaughtEscapeCutTurn() {
-    if (mLinkAcch.ChkGroundHit() && (i_checkSwordGet() || checkWolf()) &&
+    if (mLinkAcch.ChkGroundHit() && (checkSwordGet() || checkWolf()) &&
         checkCutTurnInputTrigger())
     {
         if (checkWolf()) {
@@ -1458,8 +1458,8 @@ int daAlink_c::procCoLargeDamageWallInit(int param_0, int param_1, s16 param_2, 
     s16 temp_r29 = cM_atan2s(sp18.mNormal.y, sp18.mNormal.absXZ());
     
     current.angle.y = temp_r26;
-    current.pos.x = mLinkLinChk.i_GetCross().x;
-    current.pos.z = mLinkLinChk.i_GetCross().z;
+    current.pos.x = mLinkLinChk.GetCross().x;
+    current.pos.z = mLinkLinChk.GetCross().z;
 
     setOldRootQuaternion(param_2, 0, param_3);
 

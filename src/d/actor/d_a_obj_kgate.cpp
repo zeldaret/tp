@@ -440,7 +440,7 @@ int daObjKGate_c::checkAreaL(cXyz const* param_0, cXyz const* param_1) {
 
     pos = player_p->current.pos;
 
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         offset.set(0.0f, 0.0f, 90.0f);
     } else {
         offset.set(0.0f, 0.0f, 0.0f);
@@ -526,7 +526,7 @@ int daObjKGate_c::checkAreaR(cXyz const* param_0, cXyz const* param_1) {
     pos = player_p->current.pos;
 
     cXyz player_offset;
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         player_offset.set(0.0f, 0.0f, 90.0f);
     } else {
         player_offset.set(0.0f, 0.0f, 0.0f);
@@ -782,7 +782,7 @@ void daObjKGate_c::action_typeA() {
         if (chk_l != 0 || chk_r != 0) {
             daPy_py_c* player_p = daPy_getPlayerActorClass();
 
-            if (daPy_py_c::i_checkNowWolf()) {
+            if (daPy_py_c::checkNowWolf()) {
                 if (player_p->checkWolfAttackReverse() || player_p->checkFrontRollCrash()) {
                     field_0xb98 = 1200.0f;
                     field_0xb94 = 1200.0f;
@@ -832,7 +832,7 @@ void daObjKGate_c::action_typeB() {
         if (chk_l != 0 || chk_r != 0) {
             daPy_py_c* player_p = daPy_getPlayerActorClass();
 
-            if (daPy_py_c::i_checkNowWolf()) {
+            if (daPy_py_c::checkNowWolf()) {
                 if (player_p->checkWolfAttackReverse() || player_p->checkFrontRollCrash()) {
                     field_0xb98 = 1200.0f;
                     field_0xb94 = 1200.0f;

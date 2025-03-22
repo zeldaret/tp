@@ -69,12 +69,12 @@ int daAttp_c::execute() {
         case 0:
             break;
         case 1:
-            if (daPy_py_c::i_checkNowWolf()) {
+            if (daPy_py_c::checkNowWolf()) {
                 bVar1 = false;
             }
             break;
         case 2:
-            if (!daPy_py_c::i_checkNowWolf()) {
+            if (!daPy_py_c::checkNowWolf()) {
                 bVar1 = false;
             }
             break;
@@ -87,12 +87,12 @@ int daAttp_c::execute() {
         case 0:
             break;
         case 1:
-            if (daPy_py_c::i_checkNowWolf()) {
+            if (daPy_py_c::checkNowWolf()) {
                 bVar1 = false;
             }
             break;
         case 2:
-            if (!daPy_py_c::i_checkNowWolf()) {
+            if (!daPy_py_c::checkNowWolf()) {
                 bVar1 = false;
             }
             break;

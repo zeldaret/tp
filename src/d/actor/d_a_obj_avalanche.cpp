@@ -155,7 +155,7 @@ int daObjAvalanche_c::Execute(Mtx** param_1) {
  */
 int daObjAvalanche_c::checkCollapse() {
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
-    if (!daPy_py_c::i_checkNowWolf()) {
+    if (!daPy_py_c::checkNowWolf()) {
         return 0;
     }
     if (!player->checkWolfAttackReverse() && !player->checkFrontRollCrash()) {

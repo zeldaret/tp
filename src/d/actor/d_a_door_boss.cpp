@@ -296,7 +296,7 @@ BOOL daBdoor_c::checkFront() {
 
 /* 80670294-80670320 000EF4 008C+00 1/1 0/0 0/0 .text            checkOpen__9daBdoor_cFv */
 BOOL daBdoor_c::checkOpen() {
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         return false;
     }
     if (!dComIfGs_isDungeonItemBossKey()) {

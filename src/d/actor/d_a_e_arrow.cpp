@@ -216,7 +216,7 @@ static void hit_check(e_arrow_class* i_this) {
     line_chk.Set(&line_chk_start, &i_this->current.pos, i_this);
 
     if (dComIfG_Bgsp().LineCross(&line_chk)) {
-        i_this->current.pos = line_chk.i_GetCross();
+        i_this->current.pos = line_chk.GetCross();
         dComIfG_Bgsp().ArrowStickCallBack(line_chk, i_this, i_this->current.pos);
 
         if (i_this->mFlags & 0x10) {

@@ -1118,7 +1118,7 @@ static s16 hang_set(do_class* i_this) {
         vec3[i] += vec2;
         lin_chk.Set(&vec2, &vec3[i], _this);
         if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-            vec3[i] = lin_chk.i_GetCross();
+            vec3[i] = lin_chk.GetCross();
         } else {
             return 0xDCF;
         }
@@ -1760,7 +1760,7 @@ static s8 do_boat(do_class* i_this) {
                 lin_chk.Set(&i_this->field_0xc90, &i_this->field_0xc9c, _this);
                 if (dComIfG_Bgsp().LineCross(&lin_chk)) {
                     i_this->field_0xc80 = false;
-                    i_this->mTargetPos = lin_chk.i_GetCross();
+                    i_this->mTargetPos = lin_chk.GetCross();
                     i_this->mMode = 5;
                 }
             }
@@ -1883,7 +1883,7 @@ static s8 do_carry(do_class* i_this) {
     vec.y += 2.0f;
     lin_chk.Set(&player->eyePos, &vec, _this);
     if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-        _this->current.pos = lin_chk.i_GetCross();
+        _this->current.pos = lin_chk.GetCross();
     }
 
     return ret;
@@ -2035,7 +2035,7 @@ static void action(do_class* i_this) {
         }
     }
 
-    if (i_this->mMessageState == 1 && daPy_py_c::i_checkNowWolf()
+    if (i_this->mMessageState == 1 && daPy_py_c::checkNowWolf()
         && i_this->mDistFromPlayer < 300.0f)
     {
         i_this->mAction = ACT_MESSAGE;
@@ -2328,7 +2328,7 @@ static void message(do_class* i_this) {
             i_this->mIsTalking = 1;
         }
 
-        if (i_this->mMessageState == 2 && i_this->mFlowID != -1 && daPy_py_c::i_checkNowWolf()) {
+        if (i_this->mMessageState == 2 && i_this->mFlowID != -1 && daPy_py_c::checkNowWolf()) {
             fopAcM_OnStatus(i_this, 0);
             cLib_onBit<u32>(i_this->attention_info.flags, 0xa);
             i_this->eventInfo.onCondition(dEvtCnd_CANTALK_e);

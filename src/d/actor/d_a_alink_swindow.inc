@@ -31,7 +31,7 @@ inline bool checkShopWoodShieldEquip() {
 
 /* 8013FF90-8013FFD8 13A8D0 0048+00 2/2 0/0 0/0 .text            setShieldArcName__9daAlink_cFv */
 void daAlink_c::setShieldArcName() {
-    if (checkCarvingWoodShieldEquip() || !i_checkShieldGet()) {
+    if (checkCarvingWoodShieldEquip() || !checkShieldGet()) {
         mShieldArcName = l_cWShdArcName;
     } else if (checkShopWoodShieldEquip()) {
         mShieldArcName = l_sWShdArcName;

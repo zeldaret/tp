@@ -382,7 +382,7 @@ void daTbox2_c::actionOpenWait() {
     if (eventInfo.checkCommandDoor()) {
         dComIfGp_event_onEventFlag(4);
 
-        if (mModelType != TYPE_SMALL_e && daPy_py_c::i_checkNowWolf() &&
+        if (mModelType != TYPE_SMALL_e && daPy_py_c::checkNowWolf() &&
             !midna_p->checkMetamorphoseEnable())
         {
             mStaffIdx = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
@@ -400,7 +400,7 @@ void daTbox2_c::actionOpenWait() {
 
         if (mModelType == TYPE_SMALL_e) {
             eventInfo.setEventName("DEFAULT_TREASURE_SIMPLE");
-        } else if (daPy_py_c::i_checkNowWolf() && !midna_p->checkMetamorphoseEnable()) {
+        } else if (daPy_py_c::checkNowWolf() && !midna_p->checkMetamorphoseEnable()) {
             eventInfo.setEventName("DEFAULT_TREASURE_NOTOPEN");
         } else {
             eventInfo.setEventName("DEFAULT_TREASURE_NORMAL");

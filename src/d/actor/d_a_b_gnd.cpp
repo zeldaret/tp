@@ -542,7 +542,7 @@ static BOOL saku_jump_check(b_gnd_class* i_this) {
 
     if (dComIfG_Bgsp().LineCross(&lineChk)) {
         if (dComIfG_Bgsp().GetTriPla(lineChk, &plane) && !cBgW_CheckBGround(plane.mNormal.y)) {
-            cXyz line_cross_pos(lineChk.i_GetCross());
+            cXyz line_cross_pos(lineChk.GetCross());
             cXyz sp24;
 
             sp54.x *= -1.0f;
@@ -2938,7 +2938,7 @@ static void demo_camera(b_gnd_class* i_this) {
         sp108 = a_this->current.pos;
         sp108.x -= 5000.0f;
 
-        horse->i_setHorsePosAndAngle(&sp108, 1);
+        horse->setHorsePosAndAngle(&sp108, 1);
 
         i_this->mDemoCamCenterTarget.set(0.0f, 0.0f, 0.0f);
         i_this->mDemoCamCenterSpd.set(0.0f, 0.0f, 0.0f);
@@ -2989,7 +2989,7 @@ static void demo_camera(b_gnd_class* i_this) {
         if (i_this->mDemoCamMode == 33) {
             if (i_this->mDemoCamTimer == 140) {
                 sp108.set(0.0f, 1100.0f, -2000.0f);
-                horse->i_setHorsePosAndAngle(&sp108, 0);
+                horse->setHorsePosAndAngle(&sp108, 0);
                 horse->changeDemoMode(1, 0);
                 player->changeDemoMode(93, 0, 0, 0);
             }
@@ -3019,7 +3019,7 @@ static void demo_camera(b_gnd_class* i_this) {
         }
 
         sp108.set(0.0f, 1100.0f, i_this->field_0x2710.z + -1500.0f);
-        horse->i_setHorsePosAndAngle(&sp108, 0);
+        horse->setHorsePosAndAngle(&sp108, 0);
         cLib_addCalc0(&i_this->field_0x2710.z, 0.5f, 20.0f);
 
         if (i_this->mDemoCamTimer == 55) {
@@ -3029,7 +3029,7 @@ static void demo_camera(b_gnd_class* i_this) {
             i_this->field_0x2710.z = -300.0f;
             a_this->current.pos.x = 0.0f;
             sp108.set(0.0f, 1100.0f, -4000.0f);
-            horse->i_setHorsePosAndAngle(&sp108, 0);
+            horse->setHorsePosAndAngle(&sp108, 0);
         }
         break;
     case 35:
@@ -3062,7 +3062,7 @@ static void demo_camera(b_gnd_class* i_this) {
             i_this->mDemoCamEye.set(86.0f, 1321.0f, -1277.0f);
             i_this->field_0x2710.x = 55.0f;
             sp108.set(0.0f, 1100.0f, -2000.0f);
-            horse->i_setHorsePosAndAngle(&sp108, -0x2000);
+            horse->setHorsePosAndAngle(&sp108, -0x2000);
         }
         break;
     case 40:
@@ -3569,7 +3569,7 @@ static void demo_camera(b_gnd_class* i_this) {
         }
 
         sp108.set(0.0f, 1100.0f, -2000.0f);
-        horse->i_setHorsePosAndAngle(&sp108, -0x2000);
+        horse->setHorsePosAndAngle(&sp108, -0x2000);
         break;
     case 63:
         cMtx_YrotS(*calc_mtx, i_this->shape_angle.y);
@@ -3661,7 +3661,7 @@ static void demo_camera(b_gnd_class* i_this) {
         break;
     case 91:
         sp108.set(0.0f, 1100.0f, -2000.0f);
-        horse->i_setHorsePosAndAngle(&sp108, -0x2000);
+        horse->setHorsePosAndAngle(&sp108, -0x2000);
 
         if (i_this->mDemoCamTimer == 2) {
             player->onForceHorseGetOff();
@@ -3702,7 +3702,7 @@ static void demo_camera(b_gnd_class* i_this) {
         horse->changeOriginalDemo();
 
         sp108.set(0.0f, 1100.0f, -2000.0f);
-        horse->i_setHorsePosAndAngle(&sp108, -0x2000);
+        horse->setHorsePosAndAngle(&sp108, -0x2000);
 
         sp108.set(600.0f, 1100.0f, 0.0f);
         player->setPlayerPosAndAngle(&sp108, -0x4802, 0);

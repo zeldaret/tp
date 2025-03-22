@@ -225,7 +225,7 @@ void daDoor20_c::setEventPrm() {
     }
     if (dComIfGp_roomControl_checkStatusFlag(roomNo, 1)) {
         if (door_param2_c::getKind(this) == 9) {
-            if (daPy_py_c::i_checkNowWolf()) {
+            if (daPy_py_c::checkNowWolf()) {
                 return;
             }
             int iStack_48;
@@ -256,7 +256,7 @@ void daDoor20_c::setEventPrm() {
                 }
             }
         } else {
-            if (daPy_py_c::i_checkNowWolf()) {
+            if (daPy_py_c::checkNowWolf()) {
                 if (!player->checkMidnaRide() || !daMidna_c::checkMidnaRealBody()) {
                     return;
                 }
@@ -279,7 +279,7 @@ void daDoor20_c::setEventPrm() {
             }
             if (chkMakeKey()) {
                 if (field_0x5f0) {
-                    if (daPy_py_c::i_checkNowWolf()) {
+                    if (daPy_py_c::checkNowWolf()) {
                         if (dComIfGs_getKeyNum() == 0) {
                             return;
                         }
@@ -422,7 +422,7 @@ static u16 const l_eff_id_lv4[5] = {
 /* 80461A60-80461D24 000FA0 02C4+00 1/1 0/0 0/0 .text            openInit_0__10daDoor20_cFv */
 void daDoor20_c::openInit_0() {
     J3DAnmTransform* anm;
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         if (door_param2_c::getKind(this) == 10) {
             anm = (J3DAnmTransform*)dComIfG_getObjectRes(getArcName(), "md_oj_DoorOpF.bck");
         } else {
@@ -462,7 +462,7 @@ void daDoor20_c::openInit_0() {
 /* 80461D24-80461EC4 001264 01A0+00 1/1 0/0 0/0 .text            openInit_1__10daDoor20_cFv */
 void daDoor20_c::openInit_1() {
     J3DAnmTransform* anm;
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         anm = (J3DAnmTransform*)dComIfG_getObjectRes(getArcName(), "md_oj_DoorOpC.bck");
     } else {
         anm = (J3DAnmTransform*)dComIfG_getObjectRes(getArcName(), "oj_DoorOpC.bck");
@@ -518,7 +518,7 @@ int daDoor20_c::openProc(int param_1) {
             dComIfGp_getVibration().StartShock(4, 15, cXyz(0.0f, 1.0f, 0.0f));
         } else {
             if (field_0x584.getFrame() == 18.0f) {
-                if (daPy_py_c::i_checkNowWolf()) {
+                if (daPy_py_c::checkNowWolf()) {
                     u32 mdnfx;
                     if (field_0x672) {
                         mdnfx = Z2SE_OBJ_WOOD_DR_OP_MDN_FX;
@@ -546,7 +546,7 @@ int daDoor20_c::openProc(int param_1) {
         {
             dComIfGp_getVibration().StartShock(4, 15, cXyz(0.0f, 1.0f, 0.0f));
         }
-        if (daPy_py_c::i_checkNowWolf()) {
+        if (daPy_py_c::checkNowWolf()) {
             if (field_0x584.getFrame() == 20.0f) {
                 if (door_param2_c::getKind(this) == 2) {
                     sfx = Z2SE_OBJ_L8_SHTR_OP;
@@ -1720,7 +1720,7 @@ void daDoor20_c::makeEventId() {
     int i;
     switch (field_0x691) {
     case 1:
-        if (player != NULL && player->i_checkNowWolf()) {
+        if (player != NULL && player->checkNowWolf()) {
             int j = 0;
             for (i = 4; i < 8; i++, j++) {
                 field_0x692[i] =
@@ -1735,7 +1735,7 @@ void daDoor20_c::makeEventId() {
         }
         break;
     case 3:
-        if (player != NULL && player->i_checkNowWolf()) {
+        if (player != NULL && player->checkNowWolf()) {
             int j = 0;
             for (i = 4; i < 8; i++, j++) {
                 field_0x692[i] =
@@ -1750,7 +1750,7 @@ void daDoor20_c::makeEventId() {
         }
         break;
     case 2:
-        if (player != NULL && player->i_checkNowWolf()) {
+        if (player != NULL && player->checkNowWolf()) {
             int j = 0;
             for (i = 4; i < 8; i++, j++) {
                 field_0x692[i] =
@@ -1772,7 +1772,7 @@ void daDoor20_c::makeEventId() {
         }
         break;
     case 5:
-        if (player != NULL && player->i_checkNowWolf()) {
+        if (player != NULL && player->checkNowWolf()) {
             int j = 0;
             for (i = 4; i < 8; i++, j++) {
                 field_0x692[i] =
@@ -1787,7 +1787,7 @@ void daDoor20_c::makeEventId() {
         }
         break;
     case 6:
-        if (player != NULL && player->i_checkNowWolf()) {
+        if (player != NULL && player->checkNowWolf()) {
             int j = 0;
             for (i = 4; i < 8; i++, j++) {
                 field_0x692[i] =
@@ -1903,7 +1903,7 @@ void daDoor20_c::getRestartPos(cXyz* param_1) {
     cXyz acStack_78 = player->current.pos - current.pos;
     f32 dVar9 = acStack_78.inprodXZ(field_0x680);
     f32 fVar1;
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         if (dVar9 < 0.0f) {
             fVar1 = 300.0f;
         } else {
@@ -1969,7 +1969,7 @@ void daDoor20_c::setGoal() {
     mDoMtx_stack_c::multVec(&local_1c, &local_1c);
     local_1c.x = local_1c.x * 0.8f;
     local_1c.y = 0.0f;
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         local_1c.z = -300.0f;
     } else {
         local_1c.z = -200.0f;

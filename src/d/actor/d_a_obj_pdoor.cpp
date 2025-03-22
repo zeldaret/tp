@@ -191,7 +191,7 @@ void daObjPDoor_c::modeWait() {
         }
         field_0x5b0 = -1;
     }
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         cXyz cStack_44 = player->current.pos - current.pos;
         mDoMtx_stack_c::YrotS(-shape_angle.y);
         mDoMtx_stack_c::multVec(&cStack_44, &cStack_44);

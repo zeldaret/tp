@@ -362,7 +362,7 @@ void daAlink_c::setGrabItemPos() {
                     if (grabLineCheck(&sp110, &sp104)) {
                         if (temp_r3->current.pos.abs(sp110) > mObjLinChk.GetCrossP()->abs(sp110)) {
                             temp_r3->speedF = 0.0f;
-                            temp_r3->current.pos = mObjLinChk.i_GetCross();
+                            temp_r3->current.pos = mObjLinChk.GetCross();
                             freeGrabItem();
                             return;
                         }
@@ -431,7 +431,7 @@ void daAlink_c::freeGrabItem() {
             cXyz sp14(current.pos.x, field_0x34e0.y, current.pos.z);
 
             if (grabLineCheck(&sp14, &temp_r3->current.pos)) {
-                temp_r3->current.pos = mObjLinChk.i_GetCross();
+                temp_r3->current.pos = mObjLinChk.GetCross();
 
                 cM3dGPla sp20;
                 dComIfG_Bgsp().GetTriPla(mObjLinChk, &sp20);
@@ -659,7 +659,7 @@ void daAlink_c::putObjLineCheck(dBgS_LinChk& param_0, cXyz* param_1, fopAc_ac_c*
         param_0.Set(&field_0x37c8, param_1, param_2);
 
         if (dComIfG_Bgsp().LineCross(&param_0) && dBgS_CheckBWallPoly(param_0)) {
-            cXyz sp8 = *param_1 - param_0.i_GetCross();
+            cXyz sp8 = *param_1 - param_0.GetCross();
             f32 temp_f31 = sp8.abs();
             f32 temp_f1 = sp8.absXZ();
 

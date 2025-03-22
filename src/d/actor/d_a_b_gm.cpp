@@ -319,7 +319,7 @@ static BOOL bg_check(b_gm_class* i_this) {
             i_this->field_0x5ce = cM_atan2s(sp14.x, sp14.z) + 0x8000;
         }
 
-        i_this->field_0x73c = line_chk.i_GetCross();
+        i_this->field_0x73c = line_chk.GetCross();
         return TRUE;
     }
 
@@ -809,7 +809,7 @@ static int foot_IK(b_gm_class* i_this, b_gm_foot* i_foot) {
     i_foot->field_0x1c = i_foot->field_0x10;
     line_chk.Set(&i_this->field_0x730, &i_foot->field_0x10, i_this);
     if (dComIfG_Bgsp().LineCross(&line_chk)) {
-        i_foot->field_0x1c = line_chk.i_GetCross();
+        i_foot->field_0x1c = line_chk.GetCross();
         f32 temp_f31 = (i_foot->field_0x1c - i_foot->field_0x10).abs();
 
         i_foot->field_0x0 += 10.0f + (10.0f + (temp_f31 * 4.0f));
@@ -1422,7 +1422,7 @@ static void demo_camera(b_gm_class* i_this) {
         i_this->field_0x1ce0 = 600.0f;
         i_this->field_0x1ce6 = cM_atan2s(-i_this->field_0x1cec.x, -i_this->field_0x1cec.z);
 
-        if (daPy_py_c::i_checkNowWolf()) {
+        if (daPy_py_c::checkNowWolf()) {
             daPy_getPlayerActorClass()->changeDemoMode(daPy_demo_c::DEMO_METAMORPHOSE_UNK2_e, 0, 0, 0);
             a_this->field_0x567 = 1;
         } else {
@@ -1561,7 +1561,7 @@ static void demo_camera(b_gm_class* i_this) {
             i_this->field_0x1ce0 = 600.0f;
             i_this->field_0x1ce6 = cM_atan2s(-i_this->field_0x1cec.x, -i_this->field_0x1cec.z);
 
-            if (daPy_py_c::i_checkNowWolf()) {
+            if (daPy_py_c::checkNowWolf()) {
                 daPy_getPlayerActorClass()->changeDemoMode(daPy_demo_c::DEMO_METAMORPHOSE_UNK2_e, 0, 0, 0);
                 a_this->field_0x567 = 1;
             } else {
@@ -1911,7 +1911,7 @@ static int daB_GM_Execute(b_gm_class* i_this) {
         line_chk.Set(&spC8, &spD4, i_this);
 
         if (dComIfG_Bgsp().LineCross(&line_chk)) {
-            spD4 = line_chk.i_GetCross();
+            spD4 = line_chk.GetCross();
             i_this->field_0x6d8 = spD4;
 
             i_this->mBeamSound.startLevelSound(Z2SE_EN_GO_BEAM, 0, -1);

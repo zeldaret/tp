@@ -260,7 +260,7 @@ static int water_check(npc_ne_class* i_this, f32 param_1) {
     vec.z = i_this->current.pos.z;
     lin_chk.Set(&i_this->current.pos, &vec, i_this);
     if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-        vec.y = lin_chk.i_GetCross().y - 10.0f;
+        vec.y = lin_chk.GetCross().y - 10.0f;
     }
     gnd_chk_spl.SetPos(&vec);
     i_this->mWaterY = dComIfG_Bgsp().GroundCross(&gnd_chk_spl);
@@ -294,13 +294,13 @@ static s16 climb_angle_get(npc_ne_class* i_this) {
     vec2 += i_this->current.pos;
     lin_chk.Set(&vec1, &vec2, i_this);
     if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-        i_this->mClimbPos = lin_chk.i_GetCross();
+        i_this->mClimbPos = lin_chk.GetCross();
         vec3.z = 20.0f;
         MtxPosition(&vec3, &vec2);
         vec2 += i_this->current.pos;
         lin_chk.Set(&vec1, &vec2, i_this);
         if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-            vec2 = lin_chk.i_GetCross();
+            vec2 = lin_chk.GetCross();
             vec3 = vec2 - i_this->mClimbPos;
             return -cM_atan2s(vec3.y, JMAFastSqrt(vec3.x * vec3.x + vec3.z * vec3.z));
         }
@@ -1794,8 +1794,8 @@ static s16 wall_angle_get(npc_ne_class* i_this) {
         vec3[i] += vec2;
         lin_chk.Set(&vec2, &vec3[i], _this);
         if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-            i_this->mClimbPos = lin_chk.i_GetCross();
-            vec3[i] = lin_chk.i_GetCross();
+            i_this->mClimbPos = lin_chk.GetCross();
+            vec3[i] = lin_chk.GetCross();
         } else {
             return 1;
         }
@@ -1830,7 +1830,7 @@ static void search_ground_1(npc_ne_class* i_this) {
         vec2 += vec1;
         lin_chk.Set(&vec1, &vec2, _this);
         if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-            vec2 = lin_chk.i_GetCross();
+            vec2 = lin_chk.GetCross();
             vec3.set(0.0f, var_y, var_z);
             MtxPosition(&vec3, &vec1);
             vec1 += vec2;
@@ -1838,8 +1838,8 @@ static void search_ground_1(npc_ne_class* i_this) {
             vec2.y -= var_y + 20.0f;
             lin_chk.Set(&vec1, &vec2, _this);
             if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-                pos[i] = lin_chk.i_GetCross();
-                vec1 = lin_chk.i_GetCross();
+                pos[i] = lin_chk.GetCross();
+                vec1 = lin_chk.GetCross();
                 vec1.y += 5.0f;
                 vec3.set(0.0f, 0.0f, 200.0f);
                 MtxPosition(&vec3, &vec2);
@@ -1890,7 +1890,7 @@ static BOOL search_ground_2(npc_ne_class* i_this, s16 i_wallAngle) {
     vec2.y -= 200.0f;
     lin_chk.Set(&vec1, &vec2, _this);
     if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-        i_this->mTargetPos = lin_chk.i_GetCross();
+        i_this->mTargetPos = lin_chk.GetCross();
         return true;
     } else {
         return false;
@@ -2251,7 +2251,7 @@ static BOOL npc_ne_carry(npc_ne_class* i_this) {
     pos.y += 2.0f;
     lin_chk.Set(&player->eyePos, &pos, _this);
     if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-        _this->current.pos = lin_chk.i_GetCross();
+        _this->current.pos = lin_chk.GetCross();
     }
 
     return ret;
@@ -2433,7 +2433,7 @@ static void action(npc_ne_class* i_this) {
         }
 
         if (i_this->mResName != "Npc_net") {
-            if (i_this->mMessageState == 1 && daPy_py_c::i_checkNowWolf()
+            if (i_this->mMessageState == 1 && daPy_py_c::checkNowWolf()
                                          && i_this->mDistToTarget < 300.0f) {
                 i_this->mAction = npc_ne_class::ACT_MESSAGE;
                 i_this->mMode = 0;
@@ -2644,7 +2644,7 @@ static void action(npc_ne_class* i_this) {
                 vec1 = i_this->mLookTarget - i_this->current.pos;
             } else {
                 vec1 = player->eyePos - i_this->current.pos;
-                if (!daPy_py_c::i_checkNowWolf()) {
+                if (!daPy_py_c::checkNowWolf()) {
                     vec1.y += i_this->mBaseScale.z * -40.0f;
                 }
             }
@@ -2911,9 +2911,9 @@ static void demo_camera(npc_ne_class* i_this) {
                     vec.z = 120.0f;
                     MtxPosition(&vec, &i_this->mCameraEye2);
                     i_this->mCameraEye2 += player->current.pos;
-                    player->i_changeDemoParam2(2);
+                    player->changeDemoParam2(2);
                 } else if (i_this->mDemoCounter == 120) {
-                    player->i_changeDemoParam2(0);
+                    player->changeDemoParam2(0);
                 }
             }
         }
@@ -3004,7 +3004,7 @@ static int message(npc_ne_class* i_this) {
             i_this->mIsTalking = 1;
         }
 
-        if (i_this->mMessageState == 2 && i_this->mFlowID != -1 && daPy_py_c::i_checkNowWolf() &&
+        if (i_this->mMessageState == 2 && i_this->mFlowID != -1 && daPy_py_c::checkNowWolf() &&
                                 !fopAcM_otherBgCheck(daPy_getLinkPlayerActorClass(), i_this)) {
             fopAcM_OnStatus(i_this, 0);
             cLib_onBit<u32>(i_this->attention_info.flags, 0xa);

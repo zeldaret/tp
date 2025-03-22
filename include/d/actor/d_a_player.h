@@ -690,9 +690,9 @@ public:
     static void setPlayerDamage(int, int);
     static void setMidnaMotionNum(int);
     static void setMidnaFaceNum(int);
-    static BOOL checkShieldGet();
-    static BOOL checkSwordGet();
-    void changeDemoParam2(s16);
+    static BOOL checkShieldGet() { return dComIfGs_getSelectEquipShield() != fpcNm_ITEM_NONE; }
+    inline static BOOL checkSwordGet();
+
     cXyz getHeadTopPos() const { return mHeadTopPos; }
     BOOL checkThrowDamage() const { return checkNoResetFlg1(FLG1_THROW_DAMAGE); }
     BOOL checkGoronSideMove() const { return mSpecialMode == 0x2B; }
@@ -1060,7 +1060,7 @@ public:
         mDemo.setParam1(i_param1);
     }
 
-    void i_changeDemoParam2(s16 i_param2) {
+    void changeDemoParam2(s16 i_param2) {
         mDemo.setParam2(i_param2);
     }
 
@@ -1079,19 +1079,16 @@ public:
 
     static BOOL checkNormalSwordEquip() { return dComIfGs_getSelectEquipSword() == fpcNm_ITEM_SWORD; }
 
-    inline static u32 i_getLastSceneMode();
     inline static u32 getLastSceneMode();
     inline static bool checkWoodSwordEquip() {
         return dComIfGs_getSelectEquipSword() == fpcNm_ITEM_WOOD_STICK;
     }
     inline static bool checkLightMasterSwordEquip();
-    inline BOOL i_checkSwordGet();
-    inline bool i_checkShieldGet() const;
-    inline static BOOL checkNowWolf();
-    inline static u32 i_checkNowWolf() { return ((daPy_py_c*)dComIfGp_getLinkPlayer())->checkWolf(); }
+
+    inline static u32 checkNowWolf() { return ((daPy_py_c*)dComIfGp_getLinkPlayer())->checkWolf(); }
     inline bool checkZoraWearFlg() const;
     inline bool checkMagicArmorWearFlg() const;
-    inline static BOOL i_checkFirstMidnaDemo() { return dComIfGs_isEventBit(0xc10); }
+    inline static BOOL checkFirstMidnaDemo() { return dComIfGs_isEventBit(0xc10); }
     static int checkNowWolfPowerUp() { return checkNowWolfEyeUp(); }
 
     static daMidna_c* getMidnaActor() { return m_midnaActor; }

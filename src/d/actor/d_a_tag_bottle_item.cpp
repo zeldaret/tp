@@ -130,7 +130,7 @@ s32 daTag_BottleItem_c::chkEvent() {
 s32 daTag_BottleItem_c::orderEvent() {
     makeSoup();
 
-    if (!daPy_py_c::i_checkNowWolf() && mBottleItemType != fpcNm_ITEM_EMPTY_BOTTLE) {
+    if (!daPy_py_c::checkNowWolf() && mBottleItemType != fpcNm_ITEM_EMPTY_BOTTLE) {
         attention_info.flags = 0x20000008;
     } else {
         attention_info.flags = 0;

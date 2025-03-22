@@ -307,7 +307,7 @@ void daKnob20_c::setEventPrm() {
             field_0x5b9 = 5;
         }
     }
-    if (!daPy_py_c::i_checkNowWolf()) {
+    if (!daPy_py_c::checkNowWolf()) {
         if (!checkArea(80.0f, 110.0f, 250.0f)) {
             offFlag(4);
         } else {

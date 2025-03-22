@@ -544,7 +544,7 @@ void daTagTWGate_c::executeDemoOrdin3() {
                 l_zevParamTbl[mType].mRoomNo,
                 l_zevParamTbl[mType].mLayer);
         }
-        int dVar2 = daPy_py_c::i_checkNowWolf() ? 0x2e : 0x4a;
+        int dVar2 = daPy_py_c::checkNowWolf() ? 0x2e : 0x4a;
         if (field_0x5e1++ == dVar2) {
             daPy_py_c* player = daPy_getPlayerActorClass();
             cXyz cStack_30;
@@ -736,7 +736,7 @@ void daTagTWGate_c::executeDemoRanail3() {
                 l_zevParamTbl[mType].mRoomNo,
                 l_zevParamTbl[mType].mLayer);
         }
-        int dVar2 = daPy_py_c::i_checkNowWolf() ? 0x2e : 0x4a;
+        int dVar2 = daPy_py_c::checkNowWolf() ? 0x2e : 0x4a;
         if (field_0x5e1++ == dVar2) {
             daPy_py_c* player = daPy_getPlayerActorClass();
             cXyz cStack_30;

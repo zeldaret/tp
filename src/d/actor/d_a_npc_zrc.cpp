@@ -436,7 +436,7 @@ void daNpc_zrC_c::setParam() {
     u32 attn_flags = 10;
     selectAction();
 
-    if (!mTwilight && daPy_py_c::i_checkNowWolf()) {
+    if (!mTwilight && daPy_py_c::checkNowWolf()) {
         attn_flags = 0;
     }
 
@@ -1422,7 +1422,7 @@ BOOL daNpc_zrC_c::waitSick(void* param_0) {
         // fallthrough
 
     case 2:
-        if (daPy_py_c::i_checkNowWolf() && daPy_py_c::checkNowWolfEyeUp()) {
+        if (daPy_py_c::checkNowWolf() && daPy_py_c::checkNowWolfEyeUp()) {
             mCreatureSound.startCreatureVoiceLevel(Z2SE_ZRC_V_SLEEPING, -1);
         }
         break;
@@ -1454,7 +1454,7 @@ BOOL daNpc_zrC_c::waitPray(void* param_0) {
         // fallthrough
 
     case 2:
-        if (!daNpcF_chkEvtBit(0x1df) && field_0xe30 && !daPy_py_c::i_checkNowWolf()
+        if (!daNpcF_chkEvtBit(0x1df) && field_0xe30 && !daPy_py_c::checkNowWolf()
             && player_dist <= daNpc_zrC_Param_c::m.field_0x6c
             && !daPy_getPlayerActorClass()->checkPlayerFly()
             && daPy_getPlayerActorClass()->checkSwimUp() && !dComIfGp_checkPlayerStatus0(0, 0x100))

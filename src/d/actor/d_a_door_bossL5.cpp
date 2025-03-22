@@ -412,7 +412,7 @@ int daBdoorL5_c::checkFront() {
 
 /* 80671DE4-80671E70 001224 008C+00 1/1 0/0 0/0 .text            checkOpen__11daBdoorL5_cFv */
 int daBdoorL5_c::checkOpen() {
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         return 0;
     }
 

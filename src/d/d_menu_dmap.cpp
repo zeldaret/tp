@@ -1237,7 +1237,7 @@ void dMenu_Dmap_c::screenInit() {
             f32 dVar17 = mpDrawBg[0]->mFloorScreen->search('rink')->getBounds().i.y;
             dVar16 = mpDrawBg[0]->mFloorScreen->search('rink')->getBounds().i.x;
             mpDrawBg[0]->mFloorScreen->search('wolf')->move(dVar16, dVar17);
-            if (daPy_py_c::i_checkNowWolf()) {
+            if (daPy_py_c::checkNowWolf()) {
                 mpDrawBg[0]->mFloorScreen->search('wolf')->show();
                 mpDrawBg[0]->mFloorScreen->search('rink')->hide();
             } else {
