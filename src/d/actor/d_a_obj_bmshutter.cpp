@@ -188,7 +188,7 @@ void daObjBmSh_c::actionWait() {
     if (checkSw()) {
         setAction(daObjBmSh_Action_ORDER_EVENT_e);
         fopAcM_orderOtherEventId(this, mEventIdx, mEvent, 0xffff, 0, 1);
-        eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+        eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
     }
 }
 
@@ -199,7 +199,7 @@ void daObjBmSh_c::actionOrderEvent() {
         setAction(daObjBmSh_Action_EVENT_e);
     } else {
         fopAcM_orderOtherEventId(this, mEventIdx, mEvent, 0xffff, 0, 1);
-        eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+        eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
     }
 }
 
