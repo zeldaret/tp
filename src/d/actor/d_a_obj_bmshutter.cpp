@@ -17,7 +17,7 @@ UNK_REL_DATA;
 static const char* l_arcName = "K_saku00";
 
 static const f32 l_cull_box[6] = {-200.f, -100.f, -200.f, 200.f, 100.f, 200.f};
-static const f32 l_check_area[12] = {
+static const Vec l_check_area[4] = {
     -250.0, 0.0, -100.0,  // min
     200.0,  0.0, -100.0,  // unknown
     200.0,  0.0, 100.0,   // max
@@ -118,8 +118,8 @@ int daObjBmSh_c::create() {
 int daObjBmSh_c::Execute(f32 (**param_0)[3][4]) {
     daPy_py_c* player = dComIfGp_getLinkPlayer();
     if (player->checkFrontRollCrash()) {
-        cXyz min = *(Vec*)l_check_area;
-        cXyz max = *(Vec*)&l_check_area[6];
+        cXyz min = l_check_area[0];
+        cXyz max = l_check_area[2];
 
         if (dLib_checkActorInRectangle(player, this, &min, &max)) {
             mShakeIntensity = 120.00001f;
