@@ -2284,14 +2284,14 @@ static int daB_BQ_Execute(b_bq_class* i_this) {
         sp50 = a_this->eyePos;
         i_this->mCcCoreSph.SetC(sp50 + sp68);
 
-        MTXCopy(model->getAnmMtx(YREG_S(2) + JNT_CORE_3), *calc_mtx);
+        MTXCopy(model->getAnmMtx(YREG_S(2) + (int)JNT_CORE_3), *calc_mtx);
         sp44.set(YREG_F(3) + -250.0f, YREG_F(4), YREG_F(5));
         MtxPosition(&sp44, &sp50);
 
         i_this->mCcSph.SetC(sp50 + sp68);
         i_this->mCcSph.SetR(YREG_F(14) + 350.0f);
     } else {
-        MTXCopy(model->getAnmMtx(YREG_S(1) + JNT_CORE_3), *calc_mtx);
+        MTXCopy(model->getAnmMtx(YREG_S(1) + (int)JNT_CORE_3), *calc_mtx);
         sp44.set((XREG_F(3) + 300.0f) - 70.0f, XREG_F(4) + 50.0f, XREG_F(5));
         MtxPosition(&sp44, &a_this->eyePos);
         a_this->attention_info.position = a_this->eyePos;
@@ -2523,7 +2523,7 @@ static int daB_BQ_Create(fopAc_ac_c* i_this) {
 
         dComIfGs_offSwitch((fopAcM_GetParam(i_this) >> 0x10) & 0xFF, fopAcM_GetRoomNo(i_this));
 
-        OS_REPORT("B_BQ PARAM %x\n" fopAcM_GetParam(i_this));
+        OS_REPORT("B_BQ PARAM %x\n", fopAcM_GetParam(i_this));
         OS_REPORT("B_BQ//////////////B_BQ SET 1 !!\n");
 
         if (!fopAcM_entrySolidHeap(i_this, useHeapInit, 0x6FA0)) {

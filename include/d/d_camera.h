@@ -410,6 +410,8 @@ public:
     /* 8018295C */ void footHeightOf(fopAc_ac_c*);
     /* 801829AC */ cSAngle Bank() { return mBank + mShake.field_0x40; }
 
+    void debugDraw();
+
     bool Active() { return field_0x24 == 0; }
     f32 TrimHeight() { return mTrimHeight; }
     int Type() { return mCurType; }

@@ -763,6 +763,8 @@ inline void fopAcM_setWarningMessage_f(const fopAc_ac_c* i_actor, const char* i_
 #define fopAcM_setWarningMessage(...)
 #endif
 
+void fopAcM_getNameString(fopAc_ac_c*, char*);
+
 class fopAcM_lc_c {
 public:
     fopAcM_lc_c() { mLineCheck.ClrSttsRoofOff(); }

@@ -403,7 +403,7 @@ int daB_DR_c::draw() {
         dDbVw_drawLineXlu(home.pos, sp24, color, TRUE, 12);
     }
 
-    dComIfG_Bgsp().DrawWall(&mAcch);
+    mAcch.DrawWall(dComIfG_Bgsp());
 #endif
 
     J3DModel* model_p = mpModelMorf->getModel();

@@ -16,6 +16,10 @@
 #include "d/actor/d_a_e_ym.h"
 #include "d/actor/d_a_e_ymb.h"
 
+#ifdef DEBUG
+daObjDrop_HIO_c l_HIO;
+#endif
+
 /* 80BDFCD8-80BDFD8C 000078 00B4+00 2/2 0/0 0/0 .text            searchParentSub__FPvPv */
 static void* searchParentSub(void* pproc, void* pdata) {
     daObjDrop_c* pdrop = (daObjDrop_c*)pdata;

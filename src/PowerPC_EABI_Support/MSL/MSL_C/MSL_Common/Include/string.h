@@ -23,7 +23,7 @@ char* strcpy(char* dst, const char* src);
 size_t strlen(const char* str);
 
 #ifdef __cplusplus
-}
+};
 #endif
 
 #endif /* _MSL_COMMON_STRING_H */

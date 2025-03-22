@@ -1,6 +1,7 @@
 #include "JSystem/JHostIO/JHIMccBuf.h"
 #include "JSystem/JHostIO/JHIRMcc.h"
 #include <dolphin.h>
+#include "global.h"
 
 u32 gsEnableHostio;
 u32 gsEnableInterface;

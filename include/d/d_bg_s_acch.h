@@ -116,6 +116,8 @@ public:
 
     /* 80075F94 */ virtual ~dBgS_Acch();
 
+    void DrawWall(dBgS&);
+
     cXyz* GetPos() { return pm_pos; }
     cXyz* GetOldPos() { return pm_old_pos; }
     f32 GetGroundH() const { return m_ground_h; }

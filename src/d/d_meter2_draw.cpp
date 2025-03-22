@@ -18,6 +18,7 @@
 #include "d/d_msg_class.h"
 #include "d/d_msg_object.h"
 #include "d/d_pane_class.h"
+#include "cstring.h"
 
 /* 8020FAB4-802102F8 20A3F4 0844+00 0/0 1/1 0/0 .text            __ct__13dMeter2Draw_cFP10JKRExpHeap
  */
@@ -2281,7 +2282,7 @@ void dMeter2Draw_c::drawButtonA(u8 i_action, f32 i_posX, f32 i_posY, f32 i_textP
         mpTextA->hide();
     }
 
-    JUT_ASSERT(0, std::strlen(mp_string) < (64));
+    JUT_ASSERT(0, std::strlen (mp_string) < (64));
 
     if (daPy_getPlayerActorClass()->getSumouMode()) {
         mpTextA->show();
@@ -2349,7 +2350,7 @@ void dMeter2Draw_c::drawButtonB(u8 i_action, bool param_1, f32 i_posX, f32 i_pos
         }
     }
 
-    JUT_ASSERT(0, std::strlen(mp_string) < (64));
+    JUT_ASSERT(0, std::strlen (mp_string) < (64));
 
     for (int i = 0; i < 5; i++) {
         strcpy(static_cast<J2DTextBox*>(mpBText[i]->getPanePtr())->getStringPtr(), mp_string);
@@ -2435,7 +2436,7 @@ void dMeter2Draw_c::drawButtonZ(u8 i_action) {
         mpButtonMidona->show();
     }
 
-    JUT_ASSERT(0, std::strlen(mp_string) < (64));
+    JUT_ASSERT(0, std::strlen (mp_string) < (64));
 
     for (int i = 0; i < 5; i++) {
         strcpy(static_cast<J2DTextBox*>(mpXYText[i][2]->getPanePtr())->getStringPtr(), mp_string);
@@ -2540,7 +2541,7 @@ void dMeter2Draw_c::drawButtonXY(int i_no, u8 i_itemNo, u8 i_action, bool param_
             mpTextXY[i_no]->hide();
         }
 
-        JUT_ASSERT(0, std::strlen(mp_string) < (64));
+        JUT_ASSERT(0, std::strlen (mp_string) < (64));
 
         for (int i = 0; i < 5; i++) {
             strcpy(static_cast<J2DTextBox*>(mpXYText[i][i_no]->getPanePtr())->getStringPtr(),

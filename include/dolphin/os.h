@@ -209,7 +209,7 @@ __declspec(weak) void OSVReport(const char* format, va_list list);
 #define OS_REPORT(...) OSReport(__VA_ARGS__)
 #define OS_WARNING(...) OSReport_Warning(__VA_ARGS__)
 #define OS_REPORT_ERROR(...) OSReport_Error(__VA_ARGS__)
-#define OS_PANIC(msg) OSPanic(__FILE__, __LINE__, msg)
+#define OS_PANIC(line, msg) OSPanic(__FILE__, line, msg)
 #else
 #define OS_REPORT(...)
 #define OS_WARNING(...)
