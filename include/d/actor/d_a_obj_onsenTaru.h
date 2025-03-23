@@ -82,6 +82,8 @@ public:
     /* 80CA85CC */ daOnsTaru_HIO_c();
     /* 80CA9A78 */ virtual ~daOnsTaru_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x04 */ s16 mCoolTime;
     /* 0x06 */ u8 mVibration;
     /* 0x08 */ f32 mSmokeScale;

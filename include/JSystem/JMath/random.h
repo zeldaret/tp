@@ -20,7 +20,7 @@ struct TRandom_fast_ {
 
     u32 get_bit32(void) { return this->get(); }
 
-    s8 get_uint8(u8 param_0) {
+    u8 get_uint8(u8 param_0) {
         return get_ufloat_1() * param_0;
     }
 

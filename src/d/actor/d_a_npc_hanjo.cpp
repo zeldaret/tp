@@ -773,8 +773,9 @@ int daNpc_Hanjo_c::create() {
     int rv = loadRes(l_loadResPtrnList[mType], (const char**)l_resNameList);
     if (rv == cPhs_COMPLEATE_e) {
         OS_REPORT("\t(%s:%d) flowNo:%d, PathID:%02x<%08x> ", fopAcM_getProcNameString(this), (uint)mType,
-                              field_0xa7c, getPathID(), fopAcM_GetParam(this));
+                              mFlowNodeNo, getPathID(), fopAcM_GetParam(this));
         if (isDelete()) {
+            OS_REPORT("===>isDelete:TRUE\n");
             return cPhs_ERROR_e;
         }
         OS_REPORT("\n");

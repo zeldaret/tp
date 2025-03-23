@@ -10,9 +10,37 @@
 #include "SSystem/SComponent/c_m3d.h"
 #include "SSystem/SComponent/c_math.h"
 
-//
-// Declarations:
-//
+/* ############################################################################################## */
+/* 803DD470-803DD4A0 00A190 0030+00 12/12 142/142 1820/1820 .bss             now__14mDoMtx_stack_c
+ */
+Mtx mDoMtx_stack_c::now;
+
+/* 803DD4A0-803DD7A0 00A1C0 0300+00 2/2 0/0 0/0 .bss             buffer__14mDoMtx_stack_c */
+Mtx mDoMtx_stack_c::buffer[16];
+
+/* 804505A8-804505AC -00001 0004+00 3/3 0/0 0/0 .sdata           next__14mDoMtx_stack_c */
+Mtx* mDoMtx_stack_c::next = mDoMtx_stack_c::buffer;
+
+/* 804505AC-804505B0 -00001 0004+00 2/2 0/0 0/0 .sdata           end__14mDoMtx_stack_c */
+Mtx* mDoMtx_stack_c::end = mDoMtx_stack_c::buffer + 16;
+
+/* 80450C18-80450C20 000118 0001+07 1/1 0/0 0/0 .sbss            mDoMtx_stack */
+static mDoMtx_stack_c mDoMtx_stack;
+
+/* 803DD7B8-803DD8D8 00A4D8 011C+04 0/1 0/0 0/0 .bss             mDoMtx_quatStack */
+static mDoMtx_quatStack_c mDoMtx_quatStack;
+
+/* ############################################################################################## */
+/* 803A2FD8-803A3020 0000F8 0030+18 0/0 23/23 4/4 .data            g_mDoMtx_identity */
+extern Mtx g_mDoMtx_identity = {
+    {1.0f, 0.0f, 0.0f, 0.0f},
+    {0.0f, 1.0f, 0.0f, 0.0f},
+    {0.0f, 0.0f, 1.0f, 0.0f},
+};
+
+static void dummy() {
+    OSReport("mDoMtx_Dump %s\n");
+}
 
 /* 8000C0CC-8000C164 006A0C 0098+00 1/1 0/0 0/0 .text            mDoMtx_XYZrotS__FPA4_fsss */
 void mDoMtx_XYZrotS(Mtx mtx, s16 x, s16 y, s16 z) {
@@ -117,7 +145,7 @@ void mDoMtx_XrotS(Mtx mtx, s16 x) {
 void mDoMtx_XrotM(Mtx mtx, s16 x) {
     Mtx tmp;
     mDoMtx_XrotS(tmp, x);
-    MTXConcat(mtx, tmp, mtx);
+    mDoMtx_concat(mtx, tmp, mtx);
 }
 
 /* 8000C3DC-8000C434 006D1C 0058+00 5/5 24/24 809/809 .text            mDoMtx_YrotS__FPA4_fs */
@@ -145,7 +173,7 @@ void mDoMtx_YrotS(Mtx mtx, s16 y) {
 void mDoMtx_YrotM(Mtx mtx, s16 y) {
     Mtx tmp;
     mDoMtx_YrotS(tmp, y);
-    MTXConcat(mtx, tmp, mtx);
+    mDoMtx_concat(mtx, tmp, mtx);
 }
 
 /* 8000C474-8000C4CC 006DB4 0058+00 7/7 1/1 6/6 .text            mDoMtx_ZrotS__FPA4_fs */
@@ -173,7 +201,7 @@ void mDoMtx_ZrotS(Mtx mtx, s16 z) {
 void mDoMtx_ZrotM(Mtx mtx, s16 z) {
     Mtx tmp;
     mDoMtx_ZrotS(tmp, z);
-    MTXConcat(mtx, tmp, mtx);
+    mDoMtx_concat(mtx, tmp, mtx);
 }
 
 /* 8000C50C-8000C710 006E4C 0204+00 0/0 3/3 0/0 .text            mDoMtx_lookAt__FPA4_fPC3VecPC3Vecs
@@ -182,8 +210,9 @@ void mDoMtx_lookAt(Mtx mtx, Vec const* param_1, Vec const* param_2, s16 param_3)
     cXyz stack_48(*(cXyz*)param_1);
     cXyz local_54;
     cXyz local_60;
-    cXyz local_6c = stack_48 - cXyz(*(cXyz*)param_2);
+    cXyz local_6c;
 
+    local_6c = stack_48 - cXyz(*(cXyz*)param_2);
     local_6c.normalize();
     local_54.set(0.0f, 1.0f, 0.0f);
     local_54 = local_54.outprod(local_6c);
@@ -220,22 +249,25 @@ void mDoMtx_lookAt(Mtx mtx, Vec const* param_1, Vec const* param_2, s16 param_3)
 /* 8000C710-8000C8D0 007050 01C0+00 0/0 10/10 1/1 .text mDoMtx_lookAt__FPA4_fPC3VecPC3VecPC3Vecs
  */
 void mDoMtx_lookAt(Mtx mtx, Vec const* i_eye, Vec const* i_center, Vec const* i_up, s16 i_bank) {
-    cXyz local_4c(*(cXyz*)i_eye);
-    cXyz local_58(*(cXyz*)i_center);
-    cXyz local_64(*(cXyz*)i_up);
+    cXyz local_4c(*i_eye);
+    cXyz local_58(*i_center);
+    cXyz local_64(*i_up);
     cXyz local_70 = local_4c - local_58;
     if (!local_70.normalizeRS()) {
+        OS_REPORT("%s: lookat: bad position!\n", __FILE__);
+        OS_REPORT("%s:         ctr %f %f %f+1.0\n", __FILE__, local_58.x, local_58.y, local_58.z);
+        OS_REPORT("%s:         eye %f %f %f\n", __FILE__, local_4c.x, local_4c.y, local_4c.z);
         local_58.z += 1.0f;
     }
     if (cM3d_IsZero(local_64.x) && cM3d_IsZero(local_64.y) && cM3d_IsZero(local_64.z)) {
+        OS_REPORT("%s: lookat: Zero Vector @ UP!\n", __FILE__);
         local_64.y = 1.0f;
     }
     C_MTXLookAt(mtx, &local_4c, &local_64, &local_58);
     Mtx local_40;
     mDoMtx_ZrotS(local_40, i_bank);
     mDoMtx_concat(local_40, mtx, mtx);
-    JGeometry::TVec3<f32> local_7c;
-    local_7c.set(0.0f, mtx[1][1], mtx[2][1]);
+    JGeometry::TVec3<f32> local_7c(0.0f, mtx[1][1], mtx[2][1]);
     if (local_7c.isZero()) {
         local_58.y += 1.0f;
         C_MTXLookAt(mtx, &local_4c, &local_64, &local_58);
@@ -317,20 +349,6 @@ void mDoMtx_MtxToRot(CMtxP m, csXyz* o_rot) {
         o_rot->z = cM_atan2s(m[1][0], m[1][1]);
     }
 }
-
-/* ############################################################################################## */
-/* 803DD470-803DD4A0 00A190 0030+00 12/12 142/142 1820/1820 .bss             now__14mDoMtx_stack_c
- */
-Mtx mDoMtx_stack_c::now;
-
-/* 803DD4A0-803DD7A0 00A1C0 0300+00 2/2 0/0 0/0 .bss             buffer__14mDoMtx_stack_c */
-Mtx mDoMtx_stack_c::buffer[16];
-
-/* 804505A8-804505AC -00001 0004+00 3/3 0/0 0/0 .sdata           next__14mDoMtx_stack_c */
-Mtx* mDoMtx_stack_c::next = mDoMtx_stack_c::buffer;
-
-/* 804505AC-804505B0 -00001 0004+00 2/2 0/0 0/0 .sdata           end__14mDoMtx_stack_c */
-Mtx* mDoMtx_stack_c::end = mDoMtx_stack_c::buffer + 16;
 
 /* 8000CCC8-8000CD14 007608 004C+00 0/0 0/0 24/24 .text            push__14mDoMtx_stack_cFv */
 bool mDoMtx_stack_c::push() {
@@ -420,18 +438,3 @@ void mDoMtx_stack_c::quatM(Quaternion const* param_0) {
     mDoMtx_quat(tmp, param_0);
     mDoMtx_concat(now, tmp, now);
 }
-
-/* 80450C18-80450C20 000118 0001+07 1/1 0/0 0/0 .sbss            mDoMtx_stack */
-static mDoMtx_stack_c mDoMtx_stack;
-
-/* 803DD7B8-803DD8D8 00A4D8 011C+04 0/1 0/0 0/0 .bss             mDoMtx_quatStack */
-static mDoMtx_quatStack_c mDoMtx_quatStack;
-
-
-/* ############################################################################################## */
-/* 803A2FD8-803A3020 0000F8 0030+18 0/0 23/23 4/4 .data            g_mDoMtx_identity */
-extern Mtx g_mDoMtx_identity = {
-    {1.0f, 0.0f, 0.0f, 0.0f},
-    {0.0f, 1.0f, 0.0f, 0.0f},
-    {0.0f, 0.0f, 1.0f, 0.0f},
-};

@@ -35,11 +35,14 @@ struct JORServer;
 
 class JOREventListener {
 public:
+#ifdef DEBUG
     virtual void listenPropertyEvent(const JORPropertyEvent*) = 0;
+#endif
 };
 
 class JORReflexible : public JOREventListener {
 public:
+#ifdef DEBUG
     JORReflexible();
     static JORServer* getJORServer();
     
@@ -48,6 +51,7 @@ public:
     virtual void genObjectInfo(const JORGenEvent*);
     virtual void genMessage(JORMContext*) = 0;
     virtual void listenNodeEvent(const JORNodeEvent*);
+#endif
 };
 
 #endif /* JORREFLEXIBLE_H */

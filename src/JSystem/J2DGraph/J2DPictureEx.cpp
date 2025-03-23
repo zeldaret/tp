@@ -631,12 +631,12 @@ bool J2DPictureEx::isSetBlackWhite(JUtility::TColor param_0, JUtility::TColor pa
 }
 
 /* 803068F8-80306958 301238 0060+00 1/0 0/0 0/0 .text            getBlack__12J2DPictureExCFv */
-void J2DPictureEx::getBlack() const {
+JUtility::TColor J2DPictureEx::getBlack() const {
     // NONMATCHING
 }
 
 /* 80306958-803069B8 301298 0060+00 1/0 0/0 0/0 .text            getWhite__12J2DPictureExCFv */
-void J2DPictureEx::getWhite() const {
+JUtility::TColor J2DPictureEx::getWhite() const {
     // NONMATCHING
 }
 
@@ -657,7 +657,7 @@ void J2DPictureEx::rewriteAlpha() {
 
 /* 80306A24-80306AC4 301364 00A0+00 1/0 0/0 0/0 .text            isUsed__12J2DPictureExFPC7ResTIMG
  */
-void J2DPictureEx::isUsed(ResTIMG const* param_0) {
+bool J2DPictureEx::isUsed(ResTIMG const* param_0) {
     // NONMATCHING
 }
 
@@ -699,7 +699,7 @@ void J2DPictureEx::setAnimation(J2DAnmVtxColor* param_0) {
 
 /* 80306C70-80306DC8 3015B0 0158+00 1/0 0/0 0/0 .text
  * animationPane__12J2DPictureExFPC15J2DAnmTransform            */
-void J2DPictureEx::animationPane(J2DAnmTransform const* param_0) {
+const J2DAnmTransform* J2DPictureEx::animationPane(J2DAnmTransform const* param_0) {
     // NONMATCHING
 }
 
@@ -779,7 +779,7 @@ void J2DPictureEx::setCullBack(bool param_0) {
 
 /* 803071A4-803071C4 301AE4 0020+00 1/0 0/0 0/0 .text            isUsed__12J2DPictureExFPC7ResFONT
  */
-void J2DPictureEx::isUsed(ResFONT const* param_0) {
+bool J2DPictureEx::isUsed(ResFONT const* param_0) {
     // NONMATCHING
 }
 

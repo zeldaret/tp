@@ -238,6 +238,11 @@ inline bool JKRRemoveResource(void* resource, JKRFileLoader* fileLoader) {
     return JKRFileLoader::removeResource(resource, fileLoader);
 }
 
+inline JKRArchive* JKRMountArchive(void* ptr, JKRHeap* heap,
+                                   JKRArchive::EMountDirection mountDirection) {
+    return JKRArchive::mount(ptr, heap, mountDirection);
+}
+
 inline void JKRUnmountArchive(JKRArchive* arc) {
     arc->unmount();
 }

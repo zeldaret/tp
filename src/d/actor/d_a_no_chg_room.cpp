@@ -31,7 +31,7 @@ static bool isLoadRoom(int i_roomNo) {
             if (dComIfGp_roomControl_checkStatusFlag(load_room_index, 9) == (u32)TRUE) {
                 room_of_scene_class* roomScene = (room_of_scene_class*)fopScnM_SearchByID(
                     dStage_roomControl_c::getStatusProcID(load_room_index));
-                JUT_ASSERT(roomScene != 0);
+                JUT_ASSERT(0, roomScene != 0);
 
                 if (roomScene->field_0x1d4 >= 0 || !fpcNd_IsDeleteTiming(&roomScene->base)) {
                     // "Room <%d> objects loading!\n"
@@ -105,10 +105,10 @@ int daNocrm_c::getRoomNo(int param_0) {
         mDoMtx_multVec(mMtx, &offset, &check_pos);
 
         bool groundHit = fopAcM_gc_c::gndCheck(&check_pos);
-        JUT_ASSERT(groundHit);
+        JUT_ASSERT(0, groundHit);
 
         int roomNo = fopAcM_gc_c::getRoomId();
-        JUT_ASSERT(0 <= roomNo && roomNo < 64);
+        JUT_ASSERT(0, 0 <= roomNo && roomNo < 64);
 
         mRoomNo[param_0] = roomNo;
     }

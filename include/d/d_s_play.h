@@ -28,6 +28,8 @@ public:
 class dScnPly_preLoad_HIO_c : public mDoHIO_entry_c {
 public:
     /* 8025ADC0 */ virtual ~dScnPly_preLoad_HIO_c() {}
+
+    void genMessage(JORMContext*);
 };
 
 class dScnPly_env_otherHIO_c {

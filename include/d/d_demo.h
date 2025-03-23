@@ -85,11 +85,11 @@ public:
     /* 80038098 */ virtual ~dDemo_actor_c();
     /* 800387EC */ virtual void JSGSetData(u32, void const*, u32);
     /* 8003A05C */ virtual s32 JSGFindNodeID(char const* param_0) const {
-        JUT_ASSERT(mModel != 0);
+        JUT_ASSERT(0, mModel != 0);
         return mModel->getModelData()->getJointName()->getIndex(param_0);
     }
     /* 8003A088 */ virtual bool JSGGetNodeTransformation(u32 param_0, Mtx param_1) const {
-        JUT_ASSERT(mModel != 0);
+        JUT_ASSERT(0, mModel != 0);
         cMtx_copy(mModel->getAnmMtx((u16)param_0), param_1);
         return true;
     }
@@ -365,14 +365,16 @@ public:
     static void offStatus(u32 status) { m_status &= ~status; }
     static void setBranchData(const u8* p_data) { m_branchData = p_data; }
     static s16 getBranchId() { return m_branchId; }
+    static s16 getBranchNum() { return m_branchNum; }
     static jmessage_tControl* getMesgControl() { return m_mesgControl; }
 
     static dDemo_camera_c* getCamera() {
-        JUT_ASSERT(m_object != 0);
+        JUT_ASSERT(0, m_object != 0);
         return m_object->getActiveCamera();
     }
 
     static s16 m_branchId;
+    static s16 m_branchNum;
     static dDemo_system_c* m_system;
     static JStudio::TControl* m_control;
     static JStudio_JStage::TCreateObject* m_stage;

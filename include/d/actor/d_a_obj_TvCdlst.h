@@ -2,7 +2,7 @@
 #define D_A_OBJ_TVCDLST_H
 
 #include "f_op/f_op_actor_mng.h"
-#include "include/d/d_com_inf_game.h"
+#include "d/d_com_inf_game.h"
 
 /**
  * @ingroup actors-objects
@@ -58,6 +58,8 @@ class daTvCdlst_HIO_c : public mDoHIO_entry_c {
 public:
     /* 80B9ECCC */ daTvCdlst_HIO_c();
     /* 80B9F7B0 */ virtual ~daTvCdlst_HIO_c() {}
+
+    void genMessage(JORMContext*);
 
     /* 0x4 */ u8 field_0x4;
     /* 0x5 */ u8 field_0x5;

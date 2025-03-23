@@ -51,6 +51,8 @@ public:
     /* 80BE824C */ daFireWood2_HIO_c();
     /* 80BE8E54 */ virtual ~daFireWood2_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x04 */ f32 mFlameOffsetY;
     /* 0x08 */ f32 mCollisionDiameter;
     /* 0x0C */ f32 mCollisionHeight;

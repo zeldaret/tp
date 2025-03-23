@@ -791,7 +791,7 @@ void dMenu_DmapBg_c::setFloorMessage() {
     local_d8[7]->setFont(mDoExt_getSubFont());
     local_f8[7]->setFont(mDoExt_getSubFont());
 
-    OS_REPORT("floor ===> %d\n", dMenu_Dmap_c::myclass->getFloorAll())
+    OS_REPORT("floor ===> %d\n", dMenu_Dmap_c::myclass->getFloorAll());
     for (int i = 0; i < 8; i++) {
         int bottomFloor = dMenu_Dmap_c::myclass->getBottomFloor();
         u32 floorAll = dMenu_Dmap_c::myclass->getFloorAll();

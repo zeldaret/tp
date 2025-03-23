@@ -120,10 +120,10 @@ int daItemShield_c::create() {
         return cPhs_ERROR_e;
     }
     if (getSwBit2() == 0xff) {
-        OS_REPORT(1Bh,"[43;30m木の盾：スイッチビット２指定がありません！\n\x1b[m");
+        OS_REPORT("[43;30m木の盾：スイッチビット２指定がありません！\n\x1b[m");
     }
     if (getSwBit() == 0xff) {
-        OS_REPORT(1Bh,"[43;30m木の盾：スイッチビット指定がありません！\n\x1b[m");
+        OS_REPORT("[43;30m木の盾：スイッチビット指定がありません！\n\x1b[m");
     }
     int rv = dComIfG_resLoad(&mPhase, dItem_data::getFieldArc(m_itemNo));
     if (rv == cPhs_COMPLEATE_e) {

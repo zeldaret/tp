@@ -3820,7 +3820,7 @@ static int daE_VA_Delete(daE_VA_c* i_this) {
 // NONMATCHING weird data issue / reg alloc (probably related)
 int daE_VA_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_VA", 0x33);
-    JUT_ASSERT(modelData != 0);
+    JUT_ASSERT(0, modelData != 0);
 
     mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                   (J3DAnmTransform*)dComIfG_getObjectRes("E_VA", 15), 0, 1.0f, 0,
@@ -3843,7 +3843,7 @@ int daE_VA_c::CreateHeap() {
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes("E_VA", 0x30);
-    JUT_ASSERT(modelData != 0);
+    JUT_ASSERT(0, modelData != 0);
 
     mpWeaponModel = mDoExt_J3DModel__create(modelData, 0, 0x11000084);
     if (mpWeaponModel == NULL) {
@@ -3863,7 +3863,7 @@ int daE_VA_c::CreateHeap() {
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes("E_VA", 0x37);
-    JUT_ASSERT(modelData != 0);
+    JUT_ASSERT(0, modelData != 0);
 
     mpEndEfMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                        (J3DAnmTransform*)dComIfG_getObjectRes("E_VA", 7), 0, 1.0f,
@@ -3934,7 +3934,7 @@ int daE_VA_c::CreateHeap() {
             break;
         }
 
-        JUT_ASSERT(modelData != 0);
+        JUT_ASSERT(0, modelData != 0);
         mpCardModels[i] = mDoExt_J3DModel__create(modelData, 0, 0x11000084);
     }
 

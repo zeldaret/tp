@@ -128,7 +128,7 @@ int daTbox2_c::Create() {
 int daTbox2_c::CreateHeap() {
     J3DModelData* modelData =
         (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_resInfo[mModelType].bmd_no);
-    JUT_ASSERT(modelData != 0);
+    JUT_ASSERT(0, modelData != 0);
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel == NULL) {
         return false;
@@ -136,7 +136,7 @@ int daTbox2_c::CreateHeap() {
 
     J3DAnmTransform* pbck =
         (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, l_resInfo[mModelType].bck_no);
-    JUT_ASSERT(pbck != 0);
+    JUT_ASSERT(0, pbck != 0);
     mpBck = new mDoExt_bckAnm();
     if (mpBck == NULL || !mpBck->init(pbck, TRUE, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1, false)) {
         return false;

@@ -160,7 +160,7 @@ cPhs__Step daWtPillar_c::create() {
             mMaxHeight += mRelativeWaterHeight;
 
             // "== Underwater (%f) (%f) type: %d ==\n"
-            OS_REPORT("== 水中にある (%f) (%f) type:%d ==\n", mMaxHeight, mRelativeWaterHeight, mRisesAndFalls);
+            OS_REPORT("== 水中にある (%f) (%f) type:%d ==\n", mMaxHeight, mRelativeWaterHeight, mType);
         }
 
         mEffectOscillationAngleStep = mPillarIsPreparingToRise = mStartedRisingOrDoesNotRiseAndFall = field_0xB44 = 0;

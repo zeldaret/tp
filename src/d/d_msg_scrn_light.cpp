@@ -129,10 +129,10 @@ dMsgScrnLight_c::dMsgScrnLight_c(u8 i_colorType, u8 param_1) {
     g_MsgScrnLight_HIO_c.updateColor(i_colorType);
 
     mpScreen = new J2DScreen();
-    JUT_ASSERT(mpScreen != 0);
+    JUT_ASSERT(0, mpScreen != 0);
     bool fg = mpScreen->setPriority("zelda_message_window_text_light.blo", 0x20000,
                                     dComIfGp_getMain2DArchive());
-    JUT_ASSERT(fg != false);
+    JUT_ASSERT(0, fg != false);
     dPaneClass_showNullPane(mpScreen);
 
     OSInitFastCast();
@@ -146,7 +146,7 @@ dMsgScrnLight_c::dMsgScrnLight_c(u8 i_colorType, u8 param_1) {
     mBpkFrame = 0.0f;
 
     mpParent_c = new CPaneMgr(mpScreen, 'moya00', 0, NULL);
-    JUT_ASSERT(mpParent_c != 0);
+    JUT_ASSERT(0, mpParent_c != 0);
 
     mpParent_c->getPanePtr()->setAnimation(mpBck);
     mpParent_c->getPanePtr()->setAnimation(mpBpk);

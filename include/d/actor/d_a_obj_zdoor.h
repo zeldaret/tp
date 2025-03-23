@@ -28,17 +28,16 @@ public:
 
     u32 getType() { return fopAcM_GetParamBit(this, 0, 4); }
 
-private:
     /* 0x5A0 */ request_of_phase_process_class mPhaseReq;
     /* 0x5A8 */ J3DModel* mpModel;
     /* 0x5AC */ dBgS_ObjAcch mObjAcch;
     /* 0x784 */ dBgS_AcchCir mAcchCir;
     /* 0x7C4 */ dCcD_Stts mStts;
-    /* 0x800 */ dCcD_Cyl field_0x800[4];
-    /* 0xCF0 */ dCcD_Cyl field_0xcf0;
-    /* 0xE2C */ s16 field_0xe2c;
-    /* 0xE2E */ s16 field_0xe2e;
-    /* 0xE30 */ u8 field_0xe30;
+    /* 0x800 */ dCcD_Cyl mCallbackCylinders[4];
+    /* 0xCF0 */ dCcD_Cyl mCylinder;
+    /* 0xE2C */ s16 mOpenSpeed;
+    /* 0xE2E */ s16 mOpenAngle;
+    /* 0xE30 */ u8 mDoorType;
 };
 
 STATIC_ASSERT(sizeof(daZdoor_c) == 0xE34);

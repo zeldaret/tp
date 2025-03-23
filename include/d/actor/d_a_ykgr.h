@@ -8,9 +8,11 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_particle.h"
 
-struct daYkgr_HIO_c : mDoHIO_entry_c {
+struct daYkgr_HIO_c : public mDoHIO_entry_c {
     daYkgr_HIO_c();
     /* 805A8D98 */ virtual ~daYkgr_HIO_c();
+
+    void genMessage(JORMContext*);
 
     /* 0x04 */ u8 field_0x4;
     /* 0x08 */ s32 field_0x8;
