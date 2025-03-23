@@ -18,14 +18,14 @@ class daObj_SekiDoor_c : public dBgS_MoveBgActor {
 public:
     /* 80CCD02C */ int create();
     /* 80CCD154 */ virtual int CreateHeap();
-    /* 80CCD1F0 */ virtual int Create(); //Done
+    /* 80CCD1F0 */ virtual int Create();
     /* 80CCD23C */ virtual int Delete();
     /* 80CCD290 */ virtual int Execute(Mtx**);
-    /* 80CCD538 */ virtual int Draw(); //Done
-    /* 80CCD5DC */ void evtSkip(); // Done
+    /* 80CCD538 */ virtual int Draw();
+    /* 80CCD5DC */ void evtSkip();
     /* 80CCD64C */ void setPrtcls();
-    /* 80CCD810 */ void initBaseMtx(); // Done
-    /* 80CCD84C */ void setBaseMtx(); // Done
+    /* 80CCD810 */ void initBaseMtx();
+    /* 80CCD84C */ void setBaseMtx();
 
     u16 getBitSW() { return (fopAcM_GetParam(this) & 0xff); }
     void open() { mOpening = true; }
@@ -49,9 +49,9 @@ STATIC_ASSERT(sizeof(daObj_SekiDoor_c) == 0x5d8);
 
 class daObj_SekiDoor_Param_c {
 public:
-    /* 80CCD9AC */ virtual ~daObj_SekiDoor_Param_c() {return;};
+    /* 80CCD9AC */ virtual ~daObj_SekiDoor_Param_c() {};
 
-    static u8 const m; //ファイル書き出し, File beginning
+    static u8 const m;
 };
 
 

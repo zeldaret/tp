@@ -5,10 +5,6 @@
 
 #include "d/actor/d_a_obj_sekidoor.h"
 
-//
-// Declarations:
-//
-
 /* ############################################################################################## */   
 
 UNK_REL_DATA;
@@ -69,7 +65,7 @@ int daObj_SekiDoor_c::CreateHeap() {
 
     if (mpModel == NULL) {
         return 0;
-      }
+    }
     return 1;
 }
 
@@ -119,13 +115,13 @@ int daObj_SekiDoor_c::Execute(Mtx** i_mtx) {
             }
             else {
                 if (mOpenSpeed != 0) {
-                    mRotation.z = mOpenSpeed * cM_ssin(mFrameCounter << 0xE);
+                    mRotation.z = mOpenSpeed * cM_ssin(mFrameCounter << 14);
     
                     if (cLib_chaseS(&mOpenSpeed, 0, 0x10)) {
                         dComIfGp_getVibration().StopQuake(0xf);
                     }
                     
-                    mFrameCounter ++;
+                    mFrameCounter++;
                 }
                 if (mOpenSpeed == 0) {
                     temp_y_position = current.pos;
@@ -135,16 +131,14 @@ int daObj_SekiDoor_c::Execute(Mtx** i_mtx) {
     
                         temp_y_position.y += mDoorPosY;
 
-                        Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_SEKI_DOOR_OP, &temp_y_position,
-                            0, 0, 1.0f, 1.0f, -1.0f,
-                            -1.0f, 0);
+                        mDoAud_seStartLevel(Z2SE_OBJ_SEKI_DOOR_OP, &temp_y_position,
+                            0, 0);
                     }
                     else {
                         temp_y_position.y += mDoorPosY;
-    
-                        Z2GetAudioMgr()->seStart(Z2SE_OBJ_SEKI_DOOR_OP_ST, 0,
-                            0, 0, 1.0f, 1.0f, -1.0f,
-                            -1.0f, 0);
+                        
+                        mDoAud_seStart(Z2SE_OBJ_SEKI_DOOR_OP_ST, NULL,
+                            0, 0);
     
                         dComIfGp_getVibration().StartShock(VIBMODE_S_POWER5, 0xf, 
                             cXyz(0.0f, 1.0f, 0.0f));
@@ -157,13 +151,11 @@ int daObj_SekiDoor_c::Execute(Mtx** i_mtx) {
     }
     else {
         speed.setall(0.0f);
-
-        mFrameCounter = 0; mOpenSpeed = 0;
-        mDoorPosY = 0.;
+        mFrameCounter = 0;
+        mOpenSpeed = 0;
+        mDoorPosY = 0.0f;
         mDestroyed = 0;
-    }
-    
-    
+    }    
 
     setBaseMtx();
     setPrtcls();
@@ -274,7 +266,7 @@ static int daObj_SekiDoor_Draw(void* i_this) {
 }
 
 /* 80CCD964-80CCD96C 000A24 0008+00 1/0 0/0 0/0 .text            daObj_SekiDoor_IsDelete__FPv */
-static bool daObj_SekiDoor_IsDelete(void* param_0) {
+static int daObj_SekiDoor_IsDelete(void* param_0) {
     return 1;
 }
 
