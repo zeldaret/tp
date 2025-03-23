@@ -4,28 +4,14 @@
 */
 
 #include "d/actor/d_a_obj_sekidoor.h"
-#include "dol2asm.h"
 
 //
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 80CCDA3C-80CCDA48 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+/* ############################################################################################## */   
 
-/* 80CCDA48-80CCDA5C 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
+UNK_REL_DATA;
 
 /* 80CCDA5C-80CCDA64 000020 0008+00 2/3 0/0 0/0 .data            l_bmdData */
 static struct {
@@ -104,6 +90,7 @@ int daObj_SekiDoor_c::Delete() {
 }
 
 /* ############################################################################################## */
+
 /* 80CCDA08-80CCDA0C 000000 0001+03 2/2 0/0 0/0 .rodata          m__22daObj_SekiDoor_Param_c */
 const u8 daObj_SekiDoor_Param_c::m[1 + 3 /* padding */] = {
     0, /* padding */ 0, 0, 0,
@@ -209,14 +196,10 @@ void daObj_SekiDoor_c::evtSkip() {
 }
 
 /* ############################################################################################## */
-/* 80CCDA28-80CCDA30 000020 0008+00 0/1 0/0 0/0 .rodata          id$4006 */
-// static const u16 particle_id[4] = {
-//     0x8B85, 0x8B86, 0x8B87, 0x8B88,
-// };
 
 /* 80CCD64C-80CCD810 00070C 01C4+00 1/1 0/0 0/0 .text            setPrtcls__16daObj_SekiDoor_cFv */
 void daObj_SekiDoor_c::setPrtcls() {
-    static const u16 particle_id[4] = {
+    static const u16 id[4] = {
         0x8B85, 0x8B86, 0x8B87, 0x8B88,
     };
 
@@ -229,25 +212,34 @@ void daObj_SekiDoor_c::setPrtcls() {
     }
     if (mDestroyed != false) {
         for (int index = 2; index <= 3; index++){
-            mpEmitters[index] = dComIfGp_particle_set(particle_id[index], &particlePos, NULL, &particleScale);
+            u16 id_partcl = id[index];
+
+            mpEmitters[index] = dComIfGp_particle_set(
+                mpEmitters[index], id_partcl, &particlePos,
+                NULL, &particleScale
+            );
         }
     }
+
+
     else {
         if (mDoorPosY < reference_posy) {
             for (int index = 0; index <= 1; index++){
-                mpEmitters[index] = dComIfGp_particle_set(particle_id[index], &particlePos, NULL, &particleScale);
+                mpEmitters[index] = dComIfGp_particle_set(
+                    mpEmitters[index], id[index], &particlePos,
+                    NULL, &particleScale
+                );
                 
-                JPABaseEmitter* emitter_p = dComIfGp_particle_getEmitter(particle_id[index]);
+                JPABaseEmitter* emitter_p = dComIfGp_particle_getEmitter(mpEmitters[index]);
                 if (emitter_p != NULL) {
-                    emitter_p->setGlobalTranslation(particlePos);
+                    emitter_p->setGlobalTranslation(particlePos.x, particlePos.y,particlePos.z);
                 }
             }
         }
     }
 }
 
-/* 80CCD810-80CCD84C 0008D0 003C+00 1/1 0/0 0/0 .text            initBaseMtx__16daObj_SekiDoor_cFv
- */
+/* 80CCD810-80CCD84C 0008D0 003C+00 1/1 0/0 0/0 .text            initBaseMtx__16daObj_SekiDoor_cFv */
 void daObj_SekiDoor_c::initBaseMtx() {
     mpModel->setBaseScale(scale);
     setBaseMtx();
@@ -289,34 +281,9 @@ static bool daObj_SekiDoor_IsDelete(void* param_0) {
 }
 
 /* ############################################################################################## */
-/* 80CCDAEC-80CCDAF8 0000B0 000C+00 2/2 0/0 0/0 .data            __vt__22daObj_SekiDoor_Param_c */
-// SECTION_DATA extern void* __vt__22daObj_SekiDoor_Param_c[3] = {
-//     (void*)NULL /* RTTI */,
-//     (void*)NULL,
-//     (void*)__dt__22daObj_SekiDoor_Param_cFv,
-// };
-
-/* 80CCDB00-80CCDB0C 000008 000C+00 1/1 0/0 0/0 .bss             @3803 */
-static u8 lit_3803[12];
 
 /* 80CCDB0C-80CCDB10 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[4];
-
-/* 80CCD96C-80CCD9AC 000A2C 0040+00 0/0 1/0 0/0 .text            __sinit_d_a_obj_sekidoor_cpp */
-// void __sinit_d_a_obj_sekidoor_cpp() {
-//     // NONMATCHING
-// }
-
-// #pragma push
-// #pragma force_active on
-// REGISTER_CTORS(0x80CCD96C, __sinit_d_a_obj_sekidoor_cpp);
-// #pragma pop
-
-/* 80CCD9AC-80CCD9F4 000A6C 0048+00 2/1 0/0 0/0 .text            __dt__22daObj_SekiDoor_Param_cFv */
-daObj_SekiDoor_Param_c::~daObj_SekiDoor_Param_c() {
-}
-
-/* 80CCDA30-80CCDA30 000028 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+static daObj_SekiDoor_Param_c l_HIO;
 
 /* 80CCDA74-80CCDA94 -00001 0020+00 1/0 0/0 0/0 .data            daObj_SekiDoor_MethodTable */
 static actor_method_class daObj_SekiDoor_MethodTable = {
