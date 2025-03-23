@@ -18,16 +18,16 @@ public:
     /* 80AE794C */ daNpcShoe_c();
     /* 80AE7B60 */ ~daNpcShoe_c();
     /* 80AE7D48 */ cPhs__Step Create();
-    /* 80AE7FD8 */ void CreateHeap();
-    /* 80AE81E8 */ void Delete();
-    /* 80AE821C */ void Execute();
-    /* 80AE8308 */ void Draw();
+    /* 80AE7FD8 */ BOOL CreateHeap();
+    /* 80AE81E8 */ int Delete();
+    /* 80AE821C */ int Execute();
+    /* 80AE8308 */ int Draw();
     /* 80AE840C */ void ctrlJoint(J3DJoint*, J3DModel*);
     /* 80AE8598 */ static int createHeapCallBack(fopAc_ac_c*);
-    /* 80AE85B8 */ void ctrlJointCallBack(J3DJoint*, int);
-    /* 80AE8604 */ void setMotion(int, f32, int);
+    /* 80AE85B8 */ static BOOL ctrlJointCallBack(J3DJoint*, int);
+    /* 80AE8604 */ void setMotion(int, f32, BOOL);
     /* 80AE864C */ void reset();
-    /* 80AE895C */ int setAction(bool (daNpcShoe_c::*)(void*));
+    /* 80AE895C */ int setAction(actionFunc);
     /* 80AE8A04 */ void wait(void*);
     /* 80AE8E24 */ void fear(void*);
     /* 80AE8ED4 */ void talk(void*);
@@ -41,6 +41,22 @@ public:
     /* 80AEA340 */ void adjustShapeAngle();
 
     s16 getMessageNo() { return fopAcM_GetParam(this) >> 0x10; }
+
+    int getTime() { return getTimeMinute() + getTimeHour() * 60; }
+    int getTimeHour() {
+        if (dKy_darkworld_check() != 0) {
+            return dKy_getDarktime_hour();
+        } else {
+            return dKy_getdaytime_hour();
+        }
+    }
+    int getTimeMinute() {
+        if (dKy_darkworld_check() != 0) {
+            return dKy_getDarktime_minute();
+        } else {
+            return dKy_getdaytime_minute();
+        }
+    }
 
     static u8 mEvtSeqList[12];
 

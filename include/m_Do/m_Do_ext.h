@@ -334,6 +334,8 @@ public:
     J3DModel* getModel() { return mpModel; }
     void offMorfNone() { mMorfNone = false; }
     void onMorfNone() { mMorfNone = true; }
+    inline void setTranslateScale(cXyz& i_scale) { mTranslateScale = i_scale; }
+    void offTranslate() { mTranslate = true; }
     J3DTransformInfo* getOldTransInfo() { return mpTransformInfo; }
     Quaternion* getOldQuaternion() { return mpQuat; }
 

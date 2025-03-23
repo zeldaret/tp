@@ -311,111 +311,8 @@ SECTION_DATA static void* lit_4684[3] = {
 };
 #pragma pop
 
-/* 80AEA658-80AEA6A0 000120 0048+00 2/2 0/0 0/0 .data            __vt__11daNpcShoe_c */
-SECTION_DATA extern void* __vt__11daNpcShoe_c[18] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__11daNpcShoe_cFv,
-    (void*)setParam__11daNpcShoe_cFv,
-    (void*)main__11daNpcShoe_cFv,
-    (void*)ctrlBtk__8daNpcF_cFv,
-    (void*)adjustShapeAngle__11daNpcShoe_cFv,
-    (void*)setMtx__8daNpcF_cFv,
-    (void*)setMtx2__8daNpcF_cFv,
-    (void*)setAttnPos__11daNpcShoe_cFv,
-    (void*)setCollisions__8daNpcF_cFv,
-    (void*)setExpressionAnm__8daNpcF_cFib,
-    (void*)setExpressionBtp__8daNpcF_cFi,
-    (void*)setExpression__8daNpcF_cFif,
-    (void*)setMotionAnm__11daNpcShoe_cFif,
-    (void*)setMotion__11daNpcShoe_cFifi,
-    (void*)drawDbgInfo__11daNpcShoe_cFv,
-    (void*)drawOtherMdls__8daNpcF_cFv,
-};
-
-/* 80AEA6A0-80AEA6AC 000168 000C+00 3/3 0/0 0/0 .data            __vt__12J3DFrameCtrl */
-SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12J3DFrameCtrlFv,
-};
-
-/* 80AEA6AC-80AEA6D0 000174 0024+00 3/3 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
-SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_ObjAcchFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80AEA394,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80AEA38C,
-};
-
-/* 80AEA6D0-80AEA6DC 000198 000C+00 3/3 0/0 0/0 .data            __vt__10cCcD_GStts */
-SECTION_DATA extern void* __vt__10cCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10cCcD_GSttsFv,
-};
-
-/* 80AEA6DC-80AEA6E8 0001A4 000C+00 2/2 0/0 0/0 .data            __vt__10dCcD_GStts */
-SECTION_DATA extern void* __vt__10dCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10dCcD_GSttsFv,
-};
-
-/* 80AEA6E8-80AEA6F4 0001B0 000C+00 2/2 0/0 0/0 .data            __vt__12dBgS_AcchCir */
-SECTION_DATA extern void* __vt__12dBgS_AcchCir[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_AcchCirFv,
-};
-
-/* 80AEA6F4-80AEA700 0001BC 000C+00 4/4 0/0 0/0 .data            __vt__18daNpcF_ActorMngr_c */
-SECTION_DATA extern void* __vt__18daNpcF_ActorMngr_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__18daNpcF_ActorMngr_cFv,
-};
-
-/* 80AEA700-80AEA70C 0001C8 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGCyl */
-SECTION_DATA extern void* __vt__8cM3dGCyl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGCylFv,
-};
-
-/* 80AEA70C-80AEA718 0001D4 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGAab */
-SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGAabFv,
-};
-
-/* 80AEA718-80AEA724 0001E0 000C+00 3/3 0/0 0/0 .data            __vt__15daNpcF_Lookat_c */
-SECTION_DATA extern void* __vt__15daNpcF_Lookat_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__15daNpcF_Lookat_cFv,
-};
-
 /* 80AE794C-80AE7AD0 0000EC 0184+00 1/1 0/0 0/0 .text            __ct__11daNpcShoe_cFv */
 daNpcShoe_c::daNpcShoe_c() {
-    // NONMATCHING
-}
-
-/* 80AE7AD0-80AE7B18 000270 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGCylFv */
-// cM3dGCyl::~cM3dGCyl() {
-extern "C" void __dt__8cM3dGCylFv() {
-    // NONMATCHING
-}
-
-/* 80AE7B18-80AE7B60 0002B8 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
-// cM3dGAab::~cM3dGAab() {
-extern "C" void __dt__8cM3dGAabFv() {
     // NONMATCHING
 }
 
@@ -428,7 +325,6 @@ daNpcShoe_c::~daNpcShoe_c() {
         mpMorf->stopZelAnime();
     }
 }
-
 
 /* ############################################################################################## */
 /* 80AEA3B0-80AEA41C 000000 006C+00 11/11 0/0 0/0 .rodata          m__17daNpcShoe_Param_c */
@@ -449,16 +345,16 @@ daNpcShoe_Param_c::param const daNpcShoe_Param_c::m = {
     -10.0f,
     45.0f,
     -45.0f,
-    0.6000000238418579f,
+    0.6f,
     12.0f,
     2,
     2,
     3,
     2,
-    60.0,
-    500.0,
-    300.0,
-    -300.0,
+    60.0f,
+    500.0f,
+    300.0f,
+    -300.0f,
     60,
     0,
     0,
@@ -522,39 +418,99 @@ cPhs__Step daNpcShoe_c::Create() {
     return step;
 }
 
-/* ############################################################################################## */
-/* 80AEA42C-80AEA430 00007C 0004+00 1/5 0/0 0/0 .rodata          @4235 */
-SECTION_RODATA static f32 const lit_4235 = 1.0f;
-COMPILER_STRIP_GATE(0x80AEA42C, &lit_4235);
-
-/* 80AEA430-80AEA434 000080 0004+00 0/1 0/0 0/0 .rodata          @4236 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_4236 = 0x3F0EE0A7;
-COMPILER_STRIP_GATE(0x80AEA430, &lit_4236);
-#pragma pop
-
-/* 80AEA434-80AEA438 000084 0004+00 2/5 0/0 0/0 .rodata          @4237 */
-SECTION_RODATA static f32 const lit_4237 = -1.0f;
-COMPILER_STRIP_GATE(0x80AEA434, &lit_4237);
-
 /* 80AE7FD8-80AE81E8 000778 0210+00 1/1 0/0 0/0 .text            CreateHeap__11daNpcShoe_cFv */
-void daNpcShoe_c::CreateHeap() {
-    // NONMATCHING
+BOOL daNpcShoe_c::CreateHeap() {
+    J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[0], 8));
+#ifdef DEBUG
+    if (modelData == NULL) {
+        JUTAssertion::showAssert(JUTAssertion::getSDevice(), "d_a_npc_shoe.cpp", 292, "0 != mdlData_p");
+        OSPanic("d_a_npc_shoe.cpp", 292, "Halt");
+    }
+#endif
+
+    mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, 
+        &mCreature, 0x80000, 0x11020084);
+    
+    if (mpMorf != NULL && mpMorf->mpModel == NULL) {
+        mpMorf->stopZelAnime();
+        mpMorf = NULL;
+    }
+
+    if (mpMorf == NULL) {
+        return false;
+    }
+
+    cXyz cstack_30(1.0f, 0.5581154f, 1.0f);
+    mpMorf->offTranslate();
+    mpMorf->setTranslateScale(cstack_30);
+
+    J3DModel* model = mpMorf->getModel();
+    for (u16 jointNo = 0; jointNo < modelData->getJointNum(); jointNo++) {
+        modelData->getJointNodePointer(jointNo)->setCallBack(ctrlJointCallBack);
+    }
+    model->setUserArea((u32)this);
+
+    J3DModelData* model1_data_ptr = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[0], 9));
+#ifdef DEBUG
+    if (model1_data_ptr == NULL) {
+        JUTAssertion::showAssert(JUTAssertion::getSDevice(), "d_a_npc_shoe.cpp", 331, "mdlData_p != 0");
+        OSPanic("d_a_npc_shoe.cpp", 331, "Halt");
+    }
+#endif
+    mModel1 = mDoExt_J3DModel__create(model1_data_ptr, 0x80000, 0x11000084);
+    if (mModel1 == NULL) {
+        return false;
+    }
+
+    J3DModelData* model2_data_ptr = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[2], 4));
+#ifdef DEBUG
+        if (model2_data_ptr == NULL) {
+            JUTAssertion::showAssert(JUTAssertion::getSDevice(), "d_a_npc_shoe.cpp", 338, "mdlData_p != 0");
+            OSPanic("d_a_npc_shoe.cpp", 338, "Halt");
+        }
+#endif
+    mModel2 = mDoExt_J3DModel__create(model2_data_ptr, 0x80000, 0x11000084);
+    if (mModel2 == NULL) {
+        return false;
+    }
+
+    setMotion(0, -1.875, 0);
+
+    return true;
 }
 
 /* 80AE81E8-80AE821C 000988 0034+00 1/1 0/0 0/0 .text            Delete__11daNpcShoe_cFv */
-void daNpcShoe_c::Delete() {
-    // NONMATCHING
+int daNpcShoe_c::Delete() {
+    this->~daNpcShoe_c();
+    return 1;
 }
 
 /* 80AE821C-80AE8308 0009BC 00EC+00 1/1 0/0 0/0 .text            Execute__11daNpcShoe_cFv */
-void daNpcShoe_c::Execute() {
-    // NONMATCHING
+int daNpcShoe_c::Execute() {
+    if (field_0xe1b != 0) {
+        fopAcM_OnStatus(this, 0x8000000);
+    } else {
+        fopAcM_OffStatus(this, 0x8000000);
+    }
+
+    if (fopAcM_CheckCondition(this, 4)) {
+        int time = getTime();
+        if (time >= field_0xe12 && time < field_0xe14) {
+            field_0xe1b = 1;
+        } else {
+            field_0xe1b = 0;
+        }
+    } else {
+        if (field_0xe1b != 0) {
+            execute();
+        }
+    }
+    
+    return 1;
 }
 
 /* 80AE8308-80AE840C 000AA8 0104+00 1/1 0/0 0/0 .text            Draw__11daNpcShoe_cFv */
-void daNpcShoe_c::Draw() {
+int daNpcShoe_c::Draw() {
     // NONMATCHING
 }
 
@@ -573,19 +529,35 @@ void daNpcShoe_c::ctrlJoint(J3DJoint* param_0, J3DModel* param_1) {
 
 /* 80AE8598-80AE85B8 000D38 0020+00 1/1 0/0 0/0 .text
  * createHeapCallBack__11daNpcShoe_cFP10fopAc_ac_c              */
-int daNpcShoe_c::createHeapCallBack(fopAc_ac_c* param_0) {
-    // NONMATCHING
+BOOL daNpcShoe_c::createHeapCallBack(fopAc_ac_c* i_this) {
+    return static_cast<daNpcShoe_c*>(i_this)->CreateHeap();
 }
 
 /* 80AE85B8-80AE8604 000D58 004C+00 1/1 0/0 0/0 .text ctrlJointCallBack__11daNpcShoe_cFP8J3DJointi
  */
-void daNpcShoe_c::ctrlJointCallBack(J3DJoint* param_0, int param_1) {
-    // NONMATCHING
+BOOL daNpcShoe_c::ctrlJointCallBack(J3DJoint* i_joint, int param_1) {
+    if (param_1 == 0) {
+        J3DModel* model = j3dSys.getModel();
+        daNpcShoe_c* _this = (daNpcShoe_c*)model->getUserArea();
+        if (_this != NULL) {
+            _this->ctrlJoint(i_joint, model);
+        }
+    }
+    return true;
 }
 
 /* 80AE8604-80AE864C 000DA4 0048+00 1/0 0/0 0/0 .text            setMotion__11daNpcShoe_cFifi */
-void daNpcShoe_c::setMotion(int param_0, f32 param_1, int param_2) {
-    // NONMATCHING
+void daNpcShoe_c::setMotion(int i_motion, f32 i_morf, BOOL i_restart) {
+    s16 motion = (s16)i_motion;
+    if (i_restart || mMotion != motion) {
+        if (i_motion >= 0 && i_motion < 5) {
+            mMotion = motion;
+            mMotionMorfOverride = i_morf;
+            mMotionPrevPhase = -1;
+            mMotionPhase = 0;
+            field_0xe16 = 0;
+        }
+    }
 }
 
 /* ############################################################################################## */
@@ -829,23 +801,23 @@ void daNpcShoe_c::demo(void* param_0) {
 }
 
 /* 80AE9260-80AE9280 001A00 0020+00 1/0 0/0 0/0 .text            daNpcShoe_Create__FPv */
-static void daNpcShoe_Create(void* param_0) {
-    // NONMATCHING
+static cPhs__Step daNpcShoe_Create(void* i_this) {
+    return static_cast<daNpcShoe_c*>(i_this)->Create();
 }
 
 /* 80AE9280-80AE92A0 001A20 0020+00 1/0 0/0 0/0 .text            daNpcShoe_Delete__FPv */
-static void daNpcShoe_Delete(void* param_0) {
-    // NONMATCHING
+static int daNpcShoe_Delete(void* i_this) {
+    return static_cast<daNpcShoe_c*>(i_this)->Delete();
 }
 
 /* 80AE92A0-80AE92C0 001A40 0020+00 1/0 0/0 0/0 .text            daNpcShoe_Execute__FPv */
-static void daNpcShoe_Execute(void* param_0) {
-    // NONMATCHING
+static int daNpcShoe_Execute(void* i_this) {
+    return static_cast<daNpcShoe_c*>(i_this)->Execute();
 }
 
 /* 80AE92C0-80AE92E0 001A60 0020+00 1/0 0/0 0/0 .text            daNpcShoe_Draw__FPv */
-static void daNpcShoe_Draw(void* param_0) {
-    // NONMATCHING
+static int daNpcShoe_Draw(void* i_this) {
+    return static_cast<daNpcShoe_c*>(i_this)->Draw();
 }
 
 /* 80AE92E0-80AE92E8 001A80 0008+00 1/0 0/0 0/0 .text            daNpcShoe_IsDelete__FPv */
@@ -918,42 +890,6 @@ bool daNpcShoe_c::setMotionAnm(int param_0, f32 param_1) {
 /* 80AE9AD0-80AE9AD8 002270 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__11daNpcShoe_cFv */
 BOOL daNpcShoe_c::drawDbgInfo() {
     return FALSE;
-}
-
-/* 80AEA26C-80AEA274 002A0C 0008+00 1/0 0/0 0/0 .text            ctrlBtk__8daNpcF_cFv */
-// bool daNpcF_c::ctrlBtk() {
-extern "C" bool ctrlBtk__8daNpcF_cFv() {
-    return false;
-}
-
-/* 80AEA274-80AEA278 002A14 0004+00 1/0 0/0 0/0 .text            setCollisions__8daNpcF_cFv */
-// void daNpcF_c::setCollisions() {
-extern "C" void setCollisions__8daNpcF_cFv() {
-    /* empty function */
-}
-
-/* 80AEA278-80AEA280 002A18 0008+00 1/0 0/0 0/0 .text            setExpressionAnm__8daNpcF_cFib */
-// bool daNpcF_c::setExpressionAnm(int param_0, bool param_1) {
-extern "C" bool setExpressionAnm__8daNpcF_cFib() {
-    return true;
-}
-
-/* 80AEA280-80AEA288 002A20 0008+00 1/0 0/0 0/0 .text            setExpressionBtp__8daNpcF_cFi */
-// bool daNpcF_c::setExpressionBtp(int param_0) {
-extern "C" bool setExpressionBtp__8daNpcF_cFi() {
-    return true;
-}
-
-/* 80AEA288-80AEA28C 002A28 0004+00 1/0 0/0 0/0 .text            setExpression__8daNpcF_cFif */
-// void daNpcF_c::setExpression(int param_0, f32 param_1) {
-extern "C" void setExpression__8daNpcF_cFif() {
-    /* empty function */
-}
-
-/* 80AEA28C-80AEA290 002A2C 0004+00 1/0 0/0 0/0 .text            drawOtherMdls__8daNpcF_cFv */
-// void daNpcF_c::drawOtherMdls() {
-extern "C" void drawOtherMdls__8daNpcF_cFv() {
-    /* empty function */
 }
 
 /* ############################################################################################## */
