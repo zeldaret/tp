@@ -189,9 +189,16 @@ public:
 
 STATIC_ASSERT(sizeof(b_gnd_class) == 0x2790);
 
-class daB_GND_HIO_c {
+class daB_GND_HIO_c
+#ifdef DEBUG
+: public JORReflexible
+#endif
+{
 public:
     /* 805F4A4C */ daB_GND_HIO_c();
+#if DEBUG
+    virtual void genMessage(JORMContext*);
+#endif
     /* 80602230 */ virtual ~daB_GND_HIO_c() {}
 
     /* 0x04 */ s8 no;

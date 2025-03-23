@@ -52,7 +52,10 @@ struct JASTrack : public JASPoolAllocObject_MultiThreaded<JASTrack> {
     };
 
     struct MoveParam_ {
+        // TODO: fix this on debug
+#if VERSION != VERSION_SHIELD_DEBUG
         /* 802932C8 */ MoveParam_() : mValue(0.0f), mTarget(0.0f), mCount(0) {}
+#endif
 
         /* 0x00 */ f32 mValue;
         /* 0x04 */ f32 mTarget;
