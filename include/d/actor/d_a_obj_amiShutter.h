@@ -72,7 +72,7 @@ private:
     /* 0x5c5 */ u8 mType;
     /* 0x5c6 */ u8 mSwBit;
     /* 0x5c7 */ u8 mSwitch;
-    /* 0x5c8 */ float mPosZ;
+    /* 0x5c8 */ f32 mPosZ;
     /* 0x5cc */ cXyz mPos;
     /* 0x5d8 */ u8 mWaitTime;
     /* 0x5d9 */ bool mOpen;
@@ -81,9 +81,9 @@ private:
 STATIC_ASSERT(sizeof(daAmiShutter_c) == 0x5dc);
 
 struct daAmiShutter_HIO_c : public mDoHIO_entry_c {
-    /* 0x04 */ float mRange;
-    /* 0x08 */ float mMaxOpenSpeed;
-    /* 0x0c */ float mMaxCloseSpeed;
+    /* 0x04 */ f32 mRange;
+    /* 0x08 */ f32 mMaxOpenSpeed;
+    /* 0x0c */ f32 mMaxCloseSpeed;
     /* 0x10 */ u8 mWaitTime;
     /* 0x11 */ u8 field_0x11;
 

@@ -54,7 +54,7 @@ void daAmiShutter_c::setBaseMtx() {
 /* 80BA15E4-80BA1650 000204 006C+00 1/0 0/0 0/0 .text            CreateHeap__14daAmiShutter_cFv */
 int daAmiShutter_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*) dComIfG_getObjectRes("S_Zami", 4);
-    JUT_ASSERT(modelData != 0); 
+    JUT_ASSERT(167, modelData != 0); 
     
     mpModel = mDoExt_J3DModel__create(modelData, 
         J3DMdlFlag_Unk80000, 0x11000084);
@@ -144,7 +144,7 @@ BOOL daAmiShutter_c::playerAreaCheck() {
     if (mType == 0) {
         fopAc_ac_c* player = dComIfGp_getPlayer(0);
         cXyz posDiff = mPos - player->current.pos;
-        float distance = posDiff.absXZ();
+        f32 distance = posDiff.absXZ();
         if (distance >= l_HIO.mRange 
             && player->current.pos.y > current.pos.y
             && player->current.pos.y < current.pos.y + 50.f){
@@ -212,7 +212,7 @@ void daAmiShutter_c::init_modeClose() {
 /* ############################################################################################## */
 /* 80BA1D48-80BA1DCC 000968 0084+00 1/0 0/0 0/0 .text            modeClose__14daAmiShutter_cFv */
 void daAmiShutter_c::modeClose() {
-    float distance = cLib_addCalc(&current.pos.z, mPosZ, 0.5f, 
+    f32 distance = cLib_addCalc(&current.pos.z, mPosZ, 0.5f, 
         l_HIO.mMaxCloseSpeed, 1.0f);
     if (distance == 0.0f) {
         mpBgW->OnRoofRegist();
@@ -239,7 +239,7 @@ void daAmiShutter_c::modeCloseEvent() {
         return;
     }
 
-    float distance = cLib_addCalc(&current.pos.z, mPosZ, 0.2, 
+    f32 distance = cLib_addCalc(&current.pos.z, mPosZ, 0.2, 
         l_HIO.mMaxOpenSpeed, 1.0f);
     if (distance == 0.0f) {
         mOpen = false;
@@ -272,7 +272,7 @@ void daAmiShutter_c::init_modeOpen() {
 
 /* 80BA2004-80BA2080 000C24 007C+00 1/0 0/0 0/0 .text            modeOpen__14daAmiShutter_cFv */
 void daAmiShutter_c::modeOpen() {
-    float distance = cLib_addCalc(&current.pos.z, mPosZ - 600.0f, 0.2, 
+    f32 distance = cLib_addCalc(&current.pos.z, mPosZ - 600.0f, 0.2, 
         l_HIO.mMaxOpenSpeed, 1.0f);
     if (distance == 0.0f) {
         mOpen = true;
