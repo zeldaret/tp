@@ -169,6 +169,8 @@ public:
     /* 80BF934C */ daGlwSph_HIO_c();
     /* 80BFA76C */ virtual ~daGlwSph_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x4 */ f32 speed;
     /* 0x8 */ f32 speed2;
 };

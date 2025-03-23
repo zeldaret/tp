@@ -75,7 +75,7 @@ int daObjPDoor_c::Create() {
         mDoorDirection = 1;
         shape_angle.y = home.angle.y + 0x1555;
     } else if (!isSw2) {
-        OS_REPORT("城下町押引扉：SW1,SW2共にＯＮになっています！\n")
+        OS_REPORT("城下町押引扉：SW1,SW2共にＯＮになっています！\n");
         JUT_PANIC(235, "0");
     } else {
         mDoorDirection = -1;

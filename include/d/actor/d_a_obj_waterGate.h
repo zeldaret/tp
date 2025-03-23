@@ -58,9 +58,7 @@ struct daWtGate_HIO_c : public mDoHIO_entry_c {
     /* 80D2BB8C */ daWtGate_HIO_c();
     /* 80D2C3C0 */ ~daWtGate_HIO_c() {};
 
-    #ifdef DEBUG
     void genMessage(JORMContext*);
-    #endif
 
     /* 0x4 */ f32 mMaxSpeed;
     /* 0x8 */ u8 field_0x8;    // Modified, but never read; unused?

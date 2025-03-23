@@ -553,7 +553,7 @@ int daObjMovebox::Act_c::CreateHeap() {
     if (i_attr().field_0x58 >= 0) {
         J3DModelData* modelData =
             (J3DModelData*)dComIfG_getObjectRes(M_arcname[mType], i_attr().field_0x58);
-        JUT_ASSERT(modelData != 0);
+        JUT_ASSERT(0, modelData != 0);
 
         mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
         var_r29 = mpModel != NULL;
@@ -1128,7 +1128,7 @@ int daObjMovebox::Act_c::Execute(Mtx** param_0) {
                     cXyz sp48(current.pos);
                     J3DModelData* kibako_bmd =
                         (J3DModelData*)dComIfG_getObjectRes("Always", "BreakWoodBox.bmd");
-                    JUT_ASSERT(kibako_bmd != 0);
+                    JUT_ASSERT(0, kibako_bmd != 0);
 
                     JPABaseEmitter* emitter = dComIfGp_particle_set(
                         0x82AF, &sp48, NULL, NULL, 0xFF, &dPa_modelEcallBack::getEcallback(),
@@ -1265,7 +1265,7 @@ int daObjMovebox::Act_c::Mthd_Create() {
 
         phase_state = MoveBGCreate(M_arcname[mType], i_attr().field_0x5c, dBgS_MoveBGProc_Trans,
                                    heap_size, NULL);
-        JUT_ASSERT((phase_state == cPhs_COMPLEATE_e) || (phase_state == cPhs_ERROR_e));
+        JUT_ASSERT(0, (phase_state == cPhs_COMPLEATE_e) || (phase_state == cPhs_ERROR_e));
     }
 
     return phase_state;

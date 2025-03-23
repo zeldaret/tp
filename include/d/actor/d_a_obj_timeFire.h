@@ -51,6 +51,8 @@ public:
     /* 80D0E8EC */ daTimeFire_HIO_c();
     /* 80D0F038 */ virtual ~daTimeFire_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     u8 field_0x4;
 };
 

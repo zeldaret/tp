@@ -177,7 +177,7 @@ int daPillar_c::Create() {
 /* 80CAF7A8-80CAF8A4 000568 00FC+00 1/0 0/0 0/0 .text            CreateHeap__10daPillar_cFv */
 int daPillar_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName[mMdlType], l_bmd[mMdlType]);
-    JUT_ASSERT(modelData != 0);
+    JUT_ASSERT(0, modelData != 0);
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel == NULL) {
         return 0;
@@ -185,7 +185,7 @@ int daPillar_c::CreateHeap() {
 
     if (checkShadow() == 0xFF) {
         J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName[mMdlType], l_shadowBmd[mMdlType]);
-        JUT_ASSERT(modelData != 0);
+        JUT_ASSERT(0, modelData != 0);
         mpShadowModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
         if (mpShadowModel == NULL) {
             return 0;
@@ -448,7 +448,7 @@ int daPillar_c::Execute(Mtx** param_0) {
         }
         break;
     default:
-        JUT_ASSERT(0);
+        JUT_ASSERT(0, 0);
     }
 
     if (shape_angle.x != 0) {

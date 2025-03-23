@@ -192,10 +192,12 @@ private:
 
 STATIC_ASSERT(sizeof(daTbox_c) == 0xA30);
 
-class daTbox_HIO_c : mDoHIO_entry_c {
+class daTbox_HIO_c : public mDoHIO_entry_c {
 public:
     /* 80490D2C */ daTbox_HIO_c();
     /* 804960B8 */ virtual ~daTbox_HIO_c() {}
+
+    void genMessage(JORMContext*);
 
     /* 0x04 */ u8 mItemNo;
     /* 0x05 */ u8 mUseDebugItemNo;

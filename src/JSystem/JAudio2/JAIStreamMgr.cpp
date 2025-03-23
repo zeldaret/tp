@@ -28,7 +28,7 @@ bool JAIStreamMgr::startSound(JAISoundID param_1, JAISoundHandle* param_2,
     }
     s32 streamFileEntry = streamDataMgr_->getStreamFileEntry(param_1);
     if (streamFileEntry < 0) {
-        JUT_WARN("Cannot find the stream file entry for ID:%08x\n", param_1)
+        JUT_WARN(46, "Cannot find the stream file entry for ID:%08x\n", param_1.mId.mFullId)
         return false;
     } 
     JAIStream* stream = newStream_();

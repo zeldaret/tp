@@ -176,10 +176,12 @@ private:
 STATIC_ASSERT(sizeof(daB_DR_c) == 0x2860);
 
 
-class daB_DR_HIO_c {
+class daB_DR_HIO_c : public JORReflexible {
 public:
     /* 805BAE6C */ daB_DR_HIO_c();
     /* 805C6B94 */ virtual ~daB_DR_HIO_c() {}
+
+    void genMessage(JORMContext*);
 
     /* 0x04 */ s8 field_0x4;
     /* 0x08 */ f32 model_size;

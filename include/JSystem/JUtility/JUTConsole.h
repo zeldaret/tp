@@ -50,7 +50,7 @@ public:
         mFontSizeX = x;
         mFontSizeY = y;
     }
-    void setHeight(u32 height) {
+    void setHeight(unsigned int height) {
         mHeight = height;
         if (mHeight > mMaxLines) {
             mHeight = mMaxLines;

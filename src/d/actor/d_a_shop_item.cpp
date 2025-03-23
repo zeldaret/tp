@@ -4,6 +4,7 @@
  */
 
 #include "d/actor/d_a_shop_item.h"
+#include "JSystem/JKernel/JKRSolidHeap.h"
 #include "d/d_com_inf_game.h"
 #include "m_Do/m_Do_lib.h"
 

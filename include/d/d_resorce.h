@@ -42,7 +42,7 @@ public:
         return --mCount;
     }
 
-    static const int NAME_MAX = 8;
+    static const int NAME_MAX = 9;
 
 private:
     /* 0x00 */ char mArchiveName[11];

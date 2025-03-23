@@ -94,6 +94,8 @@ public:
     /* 80C8A30C */ daOptiLift_HIO_c();
     /* 80C8B900 */ virtual ~daOptiLift_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x04 */ u8 mStopDisappearTime;
     /* 0x05 */ u8 mStartMoveTime;
     /* 0x06 */ u8 mColorAnmFrame;

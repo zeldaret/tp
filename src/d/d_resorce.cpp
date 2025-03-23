@@ -356,7 +356,7 @@ int dRes_info_c::loadResource() {
                     strncpy(arcName, name_p, resNameLen);
                     arcName[resNameLen] = '\0';
 
-                    JKRHeap* parentHeap = JKRHeap::findFromRoot(JKRHeap::getCurrentHeap());
+                    JKRExpHeap* parentHeap = (JKRExpHeap*)JKRHeap::findFromRoot(JKRHeap::getCurrentHeap());
                     JUT_ASSERT(0x308, parentHeap != 0 && (parentHeap == mDoExt_getGameHeap() || parentHeap == mDoExt_getArchiveHeap()));
 #ifdef DEBUG
                     char* heapName;
@@ -369,7 +369,7 @@ int dRes_info_c::loadResource() {
                     // ">>>>>>>>>>>>>>>>>> Pack Archive<%s> <%s>\n"
                     OSReport(">>>>>>>>>>>>>>>>>> パックアーカイブ<%s> <%s>\n", arcName, heapName);
 #endif
-                    if (parentHeap == (JKRHeap*)mDoExt_getGameHeap()) {
+                    if (parentHeap == (JKRExpHeap*)mDoExt_getGameHeap()) {
                         parentHeap = NULL;
                     }
 
@@ -507,12 +507,12 @@ void dRes_info_c::deleteArchiveRes() {
                     JKRArchive::SDIFileEntry* fileEntry = mArchive->findIdxResource(fileIndex);
                     u32 nameOffset = fileEntry->getNameOffset();
                     char* fileName = mArchive->mStringTable + nameOffset;
-                    size_t nameLen = strlen(fileName) - 4;
+                    size_t resNameLen = strlen(fileName) - 4;
                     JUT_ASSERT(0x46C, resNameLen <= NAME_MAX);
 
                     char nameBuffer[12];
-                    strncpy(nameBuffer, fileName, nameLen);
-                    nameBuffer[nameLen] = '\0';
+                    strncpy(nameBuffer, fileName, resNameLen);
+                    nameBuffer[resNameLen] = '\0';
                     
                     int rt = dComIfG_deleteObjectResMain(nameBuffer);
                     JUT_ASSERT(0x470, rt);

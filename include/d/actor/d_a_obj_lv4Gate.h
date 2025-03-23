@@ -51,6 +51,8 @@ public:
     /* 80C5EB6C */ daLv4Gate_HIO_c();
     /* 80C5F348 */ virtual ~daLv4Gate_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x4 */ f32 mMoveSpeed;
     /* 0x8 */ u8 mShockStrength;
 };

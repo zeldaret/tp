@@ -92,6 +92,8 @@ public:
     /* 80B9CB8C */ daTurara_HIO_c();
     /* 80B9E5B4 */ virtual ~daTurara_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x04 */ f32 field_0x04;
     /* 0x08 */ f32 mGravity;
     /* 0x0c */ f32 mMaxGravity;

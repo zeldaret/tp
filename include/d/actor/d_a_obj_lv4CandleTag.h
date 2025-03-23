@@ -74,6 +74,8 @@ public:
     /* 80C5D44C */ dalv4CandleTag_HIO_c();
     /* 80C5D9C0 */ ~dalv4CandleTag_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     u8 mTimer;
 };
 

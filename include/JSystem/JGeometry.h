@@ -341,7 +341,7 @@ struct TVec3<f32> : public Vec {
     }
 
     bool isZero() const {
-        return squared() <= 32.0f * FLT_EPSILON;
+        return squared() <= TUtil<f32>::epsilon();
     }
 
     void cross(const TVec3<f32>& a, const TVec3<f32>& b) {
