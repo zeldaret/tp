@@ -2313,7 +2313,7 @@ int daNpc_Hanjo_c::wait(void* param_0) {
         case TYPE_1:
             break;
         case TYPE_2:
-            if (daPy_py_c::i_checkNowWolf() && mCyl2.ChkCoHit()) {
+            if (daPy_py_c::checkNowWolf() && mCyl2.ChkCoHit()) {
                 if (!daPy_getPlayerActorClass()->checkPlayerFly() ||
                     daPy_getPlayerActorClass()->checkAutoJump() ||
                     daPy_getPlayerActorClass()->checkWolfTriggerJump())
@@ -2514,7 +2514,7 @@ int daNpc_Hanjo_c::takayose(void* param_0) {
                 }
             }
         }
-        if (daPy_py_c::i_checkNowWolf() && mCyl2.ChkCoHit() != NULL) {
+        if (daPy_py_c::checkNowWolf() && mCyl2.ChkCoHit() != NULL) {
             if (!daPy_getPlayerActorClass()->checkPlayerFly() ||
                 daPy_getPlayerActorClass()->checkAutoJump() ||
                 daPy_getPlayerActorClass()->checkWolfTriggerJump())

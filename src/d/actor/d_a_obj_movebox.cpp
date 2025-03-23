@@ -169,7 +169,7 @@ void daObjMovebox::Bgc_c::wall_pos(daObjMovebox::Act_c const* i_actor,
         M_wall_work[i].SetActorPid(i_actor->base.id);
 
         if (dComIfG_Bgsp().LineCross(&M_wall_work[i])) {
-            field_0x64[i] = M_wall_work[i].i_GetCross();
+            field_0x64[i] = M_wall_work[i].GetCross();
 
             f32 var_f31 = sp48.abs2(field_0x64[i]);
             if (var_f31 < field_0x17c) {

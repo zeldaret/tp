@@ -1940,7 +1940,7 @@ bool daNpcCd2_c::checkFearSituation() {
     bool rv;
     bool bVar5;
     rv = false;
-    bVar5 = ((!field_0xac6 && daPy_py_c::i_checkNowWolf()) && dVar10 < 200.0f);
+    bVar5 = ((!field_0xac6 && daPy_py_c::checkNowWolf()) && dVar10 < 200.0f);
     if (bVar5) {
         f32 maxDist = pow(500.0f, 2.0f);
         if (fopAcM_searchPlayerDistanceXZ2(this) < maxDist) {

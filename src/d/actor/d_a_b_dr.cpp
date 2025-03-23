@@ -3026,9 +3026,9 @@ bool daB_DR_c::startDemoCheck() {
     camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     camera_class* camera0 = dComIfGp_getCamera(0);
 
-    if (!eventInfo.i_checkCommandDemoAccrpt()) {
+    if (!eventInfo.checkCommandDemoAccrpt()) {
         fopAcM_orderPotentialEvent(this, 2, 0xFFFF, 0);
-        eventInfo.i_onCondition(2);
+        eventInfo.onCondition(2);
         mDemoCamEye = camera0->lookat.eye;
         mDemoCamCenter = camera0->lookat.center;
         return false;

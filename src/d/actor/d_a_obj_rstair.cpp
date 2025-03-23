@@ -256,7 +256,7 @@ void daObjRotStair_c::actionWait() {
         field_0x5e2 = false;
         setAction(ACTION_ORDER_EVENT);
         fopAcM_orderOtherEventId(this, mEventId, mMapToolId, 0xffff, 0, 1);
-        eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+        eventInfo.onCondition(dEvtCnd_CANDEMO_e);
     }
 }
 
@@ -266,7 +266,7 @@ void daObjRotStair_c::actionOrderEvent() {
         setAction(ACTION_EVENT);
     } else {
         fopAcM_orderOtherEventId(this, mEventId, mMapToolId, 0xffff, 0, 1);
-        eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+        eventInfo.onCondition(dEvtCnd_CANDEMO_e);
     }
 }
 

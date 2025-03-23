@@ -342,7 +342,7 @@ int daAlink_c::procMagneBootsFlyInit() {
 
     dComIfG_Bgsp().GetTriPla(mMagneLineChk, &sp50);
     mPolyInfo2.SetPolyInfo(mMagneLineChk);
-    field_0x37c8 = mMagneLineChk.i_GetCross();
+    field_0x37c8 = mMagneLineChk.GetCross();
 
     setSpecialGravity(0.0f, maxFallSpeed, 0);
     speed.y = 0.0f;

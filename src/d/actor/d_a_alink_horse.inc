@@ -38,7 +38,7 @@ BOOL daAlink_c::checkHorseZeldaBowMode() {
         return false;
     }
 
-    daHoZelda_c* zelda_p = dComIfGp_getHorseActor()->i_getZeldaActor();
+    daHoZelda_c* zelda_p = dComIfGp_getHorseActor()->getZeldaActor();
     return zelda_p != NULL && zelda_p->checkBowMode();
 }
 
@@ -46,7 +46,7 @@ BOOL daAlink_c::checkHorseZeldaBowMode() {
  */
 void daAlink_c::setHorseZeldaDamage() {
     if (dComIfGp_getHorseActor() != NULL) {
-        daHoZelda_c* zelda_p = dComIfGp_getHorseActor()->i_getZeldaActor();
+        daHoZelda_c* zelda_p = dComIfGp_getHorseActor()->getZeldaActor();
         if (zelda_p != NULL) {
             zelda_p->setDamageInit();
         }
@@ -559,7 +559,7 @@ void daAlink_c::getBaseHorseAnime(daAlink_c::daAlink_ANM* param_0) {
 
     if (checkHorseNoUpperAnime() || checkUpperHorseLieAnime()) {
         if (!dComIfGp_checkPlayerStatus0(0, 0x2000)) {
-            if (i_checkShieldGet()) {
+            if (checkShieldGet()) {
                 setRStatus(0xB);
             } else {
                 setRStatus(0x3E);
@@ -1764,7 +1764,7 @@ int daAlink_c::procHorseTurn() {
         temp_r29->onTurnCancelKeep();
 
         if (checkHorseNoUpperAnime()) {
-            if (i_checkShieldGet()) {
+            if (checkShieldGet()) {
                 setRStatus(0xB);
             } else {
                 setRStatus(0x3E);
@@ -2045,7 +2045,7 @@ int daAlink_c::procHorseCut() {
         } else if (checkNoResetFlg2(FLG2_UNK_2)) {
             checkCutAction();
         } else {
-            if (i_checkShieldGet()) {
+            if (checkShieldGet()) {
                 setRStatus(0xB);
             } else {
                 setRStatus(0x3E);
@@ -2057,7 +2057,7 @@ int daAlink_c::procHorseCut() {
         }
     } else {
         if (temp_r30->getFrame() > field_0x3484) {
-            if (i_checkShieldGet()) {
+            if (checkShieldGet()) {
                 setRStatus(0xB);
             } else {
                 setRStatus(0x3E);

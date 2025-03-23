@@ -154,7 +154,7 @@ bool daWindStone_c::chkWlfInRange() {
     if (dComIfGp_getPlayer(0) == NULL) {
         return false;
     }
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         cXyz player_pos = dComIfGp_getPlayer(0)->current.pos;
         if (player_pos.abs2(current.pos) < 40000.0f) {
             return true;
@@ -178,11 +178,7 @@ void daWindStone_c::exeModeHowl() {
         field_0x5c4 = 2;
     } else {
         s8 tuneId = getTuneId();
-        // Fake match. Should be:
-        // daAlink_getAlinkActorClass()->daAlink_c::i_getWolfHowlMgrP()->startWindStoneSound(tuneId,
-        // &current.pos);
-        daAlink_getAlinkActorClass()->i_getWolfHowlMgrP()->startWindStoneSound(tuneId,
-                                                                               &current.pos);
+        daAlink_getAlinkActorClass()->startWindStoneSound(tuneId, &current.pos);
         attention_info.flags = 0;
         if (chkWlfInRange()) {
             attention_info.flags |= 0x80;

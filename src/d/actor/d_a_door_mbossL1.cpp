@@ -1363,7 +1363,7 @@ int daMBdoorL1_c::checkArea() {
     daPy_py_c* player = daPy_getPlayerActorClass();
     cXyz local_48;
     cXyz local_54;
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         local_48 = player->attention_info.position - current.pos;
         local_54 = player->current.pos - current.pos;
     } else {
@@ -1378,7 +1378,7 @@ int daMBdoorL1_c::checkArea() {
     if (fabsf(local_48.x) > 130.0f) {
         return 0;
     }
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         mDoMtx_stack_c::multVec(&local_54, &local_54);
         if (fabsf(local_54.x) > 130.0f) {
             return 0;
@@ -1410,7 +1410,7 @@ int daMBdoorL1_c::checkFront() {
 /* 80676308-806764D0 003B48 01C8+00 1/1 0/0 0/0 .text            checkOpen__12daMBdoorL1_cFv */
 int daMBdoorL1_c::checkOpen() {
     daPy_py_c* player = daPy_getPlayerActorClass();
-    if (getDoorType() == DOOR_TYPE_2 && daPy_py_c::i_checkNowWolf()) {
+    if (getDoorType() == DOOR_TYPE_2 && daPy_py_c::checkNowWolf()) {
         return 0;
     }
     if ((checkFrontKey() || checkBackKey()) && dComIfGs_getKeyNum() == 0) {
@@ -1618,7 +1618,7 @@ int daMBdoorL1_c::actionWait() {
 /* 80676BE8-80676DEC 004428 0204+00 2/1 0/0 0/0 .text            actionCloseWait__12daMBdoorL1_cFv
  */
 int daMBdoorL1_c::actionCloseWait() {
-    if (eventInfo.i_checkCommandDoor()) {
+    if (eventInfo.checkCommandDoor()) {
         field_0x5e8 = dComIfGp_evmng_getMyStaffId(l_staff_name, 0, 0);
         demoProc();
         setAction(ACTION_OPEN);
@@ -1653,7 +1653,7 @@ int daMBdoorL1_c::actionCloseWait() {
             if (checkOpen()) {
                 eventInfo.setEventId(field_0x5d4[field_0x5de]);
                 eventInfo.setMapToolId(0xff);
-                eventInfo.i_onCondition(4);
+                eventInfo.onCondition(4);
             }
         }
     }
