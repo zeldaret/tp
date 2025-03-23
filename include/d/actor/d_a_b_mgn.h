@@ -69,7 +69,7 @@ public:
     /* 8060E158 */ void mtx_set();
     /* 8060E1D0 */ void cc_set();
     /* 8060E820 */ void execute();
-    /* 8060EA38 */ void _delete();
+    /* 8060EA38 */ int _delete();
     /* 8060EAE0 */ int CreateHeap();
     /* 8060F0D0 */ int create();
 
@@ -137,10 +137,10 @@ private:
     /* 0x2634 */ mDoExt_brkAnm* field_0x2634[4];
     /* 0x2644 */ mDoExt_brkAnm* field_0x2644[4];
     /* 0x2654 */ mDoExt_btkAnm* field_0x2654[4];
-    /* 0x2664 */ cXyz* field_0x2664[12];
+    /* 0x2664 */ cXyz field_0x2664[4];
     /* 0x2670 */ u8 field_0x2694[0x26b4 - 0x2694];
     /* 0x26B4 */ u8 field_0x26b4[4];
-    /* 0x2670 */ u8 field_0x26b8[0x26bc - 0x26b8];
+    /* 0x2670 */ u8 field_0x26b8[4];
     /* 0x26BC */ u8 field_0x26bc[4];
     /* 0x26C0 */ s16 field_0x26c0[4];
     /* 0x26C8 */ u8 field_0x26c8;
