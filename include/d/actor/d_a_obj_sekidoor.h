@@ -36,16 +36,13 @@ private:
     /* 0x5A4 */ request_of_phase_process_class mPhaseReq;
     /* 0x5AC */ J3DModel* mpModel;
     /* 0x5B0 */ csXyz mRotation;
-    /* 0x5B6 */ s16 field_0x5B6; //padding
     /* 0x5B8 */ int mFrameCounter; 
     /* 0x5BC */ float mDoorPosY;
     /* 0x5C0 */ s16 mOpenSpeed;
-    /* 0x5C2 */ s16 field_0x5C2; //padding
     /* 0x5C4 */ u32 mpEmitters[4];
     /* 0x5D4 */ u8 mDestroyed;
     /* 0x5D5 */ u8 mOpening;
     /* 0x5D6 */ u8 mBitSW;
-    /* 0x5D7 */ u8 field_0x5D7; //padding
 };
 
 STATIC_ASSERT(sizeof(daObj_SekiDoor_c) == 0x5d8);
@@ -54,7 +51,7 @@ class daObj_SekiDoor_Param_c {
 public:
     /* 80CCD9AC */ virtual ~daObj_SekiDoor_Param_c() {return;};
 
-    static u8 const m[1 + 3 /* padding */]; //ファイル書き出し, File beginning
+    static u8 const m; //ファイル書き出し, File beginning
 };
 
 

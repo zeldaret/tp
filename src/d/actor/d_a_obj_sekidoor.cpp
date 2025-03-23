@@ -92,9 +92,7 @@ int daObj_SekiDoor_c::Delete() {
 /* ############################################################################################## */
 
 /* 80CCDA08-80CCDA0C 000000 0001+03 2/2 0/0 0/0 .rodata          m__22daObj_SekiDoor_Param_c */
-const u8 daObj_SekiDoor_Param_c::m[1 + 3 /* padding */] = {
-    0, /* padding */ 0, 0, 0,
-};
+const u8 daObj_SekiDoor_Param_c::m = 0;
 
 /* 80CCDA0C-80CCDA10 000004 0004+00 1/3 0/0 0/0 .rodata          @3956 */
 static const f32 reference_posy = 460.0f;
@@ -105,7 +103,7 @@ static const f32 rising_speed_y = 4.0f;
 
 /* 80CCD290-80CCD51C 000350 028C+00 1/0 0/0 0/0 .text Execute__16daObj_SekiDoor_cFPPA3_A4_f */
 int daObj_SekiDoor_c::Execute(Mtx** i_mtx) {
-    cXyz tempV;
+    cXyz temp_y_position;
     *i_mtx = &mBgMtx;
 
     if (mOpening != 0) {
@@ -130,19 +128,19 @@ int daObj_SekiDoor_c::Execute(Mtx** i_mtx) {
                     mFrameCounter ++;
                 }
                 if (mOpenSpeed == 0) {
-                    tempV = current.pos;
+                    temp_y_position = current.pos;
                     if (mDoorPosY < reference_posy) {
                         speed.y = rising_speed_y;
                         cLib_chaseF(&mDoorPosY, reference_posy, speed.y);
     
-                        tempV.y += mDoorPosY;
+                        temp_y_position.y += mDoorPosY;
 
-                        Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_SEKI_DOOR_OP, &tempV,
+                        Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_SEKI_DOOR_OP, &temp_y_position,
                             0, 0, 1.0f, 1.0f, -1.0f,
                             -1.0f, 0);
                     }
                     else {
-                        tempV.y += mDoorPosY;
+                        temp_y_position.y += mDoorPosY;
     
                         Z2GetAudioMgr()->seStart(Z2SE_OBJ_SEKI_DOOR_OP_ST, 0,
                             0, 0, 1.0f, 1.0f, -1.0f,
@@ -203,9 +201,9 @@ void daObj_SekiDoor_c::setPrtcls() {
         0x8B85, 0x8B86, 0x8B87, 0x8B88,
     };
 
-    cXyz particlePos = current.pos;
-    cXyz particleScale(1.0f,1.0f,1.0f);
-    particlePos.y += mDoorPosY;
+    cXyz particle_pos = current.pos;
+    cXyz particle_scale(1.0f,1.0f,1.0f);
+    particle_pos.y += mDoorPosY;
     
     if (mOpening == false) {
         return;
@@ -215,8 +213,8 @@ void daObj_SekiDoor_c::setPrtcls() {
             u16 id_partcl = id[index];
 
             mpEmitters[index] = dComIfGp_particle_set(
-                mpEmitters[index], id_partcl, &particlePos,
-                NULL, &particleScale
+                mpEmitters[index], id_partcl, &particle_pos,
+                NULL, &particle_scale
             );
         }
     }
@@ -226,13 +224,13 @@ void daObj_SekiDoor_c::setPrtcls() {
         if (mDoorPosY < reference_posy) {
             for (int index = 0; index <= 1; index++){
                 mpEmitters[index] = dComIfGp_particle_set(
-                    mpEmitters[index], id[index], &particlePos,
-                    NULL, &particleScale
+                    mpEmitters[index], id[index], &particle_pos,
+                    NULL, &particle_scale
                 );
                 
                 JPABaseEmitter* emitter_p = dComIfGp_particle_getEmitter(mpEmitters[index]);
                 if (emitter_p != NULL) {
-                    emitter_p->setGlobalTranslation(particlePos.x, particlePos.y,particlePos.z);
+                    emitter_p->setGlobalTranslation(particle_pos.x, particle_pos.y,particle_pos.z);
                 }
             }
         }
