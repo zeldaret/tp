@@ -265,6 +265,7 @@ public:
     bool checkDownFlg() const { return mFlags & 0x1; }
     bool checkCutDownHitFlg() const { return mFlags & 0x2; }
     bool checkDeadFlg() const { return mFlags & 0x8; }
+    bool checkThrowMode(u8 param_1) const { return mThrowMode & param_1; }
 
     u32* getMidnaBindID(int i_idx) { return mMidnaBindID + i_idx; }
     u8 getMidnaBindMode() { return mMidnaBindMode; }
@@ -285,6 +286,7 @@ public:
     void offDownFlg() { mFlags &= ~0x17; }
     void offWolfNoLock() { mFlags &= ~0x200; }
     void offHeadLockFlg() { mFlags &= ~0x80; }
+    void offThrowMode(u8 throwMode) { mThrowMode &= throwMode; }
 
     void setMidnaBindMode(u8 i_bindMode) { mMidnaBindMode = i_bindMode; }
     void setMidnaBindID(u8 i_idx, u32 i_bindID) { mMidnaBindID[i_idx] = i_bindID; }
