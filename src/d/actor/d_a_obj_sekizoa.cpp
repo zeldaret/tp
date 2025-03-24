@@ -657,15 +657,14 @@ void daObj_Sekizoa_c::selectAction() {
     // NONMATCHING
 }
 
-/* 80CD0B08-80CD0B34 0028A8 002C+00 1/1 0/0 0/0 .text
- * chkAction__15daObj_Sekizoa_cFM15daObj_Sekizoa_cFPCvPvPv_i    */
-void daObj_Sekizoa_c::chkAction(int (daObj_Sekizoa_c::*param_0)(void*)) {
-    // NONMATCHING
+/* 80CD0B08-80CD0B34 0028A8 002C+00 1/1 0/0 0/0 .text chkAction__15daObj_Sekizoa_cFM15daObj_Sekizoa_cFPCvPvPv_i */
+int daObj_Sekizoa_c::chkAction(daObj_Sekizoa_c::actionFunc i_action) {
+    return mExecuteFunc == i_action;
 }
 
 /* 80CD0B34-80CD0BDC 0028D4 00A8+00 2/2 0/0 0/0 .text
  * setAction__15daObj_Sekizoa_cFM15daObj_Sekizoa_cFPCvPvPv_i    */
-void daObj_Sekizoa_c::setAction(int (daObj_Sekizoa_c::*param_0)(void*)) {
+void daObj_Sekizoa_c::setAction(daObj_Sekizoa_c::actionFunc i_action) {
     // NONMATCHING
 }
 
@@ -732,29 +731,62 @@ void daObj_Sekizoa_c::checkMoveDirection() {
 }
 
 /* 80CD0DE8-80CD0E30 002B88 0048+00 3/3 0/0 0/0 .text getWaitMotionNo__15daObj_Sekizoa_cFv */
-void daObj_Sekizoa_c::getWaitMotionNo() {
-    // NONMATCHING
+int daObj_Sekizoa_c::getWaitMotionNo() {
+    switch (mParamCreate) {
+    case 0:
+        return 1;
+    case 1:
+        return 12;
+    case 6:
+        return 23;
+    }
+    return 0;
 }
 
 /* 80CD0E30-80CD0E78 002BD0 0048+00 4/4 0/0 0/0 .text getGameMotionNo__15daObj_Sekizoa_cFv */
-void daObj_Sekizoa_c::getGameMotionNo() {
-    // NONMATCHING
+int daObj_Sekizoa_c::getGameMotionNo() {
+    switch (mParamCreate) {
+    case 0:
+        return 5;
+    case 1:
+        return 16;
+    case 6:
+        return 23;
+    }
+    return 0;
 }
 
 /* 80CD0E78-80CD0EAC 002C18 0034+00 1/1 0/0 0/0 .text getNoJumpMotionNo__15daObj_Sekizoa_cFv */
-void daObj_Sekizoa_c::getNoJumpMotionNo() {
-    // NONMATCHING
+int daObj_Sekizoa_c::getNoJumpMotionNo() {
+    switch (mParamCreate) {
+    case 0:
+        return 10;
+    case 1:
+        return 21;
+    }
+    return -1;
 }
 
-/* 80CD0EAC-80CD0EE0 002C4C 0034+00 1/1 0/0 0/0 .text            getHitMotionNo__15daObj_Sekizoa_cFv
- */
-void daObj_Sekizoa_c::getHitMotionNo() {
-    // NONMATCHING
+/* 80CD0EAC-80CD0EE0 002C4C 0034+00 1/1 0/0 0/0 .text getHitMotionNo__15daObj_Sekizoa_cFv */
+int daObj_Sekizoa_c::getHitMotionNo() {
+    switch (mParamCreate) {
+    case 0:
+        return 6;
+    case 1:
+        return 17;
+    }
+    return -1;
 }
 
 /* 80CD0EE0-80CD0F14 002C80 0034+00 2/2 0/0 0/0 .text getStepMotionNo__15daObj_Sekizoa_cFv */
-void daObj_Sekizoa_c::getStepMotionNo() {
-    // NONMATCHING
+int daObj_Sekizoa_c::getStepMotionNo() {
+    switch (mParamCreate) {
+    case 0:
+        return 11;
+    case 1:
+        return 22;
+    }
+    return -1;
 }
 
 /* ############################################################################################## */

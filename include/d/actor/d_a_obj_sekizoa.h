@@ -14,6 +14,7 @@
 class daObj_Sekizoa_c : public daNpcT_c {
 public:
     typedef void (daObj_Sekizoa_c::*cutFunc)(int);
+    typedef int (daObj_Sekizoa_c::*actionFunc)();
 
     /* 80CCE34C */ ~daObj_Sekizoa_c();
     /* 80CCE570 */ void create();
@@ -30,14 +31,14 @@ public:
     /* 80CCF708 */ void srchActors();
     /* 80CD04FC */ void setYariAnm(int, int, f32);
     /* 80CD0A84 */ void selectAction();
-    /* 80CD0B08 */ void chkAction(int (daObj_Sekizoa_c::*)(void*));
-    /* 80CD0B34 */ void setAction(int (daObj_Sekizoa_c::*)(void*));
+    /* 80CD0B08 */ int chkAction(daObj_Sekizoa_c::actionFunc i_action);         // DONE
+    /* 80CD0B34 */ void setAction(daObj_Sekizoa_c::actionFunc i_action);
     /* 80CD0BDC */ void checkMoveDirection();
-    /* 80CD0DE8 */ void getWaitMotionNo();
-    /* 80CD0E30 */ void getGameMotionNo();
-    /* 80CD0E78 */ void getNoJumpMotionNo();
-    /* 80CD0EAC */ void getHitMotionNo();
-    /* 80CD0EE0 */ void getStepMotionNo();
+    /* 80CD0DE8 */ int getWaitMotionNo();                                       // DONE
+    /* 80CD0E30 */ int getGameMotionNo();                                       // DONE
+    /* 80CD0E78 */ int getNoJumpMotionNo();                                     // DONE
+    /* 80CD0EAC */ int getHitMotionNo();                                        // DONE
+    /* 80CD0EE0 */ int getStepMotionNo();                                       // DONE
     /* 80CD0F14 */ void jump();
     /* 80CD14D8 */ void landing();
     /* 80CD1688 */ void cutStart(int);
@@ -152,8 +153,8 @@ public:
     /* 0x10F4 */ daNpcT_ActorMngr_c mActorMngrs6;
     /* 0x10FC */ daNpcT_ActorMngr_c mActorMngrs7;
     /* 0x1104 */ daNpcT_ActorMngr_c mActorMngrs8;
-    /* 0x110C */ s32 mPtmf1[3];
-    /* 0x1118 */ s32 mPtmf2[3];
+    /* 0x110C */ actionFunc mInitFunc;
+    /* 0x1118 */ actionFunc mExecuteFunc;
     /* 0x1124 */ daNpcT_Path_c mPath;
     /* 0x1146 */ u8 field_0x1146[2];                    // Padding
     /* 0x1148 */ s32 mpPointerUKN;
