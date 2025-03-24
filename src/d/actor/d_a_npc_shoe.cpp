@@ -7,195 +7,10 @@
 #include "dol2asm.h"
 
 //
-// Forward References:
-//
-
-extern "C" void __ct__11daNpcShoe_cFv();
-extern "C" void __dt__8cM3dGCylFv();
-extern "C" void __dt__8cM3dGAabFv();
-extern "C" void __dt__11daNpcShoe_cFv();
-extern "C" void Create__11daNpcShoe_cFv();
-extern "C" void CreateHeap__11daNpcShoe_cFv();
-extern "C" void Delete__11daNpcShoe_cFv();
-extern "C" void Execute__11daNpcShoe_cFv();
-extern "C" void Draw__11daNpcShoe_cFv();
-extern "C" void ctrlJoint__11daNpcShoe_cFP8J3DJointP8J3DModel();
-extern "C" void createHeapCallBack__11daNpcShoe_cFP10fopAc_ac_c();
-extern "C" void ctrlJointCallBack__11daNpcShoe_cFP8J3DJointi();
-extern "C" void setMotion__11daNpcShoe_cFifi();
-extern "C" void reset__11daNpcShoe_cFv();
-extern "C" void setAction__11daNpcShoe_cFM11daNpcShoe_cFPCvPvPv_b();
-extern "C" void wait__11daNpcShoe_cFPv();
-extern "C" void fear__11daNpcShoe_cFPv();
-extern "C" void talk__11daNpcShoe_cFPv();
-extern "C" void demo__11daNpcShoe_cFPv();
-extern "C" static void daNpcShoe_Create__FPv();
-extern "C" static void daNpcShoe_Delete__FPv();
-extern "C" static void daNpcShoe_Execute__FPv();
-extern "C" static void daNpcShoe_Draw__FPv();
-extern "C" static bool daNpcShoe_IsDelete__FPv();
-extern "C" void setParam__11daNpcShoe_cFv();
-extern "C" void main__11daNpcShoe_cFv();
-extern "C" void setAttnPos__11daNpcShoe_cFv();
-extern "C" void lookat__11daNpcShoe_cFv();
-extern "C" void setMotionAnm__11daNpcShoe_cFif();
-extern "C" bool drawDbgInfo__11daNpcShoe_cFv();
-extern "C" void __dt__18daNpcF_ActorMngr_cFv();
-extern "C" void __ct__18daNpcF_ActorMngr_cFv();
-extern "C" void __dt__15daNpcF_Lookat_cFv();
-extern "C" void __dt__5csXyzFv();
-extern "C" void __ct__5csXyzFv();
-extern "C" void __dt__4cXyzFv();
-extern "C" void __ct__4cXyzFv();
-extern "C" void __dt__8daNpcF_cFv();
-extern "C" void __ct__8daNpcF_cFv();
-extern "C" void __dt__12dBgS_AcchCirFv();
-extern "C" void __dt__10dCcD_GSttsFv();
-extern "C" void __dt__12dBgS_ObjAcchFv();
-extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" bool ctrlBtk__8daNpcF_cFv();
-extern "C" void setCollisions__8daNpcF_cFv();
-extern "C" bool setExpressionAnm__8daNpcF_cFib();
-extern "C" bool setExpressionBtp__8daNpcF_cFi();
-extern "C" void setExpression__8daNpcF_cFif();
-extern "C" void drawOtherMdls__8daNpcF_cFv();
-extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" void __sinit_d_a_npc_shoe_cpp();
-extern "C" void adjustShapeAngle__11daNpcShoe_cFv();
-extern "C" void __dt__17daNpcShoe_Param_cFv();
-extern "C" static void func_80AEA38C();
-extern "C" static void func_80AEA394();
-extern "C" u8 const m__17daNpcShoe_Param_c[108];
-extern "C" extern char const* const d_a_npc_shoe__stringBase0;
-extern "C" u8 mEvtSeqList__11daNpcShoe_c[12];
-
-//
-// External References:
-//
-
-extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void
-__ct__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl();
-extern "C" void stopZelAnime__16mDoExt_McaMorfSOFv();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void __dt__10fopAc_ac_cFv();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff();
-extern "C" void fopAcM_searchActorDistanceXZ2__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfGd_setSimpleShadow__FP4cXyzffR13cBgS_PolyInfosfP9_GXTexObj();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void reset__14dEvt_control_cFv();
-extern "C" void setPtI_Id__14dEvt_control_cFUi();
-extern "C" void endCheck__16dEvent_manager_cFs();
-extern "C" void getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci();
-extern "C" void cutEnd__16dEvent_manager_cFi();
-extern "C" void ChkPresentEnd__16dEvent_manager_cFv();
-extern "C" void __ct__12dBgS_AcchCirFv();
-extern "C" void SetWallR__12dBgS_AcchCirFf();
-extern "C" void SetWall__12dBgS_AcchCirFff();
-extern "C" void __dt__9dBgS_AcchFv();
-extern "C" void __ct__9dBgS_AcchFv();
-extern "C" void Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz();
-extern "C" void CrrPos__9dBgS_AcchFR4dBgS();
-extern "C" void __ct__11dBgS_GndChkFv();
-extern "C" void __dt__11dBgS_GndChkFv();
-extern "C" void __ct__11dBgS_LinChkFv();
-extern "C" void __dt__11dBgS_LinChkFv();
-extern "C" void SetObj__16dBgS_PolyPassChkFv();
-extern "C" void __ct__10dCcD_GSttsFv();
-extern "C" void Init__9dCcD_SttsFiiP10fopAc_ac_c();
-extern "C" void __ct__12dCcD_GObjInfFv();
-extern "C" void __dt__12dCcD_GObjInfFv();
-extern "C" void Set__8dCcD_CylFRC11dCcD_SrcCyl();
-extern "C" void initialize__18daNpcF_ActorMngr_cFv();
-extern "C" void entry__18daNpcF_ActorMngr_cFP10fopAc_ac_c();
-extern "C" void remove__18daNpcF_ActorMngr_cFv();
-extern "C" void getActorP__18daNpcF_ActorMngr_cFv();
-extern "C" void initialize__15daNpcF_Lookat_cFv();
-extern "C" void setParam__15daNpcF_Lookat_cFffffffffffffsP4cXyz();
-extern "C" void calc__15daNpcF_Lookat_cFP10fopAc_ac_cPA4_fPP5csXyziii();
-extern "C" void execute__8daNpcF_cFv();
-extern "C" void draw__8daNpcF_cFiifP11_GXColorS10i();
-extern "C" void setMtx__8daNpcF_cFv();
-extern "C" void setMtx2__8daNpcF_cFv();
-extern "C" void initialize__8daNpcF_cFv();
-extern "C" void getTrnsfrmKeyAnmP__8daNpcF_cFPci();
-extern "C" void getTexPtrnAnmP__8daNpcF_cFPci();
-extern "C" void setMcaMorfAnm__8daNpcF_cFP18J3DAnmTransformKeyffiii();
-extern "C" void setBtpAnm__8daNpcF_cFP16J3DAnmTexPatternP12J3DModelDatafi();
-extern "C" void setEnvTevColor__8daNpcF_cFv();
-extern "C" void setRoomNo__8daNpcF_cFv();
-extern "C" void playMotionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData();
-extern "C" void setLookatMtx__8daNpcF_cFiPif();
-extern "C" void ctrlMsgAnm__8daNpcF_cFRiRiP10fopAc_ac_ci();
-extern "C" void orderEvent__8daNpcF_cFiPcUsUsUcUs();
-extern "C" void chkActorInSight__8daNpcF_cFP10fopAc_ac_cf();
-extern "C" void chkActorInAttnArea__8daNpcF_cFP10fopAc_ac_cP10fopAc_ac_ci();
-extern "C" void initTalk__8daNpcF_cFiPP10fopAc_ac_c();
-extern "C" void talkProc__8daNpcF_cFPiiPP10fopAc_ac_c();
-extern "C" void getDistTableIdx__8daNpcF_cFii();
-extern "C" void dKy_getdaytime_hour__Fv();
-extern "C" void dKy_getdaytime_minute__Fv();
-extern "C" void dKy_getDarktime_hour__Fv();
-extern "C" void dKy_getDarktime_minute__Fv();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void dKy_darkworld_check__Fv();
-extern "C" void __ct__10dMsgFlow_cFv();
-extern "C" void __dt__10dMsgFlow_cFv();
-extern "C" void Set__4cCcSFP8cCcD_Obj();
-extern "C" void __ct__11cBgS_GndChkFv();
-extern "C" void __dt__11cBgS_GndChkFv();
-extern "C" void __dt__13cBgS_PolyInfoFv();
-extern "C" void __dt__8cM3dGCirFv();
-extern "C" void SetC__8cM3dGCylFRC4cXyz();
-extern "C" void SetH__8cM3dGCylFf();
-extern "C" void SetR__8cM3dGCylFf();
-extern "C" void cLib_targetAngleY__FPC3VecPC3Vec();
-extern "C" void cLib_targetAngleX__FPC4cXyzPC4cXyz();
-extern "C" void __ct__17Z2CreatureCitizenFv();
-extern "C" void __dt__17Z2CreatureCitizenFv();
-extern "C" void init__17Z2CreatureCitizenFP3VecP3VecUcUc();
-extern "C" void setMdlType__17Z2CreatureCitizenFScbb();
-extern "C" void playVoice__17Z2CreatureCitizenFi();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void checkPass__12J3DFrameCtrlFf();
-extern "C" void __destroy_arr();
-extern "C" void __construct_array();
-extern "C" void __ptmf_test();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" u8 mCcDCyl__8daNpcF_c[68];
-extern "C" extern void* __vt__8daNpcF_c[18];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" u8 mCurrentMtx__6J3DSys[48];
-extern "C" void __register_global_object();
-
-//
 // Declarations:
 //
+
+static daNpcShoe_Param_c l_HIO;
 
 void daNpcShoe_c::setLookMode(int i_lookMode) {
     if (mLookMode != i_lookMode) {
@@ -224,14 +39,12 @@ bool daNpcShoe_c::chkFindPlayer() {
 }
 
 /* 80AEA538-80AEA544 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
+static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 80AEA544-80AEA558 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
+static u32 lit_1787[1 + 4 /* padding */] = {
     0x02000201,
     /* padding */
     0x40080000,
@@ -239,38 +52,19 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
     0x3FE00000,
     0x00000000,
 };
-#pragma pop
 
 /* 80AEA558-80AEA594 000020 003C+00 1/1 0/0 0/0 .data            l_bckGetParamList */
-static daNpc_GetParam2 l_bckGetParamList[20] = {
-    { 0, 0, 0, },
-    { 17, 0, 0, },
-    { 0, 2, 0, },
-    { 0, 0, 1, },
-    { 0, 0, 0, },
-    { 13, 0, 0, },
-    { 0, 0, 0, },
-    { 0, 0, 1, },
-    { 0, 0, 0, },
-    { 14, 0, 0, },
-    { 0, 0, 0, },
-    { 0, 0, 1, },
-    { 0, 0, 0, },
-    { 5, 0, 0, },
-    { 0, 0, 0, },
-    { 0, 0, 0, },
-    { 0, 0, 0, },
-    { 11, 0, 0, },
-    { 0, 2, 0, },
-    { 0, 0, 1, },
+static daNpc_GetParam2 l_bckGetParamList[5] = {
+    { 17, 2, 1}, // m_sitwait_a
+    { 13, 0, 1}, // m_sittalk_a
+    { 14, 0, 1}, // m_sittalk_a_b
+    { 5, 0, 0}, // shoe_talk_a
+    { 11, 2, 1} // m_sit_to_wolf_a
 };
 
 /* 80AEA594-80AEA5A0 00005C 000C+00 0/0 0/0 0/0 .data            l_btpGetParamList */
-static daNpc_GetParam2 l_btpGetParamList[4] = {
-    { 0, 0, 0, },
-    { 12, 0, 0, },
-    { 0, 2, 0, },
-    { 0, 0, 0, },
+static daNpc_GetParam2 l_btpGetParamList[1] = {
+    { 12, 2, 0 }, // shoe
 };
 
 /* 80AEA5A0-80AEA5AC -00001 000C+00 5/6 0/0 0/0 .data            l_arcNames */
@@ -281,72 +75,17 @@ static char* l_arcNames[3] = {
 };
 
 /* 80AEA5AC-80AEA5B0 000074 0004+00 0/1 0/0 0/0 .data            l_evtNames */
-static char* l_evtNames[4] = {
-    NULL,
-    "Shoe"
+static char* l_evtNames[1] = {
+    l_arcNames[0]
 };
 
 /* 80AEA5B0-80AEA5B4 -00001 0004+00 0/2 0/0 0/0 .data            l_myName */
 static char* l_myName = "Shoe";
 
 /* 80AEA5B4-80AEA5C0 00007C 000C+00 1/2 0/0 0/0 .data            mEvtSeqList__11daNpcShoe_c */
-SECTION_DATA u8 daNpcShoe_c::mEvtSeqList[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+daNpcShoe_c::EventFn daNpcShoe_c::mEvtSeqList[1] = {
+    NULL
 };
-
-/* 80AEA5C0-80AEA5CC -00001 000C+00 1/1 0/0 0/0 .data            @4424 */
-SECTION_DATA static void* lit_4424[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)wait__11daNpcShoe_cFPv,
-};
-
-/* 80AEA5CC-80AEA5D8 -00001 000C+00 0/1 0/0 0/0 .data            @4547 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4547[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)talk__11daNpcShoe_cFPv,
-};
-#pragma pop
-
-/* 80AEA5D8-80AEA5E4 -00001 000C+00 0/1 0/0 0/0 .data            @4552 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4552[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)demo__11daNpcShoe_cFPv,
-};
-#pragma pop
-
-/* 80AEA5E4-80AEA5F0 -00001 000C+00 0/1 0/0 0/0 .data            @4559 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4559[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)fear__11daNpcShoe_cFPv,
-};
-#pragma pop
-
-/* 80AEA5F0-80AEA5FC -00001 000C+00 1/1 0/0 0/0 .data            @4645 */
-SECTION_DATA static void* lit_4645[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)wait__11daNpcShoe_cFPv,
-};
-
-/* 80AEA5FC-80AEA608 -00001 000C+00 0/1 0/0 0/0 .data            @4684 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4684[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)wait__11daNpcShoe_cFPv,
-};
-#pragma pop
 
 /* 80AE794C-80AE7AD0 0000EC 0184+00 1/1 0/0 0/0 .text            __ct__11daNpcShoe_cFv */
 daNpcShoe_c::daNpcShoe_c() {
@@ -402,7 +141,6 @@ daNpcShoe_Param_c::param const daNpcShoe_Param_c::m = {
 
 /* 80AE7D48-80AE7FD8 0004E8 0290+00 1/1 0/0 0/0 .text            Create__11daNpcShoe_cFv */
 cPhs__Step daNpcShoe_c::Create() {
-    // NONMATCHING
     cPhs__Step step;
 
     fopAcM_SetupActor(this, daNpcShoe_c);
@@ -511,7 +249,7 @@ BOOL daNpcShoe_c::CreateHeap() {
         return false;
     }
 
-    setMotion(0, -1.875, 0);
+    setMotion(MOT_SITWAIT_A, -1.0f, 0);
 
     return true;
 }
@@ -530,7 +268,7 @@ int daNpcShoe_c::Execute() {
         fopAcM_OffStatus(this, 0x8000000);
     }
 
-    if (fopAcM_CheckCondition(this, 4)) {
+    if (fopAcM_CheckCondition(this, fopAcCnd_NODRAW_e)) {
         int time = getTime();
         if (time >= mStartTime && time < mEndTime) {
             field_0xe1b = 1;
@@ -548,7 +286,6 @@ int daNpcShoe_c::Execute() {
 
 /* 80AE8308-80AE840C 000AA8 0104+00 1/1 0/0 0/0 .text            Draw__11daNpcShoe_cFv */
 int daNpcShoe_c::Draw() {
-    // NONMATCHING
     if (!field_0xe1b) {
         return 1;
     } else {
@@ -627,9 +364,9 @@ void daNpcShoe_c::setMotion(int i_motion, f32 i_morf, BOOL i_restart) {
     }
 }
 
+
 /* 80AE864C-80AE895C 000DEC 0310+00 1/1 0/0 0/0 .text            reset__11daNpcShoe_cFv */
 void daNpcShoe_c::reset() {
-    // NONMATCHING
     initialize();
     mLookat.initialize();
     for (int i = 0; i < 1; i++) {
@@ -684,7 +421,7 @@ void daNpcShoe_c::reset() {
         mAnmFlags |= ANM_PAUSE_BTP | ANM_PLAY_BTP | ANM_FLAG_800;
     }
 
-    Vec base_scale = {6, 6, 6};
+    Vec base_scale = {0.6, 0.6, 0.6};
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mpModel2->setBaseScale(base_scale);
@@ -694,6 +431,36 @@ void daNpcShoe_c::reset() {
 
     mMotionMorfOverride = 0.0f;
 }
+
+
+void daNpcShoe_c::playMotion() {
+    daNpcF_anmPlayData dat0 = {ANM_M_SITWAIT_A, daNpcShoe_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData* pDat0[1] = {&dat0};
+    daNpcF_anmPlayData dat1a = {ANM_M_SITTALK_A, daNpcShoe_Param_c::m.mMorfFrames, 1};
+    daNpcF_anmPlayData dat1b = {ANM_M_SITWAIT_A, daNpcShoe_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData* pDat1[2] = {&dat1a, &dat1b};
+    daNpcF_anmPlayData dat2a = {ANM_M_SITTALK_A_B, daNpcShoe_Param_c::m.mMorfFrames, 1};
+    daNpcF_anmPlayData dat2b = {ANM_M_SITWAIT_A, daNpcShoe_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData* pDat2[2] = {&dat2a, &dat2b};
+    daNpcF_anmPlayData dat3a = {ANM_SHOE_TALK_A, daNpcShoe_Param_c::m.mMorfFrames, 1};
+    daNpcF_anmPlayData dat3b = {ANM_M_SITWAIT_A, daNpcShoe_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData* pDat3[2] = {&dat3a, &dat3b};
+    daNpcF_anmPlayData dat4 = {ANM_M_SIT_TO_WOLF_A, daNpcShoe_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData* pDat4[1] = {&dat4};
+
+    daNpcF_anmPlayData** ppDat[5] = {
+        pDat0,
+        pDat1,
+        pDat2,
+        pDat3,
+        pDat4,
+    };
+    if (mMotion >= 0 && mMotion < 5) {
+        field_0xe16 = mMotionPhase;
+        playMotionAnm(ppDat);
+    }
+}
+
 
 /* 80AE895C-80AE8A04 0010FC 00A8+00 1/1 0/0 0/0 .text
  * setAction__11daNpcShoe_cFM11daNpcShoe_cFPCvPvPv_b            */
@@ -716,7 +483,7 @@ bool daNpcShoe_c::wait(void* param_0) {
     // NONMATCHING
     switch (mMode) {
     case 0:
-        setMotion(0, -1.875f, false);
+        setMotion(MOT_SITWAIT_A, -1.0f, false);
         speedF = 0.0f;
         mMode = 2;
         break;
@@ -727,9 +494,9 @@ bool daNpcShoe_c::wait(void* param_0) {
         
         fopAc_ac_c* pactor = mActorMngr->getActorP();
         if (pactor != NULL) {
-            setLookMode(0);
+            setLookMode(LOOK_PLAYER);
         } else {
-            setLookMode(2);
+            setLookMode(LOOK_NONE);
         }
 
         if (dComIfGp_event_runCheck()) {
@@ -738,13 +505,13 @@ bool daNpcShoe_c::wait(void* param_0) {
                     setAction(&daNpcShoe_c::talk);
                 }
             } else {
-                if (dComIfGp_getEventManager().getMyStaffId(l_myName, NULL, 0)) {
+                if (dComIfGp_getEventManager().getMyStaffId(l_myName, NULL, -0) != -1) {
                     setAction(&daNpcShoe_c::demo);
                 }
             }
         } else {
             if (!dKy_darkworld_check() && daPy_py_c::checkNowWolf()) {
-                float max_distance = pow(500.0f, 2.0f);
+                f32 max_distance = pow(500.0f, 2.0f);
                 if (fopAcM_searchPlayerDistanceXZ2(this) < max_distance) {
                     setAction(&daNpcShoe_c::fear);
                     break;
@@ -771,19 +538,120 @@ bool daNpcShoe_c::wait(void* param_0) {
     return 1;
 }
 
+
 /* 80AE8E24-80AE8ED4 0015C4 00B0+00 1/0 0/0 0/0 .text            fear__11daNpcShoe_cFPv */
 bool daNpcShoe_c::fear(void* param_0) {
-    // NONMATCHING
+    switch (mMode) {
+        case 0:
+            setMotion(MOT_SIT_TO_WOLF_A, -1.0f, false);
+            speedF = 0.0f;
+            mMode = 2;
+            break;
+        case 1:
+            break;
+        case 2:
+            if (mpMorf->checkFrame(1.0f)) {
+                mCreature.playVoice(2);
+            }
+            break;
+        case 3:
+            break;
+        default:
+#ifdef DEBUG
+            JUTAssertion::showAssert(JUTAssertion::getSDevice(), "d_a_npc_shoe.cpp", 1100, "0");
+            OSPanic("d_a_npc_shoe.cpp", 1100, "Halt");
+#endif
+            break;
+    }
+    return 1;
 }
 
 /* 80AE8ED4-80AE9094 001674 01C0+00 1/0 0/0 0/0 .text            talk__11daNpcShoe_cFPv */
 bool daNpcShoe_c::talk(void* param_0) {
-    // NONMATCHING
+    bool ret = 0;
+    switch (mMode) {
+        case 0:
+            initTalk(field_0xe0c, NULL);
+            mMsgTimer = 0;
+            field_0xe1a = 0;
+            setLookMode(LOOK_PLAYER_TALK);
+            mMode = 2;
+            break;
+        case 1:
+            break;
+        case 2:
+            if (talkProc(NULL, 1, NULL)) {
+                mActorMngr->entry(daPy_getPlayerActorClass());
+                setAction(&daNpcShoe_c::wait);
+                ret = 1;
+            } else {
+                int expression, motion;
+                if (ctrlMsgAnm(expression, motion, this, false)) {
+                    setMotion(motion, -1.0f, false);
+                }
+            }
+            break;
+        case 3:
+            if (field_0x9ec != 0) {
+                break;
+            }
+            
+            dComIfGp_event_reset();
+            break;
+        default:
+#ifdef DEBUG
+            JUTAssertion::showAssert(JUTAssertion::getSDevice(), "d_a_npc_shoe.cpp", 1169, "0");
+            OSPanic("d_a_npc_shoe.cpp", 1169, "Halt");
+#endif
+            break;
+    }
+    return ret;
 }
 
 /* 80AE9094-80AE9260 001834 01CC+00 1/0 0/0 0/0 .text            demo__11daNpcShoe_cFPv */
 bool daNpcShoe_c::demo(void* param_0) {
-    // NONMATCHING
+    switch (mMode) {
+        case 0:
+            setMotion(MOT_SITWAIT_A, -1.0f, false);
+            mMode = 2;
+            break;
+        case 1:
+            break;
+        case 2:
+            if (dComIfGp_event_runCheck() != FALSE && !eventInfo.checkCommandTalk()) {
+                dEvent_manager_c& eventManager = dComIfGp_getEventManager();
+                s32 staff_id = eventManager.getMyStaffId(l_myName, NULL, 0);
+                if (staff_id != -1) {
+                    mStaffID = staff_id;     
+#ifdef DEBUG
+                    if (mEvtSeqList[mOrderEvtNo] == NULL) {
+                        JUTAssertion::showAssert(JUTAssertion::getSDevice(), "d_a_npc_shoe.cpp", 1203, "0 != mEvtSeqList[mOrderEvtNo]");
+                        OSPanic("d_a_npc_shoe.cpp", 1203, "Halt");
+                    }
+#endif
+                    if ((this->*(mEvtSeqList[mOrderEvtNo]))(staff_id)) {
+                        eventManager.cutEnd(staff_id);
+                    }
+                }
+
+                if (eventInfo.checkCommandDemoAccrpt() && mEventIdx != -1 && eventManager.endCheck(mEventIdx)) {
+                    dComIfGp_event_reset();
+                    mOrderEvtNo = 0;
+                    mEventIdx = -1;
+                    setAction(&daNpcShoe_c::wait);
+                }
+            }
+            break;
+        case 3:
+            break;
+        default:
+#ifdef DEBUG
+            JUTAssertion::showAssert(JUTAssertion::getSDevice(), "d_a_npc_shoe.cpp", 1169, "0");
+            OSPanic("d_a_npc_shoe.cpp", 1169, "Halt");
+#endif
+            break;
+    }
+    return 1;
 }
 
 /* 80AE9260-80AE9280 001A00 0020+00 1/0 0/0 0/0 .text            daNpcShoe_Create__FPv */
@@ -813,12 +681,11 @@ static bool daNpcShoe_IsDelete(void* param_0) {
 
 /* 80AE92E8-80AE93A0 001A88 00B8+00 1/0 0/0 0/0 .text            setParam__11daNpcShoe_cFv */
 void daNpcShoe_c::setParam() {
-    // NONMATCHING
     attention_info.distances[0] = getDistTableIdx(daNpcShoe_Param_c::m.mTalkDistIdx, daNpcShoe_Param_c::m.mTalkAngleIdx);
     attention_info.distances[1] = attention_info.distances[0];
     attention_info.distances[3] = getDistTableIdx(daNpcShoe_Param_c::m.mSpeakDistIdx, daNpcShoe_Param_c::m.mSpeakAngleIdx);
 
-    attention_info.flags = -(field_0xe1b != 0) & 10;
+    attention_info.flags = (field_0xe1b != 0) ? 10 : 0;
 
     scale.setall(daNpcShoe_Param_c::m.mScale);
     mAcchCir.SetWallR(daNpcShoe_Param_c::m.mWallR);
@@ -828,15 +695,22 @@ void daNpcShoe_c::setParam() {
 
 /* 80AE93A0-80AE9624 001B40 0284+00 1/0 0/0 0/0 .text            main__11daNpcShoe_cFv */
 BOOL daNpcShoe_c::main() {
-    // NONMATCHING
+    if (mpActionFn != NULL) {
+        (this->*mpActionFn)(0);
+    }
+    if (dComIfGp_event_runCheck() != FALSE && !eventInfo.checkCommandTalk() && field_0xe00 != -1) {
+        dComIfGp_event_setItemPartnerId(field_0xe00);
+        field_0xe00 = -1;
+    }
+    playMotion();
+    return 0;
 }
-
 
 /* 80AE9624-80AE9820 001DC4 01FC+00 1/0 0/0 0/0 .text            setAttnPos__11daNpcShoe_cFv */
 void daNpcShoe_c::setAttnPos() {
     // NONMATCHING
-    if (mLookMode == 1) {
-        for (int i  = 0; i < 3; i++) {
+    if (mLookMode == LOOK_RESET) {
+        for (int i = 0; i < 3; i++) {
             mLookatAngle[i].setall(0);
         }
     }
@@ -910,7 +784,7 @@ void daNpcShoe_c::lookat() {
         }
         mLookat.setAttnPos(&mLookPos);
     } else {
-        mLookat.setAttnPos(0);
+        mLookat.setAttnPos(NULL);
     }
 
     mLookat.setParam(body_down_angle, body_up_angle, body_right_angle, body_left_angle,
@@ -925,11 +799,11 @@ bool daNpcShoe_c::setMotionAnm(int i_idx, f32 i_morf) {
     // NONMATCHING
     J3DAnmTransformKey* morfAnm = getTrnsfrmKeyAnmP(l_arcNames[l_bckGetParamList[i_idx].arcIdx], l_bckGetParamList[i_idx].fileIdx);
     
-    s32 morfAttr = l_bckGetParamList[i_idx].attr;
+    int morfAttr = l_bckGetParamList[i_idx].attr;
     
     mAnmFlags &= ~(ANM_PAUSE_MORF | ANM_PLAY_MORF);
 
-    if (morfAnm != NULL) {
+    if (morfAnm) {
         if (setMcaMorfAnm(morfAnm, 1.0f, i_morf, morfAttr, 0, -1)) {
             mAnmFlags |= ANM_PAUSE_MORF | ANM_PLAY_MORF;
             mMotionLoops = 0;
@@ -942,30 +816,6 @@ BOOL daNpcShoe_c::drawDbgInfo() {
     return FALSE;
 }
 
-/* ############################################################################################## */
-/* 80AEA724-80AEA730 0001EC 000C+00 2/2 0/0 0/0 .data            __vt__17daNpcShoe_Param_c */
-SECTION_DATA extern void* __vt__17daNpcShoe_Param_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__17daNpcShoe_Param_cFv,
-};
-
-/* 80AEA738-80AEA744 000008 000C+00 1/1 0/0 0/0 .bss             @3805 */
-static u8 lit_3805[12];
-
-/* 80AEA744-80AEA748 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[4];
-
-/* 80AEA2D8-80AEA340 002A78 0068+00 0/0 1/0 0/0 .text            __sinit_d_a_npc_shoe_cpp */
-void __sinit_d_a_npc_shoe_cpp() {
-    // NONMATCHING
-}
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80AEA2D8, __sinit_d_a_npc_shoe_cpp);
-#pragma pop
-
 /* 80AEA340-80AEA344 002AE0 0004+00 1/0 0/0 0/0 .text            adjustShapeAngle__11daNpcShoe_cFv
  */
 void daNpcShoe_c::adjustShapeAngle() {
@@ -974,11 +824,11 @@ void daNpcShoe_c::adjustShapeAngle() {
 
 /* 80AEA608-80AEA628 -00001 0020+00 1/0 0/0 0/0 .data            daNpcShoe_MethodTable */
 static actor_method_class daNpcShoe_MethodTable = {
-    (process_method_func)daNpcShoe_Create__FPv,
-    (process_method_func)daNpcShoe_Delete__FPv,
-    (process_method_func)daNpcShoe_Execute__FPv,
-    (process_method_func)daNpcShoe_IsDelete__FPv,
-    (process_method_func)daNpcShoe_Draw__FPv,
+    (process_method_func)daNpcShoe_Create,
+    (process_method_func)daNpcShoe_Delete,
+    (process_method_func)daNpcShoe_Execute,
+    (process_method_func)daNpcShoe_IsDelete,
+    (process_method_func)daNpcShoe_Draw,
 };
 
 /* 80AEA628-80AEA658 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_SHOE */

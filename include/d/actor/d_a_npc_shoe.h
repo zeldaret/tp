@@ -14,6 +14,23 @@
 class daNpcShoe_c : public daNpcF_c {
 public:
     typedef bool (daNpcShoe_c::*actionFunc)(void*);
+    typedef BOOL (daNpcShoe_c::*EventFn)(int);
+
+    enum Animation {
+        /* 0x01 */ ANM_M_SITWAIT_A,
+        /* 0x02 */ ANM_M_SITTALK_A,
+        /* 0x03 */ ANM_M_SITTALK_A_B,
+        /* 0x04 */ ANM_SHOE_TALK_A,
+        /* 0x05 */ ANM_M_SIT_TO_WOLF_A
+    };
+
+    enum Motion {
+        /* 0x01 */ MOT_SITWAIT_A,
+        /* 0x02 */ MOT_SITTALK_A,
+        /* 0x03 */ MOT_SITTALK_A_B,
+        /* 0x04 */ MOT_SHOE_TALK_A,
+        /* 0x05 */ MOT_SIT_TO_WOLF_A,
+    };
 
     /* 80AE794C */ daNpcShoe_c();
     /* 80AE7B60 */ ~daNpcShoe_c();
@@ -62,18 +79,11 @@ public:
     int getEndTime() { return (fopAcM_GetParam(this) >> 8) & 0xff; }
 
     inline void setLookMode(int i_lookMode);
-
     inline bool chkFindPlayer();
+    inline void playMotion();
 
-    static u8 mEvtSeqList[12];
-
-    enum LookMode {
-        LOOK_NONE = 0,
-        LOOK_RESET = 1,
-        LOOK_PLAYER = 2,
-        LOOK_PLAYER_TALK = 3,
-    };
-
+    static EventFn mEvtSeqList[1];
+    
 private:
     /* 0xB48 */ J3DModel* mpModel1;
     /* 0xB4C */ J3DModel* mpModel2;
