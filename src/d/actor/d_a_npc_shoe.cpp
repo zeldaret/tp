@@ -743,7 +743,7 @@ bool daNpcShoe_c::wait(void* param_0) {
                 }
             }
         } else {
-            if (!dKy_darkworld_check() && daPy_py_c::i_checkNowWolf()) {
+            if (!dKy_darkworld_check() && daPy_py_c::checkNowWolf()) {
                 float max_distance = pow(500.0f, 2.0f);
                 if (fopAcM_searchPlayerDistanceXZ2(this) < max_distance) {
                     setAction(&daNpcShoe_c::fear);
