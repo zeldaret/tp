@@ -18,7 +18,6 @@
 #define MAX_INSECT_NUM 24
 #define MAX_VISIBLE_HEARTPIECES 4
 #define MAX_POH_NUM 100
-#define BOMB_BAG_MAX 3
 #define BOTTLE_MAX 4
 #define TBOX_MAX 64
 #define DSV_MEMBIT_ENUM_MAX 8
@@ -319,6 +318,8 @@ public:
     void setWarashibeItem(u8 i_itemNo);
     void setRodTypeLevelUp();
     void setBaitItem(u8 i_itemNo);
+
+    static const int BOMB_BAG_MAX = 3;
 
 private:
     /* 0x00 */ u8 mItems[24];

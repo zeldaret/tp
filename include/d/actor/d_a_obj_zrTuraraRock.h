@@ -56,6 +56,8 @@ public:
     /* 80D4188C */ daZrTuraRc_HIO_c();
     /* 80D422D0 */ ~daZrTuraRc_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x04 */ f32 field_0x04;
     /* 0x08 */ f32 mGravity;
     /* 0x0C */ f32 mMaxFallSpeed;

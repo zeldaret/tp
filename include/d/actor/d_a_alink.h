@@ -3183,7 +3183,7 @@ public:
     virtual f32 getSinkShapeOffset() const;
     virtual BOOL checkSinkDead() const;
     virtual BOOL checkHorseStart();
-    virtual Z2WolfHowlMgr* getWolfHowlMgrP();
+    virtual Z2WolfHowlMgr* getWolfHowlMgrP() { return &mZ2WolfHowlMgr; }
     virtual BOOL checkWolfHowlSuccessAnime() const;
     virtual BOOL checkCopyRodTopUse();
     virtual bool checkCopyRodEquip() const;
@@ -3192,7 +3192,7 @@ public:
     u32 checkModeFlg(u32 pFlag) const { return mModeFlg & pFlag; }
     BOOL checkSmallUpperGuardAnime() const { return checkUpperAnime(0x16); }
     BOOL checkFmChainGrabAnime() const { return checkUpperAnime(0x62) || checkUpperAnime(0x2A0); }
-    Z2WolfHowlMgr* i_getWolfHowlMgrP() { return &mZ2WolfHowlMgr; }
+    
 
     // this might be a fake match, but helps fix usage in many functions
 #pragma optimization_level 2
@@ -3359,7 +3359,7 @@ public:
             var_r5 = 0;
 
             if (mItemAcKeep.getActor() != NULL &&
-                mItemAcKeep.getActor()->eventInfo.i_checkCommandDemoAccrpt() != 0) {
+                mItemAcKeep.getActor()->eventInfo.checkCommandDemoAccrpt() != 0) {
                 var_r5 = 1;
             }
 

@@ -716,7 +716,7 @@ u32 dMsgObject_c::getRevoMessageIndex(u32 param_1) {
     }
 
     if (i >= msgIndexCount) {
-        JUT_WARN(1937, "Message Index Not Exist!! %d", param_0)
+        JUT_WARN(1937, "Message Index Not Exist!! %d", param_1)
         rv = 612;
     }
     return rv;
@@ -1364,7 +1364,7 @@ void dMsgObject_c::talkStartInit() {
         mpTalkHeap->getTotalFreeSize();
         bool local_98 = false;
         if (mpOutFont == NULL) {
-            OS_REPORT("free size (0x%x)=====> %d\n", :mDoExt_getCurrentHeap(), mDoExt_getCurrentHeap()->getTotalFreeSize());
+            OS_REPORT("free size (0x%x)=====> %d\n", mDoExt_getCurrentHeap(), mDoExt_getCurrentHeap()->getTotalFreeSize());
             mpOutFont = new COutFont_c(0);
             JUT_ASSERT(3035, mpOutFont != 0);
             mpOutFont->createPane();

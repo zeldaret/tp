@@ -73,6 +73,8 @@ public:
     /* 805981EC */ daSwShutter_HIO_c();
     /* 80598ECC */ virtual ~daSwShutter_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x04 */ f32 mInitSpeed;
     /* 0x08 */ f32 mMaxSpeed;
     /* 0x0C */ f32 mAcceleration;

@@ -12,7 +12,7 @@ void JMAVECScaleAdd(register const Vec* vec1, register const Vec* vec2, register
                     register f32 scale);
 
 inline int JMAAbs(int value) {
-    return (value >> 0x1f ^ value) - (value >> 0x1f);
+    return value > 0 ? value : -value;
 }
 
 inline f32 JMAFastReciprocal(f32 value) {
@@ -212,16 +212,15 @@ namespace JMathInlineVEC {
     #endif
     }
 
-    inline f32 C_VECSquareMag(const Vec* v) {
+    inline f32 C_VECSquareMag(register const Vec* v) {
         register f32 x_y;
         register f32 z;
         register f32 res;
-        register const f32* src = &v->x;
     #ifdef __MWERKS__
         asm {
-            psq_l   x_y, 0(src), 0, 0
+            psq_l   x_y, 0(v), 0, 0
             ps_mul  x_y, x_y, x_y
-            lfs     z,   8(src)
+            lfs     z,   8(v)
             ps_madd res, z, z, x_y
             ps_sum0 res, res, x_y, x_y
         }

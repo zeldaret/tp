@@ -49,6 +49,8 @@ struct daSaidan_HIO_c : public mDoHIO_entry_c {
     /* 80CC3DAC */ daSaidan_HIO_c();
     /* 80CC4478 */ virtual ~daSaidan_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x00 vtable */
     /* 0x04 */ f32 mMaxStep;
     /* 0x08 */ f32 mTargetPosX;

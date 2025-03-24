@@ -339,7 +339,7 @@ int daObjIceBlk_c::CreateHeap() {
 
     if (getSwbit2() != 0xFF && !fopAcM_isSwitch(this, getSwbit2())) {
         J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmd[0]);
-        JUT_ASSERT(modelData != 0);
+        JUT_ASSERT(0, modelData != 0);
 
         mpIceModel = mDoExt_J3DModel__create(modelData, 0, 0x11000084);
         if (mpIceModel == NULL) {
@@ -360,10 +360,10 @@ int daObjIceBlk_c::CreateHeap() {
     }
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmd[1]);
-    JUT_ASSERT(modelData != 0);
+    JUT_ASSERT(0, modelData != 0);
 
     J3DModelData* shareModelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmd[0]);
-    JUT_ASSERT(shareModelData != 0);
+    JUT_ASSERT(0, shareModelData != 0);
 
     mDoExt_setupShareTexture(modelData, shareModelData);
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
@@ -676,7 +676,7 @@ int daObjIceBlk_c::checkWallPre(s16 i_angle) {
         linchk.Set(&start, &end, this);
         if (dComIfG_Bgsp().LineCross(&linchk)) {
             end = start + spC8;
-            mWallPrePos = end - linchk.i_GetCross();
+            mWallPrePos = end - linchk.GetCross();
             var_r29 = i;
         }
     }
@@ -799,7 +799,7 @@ void daObjIceBlk_c::actionWait() {
     if (mMode == MODE_PROC_WALK_e && mWalkType == WALK_PUSH) {
         setAction(ACTION_ORDER_EVENT_e);
         fopAcM_orderPotentialEvent(this, 2, 0, 0);
-        eventInfo.i_onCondition(fopAcCnd_NOEXEC_e);
+        eventInfo.onCondition(fopAcCnd_NOEXEC_e);
     }
 }
 
@@ -808,13 +808,13 @@ void daObjIceBlk_c::actionWait() {
 void daObjIceBlk_c::actionOrderEvent() {
     camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
 
-    if (eventInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.checkCommandDemoAccrpt()) {
         setAction(ACTION_EVENT_e);
         camera->mCamera.Stop();
         camera->mCamera.SetTrimSize(1);
     } else if (mMode == MODE_PROC_WALK_e) {
         fopAcM_orderPotentialEvent(this, 2, 0, 0);
-        eventInfo.i_onCondition(fopAcCnd_NOEXEC_e);
+        eventInfo.onCondition(fopAcCnd_NOEXEC_e);
     } else {
         setAction(ACTION_WAIT_e);
     }

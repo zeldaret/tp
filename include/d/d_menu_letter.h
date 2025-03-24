@@ -68,7 +68,7 @@ private:
     /* 0x014 */ mDoDvdThd_mountArchive_c* mpMount;
     /* 0x018 */ J2DScreen* mpMenuScreen;
     /* 0x01C */ J2DScreen* mpMenuDMYScreen;
-    /* 0x020 */ J2DScreen* mpMenuBaseScreen;
+    /* 0x020 */ J2DScreen* mpBaseScreen;
     /* 0x024 */ J2DScreen* mpSdwScreen;
     /* 0x028 */ J2DScreen* mpLetterScreen[2];
     /* 0x030 */ J2DScreen* mpIconScreen;

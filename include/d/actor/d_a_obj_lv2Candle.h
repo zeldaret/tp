@@ -71,6 +71,8 @@ public:
     /* 8058E04C */ daLv2Candle_HIO_c();
     /* 8058F050 */ ~daLv2Candle_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x04 */ u8 mTimer;
     /* 0x08 */ f32 mPow;
     /* 0x0C */ f32 mAnmMaxStep;

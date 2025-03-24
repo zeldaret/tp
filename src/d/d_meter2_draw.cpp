@@ -18,6 +18,7 @@
 #include "d/d_msg_class.h"
 #include "d/d_msg_object.h"
 #include "d/d_pane_class.h"
+#include "cstring.h"
 
 /* 8020FAB4-802102F8 20A3F4 0844+00 0/0 1/1 0/0 .text            __ct__13dMeter2Draw_cFP10JKRExpHeap
  */
@@ -44,9 +45,9 @@ dMeter2Draw_c::dMeter2Draw_c(JKRExpHeap* mp_heap) {
     mDoExt_setCurrentHeap(heap);
 
     mpScreen = new J2DScreen();
-    JUT_ASSERT(mpScreen != 0);
+    JUT_ASSERT(0, mpScreen != 0);
     bool fg = mpScreen->setPriority("zelda_game_image.blo", 0x20000, dComIfGp_getMain2DArchive());
-    JUT_ASSERT(fg != false);
+    JUT_ASSERT(0, fg != false);
     dPaneClass_showNullPane(mpScreen);
 
     mpScreen->search('ju_ring5')->hide();
@@ -54,24 +55,24 @@ dMeter2Draw_c::dMeter2Draw_c(JKRExpHeap* mp_heap) {
 
     for (int i = 0; i < 2; i++) {
         mpKanteraMeter[i] = new dKantera_icon_c();
-        JUT_ASSERT(mpKanteraMeter[i] != 0);
+        JUT_ASSERT(0, mpKanteraMeter[i] != 0);
     }
 
     mpKanteraScreen = new J2DScreen();
-    JUT_ASSERT(mpKanteraScreen != 0);
+    JUT_ASSERT(0, mpKanteraScreen != 0);
     fg = mpKanteraScreen->setPriority("zelda_game_image_kantera.blo", 0x20000,
                                       dComIfGp_getMain2DArchive());
-    JUT_ASSERT(fg != false);
+    JUT_ASSERT(0, fg != false);
     dPaneClass_showNullPane(mpKanteraScreen);
 
     mpPikariScreen = new J2DScreen();
-    JUT_ASSERT(mpPikariScreen != 0);
+    JUT_ASSERT(0, mpPikariScreen != 0);
     fg = mpPikariScreen->setPriority("zelda_icon_pikari.blo", 0x20000, dComIfGp_getMain2DArchive());
-    JUT_ASSERT(fg != false);
+    JUT_ASSERT(0, fg != false);
     dPaneClass_showNullPane(mpPikariScreen);
 
     mpPikariParent = new CPaneMgr(mpPikariScreen, 'pika_n', 0, NULL);
-    JUT_ASSERT(mpPikariParent != 0);
+    JUT_ASSERT(0, mpPikariParent != 0);
     mPikariBlack = static_cast<J2DPicture*>(mpPikariScreen->search('pika00'))->getBlack();
     mPikariWhite = static_cast<J2DPicture*>(mpPikariScreen->search('pika00'))->getWhite();
 
@@ -86,7 +87,7 @@ dMeter2Draw_c::dMeter2Draw_c(JKRExpHeap* mp_heap) {
     playPikariBpkAnimation(1.0f);
 
     mpParent = new CPaneMgr(mpScreen, 'n_all', 2, NULL);
-    JUT_ASSERT(mpParent != 0);
+    JUT_ASSERT(0, mpParent != 0);
 
     static u64 const a_tag[] = {'cont_at1', 'cont_at2', 'cont_at3', 'cont_at4', 'cont_at'};
     static u64 const b_tag[] = {'cont_bt1', 'cont_bt2', 'cont_bt3', 'cont_bt4', 'cont_bt'};
@@ -96,29 +97,29 @@ dMeter2Draw_c::dMeter2Draw_c(JKRExpHeap* mp_heap) {
 
     for (int i = 0; i < 5; i++) {
         mpAText[i] = new CPaneMgr(mpScreen, a_tag[i], 0, NULL);
-        JUT_ASSERT(mpAText[i] != 0);
+        JUT_ASSERT(0, mpAText[i] != 0);
         static_cast<J2DTextBox*>(mpAText[i]->getPanePtr())->setString(64, "");
         static_cast<J2DTextBox*>(mpAText[i]->getPanePtr())->setFont(mDoExt_getMesgFont());
         static_cast<J2DTextBox*>(mpAText[i]->getPanePtr())
             ->setCharSpace(g_drawHIO.mButtonATextSpacing);
 
         mpBText[i] = new CPaneMgr(mpScreen, b_tag[i], 0, NULL);
-        JUT_ASSERT(mpBText[i] != 0);
+        JUT_ASSERT(0, mpBText[i] != 0);
         static_cast<J2DTextBox*>(mpBText[i]->getPanePtr())->setString(64, "");
         static_cast<J2DTextBox*>(mpBText[i]->getPanePtr())->setFont(mDoExt_getMesgFont());
 
         mpXYText[i][2] = new CPaneMgr(mpScreen, z_tag[i], 0, NULL);
-        JUT_ASSERT(mpXYText[i][2] != 0);
+        JUT_ASSERT(0, mpXYText[i][2] != 0);
         static_cast<J2DTextBox*>(mpXYText[i][2]->getPanePtr())->setString(64, "");
         static_cast<J2DTextBox*>(mpXYText[i][2]->getPanePtr())->setFont(mDoExt_getMesgFont());
 
         mpXYText[i][0] = new CPaneMgr(mpScreen, x_tag[i], 0, NULL);
-        JUT_ASSERT(mpXYText[i][0] != 0);
+        JUT_ASSERT(0, mpXYText[i][0] != 0);
         static_cast<J2DTextBox*>(mpXYText[i][0]->getPanePtr())->setString(64, "");
         static_cast<J2DTextBox*>(mpXYText[i][0]->getPanePtr())->setFont(mDoExt_getMesgFont());
 
         mpXYText[i][1] = new CPaneMgr(mpScreen, y_tag[i], 0, NULL);
-        JUT_ASSERT(mpXYText[i][1] != 0);
+        JUT_ASSERT(0, mpXYText[i][1] != 0);
         static_cast<J2DTextBox*>(mpXYText[i][1]->getPanePtr())->setString(64, "");
         static_cast<J2DTextBox*>(mpXYText[i][1]->getPanePtr())->setFont(mDoExt_getMesgFont());
     }
@@ -753,27 +754,27 @@ void dMeter2Draw_c::initLife() {
     };
 
     mpLifeParent = new CPaneMgr(mpScreen, 'heart_n', 2, NULL);
-    JUT_ASSERT(mpLifeParent != 0);
+    JUT_ASSERT(0, mpLifeParent != 0);
 
     for (int i = 0; i < 20; i++) {
         mpLifeParts[i] = new CPaneMgr(mpScreen, life_tag[i], 0, NULL);
-        JUT_ASSERT(mpLifeParts[i] != 0);
+        JUT_ASSERT(0, mpLifeParts[i] != 0);
 
         mpHeartMark[i] = new CPaneMgr(mpScreen, mark_tag[i], 2, NULL);
-        JUT_ASSERT(mpHeartMark[i] != 0);
+        JUT_ASSERT(0, mpHeartMark[i] != 0);
 
         mpHeartBase[i] = new CPaneMgrAlpha(mpScreen, base_tag[i], 2, NULL);
-        JUT_ASSERT(mpHeartBase[i] != 0);
+        JUT_ASSERT(0, mpHeartBase[i] != 0);
 
         mpLifeTexture[i][0] = new CPaneMgrAlpha(mpScreen, lifet1_tag[i], 0, NULL);
-        JUT_ASSERT(mpLifeTexture[i][0] != 0);
+        JUT_ASSERT(0, mpLifeTexture[i][0] != 0);
 
         mpLifeTexture[i][1] = new CPaneMgrAlpha(mpScreen, lifet2_tag[i], 0, NULL);
-        JUT_ASSERT(mpLifeTexture[i][1] != 0);
+        JUT_ASSERT(0, mpLifeTexture[i][1] != 0);
     }
 
     mpBigHeart = new CPaneMgr(mpScreen, 'bigh_n', 2, NULL);
-    JUT_ASSERT(mpBigHeart != 0);
+    JUT_ASSERT(0, mpBigHeart != 0);
 
     mpLifeParent->setAlphaRate(0.0f);
 
@@ -795,20 +796,20 @@ void dMeter2Draw_c::initMagic() {
     field_0x554 = 0.0f;
 
     mpMagicParent = new CPaneMgr(mpKanteraScreen, 'magic_n', 2, NULL);
-    JUT_ASSERT(mpMagicParent != 0);
+    JUT_ASSERT(0, mpMagicParent != 0);
 
     mpMagicBase = new CPaneMgr(mpKanteraScreen, 'mm_base', 0, NULL);
-    JUT_ASSERT(mpMagicBase != 0);
+    JUT_ASSERT(0, mpMagicBase != 0);
 
     mpMagicFrameL = new CPaneMgr(mpKanteraScreen, 'm_w_l_n', 2, NULL);
-    JUT_ASSERT(mpMagicFrameL != 0);
+    JUT_ASSERT(0, mpMagicFrameL != 0);
 
     mpMagicFrameR =
         new CPaneMgr(mpKanteraScreen, 'm_w_r_n', 2, NULL);
-    JUT_ASSERT(mpMagicFrameR != 0);
+    JUT_ASSERT(0, mpMagicFrameR != 0);
 
     mpMagicMeter = new CPaneMgr(mpKanteraScreen, 'mm_00', 0, NULL);
-    JUT_ASSERT(mpMagicMeter != 0);
+    JUT_ASSERT(0, mpMagicMeter != 0);
 
     OSInitFastCast();
 
@@ -856,7 +857,7 @@ void dMeter2Draw_c::initMagic() {
 /* 80212190-80212404 20CAD0 0274+00 1/1 0/0 0/0 .text            initLightDrop__13dMeter2Draw_cFv */
 void dMeter2Draw_c::initLightDrop() {
     mpLightDropParent = new CPaneMgr(mpScreen, 's_tuta_n', 2, NULL);
-    JUT_ASSERT(mpLightDropParent != 0);
+    JUT_ASSERT(0, mpLightDropParent != 0);
 
     static u64 const tuta_0[] = {
         's_00', 's_01', 's_02', 's_03', 's_04', 's_05', 's_06', 's_07',
@@ -875,20 +876,20 @@ void dMeter2Draw_c::initLightDrop() {
 
     for (int i = 0; i < 16; i++) {
         mpSIParts[i][0] = new CPaneMgr(mpScreen, tuta_0[i], 0, NULL);
-        JUT_ASSERT(mpSIParts[i][0] != 0);
+        JUT_ASSERT(0, mpSIParts[i][0] != 0);
 
         mpSIParts[i][1] = new CPaneMgr(mpScreen, tuta_1[i], 0, NULL);
-        JUT_ASSERT(mpSIParts[i][1] != 0);
+        JUT_ASSERT(0, mpSIParts[i][1] != 0);
 
         mpSIParts[i][2] = new CPaneMgr(mpScreen, tuta_2[i], 0, NULL);
-        JUT_ASSERT(mpSIParts[i][2] != 0);
+        JUT_ASSERT(0, mpSIParts[i][2] != 0);
     }
 
     mpSIParent[0] = new CPaneMgr(mpScreen, 'tuta_n', 2, NULL);
-    JUT_ASSERT(mpSIParent[0] != 0);
+    JUT_ASSERT(0, mpSIParent[0] != 0);
 
     mpSIParent[1] = new CPaneMgr(mpScreen, 's_null', 2, NULL);
-    JUT_ASSERT(mpSIParent[1] != 0);
+    JUT_ASSERT(0, mpSIParent[1] != 0);
 
     mpLightDropParent->setAlphaRate(0.0f);
     field_0x6fc = 0.0f;
@@ -913,7 +914,7 @@ void dMeter2Draw_c::initLightDrop() {
 /* 80212404-802126E4 20CD44 02E0+00 1/1 0/0 0/0 .text            initRupeeKey__13dMeter2Draw_cFv */
 void dMeter2Draw_c::initRupeeKey() {
     mpRupeeKeyParent = new CPaneMgr(mpScreen, 'r_k_n', 2, NULL);
-    JUT_ASSERT(mpRupeeKeyParent != 0);
+    JUT_ASSERT(0, mpRupeeKeyParent != 0);
     field_0x718 = 1.0f;
 
     static u64 const rupeet1_tag[] = {'r_n_1_s', 'r_n_2_s', 'r_n_3_s', 'r_n_4_s'};
@@ -921,22 +922,22 @@ void dMeter2Draw_c::initRupeeKey() {
 
     for (int i = 0; i < 4; i++) {
         mpRupeeTexture[i][0] = new CPaneMgr(mpScreen, rupeet1_tag[i], 0, NULL);
-        JUT_ASSERT(mpRupeeTexture[i][0] != 0);
+        JUT_ASSERT(0, mpRupeeTexture[i][0] != 0);
         mpRupeeTexture[i][0]->getPanePtr()->setBasePosition(J2DBasePosition_4);
 
         mpRupeeTexture[i][1] = new CPaneMgr(mpScreen, rupeet2_tag[i], 0, NULL);
-        JUT_ASSERT(mpRupeeTexture[i][1] != 0);
+        JUT_ASSERT(0, mpRupeeTexture[i][1] != 0);
         mpRupeeTexture[i][1]->getPanePtr()->setBasePosition(J2DBasePosition_4);
     }
 
     mpRupeeParent[0] = new CPaneMgr(mpScreen, 'rupi_n', 2, NULL);
-    JUT_ASSERT(mpRupeeParent[0] != 0);
+    JUT_ASSERT(0, mpRupeeParent[0] != 0);
 
     mpRupeeParent[1] = new CPaneMgr(mpScreen, 'moyou_rn', 2, NULL);
-    JUT_ASSERT(mpRupeeParent[1] != 0);
+    JUT_ASSERT(0, mpRupeeParent[1] != 0);
 
     mpRupeeParent[2] = new CPaneMgr(mpScreen, 'moyou_ln', 2, NULL);
-    JUT_ASSERT(mpRupeeParent[2] != 0);
+    JUT_ASSERT(0, mpRupeeParent[2] != 0);
 
     mpRupeeParent[0]->setAlphaRate(0.0f);
     mpRupeeParent[1]->setAlphaRate(0.0f);
@@ -946,13 +947,13 @@ void dMeter2Draw_c::initRupeeKey() {
 
     for (int i = 0; i < 5; i++) {
         mpKeyTexture[i] = new CPaneMgr(mpScreen, key_tag[i], 0, NULL);
-        JUT_ASSERT(mpKeyTexture[i] != 0);
+        JUT_ASSERT(0, mpKeyTexture[i] != 0);
         mpKeyTexture[i]->getPanePtr()->setBasePosition(J2DBasePosition_4);
         mpKeyTexture[i]->hide();
     }
 
     mpKeyParent = new CPaneMgr(mpScreen, 'key_n', 2, NULL);
-    JUT_ASSERT(mpKeyParent != 0);
+    JUT_ASSERT(0, mpKeyParent != 0);
     mpKeyParent->setAlphaRate(0.0f);
 
     drawRupee(dComIfGs_getRupee());
@@ -978,7 +979,7 @@ void dMeter2Draw_c::initButton() {
     for (int i = 0; i < 2; i++) {
         for (int j = 0; j < 2; j++) {
             mpItemBTex[i][j] = (ResTIMG*)heap->alloc(0xC00, 0x20);
-            JUT_ASSERT(mpItemBTex[i][j] != 0);
+            JUT_ASSERT(0, mpItemBTex[i][j] != 0);
         }
     }
 
@@ -989,13 +990,13 @@ void dMeter2Draw_c::initButton() {
         for (int j = 0; j < 2; j++) {
             for (int k = 0; k < 2; k++) {
                 mpItemXYTex[i][j][k] = (ResTIMG*)heap->alloc(0xC00, 0x20);
-                JUT_ASSERT(mpItemXYTex[i][j][k] != 0);
+                JUT_ASSERT(0, mpItemXYTex[i][j][k] != 0);
             }
         }
     }
 
     mpItemB = new CPaneMgr(mpScreen, 'b_itm_p', 0, NULL);
-    JUT_ASSERT(mpItemB != 0);
+    JUT_ASSERT(0, mpItemB != 0);
     mpItemB->getPanePtr()->setBasePosition(J2DBasePosition_4);
     mpItemB->show();
 
@@ -1012,17 +1013,17 @@ void dMeter2Draw_c::initButton() {
         'b_itm_pp',
         JGeometry::TBox2<f32>(0.0f, 0.0f, mpItemB->getInitSizeX(), mpItemB->getInitSizeY()),
         static_cast<J2DPicture*>(mpItemB->getPanePtr())->getTexture(0)->getTexInfo(), NULL);
-    JUT_ASSERT(mpItemBPane != 0);
+    JUT_ASSERT(0, mpItemBPane != 0);
     mpItemBPane->setBasePosition(J2DBasePosition_4);
     mpItemB->getPanePtr()->appendChild(mpItemBPane);
 
     mpItemXY[0] = new CPaneMgr(mpScreen, 'x_itm_p', 0, NULL);
-    JUT_ASSERT(mpItemXY[0] != 0);
+    JUT_ASSERT(0, mpItemXY[0] != 0);
     mpItemXY[0]->getPanePtr()->setBasePosition(J2DBasePosition_4);
     dMeter2Info_setMeterItemPanePtr(0, mpItemXY[0]);
 
     mpItemXY[1] = new CPaneMgr(mpScreen, 'y_itm_p', 0, NULL);
-    JUT_ASSERT(mpItemXY[1] != 0);
+    JUT_ASSERT(0, mpItemXY[1] != 0);
     mpItemXY[1]->getPanePtr()->setBasePosition(J2DBasePosition_4);
     dMeter2Info_setMeterItemPanePtr(1, mpItemXY[1]);
 
@@ -1033,7 +1034,7 @@ void dMeter2Draw_c::initButton() {
         'x_itm_pp',
         JGeometry::TBox2<f32>(0.0f, 0.0f, mpItemXY[0]->getInitSizeX(), mpItemXY[0]->getInitSizeY()),
         static_cast<J2DPicture*>(mpItemXY[0]->getPanePtr())->getTexture(0)->getTexInfo(), NULL);
-    JUT_ASSERT(mpItemXYPane[0] != 0);
+    JUT_ASSERT(0, mpItemXYPane[0] != 0);
     mpItemXYPane[0]->setBasePosition(J2DBasePosition_4);
     mpItemXY[0]->getPanePtr()->appendChild(mpItemXYPane[0]);
 
@@ -1041,12 +1042,12 @@ void dMeter2Draw_c::initButton() {
         'y_itm_pp',
         JGeometry::TBox2<f32>(0.0f, 0.0f, mpItemXY[1]->getInitSizeX(), mpItemXY[1]->getInitSizeY()),
         static_cast<J2DPicture*>(mpItemXY[1]->getPanePtr())->getTexture(0)->getTexInfo(), NULL);
-    JUT_ASSERT(mpItemXYPane[1] != 0);
+    JUT_ASSERT(0, mpItemXYPane[1] != 0);
     mpItemXYPane[1]->setBasePosition(J2DBasePosition_4);
     mpItemXY[1]->getPanePtr()->appendChild(mpItemXYPane[1]);
 
     mpItemR = new CPaneMgr(mpScreen, 'r_itm_p', 0, NULL);
-    JUT_ASSERT(mpItemR != 0);
+    JUT_ASSERT(0, mpItemR != 0);
     mpItemR->getPanePtr()->setBasePosition(J2DBasePosition_4);
     dMeter2Info_setMeterItemPanePtr(2, mpItemR);
 
@@ -1054,65 +1055,65 @@ void dMeter2Draw_c::initButton() {
         'r_itm_pp',
         JGeometry::TBox2<f32>(0.0f, 0.0f, mpItemR->getInitSizeX(), mpItemR->getInitSizeY()),
         static_cast<J2DPicture*>(mpItemR->getPanePtr())->getTexture(0)->getTexInfo(), NULL);
-    JUT_ASSERT(mpItemXYPane[2] != 0);
+    JUT_ASSERT(0, mpItemXYPane[2] != 0);
     mpItemXYPane[2]->setBasePosition(J2DBasePosition_4);
     mpItemR->getPanePtr()->appendChild(mpItemXYPane[2]);
 
     mpLightB = new CPaneMgr(mpScreen, 'b_light', 0, NULL);
-    JUT_ASSERT(mpLightB != 0);
+    JUT_ASSERT(0, mpLightB != 0);
     mpLightB->getPanePtr()->setBasePosition(J2DBasePosition_4);
     field_0x72c = 1.0f;
     mpLightB->hide();
 
     mpLightXY[0] = new CPaneMgr(mpScreen, 'x_light', 0, NULL);
-    JUT_ASSERT(mpLightXY[0] != 0);
+    JUT_ASSERT(0, mpLightXY[0] != 0);
     mpLightXY[0]->getPanePtr()->setBasePosition(J2DBasePosition_4);
     mpLightXY[0]->hide();
 
     mpLightXY[1] = new CPaneMgr(mpScreen, 'y_light', 0, NULL);
-    JUT_ASSERT(mpLightXY[1] != 0);
+    JUT_ASSERT(0, mpLightXY[1] != 0);
     mpLightXY[1]->getPanePtr()->setBasePosition(J2DBasePosition_4);
     mpLightXY[1]->hide();
 
     mpLightXY[2] = new CPaneMgr(mpScreen, 'r_light', 0, NULL);
-    JUT_ASSERT(mpLightXY[2] != 0);
+    JUT_ASSERT(0, mpLightXY[2] != 0);
     mpLightXY[2]->getPanePtr()->setBasePosition(J2DBasePosition_4);
     mpLightXY[2]->hide();
 
     mpBTextA = new CPaneMgr(mpScreen, 'b_text_a', 0, NULL);
-    JUT_ASSERT(mpBTextA != 0);
+    JUT_ASSERT(0, mpBTextA != 0);
 
     mpBTextB = new CPaneMgr(mpScreen, 'b_text_b', 0, NULL);
-    JUT_ASSERT(mpBTextB != 0);
+    JUT_ASSERT(0, mpBTextB != 0);
 
     mpBTextXY[0] = new CPaneMgr(mpScreen, 'b_text_x', 0, NULL);
-    JUT_ASSERT(mpBTextXY[0] != 0);
+    JUT_ASSERT(0, mpBTextXY[0] != 0);
 
     mpBTextXY[1] = new CPaneMgr(mpScreen, 'b_text_y', 0, NULL);
-    JUT_ASSERT(mpBTextXY[1] != 0);
+    JUT_ASSERT(0, mpBTextXY[1] != 0);
 
     mpBTextXY[2] = NULL;
 
     mpTextA = new CPaneMgr(mpScreen, 'a_text_n', 0, NULL);
-    JUT_ASSERT(mpTextA != 0);
+    JUT_ASSERT(0, mpTextA != 0);
 
     mpTextB = new CPaneMgr(mpScreen, 'b_text_n', 0, NULL);
-    JUT_ASSERT(mpTextB != 0);
+    JUT_ASSERT(0, mpTextB != 0);
 
     mpTextXY[2] = new CPaneMgr(mpScreen, 'z_text_n', 0, NULL);
-    JUT_ASSERT(mpTextXY[2] != 0);
+    JUT_ASSERT(0, mpTextXY[2] != 0);
 
     mpTextXY[0] = new CPaneMgr(mpScreen, 'x_text_n', 0, NULL);
-    JUT_ASSERT(mpTextXY[0] != 0);
+    JUT_ASSERT(0, mpTextXY[0] != 0);
 
     mpTextXY[1] = new CPaneMgr(mpScreen, 'y_text_n', 0, NULL);
-    JUT_ASSERT(mpTextXY[1] != 0);
+    JUT_ASSERT(0, mpTextXY[1] != 0);
 
     mpTextI = new CPaneMgr(mpScreen, 'i_text_n', 2, NULL);
-    JUT_ASSERT(mpTextI != 0);
+    JUT_ASSERT(0, mpTextI != 0);
 
     mpTextM = new CPaneMgr(mpScreen, 'm_text_n', 2, NULL);
-    JUT_ASSERT(mpTextM != 0);
+    JUT_ASSERT(0, mpTextM != 0);
 
     static u64 const juji_i_tag[] = {'ju_ring4', 'yaji_00', 'yaji_01', 'ju_ring2', 'ju_ring4'};
     static u64 const juji_m_tag[] = {'ju_ring3', 'yaji_02', 'yaji_03', 'ju_ring3', 0};
@@ -1120,14 +1121,14 @@ void dMeter2Draw_c::initButton() {
     for (int i = 0; i < 5; i++) {
         if (juji_i_tag[i] != 0) {
             mpJujiI[i] = new CPaneMgr(mpScreen, juji_i_tag[i], 0, NULL);
-            JUT_ASSERT(mpJujiI[i] != 0);
+            JUT_ASSERT(0, mpJujiI[i] != 0);
         } else {
             mpJujiI[i] = NULL;
         }
 
         if (juji_m_tag[i] != 0) {
             mpJujiM[i] = new CPaneMgr(mpScreen, juji_m_tag[i], 0, NULL);
-            JUT_ASSERT(mpJujiM[i] != 0);
+            JUT_ASSERT(0, mpJujiM[i] != 0);
         } else {
             mpJujiM[i] = NULL;
         }
@@ -1137,40 +1138,40 @@ void dMeter2Draw_c::initButton() {
     mpTextXY[1]->hide();
 
     mpButtonParent = new CPaneMgr(mpScreen, 'cont_n', 2, NULL);
-    JUT_ASSERT(mpButtonParent != 0);
+    JUT_ASSERT(0, mpButtonParent != 0);
 
     mpButtonA = new CPaneMgr(mpScreen, 'abtn_n', 2, NULL);
-    JUT_ASSERT(mpButtonA != 0);
+    JUT_ASSERT(0, mpButtonA != 0);
 
     mpButtonB = new CPaneMgr(mpScreen, 'bbtn_n', 2, NULL);
-    JUT_ASSERT(mpButtonB != 0);
+    JUT_ASSERT(0, mpButtonB != 0);
     field_0x730 = 1.0f;
 
     mpButtonMidona = new CPaneMgr(mpScreen, 'midona_n', 2, NULL);
-    JUT_ASSERT(mpButtonMidona != 0);
+    JUT_ASSERT(0, mpButtonMidona != 0);
     mButtonZAlpha = 0.0f;
     field_0x724 = 0.0f;
     field_0x738 = 0.0f;
     field_0x740 = 0;
 
     mpButtonXY[0] = new CPaneMgr(mpScreen, 'xbtn_n', 2, NULL);
-    JUT_ASSERT(mpButtonXY[0] != 0);
+    JUT_ASSERT(0, mpButtonXY[0] != 0);
 
     mpButtonXY[1] = new CPaneMgr(mpScreen, 'ybtn_n', 2, NULL);
-    JUT_ASSERT(mpButtonXY[1] != 0);
+    JUT_ASSERT(0, mpButtonXY[1] != 0);
 
     mpButtonXY[2] = new CPaneMgr(mpScreen, 'zbtn_n', 2, NULL);
-    JUT_ASSERT(mpButtonXY[2] != 0);
+    JUT_ASSERT(0, mpButtonXY[2] != 0);
 
     mpUzu = new CPaneMgrAlpha(mpScreen, 'uzu_n', 2, NULL);
-    JUT_ASSERT(mpUzu != 0);
+    JUT_ASSERT(0, mpUzu != 0);
 
     ResTIMG* timg = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource(
         'TIMG', dMeter2Info_getNumberTextureName(0));
     for (int i = 0; i < 2; i++) {
         for (int j = 0; j < 3; j++) {
             mpItemNumTex[i][j] = new J2DPicture(timg);
-            JUT_ASSERT(mpItemNumTex[i][j] != 0);
+            JUT_ASSERT(0, mpItemNumTex[i][j] != 0);
         }
     }
 
@@ -1217,7 +1218,7 @@ void dMeter2Draw_c::initButton() {
  */
 void dMeter2Draw_c::initButtonCross() {
     mpButtonCrossParent = new CPaneMgr(mpScreen, 'juji_n', 2, NULL);
-    JUT_ASSERT(mpButtonCrossParent != 0);
+    JUT_ASSERT(0, mpButtonCrossParent != 0);
 
     static_cast<J2DTextBox*>(mpScreen->search('cont_ju0'))->setFont(mDoExt_getMesgFont());
     static_cast<J2DTextBox*>(mpScreen->search('cont_ju1'))->setFont(mDoExt_getMesgFont());
@@ -2281,7 +2282,7 @@ void dMeter2Draw_c::drawButtonA(u8 i_action, f32 i_posX, f32 i_posY, f32 i_textP
         mpTextA->hide();
     }
 
-    JUT_ASSERT(std::strlen(mp_string) < (64));
+    JUT_ASSERT(0, std::strlen (mp_string) < (64));
 
     if (daPy_getPlayerActorClass()->getSumouMode()) {
         mpTextA->show();
@@ -2349,7 +2350,7 @@ void dMeter2Draw_c::drawButtonB(u8 i_action, bool param_1, f32 i_posX, f32 i_pos
         }
     }
 
-    JUT_ASSERT(std::strlen(mp_string) < (64));
+    JUT_ASSERT(0, std::strlen (mp_string) < (64));
 
     for (int i = 0; i < 5; i++) {
         strcpy(static_cast<J2DTextBox*>(mpBText[i]->getPanePtr())->getStringPtr(), mp_string);
@@ -2435,7 +2436,7 @@ void dMeter2Draw_c::drawButtonZ(u8 i_action) {
         mpButtonMidona->show();
     }
 
-    JUT_ASSERT(std::strlen(mp_string) < (64));
+    JUT_ASSERT(0, std::strlen (mp_string) < (64));
 
     for (int i = 0; i < 5; i++) {
         strcpy(static_cast<J2DTextBox*>(mpXYText[i][2]->getPanePtr())->getStringPtr(), mp_string);
@@ -2499,7 +2500,7 @@ void dMeter2Draw_c::drawButtonBin(u8 i_action) {
 
 /* 80217AB4-80218238 2123F4 0784+00 1/1 1/1 0/0 .text drawButtonXY__13dMeter2Draw_cFiUcUcbb */
 void dMeter2Draw_c::drawButtonXY(int i_no, u8 i_itemNo, u8 i_action, bool param_3, bool param_4) {
-    JUT_ASSERT(i_no < SELECT_MAX_e);
+    JUT_ASSERT(0, i_no < SELECT_MAX_e);
 
     static u64 const tag[] = {'item_x_n', 'item_y_n'};
 
@@ -2540,7 +2541,7 @@ void dMeter2Draw_c::drawButtonXY(int i_no, u8 i_itemNo, u8 i_action, bool param_
             mpTextXY[i_no]->hide();
         }
 
-        JUT_ASSERT(std::strlen(mp_string) < (64));
+        JUT_ASSERT(0, std::strlen (mp_string) < (64));
 
         for (int i = 0; i < 5; i++) {
             strcpy(static_cast<J2DTextBox*>(mpXYText[i][i_no]->getPanePtr())->getStringPtr(),
@@ -3225,7 +3226,7 @@ void dMeter2Draw_c::setButtonIconMidonaAlpha(u32 param_0) {
 /* 80219E98-8021A29C 2147D8 0404+00 0/0 1/1 0/0 .text setButtonIconAlpha__13dMeter2Draw_cFiUcUlb
  */
 void dMeter2Draw_c::setButtonIconAlpha(int i_no, u8 unused0, u32 unused1, bool unused2) {
-    JUT_ASSERT(i_no < SELECT_MAX_e);
+    JUT_ASSERT(0, i_no < SELECT_MAX_e);
 
     if (mpItemXY[i_no]->isVisible() || mpLightXY[i_no]->isVisible() ||
         mpButtonXY[i_no]->isVisible())
@@ -3420,7 +3421,7 @@ void dMeter2Draw_c::changeTextureItemB(u8 i_itemNo) {
 
 /* 8021A71C-8021A9C8 21505C 02AC+00 1/1 0/0 0/0 .text changeTextureItemXY__13dMeter2Draw_cFiUc */
 void dMeter2Draw_c::changeTextureItemXY(int i_no, u8 i_itemNo) {
-    JUT_ASSERT(i_no < SELECT_MAX_e);
+    JUT_ASSERT(0, i_no < SELECT_MAX_e);
 
     if (i_itemNo == fpcNm_ITEM_LIGHT_ARROW) {
         i_itemNo = fpcNm_ITEM_BOW;
@@ -3519,7 +3520,7 @@ void dMeter2Draw_c::setAlphaAnimeMax(CPaneMgrAlpha* i_pane, s16 i_max) {
 /* 8021AB84-8021AEC8 2154C4 0344+00 0/0 6/6 0/0 .text            setItemNum__13dMeter2Draw_cFUcUcUc
  */
 void dMeter2Draw_c::setItemNum(u8 i_button, u8 i_num, u8 i_max) {
-    JUT_ASSERT(i_button < SELECT_MAX_e);
+    JUT_ASSERT(0, i_button < SELECT_MAX_e);
 
     if (i_num > i_max) {
         i_num = i_max;
@@ -3574,7 +3575,7 @@ void dMeter2Draw_c::setItemNum(u8 i_button, u8 i_num, u8 i_max) {
 
 /* 8021AEC8-8021AF78 215808 00B0+00 0/0 1/1 0/0 .text            drawItemNum__13dMeter2Draw_cFUcf */
 void dMeter2Draw_c::drawItemNum(u8 i_button, f32 i_alpha) {
-    JUT_ASSERT(i_button < SELECT_MAX_e);
+    JUT_ASSERT(0, i_button < SELECT_MAX_e);
 
     if (i_alpha == 1.0f) {
         i_alpha = mpItemXY[i_button]->getAlphaRate();
@@ -3587,7 +3588,7 @@ void dMeter2Draw_c::drawItemNum(u8 i_button, f32 i_alpha) {
 
 /* 8021AF78-8021B0C8 2158B8 0150+00 0/0 1/1 0/0 .text drawKanteraMeter__13dMeter2Draw_cFUcf */
 void dMeter2Draw_c::drawKanteraMeter(u8 i_button, f32 i_alphaRate) {
-    JUT_ASSERT(i_button < SELECT_MAX_e);
+    JUT_ASSERT(0, i_button < SELECT_MAX_e);
 
     CPaneMgr* pane = mpItemXY[i_button];
     f32 sp10[2] = {0.0f};

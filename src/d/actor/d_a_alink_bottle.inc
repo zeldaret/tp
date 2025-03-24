@@ -641,7 +641,7 @@ int daAlink_c::procBottleSwing() {
     daPy_frameCtrl_c* frameCtrl_p = mUnderFrameCtrl;
 
     if (mProcVar2.field_0x300c == 0) {
-        if (eventInfo.i_checkCommandCatch()) {
+        if (eventInfo.checkCommandCatch()) {
             if (mProcVar3.field_0x300e == 0) {
                 dComIfGp_getVibration().StartShock(1, 1, cXyz(0.0f, 1.0f, 0.0f));
                 mProcVar3.field_0x300e = 1;

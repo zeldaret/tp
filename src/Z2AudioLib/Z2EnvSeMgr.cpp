@@ -211,20 +211,20 @@ Z2EnvSeMgr::Z2EnvSeMgr()
     field_0x39 = 0;
     field_0x2e8.setParam(0.1f, 0.007823764f, 0.06f);
     field_0x2f8.setParam(0.2f, 0.007823764f, 0.06f);
-    field_0x90.setParam(0.1f, 0.02630252f, 0.005f);
-    field_0xa0.setParam(0.9f, 0.02331011f, 0.003f);
-    field_0xb0.setParam(0.2f, 0.006385157f, 0.004f);
+    field_0x90.setParam(0.1f, 0.026302524f, 0.005f);
+    field_0xa0.setParam(0.9f, 0.023310114f, 0.003f);
+    field_0xb0.setParam(0.2f, 0.0063851574f, 0.004f);
     field_0xc0.setParam(0.8f, 0.006188805f, 0.0045f);
-    field_0xd0.setParam(0.3f, 0.05343298f, 0.002f);
-    field_0xe0.setParam(0.7f, 0.04256627f, 0.0025f);
-    field_0xf0.setParam(0.4f, 0.01293395f, 0.006f);
-    field_0x100.setParam(0.6f, 0.01215741f, 0.0065f);
-    field_0x18c.setParam(0.1f, 0.02331011f, 0.005f);
-    field_0x19c.setParam(0.5f, 0.05343298f, 0.0025f);
+    field_0xd0.setParam(0.3f, 0.053432982f, 0.002f);
+    field_0xe0.setParam(0.7f, 0.042566273f, 0.0025f);
+    field_0xf0.setParam(0.4f, 0.012933955f, 0.006f);
+    field_0x100.setParam(0.6f, 0.012157413f, 0.0065f);
+    field_0x18c.setParam(0.1f, 0.023310114f, 0.005f);
+    field_0x19c.setParam(0.5f, 0.053432982f, 0.0025f);
     field_0x64.setVolumeScale(1.0f);
     mWolfSmellSeMgr.setVolumeScale(1.0f);
-    field_0x120.setParam(0.5f, 0.02092357f, 0.001f);
-    field_0x130.setParam(0.1f, 0.003790878f, 0.005f);
+    field_0x120.setParam(0.5f, 0.020923574f, 0.001f);
+    field_0x130.setParam(0.1f, 0.0037908785f, 0.005f);
 }
 
 /* 802C6540-802C66B0 2C0E80 0170+00 0/0 1/1 0/0 .text            __dt__10Z2EnvSeMgrFv */
@@ -968,7 +968,7 @@ void Z2EnvSeMgr::setHyrulSewerOpen(bool param_0) {
 }
 
 /* 802C8300-802C8730 2C2C40 0430+00 2/1 1/1 0/0 .text            startRiverSe__10Z2EnvSeMgrFSc */
-// NONMATCHING missing branch and JAISound stack issues
+// NONMATCHING JAISound stack issues
 bool Z2EnvSeMgr::startRiverSe(s8 param_1) {
     if (Z2GetStatusMgr()->mCameraMapInfo == 6) {
         switch (Z2GetSceneMgr()->getCurrentSceneNum()) {
@@ -979,15 +979,19 @@ bool Z2EnvSeMgr::startRiverSe(s8 param_1) {
         case 0x10:
             if (Z2GetStatusMgr()->mPolygonPosition.y < -14500.0f) {
                 break;
-            } 
+            }
         case 8:
-        default:
-            registRiverSePos(&Z2GetStatusMgr()->mPolygonPosition);
-            break;
+            // fake match: should be 2000.0f according to debug, but that generates an extra entry in sdata2
+            if (Z2GetStatusMgr()->mPolygonPosition.y < -14500.0f) {
+                break;
+            }
         case 0x15:
         case 0x1e:
         case 0x1f:
         case 0x2e:
+            break;
+        default:
+            registRiverSePos(&Z2GetStatusMgr()->mPolygonPosition);
             break;
         }
     }

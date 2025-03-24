@@ -4,6 +4,7 @@
  */
 
 #include "Z2AudioLib/Z2Creature.h"
+#include "SSystem/SComponent/c_xyz.h"
 #include "Z2AudioLib/Z2Param.h"
 #include "Z2AudioLib/Z2Calc.h"
 #include "Z2AudioLib/Z2AudioMgr.h"
@@ -180,7 +181,7 @@ Z2SoundHandlePool* Z2Creature::startCreatureSound(JAISoundID i_soundID, u32 para
             return mSoundObjSimple1.startSound(i_soundID, param_1, 0);
         default:
             Z2SoundHandlePool* handle = mSoundObjAnime.startSound(i_soundID, param_1, param_2);
-            if (handle != NULL && *handle != NULL) {
+            if (handle != NULL && *handle) {
                 switch (i_soundID) {
                     case Z2SE_FAIRY_S_FLY:
                         f32 pitch = Z2Calc::getParamByExp((f32)param_1, 30.0f, 100.0f, 0.3f,
@@ -199,12 +200,12 @@ Z2SoundHandlePool* Z2Creature::startCreatureSound(JAISoundID i_soundID, u32 para
  * startCreatureSoundLevel__10Z2CreatureF10JAISoundIDUlSc       */
 Z2SoundHandlePool* Z2Creature::startCreatureSoundLevel(JAISoundID i_soundID, u32 param_1, s8 param_2) {
     switch (i_soundID) {
-        case 0x600d6:
+        case Z2SE_FAIRY_S_LV:
             Z2GetAudioMgr()->seStartLevel(i_soundID, mpPos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
             return NULL;
         default:
             Z2SoundHandlePool* handle = mSoundObjAnime.startLevelSound(i_soundID, param_1, param_2);
-            if (handle != NULL && *handle != NULL) {
+            if (handle != NULL && *handle) {
                 if (i_soundID == Z2SE_YM_SNOBO_RIDE || i_soundID == Z2SE_YW_SNOBO_RIDE) {
                     f32 volume = 0.0f;
                     if (param_1 != 0) {
@@ -486,7 +487,7 @@ Z2SoundHandlePool* Z2CreatureEnemy::startCreatureSoundLevel(JAISoundID i_soundID
 
     switch (mEnemyID) {
     case Z2_ENEMY_FZ:
-        if (handle != NULL && *handle != NULL && i_soundID == Z2SE_EN_FZ_MOVE) {
+        if (handle != NULL && *handle && i_soundID == Z2SE_EN_FZ_MOVE) {
             f32 volume = Z2Calc::getParamByExp(param_1, 1.0f, 50.0f, 0.4f, 0.1f, 1.1f,
                                                Z2Calc::CURVE_SIGN_1);
             (*handle)->getAuxiliary().moveVolume(volume, 0);
@@ -496,7 +497,7 @@ Z2SoundHandlePool* Z2CreatureEnemy::startCreatureSoundLevel(JAISoundID i_soundID
         Z2_E_sw_modPitch(handle, param_1);
         break;
     case Z2_ENEMY_RB:
-        if (handle != NULL && *handle != NULL && i_soundID == Z2SE_EN_RB_MOVE) {
+        if (handle != NULL && *handle && i_soundID == Z2SE_EN_RB_MOVE) {
             f32 volume = Z2Calc::getParamByExp(param_1, 4.0f, 35.0f, 0.6f, 0.7f, 1.0f,
                                                Z2Calc::CURVE_SIGN_1);
             f32 pitch = Z2Calc::getParamByExp(param_1, 4.0f, 35.0f, 0.4f, 0.8f, 1.0f,
@@ -507,7 +508,7 @@ Z2SoundHandlePool* Z2CreatureEnemy::startCreatureSoundLevel(JAISoundID i_soundID
         }
         // no break
     default:
-        if (handle != NULL && *handle != NULL && i_soundID == Z2SE_EN_PH_PROPELLER) {
+        if (handle != NULL && *handle && i_soundID == Z2SE_EN_PH_PROPELLER) {
             f32 volume = Z2Calc::getParamByExp(param_1, 0.0f, 30.0f, 0.4f, 0.0f, 1.0f,
                                                Z2Calc::CURVE_SIGN_1);
             f32 pitch = Z2Calc::getParamByExp(param_1, 4000.0f, 13000.0f, 0.4f, 0.8f, 1.2f,
@@ -856,7 +857,7 @@ Z2SoundHandlePool* Z2CreatureFM::startChainSoundLevel(JAISoundID i_soundID, u8 p
     switch (param_1) {
     case 0:
         handle = field_0xa4.startLevelSound(i_soundID, param_3, param_4);
-        if (handle != NULL && *handle != NULL) {
+        if (handle != NULL && *handle) {
             if (param_2 > 30.0f) {
                 pitch = 1.06f;
             } else {
@@ -872,7 +873,7 @@ Z2SoundHandlePool* Z2CreatureFM::startChainSoundLevel(JAISoundID i_soundID, u8 p
         return NULL;
     case 1:
         handle = field_0xa4.startLevelSound(i_soundID, param_3, param_4);
-        if (handle != NULL && *handle != NULL) {
+        if (handle != NULL && *handle) {
             if (param_2 > 30.0f) {
                 pitch = 1.06f;
             } else {
@@ -1052,7 +1053,7 @@ Z2SoundHandlePool* Z2CreatureOI::startTentacleSoundLevel(JAISoundID i_soundID, u
                                                          f32 param_2, u32 param_3, s8 param_4) {
     Z2SoundHandlePool* handle =
         mTentacleSounds[param_1].startLevelSound(i_soundID, param_3, param_4);
-    if (handle != NULL && *handle != NULL) {
+    if (handle != NULL && *handle) {
         f32 volume = Z2Calc::getParamByExp(param_2, 0.0f, 60.0f, 0.4f, 0.0f, 1.0f,
                                            Z2Calc::CURVE_SIGN_1);
         f32 pitch = Z2Calc::getParamByExp(param_2, 0.0f, 60.0f, 0.4f, 0.9f, 1.1f,

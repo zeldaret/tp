@@ -119,11 +119,11 @@ inline void mDoMtx_quatRotAxisRad(Quaternion* q, const Vec* axis, f32 rad) {
 }
 
 inline void mDoMtx_identity(Mtx m) {
-    MTXIdentity(m);
+    PSMTXIdentity(m);
 }
 
 inline void mDoMtx_concat(const Mtx a, const Mtx b, Mtx c) {
-    MTXConcat(a, b, c);
+    PSMTXConcat(a, b, c);
 }
 
 inline void mDoMtx_inverse(const Mtx a, Mtx b) {

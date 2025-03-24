@@ -338,6 +338,8 @@ public:
     void offTranslate() { mTranslate = true; }
     J3DTransformInfo* getOldTransInfo() { return mpTransformInfo; }
     Quaternion* getOldQuaternion() { return mpQuat; }
+    void offTranslate() { mTranslate = true; }
+    void setTranslateScale(const cXyz& scale) { mTranslateScale = scale; }
 
 private:
     /* 0x38 */ mDoExt_McaMorfCallBack1_c* mpCallback1;

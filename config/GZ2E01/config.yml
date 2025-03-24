@@ -9,6 +9,15 @@ quick_analysis: true # Initial analysis completed
 force_active: [
   _MetroTRK_Has_Framing,
 ]
+
+block_relocations:
+- source: .sdata:0x804505ac
+add_relocations:
+- source: .sdata:0x804505ac
+  type: abs
+  target: buffer__14mDoMtx_stack_c
+  addend: 0x300
+
 modules:
 - object: files/RELS.arc:rels/mmem/f_pc_profile_lst.rel
   hash: 183231361986731ad6bd26624a03a44dceda905b

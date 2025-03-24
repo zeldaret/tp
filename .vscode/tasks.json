@@ -2,6 +2,20 @@
   // Use Ctrl+Shift+B to run build tasks.
   // Or "Run Build Task" in the Command Palette.
   "version": "2.0.0",
+  "inputs": [
+    {
+        "id": "gameVersion",
+        "type": "pickString",
+        "options": [
+            "GZ2E01",
+            "GZ2P01",
+            "GZ2J01",
+            "ShieldD",
+        ],
+        "default": "GZ2E01",
+        "description": "Game version to build."
+    },
+  ],
   "tasks": [
     {
       "label": "ninja",
@@ -11,6 +25,12 @@
         "kind": "build",
         "isDefault": true
       }
+    },
+    {
+      "label": "configure",
+      "type": "shell",
+      "command": "${command:python.interpreterPath} configure.py --version ${input:gameVersion}",
+      "problemMatcher": [],
     },
   ]
 }

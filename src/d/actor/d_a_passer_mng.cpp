@@ -576,7 +576,7 @@ void daPasserMng_c::create_init() {
             }
         }
         #ifdef DEBUG
-        OS_REPORT("初期ばらまき位置 Path=%d ", getPathID())
+        OS_REPORT("初期ばらまき位置 Path=%d ", getPathID());
         for (int i = 0; i < max; i++) {
             OS_REPORT("%d, ", arr[i]);
         }

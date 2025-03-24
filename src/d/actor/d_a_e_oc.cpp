@@ -393,7 +393,7 @@ int daE_OC_c::checkBeforeBg() {
     link_chk.Set(&my_vec_0, &my_vec_1, this);
     if (dComIfG_Bgsp().LineCross(&link_chk)) {
         dComIfG_Bgsp().GetTriPla(link_chk, &plane);
-        if (my_vec_0.abs(link_chk.i_GetCross()) < 100.0f) {
+        if (my_vec_0.abs(link_chk.GetCross()) < 100.0f) {
             return 1;
         }
         if ( (s16) (cM_atan2s(plane.mNormal.x, plane.mNormal.z) - shape_angle.y) > 0)
@@ -731,7 +731,7 @@ void daE_OC_c::setStabPos() {
 /* 8072E528-8072E5A4 002048 007C+00 1/1 0/0 0/0 .text            setWaitSound__8daE_OC_cFv */
 void daE_OC_c::setWaitSound() {
     if (checkBck(0x1b) && mpMorf->checkFrame(0.0f)) {
-        mSound.startCreatureVoice(0x70180, -1);
+        mSound.startCreatureVoice(Z2SE_EN_OC_V_WAIT, -1);
     }
 }
 
@@ -739,9 +739,9 @@ void daE_OC_c::setWaitSound() {
 void daE_OC_c::setWalkSound() {
     if (checkBck(0x1d)) {
         if (mpMorf->checkFrame(14.0f)) {
-            mSound.startCreatureSound(0x70178, 0, -1);
+            mSound.startCreatureSound(Z2SE_EN_OC_FOOTNOTE_L, 0, -1);
         } else if (mpMorf->checkFrame(30.0f)) {
-            mSound.startCreatureSound(0x70179, 0, -1);
+            mSound.startCreatureSound(Z2SE_EN_OC_FOOTNOTE_R, 0, -1);
         }
     }
 }
@@ -750,11 +750,11 @@ void daE_OC_c::setWalkSound() {
 void daE_OC_c::setWalkStSound() {
     if (checkBck(0x1e)) {
         if (mpMorf->checkFrame(0.0f)) {
-            mSound.startCreatureVoice(0x7018e, -1);
+            mSound.startCreatureVoice(Z2SE_EN_OC_V_WALK_ST, -1);
         } else if (mpMorf->checkFrame(1.0f)) {
-            mSound.startCreatureSound(0x70178, 0, -1);
+            mSound.startCreatureSound(Z2SE_EN_OC_FOOTNOTE_L, 0, -1);
         } else if (mpMorf->checkFrame(9.0f)) {
-            mSound.startCreatureSound(0x70179, 0, -1);
+            mSound.startCreatureSound(Z2SE_EN_OC_FOOTNOTE_R, 0, -1);
         }
     }
 }
@@ -763,16 +763,16 @@ void daE_OC_c::setWalkStSound() {
 void daE_OC_c::setDashSound() {
     if (checkBck(0xb)) {
         if (mpMorf->checkFrame(0.0f)) {
-            mSound.startCreatureVoice(0x7017f, -1);
+            mSound.startCreatureVoice(Z2SE_EN_OC_V_DASH, -1);
         } else if (mpMorf->checkFrame(1.0f)) {
-            mSound.startCreatureSound(0x70178, 0, -1);
+            mSound.startCreatureSound(Z2SE_EN_OC_FOOTNOTE_L, 0, -1);
         } else if (mpMorf->checkFrame(8.5f)) {
-            mSound.startCreatureSound(0x70179, 0, -1);
+            mSound.startCreatureSound(Z2SE_EN_OC_FOOTNOTE_R, 0, -1);
         }
         if (mName == "E_OC") {
-            mSound.startCreatureSoundLevel(0x70193, 0, -1);
+            mSound.startCreatureSoundLevel(Z2SE_EN_OC_CLUB_DAGGLE, 0, -1);
         } else {
-            mSound.startCreatureSoundLevel(0x70537, 0, -1);
+            mSound.startCreatureSoundLevel(Z2SE_EN_OC_NATA_DAGGLE, 0, -1);
         }
     }
 }
@@ -781,11 +781,11 @@ void daE_OC_c::setDashSound() {
 void daE_OC_c::setWaitStSound() {
     if (checkBck(0x1c)) {
         if (mpMorf->checkFrame(0.0f)) {
-            mSound.startCreatureVoice(0x7018d, -1);
+            mSound.startCreatureVoice(Z2SE_EN_OC_V_WAIT_ST, -1);
         } else if (mpMorf->checkFrame(6.5f) || mpMorf->checkFrame(20.0f)) {
-            mSound.startCreatureSound(0x70178, 0, -1);
+            mSound.startCreatureSound(Z2SE_EN_OC_FOOTNOTE_L, 0, -1);
         } else if (mpMorf->checkFrame(13.0f) || mpMorf->checkFrame(28.5f)) {
-            mSound.startCreatureSound(0x70179, 0, -1);
+            mSound.startCreatureSound(Z2SE_EN_OC_FOOTNOTE_R, 0, -1);
         }
     }
 }
@@ -821,10 +821,10 @@ void daE_OC_c::executeWait() {
         case 0:
             if (field_0x6b4 == 0) {
                 setBck(0x1b, 2, 5.0f, 1.0f);
-                mSound.startCreatureVoice(0x70180, -1);
+                mSound.startCreatureVoice(Z2SE_EN_OC_V_WAIT, -1);
             } else {
                 setBck(0x18, 2, 5.0f, 1.0f);
-                mSound.startCreatureVoice(0x7018b, -1);
+                mSound.startCreatureVoice(Z2SE_EN_OC_V_STAND_WAIT, -1);
             }
             speedF = 0.0f;
             field_0x6bc = shape_angle.y;
@@ -848,7 +848,7 @@ void daE_OC_c::executeWait() {
             cLib_addCalcAngleS(&shape_angle.y, field_0x6bc, 4, 0x800, 0x100);
             if (field_0x6c0 == 0) {
                 setBck(0x16, 0, 5.0f, 1.0f);
-                mSound.startCreatureVoice(0x7017c, -1);
+                mSound.startCreatureVoice(Z2SE_EN_OC_V_SEARCH, -1);
                 mOcState = 2;
             }
             break;
@@ -858,7 +858,7 @@ void daE_OC_c::executeWait() {
             } else {
                 if (mpMorf->isStop()) {
                     setBck(0x1b, 2, 5.0f, 1.0f);
-                    mSound.startCreatureVoice(0x70180, -1);
+                    mSound.startCreatureVoice(Z2SE_EN_OC_V_WAIT, -1);
                     if (field_0x6b4 == 0) {
                         field_0x6c0 = cM_rndF(10.0f) + 10.0f;
                         mOcState = 3;
@@ -977,15 +977,15 @@ void daE_OC_c::executeTalk() {
             if (rand_val < 0.2f) {
                 setBck(0x1a, 0, 5.0f, 1.0f);
                 mOcState = 3;
-                mSound.startCreatureVoice(0x7018f, -1);
+                mSound.startCreatureVoice(Z2SE_EN_OC_V_TALK_B, -1);
             } else if (rand_val < 0.6f) {
                 setBck(0x19, 2, 5.0f, 1.0f);
-                mSound.startCreatureVoice(0x7018a, -1);
+                mSound.startCreatureVoice(Z2SE_EN_OC_V_TALK, -1);
                 mOcState = 2;
                 field_0x6c0 = cM_rndF(30.0f) + 30.0f;
             } else {
                 setBck(0x18, 2, 5.0f, 1.0f);
-                mSound.startCreatureVoice(0x7018b, -1);
+                mSound.startCreatureVoice(Z2SE_EN_OC_V_STAND_WAIT, -1);
                 mOcState = 2;
                 field_0x6c0 = cM_rndF(30.0f) + 30.0f;
             }
@@ -1044,7 +1044,7 @@ void daE_OC_c::executeFind() {
                     field_0x6c2 = field_0x6c0 + 0x14;
                     if (checkBck(0x1c) == 0) {
                         setBck(0x1c, 2, 5.0f, 1.0f);
-                        mSound.startCreatureVoice(0x7018d, -1);
+                        mSound.startCreatureVoice(Z2SE_EN_OC_V_WAIT_ST, -1);
                     }
                     field_0x6de = 1;
                 } else if (mOcState == 1) {
@@ -1056,11 +1056,11 @@ void daE_OC_c::executeFind() {
                     field_0x6e2 = 0;
                     field_0x6ca = 0x96;
                     setBck(0xd, 0, 5.0f, 1.0f);
-                    mSound.startCreatureVoice(0x7017e, -1);
+                    mSound.startCreatureVoice(Z2SE_EN_OC_V_FIND, -1);
                 } else {
                     field_0x6c0 = cM_rndF(5.0f) + 5.0f;
                     setBck(0xd, 0, 5.0f, 1.0f);
-                    mSound.startCreatureVoice(0x7017e, -1);
+                    mSound.startCreatureVoice(Z2SE_EN_OC_V_FIND, -1);
                 }
                 mOcState = 3;
                 speedF = 0.0f;
@@ -1069,10 +1069,10 @@ void daE_OC_c::executeFind() {
                     if (field_0x6de || pl_dist < 400.0f) {
                         setBck(0x1e, 2, 5.0f, 1.3f);
                         field_0x6de = 1;
-                        mSound.startCreatureVoice(0x7018e, -1);
+                        mSound.startCreatureVoice(Z2SE_EN_OC_V_WALK_ST, -1);
                     } else {
                         setBck(0xb, 2, 5.0f, 1.2f);
-                        mSound.startCreatureVoice(0x7017f, -1);
+                        mSound.startCreatureVoice(Z2SE_EN_OC_V_DASH, -1);
                     }
                     mOcState = 4;
                     field_0x6c0 = 0x1e;
@@ -1124,17 +1124,17 @@ void daE_OC_c::executeFind() {
                             if (speedF < 0.0f) {
                                 if (checkBck(0x1c) == 0 || mpMorf->getPlaySpeed() != 1.0f) {
                                     setBck(0x1c, 2, 5.0f, 1.0f);
-                                    mSound.startCreatureVoice(0x7018d, -1);
+                                    mSound.startCreatureVoice(Z2SE_EN_OC_V_WAIT_ST, -1);
                                 }
                             } else if (!speedF && (s16)cLib_distanceAngleS(shape_angle.y, pl_ang) < 0x1000) {
                                 if (checkBck(0x1c) == 0) {
                                     setBck(0x1c, 2, 5.0f, 1.0f);
-                                    mSound.startCreatureVoice(0x7018d, -1);
+                                    mSound.startCreatureVoice(Z2SE_EN_OC_V_WAIT_ST, -1);
                                 }
                             } else {
                                 if (checkBck(0x1e) == 0 || mpMorf->getPlaySpeed() != 1.3f) {
                                     setBck(0x1e, 2, 5.0f, 1.3f);
-                                    mSound.startCreatureVoice(0x7018e, -1);
+                                    mSound.startCreatureVoice(Z2SE_EN_OC_V_WALK_ST, -1);
                                 }
                             }
                         }
@@ -1151,17 +1151,17 @@ void daE_OC_c::executeFind() {
                         if (speedF < 0.0f) {
                             if (checkBck(0x1e) == 0 || mpMorf->getPlaySpeed() != -1.0f) {
                                 setBck(0x1e, 2, 5.0f, -1.0f);
-                                mSound.startCreatureVoice(0x7018e, -1);
+                                mSound.startCreatureVoice(Z2SE_EN_OC_V_WALK_ST, -1);
                             }
                         } else if (!speedF && (s16)cLib_distanceAngleS(shape_angle.y, pl_ang) < 0x1000) {
                             if (checkBck(0x1c) == 0) {
                                 setBck(0x1c, 2, 5.0f, 1.0f);
-                                mSound.startCreatureVoice(0x7018d, -1);
+                                mSound.startCreatureVoice(Z2SE_EN_OC_V_WAIT_ST, -1);
                             }
                         } else {
                             if (checkBck(0x1e) == 0 || mpMorf->getPlaySpeed() != 1.3f) {
                                 setBck(0x1e, 2, 5.0f, 1.3f);
-                                mSound.startCreatureVoice(0x7018e, -1);
+                                mSound.startCreatureVoice(Z2SE_EN_OC_V_WALK_ST, -1);
                             }
                         }
                         if (0 == strcmp("D_MN05", dComIfGp_getStartStageName())
@@ -1187,7 +1187,7 @@ void daE_OC_c::executeFind() {
                 break;
             case 5:
                 setBck(0x16, 0, 5.0f, 1.0f);
-                mSound.startCreatureVoice(0x7017c, -1);
+                mSound.startCreatureVoice(Z2SE_EN_OC_V_SEARCH, -1);
                 mOcState = 6;
                 field_0x6de = 0;
                 // fallthrough intentional.
@@ -1265,11 +1265,11 @@ void daE_OC_c::executeAttack() {
             if (cLib_chaseF(&speedF, 0.0f, 1.0f)) {
                 if (cM_rndF(1.0f) < 0.5f) {
                     setBck(5, 0, 5.0f, 1.0f);
-                    mSound.startCreatureVoice(0x70184, -1);
+                    mSound.startCreatureVoice(Z2SE_EN_OC_V_ATTACK_B, -1);
                     mOcState = 1;
                 } else {
                     setBck(6, 0, 5.0f, 1.0f);
-                    mSound.startCreatureVoice(0x70185, -1);
+                    mSound.startCreatureVoice(Z2SE_EN_OC_V_ATTACK_C, -1);
                     mOcState = 2;
                 }
                 field_0x6a0 = 0.0f;
@@ -1288,21 +1288,21 @@ void daE_OC_c::executeAttack() {
         case 1: {
             if (mOcState == 1) {
                 if (mpMorf->checkFrame(10.0f)) {
-                    mSound.startCreatureVoice(0x70186, -1);
+                    mSound.startCreatureVoice(Z2SE_EN_OC_V_ATTACK_B2, -1);
                 } else if (mpMorf->checkFrame(12.5f)) {
-                    mSound.startCreatureSound(0x70188, 0, -1);
+                    mSound.startCreatureSound(Z2SE_EN_OC_ATTACK_B, 0, -1);
                 } else if (mpMorf->checkFrame(19.0f)) {
                     if (mName == "E_OC") {
-                        mSound.startCreatureSound(0x70192, 0, -1);
+                        mSound.startCreatureSound(Z2SE_EN_OC_CLUB_HIT, 0, -1);
                     } else {
-                        mSound.startCreatureSound(0x70536, 0, -1);
+                        mSound.startCreatureSound(Z2SE_EN_OC_NATA_HIT, 0, -1);
                     }
                 }
             } else {
                 if (mpMorf->checkFrame(7.0f)) {
-                    mSound.startCreatureVoice(0x70187, -1);
+                    mSound.startCreatureVoice(Z2SE_EN_OC_V_ATTACK_C2, -1);
                 } else if (mpMorf->checkFrame(11.5f)) {
-                    mSound.startCreatureSound(0x70189, 0, -1);
+                    mSound.startCreatureSound(Z2SE_EN_OC_ATTACK_C, 0, -1);
                 }
             }
             if (mpMorf->getFrame() >= 14.0f && mpMorf->getFrame() <= 22.0f) {
@@ -1335,7 +1335,7 @@ void daE_OC_c::executeAttack() {
             field_0x6a0 = my_float;
             if (mpMorf->isStop()) {
                 setBck(0x1c, 2, 0.0f, 1.0f);
-                mSound.startCreatureVoice(0x7018d, -1);
+                mSound.startCreatureVoice(Z2SE_EN_OC_V_WAIT_ST, -1);
                 if (field_0x6e3) {
                     setActionMode(0x10, 0);
                 } else {
@@ -1354,7 +1354,7 @@ void daE_OC_c::executeAttack() {
             field_0x6a0 = my_float;
             if (mpMorf->isStop()) {
                 setBck(0x1c, 2, 5.0f, 1.0f);
-                mSound.startCreatureVoice(0x7018d, -1);
+                mSound.startCreatureVoice(Z2SE_EN_OC_V_WAIT_ST, -1);
                 if (field_0x6e3) {
                     setActionMode(0x10, 0);
                 } else {
@@ -1382,24 +1382,24 @@ void daE_OC_c::executeDamage() {
         case 0:
             speedF = 0.0f;
             setBck(0x9, 0, 0.0f, 1.0f);
-            mSound.startCreatureVoice(0x70182, -1);
+            mSound.startCreatureVoice(Z2SE_EN_OC_V_DAMAGE_LR, -1);
             mOcState = 5;
             break;
         case 1:
             speedF = 0.0f;
             setBck(0xa, 0, 0.0f, 1.0f);
-            mSound.startCreatureVoice(0x70182, -1);
+            mSound.startCreatureVoice(Z2SE_EN_OC_V_DAMAGE_LR, -1);
             mOcState = 5;
             break;
         case 2:
             speedF = 0.0f;
             setBck(0x8, 0, 0.0f, 1.0f);
-            mSound.startCreatureVoice(0x70182, -1);
+            mSound.startCreatureVoice(Z2SE_EN_OC_V_DAMAGE_LR, -1);
             mOcState = 5;
             break;
         case 3: {
             setBck(0x8, 0, 0.0f, 1.0f);
-            mSound.startCreatureVoice(0x70181, -1);
+            mSound.startCreatureVoice(Z2SE_EN_OC_V_DAMAGE, -1);
             mOcState = 5;
             s16 half_val = cLib_distanceAngleS(shape_angle.y, fopAcM_searchPlayerAngleY(this));
             if (half_val < 0x4000) {
@@ -1412,7 +1412,7 @@ void daE_OC_c::executeDamage() {
         }
         case 4:
             setBck(0xf, 0, 0.0f, 1.0f);
-            mSound.startCreatureVoice(0x701a2, -1);
+            mSound.startCreatureVoice(Z2SE_EN_OC_V_GALE, -1);
             mOcState = 6;
             speedF = 0.0f;
             break;
@@ -1465,18 +1465,18 @@ void daE_OC_c::executeBigDamage() {
                     field_0x6bc = -0x1f60;
                 }
                 if (health < 1) {
-                    mSound.startCreatureVoice(0x70191, -1);
+                    mSound.startCreatureVoice(Z2SE_EN_OC_V_DEATH, -1);
                 } else {
-                    mSound.startCreatureVoice(0x70190, -1);
+                    mSound.startCreatureVoice(Z2SE_EN_OC_V_LEAP_SPIN, -1);
                 }
             } else {
                 field_0x6dc = 0;
                 setBck(0x13, 0, 0.0f, 1.0f);
                 field_0x6bc = 0;
                 if (health < 1) {
-                    mSound.startCreatureVoice(0x70191, -1);
+                    mSound.startCreatureVoice(Z2SE_EN_OC_V_DEATH, -1);
                 } else {
-                    mSound.startCreatureVoice(0x7017a, -1);
+                    mSound.startCreatureVoice(Z2SE_EN_OC_V_LEAP_A, -1);
                 }
             }
             offTgSph();
@@ -1508,10 +1508,10 @@ void daE_OC_c::executeBigDamage() {
                 field_0x6d8 = 0;
                 shape_angle.x = 0;
                 setBck(0x14, 0, 0.0f, 1.0f);
-                mSound.startCreatureSound(0x6002c, 0, -1);
+                mSound.startCreatureSound(Z2SE_CM_BODYFALL_M, 0, -1);
                 if (field_0x6dc) {
                     mpMorf->setFrame(5.0f);
-                    mSound.startCreatureSound(0x7017b, 0, -1);
+                    mSound.startCreatureSound(Z2SE_EN_OC_LEAP_B, 0, -1);
                 }
                 mOcState = 4;
                 fopAcM_effSmokeSet1(&field_0xe60, &field_0xe64, &current.pos, NULL, 2.0f, &tevStr, 1);
@@ -1520,10 +1520,10 @@ void daE_OC_c::executeBigDamage() {
         case 4:
             setGroundAngle();
             if (mpMorf->checkFrame(15.0f)) {
-                mSound.startCreatureSound(0x6002c, 0, -1);
+                mSound.startCreatureSound(Z2SE_CM_BODYFALL_M, 0, -1);
             }
             if (field_0x6dc == 0 && mpMorf->checkFrame(5.0f)) {
-                mSound.startCreatureSound(0x7017b, 0, -1);
+                mSound.startCreatureSound(Z2SE_EN_OC_LEAP_B, 0, -1);
             }
             checkDamageBg();
             if (mAcch.ChkWallHit()) {
@@ -1557,7 +1557,7 @@ void daE_OC_c::executeBigDamage() {
             }
             if (field_0x6c0 == 0) {
                 setBck(0x17, 0, 5.0f, 1.0f);
-                mSound.startCreatureVoice(0x7017d, -1);
+                mSound.startCreatureVoice(Z2SE_EN_OC_V_STAND, -1);
                 mOcState = 6;
                 offDownFlg();
             }
@@ -1581,10 +1581,10 @@ void daE_OC_c::executeWatch() {
             speedF = 0.0f;
             if (field_0x6de) {
                 setBck(0x1c, 2, 5.0f, 1.0f);
-                mSound.startCreatureVoice(0x7018d, -1);
+                mSound.startCreatureVoice(Z2SE_EN_OC_V_WAIT_ST, -1);
             } else {
                 setBck(0x1b, 2, 5.0f, 1.0f);
-                mSound.startCreatureVoice(0x70180, -1);
+                mSound.startCreatureVoice(Z2SE_EN_OC_V_WAIT, -1);
             }
             field_0x6c0 = (s8) (cM_rndFX(15.0f) + 35.0f);
             mOcState = 1;
@@ -1600,10 +1600,10 @@ void daE_OC_c::executeWatch() {
             speedF = 0.0f;
             if (field_0x6de) {
                 setBck(0x1c, 2, 5.0f, 1.0f);
-                mSound.startCreatureVoice(0x7018d, -1);
+                mSound.startCreatureVoice(Z2SE_EN_OC_V_WAIT_ST, -1);
             } else {
                 setBck(0x1b, 2, 5.0f, 1.0f);
-                mSound.startCreatureVoice(0x70180, -1);
+                mSound.startCreatureVoice(Z2SE_EN_OC_V_WAIT, -1);
             }
             field_0x6c0 = (s8) (cM_rndFX(15.0f) + 35.0f);
             mOcState = 3;
@@ -1612,7 +1612,7 @@ void daE_OC_c::executeWatch() {
             if (field_0x6c0 == 0) {
                 mOcState = 4;
                 setBck(7, 0, 5.0f, 1.0f);
-                mSound.startCreatureVoice(0x70183, -1);
+                mSound.startCreatureVoice(Z2SE_EN_OC_V_CRY, -1);
             }
             break;
         case 4:
@@ -1645,13 +1645,13 @@ void daE_OC_c::executeSoundWatch() {
         case 0:
             speedF = 0.0f;
             setBck(0xd, 0, 5.0f, 1.0f);
-            mSound.startCreatureVoice(0x7017e, -1);
+            mSound.startCreatureVoice(Z2SE_EN_OC_V_FIND, -1);
             field_0x6c0 = cM_rndF(30.0f) + 60.0f;
             mOcState = 1;
         case 1:
             if (field_0x6c0 == 0) {
                 setBck(0xb, 2, 5.0f, 1.2f);
-                mSound.startCreatureVoice(0x7017f, -1);
+                mSound.startCreatureVoice(Z2SE_EN_OC_V_DASH, -1);
                 mOcState = 2;
                 field_0x6c0 = 0x3c;
             }
@@ -1699,7 +1699,7 @@ void daE_OC_c::executeDeath() {
             } else {
                 field_0x6c0 = 0x2d;
                 setBck(0xe, 0, 0.0f, 1.0f);
-                mSound.startCreatureVoice(0x7018c, -1);
+                mSound.startCreatureVoice(Z2SE_EN_OC_V_FINISH, -1);
                 mOcState = 3;
                 offDownFlg();
             }
@@ -1707,7 +1707,7 @@ void daE_OC_c::executeDeath() {
         case 3:
             setSpitEffect();
             if (mpMorf->checkFrame(28.5f)) {
-                mSound.startCreatureSound(0x6002b, 0, -1);
+                mSound.startCreatureSound(Z2SE_CM_BODYFALL_S, 0, -1);
             }
         case 2:
             cLib_chaseF(&speedF, 0.0f, 1.0f);
@@ -1750,14 +1750,14 @@ void daE_OC_c::executeWaterDeath() {
     switch (mOcState) {
         case 0:
             setBck(0xC, 0, 0.0f, 1.0f);
-            mSound.startCreatureVoice(0x701AF, -1);
-            mSound.startCreatureSound(0x701B0, 0, -1);
+            mSound.startCreatureVoice(Z2SE_EN_OC_V_DROWNED, -1);
+            mSound.startCreatureSound(Z2SE_EN_OC_DROWNED, 0, -1);
             current.pos.y += 140.0f;
             mOcState = 1;
             speedF = 0.0f;
             gravity = 0.0f;
             setWaterEffect();
-            mSound.startCreatureSound(0x60032, 0, -1);
+            mSound.startCreatureSound(Z2SE_CM_BODYFALL_WATER_M, 0, -1);
             offTgSph();
             break;
         case 1:
@@ -1831,7 +1831,7 @@ void daE_OC_c::executeDemoMaster() {
             return;
         }
         case 1:
-            mSound.startCreatureVoice(0x701B1, -1);
+            mSound.startCreatureVoice(Z2SE_EN_OC_V_SAKEBU, -1);
             setBck(7, 0, 5.0f, 1.0f);
             mOcState = 2;
             field_0x6c0 = 15;
@@ -1849,19 +1849,19 @@ void daE_OC_c::executeDemoMaster() {
             if (mOcState == 4) {
                 if (mpMorf->isStop()) {
                     setBck(4, 0, 5.0f, 1.0f);
-                    mSound.startCreatureVoice(0x701A4, -1);
+                    mSound.startCreatureVoice(Z2SE_EN_OC_V_ANGRY_B, -1);
                     mOcState = 5;
                 }
             } else {
                 if (mpMorf->checkFrame(9.0f)) {
-                    mSound.startCreatureSound(0x70189, 0, -1);
+                    mSound.startCreatureSound(Z2SE_EN_OC_ATTACK_C, 0, -1);
                 }
                 s16 angle = fopAcM_searchPlayerAngleY(this);
                 cLib_chaseAngleS(&field_0x6bc, angle + 0x8000, 0x200);
                 if (mpMorf->isStop()) {
                     mOcState = 6;
                     setBck(0x10, 0, 5.0f, 1.0f);
-                    mSound.startCreatureVoice(0x701B2, -1);
+                    mSound.startCreatureVoice(Z2SE_EN_OC_V_JUMP, -1);
                     speedF = 10.0f;
                     speed.y = 40.0f;
                     field_0x6c0 = 0x28;
@@ -1898,7 +1898,7 @@ void daE_OC_c::executeDemoMaster() {
                 cLib_addCalc2(&field_0x6f8.y, my_vec_0.y + 2950.0f, 0.1f, 10.0f);
             }
             if (mAcch.ChkGroundHit()) {
-                mSound.startCreatureSound(0x6002B, 0, -1);
+                mSound.startCreatureSound(Z2SE_CM_BODYFALL_S, 0, -1);
                 fopAcM_effSmokeSet1(&field_0xe60, &field_0xe64, &current.pos, NULL, 2.0f, &tevStr, 1);
                 setBck(0x12, 0, 5.0f, 1.0f);
                 mOcState = 8;
@@ -1908,7 +1908,7 @@ void daE_OC_c::executeDemoMaster() {
             field_0x704 = 47.0f;
             cLib_addCalc2(&field_0x6f8.y, my_vec_0.y + 2950.0f, 0.1f, 10.0f);
             if (mpMorf->checkFrame(34.0f)) {
-                mSound.startCreatureVoice(0x7017E, -1);
+                mSound.startCreatureVoice(Z2SE_EN_OC_V_FIND, -1);
             }
             if (mpMorf->isStop()) {
                 field_0x6c8 = 30;
@@ -1945,14 +1945,14 @@ void daE_OC_c::executeDemoChild() {
             case 1:
                 if (mpParent->mOcState == 5) {
                     setBck(3, 0, 5.0f, 1.0f);
-                    mSound.startCreatureVoice(0x701A3, -1);
+                    mSound.startCreatureVoice(Z2SE_EN_OC_V_ANGRY_A, -1);
                     mOcState = 5;
                 }
                 break;
             case 5:
                 if (mpMorf->isStop()) {
                     setBck(0x10, 0, 5.0f, 1.0f);
-                    mSound.startCreatureVoice(0x701B2, -1);
+                    mSound.startCreatureVoice(Z2SE_EN_OC_V_JUMP, -1);
                     mOcState = 6;
                     speedF = 10.0f;
                     speed.y = 40.0f;
@@ -1975,7 +1975,7 @@ void daE_OC_c::executeDemoChild() {
                 break;
             case 7:
                 if (mAcch.ChkGroundHit()) {
-                    mSound.startCreatureSound(0x6002B, 0, -1);
+                    mSound.startCreatureSound(Z2SE_CM_BODYFALL_S, 0, -1);
                     fopAcM_effSmokeSet1(&field_0xe60, &field_0xe64, &current.pos, NULL, 2.0f, &tevStr, 1);
                     setBck(0x12, 0, 5.0f, 1.0f);
                     mOcState = 8;
@@ -1983,7 +1983,7 @@ void daE_OC_c::executeDemoChild() {
                 break;
             case 8:
                 if (mpMorf->checkFrame(34.0f)) {
-                    mSound.startCreatureVoice(0x7017E, -1);
+                    mSound.startCreatureVoice(Z2SE_EN_OC_V_FIND, -1);
                 }
                 if (mpMorf->isStop()) {
                     setActionMode(3, 0);
@@ -2025,7 +2025,7 @@ void daE_OC_c::executeFallDead() {
     mPrevShapeAngle = shape_angle.y;
     switch (mOcState) {
         case 0:
-            mSound.startCreatureVoice(0x701A5, -1);
+            mSound.startCreatureVoice(Z2SE_EN_OC_V_FALL, -1);
             if (checkBck(0x15) || checkBck(0x13)) {
                 mOcState = 1;
             } else {
@@ -2071,7 +2071,7 @@ void daE_OC_c::executeFall() {
         case 1:
             if (mAcch.ChkGroundHit()) {
                 speedF = 0.0f;
-                mSound.startCreatureSound(0x6002B, 0, -1);
+                mSound.startCreatureSound(Z2SE_CM_BODYFALL_S, 0, -1);
                 fopAcM_effSmokeSet1(&field_0xe60, &field_0xe64, &current.pos, NULL, 2.0f, &tevStr, 1);
                 setBck(0x12, 0, 5.0f, 1.0f);
                 mOcState = 2;

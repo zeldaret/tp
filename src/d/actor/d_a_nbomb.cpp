@@ -140,7 +140,7 @@ int daNbomb_c::createHeap() {
 
     J3DModelData* modelData =
         (J3DModelData*)dComIfG_getObjectRes(m_arcNameList[mType], bmdIdx[mType]);
-    JUT_ASSERT(modelData != 0);
+    JUT_ASSERT(0, modelData != 0);
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel == NULL) {
         return 0;
@@ -149,13 +149,13 @@ int daNbomb_c::createHeap() {
     J3DAnmTransform* trans = NULL;
     if (mType == TYPE_INSECT_ENEMY) {
         trans = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcNameBombE, 6);
-        JUT_ASSERT(trans);
+        JUT_ASSERT(0, trans);
     } else if (mType == TYPE_WATER_ENEMY) {
         trans = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcNameBombEW, 5);
-        JUT_ASSERT(trans);
+        JUT_ASSERT(0, trans);
     } else if (mType == TYPE_INSECT_PLAYER) {
         trans = (J3DAnmTransform*)dComIfG_getObjectRes(daAlink_c::getAlinkArcName(), 0x15);
-        JUT_ASSERT(trans);
+        JUT_ASSERT(0, trans);
     }
 
     if (trans != NULL) {
@@ -616,7 +616,7 @@ int daNbomb_c::insectLineCheck() {
 void daNbomb_c::setHitPolygon(BOOL param_0) {
     if (!param_0) {
         mInsectHitPolyInfo.SetPolyInfo(mLineChk);
-        current.pos = mLineChk.i_GetCross();
+        current.pos = mLineChk.GetCross();
     }
 
     cM3dGPla poly;
@@ -1358,7 +1358,7 @@ BOOL daNbomb_c::procInsectMove() {
             }
 
             if (var_r28 == 2) {
-                current.pos = mLineChk.i_GetCross();
+                current.pos = mLineChk.GetCross();
             } else {
                 current.pos += field_0xbfc * speedF;
             }

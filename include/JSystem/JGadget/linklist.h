@@ -22,7 +22,9 @@ public:
 
 struct TNodeLinkList {
     struct iterator {
+        iterator() { node = NULL; }
         explicit iterator(TLinkListNode* pNode) { node = pNode; }
+        iterator& operator=(const iterator& other) { node = other.node; return *this; }
 
         iterator& operator++() { node = node->getNext(); return *this; }
         iterator& operator--() { node = node->getPrev(); return *this; }
@@ -117,6 +119,7 @@ struct TLinkList : public TNodeLinkList {
     TLinkList() : TNodeLinkList() {}
 
     struct iterator {
+        iterator() {}
         explicit iterator(TNodeLinkList::iterator iter) : base(iter) {}
 
         iterator& operator++() {

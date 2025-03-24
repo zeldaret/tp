@@ -470,19 +470,19 @@ void daObjBossWarp_c::event_proc_call() {
 void daObjBossWarp_c::actionWait() {
     setAction(ACT_ORDER_EVENT);
     fopAcM_orderOtherEventId(this, mBossClearEventId, mBossClearMapToolId, 0xffff, 3, 1);
-    eventInfo.i_onCondition(2);
+    eventInfo.onCondition(2);
 }
 
 /* 8057A54C-8057A610 000F8C 00C4+00 1/0 0/0 0/0 .text actionOrderEvent__15daObjBossWarp_cFv */
 void daObjBossWarp_c::actionOrderEvent() {
-    if (eventInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.checkCommandDemoAccrpt()) {
         dComIfGp_event_setTalkPartner(fopAcM_SearchByName(PROC_OBJ_YSTONE));
         setAction(ACT_EVENT);
         mStaffId = dComIfGp_evmng_getMyStaffId("WARPHOLE", NULL, 0);
         demoProc();
     } else {
         fopAcM_orderOtherEventId(this, mBossClearEventId, mBossClearMapToolId, 0xffff, 3, 1);
-        eventInfo.i_onCondition(2);
+        eventInfo.onCondition(2);
     }
 }
 
@@ -502,19 +502,19 @@ void daObjBossWarp_c::actionWaitWarp() {
     if (checkDistance()) {
         setAction(ACT_ORDER_CHK_EVENT);
         fopAcM_orderOtherEventId(this, mWarpCheckEventId, 0xff, 0xffff, 0, 1);
-        eventInfo.i_onCondition(2);
+        eventInfo.onCondition(2);
     }
 }
 
 /* 8057A6E0-8057A778 001120 0098+00 1/0 0/0 0/0 .text actionOrderWarpEvent__15daObjBossWarp_cFv */
 void daObjBossWarp_c::actionOrderWarpEvent() {
-    if (eventInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.checkCommandDemoAccrpt()) {
         setAction(ACT_WARP_EVENT);
         mStaffId = dComIfGp_evmng_getMyStaffId("WARPHOLE", NULL, 0);
         demoProc();
     } else {
         fopAcM_orderOtherEventId(this, mBossWarpInEventId, mBossWarpInMapToolId, 0xffff, 0, 1);
-        eventInfo.i_onCondition(2);
+        eventInfo.onCondition(2);
     }
 }
 
@@ -533,7 +533,7 @@ void daObjBossWarp_c::actionDead() {
 /* 8057A7C8-8057A8B4 001208 00EC+00 1/0 0/0 0/0 .text actionOrderChkEvent__15daObjBossWarp_cFv */
 void daObjBossWarp_c::actionOrderChkEvent() {
     daMidna_c* midna = daPy_py_c::getMidnaActor();
-    if (eventInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.checkCommandDemoAccrpt()) {
         setAction(ACT_CHK_EVENT);
         mStaffId = dComIfGp_evmng_getMyStaffId("WARPHOLE", NULL, 0);
         attention_info.position = midna->attention_info.position;
@@ -542,7 +542,7 @@ void daObjBossWarp_c::actionOrderChkEvent() {
         demoProc();
     } else {
         fopAcM_orderOtherEventId(this, mWarpCheckEventId, 0xff, 0xffff, 0, 1);
-        eventInfo.i_onCondition(2);
+        eventInfo.onCondition(2);
     }
 }
 
@@ -554,11 +554,11 @@ void daObjBossWarp_c::actionChkEvent() {
         if (mWarpChoice == 0) {
             setAction(ACT_ORDER_WARP_EVENT);
             fopAcM_orderOtherEventId(this, mBossWarpInEventId, mBossWarpInMapToolId, 0xffff, 0, 1);
-            eventInfo.i_onCondition(2);
+            eventInfo.onCondition(2);
         } else if (mWarpChoice == 1) {
             setAction(ACT_ORDER_CANCEL_EVENT);
             fopAcM_orderOtherEventId(this, mWarpCancelEventId, 0xff, 0xffff, 0, 1);
-            eventInfo.i_onCondition(2);
+            eventInfo.onCondition(2);
         }
     } else {
         demoProc();
@@ -568,13 +568,13 @@ void daObjBossWarp_c::actionChkEvent() {
 /* 8057A994-8057AA2C 0013D4 0098+00 1/0 0/0 0/0 .text actionOrderCancelEvent__15daObjBossWarp_cFv
  */
 void daObjBossWarp_c::actionOrderCancelEvent() {
-    if (eventInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.checkCommandDemoAccrpt()) {
         setAction(ACT_CANCEL_EVENT);
         mStaffId = dComIfGp_evmng_getMyStaffId("WARPHOLE", NULL, 0);
         demoProc();
     } else {
         fopAcM_orderOtherEventId(this, mWarpCancelEventId, 0xff, 0xffff, 0, 1);
-        eventInfo.i_onCondition(2);
+        eventInfo.onCondition(2);
     }
 }
 

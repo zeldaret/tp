@@ -200,7 +200,7 @@ const daObjCarry_dt_t daObjCarry_c::mData[] = {
         1000000.0f,
         50.0f,
         Z2SE_OBJ_BREAK_WOOD_S,
-        0x801D4,
+        Z2SE_OBJ_IRONBALL_HIT,
         Z2SE_OBJ_PUT_WATER_M,
         JA_SE_OBJ_FALL_MAGMA_S,
         Z2SE_OBJ_FALL_WATER_S,
@@ -287,8 +287,8 @@ const daObjCarry_dt_t daObjCarry_c::mData[] = {
         48.0f,
         250.0f,
         0.0f,
-        0x800F6,
-        0x800F7,
+        Z2SE_OBJ_SKULL_BREAK,
+        Z2SE_OBJ_SKULL_PUT,
         Z2SE_OBJ_PUT_WATER_S,
         JA_SE_OBJ_FALL_MAGMA_S,
         Z2SE_OBJ_FALL_WATER_S,
@@ -331,8 +331,8 @@ const daObjCarry_dt_t daObjCarry_c::mData[] = {
         60.0f,
         250.0f,
         0.0f,
-        0x800B9,
-        0x800B8,
+        Z2SE_OBJ_BOKKURI_BURST,
+        Z2SE_OBJ_BOKKURI_PUT,
         Z2SE_OBJ_PUT_WATER_S,
         JA_SE_OBJ_FALL_MAGMA_M,
         Z2SE_OBJ_FALL_WATER_M,
@@ -2602,7 +2602,7 @@ int daObjCarry_c::mode_proc_carry() {
 
         if (0.0f != fopAcM_GetSpeedF(this)) {
             if (current.angle.x == 0) {
-                if (daPy_py_c::i_checkNowWolf()) {
+                if (daPy_py_c::checkNowWolf()) {
                     speedF = data().m_wolfThrowInitSpeedXZ;
                     speed.y = data().m_wolfThrowInitSpeedY;
                 } else {
@@ -2610,7 +2610,7 @@ int daObjCarry_c::mode_proc_carry() {
                     speed.y = data().m_throwInitSpeedY;
                 }
             } else {
-                if (daPy_py_c::i_checkNowWolf()) {
+                if (daPy_py_c::checkNowWolf()) {
                     speedF = data().m_wolfThrowInitSpeedXZ;
                 } else {
                     speedF = data().m_throwInitSpeedXZ;
