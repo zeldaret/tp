@@ -1,7 +1,7 @@
 #ifndef D_A_NPC_CDN3_H
 #define D_A_NPC_CDN3_H
 
-#include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc_cd2.h"
 #include "d/actor/d_a_tag_schedule.h"
 
 /**
@@ -12,8 +12,9 @@
  * @details
  *
  */
-class daNpcCdn3_c : public fopAc_ac_c {
+class daNpcCdn3_c : public daNpcCd2_c {
 public:
+    typedef void (daNpcCdn3_c::*actionFunc)();
 
     struct Mode_e {};
 
@@ -86,7 +87,7 @@ public:
     /* 8097D748 */ void execute();
     /* 8097DABC */ void checkTimeSchedule();
 
-    static u8 ActionTable[192];
+    static actionFunc ActionTable[16];
     static void* m_funcTbl[44];
     static u8 m_seq00_funcTbl[24];
     static u8 m_seq01_funcTbl[24];
@@ -134,7 +135,7 @@ public:
     static u8 m_seq43_funcTbl[36];
 
 private:
-    /* 0x568 */ u8 field_0x568[0xb9c - 0x568];
+    /* 0x568 */ u8 field_0x568[0xb9c - 0xAC8];
 };
 
 STATIC_ASSERT(sizeof(daNpcCdn3_c) == 0xb9c);
