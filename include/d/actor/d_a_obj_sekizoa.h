@@ -74,13 +74,13 @@ public:
     /* 80CD06BC */ bool afterSetMotionAnm(int, int, f32, int);
 
     void setWolfHowling() {
-        if (field_0x10c8 != 0) {
-            fopAc_ac_c* actor_p = field_0x10e4.getActorP();
+        if (mParamCreate != 0) {
+            fopAc_ac_c* actor_p = mActorMngrs4.getActorP();
             JUT_ASSERT(0x1A3, 0 != actor_p);
 
             ((daObj_Sekizoa_c*)actor_p)->setWolfHowling();
         } else {
-            field_0x1173 = 1;
+            mSetWolfHowling = 1;
         }
     }
 
@@ -129,13 +129,51 @@ public:
     static char* mCutNameList[9];
     static cutFunc mCutList[9];
 
-    /* 0x0E40 */ u8 field_0xe40[0x10C8 - 0xE40];
-    /* 0x10C8 */ u8 field_0x10c8;
-    /* 0x10C9 */ u8 field_0x10c9[0x10E4 - 0x10C9];
-    /* 0x10E4 */ daNpcT_ActorMngr_c field_0x10e4;
-    /* 0x10EC */ u8 field_0x10ec[0x1173 - 0x10ec];
-    /* 0x1173 */ u8 field_0x1173;
-    /* 0x1174 */ u8 field_0x1174[0x1180 - 0x1174];
+    // /* 0x0E40 */ u8 field_0xe40[0x10C8 - 0xE40];
+    // /* 0x10C8 */ u8 field_0x10c8;
+    // /* 0x10C9 */ u8 field_0x10c9[0x10E4 - 0x10C9];
+    // /* 0x10E4 */ daNpcT_ActorMngr_c field_0x10e4;            OFFSET BETWEEN DEBUG AND RETAIL
+    // /* 0x10EC */ u8 field_0x10ec[0x1173 - 0x10ec];           0x50
+    // /* 0x1173 */ u8 field_0x1173;
+    // /* 0x1174 */ u8 field_0x1174[0x1180 - 0x1174];
+
+    /* 0x0E40 */ mDoExt_McaMorf* mpMcaMorf;
+    /* 0x0E44 */ mDoExt_invisibleModel mInvModel;
+    /* 0x0E4C */ u8 field_0x0E4C[4];                    // Padding
+    /* 0x0E50 */ dCcD_Cyl mCyl;
+    /* 0x0F8C */ dCcD_Cyl mCyl2;
+    /* 0x10C8 */ u8 mParamCreate;
+    /* 0x10C9 */ u8 field_0x10C9[3];                    // Padding
+    /* 0x10CC */ daNpcT_ActorMngr_c mActorMngrs;
+    /* 0x10D4 */ daNpcT_ActorMngr_c mActorMngrs2;
+    /* 0x10DC */ daNpcT_ActorMngr_c mActorMngrs3;
+    /* 0x10E4 */ daNpcT_ActorMngr_c mActorMngrs4;       // wolf statue or wolf link ?
+    /* 0x10EC */ daNpcT_ActorMngr_c mActorMngrs5;
+    /* 0x10F4 */ daNpcT_ActorMngr_c mActorMngrs6;
+    /* 0x10FC */ daNpcT_ActorMngr_c mActorMngrs7;
+    /* 0x1104 */ daNpcT_ActorMngr_c mActorMngrs8;
+    /* 0x110C */ s32 mPtmf1[3];
+    /* 0x1118 */ s32 mPtmf2[3];
+    /* 0x1124 */ daNpcT_Path_c mPath;
+    /* 0x1146 */ u8 field_0x1146[2];                    // Padding
+    /* 0x1148 */ s32 mpPointerUKN;
+    /* 0x114C */ cXyz mCXyzJump;
+    /* 0x1158 */ int mIntCutJump;
+    /* 0x115C */ float mFloatJump2;
+    /* 0x1160 */ float mFloatJump;
+    /* 0x1164 */ float mFloatCutStart;
+    /* 0x1168 */ float mFloatCutGoal2;
+    /* 0x116C */ float mFloatCutGoal;
+    /* 0x1170 */ s16 mHalfCutTurn;
+    /* 0x1172 */ u8 mReset;
+    /* 0x1173 */ u8 mSetWolfHowling;
+    /* 0x1174 */ u8 field_0x1174[2];                    // Padding
+    /* 0x1176 */ bool mSetFadeLightOff;
+    /* 0x1177 */ u8 field_0x1177;                       // Padding
+    /* 0x1178 */ bool mSetFadeLightOff2;
+    /* 0x1179 */ u8 field_0x1179;                       // Padding
+    /* 0x117A */ bool mChkGoal;
+    /* 0x117B */ u8 field_0x117B[5];                    // Padding
 };
 
 struct daObj_Sekizoa_Param_c {
