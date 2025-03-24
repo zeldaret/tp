@@ -22,16 +22,16 @@ public:
     /* 80AE81E8 */ int Delete();
     /* 80AE821C */ int Execute();
     /* 80AE8308 */ int Draw();
-    /* 80AE840C */ void ctrlJoint(J3DJoint*, J3DModel*);
+    /* 80AE840C */ bool ctrlJoint(J3DJoint*, J3DModel*);
     /* 80AE8598 */ static int createHeapCallBack(fopAc_ac_c*);
     /* 80AE85B8 */ static BOOL ctrlJointCallBack(J3DJoint*, int);
     /* 80AE8604 */ void setMotion(int, f32, BOOL);
     /* 80AE864C */ void reset();
-    /* 80AE895C */ int setAction(actionFunc);
-    /* 80AE8A04 */ void wait(void*);
-    /* 80AE8E24 */ void fear(void*);
-    /* 80AE8ED4 */ void talk(void*);
-    /* 80AE9094 */ void demo(void*);
+    /* 80AE895C */ inline int setAction(actionFunc);
+    /* 80AE8A04 */ bool wait(void*);
+    /* 80AE8E24 */ bool fear(void*);
+    /* 80AE8ED4 */ bool talk(void*);
+    /* 80AE9094 */ bool demo(void*);
     /* 80AE92E8 */ void setParam();
     /* 80AE93A0 */ BOOL main();
     /* 80AE9624 */ void setAttnPos();
@@ -58,29 +58,44 @@ public:
         }
     }
 
+    int getStartTime() { return fopAcM_GetParam(this) & 0xff; }
+    int getEndTime() { return (fopAcM_GetParam(this) >> 8) & 0xff; }
+
+    inline void setLookMode(int i_lookMode);
+
+    inline bool chkFindPlayer();
+
     static u8 mEvtSeqList[12];
 
+    enum LookMode {
+        LOOK_NONE = 0,
+        LOOK_RESET = 1,
+        LOOK_PLAYER = 2,
+        LOOK_PLAYER_TALK = 3,
+    };
+
 private:
-    /* 0xB48 */ J3DModel* mModel1;
-    /* 0xB4C */ J3DModel* mModel2;
+    /* 0xB48 */ J3DModel* mpModel1;
+    /* 0xB4C */ J3DModel* mpModel2;
     /* 0xB50 */ Z2CreatureCitizen mCreature;
     /* 0xBF4 */ u8 field_0xbf4[0xbf8 - 0xbf4];
     /* 0xBF8 */ daNpcF_Lookat_c mLookat;
     /* 0xC94 */ daNpcF_ActorMngr_c mActorMngr[1];
     /* 0xC9C */ u8 field_0xc9c[0xca0 - 0xc9c];
     /* 0xCA0 */ dCcD_Cyl mCcCyl;
-    /* 0xDDC */ actionFunc field_0xddc;
+    /* 0xDDC */ actionFunc mpActionFn;
     /* 0xDE8 */ request_of_phase_process_class mPhases[3];
     /* 0xE00 */ u32 field_0xe00;
-    /* 0xE04 */ u8 field_0xe04[0xe0c - 0xe04];
+    /* 0xE04 */ u32 field_0xe04;
+    /* 0xE08 */ u32 field_0xe08;
     /* 0xE0C */ u32 field_0xe0c;
-    /* 0xE10 */ u16 field_0xe10;
-    /* 0xE12 */ u16 field_0xe12;
-    /* 0xE14 */ u16 field_0xe14;
+    /* 0xE10 */ s16 mLookMode;
+    /* 0xE12 */ u16 mStartTime;
+    /* 0xE14 */ u16 mEndTime;
     /* 0xE16 */ u16 field_0xe16;
     /* 0xE18 */ u16 mMode;
     /* 0xE1A */ u8 field_0xe1a;
-    /* 0xE1B */ u8 field_0xe1b;
+    /* 0xE1B */ u8 field_0xe1b; // Probably isDaytime or isNighttime
 };
 
 STATIC_ASSERT(sizeof(daNpcShoe_c) == 0xe1c);

@@ -197,6 +197,32 @@ extern "C" void __register_global_object();
 // Declarations:
 //
 
+void daNpcShoe_c::setLookMode(int i_lookMode) {
+    if (mLookMode != i_lookMode) {
+        mLookMode = i_lookMode;
+    }
+}
+
+bool daNpcShoe_c::chkFindPlayer() {
+    bool ret;
+    if (!chkActorInSight(daPy_getPlayerActorClass(), daNpcShoe_Param_c::m.mAttnFovY)) {
+        mActorMngr[0].remove();
+        ret = false;
+    } else {
+        if (mActorMngr[0].getActorP() == NULL) {
+            ret = chkPlayerInSpeakArea(this);
+        } else {
+            ret = chkPlayerInTalkArea(this);
+        }
+        if (ret) {
+            mActorMngr[0].entry(daPy_getPlayerActorClass());
+        } else {
+            mActorMngr[0].remove();
+        }
+    }
+    return ret;
+}
+
 /* 80AEA538-80AEA544 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -216,20 +242,36 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 #pragma pop
 
 /* 80AEA558-80AEA594 000020 003C+00 1/1 0/0 0/0 .data            l_bckGetParamList */
-SECTION_DATA static u8 l_bckGetParamList[60] = {
-    0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
-    0x0D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x0E, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0B, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x01,
+static daNpc_GetParam2 l_bckGetParamList[20] = {
+    { 0, 0, 0, },
+    { 17, 0, 0, },
+    { 0, 2, 0, },
+    { 0, 0, 1, },
+    { 0, 0, 0, },
+    { 13, 0, 0, },
+    { 0, 0, 0, },
+    { 0, 0, 1, },
+    { 0, 0, 0, },
+    { 14, 0, 0, },
+    { 0, 0, 0, },
+    { 0, 0, 1, },
+    { 0, 0, 0, },
+    { 5, 0, 0, },
+    { 0, 0, 0, },
+    { 0, 0, 0, },
+    { 0, 0, 0, },
+    { 11, 0, 0, },
+    { 0, 2, 0, },
+    { 0, 0, 1, },
 };
 
 /* 80AEA594-80AEA5A0 00005C 000C+00 0/0 0/0 0/0 .data            l_btpGetParamList */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_btpGetParamList[12] = {
-    0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
+static daNpc_GetParam2 l_btpGetParamList[4] = {
+    { 0, 0, 0, },
+    { 12, 0, 0, },
+    { 0, 2, 0, },
+    { 0, 0, 0, },
 };
-#pragma pop
 
 /* 80AEA5A0-80AEA5AC -00001 000C+00 5/6 0/0 0/0 .data            l_arcNames */
 static char* l_arcNames[3] = {
@@ -239,15 +281,10 @@ static char* l_arcNames[3] = {
 };
 
 /* 80AEA5AC-80AEA5B0 000074 0004+00 0/1 0/0 0/0 .data            l_evtNames */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_evtNames[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+static char* l_evtNames[4] = {
+    NULL,
+    "Shoe"
 };
-#pragma pop
 
 /* 80AEA5B0-80AEA5B4 -00001 0004+00 0/2 0/0 0/0 .data            l_myName */
 static char* l_myName = "Shoe";
@@ -450,27 +487,27 @@ BOOL daNpcShoe_c::CreateHeap() {
     }
     model->setUserArea((u32)this);
 
-    J3DModelData* model1_data_ptr = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[0], 9));
+    J3DModelData* pmodel1_data = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[0], 9));
 #ifdef DEBUG
-    if (model1_data_ptr == NULL) {
+    if (pmodel1_data == NULL) {
         JUTAssertion::showAssert(JUTAssertion::getSDevice(), "d_a_npc_shoe.cpp", 331, "mdlData_p != 0");
         OSPanic("d_a_npc_shoe.cpp", 331, "Halt");
     }
 #endif
-    mModel1 = mDoExt_J3DModel__create(model1_data_ptr, 0x80000, 0x11000084);
-    if (mModel1 == NULL) {
+    mpModel1 = mDoExt_J3DModel__create(pmodel1_data, 0x80000, 0x11000084);
+    if (mpModel1 == NULL) {
         return false;
     }
 
-    J3DModelData* model2_data_ptr = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[2], 4));
+    J3DModelData* pmodel2_data = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[2], 4));
 #ifdef DEBUG
-        if (model2_data_ptr == NULL) {
+        if (pmodel2_data == NULL) {
             JUTAssertion::showAssert(JUTAssertion::getSDevice(), "d_a_npc_shoe.cpp", 338, "mdlData_p != 0");
             OSPanic("d_a_npc_shoe.cpp", 338, "Halt");
         }
 #endif
-    mModel2 = mDoExt_J3DModel__create(model2_data_ptr, 0x80000, 0x11000084);
-    if (mModel2 == NULL) {
+    mpModel2 = mDoExt_J3DModel__create(pmodel2_data, 0x80000, 0x11000084);
+    if (mpModel2 == NULL) {
         return false;
     }
 
@@ -495,7 +532,7 @@ int daNpcShoe_c::Execute() {
 
     if (fopAcM_CheckCondition(this, 4)) {
         int time = getTime();
-        if (time >= field_0xe12 && time < field_0xe14) {
+        if (time >= mStartTime && time < mEndTime) {
             field_0xe1b = 1;
         } else {
             field_0xe1b = 0;
@@ -505,26 +542,56 @@ int daNpcShoe_c::Execute() {
             execute();
         }
     }
-    
+
     return 1;
 }
 
 /* 80AE8308-80AE840C 000AA8 0104+00 1/1 0/0 0/0 .text            Draw__11daNpcShoe_cFv */
 int daNpcShoe_c::Draw() {
     // NONMATCHING
+    if (!field_0xe1b) {
+        return 1;
+    } else {
+        draw(false, false, daNpcShoe_Param_c::m.mShadowDepth, NULL, false);
+        g_env_light.setLightTevColorType_MAJI(mpModel1->mModelData, &tevStr);
+        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(11));
+        mpModel1->setBaseTRMtx(mDoMtx_stack_c::get());
+        mDoExt_modelUpdateDL(mpModel1);
+        g_env_light.setLightTevColorType_MAJI(mpModel2->mModelData, &tevStr);
+        mDoExt_modelUpdateDL(mpModel2);
+        dComIfGd_setSimpleShadow(&current.pos, mAcch.GetGroundH(), 50.0f, mAcch.m_gnd, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
+    }
+    return 1;
 }
-
-/* ############################################################################################## */
-/* 80AEA438-80AEA444 000088 000C+00 1/1 0/0 0/0 .rodata          @4302 */
-SECTION_RODATA static u8 const lit_4302[12] = {
-    0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x03,
-};
-COMPILER_STRIP_GATE(0x80AEA438, &lit_4302);
 
 /* 80AE840C-80AE8598 000BAC 018C+00 1/1 0/0 0/0 .text
  * ctrlJoint__11daNpcShoe_cFP8J3DJointP8J3DModel                */
-void daNpcShoe_c::ctrlJoint(J3DJoint* param_0, J3DModel* param_1) {
-    // NONMATCHING
+bool daNpcShoe_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
+    int joint_no = i_joint->getJntNo();
+    int lookat_joints[3] = {1, 2, 3};
+
+    if (joint_no == 0) {
+        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(1));
+        mDoMtx_stack_c::multVecZero(&mLookatPos[0]);
+        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(2));
+        mDoMtx_stack_c::multVecZero(&mLookatPos[1]);
+        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(3));
+        mDoMtx_stack_c::multVecZero(&mLookatPos[2]);
+    }
+    
+    mDoMtx_stack_c::copy(i_model->getAnmMtx(joint_no));
+    switch(joint_no) {
+        case 1:
+        case 2:
+        case 3:
+            setLookatMtx(joint_no, lookat_joints, daNpcShoe_Param_c::m.mNeckAngleScl);
+            break;
+    }
+
+    i_model->setAnmMtx(joint_no, mDoMtx_stack_c::get());
+    cMtx_copy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
+
+    return true;
 }
 
 /* 80AE8598-80AE85B8 000D38 0020+00 1/1 0/0 0/0 .text
@@ -560,243 +627,162 @@ void daNpcShoe_c::setMotion(int i_motion, f32 i_morf, BOOL i_restart) {
     }
 }
 
-/* ############################################################################################## */
-/* 80AEA444-80AEA450 000094 000C+00 0/1 0/0 0/0 .rodata          @4423 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4423[12] = {
-    0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x19, 0x99, 0x9A,
-};
-COMPILER_STRIP_GATE(0x80AEA444, &lit_4423);
-#pragma pop
-
-/* 80AEA450-80AEA454 0000A0 0004+00 0/5 0/0 0/0 .rodata          @4480 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4480[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80AEA450, &lit_4480);
-#pragma pop
-
 /* 80AE864C-80AE895C 000DEC 0310+00 1/1 0/0 0/0 .text            reset__11daNpcShoe_cFv */
 void daNpcShoe_c::reset() {
     // NONMATCHING
+    initialize();
+    mLookat.initialize();
+    for (int i = 0; i < 1; i++) {
+        mActorMngr[i].initialize();
+    }
+
+    field_0xe04 = 0;
+    field_0xe08 = 0;
+    mpActionFn = NULL;
+    mLookMode = -1;
+    mMode = 0;
+
+    u16 temp1;
+    u16 temp2;
+    u8 start_time = getStartTime();
+    u8 end_time = getEndTime();
+    if (start_time != 0xff) {
+        temp1 = (start_time / 10);
+        temp2 = (start_time % 10) * 10;
+        mStartTime = temp2 + temp1 * 60;
+    }
+    if (end_time != 0xff) {
+        temp1 = (end_time / 10);
+        temp2 = (end_time % 10) * 10;
+        mEndTime = temp2 + temp1 * 60;
+    }
+
+    field_0xe1b = 0;
+    int time = getTime();
+    if (time >= mStartTime && time < mEndTime) {
+        field_0xe1b = 1;
+    } else {
+        field_0xe1b = 0;
+    }
+
+    current.pos.set(home.pos);
+    old.pos.set(current.pos);
+    current.angle.set(0, home.angle.y, 0);
+    old.angle = current.angle;
+    shape_angle = current.angle;
+    mCurAngle = current.angle;
+    mOldAngle = mCurAngle;
+
+    speedF = 0.0f;
+    speed.setall(0.0f);
+    field_0xe00 = -1;
+    mOrderEvtNo = 0;
+
+    J3DAnmTexPattern* btpAnm = getTexPtrnAnmP(l_arcNames[0], 12);
+    mAnmFlags &= ~(ANM_PAUSE_BTP | ANM_PLAY_BTP | ANM_FLAG_800);
+    if (setBtpAnm(btpAnm, mpMorf->getModel()->getModelData(), 1.0f, 2)) {
+        mAnmFlags |= ANM_PAUSE_BTP | ANM_PLAY_BTP | ANM_FLAG_800;
+    }
+
+    Vec base_scale = {6, 6, 6};
+    mDoMtx_stack_c::transS(current.pos);
+    mDoMtx_stack_c::ZXYrotM(shape_angle);
+    mpModel2->setBaseScale(base_scale);
+    mpModel2->setBaseTRMtx(mDoMtx_stack_c::get());
+
+    setAction(&daNpcShoe_c::wait);
+
+    mMotionMorfOverride = 0.0f;
 }
 
 /* 80AE895C-80AE8A04 0010FC 00A8+00 1/1 0/0 0/0 .text
  * setAction__11daNpcShoe_cFM11daNpcShoe_cFPCvPvPv_b            */
-int daNpcShoe_c::setAction(bool (daNpcShoe_c::*action)(void*)) {
+int daNpcShoe_c::setAction(bool (daNpcShoe_c::*i_actionFunc)(void*)) {
     mMode = 3;
-    if (field_0xddc != NULL) {
-        (this->*field_0xddc)(NULL);
+    if (mpActionFn != NULL) {
+        (this->*mpActionFn)(NULL);
     }
 
     mMode = 0;
-    field_0xddc = action;
-    if (field_0xddc != NULL) {
-        (this->*field_0xddc)(NULL);
+    mpActionFn = i_actionFunc;
+    if (mpActionFn != NULL) {
+        (this->*mpActionFn)(NULL);
     }
     return 1;
 }
 
-/* ############################################################################################## */
-/* 80AEA454-80AEA460 0000A4 000C+00 0/1 0/0 0/0 .rodata          @4481 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4481[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80AEA454, &lit_4481);
-#pragma pop
-
-/* 80AEA460-80AEA464 0000B0 0004+00 0/1 0/0 0/0 .rodata          @4482 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4482[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80AEA460, &lit_4482);
-#pragma pop
-
-/* 80AEA464-80AEA470 0000B4 000C+00 0/1 0/0 0/0 .rodata          @4483 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4483[12] = {
-    0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x80AEA464, &lit_4483);
-#pragma pop
-
-/* 80AEA470-80AEA47C 0000C0 000C+00 0/1 0/0 0/0 .rodata          @4484 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4484[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80AEA470, &lit_4484);
-#pragma pop
-
-/* 80AEA47C-80AEA484 0000CC 0008+00 0/1 0/0 0/0 .rodata          @4485 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4485[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80AEA47C, &lit_4485);
-#pragma pop
-
-/* 80AEA484-80AEA490 0000D4 000C+00 0/1 0/0 0/0 .rodata          @4486 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4486[12] = {
-    0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x80AEA484, &lit_4486);
-#pragma pop
-
-/* 80AEA490-80AEA49C 0000E0 000C+00 0/1 0/0 0/0 .rodata          @4487 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4487[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80AEA490, &lit_4487);
-#pragma pop
-
-/* 80AEA49C-80AEA4A4 0000EC 0008+00 0/1 0/0 0/0 .rodata          @4488 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4488[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80AEA49C, &lit_4488);
-#pragma pop
-
-/* 80AEA4A4-80AEA4B0 0000F4 000C+00 0/1 0/0 0/0 .rodata          @4489 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4489[12] = {
-    0x00, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x80AEA4A4, &lit_4489);
-#pragma pop
-
-/* 80AEA4B0-80AEA4BC 000100 000C+00 0/1 0/0 0/0 .rodata          @4490 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4490[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80AEA4B0, &lit_4490);
-#pragma pop
-
-/* 80AEA4BC-80AEA4C4 00010C 0008+00 0/1 0/0 0/0 .rodata          @4491 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4491[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80AEA4BC, &lit_4491);
-#pragma pop
-
-/* 80AEA4C4-80AEA4D0 000114 000C+00 0/1 0/0 0/0 .rodata          @4492 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4492[12] = {
-    0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80AEA4C4, &lit_4492);
-#pragma pop
-
-/* 80AEA4D0-80AEA4D4 000120 0004+00 0/1 0/0 0/0 .rodata          @4493 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4493[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80AEA4D0, &lit_4493);
-#pragma pop
-
-/* 80AEA4D4-80AEA4E8 000124 0014+00 0/0 0/0 0/0 .rodata          @4494 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4494[20] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80AEA4D4, &lit_4494);
-#pragma pop
-
-/* 80AEA4E8-80AEA4F8 000138 000C+04 0/1 0/0 0/0 .rodata          @4508 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4508[12 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80AEA4E8, &lit_4508);
-#pragma pop
-
-/* 80AEA4F8-80AEA500 000148 0008+00 0/1 0/0 0/0 .rodata          @4623 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4623[8] = {
-    0x40, 0x7F, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80AEA4F8, &lit_4623);
-#pragma pop
-
-/* 80AEA500-80AEA508 000150 0008+00 0/1 0/0 0/0 .rodata          @4624 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4624[8] = {
-    0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80AEA500, &lit_4624);
-#pragma pop
-
 /* 80AE8A04-80AE8E24 0011A4 0420+00 3/0 0/0 0/0 .text            wait__11daNpcShoe_cFPv */
-void daNpcShoe_c::wait(void* param_0) {
+bool daNpcShoe_c::wait(void* param_0) {
     // NONMATCHING
+    switch (mMode) {
+    case 0:
+        setMotion(0, -1.875f, false);
+        speedF = 0.0f;
+        mMode = 2;
+        break;
+    case 1:
+        break;
+    case 2: {
+        chkFindPlayer();
+        
+        fopAc_ac_c* pactor = mActorMngr->getActorP();
+        if (pactor != NULL) {
+            setLookMode(0);
+        } else {
+            setLookMode(2);
+        }
+
+        if (dComIfGp_event_runCheck()) {
+            if (eventInfo.checkCommandTalk()) {
+                if (!dComIfGp_event_chkTalkXY() || dComIfGp_evmng_ChkPresentEnd()) {
+                    setAction(&daNpcShoe_c::talk);
+                }
+            } else {
+                if (dComIfGp_getEventManager().getMyStaffId(l_myName, NULL, 0)) {
+                    setAction(&daNpcShoe_c::demo);
+                }
+            }
+        } else {
+            if (!dKy_darkworld_check() && daPy_py_c::i_checkNowWolf()) {
+                float max_distance = pow(500.0f, 2.0f);
+                if (fopAcM_searchPlayerDistanceXZ2(this) < max_distance) {
+                    setAction(&daNpcShoe_c::fear);
+                    break;
+                }
+            }
+
+            if (mOrderEvtNo != 0) {
+                eventInfo.setArchiveName(l_arcNames[0]);
+            }
+            orderEvent(field_0xe1a, l_evtNames[mOrderEvtNo], 0xffff, 0x28, 0xff, 1);
+        }
+        break;
+    }
+    case 3:
+        break;
+    default:
+#ifdef DEBUG
+        JUTAssertion::showAssert(JUTAssertion::getSDevice(), "d_a_npc_shoe.cpp", 1063, "0");
+        OSPanic("d_a_npc_shoe.cpp", 1063, "Halt");
+#endif
+        break;
+    }
+
+    return 1;
 }
 
 /* 80AE8E24-80AE8ED4 0015C4 00B0+00 1/0 0/0 0/0 .text            fear__11daNpcShoe_cFPv */
-void daNpcShoe_c::fear(void* param_0) {
+bool daNpcShoe_c::fear(void* param_0) {
     // NONMATCHING
 }
 
 /* 80AE8ED4-80AE9094 001674 01C0+00 1/0 0/0 0/0 .text            talk__11daNpcShoe_cFPv */
-void daNpcShoe_c::talk(void* param_0) {
+bool daNpcShoe_c::talk(void* param_0) {
     // NONMATCHING
 }
 
 /* 80AE9094-80AE9260 001834 01CC+00 1/0 0/0 0/0 .text            demo__11daNpcShoe_cFPv */
-void daNpcShoe_c::demo(void* param_0) {
+bool daNpcShoe_c::demo(void* param_0) {
     // NONMATCHING
 }
 
@@ -828,6 +814,16 @@ static bool daNpcShoe_IsDelete(void* param_0) {
 /* 80AE92E8-80AE93A0 001A88 00B8+00 1/0 0/0 0/0 .text            setParam__11daNpcShoe_cFv */
 void daNpcShoe_c::setParam() {
     // NONMATCHING
+    attention_info.distances[0] = getDistTableIdx(daNpcShoe_Param_c::m.mTalkDistIdx, daNpcShoe_Param_c::m.mTalkAngleIdx);
+    attention_info.distances[1] = attention_info.distances[0];
+    attention_info.distances[3] = getDistTableIdx(daNpcShoe_Param_c::m.mSpeakDistIdx, daNpcShoe_Param_c::m.mSpeakAngleIdx);
+
+    attention_info.flags = -(field_0xe1b != 0) & 10;
+
+    scale.setall(daNpcShoe_Param_c::m.mScale);
+    mAcchCir.SetWallR(daNpcShoe_Param_c::m.mWallR);
+    mAcchCir.SetWallH(daNpcShoe_Param_c::m.mWallH);
+    gravity = daNpcShoe_Param_c::m.mGravity;
 }
 
 /* 80AE93A0-80AE9624 001B40 0284+00 1/0 0/0 0/0 .text            main__11daNpcShoe_cFv */
@@ -835,56 +831,110 @@ BOOL daNpcShoe_c::main() {
     // NONMATCHING
 }
 
-/* ############################################################################################## */
-/* 80AEA508-80AEA50C 000158 0004+00 0/1 0/0 0/0 .rodata          @4841 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4841 = 10.0f;
-COMPILER_STRIP_GATE(0x80AEA508, &lit_4841);
-#pragma pop
-
-/* 80AEA50C-80AEA510 00015C 0004+00 0/1 0/0 0/0 .rodata          @4842 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4842 = 15.0f;
-COMPILER_STRIP_GATE(0x80AEA50C, &lit_4842);
-#pragma pop
 
 /* 80AE9624-80AE9820 001DC4 01FC+00 1/0 0/0 0/0 .text            setAttnPos__11daNpcShoe_cFv */
 void daNpcShoe_c::setAttnPos() {
     // NONMATCHING
+    if (mLookMode == 1) {
+        for (int i  = 0; i < 3; i++) {
+            mLookatAngle[i].setall(0);
+        }
+    }
+
+    setMtx();
+    lookat();
+
+    cXyz vec(10.0f,15.0f,0.0f);
+    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(3));
+    mDoMtx_stack_c::multVecZero(&mHeadPos);
+    mDoMtx_stack_c::multVec(&vec, &eyePos);
+    vec.x = 0.0f;
+    mDoMtx_stack_c::multVec(&vec, &vec);
+
+    mHeadAngle.x = cLib_targetAngleX(&mHeadPos,&vec);
+    mHeadAngle.y = cLib_targetAngleY(&mHeadPos,&vec);
+
+    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(3));
+    mDoMtx_stack_c::multVecZero(&attention_info.position);
+    attention_info.position.y += daNpcShoe_Param_c::m.mAttnOffsetY;
+
+    cXyz cStack28;
+    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(1));
+    mDoMtx_stack_c::multVecZero(&cStack28);
+    cStack28.y = current.pos.y;
+    mCcCyl.SetC(cStack28);
+    mCcCyl.SetH(daNpcShoe_Param_c::m.mCylH);
+    mCcCyl.SetR(daNpcShoe_Param_c::m.mWallR);
+    dComIfG_Ccsp()->Set(&mCcCyl);
 }
-
-/* ############################################################################################## */
-/* 80AEA510-80AEA514 000160 0004+00 0/1 0/0 0/0 .rodata          @4883 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4883 = -80.0f;
-COMPILER_STRIP_GATE(0x80AEA510, &lit_4883);
-#pragma pop
-
-/* 80AEA514-80AEA518 000164 0004+00 0/1 0/0 0/0 .rodata          @4884 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4884 = 80.0f;
-COMPILER_STRIP_GATE(0x80AEA514, &lit_4884);
-#pragma pop
-
-/* 80AEA518-80AEA51C 000168 0004+00 0/1 0/0 0/0 .rodata          @4885 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4885 = 40.0f;
-COMPILER_STRIP_GATE(0x80AEA518, &lit_4885);
-#pragma pop
 
 /* 80AE9820-80AE9A00 001FC0 01E0+00 1/1 0/0 0/0 .text            lookat__11daNpcShoe_cFv */
 void daNpcShoe_c::lookat() {
     // NONMATCHING
+    fopAc_ac_c* actor = NULL;
+    J3DModel* model = mpMorf->getModel();
+    BOOL snap = false;
+    f32 body_down_angle = daNpcShoe_Param_c::m.mBodyDownAngle;
+    f32 body_up_angle = daNpcShoe_Param_c::m.mBodyUpAngle;
+    f32 body_right_angle = daNpcShoe_Param_c::m.mBodyRightAngle;
+    f32 body_left_angle = daNpcShoe_Param_c::m.mBodyLeftAngle;
+    f32 head_down_angle = daNpcShoe_Param_c::m.mHeadDownAngle;
+    f32 head_up_angle = daNpcShoe_Param_c::m.mHeadUpAngle;
+    f32 head_right_angle = daNpcShoe_Param_c::m.mHeadRightAngle;
+    f32 head_left_angle = daNpcShoe_Param_c::m.mHeadLeftAngle;
+    s16 angle_delta = mCurAngle.y - mOldAngle.y;
+    cXyz lookat_pos[3] = {mLookatPos[0], mLookatPos[1], mLookatPos[2]};
+    csXyz* lookat_angle[3] = {&mLookatAngle[0], &mLookatAngle[1], &mLookatAngle[2]};
+
+    switch (mLookMode) {
+        case LOOK_NONE:
+            break;
+        case LOOK_RESET:
+            snap = true;
+            break;
+        case LOOK_PLAYER:
+        case LOOK_PLAYER_TALK:
+            actor = daPy_getPlayerActorClass();
+            if (mLookMode != LOOK_PLAYER_TALK) {
+                break;
+            }
+            head_right_angle = -80.0f;
+            head_left_angle = 80.0f;
+            break;
+    }
+
+    if (actor != NULL) {
+        mLookPos = actor->attention_info.position;
+        if (mLookMode != LOOK_PLAYER && mLookMode != LOOK_PLAYER_TALK) {
+            mLookPos.y -= 40.0f;
+        }
+        mLookat.setAttnPos(&mLookPos);
+    } else {
+        mLookat.setAttnPos(0);
+    }
+
+    mLookat.setParam(body_down_angle, body_up_angle, body_right_angle, body_left_angle,
+        0.0f, 0.0f, 0.0f, 0.0f,
+        head_down_angle, head_up_angle, head_right_angle, head_left_angle,
+        mCurAngle.y, lookat_pos);
+    mLookat.calc(this, model->getBaseTRMtx(), lookat_angle, snap, angle_delta, false);
 }
 
 /* 80AE9A00-80AE9AD0 0021A0 00D0+00 1/0 0/0 0/0 .text            setMotionAnm__11daNpcShoe_cFif */
-bool daNpcShoe_c::setMotionAnm(int param_0, f32 param_1) {
+bool daNpcShoe_c::setMotionAnm(int i_idx, f32 i_morf) {
     // NONMATCHING
+    J3DAnmTransformKey* morfAnm = getTrnsfrmKeyAnmP(l_arcNames[l_bckGetParamList[i_idx].arcIdx], l_bckGetParamList[i_idx].fileIdx);
+    
+    s32 morfAttr = l_bckGetParamList[i_idx].attr;
+    
+    mAnmFlags &= ~(ANM_PAUSE_MORF | ANM_PLAY_MORF);
+
+    if (morfAnm != NULL) {
+        if (setMcaMorfAnm(morfAnm, 1.0f, i_morf, morfAttr, 0, -1)) {
+            mAnmFlags |= ANM_PAUSE_MORF | ANM_PLAY_MORF;
+            mMotionLoops = 0;
+        }
+    }
 }
 
 /* 80AE9AD0-80AE9AD8 002270 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__11daNpcShoe_cFv */
