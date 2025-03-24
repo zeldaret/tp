@@ -214,7 +214,7 @@ public:
     /* 800737E4 */ bool LockonTruth();
     /* 80073838 */ int checkDistance(cXyz*, s16, cXyz*, f32, f32, f32, f32);
     /* 8016E424 */ void LockEdge();
-    /* 80182994 */ void GetCheckObjectCount();
+    /* 80182994 */ int GetCheckObjectCount() { return mCheckObjectCount; }
     /* 80182AD0 */ void keepLock(int);
     /* 8014B010 */ static dist_entry& getDistTable(int i_no) { return dist_table[i_no]; }
 

@@ -494,7 +494,7 @@ public:
     }
     void setPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[param_0][i] |= flag; }
     void clearPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[param_0][i] &= ~flag; }
-    u32 checkPlayerStatus(int param_0, int i, u32 flag) { return flag & mPlayerStatus[param_0][i]; }
+    u32 checkPlayerStatus(int param_0, int i, u32 flag) { return mPlayerStatus[param_0][i] & flag; }
 
     int getPlayerCameraID(int i) { return mPlayerCameraID[i * 8]; }
     int getCameraPlayer1ID(int i) { return mCameraInfo[i].field_0x5; }

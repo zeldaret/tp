@@ -3088,7 +3088,7 @@ public:
     virtual bool cancelWolfLock(fopAc_ac_c*);
     virtual s32 getAtnActorID() const;
     virtual s32 getItemID() const;
-    virtual s32 getGrabActorID() const;
+    virtual u32 getGrabActorID() const;
     virtual BOOL exchangeGrabActor(fopAc_ac_c*);
     virtual BOOL setForceGrab(fopAc_ac_c*, int, int);
     virtual void setForcePutPos(cXyz const&);

@@ -85,14 +85,14 @@ public:
     /* 80088620 */ int SearchStyle(u32);
 
     /* 80182C60 */ void Arg2(s16 val) { mMapToolArg2 = val; }
-    /* 80182C3C */ int Arg2() { return mMapToolArg2; }
+    /* 80182C3C */ s16 Arg2() { return mMapToolArg2; }
     /* 80182C48 */ u8 Arg1() { return mMapToolArg1; }
     /* 80182C6C */ void Arg1(u8 val) { mMapToolArg1 = val; }
     /* 80182C50 */ u8 Arg0() { return mMapToolArg0; }
     /* 80182C74 */ void Arg0(u8 val) { mMapToolArg0 = val; }
     /* 80182C7C */ void Fovy(u8 val) { mMapToolFovy = val; }
     /* 80182C58 */ u8 Fovy() { return mMapToolFovy; }
-    /* 80182CB4 */ bool CheckFlag(u16 flag) { return mCurrentStyle->field_0x6 & flag; }
+    /* 80182CB4 */ bool CheckFlag(u16 flag) { return (flag & mCurrentStyle->field_0x6) != 0; }
     /* 80182CD0 */ f32 Val(s32 param_0, int param_1) {
         return mCamStyleData[param_0].field_0x8[param_1];
     }
@@ -100,7 +100,7 @@ public:
     /* 0x00 */ u8 mMapToolFovy;
     /* 0x01 */ u8 mMapToolArg0;
     /* 0x02 */ u8 mMapToolArg1;
-    /* 0x04 */ s16 mMapToolArg2;
+    /* 0x04 */ int mMapToolArg2;
     /* 0x08 */ dCamStyleData::StyleData* mCamStyleData;
     /* 0x0C */ s32 mStyleNum;
     /* 0x10 */ dCamStyleData::StyleData* mCurrentStyle;
@@ -110,7 +110,7 @@ public:
     u32 Id(s32 i_style) { return mCamStyleData[i_style].field_0x0; }
     int Algorythmn(s32 i_style) { return mCamStyleData[i_style].field_0x4; }
     int Algorythmn() { return mCurrentStyle->field_0x4; }
-    bool Flag(s32 param_0, u16 param_1) { return mCamStyleData[param_0].field_0x6 & param_1; }
+    u16 Flag(s32 param_0, u16 param_1) { return mCamStyleData[param_0].field_0x6 & param_1; }
 
     /* 8008858C */ virtual ~dCamParam_c();
 };
@@ -121,7 +121,7 @@ public:
     /* 80088918 */ bool CheckLatitudeRange(s16*);
     /* 80088988 */ f32 PlayerHideDist();
 
-    /* 80182BB8 */ bool CheckFlag2(u16 i_flag) { return mFlags2 & i_flag; }
+    /* 80182BB8 */ bool CheckFlag2(u16 i_flag) { return (i_flag & mFlags2) != 0; }
     /* 80182BE8 */ f32 WaitRollSpeed() { return mWaitRollSpeed; }
     /* 80182BF0 */ int WaitRollTimer() { return mWaitRollTimer; }
     /* 80182C1C */ int ThrowTimer() { return mThrowTimer; }
@@ -132,7 +132,7 @@ public:
     /* 80182CF4 */ int ChargeTimer() { return mChargeTimer; }
     /* 80182CFC */ f32 ChargeLatitude() { return mChargeLatitude; }
 
-    bool CheckFlag(u16 i_flag) { return mDebugFlags & i_flag; }
+    bool CheckFlag(u16 i_flag) { return (i_flag & mDebugFlags) != 0; }
     f32 ManualEndVal() { return mManualEndVal; }
     f32 CinemaScopeTrimHeight() { return mTrimCineScopeHeight; }
     f32 VistaTrimHeight() { return mTrimVistaHeight; }

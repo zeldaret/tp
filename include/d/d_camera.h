@@ -417,9 +417,9 @@ public:
     bool isModeOK() { return field_0x158.field_0x0; }
     bool push_any_key() { return field_0x224; }
 
-    bool chkFlag(u32 i_flag) { return mEventFlags & i_flag; }
-    void setFlag(u32 i_flag) { mEventFlags |= i_flag; }
-    void clrFlag(u32 i_flag) { mEventFlags &= ~i_flag; }
+    bool chkFlag(u32 i_flag) { return (mEventFlags & i_flag) != 0; }
+    u32 setFlag(u32 i_flag) { return mEventFlags |= i_flag; }
+    u32 clrFlag(u32 i_flag) { return mEventFlags &= ~i_flag; }
 
     bool CheckFlag(u32 i_flag) { return mEventFlags & i_flag; }
 
@@ -466,7 +466,7 @@ public:
     /* 0x021 */ u8 field_0x21;
     /* 0x022 */ u8 field_0x22[2];
     /* 0x024 */ int field_0x24;
-    /* 0x028 */ cSGlobe field_0x28;
+    /* 0x028 */ cSGlobe mDirection;
     /* 0x030 */ cXyz mCenter;
     /* 0x03C */ cXyz mEye;
     /* 0x048 */ cXyz mUp;
@@ -478,9 +478,9 @@ public:
         /* 0x08 */ cXyz mCenter;
         /* 0x14 */ cXyz mEye;
         /* 0x20 */ cSAngle mBank;
+        /* 0x24 */ f32 mFovy;
     }
     /* 0x05C */ field_0x5c;
-    /* 0x080 */ f32 field_0x80;
     /* 0x084 */ f32 field_0x84;
     /* 0x088 */ u32 field_0x88;
     /* 0x08C */ cSAngle field_0x8c;
@@ -562,7 +562,7 @@ public:
     /* 0x221 */ bool mTrigB;
     /* 0x222 */ u8 field_0x222;
     /* 0x223 */ u8 field_0x223;
-    /* 0x224 */ u8 field_0x224;
+    /* 0x224 */ bool field_0x224;
     /* 0x228 */ dCamForcusLine mFocusLine;
     /* 0x298 */ dCamera_FakeAngle_system mFakeAngleSys;
     /* 0x2A0 */ dCamera_monitoring_things mMonitor;
@@ -570,10 +570,57 @@ public:
     /* 0x2C4 */ int field_0x2c4;
     /* 0x2C8 */ f32 field_0x2c8;
     /* 0x2CC */ BG mBG;
-    /* 0x3E8 */ u8 field_0x3e8;
+    /* 0x3E8 */ int field_0x3e8;
     /* 0x3EC */ int field_0x3ec;
-    /* 0x3F0 */ int field_0x3f0;
-    /* 0x3F4 */ u8 field_0x3f4[0x4E8 - 0x3F4];
+    /* 0x3F0 */ f32 field_0x3f0;
+    /* 0x3F4 */ f32 field_0x3f4;
+    /* 0x3F8 */ int field_0x3f8;
+    /* 0x3FC */ int field_0x3fc;
+    /* 0x400 */ s16 field_0x400;
+    /* 0x402 */ s16 field_0x402;
+    /* 0x404 */ s16 field_0x404;
+    /* 0x408 */ f32 field_0x408;
+    /* 0x40C */ f32 field_0x40c;
+    /* 0x410 */ f32 field_0x410;
+    /* 0x414 */ f32 field_0x414;
+    /* 0x418 */ f32 field_0x418;
+    /* 0x41C */ f32 field_0x41c;
+    /* 0x420 */ f32 field_0x420;
+    /* 0x424 */ f32 field_0x424;
+    /* 0x428 */ f32 field_0x428;
+    /* 0x42C */ int field_0x42c;
+    /* 0x430 */ f32 field_0x430;
+    /* 0x434 */ f32 field_0x434;
+    /* 0x438 */ f32 field_0x438;
+    /* 0x43C */ f32 field_0x43c;
+    /* 0x440 */ cXyz field_0x440;
+    /* 0x44C */ cXyz field_0x44c;
+    /* 0x458 */ bool field_0x458;
+    /* 0x459 */ bool field_0x459;
+    /* 0x45A */ bool field_0x45a;
+    /* 0x45B */ bool field_0x45b;
+    /* 0x45C */ f32 field_0x45c;
+    /* 0x460 */ f32 field_0x460;
+    /* 0x464 */ f32 field_0x464;
+    /* 0x468 */ f32 field_0x468;
+    /* 0x46C */ f32 field_0x46c;
+    /* 0x470 */ f32 field_0x470;
+    /* 0x474 */ int field_0x474;
+    /* 0x478 */ bool field_0x478;
+    /* 0x479 */ bool field_0x479;
+    /* 0x47A */ bool field_0x47a;
+    /* 0x47B */ bool field_0x47b;
+    /* 0x47C */ bool field_0x47c;
+    /* 0x47D */ bool field_0x47d;
+    /* 0x47E */ cSAngle field_0x47e;
+    /* 0x480 */ cSAngle field_0x480;
+    /* 0x482 */ cSAngle field_0x482;
+    /* 0x484 */ int field_0x484;
+    /* 0x488 */ int field_0x488;
+    /* 0x48C */ f32 field_0x48c;
+    /* 0x490 */ int field_0x490;
+    /* 0x494 */ f32 field_0x494;
+    /* 0x498 */ u8 field_0x498[0x4E8 - 0x498];
     /* 0x4E8 */ dCamera_event_data mEventData;
     /* 0x60C */ u32 mEventFlags;
     /* 0x610 */ u8 field_0x610;

@@ -694,8 +694,8 @@ public:
     static BOOL checkSwordGet();
     void changeDemoParam2(s16);
     cXyz getHeadTopPos() const { return mHeadTopPos; }
-    BOOL checkThrowDamage() const { return checkNoResetFlg1(FLG1_THROW_DAMAGE); }
-    BOOL checkGoronSideMove() const { return mSpecialMode == 0x2B; }
+    u32 checkThrowDamage() const { return checkNoResetFlg1(FLG1_THROW_DAMAGE); }
+    bool checkGoronSideMove() const { return mSpecialMode == 0x2B; }
     cXyz* getRightFootPosP() { return &mRightFootPos; }
     cXyz* getLeftFootPosP() { return &mLeftFootPos; }
     BOOL checkCopyRodThrowAfter() const { return checkNoResetFlg3(FLG3_COPY_ROD_THROW_AFTER); }
@@ -765,7 +765,7 @@ public:
     virtual bool cancelWolfLock(fopAc_ac_c*);
     virtual s32 getAtnActorID() const { return -1; }
     virtual s32 getItemID() const;
-    virtual s32 getGrabActorID() const { return -1; }
+    virtual u32 getGrabActorID() const { return fpcM_ERROR_PROCESS_ID_e; }
     virtual BOOL exchangeGrabActor(fopAc_ac_c*);
     virtual BOOL setForceGrab(fopAc_ac_c*, int, int);
     virtual void setForcePutPos(cXyz const&);
