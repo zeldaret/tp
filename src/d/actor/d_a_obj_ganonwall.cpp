@@ -9,13 +9,15 @@
 
 /* ############################################################################################## */
 /* 80BF55EC-80BF564C 000000 0060+00 1/1 0/0 0/0 .rodata          l_idx */
-static u8 const l_idx[96] = {
-    0x17, 0x05, 0x06, 0x01, 0x17, 0x05, 0x06, 0x02, 0x17, 0x05, 0x06, 0x03, 0x17, 0x05, 0x06, 0x04,
-    0x17, 0x05, 0x06, 0x05, 0x05, 0x06, 0x01, 0x00, 0x06, 0x0B, 0x05, 0x00, 0x06, 0x0B, 0x05, 0x01,
-    0x06, 0x0B, 0x05, 0x02, 0x06, 0x0B, 0x05, 0x03, 0x06, 0x0B, 0x05, 0x04, 0x0B, 0x11, 0x06, 0x00,
-    0x0B, 0x11, 0x06, 0x01, 0x0B, 0x11, 0x06, 0x02, 0x0B, 0x11, 0x06, 0x03, 0x0B, 0x11, 0x06, 0x04,
-    0x0B, 0x11, 0x06, 0x05, 0x11, 0x13, 0x02, 0x00, 0x11, 0x13, 0x02, 0x01, 0x13, 0x17, 0x04, 0x00,
-    0x13, 0x17, 0x04, 0x01, 0x13, 0x17, 0x04, 0x02, 0x13, 0x17, 0x04, 0x03, 0x17, 0x05, 0x06, 0x00,
+static u8 const l_idx[24][4] = {
+    {0x17, 0x05, 0x06, 0x01}, {0x17, 0x05, 0x06, 0x02}, {0x17, 0x05, 0x06, 0x03},
+    {0x17, 0x05, 0x06, 0x04}, {0x17, 0x05, 0x06, 0x05}, {0x05, 0x06, 0x01, 0x00},
+    {0x06, 0x0B, 0x05, 0x00}, {0x06, 0x0B, 0x05, 0x01}, {0x06, 0x0B, 0x05, 0x02},
+    {0x06, 0x0B, 0x05, 0x03}, {0x06, 0x0B, 0x05, 0x04}, {0x0B, 0x11, 0x06, 0x00},
+    {0x0B, 0x11, 0x06, 0x01}, {0x0B, 0x11, 0x06, 0x02}, {0x0B, 0x11, 0x06, 0x03},
+    {0x0B, 0x11, 0x06, 0x04}, {0x0B, 0x11, 0x06, 0x05}, {0x11, 0x13, 0x02, 0x00},
+    {0x11, 0x13, 0x02, 0x01}, {0x13, 0x17, 0x04, 0x00}, {0x13, 0x17, 0x04, 0x01},
+    {0x13, 0x17, 0x04, 0x02}, {0x13, 0x17, 0x04, 0x03}, {0x17, 0x05, 0x06, 0x00},
 };
 
 /* 80BF564C-80BF56AC 000060 0060+00 0/1 0/0 0/0 .rodata          l_color */
@@ -152,20 +154,20 @@ int daObjGWall_c::draw() {
     float minute = dKy_getdaytime_minute();
     J3DGXColor* mat_tev_k_color =
         mpModel->mModelData->getMaterialTable().getMaterialNodePointer(mMatIdx)->getTevKColor(1);
-    int idx1 = l_idx[hour * 4];
-    int idx2 = l_idx[hour * 4 + 1];
-    mat_tev_k_color->r = (l_color[idx1].r + (l_color[idx2].r - l_color[idx1].r) *
-                                                ((minute + l_idx[hour * 4 + 3] * 60.0f) /
-                                                 ((l_idx[hour * 4 + 2] + 1) * 60.0f)));
-    mat_tev_k_color->g = (l_color[idx1].g + (l_color[idx2].g - l_color[idx1].g) *
-                                                ((minute + l_idx[hour * 4 + 3] * 60.0f) /
-                                                 ((l_idx[hour * 4 + 2] + 1) * 60.0f)));
-    mat_tev_k_color->b = (l_color[idx1].b + (l_color[idx2].b - l_color[idx1].b) *
-                                                ((minute + l_idx[hour * 4 + 3] * 60.0f) /
-                                                 ((l_idx[hour * 4 + 2] + 1) * 60.0f)));
-    mat_tev_k_color->a = (l_color[idx1].a + (l_color[idx2].r - l_color[idx1].a) *
-                                                ((minute + l_idx[hour * 4 + 3] * 60.0f) /
-                                                 ((l_idx[hour * 4 + 2] + 1) * 60.0f)));
+    int idx1 = l_idx[hour][0];
+    int idx2 = l_idx[hour][1];
+    mat_tev_k_color->r = (l_color[idx1].r +
+                          (l_color[idx2].r - l_color[idx1].r) *
+                              ((minute + l_idx[hour][3] * 60.0f) / ((l_idx[hour][2] + 1) * 60.0f)));
+    mat_tev_k_color->g = (l_color[idx1].g +
+                          (l_color[idx2].g - l_color[idx1].g) *
+                              ((minute + l_idx[hour][3] * 60.0f) / ((l_idx[hour][2] + 1) * 60.0f)));
+    mat_tev_k_color->b = (l_color[idx1].b +
+                          (l_color[idx2].b - l_color[idx1].b) *
+                              ((minute + l_idx[hour][3] * 60.0f) / ((l_idx[hour][2] + 1) * 60.0f)));
+    mat_tev_k_color->a = (l_color[idx1].a +
+                          (l_color[idx2].r - l_color[idx1].a) *
+                              ((minute + l_idx[hour][3] * 60.0f) / ((l_idx[hour][2] + 1) * 60.0f)));
 
     mDoExt_modelUpdateDL(mpModel);
     return 1;
