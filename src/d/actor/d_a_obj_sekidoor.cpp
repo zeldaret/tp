@@ -237,12 +237,12 @@ void daObj_SekiDoor_c::initBaseMtx() {
 
 /* 80CCD84C-80CCD8D8 00090C 008C+00 2/2 0/0 0/0 .text            setBaseMtx__16daObj_SekiDoor_cFv */
 void daObj_SekiDoor_c::setBaseMtx() {
-    mDoMtx_trans(mDoMtx_stack_c::get(), current.pos.x, current.pos.y + mDoorPosY, current.pos.z);
-    mDoMtx_YrotM(mDoMtx_stack_c::get(), shape_angle.y);
-    mDoMtx_ZrotM(mDoMtx_stack_c::get(), mRotation.z);
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y + mDoorPosY, current.pos.z);
+    mDoMtx_stack_c::YrotM(shape_angle.y);
+    mDoMtx_stack_c::ZrotM(mRotation.z);
 
     mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
-    mDoMtx_copy(mDoMtx_stack_c::get(), mBgMtx);
+    MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
 
 /* 80CCD8D8-80CCD8F8 000998 0020+00 1/0 0/0 0/0 .text            daObj_SekiDoor_Create__FPv */
