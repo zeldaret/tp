@@ -13,10 +13,10 @@ public:
     /* 80BEC3BC */ ~FlagJoint_c();
     /* 80BEC4E0 */ FlagJoint_c();
 
-    csXyz joint1;
-    csXyz joint2;
-    csXyz joint3;
-    short rv;
+    csXyz mJoint1;
+    csXyz mJoint2;
+    csXyz mJoint3;
+    s16 mRv;
 };
 
 /**
@@ -35,12 +35,12 @@ private:
     /* 0x578 */ request_of_phase_process_class mPhase2;
     /* 0x580 */ FlagJoint_c mFlagJoints[4];
     /* 0x5d0 */ cXyz mPos;
-    /* 0x5dc */ float field_0x5dc;
+    /* 0x5dc */ f32 field_0x5dc;
     /* 0x5e0 */ s16 field_0x5e0;
-    /* 0x5e2 */ short field_0x5e2;
-    /* 0x5e4 */ short field_0x5e4;
-    /* 0x5e6 */ short field_0x5e6;
-    /* 0x5e8 */ short field_0x5e8;
+    /* 0x5e2 */ s16 field_0x5e2;
+    /* 0x5e4 */ s16 field_0x5e4;
+    /* 0x5e6 */ s16 field_0x5e6;
+    /* 0x5e8 */ s16 field_0x5e8;
     /* 0x5ea */ u8 field_0x568[0x5ec - 0x5ea];
 
 public:
@@ -138,27 +138,27 @@ public:
     }
 
     struct M_attrs {
-        /* 0x00 */ float field_0x00;
-        /* 0x04 */ float field_0x04;
-        /* 0x08 */ float field_0x08;
-        /* 0x0c */ short field_0x0c;
-        /* 0x0e */ short field_0x0e;
-        /* 0x10 */ short fielx_0x10;
-        /* 0x12 */ short fielx_0x12;
-        /* 0x14 */ short field_0x14;
-        /* 0x16 */ short field_0x16;
-        /* 0x18 */ short field_0x18;
-        /* 0x1a */ short field_0x1a;
-        /* 0x1c */ short field_0x1c;
-        /* 0x1e */ short field_0x1e;
-        /* 0x20 */ short field_0x20;
-        /* 0x22 */ short field_0x22;
+        /* 0x00 */ f32 field_0x00;
+        /* 0x04 */ f32 field_0x04;
+        /* 0x08 */ f32 field_0x08;
+        /* 0x0c */ s16 field_0x0c;
+        /* 0x0e */ s16 field_0x0e;
+        /* 0x10 */ s16 fielx_0x10;
+        /* 0x12 */ s16 fielx_0x12;
+        /* 0x14 */ s16 field_0x14;
+        /* 0x16 */ s16 field_0x16;
+        /* 0x18 */ s16 field_0x18;
+        /* 0x1a */ s16 field_0x1a;
+        /* 0x1c */ s16 field_0x1c;
+        /* 0x1e */ s16 field_0x1e;
+        /* 0x20 */ s16 field_0x20;
+        /* 0x22 */ s16 field_0x22;
         /* 0x24 */ u8 field_0x24;
         /* 0x25 */ u8 field_0x25;
         /* 0x26 */ u8 field_0x26;
-        /* 0x28 */ float field_0x28;
-        /* 0x2c */ float field_0x2c;
-        /* 0x30 */ float field_0x30;
+        /* 0x28 */ f32 field_0x28;
+        /* 0x2c */ f32 field_0x2c;
+        /* 0x30 */ f32 field_0x30;
     };
 
     static M_attrs const M_attr;

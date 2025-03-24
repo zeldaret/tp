@@ -28,15 +28,15 @@ daObjFlag_c::M_attrs const daObjFlag_c::M_attr = {
 void daObjFlag_c::create_init() {
     field_0x5dc = (*(u32*)dComIfG_getObjectRes(daSetBgObj_c::getArcName(this), "spec.dat")) & 0xffff;
     mPos = cXyz(current.pos.x, current.pos.y + field_0x5dc, current.pos.z);
-    mFlagJoints[0].rv = (short)(int)(cM_rnd() * 65535.0f);
-    mFlagJoints[1].rv = (short)(int)(cM_rnd() * 65535.0f);
-    mFlagJoints[2].rv = mFlagJoints[1].rv;
-    mFlagJoints[3].rv = mFlagJoints[2].rv;
+    mFlagJoints[0].mRv = (short)(cM_rnd() * 65535.0f);
+    mFlagJoints[1].mRv = (short)(cM_rnd() * 65535.0f);
+    mFlagJoints[2].mRv = mFlagJoints[1].mRv;
+    mFlagJoints[3].mRv = mFlagJoints[2].mRv;
 
-    field_0x5e2 = (short)(int)(cM_rnd() * 65535.0f);
-    field_0x5e4 = (short)(int)(cM_rnd() * 65535.0f);
-    field_0x5e6 = (short)(int)(cM_rnd() * 65535.0f);
-    field_0x5e8 = (short)(int)(cM_rnd() * 65535.0f);
+    field_0x5e2 = (short)(cM_rnd() * 65535.0f);
+    field_0x5e4 = (short)(cM_rnd() * 65535.0f);
+    field_0x5e6 = (short)(cM_rnd() * 65535.0f);
+    field_0x5e8 = (short)(cM_rnd() * 65535.0f);
 
     initBaseMtx();
 }
@@ -44,19 +44,19 @@ void daObjFlag_c::create_init() {
 /* 80BEB8F0-80BEB984 0001F0 0094+00 1/1 0/0 0/0 .text            initBaseMtx__11daObjFlag_cFv */
 void daObjFlag_c::initBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
-    PSMTXCopy(mDoMtx_stack_c::now, mpModel2->mBaseTransformMtx);
-    cullMtx = mpModel2->mBaseTransformMtx;
+    mpModel2->setBaseTRMtx(mDoMtx_stack_c::get());
+    fopAcM_SetMtx(this, mpModel2->mBaseTransformMtx);
     if (mpModel1 != NULL) {
         mDoMtx_stack_c::transS(mPos);
-        mDoMtx_YrotM(mDoMtx_stack_c::now, shape_angle.y);
-        PSMTXCopy(mDoMtx_stack_c::now, mpModel1->mBaseTransformMtx);
-        cullMtx = mpModel1->mBaseTransformMtx;
+        mDoMtx_stack_c::YrotM(shape_angle.y);
+        mpModel1->setBaseTRMtx(mDoMtx_stack_c::get());
+        fopAcM_SetMtx(this, mpModel1->mBaseTransformMtx);
     }
 }
 
 /* 80BEB984-80BEB9AC 000284 0028+00 1/1 0/0 0/0 .text getJointAngle__11daObjFlag_cFP5csXyzi */
 void daObjFlag_c::getJointAngle(csXyz* i_angle, int i_index) {
-    csXyz* joint =  &mFlagJoints[i_index].joint1;
+    csXyz* joint =  &mFlagJoints[i_index].mJoint1;
     *i_angle = *joint;
 }
 
@@ -67,7 +67,7 @@ void daObjFlag_c::calcJointAngle() {
 
     dKyw_get_AllWind_vec(&mPos, direction, &power);
     if(power > 0.0f) {
-        Z2GetAudioMgr()->seStartLevel(JAISoundID(Z2SE_OBJ_FLAG_TRAILING), &mPos, power * 127.0f, 0, 1.0, 1.0, -1.0, -1.0, 0);
+        Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_FLAG_TRAILING, &mPos, power * 127.0f, 0, 1.0, 1.0, -1.0, -1.0, 0);
     }
 
     cLib_addCalcAngleS(&field_0x5e0, cM_atan2s(direction->x, direction->z), 4, 0x7fff, 0);
@@ -77,21 +77,21 @@ void daObjFlag_c::calcJointAngle() {
             calcAngleSwingZ(joint, power);
         }
         if(i == 0) {
-            joint->joint2 = joint->joint1;
-            joint->joint1.y = (field_0x5e0 + getSwingY(power) * cM_ssin(mFlagJoints[i].rv));
-            joint->rv += (short)(power * attr().field_0x28);
-            joint->joint3 = csXyz() - joint->joint2;
+            joint->mJoint2 = joint->mJoint1;
+            joint->mJoint1.y = (field_0x5e0 + getSwingY(power) * cM_ssin(mFlagJoints[i].mRv));
+            joint->mRv += (short)(power * attr().field_0x28);
+            joint->mJoint3 = csXyz() - joint->mJoint2;
         }
         else {
-            joint->joint2 = joint->joint1;
-            joint->joint3 = joint->joint3 * attr().field_0x04;
-            joint->joint1 += joint->joint3;
-            cLib_addCalcAngleS(&joint->joint1.y, 0, attr().field_0x0c, 0x7fff, 0);
-            joint->joint3 = joint->joint1 - joint->joint2;
+            joint->mJoint2 = joint->mJoint1;
+            joint->mJoint3 = joint->mJoint3 * attr().field_0x04;
+            joint->mJoint1 += joint->mJoint3;
+            cLib_addCalcAngleS(&joint->mJoint1.y, 0, attr().field_0x0c, 0x7fff, 0);
+            joint->mJoint3 = joint->mJoint1 - joint->mJoint2;
         }
 
         if((u8)attr().field_0x25 != NULL) {
-            joint->joint1.x = 0;
+            joint->mJoint1.x = 0;
         }
         else if(i == 1) {
             calcAngleSwingX(joint, power);
@@ -114,12 +114,12 @@ void daObjFlag_c::calcJointAngle() {
     }
     
     if(attr().field_0x24 != 0) {
-        param_0->joint1.z = (swing * cM_ssin(param_0->rv));
+        param_0->mJoint1.z = (swing * cM_ssin(param_0->mRv));
     } else {
-        param_0->joint1.z = (attr().field_0x0e * cM_ssin(param_0->rv));
+        param_0->mJoint1.z = (attr().field_0x0e * cM_ssin(param_0->mRv));
     }
 
-    param_0->rv += (s16)(param_1 * attr().field_0x30);
+    param_0->mRv += (s16)(param_1 * attr().field_0x30);
 }
 
 /* 80BEBDAC-80BEBE64 0006AC 00B8+00 1/1 0/0 0/0 .text
@@ -131,10 +131,10 @@ void daObjFlag_c::calcAngleSwingX(FlagJoint_c* param_0, f32 param_1) {
         swing = 0.0f;
     }
 
-    if(param_0->joint1.x > swing) {
-        cLib_addCalcAngleS(&param_0->joint1.x, -swing, 0x1e, 0x7fff, -0x7fff);
+    if(param_0->mJoint1.x > swing) {
+        cLib_addCalcAngleS(&param_0->mJoint1.x, -swing, 0x1e, 0x7fff, -0x7fff);
     } else {
-        cLib_chaseS(&param_0->joint1.x, -swing, 500);
+        cLib_chaseS(&param_0->mJoint1.x, -swing, 500);
     }
 }
 
@@ -148,9 +148,9 @@ f32 daObjFlag_c::getSwingY(f32 param_0) {
         return swing;
     }
 
-    float var3 = (float)(int)attr().field_0x14 * cM_ssin(field_0x5e2);
-    float var4 = (float)(int)attr().field_0x16 * cM_ssin(field_0x5e4);
-    float var5 = (float)(int)attr().field_0x18 * cM_ssin(field_0x5e6);
+    float var3 = (float)attr().field_0x14 * cM_ssin(field_0x5e2);
+    float var4 = (float)attr().field_0x16 * cM_ssin(field_0x5e4);
+    float var5 = (float)attr().field_0x18 * cM_ssin(field_0x5e6);
 
     if(attr().field_0x1c == 0) {
         var3 = 0.0;
