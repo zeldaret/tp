@@ -59,7 +59,7 @@ int daObjGWall_c::Create() {
     mEventBit1 = getEventBit1();
     mEventBit2 = getEventBit2();
     initBaseMtx();
-    cullMtx = mpModel->mBaseTransformMtx;
+    fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
     fopAcM_setCullSizeBox2(this, mpModel->getModelData());
     cullSizeFar = 1000000.f;
     mMatIdx = 0xffff;
@@ -180,24 +180,24 @@ int daObjGWall_c::_delete() {
 /* 80BF5564-80BF5584 0008E4 0020+00 1/0 0/0 0/0 .text            daObjGWall_Draw__FP12daObjGWall_c
  */
 static int daObjGWall_Draw(daObjGWall_c* i_this) {
-    i_this->draw();
+    return i_this->draw();
 }
 
 /* 80BF5584-80BF55A4 000904 0020+00 1/0 0/0 0/0 .text daObjGWall_Execute__FP12daObjGWall_c */
 static int daObjGWall_Execute(daObjGWall_c* i_this) {
-    i_this->execute();
+    return i_this->execute();
 }
 
 /* 80BF55A4-80BF55C4 000924 0020+00 1/0 0/0 0/0 .text            daObjGWall_Delete__FP12daObjGWall_c
  */
 static int daObjGWall_Delete(daObjGWall_c* i_this) {
-    i_this->_delete();
+    return i_this->_delete();
 }
 
 /* 80BF55C4-80BF55E4 000944 0020+00 1/0 0/0 0/0 .text            daObjGWall_Create__FP12daObjGWall_c
  */
 static int daObjGWall_Create(daObjGWall_c* i_this) {
-    i_this->create();
+    return i_this->create();
 }
 
 /* 80BF56EC-80BF570C -00001 0020+00 1/0 0/0 0/0 .data            l_daObjGWall_Method */
