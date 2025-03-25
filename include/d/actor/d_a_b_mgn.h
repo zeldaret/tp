@@ -4,16 +4,43 @@
 #include "d/d_bg_s_acch.h"
 #include "d/d_cc_d.h"
 #include "dolphin/types.h"
-#include "f_op/f_op_actor_mng.h"
+#include "f_op/f_op_actor.h"
 
 /**
  * @ingroup actors-enemies
  * @class daB_MGN_c
- * @brief Beast Ganon?
+ * @brief Beast Ganon
  *
  * @details Hyrule Castle dungeon boss.
  *
  */
+
+ class daB_MGN_HIO_c 
+ #ifdef DEBUG
+ : public JORReflexible
+ #endif
+ {
+     
+ public:
+     /* 8060572C */ daB_MGN_HIO_c();
+     /* 8060F8D0 */ ~daB_MGN_HIO_c();
+ 
+ #ifdef DEBUG
+ virtual void genMessage(JORMContext*);
+ #endif
+ 
+     /* 0x08 */ f32 field_0x08; // 1.2f
+     /* 0x0C */ f32 field_0x0c; // 50.0f
+     /* 0x10 */ f32 field_0x10; // 70.0f
+     /* 0x14 */ f32 field_0x14; // 1.0f
+     /* 0x18 */ f32 field_0x18; // 100.0f
+     /* 0x1C */ f32 field_0x1c; // 100.0f
+     /* 0x20 */ f32 field_0x20; // 100.0f
+     /* 0x24 */ f32 field_0x24;
+     /* 0x28 */ f32 field_0x28;
+     /* 0x2C */ f32 field_0x2c;
+ };
+
 class daB_MGN_c : public fopEn_enemy_c {
 public:
     /* 8060577C */ int ctrlJoint(J3DJoint*, J3DModel*);
@@ -60,7 +87,7 @@ public:
     /* 8060B430 */ void executeWarp();
     /* 8060B544 */ void executeFall();
     /* 8060BE6C */ void demo_skip(int);
-    /* 8060C034 */ BOOL DemoSkipCallBack(void*, int);
+    /* 8060C034 */ static int DemoSkipCallBack(void*, int);
     /* 8060C068 */ void executeOpening();
     /* 8060D078 */ void executeDeath();
     /* 8060D880 */ void executeJump();
@@ -106,7 +133,12 @@ private:
     /* 0x0AB0 */ cXyz field_0xab0;
     /* 0x0ABC */ cXyz field_0xabc;
     /* 0x0AC8 */ cXyz field_0xac8;
-    /* 0x0AD4 */ u8 field_0xad4[0xae8 - 0xad4];
+    /* 0x0AD4 */ f32 field_0xad4;
+    /* 0x0AD4 */ f32 field_0xad8;
+    /* 0x0ADC */ f32 field_0xadc;
+    /* 0x0AE0 */ s16 field_0xae0;
+    /* 0x0AE2 */ s16 field_0xae2;
+    /* 0x0AE4 */ u8 field_0xae4[0xae8 - 0xae4];
     /* 0x0AE8 */ f32 field_0xae8;
     /* 0x0AEC */ u8 field_0xaec[0xaf0 - 0xaec];
     /* 0x0AF0 */ f32 field_0xaf0;
@@ -171,36 +203,8 @@ private:
     /* 0x26C0 */ s16 field_0x26c0[4];
     /* 0x26C8 */ u8 field_0x26c8;
     /* 0x26C9 */ u8 field_0x26c9[0x26cc - 0x26c9];
-
 };
 
 STATIC_ASSERT(sizeof(daB_MGN_c) == 0x26cc);
-
-class daB_MGN_HIO_c 
-#ifdef DEBUG
-: public JORReflexible
-#endif
-{
-    
-public:
-    /* 8060572C */ daB_MGN_HIO_c();
-    /* 8060F8D0 */ ~daB_MGN_HIO_c();
-
-#ifdef DEBUG
-virtual void genMessage(JORMContext*);
-#endif
-
-    /* 0x08 */ f32 field_0x08; // 1.2f
-    /* 0x0C */ f32 field_0x0c; // 50.0f
-    /* 0x10 */ f32 field_0x10; // 70.0f
-    /* 0x14 */ f32 field_0x14; // 1.0f
-    /* 0x18 */ f32 field_0x18; // 100.0f
-    /* 0x1C */ f32 field_0x1c; // 100.0f
-    /* 0x20 */ f32 field_0x20; // 100.0f
-    /* 0x24 */ f32 field_0x24;
-    /* 0x28 */ f32 field_0x28;
-    /* 0x2C */ f32 field_0x2c;
-};
-
 
 #endif /* D_A_B_MGN_H */
