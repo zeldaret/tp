@@ -195,15 +195,11 @@ cPhs__Step daNpcShoe_c::Create() {
 
 /* 80AE7FD8-80AE81E8 000778 0210+00 1/1 0/0 0/0 .text            CreateHeap__11daNpcShoe_cFv */
 BOOL daNpcShoe_c::CreateHeap() {
-    J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[0], 8));
-#ifdef DEBUG
-    if (modelData == NULL) {
-        JUTAssertion::showAssert(JUTAssertion::getSDevice(), "d_a_npc_shoe.cpp", 292, "0 != mdlData_p");
-        OSPanic("d_a_npc_shoe.cpp", 292, "Halt");
-    }
-#endif
+    J3DModelData* mdlData_p = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[0], 8));
 
-    mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, 
+    JUT_ASSERT(292, 0 != mdlData_p)
+
+    mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, 
         &mCreature, 0x80000, 0x11020084);
     
     if (mpMorf != NULL && mpMorf->mpModel == NULL) {
@@ -220,31 +216,25 @@ BOOL daNpcShoe_c::CreateHeap() {
     mpMorf->setTranslateScale(cstack_30);
 
     J3DModel* model = mpMorf->getModel();
-    for (u16 jointNo = 0; jointNo < modelData->getJointNum(); jointNo++) {
-        modelData->getJointNodePointer(jointNo)->setCallBack(ctrlJointCallBack);
+    for (u16 jointNo = 0; jointNo < mdlData_p->getJointNum(); jointNo++) {
+        mdlData_p->getJointNodePointer(jointNo)->setCallBack(ctrlJointCallBack);
     }
     model->setUserArea((u32)this);
 
-    J3DModelData* pmodel1_data = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[0], 9));
-#ifdef DEBUG
-    if (pmodel1_data == NULL) {
-        JUTAssertion::showAssert(JUTAssertion::getSDevice(), "d_a_npc_shoe.cpp", 331, "mdlData_p != 0");
-        OSPanic("d_a_npc_shoe.cpp", 331, "Halt");
-    }
-#endif
-    mpModel1 = mDoExt_J3DModel__create(pmodel1_data, 0x80000, 0x11000084);
+    mdlData_p = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[0], 9));
+
+    JUT_ASSERT(331, 0 != mdlData_p)
+
+    mpModel1 = mDoExt_J3DModel__create(mdlData_p, 0x80000, 0x11000084);
     if (mpModel1 == NULL) {
         return false;
     }
 
-    J3DModelData* pmodel2_data = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[2], 4));
-#ifdef DEBUG
-        if (pmodel2_data == NULL) {
-            JUTAssertion::showAssert(JUTAssertion::getSDevice(), "d_a_npc_shoe.cpp", 338, "mdlData_p != 0");
-            OSPanic("d_a_npc_shoe.cpp", 338, "Halt");
-        }
-#endif
-    mpModel2 = mDoExt_J3DModel__create(pmodel2_data, 0x80000, 0x11000084);
+    mdlData_p = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[2], 4));
+
+    JUT_ASSERT(338, 0 != mdlData_p)
+
+    mpModel2 = mDoExt_J3DModel__create(mdlData_p, 0x80000, 0x11000084);
     if (mpModel2 == NULL) {
         return false;
     }
@@ -288,16 +278,17 @@ int daNpcShoe_c::Execute() {
 int daNpcShoe_c::Draw() {
     if (!field_0xe1b) {
         return 1;
-    } else {
-        draw(false, false, daNpcShoe_Param_c::m.mShadowDepth, NULL, false);
-        g_env_light.setLightTevColorType_MAJI(mpModel1->mModelData, &tevStr);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(11));
-        mpModel1->setBaseTRMtx(mDoMtx_stack_c::get());
-        mDoExt_modelUpdateDL(mpModel1);
-        g_env_light.setLightTevColorType_MAJI(mpModel2->mModelData, &tevStr);
-        mDoExt_modelUpdateDL(mpModel2);
-        dComIfGd_setSimpleShadow(&current.pos, mAcch.GetGroundH(), 50.0f, mAcch.m_gnd, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
     }
+
+    draw(false, false, daNpcShoe_Param_c::m.mShadowDepth, NULL, false);
+    g_env_light.setLightTevColorType_MAJI(mpModel1->mModelData, &tevStr);
+    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(11));
+    mpModel1->setBaseTRMtx(mDoMtx_stack_c::get());
+    mDoExt_modelUpdateDL(mpModel1);
+    g_env_light.setLightTevColorType_MAJI(mpModel2->mModelData, &tevStr);
+    mDoExt_modelUpdateDL(mpModel2);
+    dComIfGd_setSimpleShadow(&current.pos, mAcch.GetGroundH(), 50.0f, mAcch.m_gnd, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
+    
     return 1;
 }
 
@@ -528,10 +519,7 @@ bool daNpcShoe_c::wait(void* param_0) {
     case 3:
         break;
     default:
-#ifdef DEBUG
-        JUTAssertion::showAssert(JUTAssertion::getSDevice(), "d_a_npc_shoe.cpp", 1063, "0");
-        OSPanic("d_a_npc_shoe.cpp", 1063, "Halt");
-#endif
+        JUT_ASSERT(1063, 0)
         break;
     }
 
@@ -557,10 +545,7 @@ bool daNpcShoe_c::fear(void* param_0) {
         case 3:
             break;
         default:
-#ifdef DEBUG
-            JUTAssertion::showAssert(JUTAssertion::getSDevice(), "d_a_npc_shoe.cpp", 1100, "0");
-            OSPanic("d_a_npc_shoe.cpp", 1100, "Halt");
-#endif
+            JUT_ASSERT(1100, 0)
             break;
     }
     return 1;
@@ -599,10 +584,7 @@ bool daNpcShoe_c::talk(void* param_0) {
             dComIfGp_event_reset();
             break;
         default:
-#ifdef DEBUG
-            JUTAssertion::showAssert(JUTAssertion::getSDevice(), "d_a_npc_shoe.cpp", 1169, "0");
-            OSPanic("d_a_npc_shoe.cpp", 1169, "Halt");
-#endif
+            JUT_ASSERT(1169, 0)
             break;
     }
     return ret;
@@ -622,13 +604,10 @@ bool daNpcShoe_c::demo(void* param_0) {
                 dEvent_manager_c& eventManager = dComIfGp_getEventManager();
                 s32 staff_id = eventManager.getMyStaffId(l_myName, NULL, 0);
                 if (staff_id != -1) {
-                    mStaffID = staff_id;     
-#ifdef DEBUG
-                    if (mEvtSeqList[mOrderEvtNo] == NULL) {
-                        JUTAssertion::showAssert(JUTAssertion::getSDevice(), "d_a_npc_shoe.cpp", 1203, "0 != mEvtSeqList[mOrderEvtNo]");
-                        OSPanic("d_a_npc_shoe.cpp", 1203, "Halt");
-                    }
-#endif
+                    mStaffID = staff_id;
+
+                    JUT_ASSERT(1203, 0 != mEvtSeqList[mOrderEvtNo])
+
                     if ((this->*(mEvtSeqList[mOrderEvtNo]))(staff_id)) {
                         eventManager.cutEnd(staff_id);
                     }
@@ -645,10 +624,7 @@ bool daNpcShoe_c::demo(void* param_0) {
         case 3:
             break;
         default:
-#ifdef DEBUG
-            JUTAssertion::showAssert(JUTAssertion::getSDevice(), "d_a_npc_shoe.cpp", 1169, "0");
-            OSPanic("d_a_npc_shoe.cpp", 1169, "Halt");
-#endif
+            JUT_ASSERT(1169, 0)
             break;
     }
     return 1;
