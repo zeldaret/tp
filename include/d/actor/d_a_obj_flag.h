@@ -104,8 +104,8 @@ public:
 
     int createHeap() {
         bool tmp = 0;
-        char angle = (u8)shape_angle.x;
-        if(angle <= -1 || angle > 'c') {
+        s8 angle = (u8)shape_angle.x;
+        if(angle <= -1 || angle > 99) {
             tmp = false;
         }
         else {
