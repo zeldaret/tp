@@ -111,10 +111,10 @@ void dFile_warning_c::screenSet() {
     };
 
     mFileWarn.Scr = new J2DScreen();
-    JUT_ASSERT(mFileWarn.Scr != 0);
+    JUT_ASSERT(0, mFileWarn.Scr != 0);
 
     mFileWarn.mMsgString = new dMsgString_c();
-    JUT_ASSERT(mFileWarn.mMsgString != 0);
+    JUT_ASSERT(0, mFileWarn.mMsgString != 0);
 
     mFileWarn.Scr->setPriority(blo_name[field_0x3e], 0x100000, mpArchive);
 
@@ -126,7 +126,7 @@ void dFile_warning_c::screenSet() {
 
     mFileWarn.mFont = mDoExt_getMesgFont();
     mpRootPane = new CPaneMgr(mFileWarn.Scr, 'Nm_02', 0, NULL);
-    JUT_ASSERT(mpRootPane != 0);
+    JUT_ASSERT(0, mpRootPane != 0);
     field_0x34 = mpRootPane->getTranslateY();
 
     mFileWarn.Scr->search('w_msg_jp')->hide();

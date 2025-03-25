@@ -155,7 +155,7 @@ int daObjAvalanche_c::Execute(Mtx** param_1) {
  */
 int daObjAvalanche_c::checkCollapse() {
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
-    if (!daPy_py_c::i_checkNowWolf()) {
+    if (!daPy_py_c::checkNowWolf()) {
         return 0;
     }
     if (!player->checkWolfAttackReverse() && !player->checkFrontRollCrash()) {
@@ -208,13 +208,13 @@ void daObjAvalanche_c::actionWait() {
     if (checkCollapse()) {
         setAction(ACTION_ORDER_EVENT);
         fopAcM_orderOtherEventId(this, mEventIdx, mMapToolId, 0xffff, 0, 1);
-        eventInfo.i_onCondition(2);
+        eventInfo.onCondition(2);
     }
 }
 
 /* 80BA773C-80BA7804 0008DC 00C8+00 1/0 0/0 0/0 .text actionOrderEvent__16daObjAvalanche_cFv */
 void daObjAvalanche_c::actionOrderEvent() {
-    if (eventInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.checkCommandDemoAccrpt()) {
         setAction(ACTION_EVENT);
         mStaffId = dComIfGp_evmng_getMyStaffId(l_staffName, 0, 0);
         if (mpBgW != NULL && mpBgW->ChkUsed()) {
@@ -223,7 +223,7 @@ void daObjAvalanche_c::actionOrderEvent() {
         demoProc();
     } else {
         fopAcM_orderOtherEventId(this, mEventIdx, mMapToolId, 0xffff, 0, 1);
-        eventInfo.i_onCondition(2);
+        eventInfo.onCondition(2);
     }
 }
 

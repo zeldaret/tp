@@ -382,7 +382,7 @@ bool daE_PM_c::CameraSet() {
     camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     dCamera_c* camera_body = dCam_getBody();
 
-    if (!eventInfo.i_checkCommandDemoAccrpt()) {
+    if (!eventInfo.checkCommandDemoAccrpt()) {
         fopAcM_orderPotentialEvent(this, 2, 0xffff, 0);
         return false;
     }

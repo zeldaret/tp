@@ -176,7 +176,7 @@ void daObjChest_c::actionWait() {
         fopAcM_seStart(this, Z2SE_OBJ_TANSU_YURE, 0);
     }
 
-    if (!fopAcM_isSwitch(this, getSwNo()) && player->i_checkNowWolf()) {
+    if (!fopAcM_isSwitch(this, getSwNo()) && player->checkNowWolf()) {
         if (player->checkWolfAttackReverse() || player->checkFrontRollCrash()) {
             for (int i = 0; i < 2; i++) {
                 cXyz multiply[2] = {

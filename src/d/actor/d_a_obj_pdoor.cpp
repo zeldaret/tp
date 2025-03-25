@@ -75,7 +75,7 @@ int daObjPDoor_c::Create() {
         mDoorDirection = 1;
         shape_angle.y = home.angle.y + 0x1555;
     } else if (!isSw2) {
-        OS_REPORT("城下町押引扉：SW1,SW2共にＯＮになっています！\n")
+        OS_REPORT("城下町押引扉：SW1,SW2共にＯＮになっています！\n");
         JUT_PANIC(235, "0");
     } else {
         mDoorDirection = -1;
@@ -191,7 +191,7 @@ void daObjPDoor_c::modeWait() {
         }
         field_0x5b0 = -1;
     }
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         cXyz cStack_44 = player->current.pos - current.pos;
         mDoMtx_stack_c::YrotS(-shape_angle.y);
         mDoMtx_stack_c::multVec(&cStack_44, &cStack_44);

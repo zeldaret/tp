@@ -63,6 +63,8 @@ public:
     /* 80BC33EC */ daBubbPilar_HIO_c();
     /* 80BC3F90 */ virtual ~daBubbPilar_HIO_c() {};
 
+    void genMessage(JORMContext*);
+
     u8 field_0x4;
     u8 field_0x5;
 };

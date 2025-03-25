@@ -48,7 +48,7 @@ static int dShopSystem_searchItemActor(void* i_actor, void* param_1) {
             dShopSystem_item_count < dShopSystem_sellItemMax)
         {
             u8 i_posID = (fopAcM_GetParam(i_actor) >> 0x18) & 0xF;
-            JUT_ASSERT(i_posID <= dShopSystem_c::ITEM_MAX_e);
+            JUT_ASSERT(0, i_posID <= dShopSystem_c::ITEM_MAX_e);
 
             if (dShopSystem_itemActor[0] != i_actor && dShopSystem_itemActor[1] != i_actor &&
                 dShopSystem_itemActor[2] != i_actor && dShopSystem_itemActor[3] != i_actor &&

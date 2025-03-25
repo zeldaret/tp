@@ -111,6 +111,8 @@ public:
     /* 80D022AC */ daSyRock_HIO_c();
     /* 80D03C44 */ ~daSyRock_HIO_c() {};
 
+    void genMessage(JORMContext*);
+
     /* 0x04 */ f32 mShakeAmplitude;         // "揺れ強さ" "Shake strength" | Slider
     /* 0x08 */ f32 mShakeXOscillationAngle; // "振幅Ｘ" "Amplitude X" | Slider
     /* 0x0C */ f32 mShakeZOscillationAngle; // "振幅Ｚ" "Amplitude Z" | Slider

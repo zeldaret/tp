@@ -492,6 +492,15 @@ inline dScnKy_env_light_c* dKy_getEnvlight() {
     return &g_env_light;
 }
 
+class dKankyo_HIO_c {
+public:
+    u8 pad[0xB4];
+    /* 0xB4 */ u8 field_0xB4;
+    /* 0xB8 */ f32 field_0xB8;
+};
+
+extern dKankyo_HIO_c g_kankyoHIO;
+
 enum dKy_dice_wether_mode {
     DICE_MODE_SUNNY_e,
     DICE_MODE_CLOUDY_e,

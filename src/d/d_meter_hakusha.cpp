@@ -31,25 +31,25 @@ int dMeterHakusha_c::_create() {
 
     for (int i = 0; i < 6; i++) {
         mpHakushaPos[i] = new CPaneMgr(field_0x004, haku_tag[i], 0, NULL);
-        JUT_ASSERT(mpHakushaPos[i] != 0);
+        JUT_ASSERT(0, mpHakushaPos[i] != 0);
     }
 
     mpHakushaParent = new CPaneMgr(field_0x004, 'hakunall', 0, NULL);
-    JUT_ASSERT(mpHakushaParent != 0);
+    JUT_ASSERT(0, mpHakushaParent != 0);
 
     mpHakushaScreen = new J2DScreen();
-    JUT_ASSERT(mpHakushaScreen != 0);
+    JUT_ASSERT(0, mpHakushaScreen != 0);
 
     bool fg = mpHakushaScreen->setPriority("zelda_game_image_hakusha_parts.blo", 0x20000,
                                            dComIfGp_getMain2DArchive());
-    JUT_ASSERT(fg != false);
+    JUT_ASSERT(0, fg != false);
     dPaneClass_showNullPane(mpHakushaScreen);
 
     mpHakushaOn = new CPaneMgr(mpHakushaScreen, 'haku_n', 2, NULL);
-    JUT_ASSERT(mpHakushaOn != 0);
+    JUT_ASSERT(0, mpHakushaOn != 0);
 
     mpHakushaOff = new CPaneMgr(mpHakushaScreen, 'haku_b_n', 2, NULL);
-    JUT_ASSERT(mpHakushaOff != 0);
+    JUT_ASSERT(0, mpHakushaOff != 0);
 
     mpHakushaOn->setAlphaRate(0.0f);
     mpHakushaOff->setAlphaRate(0.0f);
@@ -67,15 +67,15 @@ int dMeterHakusha_c::_create() {
     mHakushaNum = dMeter2Info_getHorseLifeCount();
 
     mpButtonScreen = new J2DScreen();
-    JUT_ASSERT(mpButtonScreen != 0);
+    JUT_ASSERT(0, mpButtonScreen != 0);
 
     fg = mpButtonScreen->setPriority("zelda_game_image_hakusha_a_btn.blo", 0x20000,
                                      dComIfGp_getMain2DArchive());
-    JUT_ASSERT(fg != false);
+    JUT_ASSERT(0, fg != false);
     dPaneClass_showNullPane(mpButtonScreen);
 
     mpButtonA = new CPaneMgr(mpButtonScreen, 'abtn_n', 2, NULL);
-    JUT_ASSERT(mpButtonA != 0);
+    JUT_ASSERT(0, mpButtonA != 0);
     mpButtonA->show();
     mpButtonA->setAlphaRate(0.0f);
 

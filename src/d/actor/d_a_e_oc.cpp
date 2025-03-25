@@ -393,7 +393,7 @@ int daE_OC_c::checkBeforeBg() {
     link_chk.Set(&my_vec_0, &my_vec_1, this);
     if (dComIfG_Bgsp().LineCross(&link_chk)) {
         dComIfG_Bgsp().GetTriPla(link_chk, &plane);
-        if (my_vec_0.abs(link_chk.i_GetCross()) < 100.0f) {
+        if (my_vec_0.abs(link_chk.GetCross()) < 100.0f) {
             return 1;
         }
         if ( (s16) (cM_atan2s(plane.mNormal.x, plane.mNormal.z) - shape_angle.y) > 0)

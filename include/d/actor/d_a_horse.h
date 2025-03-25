@@ -130,8 +130,6 @@ public:
         PROC_NONE_e = 8,
     };
 
-    fopAc_ac_c* getZeldaActor();
-
     void cancelOriginalDemo() { 
         field_0x16b8 = 2;
         m_demoMode = 1;
@@ -139,7 +137,6 @@ public:
 
     /* 807E27F8 */ void onDemoJumpDistance(f32, f32);
     /* 807E28B8 */ void changeDemoPos0(cXyz const*);
-    /* 807E28E0 */ void setHorsePosAndAngle(cXyz const*, s16);
     /* 80838498 */ void coHitCallbackBoarJump(fopAc_ac_c*);
     /* 80838798 */ void coHitCallbackBoarHit(fopAc_ac_c*, dCcD_GObjInf*);
     /* 80838904 */ void coHitCallbackCowHit(fopAc_ac_c*);
@@ -225,7 +222,6 @@ public:
     /* 8084478C */ ~daHorse_c();
     
     /* 80182D04 */ void getLashDashStart() const;
-    
 
     bool checkNoBombProc() const { return m_procID == PROC_WAIT_e || m_procID == PROC_MOVE_e; }
     bool checkResetStateFlg0(daHorse_RFLG0 flag) const { return m_resetStateFlg0 & flag; }
@@ -237,7 +233,7 @@ public:
     void setDemoStickR(f32 stick) { m_demoStickR = stick; }
     void changeDemoMode(u32 param_0, int param_1) { m_demoMode = param_0; field_0x1728 = param_1; }
     void changeOriginalDemo() { field_0x16b8 = 3; field_0x1728 = 0; }
-    void i_setHorsePosAndAngle(cXyz const* i_pos, s16 i_angle) { (this->*m_setHorsePosAngle)(i_pos, i_angle); }
+    void setHorsePosAndAngle(cXyz const* i_pos, s16 i_angle) { (this->*m_setHorsePosAngle)(i_pos, i_angle); }
     void onRideFlg() { (this->*m_onRideFlg)(); }
     void offRideFlg() { (this->*m_offRideFlg)(); }
     void onStateFlg0(daHorse_FLG0 flag) { m_stateFlg0 |= flag; }
@@ -257,7 +253,7 @@ public:
     u16 getAnmIdx(int i_idx) const { return m_anmIdx[i_idx]; }
     int callHorse(const cXyz* param_0) { return (this->*m_callHorse)(param_0); }
 
-    daHoZelda_c* i_getZeldaActor() { return (daHoZelda_c*)m_zeldaActorKeep.getActor(); }
+    daHoZelda_c* getZeldaActor() { return (daHoZelda_c*)m_zeldaActorKeep.getActor(); }
 
     bool checkTurnStandCamera() const { return checkResetStateFlg0(RFLG0_TURN_STAND_CAMERA); }
     bool checkTurnStand() const { return checkResetStateFlg0(RFLG0_TURN_STAND); }

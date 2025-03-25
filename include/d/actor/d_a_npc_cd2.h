@@ -80,7 +80,7 @@ public:
     /* 0x850 */ dCcD_Stts mStts;
     /* 0x88C */ dCcD_Cyl mCyl;
     /* 0x9C8 */ dNpcLib_lookat_c mLookat;
-    /* 0xA98 */ int field_0xa98;
+    /* 0xA98 */ int m_type;
     /* 0xA9C */ u8 field_0xa9c[0xAA0 - 0xA9C];
     /* 0xAA4 */ int field_0xaa0;
     /* 0xAA4 */ int field_0xaa4;

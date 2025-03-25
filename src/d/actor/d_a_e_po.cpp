@@ -3037,9 +3037,9 @@ extern "C" void fopAcM_searchPlayerAngleY__FPC10fopAc_ac_c() {
 }
 
 /* 8075764C-8075765C 00B1EC 0010+00 1/1 0/0 0/0 .text            onCondition__11dEvt_info_cFUs */
-void dEvt_info_c::onCondition(u16 param_0) {
+/* void dEvt_info_c::onCondition(u16 param_0) {
     // NONMATCHING
-}
+} */
 
 /* 8075765C-80757670 00B1FC 0014+00 1/1 0/0 0/0 .text checkCommandDemoAccrpt__11dEvt_info_cFv */
 // void dEvt_info_c::checkCommandDemoAccrpt() {

@@ -3550,7 +3550,7 @@ static BOOL daMP_ActivePlayer_Init(char const* moviePath) {
     
     if (!daMP_THPPlayerOpen(moviePath, 0)) {
         OSReport("Fail to open the thp file\n");
-        JUT_ASSERT(0);
+        JUT_ASSERT(0, 0);
         return 0;
     }
 
@@ -3569,7 +3569,7 @@ static BOOL daMP_ActivePlayer_Init(char const* moviePath) {
     daMP_buffer = mDoExt_getArchiveHeap()->alloc(daMP_THPPlayerCalcNeedMemory(), 0x20);
     if (daMP_buffer == NULL) {
         OSReport("Can't allocate the memory");
-        JUT_ASSERT(0);
+        JUT_ASSERT(0, 0);
         return 0;
     }
 
@@ -3577,7 +3577,7 @@ static BOOL daMP_ActivePlayer_Init(char const* moviePath) {
 
     if (!daMP_THPPlayerPrepare(0, 0, daMP_audioInfo.field_0xc != 1 ? OSGetTick() % daMP_audioInfo.field_0xc : 0)) {
         OSReport("Fail to prepare\n");
-        JUT_ASSERT(0);
+        JUT_ASSERT(0, 0);
         return 0;
     }
 

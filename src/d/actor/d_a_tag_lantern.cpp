@@ -38,7 +38,7 @@ int daTag_Lantern_c::Execute() {
             }
         }
     } else if (field_0x5f8) {
-        eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
+        eventInfo.onCondition(dEvtCnd_CANTALK_e);
         fopAcM_orderSpeakEvent(this, 0, 0);
     }
 

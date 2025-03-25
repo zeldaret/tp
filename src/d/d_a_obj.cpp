@@ -119,12 +119,12 @@ void posMoveF_grade_acc(cXyz* pos, const fopAc_ac_c* i_actor, cXyz const* param_
 void posMoveF_grade(fopAc_ac_c* i_actor, cXyz const* param_1, cXyz const* stream_spd, f32 param_3,
                     f32 param_4, cXyz const* param_5, f32 friction, f32 no_grade_cos,
                     cXyz const* param_8) {
-    JUT_ASSERT(stream_spd != 0);
+    JUT_ASSERT(0, stream_spd != 0);
 
     cXyz spAC;
     posMoveF_resist_acc(&spAC, i_actor, stream_spd, param_3, param_4);
 
-    JUT_ASSERT((friction >= 0.0f) && (friction < 1.0f) && (no_grade_cos >= 0.0f) &&
+    JUT_ASSERT(0, (friction >= 0.0f) && (friction < 1.0f) && (no_grade_cos >= 0.0f) &&
                (no_grade_cos <= 1.0f));
 
     cXyz spB8;

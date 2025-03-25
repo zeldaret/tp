@@ -397,7 +397,7 @@ static void joint_control(mant_class* i_this, mant_j_s* param_2, int param_3, f3
     f32 fVar1;
     b_gnd_class* gndActor = (b_gnd_class*)fopAcM_SearchByID(i_this->parentActorID);
 
-    if (gndActor->field_0x1fc4 != 0) {
+    if (gndActor->mDrawHorse != 0) {
         bVar2 = TRUE;
         local_158 = gndActor->field_0x1fb8;
     } else if (i_this->field_0x3966 != 0) {
@@ -642,7 +642,7 @@ static int daMant_Execute(mant_class* i_this) {
 
     b_gnd_class* gndActor = (b_gnd_class*)fopAcM_SearchByID(i_this->parentActorID);
 
-    if (gndActor && gndActor->field_0x1fc4 != 0) {
+    if (gndActor && gndActor->mDrawHorse != 0) {
         i_this->field_0x394c = 21.0f;
         i_this->field_0x3950 = 0.75f;
         i_this->field_0x3958 = -5.0f;

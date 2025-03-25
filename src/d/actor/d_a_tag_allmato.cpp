@@ -78,7 +78,7 @@ int daTag_AllMato_c::Execute() {
 
         if (dComIfGp_event_runCheck()) {
             if (!eventInfo.checkCommandTalk()) {
-                if (eventInfo.i_checkCommandDemoAccrpt() && dComIfGp_getEventManager().endCheck(mEventIdx)) {
+                if (eventInfo.checkCommandDemoAccrpt() && dComIfGp_getEventManager().endCheck(mEventIdx)) {
                     u16 evt_action = EVT_NONE;
 
                     switch (field_0x1d08) {

@@ -421,7 +421,7 @@ static int daB_ZANTZ_Delete(daB_ZANTZ_c* i_this) {
 /* 80651DC4-80651FD0 001724 020C+00 1/1 0/0 0/0 .text            CreateHeap__11daB_ZANTZ_cFv */
 int daB_ZANTZ_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("B_zan", 0x4C);
-    JUT_ASSERT(modelData != 0);
+    JUT_ASSERT(0, modelData != 0);
 
     mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("B_zan", 0x44), 0, 0.0f, 0, -1, &mSound, 0, 0x11000084);
     if (mpMorf == NULL) {

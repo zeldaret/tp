@@ -41,6 +41,8 @@ public:
     /* 80D1F0CC */ daTreeSh_HIO_c();
     /* 80D1F81C */ virtual ~daTreeSh_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x4 */ s16 shake_strength;
     /* 0x6 */ s16 shake_speed;
     /* 0x8 */ s16 field_0x8;

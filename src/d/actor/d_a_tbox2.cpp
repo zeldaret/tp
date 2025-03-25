@@ -128,7 +128,7 @@ int daTbox2_c::Create() {
 int daTbox2_c::CreateHeap() {
     J3DModelData* modelData =
         (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_resInfo[mModelType].bmd_no);
-    JUT_ASSERT(modelData != 0);
+    JUT_ASSERT(0, modelData != 0);
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel == NULL) {
         return false;
@@ -136,7 +136,7 @@ int daTbox2_c::CreateHeap() {
 
     J3DAnmTransform* pbck =
         (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, l_resInfo[mModelType].bck_no);
-    JUT_ASSERT(pbck != 0);
+    JUT_ASSERT(0, pbck != 0);
     mpBck = new mDoExt_bckAnm();
     if (mpBck == NULL || !mpBck->init(pbck, TRUE, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1, false)) {
         return false;
@@ -379,10 +379,10 @@ void daTbox2_c::actionOpenWait() {
     daMidna_c* midna_p = (daMidna_c*)daPy_py_c::getMidnaActor();  // cast needed for reg alloc
     daPy_py_c* player_p = daPy_getPlayerActorClass();
 
-    if (eventInfo.i_checkCommandDoor()) {
+    if (eventInfo.checkCommandDoor()) {
         dComIfGp_event_onEventFlag(4);
 
-        if (mModelType != TYPE_SMALL_e && daPy_py_c::i_checkNowWolf() &&
+        if (mModelType != TYPE_SMALL_e && daPy_py_c::checkNowWolf() &&
             !midna_p->checkMetamorphoseEnable())
         {
             mStaffIdx = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
@@ -396,11 +396,11 @@ void daTbox2_c::actionOpenWait() {
             init_actionOpenDemo();
         }
     } else if (boxCheck()) {
-        eventInfo.i_onCondition(dEvtCnd_CANDOOR_e);
+        eventInfo.onCondition(dEvtCnd_CANDOOR_e);
 
         if (mModelType == TYPE_SMALL_e) {
             eventInfo.setEventName("DEFAULT_TREASURE_SIMPLE");
-        } else if (daPy_py_c::i_checkNowWolf() && !midna_p->checkMetamorphoseEnable()) {
+        } else if (daPy_py_c::checkNowWolf() && !midna_p->checkMetamorphoseEnable()) {
             eventInfo.setEventName("DEFAULT_TREASURE_NOTOPEN");
         } else {
             eventInfo.setEventName("DEFAULT_TREASURE_NORMAL");

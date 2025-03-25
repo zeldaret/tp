@@ -65,6 +65,8 @@ public:
     /* 80C6B42C */ daIceWall_HIO_c();
     /* 80C6C550 */ virtual ~daIceWall_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x04 */ cXyz xyz;
     /* 0x10 */ u8 hitcount;
     /* 0x11 */ u8 hitcount2;

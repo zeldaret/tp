@@ -136,7 +136,7 @@ static s16 wall_angle_get(obj_food_class* i_this) {
 
         lin_chk.Set(&vec3, &vec1[i], _this);
         if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-            vec1[i] = lin_chk.i_GetCross();
+            vec1[i] = lin_chk.GetCross();
         } else {
             return 0x23;
         }

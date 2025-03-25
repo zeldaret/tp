@@ -359,7 +359,7 @@ static s16 wall_angle_get(e_nest_class* i_this) {
         vec3[i] += vec2;
         lin_chk.Set(&vec2, &vec3[i], a_this);
         if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-            vec3[i] = lin_chk.i_GetCross();
+            vec3[i] = lin_chk.GetCross();
         } else {
             return 0x23;
         }
@@ -492,7 +492,7 @@ static int water_check(e_nest_class* i_this) {
     vec.z = i_this->current.pos.z;
     lin_chk.Set(&i_this->current.pos, &vec, i_this);
     if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-        vec.y = lin_chk.i_GetCross().y - 10.0f;
+        vec.y = lin_chk.GetCross().y - 10.0f;
     }
     dBgS_ObjGndChk_Spl gnd_chk;
     gnd_chk.SetPos(&vec);
@@ -605,12 +605,12 @@ static void e_nest_hahen(e_nest_class* i_this) {
                     a_this->current.pos = i_this->mDebris[i].mPos;
                     a_this->attention_info.position = a_this->current.pos;
                     a_this->eyePos = a_this->attention_info.position;
-                    if (a_this->eventInfo.i_checkCommandCatch()) {
+                    if (a_this->eventInfo.checkCommandCatch()) {
                         i_this->mMode = 2;
                         i_this->mTimers[0] = 60;
                     } else {
                         dComIfGp_att_CatchRequest(a_this, 0x76, 100.0f, 50.0f, -150.0f, 0x5000, 1);
-                        a_this->eventInfo.i_onCondition(0x40);
+                        a_this->eventInfo.onCondition(0x40);
                     }
                     break;
                 }
@@ -809,7 +809,7 @@ static void demo_camera(e_nest_class* i_this) {
     case 1:
         if (!i_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(i_this, 2, -1, 0);
-            i_this->eventInfo.i_onCondition(2);
+            i_this->eventInfo.onCondition(2);
             return;
         }
         camera->mCamera.Stop();

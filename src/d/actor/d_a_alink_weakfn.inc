@@ -1171,7 +1171,7 @@ extern "C" void dMeter2Info_offUseButton__Fi() {
 /* 80141988-80141990 -00001 0008+00 0/0 0/0 0/0 .text            setLinkState__14Z2CreatureLinkFUc
  */
 extern "C" void setLinkState__14Z2CreatureLinkFUc(Z2CreatureLink* this_, u8 param_0) {
-    *(u8*)(((u8*)this_) + 192) /* this->field_0xc0 */ = (u8)(param_0);
+    //*(u8*)(((u8*)this_) + 192) this->field_0xc0  = (u8)(param_0);
 }
 
 /* 80141990-801419A0 13C2D0 0010+00 1/1 0/0 0/0 .text            dComIfGs_getRupee__Fv */

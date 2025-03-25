@@ -126,7 +126,7 @@ struct cXyz : Vec {
 
     f32 getMagXZ() const { return cXyz(this->x, 0, this->z).getSquareMag(); }
 
-    f32 getDotProduct(const Vec& other) const { return VECDotProduct(this, &other); }
+    f32 getDotProduct(const Vec& other) const { return PSVECDotProduct(this, &other); }
 
     f32 inprod(const Vec& other) const { return getDotProduct(other); }
     f32 inprodXZ(const Vec& other) const { return x * other.x + z * other.z; }

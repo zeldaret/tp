@@ -7,6 +7,7 @@
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
 #include "JSystem/JMath/JMATrigonometric.h"
+#include "JSystem/JUtility/JUTAssert.h"
 #include "dolphin/base/PPCArch.h"
 #include "dolphin/os.h"
 

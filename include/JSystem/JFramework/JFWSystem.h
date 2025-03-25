@@ -23,9 +23,9 @@ struct JFWSystem {
         static u32 fifoBufSize;
         static u32 aramAudioBufSize;
         static u32 aramGraphBufSize;
-        static u32 streamPriority;
-        static u32 decompPriority;
-        static u32 aPiecePriority;
+        static s32 streamPriority;
+        static s32 decompPriority;
+        static s32 aPiecePriority;
         static ResFONT* systemFontRes;
         static GXRenderModeObj* renderMode;
         static u32 exConsoleBufferSize;

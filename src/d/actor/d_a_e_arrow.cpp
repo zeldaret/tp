@@ -216,7 +216,7 @@ static void hit_check(e_arrow_class* i_this) {
     line_chk.Set(&line_chk_start, &i_this->current.pos, i_this);
 
     if (dComIfG_Bgsp().LineCross(&line_chk)) {
-        i_this->current.pos = line_chk.i_GetCross();
+        i_this->current.pos = line_chk.GetCross();
         dComIfG_Bgsp().ArrowStickCallBack(line_chk, i_this, i_this->current.pos);
 
         if (i_this->mFlags & 0x10) {
@@ -780,7 +780,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     }
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(a_this->mResName, res_id);
-    JUT_ASSERT(modelData != 0);
+    JUT_ASSERT(0, modelData != 0);
 
     a_this->mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (a_this->mpModel == NULL) {
