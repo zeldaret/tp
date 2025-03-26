@@ -5,6 +5,7 @@
 
 #include "d/actor/d_a_npc_zant.h"
 #include "dol2asm.h"
+#include "f_op/f_op_actor_mng.h"
 
 //
 // Forward References:
@@ -264,57 +265,44 @@ SECTION_DATA static void* l_evtList[4] = {
 #pragma pop
 
 /* 80B6EACC-80B6EAD4 -00001 0008+00 2/3 0/0 0/0 .data            l_resNameList */
-SECTION_DATA static void* l_resNameList[2] = {
-    (void*)&d_a_npc_zant__stringBase0,
-    (void*)(((char*)&d_a_npc_zant__stringBase0) + 0xD),
+static char* l_resNameList[2] = {
+    "",
+    "Zant",
 };
 
 /* 80B6EAD4-80B6EAD8 000040 0002+02 1/0 0/0 0/0 .data            l_loadResPtrn0 */
-SECTION_DATA static u16 l_loadResPtrn0[1 + 1 /* padding */] = {
-    0x01FF,
-    /* padding */
-    0x0000,
+SECTION_DATA static s8 l_loadResPtrn0[2] = {
+    1, -1
 };
 
 /* 80B6EAD8-80B6EAE0 -00001 0008+00 1/2 0/0 0/0 .data            l_loadResPtrnList */
-SECTION_DATA static void* l_loadResPtrnList[2] = {
-    (void*)&l_loadResPtrn0,
-    (void*)&l_loadResPtrn0,
+static s8* l_loadResPtrnList[2] = {
+    l_loadResPtrn0, l_loadResPtrn0,
 };
 
 /* 80B6EAE0-80B6EAFC 00004C 001C+00 0/1 0/0 0/0 .data            l_faceMotionAnmData */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_faceMotionAnmData[28] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF,
-    0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+static daNpcT_faceMotionAnmData_c l_faceMotionAnmData[1] = {
+    {-1, 0, 0, -1, 0, 0, 0}
 };
-#pragma pop
 
 /* 80B6EAFC-80B6EB18 000068 001C+00 0/1 0/0 0/0 .data            l_motionAnmData */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_motionAnmData[28] = {
-    0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF,
-    0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+static daNpcT_motionAnmData_c l_motionAnmData[1] = {
+    {4, 2, 1, -1, 0, 0, 0}
 };
-#pragma pop
 
 /* 80B6EB18-80B6EB28 000084 0010+00 0/1 0/0 0/0 .data            l_faceMotionSequenceData */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_faceMotionSequenceData[16] = {
-    0x00, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
+static daNpcT_MotionSeqMngr_c::sequenceStepData_c l_faceMotionSequenceData[5] = {
+    {0, -1, 0}, {-1, -1, 0}, 
+    {0, -1, -1}, {0, 0, -1}, 
+    {-1, 0, 0}
 };
-#pragma pop
 
 /* 80B6EB28-80B6EB38 000094 0010+00 0/1 0/0 0/0 .data            l_motionSequenceData */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_motionSequenceData[16] = {
-    0x00, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
+static daNpcT_MotionSeqMngr_c::sequenceStepData_c l_motionSequenceData[5] = {
+    {0, -1, 0}, {-1, -1, 0}, 
+    {0, -1, -1}, {0, 0, -1}, 
+    {-1, 0, 0}
 };
-#pragma pop
 
 /* 80B6EB38-80B6EB3C -00001 0004+00 1/1 0/0 0/0 .data            mCutNameList__12daNpc_Zant_c */
 SECTION_DATA void* daNpc_Zant_c::mCutNameList = (void*)&d_a_npc_zant__stringBase0;
@@ -343,33 +331,6 @@ SECTION_DATA static void* lit_4675[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)wait__12daNpc_Zant_cFPv,
-};
-
-/* 80B6EB6C-80B6EB8C -00001 0020+00 1/0 0/0 0/0 .data            daNpc_Zant_MethodTable */
-static actor_method_class daNpc_Zant_MethodTable = {
-    (process_method_func)daNpc_Zant_Create__FPv,
-    (process_method_func)daNpc_Zant_Delete__FPv,
-    (process_method_func)daNpc_Zant_Execute__FPv,
-    (process_method_func)daNpc_Zant_IsDelete__FPv,
-    (process_method_func)daNpc_Zant_Draw__FPv,
-};
-
-/* 80B6EB8C-80B6EBBC -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_ZANT */
-extern actor_process_profile_definition g_profile_NPC_ZANT = {
-  fpcLy_CURRENT_e,         // mLayerID
-  7,                       // mListID
-  fpcPi_CURRENT_e,         // mListPrio
-  PROC_NPC_ZANT,           // mProcName
-  &g_fpcLf_Method.base,   // sub_method
-  sizeof(daNpc_Zant_c),    // mSize
-  0,                       // mSizeOther
-  0,                       // mParameters
-  &g_fopAc_Method.base,    // sub_method
-  383,                     // mPriority
-  &daNpc_Zant_MethodTable, // sub_method
-  0x00044107,              // mStatus
-  fopAc_NPC_e,             // mActorType
-  fopAc_CULLBOX_CUSTOM_e,  // cullType
 };
 
 /* 80B6EBBC-80B6EBC8 000128 000C+00 3/3 0/0 0/0 .data            __vt__12J3DFrameCtrl */
@@ -521,44 +482,93 @@ SECTION_RODATA u8 const daNpc_Zant_Param_c::m[140] = {
 };
 COMPILER_STRIP_GATE(0x80B6E9A8, &daNpc_Zant_Param_c::m);
 
-/* 80B6EA34-80B6EA38 00008C 0004+00 0/1 0/0 0/0 .rodata          @4018 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4018 = -300.0f;
-COMPILER_STRIP_GATE(0x80B6EA34, &lit_4018);
-#pragma pop
+// /* 80B6EA34-80B6EA38 00008C 0004+00 0/1 0/0 0/0 .rodata          @4018 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_4018 = -300.0f;
+// COMPILER_STRIP_GATE(0x80B6EA34, &lit_4018);
+// #pragma pop
 
-/* 80B6EA38-80B6EA3C 000090 0004+00 0/1 0/0 0/0 .rodata          @4019 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4019 = -50.0f;
-COMPILER_STRIP_GATE(0x80B6EA38, &lit_4019);
-#pragma pop
+// /* 80B6EA38-80B6EA3C 000090 0004+00 0/1 0/0 0/0 .rodata          @4019 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_4019 = -50.0f;
+// COMPILER_STRIP_GATE(0x80B6EA38, &lit_4019);
+// #pragma pop
 
-/* 80B6EA3C-80B6EA40 000094 0004+00 0/1 0/0 0/0 .rodata          @4020 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4020 = 300.0f;
-COMPILER_STRIP_GATE(0x80B6EA3C, &lit_4020);
-#pragma pop
+// /* 80B6EA3C-80B6EA40 000094 0004+00 0/1 0/0 0/0 .rodata          @4020 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_4020 = 300.0f;
+// COMPILER_STRIP_GATE(0x80B6EA3C, &lit_4020);
+// #pragma pop
 
-/* 80B6EA40-80B6EA44 000098 0004+00 0/1 0/0 0/0 .rodata          @4021 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4021 = 450.0f;
-COMPILER_STRIP_GATE(0x80B6EA40, &lit_4021);
-#pragma pop
+// /* 80B6EA40-80B6EA44 000098 0004+00 0/1 0/0 0/0 .rodata          @4021 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_4021 = 450.0f;
+// COMPILER_STRIP_GATE(0x80B6EA40, &lit_4021);
+// #pragma pop
 
-/* 80B6EA44-80B6EA48 00009C 0004+00 0/1 0/0 0/0 .rodata          @4022 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4022 = -1000000000.0f;
-COMPILER_STRIP_GATE(0x80B6EA44, &lit_4022);
-#pragma pop
+// /* 80B6EA44-80B6EA48 00009C 0004+00 0/1 0/0 0/0 .rodata          @4022 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_4022 = -1000000000.0f;
+// COMPILER_STRIP_GATE(0x80B6EA44, &lit_4022);
+// #pragma pop
 
 /* 80B6C2D0-80B6C574 000210 02A4+00 1/1 0/0 0/0 .text            create__12daNpc_Zant_cFv */
-void daNpc_Zant_c::create() {
+int daNpc_Zant_c::create() {
     // NONMATCHING
+    int rv;
+
+    fopAcM_SetupActor2(this, daNpc_Zant_c, l_faceMotionAnmData,
+        (const daNpcT_motionAnmData_c *)l_motionAnmData, (const daNpcT_MotionSeqMngr_c::sequenceStepData_c *) l_faceMotionSequenceData, 4,
+        (const daNpcT_MotionSeqMngr_c::sequenceStepData_c *)l_motionSequenceData, 4, (const daNpcT_evtData_c *)l_evtList, (char **)l_resNameList
+    );
+
+    mType = getType();
+    mFlowNodeNo = getFlowNodeNo();
+    mTwilight = false;
+
+    if (loadRes(l_loadResPtrnList[mType], (char const**)l_resNameList) == 4) {
+        if (fopAcM_entrySolidHeap(this, createHeapCallBack, 0)) {
+            rv = 5;
+        } else {
+            if (!isDelete()) {
+                rv = 5;
+            } else {
+                fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+                fopAcM_setCullSizeBox(this, -300.0f, -50.0f, -300.0f, 300.0f, 450.0f, 300.0f);
+                fopAcM_OnStatus(this, 0x8000000);
+                mSound.init(&current.pos, &eyePos, 3, 1);
+
+                mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, &speed, &current.angle, &shape_angle);
+                mCcStts.Init(0xff, 0, this);
+                
+                mCyl.Set(mCcDCyl);
+                mCyl.SetStts(&mCcStts);
+                mCyl.SetTgHitCallback(tgHitCallBack);
+
+                mAcch.CrrPos(dComIfG_Bgsp());
+
+                mGndChk = mAcch.m_gnd;
+                mGroundH = mAcch.m_ground_h;
+
+                if (mGroundH != -1000000000.0f) {
+                    setEnvTevColor();
+                    setRoomNo();
+                }
+                
+                reset();
+                mCreating = true;
+                Execute();
+                mCreating = false;
+            }
+        }
+    }
+
+    return rv;
 }
 
 /* ############################################################################################## */
@@ -595,23 +605,23 @@ void daNpc_Zant_c::CreateHeap() {
 }
 
 /* 80B6C700-80B6C734 000640 0034+00 1/1 0/0 0/0 .text            Delete__12daNpc_Zant_cFv */
-void daNpc_Zant_c::Delete() {
+int daNpc_Zant_c::Delete() {
     // NONMATCHING
 }
 
 /* 80B6C734-80B6C754 000674 0020+00 2/2 0/0 0/0 .text            Execute__12daNpc_Zant_cFv */
-void daNpc_Zant_c::Execute() {
+int daNpc_Zant_c::Execute() {
     // NONMATCHING
 }
 
 /* 80B6C754-80B6C7E8 000694 0094+00 1/1 0/0 0/0 .text            Draw__12daNpc_Zant_cFv */
-void daNpc_Zant_c::Draw() {
+int daNpc_Zant_c::Draw() {
     // NONMATCHING
 }
 
 /* 80B6C7E8-80B6C808 000728 0020+00 1/1 0/0 0/0 .text
  * createHeapCallBack__12daNpc_Zant_cFP10fopAc_ac_c             */
-void daNpc_Zant_c::createHeapCallBack(fopAc_ac_c* param_0) {
+int daNpc_Zant_c::createHeapCallBack(fopAc_ac_c* param_0) {
     // NONMATCHING
 }
 
@@ -622,17 +632,22 @@ void daNpc_Zant_c::ctrlJointCallBack(J3DJoint* param_0, int param_1) {
 }
 
 /* 80B6C860-80B6C880 0007A0 0020+00 1/1 0/0 0/0 .text            getType__12daNpc_Zant_cFv */
-void daNpc_Zant_c::getType() {
-    // NONMATCHING
+u8 daNpc_Zant_c::getType() {
+    switch (fopAcM_GetParam(this) & 0xff) {
+        case 0:
+            return TYPE_0;
+        default:
+            return TYPE_1;
+    }
 }
 
 /* 80B6C880-80B6C89C 0007C0 001C+00 1/1 0/0 0/0 .text            getFlowNodeNo__12daNpc_Zant_cFv */
-void daNpc_Zant_c::getFlowNodeNo() {
+u32 daNpc_Zant_c::getFlowNodeNo() {
     // NONMATCHING
 }
 
 /* 80B6C89C-80B6C8CC 0007DC 0030+00 1/1 0/0 0/0 .text            isDelete__12daNpc_Zant_cFv */
-void daNpc_Zant_c::isDelete() {
+int daNpc_Zant_c::isDelete() {
     // NONMATCHING
 }
 
@@ -667,12 +682,12 @@ void daNpc_Zant_c::srchActors() {
 }
 
 /* 80B6CB54-80B6CC54 000A94 0100+00 1/0 0/0 0/0 .text            evtTalk__12daNpc_Zant_cFv */
-void daNpc_Zant_c::evtTalk() {
+BOOL daNpc_Zant_c::evtTalk() {
     // NONMATCHING
 }
 
 /* 80B6CC54-80B6CD1C 000B94 00C8+00 1/0 0/0 0/0 .text            evtCutProc__12daNpc_Zant_cFv */
-void daNpc_Zant_c::evtCutProc() {
+BOOL daNpc_Zant_c::evtCutProc() {
     // NONMATCHING
 }
 
@@ -711,8 +726,8 @@ void daNpc_Zant_c::setCollision() {
 }
 
 /* 80B6D1A8-80B6D1B0 0010E8 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__12daNpc_Zant_cFv */
-bool daNpc_Zant_c::drawDbgInfo() {
-    return false;
+int daNpc_Zant_c::drawDbgInfo() {
+    return 0;
 }
 
 /* 80B6D1B0-80B6D21C 0010F0 006C+00 1/0 0/0 0/0 .text            drawGhost__12daNpc_Zant_cFv */
@@ -748,27 +763,27 @@ void daNpc_Zant_c::talk(void* param_0) {
 }
 
 /* 80B6D77C-80B6D79C 0016BC 0020+00 1/0 0/0 0/0 .text            daNpc_Zant_Create__FPv */
-static void daNpc_Zant_Create(void* param_0) {
-    // NONMATCHING
+static int daNpc_Zant_Create(void* i_this) {
+    return static_cast<daNpc_Zant_c*>(i_this)->create();
 }
 
 /* 80B6D79C-80B6D7BC 0016DC 0020+00 1/0 0/0 0/0 .text            daNpc_Zant_Delete__FPv */
-static void daNpc_Zant_Delete(void* param_0) {
-    // NONMATCHING
+static int daNpc_Zant_Delete(void* i_this) {
+    return static_cast<daNpc_Zant_c*>(i_this)->Delete();
 }
 
 /* 80B6D7BC-80B6D7DC 0016FC 0020+00 1/0 0/0 0/0 .text            daNpc_Zant_Execute__FPv */
-static void daNpc_Zant_Execute(void* param_0) {
-    // NONMATCHING
+static int daNpc_Zant_Execute(void* i_this) {
+    return static_cast<daNpc_Zant_c*>(i_this)->Execute();
 }
 
 /* 80B6D7DC-80B6D7FC 00171C 0020+00 1/0 0/0 0/0 .text            daNpc_Zant_Draw__FPv */
-static void daNpc_Zant_Draw(void* param_0) {
-    // NONMATCHING
+static int daNpc_Zant_Draw(void* i_this) {
+    return static_cast<daNpc_Zant_c*>(i_this)->Draw();
 }
 
 /* 80B6D7FC-80B6D804 00173C 0008+00 1/0 0/0 0/0 .text            daNpc_Zant_IsDelete__FPv */
-static bool daNpc_Zant_IsDelete(void* param_0) {
+static bool daNpc_Zant_IsDelete(void* i_this) {
     return true;
 }
 
@@ -1025,26 +1040,14 @@ REGISTER_CTORS(0x80B6E798, __sinit_d_a_npc_zant_cpp);
 /* 80B6E800-80B6E8AC 002740 00AC+00 1/1 0/0 0/0 .text
  * __ct__12daNpc_Zant_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc
  */
-daNpc_Zant_c::daNpc_Zant_c(daNpcT_faceMotionAnmData_c const* param_0,
-                               daNpcT_motionAnmData_c const* param_1,
-                               daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_2,
-                               int param_3,
-                               daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_4,
-                               int param_5, daNpcT_evtData_c const* param_6, char** param_7) {
-    // NONMATCHING
-}
-
-/* 80B6E8AC-80B6E8F4 0027EC 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGCylFv */
-// cM3dGCyl::~cM3dGCyl() {
-extern "C" void __dt__8cM3dGCylFv() {
-    // NONMATCHING
-}
-
-/* 80B6E8F4-80B6E93C 002834 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
-// cM3dGAab::~cM3dGAab() {
-extern "C" void __dt__8cM3dGAabFv() {
-    // NONMATCHING
-}
+// daNpc_Zant_c::daNpc_Zant_c(daNpcT_faceMotionAnmData_c const* param_0,
+//                                daNpcT_motionAnmData_c const* param_1,
+//                                daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_2,
+//                                int param_3,
+//                                daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_4,
+//                                int param_5, daNpcT_evtData_c const* param_6, char** param_7) {
+//     // NONMATCHING
+// }
 
 /* 80B6E93C-80B6E984 00287C 0048+00 2/1 0/0 0/0 .text            __dt__18daNpc_Zant_Param_cFv */
 daNpc_Zant_Param_c::~daNpc_Zant_Param_c() {
@@ -1061,4 +1064,29 @@ static void func_80B6E98C() {
     // NONMATCHING
 }
 
-/* 80B6EA80-80B6EA80 0000D8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+/* 80B6EB6C-80B6EB8C -00001 0020+00 1/0 0/0 0/0 .data            daNpc_Zant_MethodTable */
+static actor_method_class daNpc_Zant_MethodTable = {
+    (process_method_func)daNpc_Zant_Create__FPv,
+    (process_method_func)daNpc_Zant_Delete__FPv,
+    (process_method_func)daNpc_Zant_Execute__FPv,
+    (process_method_func)daNpc_Zant_IsDelete__FPv,
+    (process_method_func)daNpc_Zant_Draw__FPv,
+};
+
+/* 80B6EB8C-80B6EBBC -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_ZANT */
+extern actor_process_profile_definition g_profile_NPC_ZANT = {
+  fpcLy_CURRENT_e,         // mLayerID
+  7,                       // mListID
+  fpcPi_CURRENT_e,         // mListPrio
+  PROC_NPC_ZANT,           // mProcName
+  &g_fpcLf_Method.base,   // sub_method
+  sizeof(daNpc_Zant_c),    // mSize
+  0,                       // mSizeOther
+  0,                       // mParameters
+  &g_fopAc_Method.base,    // sub_method
+  383,                     // mPriority
+  &daNpc_Zant_MethodTable, // sub_method
+  0x00044107,              // mStatus
+  fopAc_NPC_e,             // mActorType
+  fopAc_CULLBOX_CUSTOM_e,  // cullType
+};
