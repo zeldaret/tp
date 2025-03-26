@@ -2081,7 +2081,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_swLight"),
     ActorRel(NonMatching, "d_a_obj_swchain"),
     ActorRel(Equivalent, "d_a_obj_swhang"), # vtable order
-    ActorRel(NonMatching, "d_a_obj_sword"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_sword"),
     ActorRel(NonMatching, "d_a_obj_swpush2"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_swspinner"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_swturn"),
