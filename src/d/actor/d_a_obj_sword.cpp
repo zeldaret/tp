@@ -21,9 +21,8 @@ void daObjSword_c::initBaseMtx() {
 
 /* 80CFD594-80CFD600 0000B4 006C+00 2/2 0/0 0/0 .text            setBaseMtx__12daObjSword_cFv */
 void daObjSword_c::setBaseMtx() {
-    MTXTrans(mDoMtx_stack_c::get(), current.pos.x, current.pos.y, current.pos.z);
-    mDoMtx_ZXYrotM(mDoMtx_stack_c::get(), shape_angle.GetX(), shape_angle.GetY(),
-                   shape_angle.GetZ());
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
     mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
@@ -79,8 +78,8 @@ int daObjSword_c::initActionOrderGetDemo() {
     hide();
     fopAcM_orderItemEvent(this, 0, 0);
     eventInfo.onCondition(8);
-    field_0x930 = fopAcM_createItemForTrBoxDemo(&current.pos, m_itemNo, -1, fopAcM_GetRoomNo(this),
-                                                NULL, NULL);
+    mProcID = fopAcM_createItemForTrBoxDemo(&current.pos, m_itemNo, -1, fopAcM_GetRoomNo(this),
+                                            NULL, NULL);
     setStatus(1);
     return 1;
 }
@@ -89,8 +88,8 @@ int daObjSword_c::initActionOrderGetDemo() {
 int daObjSword_c::actionOrderGetDemo() {
     if (eventInfo.checkCommandItem()) {
         setStatus(2);
-        if (field_0x930 != -1) {
-            dComIfGp_event_setItemPartnerId(field_0x930);
+        if (mProcID != fpcM_ERROR_PROCESS_ID_e) {
+            dComIfGp_event_setItemPartnerId(mProcID);
         }
     } else {
         fopAcM_orderItemEvent(this, 0, 0);

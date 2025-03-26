@@ -31,7 +31,7 @@ public:
 
 private:
     /* 0x92c */ u32 field_0x92c;
-    /* 0x930 */ u32 field_0x930;
+    /* 0x930 */ fpc_ProcID mProcID;
     /* 0x934 */ u8 mStatus;
 };
 
