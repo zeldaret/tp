@@ -142,6 +142,13 @@ public:
     f32 USOAngle() { return mFalseAngle; }
     f32 WindShakeGap4Ctr() { return mWindShakeCtr; }
     f32 WindShakeGap4Fvy() { return mWindShakeFvy; }
+    f32 LockonChangeCushion() { return mLockonChangeCushion; }
+    int LockonChangeTimer() { return mLockonChangeTimer; }
+    f32 Cushion4Base() { return mBaseCushion; }
+    f32 Cushion4Jump() { return mJumpCushion; }
+    f32 CusCus() { return mCusCus; }
+    f32 ParallelDist() { return mParallelDist; }
+    f32 CurveWeight() { return mCurveWeight; }
 
     /* 0x000 */ f32 mDrawNear;
     /* 0x004 */ f32 mDrawFar;

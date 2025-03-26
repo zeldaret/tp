@@ -683,15 +683,15 @@ int dCamera_c::pauseEvCamera() {
     if (mCurCamTypeTimer == 0) {
         Reset();
         field_0x158.field_0x0 = 1;
-        field_0x3e8 = getEvIntData(&field_0x3f0, "Timer", -1);
-        getEvIntData(&field_0x3ec, "Stay", 0);
+        mWork.event.field_0x0 = getEvIntData(&mWork.event.field_0x8, "Timer", -1);
+        getEvIntData(&mWork.event.field_0x4, "Stay", 0);
     }
 
-    if (field_0x3ec != 0) {
+    if (mWork.event.field_0x4 != 0) {
         setFlag(1);
     }
 
-    if (field_0x3e8 && mCurCamTypeTimer < field_0x3f0) {
+    if (mWork.event.field_0x0 && mCurCamTypeTimer < mWork.event.field_0x8) {
         return 0;
     }
 
@@ -1545,7 +1545,7 @@ int dCamera_c::stbWaitEvCamera() {
         }
 
         if (demo_cam->checkEnable(0x4)) {
-            field_0x80 = demo_cam->getFovy();
+            field_0x5c.mFovy = demo_cam->getFovy();
 #if DEBUG
             enabled_report[2] = 'F';
 #endif
@@ -1584,7 +1584,7 @@ int dCamera_c::saveEvCamera() {
     getEvIntData(&slot, "Slot", 0);
 
     if (slot == 9) {
-        dComIfGp_saveCameraPosition(0, &field_0x5c.mCenter, &field_0x5c.mEye, field_0x80, field_0x5c.mBank.Val());
+        dComIfGp_saveCameraPosition(0, &field_0x5c.mCenter, &field_0x5c.mEye, field_0x5c.mFovy, field_0x5c.mBank.Val());
     } else {
         pushInfo(&field_0xd0[slot], 1);
     }
