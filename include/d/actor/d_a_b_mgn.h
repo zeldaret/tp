@@ -45,7 +45,7 @@ class daB_MGN_c : public fopEn_enemy_c {
 public:
     /* 8060577C */ int ctrlJoint(J3DJoint*, J3DModel*);
     /* 8060584C */ static int JointCallBack(J3DJoint*, int);
-    /* 80605898 */ void draw();
+    /* 80605898 */ int draw();
     /* 80605D78 */ void setDashSmokeEffect();
     /* 8060601C */ void setBackJumpEffect();
     /* 806062C0 */ void setSlideSmokeEffect();
