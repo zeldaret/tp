@@ -13,7 +13,7 @@ struct daFmtMng_Path_c {
 
     bool isPathClose() { return dPath_ChkClose(mPath); }
     s8 getArg0() { return mPath->m_points[field_0x4].mArg0; }
-    s8 getArg1() { return mPath->m_points[field_0x4].field_0x0; }
+    s8 getArg1() { return mPath->m_points[field_0x4].mArg1; }
 
     void chgDir() {
         int dir;
