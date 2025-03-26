@@ -250,7 +250,7 @@ static int daAndsw2_actionTimer(daAndsw2_c* i_this) {
 
 /* 804D6704-804D68A4 000984 01A0+00 1/0 0/0 0/0 .text daAndsw2_actionOrder__FP10daAndsw2_c */
 static int daAndsw2_actionOrder(daAndsw2_c* i_this) {
-    if (i_this->eventInfo.i_checkCommandDemoAccrpt()) {
+    if (i_this->eventInfo.checkCommandDemoAccrpt()) {
         i_this->setActio(daAndsw2_c::ACT_EVENT_e);
         dComIfGs_onSwitch(i_this->getSwbit(), fopAcM_GetRoomNo(i_this));
     } else if ((i_this->getType() == 1 && !i_this->chkAllSw2()) ||

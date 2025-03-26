@@ -61,6 +61,8 @@ public:
     /* 80D4056C */ daZrTurara_HIO_c();
     /* 80D414BC */ ~daZrTurara_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x4 */ f32 mDebrisRange;
     /* 0x8 */ u8 mDebrisNum;
 };

@@ -45,7 +45,7 @@ static int daObjDigholl_Delete(daObjDigholl_c* i_this) {
 /* 80BDC7D8-80BDCAEC 000238 0314+00 1/1 0/0 0/0 .text            execute__14daObjDigholl_cFv */
 int daObjDigholl_c::execute() {
     daPy_py_c* player = daPy_getLinkPlayerActorClass();
-    if (player->i_checkNowWolf() &&
+    if (player->checkNowWolf() &&
         (field_0x56a == 0xff || fopAcM_isSwitch(this, field_0x56a)) &&
         (f32)fabsf(current.pos.y - player->current.pos.y) < 40.0f)
     {

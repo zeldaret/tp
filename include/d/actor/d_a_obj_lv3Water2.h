@@ -95,9 +95,7 @@ struct daLv3Water2_HIO_c : public mDoHIO_entry_c {
     /* 80C5A40C */ daLv3Water2_HIO_c();
     /* 80C5B14C */ ~daLv3Water2_HIO_c() {}
 
-    #ifdef DEBUG
     void genMessage(JORMContext*);
-    #endif
 
     /* 0x04 */ u8 mLevelControlWaitFrames;
 };

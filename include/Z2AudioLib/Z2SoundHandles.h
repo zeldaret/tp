@@ -4,13 +4,9 @@
 #include "JSystem/JAudio2/JAISoundHandles.h"
 #include "JSystem/JAudio2/JASHeapCtrl.h"
 
-// This should inherit JASPoolAllocObject (without which some functions in Z2SoundHandles.cpp badly mismatch)
-// but this inheritance causes the memPool_ to be generated in the first file that includes this header.
-// Perhaps this class definition should belong to a different header.
-class Z2SoundHandlePool : public JAISoundHandle, public JSULink<Z2SoundHandlePool> { // , public JASPoolAllocObject<Z2SoundHandlePool> {
+class Z2SoundHandlePool : public JAISoundHandle, public JSULink<Z2SoundHandlePool>, public JASPoolAllocObject<Z2SoundHandlePool> {
 public:
     Z2SoundHandlePool() : JAISoundHandle(), JSULink<Z2SoundHandlePool>(this) {}
-    ~Z2SoundHandlePool() {}
 };
 
 class Z2SoundHandles : protected JSUList<Z2SoundHandlePool> {

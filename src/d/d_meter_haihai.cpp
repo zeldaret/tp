@@ -24,15 +24,15 @@ dMeterHaihai_c::~dMeterHaihai_c() {
 /* 8020AF6C-8020B0F4 2058AC 0188+00 1/0 0/0 0/0 .text            _create__14dMeterHaihai_cFv */
 int dMeterHaihai_c::_create() {
     mpHaihaiScreen = new J2DScreen();
-    JUT_ASSERT(mpHaihaiScreen != 0);
+    JUT_ASSERT(0, mpHaihaiScreen != 0);
 
     bool fg =
         mpHaihaiScreen->setPriority("zelda_hihi_cursor.blo", 0x20000, dComIfGp_getMain2DArchive());
-    JUT_ASSERT(fg != false);
+    JUT_ASSERT(0, fg != false);
     dPaneClass_showNullPane(mpHaihaiScreen);
 
     mpParent = new CPaneMgr(mpHaihaiScreen, 'n_all', 2, NULL);
-    JUT_ASSERT(mpParent != 0);
+    JUT_ASSERT(0, mpParent != 0);
 
     OSInitFastCast();
     mpCursorBck = (J2DAnmTransformKey*)J2DAnmLoaderDataBase::load(

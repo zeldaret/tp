@@ -67,7 +67,7 @@ public:
     /* 8003F754 */ static void remove();
 
     static s8 getNowStayFloorNo() {
-        JUT_ASSERT(mNowStayFloorNoDecisionFlg);
+        JUT_ASSERT(0, mNowStayFloorNoDecisionFlg);
 
         s8 floor_no = 0;
         if (mNowStayFloorNoDecisionFlg) {

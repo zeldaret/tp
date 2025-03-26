@@ -137,7 +137,7 @@ void daObjMirrorTable_c::checkOnPanel() {
     cXyz rel_pos;
     mDoMtx_stack_c::copy(mpPanelModel->getBaseTRMtx());
     mDoMtx_stack_c::inverse();
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         for (int i = 0; i < 4; i++) {
             cXyz* pos;
             switch (i) {

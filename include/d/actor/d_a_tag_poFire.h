@@ -22,6 +22,8 @@ public:
     /* 80D5DACC */ daTagPoFire_HIO_c();
     /* 80D5DCB0 */ virtual ~daTagPoFire_HIO_c();
 
+    void genMessage(JORMContext*);
+
     u8 unk_0x4;
 };
 

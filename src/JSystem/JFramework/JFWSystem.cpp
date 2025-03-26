@@ -32,6 +32,7 @@ JKRExpHeap* JFWSystem::systemHeap;
 
 /* 80271CD0-80271D18 26C610 0048+00 1/1 1/1 0/0 .text            firstInit__9JFWSystemFv */
 void JFWSystem::firstInit() {
+    JUT_ASSERT(80, rootHeap == 0);
     OSInit();
     DVDInit();
     rootHeap = JKRExpHeap::createRoot(CSetUpParam::maxStdHeaps, false);
@@ -51,15 +52,15 @@ u32 JFWSystem::CSetUpParam::aramGraphBufSize = 0x600000;
 
 /* 80450784-80450788 000204 0004+00 1/1 0/0 0/0 .sdata streamPriority__Q29JFWSystem11CSetUpParam
  */
-u32 JFWSystem::CSetUpParam::streamPriority = 8;
+s32 JFWSystem::CSetUpParam::streamPriority = 8;
 
 /* 80450788-8045078C 000208 0004+00 1/1 0/0 0/0 .sdata decompPriority__Q29JFWSystem11CSetUpParam
  */
-u32 JFWSystem::CSetUpParam::decompPriority = 7;
+s32 JFWSystem::CSetUpParam::decompPriority = 7;
 
 /* 8045078C-80450790 00020C 0004+00 1/1 0/0 0/0 .sdata aPiecePriority__Q29JFWSystem11CSetUpParam
  */
-u32 JFWSystem::CSetUpParam::aPiecePriority = 6;
+s32 JFWSystem::CSetUpParam::aPiecePriority = 6;
 
 /* 80450790-80450794 -00001 0004+00 1/1 0/0 0/0 .sdata systemFontRes__Q29JFWSystem11CSetUpParam */
 ResFONT* JFWSystem::CSetUpParam::systemFontRes = (ResFONT*)&JUTResFONT_Ascfont_fix12;
@@ -92,6 +93,8 @@ static u8 sInitCalled;
 /* 80271D18-80272040 26C658 0328+00 0/0 1/1 0/0 .text            init__9JFWSystemFv */
 // NONMATCHING - regalloc, equivalent
 void JFWSystem::init() {
+    JUT_ASSERT(101, sInitCalled == false);
+
     if (rootHeap == NULL) {
         firstInit();
     }

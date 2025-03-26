@@ -535,12 +535,12 @@ void daMyna_c::attack_wait_move() {
             current.angle = home.angle;
         }
     }
-    if (!daPy_py_c::i_checkNowWolf() && daMyna_evtTagActor0 != NULL) {
+    if (!daPy_py_c::checkNowWolf() && daMyna_evtTagActor0 != NULL) {
         cXyz var1(1.0f, 1.0f, 1.0f);
         if (!dComIfGs_isSaveSwitch(0x3C)) {
             if (chkPlayerInEvtArea(daMyna_evtTagActor0, var1)) {
                 if (!isEventFlag(1)) {
-                    eventInfo.i_onCondition(1);
+                    eventInfo.onCondition(1);
                     fopAcM_orderSpeakEvent(this, 0, 0);
                     if (eventInfo.checkCommandTalk()) {
                         field_0x92C = 1;
@@ -552,7 +552,7 @@ void daMyna_c::attack_wait_move() {
         } else if (field_0x92A < l_HOSTIO.field_0x24) {
             field_0x92A++;
         } else {
-            eventInfo.i_onCondition(1);
+            eventInfo.onCondition(1);
             fopAcM_orderSpeakEvent(this, 0, 0);
             if (eventInfo.checkCommandTalk()) {
                 field_0x92C = 4;
@@ -590,7 +590,7 @@ void daMyna_c::attack_fly_move() {
         if (field_0x926 > 0 && dComIfGs_isSaveSwitch(0x3C)) {
             field_0x926 = 0;
         }
-        if (chkPlayerInEvtArea(daMyna_evtTagActor0, var1) && !daPy_py_c::i_checkNowWolf() &&
+        if (chkPlayerInEvtArea(daMyna_evtTagActor0, var1) && !daPy_py_c::checkNowWolf() &&
             !dComIfGs_isSaveSwitch(0x3C) && field_0x926 == 0)
         {
             mStatus.Move();
@@ -645,17 +645,17 @@ void daMyna_c::greet_wait_init() {
 
 /* 80946EB0-80947030 001330 0180+00 1/0 0/0 0/0 .text            greet_wait_move__8daMyna_cFv */
 void daMyna_c::greet_wait_move() {
-    if (!daPy_py_c::i_checkNowWolf()) {
+    if (!daPy_py_c::checkNowWolf()) {
         if (daMyna_evtTagActor0 != NULL) {
             if (chkPlayerInEvtArea(daMyna_evtTagActor0, cXyz(cXyz(1.0f, 1.0f, 1.0f)))) {
-                eventInfo.i_onCondition(1);
+                eventInfo.onCondition(1);
                 fopAcM_orderSpeakEvent(this, 0, 0);
                 if (eventInfo.checkCommandTalk()) {
                     field_0x92C = 6;
                 }
             } else {
                 if (isEventFlag(0)) {
-                    eventInfo.i_onCondition(1);
+                    eventInfo.onCondition(1);
                     fopAcM_orderSpeakEvent(this, 0, 0);
                     if (eventInfo.checkCommandTalk()) {
                         field_0x92C = 10;
@@ -664,14 +664,14 @@ void daMyna_c::greet_wait_move() {
             }
         } else {
             if (fopAcM_searchPlayerDistanceXZ(this) < 350.0f) {
-                eventInfo.i_onCondition(1);
+                eventInfo.onCondition(1);
                 fopAcM_orderSpeakEvent(this, 0, 0);
                 if (eventInfo.checkCommandTalk()) {
                     field_0x92C = 6;
                 }
             } else {
                 if (isEventFlag(0)) {
-                    eventInfo.i_onCondition(1);
+                    eventInfo.onCondition(1);
                     fopAcM_orderSpeakEvent(this, 0, 0);
                     if (eventInfo.checkCommandTalk()) {
                         field_0x92C = 10;
@@ -727,7 +727,7 @@ void daMyna_c::shopping_wait_init() {
 
 /* 809471E8-809475B4 001668 03CC+00 1/0 0/0 0/0 .text            shopping_wait_move__8daMyna_cFv */
 void daMyna_c::shopping_wait_move() {
-    if (!daPy_py_c::i_checkNowWolf()) {
+    if (!daPy_py_c::checkNowWolf()) {
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[802])) {
             field_0x92C = 17;
             field_0x937 = 20;
@@ -736,7 +736,7 @@ void daMyna_c::shopping_wait_move() {
             bool bVar1 = false;
             s16 nowTotalPrice = dMsgObject_getMsgObjectClass()->getNowTotalPrice();
             if (dMsgObject_getMsgObjectClass()->isPaymentFlag()) {
-                eventInfo.i_onCondition(1);
+                eventInfo.onCondition(1);
                 fopAcM_orderSpeakEvent(this, 0, 0);
                 if (eventInfo.checkCommandTalk()) {
                     field_0x92C = 9;
@@ -751,7 +751,7 @@ void daMyna_c::shopping_wait_move() {
                             dMsgObject_addTotalPrice(mShopItems[i].mValueNum);
                             field_0x931 = i;
                             if (mShopItems[i].mFlowNodeNum != 0xFFFF) {
-                                eventInfo.i_onCondition(1);
+                                eventInfo.onCondition(1);
                                 fopAcM_orderSpeakEvent(this, 0, 0);
                             }
                         }
@@ -773,13 +773,13 @@ void daMyna_c::shopping_wait_move() {
                     cXyz stack_2c(1.0f, 1.0f, 1.0f);
                     if (chkPlayerInEvtArea(daMyna_evtTagActor1, stack_2c)) {
                         if (isEventFlag(0)) {
-                            eventInfo.i_onCondition(1);
+                            eventInfo.onCondition(1);
                             fopAcM_orderSpeakEvent(this, 0, 0);
                             bVar1 = true;
                             field_0x933 = 1;
                         } else if (field_0x931 != 0xFF && mShopItems[field_0x931].mItemStatus == 2)
                         {
-                            eventInfo.i_onCondition(1);
+                            eventInfo.onCondition(1);
                             fopAcM_orderSpeakEvent(this, 0, 0);
                             bVar1 = true;
                             field_0x933 = 1;
@@ -790,17 +790,17 @@ void daMyna_c::shopping_wait_move() {
                 if (daMyna_evtTagActor0 != NULL) {
                     cXyz stack_38(1.0f, 1.0f, 1.0f);
                     if (!chkPlayerInEvtArea(daMyna_evtTagActor0, stack_38) && nowTotalPrice > 0) {
-                        eventInfo.i_onCondition(1);
+                        eventInfo.onCondition(1);
                         fopAcM_orderSpeakEvent(this, 0, 0);
                         bVar1 = true;
                     }
                 } else if (fopAcM_searchPlayerDistanceXZ(this) > 450.0f) {
                     if (isEventFlag(0)) {
-                        eventInfo.i_onCondition(1);
+                        eventInfo.onCondition(1);
                         fopAcM_orderSpeakEvent(this, 0, 0);
                         bVar1 = true;
                     } else if (field_0x931 != 0xFF && mShopItems[field_0x931].mItemStatus == 2) {
-                        eventInfo.i_onCondition(1);
+                        eventInfo.onCondition(1);
                         fopAcM_orderSpeakEvent(this, 0, 0);
                         bVar1 = true;
                     }
@@ -1060,7 +1060,7 @@ void daMyna_c::attack_wait2_init() {
 
 /* 809481B4-80948388 002634 01D4+00 1/0 0/0 0/0 .text            attack_wait2_move__8daMyna_cFv */
 void daMyna_c::attack_wait2_move() {
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         field_0x92C = 7;
     } else {
         if (current.angle.y != home.angle.y) {
@@ -1081,7 +1081,7 @@ void daMyna_c::attack_wait2_move() {
             } else {
                 if (field_0x939 == 1) {
                     current.angle = home.angle;
-                    eventInfo.i_onCondition(1);
+                    eventInfo.onCondition(1);
                     fopAcM_orderSpeakEvent(this, 0, 0);
                     if (eventInfo.checkCommandTalk()) {
                         field_0x92C = 21;
@@ -1133,7 +1133,7 @@ void daMyna_c::attack_fly2_move() {
             field_0x939 = 1;
         }
 
-        if (chkPlayerInEvtArea(daMyna_evtTagActor0, stack_2c) && !daPy_py_c::i_checkNowWolf() &&
+        if (chkPlayerInEvtArea(daMyna_evtTagActor0, stack_2c) && !daPy_py_c::checkNowWolf() &&
             field_0x937 != 0 && field_0x926 == 0)
         {
             mStatus.Move();
@@ -1311,7 +1311,7 @@ void daMyna_c::talkAnime(msg_class* param_0) {
 /* 80948FAC-809490B8 00342C 010C+00 1/1 0/0 0/0 .text            chkEvent__8daMyna_cFv */
 int daMyna_c::chkEvent() {
     int retVal = 1;
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         if (!dComIfGp_getEvent().isOrderOK()) {
             retVal = 0;
             if (eventInfo.checkCommandTalk()) {
@@ -1334,7 +1334,7 @@ int daMyna_c::chkEvent() {
 
 /* 809490B8-80949128 003538 0070+00 2/1 0/0 0/0 .text            orderEvent__8daMyna_cFv */
 int daMyna_c::orderEvent() {
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         switch (field_0x92C) {
         case 0:
         case 5:
@@ -1349,7 +1349,7 @@ int daMyna_c::orderEvent() {
         if (attention_info.flags == 10) {
             attention_info.distances[fopAc_attn_TALK_e] = 0x8B;
             attention_info.distances[fopAc_attn_SPEAK_e] = 0x8B;
-            eventInfo.i_onCondition(1);
+            eventInfo.onCondition(1);
         }
     }
     return 1;

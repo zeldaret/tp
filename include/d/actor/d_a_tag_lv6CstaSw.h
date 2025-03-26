@@ -26,6 +26,8 @@ public:
     /* 80D5B2EC */ daLv6CstaSw_HIO_c();
     /* 80D5B740 */ virtual ~daLv6CstaSw_HIO_c();
 
+    void genMessage(JORMContext*);
+
     u8 unk_0x4;
 };
 

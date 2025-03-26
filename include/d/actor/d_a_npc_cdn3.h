@@ -313,7 +313,7 @@ public:
 
     int orderEvent() {
         if ((!mIsDarkWorld || daPy_py_c::checkNowWolfEyeUp()) && mFlowNodeNum > 0 && ((attention_info.flags & 8) || (attention_info.flags & 2))) {
-            eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
+            eventInfo.onCondition(dEvtCnd_CANTALK_e);
         }
         return 1;
     }

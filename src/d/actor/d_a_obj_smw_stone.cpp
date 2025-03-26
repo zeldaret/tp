@@ -173,7 +173,7 @@ bool daSmWStone_c::chkWlfInRange() {
     if (player == NULL) {
         return false;
     }
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         cXyz pos = player->current.pos;
         if (pos.abs2(current.pos) < 40000.0f) {
             return true;

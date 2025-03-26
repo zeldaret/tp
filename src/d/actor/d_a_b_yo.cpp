@@ -802,7 +802,7 @@ void daB_YO_c::executeOpening() {
     case 0:
         if (!eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(this, 2, 0xffff, 0);
-            eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+            eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
         Z2GetAudioMgr()->seStart(Z2SE_EN_YO_DEMO_OP1, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
@@ -1558,9 +1558,9 @@ void daB_YO_c::executeSeriousDemo() {
 
     switch (mMode) {
     case 0:
-        if (!eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(this, 2, 0xffff, 0);
-            eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+            eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
         dComIfGs_onOneZoneSwitch(7, fopAcM_GetRoomNo(this));
@@ -2161,9 +2161,9 @@ void daB_YO_c::executeDemoRevival() {
 
     switch (mMode) {
     case 0:
-        if (!eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(this, 2, 0xffff, 0);
-            eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+            eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
         mMode = 1;
@@ -2342,9 +2342,9 @@ void daB_YO_c::executeDeath() {
     switch (mMode) {
     case 0:
         setChillEffect();
-        if (!eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(this, 2, 0xffff, 0);
-            eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+            eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
         fopAcM_OnStatus(this, 0x4000);

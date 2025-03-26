@@ -241,23 +241,23 @@ template <typename T>
 class JASPoolAllocObject {
 public:
     static void* operator new(size_t n) {
-        JASMemPool<T>* memPool = getMemPool();
+        JASMemPool<T>* memPool = getMemPool_();
         return memPool->alloc(sizeof(T));
     }
     static void* operator new(size_t n, void* ptr) {
         return ptr;
     }
     static void operator delete(void* ptr, size_t n) {
-        JASMemPool<T>* memPool_ = getMemPool();
+        JASMemPool<T>* memPool_ = getMemPool_();
         memPool_->free(ptr, sizeof(T));
     }
     static void newMemPool(int param_0) {
-        JASMemPool<T>* memPool_ = getMemPool();
+        JASMemPool<T>* memPool_ = getMemPool_();
         memPool_->newMemPool(param_0);
     }
 
 private:
-    static JASMemPool<T>* getMemPool() {
+    static JASMemPool<T>* getMemPool_() {
         static JASMemPool<T> memPool_;
         return &memPool_;
     }

@@ -1977,7 +1977,7 @@ int daNpcCdn3_c::execute() {
         fopAcM_OffStatus(this, 0x8000000);
     }
     if (field_0xb95 != 0) {
-        if (!mIsDarkWorld && daPy_py_c::i_checkNowWolf()) {
+        if (!mIsDarkWorld && daPy_py_c::checkNowWolf()) {
             fopAcM_delete(this);
         }
         return 1;

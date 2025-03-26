@@ -125,10 +125,12 @@ public:
 
 STATIC_ASSERT(sizeof(daE_PZ_c) == 0xEF8);
 
-class daE_PZ_HIO_c {
+class daE_PZ_HIO_c : public JORReflexible {
 public:
     /* 8075856C */ daE_PZ_HIO_c();
     /* 80760C60 */ virtual ~daE_PZ_HIO_c() {}
+
+    void genMessage(JORMContext*);
 
     /* 0x04 */ s8 no;
     /* 0x08 */ f32 body_model_size;

@@ -39,6 +39,8 @@ public:
     /* 80CDF0AC */ daSnowEffTag_HIO_c();
     /* 80CDF674 */ virtual ~daSnowEffTag_HIO_c();
 
+    void genMessage(JORMContext*);
+
     /* 0x4 */ u8 field_0x4;
     /* 0x5 */ u8 mDisplayRange;
     /* 0x6 */ u8 mTop;

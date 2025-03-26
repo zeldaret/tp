@@ -659,7 +659,7 @@ void dSv_player_item_c::setEmptyBombBag(u8 i_newBomb, u8 i_bombNum) {
 u8 dSv_player_item_c::checkBombBag(u8 i_itemNo) {
     u8 bombBags = 0;
 
-    for (int i = 0; i < BOMB_BAG_MAX; i++) {
+    for (int i = 0; i < dSv_player_item_c::BOMB_BAG_MAX; i++) {
         if (i_itemNo == mItems[i + SLOT_15]) {
             bombBags++;
         }

@@ -1,13 +1,21 @@
 name: framework
 object_base: orig/ShieldD
 object: sys/main.dol
-hash: cbea5fad2ab6d04b96c18d1280643a41d87214b0
+hash: 16415549d9adce985b8cf736f1a5d7afb570b48e
 symbols: config/ShieldD/symbols.txt
 splits: config/ShieldD/splits.txt
 # map: orig/ShieldD/fixed_maps/RframeworkD.map
 mw_comment_version: 14
 write_asm: true
 ldscript_template: config/ShieldD/ldscript.tpl
+
+block_relocations:
+- source: .sdata:0x8073f3f4
+add_relocations:
+- source: .sdata:0x8073f3f4
+  type: abs
+  target: buffer__14mDoMtx_stack_c
+  addend: 0x300
 
 modules:
 - object: files/rel/RVL/Debug/d_a_alldieD.rel

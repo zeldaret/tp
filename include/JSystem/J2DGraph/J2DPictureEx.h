@@ -33,8 +33,8 @@ public:
     /* 803069D8 */ virtual void setCullBack(_GXCullMode);
     /* 803069B8 */ virtual void setAlpha(u8);
     /* 80303AB4 */ virtual void drawSelf(f32, f32, f32 (*)[3][4]);
-    /* 80306A24 */ virtual void isUsed(ResTIMG const*);
-    /* 803071A4 */ virtual void isUsed(ResFONT const*);
+    /* 80306A24 */ virtual bool isUsed(ResTIMG const*);
+    /* 803071A4 */ virtual bool isUsed(ResFONT const*);
     /* 80306A0C */ virtual void rewriteAlpha();
     /* 803071C4 */ virtual void setAnimation(J2DAnmBase*);
     /* 80256064 */ virtual void setAnimation(J2DAnmTransform* transform) { J2DPane::setAnimation(transform); }
@@ -44,7 +44,7 @@ public:
     /* 80306B48 */ virtual void setAnimation(J2DAnmTevRegKey*);
     /* 80306B74 */ virtual void setAnimation(J2DAnmVisibilityFull*);
     /* 80306B7C */ virtual void setAnimation(J2DAnmVtxColor*);
-    /* 80306C70 */ virtual void animationPane(J2DAnmTransform const*);
+    /* 80306C70 */ virtual const J2DAnmTransform* animationPane(J2DAnmTransform const*);
     /* 80303640 */ virtual void initiate(ResTIMG const*, ResTLUT const*);
     /* 803039CC */ virtual bool prepareTexture(u8);
     /* 80306ED4 */ virtual bool append(ResTIMG const*, f32);
@@ -84,8 +84,8 @@ public:
     /* 80306370 */ virtual bool setBlack(JUtility::TColor);
     /* 803063F8 */ virtual bool setWhite(JUtility::TColor);
     /* 80306480 */ virtual bool setBlackWhite(JUtility::TColor, JUtility::TColor);
-    /* 803068F8 */ virtual void getBlack() const;
-    /* 80306958 */ virtual void getWhite() const;
+    /* 803068F8 */ virtual JUtility::TColor getBlack() const;
+    /* 80306958 */ virtual JUtility::TColor getWhite() const;
     /* 80256034 */ virtual J2DMaterial* getMaterial() const { return mMaterial; }
     /* 80303B80 */ virtual void drawFullSet(f32, f32, f32, f32, f32 (*)[3][4]);
     /* 80303BDC */ virtual void drawTexCoord(f32, f32, f32, f32, s16, s16, s16, s16, s16, s16, s16,

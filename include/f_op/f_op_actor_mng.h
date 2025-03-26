@@ -29,7 +29,7 @@
     "Delete -> " actor_name_str "(id=%d)\n"
 
 #define fopAcM_RegisterCreateID(actor_class, i_this, actor_name_str)                               \
-    static_cast<actor_class*>(i_this);                                                             \
+    actor_class* a_this = static_cast<actor_class*>(i_this);                                       \
     const fpc_ProcID procID = fopAcM_GetID(i_this);                                                \
     "Create -> " actor_name_str "(id=%d)\n"
 
@@ -376,7 +376,7 @@ inline int fopAcM_GetCullSize(const fopAc_ac_c* i_actor) {
 }
 
 inline BOOL fopAcM_CULLSIZE_IS_BOX(int i_culltype) {
-    return (i_culltype >= 0 && i_culltype < 14) || i_culltype == 14;
+    return (i_culltype >= 0 && i_culltype < fopAc_CULLBOX_CUSTOM_e) || i_culltype == fopAc_CULLBOX_CUSTOM_e;
 }
 
 inline const cXyz& fopAcM_getCullSizeSphereCenter(const fopAc_ac_c* i_actor) {
@@ -757,11 +757,13 @@ inline void fopAcM_setWarningMessage_f(const fopAc_ac_c* i_actor, const char* i_
 }
 
 #ifdef DEBUG
-#define fopAcM_setWarningMessage(i_actor, i_filename, i_line, i_msg, ...) \
-    fopAcM_setWarningMessage_f(i_actor, i_filename, i_line, i_msg, __VA_ARGS__)
+#define fopAcM_setWarningMessage(i_actor, i_filename, i_line, i_msg) \
+    fopAcM_setWarningMessage_f(i_actor, i_filename, i_line, i_msg)
 #else
 #define fopAcM_setWarningMessage(...)
 #endif
+
+void fopAcM_getNameString(fopAc_ac_c*, char*);
 
 class fopAcM_lc_c {
 public:

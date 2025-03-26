@@ -231,13 +231,13 @@ void daTagStatue_c::actionWait() {
         // Statue is far enough away and player is close enough to the tag for the cutscene to be ordered
         setAction(ACTION_ORDER_EVENT_e);
         fopAcM_orderOtherEventId(this, mEventId, mMapToolId, 0xFFFF, 0, 1);
-        eventInfo.i_onCondition(0x0002);
+        eventInfo.onCondition(0x0002);
     }
 }
 
 /* 805A7714-805A77A0 000834 008C+00 1/0 0/0 0/0 .text            actionOrderEvent__13daTagStatue_cFv */
 void daTagStatue_c::actionOrderEvent() {
-    if(eventInfo.i_checkCommandDemoAccrpt()) {
+    if(eventInfo.checkCommandDemoAccrpt()) {
         // Cutscene order accepted
         setAction(ACTION_EVENT_e);
         mDoAud_subBgmStart(Z2BGM_KOMONJO_GET_INTRO);
@@ -246,7 +246,7 @@ void daTagStatue_c::actionOrderEvent() {
     else {
         // Cutscene order has not been accepted yet, attempt again
         fopAcM_orderOtherEventId(this, mEventId, mMapToolId, 0xFFFF, 0, 1);
-        eventInfo.i_onCondition(0x0002);
+        eventInfo.onCondition(0x0002);
     }
 }
 

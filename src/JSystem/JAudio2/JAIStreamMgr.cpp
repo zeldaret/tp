@@ -28,7 +28,7 @@ bool JAIStreamMgr::startSound(JAISoundID param_1, JAISoundHandle* param_2,
     }
     s32 streamFileEntry = streamDataMgr_->getStreamFileEntry(param_1);
     if (streamFileEntry < 0) {
-        JUT_WARN("Cannot find the stream file entry for ID:%08x\n", param_1)
+        JUT_WARN(46, "Cannot find the stream file entry for ID:%08x\n", param_1.mId.mFullId)
         return false;
     } 
     JAIStream* stream = newStream_();
@@ -52,7 +52,6 @@ bool JAIStreamMgr::startSound(JAISoundID param_1, JAISoundHandle* param_2,
 
 /* 802A3D70-802A3E68 29E6B0 00F8+00 1/1 0/0 0/0 .text            freeDeadStream___12JAIStreamMgrFv
  */
-// NONMATCHING JASPoolAllocObject<_> locations
 void JAIStreamMgr::freeDeadStream_() {
     JSULink<JAIStream>* link = mStreamList.getFirst();
     while (link != NULL) {
@@ -111,7 +110,6 @@ void JAIStreamMgr::mixOut() {
 }
 
 /* 802A4174-802A4244 29EAB4 00D0+00 1/1 0/0 0/0 .text            newStream___12JAIStreamMgrFv */
-// NONMATCHING JASPoolAllocObject<_> locations
 JAIStream* JAIStreamMgr::newStream_() {
     if (mStreamAramMgr == NULL) {
         JUT_WARN(229, "JAIStreamAramMgr must be set.\n");

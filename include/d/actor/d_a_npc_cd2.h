@@ -28,6 +28,8 @@ struct daNpcCd2_HIO_Jnt_c
     /* 8015A6E8 */ virtual ~daNpcCd2_HIO_Jnt_c() {}
     /* 8015A788 */ daNpcCd2_HIO_Jnt_c();
 
+    void genMessage(JORMContext*);
+
     /* 0x04 */ f32 field_0x04[3];
     /* 0x10 */ s16 field_0x10[3];
 };
@@ -93,6 +95,8 @@ struct daNpcCd2_HIO_WChild_c {
 struct daNpcCd2_HIO_c : public fOpAcm_HIO_entry_c {
     /* 8015A4D8 */ daNpcCd2_HIO_c();
     /* 8015A860 */ virtual ~daNpcCd2_HIO_c() {}
+
+    void genMessage(JORMContext*);
 
     /* 0x0004 */ daNpcCd2_HIO_MChild_c field_0x0004[16];
     /* 0x20C4 */ daNpcCd2_HIO_WChild_c field_0x20c4[14];

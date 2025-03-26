@@ -847,7 +847,7 @@ bool daNpcAshB_c::wait(void* param_0) {
             }
         }
 
-        if (!daNpcF_chkEvtBit(0x14f) && field_0xded == 0 && !daPy_py_c::i_checkNowWolf()) {
+        if (!daNpcF_chkEvtBit(0x14f) && field_0xded == 0 && !daPy_py_c::checkNowWolf()) {
             f32 res = pow(600.0f, 2.0f);
             if (fopAcM_searchPlayerDistanceXZ2(this) <= res) {
                 daNpcF_offTmpBit(0xb);
@@ -890,7 +890,7 @@ bool daNpcAshB_c::wait(void* param_0) {
             orderEvent(field_0xdec,l_evtNames[mOrderEvtNo*1],-1, 40, -1, 1);
 
             if (daNpcF_chkEvtBit(0x14f)) {
-                eventInfo.i_onCondition(0x20);
+                eventInfo.onCondition(0x20);
             }
             
         }
@@ -1193,7 +1193,7 @@ static bool daNpcAshB_IsDelete(void* param_0) {
 
 /* 80960A60-80960AE8 002D00 0088+00 1/0 0/0 0/0 .text            setParam__11daNpcAshB_cFv */
 void daNpcAshB_c::setParam() {
-    attention_info.flags = daPy_py_c::i_checkNowWolf() ? 0 : 10;
+    attention_info.flags = daPy_py_c::checkNowWolf() ? 0 : 10;
     attention_info.distances[0] = getDistTableIdx(daNpcAshB_Param_c::m.mTalkDistIdx,daNpcAshB_Param_c::m.mTalkAngleIdx);
     attention_info.distances[1] = attention_info.distances[0];
     attention_info.distances[3] = getDistTableIdx(daNpcAshB_Param_c::m.mSpeakDistIdx,daNpcAshB_Param_c::m.mSpeakAngleIdx);

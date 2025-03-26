@@ -29,6 +29,8 @@ typedef char *Ptr;
 
 typedef int BOOL;
 
+typedef unsigned int uint;
+
 #define FALSE 0
 #define TRUE 1
 

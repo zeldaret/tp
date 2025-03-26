@@ -94,5 +94,10 @@ public:
 
 STATIC_ASSERT(sizeof(daObjDrop_c) == 0xa7c);
 
+class daObjDrop_HIO_c {
+public:
+    u8 pad[0x17];
+    /* 0x17 */ u8 field_0x17;
+};
 
 #endif /* D_A_OBJ_DROP_H */

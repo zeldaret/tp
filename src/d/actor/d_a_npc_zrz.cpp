@@ -630,7 +630,7 @@ void daNpc_zrZ_c::setParam() {
     u32 attn_flags = 10;
     selectAction();
 
-    if (!mTwilight && daPy_py_c::i_checkNowWolf()) {
+    if (!mTwilight && daPy_py_c::checkNowWolf()) {
         attn_flags = 0;
     }
 

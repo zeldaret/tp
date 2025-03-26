@@ -35,7 +35,7 @@ static char* l_arcName = "MR-6Pole";
 
 /* 80C96580-80C965B0 000054 0030+00 3/4 0/0 0/0 .data            ActionTable__18daObjMirror6Pole_c
  */
-static actionFunc daObjMirror6Pole_c::ActionTable[][2] = {
+actionFunc daObjMirror6Pole_c::ActionTable[][2] = {
     {&daObjMirror6Pole_c::initWait, &daObjMirror6Pole_c::executeWait},
     {&daObjMirror6Pole_c::initDemo, &daObjMirror6Pole_c::executeDemo},
 };

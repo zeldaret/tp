@@ -157,7 +157,10 @@ struct TAdaptor_actor : public JStudio::TAdaptor_actor, public JStudio_JStage::T
 
     JStage::TActor* get_pJSG_() { return (JStage::TActor*) pJSGObject_; }
 
+    // TODO: Why doesn't this line compile with MWCC version Wii/1.0?
+#if __MWERKS__ && __MWERKS__ < 0x4200
     static TVVOutputObject saoVVOutput_[2];
+#endif
     static TVVOutput_ANIMATION_FRAME_  saoVVOutput_ANIMATION_FRAME_[3];
 
     /* 0x130 */ u32 field_0x130;
@@ -220,7 +223,10 @@ struct TAdaptor_camera : public JStudio::TAdaptor_camera, public TAdaptor_object
 
     JStage::TCamera* get_pJSG_() { return (JStage::TCamera*)pJSGObject_; }
 
+    // TODO: Why doesn't this line compile with MWCC version Wii/1.0?
+#if __MWERKS__ && __MWERKS__ < 0x4200
     static TVVOutput saoVVOutput_[5];
+#endif
 
     /* 0x108 */ int field_0x108;
     /* 0x10C */ JStage::TObject* field_0x10c;
@@ -248,7 +254,10 @@ struct TAdaptor_fog : public JStudio::TAdaptor_fog, public TAdaptor_object_ {
 
     JStage::TFog* get_pJSG_() { return (JStage::TFog*)pJSGObject_; }
 
+    // TODO: Why doesn't this line compile with MWCC version Wii/1.0?
+#if __MWERKS__ && __MWERKS__ < 0x4200
     static TVariableValueOutput_object_<TAdaptor_fog, JStage::TFog> saoVVOutput_[3];
+#endif
 };
 
 struct TAdaptor_light : public JStudio::TAdaptor_light, public TAdaptor_object_ {

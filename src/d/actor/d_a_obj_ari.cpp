@@ -191,7 +191,7 @@ void daObjARI_c::WallWalk() {
         cXyz zero(0.0f, 0.0f, 0.0f);
         cXyz normal_yz(0.0f, normal->y, normal->z);
         f32 normal_len_yz = zero.abs(normal_yz);
-        mTargetPos = lin_chk1.i_GetCross();
+        mTargetPos = lin_chk1.GetCross();
         mDownAngleY = normal_ang_y;
         mWallAngle.z = -cM_atan2s(normal->x, normal_len_yz);
         mWallAngle.x = cM_atan2s(normal->z, normal->y);
@@ -205,7 +205,7 @@ void daObjARI_c::WallWalk() {
         cXyz zero(0.0f, 0.0f, 0.0f);
         cXyz normal_yz(0.0f, normal->y, normal->z);
         f32 normal_len_yz = zero.abs(normal_yz);
-        mTargetPos = lin_chk2.i_GetCross();
+        mTargetPos = lin_chk2.GetCross();
         mDownAngleY = normal_ang_y;
         mWallAngle.z = -cM_atan2s(normal->x, normal_len_yz);
         mWallAngle.x = cM_atan2s(normal->z, normal->y);
@@ -269,7 +269,7 @@ void daObjARI_c::checkGround() {
     if (dComIfG_Bgsp().LineCross(&lin_chk)) {
         cM3dGPla plane;
         dComIfG_Bgsp().GetTriPla(lin_chk, &plane);
-        current.pos = lin_chk.i_GetCross();
+        current.pos = lin_chk.GetCross();
         const cXyz* normal = plane.GetNP();
         cXyz zero(0.0f, 0.0f, 0.0f);
         cXyz normal_yz(0.0f, normal->y, normal->z);
@@ -351,7 +351,7 @@ void daObjARI_c::BoomChk() {
             if (dComIfG_Bgsp().LineCross(&lin_chk)) {
                 cM3dGPla plane;
                 dComIfG_Bgsp().GetTriPla(lin_chk, &plane);
-                old.pos = lin_chk.i_GetCross();
+                old.pos = lin_chk.GetCross();
                 current.pos = old.pos;
                 mAction = 0;
                 mMode = 0;
@@ -466,7 +466,7 @@ int daObjARI_c::Execute() {
                 cM3dGPla plane;
                 dComIfG_Bgsp().GetTriPla(lin_chk, &plane);
                 const cXyz* normal = plane.GetNP();
-                current.pos = lin_chk.i_GetCross();
+                current.pos = lin_chk.GetCross();
                 mTargetPos = current.pos;
                 old.pos = current.pos;
                 cXyz zero(0.0f, 0.0f, 0.0f);
@@ -485,7 +485,7 @@ int daObjARI_c::Execute() {
                     cM3dGPla plane;
                     dComIfG_Bgsp().GetTriPla(lin_chk, &plane);
                     const cXyz* normal = plane.GetNP();
-                    current.pos = lin_chk.i_GetCross();
+                    current.pos = lin_chk.GetCross();
                     mTargetPos = current.pos;
                     old.pos = current.pos;
                     cXyz zero(0.0f, 0.0f, 0.0f);
@@ -690,7 +690,7 @@ cPhs__Step daObjARI_c::create() {
                 cM3dGPla plane;
                 dComIfG_Bgsp().GetTriPla(lin_chk, &plane);
                 const cXyz* normal = plane.GetNP();
-                current.pos = lin_chk.i_GetCross();
+                current.pos = lin_chk.GetCross();
                 cXyz zero(0.0f, 0.0f, 0.0f);
                 cXyz normalYZ(0.0f, normal->y, normal->z);
                 mWallAngle.z = mWallAlignAngle.z = -cM_atan2s(normal->x, zero.abs(normalYZ));
@@ -711,7 +711,7 @@ cPhs__Step daObjARI_c::create() {
                 cM3dGPla plane;
                 dComIfG_Bgsp().GetTriPla(lin_chk, &plane);
                 const cXyz* normal = plane.GetNP();
-                current.pos = lin_chk.i_GetCross();
+                current.pos = lin_chk.GetCross();
                 cXyz zero(0.0f, 0.0f, 0.0f);
                 cXyz normalYZ(0.0f, normal->y, normal->z);
                 mWallAngle.z = mWallAlignAngle.z = -cM_atan2s(normal->x, zero.abs(normalYZ));

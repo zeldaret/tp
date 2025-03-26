@@ -6,6 +6,7 @@
 #include "d/actor/d_a_obj_firepillar.h"
 #include "d/d_cc_d.h"
 #include "d/d_com_inf_game.h"
+#include "d/d_debug_viewer.h"
 #include "f_op/f_op_actor_mng.h"
 
 /* 80BE9118-80BE9138 000078 0020+00 1/1 0/0 0/0 .text            initBaseMtx__14daObjFPillar_cFv */
@@ -210,7 +211,7 @@ static void drawCylinder(cXyz* pos, cXyz* scale, csXyz* angle) {
     #if DEBUG
     mDoMtx_stack_c::transS(pos->x, pos->y, pos->z);
     mDoMtx_stack_c::ZXYrotM(angle->x, angle->y, angle->z);
-    mDoMtx_stack_c::scaleM(scale.x * 50.0f, scale.y * 50.0f, scale.x * 50.0f);
+    mDoMtx_stack_c::scaleM(scale->x * 50.0f, scale->y * 50.0f, scale->x * 50.0f);
     mDoMtx_stack_c::transM(0.0f, 1.0f, 0.0f);
     mDoMtx_stack_c::XrotM(0x4000);
     Mtx mtx;

@@ -1155,7 +1155,7 @@ void daAlink_c::setHookshotPos() {
                         }
                     }
 
-                    mHookshotTopPos = mRopeLinChk.i_GetCross() - (mIronBallCenterPos * 15.0f);
+                    mHookshotTopPos = mRopeLinChk.GetCross() - (mIronBallCenterPos * 15.0f);
 
                     cM3dGPla poly;
                     dComIfG_Bgsp().GetTriPla(mRopeLinChk, &poly);
@@ -1649,7 +1649,7 @@ int daAlink_c::procHookshotFly() {
             } else {
                 cXyz spA0 = current.pos - field_0x37c8;
                 if (commonLineCheck(&field_0x37c8, &current.pos)) {
-                    current.pos = mLinkLinChk.i_GetCross();
+                    current.pos = mLinkLinChk.GetCross();
 
                     spA0.y = 0.0f;
                     spA0.normalizeZP();
