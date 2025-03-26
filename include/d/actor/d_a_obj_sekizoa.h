@@ -2,6 +2,8 @@
 #define D_A_OBJ_SEKIZOA_H
 
 #include "d/actor/d_a_npc.h"
+// #include "d/actor/d_a_bg_obj.h"
+#include "d/actor/d_a_tag_evtarea.h"
 
 /**
  * @ingroup actors-objects
@@ -13,26 +15,26 @@
  */
 class daObj_Sekizoa_c : public daNpcT_c {
 public:
-    typedef void (daObj_Sekizoa_c::*cutFunc)(int);
-    typedef int (daObj_Sekizoa_c::*actionFunc)();
+    typedef int (daObj_Sekizoa_c::*cutFunc)(int);
+    typedef int (daObj_Sekizoa_c::*actionFunc)(void *);
 
     /* 80CCE34C */ ~daObj_Sekizoa_c();
-    /* 80CCE570 */ void create();
-    /* 80CCE8B0 */ void CreateHeap();
-    /* 80CCEC54 */ void Delete();
-    /* 80CCEC88 */ void Execute();
-    /* 80CCECA8 */ void Draw();
-    /* 80CCED74 */ void createHeapCallBack(fopAc_ac_c*);
-    /* 80CCED94 */ void srchSekizoa(void*, void*);
-    /* 80CCEE30 */ void getSekizoaP(int);
-    /* 80CCEFA4 */ void getKMsgTagP();
-    /* 80CCF03C */ void isDelete();
+    /* 80CCE570 */ int create();
+    /* 80CCE8B0 */ int CreateHeap();
+    /* 80CCEC54 */ int Delete();                                                // DONE
+    /* 80CCEC88 */ void Execute();                                              // DONE
+    /* 80CCECA8 */ void Draw();                                                 // DONE UP TO @XXXX
+    /* 80CCED74 */ static int createHeapCallBack(fopAc_ac_c*);                  // DONE
+    /* 80CCED94 */ static void* srchSekizoa(void*, void*);                      // ALMOST DONE
+    /* 80CCEE30 */ fopAc_ac_c* getSekizoaP(int);
+    /* 80CCEFA4 */ fopAc_ac_c* getKMsgTagP();
+    /* 80CCF03C */ int isDelete();
     /* 80CCF138 */ void reset();
-    /* 80CCF708 */ void srchActors();
+    /* 80CCF708 */ void srchActors();                                           // ALMOST DONE
     /* 80CD04FC */ void setYariAnm(int, int, f32);
-    /* 80CD0A84 */ void selectAction();
-    /* 80CD0B08 */ int chkAction(daObj_Sekizoa_c::actionFunc i_action);         // DONE
-    /* 80CD0B34 */ void setAction(daObj_Sekizoa_c::actionFunc i_action);
+    /* 80CD0A84 */ int selectAction();
+    /* 80CD0B08 */ int chkAction(actionFunc i_action);                          // DONE
+    /* 80CD0B34 */ int setAction(actionFunc i_action);                          // DONE
     /* 80CD0BDC */ void checkMoveDirection();
     /* 80CD0DE8 */ int getWaitMotionNo();                                       // DONE
     /* 80CD0E30 */ int getGameMotionNo();                                       // DONE
@@ -41,30 +43,30 @@ public:
     /* 80CD0EE0 */ int getStepMotionNo();                                       // DONE
     /* 80CD0F14 */ void jump();
     /* 80CD14D8 */ void landing();
-    /* 80CD1688 */ void cutStart(int);
-    /* 80CD2708 */ void cutTurn(int);
-    /* 80CD2908 */ void cutJump(int);
-    /* 80CD2B64 */ void cutGoal(int);
-    /* 80CD376C */ void cutExit(int);
-    /* 80CD38F0 */ void cutFree(int);
-    /* 80CD3BD8 */ void cutExtinction(int);
-    /* 80CD3F08 */ void wait(void*);
-    /* 80CD425C */ void puzzle(void*);
-    /* 80CD45B0 */ void talk(void*);
+    /* 80CD1688 */ int cutStart(int);
+    /* 80CD2708 */ int cutTurn(int);
+    /* 80CD2908 */ int cutJump(int);
+    /* 80CD2B64 */ int cutGoal(int);
+    /* 80CD376C */ int cutExit(int);
+    /* 80CD38F0 */ int cutFree(int);
+    /* 80CD3BD8 */ int cutExtinction(int);
+    /* 80CD3F08 */ int wait(void*);
+    /* 80CD425C */ int puzzle(void*);
+    /* 80CD45B0 */ int talk(void*);
     /* 80CD5A40 */ daObj_Sekizoa_c(daNpcT_faceMotionAnmData_c const* param_1, daNpcT_motionAnmData_c const* param_2,
              daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_3, int param_4,
              daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_5, int param_6, daNpcT_evtData_c const* param_7,
              char** param_8) : daNpcT_c(param_1,param_2,param_3,param_4,param_5,param_6,param_7,param_8){}
-    /* 80CD5B84 */ void chkGoal();
+    /* 80CD5B84 */ int chkGoal();
 
     /* 80CD5B7C */ s32 getBackboneJointNo() { return 1; }
     /* 80CD5B74 */ s32 getHeadJointNo() { return 3; }
-    /* 80CCF358 */ void afterJntAnm(int);
+    /* 80CCF358 */ void afterJntAnm(int);                                       // DONE
     /* 80CCF3E4 */ void setParam();
-    /* 80CCF6BC */ BOOL checkChangeEvt();
+    /* 80CCF6BC */ BOOL checkChangeEvt();                                       // ALMOST DONE
     /* 80CCF9A8 */ BOOL evtTalk();
-    /* 80CCFAA8 */ BOOL evtCutProc();
-    /* 80CCF704 */ void setAfterTalkMotion();
+    /* 80CCFAA8 */ BOOL evtCutProc();                                           // DONE
+    /* 80CCF704 */ void setAfterTalkMotion();                                   // DONE
     /* 80CCFBA0 */ void action();
     /* 80CCFD08 */ void beforeMove();
     /* 80CCFD80 */ void setAttnPos();
@@ -127,6 +129,14 @@ public:
         return type;
     }
 
+    uint getBitSW() {
+        return fopAcM_GetParam(this) & 0xff;
+    }
+
+    uint getBitSW2() {
+        return (fopAcM_GetParam(this) & 0xff00) >> 8;
+    }
+
     static char* mCutNameList[9];
     static cutFunc mCutList[9];
 
@@ -150,8 +160,8 @@ public:
     /* 0x10DC */ daNpcT_ActorMngr_c mActorMngrs3;
     /* 0x10E4 */ daNpcT_ActorMngr_c mActorMngrs4;       // wolf statue or wolf link ?
     /* 0x10EC */ daNpcT_ActorMngr_c mActorMngrs5;
-    /* 0x10F4 */ daNpcT_ActorMngr_c mActorMngrs6;
-    /* 0x10FC */ daNpcT_ActorMngr_c mActorMngrs7;
+    /* 0x10F4 */ daNpcT_ActorMngr_c mActorMngrs6;       // Statue A
+    /* 0x10FC */ daNpcT_ActorMngr_c mActorMngrs7;       // Statue B
     /* 0x1104 */ daNpcT_ActorMngr_c mActorMngrs8;
     /* 0x110C */ actionFunc mInitFunc;
     /* 0x1118 */ actionFunc mExecuteFunc;
