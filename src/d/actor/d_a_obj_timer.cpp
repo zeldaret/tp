@@ -11,22 +11,19 @@ UNK_REL_DATA
 
 /* 80485198-8048526C 000078 00D4+00 1/1 0/0 0/0 .text            _create__Q210daObjTimer5Act_cFv */
 int daObjTimer::Act_c::_create() {
-    int rv;
     fopAcM_SetupActor(this, Act_c);
     fopAcM_offDraw(this);
 
     if (fopAcM_isSwitch(this, prm_get_sw2Save())) {
-        rv = 5;
+        return cPhs_ERROR_e;
     } else {
         if (fopAcM_isSwitch(this, prm_get_swSave())) {
             mode_count_init();
         } else {
             mode_wait_init();
         }
-        rv = 4;
+        return cPhs_COMPLEATE_e;
     }
-
-    return rv;
 }
 
 /* 8048526C-80485274 00014C 0008+00 1/1 0/0 0/0 .text            _delete__Q210daObjTimer5Act_cFv */
@@ -55,12 +52,11 @@ void daObjTimer::Act_c::mode_count_init() {
 
 /* 80485324-804854BC 000204 0198+00 1/0 0/0 0/0 .text            mode_count__Q210daObjTimer5Act_cFv */
 void daObjTimer::Act_c::mode_count() {
-    // NONMATCHING
     Z2SoundID soundID;
     
     if (!field_0x570) {
         field_0x56c--;
-        if (prm_get_SeStop() && ((field_0x56c / 30) * field_0x56c - field_0x56c) == 0) {
+        if (prm_get_SeStop() && field_0x56c % 30 == 0) {
                 if (dComIfGp_event_runCheck() && prm_get_demoStop()) {
                     field_0x56c += 30;
                 }
@@ -108,42 +104,42 @@ int daObjTimer::Act_c::_execute() {
     }
 }
 
-/* 804855A4-804855C0 .text                  daObjTimer::@unnamed@d_a_obj_timer_cpp@::Mthd_Create */
-int Mthd_Create(fopAc_ac_c* i_this) {
-    return static_cast<daObjTimer::Act_c*>(i_this)->_create();
-}
+namespace {
+    /* 804855A4-804855C0 .text                  daObjTimer::@unnamed@d_a_obj_timer_cpp@::Mthd_Create */
+    int Mthd_Create(fopAc_ac_c* i_this) {
+        return static_cast<daObjTimer::Act_c*>(i_this)->_create();
+    }
 
-/* 804855C4-804855E4 .text                  daObjTimer::@unnamed@d_a_obj_timer_cpp@::Mthd_Delete */
-int Mthd_Delete(fopAc_ac_c* i_this) {
-    return static_cast<daObjTimer::Act_c*>(i_this)->_delete();
-}
+    /* 804855C4-804855E4 .text                  daObjTimer::@unnamed@d_a_obj_timer_cpp@::Mthd_Delete */
+    int Mthd_Delete(fopAc_ac_c* i_this) {
+        return static_cast<daObjTimer::Act_c*>(i_this)->_delete();
+    }
 
-/* 804855E8-80485608 .text                  daObjTimer::@unnamed@d_a_obj_timer_cpp@::Mthd_Execute */
-int Mthd_Execute(fopAc_ac_c* i_this) {
-    // NONMATCHING
-    return static_cast<daObjTimer::Act_c*>(i_this)->_execute();
-}
+    /* 804855E8-80485608 .text                  daObjTimer::@unnamed@d_a_obj_timer_cpp@::Mthd_Execute */
+    int Mthd_Execute(fopAc_ac_c* i_this) {
+        // NONMATCHING
+        return static_cast<daObjTimer::Act_c*>(i_this)->_execute();
+    }
 
-/* 8048560C-80485610 .text                      daObjTimer::@unnamed@d_a_obj_timer_cpp@::Mthd_Draw */
-int Mthd_Draw(fopAc_ac_c* i_this) {
-    return 1;
-}
+    /* 8048560C-80485610 .text                      daObjTimer::@unnamed@d_a_obj_timer_cpp@::Mthd_Draw */
+    int Mthd_Draw(fopAc_ac_c* i_this) {
+        return 1;
+    }
 
-/* 80485614-80485618 .text                  daObjTimer::@unnamed@d_a_obj_timer_cpp@::Mthd_IsDelete */
-int Mthd_IsDelete(fopAc_ac_c* i_this) {
-    return 1;
-}
+    /* 80485614-80485618 .text                  daObjTimer::@unnamed@d_a_obj_timer_cpp@::Mthd_IsDelete */
+    int Mthd_IsDelete(fopAc_ac_c* i_this) {
+        return 1;
+    }
 
-/* ############################################################################################## */
-/* 80485698-804856B8 -00001 0020+00 1/0 0/0 0/0 .data
- * Mthd_Table__Q210daObjTimer27@unnamed@d_a_obj_timer_cpp@      */
-actor_method_class l_daTimer_Method = {
-    (process_method_func)Mthd_Create,
-    (process_method_func)Mthd_Delete,
-    (process_method_func)Mthd_Execute, 
-    (process_method_func)Mthd_Draw,
-    (process_method_func)Mthd_IsDelete,
-};
+    /* 80485698-804856B8 -00001 0020+00 1/0 0/0 0/0 .data Mthd_Table__Q210daObjTimer27@unnamed@d_a_obj_timer_cpp@ */
+    actor_method_class l_daTimer_Method = {
+        (process_method_func)Mthd_Create,
+        (process_method_func)Mthd_Delete,
+        (process_method_func)Mthd_Execute, 
+        (process_method_func)Mthd_Draw,
+        (process_method_func)Mthd_IsDelete,
+    };
+}
 
 /* 804856B8-804856E8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Timer */
 extern actor_process_profile_definition g_profile_Obj_Timer = {
