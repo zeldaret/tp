@@ -289,7 +289,7 @@ public:
 
 // PPNT
 struct dStage_dPnt_c {
-    /* 0x0 */ u8 field_0x0;
+    /* 0x0 */ u8 mArg1;
     /* 0x1 */ u8 field_0x1;
     /* 0x2 */ u8 field_0x2;
     /* 0x3 */ u8 mArg0;

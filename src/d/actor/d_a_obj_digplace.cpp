@@ -73,7 +73,7 @@ int daObjDigpl_c::execute() {
 
         u8 item_no;
         if (mpDigPoints != NULL) {
-            item_no = mpDigPoints->m_points[mCurrentDigPoint].field_0x0;
+            item_no = mpDigPoints->m_points[mCurrentDigPoint].mArg1;
         } else {
             item_no = getItemNum();
         }

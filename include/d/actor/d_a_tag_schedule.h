@@ -10,7 +10,16 @@ public:
         return cPhs_COMPLEATE_e;
     }
 
-    /* 0x568 */ u8 field_0x568[4];
+    int getSeqNum() { return (fopAcM_GetParam(this) >> 6) & 0x3f; }
+    u16 getStartTime() { return (fopAcM_GetParam(this) >> 12) & 0xff; }
+    u8 getStartEnd() { return (fopAcM_GetParam(this) >> 20) & 0xff; }
+    int getGroupID() { return fopAcM_GetParam(this) & 0x3f; }
+    int getWeekNum() { return mWeekNum; }
+    void setWeekNum(int weekNum) { mWeekNum = weekNum; }
+    u8 getPathID() { return shape_angle.x & 0xff; }
+    s16 getFlowNodeNum() { return shape_angle.z; }
+
+    /* 0x568 */ int mWeekNum;
 };
 
 #endif /* D_A_TAG_SCHEDULE_H */
