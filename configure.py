@@ -1674,7 +1674,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_st_line"),
     ActorRel(NonMatching, "d_a_e_sw"),
     ActorRel(NonMatching, "d_a_e_th"),
-    ActorRel(NonMatching, "d_a_e_th_ball"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_e_th_ball"),
     ActorRel(NonMatching, "d_a_e_tk"),
     ActorRel(NonMatching, "d_a_e_tk2"),
     ActorRel(NonMatching, "d_a_e_tk_ball"),
