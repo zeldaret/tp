@@ -217,7 +217,7 @@ static void* s_obj_sub(void* param_1, void* param_2) {
             if ((fopAcM_searchActorDistance(a_this1, a_this2)) < 1500.0f) {
                 f32 fVar1 = fopAcM_GetSpeedF(a_this1);
                 if (fVar1 != 0.0f) {
-                    s16 sVar1 = *(s16*)((int)param_1 + 0x4de);
+                    s16 sVar1 = ((fopAc_ac_c*)param_1)->current.angle.y;
                     s16 sVar2 = fopAcM_searchActorAngleY(a_this1, a_this2);
 
                     int absValue = abs((s16)(sVar1 - sVar2));
@@ -1482,7 +1482,7 @@ void daB_MGN_c::executeDash() {
             if (daPy_py_c::checkNowWolf()) {
                 attention_info.flags |= 4;
 
-                mDoMtx_YrotS(mDoMtx_stack_c::now, -shape_angle.y);
+                mDoMtx_stack_c::YrotS(-shape_angle.y);
                 mDoMtx_stack_c::transM(-current.pos.x, -current.pos.y, -current.pos.z);
 
                 mDoMtx_stack_c::multVec(&daPy_getPlayerActorClass()->current.pos, &local_14c);
