@@ -5,150 +5,23 @@
 
 #include "d/actor/d_a_ep.h"
 #include "d/d_cc_d.h"
+#include "d/d_com_inf_game.h"
 #include "dol2asm.h"
-
-//
-// Types:
-//
 
 struct mDoLib_clipper {
     static u8 mClipper[92];
     static f32 mSystemFar;
 };
 
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-};
-
-struct fopAcM_gc_c {
-    /* 8001DCBC */ void gndCheck(cXyz const*);
-
-    static u8 mGndCheck[84];
-    static f32 mGroundY;
-};
-
-struct ep_hahen_s {
-    /* 8046ACC0 */ ~ep_hahen_s();
-    /* 8046AD44 */ ep_hahen_s();
-};
-
-struct ep_class {
-    /* 8046AB2C */ ep_class();
-};
-
 struct daObj {
     /* 80037900 */ void HitSeStart(cXyz const*, int, dCcD_GObjInf const*, u32);
 };
-
-struct dSv_info_c {
-    /* 80035200 */ void onSwitch(int, int);
-    /* 800352B0 */ void offSwitch(int, int);
-    /* 80035360 */ void isSwitch(int, int) const;
-};
-
-struct dKy_tevstr_c {};
-
-struct J3DModelData {};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct dPa_levelEcallBack {};
-
-struct csXyz {};
-
-struct dPa_control_c {
-    /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
-                            u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
-                            cXyz const*, f32);
-    /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
-                            cXyz const*, u8, dPa_levelEcallBack*, s8, _GXColor const*,
-                            _GXColor const*, cXyz const*, f32);
-    /* 8004D1B8 */ void setSimple(u16, cXyz const*, dKy_tevstr_c const*, u8, _GXColor const&,
-                                  _GXColor const&, int, f32);
-};
-
-struct dEvt_control_c {
-    /* 80042468 */ void reset();
-};
-
-struct dEvent_manager_c {
-    /* 800474BC */ void getEventData(s16);
-    /* 80047514 */ void getEventIdx(char const*, u8, s32);
-    /* 80047ADC */ void endCheckOld(char const*);
-    /* 80047B1C */ void getMyStaffId(char const*, fopAc_ac_c*, int);
-    /* 80047D4C */ void getIsAddvance(int);
-    /* 80047E10 */ void getMyActIdx(int, char const* const*, int, int, int);
-    /* 8004817C */ void cutEnd(int);
-};
-
-struct dDlst_shadowControl_c {
-    static u8 mSimpleTexObj[32];
-};
-
-struct dCcU_AtInfo {};
-
-struct dBgS_PolyPassChk {
-    /* 80078E68 */ void SetObj();
-};
-
-struct dBgS_ObjGndChk_Spl {
-    /* 800777B0 */ dBgS_ObjGndChk_Spl();
-    /* 80077848 */ ~dBgS_ObjGndChk_Spl();
-};
-
-struct dBgS_ObjGndChk {
-    /* 8046ADB0 */ ~dBgS_ObjGndChk();
-};
-
-struct dBgS_LinChk {
-    /* 80077C68 */ dBgS_LinChk();
-    /* 80077CDC */ ~dBgS_LinChk();
-    /* 80077D64 */ void Set(cXyz const*, cXyz const*, fopAc_ac_c const*);
-};
-
-struct dBgS_GndChk {
-    /* 8007757C */ dBgS_GndChk();
-    /* 800775F0 */ ~dBgS_GndChk();
-};
-
-struct dAttention_c {
-    /* 8007353C */ void LockonTarget(s32);
-    /* 800737E4 */ void LockonTruth();
-};
-
-struct cCcS {
-    /* 80264BA8 */ void Set(cCcD_Obj*);
-};
-
-struct cBgS_PolyInfo {};
-
-struct cBgS_LinChk {};
-
-struct cBgS_GndChk {
-    /* 80267D28 */ void SetPos(cXyz const*);
-};
-
-struct cBgS {
-    /* 800743B4 */ void LineCross(cBgS_LinChk*);
-    /* 800744A0 */ void GroundCross(cBgS_GndChk*);
-};
-
-struct LIGHT_INFLUENCE {};
 
 struct J3DUClipper {
     /* 8027378C */ void calcViewFrustum();
 };
 
-struct J3DModel {};
+// struct J3DModel {};
 
 //
 // Forward References:
@@ -291,7 +164,6 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* __vt__8dCcD_Sph[36];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
@@ -301,12 +173,8 @@ extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" u8 mClipper__14mDoLib_clipper[92];
 extern "C" u8 mGndCheck__11fopAcM_gc_c[84];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern u8 g_env_light[4880];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u32 g_whiteColor;
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
 extern "C" f32 mSystemFar__14mDoLib_clipper;
 extern "C" f32 mGroundY__11fopAcM_gc_c;
 extern "C" extern u8 pauseTimer__9dScnPly_c[4];
@@ -561,8 +429,21 @@ COMPILER_STRIP_GATE(0x8046B040, &lit_3963);
 #pragma pop
 
 /* 80468A90-80468E50 000910 03C0+00 1/1 0/0 0/0 .text hahen_water__FP8ep_classP10ep_hahen_s */
-static void hahen_water(ep_class* param_0, ep_hahen_s* param_1) {
+static void hahen_water(ep_class* i_this, ep_hahen_s* e_this) {
     // NONMATCHING
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+    e_this->field_0x94++;
+    if (e_this->field_0x98) {
+        e_this->field_0x98--;
+    }
+
+    e_this->field_0x10 = e_this->field_0x4;
+
+    f32 x = e_this->field_0x4.x - player->current.pos.x;
+    f32 z = e_this->field_0x4.z - player->current.pos.z;
+    if (JMAFastSqrt(x * x + z * z) < 60.0f) {
+        cLib_addCalcAngleS2(&e_this->field_0x2a, cM_atan2s(x, z), 0x10, 200);
+    }
 }
 
 /* ############################################################################################## */
@@ -1111,10 +992,10 @@ ep_hahen_s::ep_hahen_s() {
     // NONMATCHING
 }
 
-/* 8046ADB0-8046AE28 002C30 0078+00 4/3 0/0 0/0 .text            __dt__14dBgS_ObjGndChkFv */
-dBgS_ObjGndChk::~dBgS_ObjGndChk() {
-    // NONMATCHING
-}
+// /* 8046ADB0-8046AE28 002C30 0078+00 4/3 0/0 0/0 .text            __dt__14dBgS_ObjGndChkFv */
+// dBgS_ObjGndChk::~dBgS_ObjGndChk() {
+//     // NONMATCHING
+// }
 
 /* 8046AE28-8046AE70 002CA8 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGSphFv */
 // cM3dGSph::~cM3dGSph() {
