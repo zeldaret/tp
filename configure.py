@@ -1674,7 +1674,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_st_line"),
     ActorRel(NonMatching, "d_a_e_sw"),
     ActorRel(NonMatching, "d_a_e_th"),
-    ActorRel(NonMatching, "d_a_e_th_ball"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_e_th_ball"),
     ActorRel(NonMatching, "d_a_e_tk"),
     ActorRel(NonMatching, "d_a_e_tk2"),
     ActorRel(NonMatching, "d_a_e_tk_ball"),
@@ -2081,7 +2081,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_swLight"),
     ActorRel(NonMatching, "d_a_obj_swchain"),
     ActorRel(Equivalent, "d_a_obj_swhang"), # vtable order
-    ActorRel(NonMatching, "d_a_obj_sword"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_sword"),
     ActorRel(NonMatching, "d_a_obj_swpush2"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_swspinner"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_swturn"),

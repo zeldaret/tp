@@ -12,7 +12,7 @@ public:
     /* 80251B64 */ void setPrm();
     /* 80251EF8 */ void update();
     /* 80252018 */ int limitter(s16*, s16, s16, s16);
-    /* 80252094 */ virtual ~dNpcLib_lookat_c();
+    /* 80252094 */ virtual ~dNpcLib_lookat_c() {}
 
     /* 0x04 */ cXyz field_0x04[4];
     /* 0x34 */ csXyz field_0x34[4];

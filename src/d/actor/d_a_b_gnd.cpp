@@ -2560,7 +2560,7 @@ static void action(b_gnd_class* i_this) {
         i_this->speedF = 0.0f;
 
         mant_class* mant_p = (mant_class*)fopAcM_SearchByID(i_this->mMantChildID);
-        mant_p->unk3971 = 1;
+        mant_p->field_0x3969 = 1;
 
         h_anm_init(i_this, B_HG_BCK_HG_DOWN, 3.0f, 0, 1.0f);
         if (daPy_getPlayerActorClass()->checkHorseRide()) {
