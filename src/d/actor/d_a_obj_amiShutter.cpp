@@ -39,7 +39,7 @@ void daAmiShutter_HIO_c::genMessage(JORMContext* i_ctx) {
 #endif
 
 /* 80BA256C-80BA2580 000014 0014+00 6/6 0/0 0/0 .bss             l_HIO */
-static const daAmiShutter_HIO_c l_HIO;
+static daAmiShutter_HIO_c l_HIO;
 
 /* 80BA155C-80BA15E4 00017C 0088+00 2/2 0/0 0/0 .text            setBaseMtx__14daAmiShutter_cFv */
 void daAmiShutter_c::setBaseMtx() {
@@ -103,7 +103,7 @@ cPhs__Step daAmiShutter_c::create() {
         }
         setBaseMtx();
         #ifdef DEBUG
-        l_HIO.entryHIO("アミシャッター")
+        l_HIO.entryHIO("アミシャッター");
         #endif
     }
     return phaseStep;
