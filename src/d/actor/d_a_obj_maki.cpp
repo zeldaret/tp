@@ -186,7 +186,8 @@ SECTION_DATA extern void* __vt__16daObj_Maki_HIO_c[3] = {
 
 /* 80C8FE0C-80C8FE24 0000EC 0018+00 1/1 0/0 0/0 .text            __ct__16daObj_Maki_HIO_cFv */
 daObj_Maki_HIO_c::daObj_Maki_HIO_c() {
-    // NONMATCHING
+    this->vtable = &__vt__16daObj_Maki_HIO_c;
+    this->field_0x4 = -1;
 }
 
 /* 80C8FE24-80C8FEDC 000104 00B8+00 1/0 0/0 0/0 .text            daObj_Maki_Draw__FP14obj_maki_class
@@ -273,6 +274,7 @@ static u8 data_80C90A50[4];
 
 /* 80C90380-80C903F0 000660 0070+00 1/0 0/0 0/0 .text daObj_Maki_Delete__FP14obj_maki_class */
 static void daObj_Maki_Delete(obj_maki_class* param_0) {
+
     // NONMATCHING
 }
 
@@ -324,6 +326,7 @@ static u8 l_HIO[8];
 /* 80C9058C-80C9080C 00086C 0280+00 1/0 0/0 0/0 .text            daObj_Maki_Create__FP10fopAc_ac_c
  */
 static void daObj_Maki_Create(fopAc_ac_c* param_0) {
+    
     // NONMATCHING
 }
 
@@ -341,6 +344,9 @@ extern "C" void __dt__8cM3dGAabFv() {
 
 /* 80C9089C-80C908E4 000B7C 0048+00 2/1 0/0 0/0 .text            __dt__16daObj_Maki_HIO_cFv */
 daObj_Maki_HIO_c::~daObj_Maki_HIO_c() {
+    if (this != NULL && (this->vtable = &__vt__16daObj_Maki_HIO_c) ) {
+        delete(this);
+    }
     // NONMATCHING
 }
 

@@ -20,6 +20,9 @@ STATIC_ASSERT(sizeof(obj_maki_class) == 0x730);
 
 class daObj_Maki_HIO_c {
 public:
+    /* 0x00 */ void* vtable;
+    /* 0x04 */ char field_0x4;
+
     /* 80C8FE0C */ daObj_Maki_HIO_c();
     /* 80C9089C */ ~daObj_Maki_HIO_c();
 };
