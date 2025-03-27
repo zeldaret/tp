@@ -8,95 +8,9 @@
 
 #define N_COW_COLLIDERS 3
 
-enum daCow_Crazy {
-    daCow_Crazy_Wait_e = 0,
-    daCow_Crazy_Dash_e = 1,
-    daCow_Crazy_BeforeCatch_e = 2,
-    daCow_Crazy_Catch_e = 3,
-    daCow_Crazy_Throw_e = 4,
-    daCow_Crazy_Attack_e = 5,
-    daCow_Crazy_Away_e = 6,
-    daCow_Crazy_End_e = 7,
-    daCow_Crazy_Back_e = 8,
-};
-
-enum daCow_Mode {
-    daCow_Mode_0_e = 0,
-    daCow_Mode_1_e = 1,
-    daCow_Mode_2_e = 2,
-    daCow_Mode_3_e = 3,
-};
-
-enum daCow_Action {
-    daCow_Action_Wait_e = 0,
-    daCow_Action_NadeNade_e = 1,
-    daCow_Action_Cry_e = 2,
-    daCow_Action_3_e = 3,
-    daCow_Action_4_e = 4,
-    daCow_Action_5_e = 5,
-    daCow_Action_6_e = 6,
-    daCow_Action_Running_e = 7,
-};
-
-enum daCow_Animation {
-    daCow_Animation_5_e = 5,
-    daCow_Animation_6_e = 6,
-    daCow_Animation_7_e = 7,
-    daCow_Animation_8_e = 8,
-    daCow_Animation_Eat_e = 9,
-    daCow_Animation_10_e = 10,
-    daCow_Animation_11_e = 11,
-    daCow_Animation_12_e = 12,
-    daCow_Animation_13_e = 13,
-    daCow_Animation_14_e = 14,
-    daCow_Animation_Moo_e = 15,
-    daCow_Animation_16_e = 16,
-    daCow_Animation_17_e = 17,
-    daCow_Animation_18_e = 18,
-    daCow_Animation_Run_e = 19,
-    daCow_Animation_CrazyDash_e = 20,
-    daCow_Animation_Shake_e = 21,
-    daCow_Animation_22_e = 22,
-    daCow_Animation_23_e = 23,
-    daCow_Animation_24_e = 24,
-    daCow_Animation_Walk_e = 25,
-    daCow_Animation_Wait_e = 26,
-    daCow_Animation_27_e = 27,
-    daCow_Animation_28_e = 28,
-};
-
-enum daCow_RunType {
-    daCow_RunType_None_e = 0,
-    daCow_RunType_Walk_e = 1,
-    daCow_RunType_Run_e = 2,
-};
-
-enum daCow_Execute {
-    daCow_Execute_0_e = 0,
-    daCow_Execute_1_e = 1,
-    daCow_Execute_2_e = 2,
-    daCow_Execute_3_e = 3,
-    daCow_Execute_4_e = 4,
-    daCow_Execute_5_e = 5,
-    daCow_Execute_6_e = 6,
-};
-
-enum daCow_Flag {
-    daCow_Flag_CrazyBeforeCatch_e = 1 << 0,
-    daCow_Flag_CrazyCatch_e = 1 << 1,
-    daCow_Flag_CrazyDash_e = 1 << 2,
-    daCow_Flag_CrazyThrowLeft_e = 1 << 3,
-    daCow_Flag_CrazyThrowRight_e = 1 << 4,
-    daCow_Flag_CrazyReady_e = 1 << 5,
-    daCow_Flag_CrazyGo_e = 1 << 6,
-    daCow_Flag_Naderu_e = 1 << 7,
-    daCow_Flag_NaderuFinish_e = 1 << 8,
-    daCow_Flag_CrazyReadyDrawOn_e = 1 << 9,
-};
-
 /**
  * @ingroup actors-unsorted
- * @class daCow_c
+ * @class c
  * @brief Ordon Goat
  *
  * @details
@@ -104,6 +18,92 @@ enum daCow_Flag {
  */
 class daCow_c : public fopAc_ac_c {
 public:
+    enum Crazy {
+        Crazy_Wait = 0,
+        Crazy_Dash = 1,
+        Crazy_BeforeCatch = 2,
+        Crazy_Catch = 3,
+        Crazy_Throw = 4,
+        Crazy_Attack = 5,
+        Crazy_Away = 6,
+        Crazy_End = 7,
+        Crazy_Back = 8,
+    };
+
+    enum Mode {
+        Mode_0 = 0,
+        Mode_1 = 1,
+        Mode_2 = 2,
+        Mode_3 = 3,
+    };
+
+    enum Action {
+        Action_Wait = 0,
+        Action_NadeNade = 1,
+        Action_Cry = 2,
+        Action_3 = 3,
+        Action_4 = 4,
+        Action_5 = 5,
+        Action_6 = 6,
+        Action_Running = 7,
+    };
+
+    enum Animation {
+        Animation_5 = 5,
+        Animation_6 = 6,
+        Animation_7 = 7,
+        Animation_8 = 8,
+        Animation_Eat = 9,
+        Animation_10 = 10,
+        Animation_11 = 11,
+        Animation_12 = 12,
+        Animation_13 = 13,
+        Animation_14 = 14,
+        Animation_Moo = 15,
+        Animation_16 = 16,
+        Animation_17 = 17,
+        Animation_18 = 18,
+        Animation_Run = 19,
+        Animation_CrazyDash = 20,
+        Animation_Shake = 21,
+        Animation_22 = 22,
+        Animation_23 = 23,
+        Animation_24 = 24,
+        Animation_Walk = 25,
+        Animation_Wait = 26,
+        Animation_27 = 27,
+        Animation_28 = 28,
+    };
+
+    enum RunType {
+        RunType_None = 0,
+        RunType_Walk = 1,
+        RunType_Run = 2,
+    };
+
+    enum Execute {
+        Execute_0 = 0,
+        Execute_1 = 1,
+        Execute_2 = 2,
+        Execute_3 = 3,
+        Execute_4 = 4,
+        Execute_5 = 5,
+        Execute_6 = 6,
+    };
+
+    enum Flag {
+        Flag_CrazyBeforeCatch = 1 << 0,
+        Flag_CrazyCatch = 1 << 1,
+        Flag_CrazyDash = 1 << 2,
+        Flag_CrazyThrowLeft = 1 << 3,
+        Flag_CrazyThrowRight = 1 << 4,
+        Flag_CrazyReady = 1 << 5,
+        Flag_CrazyGo = 1 << 6,
+        Flag_Naderu = 1 << 7,
+        Flag_NaderuFinish = 1 << 8,
+        Flag_CrazyReadyDrawOn = 1 << 9,
+    };
+
     /* 806585CC */ int calcRunAnime(int);
     /* 80658730 */ void setBck(int, u8, f32, f32);
     /* 806587D4 */ u8 checkBck(int);
@@ -194,16 +194,16 @@ public:
     daCow_c* getCowP() { return mCowP; }
 
     // cLib_onBit<u16>(mFlags, (mask))
-    void setCrazyBeforeCatch() { mFlags |= daCow_Flag_CrazyBeforeCatch_e; }
-    void setCrazyCatch() { mFlags |= daCow_Flag_CrazyCatch_e; }
-    void setCrazyDash() { mFlags |= daCow_Flag_CrazyDash_e; }
-    void setCrazyThrowLeft() { mFlags |= daCow_Flag_CrazyThrowLeft_e; }
-    void setCrazyThrowRight() { mFlags |= daCow_Flag_CrazyThrowRight_e; }
-    void setCrazyReady() { mFlags |= daCow_Flag_CrazyReady_e; }
-    void setCrazyGo() { mFlags |= daCow_Flag_CrazyGo_e; }
-    void setNaderu() { mFlags |= daCow_Flag_Naderu_e; }
-    void setNaderuFinish() { mFlags |= daCow_Flag_NaderuFinish_e; }
-    void setCrazyReadyDrawOn() { mFlags |= daCow_Flag_CrazyReadyDrawOn_e; }
+    void setCrazyBeforeCatch() { mFlags |= Flag_CrazyBeforeCatch; }
+    void setCrazyCatch() { mFlags |= Flag_CrazyCatch; }
+    void setCrazyDash() { mFlags |= Flag_CrazyDash; }
+    void setCrazyThrowLeft() { mFlags |= Flag_CrazyThrowLeft; }
+    void setCrazyThrowRight() { mFlags |= Flag_CrazyThrowRight; }
+    void setCrazyReady() { mFlags |= Flag_CrazyReady; }
+    void setCrazyGo() { mFlags |= Flag_CrazyGo; }
+    void setNaderu() { mFlags |= Flag_Naderu; }
+    void setNaderuFinish() { mFlags |= Flag_NaderuFinish; }
+    void setCrazyReadyDrawOn() { mFlags |= Flag_CrazyReadyDrawOn; }
 
     bool getCowIn() { return mCowIn; }
     int getNoNearCheckTimer() const { return mNoNearCheckTimer; }
