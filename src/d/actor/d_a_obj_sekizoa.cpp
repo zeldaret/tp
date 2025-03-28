@@ -4,7 +4,6 @@
 //
 
 #include "d/actor/d_a_obj_sekizoa.h"
-#include "d/actor/d_a_tag_kmsg.h"
 #include "dolphin/types.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "dol2asm.h"
@@ -131,35 +130,35 @@ daObj_Sekizoa_c::cutFunc daObj_Sekizoa_c::mCutList[9] = {
 // };
 
 /* 80CD6534-80CD65F4 00065C 00C0+00 1/1 0/0 0/0 .data            yariAnmData$5297 */
-SECTION_DATA static u8 yariAnmData[192] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1D, 0x00, 0x00, 0x00, 0x01,
-    0x00, 0x00, 0x00, 0x1D, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x1D, 0x00, 0x00, 0x00, 0x01,
-    0x00, 0x00, 0x00, 0x1D, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x01,
-    0x00, 0x00, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x01,
-    0x00, 0x00, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x01,
-    0x00, 0x00, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x01,
-    0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x01,
-    0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x01,
-    0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x01,
-    0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x01,
-    0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x01,
-    0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+// SECTION_DATA static u8 yariAnmData[192] = {
+//     0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1D, 0x00, 0x00, 0x00, 0x01,
+//     0x00, 0x00, 0x00, 0x1D, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x1D, 0x00, 0x00, 0x00, 0x01,
+//     0x00, 0x00, 0x00, 0x1D, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x01,
+//     0x00, 0x00, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x01,
+//     0x00, 0x00, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x01,
+//     0x00, 0x00, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x01,
+//     0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x01,
+//     0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x01,
+//     0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x01,
+//     0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x01,
+//     0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x01,
+//     0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+// };
 
 /* 80CD65F4-80CD663C 00071C 0048+00 0/0 0/0 0/0 .data            brkAnmData$5345 */
-static u32 brkAnmData[18] = {
-    0x2A, 0, 1, 0x2B, 0, 1, 
-    0x2C, 0, 1, 0x2D, 0, 1,
-     0x2E, 0, 1,
-    0x29, 0, 1,
-};
+// static u32 brkAnmData[18] = {
+//     0x2A, 0, 1, 0x2B, 0, 1, 
+//     0x2C, 0, 1, 0x2D, 0, 1,
+//      0x2E, 0, 1,
+//     0x29, 0, 1,
+// };
 
 /* 80CD663C-80CD666C 000764 0030+00 0/0 0/0 0/0 .data            btkAnmData$5346 */
-static u32 btkAnmData[12] = {
-    0x32, 0, 1, -1,
-    0, 0, -1, 0,
-    0, 0x31, 0, 1,
-};
+// static u32 btkAnmData[12] = {
+//     0x32, 0, 1, -1,
+//     0, 0, -1, 0,
+//     0, 0x31, 0, 1,
+// };
 
 // /* 80CD666C-80CD66B4 -00001 0048+00 1/1 0/0 0/0 .data            @5484 */
 // SECTION_DATA static void* lit_5484[18] = {
@@ -232,17 +231,22 @@ daObj_Sekizoa_c::~daObj_Sekizoa_c() {
 
 /* ############################################################################################## */
 /* 80CD5CFC-80CD5D98 000000 009C+00 19/19 0/0 0/0 .rodata          m__21daObj_Sekizoa_Param_c */
-u8 const daObj_Sekizoa_Param_c::m[156] = {
-    0x44, 0x16, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x44, 0x89, 0x80, 0x00,
-    0x43, 0x7F, 0x00, 0x00, 0x44, 0x09, 0x80, 0x00, 0x42, 0xC8, 0x00, 0x00, 0x42, 0x8C, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x41, 0xF0, 0x00, 0x00, 0xC1, 0xF0, 0x00, 0x00, 0x42, 0x34, 0x00, 0x00, 0xC2, 0x34, 0x00, 0x00,
-    0x3F, 0x19, 0x99, 0x9A, 0x41, 0x00, 0x00, 0x00, 0x00, 0x03, 0x00, 0x06, 0x00, 0x05, 0x00, 0x06,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x3C, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x80, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x44, 0x16, 0x00, 0x00,
-    0x41, 0xF0, 0x00, 0x00, 0x3B, 0x83, 0x12, 0x6F, 0x00, 0x00, 0x00, 0x00,
+// u8 const daObj_Sekizoa_Param_c::m[156] = {
+//     0x44, 0x16, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x44, 0x89, 0x80, 0x00,
+//     0x43, 0x7F, 0x00, 0x00, 0x44, 0x09, 0x80, 0x00, 0x42, 0xC8, 0x00, 0x00, 0x42, 0x8C, 0x00, 0x00,
+//     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+//     0x41, 0xF0, 0x00, 0x00, 0xC1, 0xF0, 0x00, 0x00, 0x42, 0x34, 0x00, 0x00, 0xC2, 0x34, 0x00, 0x00,
+//     0x3F, 0x19, 0x99, 0x9A, 0x41, 0x00, 0x00, 0x00, 0x00, 0x03, 0x00, 0x06, 0x00, 0x05, 0x00, 0x06,
+//     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+//     0x00, 0x3C, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x80, 0x00, 0x00,
+//     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+//     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x44, 0x16, 0x00, 0x00,
+//     0x41, 0xF0, 0x00, 0x00, 0x3B, 0x83, 0x12, 0x6F, 0x00, 0x00, 0x00, 0x00,
+// };
+f32 const daObj_Sekizoa_Param_c::m[40] = {
+    600.0, -10.0, 1.0, 1100.0, 255.0 ,550.0, 100.0, 70.0, 0.0, 0.0, 30.0, 0.0, 30.0, -30.0, 45.0, -45.0, 0.6,
+    8.0, 2.755149E-40, 4.591858E-40, 0.0, 0.0, 0.0, 0.0, 5.510141E-39, 0.0, 0.0, 4.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 600.0, 30.0, 0.004, 0.0, 1.2757E-41,
 };
 
 /* 80CD5D98-80CD5DB8 00009C 0020+00 0/1 0/0 0/0 .rodata          heapSize$4093 */
@@ -286,7 +290,7 @@ int daObj_Sekizoa_c::create() {
                 mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this),
                     this, 1, &mAcchCir, fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this),
                     fopAcM_GetShapeAngle_p(this));
-                mCcStts.Init(daObj_Sekizoa_Param_c::m[16] + 24, 0, this); // Check if error in 0xff
+                mCcStts.Init(daObj_Sekizoa_Param_c::m[4], 0, this); // Check if error in 0xff
 
                 mCyl.Set(mCcDCyl);
                 mCyl.SetStts(&mCcStts);
@@ -567,7 +571,51 @@ int daObj_Sekizoa_c::isDelete() {
 
 /* 80CCF138-80CCF358 000ED8 0220+00 2/1 0/0 0/0 .text            reset__15daObj_Sekizoa_cFv */
 void daObj_Sekizoa_c::reset() {
-    // NONMATCHING
+    if (mpMatAnm != NULL) {
+        mpMatAnm->initialize();
+    }
+    initialize();
+    for (int i = 0; i < 8; i++) {
+        mActorMngrs[i].initialize();
+    }
+    memset(&mInitFunc, 0, 0x70);
+    s16 angle_y = home.angle.GetY();
+    switch (mParamCreate) {
+        case 0:
+            if (daNpcT_chkTmpBit(0x31) != 0){
+                daNpcT_offTmpBit(0x31);
+                mSetWolfHowling = true;
+            }
+            eventInfo.setIdx(0);
+            mHide = true;
+            break;
+
+        case 1:
+            eventInfo.setIdx(0);
+            mHide = true;
+            break;
+
+        case 2:
+            eventInfo.setIdx(1);
+            break;
+
+        case 3:
+            eventInfo.setIdx(1);
+            break;
+
+        case 4:
+            eventInfo.setIdx(1);
+            break;
+
+        case 5:
+            eventInfo.setIdx(1);
+            break;
+
+        case 6:
+            eventInfo.setIdx(2);
+    }
+    mReset = true;
+    setAngle(angle_y);
 }
 
 /* 80CCF358-80CCF3E4 0010F8 008C+00 1/0 0/0 0/0 .text            afterJntAnm__15daObj_Sekizoa_cFi */
@@ -683,7 +731,8 @@ static u8 lit_3907[12];
 #pragma pop
 
 /* 80CD692C-80CD6938 000054 000C+00 3/4 0/0 0/0 .bss             l_srcPosR */
-static u8 l_srcPosR[12];
+// static u8 l_srcPosR[12];
+static cXyz l_srcPosR;
 
 /* 80CD6938-80CD6944 000060 000C+00 0/1 0/0 0/0 .bss             @3908 */
 #pragma push
@@ -692,11 +741,81 @@ static u8 lit_3908[12];
 #pragma pop
 
 /* 80CD6944-80CD6950 00006C 000C+00 3/4 0/0 0/0 .bss             l_srcPosL */
-static u8 l_srcPosL[12];
+// static u8 l_srcPosL[12];
+static cXyz l_srcPosL;
 
 /* 80CCF3E4-80CCF6BC 001184 02D8+00 1/0 0/0 0/0 .text            setParam__15daObj_Sekizoa_cFv */
 void daObj_Sekizoa_c::setParam() {
-    // NONMATCHING
+    cXyz temp_vec;
+
+    selectAction();
+    srchActors();
+    attention_info.distances[fopAc_attn_LOCK_e] = 0x12;
+    attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
+    attention_info.distances[fopAc_attn_SPEAK_e] = 0x13;
+    attention_info.flags = 0;
+    scale.set(daObj_Sekizoa_Param_c::m[2], daObj_Sekizoa_Param_c::m[2], daObj_Sekizoa_Param_c::m[2]);
+    mCcStts.SetWeight(daObj_Sekizoa_Param_c::m[4]);
+    mCylH = daObj_Sekizoa_Param_c::m[5];
+    mWallR = daObj_Sekizoa_Param_c::m[7];
+    mAttnFovY = daObj_Sekizoa_Param_c::m[20];
+
+    mAcchCir.SetWallR(mWallR);
+    mAcchCir.SetWallH(daObj_Sekizoa_Param_c::m[6]);
+    field_0xde8 = daObj_Sekizoa_Param_c::m[3];
+    field_0xa80 = daObj_Sekizoa_Param_c::m[27];
+    mMorfFrames = daObj_Sekizoa_Param_c::m[17];
+    gravity = daObj_Sekizoa_Param_c::m[1];
+
+    if(mParamCreate == 2 || mParamCreate == 3) {
+        gravity = 0.0f;
+    }
+    if (mReset) {
+        switch (mParamCreate) {
+        case 0:
+            if (daNpcT_chkEvtBit(0x25) == 0) {
+                temp_vec = l_srcPosR;
+            }
+            else {
+                temp_vec = l_srcPosL;
+            }
+
+        case 1:
+            if (daNpcT_chkEvtBit(0x25) == 0) {
+                temp_vec = l_srcPosL;
+            }
+            else {
+                temp_vec = l_srcPosR;
+            }
+
+        case 2:
+            if (daNpcT_chkEvtBit(0x25) == 0) {
+                temp_vec = l_srcPosR;
+            }
+            else {
+                temp_vec = l_srcPosL;
+            }
+
+        case 3:
+            if (daNpcT_chkEvtBit(0x25) == 0) {
+                temp_vec = l_srcPosL;
+            }
+            else {
+                temp_vec = l_srcPosR;
+            }
+        
+        case 4:
+            mReset = 0;
+
+        case 6:
+            mReset = 0;
+        }
+        if (mReset != 0) {
+            setPos(temp_vec);
+            setAngle(0);
+            mReset = 0;
+        }
+    }
 }
 
 /* 80CCF6BC-80CCF704 00145C 0048+00 1/0 0/0 0/0 .text            checkChangeEvt__15daObj_Sekizoa_cFv
@@ -720,57 +839,67 @@ void daObj_Sekizoa_c::setAfterTalkMotion() {
 
 /* 80CCF708-80CCF9A8 0014A8 02A0+00 1/1 0/0 0/0 .text            srchActors__15daObj_Sekizoa_cFv */
 void daObj_Sekizoa_c::srchActors() {
-    
-    if (mParamCreate < 4) {
-        switch (mParamCreate) {
-        case 0:
-            if (mActorMngrs2.getActorP() == NULL) {
-                mActorMngrs2.entry(getSekizoaP(2));
-            }
-            if (mActorMngrs3.getActorP() == NULL) {
-                mActorMngrs3.entry(getSekizoaP(3));
-            }
-            if (mActorMngrs4.getActorP() == NULL) {
-                mActorMngrs4.entry(getSekizoaP(1));
-            }
-            if (mActorMngrs5.getActorP() == NULL) {
-                mActorMngrs5.entry(getNearestActorP(0x134));
-            }
-            if (mActorMngrs6.getActorP() == NULL) {
-                mActorMngrs6.entry(getEvtAreaTagP(1, 0));
-            }
-            if (mActorMngrs7.getActorP() == NULL) {
-                mActorMngrs7.entry(getEvtAreaTagP(1, 1));
-            }
-            if (mActorMngrs8.getActorP() == NULL) {
-                mActorMngrs8.entry(getNearestActorP(0x132));
-            }
-
-        case 1:
-            if (mActorMngrs4.getActorP() == NULL) {
-                mActorMngrs4.entry(getSekizoaP(0));
-            }
-            if (mActorMngrs5.getActorP() == NULL) {
-                mActorMngrs5.entry(getNearestActorP(0x134));
-            }
-            if (mActorMngrs6.getActorP() == NULL) {
-                mActorMngrs6.entry(getEvtAreaTagP(1, 0));
-            }
-            if (mActorMngrs7.getActorP() == NULL) {
-                mActorMngrs7.entry(getEvtAreaTagP(1, 1));
-            }
-            if (mActorMngrs8.getActorP() == NULL) {
-                mActorMngrs8.entry(getNearestActorP(0x132));
-            }
-
-        default:
-            if (mActorMngrs4.getActorP() == NULL) {
-                mActorMngrs4.entry(getSekizoaP(0));
-            }
+    switch (mParamCreate) {
+    case 0:
+        if (mActorMngrs[1].getActorP() == NULL) {
+            mActorMngrs[1].entry(getSekizoaP(2));
         }
-    }
-    else if (mParamCreate == 6 && mActorMngrs.getActorP() == 0) {
-        mActorMngrs.entry(getKMsgTagP());
+        if (mActorMngrs[2].getActorP() == NULL) {
+            mActorMngrs[2].entry(getSekizoaP(3));
+        }
+        if (mActorMngrs[3].getActorP() == NULL) {
+            mActorMngrs[3].entry(getSekizoaP(1));
+        }
+        if (mActorMngrs[4].getActorP() == NULL) {
+            mActorMngrs[4].entry(getNearestActorP(0x134));
+        }
+        if (mActorMngrs[5].getActorP() == NULL) {
+            mActorMngrs[5].entry(getEvtAreaTagP(1, 0));
+        }
+        if (mActorMngrs[6].getActorP() == NULL) {
+            mActorMngrs[6].entry(getEvtAreaTagP(1, 1));
+        }
+        if (mActorMngrs[7].getActorP() == NULL) {
+            mActorMngrs[7].entry(getNearestActorP(0x132));
+            return;
+        }
+        return;
+
+    case 1:
+        if (mActorMngrs[3].getActorP() == NULL) {
+            mActorMngrs[3].entry(getSekizoaP(0));
+        }
+        if (mActorMngrs[4].getActorP() == NULL) {
+            mActorMngrs[4].entry(getNearestActorP(0x134));
+        }
+        if (mActorMngrs[5].getActorP() == NULL) {
+            mActorMngrs[5].entry(getEvtAreaTagP(1, 0));
+        }
+        if (mActorMngrs[6].getActorP() == NULL) {
+            mActorMngrs[6].entry(getEvtAreaTagP(1, 1));
+        }
+        if (mActorMngrs[7].getActorP() == NULL) {
+            mActorMngrs[7].entry(getNearestActorP(0x132));
+            return;
+        }
+        break;
+
+    case 4:
+        break;
+        
+    default:
+        if (mActorMngrs[3].getActorP() == NULL) {
+            mActorMngrs[3].entry(getSekizoaP(0));
+            return;
+        }
+        break;
+
+
+    case 6:
+        if (mActorMngrs[0].getActorP() == 0) {
+            mActorMngrs[0].entry(getKMsgTagP());
+        }
+        break;
     }
 }
 
@@ -828,12 +957,35 @@ BOOL daObj_Sekizoa_c::evtCutProc() {
 
 /* 80CCFBA0-80CCFD08 001940 0168+00 1/0 0/0 0/0 .text            action__15daObj_Sekizoa_cFv */
 void daObj_Sekizoa_c::action() {
-    // NONMATCHING
+    if (mCyl.ChkTgHit() != 0) {
+        mSound.startCollisionSE(mCyl.GetTgHitObjHitSeID(1), 2);
+    }
+    else {
+        if (mCyl2.ChkTgHit() != 0) {
+            mSound.startCollisionSE(mCyl2.GetTgHitObjHitSeID(1), 2);
+        }
+    }
+    if (mStagger.checkRebirth() != 0) {
+        mStagger.initialize();
+        mMode = 1;
+    }
+    // if ((this->*mInitFunc)())
+    // (this->*(mExecuteFunc))(0)
+    if (mInitFunc != NULL) {
+        if (mInitFunc == mExecuteFunc) {
+            (this->*(mExecuteFunc))(0);
+        }
+        else {
+            setAction(mInitFunc);
+        }
+    }
 }
 
 /* 80CCFD08-80CCFD80 001AA8 0078+00 1/0 0/0 0/0 .text            beforeMove__15daObj_Sekizoa_cFv */
 void daObj_Sekizoa_c::beforeMove() {
-    // NONMATCHING
+    if (checkHide() != 0 || mNoDraw != 0) {
+        attention_info.flags = 0;
+    }
 }
 
 /* ############################################################################################## */
@@ -863,7 +1015,47 @@ COMPILER_STRIP_GATE(0x80CD5DDC, &lit_5082);
 
 /* 80CCFD80-80CD009C 001B20 031C+00 1/0 0/0 0/0 .text            setAttnPos__15daObj_Sekizoa_cFv */
 void daObj_Sekizoa_c::setAttnPos() {
-    // NONMATCHING
+    cXyz vec_pos(30.0f, 30.0f, 0.0f);
+    Mtx M_stack;
+
+    mStagger.calc(0);
+    f32 rad_angle_y = cM_s2rad(mCurAngle.y - field_0xd7e.y);
+    mJntAnm.setParam(this, mpMorf[0]->getModel(), &vec_pos, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
+        daObj_Sekizoa_Param_c::m[9], daObj_Sekizoa_Param_c::m[8], daObj_Sekizoa_Param_c::m[11],
+        daObj_Sekizoa_Param_c::m[10], daObj_Sekizoa_Param_c::m[13], daObj_Sekizoa_Param_c::m[12],
+        daObj_Sekizoa_Param_c::m[15], daObj_Sekizoa_Param_c::m[14], 0.0f,
+        daObj_Sekizoa_Param_c::m[16], NULL);
+    mJntAnm.calcJntRad(0.2f, 1.0f, rad_angle_y);
+    setMtx();
+
+    if (mParamCreate == 6) {
+        J3DModel* mp_model = mpMorf[1]->getModel();
+        mDoMtx_stack_c::transS(current.pos);
+        mDoMtx_stack_c::ZXYrotM(mCurAngle);
+        mDoMtx_stack_c::scaleM(scale);
+
+        mp_model->setBaseTRMtx(mDoMtx_stack_c::get());
+        mp_model->setUserArea((u32) this);
+        mpMorf[1]->modelCalc();
+    }
+    if (mpMcaMorf != NULL) {
+        ((mDoExt_McaMorfSO *) mpMcaMorf)->play(NULL, 0);
+        if (mParamCreate == 1 || mParamCreate == 3 || mParamCreate == 5) {
+            mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(7));
+        }
+        else {
+            mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(13));
+        }
+        cMtx_copy(mDoMtx_stack_c::get(), M_stack);
+        mpMcaMorf->getModel()->setBaseTRMtx(M_stack);
+        ((mDoExt_McaMorfSO *) mpMcaMorf)->modelCalc();
+    }
+    mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getHeadJointNo()));
+    mDoMtx_stack_c::multVec(&vec_pos, &eyePos);
+    mJntAnm.setEyeAngleX(eyePos, 1.0f, 0);
+    mJntAnm.setEyeAngleY(eyePos, mCurAngle.y, 1, 1.0f, 0);
+    attention_info.position = current.pos;
+    attention_info.position.y += daObj_Sekizoa_Param_c::m[0];
 }
 
 /* ############################################################################################## */
@@ -939,7 +1131,77 @@ COMPILER_STRIP_GATE(0x80CD5E10, &lit_5238);
 /* 80CD009C-80CD03C0 001E3C 0324+00 1/0 0/0 0/0 .text            setCollision__15daObj_Sekizoa_cFv
  */
 void daObj_Sekizoa_c::setCollision() {
-    // NONMATCHING
+    u32 temp_1;
+    u32 temp_3;
+    u32 temp_2;
+    cXyz temp_vec2;
+
+    if (mHide == 0) {
+        temp_1 = 0x79;
+        temp_2 = 0xd8fafdbf;
+        temp_3 = 0x1f;
+        if (daNpcT_chkTmpBit(0x31) != 0) {
+            temp_1 = 0x69;
+        } else if (dComIfGp_event_runCheck() != 0) {
+            temp_2 = 0;
+            temp_3 = 0;
+        } else if (mTwilight != 0) {
+            temp_2 = 0;
+            temp_3 = 0;
+        } else if (mStagger.checkStagger() != 0) {
+            temp_2 = 0;
+            temp_3 = 0;
+        }
+        if (mParamCreate == 2 || mParamCreate == 3 || mParamCreate == 4 || mParamCreate == 5) {
+            cXyz temp_vec;
+            if (mParamCreate == 2 || mParamCreate == 4) {
+                temp_vec.set(-160.0f, 0.0f, 120.0f);
+            }
+            else {
+                temp_vec.set(160.0f, 0.0f, 120.0f);
+            }
+            mDoMtx_stack_c::YrotS(mCurAngle.y);
+            mDoMtx_stack_c::multVec(&temp_vec, &temp_vec);
+            f32 height = mCylH;
+            temp_vec2 = current.pos + temp_vec;
+            mCyl2.SetCoSPrm(temp_1);
+            mCyl2.SetTgType(temp_2);
+            mCyl2.SetTgSe(9);
+            mCyl2.SetTgHitMark(CcG_Tg_UNK_MARK_2);
+            mCyl2.SetTgSPrm(temp_3);
+            mCyl2.OnTgShield();
+            mCyl2.OnTgNoConHit();
+            mCyl2.SetH(height);
+            mCyl2.SetR(10.0f);
+            mCyl2.SetC(temp_vec2);
+            dComIfG_Ccsp()->Set(&mCyl2);
+        }
+        mCyl.SetCoSPrm(temp_1);
+        mCyl.SetTgType(temp_2);
+        mCyl.SetTgSe(9);
+        mCyl.SetTgHitMark(CcG_Tg_UNK_MARK_2);
+        mCyl.SetTgSPrm(temp_3);
+        mCyl.OnTgShield();
+        mCyl.OnTgNoConHit();
+        temp_vec2.set(0.0f, 0.0f, 0.0f);
+        f32 height = mCylH;
+        f32 radius = mWallR;
+        if (mParamCreate == 6) {
+            temp_vec2.set(0.0f, 0.0f, -40.0f);
+            radius = 140.0f;
+        }
+        mDoMtx_stack_c::YrotS(mCurAngle.y);
+        mDoMtx_stack_c::multVec(&temp_vec2, &temp_vec2);
+        temp_vec2 += current.pos;
+        mCyl.SetH(height);
+        mCyl.SetR(radius);
+        mCyl.SetC(temp_vec2);
+        dComIfG_Ccsp()->Set(&mCyl);
+    }
+    mCyl2.ClrCoHit();
+    mCyl.ClrCoHit();
+    mCyl2.ClrTgHit();
+    mCyl.ClrTgHit();
 }
 
 /* 80CD03C0-80CD03C8 002160 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__15daObj_Sekizoa_cFv */
@@ -950,7 +1212,32 @@ int daObj_Sekizoa_c::drawDbgInfo() {
 /* 80CD03C8-80CD04FC 002168 0134+00 1/0 0/0 0/0 .text            drawOtherMdl__15daObj_Sekizoa_cFv
  */
 void daObj_Sekizoa_c::drawOtherMdl() {
-    // NONMATCHING
+    if (mParamCreate == 6) {
+        J3DModel* mp_model = mpMorf[1]->getModel();
+        mp_model->getModelData();
+        g_env_light.settingTevStruct(0, &current.pos, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(mp_model, &tevStr);
+        mpMorf[1]->entryDL();
+    }
+    if ((mpMcaMorf != NULL) && (mParamDrawOtherMdl != 0)) {
+        J3DModel* mp_model = mpMcaMorf->getModel();
+        J3DModelData* mp_model_data = mp_model->getModelData();
+        g_env_light.setLightTevColorType_MAJI(mp_model_data, &tevStr);
+        if (mAnmFlags & ANM_PAUSE_BTP) {
+            mBtkAnm.entry(&mp_model_data->getMaterialTable(), mBtkAnm.getFrame());
+        }
+        if (mAnmFlags & ANM_PLAY_BCK) {
+            mBrkAnm.entry(&mp_model_data->getMaterialTable(), mBrkAnm.getBrkAnm()->getFrame());
+        }
+        mpMcaMorf->entryDL();
+        if (mAnmFlags & ANM_PLAY_BCK) {
+            mBrkAnm.remove(mp_model_data);
+        }
+        if (mAnmFlags & ANM_PAUSE_BTP) {
+            mBtkAnm.remove(mp_model_data);
+        }
+        dComIfGd_addRealShadow(mShadowKey, mp_model);
+    }
 }
 
 /* ############################################################################################## */
@@ -960,18 +1247,185 @@ COMPILER_STRIP_GATE(0x80CD5E14, &lit_5307);
 
 /* 80CD04FC-80CD05D0 00229C 00D4+00 1/1 0/0 0/0 .text            setYariAnm__15daObj_Sekizoa_cFiif
  */
-void daObj_Sekizoa_c::setYariAnm(int param_0, int param_1, f32 param_2) {
-    // NONMATCHING
+int daObj_Sekizoa_c::setYariAnm(int i_frame, int i_mode, f32 i_morf) {
+    static struct {
+        s32 param_0;
+        s32 param_1;
+    } yariAnmData [24] = {
+        { -1, 0 }, { 0x1D, 1 }, { 0x1D, 1 }, { 0x1D, 1 }, { 0x1D, 1 }, { 0x1C, 1 },
+        { 0x1C, 1 }, { 0x1C, 1 }, { 0x1C, 1 }, { 0x1C, 1 }, { 0x1C, 1 }, { 0x1C, 1 },
+        { 0x20, 1 }, { 0x20, 1 }, { 0x20, 1 }, { 0x20, 1 }, { 0x1F, 1 }, { 0x1F, 1 },
+        { 0x1F, 1 }, { 0x1F, 1 }, { 0x1F, 1 }, { 0x1F, 1 }, { 0x1F, 1 }, { 0, 0 },
+    
+    };
+
+    s32 anm_data;
+    J3DAnmTransform* anim = NULL;
+    mParamDrawOtherMdl = 0;
+    if (mpMcaMorf != NULL) {
+        anm_data = yariAnmData[i_frame].param_0;
+        if (anm_data > 0) {
+            anim = getTrnsfrmKeyAnmP(l_resNameList[yariAnmData[i_frame].param_1], anm_data);
+        }
+        if (anim != NULL) {
+            ((mDoExt_McaMorfSO *) mpMcaMorf)->setAnm(anim, i_mode, i_morf, 1.0f, 0.0f, -1.0f);
+            mParamDrawOtherMdl = 1;
+        }
+    }
+    return 1;
 }
 
 /* 80CD05D0-80CD06BC 002370 00EC+00 1/0 0/0 0/0 .text            drawGhost__15daObj_Sekizoa_cFv */
 void daObj_Sekizoa_c::drawGhost() {
-    // NONMATCHING
+    J3DModel* ghost_model = mpMorf[0]->getModel();
+    if (mParamCreate == 6) {
+        g_env_light.settingTevStruct(7, &current.pos, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(ghost_model->getModelData(), &tevStr);
+        mInvModel.entryDL(NULL);
+    }
+    else {
+        g_env_light.settingTevStruct(16, &current.pos, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(ghost_model->getModelData(), &tevStr);
+        dComIfGd_setListBG();
+        mpMorf[0]->entryDL();
+        dComIfGd_setList();
+    }
 }
 
 /* 80CD06BC-80CD0A84 00245C 03C8+00 2/0 0/0 0/0 .text afterSetMotionAnm__15daObj_Sekizoa_cFiifi */
-bool daObj_Sekizoa_c::afterSetMotionAnm(int param_0, int param_1, f32 param_2, int param_3) {
-    // NONMATCHING
+bool daObj_Sekizoa_c::afterSetMotionAnm(int i_frame, int i_mode, f32 i_morf, int param_3) {
+    static u32 btkAnmData[12] = {
+        0x32, 0, 1, -1,
+        0, 0, -1, 0,
+        0, 0x31, 0, 1,
+    };
+
+    static u32 brkAnmData[18] = {
+        0x2A, 0, 1, 0x2B, 0, 1, 
+        0x2C, 0, 1, 0x2D, 0, 1,
+         0x2E, 0, 1,
+        0x29, 0, 1,
+    };
+    
+    J3DAnmTextureSRTKey* anm_text = NULL;
+    J3DAnmTevRegKey* anm_tev = NULL;
+    if (mCreating) {
+        i_morf = 0.0f;
+    }
+    int frame_1 = 1;
+    int frame_2 = 3;
+    switch(i_frame) {
+        case 6:
+        case 17:
+            mpMorf[0]->setStartFrame(29.0f);
+            mpMorf[0]->setEndFrame(41.0f);
+            break;
+        case 7:
+        case 18:
+            mpMorf[0]->setStartFrame(0.0f);
+            mpMorf[0]->setEndFrame(17.0f);
+            break;
+        case 8:
+        case 19:
+            mpMorf[0]->setStartFrame(18.0f);
+            mpMorf[0]->setEndFrame(35.0f);
+            break;
+        case 9:
+        case 20:
+            mpMorf[0]->setStartFrame(36.0f);
+            break;
+        case 23:
+            mpMorf[0]->setStartFrame(0.0f);
+            mpMorf[0]->setEndFrame(0.0f);
+            mpMorf[0]->setPlaySpeed(0.0f);
+    }
+    if (i_frame == 23) {
+        frame_1 = 3;
+        frame_2 = 5;
+    }
+    else if (mSetFadeLightOff) {
+        frame_1 = 2;
+        frame_2 = 4;
+        if (mSetFadeLightOff2 == 0) {
+            if (mSetMotionAnm == 0) {
+                if (i_frame == 3 || i_frame == 14) {
+                    frame_1 = 0;
+                    frame_2 = 0;
+                }
+            }
+            else {
+                frame_2 = 2;
+            }
+        }   
+        else {
+            frame_2 = 1;
+        }
+    }
+    if (btkAnmData[frame_1] != -1) {
+        anm_text = getTexSRTKeyAnmP(l_resNameList[btkAnmData[frame_1]], btkAnmData[frame_1]);
+    }
+    if (anm_text != NULL) {
+        if (mBtkAnm.getBtkAnm() == anm_text) {
+            mAnmFlags |= ANM_PLAY_BTK;
+        }
+        else {
+            if (setBtkAnm(anm_text, mpMorf[0]->getModel()->getModelData(), 1.0f, 0x80cd0740)) { // LAST ARGUMENT
+                if (frame_1 == 3) {
+                    mBtkAnm.setPlaySpeed(0.0f);
+                }
+                mAnmFlags |= 0x82;
+            }
+            if ((mAnmFlags & 2) == 0) {
+                anm_text = NULL;
+            }
+        }
+    }
+    if ((anm_text == NULL) && (btkAnmData[frame_1] != -1)) {
+        return 0;
+    }
+    else {
+        if (brkAnmData[frame_2] != -1) {
+            anm_tev = getTevRegKeyAnmP(l_resNameList[brkAnmData[frame_2]], brkAnmData[frame_2]);
+        }
+        if (anm_tev != NULL) {
+            if (mBrkAnm.getBrkAnm() == anm_tev) {
+                mAnmFlags |= ANM_PLAY_BRK;
+            }
+            else {
+                frame_1 = setBrkAnm(anm_tev, mpMorf[0]->getModel()->getModelData(), 1.0, 0); // LAST ARGUMENT
+                if (frame_1 != 0) {
+                    if (frame_2 == 5) {
+                        mBrkAnm.setPlaySpeed(0.0f);
+                    }
+                    mAnmFlags |= 0x104;
+                }
+                if ((mAnmFlags & 4) == 0) {
+                    anm_tev = NULL;
+                }
+            }
+        }
+        if ((anm_tev == NULL) && (brkAnmData[frame_2] != -1)) {
+            return 0;
+        }
+        else if (mParamCreate == 6) {
+            return 1;
+        }
+        else {
+            frame_1 = setYariAnm(i_frame, i_mode, i_morf);
+            if (frame_1 == 0) {
+                return 0;
+            }
+            else {
+                if (mParamCreate == 2 || mParamCreate == 3 || mParamCreate == 4 || mParamCreate == 5) {
+                    mpMorf[0]->setPlaySpeed(0.0f);
+                    if (mpMcaMorf != NULL) {
+                        mpMcaMorf->setPlaySpeed(0.0f);
+                    }
+                }
+                return 1;
+            }
+        }
+    }
 }
 
 /* 80CD0A84-80CD0B08 002824 0084+00 1/1 0/0 0/0 .text            selectAction__15daObj_Sekizoa_cFv
@@ -986,12 +1440,6 @@ int daObj_Sekizoa_c::selectAction() {
     case 2:
         mInitFunc = &daObj_Sekizoa_c::wait;
     }
-    // if (mParamCreate < 2) {
-    //     mInitFunc = &daObj_Sekizoa_c::puzzle;
-    // }
-    // else {
-    //     mInitFunc = &daObj_Sekizoa_c::wait;
-    // }
 
     return 1;
 }
@@ -1316,10 +1764,10 @@ static daObj_Sekizoa_Param_c l_HIO;
 
 /* 80CD5B84-80CD5C30 007924 00AC+00 1/1 0/0 0/0 .text            chkGoal__15daObj_Sekizoa_cFv */
 int daObj_Sekizoa_c::chkGoal() {
-    daTag_EvtArea_c* evt_area_A = (daTag_EvtArea_c*) mActorMngrs6.getActorP();
+    daTag_EvtArea_c* evt_area_A = (daTag_EvtArea_c*) mActorMngrs[5].getActorP();
 
     if (evt_area_A->chkPointInArea(current.pos)) {
-        daTag_EvtArea_c* evt_area_B = (daTag_EvtArea_c*) mActorMngrs7.getActorP();
+        daTag_EvtArea_c* evt_area_B = (daTag_EvtArea_c*) mActorMngrs[6].getActorP();
 
         if (evt_area_B->chkPointInArea(current.pos)) {
             return 0;

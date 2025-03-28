@@ -31,7 +31,7 @@ public:
     /* 80CCF03C */ int isDelete();
     /* 80CCF138 */ void reset();
     /* 80CCF708 */ void srchActors();                                           // ALMOST DONE
-    /* 80CD04FC */ void setYariAnm(int, int, f32);
+    /* 80CD04FC */ int setYariAnm(int, int, f32);
     /* 80CD0A84 */ int selectAction();
     /* 80CD0B08 */ int chkAction(actionFunc i_action);                          // DONE
     /* 80CD0B34 */ int setAction(actionFunc i_action);                          // DONE
@@ -67,18 +67,18 @@ public:
     /* 80CCF9A8 */ BOOL evtTalk();
     /* 80CCFAA8 */ BOOL evtCutProc();                                           // DONE
     /* 80CCF704 */ void setAfterTalkMotion();                                   // DONE
-    /* 80CCFBA0 */ void action();
-    /* 80CCFD08 */ void beforeMove();
+    /* 80CCFBA0 */ void action();                                               // ALMOST DONE UP TO @XXX
+    /* 80CCFD08 */ void beforeMove();                                           // DONE
     /* 80CCFD80 */ void setAttnPos();
     /* 80CD009C */ void setCollision();
     /* 80CD03C0 */ int drawDbgInfo();
-    /* 80CD03C8 */ void drawOtherMdl();
+    /* 80CD03C8 */ void drawOtherMdl();                                         // ALMOST DONE
     /* 80CD05D0 */ void drawGhost();
     /* 80CD06BC */ bool afterSetMotionAnm(int, int, f32, int);
 
     void setWolfHowling() {
         if (mParamCreate != 0) {
-            fopAc_ac_c* actor_p = mActorMngrs4.getActorP();
+            fopAc_ac_c* actor_p = mActorMngrs[3].getActorP();
             JUT_ASSERT(0x1A3, 0 != actor_p);
 
             ((daObj_Sekizoa_c*)actor_p)->setWolfHowling();
@@ -155,19 +155,12 @@ public:
     /* 0x0F8C */ dCcD_Cyl mCyl2;
     /* 0x10C8 */ u8 mParamCreate;
     /* 0x10C9 */ u8 field_0x10C9[3];                    // Padding
-    /* 0x10CC */ daNpcT_ActorMngr_c mActorMngrs;
-    /* 0x10D4 */ daNpcT_ActorMngr_c mActorMngrs2;
-    /* 0x10DC */ daNpcT_ActorMngr_c mActorMngrs3;
-    /* 0x10E4 */ daNpcT_ActorMngr_c mActorMngrs4;       // wolf statue or wolf link ?
-    /* 0x10EC */ daNpcT_ActorMngr_c mActorMngrs5;
-    /* 0x10F4 */ daNpcT_ActorMngr_c mActorMngrs6;       // Statue A
-    /* 0x10FC */ daNpcT_ActorMngr_c mActorMngrs7;       // Statue B
-    /* 0x1104 */ daNpcT_ActorMngr_c mActorMngrs8;
+    /* 0x10CC */ daNpcT_ActorMngr_c mActorMngrs[8];     // idx 5&6 -> 2 statues
     /* 0x110C */ actionFunc mInitFunc;
+    /* 0x1114 */ u8 field_0x1114[4];
     /* 0x1118 */ actionFunc mExecuteFunc;
+    /* 0x1120 */ u8 field_0x1120[4];
     /* 0x1124 */ daNpcT_Path_c mPath;
-    /* 0x1146 */ u8 field_0x1146[2];                    // Padding
-    /* 0x1148 */ s32 mpPointerUKN;
     /* 0x114C */ cXyz mCXyzJump;
     /* 0x1158 */ int mIntCutJump;
     /* 0x115C */ float mFloatJump2;
@@ -180,9 +173,9 @@ public:
     /* 0x1173 */ u8 mSetWolfHowling;
     /* 0x1174 */ u8 field_0x1174[2];                    // Padding
     /* 0x1176 */ bool mSetFadeLightOff;
-    /* 0x1177 */ u8 field_0x1177;                       // Padding
+    /* 0x1177 */ bool mSetMotionAnm;                       // Padding
     /* 0x1178 */ bool mSetFadeLightOff2;
-    /* 0x1179 */ u8 field_0x1179;                       // Padding
+    /* 0x1179 */ u8 mParamDrawOtherMdl;                       
     /* 0x117A */ bool mChkGoal;
     /* 0x117B */ u8 field_0x117B[5];                    // Padding
 };
@@ -190,7 +183,7 @@ public:
 struct daObj_Sekizoa_Param_c {
     /* 80CD5C30 */ virtual ~daObj_Sekizoa_Param_c() {}
 
-    static u8 const m[156];
+    static f32 const m[40];
 };
 
 #endif /* D_A_OBJ_SEKIZOA_H */
