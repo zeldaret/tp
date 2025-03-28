@@ -18,7 +18,7 @@ class ep_hahen_s {
         /* 0x1C */ cXyz field_0x1c;
         /* 0x28 */ s16 field_0x28;
         /* 0x2A */ s16 field_0x2a;
-        /* 0x2C */ u16 field_0x2c;
+        /* 0x2C */ s16 field_0x2c;
         /* 0x2E */ u8 field_0x2e;
         /* 0x2F */ u8 field_0x2f;
         /* 0x30 */ f32 field_0x30;
@@ -26,15 +26,16 @@ class ep_hahen_s {
         /* 0x38 */ f32 mGroundY;
         /* 0x3C */ dBgS_GndChk field_0x3c;
         /* 0x90 */ u16 field_0x90;
-        /* 0x92 */ u16 field_0x92;
-        /* 0x94 */ u16 field_0x94;
+        /* 0x92 */ s16 field_0x92;
+        /* 0x94 */ s16 field_0x94;
         /* 0x96 */ s8 field_0x96;
         /* 0x97 */ u8 field_0x97;
         /* 0x98 */ u8 field_0x98;
         /* 0x99 */ u8 field_0x99[0x9c - 0x99];
         /* 0x9C */ u32 field_0x9c;
         /* 0xA0 */ u32 field_0xa0;
-        /* 0xA4 */ u8 field_0xa4[0xa7 - 0xa4];
+        /* 0xA4 */ u8 field_0xa4;
+        /* 0xA7 */ u8 field_0xa7;
 };
 
 STATIC_ASSERT(sizeof(ep_hahen_s) == 0xa8);
@@ -42,7 +43,6 @@ class ep_class : public fopAc_ac_c {
     public:
         /* 8046AB2C */ ep_class();
 
-    private:
         /* 0x0568 */ request_of_phase_process_class mPhase;
         /* 0x0570 */ Mtx field_0x570;
         /* 0x05A0 */ J3DModel* mpModel;
@@ -72,11 +72,11 @@ class ep_class : public fopAc_ac_c {
         /* 0x060E */ u8 field_0x60e;
         /* 0x060F */ u8 field_0x60f;
         /* 0x0610 */ void* field_0x610;
-        /* 0x0614 */ LIGHT_INFLUENCE field_0x614;
+        /* 0x0614 */ LIGHT_INFLUENCE mLightInf;
         /* 0x0634 */ cXyz field_0x634;
         /* 0x0640 */ s8 field_0x640;
         /* 0x0641 */ u8 field_0x641[0x644 - 0x641];
-        /* 0x0644 */ dCcD_Stts field_0x644;
+        /* 0x0644 */ dCcD_Stts mStts;
         /* 0x0680 */ dCcD_Cyl mCyl;
         /* 0x07BC */ dCcD_Sph mSph1;
         /* 0x08F4 */ dCcD_Sph mSph2;
@@ -84,7 +84,7 @@ class ep_class : public fopAc_ac_c {
         /* 0x0A50 */ s16 field_0xa50;
         /* 0x0A52 */ u8 field_0xa52[0xa58 - 0xa52];
         /* 0x0A58 */ s16 field_0xa58;
-        /* 0x0A5A */ u8 field_0xa5a;
+        /* 0x0A5A */ s8 field_0xa5a;
         /* 0x0A5B */ u8 field_0xa5b;
         /* 0x0A5C */ int field_0xa5c;
         /* 0x0A60 */ u32 field_0xa60;
