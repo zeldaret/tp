@@ -3065,7 +3065,7 @@ static int daCow_Execute(void* actor) {
 int daCow_c::CreateHeap() {
     J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("Cow", 0x1f));
 
-    JUT_ASSERT(modelData, 3826);
+    JUT_ASSERT(3826, modelData);
 
     mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000,
                                   0x11020084);
