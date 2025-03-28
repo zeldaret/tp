@@ -98,8 +98,4 @@ class ep_class : public fopAc_ac_c {
 
 STATIC_ASSERT(sizeof(ep_class) == 0xe70);
 
-struct daObj {
-    /* 80037900 */ static void HitSeStart(cXyz const*, int, dCcD_GObjInf const*, u32);
-};
-
 #endif /* D_A_EP_H */
