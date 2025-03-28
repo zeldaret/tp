@@ -708,7 +708,7 @@ int daAlink_c::setSyncHorse(int param_0) {
                 setDoStatus(40);
 
                 if (doTrigger()) {
-                    onResetFlg0(RFLG0_UNK_200);
+                    onResetFlg0(RFLG0_COW_GAME_LEASH);
                     voiceStart(Z2SE_AL_V_RUSH_HORSE);
                     field_0x30a6 = daAlinkHIO_horse_c0::m.mWhipWaitTime;
                     setHorseSwordUpAnime();
