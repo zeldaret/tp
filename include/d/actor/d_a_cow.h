@@ -77,7 +77,7 @@ public:
 
     enum RunType {
         RunType_None = 0,
-        RunType_Walk = 1,
+        RunType_Trot = 1,
         RunType_Run = 2,
     };
 

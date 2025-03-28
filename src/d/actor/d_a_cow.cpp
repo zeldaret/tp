@@ -76,13 +76,13 @@ int daCow_c::calcRunAnime(int resetRunType) {
     case daCow_c::RunType_None:
         if (speedF < 35.0f) {
             setBck(daCow_c::Animation_TrotA, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
-            mRunType = daCow_c::RunType_Walk;
+            mRunType = daCow_c::RunType_Trot;
         } else {
             setBck(daCow_c::Animation_Run, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
             mRunType = daCow_c::RunType_Run;
         }
         break;
-    case daCow_c::RunType_Walk: {
+    case daCow_c::RunType_Trot: {
         f32 animationSpeed = (speedF * 3.0f) / 25.0f;
         if (animationSpeed > 5.0f) {
             animationSpeed = 5.0f;
@@ -97,7 +97,7 @@ int daCow_c::calcRunAnime(int resetRunType) {
         mpMorf->setPlaySpeed(1.3f);
         if (speedF < 35.0f) {
             setBck(daCow_c::Animation_TrotA, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
-            mRunType = daCow_c::RunType_Walk;
+            mRunType = daCow_c::RunType_Trot;
         }
         break;
     }
