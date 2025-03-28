@@ -49,35 +49,35 @@ public:
     };
 
     enum Animation {
-        Animation_5 = 5,
-        Animation_6 = 6,
-        Animation_7 = 7,
-        Animation_8 = 8,
-        Animation_Eat = 9,
-        Animation_10 = 10,
-        Animation_11 = 11,
-        Animation_12 = 12,
-        Animation_13 = 13,
-        Animation_14 = 14,
-        Animation_Moo = 15,
-        Animation_16 = 16,
-        Animation_17 = 17,
-        Animation_18 = 18,
+        Animation_Catch = 5,
+        Animation_ConnectA = 6,
+        Animation_DownL = 7,
+        Animation_DownR = 8,
+        Animation_EatA = 9,
+        Animation_FallL = 10,
+        Animation_FallR = 11,
+        Animation_GetupL = 12,
+        Animation_GetupR = 13,
+        Animation_Jump = 14,
+        Animation_MooA = 15,
+        Animation_Press = 16,
+        Animation_PressWA = 17,
+        Animation_PressWB = 18,
         Animation_Run = 19,
-        Animation_CrazyDash = 20,
-        Animation_Shake = 21,
-        Animation_22 = 22,
-        Animation_23 = 23,
-        Animation_24 = 24,
-        Animation_Walk = 25,
-        Animation_Wait = 26,
-        Animation_27 = 27,
-        Animation_28 = 28,
+        Animation_Rush = 20,
+        Animation_ShakeA = 21,
+        Animation_Shakeoff = 22,
+        Animation_Shock = 23,
+        Animation_Toss = 24,
+        Animation_TrotA = 25,
+        Animation_WaitA = 26,
+        Animation_WalkA = 27,
+        Animation_WalkDejected = 28,
     };
 
     enum RunType {
         RunType_None = 0,
-        RunType_Walk = 1,
+        RunType_Trot = 1,
         RunType_Run = 2,
     };
 
@@ -269,7 +269,7 @@ private:
     /* 0xca7 */ u8 _unused;
     /* 0xca8 */ bool mNadeNade;
     /* 0xca9 */ bool mEnterTimerDone;
-    /* 0xcaa */ u8 mDoAnim6;
+    /* 0xcaa */ u8 mDoConnectAnim;
     /* 0xcac */ f32 mRedTev;
     /* 0xcb0 */ f32 mTargetRedTev;
     /* 0xcb4 */ u8 mChangeRedTev;
