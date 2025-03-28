@@ -1627,7 +1627,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_coach_2D"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_coach_fire"),
     ActorRel(Equivalent, "d_a_cow"),
-    ActorRel(NonMatching, "d_a_cstatue"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_cstatue"),
     ActorRel(Equivalent, "d_a_do"), # Z2SoundObjSimple dtor
     ActorRel(MatchingFor("GZ2E01"), "d_a_door_boss"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_door_bossL5"),
