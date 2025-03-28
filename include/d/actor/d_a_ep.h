@@ -16,9 +16,7 @@ class ep_hahen_s {
         /* 0x04 */ cXyz field_0x4;
         /* 0x10 */ cXyz field_0x10;
         /* 0x1C */ cXyz field_0x1c;
-        /* 0x28 */ s16 field_0x28;
-        /* 0x2A */ s16 field_0x2a;
-        /* 0x2C */ s16 field_0x2c;
+        /* 0x28 */ csXyz field_0x28;
         /* 0x2E */ u8 field_0x2e;
         /* 0x2F */ u8 field_0x2f;
         /* 0x30 */ f32 field_0x30;
@@ -95,9 +93,13 @@ class ep_class : public fopAc_ac_c {
         /* 0x0A7A */ u8 field_0xa7a;
         /* 0x0A7B */ u8 field_0xa7b;
         /* 0x0A7C */ ep_hahen_s mHahen[6];
+        /* 0x0E6C */ u8 field_0xe6c;
 };
 
-STATIC_ASSERT(sizeof(ep_class) == 0xe6c);
+STATIC_ASSERT(sizeof(ep_class) == 0xe70);
 
+struct daObj {
+    /* 80037900 */ static void HitSeStart(cXyz const*, int, dCcD_GObjInf const*, u32);
+};
 
 #endif /* D_A_EP_H */
