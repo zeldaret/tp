@@ -1175,8 +1175,6 @@ inline void dComIfGs_onEventBit(u16 i_flag) {
     g_dComIfG_gameInfo.info.getSavedata().getEvent().onEventBit(i_flag);
 }
 
-// debug rom says `i_flag` is not const, but it's needed to match in some places?
-// missing some other inline maybe?
 inline BOOL dComIfGs_isEventBit(const u16 i_flag) {
     return g_dComIfG_gameInfo.info.getEvent().isEventBit(i_flag);
 }
