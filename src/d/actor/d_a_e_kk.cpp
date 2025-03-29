@@ -4,54 +4,67 @@
  */
 
 #include "d/actor/d_a_e_kk.h"
+#include "d/actor/d_a_player.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_item.h"
-#include "d/actor/d_a_player.h"
+
 UNK_REL_DATA;
 #include "f_op/f_op_actor_enemy.h"
 
-
+enum daE_KK_Action {
+    ACTION_WAIT,
+    ACTION_ICICLEWAIT,
+    ACTION_WALK,
+    ACTION_SPEARTHROW,
+    ACTION_BACKWALK,
+    ACTION_YOROKE,
+    ACTION_GUARD,
+    ACTION_DAMAGE,
+    ACTION_ATTACK,
+    ACTION_WEAPONMOVE,
+    ACTION_DEAD
+};
 
 namespace {
 /* 806FF6FC-806FF740 000038 0044+00 1/1 0/0 0/0 .data            cc_kk_src__22@unnamed@d_a_e_kk_cpp@
-*/
+ */
 static dCcD_SrcCyl cc_kk_src = {
     {
-        {0x0, {{0x0, 0x0, 0x0}, {0xD8FBF9FF, 0x43}, 0x75}}, // mObj
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, //mGObjAt
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x1404}, //mGObjTg
-        {0x0}, //mGObjCo
-    }, // mObjInf
+        {0x0, {{0x0, 0x0, 0x0}, {0xD8FBF9FF, 0x43}, 0x75}},  // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},                  // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x1404},               // mGObjTg
+        {0x0},                                               // mGObjCo
+    },                                                       // mObjInf
     {
-        {0.0f, 0.0f, 0.0f}, // mCenter
-        40.0f, // mRadius
-        0.0f // mHeight
-    } // mCyl
+        {0.0f, 0.0f, 0.0f},  // mCenter
+        40.0f,               // mRadius
+        0.0f                 // mHeight
+    }  // mCyl
 };
 
 /* 806FF740-806FF780 00007C 0040+00 1/1 0/0 0/0 .data cc_kk_at_src__22@unnamed@d_a_e_kk_cpp@ */
 static dCcD_SrcSph cc_kk_at_src = {
     {
-        {0x0, {{0x400, 0x1, 0xD}, {0xD8FBFDFF, 0x43}, 0x15}}, // mObj
-        {dCcD_SE_NONE, 0x0, 0x1, 0x0, 0x0}, // mGObjAt
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x1404}, // mGObjTg
-        {0x0}, // mGObjCo
-    }, // mObjInf
+        {0x0, {{0x400, 0x1, 0xD}, {0xD8FBFDFF, 0x43}, 0x15}},  // mObj
+        {dCcD_SE_NONE, 0x0, 0x1, 0x0, 0x0},                    // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x1404},                 // mGObjTg
+        {0x0},                                                 // mGObjCo
+    },                                                         // mObjInf
     {
-        {{0.0f, 0.0f, 0.0f}, 40.0f} // mSph 
-    }, // mSphAttr
+        {{0.0f, 0.0f, 0.0f}, 40.0f}  // mSph
+    },                               // mSphAttr
 };
-}
+}  // namespace
 
 /* 806FA70C-806FA75C 0000EC 0050+00 1/1 0/0 0/0 .text            __ct__12daE_KK_HIO_cFv */
 daE_KK_HIO_c::daE_KK_HIO_c() {
     field_0x4 = -1;
-    field_0x8 = 1.0f;
-    field_0xc = 1500.0f;
-    field_0x10 = 900.0f;
-    field_0x14 = 1000.0f;
-    field_0x18 = 0x64;
-    field_0x1a = 0;
+    model_size = 1.0f;
+    spear_throw_range = 1500.0f;
+    direct_attack_range = 900.0f;
+    default_moving_range = 1000.0f;
+    escape_time = 100;
+    range_display = 0;
 }
 
 /* 806FA75C-806FA7FC 00013C 00A0+00 1/1 0/0 0/0 .text ctrlJoint__8daE_KK_cFP8J3DJointP8J3DModel */
@@ -112,10 +125,10 @@ int daE_KK_c::draw() {
             mpMorfSO->entryDL();
 
             u32 shadow =
-                dComIfGd_setShadow(field_0x668, 1, model, &position, 1000.0f, 0.0f, current.pos.y,
+                dComIfGd_setShadow(mModelShadow, 1, model, &position, 1000.0f, 0.0f, current.pos.y,
                                    mObjAcch.GetGroundH(), mObjAcch.m_gnd, &tevStr, 0, 1.0f,
                                    dDlst_shadowControl_c::getSimpleTex());
-            field_0x668 = shadow;
+            mModelShadow = shadow;
         }
 
         if (field_0x67d == 0) {
@@ -127,10 +140,10 @@ int daE_KK_c::draw() {
             g_env_light.setLightTevColorType_MAJI(weaponModel, &tevStr);
 
             u32 shadow =
-                dComIfGd_setShadow(field_0x66c, 1, weaponModel, &position, 2000.0f, 0.0f,
+                dComIfGd_setShadow(mWeaponShadow, 1, weaponModel, &position, 2000.0f, 0.0f,
                                    current.pos.y, mObjAcch.GetGroundH(), mObjAcch.m_gnd, &tevStr, 0,
                                    1.0f, dDlst_shadowControl_c::getSimpleTex());
-            field_0x66c = shadow;
+            mWeaponShadow = shadow;
         }
     }
     return 1;
@@ -212,11 +225,11 @@ void daE_KK_c::damage_check() {
     mDoMtx_stack_c::multVecZero(&effPos);
     setMidnaBindEffect(this, &mCreatureSound, &effPos, &scale);
 
-    if (field_0x678 == 0) {
+    if (mDamageTimer == 0) {
         if (mSph.ChkAtHit() && mSph.ChkAtShieldHit()) {
             mCreatureSound.startCollisionSE(Z2SE_HIT_SWORD, 0x28);
             mSph.ClrAtHit();
-            field_0x678 = 8;
+            mDamageTimer = 8;
             speedF = -70.0f;
         }
 
@@ -224,13 +237,13 @@ void daE_KK_c::damage_check() {
             if (mSpheres[i].ChkAtHit() && mSpheres[i].ChkAtShieldHit()) {
                 mCreatureSound.startCollisionSE(Z2SE_HIT_SWORD, 0x28);
                 mSpheres[i].ClrAtHit();
-                field_0x678 = 8;
+                mDamageTimer = 8;
                 speedF = -70.0f;
             }
         }
 
         if (field_0x67d == 0) {
-            if (fopAcM_searchPlayerDistance(this) <= l_HIO.field_0x10) {
+            if (fopAcM_searchPlayerDistance(this) <= l_HIO.direct_attack_range) {
                 if (mCutTypeCheck(0)) {
                     mCyl.OnTgShield();
                 } else {
@@ -243,9 +256,9 @@ void daE_KK_c::damage_check() {
             cXyz position;
             position.set(current.pos);
             position.y += 100.0f;
-            cXyz hioScale(l_HIO.field_0x8, l_HIO.field_0x8, l_HIO.field_0x8);
+            cXyz hioScale(l_HIO.model_size, l_HIO.model_size, l_HIO.model_size);
             current.angle.y = shape_angle.y;
-            field_0x678 = 8;
+            mDamageTimer = 8;
             mAtInfo.mpCollider = mCyl.GetTgHitObj();
 
             if (mCyl.GetTgHitObj()->ChkAtType(AT_TYPE_HOOKSHOT) ||
@@ -302,10 +315,8 @@ void daE_KK_c::damage_check() {
 
                     mCyl.OffTgNoHitMark();
                     setActionMode(7, 1);
-                    if (mCyl.GetTgHitObj()->ChkAtType(AT_TYPE_NORMAL_SWORD) &&
-                        mCutTypeCheck(1))
-                    {
-                        field_0x678 = 8;
+                    if (mCyl.GetTgHitObj()->ChkAtType(AT_TYPE_NORMAL_SWORD) && mCutTypeCheck(1)) {
+                        mDamageTimer = 8;
                         mCyl.ClrTgHit();
                         mCyl.OnTgStopNoConHit();
                         return;
@@ -321,8 +332,8 @@ void daE_KK_c::damage_check() {
 /* 806FB2EC-806FB4F4 000CCC 0208+00 8/8 0/0 0/0 .text            nextActionCheck__8daE_KK_cFv */
 void daE_KK_c::nextActionCheck() {
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
-    if (!dComIfGp_event_runCheck() && fopAcM_searchPlayerDistance(this) > l_HIO.field_0x10 &&
-        fopAcM_searchPlayerDistance(this) <= l_HIO.field_0xc)
+    if (!dComIfGp_event_runCheck() && fopAcM_searchPlayerDistance(this) > l_HIO.direct_attack_range &&
+        fopAcM_searchPlayerDistance(this) <= l_HIO.spear_throw_range)
     {
         if (!fopAcM_otherBgCheck(this, dComIfGp_getPlayer(0)) &&
             eyePos.y + 200.0f >= player->current.pos.y)
@@ -331,7 +342,7 @@ void daE_KK_c::nextActionCheck() {
             return;
         }
     }
-    if (!dComIfGp_event_runCheck() && fopAcM_searchPlayerDistance(this) <= l_HIO.field_0x10 &&
+    if (!dComIfGp_event_runCheck() && fopAcM_searchPlayerDistance(this) <= l_HIO.direct_attack_range &&
         !fopAcM_otherBgCheck(this, dComIfGp_getPlayer(0)))
     {
         if (daPy_getPlayerActorClass()->getDamageWaitTimer() != 0 && mActionMode != 0) {
@@ -391,7 +402,7 @@ bool daE_KK_c::way_gake_check() {
 
 /* 806FB6C0-806FB7D8 0010A0 0118+00 3/3 0/0 0/0 .text            mDeadEffSet__8daE_KK_cFR4cXyz */
 void daE_KK_c::mDeadEffSet(cXyz& param_0) {
-    cXyz hioScale(l_HIO.field_0x8, l_HIO.field_0x8, l_HIO.field_0x8);
+    cXyz hioScale(l_HIO.model_size, l_HIO.model_size, l_HIO.model_size);
 
     dComIfGp_particle_set(0x85B8, &param_0, &shape_angle, &hioScale);
     dComIfGp_particle_set(0x85B9, &param_0, &shape_angle, &hioScale);
@@ -404,12 +415,12 @@ void daE_KK_c::executeWait() {
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
     switch (mMoveMode) {
     case 0:
-        if (fopAcM_searchPlayerDistance(this) <= l_HIO.field_0x10 &&
+        if (fopAcM_searchPlayerDistance(this) <= l_HIO.direct_attack_range &&
             current.pos.y + 100.0f >= player->current.pos.y &&
             !fopAcM_otherBgCheck(this, dComIfGp_getPlayer(0)))
         {
             setBck(0x1A, 2, 3.0f, 1.0f);
-            field_0x670 = 0x1e;
+            mTimer = 30;
         } else {
             setBck(0x19, 2, 10.0f, 1.0f);
             field_0x672 = (s16)cM_rndF(60.0f) + 0x1E;
@@ -480,9 +491,9 @@ void daE_KK_c::executeWalk() {
     switch (mMoveMode) {
     case 0:
         setBck(0x1B, 2, 3.0f, 1.0f);
-        position1.x = cM_rndFX(field_0x75c) + field_0x740.x;
+        position1.x = cM_rndFX(mMovingRange) + field_0x740.x;
         position1.y = field_0x740.y;
-        position1.z = cM_rndFX(field_0x75c) + field_0x740.z;
+        position1.z = cM_rndFX(mMovingRange) + field_0x740.z;
         position1 -= current.pos;
         field_0x674 = position1.atan2sX_Z() - current.angle.y;
 
@@ -549,7 +560,7 @@ void daE_KK_c::executeSpearThrow() {
         break;
 
     case 2:
-        if (!dComIfGp_event_runCheck() && fopAcM_searchPlayerDistance(this) <= l_HIO.field_0x10 &&
+        if (!dComIfGp_event_runCheck() && fopAcM_searchPlayerDistance(this) <= l_HIO.direct_attack_range &&
             !fopAcM_otherBgCheck(this, dComIfGp_getPlayer(0)) && (s32)mpMorfSO->getFrame() < 0x17 &&
             !dComIfGp_event_runCheck() && !dComIfGp_checkPlayerStatus0(0, 0x100))
         {
@@ -628,7 +639,7 @@ void daE_KK_c::executeBackWalk() {
     case 0:
         setBck(7, 2, 3.0f, 1.0f);
         if (field_0x76c == 0) {
-            field_0x670 = l_HIO.field_0x18;
+            mTimer = l_HIO.escape_time;
             field_0x76c = 1;
         }
         mCyl.OffTgNoHitMark();
@@ -649,7 +660,7 @@ void daE_KK_c::executeBackWalk() {
 
     case 2:
         speedF = 15.0f;
-        if (field_0x670 == 0 || dComIfG_Bgsp().LineCross(&linChk) || way_gake_check()) {
+        if (mTimer == 0 || dComIfG_Bgsp().LineCross(&linChk) || way_gake_check()) {
             setBck(0x13, 0, 0.0f, 1.0f);
             setWeaponBck(0x1E, 0, 0.0f, 1.0f);
             current.angle.y = shape_angle.y;
@@ -813,7 +824,7 @@ void daE_KK_c::executeAttack() {
     case 1:
         if (fopAcM_searchPlayerDistance(this) > 600.0f) {
             speedF = 20.0f;
-            if (fopAcM_searchPlayerDistance(this) > l_HIO.field_0x10) {
+            if (fopAcM_searchPlayerDistance(this) > l_HIO.direct_attack_range) {
                 speedF = 0.0f;
                 nextActionCheck();
             }
@@ -905,7 +916,7 @@ void daE_KK_c::executeDead() {
         break;
 
     case 2:
-        if (field_0x670 == 1 || (field_0x670 == 0 && mObjAcch.ChkGroundHit())) {
+        if (mTimer == 1 || (mTimer == 0 && mObjAcch.ChkGroundHit())) {
             mDeadEffSet(effect_position);
             fopAcM_delete(this);
         }
@@ -920,7 +931,7 @@ void daE_KK_c::executeWeaponMove() {
     cXyz position1;
     cXyz position2;
     cXyz new_speed;
-    
+
     J3DModel* weaponModel = mpWeaponMorfSO->getModel();
 
     mDoMtx_stack_c::copy(weaponModel->getAnmMtx(1));
@@ -935,111 +946,116 @@ void daE_KK_c::executeWeaponMove() {
     }
 
     switch (mMoveMode) {
-        case 0:
-            shape_angle.x = home.angle.x + 0x878C;
-            shape_angle.y = home.angle.y + 0x4399;
+    case 0:
+        shape_angle.x = home.angle.x + 0x878C;
+        shape_angle.y = home.angle.y + 0x4399;
 
-            current.angle.x = fopAcM_searchPlayerAngleX(this);
-            field_0x674 = fopAcM_searchPlayerAngleX(this) - 0x2EE0;
-            shape_angle.z = -0x389A;
+        current.angle.x = fopAcM_searchPlayerAngleX(this);
+        field_0x674 = fopAcM_searchPlayerAngleX(this) - 0x2EE0;
+        shape_angle.z = -0x389A;
 
-            field_0x670 = 0xC8;
-            speedF = 120.0f;
+        mTimer = 200;
+        speedF = 120.0f;
 
-            field_0x75c = 20.0f - (fopAcM_searchPlayerDistance(this) - l_HIO.field_0x10) / 7.0f;
+        mMovingRange = 20.0f - (fopAcM_searchPlayerDistance(this) - l_HIO.direct_attack_range) / 7.0f;
 
-            field_0x676 = (fopAcM_searchPlayerDistance(this) - l_HIO.field_0x10) * 1.5f;
+        mDistance = (fopAcM_searchPlayerDistance(this) - l_HIO.direct_attack_range) * 1.5f;
 
-            f32 temp = 2000.0f;
-            f32 player_distance_y;
+        f32 temp = 2000.0f;
+        f32 player_distance_y;
 
-            if (fopAcM_searchPlayerDistanceY(this) < -300.0f) {
-                player_distance_y = (fopAcM_searchPlayerDistanceY(this) + 300.0f) * -2.0f;
-                temp = player_distance_y + 2000.0f;
-                field_0x676 += player_distance_y;
+        if (fopAcM_searchPlayerDistanceY(this) < -300.0f) {
+            player_distance_y = (fopAcM_searchPlayerDistanceY(this) + 300.0f) * -2.0f;
+            temp = player_distance_y + 2000.0f;
+            mDistance += player_distance_y;
+        }
+        if (mDistance > (s16)temp) {
+            mDistance = temp;
+        }
+        mMoveMode = 1;
+        goto end;
+
+    case 1:
+        if (mSph.ChkAtHit()) {
+            if (mSph.ChkAtShieldHit()) {
+                mCreatureSound.startCollisionSE(Z2SE_HIT_SWORD, 0x28);
             }
-            if (field_0x676 > (s16)temp) {
-                field_0x676 = temp;
+            Z2GetAudioMgr()->seStart(Z2SE_EN_KK_CRASH, &field_0x68c, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                     0);
+            mDeadEffSet(field_0x68c);
+            fopAcM_delete(this);
+            return;
+        }
+
+        mDoMtx_YrotS(*calc_mtx, current.angle.y);
+        mDoMtx_XrotM(*calc_mtx, current.angle.x);
+
+        position2.x = 0.0f;
+        position2.y = mMovingRange;
+        position2.z = speedF;
+
+        MtxPosition(&position2, &new_speed);
+        speed.y = -new_speed.y;
+
+        cLib_addCalcAngleS2(&current.angle.x, field_0x674, 1, mDistance);
+        if (speed.y < 0.0f) {
+            cLib_addCalcAngleS2(&shape_angle.z, -20000, 4, 0x500);
+        }
+
+        linChk.Set(&current.pos, &field_0x68c, this);
+
+        if (mTimer == 0 || mObjAcch.ChkGroundHit() || dComIfG_Bgsp().LineCross(&linChk)) {
+            speedF = 0.0f;
+            gravity = 0.0f;
+            speed.zero();
+            field_0x67e = 1;
+            mSph.OffAtSetBit();
+            if (mTimer != 0) {
+                Z2GetAudioMgr()->seStart(Z2SE_EN_KK_SPEAR_STICK, &field_0x68c, 0, 0, 1.0f, 1.0f,
+                                         -1.0f, -1.0f, 0);
             }
-            mMoveMode = 1;
-            goto end;
-        
-        case 1:
-            if (mSph.ChkAtHit()) {
-                if (mSph.ChkAtShieldHit()) {
-                    mCreatureSound.startCollisionSE(Z2SE_HIT_SWORD, 0x28);
-                }
-                Z2GetAudioMgr()->seStart(Z2SE_EN_KK_CRASH, &field_0x68c, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
-                mDeadEffSet(field_0x68c);
-                fopAcM_delete(this);
-                return;
-            }
+            mStts.Init(0xFF, 0, this);
+            mTimer = (s16)cM_rndF(20.0f) + 30;
+            mMoveMode = 2;
+        }
+        goto end;
 
-            mDoMtx_YrotS(*calc_mtx, current.angle.y);
-            mDoMtx_XrotM(*calc_mtx, current.angle.x);
+    case 2:
+        if (mTimer == 0) {
+            mDeadEffSet(position1);
+            Z2GetAudioMgr()->seStart(Z2SE_EN_KK_CRASH, &position1, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                     0);
+            fopAcM_delete(this);
+        }
 
-            position2.x = 0.0f;
-            position2.y = field_0x75c;
-            position2.z = speedF;
+    default:
+    end:
+        cXyz mult_vec;
+        if (mSph.ChkTgHit()) {
+            mDoMtx_stack_c::copy(weaponModel->getAnmMtx(2));
+            mult_vec.set(100.0f, 0.0f, 0.0f);
+            mDoMtx_stack_c::multVec(&mult_vec, &field_0x680);
+            mSph.ClrTgHit();
+            mDeadEffSet(field_0x680);
+            Z2GetAudioMgr()->seStart(Z2SE_EN_KK_CRASH, &field_0x680, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                     0);
+            fopAcM_delete(this);
+            return;
+        }
 
-            MtxPosition(&position2, &new_speed);
-            speed.y = -new_speed.y;
-            
-            cLib_addCalcAngleS2(&current.angle.x, field_0x674, 1, field_0x676);
-            if (speed.y < 0.0f) {
-                cLib_addCalcAngleS2(&shape_angle.z, -20000, 4, 0x500);
-            }
-
-            linChk.Set(&current.pos, &field_0x68c, this);
-
-            if (field_0x670 == 0 || mObjAcch.ChkGroundHit() || dComIfG_Bgsp().LineCross(&linChk)) {
-                speedF = 0.0f;
-                gravity = 0.0f;
-                speed.zero();
-                field_0x67e = 1;
-                mSph.OffAtSetBit();
-                if (field_0x670 != 0) {
-                    Z2GetAudioMgr()->seStart(Z2SE_EN_KK_SPEAR_STICK, &field_0x68c, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
-                }
-                mStts.Init(0xFF, 0, this);
-                field_0x670 = (s16)cM_rndF(20.0f) + 0x1E;
-                mMoveMode = 2;
-            }
-            goto end;
-
-        case 2:
-            if (field_0x670 == 0) {
-                mDeadEffSet(position1);
-                Z2GetAudioMgr()->seStart(Z2SE_EN_KK_CRASH, &position1, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
-                fopAcM_delete(this);
-            }
-
-        default:
-        end:
-            cXyz mult_vec;
-            if (mSph.ChkTgHit()) {
+        for (int i = 0; i < 6; i++) {
+            if (mSpheres[i].ChkTgHit()) {
                 mDoMtx_stack_c::copy(weaponModel->getAnmMtx(2));
                 mult_vec.set(100.0f, 0.0f, 0.0f);
                 mDoMtx_stack_c::multVec(&mult_vec, &field_0x680);
-                mSph.ClrTgHit();
+                mSpheres[i].ClrTgHit();
                 mDeadEffSet(field_0x680);
-                Z2GetAudioMgr()->seStart(Z2SE_EN_KK_CRASH, &field_0x680, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+                Z2GetAudioMgr()->seStart(Z2SE_EN_KK_CRASH, &field_0x680, 0, 0, 1.0f, 1.0f, -1.0f,
+                                         -1.0f, 0);
                 fopAcM_delete(this);
                 return;
             }
-
-            for (int i = 0; i < 6; i++) {
-                if (mSpheres[i].ChkTgHit()) {
-                    mDoMtx_stack_c::copy(weaponModel->getAnmMtx(2));
-                    mult_vec.set(100.0f, 0.0f, 0.0f);
-                    mDoMtx_stack_c::multVec(&mult_vec, &field_0x680);
-                    mSpheres[i].ClrTgHit();
-                    mDeadEffSet(field_0x680);
-                    Z2GetAudioMgr()->seStart(Z2SE_EN_KK_CRASH, &field_0x680, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
-                    fopAcM_delete(this);
-                    return;
-                }
-            }    
+        }
     }
 }
 
@@ -1049,50 +1065,50 @@ void daE_KK_c::action() {
     damage_check();
 
     switch (mActionMode) {
-    case 0:
+    case ACTION_WAIT:
         executeWait();
         break;
 
-    case 1:
+    case ACTION_ICICLEWAIT:
         executeIcicleWait();
         break;
 
-    case 2:
+    case ACTION_WALK:
         executeWalk();
         break;
 
-    case 3:
+    case ACTION_SPEARTHROW:
         executeSpearThrow();
         link_search = true;
         break;
 
-    case 4:
+    case ACTION_BACKWALK:
         executeBackWalk();
         break;
 
-    case 5:
+    case ACTION_YOROKE:
         executeYoroke();
         break;
 
-    case 6:
+    case ACTION_GUARD:
         executeGuard();
         link_search = true;
         break;
 
-    case 7:
+    case ACTION_DAMAGE:
         executeDamage();
         break;
 
-    case 8:
+    case ACTION_ATTACK:
         executeAttack();
         link_search = true;
         break;
 
-    case 10:
+    case ACTION_DEAD:
         executeDead();
         break;
-    
-    case 9:
+
+    case ACTION_WEAPONMOVE:
         executeWeaponMove();
         break;
     }
@@ -1119,13 +1135,13 @@ void daE_KK_c::action() {
         }
 
         if ((mActionMode == 5 || mActionMode == 7) ||
-            fopAcM_searchPlayerDistance(this) > l_HIO.field_0xc)
+            fopAcM_searchPlayerDistance(this) > l_HIO.spear_throw_range)
         {
             angle = 0;
         }
 
         cLib_addCalcAngleS2(&field_0x758, angle, 8, 0x400);
-        field_0x770.SetWall(70.0f, 150.0f);
+        mAcchCir.SetWall(70.0f, 150.0f);
         mObjAcch.CrrPos(dComIfG_Bgsp());
         if (mActionMode != 10) {
             dBgS_GndChk gndChk;
@@ -1135,7 +1151,7 @@ void daE_KK_c::action() {
             gndChk.SetPos(&position);
             position.y = dComIfG_Bgsp().GroundCross(&gndChk);
             if (position.y == -1000000000.0f) {
-                field_0x670 = 100;
+                mTimer = 100;
                 setActionMode(10, 2);
             } else {
                 if (field_0x760 - current.pos.y > 200.0f) {
@@ -1150,7 +1166,7 @@ void daE_KK_c::action() {
         mpMorfSO->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     } else {
         if (speed.y < 0.0f) {
-            field_0x770.SetWall(1.0f, 1.0f);
+            mAcchCir.SetWall(1.0f, 1.0f);
             mObjAcch.CrrPos(dComIfG_Bgsp());
         }
     }
@@ -1160,7 +1176,7 @@ void daE_KK_c::action() {
             if (mpWeaponMorfSO->isStop()) {
                 setWeaponBck(0x1D, 0, 0.0f, 1.0f);
             }
-        } 
+        }
     }
 }
 
@@ -1170,7 +1186,7 @@ void daE_KK_c::mtx_set() {
 
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
-    mDoMtx_stack_c::scaleM(l_HIO.field_0x8, l_HIO.field_0x8, l_HIO.field_0x8);
+    mDoMtx_stack_c::scaleM(l_HIO.model_size, l_HIO.model_size, l_HIO.model_size);
 
     J3DModel* morfModel = mpMorfSO->getModel();
     morfModel->setBaseTRMtx(mDoMtx_stack_c::get());
@@ -1202,7 +1218,7 @@ void daE_KK_c::weapon_mtx_set() {
 
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
-    mDoMtx_stack_c::scaleM(l_HIO.field_0x8, l_HIO.field_0x8, l_HIO.field_0x8);
+    mDoMtx_stack_c::scaleM(l_HIO.model_size, l_HIO.model_size, l_HIO.model_size);
 
     J3DModel* weaponModel = mpWeaponMorfSO->getModel();
     weaponModel->setBaseTRMtx(mDoMtx_stack_c::get());
@@ -1210,7 +1226,7 @@ void daE_KK_c::weapon_mtx_set() {
     mDoMtx_stack_c::copy(weaponModel->getAnmMtx(1));
 
     mDoMtx_stack_c::multVecZero(&field_0x680);
-    
+
     mult_vec.set(100.0f, 0.0f, 0.0f);
     mDoMtx_stack_c::multVec(&mult_vec, &field_0x68c);
 
@@ -1272,16 +1288,16 @@ int daE_KK_c::execute() {
         }
     }
 
-    if (field_0x670 != 0) {
-        field_0x670--;
+    if (mTimer != 0) {
+        mTimer--;
     }
     if (field_0x672 != 0) {
         field_0x672--;
     }
-    if (field_0x678 != 0) {
-        field_0x678--;
+    if (mDamageTimer != 0) {
+        mDamageTimer--;
     }
-    
+
     action();
 
     if (field_0x679 != 1) {
@@ -1309,11 +1325,11 @@ static int daE_KK_IsDelete(daE_KK_c* i_this) {
 int daE_KK_c::_delete() {
     dComIfG_resDelete(&mPhaseReq, "E_KK");
 
-    if (field_0x13ac != 0) {
+    if (mHIOInit != 0) {
         l_initHIO = false;
         mDoHIO_DELETE_CHILD(l_HIO.field_0x4);
     }
-    
+
     if (heap != NULL) {
         mCreatureSound.deleteObject();
         offHeadLockFlg();
@@ -1332,7 +1348,9 @@ int daE_KK_c::CreateHeap() {
         J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_KK", 0x22);
         JUT_ASSERT(2212, modelData != 0);
 
-        mpMorfSO = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_KK", 0x19), 0, 1.0f, 0, -1, &mCreatureSound, 0, 0x31000084);
+        mpMorfSO = new mDoExt_McaMorfSO(modelData, NULL, NULL,
+                                        (J3DAnmTransform*)dComIfG_getObjectRes("E_KK", 0x19), 0,
+                                        1.0f, 0, -1, &mCreatureSound, 0, 0x31000084);
         if (mpMorfSO == NULL || mpMorfSO->getModel() == NULL) {
             return 0;
         }
@@ -1348,7 +1366,9 @@ int daE_KK_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_KK", 0x23);
     JUT_ASSERT(2247, modelData != 0);
 
-    mpWeaponMorfSO = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_KK", 0x1D), 0, 1.0f, 0, -1, &mCreatureSound, 0, 0x31000084);
+    mpWeaponMorfSO = new mDoExt_McaMorfSO(modelData, NULL, NULL,
+                                          (J3DAnmTransform*)dComIfG_getObjectRes("E_KK", 0x1D), 0,
+                                          1.0f, 0, -1, &mCreatureSound, 0, 0x31000084);
     if (mpWeaponMorfSO == NULL || mpWeaponMorfSO->getModel() == NULL) {
         return 0;
     }
@@ -1366,7 +1386,6 @@ int daE_KK_c::create() {
 
     int phase_state = dComIfG_resLoad(&mPhaseReq, "E_KK");
     if (phase_state == cPhs_COMPLEATE_e) {
-
         OS_REPORT("E_KK PARAM %x\n", fopAcM_GetParam(this));
 
         if (!fopAcM_entrySolidHeap(this, useHeapInit, 0x3e90)) {
@@ -1376,7 +1395,7 @@ int daE_KK_c::create() {
         field_0x679 = fopAcM_GetParam(this);
         field_0x67a = fopAcM_GetParam(this) >> 8;
         field_0x67b = fopAcM_GetParam(this) >> 0x10;
-        
+
         if (field_0x679 == 0xFF) {
             field_0x679 = 0;
         }
@@ -1386,11 +1405,12 @@ int daE_KK_c::create() {
         }
         if (!l_initHIO) {
             l_initHIO = 1;
-            field_0x13ac = 1;
+            mHIOInit = 1;
             l_HIO.field_0x4 = mDoHIO_CREATE_CHILD("氷の剣士", &l_HIO);
         }
-        mObjAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &field_0x770, fopAcM_GetSpeed_p(this), NULL, NULL);
-        field_0x770.SetWall(10.0f, 60.0f);
+        mObjAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1,
+                     &mAcchCir, fopAcM_GetSpeed_p(this), NULL, NULL);
+        mAcchCir.SetWall(10.0f, 60.0f);
         mStts.Init(100, 0, this);
 
         health = 0x8C;
@@ -1469,9 +1489,9 @@ int daE_KK_c::create() {
         }
 
         if (field_0x67a == 0xFF || field_0x67a == 0) {
-            field_0x75c = l_HIO.field_0x14;
+            mMovingRange = l_HIO.default_moving_range;
         } else {
-            field_0x75c = field_0x67a * 100.0f;
+            mMovingRange = field_0x67a * 100.0f;
         }
 
         if (field_0x679 != 1) {
@@ -1490,10 +1510,8 @@ static int daE_KK_Create(daE_KK_c* i_this) {
 
 /* 806FF7AC-806FF7CC -00001 0020+00 1/0 0/0 0/0 .data            l_daE_KK_Method */
 static actor_method_class l_daE_KK_Method = {
-    (process_method_func)daE_KK_Create,
-    (process_method_func)daE_KK_Delete,
-    (process_method_func)daE_KK_Execute,
-    (process_method_func)daE_KK_IsDelete,
+    (process_method_func)daE_KK_Create,  (process_method_func)daE_KK_Delete,
+    (process_method_func)daE_KK_Execute, (process_method_func)daE_KK_IsDelete,
     (process_method_func)daE_KK_Draw,
 };
 
