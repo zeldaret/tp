@@ -387,6 +387,18 @@ inline f32 fopAcM_getCullSizeSphereR(const fopAc_ac_c* i_actor) {
     return i_actor->cull.sphere.radius;
 }
 
+inline void fopAcM_SetPosition(fopAc_ac_c* i_actor, f32 x, f32 y, f32 z) {
+    i_actor->current.pos.set(x, y, z);
+}
+
+inline void fopAcM_SetOldPosition(fopAc_ac_c* i_actor, f32 x, f32 y, f32 z) {
+    i_actor->old.pos.set(x, y, z);
+}
+
+inline void fopAcM_SetHomePosition(fopAc_ac_c* i_actor, f32 x, f32 y, f32 z) {
+    i_actor->home.pos.set(x, y, z);
+}
+
 inline void dComIfGs_onSwitch(int i_no, int i_roomNo);
 inline void dComIfGs_offSwitch(int i_no, int i_roomNo);
 inline BOOL dComIfGs_isSwitch(int i_no, int i_roomNo);

@@ -673,10 +673,12 @@ public:
     static s32 mFindCount;
 
     enum Mode {
-        /* 0 */ MODE_ENTER,
-        /* 1 */ MODE_INIT,
-        /* 2 */ MODE_RUN,
-        /* 3 */ MODE_EXIT,
+        /*  0 */ MODE_ENTER,
+        /*  1 */ MODE_INIT,
+        /*  2 */ MODE_RUN,
+        /*  3 */ MODE_EXIT,
+        /*  4 */ MODE_4,
+        /* -1 */ MODE_INVALID = -1,
     };
 
     enum AnmFlags {
