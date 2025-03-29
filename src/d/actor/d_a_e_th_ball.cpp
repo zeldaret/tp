@@ -48,7 +48,7 @@ static void chain_draw(e_th_ball_class* i_this) {
         var_r28++;
     }
 
-    if (master == NULL || master->field_0xd8e == 0) {
+    if (master == NULL || !master->mNoDraw) {
         var_r28 = 0;
         for (int i = i_this->field_0xde8; i < 19; i++) {
             MtxTrans(i_this->field_0xdec.m_pos[i].x, i_this->field_0xdec.m_pos[i].y, i_this->field_0xdec.m_pos[i].z, 0);
@@ -116,8 +116,8 @@ static void chain_control_01(e_th_ball_class* i_this) {
     dBgS_GndChk gndchk;
 
     th_chain_s* chain_s = &i_this->field_0x65c;
-    if (master != NULL && fopAcM_GetName(master) == PROC_E_TH && master->field_0xd8e == 0) {
-        chain_s->m_pos[0] = master->field_0x6c0;
+    if (master != NULL && fopAcM_GetName(master) == PROC_E_TH && master->mNoDraw == 0) {
+        chain_s->m_pos[0] = master->mHandR_Pos1;
     }
 
     cXyz* pos_p = &chain_s->m_pos[1];
@@ -200,7 +200,7 @@ static void chain_control_02(e_th_ball_class* i_this) {
     cXyz sp3C;
     
     s8 sp8 = 0;
-    if (master != NULL && master->field_0xd8e != 0) {
+    if (master != NULL && master->mNoDraw != 0) {
         sp8 = 1;
     }
 
@@ -272,7 +272,7 @@ static void chain_control_11(e_th_ball_class* i_this) {
     dBgS_GndChk gndchk;
 
     th_chain_2s* chain_s = &i_this->field_0xdec;
-    chain_s->m_pos[0] = master->field_0x6cc;
+    chain_s->m_pos[0] = master->mHandR_Pos2;
 
     cXyz* pos_p = &chain_s->m_pos[1];
     csXyz* rot_p = &chain_s->m_rot[1];
@@ -340,7 +340,7 @@ static void chain_control_12(e_th_ball_class* i_this) {
     th_chain_2s* chain_s = &i_this->field_0xdec;
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
 
-    chain_s->m_pos[19] = master->field_0x6a8;
+    chain_s->m_pos[19] = master->mHandL_Pos1;
     cXyz* pos_p = &chain_s->m_pos[18];
     csXyz* rot_p = &chain_s->m_rot[18];
 
@@ -395,7 +395,7 @@ static void chain_control_21(e_th_ball_class* i_this) {
     dBgS_GndChk gndchk;
 
     th_chain_2s* chain_s = &i_this->field_0x11d8;
-    chain_s->m_pos[0] = master->field_0x6b4;
+    chain_s->m_pos[0] = master->mHandL_Pos2;
 
     cXyz* pos_p = &chain_s->m_pos[1];
     cXyz* var_r29 = &chain_s->field_0x230[1];
@@ -537,7 +537,7 @@ static void e_th_ball_spin(e_th_ball_class* i_this) {
     case 1:
     case 2:
     case 3:
-        sp34 = i_this->current.pos - master->field_0x6c0;
+        sp34 = i_this->current.pos - master->mHandR_Pos1;
 
         if (i_this->mTimers[0] != 0) {
             cLib_addCalcAngleS2(&i_this->shape_angle.y, cM_atan2s(sp34.x, sp34.z), 1, 0xC00);
@@ -566,7 +566,7 @@ static void e_th_ball_spin(e_th_ball_class* i_this) {
         if (i_this->mMode == 2) {
             i_this->field_0x15c0 = master->mpModelMorf->getFrame();
         } else {
-            i_this->field_0x15c0 += master->field_0x5d8;
+            i_this->field_0x15c0 += master->mSpinAnmSpeed;
             if (i_this->field_0x15c0 >= 29.0f) {
                 i_this->field_0x15c0 -= 29.0f;
             }
@@ -580,9 +580,9 @@ static void e_th_ball_spin(e_th_ball_class* i_this) {
         MtxPosition(&sp34, &sp28);
 
         cLib_addCalc2(&i_this->speedF, 1000.0f, 1.0f, 1.0f + YREG_F(15));
-        cLib_addCalc2(&i_this->current.pos.x, master->field_0x6c0.x + sp28.x, 0.5f, i_this->speedF);
-        cLib_addCalc2(&i_this->current.pos.y, master->field_0x6c0.y + sp28.y, 0.1f, 0.02f * i_this->speedF * master->field_0x5d8);
-        cLib_addCalc2(&i_this->current.pos.z, master->field_0x6c0.z + sp28.z, 0.5f, i_this->speedF);
+        cLib_addCalc2(&i_this->current.pos.x, master->mHandR_Pos1.x + sp28.x, 0.5f, i_this->speedF);
+        cLib_addCalc2(&i_this->current.pos.y, master->mHandR_Pos1.y + sp28.y, 0.1f, 0.02f * i_this->speedF * master->mSpinAnmSpeed);
+        cLib_addCalc2(&i_this->current.pos.z, master->mHandR_Pos1.z + sp28.z, 0.5f, i_this->speedF);
 
         if (master->field_0x68a & 2) {
             master->field_0x68a &= ~2;
@@ -668,7 +668,7 @@ static void e_th_ball_shot(e_th_ball_class* i_this) {
         if (i_this->speedF > 0.0f) {
             cLib_addCalc2(&i_this->field_0xde4, 100.0f + JREG_F(0), 1.0f, 30.0f + JREG_F(1));
 
-            sp28 = i_this->current.pos - master->field_0x6c0;
+            sp28 = i_this->current.pos - master->mHandR_Pos1;
             s16 spE = cM_atan2s(sp28.x, sp28.z);
             cLib_addCalcAngleS2(&i_this->shape_angle.y, spE, 1, 0x4000);
             cLib_addCalcAngleS2(&i_this->shape_angle.x, 0, 1, 0x4000);
@@ -877,7 +877,7 @@ static void action(e_th_ball_class* i_this) {
     cLib_addCalc0(&i_this->field_0xde4, 1.0f, 10.0f + JREG_F(1));
 
     if (i_this->field_0x15c6 == 0) {
-        cXyz sp2C = i_this->current.pos - master->field_0x6c0;
+        cXyz sp2C = i_this->current.pos - master->mHandR_Pos1;
         
         s16 var_r27 = i_this->field_0xdc8 * (50.0f - ((0.035f + XREG_F(3)) * sp2C.abs()));
         if (var_r27 < 0) {
@@ -928,7 +928,7 @@ static void action(e_th_ball_class* i_this) {
 
                     master->mAction = ACTION_RETURN;
                     master->mMode = 2;
-                    master->field_0x69c[0] = JREG_S(4) + 30;
+                    master->mTimers[0] = JREG_S(4) + 30;
                     master->mpModelMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_th", 0x1B), 2, 10.0f, 1.0f, 0.0f, -1.0f);
                     master->mAnm = 0x1B;
                 }
