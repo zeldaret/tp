@@ -193,9 +193,9 @@ void daAmiShutter_c::modeWaitEvent() {
 }
 
 /* 80BA1C90-80BA1CB4 0008B0 0024+00 2/1 0/0 0/0 .text            eventStart__14daAmiShutter_cFv */
-BOOL daAmiShutter_c::eventStart() {
+bool daAmiShutter_c::eventStart() {
     init_modeCloseEvent();
-    return TRUE;
+    return true;
 }
 
 /* ############################################################################################## */
