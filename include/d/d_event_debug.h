@@ -9,7 +9,7 @@ struct dEvDb_bit_c {
     /* 0x00 */ char* mFlagName;
     /* 0x04 */ char* mFlagDescription;
     /* 0x08 */ char* mFlagAuthor;
-    /* 0x0C */ u16 mFlagValue;
+    /* 0x0C */ const u16 mFlagValue;
     /* 0x10 */ char* mArea; // Area in the game where flag is used
     /* 0x14 */ u8 field_0x14;   
     /* 0x15 */ u8 field_0x15;
@@ -20,7 +20,7 @@ struct dEvDb_reg_c {
     /* 0x00 */ char* mFlagName;
     /* 0x04 */ char* mFlagDescription;
     /* 0x08 */ char* mFlagAuthor;
-    /* 0x0C */ u16 mFlagValue;
+    /* 0x0C */ const u16 mFlagValue;
     /* 0x10 */ char* mArea; // Area in the game where flag is used
     /* 0x14 */ u8 field_0x14;
     /* 0x15 */ u8 field_0x15;

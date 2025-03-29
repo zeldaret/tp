@@ -10,7 +10,7 @@
 #include "m_Do/m_Do_controller_pad.h"
 #include "os.h"
 
-// TODO: Replace with #include directives to src/d/d_event_debug_[...].inc once sjiwrap can handle it
+// TODO: Replace with #include directives to src/d/d_event_debug_[...].inc once sjiwrap adds .inc files to its supported extensions
 
 static dEvDb_bit_c dEvDb_bit_table[799] = {
     //#include "src/d/d_event_debug_bit_table.inc"
