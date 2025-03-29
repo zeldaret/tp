@@ -7,10 +7,7 @@
 #include "d/d_bg_s_acch.h"
 
 struct th_ke_s {
-    /* 807B3B58 */ ~th_ke_s();
-    /* 807B3BD4 */ th_ke_s();
-
-    /* 0x000 */ cXyz field_0x0[15];
+    /* 0x000 */ cXyz pos[15];
     /* 0x0B4 */ cXyz field_0xb4[15];
     /* 0x168 */ s16 field_0x168;
     /* 0x16A */ s16 field_0x16a;
@@ -37,31 +34,28 @@ public:
     /* 0x05CC */ mDoExt_McaMorfSO* mpModelMorf;
     /* 0x05D0 */ int mAnm;
     /* 0x05D4 */ u8 field_0x5D4[0x05D8 - 0x05D4];
-    /* 0x05D8 */ f32 field_0x5d8;
+    /* 0x05D8 */ f32 mSpinAnmSpeed;
     /* 0x05DC */ s16 field_0x5dc;
-    /* 0x05DE */ u8 field_0x5DE[0x05E0 - 0x05DE];
     /* 0x05E0 */ Z2CreatureEnemy mSound;
-    /* 0x0684 */ s16 field_0x684;
+    /* 0x0684 */ s16 mCounter;
     /* 0x0686 */ s16 mAction;
     /* 0x0688 */ u8 field_0x688[0x068A - 0x0688];
     /* 0x068A */ s8 field_0x68a;
-    /* 0x068B */ u8 field_0x68B[0x068C - 0x068B];
     /* 0x068C */ f32 mPlayerDist;
     /* 0x0690 */ s16 mPlayerAngleY;
     /* 0x0692 */ u8 field_0x692[0x0698 - 0x0692];
     /* 0x0698 */ u32 mShadowKey;
-    /* 0x069C */ s16 field_0x69c[4];
+    /* 0x069C */ s16 mTimers[4];
     /* 0x06A4 */ s16 field_0x6a4;
     /* 0x06A6 */ s16 field_0x6a6;
-    /* 0x06A8 */ cXyz field_0x6a8;
-    /* 0x06B4 */ cXyz field_0x6b4;
-    /* 0x06C0 */ cXyz field_0x6c0;
-    /* 0x06CC */ cXyz field_0x6cc;
+    /* 0x06A8 */ cXyz mHandL_Pos1;
+    /* 0x06B4 */ cXyz mHandL_Pos2;
+    /* 0x06C0 */ cXyz mHandR_Pos1;
+    /* 0x06CC */ cXyz mHandR_Pos2;
     /* 0x06D8 */ u8 field_0x6D8[0x06E4 - 0x06D8];
-    /* 0x06E4 */ u8 field_0x6e4;
-    /* 0x06E5 */ u8 field_0x6E5[0x06E6 - 0x06E5];
-    /* 0x06E6 */ s16 field_0x6e6;
-    /* 0x06E8 */ s16 field_0x6e8;
+    /* 0x06E4 */ s8 field_0x6e4;
+    /* 0x06E6 */ s16 mHeadRotY;
+    /* 0x06E8 */ s16 mHeadRotZ;
     /* 0x06EA */ s8 field_0x6ea;
     /* 0x06EB */ u8 field_0x6EB[0x06F0 - 0x06EB];
     /* 0x06F0 */ fpc_ProcID mBallID;
@@ -70,8 +64,8 @@ public:
     /* 0x090C */ dCcD_Stts mCcStts;
     /* 0x0948 */ dCcD_Sph mCcSph[3];
     /* 0x0CF0 */ dCcU_AtInfo mAtInfo;
-    /* 0x0D14 */ cXyz field_0xd14;
-    /* 0x0D20 */ cXyz field_0xd20;
+    /* 0x0D14 */ cXyz mHeadPos;
+    /* 0x0D20 */ cXyz mTailPos;
     /* 0x0D2C */ s16 mDemoCamMode;
     /* 0x0D2E */ s16 mDemoCamTimer;
     /* 0x0D30 */ cXyz mDemoCamEye;
@@ -86,13 +80,13 @@ public:
     /* 0x0D84 */ u8 field_0xD84[0x0D88 - 0x0D84];
     /* 0x0D88 */ f32 field_0xd88;
     /* 0x0D8C */ u8 field_0xD8C[0x0D8E - 0x0D8C];
-    /* 0x0D8E */ s8 field_0xd8e;
-    /* 0x0D8F */ s8 field_0xd8f;
-    /* 0x0D90 */ f32 field_0xd90;
+    /* 0x0D8E */ s8 mNoDraw;
+    /* 0x0D8F */ s8 mDoEndColorEff;
+    /* 0x0D90 */ f32 mEndBodyColor;
     /* 0x0D94 */ u32 field_0xd94;
     /* 0x0D98 */ u32 field_0xd98;
-    /* 0x0D9C */ th_ke_s field_0xd9c[3];
-    /* 0x1210 */ mDoExt_3DlineMat0_c field_0x1210;
+    /* 0x0D9C */ th_ke_s mKe_s[3];
+    /* 0x1210 */ mDoExt_3DlineMat0_c mKeLineMat;
     /* 0x122C */ u8 field_0x122C[0x1238 - 0x122C];
     /* 0x1238 */ u8 mInitHIO;
 };
@@ -100,8 +94,15 @@ public:
 STATIC_ASSERT(sizeof(e_th_class) == 0x123c);
 
 class daE_TH_HIO_c {
+public:
     /* 807B038C */ daE_TH_HIO_c();
-    /* 807B3FA4 */ ~daE_TH_HIO_c();
+    /* 807B3FA4 */ virtual ~daE_TH_HIO_c() {}
+
+    /* 0x04 */ s8 no;
+    /* 0x08 */ f32 base_size;
+    /* 0x0C */ u8 unk_0xC[0x10 - 0xC];
+    /* 0x10 */ f32 move_range;
+    /* 0x14 */ f32 middle_move_range;
 };
 
 #endif /* D_A_E_TH_H */
