@@ -28,7 +28,7 @@ void GXBegin(GXPrimitive type, GXVtxFmt vtxfmt, u16 nverts);
 static inline void GXEnd(void) {
 #if DEBUG
     extern GXBool __GXinBegin;
-    extern void OSPanic(char* file, int line, char* msg, ...);
+    extern void OSPanic(const char* file, int line, const char* msg, ...);
     if (!__GXinBegin) {
         OSPanic(__FILE__, 118, "GXEnd: called without a GXBegin");
     }

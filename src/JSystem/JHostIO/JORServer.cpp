@@ -441,16 +441,16 @@ void JORServer::hostinfo_localTime_(JSUMemoryInputStream& stream, JORHostInfo_Ca
            >> milliseconds;
 
     OSCalendarTime* pTime = pCalendarTime->getCalendarTime();
-    pTime->seconds = seconds;
-    pTime->minutes = minutes;
-    pTime->hours = hours;
-    pTime->day_of_month = monthday;
-    pTime->month = month - 1;
+    pTime->sec = seconds;
+    pTime->min = minutes;
+    pTime->hour = hours;
+    pTime->mday = monthday;
+    pTime->mon = month - 1;
     pTime->year = year;
-    pTime->week_day = weekday;
-    pTime->milliseconds = milliseconds;
-    pTime->microseconds = 0;
-    pTime->year_day = monthday + JORGetYearDays(year, month - 1);
+    pTime->wday = weekday;
+    pTime->msec = milliseconds;
+    pTime->usec = 0;
+    pTime->yday = monthday + JORGetYearDays(year, month - 1);
 }
 
 void JORServer::sendReset() {

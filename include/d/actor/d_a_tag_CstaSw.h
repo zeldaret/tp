@@ -27,6 +27,8 @@ public:
     /* 805A202C */ daTagCstaSw_HIO_c();
     /* 805A2480 */ virtual ~daTagCstaSw_HIO_c();
 
+    void genMessage(JORMContext*);
+
     u8 unk_0x4;
 };
 

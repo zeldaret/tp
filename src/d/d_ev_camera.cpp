@@ -4,6 +4,7 @@
 //
 
 #include "d/d_ev_camera.h"
+#include "d/d_debug_viewer.h"
 #include "dol2asm.h"
 #include "d/d_demo.h"
 #include "m_Do/m_Do_controller_pad.h"
@@ -1046,7 +1047,7 @@ int dCamera_c::talktoEvCamera() {
 
 #if DEBUG
     if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
-        u32 id = mCamParam.Id();
+        u32 id = mCamParam.Id(style);
         OS_REPORT("camera: event: %16s  = %d (%c%c%c%c)\n", "style", style, (u8)(id >> 0x18), (u8)(id >> 0x10), (u8)(id >> 0x8), (u8)(id));
     }
 #endif

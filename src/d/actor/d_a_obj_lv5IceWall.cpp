@@ -49,7 +49,7 @@ void daIceWall_c::setBaseMtx() {
 /* 80C6B5E4-80C6B69C 0002A4 00B8+00 1/0 0/0 0/0 .text            CreateHeap__11daIceWall_cFv */
 int daIceWall_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("l5IceWall", 4);
-    JUT_ASSERT(modelData != 0);
+    JUT_ASSERT(0, modelData != 0);
 
     mpModel[0] = mDoExt_J3DModel__create(modelData, 0, 0x11000084);
     if (mpModel[0] == NULL) {
@@ -57,7 +57,7 @@ int daIceWall_c::CreateHeap() {
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes("l5IceWall", 5);
-    JUT_ASSERT(modelData != 0);
+    JUT_ASSERT(0, modelData != 0);
 
     mpModel[1] = mDoExt_J3DModel__create(modelData, 0, 0x11000084);
     if (mpModel[1] == NULL) {

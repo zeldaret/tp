@@ -6,7 +6,7 @@
 /**
  * @ingroup actors-objects
  * @class daObjBHASHI_c
- * @brief Morpheel Room Pillar?
+ * @brief Pillar
  *
  * @details
  *

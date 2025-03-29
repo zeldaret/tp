@@ -362,7 +362,7 @@ void daDitem_c::set_pos() {
         offset = offset_tbl[0];
     }
 
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         offset = l_wolf_offset;
         sp38.y = player->getLeftFootPosP()->y;
     } else if (player->checkHorseRide()) {

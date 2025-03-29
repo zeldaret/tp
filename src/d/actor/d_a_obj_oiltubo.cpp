@@ -69,7 +69,7 @@ const dCcD_SrcGObjInf daObj_Oiltubo_c::mCcDObjInfo = {
 /* 80CA6B28-80CA6C5C 000488 0134+00 1/1 0/0 0/0 .text            CreateHeap__15daObj_Oiltubo_cFv */
 int daObj_Oiltubo_c::CreateHeap() {
     J3DModelData* mdlData_p = (J3DModelData*)dComIfG_getObjectRes(getResName(), l_bmdFileName);
-    JUT_ASSERT(mdlData_p != 0);
+    JUT_ASSERT(0, mdlData_p != 0);
 
     mpModel = mDoExt_J3DModel__create(mdlData_p, 0x80000, 0x11000084);
     if (mpModel == NULL) {
@@ -77,7 +77,7 @@ int daObj_Oiltubo_c::CreateHeap() {
     }
 
     J3DModelData* mdlBData_p = (J3DModelData*)dComIfG_getObjectRes(getResName(), l_bbmdFileName);
-    JUT_ASSERT(mdlBData_p != 0);
+    JUT_ASSERT(0, mdlBData_p != 0);
 
     mpBModel = mDoExt_J3DModel__create(mdlBData_p, 0x80000, 0x19000284);
     if (mpBModel == NULL) {
@@ -276,7 +276,7 @@ BOOL daObj_Oiltubo_c::chkEvent() {
     if (!dComIfGp_getEvent().isOrderOK()) {
         var_r5 = 0;
 
-        if (eventInfo.i_checkCommandCatch()) {
+        if (eventInfo.checkCommandCatch()) {
             return var_r5;
         }
     }
@@ -288,9 +288,9 @@ BOOL daObj_Oiltubo_c::chkEvent() {
 int daObj_Oiltubo_c::wait(void* unused) {
     switch (mMode) {
     case 1:
-        if (!eventInfo.i_checkCommandCatch()) {
+        if (!eventInfo.checkCommandCatch()) {
             dComIfGp_att_CatchRequest(this, fpcNm_ITEM_OIL_BOTTLE_2, 100.0f, 50.0f, -50.0f, 0x2000, 1);
-            eventInfo.i_onCondition(0x40);
+            eventInfo.onCondition(0x40);
         }
         break;
     case 2:

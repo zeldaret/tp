@@ -101,10 +101,9 @@ int daObjCRVSTEEL_c::create() {
     if (rv == cPhs_COMPLEATE_e) {
         gravity = -9.0f;
         int dzb_id = dComIfG_getObjctResName2Index(l_arcName, "U_CrvSteelGate.dzb");
-        JUT_ASSERT()
         if (dzb_id == -1) {
             OS_REPORT("dzbデータが見つかりませんでした!<%s>\n\n", l_arcName);
-            JUT_PANIC(443, dzb_id != -1);
+            JUT_ASSERT(443, dzb_id != -1);
         }
         rv = MoveBGCreate(l_arcName, dzb_id, dBgS_MoveBGProc_TypicalRotY, 0x4000, NULL);
         if (rv == cPhs_ERROR_e) {

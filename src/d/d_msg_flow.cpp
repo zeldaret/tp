@@ -711,10 +711,6 @@ int dMsgFlow_c::query001(mesg_flow_node_branch* flow_node, fopAc_ac_c*, int) {
     return dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[flow_node->params[0] & 0xFFFF]) == false;
 }
 
-BOOL daPy_py_c::checkNowWolf() {
-    return dComIfGp_getLinkPlayer()->checkWolf();
-}
-
 /* 8024B180-8024B208 245AC0 0088+00 1/0 0/0 0/0 .text
  * query002__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
 int dMsgFlow_c::query002(mesg_flow_node_branch*, fopAc_ac_c*, int) {

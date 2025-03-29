@@ -31,10 +31,12 @@ private:
 
 STATIC_ASSERT(sizeof(daHsTarget_c) == 0x5B0);
 
-class daHsTarget_HIO_c : mDoHIO_entry_c {
+class daHsTarget_HIO_c : public mDoHIO_entry_c {
 public:
     /* 80C1F42C */ daHsTarget_HIO_c();
     /* 80C1F7F4 */ virtual ~daHsTarget_HIO_c() {}
+
+    void genMessage(JORMContext*);
 };
 
 #endif /* D_A_OBJ_HSTARGET_H */

@@ -263,7 +263,7 @@ int daObjWchain_c::execute() {
 
     setChainPos();
     
-    if (daPy_py_c::i_checkNowWolf() && !mRide && mPullLength < 0.1f) {
+    if (daPy_py_c::checkNowWolf() && !mRide && mPullLength < 0.1f) {
         attention_info.flags |= 1;
     } else {
         attention_info.flags &= ~1;

@@ -471,7 +471,7 @@ static int daObj_Tp_Create(fopAc_ac_c* i_this) {
                 int local_40 = (pPoint->mArg0 & 0xf);
                 int parameters = local_40 | ((fopAcM_GetParam(tp) & 0xff000000) | 0xff0000 | (i << 8));
                 cStack_28 = pPoint->m_position;
-                cStack_30.y = pPoint->field_0x0 * 364;
+                cStack_30.y = pPoint->mArg1 * 364;
                 cStack_30.z = tp->field_0x597 | (tp->field_0x598 << 8);
                 if (i == path->m_num - 1) {
                     if (!dPath_ChkClose(path)) {

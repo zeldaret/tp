@@ -193,7 +193,7 @@ void daBmWindow_c::modeWait() {
     }
     if (player->checkAutoJump()) {
         if (checkActorInRectangle(player, &cStack_2c, &cStack_38)) {
-            if (daPy_py_c::i_checkNowWolf()) {
+            if (daPy_py_c::checkNowWolf()) {
                 if (field_0xede == 0) {
                     cXyz soundPos(current.pos);
                     soundPos.z -= 200.0f;

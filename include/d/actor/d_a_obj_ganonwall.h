@@ -1,7 +1,6 @@
 #ifndef D_A_OBJ_GANONWALL_H
 #define D_A_OBJ_GANONWALL_H
 
-#include "d/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
 
 /**
@@ -31,9 +30,9 @@ private:
     /* 0x568 */ request_of_phase_process_class mPhaseReq;
     /* 0x570 */ J3DModel* mpModel;
     /* 0x574 */ mDoExt_btkAnm* mpBtkAnm;
-    /* 0x578 */ u16 field_0x578;
-    /* 0x57A */ u16 field_0x57a;
-    /* 0x57C */ s16 field_0x57c;
+    /* 0x578 */ u16 mEventBit1;
+    /* 0x57A */ u16 mEventBit2;
+    /* 0x57C */ u16 mMatIdx;
 };
 
 STATIC_ASSERT(sizeof(daObjGWall_c) == 0x580);

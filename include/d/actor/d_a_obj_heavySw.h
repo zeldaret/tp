@@ -63,6 +63,8 @@ public:
     /* 80C1CAEC */ daHeavySw_HIO_c();
     /* 80C1D9D8 */ virtual ~daHeavySw_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x04 */ f32 field_0x04;
     /* 0x08 */ f32 field_0x08;
     /* 0x0C */ f32 field_0x0c;

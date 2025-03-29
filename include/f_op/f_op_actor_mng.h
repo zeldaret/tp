@@ -29,7 +29,7 @@
     "Delete -> " actor_name_str "(id=%d)\n"
 
 #define fopAcM_RegisterCreateID(actor_class, i_this, actor_name_str)                               \
-    static_cast<actor_class*>(i_this);                                                             \
+    actor_class* a_this = static_cast<actor_class*>(i_this);                                       \
     const fpc_ProcID procID = fopAcM_GetID(i_this);                                                \
     "Create -> " actor_name_str "(id=%d)\n"
 
@@ -376,7 +376,7 @@ inline int fopAcM_GetCullSize(const fopAc_ac_c* i_actor) {
 }
 
 inline BOOL fopAcM_CULLSIZE_IS_BOX(int i_culltype) {
-    return (i_culltype >= 0 && i_culltype < 14) || i_culltype == 14;
+    return (i_culltype >= 0 && i_culltype < fopAc_CULLBOX_CUSTOM_e) || i_culltype == fopAc_CULLBOX_CUSTOM_e;
 }
 
 inline const cXyz& fopAcM_getCullSizeSphereCenter(const fopAc_ac_c* i_actor) {
@@ -385,6 +385,18 @@ inline const cXyz& fopAcM_getCullSizeSphereCenter(const fopAc_ac_c* i_actor) {
 
 inline f32 fopAcM_getCullSizeSphereR(const fopAc_ac_c* i_actor) {
     return i_actor->cull.sphere.radius;
+}
+
+inline void fopAcM_SetPosition(fopAc_ac_c* i_actor, f32 x, f32 y, f32 z) {
+    i_actor->current.pos.set(x, y, z);
+}
+
+inline void fopAcM_SetOldPosition(fopAc_ac_c* i_actor, f32 x, f32 y, f32 z) {
+    i_actor->old.pos.set(x, y, z);
+}
+
+inline void fopAcM_SetHomePosition(fopAc_ac_c* i_actor, f32 x, f32 y, f32 z) {
+    i_actor->home.pos.set(x, y, z);
 }
 
 inline void dComIfGs_onSwitch(int i_no, int i_roomNo);
@@ -757,11 +769,13 @@ inline void fopAcM_setWarningMessage_f(const fopAc_ac_c* i_actor, const char* i_
 }
 
 #ifdef DEBUG
-#define fopAcM_setWarningMessage(i_actor, i_filename, i_line, i_msg, ...) \
-    fopAcM_setWarningMessage_f(i_actor, i_filename, i_line, i_msg, __VA_ARGS__)
+#define fopAcM_setWarningMessage(i_actor, i_filename, i_line, i_msg) \
+    fopAcM_setWarningMessage_f(i_actor, i_filename, i_line, i_msg)
 #else
 #define fopAcM_setWarningMessage(...)
 #endif
+
+void fopAcM_getNameString(fopAc_ac_c*, char*);
 
 class fopAcM_lc_c {
 public:

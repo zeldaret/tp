@@ -848,7 +848,7 @@ static s8 b_bq_attack(b_bq_class* i_this) {
         lin_chk.Set(&i_this->mMizuAtStartPos, &i_this->field_0x12bc, a_this);
 
         if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-            spD8 = lin_chk.i_GetCross();
+            spD8 = lin_chk.GetCross();
 
             for (int i = 0; i < 2; i++) {
                 static u16 fireno[] = {0x82D4, 0x82D5};
@@ -1236,7 +1236,7 @@ static void demo_camera(b_bq_class* i_this) {
 
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
-            a_this->eventInfo.onCondition(2);
+            a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
 
@@ -1420,7 +1420,7 @@ static void demo_camera(b_bq_class* i_this) {
     case 10:
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
-            a_this->eventInfo.onCondition(2);
+            a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
 
@@ -1639,7 +1639,7 @@ static void demo_camera(b_bq_class* i_this) {
 
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
-            a_this->eventInfo.onCondition(2);
+            a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
 
@@ -1699,7 +1699,7 @@ static void demo_camera(b_bq_class* i_this) {
     case 30:
         if (!monkeybomb->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(monkeybomb, 2, 0xFFFF, 0);
-            monkeybomb->eventInfo.onCondition(2);
+            monkeybomb->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
 
@@ -1808,7 +1808,7 @@ static void demo_camera(b_bq_class* i_this) {
     case 50:
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
-            a_this->eventInfo.onCondition(2);
+            a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
 
@@ -2182,7 +2182,7 @@ static void demo_camera(b_bq_class* i_this) {
             lin_chk.Set(&center, &eye, a_this);
 
             if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-                eye = lin_chk.i_GetCross();
+                eye = lin_chk.GetCross();
             }
         }
 
@@ -2284,14 +2284,14 @@ static int daB_BQ_Execute(b_bq_class* i_this) {
         sp50 = a_this->eyePos;
         i_this->mCcCoreSph.SetC(sp50 + sp68);
 
-        MTXCopy(model->getAnmMtx(YREG_S(2) + JNT_CORE_3), *calc_mtx);
+        MTXCopy(model->getAnmMtx(YREG_S(2) + (int)JNT_CORE_3), *calc_mtx);
         sp44.set(YREG_F(3) + -250.0f, YREG_F(4), YREG_F(5));
         MtxPosition(&sp44, &sp50);
 
         i_this->mCcSph.SetC(sp50 + sp68);
         i_this->mCcSph.SetR(YREG_F(14) + 350.0f);
     } else {
-        MTXCopy(model->getAnmMtx(YREG_S(1) + JNT_CORE_3), *calc_mtx);
+        MTXCopy(model->getAnmMtx(YREG_S(1) + (int)JNT_CORE_3), *calc_mtx);
         sp44.set((XREG_F(3) + 300.0f) - 70.0f, XREG_F(4) + 50.0f, XREG_F(5));
         MtxPosition(&sp44, &a_this->eyePos);
         a_this->attention_info.position = a_this->eyePos;
@@ -2480,7 +2480,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     }
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("B_bq", 0x1A);
-    JUT_ASSERT(modelData != 0);
+    JUT_ASSERT(0, modelData != 0);
 
     a_this->mpEyeballModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (a_this->mpEyeballModel == NULL) {
@@ -2523,7 +2523,7 @@ static int daB_BQ_Create(fopAc_ac_c* i_this) {
 
         dComIfGs_offSwitch((fopAcM_GetParam(i_this) >> 0x10) & 0xFF, fopAcM_GetRoomNo(i_this));
 
-        OS_REPORT("B_BQ PARAM %x\n" fopAcM_GetParam(i_this));
+        OS_REPORT("B_BQ PARAM %x\n", fopAcM_GetParam(i_this));
         OS_REPORT("B_BQ//////////////B_BQ SET 1 !!\n");
 
         if (!fopAcM_entrySolidHeap(i_this, useHeapInit, 0x6FA0)) {

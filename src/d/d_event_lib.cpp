@@ -96,7 +96,7 @@ BOOL dEvLib_callback_c::executeStart() {
             fopAcM_orderOtherEventId(mActor, mActor->eventInfo.getEventId(),
                                      mActor->eventInfo.getMapToolId(), 0xFFFF, 0, _C);
         }
-        mActor->eventInfo.i_onCondition(2);
+        mActor->eventInfo.onCondition(2);
         return TRUE;
     } else {
         return setAction(&l_runAction);

@@ -1317,13 +1317,13 @@ bool daB_DS_c::mCutTypeCheck() {
 bool daB_DS_c::startDemoCheck() {
     camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
 
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         return false;
     }
 
     if (!eventInfo.checkCommandDemoAccrpt()) {
         fopAcM_orderPotentialEvent(this, 2, 0xFFFF, 0);
-        eventInfo.i_onCondition(2);
+        eventInfo.onCondition(2);
         mCameraEye = dCam_getBody()->Center();
         mCameraCenter = dCam_getBody()->Eye();
         mCameraFovy = dCam_getBody()->Fovy();
@@ -5273,7 +5273,7 @@ void daB_DS_c::mBattle2_mtx_set() {
         lin_chk.Set(&mMouthPos, &field_0x6d0, this);
 
         if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-            field_0x6d0 = lin_chk.i_GetCross();
+            field_0x6d0 = lin_chk.GetCross();
         }
     }
 
@@ -5554,7 +5554,7 @@ int daB_DS_c::CreateHeap() {
         anm_res = ANM_HEAD_FWAIT;
     }
 
-    JUT_ASSERT(modelData != 0);
+    JUT_ASSERT(0, modelData != 0);
 
     mpMorf = new mDoExt_McaMorfSO(
         modelData, NULL, NULL, static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("B_DS", anm_res)),
@@ -5572,7 +5572,7 @@ int daB_DS_c::CreateHeap() {
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes("B_DS", 74);
-    JUT_ASSERT(modelData != 0);
+    JUT_ASSERT(0, modelData != 0);
 
     mpSwordMorf = new mDoExt_McaMorfSO(
         modelData, NULL, NULL, static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("B_DS", 63)), 0,
@@ -5594,7 +5594,7 @@ int daB_DS_c::CreateHeap() {
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes("B_DS", 75);
-    JUT_ASSERT(modelData != 0);
+    JUT_ASSERT(0, modelData != 0);
 
     mpZantMorf = new mDoExt_McaMorfSO(
         modelData, NULL, NULL, static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("B_DS", 66)), 2,
@@ -5604,7 +5604,7 @@ int daB_DS_c::CreateHeap() {
     }
 
     modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("B_DS", 73));
-    JUT_ASSERT(modelData != 0);
+    JUT_ASSERT(0, modelData != 0);
 
     mpOpPatternModel = mDoExt_J3DModel__create(modelData, 0, 0x11000284);
     if (mpOpPatternModel == NULL) {
@@ -5636,7 +5636,7 @@ int daB_DS_c::CreateHeap() {
     }
 
     modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("B_DS", 72));
-    JUT_ASSERT(modelData != 0);
+    JUT_ASSERT(0, modelData != 0);
 
     mpPatternModel = mDoExt_J3DModel__create(modelData, 0, 0x11000284);
     if (mpPatternModel == NULL) {

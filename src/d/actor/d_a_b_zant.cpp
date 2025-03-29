@@ -1473,9 +1473,9 @@ void daB_ZANT_c::executeOpening() {
         current.pos.set(0.0f, 0.0f, 160.0f);
         shape_angle.y = -0x8000;
 
-        if (!eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(this, 2, 0xFFFF, 4);
-            eventInfo.i_onCondition(2);
+            eventInfo.onCondition(2);
             return;
         }
 
@@ -3817,9 +3817,9 @@ void daB_ZANT_c::executeLastStartDemo() {
 
     switch (mMode) {
     case 0:
-        if (!eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(this, 2, 0xFFFF, 0);
-            eventInfo.i_onCondition(2);
+            eventInfo.onCondition(2);
         } else {
             camera->Stop();
             camera->SetTrimSize(3);
@@ -4522,9 +4522,9 @@ void daB_ZANT_c::executeLastEndDemo() {
 
     switch (mMode) {
     case 0:
-        if (!eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(this, 2, 0xFFFF, 0);
-            eventInfo.i_onCondition(2);
+            eventInfo.onCondition(2);
             return;
         }
 
@@ -4795,9 +4795,9 @@ void daB_ZANT_c::executeRoomChange() {
     switch (mMode) {
     case 0:
         setTgHitBit(FALSE);
-        if (!eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(this, 2, 0xFFFF, 0);
-            eventInfo.i_onCondition(2);
+            eventInfo.onCondition(2);
             return;
         }
 
@@ -5570,7 +5570,7 @@ static int daB_ZANT_Delete(daB_ZANT_c* i_this) {
 /* 8064DC04-8064E128 00FBE4 0524+00 1/1 0/0 0/0 .text            CreateHeap__10daB_ZANT_cFv */
 int daB_ZANT_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("B_zan", 0x48);
-    JUT_ASSERT(modelData != 0);
+    JUT_ASSERT(0, modelData != 0);
     mpModelMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("B_zan", 0x12), 2, 1.0f, 0, -1, &mSound, 0, 0x11000084);
     if (mpModelMorf == NULL || mpModelMorf->getModel() == NULL) {
         return 0;
@@ -5637,14 +5637,14 @@ int daB_ZANT_c::CreateHeap() {
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes("B_zan", 0x4A);
-    JUT_ASSERT(modelData != 0);
+    JUT_ASSERT(0, modelData != 0);
     mpSwordLModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpSwordLModel == NULL) {
         return 0;
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes("B_zan", 0x4B);
-    JUT_ASSERT(modelData != 0);
+    JUT_ASSERT(0, modelData != 0);
     mpSwordRModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpSwordRModel == NULL) {
         return 0;
