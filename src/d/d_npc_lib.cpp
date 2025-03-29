@@ -251,6 +251,3 @@ int dNpcLib_lookat_c::limitter(s16* o_value, s16 param_1, s16 param_2, s16 param
 
     return 1;
 }
-
-/* 80252094-8025217C 24C9D4 00E8+00 1/0 0/0 0/0 .text   __dt__16dNpcLib_lookat_cFv */
-dNpcLib_lookat_c::~dNpcLib_lookat_c() {}

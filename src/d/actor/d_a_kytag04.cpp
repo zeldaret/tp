@@ -168,7 +168,7 @@ static int daKytag04_Execute(kytag04_class* i_this) {
             {
                 switch (i_this->field_0x5c4) {
                 case 0:
-                    if (!a_this->eventInfo.i_checkCommandDemoAccrpt()) {
+                    if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
                         dComIfGp_getEvent().reset(a_this);
                         fopAcM_orderPotentialEvent(a_this, 0x400, 0xFFFF, 0);
                     } else {

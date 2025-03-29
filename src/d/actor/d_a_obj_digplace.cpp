@@ -73,7 +73,7 @@ int daObjDigpl_c::execute() {
 
         u8 item_no;
         if (mpDigPoints != NULL) {
-            item_no = mpDigPoints->m_points[mCurrentDigPoint].field_0x0;
+            item_no = mpDigPoints->m_points[mCurrentDigPoint].mArg1;
         } else {
             item_no = getItemNum();
         }
@@ -139,7 +139,7 @@ int daObjDigpl_c::execute() {
         }
     }
 
-    if (daPy_py_c::i_checkNowWolf() && mDigFlg == 0) {
+    if (daPy_py_c::checkNowWolf() && mDigFlg == 0) {
         if (field_0x56b == 0) {
             int seen_angle = fopAcM_seenActorAngleY(player_p, this);
             f32 dist_to_player = fopAcM_searchPlayerDistanceXZ2(this);

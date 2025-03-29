@@ -1473,9 +1473,9 @@ void daB_ZANT_c::executeOpening() {
         current.pos.set(0.0f, 0.0f, 160.0f);
         shape_angle.y = -0x8000;
 
-        if (!eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(this, 2, 0xFFFF, 4);
-            eventInfo.i_onCondition(2);
+            eventInfo.onCondition(2);
             return;
         }
 
@@ -3817,9 +3817,9 @@ void daB_ZANT_c::executeLastStartDemo() {
 
     switch (mMode) {
     case 0:
-        if (!eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(this, 2, 0xFFFF, 0);
-            eventInfo.i_onCondition(2);
+            eventInfo.onCondition(2);
         } else {
             camera->Stop();
             camera->SetTrimSize(3);
@@ -4522,9 +4522,9 @@ void daB_ZANT_c::executeLastEndDemo() {
 
     switch (mMode) {
     case 0:
-        if (!eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(this, 2, 0xFFFF, 0);
-            eventInfo.i_onCondition(2);
+            eventInfo.onCondition(2);
             return;
         }
 
@@ -4795,9 +4795,9 @@ void daB_ZANT_c::executeRoomChange() {
     switch (mMode) {
     case 0:
         setTgHitBit(FALSE);
-        if (!eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(this, 2, 0xFFFF, 0);
-            eventInfo.i_onCondition(2);
+            eventInfo.onCondition(2);
             return;
         }
 

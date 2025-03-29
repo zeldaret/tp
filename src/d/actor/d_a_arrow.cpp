@@ -184,11 +184,11 @@ int daArrow_c::setArrowWaterNextPos(cXyz* i_start, cXyz* i_end) {
 
     if (dComIfG_Bgsp().LineCross(&field_0x5dc)) {
         if (dComIfG_Bgsp().GetPolyAtt0(field_0x5dc) == 6) {
-            *i_end = field_0x5dc.i_GetCross();
+            *i_end = field_0x5dc.GetCross();
             return 2;
         }
         
-        cXyz v = *i_end - field_0x5dc.i_GetCross();
+        cXyz v = *i_end - field_0x5dc.GetCross();
         f32 dis = (*i_end).abs(*i_start);
 
         if (dis > 0.0001f) {
@@ -198,7 +198,7 @@ int daArrow_c::setArrowWaterNextPos(cXyz* i_start, cXyz* i_end) {
         }
 
         v.normalizeZP();
-        *i_end = field_0x5dc.i_GetCross() + v * 80.0f * dis;
+        *i_end = field_0x5dc.GetCross() + v * 80.0f * dis;
         return 1;
     } 
     
@@ -261,7 +261,7 @@ void daArrow_c::setArrowAt(f32 param_0) {
     field_0x56c.Set(&current.pos, &target, this);
 
     if (dComIfG_Bgsp().LineCross(&field_0x56c)) {
-        target = field_0x56c.i_GetCross();
+        target = field_0x56c.GetCross();
     }
 
     static_cast<cM3dGCps*>(&field_0x688)->Set(current.pos, target, radius);
@@ -603,7 +603,7 @@ int daArrow_c::procMove() {
 
         cXyz v2;
         if (dComIfG_Bgsp().LineCross(&field_0x56c)) {
-            v2 = field_0x56c.i_GetCross();
+            v2 = field_0x56c.GetCross();
         } else {
             v2 = v;
         }
@@ -621,7 +621,7 @@ int daArrow_c::procMove() {
             if (water_next_pos == 4 || water_next_pos == 3) {
                 field_0x9fc = old.pos;
             } else {
-                field_0x9fc = field_0x5dc.i_GetCross();
+                field_0x9fc = field_0x5dc.GetCross();
             }
 
             speed.normalizeZP();
@@ -753,7 +753,7 @@ int daArrow_c::procMove() {
     }
 
     if (line_cross) {
-        current.pos = field_0x56c.i_GetCross();
+        current.pos = field_0x56c.GetCross();
 
         if (field_0x945 != 0 && (mArrowType == 1 || current.pos.y - field_0x9fc.y < -300.0f)) {
             field_0x93f = 1;
@@ -802,7 +802,7 @@ int daArrow_c::procMove() {
             speedF = 0.0f;
             se_id = Z2SE_HIT_AL_ARROW_STICK;
             current.angle.x = shape_angle.x;
-            dComIfG_Bgsp().ArrowStickCallBack(field_0x56c, this, field_0x56c.i_GetCross());
+            dComIfG_Bgsp().ArrowStickCallBack(field_0x56c, this, field_0x56c.GetCross());
         }
 
         daAlink_getAlinkActorClass()->itemHitSE(se_id, dKy_pol_sound_get(&field_0x56c) & 0xff, &mSoundObjArrow);
