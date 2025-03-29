@@ -354,11 +354,9 @@ public:
     /* 80167FEC */ void checkGroundInfo();
     /* 80168744 */ bool chaseCamera(s32);
     /* 8016C384 */ bool lockonCamera(s32);
-    /* 8016E448 */ void getMsgCmdSpeaker();
-    /* 8016E4A4 */ void getMsgCmdCut(s32);
+    /* 8016E448 */ fopAc_ac_c* getMsgCmdSpeaker();
+    /* 8016E4A4 */ s32 getMsgCmdCut(s32);
     /* 8016E4F4 */ bool talktoCamera(s32);
-    /* 80174E18 */ void talkBasePos(fopAc_ac_c*);
-    /* 80174E34 */ void talkEyePos(fopAc_ac_c*);
     /* 80174EA4 */ bool CalcSubjectAngle(s16*, s16*);
     /* 80174EAC */ void SaveZoomRatio();
     /* 80174ED4 */ bool subjectCamera(s32);
@@ -406,8 +404,11 @@ public:
     /* 80181E20 */ cXyz Up();
     /* 80181E64 */ cXyz Eye();
     /* 80181E98 */ cXyz Center();
+
     /* 8018295C */ f32 footHeightOf(fopAc_ac_c* i_actor) { return i_actor->current.pos.y; }
     /* 801829AC */ cSAngle Bank() { return mBank + mShake.field_0x40; }
+    /* 80174E18 */ cXyz talkBasePos(fopAc_ac_c* i_actor) { return i_actor->current.pos; }
+    /* 80174E34 */ cXyz talkEyePos(fopAc_ac_c* i_actor) { return i_actor->eyePos; }
 
     void debugDraw();
 
@@ -651,6 +652,46 @@ public:
             /* 0x5C */ f32 field_0x5c;
             /* 0x60 */ f32 field_0x60;
         } lockon;
+        struct {
+            /* 0x00 */ int field_0x0;
+            /* 0x04 */ cXyz field_0x4;
+            /* 0x10 */ cXyz field_0x10;
+            /* 0x1C */ cXyz field_0x1c;
+            /* 0x28 */ cSGlobe field_0x28;
+            /* 0x30 */ cSGlobe field_0x30;
+            /* 0x38 */ int field_0x38;
+            /* 0x3C */ int field_0x3c;
+            /* 0x40 */ int field_0x40;
+            /* 0x44 */ int field_0x44;
+            /* 0x48 */ int field_0x48;
+            /* 0x4C */ f32 field_0x4c;
+            /* 0x50 */ f32 field_0x50;
+            /* 0x54 */ f32 field_0x54;
+            /* 0x58 */ f32 field_0x58;
+            /* 0x5C */ f32 field_0x5c;
+            /* 0x60 */ f32 field_0x60;
+            /* 0x64 */ f32 field_0x64;
+            /* 0x68 */ f32 field_0x68;
+            /* 0x6C */ f32 field_0x6c;
+            /* 0x70 */ fopAc_ac_c* field_0x70;
+            /* 0x74 */ fopAc_ac_c* field_0x74;
+            /* 0x78 */ fopAc_ac_c* field_0x78;
+            /* 0x7C */ f32 field_0x7c;
+            /* 0x80 */ f32 field_0x80;
+            /* 0x84 */ s16 field_0x84;
+            /* 0x86 */ s16 field_0x86;
+            /* 0x88 */ bool field_0x88;
+            /* 0x89 */ bool field_0x89;
+            /* 0x8C */ u32 field_0x8c;
+            /* 0x90 */ cXyz field_0x90;
+            /* 0x9C */ cXyz field_0x9c;
+            /* 0xA8 */ cSGlobe field_0xa8;
+            /* 0xB0 */ f32 field_0xb0;
+            /* 0xB4 */ cXyz field_0xb4;
+            /* 0xC0 */ cXyz field_0xc0;
+            /* 0xCC */ cXyz field_0xcc;
+            /* 0xD8 */ cXyz field_0xd8;
+        } talk;
         struct {
             /* 0x00 */ bool field_0x0;
             /* 0x04 */ int field_0x4;

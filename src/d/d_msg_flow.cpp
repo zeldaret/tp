@@ -513,9 +513,9 @@ int dMsgFlow_c::messageNodeProc(fopAc_ac_c* param_1, fopAc_ac_c** param_2) {
         if (msg == NULL) {
             field_0x25 = 1;
         } else {
-            int mesgCamInfo = dComIfGp_getMesgCameraInfo();
-            if (mesgCamInfo != field_0x34) {
-                field_0x34 = mesgCamInfo;
+            int mesgCamInfoBasicID = dComIfGp_getMesgCameraInfo()->mBasicID;
+            if (mesgCamInfoBasicID != field_0x34) {
+                field_0x34 = mesgCamInfoBasicID;
             }
             switch (msg->mode) {
             case 2:

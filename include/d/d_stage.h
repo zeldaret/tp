@@ -564,7 +564,7 @@ public:
 
     void setTreasure(stage_tresure_class*);
 
-    s16 getWorldRollAngleX() { return mWorldRollAngleX; }
+    s16 getWorldRollAngleX() { return (s16)mWorldRollAngleX; }
     s16 getWorldRollDirAngleY() { return mWorldRollDirAngleY; }
 
 public:

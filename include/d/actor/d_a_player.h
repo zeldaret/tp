@@ -699,7 +699,7 @@ public:
     cXyz* getRightFootPosP() { return &mRightFootPos; }
     cXyz* getLeftFootPosP() { return &mLeftFootPos; }
     BOOL checkCopyRodThrowAfter() const { return checkNoResetFlg3(FLG3_COPY_ROD_THROW_AFTER); }
-    BOOL checkRide() const { return checkHorseRide() || checkBoarRide() || checkSpinnerRide() || checkCanoeRide() || checkBoardRide(); }
+    u32 checkRide() const { return checkHorseRide() || checkBoarRide() || checkSpinnerRide() || checkCanoeRide() || checkBoardRide(); }
     cXyz getRightHandPos() const { return mRightHandPos; }
     const cXyz getLeftHandPos() const { return mLeftHandPos; }
     const cXyz getItemPos() const { return mItemPos; }
