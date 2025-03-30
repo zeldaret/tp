@@ -439,7 +439,7 @@ void daTbox_c::initPos() {
         }
 
         if (dComIfGs_isSwitch(getSwNo(), fopAcM_GetRoomNo(this))) {
-            dStage_dPnt_c* pnt = &path_p->m_points[path_p->m_num - 1];
+            dPnt* pnt = &path_p->m_points[path_p->m_num - 1];
             current.pos = pnt->m_position;
             home.pos = pnt->m_position;
         }

@@ -70,7 +70,7 @@ static int daTagSppath_Delete(daTagSppath_c* i_this) {
 int daTagSppath_c::getNearPathPos(cXyz* i_result, dPath* i_path) {
     daPy_py_c* py = daPy_getPlayerActorClass();
     cXyz* pyCurPos = &py->current.pos;
-    dStage_dPnt_c* curPnt = i_path->m_points;
+    dPnt* curPnt = i_path->m_points;
     f32 bestDist = FLT_MAX;
 
     int bestNo;
@@ -121,7 +121,7 @@ int daTagSppath_c::getNearPathPos(cXyz* i_result, dPath* i_path) {
         if (isValid == 0) {
             nearestPointOnSeg = curPnt->m_position;
             if (!dPath_ChkClose(i_path) && ((i == 0 || (i == i_path->m_num - 1)))) {
-                dStage_dPnt_c* adjPnt;
+                dPnt* adjPnt;
                 if (i == 0) {
                     adjPnt = curPnt + 1;
                 } else {

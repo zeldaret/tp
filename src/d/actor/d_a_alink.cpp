@@ -14992,7 +14992,7 @@ s16 daAlink_c::getSceneExitMoveAngle() {
         return mDemo.getMoveAngle();
     }
 
-    dStage_dPnt_c* var_r30 = &field_0x2f58->m_points[field_0x2fc2];
+    dPnt* var_r30 = &field_0x2f58->m_points[field_0x2fc2];
     f32 dx = var_r30->m_position.x - current.pos.x;
     f32 dz = var_r30->m_position.z - current.pos.z;
 

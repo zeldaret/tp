@@ -303,7 +303,7 @@ void dalv4CandleDemoTag_c::init_modeEnemyCreate() {
     dPath* path_p = dPath_GetRoomPath(mPathID, fopAcM_GetRoomNo(this));
 
     for (int i = 0; i < path_p->m_num; i++) {
-        dStage_dPnt_c* pnt = &path_p->m_points[i];
+        dPnt* pnt = &path_p->m_points[i];
 
         cXyz pos;
         pos.x = pnt->m_position.x;

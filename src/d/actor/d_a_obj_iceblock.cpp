@@ -105,7 +105,7 @@ void daObjIceBlk_c::loadCurrentPos() {
     if (mpPath != NULL) {
         u16 point_no = getPointNo();
         if (point_no != 0) {
-            dStage_dPnt_c* point = &mpPath->m_points[point_no - 1];
+            dPnt* point = &mpPath->m_points[point_no - 1];
             home.pos = point->m_position;
             old.pos = home.pos;
             current.pos = home.pos;
@@ -148,7 +148,7 @@ int daObjIceBlk_c::saveCurrentPos() {
         return current_pos;
     }
 
-    dStage_dPnt_c* point = mpPath->m_points;
+    dPnt* point = mpPath->m_points;
     f32 nearest_dist = 1000000.0f;
     int nearest_point_no = 0;
 
