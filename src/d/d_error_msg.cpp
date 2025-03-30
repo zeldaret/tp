@@ -177,7 +177,6 @@ u8 dDvdErrorMsg_c::execute() {
 static u8 l_captureAlpha = 0xFF;
 
 /* 8009D410-8009D790 097D50 0380+00 1/1 0/0 0/0 .text            drawCapture__FUc */
-// NONMATCHING - stack too small
 static void drawCapture(u8 alpha) {
     static bool l_texCopied = false;
 
@@ -188,7 +187,7 @@ static void drawCapture(u8 alpha) {
         l_texCopied = true;
     }
 
-    JFWDisplay::getManager()->setClearColor(g_clearColor);
+    mDoGph_gInf_c::setClearColor(g_clearColor);
     mDoGph_gInf_c::beginRender();
     GXSetAlphaUpdate(GX_FALSE);
     j3dSys.drawInit();
@@ -218,7 +217,7 @@ static void drawCapture(u8 alpha) {
     GXSetCullMode(GX_CULL_NONE);
     GXSetDither(GX_ENABLE);
 
-    Mtx m;
+    Mtx44 m;
     C_MTXOrtho(m, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 10.0f);
     GXLoadPosMtxImm(g_mDoMtx_identity, GX_PNMTX0);
     GXSetProjection(m, GX_ORTHOGRAPHIC);

@@ -358,7 +358,7 @@ public:
     /* 8016E4A4 */ s32 getMsgCmdCut(s32);
     /* 8016E4F4 */ bool talktoCamera(s32);
     /* 80174EA4 */ bool CalcSubjectAngle(s16*, s16*);
-    /* 80174EAC */ void SaveZoomRatio();
+    /* 80174EAC */ bool SaveZoomRatio();
     /* 80174ED4 */ bool subjectCamera(s32);
     /* 80176074 */ bool magneCamera(s32);
     /* 801767F8 */ bool colosseumCamera(s32);
@@ -692,6 +692,30 @@ public:
             /* 0xCC */ cXyz field_0xcc;
             /* 0xD8 */ cXyz field_0xd8;
         } talk;
+        struct {
+            /* 0x00 */ int field_0x0;
+            /* 0x04 */ cXyz field_0x4;
+            /* 0x10 */ int field_0x10;
+            /* 0x14 */ int field_0x14;
+            /* 0x18 */ int field_0x18;
+            /* 0x1C */ bool field_0x1c;
+            /* 0x1D */ bool field_0x1d;
+            /* 0x20 */ f32 field_0x20;
+            /* 0x24 */ f32 field_0x24;
+            /* 0x28 */ cSAngle field_0x28;
+            /* 0x2A */ cSAngle field_0x2a;
+            /* 0x2C */ cSAngle field_0x2c;
+            /* 0x2E */ cSAngle field_0x2e;
+            /* 0x30 */ cXyz field_0x30;
+            /* 0x3C */ cXyz field_0x3c;
+            /* 0x48 */ cSGlobe field_0x48;
+        } subject;
+        struct {
+            /* 0x00 */ int field_0x0;
+            /* 0x04 */ cXyz field_0x4;
+            /* 0x10 */ cXyz field_0x10;
+            /* 0x1C */ cSGlobe field_0x1c;
+        } magne;
         struct {
             /* 0x00 */ bool field_0x0;
             /* 0x04 */ int field_0x4;

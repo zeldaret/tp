@@ -217,4 +217,13 @@ void HitSeStart(cXyz const* i_sePos, int i_roomNo, dCcD_GObjInf const* i_CcObj, 
         mDoAud_seStart(sfx, i_sePos, param_3 & 0xFF, (s8)reverb);
     }
 }
+
+static cXyz dummy1(cCcD_CylAttr* cyl) {
+    return cyl->GetCoCP();
+}
+
+static cXyz dummy2(cCcD_SphAttr* sph) {
+    return sph->GetCoCP();
+}
+
 }  // namespace daObj

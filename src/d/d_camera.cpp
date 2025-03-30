@@ -809,6 +809,10 @@ inline static void setComZoomScale(f32 param_0) {
     dComIfGp_setCameraZoomScale(0, param_0);
 }
 
+inline static void setComZoomForcus(f32 param_0) {
+    dComIfGp_setCameraZoomForcus(0, param_0);
+}
+
 }  // namespace
 
 /* 80160470-801614AC 15ADB0 103C+00 1/1 0/0 0/0 .text
@@ -6589,47 +6593,482 @@ bool dCamera_c::CalcSubjectAngle(s16* param_0, s16* param_1) {
 }
 
 /* 80174EAC-80174ED4 16F7EC 0028+00 0/0 0/0 1/1 .text            SaveZoomRatio__9dCamera_cFv */
-void dCamera_c::SaveZoomRatio(){// NONMATCHING
+bool dCamera_c::SaveZoomRatio() {
+    if (mCamParam.Algorythmn() != 4) {
+        return false;
+    }
+
+    field_0x73c = mWork.subject.field_0x24;
+    return true;
 }
-
-/* ############################################################################################## */
-/* 8045388C-80453890 001E8C 0004+00 1/1 0/0 0/0 .sdata2          @12864 */
-SECTION_SDATA2 static f32 lit_12864 = 270.0f;
-
-/* 80453890-80453894 001E90 0004+00 1/1 0/0 0/0 .sdata2          @12865 */
-SECTION_SDATA2 static f32 lit_12865 = 19.0f;
-
-/* 80453894-80453898 001E94 0004+00 1/1 0/0 0/0 .sdata2          @12866 */
-SECTION_SDATA2 static f32 lit_12866 = 150.0f;
-
-/* 80453898-8045389C 001E98 0004+00 1/1 0/0 0/0 .sdata2          @12867 */
-SECTION_SDATA2 static f32 lit_12867 = -1.0f / 100.0f;
-
-/* 8045389C-804538A0 001E9C 0004+00 5/5 0/0 0/0 .sdata2          @12868 */
-SECTION_SDATA2 static f32 lit_12868 = -1.0f;
-
-/* 804538A0-804538A4 001EA0 0004+00 1/1 0/0 0/0 .sdata2          @12869 */
-SECTION_SDATA2 static f32 lit_12869 = -511.0f;
 
 /* 80174ED4-80176074 16F814 11A0+00 1/0 0/0 0/0 .text            subjectCamera__9dCamera_cFl */
-bool dCamera_c::subjectCamera(s32 param_0){// NONMATCHING
-}
+bool dCamera_c::subjectCamera(s32 param_0) {
+    f32 val0 = mCamParam.Val(param_0, 0);
+    f32 val2 = mCamParam.Val(param_0, 2);
+    f32 val1 = mCamParam.Val(param_0, 1);
+    f32 val25 = mCamParam.Val(param_0, 25);
+    f32 val4 = mCamParam.Val(param_0, 4);
+    f32 val26 = mCamParam.Val(param_0, 26);
+    f32 val20 = mCamParam.Val(param_0, 20);
+    f32 val19 = mCamParam.Val(param_0, 19);
+    f32 val21 = mCamParam.Val(param_0, 21);
+    f32 val7 = mCamParam.Val(param_0, 7);
+    f32 val10 = mCamParam.Val(param_0, 10);
+    f32 val17 = mCamParam.Val(param_0, 17);
+    f32 val27 = mCamParam.Val(param_0, 27);
+    f32 val22 = mCamParam.Val(param_0, 22);
+    f32 val16 = mCamParam.Val(param_0, 16);
+    f32 val24 = mCamParam.Val(param_0, 24);
+    f32 val18 = mCamParam.Val(param_0, 18);
+    daAlink_c* player = (daAlink_c*)mpPlayerActor;
 
-/* ############################################################################################## */
-/* 804538A4-804538A8 001EA4 0004+00 3/3 0/0 0/0 .sdata2          @13132 */
-SECTION_SDATA2 static f32 lit_13132 = 4.0f;
+    bool bVar13 = check_owner_action(mPadID, 0x1040) != 0;
+    bool bVar14 = check_owner_action(mPadID, 0x4000) != 0;
+    bool bVar15 = check_owner_action(mPadID, 0x400) != 0;
+    bool magne_boots_on = player->checkMagneBootsOn() != 0;
+    check_owner_action(mPadID, 0x80080);
+    bool bVar16 = check_owner_action(mPadID, 0x40) != 0;
+
+    if (mCurCamTypeTimer == 0) {
+        mWork.subject.field_0x0 = 'SUBN';
+        mWork.subject.field_0x2a.Val(field_0x5c.mDirection.U().Inv());
+        mWork.subject.field_0x28.Val(field_0x5c.mDirection.V());
+        mWork.subject.field_0x14 = 7;
+        if (check_owner_action1(mPadID, 0x2000000)) {
+            mWork.subject.field_0x14 = 2;
+        }
+        mWork.subject.field_0x10 = 0;
+        mWork.subject.field_0x24 = field_0x73c;
+        field_0x73c = 0.0f;
+        mWork.subject.field_0x18 = param_0;
+        mWork.subject.field_0x1c = false;
+        mWork.subject.field_0x20 = 0.0f;
+        mWork.subject.field_0x1d = false;
+
+        if (bVar13 || bVar15) {
+            mWork.subject.field_0x1d = directionOf(mpPlayerActor) - field_0x5c.mDirection.U() > cSAngle::_0;
+        } else if (bVar14) {
+            mWork.subject.field_0x1d = player->getHookshotLeft();
+        }
+    }
+
+    if (mWork.subject.field_0x1d) {
+        val0 = -val0;
+    }
+
+    cXyz stack_1bc;
+    cSAngle stack_448;
+    MtxP mtx, inv_mtx;
+    if (magne_boots_on) {
+        stack_1bc = *player->getMagneBootsTopVec();
+        mtx = player->getMagneBootsMtx();
+        inv_mtx = player->getMagneBootsInvMtx();
+        stack_448 = cSAngle(player->getMagneBootsModelShapeAngle());
+    } else {
+        stack_1bc = cXyz::BaseY;
+        mtx = mDoMtx_getIdentity();
+        inv_mtx = mDoMtx_getIdentity();
+        stack_448 = directionOf(mpPlayerActor);
+    }
+
+    cXyz stack_1c8, stack_1d4, stack_1e0;
+    s16 bow_angle_x, bow_angle_y;
+    cSAngle angle_x = player->getCameraAngleX();
+    cSAngle angle_y = player->getCameraAngleY();
+    cXyz* bow_pos = player->checkBowCameraArrowPosP(&bow_angle_x, &bow_angle_y);
+
+    if (check_owner_action(mPadID, 0x200000) && bow_pos != NULL) {
+        stack_1c8 = *bow_pos;
+        angle_x.Val(bow_angle_x);
+        angle_y.Val(bow_angle_y);
+    } else if (bVar14) {
+        if (player->getHookshotLeft()) {
+            stack_1c8 = player->getLeftHandPos();
+        } else {
+            stack_1c8 = player->getRightHandPos();
+        }
+    } else if (player->checkIronBallThrowReturnMode()) {
+        stack_1c8 = attentionPos(mpPlayerActor);
+        cXyz* iron_ball_pos = player->getIronBallCenterPos();
+        cSGlobe globe = stack_1c8 - *iron_ball_pos;
+        f32 tmp = cXyz(*iron_ball_pos - stack_1c8).abs();
+        if (tmp > 200.0f) {
+            angle_x = globe.V();
+            angle_y = globe.U().Inv();
+        } else {
+            angle_x = mWork.subject.field_0x28;
+            angle_y = mWork.subject.field_0x2a;
+        }
+        angle_x += cSAngle(5.0f);
+    } else if (bVar15) {
+        stack_1c8 = attentionPos(mpPlayerActor);
+        mWork.subject.field_0x28 = angle_x;
+        mWork.subject.field_0x2a = angle_y;
+        angle_x += cSAngle(5.0f);
+    } else {
+        stack_1c8 = *player->getSubjectEyePos();
+    }
+
+    mWork.subject.field_0x2e = angle_x;
+    mWork.subject.field_0x2c = angle_y;
+
+    if (magne_boots_on) {
+        cXyz player_pos = positionOf(mpPlayerActor);
+        mWork.subject.field_0x4 = field_0x5c.mCenter - player_pos;
+        mWork.subject.field_0x30 = field_0x5c.mEye - player_pos;
+        mDoMtx_multVecSR(inv_mtx, &mWork.subject.field_0x4, &mWork.subject.field_0x4);
+        mDoMtx_multVecSR(inv_mtx, &mWork.subject.field_0x30, &mWork.subject.field_0x30);
+        mWork.subject.field_0x4 += player_pos;
+        mWork.subject.field_0x30 += player_pos;
+        mWork.subject.field_0x48.Val(mWork.subject.field_0x30 - mWork.subject.field_0x4);
+    }
+
+    if (mCurCamTypeTimer == 0) {
+        mWork.subject.field_0x4 = field_0x5c.mCenter;
+        mWork.subject.field_0x30 = field_0x5c.mEye;
+        mWork.subject.field_0x48 = field_0x5c.mDirection;
+        mWork.subject.field_0x3c = mUp;
+        field_0x738 = val16;
+    }
+
+    bool bVar17 = false;
+    if (field_0x940 == -1) {
+        bVar17 = true;
+    }
+
+    if (mCurType == specialType[3]) {
+        field_0x940 = 0;
+        mCamParam.SetFlag(0x10);
+        mCamParam.SetFlag(4);
+    } else if (mCurMode == 4) {
+        field_0x940 = -1;
+        if (mPadInfo.mCStick.mLastPosY < -mCamSetup.mCStick.SwTHH()) {
+            if (field_0x1f4 != -1 && field_0x940 == -1) {
+                field_0x940 = 0;
+                setComStat(0x2000);
+            }
+            field_0x1f4 = -1;
+        } else {
+            field_0x1f4 = 0;
+        }
+    } else if (bVar15 || player->checkIronBallThrowReturnMode()) {
+        val0 = 0.0f;
+        val2 = 40.0f;
+        val1 = 50.0f;
+        val7 = 270.0f;
+        val17 = 70.0f;
+    } else if (bVar14 || bVar13) {
+        if (field_0x940 == -1) {
+            bVar17 = true;
+        }
+
+        if (bVar17) {
+            val16 = mWork.subject.field_0x20;
+            mWork.subject.field_0x20 = val16 + (1.0f - val16) * 0.3f;
+        } else {
+            val16 = mWork.subject.field_0x20;
+            mWork.subject.field_0x20 = val16 + (0.0f - val16) * 0.3f;
+        }
+
+        mWork.subject.field_0x20 = 1.0f;
+        mCamParam.SetFlag(0x10);
+        mCamParam.SetFlag(4);
+
+        if (bVar14) {
+            val20 = player->getHookshotLeft() ? val20 : -val20;
+            val0 += (val20 - val0) * mWork.subject.field_0x20;
+            val2 += (val19 - val2) * mWork.subject.field_0x20;
+            val1 += (val21 - val1) * mWork.subject.field_0x20;
+            val7 += (val10 - val7) * mWork.subject.field_0x20;
+        } else if (bVar16) {
+            val0 += (19.0f - val0) * mWork.subject.field_0x20;
+            val2 += (0.0f - val2) * mWork.subject.field_0x20;
+            val1 += (val26 - val1) * mWork.subject.field_0x20;
+            val7 += (val10 - val7) * mWork.subject.field_0x20;
+        } else if (bVar13) {
+            val0 += (val25 - val0) * mWork.subject.field_0x20;
+            val2 += (val4 - val2) * mWork.subject.field_0x20;
+            val1 += (val26 - val1) * mWork.subject.field_0x20;
+            val7 += (val10 - val7) * mWork.subject.field_0x20;
+        } else {
+            val0 += (0.0f - val0) * mWork.subject.field_0x20;
+            val2 += (0.0f - val2) * mWork.subject.field_0x20;
+            val1 += (0.0f - val1) * mWork.subject.field_0x20;
+            val7 += (20.0f - val7) * mWork.subject.field_0x20;
+        }
+    }
+
+    if (mCurMode == 4 && getComStat(0x800)) {
+        val2 = 50.0f;
+    } else if (player->checkHawkWait()) {
+        val7 = 150.0f;
+        val2 = 20.0f;
+    }
+
+    if (mCamParam.Flag(param_0, 0x4000)) {
+        setFlag(0x800);
+    }
+    if (mCamParam.Flag(param_0, 0x20)) {
+        setFlag(0x10000000);
+    }
+
+    cXyz stack_1f8(val0, val2, val1);
+    stack_1d4 = dCamMath::xyzRotateX(stack_1f8, angle_x);
+    stack_1f8 = dCamMath::xyzRotateY(stack_1d4, angle_y);
+    f32 tmp = bVar15 ? 40.0f : 0.0f;
+    cXyz stack_204(0.0f, tmp, -val7);
+    stack_1d4 = dCamMath::xyzRotateX(stack_204, angle_x);
+    stack_204 = dCamMath::xyzRotateY(stack_1d4, angle_y);
+
+    if (magne_boots_on) {
+        mDoMtx_multVecSR(mtx, &stack_1f8, &stack_1f8);
+        mDoMtx_multVecSR(mtx, &stack_204, &stack_204);
+    }
+
+    f32 fVar1 = 1.0f;
+    if (player->checkIronBallThrowReturnMode()) {
+        fVar1 = 0.1f;
+    } else if (player->checkHorseRide() || player->checkCanoeRide()) {
+        fVar1 = 1.0f;
+    }
+
+    cXyz stack_210 = stack_1c8 + stack_1f8;
+    dBgS_CamLinChk lin_chk;
+    if (field_0x190 == 1) {
+        cXyz stack_21c = positionOf(mpPlayerActor);
+        stack_21c.y = stack_1c8.y;
+        if (lineBGCheck(&stack_21c, &stack_210, &lin_chk, 0x40b7)) {
+            cM3dGPla plane;
+            dComIfG_Bgsp().GetTriPla(lin_chk, &plane);
+            stack_210 = lin_chk.GetCross();
+            stack_210 += *plane.GetNP() * 5.0f;
+        }
+    }
+
+    stack_210 = field_0x5c.mCenter + (stack_210 - field_0x5c.mCenter) * fVar1;
+    cXyz stack_228 = stack_210 + stack_204;
+    stack_228 = field_0x5c.mEye + (stack_228 - field_0x5c.mEye) * fVar1;
+
+    if (magne_boots_on) {
+        setFlag(0x10);
+        stack_1e0 = stack_1bc;
+    } else {
+        stack_1e0 = cXyz::BaseY;
+    }
+
+    cXyz stack_234 = stack_228 - stack_210;
+    cXyz stack_240, stack_24c;
+    stack_234.normalize();
+    stack_240 = stack_210 + stack_234 * 40.0f;
+    if (lineBGCheck(&stack_240, &stack_210, &stack_24c, 0x40b7)) {
+        stack_228 = stack_24c + stack_234 * 10.0f;
+    }
+
+    if (field_0x158.field_0x0) {
+        field_0x5c.mCenter = stack_210;
+        field_0x5c.mEye = stack_228;
+    } else {
+        cSGlobe stack_43c = stack_228 - stack_210;
+        f32 tmp = 1.0f / (mWork.subject.field_0x14 - mWork.subject.field_0x10);
+        field_0x5c.mCenter += (stack_210 - field_0x5c.mCenter) * tmp;
+        field_0x5c.mDirection.R(field_0x5c.mDirection.R() + (stack_43c.R() - field_0x5c.mDirection.R()) * tmp);
+        field_0x5c.mDirection.V(field_0x5c.mDirection.V() + (stack_43c.V() - field_0x5c.mDirection.V()) * tmp);
+        field_0x5c.mDirection.U(field_0x5c.mDirection.U() + (stack_43c.U() - field_0x5c.mDirection.U()) * tmp);
+        field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
+        field_0x5c.mFovy += (val17 - field_0x5c.mFovy) * tmp;
+        mWork.subject.field_0x3c += (stack_1e0 - mWork.subject.field_0x3c) * tmp;
+        stack_1e0 = mWork.subject.field_0x3c.norm();
+
+        if (mWork.subject.field_0x10 == mWork.subject.field_0x14 - 1) {
+            field_0x158.field_0x0 = true;
+        }
+        mWork.subject.field_0x10++;
+
+        if (magne_boots_on) {
+            field_0x740.field_0x0 = field_0x5c.mCenter;
+            field_0x740.field_0xc = field_0x5c.mEye;
+            field_0x740.field_0x24 = field_0x5c.mDirection;
+            field_0x740.field_0x18 = stack_1e0;
+        }
+
+        return true;
+    }
+
+    field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
+    field_0x740.field_0x0 = field_0x5c.mCenter;
+    field_0x740.field_0xc = field_0x5c.mEye;
+    field_0x740.field_0x24 = field_0x5c.mDirection;
+    field_0x740.field_0x18 = stack_1e0;
+
+    if (mCamParam.Flag(param_0, 0x400)) {
+        f32 dVar17 = 0.0f;
+        f32 dVar16 = 0.0f;
+        int iVar2 = 0;
+        if (mPadInfo.mCStick.mLastPosY > 0.01f) {
+            dVar17 = dCamMath::rationalBezierRatio(mPadInfo.mCStick.mLastPosY, mCamSetup.CurveWeight());
+            iVar2 = -1;
+        } else if (mPadInfo.mCStick.mLastPosY < -0.01f) {
+            dVar16 = dCamMath::rationalBezierRatio(-mPadInfo.mCStick.mLastPosY, mCamSetup.CurveWeight());
+            iVar2 = 1;
+        }
+        f32 tmp = mWork.subject.field_0x24 + val18 * (dVar17 - dVar16) * 0.1f;
+
+        if (tmp < 0.0f) {
+            mWork.subject.field_0x24 = 0.0f;
+        } else if (tmp > 1.0f) {
+            mWork.subject.field_0x24 = 1.0f;
+        } else {
+            mWork.subject.field_0x24 = tmp;
+            if (iVar2 == -1) {
+                mDoAud_seStartLevel(Z2SE_AL_HAWK_EYE_ZOOMIN, NULL, 0, 0);
+            } else if (iVar2 == 1) {
+                mDoAud_seStartLevel(Z2SE_AL_HAWK_EYE_ZOOMOUT, NULL, 0, 0);
+            }
+        }
+
+        if (mWork.subject.field_0x24 == 0.0f || mWork.subject.field_0x24 == 0.5f || mWork.subject.field_0x24 == 1.0f) {
+            dVar17 = 0.0f;
+            dVar16 = 0.0f;
+        }
+
+        f32 tmp2 = mWork.subject.field_0x24 * 8.0f + 1.0f;
+        f32 zoom_fovy = dCamMath::zoomFovy(val17 * 0.5f, tmp2) * 2.0f;
+        field_0x5c.mFovy += (zoom_fovy - field_0x5c.mFovy) * val22;
+        setComZoomScale(tmp2);
+        setComZoomForcus(1.0f - fabsf(dVar17 - dVar16) * -511.0f);
+        if (check_owner_action(mPadID, 0x200000)) {
+            setComStat(8);
+        }
+
+    } else {
+        field_0x5c.mFovy = val17;
+    }
+
+    return true;
+}
 
 /* 80176074-801767F8 1709B4 0784+00 1/0 0/0 0/0 .text            magneCamera__9dCamera_cFl */
-bool dCamera_c::magneCamera(s32 param_0){// NONMATCHING
-}
+bool dCamera_c::magneCamera(s32 param_0) {
+    f32 val5 = mCamParam.Val(param_0, 5);
+    f32 val0 = mCamParam.Val(param_0, 0);
+    f32 val1 = mCamParam.Val(param_0, 1);
+    f32 val2 = mCamParam.Val(param_0, 2);
+    f32 val3 = mCamParam.Val(param_0, 3);
+    f32 val7 = mCamParam.Val(param_0, 7);
+    f32 val8 = mCamParam.Val(param_0, 8);
+    f32 val11 = mCamParam.Val(param_0, 11);
+    f32 val12 = mCamParam.Val(param_0, 12);
+    f32 val13 = mCamParam.Val(param_0, 13);
+    f32 val16 = mCamParam.Val(param_0, 16);
+    f32 val24 = mCamParam.Val(param_0, 24);
+    f32 val17 = mCamParam.Val(param_0, 17);
+    f32 val18 = mCamParam.Val(param_0, 18);
+    f32 val21 = mCamParam.Val(param_0, 21);
+    daAlink_c* player = (daAlink_c*)mpPlayerActor;
 
-/* ############################################################################################## */
-/* 804538A8-804538AC 001EA8 0004+00 1/1 0/0 0/0 .sdata2          @13314 */
-SECTION_SDATA2 static f32 lit_13314 = 0.9990000128746033f;
+    field_0x158.field_0x0 = mCurCamTypeTimer != 0;
+
+    cSAngle stack_234;
+    MtxP mtx, inv_mtx;
+    if (player->checkMagneBootsOn()) {
+        mtx = player->getMagneBootsMtx();
+        inv_mtx = player->getMagneBootsInvMtx();
+        stack_234 = player->getMagneBootsModelShapeAngle();
+    } else {
+        mtx = mDoMtx_getIdentity();
+        inv_mtx = mDoMtx_getIdentity();
+        stack_234 = directionOf(mpPlayerActor);
+    }
+
+    cXyz player_pos = positionOf(mpPlayerActor);
+    mWork.magne.field_0x4 = field_0x5c.mCenter - player_pos;
+    mWork.magne.field_0x10 = field_0x5c.mEye - player_pos;
+    mDoMtx_multVecSR(inv_mtx, &mWork.magne.field_0x4, &mWork.magne.field_0x4);
+    mDoMtx_multVecSR(inv_mtx, &mWork.magne.field_0x10, &mWork.magne.field_0x10);
+    mWork.magne.field_0x4 += player_pos;
+    mWork.magne.field_0x10 += player_pos;
+
+    if (mCurCamTypeTimer == 0) {
+        mWork.magne.field_0x0 = 'MAG_';
+        mWork.magne.field_0x1c.Val(mWork.magne.field_0x10 - mWork.magne.field_0x4);
+    }
+
+    f32 fVar1 = (mWork.magne.field_0x1c.R() - val8) / (val7 - val8);
+    if (fVar1 > 1.0f) {
+        fVar1 = 1.0f;
+    } else if (fVar1 < 0.0f) {
+        fVar1 = 0.0f;
+    }
+
+    cXyz stack_12c(val0, val3 + (val2 - val3) * fVar1, val1);
+    stack_12c = dCamMath::xyzRotateY(stack_12c, stack_234);
+    cXyz stack_138 = attentionPos(mpPlayerActor) - player_pos;
+    mDoMtx_multVecSR(inv_mtx, &stack_138, &stack_138);
+    stack_138 += player_pos;
+    mWork.magne.field_0x4 += ((stack_138 + stack_12c) - mWork.magne.field_0x4) * val5;
+    cSGlobe stack_230 = mWork.magne.field_0x10 - mWork.magne.field_0x4;
+
+    f32 fVar2 = stack_230.R();
+    if (fVar2 > val7) {
+        fVar2 = val7;
+    } else if (fVar2 < val8) {
+        fVar2 = val8;
+    }
+
+    f32 cstick_x = mPadInfo.mCStick.mLastPosX;
+    if (mCamParam.Flag(param_0, 0x40)) {
+        cstick_x = 0.0f;
+    }
+
+    cSAngle stack_238;
+    if (mCurMode == 1) {
+        stack_238 = stack_234.Inv();
+    } else if (fabsf(cstick_x) > 0.05f) {
+        f32 tmp = dCamMath::rationalBezierRatio(cstick_x, 0.5f) * 10.0f;
+        stack_238 = mWork.magne.field_0x1c.U() + cSAngle(tmp);
+    } else {
+        cSAngle stack_23c = stack_234.Inv() - stack_230.U();
+        f32 sin = stack_23c.Sin();
+        f32 tmp = fabsf(sin * mPadInfo.mMainStick.mLastValue);
+        f32 tmp2 = stack_23c.Cos() > 0.0f ? 8.0f : 4.0f;
+        stack_238 = stack_230.U() + cSAngle(sin * tmp2 * dCamMath::rationalBezierRatio(tmp, 1.0f));
+    }
+
+    cSAngle stack_240 = val13 + (val12 - val13) * fVar1;
+    mWork.magne.field_0x1c.Val(fVar2, stack_240, stack_238);
+    mWork.magne.field_0x10 = mWork.magne.field_0x4 + mWork.magne.field_0x1c.Xyz();
+    cXyz stack_144 = mWork.magne.field_0x4 - player_pos;
+    cXyz stack_150 = mWork.magne.field_0x10 - player_pos;
+    mDoMtx_multVecSR(mtx, &stack_144, &stack_144);
+    mDoMtx_multVecSR(mtx, &stack_150, &stack_150);
+    stack_144 += player_pos;
+    stack_150 += player_pos;
+    stack_230.Val(stack_150 - stack_144);
+    field_0x5c.mCenter = stack_144;
+    field_0x5c.mDirection.R(field_0x5c.mDirection.R()
+                    + (stack_230.R() - field_0x5c.mDirection.R()) * val11);
+    field_0x5c.mDirection.V(field_0x5c.mDirection.V()
+                    + (stack_230.V() - field_0x5c.mDirection.V()) * val16);
+    field_0x5c.mDirection.U(field_0x5c.mDirection.U()
+                    + (stack_230.U() - field_0x5c.mDirection.U()) * val24 * stack_230.V().Cos());
+    field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
+    field_0x5c.mFovy += ((val18 + (val17 - val18) * fVar1) - field_0x5c.mFovy) * val21;
+    return true;
+}
 
 /* 801767F8-80176DF0 171138 05F8+00 1/0 0/0 0/0 .text            colosseumCamera__9dCamera_cFl */
 bool dCamera_c::colosseumCamera(s32 param_0) {
-    // NONMATCHING
+    f32 val0 = mCamParam.Val(param_0, 0);
+    f32 val2 = mCamParam.Val(param_0, 2);
+    f32 val1 = mCamParam.Val(param_0, 1);
+    f32 val3 = mCamParam.Val(param_0, 3);
+    f32 val7 = mCamParam.Val(param_0, 7);
+    f32 val8 = mCamParam.Val(param_0, 8);
+    f32 val11 = mCamParam.Val(param_0, 11);
+    f32 val10 = mCamParam.Val(param_0, 10);
+    f32 val12 = mCamParam.Val(param_0, 12);
+    f32 val13 = mCamParam.Val(param_0, 13);
 }
 
 /* 80176DF0-80176DF8 171730 0008+00 1/0 0/0 0/0 .text            test1Camera__9dCamera_cFl */

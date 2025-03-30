@@ -569,17 +569,15 @@ bool dMenuFmapIconDisp_c::getPosition(int* o_stageNo, int* o_roomNo, f32* o_posX
  */
 // NONMATCHING regalloc
 bool dMenuFmapIconDisp_c::isDrawDisp() {
-    bool ret;
-
     dMenu_Fmap_stage_arc_data_c* stage_arc = mpStageData->getStageArc();
     if (stage_arc == NULL) {
         return false;
     }
 
     u8 save_table_no = stage_arc->getSaveTableNo();
-    int room_no = mpRoomData->getRoomNo();
+    s32 room_no = mpRoomData->getRoomNo();
     bool bVar2 = (mStayStageNo == mStageNo && mStayRoomNo == room_no) || mpRoomData->isArrival();
-    ret = false;
+    bool ret = false;
     bool bVar1;
 
     switch (mTypeGroupNo) {
@@ -633,11 +631,9 @@ bool dMenuFmapIconDisp_c::isDrawDisp() {
 
     case 6:
         if (save_table_no == mSaveTbl) {
-            ret = dComIfGs_isSwitch(mpTresData->mSwBit, room_no) ? true : false;
-        } else {
-            if (mpTresData->mSwBit < 0x80) {
-                ret = dComIfGs_isStageSwitch(save_table_no, mpTresData->mSwBit) ? true : false;
-            }
+            ret = dComIfGs_isSwitch(mpTresData->mSwBit, room_no) != FALSE;
+        } else if (mpTresData->mSwBit < 0x80) {
+            ret = dComIfGs_isStageSwitch(save_table_no, mpTresData->mSwBit) != FALSE;
         }
         break;
 

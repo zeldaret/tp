@@ -3345,10 +3345,16 @@ public:
     const daAlink_AnmData* getAnmData(daAlink_ANM anmID) const { return &m_anmDataTable[anmID]; }
     const daAlink_FaceTexData* getFaceTexData(daAlink_FTANM i_anmID) const { return &m_faceTexDataTable[i_anmID]; }
 
+    s16 getCameraAngleX() const { return field_0x310a; }
+    s16 getCameraAngleY() const { return field_0x310c; }
+    cXyz* getSubjectEyePos() { return &field_0x3768; }
+
     u32 checkReinRide() const { return mRideStatus == 1 || mRideStatus == 2; }
     int getGrassHowlEventActor() const { return field_0x3198; }
     MtxP getShieldMtx() const { return mShieldModel->getBaseTRMtx(); }
     MtxP getMagneBootsMtx() { return mMagneBootMtx; }
+    MtxP getMagneBootsInvMtx() { return mMagneBootInvMtx; }
+    s16 getMagneBootsModelShapeAngle() const { return field_0x3118; }
 
     bool checkFishingCastMode() const {
         bool var_r5;
@@ -3511,6 +3517,7 @@ public:
     const cXyz& getHsSubChainRootPos() const { return field_0x3810; }
 
     s16 getHookshotStopTime() const { return field_0x3026; }
+    bool getHookshotLeft() const { return field_0x3020 == 0; }
 
     static int getBallModelIdx() { return 0x25; }
     static int getBallBtkIdx() { return 0x49; }

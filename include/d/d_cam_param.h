@@ -111,6 +111,7 @@ public:
     int Algorythmn(s32 i_style) { return mCamStyleData[i_style].field_0x4; }
     int Algorythmn() { return mCurrentStyle->field_0x4; }
     u16 Flag(s32 param_0, u16 param_1) { return mCamStyleData[param_0].field_0x6 & param_1; }
+    void SetFlag(u16 i_flag) { mCurrentStyle->field_0x6 |= i_flag; }
 
     /* 8008858C */ virtual ~dCamParam_c();
 };
