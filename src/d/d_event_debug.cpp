@@ -7403,10 +7403,10 @@ static dEvDb_reg_c dEvDb_reg_table[21] = {
 static dEvDb_flag_base_c dEvDb_flag_base_table = {
     dEvDb_bit_table, // mBitTable
     dEvDb_reg_table, // mRegTable
-    799,             // mBitNum
-    21,              // mRegNum
-    43,              // field_0x10
-    6                // field_0x14
+    799,             // mTotalBitNum
+    21,              // mTotalRegNum
+    43,              // mNumRootBits (exact value)
+    6                // mNumRootRegs (There's actually 5 unique root regs)
 };
 
 static dEvDb_bit_c dEvDb_bit_table_tmp[169] = {
@@ -9067,10 +9067,10 @@ static dEvDb_reg_c dEvDb_reg_table_tmp[14] = {
 static dEvDb_flag_base_c dEvDb_flag_base_table_tmp = {
     dEvDb_bit_table_tmp, // mBitTable
     dEvDb_reg_table_tmp, // mRegTable
-    169,                 // mBitNum
-    14,                  // mRegNum
-    22,                  // field_0x10
-    4                    // field_0x14
+    169,                 // mTotalBitNum
+    14,                  // mTotalRegNum
+    22,                  // mNumRootBits (Exact)
+    4                    // mNumRootRegs (There's actually 3 unique root regs)
 };
 
 dEvM_HIO_c::dEvM_HIO_c() {
@@ -9095,17 +9095,17 @@ dEvM_HIO_c::dEvM_HIO_c() {
 
     m_corrective_sound_adjustment = 0;
 
-    m_save_bit.field_0x4B4 = &dEvDb_flag_base_table;
-    m_temp_bit.field_0x4B4 = &dEvDb_flag_base_table_tmp;
-    m_save_reg.field_0x4B4 = &dEvDb_flag_base_table;
-    m_temp_reg.field_0x4B4 = &dEvDb_flag_base_table_tmp;
+    m_save_bit.mFlagTables = &dEvDb_flag_base_table;
+    m_temp_bit.mFlagTables = &dEvDb_flag_base_table_tmp;
+    m_save_reg.mFlagTables = &dEvDb_flag_base_table;
+    m_temp_reg.mFlagTables = &dEvDb_flag_base_table_tmp;
 }
 
 void dEvM_HIO_c::genMessage(JORMContext* ctx) {
     ctx->genLabel("- ", 0, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 
     /* "- Event Manager Testing" */
-    ctx->genLabel("- イベントマネージャーテスト用", 0x80000001, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genLabel("- イベントマネージャーテスト用", LBL_EVENT_MANAGER_TESTING, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 
     // "Playback test"
     ctx->genNode("再生テスト", &m_playtest, 0, 0);
@@ -9123,7 +9123,7 @@ void dEvM_HIO_c::genMessage(JORMContext* ctx) {
     ctx->genNode("一時Ｒ", &m_temp_reg, 0, 0);
 
     // "Read"
-    ctx->genButton("読み込み", 0x80000002, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genButton("読み込み", BTN_READ, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 
     // "evM Debug"
     ctx->genCheckBox("evM デバック", &m_evm_debug, 1, 0, NULL, 0xffff,  0xffff, 0x200, 0x18);
@@ -9173,7 +9173,7 @@ void dEvM_HIO_c::genMessage(JORMContext* ctx) {
     ctx->genLabel("- ", 0, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 
     // "Forced termination"
-    ctx->genButton("強制終了", 0x80000004, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genButton("強制終了", BTN_FORCED_TERMINATION, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 }
 
 void dEvM_HIO_c::listenPropertyEvent(const JORPropertyEvent* param_0) {
@@ -9183,8 +9183,7 @@ void dEvM_HIO_c::listenPropertyEvent(const JORPropertyEvent* param_0) {
     JORReflexible::listenPropertyEvent(param_0);
 
     switch(reinterpret_cast<u32>(param_0->id)) {
-        case 0x80000002:
-            // "Read" button
+        case BTN_READ:
             if(!debug_data) {
                 // "Fly? Soar?" or maybe something along the lines of "Order change?", not entirely sure of translation...
                 OS_REPORT("飛ぶか？そるか？\n");
@@ -9193,18 +9192,20 @@ void dEvM_HIO_c::listenPropertyEvent(const JORPropertyEvent* param_0) {
 
             // "Event data (*.dat)"
             // Extra null terminators & *.dat needed for .data section to match??
+            // Maybe the result of some kind of macro for formatting extension masks?
             if(debug_data && eventDataFile.open(1, "イベントデータ(*.dat)\0*.dat\0\0\0", NULL, NULL, NULL)) {
                 eventDataFile.readData(debug_data, 0);
                 eventDataFile.close();
 
+                // Update available events
                 m_playtest.removeComboBox();
                 dComIfGp_getPEvtManager()->setDbgData(debug_data);
                 m_playtest.addComboBox();
             }
             break;
-        case 0x80000003:
+        case BTN_READ + 1:
             break;
-        case 0x80000004:
+        case BTN_FORCED_TERMINATION:
             // "Forced termination" button
             dComIfGp_getEvent().reset();
             break;
@@ -9212,7 +9213,7 @@ void dEvM_HIO_c::listenPropertyEvent(const JORPropertyEvent* param_0) {
 }
 
 bool dEvM_HIO_c::setDebugCameraData(void* buffer) {
-    if(m_playtest.field_0x8)
+    if(m_playtest.mEventCameraMode != dEvM_play_HIO_c::UNSET)
         return false;
 
     if(dComIfGp_event_runCheck())
@@ -9222,7 +9223,7 @@ bool dEvM_HIO_c::setDebugCameraData(void* buffer) {
 
     m_playtest.mTargetEvent = 0;
     m_playtest.field_0x6 = 0;
-    m_playtest.field_0x8 = 1;
+    m_playtest.mEventCameraMode = dEvM_play_HIO_c::PLAYBACK;
     m_playtest.field_0xA = 0;
 
     return true;
@@ -9230,23 +9231,23 @@ bool dEvM_HIO_c::setDebugCameraData(void* buffer) {
 
 void dEvM_root_bit_HIO_c::genMessage(JORMContext* ctx) {
     u8 i = 0;
-    for(; i < 100 && i < field_0x4B4->field_0x10; i++) {
-        mBit[i].field_0x004 = field_0x4B4;
-        mBit[i].field_0x009 = i;
+    for(; i < ARRAY_SIZE(mBit) && i < mFlagTables->mNumRootBits; i++) {
+        mBit[i].mFlagTables = mFlagTables;
+        mBit[i].mRootBitIdx = i;
 
-        if(field_0x4B4->searchDirNameBit(i))
-            ctx->genNode(field_0x4B4->searchDirNameBit(i), &mBit[i], 0, 0);
+        if(mFlagTables->searchDirNameBit(i))
+            ctx->genNode(mFlagTables->searchDirNameBit(i), &mBit[i], 0, 0);
     }
 }
 
 void dEvM_root_reg_HIO_c::genMessage(JORMContext* ctx) {
     u8 i = 0;
-    for(; i < 100 && i < field_0x4B4->field_0x14; i++) {
-        mReg[i].field_0x004 = field_0x4B4;
-        mReg[i].field_0x009 = i;
+    for(; i < ARRAY_SIZE(mReg) && i < mFlagTables->mNumRootRegs; i++) {
+        mReg[i].mFlagTables = mFlagTables;
+        mReg[i].mRootRegIdx = i;
 
-        if(field_0x4B4->searchDirNameReg(i))
-            ctx->genNode(field_0x4B4->searchDirNameReg(i), &mReg[i], 0, 0);
+        if(mFlagTables->searchDirNameReg(i))
+            ctx->genNode(mFlagTables->searchDirNameReg(i), &mReg[i], 0, 0);
     }
 }
 
@@ -9256,7 +9257,7 @@ const char* non_text = "無し";
 dEvM_play_HIO_c::dEvM_play_HIO_c() {
     mTargetEvent = 0;
     field_0x6 = 0;
-    field_0x8 = 0;
+    mEventCameraMode = UNSET;
     field_0xA = 0;
 }
 
@@ -9265,13 +9266,13 @@ void dEvM_play_HIO_c::genMessage(JORMContext* ctx) {
     dEvDtEvent_c* const list = dComIfGp_getPEvtManager()->getEventList(1);
 
     /* "Event Playback Test" */
-    ctx->genLabel("イベントの再生テスト", 0x80000001, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genLabel("イベントの再生テスト", LBL_EVENT_PLAYBACK_TESTING, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 
     // "Playback"
-    ctx->genButton("再生", 0x4000001, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genButton("再生", BTN_PLAYBACK, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 
     // "Stop"
-    ctx->genButton("停止", 0x4000002, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genButton("停止", BTN_STOP, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 
     // "Target event"
     ctx->startComboBox("対象イベント", &mTargetEvent, 0, NULL, 0xffff, 0xffff, 0x100, 0x1a);
@@ -9292,13 +9293,13 @@ void dEvM_play_HIO_c::genMessage(JORMContext* ctx) {
 void dEvM_play_HIO_c::listenPropertyEvent(const JORPropertyEvent* param_0) {
     JORReflexible::listenPropertyEvent(param_0);
 
-    field_0x8 = 0;
+    mEventCameraMode = UNSET;
     switch(reinterpret_cast<u32>(param_0->id)) {
-        case 0x04000001:
-            field_0x8 = 1;
+        case BTN_PLAYBACK:
+            mEventCameraMode = PLAYBACK;
             break;
-        case 0x04000002:
-            field_0x8 = 2;
+        case BTN_STOP:
+            mEventCameraMode = STOP;
             break;
     }
 }
@@ -9319,23 +9320,23 @@ dEvM_bit_HIO_c::dEvM_bit_HIO_c() {
 
 void dEvM_bit_HIO_c::genMessage(JORMContext* ctx) {
     /* "----Event Save Bit---" */
-    ctx->genLabel("----イベント セーブビット---", (1 << 31) + 1, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genLabel("----イベント セーブビット---", LBL_EVENT_SAVE_BIT, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 
     // "Update"
-    ctx->genButton("更新", 1 << 28, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genButton("更新", BTN_UPDATE, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 
     int i = 0;
     u32 labelPosY = 0;
     int unused = labelPosY;
-    for(; i < field_0x004->mBitNum; i++) {
-        if(field_0x009 == field_0x004->mBitTable[i].field_0x14) {
-            if(field_0x004 == &dEvDb_flag_base_table)
-                field_0x004->mBitTable[i].field_0x16 = dComIfGs_isEventBit(field_0x004->mBitTable[i].mFlagValue);
+    for(; i < mFlagTables->mTotalBitNum; i++) {
+        if(mRootBitIdx == mFlagTables->mBitTable[i].mRootBit) {
+            if(mFlagTables == &dEvDb_flag_base_table)
+                mFlagTables->mBitTable[i].mIsSet = dComIfGs_isEventBit(mFlagTables->mBitTable[i].mFlagValue);
             else
-                field_0x004->mBitTable[i].field_0x16 = dComIfGs_isTmpBit(field_0x004->mBitTable[i].mFlagValue);
+                mFlagTables->mBitTable[i].mIsSet = dComIfGs_isTmpBit(mFlagTables->mBitTable[i].mFlagValue);
 
-            ctx->genCheckBox(field_0x004->mBitTable[i].mFlagName, &field_0x004->mBitTable[i].field_0x16, 1, 0, NULL, 0xffff, 0xffff, 0xfa, 0x18);
-            ctx->genLabel(field_0x004->mBitTable[i].mFlagDescription, i + (1 << 31) + (1 << 1), 0, NULL, 0x100, labelPosY * 25 + 50, 0x200, 0x18);
+            ctx->genCheckBox(mFlagTables->mBitTable[i].mFlagName, &mFlagTables->mBitTable[i].mIsSet, 1, 0, NULL, 0xffff, 0xffff, 0xfa, 0x18);
+            ctx->genLabel(mFlagTables->mBitTable[i].mFlagDescription, i + (1 << 31) + (1 << 1), 0, NULL, 0x100, labelPosY * 25 + 50, 0x200, 0x18);
 
             labelPosY++;
         }
@@ -9347,24 +9348,24 @@ void dEvM_bit_HIO_c::listenPropertyEvent(const JORPropertyEvent* param_0) {
     JORReflexible::listenPropertyEvent(param_0);
 
     switch(reinterpret_cast<u32>(param_0->id)) {
-        case (1 << 28):
+        case BTN_UPDATE:
             update();
-        case (1 << 28) + 1:
+        case BTN_UPDATE + 1:
             break;
         default:
-            for(i = 0; i < field_0x004->mBitNum; i++) {
-                if(field_0x009 == field_0x004->mBitTable[i].field_0x14 && param_0->id == reinterpret_cast<char*>(&field_0x004->mBitTable[i].field_0x16)) {
-                    if(field_0x004 == &dEvDb_flag_base_table) {
-                        if(field_0x004->mBitTable[i].field_0x16)
-                            dComIfGs_onEventBit(field_0x004->mBitTable[i].mFlagValue);
+            for(i = 0; i < mFlagTables->mTotalBitNum; i++) {
+                if(mRootBitIdx == mFlagTables->mBitTable[i].mRootBit && param_0->id == reinterpret_cast<char*>(&mFlagTables->mBitTable[i].mIsSet)) {
+                    if(mFlagTables == &dEvDb_flag_base_table) {
+                        if(mFlagTables->mBitTable[i].mIsSet)
+                            dComIfGs_onEventBit(mFlagTables->mBitTable[i].mFlagValue);
                         else
-                            dComIfGs_offEventBit(field_0x004->mBitTable[i].mFlagValue);
+                            dComIfGs_offEventBit(mFlagTables->mBitTable[i].mFlagValue);
                     }
-                    else if(field_0x004->mBitTable[i].field_0x16) {
-                        dComIfGs_onTmpBit(field_0x004->mBitTable[i].mFlagValue);
+                    else if(mFlagTables->mBitTable[i].mIsSet) {
+                        dComIfGs_onTmpBit(mFlagTables->mBitTable[i].mFlagValue);
                     }
                     else {
-                        dComIfGs_offTmpBit(field_0x004->mBitTable[i].mFlagValue);
+                        dComIfGs_offTmpBit(mFlagTables->mBitTable[i].mFlagValue);
                     }
                 }
             }
@@ -9375,18 +9376,18 @@ void dEvM_bit_HIO_c::listenPropertyEvent(const JORPropertyEvent* param_0) {
 void dEvM_bit_HIO_c::update() {
     JORMContext* context = attachJORMContext(8);
 
-    if(field_0x004->mBitNum > 0)
+    if(mFlagTables->mTotalBitNum > 0)
         context->startUpdateNode(this);
 
     int i = 0;
-    for(; i < field_0x004->mBitNum; i++) {
-        if(field_0x009 == field_0x004->mBitTable[i].field_0x14) {
-            if(field_0x004 == &dEvDb_flag_base_table)
-                field_0x004->mBitTable[i].field_0x16 = dComIfGs_isEventBit(field_0x004->mBitTable[i].mFlagValue);
+    for(; i < mFlagTables->mTotalBitNum; i++) {
+        if(mRootBitIdx == mFlagTables->mBitTable[i].mRootBit) {
+            if(mFlagTables == &dEvDb_flag_base_table)
+                mFlagTables->mBitTable[i].mIsSet = dComIfGs_isEventBit(mFlagTables->mBitTable[i].mFlagValue);
             else
-                field_0x004->mBitTable[i].field_0x16 = dComIfGs_isTmpBit(field_0x004->mBitTable[i].mFlagValue);
+                mFlagTables->mBitTable[i].mIsSet = dComIfGs_isTmpBit(mFlagTables->mBitTable[i].mFlagValue);
 
-            context->updateCheckBox(2, &field_0x004->mBitTable[i].field_0x16, 1, 0);
+            context->updateCheckBox(2, &mFlagTables->mBitTable[i].mIsSet, 1, 0);
         }
 
     }
@@ -9400,24 +9401,24 @@ dEvM_reg_HIO_c::dEvM_reg_HIO_c() {
 
 void dEvM_reg_HIO_c::genMessage(JORMContext* ctx) {
     /* "----Event Save Register---" */
-    ctx->genLabel("----イベント セーブレジスター---", 0x80000001, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genLabel("----イベント セーブレジスター---", LBL_EVENT_SAVE_REGISTER, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     
     // "Update"
-    ctx->genButton("更新", 1 << 28, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genButton("更新", BTN_UPDATE, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     
     // Stack non-matching if i is declared in the for loop header and flagVal is declared in loop body
     int i = 0;
     u8 flagVal;
-    for(; i < field_0x004->mRegNum; i++) {
-        if(field_0x009 == field_0x004->mRegTable[i].field_0x14) {
-            if(field_0x004 == &dEvDb_flag_base_table)
-                field_0x004->mRegTable[i].field_0x16 = dComIfGs_getEventReg(field_0x004->mRegTable[i].mFlagValue);
+    for(; i < mFlagTables->mTotalRegNum; i++) {
+        if(mRootRegIdx == mFlagTables->mRegTable[i].mRootReg) {
+            if(mFlagTables == &dEvDb_flag_base_table)
+                mFlagTables->mRegTable[i].mIsSet = dComIfGs_getEventReg(mFlagTables->mRegTable[i].mFlagValue);
             else
-                field_0x004->mRegTable[i].field_0x16 = dComIfGs_getTmpReg(field_0x004->mRegTable[i].mFlagValue);
+                mFlagTables->mRegTable[i].mIsSet = dComIfGs_getTmpReg(mFlagTables->mRegTable[i].mFlagValue);
 
-            ctx->genLabel(field_0x004->mRegTable[i].mFlagDescription, 0x80000001, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-            flagVal = field_0x004->mRegTable[i].mFlagValue;
-            ctx->genSlider(field_0x004->mRegTable[i].mFlagName, &field_0x004->mRegTable[i].field_0x16, 0, flagVal, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+            ctx->genLabel(mFlagTables->mRegTable[i].mFlagDescription, 0x80000001, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+            flagVal = mFlagTables->mRegTable[i].mFlagValue;
+            ctx->genSlider(mFlagTables->mRegTable[i].mFlagName, &mFlagTables->mRegTable[i].mIsSet, 0, flagVal, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
         }
     }
 }
@@ -9428,17 +9429,17 @@ void dEvM_reg_HIO_c::listenPropertyEvent(const JORPropertyEvent* param_0) {
     JORReflexible::listenPropertyEvent(param_0);
 
     switch(reinterpret_cast<u32>(param_0->id)) {
-        case (1 << 28):
+        case BTN_UPDATE:
             update();
-        case (1 << 28) + 1:
+        case BTN_UPDATE + 1:
             break;
         default:
-            for(i = 0; i < field_0x004->mRegNum; i++) {
-                if(field_0x009 == field_0x004->mRegTable[i].field_0x14 && param_0->id == reinterpret_cast<char*>(&field_0x004->mRegTable[i].field_0x16)) {
-                    if(field_0x004 == &dEvDb_flag_base_table)
-                        dComIfGs_setEventReg(field_0x004->mRegTable[i].mFlagValue, field_0x004->mRegTable[i].field_0x16);
+            for(i = 0; i < mFlagTables->mTotalRegNum; i++) {
+                if(mRootRegIdx == mFlagTables->mRegTable[i].mRootReg && param_0->id == reinterpret_cast<char*>(&mFlagTables->mRegTable[i].mIsSet)) {
+                    if(mFlagTables == &dEvDb_flag_base_table)
+                        dComIfGs_setEventReg(mFlagTables->mRegTable[i].mFlagValue, mFlagTables->mRegTable[i].mIsSet);
                     else
-                        dComIfGs_setTmpReg(field_0x004->mRegTable[i].mFlagValue, field_0x004->mRegTable[i].field_0x16);
+                        dComIfGs_setTmpReg(mFlagTables->mRegTable[i].mFlagValue, mFlagTables->mRegTable[i].mIsSet);
                 }
             }
             break;
@@ -9449,19 +9450,19 @@ void dEvM_reg_HIO_c::listenPropertyEvent(const JORPropertyEvent* param_0) {
 void dEvM_reg_HIO_c::update() {
     JORMContext* context = attachJORMContext(8);
 
-    if(field_0x004->mRegNum > 0)
+    if(mFlagTables->mTotalRegNum > 0)
         context->startUpdateNode(this);
     
     // Stack non-matching if i is declared in the for loop header
     int i = 0;
-    for(; i < field_0x004->mRegNum; i++) {
-        if(field_0x009 == field_0x004->mRegTable[i].field_0x14) {
-            if(field_0x004 == &dEvDb_flag_base_table)
-                field_0x004->mRegTable[i].field_0x16 = dComIfGs_getEventReg(field_0x004->mRegTable[i].mFlagValue);
+    for(; i < mFlagTables->mTotalRegNum; i++) {
+        if(mRootRegIdx == mFlagTables->mRegTable[i].mRootReg) {
+            if(mFlagTables == &dEvDb_flag_base_table)
+                mFlagTables->mRegTable[i].mIsSet = dComIfGs_getEventReg(mFlagTables->mRegTable[i].mFlagValue);
             else
-                field_0x004->mRegTable[i].field_0x16 = dComIfGs_getTmpReg(field_0x004->mRegTable[i].mFlagValue);
+                mFlagTables->mRegTable[i].mIsSet = dComIfGs_getTmpReg(mFlagTables->mRegTable[i].mFlagValue);
 
-            context->updateSlider(2, &field_0x004->mRegTable[i].field_0x16, 0, 0, 0);
+            context->updateSlider(2, &mFlagTables->mRegTable[i].mIsSet, 0, 0, 0);
         }
 
     }
@@ -9472,8 +9473,8 @@ void dEvM_reg_HIO_c::update() {
 char* dEvDb_flag_base_c::searchDirNameBit(int bit) {
     // Stack non-matching if i is declared in the for loop header
     int i = 0;
-    for(; i < mBitNum; i++) {
-        if(bit == mBitTable[i].field_0x14)
+    for(; i < mTotalBitNum; i++) {
+        if(bit == mBitTable[i].mRootBit)
             return mBitTable[i].mArea;
     }
     
@@ -9483,8 +9484,8 @@ char* dEvDb_flag_base_c::searchDirNameBit(int bit) {
 char* dEvDb_flag_base_c::searchDirNameReg(int bit) {
     // Stack non-matching if i is declared in the for loop header
     int i = 0;
-    for(; i < mRegNum; i++) {
-        if(bit == mRegTable[i].field_0x14)
+    for(; i < mTotalRegNum; i++) {
+        if(bit == mRegTable[i].mRootReg)
             return mRegTable[i].mArea;
     }
     
