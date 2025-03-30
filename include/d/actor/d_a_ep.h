@@ -80,7 +80,8 @@ class ep_class : public fopAc_ac_c {
         /* 0x08F4 */ dCcD_Sph mSph2;
         /* 0x0A2C */ dCcU_AtInfo mAtInfo;
         /* 0x0A50 */ s16 field_0xa50;
-        /* 0x0A52 */ u8 field_0xa52[0xa58 - 0xa52];
+        /* 0x0A52 */ u8 field_0xa52[0xa54 - 0xa52];
+        /* 0x0A54 */ f32 field_0xa54;
         /* 0x0A58 */ s16 field_0xa58;
         /* 0x0A5A */ s8 field_0xa5a;
         /* 0x0A5B */ u8 field_0xa5b;

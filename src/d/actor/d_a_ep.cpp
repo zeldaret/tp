@@ -366,7 +366,7 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 #pragma pop
 
 /* 8046B118-8046B120 000020 0008+00 1/1 0/0 0/0 .data            w_eff_id$3717 */
-SECTION_DATA static u8 w_eff_id[8] = {
+static u8 w_eff_id[8] = {
     0x01, 0xB8, 0x01, 0xB9, 0x01, 0xBA, 0x01, 0xBB,
 };
 
@@ -744,47 +744,196 @@ COMPILER_STRIP_GATE(0x8046B070, &lit_4467);
 #pragma pop
 
 /* 8046B128-8046B12C 000030 0004+00 0/1 0/0 0/0 .data            l_particle_fire_A$4270 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_particle_fire_A[4] = {
-    0x01,
-    0x00,
-    0x81,
-    0x10,
-};
-#pragma pop
+// static u8 l_particle_fire_A[4] = {
+//     0x01,
+//     0x00,
+//     0x81,
+//     0x10,
+// };
 
 /* 8046B12C-8046B130 000034 0004+00 0/1 0/0 0/0 .data            l_particle_fire_B$4271 */
-#pragma push
-#pragma force_active on
-static u8 l_particle_fire_B[4] = {
-    1,
-    1,
-    0x81,
-    17,
-};
-#pragma pop
+// static u16 l_particle_fire_B[2] = {
+//     0x0101, 0x8117
+// };
 
 /* 8046B130-8046B134 000038 0004+00 0/1 0/0 0/0 .data            l_particle_kagerou$4272 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_particle_kagerou[4] = {
-    0x01,
-    0x03,
-    0x81,
-    0x12,
-};
-#pragma pop
+// static u16 l_particle_kagerou[2] = {
+//     0x0103, 0x8112
+// };
+
+// static inline bool dComIfGp_evmng_existence(char eventIdx) {
+//     return g_dComIfG_gameInfo.play.getEvtManager().getEventData(
+//         dComIfGp_evmng_getEventIdx(&eventIdx, -1)) != NULL;
+// }
 
 /* 804697F4-80469EDC 001674 06E8+00 1/1 0/0 0/0 .text            ep_move__FP8ep_class */
 static void ep_move(ep_class* e_this) {
     // NONMATCHING
+    static u16 l_particle_fire_A[2] = {
+        0x0100, 0x8110,
+    };
+    static u16 l_particle_fire_B[2] = {
+        0x0101, 0x8117
+    };
+    static u16 l_particle_kagerou[2] = {
+        0x0103, 0x8112
+    };
+
     cXyz local_1c = cXyz(e_this->field_0x634.x, e_this->field_0x634.y + -240.0f + 235.0f +15.0f, e_this->field_0x634.z);
 
     switch (e_this->field_0x5a4) {
+        case 0:
+            if (e_this->field_0x60d != 0) {
+                cLib_addCalc0(&e_this->field_0x5b0, 0.5f, 0.05f);
+                if (!e_this->mSph1.ChkTgHit() || 
+                    (e_this->mSph1.GetTgHitObj()->ChkAtType(0) || e_this->mSph1.GetTgHitGObj())) {
+                    if (e_this->mSph1.GetTgHitGObj()->GetAtMtrl() == 1) {
+                        if (e_this->field_0x609 != 0xff) {
+                            e_this->field_0x5ce = e_this->field_0x609 * 10 + 1;
+                        }
+                    }
+                }
+
+                if (dComIfGs_isSwitch(e_this->field_0x60d - 1, fopAcM_GetRoomNo(e_this))) {
+                    if (e_this->field_0x60b == 0xff || 
+                        !g_dComIfG_gameInfo.play.getEvtManager().getEventData(
+                            dComIfGp_evmng_getEventIdx("SHOKUDAI_SWITCH", -1))) {
+                        int iVar3 = ep_switch_event_begin(e_this);
+                        e_this->field_0xa5c = iVar3;
+                        if (iVar3) {
+                            e_this->field_0x60d = 0;
+                            if (e_this->field_0xa5c != -1) {
+                                ep_switch_event_move(e_this);
+                            }
+                        }
+                    } else {
+                        if (e_this->field_0xa5b == 0) {
+                            mDoAud_seStart(Z2SE_OBJ_FIRE_IGNITION, &e_this->field_0x634,
+                                0, 0);
+                        }
+                        e_this->field_0x60d = 0;
+                    }
+                }
+            } else {
+                if (e_this->field_0x60b == -1 || e_this->field_0xa5c == -1) {
+                    if (ep_switch_event_move(e_this)) {
+                        e_this->field_0x5a4 = 3;
+                        e_this->field_0x5b4 = e_this->scale.x;
+                    }
+                } else {
+                    e_this->field_0x5a4 = 3;
+                    e_this->field_0x5b4 = e_this->scale.x;
+                }
+            }
+        case 3:
+            e_this->field_0x5a4++;
         case 4:
             cLib_addCalc2(&e_this->field_0x5b0, e_this->field_0x5b4, 0.5f, 0.2f);
+            if (e_this->field_0xa79 == 0) {
+                if (e_this->field_0xa50 < 7) {
+                    dComIfGp_particle_setSimple(l_particle_fire_A[e_this->field_0x60c],
+                        &local_1c, 0xff, g_whiteColor, g_whiteColor, 
+                        0, 0.0f);
+                    dComIfGp_particle_setSimple(l_particle_fire_B[e_this->field_0x60c],
+                        &local_1c, 0xff, g_whiteColor, g_whiteColor, 
+                        0, 0.0f);
+
+                    if (e_this->field_0xa50 == 0 && e_this->mSph1.ChkTgHit()) {
+                        fopAc_ac_c* pfVar4 = dCc_GetAc(e_this->mSph1.GetTgHitObj()->GetAc());
+                        e_this->field_0xa58 = cM_atan2s(e_this->current.pos.x - pfVar4->current.pos.x,
+                            e_this->current.pos.z - pfVar4->current.pos.z);
+                        e_this->field_0xa50 = 0x28;
+                    }
+                }
+
+                dComIfGp_particle_setSimple(l_particle_kagerou[e_this->field_0x60c],
+                    &local_1c, 0xff, g_whiteColor, g_whiteColor,
+                    0, 0.0f);
+            }
+
+            if (e_this->field_0x5ce == 1 && e_this->field_0x60a != 0xff) {
+                dComIfGs_offSwitch(e_this->field_0x60a, fopAcM_GetRoomNo(e_this));
+            }
+
+            if (e_this->field_0x60a != 0xff) {
+                if (!dComIfGs_isSwitch(e_this->field_0x60a, fopAcM_GetRoomNo(e_this))) {
+                    e_this->field_0x5a4 = 0;
+                    if (e_this->field_0x60a != 0xff) {
+                        e_this->field_0x60d = e_this->field_0x60a + 1;
+                    }
+
+                    if (e_this->field_0xa5b == 0) {
+                        mDoAud_seStart(Z2SE_OBJ_FIRE_OFF, &e_this->field_0x634, 0, 0);
+                        break;
+                    }
+                }
+            }
+            mDoAud_seStart(Z2SE_OBJ_FIRE_BURNING, &e_this->field_0x634, 0, 0);
+            break;
+        case 10:
+            cLib_addCalc0(&e_this->field_0x5b0, 1.0f, 0.1f);
+            if (e_this->field_0x5b0 < 0.05f) {
+                if (e_this->mpModel) {
+                    e_this->field_0x5a4 = 0;
+                    if (e_this->field_0x60a != 0xff) {
+                        dComIfGs_offSwitch(e_this->field_0x60a, fopAcM_GetRoomNo(e_this));
+                        e_this->field_0x60d = e_this->field_0x60a + 1;
+                    }
+                } else {
+                    fopAcM_delete(e_this);
+                }
+            }
+            break;
     }
+
+    e_this->mLightInf.mPosition = e_this->field_0x634;
+    e_this->mLightInf.mColor.r = 0xaf;
+    e_this->mLightInf.mColor.g = 0x5d;
+    e_this->mLightInf.mColor.b = 0;
+    e_this->mLightInf.mPow = e_this->field_0x5b0 * 500.0f;
+    e_this->mLightInf.mFluctuation = 1.0f;
+    e_this->scale.y = e_this->field_0x5b0;
+
+    if (e_this->scale.y > 0.5f) {
+        e_this->mSph1.OnAtSetBit();
+    } else {
+        e_this->mSph1.OffAtSetBit();
+    }
+
+    e_this->mSph1.SetC(cXyz(e_this->field_0x634.x, e_this->field_0x634.y + 30.0f, e_this->field_0x634.z));
+    dComIfG_Ccsp()->Set(&e_this->mSph1);
+
+    if (e_this->field_0xa50 != 0) {
+        if (e_this->field_0x610 != NULL) {
+            f32 fVar1;
+            if (e_this->field_0xa50 > 10) {
+                fVar1 = 4.0f;
+            } else {
+                fVar1 = 0.0f;
+            }
+
+            cLib_addCalc2(&e_this->field_0xa54, fVar1, 1.0f, 0.5f);
+            cMtx_YrotS(*calc_mtx, e_this->field_0xa58);
+
+            cXyz local_34(0.0f, 1.0f, e_this->field_0xa54);
+            cXyz cStack_40;
+            MtxPosition(&local_34, &cStack_40);
+
+            JGeometry::TVec3<float> aTStack_88;
+            aTStack_88 = cStack_40;
+            JPABaseEmitter* emitter = (JPABaseEmitter*)e_this->field_0x610;
+            emitter->setDirection(aTStack_88);
+
+            if (e_this->field_0xa50 == 1) {
+                emitter = (JPABaseEmitter*)e_this->field_0x610;
+                emitter->becomeInvalidEmitter();
+                e_this->field_0x610 = NULL;
+            }
+        }
+
+        e_this->field_0xa50--;
+    }
+    return;
 }
 
 /* 80469EDC-8046A0A8 001D5C 01CC+00 1/1 0/0 0/0 .text            daEp_set_mtx__FP8ep_class */
