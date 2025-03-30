@@ -167,7 +167,7 @@ static BOOL path_check(e_ba_class* i_this) {
         vec1 = i_this->current.pos;
         vec1.y += 100.0f;
         static bool check_index[255];
-        dStage_dPnt_c* point = i_this->mpPath->m_points;
+        dPnt* point = i_this->mpPath->m_points;
         for (int i = 0; i < i_this->mpPath->m_num; i++, point++) {
             vec2.x = point->m_position.x;
             vec2.y = point->m_position.y + 100.0f;
@@ -507,7 +507,7 @@ static void e_ba_return(e_ba_class* i_this) {
 
 /* 8068039C-806806B4 00179C 0318+00 1/1 0/0 0/0 .text            e_ba_path_fly__FP10e_ba_class */
 static void e_ba_path_fly(e_ba_class* i_this) {
-    dStage_dPnt_c* point;
+    dPnt* point;
 
     switch (i_this->mMode) {
     case 0:

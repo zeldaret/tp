@@ -654,7 +654,7 @@ static BOOL path_check(e_rdy_class* i_this) {
     cXyz start, end;
     start = i_this->current.pos;
     start.y += 10.0f;
-    dStage_dPnt_c* point = i_this->mpPath->m_points;
+    dPnt* point = i_this->mpPath->m_points;
     for (int i = 0; i < i_this->mpPath->m_num; i++, point++) {
         if (i < 0xff) {
             end.x = point->m_position.x;
@@ -1258,7 +1258,7 @@ static s8 e_rdy_bow2(e_rdy_class* i_this) {
     }
 
     if (i_this->mpPath != NULL) {
-        dStage_dPnt_c* point = i_this->mpPath->m_points;
+        dPnt* point = i_this->mpPath->m_points;
         i_this->mArrowTarget.x = point->m_position.x;
         i_this->mArrowTarget.y = point->m_position.y;
         i_this->mArrowTarget.z = point->m_position.z;
@@ -2851,7 +2851,7 @@ static void e_rdy_jyunkai(e_rdy_class* i_this) {
     case 0: {
         anm_init(i_this, ANM_WALK, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mMode = 1;
-        dStage_dPnt_c* point = &i_this->mpPath->m_points[i_this->mPathIndex];
+        dPnt* point = &i_this->mpPath->m_points[i_this->mPathIndex];
         i_this->field_0x5bc = point->m_position;
         // fallthrough
     }

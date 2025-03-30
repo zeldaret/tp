@@ -520,8 +520,8 @@ int daSpinner_c::checkPathMove() {
             var_r27--;
         }
 
-        dStage_dPnt_c* temp_r26 = &mpPathMove->m_points[var_r27];
-        dStage_dPnt_c* temp_r25 = &mpPathMove->m_points[sp10];
+        dPnt* temp_r26 = &mpPathMove->m_points[var_r27];
+        dPnt* temp_r25 = &mpPathMove->m_points[sp10];
         cXyz sp50(temp_r25->m_position.x - temp_r26->m_position.x,
                   temp_r25->m_position.y - temp_r26->m_position.y,
                   temp_r25->m_position.z - temp_r26->m_position.z);

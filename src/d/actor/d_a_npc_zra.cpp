@@ -253,7 +253,7 @@ int daNpc_zrA_Path_c::getDstPosChase(u16 i_idx, cXyz i_pos, cXyz& o_pnt) {
 /* 80B78E08-80B7956C 0009E8 0764+00 1/1 0/0 0/0 .text chkPassDst__16daNpc_zrA_Path_cFUs4cXyz */
 f32 daNpc_zrA_Path_c::chkPassDst(u16 i_idx, cXyz i_pos) {
     u16 prev_idx, next_idx;
-    dStage_dPnt_c* points = mpRoomPath->m_points;
+    dPnt* points = mpRoomPath->m_points;
     u16 idx = mIdx;
     u8 reversed = mIsReversed;
     mIdx = i_idx;

@@ -524,8 +524,8 @@ void daPasserMng_c::create_init() {
     npcId = getDetailLevel() == 0 ? PROC_NPC_PASSER : PROC_NPC_PASSER2;
     mPath = dPath_GetRoomPath(getPathID(), fopAcM_GetHomeRoomNo(this));
     JUT_ASSERT(542, mPath != 0);
-    dStage_dPnt_c* pnt0 = dPath_GetPnt(mPath, 0);
-    dStage_dPnt_c* pnt1 = dPath_GetPnt(mPath, 1);
+    dPnt* pnt0 = dPath_GetPnt(mPath, 0);
+    dPnt* pnt1 = dPath_GetPnt(mPath, 1);
     current.pos.set(pnt0->m_position);
     current.angle.y = cLib_targetAngleY(pnt0->m_position, pnt1->m_position);
     childProcIds = new fpc_ProcID[getMaxNum()];
@@ -583,8 +583,8 @@ void daPasserMng_c::create_init() {
         #endif
         OS_REPORT("\n");
         for (i = 0; i < max; i++) {
-            dStage_dPnt_c* pnti0 = dPath_GetPnt(mPath, arr[i]);
-            dStage_dPnt_c* pnti1 = dPath_GetPnt(mPath, arr[i] + 1);
+            dPnt* pnti0 = dPath_GetPnt(mPath, arr[i]);
+            dPnt* pnti1 = dPath_GetPnt(mPath, arr[i] + 1);
             cXyz cStack_28(pnti0->m_position);
             s16 sVar11 = cLib_targetAngleY(cStack_28, pnti1->m_position);
             csXyz cStack_30(endTime, sVar11, 0);

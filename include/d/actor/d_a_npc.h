@@ -21,8 +21,6 @@ struct daNpc_GetParam2 {  // name unknown
     /* 0x8 */ int arcIdx;
 };
 
-struct dPnt : public dStage_dPnt_c {};
-
 class daNpcT_ActorMngr_c {
 private:
     /* 0x0 */ fpc_ProcID mActorID;
@@ -1165,7 +1163,7 @@ private:
     /* 0x02 */ u16 field_0x02;
     /* 0x04 */ bool mIsReversed;
     /* 0x05 */ bool mIsClosed;
-    /* 0x08 */ dStage_dPnt_c mPoints[96];
+    /* 0x08 */ dPnt mPoints[96];
 
 public:
     /* 80150870 */ void initialize(dPath*, int);

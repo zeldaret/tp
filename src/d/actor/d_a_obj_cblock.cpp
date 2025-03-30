@@ -72,7 +72,7 @@ int daObjCBlk_c::Create() {
         } else {
             pnt_index = 0;
         }
-        dStage_dPnt_c* pnt = dPath_GetPnt(roomPath, pnt_index);
+        dPnt* pnt = dPath_GetPnt(roomPath, pnt_index);
         JUT_ASSERT(284, pnt != 0)
         current.pos = pnt->m_position;
     }

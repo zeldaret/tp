@@ -72,7 +72,7 @@ int daTagLv7Gate_c::create() {
 void daTagLv7Gate_c::setPath(u8 i_path_ID) {
     mRoomPath = dPath_GetRoomPath(i_path_ID, fopAcM_GetRoomNo(this));
     if (mRoomPath != NULL) {
-        dStage_dPnt_c* pnt = dPath_GetPnt(mRoomPath, 0);
+        dPnt* pnt = dPath_GetPnt(mRoomPath, 0);
         cXyz pos1 = pnt->m_position;
 
         pnt = dPath_GetPnt(mRoomPath, 1);
@@ -290,7 +290,7 @@ int daTagLv7Gate_c::execute() {
 }
 
 bool daTagLv7Gate_c::checkPoint(f32 i_speed) {
-    dStage_dPnt_c* pnt = dPath_GetPnt(mRoomPath, field_0x5a0);
+    dPnt* pnt = dPath_GetPnt(mRoomPath, field_0x5a0);
     mDistance -= i_speed;
     if (sqrtf(PSVECSquareDistance((Vec*)&mPos1, (Vec*)&pnt->m_position)) < i_speed ||
         mDistance < 0.0f) {
@@ -308,7 +308,7 @@ bool daTagLv7Gate_c::setNextPoint() {
         mDistance = 0;
         bVar1 = true;
     } else {
-        dStage_dPnt_c* pnt = dPath_GetPnt(mRoomPath, field_0x5a0);
+        dPnt* pnt = dPath_GetPnt(mRoomPath, field_0x5a0);
 
         cXyz pos1(mPos1.x, 0.0f, mPos1.z);
 

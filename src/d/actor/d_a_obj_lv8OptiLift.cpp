@@ -96,7 +96,7 @@ int daOptiLift_c::create() {
             return cPhs_INIT_e;
         }
 
-        dStage_dPnt_c* pointp = pathp->m_points;
+        dPnt* pointp = pathp->m_points;
         current.pos.x = pointp->m_position.x;
         current.pos.y = pointp->m_position.y;
         current.pos.z = pointp->m_position.z;
@@ -416,7 +416,7 @@ void daOptiLift_c::modeInitSet2() {
 /* 80C8B4D8-80C8B53C 0012B8 0064+00 2/2 0/0 0/0 .text            liftReset__12daOptiLift_cFv */
 void daOptiLift_c::liftReset() {
     dPath* pathp = dPath_GetRoomPath(mPathID, fopAcM_GetRoomNo(this));
-    dStage_dPnt_c* pointp = pathp->m_points;
+    dPnt* pointp = pathp->m_points;
 
     current.pos.x = pointp->m_position.x;
     current.pos.y = pointp->m_position.y;
@@ -445,7 +445,7 @@ void daOptiLift_c::setNextPoint() {
             mPathDirection = 1;
             next_point = 1;
         } else {
-            dStage_dPnt_c* pointp = &pathp->m_points[mCurrentPoint];
+            dPnt* pointp = &pathp->m_points[mCurrentPoint];
             if (pointp->mArg0 == 0) {
                 next_point = mCurrentPoint;
             }
@@ -455,7 +455,7 @@ void daOptiLift_c::setNextPoint() {
     if (next_point != -1) {
         mPrevTargetPos = mTargetPos;
 
-        dStage_dPnt_c* pointp = &pathp->m_points[next_point];
+        dPnt* pointp = &pathp->m_points[next_point];
         mTargetPos.x = pointp->m_position.x;
         mTargetPos.y = pointp->m_position.y;
         mTargetPos.z = pointp->m_position.z;
