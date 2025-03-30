@@ -1,7 +1,7 @@
 name: framework
 object_base: orig/ShieldD
-object: sys/main.dol
-hash: 16415549d9adce985b8cf736f1a5d7afb570b48e
+object: RframeworkD.alf
+hash: 14b910141cc0c0a4b24e62c3d3fd9cd14338f725
 symbols: config/ShieldD/symbols.txt
 splits: config/ShieldD/splits.txt
 # map: orig/ShieldD/fixed_maps/RframeworkD.map
