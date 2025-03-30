@@ -1174,7 +1174,7 @@ static int daE_TH_Delete(e_th_class* i_this) {
 
     if (i_this->mInitHIO) {
         l_initHIO = FALSE;
-        mDoHIO_DELETE_CHILD(&l_HIO);
+        mDoHIO_DELETE_CHILD(l_HIO.no);
     }
 
     if (i_this->heap != NULL) {

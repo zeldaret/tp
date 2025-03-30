@@ -66,7 +66,7 @@ public:
                             daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_5, int param_6,
                             daNpcT_evtData_c const* param_7, char** param_8)
         : daNpcT_c(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8) {
-            OS_REPORT("|%06d:%x|daPeru_c -> コンストラクト\n", g_counter, this);
+            OS_REPORT("|%06d:%x|daPeru_c -> コンストラクト\n", g_Counter.mCounter0, this);
         }
     /* 80D4BEC4 */ s32 getEyeballMaterialNo() { return 1; }
     /* 80D4BECC */ s32 getHeadJointNo() { return 4; }

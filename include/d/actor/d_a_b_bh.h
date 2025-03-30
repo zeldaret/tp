@@ -89,18 +89,12 @@ public:
 
 STATIC_ASSERT(sizeof(b_bh_class) == 0xf4c);
 
-class daB_BH_HIO_c
-#ifdef DEBUG
-: public JORReflexible
-#endif
-{
+class daB_BH_HIO_c : public JORReflexible {
 public:
     /* 805AE26C */ daB_BH_HIO_c();
     /* 805B3098 */ virtual ~daB_BH_HIO_c() {}
 
-#ifdef DEBUG
-    virtual void genMessage(JORMContext*);
-#endif
+    void genMessage(JORMContext*);
 
     /* 0x04 */ s8 no;
     /* 0x08 */ f32 model_size;
