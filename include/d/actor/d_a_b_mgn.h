@@ -5,6 +5,7 @@
 #include "d/d_cc_d.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
+#include "JSystem/JHostIO/JORReflexible.h"
 
 /**
  * @ingroup actors-enemies
@@ -15,31 +16,24 @@
  *
  */
 
- class daB_MGN_HIO_c 
- #ifdef DEBUG
- : public JORReflexible
- #endif
- {
-     
- public:
-     /* 8060572C */ daB_MGN_HIO_c();
-     /* 8060F8D0 */ ~daB_MGN_HIO_c();
- 
- #ifdef DEBUG
- virtual void genMessage(JORMContext*);
- #endif
- 
-     /* 0x08 */ f32 field_0x08; // 1.2f
-     /* 0x0C */ f32 field_0x0c; // 50.0f
-     /* 0x10 */ f32 field_0x10; // 70.0f
-     /* 0x14 */ f32 field_0x14; // 1.0f
-     /* 0x18 */ f32 field_0x18; // 100.0f
-     /* 0x1C */ f32 field_0x1c; // 100.0f
-     /* 0x20 */ f32 field_0x20; // 100.0f
-     /* 0x24 */ f32 field_0x24;
-     /* 0x28 */ f32 field_0x28;
-     /* 0x2C */ f32 field_0x2c;
- };
+class daB_MGN_HIO_c : public JORReflexible {
+public:
+    /* 8060572C */ daB_MGN_HIO_c();
+    /* 8060F8D0 */ ~daB_MGN_HIO_c();
+
+    void genMessage(JORMContext*);
+
+    /* 0x08 */ f32 field_0x08; // 1.2f
+    /* 0x0C */ f32 field_0x0c; // 50.0f
+    /* 0x10 */ f32 field_0x10; // 70.0f
+    /* 0x14 */ f32 field_0x14; // 1.0f
+    /* 0x18 */ f32 field_0x18; // 100.0f
+    /* 0x1C */ f32 field_0x1c; // 100.0f
+    /* 0x20 */ f32 field_0x20; // 100.0f
+    /* 0x24 */ f32 field_0x24;
+    /* 0x28 */ f32 field_0x28;
+    /* 0x2C */ f32 field_0x2c;
+};
 
 class daB_MGN_c : public fopEn_enemy_c {
 public:

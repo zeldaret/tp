@@ -20,11 +20,7 @@ enum AnmNum {
     CD2_ANM_14 = 14,
 };
 
-struct daNpcCd2_HIO_Jnt_c 
-#ifdef DEBUG
-: public JORReflexible
-#endif
-{
+struct daNpcCd2_HIO_Jnt_c : public JORReflexible {
     /* 8015A6E8 */ virtual ~daNpcCd2_HIO_Jnt_c() {}
     /* 8015A788 */ daNpcCd2_HIO_Jnt_c();
 
