@@ -1,7 +1,6 @@
 #ifndef D_A_EP_H
 #define D_A_EP_H
 
-#include "SSystem/SComponent/c_phase.h"
 #include "d/d_bg_s_gnd_chk.h"
 #include "d/d_cc_d.h"
 #include "d/d_cc_uty.h"
@@ -9,8 +8,8 @@
 
 class ep_hahen_s {
     public:
-        /* 8046ACC0 */ ~ep_hahen_s();
-        /* 8046AD44 */ ep_hahen_s();
+        /* 8046ACC0 */ ~ep_hahen_s() {};
+        /* 8046AD44 */ ep_hahen_s() {};
 
         /* 0x00 */ J3DModel* mpModel;
         /* 0x04 */ cXyz field_0x4;
@@ -22,24 +21,25 @@ class ep_hahen_s {
         /* 0x30 */ f32 field_0x30;
         /* 0x34 */ f32 field_0x34;
         /* 0x38 */ f32 mGroundY;
-        /* 0x3C */ dBgS_GndChk field_0x3c;
-        /* 0x90 */ u16 field_0x90;
+        /* 0x3C */ dBgS_ObjGndChk mObjGndCheck;
+        /* 0x90 */ s16 field_0x90;
         /* 0x92 */ s16 field_0x92;
         /* 0x94 */ s16 field_0x94;
         /* 0x96 */ s8 field_0x96;
         /* 0x97 */ u8 field_0x97;
         /* 0x98 */ u8 field_0x98;
         /* 0x99 */ u8 field_0x99[0x9c - 0x99];
-        /* 0x9C */ u32 field_0x9c;
+        /* 0x9C */ u32 mShadow;
         /* 0xA0 */ u32 field_0xa0;
         /* 0xA4 */ u8 field_0xa4;
         /* 0xA7 */ u8 field_0xa7;
 };
 
 STATIC_ASSERT(sizeof(ep_hahen_s) == 0xa8);
+
 class ep_class : public fopAc_ac_c {
     public:
-        /* 8046AB2C */ ep_class();
+        /* 8046AB2C */ ep_class() {};
 
         /* 0x0568 */ request_of_phase_process_class mPhase;
         /* 0x0570 */ Mtx field_0x570;
