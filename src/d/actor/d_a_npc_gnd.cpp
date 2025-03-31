@@ -711,9 +711,9 @@ COMPILER_STRIP_GATE(0x809BE550, &lit_4391);
 
 /* 809BBE80-809BBF44 000960 00C4+00 1/1 0/0 0/0 .text            Draw__11daNpc_Gnd_cFv */
 int daNpc_Gnd_c::Draw() {
-    if (mpMatAnm != NULL) {
+    if (mpMatAnm[0] != NULL) {
         J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
-        modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm);
+        modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
     return daNpcT_c::draw(0, 0, field_0xde8, NULL, 100.0f, 0, 0, 0);
 }

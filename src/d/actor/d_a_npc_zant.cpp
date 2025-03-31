@@ -181,9 +181,9 @@ int daNpc_Zant_c::Execute() {
 
 /* 80B6C754-80B6C7E8 000694 0094+00 1/1 0/0 0/0 .text            Draw__12daNpc_Zant_cFv */
 int daNpc_Zant_c::Draw() {
-    if (mpMatAnm != NULL) {
+    if (mpMatAnm[0] != NULL) {
         J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
-        modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm);
+        modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
     return daNpcT_c::draw(0, 0, field_0xde8, NULL, 0.0f, 1, 0, 0);
 }
@@ -245,8 +245,8 @@ void daNpc_Zant_c::reset() {
     int iVar1 = (u8*)&field_0xf9c - (u8*)&field_0xf84;
     memset(&field_0xf84, 0, iVar1);
 
-    if (mpMatAnm) {
-        mpMatAnm->initialize();
+    if (mpMatAnm[0]) {
+        mpMatAnm[0]->initialize();
     }
 
     setAngle(home.angle.y);
