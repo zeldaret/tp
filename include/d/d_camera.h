@@ -6,6 +6,7 @@
 #include "d/d_bg_s_gnd_chk.h"
 #include "d/d_cam_param.h"
 #include "d/d_drawlist.h"
+#include "d/d_spline_path.h"
 #include "d/d_stage.h"
 #include "f_op/f_op_actor.h"
 
@@ -81,27 +82,6 @@ struct dCamera_monitoring_things {
     /* 0x0C */ f32 field_0xc;
     /* 0x10 */ f32 field_0x10;
     /* 0x14 */ cXyz field_0x14;
-};
-
-struct d2DBSplinePath {
-    /* 0x00 */ s32 field_0x0;
-    /* 0x04 */ s32 field_0x4;
-    /* 0x08 */ s32 field_0x8;
-    /* 0x0C */ s32 field_0xc;
-    /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1c;
-    /* 0x20 */ u32 field_0x20;
-    /* 0x24 */ u32 field_0x24;
-    /* 0x28 */ u32 field_0x28;
-    /* 0x2C */ u32 field_0x2c;
-
-    d2DBSplinePath() { Init(0, 0); }
-
-    /* 80097878 */ void Init(s32, s32);
-    /* 80097B68 */ void Spot(f32*, f32);
-    /* 801828D4 */ virtual ~d2DBSplinePath() {}
 };
 
 struct dCamera_event_param {
@@ -254,38 +234,38 @@ public:
     /* 8008933C */ bool getEvStringData(char*, char*, char*);
     /* 800894C4 */ fopAc_ac_c* getEvActor(char*);
     /* 800895F4 */ fopAc_ac_c* getEvActor(char*, char*);
-    /* 80089730 */ int pauseEvCamera();
-    /* 800897E8 */ int fixedFrameEvCamera();
-    /* 8008A510 */ int stokerEvCamera();
-    /* 8008A974 */ int rollingEvCamera();
-    /* 8008B9B0 */ int fixedPositionEvCamera();
-    /* 8008BE2C */ int uniformTransEvCamera();
-    /* 8008BE50 */ int uniformBrakeEvCamera();
-    /* 8008BE74 */ int uniformAcceleEvCamera();
+    /* 80089730 */ bool pauseEvCamera();
+    /* 800897E8 */ bool fixedFrameEvCamera();
+    /* 8008A510 */ bool stokerEvCamera();
+    /* 8008A974 */ bool rollingEvCamera();
+    /* 8008B9B0 */ bool fixedPositionEvCamera();
+    /* 8008BE2C */ bool uniformTransEvCamera();
+    /* 8008BE50 */ bool uniformBrakeEvCamera();
+    /* 8008BE74 */ bool uniformAcceleEvCamera();
     /* 8008BE98 */ void transEvCamera(int);
-    /* 8008E938 */ int watchActorEvCamera();
-    /* 8008FAE8 */ int restorePosEvCamera();
-    /* 80090174 */ int talktoEvCamera();
+    /* 8008E938 */ bool watchActorEvCamera();
+    /* 8008FAE8 */ bool restorePosEvCamera();
+    /* 80090174 */ bool talktoEvCamera();
     /* 80090230 */ bool maptoolIdEvCamera();
-    /* 80090478 */ int styleEvCamera();
-    /* 80090514 */ int gameOverEvCamera();
-    /* 80091468 */ int tactEvCamera();
-    /* 800923B8 */ int turnToActorEvCamera();
-    /* 800923C0 */ int stbWaitEvCamera();
-    /* 800924D0 */ int saveEvCamera();
-    /* 8009258C */ int loadEvCamera();
-    /* 800929AC */ int useItem0EvCamera();
-    /* 800937AC */ int useItem1EvCamera();
-    /* 80094240 */ int getItemEvCamera();
-    /* 80094A70 */ int possessedEvCamera();
-    /* 80095010 */ int fixedFramesEvCamera();
-    /* 8009544C */ int bSplineEvCamera();
-    /* 800956E4 */ int twoActor0EvCamera();
-    /* 80095E7C */ int peepHoleEvCamera();
-    /* 80095FD0 */ int digHoleEvCamera();
-    /* 800965AC */ int hintTalkEvCamera();
-    /* 80096EDC */ int bspTransEvCamera();
-    /* 80097694 */ int portalWarpEvCamera();
+    /* 80090478 */ bool styleEvCamera();
+    /* 80090514 */ bool gameOverEvCamera();
+    /* 80091468 */ bool tactEvCamera();
+    /* 800923B8 */ bool turnToActorEvCamera();
+    /* 800923C0 */ bool stbWaitEvCamera();
+    /* 800924D0 */ bool saveEvCamera();
+    /* 8009258C */ bool loadEvCamera();
+    /* 800929AC */ bool useItem0EvCamera();
+    /* 800937AC */ bool useItem1EvCamera();
+    /* 80094240 */ bool getItemEvCamera();
+    /* 80094A70 */ bool possessedEvCamera();
+    /* 80095010 */ bool fixedFramesEvCamera();
+    /* 8009544C */ bool bSplineEvCamera();
+    /* 800956E4 */ bool twoActor0EvCamera();
+    /* 80095E7C */ bool peepHoleEvCamera();
+    /* 80095FD0 */ bool digHoleEvCamera();
+    /* 800965AC */ bool hintTalkEvCamera();
+    /* 80096EDC */ bool bspTransEvCamera();
+    /* 80097694 */ bool portalWarpEvCamera();
     /* 8009771C */ cXyz attentionPos(fopAc_ac_c*);
     /* 80097738 */ cSAngle directionOf(fopAc_ac_c*);
     /* 8009775C */ cXyz positionOf(fopAc_ac_c*);
@@ -375,7 +355,7 @@ public:
     /* 8017E730 */ bool fixedPositionCamera(s32);
     /* 8017F25C */ bool oneSideCamera(s32);
     /* 8017F828 */ bool eventCamera(s32);
-    /* 8018050C */ int currentEvCamera();
+    /* 8018050C */ bool currentEvCamera();
     /* 801806D4 */ bool letCamera(s32);
     /* 801806DC */ void setEventRecoveryTrans(s16);
     /* 80180738 */ void runEventRecoveryTrans();
@@ -519,14 +499,14 @@ public:
     /* 0x168 */ u8 field_0x168;
     /* 0x169 */ int field_0x16c;
     /* 0x170 */ int field_0x170;
-    /* 0x174 */ u32 mCurCamTypeTimer;
+    /* 0x174 */ u32 mCurCamStyleTimer;
     /* 0x178 */ u32 mCameraID;
     /* 0x17C */ u32 mPadID;
     /* 0x180 */ fopAc_ac_c* mpPlayerActor;
     /* 0x184 */ fopAc_ac_c* mpLockonTarget;
     /* 0x188 */ fopAc_ac_c* field_0x188;
     /* 0x18C */ fopAc_ac_c* field_0x18c;
-    /* 0x190 */ int field_0x190;
+    /* 0x190 */ int mIsWolf;
     /* 0x194 */ bool field_0x194;
     /* 0x198 */ fpc_ProcID mLockOnActorID;
     /* 0x19C */ fopAc_ac_c* mpLockOnActor;
@@ -716,6 +696,12 @@ public:
             /* 0x10 */ cXyz field_0x10;
             /* 0x1C */ cSGlobe field_0x1c;
         } magne;
+        struct {
+            /* 0x00 */ u8 field_0x0[8];
+            /* 0x08 */ cXyz field_0x8;
+            /* 0x14 */ f32 field_0x14;
+            /* 0x18 */ int field_0x18;
+        } colosseum;
         struct {
             /* 0x00 */ bool field_0x0;
             /* 0x04 */ int field_0x4;

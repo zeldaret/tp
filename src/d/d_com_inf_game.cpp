@@ -841,9 +841,9 @@ int dComIfG_play_c::getLayerNo_common(char const* i_stageName, int i_roomID, int
 /* 8002C97C-8002C9D8 0272BC 005C+00 1/1 22/22 68/68 .text            getLayerNo__14dComIfG_play_cFi
  */
 int dComIfG_play_c::getLayerNo(int) {
-    s32 roomNo = dComIfGp_roomControl_getStayNo();
+    int roomNo = dComIfGp_roomControl_getStayNo();
 
-    if ((s8)roomNo <= -1) {
+    if (roomNo <= -1) {
         roomNo = dComIfGp_getStartStageRoomNo();
     }
 
@@ -2367,16 +2367,14 @@ void dComIfGs_onVisitedRoom(int i_roomNo) {
 
 /* 8002FC3C-8002FC98 02A57C 005C+00 0/0 0/0 1/1 .text            dComIfGs_offVisitedRoom__Fi */
 void dComIfGs_offVisitedRoom(int i_roomNo) {
-    s32 stayNo = dComIfGp_roomControl_getStayNo();
-    dStage_FileList2_dt_c* list = dStage_roomControl_c::getFileList2(stayNo);
+    dStage_FileList2_dt_c* list = dStage_roomControl_c::getFileList2(dComIfGp_roomControl_getStayNo());
 
     dComIfGs_offSaveVisitedRoom(list->field_0x13, i_roomNo);
 }
 
 /* 8002FC98-8002FCF4 02A5D8 005C+00 0/0 1/1 0/0 .text            dComIfGs_isVisitedRoom__Fi */
 BOOL dComIfGs_isVisitedRoom(int param_0) {
-    s32 stayNo = dComIfGp_roomControl_getStayNo();
-    dStage_FileList2_dt_c* fileList = dStage_roomControl_c::getFileList2(stayNo);
+    dStage_FileList2_dt_c* fileList = dStage_roomControl_c::getFileList2(dComIfGp_roomControl_getStayNo());
 
     return dComIfGs_isSaveVisitedRoom(fileList->field_0x13, param_0);
 }

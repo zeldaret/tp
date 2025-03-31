@@ -32,10 +32,9 @@ bool dMeterMap_c::isEnableDispMap() {
 /* 8020D528-8020D650 207E68 0128+00 3/3 0/0 0/0 .text getMapDispSizeTypeNo__11dMeterMap_cFv */
 int dMeterMap_c::getMapDispSizeTypeNo() {
     int uvar6 = 7;
-    s32 stayNo = dComIfGp_roomControl_getStayNo();
 
     dStage_FileList_dt_c* fList =
-        dComIfGp_roomControl_getStatusRoomDt(stayNo)->getFileListInfo();
+        dComIfGp_roomControl_getStatusRoomDt(dComIfGp_roomControl_getStayNo())->getFileListInfo();
     if (fList != NULL) {
         uvar6 = dStage_FileList_dt_getMiniMap(fList);
     }
@@ -291,7 +290,7 @@ void dMeterMap_c::_move(u32 param_0) {
             dMeter2Info_setPauseStatus(2);
         }
     }
-    s32 stayNo = dComIfGp_roomControl_getStayNo();
+    int stayNo = dComIfGp_roomControl_getStayNo();
 
     field_0x14 = param_0;
     field_0x2a = checkMoveStatus();

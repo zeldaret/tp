@@ -74,8 +74,7 @@ Vec dMapInfo_n::getMapPlayerPos() {
         pos.z = 0.0f;
     }
 
-    s32 stayNo = dComIfGp_roomControl_getStayNo();
-    dStage_FileList2_dt_c* fileList2_p = dStage_roomControl_c::getFileList2(stayNo);
+    dStage_FileList2_dt_c* fileList2_p = dStage_roomControl_c::getFileList2(dComIfGp_roomControl_getStayNo());
     if (fileList2_p != NULL) {
         rotAngle(fileList2_p, &pos);
         offsetPlus(fileList2_p, &pos);

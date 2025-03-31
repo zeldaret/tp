@@ -69,7 +69,7 @@ static void dEnvSe_getNearPathPos(cXyz* param_0, cXyz* param_1, dPath* i_path) {
 /* 80182FD8-80183480 17D918 04A8+00 1/1 0/0 0/0 .text
  * execute_common__8dEnvSe_cFP18dStage_SoundInfo_cPScUc         */
 int dEnvSe_c::execute_common(dStage_SoundInfo_c* i_soundInf, s8* param_1, u8 param_2) {
-    s32 roomNo = dComIfGp_roomControl_getStayNo();
+    int roomNo = dComIfGp_roomControl_getStayNo();
     int path_roomNo = dComIfGp_roomControl_getStayNo();
     BOOL var_r25 = false;
 
@@ -189,7 +189,7 @@ int dEnvSe_c::execute_common(dStage_SoundInfo_c* i_soundInf, s8* param_1, u8 par
 
 /* 80183480-801835A0 17DDC0 0120+00 1/1 0/0 0/0 .text            execute__8dEnvSe_cFv */
 int dEnvSe_c::execute() {
-    s32 roomNo = dComIfGp_roomControl_getStayNo();
+    int roomNo = dComIfGp_roomControl_getStayNo();
     dStage_roomDt_c* roomDt_p = dComIfGp_roomControl_getStatusRoomDt(roomNo);
 
     if (roomDt_p == NULL) {

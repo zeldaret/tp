@@ -773,6 +773,51 @@ dCamera_c::~dCamera_c() {
     }
 }
 
+enum SpecialType {
+    /* 0x00 */ CAM_TYPE_FIELD_S,
+    /* 0x01 */ CAM_TYPE_EVENT,
+    /* 0x02 */ CAM_TYPE_WATER,
+    /* 0x03 */ CAM_TYPE_SCOPE,
+    /* 0x04 */ CAM_TYPE_CANOE,
+    /* 0x05 */ CAM_TYPE_HORSE_T,
+    /* 0x06 */ CAM_TYPE_BOARD,
+    /* 0x07 */ CAM_TYPE_07,
+    /* 0x08 */ CAM_TYPE_KEEP,
+    /* 0x09 */ CAM_TYPE_RODEO,
+    /* 0x0A */ CAM_TYPE_MAGNE_BOOTS,
+    /* 0x0B */ CAM_TYPE_MAGNE_WALL,
+    /* 0x0C */ CAM_TYPE_MAGNE_ROOF,
+    /* 0x0D */ CAM_TYPE_WATER_SURF,
+    /* 0x0E */ CAM_TYPE_ROTARY,
+    /* 0x0F */ CAM_TYPE_STREET,
+    /* 0x10 */ CAM_TYPE_STREET_N,
+    /* 0x11 */ CAM_TYPE_STREET_P,
+    /* 0x12 */ CAM_TYPE_RAMPART_2,
+    /* 0x13 */ CAM_TYPE_ALLAY,
+    /* 0x14 */ CAM_TYPE_ALLAY_R,
+    /* 0x15 */ CAM_TYPE_ALLAY_R2,
+    /* 0x16 */ CAM_TYPE_ALLAY_S,
+    /* 0x17 */ CAM_TYPE_ALLAY_N,
+    /* 0x18 */ CAM_TYPE_ALLAY_R3,
+    /* 0x19 */ CAM_TYPE_HOOK_WALL,
+    /* 0x1A */ CAM_TYPE_HOOK_ROOF,
+    /* 0x1B */ CAM_TYPE_HOOK_ACTOR,
+    /* 0x1C */ CAM_TYPE_SPINNER,
+    /* 0x1D */ CAM_TYPE_GORON_JUMP,
+    /* 0x1E */ CAM_TYPE_GOAT_BATTLE,
+    /* 0x1F */ CAM_TYPE_BOAR,
+    /* 0x20 */ CAM_TYPE_COCCO_JUMP,
+    /* 0x21 */ CAM_TYPE_ROOF_HUNG,
+    /* 0x22 */ CAM_TYPE_COPY_ROD_HALL,
+    /* 0x23 */ CAM_TYPE_MIDNA_TAG,
+    /* 0x24 */ CAM_TYPE_WARP_OBJ,
+    /* 0x25 */ CAM_TYPE_LV9_GZELDA_TRI,
+    /* 0x26 */ CAM_TYPE_TEPPEI_HOOK,
+    /* 0x27 */ CAM_TYPE_LV4_BOSS_SPJP,
+    /* 0x28 */ CAM_TYPE_LV7_BOSS,
+    /* 0x29 */ CAM_TYPE_PEEP,
+};
+ 
 namespace {
 
 /* 8042C8F8-8042C9A0 059618 00A8+00 12/12 0/0 0/0 .bss specialType__22@unnamed@d_camera_cpp@ */
@@ -852,53 +897,53 @@ void dCamera_c::initialize(camera_class* i_camera, fopAc_ac_c* i_player, u32 i_c
         Stage = 0x6B;
     }
 
-    specialType[0] = GetCameraTypeFromCameraName("FieldS");
-    specialType[1] = GetCameraTypeFromCameraName("Event");
-    specialType[2] = GetCameraTypeFromCameraName("Water");
-    specialType[3] = GetCameraTypeFromCameraName("Scope");
-    specialType[13] = GetCameraTypeFromCameraName("WaterSurf");
-    specialType[5] = GetCameraTypeFromCameraName("HorseT");
-    specialType[6] = GetCameraTypeFromCameraName("Board");
-    specialType[4] = GetCameraTypeFromCameraName("Canoe");
-    specialType[8] = GetCameraTypeFromCameraName("Keep");
-    specialType[9] = GetCameraTypeFromCameraName("Rodeo");
-    specialType[10] = GetCameraTypeFromCameraName("MagneBoots");
-    specialType[12] = GetCameraTypeFromCameraName("MagneRoof");
-    specialType[11] = GetCameraTypeFromCameraName("MagneWall");
-    specialType[32] = GetCameraTypeFromCameraName("CoccoJump");
-    specialType[31] = GetCameraTypeFromCameraName("Boar");
-    specialType[30] = GetCameraTypeFromCameraName("GoatBattle");
-    specialType[29] = GetCameraTypeFromCameraName("GoronJump");
-    specialType[28] = GetCameraTypeFromCameraName("Spinner");
-    specialType[25] = GetCameraTypeFromCameraName("HookWall");
-    specialType[26] = GetCameraTypeFromCameraName("HookRoof");
-    specialType[27] = GetCameraTypeFromCameraName("HookActor");
-    specialType[33] = GetCameraTypeFromCameraName("RoofHung");
-    specialType[14] = GetCameraTypeFromCameraName("Rotary");
-    specialType[15] = GetCameraTypeFromCameraName("Street");
-    specialType[16] = GetCameraTypeFromCameraName("StreetN");
-    specialType[17] = GetCameraTypeFromCameraName("StreetP");
-    specialType[18] = GetCameraTypeFromCameraName("Rampart2");
-    specialType[19] = GetCameraTypeFromCameraName("Allay");
-    specialType[20] = GetCameraTypeFromCameraName("AllayR");
-    specialType[21] = GetCameraTypeFromCameraName("AllayR2");
-    specialType[22] = GetCameraTypeFromCameraName("AllayS");
-    specialType[23] = GetCameraTypeFromCameraName("AllayN");
-    specialType[24] = GetCameraTypeFromCameraName("AllayR3");
-    specialType[34] = GetCameraTypeFromCameraName("CopyRodHall");
-    specialType[35] = GetCameraTypeFromCameraName("MidnaTag");
-    specialType[36] = GetCameraTypeFromCameraName("WarpObj");
-    specialType[37] = GetCameraTypeFromCameraName("LV9GZeldaTri");
-    specialType[39] = GetCameraTypeFromCameraName("LV4BOSSSPJP");
-    specialType[40] = GetCameraTypeFromCameraName("LV7BOSS");
-    specialType[38] = GetCameraTypeFromCameraName("TeppeiHook");
+    specialType[CAM_TYPE_FIELD_S] = GetCameraTypeFromCameraName("FieldS");
+    specialType[CAM_TYPE_EVENT] = GetCameraTypeFromCameraName("Event");
+    specialType[CAM_TYPE_WATER] = GetCameraTypeFromCameraName("Water");
+    specialType[CAM_TYPE_SCOPE] = GetCameraTypeFromCameraName("Scope");
+    specialType[CAM_TYPE_WATER_SURF] = GetCameraTypeFromCameraName("WaterSurf");
+    specialType[CAM_TYPE_HORSE_T] = GetCameraTypeFromCameraName("HorseT");
+    specialType[CAM_TYPE_BOARD] = GetCameraTypeFromCameraName("Board");
+    specialType[CAM_TYPE_CANOE] = GetCameraTypeFromCameraName("Canoe");
+    specialType[CAM_TYPE_KEEP] = GetCameraTypeFromCameraName("Keep");
+    specialType[CAM_TYPE_RODEO] = GetCameraTypeFromCameraName("Rodeo");
+    specialType[CAM_TYPE_MAGNE_BOOTS] = GetCameraTypeFromCameraName("MagneBoots");
+    specialType[CAM_TYPE_MAGNE_ROOF] = GetCameraTypeFromCameraName("MagneRoof");
+    specialType[CAM_TYPE_MAGNE_WALL] = GetCameraTypeFromCameraName("MagneWall");
+    specialType[CAM_TYPE_COCCO_JUMP] = GetCameraTypeFromCameraName("CoccoJump");
+    specialType[CAM_TYPE_BOAR] = GetCameraTypeFromCameraName("Boar");
+    specialType[CAM_TYPE_GOAT_BATTLE] = GetCameraTypeFromCameraName("GoatBattle");
+    specialType[CAM_TYPE_GORON_JUMP] = GetCameraTypeFromCameraName("GoronJump");
+    specialType[CAM_TYPE_SPINNER] = GetCameraTypeFromCameraName("Spinner");
+    specialType[CAM_TYPE_HOOK_WALL] = GetCameraTypeFromCameraName("HookWall");
+    specialType[CAM_TYPE_HOOK_ROOF] = GetCameraTypeFromCameraName("HookRoof");
+    specialType[CAM_TYPE_HOOK_ACTOR] = GetCameraTypeFromCameraName("HookActor");
+    specialType[CAM_TYPE_ROOF_HUNG] = GetCameraTypeFromCameraName("RoofHung");
+    specialType[CAM_TYPE_ROTARY] = GetCameraTypeFromCameraName("Rotary");
+    specialType[CAM_TYPE_STREET] = GetCameraTypeFromCameraName("Street");
+    specialType[CAM_TYPE_STREET_N] = GetCameraTypeFromCameraName("StreetN");
+    specialType[CAM_TYPE_STREET_P] = GetCameraTypeFromCameraName("StreetP");
+    specialType[CAM_TYPE_RAMPART_2] = GetCameraTypeFromCameraName("Rampart2");
+    specialType[CAM_TYPE_ALLAY] = GetCameraTypeFromCameraName("Allay");
+    specialType[CAM_TYPE_ALLAY_R] = GetCameraTypeFromCameraName("AllayR");
+    specialType[CAM_TYPE_ALLAY_R2] = GetCameraTypeFromCameraName("AllayR2");
+    specialType[CAM_TYPE_ALLAY_S] = GetCameraTypeFromCameraName("AllayS");
+    specialType[CAM_TYPE_ALLAY_N] = GetCameraTypeFromCameraName("AllayN");
+    specialType[CAM_TYPE_ALLAY_R3] = GetCameraTypeFromCameraName("AllayR3");
+    specialType[CAM_TYPE_COPY_ROD_HALL] = GetCameraTypeFromCameraName("CopyRodHall");
+    specialType[CAM_TYPE_MIDNA_TAG] = GetCameraTypeFromCameraName("MidnaTag");
+    specialType[CAM_TYPE_WARP_OBJ] = GetCameraTypeFromCameraName("WarpObj");
+    specialType[CAM_TYPE_LV9_GZELDA_TRI] = GetCameraTypeFromCameraName("LV9GZeldaTri");
+    specialType[CAM_TYPE_LV4_BOSS_SPJP] = GetCameraTypeFromCameraName("LV4BOSSSPJP");
+    specialType[CAM_TYPE_LV7_BOSS] = GetCameraTypeFromCameraName("LV7BOSS");
+    specialType[CAM_TYPE_TEPPEI_HOOK] = GetCameraTypeFromCameraName("TeppeiHook");
 
-    mCurType = mMapToolType = specialType[0];
+    mCurType = mMapToolType = specialType[CAM_TYPE_FIELD_S];
 
-    specialType[41] = GetCameraTypeFromCameraName("Peep");
+    specialType[CAM_TYPE_PEEP] = GetCameraTypeFromCameraName("Peep");
     field_0x698 = 0xFF;
     field_0x69c = 0;
-    field_0x190 = daPy_py_c::checkNowWolf() != 0;
+    mIsWolf = daPy_py_c::checkNowWolf() != 0;
     mCurMode = 0;
     field_0x680 = 0;
     field_0x1ac = 11;
@@ -999,7 +1044,7 @@ void dCamera_c::initialize(camera_class* i_camera, fopAc_ac_c* i_player, u32 i_c
         }
     }
 
-    mCamStyle = mCamTypeData[mCurType].field_0x18[field_0x190][mCurMode];
+    mCamStyle = mCamTypeData[mCurType].field_0x18[mIsWolf][mCurMode];
     mLockOnActorID = 0xFFFFFFFF;
     mEventData.field_0x14 = -1;
     mEventData.field_0x18 = -1;
@@ -1147,7 +1192,7 @@ bool dCamera_c::ChangeModeOK(s32 param_0) {
         return 0;
     }
 
-    return !(mCamTypeData[mCurType].field_0x18[field_0x190][param_0] < 0);
+    return !(mCamTypeData[mCurType].field_0x18[mIsWolf][param_0] < 0);
 }
 
 /* 80161550-801617B0 15BE90 0260+00 1/1 0/0 0/0 .text            initPad__9dCamera_cFv */
@@ -1315,8 +1360,8 @@ void dCamera_c::updatePad() {
     bool sp6B = true;
     bool sp6C = true;
     int sp68;
-    if (mCamTypeData[mCurType].field_0x18[field_0x190][0] > 0) {
-        sp68 = field_0x190;
+    if (mCamTypeData[mCurType].field_0x18[mIsWolf][0] > 0) {
+        sp68 = mIsWolf;
     } else {
         sp68 = 0;
     }
@@ -1483,8 +1528,8 @@ bool dCamera_c::Run() {
     field_0x194 = link->checkMidnaRide() && !midna->checkNoDraw();
     bool bVar9 = false;
     clrComStat(0x804);
-    int iVar8 = field_0x190;
-    field_0x190 = daPy_py_c::checkNowWolf() ? 1 : 0;
+    int iVar8 = mIsWolf;
+    mIsWolf = daPy_py_c::checkNowWolf() ? 1 : 0;
     mFocusLine.Off();
     clrFlag(0x10168C21);
     clrFlag(0x10);
@@ -1544,23 +1589,23 @@ bool dCamera_c::Run() {
     }
 
     clrComStat(0x40000);
-    if (mCurType == specialType[41]) {
+    if (mCurType == specialType[CAM_TYPE_PEEP]) {
         setComStat(0x40000);
     }
 
     mNextMode = nextMode(mCurMode);
-    if ((iVar8 != field_0x190 || mNextMode != mCurMode)
-        && mCamTypeData[mCurType].field_0x18[field_0x190][mNextMode] >= 0
+    if ((iVar8 != mIsWolf || mNextMode != mCurMode)
+        && mCamTypeData[mCurType].field_0x18[mIsWolf][mNextMode] >= 0
         && onModeChange(mCurMode, mNextMode))
     {
         mCurMode = mNextMode;
-        mCurCamTypeTimer = 0;
+        mCurCamStyleTimer = 0;
     }
     if (!ChangeModeOK(mCurMode)) {
         mCurMode = 0;
     }
 
-    int style = mCamTypeData[mCurType].field_0x18[field_0x190][mCurMode];
+    int style = mCamTypeData[mCurType].field_0x18[mIsWolf][mCurMode];
     if (style >= 0 && mCamStyle != style && onStyleChange(mCamStyle, style)) {
         mCamStyle = style;
         mCamParam.Change(mCamStyle);
@@ -1594,7 +1639,7 @@ bool dCamera_c::Run() {
         bVar9 = (this->*engine_tbl[mCamParam.Algorythmn(mCamStyle)])(mCamStyle);
         field_0x170++;
         field_0x160++;
-        mCurCamTypeTimer++;
+        mCurCamStyleTimer++;
     }
 
     field_0xa8++;
@@ -1692,8 +1737,8 @@ bool dCamera_c::Run() {
         clrComStat(0x10);
     }
 
-    // fakematch: field_0x28.mRadius should be field_0x28.R()
-    if (mDirection.mRadius < mCamSetup.PlayerHideDist()) {
+    f32 hide_dist = mCamSetup.PlayerHideDist();
+    if (mDirection.R() < hide_dist) {
         if (chkFlag(0x800) & 1) {
             setComStat(2);
         } else if (chkFlag(0x10000000)) {
@@ -1719,19 +1764,19 @@ bool dCamera_c::NotRun() {
     clrComStat(0x80);
 
     if (dComIfGp_evmng_cameraPlay() || chkFlag(0x20000000)) {
-        if (mCurType != specialType[1]) {
+        if (mCurType != specialType[CAM_TYPE_EVENT]) {
             pushInfo(&field_0xb0, 1);
             mEventData.field_0xc = mCurType;
-            mCurType = specialType[1];
+            mCurType = specialType[CAM_TYPE_EVENT];
             mCamStyle = mCamParam.SearchStyle('EN01');
             field_0x170 = 0;
             field_0x160 = 0;
-            mCurCamTypeTimer = 0;
+            mCurCamStyleTimer = 0;
         }
-        eventCamera(mCamTypeData[mCurType].field_0x18[field_0x190][3]);
+        eventCamera(mCamTypeData[mCurType].field_0x18[mIsWolf][3]);
         field_0x170++;
         field_0x160++;
-        mCurCamTypeTimer++;
+        mCurCamStyleTimer++;
     }
 
     setComStat(0x14);
@@ -1937,7 +1982,7 @@ s32 dCamera_c::nextMode(s32 i_curMode) {
         if (!link->checkFastShotTime()) {
             field_0x610 = 0;
         }
-        if (field_0x1ac != 11 && mCamTypeData[mCurType].field_0x18[field_0x190][field_0x1ac] >= 0) {
+        if (field_0x1ac != 11 && mCamTypeData[mCurType].field_0x18[mIsWolf][field_0x1ac] >= 0) {
             next_mode = field_0x1ac;
         } else if (check_owner_action(mPadID, 0x200000) && !attn.Lockon()) {
             if (check_owner_action(mPadID, 0x25040)) {
@@ -2016,7 +2061,7 @@ s32 dCamera_c::nextMode(s32 i_curMode) {
         }
     }
 
-    if (mCamTypeData[mCurType].field_0x18[field_0x190][next_mode] >= 0) {
+    if (mCamTypeData[mCurType].field_0x18[mIsWolf][next_mode] >= 0) {
         if (next_mode != 2) {
             mLockOnActorID = -1;
         }
@@ -2067,8 +2112,8 @@ bool dCamera_c::onModeChange(s32 i_curMode, s32 i_nextMode) {
         setFlag(0x100000);
         // fallthrough
     case 0:
-        if (mCamTypeData[mCurType].field_0x18[field_0x190][i_curMode]
-            == mCamTypeData[mCurType].field_0x18[field_0x190][i_nextMode])
+        if (mCamTypeData[mCurType].field_0x18[mIsWolf][i_curMode]
+            == mCamTypeData[mCurType].field_0x18[mIsWolf][i_nextMode])
         {
             field_0x168 = 0;
         }
@@ -2125,63 +2170,62 @@ s32 dCamera_c::nextType(s32 i_curType) {
 
         if (check_owner_action(mPadID, 0x200000) && ChangeModeOK(4)
                                                  && !dComIfGp_getAttention().Lockon()) {
-            next_type = specialType[3];
+            next_type = specialType[CAM_TYPE_SCOPE];
         } else if (iVar14 != 0xff && !(field_0x860.field_0x3a & 0x10)) {
             next_type = iVar14;
             field_0x7ac = field_0x860;
         } else if (link->checkMidnaLockJumpPoint() &&
                                     (daPy_py_c::getMidnaActor()->checkFlyWaitAnime()
                                     || daPy_py_c::getMidnaActor()->checkNoInput())) {
-            next_type = specialType[35];
+            next_type = specialType[CAM_TYPE_MIDNA_TAG];
         } else if (daPy_py_c::getMidnaActor()->checkPortalObjCall()) {
-            next_type = specialType[36];
+            next_type = specialType[CAM_TYPE_WARP_OBJ];
         } else if (link->checkGoatStopGame()) {
-            next_type = specialType[30];
+            next_type = specialType[CAM_TYPE_GOAT_BATTLE];
         } else if (chkFlag(0x10000)) {
-            next_type = specialType[29];
+            next_type = specialType[CAM_TYPE_GORON_JUMP];
         } else if (link->checkHorseRide()) {
-            next_type = specialType[5];
+            next_type = specialType[CAM_TYPE_HORSE_T];
         } else if (bVar1) {
-            next_type = specialType[11];
+            next_type = specialType[CAM_TYPE_MAGNE_WALL];
         } else if (bVar2) {
-            next_type = specialType[12];
+            next_type = specialType[CAM_TYPE_MAGNE_ROOF];
         } else if (copy_rod) {
-            next_type = specialType[34];
+            next_type = specialType[CAM_TYPE_COPY_ROD_HALL];
         } else if (link->checkBoarRide()) {
-            next_type = specialType[31];
+            next_type = specialType[CAM_TYPE_BOAR];
         } else if (link->checkCanoeRide()) {
-            next_type = specialType[4];
+            next_type = specialType[CAM_TYPE_CANOE];
         } else if (link->checkBoardRide()) {
-            next_type = specialType[6];
+            next_type = specialType[CAM_TYPE_BOARD];
         } else if (link->checkSpinnerRide()) {
-            next_type = specialType[28];
+            next_type = specialType[CAM_TYPE_SPINNER];
         } else if (check_owner_action1(mPadID, 0x2000000)) {
-            next_type = specialType[25];
+            next_type = specialType[CAM_TYPE_HOOK_WALL];
         } else if (check_owner_action1(mPadID, 0x10000)) {
             if (link->getHookshotRoofWaitActor() != NULL) {
-                next_type = specialType[27];
+                next_type = specialType[CAM_TYPE_HOOK_ACTOR];
             } else {
-                next_type = specialType[26];
+                next_type = specialType[CAM_TYPE_HOOK_ROOF];
             }
         } else if (check_owner_action1(mPadID, 0x100000)) {
-            next_type = specialType[33];
+            next_type = specialType[CAM_TYPE_ROOF_HUNG];
         } else if (link->checkCokkoGlide()) {
-            next_type = specialType[32];
+            next_type = specialType[CAM_TYPE_COCCO_JUMP];
         } else if (check_owner_action(mPadID, 0x100000)) {
             if (getComStat(0x800)) {
-                next_type = specialType[13];
+                next_type = specialType[CAM_TYPE_WATER_SURF];
             } else if (mBG.field_0xc0.field_0x3c != 0xff) {
-                // fakematch: should be dComIfGp_roomControl_getStayNo()
                 setRoomMapToolData(&field_0x7ac, mBG.field_0xc0.field_0x3c,
-                                   dStage_roomControl_c::mStayNo);
+                                   dComIfGp_roomControl_getStayNo());
                 s32 type = GetCameraTypeFromToolData(&field_0x7ac.field_0x0);
                 if (type != 0xff) {
                     next_type = type;
                 } else {
-                    next_type = specialType[2];
+                    next_type = specialType[CAM_TYPE_WATER];
                 }
             } else {
-                next_type = specialType[2];
+                next_type = specialType[CAM_TYPE_WATER];
             }
         } else if (iVar14 != 0xff) {
             next_type = iVar14;
@@ -2198,7 +2242,7 @@ s32 dCamera_c::nextType(s32 i_curType) {
 
     field_0x698 = 0xff;
     field_0x69c = 0;
-    if (mCamTypeData[mCurType].field_0x18[field_0x190][0] < 0) {
+    if (mCamTypeData[mCurType].field_0x18[mIsWolf][0] < 0) {
         next_type = mMapToolType;
         if (field_0x7ac.field_0x30 != 0xff) {
             s32 type = GetCameraTypeFromToolData(&field_0x7ac.field_0x0);
@@ -2213,10 +2257,10 @@ s32 dCamera_c::nextType(s32 i_curType) {
     }
 
     if (dComIfGp_evmng_cameraPlay() || chkFlag(0x20000000)) {
-        if (i_curType != specialType[1]) {
+        if (i_curType != specialType[CAM_TYPE_EVENT]) {
             mEventData.field_0xc = next_type;
         }
-        next_type = specialType[1];
+        next_type = specialType[CAM_TYPE_EVENT];
         dComIfGp_getAttention().LockSoundOff();
     } else {
         clrFlag(0x40000000);
@@ -2231,7 +2275,7 @@ s32 dCamera_c::nextType(s32 i_curType) {
 
 /* 8016444C-8016469C 15ED8C 0250+00 1/1 0/0 0/0 .text            onTypeChange__9dCamera_cFll */
 bool dCamera_c::onTypeChange(s32 i_curType, s32 i_nextType) {
-    if (i_curType == specialType[1]) {
+    if (i_curType == specialType[CAM_TYPE_EVENT]) {
         if (mCamSetup.CheckFlag(0x4000)) {
             field_0x940 = 0;
         }
@@ -2251,7 +2295,7 @@ bool dCamera_c::onTypeChange(s32 i_curType, s32 i_nextType) {
         clearInfo(&field_0xd0[1], 0);
 
         if (chkFlag(0x400000)) {
-            mCamStyle = mCamTypeData[mEventData.field_0xc].field_0x18[field_0x190][0];
+            mCamStyle = mCamTypeData[mEventData.field_0xc].field_0x18[mIsWolf][0];
             mCamParam.Change(mCamStyle);
             setFlag(0x200);
             clrFlag(0x400000);
@@ -2275,7 +2319,7 @@ bool dCamera_c::onTypeChange(s32 i_curType, s32 i_nextType) {
             }
             clrFlag(0x40000000);
         }
-    } else if (i_nextType == specialType[1]) {
+    } else if (i_nextType == specialType[CAM_TYPE_EVENT]) {
         clrFlag(0x200000);
         pushInfo(&field_0xb0, 1);
         field_0x1b4 = 0.0f;
@@ -2289,7 +2333,7 @@ bool dCamera_c::onTypeChange(s32 i_curType, s32 i_nextType) {
 
 /* 8016469C-801647B0 15EFDC 0114+00 2/1 0/0 0/0 .text            onStyleChange__9dCamera_cFll */
 bool dCamera_c::onStyleChange(s32 param_0, s32 param_1) {
-    mCurCamTypeTimer = 0;
+    mCurCamStyleTimer = 0;
     field_0x158.field_0x0 = 0;
     bool var_r30 = false;
 
@@ -3185,7 +3229,7 @@ bool dCamera_c::bumpCheck(u32 i_flags) {
                     } else {
                         field_0x968 *= mMonitor.field_0xc / 5.0f;
                     }
-                    f32 tmp = field_0x96c * (field_0x190 == 1 ? 30.0f : 30.0f);
+                    f32 tmp = field_0x96c * (mIsWolf == 1 ? 30.0f : 30.0f);
                     center += vec3.norm() * (tmp * globe.V().Sin());
                     cSGlobe globe2(vec2 - center);
                     globe2.V(mDirection.V() + (globe2.V() - mDirection.V()) * field_0x968);
@@ -3588,13 +3632,13 @@ bool dCamera_c::chaseCamera(s32 param_0) {
         setFlag(0x20000);
     }
 
-    if (player->checkSpinnerPathMove() || mCurType == specialType[39]) {
+    if (player->checkSpinnerPathMove() || mCurType == specialType[CAM_TYPE_LV4_BOSS_SPJP]) {
         mPadInfo.mMainStick.mLastPosX = 0.0f;
         mPadInfo.mMainStick.mLastPosY = 0.0f;
         mPadInfo.mMainStick.mLastValue = 0.0f;
     }
 
-    if (mCurCamTypeTimer == 0) {
+    if (mCurCamStyleTimer == 0) {
         cXyz player_attention = attentionPos(mpPlayerActor) - positionOf(mpPlayerActor);
         if (chkFlag(0x200) && field_0x110.field_0x8.field_0x1e <= 0) {
             field_0x5c.mCenter = mCenter;
@@ -3658,7 +3702,7 @@ bool dCamera_c::chaseCamera(s32 param_0) {
             mCamParam.Arg0(field_0x7ac.field_0x0.field_0x12);
             mCamParam.Arg1(field_0x7ac.field_0x0.field_0x13);
             mCamParam.Arg2(field_0x7ac.field_0x0.field_0x14);
-            if (param_0 == mCamTypeData[mCurType].field_0x18[field_0x190][mCurMode]) {
+            if (param_0 == mCamTypeData[mCurType].field_0x18[mIsWolf][mCurMode]) {
                 mCamParam.Change(param_0);
             }
             mWork.chase.field_0x9c = field_0x7ac.field_0x30;
@@ -3682,7 +3726,7 @@ bool dCamera_c::chaseCamera(s32 param_0) {
         mCamParam.Arg0(0xff);
         mCamParam.Arg1(0xff);
         mCamParam.Arg2(-1);
-        if (param_0 == mCamTypeData[mCurType].field_0x18[field_0x190][mCurMode]) {
+        if (param_0 == mCamTypeData[mCurType].field_0x18[mIsWolf][mCurMode]) {
             mCamParam.Change(param_0);
         }
         mWork.chase.field_0x9c = 0xff;
@@ -3700,7 +3744,7 @@ bool dCamera_c::chaseCamera(s32 param_0) {
     bool bVar9 = false;
     bool bVar3 = false;
     bool bVar1 = false;
-    if (field_0x190 == 0) {
+    if (mIsWolf == 0) {
         if (isPlayerCharging(mPadID)) {
             bVar1 = true;
         }
@@ -3844,7 +3888,7 @@ bool dCamera_c::chaseCamera(s32 param_0) {
     if (check_owner_action(mPadID, 0x100)) {
         val7 -= 50.0f;
         val8 -= 50.0f;
-        if (field_0x190 == 1) {
+        if (mIsWolf == 1) {
             val1 = 1.0f;
         } else {
             val1 = -30.0f;
@@ -3886,7 +3930,7 @@ bool dCamera_c::chaseCamera(s32 param_0) {
         mBG.field_0xc0.field_0x44 = 0;
     }
 
-    if (field_0x190 == 1 || check_owner_action(mPadID, 0x8000000)) {
+    if (mIsWolf == 1 || check_owner_action(mPadID, 0x8000000)) {
         if (val2 < -30.0f) {
             val2 = -30.0f;
         }
@@ -3898,7 +3942,7 @@ bool dCamera_c::chaseCamera(s32 param_0) {
     cXyz player_attention_pos = attentionPos(mpPlayerActor);
     lineBGCheck(&player_attention_pos, &field_0x5c.mEye, 0x40b7);
 
-    if (mCurCamTypeTimer == 0) {
+    if (mCurCamStyleTimer == 0) {
         mWork.chase.field_0x38 = val0;
     } else if (chkFlag(0x100000) && !check_owner_action1(mPadID, 0x2000000)
                                  && check_owner_action(mPadID, 0xa50c0)) {
@@ -3933,7 +3977,7 @@ bool dCamera_c::chaseCamera(s32 param_0) {
         }
 
         f32 tmp = (val7 - val9) / (val7 - val8);
-        if (mCurCamTypeTimer == 0) {
+        if (mCurCamStyleTimer == 0) {
             mWork.chase.field_0xa4 = tmp;
         } else {
             mWork.chase.field_0xa4 += (tmp - mWork.chase.field_0xa4) * 0.75f;
@@ -3941,7 +3985,7 @@ bool dCamera_c::chaseCamera(s32 param_0) {
     }
 
     f32 tmp = val2 + mWork.chase.field_0xa4 * (val3 - val2);
-    if (mCurCamTypeTimer == 0) {
+    if (mCurCamStyleTimer == 0) {
         mWork.chase.field_0x3c = tmp;
     } else {
         mWork.chase.field_0x3c += (tmp - mWork.chase.field_0x3c) * 0.08f;
@@ -3949,7 +3993,7 @@ bool dCamera_c::chaseCamera(s32 param_0) {
 
     cXyz vec(mWork.chase.field_0x38, mWork.chase.field_0x3c, val1);
 
-    if (mCurCamTypeTimer == 0) {
+    if (mCurCamStyleTimer == 0) {
         field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
         mWork.chase.field_0x0 = 'CHAS';
         if (mBG.field_0xc0.field_0x44 != 0 && !check_owner_action(mPadID, 0x200)) {
@@ -4042,7 +4086,7 @@ bool dCamera_c::chaseCamera(s32 param_0) {
 
         if (player->checkGoronSideMove()) {
             mWork.chase.field_0x4 = 20;
-        } else if (mCurType == specialType[37]) {
+        } else if (mCurType == specialType[CAM_TYPE_LV9_GZELDA_TRI]) {
             mWork.chase.field_0x4 = 45;
         } else if (chkFlag(0x20)) {
             int tmp2 = mWork.chase.field_0x4;
@@ -4121,12 +4165,12 @@ bool dCamera_c::chaseCamera(s32 param_0) {
             dComIfG_Bgsp().MoveBgMatrixCrrPos(mBG.field_0x5c.field_0x4, true,
                                               &mWork.chase.field_0x58, NULL, NULL);
         }
-        mWork.chase.field_0xc = mWork.chase.field_0x4 - (int)mCurCamTypeTimer;
+        mWork.chase.field_0xc = mWork.chase.field_0x4 - (int)mCurCamStyleTimer;
         f32 rate = mWork.chase.field_0xc / mWork.chase.field_0x8;
         mWork.chase.field_0x58 = pos;
         if (mWork.chase.field_0x95) {
             rate = 0.75f;
-            if (push_any_key() && mMonitor.field_0xc < 0.1f && mCurCamTypeTimer > 20) {
+            if (push_any_key() && mMonitor.field_0xc < 0.1f && mCurCamStyleTimer > 20) {
                 field_0x158.field_0x0 = 1;
             }
         }
@@ -4160,7 +4204,7 @@ bool dCamera_c::chaseCamera(s32 param_0) {
         mWork.chase.field_0x64 = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
         field_0x5c.mEye = mWork.chase.field_0x64;
 
-        if (mCurCamTypeTimer >= mWork.chase.field_0x4 - 1) {
+        if (mCurCamStyleTimer >= mWork.chase.field_0x4 - 1) {
             field_0x158.field_0x0 = 1;
         }
 
@@ -4391,7 +4435,7 @@ bool dCamera_c::chaseCamera(s32 param_0) {
         if (player->checkChainBlockPushPull()) {
             cSGlobe globe = field_0x5c.mCenter - attentionPos(player->getChainGrabActor());
             ang3 = globe.U();
-        } else if ((field_0x190 != 1 || mCurMode != 1) && !mCamParam.Flag(param_0, 0x100)) {
+        } else if ((mIsWolf != 1 || mCurMode != 1) && !mCamParam.Flag(param_0, 0x100)) {
             ang3 = player_direction.Inv();
         } else {
             ang3 = mWork.chase.field_0x96;
@@ -4423,7 +4467,7 @@ bool dCamera_c::chaseCamera(s32 param_0) {
     } else if (check_owner_action1(mPadID, 0x2010000) && mCurMode == 0) {
         mWork.chase.field_0x9a = mDirection.U().Val();
         mWork.chase.field_0x93 = true;
-    } else if (field_0x190 == 1 && isPlayerCharging(mPadID)) {
+    } else if (mIsWolf == 1 && isPlayerCharging(mPadID)) {
         mWork.chase.field_0x9a = mDirection.U().Val();
         mWork.chase.field_0x93 = true;
     } else {
@@ -4611,7 +4655,7 @@ bool dCamera_c::lockonCamera(s32 param_0) {
         }
     }
 
-    if (mCurCamTypeTimer == 0) {
+    if (mCurCamStyleTimer == 0) {
         if (field_0x110.field_0x8.field_0x1e <= 0) {
             field_0x5c.mDirection = mDirection;
             field_0x5c.mCenter = mCenter;
@@ -4661,7 +4705,7 @@ bool dCamera_c::lockonCamera(s32 param_0) {
             }
         }
 
-        if (mCurType == specialType[40]) {
+        if (mCurType == specialType[CAM_TYPE_LV7_BOSS]) {
             cSAngle ang = -10.0f;
             if (field_0x5c.mDirection.V() < ang) {
                 field_0x5c.mDirection.V(cSAngle(-10.0f));
@@ -4690,9 +4734,9 @@ bool dCamera_c::lockonCamera(s32 param_0) {
 
     if (check_owner_action(mPadID, 6)) {
         lockon_change_timer = 5;
-    } else if (mCurType == specialType[37]) {
+    } else if (mCurType == specialType[CAM_TYPE_LV9_GZELDA_TRI]) {
         lockon_change_timer = 60;
-    } else if (mCurType == specialType[38]) {
+    } else if (mCurType == specialType[CAM_TYPE_TEPPEI_HOOK]) {
         lockon_change_timer = 40;
     }
 
@@ -4763,7 +4807,7 @@ bool dCamera_c::lockonCamera(s32 param_0) {
     }
 
     if (dComIfGp_getAttention().LockEdge()) {
-        mCurCamTypeTimer = 0;
+        mCurCamStyleTimer = 0;
         field_0x160 = 0;
         mWork.lockon.field_0x2a = false;
     }
@@ -4817,17 +4861,17 @@ bool dCamera_c::lockonCamera(s32 param_0) {
     }
 
     f32 fVar14;
-    if (mCurCamTypeTimer < lockon_change_timer && !mWork.lockon.field_0x2a) {
-        fVar14 = dCamMath::rationalBezierRatio((f32)mCurCamTypeTimer / lockon_change_timer, 0.5f);
+    if (mCurCamStyleTimer < lockon_change_timer && !mWork.lockon.field_0x2a) {
+        fVar14 = dCamMath::rationalBezierRatio((f32)mCurCamStyleTimer / lockon_change_timer, 0.5f);
         ang2 *= fVar14;
-    } else if (mCurCamTypeTimer >= lockon_change_timer) {
+    } else if (mCurCamStyleTimer >= lockon_change_timer) {
         mWork.lockon.field_0x2a = true;
         fVar14 = 1.0f;
     }
 
     cSAngle ang3(field_0x5c.mDirection.U().Inv() - ang1);
 
-    if (mCurCamTypeTimer != 0 && mCurCamTypeTimer < lockon_change_timer) {
+    if (mCurCamStyleTimer != 0 && mCurCamStyleTimer < lockon_change_timer) {
         if (mWork.lockon.field_0x2c == 0) {
             ang1 -= ang2;
             ang3 = -ang3;
@@ -4868,7 +4912,7 @@ bool dCamera_c::lockonCamera(s32 param_0) {
     f32 fVar44;
 
     if (bVar1) {
-        if (mCurCamTypeTimer == 0) {
+        if (mCurCamStyleTimer == 0) {
             mWork.lockon.field_0x5c = 0.01f;
         }
         fVar44 = 0.25f;
@@ -4891,7 +4935,7 @@ bool dCamera_c::lockonCamera(s32 param_0) {
     mWork.lockon.field_0x1c.y +=
         ((attention_pos.y + dVar37) - mWork.lockon.field_0x1c.y) * mWork.lockon.field_0x5c;
 
-    if (mCurCamTypeTimer == 0) {
+    if (mCurCamStyleTimer == 0) {
         cXyz vec = mWork.lockon.field_0x1c;
         mWork.lockon.field_0x34.Val(field_0x5c.mCenter - vec);
         if (field_0x5c.mCenter.x == vec.x && field_0x5c.mCenter.z == vec.z) {
@@ -5036,11 +5080,11 @@ bool dCamera_c::lockonCamera(s32 param_0) {
 
         if (!mWork.lockon.field_0x2a) {
             int iVar27 = lockon_change_timer >> 1;
-            if (mCurCamTypeTimer < iVar27) {
-                fVar45 = lockon_change_cushion * ((f32)mCurCamTypeTimer / iVar27);
+            if (mCurCamStyleTimer < iVar27) {
+                fVar45 = lockon_change_cushion * ((f32)mCurCamStyleTimer / iVar27);
             } else {
-                fVar45 = fVar45 * ((f32)(mCurCamTypeTimer - iVar27) / iVar27)
-                    + lockon_change_cushion * (1.0f - (f32)(mCurCamTypeTimer - iVar27) / iVar27);
+                fVar45 = fVar45 * ((f32)(mCurCamStyleTimer - iVar27) / iVar27)
+                    + lockon_change_cushion * (1.0f - (f32)(mCurCamStyleTimer - iVar27) / iVar27);
             }
         }
 
@@ -5176,7 +5220,7 @@ bool dCamera_c::talktoCamera(s32 param_0) {
     bool uVar18 = true;
     daAlink_c* player = (daAlink_c*)mpPlayerActor;
 
-    if (mCurCamTypeTimer == 0) {
+    if (mCurCamStyleTimer == 0) {
         mWork.talk.field_0x0 = 'TALK';
         mWork.talk.field_0x44 = 0;
         mWork.talk.field_0x38 = -1;
@@ -5253,7 +5297,7 @@ bool dCamera_c::talktoCamera(s32 param_0) {
     }
 
     if (mWork.talk.field_0x78 != speaker) {
-        mCurCamTypeTimer = 0;
+        mCurCamStyleTimer = 0;
         field_0x158.field_0x0 = false;
         mWork.talk.field_0x44 = 0;
         mWork.talk.field_0x78 = speaker;
@@ -5293,7 +5337,7 @@ bool dCamera_c::talktoCamera(s32 param_0) {
     cSAngle stack_1354 = val24;
     cSAngle stack_1358 = val23;
 
-    if (mCurCamTypeTimer == 0) {
+    if (mCurCamStyleTimer == 0) {
         cSAngle stack_135c;
         cXyz stack_13c;
         cSGlobe stack_12c0 = positionOf(speaker) - positionOf(listener);
@@ -5317,7 +5361,7 @@ bool dCamera_c::talktoCamera(s32 param_0) {
             stack_154 = positionOf(speaker) + dCamMath::xyzRotateY(stack_13c, stack_135c);
         }
 
-        if (field_0x190 == 1) {
+        if (mIsWolf == 1) {
             if (listener == mpPlayerActor) {
                 stack_148.y += 80.0f;
             }
@@ -5563,11 +5607,11 @@ bool dCamera_c::talktoCamera(s32 param_0) {
         || (fopAcM_GetName(speaker) == PROC_Tag_Mstop && ((daTagMstop_c*)speaker)->checkNoAttention()))
     {
         bool bVar13 = false;
-        if (field_0x190 == 1 && check_owner_action(mPadID, 0x100000)) {
+        if (mIsWolf == 1 && check_owner_action(mPadID, 0x100000)) {
             bVar13 = true;
         }
 
-        if (mCurCamTypeTimer == 0) {
+        if (mCurCamStyleTimer == 0) {
             if (!bVar13) {
                 mWork.talk.field_0x28.U(cSAngle(15.0f) + directionOf(listener));
                 mWork.talk.field_0x28.V(cSAngle(5.0f));
@@ -5593,7 +5637,7 @@ bool dCamera_c::talktoCamera(s32 param_0) {
 
     cXyz stack_1cc = cXyz::Zero;
     bool bVar13 = false;
-    if (is_player(listener) && field_0x190 == 1) {
+    if (is_player(listener) && mIsWolf == 1) {
         cXyz stack_1d8(0.0f, 0.0f, 45.0f);
         stack_1cc = dCamMath::xyzRotateY(stack_1d8, directionOf(listener));
         bVar13 = true;
@@ -6630,7 +6674,7 @@ bool dCamera_c::subjectCamera(s32 param_0) {
     check_owner_action(mPadID, 0x80080);
     bool bVar16 = check_owner_action(mPadID, 0x40) != 0;
 
-    if (mCurCamTypeTimer == 0) {
+    if (mCurCamStyleTimer == 0) {
         mWork.subject.field_0x0 = 'SUBN';
         mWork.subject.field_0x2a.Val(field_0x5c.mDirection.U().Inv());
         mWork.subject.field_0x28.Val(field_0x5c.mDirection.V());
@@ -6724,7 +6768,7 @@ bool dCamera_c::subjectCamera(s32 param_0) {
         mWork.subject.field_0x48.Val(mWork.subject.field_0x30 - mWork.subject.field_0x4);
     }
 
-    if (mCurCamTypeTimer == 0) {
+    if (mCurCamStyleTimer == 0) {
         mWork.subject.field_0x4 = field_0x5c.mCenter;
         mWork.subject.field_0x30 = field_0x5c.mEye;
         mWork.subject.field_0x48 = field_0x5c.mDirection;
@@ -6737,7 +6781,7 @@ bool dCamera_c::subjectCamera(s32 param_0) {
         bVar17 = true;
     }
 
-    if (mCurType == specialType[3]) {
+    if (mCurType == specialType[CAM_TYPE_SCOPE]) {
         field_0x940 = 0;
         mCamParam.SetFlag(0x10);
         mCamParam.SetFlag(4);
@@ -6835,7 +6879,7 @@ bool dCamera_c::subjectCamera(s32 param_0) {
 
     cXyz stack_210 = stack_1c8 + stack_1f8;
     dBgS_CamLinChk lin_chk;
-    if (field_0x190 == 1) {
+    if (mIsWolf == 1) {
         cXyz stack_21c = positionOf(mpPlayerActor);
         stack_21c.y = stack_1c8.y;
         if (lineBGCheck(&stack_21c, &stack_210, &lin_chk, 0x40b7)) {
@@ -6967,7 +7011,7 @@ bool dCamera_c::magneCamera(s32 param_0) {
     f32 val21 = mCamParam.Val(param_0, 21);
     daAlink_c* player = (daAlink_c*)mpPlayerActor;
 
-    field_0x158.field_0x0 = mCurCamTypeTimer != 0;
+    field_0x158.field_0x0 = mCurCamStyleTimer != 0;
 
     cSAngle stack_234;
     MtxP mtx, inv_mtx;
@@ -6989,7 +7033,7 @@ bool dCamera_c::magneCamera(s32 param_0) {
     mWork.magne.field_0x4 += player_pos;
     mWork.magne.field_0x10 += player_pos;
 
-    if (mCurCamTypeTimer == 0) {
+    if (mCurCamStyleTimer == 0) {
         mWork.magne.field_0x0 = 'MAG_';
         mWork.magne.field_0x1c.Val(mWork.magne.field_0x10 - mWork.magne.field_0x4);
     }
@@ -7058,6 +7102,7 @@ bool dCamera_c::magneCamera(s32 param_0) {
 }
 
 /* 801767F8-80176DF0 171138 05F8+00 1/0 0/0 0/0 .text            colosseumCamera__9dCamera_cFl */
+// NONMATCHING instruction order
 bool dCamera_c::colosseumCamera(s32 param_0) {
     f32 val0 = mCamParam.Val(param_0, 0);
     f32 val2 = mCamParam.Val(param_0, 2);
@@ -7069,6 +7114,91 @@ bool dCamera_c::colosseumCamera(s32 param_0) {
     f32 val10 = mCamParam.Val(param_0, 10);
     f32 val12 = mCamParam.Val(param_0, 12);
     f32 val13 = mCamParam.Val(param_0, 13);
+    f32 val17 = mCamParam.Val(param_0, 17);
+    f32 val18 = mCamParam.Val(param_0, 18);
+
+    if (Stage == 0x6b && positionOf(mpPlayerActor).y < -1.0f) {
+        return chaseCamera(mCamTypeData[specialType[CAM_TYPE_FIELD_S]].field_0x18[mIsWolf][0]);
+    }
+
+    if (mCurCamStyleTimer == 0) {
+        mWork.colosseum.field_0x14 = 0.0f;
+        mWork.colosseum.field_0x18 = 40;
+        if (field_0x7ac.field_0x30 != 0xff && mCamParam.Flag(param_0, 0x200)) {
+            mWork.colosseum.field_0x8.x = field_0x7ac.field_0x18.mPosition.x;
+            mWork.colosseum.field_0x8.y = field_0x7ac.field_0x18.mPosition.y;
+            mWork.colosseum.field_0x8.z = field_0x7ac.field_0x18.mPosition.z;
+        } else if (mCamParam.Flag(param_0, 0x2000)) {
+            fopAc_ac_c* target = getParamTargetActor(mCurType);
+            mWork.colosseum.field_0x8.x = positionOf(target).x;
+            mWork.colosseum.field_0x8.y = attentionPos(mpPlayerActor).y;
+            mWork.colosseum.field_0x8.z = positionOf(target).z;
+        }
+        mEventData.field_0xf0.Init(5, 100);
+    }
+
+    if (mWork.colosseum.field_0x14 < 0.999f) {
+        mWork.colosseum.field_0x14 += 1.0f / mWork.colosseum.field_0x18;
+    } else {
+        field_0x158.field_0x0 = true;
+        mWork.colosseum.field_0x14 = 1.0f;
+    }
+
+    cXyz stack_e8 = mWork.colosseum.field_0x8;
+    if (!mCamParam.Flag(param_0, 0x1000)) {
+        stack_e8.y = attentionPos(mpPlayerActor).y;
+    }
+    cXyz stack_f4(val0, 0.0f, val1);
+    cXyz stack_100;
+    stack_100 = dCamMath::xyzRotateY(stack_f4, field_0x5c.mDirection.U().Inv());
+    stack_100 += attentionPos(mpPlayerActor);
+    cSGlobe stack_1bc = stack_100 - stack_e8;
+
+    f32 tmp;
+    if (stack_1bc.R() < val10) {
+        tmp = 0.0f;
+        stack_1bc.R(val10);
+    } else if (stack_1bc.R() > val11) {
+        tmp = 1.0f;
+        stack_1bc.R(val11);
+    } else {
+        tmp = (stack_1bc.R() - val10) / (val11 - val10);
+        stack_1bc.R(val10 + (val11 - val10) * tmp);
+    }
+
+    static f32 Dsp[5] = {0.0f, 0.0f, 0.25f, 1.0f, 1.0f};
+    f32 dVar7 = mEventData.field_0xf0.Spot(Dsp, tmp);
+
+    cXyz stack_10c;
+    stack_10c = stack_e8 + stack_1bc.Xyz();
+    if (!mCamParam.Flag(param_0, 0x800)) {
+        stack_10c.y = 0.0f;
+    }
+    stack_10c.y += val3 + (val2 - val3) * dVar7;
+    f32 fVar8 = val8 + (val7 - val8) * dVar7;
+    cSAngle stack_1c0 = val13 + (val12 - val13) * dVar7;
+    if (mCamParam.Flag(param_0, 0x1000)) {
+        stack_1c0 += stack_1bc.V();
+    }
+    cSAngle stack_1c4 = stack_1bc.U();
+
+    if (!field_0x158.field_0x0) {
+        field_0x5c.mCenter += (stack_10c - field_0x5c.mCenter) * mWork.colosseum.field_0x14;
+        field_0x5c.mDirection.R(field_0x5c.mDirection.R()
+                            + (fVar8 - field_0x5c.mDirection.R()) * mWork.colosseum.field_0x14);
+        field_0x5c.mDirection.V(field_0x5c.mDirection.V()
+                            + (stack_1c0 - field_0x5c.mDirection.V()) * mWork.colosseum.field_0x14);
+        field_0x5c.mDirection.U(field_0x5c.mDirection.U()
+                            + (stack_1c4 - field_0x5c.mDirection.U()) * mWork.colosseum.field_0x14);
+    } else {
+        field_0x5c.mCenter = stack_10c;
+        field_0x5c.mDirection.Val(fVar8, stack_1c0, stack_1c4);
+    }
+
+    field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
+    f32 fVar9 = val18 + (val17 - val18) * dVar7;
+    field_0x5c.mFovy += (fVar9 - field_0x5c.mFovy) * mWork.colosseum.field_0x14;
+    return true;
 }
 
 /* 80176DF0-80176DF8 171730 0008+00 1/0 0/0 0/0 .text            test1Camera__9dCamera_cFl */
@@ -7086,7 +7216,8 @@ bool dCamera_c::test2Camera(s32 param_0) {
 SECTION_SDATA2 static f32 lit_13673 = 1.0f / 40.0f;
 
 /* 80176E00-80178E50 171740 2050+00 1/0 0/0 0/0 .text            towerCamera__9dCamera_cFl */
-bool dCamera_c::towerCamera(s32 param_0){// NONMATCHING
+bool dCamera_c::towerCamera(s32 param_0) {
+    // NONMATCHING
 }
 
 /* ############################################################################################## */
@@ -7243,7 +7374,8 @@ bool dCamera_c::fixedPositionCamera(s32 param_0) {
 }
 
 /* 8017F25C-8017F828 179B9C 05CC+00 1/0 0/0 0/0 .text            oneSideCamera__9dCamera_cFl */
-bool dCamera_c::oneSideCamera(s32 param_0){// NONMATCHING
+bool dCamera_c::oneSideCamera(s32 param_0) {
+    // NONMATCHING
 }
 
 /* 80393F68-80393F68 0205C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -7262,16 +7394,10 @@ SECTION_DEAD static char const* const stringBase_803942E7 = "PlayerHide";
 SECTION_DEAD static char const* const stringBase_803942F2 = "WideMode";
 #pragma pop
 
-/* 803BA4A4-803BA4B8 0175C4 0014+00 1/1 0/0 0/0 .data            Dsp$13137 */
-SECTION_DATA static u8 Dsp[20] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3E, 0x80,
-    0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
-};
-
 /* 8017F828-8018050C 17A168 0CE4+00 2/1 0/0 0/0 .text            eventCamera__9dCamera_cFl */
-bool dCamera_c::eventCamera(s32 param_0){
+bool dCamera_c::eventCamera(s32 param_0) {
     // NONMATCHING
-    typedef int (dCamera_c::*func)();
+    typedef bool (dCamera_c::*func)();
     func l_func[] = {
         &dCamera_c::pauseEvCamera,
         &dCamera_c::pauseEvCamera,
@@ -7306,7 +7432,7 @@ bool dCamera_c::eventCamera(s32 param_0){
         &dCamera_c::digHoleEvCamera,
         &dCamera_c::hintTalkEvCamera,
         &dCamera_c::bspTransEvCamera,
-        (func)&dCamera_c::maptoolIdEvCamera,
+        &dCamera_c::maptoolIdEvCamera,
     };
 
     static char* ActionNames[34] = {
@@ -7357,7 +7483,7 @@ SECTION_DEAD static char const* const stringBase_803942FB = "Continue";
 #pragma pop
 
 /* 8018050C-801806D4 17AE4C 01C8+00 1/0 0/0 0/0 .text            currentEvCamera__9dCamera_cFv */
-int dCamera_c::currentEvCamera() {
+bool dCamera_c::currentEvCamera() {
     // NONMATCHING
 }
 
@@ -8000,155 +8126,55 @@ bool dCamForcusLine::Off() {
     return field_0x49 == 0;
 }
 
-/* 801827EC-801827F4 17D12C 0008+00 1/0 0/0 0/0 .text            @20@__dt__14dBgS_CamSphChkFv */
-static void func_801827EC() {
-    // NONMATCHING
-}
-
-/* 801827F4-801827FC 17D134 0008+00 1/0 0/0 0/0 .text            @36@__dt__14dBgS_CamSphChkFv */
-static void func_801827F4() {
-    // NONMATCHING
-}
-
-/* 801827FC-80182804 17D13C 0008+00 1/0 0/0 0/0 .text            @72@__dt__14dBgS_CamSphChkFv */
-static void func_801827FC() {
-    // NONMATCHING
-}
-
-/* 80182804-8018280C 17D144 0008+00 1/0 0/0 0/0 .text            @56@__dt__14dBgS_CamSphChkFv */
-static void func_80182804() {
-    // NONMATCHING
-}
-
-/* 8018280C-80182814 17D14C 0008+00 1/1 0/0 0/0 .text            getChainGrabActor__9daAlink_cFv */
-// void daAlink_c::getChainGrabActor() {
-void getChainGrabActor__9daAlink_cFv() {
-    // NONMATCHING
-}
-
-/* 80182814-8018283C 17D154 0028+00 1/1 0/0 0/0 .text            checkCokkoGlide__9daAlink_cCFv */
-// void daAlink_c::checkCokkoGlide() const {
-void checkCokkoGlide__9daAlink_cCFv() {
-    // NONMATCHING
-}
-
-/* 8018283C-80182870 17D17C 0034+00 1/1 0/0 0/0 .text checkCameraLargeDamage__9daAlink_cCFv */
-// void daAlink_c::checkCameraLargeDamage() const {
-void checkCameraLargeDamage__9daAlink_cCFv() {
-    // NONMATCHING
-}
-
-/* 80182870-80182878 17D1B0 0008+00 1/1 0/0 0/0 .text            getHsSubChainTopPos__9daAlink_cCFv
- */
-// void daAlink_c::getHsSubChainTopPos() const {
-void getHsSubChainTopPos__9daAlink_cCFv() {
-    // NONMATCHING
-}
-
-/* 80182878-80182888 17D1B8 0010+00 2/2 0/0 0/0 .text            daAlink_getAlinkActorClass__Fv */
-// static void daAlink_getAlinkActorClass() {
-void daAlink_getAlinkActorClass__Fv() {
-    // NONMATCHING
-}
-
-/* 80182888-8018289C 17D1C8 0014+00 1/1 0/0 0/0 .text            checkCutHeadProc__9daAlink_cCFv */
-// void daAlink_c::checkCutHeadProc() const {
-void checkCutHeadProc__9daAlink_cCFv() {
-    // NONMATCHING
-}
-
-/* 8018289C-801828A4 17D1DC 0008+00 1/1 0/0 0/0 .text            getRideActor__9daAlink_cFv */
-// void daAlink_c::getRideActor() {
-void getRideActor__9daAlink_cFv() {
-    // NONMATCHING
-}
-
-/* 801828A4-801828D4 17D1E4 0030+00 1/1 0/0 0/0 .text            dComIfGs_isTmpBit__FUs */
-// static void dComIfGs_isTmpBit(u16 param_0) {
-void dComIfGs_isTmpBit__FUs() {
-    // NONMATCHING
-}
-
-/* 801828D4-8018291C 17D214 0048+00 1/0 0/0 0/0 .text            __dt__14d2DBSplinePathFv */
-// d2DBSplinePath::~d2DBSplinePath() {
-void __dt__14d2DBSplinePathFv() {
-    // NONMATCHING
-}
-
-/* 8018291C-80182920 17D25C 0004+00 1/1 0/0 0/0 .text            __ct__Q29dCamera_c10dCamInfo_cFv */
-// dCamera_c::dCamInfo_c::dCamInfo_c() {
-void __ct__Q29dCamera_c10dCamInfo_cFv() {
-    /* empty function */
-}
-
-/* 80182920-8018295C 17D260 003C+00 2/2 0/0 0/0 .text            __dt__Q29dCamera_c10dCamInfo_cFv */
-// dCamera_c::dCamInfo_c::~dCamInfo_c() {
-void __dt__Q29dCamera_c10dCamInfo_cFv() {
-    // NONMATCHING
-}
-
-/* 80182964-8018296C 17D2A4 0008+00 1/1 0/0 0/0 .text            push_any_key__9dCamera_cFv */
-// void dCamera_c::push_any_key() {
-void push_any_key__9dCamera_cFv() {
-    // NONMATCHING
-}
-
-/* 8018296C-80182980 17D2AC 0014+00 1/1 0/0 0/0 .text            clrFlag__9dCamera_cFUl */
-// void dCamera_c::clrFlag(u32 param_0) {
-void clrFlag__9dCamera_cFUl() {
-    // NONMATCHING
-}
-
-/* 80182980-80182994 17D2C0 0014+00 4/4 0/0 0/0 .text            chkFlag__9dCamera_cFUl */
-// void dCamera_c::chkFlag(u32 param_0) {
-void chkFlag__9dCamera_cFUl() {
-    // NONMATCHING
-}
-
 /* 803BA6E4-803BA6F8 -00001 0014+00 2/0 0/0 0/0 .data            method */
-SECTION_DATA static void* method[5] = {
-    (void*)camera_create__FP12camera_class,          (void*)camera_delete__FP20camera_process_class,
-    (void*)camera_execute__FP20camera_process_class, (void*)is_camera_delete__FPv,
-    (void*)camera_draw__FP20camera_process_class,
+static leafdraw_method_class method = {
+    (process_method_func)camera_create,
+    (process_method_func)camera_delete,
+    (process_method_func)camera_execute,
+    (process_method_func)is_camera_delete,
+    (process_method_func)camera_draw,
 };
 
 /* 803BA6F8-803BA73C -00001 0044+00 0/0 0/0 1/0 .data            g_profile_CAMERA */
-SECTION_DATA extern void* g_profile_CAMERA[17] = {
-    (void*)0xFFFFFFFD, (void*)0x000BFFFD,
-    (void*)0x030D0000, (void*)&g_fpcLf_Method,
-    (void*)0x00000D58, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopVw_Method,
-    (void*)NULL,       (void*)&g_fopCam_Method,
-    (void*)NULL,       (void*)NULL,
-    (void*)NULL,       (void*)NULL,
-    (void*)NULL,       (void*)&method,
-    (void*)NULL,
+extern camera_process_profile_definition g_profile_CAMERA = {
+    fpcLy_CURRENT_e,
+    11,
+    fpcPi_CURRENT_e,
+    PROC_CAMERA,
+    &g_fpcLf_Method.base,
+    sizeof(dCamera_c),
+    0,
+    0,
+    &g_fopVw_Method,
+    0,
+    &g_fopCam_Method,
+    0,
+    0,
+    0,
+    0,
+    0,
+    &method,
+    0,
 };
 
 /* 803BA73C-803BA798 -00001 0044+18 0/0 0/0 1/0 .data            g_profile_CAMERA2 */
-SECTION_DATA extern void* g_profile_CAMERA2[17 + 6 /* padding */] = {
-    (void*)0xFFFFFFFD,
-    (void*)0x000BFFFD,
-    (void*)0x030E0000,
-    (void*)&g_fpcLf_Method,
-    (void*)0x00000D58,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)&g_fopVw_Method,
-    (void*)0x00010000,
-    (void*)&g_fopCam_Method,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)&method,
-    (void*)NULL,
-    /* padding */
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
+extern camera_process_profile_definition g_profile_CAMERA2 = {
+    fpcLy_CURRENT_e,
+    11,
+    fpcPi_CURRENT_e,
+    PROC_CAMERA2,
+    &g_fpcLf_Method.base,
+    sizeof(dCamera_c),
+    0,
+    0,
+    &g_fopVw_Method,
+    1,
+    &g_fopCam_Method,
+    0,
+    0,
+    0,
+    0,
+    0,
+    &method,
+    0,
 };

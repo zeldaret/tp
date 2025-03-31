@@ -591,9 +591,8 @@ int dMsgFlow_c::eventNodeProc(fopAc_ac_c* param_0, fopAc_ac_c** param_1) {
         if (getParam(node->params) == 0) {
             int msgNum;
             if (daAlink_getAlinkActorClass()->getMidnaMsgNum() == 0xFFFF) {
-                s32 stayNo = dComIfGp_roomControl_getStayNo();
                 msgNum =
-                    dComIfGp_roomControl_getStatusRoomDt(stayNo)->getFileListInfo()->mMsg;
+                    dComIfGp_roomControl_getStatusRoomDt(dComIfGp_roomControl_getStayNo())->getFileListInfo()->mMsg;
             } else {
                 msgNum = daAlink_getAlinkActorClass()->getMidnaMsgNum();
                 daAlink_getAlinkActorClass()->setMidnaMsg();

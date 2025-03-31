@@ -536,8 +536,7 @@ static void e_s1_roof(e_s1_class* i_this) {
     case 1:
         roof_wait = true;
         if (i_this->mSwBit != 0xFF) {
-            s32 room_no = dComIfGp_roomControl_getStayNo();
-            if (dComIfGs_isSwitch(i_this->mSwBit, room_no)) {
+            if (dComIfGs_isSwitch(i_this->mSwBit, dComIfGp_roomControl_getStayNo())) {
                 i_this->mMode = 2;
             }
         } else if (fopAcM_searchPlayerDistanceXZ(a_this) < i_this->mPrm1 * 100.0f) {
