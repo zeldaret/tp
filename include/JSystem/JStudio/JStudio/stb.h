@@ -201,11 +201,11 @@ struct TParseData_fixed : public TParseData<T> {
         return TParseData::isValid() && getNext() != NULL;
     }
 
-    Iterator begin() {
+    Iterator begin() const {
         return Iterator(fileCount);
     }
 
-    Iterator end() {
+    Iterator end() const {
         Iterator i(fileCount);
         i += size();
         return i;

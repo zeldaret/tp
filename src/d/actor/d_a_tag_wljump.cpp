@@ -70,7 +70,7 @@ int daTagWljump_c::execute() {
         field_0x56d--;
     }
 
-    dStage_dPnt_c* point_p;
+    dPnt* point_p;
 
     daPy_py_c* player = daPy_getLinkPlayerActorClass();
     daMidna_c* midna = daPy_py_c::getMidnaActor();
@@ -144,7 +144,7 @@ int daTagWljump_c::execute() {
         if (!player->checkWolfTagLockJumpLand()) {
             if (!player->checkWolfTagLockJump()) {
                 for (var_r28 = 0; var_r28 < field_0x5c4->m_num; var_r28++, point_p++) {
-                    if (player->current.pos.abs2(point_p->m_position) < point_p->field_0x0 * point_p->field_0x0 * 10.0f * 10.0f) {
+                    if (player->current.pos.abs2(point_p->m_position) < point_p->mArg1 * point_p->mArg1 * 10.0f * 10.0f) {
                         field_0x56a = var_r28;
                         if (var_r28 == 0) {
                             field_0x568 = 1;

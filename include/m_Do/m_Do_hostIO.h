@@ -24,11 +24,7 @@ public:
     /* 0x1C */ JORReflexible* mPt;
 };
 
-class mDoHIO_entry_c
-#ifdef DEBUG
-: public JORReflexible
-#endif
-{
+class mDoHIO_entry_c : public JORReflexible {
 public:
 #ifdef DEBUG
     mDoHIO_entry_c();

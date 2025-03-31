@@ -956,7 +956,7 @@ void daB_DS_c::mCreateTrap(bool param_0) {
 
             dPath* path = dPath_GetRoomPath(3, fopAcM_GetRoomNo(this));
             if (path != NULL) {
-                dStage_dPnt_c& point = path->m_points[trap_create_id];
+                dPnt& point = path->m_points[trap_create_id];
                 pos = point.m_position;
                 vec = pos - current.pos;
                 if (vec.abs() <= 200.0f) {

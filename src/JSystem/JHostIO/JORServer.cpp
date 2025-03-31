@@ -90,19 +90,19 @@ void JORReflexible::listenPropertyEvent(const JORPropertyEvent* pEvent) {
         case 'CMBX':
             if (pEvent->field_0x14 >= 4) {
                 JORPropertyEvent* event = (JORPropertyEvent*)pEvent;
-                JORServer::defSetVal(event->field_0xc, event->kind, event->field_0x18.U32);
+                JORServer::defSetVal(event->id, event->kind, event->field_0x18.U32);
             }
             break;
         case 'CHBX':
             if (pEvent->field_0x14 >= 4) {
                 JORPropertyEvent* event = (JORPropertyEvent*)pEvent;
-                JORServer::defSetBitVal(event->field_0xc, event->kind, (u16)event->field_0x18.U16[0], (u16)event->field_0x18.U16[1]);
+                JORServer::defSetBitVal(event->id, event->kind, (u16)event->field_0x18.U16[0], (u16)event->field_0x18.U16[1]);
             }
             break;
         case 'EDBX':
             JORPropertyEvent* event = (JORPropertyEvent*)pEvent;
             JSUMemoryInputStream stream(&event->field_0x18, event->field_0x14);
-            stream >> event->field_0xc;
+            stream >> event->id;
             break;
         }
         return;

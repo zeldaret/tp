@@ -2075,8 +2075,7 @@ static int dStage_pathInfoInit(dStage_dt_c* stageDt, void* i_data, int entryNum,
 
     for (int i = 0; i < path_c->m_num; i++) {
         if ((u32)path->m_points < 0x80000000) {
-            // fake match?
-            path->m_points = (dStage_dPnt_c*)((int)path->m_points + *(int*)&stageDt->getPntInf()->m_position);
+            path->m_points = (dPnt*)((u32)path->m_points + stageDt->getPntInf()->m_pnt_offset);
         }
         path++;
     }
@@ -2100,7 +2099,7 @@ static int dStage_rpatInfoInit(dStage_dt_c* i_stage, void* i_data, int i_num, vo
         if ((u32)pPath->m_points >= 0x80000000) {
             continue;
         }
-        pPath->m_points = (dStage_dPnt_c*)((u32)*((int*)i_stage->getPnt2Inf()+1) + (u32)pPath->m_points); // TODO clean this up
+        pPath->m_points = (dPnt*)((u32)pPath->m_points + i_stage->getPnt2Inf()->m_pnt_offset);
     }
     return 1;
 }

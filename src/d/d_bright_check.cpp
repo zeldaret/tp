@@ -33,13 +33,6 @@ static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 803BB5D4-803BB5EC 0186F4 0018+00 1/2 0/0 0/0 .data            brightChackProc */
-typedef void (dBrightCheck_c::*procFunc)();
-static procFunc brightChackProc[] = {
-    &dBrightCheck_c::modeWait,
-    &dBrightCheck_c::modeMove,
-};
-
 /* 80192F10-80192F98 18D850 0088+00 0/0 1/1 0/0 .text __ct__14dBrightCheck_cFP10JKRArchive */
 dBrightCheck_c::dBrightCheck_c(JKRArchive* i_archive) {
     mArchive = i_archive;
@@ -125,6 +118,13 @@ void dBrightCheck_c::screenSet() {
         }
     }
 }
+
+/* 803BB5D4-803BB5EC 0186F4 0018+00 1/2 0/0 0/0 .data            brightChackProc */
+typedef void (dBrightCheck_c::*procFunc)();
+static procFunc brightChackProc[] = {
+    &dBrightCheck_c::modeWait,
+    &dBrightCheck_c::modeMove,
+};
 
 /* 801934D0-80193508 18DE10 0038+00 0/0 1/1 0/0 .text            _move__14dBrightCheck_cFv */
 void dBrightCheck_c::_move() {

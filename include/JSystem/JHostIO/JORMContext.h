@@ -54,6 +54,30 @@
                      width, height);                                                               \
     }
 
+#define DEFINE_START_COMBO_BOX(T, kind)                                                                 \
+    void startComboBox(const char* label, T* pSrc, u32 style,                  \
+                   JOREventListener* pListener, u16 posX, u16 posY, u16 width, u16 height) {       \
+        startSelectorSub('CMBX', kind, label, (u32)pSrc, style, *pSrc, pListener, posX,    \
+                         posY, width, height);                                                         \
+    }
+
+#define DEFINE_START_COMBO_BOX_ID(T, kind)                                                                 \
+    void startComboBoxID(const char* label, u32 id, T data, u32 style,                  \
+                JOREventListener* pListener, u16 posX, u16 posY, u16 width, u16 height) {       \
+        startSelectorSub('CMBX', kind, label, id, style, data, pListener, posX,    \
+                        posY, width, height);                                                         \
+    }
+
+#define DEFINE_UPDATE_SLIDER(T)                                                              \
+    void updateSlider(u32 mode, T* pSrc, T rangeMin, T rangeMax, u32 param_5) {     \
+        updateSliderSub(mode, (u32) pSrc, *pSrc, rangeMin, rangeMax, param_5);                                                               \
+    }
+
+#define DEFINE_UPDATE_SLIDER_ID(T)                                                              \
+    void updateSliderID(u32 mode, u32 id, T value, T rangeMin, T rangeMax, u32 param_5) {     \
+        updateSliderSub(mode, id, value, rangeMin, rangeMax, param_5);                                                               \
+    }
+
 namespace jhostio {
     enum EKind {
         EKind_8B  = 0x08,
@@ -127,6 +151,10 @@ public:
         genNodeSub(label, obj, param_2, param_3);
     }
 
+    void startUpdateNode(JORReflexible* obj) {
+        putNode(obj);
+    }
+
     void genNodeSub(const char* label, JORReflexible* i_node, u32, u32);
     void putNode(JORReflexible* obj);
     void invalidNode(JORReflexible* i_node, u32);
@@ -180,6 +208,27 @@ public:
     DEFINE_GEN_SLIDER_ID(f64, JORPropertyEvent::EKind_ValueID | JORPropertyEvent::EKind_FloatValue)
     DEFINE_GEN_SLIDER_ID(int, JORPropertyEvent::EKind_ValueID)
 
+    DEFINE_UPDATE_SLIDER(u8)
+    DEFINE_UPDATE_SLIDER(s16)
+    DEFINE_UPDATE_SLIDER(f32)
+    DEFINE_UPDATE_SLIDER(s32)
+
+    DEFINE_UPDATE_SLIDER_ID(f64)
+    DEFINE_UPDATE_SLIDER_ID(int)
+
+    /**
+     * === COMBO BOX ===
+     */
+    DEFINE_START_COMBO_BOX(u8, 0x100 | jhostio::EKind_8B)
+    DEFINE_START_COMBO_BOX(s16, jhostio::EKind_16B)
+    DEFINE_START_COMBO_BOX(s32, jhostio::EKind_32B)
+
+    DEFINE_START_COMBO_BOX_ID(int, JORPropertyEvent::EKind_ValueID)
+
+    void endComboBox() {
+        endSelectorSub();
+    }
+
     void genComboBoxItem(const char* label, s32 itemNo) {
         genSelectorItemSub(label, itemNo, 0, 0, 0, 0, 0);
     }
@@ -196,6 +245,15 @@ public:
     void updateCheckBoxSub(u32 mode, u32 id, u16 value, u16 mask, u32 param_4);
     void updateSelectorSub(u32 mode, u32 id, s32 value, u32 param_3);
     void updateEditBoxID(u32 mode, u32 id, const char* string, u32 param_3, u16 length);
+
+    void updateCheckBox(u32 mode, u8* pSrc, u8 mask, u32 param_4) {
+        updateCheckBoxSub(mode, (u32) pSrc, *pSrc, mask, param_4);
+    }
+
+    void updateCheckBoxID(u32 mode, u32 id, u8 value, u8 mask, u32 param_4) {
+        updateCheckBoxSub(mode, id, value, mask, param_4);
+    }
+
     void editComboBoxItem(u32 param_0, u32 param_1, const char* param_2, s32 param_3, u32 param_4);
 
     void openMessageBox(void* param_0, u32 style, const char* message, const char* title);

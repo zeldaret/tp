@@ -205,6 +205,7 @@ public:
     event_binary_data_header* getHeaderP() { return mHeaderP; }
     dEvDtStaff_c* getStaffP(int i) { return &mStaffP[i]; }
     dEvDtEvent_c* getEventP(int i) { return &mEventP[i]; }
+    dEvDtEvent_c* getEventP() { return mEventP; }
     dEvDtData_c* getDataP(int i) { return &mDataP[i]; }
     dEvDtCut_c* getCutP(int i) { return &mCutP[i]; }
     char* getEventName(int i) { return mEventP[i].getName(); }

@@ -88,7 +88,7 @@ public:
     /* 0x16 */ u16 mFlags;
     /* 0x18 */ int field_0x18;
     /* 0x1C */ JSUMemoryOutputStream mDataStream;
-    /* 0x30 */ char mFilename[8];
+    /* 0x30 */ char mFilename[256];
 };
 
 #endif /* JORFILE_H */

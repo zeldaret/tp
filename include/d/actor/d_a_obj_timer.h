@@ -1,7 +1,7 @@
 #ifndef D_A_OBJ_TIMER_H
 #define D_A_OBJ_TIMER_H
 
-#include "f_op/f_op_actor_mng.h"
+#include "d/d_a_obj.h"
 
 /**
  * @ingroup actors-objects
@@ -11,34 +11,57 @@
  * @details
  *
  */
-class daObjTimer : public fopAc_ac_c {
-public:
-    class Act_c {
+namespace daObjTimer {
+class Act_c : public fopAc_ac_c {
     public:
-        struct Prm_e {};
+        typedef void (daObjTimer::Act_c::*modeProc)();
 
-        /* 80485198 */ void _create();
+        enum Prm_e {
+            PRM_0 = 0,
+            PRM_1 = 1,
+            PRM_2 = 2,
+            PRM_8 = 8,
+            PRM_16 = 16,
+            PRM_24 = 24,
+            PRM_26 = 26,
+        };
+
+        /* 80485198 */ int _create();
         /* 8048526C */ bool _delete();
         /* 80485274 */ void mode_wait_init();
         /* 80485284 */ void mode_wait();
         /* 804852E0 */ void mode_count_init();
         /* 80485324 */ void mode_count();
-        /* 804854BC */ void _execute();
+        /* 804854BC */ int _execute();
+
+        int prm_get_swSave() {
+            return daObj::PrmAbstract(this,PRM_8, PRM_16);
+        }
+
+        int prm_get_sw2Save() {
+            return daObj::PrmAbstract(this, PRM_8, PRM_8);
+        }
+
+        int prm_get_time() {
+            return daObj::PrmAbstract(this, PRM_8, PRM_0);
+        }
+
+        int prm_get_SeStop() {
+            return daObj::PrmAbstract(this, PRM_1, PRM_26);
+        }
+
+        int prm_get_demoStop() {
+            return daObj::PrmAbstract(this, PRM_2, PRM_24);
+        }
+        
+    private:
+        /* 0x568 */ int field_0x568;
+        /* 0x56C */ int field_0x56c;
+        /* 0x570 */ u8 field_0x570;
+        /* 0x571 */ u8 field_0x571[0x574 - 0x571];
     };
+}
 
-private:
-    /* 0x568 */ u8 field_0x568[0x574 - 0x568];
-};
-
-STATIC_ASSERT(sizeof(daObjTimer) == 0x574);
-
-struct daObj {
-public:
-    template <typename A1>
-    void PrmAbstract(/* ... */);
-    /* 8048561C */ /* daObj::PrmAbstract<daObjTimer::Act_c::Prm_e> */
-    void func_8048561C(void* _this, fopAc_ac_c const*, daObjTimer::Act_c::Prm_e,
-                    daObjTimer::Act_c::Prm_e);
-};
+STATIC_ASSERT(sizeof(daObjTimer::Act_c) == 0x574);
 
 #endif /* D_A_OBJ_TIMER_H */

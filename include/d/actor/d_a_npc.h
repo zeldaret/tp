@@ -21,8 +21,6 @@ struct daNpc_GetParam2 {  // name unknown
     /* 0x8 */ int arcIdx;
 };
 
-struct dPnt : public dStage_dPnt_c {};
-
 class daNpcT_ActorMngr_c {
 private:
     /* 0x0 */ fpc_ProcID mActorID;
@@ -673,10 +671,12 @@ public:
     static s32 mFindCount;
 
     enum Mode {
-        /* 0 */ MODE_ENTER,
-        /* 1 */ MODE_INIT,
-        /* 2 */ MODE_RUN,
-        /* 3 */ MODE_EXIT,
+        /*  0 */ MODE_ENTER,
+        /*  1 */ MODE_INIT,
+        /*  2 */ MODE_RUN,
+        /*  3 */ MODE_EXIT,
+        /*  4 */ MODE_4,
+        /* -1 */ MODE_INVALID = -1,
     };
 
     enum AnmFlags {
@@ -1163,7 +1163,7 @@ private:
     /* 0x02 */ u16 field_0x02;
     /* 0x04 */ bool mIsReversed;
     /* 0x05 */ bool mIsClosed;
-    /* 0x08 */ dStage_dPnt_c mPoints[96];
+    /* 0x08 */ dPnt mPoints[96];
 
 public:
     /* 80150870 */ void initialize(dPath*, int);

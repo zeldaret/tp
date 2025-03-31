@@ -87,7 +87,7 @@ f32 daYkgr_c::getPosRate() {
     } 
     f32 dVar11 = FLT_MAX;
     cXyz cStack_5c(dComIfGp_getPlayer(0)->current.pos);
-    dStage_dPnt_c* iVar9 = m_path->m_points;
+    dPnt* iVar9 = m_path->m_points;
     int uVar2 = m_path->m_num;
     for (int iVar8 = 0; iVar8 < uVar2; iVar8++, iVar9++) {
         cXyz cStack_68(iVar9->m_position.x, iVar9->m_position.y, iVar9->m_position.z);

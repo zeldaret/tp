@@ -25,7 +25,7 @@ public:
     /* 80C4F048 */ int Execute(Mtx**);
     /* 80C4F344 */ int Draw();
     /* 80C4F3E8 */ int Delete();
-    /* 80C4F498 */ BOOL eventStart();
+    /* 80C4F498 */ bool eventStart();
 
 private:
     /* 0x5B8 */ Mtx mNewBgMtx;

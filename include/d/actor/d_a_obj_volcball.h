@@ -107,7 +107,7 @@ public:
     /* 80D23904 */ int draw();
     /* 80D23A0C */ int _delete();
 
-    /* 80D22DDC */ virtual BOOL eventStart();
+    /* 80D22DDC */ virtual bool eventStart();
     /* 80D23B24 */ virtual ~daObjVolcBall_c() {}
 
     u8 getSwBit() { return fopAcM_GetParamBit(this, 0, 8); }

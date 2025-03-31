@@ -92,7 +92,7 @@ struct TValueIterator {
 
     const void* get() const { return mBegin; }
 
-    typename Parser::ParseType operator*() {
+    typename Parser::ParseType operator*() const {
         return *(typename Parser::ParseType*)get();
     }
 

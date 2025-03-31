@@ -481,7 +481,7 @@ void daObjMovebox::Act_c::path_init() {
         }
 
         mpPath = dPath_GetRoomPath(path_id, fopAcM_GetHomeRoomNo(this));
-        dStage_dPnt_c* point = dPath_GetPnt(mpPath, pnt_no);
+        dPnt* point = dPath_GetPnt(mpPath, pnt_no);
         home.pos.set(point->m_position);
         current.pos.set(point->m_position);
     }
@@ -504,7 +504,7 @@ void daObjMovebox::Act_c::path_save() {
 
         int var_r29 = 0;
         for (; var_r29 < var_r27; var_r29++) {
-            dStage_dPnt_c* pnt = dPath_GetPnt(mpPath, var_r29);
+            dPnt* pnt = dPath_GetPnt(mpPath, var_r29);
             cXyz sp38;
             sp38.set(pnt->m_position);
 

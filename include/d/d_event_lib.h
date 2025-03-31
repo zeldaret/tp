@@ -7,7 +7,7 @@ class fopAc_ac_c;
 
 template <typename A0>
 struct action_class {
-    typedef BOOL (A0::*fptr)();
+    typedef bool (A0::*fptr)();
     fptr init;
     fptr execute;
 
@@ -28,21 +28,21 @@ public:
         mAction = NULL;
     }
 
-    /* 8004886C */ BOOL eventUpdate();
-    /* 800488A4 */ BOOL setEvent(int, int, int);
+    /* 8004886C */ bool eventUpdate();
+    /* 800488A4 */ bool setEvent(int, int, int);
     /* 80048940 */ void orderEvent(int, int, int);
-    /* 80048970 */ BOOL setAction(action_class<dEvLib_callback_c>*);
-    /* 800489A8 */ BOOL initAction();
-    /* 800489F8 */ BOOL executeAction();
-    /* 80048A50 */ BOOL initStart();
-    /* 80048A70 */ BOOL executeStart();
-    /* 80048B1C */ BOOL initRun();
-    /* 80048B48 */ BOOL executeRun();
+    /* 80048970 */ bool setAction(action_class<dEvLib_callback_c>*);
+    /* 800489A8 */ bool initAction();
+    /* 800489F8 */ bool executeAction();
+    /* 80048A50 */ bool initStart();
+    /* 80048A70 */ bool executeStart();
+    /* 80048B1C */ bool initRun();
+    /* 80048B48 */ bool executeRun();
 
     virtual ~dEvLib_callback_c() {}
-    virtual BOOL eventStart() { return TRUE; }
-    virtual BOOL eventRun() { return TRUE; }
-    virtual BOOL eventEnd() { return TRUE; }
+    virtual bool eventStart() { return true; }
+    virtual bool eventRun() { return true; }
+    virtual bool eventEnd() { return true; }
 
     /* 0x4 */ fopAc_ac_c* mActor;
     /* 0x8 */ action_class<dEvLib_callback_c>* mAction;

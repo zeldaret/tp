@@ -7,7 +7,7 @@
 extern "C" {
 #endif
 
-typedef struct {
+typedef struct Vec {
 	f32 x, y, z;
 } Vec, *VecPtr, Point3d, *Point3dPtr;
 

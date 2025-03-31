@@ -558,7 +558,7 @@ public:
         RFLG0_FRONT_ROLL_CRASH = 0x2000,
         RFLG0_ENEMY_ATTN_LOCK = 0x1000,
         RFLG0_UNK_400 = 0x400,
-        RFLG0_UNK_200 = 0x200,
+        RFLG0_COW_GAME_LEASH = 0x200,
         RFLG0_UNK_100 = 0x100,
         RFLG0_UNK_80 = 0x80,
         RFLG0_UNK_40 = 0x40,
@@ -1106,6 +1106,7 @@ public:
         onNoResetFlg3(FLG3_UNK_200000);
     }
 
+    BOOL checkCowGameLash() const { return checkResetFlg0(RFLG0_COW_GAME_LEASH); }
     BOOL checkClimbEndHang() { return checkResetFlg0(RFLG0_UNK_40000); }
 
     void onForceHorseGetOff() {
