@@ -21,11 +21,13 @@ static u8 const lit_3673[4+ 4 /* padding */] = {
 /* 80BE3054-80BE3058 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 static const char* l_arcName = "M_Dust";
 
-/* 80BE30F8-80BE30FC 000000 0004+00 2/2 0/0 0/0 .bss             e_ymb__26@unnamed@d_a_obj_dust_cpp@ */
-static fopAc_ac_c* s_ymb;
+namespace {
+    /* 80BE30F8-80BE30FC 000000 0004+00 2/2 0/0 0/0 .bss             e_ymb__26@unnamed@d_a_obj_dust_cpp@ */
+    static fopAc_ac_c* e_ymb;
 
-/* 80BE30FC-80BE3100 000004 0004+00 2/2 0/0 0/0 .bss e_ymb_Pos__26@unnamed@d_a_obj_dust_cpp@ */
-static cXyz* s_ymb_Pos;
+    /* 80BE30FC-80BE3100 000004 0004+00 2/2 0/0 0/0 .bss e_ymb_Pos__26@unnamed@d_a_obj_dust_cpp@ */
+    static cXyz* e_ymb_Pos;
+};
 
 /* 80BE2490-80BE24F8 000250 0068+00 1/1 0/0 0/0 .text            RideOn_Angle__11daObjDust_cFRsfsf */
 void daObjDust_c::RideOn_Angle(s16& i_angle, f32 i_param1, s16 i_param2, f32 i_param3) {
@@ -34,13 +36,13 @@ void daObjDust_c::RideOn_Angle(s16& i_angle, f32 i_param1, s16 i_param2, f32 i_p
 
 /* 80BE22B8-80BE2490 000078 01D8+00 1/1 0/0 0/0 .text            Search_Ymb__11daObjDust_cFv */
 void daObjDust_c::Search_Ymb() {
-    cXyz ymb_delta(s_ymb_Pos->x - current.pos.x, s_ymb_Pos->y - current.pos.y, s_ymb_Pos->z - current.pos.z);
+    cXyz ymb_delta(e_ymb_Pos->x - current.pos.x, e_ymb_Pos->y - current.pos.y, e_ymb_Pos->z - current.pos.z);
 
     mDoMtx_stack_c::YrotS(-shape_angle.y);
     mDoMtx_stack_c::multVec(&ymb_delta, &ymb_delta);
 
     if (ymb_delta.x < 750.0f && ymb_delta.x > -750.0f && ymb_delta.z < 450.0f && ymb_delta.z > -450.0f && ymb_delta.y < 600.0f) {
-        f32 speed = fopAcM_GetSpeedF(s_ymb);
+        f32 speed = fopAcM_GetSpeedF(e_ymb);
         if (speed > 0) {
             field_0x5ac = 256.0f + speed * 16.0f;
             field_0x5a0 = speed * 31.0f;
@@ -111,19 +113,19 @@ static void rideCallBack(dBgW*, fopAc_ac_c* i_bgActor, fopAc_ac_c* i_rideActor) 
 }
 
 /* 80BE27BC-80BE27E8 00057C 002C+00 1/0 0/0 0/0 .text            daObjDust_Draw__FP11daObjDust_c */
-static void daObjDust_Draw(daObjDust_c* i_this) {
-    i_this->MoveBGDraw();
+static int daObjDust_Draw(daObjDust_c* i_this) {
+    return i_this->MoveBGDraw();
 }
 
 /* 80BE27E8-80BE2808 0005A8 0020+00 1/0 0/0 0/0 .text            daObjDust_Execute__FP11daObjDust_c
  */
-static void daObjDust_Execute(daObjDust_c* i_this) {
-    i_this->MoveBGExecute();
+static int daObjDust_Execute(daObjDust_c* i_this) {
+    return i_this->MoveBGExecute();
 }
 
 /* 80BE2808-80BE2810 0005C8 0008+00 1/0 0/0 0/0 .text            daObjDust_IsDelete__FP11daObjDust_c
  */
-static bool daObjDust_IsDelete(daObjDust_c* i_this) {
+static int daObjDust_IsDelete(daObjDust_c* i_this) {
     return true;
 }
 
@@ -201,15 +203,15 @@ int daObjDust_c::Execute(Mtx** i_mtx) {
     fopAcM_GetPosition(pdVar);
     fopAcM_GetSpeed(pdVar);
 
-    if (fopAcM_SearchByName(PROC_E_YMB, (fopAc_ac_c**) &s_ymb) != 0 && s_ymb != NULL) {
-        s_ymb_Pos = fopAcM_GetPosition_p(s_ymb);
+    if (fopAcM_SearchByName(PROC_E_YMB, &e_ymb) != 0 && e_ymb != NULL) {
+        e_ymb_Pos = fopAcM_GetPosition_p(e_ymb);
     }
    
     field_0x5c4 += field_0x5a4 * 2.0f + 768.0f + field_0x5a0 * 2.0f;
     field_0x5c6 += field_0x5a4 * 2.0f + 768.0f + field_0x5a0 * 2.0f;
     Check_RideOn();
 
-    if (s_ymb != NULL) {
+    if (e_ymb != NULL) {
         Search_Ymb();
     }
 
