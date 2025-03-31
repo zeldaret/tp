@@ -1650,7 +1650,6 @@ BOOL dSv_info_c::isActor(int i_id, int i_roomNo) const {
 }
 
 /* 80035798-80035A04 0300D8 026C+00 0/0 1/1 0/0 .text            memory_to_card__10dSv_info_cFPci */
-// NONMATCHING regalloc
 int dSv_info_c::memory_to_card(char* card_ptr, int dataNum) {
     BOOL lantern_stolen;
     BOOL lantern_dropped;
