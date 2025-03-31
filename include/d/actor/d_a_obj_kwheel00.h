@@ -29,7 +29,7 @@ public:
     /* 80C4DBBC */ int Execute(Mtx**);
     /* 80C4E1B0 */ int Draw();
     /* 80C4E254 */ int Delete();
-    /* 80C4E298 */ BOOL eventStart();
+    /* 80C4E298 */ bool eventStart();
 
     int getSwNo() {
         return fopAcM_GetParamBit(this, 0, 8);

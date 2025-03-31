@@ -34,7 +34,7 @@ public:
     /* 80D2D278 */ void effectSet2();
     /* 80D2D3FC */ void actionSwWaitInit();
     /* 80D2D408 */ void actionSwWait();
-    /* 80D2D488 */ virtual BOOL eventStart();
+    /* 80D2D488 */ virtual bool eventStart();
     /* 80D2D4AC */ void actionWaitInit();
     /* 80D2D588 */ void actionWait();
     /* 80D2D5C0 */ void actionUpFirstInit();

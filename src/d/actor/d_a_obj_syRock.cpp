@@ -250,12 +250,12 @@ void daSyRock_c::modeWait() {
 }
 
 /* 80D02F88-80D02FB8 000DC8 0030+00 2/1 0/0 0/0 .text            eventStart__10daSyRock_cFv */
-BOOL daSyRock_c::eventStart() {
+bool daSyRock_c::eventStart() {
     // field_0x779 is always 0 when eventStart() is called (see modeWait())
     if(!field_0x779)
         init_modeDropInit();
 
-    return TRUE;
+    return true;
 }
 
 /* 80D02FB8-80D03070 000DF8 00B8+00 1/1 0/0 0/0 .text            init_modeDropInit__10daSyRock_cFv

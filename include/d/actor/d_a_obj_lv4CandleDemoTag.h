@@ -40,7 +40,7 @@ public:
     int getEventID() { return fopAcM_GetParamBit(this, 0x18, 8); }
 
     /* 80C5D184 */ virtual ~dalv4CandleDemoTag_c();
-    /* 80C5CF78 */ virtual BOOL eventStart();
+    /* 80C5CF78 */ virtual bool eventStart();
 
 private:
     /* 0x584 */ u8 mMode;

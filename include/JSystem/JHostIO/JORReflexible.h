@@ -17,7 +17,7 @@ struct JORPropertyEvent : JOREvent {
     /* 0x00 */ u8 field_0x0[0x4 - 0x0];
     /* 0x04 */ u32 type;
     /* 0x08 */ u32 kind;
-    /* 0x0C */ char* field_0xc;
+    /* 0x0C */ char* id; // id?
     /* 0x10 */ JORReflexible* field_0x10;  // ?
     /* 0x14 */ u32 field_0x14;
     union {

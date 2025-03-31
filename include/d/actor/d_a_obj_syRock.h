@@ -29,7 +29,7 @@ public:
     /* 80D02C54 */ void move();
     /* 80D02E70 */ void init_modeWait();
     /* 80D02E7C */ void modeWait();
-    /* 80D02F88 */ BOOL eventStart();
+    /* 80D02F88 */ bool eventStart();
     /* 80D02FB8 */ void init_modeDropInit();
     /* 80D03070 */ void modeDropInit();
     /* 80D030A8 */ static void* searchWaterPillar(void*, void*);

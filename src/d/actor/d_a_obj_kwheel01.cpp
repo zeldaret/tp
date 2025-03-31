@@ -325,7 +325,7 @@ int daObjKWheel01_c::Delete() {
 }
 
 /* 80C4F498-80C4F4C0 000A98 0028+00 2/2 0/0 0/0 .text            eventStart__15daObjKWheel01_cFv */
-BOOL daObjKWheel01_c::eventStart() {
+bool daObjKWheel01_c::eventStart() {
     #ifdef DEBUG
     if(getArg0())
         mYAngularVelocity = l_HIO.mYAngularAcceleration;
@@ -338,7 +338,7 @@ BOOL daObjKWheel01_c::eventStart() {
         mYAngularVelocity = -2;
     #endif
 
-    return TRUE;
+    return true;
 }
 
 /* ############################################################################################## */

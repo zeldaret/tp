@@ -518,6 +518,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01"), "d/d_event_data.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_event_manager.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(MatchingFor("GZ2E01"), "d/d_event_lib.cpp"),
+            Object(Equivalent, "d/d_event_debug.cpp"), # RTTI & vtable padding
             Object(MatchingFor("GZ2E01"), "d/d_simple_model.cpp"),
             Object(NonMatching, "d/d_particle.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_particle_name.cpp"),
