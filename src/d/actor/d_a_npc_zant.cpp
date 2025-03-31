@@ -42,13 +42,13 @@ static s8* l_loadResPtrnList[2] = {
 };
 
 /* 80B6EAE0-80B6EAFC 00004C 001C+00 0/1 0/0 0/0 .data            l_faceMotionAnmData */
-static daNpcT_faceMotionAnmData_c l_faceMotionAnmData[1] = {
-    {-1, 0, 0, -1, 0, 0, 0}
+static daNpcT_faceMotionAnmData_c l_faceMotionAnmData = {
+    -1, 0, 0, -1, 0, 0, 0
 };
 
 /* 80B6EAFC-80B6EB18 000068 001C+00 0/1 0/0 0/0 .data            l_motionAnmData */
-static daNpcT_motionAnmData_c l_motionAnmData[1] = {
-    {4, 2, 1, -1, 0, 0, 0}
+static daNpcT_motionAnmData_c l_motionAnmData = {
+    4, 2, 1, -1, 0, 0, 0
 };
 
 /* 80B6EB18-80B6EB28 000084 0010+00 0/1 0/0 0/0 .data            l_faceMotionSequenceData */
@@ -73,7 +73,12 @@ daNpc_Zant_c::cutFunc daNpc_Zant_c::mCutList[1] = {
 
 /* 80B6C1AC-80B6C2D0 0000EC 0124+00 1/0 0/0 0/0 .text            __dt__12daNpc_Zant_cFv */
 daNpc_Zant_c::~daNpc_Zant_c() {
-    // NONMATCHING
+    OS_REPORT("|%06d:%x|daNpc_Zant_c -> デストラクト\n", g_counter, this);
+    if (heap != NULL) {
+        mpMorf[0]->stopZelAnime();
+    }
+
+    deleteRes(l_loadResPtrnList[mType], (const char **)l_resNameList);
 }
 
 /* ############################################################################################## */
@@ -87,24 +92,21 @@ daNpc_Zant_Param_c::Data const daNpc_Zant_Param_c::m  = {
 
 /* 80B6C2D0-80B6C574 000210 02A4+00 1/1 0/0 0/0 .text            create__12daNpc_Zant_cFv */
 int daNpc_Zant_c::create() {
-    // NONMATCHING
     int rv;
 
-    fopAcM_SetupActor2(this, daNpc_Zant_c, l_faceMotionAnmData,
-        (const daNpcT_motionAnmData_c *)l_motionAnmData, (const daNpcT_MotionSeqMngr_c::sequenceStepData_c *) l_faceMotionSequenceData, 4,
-        (const daNpcT_MotionSeqMngr_c::sequenceStepData_c *)l_motionSequenceData, 4, (const daNpcT_evtData_c *)l_evtList, (char **)l_resNameList
-    );
-
+    fopAcM_SetupActor2(this, daNpc_Zant_c, &l_faceMotionAnmData, &l_motionAnmData, l_faceMotionSequenceData, 
+        4, l_motionSequenceData, 4, l_evtList, l_resNameList);
+        
     mType = getType();
     mFlowNodeNo = getFlowNodeNo();
     mTwilight = false;
 
-    rv = loadRes(l_loadResPtrnList[mType], (char const**)l_resNameList);
-    if (rv == 4) {
+    rv = loadRes(l_loadResPtrnList[mType], (const char**)l_resNameList);
+    if (rv == cPhs_COMPLEATE_e) {
         if (!fopAcM_entrySolidHeap(this, createHeapCallBack, 0)) {
-            rv = 5;
+            return cPhs_ERROR_e;
         } else if (isDelete()) {
-            rv = 5;
+            return cPhs_ERROR_e;
         } else {
             fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
             fopAcM_setCullSizeBox(this, -300.0f, -50.0f, -300.0f, 300.0f, 450.0f, 300.0f);
@@ -138,7 +140,6 @@ int daNpc_Zant_c::create() {
 
 /* 80B6C574-80B6C700 0004B4 018C+00 1/1 0/0 0/0 .text            CreateHeap__12daNpc_Zant_cFv */
 int daNpc_Zant_c::CreateHeap() {
-    // NONMATCHING
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[1]], l_bmdData[0]);
 
     mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound,
@@ -180,12 +181,11 @@ int daNpc_Zant_c::Execute() {
 
 /* 80B6C754-80B6C7E8 000694 0094+00 1/1 0/0 0/0 .text            Draw__12daNpc_Zant_cFv */
 int daNpc_Zant_c::Draw() {
-    // NONMATCHING
     if (mpMatAnm != NULL) {
         J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
         modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm);
     }
-    return daNpcT_c::draw(0, 0, field_0xde8, NULL, 100.0f, 1, 0, 0);
+    return daNpcT_c::draw(0, 0, field_0xde8, NULL, 0.0f, 1, 0, 0);
 }
 
 /* 80B6C7E8-80B6C808 000728 0020+00 1/1 0/0 0/0 .text createHeapCallBack__12daNpc_Zant_cFP10fopAc_ac_c */
@@ -226,7 +226,6 @@ u32 daNpc_Zant_c::getFlowNodeNo() {
 
 /* 80B6C89C-80B6C8CC 0007DC 0030+00 1/1 0/0 0/0 .text            isDelete__12daNpc_Zant_cFv */
 int daNpc_Zant_c::isDelete() {
-    // NONMATCHING
     if (mType == TYPE_1) {
         return FALSE;
     }
@@ -241,7 +240,6 @@ int daNpc_Zant_c::isDelete() {
 
 /* 80B6C8CC-80B6C9F0 00080C 0124+00 1/1 0/0 0/0 .text            reset__12daNpc_Zant_cFv */
 void daNpc_Zant_c::reset() {
-    // NONMATCHING
     initialize();
 
     int iVar1 = (u8*)&field_0xf9c - (u8*)&field_0xf84;
@@ -291,7 +289,6 @@ void daNpc_Zant_c::setParam() {
 
 /* 80B6CAF0-80B6CB50 000A30 0060+00 1/0 0/0 0/0 .text setAfterTalkMotion__12daNpc_Zant_cFv */
 void daNpc_Zant_c::setAfterTalkMotion() {
-    // NONMATCHING
     mFaceMotionSeqMngr.getNo();
     mFaceMotionSeqMngr.setNo(0, -1.0, 0, 0);
 }
@@ -303,7 +300,6 @@ void daNpc_Zant_c::srchActors() {
 
 /* 80B6CB54-80B6CC54 000A94 0100+00 1/0 0/0 0/0 .text            evtTalk__12daNpc_Zant_cFv */
 BOOL daNpc_Zant_c::evtTalk() {
-    // NONMATCHING
     if (chkAction(&daNpc_Zant_c::talk)) {
         (this->*field_0xf90)(NULL);
     } else {
@@ -326,12 +322,11 @@ BOOL daNpc_Zant_c::evtTalk() {
 
 /* 80B6CC54-80B6CD1C 000B94 00C8+00 1/0 0/0 0/0 .text            evtCutProc__12daNpc_Zant_cFv */
 BOOL daNpc_Zant_c::evtCutProc() {
-    // NONMATCHING
     int rv = 0;
     int staffId = dComIfGp_getEventManager().getMyStaffId("Zant", this, -1);
     if (staffId != -1) {
         mStaffId = staffId;
-        int actIdx = dComIfGp_getEventManager().getMyActIdx(mStaffId, (char**)mCutNameList, 1, 0, 0);
+        int actIdx = dComIfGp_getEventManager().getMyActIdx(mStaffId, &mCutNameList, 1, 0, 0);
 
         if ((this->*(mCutList[actIdx]))(mStaffId) != 0) {
             dComIfGp_getEventManager().cutEnd(mStaffId);
@@ -345,7 +340,6 @@ BOOL daNpc_Zant_c::evtCutProc() {
 
 /* 80B6CD1C-80B6CE08 000C5C 00EC+00 1/0 0/0 0/0 .text            action__12daNpc_Zant_cFv */
 void daNpc_Zant_c::action() {
-    // NONMATCHING
     if (mStagger.checkRebirth()) {
         mStagger.initialize();
         mMode = 1;
@@ -353,7 +347,7 @@ void daNpc_Zant_c::action() {
 
     if (field_0xf84 != 0) {
         if (field_0xf90 == field_0xf84) {
-            (this->*(field_0xf84))(NULL);
+            (this->*(field_0xf90))(NULL);
         } else {
             setAction(field_0xf84);
         }
@@ -369,7 +363,6 @@ void daNpc_Zant_c::beforeMove() {
 
 /* 80B6CE80-80B6D074 000DC0 01F4+00 1/0 0/0 0/0 .text            setAttnPos__12daNpc_Zant_cFv */
 void daNpc_Zant_c::setAttnPos() {
-    // NONMATCHING
     cXyz cStack1(0.0f, 0.0f, 0.0f);
     mStagger.calc(0);
 
@@ -475,8 +468,8 @@ int daNpc_Zant_c::setAction(int (daNpc_Zant_c::*action)(void*)) {
 }
 
 /* 80B6D338-80B6D584 001278 024C+00 1/0 0/0 0/0 .text            wait__12daNpc_Zant_cFPv */
-int daNpc_Zant_c::wait(void* param_0) {
-    // NONMATCHING
+int daNpc_Zant_c::wait(void* param_1) {
+    int rv;
     switch (mMode) {
         case 0:
         case 1:
@@ -486,20 +479,19 @@ int daNpc_Zant_c::wait(void* param_0) {
                 mMode = 2;
             }
         case 2:
-        default:
             if (!mStagger.checkStagger()) {
                 if (mPlayerActorMngr.getActorP()) {
                     mJntAnm.lookNone(0);
-                    if (chkActorInSight(mPlayerActorMngr.getActorP(), mAttnFovY, mCurAngle.x)) {
+                    if (chkActorInSight(mPlayerActorMngr.getActorP(), mAttnFovY, mCurAngle.y)) {
                         mJntAnm.lookPlayer(0);
                     }
                 
-                    if (!srchPlayerActor() && home.angle.y == mCurAngle.x) {
+                    if (!srchPlayerActor() && home.angle.y == mCurAngle.y) {
                         mMode = 1;
                     }
                 } else {
                     mJntAnm.lookNone(0);
-                    if (home.angle.y != mCurAngle.x) {
+                    if (home.angle.y != mCurAngle.y) {
                         if (field_0xe34 == 0) {
                             setAngle(home.angle.y);
                             mMode = 1;
@@ -514,14 +506,14 @@ int daNpc_Zant_c::wait(void* param_0) {
                     }
                 }
             }
+        case 3:
+        default:
+            return 1;
     }
-
-    return 1;
 }
 
 /* 80B6D584-80B6D77C 0014C4 01F8+00 2/0 0/0 0/0 .text            talk__12daNpc_Zant_cFPv */
-int daNpc_Zant_c::talk(void* param_0) {
-    // NONMATCHING
+int daNpc_Zant_c::talk(void* param_1) {
     switch (mMode) {
         case 0:
         case 1:
@@ -550,6 +542,7 @@ int daNpc_Zant_c::talk(void* param_0) {
                     step(fopAcM_searchPlayerAngleY(this), -1, -1, 15, 0);
                 }
             }
+        case 3:
         default:
             return 0;
     }
@@ -576,25 +569,8 @@ static int daNpc_Zant_Draw(void* i_this) {
 }
 
 /* 80B6D7FC-80B6D804 00173C 0008+00 1/0 0/0 0/0 .text            daNpc_Zant_IsDelete__FPv */
-static bool daNpc_Zant_IsDelete(void* i_this) {
-    return true;
-}
-
-// /* 80B6E050-80B6E054 001F90 0004+00 1/1 0/0 0/0 .text            __ct__5csXyzFv */
-// // csXyz::csXyz() {
-// extern "C" void __ct__5csXyzFv() {
-//     /* empty function */
-// }
-
-// /* 80B6E150-80B6E154 002090 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
-// // cXyz::cXyz() {
-// extern "C" void __ct__4cXyzFv() {
-//     /* empty function */
-// }
-
-/* 80B6E93C-80B6E984 00287C 0048+00 2/1 0/0 0/0 .text            __dt__18daNpc_Zant_Param_cFv */
-daNpc_Zant_Param_c::~daNpc_Zant_Param_c() {
-    // NONMATCHING
+static int daNpc_Zant_IsDelete(void* i_this) {
+    return 1;
 }
 
 /* 80B6EB6C-80B6EB8C -00001 0020+00 1/0 0/0 0/0 .data            daNpc_Zant_MethodTable */

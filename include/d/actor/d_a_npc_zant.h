@@ -50,10 +50,11 @@ public:
     /* 80B6D290 */ int setAction(int (daNpc_Zant_c::*)(void*));
     /* 80B6D338 */ int wait(void*);
     /* 80B6D584 */ int talk(void*);
-    /* 80B6E800 */ daNpc_Zant_c(daNpcT_faceMotionAnmData_c const*, daNpcT_motionAnmData_c const*,
-                                daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
-                                daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
-                                daNpcT_evtData_c const*, char**);
+    /* 80B6E800 */ daNpc_Zant_c(daNpcT_faceMotionAnmData_c const* param_1, daNpcT_motionAnmData_c const* param_2,
+                                daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_3, int param_4,
+                                daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_5, int param_6,
+                                daNpcT_evtData_c const* param_7, char** param_8) :
+                                daNpcT_c(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8) {}
     
     static char* mCutNameList;
     static cutFunc mCutList[1];
@@ -72,7 +73,7 @@ STATIC_ASSERT(sizeof(daNpc_Zant_c) == 0xfa0);
 
 class daNpc_Zant_Param_c {
 public:
-    /* 80B6E93C */ ~daNpc_Zant_Param_c();
+    /* 80B6E93C */ ~daNpc_Zant_Param_c() {};
     struct Data {
         /* 0x00 */ f32 field_0x0;
         /* 0x04 */ f32 field_0x4;
