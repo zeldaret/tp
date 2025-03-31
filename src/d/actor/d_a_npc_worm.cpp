@@ -84,42 +84,42 @@ static void npc_worm_ground(npc_worm_class* i_this) {
 /* 80B2E2C4-80B2E544 0004C4 0280+00 1/1 0/0 0/0 .text            npc_worm_normal__FP14npc_worm_class
  */
 static void npc_worm_normal(npc_worm_class* i_this) {
-    fopAc_ac_c* base = i_this;
+    fopAc_ac_c* a_this = i_this;
     switch(i_this->field_0x5a8) {
     case -1:
-        base->current.angle.y = cM_rndF(65536.0f);
-        base->speed.y = 0.0f;
-        base->speedF = 0.0f;
-        base->shape_angle.x = -cM_rndF(16000.0f);
+        a_this->current.angle.y = cM_rndF(65536.0f);
+        a_this->speed.y = 0.0f;
+        a_this->speedF = 0.0f;
+        a_this->shape_angle.x = -cM_rndF(16000.0f);
         i_this->field_0x5d0 = 10.0f;
         i_this->field_0x5e8[1] = cM_rndF(60.0f) + 130.0f;
         i_this->field_0x5a8 = 1;
         i_this->field_0x5e6 = 1;
         break;
     case 0:
-        base->current.pos.y += 3.0f;
-        base->current.angle.y = cM_rndF(65536.0f);
-        base->speed.y = cM_rndF(5.0f) + 15.0f;
-        base->speedF = cM_rndF(2.0f) + 4.0f;
-        base->shape_angle.x = -cM_rndF(16000.0f);
+        a_this->current.pos.y += 3.0f;
+        a_this->current.angle.y = cM_rndF(65536.0f);
+        a_this->speed.y = cM_rndF(5.0f) + 15.0f;
+        a_this->speedF = cM_rndF(2.0f) + 4.0f;
+        a_this->shape_angle.x = -cM_rndF(16000.0f);
         i_this->field_0x5d0 = 10.0f;
         i_this->field_0x5e8[1] = cM_rndF(60.0f) + 130.0f;
         i_this->field_0x5a8 = 1;
         i_this->field_0x5e6 = 1;
     case 1:
-        if (base->current.pos.y <= i_this->field_0x5cc &&
+        if (a_this->current.pos.y <= i_this->field_0x5cc &&
             i_this->field_0x5e8[0] == 0)
         {
-            i_this->field_0x5ca = base->current.angle.y + (s16)cM_rndFX(20000.0f);
+            i_this->field_0x5ca = a_this->current.angle.y + (s16)cM_rndFX(20000.0f);
             i_this->field_0x5e8[0] = cM_rndF(10.0f) + 3.0f;
-            base->speedF = cM_rndF(0.75f) + 0.5f;
+            a_this->speedF = cM_rndF(0.75f) + 0.5f;
         }
 
-        if (base->eventInfo.checkCommandCatch()) {
-            fopAcM_delete(base);
+        if (a_this->eventInfo.checkCommandCatch()) {
+            fopAcM_delete(a_this);
         } else {
-            dComIfGp_att_CatchRequest(base, 0x74, 200.0f, 100.0f, -150.0f, 0x5000, 1);
-            base->eventInfo.onCondition(dEvtCnd_40_e);
+            dComIfGp_att_CatchRequest(a_this, 0x74, 200.0f, 100.0f, -150.0f, 0x5000, 1);
+            a_this->eventInfo.onCondition(dEvtCnd_40_e);
         }
         
         #ifndef DEBUG
@@ -132,8 +132,8 @@ static void npc_worm_normal(npc_worm_class* i_this) {
         break;
     }
 
-    cLib_addCalcAngleS2(&base->current.angle.y, i_this->field_0x5ca, 4, 0x400);
-    cLib_addCalcAngleS2(&base->shape_angle.x, 0, 2, 0x800);
+    cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->field_0x5ca, 4, 0x400);
+    cLib_addCalcAngleS2(&a_this->shape_angle.x, 0, 2, 0x800);
 }
 
 /* 80B2E544-80B2E678 000744 0134+00 1/1 0/0 0/0 .text            npc_worm_dive__FP14npc_worm_class
@@ -188,7 +188,7 @@ static void npc_worm_binwait(npc_worm_class* i_this) {
 
 /* 80B2E6C4-80B2EBF4 0008C4 0530+00 1/1 0/0 0/0 .text            action__FP14npc_worm_class */
 static void action(npc_worm_class* i_this) {
-    fopAc_ac_c* base = i_this;
+    fopAc_ac_c* a_this = i_this;
     cXyz local_124;
     cXyz local_130;
     int local_140 = 0;
@@ -226,13 +226,13 @@ static void action(npc_worm_class* i_this) {
         for (int i = 0; i < 9; i++) {
             i_this->field_0x5b4[i] = i_this->field_0x5b0 * cM_ssin(i_this->field_0x5aa - i * i_this->field_0x5ae);
         }
-        i_this->shape_angle.y = (int)(-(i_this->field_0x5b4[3]  * 2)) + base->current.angle.y;
+        i_this->shape_angle.y = (int)(-(i_this->field_0x5b4[3]  * 2)) + a_this->current.angle.y;
         cLib_addCalc2(&i_this->field_0x5d0, 10.0f, 1.0f, 1.0f);
     } else if (local_140 == 2) {
         i_this->field_0x5aa += i_this->field_0x5ac;
         i_this->field_0x5b0 = 8000.0f;
         i_this->field_0x5ae = 3000;
-        int local_154 = 0.17f * (i_this->field_0x5cc - base->current.pos.y);
+        int local_154 = 0.17f * (i_this->field_0x5cc - a_this->current.pos.y);
         if (local_154 > 8) {
             local_154 = 8;
         }
@@ -247,58 +247,58 @@ static void action(npc_worm_class* i_this) {
         cLib_addCalc0(&i_this->field_0x5d0, 1.0f, 1.0f);
     }
     if (bVar5) {
-        cMtx_YrotS(*calc_mtx, base->current.angle.y);
+        cMtx_YrotS(*calc_mtx, a_this->current.angle.y);
         local_124.x = 0.0f;
         local_124.y = 0.0f;
-        local_124.z = base->speedF;
+        local_124.z = a_this->speedF;
         MtxPosition(&local_124, &local_130);
-        base->current.pos.x += local_130.x;
-        base->current.pos.y += base->speed.y;
-        base->current.pos.z += local_130.z;
-        base->speed.y -= 5.0f;
-        if (base->speed.y < -50.0f) {
-            base->speed.y = -50.0f;
+        a_this->current.pos.x += local_130.x;
+        a_this->current.pos.y += a_this->speed.y;
+        a_this->current.pos.z += local_130.z;
+        a_this->speed.y -= 5.0f;
+        if (a_this->speed.y < -50.0f) {
+            a_this->speed.y = -50.0f;
         }
         dBgS_LinChk linkChk;
-        linkChk.Set(&base->old.pos, &base->current.pos, base);
+        linkChk.Set(&a_this->old.pos, &a_this->current.pos, a_this);
         if (dComIfG_Bgsp().LineCross(&linkChk)) {
-            base->current.pos.x = base->old.pos.x;
-            base->current.pos.z = base->old.pos.z;
+            a_this->current.pos.x = a_this->old.pos.x;
+            a_this->current.pos.z = a_this->old.pos.z;
         }
     }
     if (bVar6) {
         dBgS_GndChk gndchk;
-        cXyz local_13c(base->current.pos);
+        cXyz local_13c(a_this->current.pos);
         local_13c.y += 50.0f;
         gndchk.SetPos(&local_13c);
         i_this->field_0x5cc = dComIfG_Bgsp().GroundCross(&gndchk) + 3.0f;
-        if (base->current.pos.y <= i_this->field_0x5cc) {
-            base->current.pos.y = i_this->field_0x5cc;
-            base->speed.y = -10.0f;
-            local_13c = base->current.pos;
+        if (a_this->current.pos.y <= i_this->field_0x5cc) {
+            a_this->current.pos.y = i_this->field_0x5cc;
+            a_this->speed.y = -10.0f;
+            local_13c = a_this->current.pos;
             local_13c.y += 50.0f;
             local_13c.z += 10.0f;
             gndchk.SetPos(&local_13c);
             local_13c.y = dComIfG_Bgsp().GroundCross(&gndchk) + 3.0f;
-            i_this->field_0x5c6 = -cM_atan2s(local_13c.y - base->current.pos.y,
-                                             local_13c.z - base->current.pos.z);
+            i_this->field_0x5c6 = -cM_atan2s(local_13c.y - a_this->current.pos.y,
+                                             local_13c.z - a_this->current.pos.z);
             if (i_this->field_0x5c6 > 0x3000 || i_this->field_0x5c6 < -0x3000) {
                 i_this->field_0x5c6 = 0;
             }
-            local_13c = base->current.pos;
+            local_13c = a_this->current.pos;
             local_13c.y += 50.0f;
             local_13c.x += 10.0f;
             gndchk.SetPos(&local_13c);
             local_13c.y = dComIfG_Bgsp().GroundCross(&gndchk) + 3.0f;
             i_this->field_0x5c8 =
-                cM_atan2s(local_13c.y - base->current.pos.y, local_13c.x - base->current.pos.x);
+                cM_atan2s(local_13c.y - a_this->current.pos.y, local_13c.x - a_this->current.pos.x);
             if (i_this->field_0x5c8 > 0x3000 || i_this->field_0x5c8 < -0x3000) {
                 i_this->field_0x5c8 = 0;
             }
         }
     }
-    if (bVar7 && fopAcM_searchPlayerDistance(base) < 200.0f) {
-        daPy_py_c::setLookPos(&base->current.pos);
+    if (bVar7 && fopAcM_searchPlayerDistance(a_this) < 200.0f) {
+        daPy_py_c::setLookPos(&a_this->current.pos);
     }
 }
 
@@ -351,8 +351,8 @@ static int daNPC_WORM_Delete(npc_worm_class* i_this) {
 }
 
 /* 80B2EE08-80B2EEC0 001008 00B8+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
-static int useHeapInit(fopAc_ac_c* actor_this) {
-    npc_worm_class* i_this = (npc_worm_class*)actor_this;
+static int useHeapInit(fopAc_ac_c* a_this) {
+    npc_worm_class* i_this = (npc_worm_class*)a_this;
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Alink", 0x30);
     JUT_ASSERT(776, modelData != 0);
     i_this->mModel1 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
@@ -370,9 +370,9 @@ static int useHeapInit(fopAc_ac_c* actor_this) {
 
 /* 80B2EEC0-80B2F050 0010C0 0190+00 1/0 0/0 0/0 .text            daNPC_WORM_Create__FP10fopAc_ac_c
  */
-static int daNPC_WORM_Create(fopAc_ac_c* actor_this) {
-    fopAcM_SetupActor(actor_this, npc_worm_class);
-    npc_worm_class* i_this = (npc_worm_class*)actor_this;
+static int daNPC_WORM_Create(fopAc_ac_c* a_this) {
+    fopAcM_SetupActor(a_this, npc_worm_class);
+    npc_worm_class* i_this = (npc_worm_class*)a_this;
     int rv =
         dComIfG_resLoad(&i_this->mPhase, "Alink");
     if (rv == cPhs_COMPLEATE_e) {
