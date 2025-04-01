@@ -1432,23 +1432,23 @@ void daNpcT_c::playAllAnm() {
 
 /* 801490D4-80149190 143A14 00BC+00 1/0 1/0 55/0 .text            ctrlBtk__8daNpcT_cFv */
 BOOL daNpcT_c::ctrlBtk() {
-    if (mpMatAnm != NULL) {
+    if (mpMatAnm[0] != NULL) {
         if (field_0xe29 != 0 && mBtkAnm.getBtkAnm() != NULL) {
-            mpMatAnm->setNowOffsetX(field_0xde4 * cM_ssin(mJntAnm.getEyeAngleY()));
-            mpMatAnm->setNowOffsetY(field_0xde0 * cM_ssin(mJntAnm.getEyeAngleX()));
+            mpMatAnm[0]->setNowOffsetX(field_0xde4 * cM_ssin(mJntAnm.getEyeAngleY()));
+            mpMatAnm[0]->setNowOffsetY(field_0xde0 * cM_ssin(mJntAnm.getEyeAngleX()));
             if (field_0xe2a != 0) {
-                mpMatAnm->setMorfFrm(field_0xe2a);
+                mpMatAnm[0]->setMorfFrm(field_0xe2a);
                 field_0xe2a = 0;
             }
-            mpMatAnm->onEyeMoveFlg();
+            mpMatAnm[0]->onEyeMoveFlg();
             return TRUE;
         }
 
         if (field_0xe2a != 0) {
-            mpMatAnm->setMorfFrm(field_0xe2a);
+            mpMatAnm[0]->setMorfFrm(field_0xe2a);
             field_0xe2a = 0;
         }
-        mpMatAnm->offEyeMoveFlg();
+        mpMatAnm[0]->offEyeMoveFlg();
     }
 
     return FALSE;

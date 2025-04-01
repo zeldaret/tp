@@ -843,8 +843,8 @@ int daNpc_Hanjo_c::CreateHeap() {
         modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
     model->setUserArea((u32)this);
-    mpMatAnm = new daNpcT_MatAnm_c();
-    if (mpMatAnm == NULL) {
+    mpMatAnm[0] = new daNpcT_MatAnm_c();
+    if (mpMatAnm[0] == NULL) {
         return 0;
     }
     switch (mType) {
@@ -915,9 +915,9 @@ int daNpc_Hanjo_c::Execute() {
 
 /* 809F9B8C-809F9C20 000BEC 0094+00 1/1 0/0 0/0 .text            Draw__13daNpc_Hanjo_cFv */
 int daNpc_Hanjo_c::Draw() {
-    if (mpMatAnm != NULL) {
+    if (mpMatAnm[0] != NULL) {
         J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
-        modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm);
+        modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
     return daNpcT_c::draw(0, 0, field_0xde8, NULL, 100.0f, 0, 0, 0);
 }
@@ -982,8 +982,8 @@ int daNpc_Hanjo_c::isDelete() {
 void daNpc_Hanjo_c::reset() {
     csXyz acStack_20;
     int iVar1 = (u8*)&field_0x1728 - (u8*)&field_0x16e0;
-    if (mpMatAnm != NULL) {
-        mpMatAnm->initialize();
+    if (mpMatAnm[0] != NULL) {
+        mpMatAnm[0]->initialize();
     }
     initialize();
     for (int i = 0; i < 4; i++) {
