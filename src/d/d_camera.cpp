@@ -754,6 +754,10 @@ inline static bool lineCollisionCheck(cXyz param_0, cXyz param_1, fopAc_ac_c* pa
     return dComIfG_Ccsp()->ChkCamera(param_0, param_1, 15.0f, param_2, param_3, param_4);
 }
 
+inline static f32 playerMaxSpeed() {
+    return 40.0f;
+}
+
 }  // namespace
 
 /* 8016008C-801602C4 15A9CC 0238+00 1/1 0/0 0/0 .text            __ct__9dCamera_cFP12camera_class */
@@ -7504,7 +7508,7 @@ bool dCamera_c::towerCamera(s32 param_0) {
         if (mCamParam.Flag(param_0, 0x800)) {
             cSAngle stack_47c;
             stack_47c.Val(stack_41c.U() - directionOf(mpPlayerActor));
-            f32 fVar19 = mMonitor.field_0x10 / 40.0f;
+            f32 fVar19 = mMonitor.field_0x10 / playerMaxSpeed();
             if (fVar19 > 1.0f) {
                 fVar19 = 1.0f;
             }
@@ -7636,28 +7640,118 @@ bool dCamera_c::towerCamera(s32 param_0) {
     return true;
 }
 
-/* ############################################################################################## */
-/* 804538B0-804538B4 001EB0 0004+00 1/1 0/0 0/0 .sdata2          @14059 */
-SECTION_SDATA2 static f32 lit_14059 = -160.0f;
-
-/* 804538B4-804538B8 001EB4 0004+00 1/1 0/0 0/0 .sdata2          @14060 */
-SECTION_SDATA2 static f32 lit_14060 = 170.0f;
-
-/* 804538B8-804538BC 001EB8 0004+00 2/2 0/0 0/0 .sdata2          @14061 */
-SECTION_SDATA2 static f32 lit_14061 = -120.0f;
-
-/* 804538BC-804538C0 001EBC 0004+00 1/1 0/0 0/0 .sdata2          @14062 */
-SECTION_SDATA2 static f32 lit_14062 = -240.0f;
-
-/* 804538C0-804538C4 001EC0 0004+00 1/1 0/0 0/0 .sdata2          @14063 */
-SECTION_SDATA2 static f32 lit_14063 = 340.0f;
-
-/* 804538C4-804538C8 001EC4 0004+00 2/2 0/0 0/0 .sdata2          @14064 */
-SECTION_SDATA2 static f32 lit_14064 = -100.0f;
-
 /* 80178E50-80179590 173790 0740+00 1/0 0/0 0/0 .text            hookshotCamera__9dCamera_cFl */
 bool dCamera_c::hookshotCamera(s32 param_0) {
-    // NONMATCHING
+    f32 val0 = mCamParam.Val(param_0, 0);
+    f32 val2 = mCamParam.Val(param_0, 2);
+    f32 val1 = mCamParam.Val(param_0, 1);
+    f32 val5 = mCamParam.Val(param_0, 5);
+    f32 val6 = mCamParam.Val(param_0, 6);
+    f32 val7 = mCamParam.Val(param_0, 7);
+    f32 val8 = mCamParam.Val(param_0, 8);
+    f32 val11 = mCamParam.Val(param_0, 11);
+    f32 val23 = mCamParam.Val(param_0, 23);
+    f32 val17 = mCamParam.Val(param_0, 17);
+
+    cXyz stack_9c[4] = {
+        cXyz(180.0f, 20.0f, -160.0f),
+        cXyz(160.0f, 60.0f, -200.0f),
+        cXyz(170.0f, -80.0f, -150.0f),
+        cXyz(100.0f, -120.0f, -240.0f),
+    };
+    cXyz stack_cc[4] = {
+        cXyz(40.0f, -150.0f, 340.0f),
+        cXyz(10.0f, -100.0f, 280.0f),
+        cXyz(80.0f, -50.0f, 200.0f),
+        cXyz(40.0f, -80.0f, -160.0f),
+    };
+    cXyz stack_d8;
+    cXyz stack_e4(val0, val2, val1);
+
+    if (mCurCamStyleTimer == 0) {
+        mWork.hookshot.field_0x0 = 'HOOK';
+        mWork.hookshot.field_0x8 = mCenter;
+        cXyz stack_f0 = positionOf(mpPlayerActor);
+        cXyz stack_fc = daAlink_getAlinkActorClass()->getHsChainTopPos();
+        csXyz stack_20c = daAlink_getAlinkActorClass()->getHsAngle();
+        cXyz stack_108 = stack_fc - stack_f0;
+
+        bool iVar2 = stack_20c.x < -0x3333;
+        cXyz* array;
+        if (iVar2) {
+            cSGlobe stack_214 = stack_108;
+            stack_20c.x = stack_214.V();
+            stack_20c.y = stack_214.U();
+            stack_20c.z = 0;
+            array = stack_cc;
+        } else {
+            array = stack_9c;
+        }
+
+        if (stack_108.abs() > val11 && mCamParam.Flag(param_0, 0x800)) {
+            cXyz stack_114;
+            cSGlobe stack_21c;
+            bool uVar6 = (field_0xa8 & 0x10) != 0;
+            for (int i = 0; i < 8; i++) {
+                stack_114 = array[i >> 1];
+                if (uVar6) {
+                    stack_114.x = -stack_114.x;
+                }
+                stack_21c.Val(stack_114);
+                stack_21c.U(stack_21c.U() + stack_20c.y);
+                if (!iVar2) {
+                    stack_21c.V(stack_21c.V() + stack_20c.x);
+                }
+                mWork.hookshot.field_0x14 = stack_fc + stack_21c.Xyz();
+                if (!lineBGCheck(&stack_f0, &mWork.hookshot.field_0x14, 7)) {
+                    mWork.hookshot.field_0x20 = true;
+                    break;
+                }
+                uVar6 = !uVar6;
+            }
+        }
+
+        field_0x158.field_0x0 = true;
+        return true;
+    }
+
+    f32 fovy;
+    if (mWork.hookshot.field_0x20 && mCurCamStyleTimer > 8 && mCamParam.Flag(param_0, 0x800)) {
+        stack_d8 = mWork.hookshot.field_0x14;
+        fovy = val17;
+        val23 = 1.0f;
+    } else {
+        stack_d8 = mEye;
+        fovy = val17;
+    }
+    
+    cXyz stack_120(val6, val5, val6);
+    cXyz stack_12c = relationalPos(mpPlayerActor, &stack_e4);
+
+    if (mBG.field_0xc0.field_0x1) {
+        dComIfG_Bgsp().MoveBgMatrixCrrPos(mBG.field_0x5c.field_0x4, true,
+                                          &mWork.hookshot.field_0x8, NULL, NULL);
+        dComIfG_Bgsp().MoveBgMatrixCrrPos(mBG.field_0x5c.field_0x4, true,
+                                          &mWork.hookshot.field_0x14, NULL, NULL);
+    }
+
+    field_0x5c.mCenter += (stack_12c - field_0x5c.mCenter) * stack_120;
+    cSGlobe stack_224 = stack_d8 - field_0x5c.mCenter;
+    if (stack_224.R() < val8) {
+        stack_224.R(val8);
+    }
+    if (stack_224.R() > val7) {
+        stack_224.R(val7);
+    }
+    field_0x5c.mDirection.R(field_0x5c.mDirection.R()
+                                + (stack_224.R() - field_0x5c.mDirection.R()) * val23);
+    field_0x5c.mDirection.V(field_0x5c.mDirection.V()
+                                + (stack_224.V() - field_0x5c.mDirection.V()) * val23);
+    field_0x5c.mDirection.U(field_0x5c.mDirection.U()
+                                + (stack_224.U() - field_0x5c.mDirection.U()) * val23);
+    field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
+    field_0x5c.mFovy += (fovy - field_0x5c.mFovy) * val23;
+    return true;
 }
 
 /* ############################################################################################## */

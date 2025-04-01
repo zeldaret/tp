@@ -3513,8 +3513,8 @@ public:
     const cXyz& getWindSpeed() const { return mWindSpeed; }
     const cXyz& getHsChainTopPos() const { return mHookshotTopPos; }
     const cXyz& getHsChainRootPos() const { return mHeldItemRootPos; }
-
     const cXyz& getHsSubChainRootPos() const { return field_0x3810; }
+    const csXyz& getHsAngle() const { return field_0x316c; }
 
     s16 getHookshotStopTime() const { return field_0x3026; }
     bool getHookshotLeft() const { return field_0x3020 == 0; }

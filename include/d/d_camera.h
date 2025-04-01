@@ -738,6 +738,13 @@ public:
             /* 0x84 */ f32 field_0x84;
         } tower;
         struct {
+            /* 0x00 */ int field_0x0;
+            /* 0x04 */ u8 field_0x4[4];
+            /* 0x08 */ cXyz field_0x8;
+            /* 0x14 */ cXyz field_0x14;
+            /* 0x20 */ bool field_0x20;
+        } hookshot;
+        struct {
             /* 0x00 */ bool field_0x0;
             /* 0x04 */ int field_0x4;
             /* 0x08 */ int field_0x8;
