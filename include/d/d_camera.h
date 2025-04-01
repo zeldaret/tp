@@ -396,7 +396,7 @@ public:
     f32 TrimHeight() { return mTrimHeight; }
     int Type() { return mCurType; }
     int Mode() { return mCurMode; }
-    f32 Fovy() { return mFovY + mShake.field_0x3c; }
+    f32 Fovy() { return mFovy + mShake.field_0x3c; }
     bool isModeOK() { return field_0x158.field_0x0; }
     bool push_any_key() { return field_0x224; }
 
@@ -454,7 +454,7 @@ public:
     /* 0x03C */ cXyz mEye;
     /* 0x048 */ cXyz mUp;
     /* 0x054 */ cSAngle mBank;
-    /* 0x058 */ f32 mFovY;
+    /* 0x058 */ f32 mFovy;
     class {
     public:
         /* 0x00 */ cSGlobe mDirection;
@@ -702,6 +702,41 @@ public:
             /* 0x14 */ f32 field_0x14;
             /* 0x18 */ int field_0x18;
         } colosseum;
+        struct {
+            /* 0x00 */ int field_0x0;
+            /* 0x04 */ int field_0x4;
+            /* 0x08 */ f32 field_0x8;
+            /* 0x0C */ f32 field_0xc;
+            /* 0x10 */ int field_0x10;
+            /* 0x14 */ int field_0x14;
+            /* 0x18 */ f32 field_0x18;
+            /* 0x1C */ f32 field_0x1c;
+            /* 0x20 */ f32 field_0x20;
+            /* 0x24 */ f32 field_0x24;
+            /* 0x28 */ cSAngle field_0x28;
+            /* 0x2C */ f32 field_0x2c;
+            /* 0x30 */ f32 field_0x30;
+            /* 0x34 */ f32 field_0x34;
+            /* 0x38 */ int field_0x38;
+            /* 0x3C */ f32 field_0x3c;
+            /* 0x40 */ f32 field_0x40;
+            /* 0x44 */ f32 field_0x44;
+            /* 0x48 */ cXyz field_0x48;
+            /* 0x54 */ cXyz field_0x54;
+            /* 0x60 */ cSAngle field_0x60;
+            /* 0x64 */ int field_0x64;
+            /* 0x68 */ bool field_0x68;
+            /* 0x69 */ bool field_0x69;
+            /* 0x6A */ bool field_0x6a;
+            /* 0x6B */ bool field_0x6b;
+            /* 0x6C */ bool field_0x6c;
+            /* 0x70 */ f32 field_0x70;
+            /* 0x74 */ f32 field_0x74;
+            /* 0x78 */ f32 field_0x78;
+            /* 0x7C */ f32 field_0x7c;
+            /* 0x80 */ f32 field_0x80;
+            /* 0x84 */ f32 field_0x84;
+        } tower;
         struct {
             /* 0x00 */ bool field_0x0;
             /* 0x04 */ int field_0x4;
