@@ -51,7 +51,7 @@ public:
     /* 80CEED60 */ int Delete();
 
     void setOpen() { mAction = ACTION_WAIT_CLOSE; }
-    void setAction(ActionType action) { mAction = action; }
+    void setAction(u8 action) { mAction = action; }
     void startClose() { setAction(ACTION_CLOSE_INIT); }
     u8 getEventNo() { return fopAcM_GetParamBit(this, 16, 8); }
     u8 getEventNo2() { return fopAcM_GetParamBit(this, 24, 8); }

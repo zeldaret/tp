@@ -502,7 +502,7 @@ void daObjStopper_c::hint_action3() {
 /* 80CEECFC-80CEED60 001EDC 0064+00 1/0 0/0 0/0 .text            Draw__14daObjStopper_cFv */
 int daObjStopper_c::Draw() {
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     mDoExt_modelUpdateDL(mpModel);
     return 1;
 }
