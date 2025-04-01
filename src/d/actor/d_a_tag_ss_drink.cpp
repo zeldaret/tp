@@ -215,7 +215,7 @@ int daTag_SSDrink_c::wait(void* param_0) {
                     cXyz local_28 = attention_info.position - player->attention_info.position;
                     dComIfGp_att_CatchRequest(this, field_0x5D3, 200.0f, local_28.y + 100.0f,
                                               local_28.y - 100.0f, 0x4000, 1);
-                    eventInfo.onCondition(0x40);
+                    eventInfo.onCondition(dEvtCnd_40_e);
                 }
                 if (field_0x5D4 != 0) {
                     field_0x5D4 = 0;

@@ -119,6 +119,7 @@ enum dEvt_Condition_e {
     dEvtCnd_CANDOOR_e = 0x0004,
     dEvtCnd_CANGETITEM_e = 0x0008,
     dEvtCnd_CANTALKITEM_e = 0x0020,
+    dEvtCnd_40_e = 0x0040,
     dEvtCnd_DUMMY = 0x8000,
 };
 

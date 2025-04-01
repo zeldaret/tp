@@ -1815,7 +1815,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_toby"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_npc_tr"),
     ActorRel(NonMatching, "d_a_npc_uri"),
-    ActorRel(NonMatching, "d_a_npc_worm"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_npc_worm", extra_cflags=['-pragma "nosyminline off"']),
     ActorRel(NonMatching, "d_a_npc_wrestler"),
     ActorRel(NonMatching, "d_a_npc_yamid"),
     ActorRel(NonMatching, "d_a_npc_yamis"),
