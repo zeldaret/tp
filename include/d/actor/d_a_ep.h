@@ -69,7 +69,7 @@ class ep_class : public fopAc_ac_c {
         /* 0x060D */ u8 field_0x60d;
         /* 0x060E */ u8 field_0x60e;
         /* 0x060F */ u8 field_0x60f;
-        /* 0x0610 */ void* field_0x610;
+        /* 0x0610 */ JPABaseEmitter* mBaseEmitter;
         /* 0x0614 */ LIGHT_INFLUENCE mLightInf;
         /* 0x0634 */ cXyz field_0x634;
         /* 0x0640 */ s8 field_0x640;
