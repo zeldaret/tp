@@ -27,17 +27,17 @@ public:
     /* 80A7166C */ int isDelete();
     /* 80A7168C */ void reset();
     /* 80A717D4 */ void afterJntAnm(int);
-    // /* 80A71860 */ void ctrlBtk();
+    /* 80A71860 */ BOOL ctrlBtk();
     /* 80A7199C */ void setParam();
     /* 80A71A98 */ void setAfterTalkMotion();
     /* 80A71AF8 */ void srchActors();
-    // /* 80A71AFC */ void evtTalk();
-    // /* 80A71BFC */ void evtCutProc();
+    /* 80A71AFC */ BOOL evtTalk();
+    /* 80A71BFC */ BOOL evtCutProc();
     /* 80A71CC4 */ void action();
     /* 80A71DB0 */ void beforeMove();
     /* 80A71E28 */ void setAttnPos();
     /* 80A72064 */ void setCollision();
-    // /* 80A7216C */ bool drawDbgInfo();
+    /* 80A7216C */ int drawDbgInfo();
     /* 80A72174 */ void drawGhost();
     /* 80A721E0 */ void selectAction();
     /* 80A72228 */ void chkAction(int (daNpc_midP_c::*)(void*));
@@ -54,8 +54,8 @@ public:
     /* 80A7391C */ s32 getHeadJointNo();
     /* 80A73924 */ s32 getNeckJointNo();
     /* 80A7392C */ s32 getBackboneJointNo();
-    // /* 80A73934 */ void checkChangeJoint(int);
-    // /* 80A73944 */ void checkRemoveJoint(int);
+    /* 80A73934 */ BOOL checkChangeJoint(int);
+    /* 80A73944 */ BOOL checkRemoveJoint(int);
 
     int getFlowNodeNo() {
         u16 nodeNo = home.angle.x;
@@ -72,9 +72,10 @@ private:
     /* 0xE40 */ u8 field_0xE40[0xe44 - 0xe40];
     /* 0xE44 */ dCcD_Cyl mCyl;
     /* 0xF80 */ u8 mType;
+    /* 0xF81 */ u8 field_0xf81[0xfa0-0xf81];
 };
 
-// STATIC_ASSERT(sizeof(daNpc_midP_c) == 0xfa0);
+STATIC_ASSERT(sizeof(daNpc_midP_c) == 0xfa0);
 
 class daNpc_midP_Param_c {
 public:

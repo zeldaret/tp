@@ -325,7 +325,7 @@ int daNpc_midP_c::create() {
         }
         OS_REPORT("\n");
 
-        OS_REPORT("\t(%s:%d) flowNo:%d, PathID:%02x<%08x> ", fopAcM_getProcNameString(this), (uint)mType,
+        OS_REPORT("\t(%s:%d) flowNo:%d, PathID:%02x<%08x> ", fopAcM_getProcNameString(this), mType,
         mFlowNodeNo, getPathID(), fopAcM_GetParam(this));
         if (isDelete()) {
             OS_REPORT("===>isDelete:TRUE\n");
@@ -365,37 +365,8 @@ int daNpc_midP_c::create() {
     return rv;
 }
 
-/* ############################################################################################## */
-/* 80A73A60-80A73A64 0000A0 0004+00 5/9 0/0 0/0 .rodata          @4186 */
-SECTION_RODATA static u8 const lit_4186[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80A73A60, &lit_4186);
-
-/* 80A73A64-80A73A68 0000A4 0004+00 0/2 0/0 0/0 .rodata          @4187 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4187 = 65536.0f;
-COMPILER_STRIP_GATE(0x80A73A64, &lit_4187);
-#pragma pop
-
-/* 80A73A68-80A73A6C 0000A8 0004+00 0/3 0/0 0/0 .rodata          @4188 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4188 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(0x80A73A68, &lit_4188);
-#pragma pop
-
-/* 80A73A6C-80A73A70 0000AC 0004+00 2/4 0/0 0/0 .rodata          @4338 */
-SECTION_RODATA static f32 const lit_4338 = 1.0f;
-COMPILER_STRIP_GATE(0x80A73A6C, &lit_4338);
-
 /* 80A71074-80A71300 0004F4 028C+00 1/1 0/0 0/0 .text            CreateHeap__12daNpc_midP_cFv */
 int daNpc_midP_c::CreateHeap() {
-    // NONMATCHING
     J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(
         l_resNameList[l_bmdData[0][1]], l_bmdData[0][0]));
 
@@ -541,10 +512,10 @@ void daNpc_midP_c::afterJntAnm(int param_0) {
 SECTION_RODATA static f32 const lit_4551 = -1.0f;
 COMPILER_STRIP_GATE(0x80A73A70, &lit_4551);
 
-// /* 80A71860-80A7199C 000CE0 013C+00 1/0 0/0 0/0 .text            ctrlBtk__12daNpc_midP_cFv */
-// void daNpc_midP_c::ctrlBtk() {
-//     // NONMATCHING
-// }
+/* 80A71860-80A7199C 000CE0 013C+00 1/0 0/0 0/0 .text            ctrlBtk__12daNpc_midP_cFv */
+BOOL daNpc_midP_c::ctrlBtk() {
+    // NONMATCHING
+}
 
 /* 80A7199C-80A71A98 000E1C 00FC+00 1/0 0/0 0/0 .text            setParam__12daNpc_midP_cFv */
 void daNpc_midP_c::setParam() {
@@ -561,15 +532,15 @@ void daNpc_midP_c::srchActors() {
     /* empty function */
 }
 
-// /* 80A71AFC-80A71BFC 000F7C 0100+00 1/0 0/0 0/0 .text            evtTalk__12daNpc_midP_cFv */
-// void daNpc_midP_c::evtTalk() {
-//     // NONMATCHING
-// }
+/* 80A71AFC-80A71BFC 000F7C 0100+00 1/0 0/0 0/0 .text            evtTalk__12daNpc_midP_cFv */
+BOOL daNpc_midP_c::evtTalk() {
+    // NONMATCHING
+}
 
-// /* 80A71BFC-80A71CC4 00107C 00C8+00 1/0 0/0 0/0 .text            evtCutProc__12daNpc_midP_cFv */
-// void daNpc_midP_c::evtCutProc() {
-//     // NONMATCHING
-// }
+/* 80A71BFC-80A71CC4 00107C 00C8+00 1/0 0/0 0/0 .text            evtCutProc__12daNpc_midP_cFv */
+BOOL daNpc_midP_c::evtCutProc() {
+    // NONMATCHING
+}
 
 /* 80A71CC4-80A71DB0 001144 00EC+00 1/0 0/0 0/0 .text            action__12daNpc_midP_cFv */
 void daNpc_midP_c::action() {
@@ -619,10 +590,10 @@ void daNpc_midP_c::setCollision() {
     // NONMATCHING
 }
 
-// /* 80A7216C-80A72174 0015EC 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__12daNpc_midP_cFv */
-// bool daNpc_midP_c::drawDbgInfo() {
-//     return false;
-// }
+/* 80A7216C-80A72174 0015EC 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__12daNpc_midP_cFv */
+int daNpc_midP_c::drawDbgInfo() {
+    return 0;
+}
 
 /* 80A72174-80A721E0 0015F4 006C+00 1/0 0/0 0/0 .text            drawGhost__12daNpc_midP_cFv */
 void daNpc_midP_c::drawGhost() {
@@ -972,17 +943,17 @@ s32 daNpc_midP_c::getBackboneJointNo() {
     return 2;
 }
 
-// /* 80A73934-80A73944 002DB4 0010+00 1/0 0/0 0/0 .text            checkChangeJoint__12daNpc_midP_cFi
-//  */
-// void daNpc_midP_c::checkChangeJoint(int param_0) {
-//     // NONMATCHING
-// }
+/* 80A73934-80A73944 002DB4 0010+00 1/0 0/0 0/0 .text            checkChangeJoint__12daNpc_midP_cFi
+ */
+BOOL daNpc_midP_c::checkChangeJoint(int param_1) {
+    // NONMATCHING
+}
 
-// /* 80A73944-80A73954 002DC4 0010+00 1/0 0/0 0/0 .text            checkRemoveJoint__12daNpc_midP_cFi
-//  */
-// void daNpc_midP_c::checkRemoveJoint(int param_0) {
-//     // NONMATCHING
-// }
+/* 80A73944-80A73954 002DC4 0010+00 1/0 0/0 0/0 .text            checkRemoveJoint__12daNpc_midP_cFi
+ */
+BOOL daNpc_midP_c::checkRemoveJoint(int param_1) {
+    // NONMATCHING
+}
 
 /* 80A73954-80A7399C 002DD4 0048+00 2/1 0/0 0/0 .text            __dt__18daNpc_midP_Param_cFv */
 daNpc_midP_Param_c::~daNpc_midP_Param_c() {
