@@ -4,10 +4,24 @@
 */
 
 #include "d/actor/d_a_obj_maki.h"
+#include "JSystem/J3DGraphAnimator/J3DAnimation.h"
+#include "JSystem/J3DGraphAnimator/J3DModel.h"
+#include "JSystem/J3DGraphAnimator/J3DModelData.h"
+#include "SSystem/SComponent/c_cc_d.h"
+#include "SSystem/SComponent/c_phase.h"
+#include "SSystem/SComponent/c_xyz.h"
 #include "d/d_cc_d.h"
+#include "d/d_com_inf_game.h"
+#include "d/d_kankyo.h"
+#include "d/d_s_play.h"
 #include "dol2asm.h"
-
-
+#include "f_op/f_op_actor.h"
+#include "f_op/f_op_actor_mng.h"
+#include "f_pc/f_pc_base.h"
+#include "m_Do/m_Do_ext.h"
+#include "m_Do/m_Do_mtx.h"
+#include "mtx.h"
+#include "types.h"
 
 //
 // Forward References:
@@ -82,7 +96,7 @@ extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
+//extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
@@ -192,7 +206,21 @@ daObj_Maki_HIO_c::daObj_Maki_HIO_c() {
 
 /* 80C8FE24-80C8FEDC 000104 00B8+00 1/0 0/0 0/0 .text            daObj_Maki_Draw__FP14obj_maki_class
  */
-static void daObj_Maki_Draw(obj_maki_class* param_0) {
+static int daObj_Maki_Draw(obj_maki_class* param_0) {
+    g_env_light.settingTevStruct(0x10, &param_0->current.pos, &param_0->tevStr);
+
+    if(param_0->field_0x57e == 0){
+        g_env_light.setLightTevColorType_MAJI(param_0->mModel1, &param_0->tevStr);
+        J3DModelData* modelData = param_0->model->getModelData();
+        param_0->mBrk->entry(modelData);
+        mDoExt_modelUpdateDL(param_0->mModel1);
+
+    } else if(param_0->field_0x57c != 0x01){
+        g_env_light.setLightTevColorType_MAJI(param_0->mModel2, &param_0->tevStr);
+        J3DModelData* modelData = param_0->mModel2->getModelData();     
+        mDoExt_modelUpdateDL(param_0->mModel2);
+    }
+    return 1;
     // NONMATCHING
 }
 
@@ -253,7 +281,84 @@ COMPILER_STRIP_GATE(0x80C90950, &lit_3935);
 #pragma pop
 
 /* 80C8FEDC-80C90378 0001BC 049C+00 2/1 0/0 0/0 .text daObj_Maki_Execute__FP14obj_maki_class */
-static void daObj_Maki_Execute(obj_maki_class* param_0) {
+static int daObj_Maki_Execute(obj_maki_class* param_0) {
+
+    for (int i = 0; i < 2; i++) {
+        if(param_0->field_0x580[i] != 0){
+            param_0->field_0x580[i]--;
+        }
+    }
+    cXyz cxyz = param_0->current.pos;
+    J3DModel* model;
+    if(param_0->field_0x57e == 0){
+        model = param_0->mModel1;
+        param_0->mBrk->play();
+
+        for (int i = 0; i < 5; i++) {
+            param_0->field_0x6f8[i] = dComIfGp_particle_set(param_0->field_0x6f8[i],*(u16 *)&eff_id_3814[i] , &param_0->current.pos, &param_0->tevStr, &param_0->shape_angle,0,0xff,0,0xffffffff,0,0,0);
+        }
+
+        bool isHit = param_0->mSph.ChkTgHit() != 0;
+        if(param_0->mSph.ChkCoHit() != 0){
+            cCcD_Obj* hitObj = param_0->mSph.GetCoHitObj();
+            if(fopAcM_GetName(hitObj->GetAc()) == 0xef){
+                isHit = true;
+            }
+        } 
+
+        if(param_0->field_0x580[0] == 0 && param_0->mSph.ChkAtHit() != 0){
+            param_0->field_0x580[0] = 10;
+            fopAcM_seStart(param_0, 0x800a4,0);
+        }
+
+        if(isHit){
+            param_0->field_0x57e = 1;
+            u32 i_no = fopAcM_GetParam(param_0) >> 0x18;
+            if(i_no != 0xff){
+                dComIfGs_onSwitch(i_no, fopAcM_GetRoomNo(param_0));
+            }
+
+            for(int i = 0; i < 2; i++){
+                dComIfGp_particle_set(*(u16 *)&eff_id_3833[i],&param_0->current.pos,&param_0->tevStr,&param_0->shape_angle,0);
+            }
+            fopAcM_seStart(param_0, 0x800a5, 0);
+            model = param_0->mModel2;
+        }
+
+        fopAcM_seStartLevel(param_0, 0x800a3, 0);
+
+        if(param_0->field_0x57c != '\x01'){
+            cxyz.x = cxyz.x -150.0f;
+            param_0->mSph.SetR(250.0f);
+        } else {
+            param_0->mSph.SetR(50.0f);
+        }
+        
+        param_0->mSph.SetC(cxyz);
+        dComIfG_Ccsp()->Set(&param_0->mSph);
+
+        if(0.1f < param_0->mLightObj.mPow){
+            dKy_plight_cut(&param_0->mLightObj);
+            param_0->mLightObj.mPow = 0.0f;
+        }
+    } else {
+        model = param_0->mModel2;
+        if(param_0->field_0x57c != '\x01'){
+            cxyz.y = cxyz.y + 20000.0f;
+            param_0->field_0x6f8[0] = dComIfGp_particle_set(param_0->field_0x6f8[0],0x820b,&param_0->current.pos, &param_0->tevStr, &param_0->shape_angle,0,0xff,0,0xffffffff,0,0,0);
+            fopAcM_seStartLevel(param_0, 0x800a6, 0);
+        }
+    }
+
+    MtxP pfVar5;
+    mDoMtx_stack_c::transS(param_0->current.pos.x, param_0->current.pos.y, param_0->current.pos.z);
+    mDoMtx_stack_c::YrotM(param_0->shape_angle.y);
+    pfVar5 = mDoMtx_stack_c::get();
+    model->setBaseTRMtx(pfVar5);
+    Mtx &mtx = model->getBaseTRMtx();
+    fopAcM_SetMtx(param_0, mtx);
+    param_0->eyePos = param_0->current.pos;
+    return 1;
     // NONMATCHING
 }
 
@@ -266,20 +371,53 @@ static bool daObj_Maki_IsDelete(obj_maki_class* param_0) {
 /* 80C90960-80C90960 00002C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 #pragma push
 #pragma force_active on
-SECTION_DEAD static char const* const stringBase_80C90960 = "Obj_maki";
+SECTION_DEAD static char const* const l_arcName = "Obj_maki";
 #pragma pop
 
 /* 80C90A50-80C90A54 000008 0004+00 2/2 0/0 0/0 .bss             None */
 static u8 data_80C90A50[4];
 
 /* 80C90380-80C903F0 000660 0070+00 1/0 0/0 0/0 .text daObj_Maki_Delete__FP14obj_maki_class */
-static void daObj_Maki_Delete(obj_maki_class* param_0) {
+static int daObj_Maki_Delete(obj_maki_class* param_0) {
+    dComIfG_resDelete(&param_0->mPhase,"Obj_maki");
+    if (param_0->field_0x72c != '\0'){
+        data_80C90A50[0] = 0;
+    }
 
+    if(param_0->mLightObj.mPow > 0.1f){
+        dKy_plight_cut(&param_0->mLightObj);
+    }
+    return 1;
     // NONMATCHING
 }
 
 /* 80C903F0-80C90544 0006D0 0154+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
-static void useHeapInit(fopAc_ac_c* param_0) {
+static int useHeapInit(fopAc_ac_c* param_0) {
+    obj_maki_class* a_this = (obj_maki_class*)param_0;
+
+    J3DModelData* modelData = (J3DModelData*) dComIfG_getObjectRes("Obj_maki",4);
+    a_this->mModel1 = mDoExt_J3DModel__create(modelData,0x80000,0x11000084);
+    if (a_this->mModel1 == NULL) {
+        return 0;
+    }
+
+    a_this->mBrk = new mDoExt_brkAnm();
+    if (a_this->mBrk == NULL) {
+        return 0;
+    }
+
+    J3DAnmTevRegKey* pbrk = (J3DAnmTevRegKey*) dComIfG_getObjectRes("Obj_maki",8);
+    if (!a_this->mBrk->init(a_this->mModel1->getModelData(),pbrk,TRUE,J3DFrameCtrl::EMode_LOOP,1.0f,0,-1)) {
+        return 0;
+    }
+
+    modelData = (J3DModelData*) dComIfG_getObjectRes("Obj_maki",5);
+    a_this->mModel2 = mDoExt_J3DModel__create(modelData,0x80000,0x11000084);
+    a_this->base.profile = (process_profile_definition *) a_this->mModel2;
+    if (a_this->base.profile == NULL) {
+        return 0;
+    } 
+    return 1;
     // NONMATCHING
 }
 
@@ -325,8 +463,31 @@ static u8 l_HIO[8];
 
 /* 80C9058C-80C9080C 00086C 0280+00 1/0 0/0 0/0 .text            daObj_Maki_Create__FP10fopAc_ac_c
  */
-static void daObj_Maki_Create(fopAc_ac_c* param_0) {
-    
+static cPhs__Step daObj_Maki_Create(fopAc_ac_c* param_0) {
+    fopAcM_SetupActor(param_0, obj_maki_class);
+    obj_maki_class* a_this = (obj_maki_class*)param_0;
+
+    cPhs__Step phase = (cPhs__Step) dComIfG_resLoad(&a_this->mPhase,"Obj_maki");
+    if (phase == cPhs_COMPLEATE_e) {
+        int iVar3 = fopAcM_GetParam(a_this);
+        char cVar3 = (char) (iVar3 >> 0x18);
+        if(cVar3 != 0xff && dComIfGs_isSwitch(cVar3, fopAcM_GetRoomNo(a_this))){
+            a_this->base.create_req->is_doing = 1;
+        }
+        
+
+        if(!fopAcM_entrySolidHeap(a_this, useHeapInit, 0x1020)){
+            return cPhs_ERROR_e;
+        }
+
+        if(strcmp(dComIfGp_getStartStageName(), "F_SP118") != 0){
+            
+        }
+
+        daObj_Maki_Execute(a_this);
+    }
+
+    return phase;
     // NONMATCHING
 }
 
