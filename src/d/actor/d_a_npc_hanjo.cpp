@@ -13,361 +13,12 @@
 #include "Z2AudioLib/Z2Instances.h"
 #include "dol2asm.h"
 
-//
-// Forward References:
-//
-
-extern "C" void __dt__13daNpc_Hanjo_cFv();
-extern "C" void create__13daNpc_Hanjo_cFv();
-extern "C" void CreateHeap__13daNpc_Hanjo_cFv();
-extern "C" void __dt__15J3DTevKColorAnmFv();
-extern "C" void __ct__15J3DTevKColorAnmFv();
-extern "C" void __dt__14J3DTevColorAnmFv();
-extern "C" void __ct__14J3DTevColorAnmFv();
-extern "C" void __dt__11J3DTexNoAnmFv();
-extern "C" void __ct__11J3DTexNoAnmFv();
-extern "C" void __dt__12J3DTexMtxAnmFv();
-extern "C" void __ct__12J3DTexMtxAnmFv();
-extern "C" void __dt__14J3DMatColorAnmFv();
-extern "C" void __ct__14J3DMatColorAnmFv();
-extern "C" void Delete__13daNpc_Hanjo_cFv();
-extern "C" void Execute__13daNpc_Hanjo_cFv();
-extern "C" void Draw__13daNpc_Hanjo_cFv();
-extern "C" void createHeapCallBack__13daNpc_Hanjo_cFP10fopAc_ac_c();
-extern "C" void ctrlJointCallBack__13daNpc_Hanjo_cFP8J3DJointi();
-extern "C" void getType__13daNpc_Hanjo_cFv();
-extern "C" void isDelete__13daNpc_Hanjo_cFv();
-extern "C" void reset__13daNpc_Hanjo_cFv();
-extern "C" void afterJntAnm__13daNpc_Hanjo_cFi();
-extern "C" void setParam__13daNpc_Hanjo_cFv();
-extern "C" void checkChangeEvt__13daNpc_Hanjo_cFv();
-extern "C" void setAfterTalkMotion__13daNpc_Hanjo_cFv();
-extern "C" void srchActors__13daNpc_Hanjo_cFv();
-extern "C" void evtTalk__13daNpc_Hanjo_cFv();
-extern "C" void evtCutProc__13daNpc_Hanjo_cFv();
-extern "C" void action__13daNpc_Hanjo_cFv();
-extern "C" void beforeMove__13daNpc_Hanjo_cFv();
-extern "C" void afterMoved__13daNpc_Hanjo_cFv();
-extern "C" void setAttnPos__13daNpc_Hanjo_cFv();
-extern "C" void setCollision__13daNpc_Hanjo_cFv();
-extern "C" bool drawDbgInfo__13daNpc_Hanjo_cFv();
-extern "C" void drawOtherMdl__13daNpc_Hanjo_cFv();
-extern "C" void selectAction__13daNpc_Hanjo_cFv();
-extern "C" void chkAction__13daNpc_Hanjo_cFM13daNpc_Hanjo_cFPCvPvPv_i();
-extern "C" void setAction__13daNpc_Hanjo_cFM13daNpc_Hanjo_cFPCvPvPv_i();
-extern "C" void initShoot__13daNpc_Hanjo_cFi();
-extern "C" void shoot__13daNpc_Hanjo_cFi();
-extern "C" void initDive__13daNpc_Hanjo_cFv();
-extern "C" void dive__13daNpc_Hanjo_cFv();
-extern "C" void lookround__13daNpc_Hanjo_cFs();
-extern "C" void commandToHawk__13daNpc_Hanjo_cFv();
-extern "C" void cutConversationAboutSaru__13daNpc_Hanjo_cFi();
-extern "C" void cutConversation__13daNpc_Hanjo_cFi();
-extern "C" void cutPursuitBee__13daNpc_Hanjo_cFi();
-extern "C" void cutAppearHawker__13daNpc_Hanjo_cFi();
-extern "C" void cutDive__13daNpc_Hanjo_cFi();
-extern "C" void wait__13daNpc_Hanjo_cFPv();
-extern "C" void throwStone__13daNpc_Hanjo_cFPv();
-extern "C" void takayose__13daNpc_Hanjo_cFPv();
-extern "C" void talk__13daNpc_Hanjo_cFPv();
-extern "C" static void daNpc_Hanjo_Create__FPv();
-extern "C" static void daNpc_Hanjo_Delete__FPv();
-extern "C" static void daNpc_Hanjo_Execute__FPv();
-extern "C" static void daNpc_Hanjo_Draw__FPv();
-extern "C" static bool daNpc_Hanjo_IsDelete__FPv();
-extern "C" void calc__11J3DTexNoAnmCFPUs();
-extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" void __dt__8daNpcT_cFv();
-extern "C" void __dt__4cXyzFv();
-extern "C" void __dt__5csXyzFv();
-extern "C" void __dt__18daNpcT_ActorMngr_cFv();
-extern "C" void __dt__13daNpcT_Path_cFv();
-extern "C" void __ct__18daNpcT_ActorMngr_cFv();
-extern "C" void __dt__8cM3dGCylFv();
-extern "C" void __dt__8cM3dGAabFv();
-extern "C" void
-__ct__8daNpcT_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc();
-extern "C" void __ct__5csXyzFv();
-extern "C" void __dt__15daNpcT_JntAnm_cFv();
-extern "C" void __ct__4cXyzFv();
-extern "C" void __dt__22daNpcT_MotionSeqMngr_cFv();
-extern "C" void __dt__12dBgS_AcchCirFv();
-extern "C" void __dt__10dCcD_GSttsFv();
-extern "C" void __dt__12dBgS_ObjAcchFv();
-extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" void setEyeAngleY__15daNpcT_JntAnm_cF4cXyzsifs();
-extern "C" void setEyeAngleX__15daNpcT_JntAnm_cF4cXyzfs();
-extern "C" void ctrlSubFaceMotion__8daNpcT_cFi();
-extern "C" bool getEyeballLMaterialNo__8daNpcT_cFv();
-extern "C" bool getEyeballRMaterialNo__8daNpcT_cFv();
-extern "C" bool evtEndProc__8daNpcT_cFv();
-extern "C" bool chkXYItems__8daNpcT_cFv();
-extern "C" void decTmr__8daNpcT_cFv();
-extern "C" void drawGhost__8daNpcT_cFv();
-extern "C" bool afterSetFaceMotionAnm__8daNpcT_cFiifi();
-extern "C" bool afterSetMotionAnm__8daNpcT_cFiifi();
-extern "C" void getFaceMotionAnm__8daNpcT_cF26daNpcT_faceMotionAnmData_c();
-extern "C" void getMotionAnm__8daNpcT_cF22daNpcT_motionAnmData_c();
-extern "C" void changeAnm__8daNpcT_cFPiPi();
-extern "C" void changeBck__8daNpcT_cFPiPi();
-extern "C" void changeBtp__8daNpcT_cFPiPi();
-extern "C" void changeBtk__8daNpcT_cFPiPi();
-extern "C" void func_809FFE6C(void* _this, int*);
-extern "C" void func_809FFE88(void* _this, f32, f32);
-extern "C" void __sinit_d_a_npc_hanjo_cpp();
-extern "C" void __dt__18daNpc_HanjoStone_cFv();
-extern "C" void
-__ct__13daNpc_Hanjo_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc();
-extern "C" void __ct__18daNpc_HanjoStone_cFv();
-extern "C" void __dt__8cM3dGSphFv();
-extern "C" s32 getEyeballMaterialNo__13daNpc_Hanjo_cFv();
-extern "C" void getPos__18daNpc_HanjoStone_cFv();
-extern "C" void getOld__18daNpc_HanjoStone_cFv();
-extern "C" void posMoveF__18daNpc_HanjoStone_cFP10fopAc_ac_c();
-extern "C" void setPos__18daNpc_HanjoStone_cF4cXyz();
-extern "C" s32 getHeadJointNo__13daNpc_Hanjo_cFv();
-extern "C" s32 getNeckJointNo__13daNpc_Hanjo_cFv();
-extern "C" bool getBackboneJointNo__13daNpc_Hanjo_cFv();
-extern "C" void setAngle__18daNpc_HanjoStone_cF5csXyz();
-extern "C" void checkChangeJoint__13daNpc_Hanjo_cFi();
-extern "C" void checkRemoveJoint__13daNpc_Hanjo_cFi();
-extern "C" s32 getFootLJointNo__13daNpc_Hanjo_cFv();
-extern "C" s32 getFootRJointNo__13daNpc_Hanjo_cFv();
-extern "C" void __dt__19daNpc_Hanjo_Param_cFv();
-extern "C" static void func_80A0057C();
-extern "C" static void func_80A00584();
-extern "C" void chkPointInArea__15daTag_EvtArea_cF4cXyz();
-extern "C" u8 const m__19daNpc_Hanjo_Param_c[180];
-extern "C" u8 const mStoneCcDObjInfo__13daNpc_Hanjo_c[48];
-extern "C" extern char const* const d_a_npc_hanjo__stringBase0;
-extern "C" void* mCutNameList__13daNpc_Hanjo_c[6];
-extern "C" u8 mCutList__13daNpc_Hanjo_c[72];
-extern "C" u8 mStoneCcDSph__13daNpc_Hanjo_c[64];
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_XYZrotM__FPA4_fsss();
-extern "C" void mDoMtx_YrotS__FPA4_fs();
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void mDoMtx_ZrotM__FPA4_fs();
-extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void transM__14mDoMtx_stack_cFfff();
-extern "C" void scaleM__14mDoMtx_stack_cFfff();
-extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void
-__ct__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl();
-extern "C" void stopZelAnime__16mDoExt_McaMorfSOFv();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void __dt__10fopAc_ac_cFv();
-extern "C" void fopAc_IsActor__FPv();
-extern "C" void fopAcM_delete__FP10fopAc_ac_c();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData();
-extern "C" void fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_getWaterY__FPC4cXyzPf();
-extern "C" void dComIfGs_wolfeye_effect_check__Fv();
-extern "C" void isCollect__20dSv_player_collect_cCFiUc();
-extern "C" void onSwitch__12dSv_memBit_cFi();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void reset__14dEvt_control_cFv();
-extern "C" void setSkipZev__14dEvt_control_cFPvPc();
-extern "C" void onSkipFade__14dEvt_control_cFv();
-extern "C" void setPt2__14dEvt_control_cFPv();
-extern "C" void setPtT__14dEvt_control_cFPv();
-extern "C" void getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci();
-extern "C" void getIsAddvance__16dEvent_manager_cFi();
-extern "C" void getMyActIdx__16dEvent_manager_cFiPCPCciii();
-extern "C" void getMySubstanceP__16dEvent_manager_cFiPCci();
-extern "C" void cutEnd__16dEvent_manager_cFi();
-extern "C" void setGoal__16dEvent_manager_cFP4cXyz();
-extern "C" void getRunEventName__16dEvent_manager_cFv();
-extern "C" void ChkPresentEnd__16dEvent_manager_cFv();
-extern "C" void
-set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf();
-extern "C" void init__7dPaPo_cFP9dBgS_Acchff();
-extern "C" void StartShock__12dVibration_cFii4cXyz();
-extern "C" void LineCross__4cBgSFP11cBgS_LinChk();
-extern "C" void GroundCross__4cBgSFP11cBgS_GndChk();
-extern "C" void __ct__12dBgS_AcchCirFv();
-extern "C" void SetWallR__12dBgS_AcchCirFf();
-extern "C" void __dt__9dBgS_AcchFv();
-extern "C" void __ct__9dBgS_AcchFv();
-extern "C" void Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz();
-extern "C" void CrrPos__9dBgS_AcchFR4dBgS();
-extern "C" void __ct__11dBgS_GndChkFv();
-extern "C" void __dt__11dBgS_GndChkFv();
-extern "C" void __ct__11dBgS_LinChkFv();
-extern "C" void __dt__11dBgS_LinChkFv();
-extern "C" void Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c();
-extern "C" void SetObj__16dBgS_PolyPassChkFv();
-extern "C" void GetAc__22dCcD_GAtTgCoCommonBaseFv();
-extern "C" void __ct__10dCcD_GSttsFv();
-extern "C" void Init__9dCcD_SttsFiiP10fopAc_ac_c();
-extern "C" void __ct__12dCcD_GObjInfFv();
-extern "C" void __dt__12dCcD_GObjInfFv();
-extern "C" void GetTgHitObj__12dCcD_GObjInfFv();
-extern "C" void ChkCoHit__12dCcD_GObjInfFv();
-extern "C" void GetCoHitObj__12dCcD_GObjInfFv();
-extern "C" void Set__8dCcD_CylFRC11dCcD_SrcCyl();
-extern "C" void Set__8dCcD_SphFRC11dCcD_SrcSph();
-extern "C" void initialize__18daNpcT_ActorMngr_cFv();
-extern "C" void entry__18daNpcT_ActorMngr_cFP10fopAc_ac_c();
-extern "C" void remove__18daNpcT_ActorMngr_cFv();
-extern "C" void getActorP__18daNpcT_ActorMngr_cFv();
-extern "C" void initialize__15daNpcT_MatAnm_cFv();
-extern "C" void initialize__22daNpcT_MotionSeqMngr_cFv();
-extern "C" void checkEndSequence__22daNpcT_MotionSeqMngr_cFv();
-extern "C" void initialize__13daNpcT_Path_cFv();
-extern "C" void setPathInfo__13daNpcT_Path_cFUcScUc();
-extern "C" void getDstPosH__13daNpcT_Path_cF4cXyzP4cXyzii();
-extern "C" void initialize__15daNpcT_JntAnm_cFv();
-extern "C" void setParam__15daNpcT_JntAnm_cFP10fopAc_ac_cP8J3DModelP4cXyziiiffffffffffP4cXyz();
-extern "C" void calcJntRad__15daNpcT_JntAnm_cFfff();
-extern "C" void setParam__19daNpcT_DmgStagger_cFP10fopAc_ac_cP10fopAc_ac_cs();
-extern "C" void calc__19daNpcT_DmgStagger_cFi();
-extern "C" void tgHitCallBack__8daNpcT_cFP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf();
-extern "C" void getTrnsfrmKeyAnmP__8daNpcT_cFPCci();
-extern "C" void loadRes__8daNpcT_cFPCScPPCc();
-extern "C" void deleteRes__8daNpcT_cFPCScPPCc();
-extern "C" void execute__8daNpcT_cFv();
-extern "C" void draw__8daNpcT_cFiifP11_GXColorS10fiii();
-extern "C" void setEnvTevColor__8daNpcT_cFv();
-extern "C" void setRoomNo__8daNpcT_cFv();
-extern "C" void ctrlBtk__8daNpcT_cFv();
-extern "C" void setMtx__8daNpcT_cFv();
-extern "C" void ctrlJoint__8daNpcT_cFP8J3DJointP8J3DModel();
-extern "C" void evtProc__8daNpcT_cFv();
-extern "C" void setFootPos__8daNpcT_cFv();
-extern "C" void setFootPrtcl__8daNpcT_cFP4cXyzff();
-extern "C" bool checkCullDraw__8daNpcT_cFv();
-extern "C" void twilight__8daNpcT_cFv();
-extern "C" void evtOrder__8daNpcT_cFv();
-extern "C" void evtChange__8daNpcT_cFv();
-extern "C" void clrParam__8daNpcT_cFv();
-extern "C" void setFaceMotionAnm__8daNpcT_cFib();
-extern "C" void setMotionAnm__8daNpcT_cFifi();
-extern "C" void setPos__8daNpcT_cF4cXyz();
-extern "C" void setAngle__8daNpcT_cF5csXyz();
-extern "C" void setAngle__8daNpcT_cFs();
-extern "C" void hitChk__8daNpcT_cFP12dCcD_GObjInfUl();
-extern "C" void setDamage__8daNpcT_cFiii();
-extern "C" void chkActorInSight__8daNpcT_cFP10fopAc_ac_cfs();
-extern "C" void chkPointInArea__8daNpcT_cF4cXyz4cXyzfffs();
-extern "C" void srchPlayerActor__8daNpcT_cFv();
-extern "C" void step__8daNpcT_cFsiiii();
-extern "C" void initTalk__8daNpcT_cFiPP10fopAc_ac_c();
-extern "C" void talkProc__8daNpcT_cFPiiPP10fopAc_ac_ci();
-extern "C" void getNearestActorP__8daNpcT_cFs();
-extern "C" void getEvtAreaTagP__8daNpcT_cFii();
-extern "C" void daNpcT_getDistTableIdx__Fii();
-extern "C" void daNpcT_onEvtBit__FUl();
-extern "C" void daNpcT_chkEvtBit__FUl();
-extern "C" void daNpcT_onTmpBit__FUl();
-extern "C" void daNpcT_offTmpBit__FUl();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void dKy_set_actcol_ratio__Ff();
-extern "C" void dKy_set_bgcol_ratio__Ff();
-extern "C" void dKy_set_fogcol_ratio__Ff();
-extern "C" void __ct__10dMsgFlow_cFv();
-extern "C" void __dt__10dMsgFlow_cFv();
-extern "C" void remove__10dMsgFlow_cFv();
-extern "C" void GetAc__8cCcD_ObjFv();
-extern "C" void Set__4cCcSFP8cCcD_Obj();
-extern "C" void __pl__4cXyzCFRC3Vec();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void cM_atan2s__Fff();
-extern "C" void cM_rnd__Fv();
-extern "C" void cM_rndF__Ff();
-extern "C" void __ct__11cBgS_GndChkFv();
-extern "C" void __dt__11cBgS_GndChkFv();
-extern "C" void SetPos__11cBgS_GndChkFPC4cXyz();
-extern "C" void __dt__13cBgS_PolyInfoFv();
-extern "C" void __dt__8cM3dGCirFv();
-extern "C" void SetC__8cM3dGCylFRC4cXyz();
-extern "C" void SetH__8cM3dGCylFf();
-extern "C" void SetR__8cM3dGCylFf();
-extern "C" void SetC__8cM3dGSphFRC4cXyz();
-extern "C" void SetR__8cM3dGSphFf();
-extern "C" void cLib_addCalc__FPfffff();
-extern "C" void cLib_addCalcAngleS2__FPssss();
-extern "C" void cLib_chaseF__FPfff();
-extern "C" void cLib_targetAngleY__FPC3VecPC3Vec();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void __ct__10Z2CreatureFv();
-extern "C" void __dt__10Z2CreatureFv();
-extern "C" void init__10Z2CreatureFP3VecP3VecUcUc();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void checkPass__12J3DFrameCtrlFf();
-extern "C" void getTexNo__16J3DAnmTexPatternCFUsPUs();
-extern "C" void initialize__14J3DMaterialAnmFv();
-extern "C" void __destroy_arr();
-extern "C" void __construct_array();
-extern "C" void __ptmf_test();
-extern "C" void __ptmf_cmpr();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_22();
-extern "C" void _savegpr_23();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_22();
-extern "C" void _restgpr_23();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" u8 mCcDCyl__8daNpcT_c[68];
-extern "C" extern void* __vt__8daNpcT_c[49];
-extern "C" extern void* __vt__15daNpcT_MatAnm_c[4 + 1 /* padding */];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 sincosTable___5JMath[65536];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" void chkPointInArea__15daTag_EvtArea_cF4cXyz4cXyz();
-extern "C" void __register_global_object();
 
 //
 // Declarations:
 //
 
-
-
-/* 80A00940-80A0094C 000000 000C+00 3/3 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80A0094C-80A00960 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
+UNK_REL_DATA;
 
 /* 80A00960-80A00980 000020 0020+00 1/1 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[4][2] = {
@@ -401,14 +52,6 @@ static char* l_resNameList[6] = {
     "J_Tobi",
     "Sera",
 };
-
-/* ############################################################################################## */
-/* 80A007F8-80A007F8 0001F8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80A008F0 = "CONVERSATION_ABOUT_SARU";
-SECTION_DEAD static char const* const stringBase_80A00908 = "CONVERSATION";
-#pragma pop
 
 /* 80A009F0-80A009F4 0000B0 0003+01 1/0 0/0 0/0 .data            l_loadResPtrn0 */
 static s8 l_loadResPtrn0[3] = {
@@ -447,8 +90,6 @@ static s8* l_loadResPtrnList[5] = {
 };
 
 /* 80A00A1C-80A00B34 0000DC 0118+00 0/1 0/0 0/0 .data            l_faceMotionAnmData */
-#pragma push
-#pragma force_active on
 SECTION_DATA static daNpcT_faceMotionAnmData_c l_faceMotionAnmData[10] = {
     {-1, 0, 0, 20, 2, 1, 1}, 
     {7, 0, 1, 20, 2, 1, 1}, 
@@ -461,7 +102,6 @@ SECTION_DATA static daNpcT_faceMotionAnmData_c l_faceMotionAnmData[10] = {
      {9, 0, 2, 36, 0, 2, 0},
      { 11, 2, 2, 38, 2, 2, 0},
 };
-#pragma pop
 
 /* 80A00B34-80A00DB8 0001F4 0284+00 1/2 0/0 0/0 .data            l_motionAnmData */
 SECTION_DATA static int l_motionAnmData[161] = {
@@ -506,227 +146,21 @@ SECTION_DATA char* daNpc_Hanjo_c::mCutNameList[6] = {
     "DIVE",
 };
 
-// /* 80A00F90-80A00F9C -00001 000C+00 0/1 0/0 0/0 .data            @3854 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DATA static void* lit_3854[3] = {
-//     (void*)NULL,
-//     (void*)0xFFFFFFFF,
-//     (void*)cutConversationAboutSaru__13daNpc_Hanjo_cFi,
-// };
-// #pragma pop
-
-// /* 80A00F9C-80A00FA8 -00001 000C+00 0/1 0/0 0/0 .data            @3855 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DATA static void* lit_3855[3] = {
-//     (void*)NULL,
-//     (void*)0xFFFFFFFF,
-//     (void*)cutConversation__13daNpc_Hanjo_cFi,
-// };
-// #pragma pop
-
-// /* 80A00FA8-80A00FB4 -00001 000C+00 0/1 0/0 0/0 .data            @3856 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DATA static void* lit_3856[3] = {
-//     (void*)NULL,
-//     (void*)0xFFFFFFFF,
-//     (void*)cutPursuitBee__13daNpc_Hanjo_cFi,
-// };
-// #pragma pop
-
-// /* 80A00FB4-80A00FC0 -00001 000C+00 0/1 0/0 0/0 .data            @3857 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DATA static void* lit_3857[3] = {
-//     (void*)NULL,
-//     (void*)0xFFFFFFFF,
-//     (void*)cutAppearHawker__13daNpc_Hanjo_cFi,
-// };
-// #pragma pop
-
-// /* 80A00FC0-80A00FCC -00001 000C+00 0/1 0/0 0/0 .data            @3858 */
-// #pragma push
-// #pragma force_active on
-// SECTION_DATA static void* lit_3858[3] = {
-//     (void*)NULL,
-//     (void*)0xFFFFFFFF,
-//     (void*)cutDive__13daNpc_Hanjo_cFi,
-// };
-// #pragma pop
-
 /* 80A00FCC-80A01014 00068C 0048+00 1/2 0/0 0/0 .data            mCutList__13daNpc_Hanjo_c */
 daNpc_Hanjo_c::cutFunc daNpc_Hanjo_c::mCutList[6] = {
+    NULL,
     &daNpc_Hanjo_c::cutConversationAboutSaru,
     &daNpc_Hanjo_c::cutConversation,
     &daNpc_Hanjo_c::cutPursuitBee,
     &daNpc_Hanjo_c::cutAppearHawker,
     &daNpc_Hanjo_c::cutDive,
-    NULL,
 };
 
 /* 80A01014-80A01054 0006D4 0040+00 0/1 0/0 0/0 .data            mStoneCcDSph__13daNpc_Hanjo_c */
-#pragma push
-#pragma force_active on
-SECTION_DATA u8 daNpc_Hanjo_c::mStoneCcDSph[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+dCcD_SrcSph daNpc_Hanjo_c::mStoneCcDSph = {
+    daNpc_Hanjo_c::mStoneCcDObjInfo, {}
 };
-#pragma pop
 
-
-// /* 80A010F8-80A01104 0007B8 000C+00 2/2 0/0 0/0 .data            __vt__11J3DTexNoAnm */
-// SECTION_DATA extern void* __vt__11J3DTexNoAnm[3] = {
-//     (void*)NULL /* RTTI */,
-//     (void*)NULL,
-//     (void*)calc__11J3DTexNoAnmCFPUs,
-// };
-
-// /* 80A01104-80A01110 0007C4 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGSph */
-// SECTION_DATA extern void* __vt__8cM3dGSph[3] = {
-//     (void*)NULL /* RTTI */,
-//     (void*)NULL,
-//     (void*)__dt__8cM3dGSphFv,
-// };
-
-// /* 80A01110-80A0111C 0007D0 000C+00 3/3 0/0 0/0 .data            __vt__12J3DFrameCtrl */
-// SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
-//     (void*)NULL /* RTTI */,
-//     (void*)NULL,
-//     (void*)__dt__12J3DFrameCtrlFv,
-// };
-
-// /* 80A0111C-80A01140 0007DC 0024+00 3/3 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
-// SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
-//     (void*)NULL /* RTTI */,
-//     (void*)NULL,
-//     (void*)__dt__12dBgS_ObjAcchFv,
-//     (void*)NULL,
-//     (void*)NULL,
-//     (void*)func_80A00584,
-//     (void*)NULL,
-//     (void*)NULL,
-//     (void*)func_80A0057C,
-// };
-
-// /* 80A01140-80A0114C 000800 000C+00 2/2 0/0 0/0 .data            __vt__12dBgS_AcchCir */
-// SECTION_DATA extern void* __vt__12dBgS_AcchCir[3] = {
-//     (void*)NULL /* RTTI */,
-//     (void*)NULL,
-//     (void*)__dt__12dBgS_AcchCirFv,
-// };
-
-// /* 80A0114C-80A01158 00080C 000C+00 3/3 0/0 0/0 .data            __vt__10cCcD_GStts */
-// SECTION_DATA extern void* __vt__10cCcD_GStts[3] = {
-//     (void*)NULL /* RTTI */,
-//     (void*)NULL,
-//     (void*)__dt__10cCcD_GSttsFv,
-// };
-
-// /* 80A01158-80A01164 000818 000C+00 2/2 0/0 0/0 .data            __vt__10dCcD_GStts */
-// SECTION_DATA extern void* __vt__10dCcD_GStts[3] = {
-//     (void*)NULL /* RTTI */,
-//     (void*)NULL,
-//     (void*)__dt__10dCcD_GSttsFv,
-// };
-
-// /* 80A01164-80A01170 000824 000C+00 3/3 0/0 0/0 .data            __vt__22daNpcT_MotionSeqMngr_c */
-// SECTION_DATA extern void* __vt__22daNpcT_MotionSeqMngr_c[3] = {
-//     (void*)NULL /* RTTI */,
-//     (void*)NULL,
-//     (void*)__dt__22daNpcT_MotionSeqMngr_cFv,
-// };
-
-// /* 80A01170-80A0117C 000830 000C+00 5/5 0/0 0/0 .data            __vt__18daNpcT_ActorMngr_c */
-// SECTION_DATA extern void* __vt__18daNpcT_ActorMngr_c[3] = {
-//     (void*)NULL /* RTTI */,
-//     (void*)NULL,
-//     (void*)__dt__18daNpcT_ActorMngr_cFv,
-// };
-
-// /* 80A0117C-80A01188 00083C 000C+00 3/3 0/0 0/0 .data            __vt__15daNpcT_JntAnm_c */
-// SECTION_DATA extern void* __vt__15daNpcT_JntAnm_c[3] = {
-//     (void*)NULL /* RTTI */,
-//     (void*)NULL,
-//     (void*)__dt__15daNpcT_JntAnm_cFv,
-// };
-
-// /* 80A01188-80A01194 000848 000C+00 5/5 0/0 0/0 .data            __vt__8cM3dGAab */
-// SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
-//     (void*)NULL /* RTTI */,
-//     (void*)NULL,
-//     (void*)__dt__8cM3dGAabFv,
-// };
-
-// /* 80A01194-80A011A0 000854 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGCyl */
-// SECTION_DATA extern void* __vt__8cM3dGCyl[3] = {
-//     (void*)NULL /* RTTI */,
-//     (void*)NULL,
-//     (void*)__dt__8cM3dGCylFv,
-// };
-
-// /* 80A011A0-80A011AC 000860 000C+00 3/3 0/0 0/0 .data            __vt__13daNpcT_Path_c */
-// SECTION_DATA extern void* __vt__13daNpcT_Path_c[3] = {
-//     (void*)NULL /* RTTI */,
-//     (void*)NULL,
-//     (void*)__dt__13daNpcT_Path_cFv,
-// };
-
-// /* 80A011AC-80A01270 00086C 00C4+00 2/2 0/0 0/0 .data            __vt__13daNpc_Hanjo_c */
-// SECTION_DATA extern void* __vt__13daNpc_Hanjo_c[49] = {
-//     (void*)NULL /* RTTI */,
-//     (void*)NULL,
-//     (void*)__dt__13daNpc_Hanjo_cFv,
-//     (void*)ctrlBtk__8daNpcT_cFv,
-//     (void*)ctrlSubFaceMotion__8daNpcT_cFi,
-//     (void*)checkChangeJoint__13daNpc_Hanjo_cFi,
-//     (void*)checkRemoveJoint__13daNpc_Hanjo_cFi,
-//     (void*)getBackboneJointNo__13daNpc_Hanjo_cFv,
-//     (void*)getNeckJointNo__13daNpc_Hanjo_cFv,
-//     (void*)getHeadJointNo__13daNpc_Hanjo_cFv,
-//     (void*)getFootLJointNo__13daNpc_Hanjo_cFv,
-//     (void*)getFootRJointNo__13daNpc_Hanjo_cFv,
-//     (void*)getEyeballLMaterialNo__8daNpcT_cFv,
-//     (void*)getEyeballRMaterialNo__8daNpcT_cFv,
-//     (void*)getEyeballMaterialNo__13daNpc_Hanjo_cFv,
-//     (void*)ctrlJoint__8daNpcT_cFP8J3DJointP8J3DModel,
-//     (void*)afterJntAnm__13daNpc_Hanjo_cFi,
-//     (void*)setParam__13daNpc_Hanjo_cFv,
-//     (void*)checkChangeEvt__13daNpc_Hanjo_cFv,
-//     (void*)evtTalk__13daNpc_Hanjo_cFv,
-//     (void*)evtEndProc__8daNpcT_cFv,
-//     (void*)evtCutProc__13daNpc_Hanjo_cFv,
-//     (void*)setAfterTalkMotion__13daNpc_Hanjo_cFv,
-//     (void*)evtProc__8daNpcT_cFv,
-//     (void*)action__13daNpc_Hanjo_cFv,
-//     (void*)beforeMove__13daNpc_Hanjo_cFv,
-//     (void*)afterMoved__13daNpc_Hanjo_cFv,
-//     (void*)setAttnPos__13daNpc_Hanjo_cFv,
-//     (void*)setFootPos__8daNpcT_cFv,
-//     (void*)setCollision__13daNpc_Hanjo_cFv,
-//     (void*)setFootPrtcl__8daNpcT_cFP4cXyzff,
-//     (void*)checkCullDraw__8daNpcT_cFv,
-//     (void*)twilight__8daNpcT_cFv,
-//     (void*)chkXYItems__8daNpcT_cFv,
-//     (void*)evtOrder__8daNpcT_cFv,
-//     (void*)decTmr__8daNpcT_cFv,
-//     (void*)clrParam__8daNpcT_cFv,
-//     (void*)drawDbgInfo__13daNpc_Hanjo_cFv,
-//     (void*)drawOtherMdl__13daNpc_Hanjo_cFv,
-//     (void*)drawGhost__8daNpcT_cFv,
-//     (void*)afterSetFaceMotionAnm__8daNpcT_cFiifi,
-//     (void*)afterSetMotionAnm__8daNpcT_cFiifi,
-//     (void*)getFaceMotionAnm__8daNpcT_cF26daNpcT_faceMotionAnmData_c,
-//     (void*)getMotionAnm__8daNpcT_cF22daNpcT_motionAnmData_c,
-//     (void*)changeAnm__8daNpcT_cFPiPi,
-//     (void*)changeBck__8daNpcT_cFPiPi,
-//     (void*)changeBtp__8daNpcT_cFPiPi,
-//     (void*)changeBtk__8daNpcT_cFPiPi,
-//     (void*)setMotionAnm__8daNpcT_cFifi,
-// };
 
 /* 809F908C-809F9278 0000EC 01EC+00 1/0 0/0 0/0 .text            __dt__13daNpc_Hanjo_cFv */
 daNpc_Hanjo_c::~daNpc_Hanjo_c() {
@@ -757,13 +191,9 @@ dCcD_SrcGObjInf const daNpc_Hanjo_c::mStoneCcDObjInfo = {
     {{0}},
 };
 
-/* 80A006E4-80A006F8 0000E4 0014+00 0/1 0/0 0/0 .rodata          heapSize$4058 */
-static int const heapSize[5] = {
-    0x61B0, 0x41D0, 0x39D0, 0x39C0, 0,
-};
-
 /* 809F9278-809F9578 0002D8 0300+00 1/1 0/0 0/0 .text            create__13daNpc_Hanjo_cFv */
 int daNpc_Hanjo_c::create() {
+    static int const heapSize[5] = {0x61B0, 0x41D0, 0x39D0, 0x39C0, 0};
     fopAcM_SetupActor2(this, daNpc_Hanjo_c, l_faceMotionAnmData,
                        (daNpcT_motionAnmData_c*)l_motionAnmData, l_faceMotionSequenceData, 4,
                        l_motionSequenceData, 4, l_evtList, l_resNameList);
@@ -806,7 +236,7 @@ int daNpc_Hanjo_c::create() {
             setRoomNo();
         }
         for (int i = 0; i < 4; i ++) {
-            mStones[i].getSphP()->Set(*(dCcD_SrcSph*)&mStoneCcDSph);
+            mStones[i].getSphP()->Set(mStoneCcDSph);
             mStones[i].getSphP()->SetStts(&mCcStts);
         }
         mCreating = 1;
@@ -816,18 +246,9 @@ int daNpc_Hanjo_c::create() {
     return rv;
 }
 
-/* 80A00710-80A00718 000110 0008+00 0/1 0/0 0/0 .rodata          bmdTypeList$4495 */
-static int const bmdTypeList[2] = {
-    2, 3,
-};
-COMPILER_STRIP_GATE(0x80A00710, &bmdTypeList);
-
-// /* 80A00718-80A0071C 000118 0004+00 1/9 0/0 0/0 .rodata          @4593 */
-// SECTION_RODATA static f32 const lit_4593 = 1.0f;
-// COMPILER_STRIP_GATE(0x80A00718, &lit_4593);
-
 /* 809F9578-809F997C 0005D8 0404+00 1/1 0/0 0/0 .text            CreateHeap__13daNpc_Hanjo_cFv */
 int daNpc_Hanjo_c::CreateHeap() {
+    static int const bmdTypeList[2] = {2, 3};
     J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(
         l_resNameList[l_bmdData[0][1]], l_bmdData[0][0]));
     if (modelData == NULL) {
@@ -1279,104 +700,10 @@ void daNpc_Hanjo_c::afterMoved() {
     }
 }
 
-/* 80A01288-80A0128C 000008 0001+03 1/1 0/0 0/0 .bss             @1109 */
-static u8 lit_1109[1 + 3 /* padding */];
-
-/* 80A0128C-80A01290 00000C 0001+03 0/0 0/0 0/0 .bss             @1107 */
-#pragma push
-#pragma force_active on
-static u8 lit_1107[1 + 3 /* padding */];
-#pragma pop
-
-/* 80A01290-80A01294 000010 0001+03 0/0 0/0 0/0 .bss             @1105 */
-#pragma push
-#pragma force_active on
-static u8 lit_1105[1 + 3 /* padding */];
-#pragma pop
-
-/* 80A01294-80A01298 000014 0001+03 0/0 0/0 0/0 .bss             @1104 */
-#pragma push
-#pragma force_active on
-static u8 lit_1104[1 + 3 /* padding */];
-#pragma pop
-
-/* 80A01298-80A0129C 000018 0001+03 0/0 0/0 0/0 .bss             @1099 */
-#pragma push
-#pragma force_active on
-static u8 lit_1099[1 + 3 /* padding */];
-#pragma pop
-
-/* 80A0129C-80A012A0 00001C 0001+03 0/0 0/0 0/0 .bss             @1097 */
-#pragma push
-#pragma force_active on
-static u8 lit_1097[1 + 3 /* padding */];
-#pragma pop
-
-/* 80A012A0-80A012A4 000020 0001+03 0/0 0/0 0/0 .bss             @1095 */
-#pragma push
-#pragma force_active on
-static u8 lit_1095[1 + 3 /* padding */];
-#pragma pop
-
-/* 80A012A4-80A012A8 000024 0001+03 0/0 0/0 0/0 .bss             @1094 */
-#pragma push
-#pragma force_active on
-static u8 lit_1094[1 + 3 /* padding */];
-#pragma pop
-
-/* 80A012A8-80A012AC 000028 0001+03 0/0 0/0 0/0 .bss             @1057 */
-#pragma push
-#pragma force_active on
-static u8 lit_1057[1 + 3 /* padding */];
-#pragma pop
-
-/* 80A012AC-80A012B0 00002C 0001+03 0/0 0/0 0/0 .bss             @1055 */
-#pragma push
-#pragma force_active on
-static u8 lit_1055[1 + 3 /* padding */];
-#pragma pop
-
-/* 80A012B0-80A012B4 000030 0001+03 0/0 0/0 0/0 .bss             @1053 */
-#pragma push
-#pragma force_active on
-static u8 lit_1053[1 + 3 /* padding */];
-#pragma pop
-
-/* 80A012B4-80A012B8 000034 0001+03 0/0 0/0 0/0 .bss             @1052 */
-#pragma push
-#pragma force_active on
-static u8 lit_1052[1 + 3 /* padding */];
-#pragma pop
-
-/* 80A012B8-80A012BC 000038 0001+03 0/0 0/0 0/0 .bss             @1014 */
-#pragma push
-#pragma force_active on
-static u8 lit_1014[1 + 3 /* padding */];
-#pragma pop
-
-/* 80A012BC-80A012C0 00003C 0001+03 0/0 0/0 0/0 .bss             @1012 */
-#pragma push
-#pragma force_active on
-static u8 lit_1012[1 + 3 /* padding */];
-#pragma pop
-
-/* 80A012C0-80A012C4 000040 0001+03 0/0 0/0 0/0 .bss             @1010 */
-#pragma push
-#pragma force_active on
-static u8 lit_1010[1 + 3 /* padding */];
-#pragma pop
-
-/* 80A012C4-80A012C8 000044 0001+03 0/0 0/0 0/0 .bss             @1009 */
-#pragma push
-#pragma force_active on
-static u8 lit_1009[1 + 3 /* padding */];
-#pragma pop
-
-/* 80A012C8-80A012D4 000048 000C+00 1/1 0/0 0/0 .bss             @3859 */
-static u8 lit_3859[12];
+UNK_REL_BSS;
 
 /* 80A012D4-80A012D8 000054 0004+00 1/1 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[4];
+static daNpc_Hanjo_Param_c l_HIO;
 
 /* 809FABB8-809FAF90 001C18 03D8+00 1/0 0/0 0/0 .text            setAttnPos__13daNpc_Hanjo_cFv */
 void daNpc_Hanjo_c::setAttnPos() {
@@ -1656,7 +983,7 @@ void daNpc_Hanjo_c::dive() {
             cLib_chaseF(&speedF, 0.0f, 0.1f);
         } else {
             if (field_0x1720 == 0) {
-                mSound.startCreatureSound(Z2SE_CM_BODYFALL_WATER_M, 0, 0xffffffff);
+                mSound.startCreatureSound(Z2SE_CM_BODYFALL_WATER_M, 0, -1);
                 speedF *= 0.5f;
                 field_0x1720 = 1;
             } else if (field_0x171f == 0) {
@@ -1892,8 +1219,6 @@ int daNpc_Hanjo_c::cutConversation(int param_1) {
 }
 
 /* 809FC80C-809FCDC4 00386C 05B8+00 1/0 0/0 0/0 .text            cutPursuitBee__13daNpc_Hanjo_cFi */
-// NONMATCHING
-// One instruction out of order
 int daNpc_Hanjo_c::cutPursuitBee(int param_1) {
     cXyz cStack_6c;
     int rv = 0;
@@ -1983,31 +1308,32 @@ int daNpc_Hanjo_c::cutPursuitBee(int param_1) {
         mJntAnm.lookNone(0);
         if (field_0x10e8.getDstPosH(current.pos, &cStack_6c, field_0x10e8.mpRoomPath->m_num, 4)) {
             rv = 1;
-        } else {
-            cLib_addCalcAngleS2(&current.angle.y, cLib_targetAngleY(&current.pos, &cStack_6c), 4, 0x800);
-            shape_angle.y = current.angle.y;
-            mCurAngle.y = current.angle.y;
-            field_0xd7e.y = mCurAngle.y;
-            cLib_chaseF(&speedF,
-                                        daNpc_Hanjo_Param_c::m.field_0x90, 0.5f);
-            if (mEventTimer != 0 &&
-                mCyl1.ChkCoHit())
-            {
-                fopAc_ac_c* hitActor = mCyl1.GetCoHitAc();
-                if (daPy_getPlayerActorClass() == hitActor) {
-                    f32 dVar17 = 40.0f;
-                    s16 sVar11 = cM_deg2s(50.0f);
-                    s16 actorAngle = fopAcM_searchActorAngleY(this, daPy_getPlayerActorClass()) - current.angle.y;
-                    s16 angle2;
-                    if (actorAngle > 0) {
-                        angle2 = current.angle.y + 0x2000;
-                    } else {
-                        angle2 = current.angle.y - 0x2000;
-                    }
-                    daPy_getPlayerActorClass()->setThrowDamage(angle2, dVar17 * cM_scos(sVar11), dVar17 * cM_ssin(sVar11), 0, 1, 0);
-                    field_0x1724 = 1;
-                    mEventTimer = 0;
+            break;
+        }
+
+        cLib_addCalcAngleS2(&current.angle.y, cLib_targetAngleY(&current.pos, &cStack_6c), 4, 0x800);
+        shape_angle.y = current.angle.y;
+        mCurAngle.y = current.angle.y;
+        field_0xd7e.y = mCurAngle.y;
+        cLib_chaseF(&speedF,
+                                    daNpc_Hanjo_Param_c::m.field_0x90, 0.5f);
+        if (mEventTimer != 0 &&
+            mCyl1.ChkCoHit())
+        {
+            fopAc_ac_c* hitActor = mCyl1.GetCoHitAc();
+            if (daPy_getPlayerActorClass() == hitActor) {
+                s16 sVar11 = cM_deg2s(50.0f);
+                s16 actorAngle = fopAcM_searchActorAngleY(this, daPy_getPlayerActorClass());
+                actorAngle -= current.angle.y;
+                if (actorAngle > 0) {
+                    actorAngle = current.angle.y + 0x2000;
+                } else {
+                    actorAngle = current.angle.y - 0x2000;
                 }
+                daPy_getPlayerActorClass()->setThrowDamage(actorAngle, 40.0f * cM_scos(sVar11),
+                                                           40.0f * cM_ssin(sVar11), 0, 1, 0);
+                field_0x1724 = 1;
+                mEventTimer = 0;
             }
         }
         break;
@@ -2080,13 +1406,14 @@ int daNpc_Hanjo_c::cutAppearHawker(int param_1) {
         case 5:
             mEventTimer = iVar7;
             break;
-        case 6:
+        case 6: {
             mEventTimer = iVar7;
             fopAc_ac_c* actor_p = field_0x10c8[2].getActorP();
             JUT_ASSERT(3005, 0 != actor_p);
             ((daNPC_TK_c*)actor_p)->setAttackLink();
             field_0x1722 = 1;
             break;
+        }
         case 99:
             mMotionSeqMngr.setNo(13, 0.0, 1,
                                             0);
@@ -2195,12 +1522,13 @@ int daNpc_Hanjo_c::cutDive(int param_1) {
             initTalk(0xd0, NULL);
             mEventTimer = uVar4;
             break;
-        case 1:
+        case 1: {
             fopAc_ac_c* actor_p = field_0x10c8[2].getActorP();
             if (actor_p != NULL){
                 ((daNPC_TK_c*)actor_p)->setAway();
             }
             break;
+        }
         case 2:
             mFaceMotionSeqMngr.setNo(6, -1.0f, 0, 0);
             mMotionSeqMngr.setNo(17, -1.0f, 0,
@@ -2231,7 +1559,7 @@ int daNpc_Hanjo_c::cutDive(int param_1) {
             rv = 1;
         }
         break;
-    case 2:
+    case 2: {
         cStack_2c.set(0.0f, 0.0f, 50.0f);
         mDoMtx_stack_c::YrotS(mCurAngle.y);
         mDoMtx_stack_c::multVec(&cStack_2c, &cStack_2c);
@@ -2257,6 +1585,7 @@ int daNpc_Hanjo_c::cutDive(int param_1) {
         mCurAngle.y = current.angle.y;
         cLib_chaseF(&speedF, daNpc_Hanjo_Param_c::m.field_0x90, 1.0f);
         break;
+    }
     case 3:
         if (field_0x1720) {
             if (mType == TYPE_1) {
@@ -2495,7 +1824,7 @@ int daNpc_Hanjo_c::takayose(void* param_0) {
             field_0x1710 = cLib_getRndValue(dVar8 * 0.5f, dVar8 * 1.5f);
             mMode = 2;
         }
-    case 2:
+    case 2: {
         field_0xe2d = 0;
         dComIfG_play_c& play = g_dComIfG_gameInfo.play;
         if (play.getEvent().runCheck()) {
@@ -2599,6 +1928,7 @@ int daNpc_Hanjo_c::takayose(void* param_0) {
             }
         }
         break;
+    }
     case 3:
     default:
         break;
@@ -2705,6 +2035,3 @@ extern actor_process_profile_definition g_profile_NPC_HANJO = {
   fopAc_NPC_e,                // mActorType
   fopAc_CULLBOX_CUSTOM_e,     // cullType
 };
-
-
-/* 80A007F8-80A007F8 0001F8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

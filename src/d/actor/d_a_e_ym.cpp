@@ -3227,7 +3227,6 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 80813EA4-808143A0 00BE64 04FC+00 2/2 0/0 0/0 .text            checkBeforeBg__8daE_YM_cFs */
 u8 daE_YM_c::checkBeforeBg(s16 i_rot_val) {
-    // NONMATCHING - regalloc
     dBgS_LinChk lin_chk;
     cXyz my_vec_0;
     cXyz my_vec_1;
@@ -3275,7 +3274,7 @@ u8 daE_YM_c::checkBeforeBg(s16 i_rot_val) {
         mDoMtx_stack_c::multVec(&my_vec_0, &my_vec_1);
         my_vec_3 = current.pos + my_vec_1;
         cXyz inside_vec(0.0f, 0.0f, 80.0f);
-        cLib_offsetPos(&my_vec_2, &my_vec_3, field_0x668.z, &inside_vec);
+        cLib_offsetPos(&my_vec_2, &my_vec_3, (s16)field_0x668.z, &inside_vec);
         lin_chk.Set(&my_vec_3, &my_vec_2, NULL);
         if (dComIfG_Bgsp().LineCross(&lin_chk) == 0) {
             return 1;
@@ -3283,8 +3282,7 @@ u8 daE_YM_c::checkBeforeBg(s16 i_rot_val) {
         cM3dGPla plane;
         dComIfG_Bgsp().GetTriPla(lin_chk, &plane);
         cXyz* p_vec = plane.GetNP();
-        f32 absxz_val = p_vec->absXZ();
-        s16 tan_val = cM_atan2s(absxz_val, p_vec->y) + -0x8000;
+        s16 tan_val = cM_atan2s(p_vec->absXZ(), p_vec->y) + -0x8000;
         if (abs(tan_val + 0x4000) <= 0x1555) {
             if (field_0x668.z != (s16)(cM_atan2s(p_vec->x, p_vec->z) + 0x8000)) {
                 return 1;
@@ -3395,7 +3393,6 @@ void daE_YM_c::setHideType() {
 
 /* 80814BA4-80815224 00CB64 0680+00 2/1 0/0 0/0 .text            create__8daE_YM_cFv */
 int daE_YM_c::create() {
-    // NONMATCHING - regalloc
     fopAcM_SetupActor(this, daE_YM_c);
 
     mType = fopAcM_GetParam(this);
@@ -3403,17 +3400,17 @@ int daE_YM_c::create() {
         mType = 0;
     }
 
-    mSwitchBit = fopAcM_GetParam(this) >> 0x18;
+    mSwitchBit = (fopAcM_GetParam(this) & 0xff000000) >> 24;
 
-    u8 prm2 = fopAcM_GetParam(this) >> 0x10;
+    u8 prm2 = (fopAcM_GetParam(this) & 0xff0000) >> 16;
     if (prm2 == 0xFF) {
         prm2 = 0;
     }
 
     field_0x6e0 = prm2 * 100.0f;
 
-    u8 prm1 = fopAcM_GetParam(this) >> 0x8;
-    u8 tmp0 = (current.angle.z >> 8) & 0xff;
+    u8 prm1 = (fopAcM_GetParam(this) & 0xff00) >> 8;
+    u8 tmp0 = (current.angle.z & 0xff00) >> 8;
     mTagNo = current.angle.z;
     field_0x6a1 = 1;
     if ((current.angle.x & 3) != 0) {
@@ -3424,7 +3421,7 @@ int daE_YM_c::create() {
         field_0x6cb = 1;
     }
 
-    field_0x6a3 = (current.angle.x >> 8) & 0xff;
+    field_0x6a3 = (current.angle.x & 0xff00) >> 8;
 
     if (mSwitchBit != 0xFF && dComIfGs_isSwitch(mSwitchBit, fopAcM_GetRoomNo(this))) {
 #ifdef DEBUG
@@ -3448,10 +3445,9 @@ int daE_YM_c::create() {
     }
 
     if (phase == cPhs_COMPLEATE_e) {
-        current.angle.z = 0;
-        current.angle.x = 0;
-        shape_angle.z = 0;
-        shape_angle.x = 0;
+        OS_REPORT("E_YM PARAM %x %x %x \n", fopAcM_GetParam(this), current.angle.z, current.angle.x);
+        current.angle.x = current.angle.z = 0;
+        shape_angle.x = shape_angle.z = 0;
 
         if (!fopAcM_entrySolidHeap(this, useHeapInit, 0x28B0)) {
             return cPhs_ERROR_e;
@@ -3469,12 +3465,11 @@ int daE_YM_c::create() {
         fopAcM_SetMin(this, -200.0f, -100.0f, -200.0f);
         fopAcM_SetMax(this, 200.0f, 100.0f, 200.0f);
 
-        mAcch.Set(&current.pos, &old.pos, this, 1, &mAcchCir, &speed, NULL, NULL);
+        mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
+                  fopAcM_GetSpeed_p(this), NULL, NULL);
         mAcch.OnLineCheck();
         mAcchCir.SetWall(30.0f, 60.0f);
-
-        health = 10;
-        field_0x560 = 10;
+        field_0x560 = health = 10;
 
         mStts.Init(100, 0, this);
         mSphCc.Set(E_YM_n::cc_sph_src);
