@@ -2072,7 +2072,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_ss_item"),
     ActorRel(NonMatching, "d_a_obj_stairBlock"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_stone"),
-    ActorRel(NonMatching, "d_a_obj_stopper"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_stopper"),
     ActorRel(NonMatching, "d_a_obj_stopper2"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_suisya"),
     ActorRel(NonMatching, "d_a_obj_sw"),
