@@ -294,9 +294,9 @@ void cCcD_ShapeAttr::getShapeAccess(cCcD_ShapeAttr::Shape* pshape) const {
     pshape->_0 = 2;
     pshape->_14 = 0.0f;
     pshape->_10 = 0.0f;
-    pshape->_C = 0.0f;
-    pshape->_8 = 0.0f;
-    pshape->_4 = 0.0f;
+    pshape->_4.z = 0.0f;
+    pshape->_4.y = 0.0f;
+    pshape->_4.x = 0.0f;
 }
 
 /* 80263A88-80263B58 25E3C8 00D0+00 1/0 1/0 0/0 .text
@@ -594,9 +594,9 @@ bool cCcD_CylAttr::GetNVec(const cXyz& param_0, cXyz* param_1) const {
  * getShapeAccess__12cCcD_CylAttrCFPQ214cCcD_ShapeAttr5Shape    */
 void cCcD_CylAttr::getShapeAccess(cCcD_ShapeAttr::Shape* pshape) const {
     pshape->_0 = 1;
-    pshape->_4 = mCenter.x;
-    pshape->_8 = mCenter.y;
-    pshape->_C = mCenter.z;
+    pshape->_4.x = mCenter.x;
+    pshape->_4.y = mCenter.y;
+    pshape->_4.z = mCenter.z;
     pshape->_10 = mRadius;
     pshape->_14 = mHeight;
 }
@@ -716,9 +716,9 @@ bool cCcD_SphAttr::GetNVec(const cXyz& param_0, cXyz* param_1) const {
  * getShapeAccess__12cCcD_SphAttrCFPQ214cCcD_ShapeAttr5Shape    */
 void cCcD_SphAttr::getShapeAccess(cCcD_ShapeAttr::Shape* pshape) const {
     pshape->_0 = 0;
-    pshape->_4 = mCenter.x;
-    pshape->_8 = mCenter.y;
-    pshape->_C = mCenter.z;
+    pshape->_4.x = mCenter.x;
+    pshape->_4.y = mCenter.y;
+    pshape->_4.z = mCenter.z;
     pshape->_10 = mRadius;
     pshape->_14 = 0.0f;
 }

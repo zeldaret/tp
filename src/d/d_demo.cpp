@@ -1162,8 +1162,8 @@ void dDemo_c::reset() {
 /* 80039F1C-80039F9C 03485C 0080+00 1/0 0/0 0/0 .text emitter_create__16dDemo_particle_cFUl */
 JPABaseEmitter* dDemo_particle_c::emitter_create(u32 i_id) {
     cXyz pos(0.0f, 0.0f, 0.0f);
-    int stayNo = dComIfGp_roomControl_getStayNo();
-    return dComIfGp_particle_set(i_id, &pos, NULL, NULL, 0xFF, NULL, stayNo, NULL, NULL, NULL);
+    return dComIfGp_particle_set(i_id, &pos, NULL, NULL, 0xFF, NULL,
+                                 dComIfGp_roomControl_getStayNo(), NULL, NULL, NULL);
 }
 
 /* 80039F9C-80039FFC 0348DC 0060+00 1/0 0/0 0/0 .text            __dt__16dDemo_particle_cFv */

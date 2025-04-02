@@ -582,7 +582,7 @@ d/d_attention.cpp:
 	.rodata     start:0x8037A770 end:0x8037A780
 	.data       start:0x803A9BF8 end:0x803A9C70
 	.bss        start:0x80424B00 end:0x80424B20
-	.sdata      start:0x80450660 end:0x80450690
+	.sdata      start:0x80450660 end:0x80450680
 	.sbss       start:0x80450F58 end:0x80450F60
 	.sdata2     start:0x80452628 end:0x804526B8
 
@@ -727,6 +727,7 @@ d/d_tresure.cpp:
 	.text       start:0x8009BBD8 end:0x8009C4FC
 	.rodata     start:0x8037B0D8 end:0x8037B100
 	.bss        start:0x80425438 end:0x80425508
+	.sdata      start:0x80450680 end:0x80450688
 	.sbss       start:0x80450F98 end:0x80450FA0
 	.sdata2     start:0x80452BE8 end:0x80452C10
 
@@ -745,6 +746,7 @@ d/d_eye_hl.cpp:
 d/d_error_msg.cpp:
 	.text       start:0x8009CB88 end:0x8009D87C
 	.rodata     start:0x8037B140 end:0x8038D658
+	.sdata      start:0x80450688 end:0x80450690
 	.sbss       start:0x80450FB0 end:0x80450FB8
 	.sdata2     start:0x80452C18 end:0x80452C50
 	.sbss2      start:0x80456B78 end:0x80456B80

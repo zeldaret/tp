@@ -8,104 +8,6 @@
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_com_inf_game.h"
 #include "m_Do/m_Do_graphic.h"
-#include "dol2asm.h"
-
-//
-// Forward References:
-//
-
-extern "C" static void twoValueLineInterpolation__FUcUcf();
-extern "C" static void twoColorLineInterporation__FRC8_GXColorRC8_GXColorfR8_GXColor();
-extern "C" void init__15renderingFmap_cFPUcUsUsUsUs();
-extern "C" void entry__15renderingFmap_cFP23dMenu_Fmap_world_data_cifff();
-extern "C" void isSwitchSpecialOff__15renderingFmap_cFi();
-extern "C" void isSwitch__15renderingFmap_cFPCQ211dDrawPath_c11group_class();
-extern "C" void getPointStagePathInnerNo__15renderingFmap_cFP24dMenu_Fmap_region_data_cffiPiPi();
-extern "C" void preDrawPath__15renderingFmap_cFv();
-extern "C" bool isDrawPath__15renderingFmap_cFv();
-extern "C" void isDrawRoom__15renderingFmap_cFv();
-extern "C" void postDrawPath__15renderingFmap_cFv();
-extern "C" void postRenderingMap__15renderingFmap_cFv();
-extern "C" void roomSetteing__15renderingFmap_cFv();
-extern "C" void getFirstRoomPointer__15renderingFmap_cFv();
-extern "C" void getFirstRegion__15renderingFmap_cFv();
-extern "C" void getFirstStage__15renderingFmap_cFv();
-extern "C" void getFirstRoom__15renderingFmap_cFv();
-extern "C" void getNextRoom__15renderingFmap_cFv();
-extern "C" void getNextStage__15renderingFmap_cFv();
-extern "C" void getNextRegion__15renderingFmap_cFv();
-extern "C" void getNextRoomPointer__15renderingFmap_cFv();
-extern "C" void setFmapPaletteColor__15dMenu_FmapMap_cFQ215renderingFmap_c9palette_eUcUcUcUc();
-extern "C" void setFmapPaletteColor__15dMenu_FmapMap_cFQ215renderingFmap_c9palette_eRC8_GXColor();
-extern "C" void isFlashRoomNoCheck__15dMenu_FmapMap_cCFi();
-extern "C" void setPointColor__15dMenu_FmapMap_cFf();
-extern "C" void __ct__15dMenu_FmapMap_cFv();
-extern "C" void __dt__15dMenu_FmapMap_cFv();
-extern "C" void _create__15dMenu_FmapMap_cFUsUsUsUsPv();
-extern "C" void _delete__15dMenu_FmapMap_cFv();
-extern "C" void draw__15dMenu_FmapMap_cFv();
-extern "C" void rendering__15dMenu_FmapMap_cFPCQ211dDrawPath_c10line_class();
-extern "C" void getLineWidth__15dMenu_FmapMap_cFi();
-extern "C" void isDrawType__15dMenu_FmapMap_cFi();
-extern "C" void setFlashOn__15dMenu_FmapMap_cFiiPUci();
-extern "C" void getLineColor__15dMenu_FmapMap_cFii();
-extern "C" void getBackColor__15dMenu_FmapMap_cCFv();
-extern "C" void getColor__15dMenu_FmapMap_cFi();
-extern "C" void setTexture__15dMenu_FmapMap_cFUsUsUsUs();
-extern "C" void setRendering__15dMenu_FmapMap_cFP23dMenu_Fmap_world_data_ciffff();
-extern "C" void __dt__15renderingFmap_cFv();
-extern "C" bool isRenderingFloor__15renderingFmap_cFi();
-extern "C" void beforeDrawPath__15renderingFmap_cFv();
-extern "C" void afterDrawPath__15renderingFmap_cFv();
-extern "C" extern char const* const d_menu_d_menu_fmap_map__stringBase0;
-extern "C" u8 m_other__22dMfm_HIO_prm_res_src_s[1 + 3 /* padding */];
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_lookAt__FPA4_fPC3VecPC3VecPC3Vecs();
-extern "C" void draw__12dDlst_base_cFv();
-extern "C" bool isDrawType__11dDrawPath_cFi();
-extern "C" void getLineColor__11dDrawPath_cFii();
-extern "C" void dComIfGs_isStageSwitch__Fii();
-extern "C" void dComIfGp_getNowLevel__Fv();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void rendering__11dDrawPath_cFPCQ211dDrawPath_c10line_class();
-extern "C" void rendering__11dDrawPath_cFPCQ211dDrawPath_c10poly_class();
-extern "C" void rendering__11dDrawPath_cFPCQ211dDrawPath_c10room_class();
-extern "C" void drawPath__11dDrawPath_cFv();
-extern "C" void makeResTIMG__15dRenderingMap_cCFP7ResTIMGUsUsPUcPUcUs();
-extern "C" void renderingMap__15dRenderingMap_cFv();
-extern "C" void preRenderingMap__18dRenderingFDAmap_cFv();
-extern "C" void postRenderingMap__18dRenderingFDAmap_cFv();
-extern "C" void renderingDecoration__18dRenderingFDAmap_cFPCQ211dDrawPath_c10line_class();
-extern "C" void getDecoLineColor__18dRenderingFDAmap_cFii();
-extern "C" void getDecorationLineWidth__18dRenderingFDAmap_cFi();
-extern "C" void isArrival__22dMenu_Fmap_room_data_cFv();
-extern "C" void getPointStagePathInnerNo__24dMenu_Fmap_region_data_cFffiPiPi();
-extern "C" void set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c();
-extern "C" void* __nw__FUli();
-extern "C" void* __nwa__FUli();
-extern "C" void __dl__FPv();
-extern "C" void __dla__FPv();
-extern "C" void GXClearVtxDesc();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern void* __vt__28dDrawPathWithNormalPattern_c[16];
-extern "C" extern void* __vt__15dRenderingMap_c[23];
-extern "C" extern void* __vt__18dRenderingFDAmap_c[26];
-extern "C" extern void* __vt__11dDrawPath_c[16];
-extern "C" u8 sincosTable___5JMath[65536];
-
-//
-// Declarations:
-//
 
 /* 801CE068-801CE0CC 1C89A8 0064+00 1/1 0/0 0/0 .text            twoValueLineInterpolation__FUcUcf
  */
@@ -523,16 +425,13 @@ void dMenu_FmapMap_c::_delete() {
 const dMfm_HIO_prm_res_src_s dMfm_HIO_prm_res_src_s::m_other = {30};
 
 /* 801CEE94-801CF0B4 1C97D4 0220+00 1/0 0/0 0/0 .text            draw__15dMenu_FmapMap_cFv */
-// NONMATCHING regalloc and instructions out of order
+// NONMATCHING instructions out of order
 void dMenu_FmapMap_c::draw() {
-    f32 fVar3;
-    int iVar2 = mFlashTimer;
-    int iVar1 = dMfm_HIO_prm_res_src_s::m_other.mFlashDuration / 2;
-    if (iVar2 < iVar1) {
-        fVar3 = (f32)(iVar1 - iVar2) / (f32)iVar1;
-    } else {
-        fVar3 = (f32)(iVar2 - iVar1) / (f32)iVar1;
-    }
+    f32 fVar3 = mFlashTimer < dMfm_HIO_prm_res_src_s::m_other.mFlashDuration / 2 ?
+        (f32)(dMfm_HIO_prm_res_src_s::m_other.mFlashDuration / 2 - mFlashTimer)
+            / (f32)(dMfm_HIO_prm_res_src_s::m_other.mFlashDuration / 2) :
+        (f32)(mFlashTimer - dMfm_HIO_prm_res_src_s::m_other.mFlashDuration / 2)
+            / (f32)(dMfm_HIO_prm_res_src_s::m_other.mFlashDuration / 2);
     setPointColor(1.0f - fVar3);
 
     GXColor color;

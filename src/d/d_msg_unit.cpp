@@ -5,34 +5,8 @@
 
 #include "d/d_msg_unit.h"
 #include "stdio.h"
-#include "dol2asm.h"
 #include "d/d_kankyo.h"
 #include "d/d_meter2_info.h"
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__10dMsgUnit_cFv();
-extern "C" void __dt__10dMsgUnit_cFv();
-extern "C" void setTag__10dMsgUnit_cFiiPcb();
-extern "C" void __sinit_d_msg_unit_cpp();
-extern "C" extern char const* const d_msg_d_msg_unit__stringBase0;
-extern "C" extern u8 data_804510D8[8];
-
-//
-// External References:
-//
-
-extern "C" void getDaytime__18dScnKy_env_light_cFv();
-extern "C" void __dl__FPv();
-extern "C" void __register_global_object();
-extern "C" void _savegpr_26();
-extern "C" void _restgpr_26();
-
-//
-// Declarations:
-//
 
 /* 80238C94-80238CA4 2335D4 0010+00 1/1 0/0 0/0 .text            __ct__10dMsgUnit_cFv */
 dMsgUnit_c::dMsgUnit_c() {}
@@ -40,36 +14,8 @@ dMsgUnit_c::dMsgUnit_c() {}
 /* 80238CA4-80238CEC 2335E4 0048+00 2/1 0/0 0/0 .text            __dt__10dMsgUnit_cFv */
 dMsgUnit_c::~dMsgUnit_c() {}
 
-/* ############################################################################################## */
-/* 803996E8-803996E8 025D48 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803996E8 = "%d";
-SECTION_DEAD static char const* const stringBase_803996EB = "%d-%d";
-SECTION_DEAD static char const* const stringBase_803996F1 = "%d:%02d";
-SECTION_DEAD static char const* const stringBase_803996F9 = "";
-SECTION_DEAD static char const* const stringBase_803996FA = "%d%s";
-SECTION_DEAD static char const* const stringBase_803996FF = "%d %s";
-#pragma pop
-
-/* 80454B40-80454B44 003140 0004+00 1/1 0/0 0/0 .sdata2          @3702 */
-SECTION_SDATA2 static f32 lit_3702 = 1000000.0f;
-
-/* 80454B44-80454B48 003144 0004+00 1/1 0/0 0/0 .sdata2          @3703 */
-SECTION_SDATA2 static f32 lit_3703 = 60.0f;
-
-/* 80454B48-80454B50 003148 0004+04 1/1 0/0 0/0 .sdata2          @3704 */
-SECTION_SDATA2 static f32 lit_3704[1 + 1 /* padding */] = {
-    15.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 80454B50-80454B58 003150 0008+00 1/1 0/0 0/0 .sdata2          @3707 */
-SECTION_SDATA2 static f64 lit_3707 = 4503601774854144.0 /* cast s32 to float */;
-
 /* 80238CEC-8023907C 23362C 0390+00 0/0 5/5 0/0 .text            setTag__10dMsgUnit_cFiiPcb */
-// NONMATCHING - regalloc + mulli issue
+// NONMATCHING - regalloc
 void dMsgUnit_c::setTag(int param_1, int param_2, char* param_3, bool param_4) {
     *param_3 = 0;
     if (param_1 == 0x10000) {
@@ -79,7 +25,7 @@ void dMsgUnit_c::setTag(int param_1, int param_2, char* param_3, bool param_4) {
     } else if (param_1 == 4 && param_4 == true) {
         int r6 = param_2 / 1000;
         int r5 = r6 / 60;
-        r6 %= 60;
+        r6 -= r5 * 60;
         if (r5 > 99) {
             r5 = 99;
             r6 = 59;

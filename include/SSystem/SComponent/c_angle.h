@@ -42,6 +42,8 @@ public:
     void operator*=(float);
     bool operator<(const cSAngle& other) const { return mAngle < other.mAngle; }
     bool operator>(const cSAngle& other) const { return mAngle > other.mAngle; }
+    bool operator<=(const cSAngle& other) const { return mAngle <= other.mAngle; }
+    bool operator>=(const cSAngle& other) const { return mAngle >= other.mAngle; }
     operator s16(void) const { return mAngle; }
     void operator=(const cSAngle& other) { mAngle = other.mAngle; }
     static inline cSAngle getMaxNegative(void) { return cSAngle((s16)-0x8000); }
@@ -133,6 +135,7 @@ public:
 
     void R(f32 i_radius) { mRadius = i_radius; }
     void U(cSAngle const& i_azimuth) { mAzimuth = i_azimuth.Val(); }
+    void V(cSAngle const& i_inclination) { mInclination = i_inclination.Val(); }
 
     cSGlobe(const cSGlobe&);
     cSGlobe(float, short, short);
