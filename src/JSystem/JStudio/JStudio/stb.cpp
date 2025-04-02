@@ -3,47 +3,6 @@
 #include "JSystem/JUtility/JUTException.h"
 #include "algorithm.h"
 
-//
-// Types:
-//
-
-namespace std {
-
-/* 80289928 */ /* std::find_if<JGadget::TLinkList<JStudio::stb::TObject, 12>::iterator,
-                  JStudio::object::TPRObject_ID_equal> */
-void func_80289928(void* _this, JGadget::TLinkList<JStudio::stb::TObject, 12>::iterator,
-                   JGadget::TLinkList<JStudio::stb::TObject, 12>::iterator,
-                   JStudio::object::TPRObject_ID_equal);
-};  // namespace std
-
-//
-// Forward References:
-//
-
-extern "C" void reset__Q37JStudio3stb7TObjectFPCv();
-extern "C" void forward__Q37JStudio3stb7TObjectFUl();
-extern "C" void destroyObject__Q37JStudio3stb8TControlFPQ37JStudio3stb7TObject();
-extern "C" void func_80289928(void* _this, JGadget::TLinkList<JStudio::stb::TObject, 12>::iterator,
-                              JGadget::TLinkList<JStudio::stb::TObject, 12>::iterator,
-                              JStudio::object::TPRObject_ID_equal);
-
-//
-// External References:
-//
-
-extern "C" void
-isEqual__Q37JStudio6object7TIDDataFRCQ37JStudio6object7TIDDataRCQ37JStudio6object7TIDData();
-extern "C" void
-Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode();
-extern "C" void Erase__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" int memcmp(const void*, const void*, u32);
-
 namespace JStudio {
 namespace stb {
 
@@ -112,8 +71,8 @@ void TObject::reset(const void* arg1) {
     u32Wait_ = 0;
 }
 
-u8 TObject::forward(u32 arg1) {
-    u8 temp = false;
+bool TObject::forward(u32 arg1) {
+    bool temp = false;
 
     while (true) {
         if (mFlag & 0x8000) {
@@ -134,7 +93,7 @@ u8 TObject::forward(u32 arg1) {
                 ASSERT(false);
                 break;
             }
-            return 1;
+            return true;
         }
 
         if (getStatus() == STATUS_INACTIVE) {
@@ -151,7 +110,7 @@ u8 TObject::forward(u32 arg1) {
                 setStatus_(STATUS_SUSPEND);
                 on_wait(arg1);
             }
-            return 1;
+            return true;
         }
 
         while (true) {
@@ -168,7 +127,7 @@ u8 TObject::forward(u32 arg1) {
                     setStatus_(STATUS_END);
                     on_end();
                 }
-                return 0;
+                return false;
             }
 
             if (!bSequence_) {
@@ -194,7 +153,7 @@ u8 TObject::forward(u32 arg1) {
             } else {
                 u32Wait_ -= arg1;
                 on_wait(arg1);
-                return 1;
+                return true;
             }
         }
     }
@@ -382,21 +341,15 @@ void TControl::reset() {
 
 /* 802894B4-802895B4 283DF4 0100+00 0/0 2/2 0/0 .text            forward__Q37JStudio3stb8TControlFUl
  */
-// NONMATCHING - regalloc
-u8 TControl::forward(u32 param_0) {
+bool TControl::forward(u32 param_0) {
     _54 = mObject_control.getSuspend();
-    u8 rv = mObject_control.forward(param_0);
+    bool rv = mObject_control.forward(param_0);
     int uVar7 = 0xf;
     int uVar6 = 0;
     JGadget::TContainerEnumerator<JStudio::stb::TObject, -12> aTStack_38(&mObjectContainer);
     while (aTStack_38) {
         JStudio::stb::TObject& this_00 = *aTStack_38;
-        u8 iVar5 = 0;
-        u8 iVar4 = this_00.forward(param_0);
-        if (iVar4 != 0 || rv != 0) {
-            iVar5 = 1;
-        }
-        rv = iVar5;
+        rv = this_00.forward(param_0) || rv;
         int uVar3 = this_00.getStatus();
         uVar7 &= uVar3;
         uVar6 |= uVar3;
@@ -524,13 +477,3 @@ bool TParse::parseBlock_object(const data::TParse_TBlock_object& ppObject, u32 f
 
 }  // namespace stb
 }  // namespace JStudio
-
-/* 80289928-802899BC 284268 0094+00 1/1 0/0 0/0 .text
- * find_if<Q37JGadget37TLinkList<Q37JStudio3stb7TObject,-12>8iterator,Q37JStudio6object18TPRObject_ID_equal>__3stdFQ37JGadget37TLinkList<Q37JStudio3stb7TObject,-12>8iteratorQ37JGadget37TLinkList<Q37JStudio3stb7TObject,-12>8iteratorQ37JStudio6object18TPRObject_ID_equal
- */
-extern "C" void func_80289928(void* _this,
-                                  JGadget::TLinkList<JStudio::stb::TObject, 12>::iterator param_0,
-                                  JGadget::TLinkList<JStudio::stb::TObject, 12>::iterator param_1,
-                                  JStudio::object::TPRObject_ID_equal param_2) {
-    // NONMATCHING
-}

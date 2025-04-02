@@ -957,13 +957,13 @@ config.libs = [
             Object(MatchingFor("GZ2E01"), "JSystem/JKernel/JKRArchivePub.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JKernel/JKRArchivePri.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JKernel/JKRMemArchive.cpp"),
-            Object(NonMatching, "JSystem/JKernel/JKRAramArchive.cpp"),
+            Object(MatchingFor("GZ2E01"), "JSystem/JKernel/JKRAramArchive.cpp", extra_cflags=['-pragma "nosyminline off"']),
             Object(MatchingFor("GZ2E01"), "JSystem/JKernel/JKRDvdArchive.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JKernel/JKRCompArchive.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JKernel/JKRFile.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JKernel/JKRDvdFile.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JKernel/JKRDvdRipper.cpp"),
-            Object(NonMatching, "JSystem/JKernel/JKRDvdAramRipper.cpp"),
+            Object(MatchingFor("GZ2E01"), "JSystem/JKernel/JKRDvdAramRipper.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JKernel/JKRDecomp.cpp"),
         ],
     ),
@@ -980,8 +980,8 @@ config.libs = [
     JSystemLib(
         "JGadget",
         [
-            Object(NonMatching, "JSystem/JGadget/binary.cpp"),
-            Object(NonMatching, "JSystem/JGadget/linklist.cpp"),
+            Object(Equivalent, "JSystem/JGadget/binary.cpp"), # extra vtable
+            Object(MatchingFor("GZ2E01"), "JSystem/JGadget/linklist.cpp"),
             Object(Equivalent, "JSystem/JGadget/std-vector.cpp", extra_cflags=['-pragma "nosyminline off"']),  # just weak order
         ],
     ),

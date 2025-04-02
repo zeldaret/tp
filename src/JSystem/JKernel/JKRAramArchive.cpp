@@ -10,94 +10,8 @@
 #include "JSystem/JKernel/JKRDvdFile.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTException.h"
-#include "dol2asm.h"
 #include "math.h"
 #include "string.h"
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__14JKRAramArchiveFlQ210JKRArchive15EMountDirection();
-extern "C" void __dt__14JKRAramArchiveFv();
-extern "C" void open__14JKRAramArchiveFl();
-extern "C" void fetchResource__14JKRAramArchiveFPQ210JKRArchive12SDIFileEntryPUl();
-extern "C" void fetchResource__14JKRAramArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl();
-extern "C" void getAramAddress_Entry__14JKRAramArchiveFPQ210JKRArchive12SDIFileEntry();
-extern "C" void getAramAddress__14JKRAramArchiveFPCc();
-extern "C" void fetchResource_subroutine__14JKRAramArchiveFUlUlPUcUli();
-extern "C" void fetchResource_subroutine__14JKRAramArchiveFUlUlP7JKRHeapiPPUc();
-extern "C" void getExpandedResSize__14JKRAramArchiveCFPCv();
-extern "C" void __dt__7JKRFileFv();
-extern "C" extern char const* const JKRAramArchive__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void alloc__7JKRHeapFUliP7JKRHeap();
-extern "C" void alloc__7JKRHeapFUli();
-extern "C" void free__7JKRHeapFPvP7JKRHeap();
-extern "C" void free__7JKRHeapFPv();
-extern "C" void copyMemory__7JKRHeapFPvPvUl();
-extern "C" void* __nw__FUlP7JKRHeapi();
-extern "C" void __dl__FPv();
-extern "C" void __dt__11JKRDisposerFv();
-extern "C" void aramToMainRam__7JKRAramFUlPUcUl15JKRExpandSwitchUlP7JKRHeapiPUl();
-extern "C" void alloc__11JKRAramHeapFUlQ211JKRAramHeap10EAllocMode();
-extern "C" void unmount__13JKRFileLoaderFv();
-extern "C" void becomeCurrent__10JKRArchiveFPCc();
-extern "C" void getResource__10JKRArchiveFPCc();
-extern "C" void getResource__10JKRArchiveFUlPCc();
-extern "C" void readResource__10JKRArchiveFPvUlUlPCc();
-extern "C" void readResource__10JKRArchiveFPvUlPCc();
-extern "C" void removeResourceAll__10JKRArchiveFv();
-extern "C" void removeResource__10JKRArchiveFPv();
-extern "C" void detachResource__10JKRArchiveFPv();
-extern "C" void getResSize__10JKRArchiveCFPCv();
-extern "C" void countFile__10JKRArchiveCFPCc();
-extern "C" void getFirstFile__10JKRArchiveCFPCc();
-extern "C" void __ct__10JKRArchiveFlQ210JKRArchive10EMountMode();
-extern "C" void __dt__10JKRArchiveFv();
-extern "C" void findFsResource__10JKRArchiveCFPCcUl();
-extern "C" void findPtrResource__10JKRArchiveCFPCv();
-extern "C" void setExpandSize__10JKRArchiveFPQ210JKRArchive12SDIFileEntryUl();
-extern "C" void getExpandSize__10JKRArchiveCFPQ210JKRArchive12SDIFileEntry();
-extern "C" void __ct__10JKRDvdFileFl();
-extern "C" void
-loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl();
-extern "C" void loadToAram__16JKRDvdAramRipperFlUl15JKRExpandSwitchUlUlPUl();
-extern "C" void prepend__10JSUPtrListFP10JSUPtrLink();
-extern "C" void remove__10JSUPtrListFP10JSUPtrLink();
-extern "C" void panic_f__12JUTExceptionFPCciPCce();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" u8 sVolumeList__13JKRFileLoader[12];
-extern "C" u8 sSystemHeap__7JKRHeap[4];
-extern "C" u8 sAramObject__7JKRAram[4];
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 803CC328-803CC348 029448 0020+00 1/1 4/4 0/0 .data            __vt__7JKRFile */
-SECTION_DATA extern void* __vt__7JKRFile[8] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__7JKRFileFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-};
 
 /* 802D70C0-802D7168 2D1A00 00A8+00 0/0 1/1 0/0 .text
  * __ct__14JKRAramArchiveFlQ210JKRArchive15EMountDirection      */
@@ -423,10 +337,4 @@ u32 JKRAramArchive::getExpandedResSize(const void* ptr) const {
     // ??? casting away const?
     ((JKRArchive*)this)->setExpandSize(entry, expandSize);
     return expandSize;
-}
-
-/* 802D7B90-802D7BF0 2D24D0 0060+00 1/0 0/0 0/0 .text            __dt__7JKRFileFv */
-// JKRFile::~JKRFile() {
-extern "C" void __dt__7JKRFileFv() {
-    // NONMATCHING
 }

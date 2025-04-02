@@ -4,56 +4,16 @@
 //
 
 #include "JSystem/JStudio/JStudio_JStage/object-light.h"
-#include "dol2asm.h"
 
-//
-// Forward References:
-//
+// adaptor_do_update calls these functions as inlines somehow
+// these need to be moved to MSL_C once an appropriate solution is found
+inline float sinf(float x) {
+    return sin(x);
+}
 
-extern "C" void __ct__Q214JStudio_JStage14TAdaptor_lightFPCQ26JStage7TSystemPQ26JStage6TLight();
-extern "C" void __dt__Q214JStudio_JStage14TAdaptor_lightFv();
-extern "C" void adaptor_do_prepare__Q214JStudio_JStage14TAdaptor_lightFv();
-extern "C" void adaptor_do_begin__Q214JStudio_JStage14TAdaptor_lightFv();
-extern "C" void adaptor_do_end__Q214JStudio_JStage14TAdaptor_lightFv();
-extern "C" void adaptor_do_update__Q214JStudio_JStage14TAdaptor_lightFUl();
-extern "C" void adaptor_do_data__Q214JStudio_JStage14TAdaptor_lightFPCvUlPCvUl();
-extern "C" void
-adaptor_do_FACULTY__Q214JStudio_JStage14TAdaptor_lightFQ37JStudio4data15TEOperationDataPCvUl();
-extern "C" void
-adaptor_do_ENABLE__Q214JStudio_JStage14TAdaptor_lightFQ37JStudio4data15TEOperationDataPCvUl();
-extern "C" void
-__cl__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_CFfPQ27JStudio8TAdaptor();
-extern "C" void __dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv();
-extern "C" void func_8028D2B8();
-extern "C" u8 saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light[72];
-
-//
-// External References:
-//
-
-extern "C" void __dt__Q37JStudio14TVariableValue7TOutputFv();
-extern "C" void update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued();
-extern "C" void adaptor_setVariableValue_Vec__Q27JStudio8TAdaptorFPCUlRC3Vec();
-extern "C" void adaptor_getVariableValue_Vec__Q27JStudio8TAdaptorCFP3VecPCUl();
-extern "C" void adaptor_setVariableValue_GXColor__Q27JStudio8TAdaptorFPCUlRC8_GXColor();
-extern "C" void adaptor_getVariableValue_GXColor__Q27JStudio8TAdaptorCFP8_GXColorPCUl();
-extern "C" void __dt__Q27JStudio14TAdaptor_lightFv();
-extern "C" void adaptor_object_data___Q214JStudio_JStage16TAdaptor_object_FPCvUlPCvUl();
-extern "C" void
-adaptor_object_ENABLE___Q214JStudio_JStage16TAdaptor_object_FQ37JStudio4data15TEOperationDataPCvUl();
-extern "C" void __ct__Q27JStudio14TVariableValueFv();
-extern "C" void __dl__FPv();
-extern "C" void __register_global_object();
-extern "C" void __construct_array();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_29();
-extern "C" u8 const sauVariableValue_4_COLOR_RGBA__Q27JStudio14TAdaptor_light[16];
-extern "C" u8 const sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_light[12];
-extern "C" u8 const sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio14TAdaptor_light[12];
-extern "C" extern void* __vt__Q27JStudio14TAdaptor_light[10];
-extern "C" extern void* __vt__Q27JStudio8TAdaptor[8];
-extern "C" extern void* __vt__Q37JStudio14TVariableValue7TOutput[4];
-extern "C" u8 soOutput_none___Q27JStudio14TVariableValue[4 + 4 /* padding */];
+inline float cosf(float x) {
+    return cos(x);
+}
 
 /* 8028CB50-8028CBF4 287490 00A4+00 0/0 1/1 0/0 .text
  * __ct__Q214JStudio_JStage14TAdaptor_lightFPCQ26JStage7TSystemPQ26JStage6TLight */
@@ -101,28 +61,6 @@ void JStudio_JStage::TAdaptor_light::adaptor_do_prepare() {
     }
 }
 
-/* ############################################################################################## */
-/* 804554E8-804554F0 003AE8 0004+04 1/1 0/0 0/0 .sdata2          @846 */
-SECTION_SDATA2 static f32 lit_846[1 + 1 /* padding */] = {
-    0.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 804554F0-804554F8 003AF0 0008+00 1/1 0/0 0/0 .sdata2          @847 */
-SECTION_SDATA2 static f64 lit_847 = 0.5;
-
-/* 804554F8-80455500 003AF8 0008+00 1/1 0/0 0/0 .sdata2          @848 */
-SECTION_SDATA2 static f64 lit_848 = 3.0;
-
-/* 80455500-80455508 003B00 0008+00 1/1 0/0 0/0 .sdata2          @849 */
-SECTION_SDATA2 static u8 lit_849[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80455508-8045550C 003B08 0004+00 1/1 0/0 0/0 .sdata2          @850 */
-SECTION_SDATA2 static f32 lit_850 = 57.295780181884766f;
-
 /* 8028CCB0-8028CF68 2875F0 02B8+00 1/0 0/0 0/0 .text
  * adaptor_do_begin__Q214JStudio_JStage14TAdaptor_lightFv       */
 // NONMATCHING - regalloc
@@ -145,10 +83,10 @@ void JStudio_JStage::TAdaptor_light::adaptor_do_begin() {
     f32 diry = finalTransform->direction.y;
     f32 dirz = finalTransform->direction.z;
     f32 sqr = sqrtf(dirx * dirx + dirz * dirz);
-    f32 dVar11 = atan2(dirx, dirz);
-    f32 dVar9 = atan2(diry, sqr);
-    adaptor_setVariableValue_immediate(10, (180.0f / M_PI) * dVar11);
-    adaptor_setVariableValue_immediate(11, (180.0f / M_PI) * dVar9);
+    f32 dVar11 = atan2f(dirx, dirz);
+    f32 dVar9 = atan2f(diry, sqr);
+    adaptor_setVariableValue_immediate(10, MTXRadToDeg(dVar11));
+    adaptor_setVariableValue_immediate(11, MTXRadToDeg(dVar9));
     Vec VStack_c4;
     VECAdd(&finalTransform->position, &finalTransform->direction, &VStack_c4);
     adaptor_setVariableValue_Vec(sauVariableValue_3_TARGET_POSITION_XYZ, VStack_c4);
@@ -160,13 +98,8 @@ void JStudio_JStage::TAdaptor_light::adaptor_do_end() {
     adaptor_object_end_();
 }
 
-/* ############################################################################################## */
-/* 8045550C-80455510 003B0C 0004+00 1/1 0/0 0/0 .sdata2          @898 */
-SECTION_SDATA2 static f32 lit_898 = 0.01745329238474369f;
-
 /* 8028CFBC-8028D18C 2878FC 01D0+00 1/0 0/0 0/0 .text
  * adaptor_do_update__Q214JStudio_JStage14TAdaptor_lightFUl     */
-// NONMATCHING - float regalloc
 void JStudio_JStage::TAdaptor_light::adaptor_do_update(u32 param_1) {
     JStage::TLight* lightObj = get_pJSG_();
     const JStudio::TObject* pObject = adaptor_getObject();
@@ -183,13 +116,13 @@ void JStudio_JStage::TAdaptor_light::adaptor_do_update(u32 param_1) {
     case 1:
         f32 dVar10 = adaptor_getVariableValue(10)->getValue();
         f32 dVar11 = adaptor_getVariableValue(11)->getValue();
-        f32 temp = 0.01745329238474369f * dVar11;
-        f32 dVar12 = cos(temp);
-        f32 sinVal = sin(temp);
-        f32 temp2 = 0.01745329238474369f * dVar10;
-        VStack_198.direction.x = dVar12 * (f32)sin(temp2);
+        f32 temp = MTXDegToRad(dVar11);
+        f32 dVar12 = cosf(temp);
+        f32 sinVal = sinf(temp);
+        f32 temp2 = MTXDegToRad(dVar10);
+        VStack_198.direction.x = dVar12 * sinf(temp2);
         VStack_198.direction.y = sinVal;
-        VStack_198.direction.z = dVar12 * (f32)cos(temp2);
+        VStack_198.direction.z = dVar12 * cosf(temp2);
         break;
     case 2:
         Vec VStack_1c0;

@@ -46,8 +46,8 @@ template<>
 struct TUtil<double> {
     static inline double epsilon() { return 32.0f * FLT_EPSILON; }
     static inline double one() { return 1.0; }
-    static inline double atan2(double x, double y) { return atan2(x, y); }
-    static inline double asin(double x) { return asin(x); }
+    static inline double atan2(double x, double y) { return ::atan2(x, y); }
+    static inline double asin(double x) { return ::asin(x); }
     static inline double halfPI() { return 1.5707963267948966; }
 };
 

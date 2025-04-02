@@ -112,7 +112,7 @@ struct data {
 struct TObject_TxyzRy : public TObject {
     /* 80280F60 */ TObject_TxyzRy(JStudio::ctb::data::TParse_TBlock const&);
     
-    /* 80281554 */ virtual ~TObject_TxyzRy();
+    /* 80281554 */ virtual ~TObject_TxyzRy() {}
     /* 80280FBC */ virtual int getScheme() const;
 };
 

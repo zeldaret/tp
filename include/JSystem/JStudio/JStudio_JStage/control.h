@@ -333,7 +333,7 @@ inline bool transform_toGlobalFromLocal(JStudio::TControl::TTransform_position* 
     if (!transform_toGlobalFromLocal(afStack_38, param_2, param_3, param_4)) {
         return false;
     }
-    JStudio::math::getFromTransformation_T(afStack_38, param_1);
+    JStudio::math::getFromTransformation_T(param_1, afStack_38);
     return true;
 }
 /* 8028A328 */ bool
