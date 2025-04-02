@@ -27,7 +27,7 @@ struct TObject_ID : public TIDData {
 
 struct TPRObject_ID_equal : public TIDData {
     TPRObject_ID_equal(const void* id, u32 id_size) : TIDData(id, id_size) {}
-    bool operator()(TObject_ID const& id) { return TIDData::isEqual(id.getIDData(), *this); }
+    bool operator()(TObject_ID const& id) const { return TIDData::isEqual(id.getIDData(), *this); }
 };
 
 }  // namespace object

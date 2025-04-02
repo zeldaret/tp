@@ -768,7 +768,7 @@ config.libs = [
     JSystemLib(
         "JStudio",
         [
-            Object(NonMatching, "JSystem/JStudio/JStudio/ctb.cpp"),
+            Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/ctb.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/ctb-data.cpp"),
             Object(NonMatching, "JSystem/JStudio/JStudio/functionvalue.cpp"),
             Object(NonMatching, "JSystem/JStudio/JStudio/functionvalue-inline.cpp"),
@@ -781,7 +781,7 @@ config.libs = [
             Object(NonMatching, "JSystem/JStudio/JStudio/jstudio-math.cpp"),
             Object(NonMatching, "JSystem/JStudio/JStudio/jstudio-object.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/object-id.cpp"),
-            Object(NonMatching, "JSystem/JStudio/JStudio/stb.cpp"),
+            Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/stb.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/stb-data-parse.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/stb-data.cpp"),
         ],
@@ -888,11 +888,11 @@ config.libs = [
     JSystemLib(
         "JMessage",
         [
-            Object(NonMatching, "JSystem/JMessage/control.cpp"),
+            Object(MatchingFor("GZ2E01"), "JSystem/JMessage/control.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JMessage/data.cpp"),
-            Object(NonMatching, "JSystem/JMessage/processor.cpp"),
+            Object(NonMatching, "JSystem/JMessage/processor.cpp", extra_cflags=['-pragma "nosyminline off"']),
             Object(NonMatching, "JSystem/JMessage/resource.cpp"),
-            Object(NonMatching, "JSystem/JMessage/locale.cpp"),
+            Object(MatchingFor("GZ2E01"), "JSystem/JMessage/locale.cpp"),
         ],
     ),
     {
@@ -980,7 +980,7 @@ config.libs = [
     JSystemLib(
         "JGadget",
         [
-            Object(Equivalent, "JSystem/JGadget/binary.cpp"), # extra vtable
+            Object(MatchingFor("GZ2E01"), "JSystem/JGadget/binary.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JGadget/linklist.cpp"),
             Object(Equivalent, "JSystem/JGadget/std-vector.cpp", extra_cflags=['-pragma "nosyminline off"']),  # just weak order
         ],

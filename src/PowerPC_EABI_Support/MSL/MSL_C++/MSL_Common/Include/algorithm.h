@@ -29,12 +29,21 @@ ForwardIterator lower_bound(ForwardIterator first, ForwardIterator last, const T
 template <class ForwardIterator, class T>
 ForwardIterator upper_bound(ForwardIterator first, ForwardIterator last, const T& val);
 
+// fakematch: p should not be a reference, but that breaks JStudio::stb::TControl::getObject
 template<class InputIt, class UnaryPredicate>
-InputIt find_if(InputIt first, InputIt last, UnaryPredicate p) {
+InputIt find_if(InputIt first, InputIt last, UnaryPredicate const& p) {
 	while (first != last && !p(*first)) {
 		++first;
 	}
 	return first;
+}
+
+// fakematch: val should be a const reference, but that breaks JMessage::TResource::toMessageIndex_messageID
+template<class ForwardIterator, class T>
+inline ForwardIterator find(ForwardIterator first, ForwardIterator last, T& val) {
+    for (; first != last && *first != val; ++first) {
+    }
+    return first;
 }
 
 /*

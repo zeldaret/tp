@@ -221,7 +221,7 @@ struct TLinkList : public TNodeLinkList {
 
 template <typename T, int I>
 struct TLinkList_factory : public TLinkList<T, I> {
-    virtual ~TLinkList_factory() {}
+    virtual ~TLinkList_factory() = 0 {}  // I hate this but it works
     virtual T* Do_create() = 0;
     virtual void Do_destroy(T*) = 0;
     void Clear_destroy() {
