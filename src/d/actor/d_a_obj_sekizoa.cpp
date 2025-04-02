@@ -479,12 +479,11 @@ void daObj_Sekizoa_c::Execute() {
 
 /* 80CCECA8-80CCED74 000A48 00CC+00 1/1 0/0 0/0 .text            Draw__15daObj_Sekizoa_cFv */
 void daObj_Sekizoa_c::Draw() {
-    daNpcT_MatAnm_c* temp_mat_anm = mpMatAnm;
-    if (temp_mat_anm != NULL) {
+    if (mpMatAnm[0] != NULL) {
         J3DModelData* this_01 = mpMorf[0]->getModel()->getModelData();
         s32 temp = getEyeballMaterialNo();
         J3DMaterial* mpNodePtr = this_01->getMaterialNodePointer(temp);
-        mpNodePtr->setMaterialAnm(temp_mat_anm);
+        mpNodePtr->setMaterialAnm(mpMatAnm[0]);
     }
 
     int temp_int = 0;
@@ -586,8 +585,8 @@ int daObj_Sekizoa_c::isDelete() {
 
 /* 80CCF138-80CCF358 000ED8 0220+00 2/1 0/0 0/0 .text            reset__15daObj_Sekizoa_cFv */
 void daObj_Sekizoa_c::reset() {
-    if (mpMatAnm != NULL) {
-        mpMatAnm->initialize();
+    if (mpMatAnm[0] != NULL) {
+        mpMatAnm[0]->initialize();
     }
     initialize();
     for (int i = 0; i < 8; i++) {
@@ -2364,22 +2363,22 @@ int daObj_Sekizoa_c::cutGoal(int i_staffIdx) {
                     daNpcT_onEvtBit(0x25E);
                 }
                 daObj_Sekizoa_c* actor_1 = (daObj_Sekizoa_c*) mActorMngrs[1].getActorP();
-                if (daNpcT_chkEvtBit(0x25E) == 0) {
-                    actor_1->current.pos = l_srcPosR;
+                if (daNpcT_chkEvtBit(0x25E) != 0) {
+                    actor_1->current.pos = l_srcPosL;
                 }
                 else {
-                    actor_1->current.pos = l_srcPosL;
+                    actor_1->current.pos = l_srcPosR;
                 }
                 actor_1->old.pos = actor_1->current.pos;
                 actor_1->show();
                 actor_1->setFadeLightOff();
 
                 daObj_Sekizoa_c* actor_2 = (daObj_Sekizoa_c*) mActorMngrs[2].getActorP();
-                if (daNpcT_chkEvtBit(0x25E) == 0) {
-                    actor_2->current.pos = l_srcPosL;
+                if (daNpcT_chkEvtBit(0x25E) != 0) {
+                    actor_2->current.pos = l_srcPosR;
                 }
                 else {
-                    actor_2->current.pos = l_srcPosR;
+                    actor_2->current.pos = l_srcPosL;
                 }
                 actor_2->old.pos = actor_2->current.pos;
                 actor_2->show();
@@ -2399,22 +2398,22 @@ int daObj_Sekizoa_c::cutGoal(int i_staffIdx) {
                 }
 
                 daObj_Sekizoa_c* actor_1 = (daObj_Sekizoa_c*) mActorMngrs[1].getActorP();
-                if (daNpcT_chkEvtBit(0x25E) == 0) {
-                    actor_1->current.pos = l_srcPosR;
+                if (daNpcT_chkEvtBit(0x25E) != 0) {
+                    actor_1->current.pos = l_srcPosL;
                 }
                 else {
-                    actor_1->current.pos = l_srcPosL;
+                    actor_1->current.pos = l_srcPosR;
                 }
                 actor_1->old.pos = actor_1->current.pos;
                 actor_1->show();
                 actor_1->setFadeLightOff();
 
                 daObj_Sekizoa_c* actor_2 = (daObj_Sekizoa_c*) mActorMngrs[2].getActorP();
-                if (daNpcT_chkEvtBit(0x25E) == 0) {
-                    actor_2->current.pos = l_srcPosL;
+                if (daNpcT_chkEvtBit(0x25E) != 0) {
+                    actor_2->current.pos = l_srcPosR;
                 }
                 else {
-                    actor_2->current.pos = l_srcPosR;
+                    actor_2->current.pos = l_srcPosL;
                 }
                 actor_2->old.pos = actor_2->current.pos;
                 actor_2->show();
@@ -2471,14 +2470,14 @@ int daObj_Sekizoa_c::cutGoal(int i_staffIdx) {
     case 3:
         if ((cLib_calcTimer(&mEventTimer) == 0) && (mParamCreate == 0)) {
             daObj_SekiDoor_c* actor_7 = (daObj_SekiDoor_c*) mActorMngrs[7].getActorP();
-            if ((actor_7->chkDestroy() >> 0x20) == 0) {
-                actor_7->open();
-            }
-            else {
-                if (getBitSW2() != 0xFF) {
-                    dComIfGs_onSwitch(getBitSW2(), fopAcM_GetRoomNo(this));
+            if (actor_7->chkDestroy()) {
+                if (getBitSW() != 0xFF) {
+                    dComIfGs_onSwitch(getBitSW(), fopAcM_GetRoomNo(this));
                 }
                 ret = 1;
+            }
+            else {
+                actor_7->open();
             }
         }
         break;
