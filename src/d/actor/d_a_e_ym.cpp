@@ -2384,7 +2384,7 @@ void daE_YM_c::executeSwitch() {
                     field_0x6e6 = 0x5dc;
                     field_0x6e8 = 0;
                 } else {
-                    dStage_dPnt_c* pnt = dPath_GetPnt(mpPath, mCurrentPntNo);
+                    dPnt* pnt = dPath_GetPnt(mpPath, mCurrentPntNo);
                     mCurrentPntNo = 0;
                     ++mCurrentPntNo;
                     old.pos = pnt->m_position;

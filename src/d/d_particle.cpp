@@ -20,10 +20,10 @@
 #include "d/actor/d_a_player.h"
 #include "SSystem/SComponent/c_math.h"
 
-extern JPAParticleCallBack* JPTracePCB4;
+extern dPa_particleTracePcallBack_c JPTracePCB4;
 
 /* 80049420-80049580 043D60 0160+00 4/4 0/0 0/0 .text            dPa_cleanupGX__Fv */
-static void dPa_cleanupGX() {
+void dPa_cleanupGX() {
     GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
     GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
     GXEnableTexOffsets(GX_TEXCOORD0, GX_ENABLE, GX_ENABLE);
@@ -47,8 +47,10 @@ static void dPa_cleanupGX() {
 }
 
 /* 803A8308-803A8314 005428 000C+00 1/1 0/0 0/0 .data            l_lifeBallColor */
-static u8 l_lifeBallColor[12] = {
-    0xEB, 0x20, 0x78, 0xFF, 0x20, 0xF1, 0x9B, 0xFF, 0xEB, 0xD7, 0x2F, 0xFF,
+static GXColor l_lifeBallColor[3] = {
+    {0xEB, 0x20, 0x78, 0xFF},
+    {0x20, 0xF1, 0x9B, 0xFF},
+    {0xEB, 0xD7, 0x2F, 0xFF},
 };
 
 /* 80049580-800495BC 043EC0 003C+00 0/0 1/1 8/8 .text            __ct__19dPa_followEcallBackFUcUc */
@@ -969,7 +971,7 @@ void dPa_control_c::level_c::emitter_c::cleanup() {
          pdVar1 != dPa_control_c::getLight8EcallBack()) {
         mEmitter->setEmitterCallBackPtr(NULL);
         JPAParticleCallBack* cb = mEmitter->getParticleCallBackPtr();
-        if (cb == JPTracePCB4 || cb == dPa_control_c::getParticleTracePCB()) {
+        if (cb == &JPTracePCB4 || cb == dPa_control_c::getParticleTracePCB()) {
             mEmitter->setParticleCallBackPtr(NULL);
         }
     }
@@ -1154,29 +1156,12 @@ dPa_selectTexEcallBack dPa_control_c::mTsubo[] = {
     dPa_selectTexEcallBack(7),
 };
 
-/* 804247D4-804247E0 0514F4 000C+00 0/1 0/0 0/0 .bss             @4731 */
-#pragma push
-#pragma force_active on
-static u8 lit_4731[12];
-#pragma pop
-
-/* 804247E0-804247EC 051500 000C+00 0/1 0/0 0/0 .bss             @4732 */
-#pragma push
-#pragma force_active on
-static u8 lit_4732[12];
-#pragma pop
-
-/* 804247EC-804247F8 05150C 000C+00 0/1 0/0 0/0 .bss             @4733 */
-#pragma push
-#pragma force_active on
-static u8 lit_4733[12];
-#pragma pop
-
 /* 804247F8-80424810 051518 0018+00 0/1 0/0 0/0 .bss             mLifeBall__13dPa_control_c */
-#pragma push
-#pragma force_active on
-u8 dPa_control_c::mLifeBall[24];
-#pragma pop
+dPa_setColorEcallBack dPa_control_c::mLifeBall[3] = {
+    dPa_setColorEcallBack(l_lifeBallColor[0]),
+    dPa_setColorEcallBack(l_lifeBallColor[1]),
+    dPa_setColorEcallBack(l_lifeBallColor[2]),
+};
 
 /* 80450EA0-80450EA4 0003A0 0004+00 14/14 1/1 0/0 .sbss            mEmitterMng__13dPa_control_c */
 JPAEmitterManager* dPa_control_c::mEmitterMng;
@@ -1211,11 +1196,11 @@ dPa_gen_d_light8PcallBack dPa_control_c::m_d_Light8PcallBack;
 /* 80450EC4-80450EC8 0003C4 0004+00 1/1 2/2 0/0 .sbss            None */
 u8 dPa_control_c::mStatus;
 
-/* 80450EC8-80450ED0 0003C8 0004+04 2/2 1/1 17/17 .sbss mParticleTracePCB__13dPa_control_c */
-dPa_particleTracePcallBack_c dPa_control_c::mParticleTracePCB;
-
 /* 80424870-804248A0 051590 0030+00 1/1 0/0 0/0 .bss             mWindViewMatrix__13dPa_control_c */
 Mtx dPa_control_c::mWindViewMatrix;
+
+/* 80450EC8-80450ED0 0003C8 0004+04 2/2 1/1 17/17 .sbss mParticleTracePCB__13dPa_control_c */
+dPa_particleTracePcallBack_c dPa_control_c::mParticleTracePCB;
 
 /* 8004BACC-8004BB70 04640C 00A4+00 0/0 1/1 0/0 .text            __ct__13dPa_control_cFv */
 dPa_control_c::dPa_control_c() {
@@ -2407,48 +2392,4 @@ void dPa_particleTracePcallBack_c::execute(JPABaseEmitter* param_0, JPABaseParti
         local_24.z += vec->z;
         param_1->setOffsetPosition(local_24);
     }
-}
-
-/* 80050010-80050014 04A950 0004+00 1/0 0/0 0/0 .text
- * setup__22dPa_selectTexEcallBackFP14JPABaseEmitterPC4cXyzPC5csXyzSc */
-void dPa_selectTexEcallBack::setup(JPABaseEmitter* param_0, cXyz const* param_1,
-                                   csXyz const* param_2, s8 param_3) {
-    /* empty function */
-}
-
-/* 80050014-80050038 04A954 0024+00 1/0 0/0 0/0 .text
- * drawAfter__18dPa_modelEcallBackFP14JPABaseEmitter            */
-void dPa_modelEcallBack::drawAfter(JPABaseEmitter* param_0) {
-    cleanupModel(param_0);
-}
-
-/* 80050098-800500B8 04A9D8 0020+00 1/0 0/0 0/0 .text
- * drawAfter__25dPa_gen_d_light8EcallBackFP14JPABaseEmitter     */
-void dPa_gen_d_light8EcallBack::drawAfter(JPABaseEmitter* param_0) {
-    dPa_cleanupGX();
-}
-
-/* 8005013C-8005015C 04AA7C 0020+00 1/0 0/0 0/0 .text
- * drawAfter__25dPa_gen_b_light8EcallBackFP14JPABaseEmitter     */
-void dPa_gen_b_light8EcallBack::drawAfter(JPABaseEmitter* param_0) {
-    dPa_cleanupGX();
-}
-
-/* 800501E0-80050200 04AB20 0020+00 1/0 0/0 0/0 .text
- * drawAfter__19dPa_light8EcallBackFP14JPABaseEmitter           */
-void dPa_light8EcallBack::drawAfter(JPABaseEmitter* param_0) {
-    dPa_cleanupGX();
-}
-
-/* 800502B0-800502E0 04ABF0 0030+00 1/0 0/0 0/0 .text
- * draw__21dPa_setColorEcallBackFP14JPABaseEmitter              */
-void dPa_setColorEcallBack::draw(JPABaseEmitter* param_0) {
-    GXSetTevColor(GX_TEVREG1, mColor);
-}
-
-/* 800502E0-800502E4 04AC20 0004+00 1/0 0/0 0/0 .text
- * setup__21dPa_setColorEcallBackFP14JPABaseEmitterPC4cXyzPC5csXyzSc */
-void dPa_setColorEcallBack::setup(JPABaseEmitter* param_0, cXyz const* param_1,
-                                  csXyz const* param_2, s8 param_3) {
-    /* empty function */
 }

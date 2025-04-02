@@ -163,7 +163,7 @@ void daAlink_c::swimBgCheck(f32 param_0) {
     if (cBgW_CheckBWall(tri.mNormal.y) &&
         (mProcID != PROC_METAMORPHOSE || dComIfG_Bgsp().GetWallCode(mLinkLinChk) != 7))
     {
-        cXyz sp14 = end_pos - mLinkLinChk.i_GetCross();
+        cXyz sp14 = end_pos - mLinkLinChk.GetCross();
         f32 temp_f1 = sp14.absXZ();
 
         s16 var_r28 = sp14.atan2sX_Z();
@@ -189,7 +189,7 @@ void daAlink_c::swimBgCheck(f32 param_0) {
             dComIfG_Bgsp().GetTriPla(mLinkLinChk, &tri);
 
             if (cBgW_CheckBWall(tri.mNormal.y)) {
-                sp14 = end_pos - mLinkLinChk.i_GetCross();
+                sp14 = end_pos - mLinkLinChk.GetCross();
                 temp_f1 = sp14.absXZ();
 
                 var_r28 = sp14.atan2sX_Z();

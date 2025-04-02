@@ -1269,11 +1269,9 @@ void dKyw_wind_set() {
             var_r28 = dStage_FileList_dt_GlobalWindDir(fili_p);
         }
 
-        s32 var_r4 = dComIfGp_roomControl_getStayNo();
-        if (dComIfGp_roomControl_getStatusRoomDt(var_r4) != NULL) {
-            s32 var_r4_2 = dComIfGp_roomControl_getStayNo();
+        if (dComIfGp_roomControl_getStatusRoomDt(dComIfGp_roomControl_getStayNo()) != NULL) {
             dStage_Lbnk_c* lbnk_p =
-                dComIfGp_roomControl_getStatusRoomDt(var_r4_2)->getLbnk();
+                dComIfGp_roomControl_getStatusRoomDt(dComIfGp_roomControl_getStayNo())->getLbnk();
             if (lbnk_p != NULL) {
                 dStage_Lbnk_dt_c* data_p = lbnk_p->entries;
 
@@ -1318,11 +1316,9 @@ void dKyw_wind_set() {
             wind_level = dStage_FileList_dt_GlobalWindLevel(fili_p);
         }
 
-        s32 var_r4_3 = dComIfGp_roomControl_getStayNo();
-        if (dComIfGp_roomControl_getStatusRoomDt(var_r4_3) != NULL) {
-            s32 var_r4_4 = dComIfGp_roomControl_getStayNo();
+        if (dComIfGp_roomControl_getStatusRoomDt(dComIfGp_roomControl_getStayNo()) != NULL) {
             dStage_Lbnk_c* lbnk_p =
-                dComIfGp_roomControl_getStatusRoomDt(var_r4_4)->getLbnk();
+                dComIfGp_roomControl_getStatusRoomDt(dComIfGp_roomControl_getStayNo())->getLbnk();
             if (lbnk_p != NULL) {
                 dStage_Lbnk_dt_c* data_p = lbnk_p->entries;
 

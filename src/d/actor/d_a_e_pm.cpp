@@ -325,7 +325,7 @@ void daE_PM_c::SearchFarP() {
     //! @bug best_distance is not initialized
     f32 best_distance;
     int best_index;
-    dStage_dPnt_c* pnt = dPath_GetPnt(mpPath, 0);
+    dPnt* pnt = dPath_GetPnt(mpPath, 0);
     cXyz point(pnt->m_position.x, pnt->m_position.y, pnt->m_position.z);
     for (int i = 0; i < mpPath->m_num; i++) {
         pnt = dPath_GetPnt(mpPath, i);
@@ -343,7 +343,7 @@ void daE_PM_c::SearchFarP() {
 /* 80742C94-80742E1C 000E94 0188+00 3/3 0/0 0/0 .text            SearchNearP__8daE_PM_cFv */
 void daE_PM_c::SearchNearP() {
     //! @bug Whatever this function is supposed to do is almost certainly not what it actually does.
-    dStage_dPnt_c* pnt = dPath_GetPnt(mpPath, 0);
+    dPnt* pnt = dPath_GetPnt(mpPath, 0);
     if (current.pos.absXZ(pnt->m_position) < 1.0e9f) {
         mPoint = pnt->m_position;
     }
@@ -382,7 +382,7 @@ bool daE_PM_c::CameraSet() {
     camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     dCamera_c* camera_body = dCam_getBody();
 
-    if (!eventInfo.i_checkCommandDemoAccrpt()) {
+    if (!eventInfo.checkCommandDemoAccrpt()) {
         fopAcM_orderPotentialEvent(this, 2, 0xffff, 0);
         return false;
     }

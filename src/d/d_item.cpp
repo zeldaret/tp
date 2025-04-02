@@ -774,8 +774,7 @@ void item_func_WOOD_STICK() {
     dComIfGs_setCollectSword(COLLECT_WOODEN_SWORD);
     dComIfGs_setSelectEquipSword(fpcNm_ITEM_WOOD_STICK);
 
-    s32 roomNo = dComIfGp_roomControl_getStayNo();
-    dComIfGs_onSwitch(28, roomNo);
+    dComIfGs_onSwitch(28, dComIfGp_roomControl_getStayNo());
 }
 
 void item_func_BOOMERANG() {

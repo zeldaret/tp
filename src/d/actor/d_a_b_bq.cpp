@@ -848,7 +848,7 @@ static s8 b_bq_attack(b_bq_class* i_this) {
         lin_chk.Set(&i_this->mMizuAtStartPos, &i_this->field_0x12bc, a_this);
 
         if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-            spD8 = lin_chk.i_GetCross();
+            spD8 = lin_chk.GetCross();
 
             for (int i = 0; i < 2; i++) {
                 static u16 fireno[] = {0x82D4, 0x82D5};
@@ -1236,7 +1236,7 @@ static void demo_camera(b_bq_class* i_this) {
 
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
-            a_this->eventInfo.onCondition(2);
+            a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
 
@@ -1420,7 +1420,7 @@ static void demo_camera(b_bq_class* i_this) {
     case 10:
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
-            a_this->eventInfo.onCondition(2);
+            a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
 
@@ -1639,7 +1639,7 @@ static void demo_camera(b_bq_class* i_this) {
 
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
-            a_this->eventInfo.onCondition(2);
+            a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
 
@@ -1699,7 +1699,7 @@ static void demo_camera(b_bq_class* i_this) {
     case 30:
         if (!monkeybomb->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(monkeybomb, 2, 0xFFFF, 0);
-            monkeybomb->eventInfo.onCondition(2);
+            monkeybomb->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
 
@@ -1808,7 +1808,7 @@ static void demo_camera(b_bq_class* i_this) {
     case 50:
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
-            a_this->eventInfo.onCondition(2);
+            a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
 
@@ -2182,7 +2182,7 @@ static void demo_camera(b_bq_class* i_this) {
             lin_chk.Set(&center, &eye, a_this);
 
             if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-                eye = lin_chk.i_GetCross();
+                eye = lin_chk.GetCross();
             }
         }
 

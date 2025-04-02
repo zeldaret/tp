@@ -105,7 +105,7 @@ void daObjIceBlk_c::loadCurrentPos() {
     if (mpPath != NULL) {
         u16 point_no = getPointNo();
         if (point_no != 0) {
-            dStage_dPnt_c* point = &mpPath->m_points[point_no - 1];
+            dPnt* point = &mpPath->m_points[point_no - 1];
             home.pos = point->m_position;
             old.pos = home.pos;
             current.pos = home.pos;
@@ -148,7 +148,7 @@ int daObjIceBlk_c::saveCurrentPos() {
         return current_pos;
     }
 
-    dStage_dPnt_c* point = mpPath->m_points;
+    dPnt* point = mpPath->m_points;
     f32 nearest_dist = 1000000.0f;
     int nearest_point_no = 0;
 
@@ -676,7 +676,7 @@ int daObjIceBlk_c::checkWallPre(s16 i_angle) {
         linchk.Set(&start, &end, this);
         if (dComIfG_Bgsp().LineCross(&linchk)) {
             end = start + spC8;
-            mWallPrePos = end - linchk.i_GetCross();
+            mWallPrePos = end - linchk.GetCross();
             var_r29 = i;
         }
     }
@@ -799,7 +799,7 @@ void daObjIceBlk_c::actionWait() {
     if (mMode == MODE_PROC_WALK_e && mWalkType == WALK_PUSH) {
         setAction(ACTION_ORDER_EVENT_e);
         fopAcM_orderPotentialEvent(this, 2, 0, 0);
-        eventInfo.i_onCondition(fopAcCnd_NOEXEC_e);
+        eventInfo.onCondition(fopAcCnd_NOEXEC_e);
     }
 }
 
@@ -808,13 +808,13 @@ void daObjIceBlk_c::actionWait() {
 void daObjIceBlk_c::actionOrderEvent() {
     camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
 
-    if (eventInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.checkCommandDemoAccrpt()) {
         setAction(ACTION_EVENT_e);
         camera->mCamera.Stop();
         camera->mCamera.SetTrimSize(1);
     } else if (mMode == MODE_PROC_WALK_e) {
         fopAcM_orderPotentialEvent(this, 2, 0, 0);
-        eventInfo.i_onCondition(fopAcCnd_NOEXEC_e);
+        eventInfo.onCondition(fopAcCnd_NOEXEC_e);
     } else {
         setAction(ACTION_WAIT_e);
     }

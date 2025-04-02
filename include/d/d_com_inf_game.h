@@ -85,6 +85,13 @@ class daAlink_c;
 class dMsgObject_c;
 class J2DOrthoGraph;
 
+class dComIfG_MesgCamInfo_c {
+public:
+    /* 0x00 */ int mID;
+    /* 0x04 */ int mBasicID;
+    /* 0x08 */ fopAc_ac_c* mActor[10];
+};
+
 class dComIfG_play_c {
 public:
     dComIfG_play_c() { this->ct(); }
@@ -361,10 +368,10 @@ public:
     s32 getItemRupeeCount() { return mItemRupeeCount; }
     s16 getItemKeyNumCount() { return mItemKeyNumCount; }
     void clearNowAnimeID() { mNowAnimeID = -1; }
-    void clearMesgCamInfoID() { mMesgCamInfo = -1; }
+    void clearMesgCamInfoID() { mMesgCamInfo.mID = -1; }
     void clearBaseAnimeID() { mBaseAnimeID = 0; }
     void clearFaceAnimeID() { mFaceAnimeID = 0; }
-    void clearMesgCamInfoBasicID() { mMesgCamInfoBasicID = 0; }
+    void clearMesgCamInfoBasicID() { mMesgCamInfo.mBasicID = 0; }
     void clearItemMaxLifeCount() { mItemMaxLifeCount = 0; }
     void clearItemMaxOilCount() { mItemMaxOilCount = 0; }
     void clearItemOilCount() { mItemOilCount = 0; }
@@ -463,23 +470,23 @@ public:
     void setMsgCommonArchive(JKRArchive* arc) { mMsgCommonArchive = arc; }
     void setMsgArchive(int i, JKRArchive* arc) { mMsgArchive[i] = arc; }
     void setMsgObjectClass(dMsgObject_c* obj) { mMsgObjectClass = obj; }
-    void setMesgCamInfoBasicID(int id) { mMesgCamInfoBasicID = id; }
+    void setMesgCamInfoBasicID(int id) { mMesgCamInfo.mBasicID = id; }
     void setMesgCamInfoActor(fopAc_ac_c* param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3,
                              fopAc_ac_c* param_4, fopAc_ac_c* param_5, fopAc_ac_c* param_6,
                              fopAc_ac_c* param_7, fopAc_ac_c* param_8, fopAc_ac_c* param_9,
                              fopAc_ac_c* param_10) {
-        mMesgCamInfoActor1 = param_1;
-        mMesgCamInfoActor2 = param_2;
-        mMesgCamInfoActor3 = param_3;
-        mMesgCamInfoActor4 = param_4;
-        mMesgCamInfoActor5 = param_5;
-        mMesgCamInfoActor6 = param_6;
-        mMesgCamInfoActor7 = param_7;
-        mMesgCamInfoActor8 = param_8;
-        mMesgCamInfoActor9 = param_9;
-        mMesgCamInfoActor10 = param_10;
+        mMesgCamInfo.mActor[0] = param_1;
+        mMesgCamInfo.mActor[1] = param_2;
+        mMesgCamInfo.mActor[2] = param_3;
+        mMesgCamInfo.mActor[3] = param_4;
+        mMesgCamInfo.mActor[4] = param_5;
+        mMesgCamInfo.mActor[5] = param_6;
+        mMesgCamInfo.mActor[6] = param_7;
+        mMesgCamInfo.mActor[7] = param_8;
+        mMesgCamInfo.mActor[8] = param_9;
+        mMesgCamInfo.mActor[9] = param_10;
     }
-    int getMesgCamInfo() { return mMesgCamInfoBasicID; }
+    dComIfG_MesgCamInfo_c* getMesgCamInfo() { return &mMesgCamInfo; }
     void setFontArchive(JKRArchive* arc) { mFontArchive = arc; }
     void setRubyArchive(JKRArchive* arc) { mRubyArchive = arc; }
     void setMain2DArchive(JKRArchive* arc) { mMain2DArchive = arc; }
@@ -494,7 +501,7 @@ public:
     }
     void setPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[param_0][i] |= flag; }
     void clearPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[param_0][i] &= ~flag; }
-    u32 checkPlayerStatus(int param_0, int i, u32 flag) { return flag & mPlayerStatus[param_0][i]; }
+    u32 checkPlayerStatus(int param_0, int i, u32 flag) { return mPlayerStatus[param_0][i] & flag; }
 
     int getPlayerCameraID(int i) { return mPlayerCameraID[i * 8]; }
     int getCameraPlayer1ID(int i) { return mCameraInfo[i].field_0x5; }
@@ -521,6 +528,7 @@ public:
     }
 
     f32 getCameraZoomForcus(int i_no) { return mCameraInfo[i_no].mCameraZoomForcus; }
+    void setCameraZoomForcus(int i_no, f32 i_focus) { mCameraInfo[i_no].mCameraZoomForcus = i_focus; }
 
     f32 getCameraZoomScale(int i_no) { return mCameraInfo[i_no].mCameraZoomScale; }
     void setCameraZoomScale(int i_no, f32 i_scale) { mCameraInfo[i_no].mCameraZoomScale = i_scale; }
@@ -539,7 +547,7 @@ public:
         *o_bank = mCameraInfo[i].mCameraBank;
     }
 
-    void setMesgCamInfoID(int param_0) { mMesgCamInfo = param_0; }
+    void setMesgCamInfoID(int param_0) { mMesgCamInfo.mID = param_0; }
 
     void setStatus(u16 status) { mStatus = status; }
     s32 checkStatus(u16 flags) { return flags & mStatus; }
@@ -778,18 +786,7 @@ public:
     /* 0x04FAB */ u8 field_0x4fab;  // related to setWarpItemData
     /* 0x04FAC */ u8 field_0x4fac;  // related to setWarpItemData
     /* 0x04FAD */ u8 field_0x4fad[3];
-    /* 0x04FB0 */ int mMesgCamInfo;
-    /* 0x04FB4 */ int mMesgCamInfoBasicID;
-    /* 0x04FB8 */ fopAc_ac_c* mMesgCamInfoActor1;
-    /* 0x04FBC */ fopAc_ac_c* mMesgCamInfoActor2;
-    /* 0x04FC0 */ fopAc_ac_c* mMesgCamInfoActor3;
-    /* 0x04FC4 */ fopAc_ac_c* mMesgCamInfoActor4;
-    /* 0x04FC8 */ fopAc_ac_c* mMesgCamInfoActor5;
-    /* 0x04FCC */ fopAc_ac_c* mMesgCamInfoActor6;
-    /* 0x04FD0 */ fopAc_ac_c* mMesgCamInfoActor7;
-    /* 0x04FD4 */ fopAc_ac_c* mMesgCamInfoActor8;
-    /* 0x04FD8 */ fopAc_ac_c* mMesgCamInfoActor9;
-    /* 0x04FDC */ fopAc_ac_c* mMesgCamInfoActor10;
+    /* 0x04FB0 */ dComIfG_MesgCamInfo_c mMesgCamInfo;
     /* 0x04FE0 */ u32 mPlayerStatus[1][4];
     /* 0x04FF0 */ u8 field_0x4ff0[0x8];
     /* 0x04FF8 */ __d_timer_info_c mTimerInfo;
@@ -1171,12 +1168,10 @@ inline void dComIfGs_setBottleNum(u8 i_bottleIdx, u8 i_bottleNum) {
     g_dComIfG_gameInfo.info.getPlayer().getItemRecord().setBottleNum(i_bottleIdx, i_bottleNum);
 }
 
-inline void dComIfGs_onEventBit(u16 i_flag) {
+inline void dComIfGs_onEventBit(const u16 i_flag) {
     g_dComIfG_gameInfo.info.getSavedata().getEvent().onEventBit(i_flag);
 }
 
-// debug rom says `i_flag` is not const, but it's needed to match in some places?
-// missing some other inline maybe?
 inline BOOL dComIfGs_isEventBit(const u16 i_flag) {
     return g_dComIfG_gameInfo.info.getEvent().isEventBit(i_flag);
 }
@@ -1310,7 +1305,7 @@ inline u16 dComIfGs_getLife() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getLife();
 }
 
-inline void dComIfGs_offEventBit(u16 i_flag) {
+inline void dComIfGs_offEventBit(const u16 i_flag) {
     g_dComIfG_gameInfo.info.getSavedata().getEvent().offEventBit(i_flag);
 }
 
@@ -1482,7 +1477,7 @@ inline s32 dComIfGs_isGetMagicUseFlag() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().isMagicFlag(0);
 }
 
-inline void dComIfGs_offTmpBit(u16 i_flag) {
+inline void dComIfGs_offTmpBit(const u16 i_flag) {
     g_dComIfG_gameInfo.info.getTmp().offEventBit(i_flag);
 }
 
@@ -1490,11 +1485,11 @@ inline BOOL dComIfGs_isDarkClearLV(int i_no) {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusB().isDarkClearLV(i_no);
 }
 
-inline BOOL dComIfGs_isTmpBit(u16 i_flag) {
+inline BOOL dComIfGs_isTmpBit(const u16 i_flag) {
     return g_dComIfG_gameInfo.info.getTmp().isEventBit(i_flag);
 }
 
-inline void dComIfGs_onTmpBit(u16 i_flag) {
+inline void dComIfGs_onTmpBit(const u16 i_flag) {
     g_dComIfG_gameInfo.info.getTmp().onEventBit(i_flag);
 }
 
@@ -1828,19 +1823,19 @@ inline void dComIfGs_onLightDropGetFlag(u8 i_nowLevel) {
     g_dComIfG_gameInfo.info.getPlayer().getLightDrop().onLightDropGetFlag(i_nowLevel);
 }
 
-inline void dComIfGs_setTmpReg(u16 i_reg, u8 i_no) {
+inline void dComIfGs_setTmpReg(const u16 i_reg, u8 i_no) {
     g_dComIfG_gameInfo.info.getTmp().setEventReg(i_reg, i_no);
 }
 
-inline u8 dComIfGs_getTmpReg(u16 i_reg) {
+inline u8 dComIfGs_getTmpReg(const u16 i_reg) {
     return g_dComIfG_gameInfo.info.getTmp().getEventReg(i_reg);
 }
 
-inline u8 dComIfGs_getEventReg(u16 reg) {
+inline u8 dComIfGs_getEventReg(const u16 reg) {
     return g_dComIfG_gameInfo.info.getEvent().getEventReg(reg);
 }
 
-inline void dComIfGs_setEventReg(u16 reg, u8 value) {
+inline void dComIfGs_setEventReg(const u16 reg, u8 value) {
     g_dComIfG_gameInfo.info.getEvent().setEventReg(reg, value);
 }
 
@@ -2794,6 +2789,10 @@ inline f32 dComIfGp_getCameraZoomScale(int i_no) {
     return g_dComIfG_gameInfo.play.getCameraZoomScale(i_no);
 }
 
+inline void dComIfGp_setCameraZoomForcus(int i_no, f32 i_focus) {
+    g_dComIfG_gameInfo.play.setCameraZoomForcus(i_no, i_focus);
+}
+
 inline f32 dComIfGp_getCameraZoomForcus(int i_no) {
     return g_dComIfG_gameInfo.play.getCameraZoomForcus(i_no);
 }
@@ -3238,11 +3237,11 @@ inline void dComIfGp_setMesgCameraAttrInfo(int param_1) {
   g_dComIfG_gameInfo.play.setMesgCamInfoBasicID(param_1);
 }
 
-inline int dComIfGp_getMesgCameraInfo() {
+inline dComIfG_MesgCamInfo_c* dComIfGp_getMesgCameraInfo() {
     return g_dComIfG_gameInfo.play.getMesgCamInfo();
 }
 
-inline s32 dComIfGp_roomControl_getStayNo() {
+inline int dComIfGp_roomControl_getStayNo() {
     return dStage_roomControl_c::getStayNo();
 }
 

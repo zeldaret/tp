@@ -6,435 +6,415 @@
 #include "d/actor/d_a_npc_worm.h"
 #include "dol2asm.h"
 
-
-//
-// Forward References:
-//
-
-extern "C" static void nodeCallBack__FP8J3DJointi();
-extern "C" static void daNPC_WORM_Draw__FP14npc_worm_class();
-extern "C" static void npc_worm_ground__FP14npc_worm_class();
-extern "C" static void npc_worm_normal__FP14npc_worm_class();
-extern "C" static void npc_worm_dive__FP14npc_worm_class();
-extern "C" static void npc_worm_binwait__FP14npc_worm_class();
-extern "C" static void action__FP14npc_worm_class();
-extern "C" static void daNPC_WORM_Execute__FP14npc_worm_class();
-extern "C" static bool daNPC_WORM_IsDelete__FP14npc_worm_class();
-extern "C" static void daNPC_WORM_Delete__FP14npc_worm_class();
-extern "C" static void useHeapInit__FP10fopAc_ac_c();
-extern "C" static void daNPC_WORM_Create__FP10fopAc_ac_c();
-extern "C" void getLeftHandPos__9daPy_py_cCFv();
-extern "C" void Insect_Release__9dInsect_cFv();
-extern "C" extern char const* const d_a_npc_worm__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_XrotS__FPA4_fs();
-extern "C" void mDoMtx_XrotM__FPA4_fs();
-extern "C" void mDoMtx_YrotS__FPA4_fs();
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void mDoMtx_ZrotM__FPA4_fs();
-extern "C" void transM__14mDoMtx_stack_cFfff();
-extern "C" void scaleM__14mDoMtx_stack_cFfff();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void fopAcM_delete__FP10fopAc_ac_c();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void request__11dAttCatch_cFP10fopAc_ac_cUcfffsi();
-extern "C" void LineCross__4cBgSFP11cBgS_LinChk();
-extern "C" void GroundCross__4cBgSFP11cBgS_GndChk();
-extern "C" void __ct__11dBgS_GndChkFv();
-extern "C" void __dt__11dBgS_GndChkFv();
-extern "C" void __ct__11dBgS_LinChkFv();
-extern "C" void __dt__11dBgS_LinChkFv();
-extern "C" void Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c();
-extern "C" void __ct__9dInsect_cFv();
-extern "C" void setLookPos__9daPy_py_cFP4cXyz();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void cM_atan2s__Fff();
-extern "C" void cM_rndF__Ff();
-extern "C" void cM_rndFX__Ff();
-extern "C" void SetPos__11cBgS_GndChkFPC4cXyz();
-extern "C" void cLib_addCalc2__FPffff();
-extern "C" void cLib_addCalc0__FPfff();
-extern "C" void cLib_addCalcAngleS2__FPssss();
-extern "C" void MtxPosition__FP4cXyzP4cXyz();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mCurrentMtx__6J3DSys[48];
-extern "C" u8 sincosTable___5JMath[65536];
-
-//
-// Declarations:
-//
-
 /* 80B2DE78-80B2DF4C 000078 00D4+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
-static void nodeCallBack(J3DJoint* param_0, int param_1) {
-    // NONMATCHING
+static int nodeCallBack(J3DJoint* joint, int param_2) {
+    if (param_2 == 0) {
+        int jntNo = joint->getJntNo();
+        J3DModel* model = j3dSys.getModel();
+        npc_worm_class* i_this = (npc_worm_class*)model->getUserArea();
+        if (i_this != NULL && jntNo >= 1 && jntNo <= 9) {
+            MTXCopy(model->getAnmMtx(jntNo), *calc_mtx);
+            cMtx_YrotM(*calc_mtx, i_this->field_0x5b4[jntNo - 1]);
+            model->setAnmMtx(jntNo, *calc_mtx);
+            MTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
+        }
+    }
+    return 1;
 }
-
-/* ############################################################################################## */
-/* 80B2F080-80B2F084 000000 0004+00 7/7 0/0 0/0 .rodata          @3717 */
-SECTION_RODATA static f32 const lit_3717 = 1.0f / 100.0f;
-COMPILER_STRIP_GATE(0x80B2F080, &lit_3717);
 
 /* 80B2DF4C-80B2E044 00014C 00F8+00 1/0 0/0 0/0 .text            daNPC_WORM_Draw__FP14npc_worm_class
  */
-static void daNPC_WORM_Draw(npc_worm_class* param_0) {
-    // NONMATCHING
+static int daNPC_WORM_Draw(npc_worm_class* i_this) {
+    g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
+    if (i_this->field_0x5d4 > 0.01f) {
+        g_env_light.setLightTevColorType_MAJI(i_this->mModel2, &i_this->tevStr);
+        mDoExt_modelUpdateDL(i_this->mModel2);
+    }
+
+    if (i_this->field_0x5e6 == 0) {
+        return 1;
+    }
+    g_env_light.setLightTevColorType_MAJI(i_this->mModel1, &i_this->tevStr);
+    i_this->mModel1->setUserArea((u32)i_this);
+    for (u16 i = 0; i < i_this->mModel1->getModelData()->getJointNum(); i++) {
+        if (i >= 1) {
+            i_this->mModel1->getModelData()->getJointNodePointer(i)->setCallBack(nodeCallBack);
+        }
+    }
+    mDoExt_modelUpdateDL(i_this->mModel1);
+    return 1;
 }
-
-/* ############################################################################################## */
-/* 80B2F084-80B2F088 000004 0004+00 0/5 0/0 0/0 .rodata          @3774 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3774[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80B2F084, &lit_3774);
-#pragma pop
-
-/* 80B2F088-80B2F090 000008 0008+00 0/1 0/0 0/0 .rodata          @3775 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3775[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80B2F088, &lit_3775);
-#pragma pop
-
-/* 80B2F090-80B2F098 000010 0008+00 0/1 0/0 0/0 .rodata          @3776 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3776[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80B2F090, &lit_3776);
-#pragma pop
-
-/* 80B2F098-80B2F0A0 000018 0008+00 0/1 0/0 0/0 .rodata          @3777 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3777[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80B2F098, &lit_3777);
-#pragma pop
-
-/* 80B2F0A0-80B2F0A4 000020 0004+00 0/1 0/0 0/0 .rodata          @3778 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3778 = 35.0f;
-COMPILER_STRIP_GATE(0x80B2F0A0, &lit_3778);
-#pragma pop
-
-/* 80B2F0A4-80B2F0A8 000024 0004+00 0/3 0/0 0/0 .rodata          @3779 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3779 = 10.0f;
-COMPILER_STRIP_GATE(0x80B2F0A4, &lit_3779);
-#pragma pop
-
-/* 80B2F0A8-80B2F0AC 000028 0004+00 0/3 0/0 0/0 .rodata          @3780 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3780 = 5.0f;
-COMPILER_STRIP_GATE(0x80B2F0A8, &lit_3780);
-#pragma pop
-
-/* 80B2F0AC-80B2F0B0 00002C 0004+00 0/1 0/0 0/0 .rodata          @3781 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3781 = 20.0f;
-COMPILER_STRIP_GATE(0x80B2F0AC, &lit_3781);
-#pragma pop
 
 /* 80B2E044-80B2E2C4 000244 0280+00 1/1 0/0 0/0 .text            npc_worm_ground__FP14npc_worm_class
  */
-static void npc_worm_ground(npc_worm_class* param_0) {
-    // NONMATCHING
+static void npc_worm_ground(npc_worm_class* i_this) {
+    daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
+    BOOL bVar2 = FALSE;
+    switch(i_this->field_0x5a8) {
+    case 0:
+        i_this->field_0x5e6 = 0;
+        i_this->field_0x5a8 = 1;
+        i_this->current.pos = i_this->field_0x5d8;
+        break;
+    case 1:
+        if (player->checkWolfDig()) {
+            cXyz diff = player->getLeftHandPos() - i_this->current.pos;
+            if (diff.abs() < 35.0f) {
+                i_this->field_0x5e8[0] = cM_rndF(5.0f) + 10.0f;
+                i_this->field_0x5a8 = 2;
+                i_this->current.pos.x = player->getLeftHandPos().x + cM_rndFX(20.0f);
+                i_this->current.pos.z = player->getLeftHandPos().z + cM_rndFX(20.0f);
+            }
+        }
+        break;
+    case 2:
+        if (i_this->field_0x5e8[0] == 0) {
+            bVar2 = TRUE;
+        }
+        break;
+    }
+
+    if (bVar2) {
+        i_this->field_0x5a6 = 1;
+        i_this->field_0x5a8 = 0;
+        i_this->field_0x5d4 = 0.0f;
+    }
 }
-
-/* ############################################################################################## */
-/* 80B2F0B0-80B2F0B4 000030 0004+00 0/1 0/0 0/0 .rodata          @3812 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3812 = 65536.0f;
-COMPILER_STRIP_GATE(0x80B2F0B0, &lit_3812);
-#pragma pop
-
-/* 80B2F0B4-80B2F0B8 000034 0004+00 0/1 0/0 0/0 .rodata          @3813 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3813 = 16000.0f;
-COMPILER_STRIP_GATE(0x80B2F0B4, &lit_3813);
-#pragma pop
-
-/* 80B2F0B8-80B2F0BC 000038 0004+00 0/1 0/0 0/0 .rodata          @3814 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3814 = 130.0f;
-COMPILER_STRIP_GATE(0x80B2F0B8, &lit_3814);
-#pragma pop
-
-/* 80B2F0BC-80B2F0C0 00003C 0004+00 0/2 0/0 0/0 .rodata          @3815 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3815 = 60.0f;
-COMPILER_STRIP_GATE(0x80B2F0BC, &lit_3815);
-#pragma pop
-
-/* 80B2F0C0-80B2F0C4 000040 0004+00 0/3 0/0 0/0 .rodata          @3816 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3816 = 3.0f;
-COMPILER_STRIP_GATE(0x80B2F0C0, &lit_3816);
-#pragma pop
-
-/* 80B2F0C4-80B2F0C8 000044 0004+00 0/1 0/0 0/0 .rodata          @3817 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3817 = 15.0f;
-COMPILER_STRIP_GATE(0x80B2F0C4, &lit_3817);
-#pragma pop
-
-/* 80B2F0C8-80B2F0CC 000048 0004+00 0/1 0/0 0/0 .rodata          @3818 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3818 = 4.0f;
-COMPILER_STRIP_GATE(0x80B2F0C8, &lit_3818);
-#pragma pop
-
-/* 80B2F0CC-80B2F0D0 00004C 0004+00 0/1 0/0 0/0 .rodata          @3819 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3819 = 2.0f;
-COMPILER_STRIP_GATE(0x80B2F0CC, &lit_3819);
-#pragma pop
-
-/* 80B2F0D0-80B2F0D4 000050 0004+00 0/1 0/0 0/0 .rodata          @3820 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3820 = 20000.0f;
-COMPILER_STRIP_GATE(0x80B2F0D0, &lit_3820);
-#pragma pop
-
-/* 80B2F0D4-80B2F0D8 000054 0004+00 0/1 0/0 0/0 .rodata          @3821 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3821 = 0.5f;
-COMPILER_STRIP_GATE(0x80B2F0D4, &lit_3821);
-#pragma pop
-
-/* 80B2F0D8-80B2F0DC 000058 0004+00 0/1 0/0 0/0 .rodata          @3822 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3822 = 0.75f;
-COMPILER_STRIP_GATE(0x80B2F0D8, &lit_3822);
-#pragma pop
-
-/* 80B2F0DC-80B2F0E0 00005C 0004+00 0/2 0/0 0/0 .rodata          @3823 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3823 = 200.0f;
-COMPILER_STRIP_GATE(0x80B2F0DC, &lit_3823);
-#pragma pop
-
-/* 80B2F0E0-80B2F0E4 000060 0004+00 0/2 0/0 0/0 .rodata          @3824 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3824 = 100.0f;
-COMPILER_STRIP_GATE(0x80B2F0E0, &lit_3824);
-#pragma pop
-
-/* 80B2F0E4-80B2F0E8 000064 0004+00 0/1 0/0 0/0 .rodata          @3825 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3825 = -150.0f;
-COMPILER_STRIP_GATE(0x80B2F0E4, &lit_3825);
-#pragma pop
 
 /* 80B2E2C4-80B2E544 0004C4 0280+00 1/1 0/0 0/0 .text            npc_worm_normal__FP14npc_worm_class
  */
-static void npc_worm_normal(npc_worm_class* param_0) {
-    // NONMATCHING
+static void npc_worm_normal(npc_worm_class* i_this) {
+    fopAc_ac_c* a_this = i_this;
+    switch(i_this->field_0x5a8) {
+    case -1:
+        a_this->current.angle.y = cM_rndF(65536.0f);
+        a_this->speed.y = 0.0f;
+        a_this->speedF = 0.0f;
+        a_this->shape_angle.x = -cM_rndF(16000.0f);
+        i_this->field_0x5d0 = 10.0f;
+        i_this->field_0x5e8[1] = cM_rndF(60.0f) + 130.0f;
+        i_this->field_0x5a8 = 1;
+        i_this->field_0x5e6 = 1;
+        break;
+    case 0:
+        a_this->current.pos.y += 3.0f;
+        a_this->current.angle.y = cM_rndF(65536.0f);
+        a_this->speed.y = cM_rndF(5.0f) + 15.0f;
+        a_this->speedF = cM_rndF(2.0f) + 4.0f;
+        a_this->shape_angle.x = -cM_rndF(16000.0f);
+        i_this->field_0x5d0 = 10.0f;
+        i_this->field_0x5e8[1] = cM_rndF(60.0f) + 130.0f;
+        i_this->field_0x5a8 = 1;
+        i_this->field_0x5e6 = 1;
+    case 1:
+        if (a_this->current.pos.y <= i_this->field_0x5cc &&
+            i_this->field_0x5e8[0] == 0)
+        {
+            i_this->field_0x5ca = a_this->current.angle.y + (s16)cM_rndFX(20000.0f);
+            i_this->field_0x5e8[0] = cM_rndF(10.0f) + 3.0f;
+            a_this->speedF = cM_rndF(0.75f) + 0.5f;
+        }
+
+        if (a_this->eventInfo.checkCommandCatch()) {
+            fopAcM_delete(a_this);
+        } else {
+            dComIfGp_att_CatchRequest(a_this, 0x74, 200.0f, 100.0f, -150.0f, 0x5000, 1);
+            a_this->eventInfo.onCondition(dEvtCnd_40_e);
+        }
+        
+        #ifndef DEBUG
+        if (i_this->field_0x5e8[1] == 0) {
+            i_this->field_0x5a6 = 2;
+            i_this->field_0x5a8 = 0;
+        }
+        #endif
+
+        break;
+    }
+
+    cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->field_0x5ca, 4, 0x400);
+    cLib_addCalcAngleS2(&a_this->shape_angle.x, 0, 2, 0x800);
 }
-
-/* ############################################################################################## */
-/* 80B2F0E8-80B2F0EC 000068 0004+00 0/1 0/0 0/0 .rodata          @3850 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3850 = -1.0f;
-COMPILER_STRIP_GATE(0x80B2F0E8, &lit_3850);
-#pragma pop
-
-/* 80B2F0EC-80B2F0F0 00006C 0004+00 0/3 0/0 0/0 .rodata          @3851 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3851 = 1.0f;
-COMPILER_STRIP_GATE(0x80B2F0EC, &lit_3851);
-#pragma pop
-
-/* 80B2F0F0-80B2F0F4 000070 0004+00 0/2 0/0 0/0 .rodata          @3852 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3852 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(0x80B2F0F0, &lit_3852);
-#pragma pop
-
-/* 80B2F0F4-80B2F0F8 000074 0004+00 0/1 0/0 0/0 .rodata          @3853 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3853 = 1.0f / 50.0f;
-COMPILER_STRIP_GATE(0x80B2F0F4, &lit_3853);
-#pragma pop
 
 /* 80B2E544-80B2E678 000744 0134+00 1/1 0/0 0/0 .text            npc_worm_dive__FP14npc_worm_class
  */
-static void npc_worm_dive(npc_worm_class* param_0) {
-    // NONMATCHING
+static void npc_worm_dive(npc_worm_class* i_this) {
+    switch(i_this->field_0x5a8) {
+    case 0:
+        i_this->field_0x5a8 = 1;
+        i_this->field_0x5d8.x = i_this->current.pos.x;
+        i_this->field_0x5d8.y = i_this->field_0x5cc;
+        i_this->field_0x5d8.z = i_this->current.pos.z;
+        break;
+    case 1:
+        if (i_this->field_0x5cc - i_this->current.pos.y > 60.0f) {
+            i_this->field_0x5a6 = 0;
+            i_this->field_0x5a8 = 0;
+        }
+        break;
+    }
+
+    i_this->shape_angle.y += 1000;
+    cLib_addCalcAngleS2(&i_this->shape_angle.x, 0x3ff0, 8, 0x400);
+    cXyz local_1c;
+    cXyz cStack_28;
+    mDoMtx_stack_c::XrotS(i_this->field_0x5c6);
+    mDoMtx_stack_c::ZrotM(i_this->field_0x5c8);
+    local_1c.x = 0.0f;
+    local_1c.y = -1.0f;
+    local_1c.z = 0.0f;
+    mDoMtx_stack_c::multVec(&local_1c, &cStack_28);
+    i_this->current.pos += cStack_28;
+    i_this->field_0x5e4 += 0xa00;
+    cLib_addCalc2(&i_this->field_0x5d4, 1.0f, 0.1f, 0.02f);
 }
 
 /* 80B2E678-80B2E6C4 000878 004C+00 1/1 0/0 0/0 .text npc_worm_binwait__FP14npc_worm_class */
-static void npc_worm_binwait(npc_worm_class* param_0) {
-    // NONMATCHING
+static void npc_worm_binwait(npc_worm_class* i_this) {
+    dComIfGp_getPlayer(0);
+    switch(i_this->field_0x5a8) {
+    case 0:
+        i_this->field_0x5e6 = 0;
+        i_this->field_0x5a8 = 1;
+        break;
+    case 1:
+        if (i_this->check_release()) {
+            i_this->field_0x5a6 = 1;
+            i_this->field_0x5a8 = -1;
+        }
+        break;
+    }
 }
-
-/* ############################################################################################## */
-/* 80B2F0F8-80B2F0FC 000078 0004+00 0/1 0/0 0/0 .rodata          @3990 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3990 = 8000.0f;
-COMPILER_STRIP_GATE(0x80B2F0F8, &lit_3990);
-#pragma pop
-
-/* 80B2F0FC-80B2F100 00007C 0004+00 0/1 0/0 0/0 .rodata          @3991 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3991 = 4000.0f;
-COMPILER_STRIP_GATE(0x80B2F0FC, &lit_3991);
-#pragma pop
-
-/* 80B2F100-80B2F104 000080 0004+00 0/1 0/0 0/0 .rodata          @3992 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3992 = 2000.0f;
-COMPILER_STRIP_GATE(0x80B2F100, &lit_3992);
-#pragma pop
-
-/* 80B2F104-80B2F108 000084 0004+00 0/1 0/0 0/0 .rodata          @3993 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3993 = 17.0f / 100.0f;
-COMPILER_STRIP_GATE(0x80B2F104, &lit_3993);
-#pragma pop
-
-/* 80B2F108-80B2F10C 000088 0004+00 0/1 0/0 0/0 .rodata          @3994 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3994 = -50.0f;
-COMPILER_STRIP_GATE(0x80B2F108, &lit_3994);
-#pragma pop
-
-/* 80B2F10C-80B2F110 00008C 0004+00 0/1 0/0 0/0 .rodata          @3995 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3995 = 50.0f;
-COMPILER_STRIP_GATE(0x80B2F10C, &lit_3995);
-#pragma pop
-
-/* 80B2F110-80B2F114 000090 0004+00 0/1 0/0 0/0 .rodata          @3996 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3996 = -10.0f;
-COMPILER_STRIP_GATE(0x80B2F110, &lit_3996);
-#pragma pop
 
 /* 80B2E6C4-80B2EBF4 0008C4 0530+00 1/1 0/0 0/0 .text            action__FP14npc_worm_class */
-static void action(npc_worm_class* param_0) {
-    // NONMATCHING
+static void action(npc_worm_class* i_this) {
+    fopAc_ac_c* a_this = i_this;
+    cXyz local_124;
+    cXyz local_130;
+    int local_140 = 0;
+    BOOL bVar6 = false;
+    BOOL bVar5 = FALSE;
+    BOOL bVar7 = true;
+
+    switch (i_this->field_0x5a6) {
+    case 0:
+        npc_worm_ground(i_this);
+        bVar7 = FALSE;
+        break;
+    case 1:
+        npc_worm_normal(i_this);
+        local_140 = 1;
+        bVar6 = TRUE;
+        bVar5 = TRUE;
+        break;
+    case 2:
+        npc_worm_dive(i_this);
+        local_140 = 2;
+        break;
+    case 3:
+        npc_worm_binwait(i_this);
+        bVar7 = FALSE;
+        break;
+    }
+
+    if (local_140 == 1) {
+        i_this->field_0x5ac = 2000;
+        i_this->field_0x5aa += i_this->field_0x5ac;
+        i_this->field_0x5b0 = 8000.0f;
+        i_this->field_0x5ae = cM_ssin(i_this->field_0x5a4 * 600) * 2000.0f + 4000.0f;
+
+        for (int i = 0; i < 9; i++) {
+            i_this->field_0x5b4[i] = i_this->field_0x5b0 * cM_ssin(i_this->field_0x5aa - i * i_this->field_0x5ae);
+        }
+        i_this->shape_angle.y = (int)(-(i_this->field_0x5b4[3]  * 2)) + a_this->current.angle.y;
+        cLib_addCalc2(&i_this->field_0x5d0, 10.0f, 1.0f, 1.0f);
+    } else if (local_140 == 2) {
+        i_this->field_0x5aa += i_this->field_0x5ac;
+        i_this->field_0x5b0 = 8000.0f;
+        i_this->field_0x5ae = 3000;
+        int local_154 = 0.17f * (i_this->field_0x5cc - a_this->current.pos.y);
+        if (local_154 > 8) {
+            local_154 = 8;
+        }
+        i_this->field_0x5ac = local_154 * 200 + 3500;
+        for (int i = 0; i < 9; i++) {
+            if (i >= local_154) {
+                i_this->field_0x5b4[i] = (i_this->field_0x5b0 * cM_ssin(i_this->field_0x5aa - i * i_this->field_0x5ae));
+            } else {
+                cLib_addCalcAngleS2(&i_this->field_0x5b4[i], 0, 1, 1000);
+            }
+        }
+        cLib_addCalc0(&i_this->field_0x5d0, 1.0f, 1.0f);
+    }
+    if (bVar5) {
+        cMtx_YrotS(*calc_mtx, a_this->current.angle.y);
+        local_124.x = 0.0f;
+        local_124.y = 0.0f;
+        local_124.z = a_this->speedF;
+        MtxPosition(&local_124, &local_130);
+        a_this->current.pos.x += local_130.x;
+        a_this->current.pos.y += a_this->speed.y;
+        a_this->current.pos.z += local_130.z;
+        a_this->speed.y -= 5.0f;
+        if (a_this->speed.y < -50.0f) {
+            a_this->speed.y = -50.0f;
+        }
+        dBgS_LinChk linkChk;
+        linkChk.Set(&a_this->old.pos, &a_this->current.pos, a_this);
+        if (dComIfG_Bgsp().LineCross(&linkChk)) {
+            a_this->current.pos.x = a_this->old.pos.x;
+            a_this->current.pos.z = a_this->old.pos.z;
+        }
+    }
+    if (bVar6) {
+        dBgS_GndChk gndchk;
+        cXyz local_13c(a_this->current.pos);
+        local_13c.y += 50.0f;
+        gndchk.SetPos(&local_13c);
+        i_this->field_0x5cc = dComIfG_Bgsp().GroundCross(&gndchk) + 3.0f;
+        if (a_this->current.pos.y <= i_this->field_0x5cc) {
+            a_this->current.pos.y = i_this->field_0x5cc;
+            a_this->speed.y = -10.0f;
+            local_13c = a_this->current.pos;
+            local_13c.y += 50.0f;
+            local_13c.z += 10.0f;
+            gndchk.SetPos(&local_13c);
+            local_13c.y = dComIfG_Bgsp().GroundCross(&gndchk) + 3.0f;
+            i_this->field_0x5c6 = -cM_atan2s(local_13c.y - a_this->current.pos.y,
+                                             local_13c.z - a_this->current.pos.z);
+            if (i_this->field_0x5c6 > 0x3000 || i_this->field_0x5c6 < -0x3000) {
+                i_this->field_0x5c6 = 0;
+            }
+            local_13c = a_this->current.pos;
+            local_13c.y += 50.0f;
+            local_13c.x += 10.0f;
+            gndchk.SetPos(&local_13c);
+            local_13c.y = dComIfG_Bgsp().GroundCross(&gndchk) + 3.0f;
+            i_this->field_0x5c8 =
+                cM_atan2s(local_13c.y - a_this->current.pos.y, local_13c.x - a_this->current.pos.x);
+            if (i_this->field_0x5c8 > 0x3000 || i_this->field_0x5c8 < -0x3000) {
+                i_this->field_0x5c8 = 0;
+            }
+        }
+    }
+    if (bVar7 && fopAcM_searchPlayerDistance(a_this) < 200.0f) {
+        daPy_py_c::setLookPos(&a_this->current.pos);
+    }
 }
 
-/* ############################################################################################## */
-/* 80B2F114-80B2F118 000094 0004+00 0/1 0/0 0/0 .rodata          @4054 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4054 = 2.5f;
-COMPILER_STRIP_GATE(0x80B2F114, &lit_4054);
-#pragma pop
-
-/* 80B2F118-80B2F11C 000098 0004+00 0/1 0/0 0/0 .rodata          @4055 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4055 = 2.0f / 25.0f;
-COMPILER_STRIP_GATE(0x80B2F118, &lit_4055);
-#pragma pop
-
-/* 80B2F11C-80B2F120 00009C 0004+00 0/1 0/0 0/0 .rodata          @4056 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4056 = 11.0f / 10.0f;
-COMPILER_STRIP_GATE(0x80B2F11C, &lit_4056);
-#pragma pop
-
 /* 80B2EBF4-80B2EDD0 000DF4 01DC+00 2/1 0/0 0/0 .text daNPC_WORM_Execute__FP14npc_worm_class */
-static void daNPC_WORM_Execute(npc_worm_class* param_0) {
-    // NONMATCHING
+static int daNPC_WORM_Execute(npc_worm_class* i_this) {
+    i_this->field_0x5a4++;
+    for (int i = 0; i < 2; i++) {
+        if (i_this->field_0x5e8[i] != 0) {
+            i_this->field_0x5e8[i]--;
+        }
+    }
+    action(i_this);
+    if (i_this->field_0x5e6 != 0) {
+        mDoMtx_stack_c::transS(i_this->current.pos.x, i_this->current.pos.y,
+                               i_this->current.pos.z - i_this->field_0x5d0);
+        mDoMtx_stack_c::XrotM(i_this->field_0x5c6);
+        mDoMtx_stack_c::ZrotM(i_this->field_0x5c8);
+        mDoMtx_stack_c::YrotM(i_this->shape_angle.y);
+        mDoMtx_stack_c::XrotM(i_this->shape_angle.x);
+        mDoMtx_stack_c::transM(0.0f, 0.0f, i_this->field_0x5d0);
+        mDoMtx_stack_c::scaleM(0.1f, 0.1f, 0.1f);
+        i_this->mModel1->setBaseTRMtx(mDoMtx_stack_c::get());
+        fopAcM_SetMtx(i_this, i_this->mModel1->getBaseTRMtx());
+    }
+    if (i_this->field_0x5d4 > 0.01f) {
+        mDoMtx_stack_c::transS(i_this->field_0x5d8.x, i_this->field_0x5d8.y - 2.5f,
+                               i_this->field_0x5d8.z);
+        mDoMtx_stack_c::XrotM(i_this->field_0x5c6);
+        mDoMtx_stack_c::ZrotM(i_this->field_0x5c8);
+        mDoMtx_stack_c::YrotM(i_this->field_0x5e4);
+        f32 scale = i_this->field_0x5d4 * 0.08f;
+        mDoMtx_stack_c::scaleM(scale, scale, scale * 1.1f);
+        mDoMtx_stack_c::YrotM(-i_this->field_0x5e4);
+        i_this->mModel2->setBaseTRMtx(mDoMtx_stack_c::get());
+        fopAcM_SetMtx(i_this, i_this->mModel2->getBaseTRMtx());
+    }
+    return 1;
 }
 
 /* 80B2EDD0-80B2EDD8 000FD0 0008+00 1/0 0/0 0/0 .text daNPC_WORM_IsDelete__FP14npc_worm_class */
-static bool daNPC_WORM_IsDelete(npc_worm_class* param_0) {
-    return true;
+static int daNPC_WORM_IsDelete(npc_worm_class* i_this) {
+    return 1;
 }
 
-/* ############################################################################################## */
-/* 80B2F124-80B2F124 0000A4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80B2F124 = "Alink";
-#pragma pop
-
 /* 80B2EDD8-80B2EE08 000FD8 0030+00 1/0 0/0 0/0 .text daNPC_WORM_Delete__FP14npc_worm_class */
-static void daNPC_WORM_Delete(npc_worm_class* param_0) {
-    // NONMATCHING
+static int daNPC_WORM_Delete(npc_worm_class* i_this) {
+    fopAcM_GetID(i_this);
+    dComIfG_resDelete(&i_this->mPhase, "Alink");
+    return 1;
 }
 
 /* 80B2EE08-80B2EEC0 001008 00B8+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
-static void useHeapInit(fopAc_ac_c* param_0) {
-    // NONMATCHING
+static int useHeapInit(fopAc_ac_c* a_this) {
+    npc_worm_class* i_this = (npc_worm_class*)a_this;
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Alink", 0x30);
+    JUT_ASSERT(776, modelData != 0);
+    i_this->mModel1 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+    if (i_this->mModel1 == NULL) {
+        return 0;
+    }
+    modelData = (J3DModelData*)dComIfG_getObjectRes("Alink", 0x31);
+    JUT_ASSERT(794, modelData != 0);
+    i_this->mModel2 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+    if (i_this->mModel2 == NULL) {
+        return 0;
+    }
+    return 1;
 }
 
-/* ############################################################################################## */
-/* 80B2F120-80B2F124 0000A0 0004+00 0/1 0/0 0/0 .rodata          @4126 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4126 = 65535.0f;
-COMPILER_STRIP_GATE(0x80B2F120, &lit_4126);
-#pragma pop
+/* 80B2EEC0-80B2F050 0010C0 0190+00 1/0 0/0 0/0 .text            daNPC_WORM_Create__FP10fopAc_ac_c
+ */
+static int daNPC_WORM_Create(fopAc_ac_c* a_this) {
+    fopAcM_SetupActor(a_this, npc_worm_class);
+    npc_worm_class* i_this = (npc_worm_class*)a_this;
+    int rv =
+        dComIfG_resLoad(&i_this->mPhase, "Alink");
+    if (rv == cPhs_COMPLEATE_e) {
+        OS_REPORT("NPC_WORM PARAM %x\n", fopAcM_GetParam(i_this));
+        i_this->field_0x598 = fopAcM_GetParam(i_this);
+        OS_REPORT("NPC_WORM//////////////NPC_WORM SET 1 !!\n");
+        if (fopAcM_entrySolidHeap(i_this, useHeapInit, 0x1380) == 0) {
+            OS_REPORT("//////////////NPC_WORM SET NON !!\n");
+            return cPhs_ERROR_e;
+        }
+        OS_REPORT("//////////////NPC_WORM SET 2 !!\n");
+        i_this->field_0x5a4 = cM_rndF(65535.0f);
+        if (i_this->field_0x598 == 1) {
+            i_this->field_0x5a6 = 1;
+        } else if (i_this->field_0x598 == 2) {
+            i_this->field_0x5a6 = 3;
+        } else {
+            i_this->field_0x5a6 = 0;
+            dBgS_GndChk gndchk;
+            cXyz cStack_84(i_this->current.pos);
+            cStack_84.y += 100.0f;
+            gndchk.SetPos(&cStack_84);
+            f32 fVar1 = dComIfG_Bgsp().GroundCross(&gndchk) + 3.0f;
+            i_this->field_0x5cc = fVar1;
+            i_this->current.pos.y = fVar1;
+            i_this->field_0x5d8.x = i_this->current.pos.x;
+            i_this->field_0x5d8.y = i_this->field_0x5cc;
+            i_this->field_0x5d8.z = i_this->current.pos.z;
+            i_this->field_0x5d4 = 1.0f;
+        }
+        daNPC_WORM_Execute(i_this);
+    }
+    return rv;
+}
 
 /* 80B2F12C-80B2F14C -00001 0020+00 1/0 0/0 0/0 .data            l_daNPC_WORM_Method */
 static actor_method_class l_daNPC_WORM_Method = {
-    (process_method_func)daNPC_WORM_Create__FP10fopAc_ac_c,
-    (process_method_func)daNPC_WORM_Delete__FP14npc_worm_class,
-    (process_method_func)daNPC_WORM_Execute__FP14npc_worm_class,
-    (process_method_func)daNPC_WORM_IsDelete__FP14npc_worm_class,
-    (process_method_func)daNPC_WORM_Draw__FP14npc_worm_class,
+    (process_method_func)daNPC_WORM_Create,
+    (process_method_func)daNPC_WORM_Delete,
+    (process_method_func)daNPC_WORM_Execute,
+    (process_method_func)daNPC_WORM_IsDelete,
+    (process_method_func)daNPC_WORM_Draw,
 };
 
 /* 80B2F14C-80B2F17C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_WORM */
@@ -454,30 +434,5 @@ extern actor_process_profile_definition g_profile_NPC_WORM = {
   fopAc_ACTOR_e,          // mActorType
   fopAc_CULLBOX_0_e,      // cullType
 };
-
-/* 80B2F17C-80B2F188 000050 000C+00 1/1 0/0 0/0 .data            __vt__14npc_worm_class */
-SECTION_DATA extern void* __vt__14npc_worm_class[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)Insect_Release__9dInsect_cFv,
-};
-
-/* 80B2EEC0-80B2F050 0010C0 0190+00 1/0 0/0 0/0 .text            daNPC_WORM_Create__FP10fopAc_ac_c
- */
-static void daNPC_WORM_Create(fopAc_ac_c* param_0) {
-    // NONMATCHING
-}
-
-/* 80B2F050-80B2F06C 001250 001C+00 1/1 0/0 0/0 .text            getLeftHandPos__9daPy_py_cCFv */
-// void daPy_py_c::getLeftHandPos() const {
-extern "C" void getLeftHandPos__9daPy_py_cCFv() {
-    // NONMATCHING
-}
-
-/* 80B2F06C-80B2F078 00126C 000C+00 1/0 0/0 0/0 .text            Insect_Release__9dInsect_cFv */
-// void dInsect_c::Insect_Release() {
-extern "C" void Insect_Release__9dInsect_cFv() {
-    // NONMATCHING
-}
 
 /* 80B2F124-80B2F124 0000A4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

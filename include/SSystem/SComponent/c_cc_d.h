@@ -69,12 +69,10 @@ public:
     /* 0x1C vtable */
 
     struct Shape {
-        /* 80167BBC */ ~Shape();
+        /* 80167BBC */ ~Shape() {}
 
         /* 0x00 */ int _0;
-        /* 0x04 */ f32 _4;
-        /* 0x08 */ f32 _8;
-        /* 0x0C */ f32 _C;
+        /* 0x04 */ cXyz _4;
         /* 0x10 */ f32 _10;
         /* 0x14 */ f32 _14;
     };

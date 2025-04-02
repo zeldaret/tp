@@ -1881,7 +1881,7 @@ void dScnKy_env_light_c::setLight() {
             dBgS_CamGndChk_Wtr camchk;
             cXyz chkpos;
 
-            if (checkZoraWearFlg() && !daPy_py_c::i_checkNowWolf()) {
+            if (checkZoraWearFlg() && !daPy_py_c::checkNowWolf()) {
                 dKy_WaterIn_Light_set();
             }
 
@@ -5402,7 +5402,7 @@ void dKy_ParticleColor_get_base(cXyz* param_0, dKy_tevstr_c* param_1, GXColor* p
     J3DLightInfo* sp44;
     GXColor sp40;
     int sp3C;
-    s32 sp38;
+    int sp38;
     stage_pure_lightvec_info_class* stage_light_info_p;
     int sp30;
 
@@ -5463,10 +5463,8 @@ void dKy_ParticleColor_get_base(cXyz* param_0, dKy_tevstr_c* param_1, GXColor* p
                 sp3C = dComIfGp_roomControl_getStatusRoomDt(param_1->room_no)
                            ->getLightVecInfoNum();
             } else {
-                s32 room_no = dComIfGp_roomControl_getStayNo();  // fakematch, fixes instruction order
-                stage_light_info_p = dComIfGp_roomControl_getStatusRoomDt(room_no)->getLightVecInfo();
-                room_no = dComIfGp_roomControl_getStayNo();  // fakematch, fixes instruction order
-                sp3C = dComIfGp_roomControl_getStatusRoomDt(room_no)->getLightVecInfoNum();
+                stage_light_info_p = dComIfGp_roomControl_getStatusRoomDt(dComIfGp_roomControl_getStayNo())->getLightVecInfo();
+                sp3C = dComIfGp_roomControl_getStatusRoomDt(dComIfGp_roomControl_getStayNo())->getLightVecInfoNum();
             }
 
             f32 var_f27;

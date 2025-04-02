@@ -3088,7 +3088,7 @@ public:
     virtual bool cancelWolfLock(fopAc_ac_c*);
     virtual s32 getAtnActorID() const;
     virtual s32 getItemID() const;
-    virtual s32 getGrabActorID() const;
+    virtual u32 getGrabActorID() const;
     virtual BOOL exchangeGrabActor(fopAc_ac_c*);
     virtual BOOL setForceGrab(fopAc_ac_c*, int, int);
     virtual void setForcePutPos(cXyz const&);
@@ -3183,7 +3183,7 @@ public:
     virtual f32 getSinkShapeOffset() const;
     virtual BOOL checkSinkDead() const;
     virtual BOOL checkHorseStart();
-    virtual Z2WolfHowlMgr* getWolfHowlMgrP();
+    virtual Z2WolfHowlMgr* getWolfHowlMgrP() { return &mZ2WolfHowlMgr; }
     virtual BOOL checkWolfHowlSuccessAnime() const;
     virtual BOOL checkCopyRodTopUse();
     virtual bool checkCopyRodEquip() const;
@@ -3192,12 +3192,13 @@ public:
     u32 checkModeFlg(u32 pFlag) const { return mModeFlg & pFlag; }
     BOOL checkSmallUpperGuardAnime() const { return checkUpperAnime(0x16); }
     BOOL checkFmChainGrabAnime() const { return checkUpperAnime(0x62) || checkUpperAnime(0x2A0); }
-    Z2WolfHowlMgr* i_getWolfHowlMgrP() { return &mZ2WolfHowlMgr; }
+    
 
     // this might be a fake match, but helps fix usage in many functions
+#pragma push
 #pragma optimization_level 2
     BOOL checkAttentionLock() { return mAttention->Lockon(); }
-#pragma optimization_level 3
+#pragma pop
 
     bool checkUpperAnime(u16 i_idx) const { return mUpperAnmHeap[UPPER_2].getIdx() == i_idx; }
     bool checkUnderAnime(u16 i_idx) const { return mUnderAnmHeap[UNDER_2].getIdx() == i_idx; }
@@ -3345,10 +3346,16 @@ public:
     const daAlink_AnmData* getAnmData(daAlink_ANM anmID) const { return &m_anmDataTable[anmID]; }
     const daAlink_FaceTexData* getFaceTexData(daAlink_FTANM i_anmID) const { return &m_faceTexDataTable[i_anmID]; }
 
+    s16 getCameraAngleX() const { return field_0x310a; }
+    s16 getCameraAngleY() const { return field_0x310c; }
+    cXyz* getSubjectEyePos() { return &field_0x3768; }
+
     u32 checkReinRide() const { return mRideStatus == 1 || mRideStatus == 2; }
     int getGrassHowlEventActor() const { return field_0x3198; }
     MtxP getShieldMtx() const { return mShieldModel->getBaseTRMtx(); }
     MtxP getMagneBootsMtx() { return mMagneBootMtx; }
+    MtxP getMagneBootsInvMtx() { return mMagneBootInvMtx; }
+    s16 getMagneBootsModelShapeAngle() const { return field_0x3118; }
 
     bool checkFishingCastMode() const {
         bool var_r5;
@@ -3359,7 +3366,7 @@ public:
             var_r5 = 0;
 
             if (mItemAcKeep.getActor() != NULL &&
-                mItemAcKeep.getActor()->eventInfo.i_checkCommandDemoAccrpt() != 0) {
+                mItemAcKeep.getActor()->eventInfo.checkCommandDemoAccrpt() != 0) {
                 var_r5 = 1;
             }
 
@@ -3438,6 +3445,7 @@ public:
     bool checkSpinnerRideWait() const {
         return mProcID == PROC_SPINNER_WAIT && mProcVar2.field_0x300c == 0;
     }
+    bool checkRoofSwitchHang() const { return mProcID == PROC_ROOF_SWITCH_HANG; }
 
     fopAc_ac_c* getCopyRodActor() { return mCopyRodAcKeep.getActor(); }
     fopAc_ac_c* getHookshotRoofWaitActor() { return mCargoCarryAcKeep.getActor(); }
@@ -3506,10 +3514,11 @@ public:
     const cXyz& getWindSpeed() const { return mWindSpeed; }
     const cXyz& getHsChainTopPos() const { return mHookshotTopPos; }
     const cXyz& getHsChainRootPos() const { return mHeldItemRootPos; }
-
     const cXyz& getHsSubChainRootPos() const { return field_0x3810; }
+    const csXyz& getHsAngle() const { return field_0x316c; }
 
     s16 getHookshotStopTime() const { return field_0x3026; }
+    bool getHookshotLeft() const { return field_0x3020 == 0; }
 
     static int getBallModelIdx() { return 0x25; }
     static int getBallBtkIdx() { return 0x49; }

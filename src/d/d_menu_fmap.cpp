@@ -1617,7 +1617,7 @@ void dMenu_Fmap_c::table_demo1_init() {
 
     for (int i = 0; i < 8; i++) {
         if (mpRegionData[i] != NULL && mpStageData[i] != NULL) {
-            s32 stay_no = dComIfGp_roomControl_getStayNo();
+            int stay_no = dComIfGp_roomControl_getStayNo();
             icon.init(mpRegionData[i], mpStageData[i], 5, mStayStageNo, stay_no);
             
             while (!icon.getValidData()) {
@@ -2740,7 +2740,8 @@ bool dMenu_Fmap_c::checkDrawPortalIcon(int i_stageNo, int i_switchNo) {
 bool dMenu_Fmap_c::searchIcon(u8 i_typeGroupNo, int i_swBit, f32* o_posX, f32* o_posZ) {
     dMenuFmapIconDisp_c icon;
     dMenu_Fmap_stage_data_c* stage_data;
-    int tmp_r26, stay_no;
+    int tmp_r26;
+    s32 stay_no;
     bool ret = false;
     stay_no = dComIfGp_roomControl_getStayNo();
     tmp_r26 = mStayStageNo;
@@ -2774,7 +2775,7 @@ void dMenu_Fmap_c::drawIcon(u8 i_typeGroupNo, int param_1) {
     dMenuFmapIconDisp_c icon;
     dMenu_Fmap_stage_data_c* stage_data;
     int tmp_r30;
-    int stay_no = dComIfGp_roomControl_getStayNo();
+    s32 stay_no = dComIfGp_roomControl_getStayNo();
     tmp_r30 = mStayStageNo;
     stage_data = getNowFmapStageData();
     dMenu_Fmap_region_data_c* region_data = getNowFmapRegionData();

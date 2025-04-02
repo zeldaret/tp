@@ -203,7 +203,7 @@ static int path_check(e_yk_class* i_this) {
         cXyz path_point_pos;
         current_keese_pos = i_this->current.pos;
         current_keese_pos.y += 100.0f;
-        dStage_dPnt_c* points = i_this->mpPath->m_points;
+        dPnt* points = i_this->mpPath->m_points;
 
         // Set/update check_index array based on whether or not path points
         // were crossed
@@ -591,7 +591,7 @@ static void e_yk_path_fly(e_yk_class* i_this) {
     case 2:
         i_this->mActionPhase = 3;
 
-        dStage_dPnt_c* point = i_this->mpPath->m_points;
+        dPnt* point = i_this->mpPath->m_points;
         point = &point[i_this->mPathPntIdx];
 
         i_this->field_0x68c = 0.0f;

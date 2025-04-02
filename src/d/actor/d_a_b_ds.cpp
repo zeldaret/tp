@@ -956,7 +956,7 @@ void daB_DS_c::mCreateTrap(bool param_0) {
 
             dPath* path = dPath_GetRoomPath(3, fopAcM_GetRoomNo(this));
             if (path != NULL) {
-                dStage_dPnt_c& point = path->m_points[trap_create_id];
+                dPnt& point = path->m_points[trap_create_id];
                 pos = point.m_position;
                 vec = pos - current.pos;
                 if (vec.abs() <= 200.0f) {
@@ -1317,13 +1317,13 @@ bool daB_DS_c::mCutTypeCheck() {
 bool daB_DS_c::startDemoCheck() {
     camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
 
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         return false;
     }
 
     if (!eventInfo.checkCommandDemoAccrpt()) {
         fopAcM_orderPotentialEvent(this, 2, 0xFFFF, 0);
-        eventInfo.i_onCondition(2);
+        eventInfo.onCondition(2);
         mCameraEye = dCam_getBody()->Center();
         mCameraCenter = dCam_getBody()->Eye();
         mCameraFovy = dCam_getBody()->Fovy();
@@ -5273,7 +5273,7 @@ void daB_DS_c::mBattle2_mtx_set() {
         lin_chk.Set(&mMouthPos, &field_0x6d0, this);
 
         if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-            field_0x6d0 = lin_chk.i_GetCross();
+            field_0x6d0 = lin_chk.GetCross();
         }
     }
 

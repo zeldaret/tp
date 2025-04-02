@@ -385,7 +385,7 @@ int daLv3Water_c::Delete() {
 }
 
 /* 80C59AE0-80C59BA8 001400 00C8+00 2/1 0/0 0/0 .text            eventStart__12daLv3Water_cFv */
-BOOL daLv3Water_c::eventStart() {
+bool daLv3Water_c::eventStart() {
     field_0x601 = fpcM_GetParam(this) >> 0x18;
     mSwitch1 = mSwitch2;
 
@@ -402,7 +402,7 @@ BOOL daLv3Water_c::eventStart() {
         mode_init_levelCtrl();
     }
 
-    return 1;
+    return true;
 }
 
 /* 80C59BA8-80C59BD4 0014C8 002C+00 1/0 0/0 0/0 .text            daLv3Water_Draw__FP12daLv3Water_c

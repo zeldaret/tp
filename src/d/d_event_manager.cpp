@@ -9,10 +9,6 @@
 #include "d/d_com_inf_game.h"
 #include "stdio.h"
 
-BOOL daPy_py_c::checkNowWolf() {
-    return dComIfGp_getLinkPlayer()->checkWolf();
-}
-
 void dEvent_exception_c::init() {
     mEventInfoIdx = -1;
     mState = 0;
@@ -42,7 +38,7 @@ const char* dEvent_exception_c::getEventName() {
         "PORTALWARP_START", "PORTALWARP_START_B",
     };
 
-    s32 roomNo = dComIfGp_roomControl_getStayNo();
+    int roomNo = dComIfGp_roomControl_getStayNo();
     dStage_roomDt_c* roomDt = dComIfGp_roomControl_getStatusRoomDt(roomNo);
     dStage_MapEventInfo_c* eventInfo = roomDt->getMapEventInfo();
     if (mEventInfoIdx == -1) {
@@ -98,6 +94,13 @@ void* dEvent_manager_c::getSubstance(dEvDtData_c* p_data, int type) {
             return getBase().getSDataP(p_data->getIndex());
         }
         return NULL;
+    }
+}
+
+void dEvent_manager_c::setDbgData(const char* buffer) {
+    if(buffer) {
+        char* writableBuffer = const_cast<char*>(buffer);
+        mEventList[11].init(writableBuffer, -1);
     }
 }
 

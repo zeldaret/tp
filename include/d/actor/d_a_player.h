@@ -558,7 +558,7 @@ public:
         RFLG0_FRONT_ROLL_CRASH = 0x2000,
         RFLG0_ENEMY_ATTN_LOCK = 0x1000,
         RFLG0_UNK_400 = 0x400,
-        RFLG0_UNK_200 = 0x200,
+        RFLG0_COW_GAME_LEASH = 0x200,
         RFLG0_UNK_100 = 0x100,
         RFLG0_UNK_80 = 0x80,
         RFLG0_UNK_40 = 0x40,
@@ -690,16 +690,16 @@ public:
     static void setPlayerDamage(int, int);
     static void setMidnaMotionNum(int);
     static void setMidnaFaceNum(int);
-    static BOOL checkShieldGet();
-    static BOOL checkSwordGet();
-    void changeDemoParam2(s16);
+    static BOOL checkShieldGet() { return dComIfGs_getSelectEquipShield() != fpcNm_ITEM_NONE; }
+    inline static BOOL checkSwordGet();
+
     cXyz getHeadTopPos() const { return mHeadTopPos; }
-    BOOL checkThrowDamage() const { return checkNoResetFlg1(FLG1_THROW_DAMAGE); }
-    BOOL checkGoronSideMove() const { return mSpecialMode == 0x2B; }
+    u32 checkThrowDamage() const { return checkNoResetFlg1(FLG1_THROW_DAMAGE); }
+    bool checkGoronSideMove() const { return mSpecialMode == 0x2B; }
     cXyz* getRightFootPosP() { return &mRightFootPos; }
     cXyz* getLeftFootPosP() { return &mLeftFootPos; }
     BOOL checkCopyRodThrowAfter() const { return checkNoResetFlg3(FLG3_COPY_ROD_THROW_AFTER); }
-    BOOL checkRide() const { return checkHorseRide() || checkBoarRide() || checkSpinnerRide() || checkCanoeRide() || checkBoardRide(); }
+    u32 checkRide() const { return checkHorseRide() || checkBoarRide() || checkSpinnerRide() || checkCanoeRide() || checkBoardRide(); }
     cXyz getRightHandPos() const { return mRightHandPos; }
     const cXyz getLeftHandPos() const { return mLeftHandPos; }
     const cXyz getItemPos() const { return mItemPos; }
@@ -765,7 +765,7 @@ public:
     virtual bool cancelWolfLock(fopAc_ac_c*);
     virtual s32 getAtnActorID() const { return -1; }
     virtual s32 getItemID() const;
-    virtual s32 getGrabActorID() const { return -1; }
+    virtual u32 getGrabActorID() const { return fpcM_ERROR_PROCESS_ID_e; }
     virtual BOOL exchangeGrabActor(fopAc_ac_c*);
     virtual BOOL setForceGrab(fopAc_ac_c*, int, int);
     virtual void setForcePutPos(cXyz const&);
@@ -1060,7 +1060,7 @@ public:
         mDemo.setParam1(i_param1);
     }
 
-    void i_changeDemoParam2(s16 i_param2) {
+    void changeDemoParam2(s16 i_param2) {
         mDemo.setParam2(i_param2);
     }
 
@@ -1070,6 +1070,8 @@ public:
 
     void setItemPos(cXyz* i_itemPos) { mItemPos = *i_itemPos; }
 
+    cXyz* getViewerCurrentPosP() { return &field_0x5f8; }
+
     static bool checkPeepEndSceneChange() { return getLastSceneMode() == 7; }
 
     static int getLastSceneDamage() { return (dComIfGs_getLastSceneMode() >> 4) & 0x7F; }
@@ -1077,19 +1079,16 @@ public:
 
     static BOOL checkNormalSwordEquip() { return dComIfGs_getSelectEquipSword() == fpcNm_ITEM_SWORD; }
 
-    inline static u32 i_getLastSceneMode();
     inline static u32 getLastSceneMode();
     inline static bool checkWoodSwordEquip() {
         return dComIfGs_getSelectEquipSword() == fpcNm_ITEM_WOOD_STICK;
     }
     inline static bool checkLightMasterSwordEquip();
-    inline BOOL i_checkSwordGet();
-    inline bool i_checkShieldGet() const;
-    inline static BOOL checkNowWolf();
-    inline static u32 i_checkNowWolf() { return ((daPy_py_c*)dComIfGp_getLinkPlayer())->checkWolf(); }
+
+    inline static u32 checkNowWolf() { return ((daPy_py_c*)dComIfGp_getLinkPlayer())->checkWolf(); }
     inline bool checkZoraWearFlg() const;
     inline bool checkMagicArmorWearFlg() const;
-    inline static BOOL i_checkFirstMidnaDemo() { return dComIfGs_isEventBit(0xc10); }
+    inline static BOOL checkFirstMidnaDemo() { return dComIfGs_isEventBit(0xc10); }
     static int checkNowWolfPowerUp() { return checkNowWolfEyeUp(); }
 
     static daMidna_c* getMidnaActor() { return m_midnaActor; }
@@ -1107,6 +1106,7 @@ public:
         onNoResetFlg3(FLG3_UNK_200000);
     }
 
+    BOOL checkCowGameLash() const { return checkResetFlg0(RFLG0_COW_GAME_LEASH); }
     BOOL checkClimbEndHang() { return checkResetFlg0(RFLG0_UNK_40000); }
 
     void onForceHorseGetOff() {

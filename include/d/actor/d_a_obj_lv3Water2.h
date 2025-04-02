@@ -31,7 +31,7 @@ public:
     /* 80C5ACE4 */ void mode_proc_levelCtrl();
     /* 80C5ADA4 */ int Draw();
     /* 80C5AEFC */ int Delete();
-    /* 80C5AF3C */ BOOL eventStart();
+    /* 80C5AF3C */ bool eventStart();
 
 private:
     /* 0x5B8 */ request_of_phase_process_class mPhase;

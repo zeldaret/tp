@@ -15,6 +15,7 @@ struct TCreateObject : public JStudio::TCreateObject {
         pJAISoundStarter_ = p_soundStarter;
         pJSGSystem_ = p_system;
         mPermit_onExit_notEnd = false;
+        JUT_ASSERT(45, pJAISoundStarter_!=0);
     }
 
     /* 8028D550 */ virtual ~TCreateObject();

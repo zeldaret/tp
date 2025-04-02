@@ -177,7 +177,7 @@ static BOOL path_check(e_s1_class* i_this) {
     start_pos = a_this->current.pos;
     start_pos.y += WREG_F(0) + 10.0f;
 
-    dStage_dPnt_c* point = i_this->mpPath->m_points;
+    dPnt* point = i_this->mpPath->m_points;
     for (int i = 0; i < i_this->mpPath->m_num; i++, point++) {
         if (i < 255) {
             end_pos.x = point->m_position.x;
@@ -346,7 +346,7 @@ static void damage_check(e_s1_class* i_this) {
                         i_this->field_0x6ac = TREG_F(1) + 65.0f;
                     }
                 } else {
-                    if (i_this->mAtInfo.mAttackPower >= 60 && daPy_py_c::i_checkNowWolf()) {
+                    if (i_this->mAtInfo.mAttackPower >= 60 && daPy_py_c::checkNowWolf()) {
                         i_this->mAtInfo.field_0x18 = 36;
                     } else {
                         i_this->mAtInfo.field_0x18 = 0;
@@ -365,7 +365,7 @@ static void damage_check(e_s1_class* i_this) {
 
                     if (i_this->mAtInfo.mAttackPower < 20) {
                         i_this->field_0x6ac = TREG_F(0) + 20.0f;
-                    } else if (i_this->mAtInfo.mAttackPower >= 60 && daPy_py_c::i_checkNowWolf()) {
+                    } else if (i_this->mAtInfo.mAttackPower >= 60 && daPy_py_c::checkNowWolf()) {
                         i_this->field_0x6ac = 0.0f;
                         a_this->health = 0;
 
@@ -389,7 +389,7 @@ static void damage_check(e_s1_class* i_this) {
                     }
 
                     if (!l_no_fail) {
-                        if (i_this->mAtInfo.mAttackPower >= 60 && daPy_py_c::i_checkNowWolf()) {
+                        if (i_this->mAtInfo.mAttackPower >= 60 && daPy_py_c::checkNowWolf()) {
                             i_this->mAction = ACT_FAIL_WAIT;
                             i_this->mHitInvincibilityTimer = 10;
                             i_this->mSound.startCreatureVoice(Z2SE_EN_NS_V_DEATH, -1);
@@ -536,8 +536,7 @@ static void e_s1_roof(e_s1_class* i_this) {
     case 1:
         roof_wait = true;
         if (i_this->mSwBit != 0xFF) {
-            s32 room_no = dComIfGp_roomControl_getStayNo();
-            if (dComIfGs_isSwitch(i_this->mSwBit, room_no)) {
+            if (dComIfGs_isSwitch(i_this->mSwBit, dComIfGp_roomControl_getStayNo())) {
                 i_this->mMode = 2;
             }
         } else if (fopAcM_searchPlayerDistanceXZ(a_this) < i_this->mPrm1 * 100.0f) {
@@ -754,7 +753,7 @@ static void e_s1_path(e_s1_class* i_this) {
         }
 
         {
-            dStage_dPnt_c* point = &i_this->mpPath->m_points[i_this->mCurrentPathPointNo];
+            dPnt* point = &i_this->mpPath->m_points[i_this->mCurrentPathPointNo];
             i_this->mPathTargetPos.x = point->m_position.x;
             i_this->mPathTargetPos.y = point->m_position.y;
             i_this->mPathTargetPos.z = point->m_position.z;
@@ -1644,9 +1643,9 @@ static void demo_camera(e_s1_class* i_this) {
 
     switch (i_this->mDemoMode) {
     case 1:
-        if (!a_this->eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
-            a_this->eventInfo.i_onCondition(2);
+            a_this->eventInfo.onCondition(2);
             return;
         }
 
@@ -1690,9 +1689,9 @@ static void demo_camera(e_s1_class* i_this) {
         }
         break;
     case 10:
-        if (!a_this->eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
-            a_this->eventInfo.i_onCondition(2);
+            a_this->eventInfo.onCondition(2);
             return;
         }
 
@@ -1766,7 +1765,7 @@ static void demo_camera(e_s1_class* i_this) {
             linchk.Set(&i_this->mDemoCamCenter, &i_this->mDemoCamEye, a_this);
 
             if (dComIfG_Bgsp().LineCross(&linchk)) {
-                eye = linchk.i_GetCross() + ((center - eye) * 0.1f);
+                eye = linchk.GetCross() + ((center - eye) * 0.1f);
 
                 f32 dist_x = eye.x - center.x;
                 f32 dist_z = eye.z - center.z;

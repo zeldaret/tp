@@ -71,9 +71,9 @@ void daKiPot_c::init_modeWait() {
 
 /* 80C44F80-80C45008 000360 0088+00 1/0 0/0 0/0 .text            modeWait__9daKiPot_cFv */
 void daKiPot_c::modeWait() {
-    if (chkEvent() && eventInfo.i_checkCommandCatch() == 0) {
+    if (chkEvent() && eventInfo.checkCommandCatch() == 0) {
         dComIfGp_att_CatchRequest(this, fpcNm_ITEM_UGLY_SOUP, 100.0f, 50.0f, -50.0f, 0x2000, 1);
-        eventInfo.i_onCondition(0x40);
+        eventInfo.onCondition(dEvtCnd_40_e);
     }
 }
 
@@ -84,7 +84,7 @@ s32 daKiPot_c::chkEvent() {
     if (!dComIfGp_getEvent().isOrderOK()) {
         result = 0;
 
-        if (eventInfo.i_checkCommandCatch()) {
+        if (eventInfo.checkCommandCatch()) {
             return result;
         }
     }

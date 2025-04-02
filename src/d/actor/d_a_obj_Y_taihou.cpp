@@ -332,9 +332,9 @@ void daObjYtaihou_c::shotCheck() {
 }
 
 /* 80BA0964-80BA0974 000F64 0010+00 2/1 0/0 0/0 .text            eventStart__14daObjYtaihou_cFv */
-BOOL daObjYtaihou_c::eventStart() {
+bool daObjYtaihou_c::eventStart() {
     mStartBomb = 0x5a;
-    return 1;
+    return true;
 }
 
 /* 80BA0974-80BA09E4 000F74 0070+00 1/0 0/0 0/0 .text            CreateHeap__14daObjYtaihou_cFv */

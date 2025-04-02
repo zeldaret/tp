@@ -266,9 +266,9 @@ void daTurara_c::modeWait() {
 }
 
 /* 80B9D998-80B9D9BC 000EF8 0024+00 2/1 0/0 0/0 .text            eventStart__10daTurara_cFv */
-BOOL daTurara_c::eventStart() {
+bool daTurara_c::eventStart() {
     init_modeDropInit();
-    return TRUE;
+    return true;
 }
 
 /* 80B9D9BC-80B9DA00 000F1C 0044+00 1/1 0/0 0/0 .text            init_modeDropInit__10daTurara_cFv

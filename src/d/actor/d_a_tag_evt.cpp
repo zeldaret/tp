@@ -57,7 +57,7 @@ int daTag_Evt_c::execute() {
             bVar = false;
             int iVar1 = dComIfGp_evmng_getMyStaffId(field_0x568, 0, 0);
             if (!eventInfo.checkCommandTalk()) {
-                if (eventInfo.i_checkCommandDemoAccrpt()) {
+                if (eventInfo.checkCommandDemoAccrpt()) {
                     if (dComIfGp_getEventManager().endCheck(field_0x572)) {
                         dComIfGp_event_reset();
                         field_0x570 = 0;

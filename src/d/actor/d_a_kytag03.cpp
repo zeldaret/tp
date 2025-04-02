@@ -21,7 +21,7 @@ static void dEnvSe_getNearPathPos(cXyz* param_0, cXyz* param_1, dPath* i_path) {
     f32 var_f31 = FLT_MAX;
 
     int i;
-    dStage_dPnt_c* point_p = i_path->m_points;
+    dPnt* point_p = i_path->m_points;
 
     cXyz sp3C[2];
     cM3dGLin sp14;
@@ -373,7 +373,7 @@ static int daKytag03_Execute(kytag03_class* i_this) {
 
             if (i_this->field_0x587 == 0) {
                 if (player->current.pos.abs(a_this->current.pos) < i_this->field_0x574 &&
-                    daPy_py_c::i_checkNowWolf() && !var_r28)
+                    daPy_py_c::checkNowWolf() && !var_r28)
                 {
                     i_this->attention_info.distances[fopAc_attn_ETC_e] = 0x3D;
                     a_this->attention_info.flags |= 0x80;

@@ -38,8 +38,8 @@ int daTagGuard_c::create() {
 void daTagGuard_c::create_init() {
     mPath = dPath_GetRoomPath(getPathID(), fopAcM_GetHomeRoomNo(this));
 
-    dStage_dPnt_c* pnt1 = dPath_GetPnt(mPath, 0);
-    dStage_dPnt_c* pnt2 = dPath_GetPnt(mPath, 1);
+    dPnt* pnt1 = dPath_GetPnt(mPath, 0);
+    dPnt* pnt2 = dPath_GetPnt(mPath, 1);
 
     current.pos.x = pnt1->m_position.x;
     current.pos.y = pnt1->m_position.y;

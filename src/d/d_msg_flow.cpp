@@ -513,9 +513,9 @@ int dMsgFlow_c::messageNodeProc(fopAc_ac_c* param_1, fopAc_ac_c** param_2) {
         if (msg == NULL) {
             field_0x25 = 1;
         } else {
-            int mesgCamInfo = dComIfGp_getMesgCameraInfo();
-            if (mesgCamInfo != field_0x34) {
-                field_0x34 = mesgCamInfo;
+            int mesgCamInfoBasicID = dComIfGp_getMesgCameraInfo()->mBasicID;
+            if (mesgCamInfoBasicID != field_0x34) {
+                field_0x34 = mesgCamInfoBasicID;
             }
             switch (msg->mode) {
             case 2:
@@ -591,9 +591,8 @@ int dMsgFlow_c::eventNodeProc(fopAc_ac_c* param_0, fopAc_ac_c** param_1) {
         if (getParam(node->params) == 0) {
             int msgNum;
             if (daAlink_getAlinkActorClass()->getMidnaMsgNum() == 0xFFFF) {
-                s32 stayNo = dComIfGp_roomControl_getStayNo();
                 msgNum =
-                    dComIfGp_roomControl_getStatusRoomDt(stayNo)->getFileListInfo()->mMsg;
+                    dComIfGp_roomControl_getStatusRoomDt(dComIfGp_roomControl_getStayNo())->getFileListInfo()->mMsg;
             } else {
                 msgNum = daAlink_getAlinkActorClass()->getMidnaMsgNum();
                 daAlink_getAlinkActorClass()->setMidnaMsg();
@@ -709,10 +708,6 @@ queryFunc dMsgFlow_c::mQueryList[53] = {
  * query001__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
 int dMsgFlow_c::query001(mesg_flow_node_branch* flow_node, fopAc_ac_c*, int) {
     return dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[flow_node->params[0] & 0xFFFF]) == false;
-}
-
-BOOL daPy_py_c::checkNowWolf() {
-    return dComIfGp_getLinkPlayer()->checkWolf();
 }
 
 /* 8024B180-8024B208 245AC0 0088+00 1/0 0/0 0/0 .text

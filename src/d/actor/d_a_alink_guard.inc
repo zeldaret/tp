@@ -63,7 +63,7 @@ void daAlink_c::stickArrowIncrement(int param_0) {
         }
 
         if (arrow_num != 0) {
-            if (i_checkShieldGet() && checkItemGet(fpcNm_ITEM_BOW, true)) {
+            if (checkShieldGet() && checkItemGet(fpcNm_ITEM_BOW, true)) {
                 int arrow_type = arrow_num == 1 ? fpcNm_ITEM_ARROW_1 : fpcNm_ITEM_ARROW_10;
 
                 dComIfGp_setItemArrowNumCount(arrow_num);
@@ -175,7 +175,7 @@ BOOL daAlink_c::checkUpperGuardAnime() const {
 
 /* 800DCE6C-800DCF04 0D77AC 0098+00 1/0 0/0 0/0 .text            checkPlayerGuard__9daAlink_cCFv */
 BOOL daAlink_c::checkPlayerGuard() const {
-    return (checkSmallUpperGuardAnime() || (i_checkShieldGet() && checkHorseLieAnime())) ||
+    return (checkSmallUpperGuardAnime() || (checkShieldGet() && checkHorseLieAnime())) ||
            checkUpperGuardAnime();
 }
 
@@ -186,7 +186,7 @@ BOOL daAlink_c::checkPlayerGuardAndAttack() const {
 
 /* 800DCF64-800DD008 0D78A4 00A4+00 2/2 0/0 0/0 .text            checkGuardAccept__9daAlink_cFv */
 BOOL daAlink_c::checkGuardAccept() {
-    return checkModeFlg(0x80) && i_checkShieldGet() && !checkFmChainGrabAnime() &&
+    return checkModeFlg(0x80) && checkShieldGet() && !checkFmChainGrabAnime() &&
            !checkNotBattleStage();
 }
 

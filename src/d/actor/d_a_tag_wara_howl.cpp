@@ -55,7 +55,7 @@ bool daTagWrHowl_c::chkWlfInTag() {
         return false;
     }
 
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         cXyz player_pos = dComIfGp_getPlayer(0)->current.pos;
         if (player_pos.abs2(current.pos) < field_0x570) {
             return true;

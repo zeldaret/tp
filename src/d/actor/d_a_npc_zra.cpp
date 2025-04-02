@@ -253,7 +253,7 @@ int daNpc_zrA_Path_c::getDstPosChase(u16 i_idx, cXyz i_pos, cXyz& o_pnt) {
 /* 80B78E08-80B7956C 0009E8 0764+00 1/1 0/0 0/0 .text chkPassDst__16daNpc_zrA_Path_cFUs4cXyz */
 f32 daNpc_zrA_Path_c::chkPassDst(u16 i_idx, cXyz i_pos) {
     u16 prev_idx, next_idx;
-    dStage_dPnt_c* points = mpRoomPath->m_points;
+    dPnt* points = mpRoomPath->m_points;
     u16 idx = mIdx;
     u8 reversed = mIsReversed;
     mIdx = i_idx;
@@ -990,7 +990,7 @@ void daNpc_zrA_c::setParam() {
 
     selectAction();
 
-    if (!mTwilight && daPy_py_c::i_checkNowWolf()) {
+    if (!mTwilight && daPy_py_c::checkNowWolf()) {
         attn_flags = 0;
     }
 
@@ -1067,7 +1067,7 @@ BOOL daNpc_zrA_c::main() {
         orderEvent(mOrderSpeakEvt, l_evtNames[l_evtGetParamList[mOrderEvtNo].fileIdx],
                    0xffff, 4, 0xff, 2);
         if (!mTwilight && mType == TYPE_WAIT && !field_0x1550) {
-            eventInfo.i_onCondition(dEvtCnd_CANTALKITEM_e);
+            eventInfo.onCondition(dEvtCnd_CANTALKITEM_e);
         }
     }
 
@@ -2163,7 +2163,7 @@ BOOL daNpc_zrA_c::doEvent() {
 
     if (dComIfGp_event_runCheck() != false) {
         dEvent_manager_c& event_manager = dComIfGp_getEventManager();
-        if (eventInfo.checkCommandTalk() || eventInfo.i_checkCommandDemoAccrpt()) {
+        if (eventInfo.checkCommandTalk() || eventInfo.checkCommandDemoAccrpt()) {
             mOrderNewEvt = false;
         }
 
@@ -2237,7 +2237,7 @@ BOOL daNpc_zrA_c::doEvent() {
                 ret = true;
             }
 
-            if (eventInfo.i_checkCommandDemoAccrpt()) {
+            if (eventInfo.checkCommandDemoAccrpt()) {
                 if (mEventIdx != -1 && event_manager.endCheck(mEventIdx)) {
                     switch (mOrderEvtNo) {
                     case EVT_TALK_SWIM:

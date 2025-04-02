@@ -18,7 +18,6 @@ public:
     Z2CreatureLink();
     ~Z2CreatureLink();
 
-    void setLinkState(u8);
     void setLinkGroupInfo(u8);
     void setLinkHp(s32, s32);
     void setLinkSwordType(s32, s32);
@@ -48,7 +47,7 @@ public:
     u8 getLinkState() const { return mLinkState; }
     u8 getMoveSpeed() const { return mMoveSpeed; }
     bool isRiding() const { return mRiding; }
-    void i_setLinkState(u8 i_state) { mLinkState = i_state; }
+    void setLinkState(u8 i_state) { mLinkState = i_state; }
     Z2SoundObjSimple& getKantera() { return mKantera; }
     u8 getLinkHp() const { return mLinkHp; }
     u8 getMovingTime() { return mMovingTime; }

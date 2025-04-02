@@ -731,7 +731,7 @@ void daE_FZ_c::action() {
         }
 
         if (1 < health && mAcchCir.ChkWallHit()) {
-            if (fopAcM_GetName(dComIfG_Bgsp().GetActorPointer(mAcchCir.GetBgIndex())) != PROC_BG) {
+            if (fopAcM_GetName(dComIfG_Bgsp().GetActorPointer(mAcchCir)) != PROC_BG) {
                 dBgS_LinChk lin_chk;
                 dBgS_LinChk lin_chk2;
 

@@ -9,17 +9,8 @@
 #include "d/d_path.h"
 #include "SSystem/SComponent/c_math.h"
 
-//
-// Forward References:
-//
+static bool data_80450680 = true;
 
-//
-// External References:
-//
-
-extern bool data_80450680;
-
-/* ############################################################################################## */
 /* 80450F98-80450F9C 000498 0004+00 2/2 0/0 0/0 .sbss            mTypeGroupData__7dTres_c */
 dTres_c::typeGroupData_c* dTres_c::mTypeGroupData;
 
@@ -41,7 +32,6 @@ void dTres_c::remove() {
     data_80450680 = true;
 }
 
-/* ############################################################################################## */
 /* 80425438-80425508 052158 00CC+04 6/6 3/3 0/0 .bss             mTypeGroupListAll__7dTres_c */
 dTres_c::type_group_list dTres_c::mTypeGroupListAll[17];
 
@@ -101,8 +91,6 @@ void dTres_c::addData(dTres_c::list_class* p_list, s8 roomNo) {
     }
 }
 
-/* ############################################################################################## */
-
 /* 8009BE28-8009C168 096768 0340+00 1/1 0/0 0/0 .text
  * checkTreasureBox__7dTres_cFPQ27dTres_c6data_s                */
 void dTres_c::checkTreasureBox(dTres_c::data_s* param_0) {
@@ -138,7 +126,7 @@ void dTres_c::checkTreasureBox(dTres_c::data_s* param_0) {
             }
             dMapInfo_n::correctionOriginPos(param_0->mRoomNo, &param_0->mPos);
         } else {
-            dStage_dPnt_c* point;
+            dPnt* point;
             if (dComIfGs_isSwitch(param_0->mSwBit, param_0->mRoomNo)) {
                 point = &path->m_points[path->m_num - 1];
             } else {
@@ -265,7 +253,6 @@ void dTres_c::setPosition(int dataNo, u8 listIdx, Vec const* i_pos, int i_roomNo
     }
 }
 
-/* ############################################################################################## */
 /* 8037B0D8-8037B100 007738 0022+06 2/2 0/0 0/0 .rodata          typeToTypeGroup__7dTres_c */
 u8 const dTres_c::typeToTypeGroup[17][2] = {
     {0xFF, 0x00}, {0x00, 0x01}, {0x01, 0x02}, {0x02, 0x03}, {0x03, 0x04}, {0x04, 0x05},
