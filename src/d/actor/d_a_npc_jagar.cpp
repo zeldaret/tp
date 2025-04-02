@@ -249,8 +249,8 @@ int daNpc_Jagar_c::CreateHeap() {
         modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
     model->setUserArea((u32)this);
-    mpMatAnm = new daNpcT_MatAnm_c();
-    if (mpMatAnm == NULL) {
+    mpMatAnm[0] = new daNpcT_MatAnm_c();
+    if (mpMatAnm[0] == NULL) {
         return 0;
     }
 
@@ -275,9 +275,9 @@ int daNpc_Jagar_c::Execute() {
 
 /* 80A14FA0-80A15034 000980 0094+00 1/1 0/0 0/0 .text            Draw__13daNpc_Jagar_cFv */
 int daNpc_Jagar_c::Draw() {
-    if (mpMatAnm != NULL) {
+    if (mpMatAnm[0] != NULL) {
         J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
-        modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm);
+        modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
     return daNpcT_c::draw(0, 0, field_0xde8, NULL, 100.0f, 0, 0, 0);
 }
@@ -338,8 +338,8 @@ int daNpc_Jagar_c::isDelete() {
 void daNpc_Jagar_c::reset() {
     csXyz acStack_20;
     int iVar1 = (u8*)&field_0x1008 - (u8*)&field_0xfd4;
-    if (mpMatAnm != NULL) {
-        mpMatAnm->initialize();
+    if (mpMatAnm[0] != NULL) {
+        mpMatAnm[0]->initialize();
     }
 
     initialize();

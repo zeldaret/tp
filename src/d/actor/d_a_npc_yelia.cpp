@@ -451,8 +451,8 @@ int daNpc_Yelia_c::CreateHeap() {
     }
     model->setUserArea((u32)this);
 
-    mpMatAnm = new daNpcT_MatAnm_c();
-    if (mpMatAnm == NULL) {
+    mpMatAnm[0] = new daNpcT_MatAnm_c();
+    if (mpMatAnm[0] == NULL) {
         return 0;
     }
 
@@ -484,9 +484,9 @@ int daNpc_Yelia_c::Execute() {
 
 /* 80B4DC74-80B4DD08 000A54 0094+00 1/1 0/0 0/0 .text            Draw__13daNpc_Yelia_cFv */
 int daNpc_Yelia_c::Draw() {
-    if (mpMatAnm != NULL) {
+    if (mpMatAnm[0] != NULL) {
         J3DModelData* model_data = mpMorf[0]->getModel()->getModelData();
-        model_data->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm);
+        model_data->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
     return draw(FALSE, FALSE, field_0xde8, NULL, 100.0f, FALSE, FALSE, FALSE);
 }
@@ -565,8 +565,8 @@ BOOL daNpc_Yelia_c::isDelete() {
 /* 80B4DF10-80B4E068 000CF0 0158+00 1/1 0/0 0/0 .text            reset__13daNpc_Yelia_cFv */
 void daNpc_Yelia_c::reset() {
     u32 size = (u32)&field_0xfec - (u32)&mpNextAction;
-    if (mpMatAnm != NULL) {
-        mpMatAnm->initialize();
+    if (mpMatAnm[0] != NULL) {
+        mpMatAnm[0]->initialize();
     }
     initialize();
     for (int i = 0; i < 4; i++) {

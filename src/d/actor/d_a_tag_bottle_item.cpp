@@ -165,7 +165,7 @@ int daTag_BottleItem_c::wait(void* param_0) {
             cXyz pos = attention_info.position - player->attention_info.position;
         
             dComIfGp_att_CatchRequest(this,mBottleItemType,140.0f,pos.y+100.0f,pos.y-100.0f,0x2000,1);
-            eventInfo.onCondition(0x40);
+            eventInfo.onCondition(dEvtCnd_40_e);
         }
     case 2:
     case 0:

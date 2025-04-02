@@ -38,7 +38,7 @@ const char* dEvent_exception_c::getEventName() {
         "PORTALWARP_START", "PORTALWARP_START_B",
     };
 
-    s32 roomNo = dComIfGp_roomControl_getStayNo();
+    int roomNo = dComIfGp_roomControl_getStayNo();
     dStage_roomDt_c* roomDt = dComIfGp_roomControl_getStatusRoomDt(roomNo);
     dStage_MapEventInfo_c* eventInfo = roomDt->getMapEventInfo();
     if (mEventInfoIdx == -1) {

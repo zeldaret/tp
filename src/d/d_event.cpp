@@ -274,7 +274,7 @@ int dEvt_control_c::catchCheck(dEvt_order_c* p_order) {
     fopAc_ac_c* actor2 = p_order->mActor2;
     fopAc_ac_c* actor1 = p_order->mActor1;
 
-    if (actor1 == NULL || (actor2 != NULL && !actor2->eventInfo.chkCondition(0x40))) {
+    if (actor1 == NULL || (actor2 != NULL && !actor2->eventInfo.chkCondition(dEvtCnd_40_e))) {
         return 0;
     }
 

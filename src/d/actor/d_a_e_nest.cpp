@@ -610,7 +610,7 @@ static void e_nest_hahen(e_nest_class* i_this) {
                         i_this->mTimers[0] = 60;
                     } else {
                         dComIfGp_att_CatchRequest(a_this, 0x76, 100.0f, 50.0f, -150.0f, 0x5000, 1);
-                        a_this->eventInfo.onCondition(0x40);
+                        a_this->eventInfo.onCondition(dEvtCnd_40_e);
                     }
                     break;
                 }

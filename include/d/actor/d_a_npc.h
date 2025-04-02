@@ -433,8 +433,7 @@ public:
     /* 0x8A0 */ dBgS_AcchCir mAcchCir;
     /* 0x8E0 */ request_of_phase_process_class mPhase[10];
     /* 0x930 */ cBgS_GndChk mGndChk;
-    /* 0x96C */ daNpcT_MatAnm_c* mpMatAnm;
-    /* 0x970 */ u8 field_0x970[4];
+    /* 0x96C */ daNpcT_MatAnm_c* mpMatAnm[2];
     /* 0x974 */ dMsgFlow_c mFlow;
     /* 0x9C0 */ dPaPoT_c field_0x9c0;
     /* 0xA40 */ dCcD_Stts field_0xa40;

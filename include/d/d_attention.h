@@ -213,9 +213,9 @@ public:
     /* 8007378C */ fopAc_ac_c* CheckObjectTarget(s32);
     /* 800737E4 */ bool LockonTruth();
     /* 80073838 */ int checkDistance(cXyz*, s16, cXyz*, f32, f32, f32, f32);
-    /* 8016E424 */ void LockEdge();
-    /* 80182994 */ void GetCheckObjectCount();
-    /* 80182AD0 */ void keepLock(int);
+    /* 8016E424 */ bool LockEdge() { return chkFlag(8) || chkFlag(0x20); }
+    /* 80182994 */ int GetCheckObjectCount() { return mCheckObjectCount; }
+    /* 80182AD0 */ void keepLock(int timer) { mAttnBlockTimer = timer; }
     /* 8014B010 */ static dist_entry& getDistTable(int i_no) { return dist_table[i_no]; }
 
     fopAc_ac_c* getCatghTarget() { return mCatghTarget.getCatghTarget(); }

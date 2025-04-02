@@ -1703,7 +1703,7 @@ int daAlink_c::endPushPull() {
  */
 f32 daAlink_c::getPushPullAnimeSpeed() {
     f32 var_f31;
-    if ((getMoveBGActorName(mPolyInfo1, 0) == PROC_Obj_Movebox && ((daObjMovebox::Act_c*)dComIfG_Bgsp().GetActorPointer(mPolyInfo1.GetBgIndex()))->getType() != 0) ||
+    if ((getMoveBGActorName(mPolyInfo1, 0) == PROC_Obj_Movebox && ((daObjMovebox::Act_c*)dComIfG_Bgsp().GetActorPointer(mPolyInfo1))->getType() != 0) ||
         getMoveBGActorName(mPolyInfo1, 0) == PROC_Obj_Bemos)
     {
         if (checkWolf()) {
