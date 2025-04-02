@@ -126,7 +126,7 @@ void dTres_c::checkTreasureBox(dTres_c::data_s* param_0) {
             }
             dMapInfo_n::correctionOriginPos(param_0->mRoomNo, &param_0->mPos);
         } else {
-            dStage_dPnt_c* point;
+            dPnt* point;
             if (dComIfGs_isSwitch(param_0->mSwBit, param_0->mRoomNo)) {
                 point = &path->m_points[path->m_num - 1];
             } else {

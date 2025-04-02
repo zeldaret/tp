@@ -73,7 +73,7 @@ void daKiPot_c::init_modeWait() {
 void daKiPot_c::modeWait() {
     if (chkEvent() && eventInfo.checkCommandCatch() == 0) {
         dComIfGp_att_CatchRequest(this, fpcNm_ITEM_UGLY_SOUP, 100.0f, 50.0f, -50.0f, 0x2000, 1);
-        eventInfo.onCondition(0x40);
+        eventInfo.onCondition(dEvtCnd_40_e);
     }
 }
 

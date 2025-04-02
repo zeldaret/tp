@@ -31,7 +31,7 @@ public:
     /* 80B9D548 */ void move();
     /* 80B9D72C */ void init_modeWait();
     /* 80B9D738 */ void modeWait();
-    /* 80B9D998 */ BOOL eventStart();
+    /* 80B9D998 */ bool eventStart();
     /* 80B9D9BC */ void init_modeDropInit();
     /* 80B9DA00 */ void modeDropInit();
     /* 80B9DA44 */ void init_modeDrop();

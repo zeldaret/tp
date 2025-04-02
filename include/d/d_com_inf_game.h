@@ -1168,12 +1168,10 @@ inline void dComIfGs_setBottleNum(u8 i_bottleIdx, u8 i_bottleNum) {
     g_dComIfG_gameInfo.info.getPlayer().getItemRecord().setBottleNum(i_bottleIdx, i_bottleNum);
 }
 
-inline void dComIfGs_onEventBit(u16 i_flag) {
+inline void dComIfGs_onEventBit(const u16 i_flag) {
     g_dComIfG_gameInfo.info.getSavedata().getEvent().onEventBit(i_flag);
 }
 
-// debug rom says `i_flag` is not const, but it's needed to match in some places?
-// missing some other inline maybe?
 inline BOOL dComIfGs_isEventBit(const u16 i_flag) {
     return g_dComIfG_gameInfo.info.getEvent().isEventBit(i_flag);
 }
@@ -1307,7 +1305,7 @@ inline u16 dComIfGs_getLife() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getLife();
 }
 
-inline void dComIfGs_offEventBit(u16 i_flag) {
+inline void dComIfGs_offEventBit(const u16 i_flag) {
     g_dComIfG_gameInfo.info.getSavedata().getEvent().offEventBit(i_flag);
 }
 
@@ -1479,7 +1477,7 @@ inline s32 dComIfGs_isGetMagicUseFlag() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().isMagicFlag(0);
 }
 
-inline void dComIfGs_offTmpBit(u16 i_flag) {
+inline void dComIfGs_offTmpBit(const u16 i_flag) {
     g_dComIfG_gameInfo.info.getTmp().offEventBit(i_flag);
 }
 
@@ -1487,11 +1485,11 @@ inline BOOL dComIfGs_isDarkClearLV(int i_no) {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusB().isDarkClearLV(i_no);
 }
 
-inline BOOL dComIfGs_isTmpBit(u16 i_flag) {
+inline BOOL dComIfGs_isTmpBit(const u16 i_flag) {
     return g_dComIfG_gameInfo.info.getTmp().isEventBit(i_flag);
 }
 
-inline void dComIfGs_onTmpBit(u16 i_flag) {
+inline void dComIfGs_onTmpBit(const u16 i_flag) {
     g_dComIfG_gameInfo.info.getTmp().onEventBit(i_flag);
 }
 
@@ -1825,19 +1823,19 @@ inline void dComIfGs_onLightDropGetFlag(u8 i_nowLevel) {
     g_dComIfG_gameInfo.info.getPlayer().getLightDrop().onLightDropGetFlag(i_nowLevel);
 }
 
-inline void dComIfGs_setTmpReg(u16 i_reg, u8 i_no) {
+inline void dComIfGs_setTmpReg(const u16 i_reg, u8 i_no) {
     g_dComIfG_gameInfo.info.getTmp().setEventReg(i_reg, i_no);
 }
 
-inline u8 dComIfGs_getTmpReg(u16 i_reg) {
+inline u8 dComIfGs_getTmpReg(const u16 i_reg) {
     return g_dComIfG_gameInfo.info.getTmp().getEventReg(i_reg);
 }
 
-inline u8 dComIfGs_getEventReg(u16 reg) {
+inline u8 dComIfGs_getEventReg(const u16 reg) {
     return g_dComIfG_gameInfo.info.getEvent().getEventReg(reg);
 }
 
-inline void dComIfGs_setEventReg(u16 reg, u8 value) {
+inline void dComIfGs_setEventReg(const u16 reg, u8 value) {
     g_dComIfG_gameInfo.info.getEvent().setEventReg(reg, value);
 }
 

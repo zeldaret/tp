@@ -348,7 +348,7 @@ int daObjKWheel00_c::Delete() {
 }
 
 /* 80C4E298-80C4E2C0 000C18 0028+00 2/1 0/0 0/0 .text            eventStart__15daObjKWheel00_cFv */
-BOOL daObjKWheel00_c::eventStart() {
+bool daObjKWheel00_c::eventStart() {
     #if DEBUG
     if(getArg0())
         mZAngularVelocity = l_HIO.mZAngularAcceleration;
@@ -361,7 +361,7 @@ BOOL daObjKWheel00_c::eventStart() {
         mZAngularVelocity = -2;
     #endif
 
-    return TRUE;
+    return true;
 }
 
 /* ############################################################################################## */

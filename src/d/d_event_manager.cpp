@@ -97,6 +97,13 @@ void* dEvent_manager_c::getSubstance(dEvDtData_c* p_data, int type) {
     }
 }
 
+void dEvent_manager_c::setDbgData(const char* buffer) {
+    if(buffer) {
+        char* writableBuffer = const_cast<char*>(buffer);
+        mEventList[11].init(writableBuffer, -1);
+    }
+}
+
 dEvent_manager_c::dEvent_manager_c() {
     mDataLoaded = false;
 }

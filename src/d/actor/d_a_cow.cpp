@@ -3151,7 +3151,7 @@ u8 daCow_c::initialize() {
             mPath = dPath_GetRoomPath(prm1, fopAcM_GetRoomNo(this));
             mPointIndex = 0;
 
-            dStage_dPnt_c* point = dPath_GetPnt(mPath, mPointIndex);
+            dPnt* point = dPath_GetPnt(mPath, mPointIndex);
             current.pos = point->m_position;
 
             setProcess(&daCow_c::action_crazy, false);

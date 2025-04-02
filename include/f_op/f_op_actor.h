@@ -119,6 +119,7 @@ enum dEvt_Condition_e {
     dEvtCnd_CANDOOR_e = 0x0004,
     dEvtCnd_CANGETITEM_e = 0x0008,
     dEvtCnd_CANTALKITEM_e = 0x0020,
+    dEvtCnd_40_e = 0x0040,
     dEvtCnd_DUMMY = 0x8000,
 };
 
@@ -286,7 +287,7 @@ public:
     void offDownFlg() { mFlags &= ~0x17; }
     void offWolfNoLock() { mFlags &= ~0x200; }
     void offHeadLockFlg() { mFlags &= ~0x80; }
-    void offThrowMode(u8 throwMode) { mThrowMode &= throwMode; }
+    void offThrowMode(u8 throwMode) { mThrowMode &= ~throwMode; }
 
     void setMidnaBindMode(u8 i_bindMode) { mMidnaBindMode = i_bindMode; }
     void setMidnaBindID(u8 i_idx, u32 i_bindID) { mMidnaBindID[i_idx] = i_bindID; }

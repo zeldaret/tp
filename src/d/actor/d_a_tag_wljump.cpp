@@ -70,7 +70,7 @@ int daTagWljump_c::execute() {
         field_0x56d--;
     }
 
-    dStage_dPnt_c* point_p;
+    dPnt* point_p;
 
     daPy_py_c* player = daPy_getLinkPlayerActorClass();
     daMidna_c* midna = daPy_py_c::getMidnaActor();

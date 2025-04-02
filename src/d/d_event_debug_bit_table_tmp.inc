@@ -98,7 +98,7 @@
 	0x16,
 },
 {
-	"Hanch_CLIMBOUT_POND",
+	"HANJO_CLIMBOUT_POND",
 	"172 飛び込んだハンジョ−、池から出た", // Hanch gets out of lake after jumping in
 	"住吉", // Sumiyoshi
 	0x1304,
@@ -1377,7 +1377,7 @@
 },
 {
 	"T_0020",
-	"21 牛追い/時間切れ後〜再開の間までON", // cow herding - ON from `time's up` until `restart`
+	"21 牛追い/時間切れ後～再開の間までON", // cow herding - ON from `time's up` until `restart`
 	"京極", // Kyogoku
 	0x101,
 	"F_SP103:トアル村", // Ordon Village

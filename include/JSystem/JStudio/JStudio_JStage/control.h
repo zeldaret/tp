@@ -16,6 +16,7 @@ typedef JStudio::TObject* (*ObjCreateFuncT)(const JStudio::stb::data::TParse_TBl
 struct TCreateObject : public JStudio::TCreateObject {
     TCreateObject(const JStage::TSystem* pSystem) {
         pJSGSystem_ = pSystem;
+        JUT_ASSERT(42, pJSGSystem_!=0);
     }
 
     /* 80289B00 */ virtual ~TCreateObject();

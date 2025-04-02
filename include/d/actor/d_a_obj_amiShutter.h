@@ -44,7 +44,7 @@ public:
     /* 80BA1B58 */ void modeWait();
     /* 80BA1BCC */ void init_modeWaitEvent();
     /* 80BA1BD8 */ void modeWaitEvent();
-    /* 80BA1C90 */ BOOL eventStart();
+    /* 80BA1C90 */ bool eventStart();
     /* 80BA1CB4 */ void init_modeClose();
     /* 80BA1D48 */ void modeClose();
     /* 80BA1DCC */ void init_modeCloseEvent();

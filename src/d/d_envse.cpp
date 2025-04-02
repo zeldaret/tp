@@ -23,7 +23,7 @@ static void dEnvSe_getNearPathPos(cXyz* param_0, cXyz* param_1, dPath* i_path) {
     f32 var_f31 = FLT_MAX;
 
     int i;
-    dStage_dPnt_c* point_p = i_path->m_points;
+    dPnt* point_p = i_path->m_points;
 
     cXyz sp3C[2];
     cM3dGLin sp14;

@@ -289,12 +289,9 @@ public:
 
 // PPNT
 struct dStage_dPnt_c {
-    /* 0x0 */ u8 mArg1;
-    /* 0x1 */ u8 field_0x1;
-    /* 0x2 */ u8 field_0x2;
-    /* 0x3 */ u8 mArg0;
-    /* 0x4 */ Vec m_position;
-};  // Size: 0x10
+    /* 0x0 */ int num;
+    /* 0x4 */ u32 m_pnt_offset;
+};  // Size: 0x8
 
 struct dStage_FloorInfo_c {
     // FLOR

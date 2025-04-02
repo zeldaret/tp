@@ -1959,7 +1959,7 @@ bool PathTrace_c::setPath(int param_1, int param_2, int param_3, cXyz* param_4, 
         f32 minDist = 1000000000.0f;
         field_0x20 = 0;
         for (int i = 0; i < mPath->m_num; i++) {
-            dStage_dPnt_c* pnt = dPath_GetPnt(mPath, i);
+            dPnt* pnt = dPath_GetPnt(mPath, i);
             f32 dist = param_4->abs2(pnt->m_position);
             if (dist < minDist) {
                 minDist = dist;
@@ -1973,7 +1973,7 @@ bool PathTrace_c::setPath(int param_1, int param_2, int param_3, cXyz* param_4, 
 
 /* 80159C14-80159DC0 154554 01AC+00 1/1 0/0 6/6 .text            checkPoint__11PathTrace_cF4cXyzf */
 bool PathTrace_c::checkPoint(cXyz param_1, f32 param_2) {
-    dStage_dPnt_c* pnt = dPath_GetPnt(mPath, field_0x20);
+    dPnt* pnt = dPath_GetPnt(mPath, field_0x20);
     f32 dist = param_1.absXZ(pnt->m_position);
     if (dist < param_2 || dist < 10.0f) {
         return true;
@@ -2001,7 +2001,7 @@ bool PathTrace_c::checkPathEnd(cXyz param_1, f32 param_2) {
 /* 80159E54-80159ECC 154794 0078+00 0/0 0/0 10/10 .text getTargetPoint__11PathTrace_cFP3Vec */
 void PathTrace_c::getTargetPoint(Vec* targetPoint) {
     if (mObstacle == NULL) {
-        dStage_dPnt_c* pnt = dPath_GetPnt(mPath, field_0x20);
+        dPnt* pnt = dPath_GetPnt(mPath, field_0x20);
         *targetPoint = pnt->m_position;
     } else {
         getAvoidPoint(targetPoint);
@@ -2039,13 +2039,13 @@ void PathTrace_c::setNextPoint(cXyz& param_1) {
 
 /* 8015A0D0-8015A264 154A10 0194+00 1/1 0/0 0/0 .text            setNextPoint__11PathTrace_cFv */
 void PathTrace_c::setNextPoint() {
-    dStage_dPnt_c* pnt1 = dPath_GetPnt(mPath, field_0x20);
+    dPnt* pnt1 = dPath_GetPnt(mPath, field_0x20);
     if (field_0x24 > 0) {
         field_0x20 = incIndex(field_0x20);
     } else {
         field_0x20 = decIndex(field_0x20);
     }
-    dStage_dPnt_c* pnt2 = dPath_GetPnt(mPath, field_0x20);
+    dPnt* pnt2 = dPath_GetPnt(mPath, field_0x20);
     cXyz acStack_28(pnt1->m_position);
     field_0x18 = acStack_28.abs(pnt2->m_position);
     mNextPoint = 1000000000.0f;
@@ -2111,7 +2111,7 @@ void PathTrace_c::checkObstacleSub(fopAc_ac_c* pObstacle) {
     if (mMyself != pObstacle) {
         JUT_ASSERT(1816, mPath != 0);
         cXyz& newObstaclePos = fopAcM_GetPosition(pObstacle);
-        dStage_dPnt_c* pnt = dPath_GetPnt(mPath, field_0x20);
+        dPnt* pnt = dPath_GetPnt(mPath, field_0x20);
         f32 local_38;
         f32 local_3c;
         f32 local_40;

@@ -38,7 +38,7 @@ public:
     /* 80C59AA0 */ virtual int Delete();
 
     /* 80C59D80 */ virtual ~daLv3Water_c();
-    /* 80C59AE0 */ virtual BOOL eventStart();
+    /* 80C59AE0 */ virtual bool eventStart();
 
     int getParam() { return fpcM_GetParam(this) >> 0xC & 0x0FFF; }
     int getParamSw() { return fpcM_GetParam(this) & 0xFF; }

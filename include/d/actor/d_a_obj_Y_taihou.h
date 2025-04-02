@@ -25,7 +25,7 @@ public:
     /* 80BA0084 */ void setMtx();
     /* 80BA0208 */ void rotateCheck();
     /* 80BA045C */ void shotCheck();
-    /* 80BA0964 */ virtual BOOL eventStart();
+    /* 80BA0964 */ virtual bool eventStart();
     /* 80BA0974 */ int CreateHeap();
     /* 80BA09E4 */ int Create();
     /* 80BA0A94 */ int Execute(Mtx** i_mtx);

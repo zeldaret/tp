@@ -464,7 +464,7 @@ static int daObj_Tp_Create(fopAc_ac_c* i_this) {
             if (path == NULL) {
                 return cPhs_ERROR_e;
             } 
-            dStage_dPnt_c* pPoint = path->m_points;
+            dPnt* pPoint = path->m_points;
             cXyz cStack_28;
             csXyz cStack_30(0, 0, 0);
             for (int i = 0; i < path->m_num; i++, pPoint++) {

@@ -257,7 +257,7 @@ int daLv3Water2_c::Delete() {
 }
 
 /* 80C5AF3C-80C5B0C0 000C1C 0184+00 2/1 0/0 0/0 .text            eventStart__13daLv3Water2_cFv */
-BOOL daLv3Water2_c::eventStart() {
+bool daLv3Water2_c::eventStart() {
     if(mEastSwInitialStatus != mEastSwCurrentStatus) {
         mWaterLv = getParamLevel1() * 5.0f;
         mWaterLvFrame = static_cast<u8>(getParamFrame1());
@@ -279,7 +279,7 @@ BOOL daLv3Water2_c::eventStart() {
 
     mode_init_levelCtrl();
 
-    return TRUE;
+    return true;
 }
 
 /* 80C5B0C0-80C5B0EC 000DA0 002C+00 1/0 0/0 0/0 .text            daLv3Water2_Draw__FP13daLv3Water2_c

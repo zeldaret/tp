@@ -1330,7 +1330,7 @@ static void npc_ne_pathwalk(npc_ne_class* i_this) {
             i_this->mPathDir = 1;
             i_this->mPathPointNo = 1;
         }
-        dStage_dPnt_c* point = i_this->mpPath->m_points;
+        dPnt* point = i_this->mpPath->m_points;
         point += i_this->mPathPointNo;
         i_this->mTargetPos.x = point->m_position.x + cM_rndFX(50.0f);
         i_this->mTargetPos.y = point->m_position.y;
