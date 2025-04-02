@@ -2,7 +2,6 @@
 #define D_A_OBJ_MAKI_H
 
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
-#include "SSystem/SComponent/c_m3d_g_sph.h"
 #include "SSystem/SComponent/c_phase.h"
 #include "d/d_cc_d.h"
 #include "d/d_kankyo.h"
@@ -32,19 +31,17 @@ public:
     /* 0x6f8 */ u32 field_0x6f8[4];
     /* 0x6fc */ char field_0x6fc[0x70c - 0x708]; // Undefined
     /* 0x70c */ LIGHT_INFLUENCE mLightObj;
-    /* 0x72c */ char field_0x72c;
+    /* 0x72c */ u8 field_0x72c;
     /* 0x72d */ char field_0x72d[0x730 - 0x72d]; //Undefined
 };
 
 STATIC_ASSERT(sizeof(obj_maki_class) == 0x730);
-
 class daObj_Maki_HIO_c {
 public:
-    /* 0x00 */ void* vtable;
-    /* 0x04 */ char field_0x4;
-
     /* 80C8FE0C */ daObj_Maki_HIO_c();
-    /* 80C9089C */ ~daObj_Maki_HIO_c();
+    /* 80C9089C */ virtual ~daObj_Maki_HIO_c() {};
+
+    /* 0x04 */ s8 field_0x4;
 };
 
 
