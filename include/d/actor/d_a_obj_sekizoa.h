@@ -35,7 +35,7 @@ public:
     /* 80CD0A84 */ int selectAction();
     /* 80CD0B08 */ int chkAction(actionFunc i_action);                          // DONE
     /* 80CD0B34 */ int setAction(actionFunc i_action);                          // DONE
-    /* 80CD0BDC */ void checkMoveDirection();
+    /* 80CD0BDC */ int checkMoveDirection();
     /* 80CD0DE8 */ int getWaitMotionNo();                                       // DONE
     /* 80CD0E30 */ int getGameMotionNo();                                       // DONE
     /* 80CD0E78 */ int getNoJumpMotionNo();                                     // DONE
@@ -87,6 +87,21 @@ public:
         }
     }
 
+    void setFadeLightOff() {
+        if ((mParamCreate == 2) || (mParamCreate == 3)) {
+            if (mParamCreate == 2) {
+                mMotionSeqMngr.setNo(2, 0.0f, 1, 0);
+                mSound.startCreatureSound(Z2SE_SEKI_END_DEMO_2, 0, -1);
+            }
+            if (mParamCreate == 3) {
+                mMotionSeqMngr.setNo(13, 0.0f, 1, 0);
+                mSound.startCreatureSound(Z2SE_SEKI_END_DEMO_2, 0, -1);
+            }
+            mSetFadeLightOff = 1;
+            mSetFadeLightOff2 = 1;
+        }
+    }
+
     u8 getType() {
         int prm = fopAcM_GetParam(this) >> 0x1C;
 
@@ -129,16 +144,21 @@ public:
         return type;
     }
 
-    uint getBitSW() {
+    u8 getBitSW() {
         return fopAcM_GetParam(this) & 0xff;
     }
 
-    uint getBitSW2() {
+    u8 getBitSW2() {
         return (fopAcM_GetParam(this) & 0xff00) >> 8;
+    }
+
+    BOOL chkPressPlayer() {
+        return chkPointInArea(dComIfGp_getPlayer(0)->current.pos, current.pos, 100.0f, 300.0f, -300.0f, 0);
     }
 
     static char* mCutNameList[9];
     static cutFunc mCutList[9];
+    // static char* mStringBase[4];
 
     // /* 0x0E40 */ u8 field_0xe40[0x10C8 - 0xE40];
     // /* 0x10C8 */ u8 field_0x10c8;
@@ -148,32 +168,35 @@ public:
     // /* 0x1173 */ u8 field_0x1173;
     // /* 0x1174 */ u8 field_0x1174[0x1180 - 0x1174];
 
+    // CHECK d_a_npc_hanjo FOR MORE DETAILS TO THIS
+
     /* 0x0E40 */ mDoExt_McaMorf* mpMcaMorf;
     /* 0x0E44 */ mDoExt_invisibleModel mInvModel;
     /* 0x0E4C */ u8 field_0x0E4C[4];                    // Padding
     /* 0x0E50 */ dCcD_Cyl mCyl;
     /* 0x0F8C */ dCcD_Cyl mCyl2;
-    /* 0x10C8 */ u8 mParamCreate;
+    /* 0x10C8 */ u8 mParamCreate;                       // index of actor ? 0 -> sekizoa, 1 -> sekizob, mType ???
     /* 0x10C9 */ u8 field_0x10C9[3];                    // Padding
-    /* 0x10CC */ daNpcT_ActorMngr_c mActorMngrs[8];     // idx 5&6 -> 2 statues
+    /* 0x10CC */ daNpcT_ActorMngr_c mActorMngrs[8];     // idx 5&6 -> 2 statues, 4 -> ground tiles; 1&2 -> statues fixes ?, 7 porte de pierre
     /* 0x110C */ actionFunc mInitFunc;
     /* 0x1114 */ u8 field_0x1114[4];
     /* 0x1118 */ actionFunc mExecuteFunc;
     /* 0x1120 */ u8 field_0x1120[4];
     /* 0x1124 */ daNpcT_Path_c mPath;
     /* 0x114C */ cXyz mCXyzJump;
-    /* 0x1158 */ int mIntCutJump;
+    /* 0x1158 */ int mIntCutJump;                       // Timer ?
     /* 0x115C */ float mFloatJump2;
     /* 0x1160 */ float mFloatJump;
     /* 0x1164 */ float mFloatCutStart;
     /* 0x1168 */ float mFloatCutGoal2;
     /* 0x116C */ float mFloatCutGoal;
-    /* 0x1170 */ s16 mHalfCutTurn;
+    /* 0x1170 */ s16 mHalfCutTurn;                     // angle of smthg
     /* 0x1172 */ u8 mReset;
     /* 0x1173 */ u8 mSetWolfHowling;
-    /* 0x1174 */ u8 field_0x1174[2];                    // Padding
+    /* 0x1174 */ u8 mJump;
+    /* 0x1175 */ u8 mCutTurnBool;
     /* 0x1176 */ bool mSetFadeLightOff;
-    /* 0x1177 */ bool mSetMotionAnm;                       // Padding
+    /* 0x1177 */ bool mSetMotionAnm;
     /* 0x1178 */ bool mSetFadeLightOff2;
     /* 0x1179 */ u8 mParamDrawOtherMdl;                       
     /* 0x117A */ bool mChkGoal;
@@ -183,7 +206,54 @@ public:
 struct daObj_Sekizoa_Param_c {
     /* 80CD5C30 */ virtual ~daObj_Sekizoa_Param_c() {}
 
-    static f32 const m[40];
+    struct Data {
+        /* 0x00 */ f32 field_0x00;
+        /* 0x04 */ f32 field_0x04;
+        /* 0x08 */ f32 field_0x08;
+        /* 0x0C */ f32 field_0x0C;
+        /* 0x10 */ f32 field_0x10;
+        /* 0x14 */ f32 field_0x14;
+        /* 0x18 */ f32 field_0x18;
+        /* 0x1C */ f32 field_0x1C;
+        /* 0x20 */ f32 field_0x20;
+        /* 0x24 */ f32 field_0x24;
+        /* 0x28 */ f32 field_0x28;
+        /* 0x2C */ f32 field_0x2C;
+        /* 0x30 */ f32 field_0x30;
+        /* 0x34 */ f32 field_0x34;
+        /* 0x38 */ f32 field_0x38;
+        /* 0x3C */ f32 field_0x3C;
+        /* 0x40 */ f32 field_0x40;
+        /* 0x44 */ f32 field_0x44;
+        /* 0x48 */ s16 field_0x48;
+        /* 0x4A */ s16 field_0x4A;
+        /* 0x4C */ s16 field_0x4C;
+        /* 0x4E */ s16 field_0x4E;
+        /* 0x50 */ f32 field_0x50;
+        /* 0x54 */ f32 field_0x54;
+        /* 0x58 */ f32 field_0x58;
+        /* 0x5C */ f32 field_0x5C;
+        /* 0x60 */ int field_0x60;
+        /* 0x64 */ f32 field_0x64;
+        /* 0x68 */ f32 field_0x68;
+        /* 0x6C */ f32 field_0x6C;
+        /* 0x70 */ f32 field_0x70;
+        /* 0x74 */ f32 field_0x74;
+        /* 0x78 */ f32 field_0x78;
+        /* 0x7C */ f32 field_0x7C;
+        /* 0x80 */ f32 field_0x80;
+        /* 0x84 */ f32 field_0x84;
+        /* 0x88 */ f32 field_0x88;
+        /* 0x8C */ f32 field_0x8C;
+        /* 0x90 */ f32 field_0x90;
+        /* 0x94 */ f32 field_0x94;
+        /* 0x98 */ s16 field_0x98;
+        /* 0x9A */ s16 field_0x9A;
+        /* 0x9C */ int field_0x9C;
+    };
+
+    static Data const m;
+    // static f32 const m[40];
 };
 
 #endif /* D_A_OBJ_SEKIZOA_H */

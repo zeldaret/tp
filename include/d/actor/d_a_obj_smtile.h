@@ -45,6 +45,9 @@ public:
 
     u8 getType() { return 0; }
     u8 getBitSW() { return (fopAcM_GetParam(this) & 0xff00) >> 8; }
+    bool checkEndMove() { return field_0xb2a == 1; } 
+    void reset() { field_0xb29 = 0; field_0xb2a = 0; field_0xb2b = 1; }
+    void slide() { field_0xb29 = 1; }
 };
 
 STATIC_ASSERT(sizeof(daObj_SMTile_c) == 0xb30);
