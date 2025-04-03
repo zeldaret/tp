@@ -68,13 +68,11 @@ namespace JASThreadingModel {
         };
     };
 
-    
+    template <typename A0>
     struct ObjectLevelLockable {
-        // Should be templated on the chunk memory but couldn't initialize it inside the class itself
-        //template <typename A0>
         struct Lock {
-            Lock(OSMutex* mutex) {
-                mMutex = mutex;
+            Lock(A0 const& mutex) {
+                mMutex = (A0*)&mutex;
                 OSLockMutex(mMutex);
             }
 
@@ -82,7 +80,7 @@ namespace JASThreadingModel {
                 OSUnlockMutex(mMutex);
             }
 
-            OSMutex* mMutex;
+            A0* mMutex;
         };
     };
 };
@@ -105,8 +103,8 @@ namespace JASKernel { JKRHeap* getSystemHeap(); };
  * @ingroup jsystem-jaudio
  * 
  */
-template<u32 ChunkSize, typename T>
-class JASMemChunkPool {
+template<u32 ChunkSize, template<typename> class T>
+class JASMemChunkPool : public OSMutex {
     struct MemoryChunk {
         MemoryChunk(MemoryChunk* nextChunk) {
             mNextChunk = nextChunk;
@@ -156,7 +154,7 @@ class JASMemChunkPool {
     };
 public:
     JASMemChunkPool() {
-        OSInitMutex(&mMutex);
+        OSInitMutex(this);
         field_0x18 = NULL;
         createNewChunk();
     }
@@ -185,7 +183,7 @@ public:
     }
 
     void* alloc(u32 size) {
-        typename T::Lock lock(&mMutex);
+        typename T<JASMemChunkPool<ChunkSize, T> >::Lock lock(*this);
         if (field_0x18->getFreeSize() < size) {
             if (ChunkSize < size) {
                 return NULL;
@@ -198,7 +196,7 @@ public:
     }
 
     void free(void* ptr) {
-        typename T::Lock lock(&mMutex);
+        typename T<JASMemChunkPool<ChunkSize, T> >::Lock lock(*this);
         MemoryChunk* chunk = field_0x18;
         MemoryChunk* prevChunk = NULL;
         while (chunk != NULL) {
@@ -216,7 +214,6 @@ public:
         }
     }
 
-    /* 0x00 */ OSMutex mMutex;
     /* 0x18 */ MemoryChunk* field_0x18;
 };
 

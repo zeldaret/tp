@@ -819,7 +819,7 @@ config.libs = [
             Object(NonMatching, "JSystem/JAudio2/JASTaskThread.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JASDvdThread.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JASCallback.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASHeapCtrl.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASHeapCtrl.cpp", extra_cflags=['-pragma "nosyminline off"']),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JASResArcLoader.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JASProbe.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JASReport.cpp"),
