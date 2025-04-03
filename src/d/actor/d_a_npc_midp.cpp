@@ -73,9 +73,44 @@ daNpc_midP_c::~daNpc_midP_c() {
 
 /* 80A739C0-80A73A4C 000000 008C+00 6/6 0/0 0/0 .rodata          m__18daNpc_midP_Param_c */
 daNpc_midP_Param_c::Data const daNpc_midP_Param_c::m = {
-    210.0f, -3.0f, 1.0f, 500.0f, 255.0f, 190.0f, 35.0f, 30.0f, 0.0f, 0.0f, 10.0f, -10.0f,
-    30.0f, -10.0f, 45.0f, -45.0f, 0.6f, 12.0f, 3, 6, 5, 6, 110.0f, 0.0f, 0.0f, 0.0f, 60,
-    8, 0, 0, 4.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+    210.0f, 
+    -3.0f,     // mGravity
+    1.0f,        // mScale
+    500.0f, 
+    255.0f,     // mWeight
+    190.0f,       // mCylH
+    35.0f,       // mWallH
+    30.0f,       // mWallR
+    0.0f, 
+    0.0f, 
+    10.0f, 
+    -10.0f,
+    30.0f, 
+    -10.0f, 
+    45.0f, 
+    -45.0f, 
+    0.6f, 
+    12.0f,  // mMorfFrames
+    3,
+    6, 
+    5, 
+    6, 
+    110.0f,   // mAttnFovY
+    0.0f, 
+    0.0f, 
+    0.0f, 
+    60,
+    8, 
+    0, 
+    0, 
+    4.0f, 
+    0.0f, 
+    0.0f, 
+    0.0f, 
+    0.0f, 
+    0.0f, 
+    0.0f, 
+    0.0f,
 };
 
 /* 80A70D90-80A71074 000210 02E4+00 1/1 0/0 0/0 .text            create__12daNpc_midP_cFv */
@@ -172,7 +207,7 @@ int daNpc_midP_c::CreateHeap() {
 
 /* 80A714BC-80A714F0 00093C 0034+00 1/1 0/0 0/0 .text            Delete__12daNpc_midP_cFv */
 int daNpc_midP_c::Delete() {
-    OS_REPORT("|%06d:%x|daNpc_midP_c -> Delete\n", g_Counter, this);
+    OS_REPORT("|%06d:%x|daNpc_midP_c -> Delete\n", g_Counter.mCounter0, this);
     fopAcM_GetID(this);
     this->~daNpc_midP_c();
     return 1;
@@ -309,11 +344,11 @@ void daNpc_midP_c::setParam() {
     attention_info.distances[3] = daNpcT_getDistTableIdx(sVar1, sVar2);
     attention_info.flags = 10;
 
-    scale.setall(daNpc_midP_Param_c::m.field_0x08);
+    scale.setall(daNpc_midP_Param_c::m.mScale);
     mCcStts.SetWeight(daNpc_midP_Param_c::m.mWeight);
     mCylH = daNpc_midP_Param_c::m.mCylH;
     mWallR = daNpc_midP_Param_c::m.mWallR;
-    mAttnFovY = daNpc_midP_Param_c::m.field_0x50;
+    mAttnFovY = daNpc_midP_Param_c::m.mAttnFovY;
     mAcchCir.SetWallR(mWallR);
     mAcchCir.SetWallH(daNpc_midP_Param_c::m.mWallH);
     field_0xde8 = daNpc_midP_Param_c::m.field_0x0c;
@@ -600,8 +635,8 @@ static int daNpc_midP_Draw(void* i_this) {
 }
 
 /* 80A727D4-80A727DC 001C54 0008+00 1/0 0/0 0/0 .text            daNpc_midP_IsDelete__FPv */
-static bool daNpc_midP_IsDelete(void* i_this) {
-    return true;
+static int daNpc_midP_IsDelete(void* i_this) {
+    return 1;
 }
 
 /* 80A73D50-80A73D5C 000008 000C+00 1/1 0/0 0/0 .bss             @3811 */

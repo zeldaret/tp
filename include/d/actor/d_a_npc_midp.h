@@ -91,44 +91,44 @@ public:
     /* 80A73954 */ ~daNpc_midP_Param_c();
 
     struct Data {
-        /* 0x00 */ f32 field_0x00;  // 210.0f
-        /* 0x04 */ f32 mGravity;  // -3.0f
-        /* 0x08 */ f32 field_0x08;  // 1.0f
-        /* 0x0C */ f32 field_0x0c;  // 500.0f
-        /* 0x10 */ f32 mWeight;  // 255.0f
-        /* 0x14 */ f32 mCylH;  // 190.0f
-        /* 0x18 */ f32 mWallH;  // 35.0f
-        /* 0x1C */ f32 mWallR;  // 30.0f
-        /* 0x20 */ f32 field_0x20;  // 0.0f
-        /* 0x24 */ f32 field_0x24;  // 0.0f
-        /* 0x28 */ f32 field_0x28;  // 10.0f
-        /* 0x2C */ f32 field_0x2c;  // -10.0f
-        /* 0x30 */ f32 field_0x30;  // 30.0f
-        /* 0x34 */ f32 field_0x34;  // 10.0f
-        /* 0x38 */ f32 field_0x38;  // 45.0f
-        /* 0x3C */ f32 field_0x3c;  // -45.0f
-        /* 0x40 */ f32 field_0x40;  // 0.6f
-        /* 0x44 */ f32 mMorfFrames;  // 12.0f
-        /* 0x48 */ s16 field_0x48;  // 3
-        /* 0x4A */ s16 field_0x4a;  // 6
-        /* 0x4C */ s16 field_0x4c;  // 5
-        /* 0x4E */ s16 field_0x4e;  // 6
-        /* 0x50 */ f32 field_0x50;  // 110.0f
-        /* 0x54 */ f32 field_0x54;  // 0.0f
-        /* 0x58 */ f32 field_0x58;  // 0.0f
-        /* 0x5C */ f32 field_0x5c;  // 0.0f
-        /* 0x60 */ s16 field_0x60;  // 60
-        /* 0x62 */ s16 field_0x62;  // 8
-        /* 0x64 */ int field_0x64;  // 0
-        /* 0x68 */ int field_0x68;  // 0
-        /* 0x6C */ f32 field_0x6c;  // 4.0f
-        /* 0x70 */ f32 field_0x70;  // 0.0f
-        /* 0x74 */ f32 field_0x74;  // 0.0f
-        /* 0x78 */ f32 field_0x78;  // 0.0f
-        /* 0x7C */ f32 field_0x7c;  // 0.0f
-        /* 0x80 */ f32 field_0x80;  // 0.0f
-        /* 0x84 */ f32 field_0x84;  // 0.0f
-        /* 0x88 */ f32 field_0x88;  // 0.0f
+        /* 0x00 */ f32 field_0x00;
+        /* 0x04 */ f32 mGravity;
+        /* 0x08 */ f32 mScale;
+        /* 0x0C */ f32 field_0x0c;
+        /* 0x10 */ f32 mWeight;
+        /* 0x14 */ f32 mCylH;
+        /* 0x18 */ f32 mWallH;
+        /* 0x1C */ f32 mWallR;
+        /* 0x20 */ f32 field_0x20;
+        /* 0x24 */ f32 field_0x24;
+        /* 0x28 */ f32 field_0x28;
+        /* 0x2C */ f32 field_0x2c;
+        /* 0x30 */ f32 field_0x30;
+        /* 0x34 */ f32 field_0x34;
+        /* 0x38 */ f32 field_0x38;
+        /* 0x3C */ f32 field_0x3c;
+        /* 0x40 */ f32 field_0x40;
+        /* 0x44 */ f32 mMorfFrames;
+        /* 0x48 */ s16 field_0x48;
+        /* 0x4A */ s16 field_0x4a;
+        /* 0x4C */ s16 field_0x4c;
+        /* 0x4E */ s16 field_0x4e;
+        /* 0x50 */ f32 mAttnFovY;
+        /* 0x54 */ f32 field_0x54;
+        /* 0x58 */ f32 field_0x58;
+        /* 0x5C */ f32 field_0x5c;
+        /* 0x60 */ s16 field_0x60;
+        /* 0x62 */ s16 field_0x62;
+        /* 0x64 */ int field_0x64;
+        /* 0x68 */ int field_0x68;
+        /* 0x6C */ f32 field_0x6c;
+        /* 0x70 */ f32 field_0x70;
+        /* 0x74 */ f32 field_0x74;
+        /* 0x78 */ f32 field_0x78;
+        /* 0x7C */ f32 field_0x7c;
+        /* 0x80 */ f32 field_0x80;
+        /* 0x84 */ f32 field_0x84;
+        /* 0x88 */ f32 field_0x88;
     };
 
     static const Data m;
