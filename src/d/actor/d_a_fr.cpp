@@ -9,6 +9,7 @@
 #include "d/actor/d_a_player.h"
 #include "SSystem/SComponent/c_lib.h"
 #include "c/c_damagereaction.h"
+#include "d/actor/d_a_obj_lp.h"
 #include "dol2asm.h"
 
 /* 805198EC-8051994C 0000EC 0060+00 1/1 0/0 0/0 .text            __ct__10daFr_HIO_cFv */
@@ -68,22 +69,20 @@ static void* s_wd_sub(void* param_1, void* param_2) {
 }
 
 /* 80519B60-80519D28 000360 01C8+00 1/1 0/0 0/0 .text            wd_check__FP8fr_class */
-static int wd_check(fr_class* i_this) {
+static wd_ss* wd_check(fr_class* i_this) {
     // NONMATCHING
-    base_process_class* baseProcess = fpcM_Search(s_wd_sub, i_this);
-    if (baseProcess) {
-        layer_class** layer = &baseProcess[7].delete_tag.layer;
-        for (int i = 0; i < (int)baseProcess[0xec].delete_tag.base.mpNode.mpData; i++) {
-            cXyz sp48 = *(cXyz*)layer - i_this->current.pos;
-            if (sp48.abs() < *(f32*)layer * 22.0f) {
-                return (int)layer;
+    obj_lp_class* mLilyPad = (obj_lp_class*)fpcM_Search(s_wd_sub, i_this);
+    if (mLilyPad) {
+        wd_ss* mWdSs = mLilyPad->mWdSs;
+        for (int i = 0; i < mLilyPad->field_0xad98; i++) {
+            cXyz sp48 = mWdSs->field_0x10[i] - i_this->current.pos;
+            if (sp48.abs() < mWdSs->field_0x10[3].z * 22.0f) {
+                return mWdSs;
             }
-
-            layer = layer + 0x15;
         }
     }
 
-    return 0;
+    return NULL;
 }
 
 /* 80519D28-80519E24 000528 00FC+00 4/4 0/0 0/0 .text            way_bg_check__FP8fr_class */
@@ -117,7 +116,7 @@ static u8 data_8051BC10[4];
 static u8 lit_3644[12];
 
 /* 8051BC20-8051BC4C 000018 002C+00 9/9 0/0 0/0 .bss             l_HIO */
-static f32 l_HIO[11];
+static daFr_HIO_c l_HIO;
 
 /* 80519E24-8051A0D8 000624 02B4+00 1/2 0/0 0/0 .text            fr_normal__FP8fr_class */
 static void fr_normal(fr_class* i_this) {
@@ -140,11 +139,11 @@ static void fr_normal(fr_class* i_this) {
         case 2:
             if (i_this->mMorf->isStop()) {
                 anm_init(i_this, 8, 1.0f, 0, 1.0f);
-                i_this->speedF = l_HIO[2] + cM_rndFX(l_HIO[2] * 0.5f);
-                i_this->speed.y = l_HIO[3] + cM_rndFX(l_HIO[3] * 0.5f);
+                i_this->speedF = l_HIO.field_0x8 + cM_rndFX(l_HIO.field_0x8 * 0.5f);
+                i_this->speed.y = l_HIO.field_0xc + cM_rndFX(l_HIO.field_0xc * 0.5f);
 
                 if (way_bg_check(i_this)) {
-                    i_this->field_0x5e8 = l_HIO[5];
+                    i_this->field_0x5e8 = l_HIO.field_0x14;
                 } else {
                     i_this->current.angle.y += -0x8000;
                     cLib_addCalcAngleS2(&i_this->current.angle.y, 
@@ -182,8 +181,8 @@ static void fr_away(fr_class* i_this) {
         case 1:
             if (i_this->mMorf->isStop()) {
                 anm_init(i_this, 8, 1.0f, 0, 1.0f);
-                i_this->speedF = l_HIO[7] + cM_rndFX(l_HIO[7] * 0.5f);
-                i_this->speed.y = l_HIO[8] + cM_rndFX(l_HIO[8] * 0.5f);
+                i_this->speedF = l_HIO.field_0x1c + cM_rndFX(l_HIO.field_0x1c * 0.5f);
+                i_this->speed.y = l_HIO.field_0x20 + cM_rndFX(l_HIO.field_0x20 * 0.5f);
 
                 if (way_bg_check(i_this)) {
                     i_this->current.angle.y += -0x8000;
@@ -206,7 +205,7 @@ static void fr_away(fr_class* i_this) {
         case 3:
             if (i_this->mMorf->isStop()) {
                 i_this->field_0x5d4 = 0;
-                if ((l_HIO[6] + 200.0f) < i_this->field_0x5d8) {
+                if ((l_HIO.field_0x18 + 200.0f) < i_this->field_0x5d8) {
                     i_this->field_0x5d2 = 0;
                 }
             }
@@ -222,20 +221,20 @@ static void fr_s_normal(fr_class* i_this) {
             anm_init(i_this, 10, 5.0f, 2, cM_rndF(0.3f) + 1.5f);
             i_this->field_0x5cc = 0;
             i_this->field_0x5dc[0] = cM_rndF(100.0f) + 50.0f;
-            if (l_HIO[9] < i_this->speedF) {
-                i_this->speedF = l_HIO[9];
+            if (l_HIO.field_0x24 < i_this->speedF) {
+                i_this->speedF = l_HIO.field_0x24;
             }
             break;
         case 1:
             if (i_this->mMorf->getFrame() > 9) {
                 if (i_this->mMorf->getFrame() < 0x1a) {
-                    cLib_addCalc2(&i_this->speedF, l_HIO[9], 1.0f, l_HIO[9] * 0.2f);
+                    cLib_addCalc2(&i_this->speedF, l_HIO.field_0x24, 1.0f, l_HIO.field_0x24 * 0.2f);
                     if (i_this->mMorf->getFrame() > 9) {
                         if (i_this->mMorf->getFrame() < 16 && i_this->field_0x5cc == 0) {
                             if (way_bg_check(i_this)) {
                                 i_this->current.angle.y += -0x8000;
                             } else {
-                                i_this->field_0x5e8 = l_HIO[5];
+                                i_this->field_0x5e8 = l_HIO.field_0x14;
 
                                 cXyz sp28;
                                 sp28.x = i_this->home.pos.x + cM_rndFX(i_this->field_0x5e8) - i_this->current.pos.x;
@@ -256,7 +255,7 @@ static void fr_s_normal(fr_class* i_this) {
                 }
             }
 
-            cLib_addCalc0(&i_this->speedF, 1.0f, l_HIO[9] * 0.05f);
+            cLib_addCalc0(&i_this->speedF, 1.0f, l_HIO.field_0x24 * 0.05f);
             if (i_this->field_0x5dc[0] == 0) {
                 i_this->field_0x5d2 = 0x1e;
                 i_this->field_0x5d4 = 0;
@@ -295,7 +294,7 @@ static void fr_s_away(fr_class* i_this) {
         case 1:
             if (i_this->mMorf->getFrame() > 9) {
                 if (i_this->mMorf->getFrame() > 0x1a) {
-                    cLib_addCalc2(&i_this->speedF, l_HIO[10], 1.0f, l_HIO[10] * 0.2f);
+                    cLib_addCalc2(&i_this->speedF, l_HIO.field_0x28, 1.0f, l_HIO.field_0x28 * 0.2f);
                     if (i_this->mMorf->getFrame() > 9) {
                         if (i_this->mMorf->getFrame() < 16 && i_this->field_0x5cc == 0) {
                             if (way_bg_check(i_this)) {
@@ -306,7 +305,7 @@ static void fr_s_away(fr_class* i_this) {
                                     1, 0x2000);
                             }
 
-                            if (l_HIO[6] + 200.0f < i_this->field_0x5d8) {
+                            if (l_HIO.field_0x18 + 200.0f < i_this->field_0x5d8) {
                                 i_this->field_0x5d2 = 20;
                                 i_this->field_0x5d4 = 0;
                             }
@@ -324,7 +323,7 @@ static void fr_s_away(fr_class* i_this) {
                 }
             }
 
-            cLib_addCalc0(&i_this->speedF, 1.0f, l_HIO[10] * 0.05f);
+            cLib_addCalc0(&i_this->speedF, 1.0f, l_HIO.field_0x28 * 0.05f);
     }
 }
 
@@ -378,7 +377,7 @@ static void swim_on(fr_class* i_this) {
         i_this->shape_angle.z = 500 * fVar3;
 
         if (((i_this->field_0x994 == -1 || !daPy_py_c::checkNowWolf()) &&
-            i_this->field_0x5d2 != 0x28) && i_this->field_0x5d8 < l_HIO[6]) {
+            i_this->field_0x5d2 != 0x28) && i_this->field_0x5d8 < l_HIO.field_0x18) {
             i_this->field_0x5d2 = 0x28;
             i_this->field_0x5d4 = 0;
         }
@@ -397,10 +396,8 @@ static void swim_off(fr_class* i_this) {
         i_this->shape_angle.x = i_this->speed.y * -500.0f;
         if (i_this->shape_angle.x > 0x1000) {
             i_this->shape_angle.x = 0x1000;
-        } else {
-            if (i_this->shape_angle.x < -0x2000) {
-                i_this->shape_angle.x = -0x2000;
-            }
+        } else if (i_this->shape_angle.x < -0x2000) {
+            i_this->shape_angle.x = -0x2000;
         }
     }
 
@@ -411,11 +408,9 @@ static void swim_off(fr_class* i_this) {
         sibuki_set(i_this);
         i_this->speedF *= 0.4f;
         mDoAud_seStart(Z2SE_AL_UKI_OUT_WATER, &i_this->current.pos, 0, 0);
-    } else {
-        if (((i_this->field_0x994 == -1 || !daPy_py_c::checkNowWolf()) && i_this->field_0x5d2 != 5) && i_this->field_0x5d8 < l_HIO[6]) {
-            i_this->field_0x5d2 = 5;
-            i_this->field_0x5d4 = 0;
-        }
+    } else if (((i_this->field_0x994 == -1 || !daPy_py_c::checkNowWolf()) && i_this->field_0x5d2 != 5) && i_this->field_0x5d8 < l_HIO.field_0x18) {
+        i_this->field_0x5d2 = 5;
+        i_this->field_0x5d4 = 0;
     }
 }
 
@@ -443,7 +438,7 @@ static void fr_message(fr_class* i_this) {
 static void action(fr_class* i_this) {
     // NONMATCHING
     char cVar4 = 0;
-    i_this->gravity = l_HIO[4];
+    i_this->gravity = l_HIO.field_0x10;
     i_this->field_0x991 = 0;
     switch (i_this->field_0x5d2) {
         case 0:
@@ -546,25 +541,25 @@ static int message(fr_class* i_this) {
             i_this->field_0x992 = 0;
         }
         return 1;
-    } else {
-        if (dComIfGp_event_runCheck() && i_this->eventInfo.checkCommandTalk()) {
-            i_this->mMsgFlow.init(i_this, i_this->field_0x994, 0, NULL);
-            i_this->field_0x992 = 1;
-
-            OS_REPORT("////////FR MSG FNO %d\n", i_this->field_0x994);
-        }
-
-        if ((i_this->field_0x991 == 2 && i_this->field_0x994 != -1) && daPy_py_c::checkNowWolf()) {
-            fopAcM_OnStatus(i_this, 0);
-            cLib_onBit<u32>(i_this->attention_info.flags, 10);
-            i_this->eventInfo.onCondition(1);
-        } else {
-            fopAcM_OffStatus(i_this, 0);
-            cLib_offBit<u32>(i_this->attention_info.flags, 1);
-        }
-
-        return 0;
     }
+
+    if (dComIfGp_event_runCheck() && i_this->eventInfo.checkCommandTalk()) {
+        i_this->mMsgFlow.init(i_this, i_this->field_0x994, 0, NULL);
+        i_this->field_0x992 = 1;
+        OS_REPORT("////////FR MSG FNO %d\n", i_this->field_0x994);
+    }
+
+    if ((i_this->field_0x991 == 2 && i_this->field_0x994 != -1) && daPy_py_c::checkNowWolf()) {
+        fopAcM_OnStatus(i_this, 0);
+        cLib_onBit<u32>(i_this->attention_info.flags, 10);
+        i_this->eventInfo.onCondition(1);
+    } else {
+        fopAcM_OffStatus(i_this, 0);
+        cLib_offBit<u32>(i_this->attention_info.flags, 1);
+    }
+
+    return 0;
+    
 }
 
 /* 8051B170-8051B354 001970 01E4+00 2/1 0/0 0/0 .text            daFr_Execute__FP8fr_class */
@@ -572,45 +567,45 @@ static int daFr_Execute(fr_class* i_this) {
     // NONMATCHING
     if (cDmrNowMidnaTalk()) {
         return 1;
-    } else {
-        i_this->field_0x5d8 = fopAcM_searchPlayerDistance(i_this);
-        i_this->field_0x5d0++;
-        for (int i = 0; i < 4; i++) {
-            if (i_this->field_0x5dc[i]) {
-                i_this->field_0x5dc[i]--;
-            }
-        }
-
-        if (i_this->field_0x5e4) {
-            i_this->field_0x5e4--;
-        }
-
-        action(i_this);
-
-        mDoMtx_stack_c::transS(i_this->current.pos.x, i_this->current.pos.y + i_this->field_0x5f4, i_this->current.pos.z);
-        mDoMtx_stack_c::YrotM(i_this->shape_angle.y);
-        mDoMtx_stack_c::XrotM(i_this->shape_angle.x);
-        mDoMtx_stack_c::ZrotM(i_this->shape_angle.z);
-        mDoMtx_stack_c::scaleM(i_this->scale.x, i_this->scale.x, i_this->scale.x);
-
-        J3DModel* model = i_this->mMorf->getModel();
-        model->setBaseTRMtx(mDoMtx_stack_c::get());
-        i_this->mMorf->play(&i_this->eyePos, 0, 0);
-        i_this->mBtkAnm->setFrame(i_this->field_0x5cd);
-        i_this->mMorf->modelCalc();
-
-        i_this->eyePos = i_this->current.pos;
-        i_this->eyePos.y += 10.0f;
-        i_this->attention_info.position = i_this->eyePos;
-        i_this->attention_info.position.y += 20.0f;
-        message(i_this);
     }
 
+    i_this->field_0x5d8 = fopAcM_searchPlayerDistance(i_this);
+    i_this->field_0x5d0++;
+    for (int i = 0; i < 4; i++) {
+        if (i_this->field_0x5dc[i]) {
+            i_this->field_0x5dc[i]--;
+        }
+    }
+
+    if (i_this->field_0x5e4) {
+        i_this->field_0x5e4--;
+    }
+
+    action(i_this);
+
+    mDoMtx_stack_c::transS(i_this->current.pos.x, i_this->current.pos.y + i_this->field_0x5f4, i_this->current.pos.z);
+    mDoMtx_stack_c::YrotM(i_this->shape_angle.y);
+    mDoMtx_stack_c::XrotM(i_this->shape_angle.x);
+    mDoMtx_stack_c::ZrotM(i_this->shape_angle.z);
+    mDoMtx_stack_c::scaleM(i_this->scale.x, i_this->scale.x, i_this->scale.x);
+
+    J3DModel* model = i_this->mMorf->getModel();
+    model->setBaseTRMtx(mDoMtx_stack_c::get());
+    i_this->mMorf->play(&i_this->eyePos, 0, 0);
+    i_this->mBtkAnm->setFrame(i_this->field_0x5cd);
+    i_this->mMorf->modelCalc();
+
+    i_this->eyePos = i_this->current.pos;
+    i_this->eyePos.y += 10.0f;
+    i_this->attention_info.position = i_this->eyePos;
+    i_this->attention_info.position.y += 20.0f;
+    message(i_this);
+    
     return 1;
 }
 
 /* 8051B354-8051B35C 001B54 0008+00 1/0 0/0 0/0 .text            daFr_IsDelete__FP8fr_class */
-static bool daFr_IsDelete(fr_class* i_this) {
+static int daFr_IsDelete(fr_class* i_this) {
     return true;
 }
 
@@ -635,19 +630,17 @@ static int useHeapIfrt(fopAc_ac_c* a_this) {
 
     if (!i_this->mMorf || !i_this->mMorf->getModel()) {
         return 0;
-    } else {
-        i_this->mBtkAnm = new mDoExt_btkAnm();
-        if (!i_this->mBtkAnm) {
-            return 0;
-        } else {
-            if (i_this->mBtkAnm->init(i_this->mMorf->getModel()->getModelData(), (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Fr", 17),
-                1, 0, 1.0f, 0, -1)) {
-                return 0;
-            } else {
-                return 1;
-            }
-        }
     }
+
+    i_this->mBtkAnm = new mDoExt_btkAnm();
+    if (!i_this->mBtkAnm) {
+        return 0;
+    } else if (i_this->mBtkAnm->init(i_this->mMorf->getModel()->getModelData(), (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Fr", 17),
+            1, 0, 1.0f, 0, -1)) {
+        return 0;
+    }
+
+    return 1;
 }
 
 /* 8051B598-8051B820 001D98 0288+00 1/0 0/0 0/0 .text            daFr_Create__FP10fopAc_ac_c */
@@ -671,37 +664,37 @@ static int daFr_Create(fopAc_ac_c* a_this) {
         if (!fopAcM_entrySolidHeap(i_this, useHeapIfrt, 0x14e0)) {
             OS_REPORT("//////////////FR SET NON !!\n");
             return cPhs_ERROR_e;
-        } else {
-            OS_REPORT("//////////////FR SET 2 !!\n");
-
-            if (data_8051BC10[0] == 0) {
-                i_this->field_0x9e4 = 1;
-                data_8051BC10[0] = 1;
-                l_HIO[4] = -1;
-            }
-
-            i_this->field_0x5d2 = 0;
-            i_this->scale.x = 0.75f;
-
-            if (!strcmp(dComIfGp_getStartStageName(), "F_SP127")) {
-                i_this->scale.x = 0.4f;
-            }
-
-            fopAcM_SetMtx(i_this, i_this->mMorf->getModel()->getBaseTRMtx());
-
-            i_this->mAcch.Set(fopAcM_GetPosition_p(i_this), fopAcM_GetOldPosition_p(i_this),
-                i_this, 1, &i_this->mAcchCir, fopAcM_GetSpeed_p(i_this), NULL, NULL);
-            i_this->mAcchCir.SetWall(20.0f, 20.0f);
-
-            i_this->field_0x5cd = i_this->field_0x5b4;
-            if (i_this->field_0x5cd > 3) {
-                i_this->field_0x5cd = 0;
-            }
-            i_this->field_0x5e8 = 500.0f;
-            i_this->field_0x5d0 = cM_rndF(65536.0f);
-
-            daFr_Execute(i_this);
         }
+            
+        OS_REPORT("//////////////FR SET 2 !!\n");
+
+        if (data_8051BC10[0] == 0) {
+            i_this->field_0x9e4 = 1;
+            data_8051BC10[0] = 1;
+            l_HIO.field_0x4 = -1;
+        }
+
+        i_this->field_0x5d2 = 0;
+        i_this->scale.x = 0.75f;
+
+        if (!strcmp(dComIfGp_getStartStageName(), "F_SP127")) {
+            i_this->scale.x = 0.4f;
+        }
+
+        fopAcM_SetMtx(i_this, i_this->mMorf->getModel()->getBaseTRMtx());
+
+        i_this->mAcch.Set(fopAcM_GetPosition_p(i_this), fopAcM_GetOldPosition_p(i_this),
+            i_this, 1, &i_this->mAcchCir, fopAcM_GetSpeed_p(i_this), NULL, NULL);
+        i_this->mAcchCir.SetWall(20.0f, 20.0f);
+
+        i_this->field_0x5cd = i_this->field_0x5b4;
+        if (i_this->field_0x5cd > 3) {
+            i_this->field_0x5cd = 0;
+        }
+        i_this->field_0x5e8 = 500.0f;
+        i_this->field_0x5d0 = cM_rndF(65536.0f);
+
+        daFr_Execute(i_this);
     }
 
     return phase_state;

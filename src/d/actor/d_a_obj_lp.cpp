@@ -4,6 +4,7 @@
 */
 
 #include "d/actor/d_a_obj_lp.h"
+#include "d/d_com_inf_game.h"
 #include "dol2asm.h"
 
 
@@ -86,9 +87,7 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_29();
 extern "C" extern void* __vt__19mDoExt_3DlineMat0_c[5];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern void* calc_mtx[1 + 1 /* padding */];
 
 //
 // Declarations:
@@ -522,7 +521,7 @@ SECTION_RODATA static f32 const lit_4267 = 13.0f / 10.0f;
 COMPILER_STRIP_GATE(0x80C55AA8, &lit_4267);
 
 /* 80C5518C-80C552C0 00106C 0134+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
-static void useHeapInit(fopAc_ac_c* param_0) {
+static int useHeapInit(fopAc_ac_c* a_this) {
     // NONMATCHING
 }
 
@@ -542,7 +541,7 @@ COMPILER_STRIP_GATE(0x80C55AB0, &lit_4321);
 #pragma pop
 
 /* 80C552C0-80C55488 0011A0 01C8+00 1/1 0/0 0/0 .text            set_pos_check__FP12obj_lp_classi */
-static void set_pos_check(obj_lp_class* param_0, int param_1) {
+static int set_pos_check(obj_lp_class* param_0, int param_1) {
     // NONMATCHING
 }
 
@@ -574,32 +573,6 @@ COMPILER_STRIP_GATE(0x80C55ABC, &lit_4459);
 SECTION_DEAD static char const* const stringBase_80C55ACE = "F_SP127";
 #pragma pop
 
-/* 80C55ADC-80C55AFC -00001 0020+00 1/0 0/0 0/0 .data            l_daObj_Lp_Method */
-static actor_method_class l_daObj_Lp_Method = {
-    (process_method_func)daObj_Lp_Create__FP10fopAc_ac_c,
-    (process_method_func)daObj_Lp_Delete__FP12obj_lp_class,
-    (process_method_func)daObj_Lp_Execute__FP12obj_lp_class,
-    (process_method_func)daObj_Lp_IsDelete__FP12obj_lp_class,
-    (process_method_func)daObj_Lp_Draw__FP12obj_lp_class,
-};
-
-/* 80C55AFC-80C55B2C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OBJ_LP */
-extern actor_process_profile_definition g_profile_OBJ_LP = {
-  fpcLy_CURRENT_e,        // mLayerID
-  7,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_OBJ_LP,            // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  sizeof(obj_lp_class),   // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  708,                    // mPriority
-  &l_daObj_Lp_Method,     // sub_method
-  0x00040100,             // mStatus
-  fopAc_ACTOR_e,          // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
-};
 
 /* 80C55B2C-80C55B40 000054 0014+00 1/1 0/0 0/0 .data            __vt__18mDoExt_3DlineMat_c */
 SECTION_DATA extern void* __vt__18mDoExt_3DlineMat_c[5] = {
@@ -607,8 +580,123 @@ SECTION_DATA extern void* __vt__18mDoExt_3DlineMat_c[5] = {
 };
 
 /* 80C55488-80C559C8 001368 0540+00 1/0 0/0 0/0 .text            daObj_Lp_Create__FP10fopAc_ac_c */
-static void daObj_Lp_Create(fopAc_ac_c* param_0) {
+static int daObj_Lp_Create(fopAc_ac_c* a_this) {
     // NONMATCHING
+    obj_lp_class* i_this = (obj_lp_class*)a_this;
+    fopAcM_SetupActor(i_this, obj_lp_class);
+
+    int phase_state = dComIfG_resLoad(&i_this->mPhase, "Obj_lp");
+    if (phase_state == cPhs_COMPLEATE_e) {
+        OS_REPORT("OBJ_LP PARAM %x\n", fopAcM_GetParam(i_this));
+
+        i_this->field_0x570 = fopAcM_GetParam(i_this);
+        i_this->field_0x571 = fopAcM_GetParam(i_this) >> 8;
+        i_this->field_0x572 = fopAcM_GetParam(i_this) >> 16;
+
+        if (i_this->field_0x572 == -1) {
+            i_this->field_0x572 = 0;
+        }
+
+        i_this->field_0xad98 = i_this->field_0x570 + 1;
+
+        if (dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo()) == ST_FIELD) {
+            i_this->field_0xad98 <<= 1;
+            if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0) {
+                i_this->field_0xadb1 = 1;
+            }
+        }
+
+        if (i_this->field_0xad98 > 0x200) {
+            i_this->field_0xad98 = 0x200;
+        }
+        OS_REPORT("OBJ_LP//////////////OBJ_LP SET 1 !!\n");
+
+        int iVar3;
+        if (i_this->field_0xadb1 != 0) {
+            iVar3 = 800;
+        } else {
+            iVar3 = 0x1e8;
+        }
+
+        if (!fopAcM_entrySolidHeap(i_this, useHeapInit, i_this->field_0xad98 * iVar3)) {
+            OS_REPORT("//////////////OBJ_LP SET NON !!\n");
+            return cPhs_ERROR_e;
+        }
+           
+        OS_REPORT("//////////////OBJ_LP NUM : %d !!\n", i_this->field_0xad98);
+
+        fopAcM_SetMtx(i_this, i_this->mWdSs[0].mpModel->getBaseTRMtx());
+            
+        f32 fVar1 = i_this->field_0x571 * 70.0f + 50.0f;
+        fopAcM_SetMin(i_this, -fVar1, -100.0f, -fVar1);
+        fopAcM_SetMax(i_this, fVar1, 100.0f, fVar1);
+        MtxTrans(i_this->current.pos.x, i_this->current.pos.y, i_this->current.pos.z, 0);
+
+        cXyz sp13c(0.0f, 0.0f, 0.0f);
+        dBgS_GndChk dStack_dc;
+        dBgS_ObjGndChk_Spl cStack_130;
+        int iVar4 = 0;
+        f32 fVar13 = 1.0f;
+        if (i_this->field_0x572 == 1) {
+            fVar13 = 1.5f;
+        }
+
+        for (int i = 0; i < i_this->field_0xad98; i++) {
+            MtxPush();
+            cMtx_YrotM(*calc_mtx, cM_rndF(65536.0f));
+            MtxPosition(&sp13c, &i_this->mWdSs[i].field_0x10[i]);
+            f32 rndF = cM_rndF(1.0f);
+            sp13c.z = 1.0f - (rndF * rndF) * (i_this->field_0x571 * 100.0f);
+            MtxPull();
+
+            cXyz sp148(i_this->mWdSs[i].field_0x10[i].x, i_this->mWdSs[i].field_0x10[i].y + 100.0f, i_this->mWdSs[i].field_0x10[i].z);
+            dStack_dc.SetPos(&sp148);
+            cStack_130.SetPos(&sp148);
+            i_this->mWdSs[i].field_0x10[i].y = dComIfG_Bgsp().GroundCross(&cStack_130);
+
+            i_this->mWdSs[i].field_0x10[i].y = cM_rndF(65536.0f);
+
+            if (i == 0) {
+                i_this->current.pos.y = i_this->mWdSs[i].field_0x10[i].y;
+            }
+
+            i_this->mWdSs[i].field_0x10[i].y = dComIfG_Bgsp().GroundCross(&dStack_dc);
+
+            if ((!set_pos_check(i_this, i) || i_this->mWdSs[i].field_0x10[i].y - i_this->mWdSs[i].field_0x10[i].y <= 10.0f) || 
+                (i_this->field_0xadb1 != 0 && i_this->mWdSs[i].field_0x10[i].y - i_this->mWdSs[i].field_0x10[i].y >= 200.0f)) {
+                i_this->mWdSs[i].field_0x10[i].x = 1;
+                i_this->mWdSs[i].field_0x10[i].z = fVar13 * (cM_rndFX(0.2f) + 1.0f);
+                i_this->mWdSs[i].field_0x10[i].x = i_this->mWdSs[i].field_0x10[i].x;
+                i_this->mWdSs[i].field_0x10[i].x = i_this->mWdSs[i].field_0x10[i].x + cM_rndFX(10.0f);
+                i_this->mWdSs[i].field_0x10[i].z = i_this->mWdSs[i].field_0x10[i].z + cM_rndFX(10.0f);
+                i_this->mWdSs[i].field_0x10[i].y = i;
+            } else {
+                i--;
+                iVar4++;
+                if (iVar4 > 10000) {
+                    OS_REPORT("      植物の指定範囲が狭すぎて置けません！！！！\n");
+                    return cPhs_ERROR_e;
+                }
+            }
+        }
+
+        i_this->field_0x574 = fopAcM_GetID(i_this);
+        i_this->field_0xadb0 = 10;
+
+        daObj_Lp_Execute(i_this);
+
+        J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Obj_lp", 3);
+        JUT_ASSERT(0x3b0, modelData != 0);
+
+        dComIfGp_addSimpleModel(modelData, fopAcM_GetRoomNo(i_this), 0);
+        if (modelData == NULL) {
+            OS_REPORT(1Bh,"[43;30mリリーパッド:シンプルモデル登録失敗しました。\n",1Bh,"[m");
+        }
+            
+        i_this->field_0xadb4 = 1;
+    }
+
+    return phase_state;
 }
 
 /* 80C559C8-80C55A04 0018A8 003C+00 1/1 0/0 0/0 .text            __dt__5wd_ssFv */
@@ -794,3 +882,30 @@ static u8 data_80C55C14[4];
 #pragma pop
 
 /* 80C55AC0-80C55AC0 0000B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+
+/* 80C55ADC-80C55AFC -00001 0020+00 1/0 0/0 0/0 .data            l_daObj_Lp_Method */
+static actor_method_class l_daObj_Lp_Method = {
+    (process_method_func)daObj_Lp_Create__FP10fopAc_ac_c,
+    (process_method_func)daObj_Lp_Delete__FP12obj_lp_class,
+    (process_method_func)daObj_Lp_Execute__FP12obj_lp_class,
+    (process_method_func)daObj_Lp_IsDelete__FP12obj_lp_class,
+    (process_method_func)daObj_Lp_Draw__FP12obj_lp_class,
+};
+
+/* 80C55AFC-80C55B2C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OBJ_LP */
+extern actor_process_profile_definition g_profile_OBJ_LP = {
+  fpcLy_CURRENT_e,        // mLayerID
+  7,                      // mListID
+  fpcPi_CURRENT_e,        // mListPrio
+  PROC_OBJ_LP,            // mProcName
+  &g_fpcLf_Method.base,  // sub_method
+  sizeof(obj_lp_class),   // mSize
+  0,                      // mSizeOther
+  0,                      // mParameters
+  &g_fopAc_Method.base,   // sub_method
+  708,                    // mPriority
+  &l_daObj_Lp_Method,     // sub_method
+  0x00040100,             // mStatus
+  fopAc_ACTOR_e,          // mActorType
+  fopAc_CULLBOX_CUSTOM_e, // cullType
+};

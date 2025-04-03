@@ -25,8 +25,8 @@ public:
     /* 0x5C4 */ mDoExt_McaMorf* mMorf;
     /* 0x5C8 */ mDoExt_btkAnm* mBtkAnm;
     /* 0x5CC */ u8 field_0x5cc;
-    /* 0x5CD */ char field_0x5cd;
-    /* 0x5CE */ char field_0x5ce;
+    /* 0x5CD */ s8 field_0x5cd;
+    /* 0x5CE */ s8 field_0x5ce;
     /* 0x5CF */ u8 field_0x5cf;
     /* 0x5D0 */ s16 field_0x5d0;
     /* 0x5D2 */ s16 field_0x5d2;
@@ -37,7 +37,7 @@ public:
     /* 0x5E4 */ s16 field_0x5e4;
     /* 0x5E6 */ u8 field_0x5e6[0x5e8 - 0x5e6];
     /* 0x5E8 */ f32 field_0x5e8;
-    /* 0x5EC */ char field_0x5ec;
+    /* 0x5EC */ s8 field_0x5ec;
     /* 0x5ED */ u8 field_0x5ed[0x5f0 - 0x5ed];
     /* 0x5F0 */ f32 field_0x5f0;
     /* 0x5F4 */ f32 field_0x5f4;
@@ -50,7 +50,7 @@ public:
     /* 0x81C */ dCcD_Stts mStts;
     /* 0x858 */ dCcD_Sph mSph;
     /* 0x990 */ u8 field_0x990;
-    /* 0x991 */ char field_0x991;
+    /* 0x991 */ s8 field_0x991;
     /* 0x992 */ s16 field_0x992;
     /* 0x994 */ s16 field_0x994;
     /* 0x998 */ dMsgFlow_c mMsgFlow;
@@ -60,12 +60,15 @@ public:
 
 STATIC_ASSERT(sizeof(fr_class) == 0x9e8);
 
-class daFr_HIO_c {
+class daFr_HIO_c : public JORReflexible {
 public:
     /* 805198EC */ daFr_HIO_c();
     /* 8051B920 */ ~daFr_HIO_c();
 
-    /* 0x04 */ char field_0x4;
+    void genMessage(JORMContext*);
+    
+    /* 0x00 */ J3DFrameCtrl* field_0x0;
+    /* 0x04 */ s8 field_0x4;
     /* 0x08 */ f32 field_0x8;
     /* 0x0C */ f32 field_0xc;
     /* 0x10 */ f32 field_0x10;
