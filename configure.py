@@ -2005,7 +2005,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_lv9SwShutter"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_magLift"),
     ActorRel(NonMatching, "d_a_obj_magLiftRot"),
-    ActorRel(NonMatching, "d_a_obj_maki"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_maki"),
     ActorRel(NonMatching, "d_a_obj_master_sword"),
     ActorRel(NonMatching, "d_a_obj_mato"),
     ActorRel(NonMatching, "d_a_obj_mhole"),
