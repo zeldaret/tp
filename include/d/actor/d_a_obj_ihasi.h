@@ -20,9 +20,9 @@ public:
     /* 0x570 */ J3DModel* mpModel1;
     /* 0x574 */ J3DModel* mpModel2;
     /* 0x578 */ mDoExt_btkAnm* mpBtkAnm;
-    /* 0x57C */ s16 mShort1;
+    /* 0x57C */ s16 field_0x57c;
     /* 0x57E */ s16 mFlag1;
-    /* 0x580 */ u8 field_0x580[2];
+    /* 0x580 */ s16 field_0x580;
     /* 0x582 */ s16 mArr[2];
     /* 0x586 */ s8 mFlag2;
     /* 0x588 */ Mtx mMtx;

@@ -7,7 +7,7 @@
 #include "d/d_com_inf_game.h"
 
 /* 80C26018-80C2611C 000078 0104+00 1/0 0/0 0/0 .text daObj_Ihasi_Draw__FP15obj_ihasi_class */
-static bool daObj_Ihasi_Draw(obj_ihasi_class* i_this) {
+static int daObj_Ihasi_Draw(obj_ihasi_class* i_this) {
     if (i_this->mFlag1 != 1) {
         g_env_light.settingTevStruct(0x20, &i_this->current.pos, &i_this->tevStr);
         g_env_light.setLightTevColorType_MAJI(i_this->mpModel1, &i_this->tevStr);
@@ -27,15 +27,11 @@ static bool daObj_Ihasi_Draw(obj_ihasi_class* i_this) {
 }
 
 /* 80C2611C-80C26120 00017C 0004+00 1/1 0/0 0/0 .text            ih_normal__FP15obj_ihasi_class */
-static void ih_normal(obj_ihasi_class* i_this) {
-    return;
-}
+static void ih_normal(obj_ihasi_class* i_this) {}
 
 /* 80C26120-80C26124 000180 0004+00 1/1 0/0 0/0 .text            ih_disappear__FP15obj_ihasi_class
  */
-static void ih_disappear(obj_ihasi_class* i_this) {
-    return;
-}
+static void ih_disappear(obj_ihasi_class* i_this) {}
 
 /* 80C26124-80C26204 000184 00E0+00 1/1 0/0 0/0 .text            action__FP15obj_ihasi_class */
 static void action(obj_ihasi_class* i_this) {
@@ -48,16 +44,15 @@ static void action(obj_ihasi_class* i_this) {
         break;
     }
 
-    PSMTXTrans(mDoMtx_stack_c::get(), i_this->current.pos.x, i_this->current.pos.y,
-               i_this->current.pos.z);
+    mDoMtx_stack_c::transS(i_this->current.pos.x, i_this->current.pos.y, i_this->current.pos.z);
 
     if (i_this->mFlag1 == 1) {
         mDoMtx_stack_c::transM(34800.0f, -300.0f, -26735.0f);
         i_this->mpBtkAnm->play();
-        PSMTXCopy(mDoMtx_stack_c::get(), i_this->mpModel2->mBaseTransformMtx);
+        i_this->mpModel2->setBaseTRMtx(mDoMtx_stack_c::get());
     } else {
-        PSMTXCopy(mDoMtx_stack_c::get(), i_this->mpModel1->mBaseTransformMtx);
-        PSMTXCopy(mDoMtx_stack_c::get(), i_this->mMtx);
+        i_this->mpModel1->setBaseTRMtx(mDoMtx_stack_c::get());
+        MTXCopy(mDoMtx_stack_c::get(), i_this->mMtx);
         i_this->mpBgW->Move();
     }
 
@@ -66,7 +61,7 @@ static void action(obj_ihasi_class* i_this) {
 
 /* 80C26204-80C262C4 000264 00C0+00 2/1 0/0 0/0 .text daObj_Ihasi_Execute__FP15obj_ihasi_class */
 static int daObj_Ihasi_Execute(obj_ihasi_class* i_this) {
-    i_this->mShort1 += 1;
+    i_this->field_0x57c += 1;
 
     for (int i = 0; i < 2; i++) {
         if (i_this->mArr[i] != 0) {
@@ -138,12 +133,16 @@ static int useHeapInit(fopAc_ac_c* i_actor) {
     }
 
     J3DAnmTextureSRTKey* key = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Obj_ihasi", 9);
-    return i_this->mpBtkAnm->init(i_this->mpModel2->getModelData(), key, 1, 0, 1.0f, 0, -1) ? 1 : 0;
+    if (i_this->mpBtkAnm->init(i_this->mpModel2->getModelData(), key, 1, 0, 1.0f, 0, -1) == 0) {
+        return 0;
+    }
+
+    return 1;
 }
 
 /* 80C26540-80C26880 0005A0 0340+00 1/0 0/0 0/0 .text            daObj_Ihasi_Create__FP10fopAc_ac_c
  */
-static cPhs__Step daObj_Ihasi_Create(fopAc_ac_c* i_actor) {
+static int daObj_Ihasi_Create(fopAc_ac_c* i_actor) {
     fopAcM_SetupActor(i_actor, obj_ihasi_class);
     obj_ihasi_class* i_this = static_cast<obj_ihasi_class*>(i_actor);
 
@@ -170,36 +169,35 @@ static cPhs__Step daObj_Ihasi_Create(fopAc_ac_c* i_actor) {
             fopAcM_create(PROC_E_S1, param, &pos, fopAcM_GetRoomNo(i_actor), &angle, NULL, -1);
 
             return cPhs_ERROR_e;
-        } else {
-            if (!fopAcM_entrySolidHeap(i_actor, useHeapInit, 0x43b0)) {
-                return cPhs_ERROR_e;
-            }
-
-            if (dComIfG_Bgsp().Regist(i_this->mpBgW, i_this)) {
-                return cPhs_ERROR_e;
-            }
-
-            i_this->mShort1 = cM_rndF(65536.0f);
-
-            if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") && !fopAcM_GetRoomNo(i_actor)) {
-                pos.set(34800.0f, 5700.0f, -26735.0f);
-                fopAcM_create(PROC_E_WAP, 0xffffff35, &pos, fopAcM_GetRoomNo(i_actor), NULL, NULL,
-                              -1);
-
-                angle.set(0x0, -0x8000, 0x0);
-                pos.set(34800.0f, -300.0f, -30340.0f);
-                param = fopAcM_GetParam(i_actor) & 0xff000000 | 0xfffe00;
-                fopAcM_create(PROC_E_S1, param, &pos, fopAcM_GetRoomNo(i_actor), &angle, NULL, -1);
-
-                pos.set(35087.0f, -300.0f, -29879.0f);
-                fopAcM_create(PROC_E_S1, param, &pos, fopAcM_GetRoomNo(i_actor), &angle, NULL, -1);
-
-                pos.set(34500.0f, -300.0f, -29879.0f);
-                fopAcM_create(PROC_E_S1, param, &pos, fopAcM_GetRoomNo(i_actor), &angle, NULL, -1);
-            }
-
-            daObj_Ihasi_Execute(i_this);
         }
+
+        if (!fopAcM_entrySolidHeap(i_actor, useHeapInit, 0x43b0)) {
+            return cPhs_ERROR_e;
+        }
+
+        if (dComIfG_Bgsp().Regist(i_this->mpBgW, i_this)) {
+            return cPhs_ERROR_e;
+        }
+
+        i_this->field_0x57c = cM_rndF(65536.0f);
+
+        if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") && fopAcM_GetRoomNo(i_actor) == 0) {
+            pos.set(34800.0f, 5700.0f, -26735.0f);
+            fopAcM_create(PROC_E_WAP, 0xffffff35, &pos, fopAcM_GetRoomNo(i_actor), NULL, NULL, -1);
+
+            angle.set(0x0, -0x8000, 0x0);
+            pos.set(34800.0f, -300.0f, -30340.0f);
+            param = fopAcM_GetParam(i_actor) & 0xff000000 | 0xfffe00;
+            fopAcM_create(PROC_E_S1, param, &pos, fopAcM_GetRoomNo(i_actor), &angle, NULL, -1);
+
+            pos.set(35087.0f, -300.0f, -29879.0f);
+            fopAcM_create(PROC_E_S1, param, &pos, fopAcM_GetRoomNo(i_actor), &angle, NULL, -1);
+
+            pos.set(34500.0f, -300.0f, -29879.0f);
+            fopAcM_create(PROC_E_S1, param, &pos, fopAcM_GetRoomNo(i_actor), &angle, NULL, -1);
+        }
+
+        daObj_Ihasi_Execute(i_this);
     }
 
     return step;
