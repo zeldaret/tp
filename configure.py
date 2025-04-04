@@ -1921,7 +1921,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_ice_s"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_iceblock"),
     ActorRel(NonMatching, "d_a_obj_iceleaf"),
-    ActorRel(NonMatching, "d_a_obj_ihasi"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_ihasi"),
     ActorRel(NonMatching, "d_a_obj_ikada"),
     ActorRel(NonMatching, "d_a_obj_inobone"),
     ActorRel(NonMatching, "d_a_obj_ita"),
