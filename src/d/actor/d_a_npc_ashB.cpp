@@ -227,13 +227,7 @@ extern "C" void __register_global_object();
 // Declarations:
 //
 
-// fake data / lazy solution to get matches. fix later
-static char* tmp[5] = {};
-
-/* 80962418-80962424 000000 000C+00 3/3 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+UNK_REL_DATA;
 
 /* 80962438-80962534 000020 00FC+00 1/2 0/0 0/0 .data            l_bckGetParamList */
 static daNpc_GetParam2 l_bckGetParamList[21] = {
@@ -259,6 +253,8 @@ static daNpc_GetParam2 l_bckGetParamList[21] = {
     {17, 2, 0},
     {19, 0, 0},
 };
+
+static daNpcAshB_Param_c l_HIO;
 
 /* 80962534-80962564 00011C 0030+00 1/1 0/0 0/0 .data            l_btpGetParamList */
 static daNpc_GetParam2 l_btpGetParamList[4] = {
@@ -298,7 +294,7 @@ daNpcAshB_c::EventFn daNpcAshB_c::mEvtSeqList[2] = {
 };
 
 /* 8095DE4C-8095DFD0 0000EC 0184+00 1/1 0/0 0/0 .text            __ct__11daNpcAshB_cFv */
-daNpcAshB_c::daNpcAshB_c() {
+daNpcAshB_c::daNpcAshB_c() : daNpcF_c() {
     // NONMATCHING
 }
 
@@ -463,7 +459,7 @@ int daNpcAshB_c::Draw() {
  * ctrlJoint__11daNpcAshB_cFP8J3DJointP8J3DModel                */
 bool daNpcAshB_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     int jointNo = i_joint->getJntNo();
-    int lookatJoints[3] = {1, 3, 4};
+    int lookatJoints[3] = {1, 9, 10};
 
     if (jointNo == 0) {
         mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(1));
@@ -570,40 +566,6 @@ inline void daNpcAshB_c::playExpression() {
     }
 }
 
-bool daNpcAshB_c::step(s16 i_targetAngle, int param_2, f32 i_rate) {
-    if (mTurnMode == 0) {
-        if (param_2 != 0) {
-            if ((int)fabsf(cM_sht2d((s16)(i_targetAngle - mCurAngle.y))) > 40) {
-                setExpression(6, -1.0f);
-                setMotion(10, -1.0f, 0);
-            }
-
-            mTurnTargetAngle = i_targetAngle;
-            mTurnAmount = 0;
-
-            if (mCurAngle.y == mTurnTargetAngle) {
-                mTurnMode++;
-            }
-
-            current.angle.y = mCurAngle.y;
-            shape_angle.y = current.angle.y;
-            mTurnMode++;
-        }        
-    } else if (mTurnMode == 1) {
-        if (turn(mTurnTargetAngle, i_rate, 0)) {
-            shape_angle.y = current.angle.y;
-            mCurAngle.y = current.angle.y;
-            mOldAngle.y = current.angle.y;
-            mTurnMode++;
-        } else {
-            shape_angle.y = current.angle.y;
-            mCurAngle.y = current.angle.y;
-        }
-    }
-
-    return mTurnMode > 1;
-}
-
 /* 8095EC00-8095EE00 000EA0 0200+00 2/0 0/0 0/0 .text            setExpressionAnm__11daNpcAshB_cFib
  */
 bool daNpcAshB_c::setExpressionAnm(int i_idx, bool i_modify) {
@@ -689,14 +651,12 @@ bool daNpcAshB_c::setExpressionBtp(int i_idx) {
 /* 8095EEE0-8095F0A4 001180 01C4+00 1/0 0/0 0/0 .text            setMotionAnm__11daNpcAshB_cFif */
 // NONMATCHING regalloc
 bool daNpcAshB_c::setMotionAnm(int i_idx, f32 i_morf) {
-    int iVar4;
-    int iVar5;
 
     if (i_idx < 7 || i_idx >= 21) {
         return;
     }
 
-    iVar5 = 0;
+    int iVar5 = 0;
     switch (i_idx) {
     case 0x10:
         iVar5 = 1;
@@ -713,16 +673,17 @@ bool daNpcAshB_c::setMotionAnm(int i_idx, f32 i_morf) {
                                                     l_bckGetParamList[i_idx].fileIdx);
     J3DAnmTextureSRTKey* btkAnm = getTexSRTKeyAnmP(l_arcNames[l_btkGetParamList[iVar5].arcIdx],
                                                    l_btkGetParamList[iVar5].fileIdx);
-    iVar5 = l_bckGetParamList[i_idx].attr;
-    iVar4 = l_btkGetParamList[i_idx].attr;
+
+    int oiVar5 = l_bckGetParamList[i_idx].attr;
+    int iVar4 = l_btkGetParamList[iVar5].attr;
 
 
     mAnmFlags &= 0xffffffc0;
     if (i_idx == 12) {
-        setExpressionBtp(1);
+        bool bla = setExpressionBtp(1);
     }
 
-    if (morfAnm && setMcaMorfAnm(morfAnm,1.0f,i_morf,iVar5,0,-1)) {
+    if (morfAnm && setMcaMorfAnm(morfAnm,1.0f,i_morf,oiVar5,0,-1)) {
         mAnmFlags |= 9;
         mMotionLoops = 0;
     }
@@ -783,6 +744,41 @@ bool daNpcAshB_c::setAction(daNpcAshB_c::ActionFn i_actionFn) {
     return true;
 }
 
+bool daNpcAshB_c::step(s16 i_targetAngle, int param_2, f32 i_rate) {
+    if (mTurnMode == 0) {
+        if (param_2 != 0) {
+            s16 diff = i_targetAngle - mCurAngle.y;
+            if ((int)fabsf(cM_sht2d(diff)) > 40) {
+                setExpression(6, -1.0f);
+                setMotion(10, -1.0f, 0);
+            }
+        }
+
+        mTurnTargetAngle = i_targetAngle;
+        mTurnAmount = 0;
+
+        if (mCurAngle.y == mTurnTargetAngle) {
+            mTurnMode++;
+        }
+
+        current.angle.y = mCurAngle.y;
+        shape_angle.y = current.angle.y;
+        mTurnMode++;
+    } else if (mTurnMode == 1) {
+        if (turn(mTurnTargetAngle, i_rate, 0)) {
+            shape_angle.y = current.angle.y;
+            mCurAngle.y = current.angle.y;
+            mOldAngle.y = current.angle.y;
+            mTurnMode++;
+        } else {
+            shape_angle.y = current.angle.y;
+            mCurAngle.y = current.angle.y;
+        }
+    }
+
+    return mTurnMode > 1;
+}
+
 /* 8095F2C4-8095FC70 001564 09AC+00 4/0 0/0 0/0 .text            wait__11daNpcAshB_cFPv */
 // NONMATCHING - float literals, regalloc, wrong variable order loads. the shitty trifecta
 bool daNpcAshB_c::wait(void* param_0) {
@@ -832,13 +828,8 @@ bool daNpcAshB_c::wait(void* param_0) {
             } else {
                 setLookMode(LOOK_NONE);
 
-                // loading these in the other order results in correct order load, wrong registers
-                // loading it in this order results in wrong order load, correct registers
-                s16 home_angle = home.angle.y;
-                s16 cur_angle = mCurAngle.y;
-
-                if (cur_angle != home_angle) {
-                    if (step(mCurAngle.y,1,15.0f)) {
+                if (home.angle.y != mCurAngle.y) {
+                    if (step(home.angle.y,1,15.0f)) {
                         setExpression(EXPR_EXPLAIN_B, -1.0f);
                         setMotion(MOT_WAIT_A, -1.0f, false);
                         mTurnMode = 0;
@@ -863,7 +854,8 @@ bool daNpcAshB_c::wait(void* param_0) {
                     if (!dComIfGp_evmng_ChkPresentEnd()) {
                         return true;
                     } else {
-                        if (dComIfGp_event_getPreItemNo() == 0x91) {
+                        u8 preitemno = dComIfGp_event_getPreItemNo();
+                        if (preitemno == 0x91) {
                             mFlowID = 504;
                             setAction(&wait);
                         } else {
@@ -878,7 +870,8 @@ bool daNpcAshB_c::wait(void* param_0) {
                     setAction(&wait);
                 }
             } else {
-                if (dComIfGp_getEventManager().getMyStaffId(l_myName, NULL, 0) != -1) {
+                int mystaffid = dComIfGp_getEventManager().getMyStaffId(l_myName, NULL, 0);
+                if (mystaffid != -1) {
                     setAction(&wait);
                 }
             }
@@ -897,6 +890,8 @@ bool daNpcAshB_c::wait(void* param_0) {
         break;
     case 3:
         break;
+    default:
+        JUT_PANIC(0x579, "d_a_npc_ashB.cpp");
     }
 
     return true;
@@ -1006,8 +1001,8 @@ bool daNpcAshB_c::talk(void* param_0) {
         } else {
             s16 angle = fopAcM_searchPlayerAngleY(this);
 
-            if (step(angle,1,15.0)) {
-                setMotion(0,0.0f,false);
+            if (step(angle, 1, 15.0f)) {
+                setMotion(0, -1.0f, false);
                 mTurnMode = 0;
             }
         }
@@ -1219,39 +1214,48 @@ BOOL daNpcAshB_c::main() {
 void daNpcAshB_c::playMotion() {
     daNpcF_anmPlayData dat0 = {7, daNpcAshB_Param_c::m.mMorfFrames, 0};
     daNpcF_anmPlayData* pDat0[1] = {&dat0};
+
     daNpcF_anmPlayData dat1 = {8, daNpcAshB_Param_c::m.mMorfFrames, 0};
     daNpcF_anmPlayData* pDat1[1] = {&dat1};
-    daNpcF_anmPlayData dat2 = {0xc, daNpcAshB_Param_c::m.mMorfFrames, 1};
-    daNpcF_anmPlayData* pDat2[1] = {&dat2};
-    daNpcF_anmPlayData dat3a = {0xd, daNpcAshB_Param_c::m.mMorfFrames, 1};
-    daNpcF_anmPlayData dat3b = {8, daNpcAshB_Param_c::m.mMorfFrames, 0};
+
+    daNpcF_anmPlayData dat2a = {0xC, daNpcAshB_Param_c::m.mMorfFrames, 1};
+    daNpcF_anmPlayData dat2b = {0xD, 0.0f, 1};
+    daNpcF_anmPlayData dat2c = {8, 0.0f, 0};
+    daNpcF_anmPlayData* pDat2[3] = {&dat2a, &dat2b, &dat2c};
+
+    daNpcF_anmPlayData dat3a = {0xE, daNpcAshB_Param_c::m.mMorfFrames, 1};
+    daNpcF_anmPlayData dat3b = {8, 0.0f, 0};
     daNpcF_anmPlayData* pDat3[2] = {&dat3a, &dat3b};
-    daNpcF_anmPlayData dat4a = {0xe, daNpcAshB_Param_c::m.mMorfFrames, 1};
-    daNpcF_anmPlayData dat4b = {8, daNpcAshB_Param_c::m.mMorfFrames, 0};
+
+    daNpcF_anmPlayData dat4a = {0xF, daNpcAshB_Param_c::m.mMorfFrames, 1};
+    daNpcF_anmPlayData dat4b = {8, 0.0f, 0};
     daNpcF_anmPlayData* pDat4[2] = {&dat4a, &dat4b};
-    daNpcF_anmPlayData dat5a = {0xf, daNpcAshB_Param_c::m.mMorfFrames, 1};
-    daNpcF_anmPlayData dat5b = {8, daNpcAshB_Param_c::m.mMorfFrames, 0};
+
+    daNpcF_anmPlayData dat5a = {0x10, daNpcAshB_Param_c::m.mMorfFrames, 1};
+    daNpcF_anmPlayData dat5b = {8, 0.0f, 0};
     daNpcF_anmPlayData* pDat5[2] = {&dat5a, &dat5b};
-    daNpcF_anmPlayData dat6a = {16, daNpcAshB_Param_c::m.mMorfFrames, 1};
-    daNpcF_anmPlayData dat6b = {0x11, daNpcAshB_Param_c::m.mMorfFrames, 0};
+
+    daNpcF_anmPlayData dat6a = {0x11, daNpcAshB_Param_c::m.mMorfFrames, 1};
+    daNpcF_anmPlayData dat6b = {8, 0.0f, 0};
     daNpcF_anmPlayData* pDat6[2] = {&dat6a, &dat6b};
-    daNpcF_anmPlayData dat7 = {8, daNpcAshB_Param_c::m.mMorfFrames, 1};
-    daNpcF_anmPlayData* pDat7[1] = {&dat7};
-    daNpcF_anmPlayData dat8 = {0x12, daNpcAshB_Param_c::m.mMorfFrames, 0};
+
+    daNpcF_anmPlayData dat7a = {0x12, daNpcAshB_Param_c::m.mMorfFrames, 1};
+    daNpcF_anmPlayData dat7b = {0x13, 0.0f, 0};
+    daNpcF_anmPlayData* pDat7[2] = {&dat7a, &dat7b};
+
+    daNpcF_anmPlayData dat8 = {0x13, daNpcAshB_Param_c::m.mMorfFrames, 0};
     daNpcF_anmPlayData* pDat8[1] = {&dat8};
-    daNpcF_anmPlayData dat9 = {0x13, daNpcAshB_Param_c::m.mMorfFrames, 0};
-    daNpcF_anmPlayData* pDat9[1] = {&dat9};
-    daNpcF_anmPlayData dat10 = {0x13, daNpcAshB_Param_c::m.mMorfFrames, 1};
-    daNpcF_anmPlayData* pDat10[1] = {&dat10};
-    daNpcF_anmPlayData dat11 = {0x14, daNpcAshB_Param_c::m.mMorfFrames, 1};
-    daNpcF_anmPlayData* pDat11[1] = {&dat11};
-    // daNpcF_anmPlayData dat12 = {0x08, daNpcAshB_Param_c::m.mMorfFrames, 0};
-    // daNpcF_anmPlayData* pDat12[1] = {&dat12};
-    // daNpcF_anmPlayData dat13 = {0xa0, daNpcAshB_Param_c::m.mMorfFrames, 1};
-    // daNpcF_anmPlayData* pDat13[1] = {&dat13};
-    // daNpcF_anmPlayData dat14 = {0xb0, daNpcAshB_Param_c::m.mMorfFrames, 1};
-    // daNpcF_anmPlayData* pDat14[1] = {&dat14};
-    daNpcF_anmPlayData** ppDat[15] = {
+
+    daNpcF_anmPlayData dat9a = {0x14, daNpcAshB_Param_c::m.mMorfFrames, 1};
+    daNpcF_anmPlayData dat9b = {8, 0.0f, 0};
+    daNpcF_anmPlayData* pDat9[2] = {&dat9a, &dat9b};
+
+    daNpcF_anmPlayData dat10 = {0xA, 4.0f, 1};
+    daNpcF_anmPlayData* pDat10[2] = {&dat10, NULL};
+    daNpcF_anmPlayData dat11 = {0xB, 4.0f, 1};
+    daNpcF_anmPlayData* pDat11[2] = {&dat11, NULL};
+
+    daNpcF_anmPlayData** ppDat[12] = {
         pDat0,
         pDat1,
         pDat2,
@@ -1264,9 +1268,6 @@ void daNpcAshB_c::playMotion() {
         pDat9,
         pDat10,
         pDat11,
-        // pDat12,
-        // pDat13,
-        // pDat14
     };
     if (mMotion >= 0 && mMotion < 12) {
         playMotionAnm(ppDat);
@@ -1277,7 +1278,8 @@ void daNpcAshB_c::playMotion() {
 // NONMATCHING inlining issues
 BOOL daNpcAshB_c::ctrlBtk() {
     if (mpMatAnm != NULL) {
-        J3DAnmTextureSRTKey* btkAnm = getTexSRTKeyAnmP(l_arcNames[l_btkGetParamList[0].arcIdx],l_btkGetParamList[0].fileIdx);
+        J3DAnmTextureSRTKey* btkAnm = NULL;
+        btkAnm = getTexSRTKeyAnmP(l_arcNames[l_btkGetParamList[0].arcIdx],l_btkGetParamList[0].fileIdx);
 
         if (btkAnm == mBtkAnm.getBtkAnm()) {
             mpMatAnm->setNowOffsetX(cM_ssin(mEyeAngle.y) * 0.2f * -1.0f);
@@ -1286,8 +1288,8 @@ BOOL daNpcAshB_c::ctrlBtk() {
             return true;
         }
         mpMatAnm->offEyeMoveFlag();
-        return false;
-    }    
+    }
+    return false;
 }
 
 /* 80961264-80961574 003504 0310+00 1/0 0/0 0/0 .text            setAttnPos__11daNpcAshB_cFv */
@@ -1368,8 +1370,8 @@ void daNpcAshB_c::lookat() {
         if (mLookMode != LOOK_PLAYER_TALK) {
             break;
         }
-        body_down_angle = 0.0f;
-        body_up_angle = 1.0f;
+        body_down_angle = -80.0f;
+        body_up_angle = 80.0f;
         break;
     case LOOK_ACTOR:
         actor = daPy_getPlayerActorClass();

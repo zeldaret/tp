@@ -5188,11 +5188,6 @@ void daNpcF_c::setAttnPos() {
     /* empty function */
 }
 
-/* 80155BBC-80155BC0 1504FC 0004+00 2/0 0/0 0/0 .text            adjustShapeAngle__8daNpcF_cFv */
-void daNpcF_c::adjustShapeAngle() {
-    /* empty function */
-}
-
 /* 80155BC0-80155BC8 150500 0008+00 2/0 0/0 0/0 .text            main__8daNpcF_cFv */
 BOOL daNpcF_c::main() {
     return true;
