@@ -2,8 +2,6 @@
 #define D_A_OBJ_SEKIZOA_H
 
 #include "d/actor/d_a_npc.h"
-// #include "d/actor/d_a_bg_obj.h"
-#include "d/actor/d_a_tag_evtarea.h"
 
 /**
  * @ingroup actors-objects
@@ -18,38 +16,77 @@ public:
     typedef int (daObj_Sekizoa_c::*cutFunc)(int);
     typedef int (daObj_Sekizoa_c::*actionFunc)(void *);
 
+    enum Type {
+        TYPE_0,
+        TYPE_1,
+        TYPE_2,
+        TYPE_3,
+        TYPE_4,
+        TYPE_5,
+        TYPE_6,
+    };
+
+    enum Animation {
+        ANM_SEKI_HIT_L = 0x07,
+        ANM_SEKI_HIT_R = 0x08,
+        ANM_SEKI_L_DEMO = 0x09,
+        ANM_SEKI_L_LASTDEMO = 0x0A,
+        ANM_SEKI_NO_JUMP_L = 0x0B,
+        ANM_SEKI_NO_JUMP_R = 0x0C,
+        ANM_SEKI_R_DEMO = 0x0D,
+        ANM_SEKI_R_LASTDEMO = 0x0E,
+        ANM_SEKI_STEP = 0x0F,
+        ANM_SEKI_STEP_L = 0x10,
+        ANM_SEKI_STEP_R = 0x11,
+        ANM_SEKI_STILL_L = 0x12,
+        ANM_SEKI_STILL_R = 0x13,
+        ANM_SEKI_WAIT_A = 0x14,
+        ANM_SEKI_WAIT_GAME_L = 0x15,
+        ANM_SEKI_WAIT_GAME_R = 0x16,
+        ANM_SEKI_WAIT_L = 0x17,
+        ANM_SEKI_WAIT_R = 0x18,
+        ANM_SEKIL_JUMP = 0x19,
+        ANM_SEKIR_JUMP = 0x1A,
+        ANM_YARIA_DEMO = 0x1B,
+        ANM_YARIA_GAME = 0x1C,
+        ANM_YARIA_STILL_L = 0x1D,
+        ANM_YARIB_DEMO = 0x1E,
+        ANM_YARIB_GAME = 0x1F,
+        ANM_YARIB_STILL_R = 0x20,
+    };
+
     /* 80CCE34C */ ~daObj_Sekizoa_c();
     /* 80CCE570 */ int create();
-    /* 80CCE8B0 */ int CreateHeap();
-    /* 80CCEC54 */ int Delete();                                                // DONE
-    /* 80CCEC88 */ void Execute();                                              // DONE
-    /* 80CCECA8 */ void Draw();                                                 // DONE UP TO @XXXX
-    /* 80CCED74 */ static int createHeapCallBack(fopAc_ac_c*);                  // DONE
-    /* 80CCED94 */ static void* srchSekizoa(void*, void*);                      // ALMOST DONE
-    /* 80CCEE30 */ fopAc_ac_c* getSekizoaP(int);
+    /* 80CCE8B0 */ int CreateHeap();                            // NEED WORK STILL
+    /* 80CCEC54 */ int Delete();
+    /* 80CCEC88 */ void Execute();
+    /* 80CCECA8 */ void Draw();
+    /* 80CCED74 */ static int createHeapCallBack(fopAc_ac_c*);
+    /* 80CCED94 */ static void* srchSekizoa(void*, void*);
+    /* 80CCEE30 */ fopAc_ac_c* getSekizoaP(int);                // NEED WORK STILL
     /* 80CCEFA4 */ fopAc_ac_c* getKMsgTagP();
     /* 80CCF03C */ int isDelete();
-    /* 80CCF138 */ void reset();
-    /* 80CCF708 */ void srchActors();                                           // ALMOST DONE
+    /* 80CCF138 */ void reset();                                // MR ISSUE
+    /* 80CCF708 */ void srchActors();
     /* 80CD04FC */ int setYariAnm(int, int, f32);
     /* 80CD0A84 */ int selectAction();
-    /* 80CD0B08 */ int chkAction(actionFunc i_action);                          // DONE
-    /* 80CD0B34 */ int setAction(actionFunc i_action);                          // DONE
+    /* 80CD0B08 */ int chkAction(actionFunc i_action);
+    /* 80CD0B34 */ int setAction(actionFunc i_action);
     /* 80CD0BDC */ int checkMoveDirection();
-    /* 80CD0DE8 */ int getWaitMotionNo();                                       // DONE
-    /* 80CD0E30 */ int getGameMotionNo();                                       // DONE
-    /* 80CD0E78 */ int getNoJumpMotionNo();                                     // DONE
-    /* 80CD0EAC */ int getHitMotionNo();                                        // DONE
-    /* 80CD0EE0 */ int getStepMotionNo();                                       // DONE
+    /* 80CD0DE8 */ int getWaitMotionNo();
+    /* 80CD0E30 */ int getGameMotionNo();
+    /* 80CD0E78 */ int getNoJumpMotionNo();
+    /* 80CD0EAC */ int getHitMotionNo();
+    /* 80CD0EE0 */ int getStepMotionNo();
     /* 80CD0F14 */ void jump();
     /* 80CD14D8 */ void landing();
-    /* 80CD1688 */ int cutStart(int);
+    /* 80CD1688 */ int cutStart(int);                               // SECOND SWITCH ONE ISSUE
     /* 80CD2708 */ int cutTurn(int);
-    /* 80CD2908 */ int cutJump(int);
+    /* 80CD2908 */ int cutJump(int);                                // REGALLOC ISSUE
     /* 80CD2B64 */ int cutGoal(int);
     /* 80CD376C */ int cutExit(int);
     /* 80CD38F0 */ int cutFree(int);
-    /* 80CD3BD8 */ int cutExtinction(int);
+    /* 80CD3BD8 */ int cutExtinction(int);                          // REGALLOC ISSUE
     /* 80CD3F08 */ int wait(void*);
     /* 80CD425C */ int puzzle(void*);
     /* 80CD45B0 */ int talk(void*);
@@ -61,23 +98,23 @@ public:
 
     /* 80CD5B7C */ s32 getBackboneJointNo() { return 1; }
     /* 80CD5B74 */ s32 getHeadJointNo() { return 3; }
-    /* 80CCF358 */ void afterJntAnm(int);                                       // DONE
+    /* 80CCF358 */ void afterJntAnm(int);
     /* 80CCF3E4 */ void setParam();
-    /* 80CCF6BC */ BOOL checkChangeEvt();                                       // ALMOST DONE
+    /* 80CCF6BC */ BOOL checkChangeEvt();
     /* 80CCF9A8 */ BOOL evtTalk();
-    /* 80CCFAA8 */ BOOL evtCutProc();                                           // DONE
-    /* 80CCF704 */ void setAfterTalkMotion();                                   // DONE
-    /* 80CCFBA0 */ void action();                                               // ALMOST DONE UP TO @XXX
-    /* 80CCFD08 */ void beforeMove();                                           // DONE
+    /* 80CCFAA8 */ BOOL evtCutProc();
+    /* 80CCF704 */ void setAfterTalkMotion();
+    /* 80CCFBA0 */ void action();
+    /* 80CCFD08 */ void beforeMove();
     /* 80CCFD80 */ void setAttnPos();
     /* 80CD009C */ void setCollision();
     /* 80CD03C0 */ int drawDbgInfo();
-    /* 80CD03C8 */ void drawOtherMdl();                                         // ALMOST DONE
+    /* 80CD03C8 */ void drawOtherMdl();
     /* 80CD05D0 */ void drawGhost();
     /* 80CD06BC */ bool afterSetMotionAnm(int, int, f32, int);
 
     void setWolfHowling() {
-        if (mParamCreate != 0) {
+        if (mType != 0) {
             fopAc_ac_c* actor_p = mActorMngrs[3].getActorP();
             JUT_ASSERT(0x1A3, 0 != actor_p);
 
@@ -88,12 +125,12 @@ public:
     }
 
     void setFadeLightOff() {
-        if ((mParamCreate == 2) || (mParamCreate == 3)) {
-            if (mParamCreate == 2) {
+        if ((mType == 2) || (mType == 3)) {
+            if (mType == 2) {
                 mMotionSeqMngr.setNo(2, 0.0f, 1, 0);
                 mSound.startCreatureSound(Z2SE_SEKI_END_DEMO_2, 0, -1);
             }
-            if (mParamCreate == 3) {
+            if (mType == 3) {
                 mMotionSeqMngr.setNo(13, 0.0f, 1, 0);
                 mSound.startCreatureSound(Z2SE_SEKI_END_DEMO_2, 0, -1);
             }
@@ -158,30 +195,19 @@ public:
 
     static char* mCutNameList[9];
     static cutFunc mCutList[9];
-    // static char* mStringBase[4];
 
-    // /* 0x0E40 */ u8 field_0xe40[0x10C8 - 0xE40];
-    // /* 0x10C8 */ u8 field_0x10c8;
-    // /* 0x10C9 */ u8 field_0x10c9[0x10E4 - 0x10C9];
-    // /* 0x10E4 */ daNpcT_ActorMngr_c field_0x10e4;            OFFSET BETWEEN DEBUG AND RETAIL
-    // /* 0x10EC */ u8 field_0x10ec[0x1173 - 0x10ec];           0x50
-    // /* 0x1173 */ u8 field_0x1173;
-    // /* 0x1174 */ u8 field_0x1174[0x1180 - 0x1174];
-
-    // CHECK d_a_npc_hanjo FOR MORE DETAILS TO THIS
-
-    /* 0x0E40 */ mDoExt_McaMorf* mpMcaMorf;
+    /* 0x0E40 */ mDoExt_McaMorfSO* mpMcaMorf;
     /* 0x0E44 */ mDoExt_invisibleModel mInvModel;
     /* 0x0E4C */ u8 field_0x0E4C[4];                    // Padding
     /* 0x0E50 */ dCcD_Cyl mCyl;
     /* 0x0F8C */ dCcD_Cyl mCyl2;
-    /* 0x10C8 */ u8 mParamCreate;                       // index of actor ? 0 -> sekizoa, 1 -> sekizob, mType ???
+    /* 0x10C8 */ u8 mType;                       // index of actor ? 0 -> sekizoa, 1 -> sekizob, mType ???
     /* 0x10C9 */ u8 field_0x10C9[3];                    // Padding
     /* 0x10CC */ daNpcT_ActorMngr_c mActorMngrs[8];     // idx 5&6 -> 2 statues, 4 -> ground tiles; 1&2 -> statues fixes ?, 7 porte de pierre
     /* 0x110C */ actionFunc mInitFunc;
-    /* 0x1114 */ u8 field_0x1114[4];
+    // /* 0x1114 */ u8 field_0x1114[4];
     /* 0x1118 */ actionFunc mExecuteFunc;
-    /* 0x1120 */ u8 field_0x1120[4];
+    // /* 0x1120 */ u8 field_0x1120[4];
     /* 0x1124 */ daNpcT_Path_c mPath;
     /* 0x114C */ cXyz mCXyzJump;
     /* 0x1158 */ int mIntCutJump;                       // Timer ?
@@ -199,8 +225,9 @@ public:
     /* 0x1177 */ bool mSetMotionAnm;
     /* 0x1178 */ bool mSetFadeLightOff2;
     /* 0x1179 */ u8 mParamDrawOtherMdl;                       
-    /* 0x117A */ bool mChkGoal;
-    /* 0x117B */ u8 field_0x117B[5];                    // Padding
+    /* 0x117A */ u8 mChkGoal;
+    /* 0x117B */ u8 field_0x117B;                    // Padding
+    /* 0x117C */ u8 field_0x117C;
 };
 
 struct daObj_Sekizoa_Param_c {
@@ -248,12 +275,9 @@ struct daObj_Sekizoa_Param_c {
         /* 0x90 */ f32 field_0x90;
         /* 0x94 */ f32 field_0x94;
         /* 0x98 */ s16 field_0x98;
-        /* 0x9A */ s16 field_0x9A;
-        /* 0x9C */ int field_0x9C;
     };
 
     static Data const m;
-    // static f32 const m[40];
 };
 
 #endif /* D_A_OBJ_SEKIZOA_H */
