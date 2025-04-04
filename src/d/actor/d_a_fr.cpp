@@ -14,7 +14,6 @@
 
 /* 805198EC-8051994C 0000EC 0060+00 1/1 0/0 0/0 .text            __ct__10daFr_HIO_cFv */
 daFr_HIO_c::daFr_HIO_c() {
-    // NONMATCHING
     field_0x4 = -1;
     field_0x8 = 10.0f;
     field_0xc = 20.0f;
@@ -70,13 +69,12 @@ static void* s_wd_sub(void* param_1, void* param_2) {
 
 /* 80519B60-80519D28 000360 01C8+00 1/1 0/0 0/0 .text            wd_check__FP8fr_class */
 static wd_ss* wd_check(fr_class* i_this) {
-    // NONMATCHING
     obj_lp_class* mLilyPad = (obj_lp_class*)fpcM_Search(s_wd_sub, i_this);
     if (mLilyPad) {
         wd_ss* mWdSs = mLilyPad->mWdSs;
-        for (int i = 0; i < mLilyPad->field_0xad98; i++) {
-            cXyz sp48 = mWdSs->field_0x10[i] - i_this->current.pos;
-            if (sp48.abs() < mWdSs->field_0x10[3].z * 22.0f) {
+        for (int i = 0; i < mLilyPad->field_0xad98; i++, mWdSs++) {
+            cXyz sp48 = mWdSs->field_0x10 - i_this->current.pos;
+            if (sp48.abs() < mWdSs->field_0x3c * 22.0f) {
                 return mWdSs;
             }
         }
@@ -700,10 +698,10 @@ static int daFr_Create(fopAc_ac_c* a_this) {
     return phase_state;
 }
 
-/* 8051B920-8051B968 002120 0048+00 2/1 0/0 0/0 .text            __dt__10daFr_HIO_cFv */
-daFr_HIO_c::~daFr_HIO_c() {
-    // NONMATCHING
-}
+// /* 8051B920-8051B968 002120 0048+00 2/1 0/0 0/0 .text            __dt__10daFr_HIO_cFv */
+// daFr_HIO_c::~daFr_HIO_c() {
+//     // NONMATCHING
+// }
 
 /* 8051B968-8051B9A4 002168 003C+00 0/0 1/0 0/0 .text            __sinit_d_a_fr_cpp */
 void __sinit_d_a_fr_cpp() {

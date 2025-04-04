@@ -24,7 +24,7 @@ struct mg_hook_s {
     /* 0x18 */ u8 field_0x18[0x20 - 0x18];
 };
 
-struct wd_ss {};
+// struct wd_ss {};
 
 /**
  * @ingroup actors-items
@@ -78,7 +78,8 @@ public:
     /* 0x11D0 */ dBgS_ObjAcch field_0x11d0;
     /* 0x13A8 */ u8 field_0x13a8[0x13B4 - 0x13A8];
     /* 0x13B4 */ s16 field_0x13b4;
-    /* 0x13B6 */ u8 field_0x13b6[0x1474 - 0x13B6];
+    /* 0x13B6 */ s16 field_0x13b6;
+    /* 0x13B8 */ u8 field_0x13b8[0x1474 - 0x13B8];
     /* 0x1474 */ dMsgFlow_c mMsgFlow;
     /* 0x14C0 */ u8 field_0x14c0[0x14C8 - 0x14C0];
     /* 0x14C8 */ f32 mRodStickX;
