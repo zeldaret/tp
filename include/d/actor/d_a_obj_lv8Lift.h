@@ -15,6 +15,19 @@
  */
 class daL8Lift_c : public dBgS_MoveBgActor {
 public:
+    enum MODE_e {
+        MODE_ACC_e,
+        MODE_MOVE_e,
+        MODE_BRK_e,
+        MODE_WAIT_e,
+        MODE_WAIT_INIT_e,
+        MODE_ON_ANM_e,
+        MODE_MOVE_WAIT_e,
+        MODE_STOP_e,
+        MODE_INIT_SET_e,
+        MODE_INIT_SET2_e
+    };
+
     /* 80C887D8 */ void setBaseMtx();
     /* 80C88860 */ int CreateHeap();
     /* 80C88928 */ int create();

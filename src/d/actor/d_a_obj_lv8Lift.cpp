@@ -9,224 +9,7 @@
 #include "d/d_bg_w.h"
 #include "dol2asm.h"
 
-
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__14daL8Lift_HIO_cFv();
-extern "C" void __dt__14mDoHIO_entry_cFv();
-extern "C" void setBaseMtx__10daL8Lift_cFv();
-extern "C" void CreateHeap__10daL8Lift_cFv();
-extern "C" void create__10daL8Lift_cFv();
-extern "C" void __dt__12dBgS_ObjAcchFv();
-extern "C" void __dt__12dBgS_AcchCirFv();
-extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" void lightSet__10daL8Lift_cFv();
-extern "C" void rideCallBack__10daL8Lift_cFP4dBgWP10fopAc_ac_cP10fopAc_ac_c();
-extern "C" void Execute__10daL8Lift_cFPPA3_A4_f();
-extern "C" void moveLift__10daL8Lift_cFv();
-extern "C" void modeAcc__10daL8Lift_cFv();
-extern "C" void init_modeMove__10daL8Lift_cFv();
-extern "C" void modeMove__10daL8Lift_cFv();
-extern "C" void init_modeBrk__10daL8Lift_cFv();
-extern "C" void modeBrk__10daL8Lift_cFv();
-extern "C" void init_modeWaitInit__10daL8Lift_cFv();
-extern "C" void modeWaitInit__10daL8Lift_cFv();
-extern "C" void init_modeWait__10daL8Lift_cFv();
-extern "C" void modeWait__10daL8Lift_cFv();
-extern "C" void init_modeMoveWait__10daL8Lift_cFv();
-extern "C" void modeMoveWait__10daL8Lift_cFv();
-extern "C" void init_modeOnAnm__10daL8Lift_cFv();
-extern "C" void modeOnAnm__10daL8Lift_cFv();
-extern "C" void init_modeStop__10daL8Lift_cFv();
-extern "C" void modeStop__10daL8Lift_cFv();
-extern "C" void init_modeInitSet__10daL8Lift_cFv();
-extern "C" void modeInitSet__10daL8Lift_cFv();
-extern "C" void init_modeInitSet2__10daL8Lift_cFv();
-extern "C" void modeInitSet2__10daL8Lift_cFv();
-extern "C" void liftReset__10daL8Lift_cFv();
-extern "C" void setNextPoint__10daL8Lift_cFv();
-extern "C" void Draw__10daL8Lift_cFv();
-extern "C" void Delete__10daL8Lift_cFv();
-extern "C" static void daL8Lift_Draw__FP10daL8Lift_c();
-extern "C" static void daL8Lift_Execute__FP10daL8Lift_c();
-extern "C" static void daL8Lift_Delete__FP10daL8Lift_c();
-extern "C" static void daL8Lift_Create__FP10fopAc_ac_c();
-extern "C" void __dt__14daL8Lift_HIO_cFv();
-extern "C" void __sinit_d_a_obj_lv8Lift_cpp();
-extern "C" static void func_80C89F3C();
-extern "C" static void func_80C89F44();
-extern "C" u8 const mSpeed__10daL8Lift_c[64];
-extern "C" extern char const* const d_a_obj_lv8Lift__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
-extern "C" void mDoMtx_XrotS__FPA4_fs();
-extern "C" void transM__14mDoMtx_stack_cFfff();
-extern "C" void play__14mDoExt_baseAnmFv();
-extern "C" void init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss();
-extern "C" void entry__13mDoExt_btkAnmFP16J3DMaterialTablef();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfGp_getReverb__Fi();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void dPath_GetRoomPath__Fii();
-extern "C" void Release__4cBgSFP9dBgW_Base();
-extern "C" void Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c();
-extern "C" void dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz();
-extern "C" void __ct__12dBgS_AcchCirFv();
-extern "C" void SetWall__12dBgS_AcchCirFff();
-extern "C" void __dt__9dBgS_AcchFv();
-extern "C" void __ct__9dBgS_AcchFv();
-extern "C" void Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz();
-extern "C" void __ct__16dBgS_MoveBgActorFv();
-extern "C" bool Create__16dBgS_MoveBgActorFv();
-extern "C" bool IsDelete__16dBgS_MoveBgActorFv();
-extern "C" bool ToFore__16dBgS_MoveBgActorFv();
-extern "C" bool ToBack__16dBgS_MoveBgActorFv();
-extern "C" void
-MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f();
-extern "C" void MoveBGDelete__16dBgS_MoveBgActorFv();
-extern "C" void MoveBGExecute__16dBgS_MoveBgActorFv();
-extern "C" void SetObj__16dBgS_PolyPassChkFv();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void dKy_plight_set__FP15LIGHT_INFLUENCE();
-extern "C" void dKy_plight_cut__FP15LIGHT_INFLUENCE();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" bool __eq__4cXyzCFRC3Vec();
-extern "C" void __dt__13cBgS_PolyInfoFv();
-extern "C" void ChkUsed__9cBgW_BgIdCFv();
-extern "C" void __dt__8cM3dGCirFv();
-extern "C" void cLib_addCalcPos__FP4cXyzRC4cXyzfff();
-extern "C" void cLib_chaseF__FPfff();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void __dl__FPv();
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void removeTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey();
-extern "C" void __ptmf_scall();
-extern "C" void __cvt_fp2unsigned();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" void __register_global_object();
-
 UNK_REL_DATA
-
-/* 80C8A024-80C8A030 -00001 000C+00 0/1 0/0 0/0 .data            @3822 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3822[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeAcc__10daL8Lift_cFv,
-};
-#pragma pop
-
-/* 80C8A030-80C8A03C -00001 000C+00 0/1 0/0 0/0 .data            @3823 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3823[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeMove__10daL8Lift_cFv,
-};
-#pragma pop
-
-/* 80C8A03C-80C8A048 -00001 000C+00 0/1 0/0 0/0 .data            @3824 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3824[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeBrk__10daL8Lift_cFv,
-};
-#pragma pop
-
-/* 80C8A048-80C8A054 -00001 000C+00 0/1 0/0 0/0 .data            @3825 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3825[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeWait__10daL8Lift_cFv,
-};
-#pragma pop
-
-/* 80C8A054-80C8A060 -00001 000C+00 0/2 0/0 0/0 .data            @3826 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3826[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeWaitInit__10daL8Lift_cFv,
-};
-#pragma pop
-
-/* 80C8A060-80C8A06C -00001 000C+00 0/1 0/0 0/0 .data            @3827 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3827[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeOnAnm__10daL8Lift_cFv,
-};
-#pragma pop
-
-/* 80C8A06C-80C8A078 -00001 000C+00 0/1 0/0 0/0 .data            @3828 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3828[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeMoveWait__10daL8Lift_cFv,
-};
-#pragma pop
-
-/* 80C8A078-80C8A084 -00001 000C+00 0/1 0/0 0/0 .data            @3829 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3829[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeStop__10daL8Lift_cFv,
-};
-#pragma pop
-
-/* 80C8A084-80C8A090 -00001 000C+00 0/1 0/0 0/0 .data            @3830 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3830[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeInitSet__10daL8Lift_cFv,
-};
-#pragma pop
-
-/* 80C8A090-80C8A09C -00001 000C+00 0/1 0/0 0/0 .data            @3831 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3831[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeInitSet2__10daL8Lift_cFv,
-};
-#pragma pop
 
 /* 80C8A09C-80C8A114 000098 0078+00 0/1 0/0 0/0 .data            mode_proc$3821 */
 static u8 mode_proc[120] = {
@@ -367,8 +150,7 @@ void daL8Lift_c::lightSet() {
     mLight.mFluctuation = 1.0f;
 }
 
-/* 80C88DBC-80C88DD4 00077C 0018+00 1/1 0/0 0/0 .text
- * rideCallBack__10daL8Lift_cFP4dBgWP10fopAc_ac_cP10fopAc_ac_c  */
+/* 80C88DBC-80C88DD4 00077C 0018+00 1/1 0/0 0/0 .text       rideCallBack__10daL8Lift_cFP4dBgWP10fopAc_ac_cP10fopAc_ac_c */
 void daL8Lift_c::rideCallBack(dBgW* i_bgw, fopAc_ac_c* i_this, fopAc_ac_c* i_rideActor) {
     if (fopAcM_GetName(i_rideActor) == PROC_ALINK) {
         ((daL8Lift_c*)i_this)->mPlayerRide = true;
@@ -376,53 +158,87 @@ void daL8Lift_c::rideCallBack(dBgW* i_bgw, fopAc_ac_c* i_this, fopAc_ac_c* i_rid
 }
 
 /* 80C88DD4-80C88E34 000794 0060+00 1/0 0/0 0/0 .text            Execute__10daL8Lift_cFPPA3_A4_f */
-int daL8Lift_c::Execute(f32 (**param_0)[3][4]) {
-    // NONMATCHING
+int daL8Lift_c::Execute(f32 (**param_1)[3][4]) {
+    moveLift();
+    lightSet();
+    *param_1 = &mpModel->getBaseTRMtx();
+    setBaseMtx();
+    mPlayerRide = 0;
+    return 1;
 }
 
-/* ############################################################################################## */
 /* 80C8A208-80C8A20C 000028 0004+00 1/1 0/0 0/0 .bss             None */
-static u8 data_80C8A208[4];
+// static u8 data_80C8A208[4];
 
 /* 80C88E34-80C890B8 0007F4 0284+00 1/1 0/0 0/0 .text            moveLift__10daL8Lift_cFv */
 void daL8Lift_c::moveLift() {
     // NONMATCHING
+    if (mPathID != 0xff) {
+        typedef void (daL8Lift_c::*mode_func)();
+        static mode_func mode_proc[] = {
+            &daL8Lift_c::modeAcc,  &daL8Lift_c::modeMove,     &daL8Lift_c::modeBrk,
+            &daL8Lift_c::modeWait, &daL8Lift_c::modeWaitInit, &daL8Lift_c::modeOnAnm, 
+            &daL8Lift_c::modeMoveWait,  &daL8Lift_c::modeStop, &daL8Lift_c::modeInitSet,
+            &daL8Lift_c::modeInitSet2
+        };
+
+        if (mSwbit != 0xff) {
+            if (mPlayerRide != mPrevPlayerRide) {
+                if (mIsSwitch && !mPlayerRide) {
+                    mNoRideOffSwTimer++;
+                }
+
+                if (mPlayerRide == 1) {
+                    mNoRideOffSwTimer = 0;
+                }
+            }
+
+            if (mNoRideOffSwTimer && !mPlayerRide) {
+                mNoRideOffSwTimer++;
+                if (mNoRideOffSwTimer == 3) {
+                    init_modeStop();
+                    mNoRideOffSwTimer = 0;
+                }
+            }
+
+            u8 uVar1 = mIsSwitch;
+            mIsSwitch = fopAcM_isSwitch(this, getSw());
+            if (uVar1 != mIsSwitch) {
+                if (mMode == 7) {
+                    if (mpBgW) {
+                        dComIfG_Bgsp().Release(mpBgW);
+                    }
+
+                    init_modeInitSet();
+                } else {
+                    init_modeOnAnm();
+                }
+            } else {
+                init_modeStop();
+            }
+
+            mPrevPlayerRide = mPlayerRide;
+        }
+        
+        (this->*mode_proc[mMode])();
+    }
 }
-
-/* ############################################################################################## */
-/* 80C89FC0-80C89FC4 000060 0004+00 0/2 0/0 0/0 .rodata          @3894 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3894 = 30.0f;
-COMPILER_STRIP_GATE(0x80C89FC0, &lit_3894);
-#pragma pop
-
-/* 80C89FC4-80C89FC8 000064 0004+00 0/3 0/0 0/0 .rodata          @3895 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3895 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(0x80C89FC4, &lit_3895);
-#pragma pop
-
-/* 80C89FC8-80C89FD0 000068 0004+04 2/5 0/0 0/0 .rodata          @3896 */
-SECTION_RODATA static f32 const lit_3896[1 + 1 /* padding */] = {
-    -1.0f,
-    /* padding */
-    0.0f,
-};
-COMPILER_STRIP_GATE(0x80C89FC8, &lit_3896);
 
 /* 80C890B8-80C89198 000A78 00E0+00 1/0 0/0 0/0 .text            modeAcc__10daL8Lift_cFv */
 void daL8Lift_c::modeAcc() {
-    // NONMATCHING
+    int iVar1 = cLib_chaseF(&speedF, mMoveSpeed, mMoveSpeed / 30.0f);
+    if (iVar1 == 1 || current.pos == mTargetPos) {
+        init_modeMove();
+    }
+    cLib_addCalcPos(&current.pos, mTargetPos, 1.0f, speedF, 0.1f);
+    mDoAud_seStartLevel(Z2SE_OBJ_L8_L_LIFT_MV, &current.pos, fopAcM_GetSpeedF(this), dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
 }
 
 /* 80C89198-80C891A4 000B58 000C+00 1/1 0/0 0/0 .text            init_modeMove__10daL8Lift_cFv */
 void daL8Lift_c::init_modeMove() {
-    // NONMATCHING
+    mMode = MODE_MOVE_e;
 }
 
-/* ############################################################################################## */
 /* 80C89FD0-80C89FD8 000070 0008+00 0/2 0/0 0/0 .rodata          @3978 */
 #pragma push
 #pragma force_active on
@@ -467,6 +283,7 @@ COMPILER_STRIP_GATE(0x80C89FEC, &lit_3982);
 /* 80C891A4-80C894BC 000B64 0318+00 1/0 0/0 0/0 .text            modeMove__10daL8Lift_cFv */
 void daL8Lift_c::modeMove() {
     // NONMATCHING
+
 }
 
 /* 80C894BC-80C894C8 000E7C 000C+00 1/1 0/0 0/0 .text            init_modeBrk__10daL8Lift_cFv */
@@ -594,59 +411,32 @@ int daL8Lift_c::Delete() {
 }
 
 /* 80C89E18-80C89E44 0017D8 002C+00 1/0 0/0 0/0 .text            daL8Lift_Draw__FP10daL8Lift_c */
-static void daL8Lift_Draw(daL8Lift_c* param_0) {
+static int daL8Lift_Draw(daL8Lift_c* i_this) {
     // NONMATCHING
 }
 
 /* 80C89E44-80C89E64 001804 0020+00 1/0 0/0 0/0 .text            daL8Lift_Execute__FP10daL8Lift_c */
-static void daL8Lift_Execute(daL8Lift_c* param_0) {
+static int daL8Lift_Execute(daL8Lift_c* i_this) {
     // NONMATCHING
 }
 
 /* 80C89E64-80C89E84 001824 0020+00 1/0 0/0 0/0 .text            daL8Lift_Delete__FP10daL8Lift_c */
-static void daL8Lift_Delete(daL8Lift_c* param_0) {
+static int daL8Lift_Delete(daL8Lift_c* i_this) {
     // NONMATCHING
 }
 
 /* 80C89E84-80C89EA4 001844 0020+00 1/0 0/0 0/0 .text            daL8Lift_Create__FP10fopAc_ac_c */
-static void daL8Lift_Create(fopAc_ac_c* param_0) {
+static int daL8Lift_Create(fopAc_ac_c* a_this) {
     // NONMATCHING
 }
-
-// /* 80C89EA4-80C89F00 001864 005C+00 2/1 0/0 0/0 .text            __dt__14daL8Lift_HIO_cFv */
-// daL8Lift_HIO_c::~daL8Lift_HIO_c() {
-//     // NONMATCHING
-// }
-
-/* 80C89F00-80C89F3C 0018C0 003C+00 0/0 1/0 0/0 .text            __sinit_d_a_obj_lv8Lift_cpp */
-void __sinit_d_a_obj_lv8Lift_cpp() {
-    // NONMATCHING
-}
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80C89F00, __sinit_d_a_obj_lv8Lift_cpp);
-#pragma pop
-
-/* 80C89F3C-80C89F44 0018FC 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
-static void func_80C89F3C() {
-    // NONMATCHING
-}
-
-/* 80C89F44-80C89F4C 001904 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
-static void func_80C89F44() {
-    // NONMATCHING
-}
-
-/* 80C89FFC-80C89FFC 00009C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 
 /* 80C8A114-80C8A134 -00001 0020+00 1/0 0/0 0/0 .data            l_daL8Lift_Method */
 static actor_method_class l_daL8Lift_Method = {
-    (process_method_func)daL8Lift_Create__FP10fopAc_ac_c,
-    (process_method_func)daL8Lift_Delete__FP10daL8Lift_c,
-    (process_method_func)daL8Lift_Execute__FP10daL8Lift_c,
+    (process_method_func)daL8Lift_Create,
+    (process_method_func)daL8Lift_Delete,
+    (process_method_func)daL8Lift_Execute,
     0,
-    (process_method_func)daL8Lift_Draw__FP10daL8Lift_c,
+    (process_method_func)daL8Lift_Draw,
 };
 
 /* 80C8A134-80C8A164 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Lv8Lift */
