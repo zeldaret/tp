@@ -251,6 +251,15 @@ fpc_ProcID fopMsgM_Create(s16 i_procName, FastCreateReqFunc i_createFunc, void* 
     return fpcM_Create(i_procName, i_createFunc, i_append);
 }
 
+u8 fopMsgM_itemNumIdx(u8 i_no) {
+    static const u8 itemicon[] = {
+        0x40, 0x48, 0x41, 0x45, 0x43, 0x3e, 0x42, 0xff, 0x46, 0x44, 0x47, 0x60,
+        0x61, 0x62, 0x6a, 0x70, 0x71, 0x72, 0x25, 0x90, 0x4a, 0xff, 0xff, 0x4b,
+    };
+
+    return itemicon[i_no] & 0xFF;
+}
+
 /* 80020158-80020160 -00001 0008+00 0/0 0/0 0/0 .text            setAlpha__7J2DPaneFUc */
 void J2DPane::setAlpha(u8 alpha) {
     mAlpha = alpha;

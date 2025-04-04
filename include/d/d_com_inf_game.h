@@ -569,6 +569,18 @@ public:
     int getMessageCountNumber() { return mMessageCountNum; }
     void setMessageCountNumber(u32 number) { mMessageCountNum = number; }
 
+    s16 getItemMaxBombNumCount(u8 i_bombType) {
+        switch (i_bombType) {
+        case fpcNm_ITEM_NORMAL_BOMB:
+            return mItemMaxBombNumCount1;
+        case fpcNm_ITEM_WATER_BOMB:
+            return mItemMaxBombNumCount2;
+        case fpcNm_ITEM_POKE_BOMB:
+            return field_0x4ed8;
+        }
+        return 0;
+    }
+
     void setWindowNum(u8 num) { mWindowNum = num; }
     int getWindowNum() { return mWindowNum; }
     dDlst_window_c* getWindow(int i) { return &mWindow[i]; }
@@ -666,7 +678,8 @@ public:
     /* 0x04ECE */ s16 mItemMaxBombNumCount2;
     /* 0x04ED0 */ u8 field_0x4ed0[4];
     /* 0x04ED4 */ int mMessageCountNum;
-    /* 0x04ED8 */ u8 field_0x4ed8[6];
+    /* 0x04ED8 */ s16 field_0x4ed8;
+    /* 0x04EDA */ u8 field_0x4eda[0x4EDE - 0x4EDA];
     /* 0x04EDE */ u16 mItemNowLife;
     /* 0x04EE0 */ u8 field_0x4ee0[2];
     /* 0x04EE2 */ u8 mMesgStatus;
@@ -1034,6 +1047,9 @@ u8 dComIfGs_getSelectMixItemNoArrowIndex(int i_selmixItemIdx);
 BOOL dComIfGs_isStageTbox(int i_stageNo, int i_no);
 s8 dComIfGs_PolyDamageOff_Check();
 void dComIfGs_Grass_hide_Set(s8 param_0);
+void dComIfGs_onGetMagicUseFlag();
+void dComIfG_playerStatusD();
+void dComIfG_playerStatusD_pre_clear();
 
 inline void dComIfGs_init() {
     g_dComIfG_gameInfo.info.init();
@@ -1467,6 +1483,10 @@ inline s64 dComIfGs_getSaveTotalTime() {
 
 inline dSv_save_c* dComIfGs_getSaveData() {
     return &g_dComIfG_gameInfo.info.getSavedata();
+}
+
+inline dSv_info_c* dComIfGs_getSaveInfo() {
+    return &g_dComIfG_gameInfo.info;
 }
 
 inline void dComIfGs_setLineUpItem() {
@@ -2009,6 +2029,44 @@ inline void dComIfGs_setLightDropNum(u8 i_level, u8 i_num) {
 
 inline void dComIfGs_setBaitItem(u8 i_item) {
     g_dComIfG_gameInfo.info.getPlayer().getItem().setBaitItem(i_item);
+}
+
+inline void dComIfGs_setBombMax(u8 i_type, u8 i_max) {
+    g_dComIfG_gameInfo.info.getPlayer().getItemMax().setBombNum(i_type, i_max);
+}
+
+inline u8 dComIfGs_getPalLanguage() {
+    return 0;
+}
+
+inline u8 dComIfGs_getClearCount() {
+    return 0;
+}
+
+inline void dComIfGs_offGetMagicUseFlag() {}
+
+inline void dComIfGs_offLightDropGetFlag(u8 i_level) {
+    g_dComIfG_gameInfo.info.getPlayer().getLightDrop().offLightDropGetFlag(i_level);
+}
+
+inline void dComIfGs_setBombMax(u8 i_max) {
+    g_dComIfG_gameInfo.info.getPlayer().getItemMax().setBombNum(0, i_max);
+}
+
+inline u8 dComIfGs_getBombMax() {
+    return g_dComIfG_gameInfo.info.getPlayer().getItemMax().getBombNum(0);
+}
+
+inline void dComIfGs_setBombNum(u8 i_num) {
+    g_dComIfG_gameInfo.info.getPlayer().getItemRecord().setBombNum(0, i_num);
+}
+
+inline void dComIfGs_offDarkClearLV(int i_no) {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusB().offDarkClearLV(i_no);
+}
+
+inline void dComIfGs_offTransformLV(int i_no) {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusB().offTransformLV(i_no);
 }
 
 void dComIfGp_setSelectItem(int index);
@@ -2833,7 +2891,7 @@ inline void dComIfGp_setItemNowMagic(s16 magic) {
     g_dComIfG_gameInfo.play.setItemNowMagic(magic);
 }
 
-inline void dComIfGp_setOxygen(int oxygen) {
+inline void dComIfGp_setOxygen(s32 oxygen) {
     g_dComIfG_gameInfo.play.setOxygen(oxygen);
 }
 
@@ -3351,6 +3409,10 @@ inline void dComIfGp_setCurrentView(view_class* i_view) {
 
 inline void dComIfGp_setCurrentViewport(view_port_class* i_viewport) {
     g_dComIfG_gameInfo.play.setCurrentViewport(i_viewport);
+}
+
+inline s16 dComIfGp_getItemMaxBombNumCount() {
+    return g_dComIfG_gameInfo.play.getItemMaxBombNumCount(fpcNm_ITEM_NORMAL_BOMB);
 }
 
 inline BOOL dComIfGp_event_compulsory(void* param_0, const char* param_1, u16 param_2) {

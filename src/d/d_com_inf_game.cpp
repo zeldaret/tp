@@ -13,7 +13,10 @@
 #include "d/d_map_path_dmap.h"
 #include "d/d_menu_fmap.h"
 #include "d/d_meter2_info.h"
+#include "d/d_meter_HIO.h"
+#include "d/d_menu_window_HIO.h"
 #include "f_op/f_op_scene_mng.h"
+#include "f_op/f_op_msg_mng.h"
 #include "m_Do/m_Do_Reset.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
@@ -1467,6 +1470,14 @@ u16 dComIfGs_getMaxLifeGauge() {
     return (dComIfGs_getMaxLife() / 5) * 4;
 }
 
+void dComIfGs_onGetMagicUseFlag() {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().onMagicFlag(0);
+    if (dComIfGs_getMaxMagic() == 0) {
+        dComIfGp_setItemMaxMagicCount(16);
+        dComIfGp_setItemMagicCount(16);
+    }
+}
+
 void dComIfGs_setSelectItemIndex(int i_no, u8 i_slotNo) {
     g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setSelectItemIndex(i_no, i_slotNo);
     dComIfGp_setSelectItem(i_no);
@@ -1827,6 +1838,156 @@ void dComIfGs_gameStart() {
     char* name = g_dComIfG_gameInfo.info.getPlayer().getPlayerReturnPlace().getName();
     dComIfGp_setNextStage(name, point, roomNo, -1, 0.0f, 0, 1, 0, 0, 0, 0);
 }
+
+#ifdef DEBUG
+void dComIfG_playerStatusD() {
+    dComIfGs_setDataNum(0);
+    dComIfGs_setMaxLife(50);
+    dComIfGs_setLife(20);
+    dComIfGs_setRupee(64);
+    dComIfGs_setMaxMagic(32);
+    dComIfGs_setMagic(16);
+    dComIfGs_setWalletSize(1);
+    dComIfGs_setMaxOil(21600);
+    dComIfGs_setOil(21600);
+    dComIfGp_setMaxOxygen(600);
+    dComIfGp_setOxygen(600);
+
+    for (int i = 0; i < 4; i++) {
+        dComIfGs_setMixItemIndex(i, 0xFF);
+    }
+
+    dComIfGs_setSelectItemIndex(0, SLOT_0);
+    dComIfGs_setSelectItemIndex(1, SLOT_4);
+    dComIfGs_setSelectItemIndex(2, 0xFF);
+    dComIfGs_setSelectItemIndex(3, 0xFF);
+
+    for (int i = 23; i >= 0; i--) {
+        dComIfGs_setItem(i, fopMsgM_itemNumIdx(i));
+    }
+
+    for (int i = 0; i < 0x100; i++) {
+        dComIfGs_onItemFirstBit(i);
+    }
+
+    dComIfGs_offItemFirstBit(fpcNm_ITEM_L2_KEY_PIECES1);
+    dComIfGs_offItemFirstBit(fpcNm_ITEM_L2_KEY_PIECES2);
+    dComIfGs_offItemFirstBit(fpcNm_ITEM_L2_KEY_PIECES3);
+    dComIfGs_offItemFirstBit(fpcNm_ITEM_LV2_BOSS_KEY);
+    dComIfGs_offItemFirstBit(fpcNm_ITEM_BOMB_BAG_LV2);
+    dComIfGs_offItemFirstBit(fpcNm_ITEM_TOMATO_PUREE);
+    dComIfGs_offItemFirstBit(fpcNm_ITEM_TASTE);
+    dComIfGs_offItemFirstBit(fpcNm_ITEM_POU_FIRE1);
+    dComIfGs_offItemFirstBit(fpcNm_ITEM_POU_FIRE2);
+    dComIfGs_offItemFirstBit(fpcNm_ITEM_POU_FIRE3);
+    dComIfGs_offItemFirstBit(fpcNm_ITEM_POU_FIRE4);
+
+    for (int i = 0; i < 24; i++) {
+        dComIfGs_offItemFirstBit(i + fpcNm_ITEM_M_BEETLE);
+    }
+
+    dComIfGs_offItemFirstBit(fpcNm_ITEM_LIGHT_SWORD);
+    dComIfGs_offItemFirstBit(fpcNm_ITEM_SHIELD);
+    dComIfGs_offItemFirstBit(fpcNm_ITEM_ZORAS_JEWEL);
+
+    for (int i = 0; i < 19; i++) {
+        dComIfGs_offItemFirstBit(i);
+    }
+
+    dComIfGs_setCollectSmell(fpcNm_ITEM_SMELL_PUMPKIN);
+
+    if (!mDoCPd_c::isConnect(PAD_3)) {
+        dComIfGs_offItemFirstBit(fpcNm_ITEM_SMELL_POH);
+    }
+
+    dComIfGs_setArrowNum(30);
+    dComIfGs_setArrowMax(30);
+    dComIfGs_setPachinkoNum(dComIfGs_getPachinkoMax());
+    dComIfGs_setBombNum(0, 30);
+    dComIfGs_setBombNum(1, 15);
+    dComIfGs_setBombNum(2, 10);
+
+    for (int i = 0; i < 4; i++) {
+        dComIfGs_setBottleNum(i, dComIfGs_getBottleMax());
+    }
+
+    dComIfGs_setSaveTotalTime(dComIfGs_getTotalTime());
+    dComIfGs_setSaveStartTime(OSGetTime());
+
+    dComIfGs_setBombNum(8, 30);
+    dComIfGs_setBombMax(fpcNm_ITEM_NORMAL_BOMB, 30);
+    dComIfGs_setBombMax(fpcNm_ITEM_WATER_BOMB, 15);
+    dComIfGs_setBombMax(fpcNm_ITEM_POKE_BOMB, 10);
+
+    dMeter2Info_setCloth(fpcNm_ITEM_WEAR_KOKIRI, false);
+    dMeter2Info_setSword(fpcNm_ITEM_SWORD, false);
+    dMeter2Info_setShield(fpcNm_ITEM_HYLIA_SHIELD, false);
+    dComIfGs_onGetMagicUseFlag();
+
+    dComIfGs_onEventBit(0x540);
+    dComIfGs_onEventBit(0xc10);
+    dComIfGs_onEventBit(0x510);
+    dMeter2Info_offTempBit(0);
+    dComIfGs_onEventBit(0x5c01);
+    dComIfGs_onEventBit(0x5d80);
+
+    if (!mDoCPd_c::isConnect(PAD_3)) {
+        g_fmapHIO.mRangeCheckInterval = 0;
+    } else {
+        g_fmapHIO.mRangeCheckInterval = 1;
+    }
+
+    g_fmapHIO.mRegionImageDebug = 1;
+    g_fmapHIO.update();
+
+    g_mwHIO.setArrowFlag(1);
+    g_mwHIO.setPachinkoFlag(1);
+    g_mwHIO.setBombFlag(1);
+    g_mwHIO.update();
+    g_mwHIO.setBombFlag(1);
+}
+
+void dComIfG_playerStatusD_pre_clear() {
+    dComIfGs_setDataNum(0);
+    dComIfGs_setMaxLife(15);
+    dComIfGs_setLife(12);
+    dComIfGs_setRupee(0);
+    dComIfGs_setMaxMagic(0);
+    dComIfGs_setMagic(0);
+    dComIfGs_setWalletSize(0);
+    dComIfGs_setMaxOil(21600);
+    dComIfGs_setOil(21600);
+    dComIfGp_setMaxOxygen(600);
+    dComIfGp_setOxygen(600);
+
+    for (int i = 0; i < 4; i++) {
+        dComIfGs_setMixItemIndex(i, 0xFF);
+        dComIfGs_setSelectItemIndex(i, 0xFF);
+    }
+
+    dComIfGs_setSelectEquipClothes(fpcNm_ITEM_WEAR_CASUAL);
+    dComIfGp_setSelectEquipClothes(fpcNm_ITEM_WEAR_CASUAL);
+    dComIfGs_setSelectEquipSword(fpcNm_ITEM_NONE);
+    dComIfGp_setSelectEquipSword(fpcNm_ITEM_NONE);
+    dComIfGs_setSelectEquipShield(fpcNm_ITEM_NONE);
+    dComIfGp_setSelectEquipShield(fpcNm_ITEM_NONE);
+
+    for (int i = 0; i < 24; i++) {
+        dComIfGs_setItem(i, fpcNm_ITEM_NONE);
+    }
+
+    for (int i = 0; i < 0x100; i++) {
+        dComIfGs_offItemFirstBit(i);
+    }
+
+    dComIfGs_setArrowNum(0);
+    dComIfGs_setBombNum(0);
+    dComIfGs_setArrowMax(0);
+    dComIfGs_setBombMax(0);
+    dComIfGs_setSelectEquipShield(fpcNm_ITEM_SHIELD);
+    dComIfGp_setSelectEquipShield(fpcNm_ITEM_SHIELD);
+}
+#endif
 
 u32 dComIfG_getTrigA(u32 i_padNo) {
     return mDoCPd_c::getTrigA(i_padNo);

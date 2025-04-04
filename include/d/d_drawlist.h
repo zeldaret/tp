@@ -89,6 +89,26 @@ private:
     /* 0x160 */ u8 mAlpha;
 };
 
+class dDlst_2DQuad_c : public dDlst_base_c {
+public:
+    dDlst_2DQuad_c() {}
+    /* 80051CF0 */ virtual void draw();
+
+    void init(s16 posX, s16 posY, s16 width, s16 height, GXColor& color) {
+        mPosX = posX;
+        mPosY = posY;
+        mSizeX = width;
+        mSizeY = height;
+        mColor = color;
+    }
+
+    /* 0x4 */ s16 mPosX;
+    /* 0x6 */ s16 mPosY;
+    /* 0x8 */ s16 mSizeX;
+    /* 0xA */ s16 mSizeY;
+    /* 0xC */ GXColor mColor;
+};
+
 class dDlst_2DT2_c : public dDlst_base_c {
 public:
     /* 80052354 */ virtual void draw();
