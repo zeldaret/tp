@@ -178,64 +178,13 @@ const static dCcD_SrcCyl ccCylSrc = {
 };
 #pragma pop
 
-/* 80C52098-80C520A0 000098 0008+00 0/2 0/0 0/0 .rodata          @3855 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3855[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80C52098, &lit_3855);
-#pragma pop
-
-/* 80C520A0-80C520A8 0000A0 0008+00 0/2 0/0 0/0 .rodata          @3856 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3856[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80C520A0, &lit_3856);
-#pragma pop
-
-/* 80C520A8-80C520B0 0000A8 0008+00 0/2 0/0 0/0 .rodata          @3857 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3857[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80C520A8, &lit_3857);
-#pragma pop
-
-/* 80C520B0-80C520B4 0000B0 0004+00 0/0 0/0 0/0 .rodata          @3858 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3858 = 40.0f;
-COMPILER_STRIP_GATE(0x80C520B0, &lit_3858);
-#pragma pop
-
-/* 80C520B4-80C520B8 0000B4 0004+00 0/1 0/0 0/0 .rodata          @4041 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4041 = 100.0f;
-COMPILER_STRIP_GATE(0x80C520B4, &lit_4041);
-#pragma pop
-
-/* 80C520B8-80C520BC 0000B8 0004+00 0/1 0/0 0/0 .rodata          @4042 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4042 = 3.0f / 5.0f;
-COMPILER_STRIP_GATE(0x80C520B8, &lit_4042);
-#pragma pop
-
-/* 80C520BC-80C520C0 0000BC 0004+00 0/1 0/0 0/0 .rodata          @4043 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4043 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(0x80C520BC, &lit_4043);
-#pragma pop
+static f32 dummy(cXyz v) {
+    return 40.0f + v.abs();
+}
 
 /* 80C51194-80C51644 000274 04B0+00 1/1 0/0 0/0 .text            setNormalClothPos__10daObjLdy_cFv
  */
- void daObjLdy_c::setNormalClothPos() {
+void daObjLdy_c::setNormalClothPos() {
     cXyz adjustedPosition;
     cXyz windVector = dKyw_get_AllWind_vecpow(&current.pos);
     windVector *= M_attr[3] * M_attr[4];
@@ -253,7 +202,7 @@ COMPILER_STRIP_GATE(0x80C520BC, &lit_4043);
                 position *= M_attr[6];
             }
             divorceParent();            
-        }
+            }
         else{
             if (tgHitObj->ChkAtType(AT_TYPE_BOOMERANG) != 0){
                 divorceParent();
@@ -262,7 +211,7 @@ COMPILER_STRIP_GATE(0x80C520BC, &lit_4043);
     }
     else{        
         if (mCyl.ChkCoHit() != 0){
-            if (fopAcM_GetName(mCyl.GetCoHitAc()) == 256) {
+            if (fopAcM_GetName(mCyl.GetCoHitAc()) == AT_TYPE_100) {
                 cXyz position = fopAcM_GetPosition(dComIfGp_getPlayer(0)) - mJoints[1].pos1;
                 position.normalizeZP();
                 position *= 100.0f;
@@ -278,11 +227,11 @@ COMPILER_STRIP_GATE(0x80C520BC, &lit_4043);
                 for (int i = 0; i < 3; i++){
                     if (cM_rnd() < 0.6f && cM_rnd() < 0.1f){
                         joint->pos3 += joint->pos4 * windPower;
-                    }                    
+                    }                 
                     joint++;
                 }
             }
-        } 
+        }
     }
 
     int i;
@@ -301,17 +250,23 @@ COMPILER_STRIP_GATE(0x80C520BC, &lit_4043);
     }
 }
 
-/* ############################################################################################## */
-/* 80C520C0-80C520C4 0000C0 0004+00 0/1 0/0 0/0 .rodata          @4097 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4097 = -1.0f;
-COMPILER_STRIP_GATE(0x80C520C0, &lit_4097);
-#pragma pop
-
 /* 80C51644-80C5183C 000724 01F8+00 1/1 0/0 0/0 .text            calcJointAngle__10daObjLdy_cFv */
 void daObjLdy_c::calcJointAngle() {
-    // NONMATCHING
+    cXyz position;
+    LaundJoint_c* joint = &mJoints[0];
+    mDoMtx_stack_c::copy(mMtx);
+    for(int i = 0; i < 3; i++){
+        mDoMtx_stack_c::push();
+        mDoMtx_stack_c::inverse();
+        mDoMtx_stack_c::multVec(&joint->pos1, &position);
+        mDoMtx_stack_c::pop();
+        position *= -1.0f;
+        joint->angle.x = cM_atan2s(position.z, position.y);
+        joint->angle.z = cM_atan2s(-position.y, position.absXZ());
+        mDoMtx_stack_c::XrotM(joint->angle.x);
+        mDoMtx_stack_c::transM(0.0f, M_attr[3], 0.0f);
+        joint++;
+    }
 }
 
 /* 80C5183C-80C51844 00091C 0008+00 1/1 0/0 0/0 .text            divorceParent__10daObjLdy_cFv */
@@ -320,8 +275,24 @@ bool daObjLdy_c::divorceParent() {
 }
 
 /* 80C51844-80C518FC 000924 00B8+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
-static void nodeCallBack(J3DJoint* param_0, int param_1) {
-    // NONMATCHING
+static int nodeCallBack(J3DJoint* joint, int callbackCondition) {
+    J3DModel* jointModel;
+    u16 jointNo;
+    csXyz jointAngle[2];
+
+    if (callbackCondition != 0){
+        return 1;
+    }
+    
+    jointNo = joint->getJntNo();
+    jointModel = j3dSys.getModel();
+    ((daObjLdy_c*)jointModel->getUserArea())->getJointAngle(jointAngle, jointNo);
+    cMtx_copy(jointModel->getAnmMtx(jointNo), mDoMtx_stack_c::get());
+    mDoMtx_stack_c::XrotM(jointAngle->x);
+    jointModel->setAnmMtx(jointNo, mDoMtx_stack_c::get());
+    mDoMtx_copy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
+
+    return 1;
 }
 
 /* ############################################################################################## */
@@ -335,6 +306,7 @@ COMPILER_STRIP_GATE(0x80C520C4, &lit_4203);
 SECTION_DEAD static char const* const stringBase_80C520C8 = "J_Sentaku";
 SECTION_DEAD static char const* const stringBase_80C520D2 = "J_Sentaku.bmd";
 SECTION_DEAD static char const* const stringBase_80C520E0 = "J_Sentaku.btk";
+SECTION_DEAD static char const* const rodataPadding = "\0";
 #pragma pop
 
 /* 80C520F0-80C520F4 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
@@ -419,20 +391,20 @@ static void daObjLdy_Draw(daObjLdy_c* param_0) {
 }
 
 /* 80C51B9C-80C51BDC 000C7C 0040+00 1/0 0/0 0/0 .text            daObjLdy_Execute__FP10daObjLdy_c */
-static int daObjLdy_Execute(daObjLdy_c* param_0) {
-    param_0->setNormalClothPos();
-    param_0->setBaseMtx();
-    param_0->calcJointAngle();
+static int daObjLdy_Execute(daObjLdy_c* i_this) {
+    i_this->setNormalClothPos();
+    i_this->setBaseMtx();
+    i_this->calcJointAngle();
     return 1;
 }
 
 /* 80C51BDC-80C51BE4 000CBC 0008+00 1/0 0/0 0/0 .text            daObjLdy_IsDelete__FP10daObjLdy_c
  */
-static bool daObjLdy_IsDelete(daObjLdy_c* param_0) {
+static bool daObjLdy_IsDelete(daObjLdy_c* i_this) {
     return true;
 }
 
-/* 8045D11C-8045D144 0002BC 0028+00 1/0 0/0 0/0 .text            daDmidna_Delete__FP10daDmidna_c */
+/* 80C51BE4-80C51D2C 000CC4 0148+00 1/0 0/0 0/0 .text            daObjLdy_Delete__FP10daObjLdy_c */
 static int daObjLdy_Delete(daObjLdy_c* i_this) {
     if (i_this){
         dComIfG_resDelete(&i_this->mPhase, l_arcName);
@@ -442,14 +414,8 @@ static int daObjLdy_Delete(daObjLdy_c* i_this) {
     return 1;
 }
 
-/* 80C51BE4-80C51D2C 000CC4 0148+00 1/0 0/0 0/0 .text            daObjLdy_Delete__FP10daObjLdy_c */
-/*static void daObjLdy_Delete(daObjLdy_c* param_0) {
-    // NONMATCHING
-}*/
-
 /* 80C51D2C-80C51D68 000E0C 003C+00 2/2 0/0 0/0 .text            __dt__12LaundJoint_cFv */
 LaundJoint_c::~LaundJoint_c() {
-    // NONMATCHING
 }
 
 /* 80C51D68-80C51EC0 000E48 0158+00 1/0 0/0 0/0 .text            daObjLdy_Create__FP10fopAc_ac_c */
@@ -475,30 +441,6 @@ static int daObjLdy_Create(fopAc_ac_c* i_this) {
 /* 80C51EC0-80C51EC4 000FA0 0004+00 1/1 0/0 0/0 .text            __ct__12LaundJoint_cFv */
 LaundJoint_c::LaundJoint_c() {
     /* empty function */
-}
-
-/* 80C51EC4-80C51F0C 000FA4 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGCylFv */
-// cM3dGCyl::~cM3dGCyl() {
-extern "C" void __dt__8cM3dGCylFv() {
-    // NONMATCHING
-}
-
-/* 80C51F0C-80C51F54 000FEC 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
-// cM3dGAab::~cM3dGAab() {
-extern "C" void __dt__8cM3dGAabFv() {
-    // NONMATCHING
-}
-
-/* 80C51F54-80C51FB0 001034 005C+00 1/0 0/0 0/0 .text            __dt__10dCcD_GSttsFv */
-// dCcD_GStts::~dCcD_GStts() {
-extern "C" void __dt__10dCcD_GSttsFv() {
-    // NONMATCHING
-}
-
-/* 80C51FB0-80C51FF8 001090 0048+00 1/0 0/0 0/0 .text            __dt__10cCcD_GSttsFv */
-// cCcD_GStts::~cCcD_GStts() {
-extern "C" void __dt__10cCcD_GSttsFv() {
-    // NONMATCHING
 }
 
 /* 80C520C8-80C520C8 0000C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
