@@ -235,27 +235,27 @@ COMPILER_STRIP_GATE(0x80C520BC, &lit_4043);
 
 /* 80C51194-80C51644 000274 04B0+00 1/1 0/0 0/0 .text            setNormalClothPos__10daObjLdy_cFv
  */
-void daObjLdy_c::setNormalClothPos() {
+ void daObjLdy_c::setNormalClothPos() {
+    cXyz adjustedPosition;
     cXyz windVector = dKyw_get_AllWind_vecpow(&current.pos);
     windVector *= M_attr[3] * M_attr[4];
     float windPower = windVector.abs();
-    LaundJoint_c* joint2 = &mJoints[0];
+    LaundJoint_c* joint = &mJoints[0];
     
     if (mCyl.ChkTgHit() != 0){
         cCcD_Obj* tgHitObj = mCyl.GetTgHitObj();
-        if (tgHitObj->ChkAtType(64) != 0 || tgHitObj->ChkAtType(8192) != 0){
+        if (tgHitObj->ChkAtType(AT_TYPE_40) != 0 || tgHitObj->ChkAtType(AT_TYPE_ARROW) != 0){
             cXyz position = fopAcM_GetPosition(dComIfGp_getPlayer(0)) - mJoints[1].pos1;
             position.normalizeZP();
-            PSVECScale(&position, &position, 100.0f);
+            position *= 100.0f;
             for (int i = 2; i >= 0; i--){
                 mJoints[i].pos3 = position;
                 position *= M_attr[6];
             }
-            divorceParent();
-            
+            divorceParent();            
         }
         else{
-            if (tgHitObj->ChkAtType(65536) != 0){
+            if (tgHitObj->ChkAtType(AT_TYPE_BOOMERANG) != 0){
                 divorceParent();
             }
         }
@@ -265,7 +265,7 @@ void daObjLdy_c::setNormalClothPos() {
             if (fopAcM_GetName(mCyl.GetCoHitAc()) == 256) {
                 cXyz position = fopAcM_GetPosition(dComIfGp_getPlayer(0)) - mJoints[1].pos1;
                 position.normalizeZP();
-                PSVECScale(&position, &position, 100.0f);
+                position *= 100.0f;
                 for (int i = 2; i >= 0; i--){
                     mJoints[i].pos3 = position;
                     position *= M_attr[6];
@@ -277,27 +277,27 @@ void daObjLdy_c::setNormalClothPos() {
             if (!windVector.isZero()){
                 for (int i = 0; i < 3; i++){
                     if (cM_rnd() < 0.6f && cM_rnd() < 0.1f){
-                        joint2->pos3 += joint2->pos4 * windPower;
+                        joint->pos3 += joint->pos4 * windPower;
                     }                    
-                    joint2++;
+                    joint++;
                 }
             }
         } 
     }
 
     int i;
-    LaundJoint_c* joint = &mJoints[0];
+    LaundJoint_c* mJoint = &mJoints[0];
     cXyz* currentPosition = &fopAcM_GetPosition(this);
     for (i = 0; i < 3; i++){
-        cXyz temp = *currentPosition - joint->pos1;
-        temp.y += gravity;
-        joint->pos3 += temp;
-        temp.normalizeZP();
-        joint->pos1 = *currentPosition + (temp * M_attr[3]);
-        joint->pos3 = (joint->pos3 + (joint->pos2 - joint->pos1)) * M_attr[5];
-        joint->pos2 = joint->pos1;
-        currentPosition = &joint->pos1;
-        joint++;
+        adjustedPosition = *currentPosition - mJoint->pos1;
+        adjustedPosition.y += gravity;
+        adjustedPosition += mJoint->pos3;
+        adjustedPosition.normalizeZP();
+        mJoint->pos1 = *currentPosition + (adjustedPosition * M_attr[3]);
+        mJoint->pos3 = (mJoint->pos3 + (mJoint->pos2 - mJoint->pos1)) * M_attr[5];
+        mJoint->pos2 = mJoint->pos1;
+        currentPosition = &mJoint->pos1;
+        mJoint++;
     }
 }
 
