@@ -41,6 +41,23 @@ public:
     /* 0x14 */ dScnPly_env_debugHIO_c mDebug;
 };
 
+class dScnPly_preset_HIO_c : public JORReflexible {
+public:
+    dScnPly_preset_HIO_c();
+    void exePreset();
+
+    virtual void listenPropertyEvent(const JORPropertyEvent*);
+    virtual void genMessage(JORMContext*);
+    virtual ~dScnPly_preset_HIO_c() {}
+
+    /* 0x0004 */ u8 field_0x4;
+    /* 0x0005 */ u8 field_0x5;
+    /* 0x0006 */ u8 mPresetData[10000];
+    /* 0x2716 */ u8 field_0x2716;
+    /* 0x2717 */ u8 field_0x2717;
+    /* 0x2718 */ char mFilename[100];
+};
+
 class dScnPly_c : public scene_class {
 public:
     /* 80259400 */ s8 calcPauseTimer();
@@ -61,6 +78,10 @@ public:
 
 extern dScnPly_env_HIO_c g_envHIO;
 extern dScnPly_reg_HIO_c g_regHIO;
+
+#ifdef DEBUG
+extern dScnPly_preset_HIO_c g_presetHIO;
+#endif
 
 /**
  * === Register Usage ===

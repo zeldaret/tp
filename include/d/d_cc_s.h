@@ -63,6 +63,9 @@ public:
 
     // /* 0x0000 */ cCcS mCCcS;
     /* 0x284C */ dCcMassS_Mng mMass_Mng;
+#ifdef DEBUG
+    /* 0x2AD0 */ u8 field_0x2ad0;
+#endif
 };  // Size = 0x2AC4
 
 STATIC_ASSERT(sizeof(dCcS) == 0x2AC4);

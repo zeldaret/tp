@@ -83,18 +83,6 @@ public:
     /* 0x28 */ f32 field_0x28;
 };
 
-class dDlst_2DQuad_c {
-public:
-    dDlst_2DQuad_c() {}
-    /* 80051CF0 */ virtual void draw();
-
-    /* 0x04 */ s16 field_0x4;
-    /* 0x06 */ s16 field_0x6;
-    /* 0x08 */ s16 field_0x8;
-    /* 0x0A */ s16 field_0xa;
-    /* 0x0C */ GXColor field_0xc;
-};
-
 class dDlst_2DPoint_c {
 public:
     /* 80051E5C */ virtual void draw();
@@ -242,7 +230,7 @@ void dDlst_2DQuad_c::draw() {
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
     GXSetNumChans(1);
     GXSetChanCtrl(GX_COLOR0A0, GX_DISABLE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
-    GXSetChanMatColor(GX_COLOR0A0, field_0xc);
+    GXSetChanMatColor(GX_COLOR0A0, mColor);
     GXSetNumTexGens(0);
     GXSetNumTevStages(1);
     GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
@@ -251,10 +239,10 @@ void dDlst_2DQuad_c::draw() {
     GXLoadPosMtxImm(mDoMtx_getIdentity(), GX_PNMTX0);
     GXSetCurrentMtx(GX_PNMTX0);
     GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-    GXPosition3s16((s32)field_0x4, (s32)field_0x6, 0);
-    GXPosition3s16((s32)field_0x8, (s32)field_0x6, 0);
-    GXPosition3s16((s32)field_0x8, (s32)field_0xa, 0);
-    GXPosition3s16((s32)field_0x4, (s32)field_0xa, 0);
+    GXPosition3s16((s32)mPosX, (s32)mPosY, 0);
+    GXPosition3s16((s32)mSizeX, (s32)mPosY, 0);
+    GXPosition3s16((s32)mSizeX, (s32)mSizeY, 0);
+    GXPosition3s16((s32)mPosX, (s32)mSizeY, 0);
     GXEnd();
     dComIfGp_getCurrentGrafPort()->setup2D();
 }

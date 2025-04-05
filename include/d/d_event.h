@@ -173,6 +173,9 @@ public:
     /* 0x128 */ u8 mCompulsory;
     /* 0x129 */ bool mRoomInfoSet;
     /* 0x12C */ int mRoomNo;
+#ifdef DEBUG
+    /* 0x130 */ u8 field_0x130;
+#endif
 };  // Size = 0x130
 
 int dEv_defaultSkipProc(void* param_0, int param_1);

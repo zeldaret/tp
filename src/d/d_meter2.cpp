@@ -1023,7 +1023,7 @@ void dMeter2_c::moveRupee() {
     draw_rupee = false;
 
     // using dComIfGp_getItemRupeeCount() here swaps r3/r4 reg alloc?
-    if (g_dComIfG_gameInfo.play.mItemRupeeCount != 0) {
+    if (g_dComIfG_gameInfo.play.mItemInfo.mItemRupeeCount != 0) {
         var_r6 = dComIfGs_getRupee() + dComIfGp_getItemRupeeCount();
         if (var_r6 > temp_r5) {
             var_r6 = temp_r5;

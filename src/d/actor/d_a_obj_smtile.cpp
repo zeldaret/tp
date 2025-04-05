@@ -31,7 +31,7 @@ SECTION_DATA static s8 l_tileMoveData[21][4] = {
 
 /* 80CDD2AC-80CDD3AC 0000EC 0100+00 1/0 0/0 0/0 .text            __dt__14daObj_SMTile_cFv */
 daObj_SMTile_c::~daObj_SMTile_c() {
-    OS_REPORT("|%06d:%x|daObj_SMTile_c -> デストラクト\n", g_Counter, this);
+    OS_REPORT("|%06d:%x|daObj_SMTile_c -> デストラクト\n", g_Counter.mCounter0, this);
     dComIfG_resDelete(
         &mPhase,
         l_resNameList[l_bmdData[mType][1]]);
@@ -93,7 +93,7 @@ int daObj_SMTile_c::CreateHeap() {
 
 /* 80CDD6E8-80CDD71C 000528 0034+00 1/1 0/0 0/0 .text            Delete__14daObj_SMTile_cFv */
 int daObj_SMTile_c::Delete() {
-    OS_REPORT("|%06d:%x|daObj_SMTile_c -> Delete\n", g_Counter, this);
+    OS_REPORT("|%06d:%x|daObj_SMTile_c -> Delete\n", g_Counter.mCounter0, this);
     this->~daObj_SMTile_c();
     return 1;
 }

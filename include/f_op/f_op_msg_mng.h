@@ -61,5 +61,6 @@ inline fpc_ProcID fopMsgM_Timer_create(s16 i_procName, u8 i_mode, u32 i_limitMs,
     return fop_Timer_create(i_procName, i_mode, i_limitMs, i_type, param_4, param_5, param_6,
                             param_7, param_8, i_createFunc);
 }
+u8 fopMsgM_itemNumIdx(u8 i_no);
 
 #endif

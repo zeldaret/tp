@@ -838,6 +838,11 @@ OSThread* mDoExt_GetCurrentRunningThread();
 void mDoExt_setupShareTexture(J3DModelData* i_modelData, J3DModelData* i_shareModelData);
 void mDoExt_btkAnmRemove(J3DModelData* i_modelData);
 
+#if VERSION == VERSION_SHIELD_DEBUG
+s32 mDoExt_getSafeZeldaHeapSize();
+void mDoExt_addSafeZeldaHeapSize(s32);
+#endif
+
 struct JUTFont;
 JUTFont* mDoExt_getMesgFont();
 JUTFont* mDoExt_getSubFont();

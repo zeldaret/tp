@@ -730,7 +730,7 @@ SECTION_DATA u8 daNpc_Hanjo_c::mStoneCcDSph[64] = {
 
 /* 809F908C-809F9278 0000EC 01EC+00 1/0 0/0 0/0 .text            __dt__13daNpc_Hanjo_cFv */
 daNpc_Hanjo_c::~daNpc_Hanjo_c() {
-    OS_REPORT("|%06d:%x|daNpc_Hanjo_c -> デストラクト\n", g_Counter, this);
+    OS_REPORT("|%06d:%x|daNpc_Hanjo_c -> デストラクト\n", g_Counter.mCounter0, this);
     if (mpMorf[0] != 0) {
         mpMorf[0]->stopZelAnime();
     }
@@ -902,7 +902,7 @@ int daNpc_Hanjo_c::CreateHeap() {
 
 /* 809F9B38-809F9B6C 000B98 0034+00 1/1 0/0 0/0 .text            Delete__13daNpc_Hanjo_cFv */
 int daNpc_Hanjo_c::Delete() {
-    OS_REPORT("|%06d:%x|daNpc_Hanjo_c -> Delete\n", g_Counter, this);
+    OS_REPORT("|%06d:%x|daNpc_Hanjo_c -> Delete\n", g_Counter.mCounter0, this);
     fopAcM_GetID(this);
     this->~daNpc_Hanjo_c();
     return 1;

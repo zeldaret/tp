@@ -2,6 +2,7 @@
 #define D_METER_D_METER_HIO_H
 
 #include "JSystem/JUtility/TColor.h"
+#include "JSystem/JHostIO/JORReflexible.h"
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "global.h"
@@ -1085,7 +1086,7 @@ public:
     /* 0x179 */ bool mIconDisplay[22];
 };  // Size: 0x190
 
-class dMeter_fmapHIO_c {
+class dMeter_fmapHIO_c : public JORReflexible {
 public:
     enum {
         /* 0x0 */ REGION_ORDONA,
@@ -1130,6 +1131,12 @@ public:
     };  // Size: 0x28
 
     /* 802006C8 */ dMeter_fmapHIO_c();
+#ifdef DEBUG
+    void update();
+
+    virtual void listenPropertyEvent(const JORPropertyEvent*);
+    virtual void genMessage(JORMContext*);
+#endif
     /* 80200BCC */ virtual ~dMeter_fmapHIO_c();
 
     /* 0x004 */ s8 field_0x4;
