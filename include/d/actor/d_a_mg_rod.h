@@ -24,7 +24,7 @@ struct mg_hook_s {
     /* 0x18 */ u8 field_0x18[0x20 - 0x18];
 };
 
-// struct wd_ss {};
+struct wd_ss;
 
 /**
  * @ingroup actors-items
