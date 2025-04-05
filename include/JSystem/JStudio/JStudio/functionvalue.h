@@ -1,9 +1,11 @@
 #ifndef FUNCTIONVALUE_H
 #define FUNCTIONVALUE_H
 
-#include "JSystem/JGadget/search.h"
 #include "JSystem/JGadget/vector.h"
-#include "global.h"
+#include "dolphin/os.h"
+#include <iterator.h>
+
+extern u8 lit_569;
 
 namespace JStudio {
 
@@ -77,7 +79,7 @@ public:
 class TFunctionValueAttribute_refer : public JGadget::TVector_pointer<TFunctionValue*> {
 public:
     TFunctionValueAttribute_refer() :
-    JGadget::TVector_pointer<TFunctionValue*>(JGadget::TAllocator<void*>()) {}
+    JGadget::TVector_pointer<TFunctionValue*>(JGadget::TAllocator<void*>(lit_569)) {}
     ~TFunctionValueAttribute_refer() {}
 
     /* 802816E8 */ void refer_initialize();
@@ -307,19 +309,38 @@ class TFunctionValue_list_parameter : TFunctionValue,
 public:
     struct TIterator_data_ {
         TIterator_data_(const f32* value) : value_(value) {}
-        TIterator_data_(const TIterator_data_& other) : value_(other.value_) {}
-
-        void operator=(const TIterator_data_& rhs) { value_ = rhs.value_; }
         TIterator_data_& operator--() {
             value_ -= 2;
             return *this;
         }
+        TIterator_data_& operator-=(s32 n) {
+            value_ -= n * 2;
+            return *this;
+        }
+        s32 operator-(const TIterator_data_& other) {
+            return (u32)(value_ - other.value_) >> 1;
+        }
+        TIterator_data_& operator++() {
+            value_ += 2;
+            return *this;
+        }
+        TIterator_data_& operator+=(s32 n) {
+            value_ += n * 2;
+            return *this;
+        }
         friend bool operator==(const TIterator_data_& lhs, const TIterator_data_& rhs) { return lhs.value_ == rhs.value_; }
+        f32 operator*() { return *value_; }
 
         const f32* get() const { return value_; }
         void set(const f32* value) { value_ = value; }
 
         const f32* value_;
+
+        typedef s32 difference_type;
+        typedef f32 value_type;
+        typedef const f32* pointer;
+        typedef const f32& reference;
+        typedef std::random_access_iterator_tag iterator_category;
     };
     typedef f64 (*update_INTERPOLATE)(const TFunctionValue_list_parameter&, f64);
 
@@ -372,14 +393,36 @@ public:
         }
    
         friend bool operator==(const TIterator_data_& lhs, const TIterator_data_& rhs) { return lhs.value_ == rhs.value_; }
+        f32 operator*() { return *value_; }
 
         TIterator_data_& operator--() {
             value_ -= size_;
             return *this;
         }
+        TIterator_data_& operator-=(s32 n) {
+            value_ -= size_ * n;
+            return *this;
+        }
+        s32 operator-(const TIterator_data_& other) {
+            return (value_ - other.value_) / size_;
+        }
+        TIterator_data_& operator++() {
+            value_ += size_;
+            return *this;
+        }
+        TIterator_data_& operator+=(s32 n) {
+            value_ += size_ * n;
+            return *this;
+        }
 
         /* 0x00 */ const f32* value_;
         /* 0x04 */ u32 size_;
+
+        typedef s32 difference_type;
+        typedef f32 value_type;
+        typedef const f32* pointer;
+        typedef const f32& reference;
+        typedef std::random_access_iterator_tag iterator_category;
     };
 
     /* 802832C4 */ TFunctionValue_hermite();

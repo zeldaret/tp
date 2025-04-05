@@ -1,7 +1,6 @@
 #ifndef MSL_ALGORITHM_H_
 #define MSL_ALGORITHM_H_
 
-#include <string.h>
 #include <iterator.h>
 
 namespace std {
@@ -16,6 +15,27 @@ ForwardIterator lower_bound(ForwardIterator first, ForwardIterator last, const T
 		std::advance(i, step);
 
 		if (*i < val) {
+			first = ++i;
+			len -= step + 1;
+		} else {
+			len = step;
+		}
+	}
+
+	return first;
+}
+
+template <class ForwardIterator, class T, class Predicate>
+ForwardIterator upper_bound(ForwardIterator first, ForwardIterator last, const T& val, Predicate p) {
+	typedef typename iterator_traits<ForwardIterator>::difference_type difference_type;
+	difference_type len = std::distance(first, last);
+
+	while (len > 0) {
+		ForwardIterator i = first;
+		difference_type step = len / 2;
+		std::advance(i, step);
+
+		if (!p(val, *i)) {
 			first = ++i;
 			len -= step + 1;
 		} else {

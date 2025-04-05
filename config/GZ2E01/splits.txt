@@ -1731,7 +1731,7 @@ JSystem/JStudio/JStudio/ctb.cpp:
 	.data       start:0x803C4878 end:0x803C48E0
 
 JSystem/JStudio/JStudio/functionvalue.cpp:
-	.text       start:0x80281648 end:0x80283E24
+	.text       start:0x80281648 end:0x80283F80
 	.rodata     start:0x8039A9F0 end:0x8039AA00
 	.data       start:0x803C48E0 end:0x803C49C0
 	.sbss       start:0x804511E8 end:0x804511F0
@@ -1739,9 +1739,6 @@ JSystem/JStudio/JStudio/functionvalue.cpp:
 
 JSystem/JStudio/JStudio/fvb-data.cpp:
 	.sdata2     start:0x80455450 end:0x80455458
-
-JSystem/JStudio/JStudio/functionvalue-inline.cpp:
-	.text       start:0x80283E24 end:0x80283F80
 
 JSystem/JStudio/JStudio/fvb.cpp:
 	.text       start:0x80283F80 end:0x80285018

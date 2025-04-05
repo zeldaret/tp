@@ -771,7 +771,6 @@ config.libs = [
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/ctb.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/ctb-data.cpp"),
             Object(NonMatching, "JSystem/JStudio/JStudio/functionvalue.cpp"),
-            Object(NonMatching, "JSystem/JStudio/JStudio/functionvalue-inline.cpp"),
             Object(NonMatching, "JSystem/JStudio/JStudio/fvb.cpp"),
             Object(NonMatching, "JSystem/JStudio/JStudio/fvb-inline.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/fvb-data.cpp"),
