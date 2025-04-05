@@ -1741,12 +1741,9 @@ JSystem/JStudio/JStudio/fvb-data.cpp:
 	.sdata2     start:0x80455450 end:0x80455458
 
 JSystem/JStudio/JStudio/fvb.cpp:
-	.text       start:0x80283F80 end:0x80285018
+	.text       start:0x80283F80 end:0x802850AC
 	.rodata     start:0x8039AA00 end:0x8039AA40
 	.data       start:0x803C49C0 end:0x803C4AC0
-
-JSystem/JStudio/JStudio/fvb-inline.cpp:
-	.text       start:0x80285018 end:0x802850AC
 
 JSystem/JStudio/JStudio/fvb-data-parse.cpp:
 	.text       start:0x802850AC end:0x80285114

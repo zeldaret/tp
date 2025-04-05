@@ -1,7 +1,7 @@
 #ifndef FUNCTIONVALUE_H
 #define FUNCTIONVALUE_H
 
-#include "JSystem/JGadget/vector.h"
+#include "JSystem/JGadget/std-vector.h"
 #include "dolphin/os.h"
 #include <iterator.h>
 
@@ -66,20 +66,19 @@ public:
         : TFunctionValueAttributeSet_const(refer, range, interp) {}
 
     TFunctionValueAttribute_refer* refer_get() const {
-        return static_cast<const TFunctionValueAttributeSet_const*>(this)->refer_get();
+        return TFunctionValueAttributeSet_const::refer_get();
     }
     TFunctionValueAttribute_range* range_get() const {
-        return static_cast<const TFunctionValueAttributeSet_const*>(this)->range_get();
+        return TFunctionValueAttributeSet_const::range_get();
     }
     TFunctionValueAttribute_interpolate* interpolate_get() const {
-        return static_cast<const TFunctionValueAttributeSet_const*>(this)->interpolate_get();
+        return TFunctionValueAttributeSet_const::interpolate_get();
     }
 };
 
 class TFunctionValueAttribute_refer : public JGadget::TVector_pointer<TFunctionValue*> {
 public:
-    TFunctionValueAttribute_refer() :
-    JGadget::TVector_pointer<TFunctionValue*>(JGadget::TAllocator<void*>(lit_569)) {}
+    inline TFunctionValueAttribute_refer();
     ~TFunctionValueAttribute_refer() {}
 
     /* 802816E8 */ void refer_initialize();
@@ -191,7 +190,7 @@ public:
     };
     typedef f64 (*UnkFunc)(f64, const TFunctionValueAttribute_refer*,
                            const TFunctionValue_composite::TData*);
-    typedef f64 (*CompositeFunc)(const JGadget::TVector_pointer<TFunctionValue>&,
+    typedef f64 (*CompositeFunc)(const JGadget::TVector_pointer<TFunctionValue*>&,
                                  const TFunctionValue_composite::TData&, f64);
 
     /* 80281D5C */ TFunctionValue_composite();
@@ -227,7 +226,7 @@ public:
     TData data;
 };
 
-class TFunctionValue_transition : TFunctionValue,
+class TFunctionValue_transition : public TFunctionValue,
                                   TFunctionValueAttribute_range,
                                   TFunctionValueAttribute_interpolate {
 public:
@@ -252,7 +251,7 @@ private:
     /* 0x50 */ f64 _50;
 };
 
-class TFunctionValue_list : TFunctionValue,
+class TFunctionValue_list : public TFunctionValue,
                             TFunctionValueAttribute_range,
                             TFunctionValueAttribute_interpolate {
 public:
@@ -303,7 +302,7 @@ private:
     /* 0x58 */ update_INTERPOLATE pfnUpdate_;
 };
 
-class TFunctionValue_list_parameter : TFunctionValue,
+class TFunctionValue_list_parameter : public TFunctionValue,
                                       TFunctionValueAttribute_range,
                                       TFunctionValueAttribute_interpolate {
 public:
@@ -377,7 +376,7 @@ private:
     /* 0x58 */ update_INTERPOLATE pfnUpdate_;
 };
 
-class TFunctionValue_hermite : TFunctionValue, TFunctionValueAttribute_range {
+class TFunctionValue_hermite : public TFunctionValue, TFunctionValueAttribute_range {
 public:
     struct TIterator_data_ {
         TIterator_data_(const TFunctionValue_hermite& rParent, const f32* value) {

@@ -11,8 +11,6 @@
 #include "math.h"
 #include "stdlib.h"
 
-u8 lit_569;
-
 namespace JStudio {
 
 namespace functionvalue {
@@ -61,6 +59,9 @@ ExtrapolateParameter TFunctionValue::toFunction_outside(int idx) {
 
 TFunctionValue::TFunctionValue() {}
 TFunctionValue::~TFunctionValue() {}
+
+TFunctionValueAttribute_refer::TFunctionValueAttribute_refer() :
+    JGadget::TVector_pointer<TFunctionValue*>(JGadget::TAllocator<void*>()) {}
 
 void TFunctionValueAttribute_refer::refer_initialize() {
     clear();
@@ -249,7 +250,6 @@ TFunctionValueAttribute_range::TFunctionValueAttribute_range()
 
 /* 80281D5C-80281DB8 27C69C 005C+00 0/0 1/1 0/0 .text __ct__Q27JStudio24TFunctionValue_compositeFv
  */
-// NONMATCHING instruction order
 TFunctionValue_composite::TFunctionValue_composite() : pfn_(NULL), data((void*)NULL) {
 }
 
@@ -321,7 +321,7 @@ f64 TFunctionValue_composite::composite_index(TVector_pointer<TFunctionValue*> c
             index = size - 2;
         }
         break;
-    case 1: {
+    case 1:
         div_t dt = div(index, size - 1);
         index = dt.rem;
         if (index < 0) {
@@ -329,7 +329,6 @@ f64 TFunctionValue_composite::composite_index(TVector_pointer<TFunctionValue*> c
             index--;
         }
         break;
-    }
     case 2:
         if (size - 1 == 1) {
             index = 0;

@@ -49,9 +49,8 @@ ForwardIterator upper_bound(ForwardIterator first, ForwardIterator last, const T
 template <class ForwardIterator, class T>
 ForwardIterator upper_bound(ForwardIterator first, ForwardIterator last, const T& val);
 
-// fakematch: p should not be a reference, but that breaks JStudio::stb::TControl::getObject
 template<class InputIt, class UnaryPredicate>
-InputIt find_if(InputIt first, InputIt last, UnaryPredicate const& p) {
+InputIt find_if(InputIt first, InputIt last, UnaryPredicate p) {
 	while (first != last && !p(*first)) {
 		++first;
 	}

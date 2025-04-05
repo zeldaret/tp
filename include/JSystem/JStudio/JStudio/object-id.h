@@ -15,7 +15,7 @@ public:
     inline const void* getID() const { return mID; }
 	inline u32 getIDSize() const { return mID_size; }
 
-private:
+protected:
     /* 0x00 */ const void* mID;
     /* 0x04 */ u32 mID_size;
 };
@@ -27,6 +27,7 @@ struct TObject_ID : public TIDData {
 
 struct TPRObject_ID_equal : public TIDData {
     TPRObject_ID_equal(const void* id, u32 id_size) : TIDData(id, id_size) {}
+    TPRObject_ID_equal(const TPRObject_ID_equal& other) : TIDData(other.mID, other.mID_size) {}
     bool operator()(TObject_ID const& id) const { return TIDData::isEqual(id.getIDData(), *this); }
 };
 

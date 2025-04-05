@@ -2,6 +2,7 @@
 #define LINKLIST_H
 
 #include "JSystem/JUtility/JUTAssert.h"
+#include <iterator.h>
 
 namespace JGadget {
 struct TLinkListNode {
@@ -145,6 +146,12 @@ struct TLinkList : public TNodeLinkList {
 
         T* operator->() const { return Element_toValue(base.operator->()); }
         T& operator*() const { return *operator->(); }
+
+        typedef s32 difference_type;
+        typedef T value_type;
+        typedef T* pointer;
+        typedef T& reference;
+        typedef std::bidirectional_iterator_tag iterator_category;
 
     public:
         /* 0x00 */ TNodeLinkList::iterator base;

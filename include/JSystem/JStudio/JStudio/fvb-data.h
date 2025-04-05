@@ -26,7 +26,10 @@ typedef enum TEComposite {
     /* 0x8 */ COMPOSITE_ENUM_SIZE,
 };
 
-typedef const void* (*CompositeOperation)(TFunctionValue_composite::TData);
+struct CompositeOperation {
+    TFunctionValue_composite::CompositeFunc composite;
+    TFunctionValue_composite::TData (*getCompositeData)(const void*);
+};
 
 struct TBlock {
     /* 0x0 */ u32 size;
