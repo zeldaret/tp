@@ -1,6 +1,7 @@
 #ifndef D_A_OBJ_LAUNDRY_H
 #define D_A_OBJ_LAUNDRY_H
 
+#include "d/d_cc_d.h"
 #include "f_op/f_op_actor_mng.h"
 
 /**
@@ -11,6 +12,18 @@
  * @details
  *
  */
+ class LaundJoint_c {
+    public:
+        /* 80C51D2C */ ~LaundJoint_c();
+        /* 80C51EC0 */ LaundJoint_c();
+    
+        cXyz pos1;
+        cXyz pos2;
+        cXyz pos3;
+        cXyz pos4;
+        csXyz angle;
+    };
+
 class daObjLdy_c : public fopAc_ac_c {
 public:
     /* 80C50F98 */ void create_init();
@@ -21,18 +34,18 @@ public:
     /* 80C51644 */ void calcJointAngle();
     /* 80C5183C */ bool divorceParent();
 
-    static u8 const M_attr[52];
-private:
-    /* 0x568 */ u8 field_0x568[0x7c8 - 0x568];
+    static f32 const M_attr[12];
+    static u8 const M_attr_u8[4];
+
+    /* 0x568 */ J3DModel* mpModel;
+    /* 0x56C */ u8 field_0x56C[0x570 - 0x56C];
+    /* 0x570 */ request_of_phase_process_class mPhase;
+    /* 0x578 */ Mtx mMtx;
+    /* 0x5A8 */ dCcD_Stts mStts;
+    /* 0x5E4 */ dCcD_Cyl mCyl;
+    /* 0x720 */ LaundJoint_c mJoints[3];
 };
 
 STATIC_ASSERT(sizeof(daObjLdy_c) == 0x7c8);
-
-class LaundJoint_c {
-public:
-    /* 80C51D2C */ ~LaundJoint_c();
-    /* 80C51EC0 */ LaundJoint_c();
-};
-
 
 #endif /* D_A_OBJ_LAUNDRY_H */
