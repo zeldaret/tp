@@ -1800,7 +1800,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_shad"),
     ActorRel(NonMatching, "d_a_npc_shaman"),
     ActorRel(NonMatching, "d_a_npc_shoe"),
-    ActorRel(NonMatching, "d_a_npc_shop0"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_npc_shop0"),
     ActorRel(Equivalent, "d_a_npc_shop_maro"), # weak function order
     ActorRel(NonMatching, "d_a_npc_sola"),
     ActorRel(NonMatching, "d_a_npc_soldierA"),
