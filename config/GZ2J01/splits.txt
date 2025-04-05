@@ -19,15 +19,15 @@ m_Do/m_Do_main.cpp:
 	.rodata     start:0x80375E40 end:0x80376150
 	.data       start:0x8039D040 end:0x8039D0A0
 	.bss        start:0x803CD420 end:0x803D5880
-	.sdata      start:0x8044A6C4 end:0x8044A6D0
-	.sbss       start:0x8044AC48 end:0x8044ACE0
+	.sdata      start:0x8044A6C0 end:0x8044A6D0
+	.sbss       start:0x8044AC40 end:0x8044ACD8
 	.sdata2     start:0x8044BB40 end:0x8044BB60
 
 m_Do/m_Do_printf.cpp:
 	.text       start:0x80006798 end:0x80006FB4
 	.rodata     start:0x80376150 end:0x80376208
 	.bss        start:0x803D5880 end:0x803D6080
-	.sbss       start:0x8044ACE0 end:0x8044ACFC
+	.sbss       start:0x8044ACD8 end:0x8044ACF8
 
 m_Do/m_Do_audio.cpp:
 	.text       start:0x80006FB4 end:0x80007954
@@ -35,7 +35,7 @@ m_Do/m_Do_audio.cpp:
 	.rodata     start:0x80376208 end:0x80376270
 	.data       start:0x8039D0A0 end:0x8039D0C0
 	.bss        start:0x803D6080 end:0x803D7418
-	.sbss       start:0x8044ACFC end:0x8044AD08
+	.sbss       start:0x8044ACF8 end:0x8044AD08
 
 m_Do/m_Do_controller_pad.cpp:
 	.text       start:0x80007954 end:0x80007D9C
@@ -48,7 +48,7 @@ m_Do/m_Do_graphic.cpp:
 	.rodata     start:0x80376270 end:0x80376288
 	.bss        start:0x803D7528 end:0x803D75B0
 	.sdata      start:0x8044A6D0 end:0x8044A6E0
-	.sbss       start:0x8044AD08 end:0x8044AD34
+	.sbss       start:0x8044AD08 end:0x8044AD30
 	.sdata2     start:0x8044BB78 end:0x8044BC40
 	.sbss2      start:0x80450C80 end:0x80450C88
 
@@ -57,7 +57,7 @@ m_Do/m_Do_machine.cpp:
 	.rodata     start:0x80376288 end:0x80376560
 	.data       start:0x8039D0C0 end:0x8039D138
 	.sdata      start:0x8044A6E0 end:0x8044A6E8
-	.sbss       start:0x8044AD34 end:0x8044AD58
+	.sbss       start:0x8044AD30 end:0x8044AD58
 	.sdata2     start:0x8044BC40 end:0x8044BC48
 
 m_Do/m_Do_mtx.cpp:
@@ -115,7 +115,10 @@ m_Do/m_Do_MemCardRWmng.cpp:
 m_Do/m_Do_machine_exception.cpp:
 	.text       start:0x80017D7C end:0x8001817C
 	.rodata     start:0x80376908 end:0x80376AE8
-	.sbss       start:0x8044ADD0 end:0x8044ADE4
+	.sbss       start:0x8044ADD0 end:0x8044ADD8
+
+dolphin/os/__start.c:
+	.init       start:0x80003100 end:0x80003458
 
 c/c_damagereaction.cpp:
 	.text       start:0x8001817C end:0x800183DC
@@ -1370,6 +1373,9 @@ d/d_k_wpillar.cpp:
 	.data       start:0x803BD5B0 end:0x803BD5F0
 	.sdata2     start:0x8044F110 end:0x8044F128
 
+PowerPC_EABI_Support/Runtime/Src/__mem.c:
+	.init       start:0x80003458 end:0x80003590
+
 DynamicLink.cpp:
 	.text       start:0x802645FC end:0x80265650
 	.rodata     start:0x80394608 end:0x80394950
@@ -2469,7 +2475,7 @@ JSystem/JUtility/JUTResFont.cpp:
 
 JSystem/JUtility/JUTDbPrint.cpp:
 	.text       start:0x802E25E4 end:0x802E2B78
-	.sbss       start:0x8044B608 end:0x8044B614
+	.sbss       start:0x8044B608 end:0x8044B610
 	.sdata2     start:0x80450128 end:0x80450138
 
 JSystem/JUtility/JUTGamePad.cpp:
@@ -2478,7 +2484,7 @@ JSystem/JUtility/JUTGamePad.cpp:
 	.data       start:0x803C6730 end:0x803C6760
 	.bss        start:0x8042E518 end:0x8042E6B8
 	.sdata      start:0x8044AA18 end:0x8044AA30
-	.sbss       start:0x8044B614 end:0x8044B648
+	.sbss       start:0x8044B610 end:0x8044B648
 	.sdata2     start:0x80450138 end:0x80450170
 
 JSystem/JUtility/JUTException.cpp:
@@ -3501,6 +3507,7 @@ TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Generic/flush_cache.
 	.text       start:0x803719E4 end:0x80371A1C
 
 TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/mem_TRK.c:
+	.init       start:0x80003590 end:0x800035E4
 	.text       start:0x80371A1C end:0x80371AD4
 
 TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Generic/targimpl.c:
@@ -3515,7 +3522,11 @@ TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Export/targsupp.s:
 TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Generic/mpc_7xx_603e.c:
 	.text       start:0x80373680 end:0x803739F0
 
+TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Generic/exception.s:
+	.init       start:0x800035E4 end:0x80005518
+
 TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.c:
+	.init       start:0x80005518 end:0x80005544
 	.text       start:0x803739F0 end:0x8037402C
 	.data       start:0x803CD3A8 end:0x803CD3E8
 	.bss        start:0x80449950 end:0x80449958
@@ -3523,13 +3534,13 @@ TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.c:
 TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/main_TRK.c:
 	.text       start:0x8037402C end:0x80374084
 	.rodata     start:0x8039CD58 end:0x8039CD68
-	.bss        start:0x80449958 end:0x80449964
+	.bss        start:0x80449958 end:0x80449960
 
 TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk_glue.c:
 	.text       start:0x80374084 end:0x803745DC
 	.rodata     start:0x8039CD68 end:0x8039CE70
 	.data       start:0x803CD3E8 end:0x803CD410
-	.bss        start:0x80449964 end:0x80449970
+	.bss        start:0x80449960 end:0x80449970
 
 TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Os/dolphin/targcont.c:
 	.text       start:0x803745DC end:0x80374610

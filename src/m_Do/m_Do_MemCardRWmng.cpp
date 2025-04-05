@@ -11,6 +11,14 @@
 #include "dolphin/card.h"
 #include "m_Do/m_Do_MemCard.h"
 
+#if VERSION == VERSION_GCN_JPN
+#define HEADER_TITLE   "ゼルダの伝説 ﾄﾜｲﾗｲﾄﾌﾟﾘﾝｾｽ"
+#define HEADER_COMMENT "%d月%d日のセーブデータです"
+#else
+#define HEADER_TITLE   "Zelda: Twilight Princess"
+#define HEADER_COMMENT "%d/%d Save Data"
+#endif
+
 /* 803ECF40-803F0F40 019C60 4000+00 2/2 0/0 0/0 .bss             sTmpBuf */
 static u8 sTmpBuf[0x4000];
 
@@ -157,11 +165,11 @@ s32 mDoMemCdRWm_Restore(CARDFileInfo* file, void* data, u32 length) {
 /* 8001787C-800179E4 0121BC 0168+00 1/1 0/0 0/0 .text
  * mDoMemCdRWm_BuildHeader__FP22mDoMemCdRWm_HeaderData          */
 static void mDoMemCdRWm_BuildHeader(mDoMemCdRWm_HeaderData* header) {
-    snprintf(header->mTitle, sizeof(header->mTitle), "Zelda: Twilight Princess");
+    snprintf(header->mTitle, sizeof(header->mTitle), HEADER_TITLE);
 
     OSCalendarTime time;
     OSTicksToCalendarTime(OSGetTime(), &time);
-    snprintf(header->mComment, sizeof(header->mComment), "%d/%d Save Data", time.mon + 1,
+    snprintf(header->mComment, sizeof(header->mComment), HEADER_COMMENT, time.mon + 1,
              time.mday);
 
     ResTIMG* banner_data =
