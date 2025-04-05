@@ -7,21 +7,8 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_path.h"
 #include "d/d_bg_w.h"
-#include "dol2asm.h"
 
 UNK_REL_DATA
-
-/* 80C8A09C-80C8A114 000098 0078+00 0/1 0/0 0/0 .data            mode_proc$3821 */
-static u8 mode_proc[120] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 /* 80C8872C-80C88790 0000EC 0064+00 1/1 0/0 0/0 .text            __ct__14daL8Lift_HIO_cFv */
 daL8Lift_HIO_c::daL8Lift_HIO_c() {
@@ -69,9 +56,6 @@ int daL8Lift_c::CreateHeap() {
 
     return 1;
 }
-
-/* 80C8A1E8-80C8A1F4 000008 000C+00 1/1 0/0 0/0 .bss             @3621 */
-static u8 lit_3621[12];
 
 /* 80C8A1F4-80C8A208 000014 0014+00 5/5 0/0 0/0 .bss             l_HIO */
 static daL8Lift_HIO_c l_HIO;
@@ -167,12 +151,8 @@ int daL8Lift_c::Execute(f32 (**param_1)[3][4]) {
     return 1;
 }
 
-/* 80C8A208-80C8A20C 000028 0004+00 1/1 0/0 0/0 .bss             None */
-// static u8 data_80C8A208[4];
-
 /* 80C88E34-80C890B8 0007F4 0284+00 1/1 0/0 0/0 .text            moveLift__10daL8Lift_cFv */
 void daL8Lift_c::moveLift() {
-    // NONMATCHING
     if (mPathID != 0xff) {
         typedef void (daL8Lift_c::*mode_func)();
         static mode_func mode_proc[] = {
@@ -201,20 +181,22 @@ void daL8Lift_c::moveLift() {
                 }
             }
 
-            u8 uVar1 = mIsSwitch;
+            u8 switch_prev = mIsSwitch;
             mIsSwitch = fopAcM_isSwitch(this, getSw());
-            if (uVar1 != mIsSwitch) {
-                if (mMode == 7) {
-                    if (mpBgW) {
-                        dComIfG_Bgsp().Release(mpBgW);
+            if (switch_prev != mIsSwitch) {
+                if (mIsSwitch) {
+                    if (mMode == MODE_STOP_e) {
+                        if (mpBgW) {
+                            dComIfG_Bgsp().Release(mpBgW);
+                        }
+                    
+                        init_modeInitSet();
+                    } else {
+                        init_modeOnAnm();
                     }
-
-                    init_modeInitSet();
                 } else {
-                    init_modeOnAnm();
+                    init_modeStop();
                 }
-            } else {
-                init_modeStop();
             }
 
             mPrevPlayerRide = mPlayerRide;
@@ -239,195 +221,255 @@ void daL8Lift_c::init_modeMove() {
     mMode = MODE_MOVE_e;
 }
 
-/* 80C89FD0-80C89FD8 000070 0008+00 0/2 0/0 0/0 .rodata          @3978 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3978[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80C89FD0, &lit_3978);
-#pragma pop
-
-/* 80C89FD8-80C89FE0 000078 0008+00 0/2 0/0 0/0 .rodata          @3979 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3979[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80C89FD8, &lit_3979);
-#pragma pop
-
-/* 80C89FE0-80C89FE8 000080 0008+00 0/2 0/0 0/0 .rodata          @3980 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3980[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80C89FE0, &lit_3980);
-#pragma pop
-
-/* 80C89FE8-80C89FEC 000088 0004+00 0/1 0/0 0/0 .rodata          @3981 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3981 = 3.0f / 10.0f;
-COMPILER_STRIP_GATE(0x80C89FE8, &lit_3981);
-#pragma pop
-
-/* 80C89FEC-80C89FF0 00008C 0004+00 0/1 0/0 0/0 .rodata          @3982 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3982 = 300.0f;
-COMPILER_STRIP_GATE(0x80C89FEC, &lit_3982);
-#pragma pop
-
 /* 80C891A4-80C894BC 000B64 0318+00 1/0 0/0 0/0 .text            modeMove__10daL8Lift_cFv */
 void daL8Lift_c::modeMove() {
-    // NONMATCHING
+    cXyz sp38 = mPrevTargetPos;
+    cXyz sp44 = mTargetPos;
 
+    f32 fVar9 = (sp38 - sp44).abs() * 0.3f;
+    if (fVar9 < 30.0f) {
+        fVar9 = 30.0f;
+    }
+    if (fVar9 > 300.0f) {
+        fVar9 = 300.0f;
+    }
+
+    if (fVar9 > (current.pos - mTargetPos).abs()) {
+        init_modeBrk();
+    }
+
+    cLib_addCalcPos(&current.pos, mTargetPos, 1.0f, fopAcM_GetSpeedF(this), 0.1f);
+    mDoAud_seStartLevel(Z2SE_OBJ_L8_L_LIFT_MV, &current.pos, fopAcM_GetSpeedF(this), dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
 }
 
 /* 80C894BC-80C894C8 000E7C 000C+00 1/1 0/0 0/0 .text            init_modeBrk__10daL8Lift_cFv */
 void daL8Lift_c::init_modeBrk() {
-    // NONMATCHING
+    mMode = MODE_BRK_e;
 }
-
-/* ############################################################################################## */
-/* 80C89FF0-80C89FF4 000090 0004+00 0/1 0/0 0/0 .rodata          @4030 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4030 = 0.5f;
-COMPILER_STRIP_GATE(0x80C89FF0, &lit_4030);
-#pragma pop
 
 /* 80C894C8-80C896C8 000E88 0200+00 1/0 0/0 0/0 .text            modeBrk__10daL8Lift_cFv */
 void daL8Lift_c::modeBrk() {
-    // NONMATCHING
+    cXyz sp44 = current.pos;
+    f32 fVar6 = cLib_addCalcPos(&current.pos, mTargetPos, 0.1f, speedF, 0.5f);
+    f32 fVar7 = (sp44 - current.pos).abs();
+    mDoAud_seStartLevel(Z2SE_OBJ_L8_L_LIFT_MV, &current.pos, fVar7, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+
+    if (fVar6 == 0.0f) {
+        fopAcM_SetSpeedF(this, 0.0f);
+        init_modeWaitInit();
+    }
 }
 
-/* 80C896C8-80C896D4 001088 000C+00 3/3 0/0 0/0 .text            init_modeWaitInit__10daL8Lift_cFv
- */
+/* 80C896C8-80C896D4 001088 000C+00 3/3 0/0 0/0 .text            init_modeWaitInit__10daL8Lift_cFv */
 void daL8Lift_c::init_modeWaitInit() {
-    // NONMATCHING
+    mMode = MODE_WAIT_INIT_e;
 }
 
 /* 80C896D4-80C89708 001094 0034+00 1/0 0/0 0/0 .text            modeWaitInit__10daL8Lift_cFv */
 void daL8Lift_c::modeWaitInit() {
-    // NONMATCHING
+    setNextPoint();
+    init_modeWait();
 }
 
 /* 80C89708-80C89714 0010C8 000C+00 1/1 0/0 0/0 .text            init_modeWait__10daL8Lift_cFv */
 void daL8Lift_c::init_modeWait() {
-    // NONMATCHING
+    mMode = MODE_WAIT_e;
 }
 
 /* 80C89714-80C89720 0010D4 000C+00 1/0 0/0 0/0 .text            modeWait__10daL8Lift_cFv */
 void daL8Lift_c::modeWait() {
-    // NONMATCHING
+    mMode = MODE_ACC_e;
 }
 
-/* 80C89720-80C8972C 0010E0 000C+00 3/3 0/0 0/0 .text            init_modeMoveWait__10daL8Lift_cFv
- */
+/* 80C89720-80C8972C 0010E0 000C+00 3/3 0/0 0/0 .text            init_modeMoveWait__10daL8Lift_cFv */
 void daL8Lift_c::init_modeMoveWait() {
-    // NONMATCHING
+    mMode = MODE_MOVE_WAIT_e;
 }
 
 /* 80C8972C-80C89770 0010EC 0044+00 1/0 0/0 0/0 .text            modeMoveWait__10daL8Lift_cFv */
 void daL8Lift_c::modeMoveWait() {
-    // NONMATCHING
+    if ((mSwbit != 0xff && mIsSwitch) && mPlayerRide) {
+        init_modeWaitInit();
+    }
 }
 
 /* 80C89770-80C89820 001130 00B0+00 3/3 0/0 0/0 .text            init_modeOnAnm__10daL8Lift_cFv */
 void daL8Lift_c::init_modeOnAnm() {
-    // NONMATCHING
+    if (mpBgW) {
+        dComIfG_Bgsp().Regist(mpBgW, this);
+    }
+
+    mBtk.setPlaySpeed(1.0f);
+    mDoAud_seStart(Z2SE_OBJ_L8_L_LIFT_ON, &current.pos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    mMode = MODE_ON_ANM_e;
 }
 
 /* 80C89820-80C89874 0011E0 0054+00 1/0 0/0 0/0 .text            modeOnAnm__10daL8Lift_cFv */
 void daL8Lift_c::modeOnAnm() {
-    // NONMATCHING
+    if (mBtk.play() == 1) {
+        field_0x808 = 1;
+        mLightSet = 1;
+        dKy_plight_set(&mLight);
+        init_modeMoveWait();
+    }
 }
 
 /* 80C89874-80C898DC 001234 0068+00 1/1 0/0 0/0 .text            init_modeStop__10daL8Lift_cFv */
 void daL8Lift_c::init_modeStop() {
-    // NONMATCHING
-}
+    if (mLightSet) {
+        mLightSet = 0;
+        dKy_plight_cut(&mLight);
+    }
 
-/* ############################################################################################## */
-/* 80C89FF4-80C89FF8 000094 0004+00 1/1 0/0 0/0 .rodata          @4110 */
-SECTION_RODATA static f32 const lit_4110 = 20.0f;
-COMPILER_STRIP_GATE(0x80C89FF4, &lit_4110);
+    mStopDisappearTimer = l_HIO.mStopDisappearTime;
+    mBtk.setPlaySpeed(-1.0f);
+    mMode = MODE_STOP_e;
+}
 
 /* 80C898DC-80C899D0 00129C 00F4+00 1/0 0/0 0/0 .text            modeStop__10daL8Lift_cFv */
 void daL8Lift_c::modeStop() {
-    // NONMATCHING
+    if (mStopDisappearTimer) {
+        mStopDisappearTimer--;
+    } else {
+        int iVar1 = mBtk.play();
+        if ((mBtk.getFrame() <= mBtk.getStartFrame() - 1.0f + 20.0f) &&
+            mpBgW && mpBgW->ChkUsed()) {
+            dComIfG_Bgsp().Release(mpBgW);
+        }
+
+        if (iVar1 == 1) {
+            if (mIsSwitch) {
+                init_modeInitSet();
+            } else {
+                init_modeInitSet2();
+            }
+        }
+    }
 }
 
 /* 80C899D0-80C89A04 001390 0034+00 2/2 0/0 0/0 .text            init_modeInitSet__10daL8Lift_cFv */
 void daL8Lift_c::init_modeInitSet() {
-    // NONMATCHING
+    liftReset();
+    mMode = MODE_INIT_SET_e;
 }
 
 /* 80C89A04-80C89A24 0013C4 0020+00 1/0 0/0 0/0 .text            modeInitSet__10daL8Lift_cFv */
 void daL8Lift_c::modeInitSet() {
-    // NONMATCHING
+    init_modeOnAnm();
 }
 
-/* 80C89A24-80C89A58 0013E4 0034+00 1/1 0/0 0/0 .text            init_modeInitSet2__10daL8Lift_cFv
- */
+/* 80C89A24-80C89A58 0013E4 0034+00 1/1 0/0 0/0 .text            init_modeInitSet2__10daL8Lift_cFv */
 void daL8Lift_c::init_modeInitSet2() {
-    // NONMATCHING
+    liftReset();
+    mMode = MODE_INIT_SET2_e;
 }
 
 /* 80C89A58-80C89A78 001418 0020+00 1/0 0/0 0/0 .text            modeInitSet2__10daL8Lift_cFv */
 void daL8Lift_c::modeInitSet2() {
-    // NONMATCHING
+    init_modeMoveWait();
 }
 
 /* 80C89A78-80C89ADC 001438 0064+00 2/2 0/0 0/0 .text            liftReset__10daL8Lift_cFv */
 void daL8Lift_c::liftReset() {
-    // NONMATCHING
+    dPath* mPath = dPath_GetRoomPath(mPathID, fopAcM_GetRoomNo(this));
+    dPnt* mPnt = mPath->m_points;
+    current.pos = mPnt->m_position;
+    mPathDirection = 1;
+    mCurrentPoint = 0;
 }
 
 /* 80C89ADC-80C89C10 00149C 0134+00 1/1 0/0 0/0 .text            setNextPoint__10daL8Lift_cFv */
 void daL8Lift_c::setNextPoint() {
-    // NONMATCHING
-}
+    s16 next_point = mCurrentPoint + mPathDirection;
+    dPath* pathp = dPath_GetRoomPath(mPathID, fopAcM_GetRoomNo(this));
 
-/* ############################################################################################## */
-/* 80C89FF8-80C89FFC 000098 0004+00 0/1 0/0 0/0 .rodata          @4213 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4213 = -100.0f;
-COMPILER_STRIP_GATE(0x80C89FF8, &lit_4213);
-#pragma pop
+    if (dPath_ChkClose(pathp)) {
+        if (next_point > pathp->m_num - 1) {
+            next_point = 0;
+        } else if (next_point < 0) {
+            next_point = (s8)(pathp->m_num - 1);
+        }
+    } else {
+        if (next_point > pathp->m_num - 1) {
+            mPathDirection = 0xff;
+            next_point = (s8)(pathp->m_num - 2);
+        } else if (next_point < 0) {
+            mPathDirection = 1;
+            next_point = 1;
+        } else {
+            dPnt* pointp = &pathp->m_points[mCurrentPoint];
+            if (pointp->mArg0 == 0) {
+                next_point = mCurrentPoint;
+            }
+        }
+    }
+
+    mPrevTargetPos = mTargetPos;
+    dPnt* mPnt = pathp->m_points;
+    mTargetPos = mPnt[next_point].m_position;
+    mCurrentPoint = next_point;
+}
 
 /* 80C89C10-80C89DC8 0015D0 01B8+00 1/0 0/0 0/0 .text            Draw__10daL8Lift_cFv */
 int daL8Lift_c::Draw() {
-    // NONMATCHING
+    g_env_light.settingTevStruct(16, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
+    J3DModelData* modelData = mpModel->getModelData();
+    J3DMaterial* mpMatNode = modelData->getMaterialNodePointer(0);
+    dComIfGd_setListDarkBG();
+
+    if (mpMatNode->getTexGenBlock()->getTexMtx(1)) {
+        J3DTexMtxInfo* texMtxInfo = &mpMatNode->getTexGenBlock()->getTexMtx(1)->getTexMtxInfo();
+        if (texMtxInfo) {
+            Mtx mMtx58;
+            C_MTXLightOrtho(mMtx58, 100.0f, -100.0f, -100.0f, 100.0f, 1.0f, 1.0f, 0.0f, 0.0f);
+            mDoMtx_stack_c::XrotS(0x4000);
+            mDoMtx_stack_c::transM(-current.pos.x, -current.pos.y, -current.pos.z);
+            cMtx_concat(mMtx58, mDoMtx_stack_c::get(), texMtxInfo->mEffectMtx);
+        }
+    }
+
+    mBtk.entry(modelData);
+    mDoExt_modelUpdateDL(mpModel);
+    mBtk.remove(modelData);
+    dComIfGd_setList();
+
+    J3DGXColor* mColor = mpMatNode->getTevKColor(1);
+    mColor->r = l_HIO.mColorR;
+    mColor->g = l_HIO.mColorG;
+    mColor->b = l_HIO.mColorB;
+
+    return 1;
 }
 
 /* 80C89DC8-80C89E18 001788 0050+00 1/0 0/0 0/0 .text            Delete__10daL8Lift_cFv */
 int daL8Lift_c::Delete() {
-    // NONMATCHING
+    dComIfG_resDelete(&mPhase, "L8Lift");
+    if (mLightSet) {
+        dKy_plight_cut(&mLight);
+    }
+    return 1;
 }
 
 /* 80C89E18-80C89E44 0017D8 002C+00 1/0 0/0 0/0 .text            daL8Lift_Draw__FP10daL8Lift_c */
 static int daL8Lift_Draw(daL8Lift_c* i_this) {
-    // NONMATCHING
+    return i_this->Draw();
 }
 
 /* 80C89E44-80C89E64 001804 0020+00 1/0 0/0 0/0 .text            daL8Lift_Execute__FP10daL8Lift_c */
 static int daL8Lift_Execute(daL8Lift_c* i_this) {
-    // NONMATCHING
+    return i_this->MoveBGExecute();
 }
 
 /* 80C89E64-80C89E84 001824 0020+00 1/0 0/0 0/0 .text            daL8Lift_Delete__FP10daL8Lift_c */
 static int daL8Lift_Delete(daL8Lift_c* i_this) {
-    // NONMATCHING
+    return i_this->MoveBGDelete();
 }
 
 /* 80C89E84-80C89EA4 001844 0020+00 1/0 0/0 0/0 .text            daL8Lift_Create__FP10fopAc_ac_c */
 static int daL8Lift_Create(fopAc_ac_c* a_this) {
-    // NONMATCHING
+    daL8Lift_c* i_this = (daL8Lift_c*)a_this;
+    return i_this->create();
 }
 
 /* 80C8A114-80C8A134 -00001 0020+00 1/0 0/0 0/0 .data            l_daL8Lift_Method */

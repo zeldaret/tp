@@ -61,7 +61,7 @@ public:
 
     u8 getPthID() { return fopAcM_GetParamBit(this, 0, 8); }
     u8 getMoveSpeed() { return fopAcM_GetParamBit(this, 8, 4); }
-    u8 getSw() { return fopAcM_GetParamBit(this, 12, 8); }
+    int getSw() { return fopAcM_GetParamBit(this, 12, 8); }
 
     static f32 const mSpeed[16];
 
@@ -72,7 +72,7 @@ private:
     /* 0x5C4 */ u8 field_0x5c4;
     /* 0x5C5 */ u8 field_0x5c5;
     /* 0x5C6 */ u8 mPathID;
-    /* 0x5C7 */ u8 mPathDirection;
+    /* 0x5C7 */ s8 mPathDirection;
     /* 0x5C8 */ s16 mCurrentPoint;
     /* 0x5CA */ u8 field_0x5ca;
     /* 0x5CB */ u8 field_0x5cb;
