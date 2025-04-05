@@ -571,6 +571,17 @@ private:
 
 class dSv_memBit_c {
 public:
+    class WarpItemData_c {
+    public:
+        /* 0x04F94 */ char mWarpItemStage[8];
+        /* 0x04F9C */ cXyz mWarpItemPos;
+        /* 0x04FA8 */ s16 mWarpItemAngle;
+        /* 0x04FAA */ s8 mWarpItemRoom;
+        /* 0x04FAB */ u8 field_0x4fab;  // related to setWarpItemData
+        /* 0x04FAC */ u8 field_0x4fac;  // related to setWarpItemData
+        /* 0x04FAD */ u8 field_0x4fad[3];
+    };
+
     enum {
         /* 0x0 */ MAP,
         /* 0x1 */ COMPASS,

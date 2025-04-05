@@ -325,6 +325,10 @@ public:
         /* 0x12 */ DB_LIST_2D_SCREEN,
         /* 0x13 */ DB_LIST_MIDDLE,
         /* 0x14 */ DB_LIST_3D_LAST,
+#if VERSION > VERSION_GCN_JPN
+        DB_LIST_CURSOR,
+#endif
+        DB_LIST_MAX,
     };
 
     void set2DOpa(dDlst_base_c* dlst) { set(mp2DOpaStart, mp2DOpaEnd, dlst); }
@@ -445,7 +449,7 @@ public:
     static u8 mWipe;
 
 private:
-    /* 0x00000 */ J3DDrawBuffer* mDrawBuffers[21];
+    /* 0x00000 */ J3DDrawBuffer* mDrawBuffers[DB_LIST_MAX];
     /* 0x00054 */ dDlst_base_c* mpCopy2DDrawLists[4];
     /* 0x00064 */ dDlst_base_c** mpCopy2DStart;
     /* 0x00068 */ dDlst_base_c** mpCopy2DEnd;

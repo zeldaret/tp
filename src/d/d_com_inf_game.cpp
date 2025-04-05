@@ -46,10 +46,10 @@ void dComIfG_play_c::init() {
         mPlayerPtr[i] = NULL;
     }
 
-    if (mGameoverStatus == 2) {
+    if (mItemInfo.mGameoverStatus == 2) {
         dComIfGp_roomControl_initZone();
     }
-    mGameoverStatus = 0;
+    mItemInfo.mGameoverStatus = 0;
 }
 
 BOOL dComIfGp_checkItemGet(u8 i_itemNo, int param_1) {
@@ -59,41 +59,41 @@ BOOL dComIfGp_checkItemGet(u8 i_itemNo, int param_1) {
 void dComIfG_play_c::itemInit() {
     dMeter2Info_Initialize();
 
-    JKRExpHeap* heap = mExpHeap2D;
-    memset(&mMsgObjectClass, 0, 300);
-    mExpHeap2D = heap;
-    mOxygen = 600;
-    mNowOxygen = 600;
-    mMaxOxygen = 600;
+    JKRExpHeap* heap = mItemInfo.mExpHeap2D;
+    memset(&mItemInfo.mMsgObjectClass, 0, 300);
+    mItemInfo.mExpHeap2D = heap;
+    mItemInfo.mOxygen = 600;
+    mItemInfo.mNowOxygen = 600;
+    mItemInfo.mMaxOxygen = 600;
 
     if (dComIfGs_checkGetItem(fpcNm_ITEM_HAWK_EYE)) {
-        field_0x4f4b = 0;
+        mItemInfo.field_0x4f4b = 0;
     } else {
-        field_0x4f4b = 21;
+        mItemInfo.field_0x4f4b = 21;
     }
-    field_0x4f4c = 7;
+    mItemInfo.field_0x4f4c = 7;
 
-    mNowVibration = dComIfGs_getOptVibration();
+    mItemInfo.mNowVibration = dComIfGs_getOptVibration();
 }
 
 void dComIfG_play_c::setItemBombNumCount(u8 i_item, s16 count) {
-    mItemBombNumCount[i_item] += count;
+    mItemInfo.mItemBombNumCount[i_item] += count;
 }
 
 s16 dComIfG_play_c::getItemBombNumCount(u8 i_item) {
-    return mItemBombNumCount[i_item];
+    return mItemInfo.mItemBombNumCount[i_item];
 }
 
 void dComIfG_play_c::clearItemBombNumCount(u8 i_item) {
-    mItemBombNumCount[i_item] = 0;
+    mItemInfo.mItemBombNumCount[i_item] = 0;
 }
 
 void dComIfG_play_c::setNowVibration(u8 i_vibration) {
-    mNowVibration = i_vibration;
+    mItemInfo.mNowVibration = i_vibration;
 }
 
 u32 dComIfG_play_c::getNowVibration() {
-    return mNowVibration;
+    return mItemInfo.mNowVibration;
 }
 
 void dComIfG_play_c::setStartStage(dStage_startStage_c* i_startStage) {
@@ -2206,12 +2206,12 @@ static void dComIfGs_setWarpItemData(int, char const* i_stage, cXyz i_pos, s16 i
 
 void dComIfG_play_c::setWarpItemData(char const* i_stage, cXyz i_pos, s16 i_angle, s8 i_roomNo,
                                      u8 param_4, u8 param_5) {
-    strcpy(mWarpItemStage, i_stage);
-    mWarpItemPos.set(i_pos);
-    mWarpItemAngle = i_angle;
-    mWarpItemRoom = i_roomNo;
-    field_0x4fac = param_5;
-    field_0x4fab = param_4;
+    strcpy(mItemInfo.mWarpItemData.mWarpItemStage, i_stage);
+    mItemInfo.mWarpItemData.mWarpItemPos.set(i_pos);
+    mItemInfo.mWarpItemData.mWarpItemAngle = i_angle;
+    mItemInfo.mWarpItemData.mWarpItemRoom = i_roomNo;
+    mItemInfo.mWarpItemData.field_0x4fac = param_5;
+    mItemInfo.mWarpItemData.field_0x4fab = param_4;
 }
 
 void dComIfGs_setWarpItemData(char const* i_stage, cXyz i_pos, s16 i_angle, s8 i_roomNo, u8 param_4,
