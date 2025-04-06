@@ -984,7 +984,6 @@ void daAlink_c::endDemoMode() {
 }
 
 /* 801180EC-80118170 112A2C 0084+00 2/2 0/0 0/0 .text            getDemoLookActor__9daAlink_cFv */
-// NONMATCHING - weird gameinfo load
 fopAc_ac_c* daAlink_c::getDemoLookActor() {
     if (mDemo.getParam0() == 1) {
         return dComIfGp_event_getPt1();
