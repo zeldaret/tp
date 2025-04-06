@@ -169,8 +169,28 @@ static void mDoMemCdRWm_BuildHeader(mDoMemCdRWm_HeaderData* header) {
 
     OSCalendarTime time;
     OSTicksToCalendarTime(OSGetTime(), &time);
-    snprintf(header->mComment, sizeof(header->mComment), HEADER_COMMENT, time.mon + 1,
-             time.mday);
+
+#if VERSION == VERSION_GCN_PAL
+    switch (dComIfGs_getPalLanguage()) {
+    case dSv_player_config_c::LANGAUGE_ENGLISH:
+        snprintf(header->mComment, sizeof(header->mComment), "%d/%d Save Data", time.mon + 1, time.mday);
+        break;
+    case dSv_player_config_c::LANGAUGE_GERMAN:
+        snprintf(header->mComment, sizeof(header->mComment), "%d/%d Spielstand", time.mday, time.mon + 1);
+        break;
+    case dSv_player_config_c::LANGAUGE_FRENCH:
+        snprintf(header->mComment, sizeof(header->mComment), "Donn%ces de jeu %d/%d", 0xE9, time.mday, time.mon + 1);
+        break;
+    case dSv_player_config_c::LANGAUGE_SPANISH:
+        snprintf(header->mComment, sizeof(header->mComment), "Datos guardados el %d/%d", time.mday, time.mon + 1);
+        break;
+    case dSv_player_config_c::LANGAUGE_ITALIAN:
+        snprintf(header->mComment, sizeof(header->mComment), "Dati salvati: %d/%d", time.mday, time.mon + 1);
+        break;
+    }
+#else
+    snprintf(header->mComment, sizeof(header->mComment), HEADER_COMMENT, time.mon + 1, time.mday);
+#endif
 
     ResTIMG* banner_data =
         (ResTIMG*)g_dComIfG_gameInfo.play.mCardIconResArchive->getResource("zelda2_gc_banner.bti");

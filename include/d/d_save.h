@@ -468,6 +468,7 @@ public:
     void setHorseName(const char* i_name) { strcpy((char*)mHorseName, i_name); }
     void setTotalTime(s64 i_time) { mTotalTime = i_time; }
     s64 getTotalTime() const { return mTotalTime; }
+    u8 getClearCount() const { return mClearCount; }
 
     void addDeathCount() {
         if (mDeathCount < 0xFFFF) {
@@ -511,12 +512,20 @@ public:
     bool getPointer() { return mPointer; }
     void setPointer(bool i_mPointer) { mPointer = i_mPointer; }
 
+    enum dSv_config_language {
+        LANGAUGE_ENGLISH,
+        LANGAUGE_GERMAN,
+        LANGAUGE_FRENCH,
+        LANGAUGE_SPANISH,
+        LANGAUGE_ITALIAN,
+    };
+
 private:
     /* 0x0 */ u8 unk0;
     /* 0x1 */ u8 mSoundMode;
     /* 0x2 */ u8 mAttentionType;  // Lock-On Type; 0 : hold, 1 : switch
     /* 0x3 */ u8 mVibration;      // Rumble status
-    /* 0x4 */ u8 unk4;
+    /* 0x4 */ u8 mLanguage;
     /* 0x5 */ u8 unk5;
     /* 0x6 */ u16 mCalibrateDist;  // Wii pointer horizontal calibration. Default is 0x015E
     /* 0x8 */ u8 mCalValue;        // Wii pointer vertical calibration. Default is 0x00

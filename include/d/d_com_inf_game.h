@@ -2040,14 +2040,16 @@ inline void dComIfGs_setBombMax(u8 i_type, u8 i_max) {
 }
 
 inline u8 dComIfGs_getPalLanguage() {
-    return 0;
+    return g_dComIfG_gameInfo.info.getPlayer().getConfig().getPalLanguage();
 }
 
 inline u8 dComIfGs_getClearCount() {
-    return 0;
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerInfo().getClearCount();
 }
 
-inline void dComIfGs_offGetMagicUseFlag() {}
+inline void dComIfGs_offGetMagicUseFlag() {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().offMagicFlag(0);
+}
 
 inline void dComIfGs_offLightDropGetFlag(u8 i_level) {
     g_dComIfG_gameInfo.info.getPlayer().getLightDrop().offLightDropGetFlag(i_level);

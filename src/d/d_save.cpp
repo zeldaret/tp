@@ -1073,7 +1073,11 @@ extern "C" u8 SCGetLanguage();
 
 /* 800345AC-80034644 02EEEC 0098+00 1/1 0/0 0/0 .text            init__19dSv_player_config_cFv */
 void dSv_player_config_c::init() {
+#if VERSION == VERSION_GCN_JPN
+    unk0 = 0;
+#else
     unk0 = 1;
+#endif
 
 #if VERSION != VERSION_SHIELD_DEBUG
     if (OSGetSoundMode() == OS_SOUND_MODE_MONO) {
@@ -1088,10 +1092,12 @@ void dSv_player_config_c::init() {
     mAttentionType = 0;
     mVibration = 1;
 
-#if VERSION != VERSION_GCN_USA
-    unk4 = SCGetLanguage();
+#if VERSION == VERSION_GCN_PAL
+    mLanguage = OSGetLanguage();
+#elif VERSION == VERSION_SHIELD_DEBUG
+    mLanguage = SCGetLanguage();
 #else
-    unk4 = 0;
+    mLanguage = 0;
 #endif
 
     unk5 = 0;
@@ -1112,6 +1118,20 @@ u32 dSv_player_config_c::checkVibration() const {
 }
 
 u8 dSv_player_config_c::getPalLanguage() const {
+#if VERSION == VERSION_GCN_PAL
+    switch (OSGetLanguage()) {
+    case 0:
+        return LANGAUGE_ENGLISH;
+    case 1:
+        return LANGAUGE_GERMAN;
+    case 2:
+        return LANGAUGE_FRENCH;
+    case 3:
+        return LANGAUGE_SPANISH;
+    case 4:
+        return LANGAUGE_ITALIAN;
+    }
+#elif VERSION == VERSION_SHIELD_DEBUG
     switch (SCGetLanguage()) {
     case 1:
         return 0;
@@ -1120,6 +1140,7 @@ u8 dSv_player_config_c::getPalLanguage() const {
     case 4:
         return 3;
     }
+#endif
 
     return 0;
 }

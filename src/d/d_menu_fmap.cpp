@@ -1209,6 +1209,18 @@ void dMenu_Fmap_c::spot_map_proc() {
     {
         mpDraw2DBack->stageMapMove(mpStick, 1, true);
     } else if (dMw_Z_TRIGGER() && mpDraw2DTop->isWarpAccept()) {
+#if VERSION >= VERSION_GCN_JPN
+        //! JPN version added a check to make sure if Arbiter's Grounds is cleared that
+        //! the Mirror Chamber Statue has been spun before allowing portal warping from the map screen.
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[265]) && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361])) {
+            mpDraw2DTop->createExplain(mpTalkHeap, mpStick);
+            mpDraw2DTop->getScrnExplainPtr()->openExplain(0x8B4, 0, 0, 0xff, true);
+
+            mPrevProcessAlt = mProcess;
+            setProcess(PROC_PORTAL_WARP_FORBID);
+            Z2GetAudioMgr()->seStart(Z2SE_SYS_ERROR, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        } else 
+#endif
         if (mpDraw2DTop->checkPlayerWarpAccept()) {
             mIsWarpMap = true;
             setProcess(PROC_ZOOM_SPOT_TO_REGION);

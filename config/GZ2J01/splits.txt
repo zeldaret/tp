@@ -125,7 +125,7 @@ c/c_damagereaction.cpp:
 	.ctors      start:0x80375C80 end:0x80375C84
 	.data       start:0x8039D6C8 end:0x8039D6F0
 	.bss        start:0x803EB080 end:0x803EB090
-	.sbss       start:0x8044ADE4 end:0x8044ADEC
+	.sbss       start:0x8044ADD8 end:0x8044ADE8
 	.sdata2     start:0x8044BCE8 end:0x8044BD00
 
 c/c_dylink.cpp:
@@ -133,7 +133,7 @@ c/c_dylink.cpp:
 	.rodata     start:0x80376AE8 end:0x8037AD20
 	.data       start:0x8039D6F0 end:0x8039D700
 	.bss        start:0x803EB090 end:0x803EBCF0
-	.sbss       start:0x8044ADEC end:0x8044ADF8
+	.sbss       start:0x8044ADE8 end:0x8044ADF8
 
 f_ap/f_ap_game.cpp:
 	.text       start:0x80018944 end:0x80018B64
