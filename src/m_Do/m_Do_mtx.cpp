@@ -9,6 +9,7 @@
 #include "JSystem/JUtility/JUTAssert.h"
 #include "SSystem/SComponent/c_m3d.h"
 #include "SSystem/SComponent/c_math.h"
+#include "global.h"
 
 /* ############################################################################################## */
 /* 803DD470-803DD4A0 00A190 0030+00 12/12 142/142 1820/1820 .bss             now__14mDoMtx_stack_c
@@ -38,9 +39,11 @@ extern Mtx g_mDoMtx_identity = {
     {0.0f, 0.0f, 1.0f, 0.0f},
 };
 
+#if VERSION != VERSION_GCN_JPN
 static void dummy() {
     OSReport("mDoMtx_Dump %s\n");
 }
+#endif
 
 /* 8000C0CC-8000C164 006A0C 0098+00 1/1 0/0 0/0 .text            mDoMtx_XYZrotS__FPA4_fsss */
 void mDoMtx_XYZrotS(Mtx mtx, s16 x, s16 y, s16 z) {

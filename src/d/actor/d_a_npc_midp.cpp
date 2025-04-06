@@ -4,6 +4,7 @@
 */
 
 #include "d/actor/d_a_npc_midp.h"
+#include "SSystem/SComponent/c_counter.h"
 
 UNK_REL_DATA
 
@@ -64,7 +65,7 @@ daNpc_midP_c::cutFunc daNpc_midP_c::mCutList[1] = { 0 };
 
 /* 80A70C6C-80A70D90 0000EC 0124+00 1/0 0/0 0/0 .text            __dt__12daNpc_midP_cFv */
 daNpc_midP_c::~daNpc_midP_c() {
-    OS_REPORT("|%06d:%x|daNpc_midP_c -> デストラクト\n", g_Counter, this);
+    OS_REPORT("|%06d:%x|daNpc_midP_c -> デストラクト\n", g_Counter.mCounter0, this);
     if (heap != 0) {
         mpMorf[0]->stopZelAnime();
     }
@@ -131,7 +132,7 @@ int daNpc_midP_c::create() {
         OS_REPORT("\n");
 
         OS_REPORT("\t(%s:%d) flowNo:%d, PathID:%02x<%08x> ", fopAcM_getProcNameString(this), mType,
-        mFlowNodeNo, getPathID(), fopAcM_GetParam(this));
+        mFlowNodeNo, fopAcM_GetParam(this));
         if (isDelete()) {
             OS_REPORT("===>isDelete:TRUE\n");
             return cPhs_ERROR_e;

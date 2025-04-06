@@ -58,10 +58,13 @@ public:
     /* 0x0C */ f32 mCameraZoomScale;
     /* 0x10 */ f32 mCameraZoomForcus;
     /* 0x14 */ char* mCameraParamFileName;
-    /* 0x18 */ cXyz mCameraPos;
-    /* 0x24 */ cXyz mCameraTarget;
-    /* 0x30 */ f32 mCameraFovy;
-    /* 0x34 */ s16 mCameraBank;
+    class {
+    public:
+        /* 0x18 */ cXyz mCameraPos;
+        /* 0x24 */ cXyz mCameraTarget;
+        /* 0x30 */ f32 mCameraFovy;
+        /* 0x34 */ s16 mCameraBank;
+    } mCamInfo;
 };
 STATIC_ASSERT(sizeof(dComIfG_camera_info_class) == 0x38);
 
@@ -92,554 +95,8 @@ public:
     /* 0x08 */ fopAc_ac_c* mActor[10];
 };
 
-class dComIfG_play_c {
+class dComIfG_item_info_class {
 public:
-    dComIfG_play_c() { this->ct(); }
-    void ct();
-    void init();
-    void itemInit();
-    void setItemBombNumCount(u8 i_item, s16 count);
-    s16 getItemBombNumCount(u8 i_item);
-    void clearItemBombNumCount(u8 i_item);
-    void setNowVibration(u8 vib_status);
-    u32 getNowVibration();
-    void setStartStage(dStage_startStage_c* p_startStage);
-    static int getLayerNo_common_common(char const* stageName, int roomId, int layer);
-    static int getLayerNo_common(char const* stageName, int roomId, int layer);
-    static int getLayerNo(int);
-    void createParticle();
-    dSmplMdl_draw_c* createSimpleModel();
-    void deleteSimpleModel();
-    void drawSimpleModel();
-    int addSimpleModel(J3DModelData* i_modelData, int roomNo, u8 drawBG);
-    int removeSimpleModel(J3DModelData* i_modelData, int roomNo);
-    void entrySimpleModel(J3DModel* i_model, int roomNo);
-    void setTimerNowTimeMs(int time);
-    int getTimerNowTimeMs();
-    void setTimerLimitTimeMs(int time);
-    int getTimerLimitTimeMs();
-    void setTimerMode(int mode);
-    int getTimerMode();
-    void setTimerType(u8 type);
-    u8 getTimerType();
-    void setTimerPtr(dTimer_c* ptr);
-    dTimer_c* getTimerPtr();
-    void setWarpItemData(const char* stage, cXyz pos, s16 angle, s8 roomNo, u8, u8);
-    ~dComIfG_play_c() {}
-
-    dMsgObject_c* getMsgObjectClass() { return mMsgObjectClass; }
-    dStage_roomControl_c* getRoomControl() { return &mRoomControl; }
-    dStage_stageDt_c& getStage() { return mStageData; }
-    dEvt_control_c& getEvent() { return mEvent; }
-    daHorse_c* getHorseActor() { return (daHorse_c*)mPlayerPtr[1]; }
-    J2DGrafContext* getCurrentGrafPort() { return (J2DGrafContext*)mCurrentGrafPort; }
-    dVibration_c& getVibration() { return mVibration; }
-    camera_class* getCamera(int idx) { return mCameraInfo[idx].mCamera; }
-    void* getPlayerPtr(int ptrIdx) { return mPlayerPtr[ptrIdx]; }
-    fopAc_ac_c* getPlayer(int idx) { return (fopAc_ac_c*)mPlayer[idx * 2]; }
-    dPa_control_c* getParticle() { return mParticle; }
-    dEvent_manager_c& getEvtManager() { return mEvtManager; }
-    dAttention_c& getAttention() { return mAttention; }
-    dStage_startStage_c* getStartStage() { return &mStartStage; }
-
-    void setCurrentGrafPort(J2DOrthoGraph* i_graf) { mCurrentGrafPort = i_graf; }
-    void setCurrentWindow(dDlst_window_c* i_window) { mCurrentWindow = i_window; }
-    void setCurrentView(view_class* i_view) { mCurrentView = i_view; }
-    void setCurrentViewport(view_port_class* i_viewport) { mCurrentViewport = i_viewport; }
-
-    void setSelectItem(int idx, u8 i_itemNo) { mSelectItem[idx] = i_itemNo; }
-    u8 getSelectItem(int idx) { return mSelectItem[idx]; }
-    void setSelectEquip(int idx, u8 item_id) { mSelectEquip[idx] = item_id; }
-    void setItem(u8 slot, u8 i_no) {
-        mItemSlot = slot;
-        mItemID = i_no;
-    }
-
-    u8 getDoStatus() { return mDoStatus; }
-    u8 getRStatus() { return mRStatus; }
-    u8 getAStatus() { return mAStatus; }
-    u8 getXStatus() { return mXStatus; }
-    u8 getYStatus() { return mYStatus; }
-    u8 getZStatus() { return mZStatus; }
-    u8 get3DStatus() { return m3DStatus; }
-    u8 getCStickStatus() { return mCStickStatus; }
-    u8 getSButtonStatus() { return mSButtonStatus; }
-    u8 getNunStatus() { return mNunStatus; }
-    u8 getRemoConStatus() { return mRemoConStatus; }
-    u8 getNunZStatus() { return mNunZStatus; }
-    u8 getNunCStatus() { return mNunCStatus; }
-    u8 getBottleStatus() { return mBottleStatus; }
-    u8 getSButtonStatusForce() { return mSButtonStatusForce; }
-    u8 getSButtonSetFlagForce() { return mSButtonSetFlagForce; }
-    u8 getCStickStatusForce() { return mCStickStatusForce; }
-    u8 getCStickSetFlagForce() { return mCStickSetFlagForce; }
-    u8 getCStickDirectionForce() { return mCStickDirectionForce; }
-    u8 getDoStatusForce() { return mDoStatusForce; }
-    u8 getDoSetFlagForce() { return mDoSetFlagForce; }
-    u8 getAStatusForce() { return mAStatusForce; }
-    u8 getASetFlagForce() { return mASetFlagForce; }
-    u8 getRStatusForce() { return mRStatusForce; }
-    u8 getRSetFlagForce() { return mRSetFlagForce; }
-    u8 getZStatusForce() { return mZStatusForce; }
-    u8 getZSetFlagForce() { return mZSetFlagForce; }
-    u8 getBottleStatusForce() { return mBottleStatusForce; }
-    u8 getBottleSetFlagForce() { return mBottleSetFlagForce; }
-    u8 get3DStatusForce() { return m3DStatusForce; }
-    u8 get3DSetFlagForce() { return m3DSetFlagForce; }
-    u8 get3DDirectionForce() { return m3DDirectionForce; }
-    u8 getXStatusForce() { return mXStatusForce; }
-    u8 getXSetFlagForce() { return mXSetFlagForce; }
-    u8 getYStatusForce() { return mYStatusForce; }
-    u8 getYSetFlagForce() { return mYSetFlagForce; }
-    u8 getFaceAnimeID() { return mFaceAnimeID; }
-    u8 getBaseAnimeID() { return mBaseAnimeID; }
-    bool isCStickSetFlag(u8 flag) { return mCStickSetFlag & flag; }
-    bool isDoSetFlag(u8 flag) { return (mDoSetFlag & flag) ? true : false; }
-    bool isASetFlag(u8 flag) { return (mASetFlag & flag) ? true : false; }
-    bool isRSetFlag(u8 flag) { return (mRSetFlag & flag) ? true : false; }
-    bool isXSetFlag(u8 flag) { return (mXSetFlag & flag) ? true : false; }
-    bool isYSetFlag(u8 flag) { return (mYSetFlag & flag) ? true : false; }
-    bool is3DSetFlag(u8 flag) { return (m3DSetFlag & flag) ? true : false; }
-    bool isZSetFlag(u8 flag) { return (mZSetFlag & flag) ? true : false; }
-    bool isSButtonSetFlag(u8 flag) { return (mSButtonSetFlag & flag) ? true : false; }
-    bool isNunSetFlag(u8 flag) { return (mNunSetFlag & flag) ? true : false; }
-    bool isRemoConSetFlag(u8 flag) { return (mRemoConSetFlag & flag) ? true : false; }
-    bool isNunZSetFlag(u8 flag) { return (mNunZSetFlag & flag) ? true : false; }
-    bool isNunCSetFlag(u8 flag) { return (mNunCSetFlag & flag) ? true : false; }
-    bool isBottleSetFlag(u8 flag) { return (mBottleSetFlag & flag) ? true : false; }
-
-    u8 get3DDirection() { return m3DDirection; }
-    u8 getCStickDirection() { return mCStickDirection; }
-
-    void setZStatus(u8 status, u8 flag) {
-        mZStatus = status;
-        mZSetFlag = flag;
-    }
-
-    void setRStatus(u8 status, u8 flag) {
-        mRStatus = status;
-        mRSetFlag = flag;
-    }
-
-    void setDoStatus(u8 status, u8 flag) {
-        mDoStatus = status;
-        mDoSetFlag = flag;
-    }
-
-    void setAStatus(u8 status, u8 flag) {
-        mAStatus = status;
-        mASetFlag = flag;
-    }
-
-    void setXStatus(u8 status, u8 flag) {
-        mXStatus = status;
-        mXSetFlag = flag;
-    }
-
-    void setXStatusForce(u8 status, u8 flag) {
-        mXStatusForce = status;
-        mXSetFlagForce = flag;
-    }
-
-    void setYStatus(u8 status, u8 flag) {
-        mYStatus = status;
-        mYSetFlag = flag;
-    }
-
-    void setYStatusForce(u8 status, u8 flag) {
-        mYStatusForce = status;
-        mYSetFlagForce = flag;
-    }
-
-    void setBottleStatus(u8 status, u8 flag) {
-        mBottleStatus = status;
-        mBottleSetFlag = flag;
-    }
-
-    void setBottleStatusForce(u8 status, u8 flag) {
-        mBottleStatusForce = status;
-        mBottleSetFlagForce = flag;
-    }
-
-    void setNunStatus(u8 status, u8 param_1, u8 flag) {
-        mNunStatus = status;
-        field_0x4ef0 = param_1;
-        mNunSetFlag = flag;
-    }
-
-    void setRemoConStatus(u8 status, u8 param_1, u8 flag) {
-        mRemoConStatus = status;
-        field_0x4ef2 = param_1;
-        mRemoConSetFlag = flag;
-    }
-
-    void setNunZStatus(u8 status, u8 flag) {
-        mNunZStatus = status;
-        mNunZSetFlag = flag;
-    }
-
-    void setNunCStatus(u8 status, u8 flag) {
-        mNunCStatus = status;
-        mNunCSetFlag = flag;
-    }
-
-    void setCStickStatus(u8 status, u8 param_1, u8 flag) {
-        mCStickStatus = status;
-        mCStickDirection = param_1;
-        mCStickSetFlag = flag;
-    }
-
-    void setCStickStatusForce(u8 status, u8 param_1, u8 flag) {
-        mCStickStatusForce = status;
-        mCStickDirectionForce = param_1;
-        mCStickSetFlagForce = flag;
-    }
-
-    void setSButtonStatus(u8 status, u8 flag) {
-        mSButtonStatus = status;
-        mSButtonSetFlag = flag;
-    }
-
-    void setSButtonStatusForce(u8 status, u8 flag) {
-        mSButtonStatusForce = status;
-        mSButtonSetFlagForce = flag;
-    }
-
-    void set3DStatus(u8 status, u8 direction, u8 flag) {
-        m3DStatus = status;
-        m3DDirection = direction;
-        m3DSetFlag = flag;
-    }
-
-    void set3DStatusForce(u8 status, u8 direction, u8 flag) {
-        m3DStatusForce = status;
-        m3DDirectionForce = direction;
-        m3DSetFlagForce = flag;
-    }
-
-    void setDoStatusForce(u8 status, u8 flag) {
-        mDoStatusForce = status;
-        mDoSetFlagForce = flag;
-    }
-
-    void setAStatusForce(u8 status, u8 flag) {
-        mAStatusForce = status;
-        mASetFlagForce = flag;
-    }
-
-    void setRStatusForce(u8 status, u8 flag) {
-        mRStatusForce = status;
-        mRSetFlagForce = flag;
-    }
-
-    void setZStatusForce(u8 status, u8 flag) {
-        mZStatusForce = status;
-        mZSetFlagForce = flag;
-    }
-
-    void onStatus(u16 i_status) { mStatus |= i_status; }
-
-    void setItemRupeeCount(s32 rupees) { mItemRupeeCount += rupees; }
-    void setItemMagicCount(s16 magic) { mItemMagicCount += magic; }
-    void setItemMaxMagicCount(s16 max) { mItemMaxMagicCount += max; }
-    void setItemArrowNumCount(s16 arrows) { mItemArrowNumCount += arrows; }
-    void setItemPachinkoNumCount(s16 seeds) { mItemPachinkoNumCount += seeds; }
-    void setItemKeyNumCount(s16 keys) { mItemKeyNumCount += keys; }
-    void setItemMaxLifeCount(s16 max) { mItemMaxLifeCount += max; }
-    void setOxygen(s32 oxygen) { mOxygen = oxygen; }
-    void setNowOxygen(s32 oxygen) { mNowOxygen = oxygen; }
-    void setOxygenCount(s32 oxygen) { mOxygenCount += oxygen; }
-    int getOxygen() { return mOxygen; }
-    void setMaxOxygen(int max) { mMaxOxygen = max; }
-    int getMaxOxygen() { return mMaxOxygen; }
-    int getNowOxygen() { return mNowOxygen; }
-    void setItemNowLife(u16 life) { mItemNowLife = life; }
-    void setItemNowMagic(s16 magic) { mItemNowMagicCount = magic; }
-    void setItemNowOil(s32 oil) { mItemNowOil = oil; }
-    void setItemOilCount(s32 oil) { mItemOilCount += oil; }
-    s16 getItemMaxLifeCount() { return mItemMaxLifeCount; }
-    f32 getItemLifeCount() { return mItemLifeCount; }
-    s16 getItemMaxArrowNumCount() { return mItemMaxArrowNumCount; }
-    s16 getItemArrowNumCount() { return mItemArrowNumCount; }
-    s32 getItemMaxOilCount() { return mItemMaxOilCount; }
-    s32 getItemOilCount() { return mItemOilCount; }
-    s32 getMaxOxygenCount() { return mMaxOxygenCount; }
-    s32 getOxygenCount() { return mOxygenCount; }
-    s32 getItemRupeeCount() { return mItemRupeeCount; }
-    s16 getItemKeyNumCount() { return mItemKeyNumCount; }
-    void clearNowAnimeID() { mNowAnimeID = -1; }
-    void clearMesgCamInfoID() { mMesgCamInfo.mID = -1; }
-    void clearBaseAnimeID() { mBaseAnimeID = 0; }
-    void clearFaceAnimeID() { mFaceAnimeID = 0; }
-    void clearMesgCamInfoBasicID() { mMesgCamInfo.mBasicID = 0; }
-    void clearItemMaxLifeCount() { mItemMaxLifeCount = 0; }
-    void clearItemMaxOilCount() { mItemMaxOilCount = 0; }
-    void clearItemOilCount() { mItemOilCount = 0; }
-    void clearMaxOxygenCount() { mMaxOxygenCount = 0; }
-    void clearOxygenCount() { mOxygenCount = 0; }
-    void clearItemRupeeCount() { mItemRupeeCount = 0; }
-    void clearItemKeyNumCount() { mItemKeyNumCount = 0; }
-    void clearItemArrowNumCount() { mItemArrowNumCount = 0; }
-    void clearItemLifeCount() {
-        mItemLifeCount = 0.0f;
-        mItemLifeCountType = 0;
-    }
-
-    void setItemLifeCount(f32 hearts, u8 type) {
-        mItemLifeCount += hearts;
-        mItemLifeCountType = type;
-    }
-
-    u8& getItemLifeCountType() { return mItemLifeCountType; }
-    u16 getItemNowLife() { return mItemNowLife; }
-    s32 getItemNowOil() { return mItemNowOil; }
-    s16 getItemPachinkoNumCount() { return mItemPachinkoNumCount; }
-    void clearItemPachinkoNumCount() { mItemPachinkoNumCount = 0; }
-    u8 getNeedLightDropNum() { return mNeedLightDropNum; }
-    void setNeedLightDropNum(u8 i_num) { mNeedLightDropNum = i_num; }
-    u8 getWolfAbility(int i_idx) { return mWolfAbility[i_idx]; }
-
-    const char* getStartStageName() { return mStartStage.getName(); }
-    s8 getStartStageRoomNo() { return mStartStage.getRoomNo(); }
-    s8 getStartStageLayer() { return mStartStage.getLayer(); }
-    s16 getStartStagePoint() { return mStartStage.getPoint(); }
-    s8 getStartStageDarkArea() { return mStartStage.getDarkArea(); }
-    void setStartStageDarkArea(s8 darkArea) { mStartStage.setDarkArea(darkArea); }
-    void setStartStageLayer(s8 layer) { mStartStage.setLayer(layer); }
-
-    const char* getNextStageName() { return mNextStage.getName(); }
-    dStage_startStage_c* getNextStartStage() { return &mNextStage; }
-    s8 getNextStageRoomNo() { return mNextStage.getRoomNo(); }
-    s8 getNextStageLayer() { return mNextStage.getLayer(); }
-    s16 getNextStagePoint() { return mNextStage.getPoint(); }
-    s8 getNextStageWipe() { return mNextStage.getWipe(); }
-    BOOL isEnableNextStage() { return mNextStage.isEnable(); }
-    void offEnableNextStage() { mNextStage.offEnable(); }
-    u8 getNextStageWipeSpeed() { return mNextStage.getWipeSpeed(); }
-    void setNextStage(const char* stage, s8 roomNo, s16 point, s8 layer, s8 wipe, u8 wipe_speed) {
-        mNextStage.set(stage, roomNo, point, layer, wipe, wipe_speed);
-    }
-
-    u8 isHeapLockFlag() { return mHeapLockFlag; }
-    void setHeapLockFlag(u8 status) { mHeapLockFlag = status; }
-    void setSubHeapLockFlag(int idx, u8 status) { mSubHeapLockFlag[idx] = status; }
-    u8 getSubHeapLockFlag(int idx) { return mSubHeapLockFlag[idx]; }
-    void offHeapLockFlag() { mHeapLockFlag = 0; }
-
-    JKRExpHeap* getExpHeap2D() { return mExpHeap2D; }
-    JKRExpHeap* getMsgExpHeap() { return mMsgExpHeap; }
-    JKRExpHeap* getSubExpHeap2D(int idx) { return mSubExpHeap2D[idx]; }
-    void setSubExpHeap2D(int idx, void* heap) { mSubExpHeap2D[idx] = (JKRExpHeap*)heap; }
-    void setExpHeap2D(void* heap) { mExpHeap2D = (JKRExpHeap*)heap; }
-    void setMsgExpHeap(void* heap) { mMsgExpHeap = (JKRExpHeap*)heap; }
-
-    JKRArchive* getMsgDtArchive(int idx) { return mMsgDtArchive[idx]; }
-    JKRArchive* getMsgArchive(int idx) { return mMsgArchive[idx]; }
-    JKRArchive* getMsgCommonArchive() { return mMsgCommonArchive; }
-    JKRArchive* getMain2DArchive() { return mMain2DArchive; }
-    JKRArchive* getAnmArchive() { return mAnmArchive; }
-    JKRArchive* getCollectResArchive() { return mCollectResArchive; }
-    JKRArchive* getItemIconArchive() { return mItemIconArchive; }
-    JKRArchive* getNameResArchive() { return mNameResArchive; }
-    JKRArchive* getDemoMsgArchive() { return mDemoMsgArchive; }
-    JKRArchive* getFmapResArchive() { return mFmapResArchive; }
-    JKRArchive* getDmapResArchive() { return mDmapResArchive; }
-    JKRAramArchive* getFieldMapArchive2() { return (JKRAramArchive*)mFieldMapArchive2; }
-    JKRArchive* getOptionResArchive() { return mOptionResArchive; }
-    JKRArchive* getRingResArchive() { return mRingResArchive; }
-    JKRArchive* getFontArchive() { return mFontArchive; }
-    JKRArchive* getRubyArchive() { return mRubyArchive; }
-    JKRArchive* getMeterButtonArchive() { return mMeterButtonArchive; }
-    JKRArchive* getAllMapArchive() { return mAllMapArchive; }
-
-    void setFieldMapArchive2(JKRArchive* arc) { mFieldMapArchive2 = arc; }
-    void setAnmArchive(JKRArchive* arc) { mAnmArchive = arc; }
-    void setFmapResArchive(JKRArchive* arc) { mFmapResArchive = arc; }
-    void setDmapResArchive(JKRArchive* arc) { mDmapResArchive = arc; }
-    void setCollectResArchive(JKRArchive* arc) { mCollectResArchive = arc; }
-    void setItemIconArchive(JKRArchive* arc) { mItemIconArchive = arc; }
-    void setAllMapArchive(JKRArchive* arc) { mAllMapArchive = arc; }
-    void setOptionResArchive(JKRArchive* arc) { mOptionResArchive = arc; }
-    void setRingResArchive(JKRArchive* arc) { mRingResArchive = arc; }
-    void setNameResArchive(JKRArchive* arc) { mNameResArchive = arc; }
-    void setDemoMsgArchive(JKRArchive* arc) { mDemoMsgArchive = arc; }
-    void setMeterButtonArchive(JKRArchive* arc) { mMeterButtonArchive = arc; }
-    void setErrorResArchive(JKRArchive* arc) { mErrorResArchive = arc; }
-    void setCardIconResArchive(JKRArchive* arc) { mCardIconResArchive = arc; }
-    void setMsgDtArchive(int i, JKRArchive* arc) { mMsgDtArchive[i] = arc; }
-    void setMsgCommonArchive(JKRArchive* arc) { mMsgCommonArchive = arc; }
-    void setMsgArchive(int i, JKRArchive* arc) { mMsgArchive[i] = arc; }
-    void setMsgObjectClass(dMsgObject_c* obj) { mMsgObjectClass = obj; }
-    void setMesgCamInfoBasicID(int id) { mMesgCamInfo.mBasicID = id; }
-    void setMesgCamInfoActor(fopAc_ac_c* param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3,
-                             fopAc_ac_c* param_4, fopAc_ac_c* param_5, fopAc_ac_c* param_6,
-                             fopAc_ac_c* param_7, fopAc_ac_c* param_8, fopAc_ac_c* param_9,
-                             fopAc_ac_c* param_10) {
-        mMesgCamInfo.mActor[0] = param_1;
-        mMesgCamInfo.mActor[1] = param_2;
-        mMesgCamInfo.mActor[2] = param_3;
-        mMesgCamInfo.mActor[3] = param_4;
-        mMesgCamInfo.mActor[4] = param_5;
-        mMesgCamInfo.mActor[5] = param_6;
-        mMesgCamInfo.mActor[6] = param_7;
-        mMesgCamInfo.mActor[7] = param_8;
-        mMesgCamInfo.mActor[8] = param_9;
-        mMesgCamInfo.mActor[9] = param_10;
-    }
-    dComIfG_MesgCamInfo_c* getMesgCamInfo() { return &mMesgCamInfo; }
-    void setFontArchive(JKRArchive* arc) { mFontArchive = arc; }
-    void setRubyArchive(JKRArchive* arc) { mRubyArchive = arc; }
-    void setMain2DArchive(JKRArchive* arc) { mMain2DArchive = arc; }
-    void setItemTable(void* data) { mItemTable = data; }
-    void* getItemTable() { return mItemTable; }
-
-    void setPlayerPtr(int i, fopAc_ac_c* ptr) { mPlayerPtr[i] = ptr; }
-    void setPlayer(int i, fopAc_ac_c* player) { mPlayer[i] = (daAlink_c*)player; }
-    void setPlayerInfo(int i, fopAc_ac_c* ptr, int camIdx) {
-        mPlayer[i] = (daAlink_c*)ptr;
-        mPlayerCameraID[camIdx] = 0;
-    }
-    void setPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[param_0][i] |= flag; }
-    void clearPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[param_0][i] &= ~flag; }
-    u32 checkPlayerStatus(int param_0, int i, u32 flag) { return mPlayerStatus[param_0][i] & flag; }
-
-    int getPlayerCameraID(int i) { return mPlayerCameraID[i * 8]; }
-    int getCameraPlayer1ID(int i) { return mCameraInfo[i].field_0x5; }
-    int getCameraPlayer2ID(int i) { return mCameraInfo[i].field_0x6; }
-    int getCameraWinID(int i) { return mCameraInfo[i].field_0x4; }
-    void setCameraParamFileName(int i, char* name) { mCameraInfo[i].mCameraParamFileName = name; }
-    void setCamera(int i, camera_class* cam) { mCameraInfo[i].mCamera = cam; }
-    const char* getCameraParamFileName(int i) { return mCameraInfo[i].mCameraParamFileName; }
-    BOOL checkCameraAttentionStatus(int i, u32 flag) {
-        return mCameraInfo[i].mCameraAttentionStatus & flag;
-    }
-    u32 getCameraAttentionStatus(int i) { return mCameraInfo[i].mCameraAttentionStatus; }
-    void setCameraAttentionStatus(int i, u32 flag) { mCameraInfo[i].mCameraAttentionStatus = flag; }
-    void onCameraAttentionStatus(int i, u32 flag) { mCameraInfo[i].mCameraAttentionStatus |= flag; }
-    void offCameraAttentionStatus(int i, u32 flag) {
-        mCameraInfo[i].mCameraAttentionStatus &= ~flag;
-    }
-    void setCameraInfo(int camIdx, camera_class* p_cam, int param_2, int param_3, int param_4) {
-        mCameraInfo[camIdx].mCamera = p_cam;
-        mCameraInfo[camIdx].field_0x4 = param_2;
-        mCameraInfo[camIdx].field_0x5 = param_3;
-        mCameraInfo[camIdx].field_0x6 = param_4;
-        setCameraAttentionStatus(camIdx, 0);
-    }
-
-    f32 getCameraZoomForcus(int i_no) { return mCameraInfo[i_no].mCameraZoomForcus; }
-    void setCameraZoomForcus(int i_no, f32 i_focus) { mCameraInfo[i_no].mCameraZoomForcus = i_focus; }
-
-    f32 getCameraZoomScale(int i_no) { return mCameraInfo[i_no].mCameraZoomScale; }
-    void setCameraZoomScale(int i_no, f32 i_scale) { mCameraInfo[i_no].mCameraZoomScale = i_scale; }
-
-    void saveCameraPosition(int i, cXyz* i_pos, cXyz* i_target, f32 i_fovy, s16 i_bank) {
-        mCameraInfo[i].mCameraPos = *i_pos;
-        mCameraInfo[i].mCameraTarget = *i_target;
-        mCameraInfo[i].mCameraFovy = i_fovy;
-        mCameraInfo[i].mCameraBank = i_bank;
-    }
-
-    void loadCameraPosition(int i, cXyz* o_pos, cXyz* o_target, f32* o_fovy, s16* o_bank) {
-        *o_pos = mCameraInfo[i].mCameraPos;
-        *o_target = mCameraInfo[i].mCameraTarget;
-        *o_fovy = mCameraInfo[i].mCameraFovy;
-        *o_bank = mCameraInfo[i].mCameraBank;
-    }
-
-    void setMesgCamInfoID(int param_0) { mMesgCamInfo.mID = param_0; }
-
-    void setStatus(u16 status) { mStatus = status; }
-    s32 checkStatus(u16 flags) { return flags & mStatus; }
-
-    void setDirection(u8 i_dir) { mDirection = i_dir; }
-
-    bool& isPauseFlag() { return mPauseFlag; }
-    void offPauseFlag() { mPauseFlag = false; }
-    void onPauseFlag() { mPauseFlag = true; }
-    u8 getOxygenShowFlag() { return mOxygenShowFlag; }
-    void setOxygenShowFlag(u8 flag) { mOxygenShowFlag = flag; }
-    void show2dOn() { mShow2D = 1; }
-    void show2dOff() { mShow2D = 0; }
-    u8 show2dCheck() { return mShow2D; }
-    s8 getLayerOld() { return mLayerOld; }
-    u8 checkMesgCancelButton() { return mMesgCancelButton; }
-    void setMesgCancelButton(u8 button) { mMesgCancelButton = button; }
-    void setMesgBgm(u8 param_0) { mMesgBgm = param_0; }
-    int getMessageCountNumber() { return mMessageCountNum; }
-    void setMessageCountNumber(u32 number) { mMessageCountNum = number; }
-
-    void setWindowNum(u8 num) { mWindowNum = num; }
-    int getWindowNum() { return mWindowNum; }
-    dDlst_window_c* getWindow(int i) { return &mWindow[i]; }
-    void setWindow(int i, f32 param_1, f32 param_2, f32 param_3, f32 param_4, f32 param_5,
-                   f32 param_6, int camID, int mode) {
-        mWindow[i].setViewPort(param_1, param_2, param_3, param_4, param_5, param_6);
-        mWindow[i].setScissor(param_1, param_2, param_3, param_4);
-        mWindow[i].setCameraID(camID);
-        mWindow[i].setMode(mode);
-    }
-
-    void setLastPlayStageName(char* name) {
-        strncpy(mLastPlayStageName, name, 7);
-        mLastPlayStageName[7] = 0;
-    }
-    char* getLastPlayStageName() { return mLastPlayStageName; }
-
-    void setGameoverStatus(u8 status) { mGameoverStatus = status; }
-    u8 getGameoverStatus() { return mGameoverStatus; }
-    u8 getMesgStatus() { return mMesgStatus; }
-
-    u8 getDirection() { return mDirection; }
-
-public:
-    /* 0x00000 */ dBgS mBgs;
-    /* 0x01404 */ dCcS mCcs;
-    /* 0x03EC8 */ dStage_startStage_c mStartStage;
-    /* 0x03ED6 */ dStage_nextStage_c mNextStage;
-    /* 0x03EE8 */ dStage_stageDt_c mStageData;
-    /* 0x03F8C */ dStage_roomControl_c mRoomControl;
-    /* 0x03F90 */ dEvt_control_c mEvent;
-    /* 0x040C0 */ dEvent_manager_c mEvtManager;
-    /* 0x04780 */ dAttention_c mAttention;
-    /* 0x04C9C */ dVibration_c mVibration;
-    /* 0x04D2C */ u8 field_0x4d2c[4];
-    /* 0x04D30 */ JKRArchive* mFieldMapArchive2;
-    /* 0x04D34 */ JKRArchive* mMsgArchive[11];
-    /* 0x04D60 */ JKRArchive* mDemoMsgArchive;
-    /* 0x04D64 */ JKRArchive* mMeterButtonArchive;
-    /* 0x04D68 */ void* field_0x4d68;
-    /* 0x04D6C */ JKRArchive* mFontArchive;
-    /* 0x04D70 */ JKRArchive* mRubyArchive;
-    /* 0x04D74 */ JKRArchive* mAnmArchive;
-    /* 0x04D78 */ void* field_0x4d78[2];
-    /* 0x04D80 */ JKRArchive* mCollectResArchive;
-    /* 0x04D84 */ JKRArchive* mFmapResArchive;
-    /* 0x04D88 */ JKRArchive* mDmapResArchive;
-    /* 0x04D8C */ JKRArchive* mOptionResArchive;
-    /* 0x04D90 */ void* field_0x4d90[2];
-    /* 0x04D98 */ JKRArchive* mItemIconArchive;
-    /* 0x04D9C */ JKRArchive* mNameResArchive;
-    /* 0x04DA0 */ JKRArchive* mErrorResArchive;
-    /* 0x04DA4 */ void* field_0x4da4;
-    /* 0x04DA8 */ JKRArchive* mAllMapArchive;
-    /* 0x04DAC */ JKRArchive* mMsgCommonArchive;
-    /* 0x04DB0 */ JKRArchive* mRingResArchive;
-    /* 0x04DB4 */ void* field_0x4db4;
-    /* 0x04DB8 */ JKRArchive* mCardIconResArchive;
-    /* 0x04DBC */ JKRArchive* mMsgDtArchive[15];
-    /* 0x04DF8 */ JKRArchive* mMain2DArchive;
-    /* 0x04DFC */ void* field_0x4dfc[2];
-    /* 0x04E04 */ dPa_control_c* mParticle;
-    /* 0x04E08 */ dSmplMdl_draw_c* mSimpleModel;
-    /* 0x04E0C */ u8 mWindowNum;
-    /* 0x04E0D */ s8 mLayerOld;
-    /* 0x04E0E */ u16 mStatus;
-    /* 0x04E10 */ dDlst_window_c mWindow[1];
-    /* 0x04E3C */ dComIfG_camera_info_class mCameraInfo[1];
-    /* 0x04E74 */ daAlink_c* mPlayer[1];
-    /* 0x04E78 */ s8 mPlayerCameraID[1];
-    /* 0x04E7C */ fopAc_ac_c* mPlayerPtr[2];  // 0: Player, 1: Horse ; type may be wrong
     /* 0x04E84 */ dMsgObject_c* mMsgObjectClass;
     /* 0x04E88 */ f32 mItemLifeCount;
     /* 0x04E8C */ s32 mItemRupeeCount;
@@ -666,7 +123,8 @@ public:
     /* 0x04ECE */ s16 mItemMaxBombNumCount2;
     /* 0x04ED0 */ u8 field_0x4ed0[4];
     /* 0x04ED4 */ int mMessageCountNum;
-    /* 0x04ED8 */ u8 field_0x4ed8[6];
+    /* 0x04ED8 */ s16 field_0x4ed8;
+    /* 0x04EDA */ u8 field_0x4eda[0x4EDE - 0x4EDA];
     /* 0x04EDE */ u16 mItemNowLife;
     /* 0x04EE0 */ u8 field_0x4ee0[2];
     /* 0x04EE2 */ u8 mMesgStatus;
@@ -756,6 +214,9 @@ public:
     /* 0x04F47 */ u8 field_0x4f47[2];
     /* 0x04F49 */ u8 mDirection;
     /* 0x04F4A */ u8 field_0x4f4a;
+#ifdef DEBUG
+    /* 0x04FE3 */ u8 unk_0x4fe3;
+#endif
     /* 0x04F4B */ u8 field_0x4f4b;  // related to itemInit
     /* 0x04F4C */ u8 field_0x4f4c;  // related to itemInit
     /* 0x04F4D */ u8 field_0x4f4d;
@@ -775,17 +236,573 @@ public:
     /* 0x04F7E */ u8 mItemLifeCountType;
     /* 0x04F7F */ u8 mOxygenShowFlag;
     /* 0x04F80 */ u8 mShow2D;
-    /* 0x04F81 */ u8 field_0x4f81[3];
     /* 0x04F84 */ JKRExpHeap* mExpHeap2D;
     /* 0x04F88 */ JKRExpHeap* mSubExpHeap2D[2];
     /* 0x04F90 */ JKRExpHeap* mMsgExpHeap;
-    /* 0x04F94 */ char mWarpItemStage[8];
-    /* 0x04F9C */ cXyz mWarpItemPos;
-    /* 0x04FA8 */ s16 mWarpItemAngle;
-    /* 0x04FAA */ s8 mWarpItemRoom;
-    /* 0x04FAB */ u8 field_0x4fab;  // related to setWarpItemData
-    /* 0x04FAC */ u8 field_0x4fac;  // related to setWarpItemData
-    /* 0x04FAD */ u8 field_0x4fad[3];
+    /* 0x04F94 */ dSv_memBit_c::WarpItemData_c mWarpItemData;
+};
+
+class dComIfG_play_c {
+public:
+    dComIfG_play_c() { this->ct(); }
+    void ct();
+    void init();
+    void itemInit();
+    void setItemBombNumCount(u8 i_item, s16 count);
+    s16 getItemBombNumCount(u8 i_item);
+    void clearItemBombNumCount(u8 i_item);
+    void setNowVibration(u8 vib_status);
+    u32 getNowVibration();
+    void setStartStage(dStage_startStage_c* p_startStage);
+    static int getLayerNo_common_common(char const* stageName, int roomId, int layer);
+    static int getLayerNo_common(char const* stageName, int roomId, int layer);
+    static int getLayerNo(int);
+    void createParticle();
+    dSmplMdl_draw_c* createSimpleModel();
+    void deleteSimpleModel();
+    void drawSimpleModel();
+    int addSimpleModel(J3DModelData* i_modelData, int roomNo, u8 drawBG);
+    int removeSimpleModel(J3DModelData* i_modelData, int roomNo);
+    void entrySimpleModel(J3DModel* i_model, int roomNo);
+    void setTimerNowTimeMs(int time);
+    int getTimerNowTimeMs();
+    void setTimerLimitTimeMs(int time);
+    int getTimerLimitTimeMs();
+    void setTimerMode(int mode);
+    int getTimerMode();
+    void setTimerType(u8 type);
+    u8 getTimerType();
+    void setTimerPtr(dTimer_c* ptr);
+    dTimer_c* getTimerPtr();
+    void setWarpItemData(const char* stage, cXyz pos, s16 angle, s8 roomNo, u8, u8);
+    ~dComIfG_play_c() {}
+
+    dMsgObject_c* getMsgObjectClass() { return mItemInfo.mMsgObjectClass; }
+    dStage_roomControl_c* getRoomControl() { return &mRoomControl; }
+    dStage_stageDt_c& getStage() { return mStageData; }
+    dEvt_control_c& getEvent() { return mEvent; }
+    daHorse_c* getHorseActor() { return (daHorse_c*)mPlayerPtr[1]; }
+    J2DGrafContext* getCurrentGrafPort() { return (J2DGrafContext*)mCurrentGrafPort; }
+    dVibration_c& getVibration() { return mVibration; }
+    camera_class* getCamera(int idx) { return mCameraInfo[idx].mCamera; }
+    void* getPlayerPtr(int ptrIdx) { return mPlayerPtr[ptrIdx]; }
+    fopAc_ac_c* getPlayer(int idx) { return (fopAc_ac_c*)mPlayer[idx * 2]; }
+    dPa_control_c* getParticle() { return mParticle; }
+    dEvent_manager_c& getEvtManager() { return mEvtManager; }
+    dAttention_c& getAttention() { return mAttention; }
+    dStage_startStage_c* getStartStage() { return &mStartStage; }
+
+    void setCurrentGrafPort(J2DOrthoGraph* i_graf) { mCurrentGrafPort = i_graf; }
+    void setCurrentWindow(dDlst_window_c* i_window) { mCurrentWindow = i_window; }
+    void setCurrentView(view_class* i_view) { mCurrentView = i_view; }
+    void setCurrentViewport(view_port_class* i_viewport) { mCurrentViewport = i_viewport; }
+
+    void setSelectItem(int idx, u8 i_itemNo) { mItemInfo.mSelectItem[idx] = i_itemNo; }
+    u8 getSelectItem(int idx) { return mItemInfo.mSelectItem[idx]; }
+    void setSelectEquip(int idx, u8 item_id) { mItemInfo.mSelectEquip[idx] = item_id; }
+    void setItem(u8 slot, u8 i_no) {
+        mItemInfo.mItemSlot = slot;
+        mItemInfo.mItemID = i_no;
+    }
+
+    u8 getDoStatus() { return mItemInfo.mDoStatus; }
+    u8 getRStatus() { return mItemInfo.mRStatus; }
+    u8 getAStatus() { return mItemInfo.mAStatus; }
+    u8 getXStatus() { return mItemInfo.mXStatus; }
+    u8 getYStatus() { return mItemInfo.mYStatus; }
+    u8 getZStatus() { return mItemInfo.mZStatus; }
+    u8 get3DStatus() { return mItemInfo.m3DStatus; }
+    u8 getCStickStatus() { return mItemInfo.mCStickStatus; }
+    u8 getSButtonStatus() { return mItemInfo.mSButtonStatus; }
+    u8 getNunStatus() { return mItemInfo.mNunStatus; }
+    u8 getRemoConStatus() { return mItemInfo.mRemoConStatus; }
+    u8 getNunZStatus() { return mItemInfo.mNunZStatus; }
+    u8 getNunCStatus() { return mItemInfo.mNunCStatus; }
+    u8 getBottleStatus() { return mItemInfo.mBottleStatus; }
+    u8 getSButtonStatusForce() { return mItemInfo.mSButtonStatusForce; }
+    u8 getSButtonSetFlagForce() { return mItemInfo.mSButtonSetFlagForce; }
+    u8 getCStickStatusForce() { return mItemInfo.mCStickStatusForce; }
+    u8 getCStickSetFlagForce() { return mItemInfo.mCStickSetFlagForce; }
+    u8 getCStickDirectionForce() { return mItemInfo.mCStickDirectionForce; }
+    u8 getDoStatusForce() { return mItemInfo.mDoStatusForce; }
+    u8 getDoSetFlagForce() { return mItemInfo.mDoSetFlagForce; }
+    u8 getAStatusForce() { return mItemInfo.mAStatusForce; }
+    u8 getASetFlagForce() { return mItemInfo.mASetFlagForce; }
+    u8 getRStatusForce() { return mItemInfo.mRStatusForce; }
+    u8 getRSetFlagForce() { return mItemInfo.mRSetFlagForce; }
+    u8 getZStatusForce() { return mItemInfo.mZStatusForce; }
+    u8 getZSetFlagForce() { return mItemInfo.mZSetFlagForce; }
+    u8 getBottleStatusForce() { return mItemInfo.mBottleStatusForce; }
+    u8 getBottleSetFlagForce() { return mItemInfo.mBottleSetFlagForce; }
+    u8 get3DStatusForce() { return mItemInfo.m3DStatusForce; }
+    u8 get3DSetFlagForce() { return mItemInfo.m3DSetFlagForce; }
+    u8 get3DDirectionForce() { return mItemInfo.m3DDirectionForce; }
+    u8 getXStatusForce() { return mItemInfo.mXStatusForce; }
+    u8 getXSetFlagForce() { return mItemInfo.mXSetFlagForce; }
+    u8 getYStatusForce() { return mItemInfo.mYStatusForce; }
+    u8 getYSetFlagForce() { return mItemInfo.mYSetFlagForce; }
+    u8 getFaceAnimeID() { return mItemInfo.mFaceAnimeID; }
+    u8 getBaseAnimeID() { return mItemInfo.mBaseAnimeID; }
+    bool isCStickSetFlag(u8 flag) { return mItemInfo.mCStickSetFlag & flag; }
+    bool isDoSetFlag(u8 flag) { return (mItemInfo.mDoSetFlag & flag) ? true : false; }
+    bool isASetFlag(u8 flag) { return (mItemInfo.mASetFlag & flag) ? true : false; }
+    bool isRSetFlag(u8 flag) { return (mItemInfo.mRSetFlag & flag) ? true : false; }
+    bool isXSetFlag(u8 flag) { return (mItemInfo.mXSetFlag & flag) ? true : false; }
+    bool isYSetFlag(u8 flag) { return (mItemInfo.mYSetFlag & flag) ? true : false; }
+    bool is3DSetFlag(u8 flag) { return (mItemInfo.m3DSetFlag & flag) ? true : false; }
+    bool isZSetFlag(u8 flag) { return (mItemInfo.mZSetFlag & flag) ? true : false; }
+    bool isSButtonSetFlag(u8 flag) { return (mItemInfo.mSButtonSetFlag & flag) ? true : false; }
+    bool isNunSetFlag(u8 flag) { return (mItemInfo.mNunSetFlag & flag) ? true : false; }
+    bool isRemoConSetFlag(u8 flag) { return (mItemInfo.mRemoConSetFlag & flag) ? true : false; }
+    bool isNunZSetFlag(u8 flag) { return (mItemInfo.mNunZSetFlag & flag) ? true : false; }
+    bool isNunCSetFlag(u8 flag) { return (mItemInfo.mNunCSetFlag & flag) ? true : false; }
+    bool isBottleSetFlag(u8 flag) { return (mItemInfo.mBottleSetFlag & flag) ? true : false; }
+
+    u8 get3DDirection() { return mItemInfo.m3DDirection; }
+    u8 getCStickDirection() { return mItemInfo.mCStickDirection; }
+
+    void setZStatus(u8 status, u8 flag) {
+        mItemInfo.mZStatus = status;
+        mItemInfo.mZSetFlag = flag;
+    }
+
+    void setRStatus(u8 status, u8 flag) {
+        mItemInfo.mRStatus = status;
+        mItemInfo.mRSetFlag = flag;
+    }
+
+    void setDoStatus(u8 status, u8 flag) {
+        mItemInfo.mDoStatus = status;
+        mItemInfo.mDoSetFlag = flag;
+    }
+
+    void setAStatus(u8 status, u8 flag) {
+        mItemInfo.mAStatus = status;
+        mItemInfo.mASetFlag = flag;
+    }
+
+    void setXStatus(u8 status, u8 flag) {
+        mItemInfo.mXStatus = status;
+        mItemInfo.mXSetFlag = flag;
+    }
+
+    void setXStatusForce(u8 status, u8 flag) {
+        mItemInfo.mXStatusForce = status;
+        mItemInfo.mXSetFlagForce = flag;
+    }
+
+    void setYStatus(u8 status, u8 flag) {
+        mItemInfo.mYStatus = status;
+        mItemInfo.mYSetFlag = flag;
+    }
+
+    void setYStatusForce(u8 status, u8 flag) {
+        mItemInfo.mYStatusForce = status;
+        mItemInfo.mYSetFlagForce = flag;
+    }
+
+    void setBottleStatus(u8 status, u8 flag) {
+        mItemInfo.mBottleStatus = status;
+        mItemInfo.mBottleSetFlag = flag;
+    }
+
+    void setBottleStatusForce(u8 status, u8 flag) {
+        mItemInfo.mBottleStatusForce = status;
+        mItemInfo.mBottleSetFlagForce = flag;
+    }
+
+    void setNunStatus(u8 status, u8 param_1, u8 flag) {
+        mItemInfo.mNunStatus = status;
+        mItemInfo.field_0x4ef0 = param_1;
+        mItemInfo.mNunSetFlag = flag;
+    }
+
+    void setRemoConStatus(u8 status, u8 param_1, u8 flag) {
+        mItemInfo.mRemoConStatus = status;
+        mItemInfo.field_0x4ef2 = param_1;
+        mItemInfo.mRemoConSetFlag = flag;
+    }
+
+    void setNunZStatus(u8 status, u8 flag) {
+        mItemInfo.mNunZStatus = status;
+        mItemInfo.mNunZSetFlag = flag;
+    }
+
+    void setNunCStatus(u8 status, u8 flag) {
+        mItemInfo.mNunCStatus = status;
+        mItemInfo.mNunCSetFlag = flag;
+    }
+
+    void setCStickStatus(u8 status, u8 param_1, u8 flag) {
+        mItemInfo.mCStickStatus = status;
+        mItemInfo.mCStickDirection = param_1;
+        mItemInfo.mCStickSetFlag = flag;
+    }
+
+    void setCStickStatusForce(u8 status, u8 param_1, u8 flag) {
+        mItemInfo.mCStickStatusForce = status;
+        mItemInfo.mCStickDirectionForce = param_1;
+        mItemInfo.mCStickSetFlagForce = flag;
+    }
+
+    void setSButtonStatus(u8 status, u8 flag) {
+        mItemInfo.mSButtonStatus = status;
+        mItemInfo.mSButtonSetFlag = flag;
+    }
+
+    void setSButtonStatusForce(u8 status, u8 flag) {
+        mItemInfo.mSButtonStatusForce = status;
+        mItemInfo.mSButtonSetFlagForce = flag;
+    }
+
+    void set3DStatus(u8 status, u8 direction, u8 flag) {
+        mItemInfo.m3DStatus = status;
+        mItemInfo.m3DDirection = direction;
+        mItemInfo.m3DSetFlag = flag;
+    }
+
+    void set3DStatusForce(u8 status, u8 direction, u8 flag) {
+        mItemInfo.m3DStatusForce = status;
+        mItemInfo.m3DDirectionForce = direction;
+        mItemInfo.m3DSetFlagForce = flag;
+    }
+
+    void setDoStatusForce(u8 status, u8 flag) {
+        mItemInfo.mDoStatusForce = status;
+        mItemInfo.mDoSetFlagForce = flag;
+    }
+
+    void setAStatusForce(u8 status, u8 flag) {
+        mItemInfo.mAStatusForce = status;
+        mItemInfo.mASetFlagForce = flag;
+    }
+
+    void setRStatusForce(u8 status, u8 flag) {
+        mItemInfo.mRStatusForce = status;
+        mItemInfo.mRSetFlagForce = flag;
+    }
+
+    void setZStatusForce(u8 status, u8 flag) {
+        mItemInfo.mZStatusForce = status;
+        mItemInfo.mZSetFlagForce = flag;
+    }
+
+    void onStatus(u16 i_status) { mStatus |= i_status; }
+
+    void setItemRupeeCount(s32 rupees) { mItemInfo.mItemRupeeCount += rupees; }
+    void setItemMagicCount(s16 magic) { mItemInfo.mItemMagicCount += magic; }
+    void setItemMaxMagicCount(s16 max) { mItemInfo.mItemMaxMagicCount += max; }
+    void setItemArrowNumCount(s16 arrows) { mItemInfo.mItemArrowNumCount += arrows; }
+    void setItemPachinkoNumCount(s16 seeds) { mItemInfo.mItemPachinkoNumCount += seeds; }
+    void setItemKeyNumCount(s16 keys) { mItemInfo.mItemKeyNumCount += keys; }
+    void setItemMaxLifeCount(s16 max) { mItemInfo.mItemMaxLifeCount += max; }
+    void setOxygen(s32 oxygen) { mItemInfo.mOxygen = oxygen; }
+    void setNowOxygen(s32 oxygen) { mItemInfo.mNowOxygen = oxygen; }
+    void setOxygenCount(s32 oxygen) { mItemInfo.mOxygenCount += oxygen; }
+    int getOxygen() { return mItemInfo.mOxygen; }
+    void setMaxOxygen(int max) { mItemInfo.mMaxOxygen = max; }
+    int getMaxOxygen() { return mItemInfo.mMaxOxygen; }
+    int getNowOxygen() { return mItemInfo.mNowOxygen; }
+    void setItemNowLife(u16 life) { mItemInfo.mItemNowLife = life; }
+    void setItemNowMagic(s16 magic) { mItemInfo.mItemNowMagicCount = magic; }
+    void setItemNowOil(s32 oil) { mItemInfo.mItemNowOil = oil; }
+    void setItemOilCount(s32 oil) { mItemInfo.mItemOilCount += oil; }
+    s16 getItemMaxLifeCount() { return mItemInfo.mItemMaxLifeCount; }
+    f32 getItemLifeCount() { return mItemInfo.mItemLifeCount; }
+    s16 getItemMaxArrowNumCount() { return mItemInfo.mItemMaxArrowNumCount; }
+    s16 getItemArrowNumCount() { return mItemInfo.mItemArrowNumCount; }
+    s32 getItemMaxOilCount() { return mItemInfo.mItemMaxOilCount; }
+    s32 getItemOilCount() { return mItemInfo.mItemOilCount; }
+    s32 getMaxOxygenCount() { return mItemInfo.mMaxOxygenCount; }
+    s32 getOxygenCount() { return mItemInfo.mOxygenCount; }
+    s32 getItemRupeeCount() { return mItemInfo.mItemRupeeCount; }
+    s16 getItemKeyNumCount() { return mItemInfo.mItemKeyNumCount; }
+    void clearNowAnimeID() { mItemInfo.mNowAnimeID = -1; }
+    void clearMesgCamInfoID() { mMesgCamInfo.mID = -1; }
+    void clearBaseAnimeID() { mItemInfo.mBaseAnimeID = 0; }
+    void clearFaceAnimeID() { mItemInfo.mFaceAnimeID = 0; }
+    void clearMesgCamInfoBasicID() { mMesgCamInfo.mBasicID = 0; }
+    void clearItemMaxLifeCount() { mItemInfo.mItemMaxLifeCount = 0; }
+    void clearItemMaxOilCount() { mItemInfo.mItemMaxOilCount = 0; }
+    void clearItemOilCount() { mItemInfo.mItemOilCount = 0; }
+    void clearMaxOxygenCount() { mItemInfo.mMaxOxygenCount = 0; }
+    void clearOxygenCount() { mItemInfo.mOxygenCount = 0; }
+    void clearItemRupeeCount() { mItemInfo.mItemRupeeCount = 0; }
+    void clearItemKeyNumCount() { mItemInfo.mItemKeyNumCount = 0; }
+    void clearItemArrowNumCount() { mItemInfo.mItemArrowNumCount = 0; }
+    void clearItemLifeCount() {
+        mItemInfo.mItemLifeCount = 0.0f;
+        mItemInfo.mItemLifeCountType = 0;
+    }
+
+    void setItemLifeCount(f32 hearts, u8 type) {
+        mItemInfo.mItemLifeCount += hearts;
+        mItemInfo.mItemLifeCountType = type;
+    }
+
+    u8& getItemLifeCountType() { return mItemInfo.mItemLifeCountType; }
+    u16 getItemNowLife() { return mItemInfo.mItemNowLife; }
+    s32 getItemNowOil() { return mItemInfo.mItemNowOil; }
+    s16 getItemPachinkoNumCount() { return mItemInfo.mItemPachinkoNumCount; }
+    void clearItemPachinkoNumCount() { mItemInfo.mItemPachinkoNumCount = 0; }
+    u8 getNeedLightDropNum() { return mItemInfo.mNeedLightDropNum; }
+    void setNeedLightDropNum(u8 i_num) { mItemInfo.mNeedLightDropNum = i_num; }
+    u8 getWolfAbility(int i_idx) { return mItemInfo.mWolfAbility[i_idx]; }
+
+    const char* getStartStageName() { return mStartStage.getName(); }
+    s8 getStartStageRoomNo() { return mStartStage.getRoomNo(); }
+    s8 getStartStageLayer() { return mStartStage.getLayer(); }
+    s16 getStartStagePoint() { return mStartStage.getPoint(); }
+    s8 getStartStageDarkArea() { return mStartStage.getDarkArea(); }
+    void setStartStageDarkArea(s8 darkArea) { mStartStage.setDarkArea(darkArea); }
+    void setStartStageLayer(s8 layer) { mStartStage.setLayer(layer); }
+
+    const char* getNextStageName() { return mNextStage.getName(); }
+    dStage_startStage_c* getNextStartStage() { return &mNextStage; }
+    s8 getNextStageRoomNo() { return mNextStage.getRoomNo(); }
+    s8 getNextStageLayer() { return mNextStage.getLayer(); }
+    s16 getNextStagePoint() { return mNextStage.getPoint(); }
+    s8 getNextStageWipe() { return mNextStage.getWipe(); }
+    BOOL isEnableNextStage() { return mNextStage.isEnable(); }
+    void offEnableNextStage() { mNextStage.offEnable(); }
+    u8 getNextStageWipeSpeed() { return mNextStage.getWipeSpeed(); }
+    void setNextStage(const char* stage, s8 roomNo, s16 point, s8 layer, s8 wipe, u8 wipe_speed) {
+        mNextStage.set(stage, roomNo, point, layer, wipe, wipe_speed);
+    }
+
+    u8 isHeapLockFlag() { return mItemInfo.mHeapLockFlag; }
+    void setHeapLockFlag(u8 status) { mItemInfo.mHeapLockFlag = status; }
+    void setSubHeapLockFlag(int idx, u8 status) { mItemInfo.mSubHeapLockFlag[idx] = status; }
+    u8 getSubHeapLockFlag(int idx) { return mItemInfo.mSubHeapLockFlag[idx]; }
+    void offHeapLockFlag() { mItemInfo.mHeapLockFlag = 0; }
+
+    JKRExpHeap* getExpHeap2D() { return mItemInfo.mExpHeap2D; }
+    JKRExpHeap* getMsgExpHeap() { return mItemInfo.mMsgExpHeap; }
+    JKRExpHeap* getSubExpHeap2D(int idx) { return mItemInfo.mSubExpHeap2D[idx]; }
+    void setSubExpHeap2D(int idx, void* heap) { mItemInfo.mSubExpHeap2D[idx] = (JKRExpHeap*)heap; }
+    void setExpHeap2D(void* heap) { mItemInfo.mExpHeap2D = (JKRExpHeap*)heap; }
+    void setMsgExpHeap(void* heap) { mItemInfo.mMsgExpHeap = (JKRExpHeap*)heap; }
+
+    JKRArchive* getMsgDtArchive(int idx) { return mMsgDtArchive[idx]; }
+    JKRArchive* getMsgArchive(int idx) { return mMsgArchive[idx]; }
+    JKRArchive* getMsgCommonArchive() { return mMsgCommonArchive; }
+    JKRArchive* getMain2DArchive() { return mMain2DArchive; }
+    JKRArchive* getAnmArchive() { return mAnmArchive; }
+    JKRArchive* getCollectResArchive() { return mCollectResArchive; }
+    JKRArchive* getItemIconArchive() { return mItemIconArchive; }
+    JKRArchive* getNameResArchive() { return mNameResArchive; }
+    JKRArchive* getDemoMsgArchive() { return mDemoMsgArchive; }
+    JKRArchive* getFmapResArchive() { return mFmapResArchive; }
+    JKRArchive* getDmapResArchive() { return mDmapResArchive; }
+    JKRAramArchive* getFieldMapArchive2() { return (JKRAramArchive*)mFieldMapArchive2; }
+    JKRArchive* getOptionResArchive() { return mOptionResArchive; }
+    JKRArchive* getRingResArchive() { return mRingResArchive; }
+    JKRArchive* getFontArchive() { return mFontArchive; }
+    JKRArchive* getRubyArchive() { return mRubyArchive; }
+    JKRArchive* getMeterButtonArchive() { return mMeterButtonArchive; }
+    JKRArchive* getAllMapArchive() { return mAllMapArchive; }
+
+    void setFieldMapArchive2(JKRArchive* arc) { mFieldMapArchive2 = arc; }
+    void setAnmArchive(JKRArchive* arc) { mAnmArchive = arc; }
+    void setFmapResArchive(JKRArchive* arc) { mFmapResArchive = arc; }
+    void setDmapResArchive(JKRArchive* arc) { mDmapResArchive = arc; }
+    void setCollectResArchive(JKRArchive* arc) { mCollectResArchive = arc; }
+    void setItemIconArchive(JKRArchive* arc) { mItemIconArchive = arc; }
+    void setAllMapArchive(JKRArchive* arc) { mAllMapArchive = arc; }
+    void setOptionResArchive(JKRArchive* arc) { mOptionResArchive = arc; }
+    void setRingResArchive(JKRArchive* arc) { mRingResArchive = arc; }
+    void setNameResArchive(JKRArchive* arc) { mNameResArchive = arc; }
+    void setDemoMsgArchive(JKRArchive* arc) { mDemoMsgArchive = arc; }
+    void setMeterButtonArchive(JKRArchive* arc) { mMeterButtonArchive = arc; }
+    void setErrorResArchive(JKRArchive* arc) { mErrorResArchive = arc; }
+    void setCardIconResArchive(JKRArchive* arc) { mCardIconResArchive = arc; }
+    void setMsgDtArchive(int i, JKRArchive* arc) { mMsgDtArchive[i] = arc; }
+    void setMsgCommonArchive(JKRArchive* arc) { mMsgCommonArchive = arc; }
+    void setMsgArchive(int i, JKRArchive* arc) { mMsgArchive[i] = arc; }
+    void setMsgObjectClass(dMsgObject_c* obj) { mItemInfo.mMsgObjectClass = obj; }
+    void setMesgCamInfoBasicID(int id) { mMesgCamInfo.mBasicID = id; }
+    void setMesgCamInfoActor(fopAc_ac_c* param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3,
+                             fopAc_ac_c* param_4, fopAc_ac_c* param_5, fopAc_ac_c* param_6,
+                             fopAc_ac_c* param_7, fopAc_ac_c* param_8, fopAc_ac_c* param_9,
+                             fopAc_ac_c* param_10) {
+        mMesgCamInfo.mActor[0] = param_1;
+        mMesgCamInfo.mActor[1] = param_2;
+        mMesgCamInfo.mActor[2] = param_3;
+        mMesgCamInfo.mActor[3] = param_4;
+        mMesgCamInfo.mActor[4] = param_5;
+        mMesgCamInfo.mActor[5] = param_6;
+        mMesgCamInfo.mActor[6] = param_7;
+        mMesgCamInfo.mActor[7] = param_8;
+        mMesgCamInfo.mActor[8] = param_9;
+        mMesgCamInfo.mActor[9] = param_10;
+    }
+    dComIfG_MesgCamInfo_c* getMesgCamInfo() { return &mMesgCamInfo; }
+    void setFontArchive(JKRArchive* arc) { mFontArchive = arc; }
+    void setRubyArchive(JKRArchive* arc) { mRubyArchive = arc; }
+    void setMain2DArchive(JKRArchive* arc) { mMain2DArchive = arc; }
+    void setItemTable(void* data) { mItemTable = data; }
+    void* getItemTable() { return mItemTable; }
+
+    void setPlayerPtr(int i, fopAc_ac_c* ptr) { mPlayerPtr[i] = ptr; }
+    void setPlayer(int i, fopAc_ac_c* player) { mPlayer[i] = (daAlink_c*)player; }
+    void setPlayerInfo(int i, fopAc_ac_c* ptr, int camIdx) {
+        mPlayer[i] = (daAlink_c*)ptr;
+        mPlayerCameraID[camIdx] = 0;
+    }
+    void setPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[param_0][i] |= flag; }
+    void clearPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[param_0][i] &= ~flag; }
+    u32 checkPlayerStatus(int param_0, int i, u32 flag) { return mPlayerStatus[param_0][i] & flag; }
+
+    int getPlayerCameraID(int i) { return mPlayerCameraID[i * 8]; }
+    int getCameraPlayer1ID(int i) { return mCameraInfo[i].field_0x5; }
+    int getCameraPlayer2ID(int i) { return mCameraInfo[i].field_0x6; }
+    int getCameraWinID(int i) { return mCameraInfo[i].field_0x4; }
+    void setCameraParamFileName(int i, char* name) { mCameraInfo[i].mCameraParamFileName = name; }
+    void setCamera(int i, camera_class* cam) { mCameraInfo[i].mCamera = cam; }
+    const char* getCameraParamFileName(int i) { return mCameraInfo[i].mCameraParamFileName; }
+    BOOL checkCameraAttentionStatus(int i, u32 flag) {
+        return mCameraInfo[i].mCameraAttentionStatus & flag;
+    }
+    u32 getCameraAttentionStatus(int i) { return mCameraInfo[i].mCameraAttentionStatus; }
+    void setCameraAttentionStatus(int i, u32 flag) { mCameraInfo[i].mCameraAttentionStatus = flag; }
+    void onCameraAttentionStatus(int i, u32 flag) { mCameraInfo[i].mCameraAttentionStatus |= flag; }
+    void offCameraAttentionStatus(int i, u32 flag) {
+        mCameraInfo[i].mCameraAttentionStatus &= ~flag;
+    }
+    void setCameraInfo(int camIdx, camera_class* p_cam, int param_2, int param_3, int param_4) {
+        mCameraInfo[camIdx].mCamera = p_cam;
+        mCameraInfo[camIdx].field_0x4 = param_2;
+        mCameraInfo[camIdx].field_0x5 = param_3;
+        mCameraInfo[camIdx].field_0x6 = param_4;
+        setCameraAttentionStatus(camIdx, 0);
+    }
+
+    f32 getCameraZoomForcus(int i_no) { return mCameraInfo[i_no].mCameraZoomForcus; }
+    void setCameraZoomForcus(int i_no, f32 i_focus) { mCameraInfo[i_no].mCameraZoomForcus = i_focus; }
+
+    f32 getCameraZoomScale(int i_no) { return mCameraInfo[i_no].mCameraZoomScale; }
+    void setCameraZoomScale(int i_no, f32 i_scale) { mCameraInfo[i_no].mCameraZoomScale = i_scale; }
+
+    void saveCameraPosition(int i, cXyz* i_pos, cXyz* i_target, f32 i_fovy, s16 i_bank) {
+        mCameraInfo[i].mCamInfo.mCameraPos = *i_pos;
+        mCameraInfo[i].mCamInfo.mCameraTarget = *i_target;
+        mCameraInfo[i].mCamInfo.mCameraFovy = i_fovy;
+        mCameraInfo[i].mCamInfo.mCameraBank = i_bank;
+    }
+
+    void loadCameraPosition(int i, cXyz* o_pos, cXyz* o_target, f32* o_fovy, s16* o_bank) {
+        *o_pos = mCameraInfo[i].mCamInfo.mCameraPos;
+        *o_target = mCameraInfo[i].mCamInfo.mCameraTarget;
+        *o_fovy = mCameraInfo[i].mCamInfo.mCameraFovy;
+        *o_bank = mCameraInfo[i].mCamInfo.mCameraBank;
+    }
+
+    void setMesgCamInfoID(int param_0) { mMesgCamInfo.mID = param_0; }
+
+    void setStatus(u16 status) { mStatus = status; }
+    s32 checkStatus(u16 flags) { return flags & mStatus; }
+
+    void setDirection(u8 i_dir) { mItemInfo.mDirection = i_dir; }
+
+    bool& isPauseFlag() { return mItemInfo.mPauseFlag; }
+    void offPauseFlag() { mItemInfo.mPauseFlag = false; }
+    void onPauseFlag() { mItemInfo.mPauseFlag = true; }
+    u8 getOxygenShowFlag() { return mItemInfo.mOxygenShowFlag; }
+    void setOxygenShowFlag(u8 flag) { mItemInfo.mOxygenShowFlag = flag; }
+    void show2dOn() { mItemInfo.mShow2D = 1; }
+    void show2dOff() { mItemInfo.mShow2D = 0; }
+    u8 show2dCheck() { return mItemInfo.mShow2D; }
+    s8 getLayerOld() { return mLayerOld; }
+    u8 checkMesgCancelButton() { return mItemInfo.mMesgCancelButton; }
+    void setMesgCancelButton(u8 button) { mItemInfo.mMesgCancelButton = button; }
+    void setMesgBgm(u8 param_0) { mItemInfo.mMesgBgm = param_0; }
+    int getMessageCountNumber() { return mItemInfo.mMessageCountNum; }
+    void setMessageCountNumber(u32 number) { mItemInfo.mMessageCountNum = number; }
+
+    s16 getItemMaxBombNumCount(u8 i_bombType) {
+        switch (i_bombType) {
+        case fpcNm_ITEM_NORMAL_BOMB:
+            return mItemInfo.mItemMaxBombNumCount1;
+        case fpcNm_ITEM_WATER_BOMB:
+            return mItemInfo.mItemMaxBombNumCount2;
+        case fpcNm_ITEM_POKE_BOMB:
+            return mItemInfo.field_0x4ed8;
+        }
+        return 0;
+    }
+
+    void setWindowNum(u8 num) { mWindowNum = num; }
+    int getWindowNum() { return mWindowNum; }
+    dDlst_window_c* getWindow(int i) { return &mWindow[i]; }
+    void setWindow(int i, f32 param_1, f32 param_2, f32 param_3, f32 param_4, f32 param_5,
+                   f32 param_6, int camID, int mode) {
+        mWindow[i].setViewPort(param_1, param_2, param_3, param_4, param_5, param_6);
+        mWindow[i].setScissor(param_1, param_2, param_3, param_4);
+        mWindow[i].setCameraID(camID);
+        mWindow[i].setMode(mode);
+    }
+
+    void setLastPlayStageName(char* name) {
+        strncpy(mLastPlayStageName, name, 7);
+        mLastPlayStageName[7] = 0;
+    }
+    char* getLastPlayStageName() { return mLastPlayStageName; }
+
+    void setGameoverStatus(u8 status) { mItemInfo.mGameoverStatus = status; }
+    u8 getGameoverStatus() { return mItemInfo.mGameoverStatus; }
+    u8 getMesgStatus() { return mItemInfo.mMesgStatus; }
+
+    u8 getDirection() { return mItemInfo.mDirection; }
+
+public:
+    /* 0x00000 */ dBgS mBgs;
+    /* 0x01404 */ dCcS mCcs;
+    /* 0x03EC8 */ dStage_startStage_c mStartStage;
+    /* 0x03ED6 */ dStage_nextStage_c mNextStage;
+    /* 0x03EE8 */ dStage_stageDt_c mStageData;
+    /* 0x03F8C */ dStage_roomControl_c mRoomControl;
+    /* 0x03F90 */ dEvt_control_c mEvent;
+    /* 0x040C0 */ dEvent_manager_c mEvtManager;
+    /* 0x04780 */ dAttention_c mAttention;
+    /* 0x04C9C */ dVibration_c mVibration;
+    /* 0x04D2C */ u8 field_0x4d2c[4];
+    /* 0x04D30 */ JKRArchive* mFieldMapArchive2;
+    /* 0x04D34 */ JKRArchive* mMsgArchive[11];
+    /* 0x04D60 */ JKRArchive* mDemoMsgArchive;
+    /* 0x04D64 */ JKRArchive* mMeterButtonArchive;
+    /* 0x04D68 */ void* field_0x4d68;
+    /* 0x04D6C */ JKRArchive* mFontArchive;
+    /* 0x04D70 */ JKRArchive* mRubyArchive;
+    /* 0x04D74 */ JKRArchive* mAnmArchive;
+    /* 0x04D78 */ void* field_0x4d78[2];
+    /* 0x04D80 */ JKRArchive* mCollectResArchive;
+    /* 0x04D84 */ JKRArchive* mFmapResArchive;
+    /* 0x04D88 */ JKRArchive* mDmapResArchive;
+    /* 0x04D8C */ JKRArchive* mOptionResArchive;
+    /* 0x04D90 */ void* field_0x4d90[2];
+    /* 0x04D98 */ JKRArchive* mItemIconArchive;
+    /* 0x04D9C */ JKRArchive* mNameResArchive;
+    /* 0x04DA0 */ JKRArchive* mErrorResArchive;
+    /* 0x04DA4 */ void* field_0x4da4;
+    /* 0x04DA8 */ JKRArchive* mAllMapArchive;
+    /* 0x04DAC */ JKRArchive* mMsgCommonArchive;
+    /* 0x04DB0 */ JKRArchive* mRingResArchive;
+    /* 0x04DB4 */ void* field_0x4db4;
+    /* 0x04DB8 */ JKRArchive* mCardIconResArchive;
+    /* 0x04DBC */ JKRArchive* mMsgDtArchive[15];
+    /* 0x04DF8 */ JKRArchive* mMain2DArchive;
+    /* 0x04DFC */ void* field_0x4dfc[2];
+    /* 0x04E04 */ dPa_control_c* mParticle;
+    /* 0x04E08 */ dSmplMdl_draw_c* mSimpleModel;
+    /* 0x04E0C */ u8 mWindowNum;
+    /* 0x04E0D */ s8 mLayerOld;
+    /* 0x04E0E */ u16 mStatus;
+    /* 0x04E10 */ dDlst_window_c mWindow[1];
+    /* 0x04E3C */ dComIfG_camera_info_class mCameraInfo[1];
+    /* 0x04E74 */ daAlink_c* mPlayer[1];
+    /* 0x04E78 */ s8 mPlayerCameraID[1];
+    /* 0x04E7C */ fopAc_ac_c* mPlayerPtr[2];  // 0: Player, 1: Horse ; type may be wrong
+    /* 0x04E84 */ dComIfG_item_info_class mItemInfo;
     /* 0x04FB0 */ dComIfG_MesgCamInfo_c mMesgCamInfo;
     /* 0x04FE0 */ u32 mPlayerStatus[1][4];
     /* 0x04FF0 */ u8 field_0x4ff0[0x8];
@@ -1034,6 +1051,9 @@ u8 dComIfGs_getSelectMixItemNoArrowIndex(int i_selmixItemIdx);
 BOOL dComIfGs_isStageTbox(int i_stageNo, int i_no);
 s8 dComIfGs_PolyDamageOff_Check();
 void dComIfGs_Grass_hide_Set(s8 param_0);
+void dComIfGs_onGetMagicUseFlag();
+void dComIfG_playerStatusD();
+void dComIfG_playerStatusD_pre_clear();
 
 inline void dComIfGs_init() {
     g_dComIfG_gameInfo.info.init();
@@ -1467,6 +1487,10 @@ inline s64 dComIfGs_getSaveTotalTime() {
 
 inline dSv_save_c* dComIfGs_getSaveData() {
     return &g_dComIfG_gameInfo.info.getSavedata();
+}
+
+inline dSv_info_c* dComIfGs_getSaveInfo() {
+    return &g_dComIfG_gameInfo.info;
 }
 
 inline void dComIfGs_setLineUpItem() {
@@ -2009,6 +2033,46 @@ inline void dComIfGs_setLightDropNum(u8 i_level, u8 i_num) {
 
 inline void dComIfGs_setBaitItem(u8 i_item) {
     g_dComIfG_gameInfo.info.getPlayer().getItem().setBaitItem(i_item);
+}
+
+inline void dComIfGs_setBombMax(u8 i_type, u8 i_max) {
+    g_dComIfG_gameInfo.info.getPlayer().getItemMax().setBombNum(i_type, i_max);
+}
+
+inline u8 dComIfGs_getPalLanguage() {
+    return g_dComIfG_gameInfo.info.getPlayer().getConfig().getPalLanguage();
+}
+
+inline u8 dComIfGs_getClearCount() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerInfo().getClearCount();
+}
+
+inline void dComIfGs_offGetMagicUseFlag() {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().offMagicFlag(0);
+}
+
+inline void dComIfGs_offLightDropGetFlag(u8 i_level) {
+    g_dComIfG_gameInfo.info.getPlayer().getLightDrop().offLightDropGetFlag(i_level);
+}
+
+inline void dComIfGs_setBombMax(u8 i_max) {
+    g_dComIfG_gameInfo.info.getPlayer().getItemMax().setBombNum(0, i_max);
+}
+
+inline u8 dComIfGs_getBombMax() {
+    return g_dComIfG_gameInfo.info.getPlayer().getItemMax().getBombNum(0);
+}
+
+inline void dComIfGs_setBombNum(u8 i_num) {
+    g_dComIfG_gameInfo.info.getPlayer().getItemRecord().setBombNum(0, i_num);
+}
+
+inline void dComIfGs_offDarkClearLV(int i_no) {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusB().offDarkClearLV(i_no);
+}
+
+inline void dComIfGs_offTransformLV(int i_no) {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusB().offTransformLV(i_no);
 }
 
 void dComIfGp_setSelectItem(int index);
@@ -2833,7 +2897,7 @@ inline void dComIfGp_setItemNowMagic(s16 magic) {
     g_dComIfG_gameInfo.play.setItemNowMagic(magic);
 }
 
-inline void dComIfGp_setOxygen(int oxygen) {
+inline void dComIfGp_setOxygen(s32 oxygen) {
     g_dComIfG_gameInfo.play.setOxygen(oxygen);
 }
 
@@ -3351,6 +3415,10 @@ inline void dComIfGp_setCurrentView(view_class* i_view) {
 
 inline void dComIfGp_setCurrentViewport(view_port_class* i_viewport) {
     g_dComIfG_gameInfo.play.setCurrentViewport(i_viewport);
+}
+
+inline s16 dComIfGp_getItemMaxBombNumCount() {
+    return g_dComIfG_gameInfo.play.getItemMaxBombNumCount(fpcNm_ITEM_NORMAL_BOMB);
 }
 
 inline BOOL dComIfGp_event_compulsory(void* param_0, const char* param_1, u16 param_2) {

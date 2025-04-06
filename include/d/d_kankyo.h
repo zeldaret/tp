@@ -109,6 +109,11 @@ struct GB_MAPLE_COL_CHANGE {
     /* 0x00 */ J3DLightObj light_obj;
 };  // Size: 0x74
 
+struct NAVYCHAN {
+    /* 0x0 */ u8 field_0x0[0x4 - 0x0];
+    /* 0x4 */ cXyz field_0x4;
+};
+
 struct LightStatus {
     /* 0x00 */ Vec position;
     /* 0x0C */ Vec field_0xc;
@@ -273,6 +278,10 @@ public:
     /* 0x09B8 */ DUNGEON_LIGHT dungeonlight[8];
     /* 0x0C18 */ BOSS_LIGHT field_0x0c18[8];
     /* 0x0D58 */ BOSS_LIGHT field_0x0d58[6];
+#ifdef DEBUG
+    /* 0x0E48 */ NAVYCHAN navy;
+    /* 0x0E58 */ u8 field_0xe58[0xE68 - 0xE58];  // part of NAVYCHAN?
+#endif
     /* 0x0E48 */ GB_WIND_INFLUENCE global_wind_influence;
     /* 0x0E5C */ f32 custom_windpower;
     /* 0x0E60 */ f32 unk_0xe60;
