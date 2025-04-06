@@ -83,7 +83,7 @@ u32 J3DMaterialFactory_v21::countStages(int i_idx) const {
 
 /* 80333068-803337D8 32D9A8 0770+00 0/0 2/2 0/0 .text
  * create__22J3DMaterialFactory_v21CFP11J3DMaterialiUl          */
-// NONMATCHINg same problems as J3DMaterialFactory::createNormalMaterial
+// NONMATCHING regalloc
 J3DMaterial* J3DMaterialFactory_v21::create(J3DMaterial* i_material, int i_idx, u32 i_flags) const {
     u32 stages = countStages(i_idx);
     u32 tev_stage_num = getMdlDataFlag_TevStageNum(i_flags);
@@ -110,7 +110,7 @@ J3DMaterial* J3DMaterialFactory_v21::create(J3DMaterial* i_material, int i_idx, 
     i_material->mColorBlock->setCullMode(newCullMode(i_idx));
     i_material->mTexGenBlock->setTexGenNum(newTexGenNum(i_idx));
     i_material->mTexGenBlock->setNBTScale(newNBTScale(i_idx));
-    i_material->mPEBlock->setFog(&newFog(i_idx));
+    i_material->mPEBlock->setFog(newFog(i_idx));
     i_material->mPEBlock->setAlphaComp(newAlphaComp(i_idx));
     i_material->mPEBlock->setBlend(newBlend(i_idx));
     i_material->mPEBlock->setZMode(newZMode(i_idx));
@@ -335,7 +335,6 @@ J3DFog J3DMaterialFactory_v21::newFog(int i_idx) const {
 }
 
 /* 80333EE0-80333F60 32E820 0080+00 1/1 0/0 0/0 .text newAlphaComp__22J3DMaterialFactory_v21CFi */
-// NONMATCHING calcAlphaCmpID issue
 J3DAlphaComp J3DMaterialFactory_v21::newAlphaComp(int i_idx) const {
     J3DMaterialInitData_v21* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
     if (mtl_init_data->mAlphaCompIdx != 0xffff) {

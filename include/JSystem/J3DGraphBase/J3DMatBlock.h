@@ -31,7 +31,8 @@ struct J3DGXColor : public GXColor {
     /* 8000E538 */ J3DGXColor() {}
     J3DGXColor(J3DGXColor const& other) { __memcpy(this, &other, sizeof(J3DGXColor)); }
     J3DGXColor(GXColor const& color) : GXColor(color) {}
-    J3DGXColor& operator=(const GXColor& color) {
+    // making color a reference breaks J3DColorBlockLightOff::initialize et al
+    J3DGXColor& operator=(GXColor color) {
         *(GXColor*)this = color;
         return *this;
     }
@@ -718,6 +719,7 @@ extern const J3DFogInfo j3dDefaultFogInfo;
  */
 struct J3DFog : public J3DFogInfo {
     J3DFog() { *(J3DFogInfo*)this = j3dDefaultFogInfo; }
+    J3DFog(const J3DFog& other) : J3DFogInfo(other) {}
     J3DFogInfo* getFogInfo() { return this; }
     void setFogInfo(J3DFogInfo info) { *(J3DFogInfo*)this = info; }
     void setFogInfo(J3DFogInfo* info) { *(J3DFogInfo*)this = *info; }
@@ -745,14 +747,14 @@ struct J3DAlphaCompInfo {
 
 extern const u16 j3dDefaultAlphaCmpID;
 
-inline u32 calcAlphaCmpID(u32 param_1, u32 param_2, u32 param_3) {
-    return ((param_1 & 0xff) << 5) + ((param_2 & 0xff) << 3) + (param_3 & 0xff);
-}
+// inline u32 calcAlphaCmpID(u32 param_1, u32 param_2, u32 param_3) {
+//     return ((param_1 & 0xff) << 5) + ((param_2 & 0xff) << 3) + (param_3 & 0xff);
+// }
 
 // matches for `J3DMaterialFactory::newAlphaComp,J3DMaterialFactory_v21::newAlphaComp` but fails for `d_resorce::addWarpMaterial`
-// inline u32 calcAlphaCmpID(u8 param_1, u8 param_2, u8 param_3) {
-//     return param_1 * 0x20 + param_2 * 8 + param_3;
-// }
+inline u32 calcAlphaCmpID(u8 param_1, u8 param_2, u8 param_3) {
+    return (param_1 << 5) + (param_2 << 3) + param_3;
+}
 
 /**
  * @ingroup jsystem-j3d
@@ -770,12 +772,12 @@ struct J3DAlphaComp {
     void setAlphaCompInfo(const J3DAlphaCompInfo& param_1) {
         mRef0 = param_1.field_0x1;
         mRef1 = param_1.field_0x4;
-        u32 p1_mref1 = param_1.mRef1;
-        mID = calcAlphaCmpID(param_1.field_0x0, param_1.mRef0, p1_mref1);
+        // u32 p1_mref1 = param_1.mRef1;
+        // mID = calcAlphaCmpID(param_1.field_0x0, param_1.mRef0, p1_mref1);
 
         // this matches for `dKy_bg_MAxx_proc` but causes `addWarpMaterial` to fail,
         // while the above matches for `addWarpMaterial` but causes `dKy_bg_MAxx_proc` to fail?
-        // mID = calcAlphaCmpID(param_1.field_0x0, param_1.mRef0, param_1.mRef1);
+        mID = calcAlphaCmpID(param_1.field_0x0, param_1.mRef0, param_1.mRef1);
     }
 
     GXCompare getComp0() const { return GXCompare(j3dAlphaCmpTable[mID * 3]); }
@@ -1062,8 +1064,8 @@ public:
     /* 80317414 */ virtual void setIndTexMtx(u32, J3DIndTexMtx const*) {}
     /* 8000E060 */ virtual void setIndTexMtx(u32, J3DIndTexMtx) {}
     /* 8000DF6C */ virtual J3DIndTexMtx* getIndTexMtx(u32) { return NULL; }
-    /* 8000E020 */ virtual void setIndTexCoordScale(u32, J3DIndTexCoordScale) {}
     /* 80317418 */ virtual void setIndTexCoordScale(u32, J3DIndTexCoordScale const*) {}
+    /* 8000E020 */ virtual void setIndTexCoordScale(u32, J3DIndTexCoordScale) {}
     /* 8000DF64 */ virtual J3DIndTexCoordScale* getIndTexCoordScale(u32) { return NULL; }
     /* 8031726C */ virtual ~J3DIndBlock() {}
 };

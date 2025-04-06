@@ -1015,14 +1015,14 @@ config.libs = [
             Object(MatchingFor("GZ2E01"), "JSystem/J2DGraph/J2DGrafContext.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/J2DGraph/J2DOrthoGraph.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/J2DGraph/J2DTevs.cpp"),
-            Object(NonMatching, "JSystem/J2DGraph/J2DMaterial.cpp"),
+            Object(Equivalent, "JSystem/J2DGraph/J2DMaterial.cpp", extra_cflags=['-pragma "nosyminline off"']), # weak func order
             Object(NonMatching, "JSystem/J2DGraph/J2DMatBlock.cpp"),
             Object(NonMatching, "JSystem/J2DGraph/J2DMaterialFactory.cpp"),
-            Object(NonMatching, "JSystem/J2DGraph/J2DPrint.cpp"),
+            Object(MatchingFor("GZ2E01"), "JSystem/J2DGraph/J2DPrint.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/J2DGraph/J2DPane.cpp"),
             Object(NonMatching, "JSystem/J2DGraph/J2DScreen.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/J2DGraph/J2DWindow.cpp"),
-            Object(NonMatching, "JSystem/J2DGraph/J2DPicture.cpp"),
+            Object(Equivalent, "JSystem/J2DGraph/J2DPicture.cpp", extra_cflags=['-pragma "nosyminline off"']), # weak func order
             Object(MatchingFor("GZ2E01"), "JSystem/J2DGraph/J2DTextBox.cpp"),
             Object(NonMatching, "JSystem/J2DGraph/J2DWindowEx.cpp"),
             Object(NonMatching, "JSystem/J2DGraph/J2DPictureEx.cpp"),

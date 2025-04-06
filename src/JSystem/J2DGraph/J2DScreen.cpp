@@ -13,7 +13,6 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JSupport/JSUMemoryStream.h"
 #include "dolphin/types.h"
-#include "global.h"
 
 /* 802F8498-802F8540 2F2DD8 00A8+00 0/0 59/59 4/4 .text            __ct__9J2DScreenFv */
 J2DScreen::J2DScreen()
