@@ -20,15 +20,15 @@ public:
     typedef void (daTogeRoll_c::*modeFunc)();
 
     enum Mode {
-        ACC,
-        MOVE,
-        BRK,
-        WAIT,
-        WAIT_INIT,
-        BREAK,
-        BOUND,
-        BOUND_2,
-        BOUND_WAIT,
+        MODE_ACC,
+        MODE_MOVE,
+        MODE_BRK,
+        MODE_WAIT,
+        MODE_WAIT_INIT,
+        MODE_BREAK,
+        MODE_BOUND,
+        MODE_BOUND_2,
+        MODE_BOUND_WAIT,
     };
 
     /* 80C77CC8 */ void setBaseMtx();
@@ -97,7 +97,7 @@ STATIC_ASSERT(sizeof(daTogeRoll_c) == 0x117c);
 class daTogeRoll_HIO_c : public mDoHIO_entry_c {
 public:
     /* 80C77C2C */ daTogeRoll_HIO_c();
-    /* 80C798D0 */ ~daTogeRoll_HIO_c();
+    /* 80C798D0 */ ~daTogeRoll_HIO_c() {}
 
     /* 0x00 */ /* vtable */
 

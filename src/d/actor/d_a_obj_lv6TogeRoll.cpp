@@ -120,7 +120,7 @@ int daTogeRoll_c::create() {
         field_0x5ae = 0;
         field_0x5d4 = mSpeed[getSpeed()];
         init_modeWaitInit();
-        cullMtx = mpModel->getBaseTRMtx();
+        fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
         fopAcM_setCullSizeBox2(this, mpModel->getModelData());
         setBaseMtx();
         mStts.Init(0xfe, 0xff, this);
@@ -191,26 +191,21 @@ int daTogeRoll_c::Execute(Mtx** i_mtx) {
 
     cXyz pos;
     for (int i = 0; i < 8; i++) {
-        pos.x = 0.0f;
-        pos.y = 0.0f;
-        pos.z = 0.0f;
-        pos.x = (i ^ 0x80000000) * 70.0f - 248.0f;
+        cXyz pos(0.0f, 0.0f, 0.0f);
+        pos.x = (f32)i * 70.0f - 248.0f;
 
         mDoMtx_stack_c::ZXYrotS(shape_angle.x, shape_angle.y, shape_angle.z);
         mDoMtx_stack_c::multVec(&pos, &pos);
 
         cXyz pos2 = current.pos;
-        PSVECAdd(&pos2, &pos, &pos2);
+        pos2 += pos;
 
         mSph[i].SetR(50.0f);
         mSph[i].SetC(pos2);
         dComIfG_Ccsp()->Set(&mSph[i]);
     }
 
-    cXyz pos3;
-    pos3.x = 270.0f;
-    pos3.y = 0.0f;
-    pos3.z = 0.0f;
+    cXyz pos3(270.0f, 0.0f, 0.0f);
 
     mDoMtx_stack_c::ZXYrotS(current.angle.x, current.angle.y, current.angle.z);
     mDoMtx_stack_c::multVec(&pos3, &pos3);
@@ -219,7 +214,7 @@ int daTogeRoll_c::Execute(Mtx** i_mtx) {
     field_0x113c.mEnd = current.pos - pos3;
     field_0x113c.mRadius = 30.0f;
 
-    static_cast<cM3dGCps*>(&mCps)->Set(field_0x113c);
+    mCps.cM3dGCps::Set(field_0x113c);
     dComIfG_Ccsp()->Set(&mCps);
     mStts.Move();
     mSound.framework(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
@@ -275,7 +270,7 @@ void daTogeRoll_c::init_modeBound() {
     cXyz pos2;
     cM3d_InDivPos2(&current.pos, &field_0x5b0, l_HIO.field_0x0c, &pos2);
     field_0x5b0 = pos2;
-    mMode = BOUND;
+    mMode = MODE_BOUND;
 }
 
 /* 80C78B7C-80C78BD8 00103C 005C+00 1/0 0/0 0/0 .text            modeBound__12daTogeRoll_cFv */
@@ -295,7 +290,7 @@ void daTogeRoll_c::modeBound2() {
 /* 80C78C34-80C78C50 0010F4 001C+00 2/2 0/0 0/0 .text init_modeBoundWait__12daTogeRoll_cFv */
 void daTogeRoll_c::init_modeBoundWait() {
     field_0x5db = l_HIO.field_0x06;
-    mMode = BOUND_WAIT;
+    mMode = MODE_BOUND_WAIT;
 }
 
 /* 80C78C50-80C78CA8 001110 0058+00 1/0 0/0 0/0 .text            modeBoundWait__12daTogeRoll_cFv */
@@ -311,7 +306,7 @@ void daTogeRoll_c::modeBoundWait() {
 
 /* 80C78CA8-80C78CB4 001168 000C+00 1/1 0/0 0/0 .text            init_modeAcc__12daTogeRoll_cFv */
 void daTogeRoll_c::init_modeAcc() {
-    mMode = ACC;
+    mMode = MODE_ACC;
 }
 
 /* 80C78CB4-80C78DA0 001174 00EC+00 1/0 0/0 0/0 .text            modeAcc__12daTogeRoll_cFv */
@@ -330,7 +325,7 @@ void daTogeRoll_c::modeAcc() {
 
 /* 80C78DA0-80C78DAC 001260 000C+00 1/1 0/0 0/0 .text            init_modeMove__12daTogeRoll_cFv */
 void daTogeRoll_c::init_modeMove() {
-    mMode = MOVE;
+    mMode = MODE_MOVE;
 }
 
 /* 80C78DAC-80C790C4 00126C 0318+00 1/0 0/0 0/0 .text            modeMove__12daTogeRoll_cFv */
@@ -360,7 +355,7 @@ void daTogeRoll_c::modeMove() {
 
 /* 80C790C4-80C790D0 001584 000C+00 1/1 0/0 0/0 .text            init_modeBrk__12daTogeRoll_cFv */
 void daTogeRoll_c::init_modeBrk() {
-    mMode = BRK;
+    mMode = MODE_BRK;
 }
 
 /* 80C790D0-80C792CC 001590 01FC+00 1/0 0/0 0/0 .text            modeBrk__12daTogeRoll_cFv */
@@ -382,7 +377,7 @@ void daTogeRoll_c::modeBrk() {
  */
 void daTogeRoll_c::init_modeWaitInit() {
     speedF = 0.0f;
-    mMode = WAIT_INIT;
+    mMode = MODE_WAIT_INIT;
 }
 
 /* 80C792E4-80C79318 0017A4 0034+00 1/0 0/0 0/0 .text            modeWaitInit__12daTogeRoll_cFv */
@@ -393,7 +388,7 @@ void daTogeRoll_c::modeWaitInit() {
 
 /* 80C79318-80C79324 0017D8 000C+00 2/2 0/0 0/0 .text            init_modeWait__12daTogeRoll_cFv */
 void daTogeRoll_c::init_modeWait() {
-    mMode = WAIT;
+    mMode = MODE_WAIT;
 }
 
 /* 80C79324-80C79344 0017E4 0020+00 1/0 0/0 0/0 .text            modeWait__12daTogeRoll_cFv */
@@ -405,21 +400,21 @@ void daTogeRoll_c::modeWait() {
 void daTogeRoll_c::init_modeBreak() {
     mDoAud_seStart(Z2SE_OBJ_TRAP_BREAK, &current.pos, 0,
                    dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
-    mMode = BREAK;
+    mMode = MODE_BREAK;
 }
 
 /* 80C793C8-80C795E8 001888 0220+00 1/0 0/0 0/0 .text            modeBreak__12daTogeRoll_cFv */
 void daTogeRoll_c::modeBreak() {
-    csXyz pos = shape_angle;
-    pos.x = 0.0f;
-    pos.z = 0.0f;
+    csXyz rot = shape_angle;
+    rot.x = 0.0f;
+    rot.z = 0.0f;
 
-    dComIfGp_particle_set(0x8A73, &current.pos, &pos, NULL);
-    dComIfGp_particle_set(0x8A74, &current.pos, &pos, NULL);
-    dComIfGp_particle_set(0x8A75, &current.pos, &pos, NULL);
-    dComIfGp_particle_set(0x8A76, &current.pos, &pos, NULL);
-    dComIfGp_particle_set(0x8A77, &current.pos, &pos, NULL);
-    dComIfGp_particle_set(0x8A78, &current.pos, &pos, NULL);
+    dComIfGp_particle_set(0x8A73, &current.pos, &rot, NULL);
+    dComIfGp_particle_set(0x8A74, &current.pos, &rot, NULL);
+    dComIfGp_particle_set(0x8A75, &current.pos, &rot, NULL);
+    dComIfGp_particle_set(0x8A76, &current.pos, &rot, NULL);
+    dComIfGp_particle_set(0x8A77, &current.pos, &rot, NULL);
+    dComIfGp_particle_set(0x8A78, &current.pos, &rot, NULL);
 
     fopAcM_delete(this);
 }
@@ -490,9 +485,6 @@ static int daTogeRoll_Delete(daTogeRoll_c* i_this) {
 static int daTogeRoll_Create(fopAc_ac_c* i_this) {
     return static_cast<daTogeRoll_c*>(i_this)->create();
 }
-
-/* 80C798D0-80C7992C 001D90 005C+00 2/1 0/0 0/0 .text            __dt__16daTogeRoll_HIO_cFv */
-daTogeRoll_HIO_c::~daTogeRoll_HIO_c() {}
 
 /* 80C79C70-80C79C90 -00001 0020+00 1/0 0/0 0/0 .data            l_daTogeRoll_Method */
 static actor_method_class l_daTogeRoll_Method = {
