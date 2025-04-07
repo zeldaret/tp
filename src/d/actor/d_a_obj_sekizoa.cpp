@@ -223,6 +223,8 @@ int daObj_Sekizoa_c::create() {
 /* 80CCE8B0-80CCEC54 000650 03A4+00 1/1 0/0 0/0 .text            CreateHeap__15daObj_Sekizoa_cFv */
 int daObj_Sekizoa_c::CreateHeap() {
     J3DModelData* modelData;
+    int arcIdx;
+    int fileIdx;
 
     int bmd_idx = 0;
     int ret = 0;
@@ -236,8 +238,9 @@ int daObj_Sekizoa_c::CreateHeap() {
         break;
     }
 
-    modelData = static_cast<J3DModelData*>(
-        dComIfG_getObjectRes(l_resNameList[l_bmdData[bmd_idx].arcIdx], l_bmdData[bmd_idx].fileIdx));
+    arcIdx = l_bmdData[bmd_idx].arcIdx;
+    fileIdx = l_bmdData[bmd_idx].fileIdx;
+    modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_resNameList[arcIdx], fileIdx));
     if (modelData == NULL) {
         ret = 0;
     } else {
@@ -282,8 +285,9 @@ int daObj_Sekizoa_c::CreateHeap() {
                     bmd_idx = 3;
                     break;
                 }
-                modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(
-                    l_resNameList[l_bmdData[bmd_idx].arcIdx], l_bmdData[bmd_idx].fileIdx));
+                arcIdx = l_bmdData[bmd_idx].arcIdx;
+                fileIdx = l_bmdData[bmd_idx].fileIdx;
+                modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_resNameList[arcIdx], fileIdx));
                 if (modelData == NULL) {
                     return 0;
                 }
