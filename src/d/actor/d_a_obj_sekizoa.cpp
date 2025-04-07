@@ -17,16 +17,16 @@ UNK_REL_DATA
 UNK_REL_BSS
 
 /* 80CD5EF8-80CD5F40 000020 0048+00 1/1 0/0 0/0 .data            l_bmdData */
-static int l_bmdData[9][2] = {
-    {0x24, 0x01}, 
-    {0x24, 0x01}, 
-    {0x23, 0x01}, 
-    {0x25, 0x01}, 
-    {0x26, 0x01},
-    {0x03, 0x02},
-    {0x03, 0x02},
-    {0x04, 0x02},
-    {0x05, 0x02},
+static daNpc_GetParam1 l_bmdData[9] = {
+    {36, 1}, 
+    {36, 1}, 
+    {35, 1}, 
+    {37, 1}, 
+    {38, 1},
+    {3, 2},
+    {3, 2},
+    {4, 2},
+    {5, 2},
 };
 
 /* 80CD5F40-80CD5F90 -00001 0050+00 3/4 0/0 0/0 .data            l_evtList */
@@ -67,30 +67,30 @@ static daNpcT_faceMotionAnmData_c l_faceMotionAnmData = {
 
 /* 80CD5FE0-80CD6280 000108 02A0+00 0/1 0/0 0/0 .data            l_motionAnmData */
 static daNpcT_motionAnmData_c l_motionAnmData[24] = {
-    {20, 2, 1, -1, 0, 0, 0},
-    {24, 2, 1, -1, 0, 0, 0},
-    {19, 2, 1, -1, 0, 0, 0},
-    {13, 0, 1, -1, 0, 0, 0},
-    {14, 0, 1, -1, 0, 0, 0},
-    {22, 2, 1, -1, 0, 0, 0},
-    {8, 0, 1, -1, 0, 0, 0}, 
-    {26, 0, 1, -1, 0, 0, 0},
-    {26, 0, 1, -1, 0, 0, 0},
-    {26, 0, 1, -1, 0, 0, 0},
-    {12, 0, 1, -1, 0, 0, 0},
-    {17, 0, 1, -1, 0, 0, 0},
-    {23, 2, 1, -1, 0, 0, 0},
-    {18, 2, 1, -1, 0, 0, 0},
-    {9, 0, 1, -1, 0, 0, 0},
-    {10, 0, 1, -1, 0, 0, 0},
-    {21, 2, 1, -1, 0, 0, 0},
-    {7, 0, 1, -1, 0, 0, 0},
-    {25, 0, 1, -1, 0, 0, 0},
-    {25, 0, 1, -1, 0, 0, 0},
-    {25, 0, 1, -1, 0, 0, 0},
-    {11, 0, 1, -1, 0, 0, 0},
-    {16, 0, 1, -1, 0, 0, 0},
-    {20, 2, 1, -1, 0, 0, 0}};
+    {daObj_Sekizoa_c::ANM_SEKI_WAIT_A, 2, 1, -1, 0, 0, 0},
+    {daObj_Sekizoa_c::ANM_SEKI_WAIT_R, 2, 1, -1, 0, 0, 0},
+    {daObj_Sekizoa_c::ANM_SEKI_STILL_R, 2, 1, -1, 0, 0, 0},
+    {daObj_Sekizoa_c::ANM_SEKI_R_DEMO, 0, 1, -1, 0, 0, 0},
+    {daObj_Sekizoa_c::ANM_SEKI_R_LASTDEMO, 0, 1, -1, 0, 0, 0},
+    {daObj_Sekizoa_c::ANM_SEKI_WAIT_GAME_R, 2, 1, -1, 0, 0, 0},
+    {daObj_Sekizoa_c::ANM_SEKI_HIT_R, 0, 1, -1, 0, 0, 0}, 
+    {daObj_Sekizoa_c::ANM_SEKIR_JUMP, 0, 1, -1, 0, 0, 0},
+    {daObj_Sekizoa_c::ANM_SEKIR_JUMP, 0, 1, -1, 0, 0, 0},
+    {daObj_Sekizoa_c::ANM_SEKIR_JUMP, 0, 1, -1, 0, 0, 0},
+    {daObj_Sekizoa_c::ANM_SEKI_NO_JUMP_R, 0, 1, -1, 0, 0, 0},
+    {daObj_Sekizoa_c::ANM_SEKI_STEP_R, 0, 1, -1, 0, 0, 0},
+    {daObj_Sekizoa_c::ANM_SEKI_WAIT_L, 2, 1, -1, 0, 0, 0},
+    {daObj_Sekizoa_c::ANM_SEKI_STILL_L, 2, 1, -1, 0, 0, 0},
+    {daObj_Sekizoa_c::ANM_SEKI_L_DEMO, 0, 1, -1, 0, 0, 0},
+    {daObj_Sekizoa_c::ANM_SEKI_L_LASTDEMO, 0, 1, -1, 0, 0, 0},
+    {daObj_Sekizoa_c::ANM_SEKI_WAIT_GAME_L, 2, 1, -1, 0, 0, 0},
+    {daObj_Sekizoa_c::ANM_SEKI_HIT_L, 0, 1, -1, 0, 0, 0},
+    {daObj_Sekizoa_c::ANM_SEKIL_JUMP, 0, 1, -1, 0, 0, 0},
+    {daObj_Sekizoa_c::ANM_SEKIL_JUMP, 0, 1, -1, 0, 0, 0},
+    {daObj_Sekizoa_c::ANM_SEKIL_JUMP, 0, 1, -1, 0, 0, 0},
+    {daObj_Sekizoa_c::ANM_SEKI_NO_JUMP_L, 0, 1, -1, 0, 0, 0},
+    {daObj_Sekizoa_c::ANM_SEKI_STEP_L, 0, 1, -1, 0, 0, 0},
+    {daObj_Sekizoa_c::ANM_SEKI_WAIT_A, 2, 1, -1, 0, 0, 0}};
 
 /* 80CD6280-80CD6290 0003A8 0010+00 0/1 0/0 0/0 .data            l_faceMotionSequenceData */
 static daNpcT_MotionSeqMngr_c::sequenceStepData_c l_faceMotionSequenceData[4] = {
@@ -174,7 +174,7 @@ daObj_Sekizoa_c::~daObj_Sekizoa_c() {
     if (mpMorf[1] != NULL) {
         mpMorf[1]->stopZelAnime();
     }
-    if (mType == 0) {
+    if (mType == TYPE_0) {
         if (daNpcT_chkTmpBit(0x31) != 0) {
             mDoAud_subBgmStop();
         }
@@ -246,20 +246,22 @@ int daObj_Sekizoa_c::create() {
 
 /* 80CCE8B0-80CCEC54 000650 03A4+00 1/1 0/0 0/0 .text            CreateHeap__15daObj_Sekizoa_cFv */
 int daObj_Sekizoa_c::CreateHeap() {
-    int var6 = 0;
-    int ret = 0;
+    J3DModelData* modelData;
 
+    int bmd_idx = 0;
+    int ret = 0;
     switch (mType) {
-        case 5:
-            var6 = 5;
+        case TYPE_4:
+        case TYPE_5:
+            bmd_idx = 5;
             break;
-        case 6:
-            var6 = 2;
+        case TYPE_6:
+            bmd_idx = 2;
             break;
     }
 
-    J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(
-        l_resNameList[l_bmdData[var6][1]], l_bmdData[var6][0]));
+    modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(
+        l_resNameList[l_bmdData[bmd_idx].arcIdx], l_bmdData[bmd_idx].fileIdx));
     if (modelData == NULL) {
         ret = 0;
     }
@@ -272,7 +274,7 @@ int daObj_Sekizoa_c::CreateHeap() {
             ret = 0;
         }
         else {
-            if (mType == 6) {
+            if (mType == TYPE_6) {
                 int success_create = mInvModel.create(mpMorf[0]->getModel(), 1);
                 if (success_create == NULL) {
                     return 0;
@@ -285,32 +287,32 @@ int daObj_Sekizoa_c::CreateHeap() {
                     return 0;
                 }
             } else {
-                switch ((s32) mType) {
-                case 0:
-                    var6 = 3;
+                switch (mType) {
+                case TYPE_0:
+                    bmd_idx = 3;
                     break;
-                case 1:
-                    var6 = 4;
+                case TYPE_1:
+                    bmd_idx = 4;
                     break;
-                case 2:
-                    var6 = 3;
+                case TYPE_2:
+                    bmd_idx = 3;
                     break;
-                case 3:
-                    var6 = 4;
+                case TYPE_3:
+                    bmd_idx = 4;
                     break;
-                case 4:
-                    var6 = 7;
+                case TYPE_4:
+                    bmd_idx = 7;
                     break;
-                case 5:
-                    var6 = 8;
+                case TYPE_5:
+                    bmd_idx = 8;
                     break;
                 default:
-                    var6 = 3;
+                    bmd_idx = 3;
                     break;
                 }
-                J3DModelData* modelData2 = static_cast<J3DModelData*>(dComIfG_getObjectRes(
-                    l_resNameList[l_bmdData[var6][0]], l_bmdData[var6][1]));
-                if (modelData2 == NULL) {
+                modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(
+                    l_resNameList[l_bmdData[bmd_idx].arcIdx], l_bmdData[bmd_idx].fileIdx));
+                if (modelData == NULL) {
                     return 0;
                 }
                 mpMcaMorf = new mDoExt_McaMorfSO(modelData, NULL,
@@ -321,8 +323,8 @@ int daObj_Sekizoa_c::CreateHeap() {
                 }
             }
 
-            if (mType == 6) {
-                if (setFaceMotionAnm(0, false) == NULL || setMotionAnm(0x17, 0.0f, 0)){
+            if (mType == TYPE_6) {
+                if (setFaceMotionAnm(0, false) && setMotionAnm(0x17, 0.0f, 0)){
                     ret = 1;
                 }
                 else {
@@ -330,7 +332,7 @@ int daObj_Sekizoa_c::CreateHeap() {
                 }
             }
             else {
-                if (setFaceMotionAnm(0, false) == NULL || setMotionAnm(0, 0.0f, 0)){
+                if (setFaceMotionAnm(0, false) && setMotionAnm(0, 0.0f, 0)){
                     ret = 1;
                 }
                 else {
@@ -365,11 +367,11 @@ void daObj_Sekizoa_c::Draw() {
     }
 
     int temp_int = 0;
-    if (mType == 2 || mType == 3 || mType == 4
-        || mType == 5 || mType == 6 ) {
+    if (mType == TYPE_2 || mType == TYPE_3 || mType == TYPE_4
+        || mType == TYPE_5 || mType == TYPE_6 ) {
         temp_int = 1;
     }
-    daNpcT_c::draw(0, 0, field_0xde8, NULL, 0.0f, temp_int, (mType == 6), 0);
+    daNpcT_c::draw(0, 0, field_0xde8, NULL, 0.0f, temp_int, (mType == TYPE_6), 0);
 }
 
 /* 80CCED74-80CCED94 000B14 0020+00 1/1 0/0 0/0 .text
@@ -380,37 +382,32 @@ int daObj_Sekizoa_c::createHeapCallBack(fopAc_ac_c* i_this) {
 
 /* 80CCED94-80CCEE30 000B34 009C+00 1/1 0/0 0/0 .text            srchSekizoa__15daObj_Sekizoa_cFPvPv */
 void* daObj_Sekizoa_c::srchSekizoa(void* i_actor, void* i_this) {
-    if (mFindCount < 50 && i_this != NULL && i_this != i_actor) {
-        int execute_status = fopAcM_IsExecuting(fopAcM_GetID(i_this));
-        if (execute_status != 0 && fopAcM_GetName(i_this) == PROC_OBJ_SEKIZOA) {
-            mFindActorPtrs[mFindCount] = (fopAc_ac_c *) i_this;
+    if ((mFindCount < 50) && i_actor != NULL && (i_actor != i_this)) {
+        int execute_status = fopAcM_IsExecuting(fopAcM_GetID(i_actor));
+        if (execute_status != 0 && fopAcM_GetName(i_actor) == PROC_OBJ_SEKIZOA) {
+            mFindActorPtrs[mFindCount] = (fopAc_ac_c *) i_actor;
             mFindCount++;
         }
     }
-    return 0;
+    return NULL;
 }
 
 /* ############################################################################################## */
 
 /* 80CCEE30-80CCEFA4 000BD0 0174+00 1/1 0/0 0/0 .text            getSekizoaP__15daObj_Sekizoa_cFi */
 fopAc_ac_c* daObj_Sekizoa_c::getSekizoaP(int param_0) {
-    fopAc_ac_c* ret = NULL;
-    fopAc_ac_c* pfVar4;
-
-    float distance = 1.0e9f;
+    fopAc_ac_c* actor = NULL;
+    f32 minDistance = 1.0e9f;
     mFindCount = 0;
-    fopAcM_Search((fopAcIt_JudgeFunc) srchSekizoa, this);
-    for (int i=0; i < mFindCount; i++) {
-        pfVar4 = mFindActorPtrs[i];
-
-        int var3 = getType();
-
-        if ((param_0 == var3) && (fopAcM_searchActorDistance(this, pfVar4) < distance)) {
-            distance = fopAcM_searchActorDistance(this, mFindActorPtrs[i]);
-            ret = mFindActorPtrs[i];
+    daObj_Sekizoa_c* pfVar4 = (daObj_Sekizoa_c*) fopAcM_Search(srchSekizoa, this);
+    for (int i = 0; i < mFindCount; i++) {
+        pfVar4 = (daObj_Sekizoa_c*) mFindActorPtrs[i];
+        if ((param_0 == pfVar4->getType()) && (fopAcM_searchActorDistance(this, pfVar4) < minDistance)) {
+            minDistance = fopAcM_searchActorDistance(this, mFindActorPtrs[i]);
+            actor = mFindActorPtrs[i];
         }
     }
-    return ret;
+    return actor;
 }
 
 /* 80CCEFA4-80CCF03C 000D44 0098+00 1/1 0/0 0/0 .text            getKMsgTagP__15daObj_Sekizoa_cFv */
@@ -473,7 +470,7 @@ void daObj_Sekizoa_c::reset() {
     }
     memset(&mInitFunc, 0, iVar1);
     temp_angle.setall(0.0f);
-    temp_angle.y = home.angle.GetY();
+    temp_angle.y = home.angle.y;
     switch (mType) {
         case TYPE_0:
             if (daNpcT_chkTmpBit(0x31) != 0){
@@ -547,7 +544,7 @@ void daObj_Sekizoa_c::setParam() {
     mMorfFrames = daObj_Sekizoa_Param_c::m.field_0x44;
     gravity = daObj_Sekizoa_Param_c::m.field_0x04;
 
-    if(mType == 2 || mType == 3) {
+    if(mType == TYPE_2 || mType == TYPE_3) {
         gravity = 0.0f;
     }
     if (mReset != 0) {
@@ -590,20 +587,14 @@ void daObj_Sekizoa_c::setParam() {
                 cStack_24 = l_srcPosL;
             }
             break;
-        
+            
         case TYPE_4:
-            mReset = 0;
-            break;
-
         case TYPE_5:
-            break;
-
-        case TYPE_6:
             mReset = 0;
             break;
 
         default:
-            break;
+            mReset = 0;
         }
         if (mReset != 0) {
             setPos(cStack_24);
@@ -621,10 +612,15 @@ BOOL daObj_Sekizoa_c::checkChangeEvt() {
         mEvtNo = 7;
         evtChange();
         return 1;
-    case -1:
-        break;
+    case TYPE_1:
+    case TYPE_2:
+    case TYPE_3:
+    case TYPE_4:
+    case TYPE_5:
+    case TYPE_6:
+    default:
+        return 0;
     }
-    return 0;
 }
 
 /* 80CCF704-80CCF708 0014A4 0004+00 1/0 0/0 0/0 .text setAfterTalkMotion__15daObj_Sekizoa_cFv */
@@ -635,7 +631,7 @@ void daObj_Sekizoa_c::setAfterTalkMotion() {
 /* 80CCF708-80CCF9A8 0014A8 02A0+00 1/1 0/0 0/0 .text            srchActors__15daObj_Sekizoa_cFv */
 void daObj_Sekizoa_c::srchActors() {
     switch (mType) {
-    case 0:
+    case TYPE_0:
         if (mActorMngrs[1].getActorP() == NULL) {
             mActorMngrs[1].entry(getSekizoaP(2));
         }
@@ -656,11 +652,10 @@ void daObj_Sekizoa_c::srchActors() {
         }
         if (mActorMngrs[7].getActorP() == NULL) {
             mActorMngrs[7].entry(getNearestActorP(0x132));
-            return;
         }
         return;
 
-    case 1:
+    case TYPE_1:
         if (mActorMngrs[3].getActorP() == NULL) {
             mActorMngrs[3].entry(getSekizoaP(0));
         }
@@ -679,21 +674,25 @@ void daObj_Sekizoa_c::srchActors() {
         }
         break;
 
-    case 4:
-        break;
-        
-    default:
+    case TYPE_2:
+    case TYPE_3:
         if (mActorMngrs[3].getActorP() == NULL) {
             mActorMngrs[3].entry(getSekizoaP(0));
             return;
         }
         break;
 
-
-    case 6:
-        if (mActorMngrs[0].getActorP() == 0) {
+    case TYPE_4:
+    case TYPE_5:
+        break;
+        
+    case TYPE_6:
+        if (mActorMngrs[0].getActorP() == NULL) {
             mActorMngrs[0].entry(getKMsgTagP());
         }
+        break;
+
+    default:
         break;
     }
 }
@@ -705,20 +704,18 @@ BOOL daObj_Sekizoa_c::evtTalk() {
     }
     else {
         mPreItemNo = 0;
-    
-        if (dComIfGp_event_chkTalkXY() == 0) {
-            if (dComIfGp_evmng_ChkPresentEnd() != 0) {
+        if (dComIfGp_event_chkTalkXY()) {
+            if (dComIfGp_evmng_ChkPresentEnd() == 0) {
                 return 1;
             }
             mEvtNo = 1;
             evtChange();
+            return 1;
         }
         else {
             setAction(&daObj_Sekizoa_c::talk);
         }
-        return 1;
     }
-
     return 1;
 }
 
@@ -727,7 +724,7 @@ BOOL daObj_Sekizoa_c::evtTalk() {
 /* 80CCFAA8-80CCFBA0 001848 00F8+00 1/0 0/0 0/0 .text            evtCutProc__15daObj_Sekizoa_cFv */
 BOOL daObj_Sekizoa_c::evtCutProc() {
     int staff_id = dComIfGp_getEventManager().getMyStaffId("Sekizoa", this, -1);
-    if (mType == 1 || mType == 3) {
+    if (mType == TYPE_1 || mType == TYPE_3) {
         staff_id = dComIfGp_getEventManager().getMyStaffId("Sekizob", this, -1);
     }
     if (staff_id != -1) {
@@ -757,10 +754,8 @@ void daObj_Sekizoa_c::action() {
         mStagger.initialize();
         mMode = 1;
     }
-    // if ((this->*mInitFunc)())
-    // (this->*(mExecuteFunc))(0)
     if (mInitFunc != NULL) {
-        if (mInitFunc == mExecuteFunc) {
+        if (mExecuteFunc == mInitFunc) {
             (this->*(mExecuteFunc))(0);
         }
         else {
@@ -793,7 +788,7 @@ void daObj_Sekizoa_c::setAttnPos() {
     mJntAnm.calcJntRad(0.2f, 1.0f, rad_angle_y);
     setMtx();
 
-    if (mType == 6) {
+    if (mType == TYPE_6) {
         J3DModel* mp_model = mpMorf[1]->getModel();
         mDoMtx_stack_c::transS(current.pos);
         mDoMtx_stack_c::ZXYrotM(mCurAngle);
@@ -805,7 +800,7 @@ void daObj_Sekizoa_c::setAttnPos() {
     }
     if (mpMcaMorf != NULL) {
         ((mDoExt_McaMorfSO *) mpMcaMorf)->play(NULL, 0);
-        if (mType == 1 || mType == 3 || mType == 5) {
+        if (mType == TYPE_1 || mType == TYPE_3 || mType == TYPE_5) {
             mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(7));
         }
         else {
@@ -829,8 +824,8 @@ void daObj_Sekizoa_c::setAttnPos() {
  */
 void daObj_Sekizoa_c::setCollision() {
     u32 temp_1;
-    u32 temp_3;
     u32 temp_2;
+    u32 temp_3;
     cXyz temp_vec2;
 
     if (mHide == 0) {
@@ -849,9 +844,9 @@ void daObj_Sekizoa_c::setCollision() {
             temp_2 = 0;
             temp_3 = 0;
         }
-        if (mType == 2 || mType == 3 || mType == 4 || mType == 5) {
+        if (mType == TYPE_2 || mType == TYPE_3 || mType == TYPE_4 || mType == TYPE_5) {
             cXyz temp_vec;
-            if (mType == 2 || mType == 4) {
+            if (mType == TYPE_2 || mType == TYPE_4) {
                 temp_vec.set(-160.0f, 0.0f, 120.0f);
             }
             else {
@@ -883,7 +878,7 @@ void daObj_Sekizoa_c::setCollision() {
         temp_vec2.set(0.0f, 0.0f, 0.0f);
         f32 height = mCylH;
         f32 radius = mWallR;
-        if (mType == 6) {
+        if (mType == TYPE_6) {
             temp_vec2.set(0.0f, 0.0f, -40.0f);
             radius = 140.0f;
         }
@@ -909,28 +904,28 @@ int daObj_Sekizoa_c::drawDbgInfo() {
 /* 80CD03C8-80CD04FC 002168 0134+00 1/0 0/0 0/0 .text            drawOtherMdl__15daObj_Sekizoa_cFv
  */
 void daObj_Sekizoa_c::drawOtherMdl() {
-    if (mType == 6) {
+    if (mType == TYPE_6) {
         J3DModel* mp_model = mpMorf[1]->getModel();
         mp_model->getModelData();
         g_env_light.settingTevStruct(0, &current.pos, &tevStr);
         g_env_light.setLightTevColorType_MAJI(mp_model, &tevStr);
         mpMorf[1]->entryDL();
     }
-    if ((mpMcaMorf != NULL) && (mParamDrawOtherMdl != 0)) {
+    if ((mpMcaMorf != NULL) && (field_0x1179 != 0)) {
         J3DModel* mp_model = mpMcaMorf->getModel();
         J3DModelData* mp_model_data = mp_model->getModelData();
         g_env_light.setLightTevColorType_MAJI(mp_model_data, &tevStr);
-        if (mAnmFlags & ANM_PAUSE_BTP) {
-            mBtkAnm.entry(&mp_model_data->getMaterialTable(), mBtkAnm.getFrame());
+        if (mAnmFlags & ANM_PLAY_BTK) {
+            mBtkAnm.entry(mp_model_data);
         }
-        if (mAnmFlags & ANM_PLAY_BCK) {
-            mBrkAnm.entry(&mp_model_data->getMaterialTable(), mBrkAnm.getBrkAnm()->getFrame());
+        if (mAnmFlags & ANM_PLAY_BRK) {
+            mBrkAnm.entry(mp_model_data);
         }
         mpMcaMorf->entryDL();
-        if (mAnmFlags & ANM_PLAY_BCK) {
+        if (mAnmFlags & ANM_PLAY_BRK) {
             mBrkAnm.remove(mp_model_data);
         }
-        if (mAnmFlags & ANM_PAUSE_BTP) {
+        if (mAnmFlags & ANM_PLAY_BTK) {
             mBtkAnm.remove(mp_model_data);
         }
         dComIfGd_addRealShadow(mShadowKey, mp_model);
@@ -975,7 +970,7 @@ int daObj_Sekizoa_c::setYariAnm(int i_frame, int i_mode, f32 i_morf) {
 
     s32 anm_data;
     J3DAnmTransform* anim = NULL;
-    mParamDrawOtherMdl = 0;
+    field_0x1179 = 0;
     if (mpMcaMorf != NULL) {
         anm_data = yariAnmData[i_frame].param_0;
         if (anm_data > 0) {
@@ -983,7 +978,7 @@ int daObj_Sekizoa_c::setYariAnm(int i_frame, int i_mode, f32 i_morf) {
         }
         if (anim != NULL) {
             ((mDoExt_McaMorfSO *) mpMcaMorf)->setAnm(anim, i_mode, i_morf, 1.0f, 0.0f, -1.0f);
-            mParamDrawOtherMdl = 1;
+            field_0x1179 = 1;
         }
     }
     return 1;
@@ -992,7 +987,7 @@ int daObj_Sekizoa_c::setYariAnm(int i_frame, int i_mode, f32 i_morf) {
 /* 80CD05D0-80CD06BC 002370 00EC+00 1/0 0/0 0/0 .text            drawGhost__15daObj_Sekizoa_cFv */
 void daObj_Sekizoa_c::drawGhost() {
     J3DModel* ghost_model = mpMorf[0]->getModel();
-    if (mType == 6) {
+    if (mType == TYPE_6) {
         g_env_light.settingTevStruct(7, &current.pos, &tevStr);
         g_env_light.setLightTevColorType_MAJI(ghost_model->getModelData(), &tevStr);
         mInvModel.entryDL(NULL);
@@ -1008,6 +1003,7 @@ void daObj_Sekizoa_c::drawGhost() {
 
 /* 80CD06BC-80CD0A84 00245C 03C8+00 2/0 0/0 0/0 .text afterSetMotionAnm__15daObj_Sekizoa_cFiifi */
 bool daObj_Sekizoa_c::afterSetMotionAnm(int i_frame, int i_mode, f32 i_morf, int param_3) {
+    f32 var1;
     static struct {
         int field_0x0;
         u32 field_0x4;
@@ -1035,7 +1031,9 @@ bool daObj_Sekizoa_c::afterSetMotionAnm(int i_frame, int i_mode, f32 i_morf, int
     J3DAnmTextureSRTKey* anm_text = NULL;
     J3DAnmTevRegKey* anm_tev = NULL;
     if (mCreating == 1) {
-        i_morf = 0.0f;
+        var1 = 0.0f;
+    } else {
+        var1 = i_morf;
     }
     int frame_1 = 1;
     int frame_2 = 3;
@@ -1069,14 +1067,14 @@ bool daObj_Sekizoa_c::afterSetMotionAnm(int i_frame, int i_mode, f32 i_morf, int
         frame_1 = 3;
         frame_2 = 5;
     }
-    else if (mSetFadeLightOff) {
+    else if (mFadeLightOn) {
         frame_1 = 2;
         frame_2 = 4;
-        if (mSetFadeLightOff2 != 0) {
+        if (field_0x1178 != 0) {
             frame_2 = 1;
         }   
         else {
-            if (mSetMotionAnm != 0) {
+            if (field_0x1177 != 0) {
                 frame_2 = 2;
             }
             else {
@@ -1133,13 +1131,13 @@ bool daObj_Sekizoa_c::afterSetMotionAnm(int i_frame, int i_mode, f32 i_morf, int
         if ((anm_tev == NULL) && (brkAnmData[frame_2].field_0x0 != -1)) {
             return 0;
         }
-        else if (mType == 6) {
+        else if (mType == TYPE_6) {
             return 1;
         }
         else {
-            frame_1 = setYariAnm(i_frame, i_mode, i_morf);
+            frame_1 = setYariAnm(i_frame, i_mode, var1);
             if (frame_1  & 0xFF) {
-                if (mType == 2 || mType == 3 || mType == 4 || mType == 5) {
+                if (mType == TYPE_2 || mType == TYPE_3 || mType == TYPE_4 || mType == TYPE_5) {
                     mpMorf[0]->setPlaySpeed(0.0f);
                     if (mpMcaMorf != NULL) {
                         mpMcaMorf->setPlaySpeed(0.0f);
@@ -1159,13 +1157,14 @@ bool daObj_Sekizoa_c::afterSetMotionAnm(int i_frame, int i_mode, f32 i_morf, int
 int daObj_Sekizoa_c::selectAction() {
     mInitFunc = NULL;
     switch (mType) {
-    case 0:
-    case 1:
+    case TYPE_0:
+    case TYPE_1:
         mInitFunc = &daObj_Sekizoa_c::puzzle;
-    case 2:
+        break;
+    default:
         mInitFunc = &daObj_Sekizoa_c::wait;
+        break;
     }
-
     return 1;
 }
 
@@ -1203,7 +1202,7 @@ int daObj_Sekizoa_c::checkMoveDirection() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(current.angle.y);
     mDoMtx_stack_c::multVec(&temp_vec, &temp_vec2);
-    if (chkPointInArea(actor_3->current.pos, temp_vec2, 0.5f*daObj_Sekizoa_Param_c::m.field_0x8C, 300.0f, -300.0f, 0) == 0) {
+    if (chkPointInArea(actor_3->current.pos, temp_vec2, daObj_Sekizoa_Param_c::m.field_0x8C / 2, 300.0f, -300.0f, 0) == 0) {
         temp_vec2.y += 10.0f;
         mGndChk.SetPos(&temp_vec2);
         if (fabsf(dComIfG_Bgsp().GroundCross(&mGndChk) - current.pos.y) < 0.1f) {
@@ -1225,11 +1224,11 @@ int daObj_Sekizoa_c::checkMoveDirection() {
 /* 80CD0DE8-80CD0E30 002B88 0048+00 3/3 0/0 0/0 .text getWaitMotionNo__15daObj_Sekizoa_cFv */
 int daObj_Sekizoa_c::getWaitMotionNo() {
     switch (mType) {
-    case 0:
+    case TYPE_0:
         return 1;
-    case 1:
+    case TYPE_1:
         return 12;
-    case 6:
+    case TYPE_6:
         return 23;
     }
     return 0;
@@ -1238,11 +1237,11 @@ int daObj_Sekizoa_c::getWaitMotionNo() {
 /* 80CD0E30-80CD0E78 002BD0 0048+00 4/4 0/0 0/0 .text getGameMotionNo__15daObj_Sekizoa_cFv */
 int daObj_Sekizoa_c::getGameMotionNo() {
     switch (mType) {
-    case 0:
+    case TYPE_0:
         return 5;
-    case 1:
+    case TYPE_1:
         return 16;
-    case 6:
+    case TYPE_6:
         return 23;
     }
     return 0;
@@ -1251,9 +1250,9 @@ int daObj_Sekizoa_c::getGameMotionNo() {
 /* 80CD0E78-80CD0EAC 002C18 0034+00 1/1 0/0 0/0 .text getNoJumpMotionNo__15daObj_Sekizoa_cFv */
 int daObj_Sekizoa_c::getNoJumpMotionNo() {
     switch (mType) {
-    case 0:
+    case TYPE_0:
         return 10;
-    case 1:
+    case TYPE_1:
         return 21;
     }
     return -1;
@@ -1262,9 +1261,9 @@ int daObj_Sekizoa_c::getNoJumpMotionNo() {
 /* 80CD0EAC-80CD0EE0 002C4C 0034+00 1/1 0/0 0/0 .text getHitMotionNo__15daObj_Sekizoa_cFv */
 int daObj_Sekizoa_c::getHitMotionNo() {
     switch (mType) {
-    case 0:
+    case TYPE_0:
         return 6;
-    case 1:
+    case TYPE_1:
         return 17;
     }
     return -1;
@@ -1273,9 +1272,9 @@ int daObj_Sekizoa_c::getHitMotionNo() {
 /* 80CD0EE0-80CD0F14 002C80 0034+00 2/2 0/0 0/0 .text getStepMotionNo__15daObj_Sekizoa_cFv */
 int daObj_Sekizoa_c::getStepMotionNo() {
     switch (mType) {
-    case 0:
+    case TYPE_0:
         return 11;
-    case 1:
+    case TYPE_1:
         return 22;
     }
     return -1;
@@ -1298,31 +1297,31 @@ void daObj_Sekizoa_c::jump() {
     case 1:
         if (checkMoveDirection() != 0) {
             switch (mType) {
-            case 0:
+            case TYPE_0:
                 mMotionSeqMngr.setNo(7, -1.0f, 0, 0);
                 mSound.startCreatureVoice(Z2SE_SEKI_V_JUMP_1, -1);
                 break;
-            case 1:
+            case TYPE_1:
                 mMotionSeqMngr.setNo(18, -1.0f, 0, 0);
                 mSound.startCreatureVoice(Z2SE_SEKI_V_JUMP_2, -1);
                 break;
-            case 2:
+            case TYPE_2:
                 ;
             }
             mJump = 2;
         } else {
             mMotionSeqMngr.setNo(getNoJumpMotionNo(), -1.0f, 0, 0);
-            if (mType == 0) {
+            if (mType == TYPE_0) {
                 mSound.startCreatureVoice(Z2SE_SEKI_V_NO_JUMP_1, -1);
-            } else if (mType == 1) {
+            } else if (mType == TYPE_1) {
                 mSound.startCreatureVoice(Z2SE_SEKI_V_NO_JUMP_2, -1);
             }
             mJump = 0;
         }
         speedF = 0.0f;
         speed.setall(0.0f);
-        mFloatJump2 = 0.0f;
-        mFloatJump = 0.0f;
+        mJumpHeight = 0.0f;
+        mJumpSpeed = 0.0f;
         break;
     
     case 2:
@@ -1340,67 +1339,39 @@ void daObj_Sekizoa_c::jump() {
                     break;
                 }
                 mCXyzJump = current.pos;
-                mFloatJump = daObj_Sekizoa_Param_c::m.field_0x90;
+                mJumpSpeed = daObj_Sekizoa_Param_c::m.field_0x90;
                 return;
             }
         } else {
             if ((mJump == 2) && (mCyl.ChkCoHit() != 0) && (fopAcM_GetName(mCyl.GetCoHitObj()->GetAc()) == 0x20)) {
                 dComIfGp_getVibration().StartShock(VIBMODE_S_POWER5, 15, cXyz(0.0f, 1.0f, 0.0f));             
                 mMotionSeqMngr.setNo(getHitMotionNo(), -1.0f, 0, 0);
-                if (mType == 0) {
+                if (mType == TYPE_0) {
                     mSound.startCreatureVoice(Z2SE_SEKI_V_COL1, -1);
-                } else if (mType == 1) {
+                } else if (mType == TYPE_1) {
                     mSound.startCreatureVoice(Z2SE_SEKI_V_COL2, -1);
                     mSound.startCreatureSound(Z2SE_SEKI_JUMP_COL, 0, -1);
                 }
-                mFloatJump = daObj_Sekizoa_Param_c::m.field_0x90;
+                mJumpSpeed = daObj_Sekizoa_Param_c::m.field_0x90;
                 mJump = 3;
             }
             if (mJump == 2) {
-                cLib_chaseF(&mFloatJump2, daObj_Sekizoa_Param_c::m.field_0x8C, mFloatJump);
+                cLib_chaseF(&mJumpHeight, daObj_Sekizoa_Param_c::m.field_0x8C, mJumpSpeed);
             } else {
-                cLib_chaseF(&mFloatJump2, 0.0f, mFloatJump);
+                cLib_chaseF(&mJumpHeight, 0.0f, mJumpSpeed);
             }
-            // M2C decompilation guess
-            // float temp_f1 = daObj_Sekizoa_Param_c::m.field_0x8C * 0.5f;
-            // float temp_f5 = mFloatJump2 - temp_f1;
-            // float temp_y = ((temp_f1 * temp_f1) * daObj_Sekizoa_Param_c::m.field_0x94) + ((temp_f5 * temp_f5) * -daObj_Sekizoa_Param_c::m.field_0x94);
-            // temp_vec.set(0.0f, temp_y, mFloatJump2);
-
-            // Following assembly order
-            // float f4 = daObj_Sekizoa_Param_c::m.field_0x94;
-            // float f3 = mFloatJump2;
-            // float f1 = daObj_Sekizoa_Param_c::m.field_0x8C * 0.5f;
-            // float f5 = f3 - f1;
-            // temp_vec.x = 0.0f;
-            // float f0 = f1 * f1;
-            // float f2 = f4 * f0;
-            // f1 = -f4;
-            // f0 = f5 * f5;
-            // f0 = f1 * f0;
-            // f0 = f2 + f0;
-            // temp_vec.y = f0;
-            // temp_vec.z = f3;
-
-            // Close to match
-            float temp_y_1 = daObj_Sekizoa_Param_c::m.field_0x94;
-            float temp_y_2 = mFloatJump2;
-            float temp_y_3 = daObj_Sekizoa_Param_c::m.field_0x8C * 0.5f;
-            float temp_y_4 = temp_y_2 - temp_y_3;
-            temp_vec.set(0.0f,
-                (temp_y_1 * (temp_y_3 * temp_y_3)) + ((-temp_y_1) * (temp_y_4 * temp_y_4)),
-                mFloatJump2);
-
-            // All calculation at once
-            // float temp_y = (daObj_Sekizoa_Param_c::m.field_0x94 * (daObj_Sekizoa_Param_c::m.field_0x8C * 0.5f) * (daObj_Sekizoa_Param_c::m.field_0x8C * 0.5f))
-            //                 + ((-daObj_Sekizoa_Param_c::m.field_0x94) * ((mFloatJump2 - (daObj_Sekizoa_Param_c::m.field_0x8C * 0.5f)) * (mFloatJump2 - (daObj_Sekizoa_Param_c::m.field_0x8C * 0.5f))));
-            // temp_vec.set(0.0f, temp_y, mFloatJump2);
+            
+            f32 var_f31 = daObj_Sekizoa_Param_c::m.field_0x94;
+            f32 var_f29 = var_f31 * ((daObj_Sekizoa_Param_c::m.field_0x8C * 0.5f) * (daObj_Sekizoa_Param_c::m.field_0x8C * 0.5f));
+            f32 var_f30 = mJumpHeight - (daObj_Sekizoa_Param_c::m.field_0x8C * 0.5f);
+            
+            temp_vec.set(0.0f, var_f29 + (-var_f31 * (var_f30 * var_f30)), mJumpHeight);
 
             mDoMtx_stack_c::YrotS(current.angle.y);
             mDoMtx_stack_c::multVec(&temp_vec, &temp_vec2);
             current.pos = mCXyzJump + temp_vec2;
-            cLib_chaseF(&mFloatJump, daObj_Sekizoa_Param_c::m.field_0x90*0.5f, 0.25f);
-            if ((mFloatJump2 <= 0) || (daObj_Sekizoa_Param_c::m.field_0x8C <= mFloatJump2)) {
+            cLib_chaseF(&mJumpSpeed, daObj_Sekizoa_Param_c::m.field_0x90*0.5f, 0.25f);
+            if ((mJumpHeight <= 0) || (daObj_Sekizoa_Param_c::m.field_0x8C <= mJumpHeight)) {
                 landing();
                 mJump = 4;
                 return;
@@ -1453,7 +1424,7 @@ int daObj_Sekizoa_c::cutStart(int i_staffIdx) {
     int prm = -1;
     int timer = 0;
     int msgNo = 0;
-    char acStack_90 [116];
+    char acStack_90 [100];
 
     int* prm_p = dComIfGp_evmng_getMyIntegerP(i_staffIdx, "prm");
     if (prm_p != NULL) {
@@ -1473,16 +1444,16 @@ int daObj_Sekizoa_c::cutStart(int i_staffIdx) {
         case 0:
             mFaceMotionSeqMngr.setNo(0, 0.0f, 0, 0);
             switch (mType) {
-            case 0:
+            case TYPE_0:
                 mMotionSeqMngr.setNo(2, 0.0f, 0, 0);
                 break;
-            case 1:
+            case TYPE_1:
                 mMotionSeqMngr.setNo(13, 0.0f, 0, 0);
                 break;
-            case 2:
+            case TYPE_2:
                 ;
             }
-            if (mType == 0) {
+            if (mType == TYPE_0) {
                 daObj_SMTile_c* actor_4 = (daObj_SMTile_c*) mActorMngrs[4].getActorP();
                 actor_4->reset();
                 dComIfGp_getEvent().setPt2(actor_4);
@@ -1501,7 +1472,7 @@ int daObj_Sekizoa_c::cutStart(int i_staffIdx) {
             }
             c_stack_c8.setall(0);
             switch (mType) {
-            case 0:
+            case TYPE_0:
                 if (daNpcT_chkEvtBit(0x25E) != 0) {
                     c_stack_9c = l_srcPosL;
                 }
@@ -1511,7 +1482,7 @@ int daObj_Sekizoa_c::cutStart(int i_staffIdx) {
                 setPos(c_stack_9c);
                 setAngle(c_stack_c8.y);
                 break;
-            case 1:
+            case TYPE_1:
                 if (daNpcT_chkEvtBit(0x25E) != 0) {
                     c_stack_9c = l_srcPosR;
                 }
@@ -1521,13 +1492,13 @@ int daObj_Sekizoa_c::cutStart(int i_staffIdx) {
                 setPos(c_stack_9c);
                 setAngle(c_stack_c8.y);
                 break;
-            case 2:
+            case TYPE_2:
                 ;
             }
             break;
         
         case 1:
-            if (mType == 0) {
+            if (mType == TYPE_0) {
                 daNpcT_c* actor_1 = (daNpcT_c*) mActorMngrs[1].getActorP();
                 actor_1->current.pos.y += 1000.0f;
                 actor_1->old.pos = actor_1->current.pos;
@@ -1537,7 +1508,7 @@ int daObj_Sekizoa_c::cutStart(int i_staffIdx) {
                 actor_2->current.pos.y += 1000.0f;
                 actor_2->old.pos = actor_2->current.pos;
                 actor_2->hide();
-                mFloatCutStart = 0.0f;
+                mColsetBlend = 0.0f;
             }
             mHide = 0;
             break;
@@ -1547,20 +1518,20 @@ int daObj_Sekizoa_c::cutStart(int i_staffIdx) {
             break;
 
         case 3:
-            if (mType == 0) {
-                mFloatCutStart = 0.0f;
+            if (mType == TYPE_0) {
+                mColsetBlend = 0.0f;
             }
             break;
 
         case 4:
             switch (mType) {
-            case 0:
+            case TYPE_0:
                 mMotionSeqMngr.setNo(1, -1.0f, 0, 0);
                 break;
-            case 1:
+            case TYPE_1:
                 mMotionSeqMngr.setNo(12, -1.0f, 0, 0);
                 break;
-            case 2:
+            case TYPE_2:
                 ;
             }
             mEventTimer = timer;
@@ -1573,13 +1544,13 @@ int daObj_Sekizoa_c::cutStart(int i_staffIdx) {
 
         case 6:
             switch (mType) {
-            case 0:
+            case TYPE_0:
                 mMotionSeqMngr.setNo(8, 0.0f, 0, 0);
                 break;
-            case 1:
+            case TYPE_1:
                 mMotionSeqMngr.setNo(19, 0.0f, 0, 0);
                 break;
-            case 2:
+            case TYPE_2:
                 ;
             }
             mAcch.ClrGroundHit();
@@ -1597,7 +1568,7 @@ int daObj_Sekizoa_c::cutStart(int i_staffIdx) {
         
         case 13:
         case 7:
-            if (mType == 0) {
+            if (mType == TYPE_0) {
                 daPy_getPlayerActorClass()->setGiantPuzzleEnd();
                 if (prm == 13) {
                     daObj_SMTile_c* actor_4 = (daObj_SMTile_c*) mActorMngrs[4].getActorP();
@@ -1613,7 +1584,7 @@ int daObj_Sekizoa_c::cutStart(int i_staffIdx) {
             mMotionSeqMngr.setNo(getWaitMotionNo(), 0.0f, 0, 0);
             setPos(home.pos);
             setAngle(home.angle.y);
-            if (mType == 0) {
+            if (mType == TYPE_0) {
                 if (daNpcT_getPlayerInfoFromPlayerList(1, fopAcM_GetRoomNo(this), &c_stack_9c, &c_stack_c8) != 0) {
                     daPy_getPlayerActorClass()->setPlayerPosAndAngle(&c_stack_9c, c_stack_c8.y, 0);
                     dComIfGp_evmng_setGoal(&c_stack_9c);
@@ -1638,7 +1609,7 @@ int daObj_Sekizoa_c::cutStart(int i_staffIdx) {
                 actor_2->hide();
             }
             mHide = 0;
-            mSetFadeLightOff = 1;
+            mFadeLightOn = 1;
             break;
 
         case 9:
@@ -1655,7 +1626,7 @@ int daObj_Sekizoa_c::cutStart(int i_staffIdx) {
             break;
 
         case 12:
-            if (mType == 0) {
+            if (mType == TYPE_0) {
                 if (daNpcT_getPlayerInfoFromPlayerList(1, fopAcM_GetRoomNo(this), &c_stack_9c, &c_stack_c8) != 0) {
                     daPy_getPlayerActorClass()->setPlayerPosAndAngle(&c_stack_9c, c_stack_c8.y, 0);
                     dComIfGp_evmng_setGoal(&c_stack_9c);
@@ -1681,11 +1652,11 @@ int daObj_Sekizoa_c::cutStart(int i_staffIdx) {
         break;
 
     case 1:
-        if (mType == 0) {
-            dKy_custom_colset(0, 9, mFloatCutStart);
-            if (mFloatCutStart < 1.0f) {
-                cLib_chaseF(&mFloatCutStart, 1.0f, 0.05f);
-                if (mFloatCutStart == 1.0f) {
+        if (mType == TYPE_0) {
+            dKy_custom_colset(0, 9, mColsetBlend);
+            if (mColsetBlend < 1.0f) {
+                cLib_chaseF(&mColsetBlend, 1.0f, 0.05f);
+                if (mColsetBlend == 1.0f) {
                     mDoAud_bgmStop(0x1e);
                 }
             } else {
@@ -1697,7 +1668,7 @@ int daObj_Sekizoa_c::cutStart(int i_staffIdx) {
         break;
         
     case 2:
-        if (mType == 0){
+        if (mType == TYPE_0){
             daObj_SMTile_c* actor_4 = (daObj_SMTile_c *) mActorMngrs[4].getActorP();
             if (mEventTimer != 0 || dComIfGp_getEventManager().getIsAddvance(i_staffIdx) != 0) {
                 if (cLib_calcTimer(&mEventTimer) == 0) {
@@ -1711,10 +1682,10 @@ int daObj_Sekizoa_c::cutStart(int i_staffIdx) {
         break;
 
     case 3:
-        if (mType == 0) {
-            dKy_custom_colset(9, 10, mFloatCutStart);
-            if (mFloatCutStart < 1.0f) {
-                cLib_chaseF(&mFloatCutStart, 1.0f, 0.05f);
+        if (mType == TYPE_0) {
+            dKy_custom_colset(9, 10, mColsetBlend);
+            if (mColsetBlend < 1.0f) {
+                cLib_chaseF(&mColsetBlend, 1.0f, 0.05f);
             } else {
                 ret = 1;
             }
@@ -1725,25 +1696,25 @@ int daObj_Sekizoa_c::cutStart(int i_staffIdx) {
         if ((mEventTimer != 0) || (dComIfGp_getEventManager().getIsAddvance(i_staffIdx) != 0)) {
             if (cLib_calcTimer(&mEventTimer) == 0) {
                 switch (mType) {
-                case 0:
+                case TYPE_0:
                     mMotionSeqMngr.setNo(3, -1.0f, 0, 0);
                     mSound.startCreatureSound(Z2SE_SEKI_ST_DEMO, 0, -1);
                     mSound.startCreatureVoice(Z2SE_SEKI_V_KAKUSEI_1, -1);
-                    mSetFadeLightOff = 1;
+                    mFadeLightOn = 1;
                     break;
-                case 1:
+                case TYPE_1:
                     mMotionSeqMngr.setNo(14, -1.0f, 0, 0);
                     mSound.startCreatureSound(Z2SE_SEKI_ST_DEMO, 0, -1);
                     mSound.startCreatureVoice(Z2SE_SEKI_V_KAKUSEI_2, -1);
-                    mSetFadeLightOff = 1;
+                    mFadeLightOn = 1;
                     break;
-                case 2:
+                case TYPE_2:
                     ;
                 }
             }
         } else {
-            if ((((mType == 0) && (mMotionSeqMngr.getNo() == 3))
-            || ((mType == 1) && (mMotionSeqMngr.getNo() == 0xE)))
+            if ((((mType == TYPE_0) && (mMotionSeqMngr.getNo() == 3))
+            || ((mType == TYPE_1) && (mMotionSeqMngr.getNo() == 0xE)))
             && (mMotionSeqMngr.checkEndSequence() != 0)) {
                 ret = 1;
             }
@@ -1798,7 +1769,9 @@ int daObj_Sekizoa_c::cutStart(int i_staffIdx) {
             }
         }
         break;
-
+    
+    case 7:
+    case 8:
     case 13:
         ret = 1;
         break;
@@ -1865,22 +1838,22 @@ int daObj_Sekizoa_c::cutTurn(int i_staffIdx) {
     if (dComIfGp_getEventManager().getIsAddvance(i_staffIdx) != 0) {
         switch (prm) {
         case 0:
-            mHalfCutTurn = daPy_getPlayerActorClass()->getGiantPuzzleAimAngle() - mHalfCutTurn;
-            mHalfCutTurn += mCurAngle.y;
+            mPlayerDirection = daPy_getPlayerActorClass()->getGiantPuzzleAimAngle() - mPlayerDirection;
+            mPlayerDirection += mCurAngle.y;
             break;
         case 1:
-            mHalfCutTurn = daPy_getPlayerActorClass()->getGiantPuzzleAimAngle();
+            mPlayerDirection = daPy_getPlayerActorClass()->getGiantPuzzleAimAngle();
             break;
         }
     }
     switch (prm) {
     case 0:
-        if (mHalfCutTurn == mCurAngle.y) {
+        if (mPlayerDirection == mCurAngle.y) {
             uvar_7 = 1;
-        } else if (step(mHalfCutTurn, -1, getStepMotionNo(), 0x1e, 0) != 0) {
+        } else if (step(mPlayerDirection, -1, getStepMotionNo(), 0x1e, 0) != 0) {
             mFaceMotionSeqMngr.setNo(0, -1.0f, 0, 0);
             mMotionSeqMngr.setNo(getGameMotionNo(), -1.0f, 0, 0);
-            mCutTurnBool = 0;
+            mTurnPlayer = 0;
         }
         break;
     case 1:
@@ -1894,6 +1867,8 @@ int daObj_Sekizoa_c::cutTurn(int i_staffIdx) {
 
 /* 80CD2908-80CD2B64 0046A8 025C+00 1/0 0/0 0/0 .text            cutJump__15daObj_Sekizoa_cFi */
 int daObj_Sekizoa_c::cutJump(int i_staffIdx) {
+    daObj_Sekizoa_c* actor_3;
+
     int ret = 0;
     int prm = -1;
     int* prm_p = dComIfGp_evmng_getMyIntegerP(i_staffIdx, "prm");
@@ -1913,11 +1888,11 @@ int daObj_Sekizoa_c::cutJump(int i_staffIdx) {
     }
     switch (prm) {
     case 0:
-        if (mType == 0) {
-            if (mIntCutJump != 0) {
-                cLib_calcTimer(&mIntCutJump);
+        if (mType == TYPE_0) {
+            if (mLatencyTime != 0) {
+                cLib_calcTimer(&mLatencyTime);
             }
-            ret = (mIntCutJump == 0);
+            ret = (mLatencyTime == 0);
         } else {
             ret = 1;
         }
@@ -1936,8 +1911,8 @@ int daObj_Sekizoa_c::cutJump(int i_staffIdx) {
         break;
 
     case 2:
-        if (mType == 0) {
-            daObj_Sekizoa_c* actor_3 = (daObj_Sekizoa_c *) mActorMngrs[3].getActorP();
+        if (mType == TYPE_0) {
+            actor_3 = (daObj_Sekizoa_c *) mActorMngrs[3].getActorP();
             if ((chkPressPlayer() != 0) || (actor_3->chkPressPlayer() != 0)) {
                 mEvtNo = 3;
                 evtChange();
@@ -1974,7 +1949,7 @@ int daObj_Sekizoa_c::cutGoal(int i_staffIdx) {
     if (dComIfGp_getEventManager().getIsAddvance(i_staffIdx) != 0) {
         switch (prm) {
         case 0:
-            if (mType == 0) {
+            if (mType == TYPE_0) {
                 strcpy(acStack_9c, l_evtList[6].eventName);
                 strcat(acStack_9c, "@");
                 dComIfGp_getEvent().setSkipZev(this, acStack_9c);
@@ -1985,18 +1960,18 @@ int daObj_Sekizoa_c::cutGoal(int i_staffIdx) {
 
         case 1:
             if (mCurAngle.y == 0) {
-                mFloatCutGoal = 65536.0f;
+                mGoalStatueAngle = 65536.0f;
             }
             else {
-                mFloatCutGoal = (float) -mCurAngle.y;
+                mGoalStatueAngle = (float) -mCurAngle.y;
             }
-            mFloatCutGoal2 = fabsf(mFloatCutGoal/30.0f);
+            mGoalStatueTurnSpeed = fabsf(mGoalStatueAngle/30.0f);
             mMotionSeqMngr.setNo(getStepMotionNo(), -1.0f, 0, 0);
             mEventTimer = timer;
             break;
 
         case 2:
-            if (mType == 0) {
+            if (mType == TYPE_0) {
                 mMotionSeqMngr.setNo(4, -1.0f, 0, 0);
                 mSound.startCreatureSound(Z2SE_SEKI_END_DEMO_1, 0, -1);
                 mSound.startCreatureVoice(Z2SE_SEKI_V_CLEAR_1, -1);
@@ -2008,12 +1983,12 @@ int daObj_Sekizoa_c::cutGoal(int i_staffIdx) {
                 dComIfGp_2dShowOn();
                 daNpcT_onEvtBit(0xEB);
             }
-            else if (mType == 1) {
+            else if (mType == TYPE_1) {
                 mMotionSeqMngr.setNo(15, -1.0f, 0, 0);
                 mSound.startCreatureSound(Z2SE_SEKI_END_DEMO_1, 0, -1);
                 mSound.startCreatureVoice(Z2SE_SEKI_V_CLEAR_2, -1);
             }
-            mSetMotionAnm =1;
+            field_0x1177 = 1;
             break;
 
         case 3:
@@ -2021,7 +1996,7 @@ int daObj_Sekizoa_c::cutGoal(int i_staffIdx) {
             break;
 
         case 4:
-            if (mType == 0) {
+            if (mType == TYPE_0) {
                 if (daNpcT_getPlayerInfoFromPlayerList(1, fopAcM_GetRoomNo(this), &cStack_a8, &cStack_b0) != 0) {
                     daPy_getPlayerActorClass()->setPlayerPosAndAngle(&cStack_a8, cStack_b0.y, 0);
                     dComIfGp_evmng_setGoal(&cStack_a8);
@@ -2038,8 +2013,8 @@ int daObj_Sekizoa_c::cutGoal(int i_staffIdx) {
             break;
 
         case 6:
-            if (mType == 0) {
-                if (mChkGoal != 0) {
+            if (mType == TYPE_0) {
+                if (mReverseStatues != 0) {
                     daNpcT_onEvtBit(0x25E);
                 }
                 daObj_Sekizoa_c* actor_1 = (daObj_Sekizoa_c*) mActorMngrs[1].getActorP();
@@ -2068,12 +2043,12 @@ int daObj_Sekizoa_c::cutGoal(int i_staffIdx) {
             break;
 
         case 9:
-            if (mType == 0) {
+            if (mType == TYPE_0) {
                 daObj_SekiDoor_c* actor_7 = (daObj_SekiDoor_c*) mActorMngrs[7].getActorP();
                 if (actor_7 != NULL) {
                     actor_7->evtSkip();
                 }
-                if (mChkGoal != 0) {
+                if (mReverseStatues != 0) {
                     daNpcT_onEvtBit(0x25E);
                 }
 
@@ -2118,7 +2093,7 @@ int daObj_Sekizoa_c::cutGoal(int i_staffIdx) {
                 daNpcT_onEvtBit(0xEB);
             }
             mHide = 1;
-            mSetFadeLightOff = 0;
+            mFadeLightOn = 0;
         }
     }
     switch (prm) {
@@ -2129,9 +2104,9 @@ int daObj_Sekizoa_c::cutGoal(int i_staffIdx) {
         break;
 
     case 1:
-        f32 temp_float = mFloatCutGoal;
-        cLib_chaseF(&mFloatCutGoal, 0.0f, mFloatCutGoal2);
-        int temp_diff = mFloatCutGoal - temp_float;
+        f32 temp_float = mGoalStatueAngle;
+        cLib_chaseF(&mGoalStatueAngle, 0.0f, mGoalStatueTurnSpeed);
+        int temp_diff = mGoalStatueAngle - temp_float;
         current.angle.y -= temp_diff;
         shape_angle.y = current.angle.y;
         mCurAngle.y = current.angle.y;
@@ -2147,7 +2122,7 @@ int daObj_Sekizoa_c::cutGoal(int i_staffIdx) {
         break;
 
     case 3:
-        if ((cLib_calcTimer(&mEventTimer) == 0) && (mType == 0)) {
+        if ((cLib_calcTimer(&mEventTimer) == 0) && (mType == TYPE_0)) {
             daObj_SekiDoor_c* actor_7 = (daObj_SekiDoor_c*) mActorMngrs[7].getActorP();
             if (actor_7->chkDestroy()) {
                 if (getBitSW2() != 0xFF) {
@@ -2162,7 +2137,7 @@ int daObj_Sekizoa_c::cutGoal(int i_staffIdx) {
         break;
 
     case 4:
-        if (mType == 0) {
+        if (mType == TYPE_0) {
             field_0xe26 = 0;
             if ((mFlow.doFlow(NULL, NULL, 0) != 0) && (mFlow.checkEndFlow() != 0)) {
                 ret = 1;
@@ -2201,7 +2176,7 @@ int daObj_Sekizoa_c::cutExit(int i_staffIdx) {
     if ((dComIfGp_getEventManager().getIsAddvance(i_staffIdx) != 0)) {
         switch (prm) {
             case 0:
-                if (mType == 0) {
+                if (mType == TYPE_0) {
                     mFlow.init(NULL, 0x72, 0, NULL);
                 }
             case 1:
@@ -2210,7 +2185,7 @@ int daObj_Sekizoa_c::cutExit(int i_staffIdx) {
     }
     switch (prm) {
     case 0:
-        if (mType == 0) {
+        if (mType == TYPE_0) {
             field_0xe26 = 0;
             if ((mFlow.doFlow(NULL, NULL, 0) != 0) && (mFlow.checkEndFlow() == 1)) {
                 switch (mFlow.getChoiceNo()) {
@@ -2262,7 +2237,7 @@ int daObj_Sekizoa_c::cutFree(int i_staffIdx) {
         case 0:
             break;
         case 1:
-            if (mType == 0) {
+            if (mType == TYPE_0) {
                 daNpcT_c* actor_1 = (daNpcT_c*) mActorMngrs[1].getActorP();
                 actor_1->current.pos = actor_1->home.pos;
                 actor_1->old.pos = actor_1->current.pos;
@@ -2287,7 +2262,7 @@ int daObj_Sekizoa_c::cutFree(int i_staffIdx) {
                 dComIfGp_2dShowOn();
             }
             mHide = 1;
-            mSetFadeLightOff = 0;
+            mFadeLightOn = 0;
             break;
         case 2:
             mEventTimer = timer;
@@ -2322,7 +2297,8 @@ int daObj_Sekizoa_c::cutFree(int i_staffIdx) {
  */
 int daObj_Sekizoa_c::cutExtinction(int i_staffIdx) {
     cXyz cStack_b0;
-    char acStack_a4 [108];
+    char acStack_a4 [100];
+    daTag_KMsg_c* actor_0;
     
     int ret = 0;
     int prm = -1;
@@ -2337,11 +2313,11 @@ int daObj_Sekizoa_c::cutExtinction(int i_staffIdx) {
     }
     if (dComIfGp_getEventManager().getIsAddvance(i_staffIdx) != 0) {
         switch (prm) {
-        case 0:
+            case 0:
             if (getBitSW2() != 0xff) {
                 dComIfGs_onSwitch(getBitSW2(), fopAcM_GetRoomNo(this));
             }
-            daTag_KMsg_c* actor_0 = (daTag_KMsg_c *) mActorMngrs[0].getActorP();
+            actor_0 = (daTag_KMsg_c *) mActorMngrs[0].getActorP();
             cStack_b0.set(0.0f, 0.0f, 78.0f);
             mDoMtx_stack_c::YrotS(actor_0->shape_angle.y);
             mDoMtx_stack_c::multVec(&cStack_b0, &cStack_b0);
@@ -2487,31 +2463,31 @@ int daObj_Sekizoa_c::puzzle(void* param_0) {
     case 2:
         if (mStagger.checkStagger() == 0) {
             if (daNpcT_chkTmpBit(0x31) != 0) {
-                if (mType == 0) {
+                if (mType == TYPE_0) {
                     attention_info.flags = 10;
                 }
                 if (daPy_getPlayerActorClass()->checkPlayerFly() != 0) {
-                    if (mType == 0) {
-                        mIntCutJump = daObj_Sekizoa_Param_c::m.field_0x98;
+                    if (mType == TYPE_0) {
+                        mLatencyTime = daObj_Sekizoa_Param_c::m.field_0x98;
                         mEvtNo = 5;
                     }
                 }
                 else {
-                    if (mCutTurnBool == 0) {
+                    if (mTurnPlayer == 0) {
                         if (daPy_getPlayerActorClass()->shape_angle.y != daPy_getPlayerActorClass()->getGiantPuzzleAimAngle()) {
-                            mCutTurnBool = 1;
+                            mTurnPlayer = 1;
                         }
                         else {
-                            mHalfCutTurn = daPy_getPlayerActorClass()->shape_angle.y;
+                            mPlayerDirection = daPy_getPlayerActorClass()->shape_angle.y;
                         }
                     }
-                    if ((mCutTurnBool != 0) && (mType == 0)) {
+                    if ((mTurnPlayer != 0) && (mType == TYPE_0)) {
                         mEvtNo = 4;
                     }
                 }
             }
             else {
-                if ((mType == 0) && (mSetWolfHowling != 0) && (getBitSW2() != 0xFF)) {
+                if ((mType == TYPE_0) && (mSetWolfHowling != 0) && (getBitSW2() != 0xFF)) {
                     if (dComIfGs_isSwitch(getBitSW2(), fopAcM_GetRoomNo(this)) == 0) {
                         field_0xe33 = 1;
                         mEvtNo = 2;
@@ -2602,7 +2578,7 @@ int daObj_Sekizoa_c::chkGoal() {
     
     daTag_EvtArea_c* evt_area_B = (daTag_EvtArea_c*) mActorMngrs[6].getActorP();
     if (evt_area_B->chkPointInArea(current.pos)) {
-        mChkGoal = (mType == 0);
+        mReverseStatues = (mType == TYPE_0);
         return 1;
     }
     return 0;

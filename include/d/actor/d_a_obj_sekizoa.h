@@ -27,46 +27,46 @@ public:
     };
 
     enum Animation {
-        ANM_SEKI_HIT_L = 0x07,
-        ANM_SEKI_HIT_R = 0x08,
-        ANM_SEKI_L_DEMO = 0x09,
-        ANM_SEKI_L_LASTDEMO = 0x0A,
-        ANM_SEKI_NO_JUMP_L = 0x0B,
-        ANM_SEKI_NO_JUMP_R = 0x0C,
-        ANM_SEKI_R_DEMO = 0x0D,
-        ANM_SEKI_R_LASTDEMO = 0x0E,
-        ANM_SEKI_STEP = 0x0F,
-        ANM_SEKI_STEP_L = 0x10,
-        ANM_SEKI_STEP_R = 0x11,
-        ANM_SEKI_STILL_L = 0x12,
-        ANM_SEKI_STILL_R = 0x13,
-        ANM_SEKI_WAIT_A = 0x14,
-        ANM_SEKI_WAIT_GAME_L = 0x15,
-        ANM_SEKI_WAIT_GAME_R = 0x16,
-        ANM_SEKI_WAIT_L = 0x17,
-        ANM_SEKI_WAIT_R = 0x18,
-        ANM_SEKIL_JUMP = 0x19,
-        ANM_SEKIR_JUMP = 0x1A,
-        ANM_YARIA_DEMO = 0x1B,
-        ANM_YARIA_GAME = 0x1C,
-        ANM_YARIA_STILL_L = 0x1D,
-        ANM_YARIB_DEMO = 0x1E,
-        ANM_YARIB_GAME = 0x1F,
-        ANM_YARIB_STILL_R = 0x20,
+        ANM_SEKI_HIT_L = 7,
+        ANM_SEKI_HIT_R = 8,
+        ANM_SEKI_L_DEMO = 9,
+        ANM_SEKI_L_LASTDEMO = 10,
+        ANM_SEKI_NO_JUMP_L = 11,
+        ANM_SEKI_NO_JUMP_R = 12,
+        ANM_SEKI_R_DEMO = 13,
+        ANM_SEKI_R_LASTDEMO = 14,
+        ANM_SEKI_STEP = 15,
+        ANM_SEKI_STEP_L = 16,
+        ANM_SEKI_STEP_R = 17,
+        ANM_SEKI_STILL_L = 18,
+        ANM_SEKI_STILL_R = 19,
+        ANM_SEKI_WAIT_A = 20,
+        ANM_SEKI_WAIT_GAME_L = 21,
+        ANM_SEKI_WAIT_GAME_R = 22,
+        ANM_SEKI_WAIT_L = 23,
+        ANM_SEKI_WAIT_R = 24,
+        ANM_SEKIL_JUMP = 25,
+        ANM_SEKIR_JUMP = 26,
+        ANM_YARIA_DEMO = 27,
+        ANM_YARIA_GAME = 28,
+        ANM_YARIA_STILL_L = 29,
+        ANM_YARIB_DEMO = 30,
+        ANM_YARIB_GAME = 31,
+        ANM_YARIB_STILL_R = 32,
     };
 
     /* 80CCE34C */ ~daObj_Sekizoa_c();
     /* 80CCE570 */ int create();
-    /* 80CCE8B0 */ int CreateHeap();                            // NEED WORK STILL
+    /* 80CCE8B0 */ int CreateHeap();
     /* 80CCEC54 */ int Delete();
     /* 80CCEC88 */ void Execute();
     /* 80CCECA8 */ void Draw();
     /* 80CCED74 */ static int createHeapCallBack(fopAc_ac_c*);
     /* 80CCED94 */ static void* srchSekizoa(void*, void*);
-    /* 80CCEE30 */ fopAc_ac_c* getSekizoaP(int);                // NEED WORK STILL
+    /* 80CCEE30 */ fopAc_ac_c* getSekizoaP(int);
     /* 80CCEFA4 */ fopAc_ac_c* getKMsgTagP();
     /* 80CCF03C */ int isDelete();
-    /* 80CCF138 */ void reset();                                // MR ISSUE
+    /* 80CCF138 */ void reset();
     /* 80CCF708 */ void srchActors();
     /* 80CD04FC */ int setYariAnm(int, int, f32);
     /* 80CD0A84 */ int selectAction();
@@ -80,13 +80,13 @@ public:
     /* 80CD0EE0 */ int getStepMotionNo();
     /* 80CD0F14 */ void jump();
     /* 80CD14D8 */ void landing();
-    /* 80CD1688 */ int cutStart(int);                               // SECOND SWITCH ONE ISSUE
+    /* 80CD1688 */ int cutStart(int);
     /* 80CD2708 */ int cutTurn(int);
-    /* 80CD2908 */ int cutJump(int);                                // REGALLOC ISSUE
+    /* 80CD2908 */ int cutJump(int);
     /* 80CD2B64 */ int cutGoal(int);
     /* 80CD376C */ int cutExit(int);
     /* 80CD38F0 */ int cutFree(int);
-    /* 80CD3BD8 */ int cutExtinction(int);                          // REGALLOC ISSUE
+    /* 80CD3BD8 */ int cutExtinction(int);
     /* 80CD3F08 */ int wait(void*);
     /* 80CD425C */ int puzzle(void*);
     /* 80CD45B0 */ int talk(void*);
@@ -111,7 +111,7 @@ public:
     /* 80CD03C0 */ int drawDbgInfo();
     /* 80CD03C8 */ void drawOtherMdl();
     /* 80CD05D0 */ void drawGhost();
-    /* 80CD06BC */ bool afterSetMotionAnm(int, int, f32, int);
+    /* 80CD06BC */ bool afterSetMotionAnm(int, int, f32, int);      // fmr issue
 
     void setWolfHowling() {
         if (mType != 0) {
@@ -134,8 +134,8 @@ public:
                 mMotionSeqMngr.setNo(13, 0.0f, 1, 0);
                 mSound.startCreatureSound(Z2SE_SEKI_END_DEMO_2, 0, -1);
             }
-            mSetFadeLightOff = 1;
-            mSetFadeLightOff2 = 1;
+            mFadeLightOn = 1;
+            field_0x1178 = 1;
         }
     }
 
@@ -198,35 +198,41 @@ public:
 
     /* 0x0E40 */ mDoExt_McaMorfSO* mpMcaMorf;
     /* 0x0E44 */ mDoExt_invisibleModel mInvModel;
-    /* 0x0E4C */ u8 field_0x0E4C[4];                    // Padding
+    /* 0x0E4C */ u8 field_0x0E4C[4]; // Padding
     /* 0x0E50 */ dCcD_Cyl mCyl;
     /* 0x0F8C */ dCcD_Cyl mCyl2;
-    /* 0x10C8 */ u8 mType;                       // index of actor ? 0 -> sekizoa, 1 -> sekizob, mType ???
-    /* 0x10C9 */ u8 field_0x10C9[3];                    // Padding
-    /* 0x10CC */ daNpcT_ActorMngr_c mActorMngrs[8];     // idx 5&6 -> 2 statues, 4 -> ground tiles; 1&2 -> statues fixes ?, 7 porte de pierre
+    /* 0x10C8 */ u8 mType;
+    /*
+    mActorMngrs members:
+    - 0 -> daTag_KMsg_c
+    - 1&2 -> daObj_Sekizoa_c, Stone statues A and B actors
+    - 3 -> daObjSekizoa_c
+    - 4 -> daObj_SMTile_c, Tiles animation at start of puzzle
+    - 5&6 -> daTag_EvtArea_c, Goal Tiles where to place the statues
+    - 7 -> daObj_SekiDoor_c, Stone Door at end of puzzle
+    */
+    /* 0x10CC */ daNpcT_ActorMngr_c mActorMngrs[8];
     /* 0x110C */ actionFunc mInitFunc;
-    // /* 0x1114 */ u8 field_0x1114[4];
     /* 0x1118 */ actionFunc mExecuteFunc;
-    // /* 0x1120 */ u8 field_0x1120[4];
     /* 0x1124 */ daNpcT_Path_c mPath;
     /* 0x114C */ cXyz mCXyzJump;
-    /* 0x1158 */ int mIntCutJump;                       // Timer ?
-    /* 0x115C */ float mFloatJump2;
-    /* 0x1160 */ float mFloatJump;
-    /* 0x1164 */ float mFloatCutStart;
-    /* 0x1168 */ float mFloatCutGoal2;
-    /* 0x116C */ float mFloatCutGoal;
-    /* 0x1170 */ s16 mHalfCutTurn;                     // angle of smthg
+    /* 0x1158 */ int mLatencyTime;
+    /* 0x115C */ float mJumpHeight;
+    /* 0x1160 */ float mJumpSpeed;
+    /* 0x1164 */ float mColsetBlend;
+    /* 0x1168 */ float mGoalStatueTurnSpeed;
+    /* 0x116C */ float mGoalStatueAngle;
+    /* 0x1170 */ s16 mPlayerDirection;
     /* 0x1172 */ u8 mReset;
     /* 0x1173 */ u8 mSetWolfHowling;
     /* 0x1174 */ u8 mJump;
-    /* 0x1175 */ u8 mCutTurnBool;
-    /* 0x1176 */ bool mSetFadeLightOff;
-    /* 0x1177 */ bool mSetMotionAnm;
-    /* 0x1178 */ bool mSetFadeLightOff2;
-    /* 0x1179 */ u8 mParamDrawOtherMdl;                       
-    /* 0x117A */ u8 mChkGoal;
-    /* 0x117B */ u8 field_0x117B;                    // Padding
+    /* 0x1175 */ u8 mTurnPlayer;
+    /* 0x1176 */ bool mFadeLightOn;
+    /* 0x1177 */ bool field_0x1177;
+    /* 0x1178 */ bool field_0x1178;
+    /* 0x1179 */ u8 field_0x1179;
+    /* 0x117A */ u8 mReverseStatues; // Flag if statue B is on goal tile A at end of puzzle
+    /* 0x117B */ u8 field_0x117B; // Padding
     /* 0x117C */ u8 field_0x117C;
 };
 
