@@ -16,8 +16,6 @@
 #include "JSystem/JUtility/JUTResFont.h"
 #include "JSystem/JUtility/JUTDbPrint.h"
 
-extern u8 const JUTResFONT_Ascfont_fix12[16736];
-
 /* 80450770-80450774 0001F0 0004+00 1/1 1/1 0/0 .sdata maxStdHeaps__Q29JFWSystem11CSetUpParam */
 s32 JFWSystem::CSetUpParam::maxStdHeaps = 2;
 

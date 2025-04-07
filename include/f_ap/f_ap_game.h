@@ -42,6 +42,14 @@ public:
 
 extern fapGm_HIO_c g_HIO;
 
+inline void fapGmHIO_offMenu() {
+    g_HIO.mDisplayPrint &= (u8)~2;
+}
+
+inline void fapGmHIO_onMenu() {
+    g_HIO.mDisplayPrint |= (u8)2;
+}
+
 inline BOOL fapGmHIO_isMenu() {
     return g_HIO.mDisplayPrint & 2;
 }

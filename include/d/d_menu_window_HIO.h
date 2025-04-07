@@ -37,6 +37,11 @@ public:
     /* 801F9E14 */ bool getBombFlag();
     /* 801F9E1C */ bool getArrowFlag();
     /* 801F9E24 */ bool getPachinkoFlag();
+    void update();
+
+    void setArrowFlag(u8 i_flag) { mArrowFlag = i_flag; }
+    void setPachinkoFlag(u8 i_flag) { mPachinkoFlag = i_flag; }
+    void setBombFlag(u8 i_flag) { mBombFlag = i_flag; }
 
     /* 801F9EE0 */ virtual ~dMw_HIO_c() {}
 

@@ -179,6 +179,8 @@ public:
         mCollectCursorPosY = y;
     }
     void setMapDrugFlag(u8 flag) { mMapDrugFlag = flag; }
+    void offTempBit(int i_bit) { mTempBits &= ~(1 << i_bit); }
+    void onTempBit(int i_bit) { mTempBits |= (1 << i_bit); }
     bool isTempBit(int bit) { return mTempBits & (1 << bit); }
     void offSub2DStatus(int bit) { mSub2DStatus &= ~(1 << bit); }
     void onSub2DStatus(int bit) { mSub2DStatus |= 1 << bit; }
@@ -797,6 +799,18 @@ inline bool dMeter2Info_isWindowAccept(int param_0) {
 
 inline void dMeter2Info_setHorseLifeCount(s16 i_count) {
     g_meter2_info.setHorseLifeCount(i_count);
+}
+
+inline void dMeter2Info_offTempBit(int i_bit) {
+    g_meter2_info.offTempBit(i_bit);
+}
+
+inline void dMeter2Info_onTempBit(int i_bit) {
+    g_meter2_info.onTempBit(i_bit);
+}
+
+inline bool dMeter2Info_isNextStage(const char*, s16, s16, s16) {
+    return false;
 }
 
 const char* dMeter2Info_getPlusTextureName();

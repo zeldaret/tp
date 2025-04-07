@@ -1106,22 +1106,22 @@ s32 fopAcM_orderTreasureEvent(fopAc_ac_c* i_actorA, fopAc_ac_c* i_actorB, u16 i_
 /* 8001BB14-8001BB44 016454 0030+00 0/0 11/11 10/10 .text
  * fopAcM_getTalkEventPartner__FPC10fopAc_ac_c                  */
 fopAc_ac_c* fopAcM_getTalkEventPartner(fopAc_ac_c const*) {
-    return dComIfGp_event_getTalkPartner();
+    return (fopAc_ac_c*)dComIfGp_event_getTalkPartner();
 }
 
 /* 8001BB44-8001BB74 016484 0030+00 0/0 5/5 0/0 .text fopAcM_getItemEventPartner__FPC10fopAc_ac_c
  */
 fopAc_ac_c* fopAcM_getItemEventPartner(fopAc_ac_c const*) {
-    return dComIfGp_event_getItemPartner();
+    return (fopAc_ac_c*)dComIfGp_event_getItemPartner();
 }
 
 /* 8001BB74-8001BBE8 0164B4 0074+00 0/0 1/1 0/0 .text fopAcM_getEventPartner__FPC10fopAc_ac_c */
 fopAc_ac_c* fopAcM_getEventPartner(fopAc_ac_c const* i_actor) {
     if (dComIfGp_event_getPt1() != i_actor) {
-        return dComIfGp_event_getPt1();
+        return (fopAc_ac_c*)dComIfGp_event_getPt1();
     }
 
-    return dComIfGp_event_getPt2();
+    return (fopAc_ac_c*)dComIfGp_event_getPt2();
 }
 
 /* 8001BBE8-8001BC74 016528 008C+00 0/0 5/5 43/43 .text
