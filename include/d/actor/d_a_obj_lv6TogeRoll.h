@@ -99,6 +99,8 @@ public:
     /* 80C77C2C */ daTogeRoll_HIO_c();
     /* 80C798D0 */ ~daTogeRoll_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x00 */ /* vtable */
 
     /* 0x04 */ s8 field_0x04;
