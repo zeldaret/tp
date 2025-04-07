@@ -25,7 +25,7 @@ static u32 lit_1787[1 + 4 /* padding */] = {
 };
 
 /* 80C79B0C-80C79B4C 000020 0040+00 2/2 0/0 0/0 .data            mCcDSph__12daTogeRoll_c */
-static dCcD_SrcSph mCcDSph = {
+dCcD_SrcSph daTogeRoll_c::mCcDSph = {
     daTogeRoll_c::mCcDObjInfo,  // mObjInf
     {
         {{0.0f, 0.0f, 0.0f}, 0.0f}  // mSph
@@ -33,7 +33,7 @@ static dCcD_SrcSph mCcDSph = {
 };
 
 /* 80C79B4C-80C79B98 000060 004C+00 2/2 0/0 0/0 .data            mCcDCps__12daTogeRoll_c */
-static dCcD_SrcCps mCcDCps = {
+dCcD_SrcCps daTogeRoll_c::mCcDCps = {
     daTogeRoll_c::mCcDObjInfo2,  // mObjInf
     {
         {{0.0f, 0.0f, 0.0f}, {0.0f, 1100.0f, 0.0f}, 150.0f},  // mCps
