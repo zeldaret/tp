@@ -1988,7 +1988,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_lv6SwGate"),
     ActorRel(NonMatching, "d_a_obj_lv6SzGate"),
     ActorRel(NonMatching, "d_a_obj_lv6Tenbin"),
-    ActorRel(NonMatching, "d_a_obj_lv6TogeRoll"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv6TogeRoll"),
     ActorRel(NonMatching, "d_a_obj_lv6TogeTrap"),
     ActorRel(NonMatching, "d_a_obj_lv6bemos"),
     ActorRel(NonMatching, "d_a_obj_lv6bemos2"),
