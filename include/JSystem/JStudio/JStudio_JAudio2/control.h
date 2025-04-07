@@ -37,15 +37,6 @@ struct TAdaptor_sound : public JStudio::TAdaptor_sound {
     typedef void (*TVVOSoundSetFunc)(JAISound*, f32);
     typedef JStudio::TObject_sound ObjectType;
 
-    enum TEVariableValue {
-        UNK_7 = 7,
-        UNK_8 = 8,
-        UNK_9 = 9,
-        UNK_10 = 10,
-        UNK_11 = 11,
-        UNK_NONE = -1,
-    };
-
     struct TVVOSetValue_ : public JStudio::TVariableValue::TOutput {
         TVVOSetValue_(TEVariableValue param_1, TVVOSoundSetFunc param_2)
             : field_0x04(param_1), field_0x08(param_2) {}
