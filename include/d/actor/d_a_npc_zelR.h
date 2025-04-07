@@ -13,19 +13,25 @@
  */
 class daNpc_ZelR_c : public daNpcT_c {
 public:
-    typedef int (daNpc_ZelR_c::*cutFunc)(int);
+    typedef BOOL (daNpc_ZelR_c::*ActionFn)(void*);
+    typedef BOOL (daNpc_ZelR_c::*EventFn)(int);
+
+    enum Type {
+        TYPE_0,
+        TYPE_1,
+    };
 
     /* 80B6EE2C */ ~daNpc_ZelR_c() {};
     /* 80B6EF64 */ int create();
     /* 80B6F1F8 */ int CreateHeap();
     /* 80B6F664 */ int Delete();
     /* 80B6F698 */ int Execute();
-    /* 80B6F6B8 */ void Draw();
+    /* 80B6F6B8 */ int Draw();
     /* 80B6F77C */ static int createHeapCallBack(fopAc_ac_c*);
     /* 80B6F79C */ static int ctrlJointCallBack(J3DJoint*, int);
     /* 80B6F7F4 */ u8 getType();
     /* 80B6F814 */ u32 getFlowNodeNo();
-    /* 80B6F830 */ void getPath();
+    /* 80B6F830 */ u8 getPath();
     /* 80B6F83C */ int isDelete();
     /* 80B6F894 */ void reset();
     /* 80B6FA10 */ void afterJntAnm(int);
@@ -59,13 +65,17 @@ public:
     /* 80B71A64 */ BOOL checkRemoveJoint(int);
 
     static char* mCutNameList;
-    static cutFunc mCutList[1];
+    static EventFn mCutList[1];
 
 private:
     /* 0xE40 */ u8 field_0xe40[0xe44 - 0xe40];
     /* 0xE44 */ dCcD_Cyl mCyl;
     /* 0xF80 */ u8 mType;
-    /* 0xF81 */ u8 field_0xf81[0xfc8 - 0xf81];
+    /* 0xF81 */ u8 field_0xf81[0xf84 - 0xf81];
+    /* 0xF84 */ ActionFn field_0xf84;
+    /* 0xF88 */ u8 field_0xf88[0xf9c - 0xf90];
+    /* 0xF9C */ daNpcT_Path_c mPath;
+    /* 0xFBE */ int field_0xfc4;
 };
 
 STATIC_ASSERT(sizeof(daNpc_ZelR_c) == 0xfc8);

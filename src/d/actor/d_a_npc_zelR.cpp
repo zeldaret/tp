@@ -297,7 +297,7 @@ static daNpcT_MotionSeqMngr_c::sequenceStepData_c l_motionSequenceData[4] = {
 char* daNpc_ZelR_c::mCutNameList = "";
 
 /* 80B71CAC-80B71CB8 0000D4 000C+00 2/2 0/0 0/0 .data            mCutList__12daNpc_ZelR_c */
-daNpc_ZelR_c::cutFunc daNpc_ZelR_c::mCutList[1] = {
+daNpc_ZelR_c::EventFn daNpc_ZelR_c::mCutList[1] = {
     NULL
 };
 
@@ -613,57 +613,96 @@ int daNpc_ZelR_c::Execute() {
     return execute();
 }
 
-/* ############################################################################################## */
-/* 80B71B8C-80B71B90 0000AC 0004+00 1/1 0/0 0/0 .rodata          @4399 */
-SECTION_RODATA static f32 const lit_4399 = 100.0f;
-COMPILER_STRIP_GATE(0x80B71B8C, &lit_4399);
-
 /* 80B6F6B8-80B6F77C 000978 00C4+00 1/1 0/0 0/0 .text            Draw__12daNpc_ZelR_cFv */
-void daNpc_ZelR_c::Draw() {
-    // NONMATCHING
+int daNpc_ZelR_c::Draw() {
     J3DModel* model = mpMorf[0]->getModel();
     J3DModelData* modelData = model->getModelData();
-    if (mGndChk.mWallPrecheck) {
-        J3DMaterial* mMatNode = modelData->getMaterialNodePointer(getEyeballLMaterialNo());
-        mMatNode->setMaterialAnm(mpMatAnm[0]);
+
+    if (mpMatAnm[0]) {
+        modelData->getMaterialNodePointer(getEyeballLMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
+
+    if (mpMatAnm[1]) {
+        modelData->getMaterialNodePointer(getEyeballRMaterialNo())->setMaterialAnm(mpMatAnm[1]);
+    }
+    
+    return daNpcT_c::draw(0, 1, field_0xde8, NULL, 100.0f, 0, 0, 0);
 }
 
-/* 80B6F77C-80B6F79C 000A3C 0020+00 1/1 0/0 0/0 .text
- * createHeapCallBack__12daNpc_ZelR_cFP10fopAc_ac_c             */
-int daNpc_ZelR_c::createHeapCallBack(fopAc_ac_c* param_0) {
-    // NONMATCHING
+/* 80B6F77C-80B6F79C 000A3C 0020+00 1/1 0/0 0/0 .text       createHeapCallBack__12daNpc_ZelR_cFP10fopAc_ac_c */
+int daNpc_ZelR_c::createHeapCallBack(fopAc_ac_c* a_this) {
+    daNpc_ZelR_c* i_this = (daNpc_ZelR_c*)a_this;
+    return i_this->CreateHeap();
+
 }
 
-/* 80B6F79C-80B6F7F4 000A5C 0058+00 1/1 0/0 0/0 .text
- * ctrlJointCallBack__12daNpc_ZelR_cFP8J3DJointi                */
-int daNpc_ZelR_c::ctrlJointCallBack(J3DJoint* param_0, int param_1) {
-    // NONMATCHING
+/* 80B6F79C-80B6F7F4 000A5C 0058+00 1/1 0/0 0/0 .text       ctrlJointCallBack__12daNpc_ZelR_cFP8J3DJointi */
+int daNpc_ZelR_c::ctrlJointCallBack(J3DJoint* i_joint, int param_2) {
+    if (!param_2) {
+        daNpc_ZelR_c* i_this = (daNpc_ZelR_c*)j3dSys.getModel()->getUserArea();
+        if (i_this) {
+            i_this->ctrlJoint(i_joint, j3dSys.getModel());
+        }
+    }
+
+    return 1;
 }
 
 /* 80B6F7F4-80B6F814 000AB4 0020+00 1/1 0/0 0/0 .text            getType__12daNpc_ZelR_cFv */
 u8 daNpc_ZelR_c::getType() {
-    // NONMATCHING
+    switch (fopAcM_GetParam(this) & 0xff) {
+        case 0:
+            return TYPE_0;
+        default:
+            return TYPE_1;
+    }
 }
 
 /* 80B6F814-80B6F830 000AD4 001C+00 1/1 0/0 0/0 .text            getFlowNodeNo__12daNpc_ZelR_cFv */
 u32 daNpc_ZelR_c::getFlowNodeNo() {
-    // NONMATCHING
+    u16 nodeNo = home.angle.x;
+    if (nodeNo == 0xffff) {
+        return -1;
+    }
+    return nodeNo;
 }
 
 /* 80B6F830-80B6F83C 000AF0 000C+00 1/1 0/0 0/0 .text            getPath__12daNpc_ZelR_cFv */
-void daNpc_ZelR_c::getPath() {
-    // NONMATCHING
+u8 daNpc_ZelR_c::getPath() {
+    return (fopAcM_GetParam(this) & 0xff00) >> 8;
 }
 
 /* 80B6F83C-80B6F894 000AFC 0058+00 1/1 0/0 0/0 .text            isDelete__12daNpc_ZelR_cFv */
 int daNpc_ZelR_c::isDelete() {
-    // NONMATCHING
+    if (mType == TYPE_1) {
+        return 0;
+    }
+    
+    switch (mType) {
+        case TYPE_0:
+            return daNpcT_chkEvtBit(0x2d) != 0;
+        default:
+            return 1;
+    }
 }
 
 /* 80B6F894-80B6FA10 000B54 017C+00 1/1 0/0 0/0 .text            reset__12daNpc_ZelR_cFv */
 void daNpc_ZelR_c::reset() {
     // NONMATCHING
+    initialize();
+    memset(&field_0xf84, 0, ((u8*)&field_0xfc4 - (u8*)&field_0xf84));
+    for (int i = 0; i < 2; i++) {
+        if (mpMatAnm[i]) {
+            mpMatAnm[i]->initialize();
+        }
+    }
+
+    if (getPath() != 0xff) {
+        mPath.initialize();
+        mPath.setPathInfo(getPath(), fopAcM_GetRoomNo(this), 0);
+    }
+
+    setAngle(home.angle.y);
 }
 
 /* 80B6FA10-80B6FA9C 000CD0 008C+00 1/0 0/0 0/0 .text            afterJntAnm__12daNpc_ZelR_cFi */
