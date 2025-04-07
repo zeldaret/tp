@@ -10,6 +10,15 @@
 #include "JSystem/JStudio/JStudio/jstudio-object.h"
 #include "JSystem/JStudio/JStudio/jstudio-math.h"
 
+#ifdef DEBUG
+namespace JStudio_JStage {
+template<class TAdaptor, class TStageObject>
+struct TVariableValueOutput_object_;
+};  // namespace JStudio_JStage
+#else
+#include "JSystem/JStudio/JStudio_JStage/tvariable_value_output_object.h"
+#endif
+
 namespace JStudio_JStage {
 typedef JStudio::TObject* (*ObjCreateFuncT)(const JStudio::stb::data::TParse_TBlock_object&, JStage::TObject*, const JStage::TSystem*);
 
@@ -39,36 +48,6 @@ struct TAdaptor_object_ {
 
     /* 0x0 */ JStage::TSystem const* pJSGSystem_;
     /* 0x4 */ JStage::TObject* pJSGObject_;
-};
-
-
-template<class TAdaptor, class TStageObject>
-struct TVariableValueOutput_object_ : public JStudio::TVariableValue::TOutput {
-    typedef f32 (TStageObject::*GetFunc)() const;
-    typedef void (TStageObject::*SetFunc)(f32);
-    TVariableValueOutput_object_() : field_0x4(-1), field_0x8(NULL), field_0x14(NULL) {}
-    TVariableValueOutput_object_(typename TAdaptor::TEVariableValue param_1, 
-    SetFunc param_2, GetFunc param_3) : field_0x4(param_1), field_0x8(param_2), field_0x14(param_3) {
-
-    }
-
-    virtual void operator()(f32 param_1, JStudio::TAdaptor* param_2) const {
-        (((TAdaptor*)param_2)->get_pJSG_()->*field_0x8)(param_1);
-    }
-    virtual ~TVariableValueOutput_object_() {}
-
-    bool isEnd_() { return field_0x4 == -1; }
-    void adaptor_setOutput_(TAdaptor* adaptor) {
-        adaptor->adaptor_referVariableValue(field_0x4)->setOutput(this);
-    }
-    void setVariableValue_(TStageObject* pObj, TAdaptor* pAdaptor) {
-        f32 val = (pObj->*field_0x14)();
-        pAdaptor->adaptor_setVariableValue_immediate(field_0x4, val);
-    }
-
-    int field_0x4;
-    SetFunc field_0x8;
-    GetFunc field_0x14;
 };
 
 struct TAdaptor_actor : public JStudio::TAdaptor_actor, public JStudio_JStage::TAdaptor_object_ {
@@ -108,12 +87,12 @@ struct TAdaptor_actor : public JStudio::TAdaptor_actor, public JStudio_JStage::T
             adaptor->adaptor_referVariableValue(mValueIndex)->setOutput(this);
         }
 
-        void setVariableValue_(JStage::TActor *param_1, JStudio::TAdaptor *param_2) {
+        void setVariableValue_(const JStage::TActor *param_1, JStudio::TAdaptor *param_2) const {
             f32 val = (param_1->*mGetter)();
             param_2->adaptor_setVariableValue_immediate(mValueIndex, val);
         }
 
-        bool isEnd_() { return mValueIndex == -1; }
+        bool isEnd_() const { return mValueIndex == -1; }
 
         /* 0x04 */ int mValueIndex;
         /* 0x08 */ u32 field_0x8;
@@ -158,10 +137,7 @@ struct TAdaptor_actor : public JStudio::TAdaptor_actor, public JStudio_JStage::T
 
     JStage::TActor* get_pJSG_() { return (JStage::TActor*) pJSGObject_; }
 
-    // TODO: Why doesn't this line compile with MWCC version Wii/1.0?
-#if __MWERKS__ && __MWERKS__ < 0x4200
     static TVVOutputObject saoVVOutput_[2];
-#endif
     static TVVOutput_ANIMATION_FRAME_  saoVVOutput_ANIMATION_FRAME_[3];
 
     /* 0x130 */ u32 field_0x130;
@@ -224,10 +200,7 @@ struct TAdaptor_camera : public JStudio::TAdaptor_camera, public TAdaptor_object
 
     JStage::TCamera* get_pJSG_() { return (JStage::TCamera*)pJSGObject_; }
 
-    // TODO: Why doesn't this line compile with MWCC version Wii/1.0?
-#if __MWERKS__ && __MWERKS__ < 0x4200
     static TVVOutput saoVVOutput_[5];
-#endif
 
     /* 0x108 */ int field_0x108;
     /* 0x10C */ JStage::TObject* field_0x10c;
@@ -255,10 +228,7 @@ struct TAdaptor_fog : public JStudio::TAdaptor_fog, public TAdaptor_object_ {
 
     JStage::TFog* get_pJSG_() { return (JStage::TFog*)pJSGObject_; }
 
-    // TODO: Why doesn't this line compile with MWCC version Wii/1.0?
-#if __MWERKS__ && __MWERKS__ < 0x4200
     static TVariableValueOutput_object_<TAdaptor_fog, JStage::TFog> saoVVOutput_[3];
-#endif
 };
 
 struct TAdaptor_light : public JStudio::TAdaptor_light, public TAdaptor_object_ {
@@ -294,7 +264,7 @@ struct TAdaptor_light : public JStudio::TAdaptor_light, public TAdaptor_object_ 
             adaptor->adaptor_referVariableValue(field_0x4)->setOutput(this);
         }
 
-        bool isEnd_() { return field_0x4 == -1; }
+        bool isEnd_() const { return field_0x4 == -1; }
 
         TEVariableValue field_0x4;
         TEDirection_ field_0x8;
@@ -344,5 +314,9 @@ inline bool transform_toGlobalFromLocal(JStudio::TControl::TTransform_position* 
                                                 JStudio::TControl::TTransform_position const&,
                                                 JStage::TObject const*, u32);
 };  // namespace JStudio_JStage
+
+#ifdef DEBUG
+#include "JSystem/JStudio/JStudio_JStage/tvariable_value_output_object.h"
+#endif
 
 #endif /* JSTUDIO_JSTAGE_CONTROL_H */

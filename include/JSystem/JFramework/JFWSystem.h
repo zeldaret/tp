@@ -36,6 +36,7 @@ struct JFWSystem {
 
     static JUTConsole* getSystemConsole() { return systemConsole; }
     static JKRExpHeap* getSystemHeap() { return systemHeap; }
+    static JUTResFont* getSystemFont() { return systemFont; }
 
     static void setMaxStdHeap(s32 max) { CSetUpParam::maxStdHeaps = max; }
     static void setSysHeapSize(u32 size) { CSetUpParam::sysHeapSize = size; }

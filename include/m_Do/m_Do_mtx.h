@@ -36,7 +36,7 @@ inline void cMtx_scale(Mtx m, f32 x, f32 y, f32 z) {
     MTXScale(m, x, y, z);
 }
 
-inline void mDoMtx_multVec(Mtx m, const Vec* src, Vec* dst) {
+inline void mDoMtx_multVec(CMtxP m, const Vec* src, Vec* dst) {
     MTXMultVec(m, src, dst);
 }
 

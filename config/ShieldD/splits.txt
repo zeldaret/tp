@@ -1996,57 +1996,57 @@ JSystem/JStage/JSGObject.cpp:
 	.data       start:0x806F13B8 end:0x806F13F8
 	.sdata2     start:0x80751868 end:0x80751870
 
-JSystem/JStudio/ctb-data.cpp:
+JSystem/JStudio/JStudio/ctb-data.cpp:
 	.sdata2     start:0x80751870 end:0x80751878
 
 JSystem/JStage/JSGSystem.cpp:
 	.text       start:0x80429570 end:0x80429630
 	.data       start:0x806F13F8 end:0x806F1448
 
-JSystem/JStudio/ctb.cpp:
+JSystem/JStudio/JStudio/ctb.cpp:
 	.text       start:0x80429630 end:0x8042B670
 	.data       start:0x806F1448 end:0x806F1818
 	.sdata      start:0x80747780 end:0x80747820
 
-JSystem/JStudio/functionvalue.cpp:
+JSystem/JStudio/JStudio/functionvalue.cpp:
 	.text       start:0x8042B670 end:0x80431130
 	.rodata     start:0x80654288 end:0x806542A8
 	.data       start:0x806F1818 end:0x806F1F18
 	.sdata      start:0x80747820 end:0x80747900
 	.sdata2     start:0x80751878 end:0x807518C8
 
-JSystem/JStudio/fvb.cpp:
+JSystem/JStudio/JStudio/fvb.cpp:
 	.text       start:0x80431130 end:0x80435140
 	.rodata     start:0x806542A8 end:0x806542E8
 	.data       start:0x806F1F18 end:0x806F2618
 	.sdata      start:0x80747900 end:0x80747A00
 	.sdata2     start:0x807518C8 end:0x807518D0
 
-JSystem/JStudio/fvb-data.cpp:
+JSystem/JStudio/JStudio/fvb-data.cpp:
 	.sdata2     start:0x807518D0 end:0x807518D8
 
-JSystem/JStudio/fvb-data-parse.cpp:
+JSystem/JStudio/JStudio/fvb-data-parse.cpp:
 	.text       start:0x80435140 end:0x80435220
 	.data       start:0x806F2618 end:0x806F2638
 	.sdata      start:0x80747A00 end:0x80747A08
 
-JSystem/JStudio/jstudio-control.cpp:
+JSystem/JStudio/JStudio/jstudio-control.cpp:
 	.text       start:0x80435220 end:0x80436FD0
 	.data       start:0x806F2638 end:0x806F28D0
 	.sdata      start:0x80747A08 end:0x80747A78
 	.sdata2     start:0x807518D8 end:0x807518E0
 
-JSystem/JStudio/jstudio-data.cpp:
+JSystem/JStudio/JStudio/jstudio-data.cpp:
 	.text       start:0x80436FD0 end:0x80437070
 	.sdata2     start:0x807518E0 end:0x807518E8
 
-JSystem/JStudio/jstudio-math.cpp:
+JSystem/JStudio/JStudio/jstudio-math.cpp:
 	.text       start:0x80437070 end:0x80437C70
 	.data       start:0x806F28D0 end:0x806F2948
 	.sdata      start:0x80747A78 end:0x80747AC0
 	.sdata2     start:0x807518E8 end:0x80751918
 
-JSystem/JStudio/jstudio-object.cpp:
+JSystem/JStudio/JStudio/jstudio-object.cpp:
 	.text       start:0x80437C70 end:0x8043DF80
 	.ctors      start:0x8062F8E8 end:0x8062F8EC
 	.rodata     start:0x806542E8 end:0x80654408
@@ -2056,36 +2056,36 @@ JSystem/JStudio/jstudio-object.cpp:
 	.sdata2     start:0x80751918 end:0x80751940
 	.bss        start:0x807C7DD8 end:0x807C7F78
 
-JSystem/JStudio/stb-data.cpp:
+JSystem/JStudio/JStudio/stb-data.cpp:
 	.rodata     start:0x80654408 end:0x80654428
 	.sdata2     start:0x80751940 end:0x80751948
 
-JSystem/JStudio/object-id.cpp:
+JSystem/JStudio/JStudio/object-id.cpp:
 	.text       start:0x8043DF80 end:0x8043E130
 	.data       start:0x806F3BA8 end:0x806F3BB8
 	.sdata      start:0x80747BA0 end:0x80747BB0
 
-JSystem/JStudio/stb.cpp:
+JSystem/JStudio/JStudio/stb.cpp:
 	.text       start:0x8043E130 end:0x80441570
 	.data       start:0x806F3BB8 end:0x806F41A0
 	.sdata      start:0x80747BB0 end:0x80747C58
 
-JSystem/JStudio/stb-data-parse.cpp:
+JSystem/JStudio/JStudio/stb-data-parse.cpp:
 	.text       start:0x80441570 end:0x80441980
 	.data       start:0x806F41A0 end:0x806F41C0
 	.sdata      start:0x80747C58 end:0x80747C68
 
-JSystem/JStudio_JStage/control.cpp:
+JSystem/JStudio/JStudio_JStage/control.cpp:
 	.text       start:0x80441980 end:0x80442BB0
 	.data       start:0x806F41C0 end:0x806F42E0
 	.sdata      start:0x80747C68 end:0x80747C80
 
-JSystem/JStudio_JStage/object.cpp:
+JSystem/JStudio/JStudio_JStage/object.cpp:
 	.text       start:0x80442BB0 end:0x804433E0
 	.data       start:0x806F42E0 end:0x806F43C8
 	.sdata      start:0x80747C80 end:0x80747C88
 
-JSystem/JStudio_JStage/object-actor.cpp:
+JSystem/JStudio/JStudio_JStage/object-actor.cpp:
 	.text       start:0x804433E0 end:0x80446130
 	.ctors      start:0x8062F8EC end:0x8062F8F0
 	.data       start:0x806F43C8 end:0x806F4A98
@@ -2093,26 +2093,26 @@ JSystem/JStudio_JStage/object-actor.cpp:
 	.sdata2     start:0x80751948 end:0x80751950
 	.bss        start:0x807C7F78 end:0x807C8088
 
-JSystem/JStudio_JStage/object-ambientlight.cpp:
+JSystem/JStudio/JStudio_JStage/object-ambientlight.cpp:
 	.text       start:0x80446130 end:0x80446460
 	.data       start:0x806F4A98 end:0x806F4B48
 	.sdata      start:0x80747DB8 end:0x80747DC8
 
-JSystem/JStudio_JStage/object-camera.cpp:
+JSystem/JStudio/JStudio_JStage/object-camera.cpp:
 	.text       start:0x80446460 end:0x80448180
 	.ctors      start:0x8062F8F0 end:0x8062F8F4
 	.data       start:0x806F4B48 end:0x806F4FC0
 	.sdata      start:0x80747DC8 end:0x80747E08
 	.bss        start:0x807C8088 end:0x807C8168
 
-JSystem/JStudio_JStage/object-fog.cpp:
+JSystem/JStudio/JStudio_JStage/object-fog.cpp:
 	.text       start:0x80448180 end:0x80448960
 	.ctors      start:0x8062F8F4 end:0x8062F8F8
 	.data       start:0x806F4FC0 end:0x806F51D0
 	.sdata      start:0x80747E08 end:0x80747E30
 	.bss        start:0x807C8168 end:0x807C81F0
 
-JSystem/JStudio_JStage/object-light.cpp:
+JSystem/JStudio/JStudio_JStage/object-light.cpp:
 	.text       start:0x80448960 end:0x804499F0
 	.ctors      start:0x8062F8F8 end:0x8062F8FC
 	.data       start:0x806F51D0 end:0x806F5620
@@ -2120,12 +2120,12 @@ JSystem/JStudio_JStage/object-light.cpp:
 	.sdata2     start:0x80751950 end:0x80751958
 	.bss        start:0x807C81F0 end:0x807C8280
 
-JSystem/JStudio_JAudio2/control.cpp:
+JSystem/JStudio/JStudio_JAudio2/control.cpp:
 	.text       start:0x804499F0 end:0x80449E20
 	.data       start:0x806F5620 end:0x806F56A8
 	.sdata      start:0x80747EA8 end:0x80747EB8
 
-JSystem/JStudio_JAudio2/object-sound.cpp:
+JSystem/JStudio/JStudio_JAudio2/object-sound.cpp:
 	.text       start:0x80449E20 end:0x8044C430
 	.ctors      start:0x8062F8FC end:0x8062F900
 	.data       start:0x806F56A8 end:0x806F5BD8
@@ -2134,12 +2134,12 @@ JSystem/JStudio_JAudio2/object-sound.cpp:
 	.sdata2     start:0x80751958 end:0x80751968
 	.bss        start:0x807C8280 end:0x807C8330
 
-JSystem/JStudio_JParticle/control.cpp:
+JSystem/JStudio/JStudio_JParticle/control.cpp:
 	.text       start:0x8044C430 end:0x8044C940
 	.data       start:0x806F5BD8 end:0x806F5C68
 	.sdata      start:0x80747EF8 end:0x80747F00
 
-JSystem/JStudio_JParticle/object-particle.cpp:
+JSystem/JStudio/JStudio_JParticle/object-particle.cpp:
 	.text       start:0x8044C940 end:0x8044F0B0
 	.rodata     start:0x80654428 end:0x80654438
 	.data       start:0x806F5C68 end:0x806F6298
@@ -2147,7 +2147,7 @@ JSystem/JStudio_JParticle/object-particle.cpp:
 	.sdata2     start:0x80751968 end:0x807519A0
 	.bss        start:0x807C8330 end:0x807C83C0
 
-JSystem/JStudioCameraEditor/control.cpp:
+JSystem/JStudio/JStudioCameraEditor/control.cpp:
 	.text       start:0x8044F0B0 end:0x80463890
 	.ctors      start:0x8062F900 end:0x8062F904
 	.rodata     start:0x80654438 end:0x80654698
@@ -2156,50 +2156,50 @@ JSystem/JStudioCameraEditor/control.cpp:
 	.sdata2     start:0x807519A0 end:0x80751A28
 	.bss        start:0x807C83C0 end:0x807C8520
 
-JSystem/JStudioCameraEditor/controlset-csb-valueset.cpp:
+JSystem/JStudio/JStudioCameraEditor/controlset-csb-valueset.cpp:
 	.text       start:0x80463890 end:0x80464E20
 	.ctors      start:0x8062F904 end:0x8062F908
 	.data       start:0x806F84F0 end:0x806F8678
 	.sdata      start:0x80748328 end:0x80748390
 	.bss        start:0x807C8520 end:0x807C85D0
 
-JSystem/JStudioCameraEditor/csb.cpp:
+JSystem/JStudio/JStudioCameraEditor/csb.cpp:
 	.text       start:0x80464E20 end:0x80467990
 	.data       start:0x806F8678 end:0x806F9110
 	.sdata      start:0x80748390 end:0x80748478
 	.sdata2     start:0x80751A28 end:0x80751A40
 
-JSystem/JStudioCameraEditor/csb-data.cpp:
+JSystem/JStudio/JStudioCameraEditor/csb-data.cpp:
 	.rodata     start:0x80654698 end:0x80654728
 	.data       start:0x806F9110 end:0x806F9170
 	.sdata      start:0x80748478 end:0x80748488
 
-JSystem/JStudioCameraEditor/sequence.cpp:
+JSystem/JStudio/JStudioCameraEditor/sequence.cpp:
 	.text       start:0x80467990 end:0x80468330
 	.data       start:0x806F9170 end:0x806F9348
 	.sdata      start:0x80748488 end:0x807484B0
 
-JSystem/JStudioPreviewer/control.cpp:
+JSystem/JStudio/JStudioPreviewer/control.cpp:
 	.text       start:0x80468330 end:0x8046B0B0
 	.data       start:0x806F9348 end:0x806F9EB0
 	.sdata      start:0x807484B0 end:0x80748500
 	.sdata2     start:0x80751A40 end:0x80751A50
 
-JSystem/JStudioToolLibrary/anchor.cpp:
+JSystem/JStudio/JStudioToolLibrary/anchor.cpp:
 	.text       start:0x8046B0B0 end:0x8046B290
 	.data       start:0x806F9EB0 end:0x806F9EC8
 	.sdata      start:0x80748500 end:0x80748510
 
-JSystem/JStudioToolLibrary/console.cpp:
+JSystem/JStudio/JStudioToolLibrary/console.cpp:
 	.text       start:0x8046B290 end:0x8046EB30
 	.data       start:0x806F9EC8 end:0x806FA718
 	.sdata      start:0x80748510 end:0x80748550
 	.sdata2     start:0x80751A50 end:0x80751A68
 
-JSystem/JStudioToolLibrary/controlset.cpp:
+JSystem/JStudio/JStudioToolLibrary/controlset.cpp:
 	.text       start:0x8046EB30 end:0x8046EEF0
 
-JSystem/JStudioToolLibrary/controlset-anchor.cpp:
+JSystem/JStudio/JStudioToolLibrary/controlset-anchor.cpp:
 	.text       start:0x8046EEF0 end:0x8046F600
 	.ctors      start:0x8062F908 end:0x8062F90C
 	.rodata     start:0x80654728 end:0x80654740
@@ -2207,7 +2207,7 @@ JSystem/JStudioToolLibrary/controlset-anchor.cpp:
 	.sdata      start:0x80748550 end:0x80748590
 	.bss        start:0x807C85D0 end:0x807C8610
 
-JSystem/JStudioToolLibrary/controlset-preview.cpp:
+JSystem/JStudio/JStudioToolLibrary/controlset-preview.cpp:
 	.text       start:0x8046F600 end:0x80470A10
 	.ctors      start:0x8062F90C end:0x8062F910
 	.rodata     start:0x80654740 end:0x80654780
@@ -2215,13 +2215,13 @@ JSystem/JStudioToolLibrary/controlset-preview.cpp:
 	.sdata      start:0x80748590 end:0x807485C8
 	.bss        start:0x807C8610 end:0x807C86A0
 
-JSystem/JStudioToolLibrary/interface.cpp:
+JSystem/JStudio/JStudioToolLibrary/interface.cpp:
 	.text       start:0x80470A10 end:0x804710E0
 	.data       start:0x806FAAC8 end:0x806FAC58
 	.sdata      start:0x807485C8 end:0x80748620
 	.sdata2     start:0x80751A68 end:0x80751A70
 
-JSystem/JStudioToolLibrary/scroll.cpp:
+JSystem/JStudio/JStudioToolLibrary/scroll.cpp:
 	.text       start:0x804710E0 end:0x80471AF0
 	.ctors      start:0x8062F910 end:0x8062F914
 	.data       start:0x806FAC58 end:0x806FADA0
@@ -2229,19 +2229,19 @@ JSystem/JStudioToolLibrary/scroll.cpp:
 	.sbss       start:0x8074CBC8 end:0x8074CBD8
 	.sdata2     start:0x80751A70 end:0x80751A90
 
-JSystem/JStudioToolLibrary/visual.cpp:
+JSystem/JStudio/JStudioToolLibrary/visual.cpp:
 	.text       start:0x80471AF0 end:0x80472F00
 	.rodata     start:0x80654780 end:0x80654868
 	.data       start:0x806FADA0 end:0x806FADB8
 	.sdata      start:0x80748650 end:0x80748660
 	.sdata2     start:0x80751A90 end:0x80751AB0
 
-JSystem/JStudioToolLibrary/xml.cpp:
+JSystem/JStudio/JStudioToolLibrary/xml.cpp:
 	.text       start:0x80472F00 end:0x804731E0
 	.data       start:0x806FADB8 end:0x806FADC8
 	.sdata      start:0x80748660 end:0x807486A0
 
-JSystem/JStudioToolLibrary/jstudio-controlset-transform.cpp:
+JSystem/JStudio/JStudioToolLibrary/jstudio-controlset-transform.cpp:
 	.text       start:0x804731E0 end:0x80473F10
 	.ctors      start:0x8062F914 end:0x8062F918
 	.rodata     start:0x80654868 end:0x80654898

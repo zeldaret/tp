@@ -52,7 +52,7 @@ static dJntColData_c jntCoData = {
 
 /* 80BBAFEC-80BBB1F4 0000EC 0208+00 1/0 0/0 0/0 .text            __dt__15daObj_BouMato_cFv */
 daObj_BouMato_c::~daObj_BouMato_c() {
-    OS_REPORT("|%06d:%x|daObj_BouMato_c -> デストラクト\n", g_Counter, this);
+    OS_REPORT("|%06d:%x|daObj_BouMato_c -> デストラクト\n", g_Counter.mCounter0, this);
     dComIfG_resDelete(&mPhase, getResName());
 }
 
@@ -106,7 +106,7 @@ int daObj_BouMato_c::CreateHeap() {
 
 /* 80BBB800-80BBB834 000900 0034+00 1/1 0/0 0/0 .text            Delete__15daObj_BouMato_cFv */
 int daObj_BouMato_c::Delete() {
-    OS_REPORT("|%06d:%x|daObj_BouMato_c -> Delete\n", g_Counter, this);
+    OS_REPORT("|%06d:%x|daObj_BouMato_c -> Delete\n", g_Counter.mCounter0, this);
     this->~daObj_BouMato_c();
     return 1;
 }
