@@ -14,7 +14,7 @@
 class daObj_Sekizoa_c : public daNpcT_c {
 public:
     typedef int (daObj_Sekizoa_c::*cutFunc)(int);
-    typedef int (daObj_Sekizoa_c::*actionFunc)(void *);
+    typedef int (daObj_Sekizoa_c::*actionFunc)(void*);
 
     enum Type {
         TYPE_0,
@@ -90,10 +90,13 @@ public:
     /* 80CD3F08 */ int wait(void*);
     /* 80CD425C */ int puzzle(void*);
     /* 80CD45B0 */ int talk(void*);
-    /* 80CD5A40 */ daObj_Sekizoa_c(daNpcT_faceMotionAnmData_c const* param_1, daNpcT_motionAnmData_c const* param_2,
-             daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_3, int param_4,
-             daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_5, int param_6, daNpcT_evtData_c const* param_7,
-             char** param_8) : daNpcT_c(param_1,param_2,param_3,param_4,param_5,param_6,param_7,param_8){}
+    /* 80CD5A40 */ daObj_Sekizoa_c(daNpcT_faceMotionAnmData_c const* param_1,
+                                   daNpcT_motionAnmData_c const* param_2,
+                                   daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_3,
+                                   int param_4,
+                                   daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_5,
+                                   int param_6, daNpcT_evtData_c const* param_7, char** param_8)
+        : daNpcT_c(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8) {}
     /* 80CD5B84 */ int chkGoal();
 
     /* 80CD5B7C */ s32 getBackboneJointNo() { return 1; }
@@ -111,7 +114,7 @@ public:
     /* 80CD03C0 */ int drawDbgInfo();
     /* 80CD03C8 */ void drawOtherMdl();
     /* 80CD05D0 */ void drawGhost();
-    /* 80CD06BC */ bool afterSetMotionAnm(int, int, f32, int);      // fmr issue
+    /* 80CD06BC */ bool afterSetMotionAnm(int, int, f32, int);  // fmr issue
 
     void setWolfHowling() {
         if (mType != 0) {
@@ -181,16 +184,13 @@ public:
         return type;
     }
 
-    u8 getBitSW() {
-        return fopAcM_GetParam(this) & 0xff;
-    }
+    u8 getBitSW() { return fopAcM_GetParam(this) & 0xff; }
 
-    u8 getBitSW2() {
-        return (fopAcM_GetParam(this) & 0xff00) >> 8;
-    }
+    u8 getBitSW2() { return (fopAcM_GetParam(this) & 0xff00) >> 8; }
 
     BOOL chkPressPlayer() {
-        return chkPointInArea(dComIfGp_getPlayer(0)->current.pos, current.pos, 100.0f, 300.0f, -300.0f, 0);
+        return chkPointInArea(dComIfGp_getPlayer(0)->current.pos, current.pos, 100.0f, 300.0f,
+                              -300.0f, 0);
     }
 
     static char* mCutNameList[9];
@@ -198,18 +198,19 @@ public:
 
     /* 0x0E40 */ mDoExt_McaMorfSO* mpMcaMorf;
     /* 0x0E44 */ mDoExt_invisibleModel mInvModel;
-    /* 0x0E4C */ u8 field_0x0E4C[4]; // Padding
+    /* 0x0E4C */ u8 field_0x0E4C[4];  // Padding
     /* 0x0E50 */ dCcD_Cyl mCyl;
     /* 0x0F8C */ dCcD_Cyl mCyl2;
     /* 0x10C8 */ u8 mType;
-    /*
-    mActorMngrs members:
-    - 0 -> daTag_KMsg_c
-    - 1&2 -> daObj_Sekizoa_c, Stone statues A and B actors
-    - 3 -> daObjSekizoa_c
-    - 4 -> daObj_SMTile_c, Tiles animation at start of puzzle
-    - 5&6 -> daTag_EvtArea_c, Goal Tiles where to place the statues
-    - 7 -> daObj_SekiDoor_c, Stone Door at end of puzzle
+    
+    /**
+    * mActorMngrs members:
+    * - 0 -> daTag_KMsg_c
+    * - 1&2 -> daObj_Sekizoa_c, Stone statues A and B actors
+    * - 3 -> daObjSekizoa_c
+    * - 4 -> daObj_SMTile_c, Tiles animation at start of puzzle
+    * - 5&6 -> daTag_EvtArea_c, Goal Tiles where to place the statues
+    * - 7 -> daObj_SekiDoor_c, Stone Door at end of puzzle
     */
     /* 0x10CC */ daNpcT_ActorMngr_c mActorMngrs[8];
     /* 0x110C */ actionFunc mInitFunc;
@@ -231,8 +232,8 @@ public:
     /* 0x1177 */ bool field_0x1177;
     /* 0x1178 */ bool field_0x1178;
     /* 0x1179 */ u8 field_0x1179;
-    /* 0x117A */ u8 mReverseStatues; // Flag if statue B is on goal tile A at end of puzzle
-    /* 0x117B */ u8 field_0x117B; // Padding
+    /* 0x117A */ u8 mReverseStatues;  // Flag if statue B is on goal tile A at end of puzzle
+    /* 0x117B */ u8 field_0x117B;     // Padding
     /* 0x117C */ u8 field_0x117C;
 };
 
