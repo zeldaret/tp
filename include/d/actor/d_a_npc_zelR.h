@@ -21,7 +21,7 @@ public:
         TYPE_1,
     };
 
-    /* 80B6EE2C */ ~daNpc_ZelR_c() {};
+    /* 80B6EE2C */ ~daNpc_ZelR_c();
     /* 80B6EF64 */ int create();
     /* 80B6F1F8 */ int CreateHeap();
     /* 80B6F664 */ int Delete();
@@ -46,11 +46,11 @@ public:
     /* 80B70090 */ void setAttnPos();
     /* 80B702B0 */ void setCollision();
     /* 80B703E0 */ int drawDbgInfo();
-    /* 80B703E8 */ void selectAction();
-    /* 80B70430 */ void chkAction(int (daNpc_ZelR_c::*)(void*));
-    /* 80B7045C */ void setAction(int (daNpc_ZelR_c::*)(void*));
-    /* 80B70504 */ void wait(void*);
-    /* 80B706B0 */ void talk(void*);
+    /* 80B703E8 */ int selectAction();
+    /* 80B70430 */ int chkAction(int (daNpc_ZelR_c::*)(void*));
+    /* 80B7045C */ int setAction(int (daNpc_ZelR_c::*)(void*));
+    /* 80B70504 */ int wait(void*);
+    /* 80B706B0 */ BOOL talk(void*);
     /* 80B71974 */ daNpc_ZelR_c(daNpcT_faceMotionAnmData_c const* param_1, daNpcT_motionAnmData_c const* param_2,
                                 daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_3, int param_4,
                                 daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_5, int param_6,
@@ -61,8 +61,8 @@ public:
     /* 80B71A3C */ s32 getEyeballLMaterialNo();
     /* 80B71A44 */ s32 getHeadJointNo();
     /* 80B71A4C */ s32 getBackboneJointNo();
-    /* 80B71A54 */ BOOL checkChangeJoint(int);
-    /* 80B71A64 */ BOOL checkRemoveJoint(int);
+    /* 80B71A54 */ BOOL checkChangeJoint(int param_1) { return param_1 == 3; };
+    /* 80B71A64 */ BOOL checkRemoveJoint(int param_1) { return param_1 == 13; };
 
     static char* mCutNameList;
     static EventFn mCutList[1];
@@ -73,7 +73,7 @@ private:
     /* 0xF80 */ u8 mType;
     /* 0xF81 */ u8 field_0xf81[0xf84 - 0xf81];
     /* 0xF84 */ ActionFn field_0xf84;
-    /* 0xF88 */ u8 field_0xf88[0xf9c - 0xf90];
+    /* 0xF90 */ ActionFn field_0xf90;
     /* 0xF9C */ daNpcT_Path_c mPath;
     /* 0xFBE */ int field_0xfc4;
 };
@@ -82,17 +82,17 @@ STATIC_ASSERT(sizeof(daNpc_ZelR_c) == 0xfc8);
 
 class daNpc_ZelR_Param_c {
 public:
-    /* 80B71A74 */ ~daNpc_ZelR_Param_c();
+    /* 80B71A74 */ virtual ~daNpc_ZelR_Param_c() {};
 
     struct Data {
-        /* 0x00 */ f32 field_0x00;
-        /* 0x04 */ f32 field_0x04;
-        /* 0x08 */ f32 field_0x08;
-        /* 0x0C */ f32 field_0x0c;
+        /* 0x00 */ f32 field_0x0;
+        /* 0x04 */ f32 mGravity;
+        /* 0x08 */ f32 field_0x8;
+        /* 0x0C */ f32 field_0xc;
         /* 0x10 */ f32 mWeight;
-        /* 0x14 */ f32 field_0x14;
-        /* 0x18 */ f32 field_0x18;
-        /* 0x1C */ f32 field_0x1c;
+        /* 0x14 */ f32 mCylH;
+        /* 0x18 */ f32 mWallH;
+        /* 0x1C */ f32 mWallR;
         /* 0x20 */ f32 field_0x20;
         /* 0x24 */ f32 field_0x24;
         /* 0x28 */ f32 field_0x28;
@@ -102,7 +102,7 @@ public:
         /* 0x38 */ f32 field_0x38;
         /* 0x3C */ f32 field_0x3c;
         /* 0x40 */ f32 field_0x40;
-        /* 0x44 */ f32 field_0x44;
+        /* 0x44 */ f32 mMorfFrames;
         /* 0x48 */ s16 field_0x48;
         /* 0x4A */ s16 field_0x4a;
         /* 0x4C */ s16 field_0x4c;
