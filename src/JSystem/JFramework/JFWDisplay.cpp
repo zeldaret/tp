@@ -328,13 +328,6 @@ void JFWDisplay::endRender() {
     calcCombinationRatio();
 }
 
-/* ############################################################################################## */
-/* 804511C4-804511C8 0006C4 0004+00 1/1 0/0 0/0 .sbss            prevFrame$2597 */
-static u32 prevFrame;
-
-/* 804511C8-804511D0 0006C8 0008+00 1/1 0/0 0/0 .sbss            None */
-static s8 data_804511C8;
-
 /* 80272AB0-80272C60 26D3F0 01B0+00 1/0 0/0 0/0 .text            endFrame__10JFWDisplayFv */
 void JFWDisplay::endFrame() {
     JUTProcBar::getManager()->cpuEnd();
@@ -361,10 +354,7 @@ void JFWDisplay::endFrame() {
     }
 
     if (field_0x40) {
-        if (data_804511C8 == 0) {
-            prevFrame = VIGetRetraceCount();
-            data_804511C8 = 1;
-        }
+        static u32 prevFrame = VIGetRetraceCount();;
         u32 retrace_cnt = VIGetRetraceCount();
         JUTProcBar::getManager()->setCostFrame(retrace_cnt - prevFrame);
         prevFrame = retrace_cnt;
@@ -378,24 +368,11 @@ void JFWDisplay::waitBlanking(int param_0) {
     }
 }
 
-/* ############################################################################################## */
-/* 804511D0-804511D4 0006D0 0004+00 1/1 0/0 0/0 .sbss            nextTick$2642 */
-static OSTime nextTick ALIGN_DECL(8);
-
-/* 804511D8-804511DC 0006D8 0004+00 1/1 0/0 0/0 .sbss            None */
-static s8 data_804511D8;
-
-/* 804511DC-804511E0 0006DC 0004+00 1/1 0/0 0/0 .sbss            nextCount$2650 */
-static u32 nextCount;
-
-/* 804511E0-804511E8 0006E0 0008+00 1/1 0/0 0/0 .sbss            None */
-static s8 data_804511E0;
-
 /* 80272CB0-80272DD0 26D5F0 0120+00 2/2 0/0 0/0 .text            waitForTick__FUlUs */
 static void waitForTick(u32 p1, u16 p2) {
     if (p1 != 0) {
-        static s64 nextTick = OSGetTime();
-        s64 time = OSGetTime();
+        static OSTime nextTick = OSGetTime();
+        OSTime time = OSGetTime();
         while (time < nextTick) {
             JFWDisplay::getManager()->threadSleep((nextTick - time));
             time = OSGetTime();
