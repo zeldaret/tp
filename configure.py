@@ -791,7 +791,7 @@ config.libs = [
         [
             Object(NonMatching, "JSystem/JStudio/JStudio_JStage/control.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio_JStage/object.cpp"),
-            Object(NonMatching, "JSystem/JStudio/JStudio_JStage/object-actor.cpp"),
+            Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio_JStage/object-actor.cpp", extra_cflags=['-pragma "nosyminline off"']),
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio_JStage/object-ambientlight.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio_JStage/object-camera.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio_JStage/object-fog.cpp"),

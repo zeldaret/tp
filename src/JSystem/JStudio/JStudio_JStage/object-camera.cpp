@@ -55,7 +55,7 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_begin() {
     JStage::TCamera* pCamera = get_pJSG_();
     const JStudio::TObject* pObject = adaptor_getObject();
     JUT_ASSERT(70, pObject != 0);
-    JStudio::TControl* pControl = pObject->getControl();
+    const JStudio::TControl* pControl = pObject->getControl();
     JUT_ASSERT(72, pControl != 0);
     getJSG_position_(pControl);
     getJSG_targetPosition_(pControl);
@@ -77,7 +77,7 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_end() {
 void JStudio_JStage::TAdaptor_camera::adaptor_do_update(u32 param_1) {
     const JStudio::TObject* pObject = adaptor_getObject();
     JUT_ASSERT(98, pObject != 0);
-    JStudio::TControl* pControl = pObject->getControl();
+    const JStudio::TControl* pControl = pObject->getControl();
     JUT_ASSERT(100, pControl != 0);
     setJSG_position_(pControl);
     setJSG_targetPosition_(pControl);

@@ -24,7 +24,7 @@ struct TAdaptor;
 struct TVariableValue {
     struct TOutput {
         virtual void operator()(f32, JStudio::TAdaptor*) const = 0;
-        /* 80285E0C */ ~TOutput();
+        /* 80285E0C */ virtual ~TOutput() = 0;
     };
 
     struct TOutput_none_ {
@@ -36,8 +36,7 @@ struct TVariableValue {
     /* 80285EB8 */ static void update_immediate_(JStudio::TVariableValue*, f64);
     /* 80285ECC */ static void update_time_(JStudio::TVariableValue*, f64);
     /* 80285F08 */ static void update_functionValue_(JStudio::TVariableValue*, f64);
-    /* 8028B568 */ TVariableValue();
-    //TVariableValue() : field_0x4(0), field_0x8(NULL), pOutput_((TOutput*)soOutput_none_) {}
+    /* 8028B568 */ TVariableValue() : field_0x4(0), field_0x8(NULL), pOutput_((TOutput*)soOutput_none_) {}
 
     void setValue_immediate(f32 value) {
         field_0x8 = &update_immediate_;
@@ -83,7 +82,7 @@ struct TVariableValue {
         }
     }
 
-    void setOutput(TOutput* param_1) {
+    void setOutput(const TOutput* param_1) {
         pOutput_ = (param_1 != NULL) ? param_1 : (TOutput*)soOutput_none_;
     }
 
@@ -96,7 +95,7 @@ struct TVariableValue {
         TFunctionValue* fv;
         f32 val;
     } field_0xc;
-    /* 0x10 */ TOutput* pOutput_;
+    /* 0x10 */ const TOutput* pOutput_;
 };  // Size: 0x14
 
 typedef void (TObject::*paragraphFunc)(u32, void const*, u32); 
@@ -113,8 +112,9 @@ public:
     /* 8028680C */ virtual void do_wait(u32);
     /* 8028682C */ virtual void do_data(void const*, u32, void const*, u32);
 
-    TAdaptor* getAdaptor() { return mpAdaptor; }
-    TControl* getControl() const { return (TControl*)stb::TObject::getControl(); }
+    TAdaptor* getAdaptor() const { return mpAdaptor; }
+    TControl* getControl() { return (TControl*)stb::TObject::getControl(); }
+    const TControl* getControl() const { return (const TControl*)stb::TObject::getControl(); }
 
     inline void prepareAdaptor();
 
@@ -211,7 +211,16 @@ inline void TObject::prepareAdaptor() {
 }
 
 struct TAdaptor_actor : public TAdaptor {
-    TAdaptor_actor() : TAdaptor(mValue, 14) {}
+    enum TEVariableValue {
+        TE_VALUE_NONE = -1,
+        TEACTOR_1 = 1,
+    };
+
+    TAdaptor_actor()
+        : TAdaptor(mValue, ARRAY_SIZE(mValue))
+        , mValue()
+    {
+    }
     /* 802868B0 */ virtual ~TAdaptor_actor() = 0;
     virtual void adaptor_do_PARENT(JStudio::data::TEOperationData, const void*, u32)                 = 0;
 	virtual void adaptor_do_PARENT_NODE(JStudio::data::TEOperationData, const void*, u32)            = 0;
@@ -260,6 +269,13 @@ struct TObject_ambientLight : public TObject {
 };
 
 struct TAdaptor_camera : public TAdaptor {
+    enum TEVariableValue {
+        TECAMERA_6 = 6,
+        TECAMERA_7 = 7,
+        TECAMERA_8 = 8,
+        TECAMERA_9 = 9,
+    };
+
     TAdaptor_camera() : TAdaptor(mValue, 12) {}
     /* 80286E1C */ virtual ~TAdaptor_camera() = 0;
 
@@ -287,6 +303,11 @@ struct TObject_camera : public TObject {
 };
 
 struct TAdaptor_fog : public TAdaptor {
+    enum TEVariableValue {
+        TEFOG_4 = 4,
+        TEFOG_5 = 5,
+    };
+
     TAdaptor_fog() : TAdaptor(mValue, 6) {}
     /* 8028717C */ virtual ~TAdaptor_fog() = 0;
 
@@ -306,6 +327,15 @@ struct TObject_fog : public TObject {
 };
 
 struct TAdaptor_light : public TAdaptor {
+    enum TEVariableValue {
+        TE_VALUE_NONE = -1,
+        TE_VALUE_7 = 7,
+        TE_VALUE_8 = 8,
+        TE_VALUE_9 = 9,
+        TE_VALUE_10 = 10,
+        TE_VALUE_11 = 11,
+    };
+
     TAdaptor_light() : TAdaptor(mValue, 13) {}
     /* 80287308 */ virtual ~TAdaptor_light() = 0;
 
@@ -363,6 +393,15 @@ struct TObject_particle : public TObject {
 };
 
 struct TAdaptor_sound : public TAdaptor {
+    enum TEVariableValue {
+        UNK_7 = 7,
+        UNK_8 = 8,
+        UNK_9 = 9,
+        UNK_10 = 10,
+        UNK_11 = 11,
+        UNK_NONE = -1,
+    };
+
     TAdaptor_sound() : TAdaptor(mValue, 13) {}
     /* 80287B3C */ virtual ~TAdaptor_sound() = 0;
 
