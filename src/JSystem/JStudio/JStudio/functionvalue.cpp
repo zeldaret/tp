@@ -489,7 +489,7 @@ void TFunctionValueAttribute_range::range_set(f64 begin, f64 end) {
     fEnd_ = end;
     fDifference_ = end - begin;
 
-    ASSERT(fDifference_ >= TValue(0));
+    JUT_ASSERT(458, fDifference_ >= TValue(0));
 }
 
 // /* 80281A08-80281D18 27C348 0310+00 2/2 0/0 0/0 .text
@@ -1033,13 +1033,13 @@ void TFunctionValue_list_parameter::prepare() {
 
 /* 80282F10-80282FE8 27D850 00D8+00 1/0 0/0 0/0 .text
  * getValue__Q27JStudio29TFunctionValue_list_parameterFd        */
-f64 TFunctionValue_list_parameter::getValue(f64 pfData_) {
-    pfData_ = range_getParameter(pfData_, data_getValue_front(), data_getValue_back());
+f64 TFunctionValue_list_parameter::getValue(f64 param_0) {
+    param_0 = range_getParameter(param_0, data_getValue_front(), data_getValue_back());
     JUT_ASSERT(1395, pfData_!=0)
 
     // TODO: change to actual function
     //dat3 = JGadget::findUpperBound_binary_current(dat1, dat2, dat3, &pfData_);
-    dat3 = func_802835DC(dat1, dat2, dat3, pfData_);
+    dat3 = func_802835DC(dat1, dat2, dat3, param_0);
     if (dat3 == dat1) {
         return dat3.get()[1];
     }
@@ -1052,7 +1052,7 @@ f64 TFunctionValue_list_parameter::getValue(f64 pfData_) {
     const int suData_size = 1;
     JUT_ASSERT(1411, (pfData_<=pf-suData_size)&&(pf<pfData_+suData_size*uData_));
     JUT_ASSERT(1412, pfnUpdate_!=0);
-    return pfnUpdate_(*this, pfData_);
+    return pfnUpdate_(*this, param_0);
 }
 
 f64 TFunctionValue_list_parameter::update_INTERPOLATE_NONE_(
