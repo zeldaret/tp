@@ -198,7 +198,6 @@ u8 J3DMaterialFactory_v21::newColorChanNum(int i_idx) const {
 
 /* 8033386C-80333A10 32E1AC 01A4+00 1/1 0/0 0/0 .text newColorChan__22J3DMaterialFactory_v21CFii
  */
-// NONMATCHING J3DColorChan ctor
 J3DColorChan J3DMaterialFactory_v21::newColorChan(int i_idx, int i_no) const {
     J3DMaterialInitData_v21* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
     if (mtl_init_data->mColorChanIdx[i_no] != 0xffff) {

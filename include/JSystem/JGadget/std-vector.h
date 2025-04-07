@@ -41,12 +41,6 @@ struct TVector {
         mAllocator.deallocate(pBegin_, 0);
     }
 
-    T* insert(T* pos, const T& val) {
-        u32 diff = (int)((u32)pos - (u32)begin()) / 4;
-        insert(pos, 1, val);
-        return pBegin_ + diff;
-    }
-
     void insert(T* pos, u32 count, const T& val) {
         if (count != 0) {
             T* ptr = Insert_raw(pos, count);
@@ -108,6 +102,12 @@ struct TVector {
         mCapacity = newSize;
 
         return endOfCopy;
+    }
+
+    T* insert(T* pos, const T& val) {
+        u32 diff = (int)((u32)pos - (u32)begin()) / 4;
+        insert(pos, 1, val);
+        return pBegin_ + diff;
     }
 
     T* begin() const { return pBegin_; }

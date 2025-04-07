@@ -1076,9 +1076,9 @@ public:
  */
 class J3DIndBlockNull : public J3DIndBlock {
 public:
-    /* 803173A0 */ virtual void reset(J3DIndBlock*) {}
     /* 80317398 */ virtual void diff(u32) {}
     /* 8031739C */ virtual void load() {}
+    /* 803173A0 */ virtual void reset(J3DIndBlock*) {}
     /* 803173A4 */ virtual u32 getType() { return 'IBLN'; }
     /* 803173B0 */ virtual ~J3DIndBlockNull() {}
 };
@@ -1134,6 +1134,25 @@ struct J3DColorChanInfo {
 
 extern const J3DColorChanInfo j3dDefaultColorChanInfo;
 
+inline u16 calcColorChanID(u16 enable, u8 matSrc, u8 lightMask, u8 diffuseFn, u8 attnFn, u8 ambSrc) {
+    u32 reg = 0;
+    reg = reg & ~0x0002 | enable << 1;
+    reg = reg & ~0x0001 | matSrc;
+    reg = reg & ~0x0040 | ambSrc << 6;
+    reg = reg & ~0x0004 | bool(lightMask & 0x01) << 2;
+    reg = reg & ~0x0008 | bool(lightMask & 0x02) << 3;
+    reg = reg & ~0x0010 | bool(lightMask & 0x04) << 4;
+    reg = reg & ~0x0020 | bool(lightMask & 0x08) << 5;
+    reg = reg & ~0x0800 | bool(lightMask & 0x10) << 11;
+    reg = reg & ~0x1000 | bool(lightMask & 0x20) << 12;
+    reg = reg & ~0x2000 | bool(lightMask & 0x40) << 13;
+    reg = reg & ~0x4000 | bool(lightMask & 0x80) << 14;
+    reg = reg & ~0x0180 | (attnFn == GX_AF_SPEC ? 0 : diffuseFn) << 7;
+    reg = reg & ~0x0200 | (attnFn != GX_AF_NONE) << 9;
+    reg = reg & ~0x0400 | (attnFn != GX_AF_SPEC) << 10;
+    return reg;
+}
+
 static inline u32 setChanCtrlMacro(u8 enable, GXColorSrc ambSrc, GXColorSrc matSrc, u32 lightMask,
                                    GXDiffuseFn diffuseFn, GXAttnFn attnFn) {
     u32 tmp = matSrc << 0;
@@ -1151,30 +1170,12 @@ struct J3DColorChan {
         setColorChanInfo(j3dDefaultColorChanInfo);
     }
     J3DColorChan(J3DColorChanInfo const& info) {
-        setColorChanInfo(info);
-    }
-    void setColorChanInfo(J3DColorChanInfo const& info) {
         mColorChanID = calcColorChanID(info.field_0x0, info.field_0x1, info.field_0x2,
             info.field_0x3, info.field_0x4, info.field_0x5 == 0xff ? 0 : info.field_0x5);
     }
-    u16 calcColorChanID(u16 param_0, u8 param_1, u8 param_2, u8 param_3, u8 param_4, u8 param_5) {
-        // if (param_4 == 0) {
-        //     param_3 = 0;
-        // }
-        u32 b0 = ((param_2 & 1) != 0);
-        u32 b1 = ((param_2 & 2) != 0);
-        u32 b2 = ((param_2 & 4) != 0);
-        u32 b3 = ((param_2 & 8) != 0);
-        u32 b4 = ((param_2 & 0x10) != 0);
-        u32 b5 = ((param_2 & 0x20) != 0);
-        u32 b6 = ((param_2 & 0x40) != 0);
-        u32 b7 = ((param_2 & 0x80) != 0);
-        return param_1 | (param_0 << 1) | (b0 << 2) | (b1 << 3) | (b2 << 4) | (b3 << 5) |
-            (param_5 << 6) | (param_3 << 7) | ((param_4 != 2) << 9) | ((param_4 != 0) << 10) |
-            (b4 << 11) | (b5 << 12) | (b6 << 13) | (b7 << 14);
-        // return (b7 << 14) | (b6 << 13) | (b5 << 12) | (b4 << 11) |
-        //     ((param_4 != 0) << 10) | ((param_4 != 2) << 9) | ((param_3 != 0) << 7) | ((param_5 != 0) << 6) |
-        //     (b3 << 5) | (b2 << 4) | (b1 << 3) | (b0 << 2) | ((param_0 != 0) << 1) | param_1;
+    void setColorChanInfo(J3DColorChanInfo const& info) {
+        mColorChanID = calcColorChanID(info.field_0x0, info.field_0x1, info.field_0x2,
+            info.field_0x3, info.field_0x4, info.field_0x5 == 0xffff ? 0 : info.field_0x5);
     }
     u8 getLightMask() { return ((mColorChanID >> 2) & 0xf) | ((mColorChanID >> 11) & 0xf) << 4; }
     void setLightMask(u8 param_1) {

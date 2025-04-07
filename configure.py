@@ -772,12 +772,11 @@ config.libs = [
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/ctb-data.cpp"),
             Object(NonMatching, "JSystem/JStudio/JStudio/functionvalue.cpp"),
             Object(NonMatching, "JSystem/JStudio/JStudio/fvb.cpp"),
-            Object(NonMatching, "JSystem/JStudio/JStudio/fvb-inline.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/fvb-data.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/fvb-data-parse.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/jstudio-control.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/jstudio-data.cpp"),
-            Object(NonMatching, "JSystem/JStudio/JStudio/jstudio-math.cpp"),
+            Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/jstudio-math.cpp"),
             Object(NonMatching, "JSystem/JStudio/JStudio/jstudio-object.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/object-id.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/stb.cpp"),
@@ -788,7 +787,7 @@ config.libs = [
     JSystemLib(
         "JStudio_JStage",
         [
-            Object(NonMatching, "JSystem/JStudio/JStudio_JStage/control.cpp"),
+            Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio_JStage/control.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio_JStage/object.cpp"),
             Object(NonMatching, "JSystem/JStudio/JStudio_JStage/object-actor.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio_JStage/object-ambientlight.cpp"),
@@ -981,7 +980,7 @@ config.libs = [
         [
             Object(MatchingFor("GZ2E01"), "JSystem/JGadget/binary.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JGadget/linklist.cpp"),
-            Object(Equivalent, "JSystem/JGadget/std-vector.cpp", extra_cflags=['-pragma "nosyminline off"']),  # just weak order
+            Object(MatchingFor("GZ2E01"), "JSystem/JGadget/std-vector.cpp", extra_cflags=['-pragma "nosyminline off"']),
         ],
     ),
     JSystemLib(
@@ -1022,7 +1021,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01"), "JSystem/J2DGraph/J2DPane.cpp"),
             Object(NonMatching, "JSystem/J2DGraph/J2DScreen.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/J2DGraph/J2DWindow.cpp"),
-            Object(Equivalent, "JSystem/J2DGraph/J2DPicture.cpp", extra_cflags=['-pragma "nosyminline off"']), # weak func order
+            Object(MatchingFor("GZ2E01"), "JSystem/J2DGraph/J2DPicture.cpp", extra_cflags=['-pragma "nosyminline off"']),
             Object(MatchingFor("GZ2E01"), "JSystem/J2DGraph/J2DTextBox.cpp"),
             Object(NonMatching, "JSystem/J2DGraph/J2DWindowEx.cpp"),
             Object(NonMatching, "JSystem/J2DGraph/J2DPictureEx.cpp"),
@@ -1044,7 +1043,7 @@ config.libs = [
             Object(NonMatching, "JSystem/J3DGraphBase/J3DShapeMtx.cpp"),
             Object(NonMatching, "JSystem/J3DGraphBase/J3DShapeDraw.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/J3DGraphBase/J3DShape.cpp"),
-            Object(NonMatching, "JSystem/J3DGraphBase/J3DMaterial.cpp"),
+            Object(MatchingFor("GZ2E01"), "JSystem/J3DGraphBase/J3DMaterial.cpp", extra_cflags=['-pragma "nosyminline off"']),
             Object(NonMatching, "JSystem/J3DGraphBase/J3DMatBlock.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/J3DGraphBase/J3DTevs.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/J3DGraphBase/J3DDrawBuffer.cpp"),
@@ -1074,7 +1073,7 @@ config.libs = [
             Object(NonMatching, "JSystem/J3DGraphLoader/J3DMaterialFactory_v21.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/J3DGraphLoader/J3DClusterLoader.cpp", extra_cflags=['-pragma "nosyminline off"']),
             Object(MatchingFor("GZ2E01"), "JSystem/J3DGraphLoader/J3DModelLoader.cpp", extra_cflags=['-pragma "nosyminline off"']),
-            Object(NonMatching, "JSystem/J3DGraphLoader/J3DModelLoaderCalcSize.cpp"),
+            Object(MatchingFor("GZ2E01"), "JSystem/J3DGraphLoader/J3DModelLoaderCalcSize.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/J3DGraphLoader/J3DJointFactory.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/J3DGraphLoader/J3DShapeFactory.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/J3DGraphLoader/J3DAnmLoader.cpp", extra_cflags=['-pragma "nosyminline off"']),

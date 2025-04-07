@@ -9,17 +9,13 @@
 #include "math.h"
 
 /* 802859DC-80285B44 28031C 0168+00 1/1 0/0 0/0 .text getRotation_xyz__Q27JStudio4mathFPA4_ffff */
-// NONMATCHING - regalloc
 void JStudio::math::getRotation_xyz(MtxP param_1, f32 x, f32 y, f32 z) {
-    x = DEG_TO_RAD(x);
-    f32 cosx = cos(x);
-    f32 sinx = sin(x);
-    y = DEG_TO_RAD(y);
-    f32 cosy = cos(y);
-    f32 siny = sin(y);
-    z = DEG_TO_RAD(z);
-    f32 cosz = cos(z);
-    f32 sinz = sin(z);
+    f32 cosx = i_cosf(DEG_TO_RAD(x));
+    f32 sinx = i_sinf(DEG_TO_RAD(x));
+    f32 cosy = i_cosf(DEG_TO_RAD(y));
+    f32 siny = i_sinf(DEG_TO_RAD(y));
+    f32 cosz = i_cosf(DEG_TO_RAD(z));
+    f32 sinz = i_sinf(DEG_TO_RAD(z));
     f32 cosxcosz = cosx * cosz;
     f32 cosxsinz = cosx * sinz;
     f32 sinxcosz = sinx * cosz;

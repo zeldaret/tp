@@ -58,12 +58,11 @@ public:
     /* 802FF2E8 */ virtual u16 getTypeID() const { return 18; }
     /* 802FDB28 */ virtual void drawSelf(f32, f32);
     /* 802FDB90 */ virtual void drawSelf(f32, f32, Mtx*);
-    /* 802FF09C */ virtual bool isUsed(ResTIMG const*);
-    /* 802FF63C */ virtual bool isUsed(ResFONT const* param_0) { return J2DPane::isUsed(param_0); }
-    /* 802FF65C */ virtual void rewriteAlpha() {}
     /* 802FCCDC */ virtual void initiate(ResTIMG const*, ResTLUT const*);
     /* 802FD098 */ virtual bool prepareTexture(u8);
-    /* 801BDD40 */ virtual bool append(ResTIMG const*, f32);
+    /* 801BDD40 */ virtual bool append(ResTIMG const* param_0, f32 param_1) {
+        return insert(param_0, mTextureNum, param_1);
+    }
     /* 802FF238 */ virtual bool append(ResTIMG const* param_0, JUTPalette* param_1, f32 param_2) {
         return insert(param_0, param_1, mTextureNum, param_2);
     }
@@ -91,7 +90,7 @@ public:
     /* 802FF320 */ virtual void prepend(JUTTexture* param_0, f32 param_1) {
         insert(param_0, 0, param_1);
     }
-    /* 801BDD70 */ virtual void insert(ResTIMG const*, u8, f32);
+    /* 801BDD70 */ virtual bool insert(ResTIMG const*, u8, f32);
     /* 802FD168 */ virtual bool insert(ResTIMG const*, JUTPalette*, u8, f32);
     /* 80020368 */ virtual bool insert(char const* param_0, u8 param_1, f32 param_2) {
         return insert(param_0, NULL, param_1, param_2);
@@ -169,6 +168,9 @@ public:
     /* 802FE380 */ virtual void drawTexCoord(f32, f32, f32, f32, s16, s16, s16, s16, s16, s16, s16,
                                              s16, Mtx*);
     /* 802FF100 */ virtual u8 getUsableTlut(u8);
+    /* 802FF09C */ virtual bool isUsed(ResTIMG const*);
+    /* 802FF63C */ virtual bool isUsed(ResFONT const* param_0) { return J2DPane::isUsed(param_0); }
+    /* 802FF65C */ virtual void rewriteAlpha() {}
 
     /* 802FC800 */ J2DPicture(u64, JGeometry::TBox2<f32> const&, ResTIMG const*, ResTLUT const*);
     /* 802FC708 */ J2DPicture(ResTIMG const*);

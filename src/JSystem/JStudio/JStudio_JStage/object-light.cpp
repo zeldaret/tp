@@ -5,16 +5,6 @@
 
 #include "JSystem/JStudio/JStudio_JStage/object-light.h"
 
-// adaptor_do_update calls these functions as inlines somehow
-// these need to be moved to MSL_C once an appropriate solution is found
-inline float sinf(float x) {
-    return sin(x);
-}
-
-inline float cosf(float x) {
-    return cos(x);
-}
-
 /* 8028CB50-8028CBF4 287490 00A4+00 0/0 1/1 0/0 .text
  * __ct__Q214JStudio_JStage14TAdaptor_lightFPCQ26JStage7TSystemPQ26JStage6TLight */
 JStudio_JStage::TAdaptor_light::TAdaptor_light(JStage::TSystem const* param_1,
@@ -117,12 +107,12 @@ void JStudio_JStage::TAdaptor_light::adaptor_do_update(u32 param_1) {
         f32 dVar10 = adaptor_getVariableValue(10)->getValue();
         f32 dVar11 = adaptor_getVariableValue(11)->getValue();
         f32 temp = MTXDegToRad(dVar11);
-        f32 dVar12 = cosf(temp);
-        f32 sinVal = sinf(temp);
+        f32 dVar12 = i_cosf(temp);
+        f32 sinVal = i_sinf(temp);
         f32 temp2 = MTXDegToRad(dVar10);
-        VStack_198.direction.x = dVar12 * sinf(temp2);
+        VStack_198.direction.x = dVar12 * i_sinf(temp2);
         VStack_198.direction.y = sinVal;
-        VStack_198.direction.z = dVar12 * cosf(temp2);
+        VStack_198.direction.z = dVar12 * i_cosf(temp2);
         break;
     case 2:
         Vec VStack_1c0;

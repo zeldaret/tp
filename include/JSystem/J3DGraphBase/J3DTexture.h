@@ -93,8 +93,8 @@ struct J3DTexCoord : public J3DTexCoordInfo {
 
     u8 getTexGenType() { return mTexGenType; }
     u8 getTexGenSrc() { return mTexGenSrc; }
-    u8 getTexGenMtx() { return mTexGenMtx & 0xff; }
-    u16 getTexMtxReg() { return mTexMtxReg & 0xff; }
+    u32 getTexGenMtx() { return mTexGenMtx & 0xff; }
+    u32 getTexMtxReg() { return mTexMtxReg & 0xff; }
     void setTexGenMtx(u8 param_1) { mTexGenMtx = param_1; }
     void setTexMtxReg(u16 reg) { mTexMtxReg = reg; }
     J3DTexCoord& operator=(const J3DTexCoord& other) {

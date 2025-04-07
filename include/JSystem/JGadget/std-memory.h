@@ -25,6 +25,8 @@ struct TAllocator {
     void destroy(T* p) {
         JUT_ASSERT(68, p!=0);
     }
+
+    /* 0x0 */ u8 mAllocator;
 };
 }
 

@@ -1,6 +1,7 @@
 #ifndef JSTUDIO_JSTAGE_CONTROL_H
 #define JSTUDIO_JSTAGE_CONTROL_H
 
+#include "JSystem/JGadget/pointer.h"
 #include "JSystem/JStage/JSGActor.h"
 #include "JSystem/JStage/JSGAmbientLight.h"
 #include "JSystem/JStage/JSGCamera.h"
@@ -80,6 +81,7 @@ struct TAdaptor_actor : public JStudio::TAdaptor_actor, public JStudio_JStage::T
 
     enum TEVariableValue {
         TEACTOR_1 = 1,
+        TEACTOR_NONE = -1,
     };
 
     struct TVVOutput_ANIMATION_FRAME_ 
@@ -102,7 +104,7 @@ struct TAdaptor_actor : public JStudio::TAdaptor_actor, public JStudio_JStage::T
         }
 
         /* 8028B064 */ virtual void operator()(f32, JStudio::TAdaptor*) const;
-        /* 8028B138 */ virtual ~TVVOutput_ANIMATION_FRAME_();
+        /* 8028B138 */ virtual ~TVVOutput_ANIMATION_FRAME_() {}
         
         void adaptor_setOutput_(TAdaptor* adaptor) {
             adaptor->adaptor_referVariableValue(mValueIndex)->setOutput(this);
@@ -343,6 +345,28 @@ inline bool transform_toGlobalFromLocal(JStudio::TControl::TTransform_position* 
 /* 8028A3CC */ bool transform_toLocalFromGlobal(f32 (*)[4],
                                                 JStudio::TControl::TTransform_position const&,
                                                 JStage::TObject const*, u32);
+
+namespace {
+
+template <class AdaptorT, class ObjectT>
+JStudio::TObject* createObject_JSG_(const JStudio::stb::data::TParse_TBlock_object& param_1,
+                                    JStage::TObject* param_2, const JStage::TSystem* param_3) {
+    ObjectT* objt = (ObjectT*)param_2;                                        
+    AdaptorT* pAdaptor = new AdaptorT(param_3, objt);
+    if (pAdaptor == NULL) {
+        return NULL;
+    }
+    JGadget::TPointer_delete<AdaptorT> adaptorGuard(pAdaptor);
+    JStudio::TObject* pObj = JStudio::TCreateObject::createFromAdaptor<AdaptorT>(param_1, pAdaptor);
+    if (pObj == NULL) {
+        return NULL;
+    }
+    adaptorGuard.set(NULL);
+    return pObj;
+}
+
+}  // namespace
+
 };  // namespace JStudio_JStage
 
 #endif /* JSTUDIO_JSTAGE_CONTROL_H */

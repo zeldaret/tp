@@ -503,7 +503,6 @@ u8 J3DMaterialFactory::newColorChanNum(int i_idx) const {
 }
 
 /* 80331DAC-80331F50 32C6EC 01A4+00 2/2 0/0 0/0 .text newColorChan__18J3DMaterialFactoryCFii */
-// NONMATCHING problem with J3DColorChan inline constructor
 J3DColorChan J3DMaterialFactory::newColorChan(int i_idx, int i_no) const {
     u16 color_chan_index = mpMaterialInitData[mpMaterialID[i_idx]].mColorChanIdx[i_no];
     if (color_chan_index != 0xffff) {
@@ -589,13 +588,9 @@ J3DTevOrder J3DMaterialFactory::newTevOrder(int i_idx, int i_no) const {
     }
 }
 
-/* 80456BB8-80456BBC 000058 0004+00 1/1 0/0 0/0 .sbss2           @1897 */
-static GXColorS10 defaultTevColor;
-
 /* 803321A0-80332210 32CAE0 0070+00 2/2 0/0 0/0 .text newTevColor__18J3DMaterialFactoryCFii */
-// NONMATCHING defaultTevColor goes in .sbss when it should be in .sbss2
 J3DGXColorS10 J3DMaterialFactory::newTevColor(int i_idx, int i_no) const {
-    J3DGXColorS10 dflt = defaultTevColor;
+    J3DGXColorS10 dflt = (GXColorS10){0, 0, 0, 0};
     J3DMaterialInitData* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
     if (mtl_init_data->mTevColorIdx[i_no] != 0xffff) {
         return mpTevColor[mtl_init_data->mTevColorIdx[i_no]];

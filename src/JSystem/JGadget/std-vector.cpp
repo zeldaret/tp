@@ -19,6 +19,10 @@ JGadget::TVector_pointer_void::TVector_pointer_void(JGadget::TAllocator<void*> c
 JGadget::TVector_pointer_void::~TVector_pointer_void() {
 }
 
+void dummy_weak_order(JGadget::TVector<void*> vec) {
+    vec.insert(NULL, 0, NULL);
+}
+
 /* 802DCDA4-802DCDC4 2D76E4 0020+00 0/0 1/1 0/0 .text
  * insert__Q27JGadget20TVector_pointer_voidFPPvRCPv             */
 void JGadget::TVector_pointer_void::insert(void** param_0, void* const& param_1) {

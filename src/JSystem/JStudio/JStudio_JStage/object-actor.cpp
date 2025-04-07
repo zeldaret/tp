@@ -26,29 +26,6 @@ JStudio_JStage::TAdaptor_actor::~TAdaptor_actor() {
     adaptor_do_end();
 }
 
-/* 80431188-80431194 05DEA8 000C+00 1/1 0/0 0/0 .bss             @1087 */
-static u8 lit_1087[12];
-
-/* 804311A0-804311E0 05DEC0 0040+00 2/3 0/0 0/0 .bss
- * saoVVOutput___Q214JStudio_JStage14TAdaptor_actor             */
-JStudio_JStage::TAdaptor_actor::TVVOutputObject JStudio_JStage::TAdaptor_actor::saoVVOutput_[2];
-
-/* 804311E0-804311EC 05DF00 000C+00 0/1 0/0 0/0 .bss             @1095 */
-#pragma push
-#pragma force_active on
-static u8 lit_1095[12];
-#pragma pop
-
-/* 804311EC-804311F8 05DF0C 000C+00 0/1 0/0 0/0 .bss             @1102 */
-#pragma push
-#pragma force_active on
-static u8 lit_1102[12];
-#pragma pop
-
-/* 80431204-80431298 05DF24 0090+04 2/3 0/0 0/0 .bss
- * saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor */
-JStudio_JStage::TAdaptor_actor::TVVOutput_ANIMATION_FRAME_ JStudio_JStage::TAdaptor_actor::saoVVOutput_ANIMATION_FRAME_[3];
-
 /* 8028A728-8028A7B4 285068 008C+00 1/0 0/0 0/0 .text
  * adaptor_do_prepare__Q214JStudio_JStage14TAdaptor_actorFv     */
 void JStudio_JStage::TAdaptor_actor::adaptor_do_prepare() {
@@ -412,72 +389,17 @@ void JStudio_JStage::TAdaptor_actor::TVVOutput_ANIMATION_FRAME_::operator()(
 	(actor->*mSetter)(param_1);
 }
 
-/* 8028B138-8028B198 285A78 0060+00 2/1 0/0 0/0 .text
- * __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv */
-// NONMATCHING
-JStudio_JStage::TAdaptor_actor::TVVOutput_ANIMATION_FRAME_::~TVVOutput_ANIMATION_FRAME_() {
-}
-
-/* 803C5754-803C5760 022874 000C+00 0/1 0/0 0/0 .data            @1083 */
-#pragma push
-#pragma force_active on
-static u8 lit_1083[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x74, 0x00, 0x00, 0x00, 0x00,
+/* 804311A0-804311E0 05DEC0 0040+00 2/3 0/0 0/0 .bss
+ * saoVVOutput___Q214JStudio_JStage14TAdaptor_actor             */
+JStudio_JStage::TAdaptor_actor::TVVOutputObject JStudio_JStage::TAdaptor_actor::saoVVOutput_[2] = {
+    TVVOutputObject(TEACTOR_1, &JStage::TActor::JSGSetAnimationTransition, &JStage::TActor::JSGGetAnimationTransition),
+    TVVOutputObject(TEACTOR_NONE, NULL, NULL)
 };
-#pragma pop
 
-/* 803C5760-803C576C 022880 000C+00 0/1 0/0 0/0 .data            @1084 */
-#pragma push
-#pragma force_active on
-static u8 lit_1084[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x70, 0x00, 0x00, 0x00, 0x00,
+/* 80431204-80431298 05DF24 0090+04 2/3 0/0 0/0 .bss
+ * saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor */
+JStudio_JStage::TAdaptor_actor::TVVOutput_ANIMATION_FRAME_ JStudio_JStage::TAdaptor_actor::saoVVOutput_ANIMATION_FRAME_[3] = {
+    TVVOutput_ANIMATION_FRAME_(0, 305, &JStage::TActor::JSGSetAnimationFrame, &JStage::TActor::JSGGetAnimationFrame, &JStage::TActor::JSGGetAnimationFrameMax),
+    TVVOutput_ANIMATION_FRAME_(2, 309, &JStage::TActor::JSGSetTextureAnimationFrame, &JStage::TActor::JSGGetTextureAnimationFrame, &JStage::TActor::JSGGetTextureAnimationFrameMax),
+    TVVOutput_ANIMATION_FRAME_(-1, 0, NULL, NULL, NULL)
 };
-#pragma pop
-
-/* 803C576C-803C5778 02288C 000C+00 0/1 0/0 0/0 .data            @1089 */
-#pragma push
-#pragma force_active on
-static u8 lit_1089[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x68, 0x00, 0x00, 0x00, 0x00,
-};
-#pragma pop
-
-/* 803C5778-803C5784 022898 000C+00 0/1 0/0 0/0 .data            @1090 */
-#pragma push
-#pragma force_active on
-static u8 lit_1090[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x64, 0x00, 0x00, 0x00, 0x00,
-};
-#pragma pop
-
-/* 803C5784-803C5790 0228A4 000C+00 0/1 0/0 0/0 .data            @1091 */
-#pragma push
-#pragma force_active on
-static u8 lit_1091[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x6C, 0x00, 0x00, 0x00, 0x00,
-};
-#pragma pop
-
-/* 803C5790-803C579C 0228B0 000C+00 0/1 0/0 0/0 .data            @1096 */
-#pragma push
-#pragma force_active on
-static u8 lit_1096[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x84, 0x00, 0x00, 0x00, 0x00,
-};
-#pragma pop
-
-/* 803C579C-803C57A8 0228BC 000C+00 0/1 0/0 0/0 .data            @1097 */
-#pragma push
-#pragma force_active on
-static u8 lit_1097[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00, 0x00,
-};
-#pragma pop
-
-/* 803C57A8-803C57B4 0228C8 000C+00 0/1 0/0 0/0 .data            @1098 */
-#pragma push
-#pragma force_active on
-static u8 lit_1098[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x88, 0x00, 0x00, 0x00, 0x00,
-};
-#pragma pop

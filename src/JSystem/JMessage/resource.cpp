@@ -10,7 +10,6 @@
 
 /* 802A8CDC-802A8EC0 2A361C 01E4+00 0/0 1/1 0/0 .text
  * toMessageIndex_messageID__Q28JMessage9TResourceCFUlUlPb      */
-// NONMATCHING - instruction order
 u16 JMessage::TResource::toMessageIndex_messageID(u32 lowerHalf, u32 upperHalf,
                                                   bool* isMsgValid) const {
     if (!mMessageID.getRaw()) {

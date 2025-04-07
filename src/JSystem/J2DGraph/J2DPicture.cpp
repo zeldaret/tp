@@ -515,6 +515,11 @@ const ResTIMG* J2DPicture::changeTexture(char const* resName, u8 param_1) {
     return changeTexture((ResTIMG*)resource, param_1);
 }
 
+static bool dummy_weak_order(JUTTexture* tex) {
+    J2DPicture* picture;
+    return picture->append(tex, 1.0f);
+}
+
 /* 802FD9BC-802FDAC8 2F82FC 010C+00 1/0 0/0 0/0 .text
  * changeTexture__10J2DPictureFPC7ResTIMGUcP10JUTPalette        */
 const ResTIMG* J2DPicture::changeTexture(ResTIMG const* img, u8 texIndex, JUTPalette* palette) {

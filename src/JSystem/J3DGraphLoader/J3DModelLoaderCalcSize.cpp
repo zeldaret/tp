@@ -127,13 +127,13 @@ u32 J3DModelLoader::calcLoadBinaryDisplayListSize(const void* stream, u32 flags)
     for (u32 i = 0; i < header->mBlockNum; i++) {
         switch (nextBlock->mBlockType) {
         case 'INF1':
-            size += calcSizeInformation((const J3DModelInfoBlock*)nextBlock, flags);
+            size += calcSizeInformation((const J3DModelInfoBlock*)nextBlock, (u32)flags);
             break;
         case 'JNT1':
             size += calcSizeJoint((const J3DJointBlock*)nextBlock);
             break;
         case 'SHP1':
-			size += calcSizeShape((const J3DShapeBlock*)nextBlock, flags);
+			size += calcSizeShape((const J3DShapeBlock*)nextBlock, (u32)flags);
 			break;
 		case 'TEX1':
 			size += calcSizeTexture((const J3DTextureBlock*)nextBlock);
@@ -145,7 +145,7 @@ u32 J3DModelLoader::calcLoadBinaryDisplayListSize(const void* stream, u32 flags)
 			break;
 		case 'MAT3': {
 			u32 flags2 = (J3DMLF_21 | J3DMLF_Material_PE_Full | J3DMLF_Material_Color_LightOn);
-            flags2 |= flags & (J3DMLF_Material_UseIndirect | J3DMLF_26);
+            flags2 |= (u32)flags & (J3DMLF_Material_UseIndirect | J3DMLF_26);
 			mpMaterialBlock = (const J3DMaterialBlock*)nextBlock;
             u32 flag_mtl_type = getBdlFlag_MaterialType(flags);
 			if (flag_mtl_type == 0) {
