@@ -1115,7 +1115,7 @@ public:
 
     static daMidna_c* m_midnaActor;
 
-    void setGiantPuzzle() { mSpecialMode = 0x27; }
+    void setGiantPuzzle() { mSpecialMode = SMODE_WOLF_PUZZLE; }
     void setGiantPuzzleEnd() { mSpecialMode = 0; }
 };
 

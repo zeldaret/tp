@@ -153,7 +153,7 @@ daObj_Sekizoa_c::~daObj_Sekizoa_c() {
         mpMorf[1]->stopZelAnime();
     }
     if (mType == TYPE_0) {
-        if (daNpcT_chkTmpBit(0x31) != 0) {
+        if (daNpcT_chkTmpBit(0x31)) {
             mDoAud_subBgmStop();
         }
     }
@@ -176,44 +176,42 @@ int daObj_Sekizoa_c::create() {
     mTwilight = 0;
 
     int ret = loadRes(l_loadResPtrnList[mType], (const char**)l_resNameList);
-    if (ret == 4) {
-        if (isDelete() != 0) {
-            return 5;
-        } else {
-            if (fopAcM_entrySolidHeap(this, createHeapCallBack, heapSize[mType]) == 0) {
-                return 5;
-            } else {
-                J3DModelData* mpModelData = mpMorf[0]->getModel()->getModelData();
-                fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
-                fopAcM_setCullSizeBox2(this, mpModelData);
-                mSound.init(&current.pos, &eyePos, 3, 1);
-                reset();
-                mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1,
-                          &mAcchCir, fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this),
-                          fopAcM_GetShapeAngle_p(this));
-                mCcStts.Init(daObj_Sekizoa_Param_c::m.field_0x10, 0,
-                             this);  // Check if error in 0xff
-
-                mCyl.Set(mCcDCyl);
-                mCyl.SetStts(&mCcStts);
-                mCyl.SetTgHitCallback(tgHitCallBack);
-
-                mCyl2.Set(mCcDCyl);
-                mCyl2.SetStts(&mCcStts);
-                mCyl2.SetTgHitCallback(tgHitCallBack);
-
-                mAcch.CrrPos(dComIfG_Bgsp());
-                mGndChk = mAcch.m_gnd;
-                mGroundH = mAcch.GetGroundH();
-                if (mGroundH != -1.0e9f) {
-                    setEnvTevColor();
-                    setRoomNo();
-                }
-                mCreating = true;
-                Execute();
-                mCreating = false;
-            }
+    if (ret == cPhs_COMPLEATE_e) {
+        if (isDelete()) {
+            return cPhs_ERROR_e;
         }
+        if (fopAcM_entrySolidHeap(this, createHeapCallBack, heapSize[mType]) == 0) {
+            return cPhs_ERROR_e;
+        }
+        J3DModelData* mpModelData = mpMorf[0]->getModel()->getModelData();
+        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        fopAcM_setCullSizeBox2(this, mpModelData);
+        mSound.init(&current.pos, &eyePos, 3, 1);
+        reset();
+        mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1,
+                    &mAcchCir, fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this),
+                    fopAcM_GetShapeAngle_p(this));
+        mCcStts.Init(daObj_Sekizoa_Param_c::m.field_0x10, 0,
+                        this);
+
+        mCyl.Set(mCcDCyl);
+        mCyl.SetStts(&mCcStts);
+        mCyl.SetTgHitCallback(tgHitCallBack);
+
+        mCyl2.Set(mCcDCyl);
+        mCyl2.SetStts(&mCcStts);
+        mCyl2.SetTgHitCallback(tgHitCallBack);
+
+        mAcch.CrrPos(dComIfG_Bgsp());
+        mGndChk = mAcch.m_gnd;
+        mGroundH = mAcch.GetGroundH();
+        if (mGroundH != -1.0e9f) {
+            setEnvTevColor();
+            setRoomNo();
+        }
+        mCreating = true;
+        Execute();
+        mCreating = false;
     }
     return ret;
 }
@@ -227,7 +225,6 @@ int daObj_Sekizoa_c::CreateHeap() {
     int fileIdx;
 
     int bmd_idx = 0;
-    int ret = 0;
     switch (mType) {
     case TYPE_4:
     case TYPE_5:
@@ -242,79 +239,73 @@ int daObj_Sekizoa_c::CreateHeap() {
     fileIdx = l_bmdData[bmd_idx].fileIdx;
     modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_resNameList[arcIdx], fileIdx));
     if (modelData == NULL) {
-        ret = 0;
+        return 0;
+    }
+    mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound,
+                                        0x80000, 0x11000284);
+
+    if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
+        return 0;
+    }
+    if (mType == TYPE_6) {
+        int success_create = mInvModel.create(mpMorf[0]->getModel(), 1);
+        if (success_create == NULL) {
+            return 0;
+        }
+
+        mpMorf[1] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1,
+                                            &mSound, 0x80000, 0x11000284);
+        if (mpMorf[1] == NULL || mpMorf[1]->getModel() == NULL) {
+            return 0;
+        }
     } else {
-        mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound,
-                                         0x80000, 0x11000284);
-
-        if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
-            ret = 0;
-        } else {
-            if (mType == TYPE_6) {
-                int success_create = mInvModel.create(mpMorf[0]->getModel(), 1);
-                if (success_create == NULL) {
-                    return 0;
-                }
-
-                mpMorf[1] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1,
-                                                 &mSound, 0x80000, 0x11000284);
-                if (mpMorf[1] == NULL || mpMorf[1]->getModel() == NULL) {
-                    return 0;
-                }
-            } else {
-                switch (mType) {
-                case TYPE_0:
-                    bmd_idx = 3;
-                    break;
-                case TYPE_1:
-                    bmd_idx = 4;
-                    break;
-                case TYPE_2:
-                    bmd_idx = 3;
-                    break;
-                case TYPE_3:
-                    bmd_idx = 4;
-                    break;
-                case TYPE_4:
-                    bmd_idx = 7;
-                    break;
-                case TYPE_5:
-                    bmd_idx = 8;
-                    break;
-                default:
-                    bmd_idx = 3;
-                    break;
-                }
-                arcIdx = l_bmdData[bmd_idx].arcIdx;
-                fileIdx = l_bmdData[bmd_idx].fileIdx;
-                modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_resNameList[arcIdx], fileIdx));
-                if (modelData == NULL) {
-                    return 0;
-                }
-                mpMcaMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, NULL,
-                                                 0x80000, 0x11000284);
-                if (mpMcaMorf == NULL || mpMcaMorf->getModel() == NULL) {
-                    return 0;
-                }
-            }
-
-            if (mType == TYPE_6) {
-                if (setFaceMotionAnm(0, false) && setMotionAnm(0x17, 0.0f, 0)) {
-                    ret = 1;
-                } else {
-                    ret = 0;
-                }
-            } else {
-                if (setFaceMotionAnm(0, false) && setMotionAnm(0, 0.0f, 0)) {
-                    ret = 1;
-                } else {
-                    ret = 0;
-                }
-            }
+        switch (mType) {
+        case TYPE_0:
+            bmd_idx = 3;
+            break;
+        case TYPE_1:
+            bmd_idx = 4;
+            break;
+        case TYPE_2:
+            bmd_idx = 3;
+            break;
+        case TYPE_3:
+            bmd_idx = 4;
+            break;
+        case TYPE_4:
+            bmd_idx = 7;
+            break;
+        case TYPE_5:
+            bmd_idx = 8;
+            break;
+        default:
+            bmd_idx = 3;
+            break;
+        }
+        arcIdx = l_bmdData[bmd_idx].arcIdx;
+        fileIdx = l_bmdData[bmd_idx].fileIdx;
+        modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_resNameList[arcIdx], fileIdx));
+        if (modelData == NULL) {
+            return 0;
+        }
+        mpMcaMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, NULL,
+                                            0x80000, 0x11000284);
+        if (mpMcaMorf == NULL || mpMcaMorf->getModel() == NULL) {
+            return 0;
         }
     }
 
-    return ret;
+    if (mType == TYPE_6) {
+        if (setFaceMotionAnm(0, false) && setMotionAnm(0x17, 0.0f, 0)) {
+            return 1;
+        }
+        return 0;
+    } else {
+        if (setFaceMotionAnm(0, false) && setMotionAnm(0, 0.0f, 0)) {
+            return 1;
+        }
+    }
+    return 0;
 }
 
 /* 80CCEC54-80CCEC88 0009F4 0034+00 1/1 0/0 0/0 .text            Delete__15daObj_Sekizoa_cFv */
@@ -324,12 +315,12 @@ int daObj_Sekizoa_c::Delete() {
 }
 
 /* 80CCEC88-80CCECA8 000A28 0020+00 2/2 0/0 0/0 .text            Execute__15daObj_Sekizoa_cFv */
-void daObj_Sekizoa_c::Execute() {
-    execute();
+int daObj_Sekizoa_c::Execute() {
+    return execute();
 }
 
 /* 80CCECA8-80CCED74 000A48 00CC+00 1/1 0/0 0/0 .text            Draw__15daObj_Sekizoa_cFv */
-void daObj_Sekizoa_c::Draw() {
+int daObj_Sekizoa_c::Draw() {
     daNpcT_MatAnm_c* mat_anm = mpMatAnm[0];
     if (mat_anm != NULL) {
         J3DModelData* this_01 = mpMorf[0]->getModel()->getModelData();
@@ -342,7 +333,7 @@ void daObj_Sekizoa_c::Draw() {
     {
         temp_int = 1;
     }
-    daNpcT_c::draw(0, 0, field_0xde8, NULL, 0.0f, temp_int, (mType == TYPE_6), 0);
+    return daNpcT_c::draw(0, 0, field_0xde8, NULL, 0.0f, temp_int, (mType == TYPE_6), 0);
 }
 
 /* 80CCED74-80CCED94 000B14 0020+00 1/1 0/0 0/0 .text
@@ -354,9 +345,8 @@ int daObj_Sekizoa_c::createHeapCallBack(fopAc_ac_c* i_this) {
 /* 80CCED94-80CCEE30 000B34 009C+00 1/1 0/0 0/0 .text            srchSekizoa__15daObj_Sekizoa_cFPvPv
  */
 void* daObj_Sekizoa_c::srchSekizoa(void* i_actor, void* i_this) {
-    if ((mFindCount < 50) && i_actor != NULL && (i_actor != i_this)) {
-        int execute_status = fopAcM_IsExecuting(fopAcM_GetID(i_actor));
-        if (execute_status != 0 && fopAcM_GetName(i_actor) == PROC_OBJ_SEKIZOA) {
+    if (mFindCount < 50 && i_actor != NULL && i_actor != i_this) {
+        if (fopAcM_IsExecuting(fopAcM_GetID(i_actor)) && fopAcM_GetName(i_actor) == PROC_OBJ_SEKIZOA) {
             mFindActorPtrs[mFindCount] = (fopAc_ac_c*)i_actor;
             mFindCount++;
         }
@@ -374,8 +364,8 @@ fopAc_ac_c* daObj_Sekizoa_c::getSekizoaP(int param_0) {
     daObj_Sekizoa_c* pfVar4 = (daObj_Sekizoa_c*)fopAcM_Search(srchSekizoa, this);
     for (int i = 0; i < mFindCount; i++) {
         pfVar4 = (daObj_Sekizoa_c*)mFindActorPtrs[i];
-        if ((param_0 == pfVar4->getType()) &&
-            (fopAcM_searchActorDistance(this, pfVar4) < minDistance))
+        if (param_0 == pfVar4->getType() &&
+            fopAcM_searchActorDistance(this, pfVar4) < minDistance)
         {
             minDistance = fopAcM_searchActorDistance(this, mFindActorPtrs[i]);
             actor = mFindActorPtrs[i];
@@ -390,7 +380,7 @@ fopAc_ac_c* daObj_Sekizoa_c::getKMsgTagP() {
     mSrchName = 0x2eb;
     fopAcM_Search((fopAcIt_JudgeFunc)srchActor, this);
     for (int i = 0; i < mFindCount; i++) {
-        if ((*(daTag_KMsg_c**)&mFindActorPtrs[i])->getType() == 3) {
+        if (((daTag_KMsg_c*)mFindActorPtrs[i])->getType() == daTag_KMsg_c::KMSG_TYPE_3) {
             return mFindActorPtrs[i];
         }
     }
@@ -404,7 +394,7 @@ int daObj_Sekizoa_c::isDelete() {
     case TYPE_1:
         bool ret = false;
         if (getBitSW2() != 0xFF) {
-            if (dComIfGs_isSwitch(getBitSW2(), fopAcM_GetRoomNo(this)) != 0) {
+            if (dComIfGs_isSwitch(getBitSW2(), fopAcM_GetRoomNo(this))) {
                 ret = true;
             }
         }
@@ -420,7 +410,7 @@ int daObj_Sekizoa_c::isDelete() {
     case TYPE_6:
         ret = false;
         if (getBitSW() != 0xFF) {
-            if (dComIfGs_isSwitch(getBitSW(), fopAcM_GetRoomNo(this)) != 0) {
+            if (dComIfGs_isSwitch(getBitSW(), fopAcM_GetRoomNo(this))) {
                 ret = true;
             }
         }
@@ -447,7 +437,7 @@ void daObj_Sekizoa_c::reset() {
     temp_angle.y = home.angle.y;
     switch (mType) {
     case TYPE_0:
-        if (daNpcT_chkTmpBit(0x31) != 0) {
+        if (daNpcT_chkTmpBit(0x31)) {
             daNpcT_offTmpBit(0x31);
             mSetWolfHowling = true;
         }
@@ -527,7 +517,7 @@ void daObj_Sekizoa_c::setParam() {
         cStack_38.setall(0);
         switch (mType) {
         case TYPE_0:
-            if (daNpcT_chkEvtBit(0x25E) != 0) {
+            if (daNpcT_chkEvtBit(0x25E)) {
                 cStack_24 = l_srcPosL;
             } else {
                 cStack_24 = l_srcPosR;
@@ -535,7 +525,7 @@ void daObj_Sekizoa_c::setParam() {
             break;
 
         case TYPE_1:
-            if (daNpcT_chkEvtBit(0x25E) != 0) {
+            if (daNpcT_chkEvtBit(0x25E)) {
                 cStack_24 = l_srcPosR;
             } else {
                 cStack_24 = l_srcPosL;
@@ -543,7 +533,7 @@ void daObj_Sekizoa_c::setParam() {
             break;
 
         case TYPE_2:
-            if (daNpcT_chkEvtBit(0x25E) != 0) {
+            if (daNpcT_chkEvtBit(0x25E)) {
                 cStack_24 = l_srcPosL;
             } else {
                 cStack_24 = l_srcPosR;
@@ -551,7 +541,7 @@ void daObj_Sekizoa_c::setParam() {
             break;
 
         case TYPE_3:
-            if (daNpcT_chkEvtBit(0x25E) != 0) {
+            if (daNpcT_chkEvtBit(0x25E)) {
                 cStack_24 = l_srcPosR;
             } else {
                 cStack_24 = l_srcPosL;
@@ -674,15 +664,14 @@ BOOL daObj_Sekizoa_c::evtTalk() {
     } else {
         mPreItemNo = 0;
         if (dComIfGp_event_chkTalkXY()) {
-            if (dComIfGp_evmng_ChkPresentEnd() == 0) {
+            if (!dComIfGp_evmng_ChkPresentEnd()) {
                 return 1;
             }
             mEvtNo = 1;
             evtChange();
             return 1;
-        } else {
-            setAction(&daObj_Sekizoa_c::talk);
         }
+        setAction(&daObj_Sekizoa_c::talk);
     }
     return 1;
 }
@@ -709,14 +698,14 @@ BOOL daObj_Sekizoa_c::evtCutProc() {
 
 /* 80CCFBA0-80CCFD08 001940 0168+00 1/0 0/0 0/0 .text            action__15daObj_Sekizoa_cFv */
 void daObj_Sekizoa_c::action() {
-    if (mCyl.ChkTgHit() != 0) {
+    if (mCyl.ChkTgHit()) {
         mSound.startCollisionSE(mCyl.GetTgHitObjHitSeID(1), 2);
     } else {
-        if (mCyl2.ChkTgHit() != 0) {
+        if (mCyl2.ChkTgHit()) {
             mSound.startCollisionSE(mCyl2.GetTgHitObjHitSeID(1), 2);
         }
     }
-    if (mStagger.checkRebirth() != 0) {
+    if (mStagger.checkRebirth()) {
         mStagger.initialize();
         mMode = 1;
     }
@@ -731,7 +720,7 @@ void daObj_Sekizoa_c::action() {
 
 /* 80CCFD08-80CCFD80 001AA8 0078+00 1/0 0/0 0/0 .text            beforeMove__15daObj_Sekizoa_cFv */
 void daObj_Sekizoa_c::beforeMove() {
-    if (checkHide() != 0 || mNoDraw != 0) {
+    if (checkHide() || mNoDraw != 0) {
         attention_info.flags = 0;
     }
 }
@@ -798,9 +787,9 @@ void daObj_Sekizoa_c::setCollision() {
         temp_1 = 0x79;
         temp_2 = 0xd8fafdbf;
         temp_3 = 0x1f;
-        if (daNpcT_chkTmpBit(0x31) != 0) {
+        if (daNpcT_chkTmpBit(0x31)) {
             temp_1 = 0x69;
-        } else if (dComIfGp_event_runCheck() != 0) {
+        } else if (dComIfGp_event_runCheck()) {
             temp_2 = 0;
             temp_3 = 0;
         } else if (mTwilight != 0) {
@@ -876,7 +865,7 @@ void daObj_Sekizoa_c::drawOtherMdl() {
         g_env_light.setLightTevColorType_MAJI(mp_model, &tevStr);
         mpMorf[1]->entryDL();
     }
-    if ((mpMcaMorf != NULL) && (field_0x1179 != 0)) {
+    if (mpMcaMorf != NULL && field_0x1179 != 0) {
         J3DModel* mp_model = mpMcaMorf->getModel();
         J3DModelData* mp_model_data = mp_model->getModelData();
         g_env_light.setLightTevColorType_MAJI(mp_model_data, &tevStr);
@@ -1028,10 +1017,10 @@ bool daObj_Sekizoa_c::afterSetMotionAnm(int i_frame, int i_mode, f32 i_morf, int
     } else if (mFadeLightOn) {
         frame_1 = 2;
         frame_2 = 4;
-        if (field_0x1178 != 0) {
+        if (field_0x1178 != false) {
             frame_2 = 1;
         } else {
-            if (field_0x1177 != 0) {
+            if (field_0x1177 != false) {
                 frame_2 = 2;
             } else {
                 if (i_frame == 3 || i_frame == 14) {
@@ -1051,7 +1040,7 @@ bool daObj_Sekizoa_c::afterSetMotionAnm(int i_frame, int i_mode, f32 i_morf, int
         } else {
             if (setBtkAnm(anm_text, mpMorf[0]->getModel()->getModelData(), 1.0f,
                           btkAnmData[4].field_0x4))
-            {  // LAST ARGUMENT
+            {
                 if (frame_1 == 3) {
                     mBtkAnm.setPlaySpeed(0.0f);
                 }
@@ -1062,49 +1051,47 @@ bool daObj_Sekizoa_c::afterSetMotionAnm(int i_frame, int i_mode, f32 i_morf, int
             }
         }
     }
-    if ((anm_text == NULL) && (btkAnmData[frame_1].field_0x0 != -1)) {
+    if (anm_text == NULL && btkAnmData[frame_1].field_0x0 != -1) {
         return 0;
-    } else {
-        if (brkAnmData[frame_2].field_0x0 != -1) {
-            anm_tev = getTevRegKeyAnmP(l_resNameList[brkAnmData[frame_2].field_0x8],
-                                       brkAnmData[frame_2].field_0x0);
-        }
-        if (anm_tev != NULL) {
-            if (mBrkAnm.getBrkAnm() == anm_tev) {
-                mAnmFlags |= ANM_PLAY_BRK;
-            } else {
-                frame_1 = setBrkAnm(anm_tev, mpMorf[0]->getModel()->getModelData(), 1.0,
-                                    brkAnmData[6].field_0x4);
-                if (frame_1 != 0) {
-                    if (frame_2 == 5) {
-                        mBrkAnm.setPlaySpeed(0.0f);
-                    }
-                    mAnmFlags |= 0x104;
-                }
-                if ((mAnmFlags & 4) == 0) {
-                    anm_tev = NULL;
-                }
-            }
-        }
-        if ((anm_tev == NULL) && (brkAnmData[frame_2].field_0x0 != -1)) {
-            return 0;
-        } else if (mType == TYPE_6) {
-            return 1;
+    }
+    if (brkAnmData[frame_2].field_0x0 != -1) {
+        anm_tev = getTevRegKeyAnmP(l_resNameList[brkAnmData[frame_2].field_0x8],
+                                    brkAnmData[frame_2].field_0x0);
+    }
+    if (anm_tev != NULL) {
+        if (mBrkAnm.getBrkAnm() == anm_tev) {
+            mAnmFlags |= ANM_PLAY_BRK;
         } else {
-            frame_1 = setYariAnm(i_frame, i_mode, var1);
-            if (frame_1 & 0xFF) {
-                if (mType == TYPE_2 || mType == TYPE_3 || mType == TYPE_4 || mType == TYPE_5) {
-                    mpMorf[0]->setPlaySpeed(0.0f);
-                    if (mpMcaMorf != NULL) {
-                        mpMcaMorf->setPlaySpeed(0.0f);
-                    }
+            frame_1 = setBrkAnm(anm_tev, mpMorf[0]->getModel()->getModelData(), 1.0,
+                                brkAnmData[6].field_0x4);
+            if (frame_1 != 0) {
+                if (frame_2 == 5) {
+                    mBrkAnm.setPlaySpeed(0.0f);
                 }
-                return 1;
-            } else {
-                return 0;
+                mAnmFlags |= 0x104;
+            }
+            if ((mAnmFlags & 4) == 0) {
+                anm_tev = NULL;
             }
         }
     }
+    if (anm_tev == NULL && brkAnmData[frame_2].field_0x0 != -1) {
+        return 0;
+    }
+    if (mType == TYPE_6) {
+        return 1;
+    }
+    frame_1 = setYariAnm(i_frame, i_mode, var1);
+    if (frame_1 & 0xFF) {
+        if (mType == TYPE_2 || mType == TYPE_3 || mType == TYPE_4 || mType == TYPE_5) {
+            mpMorf[0]->setPlaySpeed(0.0f);
+            if (mpMcaMorf != NULL) {
+                mpMcaMorf->setPlaySpeed(0.0f);
+            }
+        }
+        return 1;
+    }
+    return 0;
 }
 
 /* 80CD0A84-80CD0B08 002824 0084+00 1/1 0/0 0/0 .text            selectAction__15daObj_Sekizoa_cFv
@@ -1159,7 +1146,7 @@ int daObj_Sekizoa_c::checkMoveDirection() {
     mDoMtx_stack_c::YrotM(current.angle.y);
     mDoMtx_stack_c::multVec(&temp_vec, &temp_vec2);
     if (chkPointInArea(actor_3->current.pos, temp_vec2, daObj_Sekizoa_Param_c::m.field_0x8C / 2,
-                       300.0f, -300.0f, 0) == 0)
+                       300.0f, -300.0f, 0) == false)
     {
         temp_vec2.y += 10.0f;
         mGndChk.SetPos(&temp_vec2);
@@ -1171,7 +1158,7 @@ int daObj_Sekizoa_c::checkMoveDirection() {
             temp_vec = current.pos;
             temp_vec.y += temp_float_y;
             mLinChk.Set(&temp_vec, &temp_vec2, this);
-            if (dComIfG_Bgsp().LineCross(&mLinChk) == 0) {
+            if (!dComIfG_Bgsp().LineCross(&mLinChk)) {
                 return 1;
             }
         }
@@ -1285,7 +1272,7 @@ void daObj_Sekizoa_c::jump() {
     case 3:
         cXyz temp_vec2;
 
-        if ((mMotionSeqMngr.getNo() == 7) || (mMotionSeqMngr.getNo() == 18)) {
+        if (mMotionSeqMngr.getNo() == 7 || mMotionSeqMngr.getNo() == 18) {
             if (mMotionSeqMngr.checkEndSequence() != 0) {
                 switch (mMotionSeqMngr.getNo()) {
                 case 7:
@@ -1300,8 +1287,8 @@ void daObj_Sekizoa_c::jump() {
                 return;
             }
         } else {
-            if ((mJump == 2) && (mCyl.ChkCoHit() != 0) &&
-                (fopAcM_GetName(mCyl.GetCoHitObj()->GetAc()) == 0x20))
+            if (mJump == 2 && mCyl.ChkCoHit() != 0 &&
+                fopAcM_GetName(mCyl.GetCoHitObj()->GetAc()) == 0x20)
             {
                 dComIfGp_getVibration().StartShock(VIBMODE_S_POWER5, 15, cXyz(0.0f, 1.0f, 0.0f));
                 mMotionSeqMngr.setNo(getHitMotionNo(), -1.0f, 0, 0);
@@ -1331,7 +1318,7 @@ void daObj_Sekizoa_c::jump() {
             mDoMtx_stack_c::multVec(&temp_vec, &temp_vec2);
             current.pos = mCXyzJump + temp_vec2;
             cLib_chaseF(&mJumpSpeed, daObj_Sekizoa_Param_c::m.field_0x90 * 0.5f, 0.25f);
-            if ((mJumpHeight <= 0) || (daObj_Sekizoa_Param_c::m.field_0x8C <= mJumpHeight)) {
+            if (mJumpHeight <= 0 || daObj_Sekizoa_Param_c::m.field_0x8C <= mJumpHeight) {
                 landing();
                 mJump = 4;
                 return;
@@ -1419,7 +1406,7 @@ int daObj_Sekizoa_c::cutStart(int i_staffIdx) {
                 dComIfGp_getEvent().setSkipZev(this, acStack_90);
                 dComIfGp_getEvent().onSkipFade();
                 if (daNpcT_getPlayerInfoFromPlayerList(1, fopAcM_GetRoomNo(this), &c_stack_9c,
-                                                       &c_stack_c8) != 0)
+                                                       &c_stack_c8))
                 {
                     daPy_getPlayerActorClass()->setPlayerPosAndAngle(&c_stack_9c, c_stack_c8.y, 0);
                     dComIfGp_evmng_setGoal(&c_stack_9c);
@@ -1432,7 +1419,7 @@ int daObj_Sekizoa_c::cutStart(int i_staffIdx) {
             c_stack_c8.setall(0);
             switch (mType) {
             case TYPE_0:
-                if (daNpcT_chkEvtBit(0x25E) != 0) {
+                if (daNpcT_chkEvtBit(0x25E)) {
                     c_stack_9c = l_srcPosL;
                 } else {
                     c_stack_9c = l_srcPosR;
@@ -1441,7 +1428,7 @@ int daObj_Sekizoa_c::cutStart(int i_staffIdx) {
                 setAngle(c_stack_c8.y);
                 break;
             case TYPE_1:
-                if (daNpcT_chkEvtBit(0x25E) != 0) {
+                if (daNpcT_chkEvtBit(0x25E)) {
                     c_stack_9c = l_srcPosR;
                 } else {
                     c_stack_9c = l_srcPosL;
@@ -1540,7 +1527,7 @@ int daObj_Sekizoa_c::cutStart(int i_staffIdx) {
             setAngle(home.angle.y);
             if (mType == TYPE_0) {
                 if (daNpcT_getPlayerInfoFromPlayerList(1, fopAcM_GetRoomNo(this), &c_stack_9c,
-                                                       &c_stack_c8) != 0)
+                                                       &c_stack_c8))
                 {
                     daPy_getPlayerActorClass()->setPlayerPosAndAngle(&c_stack_9c, c_stack_c8.y, 0);
                     dComIfGp_evmng_setGoal(&c_stack_9c);
@@ -1565,7 +1552,7 @@ int daObj_Sekizoa_c::cutStart(int i_staffIdx) {
                 actor_2->hide();
             }
             mHide = 0;
-            mFadeLightOn = 1;
+            mFadeLightOn = true;
             break;
 
         case 9:
@@ -1584,7 +1571,7 @@ int daObj_Sekizoa_c::cutStart(int i_staffIdx) {
         case 12:
             if (mType == TYPE_0) {
                 if (daNpcT_getPlayerInfoFromPlayerList(1, fopAcM_GetRoomNo(this), &c_stack_9c,
-                                                       &c_stack_c8) != 0)
+                                                       &c_stack_c8))
                 {
                     daPy_getPlayerActorClass()->setPlayerPosAndAngle(&c_stack_9c, c_stack_c8.y, 0);
                     dComIfGp_evmng_setGoal(&c_stack_9c);
@@ -1651,28 +1638,28 @@ int daObj_Sekizoa_c::cutStart(int i_staffIdx) {
         break;
 
     case 4:
-        if ((mEventTimer != 0) || (dComIfGp_getEventManager().getIsAddvance(i_staffIdx) != 0)) {
+        if (mEventTimer != 0 || dComIfGp_getEventManager().getIsAddvance(i_staffIdx) != 0) {
             if (cLib_calcTimer(&mEventTimer) == 0) {
                 switch (mType) {
                 case TYPE_0:
                     mMotionSeqMngr.setNo(3, -1.0f, 0, 0);
                     mSound.startCreatureSound(Z2SE_SEKI_ST_DEMO, 0, -1);
                     mSound.startCreatureVoice(Z2SE_SEKI_V_KAKUSEI_1, -1);
-                    mFadeLightOn = 1;
+                    mFadeLightOn = true;
                     break;
                 case TYPE_1:
                     mMotionSeqMngr.setNo(14, -1.0f, 0, 0);
                     mSound.startCreatureSound(Z2SE_SEKI_ST_DEMO, 0, -1);
                     mSound.startCreatureVoice(Z2SE_SEKI_V_KAKUSEI_2, -1);
-                    mFadeLightOn = 1;
+                    mFadeLightOn = true;
                     break;
                 case TYPE_2:;
                 }
             }
         } else {
-            if ((((mType == TYPE_0) && (mMotionSeqMngr.getNo() == 3)) ||
-                 ((mType == TYPE_1) && (mMotionSeqMngr.getNo() == 0xE))) &&
-                (mMotionSeqMngr.checkEndSequence() != 0))
+            if (((mType == TYPE_0 && mMotionSeqMngr.getNo() == 3) ||
+                 (mType == TYPE_1 && mMotionSeqMngr.getNo() == 0xE)) &&
+                mMotionSeqMngr.checkEndSequence() != 0)
             {
                 ret = 1;
             }
@@ -1705,13 +1692,12 @@ int daObj_Sekizoa_c::cutStart(int i_staffIdx) {
         if (mEventTimer != 0) {
             cLib_calcTimer(&mEventTimer);
             gravity = 0.0f;
-            // ret = 0;
         } else {
             if (mAcch.ChkGroundHit()) {
                 if (mAcch.ChkGroundLanding()) {
                     landing();
                 } else {
-                    if ((mMotionSeqMngr.getNo() == 9) || (mMotionSeqMngr.getNo() == 20)) {
+                    if (mMotionSeqMngr.getNo() == 9 || mMotionSeqMngr.getNo() == 20) {
                         if (mMotionSeqMngr.checkEndSequence() != 0) {
                             mMotionSeqMngr.setNo(getWaitMotionNo(), -1.0, 0, 0);
                             break;
@@ -1733,7 +1719,7 @@ int daObj_Sekizoa_c::cutStart(int i_staffIdx) {
         break;
 
     case 9:
-        if (((mEventTimer != 0) || (dComIfGp_getEventManager().getIsAddvance(i_staffIdx) != 0)) &&
+        if ((mEventTimer != 0 || dComIfGp_getEventManager().getIsAddvance(i_staffIdx) != 0) &&
             cLib_calcTimer(&mEventTimer) == 0)
         {
             mDoAud_subBgmStart(Z2BGM_STATUE_GAME);
@@ -1787,7 +1773,7 @@ int daObj_Sekizoa_c::cutStart(int i_staffIdx) {
 
 /* 80CD2708-80CD2908 0044A8 0200+00 1/0 0/0 0/0 .text            cutTurn__15daObj_Sekizoa_cFi */
 int daObj_Sekizoa_c::cutTurn(int i_staffIdx) {
-    int uvar_7 = 0;
+    int ret = 0;
     int prm = -1;
     int* prm_p = dComIfGp_evmng_getMyIntegerP(i_staffIdx, "prm");
     if (prm_p != NULL) {
@@ -1808,8 +1794,8 @@ int daObj_Sekizoa_c::cutTurn(int i_staffIdx) {
     switch (prm) {
     case 0:
         if (mPlayerDirection == mCurAngle.y) {
-            uvar_7 = 1;
-        } else if (step(mPlayerDirection, -1, getStepMotionNo(), 0x1e, 0) != 0) {
+            ret = 1;
+        } else if (step(mPlayerDirection, -1, getStepMotionNo(), 0x1e, 0)) {
             mFaceMotionSeqMngr.setNo(0, -1.0f, 0, 0);
             mMotionSeqMngr.setNo(getGameMotionNo(), -1.0f, 0, 0);
             mTurnPlayer = 0;
@@ -1819,11 +1805,11 @@ int daObj_Sekizoa_c::cutTurn(int i_staffIdx) {
         if (daPy_getPlayerActorClass()->shape_angle.y ==
             daPy_getPlayerActorClass()->getGiantPuzzleAimAngle())
         {
-            uvar_7 = 1;
+            ret = 1;
         }
         break;
     }
-    return uvar_7;
+    return ret;
 }
 
 /* 80CD2908-80CD2B64 0046A8 025C+00 1/0 0/0 0/0 .text            cutJump__15daObj_Sekizoa_cFi */
@@ -1873,12 +1859,12 @@ int daObj_Sekizoa_c::cutJump(int i_staffIdx) {
     case 2:
         if (mType == TYPE_0) {
             actor_3 = (daObj_Sekizoa_c*)mActorMngrs[3].getActorP();
-            if ((chkPressPlayer() != 0) || (actor_3->chkPressPlayer() != 0)) {
+            if (chkPressPlayer() || actor_3->chkPressPlayer()) {
                 mEvtNo = 3;
                 evtChange();
                 return 0;
             }
-            if ((chkGoal() != 0) && (actor_3->chkGoal() != 0)) {
+            if (chkGoal() && actor_3->chkGoal()) {
                 mEvtNo = 6;
                 evtChange();
             }
@@ -1946,7 +1932,7 @@ int daObj_Sekizoa_c::cutGoal(int i_staffIdx) {
                 mSound.startCreatureSound(Z2SE_SEKI_END_DEMO_1, 0, -1);
                 mSound.startCreatureVoice(Z2SE_SEKI_V_CLEAR_2, -1);
             }
-            field_0x1177 = 1;
+            field_0x1177 = true;
             break;
 
         case 3:
@@ -1956,7 +1942,7 @@ int daObj_Sekizoa_c::cutGoal(int i_staffIdx) {
         case 4:
             if (mType == TYPE_0) {
                 if (daNpcT_getPlayerInfoFromPlayerList(1, fopAcM_GetRoomNo(this), &cStack_a8,
-                                                       &cStack_b0) != 0)
+                                                       &cStack_b0))
                 {
                     daPy_getPlayerActorClass()->setPlayerPosAndAngle(&cStack_a8, cStack_b0.y, 0);
                     dComIfGp_evmng_setGoal(&cStack_a8);
@@ -1978,7 +1964,7 @@ int daObj_Sekizoa_c::cutGoal(int i_staffIdx) {
                     daNpcT_onEvtBit(0x25E);
                 }
                 daObj_Sekizoa_c* actor_1 = (daObj_Sekizoa_c*)mActorMngrs[1].getActorP();
-                if (daNpcT_chkEvtBit(0x25E) != 0) {
+                if (daNpcT_chkEvtBit(0x25E)) {
                     actor_1->current.pos = l_srcPosL;
                 } else {
                     actor_1->current.pos = l_srcPosR;
@@ -1988,7 +1974,7 @@ int daObj_Sekizoa_c::cutGoal(int i_staffIdx) {
                 actor_1->setFadeLightOff();
 
                 daObj_Sekizoa_c* actor_2 = (daObj_Sekizoa_c*)mActorMngrs[2].getActorP();
-                if (daNpcT_chkEvtBit(0x25E) != 0) {
+                if (daNpcT_chkEvtBit(0x25E)) {
                     actor_2->current.pos = l_srcPosR;
                 } else {
                     actor_2->current.pos = l_srcPosL;
@@ -2011,7 +1997,7 @@ int daObj_Sekizoa_c::cutGoal(int i_staffIdx) {
                 }
 
                 daObj_Sekizoa_c* actor_1 = (daObj_Sekizoa_c*)mActorMngrs[1].getActorP();
-                if (daNpcT_chkEvtBit(0x25E) != 0) {
+                if (daNpcT_chkEvtBit(0x25E)) {
                     actor_1->current.pos = l_srcPosL;
                 } else {
                     actor_1->current.pos = l_srcPosR;
@@ -2021,7 +2007,7 @@ int daObj_Sekizoa_c::cutGoal(int i_staffIdx) {
                 actor_1->setFadeLightOff();
 
                 daObj_Sekizoa_c* actor_2 = (daObj_Sekizoa_c*)mActorMngrs[2].getActorP();
-                if (daNpcT_chkEvtBit(0x25E) != 0) {
+                if (daNpcT_chkEvtBit(0x25E)) {
                     actor_2->current.pos = l_srcPosR;
                 } else {
                     actor_2->current.pos = l_srcPosL;
@@ -2031,7 +2017,7 @@ int daObj_Sekizoa_c::cutGoal(int i_staffIdx) {
                 actor_2->setFadeLightOff();
 
                 if (daNpcT_getPlayerInfoFromPlayerList(1, fopAcM_GetRoomNo(this), &cStack_a8,
-                                                       &cStack_b0) != 0)
+                                                       &cStack_b0))
                 {
                     daPy_getPlayerActorClass()->setPlayerPosAndAngle(&cStack_a8, cStack_b0.y, 0);
                     dComIfGp_evmng_setGoal(&cStack_a8);
@@ -2051,7 +2037,7 @@ int daObj_Sekizoa_c::cutGoal(int i_staffIdx) {
                 daNpcT_onEvtBit(0xEB);
             }
             mHide = 1;
-            mFadeLightOn = 0;
+            mFadeLightOn = false;
         }
     }
     switch (prm) {
@@ -2080,7 +2066,7 @@ int daObj_Sekizoa_c::cutGoal(int i_staffIdx) {
         break;
 
     case 3:
-        if ((cLib_calcTimer(&mEventTimer) == 0) && (mType == TYPE_0)) {
+        if (cLib_calcTimer(&mEventTimer) == 0 && mType == TYPE_0) {
             daObj_SekiDoor_c* actor_7 = (daObj_SekiDoor_c*)mActorMngrs[7].getActorP();
             if (actor_7->chkDestroy()) {
                 if (getBitSW2() != 0xFF) {
@@ -2096,7 +2082,7 @@ int daObj_Sekizoa_c::cutGoal(int i_staffIdx) {
     case 4:
         if (mType == TYPE_0) {
             field_0xe26 = 0;
-            if ((mFlow.doFlow(NULL, NULL, 0) != 0) && (mFlow.checkEndFlow() != 0)) {
+            if (mFlow.doFlow(NULL, NULL, 0) != 0 && mFlow.checkEndFlow()) {
                 ret = 1;
             }
         } else {
@@ -2129,7 +2115,7 @@ int daObj_Sekizoa_c::cutExit(int i_staffIdx) {
     if (prm_p != NULL) {
         prm = *prm_p;
     }
-    if ((dComIfGp_getEventManager().getIsAddvance(i_staffIdx) != 0)) {
+    if (dComIfGp_getEventManager().getIsAddvance(i_staffIdx) != 0) {
         switch (prm) {
         case 0:
             if (mType == TYPE_0) {
@@ -2143,7 +2129,7 @@ int daObj_Sekizoa_c::cutExit(int i_staffIdx) {
     case 0:
         if (mType == TYPE_0) {
             field_0xe26 = 0;
-            if ((mFlow.doFlow(NULL, NULL, 0) != 0) && (mFlow.checkEndFlow() == 1)) {
+            if (mFlow.doFlow(NULL, NULL, 0) != 0 && mFlow.checkEndFlow()) {
                 switch (mFlow.getChoiceNo()) {
                 case 0:
                     mEvtNo = 3;
@@ -2204,7 +2190,7 @@ int daObj_Sekizoa_c::cutFree(int i_staffIdx) {
                 actor_2->old.pos = actor_2->current.pos;
                 actor_2->show();
                 if (daNpcT_getPlayerInfoFromPlayerList(1, fopAcM_GetRoomNo(this), &cStack_2c,
-                                                       &cStack_34) != 0)
+                                                       &cStack_34))
                 {
                     daPy_getPlayerActorClass()->setPlayerPosAndAngle(&cStack_2c, cStack_34.y, 0);
                     dComIfGp_evmng_setGoal(&cStack_2c);
@@ -2220,7 +2206,7 @@ int daObj_Sekizoa_c::cutFree(int i_staffIdx) {
                 dComIfGp_2dShowOn();
             }
             mHide = 1;
-            mFadeLightOn = 0;
+            mFadeLightOn = false;
             break;
         case 2:
             mEventTimer = timer;
@@ -2393,7 +2379,7 @@ int daObj_Sekizoa_c::puzzle(void* param_0) {
     case 1:
         if (mStagger.checkStagger() == 0) {
             mFaceMotionSeqMngr.setNo(0, -1.0f, 0, 0);
-            if (daNpcT_chkTmpBit(0x31) != 0) {
+            if (daNpcT_chkTmpBit(0x31)) {
                 mMotionSeqMngr.setNo(getGameMotionNo(), -1.0f, 0, 0);
             } else {
                 switch (mType) {
@@ -2421,7 +2407,7 @@ int daObj_Sekizoa_c::puzzle(void* param_0) {
         }
     case 2:
         if (mStagger.checkStagger() == 0) {
-            if (daNpcT_chkTmpBit(0x31) != 0) {
+            if (daNpcT_chkTmpBit(0x31)) {
                 if (mType == TYPE_0) {
                     attention_info.flags = 10;
                 }
@@ -2440,13 +2426,13 @@ int daObj_Sekizoa_c::puzzle(void* param_0) {
                             mPlayerDirection = daPy_getPlayerActorClass()->shape_angle.y;
                         }
                     }
-                    if ((mTurnPlayer != 0) && (mType == TYPE_0)) {
+                    if (mTurnPlayer != 0 && mType == TYPE_0) {
                         mEvtNo = 4;
                     }
                 }
             } else {
-                if ((mType == TYPE_0) && (mSetWolfHowling != 0) && (getBitSW2() != 0xFF)) {
-                    if (dComIfGs_isSwitch(getBitSW2(), fopAcM_GetRoomNo(this)) == 0) {
+                if (mType == TYPE_0 && mSetWolfHowling != 0 && getBitSW2() != 0xFF) {
+                    if (!dComIfGs_isSwitch(getBitSW2(), fopAcM_GetRoomNo(this))) {
                         field_0xe33 = 1;
                         mEvtNo = 2;
                     }
@@ -2473,8 +2459,8 @@ int daObj_Sekizoa_c::talk(void* param_0) {
         }
     case 2:
         if (mStagger.checkStagger() == 0) {
-            if ((mTwilight != 0) || (mPlayerAngle == mCurAngle.y)) {
-                if ((talkProc(NULL, 0, NULL, 0) != 0) && (mFlow.checkEndFlow() != 0)) {
+            if (mTwilight != 0 || mPlayerAngle == mCurAngle.y) {
+                if (talkProc(NULL, 0, NULL, 0) && mFlow.checkEndFlow()) {
                     mPlayerActorMngr.entry(daPy_getPlayerActorClass());
                     dComIfGp_event_reset();
                     mMode = 3;
@@ -2498,22 +2484,22 @@ int daObj_Sekizoa_c::talk(void* param_0) {
 
 /* 80CD4778-80CD4798 006518 0020+00 1/0 0/0 0/0 .text            daObj_Sekizoa_Create__FPv */
 static int daObj_Sekizoa_Create(void* i_this) {
-    static_cast<daObj_Sekizoa_c*>(i_this)->create();
+    return static_cast<daObj_Sekizoa_c*>(i_this)->create();
 }
 
 /* 80CD4798-80CD47B8 006538 0020+00 1/0 0/0 0/0 .text            daObj_Sekizoa_Delete__FPv */
 static int daObj_Sekizoa_Delete(void* i_this) {
-    static_cast<daObj_Sekizoa_c*>(i_this)->Delete();
+    return static_cast<daObj_Sekizoa_c*>(i_this)->Delete();
 }
 
 /* 80CD47B8-80CD47D8 006558 0020+00 1/0 0/0 0/0 .text            daObj_Sekizoa_Execute__FPv */
 static int daObj_Sekizoa_Execute(void* i_this) {
-    static_cast<daObj_Sekizoa_c*>(i_this)->Execute();
+    return static_cast<daObj_Sekizoa_c*>(i_this)->Execute();
 }
 
 /* 80CD47D8-80CD47F8 006578 0020+00 1/0 0/0 0/0 .text            daObj_Sekizoa_Draw__FPv */
 static int daObj_Sekizoa_Draw(void* i_this) {
-    static_cast<daObj_Sekizoa_c*>(i_this)->Draw();
+    return static_cast<daObj_Sekizoa_c*>(i_this)->Draw();
 }
 
 /* 80CD47F8-80CD4800 006598 0008+00 1/0 0/0 0/0 .text            daObj_Sekizoa_IsDelete__FPv */
@@ -2527,18 +2513,18 @@ static int daObj_Sekizoa_IsDelete(void* i_this) {
 static daObj_Sekizoa_Param_c l_HIO;
 
 /* 80CD5B84-80CD5C30 007924 00AC+00 1/1 0/0 0/0 .text            chkGoal__15daObj_Sekizoa_cFv */
-int daObj_Sekizoa_c::chkGoal() {
+BOOL daObj_Sekizoa_c::chkGoal() {
     daTag_EvtArea_c* evt_area_A = (daTag_EvtArea_c*)mActorMngrs[5].getActorP();
     if (evt_area_A->chkPointInArea(current.pos)) {
-        return 1;
+        return true;
     }
 
     daTag_EvtArea_c* evt_area_B = (daTag_EvtArea_c*)mActorMngrs[6].getActorP();
     if (evt_area_B->chkPointInArea(current.pos)) {
         mReverseStatues = (mType == TYPE_0);
-        return 1;
+        return true;
     }
-    return 0;
+    return false;
 }
 
 /* 80CD671C-80CD673C -00001 0020+00 1/0 0/0 0/0 .data            daObj_Sekizoa_MethodTable */

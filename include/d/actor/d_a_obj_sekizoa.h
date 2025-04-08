@@ -59,8 +59,8 @@ public:
     /* 80CCE570 */ int create();
     /* 80CCE8B0 */ int CreateHeap();
     /* 80CCEC54 */ int Delete();
-    /* 80CCEC88 */ void Execute();
-    /* 80CCECA8 */ void Draw();
+    /* 80CCEC88 */ int Execute();
+    /* 80CCECA8 */ int Draw();
     /* 80CCED74 */ static int createHeapCallBack(fopAc_ac_c*);
     /* 80CCED94 */ static void* srchSekizoa(void*, void*);
     /* 80CCEE30 */ fopAc_ac_c* getSekizoaP(int);
@@ -97,7 +97,7 @@ public:
                                    daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_5,
                                    int param_6, daNpcT_evtData_c const* param_7, char** param_8)
         : daNpcT_c(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8) {}
-    /* 80CD5B84 */ int chkGoal();
+    /* 80CD5B84 */ BOOL chkGoal();
 
     /* 80CD5B7C */ s32 getBackboneJointNo() { return 1; }
     /* 80CD5B74 */ s32 getHeadJointNo() { return 3; }
@@ -114,7 +114,7 @@ public:
     /* 80CD03C0 */ int drawDbgInfo();
     /* 80CD03C8 */ void drawOtherMdl();
     /* 80CD05D0 */ void drawGhost();
-    /* 80CD06BC */ bool afterSetMotionAnm(int, int, f32, int);  // fmr issue
+    /* 80CD06BC */ bool afterSetMotionAnm(int, int, f32, int);
 
     void setWolfHowling() {
         if (mType != 0) {
@@ -128,7 +128,7 @@ public:
     }
 
     void setFadeLightOff() {
-        if ((mType == 2) || (mType == 3)) {
+        if (mType == 2 || mType == 3) {
             if (mType == 2) {
                 mMotionSeqMngr.setNo(2, 0.0f, 1, 0);
                 mSound.startCreatureSound(Z2SE_SEKI_END_DEMO_2, 0, -1);
@@ -137,8 +137,8 @@ public:
                 mMotionSeqMngr.setNo(13, 0.0f, 1, 0);
                 mSound.startCreatureSound(Z2SE_SEKI_END_DEMO_2, 0, -1);
             }
-            mFadeLightOn = 1;
-            field_0x1178 = 1;
+            mFadeLightOn = true;
+            field_0x1178 = true;
         }
     }
 
