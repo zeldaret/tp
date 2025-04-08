@@ -646,6 +646,10 @@ public:
     s16 checkStep() { return mStepMode == 1; }
     void setCommander(fopAc_ac_c* param_0) { field_0xba0.entry(param_0); }
     void setCutType(int i_cutType) { mCutType = i_cutType; }
+    void onHide() { mHide = true; }
+    void offHide() { mHide = false; }
+    void hide() { onHide(); }
+    void show() { offHide(); }
 
     void initialize() {
         memset(&mFootLPos, 0, (u8*)&field_0xe38 - (u8*)&mFootLPos);

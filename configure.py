@@ -2056,7 +2056,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_scannon_ten"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_sekidoor"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_sekizo"),
-    ActorRel(NonMatching, "d_a_obj_sekizoa"),
+    ActorRel(Equivalent, "d_a_obj_sekizoa"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_shield"),
     ActorRel(Equivalent, "d_a_obj_sm_door"), # vtable order
     ActorRel(NonMatching, "d_a_obj_smallkey"),
