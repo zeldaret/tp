@@ -991,7 +991,7 @@ bool dCamera_c::restorePosEvCamera() {
 
 /* 80090174-80090230 08AAB4 00BC+00 0/0 1/0 0/0 .text            talktoEvCamera__9dCamera_cFv */
 bool dCamera_c::talktoEvCamera() {
-    dComIfGp_event_getPt1();
+    fopAc_ac_c* r27 = (fopAc_ac_c*)dComIfGp_event_getPt1();
     s32 style = mCamTypeData[mEventData.field_0xc].field_0x18[mIsWolf][3];
 
     if (mCurCamStyleTimer == 0) {
@@ -1005,7 +1005,7 @@ bool dCamera_c::talktoEvCamera() {
 #if DEBUG
     if (mCurCamStyleTimer == 0 && mCamSetup.CheckFlag(0x40)) {
         u32 id = mCamParam.Id(style);
-        OS_REPORT("camera: event: %16s  = %d (%c%c%c%c)\n", "style", style, (u8)(id >> 0x18), (u8)(id >> 0x10), (u8)(id >> 0x8), (u8)(id));
+        OS_REPORT("camera: event: %16s  = %d (%c%c%c%c)\n", "style", style, (id >> 0x18) & 0xFF, (id >> 0x10) & 0xFF, (id >> 0x8) & 0xFF, (id) & 0xFF);
     }
 #endif
 

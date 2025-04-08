@@ -2,6 +2,7 @@
 #define D_BG_D_BG_S_H
 
 #include "d/d_bg_w_base.h"
+#include "JSystem/JHostIO/JORReflexible.h"
 #include "global.h"
 
 class dBgW;
@@ -62,6 +63,33 @@ class dBgS_Acch;
 
 u8 dKy_pol_sound_get(cBgS_PolyInfo const* param_0);
 
+class dBgS_HIO : public JORReflexible {
+public:
+#ifdef DEBUG
+    dBgS_HIO() {
+        field_0x6 = 0;
+        field_0x8 = 0;
+
+        field_0xc.x = field_0xc.y = field_0xc.z = 0.0f;
+        field_0x18.x = field_0x18.y = field_0x18.z = 0.0f;
+        field_0x24.x = field_0x24.y = field_0x24.z = 0.0f;
+
+        field_0x30 = -1;
+    }
+
+    virtual void genMessage(JORMContext*);
+    virtual ~dBgS_HIO();
+
+    /* 0x04 */ u8 field_0x4[0x6 - 0x4];
+    /* 0x06 */ u16 field_0x6;
+    /* 0x08 */ u16 field_0x8;
+    /* 0x0C */ cXyz field_0xc;
+    /* 0x18 */ cXyz field_0x18;
+    /* 0x24 */ cXyz field_0x24;
+    /* 0x30 */ int field_0x30;
+#endif
+};
+
 class dBgS : public cBgS {
 public:
     dBgS() {}
@@ -111,6 +139,11 @@ public:
     u32 GetMtrlSndId(const cBgS_PolyInfo& param_0) { return dKy_pol_sound_get(&param_0); }
     void DebugDrawPoly(dBgW_Base *param_1) {}
     fopAc_ac_c* GetActorPointer(cBgS_PolyInfo const& param_0) { return cBgS::GetActorPointer(param_0); }
+
+#ifdef DEBUG
+    /* 0x1404 */ u8 field_0x1404[0x1408 - 0x1404];
+    /* 0x1408 */ dBgS_HIO m_hio;
+#endif
 };  // Size: 0x1404
 
 bool dBgS_CheckBGroundPoly(cBgS_PolyInfo const&);

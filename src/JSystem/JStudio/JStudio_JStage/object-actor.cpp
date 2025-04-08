@@ -10,14 +10,14 @@
 JStudio_JStage::TAdaptor_actor::TAdaptor_actor(JStage::TSystem const* param_1,
                                                    JStage::TActor* param_2)         :
                                                    TAdaptor_object_(param_1,param_2) {
-  field_0x130 = 0;
-  field_0x134 = 0;
-  field_0x138 = 0;
-  field_0x13c = NULL;
-  field_0x140 = -1;
-  field_0x144 = 0;
-  field_0x148 = NULL;
-  field_0x14c = -1;
+    field_0x130 = 0;
+    field_0x134 = 0;
+    field_0x138 = 0;
+    field_0x13c = NULL;
+    field_0x140 = -1;
+    field_0x144 = 0;
+    field_0x148 = NULL;
+    field_0x14c = -1;
 }
 
 /* 8028A6B4-8028A728 284FF4 0074+00 1/0 0/0 0/0 .text __dt__Q214JStudio_JStage14TAdaptor_actorFv
@@ -29,13 +29,13 @@ JStudio_JStage::TAdaptor_actor::~TAdaptor_actor() {
 /* 8028A728-8028A7B4 285068 008C+00 1/0 0/0 0/0 .text
  * adaptor_do_prepare__Q214JStudio_JStage14TAdaptor_actorFv     */
 void JStudio_JStage::TAdaptor_actor::adaptor_do_prepare() {
-    TVVOutputObject* pOutput = saoVVOutput_;
+    const TVVOutputObject* pOutput = saoVVOutput_;
     while (!pOutput->isEnd_()) {
         pOutput->adaptor_setOutput_(this);
         pOutput++;
     }
 
-    TVVOutput_ANIMATION_FRAME_* pAnimOutput = saoVVOutput_ANIMATION_FRAME_;
+    const TVVOutput_ANIMATION_FRAME_* pAnimOutput = saoVVOutput_ANIMATION_FRAME_;
     while (!pAnimOutput->isEnd_()) {
         pAnimOutput->adaptor_setOutput_(this);
         pAnimOutput++;
@@ -44,23 +44,29 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_prepare() {
 
 /* 8028A7B4-8028A8D8 2850F4 0124+00 1/0 0/0 0/0 .text
  * adaptor_do_begin__Q214JStudio_JStage14TAdaptor_actorFv       */
-// NONMATCHING - instruction order
 void JStudio_JStage::TAdaptor_actor::adaptor_do_begin() {
     adaptor_object_begin_();
-    JStage::TActor* pActor = get_pJSG_();
-    const JStudio::TObject* pObject = adaptor_getObject();
-    JUT_ASSERT(72, pObject != 0);
-    JStudio::TControl* pControl = pObject->getControl();
-    JUT_ASSERT(74, pControl != 0);
-    getJSG_SRT_(pControl);
+    const JStage::TActor* pActor = get_pJSG_();
+#ifdef  DEBUG
+    { // This block is needed to match the stack in debug
+        const JStudio::TObject* pObject = adaptor_getObject();
+        JUT_ASSERT(72, pObject!=0);
+        const JStudio::TControl* pControl = pObject->getControl();
+        JUT_ASSERT(74, pControl!=0);
+        getJSG_SRT_(pControl);
+    }
+#else
+    // Fakematch, load order is wrong in retail when using the inlines shown in debug
+    getJSG_SRT_((const JStudio::TControl*)(adaptor_getObject()->pControl));
+#endif
 
-    TVVOutputObject* pOutput = saoVVOutput_;
+    const TVVOutputObject* pOutput = saoVVOutput_;
     while (!pOutput->isEnd_()) {
         pOutput->setVariableValue_(pActor, this);
         pOutput++;
     }
 
-    TVVOutput_ANIMATION_FRAME_* pAnimOutput = saoVVOutput_ANIMATION_FRAME_;
+    const TVVOutput_ANIMATION_FRAME_* pAnimOutput = saoVVOutput_ANIMATION_FRAME_;
     while (!pAnimOutput->isEnd_()) {
         pAnimOutput->setVariableValue_(pActor, this);
         pAnimOutput++;
@@ -148,12 +154,12 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_TEXTURE_ANIMATION_MODE(
 void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT(
     JStudio::data::TEOperationData operation, void const* pContent, u32 uSize) {
     switch (operation) {
-	case JStudio::data::UNK_0x18:
+    case JStudio::data::UNK_0x18:
         JUT_ASSERT(203, pContent!=0);
         JUT_ASSERT(204, uSize!=0);
-		field_0x13c = adaptor_object_findJSGObject_((const char*)pContent);
-		break;
-	}
+        field_0x13c = adaptor_object_findJSGObject_((const char*)pContent);
+        break;
+    }
 }
 
 /* 8028AB0C-8028AB68 28544C 005C+00 1/0 0/0 0/0 .text
@@ -162,17 +168,17 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT(
 void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT_NODE(
     JStudio::data::TEOperationData operation, void const* pContent, u32 uSize) {
     switch (operation) {
-	case JStudio::data::UNK_0x18:
+    case JStudio::data::UNK_0x18:
         JUT_ASSERT(226, pContent!=0);
         JUT_ASSERT(227, uSize!=0);
-		field_0x140 = adaptor_object_findJSGObjectNode_(field_0x13c, (const char*)pContent);
-		break;
-	case JStudio::data::UNK_0x19:
+        field_0x140 = adaptor_object_findJSGObjectNode_(field_0x13c, (const char*)pContent);
+        break;
+    case JStudio::data::UNK_0x19:
         JUT_ASSERT(237, uSize==4);
         JUT_ASSERT(238, pContent!=0);
-		field_0x140 = *(u32*)pContent;
-		break;
-	}
+        field_0x140 = *(u32*)pContent;
+        break;
+    }
 }
 
 /* 8028AB68-8028ABF0 2854A8 0088+00 1/0 0/0 0/0 .text
@@ -181,28 +187,28 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT_NODE(
 void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT_ENABLE(
     JStudio::data::TEOperationData operation, void const* pContent, u32 uSize) {
     switch (operation) {
-	case JStudio::data::UNK_0x2:
+    case JStudio::data::UNK_0x2:
         JUT_ASSERT(257, uSize==4);
         JUT_ASSERT(258, pContent!=0);
-		bool v0 = (*(u32*)pContent != 0);
-		if (field_0x144 != v0) {
-			field_0x144 = v0;
-			switch (field_0x138) {
-			case 0:
-				break;
-			case 1:
-				JStage::TObject* object = NULL;
-				u32 v1 = -1;
-				if (v0 != 0) {
-					object = field_0x13c;
-					v1     = field_0x140;
-				}
-				pJSGObject_->JSGSetParent(object, v1);
-				break;
-			}
-		}
-		break;
-	}
+        bool v0 = (*(u32*)pContent != 0);
+        if (field_0x144 != v0) {
+            field_0x144 = v0;
+            switch (field_0x138) {
+            case 0:
+                break;
+            case 1:
+                JStage::TObject* object = NULL;
+                u32 v1 = -1;
+                if (v0 != 0) {
+                    object = field_0x13c;
+                    v1     = field_0x140;
+                }
+                pJSGObject_->JSGSetParent(object, v1);
+                break;
+            }
+        }
+        break;
+    }
 }
 
 /* 8028ABF0-8028AC04 285530 0014+00 1/0 0/0 0/0 .text
@@ -224,11 +230,11 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT_FUNCTION(
 void JStudio_JStage::TAdaptor_actor::adaptor_do_RELATION(
     JStudio::data::TEOperationData operation, void const* pContent, u32 uSize) {
     switch (operation) {
-	case JStudio::data::UNK_0x18:
+    case JStudio::data::UNK_0x18:
         JUT_ASSERT(324, pContent!=0);
         JUT_ASSERT(325, uSize!=0);
-		field_0x148 = adaptor_object_findJSGObject_((const char*)pContent);
-		break;
+        field_0x148 = adaptor_object_findJSGObject_((const char*)pContent);
+        break;
     }
 }
 
@@ -238,17 +244,17 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_RELATION(
 void JStudio_JStage::TAdaptor_actor::adaptor_do_RELATION_NODE(
     JStudio::data::TEOperationData operation, void const* pContent, u32 uSize) {
     switch (operation) {
-	case JStudio::data::UNK_0x18:
+    case JStudio::data::UNK_0x18:
         JUT_ASSERT(347, pContent!=0);
         JUT_ASSERT(348, uSize!=0);
-		field_0x14c = adaptor_object_findJSGObjectNode_(field_0x13c, (const char*)pContent);
-		break;
-	case JStudio::data::UNK_0x19:
+        field_0x14c = adaptor_object_findJSGObjectNode_(field_0x13c, (const char*)pContent);
+        break;
+    case JStudio::data::UNK_0x19:
         JUT_ASSERT(358, uSize==4);
         JUT_ASSERT(359, pContent!=0);
-		field_0x14c = *(u32*)pContent;
-		break;
-	}
+        field_0x14c = *(u32*)pContent;
+        break;
+    }
 }
 
 /* 8028ACA4-8028ACFC 2855E4 0058+00 1/0 0/0 0/0 .text
@@ -272,10 +278,10 @@ void JStudio_JStage::TAdaptor_actor::setJSG_ID_(void (JStage::TActor::*function)
                                                     JStudio::data::TEOperationData operation,
                                                     void const* pContent, u32 uSize) {
     switch (operation) {
-	case JStudio::data::UNK_0x19:
-		(((JStage::TActor*)pJSGObject_)->*function)(*(u32*)pContent);
-		break;
-	}
+    case JStudio::data::UNK_0x19:
+        (((JStage::TActor*)pJSGObject_)->*function)(*(u32*)pContent);
+        break;
+    }
 }
 
 /* 8028AD38-8028AECC 285678 0194+00 1/1 0/0 0/0 .text
@@ -368,38 +374,47 @@ void JStudio_JStage::TAdaptor_actor::getJSG_SRT_(JStudio::TControl const* pContr
 void JStudio_JStage::TAdaptor_actor::TVVOutput_ANIMATION_FRAME_::operator()(
     f32 param_1, JStudio::TAdaptor* adaptor) const {
     JStage::TActor* actor = static_cast<TAdaptor_actor*>(adaptor)->get_pJSG_();
-	// not sure what this bit is
-	u32 idx = *(u32*)(((u32)adaptor - 1) + field_0x8);
+    // not sure what this bit is
+    u32 idx = *(u32*)(((u32)adaptor - 1) + field_0x8);
 
-	u8 idx_lowBytes  = idx;
-	u8 idx_highBytes = idx >> 8;
+    u8 idx_lowBytes  = idx;
+    u8 idx_highBytes = idx >> 8;
 
-	f32 maxVal = (actor->*mMaxGetter)();
-	switch (idx_highBytes) {
-	case 1:
-		param_1 = maxVal - param_1;
-		break;
-	case 0:
-		break;
-	}
+    f32 maxVal = (actor->*mMaxGetter)();
+    switch (idx_highBytes) {
+    case 1:
+        param_1 = maxVal - param_1;
+        break;
+    case 0:
+        break;
+    }
 
-	if (maxVal > 0.0f) {
-		param_1 = (f32)(*JStudio::TFunctionValue::toFunction_outside(idx_lowBytes))(param_1, maxVal);
-	}
-	(actor->*mSetter)(param_1);
+    if (maxVal > 0.0f) {
+        param_1 = (f32)(*JStudio::TFunctionValue::toFunction_outside(idx_lowBytes))(param_1, maxVal);
+    }
+    (actor->*mSetter)(param_1);
 }
 
+/* 8028B138-8028B198 285A78 0060+00 2/1 0/0 0/0 .text
+ * __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv */
+JStudio_JStage::TAdaptor_actor::TVVOutput_ANIMATION_FRAME_::~TVVOutput_ANIMATION_FRAME_() {
+}
+
+namespace JStudio_JStage {
+    
 /* 804311A0-804311E0 05DEC0 0040+00 2/3 0/0 0/0 .bss
  * saoVVOutput___Q214JStudio_JStage14TAdaptor_actor             */
-JStudio_JStage::TAdaptor_actor::TVVOutputObject JStudio_JStage::TAdaptor_actor::saoVVOutput_[2] = {
-    TVVOutputObject(TEACTOR_1, &JStage::TActor::JSGSetAnimationTransition, &JStage::TActor::JSGGetAnimationTransition),
-    TVVOutputObject(TEACTOR_NONE, NULL, NULL)
+const TAdaptor_actor::TVVOutputObject TAdaptor_actor::saoVVOutput_[] = {
+    TVVOutputObject(TAdaptor_actor::TEACTOR_1, &JStage::TActor::JSGSetAnimationTransition, &JStage::TActor::JSGGetAnimationTransition),
+    TVVOutputObject()
 };
 
 /* 80431204-80431298 05DF24 0090+04 2/3 0/0 0/0 .bss
  * saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor */
-JStudio_JStage::TAdaptor_actor::TVVOutput_ANIMATION_FRAME_ JStudio_JStage::TAdaptor_actor::saoVVOutput_ANIMATION_FRAME_[3] = {
+const TAdaptor_actor::TVVOutput_ANIMATION_FRAME_ TAdaptor_actor::saoVVOutput_ANIMATION_FRAME_[] = {
     TVVOutput_ANIMATION_FRAME_(0, 305, &JStage::TActor::JSGSetAnimationFrame, &JStage::TActor::JSGGetAnimationFrame, &JStage::TActor::JSGGetAnimationFrameMax),
     TVVOutput_ANIMATION_FRAME_(2, 309, &JStage::TActor::JSGSetTextureAnimationFrame, &JStage::TActor::JSGGetTextureAnimationFrame, &JStage::TActor::JSGGetTextureAnimationFrameMax),
-    TVVOutput_ANIMATION_FRAME_(-1, 0, NULL, NULL, NULL)
+    TVVOutput_ANIMATION_FRAME_()
 };
+
+};  // namespace JStudio_JStage

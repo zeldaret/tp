@@ -9,6 +9,8 @@ extern u8 lit_569;
 
 namespace JStudio {
 
+typedef f64 TValue;
+
 typedef f64 (*ExtrapolateParameter)(f64, f64);
 
 class TFunctionValue;

@@ -25,6 +25,12 @@ public:
 #define EVT_SE_RIDDLE_A 1
 #define EVT_SE_RIDDLE_B 2
 
+#ifdef DEBUG
+#define EVENT_LIST_NUM 12
+#else
+#define EVENT_LIST_NUM 11
+#endif
+
 class dEvent_manager_c {
 public:
     void* getSubstance(dEvDtData_c* p_data, int type);
@@ -91,7 +97,7 @@ public:
     static s16 makeCompositId(s16 a, int b) { return a | (b << 8); }
 
 private:
-    /* 0x0000 */ dEvDtBase_c mEventList[11];
+    /* 0x0000 */ dEvDtBase_c mEventList[EVENT_LIST_NUM];
     /* 0x018C */ s32 mCameraPlay;
     /* 0x0190 */ dEvent_exception_c mEventException;
     /* 0x019C */ cXyz mGoal;

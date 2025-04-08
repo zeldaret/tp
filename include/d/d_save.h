@@ -6,6 +6,8 @@
 #include <dolphin/os.h>
 #include "global.h"
 #include "f_pc/f_pc_name.h"
+#include "JSystem/JUtility/JUTAssert.h"
+#include "JSystem/JHostIO/JORReflexible.h"
 
 #define DEFAULT_SELECT_ITEM_INDEX 0
 #define MAX_SELECT_ITEM 4
@@ -18,7 +20,6 @@
 #define MAX_INSECT_NUM 24
 #define MAX_VISIBLE_HEARTPIECES 4
 #define MAX_POH_NUM 100
-#define BOTTLE_MAX 4
 #define TBOX_MAX 64
 #define DSV_MEMBIT_ENUM_MAX 8
 #define ITEM_MAX_DAN 128
@@ -34,6 +35,9 @@
 #define BIG_WALLET_MAX 600
 #define GIANT_WALLET_MAX 1000
 #define MAX_FINDABLE_FISHES 6
+
+#define ITEM_XY_MAX_DUMMY 8
+#define ITEM_BIT_MAX 0x100
 
 enum ButtonIndexes {
     /* 0 */ A_BUTTON,
@@ -133,6 +137,8 @@ public:
     void setMixItemIndex(int i_no, u8 i_slotNo);
     u8 getMixItemIndex(int i_no) const;
     u16 getRupeeMax() const;
+    void onMagicFlag(u8 i_magic);
+    void offMagicFlag(u8 i_magic);
     int isMagicFlag(u8 i_magic) const;
 
     u16 getMaxLife() const { return mMaxLife; }
@@ -181,8 +187,10 @@ class dSv_player_status_b_c {
 public:
     void init();
     void onDarkClearLV(int i_no);
+    void offDarkClearLV(int i_no);
     BOOL isDarkClearLV(int i_no) const;
     void onTransformLV(int i_no);
+    void offTransformLV(int i_no);
     BOOL isTransformLV(int i_no) const;
 
     void setDateIpl(s64 i_time) { mDateIpl = i_time; }
@@ -260,7 +268,7 @@ private:
     /* 0x00 */ cXyz mPos;
     /* 0x0C */ s16 mAngleY;
     /* 0x0E */ char mName[8];
-    /* 0x16 */ u8 mLastSpawnId;
+    /* 0x16 */ s8 mLastSpawnId;
     /* 0x17 */ u8 mRegionNo;
     /* 0x18 */ bool mFieldDataExistFlag;
     /* 0x19 */ u8 mRegion;
@@ -320,6 +328,7 @@ public:
     void setBaitItem(u8 i_itemNo);
 
     static const int BOMB_BAG_MAX = 3;
+    static const int BOTTLE_MAX = 4;
 
 private:
     /* 0x00 */ u8 mItems[24];
@@ -376,10 +385,13 @@ class dSv_player_collect_c {
 public:
     void init();
     void setCollect(int i_item_type, u8 i_item);
+    void offCollect(int i_item_type, u8 i_item);
     BOOL isCollect(int i_item_type, u8 i_item) const;
     void onCollectCrystal(u8 i_item);
+    void offCollectCrystal(u8 i_item);
     BOOL isCollectCrystal(u8 i_item) const;
     void onCollectMirror(u8 i_item);
+    void offCollectMirror(u8 i_item);
     BOOL isCollectMirror(u8 i_item) const;
 
     u8 getPohNum() { return mPohNum; }
@@ -409,6 +421,7 @@ public:
     void setLightDropNum(u8 i_nowLevel, u8 i_dropNum);
     u8 getLightDropNum(u8 i_nowLevel) const;
     void onLightDropGetFlag(u8 i_nowLevel);
+    void offLightDropGetFlag(u8 i_nowLevel);
     BOOL isLightDropGetFlag(u8 i_nowLevel) const;
 
 private:
@@ -455,6 +468,7 @@ public:
     void setHorseName(const char* i_name) { strcpy((char*)mHorseName, i_name); }
     void setTotalTime(s64 i_time) { mTotalTime = i_time; }
     s64 getTotalTime() const { return mTotalTime; }
+    u8 getClearCount() const { return mClearCount; }
 
     void addDeathCount() {
         if (mDeathCount < 0xFFFF) {
@@ -463,8 +477,7 @@ public:
     }
 
 private:
-    /* 0x00 */ u32 unk0;
-    /* 0x04 */ u32 unk4;
+    /* 0x00 */ u64 unk0;
     /* 0x08 */ s64 mTotalTime;
     /* 0x10 */ u16 unk16;
     /* 0x12 */ u16 mDeathCount;
@@ -484,6 +497,7 @@ public:
     void setSound(u8 i_mode);
     u8 getVibration();
     void setVibration(u8 i_status);
+    u8 getPalLanguage() const;
 
     u8 getAttentionType() { return mAttentionType; }
     void setAttentionType(u8 i_mAttentionType) { mAttentionType = i_mAttentionType; }
@@ -498,12 +512,20 @@ public:
     bool getPointer() { return mPointer; }
     void setPointer(bool i_mPointer) { mPointer = i_mPointer; }
 
+    enum dSv_config_language {
+        LANGAUGE_ENGLISH,
+        LANGAUGE_GERMAN,
+        LANGAUGE_FRENCH,
+        LANGAUGE_SPANISH,
+        LANGAUGE_ITALIAN,
+    };
+
 private:
     /* 0x0 */ u8 unk0;
     /* 0x1 */ u8 mSoundMode;
     /* 0x2 */ u8 mAttentionType;  // Lock-On Type; 0 : hold, 1 : switch
     /* 0x3 */ u8 mVibration;      // Rumble status
-    /* 0x4 */ u8 unk4;
+    /* 0x4 */ u8 mLanguage;
     /* 0x5 */ u8 unk5;
     /* 0x6 */ u16 mCalibrateDist;  // Wii pointer horizontal calibration. Default is 0x015E
     /* 0x8 */ u8 mCalValue;        // Wii pointer vertical calibration. Default is 0x00
@@ -558,6 +580,17 @@ private:
 
 class dSv_memBit_c {
 public:
+    class WarpItemData_c {
+    public:
+        /* 0x04F94 */ char mWarpItemStage[8];
+        /* 0x04F9C */ cXyz mWarpItemPos;
+        /* 0x04FA8 */ s16 mWarpItemAngle;
+        /* 0x04FAA */ s8 mWarpItemRoom;
+        /* 0x04FAB */ u8 field_0x4fab;  // related to setWarpItemData
+        /* 0x04FAC */ u8 field_0x4fac;  // related to setWarpItemData
+        /* 0x04FAD */ u8 field_0x4fad[3];
+    };
+
     enum {
         /* 0x0 */ MAP,
         /* 0x1 */ COMPASS,
@@ -578,8 +611,10 @@ public:
     BOOL isSwitch(int i_no) const;
     BOOL revSwitch(int i_no);
     void onItem(int i_no);
+    void offItem(int i_no);
     BOOL isItem(int i_no) const;
     void onDungeonItem(int i_no);
+    void offDungeonItem(int i_no);
     s32 isDungeonItem(int i_no) const;
 
     u8 getKeyNum() { return mKeyNum; }
@@ -633,8 +668,7 @@ public:
     u32 getBalloonScore() const { return mBalloonScore; }
 
 private:
-    /* 0x00 */ u8 unk0;
-    /* 0x01 */ u8 unk1[3];
+    /* 0x00 */ u8 unk0[1][4];
     /* 0x04 */ u32 mStarTime;
     /* 0x08 */ u32 mBalloonScore;
     /* 0x0C */ u32 mRaceGameTime;
@@ -677,6 +711,7 @@ public:
     BOOL isSwitch(int i_no) const;
     BOOL revSwitch(int i_no);
     void onItem(int i_no);
+    void offItem(int i_no);
     BOOL isItem(int i_no) const;
 
     void reset() { mStageNo = -1; }
@@ -704,8 +739,10 @@ public:
     BOOL isOneSwitch(int i_no) const;
     BOOL revOneSwitch(int i_no);
     void onItem(int i_no);
+    void offItem(int i_no);
     BOOL isItem(int i_no) const;
     void onOneItem(int i_no);
+    void offOneItem(int i_no);
     BOOL isOneItem(int i_no) const;
 
 private:
@@ -723,7 +760,7 @@ public:
     void off(int i_id);
     BOOL is(int i_id) const;
 
-    static const int ACTOR_MAX = 0xFFFF;
+    static const int ACTOR_MAX = 0x80;
 
 private:
     /* 0x00 */ u32 mActorFlags[4];
@@ -739,7 +776,7 @@ public:
     dSv_zoneActor_c& getActor() { return mActor; }
     const dSv_zoneActor_c& getActor() const { return mActor; }
 
-    s8& getRoomNo() { return mRoomNo; }
+    int getRoomNo() const { return mRoomNo; }
     void reset() { mRoomNo = -1; }
 
 private:
@@ -836,7 +873,11 @@ public:
     dSv_event_c& getEvent() { return mEvent; }
     dSv_memory_c& getSave(int i_stageNo) { return mSave[i_stageNo]; }
     dSv_MiniGame_c& getMiniGame() { return mMiniGame; }
-    void putSave(int i_stageNo, dSv_memory_c mem) { mSave[i_stageNo] = mem; }
+
+    void putSave(int i_stageNo, dSv_memory_c mem) {
+        JUT_ASSERT(1417, 0 <= i_stageNo && i_stageNo < dSv_save_c::STAGE_MAX);
+        mSave[i_stageNo] = mem;
+    }
 
     static const int STAGE_MAX = 32;
     static const int STAGE2_MAX = 64;
@@ -849,6 +890,28 @@ public:
     /* 0x8F0 */ dSv_reserve_c reserve;
     /* 0x940 */ dSv_MiniGame_c mMiniGame;
 };  // Size: 0x958
+
+class flagFile_c : public JORReflexible {
+public:
+    enum Flag_e {
+        FLAG_SCENE_e = 0x1,
+        FLAG_SAVE_e  = 0x2,
+        FLAG_MEM_e   = 0x4,
+        FLAG_DAN_e   = 0x8,
+        FLAG_ALL_e   = 0xF,
+    };
+
+    flagFile_c();
+    ~flagFile_c();
+    BOOL check_flag(u16);
+
+    virtual void listenPropertyEvent(const JORPropertyEvent*);
+    virtual void genMessage(JORMContext*);
+
+    /* 0x4 */ u8 unk_0x4[0x6 - 0x4];
+    /* 0x6 */ u16 m_flags;
+    /* 0x8 */ s8 m_no;
+};
 
 class dSv_info_c {
 public:
@@ -895,6 +958,10 @@ public:
     u8 getNewFile() const { return mNewFile; }
     void setNewFile(u8 file) { mNewFile = file; }
 
+    void setSavedata(dSv_save_c& i_save) { mSavedata = i_save; }
+    void setMemory(dSv_memory_c& i_memory) { mMemory = i_memory; }
+    void setDan(dSv_danBit_c& i_dan) { mDan = i_dan; }
+
     static const int MEMORY_SWITCH = 0x80;
     static const int DAN_SWITCH = 0x40;
     static const int ZONE_SWITCH = 0x20;
@@ -907,7 +974,11 @@ public:
 
     static const int ZONE_MAX = 0x20;
 
-private:
+#if VERSION == VERSION_SHIELD_DEBUG
+    /* 0x000 */ u8 unk_0x0;
+    /* 0x001 */ u8 unk_0x1;
+    /* 0x000 */ u8 unk_0x2[0x48 - 0x2];
+#endif
     /* 0x000 */ dSv_save_c mSavedata;
     /* 0x958 */ dSv_memory_c mMemory;
     /* 0x978 */ dSv_danBit_c mDan;
@@ -922,6 +993,9 @@ private:
     /* 0xF1B */ u8 field_0xf1b[13];
     /* 0xF28 */ s64 mStartTime;
     /* 0xF30 */ s64 mSaveTotalTime;
+#if VERSION == VERSION_SHIELD_DEBUG
+    /* 0xF80 */ flagFile_c mFlagFile;
+#endif
 };  // Size: 0xF38
 
 class dSv_event_flag_c {
@@ -930,6 +1004,9 @@ public:
         #include "d/d_save_bit_labels.inc"
     };
 
+#if VERSION > VERSION_GCN_JPN
+    const
+#endif
     static u16 saveBitLabels[822];
 };
 
@@ -938,7 +1015,7 @@ public:
     enum {
         #include "d/d_save_temp_bit_labels.inc"
     };
-    
+
     static u16 const tempBitLabels[185];
 };
 

@@ -984,7 +984,6 @@ void daAlink_c::endDemoMode() {
 }
 
 /* 801180EC-80118170 112A2C 0084+00 2/2 0/0 0/0 .text            getDemoLookActor__9daAlink_cFv */
-// NONMATCHING - weird gameinfo load
 fopAc_ac_c* daAlink_c::getDemoLookActor() {
     if (mDemo.getParam0() == 1) {
         return dComIfGp_event_getPt1();
@@ -4218,7 +4217,10 @@ void daAlink_c::checkWarpStart() {
         if (dMeter2Info_getWarpStatus() == WARP_STATUS_DECIDED_e ||
             dComIfGp_event_compulsory(this, 0, 0xFFFF))
         {
+            #if VERSION != VERSION_GCN_JPN
             onNoResetFlg0(FLG0_UNK_4000);
+            #endif
+
             if (dMeter2Info_getWarpStatus() == WARP_STATUS_DECIDED_e) {
                 const char* portal;
                 if (!checkMidnaRide()) {
@@ -4244,6 +4246,10 @@ void daAlink_c::checkWarpStart() {
                 fopAcM_orderOtherEvent(this, portal, 0xFFFF, 1, 1);
             } else {
                 mDemo.setSpecialDemoType();
+                #if VERSION == VERSION_GCN_JPN
+                onNoResetFlg0(FLG0_UNK_4000);
+                #endif
+
                 if (dMeter2Info_getWarpStatus() == 1) {
                     stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
                     u32 exitID = dStage_stagInfo_GetEscapeWarp(stag_info);
@@ -4326,6 +4332,12 @@ int daAlink_c::procCoWarpInit(int param_0, int param_1) {
                 field_0x32cc = 0x9FB;
                 var_r29 = Z2SE_WOLF_WARP_IN_TATE;
             }
+
+            #if VERSION == VERSION_GCN_JPN
+            if (param_1) {
+                onNoResetFlg0(FLG0_UNK_4000);
+            }
+            #endif
 
             if (param_1) {
                 if (!checkMidnaRide()) {

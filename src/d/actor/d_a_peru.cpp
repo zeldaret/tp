@@ -115,7 +115,7 @@ daPeru_c::cutAppearFunc daPeru_c::mCutList[3] = {
 
 /* 80D46EEC-80D46FCC 0000EC 00E0+00 1/0 0/0 0/0 .text            __dt__8daPeru_cFv */
 daPeru_c::~daPeru_c() {
-    OS_REPORT("|%06d:%x|daPeru_c -> デストラクト\n", g_Counter, this);
+    OS_REPORT("|%06d:%x|daPeru_c -> デストラクト\n", g_Counter.mCounter0, this);
     if (heap != NULL) {
         mpMorf[0]->stopZelAnime();
     }
@@ -280,7 +280,7 @@ int daPeru_c::typeInitialize() {
 
 /* 80D47750-80D47784 000950 0034+00 1/1 0/0 0/0 .text            Delete__8daPeru_cFv */
 int daPeru_c::Delete() {
-    OS_REPORT("|%06d:%x|daPeru_c -> Delete\n", g_Counter, this);
+    OS_REPORT("|%06d:%x|daPeru_c -> Delete\n", g_Counter.mCounter0, this);
     fopAcM_GetID(this);
     this->~daPeru_c();
     return 1;

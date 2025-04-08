@@ -574,6 +574,10 @@ dScnPly_reg_HIO_c g_regHIO;
 /* 8043079C-804307E0 05D4BC 0044+00 1/2 3/3 0/0 .bss             g_envHIO */
 dScnPly_env_HIO_c g_envHIO;
 
+#ifdef DEBUG
+dScnPly_preset_HIO_c g_presetHIO;
+#endif
+
 /* 8025A654-8025A9F4 254F94 03A0+00 1/0 0/0 0/0 .text            phase_4__FP9dScnPly_c */
 static int phase_4(dScnPly_c* i_this) {
     if (i_this->sceneCommand) {
