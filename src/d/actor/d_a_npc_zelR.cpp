@@ -69,7 +69,7 @@ daNpc_ZelR_c::EventFn daNpc_ZelR_c::mCutList[1] = {
 };
 
 daNpc_ZelR_c::~daNpc_ZelR_c() {
-    OS_REPORT("|%06d:%x|daNpc_ZelR_c -> デストラクト\n", g_Counter, this);
+    OS_REPORT("|%06d:%x|daNpc_ZelR_c -> デストラクト\n", g_Counter.mCounter0, this);
     if (heap) {
         mpMorf[0]->stopZelAnime();
     }
@@ -177,14 +177,18 @@ int daNpc_ZelR_c::create() {
 int daNpc_ZelR_c::CreateHeap() {
     // NONMATCHING
     int bmdIdx = mTwilight;
-    J3DModelData* modelData = (J3DModelData*)(dComIfG_getObjectRes(
+    if (mTwilight == 1) {
+        bmdIdx = 0;   
+    }
+
+    J3DModelData* mdlData_p = (J3DModelData*)(dComIfG_getObjectRes(
         l_resNameList[l_bmdData[bmdIdx].arcIdx], l_bmdData[bmdIdx].fileIdx
     ));
     
     
     JUT_ASSERT(0x1b0, 0 != mdlData_p);
 
-    mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0, 0x11020284);
+    mpMorf[0] = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0, 0x11020284);
     if (mpMorf[0] != NULL && mpMorf[0]->getModel() == NULL) {
         mpMorf[0]->stopZelAnime();
         mpMorf[0] = NULL;
@@ -195,8 +199,8 @@ int daNpc_ZelR_c::CreateHeap() {
     }
 
     J3DModel* model = mpMorf[0]->getModel();
-    for (u16 i = 0; i < modelData->getJointNum(); i++) {
-        modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
+    for (u16 i = 0; i < mdlData_p->getJointNum(); i++) {
+        mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
 
     model->setUserArea((u32)this);
@@ -210,9 +214,9 @@ int daNpc_ZelR_c::CreateHeap() {
 
     if (setFaceMotionAnm(1, false) && setMotionAnm(0, 0.0f, 0) != 0) {
         return 1;
-    } else {
-        return 0;
     }
+    
+    return 0;
 }
 
 /* 80B6F664-80B6F698 000924 0034+00 1/1 0/0 0/0 .text            Delete__12daNpc_ZelR_cFv */
@@ -572,7 +576,7 @@ int daNpc_ZelR_c::wait(void* param_1) {
                     sVar1 = home.angle.y != mCurAngle.y;
                 }
 
-                if ((sVar1 & 0xff) != 0 && step(home.angle.y, -1, -1, 15, 0)) {
+                if ((sVar1 & 0xff) && step(home.angle.y, -1, -1, 15, 0)) {
                     mMode = 1;
                 }
             }
@@ -659,7 +663,7 @@ s32 daNpc_ZelR_c::getHeadJointNo() {
 
 /* 80B71A4C-80B71A54 002D0C 0008+00 1/0 0/0 0/0 .text getBackboneJointNo__12daNpc_ZelR_cFv */
 s32 daNpc_ZelR_c::getBackboneJointNo() {
-    return true;
+    return 1;
 }
 
 /* 80B71CDC-80B71CFC -00001 0020+00 1/0 0/0 0/0 .data            daNpc_ZelR_MethodTable */
