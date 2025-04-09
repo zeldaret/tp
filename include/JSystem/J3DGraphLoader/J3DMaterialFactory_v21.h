@@ -80,11 +80,6 @@ public:
     u16 getMaterialID(u16 idx) { return mpMaterialID[idx]; }
     u8 getMaterialMode(int idx) const { return mpMaterialInitData[mpMaterialID[idx]].mMaterialMode; }
     
-    static int getMdlDataFlag_TevStageNum(u32 flags) { return (flags >> 0x10) & 0x1f; }
-    static int getMdlDataFlag_TexGenFlag(u32 flags) { return flags & 0x0c000000; }
-    static u32 getMdlDataFlag_ColorFlag(u32 flags) { return flags & 0xc0000000; }
-    static u32 getMdlDataFlag_PEFlag(u32 flags) { return flags & 0x30000000; }
-
     /* 0x00 */ u16 mMaterialNum;
     /* 0x04 */ J3DMaterialInitData_v21* mpMaterialInitData;
     /* 0x08 */ u16* mpMaterialID;

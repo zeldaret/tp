@@ -5,6 +5,7 @@
 
 #include "JSystem/J3DGraphAnimator/J3DMtxBuffer.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "JSystem/JKernel/JKRHeap.h"
 
 /* 80326214-80326258 320B54 0044+00 0/0 1/1 0/0 .text            initialize__12J3DMtxBufferFv */
@@ -30,10 +31,6 @@ enum {
     J3DMdlDataFlag_ConcatView = 0x10,
     J3DMdlDataFlag_NoAnimation = 0x100,
 };
-
-static inline u32 getMdlDataFlag_MtxLoadType(u32 flag) {
-    return flag & 0x10;
-}
 
 s32 J3DMtxBuffer::create(J3DModelData* p_modelData, u32 flag) {
     s32 ret;

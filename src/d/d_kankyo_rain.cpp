@@ -5285,7 +5285,7 @@ void dKyr_odour_move() {
 }
 
 /* 8006BE0C-8006C790 06674C 0984+00 0/0 1/1 0/0 .text            dKyr_odour_draw__FPA4_fPPUc */
-// NONMATCHING - regalloc and out of order instruction
+// NONMATCHING - regalloc
 void dKyr_odour_draw(Mtx drawMtx, u8** tex) {
     dScnKy_env_light_c* envlight = dKy_getEnvlight();
     dKankyo_odour_Packet* odour_packet = envlight->mpOdourPacket;
