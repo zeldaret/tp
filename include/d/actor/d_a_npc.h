@@ -308,6 +308,12 @@ public:
     s16 getAngleZ(int idx) { return field_0x0[idx].z; }
     int checkRebirth() { return mRebirth; }
 
+    void setPower(f32 mPower) {
+        for (int i = 0; i < 2; i++) {
+            field_0xc[i] = mPower;
+        }
+    }
+
 private:
     /* 0x00 */ csXyz field_0x0[2];
     /* 0x0C */ f32 field_0xc[2];
