@@ -719,7 +719,7 @@ extern const J3DFogInfo j3dDefaultFogInfo;
  */
 struct J3DFog : public J3DFogInfo {
     J3DFog() { *(J3DFogInfo*)this = j3dDefaultFogInfo; }
-    J3DFog(const J3DFog& other) : J3DFogInfo(other) {}
+    ~J3DFog() {}
     J3DFogInfo* getFogInfo() { return this; }
     void setFogInfo(J3DFogInfo info) { *(J3DFogInfo*)this = info; }
     void setFogInfo(J3DFogInfo* info) { *(J3DFogInfo*)this = *info; }
@@ -735,11 +735,11 @@ struct J3DFog : public J3DFogInfo {
  * 
  */
 struct J3DAlphaCompInfo {
-    /* 0x0 */ u8 field_0x0;
-    /* 0x1 */ u8 field_0x1;
-    /* 0x2 */ u8 mRef0;
-    /* 0x3 */ u8 mRef1;
-    /* 0x4 */ u8 field_0x4;
+    /* 0x0 */ u8 mComp0;
+    /* 0x1 */ u8 mRef0;
+    /* 0x2 */ u8 mOp;
+    /* 0x3 */ u8 mComp1;
+    /* 0x4 */ u8 mRef1;
     /* 0x5 */ u8 field_0x5;
     /* 0x6 */ u8 field_0x6;
     /* 0x7 */ u8 field_0x7;
@@ -747,13 +747,8 @@ struct J3DAlphaCompInfo {
 
 extern const u16 j3dDefaultAlphaCmpID;
 
-// inline u32 calcAlphaCmpID(u32 param_1, u32 param_2, u32 param_3) {
-//     return ((param_1 & 0xff) << 5) + ((param_2 & 0xff) << 3) + (param_3 & 0xff);
-// }
-
-// matches for `J3DMaterialFactory::newAlphaComp,J3DMaterialFactory_v21::newAlphaComp` but fails for `d_resorce::addWarpMaterial`
-inline u32 calcAlphaCmpID(u8 param_1, u8 param_2, u8 param_3) {
-    return (param_1 << 5) + (param_2 << 3) + param_3;
+inline u16 calcAlphaCmpID(u8 comp0, u8 op, u8 comp1) {
+    return (comp0 << 5) + (op << 3) + (comp1);
 }
 
 /**
@@ -763,21 +758,17 @@ inline u32 calcAlphaCmpID(u8 param_1, u8 param_2, u8 param_3) {
 struct J3DAlphaComp {
     J3DAlphaComp() : mID(j3dDefaultAlphaCmpID), mRef0(0), mRef1(0) {}
     J3DAlphaComp(u16 id) : mID(id), mRef0(0), mRef1(0) {}
-    J3DAlphaComp(J3DAlphaCompInfo const& info) :
-        mID(calcAlphaCmpID(info.field_0x0, info.mRef0, info.mRef1)),
-        mRef0(info.field_0x1),
-        mRef1(info.field_0x4)
-        {}
 
-    void setAlphaCompInfo(const J3DAlphaCompInfo& param_1) {
-        mRef0 = param_1.field_0x1;
-        mRef1 = param_1.field_0x4;
-        // u32 p1_mref1 = param_1.mRef1;
-        // mID = calcAlphaCmpID(param_1.field_0x0, param_1.mRef0, p1_mref1);
+    explicit J3DAlphaComp(const J3DAlphaCompInfo& info) {
+        mID = calcAlphaCmpID(info.mComp0, info.mOp, info.mComp1);
+        mRef0 = info.mRef0;
+        mRef1 = info.mRef1;
+    }
 
-        // this matches for `dKy_bg_MAxx_proc` but causes `addWarpMaterial` to fail,
-        // while the above matches for `addWarpMaterial` but causes `dKy_bg_MAxx_proc` to fail?
-        mID = calcAlphaCmpID(param_1.field_0x0, param_1.mRef0, param_1.mRef1);
+    void setAlphaCompInfo(const J3DAlphaCompInfo& info) {
+        mRef0 = info.mRef0;
+        mRef1 = info.mRef1;
+        mID = calcAlphaCmpID(info.mComp0, info.mOp, info.mComp1);
     }
 
     GXCompare getComp0() const { return GXCompare(j3dAlphaCmpTable[mID * 3]); }
@@ -1123,12 +1114,12 @@ public:
  * 
  */
 struct J3DColorChanInfo {
-    /* 0x0 */ u8 field_0x0;
-    /* 0x1 */ u8 field_0x1;
-    /* 0x2 */ u8 field_0x2;
-    /* 0x3 */ u8 field_0x3;
-    /* 0x4 */ u8 field_0x4;
-    /* 0x5 */ u8 field_0x5;
+    /* 0x0 */ u8 mEnable;
+    /* 0x1 */ u8 mMatSrc;
+    /* 0x2 */ u8 mLightMask;
+    /* 0x3 */ u8 mDiffuseFn;
+    /* 0x4 */ u8 mAttnFn;
+    /* 0x5 */ u8 mAmbSrc;
     /* 0x6 */ u8 pad[2];
 };
 
@@ -1161,6 +1152,25 @@ static inline u32 setChanCtrlMacro(u8 enable, GXColorSrc ambSrc, GXColorSrc matS
            (attnFn != GX_AF_SPEC) << 10 | (lightMask >> 4 & 0x0F) << 11;
 }
 
+inline u16 calcColorChanID(u16 enable, u8 matSrc, u8 lightMask, u8 diffuseFn, u8 attnFn, u8 ambSrc) {
+    u32 reg = 0;
+    reg = (reg & ~0x0002) | enable << 1;
+    reg = (reg & ~0x0001) | matSrc;
+    reg = (reg & ~0x0040) | ambSrc << 6;
+    reg = (reg & ~0x0004) | bool(lightMask & 0x01) << 2;
+    reg = (reg & ~0x0008) | bool(lightMask & 0x02) << 3;
+    reg = (reg & ~0x0010) | bool(lightMask & 0x04) << 4;
+    reg = (reg & ~0x0020) | bool(lightMask & 0x08) << 5;
+    reg = (reg & ~0x0800) | bool(lightMask & 0x10) << 11;
+    reg = (reg & ~0x1000) | bool(lightMask & 0x20) << 12;
+    reg = (reg & ~0x2000) | bool(lightMask & 0x40) << 13;
+    reg = (reg & ~0x4000) | bool(lightMask & 0x80) << 14;
+    reg = (reg & ~0x0180) | (attnFn == GX_AF_SPEC ? 0 : diffuseFn) << 7;
+    reg = (reg & ~0x0200) | (attnFn != GX_AF_NONE) << 9;
+    reg = (reg & ~0x0400) | (attnFn != GX_AF_SPEC) << 10;
+    return reg;
+}
+
 /**
  * @ingroup jsystem-j3d
  * 
@@ -1170,12 +1180,20 @@ struct J3DColorChan {
         setColorChanInfo(j3dDefaultColorChanInfo);
     }
     J3DColorChan(J3DColorChanInfo const& info) {
-        mColorChanID = calcColorChanID(info.field_0x0, info.field_0x1, info.field_0x2,
-            info.field_0x3, info.field_0x4, info.field_0x5 == 0xff ? 0 : info.field_0x5);
+        u32 ambSrc = info.mAmbSrc == 0xFF ? 0 : info.mAmbSrc;
+        mColorChanID = calcColorChanID(info.mEnable, info.mMatSrc, info.mLightMask,
+            info.mDiffuseFn, info.mAttnFn, ambSrc);
     }
     void setColorChanInfo(J3DColorChanInfo const& info) {
-        mColorChanID = calcColorChanID(info.field_0x0, info.field_0x1, info.field_0x2,
-            info.field_0x3, info.field_0x4, info.field_0x5 == 0xffff ? 0 : info.field_0x5);
+        // Bug: It compares info.mAmbSrc (an 8 bit integer) with 0xFFFF instead of 0xFF.
+        // This inline is only called by the default constructor J3DColorChan().
+        // The J3DColorChan(const J3DColorChanInfo&) constructor does not call this inline, and instead duplicates the
+        // same logic but without the bug.
+        // See J3DMaterialFactory::newColorChan - both the bugged and correct behavior are present there, as it calls
+        // both constructors.
+        u32 ambSrc = info.mAmbSrc == 0xFFFF ? 0 : info.mAmbSrc;
+        mColorChanID = calcColorChanID(info.mEnable, info.mMatSrc, info.mLightMask,
+            info.mDiffuseFn, info.mAttnFn, ambSrc);
     }
     u8 getLightMask() { return ((mColorChanID >> 2) & 0xf) | ((mColorChanID >> 11) & 0xf) << 4; }
     void setLightMask(u8 param_1) {

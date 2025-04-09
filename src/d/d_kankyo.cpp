@@ -6850,7 +6850,6 @@ static J3DAlphaCompInfo l_alphaCompInfo = {
 };
 
 /* 801ACD24-801ADBBC 1A7664 0E98+00 0/0 0/0 7/7 .text            dKy_bg_MAxx_proc__FPv */
-// NONMATCHING - `setAlphaCompInfo` is incorrect, and instruction in the wrong order at the start
 void dKy_bg_MAxx_proc(void* bg_model_p) {
     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
     J3DModel* model_p = (J3DModel*)bg_model_p;

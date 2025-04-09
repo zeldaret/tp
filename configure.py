@@ -1069,8 +1069,8 @@ config.libs = [
     JSystemLib(
         "J3DGraphLoader",
         [
-            Object(NonMatching, "JSystem/J3DGraphLoader/J3DMaterialFactory.cpp"),
-            Object(NonMatching, "JSystem/J3DGraphLoader/J3DMaterialFactory_v21.cpp"),
+            Object(MatchingFor("GZ2E01"), "JSystem/J3DGraphLoader/J3DMaterialFactory.cpp", extra_cflags=['-pragma "nosyminline off"']),
+            Object(MatchingFor("GZ2E01"), "JSystem/J3DGraphLoader/J3DMaterialFactory_v21.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/J3DGraphLoader/J3DClusterLoader.cpp", extra_cflags=['-pragma "nosyminline off"']),
             Object(MatchingFor("GZ2E01"), "JSystem/J3DGraphLoader/J3DModelLoader.cpp", extra_cflags=['-pragma "nosyminline off"']),
             Object(MatchingFor("GZ2E01"), "JSystem/J3DGraphLoader/J3DModelLoaderCalcSize.cpp"),
@@ -2054,7 +2054,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_scannon_ten"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_sekidoor"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_sekizo"),
-    ActorRel(NonMatching, "d_a_obj_sekizoa"),
+    ActorRel(Equivalent, "d_a_obj_sekizoa"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_shield"),
     ActorRel(Equivalent, "d_a_obj_sm_door"), # vtable order
     ActorRel(NonMatching, "d_a_obj_smallkey"),

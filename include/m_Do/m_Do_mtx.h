@@ -345,6 +345,10 @@ public:
         MTXRotAxisRad(now, axis, rad);
     }
 
+    static void identity() {
+        MTXIdentity(now);
+    }
+
     static Mtx now;
     static Mtx buffer[16];
     static Mtx* next;
