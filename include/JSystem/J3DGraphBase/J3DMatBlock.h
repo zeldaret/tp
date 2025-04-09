@@ -1125,25 +1125,6 @@ struct J3DColorChanInfo {
 
 extern const J3DColorChanInfo j3dDefaultColorChanInfo;
 
-inline u16 calcColorChanID(u16 enable, u8 matSrc, u8 lightMask, u8 diffuseFn, u8 attnFn, u8 ambSrc) {
-    u32 reg = 0;
-    reg = reg & ~0x0002 | enable << 1;
-    reg = reg & ~0x0001 | matSrc;
-    reg = reg & ~0x0040 | ambSrc << 6;
-    reg = reg & ~0x0004 | bool(lightMask & 0x01) << 2;
-    reg = reg & ~0x0008 | bool(lightMask & 0x02) << 3;
-    reg = reg & ~0x0010 | bool(lightMask & 0x04) << 4;
-    reg = reg & ~0x0020 | bool(lightMask & 0x08) << 5;
-    reg = reg & ~0x0800 | bool(lightMask & 0x10) << 11;
-    reg = reg & ~0x1000 | bool(lightMask & 0x20) << 12;
-    reg = reg & ~0x2000 | bool(lightMask & 0x40) << 13;
-    reg = reg & ~0x4000 | bool(lightMask & 0x80) << 14;
-    reg = reg & ~0x0180 | (attnFn == GX_AF_SPEC ? 0 : diffuseFn) << 7;
-    reg = reg & ~0x0200 | (attnFn != GX_AF_NONE) << 9;
-    reg = reg & ~0x0400 | (attnFn != GX_AF_SPEC) << 10;
-    return reg;
-}
-
 static inline u32 setChanCtrlMacro(u8 enable, GXColorSrc ambSrc, GXColorSrc matSrc, u32 lightMask,
                                    GXDiffuseFn diffuseFn, GXAttnFn attnFn) {
     u32 tmp = matSrc << 0;
