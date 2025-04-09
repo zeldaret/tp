@@ -4,71 +4,15 @@
 //
 
 #include "JSystem/JMessage/resource.h"
+#include "JSystem/JGadget/search.h"
 #include <algorithm.h>
-#include "dol2asm.h"
 #include "string.h"
-
-//
-// Types:
-//
-
-namespace std {
-template <typename A1, typename B1>
-void lower_bound(/* ... */);
-/* 802A94D4 */ /* std::lower_bound<u32 const*, u32> */
-void func_802A94D4(void* _this, u32 const*, u32 const*, u32 const&);
-};  // namespace std
-
-//
-// Forward References:
-//
-
-extern "C" void toMessageIndex_messageID__Q28JMessage9TResourceCFUlUlPb();
-extern "C" void __ct__Q38JMessage18TResourceContainer10TCResourceFv();
-extern "C" void __dt__Q38JMessage18TResourceContainer10TCResourceFv();
-extern "C" void Get_groupID__Q38JMessage18TResourceContainer10TCResourceFUs();
-extern "C" void Do_create__Q38JMessage18TResourceContainer10TCResourceFv();
-extern "C" void Do_destroy__Q38JMessage18TResourceContainer10TCResourceFPQ28JMessage9TResource();
-extern "C" void __ct__Q28JMessage18TResourceContainerFv();
-extern "C" void setEncoding__Q28JMessage18TResourceContainerFUc();
-extern "C" void setEncoding___Q28JMessage18TResourceContainerFUc();
-extern "C" void __ct__Q28JMessage6TParseFPQ28JMessage18TResourceContainer();
-extern "C" void __dt__Q28JMessage6TParseFv();
-extern "C" void parseHeader_next__Q28JMessage6TParseFPPCvPUlUl();
-extern "C" void parseBlock_next__Q28JMessage6TParseFPPCvPUlUl();
-extern "C" void parseCharacter_1Byte__Q28JMessage6localeFPPCc();
-extern "C" void parseCharacter_2Byte__Q28JMessage6localeFPPCc();
-extern "C" void func_802A94D4(void* _this, u32 const*, u32 const*, u32 const&);
-extern "C" void* sapfnParseCharacter___Q28JMessage18TResourceContainer[5];
-
-//
-// External References:
-//
-
-extern "C" void parseCharacter_ShiftJIS__Q28JMessage6localeFPPCc();
-extern "C" void parseCharacter_UTF8__Q28JMessage6localeFPPCc();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void __dt__Q37JGadget6binary19TParse_header_blockFv();
-extern "C" void __dt__Q27JGadget13TNodeLinkListFv();
-extern "C" void
-Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode();
-extern "C" void Erase__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode();
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_28();
-extern "C" extern void* __vt__Q37JGadget6binary19TParse_header_block[5];
-extern "C" f32 ga4cSignature__Q28JMessage4data[1 + 1 /* padding */];
-
-//
-// Declarations:
-//
 
 /* 802A8CDC-802A8EC0 2A361C 01E4+00 0/0 1/1 0/0 .text
  * toMessageIndex_messageID__Q28JMessage9TResourceCFUlUlPb      */
-// NONMATCHING - instruction order
 u16 JMessage::TResource::toMessageIndex_messageID(u32 lowerHalf, u32 upperHalf,
                                                   bool* isMsgValid) const {
-    if (!mMessageID.get()) {
+    if (!mMessageID.getRaw()) {
         return 0xFFFF;
     }
 
@@ -118,21 +62,19 @@ u16 JMessage::TResource::toMessageIndex_messageID(u32 lowerHalf, u32 upperHalf,
         return 0xFFFF;
     }
 
-    const u32* first = (u32*)mMessageID.getContent();
-    const u32* last = (u32*)(first + mMessageID.get_number());
+    int number = mMessageID.get_number();
+    const u32* first = mMessageID.getContent();
+    const u32* last = first + number;
 
     const u32* lower;
     if (mMessageID.get_isOrdered()) {
-        lower = std::lower_bound<const u32*, u32>(first, last, val);
+        lower = std::lower_bound(first, last, val);
 
         if (lower == last || *lower != val) {
             return 0xFFFF;
         }
     } else {
-        lower = first;
-        while (lower != last && *lower != val) {
-            lower++;
-        }
+        lower = std::find(first, last, val);
         if (lower == last) {
             return 0xFFFF;
         }
@@ -150,41 +92,12 @@ JMessage::locale::parseCharacter_function JMessage::TResourceContainer::sapfnPar
     JMessage::locale::parseCharacter_UTF8,
 };
 
-/* 803C9C94-803C9CA8 026DB4 0014+00 2/2 0/0 0/0 .data            __vt__Q28JMessage6TParse */
-SECTION_DATA extern void* __vt__Q28JMessage6TParse[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__Q28JMessage6TParseFv,
-    (void*)parseHeader_next__Q28JMessage6TParseFPPCvPUlUl,
-    (void*)parseBlock_next__Q28JMessage6TParseFPPCvPUlUl,
-};
-
-/* 803C9CA8-803C9CBC 026DC8 0014+00 2/2 0/0 0/0 .data
- * __vt__Q38JMessage18TResourceContainer10TCResource            */
-SECTION_DATA extern void* __vt__Q38JMessage18TResourceContainer10TCResource[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__Q38JMessage18TResourceContainer10TCResourceFv,
-    (void*)Do_create__Q38JMessage18TResourceContainer10TCResourceFv,
-    (void*)Do_destroy__Q38JMessage18TResourceContainer10TCResourceFPQ28JMessage9TResource,
-};
-
-/* 803C9CBC-803C9CD0 026DDC 0014+00 2/2 0/0 0/0 .data
- * __vt__Q27JGadget42TLinkList_factory<Q28JMessage9TResource,0> */
-SECTION_DATA extern void* data_803C9CBC[5] = {
-    (void*)NULL /* RTTI */, (void*)NULL, (void*)NULL, (void*)NULL, (void*)NULL,
-};
-
 /* 802A8EC0-802A8EF8 2A3800 0038+00 1/1 0/0 0/0 .text
  * __ct__Q38JMessage18TResourceContainer10TCResourceFv          */
-// need to fix TLinkList_factory vtable stuff
-JMessage::TResourceContainer::TCResource::TCResource() {
-    // NONMATCHING
-}
+JMessage::TResourceContainer::TCResource::TCResource() {}
 
 /* 802A8EF8-802A8F6C 2A3838 0074+00 1/0 2/2 0/0 .text
  * __dt__Q38JMessage18TResourceContainer10TCResourceFv          */
-// need to fix TLinkList_factory vtable stuff
 JMessage::TResourceContainer::TCResource::~TCResource() {}
 
 /* 802A8F6C-802A8FFC 2A38AC 0090+00 0/0 1/1 0/0 .text
@@ -209,6 +122,7 @@ JMessage::TResource* JMessage::TResourceContainer::TCResource::Do_create() {
 
 /* 802A9048-802A906C 2A3988 0024+00 1/0 0/0 0/0 .text
  * Do_destroy__Q38JMessage18TResourceContainer10TCResourceFPQ28JMessage9TResource */
+// NONMATCHING extra null comparison
 void JMessage::TResourceContainer::TCResource::Do_destroy(JMessage::TResource* param_0) {
     delete param_0;
 }
@@ -247,7 +161,7 @@ JMessage::TParse::~TParse() {}
 
 /* 802A91B8-802A92F4 2A3AF8 013C+00 1/0 0/0 0/0 .text
  * parseHeader_next__Q28JMessage6TParseFPPCvPUlUl               */
-// NONMATCHING
+// NONMATCHING regalloc, missing clrlwi
 bool JMessage::TParse::parseHeader_next(void const** ppData_inout, u32* puBlock_out, u32 param_2) {
     const void* pData = *ppData_inout;
 
@@ -317,9 +231,3 @@ int JMessage::locale::parseCharacter_2Byte(char const** string) {
 
     return parse_char;
 }
-
-/* 802A94D4-802A9528 2A3E14 0054+00 1/1 0/0 0/0 .text lower_bound<PCUl,Ul>__3stdFPCUlPCUlRCUl */
-/* extern "C" void func_802A94D4(void* _this, u32 const* param_0, u32 const* param_1,
-                                  u32 const& param_2) {
-    // NONMATCHING
-} */

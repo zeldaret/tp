@@ -44,7 +44,7 @@ public:
 
     /* 80288B78 */ void setFlag_operation(u8, int);
     /* 80288BD0 */ void reset(void const*);
-    /* 80288BE8 */ u8 forward(u32);
+    /* 80288BE8 */ bool forward(u32);
     /* 80288E18 */ virtual void do_begin();
     /* 80288E1C */ virtual void do_end();
     /* 80288E20 */ virtual void do_paragraph(u32, void const*, u32);
@@ -133,7 +133,7 @@ public:
     /* 80289300 */ void destroyObject_all();
     /* 80289364 */ TObject* getObject(void const*, u32);
     /* 80289404 */ void reset();
-    /* 802894B4 */ u8 forward(u32);
+    /* 802894B4 */ bool forward(u32);
 
     void setStatus_(u32 status) { mStatus = status; }
     void resetStatus_() { setStatus_(0); }

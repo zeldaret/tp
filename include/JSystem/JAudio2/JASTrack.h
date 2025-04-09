@@ -7,6 +7,7 @@
 #include "JSystem/JAudio2/JASSeqCtrl.h"
 #include "JSystem/JAudio2/JASTrackPort.h"
 #include "JSystem/JGadget/linklist.h"
+#include "global.h"
 
 struct JASSoundParams;
 

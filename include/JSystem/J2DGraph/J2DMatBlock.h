@@ -774,47 +774,11 @@ public:
     void setTexGenNum(u32 num) { mTexGenNum = num; }
     void setTexCoord(u32 i, J2DTexCoord coord) { mTexGenCoord[i] = coord; }
     void setTexMtx(u32 i, J2DTexMtx* mtx) { mTexMtx[i] = mtx; }
+    J2DTexMtx& getTexMtx(u32 i) { return *mTexMtx[i]; }
     J2DTexCoord& getTexCoord(u32 i) { return mTexGenCoord[i]; }
 
     /* 802EB620 */ virtual ~J2DTexGenBlock();
 };  // Size: 0x48
-
-/**
- * @ingroup jsystem-j2d
- * 
- */
-struct J2DColorChanInfo {
-    /* 0x0 */ u8 field_0x0;
-    /* 0x0 */ u8 field_0x1;
-    /* 0x0 */ u8 field_0x2;
-    /* 0x0 */ u8 field_0x3;
-};
-
-inline u8 J2DCalcColorChanID(const J2DColorChanInfo& info) { return info.field_0x1; }
-extern const J2DColorChanInfo j2dDefaultColorChanInfo;
-
-/**
- * @ingroup jsystem-j2d
- * 
- */
-class J2DColorChan {
-public:
-    /* 802EB280 */ J2DColorChan() {
-        setColorChanInfo(j2dDefaultColorChanInfo);
-    }
-    J2DColorChan(const J2DColorChanInfo& info) {
-        mColorChan = J2DCalcColorChanID(info);
-    }
-
-    void setColorChanInfo(const J2DColorChanInfo& info) {
-        mColorChan = J2DCalcColorChanID(info);
-    }
-
-    u16 getMatSrc() const { return mColorChan & 1; }
-
-private:
-    /* 0x0 */ u16 mColorChan;
-};
 
 /**
  * @ingroup jsystem-j2d

@@ -1732,17 +1732,6 @@ void dMenu_Dmap_c::_create() {
     // NONMATCHING
 }
 
-/* 801BDD40-801BDD70 1B8680 0030+00 0/0 1/0 0/0 .text            append__10J2DPictureFPC7ResTIMGf */
-bool J2DPicture::append(ResTIMG const* param_0, f32 param_1) {
-    // NONMATCHING
-}
-
-/* 801BDD70-801BDDA4 1B86B0 0034+00 0/0 1/0 0/0 .text            insert__10J2DPictureFPC7ResTIMGUcf
- */
-void J2DPicture::insert(ResTIMG const* param_0, u8 param_1, f32 param_2) {
-    // NONMATCHING
-}
-
 /* ############################################################################################## */
 /* 80454054-80454058 002654 0004+00 1/1 0/0 0/0 .sdata2          @6017 */
 SECTION_SDATA2 static f32 lit_6017 = 12.0f / 17.0f;

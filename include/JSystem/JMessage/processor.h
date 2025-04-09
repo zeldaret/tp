@@ -108,8 +108,10 @@ struct TProcessor {
     /* 802A82F4 */ static bool process_onCharacterEnd_select_(JMessage::TProcessor*);
     /* 802A833C */ static const char* process_onSelect_limited_(JMessage::TProcessor*);
     /* 802A8358 */ static const char* process_onSelect_(JMessage::TProcessor*);
-    /* 802A8C24 */ const char* on_message(u32) const;
-    /* 802A8C44 */ const char* getMessageText_messageCode(u32) const;
+    /* 802A8C24 */ const char* on_message(u32 param_0) const { return getMessageText_messageCode(param_0); }
+    /* 802A8C44 */ const char* getMessageText_messageCode(u32 param_0) const {
+        return getMessageText_messageCode(param_0 >> 0x10, param_0 & 0xFFFF);
+    }
 
     /* 802A7B48 */ virtual ~TProcessor();
     /* 802A7FC0 */ virtual void do_reset();

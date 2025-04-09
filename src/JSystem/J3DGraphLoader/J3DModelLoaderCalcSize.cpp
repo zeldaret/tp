@@ -112,25 +112,28 @@ u32 J3DModelLoader::calcLoadMaterialTableSize(const void* stream) {
     return size;
 }
 
+inline u32 getBdlFlag_MaterialType(u32 flags) {
+    return flags & (J3DMLF_13 | J3DMLF_DoBdlMaterialCalc);
+}
+
 /* 80336A98-80336CD8 3313D8 0240+00 0/0 3/0 0/0 .text
  * calcLoadBinaryDisplayListSize__14J3DModelLoaderFPCvUl        */
 // NONMATCHING flags issue
 u32 J3DModelLoader::calcLoadBinaryDisplayListSize(const void* stream, u32 flags) {
     u32 size = 0;
+    size += sizeof(J3DModelData);
     const J3DModelFileData* header = (const J3DModelFileData*)stream;
     const J3DModelBlock* nextBlock = header->mBlocks;
-    u32 i = 0;
-    size += sizeof(J3DModelData);
-    for (; i < header->mBlockNum; i++) {
+    for (u32 i = 0; i < header->mBlockNum; i++) {
         switch (nextBlock->mBlockType) {
         case 'INF1':
-            size += calcSizeInformation((const J3DModelInfoBlock*)nextBlock, flags);
+            size += calcSizeInformation((const J3DModelInfoBlock*)nextBlock, (u32)flags);
             break;
         case 'JNT1':
             size += calcSizeJoint((const J3DJointBlock*)nextBlock);
             break;
         case 'SHP1':
-			size += calcSizeShape((const J3DShapeBlock*)nextBlock, flags);
+			size += calcSizeShape((const J3DShapeBlock*)nextBlock, (u32)flags);
 			break;
 		case 'TEX1':
 			size += calcSizeTexture((const J3DTextureBlock*)nextBlock);
@@ -142,12 +145,13 @@ u32 J3DModelLoader::calcLoadBinaryDisplayListSize(const void* stream, u32 flags)
 			break;
 		case 'MAT3': {
 			u32 flags2 = (J3DMLF_21 | J3DMLF_Material_PE_Full | J3DMLF_Material_Color_LightOn);
-            flags2 |= flags & (J3DMLF_Material_UseIndirect | J3DMLF_26);
+            flags2 |= (u32)flags & (J3DMLF_Material_UseIndirect | J3DMLF_26);
 			mpMaterialBlock = (const J3DMaterialBlock*)nextBlock;
-			if ((flags & (J3DMLF_13 | J3DMLF_DoBdlMaterialCalc)) == 0) {
+            u32 flag_mtl_type = getBdlFlag_MaterialType(flags);
+			if (flag_mtl_type == 0) {
 				field_0x18 = 1;
 				size += calcSizeMaterial((const J3DMaterialBlock*)nextBlock, flags2);
-			} else if ((flags & (J3DMLF_13 | J3DMLF_DoBdlMaterialCalc)) == J3DMLF_DoBdlMaterialCalc) {
+			} else if (flag_mtl_type == J3DMLF_DoBdlMaterialCalc) {
 				field_0x18 = 1;
 				size += calcSizePatchedMaterial((const J3DMaterialBlock*)nextBlock, flags2);
 			}

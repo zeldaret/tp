@@ -12,7 +12,16 @@ class J2DMaterial;
  */
 class J2DPictureEx : public J2DPicture {
 public:
-    enum stage_enum {};
+    enum stage_enum {
+        STAGE_0,
+        STAGE_1,
+        STAGE_2,
+        STAGE_3,
+        STAGE_4,
+        STAGE_5,
+        STAGE_6,
+        STAGE_7,
+    };
 
     /* 803036EC */ J2DPictureEx(J2DPane*, JSURandomInputStream*, u32, J2DMaterial*);
     /* 803040E4 */ void insertCommon(u8, f32);
@@ -57,7 +66,7 @@ public:
     /* 80306F94 */ virtual void prepend(char const*, f32);
     /* 80306F64 */ virtual void prepend(char const*, JUTPalette*, f32);
     /* 80306F34 */ virtual void prepend(JUTTexture*, f32);
-    /* 80307058 */ virtual void insert(ResTIMG const*, u8, f32);
+    /* 80307058 */ virtual bool insert(ResTIMG const*, u8, f32);
     /* 80303F34 */ virtual bool insert(ResTIMG const*, JUTPalette*, u8, f32);
     /* 80307024 */ virtual bool insert(char const*, u8, f32);
     /* 80303FD8 */ virtual bool insert(char const*, JUTPalette*, u8, f32);
@@ -100,8 +109,9 @@ private:
     /* 0x160 */ f32 field_0x160[6];  // related to blend color ratio
     /* 0x178 */ f32 field_0x178[6];  // related to blend alpha ratio
     /* 0x190 */ u8 field_0x190;
-    /* 0x194 */ int field_0x194;
-    /* 0x198 */ int field_0x198;
+    /* 0x194 */ J2DAnmVisibilityFull* field_0x194;
+    /* 0x198 */ J2DAnmVtxColor* field_0x198;
+    /* 0x19C */ u8 field_0x19c;
 };
 
 #endif /* J2DPICTUREEX_H */
