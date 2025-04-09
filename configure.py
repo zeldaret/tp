@@ -1071,8 +1071,8 @@ config.libs = [
     JSystemLib(
         "J3DGraphLoader",
         [
-            Object(NonMatching, "JSystem/J3DGraphLoader/J3DMaterialFactory.cpp"),
-            Object(NonMatching, "JSystem/J3DGraphLoader/J3DMaterialFactory_v21.cpp"),
+            Object(MatchingFor("GZ2E01"), "JSystem/J3DGraphLoader/J3DMaterialFactory.cpp", extra_cflags=['-pragma "nosyminline off"']),
+            Object(MatchingFor("GZ2E01"), "JSystem/J3DGraphLoader/J3DMaterialFactory_v21.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/J3DGraphLoader/J3DClusterLoader.cpp", extra_cflags=['-pragma "nosyminline off"']),
             Object(MatchingFor("GZ2E01"), "JSystem/J3DGraphLoader/J3DModelLoader.cpp", extra_cflags=['-pragma "nosyminline off"']),
             Object(NonMatching, "JSystem/J3DGraphLoader/J3DModelLoaderCalcSize.cpp"),

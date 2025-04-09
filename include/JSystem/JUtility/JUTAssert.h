@@ -7,6 +7,9 @@
 #define JUT_ASSERT(LINE, COND) \
     (COND) ? (void)0 : (JUTAssertion::showAssert(JUTAssertion::getSDevice(), __FILE__, LINE, #COND), OSPanic(__FILE__, LINE, "Halt"));
 
+#define JUT_ASSERT_MSG(LINE, COND, MSG) \
+    (COND) ? (void)0 : (JUTAssertion::showAssert(JUTAssertion::getSDevice(), __FILE__, LINE, MSG), OSPanic(__FILE__, LINE, "Halt"));
+
 #define JUT_PANIC(LINE, TEXT)                                                                      \
     JUTAssertion::showAssert(JUTAssertion::getSDevice(), __FILE__, LINE, TEXT);                    \
     OSPanic(__FILE__, LINE, "Halt");
@@ -22,6 +25,7 @@
 
 #else
 #define JUT_ASSERT(...) (void)0;
+#define JUT_ASSERT_MSG(...) (void)0;
 #define JUT_PANIC(...)
 #define JUT_WARN(...)
 #define JUT_LOG(...)
