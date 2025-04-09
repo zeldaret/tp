@@ -115,7 +115,7 @@ daPeru_c::cutAppearFunc daPeru_c::mCutList[3] = {
 
 /* 80D46EEC-80D46FCC 0000EC 00E0+00 1/0 0/0 0/0 .text            __dt__8daPeru_cFv */
 daPeru_c::~daPeru_c() {
-    OS_REPORT("|%06d:%x|daPeru_c -> デストラクト\n", g_Counter, this);
+    OS_REPORT("|%06d:%x|daPeru_c -> デストラクト\n", g_Counter.mCounter0, this);
     if (heap != NULL) {
         mpMorf[0]->stopZelAnime();
     }
@@ -245,8 +245,8 @@ int daPeru_c::CreateHeap() {
     }
 
     model->setUserArea((u32)this);
-    mpMatAnm = new daNpcT_MatAnm_c();
-    if (mpMatAnm == NULL) {
+    mpMatAnm[0] = new daNpcT_MatAnm_c();
+    if (mpMatAnm[0] == NULL) {
         return 0;
     }
 
@@ -280,7 +280,7 @@ int daPeru_c::typeInitialize() {
 
 /* 80D47750-80D47784 000950 0034+00 1/1 0/0 0/0 .text            Delete__8daPeru_cFv */
 int daPeru_c::Delete() {
-    OS_REPORT("|%06d:%x|daPeru_c -> Delete\n", g_Counter, this);
+    OS_REPORT("|%06d:%x|daPeru_c -> Delete\n", g_Counter.mCounter0, this);
     fopAcM_GetID(this);
     this->~daPeru_c();
     return 1;
@@ -293,7 +293,7 @@ int daPeru_c::Execute() {
 
 /* 80D477A4-80D47840 0009A4 009C+00 1/1 0/0 0/0 .text            Draw__8daPeru_cFv */
 int daPeru_c::Draw() {
-    daNpcT_MatAnm_c* matAnm = mpMatAnm;
+    daNpcT_MatAnm_c* matAnm = mpMatAnm[0];
     if (matAnm != NULL) {
         J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
         u16 eyeballMat = getEyeballMaterialNo();
@@ -351,8 +351,8 @@ void daPeru_c::reset() {
     field_0xa80 = daPeru_Param_c::m.field_0x64[2];
     mMorfFrames = daPeru_Param_c::m.field_0x00[17];
     mActionFunc = NULL;
-    if (mpMatAnm != NULL) {
-        mpMatAnm->initialize();
+    if (mpMatAnm[0] != NULL) {
+        mpMatAnm[0]->initialize();
     }
     field_0xe80 = 0;
     for (int i = 0; i < 3; i++) {

@@ -4,12 +4,12 @@
 #include "SSystem/SComponent/c_angle.h"
 #include "m_Do/m_Do_ext.h"
 #include "f_pc/f_pc_base.h"
+#include "JSystem/JHostIO/JORReflexible.h"
 
 class fopAc_ac_c;
 
 class dAttHint_c {
 public:
-    dAttHint_c() {}
     /* 800738B4 */ fpc_ProcID getPId(void*);
     /* 800738CC */ fopAc_ac_c* convPId(fpc_ProcID);
     /* 800738FC */ int request(fopAc_ac_c*, int);
@@ -26,7 +26,6 @@ private:
 
 class dAttCatch_c {
 public:
-    dAttCatch_c() {}
     fopAc_ac_c* convPId(fpc_ProcID);
     void init();
     void proc();
@@ -44,8 +43,12 @@ private:
     /* 0x14 */ u8 mChangeItem;
 };  // Size: 0x18
 
-class dAttParam_c {
+class dAttParam_c : public JORReflexible {
 public:
+#ifdef DEBUG
+    /* 0x04 */ u8 unk_0x4;
+#endif
+
     /* 0x00 */ u16 mFlags;
     /* 0x04 */ f32 field_0x4;
     /* 0x08 */ f32 field_0x8;
@@ -63,10 +66,18 @@ public:
     /* 0x35 */ u8 mAttnCursorDisappearFrames;
     /* 0x38 */ f32 field_0x38;
     /* 0x3C */ f32 field_0x3c;
+#ifdef DEBUG
+    /* 0x44 */ int unk_0x44;
+    /* 0x48 */ int unk_0x48;
+#endif
 
 public:
     dAttParam_c() {}
     /* 80070038 */ dAttParam_c(s32);
+
+#ifdef DEBUG
+    virtual void genMessage(JORMContext*);
+#endif
     /* 80070110 */ virtual ~dAttParam_c();
 
     enum EFlag {
@@ -213,9 +224,9 @@ public:
     /* 8007378C */ fopAc_ac_c* CheckObjectTarget(s32);
     /* 800737E4 */ bool LockonTruth();
     /* 80073838 */ int checkDistance(cXyz*, s16, cXyz*, f32, f32, f32, f32);
-    /* 8016E424 */ void LockEdge();
-    /* 80182994 */ void GetCheckObjectCount();
-    /* 80182AD0 */ void keepLock(int);
+    /* 8016E424 */ bool LockEdge() { return chkFlag(8) || chkFlag(0x20); }
+    /* 80182994 */ int GetCheckObjectCount() { return mCheckObjectCount; }
+    /* 80182AD0 */ void keepLock(int timer) { mAttnBlockTimer = timer; }
     /* 8014B010 */ static dist_entry& getDistTable(int i_no) { return dist_table[i_no]; }
 
     fopAc_ac_c* getCatghTarget() { return mCatghTarget.getCatghTarget(); }
@@ -299,8 +310,15 @@ public:
     /* 0x49C */ dAttCatch_c mCatghTarget;
     /* 0x4B4 */ dAttLook_c mLookTarget;
     /* 0x4C4 */ int mAttnBlockTimer;
+#ifdef DEBUG
+    /* 0x4C8 */ u8 field_0x4c8[0x4D0 - 0x4C8];
+#endif
     /* 0x4C8 */ dAttParam_c mAttParam;
+#ifdef DEBUG
+    /* 0x51C */ u8 field_0x50c[0x520 - 0x51C];
+#else
     /* 0x50C */ u8 field_0x50c[0x514 - 0x50c];
+#endif
     /* 0x514 */ fpc_ProcID mEnemyActorID;
     /* 0x518 */ f32 mEnemyDist;
 };  // Size: 0x51C

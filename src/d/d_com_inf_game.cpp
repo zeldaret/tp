@@ -13,7 +13,10 @@
 #include "d/d_map_path_dmap.h"
 #include "d/d_menu_fmap.h"
 #include "d/d_meter2_info.h"
+#include "d/d_meter_HIO.h"
+#include "d/d_menu_window_HIO.h"
 #include "f_op/f_op_scene_mng.h"
+#include "f_op/f_op_msg_mng.h"
 #include "m_Do/m_Do_Reset.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
@@ -43,10 +46,10 @@ void dComIfG_play_c::init() {
         mPlayerPtr[i] = NULL;
     }
 
-    if (mGameoverStatus == 2) {
+    if (mItemInfo.mGameoverStatus == 2) {
         dComIfGp_roomControl_initZone();
     }
-    mGameoverStatus = 0;
+    mItemInfo.mGameoverStatus = 0;
 }
 
 BOOL dComIfGp_checkItemGet(u8 i_itemNo, int param_1) {
@@ -56,41 +59,41 @@ BOOL dComIfGp_checkItemGet(u8 i_itemNo, int param_1) {
 void dComIfG_play_c::itemInit() {
     dMeter2Info_Initialize();
 
-    JKRExpHeap* heap = mExpHeap2D;
-    memset(&mMsgObjectClass, 0, 300);
-    mExpHeap2D = heap;
-    mOxygen = 600;
-    mNowOxygen = 600;
-    mMaxOxygen = 600;
+    JKRExpHeap* heap = mItemInfo.mExpHeap2D;
+    memset(&mItemInfo.mMsgObjectClass, 0, 300);
+    mItemInfo.mExpHeap2D = heap;
+    mItemInfo.mOxygen = 600;
+    mItemInfo.mNowOxygen = 600;
+    mItemInfo.mMaxOxygen = 600;
 
     if (dComIfGs_checkGetItem(fpcNm_ITEM_HAWK_EYE)) {
-        field_0x4f4b = 0;
+        mItemInfo.field_0x4f4b = 0;
     } else {
-        field_0x4f4b = 21;
+        mItemInfo.field_0x4f4b = 21;
     }
-    field_0x4f4c = 7;
+    mItemInfo.field_0x4f4c = 7;
 
-    mNowVibration = dComIfGs_getOptVibration();
+    mItemInfo.mNowVibration = dComIfGs_getOptVibration();
 }
 
 void dComIfG_play_c::setItemBombNumCount(u8 i_item, s16 count) {
-    mItemBombNumCount[i_item] += count;
+    mItemInfo.mItemBombNumCount[i_item] += count;
 }
 
 s16 dComIfG_play_c::getItemBombNumCount(u8 i_item) {
-    return mItemBombNumCount[i_item];
+    return mItemInfo.mItemBombNumCount[i_item];
 }
 
 void dComIfG_play_c::clearItemBombNumCount(u8 i_item) {
-    mItemBombNumCount[i_item] = 0;
+    mItemInfo.mItemBombNumCount[i_item] = 0;
 }
 
 void dComIfG_play_c::setNowVibration(u8 i_vibration) {
-    mNowVibration = i_vibration;
+    mItemInfo.mNowVibration = i_vibration;
 }
 
 u32 dComIfG_play_c::getNowVibration() {
-    return mNowVibration;
+    return mItemInfo.mNowVibration;
 }
 
 void dComIfG_play_c::setStartStage(dStage_startStage_c* i_startStage) {
@@ -841,9 +844,9 @@ int dComIfG_play_c::getLayerNo_common(char const* i_stageName, int i_roomID, int
 /* 8002C97C-8002C9D8 0272BC 005C+00 1/1 22/22 68/68 .text            getLayerNo__14dComIfG_play_cFi
  */
 int dComIfG_play_c::getLayerNo(int) {
-    s32 roomNo = dComIfGp_roomControl_getStayNo();
+    int roomNo = dComIfGp_roomControl_getStayNo();
 
-    if ((s8)roomNo <= -1) {
+    if (roomNo <= -1) {
         roomNo = dComIfGp_getStartStageRoomNo();
     }
 
@@ -1467,6 +1470,14 @@ u16 dComIfGs_getMaxLifeGauge() {
     return (dComIfGs_getMaxLife() / 5) * 4;
 }
 
+void dComIfGs_onGetMagicUseFlag() {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().onMagicFlag(0);
+    if (dComIfGs_getMaxMagic() == 0) {
+        dComIfGp_setItemMaxMagicCount(16);
+        dComIfGp_setItemMagicCount(16);
+    }
+}
+
 void dComIfGs_setSelectItemIndex(int i_no, u8 i_slotNo) {
     g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setSelectItemIndex(i_no, i_slotNo);
     dComIfGp_setSelectItem(i_no);
@@ -1828,6 +1839,156 @@ void dComIfGs_gameStart() {
     dComIfGp_setNextStage(name, point, roomNo, -1, 0.0f, 0, 1, 0, 0, 0, 0);
 }
 
+#ifdef DEBUG
+void dComIfG_playerStatusD() {
+    dComIfGs_setDataNum(0);
+    dComIfGs_setMaxLife(50);
+    dComIfGs_setLife(20);
+    dComIfGs_setRupee(64);
+    dComIfGs_setMaxMagic(32);
+    dComIfGs_setMagic(16);
+    dComIfGs_setWalletSize(1);
+    dComIfGs_setMaxOil(21600);
+    dComIfGs_setOil(21600);
+    dComIfGp_setMaxOxygen(600);
+    dComIfGp_setOxygen(600);
+
+    for (int i = 0; i < 4; i++) {
+        dComIfGs_setMixItemIndex(i, 0xFF);
+    }
+
+    dComIfGs_setSelectItemIndex(0, SLOT_0);
+    dComIfGs_setSelectItemIndex(1, SLOT_4);
+    dComIfGs_setSelectItemIndex(2, 0xFF);
+    dComIfGs_setSelectItemIndex(3, 0xFF);
+
+    for (int i = 23; i >= 0; i--) {
+        dComIfGs_setItem(i, fopMsgM_itemNumIdx(i));
+    }
+
+    for (int i = 0; i < 0x100; i++) {
+        dComIfGs_onItemFirstBit(i);
+    }
+
+    dComIfGs_offItemFirstBit(fpcNm_ITEM_L2_KEY_PIECES1);
+    dComIfGs_offItemFirstBit(fpcNm_ITEM_L2_KEY_PIECES2);
+    dComIfGs_offItemFirstBit(fpcNm_ITEM_L2_KEY_PIECES3);
+    dComIfGs_offItemFirstBit(fpcNm_ITEM_LV2_BOSS_KEY);
+    dComIfGs_offItemFirstBit(fpcNm_ITEM_BOMB_BAG_LV2);
+    dComIfGs_offItemFirstBit(fpcNm_ITEM_TOMATO_PUREE);
+    dComIfGs_offItemFirstBit(fpcNm_ITEM_TASTE);
+    dComIfGs_offItemFirstBit(fpcNm_ITEM_POU_FIRE1);
+    dComIfGs_offItemFirstBit(fpcNm_ITEM_POU_FIRE2);
+    dComIfGs_offItemFirstBit(fpcNm_ITEM_POU_FIRE3);
+    dComIfGs_offItemFirstBit(fpcNm_ITEM_POU_FIRE4);
+
+    for (int i = 0; i < 24; i++) {
+        dComIfGs_offItemFirstBit(i + fpcNm_ITEM_M_BEETLE);
+    }
+
+    dComIfGs_offItemFirstBit(fpcNm_ITEM_LIGHT_SWORD);
+    dComIfGs_offItemFirstBit(fpcNm_ITEM_SHIELD);
+    dComIfGs_offItemFirstBit(fpcNm_ITEM_ZORAS_JEWEL);
+
+    for (int i = 0; i < 19; i++) {
+        dComIfGs_offItemFirstBit(i);
+    }
+
+    dComIfGs_setCollectSmell(fpcNm_ITEM_SMELL_PUMPKIN);
+
+    if (!mDoCPd_c::isConnect(PAD_3)) {
+        dComIfGs_offItemFirstBit(fpcNm_ITEM_SMELL_POH);
+    }
+
+    dComIfGs_setArrowNum(30);
+    dComIfGs_setArrowMax(30);
+    dComIfGs_setPachinkoNum(dComIfGs_getPachinkoMax());
+    dComIfGs_setBombNum(0, 30);
+    dComIfGs_setBombNum(1, 15);
+    dComIfGs_setBombNum(2, 10);
+
+    for (int i = 0; i < 4; i++) {
+        dComIfGs_setBottleNum(i, dComIfGs_getBottleMax());
+    }
+
+    dComIfGs_setSaveTotalTime(dComIfGs_getTotalTime());
+    dComIfGs_setSaveStartTime(OSGetTime());
+
+    dComIfGs_setBombNum(8, 30);
+    dComIfGs_setBombMax(fpcNm_ITEM_NORMAL_BOMB, 30);
+    dComIfGs_setBombMax(fpcNm_ITEM_WATER_BOMB, 15);
+    dComIfGs_setBombMax(fpcNm_ITEM_POKE_BOMB, 10);
+
+    dMeter2Info_setCloth(fpcNm_ITEM_WEAR_KOKIRI, false);
+    dMeter2Info_setSword(fpcNm_ITEM_SWORD, false);
+    dMeter2Info_setShield(fpcNm_ITEM_HYLIA_SHIELD, false);
+    dComIfGs_onGetMagicUseFlag();
+
+    dComIfGs_onEventBit(0x540);
+    dComIfGs_onEventBit(0xc10);
+    dComIfGs_onEventBit(0x510);
+    dMeter2Info_offTempBit(0);
+    dComIfGs_onEventBit(0x5c01);
+    dComIfGs_onEventBit(0x5d80);
+
+    if (!mDoCPd_c::isConnect(PAD_3)) {
+        g_fmapHIO.mRangeCheckInterval = 0;
+    } else {
+        g_fmapHIO.mRangeCheckInterval = 1;
+    }
+
+    g_fmapHIO.mRegionImageDebug = 1;
+    g_fmapHIO.update();
+
+    g_mwHIO.setArrowFlag(1);
+    g_mwHIO.setPachinkoFlag(1);
+    g_mwHIO.setBombFlag(1);
+    g_mwHIO.update();
+    g_mwHIO.setBombFlag(1);
+}
+
+void dComIfG_playerStatusD_pre_clear() {
+    dComIfGs_setDataNum(0);
+    dComIfGs_setMaxLife(15);
+    dComIfGs_setLife(12);
+    dComIfGs_setRupee(0);
+    dComIfGs_setMaxMagic(0);
+    dComIfGs_setMagic(0);
+    dComIfGs_setWalletSize(0);
+    dComIfGs_setMaxOil(21600);
+    dComIfGs_setOil(21600);
+    dComIfGp_setMaxOxygen(600);
+    dComIfGp_setOxygen(600);
+
+    for (int i = 0; i < 4; i++) {
+        dComIfGs_setMixItemIndex(i, 0xFF);
+        dComIfGs_setSelectItemIndex(i, 0xFF);
+    }
+
+    dComIfGs_setSelectEquipClothes(fpcNm_ITEM_WEAR_CASUAL);
+    dComIfGp_setSelectEquipClothes(fpcNm_ITEM_WEAR_CASUAL);
+    dComIfGs_setSelectEquipSword(fpcNm_ITEM_NONE);
+    dComIfGp_setSelectEquipSword(fpcNm_ITEM_NONE);
+    dComIfGs_setSelectEquipShield(fpcNm_ITEM_NONE);
+    dComIfGp_setSelectEquipShield(fpcNm_ITEM_NONE);
+
+    for (int i = 0; i < 24; i++) {
+        dComIfGs_setItem(i, fpcNm_ITEM_NONE);
+    }
+
+    for (int i = 0; i < 0x100; i++) {
+        dComIfGs_offItemFirstBit(i);
+    }
+
+    dComIfGs_setArrowNum(0);
+    dComIfGs_setBombNum(0);
+    dComIfGs_setArrowMax(0);
+    dComIfGs_setBombMax(0);
+    dComIfGs_setSelectEquipShield(fpcNm_ITEM_SHIELD);
+    dComIfGp_setSelectEquipShield(fpcNm_ITEM_SHIELD);
+}
+#endif
+
 u32 dComIfG_getTrigA(u32 i_padNo) {
     return mDoCPd_c::getTrigA(i_padNo);
 }
@@ -2045,12 +2206,12 @@ static void dComIfGs_setWarpItemData(int, char const* i_stage, cXyz i_pos, s16 i
 
 void dComIfG_play_c::setWarpItemData(char const* i_stage, cXyz i_pos, s16 i_angle, s8 i_roomNo,
                                      u8 param_4, u8 param_5) {
-    strcpy(mWarpItemStage, i_stage);
-    mWarpItemPos.set(i_pos);
-    mWarpItemAngle = i_angle;
-    mWarpItemRoom = i_roomNo;
-    field_0x4fac = param_5;
-    field_0x4fab = param_4;
+    strcpy(mItemInfo.mWarpItemData.mWarpItemStage, i_stage);
+    mItemInfo.mWarpItemData.mWarpItemPos.set(i_pos);
+    mItemInfo.mWarpItemData.mWarpItemAngle = i_angle;
+    mItemInfo.mWarpItemData.mWarpItemRoom = i_roomNo;
+    mItemInfo.mWarpItemData.field_0x4fac = param_5;
+    mItemInfo.mWarpItemData.field_0x4fab = param_4;
 }
 
 void dComIfGs_setWarpItemData(char const* i_stage, cXyz i_pos, s16 i_angle, s8 i_roomNo, u8 param_4,
@@ -2367,16 +2528,14 @@ void dComIfGs_onVisitedRoom(int i_roomNo) {
 
 /* 8002FC3C-8002FC98 02A57C 005C+00 0/0 0/0 1/1 .text            dComIfGs_offVisitedRoom__Fi */
 void dComIfGs_offVisitedRoom(int i_roomNo) {
-    s32 stayNo = dComIfGp_roomControl_getStayNo();
-    dStage_FileList2_dt_c* list = dStage_roomControl_c::getFileList2(stayNo);
+    dStage_FileList2_dt_c* list = dStage_roomControl_c::getFileList2(dComIfGp_roomControl_getStayNo());
 
     dComIfGs_offSaveVisitedRoom(list->field_0x13, i_roomNo);
 }
 
 /* 8002FC98-8002FCF4 02A5D8 005C+00 0/0 1/1 0/0 .text            dComIfGs_isVisitedRoom__Fi */
 BOOL dComIfGs_isVisitedRoom(int param_0) {
-    s32 stayNo = dComIfGp_roomControl_getStayNo();
-    dStage_FileList2_dt_c* fileList = dStage_roomControl_c::getFileList2(stayNo);
+    dStage_FileList2_dt_c* fileList = dStage_roomControl_c::getFileList2(dComIfGp_roomControl_getStayNo());
 
     return dComIfGs_isSaveVisitedRoom(fileList->field_0x13, param_0);
 }

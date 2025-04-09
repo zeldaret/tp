@@ -221,7 +221,8 @@ public:
     /* 80844590 */ int draw();
     /* 8084478C */ ~daHorse_c();
     
-    /* 80182D04 */ void getLashDashStart() const;
+    /* 80182D04 */ bool getLashDashStart() const { return checkResetStateFlg0(RFLG0_LASH_DASH_START); }
+    
 
     bool checkNoBombProc() const { return m_procID == PROC_WAIT_e || m_procID == PROC_MOVE_e; }
     bool checkResetStateFlg0(daHorse_RFLG0 flag) const { return m_resetStateFlg0 & flag; }

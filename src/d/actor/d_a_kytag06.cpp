@@ -952,8 +952,7 @@ static void daKytag06_type_03_Execute(kytag06_class* i_this) {
                 i_this->field_0x578 = 450;
                 dKy_change_colpat(i_this->field_0x591);
 
-                s32 stayNo = dComIfGp_roomControl_getStayNo();
-                dComIfGs_onSwitch(i_this->mSwNo, stayNo);
+                dComIfGs_onSwitch(i_this->mSwNo, dComIfGp_roomControl_getStayNo());
             }
             break;
         case 1:
@@ -1046,8 +1045,7 @@ static int daKytag06_Execute(kytag06_class* i_this) {
         break;
     case 2:
         if (i_this->mSwNo != 0xFF) {
-            s32 stayNo = dComIfGp_roomControl_getStayNo();
-            if (dComIfGs_isSwitch(i_this->mSwNo, stayNo) && i_this->mMode == 0) {
+            if (dComIfGs_isSwitch(i_this->mSwNo, dComIfGp_roomControl_getStayNo()) && i_this->mMode == 0) {
                 i_this->mMode = 1;
                 dKy_change_colpat(i_this->field_0x591);
             }
@@ -1247,9 +1245,7 @@ static void daKytag06_type03_init(fopAc_ac_c* i_this) {
         // 0C01: Midna's Desperate Hour started    1E08: Midna's Desperate Hour Completed
         if (dComIfGs_isEventBit(0x0C01) && !dComIfGs_isEventBit(0x1E08) && a_this->mSwNo != 0xFF)
         {
-            s32 stayNo = dComIfGp_roomControl_getStayNo();
-
-            if (dComIfGs_isSwitch(a_this->mSwNo, stayNo)) {
+            if (dComIfGs_isSwitch(a_this->mSwNo, dComIfGp_roomControl_getStayNo())) {
                 a_this->mMode = 9;
                 g_env_light.raincnt = 250;
                 g_env_light.mColpatWeather = a_this->field_0x591;

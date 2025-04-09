@@ -15,6 +15,14 @@
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_machine.h"
 
+#if VERSION == VERSION_GCN_JPN
+#define LOGO_ARC  "Logo"
+#define MSG_PATH  "/res/Msgjp/bmgres.arc"
+#else
+#define LOGO_ARC "LogoUs"
+#define MSG_PATH  "/res/Msgus/bmgres.arc"
+#endif
+
 /* 803C2E38-803C2E44 01FF58 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -420,7 +428,7 @@ dScnLogo_c::~dScnLogo_c() {
     delete mProgressiveSel;
 
     preLoad_dyl_remove();
-    dComIfG_deleteObjectResMain("LogoUs");
+    dComIfG_deleteObjectResMain(LOGO_ARC);
 
     field_0x1d4->destroy();
     field_0x1d0->destroy();
@@ -477,6 +485,13 @@ dScnLogo_c::~dScnLogo_c() {
     mDoExt_getRubyFont();
     mDoExt_setAraCacheSize(free_size - aram_heap->getTotalFreeSize());
 
+#if VERSION == VERSION_GCN_JPN
+    if (dComIfGp_getFontArchive() != NULL) {
+        dComIfGp_getFontArchive()->unmount();
+        dComIfGp_setFontArchive(NULL);
+    }
+#endif
+
     dComIfGp_setItemTable(mItemTableCommand->getMemAddress());
     mItemTableCommand->destroy();
 
@@ -510,7 +525,7 @@ static int phase_1(dScnLogo_c* i_this) {
         return cPhs_INIT_e;
     }
 
-    dComIfG_setObjectRes("LogoUs", (u8)0, i_this->field_0x1d0);
+    dComIfG_setObjectRes(LOGO_ARC, (u8)0, i_this->field_0x1d0);
     mDoRst::setLogoScnFlag(1);
     archiveHeap->dump_sort();
     return cPhs_NEXT_e;
@@ -578,32 +593,36 @@ int dScnLogo_c::create() {
 
 /* 80257C64-80257FEC 2525A4 0388+00 1/1 0/0 0/0 .text            logoInitGC__10dScnLogo_cFv */
 void dScnLogo_c::logoInitGC() {
-    ResTIMG* nintendoImg = (ResTIMG*)dComIfG_getObjectRes("LogoUs", 4);
+    ResTIMG* nintendoImg = (ResTIMG*)dComIfG_getObjectRes(LOGO_ARC, 4);
     mNintendoLogo = new dDlst_2D_c(nintendoImg, 117, 154, 376, 104, 255);
+#if VERSION == VERSION_GCN_JPN
+    mNintendoLogo->getPicture()->setWhite(JUtility::TColor(0, 70, 255, 255));
+#else
     mNintendoLogo->getPicture()->setWhite(JUtility::TColor(220, 0, 0, 255));
+#endif
 
-    ResTIMG* dolbyImg = (ResTIMG*)dComIfG_getObjectRes("LogoUs", 3);
+    ResTIMG* dolbyImg = (ResTIMG*)dComIfG_getObjectRes(LOGO_ARC, 3);
     mDolbyLogo = new dDlst_2D_c(dolbyImg, 189, 150, 232, 112, 255);
 
-    ResTIMG* warningImg = (ResTIMG*)dComIfG_getObjectRes("LogoUs", 10);
+    ResTIMG* warningImg = (ResTIMG*)dComIfG_getObjectRes(LOGO_ARC, 10);
     mWarning = new dDlst_2D_c(warningImg, 0, 0, 608, 448, 255);
 
-    ResTIMG* warnStartImg = (ResTIMG*)dComIfG_getObjectRes("LogoUs", 11);
+    ResTIMG* warnStartImg = (ResTIMG*)dComIfG_getObjectRes(LOGO_ARC, 11);
     mWarningStart = new dDlst_2D_c(warnStartImg, 0, 359, 608, 48, 255);
 
-    ResTIMG* progChoiceImg = (ResTIMG*)dComIfG_getObjectRes("LogoUs", 5);
+    ResTIMG* progChoiceImg = (ResTIMG*)dComIfG_getObjectRes(LOGO_ARC, 5);
     mProgressiveChoice = new dDlst_2D_c(progChoiceImg, 113, 281, 416, 72, 255);
 
-    ResTIMG* progYesImg = (ResTIMG*)dComIfG_getObjectRes("LogoUs", 9);
+    ResTIMG* progYesImg = (ResTIMG*)dComIfG_getObjectRes(LOGO_ARC, 9);
     mProgressiveYes = new dDlst_2D_c(progYesImg, 211, 372, 80, 32, 255);
     mProgressiveYes->getPicture()->setWhite(JUtility::TColor(160, 160, 160, 255));
 
-    ResTIMG* progNoImg = (ResTIMG*)dComIfG_getObjectRes("LogoUs", 7);
+    ResTIMG* progNoImg = (ResTIMG*)dComIfG_getObjectRes(LOGO_ARC, 7);
     mProgressiveNo = new dDlst_2D_c(progNoImg, 350, 372, 80, 32, 255);
     mProgressiveNo->getPicture()->setWhite(JUtility::TColor(160, 160, 160, 255));
 
-    mProgressivePro = (ResTIMG*)dComIfG_getObjectRes("LogoUs", 8);
-    mProgressiveInter = (ResTIMG*)dComIfG_getObjectRes("LogoUs", 6);
+    mProgressivePro = (ResTIMG*)dComIfG_getObjectRes(LOGO_ARC, 8);
+    mProgressiveInter = (ResTIMG*)dComIfG_getObjectRes(LOGO_ARC, 6);
     mProgressiveSel = new dDlst_2D_c(mProgressivePro, 153, 309, 336, 88, 255);
 }
 
@@ -637,7 +656,7 @@ void dScnLogo_c::dvdDataLoad() {
     mpCardIconCommand = mDoDvdThd_mountXArchive_c::create(
         "/res/CardIcon/cardicon.arc", 0, JKRArchive::MOUNT_ARAM, mDoExt_getJ2dHeap());
     mpBmgResCommand =
-        mDoDvdThd_mountXArchive_c::create("/res/Msgus/bmgres.arc", 0, JKRArchive::MOUNT_MEM, NULL);
+        mDoDvdThd_mountXArchive_c::create(MSG_PATH, 0, JKRArchive::MOUNT_MEM, NULL);
     mpMsgComCommand = mDoDvdThd_mountXArchive_c::create(
         "/res/Layout/msgcom.arc", 0, JKRArchive::MOUNT_ARAM, mDoExt_getJ2dHeap());
     mpMsgResCommand[0] = mDoDvdThd_mountXArchive_c::create(
@@ -648,18 +667,30 @@ void dScnLogo_c::dvdDataLoad() {
         "/res/Layout/msgres02.arc", 0, JKRArchive::MOUNT_ARAM, mDoExt_getJ2dHeap());
     mpMsgResCommand[3] = mDoDvdThd_mountXArchive_c::create(
         "/res/Layout/msgres03.arc", 0, JKRArchive::MOUNT_ARAM, mDoExt_getJ2dHeap());
+#if VERSION == VERSION_GCN_JPN
+    mpMsgResCommand[4] = mDoDvdThd_mountXArchive_c::create(
+        "/res/Layout/msgres04.arc", 0, JKRArchive::MOUNT_ARAM, mDoExt_getJ2dHeap());
+#else
     mpMsgResCommand[4] = mDoDvdThd_mountXArchive_c::create(
         "/res/Layout/msgres04F.arc", 0, JKRArchive::MOUNT_ARAM, mDoExt_getJ2dHeap());
+#endif
     mpMsgResCommand[5] = mDoDvdThd_mountXArchive_c::create(
         "/res/Layout/msgres05.arc", 0, JKRArchive::MOUNT_ARAM, mDoExt_getJ2dHeap());
     mpMsgResCommand[6] = mDoDvdThd_mountXArchive_c::create(
         "/res/Layout/msgres06.arc", 0, JKRArchive::MOUNT_ARAM, mDoExt_getJ2dHeap());
     mpMain2DCommand =
         mDoDvdThd_mountXArchive_c::create("/res/Layout/main2D.arc", 0, JKRArchive::MOUNT_MEM, NULL);
+#if VERSION == VERSION_GCN_JPN
+    mpFontResCommand = mDoDvdThd_mountXArchive_c::create("/res/Fontjp/fontres.arc", 1,
+                                                         JKRArchive::MOUNT_MEM, NULL);
+    mpRubyResCommand = mDoDvdThd_mountXArchive_c::create("/res/Fontjp/rubyres.arc", 0,
+                                                         JKRArchive::MOUNT_MEM, NULL);
+#else
     mpFontResCommand = mDoDvdThd_mountXArchive_c::create("/res/Fontus/fontres.arc", 0,
                                                          JKRArchive::MOUNT_MEM, NULL);
     mpRubyResCommand = mDoDvdThd_mountXArchive_c::create("/res/Fontus/rubyres.arc", 0,
                                                          JKRArchive::MOUNT_MEM, NULL);
+#endif
     mParticleCommand = mDoDvdThd_toMainRam_c::create("/res/Particle/common.jpc", 0,
                                                      dComIfGp_particle_getResHeap());
     mItemTableCommand = mDoDvdThd_toMainRam_c::create("/res/ItemTable/item_table.bin", 0, NULL);

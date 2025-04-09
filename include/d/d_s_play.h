@@ -1,7 +1,7 @@
 #ifndef D_S_D_S_PLAY_H
 #define D_S_D_S_PLAY_H
 
-#include "SSystem/SComponent/c_xyz.h"
+#include "d/d_s_play_env.h"
 #include "f_op/f_op_scene.h"
 #include "m_Do/m_Do_hostIO.h"
 
@@ -32,32 +32,6 @@ public:
     void genMessage(JORMContext*);
 };
 
-class dScnPly_env_otherHIO_c {
-public:
-    /* 80259440 */ dScnPly_env_otherHIO_c();
-
-    /* 8025AC0C */ virtual ~dScnPly_env_otherHIO_c() {}
-
-    /* 0x4 */ f32 mShadowDensity;
-    /* 0x8 */ u8 mLODBias;
-    /* 0x9 */ u8 field_0x9;
-    /* 0xA */ u8 mDispTransCylinder;
-};
-
-class dScnPly_env_debugHIO_c {
-public:
-    /* 80259468 */ dScnPly_env_debugHIO_c();
-
-    /* 8025ABC4 */ virtual ~dScnPly_env_debugHIO_c() {}
-
-private:
-    /* 0x04 */ u8 field_0x4;
-    /* 0x08 */ cXyz mBoxCullMinSize;
-    /* 0x14 */ cXyz mBoxCullMaxSize;
-    /* 0x20 */ cXyz mSphereCullCenter;
-    /* 0x2C */ f32 mSphereCullRadius;
-};
-
 class dScnPly_env_HIO_c {
 public:
     /* 8025AD04 */ virtual ~dScnPly_env_HIO_c() {}
@@ -67,8 +41,22 @@ public:
     /* 0x14 */ dScnPly_env_debugHIO_c mDebug;
 };
 
-extern s8 pauseTimer__9dScnPly_c;
-extern s8 nextPauseTimer__9dScnPly_c;  // sPauseTimer
+class dScnPly_preset_HIO_c : public JORReflexible {
+public:
+    dScnPly_preset_HIO_c();
+    void exePreset();
+
+    virtual void listenPropertyEvent(const JORPropertyEvent*);
+    virtual void genMessage(JORMContext*);
+    virtual ~dScnPly_preset_HIO_c() {}
+
+    /* 0x0004 */ u8 field_0x4;
+    /* 0x0005 */ u8 field_0x5;
+    /* 0x0006 */ u8 mPresetData[10000];
+    /* 0x2716 */ u8 field_0x2716;
+    /* 0x2717 */ u8 field_0x2717;
+    /* 0x2718 */ char mFilename[100];
+};
 
 class dScnPly_c : public scene_class {
 public:
@@ -90,6 +78,10 @@ public:
 
 extern dScnPly_env_HIO_c g_envHIO;
 extern dScnPly_reg_HIO_c g_regHIO;
+
+#ifdef DEBUG
+extern dScnPly_preset_HIO_c g_presetHIO;
+#endif
 
 /**
  * === Register Usage ===

@@ -5,285 +5,10 @@
 
 #include "JSystem/J3DGraphLoader/J3DMaterialFactory.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "JSystem/JMath/JMath.h"
 #include "JSystem/JSupport/JSupport.h"
+#include "JSystem/JUtility/JUTAssert.h"
 #include "dol2asm.h"
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__18J3DMaterialFactoryFRC16J3DMaterialBlock();
-extern "C" void __ct__18J3DMaterialFactoryFRC18J3DMaterialDLBlock();
-extern "C" void countUniqueMaterials__18J3DMaterialFactoryFv();
-extern "C" void countTexGens__18J3DMaterialFactoryCFi();
-extern "C" void countStages__18J3DMaterialFactoryCFi();
-extern "C" void
-create__18J3DMaterialFactoryCFP11J3DMaterialQ218J3DMaterialFactory12MaterialTypeiUl();
-extern "C" void createNormalMaterial__18J3DMaterialFactoryCFP11J3DMaterialiUl();
-extern "C" void createPatchedMaterial__18J3DMaterialFactoryCFP11J3DMaterialiUl();
-extern "C" void modifyPatchedCurrentMtx__18J3DMaterialFactoryCFP11J3DMateriali();
-extern "C" void createLockedMaterial__18J3DMaterialFactoryCFP11J3DMaterialiUl();
-extern "C" void
-calcSize__18J3DMaterialFactoryCFP11J3DMaterialQ218J3DMaterialFactory12MaterialTypeiUl();
-extern "C" void calcSizeNormalMaterial__18J3DMaterialFactoryCFP11J3DMaterialiUl();
-extern "C" void calcSizePatchedMaterial__18J3DMaterialFactoryCFP11J3DMaterialiUl();
-extern "C" void calcSizeLockedMaterial__18J3DMaterialFactoryCFP11J3DMaterialiUl();
-extern "C" void newMatColor__18J3DMaterialFactoryCFii();
-extern "C" void newColorChanNum__18J3DMaterialFactoryCFi();
-extern "C" void newColorChan__18J3DMaterialFactoryCFii();
-extern "C" void newAmbColor__18J3DMaterialFactoryCFii();
-extern "C" void newTexGenNum__18J3DMaterialFactoryCFi();
-extern "C" void newTexCoord__18J3DMaterialFactoryCFii();
-extern "C" void newTexMtx__18J3DMaterialFactoryCFii();
-extern "C" void newCullMode__18J3DMaterialFactoryCFi();
-extern "C" void newTexNo__18J3DMaterialFactoryCFii();
-extern "C" void newTevOrder__18J3DMaterialFactoryCFii();
-extern "C" void newTevColor__18J3DMaterialFactoryCFii();
-extern "C" void newTevKColor__18J3DMaterialFactoryCFii();
-extern "C" void newTevStageNum__18J3DMaterialFactoryCFi();
-extern "C" void newTevStage__18J3DMaterialFactoryCFii();
-extern "C" void newTevSwapModeTable__18J3DMaterialFactoryCFii();
-extern "C" void newIndTexStageNum__18J3DMaterialFactoryCFi();
-extern "C" void newIndTexOrder__18J3DMaterialFactoryCFii();
-extern "C" void newIndTexMtx__18J3DMaterialFactoryCFii();
-extern "C" void newIndTevStage__18J3DMaterialFactoryCFii();
-extern "C" void newIndTexCoordScale__18J3DMaterialFactoryCFii();
-extern "C" void newFog__18J3DMaterialFactoryCFi();
-extern "C" void newAlphaComp__18J3DMaterialFactoryCFi();
-extern "C" void newBlend__18J3DMaterialFactoryCFi();
-extern "C" void newZMode__18J3DMaterialFactoryCFi();
-extern "C" void newZCompLoc__18J3DMaterialFactoryCFi();
-extern "C" void newDither__18J3DMaterialFactoryCFi();
-extern "C" void newNBTScale__18J3DMaterialFactoryCFi();
-extern "C" void load__14J3DPEBlockNullFv();
-extern "C" void getType__14J3DPEBlockNullFv();
-extern "C" void __dt__14J3DPEBlockNullFv();
-extern "C" void reset__15J3DTevBlockNullFP11J3DTevBlock();
-extern "C" void ptrToIndex__15J3DTevBlockNullFv();
-extern "C" void indexToPtr__15J3DTevBlockNullFv();
-extern "C" void getType__15J3DTevBlockNullFv();
-extern "C" void __dt__15J3DTevBlockNullFv();
-extern "C" void calc__18J3DTexGenBlockNullFPA4_Cf();
-extern "C" void calcWithoutViewMtx__18J3DTexGenBlockNullFPA4_Cf();
-extern "C" void calcPostTexMtx__18J3DTexGenBlockNullFPA4_Cf();
-extern "C" void calcPostTexMtxWithoutViewMtx__18J3DTexGenBlockNullFPA4_Cf();
-extern "C" void load__18J3DTexGenBlockNullFv();
-extern "C" void patch__18J3DTexGenBlockNullFv();
-extern "C" void diff__18J3DTexGenBlockNullFUl();
-extern "C" void diffTexMtx__18J3DTexGenBlockNullFv();
-extern "C" void diffTexGen__18J3DTexGenBlockNullFv();
-extern "C" void getType__18J3DTexGenBlockNullFv();
-extern "C" void __dt__18J3DTexGenBlockNullFv();
-extern "C" void getType__17J3DColorBlockNullFv();
-extern "C" void __dt__17J3DColorBlockNullFv();
-extern "C" void __dt__11J3DMaterialFv();
-extern "C" void func_80332BDC(void* _this, void const*, void const*);
-extern "C" void func_80332BF4(void* _this, void const*, void const*);
-extern "C" void func_80332C0C(void* _this, void const*, void const*);
-extern "C" void func_80332C24(void* _this, void const*, void const*);
-extern "C" void func_80332C3C(void* _this, void const*, void const*);
-extern "C" void func_80332C54(void* _this, void const*, void const*);
-extern "C" void func_80332C6C(void* _this, void const*, void const*);
-extern "C" void func_80332C84(void* _this, void const*, void const*);
-extern "C" void func_80332C9C(void* _this, void const*, void const*);
-extern "C" void func_80332CB4(void* _this, void const*, void const*);
-extern "C" void func_80332CCC(void* _this, void const*, void const*);
-extern "C" void func_80332CE4(void* _this, void const*, void const*);
-extern "C" void func_80332CFC(void* _this, void const*, void const*);
-extern "C" void func_80332D14(void* _this, void const*, void const*);
-extern "C" void func_80332D2C(void* _this, void const*, void const*);
-extern "C" void func_80332D44(void* _this, void const*, void const*);
-extern "C" void func_80332D5C(void* _this, void const*, void const*);
-extern "C" void func_80332D74(void* _this, void const*, void const*);
-extern "C" void func_80332D8C(void* _this, void const*, void const*);
-
-//
-// External References:
-//
-
-extern "C" void patchTexNoAndTexCoordScale__11J3DTevBlockFv();
-extern "C" void patch__10J3DPEBlockFv();
-extern "C" void patchLight__13J3DColorBlockFv();
-extern "C" void patch__11J3DTevBlockFv();
-extern "C" bool getZCompLoc__10J3DPEBlockCFv();
-extern "C" bool getZMode__10J3DPEBlockFv();
-extern "C" bool getBlend__10J3DPEBlockFv();
-extern "C" bool getAlphaComp__10J3DPEBlockFv();
-extern "C" bool getFog__10J3DPEBlockFv();
-extern "C" bool getIndTevStage__11J3DTevBlockFUl();
-extern "C" bool getTevStage__11J3DTevBlockFUl();
-extern "C" void getTexNo__11J3DTevBlockCFUl();
-extern "C" bool getTevSwapModeTable__11J3DTevBlockFUl();
-extern "C" bool getTevKAlphaSel__11J3DTevBlockFUl();
-extern "C" bool getTevKColorSel__11J3DTevBlockFUl();
-extern "C" bool getTevOrder__11J3DTevBlockFUl();
-extern "C" bool getTevKColor__11J3DTevBlockFUl();
-extern "C" bool getTevColor__11J3DTevBlockFUl();
-extern "C" bool getTevStageNum__11J3DTevBlockCFv();
-extern "C" bool getTexMtx__14J3DTexGenBlockFUl();
-extern "C" bool getTexCoord__14J3DTexGenBlockFUl();
-extern "C" bool getTexGenNum__14J3DTexGenBlockCFv();
-extern "C" bool getAmbColor__13J3DColorBlockFUl();
-extern "C" bool getColorChan__13J3DColorBlockFUl();
-extern "C" bool getMatColor__13J3DColorBlockFUl();
-extern "C" bool getColorChanNum__13J3DColorBlockCFv();
-extern "C" void setZCompLoc__10J3DPEBlockFUc();
-extern "C" void setZMode__10J3DPEBlockF8J3DZMode();
-extern "C" void setBlend__10J3DPEBlockFRC8J3DBlend();
-extern "C" void setAlphaComp__10J3DPEBlockFRC12J3DAlphaComp();
-extern "C" void setIndTevStage__11J3DTevBlockFUl14J3DIndTevStage();
-extern "C" void setTevStage__11J3DTevBlockFUl11J3DTevStage();
-extern "C" void setTexNo__11J3DTevBlockFUlUs();
-extern "C" void setTevSwapModeTable__11J3DTevBlockFUl19J3DTevSwapModeTable();
-extern "C" void setTevKAlphaSel__11J3DTevBlockFUlUc();
-extern "C" void setTevKColorSel__11J3DTevBlockFUlUc();
-extern "C" void setTevOrder__11J3DTevBlockFUl11J3DTevOrder();
-extern "C" void setTevKColor__11J3DTevBlockFUl10J3DGXColor();
-extern "C" void setTevColor__11J3DTevBlockFUl13J3DGXColorS10();
-extern "C" void setTevStageNum__11J3DTevBlockFUc();
-extern "C" void setTexCoord__14J3DTexGenBlockFUlPC11J3DTexCoord();
-extern "C" void setTexGenNum__14J3DTexGenBlockFUl();
-extern "C" void setAmbColor__13J3DColorBlockFUl10J3DGXColor();
-extern "C" void setColorChan__13J3DColorBlockFUlRC12J3DColorChan();
-extern "C" void setMatColor__13J3DColorBlockFUl10J3DGXColor();
-extern "C" void setColorChanNum__13J3DColorBlockFUc();
-extern "C" void __ct__11J3DTevOrderFv();
-extern "C" void __ct__14J3DIndTevStageFv();
-extern "C" void __ct__11J3DTevStageFv();
-extern "C" void __ct__13J3DGXColorS10Fv();
-extern "C" void __ct__11J3DTexCoordFv();
-extern "C" void __ct__10J3DGXColorFv();
-extern "C" void __ct__11J3DTevStageFRC15J3DTevStageInfo();
-extern "C" void setTexMtx__14J3DTexGenBlockFUlP9J3DTexMtx();
-extern "C" void setTevKColor__11J3DTevBlockFUlPC10J3DGXColor();
-extern "C" void setTevColor__11J3DTevBlockFUlPC13J3DGXColorS10();
-extern "C" void setLight__13J3DColorBlockFUlP11J3DLightObj();
-extern "C" void setAmbColor__13J3DColorBlockFUlPC10J3DGXColor();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" GXColorS10* func_802F41E8(void const*, void const*);
-extern "C" u8* func_802F4260(void const*, void const*);
-extern "C" GXColor* func_802F4278(void const*, void const*);
-extern "C" GXCullMode* func_802F4290(void const*, void const*);
-extern "C" u16* func_802F42C0(void const*, void const*);
-extern "C" void setSingleDisplayList__17J3DDisplayListObjFPvUl();
-extern "C" void createColorBlock__11J3DMaterialFUl();
-extern "C" void createTexGenBlock__11J3DMaterialFUl();
-extern "C" void createTevBlock__11J3DMaterialFi();
-extern "C" void createIndBlock__11J3DMaterialFi();
-extern "C" void createPEBlock__11J3DMaterialFUlUl();
-extern "C" void calcSizeColorBlock__11J3DMaterialFUl();
-extern "C" void calcSizeTexGenBlock__11J3DMaterialFUl();
-extern "C" void calcSizeTevBlock__11J3DMaterialFi();
-extern "C" void calcSizeIndBlock__11J3DMaterialFi();
-extern "C" void calcSizePEBlock__11J3DMaterialFUlUl();
-extern "C" void initialize__11J3DMaterialFv();
-extern "C" void initialize__18J3DPatchedMaterialFv();
-extern "C" void initialize__17J3DLockedMaterialFv();
-extern "C" bool countDLSize__14J3DTexGenBlockFv();
-extern "C" bool countDLSize__13J3DColorBlockFv();
-extern "C" bool countDLSize__11J3DTevBlockFv();
-extern "C" bool countDLSize__10J3DPEBlockFv();
-extern "C" void load__13J3DColorBlockFv();
-extern "C" s32 getCullMode__13J3DColorBlockCFv();
-extern "C" void load__11J3DTevBlockFv();
-extern "C" bool getNBTScale__14J3DTexGenBlockFv();
-extern "C" void patch__13J3DColorBlockFv();
-extern "C" void diff__13J3DColorBlockFUl();
-extern "C" void diff__10J3DPEBlockFUl();
-extern "C" void reset__10J3DPEBlockFP10J3DPEBlock();
-extern "C" void reset__14J3DTexGenBlockFP14J3DTexGenBlock();
-extern "C" void reset__13J3DColorBlockFP13J3DColorBlock();
-extern "C" void diffFog__10J3DPEBlockFv();
-extern "C" void diffBlend__10J3DPEBlockFv();
-extern "C" void setFog__10J3DPEBlockFP6J3DFog();
-extern "C" void setFog__10J3DPEBlockF6J3DFog();
-extern "C" void setAlphaComp__10J3DPEBlockFPC12J3DAlphaComp();
-extern "C" void setBlend__10J3DPEBlockFPC8J3DBlend();
-extern "C" void setZMode__10J3DPEBlockFPC8J3DZMode();
-extern "C" void setZCompLoc__10J3DPEBlockFPCUc();
-extern "C" void setDither__10J3DPEBlockFUc();
-extern "C" void setDither__10J3DPEBlockFPCUc();
-extern "C" bool getDither__10J3DPEBlockCFv();
-extern "C" bool getFogOffset__10J3DPEBlockCFv();
-extern "C" void setFogOffset__10J3DPEBlockFUl();
-extern "C" void setTexGenNum__14J3DTexGenBlockFPCUl();
-extern "C" void setNBTScale__14J3DTexGenBlockF11J3DNBTScale();
-extern "C" void setNBTScale__14J3DTexGenBlockFPC11J3DNBTScale();
-extern "C" bool getTexMtxOffset__14J3DTexGenBlockCFv();
-extern "C" void setTexMtxOffset__14J3DTexGenBlockFUl();
-extern "C" void patchMatColor__13J3DColorBlockFv();
-extern "C" void diffAmbColor__13J3DColorBlockFv();
-extern "C" void diffMatColor__13J3DColorBlockFv();
-extern "C" void diffColorChan__13J3DColorBlockFv();
-extern "C" void diffLightObj__13J3DColorBlockFUl();
-extern "C" void setMatColor__13J3DColorBlockFUlPC10J3DGXColor();
-extern "C" void setColorChanNum__13J3DColorBlockFPCUc();
-extern "C" void setColorChan__13J3DColorBlockFUlPC12J3DColorChan();
-extern "C" bool getLight__13J3DColorBlockFUl();
-extern "C" void setCullMode__13J3DColorBlockFUc();
-extern "C" void setCullMode__13J3DColorBlockFPCUc();
-extern "C" u32 getMatColorOffset__13J3DColorBlockCFv();
-extern "C" bool getColorChanOffset__13J3DColorBlockCFv();
-extern "C" void setMatColorOffset__13J3DColorBlockFUl();
-extern "C" void setColorChanOffset__13J3DColorBlockFUl();
-extern "C" void initialize__21J3DTexGenBlockPatchedFv();
-extern "C" void initialize__15J3DTevBlockNullFv();
-extern "C" void initialize__18J3DTevBlockPatchedFv();
-extern "C" void diff__11J3DTevBlockFUl();
-extern "C" void indexToPtr_private__11J3DTevBlockFUl();
-extern "C" void diffTevReg__11J3DTevBlockFv();
-extern "C" void diffTevStageIndirect__11J3DTevBlockFv();
-extern "C" void diffTevStage__11J3DTevBlockFv();
-extern "C" void diffTexCoordScale__11J3DTevBlockFv();
-extern "C" void diffTexNo__11J3DTevBlockFv();
-extern "C" void setTexNoOffset__11J3DTevBlockFUl();
-extern "C" void setTevKColorSel__11J3DTevBlockFUlPCUc();
-extern "C" void setTevKAlphaSel__11J3DTevBlockFUlPCUc();
-extern "C" void setTevSwapModeInfo__11J3DTevBlockFUl18J3DTevSwapModeInfo();
-extern "C" void setTevSwapModeInfo__11J3DTevBlockFUlPC18J3DTevSwapModeInfo();
-extern "C" void setTevSwapModeTable__11J3DTevBlockFUlPC19J3DTevSwapModeTable();
-extern "C" bool getTevRegOffset__11J3DTevBlockCFv();
-extern "C" void setTevRegOffset__11J3DTevBlockFUl();
-extern "C" void patchTexNo__11J3DTevBlockFv();
-extern "C" void patchTevReg__11J3DTevBlockFv();
-extern "C" void setTexNo__11J3DTevBlockFUlPCUs();
-extern "C" void setTevOrder__11J3DTevBlockFUlPC11J3DTevOrder();
-extern "C" void setTevStageNum__11J3DTevBlockFPCUc();
-extern "C" void setTevStage__11J3DTevBlockFUlPC11J3DTevStage();
-extern "C" void setIndTevStage__11J3DTevBlockFUlPC14J3DIndTevStage();
-extern "C" u32 getTexNoOffset__11J3DTevBlockCFv();
-extern "C" void __as__13J3DTexMtxInfoFRC13J3DTexMtxInfo();
-extern "C" void __as__16J3DIndTexMtxInfoFRC16J3DIndTexMtxInfo();
-extern "C" void __as__10J3DFogInfoFRC10J3DFogInfo();
-extern "C" void __construct_array();
-extern "C" void _savegpr_18();
-extern "C" void _savegpr_19();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_18();
-extern "C" void _restgpr_19();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__17J3DLockedMaterial[12];
-extern "C" extern void* __vt__18J3DPatchedMaterial[12];
-extern "C" extern void* __vt__11J3DMaterial[12];
-extern "C" extern void* __vt__10J3DPEBlock[31];
-extern "C" extern void* __vt__15J3DIndBlockNull[19];
-extern "C" extern void* __vt__11J3DIndBlock[19];
-extern "C" extern void* __vt__14J3DTexGenBlock[27];
-extern "C" extern void* __vt__13J3DColorBlock[36];
-extern "C" extern void* __vt__18J3DTevBlockPatched[55];
-extern "C" extern void* __vt__21J3DTexGenBlockPatched[27];
-extern "C" extern void* __vt__11J3DTevBlock[55];
-
-//
-// Declarations:
-//
 
 /* 8032FFEC-80330234 32A92C 0248+00 0/0 7/7 0/0 .text
  * __ct__18J3DMaterialFactoryFRC16J3DMaterialBlock              */
@@ -406,31 +131,28 @@ J3DMaterial* J3DMaterialFactory::create(J3DMaterial* i_material, MaterialType i_
 
 /* 80330440-80330D84 32AD80 0944+00 1/1 0/0 0/0 .text
  * createNormalMaterial__18J3DMaterialFactoryCFP11J3DMaterialiUl */
-// NONMATCHING. The call to setFog does not match because it uses the version that takes a J3DFog.
-// If we switch to the version that takes a J3DFog* that part matches, except the vtable index is wrong.
-// Also regalloc issues
 J3DMaterial* J3DMaterialFactory::createNormalMaterial(J3DMaterial* i_material, int i_idx,
                                                       u32 i_flags) const {
     if (mpDisplayListInit != NULL) {
         return createLockedMaterial(i_material, i_idx, i_flags);
     }
-    u32 stages = countStages(i_idx);
+
+    const u32 stages = countStages(i_idx);
     u32 tev_stage_num = getMdlDataFlag_TevStageNum(i_flags);
-    if (stages > tev_stage_num) {
-        tev_stage_num = stages;
-    }
-    u32 u1 = tev_stage_num <= 8 ? tev_stage_num : 8;
+    u32 tev_stage_num_max = JMAMax(stages, tev_stage_num);
+    u32 tex_num = tev_stage_num_max > 8 ? 8 : tev_stage_num_max;
     u32 texgens = countTexGens(i_idx);
-    u32 texgen_flag = texgens > 4 ? 0 : getMdlDataFlag_TexGenFlag(i_flags);
+    u32 texgen_flag = texgens > 4 ? getMdlDataFlag_TexGenFlag(0) : getMdlDataFlag_TexGenFlag(i_flags);
     u32 color_flag = getMdlDataFlag_ColorFlag(i_flags);
     u32 pe_flag = getMdlDataFlag_PEFlag(i_flags);
-    bool ind_flag = (i_flags & 0x1000000) != 0;
+    BOOL ind_flag = (i_flags & 0x1000000) ? TRUE : FALSE;
     if (i_material == NULL) {
         i_material = new J3DMaterial();
+        JUT_ASSERT_MSG(269, i_material, "Error : allocate memory.");
     }
     i_material->mColorBlock = J3DMaterial::createColorBlock(color_flag);
     i_material->mTexGenBlock = J3DMaterial::createTexGenBlock(texgen_flag);
-    i_material->mTevBlock = J3DMaterial::createTevBlock((u16)tev_stage_num);
+    i_material->mTevBlock = J3DMaterial::createTevBlock((u16)tev_stage_num_max);
     i_material->mIndBlock = J3DMaterial::createIndBlock(ind_flag);
     i_material->mPEBlock = J3DMaterial::createPEBlock(pe_flag, getMaterialMode(i_idx));
     i_material->mIndex = i_idx;
@@ -439,20 +161,20 @@ J3DMaterial* J3DMaterialFactory::createNormalMaterial(J3DMaterial* i_material, i
     i_material->mColorBlock->setCullMode(newCullMode(i_idx));
     i_material->mTexGenBlock->setTexGenNum(newTexGenNum(i_idx));
     i_material->mTexGenBlock->setNBTScale(newNBTScale(i_idx));
-    i_material->mPEBlock->setFog(&newFog(i_idx));
+    i_material->mPEBlock->setFog(newFog(i_idx));
     i_material->mPEBlock->setAlphaComp(newAlphaComp(i_idx));
     i_material->mPEBlock->setBlend(newBlend(i_idx));
     i_material->mPEBlock->setZMode(newZMode(i_idx));
     i_material->mPEBlock->setZCompLoc(newZCompLoc(i_idx));
     i_material->mPEBlock->setDither(newDither(i_idx));
     i_material->mTevBlock->setTevStageNum(newTevStageNum(i_idx));
-    for (u8 i = 0; i < u1; i++) {
+    for (u8 i = 0; i < tex_num; i++) {
         i_material->mTevBlock->setTexNo(i, newTexNo(i_idx, i));
     }
-    for (u8 i = 0; i < tev_stage_num; i++) {
+    for (u8 i = 0; i < tev_stage_num_max; i++) {
         i_material->mTevBlock->setTevOrder(i, newTevOrder(i_idx, i));
     }
-    for (u8 i = 0; i < tev_stage_num; i++) {
+    for (u8 i = 0; i < tev_stage_num_max; i++) {
         J3DMaterialInitData* material_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
         i_material->mTevBlock->setTevStage(i, newTevStage(i_idx, i));
         if (material_init_data->mTevSwapModeIdx[i] != 0xffff) {
@@ -489,14 +211,14 @@ J3DMaterial* J3DMaterialFactory::createNormalMaterial(J3DMaterial* i_material, i
         i_material->mTexGenBlock->setTexMtx(i, newTexMtx(i_idx, i));
     }
     J3DMaterialInitData* material_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
-    for (u8 i = 0; i < tev_stage_num; i++) {
+    for (u8 i = 0; i < tev_stage_num_max; i++) {
         if (material_init_data->mTevKColorSel[i] != 0xff) {
             i_material->mTevBlock->setTevKColorSel(i, material_init_data->mTevKColorSel[i]);
         } else {
             i_material->mTevBlock->setTevKColorSel(i, 0xc);
         }
     }
-    for (u8 i = 0; i < tev_stage_num; i++) {
+    for (u8 i = 0; i < tev_stage_num_max; i++) {
         if (material_init_data->mTevKAlphaSel[i] != 0xff) {
             i_material->mTevBlock->setTevKAlphaSel(i, material_init_data->mTevKAlphaSel[i]);
         } else {
@@ -515,7 +237,7 @@ J3DMaterial* J3DMaterialFactory::createNormalMaterial(J3DMaterial* i_material, i
         for (u8 i = 0; i < ind_tex_stage_num; i++) {
             i_material->mIndBlock->setIndTexCoordScale(i, &newIndTexCoordScale(i_idx, i));
         }
-        for (u8 i = 0; i < tev_stage_num; i++) {
+        for (u8 i = 0; i < tev_stage_num_max; i++) {
             i_material->mTevBlock->setIndTevStage(i, newIndTevStage(i_idx, i));
         }
     }
@@ -524,16 +246,18 @@ J3DMaterial* J3DMaterialFactory::createNormalMaterial(J3DMaterial* i_material, i
 
 /* 80330D84-8033168C 32B6C4 0908+00 1/1 0/0 0/0 .text
  * createPatchedMaterial__18J3DMaterialFactoryCFP11J3DMaterialiUl */
-// NONMATCHING same fog problem as createNormalMaterial
 J3DMaterial* J3DMaterialFactory::createPatchedMaterial(J3DMaterial* i_material, int i_idx,
                                                        u32 i_flags) const {
     if (i_material == NULL) {
         i_material = new J3DPatchedMaterial();
+        JUT_ASSERT_MSG(430, i_material, "Error : allocate memory.");
     }
     bool bVar1 = i_flags & 0x3000000 ? true : false;
     i_material->mColorBlock = J3DMaterial::createColorBlock(0x40000000);
     i_material->mTexGenBlock = new J3DTexGenBlockPatched();
+    JUT_ASSERT_MSG(440, i_material->mTexGenBlock, "Error : allocate memory.");
     i_material->mTevBlock = new J3DTevBlockPatched();
+    JUT_ASSERT_MSG(442, i_material->mTevBlock, "Error : allocate memory.");
     i_material->mIndBlock = J3DMaterial::createIndBlock(bVar1);
     i_material->mPEBlock = J3DMaterial::createPEBlock(0x10000000, getMaterialMode(i_idx));
     i_material->mIndex = i_idx;
@@ -541,13 +265,13 @@ J3DMaterial* J3DMaterialFactory::createPatchedMaterial(J3DMaterial* i_material, 
     i_material->mTevBlock->setTevStageNum(newTevStageNum(i_idx));
     i_material->mColorBlock->setColorChanNum(newColorChanNum(i_idx));
     i_material->mColorBlock->setCullMode(newCullMode(i_idx));
-    i_material->mPEBlock->setFog(&newFog(i_idx));
+    i_material->mPEBlock->setFog(newFog(i_idx));
     i_material->mPEBlock->setAlphaComp(newAlphaComp(i_idx));
     i_material->mPEBlock->setBlend(newBlend(i_idx));
     i_material->mPEBlock->setZMode(newZMode(i_idx));
     i_material->mPEBlock->setZCompLoc(newZCompLoc(i_idx));
     i_material->mPEBlock->setDither(newDither(i_idx));
-    u8 tev_stage_num = i_material->getTevStageNum();
+    u8 tev_stage_num = i_material->mTevBlock->getTevStageNum();
     for (u8 i = 0; i < 8; i++) {
         i_material->mTevBlock->setTexNo(i, newTexNo(i_idx, i));
     }
@@ -615,7 +339,6 @@ J3DMaterial* J3DMaterialFactory::createPatchedMaterial(J3DMaterial* i_material, 
 
 /* 8033168C-803317D4 32BFCC 0148+00 0/0 1/1 0/0 .text
  * modifyPatchedCurrentMtx__18J3DMaterialFactoryCFP11J3DMateriali */
-// NONMATCHING problem with setCurrentTexMtx
 void J3DMaterialFactory::modifyPatchedCurrentMtx(J3DMaterial* i_material, int i_idx) const {
     J3DTexCoord coord[8];
     u32 tex_gens = countTexGens(i_idx);
@@ -689,7 +412,6 @@ u32 J3DMaterialFactory::calcSize(J3DMaterial* i_material, J3DMaterialFactory::Ma
 
 /* 80331AFC-80331C30 32C43C 0134+00 1/1 0/0 0/0 .text
  * calcSizeNormalMaterial__18J3DMaterialFactoryCFP11J3DMaterialiUl */
-// NONMATCHING regalloc
 u32 J3DMaterialFactory::calcSizeNormalMaterial(J3DMaterial* i_material, int i_idx,
                                                u32 i_flags) const {
     u32 size = 0;
@@ -697,27 +419,25 @@ u32 J3DMaterialFactory::calcSizeNormalMaterial(J3DMaterial* i_material, int i_id
         return calcSizeLockedMaterial(i_material, i_idx, i_flags);
     }
 
-    u32 stages = countStages(i_idx);
+    const u32 stages = countStages(i_idx);
     u32 tev_stage_num = getMdlDataFlag_TevStageNum(i_flags);
-    if (stages > tev_stage_num) {
-        tev_stage_num = stages;
-    }
+    u32 tev_stage_num_max = JMAMax(stages, tev_stage_num);
+    u32 tex_num = tev_stage_num_max > 8 ? 8 : tev_stage_num_max;
     u32 tex_gens = countTexGens(i_idx);
-    u32 tex_gen_flag = tex_gens > 4 ?
-        getMdlDataFlag_TexGenFlag(0) : getMdlDataFlag_TexGenFlag(i_flags);
+    u32 tex_gen_flag = tex_gens > 4 ? getMdlDataFlag_TexGenFlag(0) : getMdlDataFlag_TexGenFlag(i_flags);
     u32 color_block_flag = getMdlDataFlag_ColorFlag(i_flags);
     u32 pe_flag = getMdlDataFlag_PEFlag(i_flags);
-    u32 ind_flag = (i_flags >> 0x18) & 1;
+    BOOL ind_flag = (i_flags & 0x1000000) ? TRUE : FALSE;
     if (i_material == NULL) {
-        size = sizeof(J3DMaterial);
+        size += sizeof(J3DMaterial);
     }
     size += J3DMaterial::calcSizeColorBlock(color_block_flag);
     size += J3DMaterial::calcSizeTexGenBlock(tex_gen_flag);
-    size += J3DMaterial::calcSizeTevBlock((u16)tev_stage_num);
+    size += J3DMaterial::calcSizeTevBlock((u16)tev_stage_num_max);
     size += J3DMaterial::calcSizeIndBlock(ind_flag);
     size += J3DMaterial::calcSizePEBlock(pe_flag, getMaterialMode(i_idx));
     J3DMaterialInitData* init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
-    for (int i = 0; i < 8; i++) {
+    for (u32 i = 0; i < 8; i++) {
         if (init_data->mTexMtxIdx[i] != 0xffff) {
             size += sizeof(J3DTexMtx);
         }
@@ -784,11 +504,11 @@ u8 J3DMaterialFactory::newColorChanNum(int i_idx) const {
 }
 
 /* 80331DAC-80331F50 32C6EC 01A4+00 2/2 0/0 0/0 .text newColorChan__18J3DMaterialFactoryCFii */
-// NONMATCHING problem with J3DColorChan inline constructor
 J3DColorChan J3DMaterialFactory::newColorChan(int i_idx, int i_no) const {
-    u16 color_chan_index = mpMaterialInitData[mpMaterialID[i_idx]].mColorChanIdx[i_no];
-    if (color_chan_index != 0xffff) {
-        return J3DColorChan(mpColorChanInfo[color_chan_index]);
+    u32 r29 = 0;
+    J3DMaterialInitData* init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
+    if (init_data->mColorChanIdx[i_no] != 0xffff) {
+        return J3DColorChan(mpColorChanInfo[init_data->mColorChanIdx[i_no]]);
     } else {
         return J3DColorChan();
     }
@@ -991,7 +711,6 @@ J3DFog J3DMaterialFactory::newFog(int i_idx) const {
 }
 
 /* 80332768-803327E8 32D0A8 0080+00 2/2 0/0 0/0 .text newAlphaComp__18J3DMaterialFactoryCFi */
-// NONMATCHING weird issue with calcAlphaCmpID, see J3DMatBlock.h
 J3DAlphaComp J3DMaterialFactory::newAlphaComp(int i_idx) const {
     J3DMaterialInitData* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
     if (mtl_init_data->mAlphaCompIdx != 0xffff) {

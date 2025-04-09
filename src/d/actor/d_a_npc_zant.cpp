@@ -5,6 +5,7 @@
 
 #include "d/actor/d_a_npc_zant.h"
 #include "f_op/f_op_actor_mng.h"
+#include "SSystem/SComponent/c_counter.h"
 
 /* 80B6ED28-80B6ED34 000008 000C+00 1/1 0/0 0/0 .bss             @3811 */
 static u8 lit_3811[12];
@@ -73,7 +74,7 @@ daNpc_Zant_c::cutFunc daNpc_Zant_c::mCutList[1] = {
 
 /* 80B6C1AC-80B6C2D0 0000EC 0124+00 1/0 0/0 0/0 .text            __dt__12daNpc_Zant_cFv */
 daNpc_Zant_c::~daNpc_Zant_c() {
-    OS_REPORT("|%06d:%x|daNpc_Zant_c -> デストラクト\n", g_counter, this);
+    OS_REPORT("|%06d:%x|daNpc_Zant_c -> デストラクト\n", g_Counter.mCounter0, this);
     if (heap != NULL) {
         mpMorf[0]->stopZelAnime();
     }
@@ -168,7 +169,7 @@ int daNpc_Zant_c::CreateHeap() {
 
 /* 80B6C700-80B6C734 000640 0034+00 1/1 0/0 0/0 .text            Delete__12daNpc_Zant_cFv */
 int daNpc_Zant_c::Delete() {
-    OS_REPORT("|%06d:%x|daNpc_Zant_c -> Delete\n", g_Counter, this);
+    OS_REPORT("|%06d:%x|daNpc_Zant_c -> Delete\n", g_Counter.mCounter0, this);
     fopAcM_GetID(this);
     this->~daNpc_Zant_c();
     return 1;
@@ -181,9 +182,9 @@ int daNpc_Zant_c::Execute() {
 
 /* 80B6C754-80B6C7E8 000694 0094+00 1/1 0/0 0/0 .text            Draw__12daNpc_Zant_cFv */
 int daNpc_Zant_c::Draw() {
-    if (mpMatAnm != NULL) {
+    if (mpMatAnm[0] != NULL) {
         J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
-        modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm);
+        modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
     return daNpcT_c::draw(0, 0, field_0xde8, NULL, 0.0f, 1, 0, 0);
 }
@@ -245,8 +246,8 @@ void daNpc_Zant_c::reset() {
     int iVar1 = (u8*)&field_0xf9c - (u8*)&field_0xf84;
     memset(&field_0xf84, 0, iVar1);
 
-    if (mpMatAnm) {
-        mpMatAnm->initialize();
+    if (mpMatAnm[0]) {
+        mpMatAnm[0]->initialize();
     }
 
     setAngle(home.angle.y);

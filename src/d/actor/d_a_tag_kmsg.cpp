@@ -55,7 +55,7 @@ int daTag_KMsg_c::create() {
 
 /* 8048DFDC-8048E010 0001DC 0034+00 1/1 0/0 0/0 .text            Delete__12daTag_KMsg_cFv */
 int daTag_KMsg_c::Delete() {
-    OS_REPORT("|%06d:%x|daTag_KMsg_c -> Delete\n", g_Counter, this);
+    OS_REPORT("|%06d:%x|daTag_KMsg_c -> Delete\n", g_Counter.mCounter0, this);
     fopAcM_GetID(this);
     this->~daTag_KMsg_c();
     return 1;

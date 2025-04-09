@@ -6,6 +6,8 @@
 #include "d/d_particle_name.h"
 #include "d/d_kankyo.h"
 
+void dPa_cleanupGX();
+
 class J3DAnmTexPattern;
 class J3DModel;
 class J3DModelData;
@@ -114,8 +116,8 @@ public:
     dPa_setColorEcallBack(const GXColor& color) { mColor = color; }
 
     /* 800502E4 */ virtual ~dPa_setColorEcallBack() {}
-    /* 800502B0 */ virtual void draw(JPABaseEmitter*);
-    /* 800502E0 */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
+    /* 800502B0 */ virtual void draw(JPABaseEmitter*) { GXSetTevColor(GX_TEVREG1, mColor); }
+    /* 800502E0 */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8) {}
 
     /* 0x4 */ GXColor mColor;
 };
@@ -126,7 +128,7 @@ public:
 
     /* 8004FF8C */ virtual ~dPa_selectTexEcallBack() {}
     /* 8004ADC4 */ virtual void draw(JPABaseEmitter*);
-    /* 80050010 */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
+    /* 80050010 */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8) {}
 
     /* 0x4 */ u8 field_0x4;
 };
@@ -184,7 +186,7 @@ public:
 
     /* 80050378 */ virtual ~dPa_modelEcallBack() {}
     /* 8004AA34 */ virtual void draw(JPABaseEmitter*);
-    /* 80050014 */ virtual void drawAfter(JPABaseEmitter*);
+    /* 80050014 */ virtual void drawAfter(JPABaseEmitter* param_0) { cleanupModel(param_0); }
     /* 8004AAA8 */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
 
     static void setModel(JPABaseEmitter* param_0, J3DModelData* param_1,
@@ -211,7 +213,7 @@ class dPa_light8EcallBack : public dPa_levelEcallBack {
 public:
     /* 8005015C */ virtual ~dPa_light8EcallBack() {}
     /* 8004A340 */ virtual void draw(JPABaseEmitter*);
-    /* 800501E0 */ virtual void drawAfter(JPABaseEmitter*);
+    /* 800501E0 */ virtual void drawAfter(JPABaseEmitter*) { dPa_cleanupGX(); }
     /* 8004979C */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
 };
 
@@ -226,7 +228,7 @@ class dPa_gen_d_light8EcallBack : public dPa_levelEcallBack {
 public:
     /* 800503FC */ virtual ~dPa_gen_d_light8EcallBack() {}
     /* 8004A388 */ virtual void draw(JPABaseEmitter*);
-    /* 80050098 */ virtual void drawAfter(JPABaseEmitter*);
+    /* 80050098 */ virtual void drawAfter(JPABaseEmitter*) { dPa_cleanupGX(); }
     /* 800497CC */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
 };
 
@@ -241,7 +243,7 @@ class dPa_gen_b_light8EcallBack : public dPa_levelEcallBack {
 public:
     /* 800500B8 */ virtual ~dPa_gen_b_light8EcallBack() {}
     /* 8004A364 */ virtual void draw(JPABaseEmitter*);
-    /* 8005013C */ virtual void drawAfter(JPABaseEmitter*);
+    /* 8005013C */ virtual void drawAfter(JPABaseEmitter*) { dPa_cleanupGX(); }
     /* 800497B0 */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
 };
 
@@ -452,7 +454,7 @@ public:
     }
 
     static dPa_selectTexEcallBack mTsubo[8];
-    static u8 mLifeBall[24];
+    static dPa_setColorEcallBack mLifeBall[3];
     static Mtx mWindViewMatrix;
     static JPAEmitterManager* mEmitterMng;
     static dPa_wbPcallBack_c mWaterBubblePcallBack;

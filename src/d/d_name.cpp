@@ -3,8 +3,6 @@
 // Translation Unit: d/d_name
 //
 
-#define NO_INLINE_DLSTBASE_DRAW
-
 #include "d/d_name.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "d/d_com_inf_game.h"
@@ -16,123 +14,13 @@
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "f_op/f_op_msg_mng.h"
 
-//
-// Forward References:
-//
-
-extern "C" void __ct__9dNm_HIO_cFv();
-extern "C" void __ct__7dName_cFP7J2DPane();
-extern "C" void __dt__7dName_cFv();
-extern "C" void _create__7dName_cFv();
-extern "C" void init__7dName_cFv();
-extern "C" void initial__7dName_cFv();
-extern "C" void showIcon__7dName_cFv();
-extern "C" void _move__7dName_cFv();
-extern "C" void nameCheck__7dName_cFv();
-extern "C" void playNameSet__7dName_cFi();
-extern "C" void cursorAnm__7dName_cFv();
-extern "C" void Wait__7dName_cFv();
-extern "C" void MojiSelect__7dName_cFv();
-extern "C" void MojiSelectAnmInit__7dName_cFv();
-extern "C" void MojiSelectAnm__7dName_cFv();
-extern "C" void MojiSelectAnm2__7dName_cFv();
-extern "C" void MojiSelectAnm3__7dName_cFv();
-extern "C" void mojiChange__7dName_cFUc();
-extern "C" void selectMojiSet__7dName_cFv();
-extern "C" void getMoji__7dName_cFv();
-extern "C" void setMoji__7dName_cFi();
-extern "C" void setNameText__7dName_cFv();
-extern "C" void nameCursorMove__7dName_cFv();
-extern "C" void selectCursorMove__7dName_cFv();
-extern "C" void menuCursorPosSet__7dName_cFv();
-extern "C" void MenuSelect__7dName_cFv();
-extern "C" void MenuSelectAnmInit__7dName_cFv();
-extern "C" void MenuSelectAnm__7dName_cFv();
-extern "C" void MenuSelectAnm2__7dName_cFv();
-extern "C" void MenuSelectAnm3__7dName_cFv();
-extern "C" void menuAbtnSelect__7dName_cFv();
-extern "C" void backSpace__7dName_cFv();
-extern "C" void mojiListChange__7dName_cFv();
-extern "C" void menuCursorMove__7dName_cFv();
-extern "C" void menuCursorMove2__7dName_cFv();
-extern "C" void selectCursorPosSet__7dName_cFi();
-extern "C" void _draw__7dName_cFv();
-extern "C" void screenSet__7dName_cFv();
-extern "C" void displayInit__7dName_cFv();
-extern "C" void NameStrSet__7dName_cFv();
-extern "C" void getMenuPosIdx__7dName_cFUc();
-extern "C" void draw__14dDlst_NameIN_cFv();
-extern "C" void __dt__14dDlst_NameIN_cFv();
-extern "C" void __dt__9dNm_HIO_cFv();
-extern "C" void __sinit_d_name_cpp();
-extern "C" extern char const* const d_d_name__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void mDoExt_getMesgFont__Fv();
-extern "C" void mDoExt_removeMesgFont__Fv();
-extern "C" void fopMsgM_messageGet__FPcUl();
-extern "C" void __ct__9STControlFssssffss();
-extern "C" void checkTrigger__9STControlFv();
-extern "C" void checkLeftTrigger__9STControlFv();
-extern "C" void checkRightTrigger__9STControlFv();
-extern "C" void checkUpTrigger__9STControlFv();
-extern "C" void checkDownTrigger__9STControlFv();
-extern "C" void set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c();
-extern "C" void __ct__16dSelect_cursor_cFUcfP10JKRArchive();
-extern "C" void setPos__16dSelect_cursor_cFffP7J2DPaneb();
-extern "C" void setParam__16dSelect_cursor_cFfffff();
-extern "C" void setAlphaRate__16dSelect_cursor_cFf();
-extern "C" void __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap();
-extern "C" void scaleAnime__8CPaneMgrFsffUc();
-extern "C" void getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs();
-extern "C" void dPaneClass_showNullPane__FP9J2DScreen();
-extern "C" void __ct__13CPaneMgrAlphaFP9J2DScreenUxUcP10JKRExpHeap();
-extern "C" void show__13CPaneMgrAlphaFv();
-extern "C" void hide__13CPaneMgrAlphaFv();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader();
-extern "C" void __ct__9J2DScreenFv();
-extern "C" void setPriority__9J2DScreenFPCcUlP10JKRArchive();
-extern "C" void draw__9J2DScreenFffPC14J2DGrafContext();
-extern "C" void animation__9J2DScreenFv();
-extern "C" void getStringPtr__10J2DTextBoxCFv();
-extern "C" void setString__10J2DTextBoxFPCce();
-extern "C" void setString__10J2DTextBoxFsPCce();
-extern "C" void load__20J2DAnmLoaderDataBaseFPCv();
-extern "C" void __register_global_object();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_19();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_19();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-
-//
-// Declarations:
-//
-
 /* 803C1F50-803C1F5C 01F070 000C+00 5/5 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
+static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 803C1F5C-803C2060 -00001 0104+00 0/3 0/0 0/0 .data            l_mojiHira */
-SECTION_DATA static const char* l_mojiHira[65] = {
+static const char* l_mojiHira[65] = {
     "あ", "い", "う", "え", "お", "か", "き", "く", "け", "こ", "さ", "し", "す",
     "せ", "そ", "た", "ち", "つ", "て", "と", "な", "に", "ぬ", "ね", "の", "は",
     "ひ", "ふ", "へ", "ほ", "ま", "み", "む", "め", "も", "や", "　", "ゆ", "　",
@@ -141,7 +29,7 @@ SECTION_DATA static const char* l_mojiHira[65] = {
 };
 
 /* 803C2060-803C2164 -00001 0104+00 0/1 0/0 0/0 .data            l_mojiHira2 */
-SECTION_DATA static const char* l_mojiHira2[65] = {
+static const char* l_mojiHira2[65] = {
     "￥", "￥", "￥", "￥", "￥", "が", "ぎ", "ぐ", "げ", "ご", "ざ", "じ", "ず",
     "ぜ", "ぞ", "だ", "ぢ", "づ", "で", "ど", "￥", "￥", "￥", "￥", "￥", "ば",
     "び", "ぶ", "べ", "ぼ", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥",
@@ -150,7 +38,7 @@ SECTION_DATA static const char* l_mojiHira2[65] = {
 };
 
 /* 803C2164-803C2268 -00001 0104+00 0/1 0/0 0/0 .data            l_mojiHira3 */
-SECTION_DATA static const char* l_mojiHira3[65] = {
+static const char* l_mojiHira3[65] = {
     "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥",
     "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "ぱ",
     "ぴ", "ぷ", "ぺ", "ぽ", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥",
@@ -159,7 +47,7 @@ SECTION_DATA static const char* l_mojiHira3[65] = {
 };
 
 /* 803C2268-803C236C -00001 0104+00 0/3 0/0 0/0 .data            l_mojikata */
-SECTION_DATA static const char* l_mojikata[65] = {
+static const char* l_mojikata[65] = {
     "ア", "イ",       "ウ", "エ", "オ", "カ", "キ", "ク", "ケ", "コ", "サ", "シ", "ス",
     "セ", "\x83\x5C", "タ", "チ", "ツ", "テ", "ト", "ナ", "ニ", "ヌ", "ネ", "ノ", "ハ",
     "ヒ", "フ",       "ヘ", "ホ", "マ", "ミ", "ム", "メ", "モ", "ヤ", "　", "ユ", "　",
@@ -168,7 +56,7 @@ SECTION_DATA static const char* l_mojikata[65] = {
 };
 
 /* 803C236C-803C2470 -00001 0104+00 0/1 0/0 0/0 .data            l_mojikata2 */
-SECTION_DATA static const char* l_mojikata2[65] = {
+static const char* l_mojikata2[65] = {
     "￥", "￥", "ヴ", "￥", "￥", "ガ", "ギ", "グ", "ゲ", "ゴ", "ザ", "ジ", "ズ",
     "ゼ", "ゾ", "ダ", "ヂ", "ヅ", "デ", "ド", "￥", "￥", "￥", "￥", "￥", "バ",
     "ビ", "ブ", "ベ", "ボ", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥",
@@ -177,7 +65,7 @@ SECTION_DATA static const char* l_mojikata2[65] = {
 };
 
 /* 803C2470-803C2574 -00001 0104+00 0/1 0/0 0/0 .data            l_mojikata3 */
-SECTION_DATA static const char* l_mojikata3[65] = {
+static const char* l_mojikata3[65] = {
     "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥",
     "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "パ",
     "ピ", "プ", "ペ", "ポ", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥", "￥",
@@ -186,7 +74,7 @@ SECTION_DATA static const char* l_mojikata3[65] = {
 };
 
 /* 803C2574-803C2678 -00001 0104+00 0/3 0/0 0/0 .data            l_mojiEisu */
-SECTION_DATA static const char* l_mojiEisu[65] = {
+static const char* l_mojiEisu[65] = {
     "A", "N", "a", "n", "1", "B", "O", "b", "o", "2", "C", "P", "c", "p", "3", "D", "Q",
     "d", "q", "4", "E", "R", "e", "r", "5", "F", "S", "f", "s", "6", "G", "T", "g", "t",
     "7", "H", "U", "h", "u", "8", "I", "V", "i", "v", "9", "J", "W", "j", "w", "0", "K",
@@ -202,9 +90,6 @@ SECTION_DATA static selProcFunc SelProc[9] = {
     &dName_c::MojiSelect,     &dName_c::MojiSelectAnm,  &dName_c::MojiSelectAnm2,
     &dName_c::MojiSelectAnm3, &dName_c::MenuSelect,     &dName_c::MenuSelectAnm,
     &dName_c::MenuSelectAnm2, &dName_c::MenuSelectAnm3, &dName_c::Wait};
-
-extern void* __vt__14dDlst_NameIN_c[4 + 7 /* padding */];
-extern void* __vt__7dName_c[3 + 3 /* padding */];
 
 /* 8024E3E0-8024E408 248D20 0028+00 1/1 0/0 0/0 .text            __ct__9dNm_HIO_cFv */
 dNm_HIO_c::dNm_HIO_c() {
@@ -245,7 +130,6 @@ dName_c::~dName_c() {
     delete mSelIcon;
     archive->removeResourceAll();
 }
-
 
 /* 8024E62C-8024E6D4 248F6C 00A8+00 1/1 0/0 0/0 .text            _create__7dName_cFv */
 void dName_c::_create() {
@@ -301,10 +185,6 @@ void dName_c::initial() {
     }
 }
 
-/* ############################################################################################## */
-/* 80454DC0-80454DC4 0033C0 0004+00 16/16 0/0 0/0 .sdata2          @3820 */
-SECTION_SDATA2 static f32 lit_3820 = 1.0f;
-
 /* 8024E7EC-8024E9A0 24912C 01B4+00 0/0 2/2 0/0 .text            showIcon__7dName_cFv */
 void dName_c::showIcon() {
     Vec pos;
@@ -317,7 +197,7 @@ void dName_c::showIcon() {
                              true);
             ((J2DTextBox*)mMojiIcon[mCharRow + mCharColumn * 5]->getPanePtr())
                 ->setWhite(JUtility::TColor(0xC8, 0xC8, 0xC8, 0xFF));
-            mSelIcon->setAlphaRate(lit_3820);
+            mSelIcon->setAlphaRate(1.0f);
         }
         break;
     case PROC_MENU_SELECT:
@@ -327,15 +207,11 @@ void dName_c::showIcon() {
             pos = mMenuIcon[menu_i]->getGlobalVtxCenter(false, 0);
             mSelIcon->setPos(pos.x, pos.y, mMenuIcon[menu_i]->getPanePtr(), true);
             mMenuText[menu_i]->setWhite(JUtility::TColor(0xC8, 0xC8, 0xC8, 0xFF));
-            mSelIcon->setAlphaRate(lit_3820);
+            mSelIcon->setAlphaRate(1.0f);
         }
         break;
     }
 }
-
-/* ############################################################################################## */
-/* 80454DC4-80454DC8 0033C4 0004+00 6/6 0/0 0/0 .sdata2          @3886 */
-SECTION_SDATA2 static f32 lit_3886 = -1.0f;
 
 /* 8024E9A0-8024EC10 2492E0 0270+00 0/0 2/2 0/0 .text            _move__7dName_cFv */
 void dName_c::_move() {
@@ -393,7 +269,6 @@ void dName_c::_move() {
 
     cursorAnm();
 }
-
 
 /* 8024EC10-8024EC4C 249550 003C+00 3/3 0/0 0/0 .text            nameCheck__7dName_cFv */
 int dName_c::nameCheck() {
@@ -498,19 +373,9 @@ void dName_c::MojiSelect() {
     }
 }
 
-
-/* ############################################################################################## */
-/* 80454DD0-80454DD4 0033D0 0004+00 5/5 0/0 0/0 .sdata2          @4009 */
-SECTION_SDATA2 static u8 lit_4009[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
 /* 8024F034-8024F0E0 249974 00AC+00 2/2 0/0 0/0 .text            MojiSelectAnmInit__7dName_cFv */
 void dName_c::MojiSelectAnmInit() {
-    mSelIcon->setAlphaRate(FLOAT_LABEL(lit_4009));
+    mSelIcon->setAlphaRate(0.0f);
     mMojiIcon[mPrevRow + mPrevColumn * 5]->scaleAnimeStart(0);
     ((J2DTextBox*)mMojiIcon[mPrevRow + mPrevColumn * 5]->getPanePtr())
         ->setWhite(JUtility::TColor(0x96, 0x96, 0x96, 0xFF));
@@ -519,7 +384,7 @@ void dName_c::MojiSelectAnmInit() {
 /* 8024F0E0-8024F164 249A20 0084+00 1/0 0/0 0/0 .text            MojiSelectAnm__7dName_cFv */
 void dName_c::MojiSelectAnm() {
     if (mMojiIcon[mPrevRow + mPrevColumn * 5]->scaleAnime(mCursorDelay, g_nmHIO.mSelCharScale,
-                                                          lit_3820, 0) == 1)
+                                                          1.0f, 0) == 1)
     {
         selectCursorMove();
         mSelProc = PROC_MOJI_SELECT;
@@ -530,7 +395,7 @@ void dName_c::MojiSelectAnm() {
 /* 8024F164-8024F1E8 249AA4 0084+00 1/0 0/0 0/0 .text            MojiSelectAnm2__7dName_cFv */
 void dName_c::MojiSelectAnm2() {
     if (mMojiIcon[mPrevRow + mPrevColumn * 5]->scaleAnime(mCursorDelay, g_nmHIO.mSelCharScale,
-                                                          lit_3820, 0) == 1)
+                                                          1.0f, 0) == 1)
     {
         menuCursorMove2();
         mSelProc = PROC_MENU_SELECT;
@@ -777,7 +642,7 @@ void dName_c::selectCursorMove() {
 
     Vec pos = mMojiIcon[mCharRow + mCharColumn * 5]->getGlobalVtxCenter(false, 0);
     mSelIcon->setPos(pos.x, pos.y, mMojiIcon[mCharRow + mCharColumn * 5]->getPanePtr(), true);
-    mSelIcon->setAlphaRate(lit_3820);
+    mSelIcon->setAlphaRate(1.0f);
 }
 
 /* 8024FAF4-8024FB08 24A434 0014+00 1/1 0/0 0/0 .text            menuCursorPosSet__7dName_cFv */
@@ -825,10 +690,9 @@ void dName_c::MenuSelect() {
     }
 }
 
-
 /* 8024FDA0-8024FDF4 24A6E0 0054+00 2/2 0/0 0/0 .text            MenuSelectAnmInit__7dName_cFv */
 void dName_c::MenuSelectAnmInit() {
-    mSelIcon->setAlphaRate(FLOAT_LABEL(lit_4009));
+    mSelIcon->setAlphaRate(0.0f);
 
     int prevMenu_i = getMenuPosIdx(mPrevSelMenu);
     mMenuIcon[prevMenu_i]->scaleAnimeStart(0);
@@ -838,7 +702,7 @@ void dName_c::MenuSelectAnmInit() {
 void dName_c::MenuSelectAnm() {
     int prevMenu_i = getMenuPosIdx(mPrevSelMenu);
 
-    if (mMenuIcon[prevMenu_i]->scaleAnime(mCursorDelay, g_nmHIO.mMenuScale, lit_3820, 0) == 1) {
+    if (mMenuIcon[prevMenu_i]->scaleAnime(mCursorDelay, g_nmHIO.mMenuScale, 1.0f, 0) == 1) {
         mMenuText[prevMenu_i]->setWhite(JUtility::TColor(0x96, 0x96, 0x96, 0xFF));
         menuCursorMove();
         mSelProc = PROC_MENU_SELECT;
@@ -853,7 +717,7 @@ void dName_c::MenuSelectAnm2() {
 
     bool canMove = true;
     if (prevMenu_i != mojiSet_i) {
-        canMove = mMenuIcon[prevMenu_i]->scaleAnime(mCursorDelay, g_nmHIO.mMenuScale, lit_3820, 0);
+        canMove = mMenuIcon[prevMenu_i]->scaleAnime(mCursorDelay, g_nmHIO.mMenuScale, 1.0f, 0);
     }
 
     if (canMove == true) {
@@ -896,7 +760,6 @@ void dName_c::menuAbtnSelect() {
     }
 }
 
-
 /* 80250074-802501B0 24A9B4 013C+00 1/1 0/0 0/0 .text            backSpace__7dName_cFv */
 void dName_c::backSpace() {
     if (mCurPos != 0) {
@@ -925,7 +788,6 @@ void dName_c::backSpace() {
         nameCursorMove();
     }
 }
-
 
 /* 802501B0-80250284 24AAF0 00D4+00 2/2 0/0 0/0 .text            mojiListChange__7dName_cFv */
 void dName_c::mojiListChange() {
@@ -973,7 +835,7 @@ void dName_c::menuCursorMove() {
 
     Vec pos = mMenuIcon[menu_i]->getGlobalVtxCenter(false, 0);
     mSelIcon->setPos(pos.x, pos.y, mMenuIcon[menu_i]->getPanePtr(), true);
-    mSelIcon->setAlphaRate(lit_3820);
+    mSelIcon->setAlphaRate(1.0f);
 }
 
 /* 80250380-802504A0 24ACC0 0120+00 1/1 0/0 0/0 .text            menuCursorMove2__7dName_cFv */
@@ -988,7 +850,7 @@ void dName_c::menuCursorMove2() {
 
     Vec pos = mMenuIcon[menu_i]->getGlobalVtxCenter(false, 0);
     mSelIcon->setPos(pos.x, pos.y, mMenuIcon[menu_i]->getPanePtr(), true);
-    mSelIcon->setAlphaRate(lit_3820);
+    mSelIcon->setAlphaRate(1.0f);
 }
 
 /* 802504A0-80250560 24ADE0 00C0+00 1/1 0/0 0/0 .text            selectCursorPosSet__7dName_cFi */
@@ -1025,139 +887,47 @@ void dName_c::_draw() {
     dComIfGd_set2DOpa(mSelIcon);
 }
 
-/* ############################################################################################## */
-/* 80399CC8-80399CC8 026328 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80399F99 = "zelda_player_name.blo";
-SECTION_DEAD static char const* const stringBase_80399FAF = "zelda_player_name.bpk";
-SECTION_DEAD static char const* const stringBase_80399FC5 = "zelda_player_name.btk";
-SECTION_DEAD static char const* const stringBase_80399FDB = "";
-#pragma pop
-
-/* 80454DD4-80454DD8 0033D4 0004+00 1/1 0/0 0/0 .sdata2          @4722 */
-SECTION_SDATA2 static f32 lit_4722 = 41.0f / 50.0f;
-
-/* 80454DD8-80454DDC 0033D8 0004+00 1/1 0/0 0/0 .sdata2          @4723 */
-SECTION_SDATA2 static f32 lit_4723 = 77.0f / 100.0f;
-
-/* 80454DDC-80454DE0 0033DC 0004+00 1/1 0/0 0/0 .sdata2          @4724 */
-SECTION_SDATA2 static f32 lit_4724 = 1.0f / 20.0f;
-
-/* 80454DE0-80454DE8 0033E0 0004+04 1/1 0/0 0/0 .sdata2          @4725 */
-SECTION_SDATA2 static f32 lit_4725[1 + 1 /* padding */] = {
-    2.0f / 5.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 803C2788-803C27C8 01F8A8 0040+00 0/1 0/0 0/0 .data            l_cur0TagName$4610 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u64 l_cur0TagName[8] = {
-    's_00', 's_01', 's_02', 's_03', 's_04', 's_05', 's_06', 's_07',
-};
-#pragma pop
-
-/* 803C27C8-803C2808 01F8E8 0040+00 0/1 0/0 0/0 .data            l_cur1TagName$4611 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u64 l_cur1TagName[8] = {
-    's_0r', 's_01r', 's_02r', 's_03r', 's_04r', 's_05r', 's_06r', 's_07r',
-};
-#pragma pop
-
-/* 803C2808-803C2828 01F928 0020+00 0/1 0/0 0/0 .data            l_menu_icon_tag$4617 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u64 l_menu_icon_tag[4] = {
-    'p_ABC_n',
-    'p_abc_n',
-    'j_eigo_n',
-    'p_end_n',
-};
-#pragma pop
-
-/* 803C2828-803C28A0 01F948 0078+00 0/1 0/0 0/0 .data            l_menu_tag$4618 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u64 l_menu_tag[5][3] = {
-    'p_ABC_0',  'p_ABC_1',  'p_ABC_2',  'p_abc_0', 'p_abc_1', 'p_abc_2',
-    'm_eigo_0', 'm_eigo_1', 'm_eigo_2', 'p_end_0', 'p_end_1', 'p_end_2',
-};
-#pragma pop
-
-/* 803C28A0-803C28B0 01F9C0 0010+00 0/1 0/0 0/0 .data            l_menu_msg$4619 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 l_menu_msg[4] = {
-    0x38B,
-    0x38C,
-    0x388,
-    0x38E,
-};
-#pragma pop
-
-/* 803C28B0-803C2AB8 01F9D0 0208+00 0/1 0/0 0/0 .data            l_tagName$4635 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u64 l_tagName[65] = {
-    'm_00_0', 'm_00_1', 'm_00_2', 'm_00_3', 'm_00_4', 'm_01_0', 'm_01_1', 'm_01_2', 'm_01_3',
-    'm_01_4', 'm_02_0', 'm_02_1', 'm_02_2', 'm_02_3', 'm_02_4', 'm03_0',  'm03_1',  'm03_2',
-    'm03_3',  'm03_4',  'm_04_0', 'm_04_1', 'm_04_2', 'm_04_3', 'm_04_4', 'm_05_0', 'm_05_1',
-    'm_05_2', 'm_05_3', 'm_05_4', 'm_06_0', 'm_06_1', 'm_06_2', 'm_06_3', 'm_06_4', 'm_07_0',
-    'm_07_1', 'm_07_2', 'm_07_3', 'm_07_4', 'm_08_0', 'm_08_1', 'm_08_2', 'm_08_3', 'm_08_4',
-    'm_09_0', 'm_09_1', 'm_09_2', 'm_09_3', 'm_09_4', 'm_10_0', 'm_10_1', 'm_10_2', 'm_10_3',
-    'm_10_4', 'm_11_0', 'm_11_1', 'm_11_2', 'm_11_3', 'm_11_4', 'm12_0',  'm12_1',  'm12_2',
-    'm12_3',  'm12_4',
-};
-#pragma pop
-
-/* 803C2AB8-803C2AF8 01FBD8 0040+00 0/1 0/0 0/0 .data            l_nameTagName$4642 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u64 l_nameTagName[8] = {
-    'name_00', 'name_01', 'name_02', 'name_03', 'name_04', 'name_05', 'name_06', 'name_07',
-};
-#pragma pop
-
-/* 803C2AF8-803C2B38 01FC18 0040+00 0/1 0/0 0/0 .data            l_nameCurTagName$4643 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u64 l_nameCurTagName[8] = {
-    's__n_00', 's__n_01', 's__n_02', 's__n_03', 's__n_04', 's__n_05', 's__n_06', 's__n_07',
-};
-#pragma pop
-
-/* 803C2B38-803C2B64 01FC58 0010+1C 3/3 0/0 0/0 .data            __vt__14dDlst_NameIN_c */
-SECTION_DATA extern void* __vt__14dDlst_NameIN_c[4 + 7 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__14dDlst_NameIN_cFv,
-    (void*)__dt__14dDlst_NameIN_cFv,
-    /* padding */
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-};
-
-/* 803C2B64-803C2B7C 01FC84 000C+0C 2/2 0/0 0/0 .data            __vt__7dName_c */
-SECTION_DATA extern void* __vt__7dName_c[3 + 3 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__7dName_cFv,
-    /* padding */
-    NULL,
-    NULL,
-    NULL,
-};
-
 /* 802505CC-80250CEC 24AF0C 0720+00 1/1 0/0 0/0 .text            screenSet__7dName_cFv */
 void dName_c::screenSet() {
+    static u64 l_cur0TagName[8] = {
+        's_00', 's_01', 's_02', 's_03', 's_04', 's_05', 's_06', 's_07',
+    };
+    static u64 l_cur1TagName[8] = {
+        's_0r', 's_01r', 's_02r', 's_03r', 's_04r', 's_05r', 's_06r', 's_07r',
+    };
+    static u64 l_menu_icon_tag[4] = {
+        'p_ABC_n',
+        'p_abc_n',
+        'j_eigo_n',
+        'p_end_n',
+    };
+    static u64 l_menu_tag[5][3] = {
+        'p_ABC_0',  'p_ABC_1',  'p_ABC_2',  'p_abc_0', 'p_abc_1', 'p_abc_2',
+        'm_eigo_0', 'm_eigo_1', 'm_eigo_2', 'p_end_0', 'p_end_1', 'p_end_2',
+    };
+    static u32 l_menu_msg[4] = {
+        0x38B,
+        0x38C,
+        0x388,
+        0x38E,
+    };
+    static u64 l_tagName[65] = {
+        'm_00_0', 'm_00_1', 'm_00_2', 'm_00_3', 'm_00_4', 'm_01_0', 'm_01_1', 'm_01_2', 'm_01_3',
+        'm_01_4', 'm_02_0', 'm_02_1', 'm_02_2', 'm_02_3', 'm_02_4', 'm03_0',  'm03_1',  'm03_2',
+        'm03_3',  'm03_4',  'm_04_0', 'm_04_1', 'm_04_2', 'm_04_3', 'm_04_4', 'm_05_0', 'm_05_1',
+        'm_05_2', 'm_05_3', 'm_05_4', 'm_06_0', 'm_06_1', 'm_06_2', 'm_06_3', 'm_06_4', 'm_07_0',
+        'm_07_1', 'm_07_2', 'm_07_3', 'm_07_4', 'm_08_0', 'm_08_1', 'm_08_2', 'm_08_3', 'm_08_4',
+        'm_09_0', 'm_09_1', 'm_09_2', 'm_09_3', 'm_09_4', 'm_10_0', 'm_10_1', 'm_10_2', 'm_10_3',
+        'm_10_4', 'm_11_0', 'm_11_1', 'm_11_2', 'm_11_3', 'm_11_4', 'm12_0',  'm12_1',  'm12_2',
+        'm12_3',  'm12_4',
+    };
+    static u64 l_nameTagName[8] = {
+        'name_00', 'name_01', 'name_02', 'name_03', 'name_04', 'name_05', 'name_06', 'name_07',
+    };
+    static u64 l_nameCurTagName[8] = {
+        's__n_00', 's__n_01', 's__n_02', 's__n_03', 's__n_04', 's__n_05', 's__n_06', 's__n_07',
+    };
+
     nameIn.NameInScr = new J2DScreen();
     JUT_ASSERT(0, nameIn.NameInScr != 0);
 
@@ -1257,7 +1027,7 @@ void dName_c::screenSet() {
 
 /* 80250CEC-80250E54 24B62C 0168+00 2/2 0/0 0/0 .text            displayInit__7dName_cFv */
 void dName_c::displayInit() {
-    mSelIcon->setAlphaRate(FLOAT_LABEL(lit_4009));
+    mSelIcon->setAlphaRate(0.0f);
     mCurColAnmF = 0;
     mCurTexAnmF = 0;
     mSelProc = field_0x2ac;
@@ -1374,12 +1144,3 @@ void dDlst_NameIN_c::draw() {
     J2DGrafContext* graf_ctx = dComIfGp_getCurrentGrafPort();
     NameInScr->draw(0.0f, 0.0f, graf_ctx);
 }
-
-
-/* 8025115C-802511A4 24BA9C 0048+00 1/0 0/0 0/0 .text            __dt__14dDlst_NameIN_cFv */
-dDlst_NameIN_c::~dDlst_NameIN_c() {}
-
-/* 802511A4-802511EC 24BAE4 0048+00 2/1 0/0 0/0 .text            __dt__9dNm_HIO_cFv */
-dNm_HIO_c::~dNm_HIO_c() {}
-
-/* 80399CC8-80399CC8 026328 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -237,7 +237,7 @@ int dCamera_c::StartEventCamera(int param_0, int param_1, ...) {
     va_end(args);
 
     setFlag(0x20000000);
-    mCurCamTypeTimer = 0;
+    mCurCamStyleTimer = 0;
     mEventData.field_0x0 = 0;
     return 1;
 }
@@ -299,7 +299,7 @@ bool dCamera_c::getEvIntData(int* i_data, char* i_event) {
         *i_data = *dComIfGp_evmng_getMyIntegerP(mEventData.field_0x4, i_event);
     } else {
 #if DEBUG
-        if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+        if (mCurCamStyleTimer == 0 && mCamSetup.CheckFlag(0x40)) {
             OS_REPORT("camera: event: %16s: (int) not found\n", i_event);
         }
 #endif
@@ -308,7 +308,7 @@ bool dCamera_c::getEvIntData(int* i_data, char* i_event) {
         return 0;
     }
 #if DEBUG
-    if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+    if (mCurCamStyleTimer == 0 && mCamSetup.CheckFlag(0x40)) {
         OS_REPORT("camera: event: %16s: %d\n", i_event, *i_data);
     }
 #endif
@@ -329,7 +329,7 @@ bool dCamera_c::getEvFloatData(f32* i_data, char* i_event) {
         *i_data = *dComIfGp_evmng_getMyFloatP(mEventData.field_0x4, i_event);
     } else {
 #if DEBUG
-        if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+        if (mCurCamStyleTimer == 0 && mCamSetup.CheckFlag(0x40)) {
             OS_REPORT("camera: event: %16s: (float) not found\n", i_event);
         }
 #endif
@@ -338,7 +338,7 @@ bool dCamera_c::getEvFloatData(f32* i_data, char* i_event) {
         return 0;
     }
 #if DEBUG
-    if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+    if (mCurCamStyleTimer == 0 && mCamSetup.CheckFlag(0x40)) {
         OS_REPORT("camera: event: %16s: %f\n", i_event, *i_data);
     }
 #endif
@@ -362,7 +362,7 @@ int dCamera_c::getEvFloatListData(f32** i_data, char* i_event) {
         *i_data = dComIfGp_evmng_getMyFloatP(mEventData.field_0x4, i_event);
     } else {
 #if DEBUG
-        if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+        if (mCurCamStyleTimer == 0 && mCamSetup.CheckFlag(0x40)) {
             OS_REPORT("camera: event: %16s: (float[]) not found\n", i_event);
         }
 #endif
@@ -371,7 +371,7 @@ int dCamera_c::getEvFloatListData(f32** i_data, char* i_event) {
     }
 
 #if DEBUG
-    if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+    if (mCurCamStyleTimer == 0 && mCamSetup.CheckFlag(0x40)) {
         OS_REPORT("camera: event: %16s: %f ... [%d]\n", i_event, **i_data, num);
     }
 #endif
@@ -395,7 +395,7 @@ int dCamera_c::getEvXyzListData(cXyz** i_data, char* i_event) {
         *i_data = dComIfGp_evmng_getMyXyzP(mEventData.field_0x4, i_event);
     } else {
 #if DEBUG
-        if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+        if (mCurCamStyleTimer == 0 && mCamSetup.CheckFlag(0x40)) {
             OS_REPORT("camera: event: %16s: (xyz[]) not found\n", i_event);
         }
 #endif
@@ -404,7 +404,7 @@ int dCamera_c::getEvXyzListData(cXyz** i_data, char* i_event) {
     }
 
 #if DEBUG
-    if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+    if (mCurCamStyleTimer == 0 && mCamSetup.CheckFlag(0x40)) {
         OS_REPORT("camera: event: %16s: %f %f %f ... [%d]\n", i_event, (*i_data)->x, (*i_data)->y, (*i_data)->z, num);
     }
 #endif
@@ -428,7 +428,7 @@ char* dCamera_c::getEvStringPntData(char* i_event) {
         string = dComIfGp_evmng_getMyStringP(mEventData.field_0x4, i_event);
     } else {
 #if DEBUG
-        if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+        if (mCurCamStyleTimer == 0 && mCamSetup.CheckFlag(0x40)) {
             OS_REPORT("camera: event: %16s: (string) not found\n", i_event);
         }
 #endif
@@ -437,7 +437,7 @@ char* dCamera_c::getEvStringPntData(char* i_event) {
     }
 
 #if DEBUG
-    if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+    if (mCurCamStyleTimer == 0 && mCamSetup.CheckFlag(0x40)) {
         OS_REPORT("camera: event: %16s: %s\n", i_event, string);
     }
 #endif
@@ -459,7 +459,7 @@ bool dCamera_c::getEvIntData(int* i_data, char* i_event, int param_2) {
     } else {
         *i_data = param_2;
 #if DEBUG
-        if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+        if (mCurCamStyleTimer == 0 && mCamSetup.CheckFlag(0x40)) {
             OS_REPORT("camera: event: %16s: %d (d)\n", i_event, *i_data);
         }
 #endif
@@ -467,7 +467,7 @@ bool dCamera_c::getEvIntData(int* i_data, char* i_event, int param_2) {
         return 0;
     }
 #if DEBUG
-    if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+    if (mCurCamStyleTimer == 0 && mCamSetup.CheckFlag(0x40)) {
         OS_REPORT("camera: event: %16s: %d\n", i_event, *i_data);
     }
 #endif
@@ -490,14 +490,14 @@ bool dCamera_c::getEvFloatData(f32* i_data, char* i_event, f32 param_2) {
     } else {
         *i_data = param_2;
 #if DEBUG
-        if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+        if (mCurCamStyleTimer == 0 && mCamSetup.CheckFlag(0x40)) {
             OS_REPORT("camera: event: %16s: %f (d)\n", i_event, *i_data);
         }
 #endif
         return 0;
     }
 #if DEBUG
-    if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+    if (mCurCamStyleTimer == 0 && mCamSetup.CheckFlag(0x40)) {
         OS_REPORT("camera: event: %16s: %f\n", i_event, *i_data);
     }
 #endif
@@ -519,14 +519,14 @@ bool dCamera_c::getEvXyzData(cXyz* i_data, char* i_event, cXyz param_2) {
     } else {
         *i_data = param_2;
 #if DEBUG
-        if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+        if (mCurCamStyleTimer == 0 && mCamSetup.CheckFlag(0x40)) {
             OS_REPORT("camera: event: %16s: %f %f %f (d)\n", i_event, i_data->x, i_data->y, i_data->z);
         }
 #endif
         return 0;
     }
 #if DEBUG
-    if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+    if (mCurCamStyleTimer == 0 && mCamSetup.CheckFlag(0x40)) {
         OS_REPORT("camera: event: %16s: %f %f %f\n", i_event, i_data->x, i_data->y, i_data->z);
     }
 #endif
@@ -549,14 +549,14 @@ bool dCamera_c::getEvStringData(char* i_data, char* i_event, char* param_2) {
     } else {
         strcpy(i_data, param_2);
 #if DEBUG
-        if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+        if (mCurCamStyleTimer == 0 && mCamSetup.CheckFlag(0x40)) {
             OS_REPORT("camera: event: %16s: %s (d)\n", i_event, i_data);
         }
 #endif
         return 0;
     }
 #if DEBUG
-    if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+    if (mCurCamStyleTimer == 0 && mCamSetup.CheckFlag(0x40)) {
         OS_REPORT("camera: event: %16s: %s\n", i_event, i_data);
     }
 #endif
@@ -581,7 +581,7 @@ char* dCamera_c::getEvStringPntData(char* i_event, char* param_1) {
     } else {
         string = param_1;
 #if DEBUG
-        if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+        if (mCurCamStyleTimer == 0 && mCamSetup.CheckFlag(0x40)) {
             OS_REPORT("camera: event: %16s: %s (d)\n", i_event, string);
         }
 #endif
@@ -589,7 +589,7 @@ char* dCamera_c::getEvStringPntData(char* i_event, char* param_1) {
     }
 
 #if DEBUG
-    if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+    if (mCurCamStyleTimer == 0 && mCamSetup.CheckFlag(0x40)) {
         OS_REPORT("camera: event: %16s: %s\n", i_event, string);
     }
 #endif
@@ -624,7 +624,7 @@ fopAc_ac_c* dCamera_c::getEvActor(char* i_event) {
     }
 
 #if DEBUG
-    if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+    if (mCurCamStyleTimer == 0 && mCamSetup.CheckFlag(0x40)) {
         if (actor != NULL) {
             char name[16];
             fopAcM_getNameString(actor, name);
@@ -665,7 +665,7 @@ fopAc_ac_c* dCamera_c::getEvActor(char* i_event, char* param_1) {
     }
 
 #if DEBUG
-    if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+    if (mCurCamStyleTimer == 0 && mCamSetup.CheckFlag(0x40)) {
         if (actor != NULL) {
             char name[16];
             fopAcM_getNameString(actor, name);
@@ -680,23 +680,23 @@ fopAc_ac_c* dCamera_c::getEvActor(char* i_event, char* param_1) {
 }
 
 /* 80089730-800897E8 084070 00B8+00 0/0 3/0 0/0 .text            pauseEvCamera__9dCamera_cFv */
-int dCamera_c::pauseEvCamera() {
-    if (mCurCamTypeTimer == 0) {
+bool dCamera_c::pauseEvCamera() {
+    if (mCurCamStyleTimer == 0) {
         Reset();
         field_0x158.field_0x0 = 1;
-        field_0x3e8 = getEvIntData(&field_0x3f0, "Timer", -1);
-        getEvIntData(&field_0x3ec, "Stay", 0);
+        mWork.event.field_0x0 = getEvIntData(&mWork.event.field_0x8, "Timer", -1);
+        getEvIntData(&mWork.event.field_0x4, "Stay", 0);
     }
 
-    if (field_0x3ec != 0) {
+    if (mWork.event.field_0x4 != 0) {
         setFlag(1);
     }
 
-    if (field_0x3e8 && mCurCamTypeTimer < field_0x3f0) {
-        return 0;
+    if (mWork.event.field_0x0 && mCurCamStyleTimer < mWork.event.field_0x8) {
+        return false;
     }
 
-    return 1;
+    return true;
 }
 
 /* ############################################################################################## */
@@ -742,7 +742,7 @@ SECTION_SDATA2 static u8 lit_5144[8] = {
 SECTION_SDATA2 static f32 lit_5145 = 182.04444885253906f;
 
 /* 800897E8-8008A510 084128 0D28+00 0/0 1/0 0/0 .text            fixedFrameEvCamera__9dCamera_cFv */
-int dCamera_c::fixedFrameEvCamera() {
+bool dCamera_c::fixedFrameEvCamera() {
     // NONMATCHING
 }
 
@@ -764,7 +764,7 @@ SECTION_DEAD static char const* const stringBase_8037AB66 = "@PLAYER";
 SECTION_SDATA2 static f32 lit_5346 = 1.0f;
 
 /* 8008A510-8008A974 084E50 0464+00 0/0 1/0 0/0 .text            stokerEvCamera__9dCamera_cFv */
-int dCamera_c::stokerEvCamera() {
+bool dCamera_c::stokerEvCamera() {
     // NONMATCHING
 }
 
@@ -789,7 +789,7 @@ SECTION_SDATA2 static f32 lit_5844[1 + 1 /* padding */] = {
 SECTION_SDATA2 static f64 lit_5846 = 4503599627370496.0 /* cast u32 to float */;
 
 /* 8008A974-8008B9B0 0852B4 103C+00 0/0 1/0 0/0 .text            rollingEvCamera__9dCamera_cFv */
-int dCamera_c::rollingEvCamera() {
+bool dCamera_c::rollingEvCamera() {
     // NONMATCHING
 }
 
@@ -830,25 +830,25 @@ SECTION_SDATA2 static f64 lit_5962 = 4503601774854144.0 /* cast s32 to float */;
 
 /* 8008B9B0-8008BE2C 0862F0 047C+00 0/0 1/0 0/0 .text            fixedPositionEvCamera__9dCamera_cFv
  */
-int dCamera_c::fixedPositionEvCamera() {
+bool dCamera_c::fixedPositionEvCamera() {
     // NONMATCHING
 }
 
 /* 8008BE2C-8008BE50 08676C 0024+00 0/0 1/0 0/0 .text            uniformTransEvCamera__9dCamera_cFv
  */
-int dCamera_c::uniformTransEvCamera() {
+bool dCamera_c::uniformTransEvCamera() {
     transEvCamera(1);
 }
 
 /* 8008BE50-8008BE74 086790 0024+00 0/0 1/0 0/0 .text            uniformBrakeEvCamera__9dCamera_cFv
  */
-int dCamera_c::uniformBrakeEvCamera() {
+bool dCamera_c::uniformBrakeEvCamera() {
     transEvCamera(2);
 }
 
 /* 8008BE74-8008BE98 0867B4 0024+00 0/0 1/0 0/0 .text            uniformAcceleEvCamera__9dCamera_cFv
  */
-int dCamera_c::uniformAcceleEvCamera() {
+bool dCamera_c::uniformAcceleEvCamera() {
     transEvCamera(3);
 }
 
@@ -897,36 +897,6 @@ void dCamera_c::transEvCamera(int param_0) {
 /* 8008E750-8008E774 089090 0024+00 1/1 0/0 0/0 .text isRelChar__25@unnamed@d_ev_camera_cpp@Fc */
 static bool func_8008E750(char param_0) {
     return param_0 != '-' && param_0 != 'x';
-}
-
-/* 8008E774-8008E790 0890B4 001C+00 3/3 6/6 0/0 .text            __as__7cSGlobeFRC7cSGlobe */
-// void cSGlobe::operator=(cSGlobe const& param_0) {
-extern "C" void __as__7cSGlobeFRC7cSGlobe() {
-    // NONMATCHING
-}
-
-/* 8008E790-8008E894 0890D0 0104+00 1/1 7/7 0/0 .text            abs__4cXyzCFv */
-// void cXyz::abs() const {
-extern "C" void abs__4cXyzCFv() {
-    // NONMATCHING
-}
-
-/* 8008E894-8008E8D0 0891D4 003C+00 2/2 6/6 0/0 .text            U__7cSGlobeFRC7cSAngle */
-// void cSGlobe::U(cSAngle const& param_0) {
-extern "C" void U__7cSGlobeFRC7cSAngle() {
-    // NONMATCHING
-}
-
-/* 8008E8D0-8008E904 089210 0034+00 1/1 1/1 0/0 .text            __ami__4cXyzFRC3Vec */
-// void cXyz::operator-=(Vec const& param_0) {
-extern "C" void __ami__4cXyzFRC3Vec() {
-    // NONMATCHING
-}
-
-/* 8008E904-8008E938 089244 0034+00 1/1 5/5 0/0 .text            __apl__4cXyzFRC3Vec */
-// void cXyz::operator+=(Vec const& param_0) {
-extern "C" void __apl__4cXyzFRC3Vec() {
-    // NONMATCHING
 }
 
 /* ############################################################################################## */
@@ -992,26 +962,13 @@ SECTION_SDATA2 static f32 lit_7346 = 1.0f / 10.0f;
 SECTION_SDATA2 static f32 lit_7347 = 30.0f;
 
 /* 8008E938-8008FA58 089278 1120+00 0/0 1/0 0/0 .text            watchActorEvCamera__9dCamera_cFv */
-int dCamera_c::watchActorEvCamera() {
-    // NONMATCHING
-}
-
-/* 8008FA58-8008FA94 08A398 003C+00 2/2 7/7 0/0 .text            V__7cSGlobeFRC7cSAngle */
-// void cSGlobe::V(cSAngle const& param_0) {
-extern "C" void V__7cSGlobeFRC7cSAngle() {
+bool dCamera_c::watchActorEvCamera() {
     // NONMATCHING
 }
 
 /* ############################################################################################## */
 /* 80452940-80452944 000F40 0004+00 5/5 0/0 0/0 .sdata2          @7357 */
 SECTION_SDATA2 static f32 lit_7357 = 15.0f;
-
-/* 8008FA94-8008FAE8 08A3D4 0054+00 7/7 0/0 0/0 .text
- * lineCollisionCheck__25@unnamed@d_ev_camera_cpp@F4cXyz4cXyzP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_c
- */
-static void func_8008FA94() {
-    // NONMATCHING
-}
 
 /* ############################################################################################## */
 /* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -1028,16 +985,16 @@ static u8 lit_7364[12];
 static f32 DefaultGap_7363[3];
 
 /* 8008FAE8-80090174 08A428 068C+00 0/0 1/0 0/0 .text            restorePosEvCamera__9dCamera_cFv */
-int dCamera_c::restorePosEvCamera() {
+bool dCamera_c::restorePosEvCamera() {
     // NONMATCHING
 }
 
 /* 80090174-80090230 08AAB4 00BC+00 0/0 1/0 0/0 .text            talktoEvCamera__9dCamera_cFv */
-int dCamera_c::talktoEvCamera() {
-    dComIfGp_event_getPt1();
-    s32 style = mCamTypeData[mEventData.field_0xc].field_0x18[field_0x190][3];
+bool dCamera_c::talktoEvCamera() {
+    fopAc_ac_c* r27 = (fopAc_ac_c*)dComIfGp_event_getPt1();
+    s32 style = mCamTypeData[mEventData.field_0xc].field_0x18[mIsWolf][3];
 
-    if (mCurCamTypeTimer == 0) {
+    if (mCurCamStyleTimer == 0) {
         clrFlag(0x200000);
     }
 
@@ -1046,13 +1003,13 @@ int dCamera_c::talktoEvCamera() {
     }
 
 #if DEBUG
-    if (mCurCamTypeTimer == 0 && mCamSetup.CheckFlag(0x40)) {
+    if (mCurCamStyleTimer == 0 && mCamSetup.CheckFlag(0x40)) {
         u32 id = mCamParam.Id(style);
-        OS_REPORT("camera: event: %16s  = %d (%c%c%c%c)\n", "style", style, (u8)(id >> 0x18), (u8)(id >> 0x10), (u8)(id >> 0x8), (u8)(id));
+        OS_REPORT("camera: event: %16s  = %d (%c%c%c%c)\n", "style", style, (id >> 0x18) & 0xFF, (id >> 0x10) & 0xFF, (id >> 0x8) & 0xFF, (id) & 0xFF);
     }
 #endif
 
-    (this->*engine_tbl[mCamParam.Algorythmn(style)])(style);
+    return (this->*engine_tbl[mCamParam.Algorythmn(style)])(style);
 }
 
 
@@ -1066,13 +1023,13 @@ SECTION_DEAD static char const* const stringBase_8037AC5C = "CameraID";
 
 /* 80090230-80090478 08AB70 0248+00 0/0 1/0 0/0 .text            maptoolIdEvCamera__9dCamera_cFv */
 bool dCamera_c::maptoolIdEvCamera() {
-    if (mCurCamTypeTimer == 0) {
+    if (mCurCamStyleTimer == 0) {
         int id;
         getEvIntData(&id, "ID", g_dComIfG_gameInfo.play.getEvent().getMapToolId());
 
         mEventData.field_0x8 = 0;
         field_0x160 = 0;
-        mCurCamTypeTimer = 0;
+        mCurCamStyleTimer = 0;
         mEventData.field_0xec = dEvt_control_c::searchMapEventData(id);
 #ifdef DEBUG
         OSReport("%06d: %s: %d: map data ID %d  %x\n", field_0xa8, __FILE__, 2792, id,
@@ -1092,7 +1049,7 @@ bool dCamera_c::maptoolIdEvCamera() {
 #ifdef DEBUG
         OSReport("%d: %s: %d: ERROR!! no map data!!!\n", field_0xa8, __FILE__, 2805);
 #endif
-        return 1;
+        return true;
     }
 
     int room_no = dComIfGp_roomControl_getStayNo();
@@ -1111,12 +1068,12 @@ bool dCamera_c::maptoolIdEvCamera() {
     }
 
     mEventData.field_0xc = GetCameraTypeFromMapToolID(temp_r31, room_no);
-    bool var_r31 = 0;
+    bool var_r31 = false;
 
     if (mEventData.field_0xc != 0xFF) {
-        s32 style = mCamTypeData[mEventData.field_0xc].field_0x18[field_0x190][0];
+        s32 style = mCamTypeData[mEventData.field_0xc].field_0x18[mIsWolf][0];
 #ifdef DEBUG
-        if (mCurCamTypeTimer == 0) {
+        if (mCurCamStyleTimer == 0) {
             OSReport("type %d mode %d style %d\n", mEventData.field_0xc, 0, style);
         }
 #endif
@@ -1124,26 +1081,26 @@ bool dCamera_c::maptoolIdEvCamera() {
 
         if (mEventData.field_0xec->mType == 0) {
             if (mEventData.field_0xec->field_0x14 == 0xFF ||
-                mCurCamTypeTimer > mEventData.field_0xec->field_0x14)
+                mCurCamStyleTimer > mEventData.field_0xec->field_0x14)
             {
-                var_r31 = 1;
+                var_r31 = true;
             }
         } else {
             return var_r3;
         }
     } else {
         mEventData.field_0xec = NULL;
-        var_r31 = 1;
+        var_r31 = true;
     }
 
     if (var_r31) {
         if (mEventData.field_0xec->mType == 0 && (mEventData.field_0xec->field_0xC & 0x20)) {
             return mDoCPd_c::getHoldA(mPadID) || mDoCPd_c::getHoldB(mPadID);
         }
-        return 1;
+        return true;
     }
 
-    return 0;
+    return false;
 }
 
 
@@ -1156,8 +1113,8 @@ SECTION_DEAD static char const* const stringBase_8037AC6A = "FN01";
 #pragma pop
 
 /* 80090478-80090514 08ADB8 009C+00 0/0 1/0 0/0 .text            styleEvCamera__9dCamera_cFv */
-int dCamera_c::styleEvCamera() {
-    if (mCurCamTypeTimer == 0) {
+bool dCamera_c::styleEvCamera() {
+    if (mCurCamStyleTimer == 0) {
         mEventData.field_0x8 = 0;
         field_0x160 = 0;
     }
@@ -1322,7 +1279,7 @@ SECTION_SDATA2 static f32 lit_8225 = 350.0f;
 SECTION_SDATA2 static f32 lit_8226 = 49.0f / 50.0f;
 
 /* 80090514-80091468 08AE54 0F54+00 0/0 1/0 0/0 .text            gameOverEvCamera__9dCamera_cFv */
-int dCamera_c::gameOverEvCamera() {
+bool dCamera_c::gameOverEvCamera() {
     // NONMATCHING
 }
 
@@ -1505,26 +1462,18 @@ SECTION_SDATA2 static f32 lit_8752 = -30.0f;
 SECTION_SDATA2 static f32 lit_8753 = -160.0f;
 
 /* 80091468-8009236C 08BDA8 0F04+00 1/0 1/0 0/0 .text            tactEvCamera__9dCamera_cFv */
-int dCamera_c::tactEvCamera() {
-    // NONMATCHING
-}
-
-/* 8009236C-800923B8 08CCAC 004C+00 1/1 0/0 0/0 .text
- * dComIfGp_saveCameraPosition__FiP4cXyzP4cXyzfs                */
-/* static void dComIfGp_saveCameraPosition(int param_0, cXyz* param_1, cXyz* param_2, f32 param_3,
-                                            s16 param_4) { */
-extern "C" void dComIfGp_saveCameraPosition__FiP4cXyzP4cXyzfs() {
+bool dCamera_c::tactEvCamera() {
     // NONMATCHING
 }
 
 /* 800923B8-800923C0 08CCF8 0008+00 0/0 1/0 0/0 .text            turnToActorEvCamera__9dCamera_cFv
  */
-int dCamera_c::turnToActorEvCamera() {
+bool dCamera_c::turnToActorEvCamera() {
     return true;
 }
 
 /* 800923C0-800924D0 08CD00 0110+00 0/0 1/0 0/0 .text            stbWaitEvCamera__9dCamera_cFv */
-int dCamera_c::stbWaitEvCamera() {
+bool dCamera_c::stbWaitEvCamera() {
     dDemo_camera_c* demo_cam = dDemo_c::getCamera();
 #if DEBUG
     char* enabled_report = "-----";
@@ -1532,21 +1481,21 @@ int dCamera_c::stbWaitEvCamera() {
 
     if (demo_cam != NULL) {
         if (demo_cam->checkEnable(0x40)) {
-            field_0x5c.field_0x8 = demo_cam->getTarget();
+            field_0x5c.mCenter = demo_cam->getTarget();
 #if DEBUG
             enabled_report[0] = 'C';
 #endif
         }
 
         if (demo_cam->checkEnable(0x10)) {
-            field_0x5c.field_0x14 = demo_cam->getTrans();
+            field_0x5c.mEye = demo_cam->getTrans();
 #if DEBUG
             enabled_report[1] = 'E';
 #endif
         }
 
         if (demo_cam->checkEnable(0x4)) {
-            field_0x80 = demo_cam->getFovy();
+            field_0x5c.mFovy = demo_cam->getFovy();
 #if DEBUG
             enabled_report[2] = 'F';
 #endif
@@ -1560,7 +1509,7 @@ int dCamera_c::stbWaitEvCamera() {
         }
 
         if (demo_cam->checkEnable(0x80)) {
-            field_0x5c.field_0x20 = cAngle::d2s(-demo_cam->getRoll());
+            field_0x5c.mBank = cAngle::d2s(-demo_cam->getRoll());
 #if DEBUG
             enabled_report[4] = 'B';
 #endif
@@ -1572,7 +1521,7 @@ int dCamera_c::stbWaitEvCamera() {
         }
 #endif
 
-        field_0x5c.field_0x0.Val(field_0x5c.field_0x14 - field_0x5c.field_0x8);
+        field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
     }
 
     return true;
@@ -1580,18 +1529,18 @@ int dCamera_c::stbWaitEvCamera() {
 
 
 /* 800924D0-8009258C 08CE10 00BC+00 0/0 1/0 0/0 .text            saveEvCamera__9dCamera_cFv */
-int dCamera_c::saveEvCamera() {
+bool dCamera_c::saveEvCamera() {
     int slot;
     getEvIntData(&slot, "Slot", 0);
 
     if (slot == 9) {
-        dComIfGp_saveCameraPosition(0, &field_0x5c.field_0x8, &field_0x5c.field_0x14, field_0x80, field_0x5c.field_0x20.Val());
+        dComIfGp_saveCameraPosition(0, &field_0x5c.mCenter, &field_0x5c.mEye, field_0x5c.mFovy, field_0x5c.mBank.Val());
     } else {
         pushInfo(&field_0xd0[slot], 1);
     }
 
     field_0x158.field_0x0 = 1;
-    return 1;
+    return true;
 }
 
 /* ############################################################################################## */
@@ -1603,7 +1552,7 @@ SECTION_RODATA static u8 const lit_8840[24] = {
 COMPILER_STRIP_GATE(0x8037A884, &lit_8840);
 
 /* 8009258C-800929AC 08CECC 0420+00 0/0 1/0 0/0 .text            loadEvCamera__9dCamera_cFv */
-int dCamera_c::loadEvCamera() {
+bool dCamera_c::loadEvCamera() {
     // NONMATCHING
 }
 
@@ -1778,7 +1727,7 @@ SECTION_SDATA2 static f32 lit_9440 = 270.0f;
 SECTION_SDATA2 static f32 lit_9441 = 300.0f;
 
 /* 800929AC-800937AC 08D2EC 0E00+00 0/0 1/0 0/0 .text            useItem0EvCamera__9dCamera_cFv */
-int dCamera_c::useItem0EvCamera() {
+bool dCamera_c::useItem0EvCamera() {
     // NONMATCHING
 }
 
@@ -1805,7 +1754,7 @@ SECTION_SDATA2 static f32 lit_9800 = -180.0f;
 SECTION_SDATA2 static f32 lit_9801 = 170.0f;
 
 /* 800937AC-80094240 08E0EC 0A94+00 0/0 1/0 0/0 .text            useItem1EvCamera__9dCamera_cFv */
-int dCamera_c::useItem1EvCamera() {
+bool dCamera_c::useItem1EvCamera() {
     // NONMATCHING
 }
 
@@ -1863,7 +1812,7 @@ SECTION_SDATA2 static f32 lit_10125 = -164.0f;
 SECTION_SDATA2 static f32 lit_10126 = -220.0f;
 
 /* 80094240-80094A70 08EB80 0830+00 0/0 1/0 0/0 .text            getItemEvCamera__9dCamera_cFv */
-int dCamera_c::getItemEvCamera() {
+bool dCamera_c::getItemEvCamera() {
     // NONMATCHING
 }
 
@@ -1896,7 +1845,7 @@ SECTION_SDATA2 static f32 lit_10283 = 9.0f / 100.0f;
 SECTION_SDATA2 static f32 lit_10284 = 9.0f / 50.0f;
 
 /* 80094A70-80095010 08F3B0 05A0+00 0/0 1/0 0/0 .text            possessedEvCamera__9dCamera_cFv */
-int dCamera_c::possessedEvCamera() {
+bool dCamera_c::possessedEvCamera() {
     // NONMATCHING
 }
 
@@ -1915,12 +1864,12 @@ SECTION_SDATA2 static f32 lit_10437 = 1.0f / 100.0f;
 
 /* 80095010-8009544C 08F950 043C+00 0/0 1/0 0/0 .text            fixedFramesEvCamera__9dCamera_cFv
  */
-int dCamera_c::fixedFramesEvCamera() {
+bool dCamera_c::fixedFramesEvCamera() {
     // NONMATCHING
 }
 
 /* 8009544C-800956E4 08FD8C 0298+00 0/0 1/0 0/0 .text            bSplineEvCamera__9dCamera_cFv */
-int dCamera_c::bSplineEvCamera() {
+bool dCamera_c::bSplineEvCamera() {
     // NONMATCHING
 }
 
@@ -1956,12 +1905,12 @@ SECTION_SDATA2 static f32 lit_10781 = 10000.0f;
 SECTION_SDATA2 static f32 lit_10782 = 0.25f;
 
 /* 800956E4-80095E7C 090024 0798+00 0/0 1/0 0/0 .text            twoActor0EvCamera__9dCamera_cFv */
-int dCamera_c::twoActor0EvCamera() {
+bool dCamera_c::twoActor0EvCamera() {
     // NONMATCHING
 }
 
 /* 80095E7C-80095FD0 0907BC 0154+00 0/0 1/0 0/0 .text            peepHoleEvCamera__9dCamera_cFv */
-int dCamera_c::peepHoleEvCamera() {
+bool dCamera_c::peepHoleEvCamera() {
     // NONMATCHING
 }
 
@@ -1976,7 +1925,7 @@ SECTION_DEAD static char const* const stringBase_8037AD14 = "R_SP01";
 SECTION_SDATA2 static f32 lit_11068 = 245.0f;
 
 /* 80095FD0-800965AC 090910 05DC+00 0/0 1/0 0/0 .text            digHoleEvCamera__9dCamera_cFv */
-int dCamera_c::digHoleEvCamera() {
+bool dCamera_c::digHoleEvCamera() {
     // NONMATCHING
 }
 
@@ -2023,7 +1972,7 @@ SECTION_SDATA2 static f32 lit_11421 = 0.75f;
 SECTION_SDATA2 static f32 lit_11422 = 2.0f / 5.0f;
 
 /* 800965AC-80096EDC 090EEC 0930+00 0/0 1/0 0/0 .text            hintTalkEvCamera__9dCamera_cFv */
-int dCamera_c::hintTalkEvCamera() {
+bool dCamera_c::hintTalkEvCamera() {
     // NONMATCHING
 }
 
@@ -2048,12 +1997,12 @@ SECTION_DEAD static char const* const stringBase_8037AD60 = "xxooox";
 #pragma pop
 
 /* 80096EDC-80097694 09181C 07B8+00 0/0 1/0 0/0 .text            bspTransEvCamera__9dCamera_cFv */
-int dCamera_c::bspTransEvCamera() {
+bool dCamera_c::bspTransEvCamera() {
     // NONMATCHING
 }
 
 /* 80097694-8009769C 091FD4 0008+00 0/0 1/0 0/0 .text            portalWarpEvCamera__9dCamera_cFv */
-int dCamera_c::portalWarpEvCamera() {
+bool dCamera_c::portalWarpEvCamera() {
     return true;
 }
 
@@ -2091,7 +2040,7 @@ extern "C" void setFlag__9dCamera_cFUl() {
 }
 
 /* 8009778C-800977A8 0920CC 001C+00 1/1 2/2 0/0 .text            eyePos__9dCamera_cFP10fopAc_ac_c */
-void dCamera_c::eyePos(fopAc_ac_c* param_0) {
+cXyz dCamera_c::eyePos(fopAc_ac_c* param_0) {
     // NONMATCHING
 }
 

@@ -94,7 +94,7 @@ public:
 
     /* 0x10 */ JGadget::TLinkListNode ocObject_;
 
-private:
+public: // private: // public for the fakematch in JStudio_JStage::TAdaptor_actor::adaptor_do_begin
     /* 0x14 */ TControl* pControl;
     /* 0x18 */ u32 signature;
     /* 0x1C */ u16 mFlag;

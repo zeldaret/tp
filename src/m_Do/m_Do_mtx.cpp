@@ -9,6 +9,7 @@
 #include "JSystem/JUtility/JUTAssert.h"
 #include "SSystem/SComponent/c_m3d.h"
 #include "SSystem/SComponent/c_math.h"
+#include "global.h"
 
 /* ############################################################################################## */
 /* 803DD470-803DD4A0 00A190 0030+00 12/12 142/142 1820/1820 .bss             now__14mDoMtx_stack_c
@@ -38,9 +39,11 @@ extern Mtx g_mDoMtx_identity = {
     {0.0f, 0.0f, 1.0f, 0.0f},
 };
 
+#if VERSION != VERSION_GCN_JPN
 static void dummy() {
     OSReport("mDoMtx_Dump %s\n");
 }
+#endif
 
 /* 8000C0CC-8000C164 006A0C 0098+00 1/1 0/0 0/0 .text            mDoMtx_XYZrotS__FPA4_fsss */
 void mDoMtx_XYZrotS(Mtx mtx, s16 x, s16 y, s16 z) {
@@ -249,30 +252,30 @@ void mDoMtx_lookAt(Mtx mtx, Vec const* param_1, Vec const* param_2, s16 param_3)
 /* 8000C710-8000C8D0 007050 01C0+00 0/0 10/10 1/1 .text mDoMtx_lookAt__FPA4_fPC3VecPC3VecPC3Vecs
  */
 void mDoMtx_lookAt(Mtx mtx, Vec const* i_eye, Vec const* i_center, Vec const* i_up, s16 i_bank) {
-    cXyz local_4c(*i_eye);
-    cXyz local_58(*i_center);
-    cXyz local_64(*i_up);
-    cXyz local_70 = local_4c - local_58;
+    cXyz eye = *i_eye;
+    cXyz center = *i_center;
+    cXyz up = *i_up;
+    cXyz local_70 = eye - center;
     if (!local_70.normalizeRS()) {
         OS_REPORT("%s: lookat: bad position!\n", __FILE__);
-        OS_REPORT("%s:         ctr %f %f %f+1.0\n", __FILE__, local_58.x, local_58.y, local_58.z);
-        OS_REPORT("%s:         eye %f %f %f\n", __FILE__, local_4c.x, local_4c.y, local_4c.z);
-        local_58.z += 1.0f;
+        OS_REPORT("%s:         ctr %f %f %f+1.0\n", __FILE__, center.x, center.y, center.z);
+        OS_REPORT("%s:         eye %f %f %f\n", __FILE__, eye.x, eye.y, eye.z);
+        center.z += 1.0f;
     }
-    if (cM3d_IsZero(local_64.x) && cM3d_IsZero(local_64.y) && cM3d_IsZero(local_64.z)) {
+    if (cM3d_IsZero(up.x) && cM3d_IsZero(up.y) && cM3d_IsZero(up.z)) {
         OS_REPORT("%s: lookat: Zero Vector @ UP!\n", __FILE__);
-        local_64.y = 1.0f;
+        up.y = 1.0f;
     }
-    C_MTXLookAt(mtx, &local_4c, &local_64, &local_58);
-    Mtx local_40;
-    mDoMtx_ZrotS(local_40, i_bank);
-    mDoMtx_concat(local_40, mtx, mtx);
+    C_MTXLookAt(mtx, &eye, &up, &center);
+    Mtx bank_mtx;
+    mDoMtx_ZrotS(bank_mtx, i_bank);
+    mDoMtx_concat(bank_mtx, mtx, mtx);
     JGeometry::TVec3<f32> local_7c(0.0f, mtx[1][1], mtx[2][1]);
     if (local_7c.isZero()) {
-        local_58.y += 1.0f;
-        C_MTXLookAt(mtx, &local_4c, &local_64, &local_58);
-        mDoMtx_ZrotS(local_40, i_bank);
-        mDoMtx_concat(local_40, mtx, mtx);
+        center.y += 1.0f;
+        C_MTXLookAt(mtx, &eye, &up, &center);
+        mDoMtx_ZrotS(bank_mtx, i_bank);
+        mDoMtx_concat(bank_mtx, mtx, mtx);
     }
 }
 

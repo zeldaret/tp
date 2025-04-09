@@ -5402,7 +5402,7 @@ void dKy_ParticleColor_get_base(cXyz* param_0, dKy_tevstr_c* param_1, GXColor* p
     J3DLightInfo* sp44;
     GXColor sp40;
     int sp3C;
-    s32 sp38;
+    int sp38;
     stage_pure_lightvec_info_class* stage_light_info_p;
     int sp30;
 
@@ -5463,10 +5463,8 @@ void dKy_ParticleColor_get_base(cXyz* param_0, dKy_tevstr_c* param_1, GXColor* p
                 sp3C = dComIfGp_roomControl_getStatusRoomDt(param_1->room_no)
                            ->getLightVecInfoNum();
             } else {
-                s32 room_no = dComIfGp_roomControl_getStayNo();  // fakematch, fixes instruction order
-                stage_light_info_p = dComIfGp_roomControl_getStatusRoomDt(room_no)->getLightVecInfo();
-                room_no = dComIfGp_roomControl_getStayNo();  // fakematch, fixes instruction order
-                sp3C = dComIfGp_roomControl_getStatusRoomDt(room_no)->getLightVecInfoNum();
+                stage_light_info_p = dComIfGp_roomControl_getStatusRoomDt(dComIfGp_roomControl_getStayNo())->getLightVecInfo();
+                sp3C = dComIfGp_roomControl_getStatusRoomDt(dComIfGp_roomControl_getStayNo())->getLightVecInfoNum();
             }
 
             f32 var_f27;
@@ -6852,7 +6850,6 @@ static J3DAlphaCompInfo l_alphaCompInfo = {
 };
 
 /* 801ACD24-801ADBBC 1A7664 0E98+00 0/0 0/0 7/7 .text            dKy_bg_MAxx_proc__FPv */
-// NONMATCHING - `setAlphaCompInfo` is incorrect, and instruction in the wrong order at the start
 void dKy_bg_MAxx_proc(void* bg_model_p) {
     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
     J3DModel* model_p = (J3DModel*)bg_model_p;

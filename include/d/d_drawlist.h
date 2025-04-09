@@ -89,6 +89,26 @@ private:
     /* 0x160 */ u8 mAlpha;
 };
 
+class dDlst_2DQuad_c : public dDlst_base_c {
+public:
+    dDlst_2DQuad_c() {}
+    /* 80051CF0 */ virtual void draw();
+
+    void init(s16 posX, s16 posY, s16 width, s16 height, GXColor& color) {
+        mPosX = posX;
+        mPosY = posY;
+        mSizeX = width;
+        mSizeY = height;
+        mColor = color;
+    }
+
+    /* 0x4 */ s16 mPosX;
+    /* 0x6 */ s16 mPosY;
+    /* 0x8 */ s16 mSizeX;
+    /* 0xA */ s16 mSizeY;
+    /* 0xC */ GXColor mColor;
+};
+
 class dDlst_2DT2_c : public dDlst_base_c {
 public:
     /* 80052354 */ virtual void draw();
@@ -250,7 +270,7 @@ public:
     /* 80051ADC */ void setScissor(f32, f32, f32, f32);
 
     void setCameraID(int id) { mCameraID = id; }
-    s8 getCameraID() { return mCameraID; }
+    int getCameraID() { return mCameraID; }
     void setMode(int mode) { mMode = mode; }
     view_port_class* getViewPort() { return &mViewport; }
     scissor_class* getScissor() { return &mViewport.scissor; }
@@ -305,6 +325,10 @@ public:
         /* 0x12 */ DB_LIST_2D_SCREEN,
         /* 0x13 */ DB_LIST_MIDDLE,
         /* 0x14 */ DB_LIST_3D_LAST,
+#if VERSION > VERSION_GCN_JPN
+        DB_LIST_CURSOR,
+#endif
+        DB_LIST_MAX,
     };
 
     void set2DOpa(dDlst_base_c* dlst) { set(mp2DOpaStart, mp2DOpaEnd, dlst); }
@@ -425,7 +449,7 @@ public:
     static u8 mWipe;
 
 private:
-    /* 0x00000 */ J3DDrawBuffer* mDrawBuffers[21];
+    /* 0x00000 */ J3DDrawBuffer* mDrawBuffers[DB_LIST_MAX];
     /* 0x00054 */ dDlst_base_c* mpCopy2DDrawLists[4];
     /* 0x00064 */ dDlst_base_c** mpCopy2DStart;
     /* 0x00068 */ dDlst_base_c** mpCopy2DEnd;
