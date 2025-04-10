@@ -294,8 +294,8 @@ public:
 
     void initialize() {
         for (int i = 0; i < 2; i++) {
-            field_0x0[i].setall(0);
-            field_0xc[i] = 0.0f;
+            mAngle[i].setall(0);
+            mPower[i] = 0.0f;
         }
         mStagger = 0;
         field_0x16 = 0;
@@ -304,19 +304,17 @@ public:
 
     int checkStagger() { return mStagger != 0; }
 
-    s16 getAngleX(int idx) { return field_0x0[idx].x; }
-    s16 getAngleZ(int idx) { return field_0x0[idx].z; }
+    s16 getAngleX(int idx) { return mAngle[idx].x; }
+    s16 getAngleZ(int idx) { return mAngle[idx].z; }
     int checkRebirth() { return mRebirth; }
-
-    void setPower(f32 mPower) {
+    void setPower(f32 power) {
         for (int i = 0; i < 2; i++) {
-            field_0xc[i] = mPower;
+            mPower[i] = power;
         }
     }
 
-private:
-    /* 0x00 */ csXyz field_0x0[2];
-    /* 0x0C */ f32 field_0xc[2];
+    /* 0x00 */ csXyz mAngle[2];
+    /* 0x0C */ f32 mPower[2];
     /* 0x14 */ s16 mStagger;
     /* 0x16 */ s16 field_0x16;
     /* 0x18 */ bool mRebirth;
@@ -508,7 +506,7 @@ public:
     /* 0xE20 */ u16 mBckLoops;
     /* 0xE22 */ u16 mMode;
     /* 0xE24 */ s8 mReverb;
-    /* 0xE25 */ bool mHide;
+    /* 0xE25 */ u8 mHide;
     /* 0xE26 */ bool field_0xe26;
     /* 0xE27 */ u8 mFootLOnGround;
     /* 0xE28 */ u8 mFootROnGround;
@@ -649,7 +647,7 @@ public:
     /* 8014A628 */ virtual bool setMotionAnm(int, f32, BOOL);
 
     bool checkHide() { return mHide || (!dComIfGs_wolfeye_effect_check() && mTwilight); }
-    s16 checkStep() { return mStepMode == 1; }
+    BOOL checkStep() { return mStepMode == 1; }
     void setCommander(fopAc_ac_c* param_0) { field_0xba0.entry(param_0); }
     void setCutType(int i_cutType) { mCutType = i_cutType; }
     void onHide() { mHide = true; }

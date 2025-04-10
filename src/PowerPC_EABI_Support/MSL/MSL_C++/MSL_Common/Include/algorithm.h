@@ -2,6 +2,7 @@
 #define MSL_ALGORITHM_H_
 
 #include <iterator.h>
+#include <string.h>
 
 namespace std {
 template <class ForwardIterator, class T>
