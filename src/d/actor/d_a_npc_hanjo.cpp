@@ -1315,8 +1315,7 @@ int daNpc_Hanjo_c::cutPursuitBee(int param_1) {
         shape_angle.y = current.angle.y;
         mCurAngle.y = current.angle.y;
         field_0xd7e.y = mCurAngle.y;
-        cLib_chaseF(&speedF,
-                                    daNpc_Hanjo_Param_c::m.field_0x90, 0.5f);
+        cLib_chaseF(&speedF, daNpc_Hanjo_Param_c::m.field_0x90, 0.5f);
         if (mEventTimer != 0 &&
             mCyl1.ChkCoHit())
         {

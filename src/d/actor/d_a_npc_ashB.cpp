@@ -680,7 +680,8 @@ bool daNpcAshB_c::setMotionAnm(int i_idx, f32 i_morf) {
 
     mAnmFlags &= 0xffffffc0;
     if (i_idx == 12) {
-        bool bla = setExpressionBtp(1);
+        bool unused_bool = setExpressionBtp(1);
+        (void) unused_bool;
     }
 
     if (morfAnm && setMcaMorfAnm(morfAnm,1.0f,i_morf,oiVar5,0,-1)) {
@@ -855,7 +856,7 @@ bool daNpcAshB_c::wait(void* param_0) {
                         return true;
                     } else {
                         u8 preitemno = dComIfGp_event_getPreItemNo();
-                        if (preitemno == 0x91) {
+                        if (preitemno == fpcNm_ITEM_ASHS_SCRIBBLING) {
                             mFlowID = 504;
                             setAction(&wait);
                         } else {
@@ -891,7 +892,7 @@ bool daNpcAshB_c::wait(void* param_0) {
     case 3:
         break;
     default:
-        JUT_PANIC(0x579, "d_a_npc_ashB.cpp");
+        JUT_ASSERT(0x579, 0);
     }
 
     return true;
