@@ -1652,7 +1652,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_e_mm_mt"),
     ActorRel(NonMatching, "d_a_e_ms"),
     ActorRel(NonMatching, "d_a_e_nz"),
-    ActorRel(NonMatching, "d_a_e_oc"),
+    ActorRel(Equivalent, "d_a_e_oc"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_oct_bg"),
     ActorRel(Equivalent, "d_a_e_ot"), # weak func order
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_ph"),
@@ -1689,7 +1689,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_e_yg"),
     ActorRel(NonMatching, "d_a_e_yh"),
     ActorRel(Equivalent, "d_a_e_yk"), # weak func order
-    ActorRel(NonMatching, "d_a_e_ym"),
+    ActorRel(Equivalent, "d_a_e_ym"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_ym_tag"),
     ActorRel(NonMatching, "d_a_e_ymb"),
     ActorRel(NonMatching, "d_a_e_yr"),
@@ -1752,7 +1752,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_grz"),
     ActorRel(NonMatching, "d_a_npc_guard"),
     ActorRel(NonMatching, "d_a_npc_gwolf"),
-    ActorRel(NonMatching, "d_a_npc_hanjo"),
+    ActorRel(Equivalent, "d_a_npc_hanjo"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_npc_henna0"),
     ActorRel(NonMatching, "d_a_npc_hoz"),
     ActorRel(NonMatching, "d_a_npc_impal"),

@@ -2508,32 +2508,30 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 80734DA8-807352AC 0088C8 0504+00 1/1 0/0 0/0 .text            create__8daE_OC_cFv */
 cPhs__Step daE_OC_c::create() {
-    // NONMATCHING. regalloc issue
-    f32 mult_val = 100.0f;
-    fopAc_ac_c* a_this = this;
     fopAcM_SetupActor(this, daE_OC_c);
     field_0x6b4 = fopAcM_GetParam(this) & 0xff;
     if (field_0x6b4 == 0xff) {
         field_0x6b4 = 0;
     }
-    u8 range_sel = (fopAcM_GetParam(this) >> 8 & 0xff);
-    if (range_sel == 0x1) {
+
+    u8 u_var = ((fopAcM_GetParam(this) & 0xff00) >> 8);
+    if (u_var == 0x1) {
         mPlayerRange = l_HIO.field_0x0c;
     } else {
         mPlayerRange = l_HIO.field_0x08;
     }
-    field_0x6e0 = fopAcM_GetParam(this) >> 0x10;
+    field_0x6e0 = (fopAcM_GetParam(this) & 0xff0000) >> 0x10;
     if (field_0x6e0 != 0xff) {
         if (dComIfGs_isSwitch(field_0x6e0, fopAcM_GetRoomNo(this))) {
             return cPhs_ERROR_e;
         }
     }
-    field_0x6e1 = fopAcM_GetParam(this) >> 0x18;
-    u8 u_var = current.angle.x;
+    field_0x6e1 = (fopAcM_GetParam(this) & 0xff000000) >> 0x18;
+    u_var = current.angle.x & 0xff;
     if (u_var == 0xff) {
         u_var = 0;
     }
-    mMoveRange = mult_val * u_var;
+    mMoveRange = 100.0f * u_var;
     u_var = current.angle.x >> 8 & 0xff;
     if (u_var == 0xff || u_var == 0) {
         mName = "E_OC";
@@ -2557,7 +2555,8 @@ cPhs__Step daE_OC_c::create() {
             fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
             fopAcM_SetMin(this, -200.0f, -200.0f, -200.0f);
             fopAcM_SetMax(this, 200.0f, 200.0f, 200.0f);
-            mAcch.Set(&current.pos, &old.pos, a_this, 1, &mAcchCir, &speed, NULL, NULL);
+            mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
+                      fopAcM_GetSpeed_p(this), NULL, NULL);
             if (0 == strcmp("D_MN05", dComIfGp_getStartStageName())
                 && dComIfGp_getStartStageRoomNo() == 0xc) {
                 mAcchCir.SetWallH(95.0f);
@@ -2566,12 +2565,11 @@ cPhs__Step daE_OC_c::create() {
             }
             mAcchCir.SetWallR(100.0f);
             if (mName == "E_OC") {
-                health = 40;
-                field_0x560 = 40;
+                field_0x560 = health = 40;
             } else {
-                health = 220;
-                field_0x560 = 220;
+                field_0x560 = health = 220;
             }
+
             mStts.Init(100.0f, 0, this);
             mSphs_cc[0].Set(E_OC_n::cc_sph_src);
             mSphs_cc[0].SetStts(&mStts);
@@ -2593,8 +2591,7 @@ cPhs__Step daE_OC_c::create() {
             mSound.setEnemyName("E_oc");
             mpSound = &mSound;
             field_0xe5a = 1;
-            shape_angle.x = 0;
-            current.angle.x = 0;
+            current.angle.x = shape_angle.x = 0;
             gravity = -5.0f;
             switch (field_0x6b4) {
                 case 2:

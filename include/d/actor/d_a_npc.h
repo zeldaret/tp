@@ -1033,6 +1033,7 @@ public:
         /* 5 */ LOOK_ATTN,
     };
 
+    daNpcF_c() { initialize(); }
     /* 80152014 */ BOOL execute();
     /* 801522AC */ int draw(BOOL, BOOL, f32, _GXColorS10*, BOOL);
     /* 80152614 */ static void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*,
@@ -1091,7 +1092,7 @@ public:
     /* 80155BC8 */ virtual void setParam();
     /* 80155BC0 */ virtual BOOL main();
     /* 80155BD8 */ virtual BOOL ctrlBtk();
-    /* 80155BBC */ virtual void adjustShapeAngle();
+    /* 80155BBC */ virtual void adjustShapeAngle() {}
     /* 8015276C */ virtual void setMtx();
     /* 801527FC */ virtual void setMtx2();
     /* 80155BB8 */ virtual void setAttnPos();
