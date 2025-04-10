@@ -1,7 +1,6 @@
 #ifndef D_A_OBJ_CRVGATE_H
 #define D_A_OBJ_CRVGATE_H
 
-#include "SSystem/SComponent/c_phase.h"
 #include "d/d_bg_s_acch.h"
 #include "d/d_bg_s_movebg_actor.h"
 #include "d/d_cc_d.h"
@@ -11,8 +10,12 @@
  * @class daObjCRVGATE_c
  * @brief Caravan Gate
  *
- * @details
- *
+ * @details Caravan Gate at Arbiter's Grounds Exterior at King Bulblin's Tent.
+ * The gate consists of two door objects that work as a pair. One door references
+ * the other through the mpDoorPair pointer. The door will move when the player
+ * touches it.
+ * At the end of the fight, the player rides the bullbo and crashes into the door,
+ * destroying it.
  */
 class daObjCRVGATE_c : public dBgS_MoveBgActor {
 public:
@@ -46,58 +49,52 @@ public:
     /* 80BD3074 */ int Delete();
 
 private:
-    /* 0x5A0 */ int mEventID;
-    /**/ bool mAudioCloseFlag;
-    /**/ bool mUninitFlag;
+    /* 0x5A0 */ s32 mEventID;
+    /* 0x5A4 */ bool mFlagGateClosed;
+    /* 0x5A5 */ bool field_0x5a5;
     /* 0x5A6 */ u8 field_0x5a6[2];
-    /**/ s16 mAction;
-    /**/ bool mDemoEventPlay;
-    /**/ u8 mDoorCnt;
-    /**/ u8 mFlagSetDoor;
-    /**/ bool mEventFlag;
-    /**/ bool mFlagDoorStill;
-    /**/ u8 mClosed;
-    /**/ bool mDoorLocated;
-    /**/ bool mDoorOpen;
-    /* 0x5B2 */ u8 field_0x5b2[2];
-    /**/ daObjCRVGATE_c* mpDoor;
-    /**/ float mFovX;
-    /**/ s16 mFovY;
-    /**/ cXyz mCamEye;
-    /**/ cXyz mCamCenter;
-    /* 0x5D8 */ csXyz mCloseAngle;
-    /* 0x5DE */ u8 field_0x5de[2];
-    /**/ cXyz mPos1;
-    /**/ cXyz mPos2;
-    /**/ cXyz mPos3;
+    /* 0x5A8 */ s16 mDoorTargetAngle;
+    /* 0x5AA */ bool mFlagDemoEventPlay;
+    /* 0x5AB */ u8 mDestructionCount;
+    /* 0x5AC */ u8 mKeyParam;
+    /* 0x5AD */ bool mEventFlag;
+    /* 0x5AE */ bool mFlagDoorStuck;
+    /* 0x5AF */ u8 mStatus;
+    /* 0x5B0 */ bool mDoorPairLoaded;
+    /* 0x5B1 */ bool mFlagDoorMove;
+    /* 0x5B4 */ daObjCRVGATE_c* mpDoorPair;
+    /* 0x5B8 */ f32 mFovY;
+    /* 0x5BC */ s16 field_0x5bc;
+    /* 0x5C0 */ cXyz mCamEye;
+    /* 0x5CC */ cXyz mCamCenter;
+    /* 0x5D8 */ csXyz mDoorOpenAngle;
+    /* 0x5E0 */ cXyz mPos;
+    /* 0x5EC */ cXyz mPosAccel;
+    /* 0x5F8 */ cXyz mPosTmp;
     /* 0x604 */ u8 field_0x604[6];
-    /**/ s16 mChaseAngle1;
-    /**/ s16 mChaseAngle2;
-    /**/ s16 mChaseAngle3;
+    /* 0x60A */ csXyz mMoveAngle;
     /* 0x610 */ csXyz mDoorVib;
-    /* 0x616 */ u8 field_0x616[2];
-    /**/ float mMinHeight;
+    /* 0x618 */ f32 mMinHeight;
     /* 0x61C */ cXyz mXyzSph[3];
-    /**/ s32 mDoorChild;
-    /**/ s16 mDoorY;
-    /**/ s16 mCylY;
-    /* 0x648 */ s16 mSomeDoorAngle1;
-    /**/ s16 mSomeDoorAngle2;
-    /**/ Z2SoundObjSimple mSoundObj;
-    /**/ s16 mCnt;
-    /**/ u8 field_0x66e[6];
-    /**/ J3DModel* mpModelGate;
-    /**/ J3DModel* mpModelKey;
+    /* 0x640 */ fpc_ProcID mDoorPairProcID;
+    /* 0x644 */ s16 mDoorY;
+    /* 0x646 */ s16 mDoorAngle;
+    /* 0x648 */ s16 mDoorSwingTargetAngle;
+    /* 0x64A */ s16 mDoorStep;
+    /* 0x64C */ Z2SoundObjSimple mSound;
+    /* 0x66C */ s16 field_0x66c;
+    /* 0x66E */ u8 field_0x66e[6];
+    /* 0x674 */ J3DModel* mpModelGate;
+    /* 0x678 */ J3DModel* mpModelKey;
     /* 0x67C */ request_of_phase_process_class mPhaseReq;
-    /**/ dBgS_AcchCir mAcchCir;
-    /**/ dBgS_ObjAcch mAcch;
-    /**/ dCcD_Stts mStts;
-    /* 0x8D8 */ dCcD_Sph mSph[3];    
+    /* 0x684 */ dBgS_AcchCir mAcchCir;
+    /* 0x6C4 */ dBgS_ObjAcch mAcch;
+    /* 0x89C */ dCcD_Stts mStts;
+    /* 0x8D8 */ dCcD_Sph mSph[3];
     /* 0xC80 */ dCcD_Cyl mCyl;
     /* 0xDBC */ u8 field_0xdbc[40];
 };
 
 STATIC_ASSERT(sizeof(daObjCRVGATE_c) == 0xde4);
-
 
 #endif /* D_A_OBJ_CRVGATE_H */
