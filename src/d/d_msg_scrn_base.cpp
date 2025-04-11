@@ -4,6 +4,7 @@
 #include "d/d_msg_object.h"
 #include "d/d_msg_out_font.h"
 #include "d/d_pane_class.h"
+#include "cstring.h"
 
 /* 8023C0DC-8023C124 236A1C 0048+00 0/0 9/9 0/0 .text            __ct__14dMsgScrnBase_cFv */
 dMsgScrnBase_c::dMsgScrnBase_c() {
@@ -29,8 +30,7 @@ void dMsgScrnBase_c::init() {
     field_0x4c = 0;
     mCharInfoPtr = NULL;
 
-    mFontSize.mSizeY = 0.0f;
-    mFontSize.mSizeX = 0.0f;
+    mFontSize.mSizeX = mFontSize.mSizeY = 0.0f;
     mRubySize = 0.0f;
     mTextBoxPosX = 0.0f;
     mTextBoxPosY = 0.0f;
@@ -86,11 +86,12 @@ void dMsgScrnBase_c::drawOutFont(f32 param_0, f32 param_1, f32 param_2) {
 }
 
 /* 8023C360-8023C3EC 236CA0 008C+00 0/0 2/2 0/0 .text            setString__14dMsgScrnBase_cFPcPc */
-void dMsgScrnBase_c::setString(char* i_stringA, char* i_stringB) {
+void dMsgScrnBase_c::setString(char* mpText, char* i_stringB) {
     for (int i = 0; i < 7; i++) {
         if (mpTm_c[i] != NULL) {
+            JUT_ASSERT(262, ((J2DTextBox*)(mpTm_c[i]->getPanePtr()))->getStringAllocByte() > std::strlen(mpText));
             if (i == 0) {
-                strcpy(((J2DTextBox*)mpTm_c[i]->getPanePtr())->getStringPtr(), i_stringA);
+                strcpy(((J2DTextBox*)mpTm_c[i]->getPanePtr())->getStringPtr(), mpText);
             } else {
                 strcpy(((J2DTextBox*)mpTm_c[i]->getPanePtr())->getStringPtr(), i_stringB);
             }
@@ -100,10 +101,11 @@ void dMsgScrnBase_c::setString(char* i_stringA, char* i_stringB) {
 
 /* 8023C3EC-8023C458 236D2C 006C+00 0/0 2/2 0/0 .text            setRubyString__14dMsgScrnBase_cFPc
  */
-void dMsgScrnBase_c::setRubyString(char* i_string) {
+void dMsgScrnBase_c::setRubyString(char* mpText) {
     for (int i = 0; i < 3; i++) {
         if (mpTmr_c[i] != NULL) {
-            strcpy(((J2DTextBox*)mpTmr_c[i]->getPanePtr())->getStringPtr(), i_string);
+            JUT_ASSERT(288, ((J2DTextBox*)(mpTmr_c[i]->getPanePtr()))->getStringAllocByte() > std::strlen(mpText));
+            strcpy(((J2DTextBox*)mpTmr_c[i]->getPanePtr())->getStringPtr(), mpText);
         }
     }
 }
@@ -139,7 +141,7 @@ void dMsgScrnBase_c::fontAlpha(f32 i_alpha) {
 
 /* 8023C574-8023C5C8 236EB4 0054+00 1/0 8/8 0/0 .text            isTalkNow__14dMsgScrnBase_cFv */
 bool dMsgScrnBase_c::isTalkNow() {
-    switch (dMsgObject_c::getStatus()) {
+    switch (dMsgObject_getMsgObjectClass()->getStatus()) {
     case 5:
     case 6:
     case 7:

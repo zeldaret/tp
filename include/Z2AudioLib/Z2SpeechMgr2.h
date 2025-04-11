@@ -33,7 +33,7 @@ struct Z2SpeechMgr2 : public JASGlobalInstance<Z2SpeechMgr2> {
 
     /* 0x000 */ JAISoundHandle field_0x0;
     /* 0x004 */ JAISoundHandle field_0x4;
-    /* 0x008 */ JMath::TRandom_fast_ random;
+    /* 0x008 */ JMath::TRandom_<JMath::TRandom_fast_> random;
     /* 0x00C */ Z2SpeechStarter mSpeech;
     /* 0x010 */ u16 mText[500];
     /* 0x3F8 */ s16 mTextNum;
