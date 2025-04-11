@@ -663,11 +663,11 @@ void daObjCRVGATE_c::setBaseMtx() {
         mDoMtx_stack_c::transM(0.0f, 55.0f, 0.0f);
     }
 
-    MTXCopy(mDoMtx_stack_c::get(), mpModelKey->mBaseTransformMtx);
+    mpModelKey->setBaseTRMtx(mDoMtx_stack_c::get());
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::YrotM(mDoorAngle);
-    MTXCopy(mDoMtx_stack_c::get(), mpModelGate->mBaseTransformMtx);
+    mpModelGate->setBaseTRMtx(mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
 
@@ -795,7 +795,7 @@ static int daObjCRVGATE_IsDelete(daObjCRVGATE_c* i_this) {
 /* 80BD2E88-80BD2ECC 002B68 0044+00 1/0 0/0 0/0 .text            Create__14daObjCRVGATE_cFv */
 int daObjCRVGATE_c::Create() {
     fopAcM_setCullSizeBox(this, -1000.0f, -500.0f, -1000.0f, 1000.0f, 500.0f, 1000.0f);
-    return 4;
+    return cPhs_COMPLEATE_e;
 }
 
 /* 80BD2ECC-80BD2FB8 002BAC 00EC+00 1/0 0/0 0/0 .text Execute__14daObjCRVGATE_cFPPA3_A4_f
