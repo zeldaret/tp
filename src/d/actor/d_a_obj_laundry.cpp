@@ -336,5 +336,6 @@ extern actor_process_profile_definition g_profile_Obj_Laundry = {
     fopAc_CULLBOX_CUSTOM_e,  // cullType
 };
 
-/* 80C520C8-80C520C8 0000C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-SECTION_DEAD static char const* const rodataPadding = "\0";
+static char* rodataPadding() {
+    return "\0";
+}
