@@ -1,9 +1,9 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
+#include <dolphin/types.h>
 
 extern u8 data_804511E0;
-extern u8 lit_569[];
 
 namespace JGadget {
 
@@ -18,7 +18,7 @@ typedef u32 (*ExtendFunc)(u32, u32, u32);
 template <typename T>
 struct TAllocator {
     static TAllocator get() {}
-    inline TAllocator() { _0 = lit_569[0]; }
+    inline TAllocator(u8 param_0) { _0 = param_0; }
     /* 0x0 */ u8 _0;
     /* 0x4 */ u32 _4;
     /* 0x8 */ u32 _8;

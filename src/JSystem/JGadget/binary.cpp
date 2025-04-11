@@ -33,7 +33,6 @@ JGadget::binary::parseVariableUInt_16_32_following(void const* buffer, u32* para
     return rv;
 }
 
-
 /* 802DC8C8-802DC910 2D7208 0048+00 0/0 4/4 0/0 .text
  * __dt__Q37JGadget6binary19TParse_header_blockFv               */
 JGadget::binary::TParse_header_block::~TParse_header_block() {

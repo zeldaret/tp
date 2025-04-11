@@ -179,7 +179,7 @@ public:
     static dCcD_SrcGObjInf const mStoneCcDObjInfo;
     static char* mCutNameList[6];
     static cutFunc mCutList[6];
-    static u8 mStoneCcDSph[64];
+    static dCcD_SrcSph mStoneCcDSph;
 private:
     /* 0x0E40 */ int field_0x0E40;
     /* 0x0E44 */ J3DModel* mModel1;

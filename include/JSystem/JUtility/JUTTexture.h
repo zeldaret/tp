@@ -68,7 +68,7 @@ public:
     void load(_GXTexMapID);
 
     const ResTIMG* getTexInfo() const { return mTexInfo; }
-    u8 getFormat() const { return mTexInfo->format; }
+    s32 getFormat() const { return mTexInfo->format; }
     s32 getTransparency() { return mTexInfo->alphaEnabled; }
     s32 getWidth() const { return mTexInfo->width; }
     s32 getHeight() const { return mTexInfo->height; }

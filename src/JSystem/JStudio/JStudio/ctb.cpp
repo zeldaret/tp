@@ -6,123 +6,15 @@
 #include "JSystem/JStudio/JStudio/ctb.h"
 #include "iterator.h"
 #include "string.h"
-#include "dol2asm.h"
 #include <algorithm.h>
 
-//
-// Types:
-//
-
-namespace std {
-void func_802815B4(void* _this, JGadget::TLinkList<JStudio::ctb::TObject, 12>::iterator,
-                   JGadget::TLinkList<JStudio::ctb::TObject, 12>::iterator, JStudio::object::TPRObject_ID_equal);
-};  // namespace std
-
-//
-// Forward References:
-//
-
-extern "C" void __dt__Q37JStudio3ctb7TObjectFv();
-extern "C" void __ct__Q37JStudio3ctb14TObject_TxyzRyFRCQ47JStudio3ctb4data13TParse_TBlock();
-extern "C" bool getScheme__Q37JStudio3ctb14TObject_TxyzRyCFv();
-extern "C" void __ct__Q37JStudio3ctb8TControlFv();
-extern "C" void __dt__Q37JStudio3ctb8TControlFv();
-extern "C" void appendObject__Q37JStudio3ctb8TControlFPQ37JStudio3ctb7TObject();
-extern "C" void removeObject__Q37JStudio3ctb8TControlFPQ37JStudio3ctb7TObject();
-extern "C" void destroyObject__Q37JStudio3ctb8TControlFPQ37JStudio3ctb7TObject();
-extern "C" void destroyObject_all__Q37JStudio3ctb8TControlFv();
-extern "C" void getObject__Q37JStudio3ctb8TControlFPCvUl();
-extern "C" void getObject_index__Q37JStudio3ctb8TControlFUl();
-extern "C" void __dt__Q37JStudio3ctb8TFactoryFv();
-extern "C" void create__Q37JStudio3ctb8TFactoryFRCQ47JStudio3ctb4data13TParse_TBlock();
-extern "C" void destroy__Q37JStudio3ctb8TFactoryFPQ37JStudio3ctb7TObject();
-extern "C" void __ct__Q37JStudio3ctb6TParseFPQ37JStudio3ctb8TControl();
-extern "C" void __dt__Q37JStudio3ctb6TParseFv();
-extern "C" void parseHeader_next__Q37JStudio3ctb6TParseFPPCvPUlUl();
-extern "C" void parseBlock_next__Q37JStudio3ctb6TParseFPPCvPUlUl();
-extern "C" void __dt__Q37JStudio3ctb14TObject_TxyzRyFv();
-extern "C" void func_802815B4(void* _this, JGadget::TLinkList<JStudio::ctb::TObject, 12>::iterator,
-                              JGadget::TLinkList<JStudio::ctb::TObject, 12>::iterator,
-                              JStudio::object::TPRObject_ID_equal);
-
-//
-// External References:
-//
-
-extern "C" void
-isEqual__Q37JStudio6object7TIDDataFRCQ37JStudio6object7TIDDataRCQ37JStudio6object7TIDData();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void __dt__Q37JGadget6binary19TParse_header_blockFv();
-extern "C" void __dt__Q27JGadget13TNodeLinkListFv();
-extern "C" void
-Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode();
-extern "C" void Erase__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode();
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_28();
-extern "C" u32 ga4cSignature__Q37JStudio3ctb4data[1 + 1 /* padding */];
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 803C4878-803C488C 021998 0014+00 2/2 0/0 0/0 .data            __vt__Q37JStudio3ctb6TParse */
-SECTION_DATA extern void* __vt__Q37JStudio3ctb6TParse[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__Q37JStudio3ctb6TParseFv,
-    (void*)parseHeader_next__Q37JStudio3ctb6TParseFPPCvPUlUl,
-    (void*)parseBlock_next__Q37JStudio3ctb6TParseFPPCvPUlUl,
-};
-
-/* 803C488C-803C48A0 0219AC 0014+00 1/1 4/4 0/0 .data __vt__Q37JGadget6binary19TParse_header_block
- */
-SECTION_DATA extern void* __vt__Q37JGadget6binary19TParse_header_block[5] = {
-    (void*)NULL /* RTTI */, (void*)NULL, (void*)NULL, (void*)NULL, (void*)NULL,
-};
-
-/* 803C48A0-803C48B4 0219C0 0014+00 1/1 1/1 0/0 .data            __vt__Q37JStudio3ctb8TFactory */
-SECTION_DATA extern void* __vt__Q37JStudio3ctb8TFactory[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__Q37JStudio3ctb8TFactoryFv,
-    (void*)create__Q37JStudio3ctb8TFactoryFRCQ47JStudio3ctb4data13TParse_TBlock,
-    (void*)destroy__Q37JStudio3ctb8TFactoryFPQ37JStudio3ctb7TObject,
-};
-
-/* 803C48B4-803C48C0 0219D4 000C+00 2/2 0/0 0/0 .data            __vt__Q37JStudio3ctb8TControl */
-SECTION_DATA extern void* __vt__Q37JStudio3ctb8TControl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__Q37JStudio3ctb8TControlFv,
-};
-
-/* 803C48C0-803C48D0 0219E0 0010+00 2/2 0/0 0/0 .data __vt__Q37JStudio3ctb14TObject_TxyzRy */
-SECTION_DATA extern void* __vt__Q37JStudio3ctb14TObject_TxyzRy[4] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__Q37JStudio3ctb14TObject_TxyzRyFv,
-    (void*)getScheme__Q37JStudio3ctb14TObject_TxyzRyCFv,
-};
-
-/* 803C48D0-803C48E0 0219F0 0010+00 2/2 0/0 0/0 .data            __vt__Q37JStudio3ctb7TObject */
-SECTION_DATA extern void* __vt__Q37JStudio3ctb7TObject[4] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-};
-
 /* 80280F18-80280F60 27B858 0048+00 1/1 0/0 0/0 .text            __dt__Q37JStudio3ctb7TObjectFv */
-JStudio::ctb::TObject::~TObject() {
-}
+JStudio::ctb::TObject::~TObject() {}
 
 /* 80280F60-80280FBC 27B8A0 005C+00 1/1 0/0 0/0 .text
  * __ct__Q37JStudio3ctb14TObject_TxyzRyFRCQ47JStudio3ctb4data13TParse_TBlock */
-JStudio::ctb::TObject_TxyzRy::TObject_TxyzRy(JStudio::ctb::data::TParse_TBlock const& param_0) : TObject(param_0.get_ID(), param_0.get_IDSize(), param_0.getContent()) {
-
-}
+JStudio::ctb::TObject_TxyzRy::TObject_TxyzRy(JStudio::ctb::data::TParse_TBlock const& param_0)
+    : TObject(param_0.get_ID(), param_0.get_IDSize(), param_0.getContent()) {}
 
 /* 80280FBC-80280FC4 27B8FC 0008+00 1/0 0/0 0/0 .text getScheme__Q37JStudio3ctb14TObject_TxyzRyCFv
  */
@@ -134,10 +26,7 @@ int JStudio::ctb::TObject_TxyzRy::getScheme() const {
 JStudio::ctb::TControl::TControl() : pFactory_(NULL) {}
 
 /* 80280FF4-80281060 27B934 006C+00 1/0 1/1 0/0 .text            __dt__Q37JStudio3ctb8TControlFv */
-// JStudio::ctb::TControl::~TControl() {
-extern "C" void __dt__Q37JStudio3ctb8TControlFv() {
-    // NONMATCHING
-}
+JStudio::ctb::TControl::~TControl() {}
 
 /* 80281060-802810AC 27B9A0 004C+00 1/1 0/0 0/0 .text
  * appendObject__Q37JStudio3ctb8TControlFPQ37JStudio3ctb7TObject */
@@ -190,10 +79,7 @@ JStudio::ctb::TObject* JStudio::ctb::TControl::getObject_index(u32 param_0) {
 }
 
 /* 80281274-802812BC 27BBB4 0048+00 1/0 1/1 0/0 .text            __dt__Q37JStudio3ctb8TFactoryFv */
-// JStudio::ctb::TFactory::~TFactory() {
-extern "C" void __dt__Q37JStudio3ctb8TFactoryFv() {
-    // NONMATCHING
-}
+JStudio::ctb::TFactory::~TFactory() {}
 
 /* 802812BC-80281320 27BBFC 0064+00 1/0 0/0 0/0 .text
  * create__Q37JStudio3ctb8TFactoryFRCQ47JStudio3ctb4data13TParse_TBlock */
@@ -214,15 +100,11 @@ void JStudio::ctb::TFactory::destroy(JStudio::ctb::TObject* param_0) {
 
 /* 8028135C-8028137C 27BC9C 0020+00 0/0 1/1 0/0 .text
  * __ct__Q37JStudio3ctb6TParseFPQ37JStudio3ctb8TControl         */
-JStudio::ctb::TParse::TParse(JStudio::ctb::TControl* param_0) {
-    // NONMATCHING
-}
+// NONMATCHING TParse_header_block vtable location
+JStudio::ctb::TParse::TParse(JStudio::ctb::TControl* param_0) : pControl_(param_0) {}
 
 /* 8028137C-802813DC 27BCBC 0060+00 1/0 1/1 0/0 .text            __dt__Q37JStudio3ctb6TParseFv */
-// JStudio::ctb::TParse::~TParse() {
-extern "C" void __dt__Q37JStudio3ctb6TParseFv() {
-    // NONMATCHING
-}
+JStudio::ctb::TParse::~TParse() {}
 
 /* 802813DC-80281470 27BD1C 0094+00 1/0 0/0 0/0 .text
  * parseHeader_next__Q37JStudio3ctb6TParseFPPCvPUlUl            */
@@ -282,19 +164,4 @@ bool JStudio::ctb::TParse::parseBlock_next(void const** ppData_inout, u32* puDat
     } 
     pControl->appendObject(pTVar6);
     return true;
-}
-
-/* 80281554-802815B4 27BE94 0060+00 1/0 0/0 0/0 .text __dt__Q37JStudio3ctb14TObject_TxyzRyFv */
-// JStudio::ctb::TObject_TxyzRy::~TObject_TxyzRy() {
-extern "C" void __dt__Q37JStudio3ctb14TObject_TxyzRyFv() {
-    // NONMATCHING
-}
-
-/* 802815B4-80281648 27BEF4 0094+00 1/1 0/0 0/0 .text
- * find_if<Q37JGadget37TLinkList<Q37JStudio3ctb7TObject,-12>8iterator,Q37JStudio6object18TPRObject_ID_equal>__3stdFQ37JGadget37TLinkList<Q37JStudio3ctb7TObject,-12>8iteratorQ37JGadget37TLinkList<Q37JStudio3ctb7TObject,-12>8iteratorQ37JStudio6object18TPRObject_ID_equal
- */
-extern "C" void func_802815B4(void* _this, JGadget::TLinkList<JStudio::ctb::TObject, 12>::iterator param_0,
-                                  JGadget::TLinkList<JStudio::ctb::TObject, 12>::iterator param_1,
-                                  JStudio::object::TPRObject_ID_equal param_2) {
-    // NONMATCHING
 }

@@ -44,16 +44,16 @@ namespace math {
         return VECMag(&local_18);
     }
 
-    inline void getFromTransformation_S(CMtxP param_1, Vec* param_2) {
-        param_2->x = getFromTransformation_Sn(param_1, 0);
-        param_2->y = getFromTransformation_Sn(param_1, 1);
-        param_2->z = getFromTransformation_Sn(param_1, 2);
+    inline void getFromTransformation_S(Vec* param_1, CMtxP param_2) {
+        param_1->x = getFromTransformation_Sn(param_2, 0);
+        param_1->y = getFromTransformation_Sn(param_2, 1);
+        param_1->z = getFromTransformation_Sn(param_2, 2);
     }
 
-    inline void getFromTransformation_T(CMtxP param_1, Vec* param_2) {
-        param_2->x = param_1[0][3];
-        param_2->y = param_1[1][3];
-        param_2->z = param_1[2][3];
+    inline void getFromTransformation_T(Vec* param_1, CMtxP param_2) {
+        param_1->x = param_2[0][3];
+        param_1->y = param_2[1][3];
+        param_1->z = param_2[2][3];
     }
 
     inline void getTransformation_T(Mtx mtx, const Vec* param_2) {

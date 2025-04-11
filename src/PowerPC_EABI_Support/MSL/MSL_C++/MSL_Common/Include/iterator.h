@@ -1,6 +1,8 @@
 #ifndef MSL_ITERATOR_H_
 #define MSL_ITERATOR_H_
 
+#include <stddef.h>
+
 namespace std {
 struct input_iterator_tag {};
 struct output_iterator_tag {};

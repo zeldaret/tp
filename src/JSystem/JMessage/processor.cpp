@@ -7,102 +7,6 @@
 #include "JSystem/JMessage/control.h"
 #include "JSystem/JUtility/JUTAssert.h"
 
-//
-// Forward References:
-//
-
-extern "C" void __dt__Q28JMessage10TReferenceFv();
-extern "C" bool do_word__Q28JMessage10TReferenceCFUl();
-extern "C" void __dt__Q28JMessage10TProcessorFv();
-extern "C" void reset__Q28JMessage10TProcessorFv();
-extern "C" void stack_pushCurrent__Q28JMessage10TProcessorFPCc();
-extern "C" void stack_popCurrent__Q28JMessage10TProcessorFv();
-extern "C" void getResource_groupID__Q28JMessage10TProcessorCFUs();
-extern "C" void toMessageCode_messageID__Q28JMessage10TProcessorCFUlUlPb();
-extern "C" void on_select_begin__Q28JMessage10TProcessorFPFPQ28JMessage10TProcessor_PCcPCvPCcUl();
-extern "C" void on_select_end__Q28JMessage10TProcessorFv();
-extern "C" void on_select_separate__Q28JMessage10TProcessorFv();
-extern "C" void do_reset__Q28JMessage10TProcessorFv();
-extern "C" void do_begin__Q28JMessage10TProcessorFPCvPCc();
-extern "C" void do_end__Q28JMessage10TProcessorFv();
-extern "C" void do_character__Q28JMessage10TProcessorFi();
-extern "C" bool do_tag__Q28JMessage10TProcessorFUlPCvUl();
-extern "C" void do_select_begin__Q28JMessage10TProcessorFUl();
-extern "C" void do_select_end__Q28JMessage10TProcessorFv();
-extern "C" void do_select_separate__Q28JMessage10TProcessorFv();
-extern "C" void on_tag___Q28JMessage10TProcessorFv();
-extern "C" void do_resetStatus___Q28JMessage10TProcessorFPCc();
-extern "C" bool do_setBegin_isReady___Q28JMessage10TProcessorCFv();
-extern "C" void do_tag___Q28JMessage10TProcessorFUlPCvUl();
-extern "C" void process_character___Q28JMessage10TProcessorFv();
-extern "C" void process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor();
-extern "C" void process_onCharacterEnd_select___Q28JMessage10TProcessorFPQ28JMessage10TProcessor();
-extern "C" void process_onSelect_limited___Q28JMessage10TProcessorFPQ28JMessage10TProcessor();
-extern "C" void process_onSelect___Q28JMessage10TProcessorFPQ28JMessage10TProcessor();
-extern "C" void
-__ct__Q28JMessage18TSequenceProcessorFPCQ28JMessage10TReferencePQ28JMessage8TControl();
-extern "C" void __dt__Q28JMessage18TSequenceProcessorFv();
-extern "C" void process__Q28JMessage18TSequenceProcessorFPCc();
-extern "C" void on_isReady__Q28JMessage18TSequenceProcessorFv();
-extern "C" void
-on_jump_register__Q28JMessage18TSequenceProcessorFPFPCQ28JMessage18TSequenceProcessor_PCvUl();
-extern "C" void on_jump_isReady__Q28JMessage18TSequenceProcessorFv();
-extern "C" void on_jump__Q28JMessage18TSequenceProcessorFPCvPCc();
-extern "C" void
-on_branch_register__Q28JMessage18TSequenceProcessorFPFPCQ28JMessage18TSequenceProcessorUl_PCvPCvUl();
-extern "C" void on_branch_query__Q28JMessage18TSequenceProcessorFUl();
-extern "C" void on_branch_queryResult__Q28JMessage18TSequenceProcessorFv();
-extern "C" void on_branch__Q28JMessage18TSequenceProcessorFPCvPCc();
-extern "C" bool do_isReady__Q28JMessage18TSequenceProcessorFv();
-extern "C" bool do_jump_isReady__Q28JMessage18TSequenceProcessorFv();
-extern "C" void do_jump__Q28JMessage18TSequenceProcessorFPCvPCc();
-extern "C" void do_branch_query__Q28JMessage18TSequenceProcessorFUl();
-extern "C" s32 do_branch_queryResult__Q28JMessage18TSequenceProcessorFv();
-extern "C" void do_branch__Q28JMessage18TSequenceProcessorFPCvPCc();
-extern "C" void do_resetStatus___Q28JMessage18TSequenceProcessorFPCc();
-extern "C" void do_setBegin_isReady___Q28JMessage18TSequenceProcessorCFv();
-extern "C" void do_begin___Q28JMessage18TSequenceProcessorFPCvPCc();
-extern "C" void do_end___Q28JMessage18TSequenceProcessorFv();
-extern "C" void do_tag___Q28JMessage18TSequenceProcessorFUlPCvUl();
-extern "C" void process_setMessageIndex_reserved___Q28JMessage18TSequenceProcessorFUs();
-extern "C" void
-process_setMessageCode___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUsUs();
-extern "C" void
-process_onJump_limited___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessor();
-extern "C" void
-process_onJump___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessor();
-extern "C" void
-process_onBranch_limited___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUl();
-extern "C" void
-process_onBranch___Q28JMessage18TSequenceProcessorFPCQ28JMessage18TSequenceProcessorUl();
-extern "C" void __ct__Q28JMessage19TRenderingProcessorFPCQ28JMessage10TReference();
-extern "C" void __dt__Q28JMessage19TRenderingProcessorFv();
-extern "C" void process__Q28JMessage19TRenderingProcessorFPCc();
-extern "C" void do_begin___Q28JMessage19TRenderingProcessorFPCvPCc();
-extern "C" void do_end___Q28JMessage19TRenderingProcessorFv();
-extern "C" void do_tag___Q28JMessage19TRenderingProcessorFUlPCvUl();
-extern "C" void on_message__Q28JMessage10TProcessorCFUl();
-extern "C" void getMessageText_messageCode__Q28JMessage10TProcessorCFUl();
-
-//
-// External References:
-//
-
-extern "C" void setMessageCode_inSequence___Q28JMessage8TControlFPCQ28JMessage10TProcessorUsUs();
-extern "C" void toMessageIndex_messageID__Q28JMessage9TResourceCFUlUlPb();
-extern "C" void Get_groupID__Q38JMessage18TResourceContainer10TCResourceFUs();
-extern "C" void __dl__FPv();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-
-//
-// Declarations:
-//
-
 /* 802A7AF8-802A7B40 2A2438 0048+00 1/0 2/2 0/0 .text            __dt__Q28JMessage10TReferenceFv */
 JMessage::TReference::~TReference() {}
 
@@ -152,13 +56,14 @@ const JMessage::TResource* JMessage::TProcessor::getResource_groupID(u16 groupID
 
 /* 802A7CD4-802A7E38 2A2614 0164+00 0/0 1/1 0/0 .text
  * toMessageCode_messageID__Q28JMessage10TProcessorCFUlUlPb     */
-// NONMATCHING - TContainerEnumerator_const stack issues
-u32 JMessage::TProcessor::toMessageCode_messageID(u32 param_0, u32 param_1,
-                                                      bool* param_2) const {
+// NONMATCHING regalloc
+u32 JMessage::TProcessor::toMessageCode_messageID(u32 param_0, u32 param_1, bool* param_2) const {
     const TResource* this_00 = getResourceCache();
-    u16 uVar4;
-    if (this_00 != NULL && (uVar4 = this_00->toMessageIndex_messageID(param_0, param_1, param_2)) != 0xffff) {
-        return uVar4 | (this_00->getGroupID() << 16);
+    if (this_00 != NULL) {
+        u16 uVar4 = this_00->toMessageIndex_messageID(param_0, param_1, param_2);
+        if (uVar4 != 0xffff) {
+            return uVar4 | (this_00->getGroupID() << 16);
+        }
     }
     TResourceContainer* this_01 = getResourceContainer();
     if (this_01 == NULL) {
@@ -167,13 +72,15 @@ u32 JMessage::TProcessor::toMessageCode_messageID(u32 param_0, u32 param_1,
 
     JGadget::TContainerEnumerator_const<JMessage::TResource, 0> enumerator(this_01->getResourceContainer());
     const TResource* this_02;
-    while (!enumerator) {
+    while (enumerator) {
         this_02 = (const TResource*)&(*enumerator);
-        if (this_02 == this_00 || (uVar4 = this_02->toMessageIndex_messageID(param_0, param_1, param_2)) == 0xffff) {
-            continue;
+        if (this_02 != this_00) {
+            u16 uVar4 = this_02->toMessageIndex_messageID(param_0, param_1, param_2);
+            if (uVar4 != 0xffff) {
+                ((JMessage::TProcessor*)this)->pResourceCache_ = this_02;
+                return uVar4 | (this_02->getGroupID() << 0x10);
+            }
         }
-        ((JMessage::TProcessor*)this)->pResourceCache_ = this_02;
-        return uVar4 | (this_02->getGroupID() << 0x10);
     }
     return -1;
 }
@@ -280,11 +187,11 @@ void JMessage::TProcessor::do_tag_(u32 uTag, void const* data, u32 uSize) {
         switch (code) {
         case 4:
             stack_pushCurrent(
-                on_word(JGadget::binary::TParseValue<u32, TParseValue_endian_big_>::parse(data)));
+                on_word(JGadget::binary::TParseValue<u32, JGadget::binary::TParseValue_endian_big_>::parse(data)));
             break;
         case 5:
             stack_pushCurrent(on_message(
-                JGadget::binary::TParseValue<u32, TParseValue_endian_big_>::parse(data)));
+                JGadget::binary::TParseValue<u32, JGadget::binary::TParseValue_endian_big_>::parse(data)));
             break;
         }
         break;
@@ -353,7 +260,7 @@ bool JMessage::TProcessor::process_onCharacterEnd_select_(JMessage::TProcessor* 
 /* 802A833C-802A8358 2A2C7C 001C+00 1/1 0/0 0/0 .text
  * process_onSelect_limited___Q28JMessage10TProcessorFPQ28JMessage10TProcessor */
 const char* JMessage::TProcessor::process_onSelect_limited_(JMessage::TProcessor* pThis) {
-    u16 data = JGadget::binary::TParseValue<u16, TParseValue_endian_big_>::parse((u16*)pThis->oProcess_.rData.pOffset);
+    u16 data = JGadget::binary::TParseValue<u16, JGadget::binary::TParseValue_endian_big_>::parse((u16*)pThis->oProcess_.rData.pOffset);
 
     pThis->oProcess_.rData.pOffset =
         (void*)((u8*)pThis->oProcess_.rData.pOffset + 2);
@@ -364,7 +271,7 @@ const char* JMessage::TProcessor::process_onSelect_limited_(JMessage::TProcessor
 /* 802A8358-802A8374 2A2C98 001C+00 1/1 0/0 0/0 .text
  * process_onSelect___Q28JMessage10TProcessorFPQ28JMessage10TProcessor */
 const char* JMessage::TProcessor::process_onSelect_(JMessage::TProcessor* pThis) {
-    u32 data = JGadget::binary::TParseValue<u32, TParseValue_endian_big_>::parse((u32*)pThis->oProcess_.rData.pOffset);
+    u32 data = JGadget::binary::TParseValue<u32, JGadget::binary::TParseValue_endian_big_>::parse((u32*)pThis->oProcess_.rData.pOffset);
 
     pThis->oProcess_.rData.pOffset =
         (void*)((u8*)pThis->oProcess_.rData.pOffset + 4);
@@ -388,7 +295,7 @@ const char* JMessage::TSequenceProcessor::process(char const* param_0) {
         switch (eStatus_) {
         case STATUS_NORMAL:
             break;
-        case STATUS_JUMP:
+        case STATUS_JUMP: {
             if (!on_jump_isReady()) {
                 return pszCurrent_;
             }
@@ -399,6 +306,7 @@ const char* JMessage::TSequenceProcessor::process(char const* param_0) {
                 on_jump(data, pControl_->getMessageText_begin());
             }
             break;
+        }
         case STATUS_BRANCH:
             u32 tmp = on_branch_queryResult();
             if (tmp > 0x7FFFFFFF) {
@@ -564,10 +472,11 @@ void JMessage::TSequenceProcessor::do_tag_(u32 uTag, void const* data, u32 uSize
         case 2:
         case 3:
             break;
-        case 6:
-            u32 tmp = JGadget::binary::TParseValue<u32, TParseValue_endian_big_>::parse(temp);
+        case 6: {
+            u32 tmp = JGadget::binary::TParseValue<u32, JGadget::binary::TParseValue_endian_big_>::parse(temp);
             on_jump_register(process_onJump_, tmp);
             break;
+        }
         case 7:
             break;
         default:
@@ -589,12 +498,12 @@ void JMessage::TSequenceProcessor::do_tag_(u32 uTag, void const* data, u32 uSize
         break;
     case 0xF8:
         on_branch_register(process_onBranch_limited_, temp + 2,
-                           JGadget::binary::TParseValue<u16, TParseValue_endian_big_>::parse(temp));
+                           JGadget::binary::TParseValue<u16, JGadget::binary::TParseValue_endian_big_>::parse(temp));
         on_branch_query(code);
         break;
     case 0xF7:
         on_branch_register(process_onBranch_, temp + 2,
-                           JGadget::binary::TParseValue<u16, TParseValue_endian_big_>::parse(temp));
+                           JGadget::binary::TParseValue<u16, JGadget::binary::TParseValue_endian_big_>::parse(temp));
         on_branch_query(code);
         break;
     default:
@@ -608,9 +517,10 @@ void JMessage::TSequenceProcessor::do_tag_(u32 uTag, void const* data, u32 uSize
 // NONMATCHING
 void JMessage::TSequenceProcessor::process_setMessageIndex_reserved_(u16 u16Index) {
     JUT_ASSERT(890, u16Index >= 0xff00);
-    if (u16Index != -1) {
+    switch (u16Index) {
+    case 0xffff:
         return;
-    } 
+    }
 }
 
 /* 802A8944-802A89B8 2A3284 0074+00 4/4 0/0 0/0 .text
@@ -651,7 +561,7 @@ const void*
 JMessage::TSequenceProcessor::process_onBranch_limited_(JMessage::TSequenceProcessor const* param_0,
                                                         u32 uTargetIndex) {
     return process_setMessageIndex_(
-        param_0, JGadget::binary::TParseValue<u16, TParseValue_endian_big_>::parse(
+        param_0, JGadget::binary::TParseValue<u16, JGadget::binary::TParseValue_endian_big_>::parse(
                      param_0->oProcess2_.process.branch_process.pTarget, uTargetIndex));
 }
 
@@ -661,7 +571,7 @@ const void*
 JMessage::TSequenceProcessor::process_onBranch_(JMessage::TSequenceProcessor const* param_0,
                                                 u32 uTargetIndex) {
     return process_setMessageCode_(
-        param_0, JGadget::binary::TParseValue<u32, TParseValue_endian_big_>::parse(
+        param_0, JGadget::binary::TParseValue<u32, JGadget::binary::TParseValue_endian_big_>::parse(
                      param_0->oProcess2_.process.branch_process.pTarget, uTargetIndex));
 }
 
@@ -728,15 +638,4 @@ void JMessage::TRenderingProcessor::do_tag_(u32 uTag, void const* data, u32 uSiz
         TProcessor::do_tag_(uTag, data, uSize);
         break;
     }
-}
-
-/* 802A8C24-802A8C44 2A3564 0020+00 1/1 0/0 0/0 .text on_message__Q28JMessage10TProcessorCFUl */
-const char* JMessage::TProcessor::on_message(u32 param_0) const {
-    return getMessageText_messageCode(param_0);
-}
-
-/* 802A8C44-802A8CDC 2A3584 0098+00 1/1 0/0 0/0 .text
- * getMessageText_messageCode__Q28JMessage10TProcessorCFUl      */
-const char* JMessage::TProcessor::getMessageText_messageCode(u32 param_0) const {
-    return getMessageText_messageCode(param_0 >> 0x10, param_0 & 0xFFFF);
 }

@@ -8,65 +8,6 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTAssert.h"
 
-//
-// Types:
-//
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__16JASBasicWaveBankFv();
-extern "C" void __dt__16JASBasicWaveBankFv();
-extern "C" void __dt__Q216JASBasicWaveBank11TWaveHandleFv();
-extern "C" void getWaveGroup__16JASBasicWaveBankFUl();
-extern "C" void setGroupCount__16JASBasicWaveBankFUlP7JKRHeap();
-extern "C" void setWaveTableSize__16JASBasicWaveBankFUlP7JKRHeap();
-extern "C" void incWaveTable__16JASBasicWaveBankFPCQ216JASBasicWaveBank10TWaveGroup();
-extern "C" void decWaveTable__16JASBasicWaveBankFPCQ216JASBasicWaveBank10TWaveGroup();
-extern "C" void getWaveHandle__16JASBasicWaveBankCFUl();
-extern "C" void
-setWaveInfo__16JASBasicWaveBankFPQ216JASBasicWaveBank10TWaveGroupiUsRC11JASWaveInfo();
-extern "C" void __ct__Q216JASBasicWaveBank10TWaveGroupFv();
-extern "C" void __dt__Q216JASBasicWaveBank10TWaveGroupFv();
-extern "C" void setWaveCount__Q216JASBasicWaveBank10TWaveGroupFUlP7JKRHeap();
-extern "C" void onLoadDone__Q216JASBasicWaveBank10TWaveGroupFv();
-extern "C" void onEraseDone__Q216JASBasicWaveBank10TWaveGroupFv();
-extern "C" void getWaveID__Q216JASBasicWaveBank10TWaveGroupCFi();
-extern "C" void getWavePtr__Q216JASBasicWaveBank11TWaveHandleCFv();
-extern "C" void __dt__11JASWaveBankFv();
-extern "C" void __dt__13JASWaveHandleFv();
-extern "C" void __ct__Q216JASBasicWaveBank11TWaveHandleFv();
-extern "C" void __ct__Q216JASBasicWaveBank14TGroupWaveInfoFv();
-extern "C" void getWaveInfo__Q216JASBasicWaveBank11TWaveHandleCFv();
-extern "C" void getWaveArc__16JASBasicWaveBankFUl();
-extern "C" void getArcCount__16JASBasicWaveBankCFv();
-extern "C" u8 mNoLoad__16JASBasicWaveBank[4 + 4 /* padding */];
-
-//
-// External References:
-//
-
-extern "C" void __ct__10JASWaveArcFv();
-extern "C" void __dt__10JASWaveArcFv();
-extern "C" void onDispose__10JASWaveArcFv();
-extern "C" void* __nwa__FUlP7JKRHeapi();
-extern "C" void __dl__FPv();
-extern "C" void __dla__FPv();
-extern "C" void __destroy_new_array();
-extern "C" void __construct_new_array();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_29();
-extern "C" u32 one__11JASWaveInfo[1 + 1 /* padding */];
-
-//
-// Declarations:
-//
-
 /* 802984F8-80298558 292E38 0060+00 0/0 1/1 0/0 .text            __ct__16JASBasicWaveBankFv */
 JASBasicWaveBank::JASBasicWaveBank() {
     mWaveTable = NULL;

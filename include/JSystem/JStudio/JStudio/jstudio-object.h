@@ -2,6 +2,7 @@
 #define JSTUDIO_OBJECT_H
 
 #include "JSystem/JStudio/JStudio/jstudio-control.h"
+#include "global.h"
 #include "limits.h"
 #include "math.h"
 
@@ -27,7 +28,7 @@ struct TVariableValue {
         /* 80285E0C */ virtual ~TOutput() = 0;
     };
 
-    struct TOutput_none_ {
+    struct TOutput_none_ : TOutput {
         /* 80285F6C */ ~TOutput_none_();
         /* 80285FCC */ void operator()(f32, JStudio::TAdaptor*) const;
     };
@@ -36,7 +37,7 @@ struct TVariableValue {
     /* 80285EB8 */ static void update_immediate_(JStudio::TVariableValue*, f64);
     /* 80285ECC */ static void update_time_(JStudio::TVariableValue*, f64);
     /* 80285F08 */ static void update_functionValue_(JStudio::TVariableValue*, f64);
-    /* 8028B568 */ TVariableValue() : field_0x4(0), field_0x8(NULL), pOutput_((TOutput*)soOutput_none_) {}
+    /* 8028B568 */ TVariableValue() : field_0x4(0), field_0x8(NULL), pOutput_(&soOutput_none_) {}
 
     void setValue_immediate(f32 value) {
         field_0x8 = &update_immediate_;
@@ -83,10 +84,10 @@ struct TVariableValue {
     }
 
     void setOutput(const TOutput* param_1) {
-        pOutput_ = (param_1 != NULL) ? param_1 : (TOutput*)soOutput_none_;
+        pOutput_ = (param_1 != NULL) ? param_1 : &soOutput_none_;
     }
 
-    static u8 soOutput_none_[4 + 4 /* padding */];
+    static TOutput_none_ soOutput_none_;
 
     /* 0x00 */ f32 mValue;
     /* 0x04 */ u32 field_0x4;
