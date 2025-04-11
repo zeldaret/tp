@@ -12,17 +12,17 @@
  * @details
  *
  */
- class LaundJoint_c {
-    public:
-        /* 80C51D2C */ ~LaundJoint_c();
-        /* 80C51EC0 */ LaundJoint_c();
-    
-        cXyz pos1;
-        cXyz pos2;
-        cXyz pos3;
-        cXyz pos4;
-        csXyz angle;
-    };
+class LaundJoint_c {
+public:
+    /* 80C51D2C */ ~LaundJoint_c();
+    /* 80C51EC0 */ LaundJoint_c();
+
+    cXyz pos1;
+    cXyz pos2;
+    cXyz pos3;
+    cXyz pos4;
+    csXyz angle;
+};
 
 class daObjLdy_c : public fopAc_ac_c {
 public:
@@ -41,6 +41,7 @@ public:
     inline int daObjLdy_Draw();
     inline int daObjLdy_Execute();
 
+private:
     static f32 const M_attr[12];
     static u8 const M_attr_u8[4];
 

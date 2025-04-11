@@ -206,8 +206,6 @@ static int nodeCallBack(J3DJoint* joint, int callbackCondition) {
 /* 80C520F0-80C520F4 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "J_Sentaku";
 
-
-
 int daObjLdy_c::getObjType() {
     return fopAcM_GetParam(this) & 0xff;
 }
@@ -284,35 +282,31 @@ daObjLdy_c::~daObjLdy_c() {
 
 /* 80C51BE4-80C51D2C 000CC4 0148+00 1/0 0/0 0/0 .text            daObjLdy_Delete__FP10daObjLdy_c */
 static int daObjLdy_Delete(daObjLdy_c* i_this) {
-    fopAcM_GetID(i_this);
     i_this->~daObjLdy_c();
-
     return 1;
 }
 
 /* 80C51D2C-80C51D68 000E0C 003C+00 2/2 0/0 0/0 .text            __dt__12LaundJoint_cFv */
 LaundJoint_c::~LaundJoint_c() {}
 
-int daObjLdy_c::create(){
-    
-}
-
-/* 80C51D68-80C51EC0 000E48 0158+00 1/0 0/0 0/0 .text            daObjLdy_Create__FP10fopAc_ac_c */
-static int daObjLdy_Create(fopAc_ac_c* i_this) {
-    daObjLdy_c* a_this = static_cast<daObjLdy_c*>(i_this);
-    fopAcM_SetupActor(a_this, daObjLdy_c);
-
-    int phase = dComIfG_resLoad(&a_this->mPhase, l_arcName);
+int daObjLdy_c::create() {
+    fopAcM_SetupActor(this, daObjLdy_c);
+    int phase = dComIfG_resLoad(&mPhase, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {
-        if (!fopAcM_entrySolidHeap(a_this, createSolidHeap, 0x9a0)) {
+        if (!fopAcM_entrySolidHeap(this, createSolidHeap, 0x9a0)) {
             phase = cPhs_ERROR_e;
         } else {
-            a_this->create_init();
-            i_this->cullMtx = a_this->mMtx;
+            create_init();
+            fopAcM_SetMtx(this, mMtx);
         }
     }
 
     return phase;
+}
+
+/* 80C51D68-80C51EC0 000E48 0158+00 1/0 0/0 0/0 .text            daObjLdy_Create__FP10fopAc_ac_c */
+static int daObjLdy_Create(fopAc_ac_c* i_this) {
+    return ((daObjLdy_c*)i_this)->create();
 }
 
 /* 80C51EC0-80C51EC4 000FA0 0004+00 1/1 0/0 0/0 .text            __ct__12LaundJoint_cFv */
@@ -321,10 +315,8 @@ LaundJoint_c::LaundJoint_c() {
 }
 /* 80C520F4-80C52114 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjLdy_Method */
 static actor_method_class l_daObjLdy_Method = {
-    (process_method_func)daObjLdy_Create,
-    (process_method_func)daObjLdy_Delete,
-    (process_method_func)daObjLdy_Execute,
-    (process_method_func)daObjLdy_IsDelete,
+    (process_method_func)daObjLdy_Create,  (process_method_func)daObjLdy_Delete,
+    (process_method_func)daObjLdy_Execute, (process_method_func)daObjLdy_IsDelete,
     (process_method_func)daObjLdy_Draw,
 };
 
