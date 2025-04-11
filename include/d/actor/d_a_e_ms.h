@@ -2,6 +2,7 @@
 #define D_A_E_MS_H
 #include "d/d_bg_s_acch.h"
 #include "d/d_cc_d.h"
+#include "d/d_cc_uty.h"
 #include "f_op/f_op_actor_mng.h"
 
 /**
@@ -40,9 +41,12 @@ public:
     /* 0x694 */ u8 field_0x694[0x6d8 - 0x694];
     /* 0x6D8 */ dBgS_Acch mAcch;
     /* 0x8B0 */ s8 field_0x8b0;
-    /* 0x8B1 */ u8 field_0x8b1[0xa28 - 0x8b1];
-    /* 0xA28 */ dCcD_Cyl mCyl;
-    /* 0xB6c */ u8 field_0xb78[0xb84 - 0xb64];
+    /* 0x8B1 */ u8 field_0x8b1[0x8d0 - 0x8b1];
+    /* 0x8D0 */ dCcD_GStts mGStts;
+    /* 0x8F0 */ dCcD_GObjInf mGObj;
+    /* 0x9F4 */ u8 field_0x9f4[0xa28 - 0x9f4];
+    /* 0xA28 */ dCcD_Sph mSph;
+    /* 0xB60 */ dCcU_AtInfo mAtInfo;
     /* 0xB84 */ s8 field_0xb84;
     /* 0xB85 */ u8 field_0xb85[0xba5 - 0xb85];
     /* 0xBA5 */ s8 field_0xba5;

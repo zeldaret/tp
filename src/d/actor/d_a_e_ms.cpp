@@ -621,7 +621,7 @@ static int e_ms_attack(e_ms_class* i_this) {
             rv = 0;
             i_this->field_0xb84 = 1;
             fVar1 = i_this->speedF = l_HIO.field_0x10;
-            if (i_this->mCyl.ChkAtShieldHit()) {
+            if (i_this->mSph.ChkAtShieldHit()) {
                 dComIfGp_getVibration().StartShock(4, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
                 i_this->field_0xb84 = 0;
                 fVar1 = i_this->speedF = 0.0f;
@@ -862,23 +862,102 @@ static void e_ms_damage(e_ms_class* i_this) {
 }
 
 /* 80727704-80727834 001C64 0130+00 1/1 0/0 0/0 .text            e_ms_wolfbite__FP10e_ms_class */
-static void e_ms_wolfbite(e_ms_class* param_0) {
-    // NONMATCHING
+static void e_ms_wolfbite(e_ms_class* i_this) {
+    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
+    daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
+    switch (i_this->field_0x5b4) {
+        case 0:
+            anm_init(i_this, 4, 0.0f, 0, 1.0f);
+            i_this->field_0x5b4 = 1;
+            i_this->mSound.startCreatureVoice(Z2SE_EN_MS_V_DAMAGE, -1);
+            break;
+        case 1:
+            if (!player->checkWolfEnemyCatchOwn(i_this)) {
+                i_this->field_0x67e = 4;
+                i_this->field_0x5b4 = 0;
+                i_this->mSound.startCreatureVoice(Z2SE_EN_MS_V_DEATH, -1);
+                i_this->health = 0;
+                if (player->checkWolfEnemyLeftThrow()) {
+                    i_this->current.angle.y = player->shape_angle.y - 0x4000;
+                } else {
+                    i_this->current.angle.y = player->shape_angle.y + 0x4000;
+                }
+            }
+    }
 }
 
 /* 80727834-80727894 001D94 0060+00 1/1 0/0 0/0 .text            e_ms_standby__FP10e_ms_class */
-static void e_ms_standby(e_ms_class* param_0) {
-    // NONMATCHING
+static void e_ms_standby(e_ms_class* i_this) {
+    i_this->field_0x68e = 6;
+    if (dComIfGs_isSwitch(i_this->field_0x5b8, fopAcM_GetRoomNo(i_this))) {
+        i_this->field_0xba5 = 0;
+        i_this->field_0x67e = 0;
+        i_this->field_0x5b4 = 0;
+    }
 }
 
 /* 80727894-80727A20 001DF4 018C+00 1/1 0/0 0/0 .text            damage_check__FP10e_ms_class */
-static void damage_check(e_ms_class* param_0) {
-    // NONMATCHING
+static void damage_check(e_ms_class* i_this) {
+    daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
+    if (i_this->field_0x68e == 0) {
+        i_this->mGStts.Move();
+        if (i_this->mGObj.ChkTgHit()) {
+            i_this->mAtInfo.mpCollider = i_this->mGObj.GetTgHitObj();
+            cc_at_check(i_this, &i_this->mAtInfo);
+            if (i_this->mAtInfo.mpCollider->ChkAtType(AT_TYPE_HOOKSHOT) ||
+                i_this->mAtInfo.mpCollider->ChkAtType(AT_TYPE_SLINGSHOT)) {
+                i_this->health = 0;
+            }
+
+            if (i_this->mAtInfo.mpCollider->ChkAtType(AT_TYPE_UNK)) {
+                i_this->field_0x68e = 20;
+            } else {
+                i_this->field_0x68e = 10;
+            }
+
+            if (i_this->mAtInfo.mpCollider->ChkAtType(AT_TYPE_WOLF_ATTACK) &&
+                player->onWolfEnemyCatch(i_this)) {
+                i_this->field_0x67e = 5;
+                i_this->field_0x5b4 = 0;
+                i_this->field_0x68e = 200;
+                dScnPly_c::setPauseTimer(0);
+                return;
+            }
+
+            i_this->field_0x67e = 4;
+            i_this->field_0x5b4 = 0;
+            i_this->current.angle.y = i_this->mAtInfo.mHitDirection.y;
+            if (i_this->health != 0 && i_this->mAtInfo.mHitType == 0x10) {
+                i_this->health = 1;
+            } else {
+                i_this->mSound.startCreatureVoice(Z2SE_EN_MS_V_DEATH, -1);
+            }
+        }
+
+        if (i_this->health <= 10) {
+            i_this->mGObj.SetTgHitMark((CcG_Tg_HitMark)3);
+        }
+    }
+
 }
 
 /* 80727A20-8072803C 001F80 061C+00 2/1 0/0 0/0 .text            action__FP10e_ms_class */
-static void action(e_ms_class* param_0) {
+static void action(e_ms_class* i_this) {
     // NONMATCHING
+    i_this->field_0x680 = fopAcM_searchPlayerDistance(i_this);
+    i_this->field_0x684 = fopAcM_searchPlayerAngleY(i_this);
+    damage_check(i_this);
+
+    dBgS_ObjGndChk_Spl cStack_9c;
+    cXyz spa8 = i_this->current.pos;
+    spa8.y += 200.0f;
+    cStack_9c.SetPos(&spa8);
+    i_this->field_0x690 = dComIfG_Bgsp().GroundCross(&cStack_9c);
+
+    switch (i_this->field_0x67e) {
+        case 0:
+            
+    }
 }
 
 /* ############################################################################################## */
