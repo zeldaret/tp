@@ -1947,7 +1947,7 @@ config.libs = [
     ActorRel(Equivalent, "d_a_obj_kwheel00"), # weak func order
     ActorRel(Equivalent, "d_a_obj_kwheel01"), # weak func order
     ActorRel(NonMatching, "d_a_obj_kznkarm"),
-    ActorRel(NonMatching, "d_a_obj_laundry"),
+    ActorRel(Equivalent, "d_a_obj_laundry"), # weak func order
     ActorRel(NonMatching, "d_a_obj_laundry_rope"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lbox"),
     ActorRel(NonMatching, "d_a_obj_lp"),
