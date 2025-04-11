@@ -34,11 +34,18 @@ public:
     /* 80C51644 */ void calcJointAngle();
     /* 80C5183C */ bool divorceParent();
 
+    inline ~daObjLdy_c();
+    inline int create();
+    inline int createHeap();
+    inline int getObjType();
+    inline int daObjLdy_Draw();
+    inline int daObjLdy_Execute();
+
     static f32 const M_attr[12];
     static u8 const M_attr_u8[4];
 
     /* 0x568 */ J3DModel* mpModel;
-    /* 0x56C */ u8 field_0x56C[0x570 - 0x56C];
+    /* 0x56C */ mDoExt_btkAnm* mpBtkAnm;
     /* 0x570 */ request_of_phase_process_class mPhase;
     /* 0x578 */ Mtx mMtx;
     /* 0x5A8 */ dCcD_Stts mStts;

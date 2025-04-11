@@ -1,101 +1,14 @@
 /**
  * @file d_a_obj_laundry.cpp
- * 
-*/
+ *
+ */
 
 #include "d/actor/d_a_obj_laundry.h"
+#include "SSystem/SComponent/c_math.h"
 #include "d/d_cc_d.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_kankyo_wether.h"
 #include "dol2asm.h"
-#include "SSystem/SComponent/c_math.h"
-
-//
-// Forward References:
-//
-
-extern "C" void create_init__10daObjLdy_cFv();
-extern "C" void initBaseMtx__10daObjLdy_cFv();
-extern "C" void setBaseMtx__10daObjLdy_cFv();
-extern "C" void getJointAngle__10daObjLdy_cFP5csXyzi();
-extern "C" void setNormalClothPos__10daObjLdy_cFv();
-extern "C" void calcJointAngle__10daObjLdy_cFv();
-extern "C" bool divorceParent__10daObjLdy_cFv();
-extern "C" static void nodeCallBack__FP8J3DJointi();
-extern "C" static void createSolidHeap__FP10fopAc_ac_c();
-extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" static void daObjLdy_Draw__FP10daObjLdy_c();
-extern "C" static void daObjLdy_Execute__FP10daObjLdy_c();
-extern "C" static bool daObjLdy_IsDelete__FP10daObjLdy_c();
-extern "C" static void daObjLdy_Delete__FP10daObjLdy_c();
-extern "C" void __dt__12LaundJoint_cFv();
-extern "C" static void daObjLdy_Create__FP10fopAc_ac_c();
-extern "C" void __ct__12LaundJoint_cFv();
-extern "C" void __dt__8cM3dGCylFv();
-extern "C" void __dt__8cM3dGAabFv();
-extern "C" void __dt__10dCcD_GSttsFv();
-extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" u8 const M_attr__10daObjLdy_c[52];
-extern "C" extern char const* const d_a_obj_laundry__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_XrotM__FPA4_fs();
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void mDoMtx_ZrotM__FPA4_fs();
-extern "C" void push__14mDoMtx_stack_cFv();
-extern "C" void pop__14mDoMtx_stack_cFv();
-extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void transM__14mDoMtx_stack_cFfff();
-extern "C" void init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss();
-extern "C" void entry__13mDoExt_btkAnmFP16J3DMaterialTablef();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void __dt__10fopAc_ac_cFv();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void getRes__14dRes_control_cFPCcPCcP11dRes_info_ci();
-extern "C" void dKyw_get_AllWind_vecpow__FP4cXyz();
-extern "C" void GetAc__22dCcD_GAtTgCoCommonBaseFv();
-extern "C" void __ct__10dCcD_GSttsFv();
-extern "C" void __ct__12dCcD_GObjInfFv();
-extern "C" void __dt__12dCcD_GObjInfFv();
-extern "C" void ChkTgHit__12dCcD_GObjInfFv();
-extern "C" void GetTgHitObj__12dCcD_GObjInfFv();
-extern "C" void ChkCoHit__12dCcD_GObjInfFv();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void __pl__4cXyzCFRC3Vec();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void __ml__4cXyzCFf();
-extern "C" void normalizeZP__4cXyzFv();
-extern "C" void isZero__4cXyzCFv();
-extern "C" void cM_atan2s__Fff();
-extern "C" void cM_rnd__Fv();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void __destroy_arr();
-extern "C" void __construct_array();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mCurrentMtx__6J3DSys[48];
-extern "C" u8 sincosTable___5JMath[65536];
 
 //
 // Declarations:
@@ -103,20 +16,18 @@ extern "C" u8 sincosTable___5JMath[65536];
 
 /* ############################################################################################## */
 /* 80C52000-80C52034 000000 0034+00 3/3 0/0 0/0 .rodata          M_attr__10daObjLdy_c */
-SECTION_RODATA f32 const daObjLdy_c::M_attr[12] = {
-     5.0, 30.0, 130.0, -50.0, 0.15, 0.45, 0.3, 1000.0, 0.0, 0.0, 0.0, 0.0
-};
+SECTION_RODATA f32 const daObjLdy_c::M_attr[12] = {5.0, 30.0,   130.0, -50.0, 0.15, 0.45,
+                                                   0.3, 1000.0, 0.0,   0.0,   0.0,  0.0};
 COMPILER_STRIP_GATE(0x80C52000, &daObjLdy_c::M_attr);
 
 SECTION_RODATA u8 const daObjLdy_c::M_attr_u8[4] = {0x00, 0x00, 0x0A, 0x00};
 COMPILER_STRIP_GATE(0x80C52030, &daObjLdy_c::M_attr_u8);
 
-
 /* 80C50F98-80C51088 000078 00F0+00 1/1 0/0 0/0 .text            create_init__10daObjLdy_cFv */
 void daObjLdy_c::create_init() {
     fopAcM_setCullSizeBox(this, -60.0f, -200.0f, -60.0f, 60.0f, 50.0f, 60.0f);
     fopAcM_setCullSizeFar(this, 1.5f);
-    
+
     LaundJoint_c* joint = &mJoints[0];
     int index = 0;
     for (int i = 0; i < 3; i++) {
@@ -136,7 +47,7 @@ void daObjLdy_c::initBaseMtx() {
     setBaseMtx();
 
     LaundJoint_c* joint = &mJoints[0];
-    for (int i = 0; i < 3; i++){
+    for (int i = 0; i < 3; i++) {
         float cosAngleY = cM_scos(shape_angle.y);
         float sinAngleY = cM_ssin(shape_angle.y);
         joint->pos4.set(sinAngleY, 0.0f, cosAngleY);
@@ -165,16 +76,16 @@ void daObjLdy_c::getJointAngle(csXyz* jointAngle, int index) {
 #pragma force_active on
 const static dCcD_SrcCyl ccCylSrc = {
     {
-        {0x0, {{0x0, 0x0, 0x0}, {0x16048, 0x11}, 0x149}}, // mObj
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x4}, // mGObjTg
-        {0x0}, // mGObjCo
-    }, // mObjInf
+        {0x0, {{0x0, 0x0, 0x0}, {0x16048, 0x11}, 0x149}},  // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},                // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x4},                // mGObjTg
+        {0x0},                                             // mGObjCo
+    },                                                     // mObjInf
     {
-        {0.0f, -80.0f, 0.0f}, // mCenter
-        25.0f, // mRadius
-        25.0f // mHeight
-    } // mCyl
+        {0.0f, -80.0f, 0.0f},  // mCenter
+        25.0f,                 // mRadius
+        25.0f                  // mHeight
+    }  // mCyl
 };
 #pragma pop
 
@@ -190,44 +101,41 @@ void daObjLdy_c::setNormalClothPos() {
     windVector *= M_attr[3] * M_attr[4];
     float windPower = windVector.abs();
     LaundJoint_c* joint = &mJoints[0];
-    
-    if (mCyl.ChkTgHit() != 0){
+
+    if (mCyl.ChkTgHit() != 0) {
         cCcD_Obj* tgHitObj = mCyl.GetTgHitObj();
-        if (tgHitObj->ChkAtType(AT_TYPE_40) != 0 || tgHitObj->ChkAtType(AT_TYPE_ARROW) != 0){
+        if (tgHitObj->ChkAtType(AT_TYPE_40) != 0 || tgHitObj->ChkAtType(AT_TYPE_ARROW) != 0) {
             cXyz position = fopAcM_GetPosition(dComIfGp_getPlayer(0)) - mJoints[1].pos1;
             position.normalizeZP();
             position *= 100.0f;
-            for (int i = 2; i >= 0; i--){
+            for (int i = 2; i >= 0; i--) {
                 mJoints[i].pos3 = position;
                 position *= M_attr[6];
             }
-            divorceParent();            
-            }
-        else{
-            if (tgHitObj->ChkAtType(AT_TYPE_BOOMERANG) != 0){
+            divorceParent();
+        } else {
+            if (tgHitObj->ChkAtType(AT_TYPE_BOOMERANG) != 0) {
                 divorceParent();
             }
         }
-    }
-    else{        
-        if (mCyl.ChkCoHit() != 0){
+    } else {
+        if (mCyl.ChkCoHit() != 0) {
             if (fopAcM_GetName(mCyl.GetCoHitAc()) == AT_TYPE_100) {
                 cXyz position = fopAcM_GetPosition(dComIfGp_getPlayer(0)) - mJoints[1].pos1;
                 position.normalizeZP();
                 position *= 100.0f;
-                for (int i = 2; i >= 0; i--){
+                for (int i = 2; i >= 0; i--) {
                     mJoints[i].pos3 = position;
                     position *= M_attr[6];
                 }
                 divorceParent();
             }
-        }
-        else{
-            if (!windVector.isZero()){
-                for (int i = 0; i < 3; i++){
-                    if (cM_rnd() < 0.6f && cM_rnd() < 0.1f){
+        } else {
+            if (!windVector.isZero()) {
+                for (int i = 0; i < 3; i++) {
+                    if (cM_rnd() < 0.6f && cM_rnd() < 0.1f) {
                         joint->pos3 += joint->pos4 * windPower;
-                    }                 
+                    }
                     joint++;
                 }
             }
@@ -237,7 +145,7 @@ void daObjLdy_c::setNormalClothPos() {
     int i;
     LaundJoint_c* mJoint = &mJoints[0];
     cXyz* currentPosition = &fopAcM_GetPosition(this);
-    for (i = 0; i < 3; i++){
+    for (i = 0; i < 3; i++) {
         adjustedPosition = *currentPosition - mJoint->pos1;
         adjustedPosition.y += gravity;
         adjustedPosition += mJoint->pos3;
@@ -255,7 +163,7 @@ void daObjLdy_c::calcJointAngle() {
     cXyz position;
     LaundJoint_c* joint = &mJoints[0];
     mDoMtx_stack_c::copy(mMtx);
-    for(int i = 0; i < 3; i++){
+    for (int i = 0; i < 3; i++) {
         mDoMtx_stack_c::push();
         mDoMtx_stack_c::inverse();
         mDoMtx_stack_c::multVec(&joint->pos1, &position);
@@ -280,10 +188,10 @@ static int nodeCallBack(J3DJoint* joint, int callbackCondition) {
     u16 jointNo;
     csXyz jointAngle[2];
 
-    if (callbackCondition != 0){
+    if (callbackCondition != 0) {
         return 1;
     }
-    
+
     jointNo = joint->getJntNo();
     jointModel = j3dSys.getModel();
     ((daObjLdy_c*)jointModel->getUserArea())->getJointAngle(jointAngle, jointNo);
@@ -295,107 +203,73 @@ static int nodeCallBack(J3DJoint* joint, int callbackCondition) {
     return 1;
 }
 
-/* ############################################################################################## */
-/* 80C520C4-80C520C8 0000C4 0004+00 1/1 0/0 0/0 .rodata          @4203 */
-SECTION_RODATA static f32 const lit_4203 = 1.0f;
-COMPILER_STRIP_GATE(0x80C520C4, &lit_4203);
-
-/* 80C520C8-80C520C8 0000C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80C520C8 = "J_Sentaku";
-SECTION_DEAD static char const* const stringBase_80C520D2 = "J_Sentaku.bmd";
-SECTION_DEAD static char const* const stringBase_80C520E0 = "J_Sentaku.btk";
-SECTION_DEAD static char const* const rodataPadding = "\0";
-#pragma pop
-
 /* 80C520F0-80C520F4 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "J_Sentaku";
 
-/* 80C520F4-80C52114 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjLdy_Method */
-static actor_method_class l_daObjLdy_Method = {
-    (process_method_func)daObjLdy_Create__FP10fopAc_ac_c,
-    (process_method_func)daObjLdy_Delete__FP10daObjLdy_c,
-    (process_method_func)daObjLdy_Execute__FP10daObjLdy_c,
-    (process_method_func)daObjLdy_IsDelete__FP10daObjLdy_c,
-    (process_method_func)daObjLdy_Draw__FP10daObjLdy_c,
-};
 
-/* 80C52114-80C52144 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Laundry */
-extern actor_process_profile_definition g_profile_Obj_Laundry = {
-  fpcLy_CURRENT_e,        // mLayerID
-  7,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_Obj_Laundry,       // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  sizeof(daObjLdy_c),     // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  37,                     // mPriority
-  &l_daObjLdy_Method,     // sub_method
-  0x00040180,             // mStatus
-  fopAc_ACTOR_e,          // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
-};
 
-/* 80C52144-80C52150 000054 000C+00 3/3 0/0 0/0 .data            __vt__10cCcD_GStts */
-SECTION_DATA extern void* __vt__10cCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10cCcD_GSttsFv,
-};
-
-/* 80C52150-80C5215C 000060 000C+00 2/2 0/0 0/0 .data            __vt__10dCcD_GStts */
-SECTION_DATA extern void* __vt__10dCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10dCcD_GSttsFv,
-};
-
-/* 80C5215C-80C52168 00006C 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGAab */
-SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGAabFv,
-};
-
-/* 80C52168-80C52174 000078 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGCyl */
-SECTION_DATA extern void* __vt__8cM3dGCyl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGCylFv,
-};
-
-/* 80C52174-80C52180 000084 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */
-SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12J3DFrameCtrlFv,
-};
-
-/* 80C518FC-80C51A98 0009DC 019C+00 1/1 0/0 0/0 .text            createSolidHeap__FP10fopAc_ac_c */
-static int createSolidHeap(fopAc_ac_c* param_0) {
-    // NONMATCHING
+int daObjLdy_c::getObjType() {
+    return fopAcM_GetParam(this) & 0xff;
 }
 
-/* 80C51A98-80C51AE0 000B78 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
-// J3DFrameCtrl::~J3DFrameCtrl() {
-extern "C" void __dt__12J3DFrameCtrlFv() {
-    // NONMATCHING
+int daObjLdy_c::createHeap() {
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "J_Sentaku.bmd");
+    mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
+    J3DAnmTextureSRTKey* key =
+        (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, "J_Sentaku.btk");
+
+    mpBtkAnm = new mDoExt_btkAnm();
+    int initResult = mpBtkAnm->init(modelData, key, 1, 2, 1.0f, 0, -1);
+    if (initResult == 0) {
+        return 0;
+    }
+
+    mpBtkAnm->setFrame(getObjType());
+    for (u16 i = 0; i < 3; i++) {
+        J3DJoint* joint = mpModel->getModelData()->getJointNodePointer(i);
+        if (joint != NULL) {
+            joint->setCallBack(nodeCallBack);
+            mpModel->setUserArea((u32)this);
+        }
+    }
+
+    if (mpModel == NULL) {
+        return 0;
+    }
+
+    return 1;
+}
+
+/* 80C518FC-80C51A98 0009DC 019C+00 1/1 0/0 0/0 .text            createSolidHeap__FP10fopAc_ac_c */
+static int createSolidHeap(fopAc_ac_c* i_this) {
+    return static_cast<daObjLdy_c*>(i_this)->createHeap();
+}
+
+int daObjLdy_c::daObjLdy_Draw() {
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
+    dComIfGd_setListBG();
+    mpBtkAnm->entry(mpModel->getModelData());
+    mDoExt_modelUpdateDL(mpModel);
+    dComIfGd_setList();
+    return 1;
 }
 
 /* 80C51AE0-80C51B9C 000BC0 00BC+00 1/0 0/0 0/0 .text            daObjLdy_Draw__FP10daObjLdy_c */
-static void daObjLdy_Draw(daObjLdy_c* param_0) {
-    // NONMATCHING
+static int daObjLdy_Draw(daObjLdy_c* i_this) {
+    return i_this->daObjLdy_Draw();
+}
+
+int daObjLdy_c::daObjLdy_Execute() {
+    setNormalClothPos();
+    setBaseMtx();
+    calcJointAngle();
+    return 1;
 }
 
 /* 80C51B9C-80C51BDC 000C7C 0040+00 1/0 0/0 0/0 .text            daObjLdy_Execute__FP10daObjLdy_c */
 static int daObjLdy_Execute(daObjLdy_c* i_this) {
-    i_this->setNormalClothPos();
-    i_this->setBaseMtx();
-    i_this->calcJointAngle();
-    return 1;
+    return i_this->daObjLdy_Execute();
 }
 
 /* 80C51BDC-80C51BE4 000CBC 0008+00 1/0 0/0 0/0 .text            daObjLdy_IsDelete__FP10daObjLdy_c
@@ -404,22 +278,26 @@ static bool daObjLdy_IsDelete(daObjLdy_c* i_this) {
     return true;
 }
 
+daObjLdy_c::~daObjLdy_c() {
+    dComIfG_resDelete(&mPhase, l_arcName);
+}
+
 /* 80C51BE4-80C51D2C 000CC4 0148+00 1/0 0/0 0/0 .text            daObjLdy_Delete__FP10daObjLdy_c */
 static int daObjLdy_Delete(daObjLdy_c* i_this) {
-    if (i_this){
-        dComIfG_resDelete(&i_this->mPhase, l_arcName);
-        i_this->~daObjLdy_c();
-    }
-    
+    fopAcM_GetID(i_this);
+    i_this->~daObjLdy_c();
+
     return 1;
 }
 
 /* 80C51D2C-80C51D68 000E0C 003C+00 2/2 0/0 0/0 .text            __dt__12LaundJoint_cFv */
-LaundJoint_c::~LaundJoint_c() {
+LaundJoint_c::~LaundJoint_c() {}
+
+int daObjLdy_c::create(){
+    
 }
 
 /* 80C51D68-80C51EC0 000E48 0158+00 1/0 0/0 0/0 .text            daObjLdy_Create__FP10fopAc_ac_c */
-
 static int daObjLdy_Create(fopAc_ac_c* i_this) {
     daObjLdy_c* a_this = static_cast<daObjLdy_c*>(i_this);
     fopAcM_SetupActor(a_this, daObjLdy_c);
@@ -428,8 +306,7 @@ static int daObjLdy_Create(fopAc_ac_c* i_this) {
     if (phase == cPhs_COMPLEATE_e) {
         if (!fopAcM_entrySolidHeap(a_this, createSolidHeap, 0x9a0)) {
             phase = cPhs_ERROR_e;
-        }
-        else{
+        } else {
             a_this->create_init();
             i_this->cullMtx = a_this->mMtx;
         }
@@ -442,5 +319,32 @@ static int daObjLdy_Create(fopAc_ac_c* i_this) {
 LaundJoint_c::LaundJoint_c() {
     /* empty function */
 }
+/* 80C520F4-80C52114 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjLdy_Method */
+static actor_method_class l_daObjLdy_Method = {
+    (process_method_func)daObjLdy_Create,
+    (process_method_func)daObjLdy_Delete,
+    (process_method_func)daObjLdy_Execute,
+    (process_method_func)daObjLdy_IsDelete,
+    (process_method_func)daObjLdy_Draw,
+};
+
+/* 80C52114-80C52144 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Laundry */
+extern actor_process_profile_definition g_profile_Obj_Laundry = {
+    fpcLy_CURRENT_e,         // mLayerID
+    7,                       // mListID
+    fpcPi_CURRENT_e,         // mListPrio
+    PROC_Obj_Laundry,        // mProcName
+    &g_fpcLf_Method.base,    // sub_method
+    sizeof(daObjLdy_c),      // mSize
+    0,                       // mSizeOther
+    0,                       // mParameters
+    &g_fopAc_Method.base,    // sub_method
+    37,                      // mPriority
+    &l_daObjLdy_Method,      // sub_method
+    0x00040180,              // mStatus
+    fopAc_ACTOR_e,           // mActorType
+    fopAc_CULLBOX_CUSTOM_e,  // cullType
+};
 
 /* 80C520C8-80C520C8 0000C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+SECTION_DEAD static char const* const rodataPadding = "\0";
