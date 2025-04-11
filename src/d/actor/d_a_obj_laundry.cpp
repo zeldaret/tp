@@ -72,8 +72,6 @@ void daObjLdy_c::getJointAngle(csXyz* jointAngle, int index) {
 
 /* ############################################################################################## */
 /* 80C52054-80C52098 000054 0044+00 0/0 0/0 0/0 .rodata          ccCylSrc$3800 */
-#pragma push
-#pragma force_active on
 const static dCcD_SrcCyl ccCylSrc = {
     {
         {0x0, {{0x0, 0x0, 0x0}, {0x16048, 0x11}, 0x149}},  // mObj
@@ -87,7 +85,6 @@ const static dCcD_SrcCyl ccCylSrc = {
         25.0f                  // mHeight
     }  // mCyl
 };
-#pragma pop
 
 static f32 dummy(cXyz v) {
     return 40.0f + v.abs();
@@ -313,6 +310,7 @@ static int daObjLdy_Create(fopAc_ac_c* i_this) {
 LaundJoint_c::LaundJoint_c() {
     /* empty function */
 }
+
 /* 80C520F4-80C52114 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjLdy_Method */
 static actor_method_class l_daObjLdy_Method = {
     (process_method_func)daObjLdy_Create,  (process_method_func)daObjLdy_Delete,
