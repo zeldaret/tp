@@ -40,7 +40,7 @@ struct TParseData_aligned : public TParseData {
 
 // Base for header and/or block parsing
 struct TParse_header_block {
-    virtual ~TParse_header_block();
+    virtual ~TParse_header_block() = 0;
 
     virtual bool parseHeader_next(const void** ppData_inout, u32* puBlock_out, u32 arg2) = 0;
     virtual bool parseBlock_next(const void** ppData_inout, u32* puData_out, u32 arg2) = 0;

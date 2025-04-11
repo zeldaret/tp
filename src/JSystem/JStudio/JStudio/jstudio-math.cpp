@@ -5,55 +5,17 @@
 
 #include "JSystem/JStudio/JStudio/jstudio-math.h"
 #include "JSystem/JGeometry.h"
-#include "JSystem/TPosition3.hh"
-#include "dol2asm.h"
+#include "JSystem/TPosition3.h"
 #include "math.h"
 
-//
-// Forward References:
-//
-
-extern "C" void getRotation_xyz__Q27JStudio4mathFPA4_ffff();
-extern "C" void getTransformation_SRxyzT__Q27JStudio4mathFPA4_fRC3VecRC3VecRC3Vec();
-extern "C" void getFromTransformation_SRxyzT__Q27JStudio4mathFP3VecP3VecP3VecPA4_Cf();
-
-//
-// External References:
-//
-
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 80455468-8045546C 003A68 0004+00 1/1 0/0 0/0 .sdata2          @488 */
-SECTION_SDATA2 static f32 lit_488 = 0.01745329238474369f;
-
-/* 8045546C-80455470 003A6C 0004+00 2/2 0/0 0/0 .sdata2          @489 */
-SECTION_SDATA2 static u8 lit_489[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
 /* 802859DC-80285B44 28031C 0168+00 1/1 0/0 0/0 .text getRotation_xyz__Q27JStudio4mathFPA4_ffff */
-// NONMATCHING - regalloc
 void JStudio::math::getRotation_xyz(MtxP param_1, f32 x, f32 y, f32 z) {
-    x = DEG_TO_RAD(x);
-    f32 cosx = cos(x);
-    f32 sinx = sin(x);
-    y = DEG_TO_RAD(y);
-    f32 cosy = cos(y);
-    f32 siny = sin(y);
-    z = DEG_TO_RAD(z);
-    f32 cosz = cos(z);
-    f32 sinz = sin(z);
+    f32 cosx = i_cosf(DEG_TO_RAD(x));
+    f32 sinx = i_sinf(DEG_TO_RAD(x));
+    f32 cosy = i_cosf(DEG_TO_RAD(y));
+    f32 siny = i_sinf(DEG_TO_RAD(y));
+    f32 cosz = i_cosf(DEG_TO_RAD(z));
+    f32 sinz = i_sinf(DEG_TO_RAD(z));
     f32 cosxcosz = cosx * cosz;
     f32 cosxsinz = cosx * sinz;
     f32 sinxcosz = sinx * cosz;
@@ -84,38 +46,12 @@ void JStudio::math::getTransformation_SRxyzT(MtxP param_1, Vec const& param_2, V
     MTXTransApply(amStack_70, param_1, param_4.x, param_4.y, param_4.z);
 }
 
-/* ############################################################################################## */
-/* 80455470-80455478 003A70 0008+00 1/1 0/0 0/0 .sdata2          @623 */
-SECTION_SDATA2 static u8 lit_623[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80455478-80455480 003A78 0008+00 1/1 0/0 0/0 .sdata2          @624 */
-SECTION_SDATA2 static f64 lit_624 = 1.0;
-
-/* 80455480-80455488 003A80 0004+04 1/1 0/0 0/0 .sdata2          @625 */
-SECTION_SDATA2 static f32 lit_625[1 + 1 /* padding */] = {
-    32.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 80455488-80455490 003A88 0008+00 1/1 0/0 0/0 .sdata2          @626 */
-SECTION_SDATA2 static f64 lit_626 = -1.5707963267948966;
-
-/* 80455490-80455498 003A90 0008+00 1/1 0/0 0/0 .sdata2          @627 */
-SECTION_SDATA2 static f64 lit_627 = 1.5707963267948966;
-
-/* 80455498-804554A0 003A98 0008+00 1/1 0/0 0/0 .sdata2          @628 */
-SECTION_SDATA2 static f64 lit_628 = 57.29577951308232;
-
 /* 80285BCC-80285E0C 28050C 0240+00 0/0 2/2 0/0 .text
  * getFromTransformation_SRxyzT__Q27JStudio4mathFP3VecP3VecP3VecPA4_Cf */
-// NONMATCHING - getEulerXYZ is not inlined
 void JStudio::math::getFromTransformation_SRxyzT(Vec* param_1, Vec* param_2, Vec* param_3,
                                                      CMtxP param_4) {
-    getFromTransformation_S(param_4, param_1);
-    getFromTransformation_T(param_4, param_3);
+    getFromTransformation_S(param_1, param_4);
+    getFromTransformation_T(param_3, param_4);
     JGeometry::TRotation3<JGeometry::SMatrix33C<double> > aTStack_88;
     JGeometry::TVec3<double> local_a0;
     double dVar9 = 0.0;
@@ -130,10 +66,9 @@ void JStudio::math::getFromTransformation_SRxyzT(Vec* param_1, Vec* param_2, Vec
     if (0.0f != param_1->z) {
         dVar7 = 1.0 / param_1->z;
     }
-    aTStack_88.set( param_4[0][0] * dVar9,
-        param_4[0][1] * dVar8, param_4[0][2] * dVar7, param_4[1][0] * dVar9,
-        param_4[1][2] * dVar8, param_4[1][3] * dVar7, param_4[2][0] * dVar9,
-        param_4[2][1] * dVar8, param_4[2][2] * dVar7);
+    aTStack_88.set(param_4[0][0] * dVar9, param_4[0][1] * dVar8, param_4[0][2] * dVar7,
+                   param_4[1][0] * dVar9, param_4[1][1] * dVar8, param_4[1][2] * dVar7,
+                   param_4[2][0] * dVar9, param_4[2][1] * dVar8, param_4[2][2] * dVar7);
     aTStack_88.getEulerXYZ(&local_a0);
     local_a0 *= 57.29577951308232;
     param_2->x = local_a0.x;

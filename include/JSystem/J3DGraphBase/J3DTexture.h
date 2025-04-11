@@ -94,7 +94,7 @@ struct J3DTexCoord : public J3DTexCoordInfo {
     u8 getTexGenType() const { return mTexGenType; }
     u8 getTexGenSrc() const { return mTexGenSrc; }
     u8 getTexGenMtx() const { return mTexGenMtx; }
-    u16 getTexMtxReg() const { return mTexMtxReg & 0xff; }
+    u32 getTexMtxReg() const { return mTexMtxReg & 0xff; }
     void setTexGenMtx(u8 param_1) { mTexGenMtx = param_1; }
     void setTexMtxReg(u16 reg) { mTexMtxReg = reg; }
     J3DTexCoord& operator=(const J3DTexCoord& other) {

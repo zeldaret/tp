@@ -235,7 +235,7 @@ J3DMaterial* J3DMaterialFactory::createNormalMaterial(J3DMaterial* i_material, i
             i_material->mIndBlock->setIndTexOrder(i, newIndTexOrder(i_idx, i));
         }
         for (u8 i = 0; i < ind_tex_stage_num; i++) {
-            i_material->mIndBlock->setIndTexCoordScale(i, &newIndTexCoordScale(i_idx, i));
+            i_material->mIndBlock->setIndTexCoordScale(i, newIndTexCoordScale(i_idx, i));
         }
         for (u8 i = 0; i < tev_stage_num_max; i++) {
             i_material->mTevBlock->setIndTevStage(i, newIndTevStage(i_idx, i));
@@ -328,7 +328,7 @@ J3DMaterial* J3DMaterialFactory::createPatchedMaterial(J3DMaterial* i_material, 
             i_material->mIndBlock->setIndTexOrder(i, newIndTexOrder(i_idx, i));
         }
         for (u8 i = 0; i < ind_tex_stage_num; i++) {
-            i_material->mIndBlock->setIndTexCoordScale(i, &newIndTexCoordScale(i_idx, i));
+            i_material->mIndBlock->setIndTexCoordScale(i, newIndTexCoordScale(i_idx, i));
         }
         for (u8 i = 0; i < tev_stage_num; i++) {
             i_material->mTevBlock->setIndTevStage(i, newIndTevStage(i_idx, i));
@@ -590,12 +590,9 @@ J3DTevOrder J3DMaterialFactory::newTevOrder(int i_idx, int i_no) const {
     }
 }
 
-/* 80456BB8-80456BBC 000058 0004+00 1/1 0/0 0/0 .sbss2           @1897 */
-SECTION_SBSS2 static GXColorS10 defaultTevColor;
-
 /* 803321A0-80332210 32CAE0 0070+00 2/2 0/0 0/0 .text newTevColor__18J3DMaterialFactoryCFii */
 J3DGXColorS10 J3DMaterialFactory::newTevColor(int i_idx, int i_no) const {
-    J3DGXColorS10 dflt = defaultTevColor;
+    J3DGXColorS10 dflt = (GXColorS10){0, 0, 0, 0};
     J3DMaterialInitData* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
     if (mtl_init_data->mTevColorIdx[i_no] != 0xffff) {
         return mpTevColor[mtl_init_data->mTevColorIdx[i_no]];

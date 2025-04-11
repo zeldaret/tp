@@ -51,6 +51,7 @@ public:
     static bool syncAram(JKRADCommand*, int);
 
     static void setSZSBufferSize(u32 size) { sSZSBufferSize = size; }
+    static bool isErrorRetry() { return errorRetry; }
 
     // TODO: fix type
     static JSUList<JKRADCommand> sDvdAramAsyncList;

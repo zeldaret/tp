@@ -6,14 +6,6 @@
 #include "JSystem/J2DGraph/J2DWindowEx.h"
 #include "JSystem/JUtility/JUTTexture.h"
 #include "JSystem/JSupport/JSURandomInputStream.h"
-#include "dol2asm.h"
-
-/* ############################################################################################## */
-/* 803A1C60-803A1C70 02E2C0 0010+00 2/2 0/0 0/0 .rodata          @1508 */
-SECTION_RODATA static u8 const lit_1508[16] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x803A1C60, &lit_1508);
 
 struct J2DWindowExDef {
     u32 field_0x0[4];
@@ -93,7 +85,6 @@ J2DWindowEx::J2DWindowEx(J2DPane* param_0, JSURandomInputStream* param_1, u32 pa
     setMinSize();
 }
 
-
 /* 80300F80-80301144 2FB8C0 01C4+00 1/1 0/0 0/0 .text            setMinSize__11J2DWindowExFv */
 void J2DWindowEx::setMinSize() {
     field_0x140 = 1;
@@ -112,8 +103,10 @@ void J2DWindowEx::setMinSize() {
     if (mFrameMaterial[2]->getTevBlock()->getTexture(0) == NULL) return;
     if (mFrameMaterial[3]->getTevBlock()->getTexture(0) == NULL) return;
 
-    field_0x140 = mFrameMaterial[0]->getTevBlock()->getTexture(0)->getWidth() + mFrameMaterial[1]->getTevBlock()->getTexture(0)->getWidth();
-    field_0x142 = mFrameMaterial[0]->getTevBlock()->getTexture(0)->getHeight() + mFrameMaterial[2]->getTevBlock()->getTexture(0)->getHeight();
+    field_0x140 = mFrameMaterial[0]->getTevBlock()->getTexture(0)->getWidth()
+                + mFrameMaterial[1]->getTevBlock()->getTexture(0)->getWidth();
+    field_0x142 = mFrameMaterial[0]->getTevBlock()->getTexture(0)->getHeight()
+                + mFrameMaterial[2]->getTevBlock()->getTexture(0)->getHeight();
 }
 
 /* 80301144-8030122C 2FBA84 00E8+00 1/0 0/0 0/0 .text            __dt__11J2DWindowExFv */
@@ -319,6 +312,10 @@ void J2DWindowEx::draw_private(JGeometry::TBox2<f32> const& param_0,
     }
 }
 
+static f32 dummy_literal() {
+    return 0.0f;
+}
+
 /* 80301994-80301D74 2FC2D4 03E0+00 1/0 0/0 0/0 .text
  * drawContents__11J2DWindowExFRCQ29JGeometry8TBox2<f>          */
 void J2DWindowEx::drawContents(JGeometry::TBox2<f32> const& param_1) {
@@ -447,7 +444,6 @@ void J2DWindowEx::drawFrameTexture(f32 param_1, f32 param_2, f32 param_3, f32 pa
     }
 }
 
-
 /* 80301FC8-80302164 2FC908 019C+00 1/0 0/0 0/0 .text draw__11J2DWindowExFRCQ29JGeometry8TBox2<f>
  */
 void J2DWindowEx::draw(JGeometry::TBox2<f32> const& param_1) {
@@ -476,7 +472,6 @@ void J2DWindowEx::draw(JGeometry::TBox2<f32> const& param_1) {
     draw(param_1, aTStack_78);
 }
 
-
 /* 80302164-80302284 2FCAA4 0120+00 1/0 0/0 0/0 .text
  * draw__11J2DWindowExFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f> */
 void J2DWindowEx::draw(JGeometry::TBox2<f32> const& param_1, JGeometry::TBox2<f32> const& param_2) {
@@ -498,7 +493,6 @@ void J2DWindowEx::draw(JGeometry::TBox2<f32> const& param_1, JGeometry::TBox2<f3
     MTXIdentity(auStack_60);
     GXLoadPosMtxImm(auStack_60, 0);
 }
-
 
 /* 80302284-80302388 2FCBC4 0104+00 1/1 0/0 0/0 .text            setTevOrder__11J2DWindowExFb */
 void J2DWindowEx::setTevOrder(bool param_0) {
@@ -551,6 +545,48 @@ void J2DWindowEx::setTevStage(bool param_1) {
     }
 }
 
+/* 803A1C70-803A1C80 02E2D0 0010+00 0/0 0/0 0/0 .rodata          @1557 */
+static u8 const lit_1557[16] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
+/* 803A1C80-803A1C90 02E2E0 0010+00 0/0 0/0 0/0 .rodata          @1566 */
+static u8 const lit_1566[16] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
+/* 803A1C90-803A1CA0 02E2F0 0010+00 0/0 0/0 0/0 .rodata          @1575 */
+static u8 const lit_1575[16] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
+
+/* 803A1CA0-803A1CB0 02E300 0010+00 0/0 0/0 0/0 .rodata          @1581 */
+static u8 const lit_1581[16] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
+
+/* 803A1CB0-803A1CC0 02E310 0010+00 0/0 0/0 0/0 .rodata          @1587 */
+static u8 const lit_1587[16] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
+/* 803A1CC0-803A1CD0 02E320 0010+00 0/0 0/0 0/0 .rodata          @1596 */
+static u8 const lit_1596[16] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
+/* 803A1CD0-803A1CE0 02E330 0010+00 0/0 0/0 0/0 .rodata          @1605 */
+static u8 const lit_1605[16] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
+/* 803A1CE0-803A1CF0 02E340 0010+00 0/0 0/0 0/0 .rodata          @1612 */
+static u8 const lit_1612[16] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
 /* 803024B4-80302764 2FCDF4 02B0+00 1/1 0/0 0/0 .text
  * setStage__11J2DWindowExFP11J2DTevStageQ211J2DWindowEx10stage_enum */
 void J2DWindowEx::setStage(J2DTevStage* param_0, J2DWindowEx::stage_enum param_1) {
@@ -563,8 +599,8 @@ void J2DWindowEx::setStage(J2DTevStage* param_0, J2DWindowEx::stage_enum param_1
         {0x01, 0x02, 0x04, 0x07}, {0x07, 0x07, 0x07, 0x02}, {0x07, 0x07, 0x07, 0x05},
     };
     s8 local_68[6][5] = {
-        {1, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 1, 0, 0, 1},
-        {0, 0, 1, 0, 0}, {1, 0, 0, 0, 0}, {0, 0, 0, 0, 1},
+        {0, 0, 0, 1, 0}, {0, 0, 0, 1, 0}, {0, 0, 0, 1, 0},
+        {0, 0, 0, 1, 0}, {0, 0, 0, 1, 0}, {0, 0, 0, 1, 0},
     };
 
     param_0->setTevColorAB(local_30[param_1][0], local_30[param_1][1]);
@@ -677,8 +713,10 @@ bool J2DWindowEx::getBlackWhite(JUtility::TColor* param_0, JUtility::TColor* par
         color1.g = color1p->g;
         color1.b = color1p->b;
         color1.a = color1p->a;
-        *param_0 = JUtility::TColor((((u8)color0.r) << 0x18) | (((u8)color0.g) << 0x10) | (((u8)color0.b) << 0x8) | (((u8)color0.a)));
-        *param_1 = JUtility::TColor((((u8)color1.r) << 0x18) | (((u8)color1.g) << 0x10) | (((u8)color1.b) << 0x8) | (((u8)color1.a)));
+        *param_0 = JUtility::TColor((((u8)color0.r) << 0x18) | (((u8)color0.g) << 0x10)
+                                    | (((u8)color0.b) << 0x8) | (((u8)color0.a)));
+        *param_1 = JUtility::TColor((((u8)color1.r) << 0x18) | (((u8)color1.g) << 0x10)
+                                    | (((u8)color1.b) << 0x8) | (((u8)color1.a)));
     }
     return true;
 }
@@ -900,140 +938,6 @@ void J2DWindowEx::setAnimation(J2DAnmVtxColor* param_0) {
         mAnmVtxColor = NULL;
     }
 }
-
-/* ############################################################################################## */
-/* 803A1C70-803A1C80 02E2D0 0010+00 0/0 0/0 0/0 .rodata          @1557 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_1557[16] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x803A1C70, &lit_1557);
-#pragma pop
-
-/* 803A1C80-803A1C90 02E2E0 0010+00 0/0 0/0 0/0 .rodata          @1566 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_1566[16] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x803A1C80, &lit_1566);
-#pragma pop
-
-/* 803A1C90-803A1CA0 02E2F0 0010+00 0/0 0/0 0/0 .rodata          @1575 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_1575[16] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x803A1C90, &lit_1575);
-#pragma pop
-
-/* 803A1CA0-803A1CB0 02E300 0010+00 0/0 0/0 0/0 .rodata          @1581 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_1581[16] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x803A1CA0, &lit_1581);
-#pragma pop
-
-/* 803A1CB0-803A1CC0 02E310 0010+00 0/0 0/0 0/0 .rodata          @1587 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_1587[16] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x803A1CB0, &lit_1587);
-#pragma pop
-
-/* 803A1CC0-803A1CD0 02E320 0010+00 0/0 0/0 0/0 .rodata          @1596 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_1596[16] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x803A1CC0, &lit_1596);
-#pragma pop
-
-/* 803A1CD0-803A1CE0 02E330 0010+00 0/0 0/0 0/0 .rodata          @1605 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_1605[16] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x803A1CD0, &lit_1605);
-#pragma pop
-
-/* 803A1CE0-803A1CF0 02E340 0010+00 0/0 0/0 0/0 .rodata          @1612 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_1612[16] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x803A1CE0, &lit_1612);
-#pragma pop
-
-/* 803A1CF0-803A1D08 02E350 0018+00 0/0 0/0 0/0 .rodata          @2530 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_2530[24] = {
-    0x0F, 0x08, 0x0A, 0x0F, 0x0F, 0x08, 0x0A, 0x0F, 0x0F, 0x0A, 0x00, 0x0F,
-    0x02, 0x04, 0x08, 0x0F, 0x02, 0x04, 0x08, 0x0F, 0x0F, 0x0F, 0x0F, 0x0A,
-};
-COMPILER_STRIP_GATE(0x803A1CF0, &lit_2530);
-#pragma pop
-
-/* 803A1D08-803A1D20 02E368 0018+00 0/0 0/0 0/0 .rodata          @2531 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_2531[24] = {
-    0x07, 0x04, 0x05, 0x07, 0x05, 0x07, 0x07, 0x07, 0x07, 0x05, 0x00, 0x07,
-    0x01, 0x02, 0x04, 0x07, 0x07, 0x07, 0x07, 0x02, 0x07, 0x07, 0x07, 0x05,
-};
-COMPILER_STRIP_GATE(0x803A1D08, &lit_2531);
-#pragma pop
-
-/* 803A1D20-803A1D40 02E380 001E+02 0/0 0/0 0/0 .rodata          @2532 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_2532[30 + 2 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x803A1D20, &lit_2532);
-#pragma pop
 
 /* 80303370-80303510 2FDCB0 01A0+00 1/0 0/0 0/0 .text
  * animationPane__11J2DWindowExFPC15J2DAnmTransform             */

@@ -843,15 +843,15 @@ s32 JASSeqParser::cmdDump(JASTrack* param_0, u32* param_1) {
 }
 
 /* 8029526C-80295498 28FBAC 022C+00 1/0 0/0 0/0 .text cmdPrintf__12JASSeqParserFP8JASTrackPUl */
-// NONMATCHING many things
+// NONMATCHING problem with second for loop
 s32 JASSeqParser::cmdPrintf(JASTrack* param_0, u32* param_1) {
     u8 stack_c[4];
     u32 stack_10[4];
     char buffer[128];
 
     JASSeqCtrl* seqCtrl = param_0->getSeqCtrl();
-    int r30 = 0;
-    for (u8 i = 0; i < 128; i++) {
+    u32 r30 = 0;
+    for (u32 i = 0; i < 128; i++) {
         buffer[i] = seqCtrl->readByte();
         if (buffer[i] == 0) {
             break;
@@ -861,15 +861,18 @@ s32 JASSeqParser::cmdPrintf(JASTrack* param_0, u32* param_1) {
             if (buffer[i] == 0) {
                 break;
             }
-            if (buffer[i] == 'n') {
+            switch (buffer[i]) {
+            case 'n':
                 buffer[i] = '\r';
-            }
-        } else if (buffer[i] == '%') {
-            buffer[i + 1] = seqCtrl->readByte();
-            if (buffer[i + 1] == 0) {
                 break;
             }
-            switch (buffer[i + 1]) {
+        } else if (buffer[i] == '%') {
+            i++;
+            buffer[i] = seqCtrl->readByte();
+            if (buffer[i] == 0) {
+                break;
+            }
+            switch (buffer[i]) {
             case 'd':
                 stack_c[r30] = 0;
                 break;
@@ -881,18 +884,17 @@ s32 JASSeqParser::cmdPrintf(JASTrack* param_0, u32* param_1) {
                 break;
             case 'r':
                 stack_c[r30] = 3;
-                buffer[i + 1] = 'd';
+                buffer[i] = 'd';
                 break;
             case 'R':
                 stack_c[r30] = 4;
-                buffer[i + 1] = 'x';
-                break;
-            default:
+                buffer[i] = 'x';
                 break;
             }
             r30++;
         }
     }
+
     for (u32 i = 0; i < r30; i++) {
         stack_10[i] = seqCtrl->readByte();
         switch (stack_c[i]) {
@@ -903,10 +905,9 @@ s32 JASSeqParser::cmdPrintf(JASTrack* param_0, u32* param_1) {
         case 4:
             stack_10[i] = readReg(param_0, stack_10[i] & 0xff);
             break;
-        default:
-            break;
         }
     }
+
     JASReport(buffer, stack_10[0], stack_10[1], stack_10[2], stack_10[3]);
     return 0;
 }

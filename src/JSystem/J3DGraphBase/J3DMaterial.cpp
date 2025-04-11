@@ -288,7 +288,6 @@ void J3DMaterial::setCurrentMtx() {
 }
 
 /* 80316AC8-80316D68 311408 02A0+00 1/1 0/0 0/0 .text            calcCurrentMtx__11J3DMaterialFv */
-// NONMATCHING Issues with setCurrentTexMtx
 void J3DMaterial::calcCurrentMtx() {
     if (!j3dSys.checkFlag(0x40000000)) {
         mCurrentMtx.setCurrentTexMtx(
