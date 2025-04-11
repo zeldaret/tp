@@ -17,6 +17,9 @@
 #define JUT_WARN(LINE, ...)                                                                        \
     JUTAssertion::setWarningMessage_f(JUTAssertion::getSDevice(), __FILE__, LINE, __VA_ARGS__);    \
 
+#define JUT_WARN_1(LINE, ...)                                                                        \
+    JUTAssertion::setWarningMessage_f(1, __FILE__, LINE, __VA_ARGS__);    \
+
 #define JUT_LOG(LINE, ...)                                                                         \
     JUTAssertion::setLogMessage_f(JUTAssertion::getSDevice(), __FILE__, LINE, __VA_ARGS__)
 
@@ -28,6 +31,7 @@
 #define JUT_ASSERT_MSG(...) (void)0;
 #define JUT_PANIC(...)
 #define JUT_WARN(...)
+#define JUT_WARN_1(...)
 #define JUT_LOG(...)
 #define JUT_CONFIRM(...)
 #endif

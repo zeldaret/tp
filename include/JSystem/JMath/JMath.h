@@ -12,7 +12,7 @@ void JMAVECScaleAdd(register const Vec* vec1, register const Vec* vec2, register
                     register f32 scale);
 
 inline int JMAAbs(int value) {
-    return value > 0 ? value : -value;
+    return __abs(value);
 }
 
 inline f32 JMAFastReciprocal(f32 value) {

@@ -7,6 +7,7 @@ template<class T>
 class TPointer {
 public:
     TPointer(T* ptr) : mPtr(ptr) {}
+    ~TPointer() {}
     void set(T* ptr) { mPtr = ptr; }
     T* mPtr;
 };
