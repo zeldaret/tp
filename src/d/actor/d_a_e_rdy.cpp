@@ -14,7 +14,9 @@
 #include "d/d_msg_object.h"
 #include "d/d_camera.h"
 #include "f_op/f_op_kankyo_mng.h"
+#ifndef DEBUG
 UNK_REL_DATA;
+#endif
 #include "f_op/f_op_actor_enemy.h"
 #include "m_Do/m_Do_graphic.h"
 
@@ -156,6 +158,7 @@ enum Joint {
     /* 4 */ WEAPON_BOW_BOMB,
  };
 
+#ifndef DEBUG
 UNK_BSS(1109)
 UNK_BSS(1107)
 UNK_BSS(1105)
@@ -172,6 +175,7 @@ UNK_BSS(1014)
 UNK_BSS(1012)
 UNK_BSS(1010)
 UNK_BSS(1009)
+#endif
 
 /* 8077A870-8077A874 000048 0004+00 1/1 0/0 0/0 .bss             boss */
 static e_rdy_class* boss;
@@ -220,6 +224,10 @@ daE_RDY_HIO_c::daE_RDY_HIO_c() {
     field_0x40 = 5.0f;
 }
 
+void daE_RDY_HIO_c::genMessage(JORMContext* context) {
+    // NONMATCHING
+}
+
 /* 8076BE80-8076BF6C 0001A0 00EC+00 23/23 0/0 0/0 .text            anm_init__FP11e_rdy_classifUcf */
 static void anm_init(e_rdy_class* i_this, int i_anm, f32 i_morf, u8 i_attr, f32 i_rate) {
     J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, i_anm);
@@ -232,79 +240,83 @@ static void anm_init(e_rdy_class* i_this, int i_anm, f32 i_morf, u8 i_attr, f32 
 }
 
 /* 8076BF6C-8076C484 00028C 0518+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
-// NONMATCHING ordering issue
 static int nodeCallBack(J3DJoint* i_joint, int param_1) {
     if (param_1 == 0) {
-        int jnt_no = i_joint->getJntNo();
+        J3DJoint* dank_joint = i_joint;
+        int jnt_no = dank_joint->getJntNo();
         J3DModel* model = j3dSys.getModel();
         e_rdy_class* _this = (e_rdy_class*)model->getUserArea();
+        fopAc_ac_c* a_this = _this;
+        (void) a_this;
         if (_this != NULL) {
             MTXCopy(model->getAnmMtx(jnt_no), *calc_mtx);
 
             if (jnt_no == JNT_KOSI) {
                 if (_this->field_0xa98 == 3) {
-                    mDoMtx_YrotM(*calc_mtx, _this->field_0xa9a);
+                    cMtx_YrotM(*calc_mtx, (s16)_this->field_0xa9a);
                 }
             } else if (jnt_no == JNT_HIP1) {
                 if (_this->field_0xa98 == 3) {
-                    mDoMtx_XrotM(*calc_mtx, _this->field_0xa9a);
+                    cMtx_XrotM(*calc_mtx, _this->field_0xa9a);
                 }
-                mDoMtx_YrotM(*calc_mtx, _this->field_0xbb0);
-                mDoMtx_ZrotM(*calc_mtx, _this->field_0xb8c[2]
-                                        + (_this->field_0xbae - _this->field_0xb02[2].x));
+                cMtx_YrotM(*calc_mtx, (s16)_this->field_0xbae.y);
+                cMtx_ZrotM(*calc_mtx, _this->field_0xb8c[2]
+                                        + (-_this->field_0xb02[2].x + _this->field_0xbae.x));
             } else if (jnt_no == JNT_KOKA_L) {
-                mDoMtx_YrotM(*calc_mtx, _this->field_0xb8c[7]);
+                cMtx_YrotM(*calc_mtx, _this->field_0xb8c[7]);
             } else if (jnt_no == JNT_SUNE_L1) {
-                mDoMtx_ZrotM(*calc_mtx, _this->field_0xb8c[8]);
+                cMtx_ZrotM(*calc_mtx, _this->field_0xb8c[8]);
             } else if (jnt_no == JNT_KOKA_R) {
-                mDoMtx_YrotM(*calc_mtx, _this->field_0xb8c[9]);
+                cMtx_YrotM(*calc_mtx, _this->field_0xb8c[9]);
             } else if (jnt_no == JNT_SUNE_R1) {
-                mDoMtx_ZrotM(*calc_mtx, _this->field_0xb8c[10]);
+                cMtx_ZrotM(*calc_mtx, _this->field_0xb8c[10]);
             } else if (jnt_no == JNT_MUNE2) {
-                mDoMtx_YrotM(*calc_mtx, _this->field_0xb02[1].y);
+                cMtx_YrotM(*calc_mtx, _this->field_0xb02[1].y);
                 if (_this->field_0xa98 == 3) {
-                    mDoMtx_XrotM(*calc_mtx, _this->field_0xa9a);
+                    cMtx_XrotM(*calc_mtx, _this->field_0xa9a);
                 }
-                mDoMtx_ZrotM(*calc_mtx, _this->field_0xb02[1].x + _this->field_0xb8c[1]);
+                cMtx_ZrotM(*calc_mtx, _this->field_0xb02[1].x + _this->field_0xb8c[1]);
                 if (_this->field_0xa98 == 4) {
-                    mDoMtx_YrotM(*calc_mtx, _this->field_0xa9c * -1.0f);
-                    mDoMtx_XrotM(*calc_mtx, _this->field_0xa9c * 0.3f);
+                    f32 my_f32 = _this->field_0xa9c * -1.0f;
+                    cMtx_YrotM(*calc_mtx, my_f32);
+                    my_f32 = _this->field_0xa9c * 0.3f;
+                    cMtx_XrotM(*calc_mtx, my_f32);
                 }
                 if (_this->field_0xa98 == 3) {
-                    mDoMtx_ZrotM(*calc_mtx, _this->field_0xa9c);
+                    cMtx_ZrotM(*calc_mtx, _this->field_0xa9c);
                 }
             } else if (jnt_no == JNT_HEAD) {
                 if (_this->field_0xa98 != 3 && _this->field_0xa98 != 4) {
-                    mDoMtx_YrotM(*calc_mtx, (_this->field_0xa9e - _this->field_0xa9a) / 2);
-                    mDoMtx_ZrotM(*calc_mtx, (_this->field_0xb8c[0]
+                    cMtx_YrotM(*calc_mtx, (_this->field_0xa9e - _this->field_0xa9a) / 2);
+                    cMtx_ZrotM(*calc_mtx, (_this->field_0xb8c[0]
                                             + (_this->field_0xb02[0].x - _this->field_0xa9c)) / 2);
                 }
             } else if (jnt_no == JNT_KUBI) {
-                mDoMtx_YrotM(*calc_mtx, _this->field_0xb02[0].y);
+                cMtx_YrotM(*calc_mtx, _this->field_0xb02[0].y);
                 if (_this->field_0xa98 != 3 && _this->field_0xa98 != 4) {
-                    mDoMtx_YrotM(*calc_mtx, (_this->field_0xa9e - _this->field_0xa9a) / 2);
-                    mDoMtx_ZrotM(*calc_mtx, (_this->field_0xb8c[0]
+                    cMtx_YrotM(*calc_mtx, (_this->field_0xa9e - _this->field_0xa9a) / 2);
+                    cMtx_ZrotM(*calc_mtx, (_this->field_0xb8c[0]
                                             + (_this->field_0xb02[0].x - _this->field_0xa9c)) / 2);
                 } else {
-                    mDoMtx_ZrotM(*calc_mtx, _this->field_0xb02[0].x + _this->field_0xb8c[0]);
+                    cMtx_ZrotM(*calc_mtx, _this->field_0xb02[0].x + _this->field_0xb8c[0]);
                 }
             } else if (jnt_no == JNT_ARM_L1) {
-                mDoMtx_YrotM(*calc_mtx, _this->field_0xb02[3].y + _this->field_0xb8c[3]);
+                cMtx_YrotM(*calc_mtx, _this->field_0xb02[3].y + _this->field_0xb8c[3]);
             } else if (jnt_no == JNT_ARM_L2) {
-                mDoMtx_YrotM(*calc_mtx, _this->field_0xb02[4].y + _this->field_0xb8c[4]);
+                cMtx_YrotM(*calc_mtx, _this->field_0xb02[4].y + _this->field_0xb8c[4]);
             } else if (jnt_no == JNT_ARM_R1) {
-                mDoMtx_YrotM(*calc_mtx, _this->field_0xb02[5].y + _this->field_0xb8c[5]);
+                cMtx_YrotM(*calc_mtx, _this->field_0xb02[5].y + _this->field_0xb8c[5]);
             } else if (jnt_no == JNT_ARM_R2) {
-                mDoMtx_YrotM(*calc_mtx, _this->field_0xb02[6].y + _this->field_0xb8c[6]);
+                cMtx_YrotM(*calc_mtx, _this->field_0xb02[6].y + _this->field_0xb8c[6]);
             }
 
             if (_this->field_0xbaa != 0) {
                 if (jnt_no & 1) {
-                    mDoMtx_YrotM(*calc_mtx, _this->field_0xbaa);
+                    cMtx_YrotM(*calc_mtx, _this->field_0xbaa);
                 } else if (jnt_no & 2) {
-                    mDoMtx_XrotM(*calc_mtx, _this->field_0xbaa);
+                    cMtx_XrotM(*calc_mtx, _this->field_0xbaa);
                 } else if (jnt_no & 4) {
-                    mDoMtx_ZrotM(*calc_mtx, _this->field_0xbaa);
+                    cMtx_ZrotM(*calc_mtx, _this->field_0xbaa);
                 }
             }
 
@@ -453,12 +465,13 @@ static void* s_b_sub(void* i_proc, void* i_this) {
 }
 
 /* 8076CB24-8076CE10 000E44 02EC+00 2/2 0/0 0/0 .text            search_bomb__FP11e_rdy_classi */
-// NONMATCHING regalloc mainly
+// NONMATCHING regalloc
 static dBomb_c* search_bomb(e_rdy_class* i_this, BOOL param_1) {
     if ((i_this->field_0xaf0 & 0x10000000) == 0) {
         return NULL;
     }
 
+    const fopAc_ac_c* a_this = i_this;
     target_info_count = 0;
     for (int i = 0; i < 10; i++) {
         target_info[i] = NULL;
@@ -470,11 +483,11 @@ static dBomb_c* search_bomb(e_rdy_class* i_this, BOOL param_1) {
         cXyz vec1, vec2, vec3;
         for (int i = 0; i < target_info_count;) {
             dBomb_c* bomb = (dBomb_c*)target_info[i];
-            vec1.x = bomb->current.pos.x - i_this->eyePos.x;
-            vec1.y = threshold + bomb->current.pos.y - i_this->eyePos.y;
-            vec1.z = bomb->current.pos.z - i_this->eyePos.z;
-            vec2.x = bomb->current.pos.x - i_this->current.pos.x;
-            vec2.z = bomb->current.pos.z - i_this->current.pos.z;
+            vec1.x = bomb->current.pos.x - a_this->eyePos.x;
+            vec1.y = 50.0f + bomb->current.pos.y - a_this->eyePos.y;
+            vec1.z = bomb->current.pos.z - a_this->eyePos.z;
+            vec2.x = bomb->current.pos.x - a_this->current.pos.x;
+            vec2.z = bomb->current.pos.z - a_this->current.pos.z;
             f32 dist1 = JMAFastSqrt(vec1.x * vec1.x + vec1.z * vec1.z);
             f32 dist2 = JMAFastSqrt(vec2.x * vec2.x + vec2.z * vec2.z);
             
@@ -482,13 +495,18 @@ static dBomb_c* search_bomb(e_rdy_class* i_this, BOOL param_1) {
                 && (!other_bg_check(i_this, bomb) || !param_1))
             {
                 if (param_1) {
-                    if (fabsf(50.0f + bomb->current.pos.y - i_this->eyePos.y) <= 300.0f) {
-                        s16 ang_y = i_this->shape_angle.y - cM_atan2s(vec1.x, vec1.z);
-                        u16 abs_ang_y = ang_y < 0 ? (s16)-ang_y : ang_y;
-                        if (abs_ang_y < 20000) {
+                    f32 abs_res = fabsf(50.0f + bomb->current.pos.y - a_this->eyePos.y);
+                    if (abs_res <= 300.0f) {
+                        s16 ang_y = a_this->shape_angle.y - cM_atan2s(vec1.x, vec1.z);
+                        if (ang_y < 0) {
+                            ang_y = -1*ang_y;
+                        }
+
+                        if ((u16)ang_y < 20000) {
                             return bomb;
                         }
-                        mDoMtx_YrotS(*calc_mtx, -i_this->shape_angle.y);
+
+                        cMtx_YrotS(*calc_mtx, -a_this->shape_angle.y);
                         MtxPosition(&vec1, &vec3);
                         if (fabsf(vec3.x) < 500.0f && fabsf(vec3.y) < 300.0f
                             && vec3.z > -125.0f && vec3.z < 500.0f)
@@ -808,8 +826,10 @@ static void e_rdy_normal(e_rdy_class* i_this) {
 }
 
 /* 8076DA3C-8076E00C 001D5C 05D0+00 2/1 0/0 0/0 .text            e_rdy_fight_run__FP11e_rdy_class */
-// NONMATCHING minor regalloc
 static void e_rdy_fight_run(e_rdy_class* i_this) {
+    fopAc_ac_c* a_this = i_this;
+    cXyz unused_xyz_0;
+    cXyz unused_xyz_1;
     f32 target_speed = 0.0f;
     s8 bVar1 = true;
     if (!pl_check(i_this, i_this->mPlayerCheckDist + 50.0f, 0x7fff) && i_this->mTimer[0] == 0) {
@@ -893,11 +913,11 @@ static void e_rdy_fight_run(e_rdy_class* i_this) {
         if (i_this->mTimer[3] != 0) {
             i_this->field_0xa98 = -1;
         }
+        target_speed = 0.0f;
         i_this->speedF = 0.0f;
         if (!move_gake_check(i_this, 100.0f)) {
             i_this->mMode = 2;
         }
-        break;
     }
 
     if (i_this->mMode < 5 && move_gake_check(i_this, 100.0f)) {
@@ -907,13 +927,13 @@ static void e_rdy_fight_run(e_rdy_class* i_this) {
     }
 
     if (i_this->mMode >= 0) {
-        cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mPlayerAngle, 4, 0x800);
-        s16 angle_diff = i_this->current.angle.y - i_this->mPlayerAngle;
+        cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mPlayerAngle, 4, 0x800);
+        s16 angle_diff = a_this->current.angle.y - i_this->mPlayerAngle;
         if (angle_diff > 0x400 || angle_diff < -0x400) {
             target_speed = 0.0f;
         }
     }
-    cLib_addCalc2(&i_this->speedF, target_speed, 1.0f, 5.0f);
+    cLib_addCalc2(&a_this->speedF, target_speed, 1.0f, 5.0f);
 
     if (!bVar1) {
         i_this->mAction = ACT_NORMAL;
@@ -939,7 +959,8 @@ static void e_rdy_fight_run(e_rdy_class* i_this) {
             && i_this->mTimer[2] == 0)
         {
             i_this->mTimer[2] = cM_rndF(20.0f) + 20.0f;
-            if (cM_rndF(1.0f) < 0.5f) {
+            f32 chk_val = 0.5f;
+            if (cM_rndF(1.0f) < chk_val) {
                 i_this->mAction = ACT_FIGHT;
                 i_this->mMode = 0;
             }
@@ -1244,9 +1265,9 @@ static void* s_command3_sub(void* i_proc, void* i_this) {
 /* 8076EBB8-8076F0E0 002ED8 0528+00 1/1 0/0 0/0 .text            e_rdy_bow2__FP11e_rdy_class */
 // NONMATCHING regalloc
 static s8 e_rdy_bow2(e_rdy_class* i_this) {
+    fopAc_ac_c* a_this = i_this;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
     cXyz vec1, vec2;
-    J3DAnmTransform* bck;
     int frame = (int)i_this->mpMorf->getFrame();
 
     s8 ret = false;
@@ -1262,13 +1283,13 @@ static s8 e_rdy_bow2(e_rdy_class* i_this) {
         i_this->mArrowTarget.x = point->m_position.x;
         i_this->mArrowTarget.y = point->m_position.y;
         i_this->mArrowTarget.z = point->m_position.z;
-        vec1 = i_this->mArrowTarget - i_this->current.pos;
+        vec1 = i_this->mArrowTarget - a_this->current.pos;
         i_this->mPlayerAngle = cM_atan2s(vec1.x, vec1.z);
     }
 
-    int sw_bit = fopAcM_GetParam(i_this) >> 0x18;
+    int sw_bit = (fopAcM_GetParam(a_this) & 0xff000000) >> 0x18;
     BOOL bVar2 = FALSE;
-    if (sw_bit != 0xff && dComIfGs_isSwitch(sw_bit, fopAcM_GetRoomNo(i_this))) {
+    if (sw_bit != 0xff && dComIfGs_isSwitch(sw_bit, fopAcM_GetRoomNo(a_this))) {
         bVar2 = TRUE;
     }
 
@@ -1289,13 +1310,14 @@ static s8 e_rdy_bow2(e_rdy_class* i_this) {
         }
         break;
 
-    case 2:
+    case 2: {
         anm_init(i_this, ANM_SHOOT_READY, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
-        bck = (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, 8);
-        i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::EMode_NONE, 5.0f, 0.9f, 0.0f, -1.0f);
+        i_this->mpBowMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, 8),
+                                   J3DFrameCtrl::EMode_NONE, 5.0f, TREG_F(3) + 0.9f, 0.0f, -1.0f);
         i_this->mMode = 3;
-        i_this->speedF = 0.0f;
+        a_this->speedF = 0.0f;
         break;
+    }
 
     case 3:
         i_this->field_0xa98 = 4;
@@ -1325,8 +1347,8 @@ static s8 e_rdy_bow2(e_rdy_class* i_this) {
                 && !i_this->field_0xa74)
             {
                 anm_init(i_this, ANM_SHOOT, 1.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
-                bck = (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, 11);
-                i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::EMode_NONE, 1.0f, 1.0f, 0.0f, -1.0f);
+                i_this->mpBowMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, 11),
+                                           J3DFrameCtrl::EMode_NONE, 1.0f, 1.0f, 0.0f, -1.0f);
                 i_this->mMode = 5;
             }
         }
@@ -1334,11 +1356,11 @@ static s8 e_rdy_bow2(e_rdy_class* i_this) {
         break;
 
     case 5:
-        if (frame <= 3) {
+        if (frame <= 3 + XREG_S(5)) {
             i_this->mHasArrow = true;
             i_this->field_0xa98 = 4;
         }
-        if (frame == 2) {
+        if (frame == 2 + XREG_S(7)) {
             i_this->mArrowFired = true;
         }
         if (i_this->mpMorf->isStop()) {
@@ -1355,7 +1377,7 @@ static s8 e_rdy_bow2(e_rdy_class* i_this) {
         break;
     }
 
-    cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mPlayerAngle, 4, 0x1000);
+    cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mPlayerAngle, 4, 0x1000);
     if (i_this->field_0xa98 != 0 && i_this->mpPath != NULL) {
         i_this->field_0xa98 = 14;
     }
@@ -1506,13 +1528,17 @@ static void* s_kusa_sub(void* i_proc, void* i_this) {
 /* 8076F71C-807701F4 003A3C 0AD8+00 2/1 0/0 0/0 .text            e_rdy_tkusa__FP11e_rdy_class */
 // NONMATCHING regswap
 static void e_rdy_tkusa(e_rdy_class* i_this) {
+    fopAc_ac_c* a_this = i_this;
     cXyz vec;
+    cXyz unused_vec;
     i_this->mIFrameTimer = 20;
 
     if (i_this->mKargarokID == fpcM_ERROR_PROCESS_ID_e) {
         i_this->mKargarokID = fopAcM_GetID(fopAcM_SearchByName(PROC_E_YC));
     }
-    e_yc_class* kargarok = (e_yc_class*)fopAcM_SearchByID(i_this->mKargarokID);
+
+    fopAc_ac_c* a_karg = fopAcM_SearchByID(i_this->mKargarokID);
+    e_yc_class* kargarok = (e_yc_class*) a_karg;
     if (kargarok != NULL) {
         kargarok->mRiderID = fopAcM_GetID(i_this);
     }
@@ -1525,7 +1551,7 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
         return;
     }
 
-    if (i_this->mMode <= 1 && i_this->mPlayerDist < 1300.0f) {
+    if (i_this->mMode <= 1 && i_this->mPlayerDist < 1300.0f + TREG_F(7)) {
         i_this->mDemoMode = 10;
         i_this->mDemoTimer = 0;
         i_this->mMode = 2;
@@ -1538,8 +1564,8 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
             anm_init(i_this, ANM_WALK, 7.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mTimer[0] = cM_rndF(60.0f) + 60.0f;
             i_this->mMode = 1;
-            vec.x = i_this->home.pos.x + cM_rndFX(200.0f) - i_this->current.pos.x;
-            vec.z = i_this->home.pos.z + cM_rndFX(200.0f) - i_this->current.pos.z;
+            vec.x = a_this->home.pos.x + cM_rndFX(200.0f) - a_this->current.pos.x;
+            vec.z = a_this->home.pos.z + cM_rndFX(200.0f) - a_this->current.pos.z;
             i_this->mTargetAngleY = cM_atan2s(vec.x, vec.z);
         }
         break;
@@ -1556,8 +1582,8 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
     case 2:
         if (i_this->mDemoMode == 11) {
             if (i_this->mDemoTimer > 70) {
-                vec = grass->current.pos - i_this->current.pos;
-                i_this->mTargetAngleY = cM_atan2s(vec.x, vec.z) + -1000;
+                vec = grass->current.pos - a_this->current.pos;
+                i_this->mTargetAngleY = cM_atan2s(vec.x, vec.z) + -1000 + NREG_S(7);
             } else if (i_this->mDemoTimer > 30) {
                 i_this->mTargetAngleY = i_this->mPlayerAngle;
                 if (i_this->mDemoTimer == 31) {
@@ -1574,9 +1600,9 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
 
     case 3:
         target_speed = l_HIO.mRunSpeed;
-        vec = grass->current.pos - i_this->current.pos;
+        vec = grass->current.pos - a_this->current.pos;
         i_this->mTargetAngleY = cM_atan2s(vec.x, vec.z);
-        if (vec.abs() < 160.0f) {
+        if (vec.abs() < 160.0f + TREG_F(8)) {
             anm_init(i_this, ANM_WAIT01, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mTimer[0] = 20;
             i_this->mMode = 4;
@@ -1591,13 +1617,13 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
         break;
 
     case 5:
-        if (frame == 15) {
+        if (frame == 15 + TREG_S(7)) {
             fopAcM_setCarryNow(grass, FALSE);
             i_this->mIsHoldingGrass = true;
             i_this->mSound.startCreatureSound(Z2SE_AL_PICKUP_GRASS, 0, -1);
             i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_CALLING, -1);
         }
-        if (frame == 30) {
+        if (frame == 30 + TREG_S(8)) {
             i_this->mDemoMode++;
         }
         if (i_this->mpMorf->isStop()) {
@@ -1624,8 +1650,8 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
             i_this->mMode = 7;
             i_this->mTimer[0] = 3;
             kargarok->mMode = 2;
-            kargarok->current = kargarok->home;
-            kargarok->shape_angle = kargarok->current.angle;
+            a_karg->current = a_karg->home;
+            a_karg->shape_angle = a_karg->current.angle;
             kargarok->mNoDrawFlag = true;
             kargarok->mAngleSpeedRatio = 0.0f;
         }
@@ -1638,22 +1664,21 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
             anm_init(i_this, ANM_WAIT01, 7.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             Z2GetAudioMgr()->setBattleBgmOff(false);
         }
-        if (i_this->mDemoTimer == 309) {
+        if (i_this->mDemoTimer == 309 + XREG_S(2)) {
             anm_init(i_this, ANM_LOOKBACK, 10.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             i_this->mIsHoldingGrass = false;
             kargarok->mMode = 4;
-            kargarok->speedF = 30.0f;
-            mDoMtx_YrotS(*calc_mtx, i_this->shape_angle.y);
-            vec.x = 1100.0f;
-            vec.y = 1050.0f;
-            vec.z = -1100.0f;
-            MtxPosition(&vec, &kargarok->current.pos);
-            kargarok->current.pos += i_this->current.pos;
-            vec = i_this->current.pos - kargarok->current.pos;
-            kargarok->current.angle.y = cM_atan2s(vec.x, vec.z);
-            kargarok->shape_angle.y = kargarok->current.angle.y;
-            kargarok->shape_angle.z = 0x2000;
-            kargarok->current.angle.z = 0x2000;
+            a_karg->speedF = 30.0f;
+            cMtx_YrotS(*calc_mtx, a_this->shape_angle.y);
+            vec.x = 1100.0f + XREG_F(10);
+            vec.y = 1050.0f + XREG_F(11);
+            vec.z = -1100.0f + XREG_F(12);
+            MtxPosition(&vec, &a_karg->current.pos);
+            a_karg->current.pos += a_this->current.pos;
+            vec = a_this->current.pos - a_karg->current.pos;
+            a_karg->current.angle.y = cM_atan2s(vec.x, vec.z);
+            a_karg->shape_angle.y = a_karg->current.angle.y;
+            a_karg->current.angle.z = a_karg->shape_angle.z = NREG_S(6) + 0x2000;
             i_this->mDemoMode = 17;
             i_this->mDemoTimer = 0;
             i_this->mMode = 8;
@@ -1663,7 +1688,7 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
     case 8:
         if (i_this->mDemoTimer == 95) {
             anm_init(i_this, ANM_RUN, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
-            vec = kargarok->current.pos - i_this->current.pos;
+            vec = a_karg->current.pos - a_this->current.pos;
             i_this->mTargetAngleY = cM_atan2s(vec.x, vec.z);
             i_this->mDemoMode = 18;
             i_this->mDemoTimer = 0;
@@ -1677,7 +1702,7 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
             anm_init(i_this, ANM_JUMP_A, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_JUMP_RIDING, -1);
             i_this->mMode = 10;
-            i_this->home = i_this->current;
+            a_this->home = a_this->current;
         }
         break;
 
@@ -1686,8 +1711,8 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
             i_this->mMode = 11;
             anm_init(i_this, ANM_JUMP_B, 10.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             i_this->mRideState = 1;
-            i_this->mJumpSpeed = 50.0f;
-            i_this->mTimer[3] = 30;
+            i_this->mJumpSpeed = 50.0f + TREG_F(4);
+            i_this->mTimer[3] = 30 + JREG_S(6);
         }
         break;
 
@@ -1695,7 +1720,7 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
         if (i_this->mJumpHeight <= 0.0f) {
             anm_init(i_this, ANM_RJUMP_C, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             i_this->mMode = 12;
-            kargarok->field_0x698 = -27.0f;
+            kargarok->field_0x698 = -27.0f + JREG_F(17);
         }
         break;
 
@@ -1714,12 +1739,12 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
         break;
     }
 
-    cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mTargetAngleY, 2, 0x1000);
-    s16 angle_diff = i_this->current.angle.y - i_this->mTargetAngleY;
+    cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mTargetAngleY, 2, 0x1000);
+    s16 angle_diff = a_this->current.angle.y - i_this->mTargetAngleY;
     if (angle_diff > 0x400 || angle_diff < -0x400) {
         target_speed = 0.0f;
     }
-    cLib_addCalc2(&i_this->speedF, target_speed, 1.0f, 5.0f);
+    cLib_addCalc2(&a_this->speedF, target_speed, 1.0f, 5.0f);
 }
 
 /* 807701F4-8077089C 004514 06A8+00 1/1 0/0 0/0 .text            e_rdy_yc_ride__FP11e_rdy_class */
@@ -2242,7 +2267,7 @@ static void e_rdy_damage(e_rdy_class* i_this) {
                 i_this->field_0xabc *= 0.5f;
                 i_this->speed.y = 20.0f;
                 s16 angle_y;
-                if (!i_this->mIsUpsideDown) {
+                if (i_this->mIsUpsideDown == 0) {
                     angle_y = i_this->field_0xadc.y;
                 } else {
                     angle_y = i_this->field_0xadc.y + 0x8000;
@@ -2359,17 +2384,14 @@ static s16 gake_check(e_rdy_class* i_this, f32 i_dist) {
 }
 
 /* 80771F50-80772128 006270 01D8+00 1/1 0/0 0/0 .text            s_bikkuri_sub__FPvPv */
-// NONMATCHING regswap
 static void* s_bikkuri_sub(void* i_proc, void* i_this) {
-    e_rdy_class* _this = (e_rdy_class*)i_this;
-    if (fopAc_IsActor(i_proc) && fopAcM_GetName(i_proc) == PROC_E_RDY) {
-        e_rdy_class* other = (e_rdy_class*)i_proc;
-        if (other != _this && other->mAction == ACT_BOW3 && other->mMode <= 2) {
-            cXyz delta = other->current.pos - _this->current.pos;
-            if (delta.abs() < 350.0f) {
-                anm_init(other, ANM_KYORO2, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.3f);
-                other->mMode = 3;
-                other->mTimer[0] = cM_rndF(20.0f) + 40.0f;
+    if (fopAcM_IsActor(i_proc) && fopAcM_GetName(i_proc) == PROC_E_RDY) {
+        if (i_proc != i_this && ((e_rdy_class*)i_proc)->mAction == ACT_BOW3 && ((e_rdy_class*)i_proc)->mMode <= 2) {
+            cXyz delta = ((e_rdy_class*)i_proc)->current.pos - ((e_rdy_class*)i_this)->current.pos;
+            if (delta.abs() < 350.0f + KREG_F(11)) {
+                anm_init((e_rdy_class*)i_proc, ANM_KYORO2, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.3f);
+                ((e_rdy_class*)i_proc)->mMode = 3;
+                ((e_rdy_class*)i_proc)->mTimer[0] = cM_rndF(20.0f) + 40.0f;
             }
         }
     }
@@ -3149,25 +3171,24 @@ static void damage_check(e_rdy_class* i_this) {
 }
 
 /* 8077424C-8077582C 00856C 15E0+00 2/1 0/0 0/0 .text            action__FP11e_rdy_class */
-// NONMATCHING float ordering and an extra mr
-// A cast to s16 fixes the latter, but causes a regswap
 static void action(e_rdy_class* i_this) {
+    fopAc_ac_c* a_this = i_this;
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
     cXyz vec1, vec2;
 
     i_this->field_0xa98 = 0;
-    i_this->mPlayerDist = fopAcM_searchPlayerDistance(i_this);
+    i_this->mPlayerDist = fopAcM_searchPlayerDistance(a_this);
     if (daPy_getPlayerActorClass()->checkHorseRide()) {
-        i_this->mPlayerDist -= 100.0f;
+        i_this->mPlayerDist -= 100.0f + BREG_F(17);
     }
-    i_this->mPlayerAngle = fopAcM_searchPlayerAngleY(i_this);
+    i_this->mPlayerAngle = fopAcM_searchPlayerAngleY(a_this);
 
     if (i_this->mRideState == 0) {
-        fopAcM_OnStatus(i_this, 0);
-        i_this->attention_info.flags = 4;
+        fopAcM_OnStatus(a_this, 0);
+        a_this->attention_info.flags = 4;
     } else {
-        fopAcM_OffStatus(i_this, 0);
-        i_this->attention_info.flags = 0;
+        fopAcM_OffStatus(a_this, 0);
+        a_this->attention_info.flags = 0;
     }
 
     damage_check(i_this);
@@ -3257,7 +3278,7 @@ static void action(e_rdy_class* i_this) {
     if (search_sound) {
         SND_INFLUENCE* sound = dKy_Sound_get();
         if (sound->actor_id != fpcM_ERROR_PROCESS_ID_e && sound->actor_id != fopAcM_GetID(i_this)) {
-            vec1 = sound->position - i_this->current.pos;
+            vec1 = sound->position - a_this->current.pos;
             if (vec1.abs() < sound->field_0xc * 120) {
                 i_this->mPrevAction = i_this->mAction;
                 i_this->mAction = ACT_EXCITE;
@@ -3269,14 +3290,14 @@ static void action(e_rdy_class* i_this) {
 
     if (water_check) {
         dBgS_ObjGndChk_Spl gnd_chk;
-        vec1 = i_this->current.pos;
+        vec1 = a_this->current.pos;
         vec1.y += 150.0f;
         gnd_chk.SetPos(&vec1);
         i_this->mWaterHeight = dComIfG_Bgsp().GroundCross(&gnd_chk);
-        if (i_this->current.pos.y < i_this->mWaterHeight) {
+        if (a_this->current.pos.y < i_this->mWaterHeight) {
             i_this->mAction = ACT_WATER;
             i_this->mMode = 0;
-            i_this->current.pos.y = i_this->mWaterHeight;
+            a_this->current.pos.y = i_this->mWaterHeight;
         }
     }
 
@@ -3286,41 +3307,41 @@ static void action(e_rdy_class* i_this) {
         i_this->mSound.setLinkSearch(false);
     }
 
-    cLib_addCalcAngleS2(&i_this->shape_angle.y, i_this->current.angle.y, 2, 0x1000);
-    cLib_addCalcAngleS2(&i_this->shape_angle.x, i_this->current.angle.x, 2, 0x1000);
-    cLib_addCalcAngleS2(&i_this->shape_angle.z, i_this->current.angle.z, 2, 0x1000);
+    cLib_addCalcAngleS2(&a_this->shape_angle.y, a_this->current.angle.y, 2, 0x1000);
+    cLib_addCalcAngleS2(&a_this->shape_angle.x, a_this->current.angle.x, 2, 0x1000);
+    cLib_addCalcAngleS2(&a_this->shape_angle.z, a_this->current.angle.z, 2, 0x1000);
 
     if (i_this->mRideState == 0) {
-        i_this->attention_info.distances[fopAc_attn_BATTLE_e] = 3;
+        a_this->attention_info.distances[fopAc_attn_BATTLE_e] = 3;
         if (i_this->field_0xabc) {
             mDoMtx_YrotS(*calc_mtx, i_this->field_0xadc.y);
             if (i_this->field_0xbc0 == 0) {
                 vec1.z = i_this->field_0xabc;
             } else {
                 vec1.z = 0.0f;
-                i_this->speed.y = 0.0f;
+                a_this->speed.y = 0.0f;
             }
-            i_this->gravity = -(l_HIO.field_0x40 - 1.0f);
+            a_this->gravity = -(l_HIO.field_0x40 - 1.0f);
         } else {
-            mDoMtx_YrotS(*calc_mtx, i_this->current.angle.y);
-            vec1.z = i_this->speedF;
-            i_this->gravity = -5.0f;
+            mDoMtx_YrotS(*calc_mtx, a_this->current.angle.y);
+            vec1.z = a_this->speedF;
+            a_this->gravity = -5.0f;
         }
         vec1.x = 0.0f;
         vec1.y = 0.0f;
         MtxPosition(&vec1, &vec2);
-        i_this->speed.x = vec2.x;
-        i_this->speed.z = vec2.z;
-        i_this->current.pos += i_this->speed;
-        i_this->speed.y += i_this->gravity;
-        if (i_this->speed.y < -100.0f) {
-            i_this->speed.y = -100.0f;
+        a_this->speed.x = vec2.x;
+        a_this->speed.z = vec2.z;
+        a_this->current.pos += a_this->speed;
+        a_this->speed.y += a_this->gravity;
+        if (a_this->speed.y < -100.0f) {
+            a_this->speed.y = -100.0f;
         }
         if (i_this->mCollisionEnabled) {
             cXyz* move_p = i_this->mCcStts.GetCCMoveP();
             if (move_p != NULL) {
-                i_this->current.pos.x += move_p->x;
-                i_this->current.pos.z += move_p->z;
+                a_this->current.pos.x += move_p->x;
+                a_this->current.pos.z += move_p->z;
             }
         }
         cLib_addCalc0(&i_this->mJumpHeight, 1.0f, 3.0f);
@@ -3330,69 +3351,71 @@ static void action(e_rdy_class* i_this) {
             vec1.z = -i_this->mKnockback;
             mDoMtx_YrotS(*calc_mtx, i_this->mHitDirection);
             MtxPosition(&vec1, &vec2);
-            i_this->current.pos += vec2;
-            cLib_addCalc0(&i_this->mKnockback, 1.0f, 7.0f);
+            a_this->current.pos += vec2;
+            cLib_addCalc0(&i_this->mKnockback, 1.0f, TREG_F(12) + 7.0f);
         }
 
     } else {
-        e_yc_class* kargarok = (e_yc_class*)fopAcM_SearchByID(i_this->mKargarokID);
-        if (kargarok == NULL) {
+        fopAc_ac_c* a_karg = fopAcM_SearchByID(i_this->mKargarokID);
+        if (a_karg == NULL) {
             i_this->mAction = ACT_NORMAL;
             i_this->mMode = 0;
             return;
         }
-        i_this->speedF = kargarok->speedF;
-        i_this->speed.set(0.0f, 0.0f, 0.0f);
-        MTXCopy(kargarok->mpMorf->getModel()->getAnmMtx(9), *calc_mtx);
-        vec1.set(0.0f, -60.0f, 15.0f);
+
+        e_yc_class* kargorok = (e_yc_class*) a_karg;
+        a_this->speedF = a_karg->speedF;
+        a_this->speed.set(0.0f, 0.0f, 0.0f);
+        MTXCopy(kargorok->mpMorf->getModel()->getAnmMtx(9), *calc_mtx);
+        vec1.set(0.0f, -60.0f + BREG_F(4), 15.0f + BREG_F(5));
         MtxPosition(&vec1, &i_this->mKargarokPos);
         if (i_this->mRideState == 2) {
-            i_this->current.pos = i_this->mKargarokPos;
-            i_this->current.angle = kargarok->shape_angle;
-            i_this->shape_angle = i_this->current.angle;
-            kargarok->mRiderID = fopAcM_GetID(i_this);
+            a_this->current.pos = i_this->mKargarokPos;
+            a_this->shape_angle = a_this->current.angle = a_karg->shape_angle;
+            kargorok->mRiderID = fopAcM_GetID(i_this);
         } else {
-            vec1 = i_this->mKargarokPos - i_this->current.pos;
-            mDoMtx_YrotS(*calc_mtx, cM_atan2s(vec1.x, vec1.z));
-            f32 vec1_xz = JMAFastSqrt(vec1.x * vec1.x + vec1.z * vec1.z);
-            mDoMtx_XrotM(*calc_mtx, -cM_atan2s(vec1.y, vec1_xz));
+            vec1 = i_this->mKargarokPos - a_this->current.pos;
+            cMtx_YrotS(*calc_mtx, cM_atan2s(vec1.x, vec1.z));
+            cMtx_XrotM(*calc_mtx, -cM_atan2s(vec1.y, JMAFastSqrt(vec1.x * vec1.x + vec1.z * vec1.z)));
             vec1.x = 0.0f;
             vec1.y = 0.0f;
-            vec1.z = 20.0f;
+            vec1.z = 20.0f + TREG_F(3);
             MtxPosition(&vec1, &vec2);
-            i_this->current.pos += vec2;
-            vec1 = i_this->mKargarokPos - i_this->current.pos;
+            a_this->current.pos += vec2;
+            vec1 = i_this->mKargarokPos - a_this->current.pos;
             if (vec1.abs() < 30.0f || i_this->mTimer[3] == 0) {
                 i_this->mRideState = 2;
             }
-            cLib_addCalcAngleS2(&i_this->current.angle.y, kargarok->shape_angle.y, 4, 0x800);
+            cLib_addCalcAngleS2(&a_this->current.angle.y, a_karg->shape_angle.y, 4, 0x800);
         }
         i_this->mJumpHeight += i_this->mJumpSpeed;
-        i_this->mJumpSpeed -= 4.5f;
+        i_this->mJumpSpeed -= 4.5f + TREG_F(5);
         if (i_this->mJumpHeight <= 0.0f) {
             i_this->mJumpHeight = 0.0f;
             i_this->mJumpSpeed = 0.0f;
         }
     }
 
+    s16 ang_diff_y = 0;
     s16 sVar10 = 0;
+    s16 ang_adj = 16000;
     i_this->field_0xa74 = false;
     cXyz vec3;
     s16 sVar15 = 0x1000;
 
     if (i_this->field_0xa98 == -1 || i_this->field_0xa98 == -2) {
-        mDoMtx_YrotS(*calc_mtx, i_this->shape_angle.y);
+        cMtx_YrotS(*calc_mtx, a_this->shape_angle.y);
         vec1.x = 0.0f;
         if (i_this->field_0xa98 == -2) {
-            vec1.y = 110.0f;
+            vec1.y = 110.0f + KREG_F(5);
         } else {
-            vec1.y = 70.0f;
+            vec1.y = 70.0f + KREG_F(8);
         }
         vec1.z = 50.0f;
         MtxPosition(&vec1, &vec3);
-        vec3 += i_this->current.pos;
+        vec3 += a_this->current.pos;
         i_this->field_0xa98 = 2;
-        sVar15 = 0x800;
+        sVar15 = 0x800 + KREG_S(7);
     } else if (i_this->field_0xa98 >= 11) {
         i_this->field_0xa98 -= 10;
         vec3 = i_this->mArrowTarget;
@@ -3405,21 +3428,20 @@ static void action(e_rdy_class* i_this) {
     }
 
     if (i_this->field_0xa98 != 0) {
-        vec1 = vec3 - i_this->current.pos;
-        vec1.y += -150.0f;
-        s16 ang_diff_y = cM_atan2s(vec1.x, vec1.z) - i_this->shape_angle.y;
-        f32 vec1_xz = JMAFastSqrt(vec1.x * vec1.x + vec1.z * vec1.z);
-        sVar10 = i_this->shape_angle.x + cM_atan2s(vec1.y, vec1_xz);
+        vec1 = vec3 - a_this->current.pos;
+        vec1.y += -150.0f + TREG_F(2);
+        ang_diff_y = cM_atan2s(vec1.x, vec1.z) - a_this->shape_angle.y;
+        sVar10 = a_this->shape_angle.x + cM_atan2s(vec1.y, JMAFastSqrt(vec1.x * vec1.x + vec1.z * vec1.z));
         if (i_this->field_0xa98 <= 2) {
-            if (ang_diff_y > 16000) {
-                ang_diff_y = 16000;
-            } else if (ang_diff_y < -16000) {
-                ang_diff_y = -16000;
+            if (ang_diff_y > ang_adj) {
+                ang_diff_y = ang_adj;
+            } else if ((s16)ang_diff_y < (s16)-ang_adj) {
+                ang_diff_y = -ang_adj;
             }
-            if (sVar10 > 16000) {
-                sVar10 = 16000;
-            } else if (sVar10 < -16000) {
-                sVar10 = -16000;
+            if (sVar10 > ang_adj) {
+                sVar10 = ang_adj;
+            } else if ((s16)sVar10 < (s16)-ang_adj) {
+                sVar10 = -ang_adj;
             }
             cLib_addCalcAngleS2(&i_this->field_0xa9a, ang_diff_y, 2, sVar15);
         } else if (i_this->field_0xa98 == 5) {
@@ -3427,16 +3449,17 @@ static void action(e_rdy_class* i_this) {
                 i_this->field_0xaa0 = cM_rndFX2(2000.0f);
             }
         } else {
-            if (ang_diff_y > 30000) {
-                ang_diff_y = 30000;
+            ang_adj = 30000 + XREG_S(5);
+            s16 other_adj = 25000 + XREG_S(6);
+            if (ang_diff_y > ang_adj) {
+                ang_diff_y = ang_adj;
                 i_this->field_0xa74 = true;
-            } else if (ang_diff_y < -25000) {
-                ang_diff_y = -25000;
+            } else if (ang_diff_y < (s16)-other_adj) {
+                ang_diff_y = -other_adj;
                 i_this->field_0xa74 = true;
             }
             cLib_addCalcAngleS2(&i_this->field_0xa9a, ang_diff_y / 2, 2, 0x1000);
-            vec1_xz = JMAFastSqrt(vec1.x * vec1.x + vec1.z * vec1.z);
-            sVar10 = -cM_atan2s(vec1.y, vec1_xz);
+            sVar10 = -cM_atan2s(vec1.y, JMAFastSqrt(vec1.x * vec1.x + vec1.z * vec1.z));
             if (sVar10 > 11000) {
                 sVar10 = 11000;
                 i_this->field_0xa74 = true;
@@ -3454,32 +3477,32 @@ static void action(e_rdy_class* i_this) {
     cLib_addCalcAngleS2(&i_this->field_0xa9e, i_this->field_0xaa0, 4, 0x500);
 
     if (fabsf(i_this->field_0xafc) > 1.0f) {
-        i_this->field_0xb44[1].x = i_this->field_0xafc * cM_scos(i_this->field_0xb00) * 70.0f;
+        i_this->field_0xb44[1].x = i_this->field_0xafc * cM_scos(i_this->field_0xb00) * (70.0f + BREG_F(0));
         i_this->field_0xb44[2].x += i_this->field_0xb44[1].x;
-        cLib_addCalc0(&i_this->field_0xafc, 1.0f, 3.0f);
-        i_this->field_0xb00 += 4000;
+        cLib_addCalc0(&i_this->field_0xafc, 1.0f, 3.0f + BREG_F(1));
+        i_this->field_0xb00 += (s16)(4000 + BREG_S(0));
     }
 
     if (fabsf(i_this->field_0xaf4) > 1.0f) {
-        i_this->field_0xb44[0].x = i_this->field_0xaf4 * cM_scos(i_this->field_0xaf8) * 70.0f;
-        cLib_addCalc0(&i_this->field_0xaf4, 1.0f, 3.0f);
-        i_this->field_0xaf8 += 4000;
+        i_this->field_0xb44[0].x = i_this->field_0xaf4 * cM_scos(i_this->field_0xaf8) * (70.0f + BREG_F(2));
+        cLib_addCalc0(&i_this->field_0xaf4, 1.0f, 3.0f + BREG_F(3));
+        i_this->field_0xaf8 += (s16)(4000 + BREG_S(1));
     }
 
-    if (i_this->speed.y < 0.0f && i_this->mAcch.ChkGroundHit()) {
+    if (a_this->speed.y < 0.0f && i_this->mAcch.ChkGroundHit()) {
         cLib_addCalc0(&i_this->field_0xafc, 1.0f, 30.0f);
         cLib_addCalc0(&i_this->field_0xaf4, 1.0f, 30.0f);
     }
 
     if (i_this->field_0xabc) {
-        s16 ang_diff_y = i_this->field_0xadc.y - i_this->shape_angle.y;
-        i_this->field_0xb44[3].y = 0x4000 - ang_diff_y;
+        ang_diff_y = i_this->field_0xadc.y - a_this->shape_angle.y;
+        i_this->field_0xb44[3].y = -ang_diff_y + 0x4000;
         if (i_this->field_0xb44[3].y > 6000) {
             i_this->field_0xb44[3].y = 6000;
         } else if (i_this->field_0xb44[3].y < -12000) {
             i_this->field_0xb44[3].y = -12000;
         }
-        i_this->field_0xb44[4].y = 0x4000 - ang_diff_y;
+        i_this->field_0xb44[4].y = -ang_diff_y + 0x4000;
         if (i_this->field_0xb44[4].y > 15000) {
             i_this->field_0xb44[4].y = 15000;
         } else if (i_this->field_0xb44[4].y < 0) {
@@ -3498,15 +3521,15 @@ static void action(e_rdy_class* i_this) {
             i_this->field_0xb44[6].y = 0;
         }
 
-        mDoMtx_YrotS(*calc_mtx, ang_diff_y);
+        cMtx_YrotS(*calc_mtx, ang_diff_y);
         vec1.x = 0.0f;
         vec1.y = 0.0f;
         vec1.z = 12000.0f;
         MtxPosition(&vec1, &vec2);
-        i_this->field_0xbb6 = -vec2.x;
-        i_this->field_0xbb4 = -vec2.z * 1.3f;
-        if (i_this->field_0xbb4 > 10000) {
-            i_this->field_0xbb4 = 10000;
+        i_this->field_0xbb4.y = -vec2.x;
+        i_this->field_0xbb4.x = -vec2.z * 1.3f;
+        if (i_this->field_0xbb4.x > 10000) {
+            i_this->field_0xbb4.x = 10000;
         }
     }
 
@@ -3517,8 +3540,7 @@ static void action(e_rdy_class* i_this) {
         cLib_addCalcAngleS2(&i_this->field_0xb02[i].x, i_this->field_0xb44[i].x, 2, j_spd[i]);
         cLib_addCalcAngleS2(&i_this->field_0xb02[i].y, i_this->field_0xb44[i].y, 2, j_spd[i]);
         cLib_addCalcAngleS2(&i_this->field_0xb02[i].z, i_this->field_0xb44[i].z, 2, j_spd[i]);
-        i_this->field_0xb44[i].z = 0;
-        i_this->field_0xb44[i].x = 0;
+        i_this->field_0xb44[i].x = i_this->field_0xb44[i].z = 0;
         if (i >= 3 && i <= 6) {
             if (i_this->field_0xba2[i - 3] == 0) {
                 s16 spd;
@@ -3536,15 +3558,14 @@ static void action(e_rdy_class* i_this) {
         }
         if (i >= 3) {
             i_this->field_0xb8c[i] =
-                i_this->field_0xb88 * cM_scos(i_this->mCounter * 4000 + i * 20000);
+                i_this->field_0xb88 * cM_scos(i_this->mCounter * (BREG_S(0) + 4000) + i * (BREG_S(1) + 20000));
         }
     }
-    cLib_addCalc0(&i_this->field_0xb88, 1.0f, 100.0f);
-    
-    cLib_addCalcAngleS2(&i_this->field_0xbb0, i_this->field_0xbb6, 2, 0x800);
-    cLib_addCalcAngleS2(&i_this->field_0xbae, i_this->field_0xbb4, 2, 0x800);
-    i_this->field_0xbb4 = 0;
-    i_this->field_0xbb6 = 0;
+    cLib_addCalc0(&i_this->field_0xb88, 1.0f, 100.0f + BREG_F(11));
+
+    cLib_addCalcAngleS2(&i_this->field_0xbae.y, i_this->field_0xbb4.y, 2, 0x800);
+    cLib_addCalcAngleS2(&i_this->field_0xbae.x, i_this->field_0xbb4.x, 2, 0x800);
+    i_this->field_0xbb4.y = i_this->field_0xbb4.x = 0;
 
     s16 sVar11 = 0;
     s16 sVar12 = 0;
@@ -3553,7 +3574,9 @@ static void action(e_rdy_class* i_this) {
         if (i_this->field_0xadc.x != 0) {
             Vec gnd_pos2;
             cXyz gnd_pos;
+            cXyz unused_vec;
             dBgS_GndChk gnd_chk;
+            f32 z_adj = 75.0f;
             MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(JNT_HIP1), *calc_mtx);
             vec1.set(0.0f, 0.0f, 0.0f);
             MtxPosition(&vec1, &gnd_pos);
@@ -3561,27 +3584,33 @@ static void action(e_rdy_class* i_this) {
             gnd_pos.y += 100.0f;
             gnd_chk.SetPos(&gnd_pos);
             gnd_pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
+            f32 y_diff;
+            f32 ox_diff;
 
             if (gnd_pos.y != -1.0e9f) {
                 gnd_pos2.x = gnd_pos.x;
                 gnd_pos2.y = gnd_pos.y + 100.0f;
-                gnd_pos2.z = gnd_pos.z + 75.0f;
+                gnd_pos2.z = gnd_pos.z + z_adj;
                 gnd_chk.SetPos(&gnd_pos2);
                 gnd_pos2.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
                 if (gnd_pos2.y != -1.0e9f) {
-                    sVar12 = -cM_atan2s(gnd_pos2.y - gnd_pos.y, gnd_pos2.z - gnd_pos.z);
+                    y_diff = gnd_pos2.y - gnd_pos.y;
+                    f32 z_diff = gnd_pos2.z - gnd_pos.z;
+                    sVar12 = -cM_atan2s(y_diff, z_diff);
                     if (sVar12 > 0x3000 || sVar12 < -0x3000) {
                         sVar12 = 0;
                     }
                 }
 
-                gnd_pos2.x = gnd_pos.x + 75.0f;
+                gnd_pos2.x = gnd_pos.x + z_adj;
                 gnd_pos2.y = gnd_pos.y + 100.0f;
                 gnd_pos2.z = gnd_pos.z;
                 gnd_chk.SetPos(&gnd_pos2);
                 gnd_pos2.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
                 if (gnd_pos2.y != -1.0e9f) {
-                    sVar11 = cM_atan2s(gnd_pos2.y - gnd_pos.y, gnd_pos2.x - gnd_pos.x);
+                    y_diff = gnd_pos2.y - gnd_pos.y;
+                    ox_diff = gnd_pos2.x - gnd_pos.x;
+                    sVar11 = (s16)cM_atan2s(y_diff, ox_diff);
                     if (sVar11 > 0x3000 || sVar11 < -0x3000) {
                         sVar11 = 0;
                     }
@@ -3590,22 +3619,22 @@ static void action(e_rdy_class* i_this) {
 
             dBgS_LinChk lin_chk;
             cXyz vec4, lin_start, lin_end;
-            lin_start = i_this->current.pos;
-            lin_start.y += 30.0f;
+            lin_start = a_this->current.pos;
+            lin_start.y += 30.0f + JREG_F(5);
             J3DModel* model = i_this->mpMorf->getModel();
             vec4.set(0.0f, 0.0f, 0.0f);
-            MTXCopy(model->getAnmMtx(JNT_HEAD), *calc_mtx);
+            MTXCopy(model->getAnmMtx(JNT_HEAD + BREG_S(8)), *calc_mtx);
             MtxPosition(&vec4, &lin_end);
-            lin_end.y += 30.0f;
-            lin_chk.Set(&lin_start, &lin_end, i_this);
+            lin_end.y += 30.0f + JREG_F(6);
+            lin_chk.Set(&lin_start, &lin_end, a_this);
             if (dComIfG_Bgsp().LineCross(&lin_chk)) {
                 vec4 = lin_start - lin_end;
-                mDoMtx_YrotS(*calc_mtx, cM_atan2s(vec4.x, vec4.z));
+                cMtx_YrotS(*calc_mtx, cM_atan2s(vec4.x, vec4.z));
                 vec4.x = 0.0f;
                 vec4.y = 0.0f;
-                vec4.z = 50.0f;
+                vec4.z = 50.0f + TREG_F(11);
                 MtxPosition(&vec4, &vec2);
-                i_this->current.pos += vec2;
+                a_this->current.pos += vec2;
             }
 
             i_this->field_0xae8.x = sVar12;
@@ -3618,12 +3647,13 @@ static void action(e_rdy_class* i_this) {
     if (i_this->mParticleTimer != 0) {
         i_this->mParticleTimer--;
         if (i_this->mParticleTimer == 0) {
-            dComIfGp_particle_set(0x15e, &i_this->eyePos, &i_this->shape_angle, NULL);
+            dComIfGp_particle_set(0x15e, &a_this->eyePos, &a_this->shape_angle, NULL);
         }
     }
 
     if (i_this->mGroundHit) {
-        MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(JNT_MUNE2), *calc_mtx);
+        J3DModel* model = i_this->mpMorf->getModel();
+        MTXCopy(model->getAnmMtx(JNT_MUNE2), *calc_mtx);
         vec1.set(0.0f, 0.0f, 0.0f);
         MtxPosition(&vec1, &vec2);
         dBgS_ObjGndChk_Spl wtr_chk;
@@ -3631,24 +3661,25 @@ static void action(e_rdy_class* i_this) {
         vec1.y += 100.0f;
         wtr_chk.SetPos(&vec1);
         if (fabsf(dComIfG_Bgsp().GroundCross(&wtr_chk) - vec2.y) < 50.0f) {
-            cXyz scl(1.0f, 1.0f, 1.0f);
+            f32 tmp_val = 1.0f;
+            cXyz scl(tmp_val, tmp_val, tmp_val);
             csXyz rot(0, 0, 0);
             static u16 w_eff_name[3] = {0x8258, 0x8259, 0x825a};
             for (int i = 0; i < 3; i++) {
                 i_this->mWaterParticleKey[i] =
                     dComIfGp_particle_set(i_this->mWaterParticleKey[i], w_eff_name[i], &vec2,
-                                          &i_this->tevStr, &rot, &scl, 0xff,
+                                          &a_this->tevStr, &rot, &scl, 0xff,
                                           NULL, -1, NULL, NULL, NULL);
             }
         } else {
             fopAcM_effSmokeSet1(&i_this->mSmokeKey1, &i_this->mSmokeKey2, &vec2,
-                                NULL, 1.3f, &i_this->tevStr, 1);
+                                NULL, 1.3f, &a_this->tevStr, 1);
         }
         i_this->mGroundHit = false;
     }
 
     cXyz bind_scl(1.3f, 1.3f, 1.3f);
-    setMidnaBindEffect(i_this, &i_this->mSound, &i_this->eyePos, &bind_scl);
+    setMidnaBindEffect((fopEn_enemy_c *)a_this, &i_this->mSound, &a_this->eyePos, &bind_scl);
 }
 
 /* 8077582C-80775A20 009B4C 01F4+00 1/1 0/0 0/0 .text            fire_eff_set__FP11e_rdy_class */
@@ -3716,19 +3747,23 @@ static void* s_adel_sub(void* i_proc, void* i_this) {
 /* 80775B50-80777330 009E70 17E0+00 2/1 0/0 0/0 .text            demo_camera__FP11e_rdy_class */
 // NONMATCHING regalloc
 static void demo_camera(e_rdy_class* i_this) {
+    fopAc_ac_c* a_this = i_this;
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
     camera_class* player_camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     camera_class* camera = dComIfGp_getCamera(0);
     cXyz vec1, vec2, vec3, vec4, vec5;
+    u8 unused_u8 = 1;
+    (void) unused_u8;
     s8 cVar13 = 0;
     s8 cVar12 = 0;
-    e_yc_class* kargarok = (e_yc_class*)fopAcM_SearchByID(i_this->mKargarokID);
+    fopAc_ac_c* a_karg = fopAcM_SearchByID(i_this->mKargarokID);
+    e_yc_class* kargarok = (e_yc_class*) a_karg;
 
     switch (i_this->mDemoMode) {
-    case 1:
-        if (!i_this->eventInfo.checkCommandDemoAccrpt()) {
-            fopAcM_orderPotentialEvent(i_this, 2, 0xffef, 0);
-            i_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+    case 1: {
+        if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
+            fopAcM_orderPotentialEvent(a_this, 2, 0xffef, 0);
+            a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
         player_camera->mCamera.Stop();
@@ -3740,14 +3775,15 @@ static void demo_camera(e_rdy_class* i_this) {
         daPy_getPlayerActorClass()->changeDemoMode(0x38, 0, 0, 0);
         i_this->mCamEye = camera->lookat.eye;
         i_this->mCamCenter = camera->lookat.center;
-        if ((s16)(kargarok->shape_angle.y - player->shape_angle.y) > 0) {
+        s16 sang_y_diff = a_karg->shape_angle.y - player->shape_angle.y;
+        if (sang_y_diff > 0) {
             i_this->field_0x13d4 = -0x4000;
         } else {
             i_this->field_0x13d4 = 0x4000;
         }
         player->speedF = 0.0f;
         // fallthrough
-
+    }
     case 2:
     case 3:
     case 4:
@@ -3758,18 +3794,18 @@ static void demo_camera(e_rdy_class* i_this) {
         if (i_this->mDemoMode == 3) {
             i_this->mDemoMode = 4;
             i_this->mDemoTimer = 0;
-            daPy_getPlayerActorClass()->setThrowDamage(i_this->shape_angle.y, 40.0f, 0.0f, 2, 1, 0);
+            daPy_getPlayerActorClass()->setThrowDamage(a_this->shape_angle.y, 40.0f, KREG_F(14), 2, 1, 0);
             daPy_getPlayerActorClass()->changeDemoMode(1, 0, 0, 0);
         }
-        if (i_this->mDemoMode == 4 && i_this->mDemoTimer == 70) {
+        if (i_this->mDemoMode == 4 && i_this->mDemoTimer == 70 + JREG_S(7)) {
             cVar13 = 1;
         }
         break;
 
     case 5:
-        if (!i_this->eventInfo.checkCommandDemoAccrpt()) {
-            fopAcM_orderPotentialEvent(i_this, 2, 0xffff, 0);
-            i_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+        if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
+            fopAcM_orderPotentialEvent(a_this, 2, 0xffff, 0);
+            a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
         player_camera->mCamera.Stop();
@@ -3777,33 +3813,33 @@ static void demo_camera(e_rdy_class* i_this) {
         i_this->mDemoTimer = 0;
         i_this->mCamFovy = 55.0f;
         player_camera->mCamera.SetTrimSize(3);
-        mDoMtx_YrotS(*calc_mtx, player->shape_angle.y);
-        vec1.x = 200.0f;
-        vec1.y = 100.0f;
-        vec1.z = -300.0f;
+        cMtx_YrotS(*calc_mtx, player->shape_angle.y);
+        vec1.x = 200.0f + AREG_F(13);
+        vec1.y = 100.0f + AREG_F(14);
+        vec1.z = -300.0f + AREG_F(15);
         MtxPosition(&vec1, &i_this->mCamEye);
         i_this->mCamEye += player->current.pos;
         // fallthrough
 
     case 6:
-        vec4 = i_this->current.pos;
-        vec4.y += 100.0f;
+        vec5 = a_this->current.pos;
+        vec5.y += 100.0f + BREG_F(3);
         if (i_this->mDemoTimer == 0) {
-            i_this->mCamCenter = vec4;
+            i_this->mCamCenter = vec5;
         } else {
-            cLib_addCalc2(&i_this->mCamCenter.x, vec4.x, 0.2f, 50.0f);
-            cLib_addCalc2(&i_this->mCamCenter.y, vec4.y, 0.2f, 50.0f);
-            cLib_addCalc2(&i_this->mCamCenter.z, vec4.z, 0.2f, 50.0f);
+            cLib_addCalc2(&i_this->mCamCenter.x, vec5.x, 0.2f, 50.0f);
+            cLib_addCalc2(&i_this->mCamCenter.y, vec5.y, 0.2f, 50.0f);
+            cLib_addCalc2(&i_this->mCamCenter.z, vec5.z, 0.2f, 50.0f);
         }
-        mDoMtx_YrotS(*calc_mtx, player->shape_angle.y);
-        vec1.x = 200.0f;
-        vec1.y = 100.0f;
-        vec1.z = -300.0f;
-        MtxPosition(&vec1, &vec3);
-        vec3 += player->current.pos;
-        cLib_addCalc2(&i_this->mCamEye.x, vec3.x, 0.1f, 50.0f);
-        cLib_addCalc2(&i_this->mCamEye.y, vec3.y, 0.1f, 50.0f);
-        cLib_addCalc2(&i_this->mCamEye.z, vec3.z, 0.1f, 50.0f);
+        cMtx_YrotS(*calc_mtx, player->shape_angle.y);
+        vec1.x = 200.0f + AREG_F(13);
+        vec1.y = 100.0f + AREG_F(14);
+        vec1.z = -300.0f + AREG_F(15);
+        MtxPosition(&vec1, &vec4);
+        vec4 += player->current.pos;
+        cLib_addCalc2(&i_this->mCamEye.x, vec4.x, 0.1f, 50.0f);
+        cLib_addCalc2(&i_this->mCamEye.y, vec4.y, 0.1f, 50.0f);
+        cLib_addCalc2(&i_this->mCamEye.z, vec4.z, 0.1f, 50.0f);
         if (i_this->mDemoTimer == 170) {
             cVar13 = 1;
             player_camera->mCamera.Reset(i_this->mCamCenter, i_this->mCamEye);
@@ -3812,9 +3848,9 @@ static void demo_camera(e_rdy_class* i_this) {
         break;
 
     case 10:
-        if (!i_this->eventInfo.checkCommandDemoAccrpt()) {
-            fopAcM_orderPotentialEvent(i_this, 2, 0xffff, 0);
-            i_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+        if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
+            fopAcM_orderPotentialEvent(a_this, 2, 0xffff, 0);
+            a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
         player_camera->mCamera.Stop();
@@ -3825,11 +3861,11 @@ static void demo_camera(e_rdy_class* i_this) {
         daPy_getPlayerActorClass()->changeOriginalDemo();
         daPy_getPlayerActorClass()->changeDemoMode(0x17, 0, 0, 0);
         i_this->mCamDist = 300.0f;
-        dComIfGp_getEvent().startCheckSkipEdge(i_this);
+        dComIfGp_getEvent().startCheckSkipEdge(a_this);
         i_this->mTargetAngleY = i_this->mPlayerAngle;
-        i_this->current.angle.y = -0x3384;
-        i_this->shape_angle.y = i_this->current.angle.y;
-        i_this->current.pos = i_this->home.pos;
+        a_this->current.angle.y = -0x3384;
+        a_this->shape_angle.y = a_this->current.angle.y;
+        a_this->current.pos = a_this->home.pos;
         // fallthrough
 
     case 11:
@@ -3849,23 +3885,23 @@ static void demo_camera(e_rdy_class* i_this) {
     case 12:
         vec2.set(-102520.0f, -23416.0f, 38021.0f);
         player->setPlayerPosAndAngle(&vec2, -0x3b5d, 0);
-        mDoMtx_YrotS(*calc_mtx, i_this->shape_angle.y);
-        vec1.x = -50.0f;
-        vec1.y = 80.0f;
+        cMtx_YrotS(*calc_mtx, a_this->shape_angle.y + BREG_S(0));
+        vec1.x = BREG_F(0) - 50.0f;
+        vec1.y = 30.0f + BREG_F(1) + 50.0f;
         vec1.z = i_this->mCamDist;
         MtxPosition(&vec1, &i_this->mCamEye);
-        i_this->mCamEye += i_this->current.pos;
+        i_this->mCamEye += a_this->current.pos;
         // fallthrough
 
     case 13:
-        vec4 = i_this->current.pos;
-        vec4.y += 100.0f;
+        vec5 = a_this->current.pos;
+        vec5.y += 100.0f + BREG_F(3);
         if (i_this->mDemoTimer == 0) {
-            i_this->mCamCenter = vec4;
+            i_this->mCamCenter = vec5;
         } else {
-            cLib_addCalc2(&i_this->mCamCenter.x, vec4.x, 0.2f, 50.0f);
-            cLib_addCalc2(&i_this->mCamCenter.y, vec4.y, 0.2f, 50.0f);
-            cLib_addCalc2(&i_this->mCamCenter.z, vec4.z, 0.2f, 50.0f);
+            cLib_addCalc2(&i_this->mCamCenter.x, vec5.x, 0.2f, 50.0f);
+            cLib_addCalc2(&i_this->mCamCenter.y, vec5.y, 0.2f, 50.0f);
+            cLib_addCalc2(&i_this->mCamCenter.z, vec5.z, 0.2f, 50.0f);
         }
         if (i_this->mDemoTimer >= 20) {
             cLib_addCalc2(&i_this->mCamDist, 420.0f, 0.2f, i_this->mCamSpeed);
@@ -3874,84 +3910,84 @@ static void demo_camera(e_rdy_class* i_this) {
         break;
 
     case 14:
-        i_this->mCamCenter = i_this->current.pos;
-        i_this->mCamCenter.y += 100.0f;
-        mDoMtx_YrotS(*calc_mtx, i_this->shape_angle.y);
-        vec1.x = 170.0f;
-        vec1.y = 160.0f;
-        vec1.z = 300.0f;
+        i_this->mCamCenter = a_this->current.pos;
+        i_this->mCamCenter.y += 100.0f + BREG_F(3);
+        cMtx_YrotS(*calc_mtx, a_this->shape_angle.y + BREG_S(0));
+        vec1.x = 20.0f + BREG_F(0) + 150.0f;
+        vec1.y = 30.0f + BREG_F(0) + 50.0f + 30.0f + 50.0f;
+        vec1.z = 300.0f + BREG_F(0);
         MtxPosition(&vec1, &i_this->mCamEye);
-        i_this->mCamEye += i_this->current.pos;
+        i_this->mCamEye += a_this->current.pos;
         break;
 
     case 15:
         cLib_addCalc2(&i_this->mCamFovy, 80.0f, 0.03f, 0.3f);
-        mDoMtx_YrotS(*calc_mtx, i_this->shape_angle.y);
-        vec1.x = -30.0f;
-        vec1.y = 210.0f;
-        vec1.z = 200.0f;
+        cMtx_YrotS(*calc_mtx, a_this->shape_angle.y + BREG_S(0));
+        vec1.x = 20.0f + BREG_F(0) - 50.0f;
+        vec1.y = 30.0f + BREG_F(1) + 50.0f + 30.0f + 100.0f;
+        vec1.z = 200.0f + BREG_F(2);
         MtxPosition(&vec1, &i_this->mCamEye);
-        i_this->mCamEye += i_this->current.pos;
+        i_this->mCamEye += a_this->current.pos;
         i_this->mCamSpeed = 0.0f;
         break;
 
     case 16:
-        i_this->mCamFovy = 70.0f;
-        mDoMtx_YrotS(*calc_mtx, kargarok->current.angle.y);
-        mDoMtx_XrotM(*calc_mtx, kargarok->current.angle.x);
+        i_this->mCamFovy = 70.0f + DREG_F(3);
+        cMtx_YrotS(*calc_mtx, a_karg->current.angle.y);
+        cMtx_XrotM(*calc_mtx, a_karg->current.angle.x);
         vec1.x = 0.0f;
         vec1.y = 0.0f;
         vec1.z = 500.0f;
         MtxPosition(&vec1, &i_this->mCamCenter);
-        i_this->mCamCenter += kargarok->current.pos;
-        i_this->mCamEye = kargarok->current.pos;
+        i_this->mCamCenter += a_karg->current.pos;
+        i_this->mCamEye = a_karg->current.pos;
         if (i_this->mDemoTimer == 80) {
             kargarok->mMode = 3;
             i_this->mCamBankPhase = 80;
         }
         if (i_this->mDemoTimer >= 80) {
-            cLib_addCalc2(&i_this->mCamBank, 3000.0f, 1.0f, 20.0f);
+            cLib_addCalc2(&i_this->mCamBank, 3000.0f + AREG_F(5), 1.0f, 20.0f);
         }
         break;
 
     case 17:
-        i_this->mCamFovy = 55.0f;
+        i_this->mCamFovy = 55.0f + JREG_F(18);
         if (i_this->mDemoTimer >= 1) {
             kargarok->mNoDrawFlag = false;
             i_this->mCamBank = 0.0f;
-            i_this->mCamCenter = i_this->current.pos
-                                + (kargarok->current.pos - i_this->current.pos) * 0.5f;
-            i_this->mCamCenter.y += 50.0f;
-            mDoMtx_YrotS(*calc_mtx, i_this->shape_angle.y);
-            vec1.x = 170.0f;
-            vec1.y = 160.0f;
-            vec1.z = 400.0f;
+            i_this->mCamCenter = a_this->current.pos
+                                + (a_karg->current.pos - a_this->current.pos) * 0.5f;
+            i_this->mCamCenter.y += 50.0f + BREG_F(3);
+            cMtx_YrotS(*calc_mtx, a_this->shape_angle.y + BREG_S(0));
+            vec1.x = 20.0f + BREG_F(0) + 150.0f;
+            vec1.y = 30.0f + BREG_F(1) + 50.0f + 30.0f + 50.0f;
+            vec1.z = 400.0f + BREG_F(2);
             MtxPosition(&vec1, &i_this->mCamEye);
-            i_this->mCamEye += i_this->current.pos;
+            i_this->mCamEye += a_this->current.pos;
         }
         break;
 
     case 18:
-        i_this->mCamCenter = i_this->current.pos
-                            + (kargarok->current.pos - i_this->current.pos) * 0.5f;
-        i_this->mCamCenter.y += 50.0f;
+        i_this->mCamCenter = a_this->current.pos
+                            + (a_karg->current.pos - a_this->current.pos) * 0.5f;
+        i_this->mCamCenter.y += 50.0f + BREG_F(3);
         i_this->mCamSpeed = 0.0f;
         break;
 
     case 19:
-        i_this->mCamCenter = i_this->current.pos
-                            + (kargarok->current.pos - i_this->current.pos) * 0.5f;
-        i_this->mCamCenter.y += 50.0f;
+        i_this->mCamCenter = a_this->current.pos
+                            + (a_karg->current.pos - a_this->current.pos) * 0.5f;
+        i_this->mCamCenter.y += 50.0f + BREG_F(3);
         if (i_this->mDemoTimer > 30) {
-            mDoMtx_YrotS(*calc_mtx, kargarok->shape_angle.y);
-            vec1.x = 200.0f;
-            vec1.y = -350.0f;
-            vec1.z = 1050.0f;
-            MtxPosition(&vec1, &vec3);
-            vec3 += kargarok->current.pos;
-            cLib_addCalc2(&i_this->mCamEye.x, vec3.x, 0.1f, i_this->mCamSpeed * 10.0f);
-            cLib_addCalc2(&i_this->mCamEye.y, vec3.y, 0.1f, i_this->mCamSpeed * 10.0f);
-            cLib_addCalc2(&i_this->mCamEye.z, vec3.z, 0.1f, i_this->mCamSpeed * 10.0f);
+            cMtx_YrotS(*calc_mtx, a_karg->shape_angle.y);
+            vec1.x = 200.0f + BREG_F(13);
+            vec1.y = BREG_F(14) - 500.0f + 100.0f + 50.0f;
+            vec1.z = 1000.0f + BREG_F(15) + 50.0f;
+            MtxPosition(&vec1, &vec4);
+            vec4 += a_karg->current.pos;
+            cLib_addCalc2(&i_this->mCamEye.x, vec4.x, 0.1f, i_this->mCamSpeed * 10.0f);
+            cLib_addCalc2(&i_this->mCamEye.y, vec4.y, 0.1f, i_this->mCamSpeed * 10.0f);
+            cLib_addCalc2(&i_this->mCamEye.z, vec4.z, 0.1f, i_this->mCamSpeed * 10.0f);
             cLib_addCalc2(&i_this->mCamSpeed, 1.0f, 1.0f, 0.02f);
         }
         if (i_this->mDemoTimer == 150) {
@@ -3959,7 +3995,7 @@ static void demo_camera(e_rdy_class* i_this) {
             i_this->mMode = 0;
             kargarok->mAction = e_yc_class::ACT_HOVERING;
             kargarok->mMode = 0;
-            kargarok->home.pos = kargarok->current.pos;
+            a_karg->home.pos = a_karg->current.pos;
             kargarok->mFlyAnmMode = 1;
             cVar13 = 1;
             player_camera->mCamera.Reset(i_this->mCamCenter, i_this->mCamEye);
@@ -3968,9 +4004,9 @@ static void demo_camera(e_rdy_class* i_this) {
         break;
 
     case 20:
-        if (!i_this->eventInfo.checkCommandDemoAccrpt()) {
-            fopAcM_orderPotentialEvent(i_this, 2, 0xffff, 0);
-            i_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+        if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
+            fopAcM_orderPotentialEvent(a_this, 2, 0xffff, 0);
+            a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
         player_camera->mCamera.Stop();
@@ -3984,7 +4020,7 @@ static void demo_camera(e_rdy_class* i_this) {
         daPy_getPlayerActorClass()->changeDemoMode(4, 0, 0, 0);
         Z2GetAudioMgr()->bgmStop(70, 0);
         dComIfGp_getEvent().offFlag2(8);
-        dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[11]);
+        dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[11] & 0xffff);
         // fallthrough
 
     case 21:
@@ -3992,10 +4028,10 @@ static void demo_camera(e_rdy_class* i_this) {
         player->setPlayerPosAndAngle(&vec2, 0, 0);
         if (i_this->mDemoTimer >= 30) {
             if (i_this->mDemoTimer == 30) {
-                i_this->mMsgFlow.init(i_this, 0x7d1, 0, NULL);
+                i_this->mMsgFlow.init(a_this, 0x7d1, 0, NULL);
             }
             if (i_this->mDemoTimer == 50) {
-                dComIfGp_getEvent().startCheckSkipEdge(i_this);
+                dComIfGp_getEvent().startCheckSkipEdge(a_this);
             }
             if (i_this->mDemoTimer == 55) {
                 daPy_getPlayerActorClass()->changeDemoMode(1, 4, 0, 0);
@@ -4003,7 +4039,7 @@ static void demo_camera(e_rdy_class* i_this) {
             if (i_this->mDemoTimer == 130) {
                 daPy_getPlayerActorClass()->changeDemoMode(0x35, 0, 0, 0);
             }
-            if (i_this->mMsgFlow.doFlow(i_this, NULL, 0)) {
+            if (i_this->mMsgFlow.doFlow(a_this, NULL, 0)) {
                 if (i_this->mDemoTimer < 130) {
                     daPy_getPlayerActorClass()->changeDemoMode(0x35, 0, 0, 0);
                 }
@@ -4039,7 +4075,7 @@ static void demo_camera(e_rdy_class* i_this) {
     case 23:
         if (i_this->mDemoTimer == 10) {
             i_this->mMode = 3;
-            i_this->speed.y = 35.0f;
+            i_this->speed.y = 35.0f + KREG_F(17);
         }
         if (i_this->mDemoTimer == 40) {
             i_this->mCamCenterTarget.set(-93660.0f, -5873.0f, 49831.0f);
@@ -4094,7 +4130,7 @@ static void demo_camera(e_rdy_class* i_this) {
         }
         break;
 
-    case 27:
+    case 27: {
         cVar12 = 3;
         cLib_addCalc2(&i_this->mCamEye.y, -4469.0f, 0.05f, i_this->mCamEyeSpeed.y);
         cLib_addCalc2(&i_this->mCamEyeSpeed.y, 50.0f, 1.0f, 0.5f);
@@ -4107,10 +4143,11 @@ static void demo_camera(e_rdy_class* i_this) {
         i_this->mDemoTimer = 0;
         i_this->mMode = 4;
         i_this->mCamDist = 0.0f;
-        ((e_arrow_class*)fopAcM_SearchByName(PROC_E_ARROW))->field_0xa00.z = 30000.0f;
+        e_arrow_class* arrow = (e_arrow_class*)fopAcM_SearchByName(PROC_E_ARROW);
+        arrow->field_0xa00.z = 30000.0f + NREG_F(0);
         cVar12 = 0;
-        // fallthrough
-
+    }
+    // fallthrough
     case 28:
         i_this->mCamCenter.set(-93660.0f, -5873.0f, 49831.0f);
         i_this->mCamEye.set(-93551.0f, -5926.0f, 49449.0f);
@@ -4126,25 +4163,25 @@ static void demo_camera(e_rdy_class* i_this) {
         if (i_this->mDemoTimer == 115) {
             i_this->mDemoMode = 30;
             i_this->mDemoTimer = 0;
-            i_this->field_0x13d4 = -0x2000;
+            i_this->field_0x13d4 = NREG_S(1) - 0x2000;
         }
         break;
 
     case 30:
-        mDoMtx_YrotS(*calc_mtx, i_this->field_0x13d4);
+        cMtx_YrotS(*calc_mtx, i_this->field_0x13d4);
         vec1.x = 0.0f;
-        vec1.y = 150.0f;
-        vec1.z = 400.0f;
+        vec1.y = 150.0f + NREG_F(8);
+        vec1.z = 400.0f + NREG_F(9);
         MtxPosition(&vec1, &i_this->mCamEye);
         i_this->mCamEye += player->current.pos;
         i_this->mCamCenter = player->current.pos;
-        i_this->mCamCenter.y += 100.0f;
-        i_this->field_0x13d4 += 230;
+        i_this->mCamCenter.y += 100.0f + NREG_F(10);
+        i_this->field_0x13d4 += (s16)(230 + NREG_S(2));
         if (i_this->mDemoTimer >= 30) {
             if (i_this->mDemoTimer == 30) {
-                i_this->mMsgFlow.init(i_this, 0x7d1, 0, NULL);
+                i_this->mMsgFlow.init(a_this, 0x7d1, 0, NULL);
             }
-            if (i_this->mMsgFlow.doFlow(i_this, NULL, 0)) {
+            if (i_this->mMsgFlow.doFlow(a_this, NULL, 0)) {
                 cVar13 = 1;
             }
             if (i_this->mDemoTimer >= 40 && !dMsgObject_isTalkNowCheck()) {
@@ -4155,46 +4192,46 @@ static void demo_camera(e_rdy_class* i_this) {
 
     case 100:
         cVar13 = 1;
-        break;
     }
 
     if (cVar12 != 0) {
-        e_arrow_class* arrow = (e_arrow_class*)fopAcM_SearchByName(PROC_E_ARROW);
-        if (arrow != NULL) {
+        fopAc_ac_c* a_arr = fopAcM_SearchByName(PROC_E_ARROW);
+        if (a_arr != NULL) {
+            e_arrow_class* arrow = (e_arrow_class*) a_arr;
             if (cVar12 == 3) {
-                vec4 = arrow->field_0xa00;
+                vec5 = arrow->field_0xa00;
             } else {
-                vec4 = arrow->current.pos;
+                vec5 = a_arr->current.pos;
             }
             f32 scale;
             if (cVar12 == 1) {
-                vec4.y -= 300.0f;
+                vec5.y -= 300.0f + JREG_F(6);
                 scale = 0.2f;
             } else {
                 scale = 0.5f;
             }
             if (i_this->mDemoTimer == 0) {
-                i_this->mCamCenter = vec4;
+                i_this->mCamCenter = vec5;
             } else {
-                cLib_addCalc2(&i_this->mCamCenter.x, vec4.x, scale, 200.0f);
-                cLib_addCalc2(&i_this->mCamCenter.y, vec4.y, scale, 200.0f);
-                cLib_addCalc2(&i_this->mCamCenter.z, vec4.z, scale, 200.0f);
+                cLib_addCalc2(&i_this->mCamCenter.x, vec5.x, scale, 200.0f);
+                cLib_addCalc2(&i_this->mCamCenter.y, vec5.y, scale, 200.0f);
+                cLib_addCalc2(&i_this->mCamCenter.z, vec5.z, scale, 200.0f);
             }
         }
     }
 
     if (i_this->mDemoMode >= 11 && i_this->mDemoMode < 20) {
         if (dComIfGp_getEvent().checkSkipEdge()) {
-            i_this->current.pos.set(-103242.0f, -22894.0f, 38097.0f);
-            i_this->current.angle.y = 0x44a3;
-            kargarok->current.pos.set(-103242.0f, -22894.0f, 38097.0f);
-            kargarok->current.angle.y = 0x44a3;
+            a_this->current.pos.set(-103242.0f, -22894.0f, 38097.0f);
+            a_this->current.angle.y = 0x44a3;
+            a_karg->current.pos.set(-103242.0f, -22894.0f, 38097.0f);
+            a_karg->current.angle.y = 0x44a3;
             i_this->mAction = ACT_YC_RIDE;
             i_this->mMode = 0;
             kargarok->mAction = e_yc_class::ACT_HOVERING;
             kargarok->mMode = 0;
             kargarok->mNoDrawFlag = false;
-            kargarok->speedF = 0.0f;
+            a_karg->speedF = 0.0f;
             cVar13 = 1;
             dComIfGs_onOneZoneSwitch(1, -1);
             Z2GetAudioMgr()->setBattleBgmOff(false);
@@ -4205,15 +4242,18 @@ static void demo_camera(e_rdy_class* i_this) {
             vec2.set(-93666.0f, -5951.0f, 39000.0f);
             player->setPlayerPosAndAngle(&vec2, 0, 0);
             fpcM_Search(s_adel_sub, i_this);
+#ifndef DEBUG
             i_this->mMode = 2;
             anm_init(i_this, ANM_WAIT01, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+#endif
+            u32 child_params = 0x80000011;
             csXyz angle(0, 0x4000, 0);
             vec2.set(-93652.0f, -5875.0f, 46674.0f);
-            fopAcM_createChild(PROC_E_ARROW, fopAcM_GetID(i_this), 0x80000011, &vec2,
-                               fopAcM_GetRoomNo(i_this), &angle, NULL, -1, NULL);
+            fopAcM_createChild(PROC_E_ARROW, fopAcM_GetID(a_this), child_params, &vec2,
+                               fopAcM_GetRoomNo(a_this), &angle, NULL, -1, NULL);
             vec2.set(-93659.0f, -5875.0f, 32500.0f);
-            fopAcM_createChild(PROC_E_ARROW, fopAcM_GetID(i_this), 0x80000011, &vec2,
-                               fopAcM_GetRoomNo(i_this), &angle, NULL, -1, NULL);
+            fopAcM_createChild(PROC_E_ARROW, fopAcM_GetID(a_this), child_params, &vec2,
+                               fopAcM_GetRoomNo(a_this), &angle, NULL, -1, NULL);
             Z2GetAudioMgr()->bgmStop(30, 0);
             mDoGph_gInf_c::fadeOut(1.0f, g_blackColor);
             i_this->mFadeTimer = 30;
@@ -4222,10 +4262,10 @@ static void demo_camera(e_rdy_class* i_this) {
 
     if (cVar13 != 0) {
         if (cVar13 == 2) {
-            mDoMtx_YrotS(*calc_mtx, player->shape_angle.y);
+            cMtx_YrotS(*calc_mtx, player->shape_angle.y);
             vec1.x = 0.0f;
-            vec1.y = 200.0f;
-            vec1.z = -250.0f;
+            vec1.y = 200.0f + JREG_F(1);
+            vec1.z = -250.0f + JREG_F(2);
             MtxPosition(&vec1, &i_this->mCamEye);
             i_this->mCamEye += player->current.pos;
             i_this->mCamCenter = player->current.pos;
@@ -4240,7 +4280,7 @@ static void demo_camera(e_rdy_class* i_this) {
     }
 
     if (i_this->mDemoMode > 0) {
-        s16 bank = -i_this->mCamBank * cM_scos(i_this->mCamBankPhase * 600);
+        s16 bank = -i_this->mCamBank * cM_scos(i_this->mCamBankPhase * (600 + AREG_S(5)));
         player_camera->mCamera.Set(i_this->mCamCenter, i_this->mCamEye, bank, i_this->mCamFovy);
         i_this->mDemoTimer++;
         i_this->mCamBankPhase++;
@@ -4249,11 +4289,12 @@ static void demo_camera(e_rdy_class* i_this) {
 
 /* 8077AA1C-8077AA24 0001F4 0004+04 0/2 0/0 0/0 .bss             c_start */
 static BOOL c_start;
-static s8 data_8077aa20;
 
 /* 80777330-8077892C 00B650 15FC+00 2/1 0/0 0/0 .text            daE_RDY_Execute__FP11e_rdy_class */
-// NONMATCHING regalloc, float multiplication order
+// NONMATCHING regalloc
 static int daE_RDY_Execute(e_rdy_class* i_this) {
+    f32 scale;
+    fopAc_ac_c* a_this = i_this;
     if (!c_start && dComIfGp_event_runCheck()) {
         if (fopAcM_getTalkEventPartner(daPy_getLinkPlayerActorClass())
                                                         == daPy_py_c::getMidnaActor()
@@ -4263,9 +4304,9 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
         }
     }
 
-    if (i_this->field_0x5b8 == 12 && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[239])) {
-        fopAcM_OffStatus(i_this, 0);
-        i_this->attention_info.flags = 0;
+    if (i_this->field_0x5b8 == 12 && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[239] & 0xffff)) {
+        fopAcM_OffStatus(a_this, 0);
+        a_this->attention_info.flags = 0;
         return 1;
     }
 
@@ -4274,15 +4315,14 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
         if (i_this->mKargarokDeleteTimer == 0) {
             daKago_c* kago = (daKago_c*)fopAcM_SearchByName(PROC_KAGO);
             kago->setEvent2();
-            fopAcM_delete(i_this);
-            fopAc_ac_c* kargarok = fopAcM_SearchByID(i_this->mKargarokID);
-            fopAcM_delete(kargarok);
+            fopAcM_delete(a_this);
+            fopAcM_delete(fopAcM_SearchByID(i_this->mKargarokID));
         }
         return 1;
     }
 
     if (i_this->mFadeTimer != 0) {
-        i_this->mFadeTimer--;
+        --i_this->mFadeTimer;
         if (i_this->mFadeTimer == 20) {
             mDoGph_gInf_c::fadeIn(0.05f, g_blackColor);
         }
@@ -4316,7 +4356,7 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
         i_this->field_0xa6e--;
     }
 
-    if (fopAcM_otoCheck(i_this, 1000.0f) || daPy_getPlayerActorClass()->checkWolfBark()) {
+    if (fopAcM_otoCheck(a_this, 1000.0f) || daPy_getPlayerActorClass()->checkWolfBark()) {
         i_this->field_0xa71 = cM_rndF(10.0f) + 10.0f;
     }
     if (i_this->field_0xa71 != 0) {
@@ -4335,47 +4375,47 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
     if (i_this->mRideState != 2 && i_this->field_0xbc0 == 0) {
         vec2.set(0.0f, 0.0f, 0.0f);
         if (i_this->field_0xabc) {
-            mDoMtx_YrotS(*calc_mtx, i_this->field_0xadc.y);
+            cMtx_YrotS(*calc_mtx, i_this->field_0xadc.y);
             vec1.x = 0.0f;
-            vec1.y = 0.0f;
+            vec1.y = 0.0f + TREG_F(8);
             vec1.z = i_this->field_0xbbc;
             MtxPosition(&vec1, &vec2);
-            cLib_addCalc2(&i_this->field_0xbbc, i_this->field_0xabc * 2.0f, 1.0f, 5.0f);
+            cLib_addCalc2(&i_this->field_0xbbc, i_this->field_0xabc * (2.0f + TREG_F(9)), 1.0f, 5.0f + TREG_F(17));
         } else {
-            cLib_addCalc0(&i_this->field_0xbbc, 1.0f, 5.0f);
+            cLib_addCalc0(&i_this->field_0xbbc, 1.0f, 5.0f + TREG_F(17));
         }
         if (i_this->mAnm == ANM_DIEB && i_this->field_0xadc.x != 0 && !i_this->mIsUpsideDown) {
-            vec2.y += -20.0f;
+            vec2.y += -20.0f + KREG_F(7);
         }
-        i_this->current.pos += vec2;
-        i_this->old.pos += vec2;
+        a_this->current.pos += vec2;
+        a_this->old.pos += vec2;
         i_this->mAcch.CrrPos(dComIfG_Bgsp());
-        i_this->current.pos -= vec2;
-        i_this->old.pos -= vec2;
+        a_this->current.pos -= vec2;
+        a_this->old.pos -= vec2;
         i_this->mInWater = false;
         if (i_this->mAcch.GetGroundH() != -1.0e9f && i_this->mAcch.ChkWaterHit()
-            && i_this->mAcch.m_wtr.GetHeight() > i_this->current.pos.y)
+            && i_this->mAcch.m_wtr.GetHeight() > a_this->current.pos.y)
         {
             i_this->mInWater = true;
         }
     }
 
-    mDoMtx_stack_c::transS(i_this->current.pos.x, i_this->current.pos.y + i_this->mJumpHeight,
-                           i_this->current.pos.z);
-    mDoMtx_stack_c::XrotM(i_this->field_0xae2.x);
-    mDoMtx_stack_c::ZrotM(i_this->field_0xae2.z);
-    mDoMtx_stack_c::YrotM(i_this->field_0xadc.y);
-    mDoMtx_stack_c::XrotM(i_this->field_0xadc.x);
+    mDoMtx_stack_c::transS(a_this->current.pos.x, a_this->current.pos.y + i_this->mJumpHeight,
+                           a_this->current.pos.z);
+    mDoMtx_stack_c::XrotM((s16)i_this->field_0xae2.x);
+    mDoMtx_stack_c::ZrotM((s16)i_this->field_0xae2.z);
+    mDoMtx_stack_c::YrotM((s16)i_this->field_0xadc.y);
+    mDoMtx_stack_c::XrotM((s16)i_this->field_0xadc.x);
     mDoMtx_stack_c::YrotM(-i_this->field_0xadc.y);
-    mDoMtx_stack_c::YrotM(i_this->shape_angle.y);
-    mDoMtx_stack_c::XrotM(i_this->shape_angle.x);
-    mDoMtx_stack_c::ZrotM(i_this->shape_angle.z);
-    f32 scale = l_HIO.mScale * i_this->scale.x;
+    mDoMtx_stack_c::YrotM((s16)a_this->shape_angle.y);
+    mDoMtx_stack_c::XrotM((s16)a_this->shape_angle.x);
+    mDoMtx_stack_c::ZrotM(a_this->shape_angle.z);
+    scale = l_HIO.mScale * a_this->scale.x;
     mDoMtx_stack_c::scaleM(scale, scale, scale);
     J3DModel* model = i_this->mpMorf->getModel();
     model->setBaseTRMtx(mDoMtx_stack_c::get());
 
-    i_this->mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(i_this)));
+    i_this->mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(a_this)));
     int frame = i_this->mpMorf->getFrame();
     if (i_this->mAnm == ANM_RUN && (frame == 1 || frame == 10)) {
         i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_RUNNING_BREATH, -1);
@@ -4418,8 +4458,7 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
         i_this->mTargetEyeScale = 1.0f;
         MTXCopy(model->getAnmMtx(JNT_HEAD), *calc_mtx);
         camera_class* camera = dComIfGp_getCamera(0);
-        s16 ang_y, ang_x;
-        f32 scale;
+        s16 ang_x, ang_y;
         for (int i = 0; i < 2; i++) {
             MtxPush();
             if (i == 0) {
@@ -4428,20 +4467,22 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
                 vec1 = camera->lookat.eye - vec2;
                 ang_y = cM_atan2s(vec1.x, vec1.z);
                 ang_x = -cM_atan2s(vec1.y, JMAFastSqrt(vec1.x * vec1.x + vec1.z * vec1.z));
-                scale = vec1.abs() * 0.001f;
-                if (scale > 2.0f) {
-                    scale = 2.0f;
+                scale = vec1.abs() * (0.001f + JREG_F(8));
+                if (scale > 2.0f + JREG_F(17)) {
+                    scale = 2.0f + JREG_F(17);
                 }
-                scale *= i_this->mEyeScale
-                        * time_scale[(int)(dKy_getEnvlight()->daytime / 15.0f)];
+
+                dScnKy_env_light_c* light = dKy_getEnvlight();
+                int div_res = light->daytime / 15.0f;
+                scale *= i_this->mEyeScale * time_scale[div_res];
                 vec1.set(38.0f, 0.0f, 6.0f);
             } else {
                 vec1.set(38.0f, 0.0f, -6.0f);
             }
             MtxPosition(&vec1, &vec2);
             MtxTrans(vec2.x, vec2.y, vec2.z, 0);
-            mDoMtx_YrotM(*calc_mtx, ang_y);
-            mDoMtx_XrotM(*calc_mtx, ang_x);
+            cMtx_YrotM(*calc_mtx, ang_y);
+            cMtx_XrotM(*calc_mtx, ang_x);
             MtxScale(scale, scale, scale, 1);
             i_this->mpEyeModel[i]->setBaseTRMtx(*calc_mtx);
             MtxPull();
@@ -4451,7 +4492,7 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
     MTXCopy(model->getAnmMtx(JNT_MUNE2), *calc_mtx);
     vec1.set(0.0f, 0.0f, 0.0f);
     MtxPosition(&vec1, &vec2);
-    vec1.set(0.0f, 100.0f, 0.0f);
+    vec1.set(YREG_F(1), 100.0f + YREG_F(2), YREG_F(3));
     MtxPosition(&vec1, &vec3);
     if (vec2.y < vec3.y) {
         i_this->mIsUpsideDown = false;
@@ -4466,27 +4507,27 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
 
     MTXCopy(model->getAnmMtx(JNT_HEAD), *calc_mtx);
     vec1.set(20.0f, 0.0f, 0.0f);
-    MtxPosition(&vec1, &i_this->eyePos);
+    MtxPosition(&vec1, &a_this->eyePos);
 
     if (daPy_py_c::checkNowWolf()) {
         cc_offset.y += 30.0f;
-        i_this->mCcSph[0].SetC(i_this->eyePos + cc_offset);
+        i_this->mCcSph[0].SetC(a_this->eyePos + cc_offset);
         i_this->mCcSph[0].SetR(50.0f);
     } else {
-        i_this->mCcSph[0].SetC(i_this->eyePos + cc_offset);
+        i_this->mCcSph[0].SetC(a_this->eyePos + cc_offset);
         i_this->mCcSph[0].SetR(35.0f);
     }
 
-    i_this->attention_info.position = i_this->eyePos;
-    i_this->attention_info.position.y += 30.0f;
+    a_this->attention_info.position = a_this->eyePos;
+    a_this->attention_info.position.y += 30.0f;
 
-    vec1.set(0.0f, 0.0f, 0.0f);
+    vec1.set(BREG_F(14), BREG_F(15), BREG_F(16));
     MTXCopy(model->getAnmMtx(JNT_KUBI), *calc_mtx);
     MtxPosition(&vec1, &vec2);
     i_this->mCcSph[2].SetC(vec2 + cc_offset);
     i_this->mCcSph[2].SetR(35.0f);
 
-    vec1.set(-10.0f, 0.0f, 0.0f);
+    vec1.set(-10.0f + BREG_F(11), BREG_F(12), BREG_F(13));
     MTXCopy(model->getAnmMtx(JNT_MUNE1), *calc_mtx);
     MtxPosition(&vec1, &vec2);
     i_this->mCcSph[1].SetC(vec2 + cc_offset);
@@ -4517,9 +4558,9 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
             MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(JNT_HAND_R), *calc_mtx);
         } else {
             MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(JNT_MUNE2), *calc_mtx);
-            mDoMtx_YrotM(*calc_mtx, 6000);
-            mDoMtx_XrotM(*calc_mtx, 10000);
-            mDoMtx_ZrotM(*calc_mtx, 18000);
+            cMtx_YrotM(*calc_mtx, 6000);
+            cMtx_XrotM(*calc_mtx, 10000);
+            cMtx_ZrotM(*calc_mtx, 18000);
             MtxTrans(-30.0f, -50.0f, 20.0f, 1);
         }
         i_this->mpWeaponModel->setBaseTRMtx(*calc_mtx);
@@ -4545,22 +4586,23 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
     }
 
     if (i_this->mWeaponType >= WEAPON_BOW) {
+        J3DModel* model_ptr = i_this->mpMorf->getModel();
         if (i_this->mBowRotationTimer != 0) {
             i_this->mBowRotationTimer--;
         }
         i_this->mBowRotation = i_this->mBowRotationTimer
-                                * cM_ssin(i_this->mBowRotationTimer * 0x7800) * 100.0f;
+                                * cM_ssin(i_this->mBowRotationTimer * (TREG_S(9) + 0x7800)) * (TREG_F(5) + 100.0f);
 
-        J3DModel* bow_model = i_this->mpBowMorf->getModel();
+        model_ptr = i_this->mpBowMorf->getModel();
         if (!i_this->field_0x5bb) {
-            bow_model->setBaseTRMtx(i_this->mpMorf->getModel()->getAnmMtx(JNT_HAND_L));
+            model_ptr->setBaseTRMtx(i_this->mpMorf->getModel()->getAnmMtx(JNT_HAND_L));
         } else {
             MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(JNT_MUNE2), *calc_mtx);
-            mDoMtx_YrotM(*calc_mtx, 6000);
-            mDoMtx_XrotM(*calc_mtx, 10000);
-            mDoMtx_ZrotM(*calc_mtx, 18000);
+            cMtx_YrotM(*calc_mtx, 6000);
+            cMtx_XrotM(*calc_mtx, 10000);
+            cMtx_ZrotM(*calc_mtx, 18000);
             MtxTrans(-20.0f, -20.0f, 30.0f, 1);
-            bow_model->setBaseTRMtx(*calc_mtx);
+            model_ptr->setBaseTRMtx(*calc_mtx);
         }
         i_this->mpBowMorf->play(0, 0);
         i_this->mpBowMorf->modelCalc();
@@ -4596,8 +4638,9 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
                 fopAc_ac_c* player = dComIfGp_getPlayer(0);
                 vec1 = player->eyePos;
                 if (i_this->field_0x1366) {
-                    vec1.x += player->speed.x * 15.0f;
-                    vec1.z += player->speed.z * 15.0f;
+                    f32 mult_val = 15.0f + TREG_F(7);
+                    vec1.x += player->speed.x * mult_val;
+                    vec1.z += player->speed.z * mult_val;
                 }
                 vec1 -= vec2;
                 vec1.y -= 30.0f;
@@ -4619,10 +4662,10 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
             if (i_this->field_0x5b8 == 11) {
                 params |= 0x10;
             }
-            fopAcM_createChild(PROC_E_ARROW, fopAcM_GetID(i_this), params, &vec2,
-                               fopAcM_GetRoomNo(i_this), &arrow_angle, NULL, -1, NULL);
+            fopAcM_createChild(PROC_E_ARROW, fopAcM_GetID(a_this), params, &vec2,
+                               fopAcM_GetRoomNo(a_this), &arrow_angle, NULL, -1, NULL);
             i_this->mArrowFired = false;
-            i_this->mBowRotationTimer = 15;
+            i_this->mBowRotationTimer = 15 + TREG_S(8);
         }
     }
 
@@ -4636,10 +4679,10 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
             ang_y = (i_this->mCounter & 1) * tmp * 2 - tmp;
         }
         MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(JNT_HAND_R), *calc_mtx);
-        MtxTrans(20.0f, 5.0f, -10.0f, 1);
-        mDoMtx_XrotM(*calc_mtx, 0x8000);
-        mDoMtx_YrotM(*calc_mtx, ang_y + -0x15cd);
-        mDoMtx_ZrotM(*calc_mtx, 0x28cd);
+        MtxTrans(20.0f + NREG_F(0), 5.0f + NREG_F(1), -10.0f + NREG_F(2), 1);
+        cMtx_XrotM(*calc_mtx, NREG_S(0) + 0x8000);
+        cMtx_YrotM(*calc_mtx, NREG_S(1) + ang_y + -0x15cd);
+        cMtx_ZrotM(*calc_mtx, NREG_S(2) + 0x28cd);
         i_this->mpHawkGrassModel->setBaseTRMtx(*calc_mtx);
     }
 
@@ -4649,18 +4692,21 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
 
     if (i_this->mRideState == 0) {
         fopAc_ac_c* player = dComIfGp_getPlayer(0);
-        mDoMtx_stack_c::copy(i_this->mpMorf->getModel()->getAnmMtx(JNT_MUNE2));
+        MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(JNT_MUNE2), mDoMtx_stack_c::get());
         mDoMtx_stack_c::multVecZero(&vec2);
         vec1 = player->current.pos - vec2;
-        mDoMtx_YrotS(*calc_mtx, cM_atan2s(vec1.x, vec1.z));
-        vec1.set(0.0f, 0.0f, 10.0f);
+        s16 tan_res = cM_atan2s(vec1.x, vec1.z);
+        cMtx_YrotS(*calc_mtx, tan_res);
+        vec1.x = 0.0f;
+        vec1.y = 0.0f;
+        vec1.z = 40.0f + BREG_F(12) - 30.0f;
         MtxPosition(&vec1, &vec3);
         vec3 += vec2;
         i_this->setDownPos(&vec3);
     }
 
-    cXyz lock_pos = i_this->eyePos;
-    lock_pos.y += 130.0f;
+    cXyz lock_pos = a_this->eyePos;
+    lock_pos.y += 130.0f + NREG_F(7);
     i_this->setHeadLockPos(&lock_pos);
 
     demo_camera(i_this);
@@ -4690,6 +4736,7 @@ static int daE_RDY_Delete(e_rdy_class* i_this) {
 
 /* 8077A62C-8077A638 000550 000C+00 1/0 0/0 0/0 .data            jv_offset */
 static Vec jv_offset = {0.0f, 0.0f, 0.0f};
+static s8 data_8077aa20;
 
 /* 8077A638-8077A6BC -00001 0084+00 1/1 0/0 0/0 .data            jc_data */
 static dJntColData_c jc_data[11] = {
