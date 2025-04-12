@@ -1,5 +1,5 @@
 .include "macros.inc"
-.file "targsupp.s"
+# .file "targsupp.s"
 
 .text
 .balign 16

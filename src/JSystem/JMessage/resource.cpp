@@ -19,7 +19,8 @@ u16 JMessage::TResource::toMessageIndex_messageID(u32 lowerHalf, u32 upperHalf,
     u32 val = -1;
     bool check = true;
 
-    switch (mMessageID.get_formSupplement()) {
+    u8 sp0A = mMessageID.get_formSupplement();
+    switch (sp0A) {
     case 0:
         if (upperHalf) {
             check = false;

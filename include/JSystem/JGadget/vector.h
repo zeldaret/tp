@@ -1,9 +1,8 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
-#include <dolphin/types.h>
-
-extern u8 data_804511E0;
+#include "JSystem/JGadget/std-memory.h"
+#include "types.h"
 
 namespace JGadget {
 
@@ -14,16 +13,6 @@ u32 extend_default(u32 arg1, u32 arg2, u32 arg3);
 typedef u32 (*ExtendFunc)(u32, u32, u32);
 
 }  // namespace vector
-
-template <typename T>
-struct TAllocator {
-    static TAllocator get() {}
-    inline TAllocator(u8 param_0) { _0 = param_0; }
-    /* 0x0 */ u8 _0;
-    /* 0x4 */ u32 _4;
-    /* 0x8 */ u32 _8;
-    /* 0xc */ u32 _c;
-};
 
 template <typename T, template <class> class Allocator>
 struct TVector {

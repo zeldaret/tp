@@ -770,7 +770,7 @@ config.libs = [
         [
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/ctb.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/ctb-data.cpp"),
-            Object(NonMatching, "JSystem/JStudio/JStudio/functionvalue.cpp"),
+            Object(Equivalent, "JSystem/JStudio/JStudio/functionvalue.cpp", extra_cflags=['-pragma "nosyminline off"']), # weak func order
             Object(NonMatching, "JSystem/JStudio/JStudio/fvb.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/fvb-data.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/fvb-data-parse.cpp"),
