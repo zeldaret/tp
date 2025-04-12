@@ -31,9 +31,9 @@ void daObjLdy_c::create_init() {
     LaundJoint_c* joint = &mJoints[0];
     int index = 0;
     for (int i = 0; i < 3; i++) {
-        joint->pos1 = current.pos;
-        joint->pos1.y += (index + 1) * M_attr[3];
-        joint->pos2 = joint->pos1;
+        joint->mPos1 = current.pos;
+        joint->mPos1.y += (index + 1) * M_attr[3];
+        joint->mPos2 = joint->mPos1;
         index++;
         joint++;
     }
@@ -50,7 +50,7 @@ void daObjLdy_c::initBaseMtx() {
     for (int i = 0; i < 3; i++) {
         float cosAngleY = cM_scos(shape_angle.y);
         float sinAngleY = cM_ssin(shape_angle.y);
-        joint->pos4.set(sinAngleY, 0.0f, cosAngleY);
+        joint->mPos4.set(sinAngleY, 0.0f, cosAngleY);
         joint++;
     }
 }
@@ -67,7 +67,7 @@ void daObjLdy_c::setBaseMtx() {
 /* 80C5116C-80C51194 00024C 0028+00 1/1 0/0 0/0 .text getJointAngle__10daObjLdy_cFP5csXyzi */
 void daObjLdy_c::getJointAngle(csXyz* jointAngle, int index) {
     LaundJoint_c* joint = &mJoints[index];
-    *jointAngle = joint->angle;
+    *jointAngle = joint->mAngle;
 }
 
 /* ############################################################################################## */
@@ -102,11 +102,11 @@ void daObjLdy_c::setNormalClothPos() {
     if (mCyl.ChkTgHit() != 0) {
         cCcD_Obj* tgHitObj = mCyl.GetTgHitObj();
         if (tgHitObj->ChkAtType(AT_TYPE_40) != 0 || tgHitObj->ChkAtType(AT_TYPE_ARROW) != 0) {
-            cXyz position = fopAcM_GetPosition(dComIfGp_getPlayer(0)) - mJoints[1].pos1;
+            cXyz position = fopAcM_GetPosition(dComIfGp_getPlayer(0)) - mJoints[1].mPos1;
             position.normalizeZP();
             position *= 100.0f;
             for (int i = 2; i >= 0; i--) {
-                mJoints[i].pos3 = position;
+                mJoints[i].mPos3 = position;
                 position *= M_attr[6];
             }
             divorceParent();
@@ -118,11 +118,11 @@ void daObjLdy_c::setNormalClothPos() {
     } else {
         if (mCyl.ChkCoHit() != 0) {
             if (fopAcM_GetName(mCyl.GetCoHitAc()) == AT_TYPE_100) {
-                cXyz position = fopAcM_GetPosition(dComIfGp_getPlayer(0)) - mJoints[1].pos1;
+                cXyz position = fopAcM_GetPosition(dComIfGp_getPlayer(0)) - mJoints[1].mPos1;
                 position.normalizeZP();
                 position *= 100.0f;
                 for (int i = 2; i >= 0; i--) {
-                    mJoints[i].pos3 = position;
+                    mJoints[i].mPos3 = position;
                     position *= M_attr[6];
                 }
                 divorceParent();
@@ -131,7 +131,7 @@ void daObjLdy_c::setNormalClothPos() {
             if (!windVector.isZero()) {
                 for (int i = 0; i < 3; i++) {
                     if (cM_rnd() < 0.6f && cM_rnd() < 0.1f) {
-                        joint->pos3 += joint->pos4 * windPower;
+                        joint->mPos3 += joint->mPos4 * windPower;
                     }
                     joint++;
                 }
@@ -143,14 +143,14 @@ void daObjLdy_c::setNormalClothPos() {
     LaundJoint_c* mJoint = &mJoints[0];
     cXyz* currentPosition = &fopAcM_GetPosition(this);
     for (i = 0; i < 3; i++) {
-        adjustedPosition = *currentPosition - mJoint->pos1;
+        adjustedPosition = *currentPosition - mJoint->mPos1;
         adjustedPosition.y += gravity;
-        adjustedPosition += mJoint->pos3;
+        adjustedPosition += mJoint->mPos3;
         adjustedPosition.normalizeZP();
-        mJoint->pos1 = *currentPosition + (adjustedPosition * M_attr[3]);
-        mJoint->pos3 = (mJoint->pos3 + (mJoint->pos2 - mJoint->pos1)) * M_attr[5];
-        mJoint->pos2 = mJoint->pos1;
-        currentPosition = &mJoint->pos1;
+        mJoint->mPos1 = *currentPosition + (adjustedPosition * M_attr[3]);
+        mJoint->mPos3 = (mJoint->mPos3 + (mJoint->mPos2 - mJoint->mPos1)) * M_attr[5];
+        mJoint->mPos2 = mJoint->mPos1;
+        currentPosition = &mJoint->mPos1;
         mJoint++;
     }
 }
@@ -163,12 +163,12 @@ void daObjLdy_c::calcJointAngle() {
     for (int i = 0; i < 3; i++) {
         mDoMtx_stack_c::push();
         mDoMtx_stack_c::inverse();
-        mDoMtx_stack_c::multVec(&joint->pos1, &position);
+        mDoMtx_stack_c::multVec(&joint->mPos1, &position);
         mDoMtx_stack_c::pop();
         position *= -1.0f;
-        joint->angle.x = cM_atan2s(position.z, position.y);
-        joint->angle.z = cM_atan2s(-position.y, position.absXZ());
-        mDoMtx_stack_c::XrotM(joint->angle.x);
+        joint->mAngle.x = cM_atan2s(position.z, position.y);
+        joint->mAngle.z = cM_atan2s(-position.y, position.absXZ());
+        mDoMtx_stack_c::XrotM(joint->mAngle.x);
         mDoMtx_stack_c::transM(0.0f, M_attr[3], 0.0f);
         joint++;
     }
