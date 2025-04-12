@@ -552,13 +552,21 @@ public:
     /* 0xA8 */ u8 mAnimDebug;
 };  // Size: 0xAC
 
-class dMeter_drawHIO_c {
+class dMeter_drawHIO_c : public JORReflexible {
 public:
     /* 801FF5B8 */ dMeter_drawHIO_c();
     /* 80201128 */ virtual ~dMeter_drawHIO_c() {}
 
+    #ifdef DEBUG
+    virtual void listenPropertyEvent(const JORPropertyEvent*);
+    virtual void genMessage(JORMContext*);
+    #endif
+
     /* 0x000 */  // vtable
     /* 0x004 */ s8 field_0x4;
+    #ifdef DEBUG
+    int field_0x8_debug;
+    #endif
     /* 0x008 */ f32 mLifeTopPosX;
     /* 0x00C */ f32 mLifeTopPosY;
     /* 0x010 */ f32 mNoMagicPosY;

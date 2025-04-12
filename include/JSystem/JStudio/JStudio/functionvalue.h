@@ -1,11 +1,10 @@
 #ifndef FUNCTIONVALUE_H
 #define FUNCTIONVALUE_H
 
+#include <math.h>
 #include "JSystem/JGadget/std-vector.h"
-#include "dolphin/os.h"
-#include <iterator.h>
-
-extern u8 lit_569;
+#include "JSystem/JGadget/define.h"
+#include "JSystem/JGadget/search.h"
 
 namespace JStudio {
 
@@ -229,8 +228,8 @@ public:
 };
 
 class TFunctionValue_transition : public TFunctionValue,
-                                  TFunctionValueAttribute_range,
-                                  TFunctionValueAttribute_interpolate {
+                                  public TFunctionValueAttribute_range,
+                                  public TFunctionValueAttribute_interpolate {
 public:
     /* 802823EC */ TFunctionValue_transition();
     /* 80283CE4 */ virtual ~TFunctionValue_transition() {}
@@ -254,8 +253,8 @@ private:
 };
 
 class TFunctionValue_list : public TFunctionValue,
-                            TFunctionValueAttribute_range,
-                            TFunctionValueAttribute_interpolate {
+                            public TFunctionValueAttribute_range,
+                            public TFunctionValueAttribute_interpolate {
 public:
     struct TIndexData_ {
         f64 _0;
@@ -305,43 +304,78 @@ private:
 };
 
 class TFunctionValue_list_parameter : public TFunctionValue,
-                                      TFunctionValueAttribute_range,
-                                      TFunctionValueAttribute_interpolate {
+                                      public TFunctionValueAttribute_range,
+                                      public TFunctionValueAttribute_interpolate {
 public:
-    struct TIterator_data_ {
-        TIterator_data_(const f32* value) : value_(value) {}
-        TIterator_data_& operator--() {
-            value_ -= 2;
+    struct TIterator_data_
+        : public JGadget::TIterator<
+            std::random_access_iterator_tag,
+            const f32,
+            ptrdiff_t,
+            const f32*,
+            const f32&
+        >
+    {
+        TIterator_data_(const TFunctionValue_list_parameter& rParent, const f32* value) {
+#ifdef DEBUG
+            pOwn_ = &rParent;
+#endif
+            pf_ = value;
+        }
+
+        const f32* get() const { return pf_; }
+        void set(const f32* value) { pf_ = value; }
+
+        friend bool operator==(const TIterator_data_& r1, const TIterator_data_& r2) {
+#ifdef DEBUG
+            if (!(r1.pOwn_==r2.pOwn_)) {
+                JGadget_outMessage msg(JGadget_outMessage::warning, __FILE__, 124);
+                msg << "r1.pOwn_==r2.pOwn_";
+            }
+#endif
+            return r1.pf_ == r2.pf_;
+        }
+
+        f32 operator*() {
+#ifdef DEBUG
+            JUT_ASSERT(947, pf_!=0);
+#endif
+            return *pf_;
+        }
+
+        TIterator_data_& operator+=(s32 n) {
+            pf_ += suData_size * n;
             return *this;
         }
         TIterator_data_& operator-=(s32 n) {
-            value_ -= n * 2;
+            pf_ -= suData_size * n;
             return *this;
-        }
-        s32 operator-(const TIterator_data_& other) {
-            return (u32)(value_ - other.value_) >> 1;
         }
         TIterator_data_& operator++() {
-            value_ += 2;
+            pf_ += suData_size;
             return *this;
         }
-        TIterator_data_& operator+=(s32 n) {
-            value_ += n * 2;
+        TIterator_data_& operator--() {
+            pf_ -= suData_size;
             return *this;
         }
-        friend bool operator==(const TIterator_data_& lhs, const TIterator_data_& rhs) { return lhs.value_ == rhs.value_; }
-        f32 operator*() { return *value_; }
 
-        const f32* get() const { return value_; }
-        void set(const f32* value) { value_ = value; }
+        friend s32 operator-(const TIterator_data_& r1, const TIterator_data_& r2) {
+#ifdef DEBUG
+            if (!(r1.pOwn_==r2.pOwn_)) {
+                JGadget_outMessage msg(JGadget_outMessage::warning, __FILE__, 124);
+                msg << "r1.pOwn_==r2.pOwn_";
+            }
+#endif
+            return (r1.pf_ - r2.pf_) / suData_size;
+        }
 
-        const f32* value_;
-
-        typedef s32 difference_type;
-        typedef f32 value_type;
-        typedef const f32* pointer;
-        typedef const f32& reference;
-        typedef std::random_access_iterator_tag iterator_category;
+#ifdef DEBUG
+        /* 0x00 */ const TFunctionValue_list_parameter* pOwn_;
+        /* 0x04 */ const f32* pf_;
+#else
+        /* 0x00 */ const f32* pf_;
+#endif
     };
     typedef f64 (*update_INTERPOLATE)(const TFunctionValue_list_parameter&, f64);
 
@@ -364,10 +398,12 @@ public:
     /* 80283060 */ static f64
     update_INTERPOLATE_BSPLINE_dataMore3_(JStudio::TFunctionValue_list_parameter const&, f64);
 
-    f64 data_getValue_back() { 
-        return pfData_[(uData_ - 1) * 2];
+    static const u32 suData_size = 2;
+
+    f64 data_getValue_back() const { 
+        return pfData_[(uData_ - 1) * suData_size];
     }
-    f64 data_getValue_front() { return pfData_[0]; }
+    f64 data_getValue_front() const { return pfData_[0]; }
 
 private:
     /* 0x44 */ const f32* pfData_;
@@ -378,52 +414,88 @@ private:
     /* 0x58 */ update_INTERPOLATE pfnUpdate_;
 };
 
-class TFunctionValue_hermite : public TFunctionValue, TFunctionValueAttribute_range {
+class TFunctionValue_hermite : public TFunctionValue, public TFunctionValueAttribute_range {
 public:
-    struct TIterator_data_ {
+    struct TIterator_data_
+        : public JGadget::TIterator<
+            std::random_access_iterator_tag,
+            const f32,
+            ptrdiff_t,
+            const f32*,
+            const f32&
+        >
+    {
         TIterator_data_(const TFunctionValue_hermite& rParent, const f32* value) {
-            value_ = value;
-            size_ = rParent.data_getSize();
+#ifdef DEBUG
+            pOwn_ = &rParent;
+#endif
+            pf_ = value;
+            uSize_ = rParent.data_getSize();
         }
 
-        const f32* get() { return value_; }
-
+        const f32* get() const { return pf_; }
         void set(const f32* value, u32 size) {
-            value_ = value;
-            size_ = size;
+            pf_ = value;
+            uSize_ = size;
         }
-   
-        friend bool operator==(const TIterator_data_& lhs, const TIterator_data_& rhs) { return lhs.value_ == rhs.value_; }
-        f32 operator*() { return *value_; }
 
-        TIterator_data_& operator--() {
-            value_ -= size_;
+        friend bool operator==(const TIterator_data_& r1, const TIterator_data_& r2) {
+#ifdef DEBUG
+            if (!(r1.pOwn_==r2.pOwn_)) {
+                JGadget_outMessage msg(JGadget_outMessage::warning, __FILE__, 124);
+                msg << "r1.pOwn_==r2.pOwn_";
+            }
+#endif
+            return r1.pf_ == r2.pf_;
+        }
+
+        f32 operator*() {
+#ifdef DEBUG
+            JUT_ASSERT(1098, pf_!=0);
+#endif
+            return *pf_;
+        }
+
+        TIterator_data_& operator+=(s32 n) {
+            pf_ += uSize_ * n;
             return *this;
         }
         TIterator_data_& operator-=(s32 n) {
-            value_ -= size_ * n;
+            pf_ -= uSize_ * n;
             return *this;
-        }
-        s32 operator-(const TIterator_data_& other) {
-            return (value_ - other.value_) / size_;
         }
         TIterator_data_& operator++() {
-            value_ += size_;
+            pf_ += uSize_;
             return *this;
         }
-        TIterator_data_& operator+=(s32 n) {
-            value_ += size_ * n;
+        TIterator_data_& operator--() {
+            pf_ -= uSize_;
             return *this;
         }
 
-        /* 0x00 */ const f32* value_;
-        /* 0x04 */ u32 size_;
+        friend s32 operator-(const TIterator_data_& r1, const TIterator_data_& r2) {
+#ifdef DEBUG
+            if (!(r1.pOwn_==r2.pOwn_)) {
+                JGadget_outMessage msg(JGadget_outMessage::warning, __FILE__, 124);
+                msg << "r1.pOwn_==r2.pOwn_";
+            }
+            if (!(r1.uSize_==r2.uSize_)) {
+                JGadget_outMessage msg(JGadget_outMessage::warning, __FILE__, 124);
+                msg << "r1.uSize_==r2.uSize_";
+            }
+            JUT_ASSERT(0, r1.uSize_>0);
+#endif
+            return (r1.pf_ - r2.pf_) / r1.uSize_;
+        }
 
-        typedef s32 difference_type;
-        typedef f32 value_type;
-        typedef const f32* pointer;
-        typedef const f32& reference;
-        typedef std::random_access_iterator_tag iterator_category;
+#ifdef DEBUG
+        /* 0x00 */ const TFunctionValue_hermite* pOwn_;
+        /* 0x04 */ const f32* pf_;
+        /* 0x08 */ u32 uSize_;
+#else
+        /* 0x00 */ const f32* pf_;
+        /* 0x04 */ u32 uSize_;
+#endif
     };
 
     /* 802832C4 */ TFunctionValue_hermite();
@@ -437,19 +509,48 @@ public:
     /* 8028344C */ virtual f64 getValue(f64);
 
     u32 data_getSize() const { return uSize_; }
-    f64 data_getValue_back() { 
-        return pf_[(u_ - 1) * uSize_];
+    f64 data_getValue_back() const { 
+        return pfData_[(u_ - 1) * uSize_];
     }
-    f64 data_getValue_front() { return pf_[0]; }
+    f64 data_getValue_front() const { return pfData_[0]; }
 
 private:
-    /* 0x40 */ const f32* pf_;
+    /* 0x40 */ const f32* pfData_;
     /* 0x44 */ u32 u_;
     /* 0x48 */ u32 uSize_;
     /* 0x4c */ TIterator_data_ dat1;
     /* 0x50 */ TIterator_data_ dat2;
     /* 0x54 */ TIterator_data_ dat3;
 };
+
+namespace functionvalue {
+
+inline f64 extrapolateParameter_raw(f64 a1, f64 a2) {
+    return a1;
+}
+
+inline f64 extrapolateParameter_repeat(f64 a1, f64 a2) {
+    f64 t = fmod(a1, a2);
+
+    if (t < 0.0)
+        t += a2;
+
+    return t;
+}
+
+f64 extrapolateParameter_turn(f64, f64);
+
+inline f64 extrapolateParameter_clamp(f64 value, f64 max) {
+    if (value <= 0.0)
+        return 0.0;
+
+    if (max <= value)
+        value = max;
+
+    return value;
+}
+
+};  // namespace functionvalue
 
 }  // namespace JStudio
 

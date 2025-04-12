@@ -144,7 +144,7 @@ public:
 
     MtxP getGlbMtx() { return mGlobalMtx; }
 
-    JGeometry::TBox2<f32>& getGlbBounds() { return mGlobalBounds; }
+    const JGeometry::TBox2<f32>& getGlbBounds() const { return mGlobalBounds; }
 
     void setMtx(Mtx m) { MTXCopy(m, mPositionMtx); }
 

@@ -628,14 +628,14 @@ config.libs = [
             Object(MatchingFor("GZ2E01"), "d/d_msg_scrn_base.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_msg_scrn_boss.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_msg_scrn_explain.cpp"),
-            Object(NonMatching, "d/d_msg_scrn_item.cpp"),
+            Object(MatchingFor("GZ2E01"), "d/d_msg_scrn_item.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_msg_scrn_howl.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_msg_scrn_jimaku.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_msg_scrn_kanban.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_msg_scrn_light.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_msg_scrn_place.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_msg_scrn_staff.cpp"),
-            Object(NonMatching, "d/d_msg_scrn_talk.cpp"),
+            Object(MatchingFor("GZ2E01"), "d/d_msg_scrn_talk.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_msg_scrn_tree.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_msg_string_base.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_msg_string.cpp"),
@@ -770,7 +770,7 @@ config.libs = [
         [
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/ctb.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/ctb-data.cpp"),
-            Object(NonMatching, "JSystem/JStudio/JStudio/functionvalue.cpp"),
+            Object(Equivalent, "JSystem/JStudio/JStudio/functionvalue.cpp", extra_cflags=['-pragma "nosyminline off"']), # weak func order
             Object(NonMatching, "JSystem/JStudio/JStudio/fvb.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/fvb-data.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/fvb-data-parse.cpp"),
@@ -919,7 +919,7 @@ config.libs = [
             Object(NonMatching, "Z2AudioLib/Z2LinkMgr.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(NonMatching, "Z2AudioLib/Z2EnvSeMgr.cpp"),
             Object(MatchingFor("GZ2E01"), "Z2AudioLib/Z2WolfHowlMgr.cpp"),
-            Object(NonMatching, "Z2AudioLib/Z2SpeechMgr2.cpp"),
+            Object(MatchingFor("GZ2E01"), "Z2AudioLib/Z2SpeechMgr2.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(NonMatching, "Z2AudioLib/Z2AudioMgr.cpp"),
         ],
     },
@@ -1947,7 +1947,7 @@ config.libs = [
     ActorRel(Equivalent, "d_a_obj_kwheel00"), # weak func order
     ActorRel(Equivalent, "d_a_obj_kwheel01"), # weak func order
     ActorRel(NonMatching, "d_a_obj_kznkarm"),
-    ActorRel(NonMatching, "d_a_obj_laundry"),
+    ActorRel(Equivalent, "d_a_obj_laundry"), # weak func order
     ActorRel(NonMatching, "d_a_obj_laundry_rope"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lbox"),
     ActorRel(NonMatching, "d_a_obj_lp"),

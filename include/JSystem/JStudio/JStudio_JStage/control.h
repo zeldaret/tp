@@ -52,10 +52,6 @@ struct TAdaptor_actor : public JStudio::TAdaptor_actor, public JStudio_JStage::T
     typedef f32 (JStage::TActor::*Getter)() const;
     typedef f32 (JStage::TActor::*MaxGetter)() const;
 
-    enum TEVariableValue {
-        TEACTOR_1 = 1,
-    };
-
     struct TVVOutput_ANIMATION_FRAME_ 
     : public JStudio::TVariableValue::TOutput
     {

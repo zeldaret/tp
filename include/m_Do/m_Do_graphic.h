@@ -106,6 +106,9 @@ public:
     static void setWideZoomLightProjection(Mtx m) {}
     static void setFrameRate(u16 i_rate) { JFWDisplay::getManager()->setFrameRate(i_rate); }
 
+    // NONMATCHING - Need to define all mDoGph_gInf_c shieldD members
+    static u8 isWide() { return false; }
+
     static GXTexObj mFrameBufferTexObj;
     static GXTexObj mZbufferTexObj;
     static bloom_c m_bloom;

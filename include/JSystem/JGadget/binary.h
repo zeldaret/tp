@@ -93,7 +93,7 @@ struct TValueIterator {
     const void* get() const { return mBegin; }
 
     typename Parser::ParseType operator*() const {
-        return *(typename Parser::ParseType*)get();
+        return Parser::parse(get());
     }
 
     TValueIterator& operator++() {
@@ -127,7 +127,6 @@ struct TParseValue_misaligned : TParseValue_raw_<T> {
 
 template<typename T>
 struct TValueIterator_misaligned : public TValueIterator<TParseValue_misaligned<T>, sizeof(T)> {
-    TValueIterator_misaligned(const TValueIterator_misaligned<T>& other) : TValueIterator<TParseValue_misaligned<T>, sizeof(T)>(other) {}
     TValueIterator_misaligned(const void* begin) : TValueIterator<TParseValue_misaligned<T>, sizeof(T)>(begin) {}
 };
 
