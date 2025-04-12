@@ -59,11 +59,8 @@ public:
     inline int daObjLdy_Draw();
     inline int daObjLdy_Execute();
 
-    static const daObjLdy_Attr_c mAttr;
-
 private:
-    static f32 const M_attr[12];
-    static u8 const M_attr_u8[4];
+    static const daObjLdy_Attr_c mAttr;
 
     /* 0x568 */ J3DModel* mpModel;
     /* 0x56C */ mDoExt_btkAnm* mpBtkAnm;

@@ -16,7 +16,8 @@
 
 /* ############################################################################################## */
 /* 80C52000-80C52034 000000 0034+00 3/3 0/0 0/0 .rodata          M_attr__10daObjLdy_c */
-daObjLdy_Attr_c const daObjLdy_c::mAttr = {5.0f, 30.0f, 130.0f, -50.0f, 0.15f, 0.45f, 0.3f, 1000.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0, 10, 0};
+daObjLdy_Attr_c const daObjLdy_c::mAttr = {5.0f, 30.0f, 130.0f, -50.0f, 0.15f, 0.45f, 0.3f, 1000.0f,
+                                           0.0f, 0.0f,  0.0f,   0.0f,   0,     10,    0};
 
 /* 80C50F98-80C51088 000078 00F0+00 1/1 0/0 0/0 .text            create_init__10daObjLdy_cFv */
 void daObjLdy_c::create_init() {
