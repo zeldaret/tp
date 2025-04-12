@@ -25,13 +25,22 @@ struct TExpandStride_<s32> {
 //!  Target: toValueFromIndex<PFdd_d>__7JGadgetFiPCPFdd_dUlRCPFdd_d_RCPFdd_d
 template <typename T>
 inline const T& toValueFromIndex(int idx, const T* pValue, u32 count, const T& fallback) {
-    ASSERT(pValue != NULL);
-    return (idx >= count) ? fallback : pValue[idx];
+    JUT_ASSERT(200, pValue!=0);
+    u32 index = idx;
+    if (index >= count) {
+        return fallback;
+    } else {
+        return pValue[index];
+    }
 }
+
+template <typename Category, typename T, typename Distance, typename Pointer, typename Reference>
+struct TIterator : public std::iterator<Category, T, Distance, Pointer, Reference> {
+};
 
 template <typename Iterator, typename T, typename Predicate>
 inline Iterator findUpperBound_binary_all(Iterator first, Iterator last, const T& val, Predicate p) {
-    return upper_bound(first, last, val, p);
+    return std::upper_bound(first, last, val, p);
 }
 
 template <typename Iterator, typename T, typename Predicate>
@@ -104,15 +113,13 @@ inline Iterator findUpperBound_binary_end(Iterator first, Iterator last, const T
 template <typename Iterator, typename T, typename Predicate>
 Iterator findUpperBound_binary_current(Iterator first, Iterator last, Iterator current, const T& val, Predicate p) {
     return current == last || p(val, *current) ?
-        findUpperBound_binary_end(first, current, val, p)
-        : findUpperBound_binary_begin(current, last, val, p);
+        findUpperBound_binary_end(first, current, val, p) :
+        findUpperBound_binary_begin(current, last, val, p);
 }
 
-// NONMATCHING stack alloc
 template <typename Iterator, typename T>
 Iterator findUpperBound_binary_current(Iterator first, Iterator last, Iterator current, const T& val) {
-    std::less<T> less;
-    return findUpperBound_binary_current(first, last, current, val, less);
+    return findUpperBound_binary_current(first, last, current, val, std::less<T>());
 }
 
 }  // namespace JGadget
