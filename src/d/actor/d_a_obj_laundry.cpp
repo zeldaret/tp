@@ -48,8 +48,8 @@ void daObjLdy_c::initBaseMtx() {
 
     LaundJoint_c* joint = &mJoints[0];
     for (int i = 0; i < 3; i++) {
-        float cosAngleY = cM_scos(shape_angle.y);
-        float sinAngleY = cM_ssin(shape_angle.y);
+        f32 cosAngleY = cM_scos(shape_angle.y);
+        f32 sinAngleY = cM_ssin(shape_angle.y);
         joint->mPos4.set(sinAngleY, 0.0f, cosAngleY);
         joint++;
     }
@@ -65,9 +65,9 @@ void daObjLdy_c::setBaseMtx() {
 }
 
 /* 80C5116C-80C51194 00024C 0028+00 1/1 0/0 0/0 .text getJointAngle__10daObjLdy_cFP5csXyzi */
-void daObjLdy_c::getJointAngle(csXyz* jointAngle, int index) {
-    LaundJoint_c* joint = &mJoints[index];
-    *jointAngle = joint->mAngle;
+void daObjLdy_c::getJointAngle(csXyz* i_jointAngle, int i_index) {
+    LaundJoint_c* joint = &mJoints[i_index];
+    *i_jointAngle = joint->mAngle;
 }
 
 /* ############################################################################################## */
@@ -96,7 +96,7 @@ void daObjLdy_c::setNormalClothPos() {
     cXyz adjustedPosition;
     cXyz windVector = dKyw_get_AllWind_vecpow(&current.pos);
     windVector *= M_attr[3] * M_attr[4];
-    float windPower = windVector.abs();
+    f32 windPower = windVector.abs();
     LaundJoint_c* joint = &mJoints[0];
 
     if (mCyl.ChkTgHit() != 0) {
@@ -117,7 +117,7 @@ void daObjLdy_c::setNormalClothPos() {
         }
     } else {
         if (mCyl.ChkCoHit() != 0) {
-            if (fopAcM_GetName(mCyl.GetCoHitAc()) == AT_TYPE_100) {
+            if (fopAcM_GetName(mCyl.GetCoHitAc()) == PROC_NPC_TK) {
                 cXyz position = fopAcM_GetPosition(dComIfGp_getPlayer(0)) - mJoints[1].mPos1;
                 position.normalizeZP();
                 position *= 100.0f;
@@ -180,16 +180,16 @@ bool daObjLdy_c::divorceParent() {
 }
 
 /* 80C51844-80C518FC 000924 00B8+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
-static int nodeCallBack(J3DJoint* joint, int callbackCondition) {
+static int nodeCallBack(J3DJoint* i_joint, int i_callbackCondition) {
     J3DModel* jointModel;
     u16 jointNo;
     csXyz jointAngle[2];
 
-    if (callbackCondition != 0) {
+    if (i_callbackCondition != 0) {
         return 1;
     }
 
-    jointNo = joint->getJntNo();
+    jointNo = i_joint->getJntNo();
     jointModel = j3dSys.getModel();
     ((daObjLdy_c*)jointModel->getUserArea())->getJointAngle(jointAngle, jointNo);
     cMtx_copy(jointModel->getAnmMtx(jointNo), mDoMtx_stack_c::get());
@@ -269,8 +269,8 @@ static int daObjLdy_Execute(daObjLdy_c* i_this) {
 
 /* 80C51BDC-80C51BE4 000CBC 0008+00 1/0 0/0 0/0 .text            daObjLdy_IsDelete__FP10daObjLdy_c
  */
-static bool daObjLdy_IsDelete(daObjLdy_c* i_this) {
-    return true;
+static int daObjLdy_IsDelete(daObjLdy_c* i_this) {
+    return 1;
 }
 
 daObjLdy_c::~daObjLdy_c() {
@@ -335,7 +335,3 @@ extern actor_process_profile_definition g_profile_Obj_Laundry = {
     fopAc_ACTOR_e,           // mActorType
     fopAc_CULLBOX_CUSTOM_e,  // cullType
 };
-
-static char* rodataPadding() {
-    return "\0";
-}
