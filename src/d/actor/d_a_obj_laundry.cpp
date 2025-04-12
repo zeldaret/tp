@@ -8,7 +8,6 @@
 #include "d/d_cc_d.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_kankyo_wether.h"
-#include "dol2asm.h"
 
 //
 // Declarations:

@@ -2,7 +2,7 @@
 #define D_A_OBJ_LAUNDRY_H
 
 #include "d/d_cc_d.h"
-#include "f_op/f_op_actor_mng.h"
+#include "f_op/f_op_actor.h"
 
 /**
  * @ingroup actors-objects
