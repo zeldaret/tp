@@ -947,8 +947,17 @@ static void action(e_ms_class* i_this) {
     i_this->field_0x680 = fopAcM_searchPlayerDistance(i_this);
     i_this->field_0x684 = fopAcM_searchPlayerAngleY(i_this);
     damage_check(i_this);
+    s8 sVar10 = 0;
+    s8 sVar11 = 1;
+    s8 sVar3 = 0;
+    int iVar4 = 1;
+    s8 sVar1 = 1;
+    s8 sVar2 = 0;
+
+    fopAc_ac_c* mActor;
 
     dBgS_ObjGndChk_Spl cStack_9c;
+    cXyz spb4;
     cXyz spa8 = i_this->current.pos;
     spa8.y += 200.0f;
     cStack_9c.SetPos(&spa8);
@@ -956,8 +965,127 @@ static void action(e_ms_class* i_this) {
 
     switch (i_this->field_0x67e) {
         case 0:
-            
+            sVar10 = e_ms_normal(i_this);
+            sVar3 = 1;
+            break;
+        case 1:
+            sVar10 = e_ms_attack(i_this);
+            sVar2 = 1;
+            break;
+        case 2:
+            e_ms_dokuro(i_this);
+            break;
+        case 3:
+            e_ms_swim(i_this);
+            sVar11 = 0;
+            break;
+        case 4:
+            e_ms_damage(i_this);
+            sVar11 = -1;
+            iVar4 = 0;
+            break;
+        case 5:
+            e_ms_wolfbite(i_this);
+            iVar4 = 0;
+            sVar11 = -1;
+            sVar1 = 0;
+            break;
+        case 10:
+            e_ms_standby(i_this);
+            iVar4 = 0;
+            sVar11 = -1;
+            sVar1 = 0;
     }
+
+    if (sVar1 && i_this->health > 0) {
+        fopAcM_OnStatus(i_this, 0);
+        i_this->attention_info.flags = 4;
+    } else {
+        fopAcM_OffStatus(i_this, 0);
+        i_this->attention_info.flags = 0;
+    }
+
+    if (sVar2) {
+        i_this->mSound.setLinkSearch(true);
+    } else {
+        i_this->mSound.setLinkSearch(false);
+    }
+
+    if (sVar3 && (i_this->field_0xbb4 = -1, (i_this->field_0x67c & 15) == 0) &&
+        (mActor = search_dokuro(i_this), mActor)) {
+        spa8 = mActor->current.pos - i_this->current.pos;
+        if (spa8.abs() < 500.0f) {
+            i_this->field_0xbb4 = fopAcM_GetID(mActor);
+            i_this->field_0x67e = 2;
+            i_this->field_0x5b4 = 0;
+        }
+    }
+
+    if ((sVar10 != 0 && i_this->field_0x680 < 500.0f) && daPy_getPlayerActorClass()->checkWolfBark()) {
+        i_this->field_0x67e = 0;
+        i_this->field_0x5b4 = 5;
+        anm_init(i_this, 8, 1.0f, 0, 1.0f);
+        i_this->field_0x686 = cM_rndF(10.0f) + 5.0f;
+    }
+
+    cLib_addCalcAngleS2(&i_this->shape_angle.y, i_this->current.angle.y, 2, 0x2000);
+    cLib_addCalcAngleS2(&i_this->shape_angle.x, i_this->current.angle.x, 2, 0x2000);
+    cLib_addCalcAngleS2(&i_this->shape_angle.z, i_this->current.angle.z, 2, 0x2000);
+    cMtx_YrotS(*calc_mtx, i_this->current.angle.y);
+
+    spa8.x = 0.0f;
+    spa8.y = 0.0f;
+    spa8.z = i_this->speedF;
+    MtxPosition(&spa8, &spb4);
+    i_this->speed.x = spb4.x;
+    i_this->speed.z = spb4.z;
+
+    i_this->current.pos += i_this->speed * l_HIO.field_0x8;
+    i_this->speed.y += i_this->gravity;
+    i_this->gravity = -7.0f;
+    if (i_this->speed.y < -80.0f) {
+        i_this->speed.y = -80.0f;
+    }
+
+    if (iVar4) {
+        i_this->mGObj.OnCoSetBit();
+        cXyz* pcVar9 = i_this->mCStts.GetCCMoveP();
+        if (pcVar9) {
+            i_this->current.pos.x += pcVar9->x * 0.3f;
+            i_this->current.pos.z += pcVar9->z * 0.3f;
+        }
+    } else {
+        i_this->mGObj.OffCoSetBit();
+    }
+
+    i_this->mAcch.CrrPos(dComIfG_Bgsp());
+    if (i_this->current.pos.y >= i_this->field_0x690 - 10.0f) {
+        i_this->field_0x8b0 = 1;
+    } else {
+        i_this->field_0x8b0 = 0;
+    }
+
+    f32 fVar12 = 0.0f;
+    if (sVar11 == 1) {
+        if (i_this->current.pos.y <= i_this->field_0x690 - 45.0f) {
+            i_this->field_0x67e = 3;
+            i_this->field_0x5b4 = 0;
+            sibuki_set(i_this);
+        }
+    } else if (sVar11 == 0) {
+        fVar12 = 47.0f;
+        cXyz spc0(i_this->current.pos.x, i_this->field_0x690, i_this->current.pos.z);
+        fopAcM_effHamonSet(&i_this->field_0xb9c, &spc0, 1.0f, 0.1f);
+
+        if (i_this->current.pos.y > i_this->field_0x690 - 35.0f) {
+            i_this->field_0x67e = 0;
+            i_this->field_0x5b4 = 0;
+        }
+    }
+
+    cLib_addCalc2(&i_this->field_0x694, fVar12, 0.4f, 5.0f);
+    cXyz spcc(0.5f, 0.5f, 0.5f);
+    setMidnaBindEffect(i_this, &i_this->mSound, &i_this->eyePos, &spcc);
 }
 
 /* ############################################################################################## */
