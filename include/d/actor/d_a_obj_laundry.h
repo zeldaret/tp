@@ -24,6 +24,24 @@ public:
     csXyz mAngle;
 };
 
+struct daObjLdy_Attr_c {
+    f32 field_0x0;
+    f32 field_0x4;
+    f32 field_0x8;
+    f32 field_0xc;
+    f32 field_0x10;
+    f32 field_0x14;
+    f32 field_0x18;
+    f32 field_0x1c;
+    f32 field_0x20;
+    f32 field_0x24;
+    f32 field_0x28;
+    f32 field_0x2c;
+    u16 field_0x30;
+    u8 field_0x32;
+    u8 field_0x33;
+};
+
 class daObjLdy_c : public fopAc_ac_c {
 public:
     /* 80C50F98 */ void create_init();
@@ -40,6 +58,8 @@ public:
     inline int getObjType();
     inline int daObjLdy_Draw();
     inline int daObjLdy_Execute();
+
+    static const daObjLdy_Attr_c mAttr;
 
 private:
     static f32 const M_attr[12];

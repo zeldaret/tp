@@ -16,12 +16,7 @@
 
 /* ############################################################################################## */
 /* 80C52000-80C52034 000000 0034+00 3/3 0/0 0/0 .rodata          M_attr__10daObjLdy_c */
-SECTION_RODATA f32 const daObjLdy_c::M_attr[12] = {5.0, 30.0,   130.0, -50.0, 0.15, 0.45,
-                                                   0.3, 1000.0, 0.0,   0.0,   0.0,  0.0};
-COMPILER_STRIP_GATE(0x80C52000, &daObjLdy_c::M_attr);
-
-SECTION_RODATA u8 const daObjLdy_c::M_attr_u8[4] = {0x00, 0x00, 0x0A, 0x00};
-COMPILER_STRIP_GATE(0x80C52030, &daObjLdy_c::M_attr_u8);
+daObjLdy_Attr_c const daObjLdy_c::mAttr = {5.0f, 30.0f, 130.0f, -50.0f, 0.15f, 0.45f, 0.3f, 1000.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0, 10, 0};
 
 /* 80C50F98-80C51088 000078 00F0+00 1/1 0/0 0/0 .text            create_init__10daObjLdy_cFv */
 void daObjLdy_c::create_init() {
@@ -32,13 +27,13 @@ void daObjLdy_c::create_init() {
     int index = 0;
     for (int i = 0; i < 3; i++) {
         joint->mPos1 = current.pos;
-        joint->mPos1.y += (index + 1) * M_attr[3];
+        joint->mPos1.y += (index + 1) * mAttr.field_0xc;
         joint->mPos2 = joint->mPos1;
         index++;
         joint++;
     }
 
-    gravity = M_attr[0];
+    gravity = mAttr.field_0x0;
     initBaseMtx();
 }
 
@@ -95,7 +90,7 @@ static f32 dummy(cXyz v) {
 void daObjLdy_c::setNormalClothPos() {
     cXyz adjustedPosition;
     cXyz windVector = dKyw_get_AllWind_vecpow(&current.pos);
-    windVector *= M_attr[3] * M_attr[4];
+    windVector *= mAttr.field_0xc * mAttr.field_0x10;
     f32 windPower = windVector.abs();
     LaundJoint_c* joint = &mJoints[0];
 
@@ -107,7 +102,7 @@ void daObjLdy_c::setNormalClothPos() {
             position *= 100.0f;
             for (int i = 2; i >= 0; i--) {
                 mJoints[i].mPos3 = position;
-                position *= M_attr[6];
+                position *= mAttr.field_0x18;
             }
             divorceParent();
         } else {
@@ -123,7 +118,7 @@ void daObjLdy_c::setNormalClothPos() {
                 position *= 100.0f;
                 for (int i = 2; i >= 0; i--) {
                     mJoints[i].mPos3 = position;
-                    position *= M_attr[6];
+                    position *= mAttr.field_0x18;
                 }
                 divorceParent();
             }
@@ -147,8 +142,8 @@ void daObjLdy_c::setNormalClothPos() {
         adjustedPosition.y += gravity;
         adjustedPosition += mJoint->mPos3;
         adjustedPosition.normalizeZP();
-        mJoint->mPos1 = *currentPosition + (adjustedPosition * M_attr[3]);
-        mJoint->mPos3 = (mJoint->mPos3 + (mJoint->mPos2 - mJoint->mPos1)) * M_attr[5];
+        mJoint->mPos1 = *currentPosition + (adjustedPosition * mAttr.field_0xc);
+        mJoint->mPos3 = (mJoint->mPos3 + (mJoint->mPos2 - mJoint->mPos1)) * mAttr.field_0x14;
         mJoint->mPos2 = mJoint->mPos1;
         currentPosition = &mJoint->mPos1;
         mJoint++;
@@ -169,7 +164,7 @@ void daObjLdy_c::calcJointAngle() {
         joint->mAngle.x = cM_atan2s(position.z, position.y);
         joint->mAngle.z = cM_atan2s(-position.y, position.absXZ());
         mDoMtx_stack_c::XrotM(joint->mAngle.x);
-        mDoMtx_stack_c::transM(0.0f, M_attr[3], 0.0f);
+        mDoMtx_stack_c::transM(0.0f, mAttr.field_0xc, 0.0f);
         joint++;
     }
 }
