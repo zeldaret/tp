@@ -11,7 +11,7 @@
  * 
  */
 class e_tk_ball_class : public fopEn_enemy_c {
-private:
+public:
     /* 0x5ac */ u8 field_0x5ac[0x8cc - 0x5ac];
 };
 

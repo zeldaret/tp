@@ -6,7 +6,6 @@
 #include "d/d_cc_uty.h"
 #include "d/d_path.h"
 #include "f_op/f_op_actor.h"
-#include "m_Do/m_Do_hostIO.h"
 
 /**
  * @ingroup actors-enemies
@@ -23,7 +22,7 @@ public:
     u8 mParam2;
     u8 mParam3;
     u8 mParam4;
-    u8 mUnkFlag;
+    s8 mUnkFlag;
     dPath* mRoomPath;
     s8 mWtf2;
     s8 mWtf3;
@@ -63,12 +62,21 @@ public:
     u8 field_0xa61[3];
 };
 
-STATIC_ASSERT(sizeof(e_tk_class) == 0xa64);
+STATIC_ASSERT(sizeof(e_tk_class) == 0xA64);
 
-class daE_TK_HIO_c : public mDoHIO_entry_c {
+class daE_TK_HIO_c {
 public:
     /* 807B81EC */ daE_TK_HIO_c();
-    /* 807BA1C4 */ ~daE_TK_HIO_c();
+    /* 807BA1C4 */ virtual ~daE_TK_HIO_c() {}
+
+    /* 0x04 */ s8 m1;
+    /* 0x08 */ f32 m2;
+    /* 0x0C */ f32 m3;
+    /* 0x10 */ f32 m4;
+    /* 0x14 */ f32 m5;
+    /* 0x18 */ f32 m6;
 };
+
+STATIC_ASSERT(sizeof(daE_TK_HIO_c) == 0x1C);
 
 #endif /* D_A_E_TK_H */
