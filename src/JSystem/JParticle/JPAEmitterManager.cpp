@@ -8,53 +8,69 @@
 #include "JSystem/JParticle/JPAEmitter.h"
 #include "JSystem/JParticle/JPAParticle.h"
 #include "JSystem/JParticle/JPAResourceManager.h"
+#include "JSystem/JUtility/JUTAssert.h"
 #include "dolphin/gx.h"
 
 /* 8027DCA0-8027DEBC 2785E0 021C+00 0/0 1/1 0/0 .text __ct__17JPAEmitterManagerFUlUlP7JKRHeapUcUc
  */
-JPAEmitterManager::JPAEmitterManager(u32 ptclMax, u32 emtrMax, JKRHeap* pHeap, u8 grpMax,
-                                     u8 resMax) {
-    mEmtrMax = emtrMax;
-    mPtclMax = ptclMax;
-    mGrpMax = grpMax;
-    mResMax = resMax;
+JPAEmitterManager::JPAEmitterManager(u32 i_ptclNum, u32 i_emtrNum, JKRHeap* pHeap, u8 i_gidMax,
+                                     u8 i_ridMax) {
+    emtrNum = i_emtrNum;
+    ptclNum = i_ptclNum;
+    gidMax = i_gidMax;
+    ridMax = i_ridMax;
 
-    JPABaseEmitter* emtr = new (pHeap, 0) JPABaseEmitter[mEmtrMax];
-    for (u32 i = 0; i < mEmtrMax; i++)
-        mFreeEmtrList.prepend(&emtr[i].mLink);
+    JUT_ASSERT(40, emtrNum && ptclNum && gidMax && ridMax);
 
-    JPANode<JPABaseParticle>* ptcl = new (pHeap, 0) JPANode<JPABaseParticle>[mPtclMax];
-    for (u32 i = 0; i < mPtclMax; i++)
-        mPtclPool.push_back(&ptcl[i]);
+    JPABaseEmitter* p_emtr_link = new (pHeap, 0) JPABaseEmitter[emtrNum];
+    JUT_ASSERT(44, p_emtr_link);
+    for (u32 i = 0; i < emtrNum; i++)
+        mFreeEmtrList.prepend(&p_emtr_link[i].mLink);
 
-    mpGrpEmtr = new (pHeap, 0) JSUList<JPABaseEmitter>[mGrpMax];
-    mpResMgrAry = new (pHeap, 0) JPAResourceManager*[mResMax];
-    for (int i = 0; i < mResMax; i++) {
-        mpResMgrAry[i] = NULL;
+    JPANode<JPABaseParticle>* p_ptcl_node = new (pHeap, 0) JPANode<JPABaseParticle>[ptclNum];
+    JUT_ASSERT(51, p_ptcl_node);
+    for (u32 i = 0; i < ptclNum; i++)
+        mPtclPool.push_back(&p_ptcl_node[i]);
+
+    pEmtrUseList = new (pHeap, 0) JSUList<JPABaseEmitter>[gidMax];
+    JUT_ASSERT(58, pEmtrUseList);
+    pResMgrAry = new (pHeap, 0) JPAResourceManager*[ridMax];
+    JUT_ASSERT(62, pResMgrAry)
+    for (int i = 0; i < ridMax; i++) {
+        pResMgrAry[i] = NULL;
     }
 
-    mpWorkData = new (pHeap, 0) JPAEmitterWorkData();
+    pWd = new (pHeap, 0) JPAEmitterWorkData();
+    JUT_ASSERT(67, pWd);
 }
 
 /* 8027DEBC-8027DFA0 2787FC 00E4+00 0/0 3/3 0/0 .text
  * createSimpleEmitterID__17JPAEmitterManagerFRCQ29JGeometry8TVec3<f>UsUcUcP18JPAEmitterCallBackP19JPAParticleCallBack
  */
 JPABaseEmitter* JPAEmitterManager::createSimpleEmitterID(JGeometry::TVec3<f32> const& pos,
-                                                         u16 resID, u8 groupID, u8 resMgrID,
+                                                         u16 resID, u8 group_id, u8 res_mgr_id,
                                                          JPAEmitterCallBack* emtrCB,
                                                          JPAParticleCallBack* ptclCB) {
-    JPAResource* pRes = mpResMgrAry[resMgrID]->getResource(resID);
-    if (pRes != NULL && mFreeEmtrList.getNumLinks() != 0) {
+    JUT_ASSERT(88, group_id < gidMax);
+    JUT_ASSERT(89, res_mgr_id < ridMax);
+    JUT_ASSERT(90, pResMgrAry[res_mgr_id] != 0);
+    JPAResource* pRes = pResMgrAry[res_mgr_id]->getResource(resID);
+
+    if (pRes == NULL) {
+        JUT_WARN_DEVICE(94, 3, "JPA : User Index %d is NOT exist\n", resID);
+    } else if (mFreeEmtrList.getNumLinks() == 0) {
+        JUT_WARN_DEVICE(97, 3, "JPA : Can NOT create emitter more\n");
+    } else {
         JSULink<JPABaseEmitter>* pLink = mFreeEmtrList.getFirst();
         mFreeEmtrList.remove(pLink);
-        mpGrpEmtr[groupID].append(pLink);
+        pEmtrUseList[group_id].append(pLink);
         JPABaseEmitter* emtr = pLink->getObject();
         emtr->init(this, pRes);
         emtr->mpPtclPool = &mPtclPool;
         emtr->mpEmtrCallBack = emtrCB;
         emtr->mpPtclCallBack = ptclCB;
-        emtr->mGroupID = groupID;
-        emtr->mResMgrID = resMgrID;
+        emtr->mGroupID = group_id;
+        emtr->mResMgrID = res_mgr_id;
         emtr->mGlobalTrs.set(pos);
         return emtr;
     }
@@ -63,24 +79,26 @@ JPABaseEmitter* JPAEmitterManager::createSimpleEmitterID(JGeometry::TVec3<f32> c
 }
 
 /* 8027DFA0-8027E028 2788E0 0088+00 0/0 3/3 0/0 .text            calc__17JPAEmitterManagerFUc */
-void JPAEmitterManager::calc(u8 groupID) {
-    for (JSULink<JPABaseEmitter>*pLink = mpGrpEmtr[groupID].getFirst(), *pNext;
-         pLink != mpGrpEmtr[groupID].getEnd(); pLink = pNext) {
+void JPAEmitterManager::calc(u8 group_id) {
+    JUT_ASSERT(154, group_id < gidMax);
+    JSULink<JPABaseEmitter>* pNext = NULL;
+    for (JSULink<JPABaseEmitter>* pLink = pEmtrUseList[group_id].getFirst();
+         pLink != pEmtrUseList[group_id].getEnd(); pLink = pNext) {
         pNext = pLink->getNext();
 
         JPABaseEmitter* emtr = pLink->getObject();
-        bool done = emtr->mpRes->calc(mpWorkData, emtr);
 
-        if (done && !emtr->checkStatus(0x200))
+        if (emtr->mpRes->calc(pWd, emtr) && !emtr->checkStatus(0x200))
             forceDeleteEmitter(emtr);
     }
 }
 
 /* 8027E028-8027E220 278968 01F8+00 0/0 1/1 0/0 .text draw__17JPAEmitterManagerFPC11JPADrawInfoUc
  */
-void JPAEmitterManager::draw(JPADrawInfo const* drawInfo, u8 groupID) {
-    drawInfo->getCamMtx(&mpWorkData->mPosCamMtx);
-    drawInfo->getPrjMtx(&mpWorkData->mPrjMtx);
+void JPAEmitterManager::draw(JPADrawInfo const* drawInfo, u8 group_id) {
+    JUT_ASSERT(192, group_id < gidMax);
+    drawInfo->getCamMtx(pWd->mPosCamMtx);
+    drawInfo->getPrjMtx(pWd->mPrjMtx);
     calcYBBCam();
     GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
     GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
@@ -103,12 +121,12 @@ void JPAEmitterManager::draw(JPADrawInfo const* drawInfo, u8 groupID) {
                   GX_AF_NONE);
     GXSetNumChans(0);
 
-    for (JSULink<JPABaseEmitter>* pLink = mpGrpEmtr[groupID].getFirst();
-         pLink != mpGrpEmtr[groupID].getEnd(); pLink = pLink->getNext()) {
+    for (JSULink<JPABaseEmitter>* pLink = pEmtrUseList[group_id].getFirst();
+         pLink != pEmtrUseList[group_id].getEnd(); pLink = pLink->getNext()) {
         JPABaseEmitter* emtr = pLink->getObject();
         if (!emtr->checkStatus(0x04)) {
-            mpWorkData->mpResMgr = mpResMgrAry[emtr->mResMgrID];
-            emtr->mpRes->draw(mpWorkData, emtr);
+            pWd->mpResMgr = pResMgrAry[emtr->mResMgrID];
+            emtr->mpRes->draw(pWd, emtr);
         }
     }
 }
@@ -116,15 +134,16 @@ void JPAEmitterManager::draw(JPADrawInfo const* drawInfo, u8 groupID) {
 /* 8027E220-8027E278 278B60 0058+00 0/0 1/1 0/0 .text forceDeleteAllEmitter__17JPAEmitterManagerFv
  */
 void JPAEmitterManager::forceDeleteAllEmitter() {
-    for (u8 i = 0; i < mGrpMax; i++)
+    for (u8 i = 0; i < gidMax; i++)
         forceDeleteGroupEmitter(i);
 }
 
 /* 8027E278-8027E2D8 278BB8 0060+00 1/1 0/0 0/0 .text
  * forceDeleteGroupEmitter__17JPAEmitterManagerFUc              */
-void JPAEmitterManager::forceDeleteGroupEmitter(u8 groupID) {
-    while (mpGrpEmtr[groupID].getNumLinks())
-        forceDeleteEmitter(mpGrpEmtr[groupID].getLast()->getObject());
+void JPAEmitterManager::forceDeleteGroupEmitter(u8 group_id) {
+    JUT_ASSERT(288, group_id < gidMax);
+    while (pEmtrUseList[group_id].getNumLinks())
+        forceDeleteEmitter(pEmtrUseList[group_id].getLast()->getObject());
 }
 
 /* 8027E2D8-8027E344 278C18 006C+00 3/3 1/1 0/0 .text
@@ -132,48 +151,53 @@ void JPAEmitterManager::forceDeleteGroupEmitter(u8 groupID) {
 void JPAEmitterManager::forceDeleteEmitter(JPABaseEmitter* emtr) {
     emtr->deleteAllParticle();
     emtr->setStatus(0x300);
-    mpGrpEmtr[emtr->getGroupID()].remove(&emtr->mLink);
+    pEmtrUseList[emtr->getGroupID()].remove(&emtr->mLink);
     mFreeEmtrList.prepend(&emtr->mLink);
 }
 
 /* 8027E344-8027E354 278C84 0010+00 0/0 2/2 0/0 .text
  * entryResourceManager__17JPAEmitterManagerFP18JPAResourceManagerUc */
 void JPAEmitterManager::entryResourceManager(JPAResourceManager* resMgr, u8 resMgrID) {
-    mpResMgrAry[resMgrID] = resMgr;
+    JUT_ASSERT_MSG_F(325, resMgrID < ridMax && (pResMgrAry[resMgrID]) == 0,
+                     "res_id %d res_id_max %d array[%d] = %x", resMgrID, ridMax, resMgrID,
+                     pResMgrAry[resMgrID]);
+    pResMgrAry[resMgrID] = resMgr;
 }
 
 /* 8027E354-8027E3F4 278C94 00A0+00 0/0 1/1 0/0 .text clearResourceManager__17JPAEmitterManagerFUc
  */
-void JPAEmitterManager::clearResourceManager(u8 resMgrID) {
-    for (u8 i = 0; i < mGrpMax; i++) {
-        for (JSULink<JPABaseEmitter>*pLink = mpGrpEmtr[i].getFirst(), *pNext;
-             pLink != mpGrpEmtr[i].getEnd(); pLink = pNext) {
+void JPAEmitterManager::clearResourceManager(u8 res_mgr_id) {
+    JUT_ASSERT(339, res_mgr_id < ridMax);
+    for (u8 i = 0; i < gidMax; i++) {
+        JSULink<JPABaseEmitter>* pNext = NULL;
+        for (JSULink<JPABaseEmitter>* pLink = pEmtrUseList[i].getFirst();
+             pLink != pEmtrUseList[i].getEnd(); pLink = pNext) {
             pNext = pLink->getNext();
 
-            if (resMgrID == pLink->getObject()->getResourceManagerID())
+            if (res_mgr_id == pLink->getObject()->getResourceManagerID())
                 forceDeleteEmitter(pLink->getObject());
         }
     }
 
-    mpResMgrAry[resMgrID] = NULL;
+    pResMgrAry[res_mgr_id] = NULL;
 }
 
 /* 8027E3F4-8027E51C 278D34 0128+00 1/1 0/0 0/0 .text            calcYBBCam__17JPAEmitterManagerFv
  */
 void JPAEmitterManager::calcYBBCam() {
-    JGeometry::TVec3<float> v;
-    v.set(0.0f, mpWorkData->mPosCamMtx[1][1], mpWorkData->mPosCamMtx[2][1]);
+    JGeometry::TVec3<float> v(0.0f, pWd->mPosCamMtx[1][1], pWd->mPosCamMtx[2][1]);
+    JUT_ASSERT(367, !v.isZero());
     v.normalize();
-    mpWorkData->mYBBCamMtx[0][0] = 1.0f;
-    mpWorkData->mYBBCamMtx[0][1] = 0.0f;
-    mpWorkData->mYBBCamMtx[0][2] = 0.0f;
-    mpWorkData->mYBBCamMtx[0][3] = mpWorkData->mPosCamMtx[0][3];
-    mpWorkData->mYBBCamMtx[1][0] = 0.0f;
-    mpWorkData->mYBBCamMtx[1][1] = v.y;
-    mpWorkData->mYBBCamMtx[1][2] = -v.z;
-    mpWorkData->mYBBCamMtx[1][3] = mpWorkData->mPosCamMtx[1][3];
-    mpWorkData->mYBBCamMtx[2][0] = 0.0f;
-    mpWorkData->mYBBCamMtx[2][1] = v.z;
-    mpWorkData->mYBBCamMtx[2][2] = v.y;
-    mpWorkData->mYBBCamMtx[2][3] = mpWorkData->mPosCamMtx[2][3];
+    pWd->mYBBCamMtx[0][0] = 1.0f;
+    pWd->mYBBCamMtx[0][1] = 0.0f;
+    pWd->mYBBCamMtx[0][2] = 0.0f;
+    pWd->mYBBCamMtx[0][3] = pWd->mPosCamMtx[0][3];
+    pWd->mYBBCamMtx[1][0] = 0.0f;
+    pWd->mYBBCamMtx[1][1] = v.y;
+    pWd->mYBBCamMtx[1][2] = -v.z;
+    pWd->mYBBCamMtx[1][3] = pWd->mPosCamMtx[1][3];
+    pWd->mYBBCamMtx[2][0] = 0.0f;
+    pWd->mYBBCamMtx[2][1] = v.z;
+    pWd->mYBBCamMtx[2][2] = v.y;
+    pWd->mYBBCamMtx[2][3] = pWd->mPosCamMtx[2][3];
 }

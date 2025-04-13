@@ -19,6 +19,7 @@ struct JPAEmitterWorkData;
  */
 class JPABaseParticle {
 public:
+    ~JPABaseParticle() {}
     /* 8027EFEC */ void init_p(JPAEmitterWorkData*);
     /* 8027F8C8 */ void init_c(JPAEmitterWorkData*, JPABaseParticle*);
     /* 8027FFD0 */ bool calc_p(JPAEmitterWorkData*);

@@ -70,11 +70,12 @@ JASSoundParams* Z2Audible::getOuterParams(int param_0) {
 
 /* 802BBEE4-802BC204 2B6824 0320+00 1/1 0/0 0/0 .text
  * setOuterParams__9Z2AudibleFRC14JASSoundParamsRC14JASSoundParamsi */
-// NONMATCHING regalloc
 void Z2Audible::setOuterParams(JASSoundParams const& param_0, JASSoundParams const& param_1,
-                                   int param_2) {
-    Z2AudibleChannel* this_01 = &field_0x2c[param_2];
-    u32 iStack_94 = (field_0x10.field_0x0.half.f1 & 0xf00) >> 8;
+                                   int index) {
+    JUT_ASSERT(89, index >= 0);
+    JUT_ASSERT(90, index < 1);
+    Z2AudibleChannel* this_01 = &field_0x2c[index];
+    u8 iStack_94 = (field_0x10.field_0x0.half.f1 & 0xf00) >> 8;
     if (iStack_94 == 0) {
         this_01->field_0x0.combine(param_0, param_1);
         return;
@@ -105,28 +106,24 @@ void Z2Audible::setOuterParams(JASSoundParams const& param_0, JASSoundParams con
             dVar10 = 0.0f;
         }
     }
-    dVar10 -= this_01->field_0x28;
-    f32 dVar11;
-    if (dVar10 > 0.0f) {
-        dVar11 = J3DUD::JMAAbs(dVar10);
-        dVar11 = Z2Calc::getParamByExp(dVar11, 1.0f, 0.0f, 0.1f, 0.1f, 0.5f, Z2Calc::CURVE_SIGN_1);
+    f32 dVar15 = dVar10 - this_01->field_0x28;
+    f32 dVar11 = 1.0f;
+    if (dVar15 > 0.0f) {
+        dVar11 = Z2Calc::getParamByExp(J3DUD::JMAAbs(dVar15), 1.0f, 0.0f, 0.1f, 0.1f, 0.5f, Z2Calc::CURVE_SIGN_1);
     } else {
-        dVar11 = J3DUD::JMAAbs(dVar10);
-        dVar11 = Z2Calc::getParamByExp(dVar11, -1.0f, 0.0f, 0.1f, 1.0f / 30.0f, 0.5f, Z2Calc::CURVE_SIGN_1);
+        dVar11 = Z2Calc::getParamByExp(J3DUD::JMAAbs(dVar15), -1.0f, 0.0f, 0.1f, 1.0f / 30.0f, 0.5f, Z2Calc::CURVE_SIGN_1);
     }
-    f32 fVar1 = this_01->field_0x28 + (dVar10 * dVar11);
-    if (fVar1 < 0.0f) {
-        fVar1 = 0.0f;
-    } else if (fVar1 > 1.0f) {
-        fVar1 = 1.0f;
+    dVar10 = this_01->field_0x28 + (dVar15 * dVar11);
+    if (dVar10 < 0.0f) {
+        dVar10 = 0.0f;
+    } else if (dVar10 > 1.0f) {
+        dVar10 = 1.0f;
     }
-    local_b0.mVolume = param_1.mVolume * fVar1;
-    this_01->field_0x28 = fVar1;
-    f32 dVar8 = J3DUD::JMAAbs(local_b8.x);
-    f32 dVar13 = Z2Calc::getParamByExp(local_b0.mVolume * dVar8, 1.0f, 0.0f, 0.1f,
+    local_b0.mVolume = param_1.mVolume * dVar10;
+    this_01->field_0x28 = dVar10;
+    f32 dVar13 = Z2Calc::getParamByExp(local_b0.mVolume * J3DUD::JMAAbs(local_b8.x), 1.0f, 0.0f, 0.1f,
         1.0f / 30.0f, 1.0 / 3.0f, Z2Calc::CURVE_SIGN_1);
-    f32 dVar14 = J3DUD::JMAAbs(local_b8.y);
-    dVar14 = Z2Calc::getParamByExp(local_b0.mVolume * dVar14, 1.0f,
+    f32 dVar14 = Z2Calc::getParamByExp(local_b0.mVolume * J3DUD::JMAAbs(local_b8.y), 1.0f,
         0.0f, 0.1f,
         1.0f / 30.0f, 1.0f / 3.0f, Z2Calc::CURVE_SIGN_1);
     if (dVar13 > 1.0f / 3.0f) {
@@ -514,7 +511,9 @@ Z2Audience::Z2Audience() : JASGlobalInstance<Z2Audience>(true), field_0x4(1.0f),
 }
 
 /* 802BD1FC-802BD288 2B7B3C 008C+00 1/0 1/1 0/0 .text            __dt__10Z2AudienceFv */
-Z2Audience::~Z2Audience() {}
+Z2Audience::~Z2Audience() {
+    //JUT_ASSERT(751, !isActive());
+}
 
 /* 802BD2DC-802BD338 2B7C1C 005C+00 0/0 1/1 0/0 .text
  * setAudioCamera__10Z2AudienceFPA4_fR3VecR3Vecffbib            */
@@ -854,6 +853,12 @@ f32 Z2Audience::calcPitch_(Z2AudibleChannel* param_0, Z2Audible const* param_1,
 int Z2Audience::getMaxChannels() {
     return mMaxChannels;
 }
+
+static void dummyMempool() {
+
+}
+
+
 
 // padding (???)
 s8 data_80451355;

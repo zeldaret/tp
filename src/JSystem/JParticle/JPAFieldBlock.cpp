@@ -134,7 +134,6 @@ void JPAFieldVortex::prepare(JPAEmitterWorkData* work, JPAFieldBlock* block) {
 
 /* 8027C674-8027C814 276FB4 01A0+00 1/0 0/0 0/0 .text
  * calc__14JPAFieldVortexFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle */
-// NONMATCHING regalloc. may need to rewrite dot in a way that doesn't break Z2Audience::calcPitchDoppler_
 void JPAFieldVortex::calc(JPAEmitterWorkData* work, JPAFieldBlock* block, JPABaseParticle* ptcl) {
     JGeometry::TVec3<f32> vec;
     vec.scale(field_0x10.dot(ptcl->mLocalPosition), field_0x10);
@@ -168,7 +167,6 @@ void JPAFieldConvection::prepare(JPAEmitterWorkData* work, JPAFieldBlock* block)
 
 /* 8027CA94-8027CCCC 2773D4 0238+00 1/0 0/0 0/0 .text
  * calc__18JPAFieldConvectionFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle */
-// NONMATCHING regalloc problems with TVec3 inlines
 void JPAFieldConvection::calc(JPAEmitterWorkData* work, JPAFieldBlock* block,
                               JPABaseParticle* ptcl) {
     JGeometry::TVec3<f32> vec1, vec2, vec3;
@@ -185,7 +183,6 @@ void JPAFieldConvection::calc(JPAEmitterWorkData* work, JPAFieldBlock* block,
 
 /* 8027CCCC-8027CDE4 27760C 0118+00 1/0 0/0 0/0 .text
  * calc__14JPAFieldRandomFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle */
-// NONMATCHING missing clrlwi
 void JPAFieldRandom::calc(JPAEmitterWorkData* work, JPAFieldBlock* block, JPABaseParticle* ptcl) {
     if (ptcl->mAge == 0 || (block->getCycle() != 0 && ptcl->mAge % block->getCycle() == 0)) {
         JPABaseEmitter* emtr = work->mpEmtr;

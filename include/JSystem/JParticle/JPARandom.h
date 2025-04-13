@@ -10,6 +10,8 @@
 struct JPARandom {
 public:
     JPARandom() { mSeed = 0; }
+    JPARandom(u32 seed) { mSeed = seed; }
+    ~JPARandom() {}
     void set_seed(u32 seed) { mSeed = seed; }
 
     u32 get_rndm_u() { return mSeed = mSeed * 0x19660du + 0x3c6ef35fu; }

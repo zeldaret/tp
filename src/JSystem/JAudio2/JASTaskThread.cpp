@@ -24,8 +24,7 @@ JASTaskThread::~JASTaskThread() {
         if (!received) {
             return;
         }
-        ThreadMemPool* heap = JASKernel::getCommandHeap();
-        heap->free(msg);
+        JASKernel::getCommandHeap()->free(msg);
     }
 }
 
@@ -34,8 +33,7 @@ JASTaskThread::~JASTaskThread() {
 void* JASTaskThread::allocCallStack(void (*param_0)(void*), void const* param_1, u32 param_2) {
     ThreadMemPool* heap;
     u32 size = param_2 + 8;
-    heap = JASKernel::getCommandHeap();
-    JASThreadCallStack *callStack = (JASThreadCallStack*) heap->alloc(size);
+    JASThreadCallStack *callStack = (JASThreadCallStack*) JASKernel::getCommandHeap()->alloc(size);
     if (callStack == NULL) {
         return NULL;
     }
@@ -47,10 +45,8 @@ void* JASTaskThread::allocCallStack(void (*param_0)(void*), void const* param_1,
 
 /* 8028F9EC-8028FB5C 28A32C 0170+00 1/1 0/0 0/0 .text allocCallStack__13JASTaskThreadFPFPv_vPv */
 void* JASTaskThread::allocCallStack(void (*runFunc)(void*), void* param_1) {
-    ThreadMemPool* heap;
     JASThreadCallStack *callStack;
-    heap = JASKernel::getCommandHeap();
-    callStack = (JASThreadCallStack*)heap->alloc(0xc);
+    callStack = (JASThreadCallStack*)JASKernel::getCommandHeap()->alloc(0xc);
     if (callStack == NULL) {
         return NULL;
     }
@@ -70,8 +66,7 @@ int JASTaskThread::sendCmdMsg(void (*param_0)(void*), void const* param_1, u32 p
     }
     int iVar2 = sendMessage(pvVar1);
     if (iVar2 == 0) {
-        ThreadMemPool* heap = JASKernel::getCommandHeap();
-        heap->free(pvVar1);
+        JASKernel::getCommandHeap()->free(pvVar1);
     }
     return iVar2;
 }
@@ -86,8 +81,7 @@ int JASTaskThread::sendCmdMsg(void (*param_0)(void*), void* param_1) {
     }
     int iVar2 = sendMessage(pvVar1);
     if (iVar2 == 0) {
-        ThreadMemPool* heap = JASKernel::getCommandHeap();
-        heap->free(pvVar1);
+        JASKernel::getCommandHeap()->free(pvVar1);
     }
     return iVar2;
 }
@@ -95,9 +89,10 @@ int JASTaskThread::sendCmdMsg(void (*param_0)(void*), void* param_1) {
 /* 8028FD4C-8028FE88 28A68C 013C+00 1/0 0/0 0/0 .text            run__13JASTaskThreadFv */
 // NONMATCHING Regalloc
 void* JASTaskThread::run() {
+    JASThreadCallStack* ppcVar1;
     OSInitFastCast();
     do {
-        JASThreadCallStack* ppcVar1 = (JASThreadCallStack*)waitMessageBlock();
+        ppcVar1 = (JASThreadCallStack*)waitMessageBlock();
         if (field_0x84) {
             OSSleepThread(&mpThreadQueue);
         }
@@ -106,8 +101,7 @@ void* JASTaskThread::run() {
         } else {
             ppcVar1->mRunFunc(ppcVar1->field_0x8.pBuffer);
         }
-        ThreadMemPool* heap = JASKernel::getCommandHeap();
-        heap->free(ppcVar1);
+        JASKernel::getCommandHeap()->free(ppcVar1);
     } while (true);
 }
 

@@ -5,6 +5,7 @@
 
 #include "m_Do/m_Do_machine.h"
 #include "JSystem/JFramework/JFWSystem.h"
+#include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JUtility/JUTDbPrint.h"
 #include "JSystem/JUtility/JUTException.h"
@@ -26,6 +27,12 @@
 
 /* 80450BF0-80450BF4 0000F0 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 mDebugFill;
+
+#ifdef DEBUG
+static u8 mDebugFillNotuse;
+static u8 mDebugFillNew;
+static u8 mDebugFillDelete;
+#endif
 
 /* 80450BF4-80450BF8 0000F4 0004+00 1/1 0/0 0/0 .sbss            solidHeapErrors */
 static int solidHeapErrors;
@@ -479,13 +486,21 @@ int mDoMch_Create() {
     }
 
     JKRHeap::setDefaultDebugFill(mDebugFill);
+    #ifdef DEBUG
+    JKRSetDebugFillNotuse(mDebugFillNotuse);
+    JKRSetDebugFillNew(mDebugFillNew);
+    JKRSetDebugFillDelete(mDebugFillDelete);
+    #endif
     JFWSystem::setMaxStdHeap(1);
 
+    #ifndef DEBUG
     u32 arenaHi = (u32)OSGetArenaHi();
-    u32 arenaLo = (u32)OSGetArenaLo();
+    u32 arenaLo =(u32)OSGetArenaLo();
+
     if (arenaHi > 0x81800000 && arenaHi - 0x1800000 > arenaLo) {
         OSSetArenaHi((void*)(arenaHi - 0x1800000));
     }
+    #endif
 
     u32 arenaSize = ((u32)OSGetArenaHi() - (u32)OSGetArenaLo()) - 0xF0;
     my_PrintHeap("アリーナ", arenaSize);
@@ -493,6 +508,23 @@ int mDoMch_Create() {
     if (mDoMain::memMargin != -1) {
         arenaSize += mDoMain::memMargin;
     }
+
+    #ifdef DEBUG
+    u32 uVar14 = 0xf20c00;
+    u32 local_1c = 0x74e000;
+    if (mDoMain::archiveHeapSize == -1) {
+        mDoMain::archiveHeapSize = 0x106ec00;
+    } else {
+        OSReport_Error("アーカイブヒープサイズ指定！\n");
+        uVar14 = mDoMain::archiveHeapSize;
+    }
+    if (mDoMain::gameHeapSize == -1) {
+        mDoMain::gameHeapSize = 0x74e000;
+    } else {
+        OSReport_Error("ゲームヒープサイズ指定！\n");
+        local_1c = mDoMain::gameHeapSize;
+    }
+    #endif
 
     JFWSystem::setSysHeapSize(arenaSize - 0xDACD30);
     my_PrintHeap("システムヒープ", arenaSize - 0xDACD30);

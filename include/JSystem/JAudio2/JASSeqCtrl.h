@@ -37,10 +37,10 @@ public:
     const JASSeqReader* getSeqReader() const { return &mReader; }
     void* getBase() { return mReader.getBase(); }
     void* getAddr(u32 param_0) { return mReader.getAddr(param_0); }
-    u8 getByte(u32 param_0) { return mReader.getByte(param_0); }
-    u16 get16(u32 param_0) { return mReader.get16(param_0); }
-    u32 get24(int param_0) { return mReader.get24(param_0); }
-    u32 get32(u32 param_0) { return mReader.get32(param_0); }
+    u8 getByte(u32 param_0) const { return mReader.getByte(param_0); }
+    u16 get16(u32 param_0) const { return mReader.get16(param_0); }
+    u32 get24(u32 param_0) const { return mReader.get24(param_0); }
+    u32 get32(u32 param_0) const { return mReader.get32(param_0); }
     void* getCur() { return mReader.getCur(); }
     u32 readByte() { return mReader.readByte(); }
     u32 read16() { return mReader.read16(); }
