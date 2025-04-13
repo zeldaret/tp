@@ -711,3 +711,7 @@ u16 DSP_CreateMap2(u32 param_0) {
 
 /* 804507B8-804507C0 000238 0004+04 0/0 5/5 0/0 .sdata           one__11JASWaveInfo */
 u32 JASWaveInfo::one = 1;
+
+#ifdef DEBUG
+s32 dspMutex = 1;
+#endif

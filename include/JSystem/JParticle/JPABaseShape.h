@@ -112,7 +112,7 @@ public:
     u32 getClrLoopOfst(u32 param_1) const { return getClrLoopOfstMask() & param_1; }
     u8 getTexLoopOfstMask() const { return mpData->mTexAnmRndmMask; }
     u32 getTexLoopOfst(u8 param_1) const { return getTexLoopOfstMask() & param_1; }
-    u8 getLoopOfstValue() { return mpData->mAnmRndm; }
+    u8 getLoopOfstValue() const { return mpData->mAnmRndm; }
 
     f32 getIncTransX() const { return ((f32*)mpTexCrdMtxAnmTbl)[5]; }
     f32 getInitTransX() const { return ((f32*)mpTexCrdMtxAnmTbl)[0]; }

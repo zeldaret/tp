@@ -28,14 +28,6 @@ JKRExpHeap* JFWSystem::rootHeap;
 /* 804511A4-804511A8 0006A4 0004+00 2/2 1/1 0/0 .sbss            systemHeap__9JFWSystem */
 JKRExpHeap* JFWSystem::systemHeap;
 
-/* 80271CD0-80271D18 26C610 0048+00 1/1 1/1 0/0 .text            firstInit__9JFWSystemFv */
-void JFWSystem::firstInit() {
-    JUT_ASSERT(80, rootHeap == 0);
-    OSInit();
-    DVDInit();
-    rootHeap = JKRExpHeap::createRoot(CSetUpParam::maxStdHeaps, false);
-    systemHeap = JKRExpHeap::create(CSetUpParam::sysHeapSize, rootHeap, false);
-}
 
 /* 80450778-8045077C 0001F8 0004+00 1/1 1/1 0/0 .sdata fifoBufSize__Q29JFWSystem11CSetUpParam */
 u32 JFWSystem::CSetUpParam::fifoBufSize = 0x40000;
@@ -69,6 +61,15 @@ GXRenderModeObj* JFWSystem::CSetUpParam::renderMode = &GXNtsc480IntDf;
 /* 80450798-804507A0 000218 0004+04 1/1 0/0 0/0 .sdata
  * exConsoleBufferSize__Q29JFWSystem11CSetUpParam               */
 u32 JFWSystem::CSetUpParam::exConsoleBufferSize = 0x24FC;
+
+/* 80271CD0-80271D18 26C610 0048+00 1/1 1/1 0/0 .text            firstInit__9JFWSystemFv */
+void JFWSystem::firstInit() {
+    JUT_ASSERT(80, rootHeap == 0);
+    OSInit();
+    DVDInit();
+    rootHeap = JKRExpHeap::createRoot(CSetUpParam::maxStdHeaps, false);
+    systemHeap = JKRExpHeap::create(CSetUpParam::sysHeapSize, rootHeap, false);
+}
 
 /* 804511A8-804511AC 0006A8 0004+00 1/1 0/0 0/0 .sbss            mainThread__9JFWSystem */
 JKRThread* JFWSystem::mainThread;

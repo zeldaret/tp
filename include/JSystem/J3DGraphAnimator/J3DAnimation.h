@@ -2,6 +2,7 @@
 #define J3DANIMATION_H
 
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
+#include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTNameTab.h"
 #include "global.h"
 
@@ -590,10 +591,11 @@ public:
 
     u16 getUpdateMaterialID(u16 idx) const { return mUpdateMaterialID[idx]; }
     u16 getUpdateMaterialNum() const { return mTrackNum / 3; }
+    u16 getPostUpdateMaterialNum() const { return field_0x4a / 3; }
 
-    int getUpdateTexMtxID(u16 idx) { return mUpdateTexMtxID[idx]; }
+    int getUpdateTexMtxID(u16 idx) const { return mUpdateTexMtxID[idx]; }
     bool isValidUpdateMaterialID(u16 idx) const { return mUpdateMaterialID[idx] != 0xffff; }
-    u32 getTexMtxCalcType() const { return mTexMtxCalcType; }
+    u32 getTexMtxCalcType() { return mTexMtxCalcType; }
     Vec* getSRTCenter(u16 idx) { return &mSRTCenter[idx]; }
 
     /* 0x0C */ int mDecShift;
@@ -719,7 +721,10 @@ public:
 
     u16 getUpdateMaterialNum() const { return mUpdateMaterialNum; }
     bool isValidUpdateMaterialID(u16 id) const { return mUpdateMaterialID[id] != 0xFFFF; }
-    u16 getUpdateMaterialID(u16 idx) const { return mUpdateMaterialID[idx]; }
+    u16 getUpdateMaterialID(u16 idx) const { 
+        JUT_ASSERT_MSG(1578, 0 <= mUpdateMaterialNum - idx, "Error : range over.")
+        return mUpdateMaterialID[idx];
+    }
 
     /* 0x0C */ u16 field_0xc;
     /* 0x0E */ u16 field_0xe;

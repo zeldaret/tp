@@ -16,7 +16,7 @@
 #include "dol2asm.h"
 
 /* 802AEEA0-802AF010 2A97E0 0170+00 0/0 1/1 0/0 .text            __ct__8Z2SeqMgrFv */
-Z2SeqMgr::Z2SeqMgr() : JASGlobalInstance<Z2SeqMgr>(this) {
+Z2SeqMgr::Z2SeqMgr() : JASGlobalInstance<Z2SeqMgr>(true) {
     mMainBgmMaster.forceIn();
     mSubBgmMaster.forceIn();
     mBgmPause.forceIn();
@@ -28,6 +28,12 @@ Z2SeqMgr::Z2SeqMgr() : JASGlobalInstance<Z2SeqMgr>(this) {
     mTwilightGateVol = 1.0f;
     mAllBgmMaster.forceIn();
     field_0xa4.forceIn();
+
+    #ifdef DEBUG
+    field_0x00_debug = 1.0f;
+    field_0x04_debug = 0;
+    #endif
+
     field_0xb8 = -1;
     resetBattleBgmParams();
     mBgmStatus = 0xff;
@@ -1931,10 +1937,8 @@ void Z2SeqMgr::startBattleBgm(bool i_fade) {
 }
 
 /* 802B5204-802B545C 2AFB44 0258+00 3/3 1/1 0/0 .text            stopBattleBgm__8Z2SeqMgrFUcUc */
-// NONMATCHING regalloc
 void Z2SeqMgr::stopBattleBgm(u8 param_0, u8 param_1) {
     if (mBattleSeqCount == 0) {
-        u8 count;
         s16 ivar6 = 0;
         if (Z2GetLink() != NULL) {
             ivar6 = Z2GetLink()->getMoveSpeed() - 23;
@@ -1946,20 +1950,22 @@ void Z2SeqMgr::stopBattleBgm(u8 param_0, u8 param_1) {
             ivar6 = struct_80450861;
         }
         if (getSubBgmID() == Z2BGM_BATTLE_NORMAL) {
-            u8 count_out = struct_80450861 + ivar6;
-            count = struct_80450862 + ivar6 / 2;
-            mSubBgmHandle->fadeOut(count_out);
-            mBattleSeqCount = count_out;
+            param_0 = struct_80450861 + ivar6;
+            param_1 = struct_80450862 + ivar6 / 2;
+            mSubBgmHandle->fadeOut(param_0);
+            mBattleSeqCount = param_0;
         } else if (getSubBgmID() == Z2BGM_BATTLE_TWILIGHT) {
             if (mSubBgmStatus > 1) {
-                count = struct_80450861 + ivar6 / 4;
+                param_0 = struct_80450861 + ivar6 / 4;
+                param_1 = struct_80450861 + ivar6 / 4;
             } else {
-                count = 25 + ivar6 / 4;
+                param_0 = 25 + ivar6 / 4;
+                param_1 = 25 + ivar6 / 4;
             }
-            mSubBgmHandle->fadeOut(count);
-            mBattleSeqCount = count;
+            mSubBgmHandle->fadeOut(param_0);
+            mBattleSeqCount = param_0;
         }
-        mMainBgmMaster.fadeIn(count);
+        mMainBgmMaster.fadeIn(param_1);
         mBattleDistState = 3;
         setBattleDistIgnore(false);
         mFlags.mBattleSearched = false;

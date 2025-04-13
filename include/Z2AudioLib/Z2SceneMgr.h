@@ -31,7 +31,7 @@ public:
     bool loadBgmWave(u32);
 
     bool isSceneExist() { return sceneExist; }
-    int getCurrentSceneNum() const { return sceneNum; }
+    int getCurrentSceneNum() { return sceneNum; }
     s8 getCurrentRoomNum() { return roomNum; }
     bool isInGame() const { return inGame; }
     void setInGame(bool i_inGame) { inGame = i_inGame; }

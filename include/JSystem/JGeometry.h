@@ -38,7 +38,8 @@ struct TUtil<f32> {
             return x;
         }
         f32 root = __frsqrte(x);
-        return 0.5f * root * (3.0f - x * (root * root));
+        root = 0.5f * root * (3.0f - x * (root * root));
+        return root;
     }
 };
 
@@ -137,6 +138,24 @@ inline float fsqrt_step(float mag) {
     return 0.5f * root * (3.0f - mag * (root * root));
 }
 
+inline void mulInternal(register const f32* a, register const f32* b, register float* dst) {
+    register f32 a_x_y;
+    register f32 b_x_y;
+    register f32 x_y;
+    register f32 za;
+    register f32 zb;
+    register f32 z;
+#ifdef __MWERKS__
+    asm {
+        psq_l  a_x_y, 0(a), 0, 0
+        psq_l  b_x_y, 0(b), 0, 0
+        ps_mul x_y, a_x_y, b_x_y
+        psq_st x_y, 0(dst), 0, 0
+    };
+    dst[2] = a[2] * b[2];
+#endif
+}
+
 template <>
 struct TVec3<f32> : public Vec {
     inline TVec3(const Vec& i_vec) {
@@ -147,7 +166,8 @@ struct TVec3<f32> : public Vec {
         setTVec3f(&i_vec.x, &x);
     }
 
-    TVec3(f32 x, f32 y, f32 z) {
+    template<class U>
+    TVec3(U x, U y, U z) {
         set(x, y, z);
     }
 
@@ -156,7 +176,8 @@ struct TVec3<f32> : public Vec {
     operator Vec*() { return (Vec*)&x; }
     operator const Vec*() const { return (Vec*)&x; }
 
-    void set(const TVec3<f32>& other) {
+    template<class U>
+    void set(const TVec3<U>& other) {
         x = other.x;
         y = other.y;
         z = other.z;
@@ -168,7 +189,8 @@ struct TVec3<f32> : public Vec {
         z = other.z;
     }
 
-    void set(f32 x_, f32 y_, f32 z_) {
+    template<class U>
+    void set(U x_, U y_, U z_) {
         x = x_;
         y = y_;
         z = z_;
@@ -181,27 +203,7 @@ struct TVec3<f32> : public Vec {
     void zero() { x = y = z = 0.0f; }
 
     void mul(const TVec3<f32>& a, const TVec3<f32>& b) {
-        register f32* dst = &x;
-        const register f32* srca = &a.x;
-        const register f32* srcb = &b.x;
-        register f32 a_x_y;
-        register f32 b_x_y;
-        register f32 x_y;
-        register f32 za;
-        register f32 zb;
-        register f32 z;
-#ifdef __MWERKS__
-        asm {
-            psq_l  a_x_y, 0(srca), 0, 0
-            psq_l  b_x_y, 0(srcb), 0, 0
-            ps_mul x_y, a_x_y, b_x_y
-            psq_st x_y, 0(dst), 0, 0
-            lfs    za,   8(srca)
-            lfs    zb,   8(srcb)
-            fmuls  z, za, zb
-            stfs   z,   8(dst)
-        };
-#endif
+        mulInternal(&a.x, &b.x, &this->x);
     }
 
     inline void mul(const TVec3<f32>& a) {
@@ -239,23 +241,19 @@ struct TVec3<f32> : public Vec {
         return JMathInlineVEC::C_VECSquareMag((Vec*)&x);
     }
 
-    void normalize() {
+    f32 normalize() {
         f32 sq = squared();
-        if (sq <= FLT_EPSILON * 32.0f) {
-            return;
+        if (sq <= TUtil<f32>::epsilon()) {
+            return 0.0f;
         }
-        f32 norm;
-        if (sq <= 0.0f) {
-            norm = sq;
-        } else {
-            norm = fsqrt_step(sq);
-        }
-        scale(norm);
+        f32 inv_norm = TUtil<f32>::inv_sqrt(sq);
+        scale(inv_norm);
+        return inv_norm * sq; 
     }
 
     void normalize(const TVec3<f32>& other) {
         f32 sq = other.squared();
-        if (sq <= FLT_EPSILON * 32.0f) {
+        if (sq <= TUtil<f32>::epsilon()) {
             zero();
             return;
         }
@@ -348,18 +346,14 @@ struct TVec3<f32> : public Vec {
         VECCrossProduct(a, b, *this);
     }
     
-    void setLength(f32 len) {
+    f32 setLength(f32 len) {
         f32 sq = squared();
-        if (sq <= FLT_EPSILON * 32.0f) {
-            return;
+        if (sq <= TUtil<f32>::epsilon()) {
+            return 0.0f;
         }
-        f32 norm;
-        if (sq <= 0.0f) {
-            norm = sq;
-        } else {
-            norm = fsqrt_step(sq);
-        }
-        scale(norm * len);
+        f32 inv_norm = TUtil<f32>::inv_sqrt(sq);
+        scale(inv_norm * len);
+        return inv_norm * sq;
     }
 
     f32 setLength(const TVec3<f32>& other, f32 len) {
@@ -374,25 +368,7 @@ struct TVec3<f32> : public Vec {
     }
 
     f32 dot(const TVec3<f32>& other) const {
-        register const f32* pThis = &x;
-        register const f32* pOther = &other.x;
-        register f32 res;
-        register f32 thisyz;
-        register f32 otheryz;
-        register f32 otherxy;
-        register f32 thisxy;
-#ifdef __MWERKS__
-        asm {
-            psq_l thisyz, 4(pThis), 0, 0
-            psq_l otheryz, 4(pOther), 0, 0
-            ps_mul thisyz, thisyz, otheryz
-            psq_l thisxy, 0(pThis), 0, 0
-            psq_l otherxy, 0(pOther), 0, 0
-            ps_madd otheryz, thisxy, otherxy, thisyz
-            ps_sum0 res, otheryz, thisyz, thisyz
-        };
-#endif
-        return res;
+        return JMathInlineVEC::C_VECDotProduct(this, &other);
     }
 
     void cubic(const TVec3<f32>& param_1, const TVec3<f32>& param_2, const TVec3<f32>& param_3,
@@ -450,15 +426,15 @@ struct TVec2 {
         return (x >= other.x) && (y >= other.y) ? true : false;
     }
 
-    f32 dot(const TVec2<T>& other) {
+    f32 dot(const TVec2<T>& other) const {
         return x * other.x + y * other.y;
     }
 
-    f32 squared() {
+    f32 squared() const {
         return dot(*this);
     }
 
-    f32 length() {
+    f32 length() const {
         f32 sqr = squared();
         if (sqr <= 0.0f) {
             return sqr;

@@ -197,7 +197,7 @@ struct TAdaptor {
         return &pValue_[param_0];
     }
 
-    const TObject* adaptor_getObject() { return pObject_; }
+    const TObject* adaptor_getObject() const { return pObject_; }
 
     /* 0x4 */ const TObject* pObject_;
     /* 0x8 */ TVariableValue* pValue_;

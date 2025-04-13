@@ -490,7 +490,7 @@ void Z2SpeechMgr2::setString(u16 const* s, s16 i_textNum, u8 i_speaker, u16 i_mo
 
     if (i_textNum > 500) {
         mTextNum = 500;
-        JUT_WARN_1(387, "TOO MANY TEXT : now(%d) > max(%d)", i_textNum, 500);
+        JUT_WARN_DEVICE(387, 1, "TOO MANY TEXT : now(%d) > max(%d)", i_textNum, 500);
     } else {
         mTextNum = i_textNum;
     }

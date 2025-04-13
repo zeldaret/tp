@@ -32,18 +32,18 @@ public:
     /* 8027E344 */ void entryResourceManager(JPAResourceManager*, u8);
     /* 8027E354 */ void clearResourceManager(u8);
     /* 8027E3F4 */ void calcYBBCam();
-    JPAResourceManager* getResourceManager(u16 idx) { return mpResMgrAry[idx]; }
+    JPAResourceManager* getResourceManager(u16 idx) { return pResMgrAry[idx]; }
 
 public:
-    /* 0x00 */ JSUList<JPABaseEmitter>* mpGrpEmtr;
+    /* 0x00 */ JSUList<JPABaseEmitter>* pEmtrUseList;
     /* 0x04 */ JSUList<JPABaseEmitter> mFreeEmtrList;
     /* 0x10 */ JPAList<JPABaseParticle> mPtclPool;
-    /* 0x1C */ JPAResourceManager** mpResMgrAry;
-    /* 0x20 */ JPAEmitterWorkData* mpWorkData;
-    /* 0x24 */ u32 mEmtrMax;
-    /* 0x28 */ u32 mPtclMax;
-    /* 0x2C */ u8 mGrpMax;
-    /* 0x2D */ u8 mResMax;
+    /* 0x1C */ JPAResourceManager** pResMgrAry;
+    /* 0x20 */ JPAEmitterWorkData* pWd;
+    /* 0x24 */ u32 emtrNum;
+    /* 0x28 */ u32 ptclNum;
+    /* 0x2C */ u8 gidMax;
+    /* 0x2D */ u8 ridMax;
 };
 
 #endif /* JPAEMITTERMANAGER_H */

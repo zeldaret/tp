@@ -118,6 +118,10 @@ namespace JASDsp {
     extern TChannel* CH_BUF;
     extern FxBuf* FX_BUF;
     extern f32 sDSPVolume;
+
+    #ifdef DEBUG
+    extern s32 dspMutex;
+    #endif
 };
 
 u16 DSP_CreateMap2(u32 msg);
