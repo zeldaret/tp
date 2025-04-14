@@ -675,7 +675,7 @@ void item_func_UTUWA_HEART() {
     dComIfGp_setItemLifeCount(max_life, 0);
 
     stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
-    int tmp = i_dStage_stagInfo_GetSaveTbl(stag_info);
+    int tmp = dStage_stagInfo_GetSaveTbl(stag_info);
     dComIfGs_onStageLife();
 }
 

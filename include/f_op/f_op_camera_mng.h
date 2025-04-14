@@ -7,6 +7,10 @@
 
 typedef struct leafdraw_method_class leafdraw_method_class;
 
+struct fopCamM_prm_class {
+    /* 0x00 */ fopAcM_prmBase_class base;
+};  // Size: 0x18
+
 class camera_process_class : public view_class {
 public:
     /* 0x210 */ create_tag_class create_tag;

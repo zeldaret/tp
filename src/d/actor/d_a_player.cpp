@@ -541,7 +541,7 @@ bool daPy_py_c::checkRoomRestartStart() {
 u32 daPy_py_c::checkCarryStartLightBallA() {
     if (checkRoomRestartStart() || !dComIfGp_getStage() ||
         !dComIfGp_getStage()->getStagInfo() ||
-        i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != 0x17)
+        dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != 0x17)
     {
         return FALSE;
     }
@@ -553,7 +553,7 @@ u32 daPy_py_c::checkCarryStartLightBallA() {
 u32 daPy_py_c::checkCarryStartLightBallB() {
     if (checkRoomRestartStart() || !dComIfGp_getStage() ||
         !dComIfGp_getStage()->getStagInfo() ||
-        i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != 0x17)
+        dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != 0x17)
     {
         return FALSE;
     }

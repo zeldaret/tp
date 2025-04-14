@@ -1611,11 +1611,11 @@ int dMsgFlow_c::event020(mesg_flow_node_event* flow_node, fopAc_ac_c* actor) {
     int prm0 = getParam(flow_node->params);
     daPy_py_c* player = daPy_getPlayerActorClass();
     dStage_roomDt_c* room = dComIfGp_roomControl_getStatusRoomDt(fopAcM_GetRoomNo(actor));
-    stage_actor_data_class* actor_data = room->getPlayer()->mEntries;
+    stage_actor_data_class* actor_data = room->getPlayer()->m_entries;
 
     for (int i = 0; i < room->getPlayerNum(); i++, actor_data++) {
-        if ((u8)actor_data->mAngle.z == prm0) {
-            player->setPlayerPosAndAngle(&actor_data->mSpawnPos, player->current.angle.y, 0);
+        if ((u8)actor_data->base.angle.z == prm0) {
+            player->setPlayerPosAndAngle(&actor_data->base.position, player->current.angle.y, 0);
             break;
         }
     }

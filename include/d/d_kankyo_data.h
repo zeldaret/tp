@@ -4,10 +4,10 @@
 #include "dolphin/types.h"
 
 struct color_RGB_class {
-    u8 r;
-    u8 g;
-    u8 b;
-};
+    /* 0x0 */ u8 r;
+    /* 0x1 */ u8 g;
+    /* 0x2 */ u8 b;
+};  // Size: 0x3
 
 // Invented name; Used as u8 `darkLv` in dKydata_darkworldInfo_c.
 enum dKyd_DARKLV {

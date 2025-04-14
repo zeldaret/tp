@@ -266,14 +266,14 @@ static bool isReadRoom(int param_0) {
         return false;
     }
 
-    if (room->field_0x0 <= param_0) {
+    if (room->num <= param_0) {
         return false;
     }
 
-    roomRead_data_class* roomData = room->field_0x4[dComIfGp_getNextStageRoomNo()];
-    u8* tmp = roomData->field_0x4;
+    roomRead_data_class* roomData = room->m_entries[dComIfGp_getNextStageRoomNo()];
+    u8* tmp = roomData->m_rooms;
 
-    for (int i = 0; i < roomData->field_0x0; i++) {
+    for (int i = 0; i < roomData->num; i++) {
         if (dStage_roomRead_dt_c_ChkBg(*tmp) &&
             param_0 == dStage_roomRead_dt_c_GetLoadRoomIndex(*tmp))
         {
