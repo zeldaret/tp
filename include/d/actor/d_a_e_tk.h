@@ -23,9 +23,9 @@ public:
     u8 mParam3;
     u8 mParam4;
     s8 mUnkFlag;
-    dPath* mRoomPath;
-    s8 mWtf2;
-    s8 mWtf3;
+    dPath* mpPath;
+    s8 mPathIdx;
+    s8 mPathIdxDir;
     mDoExt_McaMorfSO* mpMorf;
     int mNextSound;
     Z2CreatureEnemy mZ2CreatureEnemy;

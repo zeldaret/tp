@@ -301,16 +301,17 @@ static int daE_TK_Draw(e_tk_class* i_this) {
 /* 807B8350-807B8428 000250 00D8+00 1/1 0/0 0/0 .text other_bg_check__FP10e_tk_classP10fopAc_ac_c
  */
 static int other_bg_check(e_tk_class* i_this, fopAc_ac_c* i_ac) {
+    fopAc_ac_c* actor = i_this;
     dBgS_LinChk line_check;
     cXyz start_pos;
     cXyz end_pos;
 
     end_pos = i_ac->current.pos;
     end_pos.y += 100.0f;
-    start_pos = i_this->current.pos;
-    start_pos.y = i_this->eyePos.y;
+    start_pos = actor->current.pos;
+    start_pos.y = actor->eyePos.y;
 
-    line_check.Set(&start_pos, &end_pos, i_this);
+    line_check.Set(&start_pos, &end_pos, actor);
 
     if (dComIfG_Bgsp().LineCross(&line_check) != 0) {
         return true;
@@ -326,7 +327,16 @@ static int other_bg_check(e_tk_class* i_this, fopAc_ac_c* i_ac) {
 
 /* 807B8428-807B8460 000328 0038+00 3/3 0/0 0/0 .text            pl_y_check__FP10e_tk_class */
 static int pl_y_check(e_tk_class* i_this) {
-    return fopAcM_GetPosition(i_this).y - fopAcM_GetPosition(dComIfGp_getPlayer(0)).y > 130.0f == 0;
+    f32 tmp = fopAcM_GetPosition(i_this).y;
+
+    f32 actor_y = tmp;
+    f32 player_y = fopAcM_GetPosition(dComIfGp_getPlayer(0)).y;
+
+    if (actor_y - player_y > 130.0f) {
+        return 0;
+    } else {
+        return 1;
+    }
 }
 
 /* 807B8460-807B84DC 000360 007C+00 4/4 0/0 0/0 .text            pl_check__FP10e_tk_classfs */
@@ -335,7 +345,7 @@ static int pl_check(e_tk_class* i_this, f32 i_limit, s16 i_max_diff) {
 
     if (i_this->mPlayerDistanceLimit < i_limit) {
         s16 diff = i_this->shape_angle.y - i_this->mPlayerAngleY;
-        if (diff < i_max_diff && diff > (s16)-i_max_diff && !other_bg_check(i_this, player)) {
+        if (diff < i_max_diff && diff > (s16)-i_max_diff && other_bg_check(i_this, player) == 0) {
             return 1;
         }
     }
@@ -397,26 +407,25 @@ static void damage_check(e_tk_class* i_this) {
 
 /* 807B85DC-807B86EC 0004DC 0110+00 1/1 0/0 0/0 .text            way_bg_check__FP10e_tk_classf */
 static int way_bg_check(e_tk_class* i_this, f32 i_limit) {
-    cXyz mtx_pos;
-
-    cXyz start_pos;
-    cXyz end_pos;
-
+    fopAc_ac_c* actor = i_this;
     dBgS_LinChk line_check;
 
-    start_pos = i_this->current.pos;
+    cXyz mtx_pos;
+    cXyz start_pos;
+    start_pos = actor->current.pos;
     start_pos.y -= 50.0f;
 
-    mDoMtx_YrotS(*calc_mtx, i_this->shape_angle.y);
+    mDoMtx_YrotS(*calc_mtx, actor->shape_angle.y);
 
+    cXyz end_pos;
     mtx_pos.x = 0.0;
     mtx_pos.y = -50.0f;
     mtx_pos.z = i_limit;
 
     MtxPosition(&mtx_pos, &end_pos);
-    end_pos += i_this->current.pos;
+    end_pos += actor->current.pos;
 
-    line_check.Set(&start_pos, &end_pos, i_this);
+    line_check.Set(&start_pos, &end_pos, actor);
     if (dComIfG_Bgsp().LineCross(&line_check) != 0) {
         return 1;
     } else {
@@ -492,7 +501,7 @@ static void e_tk_wait_0(e_tk_class* i_this) {
             i_this->mAngle1[0] = (short)(cM_rndF(30.0f) + 30.0f);
         }
 
-        if (i_this->mAngle1[1] == 0 && pl_y_check(i_this) != 0 &&
+        if (i_this->mAngle1[1] == 0 && (pl_y_check(i_this) != false) &&
             pl_check(i_this, l_HIO.m4, 0x4000))
         {
             i_this->mNextAction = 0x1;
@@ -507,7 +516,8 @@ static void e_tk_wait_0(e_tk_class* i_this) {
 
     cLib_addCalcAngleS2(&i_this->shape_angle.y, (int)i_this->mSomeAngle, 0x10, 0x400);
     cLib_addCalcAngleS2(&i_this->shape_angle.x, 0, 0x10, 0x400);
-    cLib_addCalc2(&i_this->speedF, 1.0f * l_HIO.m5, 1.0f, 1.0f);
+    f32 tmp = 1.0f;  // Fakematch? (fmuls with 1.0f will get optimized out without this)
+    cLib_addCalc2(&i_this->speedF, l_HIO.m5 * tmp, 1.0f, 1.0f);
     cMtx_YrotS(*calc_mtx, i_this->shape_angle.y);
 
     src_pos.x = 0.0f;
@@ -730,45 +740,45 @@ static void e_tk_attack(e_tk_class* i_this) {
 
 /* 807B8F68-807B92C4 000E68 035C+00 1/1 0/0 0/0 .text            e_tk_pathswim__FP10e_tk_class */
 static void e_tk_pathswim(e_tk_class* i_this) {
-    float fVar1;
-    float fVar2;
-    float fVar7;
     cXyz local_50;
-    dPnt* point;
 
-    fVar1 = 1.0f;
-    fVar2 = 1.0f;
+    f32 fVar1 = 1.0f;
+    f32 fVar2 = 1.0f;
 
     switch (i_this->mNextAnim) {
     case 0:
         anm_init(i_this, 0x9, 5.0f, 0x2, 1.0f);
         i_this->mNextAnim = 1;
-        /* Fallthrough */
-    case 1:
-        i_this->mWtf2 += i_this->mWtf3;
-        if ((int)i_this->mWtf2 >= (int)(i_this->mRoomPath->m_num & 0xff)) {
-            if (dPath_ChkClose(i_this->mRoomPath) != 0) {
-                i_this->mWtf2 = 0x0;
+        /* [[fallthrough]] */;
+
+    case 1: {
+        i_this->mPathIdx += i_this->mPathIdxDir;
+        if (i_this->mPathIdx >= (u8)i_this->mpPath->m_num) {
+            if (dPath_ChkClose(i_this->mpPath)) {
+                i_this->mPathIdx = 0x0;
             } else {
-                i_this->mWtf3 = -1;
-                i_this->mWtf2 = i_this->mRoomPath->m_num - 0x2;
+                i_this->mPathIdxDir = -1;
+                i_this->mPathIdx = i_this->mpPath->m_num - 0x2;
             }
         } else {
-            if (i_this->mWtf2 < 0x0) {
-                i_this->mWtf3 = 0x1;
-                i_this->mWtf2 = 0x1;
+            if (i_this->mPathIdx < 0x0) {
+                i_this->mPathIdxDir = 1;
+                i_this->mPathIdx = 0x1;
             }
         }
-        point = &i_this->mRoomPath->m_points[i_this->mWtf2];
+
+        dPnt* point = i_this->mpPath->m_points;
+        point += i_this->mPathIdx;
         i_this->mPos.x = point->m_position.x + cM_rndFX(100.0f);
         i_this->mPos.z = point->m_position.z + cM_rndFX(100.0f);
         i_this->mNextAnim = 2;
         break;
+    }
 
     case 2:
         local_50 = i_this->mPos - i_this->current.pos;
         if (JMAFastSqrt(local_50.x * local_50.x + local_50.z * local_50.z) < 100.0f) {
-            point = &i_this->mRoomPath->m_points[i_this->mWtf2];
+            dPnt* point = &i_this->mpPath->m_points[i_this->mPathIdx];
             if (point->mArg0 != 0x2) {
                 anm_init(i_this, 0x8, 5.0, 0x2, 1.0);
                 i_this->mAngle1[0] = (short)(int)(cM_rndF(60.0f) + 50.0f);
@@ -782,8 +792,8 @@ static void e_tk_pathswim(e_tk_class* i_this) {
         break;
 
     case 3:
-        fVar1 = 0.0;
-        fVar2 = 3.0;
+        fVar1 = 0.0f;
+        fVar2 = 3.0f;
         if (i_this->mAngle1[1] == 0 && pl_y_check(i_this) && (pl_check(i_this, l_HIO.m4, 0x4000))) {
             i_this->mNextAction = 1;
             anm_init(i_this, 0xA, 5.0f, 0x2, 1.0f);
@@ -904,7 +914,7 @@ static void action(e_tk_class* i_this) {
 // #pragma force_active on
 // SECTION_RODATA static f32 const lit_4356 = 18.0f;
 // COMPILER_STRIP_GATE(0x807BA2DC, &lit_4356);
-// #pragma pop
+// #pragma popO
 
 /* 807BA2E0-807BA2E4 000074 0004+00 0/1 0/0 0/0 .rodata          @4357 */
 // #pragma push
@@ -1130,12 +1140,12 @@ static int daE_TK_Create(fopAc_ac_c* i_this) {
         if (a_this->mParam4 != 0xff) {
             sVar6 = fopAcM_GetRoomNo(a_this);
             pdVar3 = (dPath*)dPath_GetRoomPath((uint)a_this->mParam4, (int)sVar6);
-            a_this->mRoomPath = pdVar3;
-            if (a_this->mRoomPath == NULL) {
+            a_this->mpPath = pdVar3;
+            if (a_this->mpPath == NULL) {
                 return cPhs_ERROR_e;
             }
             a_this->mUnkFlag = a_this->mParam4 + 0x1;
-            a_this->mWtf3 = 0x1;
+            a_this->mPathIdxDir = 0x1;
             a_this->mNextAction = 5;
         }
         if (data_807BA438 == false) {
