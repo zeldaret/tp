@@ -2549,7 +2549,11 @@ int daB_TN_c::create() {
         fopAcM_SetMtx(this, mpModelMorf->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -200.0f, -200.0f, -200.0f);
         fopAcM_SetMax(this, 200.0f, 200.0f, 200.0f);
+
         mAcch.Set(&current.pos, &old.pos, this, 1, &mAcchCir, &speed, NULL, NULL);
+        mAcchCir.SetWall(60.0f, 300.0f);
+        health = 0x50;
+        field_0x560 = 0x50;
     }
 }
 
