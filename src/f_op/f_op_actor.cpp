@@ -146,15 +146,15 @@ static int fopAc_Create(void* i_this) {
 
         fopAcM_prm_class* append = fopAcM_GetAppend(a_this);
         if (append != NULL) {
-            fopAcM_SetParam(a_this, append->parameters);
-            a_this->home.pos = append->position;
-            a_this->home.angle = append->angle;
-            a_this->shape_angle = append->angle;
+            fopAcM_SetParam(a_this, append->base.parameters);
+            a_this->home.pos = append->base.position;
+            a_this->home.angle = append->base.angle;
+            a_this->shape_angle = append->base.angle;
             a_this->parentActorID = append->parent_id;
             a_this->subtype = append->subtype;
-            a_this->scale.set(append->scale[0] * 0.1f, append->scale[1] * 0.1f,
-                              append->scale[2] * 0.1f);
-            a_this->setID = append->setId;
+            a_this->scale.set(append->scale.x * 0.1f, append->scale.y * 0.1f,
+                              append->scale.z * 0.1f);
+            a_this->setID = append->base.setID;
             a_this->home.roomNo = append->room_no;
         }
 
@@ -214,11 +214,6 @@ static int fopAc_Create(void* i_this) {
     }
 
     return ret;
-}
-
-/* 800193FC-80019404 013D3C 0008+00 0/0 1/0 0/0 .text getFileListInfo__15dStage_roomDt_cCFv */
-dStage_FileList_dt_c* dStage_roomDt_c::getFileListInfo() const {
-    return mFileListInfo;
 }
 
 /* 80019404-800194FC 013D44 00F8+00 0/0 0/0 2/2 .text            initBallModel__13fopEn_enemy_cFv */
@@ -314,4 +309,5 @@ extern actor_method_class g_fopAc_Method = {
 /* 80450CC0-80450CC8 0001C0 0004+04 0/0 9/9 0/0 .sbss
  * sInstance__35JASGlobalInstance<14JAUSectionHeap>             */
 class JAUSectionHeap;
+template<>
 JAUSectionHeap* JASGlobalInstance<JAUSectionHeap>::sInstance;

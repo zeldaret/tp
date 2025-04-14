@@ -8,6 +8,7 @@
 #include "d/d_event.h"
 #include "d/d_event_manager.h"
 #include "d/d_particle.h"
+#include "d/d_save.h"
 #include "f_op/f_op_camera_mng.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "global.h"
@@ -3338,7 +3339,7 @@ inline int dComIfGp_roomControl_loadRoom(int param_0, u8* param_1, bool param_2)
 }
 
 inline void dComIfGp_roomControl_setStayNo(int stayNo) {
-    g_dComIfG_gameInfo.play.getRoomControl()->setStayNo(stayNo);
+    g_dComIfG_gameInfo.play.mRoomControl.setStayNo(stayNo);
 }
 
 inline void dComIfGp_roomControl_setZoneNo(int roomNo, int zoneNo) {
@@ -3370,7 +3371,7 @@ inline void dComIfGp_roomControl_setStatusFlag(int i_roomNo, u8 flag) {
 }
 
 inline void dComIfGp_roomControl_zoneCountCheck(int i_roomNo) {
-    g_dComIfG_gameInfo.play.mRoomControl.zoneCountCheck(i_roomNo);
+    g_dComIfG_gameInfo.play.getRoomControl()->zoneCountCheck(i_roomNo);
 }
 
 inline u8 dComIfGp_getRStatus() {

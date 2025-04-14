@@ -159,6 +159,3 @@ s32 fpcPi_Init(process_priority_class* i_procPriority, void* i_data, fpc_ProcID 
     fpcMtdTg_Init(&i_procPriority->method_tag, (process_method_tag_func)fpcPi_Delete, i_procPriority);
     return 1;
 }
-
-/* 804505F0-804505F8 0008+00 s=0 e=5 z=1  None .sdata     None */
-s8 data_804505F0 = 0xFF;

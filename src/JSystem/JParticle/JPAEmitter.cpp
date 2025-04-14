@@ -53,7 +53,7 @@ void JPABaseEmitter::init(JPAEmitterManager* param_0, JPAResource* param_1) {
     mSpread = mpRes->getDyn()->getInitVelDirSp();
     mRndmDirSpeed = mpRes->getDyn()->getInitVelRndm();
     mAirResist = mpRes->getDyn()->getAirRes();
-    mRndm.set_seed(mpEmtrMgr->mpWorkData->mRndm.get_rndm_u());
+    mRndm.set_seed(mpEmtrMgr->pWd->mRndm.get_rndm_u());
     MTXIdentity(mGlobalRot);
     mGlobalScl.set(1.0f, 1.0f, 1.0f);
     mGlobalTrs.zero();
@@ -85,8 +85,8 @@ JPABaseParticle* JPABaseEmitter::createParticle() {
     if (mpPtclPool->getNum() != 0) {
         JPANode<JPABaseParticle>* node = mpPtclPool->pop_front();
         mAlivePtclBase.push_front(node);
-        mpRes->getDyn()->calc(mpEmtrMgr->mpWorkData);
-        node->mData.init_p(mpEmtrMgr->mpWorkData);
+        mpRes->getDyn()->calc(mpEmtrMgr->pWd);
+        node->mData.init_p(mpEmtrMgr->pWd);
         return &node->mData;
     }
 
@@ -99,7 +99,7 @@ JPABaseParticle* JPABaseEmitter::createChild(JPABaseParticle* parent) {
     if (mpPtclPool->getNum() != 0) {
         JPANode<JPABaseParticle>* node = mpPtclPool->pop_front();
         mAlivePtclChld.push_front(node);
-        node->mData.init_c(mpEmtrMgr->mpWorkData, parent);
+        node->mData.init_c(mpEmtrMgr->pWd, parent);
         return &node->mData;
     }
 
@@ -166,18 +166,18 @@ void JPABaseEmitter::calcEmitterGlobalPosition(JGeometry::TVec3<f32>* dst) const
 /* 8027EF30-8027EF40 279870 0010+00 0/0 1/1 0/0 .text getCurrentCreateNumber__14JPABaseEmitterCFv
  */
 u32 JPABaseEmitter::getCurrentCreateNumber() const {
-    return mpEmtrMgr->mpWorkData->mEmitCount;
+    return mpEmtrMgr->pWd->mEmitCount;
 }
 
 /* 8027EF40-8027EF50 279880 0010+00 0/0 3/3 0/0 .text            getDrawCount__14JPABaseEmitterCFv
  */
 u8 JPABaseEmitter::getDrawCount() const {
-    return mpEmtrMgr->mpWorkData->mDrawCount;
+    return mpEmtrMgr->pWd->mDrawCount;
 }
 
 /* 8027EF50-8027EFA4 279890 0054+00 0/0 1/1 0/0 .text
  * loadTexture__14JPABaseEmitterFUc11_GXTexMapID                */
 bool JPABaseEmitter::loadTexture(u8 idx, GXTexMapID texMapID) {
-    mpEmtrMgr->mpWorkData->mpResMgr->load(mpRes->getTexIdx(idx), texMapID);
+    mpEmtrMgr->pWd->mpResMgr->load(mpRes->getTexIdx(idx), texMapID);
     return true;
 }

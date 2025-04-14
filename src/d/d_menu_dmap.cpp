@@ -1280,9 +1280,9 @@ void dMenu_Dmap_c::screenInit() {
     field_0x88[0] = new CPaneMgr(mpDrawBg[0]->mBaseScreen, 'map000', 3, NULL);
     field_0x88[1] = new CPaneMgr(mpDrawBg[0]->mBaseScreen, 'con000', 3, NULL);
     
-    if (i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 0x11) {
+    if (dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 0x11) {
         field_0x88[2] = new CPaneMgr(mpDrawBg[0]->mBaseScreen, 'i_key_n', 3, NULL);
-    } else if (i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 0x14) {
+    } else if (dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 0x14) {
         field_0x88[2] = new CPaneMgr(mpDrawBg[0]->mBaseScreen, 'lv5_k_n', 3, NULL);
     } else {
         field_0x88[2] = new CPaneMgr(mpDrawBg[0]->mBaseScreen, 'nor_k_n', 3, NULL);
@@ -1290,7 +1290,7 @@ void dMenu_Dmap_c::screenInit() {
     for (int i = 0; i < 3; i++) {
         field_0x88[i]->scale(0.9f, 0.9f);
     }
-    if (i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 0x11) {
+    if (dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 0x11) {
         mpDrawBg[0]->mBaseScreen->search('lv5_k_n')->hide();
         mpDrawBg[0]->mBaseScreen->search('nor_k_n')->hide();
         u8 local_13f = 0;
@@ -1325,7 +1325,7 @@ void dMenu_Dmap_c::screenInit() {
             ((J2DPicture*)mpDrawBg[0]->mBaseScreen->search('c_n_1_s'))->changeTexture(uVar20, 0);
             ((J2DPicture*)mpDrawBg[0]->mBaseScreen->search('c_n_1'))->changeTexture(uVar20, 0);
         }
-    } else if (i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 0x14) {
+    } else if (dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 0x14) {
         mpDrawBg[0]->mBaseScreen->search('i_key_n')->hide();
         mpDrawBg[0]->mBaseScreen->search('nor_k_n')->hide();
         mpDrawBg[0]->mBaseScreen->search('key_n_n')->hide();

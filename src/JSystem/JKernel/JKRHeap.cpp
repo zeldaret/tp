@@ -9,6 +9,12 @@
 
 bool data_804508B0 = 1;
 
+#ifdef DEBUG
+u8 data_804508B1;
+u8 data_804508B2;
+u8 data_804508B3;
+#endif
+
 /* 80451370-80451374 000870 0004+00 3/3 44/44 0/0 .sbss            sSystemHeap__7JKRHeap */
 JKRHeap* JKRHeap::sSystemHeap;
 

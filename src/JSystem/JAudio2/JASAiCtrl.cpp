@@ -16,6 +16,7 @@
 #include "JSystem/JAudio2/JASReport.h"
 #include "JSystem/JAudio2/JASLfo.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
+#include "JSystem/JUtility/JUTAssert.h"
 #include "dolphin/ai.h"
 #include <dolphin/os.h>
 
@@ -52,19 +53,32 @@ JASDriver::MixCallback JASDriver::extMixCallback;
 /* 804512C0-804512C4 0007C0 0004+00 2/2 0/0 0/0 .sbss            sOutputRate__9JASDriver */
 u32 JASDriver::sOutputRate;
 
+/* 804507AC-804507B0 00022C 0004+00 2/2 0/0 0/0 .sdata           sMixMode__9JASDriver */
+JASMixMode JASDriver::sMixMode = MIX_MODE_EXTRA;
+
+/* 804507B0-804507B4 000230 0004+00 2/2 0/0 0/0 .sdata           sDacRate__9JASDriver */
+f32 JASDriver::sDacRate = 32028.5f;
+
+/* 804507B4-804507B8 000234 0004+00 4/3 0/0 0/0 .sdata           sSubFrames__9JASDriver */
+u32 JASDriver::sSubFrames = 0x00000007;
+
 /* 8029C388-8029C4E4 296CC8 015C+00 0/0 1/1 0/0 .text            initAI__9JASDriverFPFv_v */
 // NONMATCHING missing instructions
 void JASDriver::initAI(void (*param_0)(void)) {
     setOutputRate(OUTPUT_RATE_0);
-    u32 size = getDacSize() * 2;
+    u32 dacSize = getDacSize();
+    u32 size = dacSize * 2;
     for (int i = 0; i < 3; i++) {
-        sDmaDacBuffer[i] = new(JASDram, 0x20) s16[size / 2];
+        sDmaDacBuffer[i] = new(JASDram, 0x20) s16[dacSize];
+        JUT_ASSERT(102, sDmaDacBuffer[i])
         JASCalc::bzero(sDmaDacBuffer[i], size);
         DCStoreRange(sDmaDacBuffer[i], size);
     }
     sDspDacBuffer = new(JASDram, 0) s16*[data_804507A8];
+    JUT_ASSERT(113, sDspDacBuffer);
     for (int i = 0; i < data_804507A8; i++) {
         sDspDacBuffer[i] = new(JASDram, 0x20) s16[getDacSize()];
+        JUT_ASSERT(119, sDspDacBuffer[i]);
         JASCalc::bzero(sDspDacBuffer[i], size);
         DCStoreRange(sDspDacBuffer[i], size);
     }
@@ -74,7 +88,13 @@ void JASDriver::initAI(void (*param_0)(void)) {
     JASChannel::initBankDisposeMsgQueue();
     AIInit(NULL);
     AIInitDMA((u32)sDmaDacBuffer[2], size);
-    AISetDSPSampleRate(sOutputRate != 0);
+    BOOL isOutputRate;
+    if (sOutputRate == 0) {
+        isOutputRate = FALSE;
+    } else {
+        isOutputRate = TRUE;
+    }
+    AISetDSPSampleRate((u8)isOutputRate);
     AIRegisterDMACallback(param_0);
 }
 
@@ -88,15 +108,6 @@ void JASDriver::startDMA() {
 void JASDriver::stopDMA() {
     AIStopDMA();
 }
-
-/* 804507AC-804507B0 00022C 0004+00 2/2 0/0 0/0 .sdata           sMixMode__9JASDriver */
-JASMixMode JASDriver::sMixMode = MIX_MODE_EXTRA;
-
-/* 804507B0-804507B4 000230 0004+00 2/2 0/0 0/0 .sdata           sDacRate__9JASDriver */
-f32 JASDriver::sDacRate = 32028.5f;
-
-/* 804507B4-804507B8 000234 0004+00 4/3 0/0 0/0 .sdata           sSubFrames__9JASDriver */
-u32 JASDriver::sSubFrames = 0x00000007;
 
 /* 8029C524-8029C568 296E64 0044+00 1/1 0/0 0/0 .text setOutputRate__9JASDriverF13JASOutputRate */
 void JASDriver::setOutputRate(JASOutputRate param_0) {
@@ -157,6 +168,11 @@ void JASDriver::updateDSP() {
     static u32 history[10] = {0x000F4240};
     JASProbe::start(3, "SFR-UPDATE");
     JASDsp::invalChannelAll();
+
+    #ifdef DEBUG
+    JASDsp::dspMutex = 1;
+    #endif
+
     JASPortCmd::execAllCommand();
     DSPSyncCallback();
     static u32 old_time = 0;
@@ -165,40 +181,59 @@ void JASDriver::updateDSP() {
     old_time = r28;
     u32 subFrame = getSubFrames();
     int r26 = JASAudioThread::getDSPSyncCount();
+    JUT_ASSERT(254, subFrame <= 10);
     history[subFrame - r26] = r27;
     if (subFrame != r26 && f32(history[0]) / r27 < 1.1f) {
+        #ifdef DEBUG
+        static int killCounter;
+        JASReport("kill DSP channel", killCounter);
+        JASDSPChannel::killActiveChannel();
+        killCounter++;
+        #else
         JASReport("kill DSP channel");
         JASDSPChannel::killActiveChannel();
+        #endif
     }
     JASChannel::receiveBankDisposeMsg();
     JASDSPChannel::updateAll();
+
+    #ifdef DEBUG
+    JASDsp::dspMutex = 0;
+    #endif
+
     subframeCallback();
-    JASLfo::updateFreeRun(32028.5f / getDacRate());
+    f32 freeRun = 32028.5f / getDacRate();
+    JASLfo::updateFreeRun(freeRun);
     JASProbe::stop(3);
     sSubFrameCounter++;
 }
 
 /* 8029C7E0-8029C900 297120 0120+00 1/1 0/0 0/0 .text            readDspBuffer__9JASDriverFPsUl */
-// NONMATCHING one wrong instruction
 void JASDriver::readDspBuffer(s16* param_0, u32 param_1) {
-    s32 r29 = sDspDacReadBuffer + 1;
-    if (r29 == data_804507A8) {
-        r29 = 0;
+    s32 nbuf = sDspDacReadBuffer + 1;
+    if (nbuf == data_804507A8) {
+        nbuf = 0;
     }
-    if (r29 == sDspDacWriteBuffer && data_804507A8 >= 3) {
-        s16 r25 = sDspDacBuffer[sDspDacReadBuffer][param_1 / 2 - 1];
-        s16 r24 = sDspDacBuffer[sDspDacReadBuffer][param_1 - 1];
+    if (nbuf == sDspDacWriteBuffer && data_804507A8 >= 3) {
+        s16 r25 = (s16)sDspDacBuffer[sDspDacReadBuffer][param_1 / 2 - 1];
+        s16 r24 = (s16)sDspDacBuffer[sDspDacReadBuffer][param_1 - 1];
         for (int i = 0; i < param_1; i++) {
-            sDspDacBuffer[sDspDacReadBuffer][i] = r25;
+            sDspDacBuffer[sDspDacReadBuffer][i] = (s16)r25;
         }
         for (int i = param_1; i < param_1 * 2; i++) {
             sDspDacBuffer[sDspDacReadBuffer][i] = (s16)r24;
         }
+#ifdef DEBUG
+        JASReport("readDspBuffer nbuf:%d sWBuf:%d BCount:%d stat:%d", nbuf, sDspDacWriteBuffer,
+                  data_804507A8, sDspStatus);
+#endif
     } else {
-        sDspDacReadBuffer = r29;
-        DCInvalidateRange(sDspDacBuffer[r29], param_1 * 4);
+        sDspDacReadBuffer = nbuf;
+        DCInvalidateRange(sDspDacBuffer[sDspDacReadBuffer], param_1 * 2 * 2);
     }
-    JASCalc::imixcopy(sDspDacBuffer[sDspDacReadBuffer] + param_1, sDspDacBuffer[sDspDacReadBuffer], param_0, param_1);
+    s16* dacBuffer = sDspDacBuffer[sDspDacReadBuffer];
+    s16* endDacBuffer = dacBuffer + param_1;
+    JASCalc::imixcopy(endDacBuffer, dacBuffer, param_0, param_1);
 }
 
 /* 8029C900-8029C9DC 297240 00DC+00 1/1 1/1 0/0 .text            finishDSPFrame__9JASDriverFv */
@@ -242,7 +277,7 @@ u32 JASDriver::getSubFrames() {
 
 /* 8029C9F8-8029CA04 297338 000C+00 2/2 0/0 0/0 .text            getDacSize__9JASDriverFv */
 u32 JASDriver::getDacSize() {
-    return sSubFrames * 0xa0;
+    return sSubFrames * 0x50 * 2;
 }
 
 /* 8029CA04-8029CA10 297344 000C+00 3/3 0/0 0/0 .text            getFrameSamples__9JASDriverFv */
