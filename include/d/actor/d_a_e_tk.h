@@ -12,54 +12,52 @@
  * @class e_tk_class
  * @brief Water Toadpoli
  *
- * @details
- *
+ * @details Water Toadpoli in a Water Grotto. (And Goron Mines?)
+ * Frog-like creatures that emerge from the water and shoot a stone ball
+ * towards Link. If Link gets too close to the toadpoli, it will dive
+ * underwater, where it is invulnerable. It likes to swim around.
  */
+
 class e_tk_class : public fopEn_enemy_c {
 public:
-    request_of_phase_process_class mPhaseReq;
-    u8 mParam1;
-    u8 mParam2;
-    u8 mParam3;
-    u8 mParam4;
-    s8 mUnkFlag;
-    dPath* mpPath;
-    s8 mPathIdx;
-    s8 mPathIdxDir;
-    mDoExt_McaMorfSO* mpMorf;
-    int mNextSound;
-    Z2CreatureEnemy mZ2CreatureEnemy;
-    f32 mAnimSpeed;
-    s16 mCnt;
-    s16 mNextAction;
-    s16 mNextAnim;
-    cXyz mPos;
-    s16 mSomeAngle;
-    u8 field_0x68a;
-    u8 field_0x68b;
-    s16 mPlayerAngleY;
-    f32 mPlayerDistanceLimit;
-    u8 field_0x694;
-    u8 field_0x695;
-    s16 mAngle1[3];
-    // s16 mAngle2;
-    // s16 mAngle3;
-    s16 mExecuteState;
-    s16 mState;
-    s8 mLoopFlag;
-    s8 mParticleSpawned;
-    u8 field_0x6a2;
-    u8 field_0x6a3;
-    u32 mHamonSet;
-    u8 field_0x6a8[4];
-    fpc_ProcID mpTK_Ball;
-    dBgS_AcchCir mAcchChir;
-    dBgS_ObjAcch mAcch;
-    dCcD_Stts mStts;
-    dCcD_Sph mSph;
-    dCcU_AtInfo mAtInfo;
-    bool mChildCreate;
-    u8 field_0xa61[3];
+    /* 0x5AC */ request_of_phase_process_class mPhaseReq;
+    /* 0x5B4 */ u8 mParamUnk1;
+    /* 0x5B5 */ u8 mParamUnk2;
+    /* 0x5B6 */ u8 mParamUnk3;
+    /* 0x5B7 */ u8 mParamPathIdx;
+    /* 0x5B8 */ s8 mPathLoaded;
+    /* 0x5BC */ dPath* mpPath;
+    /* 0x5C0 */ s8 mPathIdx;
+    /* 0x5C1 */ s8 mPathIdxDir;
+    /* 0x5C4 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x5C8 */ int mSound;
+    /* 0x5CC */ Z2CreatureEnemy mSoundE;
+    /* 0x670 */ f32 mAnimSpeed;
+    /* 0x674 */ s16 mLifetime;
+    /* 0x676 */ s16 mAction;
+    /* 0x678 */ s16 mAnim;
+    /* 0x67C */ cXyz mPos;
+    /* 0x688 */ s16 mSomeAngle;
+    /* 0x68A */ u8 field_0x68a[2];
+    /* 0x68C */ s16 mPlayerAngleY;
+    /* 0x690 */ f32 mPlayerDistanceLimit;
+    /* 0x694 */ u8 field_0x694[2];
+    /* 0x696 */ s16 mActionTimer[3];
+    /* 0x69C */ s16 mExecuteState;
+    /* 0x69E */ s16 mInvincibilityTimer;
+    /* 0x6A0 */ s8 mActorStatus0;
+    /* 0x6A1 */ s8 mTKBallSpawned;
+    /* 0x6A2 */ u8 field_0x6a2[2];
+    /* 0x6A4 */ u32 mHamonSet;
+    /* 0x6A8 */ u8 field_0x6a8[4];
+    /* 0x6AC */ fpc_ProcID mpBall;
+    /* 0x6B0 */ dBgS_AcchCir mAcchChir;
+    /* 0x6F0 */ dBgS_ObjAcch mAcch;
+    /* 0x8C8 */ dCcD_Stts mStts;
+    /* 0x904 */ dCcD_Sph mSph;
+    /* 0xA3C */ dCcU_AtInfo mAtInfo;
+    /* 0xA60 */ bool mCreated;
+    /* 0xA61 */ u8 field_0xa61[3];
 };
 
 STATIC_ASSERT(sizeof(e_tk_class) == 0xA64);
@@ -69,12 +67,12 @@ public:
     /* 807B81EC */ daE_TK_HIO_c();
     /* 807BA1C4 */ virtual ~daE_TK_HIO_c() {}
 
-    /* 0x04 */ s8 m1;
-    /* 0x08 */ f32 m2;
-    /* 0x0C */ f32 m3;
-    /* 0x10 */ f32 m4;
-    /* 0x14 */ f32 m5;
-    /* 0x18 */ f32 m6;
+    /* 0x04 */ s8 field_0x04;
+    /* 0x08 */ f32 mRadiusScale;
+    /* 0x0C */ f32 mPlayerRange1;
+    /* 0x10 */ f32 mPlayerRange2;
+    /* 0x14 */ f32 mSpeedModifier1;
+    /* 0x18 */ f32 mSpeedModifier2;
 };
 
 STATIC_ASSERT(sizeof(daE_TK_HIO_c) == 0x1C);
