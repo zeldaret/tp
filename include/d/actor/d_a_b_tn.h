@@ -1,6 +1,7 @@
 #ifndef D_A_B_TN_H
 #define D_A_B_TN_H
 
+#include "d/d_bg_s_acch.h"
 #include "f_op/f_op_actor_mng.h"
 #include "d/d_cc_d.h"
 
@@ -74,11 +75,29 @@ public:
     /* 8062C5B4 */ void execute();
     /* 8062C7C8 */ void _delete();
     /* 8062C868 */ void CreateHeap();
-    /* 8062CD78 */ void create();
+    /* 8062CD78 */ int create();
     /* 8062D2F0 */ daB_TN_c();
 
 private:
-    /* 0x5ac */ u8 field_0x5ac[0x5630 - 0x5ac];
+    /* 0x05AC */ request_of_phase_process_class mPhase1;
+    /* 0x05B4 */ request_of_phase_process_class mPhase2;
+    /* 0x05BC */ u8 field_0x5bc[0x600 - 0x5bc];
+    /* 0x0600 */ mDoExt_McaMorfSO* mpModelMorf;
+    /* 0x0604 */ u8 field_0x604[0xaa3 - 0x604];
+    /* 0x0AA3 */ u8 field_0xaa3;
+    /* 0x0AA4 */ u8 field_0xaa4;
+    /* 0x0AA5 */ u8 field_0xaa5;
+    /* 0x0AA6 */ u8 field_0xaa6;
+    /* 0x0AA7 */ u8 field_0xaa7[0xab4 - 0xaa7];
+    /* 0x0AB4 */ char* field_0xab4;
+    /* 0x0AB8 */ dBgS_AcchCir mAcchCir;
+    /* 0x0AF8 */ dBgS_ObjAcch mAcch;
+    /* 0x0CD0 */ u8 field_0xcd0[0x2e50 - 0xcd0];
+    /* 0x2E50 */ dCcD_Stts mDStts;
+    /* 0x2E8C */ dCcD_Stts mDStts2;
+    /* 0x2EC8 */ u8 field_0x2ec8[0x562c - 0x2ec8];
+    /* 0x562C */ u8 field_0x562c;
+    /* 0x562D */ u8 field_0x562d[0x5630 - 0x562d];
 };
 
 STATIC_ASSERT(sizeof(daB_TN_c) == 0x5630);
@@ -87,6 +106,20 @@ class daB_TN_HIO_c {
 public:
     /* 8061EBEC */ daB_TN_HIO_c();
     /* 8062D98C */ ~daB_TN_HIO_c();
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 field_0x8;
+    /* 0x0C */ f32 field_0xc;
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 field_0x18;
+    /* 0x1C */ f32 field_0x1c;
+    /* 0x20 */ f32 field_0x20;
+    /* 0x24 */ f32 field_0x24;
+    /* 0x28 */ f32 field_0x28;
+    /* 0x2C */ f32 field_0x2c;
+
+
 };
 
 

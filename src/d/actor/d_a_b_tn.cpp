@@ -897,7 +897,7 @@ static u8 lit_1010[1 + 3 /* padding */];
 /* 8062F01C-8062F020 -00001 0004+00 2/2 0/0 0/0 .bss             None */
 /* 8062F01C 0001+00 data_8062F01C @1009 */
 /* 8062F01D 0003+00 data_8062F01D None */
-static u8 struct_8062F01C[4];
+static u8 struct_8062F01C;
 
 /* 8062F020-8062F02C 000048 000C+00 0/1 0/0 0/0 .bss             @3936 */
 #pragma push
@@ -906,7 +906,7 @@ static u8 lit_3936[12];
 #pragma pop
 
 /* 8062F02C-8062F05C 000054 0030+00 9/11 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[48];
+static daB_TN_HIO_c l_HIO;
 
 /* 8061EEC8-8061F1E0 0003C8 0318+00 1/1 0/0 0/0 .text            draw__8daB_TN_cFv */
 void daB_TN_c::draw() {
@@ -2476,7 +2476,7 @@ extern "C" void __dt__12J3DFrameCtrlFv() {
 }
 
 /* 8062CD58-8062CD78 00E258 0020+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
-static void useHeapInit(fopAc_ac_c* param_0) {
+static int useHeapInit(fopAc_ac_c* actor) {
     // NONMATCHING
 }
 
@@ -2497,8 +2497,60 @@ SECTION_DEAD static char const* const stringBase_8062E8FA = "D_MN09";
 #pragma pop
 
 /* 8062CD78-8062D2F0 00E278 0578+00 1/1 0/0 0/0 .text            create__8daB_TN_cFv */
-void daB_TN_c::create() {
+int daB_TN_c::create() {
     // NONMATCHING
+    fopAcM_SetupActor(this, daB_TN_c);
+
+    field_0xaa4 = fopAcM_GetParam(this);
+    field_0xaa5 = fopAcM_GetParam(this) >> 8;
+
+    if (field_0xaa5 != 1) {
+        field_0xaa5 = 0;
+    }
+
+    if (field_0xaa5 == 0) {
+        field_0xab4 = "B_tnp";
+        if (dComIfGs_isStageMiddleBoss()) {
+            return cPhs_ERROR_e;
+        }
+    } else {
+        field_0xab4 = "B_tnp2";
+        if (dComIfGs_isSwitch(field_0xaa4, fopAcM_GetRoomNo(this))) {
+            return cPhs_ERROR_e;
+        }
+    }
+
+    if (dComIfG_resLoad(&mPhase1, "B_tn") == cPhs_COMPLEATE_e && dComIfG_resLoad(&mPhase2, field_0xab4) == cPhs_COMPLEATE_e) {
+        field_0xaa3 = fopAcM_GetParam(this) >> 16;
+        if (field_0xaa3 > 4) {
+            field_0xaa4 = 4;
+        }
+
+        field_0xaa6 = fopAcM_GetParam(this) >> 24;
+        if (field_0xaa6 != 1) {
+            field_0xaa6 = 0;
+        }
+
+        if (field_0xaa5 == 1) {
+            if (!fopAcM_entrySolidHeap(this, useHeapInit, 0xb940)) {
+                return cPhs_ERROR_e;
+            }
+        } else if (!fopAcM_entrySolidHeap(this, useHeapInit, 0xaa20)) {
+            return cPhs_ERROR_e;
+        }
+
+        if (struct_8062F01C == 0) {
+            struct_8062F01C = 1;
+            field_0x562c = 1;
+            l_HIO.field_0x4 = -1;
+        }
+
+        attention_info.flags = 4;
+        fopAcM_SetMtx(this, mpModelMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMin(this, -200.0f, -200.0f, -200.0f);
+        fopAcM_SetMax(this, 200.0f, 200.0f, 200.0f);
+        mAcch.Set(&current.pos, &old.pos, this, 1, &mAcchCir, &speed, NULL, NULL);
+    }
 }
 
 /* 8062D2F0-8062D624 00E7F0 0334+00 1/1 0/0 0/0 .text            __ct__8daB_TN_cFv */
