@@ -43,8 +43,8 @@ bool daAlink_c::checkSetNpcTks(cXyz* i_basePos, int i_roomNo, int param_2) {
     u32 scene_mode = getLastSceneMode();
 
     if (param_2 != 0 && checkDungeon() &&
-        i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != 0x17 &&
-        i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != 0x18 &&
+        dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != 0x17 &&
+        dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != 0x18 &&
         (checkItemGet(fpcNm_ITEM_TKS_LETTER, 1) ||
          (checkItemGet(fpcNm_ITEM_DUNGEON_BACK, 1) && !checkLv7DungeonShop())) &&
         dComIfGs_isDungeonItemWarp())

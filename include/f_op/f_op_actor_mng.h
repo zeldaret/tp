@@ -45,18 +45,21 @@ class JKRHeap;
 class cM3dGPla;
 
 struct fopAcM_prmBase_class {
-    /* 0x00 */ u32 field_0x00;
-    /* 0x04 */ cXyz field_0x04;
-    /* 0x10 */ csXyz field_0x10;
-    /* 0x16 */ u16 field_0x16;
-};  // Size = 0x18
-
-struct fopAcM_prm_class {
     /* 0x00 */ u32 parameters;
     /* 0x04 */ cXyz position;
     /* 0x10 */ csXyz angle;
-    /* 0x16 */ u16 setId;
-    /* 0x18 */ u8 scale[3];
+    /* 0x16 */ u16 setID;
+};  // Size: 0x18
+
+struct fopAcM_prmScale_class {
+    /* 0x0 */ u8 x;
+    /* 0x1 */ u8 y;
+    /* 0x2 */ u8 z;
+};  // Size: 0x3
+
+struct fopAcM_prm_class {
+    /* 0x00 */ fopAcM_prmBase_class base;
+    /* 0x18 */ fopAcM_prmScale_class scale;
     /* 0x1C */ fpc_ProcID parent_id;
     /* 0x20 */ s8 subtype;
     /* 0x21 */ s8 room_no;
@@ -485,6 +488,14 @@ fpc_ProcID fopAcM_create(s16 i_procName, u16 i_setId, u32 i_parameters, const cX
 
 fpc_ProcID fopAcM_create(s16 i_procName, u32 i_parameters, const cXyz* i_pos, int i_roomNo,
                          const csXyz* i_angle, const cXyz* i_scale, s8 i_subtype);
+
+inline fpc_ProcID fopAcM_create(s16 i_procName, createFunc i_createFunc, void* params) {
+    return fpcM_Create(i_procName, i_createFunc, params);
+}
+
+inline fpc_ProcID fopAcM_Create(s16 i_procName, createFunc i_createFunc, void* params) {
+    return fpcM_Create(i_procName, i_createFunc,params);
+}
 
 fopAc_ac_c* fopAcM_fastCreate(s16 i_procName, u32 i_parameters, const cXyz* i_pos, int i_roomNo,
                               const csXyz* i_angle, const cXyz* i_scale, s8 i_subtype,

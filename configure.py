@@ -493,7 +493,7 @@ config.libs = [
         "progress_category": "game",
         "host": True,
         "objects": [
-            Object(MatchingFor("GZ2E01"), "d/d_stage.cpp"),
+            Object(MatchingFor("GZ2E01"), "d/d_stage.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(MatchingFor("GZ2E01"), "d/d_map.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_com_inf_game.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(MatchingFor("GZ2E01"), "d/d_com_static.cpp"),

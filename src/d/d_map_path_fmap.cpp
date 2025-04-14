@@ -369,7 +369,7 @@ bool dMenuFmapIconPointer_c::init(dMenu_Fmap_region_data_c* i_regionData,
         return false;
     }
 
-    mSaveTbl = i_dStage_stagInfo_GetSaveTbl(stag_info);
+    mSaveTbl = dStage_stagInfo_GetSaveTbl(stag_info);
     mpRegionData = i_regionData;
     mpStageData = i_stageData;
     mType = dTres_c::getTypeGroupNoToType(i_typeGroupNo);

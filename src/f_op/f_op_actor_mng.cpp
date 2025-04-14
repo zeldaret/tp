@@ -76,11 +76,11 @@ fopAcM_prm_class* fopAcM_CreateAppend() {
     fopAcM_prm_class* append = (fopAcM_prm_class*)cMl::memalignB(-4, sizeof(fopAcM_prm_class));
     if (append != NULL) {
         cLib_memSet(append, 0, sizeof(fopAcM_prm_class));
-        append->setId = 0xFFFF;
+        append->base.setID = 0xFFFF;
         append->room_no = -1;
-        append->scale[0] = 10;
-        append->scale[1] = 10;
-        append->scale[2] = 10;
+        append->scale.x = 10;
+        append->scale.y = 10;
+        append->scale.z = 10;
         append->parent_id = fpcM_ERROR_PROCESS_ID_e;
         append->subtype = -1;
     }
@@ -97,33 +97,33 @@ fopAcM_prm_class* createAppend(u16 i_setId, u32 i_parameters, const cXyz* i_pos,
         return NULL;
     }
 
-    append->setId = i_setId;
+    append->base.setID = i_setId;
 
     if (i_pos != NULL) {
-        append->position = *i_pos;
+        append->base.position = *i_pos;
     } else {
-        append->position = cXyz::Zero;
+        append->base.position = cXyz::Zero;
     }
 
     append->room_no = i_roomNo;
 
     if (i_angle != NULL) {
-        append->angle = *i_angle;
+        append->base.angle = *i_angle;
     } else {
-        append->angle = csXyz::Zero;
+        append->base.angle = csXyz::Zero;
     }
 
     if (i_scale != NULL) {
-        append->scale[0] = 10.0f * i_scale->x;
-        append->scale[1] = 10.0f * i_scale->y;
-        append->scale[2] = 10.0f * i_scale->z;
+        append->scale.x = 10.0f * i_scale->x;
+        append->scale.y = 10.0f * i_scale->y;
+        append->scale.z = 10.0f * i_scale->z;
     } else {
-        append->scale[0] = 10;
-        append->scale[1] = 10;
-        append->scale[2] = 10;
+        append->scale.x = 10;
+        append->scale.y = 10;
+        append->scale.z = 10;
     }
 
-    append->parameters = i_parameters;
+    append->base.parameters = i_parameters;
     append->parent_id = i_parentId;
     append->subtype = i_subtype;
 

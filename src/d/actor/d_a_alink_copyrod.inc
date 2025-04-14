@@ -75,7 +75,7 @@ BOOL daAlink_c::checkForestOldCentury() {
 BOOL daAlink_c::checkCopyRodTopUse() {
     // Event flag 0x2580: Dominion Rod power restored
     return (dComIfGs_isEventBit(0x2580) && !(mProcID == PROC_UNEQUIP && mProcVar3.field_0x300e != 0)) ||
-           i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 0x15 ||
+           dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 0x15 ||
            checkForestOldCentury();
 }
 
