@@ -722,7 +722,7 @@ public:
     u16 getUpdateMaterialNum() const { return mUpdateMaterialNum; }
     bool isValidUpdateMaterialID(u16 id) const { return mUpdateMaterialID[id] != 0xFFFF; }
     u16 getUpdateMaterialID(u16 idx) const { 
-        JUT_ASSERT_MSG(1578, 0 <= mUpdateMaterialNum - idx, "Error : range over.")
+        J3D_ASSERT(1578, idx < mUpdateMaterialNum, "Error : range over.")
         return mUpdateMaterialID[idx];
     }
 

@@ -65,7 +65,7 @@ public:
     J3DJoint* getRootNode() { return mRootNode; }
     J3DJoint* getJointNodePointer(u16 idx) const { return mJointNodePointer[idx]; }
     J3DMtxCalc* getBasicMtxCalc() const { return mBasicMtxCalc; }
-    Mtx& getInvJointMtx(s32 idx) const { return mInvJointMtx[idx]; }
+    Mtx& getInvJointMtx(int idx) { return mInvJointMtx[idx]; }
     u32 getModelDataType() const { return mModelDataType; }
     void setModelDataType(u32 type) { mModelDataType = type; }
     bool checkFlag(u32 flag) { return mFlags & flag; }

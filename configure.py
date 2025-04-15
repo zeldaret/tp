@@ -1061,7 +1061,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01"), "JSystem/J3DGraphAnimator/J3DAnimation.cpp", extra_cflags=['-pragma "nosyminline off"']),
             Object(MatchingFor("GZ2E01"), "JSystem/J3DGraphAnimator/J3DMaterialAnm.cpp"),
             Object(NonMatching, "JSystem/J3DGraphAnimator/J3DSkinDeform.cpp"),
-            Object(NonMatching, "JSystem/J3DGraphAnimator/J3DCluster.cpp"),
+            Object(MatchingFor("GZ2E01"), "JSystem/J3DGraphAnimator/J3DCluster.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/J3DGraphAnimator/J3DJoint.cpp"),
             Object(NonMatching, "JSystem/J3DGraphAnimator/J3DMaterialAttach.cpp"),
         ],
