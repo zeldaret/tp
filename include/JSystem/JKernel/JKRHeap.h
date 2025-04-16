@@ -8,6 +8,9 @@ class JKRHeap;
 typedef void (*JKRErrorHandler)(void*, u32, int);
 
 extern bool data_804508B0;
+extern u8 data_804508B1;
+extern u8 data_804508B2;
+extern u8 data_804508B3;
 
 /**
  * @ingroup jsystem-jkernel
@@ -246,5 +249,11 @@ inline s32 JKRResizeMemBlock(JKRHeap* heap, void* ptr, u32 size) {
 inline JKRHeap* JKRGetRootHeap() {
     return JKRHeap::getRootHeap();
 }
+
+#ifdef DEBUG
+inline void JKRSetDebugFillNotuse(u8 status) { data_804508B1 = status; }
+inline void JKRSetDebugFillNew(u8 status) { data_804508B2 = status; }
+inline void JKRSetDebugFillDelete(u8 status) { data_804508B3 = status; }
+#endif
 
 #endif /* JKRHEAP_H */

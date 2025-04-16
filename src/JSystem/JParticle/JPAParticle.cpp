@@ -17,7 +17,6 @@ JPAParticleCallBack::~JPAParticleCallBack() {
 
 /* 8027EFEC-8027F8C8 27992C 08DC+00 0/0 1/1 0/0 .text
  * init_p__15JPABaseParticleFP18JPAEmitterWorkData              */
-// NONMATCHING a couple problems, likely issues with setLength
 void JPABaseParticle::init_p(JPAEmitterWorkData* work) {
     JPABaseEmitter* emtr = work->mpEmtr;
     JPAExtraShape* esp = work->mpRes->getEsp();
@@ -25,11 +24,11 @@ void JPABaseParticle::init_p(JPAEmitterWorkData* work) {
     JPADynamicsBlock* dyn = work->mpRes->getDyn();
 
     mAge = -1;
-    mLifeTime = (1.0f - dyn->getLifeTimeRndm() * emtr->get_r_f()) * emtr->mLifeTime;
+    mLifeTime = (1.0f - dyn->getLifetimeRndm() * emtr->get_r_f()) * emtr->mLifeTime;
     mTime = 0.0f;
 
     initStatus(0);
-    MTXMultVecSR(work->mGlobalSR, &work->mVolumePos, &mLocalPosition);
+    MTXMultVecSR(work->mGlobalSR, &work->mVolumeCalcData.mVolumePos, &mLocalPosition);
     if (emtr->checkFlag(8)) {
         setStatus(0x20);
     }
@@ -41,14 +40,14 @@ void JPABaseParticle::init_p(JPAEmitterWorkData* work) {
 
     JGeometry::TVec3<f32> velOmni; 
     if (emtr->mAwayFromCenterSpeed) {
-        velOmni.setLength(work->mVelOmni, emtr->mAwayFromCenterSpeed);
+        velOmni.setLength(work->mVolumeCalcData.mVelOmni, emtr->mAwayFromCenterSpeed);
     } else {
         velOmni.zero();
     }
 
     JGeometry::TVec3<f32> velAxis;
     if (emtr->mAwayFromAxisSpeed) {
-        velAxis.setLength(work->mVelAxis, emtr->mAwayFromAxisSpeed);
+        velAxis.setLength(work->mVolumeCalcData.mVelAxis, emtr->mAwayFromAxisSpeed);
     } else {
         velAxis.zero();
     }
@@ -56,9 +55,7 @@ void JPABaseParticle::init_p(JPAEmitterWorkData* work) {
     JGeometry::TVec3<f32> velDir;
     if (emtr->mDirSpeed) {
         Mtx mtx;
-        int angleZ = emtr->get_r_ss();
-        f32 angleY = emtr->get_r_zp() * 0x8000 * emtr->mSpread;
-        JPAGetYZRotateMtx(angleY, angleZ, mtx);
+        JPAGetYZRotateMtx(emtr->get_r_zp() * 0x8000 * emtr->mSpread, emtr->get_r_ss(), mtx);
         MTXConcat(work->mDirectionMtx, mtx, mtx);
         velDir.set(emtr->mDirSpeed * mtx[0][2],
                    emtr->mDirSpeed * mtx[1][2],
@@ -100,8 +97,7 @@ void JPABaseParticle::init_p(JPAEmitterWorkData* work) {
     mAnmRandom = emtr->get_r_f() * bsp->getLoopOfstValue();
 
     if (esp != NULL && esp->isEnableScaleAnm()) {
-        f32 scale = emtr->mScaleOut * (emtr->get_r_zp() * esp->getScaleRndm() + 1.0f);
-        mParticleScaleX = mParticleScaleY = mScaleOut = scale;
+        mParticleScaleX = mParticleScaleY = mScaleOut = emtr->mScaleOut * (emtr->get_r_zp() * esp->getScaleRndm() + 1.0f);
     } else {
         mParticleScaleX = mParticleScaleY = mScaleOut = emtr->mScaleOut;
     }
@@ -324,12 +320,12 @@ bool JPABaseParticle::canCreateChild(JPAEmitterWorkData* work) {
  * getWidth__15JPABaseParticleCFPC14JPABaseEmitter              */
 f32 JPABaseParticle::getWidth(JPABaseEmitter const* emtr) const {
     f32 scale = 2.0f * mParticleScaleX;
-    return scale * emtr->mpEmtrMgr->mpWorkData->mGlobalPtclScl.x;
+    return scale * emtr->mpEmtrMgr->pWd->mGlobalPtclScl.x;
 }
 
 /* 80280568-80280588 27AEA8 0020+00 0/0 3/3 0/0 .text
  * getHeight__15JPABaseParticleCFPC14JPABaseEmitter             */
 f32 JPABaseParticle::getHeight(JPABaseEmitter const* emtr) const {
     f32 scale = 2.0f * mParticleScaleY;
-    return scale * emtr->mpEmtrMgr->mpWorkData->mGlobalPtclScl.y;
+    return scale * emtr->mpEmtrMgr->pWd->mGlobalPtclScl.y;
 }

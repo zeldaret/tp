@@ -169,6 +169,11 @@ s8 mDoMain::developmentMode = -1;
 /* 80450584-80450588 000004 0004+00 0/0 1/1 0/0 .sdata           memMargin__7mDoMain */
 u32 mDoMain::memMargin = 0xFFFFFFFF;
 
+#ifdef DEBUG
+u32 mDoMain::archiveHeapSize;
+u32 mDoMain::gameHeapSize;
+#endif
+
 /* 80450588-80450590 000008 0008+00 2/2 0/0 0/0 .sdata           None */
 u8 mDoMain::mHeapBriefType = 4;
 

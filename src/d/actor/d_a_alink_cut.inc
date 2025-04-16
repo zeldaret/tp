@@ -32,7 +32,7 @@ void daAlink_c::checkLightSwordMtrl() {
     if (checkLightMasterSwordEquip()) {
         stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
 
-        if (i_dStage_stagInfo_GetSaveTbl(stag_info) == 0x17 ||
+        if (dStage_stagInfo_GetSaveTbl(stag_info) == 0x17 ||
             fopAcIt_Judge((fopAcIt_JudgeFunc)daAlink_searchNightStalker, NULL))
         {
             onNoResetFlg3(FLG3_UNK_100000);

@@ -3,6 +3,7 @@
 
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JSupport/JSUList.h"
+#include "JSystem/JUtility/JUTAssert.h"
 #include <dolphin/os.h>
 #include <dolphin/os.h>
 
@@ -112,7 +113,7 @@ class JASMemChunkPool : public OSMutex {
             mChunks = 0;
         }
 
-        bool checkArea(void* ptr) {
+        bool checkArea(const void* ptr) const {
             return (u8*)this + 0xc <= (u8*)ptr && (u8*)ptr < (u8*)this + (ChunkSize + 0xc);
         }
 
@@ -127,11 +128,11 @@ class JASMemChunkPool : public OSMutex {
             return rv;
         }
 
-        void free() {
+        void free(void* mem) {
             mChunks--;
         }
 
-        bool isEmpty() {
+        bool isEmpty() const {
             return mChunks == 0;
         }
 
@@ -201,7 +202,8 @@ public:
         MemoryChunk* prevChunk = NULL;
         while (chunk != NULL) {
             if (chunk->checkArea(ptr)) {
-                chunk->free();
+                chunk->free(ptr);
+
                 if (chunk != field_0x18 && chunk->isEmpty()) {
                     MemoryChunk* nextChunk = chunk->getNextChunk();
                     delete chunk;
@@ -212,6 +214,8 @@ public:
             prevChunk = chunk;
             chunk = chunk->getNextChunk();
         }
+
+        JUT_PANIC(362,"Cannnot free for JASMemChunkPool")
     }
 
     /* 0x18 */ MemoryChunk* field_0x18;

@@ -6212,7 +6212,7 @@ int daAlink_c::create() {
         daTagMhint_c::createPortalWarpMissTag(0xBBE, fopAcM_GetID(this));
     }
 
-    if (i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) == 0x11) {
+    if (dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) == 0x11) {
         if (!dComIfGs_isItemFirstBit(fpcNm_ITEM_HYLIA_SHIELD) && !dComIfGs_isItemFirstBit(fpcNm_ITEM_SHIELD) &&
             !dComIfGs_isItemFirstBit(fpcNm_ITEM_WOOD_SHIELD))
         {

@@ -50,12 +50,12 @@ int daTagMhint_c::create() {
     if (!checkNoAttention()) {
         stage_arrow_data_class* arrow_data_p =
             &dComIfGp_getRoomArrow(fopAcM_GetRoomNo(this))
-                 ->mEntries[dComIfGp_getRoomCamera(fopAcM_GetRoomNo(this))
-                                ->mEntries[field_0x56d]
-                                .field_0x10];
+                 ->m_entries[dComIfGp_getRoomCamera(fopAcM_GetRoomNo(this))
+                                ->m_entries[field_0x56d]
+                                .m_arrow_idx];
 
-        eyePos.set(arrow_data_p->mPosition.x, arrow_data_p->mPosition.y,
-                    arrow_data_p->mPosition.z);
+        eyePos.set(arrow_data_p->position.x, arrow_data_p->position.y,
+                    arrow_data_p->position.z);
         attention_info.position = eyePos;
     }
 

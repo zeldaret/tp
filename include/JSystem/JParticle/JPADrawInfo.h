@@ -22,8 +22,8 @@ public:
     Mtx mCamMtx;
     Mtx mPrjMtx;
 
-    void getCamMtx(Mtx* dst) const { MTXCopy(mCamMtx, *dst); }
-    void getPrjMtx(Mtx* dst) const { MTXCopy(mPrjMtx, *dst); }
+    void getCamMtx(Mtx dst) const { MTXCopy(mCamMtx, dst); }
+    void getPrjMtx(Mtx dst) const { MTXCopy(mPrjMtx, dst); }
 };
 
 #endif

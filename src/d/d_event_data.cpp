@@ -149,8 +149,8 @@ static int dEvDt_Next_Stage(int index, int wipe_type) {
             info = dComIfGp_roomControl_getStatusRoomDt(room_no)->getSclsInfo();
         }
 
-        if (info != NULL && id >= 0 && id < info->numEntries) {
-            stage_scls_info_class* stgInfo = &info->mEntries[id];
+        if (info != NULL && id >= 0 && id < info->num) {
+            stage_scls_info_class* stgInfo = &info->m_entries[id];
             stage = stgInfo->mStage;
             point = stgInfo->mStart;
             roomNo = (s8)stgInfo->mRoom;
@@ -739,7 +739,7 @@ void dEvDtStaff_c::specialProcDirector() {
         if (switchTableP != NULL) {
             switchTable = *switchTableP;
         } else {
-            switchTable = i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo());
+            switchTable = dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo());
         }
 
         int* switchBitP = dComIfGp_evmng_getMyIntegerP(staffId, "SwitchBit");
