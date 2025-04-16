@@ -133,6 +133,7 @@ int daAlink_c::kandelaarModelCallBack() {
         mDoMtx_stack_c::ZXYrotM(var_r28, var_r29, var_r27);
     }
 
+    static Vec const kandelaarOffset = {0.0f, -17.0f, 0.0f};
     mDoMtx_stack_c::multVec(&kandelaarOffset, &mKandelaarFlamePos);
 
     field_0x3618 = (mKandelaarFlamePos - field_0x3624) * 0.9f;
@@ -206,7 +207,7 @@ void daAlink_c::preKandelaarDraw() {
         var_f3 = 0.0f;
     }
 
-    if (proj.x > 0.0f && proj.x < 640.0f && proj.y > var_f3 && proj.y < 456.0f - var_f3) {
+    if (proj.x > 0.0f && proj.x < 608.0f && proj.y > var_f3 && proj.y < 448.0f - var_f3) {
         dComIfGd_peekZ(proj.x, proj.y, &field_0x32c8);
     } else {
         field_0x32c8 = 0;

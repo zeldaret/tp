@@ -15,7 +15,11 @@
  */
 class daCrod_c : public fopAc_ac_c {
 public:
-    /* 80141A94 */ void setControllActorData();
+    /* 80141A94 */ void setControllActorData() {
+        mControllActorKeep.setActor();
+        mCameraActorKeep.setActor();
+    }
+
     /* 804A2E38 */ int createHeap();
     /* 804A2F18 */ int create();
     /* 804A3304 */ ~daCrod_c();

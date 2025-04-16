@@ -1567,6 +1567,9 @@ int daAlink_c::procOctaIealSpitInit() {
     return 1;
 }
 
+static f32 dummyFloat() {
+    return -34.0f;
+}
 
 /* 80105A00-80105A84 100340 0084+00 1/0 0/0 0/0 .text            procOctaIealSpit__9daAlink_cFv */
 int daAlink_c::procOctaIealSpit() {

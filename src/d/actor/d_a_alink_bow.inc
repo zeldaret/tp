@@ -93,6 +93,8 @@ cXyz* daAlink_c::checkBowCameraArrowPosP(s16* param_0, s16* param_1) {
     mDoMtx_stack_c::transS(field_0x3834);
     concatMagneBootMtx();
     mDoMtx_stack_c::ZXYrotM(mBodyAngle.x, var_28, 0);
+
+    static Vec const localPos = {3.45f, 45.32f, -7.0f};
     mDoMtx_stack_c::multVec(&localPos, &mHeldItemRootPos);
 
     *param_0 = mBodyAngle.x;
@@ -271,6 +273,7 @@ BOOL daAlink_c::checkUpperItemActionBow() {
     daPy_frameCtrl_c* frameCtrl_p = &mUpperFrameCtrl[2];
 
     if (mEquipItem == fpcNm_ITEM_PACHINKO) {
+        static Vec const slingLocalPos = {10.0f, 10.0f, 0.0f};
         mDoMtx_multVec(getLeftItemMatrix(), &slingLocalPos, &mHeldItemRootPos);
     }
 

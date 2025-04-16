@@ -424,10 +424,6 @@ void positionOf__9dCamera_cFP10fopAc_ac_c();
 void setFlag__9dCamera_cFUl();
 void eyePos__9dCamera_cFP10fopAc_ac_c();
 
-u32 daPy_py_c::getLastSceneMode() {
-    return dComIfGs_getLastSceneMode() & 0xF;
-}
-
 //
 // Declarations:
 //

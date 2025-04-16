@@ -28,23 +28,25 @@ f32 daAlink_c::getCrawlMoveSpeed() {
 
 /* 800F7CE8-800F7E48 0F2628 0160+00 4/4 0/0 0/0 .text setCrawlMoveDirectionArrow__9daAlink_cFv */
 void daAlink_c::setCrawlMoveDirectionArrow() {
+    static const u8 data_80452F38[2] = {1, 4};
+
     u8 direction = 0;
     camera_class* camera = dComIfGp_getCamera(field_0x317c);
     BOOL bvar = cLib_distanceAngleS(fopCamM_GetAngleY(camera), shape_angle.y) > 0x4000;
 
     if (field_0x3198 & 4) {
         if (!bvar) {
-            direction = data_80452F38;
+            direction = data_80452F38[0];
         } else {
-            direction = data_80452F39;
+            direction = data_80452F38[1];
         }
     }
 
     if (field_0x3198 & 8) {
         if (!bvar) {
-            direction |= data_80452F39;
+            direction |= data_80452F38[1];
         } else {
-            direction |= data_80452F38;
+            direction |= data_80452F38[0];
         }
     }
 
