@@ -1028,50 +1028,50 @@ static int daE_MS_Create(fopAc_ac_c* actor) {
         int params = fopAcM_GetParam(i_this) >> 0x10 & 0xff;
         if (params != 0xff && dComIfGs_isSwitch(params, fopAcM_GetRoomNo(i_this))) {
             return cPhs_ERROR_e;
-        } else {
-            i_this->field_0x5b6 = fopAcM_GetParam(i_this);
-            i_this->field_0x5b7 = fopAcM_GetParam(i_this) >> 8;
-            i_this->field_0x5b8 = fopAcM_GetParam(i_this) >> 0x18;
-
-            if (!fopAcM_entrySolidHeap(i_this, useHeapInit, 0x1860)) {
-                return cPhs_ERROR_e;
-            } else {
-                if (!struct_807297FC) {
-                    i_this->field_0xbb8 = 1;
-                    struct_807297FC = 1;
-                    l_HIO.field_0x4 = -1;
-                }
-
-                fopAcM_SetMtx(i_this, i_this->mpModelMorf->getModel()->getBaseTRMtx());
-                i_this->health = 1;
-                i_this->field_0x560 = 1;
-
-                i_this->mDStts.Init(0x1e, 0, i_this);
-                i_this->mSph1.Set(cc_sph_src);
-                i_this->mSph1.SetStts(&i_this->mDStts);
-                i_this->mSph2.Set(at_sph_src);
-                i_this->mSph2.SetStts(&i_this->mDStts);
-                i_this->mAcch.Set(&i_this->current.pos, &i_this->old.pos, i_this, 1, &i_this->mAcchCir, &i_this->speed, NULL, NULL);
-                i_this->mAcchCir.SetWall(50.0f, 50.0f);
-
-                i_this->mSound.init(&i_this->current.pos, &i_this->eyePos, 3, 1);
-                i_this->mSound.setEnemyName("E_ms");
-                i_this->mAtInfo.mpSound = &i_this->mSound;
-                
-                i_this->field_0x67c = cM_rndF(65535.0f);
-                if (i_this->field_0x5b8 != 0xff) {
-                    if (!dComIfGs_isSwitch(i_this->field_0x5b8, fopAcM_GetRoomNo(i_this))) {
-                        i_this->field_0xba5 = 1;
-                        i_this->field_0x67e = 10;
-                    }
-
-                    i_this->field_0xba6 = 1;
-                }
-
-                daE_MS_Execute(i_this);
-                
-            }
         }
+
+        i_this->field_0x5b6 = fopAcM_GetParam(i_this);
+        i_this->field_0x5b7 = fopAcM_GetParam(i_this) >> 8;
+        i_this->field_0x5b8 = fopAcM_GetParam(i_this) >> 0x18;
+
+        if (!fopAcM_entrySolidHeap(i_this, useHeapInit, 0x1860)) {
+            return cPhs_ERROR_e;
+        }
+            
+        if (!struct_807297FC) {
+            i_this->field_0xbb8 = 1;
+            struct_807297FC = 1;
+            l_HIO.field_0x4 = -1;
+        }
+
+        fopAcM_SetMtx(i_this, i_this->mpModelMorf->getModel()->getBaseTRMtx());
+        i_this->health = 1;
+        i_this->field_0x560 = 1;
+
+        i_this->mDStts.Init(0x1e, 0, i_this);
+        i_this->mSph1.Set(cc_sph_src);
+        i_this->mSph1.SetStts(&i_this->mDStts);
+        i_this->mSph2.Set(at_sph_src);
+        i_this->mSph2.SetStts(&i_this->mDStts);
+        i_this->mAcch.Set(&i_this->current.pos, &i_this->old.pos, i_this, 1, &i_this->mAcchCir, &i_this->speed, NULL, NULL);
+        i_this->mAcchCir.SetWall(50.0f, 50.0f);
+
+        i_this->mSound.init(&i_this->current.pos, &i_this->eyePos, 3, 1);
+        i_this->mSound.setEnemyName("E_ms");
+        i_this->mAtInfo.mpSound = &i_this->mSound;
+                
+        i_this->field_0x67c = cM_rndF(65535.0f);
+        if (i_this->field_0x5b8 != 0xff) {
+            if (!dComIfGs_isSwitch(i_this->field_0x5b8, fopAcM_GetRoomNo(i_this))) {
+                i_this->field_0xba5 = 1;
+                i_this->field_0x67e = 10;
+            }
+
+            i_this->field_0xba6 = 1;
+        }
+
+        daE_MS_Execute(i_this);
+                  
     }
 
     return phase;

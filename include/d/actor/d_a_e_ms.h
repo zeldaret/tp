@@ -22,7 +22,6 @@ public:
     /* 0x5B8 */ int field_0x5b8;
     /* 0x5BC */ cXyz field_0x5bc;
     /* 0x5C8 */ s16 field_0x5c8;
-    /* 0x5CA */ u8 field_0x5ca[0x5cc - 0x5ca];
     /* 0x5CC */ mDoExt_McaMorfSO* mpModelMorf;
     /* 0x5D0 */ int field_0x5d0;
     /* 0x5D4 */ u32 field_0x5d4;
@@ -38,7 +37,6 @@ public:
     /* 0x698 */ dBgS_AcchCir mAcchCir;
     /* 0x6D8 */ dBgS_ObjAcch mAcch;
     /* 0x8B0 */ s8 field_0x8b0;
-    /* 0x8B1 */ u8 field_0x8b1[0x8b4 - 0x8b1];
     /* 0x8B4 */ dCcD_Stts mDStts;
     /* 0x8F0 */ dCcD_Sph mSph1;
     /* 0xA28 */ dCcD_Sph mSph2;
@@ -68,7 +66,6 @@ public:
     void genMessage(JORMContext*);
 
     /* 0x04 */ s8 field_0x4;
-    /* 0x05 */ u8 field_0x5[0x8 - 0x5];
     /* 0x08 */ f32 field_0x8;
     /* 0x0C */ f32 field_0xc;
     /* 0x10 */ f32 field_0x10;
