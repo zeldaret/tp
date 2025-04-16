@@ -988,7 +988,7 @@ static void e_fm_damage_run(e_fm_class* i_this) {
         }
 
         if (i_this->speedF > 1.0f && move_speed < 1.0f) {
-            dComIfGp_getVibration().StartShock(YREG_S(3) + VIBMODE_S_POWER7, 0xF, cXyz(0.0f, 1.0f, 0.0f));
+            dComIfGp_getVibration().StartShock(YREG_S(3) + (int)VIBMODE_S_POWER7, 0xF, cXyz(0.0f, 1.0f, 0.0f));
             dComIfGp_particle_set(0x8150, &i_this->home.pos, NULL, NULL);
             mDoAud_seStart(Z2SE_OBJ_FM_DIRTFALL, NULL, 0, 0);
             i_this->mSound.startCreatureSound(Z2SE_EN_FM_FOOTNOTE, 0, -1);

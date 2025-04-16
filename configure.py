@@ -312,9 +312,11 @@ if config.version != "ShieldD":
 # REL flags
 cflags_rel = [
     *cflags_framework,
-    "-sdata 0",
-    "-sdata2 0",
 ]
+
+# I think that debug version doesn't pass these flags but the build fails on a relocation 
+#if config.version != "ShieldD":
+cflags_rel.extend(["-sdata 0", "-sdata2 0"])
 
 def MWVersion(cfg_version: str):
     match cfg_version:
@@ -1556,7 +1558,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_scene_exit2"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_shop_item"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_sq"),
-    ActorRel(NonMatching, "d_a_swc00"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_swc00", extra_cflags=[] if config.version != "ShieldD" else ["-sdata 8", "-sdata2 8"]),
     ActorRel(MatchingFor("GZ2E01"), "d_a_tag_CstaSw"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_tag_ajnot"),
     ActorRel(NonMatching, "d_a_tag_attack_item"),
