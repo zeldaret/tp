@@ -162,7 +162,7 @@ void daAlink_c::hsChainShape_c::draw() {
                 mDoMtx_stack_c::transS(sp98);
                 mDoMtx_stack_c::ZXYrotM(sp64);
 
-                static Vec hsVec = {0.0f, 0.0f, 5.0f};
+                static const Vec hsVec = {0.0f, 0.0f, 5.0f};
                 mDoMtx_stack_c::multVec(&hsVec, &sp98);
 
                 mDoMtx_stack_c::revConcat(j3dSys.getViewMtx());
@@ -904,6 +904,7 @@ void daAlink_c::setHookshotPos() {
     mItemBck.entry(field_0x0710->getModelData(), 0.0f);
     field_0x0710->calc();
 
+    static Vec const hookRoot = {0.0f, 0.0f, 23.5f};
     mDoMtx_multVec(mHeldItemModel->getBaseTRMtx(), &hookRoot, &mHeldItemRootPos);
     mDoMtx_multVec(field_0x0710->getBaseTRMtx(), &hookRoot, &field_0x3810);
 
