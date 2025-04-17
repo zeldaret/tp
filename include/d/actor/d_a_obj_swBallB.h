@@ -30,7 +30,7 @@ public:
     /* 80CF5388 */ void PutCrrPos();
     /* 80CF56A4 */ int draw();
     /* 80CF582C */ int _delete();
-    /* 80CF5940 */ ~daObjSwBallB_c();
+    /* 80CF5940 */ virtual ~daObjSwBallB_c() {}
 
     s32 getID() { return fopAcM_GetParamBit(this, 0, 8); }
     u32 getSwbit2() { return fopAcM_GetParamBit(this, 8, 8); }

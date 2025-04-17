@@ -1556,7 +1556,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_scene_exit2"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_shop_item"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_sq"),
-    ActorRel(NonMatching, "d_a_swc00"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_swc00"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_tag_CstaSw"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_tag_ajnot"),
     ActorRel(NonMatching, "d_a_tag_attack_item"),
