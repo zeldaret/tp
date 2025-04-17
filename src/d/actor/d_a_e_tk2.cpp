@@ -233,6 +233,7 @@ daE_TK2_HIO_c::daE_TK2_HIO_c() {
     mSpeedModifier2 = 25.0f;
 }
 
+
 /* ############################################################################################## */
 /* 807BBDBC-807BBDC0 000014 0004+00 1/4 0/0 0/0 .rodata          @3780 */
 // SECTION_RODATA static u8 const lit_3780[4] = {
@@ -313,7 +314,7 @@ static int pl_check(e_tk2_class* i_this, f32 i_limit, s16 i_max_diff) {
 }
 
 /* 807BA824-807BA940 0003A4 011C+00 1/1 0/0 0/0 .text            damage_check__FP11e_tk2_class */
-static int damage_check(e_tk2_class* i_this) {
+static void damage_check(e_tk2_class* i_this) {
     if (i_this->mInvincibilityTimer == 0) {
         i_this->mStts.Move();
 
@@ -382,16 +383,10 @@ static void e_tk2_wait_0(e_tk2_class* i_this) {
 // SECTION_RODATA static f32 const lit_3938 = 3.0f;
 // COMPILER_STRIP_GATE(0x807BBDC8, &lit_3938);
 // #pragma pop
-static f32 dummyFloat2() {
-    return 3.0f;
-}
 
 /* 807BBDCC-807BBDD0 000024 0004+00 1/6 0/0 0/0 .rodata          @3939 */
 // SECTION_RODATA static f32 const lit_3939 = 1.0f;
 // COMPILER_STRIP_GATE(0x807BBDCC, &lit_3939);
-static f32 dummyFloat1() {
-    return 1.0f;
-}
 
 /* 807BBDD0-807BBDD4 000028 0004+00 0/2 0/0 0/0 .rodata          @3940 */
 // #pragma push
@@ -886,23 +881,15 @@ static dCcD_SrcSph cc_sph_src = {
 
 /* 807BB94C-807BBC00 0014CC 02B4+00 1/0 0/0 0/0 .text            daE_TK2_Create__FP10fopAc_ac_c */
 static int daE_TK2_Create(fopAc_ac_c* i_this) {
+
     fopAcM_SetupActor(i_this, e_tk2_class);
     e_tk2_class* a_this = static_cast<e_tk2_class*>(i_this);
 
-    int iVar2;
-    uint uVar3;
-    J3DModel* this_00;
-    cXyz* pcVar5;
-
     cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&a_this->mPhaseReq, "E_tk2");
     if (phase == cPhs_COMPLEATE_e) {
-        iVar2 = fopAcM_GetParam((fopAc_ac_c*)a_this);
-        iVar2 = fopAcM_GetParam((fopAc_ac_c*)a_this);
-        a_this->mArg0 = (u8)iVar2;
-        iVar2 = fopAcM_GetParam((fopAc_ac_c*)a_this);
-        a_this->mArg1 = (u8)((uint)iVar2 >> 8) & 0xf;
-        uVar3 = fopAcM_GetParam((fopAc_ac_c*)a_this);
-        a_this->mArg2 = (u8)((uVar3 & 0xf000) >> 0xc);
+        a_this->mArg0 = (u8)fopAcM_GetParam((fopAc_ac_c*)a_this);
+        a_this->mArg1 = (u8)((uint)fopAcM_GetParam((fopAc_ac_c*)a_this) >> 8) & 0xf;
+        a_this->mArg2 = (u8)((fopAcM_GetParam((fopAc_ac_c*)a_this) & 0xf000) >> 0xc);
 
         if (!fopAcM_entrySolidHeap(a_this, useHeapInit, 0x23a0)) {
             return cPhs_ERROR_e;
