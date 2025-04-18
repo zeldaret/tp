@@ -49,7 +49,7 @@ public:
     /* 0x6A1 */ s8 mTKBallSpawned;
     /* 0x6A4 */ u32 mHamonSet;
     /* 0x6A8 */ u8 field_0x6a8[4];
-    /* 0x6AC */ fpc_ProcID mpBallID;
+    /* 0x6AC */ fpc_ProcID mBallID;
     /* 0x6B0 */ dBgS_AcchCir mAcchCir;
     /* 0x6F0 */ dBgS_ObjAcch mAcch;
     /* 0x8C8 */ dCcD_Stts mStts;
