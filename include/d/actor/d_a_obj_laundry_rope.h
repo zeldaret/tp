@@ -1,7 +1,8 @@
 #ifndef D_A_OBJ_LAUNDRY_ROPE_H
 #define D_A_OBJ_LAUNDRY_ROPE_H
 
-#include "f_op/f_op_actor_mng.h"
+#include "d/d_cc_d.h"
+#include "f_op/f_op_actor.h"
 
 /**
  * @ingroup actors-objects
@@ -18,10 +19,21 @@ public:
     /* 80C52890 */ void setBaseMtx();
     /* 80C528E0 */ void setNormalRopePos();
 
+    inline int create();
+
     static u8 const M_attr[20];
 
 private:
-    /* 0x568 */ u8 field_0x568[0x1774 - 0x568];
+    /* 0x568 */ mDoExt_3DlineMat1_c mRopeMat;
+    /* 0x5a4 */ request_of_phase_process_class mPhase;
+    /* 0x5ac */ Mtx mMtx;
+    /* 0x5dc */ dCcD_Stts mStts;
+    /* 0x618 */ dCcD_Sph mSphs[13];
+    /* 0x15f0 */ cXyz mPositions1[13];
+    /* 0x168c */ cXyz mPositions2[13];
+    /* 0x1728 */ u8 field_0x1728[0x175c - 0x1728];
+    /* 0x175c */ cXyz mPos;
+    /* 0x1768 */ u8 field_0x1768[0x1774 - 0x1768];
 };
 
 STATIC_ASSERT(sizeof(daObjLndRope_c) == 0x1774);

@@ -6,6 +6,9 @@
 #include "d/actor/d_a_obj_laundry_rope.h"
 #include "d/d_cc_d.h"
 #include "dol2asm.h"
+#include "SSystem/SComponent/c_math.h"
+#include "d/d_com_inf_game.h"
+#include "d/d_kankyo_wether.h"
 
 
 //
@@ -78,7 +81,6 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 //
 // Declarations:
@@ -282,11 +284,11 @@ SECTION_DEAD static char const* const stringBase_80C533BA = "Obj_ItaRope.bti";
 #pragma pop
 
 /* 80C533CC-80C533D0 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&d_a_obj_laundry_rope__stringBase0;
+static char* l_arcName = "Obj_SRope";
 
 /* 80C52CC8-80C52D70 000B48 00A8+00 1/1 0/0 0/0 .text            createSolidHeap__FP10fopAc_ac_c */
-static void createSolidHeap(fopAc_ac_c* param_0) {
-    // NONMATCHING
+static int createSolidHeap(fopAc_ac_c* param_0) {
+    return 1;
 }
 
 /* ############################################################################################## */
@@ -386,46 +388,22 @@ extern "C" void __dt__8dCcD_SphFv() {
     // NONMATCHING
 }
 
+int daObjLndRope_c::create() {
+    fopAcM_SetupActor(this, daObjLndRope_c);
+    int phase = dComIfG_resLoad(&mPhase, l_arcName);
+    if (phase == cPhs_COMPLEATE_e) {
+        if (!fopAcM_entrySolidHeap(this, createSolidHeap, 0x6c0)) {
+            phase = cPhs_ERROR_e;
+        } else {
+            create_init();
+        }
+    }
+
+    return phase;
+}
+
 /* 80C52FF8-80C53140 000E78 0148+00 1/0 0/0 0/0 .text            daObjLndRope_Create__FP10fopAc_ac_c
  */
-static void daObjLndRope_Create(fopAc_ac_c* param_0) {
-    // NONMATCHING
+static int daObjLndRope_Create(fopAc_ac_c* i_this) {
+    return ((daObjLndRope_c*)i_this)->create();
 }
-
-/* 80C53140-80C53144 000FC0 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
-// cXyz::cXyz() {
-extern "C" void __ct__4cXyzFv() {
-    /* empty function */
-}
-
-/* 80C53144-80C531C8 000FC4 0084+00 1/1 0/0 0/0 .text            __ct__8dCcD_SphFv */
-// dCcD_Sph::dCcD_Sph() {
-extern "C" void __ct__8dCcD_SphFv() {
-    // NONMATCHING
-}
-
-/* 80C531C8-80C53210 001048 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGSphFv */
-// cM3dGSph::~cM3dGSph() {
-extern "C" void __dt__8cM3dGSphFv() {
-    // NONMATCHING
-}
-
-/* 80C53210-80C53258 001090 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
-// cM3dGAab::~cM3dGAab() {
-extern "C" void __dt__8cM3dGAabFv() {
-    // NONMATCHING
-}
-
-/* 80C53258-80C532B4 0010D8 005C+00 1/0 0/0 0/0 .text            __dt__10dCcD_GSttsFv */
-// dCcD_GStts::~dCcD_GStts() {
-extern "C" void __dt__10dCcD_GSttsFv() {
-    // NONMATCHING
-}
-
-/* 80C532B4-80C532FC 001134 0048+00 1/0 0/0 0/0 .text            __dt__10cCcD_GSttsFv */
-// cCcD_GStts::~cCcD_GStts() {
-extern "C" void __dt__10cCcD_GSttsFv() {
-    // NONMATCHING
-}
-
-/* 80C533B0-80C533B0 0000AC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
