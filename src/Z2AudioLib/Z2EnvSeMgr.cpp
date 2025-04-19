@@ -10,6 +10,11 @@
 #include "d/d_save.h"
 #include "d/d_com_inf_game.h"
 
+#ifdef DEBUG
+// Should be in data section
+static char sSpotName[144] = {0};
+#endif
+
 /* 802C589C-802C58AC 2C01DC 0010+00 3/3 0/0 0/0 .text            __ct__11Z2EnvSeBaseFP3Vec */
 Z2EnvSeBase::Z2EnvSeBase(Vec* param_0) {
     mPos = param_0;
@@ -970,6 +975,10 @@ void Z2EnvSeMgr::setHyrulSewerOpen(bool param_0) {
 /* 802C8300-802C8730 2C2C40 0430+00 2/1 1/1 0/0 .text            startRiverSe__10Z2EnvSeMgrFSc */
 // NONMATCHING JAISound stack issues
 bool Z2EnvSeMgr::startRiverSe(s8 param_1) {
+    #ifdef DEBUG
+    char* spotName = sSpotName;
+    #endif
+    
     if (Z2GetStatusMgr()->mCameraMapInfo == 6) {
         switch (Z2GetSceneMgr()->getCurrentSceneNum()) {
         case 5:
@@ -982,7 +991,13 @@ bool Z2EnvSeMgr::startRiverSe(s8 param_1) {
             }
         case 8:
             // fake match: should be 2000.0f according to debug, but that generates an extra entry in sdata2
-            if (Z2GetStatusMgr()->mPolygonPosition.y < -14500.0f) {
+            if ((Z2GetStatusMgr()->mPolygonPosition.y > 
+            #ifdef DEBUG
+            2000.0f
+            #else
+            -14500.0f
+            #endif
+            )) {
                 break;
             }
         case 0x15:
@@ -1003,26 +1018,31 @@ bool Z2EnvSeMgr::startRiverSe(s8 param_1) {
     f32 dVar16 = param_1 / 127.0f;
     f32 dVar18 = field_0x1ac * mRiverSeMgr.getMaxVolume();
     f32 dVar13 = mRiverSeMgr.getPanPower();
-    f32 dVar14 = mRiverSeMgr.getDolbyPower();
+    f32 dolbyPower = mRiverSeMgr.getDolbyPower();
     f32 dVar17 = field_0x1b0;
+    f32 fArr0;
+    f32 fArr1;
+    f32 fArr2;
+    f32 fArr3;
 
     switch (field_0x188) {
     case 0:
         return false;
     case 1:
         aJStack_742 = Z2SE_ENV_RIVER_SMALL;
+        fArr3 = dolbyPower;
         dVar18 *= Z2Calc::linearTransform(field_0x18c.calcNoise1f(), 0.0f, 1.0f, 0.7f, 1.0f,
                                           true);
         dVar17 *= Z2Calc::linearTransform(field_0x19c.calcNoise1f(), 0.0f, 1.0f, 0.8f, 1.1f,
                                           true);
-        uVar8 = field_0x180.startEnvSeLevel(aJStack_742, dVar16, dVar18, dVar13, dVar14, dVar17, 0);
+        uVar8 = field_0x180.startEnvSeLevel(aJStack_742, dVar16, dVar18, dVar13, dolbyPower, dVar17, 0);
         break;
     case 2:
         aJStack_742 = Z2SE_ENV_RIVER_NORMAL;
         mRiverSeMgr.getMaxPowL();
         mRiverSeMgr.getMaxPowR();
-        mRiverSeMgr.getDolbyPower();
-        uVar8 = field_0x180.startEnvSeLevel(aJStack_742, dVar16, dVar18, dVar13, dVar14, dVar17, 0);
+        fArr2 = mRiverSeMgr.getDolbyPower();
+        uVar8 = field_0x180.startEnvSeLevel(aJStack_742, dVar16, dVar18, dVar13, dolbyPower, dVar17, 0);
         break;
     case 3:
         if (field_0x1b8 > 0) {
@@ -1035,15 +1055,17 @@ bool Z2EnvSeMgr::startRiverSe(s8 param_1) {
             }
         }
         aJStack_742 = Z2SE_ENV_SEWER;
+        fArr1 = dolbyPower;
         dVar18 *= Z2Calc::linearTransform(field_0x18c.calcNoise1f(), 0.0f, 1.0f, 0.6f, 1.0f, true);
         dVar17 *= Z2Calc::linearTransform(field_0x19c.calcNoise1f(), 0.0f, 1.0f, 0.8f, 1.0f, true);
-        uVar8 = field_0x180.startEnvSeLevel(aJStack_742, dVar16, dVar18, dVar13, dVar14, dVar17, 0);
+        uVar8 = field_0x180.startEnvSeLevel(aJStack_742, dVar16, dVar18, dVar13, dolbyPower, dVar17, 0);
         break;
     case 5:
         aJStack_742 = Z2SE_ENV_SPIRIT_FOUNTAIN;
+        fArr0 = dolbyPower;
         dVar18 *= Z2Calc::linearTransform(field_0x18c.calcNoise1f(), 0.0f, 1.0f, 0.6f, 1.0f, true);
         dVar17 *= Z2Calc::linearTransform(field_0x19c.calcNoise1f(), 0.0f, 1.0f, 0.8f, 1.0f, true);
-        uVar8 = field_0x180.startEnvSeLevel(aJStack_742, dVar16, dVar18, dVar13, dVar14, dVar17, 0);
+        uVar8 = field_0x180.startEnvSeLevel(aJStack_742, dVar16, dVar18, dVar13, dolbyPower, dVar17, 0);
         break;
     }
 
@@ -1323,23 +1345,27 @@ f32 Z2EnvSeMgr::getFogDensity() {
 /* 802C9400-802C950C 2C3D40 010C+00 0/0 0/0 1/1 .text            startFogSe__10Z2EnvSeMgrFv */
 // NONMATCHING fmuls reg order
 bool Z2EnvSeMgr::startFogSe() { 
+    bool iVar5 = false;
     f32 dVar10 = field_0x2e8.calcNoise1f();
-    f32 dVar14 = 0.332f + (0.668f * dVar10);
-    f32 dVar13 = 0.8f + (dVar10 * 0.2f);
-    f32 dVar12 = 0.5f - (dVar10 * 0.4f) / 2;
-    bool iVar5 =
-        field_0x240.startEnvSeLevel(Z2SE_ENV_PUPPET_FOG_L, 20.0f, dVar14, dVar12, 0.5f, dVar13, 0);
+    f32 ratio = 0.332f;
+    f32 fVar1 = 0.2f;
+    f32 fVar2 = 0.4f;
+    f32 dVar14 = ratio + ((1.0f - ratio) * dVar10);
+    f32 dVar13 = (1.0f - fVar1) + (dVar10 * fVar1);
+    f32 dVar12 = 0.5f - (dVar10 * fVar2) / 2;
+    int iVar1 = 20;
+    f32 fVar3 = 0.5f;
+    bool iVar6 =
+        field_0x240.startEnvSeLevel(Z2SE_ENV_PUPPET_FOG_L, iVar1, dVar14, dVar12, fVar3, dVar13, 0);
     dVar10 = field_0x2f8.calcNoise1f();
-    dVar14 = (0.332f + (0.668f * dVar10));
-    dVar13 = (0.8f + (0.2f * dVar10));
-    dVar12 = (0.5f + ( 0.4f * dVar10) / 2);
-    bool iVar6 = field_0x274.startEnvSeLevel(Z2SE_ENV_PUPPET_FOG_R, 20.0f, dVar14, dVar12, 0.5f,
+    dVar14 = (ratio + ((1.0f - ratio) * dVar10));
+    dVar13 = ((1.0f - fVar1) + dVar10 * fVar1);
+    dVar12 = (0.5f + (dVar10 * fVar2) / 2);
+    iVar1 = 20;
+    fVar3 = 0.5f;
+    iVar5 = field_0x274.startEnvSeLevel(Z2SE_ENV_PUPPET_FOG_R, iVar1, dVar14, dVar12, fVar3,
                                              dVar13, 0);
-    bool uVar8 = false;
-    if (iVar5 && iVar6) {
-        uVar8 = true;
-    }
-    return uVar8;
+    return (iVar6 && iVar5);
 }
 
 /* 802C950C-802C9F58 2C3E4C 0A4C+00 2/0 1/1 0/0 .text initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc */

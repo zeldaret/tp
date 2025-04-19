@@ -9,28 +9,8 @@
 #include "JSystem/JAudio2/JASTrack.h"
 #include "JSystem/JMath/random.h"
 #include "JSystem/JSupport/JSupport.h"
+#include "JSystem/JUtility/JUTAssert.h"
 
-/* 80293CF4-80293DC4 28E634 00D0+00 3/3 0/0 0/0 .text
- * conditionCheck__12JASSeqParserFP8JASTrackQ212JASSeqParser15BranchCondition */
-bool JASSeqParser::conditionCheck(JASTrack* param_0, JASSeqParser::BranchCondition param_1) {
-    u16 reg = readReg(param_0, 3);
-    switch (param_1) {
-    case 0:
-        return 1;
-    case 1:
-        return reg == 0;
-    case 2:
-        return reg != 0;
-    case 3:
-        return reg == 1;
-    case 4:
-        return 0x8000 <= reg;
-    case 5:
-        return 0x8000 > reg;
-    default:
-        return 0;
-    }
-}
 
 /* 803C5E80-803C6480 022FA0 0600+00 1/2 0/0 0/0 .data            sCmdInfo__12JASSeqParser */
 JASSeqParser::CmdInfo JASSeqParser::sCmdInfo[96] = {
@@ -143,6 +123,29 @@ JASSeqParser::CmdInfo JASSeqParser::sExtCmdInfo[255] = {
     NULL, 0x0000, 0x0000,
 };
 
+/* 80293CF4-80293DC4 28E634 00D0+00 3/3 0/0 0/0 .text
+ * conditionCheck__12JASSeqParserFP8JASTrackQ212JASSeqParser15BranchCondition */
+bool JASSeqParser::conditionCheck(JASTrack* param_0, JASSeqParser::BranchCondition param_1) {
+    u16 reg = readReg(param_0, 3);
+    switch (param_1) {
+    case 0:
+        return 1;
+    case 1:
+        return reg == 0;
+    case 2:
+        return reg != 0;
+    case 3:
+        return reg == 1;
+    case 4:
+        return 0x8000 <= reg;
+    case 5:
+        return 0x8000 > reg;
+    default:
+        JUT_WARN(463, "%s", "Unexpected condition flag");
+        return 0;
+    }
+}
+
 /* 80293DC4-80293FC8 28E704 0204+00 8/7 0/0 0/0 .text writeReg__12JASSeqParserFP8JASTrackUlUl */
 void JASSeqParser::writeReg(JASTrack* param_0, u32 param_1, u32 param_2) {
     param_0->writeReg(JASRegisterParam::REG3, param_2);
@@ -171,6 +174,7 @@ void JASSeqParser::writeReg(JASTrack* param_0, u32 param_1, u32 param_2) {
         break;
     case 0x60:
     case 0x61:
+        JUT_WARN(502, "%s", "writeReg for Read-Only Register");
         break;
     case 0x62:
         param_0->setTimebase(param_2);
@@ -259,57 +263,80 @@ u32 JASSeqParser::readReg(JASTrack* param_0, u32 param_1) const {
     case 0x4d:
     case 0x4e:
     case 0x4f:
-        return param_0->getPort(param_1 - 0x40);
+        result = param_0->getPort(param_1 - 0x40);
+        break;
     case 0x60:
         r27 = 1;
-        for (int i = 0; i < 16; i++) {
+        for (u32 i = 0; i < 16; i++, r27 <<= 1) {
             JASTrack* child = param_0->getChild(i);
             if (child && child->getStatus() == 1) {
                 result |= r27;
             }
-            r27 <<= 1;
         }
         break;
     case 0x61:
-        return param_0->getSeqCtrl()->getSeqReader()->getLoopCount();
+        result = param_0->getSeqCtrl()->getSeqReader()->getLoopCount();
+        break;
     case 0x62:
-        return param_0->getTimebase();
+        result = param_0->getTimebase();
+        break;
     case 0x63:
-        return param_0->mTranspose;
+        result = param_0->getTranspose();
+        break;
     case 0x64:
-        return param_0->getBendSense();
+        result = param_0->getBendSense();
+        break;
     case 0x65:
-        return param_0->getGateRate();
+        result = param_0->getGateRate();
+        break;
     case 0x66:
-        return param_0->getSkipSample();
+        result = param_0->getSkipSample();
+        break;
     case 0x67:
-        return param_0->getBankNumber();
+        result = param_0->getBankNumber();
+        break;
     case 0x68:
-        return param_0->getProgNumber();
+        result = param_0->getProgNumber();
+        break;
     case 0x69:
-        return param_0->getPanPower() * 32767.0f;
+        result = param_0->getPanPower() * 32767.0f;
+        break;
     case 0x6a:
-        return param_0->getReleasePrio() | param_0->getNoteOnPrio();
+        result = param_0->getReleasePrio();
+        // @bug this should have been <<=
+        result << 8;
+        result |= param_0->getNoteOnPrio();
+        break;
     case 0x6b:
-        return param_0->getNoteOnPrio();
+        result = param_0->getNoteOnPrio();
+        break;
     case 0x6c:
-        return param_0->getReleasePrio();
+        result = param_0->getReleasePrio();
+        break;
     case 0x6d:
-        return param_0->getDirectRelease();
+        result = param_0->getDirectRelease();
+        break;
     case 0x6e:
-        return param_0->getVibDepth() * 1524.0f;
+        result = param_0->getVibDepth() * 1524.0f;
+        break;
     case 0x6f:
-        return param_0->getVibDepth() * 12192.0f;
+        result = param_0->getVibDepth() * 12192.0f;
+        break;
     case 0x70:
-        return param_0->getTremDepth() * 256.0f;
+        result = param_0->getTremDepth() * 256.0f;
+        break;
     case 0x71:
-        return param_0->getVibPitch() * 64.0f;
+        result = param_0->getVibPitch() * 64.0f;
+        break;
     case 0x72:
-        return param_0->getTremPitch() * 64.0f;
+        result = param_0->getTremPitch() * 64.0f;
+        break;
     case 0x73:
-        return param_0->getVibDelay();
+        result = param_0->getVibDelay();
+        break;
     case 0x74:
-        return param_0->getTremDelay();
+        result = param_0->getTremDelay();
+        break;
     default:
         break;
     }
@@ -323,6 +350,7 @@ s32 JASSeqParser::cmdOpenTrack(JASTrack* param_0, u32* param_1) {
     u32 r28 = param_1[1];
     JASTrack* child = param_0->openChild(r29);
     if (!child) {
+        JUT_WARN(679, "%s", "Cannot open child track");
         return 0;
     }
     child->setSeqData(param_0->getSeqCtrl()->getBase(), r28);
@@ -354,6 +382,7 @@ s32 JASSeqParser::cmdCallF(JASTrack* param_0, u32* param_1) {
 /* 8029429C-802942D4 28EBDC 0038+00 1/0 0/0 0/0 .text cmdRet__12JASSeqParserFP8JASTrackPUl */
 s32 JASSeqParser::cmdRet(JASTrack* param_0, u32* param_1) {
     if (!param_0->getSeqCtrl()->ret()) {
+        JUT_WARN(718, "%s", "cannot ret for call-stack is NULL");
         return 0;
     }
     return 0;
@@ -363,6 +392,7 @@ s32 JASSeqParser::cmdRet(JASTrack* param_0, u32* param_1) {
 s32 JASSeqParser::cmdRetF(JASTrack* param_0, u32* param_1) {
     if (conditionCheck(param_0, BranchCondition(param_1[0]))) {
         if (!param_0->getSeqCtrl()->ret()) {
+            JUT_WARN(729, "%s", "cannot ret for call-stack is NULL");
             return 0;
         }
     }
@@ -385,9 +415,9 @@ s32 JASSeqParser::cmdJmpF(JASTrack* param_0, u32* param_1) {
 
 /* 80294398-802943CC 28ECD8 0034+00 1/0 0/0 0/0 .text cmdJmpTable__12JASSeqParserFP8JASTrackPUl */
 s32 JASSeqParser::cmdJmpTable(JASTrack* param_0, u32* param_1) {
+    JASSeqCtrl* seqCtrl = param_0->getSeqCtrl();
     u32 uVar1 = param_1[0];
     uVar1 += uVar1 * 2;
-    JASSeqCtrl* seqCtrl = param_0->getSeqCtrl();
     seqCtrl->jump(seqCtrl->get24(param_1[1] + uVar1));
     return 0;
 }
@@ -449,11 +479,15 @@ s32 JASSeqParser::cmdWritePort(JASTrack* param_0, u32* param_1) {
 /* 802945BC-802945F8 28EEFC 003C+00 1/0 0/0 0/0 .text
  * cmdParentWritePort__12JASSeqParserFP8JASTrackPUl             */
 s32 JASSeqParser::cmdParentWritePort(JASTrack* param_0, u32* param_1) {
-    JASTrack* parent = param_0->getParent();
-    if (parent) {
-        parent->writePort(param_1[0], param_1[1]);
-    } else {
-
+    {
+        u32* p1 = param_1;
+        u32* p2 = param_1 + 1;
+        JASTrack* parent = param_0->getParent();
+        if (parent) {
+            parent->writePort(*p1, *p2);
+        } else {
+            JUT_WARN(835, "%s", "parent == NULL");
+        }
     }
     return 0;
 }
@@ -461,11 +495,14 @@ s32 JASSeqParser::cmdParentWritePort(JASTrack* param_0, u32* param_1) {
 /* 802945F8-80294644 28EF38 004C+00 1/0 0/0 0/0 .text
  * cmdChildWritePort__12JASSeqParserFP8JASTrackPUl              */
 s32 JASSeqParser::cmdChildWritePort(JASTrack* param_0, u32* param_1) {
-    JASTrack* child = param_0->getChild(JSUHiNibble(param_1[0]));
-    if (child) {
-        child->writePort(JSULoNibble(param_1[0]), param_1[1]);
-    } else {
-
+    {
+        u8 val = param_1[0];
+        JASTrack* child = param_0->getChild(JSUHiNibble(val));
+        if (child) {
+            child->writePort(JSULoNibble(val), param_1[1]);
+        } else {
+            JUT_WARN(848, "%s", "child == NULL");
+        }
     }
     return 0;
 }
@@ -473,12 +510,14 @@ s32 JASSeqParser::cmdChildWritePort(JASTrack* param_0, u32* param_1) {
 /* 80294644-802946AC 28EF84 0068+00 1/0 0/0 0/0 .text
  * cmdParentReadPort__12JASSeqParserFP8JASTrackPUl              */
 s32 JASSeqParser::cmdParentReadPort(JASTrack* param_0, u32* param_1) {
+    u32* p1 = param_1;
+    u32* p2 = param_1 + 1;
     JASTrack* parent = param_0->getParent();
     if (parent) {
-        u16 tmp = parent->readPort(param_1[0]);
-        writeReg(param_0, param_1[1], tmp);
+        u16 tmp = parent->readPort(*p1);
+        writeReg(param_0, *p2, tmp);
     } else {
-
+        JUT_WARN(864, "%s", "parent == NULL");
     }
     return 0;
 }
@@ -486,12 +525,14 @@ s32 JASSeqParser::cmdParentReadPort(JASTrack* param_0, u32* param_1) {
 /* 802946AC-80294724 28EFEC 0078+00 1/0 0/0 0/0 .text
  * cmdChildReadPort__12JASSeqParserFP8JASTrackPUl               */
 s32 JASSeqParser::cmdChildReadPort(JASTrack* param_0, u32* param_1) {
-    JASTrack* child = param_0->getChild(JSUHiNibble(param_1[0]));
+    u8 val = param_1[0];
+    u32* p2 = param_1 + 1;
+    JASTrack* child = param_0->getChild(JSUHiNibble(val));
     if (child) {
-        u16 tmp = child->readPort(JSULoNibble(param_1[0]));
-        writeReg(param_0, param_1[1], tmp);
+        u16 tmp = child->readPort(JSULoNibble(val));
+        writeReg(param_0, *p2, tmp);
     } else {
-
+        JUT_WARN(880, "%s", "child == NULL");
     }
     return 0;
 }
@@ -515,13 +556,15 @@ s32 JASSeqParser::cmdCheckPortExport(JASTrack* param_0, u32* param_1) {
 /* 802947BC-802947F4 28F0FC 0038+00 1/0 0/0 0/0 .text cmdWait__12JASSeqParserFP8JASTrackPUl */
 s32 JASSeqParser::cmdWait(JASTrack* param_0, u32* param_1) {
     JASSeqCtrl* seqCtrl = param_0->getSeqCtrl();
-    seqCtrl->wait(seqCtrl->readMidiValue());
+    int midiValue = seqCtrl->readMidiValue();
+    seqCtrl->wait(midiValue);
     return 0;
 }
 
 /* 802947F4-80294804 28F134 0010+00 1/0 0/0 0/0 .text cmdWaitByte__12JASSeqParserFP8JASTrackPUl */
 s32 JASSeqParser::cmdWaitByte(JASTrack* param_0, u32* param_1) {
-    param_0->getSeqCtrl()->wait(param_1[0]);
+    u32 val = param_1[0];
+    param_0->getSeqCtrl()->wait(val);
     return 0;
 }
 
@@ -532,7 +575,7 @@ s32 JASSeqParser::cmdSetLastNote(JASTrack* param_0, u32* param_1) {
     if (r31 < 256) {
         param_0->setLatestKey(r31);
     } else {
-
+        JUT_WARN(928, "%s", "Too large latest key");
     }
     return 0;
 }
@@ -639,7 +682,8 @@ s32 JASSeqParser::cmdNop(JASTrack* param_0, u32* param_1) {
 
 /* 80294AE4-80294B1C 28F424 0038+00 1/0 0/0 0/0 .text cmdFIRSet__12JASSeqParserFP8JASTrackPUl */
 s32 JASSeqParser::cmdFIRSet(JASTrack* param_0, u32* param_1) {
-    param_0->setFIR((s16*)param_0->getSeqCtrl()->getAddr(param_1[0]));
+    s16* addr = (s16*)param_0->getSeqCtrl()->getAddr(param_1[0]);
+    param_0->setFIR(addr);
     return 0;
 }
 
@@ -660,7 +704,7 @@ s32 JASSeqParser::cmdIIRCutOff(JASTrack* param_0, u32* param_1) {
     if (r31 < 128) {
         param_0->setIIR(JASCalc::CUTOFF_TO_IIR_TABLE[r31]);
     } else {
-
+        JUT_WARN(1077, "%s", "Too large cutoff");
     }
     return 0;
 }
@@ -687,14 +731,16 @@ s32 JASSeqParser::cmdPrg(JASTrack* param_0, u32* param_1) {
 
 /* 80294BF8-80294C54 28F538 005C+00 1/0 0/0 0/0 .text cmdParamI__12JASSeqParserFP8JASTrackPUl */
 s32 JASSeqParser::cmdParamI(JASTrack* param_0, u32* param_1) {
-    param_0->setParam(param_1[0], s16(param_1[1]) / 32767.0f, 0);
+    s16 val = param_1[1];
+    param_0->setParam(param_1[0], val / 32767.0f, 0);
     return 0;
 }
 
 
 /* 80294C54-80294CB0 28F594 005C+00 1/0 0/0 0/0 .text cmdParamII__12JASSeqParserFP8JASTrackPUl */
 s32 JASSeqParser::cmdParamII(JASTrack* param_0, u32* param_1) {
-    param_0->setParam(param_1[0], s16(param_1[1]) / 32767.0f, param_1[2]);
+    s16 val = param_1[1];
+    param_0->setParam(param_1[0], val / 32767.0f, param_1[2]);
     return 0;
 }
 
@@ -704,7 +750,7 @@ s32 JASSeqParser::cmdParamE(JASTrack* param_0, u32* param_1) {
     s32* r31 = (s32*)param_1 + 1;
     s16 r30 = *r31 << 8;
     if ((*r31 & 0x80) == 0) {
-        r30 = r30 | s16(*r31 << 1);
+        r30 |= s16(*r31 << 1);
     }
     param_0->setParam(param_1[0], r30 / 32767.0f, 0);
     return 0;
@@ -716,7 +762,7 @@ s32 JASSeqParser::cmdParamEI(JASTrack* param_0, u32* param_1) {
     s32* r31 = (s32*)param_1 + 1;
     s16 r30 = *r31 << 8;
     if ((*r31 & 0x80) == 0) {
-        r30 = r30 | s16(*r31 << 1);
+        r30 |= s16(*r31 << 1);
     }
     param_0->setParam(param_1[0], r30 / 32767.0f, param_1[2]);
     return 0;
@@ -724,10 +770,11 @@ s32 JASSeqParser::cmdParamEI(JASTrack* param_0, u32* param_1) {
 
 /* 80294DA8-80294F10 28F6E8 0168+00 3/0 0/0 0/0 .text cmdReg__12JASSeqParserFP8JASTrackPUl */
 s32 JASSeqParser::cmdReg(JASTrack* param_0, u32* param_1) {
+    u32 val = param_1[0];
     u32 r29 = param_1[1];
     u32 r30 = param_1[2];
     u32 tmp;
-    switch (param_1[0]) {
+    switch (val) {
     case 0:
         break;
     case 1:
@@ -754,9 +801,8 @@ s32 JASSeqParser::cmdReg(JASTrack* param_0, u32* param_1) {
         r30 ^= readReg(param_0, r29);
         break;
     case 8:
-        static JMath::TRandom_fast_ oRandom(0);
-        tmp = oRandom.get_bit32() >> 9;
-        r30 = tmp % r30;
+        static JMath::TRandom_<JMath::TRandom_fast_> oRandom(0);
+        r30 = (oRandom.get_bit32() >> 9) % r30;
         break;
     case 9:
         r30 = readReg(param_0, r29) << r30;
@@ -765,6 +811,7 @@ s32 JASSeqParser::cmdReg(JASTrack* param_0, u32* param_1) {
         r30 = readReg(param_0, r29) >> r30;
         break;
     default:
+        JUT_WARN(1191, "%s", "cmdReg Not Supported RegCmdType");
         return 0;
     }
     writeReg(param_0, r29, r30);
@@ -773,19 +820,23 @@ s32 JASSeqParser::cmdReg(JASTrack* param_0, u32* param_1) {
 
 /* 80294F10-80294F40 28F850 0030+00 1/0 0/0 0/0 .text cmdRegLoad__12JASSeqParserFP8JASTrackPUl */
 s32 JASSeqParser::cmdRegLoad(JASTrack* param_0, u32* param_1) {
-    writeReg(param_0, param_1[0], param_1[1]);
+    u32 val1 = param_1[0];
+    u32 val2 = param_1[1];
+    writeReg(param_0, val1, val2);
     return 0;
 }
 
 /* 80294F40-80294FB4 28F880 0074+00 1/0 0/0 0/0 .text cmdRegUni__12JASSeqParserFP8JASTrackPUl */
 s32 JASSeqParser::cmdRegUni(JASTrack* param_0, u32* param_1) {
+    u32 val1 = param_1[0];
     u32 r31 = param_1[1];
     s32 r30 = 0;
-    switch (param_1[0]) {
+    switch (val1) {
     case 11:
         r30 = -readReg(param_0, r31);
         break;
     default:
+        JUT_WARN(1217, "%s", "cmdRegUni Not Supported RegCmdType");
         return 0;
     }
     writeReg(param_0, r31, r30);
@@ -794,31 +845,34 @@ s32 JASSeqParser::cmdRegUni(JASTrack* param_0, u32* param_1) {
 
 /* 80294FB4-80295088 28F8F4 00D4+00 1/0 0/0 0/0 .text cmdRegTblLoad__12JASSeqParserFP8JASTrackPUl
  */
-// NONMATCHING case 12
 s32 JASSeqParser::cmdRegTblLoad(JASTrack* param_0, u32* param_1) {
     JASSeqCtrl* seqCtrl = param_0->getSeqCtrl();
+    u32 p0 = param_1[0];
     u32 p1 = param_1[1];
     u32 p2 = param_1[2];
     u32 p3 = param_1[3];
     u32 r27;
-    switch (param_1[0]) {
+    switch (p0) {
     case 12:
         r27 = seqCtrl->getByte(p2 + p3);
         break;
     case 13:
-        r27 = seqCtrl->get16(p2 + p3 * 2);
+        p3 *= 2;
+        r27 = seqCtrl->get16(p2 + p3);
         break;
     case 14:
         p3 += p3 * 2;
         r27 = seqCtrl->get24(p2 + p3);
         break;
     case 15:
-        r27 = seqCtrl->get32(p2 + p3 * 4);
+        p3 *= 4;
+        r27 = seqCtrl->get32(p2 + p3);
         break;
     case 16:
         r27 = seqCtrl->get32(p2 + p3);
         break;
     default:
+        JUT_WARN(1255, "%s", "cmdRegTblLoad Not Supported RegCmdType");
         return 0;
     }
     writeReg(param_0, p1, r27);
@@ -843,7 +897,6 @@ s32 JASSeqParser::cmdDump(JASTrack* param_0, u32* param_1) {
 }
 
 /* 8029526C-80295498 28FBAC 022C+00 1/0 0/0 0/0 .text cmdPrintf__12JASSeqParserFP8JASTrackPUl */
-// NONMATCHING problem with second for loop
 s32 JASSeqParser::cmdPrintf(JASTrack* param_0, u32* param_1) {
     u8 stack_c[4];
     u32 stack_10[4];
@@ -851,7 +904,8 @@ s32 JASSeqParser::cmdPrintf(JASTrack* param_0, u32* param_1) {
 
     JASSeqCtrl* seqCtrl = param_0->getSeqCtrl();
     u32 r30 = 0;
-    for (u32 i = 0; i < 128; i++) {
+    u32 i = 0;
+    for (; i < 128; i++) {
         buffer[i] = seqCtrl->readByte();
         if (buffer[i] == 0) {
             break;
@@ -895,8 +949,8 @@ s32 JASSeqParser::cmdPrintf(JASTrack* param_0, u32* param_1) {
         }
     }
 
-    for (u32 i = 0; i < r30; i++) {
-        stack_10[i] = seqCtrl->readByte();
+    for (i = 0; i < r30; i++) {
+        stack_10[i] = (u8)seqCtrl->readByte();
         switch (stack_c[i]) {
         case 2:
             stack_10[i] = (u32)seqCtrl->getAddr(stack_10[i]);
@@ -965,10 +1019,11 @@ s32 JASSeqParser::execCommand(JASTrack* param_0, s32 (JASSeqParser::*param_1)(JA
 
 /* 802955C8-80295600 28FF08 0038+00 1/1 0/0 0/0 .text parseNoteOff__12JASSeqParserFP8JASTrackUc */
 s32 JASSeqParser::parseNoteOff(JASTrack* param_0, u8 param_1) {
-    if (param_1 & 7) {
-        execNoteOff(param_0, param_1 & 7);
+    u8 note_id = param_1 & 7;
+    if (note_id) {
+        execNoteOff(param_0, note_id);
     } else {
-
+        JUT_WARN(1433, "%s", "noteoff for note_id == 0");
     }
     return 0;
 }
@@ -977,46 +1032,49 @@ s32 JASSeqParser::parseNoteOff(JASTrack* param_0, u8 param_1) {
 s32 JASSeqParser::parseNoteOn(JASTrack* param_0, u8 param_1) {
     JASSeqCtrl* seqCtrl = param_0->getSeqCtrl();
     u32 r28 = seqCtrl->readByte();
+    u32 r30 = r28;
+    r30 &= 7;
     u32 r27 = seqCtrl->readByte();
-    if ((r28 & 7) == 0) {
-        execNoteOnGate(param_0, param_1, r27, seqCtrl->readMidiValue(), r28);
+    if ((u8)r30 == 0) {
+        u32 midiVal = seqCtrl->readMidiValue();
+        execNoteOnGate(param_0, (u8)param_1, (u8)r27, midiVal, (u8)r28);
     } else {
-        execNoteOnMidi(param_0, r28 & 7, param_1, r27);
+        execNoteOnMidi(param_0, (u8)r30, (u8)param_1, (u8)r27);
     }
     return 0;
 }
 
 /* 802956B0-80295864 28FFF0 01B4+00 2/2 0/0 0/0 .text parseCommand__12JASSeqParserFP8JASTrackUcUs
  */
-// NONMATCHING u16 bit or
 s32 JASSeqParser::parseCommand(JASTrack* param_0, u8 cmd, u16 param_2) {
     JASSeqCtrl* seqCtrl = param_0->getSeqCtrl();
     CmdInfo* cmdInfo = NULL;
     if (cmd != 0xb0) {
+        JUT_ASSERT(1477, cmd >= 0xa0);
         cmdInfo = &sCmdInfo[cmd - 0xa0];
     } else {
         cmdInfo = &sExtCmdInfo[seqCtrl->readByte() & 0xff];
     }
-    u16 r28 = cmdInfo->field_0xe | param_2;
+    u16 r28 = (u16)cmdInfo->field_0xe;
+    r28 |= param_2;
     u32 stack_28[8];
-    for (int i = 0; i < cmdInfo->field_0xc; i++) {
+    for (int i = 0; i < cmdInfo->field_0xc; i++, r28 >>= 2) {
         int r27 = 0;
         switch (r28 & 3) {
         case 0:
-            r27 = seqCtrl->readByte();
+            r27 = (u8)seqCtrl->readByte();
             break;
         case 1:
-            r27 = seqCtrl->read16();
+            r27 = (u16)seqCtrl->read16();
             break;
         case 2:
             r27 = seqCtrl->read24();
             break;
         case 3:
-            r27 = readReg(param_0, seqCtrl->readByte());
+            r27 = readReg(param_0, (u8)seqCtrl->readByte());
             break;
         }
         stack_28[i] = r27;
-        r28 >>= 2;
     }
     s32 (JASSeqParser::*ptr)(JASTrack*, u32*) = cmdInfo->field_0x0;
     if (!ptr) {

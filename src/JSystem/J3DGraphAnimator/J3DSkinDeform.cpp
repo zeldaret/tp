@@ -57,20 +57,24 @@ static void J3DPSWeightMTXMultVecSR(f32 (*param_0)[4], f32 param_1, Vec* param_2
 /* 8032C85C-8032C8E4 32719C 0088+00 1/1 0/0 0/0 .text calcSkin_VtxPosF32__12J3DSkinNListFPA4_fPvPv
  */
 void J3DSkinNList::calcSkin_VtxPosF32(f32 (*param_0)[4], void* param_1, void* param_2) {
-    u16 r29 = field_0x10;
+    int r29 = field_0x10;
     for (int i = 0; i < r29; i++) {
-        u16 ind = field_0x0[i];
-        J3DPSWeightMTXMultVec(param_0, field_0x8[i], ((Vec*)param_1 + ind), ((Vec*)param_2 + ind));
+        Vec* pVec1 = (Vec*)param_1 + field_0x0[i];
+        Vec* pVec2 = (Vec*)param_2 + field_0x0[i];
+        f32 weight = field_0x8[i];
+        J3DPSWeightMTXMultVec(param_0, weight, pVec1, pVec2);
     }
 }
 
 /* 8032C8E4-8032C96C 327224 0088+00 1/1 0/0 0/0 .text calcSkin_VtxNrmF32__12J3DSkinNListFPA4_fPvPv
  */
 void J3DSkinNList::calcSkin_VtxNrmF32(f32 (*param_0)[4], void* param_1, void* param_2) {
-    u16 r29 = field_0x12;
+    int r29 = field_0x12;
     for (int i = 0; i < r29; i++) {
-        u16 ind = field_0x4[i];
-        J3DPSWeightMTXMultVecSR(param_0, field_0xc[i], ((Vec*)param_1 + ind), ((Vec*)param_2 + ind));
+        Vec* pVec1 = (Vec*)param_1 + field_0x4[i];
+        Vec* pVec2 = (Vec*)param_2 + field_0x4[i];
+        f32 weight = field_0xc[i];
+        J3DPSWeightMTXMultVecSR(param_0, weight, pVec1, pVec2);
     }
 }
 
@@ -100,7 +104,9 @@ f32* J3DSkinDeform::sWorkArea_WEvlpMixWeight[1024];
 /* 8032C9B0-8032CF44 3272F0 0594+00 0/0 1/1 0/0 .text
  * initSkinInfo__13J3DSkinDeformFP12J3DModelData                */
 void J3DSkinDeform::initSkinInfo(J3DModelData* param_0) {
-    u16 wevlpMtxNum = param_0->getWEvlpMtxNum();
+    J3D_ASSERT(322, param_0, "Error : null pointer.");
+    int vtxNum = param_0->getVtxNum();
+    int wevlpMtxNum = param_0->getWEvlpMtxNum();
     u16* wevlpMtxIndex = param_0->getWEvlpMixMtxIndex();
     f32* wevlpMixWeights = param_0->getWEvlpMixWeight();
     int currentOffset = 0;
@@ -122,7 +128,7 @@ void J3DSkinDeform::initSkinInfo(J3DModelData* param_0) {
                 mSkinNList[drawMtxIndex].field_0x10++;
             } else {
                 u16 drawMtxIndex = param_0->getDrawMtxIndex(uVar8);
-                wevlpMtxNum = param_0->getWEvlpMixMtxNum(drawMtxIndex);
+                int wevlpMtxNum = param_0->getWEvlpMixMtxNum(drawMtxIndex);
                 u16* indices = sWorkArea_WEvlpMixMtx[drawMtxIndex];
                 for (int j = 0; j < wevlpMtxNum; j++) {
                     mSkinNList[indices[j]].field_0x10++;
@@ -138,7 +144,7 @@ void J3DSkinDeform::initSkinInfo(J3DModelData* param_0) {
                 mSkinNList[drawMtxIndex].field_0x12++;
             } else {
                 u16 drawMtxIndex = param_0->getDrawMtxIndex(uVar8);
-                wevlpMtxNum = param_0->getWEvlpMixMtxNum(drawMtxIndex);
+                int wevlpMtxNum = param_0->getWEvlpMixMtxNum(drawMtxIndex);
                 u16* indices = sWorkArea_WEvlpMixMtx[drawMtxIndex];
                 for (int j = 0; j < wevlpMtxNum; j++) {
                     mSkinNList[indices[j]].field_0x12++;
@@ -163,16 +169,16 @@ void J3DSkinDeform::initSkinInfo(J3DModelData* param_0) {
         if (uVar8 != 0xffff) {
             if (param_0->getDrawMtxFlag(uVar8) == 0) {
                 u16 drawMtxIndex = param_0->getDrawMtxIndex(uVar8);
-                u16 uVar9 = mSkinNList[drawMtxIndex].field_0x10++;
+                int uVar9 = mSkinNList[drawMtxIndex].field_0x10++;
                 mSkinNList[drawMtxIndex].field_0x0[uVar9] = i;
                 mSkinNList[drawMtxIndex].field_0x8[uVar9] = 1.0f;
             } else {
                 u16 drawMtxIndex = param_0->getDrawMtxIndex(uVar8);
-                wevlpMtxNum = param_0->getWEvlpMixMtxNum(drawMtxIndex);
+                int wevlpMtxNum = param_0->getWEvlpMixMtxNum(drawMtxIndex);
                 u16* indices = sWorkArea_WEvlpMixMtx[drawMtxIndex];
                 f32* weights = sWorkArea_WEvlpMixWeight[drawMtxIndex];
                 for (int j = 0; j < wevlpMtxNum; j++) {
-                    u16 uVar9 = mSkinNList[indices[j]].field_0x10++;
+                    int uVar9 = mSkinNList[indices[j]].field_0x10++;
                     mSkinNList[indices[j]].field_0x0[uVar9] = i;
                     mSkinNList[indices[j]].field_0x8[uVar9] = weights[j];
                 }
@@ -184,16 +190,16 @@ void J3DSkinDeform::initSkinInfo(J3DModelData* param_0) {
         if (uVar8 != 0xffff) {
             if (param_0->getDrawMtxFlag(uVar8) == 0) {
                 u16 drawMtxIndex = param_0->getDrawMtxIndex(uVar8);
-                u16 uVar9 = mSkinNList[drawMtxIndex].field_0x12++;
+                int uVar9 = mSkinNList[drawMtxIndex].field_0x12++;
                 mSkinNList[drawMtxIndex].field_0x4[uVar9] = i;
                 mSkinNList[drawMtxIndex].field_0xc[uVar9] = 1.0f;
             } else {
                 u16 drawMtxIndex = param_0->getDrawMtxIndex(uVar8);
-                wevlpMtxNum = param_0->getWEvlpMixMtxNum(drawMtxIndex);
+                int wevlpMtxNum = param_0->getWEvlpMixMtxNum(drawMtxIndex);
                 u16* indices = sWorkArea_WEvlpMixMtx[drawMtxIndex];
                 f32* weights = sWorkArea_WEvlpMixWeight[drawMtxIndex];
                 for (int j = 0; j < wevlpMtxNum; j++) {
-                    u16 uVar9 = mSkinNList[indices[j]].field_0x12++;
+                    int uVar9 = mSkinNList[indices[j]].field_0x12++;
                     mSkinNList[indices[j]].field_0x4[uVar9] = i;
                     mSkinNList[indices[j]].field_0xc[uVar9] = weights[j];
                 }
@@ -208,8 +214,9 @@ u16 J3DSkinDeform::sWorkArea_MtxReg[1024 + 4 /* padding */];
 
 /* 8032CF44-8032D378 327884 0434+00 0/0 1/1 0/0 .text
  * initMtxIndexArray__13J3DSkinDeformFP12J3DModelData           */
-// NONMATCHING - Several register order and regalloc issues
+// NONMATCHING - local_58 issue
 int J3DSkinDeform::initMtxIndexArray(J3DModelData* param_0) {
+    J3D_ASSERT(507, param_0, "Error : null pointer.");
     if (mPosData != NULL && mNrmData != NULL) {
         return 0;
     }
@@ -249,6 +256,7 @@ int J3DSkinDeform::initMtxIndexArray(J3DModelData* param_0) {
         int r26 = -1;
         int r25 = -1;
         int r24 = -1;
+        int stack_3c = -1;
         int r23 = 0;
         for (GXVtxDescList* local_4c = param_0->getShapeNodePointer(local_6c)->getVtxDesc(); local_4c->attr != 0xff; local_4c++) {
             switch (local_4c->attr) {
@@ -270,6 +278,7 @@ int J3DSkinDeform::initMtxIndexArray(J3DModelData* param_0) {
                 }
                 break;
             case GX_VA_TEX0:
+                stack_3c = r23;
                 if (local_4c->type != GX_INDEX16) {
                     OSReport(" Invlid Data : CPU Pipeline process GX_INDEX16 Data Only\n");
                     return 6;
@@ -281,29 +290,36 @@ int J3DSkinDeform::initMtxIndexArray(J3DModelData* param_0) {
         for (u16 local_6e = 0; local_6e < param_0->getShapeNodePointer(local_6c)->getMtxGroupNum(); local_6e++) {
             J3DShapeMtx* piVar8 = param_0->getShapeNodePointer(local_6c)->getShapeMtx(local_6e);
             u8* pcVar10 = param_0->getShapeNodePointer(local_6c)->getShapeDraw(local_6e)->getDisplayList();
-            u16 uVar13;
-            for (u8* local_58 = pcVar10;
+            u8* local_58 = pcVar10;
+            int uVar13;
+            for (;
                 (int)local_58 - (int)pcVar10 < param_0->getShapeNodePointer(local_6c)->getShapeDraw(local_6e)->getDisplayListSize();
-                local_58 += r23 * uVar13, local_58 += 3) {
-                if (*local_58 != 0xA0 && *local_58 != 0x98) {
+                local_58 += r23 * uVar13) {
+                u8 uVar1 = *local_58;
+                local_58++;
+                if (uVar1 != 0xA0 && uVar1 != 0x98) {
                     break;
                 }
                 
-                uVar13 = *(u16*)(local_58 + 1);
+                uVar13 = *(u16*)local_58;
+                local_58 += 2;
                 for (int local_60 = 0; local_60 < uVar13; local_60++) {
-                    u8* iVar5 = local_58;
-                    iVar5 += r23 * local_60 + 3;
+                    u8* iVar5 = local_58 + r23 * local_60;
                     u8 bVar3 = *(iVar5 + r26) / 3U;
                     u16 uVar1 = *(u16*)(iVar5 + r25);
                     u16 uVar2 = *(u16*)(iVar5 + r24);
-                    u32 local_76 = piVar8->getUseMtxIndex(bVar3);
-                    if ((u16)local_76 == 0xffff) {
+                    u16 uVar3 = *(u16*)(iVar5 + stack_3c);
+                    u16 local_76 = piVar8->getUseMtxIndex(bVar3);
+                    if (local_76 == 0xffff) {
                         local_76 = sWorkArea_MtxReg[bVar3];
                     } else if (r26 != -1) {
                         sWorkArea_MtxReg[bVar3] = local_76;
                     }
+                    J3D_ASSERT(673, local_76 < param_0->getDrawMtxNum(), "Error : range over.");
+                    J3D_ASSERT(674, uVar1 < param_0->getVtxNum(), "Error : range over.");
                     mPosData[uVar1] = local_76;
                     if (r24 != -1) {
+                        J3D_ASSERT(680, uVar2 < param_0->getNrmNum(), "Error : range over.");
                         mNrmData[uVar2] = local_76;
                     }
                 }
@@ -315,58 +331,55 @@ int J3DSkinDeform::initMtxIndexArray(J3DModelData* param_0) {
         }
     }
 
-    for (int local_68 = 0; local_68 < param_0->getVtxNum(); local_68++) {
-        if (mPosData[local_68] == 0xffff) {
+    for (int i = 0; i < param_0->getVtxNum(); i++) {
+        if (mPosData[i] == 0xffff) {
             field_0x18 = 0x0;
-            mPosData[local_68] = 0;
+            mPosData[i] = 0;
+            OS_REPORT("Error : Invalid Positon Data Exists!.");
+            OS_REPORT("Error : Invalid Positon Index = %d\n", i);
         }
     }
 
     return 0;
 }
 
-/* ############################################################################################## */
-/* 803A2018-803A2028 02E678 0010+00 1/1 0/0 0/0 .rodata          @1270 */
-SECTION_RODATA static u8 const lit_1270[16] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02,
-};
-COMPILER_STRIP_GATE(0x803A2018, &lit_1270);
-
 /* 8032D378-8032D5C4 327CB8 024C+00 0/0 1/1 0/0 .text
  * changeFastSkinDL__13J3DSkinDeformFP12J3DModelData            */
 // NONMATCHING - regalloc, display list access issues
 void J3DSkinDeform::changeFastSkinDL(J3DModelData* param_0) {
+    J3D_ASSERT(740, param_0, "Error : null pointer.");
     for (u16 i = 0; i < param_0->getShapeNum(); i++) {
         u32 local_28[4] = {0,1,1,2};
-        s32 local_30 = -1;
-        s32 local_34 = 0;
+        int local_30 = -1;
+        int local_34 = 0;
         J3DShape* pShapeNode = param_0->getShapeNodePointer(i);
         for (GXVtxDescList* local_3c = pShapeNode->getVtxDesc(); local_3c->attr != GX_VA_NULL; local_3c++) {
             if (local_3c->attr == GX_VA_PNMTXIDX) {
                 local_30 = local_34;
             }
-            local_34 += local_28[(int)local_3c->type];
+            local_34 += local_28[local_3c->type];
         }
         if (local_30 != -1) {
             for (u16 j = 0; j < pShapeNode->getMtxGroupNum(); j++) {
                 u8* puVar5 = pShapeNode->getShapeDraw(j)->getDisplayList();
-                u8* puVar10 = puVar5;
                 u8* local_44 = puVar5;
-                while ((int)local_44 - (int)puVar5 < pShapeNode->getShapeDraw(j)->getDisplayListSize()) {
-                    u8 cVar1 = *(u8*)local_44;
+                u8* puVar10 = puVar5;
+                while (local_44 - puVar5 < pShapeNode->getShapeDraw(j)->getDisplayListSize()) {
+                    u8 cVar1 = *local_44;
+                    local_44++;
                     *puVar10++ = cVar1;
                     if ((cVar1 != 0xA0) && (cVar1 != 0x98))
                         break;
-                    u16 uVar9 = *(u16*)((int)local_44 + 1);
+                    int uVar9 = *(u16*)local_44;
+                    local_44 += 2;
                     *(u16*)puVar10 = uVar9;
                     puVar10 += 2;
                     for (int local_4c = 0; local_4c < uVar9; local_4c++) {
-                        u8* dst;
-                        memcpy(puVar10, &local_44[(local_34 * local_4c) + 4], local_34 - 1);
-                        puVar10 = (u8*)((int)puVar10 + local_34 - 1);
+                        u8* dst = &local_44[local_34 * local_4c];
+                        memcpy(puVar10, dst + 1, local_34 - 1);
+                        puVar10 = ((local_34 + puVar10) - 1);
                     }
                     local_44 += local_34 * uVar9;
-                    local_44 += 3;
                 }
                 int pcVar2 = ((int)puVar10 - (int)puVar5 + 0x1f) & ~0x1f;
                 while ((int)puVar10 - (int)puVar5 < pShapeNode->getShapeDraw(j)->getDisplayListSize()) {
@@ -377,11 +390,13 @@ void J3DSkinDeform::changeFastSkinDL(J3DModelData* param_0) {
             }
         }
     }
-
+    ;
+    ;
     for (u16 i = 0; i < param_0->getShapeNum(); i++) {
         J3DShape* pShape = param_0->getShapeNodePointer(i);
-        GXVtxDescList* local_60 = pShape->getVtxDesc();
-        for (GXVtxDescList*local_5c = local_60; local_5c->attr != GX_VA_NULL; local_5c++) {
+        GXVtxDescList* local_5c = pShape->getVtxDesc();
+        GXVtxDescList* local_60 = local_5c;
+        for (; local_5c->attr != GX_VA_NULL; local_5c++) {
             if (local_5c->attr != GX_VA_PNMTXIDX) {
                 local_60->attr = local_5c->attr;
                 local_60->type = local_5c->type;
@@ -567,7 +582,7 @@ void J3DSkinDeform::deformVtxNrm_F32(J3DVertexBuffer* param_0) const {
     void* currentVtxNrm = param_0->getCurrentVtxNrm();
     void* transformedVtxNrm = param_0->getTransformedVtxNrm(0);
     for (int i = 0; i < nrmNum; i++) {
-        J3DPSMulMtxVec(mNrmMtx[mNrmData[i]], ((Vec*)currentVtxNrm) + i, ((Vec*)transformedVtxNrm) + i);
+        J3DPSMulMtxVec(mNrmMtx[mNrmData[i]], (Vec*)((u8*)currentVtxNrm + i * 3 * 4), (Vec*)((u8*)transformedVtxNrm + i * 3 * 4));
     }
     DCStoreRange(param_0->getTransformedVtxNrm(0), param_0->getVertexData()->getNrmNum() * sizeof(Vec));
     param_0->setCurrentVtxNrm(transformedVtxNrm);

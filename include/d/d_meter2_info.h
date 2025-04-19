@@ -287,8 +287,7 @@ void dMeter2Info_setCloth(u8 i_clothId, bool param_1);
 void dMeter2Info_setShield(u8 i_itemId, bool param_1);
 void dMeter2Info_set2DVibration();
 void dMeter2Info_set2DVibrationM();
-static void dMeter2Info_setFloatingMessage(u16 pMessageID, s16 pMessageTimer, bool pWakuVisible);
-static void dMeter2Info_offUseButton(int pButton);
+void dMeter2Info_offUseButton(int pButton);
 bool dMeter2Info_is2DActiveTouchArea();
 u8 dMeter2Info_getRecieveLetterNum();
 bool dMeter2Info_getPixel(f32 param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4,
@@ -811,6 +810,10 @@ inline void dMeter2Info_onTempBit(int i_bit) {
 
 inline bool dMeter2Info_isNextStage(const char*, s16, s16, s16) {
     return false;
+}
+
+inline void dMeter2Info_setFloatingMessage(u16 pMessageID, s16 pMessageTimer, bool pWakuVisible) {
+    g_meter2_info.setFloatingMessage(pMessageID, pMessageTimer, pWakuVisible);
 }
 
 const char* dMeter2Info_getPlusTextureName();

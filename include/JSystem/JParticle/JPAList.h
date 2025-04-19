@@ -9,9 +9,7 @@
  */
 template <class T>
 struct JPANode {
-    JPANode() {
-        mpPrev = NULL;
-        mpNext = NULL;
+    JPANode() : mpPrev(NULL), mpNext(NULL) {
     }
     ~JPANode() {}
     JPANode<T>* getPrev() { return mpPrev; }
@@ -34,6 +32,7 @@ struct JPAList {
     /* 0x08 */ u32 mNum;
 
     JPAList() : mpFirst(NULL), mpLast(NULL), mNum() {}
+    ~JPAList() {}
 
     JPANode<T>* getEnd() { return NULL; }
     JPANode<T>* getFirst() const { return mpFirst; }
@@ -65,8 +64,7 @@ struct JPAList {
         } else {
             mpFirst = node;
             mpLast = node;
-            node->mpPrev = NULL;
-            node->mpNext = NULL;
+            node->mpNext = node->mpPrev = NULL;
         }
 
         mNum++;

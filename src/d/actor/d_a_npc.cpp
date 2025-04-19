@@ -267,7 +267,7 @@ void daNpcT_Path_c::reverse() {
 
 /* 80145DD0-80145E38 140710 0068+00 2/2 0/0 8/8 .text            setNextIdx__13daNpcT_Path_cFi */
 int daNpcT_Path_c::setNextIdx(int param_0) {
-    u16 numPnts = getNumPnts();
+    int numPnts = getNumPnts();
 
     if (chkClose() != 0 && numPnts == param_0) {
         return daNpcT_incIdx(param_0, mIdx, 1, mDirection);
@@ -2535,11 +2535,11 @@ BOOL daNpcT_getPlayerInfoFromPlayerList(int param_0, int i_roomNo, cXyz* o_spawn
                                         csXyz* o_angle) {
     BOOL ret = FALSE;
     dStage_roomDt_c* room_dt = dComIfGp_roomControl_getStatusRoomDt(i_roomNo);
-    stage_actor_data_class* entry = room_dt->getPlayer()->mEntries;
+    stage_actor_data_class* entry = room_dt->getPlayer()->m_entries;
     for (int i = 0; i < room_dt->getPlayerNum(); entry++, i++) {
-        if (param_0 == (entry->mAngle.z & 0xff)) {
-            *o_spawnPos = entry->mSpawnPos;
-            *o_angle = entry->mAngle;
+        if (param_0 == (entry->base.angle.z & 0xff)) {
+            *o_spawnPos = entry->base.position;
+            *o_angle = entry->base.angle;
             ret = TRUE;
             break;
         }
@@ -5094,12 +5094,12 @@ int daNpcF_getPlayerInfoFromPlayerList(int param_0, int i_roomNo, cXyz& param_2,
     int rv = 0;
 
     dStage_roomDt_c* roomP = dComIfGp_roomControl_getStatusRoomDt(i_roomNo);
-    stage_actor_data_class* entries = roomP->getPlayer()->mEntries;
+    stage_actor_data_class* entries = roomP->getPlayer()->m_entries;
 
     for (int i = 0; i < roomP->getPlayerNum(); entries++, i++) {
-        if (param_0 == (u8)entries->mAngle.z) {
-            param_2 = entries->mSpawnPos;
-            param_3 = entries->mAngle;
+        if (param_0 == (u8)entries->base.angle.z) {
+            param_2 = entries->base.position;
+            param_3 = entries->base.angle;
             rv = 1;
             break;
         }

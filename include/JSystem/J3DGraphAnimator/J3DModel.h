@@ -86,7 +86,7 @@ public:
     Mtx& getBaseTRMtx() { return mBaseTransformMtx; }
     void setBaseTRMtx(Mtx m) { MTXCopy(m, mBaseTransformMtx); }
     u32 getMtxCalcMode() const { return mFlags & 0x03; }
-    J3DVertexBuffer* getVertexBuffer() const { return (J3DVertexBuffer*)&mVertexBuffer; }
+    J3DVertexBuffer* getVertexBuffer() { return (J3DVertexBuffer*)&mVertexBuffer; }
     J3DMatPacket* getMatPacket(u16 idx) const { return &mMatPacket[idx]; }
     J3DShapePacket* getShapePacket(u16 idx) const { return &mShapePacket[idx]; }
     J3DMtxBuffer* getMtxBuffer() const { return mMtxBuffer; }

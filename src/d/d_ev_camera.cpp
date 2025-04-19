@@ -201,8 +201,8 @@ extern "C" u8 _90__7cSAngle[2 + 2 /* padding */];
 static bool func_800889F8(int param_0) {
     dStage_MapEventInfo_c* info = dComIfGp_getStage()->getMapEventInfo();
     if (info != NULL) {
-        for (int i = 0; i < info->mCount; i++) {
-            if (param_0 == info->mData[i].field_0x4) {
+        for (int i = 0; i < info->num; i++) {
+            if (param_0 == info->m_entries[i].field_0x4) {
                 return true;
             }
         }

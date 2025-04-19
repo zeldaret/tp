@@ -55,31 +55,34 @@ void JStudio_JStage::TAdaptor_light::adaptor_do_prepare() {
  * adaptor_do_begin__Q214JStudio_JStage14TAdaptor_lightFv       */
 // NONMATCHING - regalloc
 void JStudio_JStage::TAdaptor_light::adaptor_do_begin() {
-    adaptor_object_begin_();
-    JStage::TLight* pLightObj = get_pJSG_();
-    const JStudio::TObject* pObject = adaptor_getObject();
-    JUT_ASSERT(60, pObject != 0);
-    const JStudio::TControl* pControl = pObject->getControl();
-    GXColor lightColor = pLightObj->JSGGetColor();
-    adaptor_setVariableValue_GXColor(sauVariableValue_4_COLOR_RGBA, lightColor);
-    JStudio::TControl::TTransform_position_direction lightObjTransform;
-    JStudio::TControl::TTransform_position_direction aTStack_b8;
-    pLightObj->JSGGetPosition(&lightObjTransform.position);
-    pLightObj->JSGGetDirection(&lightObjTransform.direction);
-    JStudio::TControl::TTransform_position_direction* finalTransform =
-        pControl->transformOnGet_transform_ifEnabled(&lightObjTransform, &aTStack_b8);
-    adaptor_setVariableValue_Vec(sauVariableValue_3_POSITION_XYZ, finalTransform->position);
-    f32 dirx = finalTransform->direction.x;
-    f32 diry = finalTransform->direction.y;
-    f32 dirz = finalTransform->direction.z;
-    f32 sqr = sqrtf(dirx * dirx + dirz * dirz);
-    f32 dVar11 = atan2f(dirx, dirz);
-    f32 dVar9 = atan2f(diry, sqr);
-    adaptor_setVariableValue_immediate(10, MTXRadToDeg(dVar11));
-    adaptor_setVariableValue_immediate(11, MTXRadToDeg(dVar9));
-    Vec VStack_c4;
-    VECAdd(&finalTransform->position, &finalTransform->direction, &VStack_c4);
-    adaptor_setVariableValue_Vec(sauVariableValue_3_TARGET_POSITION_XYZ, VStack_c4);
+    {
+        adaptor_object_begin_();
+        JStage::TLight* pLightObj = get_pJSG_();
+        const JStudio::TObject* pObject = adaptor_getObject();
+        JUT_ASSERT(60, pObject != 0);
+        const JStudio::TControl* pControl = pObject->getControl();
+        JUT_ASSERT(62, pControl != 0);
+        GXColor lightColor = pLightObj->JSGGetColor();
+        adaptor_setVariableValue_GXColor(sauVariableValue_4_COLOR_RGBA, lightColor);
+        JStudio::TControl::TTransform_position_direction lightObjTransform;
+        JStudio::TControl::TTransform_position_direction aTStack_b8;
+        pLightObj->JSGGetPosition(&lightObjTransform.position);
+        pLightObj->JSGGetDirection(&lightObjTransform.direction);
+        JStudio::TControl::TTransform_position_direction* finalTransform =
+        pControl->transformOnGet_transform_ifEnabled(lightObjTransform, &aTStack_b8);
+        adaptor_setVariableValue_Vec(sauVariableValue_3_POSITION_XYZ, finalTransform->position);
+        f32 dirx = finalTransform->direction.x;
+        f32 diry = finalTransform->direction.y;
+        f32 dirz = finalTransform->direction.z;
+        f32 sqr = sqrtf(dirx * dirx + dirz * dirz);
+        f32 dVar11 = atan2f(dirx, dirz);
+        f32 dVar9 = atan2f(diry, sqr);
+        adaptor_setVariableValue_immediate(10, MTXRadToDeg(dVar11));
+        adaptor_setVariableValue_immediate(11, MTXRadToDeg(dVar9));
+        Vec VStack_c4;
+        VECAdd(&finalTransform->position, &finalTransform->direction, &VStack_c4);
+        adaptor_setVariableValue_Vec(sauVariableValue_3_TARGET_POSITION_XYZ, VStack_c4);
+    }
 }
 
 /* 8028CF68-8028CFBC 2878A8 0054+00 1/0 0/0 0/0 .text
