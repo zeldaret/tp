@@ -1,6 +1,7 @@
 #ifndef D_A_E_RDY_H
 #define D_A_E_RDY_H
 
+#include "JSystem/JHostIO/JORReflexible.h"
 #include "SSystem/SComponent/c_phase.h"
 #include "d/d_bg_s_acch.h"
 #include "d/d_cc_d.h"
@@ -87,13 +88,14 @@ public:
     /* 0x0A9E */ s16 field_0xa9e;
     /* 0x0AA0 */ s16 field_0xaa0;
     /* 0x0AA4 */ cXyz mArrowTarget;
-    /* 0x0AB0 */ u8 field_0xab0[0xabc - 0xab0];
+    /* 0x0AB0 */ cXyz field_0xab0;
     /* 0x0ABC */ f32 field_0xabc;
     /* 0x0AC0 */ f32 mKnockback;
     /* 0x0AC4 */ s16 mHitDirection;
     /* 0x0AC6 */ s16 field_0xac6;
     /* 0x0AC8 */ s8 field_0xac8;
-    /* 0x0AC9 */ u8 field_0xac9[0xadc - 0xac9];
+    /* 0x0ACC */ cXyz field_0xacc;
+    /* 0x0AD8 */ u8 field_0xad8[0xadc - 0xad8];
     /* 0x0ADC */ csXyz field_0xadc;
     /* 0x0AE2 */ csXyz field_0xae2;
     /* 0x0AE8 */ csXyz field_0xae8;
@@ -111,12 +113,8 @@ public:
     /* 0x0BA2 */ s16 field_0xba2[4];
     /* 0x0BAA */ s16 field_0xbaa;
     /* 0x0BAC */ s16 field_0xbac;
-    /* 0x0BAE */ s16 field_0xbae;
-    /* 0x0BB0 */ s16 field_0xbb0;
-    /* 0x0BB2 */ u8 field_0xbb2[0xbb4 - 0xbb2];
-    /* 0x0BB4 */ s16 field_0xbb4;
-    /* 0x0BB6 */ s16 field_0xbb6;
-    /* 0x0BB8 */ u8 field_0xbb8[0xbbc - 0xbb8];
+    /* 0x0BAE */ csXyz field_0xbae;
+    /* 0x0BB4 */ csXyz field_0xbb4;
     /* 0x0BBC */ f32 field_0xbbc;
     /* 0x0BC0 */ s16 field_0xbc0;
     /* 0x0BC2 */ u8 field_0xbc2[0xbc8 - 0xbc2];
@@ -170,10 +168,12 @@ public:
 
 STATIC_ASSERT(sizeof(e_rdy_class) == 0x142C);
 
-class daE_RDY_HIO_c {
+class daE_RDY_HIO_c : public JORReflexible {
 public:
     /* 8076BDCC */ daE_RDY_HIO_c();
     /* 80779880 */ virtual ~daE_RDY_HIO_c() {}
+
+    void genMessage(JORMContext*);
 
     /* 0x04 */ s8 field_0x4;
     /* 0x08 */ f32 mScale;
