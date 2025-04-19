@@ -37,8 +37,8 @@ public:
     /* 80BFDDDC */ int Draw();
     /* 80BFDE80 */ int Delete();
 
-    inline u32 getLR() { return fopAcM_GetParamBit(this, 8, 8); }
-    inline u32 getSw() { return fopAcM_GetParamBit(this, 0, 8); }
+    u32 getLR() { return fopAcM_GetParamBit(this, 8, 8); }
+    u32 getSw() { return fopAcM_GetParamBit(this, 0, 8); }
 
 private:
     /* 0x5A0 */ request_of_phase_process_class mPhase;

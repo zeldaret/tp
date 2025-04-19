@@ -6,25 +6,7 @@
 #include "d/actor/d_a_obj_goGate.h"
 #include "d/d_com_inf_game.h"
 
-//
-// Declarations:
-//
-
-/* 80BFE010-80BFE01C 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80BFE01C-80BFE030 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-// unused data ?
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
+UNK_REL_DATA
 
 /* 80BFD6AC-80BFD6DC 0000EC 0030+00 1/1 0/0 0/0 .text            __ct__14daGoGate_HIO_cFv */
 daGoGate_HIO_c::daGoGate_HIO_c() {
@@ -134,7 +116,7 @@ void daGoGate_c::init_modeMoveOpen() {
 void daGoGate_c::modeMoveOpen() {
     mDoMtx_stack_c::ZXYrotS(shape_angle.x, shape_angle.y, shape_angle.z);
     cXyz local(field_0x5b0, 0.0f, 0.0f);
-    PSMTXMultVec(mDoMtx_stack_c::now, &local, &local);
+    mDoMtx_stack_c::multVec(&local, &local);
     local += current.pos;
     mDoAud_seStartLevel(Z2SE_OBJ_GORONGATE_MOVE, &current.pos, 0,
                         dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
