@@ -37,7 +37,7 @@ public:
     /* 806209E0 */ void setSwordAtBit(int);
     /* 80620AE4 */ void setSwordAtBreak(int);
     /* 80620B4C */ void setBodyShield();
-    /* 80620E90 */ int checkNormalAttackAble();
+    /* 80620E90 */ bool checkNormalAttackAble();
     /* 80620FA0 */ u32 getCutType();
     /* 80621070 */ void setDamage(dCcD_Sph*, int);
     /* 8062138C */ void setShieldEffect(dCcD_Sph*);
@@ -103,7 +103,7 @@ private:
     /* 0x0722 */ u8 field_0x722[0x724 - 0x722];
     /* 0x0724 */ f32 field_0x724;
     /* 0x0728 */ f32 field_0x728;
-    /* 0x072C */ u8 field_0x72c[0x75c - 0x72c];
+    /* 0x072C */ Mtx field_0x72c;
     /* 0x075C */ cXyz field_0x75c[16];
     /* 0x081C */ cXyz field_0x81c[16];
     /* 0x08DC */ cXyz field_0x8dc[16];

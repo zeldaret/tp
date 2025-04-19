@@ -1614,7 +1614,7 @@ static daB_TN_c* m_attack_tn;
 static int m_attack_timer;
 
 /* 80620E90-80620FA0 002390 0110+00 4/4 0/0 0/0 .text            checkNormalAttackAble__8daB_TN_cFv */
-int daB_TN_c::checkNormalAttackAble() {
+bool daB_TN_c::checkNormalAttackAble() {
     if (field_0xaa5 == 1) {
         if (daPy_getPlayerActorClass()->getCutCount() != 0) {
             field_0xa70 = cM_rndF(60.0f) + 30.0f;
@@ -2638,62 +2638,176 @@ void daB_TN_c::executeChaseH() {
 
 /* 80625394-806255F0 006894 025C+00 1/1 0/0 0/0 .text            checkStartAttackH__8daB_TN_cFv */
 void daB_TN_c::checkStartAttackH() {
-    // NONMATCHING
+    f32 mPlayerDistance = fopAcM_searchPlayerDistance(this);
+    fopAcM_searchPlayerAngleY(this);
+    s16 sVar1 = fopAcM_searchPlayerAngleY(this) - shape_angle.y;
+
+    if (mPlayerDistance < 400.0f && abs(sVar1) < 0x3000) {
+        if (field_0xa78 >= 11) {
+            if (field_0xaa5 == 1) {
+                if (field_0xa70 > 40) {
+                    field_0xa70 = cM_rndF(20.0f) + 15.0f;
+                }
+            } else if (field_0xa70 > 10) {
+                field_0xa70 = 10;
+            }
+
+            if (field_0xa70 == 0 && checkNormalAttackAble()) {
+                if (field_0xaa5 == 1) {
+                    field_0xa70 = l_HIO.field_0x1c;
+                } else {
+                    field_0xa70 = l_HIO.field_0x20;
+                }
+
+                setActionMode(4, 0);
+            }
+        } else {
+            if (mPlayerDistance < 200.0f) {
+                setActionMode(5, 0);
+            } else {
+                if (mPlayerDistance < 250.0f) {
+                    if (field_0xaa5 == 1) {
+                        if (field_0xa70 > 60) {
+                            field_0xa70 = cM_rndF(20.0f) + 40.0f;
+                        }
+                    } else if (field_0xa70 > 30) {
+                        field_0xa70 = 30;
+                    }
+                }
+
+                if (field_0xa70 == 0 && checkNormalAttackAble()) {
+                    if (field_0xaa5 == 1) {
+                        field_0xa70 = l_HIO.field_0x1c;
+                    } else {
+                        field_0xa70 = l_HIO.field_0x20;
+                    }
+
+                    setActionMode(4, 0);
+                }
+            }
+        }
+    }
 }
-
-/* ############################################################################################## */
-/* 8062E7DC-8062E7E0 0001A8 0004+00 0/1 0/0 0/0 .rodata          @7243 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7243 = 72.0f;
-COMPILER_STRIP_GATE(0x8062E7DC, &lit_7243);
-#pragma pop
-
-/* 8062E7E0-8062E7E4 0001AC 0004+00 0/2 0/0 0/0 .rodata          @7244 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7244 = 29.0f;
-COMPILER_STRIP_GATE(0x8062E7E0, &lit_7244);
-#pragma pop
-
-/* 8062E7E4-8062E7E8 0001B0 0004+00 0/3 0/0 0/0 .rodata          @7245 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7245 = 11.0f;
-COMPILER_STRIP_GATE(0x8062E7E4, &lit_7245);
-#pragma pop
-
-/* 8062E7E8-8062E7EC 0001B4 0004+00 0/3 0/0 0/0 .rodata          @7246 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7246 = 19.0f;
-COMPILER_STRIP_GATE(0x8062E7E8, &lit_7246);
-#pragma pop
-
-/* 8062E7EC-8062E7F0 0001B8 0004+00 0/3 0/0 0/0 .rodata          @7247 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7247 = 22.0f;
-COMPILER_STRIP_GATE(0x8062E7EC, &lit_7247);
-#pragma pop
-
-/* 8062E7F0-8062E7F4 0001BC 0004+00 0/1 0/0 0/0 .rodata          @7248 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7248 = 66.0f;
-COMPILER_STRIP_GATE(0x8062E7F0, &lit_7248);
-#pragma pop
-
-/* 8062E7F4-8062E7F8 0001C0 0004+00 0/5 0/0 0/0 .rodata          @7249 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7249 = 26.0f;
-COMPILER_STRIP_GATE(0x8062E7F4, &lit_7249);
-#pragma pop
 
 /* 806255F0-80625C74 006AF0 0684+00 1/1 0/0 0/0 .text            executeAttackH__8daB_TN_cFv */
 void daB_TN_c::executeAttackH() {
     // NONMATCHING
+    f32 frame;
+    s16 playerAngleY = fopAcM_searchPlayerAngleY(this);
+    f32 playerDistance = fopAcM_searchPlayerDistance(this);
+
+    switch (mActionMode2) {
+        case 0:
+            speedF = 0.0f;
+
+            if (playerDistance < 250.0f) {
+                mActionMode2 = 1;
+                setBck(5, 0, 3.0f, 1.0f);
+            } else {
+                if (playerDistance < 350.0f) {
+                    mActionMode2 = 2;
+                    setBck(6, 0, 3.0f, 1.0f);
+                } else {
+                    if (cM_rnd() < 0.5f) {
+                        mActionMode2 = 1;
+                        setBck(5, 0, 3.0f, 1.0f);
+                    } else {
+                        mActionMode2 = 2;
+                        setBck(6, 0, 3.0f, 1.0f);
+                        setAttackBlurEffect(1);
+                    }
+                }
+            }
+
+            field_0xa91 = 0;
+            break;
+
+        case 1:
+            if (mpModelMorf2->getFrame() >= 20.0f && mpModelMorf2->getFrame() < 25.0f) {
+                field_0xa90 = 3;
+                mDoMtx_stack_c::copy(mpModelMorf2->getModel()->getAnmMtx(15));
+                mDoMtx_stack_c::transM(40.0f, 0.0f, 70.0f);
+                mDoMtx_stack_c::YrotM(-0x8000);
+                PSMTXCopy(mDoMtx_stack_c::get(), field_0x72c);
+            }
+
+            if (mpModelMorf2->checkFrame(18.0f)) {
+                mSound.startCreatureSound(Z2SE_EN_TN_SWD_L, 0, -1);
+                mSound.startCreatureVoice(Z2SE_EN_TN_V_KIAI, -1);
+            }
+
+            if (mpModelMorf2->checkFrame(23.0f)) {
+                mSound.startCreatureSound(Z2SE_EN_TN_FOOT_L, 0, -1);
+            }
+
+            if (mpModelMorf2->checkFrame(72.0f)) {
+                mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M1, 0, -1);
+            }
+
+            if (mpModelMorf2->getFrame() <= 30.0f) {
+                cLib_addCalcAngleS(&shape_angle.y, playerAngleY, 8, 0x400, 16);
+            }
+
+            frame = mpModelMorf2->getFrame();
+            if (frame >= 18.0f && frame < 29.0f) {
+                field_0xaa0 = 1;
+            }
+
+            if (mpModelMorf2->checkFrame(18.0f)) {
+                setSwordAtBit(1);
+            }
+
+            if (mpModelMorf2->checkFrame(29.0f)) {
+                setSwordAtBit(0);
+            }
+
+            if (mpModelMorf2->isStop()) {
+                setActionMode(3, 0);
+                field_0xa91 = 1;
+            }
+            break;
+
+        case 2:
+            setAttackBlurEffect(1);
+            if (mpModelMorf2->checkFrame(11.0f)) {
+                mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M1, 0, -1);
+            } else if (mpModelMorf2->checkFrame(19.0f)) {
+                mSound.startCreatureVoice(Z2SE_EN_TN_V_KIAI_AGE, -1);
+            } else if (mpModelMorf2->checkFrame(22.0f)) {
+                mSound.startCreatureSound(Z2SE_EN_TN_SWD_L, 0, -1);
+            } else if (mpModelMorf2->checkFrame(23.0f)) {
+                mSound.startCreatureSound(Z2SE_EN_TN_FOOT_L, 0, -1);
+            } else if (mpModelMorf2->checkFrame(66.0f)) {
+                mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M2, 0, -1);
+            }
+
+            if (mpModelMorf2->getFrame() <= 22.0f) {
+                cLib_addCalcAngleS(&shape_angle.y, playerAngleY, 8, 0x400, 16);
+            }
+
+            if (mpModelMorf2->getFrame() >= 22.0f && mpModelMorf2->getFrame() < 30.0f) {
+                field_0xaa1 = 1;
+                field_0xaa0 = 1;
+            }
+
+            if (mpModelMorf2->checkFrame(22.0f)) {
+                setSwordAtBit(1);
+            }
+
+            if (mpModelMorf2->checkFrame(30.0f)) {
+                setSwordAtBit(0);
+            }
+
+            if (mpModelMorf2->checkFrame(26.0f)) {
+                mSound.startCreatureSound(Z2SE_EN_TN_SWD_IMPCT, 0, -1);
+                dComIfGp_getVibration().StartShock(6, 31, cXyz(0.0f, 1.0f, 0.0f));
+            }
+
+            if (mpModelMorf2->isStop()) {
+                setActionMode(3, 0);
+                field_0xa91 = 1;
+            }
+    }
 }
 
 /* ############################################################################################## */
