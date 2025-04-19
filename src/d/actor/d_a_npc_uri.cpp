@@ -67,7 +67,7 @@ static s8 l_loadResPtrn9[5] = {
 };
 
 /* 80B2D108-80B2D124 -00001 001C+00 1/2 0/0 0/0 .data            l_loadResPtrnList */
-static s8* l_loadResPtrnList[] = {l_loadResPtrn0, l_loadResPtrn1, l_loadResPtrn0, l_loadResPtrn2,
+static s8* l_loadResPtrnList[7] = {l_loadResPtrn0, l_loadResPtrn1, l_loadResPtrn0, l_loadResPtrn2,
                                   l_loadResPtrn3, l_loadResPtrn4, l_loadResPtrn9};
 
 /* 80B2D124-80B2D338 0000DC 0214+00 0/1 0/0 0/0 .data            l_faceMotionAnmData */
@@ -147,13 +147,13 @@ const char* daNpc_Uri_c::mCutNameList[7] = {
 
 /* 80B2DA54-80B2DAA8 000A0C 0054+00 1/2 0/0 0/0 .data            mCutList__11daNpc_Uri_c */
 daNpc_Uri_c::cutFunc daNpc_Uri_c::mCutList[7] = {
+    NULL,
     &daNpc_Uri_c::cutConversation,
     &daNpc_Uri_c::cutStartCarryTutorial,
     &daNpc_Uri_c::cutEndCarryTutorial,
     &daNpc_Uri_c::cutConversationWithMoi,
     &daNpc_Uri_c::cutFindWolf,
     &daNpc_Uri_c::cutMeetingAgain,
-    NULL,
 };
 
 /* 80B267AC-80B268F8 0000EC 014C+00 1/0 0/0 0/0 .text            __dt__11daNpc_Uri_cFv */
