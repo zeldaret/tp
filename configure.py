@@ -1897,7 +1897,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_geyser"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_glowSphere"),
     ActorRel(NonMatching, "d_a_obj_gm"),
-    ActorRel(NonMatching, "d_a_obj_goGate"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_goGate"),
     ActorRel(NonMatching, "d_a_obj_gomikabe"),
     ActorRel(NonMatching, "d_a_obj_gra2"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_graWall"),
