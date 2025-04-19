@@ -14,7 +14,7 @@
 #include "d/d_msg_object.h"
 #include "d/d_camera.h"
 #include "f_op/f_op_kankyo_mng.h"
-#ifndef DEBUG
+#if VERSION != VERSION_SHIELD_DEBUG
 UNK_REL_DATA;
 #endif
 #include "f_op/f_op_actor_enemy.h"
@@ -158,7 +158,7 @@ enum Joint {
     /* 4 */ WEAPON_BOW_BOMB,
  };
 
-#ifndef DEBUG
+#if VERSION != VERSION_SHIELD_DEBUG
 UNK_BSS(1109)
 UNK_BSS(1107)
 UNK_BSS(1105)
@@ -4242,7 +4242,7 @@ static void demo_camera(e_rdy_class* i_this) {
             vec2.set(-93666.0f, -5951.0f, 39000.0f);
             player->setPlayerPosAndAngle(&vec2, 0, 0);
             fpcM_Search(s_adel_sub, i_this);
-#ifndef DEBUG
+#if VERSION != VERSION_SHIELD_DEBUG
             i_this->mMode = 2;
             anm_init(i_this, ANM_WAIT01, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
 #endif
