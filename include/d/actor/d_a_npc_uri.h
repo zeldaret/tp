@@ -77,14 +77,14 @@ public:
                                daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_5,
                                int param_6, daNpcT_evtData_c const* param_7, char** param_8)
         : daNpcT_c(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8) {}
-    /* 80B2CD44 */ s32 getEyeballMaterialNo();
-    /* 80B2CD4C */ s32 getHeadJointNo();
-    /* 80B2CD54 */ s32 getNeckJointNo();
-    /* 80B2CD5C */ s32 getBackboneJointNo();
-    /* 80B2CD64 */ BOOL checkChangeJoint(int);
-    /* 80B2CD74 */ BOOL checkRemoveJoint(int);
-    /* 80B2CD84 */ s32 getFootLJointNo();
-    /* 80B2CD8C */ s32 getFootRJointNo();
+    /* 80B2CD44 */ s32 getEyeballMaterialNo() { return 2; }
+    /* 80B2CD4C */ s32 getHeadJointNo() { return 4; }
+    /* 80B2CD54 */ s32 getNeckJointNo() { return 3; }
+    /* 80B2CD5C */ s32 getBackboneJointNo() { return 1; }
+    /* 80B2CD64 */ BOOL checkChangeJoint(int param_0) { return param_0 == 4; }
+    /* 80B2CD74 */ BOOL checkRemoveJoint(int param_0) { return param_0 == 8; }
+    /* 80B2CD84 */ s32 getFootLJointNo() { return 25; }
+    /* 80B2CD8C */ s32 getFootRJointNo() { return 28; }
 
     int getFlowNodeNo() {
         u16 nodeNo = home.angle.x;
@@ -135,48 +135,48 @@ private:
 STATIC_ASSERT(sizeof(daNpc_Uri_c) == 0x1018);
 
 struct daNpc_Uri_HIOParam {
-    /* 0x00 */ f32 field_0x00;  // 200.0f
-    /* 0x04 */ f32 field_0x04;  // -3.0f
-    /* 0x08 */ f32 field_0x08;  // 1.0f
-    /* 0x0C */ f32 field_0x0c;  // 500.0f
-    /* 0x10 */ f32 field_0x10;  // 255.0f
-    /* 0x14 */ f32 field_0x14;  // 180.0f
-    /* 0x18 */ f32 field_0x18;  // 35.0f
-    /* 0x1C */ f32 field_0x1c;  // 30.0f
-    /* 0x20 */ f32 field_0x20;  // 0.0f
-    /* 0x24 */ f32 field_0x24;  // 0.0f
-    /* 0x28 */ f32 field_0x28;  // 10.0f
-    /* 0x2C */ f32 field_0x2c;  // -10.0f
-    /* 0x30 */ f32 field_0x30;  // 30.0f
-    /* 0x34 */ f32 field_0x34;  // -10.0f
-    /* 0x38 */ f32 field_0x38;  // 45.0f
-    /* 0x3C */ f32 field_0x3c;  // -45.0f
-    /* 0x40 */ f32 field_0x40;  // 0.6f
-    /* 0x44 */ f32 field_0x44;  // 20.0f
-    /* 0x48 */ s16 field_0x48;  // 3
-    /* 0x4A */ s16 field_0x4a;  // 6
-    /* 0x4C */ s16 field_0x4c;  // 5
-    /* 0x4E */ s16 field_0x4e;  // 6
-    /* 0x50 */ f32 field_0x50;  // 110.0f
-    /* 0x54 */ f32 field_0x54;  // 400.0f
-    /* 0x58 */ f32 field_0x58;  // 300.0f
-    /* 0x5C */ f32 field_0x5c;  // -300.0f
-    /* 0x60 */ s16 field_0x60;  // 60
-    /* 0x62 */ s16 field_0x62;  // 8
+    /* 0x00 */ f32 field_0x00;
+    /* 0x04 */ f32 field_0x04;
+    /* 0x08 */ f32 field_0x08;
+    /* 0x0C */ f32 field_0x0c;
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 field_0x18;
+    /* 0x1C */ f32 field_0x1c;
+    /* 0x20 */ f32 field_0x20;
+    /* 0x24 */ f32 field_0x24;
+    /* 0x28 */ f32 field_0x28;
+    /* 0x2C */ f32 field_0x2c;
+    /* 0x30 */ f32 field_0x30;
+    /* 0x34 */ f32 field_0x34;
+    /* 0x38 */ f32 field_0x38;
+    /* 0x3C */ f32 field_0x3c;
+    /* 0x40 */ f32 field_0x40;
+    /* 0x44 */ f32 field_0x44;
+    /* 0x48 */ s16 field_0x48;
+    /* 0x4A */ s16 field_0x4a;
+    /* 0x4C */ s16 field_0x4c;
+    /* 0x4E */ s16 field_0x4e;
+    /* 0x50 */ f32 field_0x50;
+    /* 0x54 */ f32 field_0x54;
+    /* 0x58 */ f32 field_0x58;
+    /* 0x5C */ f32 field_0x5c;
+    /* 0x60 */ s16 field_0x60;
+    /* 0x62 */ s16 field_0x62;
     /* 0x64 */ u8 field_0x64[8];
-    /* 0x6C */ f32 field_0x6c;  // 4.0f
+    /* 0x6C */ f32 field_0x6c;
     /* 0x70 */ u8 field_0x70[28];
-    /* 0x8C */ s16 field_0x8c;  // 120
-    /* 0x8E */ s16 field_0x8e;  // 120
-    /* 0x90 */ s16 field_0x90;  // 60
-    /* 0x92 */ s16 field_0x92;  // 180
-    /* 0x94 */ s16 field_0x94;  // 10
-    /* 0x96 */ s16 field_0x96;  // 0
-    /* 0x98 */ f32 field_0x98;  // 350.0f
-    /* 0x9C */ f32 field_0x9c;  // 400.0f
-    /* 0xA0 */ f32 field_0xa0;  // 3000.0f
-    /* 0xA4 */ f32 field_0xa4;  // 200.0f
-    /* 0xA8 */ f32 field_0xa8;  // 600.0f
+    /* 0x8C */ s16 field_0x8c;
+    /* 0x8E */ s16 field_0x8e;
+    /* 0x90 */ s16 field_0x90;
+    /* 0x92 */ s16 field_0x92;
+    /* 0x94 */ s16 field_0x94;
+    /* 0x96 */ s16 field_0x96;
+    /* 0x98 */ f32 field_0x98;
+    /* 0x9C */ f32 field_0x9c;
+    /* 0xA0 */ f32 field_0xa0;
+    /* 0xA4 */ f32 field_0xa4;
+    /* 0xA8 */ f32 field_0xa8;
 };
 
 class daNpc_Uri_Param_c {

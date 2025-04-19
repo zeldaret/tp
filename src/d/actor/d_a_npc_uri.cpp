@@ -167,13 +167,49 @@ daNpc_Uri_c::~daNpc_Uri_c() {
 /* ############################################################################################## */
 /* 80B2CE14-80B2CEC0 000000 00AC+00 14/14 0/0 0/0 .rodata          m__17daNpc_Uri_Param_c */
 daNpc_Uri_HIOParam const daNpc_Uri_Param_c::m = {
-    200.0f, -3.0f,  1.0f,   500.0f,  255.0f, 180.0f, 35.0f,  30.0f,   0.0f,   0.0f,   10.0f,
-    -10.0f, 30.0f,  -10.0f, 45.0f,   -45.0f, 0.6f,   20.0f,  3,       6,      5,      6,
-    110.0f, 400.0f, 300.0f, -300.0f, 60,     8,      0x00,   0x00,    0x00,   0x00,   0x00,
-    0x00,   0x00,   0x00,   4.0f,    0x00,   0x00,   0x00,   0x00,    0x00,   0x00,   0x00,
-    0x00,   0x00,   0x00,   0x00,    0x00,   0x00,   0x00,   0x00,    0x00,   0x00,   0x00,
-    0x00,   0x00,   0x00,   0x00,    0x00,   0x00,   0x00,   0x00,    0x00,   0x00,   120,
-    120,    60,     180,    10,      0,      350.0f, 400.0f, 3000.0f, 200.0f, 600.0f,
+    200.0f,   // field_0x00
+    -3.0f,    // field_0x04
+    1.0f,     // field_0x08
+    500.0f,   // field_0x0c
+    255.0f,   // field_0x10
+    180.0f,   // field_0x14
+    35.0f,    // field_0x18
+    30.0f,    // field_0x1c
+    0.0f,     // field_0x20
+    0.0f,     // field_0x24
+    10.0f,    // field_0x28
+    -10.0f,   // field_0x2c
+    30.0f,    // field_0x30
+    -10.0f,   // field_0x34
+    45.0f,    // field_0x38
+    -45.0f,   // field_0x3c
+    0.6f,     // field_0x40
+    20.0f,    // field_0x44
+    3,        // field_0x48
+    6,        // field_0x4a
+    5,        // field_0x4c
+    6,        // field_0x4e
+    110.0f,   // field_0x50
+    400.0f,   // field_0x54
+    300.0f,   // field_0x58
+    -300.0f,  // field_0x5c
+    60,       // field_0x60
+    8,        // field_0x62
+    0x00,    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    4.0f,  // field_0x6c
+    0x00,    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00,    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    120,      // field_0x8c
+    120,      // field_0x8e
+    60,       // field_0x90
+    180,      // field_0x92
+    10,       // field_0x94
+    0,        // field_0x96
+    350.0f,   // field_0x98
+    400.0f,   // field_0x9c
+    3000.0f,  // field_0xa0
+    200.0f,   // field_0xa4
+    600.0f,   // field_0xa8
 };
 
 /* 80B268F8-80B26BE4 000238 02EC+00 1/1 0/0 0/0 .text            create__11daNpc_Uri_cFv */
@@ -448,7 +484,7 @@ void daNpc_Uri_c::afterJntAnm(int param_1) {
         mDoMtx_stack_c::ZrotM(mStagger.getAngleX(0));
     }
 
-    if ((f32)0.0 < field_0x1004) {
+    if (0.0f < field_0x1004) {
         if (param_1 == 18) {
             mpMorf[0]->onMorfNone();
         } else if (param_1 == 28) {
@@ -910,7 +946,7 @@ BOOL daNpc_Uri_c::chkPlayerCarryBasket() {
 
 /* 80B288DC-80B28910 00221C 0034+00 1/1 0/0 0/0 .text chkPlayerGetWoodShield__11daNpc_Uri_cFv */
 BOOL daNpc_Uri_c::chkPlayerGetWoodShield() {
-    return g_dComIfG_gameInfo.info.getPlayer().getCollect().isCollect(2, 0);
+    return dComIfGs_isCollectShield(0);
 }
 
 /* 80B28910-80B28FB8 002250 06A8+00 2/2 0/0 0/0 .text getTutorialCond__11daNpc_Uri_cF4cXyz */
@@ -1118,7 +1154,7 @@ int daNpc_Uri_c::cutEndCarryTutorial(int param_1) {
         if (talkProc(NULL, 0, NULL, 0) && mFlow.checkEndFlow() &&
             (s32)mFlow.getEventId(&local_48) == 1)
         {
-            if (mItemId == -1) {
+            if (mItemId == fpcM_ERROR_PROCESS_ID_e) {
                 mItemId =
                     fopAcM_createItemForPresentDemo(&current.pos, local_48, 0, -1, -1, NULL, NULL);
             }
@@ -1839,49 +1875,6 @@ static int daNpc_Uri_Draw(void* i_this) {
 /* 80B2BA88-80B2BA90 0053C8 0008+00 1/0 0/0 0/0 .text            daNpc_Uri_IsDelete__FPv */
 static int daNpc_Uri_IsDelete(void* i_this) {
     return 1;
-}
-
-/* 80B2CD44-80B2CD4C 006684 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__11daNpc_Uri_cFv */
-s32 daNpc_Uri_c::getEyeballMaterialNo() {
-    return 2;
-}
-
-/* 80B2CD4C-80B2CD54 00668C 0008+00 1/0 0/0 0/0 .text            getHeadJointNo__11daNpc_Uri_cFv */
-s32 daNpc_Uri_c::getHeadJointNo() {
-    return 4;
-}
-
-/* 80B2CD54-80B2CD5C 006694 0008+00 1/0 0/0 0/0 .text            getNeckJointNo__11daNpc_Uri_cFv */
-s32 daNpc_Uri_c::getNeckJointNo() {
-    return 3;
-}
-
-/* 80B2CD5C-80B2CD64 00669C 0008+00 1/0 0/0 0/0 .text            getBackboneJointNo__11daNpc_Uri_cFv
- */
-s32 daNpc_Uri_c::getBackboneJointNo() {
-    return 1;
-}
-
-/* 80B2CD64-80B2CD74 0066A4 0010+00 1/0 0/0 0/0 .text            checkChangeJoint__11daNpc_Uri_cFi
- */
-BOOL daNpc_Uri_c::checkChangeJoint(int param_0) {
-    return param_0 == 4;
-}
-
-/* 80B2CD74-80B2CD84 0066B4 0010+00 1/0 0/0 0/0 .text            checkRemoveJoint__11daNpc_Uri_cFi
- */
-BOOL daNpc_Uri_c::checkRemoveJoint(int param_0) {
-    return param_0 == 8;
-}
-
-/* 80B2CD84-80B2CD8C 0066C4 0008+00 1/0 0/0 0/0 .text            getFootLJointNo__11daNpc_Uri_cFv */
-s32 daNpc_Uri_c::getFootLJointNo() {
-    return 25;
-}
-
-/* 80B2CD8C-80B2CD94 0066CC 0008+00 1/0 0/0 0/0 .text            getFootRJointNo__11daNpc_Uri_cFv */
-s32 daNpc_Uri_c::getFootRJointNo() {
-    return 28;
 }
 
 /* 80B2DB44-80B2DB64 -00001 0020+00 1/0 0/0 0/0 .data            daNpc_Uri_MethodTable */
