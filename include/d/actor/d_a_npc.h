@@ -409,7 +409,7 @@ public:
 
     bool chkReverse() { return mDirection == 1; }
 
-    u16 getNumPnts() {
+    int getNumPnts() {
         dPath* path = mpRoomPath;
         return path->m_num;
     }
