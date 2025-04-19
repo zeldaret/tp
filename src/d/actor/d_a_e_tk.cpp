@@ -347,7 +347,7 @@ static void e_tk_attack(e_tk_class* i_this) {
     case MODE_TK_APPEAR:
         if (pl_y_check(i_this)) {
             if ((int)i_this->mpMorf->getFrame() == 24) {
-                i_this->mpBallID =
+                i_this->mBallID =
                     fopAcM_createChild(PROC_E_TK_BALL, fopAcM_GetID(i_this), 0, &i_this->eyePos,
                                        fopAcM_GetRoomNo(i_this), &i_this->shape_angle, 0, -1, 0);
             }
@@ -627,7 +627,7 @@ static int daE_TK_Execute(e_tk_class* i_this) {
 
     if (i_this->mTKBallSpawned) {
         e_tk_ball_class* ball_actor =
-            static_cast<e_tk_ball_class*>(fopAcM_SearchByID(i_this->mpBallID));
+            static_cast<e_tk_ball_class*>(fopAcM_SearchByID(i_this->mBallID));
         if (ball_actor != NULL) {
             ball_actor->current.pos = i_this->eyePos;
             ball_actor->field_0x5ac[0x31C] = 0x0;
@@ -667,7 +667,6 @@ static int daE_TK_IsDelete(e_tk_class* i_this) {
 
 /* 807B9C58-807B9CC0 001B58 0068+00 1/0 0/0 0/0 .text            daE_TK_Delete__FP10e_tk_class */
 static int daE_TK_Delete(e_tk_class* i_this) {
-    // fopAcM_GetID(i_this);
     dComIfG_resDelete(&i_this->mPhaseReq, "E_tk");
     if (i_this->mInitHIO) {
         hioInit = false;
