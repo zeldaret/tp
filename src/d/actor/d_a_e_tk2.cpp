@@ -441,7 +441,7 @@ static int daE_TK2_Execute(e_tk2_class* i_this) {
             static_cast<e_tk_ball_class*>(fopAcM_SearchByID(i_this->mBallID));
         if (ball_actor != NULL) {
             ball_actor->current.pos = i_this->eyePos;
-            ball_actor->mDrawFlag = false;
+            ball_actor->mSuspended = false;
         }
         cXyz scale;
         scale.setall(2.0f);
