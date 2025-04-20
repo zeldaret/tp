@@ -63,6 +63,10 @@ inline void mDoAud_subBgmStop() {
     Z2AudioMgr::getInterface()->subBgmStop();
 }
 
+inline u32 mDoAud_checkPlayingSubBgmFlag() {
+    return Z2AudioMgr::getInterface()->checkPlayingSubBgmFlag();
+}
+
 inline void mDoAud_bgmNowBattle(f32 param_0) {
     Z2AudioMgr::getInterface()->bgmNowBattle(param_0);
 }

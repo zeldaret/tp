@@ -78,6 +78,7 @@ struct jmessage_tReference : public JMessage::TReference {
         return var_r31;
     }
     bool isBatchFlag() { return mBatchFlag; }
+    bool isLightBatchFlag() { return mLightBatchFlag; }
 
     void setAddCharAllAlphaRate(f32 i_alphaRate) { mAddCharAllAlphaRate = i_alphaRate; }
     void setCharAllAlphaRate(f32 i_alphaRate) { mCharAllAlphaRate = i_alphaRate; }
@@ -91,7 +92,9 @@ struct jmessage_tReference : public JMessage::TReference {
     void resetInputFigure() { mInputFigure = 0; }
     void onButtonTagStopFlag() { mButtonTagStopFlag = 1; }
     void setDemoFrame(u32 i_frame) { mDemoFrame = i_frame; }
+    void setTopColorType(u8 i_colorType) { mTopColorType = i_colorType; }
     void setNowColorType(u8 i_colorType) { mNowColorType = i_colorType; }
+    void setTopTagScale(u16 i_tagScale) { mTopTagScale = i_tagScale; }
     void setNowTagScale(u16 i_tagScale) { mNowTagScale = i_tagScale; }
     void setRevoMessageID(u32 i_msgID) { mRevoMessageID = i_msgID; }
     void setPageLine(int i_no, s8 i_pageLine) { mPageLine[i_no] = i_pageLine; }
@@ -100,6 +103,7 @@ struct jmessage_tReference : public JMessage::TReference {
     void setLineArrange(int i_no, u8 i_arrange) { mLineArrange[i_no] = i_arrange; }
     void setLineScale(int i_no, u16 i_lineScale) { mLineScale[i_no] = i_lineScale; }
     void setSelLength(int i_no, f32 i_selLength) { mSelLength[i_no] = i_selLength; }
+    void setTopWordCount(s8 wordCount) { mTopWordCount = wordCount; }
     void setNowWordCount(s8 wordCount) { mNowWordCount = wordCount; }
     void offSelectRubyFlag(int i_flag) { mSelectRubyFlag &= ~(u8)(1 << i_flag); }
     void setPageEndCount(s16 i_endCount) { mPageEndCount = i_endCount; }
@@ -127,6 +131,31 @@ struct jmessage_tReference : public JMessage::TReference {
     void setSelCharSpace(f32 space) { mSelCharSpace = space; }
     void setSelRubyCharSpace(f32 space) { mSelRubyCharSpace = space; }
     void decSendTimer() { mSendTimer--; }
+    void resetCharCnt() { mCharCnt = 0; }
+    void setFukiPosType(u8 type) { mFukiPosType = type; }
+    void setFukiKind(u8 kind) { mFukiKind = kind; }
+    void setForm(u8 form) { mForm = form; }
+    void setArrange(u8 arrange) { mArrange = arrange; }
+    void setMsgID(u16 id) { mMsgID = id; }
+    void offBombNameUseFlag() { mBombNameUseFlag = false; }
+    void setNowLightCount(u8 count) { mNowLightCount = count; }
+    void setCharCnt(s16 cnt) { mCharCnt = cnt; }
+    void offButtonTagStopFlag() { mButtonTagStopFlag = false; }
+    void onLightBatchFlag() { mLightBatchFlag = true; } 
+    void addNowLightCount() { mNowLightCount++; }
+    void addLineCount() { mLineCount++; }
+    void addEndLineCount() { mEndLineCount++; }
+    void onSelectSetCancelFlag() { mSelectSetCancelFlag = true; }
+    void offSelectSetCancelFlag() { mSelectSetCancelFlag = false; }
+    void addDrawLightCount() { mDrawLightCount++; }
+    void setCharAlpha(f32 alpha) { mCharAlpha = alpha; }
+
+    void addCharAlpha() {
+        mCharAlpha += mAddCharAlpha;
+        if (mCharAlpha > 255.0f) {
+            mCharAlpha = 255.0f;
+        }
+    }
 
     void setLineLength(int i_no, f32 i_strLen, f32 i_spaceLen) {
         mStrLength[i_no] = i_strLen;
@@ -194,9 +223,30 @@ struct jmessage_tReference : public JMessage::TReference {
     u8 getFukiPosType() { return mFukiPosType; }
     u16 getStatus() { return *mpStatus; }
     u8 getArrange() { return mArrange; }
+    u8 getLineArrange(int idx) { return mLineArrange[idx]; }
     f32 getSelFontSize() { return mSelFontSize; }
     f32 getSelCharSpace() { return mSelCharSpace; }
     u16 getLineScale(int i_no) { return mLineScale[i_no]; }
+    bool isBombNameUseFlag() { return mBombNameUseFlag; }
+    f32 getSelLength(int idx) { return mSelLength[idx]; }
+    void setAddCharAlpha(f32 alpha) { mAddCharAlpha = alpha; }
+    s8 getNowPageLineMax() { return mPageLineMax[field_0x5d2]; }
+    s16 getLineCount() { return mLineCount; }
+    void onBatchFlag() { mBatchFlag = true; }
+    s16 getPageNum() { return mPageNum; }
+    s16 getPageEndCount() { return mPageEndCount; }
+    s8 getTopWordCount() { return mTopWordCount; }
+    u8 getTopColorType() { return mTopColorType; }
+    u16 getTopTagScale() { return mTopTagScale; }
+    u8 getBatchColorFlag() { return mBatchColorFlag; }
+    f32 getLineSpace() { return mLineSpace; }
+    u8 getNowPageType() { return mPageType[field_0x5d2]; }
+    f32 getTBoxWidth() { return mTBoxWidth;}
+    f32 getTBoxHeight() { return mTBoxHeight;}
+    s8 getNowPageLine() { return mPageLine[field_0x5d2]; }
+    u8 getOutFontRupeeColor() { return mOutFontRupeeColor; }
+    f32 getCharAlpha() { return mCharAlpha; }
+    s16 getCharCnt() { return mCharCnt; }
 
     struct CharSoundInfo {
         u16 data[0x200];
@@ -243,7 +293,7 @@ struct jmessage_tReference : public JMessage::TReference {
     /* 0x05C8 */ JUTFont* mpFont;
     /* 0x05CC */ s16 mStartLineCount;
     /* 0x05CE */ s16 mEndLineCount;
-    /* 0x05D0 */ u16 mLineCount;
+    /* 0x05D0 */ s16 mLineCount;
     /* 0x05D2 */ s16 field_0x5d2;
     /* 0x05D4 */ s16 mPageEndCount;
     /* 0x05D6 */ s16 mSendTimer;
@@ -299,7 +349,7 @@ struct jmessage_tMeasureProcessor : public JMessage::TRenderingProcessor {
     /* 8022B458 */ void do_rubyset(void const*, u32);
     /* 8022B4E0 */ void push_word(char*);
 
-    /* 8022B5F4 */ virtual ~jmessage_tMeasureProcessor();
+    /* 8022B5F4 */ virtual ~jmessage_tMeasureProcessor() {}
     /* 80229AC4 */ virtual void do_begin(void const*, char const*);
     /* 80229CB4 */ virtual void do_end();
     /* 80229E3C */ virtual void do_character(int);
@@ -323,8 +373,7 @@ struct jmessage_tMeasureProcessor : public JMessage::TRenderingProcessor {
 };  // Size: 0x50
 
 struct jmessage_tControl;
-struct jmessage_tSequenceProcessor : public JMessage::TSequenceProcessor,
-                                     public jmessage_tMeasureProcessor {
+struct jmessage_tSequenceProcessor : public JMessage::TSequenceProcessor {
     /* 8022B558 */ jmessage_tSequenceProcessor(jmessage_tReference const*, jmessage_tControl*);
     /* 8022C904 */ void do_name1();
     /* 8022C908 */ void do_space(u32);
@@ -346,13 +395,13 @@ struct jmessage_tSequenceProcessor : public JMessage::TSequenceProcessor,
     u8 getMouthCheck() { return mMouthCheck; }
     void setForceForm(u8 forceForm) { mForceForm = forceForm; }
 
-    /* 0x4C jmessage_tMeasureProcessor */
+    /* 0x4C */ jmessage_tMeasureProcessor mMeasureProcessor;
     /* 0x9C */ const void* field_0x9c;
     /* 0xA0 */ const char* field_0xa0;
-    /* 0xA4 */ u16 field_0xa4;
-    /* 0xA6 */ u16 field_0xa6;
+    /* 0xA4 */ s16 field_0xa4;
+    /* 0xA6 */ s16 field_0xa6;
     /* 0xA8 */ s16 field_0xa8;
-    /* 0xAA */ u16 field_0xaa;
+    /* 0xAA */ s16 field_0xaa;
     /* 0xAC */ u8 field_0xac;
     /* 0xAD */ u8 field_0xad;
     /* 0xAE */ u8 field_0xae;
@@ -446,11 +495,11 @@ struct jmessage_tRenderingProcessor : public JMessage::TRenderingProcessor {
     /* 0x134 */ f32 field_0x134;
     /* 0x138 */ f32 field_0x138;
     /* 0x13C */ u16 field_0x13c;
-    /* 0x13E */ u16 field_0x13e;
-    /* 0x140 */ u16 field_0x140;
-    /* 0x142 */ u16 field_0x142;
+    /* 0x13E */ s16 field_0x13e;
+    /* 0x140 */ s16 field_0x140;
+    /* 0x142 */ s16 field_0x142;
     /* 0x144 */ u16 field_0x144;
-    /* 0x146 */ u16 field_0x146;
+    /* 0x146 */ s16 field_0x146;
     /* 0x148 */ u16 field_0x148;
     /* 0x14A */ u16 field_0x14a;
     /* 0x14C */ u8 field_0x14c;
@@ -460,9 +509,7 @@ struct jmessage_tRenderingProcessor : public JMessage::TRenderingProcessor {
     /* 0x150 */ u8 mColorNo;
     /* 0x151 */ u8 field_0x151;
     /* 0x152 */ char field_0x152[0x184 - 0x152];
-    /* 0x184 */ u8 field_0x184;
-    /* 0x185 */ u8 field_0x185;
-    /* 0x186 */ u8 field_0x186;
+    /* 0x184 */ char field_0x184[3];
     /* 0x187 */ u8 field_0x187;
 };
 
@@ -494,15 +541,24 @@ struct jmessage_string_tReference : public JMessage::TReference {
     s16 getLineCount() { return mLineCount; }
     void setLineCount(s16 lineCount) { mLineCount = lineCount; }
     void addLineCount() { mLineCount++; }
-    u8 isFlag(u8 flag) { return mFlags & flag; }
+    BOOL isFlag(u8 flag) { 
+        BOOL rv;
+        if (mFlags & flag) {
+            rv = 1;
+        } else {
+            rv = 0;
+        }
+        return rv;
+    }
     void setColor(u32 ccColor, u32 gcColor) {
         mCCColor = ccColor;
         mGCColor = gcColor;
     }
     void setNowPage(u8 nowPage) { mNowPage = nowPage; }
     void setLineMax(u8 lineMax) { mLineMax = lineMax; }
+    COutFont_c* getOutFontPtr() { return mOutFontPtr; }
 
-    /* 8022F94C */ virtual ~jmessage_string_tReference();
+    /* 8022F94C */ virtual ~jmessage_string_tReference() {}
 
     /* 0x08 */ J2DTextBox* mPanePtr;
     /* 0x0C */ J2DTextBox* mRubyPanePtr;
@@ -522,7 +578,7 @@ struct jmessage_string_tMeasureProcessor : public JMessage::TRenderingProcessor 
     /* 8022FB98 */ jmessage_string_tMeasureProcessor(jmessage_string_tReference const*);
     /* 8023098C */ void do_rubyset(void const*, u32);
 
-    /* 80230A5C */ virtual ~jmessage_string_tMeasureProcessor();
+    /* 80230A5C */ virtual ~jmessage_string_tMeasureProcessor() {}
     /* 8022FBE4 */ virtual void do_begin(void const*, char const*);
     /* 8022FC14 */ virtual void do_end();
     /* 8022FC28 */ virtual void do_character(int);
@@ -531,7 +587,7 @@ struct jmessage_string_tMeasureProcessor : public JMessage::TRenderingProcessor 
     /* 0x38 */ jmessage_string_tReference* mpReference;
 };
 
-struct jmessage_string_tSequenceProcessor : public JMessage::TSequenceProcessor, public jmessage_string_tMeasureProcessor {
+struct jmessage_string_tSequenceProcessor : public JMessage::TSequenceProcessor {
     /* 80230A08 */ jmessage_string_tSequenceProcessor(jmessage_string_tReference const*,
                                                       jmessage_string_tControl*);
 
@@ -545,6 +601,7 @@ struct jmessage_string_tSequenceProcessor : public JMessage::TSequenceProcessor,
     /* 80230BBC */ virtual bool do_jump_isReady();
     /* 80230BC4 */ virtual void do_jump(void const*, char const*);
     
+    /* 0x4C */ jmessage_string_tMeasureProcessor mMeasureProcessor;
     /* 0x88 */ jmessage_string_tReference* mpSeqReference;
 };
 

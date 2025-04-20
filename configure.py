@@ -316,7 +316,7 @@ cflags_rel = [
     "-sdata2 0",
 ]
 
-def MWVersion(cfg_version: str):
+def MWVersion(cfg_version: str) -> str:
     match cfg_version:
         case "GZ2E01":
             return "GC/2.7"
@@ -375,7 +375,7 @@ Equivalent = config.non_matching  # Object should be linked when configured with
 
 
 # Object is only matching for specific versions
-def MatchingFor(*versions):
+def MatchingFor(*versions) -> bool:
     return config.version in versions
 
 
@@ -2213,7 +2213,7 @@ out_dir = config.build_dir / version
 
 
 # This generates the build steps needed for preprocessing
-def emit_build_rule(asset):
+def emit_build_rule(asset: Dict[str, Any]) -> None:
     steps = config.custom_build_steps.setdefault("pre-compile", [])
     custom_data = asset.get("custom_data") or {}
 
