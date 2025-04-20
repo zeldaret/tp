@@ -226,12 +226,56 @@ bool J2DPictureEx::insert(JUTTexture* param_0, u8 param_1, f32 param_2) {
 }
 
 /* 803040E4-8030437C 2FEA24 0298+00 2/2 0/0 0/0 .text            insertCommon__12J2DPictureExFUcf */
-void J2DPictureEx::insertCommon(u8 param_0, f32 param_1) {
-    // NONMATCHING
+void J2DPictureEx::insertCommon(u8 pos, f32 param_1) {
+    u8 new_tev_stage_num;
+    u8 tex_gen_num = mMaterial->getTexGenBlock()->getTexGenNum();
+    mMaterial->getTevBlock()->getMaxStage();
+    int tev_stage_num = mMaterial->getTevBlock()->getTevStageNum();
+    bool bVar1;
+    if (tex_gen_num <= 1) {
+        bVar1 = tev_stage_num != 1;
+    } else {
+        bVar1 = tev_stage_num != tex_gen_num + 1;
+    }
+
+    shiftSetBlendRatio(pos, param_1, true, true);
+    shiftSetBlendRatio(pos, param_1, false, true);
+
+    tex_gen_num++;
+    mMaterial->getTexGenBlock()->setTexGenNum(tex_gen_num);
+
+    J2DTexCoordInfo tex_coord_info;
+    tex_coord_info.mTexGenType = GX_TG_MTX2x4;
+    tex_coord_info.mTexGenSrc = GX_TG_TEX0;
+    for (int i = tex_gen_num - 1; i >= pos; i--) {
+        tex_coord_info.mTexGenMtx = i * 3 + 30;
+        J2DTexCoord tex_coord(tex_coord_info);
+        mMaterial->getTexGenBlock()->setTexCoord((u8)i, tex_coord);
+    }
+
+    for (int i = tex_gen_num - 1; i > pos; i--) {
+        mMaterial->getTexGenBlock()->setTexMtx((u8)i, mMaterial->getTexGenBlock()->getTexMtx((u8)(i - 1)));
+    }
+
+    J2DTexMtx tex_mtx;
+    mMaterial->getTexGenBlock()->setTexMtx(pos, tex_mtx);
+
+    if (tex_gen_num == 1) {
+        new_tev_stage_num = 1;
+    } else {
+        new_tev_stage_num = tex_gen_num + (bVar1 ? 2 : 1);
+    }
+    mMaterial->getTevBlock()->setTevStageNum(new_tev_stage_num);
+
+    setTevOrder(tex_gen_num, new_tev_stage_num, bVar1);
+    setTevStage(tex_gen_num, new_tev_stage_num, bVar1);
+    setTevKColor(tex_gen_num);
+    setTevKColorSel(tex_gen_num);
+    setTevKAlphaSel(tex_gen_num);
 }
 
 /* 8030437C-8030446C 2FECBC 00F0+00 2/2 0/0 0/0 .text            isInsert__12J2DPictureExCFUc */
-bool J2DPictureEx::isInsert(u8 param_0) const {
+bool J2DPictureEx::isInsert(u8 pos) const {
     if (mMaterial == NULL) {
         return false;
     } 
@@ -240,7 +284,7 @@ bool J2DPictureEx::isInsert(u8 param_0) const {
     } 
 
     u8 texGenNum = mMaterial->getTexGenBlock()->getTexGenNum();
-    if (texGenNum >= 8 || param_0 >= 8 || param_0 > texGenNum) {
+    if (texGenNum >= 8 || pos >= 8 || pos > texGenNum) {
         return false;
     }
     u8 bVar5 = mMaterial->getTevBlock()->getMaxStage();
@@ -256,8 +300,36 @@ bool J2DPictureEx::isInsert(u8 param_0) const {
 }
 
 /* 8030446C-80304608 2FEDAC 019C+00 1/0 0/0 0/0 .text            remove__12J2DPictureExFUc */
-bool J2DPictureEx::remove(u8 param_0) {
-    // NONMATCHING
+// NONMATCHING regalloc
+bool J2DPictureEx::remove(u8 pos) {
+    if (!isRemove(pos)) {
+        return false;
+    }
+
+    u8 tex_gen_num = mMaterial->getTexGenBlock()->getTexGenNum();
+    u8 tev_stage_num = mMaterial->getTevBlock()->getTevStageNum();
+    bool bVar1 = tev_stage_num != tex_gen_num + 1;
+
+    shiftSetBlendRatio(pos, 0.0f, true, false);
+    shiftSetBlendRatio(pos, 0.0f, false, false);
+
+    tex_gen_num--;
+    mMaterial->getTexGenBlock()->setTexGenNum(tex_gen_num);
+    mMaterial->getTevBlock()->removeTexture(pos);
+
+    if (tex_gen_num != 1) {
+        tev_stage_num = tex_gen_num + (bVar1 ? 2 : 1);
+    } else {
+        tev_stage_num = bVar1 ? 2 : 1;
+    }
+    mMaterial->getTevBlock()->setTevStageNum(tev_stage_num);
+
+    setTevOrder(tex_gen_num, tev_stage_num, bVar1);
+    setTevStage(tex_gen_num, tev_stage_num, bVar1);
+    setTevKColor(tex_gen_num);
+    setTevKColorSel(tex_gen_num);
+    setTevKAlphaSel(tex_gen_num);
+    return true;
 }
 
 /* 80304608-8030466C 2FEF48 0064+00 1/0 0/0 0/0 .text            remove__12J2DPictureExFv */
@@ -311,28 +383,232 @@ bool J2DPictureEx::isRemove(u8 param_0) const {
 }
 
 /* 8030477C-80304890 2FF0BC 0114+00 1/0 0/0 0/0 .text            draw__12J2DPictureExFffUcbbb */
-void J2DPictureEx::draw(f32 param_0, f32 param_1, u8 param_2, bool param_3, bool param_4,
-                            bool param_5) {
-    // NONMATCHING
+void J2DPictureEx::draw(f32 param_0, f32 param_1, u8 texNo, bool param_3, bool param_4,
+                        bool param_5) {
+    if (mMaterial == NULL) {
+        return;
+    }
+
+    if (mMaterial->getTevBlock() == NULL) {
+        return;
+    }
+    
+    if (!isVisible()) {
+        return;
+    }
+
+    if (texNo >= mMaterial->getTexGenBlock()->getTexGenNum()) {
+        return;
+    }
+
+    JUTTexture* texture = mMaterial->getTevBlock()->getTexture(texNo);
+    if (texture != NULL) {
+        draw(param_0, param_1, texture->getWidth(), texture->getHeight(),
+                param_3, param_4, param_5);
+    }
 }
 
 /* 80304890-80304D88 2FF1D0 04F8+00 1/0 0/0 0/0 .text            draw__12J2DPictureExFffffbbb */
-void J2DPictureEx::draw(f32 param_0, f32 param_1, f32 param_2, f32 param_3, bool param_4,
-                            bool param_5, bool param_6) {
-    // NONMATCHING
+void J2DPictureEx::draw(f32 param_0, f32 param_1, f32 width, f32 height, bool param_4,
+                        bool param_5, bool param_6) {
+    if (!isVisible()) {
+        return;
+    }
+    
+    if (mMaterial == NULL) {
+        return;
+    }
+    
+    if (mMaterial->getTevBlock() == NULL) {
+        return;
+    }
+
+    if (mMaterial->getTexGenBlock()->getTexGenNum() == 0) {
+        return;
+    }
+
+    mMaterial->setGX();
+    makeMatrix(param_0, param_1, 0.0f, 0.0f);
+    GXLoadPosMtxImm(mPositionMtx, GX_PNMTX0);
+    GXSetCurrentMtx(GX_PNMTX0);
+
+    if (!mMaterial->isVisible()) {
+        return;
+    }
+
+    GXClearVtxDesc();
+    GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+    GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
+    GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+    
+    mColorAlpha = mAlpha;
+    
+    JUtility::TColor corner_color[4];
+    for (int i = 0; i < 4; i++) {
+        corner_color[i] = mCornerColor[i];
+    }
+
+    if (mMaterial->getMaterialAlphaCalc() == 1) {
+        for (int i = 0; i < 4; i++) {
+            corner_color[i].a = (mColorAlpha * corner_color[i].a) / 0xff;
+        }
+    }
+
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+    GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+
+    GXPosition3f32(0.0f, 0.0f, 0.0f);
+    GXColor1u32(corner_color[0]);
+    if (!param_6) {
+        GXTexCoord2u16(param_4 ? 0x8000 : 0, param_5 ? 0x8000 : 0);
+    } else {
+        GXTexCoord2u16(param_4 ? 0x8000 : 0, param_5 ? 0 : 0x8000);
+    }
+
+    GXPosition3f32(width, 0.0f, 0.0f);
+    GXColor1u32(corner_color[1]);
+    if (!param_6) {
+        GXTexCoord2u16(param_4 ? 0 : 0x8000, param_5 ? 0x8000 : 0);
+    } else {
+        GXTexCoord2u16(param_4 ? 0x8000 : 0, param_5 ? 0x8000 : 0);
+    }
+
+    GXPosition3f32(width, height, 0.0f);
+    GXColor1u32(corner_color[3]);
+    if (!param_6) {
+        GXTexCoord2u16(param_4 ? 0 : 0x8000, param_5 ? 0 : 0x8000);
+    } else {
+        GXTexCoord2u16(param_4 ? 0 : 0x8000, param_5 ? 0x8000 : 0);
+    }
+
+    GXPosition3f32(0.0f, height, 0.0f);
+    GXColor1u32(corner_color[2]);
+        if (!param_6) {
+        GXTexCoord2u16(param_4 ? 0x8000 : 0, param_5 ? 0 : 0x8000);
+    } else {
+        GXTexCoord2u16(param_4 ? 0 : 0x8000, param_5 ? 0 : 0x8000);
+    }
+
+    GXEnd();
+
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
+    GXSetNumTexGens(0);
+    GXSetNumTevStages(1);
+    GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
+    GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+    for (int i = 0; i < 4; i++) {
+        GXSetTevSwapModeTable((GXTevSwapSel)i, GX_CH_RED, GX_CH_GREEN, GX_CH_BLUE, GX_CH_ALPHA);
+    }
+    GXSetNumIndStages(0);
+    for (int i = 0; i < 16; i++) {
+        GXSetTevDirect((GXTevStageID)i);
+    }
+    Mtx mtx;
+    MTXIdentity(mtx);
+    GXLoadPosMtxImm(mtx, GX_PNMTX0);
+    GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
+    GXSetVtxDesc(GX_VA_TEX0, GX_NONE);
 }
 
 /* 80304D88-80304EF0 2FF6C8 0168+00 1/0 0/0 0/0 .text            drawOut__12J2DPictureExFffffff */
+// NONMATCHING stack ordering
 void J2DPictureEx::drawOut(f32 param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4,
-                               f32 param_5) {
-    // NONMATCHING
+                           f32 param_5) {
+    if (mMaterial == NULL) {
+        return;
+    }
+
+    if (mMaterial->getTevBlock() == NULL) {
+        return;
+    }
+
+    if (!isVisible()) {
+        return;
+    }
+
+    JUTTexture* texture = mMaterial->getTevBlock()->getTexture(0);
+    if (texture != NULL) {
+        JGeometry::TBox2<f32> box1(param_4, param_5, param_4 + texture->getWidth(), param_5 + texture->getHeight());
+        JGeometry::TBox2<f32> box2(param_0, param_1, param_0 + param_2, param_1 + param_3);
+        drawOut(box1, box2);
+    }
 }
 
 /* 80304EF0-80305264 2FF830 0374+00 1/0 0/0 0/0 .text
  * drawOut__12J2DPictureExFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f> */
 void J2DPictureEx::drawOut(JGeometry::TBox2<f32> const& param_0,
-                               JGeometry::TBox2<f32> const& param_1) {
-    // NONMATCHING
+                           JGeometry::TBox2<f32> const& param_1) {
+    if (mMaterial == NULL) {
+        return;
+    }
+
+    if (mMaterial->getTevBlock() == NULL) {
+        return;
+    }
+
+    if (!isVisible()) {
+        return;
+    }
+
+    mMaterial->setGX();
+    GXClearVtxDesc();
+    GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+    GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
+    GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+
+    if (!mMaterial->isVisible()) {
+        return;
+    }
+
+    mColorAlpha = mAlpha;
+    JUtility::TColor corner_color[4];
+    for (int i = 0; i < 4; i++) {
+        corner_color[i] = mCornerColor[i];
+    }
+    if (mMaterial->getMaterialAlphaCalc() == 1) {
+        for (int i = 0; i < 4; i++) {
+            corner_color[i].a = (mColorAlpha * corner_color[i].a) / 0xff;
+        }
+    }
+
+    f32 x1 = (param_0.i.x - param_1.i.x) / param_1.getWidth();
+    f32 x2 = (param_0.f.x - param_1.f.x) / param_1.getWidth() + 1.0f;
+    f32 y1 = (param_0.i.y - param_1.i.y) / param_1.getHeight();
+    f32 y2 = (param_0.f.y - param_1.f.y) / param_1.getHeight() + 1.0f;
+    
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_F32, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_F32, 0);
+    GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+
+    GXPosition3f32(param_0.i.x, param_0.i.y, 0.0f);
+    GXColor1u32(corner_color[0]);
+    GXTexCoord2f32(x1, y1);
+    GXPosition3f32(param_0.f.x, param_0.i.y, 0.0f);
+    GXColor1u32(corner_color[1]);
+    GXTexCoord2f32(x2, y1);
+    GXPosition3f32(param_0.f.x, param_0.f.y, 0.0f);
+    GXColor1u32(corner_color[3]);
+    GXTexCoord2f32(x2, y2);
+    GXPosition3f32(param_0.i.x, param_0.f.y, 0.0f);
+    GXColor1u32(corner_color[2]);
+    GXTexCoord2f32(x1, y2);
+
+    GXEnd();
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGBA4, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGBX8, 15);
+    GXSetNumTexGens(0);
+    GXSetNumTevStages(1);
+    GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
+    GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+    for (int i = 0; i < 4; i++) {
+        GXSetTevSwapModeTable((GXTevSwapSel)i, GX_CH_RED, GX_CH_GREEN, GX_CH_BLUE, GX_CH_ALPHA);
+    }
+    GXSetNumIndStages(0);
+    for (int i = 0; i < 16; i++) {
+        GXSetTevDirect((GXTevStageID)i);
+    }
+    GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
+    GXSetVtxDesc(GX_VA_TEX0, GX_NONE);
 }
 
 /* 80305264-803052AC 2FFBA4 0048+00 1/0 0/0 0/0 .text load__12J2DPictureExF11_GXTexMapIDUc */
@@ -351,32 +627,171 @@ void J2DPictureEx::load(_GXTexMapID param_0, u8 param_1) {
 /* 803052AC-803053E0 2FFBEC 0134+00 3/3 0/0 0/0 .text            setTevOrder__12J2DPictureExFUcUcb
  */
 void J2DPictureEx::setTevOrder(u8 param_0, u8 param_1, bool param_2) {
-    // NONMATCHING
+    u16 local_30[16];
+    if (param_0 == 1) {
+        if (!param_2) {
+            local_30[0] = 4;
+        } else {
+            local_30[0] = 0xff;
+            local_30[1] = 0xff04;
+        }
+    } else {
+        for (u8 i = 0; i < param_0; i++) {
+            local_30[i] = (i << 8) | 0xff;
+        }
+        if (!param_2) {
+            local_30[param_0] = 0xff04;
+        } else {
+            local_30[param_0] = 0xffff;
+            local_30[param_0 + 1] = 0xff04;
+        }
+    }
+
+    for (u8 i = 0; i < param_1; i++) {
+        J2DTevOrderInfo info;
+        info.mTexMap = info.mTexCoord = local_30[i] >> 8;
+        info.mColor = local_30[i] & 0xff;
+        J2DTevOrder order(info);
+        mMaterial->getTevBlock()->setTevOrder(i, order);
+    }
 }
 
 /* 803053E0-80305688 2FFD20 02A8+00 3/3 0/0 0/0 .text            setTevStage__12J2DPictureExFUcUcb
  */
 void J2DPictureEx::setTevStage(u8 param_0, u8 param_1, bool param_2) {
-    // NONMATCHING
+    if (param_0 == 1) {
+        J2DTevStage* stage = mMaterial->getTevBlock()->getTevStage(0);
+        JUTTexture* texture = mMaterial->getTevBlock()->getTexture(0);
+        bool bVar1 = false;
+        if (texture != NULL && texture->getTexInfo() != NULL
+            && (texture->getFormat() == 0 || texture->getFormat() == 1)
+            && texture->getTransparency() == 0)
+        {
+            bVar1 = true;
+        }
+        if (!param_2) {
+            setStage(stage, bVar1 ? STAGE_1 : STAGE_0);
+        } else {
+            setStage(stage, bVar1 ? STAGE_6 : STAGE_5);
+            stage = mMaterial->getTevBlock()->getTevStage(1);
+            setStage(stage, STAGE_4);
+        }
+    } else if (!param_2) {
+        J2DTevStage* stage = mMaterial->getTevBlock()->getTevStage(0);
+        setStage(stage, STAGE_2);
+        for (u8 i = 1; i < param_0; i++) {
+            stage = mMaterial->getTevBlock()->getTevStage(i);
+            setStage(stage, STAGE_3);
+        }
+        stage = mMaterial->getTevBlock()->getTevStage(param_0);
+        setStage(stage, STAGE_4);
+    } else {
+        J2DTevStage* stage = mMaterial->getTevBlock()->getTevStage(0);
+        setStage(stage, STAGE_2);
+        for (u8 i = 1; i < param_0; i++) {
+            stage = mMaterial->getTevBlock()->getTevStage(i);
+            setStage(stage, STAGE_3);
+        }
+        stage = mMaterial->getTevBlock()->getTevStage(param_0);
+        setStage(stage, STAGE_7);
+        stage = mMaterial->getTevBlock()->getTevStage((u8)(param_0 + 1));
+        setStage(stage, STAGE_4);
+    }
 }
-
-/* ############################################################################################## */
-/* 803A1D50-803A1D70 02E3B0 0020+00 1/1 0/0 0/0 .rodata          @2555 */
-SECTION_RODATA static u8 const lit_2555[32] = {
-    0x0F, 0x08, 0x0A, 0x0F, 0x0F, 0x08, 0x0A, 0x0F, 0x0F, 0x08, 0x0E, 0x0F, 0x0F, 0x08, 0x0E, 0x00,
-    0x0F, 0x0A, 0x00, 0x0F, 0x02, 0x04, 0x08, 0x0F, 0x02, 0x04, 0x08, 0x0F, 0x02, 0x04, 0x00, 0x0F,
-};
-COMPILER_STRIP_GATE(0x803A1D50, &lit_2555);
 
 /* 80305688-80305928 2FFFC8 02A0+00 1/1 0/0 0/0 .text
  * setStage__12J2DPictureExFP11J2DTevStageQ212J2DPictureEx10stage_enum */
-void J2DPictureEx::setStage(J2DTevStage* param_0, J2DPictureEx::stage_enum param_1) {
-    // NONMATCHING
+void J2DPictureEx::setStage(J2DTevStage* stage, J2DPictureEx::stage_enum idx) {
+    s8 colorData[8][4] = {
+        {0x0F, 0x08, 0x0A, 0x0F},
+        {0x0F, 0x08, 0x0A, 0x0F},
+        {0x0F, 0x08, 0x0E, 0x0F},
+        {0x0F, 0x08, 0x0E, 0x00},
+        {0x0F, 0x0A, 0x00, 0x0F},
+        {0x02, 0x04, 0x08, 0x0F},
+        {0x02, 0x04, 0x08, 0x0F},
+        {0x02, 0x04, 0x00, 0x0F},
+    };
+    s8 alphaData[8][4] = {
+        {0x07, 0x04, 0x05, 0x07},
+        {0x05, 0x07, 0x07, 0x07},
+        {0x07, 0x04, 0x06, 0x07},
+        {0x07, 0x04, 0x06, 0x00},
+        {0x07, 0x05, 0x00, 0x07},
+        {0x01, 0x02, 0x04, 0x07},
+        {0x07, 0x07, 0x07, 0x02},
+        {0x01, 0x02, 0x00, 0x07},
+    };
+    s8 opData[8][5] = {
+        {0x00, 0x00, 0x00, 0x01, 0x00},
+        {0x00, 0x00, 0x00, 0x01, 0x00},
+        {0x00, 0x00, 0x00, 0x00, 0x00},
+        {0x00, 0x00, 0x00, 0x00, 0x00},
+        {0x00, 0x00, 0x00, 0x01, 0x00},
+        {0x00, 0x00, 0x00, 0x01, 0x00},
+        {0x00, 0x00, 0x00, 0x01, 0x00},
+        {0x00, 0x00, 0x00, 0x00, 0x00},
+    };
+
+    stage->setTevColorAB(colorData[idx][0], colorData[idx][1]);
+    stage->setTevColorCD(colorData[idx][2], colorData[idx][3]);
+    stage->setTevColorOp(opData[idx][0], opData[idx][1], opData[idx][2], opData[idx][3], opData[idx][4]);
+    stage->setAlphaABCD(alphaData[idx][0], alphaData[idx][1], alphaData[idx][2], alphaData[idx][3]);
+    stage->setTevAlphaOp(opData[idx][0], opData[idx][1], opData[idx][2], opData[idx][3], opData[idx][4]);
 }
 
 /* 80305928-80305C70 300268 0348+00 5/5 0/0 0/0 .text            setTevKColor__12J2DPictureExFUc */
 void J2DPictureEx::setTevKColor(u8 param_0) {
-    // NONMATCHING
+    if (param_0 == 1) {
+        return;
+    }
+
+    f32 fVar2 = 0.0f;
+    f32 fVar3 = 0.0f;
+
+    if (param_0 < 2) {
+        for (u8 i = 0; i < param_0; i++) {
+            fVar2 += field_0x11c[i];
+            fVar3 += field_0x124[i];
+        }
+    } else {
+        for (u8 i = 0; i < 2; i++) {
+            fVar2 += field_0x11c[i];
+            fVar3 += field_0x124[i];
+        }
+        for (u8 i = 0; i < param_0 - 2; i++) {
+            fVar2 += field_0x160[i];
+            fVar3 += field_0x178[i];
+        }
+    }
+
+    u8 local_3c[8];
+    u8 local_44[8];
+
+    for (u8 i = 0; i < 8; i++) {
+        local_3c[i] = 0xff;
+        local_44[i] = 0xff;
+    }
+
+    for (u8 i = 0; i < param_0; i++) {
+        if (i < 2) {
+            local_3c[i] = field_0x11c[i] * 0xff / fVar2;
+            local_44[i] = field_0x124[i] * 0xff / fVar3;
+        } else {
+            local_3c[i] = field_0x160[i - 2] * 0xff / fVar2;
+            local_44[i] = field_0x178[i - 2] * 0xff / fVar3;
+        }
+    }
+
+    JUtility::TColor color[4];
+    color[3] = local_3c[3] << 24 | local_3c[2] << 16 | local_3c[1] << 8 | local_3c[0];
+    color[2] = local_3c[7] << 24 | local_3c[6] << 16 | local_3c[5] << 8 | local_3c[4];
+    color[1] = local_44[3] << 24 | local_44[2] << 16 | local_44[1] << 8 | local_44[0];
+    color[0] = local_44[7] << 24 | local_44[6] << 16 | local_44[5] << 8 | local_44[4];
+
+    for (u8 i = 0; i < 4; i++) {
+        mMaterial->getTevBlock()->setTevKColor(i, color[i]);
+    }
 }
 
 /* 80305C70-80305D18 3005B0 00A8+00 3/3 0/0 0/0 .text            setTevKColorSel__12J2DPictureExFUc
@@ -472,8 +887,35 @@ void J2DPictureEx::setBlendAlphaRatio(f32 param_0, f32 param_1) {
 
 /* 80305F94-803060DC 3008D4 0148+00 1/0 0/0 0/0 .text changeTexture__12J2DPictureExFPC7ResTIMGUc
  */
-const ResTIMG* J2DPictureEx::changeTexture(ResTIMG const* param_0, u8 param_1) {
-    // NONMATCHING
+// NONMATCHING small regalloc
+const ResTIMG* J2DPictureEx::changeTexture(ResTIMG const* img, u8 param_1) {
+    if (mMaterial == NULL || img == NULL) {
+        return NULL;
+    }
+
+    u32 tex_gen_num = mMaterial->getTexGenBlock()->getTexGenNum();
+    if (param_1 > tex_gen_num) {
+        return NULL;
+    }
+
+    u8 max_stage = mMaterial->getTevBlock()->getMaxStage();
+    max_stage = max_stage > 8 ? 8 : max_stage;
+    if (param_1 >= max_stage) {
+        return NULL;
+    }
+
+    if (param_1 < tex_gen_num) {
+        const ResTIMG* texinfo = getTexture(param_1)->getTexInfo();
+        u8 uVar6 = 0;
+        if (img->indexTexture) {
+            uVar6 = getUsableTlut(param_1);
+        }
+        getTexture(param_1)->storeTIMG(img, uVar6);
+        return texinfo;
+    } else {
+        append(img, 1.0f);
+        return NULL;
+    }
 }
 
 /* 803060DC-80306134 300A1C 0058+00 1/0 0/0 0/0 .text            changeTexture__12J2DPictureExFPCcUc
@@ -485,7 +927,7 @@ const ResTIMG* J2DPictureEx::changeTexture(char const* param_0, u8 param_1) {
 
 /* 80306134-80306298 300A74 0164+00 1/0 0/0 0/0 .text
  * changeTexture__12J2DPictureExFPC7ResTIMGUcP10JUTPalette      */
-// Issues with param_1 >= bVar5. Maybe some inline min function.
+// NONMATCHING Issues with param_1 >= bVar5. Maybe some inline min function.
 inline u8 mina(u8 a, u8 b) {
     return a > b ? b : a;
 }
@@ -620,193 +1062,331 @@ bool J2DPictureEx::setBlackWhite(JUtility::TColor param_0, JUtility::TColor para
 
 /* 80306664-80306824 300FA4 01C0+00 4/4 0/0 0/0 .text
  * getBlackWhite__12J2DPictureExCFPQ28JUtility6TColorPQ28JUtility6TColor */
-bool J2DPictureEx::getBlackWhite(JUtility::TColor* param_0, JUtility::TColor* param_1) const {
-    // NONMATCHING
+// NONMATCHING regswap
+bool J2DPictureEx::getBlackWhite(JUtility::TColor* black, JUtility::TColor* white) const {
+    if (mMaterial == NULL) {
+        return false;
+    }
+
+    if (mMaterial->getTevBlock() == NULL) {
+        return false;
+    }
+
+    u8 tex_gen_num = mMaterial->getTexGenBlock()->getTexGenNum();
+    u32 tev_stage_num = mMaterial->getTevBlock()->getTevStageNum();
+    bool bVar1;
+    if (tex_gen_num == 1) {
+        bVar1 = tev_stage_num != 1;
+    } else {
+        bVar1 = tev_stage_num != tex_gen_num + 1;
+    }
+
+    *black = 0x00000000;
+    *white = 0xffffffff;
+
+    if (bVar1) {
+        J2DGXColorS10 tevColor0 = *mMaterial->getTevBlock()->getTevColor(0);
+        J2DGXColorS10 tevColor1 = *mMaterial->getTevBlock()->getTevColor(1);
+        *black = (u8)tevColor0.r << 24 | (u8)tevColor0.g << 16 | (u8)tevColor0.b << 8 | (u8)tevColor0.a;
+        *white = (u8)tevColor1.r << 24 | (u8)tevColor1.g << 16 | (u8)tevColor1.b << 8 | (u8)tevColor1.a;
+    }
+
+    return true;
 }
 
 /* 80306824-803068F8 301164 00D4+00 1/1 0/0 0/0 .text
  * isSetBlackWhite__12J2DPictureExCFQ28JUtility6TColorQ28JUtility6TColor */
-bool J2DPictureEx::isSetBlackWhite(JUtility::TColor param_0, JUtility::TColor param_1) const {
-    // NONMATCHING
+// NONMATCHING missing clrlwi, regalloc
+bool J2DPictureEx::isSetBlackWhite(JUtility::TColor black, JUtility::TColor white) const {
+    if (black == 0x00000000 && white == 0xffffffff) {
+        return true;
+    }
+
+    u8 tex_gen_num = mMaterial->getTexGenBlock()->getTexGenNum();
+    u32 tev_stage_num = mMaterial->getTevBlock()->getTevStageNum();
+    u8 max_tev_stage = mMaterial->getTevBlock()->getMaxStage();
+
+    if (max_tev_stage == 16) {
+        return true;
+    }
+
+    if (max_tev_stage == 1) {
+        return false;
+    }
+
+    u8 tmp = tex_gen_num == 1 ? 2 : tex_gen_num + 2;
+    return max_tev_stage <= tmp;
 }
 
 /* 803068F8-80306958 301238 0060+00 1/0 0/0 0/0 .text            getBlack__12J2DPictureExCFv */
 JUtility::TColor J2DPictureEx::getBlack() const {
-    // NONMATCHING
+    JUtility::TColor black, white;
+    if (!getBlackWhite(&black, &white)) {
+        return 0x00000000;
+    } else {
+        return black;
+    }
 }
 
 /* 80306958-803069B8 301298 0060+00 1/0 0/0 0/0 .text            getWhite__12J2DPictureExCFv */
 JUtility::TColor J2DPictureEx::getWhite() const {
-    // NONMATCHING
+    JUtility::TColor black, white;
+    if (!getBlackWhite(&black, &white)) {
+        return 0xffffffff;
+    } else {
+        return white;
+    }
 }
 
 /* 803069B8-803069D8 3012F8 0020+00 1/0 0/0 0/0 .text            setAlpha__12J2DPictureExFUc */
-void J2DPictureEx::setAlpha(u8 param_0) {
-    // NONMATCHING
+void J2DPictureEx::setAlpha(u8 alpha) {
+    mAlpha = alpha;
+    if (mMaterial != NULL && mMaterial->getColorBlock()->getMatColor(0) != NULL) {
+        mMaterial->getColorBlock()->getMatColor(0)->a = alpha;
+    }
 }
 
 /* 803069D8-80306A0C 301318 0034+00 1/0 0/0 0/0 .text setCullBack__12J2DPictureExF11_GXCullMode */
-void J2DPictureEx::setCullBack(_GXCullMode param_0) {
-    // NONMATCHING
+void J2DPictureEx::setCullBack(GXCullMode cullMode) {
+    mCullMode = cullMode;
+    if (mMaterial != NULL) {
+        mMaterial->getColorBlock()->setCullMode(cullMode);
+    }
+    J2DPane::setCullBack(cullMode);
 }
 
 /* 80306A0C-80306A24 30134C 0018+00 1/0 0/0 0/0 .text            rewriteAlpha__12J2DPictureExFv */
 void J2DPictureEx::rewriteAlpha() {
-    // NONMATCHING
+    if (mMaterial != NULL) {
+        mAlpha = mMaterial->getColorBlock()->getMatColor(0)->a;
+    }
 }
 
 /* 80306A24-80306AC4 301364 00A0+00 1/0 0/0 0/0 .text            isUsed__12J2DPictureExFPC7ResTIMG
  */
-bool J2DPictureEx::isUsed(ResTIMG const* param_0) {
-    // NONMATCHING
+bool J2DPictureEx::isUsed(ResTIMG const* texInfo) {
+    if (mMaterial != NULL && mMaterial->getTevBlock() != NULL) {
+        for (u32 i = 0; i < 8; i++) {
+            JUTTexture* texture = mMaterial->getTevBlock()->getTexture(i);
+            if (texture != NULL && texture->getTexInfo() == texInfo) {
+                return true;
+            }
+        }
+    }
+    return J2DPane::isUsed(texInfo);
 }
 
 /* 80306AC4-80306AF0 301404 002C+00 1/0 0/0 0/0 .text setAnimation__12J2DPictureExFP11J2DAnmColor
  */
-void J2DPictureEx::setAnimation(J2DAnmColor* param_0) {
-    // NONMATCHING
+void J2DPictureEx::setAnimation(J2DAnmColor* anm) {
+    if (mMaterial != NULL) {
+        mMaterial->setAnimation(anm);
+    }
 }
 
 /* 80306AF0-80306B1C 301430 002C+00 1/0 0/0 0/0 .text
  * setAnimation__12J2DPictureExFP19J2DAnmTextureSRTKey          */
-void J2DPictureEx::setAnimation(J2DAnmTextureSRTKey* param_0) {
-    // NONMATCHING
+void J2DPictureEx::setAnimation(J2DAnmTextureSRTKey* anm) {
+    if (mMaterial != NULL) {
+        mMaterial->setAnimation(anm);
+    }
 }
 
 /* 80306B1C-80306B48 30145C 002C+00 1/0 0/0 0/0 .text
  * setAnimation__12J2DPictureExFP16J2DAnmTexPattern             */
-void J2DPictureEx::setAnimation(J2DAnmTexPattern* param_0) {
-    // NONMATCHING
+void J2DPictureEx::setAnimation(J2DAnmTexPattern* anm) {
+    if (mMaterial != NULL) {
+        mMaterial->setAnimation(anm);
+    }
 }
 
 /* 80306B48-80306B74 301488 002C+00 1/0 0/0 0/0 .text
  * setAnimation__12J2DPictureExFP15J2DAnmTevRegKey              */
-void J2DPictureEx::setAnimation(J2DAnmTevRegKey* param_0) {
-    // NONMATCHING
+void J2DPictureEx::setAnimation(J2DAnmTevRegKey* anm) {
+    if (mMaterial != NULL) {
+        mMaterial->setAnimation(anm);
+    }
 }
 
 /* 80306B74-80306B7C -00001 0008+00 0/0 0/0 0/0 .text
  * setAnimation__12J2DPictureExFP20J2DAnmVisibilityFull         */
-void J2DPictureEx::setAnimation(J2DAnmVisibilityFull* param_0) {
-    *(u32*)(((u8*)this) + 404) /* this->field_0x194 */ = (u32)(param_0);
+void J2DPictureEx::setAnimation(J2DAnmVisibilityFull* anm) {
+    field_0x194 = anm;
 }
 
 /* 80306B7C-80306C70 3014BC 00F4+00 1/0 0/0 0/0 .text
  * setAnimation__12J2DPictureExFP14J2DAnmVtxColor               */
-void J2DPictureEx::setAnimation(J2DAnmVtxColor* param_0) {
-    // NONMATCHING
+// NONMATCHING regswap
+void J2DPictureEx::setAnimation(J2DAnmVtxColor* anm) {
+    field_0x198 = anm;
+    field_0x19c = 0;
+
+    if (anm != NULL) {
+        u16 anm_table_num = anm->getAnmTableNum(0);
+        for (u8 i = 0; i < 4; i++) {
+            if (field_0x158[i] != 0xffff) {
+                for (u16 j = 0; j < anm_table_num; j++) {
+                    J3DAnmVtxColorIndexData* data = anm->getAnmVtxColorIndexData(0, j);
+                    u16* index = anm->getVtxColorIndexPointer(0) + (u32)data->mpData;
+                    for (u16 k = 0; k < data->mNum; k++) {
+                        if (index[k] == field_0x158[i]) {
+                            field_0x198 = anm;
+                            field_0x19c |= 1 << i;
+                            goto next;
+                        }
+                    }
+                }
+            }
+            next:;
+        }
+    }
+
+    if (field_0x19c == 0) {
+        field_0x198 = NULL;
+    }
 }
 
 /* 80306C70-80306DC8 3015B0 0158+00 1/0 0/0 0/0 .text
  * animationPane__12J2DPictureExFPC15J2DAnmTransform            */
-const J2DAnmTransform* J2DPictureEx::animationPane(J2DAnmTransform const* param_0) {
-    // NONMATCHING
+const J2DAnmTransform* J2DPictureEx::animationPane(J2DAnmTransform const* anm) {
+    if (field_0x194 != NULL && field_0x154 != 0xffff) {
+        u8 tmp;
+        field_0x194->getVisibility(field_0x154, &tmp);
+        if (tmp != 0) {
+            show();
+        } else {
+            hide();
+        }
+    }
+
+    if (field_0x198 != NULL) {
+        u16 anm_table_num = field_0x198->getAnmTableNum(0);
+        for (u8 i = 0; i < 4; i++) {
+            if (field_0x19c & (1 << i)) {
+                for (u16 j = 0; j < anm_table_num; j++) {
+                    J3DAnmVtxColorIndexData* data = field_0x198->getAnmVtxColorIndexData(0, j);
+                    u16* index = field_0x198->getVtxColorIndexPointer(0) + (u32)data->mpData;
+                    for (u16 k = 0; k < data->mNum; k++) {
+                        if (index[k] == field_0x158[i]) {
+                            field_0x198->getColor(0, j, &mCornerColor[i]);
+                            goto next;
+                        }
+                    }
+                }
+            }
+            next:;
+        }
+    }
+
+    return J2DPane::animationPane(anm);
 }
 
 /* 80306DC8-80306ED4 301708 010C+00 1/0 0/0 0/0 .text            getUsableTlut__12J2DPictureExFUc */
 u8 J2DPictureEx::getUsableTlut(u8 param_0) {
-    // NONMATCHING
+    u32 tex_gen_num = mMaterial->getTexGenBlock()->getTexGenNum();
+    u8 usedTluts = 0;
+
+    for (u8 i = 0; i < tex_gen_num; i++) {
+        JUTTexture* texture = mMaterial->getTevBlock()->getTexture(i);
+        if (i != param_0 && texture != NULL) {
+            const ResTIMG* texInfo = texture->getTexInfo();
+            if (texInfo != NULL && texInfo->indexTexture != 0) {
+                int tlut_name = texture->getTlutName();
+                u8 tlut_index = tlut_name - (tlut_name >= GX_BIGTLUT0 ? GX_BIGTLUT0 : GX_TLUT0);
+                if (tlut_index < 8) {
+                    usedTluts |= 1 << tlut_index;
+                }
+            }
+        }
+    }
+
+    u8 i = 0;
+    for (; i < 8; i++) {
+        if (!(usedTluts & (1 << i))) {
+            return i;
+        }
+    }
+    return 0;
 }
 
 /* 80306ED4-80306F04 301814 0030+00 1/0 0/0 0/0 .text            append__12J2DPictureExFPC7ResTIMGf
  */
 bool J2DPictureEx::append(ResTIMG const* param_0, f32 param_1) {
-    // NONMATCHING
+    return append(param_0, NULL, param_1);
 }
 
 /* 80306F04-80306F34 301844 0030+00 1/0 0/0 0/0 .text            append__12J2DPictureExFPCcf */
 bool J2DPictureEx::append(char const* param_0, f32 param_1) {
-    // NONMATCHING
+    return append(param_0, NULL, param_1);
 }
 
 /* 80306F34-80306F64 301874 0030+00 1/0 0/0 0/0 .text prepend__12J2DPictureExFP10JUTTexturef */
 void J2DPictureEx::prepend(JUTTexture* param_0, f32 param_1) {
-    // NONMATCHING
+    insert(param_0, 0, param_1);
 }
 
 /* 80306F64-80306F94 3018A4 0030+00 1/0 0/0 0/0 .text prepend__12J2DPictureExFPCcP10JUTPalettef */
 void J2DPictureEx::prepend(char const* param_0, JUTPalette* param_1, f32 param_2) {
-    // NONMATCHING
+    insert(param_0, param_1, 0, param_2);
 }
 
 /* 80306F94-80306FC4 3018D4 0030+00 1/0 0/0 0/0 .text            prepend__12J2DPictureExFPCcf */
 void J2DPictureEx::prepend(char const* param_0, f32 param_1) {
-    // NONMATCHING
+    insert(param_0, 0, param_1);
 }
 
 /* 80306FC4-80306FF4 301904 0030+00 1/0 0/0 0/0 .text
  * prepend__12J2DPictureExFPC7ResTIMGP10JUTPalettef             */
 void J2DPictureEx::prepend(ResTIMG const* param_0, JUTPalette* param_1, f32 param_2) {
-    // NONMATCHING
+    insert(param_0, param_1, 0, param_2);
 }
 
 /* 80306FF4-80307024 301934 0030+00 1/0 0/0 0/0 .text            prepend__12J2DPictureExFPC7ResTIMGf
  */
 void J2DPictureEx::prepend(ResTIMG const* param_0, f32 param_1) {
-    // NONMATCHING
+    insert(param_0, 0, param_1);
 }
 
 /* 80307024-80307058 301964 0034+00 1/0 0/0 0/0 .text            insert__12J2DPictureExFPCcUcf */
 bool J2DPictureEx::insert(char const* param_0, u8 param_1, f32 param_2) {
-    // NONMATCHING
+    return insert(param_0, NULL, param_1, param_2);
 }
 
 /* 80307058-8030708C 301998 0034+00 1/0 0/0 0/0 .text insert__12J2DPictureExFPC7ResTIMGUcf */
-void J2DPictureEx::insert(ResTIMG const* param_0, u8 param_1, f32 param_2) {
-    // NONMATCHING
+bool J2DPictureEx::insert(ResTIMG const* param_0, u8 param_1, f32 param_2) {
+    return insert(param_0, NULL, param_1, param_2);
 }
 
 /* 8030708C-803070D0 3019CC 0044+00 1/0 0/0 0/0 .text            draw__12J2DPictureExFffbbb */
 void J2DPictureEx::draw(f32 param_0, f32 param_1, bool param_2, bool param_3, bool param_4) {
-    // NONMATCHING
+    return draw(param_0, param_1, 0, param_2, param_3, param_4);
 }
 
 /* 803070D0-80307134 301A10 0064+00 1/0 0/0 0/0 .text            drawOut__12J2DPictureExFffffffff */
 void J2DPictureEx::drawOut(f32 param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4,
                                f32 param_5, f32 param_6, f32 param_7) {
-    // NONMATCHING
+    drawOut(JGeometry::TBox2<f32>(param_0, param_1, param_0 + param_2, param_1 + param_3),
+            JGeometry::TBox2<f32>(param_4, param_5, param_4 + param_6, param_5 + param_7));
 }
 
 /* 80307134-80307168 301A74 0034+00 1/0 0/0 0/0 .text            load__12J2DPictureExFUc */
 void J2DPictureEx::load(u8 param_0) {
-    // NONMATCHING
+    load((GXTexMapID)param_0, param_0);
 }
 
 /* 80307168-803071A4 301AA8 003C+00 1/0 0/0 0/0 .text            setCullBack__12J2DPictureExFb */
 void J2DPictureEx::setCullBack(bool param_0) {
-    // NONMATCHING
+    setCullBack(param_0 ? GX_CULL_BACK : GX_CULL_NONE);
 }
 
 /* 803071A4-803071C4 301AE4 0020+00 1/0 0/0 0/0 .text            isUsed__12J2DPictureExFPC7ResFONT
  */
 bool J2DPictureEx::isUsed(ResFONT const* param_0) {
-    // NONMATCHING
+    return J2DPane::isUsed(param_0);
 }
 
 /* 803071C4-803071E4 301B04 0020+00 1/0 0/0 0/0 .text setAnimation__12J2DPictureExFP10J2DAnmBase
  */
 void J2DPictureEx::setAnimation(J2DAnmBase* param_0) {
-    // NONMATCHING
+    J2DPane::setAnimation(param_0);
 }
-
-/* ############################################################################################## */
-/* 803A1D70-803A1D90 02E3D0 0020+00 0/0 0/0 0/0 .rodata          @2556 */
-#pragma push
-#pragma force_active on
-static u8 const lit_2556[32] = {
-    0x07, 0x04, 0x05, 0x07, 0x05, 0x07, 0x07, 0x07, 0x07, 0x04, 0x06, 0x07, 0x07, 0x04, 0x06, 0x00,
-    0x07, 0x05, 0x00, 0x07, 0x01, 0x02, 0x04, 0x07, 0x07, 0x07, 0x07, 0x02, 0x01, 0x02, 0x00, 0x07,
-};
-COMPILER_STRIP_GATE(0x803A1D70, &lit_2556);
-#pragma pop
-
-/* 803A1D90-803A1DB8 02E3F0 0028+00 0/0 0/0 0/0 .rodata          @2557 */
-#pragma push
-#pragma force_active on
-static u8 const lit_2557[40] = {
-    0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
-    0x01, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x803A1D90, &lit_2557);
-#pragma pop

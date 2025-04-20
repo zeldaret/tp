@@ -1666,7 +1666,7 @@ static u8 data_80431038[16];
 
 /* 804511F0-804511F8 0006F0 0004+04 6/6 6/6 0/0 .sbss soOutput_none___Q27JStudio14TVariableValue
  */
-u8 JStudio::TVariableValue::soOutput_none_[4 + 4 /* padding */];
+JStudio::TVariableValue::TOutput_none_ JStudio::TVariableValue::soOutput_none_;
 
 /* 8028694C-80286C9C 28128C 0350+00 2/0 0/0 0/0 .text
  * do_paragraph__Q27JStudio13TObject_actorFUlPCvUl              */

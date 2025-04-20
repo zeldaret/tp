@@ -5,6 +5,9 @@
 #include "JSystem/JGadget/pointer.h"
 #include "JSystem/JGadget/define.h"
 
+/* 80450620-80450628 0000A0 0002+06 3/3 1/1 0/0 .sdata           m_branchId__7dDemo_c */
+s16 dDemo_c::m_branchId = -1;
+
 namespace {
 /* 80037DE4-80037E44 032724 0060+00 1/0 0/0 0/0 .text
  * __dt__Q220@unnamed@d_demo_cpp@24jstudio_tAdaptor_messageFv   */
@@ -19,17 +22,14 @@ void jstudio_tAdaptor_message::adaptor_do_MESSAGE(JStudio::data::TEOperationData
     case JStudio::data::UNK_0x19:
         JUT_ASSERT(107, pContent!=0);
         JUT_ASSERT(108, uSize==4);
-        dMsgObject_setDemoMessage(*(u32*)pContent);
+        u32 content = *(u32*)pContent;
+        dMsgObject_setDemoMessage(content);
         break;
     default:
 #ifdef DEBUG
         JGadget_outMessage msg(JGadget_outMessage::warning, __FILE__, 124);
-        const char* id_string = adaptor_getID_string();
-
-        msg << "unknown data-type : ";
-        msg << iType;
-        msg << "\n  demo-object : ";
-        msg << id_string;
+        msg << "unknown data-type : " << iType << "\n  demo-object : " << adaptor_getID_string();
+        int x = 0;
 #else
         break;
 #endif
@@ -48,24 +48,25 @@ jstudio_tCreateObject_message::create(JStudio::TObject** ppObject,
                                       const JStudio::stb::data::TParse_TBlock_object& iBlock) {
     JUT_ASSERT(168, ppObject!=0);
 
-    switch (iBlock.get_type()) {
-    case 'JMSG': {
-        jstudio_tAdaptor_message* adaptor = new jstudio_tAdaptor_message();
-        if (adaptor == NULL) {
-            return false;
+    u32 type = iBlock.get_type();
+    switch (type) {
+    case 'JMSG': 
+        {
+            jstudio_tAdaptor_message* adaptor = new jstudio_tAdaptor_message();
+            if (adaptor == NULL) {
+                return false;
+            }
+
+            JGadget::TPointer_delete<JStudio::TAdaptor_message> sp8(adaptor);
+            JStudio::TObject_message* object = JStudio::TCreateObject::createFromAdaptor<jstudio_tAdaptor_message>(iBlock, adaptor);
+            if (object == NULL) {
+                return false;
+            }
+
+            sp8.set(NULL);
+            *ppObject = object;
         }
-
-        JGadget::TPointer_delete<JStudio::TAdaptor_message> sp8(adaptor);
-        JStudio::TObject_message* object = JStudio::TCreateObject::createFromAdaptor<jstudio_tAdaptor_message>(iBlock, adaptor);
-        if (object == NULL) {
-            return false;
-        }
-
-        sp8.set(NULL);
-        *ppObject = object;
-
         return true;
-    }
     default:
         return false;
     }
@@ -96,6 +97,12 @@ dDemo_actor_c::~dDemo_actor_c() {
     mBtpId = -1;
     mBtkId = -1;
     mBrkId = -1;
+
+    #ifdef DEBUG
+    if(dComIfGp_event_getMode() == 0) {
+        g_dComIfG_gameInfo.play.getEvent().setDebugStb(0);
+    }
+    #endif
 }
 
 /* 80038128-8003815C 032A68 0034+00 1/1 0/0 0/0 .text            getActor__13dDemo_actor_cFv */
@@ -214,6 +221,7 @@ u16 dDemo_c::m_branchType;
 /* 80450E44-80450E48 000344 0004+00 5/5 0/0 0/0 .sbss            m_branchData__7dDemo_c */
 const u8* dDemo_c::m_branchData;
 
+
 /* 80038338-80038490 032C78 0158+00 0/0 1/1 5/5 .text getDemoIDData__13dDemo_actor_cFPiPiPiPUsPUc
  */
 // NONMATCHING - some stack issues
@@ -222,7 +230,7 @@ int dDemo_actor_c::getDemoIDData(int* param_0, int* param_1, int* param_2, u16* 
     JStudio::stb::TParseData_fixed<51, TValueIterator_misaligned<u32> > data(getPrm()->getData());
 
     static JStudio::stb::TParseData_fixed<51, TValueIterator_misaligned<u32> > dummy;
-    static JGadget::binary::TValueIterator_misaligned<u32> it(dummy.begin());
+    static JGadget::binary::TValueIterator_misaligned<u32> it = dummy.begin();
 
     if (it == data.end()) {
         it = dummy.begin();
@@ -247,16 +255,17 @@ int dDemo_actor_c::getDemoIDData(int* param_0, int* param_1, int* param_2, u16* 
     return 1;
 }
 
+s16 dDemo_c::m_branchNum = 0;
+
 /* 80038490-80038518 032DD0 0088+00 1/1 0/0 0/0 .text            dDemo_getJaiPointer__FPCcUliPUs */
-// NONMATCHING - slight problem with loop
 static void* dDemo_getJaiPointer(char const* arcName, u32 anmID, int param_2, u16* param_3) {
     if (param_2 <= 0 || param_3 == NULL) {
         return NULL;
     }
 
-    int var_r31 = 0;
-
-    for (int i = 0; i < param_2; i++, var_r31 += 2) {
+    int i;
+    int var_r31;
+    for (i = var_r31 = 0; i < param_2; i++, var_r31 += 2) {
         if ((u16)anmID == param_3[var_r31]) {
             return dComIfG_getObjectIDRes(arcName, param_3[var_r31 + 1]);
         }
@@ -347,11 +356,6 @@ static void branchFile(char const* resName) {
 
     dDemo_c::setBranchData(branchData);
 }
-
-/* 80450620-80450628 0000A0 0002+06 3/3 1/1 0/0 .sdata           m_branchId__7dDemo_c */
-s16 dDemo_c::m_branchId = -1;
-
-s16 dDemo_c::m_branchNum = 0;
 
 /* 800387EC-80038920 03312C 0134+00 1/0 0/0 0/0 .text            JSGSetData__13dDemo_actor_cFUlPCvUl
  */

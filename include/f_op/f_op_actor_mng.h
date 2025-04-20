@@ -45,18 +45,21 @@ class JKRHeap;
 class cM3dGPla;
 
 struct fopAcM_prmBase_class {
-    /* 0x00 */ u32 field_0x00;
-    /* 0x04 */ cXyz field_0x04;
-    /* 0x10 */ csXyz field_0x10;
-    /* 0x16 */ u16 field_0x16;
-};  // Size = 0x18
-
-struct fopAcM_prm_class {
     /* 0x00 */ u32 parameters;
     /* 0x04 */ cXyz position;
     /* 0x10 */ csXyz angle;
-    /* 0x16 */ u16 setId;
-    /* 0x18 */ u8 scale[3];
+    /* 0x16 */ u16 setID;
+};  // Size: 0x18
+
+struct fopAcM_prmScale_class {
+    /* 0x0 */ u8 x;
+    /* 0x1 */ u8 y;
+    /* 0x2 */ u8 z;
+};  // Size: 0x3
+
+struct fopAcM_prm_class {
+    /* 0x00 */ fopAcM_prmBase_class base;
+    /* 0x18 */ fopAcM_prmScale_class scale;
     /* 0x1C */ fpc_ProcID parent_id;
     /* 0x20 */ s8 subtype;
     /* 0x21 */ s8 room_no;
@@ -112,27 +115,28 @@ struct DOUBLE_POS {
 };
 
 enum fopAcM_STATUS {
-    /* 0x000001 */ fopAcM_STATUS_UNK_000001 = 1 << 0,
-    /* 0x000002 */ fopAcM_STATUS_UNK_000002 = 1 << 1,
-    /* 0x000004 */ fopAcM_STATUS_UNK_000004 = 1 << 2,
-    /* 0x000008 */ fopAcM_STATUS_UNK_000008 = 1 << 3,
-    /* 0x000010 */ fopAcM_STATUS_UNK_000010 = 1 << 4,
-    /* 0x000020 */ fopAcM_STATUS_UNK_000020 = 1 << 5,
-    /* 0x000040 */ fopAcM_STATUS_UNK_000040 = 1 << 6,
-    /* 0x000080 */ fopAcM_STATUS_UNK_000080 = 1 << 7,
-    /* 0x000100 */ fopAcM_STATUS_UNK_000100 = 1 << 8,
-    /* 0x000200 */ fopAcM_STATUS_UNK_000200 = 1 << 9,
-    /* 0x000400 */ fopAcM_STATUS_UNK_000400 = 1 << 10,
-    /* 0x000800 */ fopAcM_STATUS_UNK_000800 = 1 << 11,
-    /* 0x001000 */ fopAcM_STATUS_UNK_001000 = 1 << 12,
-    /* 0x002000 */ fopAcM_STATUS_CARRY_NOW = 1 << 13,
-    /* 0x004000 */ fopAcM_STATUS_UNK_004000 = 1 << 14,
-    /* 0x008000 */ fopAcM_STATUS_UNK_008000 = 1 << 15,
-    /* 0x010000 */ fopAcM_STATUS_UNK_010000 = 1 << 16,
-    /* 0x020000 */ fopAcM_STATUS_UNK_200000 = 1 << 17,
-    /* 0x040000 */ fopAcM_STATUS_UNK_400000 = 1 << 18,
-    /* 0x080000 */ fopAcM_STATUS_UNK_800000 = 1 << 19,
-    /* 0x100000 */ fopAcM_STATUS_HOOK_CARRY_NOW = 1 << 20,
+    /* 0x0000001 */ fopAcM_STATUS_UNK_000001 = 1 << 0,
+    /* 0x0000002 */ fopAcM_STATUS_UNK_000002 = 1 << 1,
+    /* 0x0000004 */ fopAcM_STATUS_UNK_000004 = 1 << 2,
+    /* 0x0000008 */ fopAcM_STATUS_UNK_000008 = 1 << 3,
+    /* 0x0000010 */ fopAcM_STATUS_UNK_000010 = 1 << 4,
+    /* 0x0000020 */ fopAcM_STATUS_UNK_000020 = 1 << 5,
+    /* 0x0000040 */ fopAcM_STATUS_UNK_000040 = 1 << 6,
+    /* 0x0000080 */ fopAcM_STATUS_UNK_000080 = 1 << 7,
+    /* 0x0000100 */ fopAcM_STATUS_UNK_000100 = 1 << 8,
+    /* 0x0000200 */ fopAcM_STATUS_UNK_000200 = 1 << 9,
+    /* 0x0000400 */ fopAcM_STATUS_UNK_000400 = 1 << 10,
+    /* 0x0000800 */ fopAcM_STATUS_UNK_000800 = 1 << 11,
+    /* 0x0001000 */ fopAcM_STATUS_UNK_001000 = 1 << 12,
+    /* 0x0002000 */ fopAcM_STATUS_CARRY_NOW = 1 << 13,
+    /* 0x0004000 */ fopAcM_STATUS_UNK_004000 = 1 << 14,
+    /* 0x0008000 */ fopAcM_STATUS_UNK_008000 = 1 << 15,
+    /* 0x0010000 */ fopAcM_STATUS_UNK_010000 = 1 << 16,
+    /* 0x0020000 */ fopAcM_STATUS_UNK_200000 = 1 << 17,
+    /* 0x0040000 */ fopAcM_STATUS_UNK_400000 = 1 << 18,
+    /* 0x0080000 */ fopAcM_STATUS_UNK_800000 = 1 << 19,
+    /* 0x0100000 */ fopAcM_STATUS_HOOK_CARRY_NOW = 1 << 20,
+    /* 0x8000000 */ fopAcM_STATUS_UNK_8000000 = 1 << 27,
 };
 
 inline s8 fopAcM_GetRoomNo(const fopAc_ac_c* i_actor) {
@@ -484,6 +488,14 @@ fpc_ProcID fopAcM_create(s16 i_procName, u16 i_setId, u32 i_parameters, const cX
 
 fpc_ProcID fopAcM_create(s16 i_procName, u32 i_parameters, const cXyz* i_pos, int i_roomNo,
                          const csXyz* i_angle, const cXyz* i_scale, s8 i_subtype);
+
+inline fpc_ProcID fopAcM_create(s16 i_procName, createFunc i_createFunc, void* params) {
+    return fpcM_Create(i_procName, i_createFunc, params);
+}
+
+inline fpc_ProcID fopAcM_Create(s16 i_procName, createFunc i_createFunc, void* params) {
+    return fpcM_Create(i_procName, i_createFunc,params);
+}
 
 fopAc_ac_c* fopAcM_fastCreate(s16 i_procName, u32 i_parameters, const cXyz* i_pos, int i_roomNo,
                               const csXyz* i_angle, const cXyz* i_scale, s8 i_subtype,

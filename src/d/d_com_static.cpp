@@ -241,8 +241,8 @@ void daNpcKakashi_setSwdTutorialStep(u8 iEvtNum) {
 
 /* 800316E0-80031718 02C020 0038+00 0/0 1/1 4/4 .text            daNpcKakashi_getSwdTutorialStep__Fv
  */
-int daNpcKakashi_getSwdTutorialStep() {
-    return dComIfGs_getTmpReg(0xFF0F);
+u8 daNpcKakashi_getSwdTutorialStep() {
+    return dComIfGs_getTmpReg(0xFF0F) & 0xff;
 }
 
 /* 80031718-80031754 02C058 003C+00 0/0 1/1 0/0 .text daNpcKakashi_getSwdTutorialResult__Fv */

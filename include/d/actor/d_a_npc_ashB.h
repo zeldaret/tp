@@ -137,7 +137,7 @@ STATIC_ASSERT(sizeof(daNpcAshB_c) == 0xdf0);
 
 class daNpcAshB_Param_c {
 public:
-    /* 80962078 */ virtual ~daNpcAshB_Param_c();
+    /* 80962078 */ virtual ~daNpcAshB_Param_c() {}
 
     struct param {
         /* 0x00 */ f32 mAttnOffsetY;

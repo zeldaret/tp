@@ -4,6 +4,7 @@
 */
 
 #include "d/actor/d_a_npc_zant.h"
+#include "SSystem/SComponent/c_counter.h"
 #include "f_op/f_op_actor_mng.h"
 #include "SSystem/SComponent/c_counter.h"
 

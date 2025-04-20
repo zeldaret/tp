@@ -72,6 +72,7 @@ BOOL daAlink_c::hangMoveBgCheck(s16 param_0, cXyz* param_1) {
 
     cXyz sp9C;
     for (int i = 0; i < 3; i++) {
+        static f32 const underOffsetY[3] = {15.0f, 90.0f, 150.0f};
         sp90.y = sp84.y = var_f31 - underOffsetY[i];
 
         if (commonLineCheck(&sp84, &sp90)) {
@@ -169,7 +170,7 @@ bool daAlink_c::checkHangFootWall() {
         cM3dGPla sp40;
         dComIfG_Bgsp().GetTriPla(mLinkLinChk, &sp40);
 
-        if (fabsf(sp40.mNormal.y) <= 0.005f) {
+        if (fabsf(sp40.mNormal.y) <= 0.05f) {
             onNoResetFlg2(FLG2_UNK_2000);
             return true;
         }
@@ -2541,8 +2542,8 @@ int daAlink_c::procClimbWait() {
                 } else {
                     daPy_addCalcShort(&field_0x30a0, 0, 3, 0x800, 0x100);
                     daPy_addCalcShort(&field_0x30a2, 0, 3, 0x800, 0x100);
-                    field_0x33f0 = field_0x30a2 * 0.0001627604f;
-                    field_0x33f4 = -field_0x30a0 * -0.0001627604f;
+                    field_0x33f0 = field_0x30a2 * 0.00016276042f;
+                    field_0x33f4 = -field_0x30a0 * -0.00016276042f;
                 }
             }
         } else if (fabsf(frameCtrl->getRate()) > 0.01f) {
@@ -2632,6 +2633,14 @@ void daAlink_c::setRoofHangHandOnSE(cBgS_PolyInfo* unused) {
         frame_ctrl->checkPass(field_0x347c);
     }
 }
+
+/* 80452FA8-80452FB0 0015A8 0008+00 1/1 0/0 0/0 .sdata2          offsetAngle$25945 */
+static const s16 offsetAngle[] = {
+    0x0000,
+    0x8000,
+    0x4000,
+    0xC000,
+};
 
 /* 80100668-80100770 0FAFA8 0108+00 3/3 0/0 0/0 .text            checkRoofHangMovePos__9daAlink_cFv
  */
@@ -2887,7 +2896,7 @@ int daAlink_c::procRoofHangFrontMove() {
 
         mNormalSpeed = getAnmSpeedStickRate(daAlinkHIO_roofHang_c0::m.field_0x30,
                                             daAlinkHIO_roofHang_c0::m.field_0x34) *
-                       cM_fsin((frame * M_PI) * 0.08333334f);
+                       cM_fsin((frame * M_PI) * 0.083333336f);
         if (mNormalSpeed < 0.0f) {
             mNormalSpeed = 0.0f;
         }

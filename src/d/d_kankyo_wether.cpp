@@ -489,9 +489,9 @@ static void wether_move_sun() {
     s32 sunVisible = false;
     if (dComIfGp_checkStatus(1) && !g_env_light.hide_vrbox) {
         roomRead_class* room = dComIfGp_getStageRoom();
-        if (room != NULL && room->field_0x0 > dComIfGp_roomControl_getStayNo()) {
+        if (room != NULL && room->num > dComIfGp_roomControl_getStayNo()) {
             sunVisible = dStage_roomRead_dt_c_GetVrboxswitch(
-                *room->field_0x4[dComIfGp_roomControl_getStayNo()]);
+                *room->m_entries[dComIfGp_roomControl_getStayNo()]);
         }
 
         // Stage is Hero Shade arena
@@ -661,9 +661,9 @@ static void wether_move_star() {
             !strcmp(dComIfGp_getStartStageName(), "F_SP200"))
         {
             roomRead_class* room = dComIfGp_getStageRoom();
-            if (room != NULL && room->field_0x0 > dComIfGp_roomControl_getStayNo()) {
+            if (room != NULL && room->num > dComIfGp_roomControl_getStayNo()) {
                 starsVisible = dStage_roomRead_dt_c_GetVrboxswitch(
-                    *room->field_0x4[dComIfGp_roomControl_getStayNo()]);
+                    *room->m_entries[dComIfGp_roomControl_getStayNo()]);
             }
 
             // Stage is Hero Shade arena
@@ -951,9 +951,9 @@ static void wether_move_vrkumo() {
     }
 
     roomRead_class* room_p = dComIfGp_getStageRoom();
-    if (room_p != NULL && room_p->field_0x0 > dComIfGp_roomControl_getStayNo()) {
+    if (room_p != NULL && room_p->num > dComIfGp_roomControl_getStayNo()) {
         var_r31 = dStage_roomRead_dt_c_GetVrboxswitch(
-            *room_p->field_0x4[dComIfGp_roomControl_getStayNo()]);
+            *room_p->m_entries[dComIfGp_roomControl_getStayNo()]);
     }
 
     if (strcmp(dComIfGp_getStartStageName(), "F_SP200") == 0) {

@@ -316,6 +316,7 @@ void daAlink_c::setGrabItemPos() {
                 mDoMtx_stack_c::multVec(&sp140, &temp_r3->current.pos);
     
                 if (checkGrabAnimeSide()) {
+                    static Vec const localSidePos = {2.3f, -15.5f, 15.6f};
                     mDoMtx_multVec(mpLinkModel->getAnmMtx(0xA), &localSidePos, &sp140);
                     temp_r3->current.pos = (temp_r3->current.pos * (1.0f - field_0x33e8)) + (sp140 * field_0x33e8);
                 }
@@ -335,9 +336,9 @@ void daAlink_c::setGrabItemPos() {
                 }
 
                 if (mProcID == 0x70) {
-                    sp140.y = temp_f31_3 * (-13.78908f - var_f30);
+                    sp140.y = temp_f31_3 * (-13.789083f - var_f30);
                 } else {
-                    sp140.y = temp_f31_3 * (-13.82537f - var_f30);
+                    sp140.y = temp_f31_3 * (-13.825373f - var_f30);
                 }
 
                 mDoMtx_stack_c::multVecSR(&sp140, &sp140);
@@ -810,7 +811,7 @@ int daAlink_c::procGrabUpInit() {
     }
 
     cXyz sp8 = temp_r30->current.pos - field_0x3510;
-    field_0x33e4 = (sp8.absXZ() - 46.0512f) - -8.0f;
+    field_0x33e4 = (sp8.absXZ() - 46.051205f) - -8.0f;
 
     if (fopAcM_CheckCarryType(temp_r30, fopAcM_CARRY(fopAcM_CARRY_UNK_40 | fopAcM_CARRY_HEAVY))) {
         voiceStart(Z2SE_AL_V_LIFTUP_L);

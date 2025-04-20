@@ -4,6 +4,7 @@
 */
 
 #include "d/actor/d_a_npc_zelR.h"
+#include "SSystem/SComponent/c_counter.h"
 
 UNK_REL_DATA
 
@@ -138,7 +139,7 @@ int daNpc_ZelR_c::create() {
         }
 
         OS_REPORT("\t(%s:%d) flowNo:%d, PathID:%02x<%08x> ", fopAcM_getProcNameString(this), mType,
-        mFlowNodeNo, getPathID(), fopAcM_GetParam(this));
+        mFlowNodeNo, getPath(), fopAcM_GetParam(this));
         if (isDelete()) {
             OS_REPORT("===>isDelete:TRUE\n");
             return cPhs_ERROR_e;

@@ -2,8 +2,8 @@
 #define STD_VECTOR_H
 
 #include "JSystem/JGadget/std-memory.h"
-#include "algorithm.h"
-#include "msl_memory.h"
+#include <algorithm.h>
+#include <msl_memory.h>
 
 namespace JGadget {
 namespace vector {
@@ -39,12 +39,6 @@ struct TVector {
     ~TVector() {
         clear();
         mAllocator.deallocate(pBegin_, 0);
-    }
-
-    T* insert(T* pos, const T& val) {
-        u32 diff = (int)((u32)pos - (u32)begin()) / 4;
-        insert(pos, 1, val);
-        return pBegin_ + diff;
     }
 
     void insert(T* pos, u32 count, const T& val) {
@@ -110,11 +104,17 @@ struct TVector {
         return endOfCopy;
     }
 
-    T* begin() { return pBegin_; }
+    T* insert(T* pos, const T& val) {
+        u32 diff = (int)((u32)pos - (u32)begin()) / 4;
+        insert(pos, 1, val);
+        return pBegin_ + diff;
+    }
 
-    T* end() { return pEnd_; }
+    T* begin() const { return pBegin_; }
 
-    u32 size() {
+    T* end() const { return pEnd_; }
+
+    u32 size() const {
         if (pBegin_ == 0) {
             return 0;
         }
@@ -171,6 +171,23 @@ struct TVector_pointer_void : public TVector<void*, TAllocator<void*> > {
     void clear() { erase(begin(), end()); }
     void push_back(const void*& value) { insert(end(), (void* const&)value); }
 };
+
+template <typename T>
+struct TVector_pointer : TVector_pointer_void {
+    TVector_pointer(const TAllocator<void*>& allocator) : TVector_pointer_void(allocator) {}
+    ~TVector_pointer() {}
+
+    const T* begin() const { return (const T*)TVector_pointer_void::begin(); }
+    T* begin() { return (T*)TVector_pointer_void::begin(); }
+
+    const T* end() const { return (const T*)TVector_pointer_void::end(); }
+    T* end() { return (T*)TVector_pointer_void::end(); }
+
+    void push_back(const T& ref) {
+        static_cast<TVector_pointer_void*>(this)->push_back((const void*&)ref);
+    }
+};
+
 }  // namespace JGadget
 
 #endif /* STD_VECTOR_H */

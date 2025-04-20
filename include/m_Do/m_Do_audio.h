@@ -32,10 +32,20 @@ void mDoAud_resetProcess();
 bool mDoAud_resetRecover();
 void mDoAud_setSceneName(char const* spot, s32 room, s32 layer);
 s32 mDoAud_load1stDynamicWave();
-static void mDoAud_setLinkGroupInfo(u8 param_0);
-static void mDoAud_setLinkHp(s32 param_0, s32 param_1);
 void mDoAud_setFadeInStart(u8 param_0);
 void mDoAud_setFadeOutStart(u8 param_0);
+
+inline void mDoAud_setLinkGroupInfo(u8 param_0) {
+    if (Z2GetLink() != NULL) {
+        Z2GetLink()->setLinkGroupInfo(param_0);
+    }
+}
+
+inline void mDoAud_setLinkHp(s32 param_0, s32 param_1) {
+    if (Z2GetLink() != NULL) {
+        Z2GetLink()->setLinkHp(param_0, param_1);
+    }
+}
 
 inline void mDoAud_bgmSetSwordUsing(s32 id) {
     Z2AudioMgr::getInterface()->bgmSetSwordUsing(id);

@@ -31,7 +31,8 @@ struct J3DGXColor : public GXColor {
     /* 8000E538 */ J3DGXColor() {}
     J3DGXColor(J3DGXColor const& other) { __memcpy(this, &other, sizeof(J3DGXColor)); }
     J3DGXColor(GXColor const& color) : GXColor(color) {}
-    J3DGXColor& operator=(const GXColor& color) {
+    // making color a reference breaks J3DColorBlockLightOff::initialize et al
+    J3DGXColor& operator=(GXColor color) {
         *(GXColor*)this = color;
         return *this;
     }
@@ -1054,8 +1055,8 @@ public:
     /* 80317414 */ virtual void setIndTexMtx(u32, J3DIndTexMtx const*) {}
     /* 8000E060 */ virtual void setIndTexMtx(u32, J3DIndTexMtx) {}
     /* 8000DF6C */ virtual J3DIndTexMtx* getIndTexMtx(u32) { return NULL; }
-    /* 8000E020 */ virtual void setIndTexCoordScale(u32, J3DIndTexCoordScale) {}
     /* 80317418 */ virtual void setIndTexCoordScale(u32, J3DIndTexCoordScale const*) {}
+    /* 8000E020 */ virtual void setIndTexCoordScale(u32, J3DIndTexCoordScale) {}
     /* 8000DF64 */ virtual J3DIndTexCoordScale* getIndTexCoordScale(u32) { return NULL; }
     /* 8031726C */ virtual ~J3DIndBlock() {}
 };
@@ -1066,9 +1067,9 @@ public:
  */
 class J3DIndBlockNull : public J3DIndBlock {
 public:
-    /* 803173A0 */ virtual void reset(J3DIndBlock*) {}
     /* 80317398 */ virtual void diff(u32) {}
     /* 8031739C */ virtual void load() {}
+    /* 803173A0 */ virtual void reset(J3DIndBlock*) {}
     /* 803173A4 */ virtual u32 getType() { return 'IBLN'; }
     /* 803173B0 */ virtual ~J3DIndBlockNull() {}
 };

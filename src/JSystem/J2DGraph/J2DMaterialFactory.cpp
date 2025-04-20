@@ -9,7 +9,6 @@
 #include "JSystem/JSupport/JSupport.h"
 #include "JSystem/JUtility/JUTResource.h"
 #include "string.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 /* 802F2AD0-802F2C94 2ED410 01C4+00 0/0 1/1 0/0 .text
@@ -108,7 +107,7 @@ J2DMaterial* J2DMaterialFactory::create(J2DMaterial* param_0, int index, u32 par
                 local_380 = aJStack_12c.getResource(local_37c, 'TIMG', NULL);
             }
             if (local_380 == NULL && J2DScreen::getDataManage() != NULL) {
-                char acStack_230[256];
+                char acStack_230[257];
                 strcpy(acStack_230, param_3->getName(texNo));
                 local_380 = J2DScreen::getDataManage()->get(acStack_230);
             }
@@ -128,7 +127,7 @@ J2DMaterial* J2DMaterialFactory::create(J2DMaterial* param_0, int index, u32 par
         }
         if (local_388 == NULL && J2DScreen::getDataManage() != NULL) {
             char* pcVar9 = param_4->getName(param_0->getTevBlock()->getFontNo());
-            char acStack_334[256];
+            char acStack_334[257];
             strcpy(acStack_334, pcVar9);
             local_388 = J2DScreen::getDataManage()->get(acStack_334);
         }
@@ -294,7 +293,7 @@ J2DTevOrder J2DMaterialFactory::newTevOrder(int param_0, int param_1) const {
 /* 802F3A1C-802F3AB4 2EE35C 0098+00 1/1 0/0 0/0 .text newTevColor__18J2DMaterialFactoryCFii */
 // NONMATCHING - J2DGXColorS10 init issues
 J2DGXColorS10 J2DMaterialFactory::newTevColor(int param_0, int param_1) const {
-    GXColorS10 color = {};
+    GXColorS10 color = {0, 0, 0, 0};
     J2DGXColorS10 rv = J2DGXColorS10(color);
     J2DMaterialInitData* iVar2 = &field_0x4[field_0x8[param_0]];
     if (iVar2->field_0x92[param_1] != 0xffff) {

@@ -133,6 +133,7 @@ void daAlink_c::getArrowShieldOffset(cXyz const* param_0, csXyz const* param_1, 
     mDoMtx_stack_c::inverse();
     mDoMtx_stack_c::multVecSR(&sp54, param_3);
 
+    static Vec const localCenter = {-15.0f, 0.0f, 18.0f};
     cXyz sp60;
     mDoMtx_multVec(getShieldMtx(), &localCenter, &sp60);
 

@@ -63,17 +63,17 @@ s32 daTagChgRestart_c::execute() {
             dStage_roomDt_c* roomDt = dComIfGp_roomControl_getStatusRoomDt(fopAcM_GetRoomNo(this));
             stage_actor_class* player_data = roomDt->getPlayer();
 
-            stage_actor_data_class* entry_p = player_data->mEntries;
-            for (int i = 0; i < player_data->mEntryNum; i++) {
-                if ((entry_p->mAngle.z & 0xFF) == playerNo) {
+            stage_actor_data_class* entry_p = player_data->m_entries;
+            for (int i = 0; i < player_data->num; i++) {
+                if ((entry_p->base.angle.z & 0xFF) == playerNo) {
                     break;
                 }
 
                 entry_p++;
             }
 
-            restart_pos = entry_p->mSpawnPos;
-            restart_angle = entry_p->mAngle.y;
+            restart_pos = entry_p->base.position;
+            restart_angle = entry_p->base.angle.y;
         }
 
         dComIfGs_setRestartRoom(restart_pos, restart_angle, fopAcM_GetRoomNo(player));

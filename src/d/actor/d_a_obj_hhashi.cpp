@@ -150,7 +150,7 @@ void daObjHHASHI_c::Obj_Damage() {
             mCyl.ResetTgHit();
             // !@bug: I'm not quite sure but it seems like the access to tgActor fields is outside
             // proc name check so it might not be the right type of actor
-            tgActor->field_0x63c.startChainSound(
+            tgActor->mSound.startChainSound(
                 Z2SE_EN_FM_CHAIN_HIT, tgActor->field_0x1828, 100.0f, 0,
                 dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
         }

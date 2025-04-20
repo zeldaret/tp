@@ -15,7 +15,7 @@ public:
 
     /* 80326214 */ void initialize();
     /* 80326258 */ s32 create(J3DModelData*, u32);
-    /* 80326364 */ s32 createAnmMtx(J3DModelData*);
+    /* 80326364 */ J3DError createAnmMtx(J3DModelData*);
     /* 803263F0 */ s32 createWeightEnvelopeMtx(J3DModelData*);
     /* 8032648C */ s32 setNoUseDrawMtx();
     /* 803264B8 */ s32 createDoubleDrawMtx(J3DModelData*, u32);

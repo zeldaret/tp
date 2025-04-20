@@ -43,8 +43,8 @@ bool daAlink_c::checkSetNpcTks(cXyz* i_basePos, int i_roomNo, int param_2) {
     u32 scene_mode = getLastSceneMode();
 
     if (param_2 != 0 && checkDungeon() &&
-        i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != 0x17 &&
-        i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != 0x18 &&
+        dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != 0x17 &&
+        dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != 0x18 &&
         (checkItemGet(fpcNm_ITEM_TKS_LETTER, 1) ||
          (checkItemGet(fpcNm_ITEM_DUNGEON_BACK, 1) && !checkLv7DungeonShop())) &&
         dComIfGs_isDungeonItemWarp())
@@ -516,7 +516,7 @@ void daAlink_c::setDemoMoveData(u32* o_mode, cXyz const* i_goal) {
         *o_mode = daPy_demo_c::DEMO_UNK_1_e;
     } else if ((*o_mode == daPy_demo_c::DEMO_UNK_2_e && dist_to_pos < temp_f29) || dist_to_pos < temp_f28) {
         *o_mode = daPy_demo_c::DEMO_UNK_2_e;
-        mDemo.setStick(0.35f);
+        mDemo.setStick(0.35000002f);
     } else if (mDemo.getDemoType() == 3) {
         mDemo.setStick(1.0f);
     }
@@ -1978,6 +1978,30 @@ int daAlink_c::procCoUnequip() {
 
 /* 8011A688-8011A6FC 114FC8 0074+00 4/4 0/0 0/0 .text            setGetSubBgm__9daAlink_cFi */
 void daAlink_c::setGetSubBgm(int i_seTypeIdx) {
+    static u8 const getSeType[255] = {
+        0x08, 0x03, 0x03, 0x03, 0x03, 0x03, 0x02, 0x02, 0x08, 0x08, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03,
+        0x03, 0x03, 0x03, 0x08, 0x08, 0x08, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x02, 0x08,
+        0x02, 0x02, 0x00, 0x01, 0x01, 0x02, 0x01, 0x08, 0x01, 0x08, 0x01, 0x01, 0x01, 0x08, 0x08, 0x08,
+        0x01, 0x01, 0x08, 0x02, 0x08, 0x01, 0x01, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x01, 0x01, 0x02,
+        0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x08, 0x08, 0x01,
+        0x01, 0x01, 0x08, 0x08, 0x08, 0x01, 0x01, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08,
+        0x01, 0x02, 0x02, 0x02, 0x02, 0x01, 0x02, 0x08, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02,
+        0x08, 0x08, 0x08, 0x01, 0x02, 0x01, 0x02, 0x01, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02,
+        0x02, 0x02, 0x02, 0x02, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08,
+        0x02, 0x02, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x02, 0x01, 0x02, 0x02,
+        0x08, 0x01, 0x01, 0x01, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08,
+        0x05, 0x05, 0x05, 0x05, 0x05, 0x05, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08,
+        0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04,
+        0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08,
+        0x06, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x08, 0x02, 0x02, 0x01, 0x02, 0x02, 0x02, 0x08,
+        0x08, 0x08, 0x08, 0x02, 0x03, 0x03, 0x01, 0x08, 0x03, 0x02, 0x02, 0x02, 0x02, 0x01, 0x02,
+    };
+
+    static u32 const bgmLabel[8] = {
+        Z2BGM_HEART_GET,       Z2BGM_ITEM_GET,       Z2BGM_ITEM_GET_MINI, Z2BGM_ITEM_GET_ME,
+        Z2BGM_ITEM_GET_INSECT, Z2BGM_ITEM_GET_SMELL, Z2BGM_ITEM_GET_POU,  Z2BGM_ITEM_GET_ME_S,
+    };
+
     u32 se_type = getSeType[i_seTypeIdx];
 
     if (se_type == 3 && mProcVar4.field_0x3010 == 0) {
@@ -2001,6 +2025,7 @@ BOOL daAlink_c::checkTreasureRupeeReturn(int i_itemNo) const {
         return false;
     }
 
+    static int const rupeeCount[4] = {20, 50, 100, 200};
     return dComIfGs_getRupeeMax() < rupeeCount[i_itemNo] + dComIfGs_getRupee();
 }
 
@@ -2073,7 +2098,7 @@ int daAlink_c::procCoGetItemInit() {
         field_0x3588 = l_wolfBaseAnime;
         field_0x347c = 10.0f;
         field_0x3480 = 19.0f;
-        field_0x3484 = 0.1111111f;
+        field_0x3484 = 0.11111111f;
     } else if (checkModeFlg(0x400)) {
         setSingleAnimeBase(ANM_HORSE_GET_ITEM);
 
@@ -2103,7 +2128,7 @@ int daAlink_c::procCoGetItemInit() {
 
         field_0x347c = 9.0f;
         field_0x3480 = 16.0f;
-        field_0x3484 = 0.1428571f;
+        field_0x3484 = 0.14285715f;
         field_0x2f99 = 0xC;
         field_0x3588 = l_waitBaseAnime;
     }
@@ -2177,8 +2202,8 @@ int daAlink_c::procCoGetItem() {
                 (field_0x3484 * (mProcVar3.field_0x300e * (frameCtrl_p->getFrame() - field_0x347c)));
 
             if (mProcVar4.field_0x3010 != 0 && checkWolf()) {
-                current.pos.x -= cM_ssin(current.angle.y) * 3.888889f;
-                current.pos.z -= cM_scos(current.angle.y) * 3.888889f;
+                current.pos.x -= cM_ssin(current.angle.y) * 3.8888888f;
+                current.pos.z -= cM_scos(current.angle.y) * 3.8888888f;
             }
         } else {
             shape_angle.y = current.angle.y - mProcVar3.field_0x300e;
@@ -2282,6 +2307,7 @@ int daAlink_c::procCoGetItem() {
                             field_0x32cc = mProcVar2.field_0x300c + 0x65;
                         }
                     } else if (mProcVar2.field_0x300c == 0x21) {
+                        static u32 const heartPieceMessage[5] = {0x86, 0x9C, 0x9D, 0x9E, 0x9F};
                         field_0x32cc = heartPieceMessage[dComIfGs_getMaxLife() % 5];
                     } else if (mProcVar2.field_0x300c == 0x33 && checkStageName("D_MN07")) {
                         field_0x32cc = 0x151;
@@ -3490,7 +3516,7 @@ int daAlink_c::procZoraMove() {
         mDoMtx_stack_c::transM(0.0f, 30.0f, -90.0f);
         mDoMtx_stack_c::multVecZero(&current.pos);
         mDoMtx_stack_c::multVecSR(&cXyz::BaseZ, &sp14);
-        mDoMtx_stack_c::multVecSR(&cXyz::BaseZ, &sp8);
+        mDoMtx_stack_c::multVecSR(&cXyz::BaseY, &sp8);
         shape_angle.y = temp_r29->shape_angle.y;
 
         if (sp8.y < 0.0f) {
@@ -4213,6 +4239,12 @@ void daAlink_c::skipPortalObjWarp() {
 
 /* 8011F9EC-8011FBC0 11A32C 01D4+00 1/1 0/0 0/0 .text            checkWarpStart__9daAlink_cFv */
 void daAlink_c::checkWarpStart() {
+    static char defaultPortal[13] = "POTAL_WARPIN";
+    static char kBridgePortal[20] = "PORTAL_WARP_KBRIDGE";
+    static char oBridgePortal[20] = "PORTAL_WARP_OBRIDGE";
+    static char volcBomPortal[20] = "PORTAL_WARP_BIGVOLC";
+    static char cannonPortal[22] = "SKY_CANNON_WARP_START";
+
     if (dMeter2Info_getWarpStatus() != 0) {
         if (dMeter2Info_getWarpStatus() == WARP_STATUS_DECIDED_e ||
             dComIfGp_event_compulsory(this, 0, 0xFFFF))
@@ -4438,7 +4470,8 @@ int daAlink_c::procCoWarp() {
 
         if (checkWolf() && mProcVar2.field_0x300c != 0) {
             for (int i = 0; i < 6; i++) {
-                setEmitter(&field_0x3240[i], effName_39419[i], &current.pos, &shape_angle);
+                static u16 const effName[] = {0x09F5, 0x09F6, 0x09F7, 0x09F8, 0x09F9, 0x09FA};
+                setEmitter(&field_0x3240[i], effName[i], &current.pos, &shape_angle);
             }
         }
     }

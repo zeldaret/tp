@@ -8,6 +8,8 @@
 #include "d/d_insect.h"
 #include "SSystem/SComponent/c_math.h"
 
+static int daAlink_bottleModelCallBack(J3DJoint* i_joint, int param_1);
+
 /* 8010E48C-8010E52C 108DCC 00A0+00 1/1 0/0 0/0 .text            bottleModelCallBack__9daAlink_cFv
  */
 int daAlink_c::bottleModelCallBack() {
@@ -463,6 +465,7 @@ int daAlink_c::procBottleOpenInit(u16 param_0) {
 
 /* 8010F8E4-8010FC38 10A224 0354+00 1/0 0/0 0/0 .text            procBottleOpen__9daAlink_cFv */
 int daAlink_c::procBottleOpen() {
+    static Vec const bottleTop = {0.0f, 25.0f, 0.0f};
     daPy_frameCtrl_c* frameCtrl_p = mUnderFrameCtrl;
 
     if (mProcVar2.field_0x300c == 0) {

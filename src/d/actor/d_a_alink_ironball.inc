@@ -746,6 +746,9 @@ void daAlink_c::setIronBallPos() {
                     mItemVar0.field_0x3018 = 8;
                 }
             } else if (mItemVar0.field_0x3018 == 8) {
+                static Vec const ironBallPosVec = {0.0f, 0.0f, -42.0f};
+                static Vec const handCenterOffsetVec = {2.0f, -25.0f, 12.5f};
+
                 mSearchBallScale = 0.0f;
 
                 mDoMtx_stack_c::transS(spE8);

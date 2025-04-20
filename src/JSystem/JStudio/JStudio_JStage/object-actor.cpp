@@ -26,7 +26,6 @@ JStudio_JStage::TAdaptor_actor::~TAdaptor_actor() {
     adaptor_do_end();
 }
 
-
 /* 8028A728-8028A7B4 285068 008C+00 1/0 0/0 0/0 .text
  * adaptor_do_prepare__Q214JStudio_JStage14TAdaptor_actorFv     */
 void JStudio_JStage::TAdaptor_actor::adaptor_do_prepare() {
@@ -42,7 +41,6 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_prepare() {
         pAnimOutput++;
     }
 }
-
 
 /* 8028A7B4-8028A8D8 2850F4 0124+00 1/0 0/0 0/0 .text
  * adaptor_do_begin__Q214JStudio_JStage14TAdaptor_actorFv       */
@@ -136,7 +134,6 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_TEXTURE_ANIMATION(JStudio::data:
                                                           void const* param_2, u32 param_3) {
     setJSG_ID_(&JStage::TActor::JSGSetTextureAnimation, operation, param_2, param_3);
 } 
-
 
 /* 8028AAB4-8028AAC8 2853F4 0014+00 1/0 0/0 0/0 .text
  * adaptor_do_TEXTURE_ANIMATION_MODE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl

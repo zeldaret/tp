@@ -267,7 +267,7 @@ void daNpcT_Path_c::reverse() {
 
 /* 80145DD0-80145E38 140710 0068+00 2/2 0/0 8/8 .text            setNextIdx__13daNpcT_Path_cFi */
 int daNpcT_Path_c::setNextIdx(int param_0) {
-    u16 numPnts = getNumPnts();
+    int numPnts = getNumPnts();
 
     if (chkClose() != 0 && numPnts == param_0) {
         return daNpcT_incIdx(param_0, mIdx, 1, mDirection);
@@ -855,8 +855,8 @@ void daNpcT_JntAnm_c::calcJntRad(f32 param_0, f32 param_1, f32 param_2) {
  * setParam__19daNpcT_DmgStagger_cFP10fopAc_ac_cP10fopAc_ac_cs  */
 void daNpcT_DmgStagger_c::setParam(fopAc_ac_c* i_actor1, fopAc_ac_c* i_actor2, s16 i_angle) {
     if (i_actor2 && i_actor1) {
-        field_0xc[0] = 10922.0f;
-        field_0xc[1] = 7281.0f;
+        mPower[0] = 10922.0f;
+        mPower[1] = 7281.0f;
         field_0x16 = fopAcM_searchActorAngleY(i_actor1, i_actor2) - i_angle;
         mStagger = 0x4000;
     }
@@ -866,14 +866,14 @@ void daNpcT_DmgStagger_c::setParam(fopAc_ac_c* i_actor1, fopAc_ac_c* i_actor2, s
 void daNpcT_DmgStagger_c::calc(BOOL param_0) {
     cXyz vec1, vec2;
     mDoMtx_stack_c::YrotS(field_0x16);
-    cLib_addCalc2(&field_0xc[1], 0.0f, 0.1f, 125.0f);
-    cLib_addCalc2(&field_0xc[0], 0.0f, 0.1f, 125.0f);
+    cLib_addCalc2(&mPower[1], 0.0f, 0.1f, 125.0f);
+    cLib_addCalc2(&mPower[0], 0.0f, 0.1f, 125.0f);
 
     for (int i = 0; i < 2; i++) {
-        vec1.set(0.0f, 0.0f, field_0xc[i] * cM_ssin(mStagger));
+        vec1.set(0.0f, 0.0f, mPower[i] * cM_ssin(mStagger));
         mDoMtx_stack_c::multVec(&vec1, &vec2);
-        field_0x0[i].x = -vec2.z;
-        field_0x0[i].z = -vec2.x;
+        mAngle[i].x = -vec2.z;
+        mAngle[i].z = -vec2.x;
     }
 
     if (mStagger != 0) {
@@ -2535,11 +2535,11 @@ BOOL daNpcT_getPlayerInfoFromPlayerList(int param_0, int i_roomNo, cXyz* o_spawn
                                         csXyz* o_angle) {
     BOOL ret = FALSE;
     dStage_roomDt_c* room_dt = dComIfGp_roomControl_getStatusRoomDt(i_roomNo);
-    stage_actor_data_class* entry = room_dt->getPlayer()->mEntries;
+    stage_actor_data_class* entry = room_dt->getPlayer()->m_entries;
     for (int i = 0; i < room_dt->getPlayerNum(); entry++, i++) {
-        if (param_0 == (entry->mAngle.z & 0xff)) {
-            *o_spawnPos = entry->mSpawnPos;
-            *o_angle = entry->mAngle;
+        if (param_0 == (entry->base.angle.z & 0xff)) {
+            *o_spawnPos = entry->base.position;
+            *o_angle = entry->base.angle;
             ret = TRUE;
             break;
         }
@@ -5094,12 +5094,12 @@ int daNpcF_getPlayerInfoFromPlayerList(int param_0, int i_roomNo, cXyz& param_2,
     int rv = 0;
 
     dStage_roomDt_c* roomP = dComIfGp_roomControl_getStatusRoomDt(i_roomNo);
-    stage_actor_data_class* entries = roomP->getPlayer()->mEntries;
+    stage_actor_data_class* entries = roomP->getPlayer()->m_entries;
 
     for (int i = 0; i < roomP->getPlayerNum(); entries++, i++) {
-        if (param_0 == (u8)entries->mAngle.z) {
-            param_2 = entries->mSpawnPos;
-            param_3 = entries->mAngle;
+        if (param_0 == (u8)entries->base.angle.z) {
+            param_2 = entries->base.position;
+            param_3 = entries->base.angle;
             rv = 1;
             break;
         }
@@ -5185,11 +5185,6 @@ daNpcF_MoveBgActor_c::~daNpcF_MoveBgActor_c() {
 
 /* 80155BB8-80155BBC 1504F8 0004+00 2/0 0/0 0/0 .text            setAttnPos__8daNpcF_cFv */
 void daNpcF_c::setAttnPos() {
-    /* empty function */
-}
-
-/* 80155BBC-80155BC0 1504FC 0004+00 2/0 0/0 0/0 .text            adjustShapeAngle__8daNpcF_cFv */
-void daNpcF_c::adjustShapeAngle() {
     /* empty function */
 }
 
