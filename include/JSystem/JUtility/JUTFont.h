@@ -132,6 +132,11 @@ public:
     bool isValid() const { return mValid; }
     bool isFixed() const { return mFixed; }
     int getFixedWidth() const { return mFixedWidth; }
+    int getOffset(int i_no) const { 
+        JUTFont::TWidth width;
+        getWidthEntry(i_no, &width);
+        return width.field_0x0;
+    }
 
     /* 0x04 */ bool mValid;
     /* 0x05 */ bool mFixed;

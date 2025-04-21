@@ -169,6 +169,7 @@ public:
 
     bool isConnectParent() const { return mConnected; }
 
+    u64 getUserInfo() const { return mUserInfoTag; }
     void setUserInfo(u64 info) { mUserInfoTag = info; }
     const Mtx* getMtx() const { return &mPositionMtx; }
 

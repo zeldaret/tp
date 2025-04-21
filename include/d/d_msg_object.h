@@ -153,7 +153,7 @@ public:
     /* 802385B4 */ static u8 getSelectBombBagID();
     /* 802385E0 */ static s16 getSelectBombPrice();
     /* 8023860C */ static void setEquipBombInfo();
-    /* 80238638 */ u8 getItemEquipButton();
+    /* 80238638 */ static u8 getItemEquipButton();
     /* 8023864C */ static void setSelectCancelPos(u8);
 
     void setShopWaitTimerLocal(u8 timer) { mShopWaitTimer = timer; }
@@ -237,6 +237,7 @@ public:
     u16 getBombMessageIDLocal(int idx) { return mBombMessageID[idx]; }
     u8 getBombBagIDLocal(int idx) { return mBombBagID[idx]; }
     u8 getArrowNumLocal() { return mArrowNum; }
+    u8 isNoDemoFlag() { return mNoDemoFlag; }
 
     jmessage_tSequenceProcessor* getSequenceProcessor() { return mpSeqProc; }
 
@@ -452,6 +453,18 @@ inline void dMsgObject_setSelectWordFlag(u8 flag) {
     dMsgObject_getMsgObjectClass()->setSelectWordFlag(flag);
 }
 
+inline u8 dMsgObject_getSelectWordFlag() {
+    return dMsgObject_getMsgObjectClass()->getSelectWordFlag();
+}
+
+inline const char* dMsgObject_getSelectWord(int idx) {
+    return dMsgObject_getMsgObjectClass()->getSelectWord(idx);
+}
+
+inline u8 dMsgObject_getItemEquipButton() {
+    return dMsgObject_getMsgObjectClass()->getItemEquipButton();
+}
+
 inline void dMsgObject_setNowTalkFlowNo(s16 nowTalkFlowNo) {
     dMsgObject_c::setNowTalkFlowNo(nowTalkFlowNo);
 }
@@ -478,6 +491,10 @@ inline void* dMsgObject_getTalkHeap() {
 
 inline void dMsgObject_setTalkHeap(void* heap) {
     dMsgObject_c::setTalkHeap(heap);
+}
+
+inline u8 dMsgObject_getMsgOutputType() {
+    return dMsgObject_getMsgObjectClass()->getMsgOutputType();
 }
 
 inline void dMsgObject_setMsgOutputType(u8 outputType) {
@@ -657,8 +674,8 @@ public:
     /* 0x30C */ s16 mBossNameFadeOut;
     /* 0x30E */ u16 mStageTitleDisplayTime;
     /* 0x310 */ u16 mBossNameDisplayTime;
-    /* 0x312 */ u16 mBatchDisplayWeight_3;
-    /* 0x314 */ u16 mCharDisplayWeight_5;
+    /* 0x312 */ s16 mBatchDisplayWeight_3;
+    /* 0x314 */ s16 mCharDisplayWeight_5;
     /* 0x316 */ s16 mBatchDisplayWeight_8;
     /* 0x318 */ s16 mBatchDisplayWeight_9;
     /* 0x31A */ s16 mHaloDelayFrame;
