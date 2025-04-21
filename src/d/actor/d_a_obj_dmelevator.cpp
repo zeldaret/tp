@@ -10,22 +10,7 @@
 #include "d/d_path.h"
 
 /* 80BDFB38-80BDFB70 000008 0001+03 1/1 0/0 0/0 .bss             @1109 */
-UNK_BSS(1109);
-UNK_BSS(1107);
-UNK_BSS(1105);
-UNK_BSS(1104);
-UNK_BSS(1099);
-UNK_BSS(1097);
-UNK_BSS(1095);
-UNK_BSS(1094);
-UNK_BSS(1057);
-UNK_BSS(1055);
-UNK_BSS(1053);
-UNK_BSS(1052);
-UNK_BSS(1014);
-UNK_BSS(1012);
-UNK_BSS(1010);
-UNK_BSS(1009);
+UNK_REL_BSS;
 
 /* 80BDF950-80BDF964 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
 UNK_REL_DATA;
@@ -52,14 +37,14 @@ static void rideCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2
         };
 
         cXyz local_2c = param_2->current.pos - pthis->mXyz;
-        mDoMtx_YrotS(mDoMtx_stack_c::now, -param_1->current.angle.y);
-        PSMTXMultVec(mDoMtx_stack_c::now, &local_2c, &local_2c);
+        mDoMtx_stack_c::YrotS(-param_1->current.angle.y);
+        mDoMtx_stack_c::multVec(&local_2c, &local_2c);
 
         if (l_push_check_pos0[0].x <= local_2c.x) {
             if (l_push_check_pos0[2].x >= local_2c.x) {
                 if (l_push_check_pos0[0].z <= local_2c.z) {
                     if (l_push_check_pos0[2].z >= local_2c.z) {
-                        if ((pdVar1->checkEquipHeavyBoots()) != 0) {
+                        if ((pdVar1->checkEquipHeavyBoots())) {
                             pthis->field_0x632 = 1;
                             pthis->field_0x634 = 1;
                         }
@@ -68,7 +53,7 @@ static void rideCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2
                             pthis->field_0x632 = 0;
                             pthis->field_0x634 = 0;
                         }
-                        if (fopAcM_CheckCarryType(param_2, fopAcM_CARRY_TYPE_1) != 0) {
+                        if (fopAcM_CheckCarryType(param_2, fopAcM_CARRY_TYPE_1)) {
                             pthis->field_0x62f = 2;
                         } else {
                             pthis->field_0x62f = 1;
@@ -85,16 +70,16 @@ static int nodeCallBackForSw(J3DJoint* param_0, int param_1) {
     if (param_1 == 0) {
         int jnt_no = param_0->getJntNo();
         J3DModel* pmodel = j3dSys.getModel();
-        daObjDmElevator_c* puser_area = (daObjDmElevator_c*)pmodel->mUserArea;
+        daObjDmElevator_c* puser_area = (daObjDmElevator_c*)pmodel->getUserArea();
 
-        PSMTXCopy(pmodel->mMtxBuffer->getAnmMtx(jnt_no), mDoMtx_stack_c::now);
+        mDoMtx_copy(pmodel->mMtxBuffer->getAnmMtx(jnt_no), mDoMtx_stack_c::get());
 
         if (jnt_no == 1) {
             mDoMtx_stack_c::transM(puser_area->field_0x638, 0.0f, 0.0f);
         }
 
         pmodel->mMtxBuffer->setAnmMtx(jnt_no, mDoMtx_stack_c::get());
-        PSMTXCopy(mDoMtx_stack_c::now, j3dSys.mCurrentMtx);
+        mDoMtx_copy(mDoMtx_stack_c::get(), j3dSys.mCurrentMtx);
     }
     return 1;
 }
@@ -104,15 +89,15 @@ static int nodeCallBack(J3DJoint* param_0, int param_1) {
     if (param_1 == 0) {
         int jnt_no = param_0->getJntNo();
         J3DModel* pmodel = j3dSys.getModel();
-        daObjDmElevator_c* puser_area = (daObjDmElevator_c*)pmodel->mUserArea;
+        daObjDmElevator_c* puser_area = (daObjDmElevator_c*)pmodel->getUserArea();
        
-        PSMTXCopy(j3dSys.getModel()->mMtxBuffer->getAnmMtx(jnt_no), mDoMtx_stack_c::now);
+        mDoMtx_copy(j3dSys.getModel()->mMtxBuffer->getAnmMtx(jnt_no), mDoMtx_stack_c::get());
        
         if (jnt_no == 2) {
-            mDoMtx_XrotM(mDoMtx_stack_c::now, puser_area->field_0x5e4);
+            mDoMtx_XrotM(mDoMtx_stack_c::get(), puser_area->field_0x5e4);
         }
        
-        PSMTXCopy(mDoMtx_stack_c::now, pmodel->mMtxBuffer->getAnmMtx(jnt_no));
+        mDoMtx_copy(mDoMtx_stack_c::get(), pmodel->mMtxBuffer->getAnmMtx(jnt_no));
     }
     return 1;
 }
@@ -120,8 +105,8 @@ static int nodeCallBack(J3DJoint* param_0, int param_1) {
 /* 80BDDD38-80BDDD90 0004B8 0058+00 1/1 0/0 0/0 .text            initBaseMtx__17daObjDmElevator_cFv
  */
 void daObjDmElevator_c::initBaseMtx() {
-    mpElevatorModel->mBaseScale = scale;
-    mpSwitchModel->mBaseScale = scale;
+    mpElevatorModel->setBaseScale(scale);
+    mpSwitchModel->setBaseScale(scale);
 
     setBaseMtx();
 }
@@ -131,17 +116,18 @@ void daObjDmElevator_c::initBaseMtx() {
 void daObjDmElevator_c::setBaseMtx() {
     
     mDoMtx_stack_c::transS(current.pos);
-    mDoMtx_YrotM(mDoMtx_stack_c::now, shape_angle.y);
-    PSMTXCopy(mDoMtx_stack_c::now, mpElevatorModel->mBaseTransformMtx);
+    mDoMtx_stack_c::YrotM(shape_angle.y);
+    mpElevatorModel->setBaseTRMtx(mDoMtx_stack_c::now);
     PSMTXCopy(mDoMtx_stack_c::now, mBgMtx);
-    mDoMtx_YrotS(mDoMtx_stack_c::now, shape_angle.y);
+    mDoMtx_stack_c::YrotS(shape_angle.y);
    
     cXyz VStack_18;
-    PSMTXMultVec(mDoMtx_stack_c::now, &l_swOffset, &VStack_18);
+    
+    mDoMtx_stack_c::multVec(&l_swOffset, &VStack_18);
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::transM(VStack_18);
-    mDoMtx_YrotM(mDoMtx_stack_c::now, shape_angle.y);
-    PSMTXCopy(mDoMtx_stack_c::now, mpSwitchModel->mBaseTransformMtx);
+    mDoMtx_stack_c::YrotM(shape_angle.y);
+    mpSwitchModel->setBaseTRMtx(mDoMtx_stack_c::now);
     PSMTXCopy(mDoMtx_stack_c::now, mMtx);
    
     float fVar1 = field_0x638;
@@ -149,14 +135,14 @@ void daObjDmElevator_c::setBaseMtx() {
         fVar1 = -17.f;
     }
    
-    PSMTXTrans(mDoMtx_stack_c::now, current.pos.x, current.pos.y + fVar1, current.pos.z);
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y + fVar1, current.pos.z);
     mDoMtx_stack_c::transM(VStack_18);
-    mDoMtx_YrotM(mDoMtx_stack_c::now, shape_angle.y);
+    mDoMtx_stack_c::YrotM(shape_angle.y);
     PSMTXCopy(mDoMtx_stack_c::now, mMtx);
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::transM(VStack_18);
-    mDoMtx_YrotM(mDoMtx_stack_c::now, shape_angle.y);
-    mDoMtx_stack_c::multVecZero((Vec*)&mXyz);
+    mDoMtx_stack_c::YrotM(shape_angle.y);
+    mDoMtx_stack_c::multVecZero(&mXyz);
 }
 
 /* 80BDF964-80BDF968 -00001 0004+00 3/4 0/0 0/0 .data            l_el_arcName */
@@ -190,15 +176,15 @@ int daObjDmElevator_c::Create() {
         initBaseMtx();
         
         cullMtx = mpElevatorModel->mBaseTransformMtx;
-        fopAcM_setCullSizeBox(this, -250.0, -50.0, -350.0, 250.0, 450.0, 400.0);
+        fopAcM_setCullSizeBox(this, -250.0f, -50.0f, -350.0f, 250.0f, 450.0f, 400.0f);
         
         mpElevatorModel->mModelData->getJointTree().getJointNodePointer(2)->setCallBack(
             nodeCallBack);
-        mpElevatorModel->mUserArea = (u32)this;
+        mpElevatorModel->setUserArea((u32)this);
         
         mpSwitchModel->mModelData->getJointTree().getJointNodePointer(1)->setCallBack(
             nodeCallBackForSw);
-        mpSwitchModel->mUserArea = (u32)this;
+        mpSwitchModel->setUserArea((u32)this);
         
         mpBgW->SetRideCallback(rideCallBack);
         mpBgW->Move();
@@ -308,7 +294,7 @@ int daObjDmElevator_c::Execute(Mtx** param_1) {
     field_0x632 = 0;
     field_0x635 = field_0x634;
     field_0x634 = 0;
-    field_0x5e4 = field_0x5e4 + (short)((speedF * 65535.0f) / 502.65485f);
+    field_0x5e4 = field_0x5e4 + (s16)((speedF * 65535.0f) / 502.65485f);
     mSoundObj.framework(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     return 1;
 }
@@ -416,12 +402,12 @@ void daObjDmElevator_c::actionSwPause() {
 /* 80BDE8D0-80BDE960 001050 0090+00 1/1 0/0 0/0 .text            calc_top_pos__17daObjDmElevator_cFv
  */
 void daObjDmElevator_c::calc_top_pos() {
-    speed.y = speed.y - (field_0x63c - field_0x640) * (9.f / 10.f);
+    speed.y = speed.y - (field_0x63c - field_0x640) * (0.9f);
     speed.y = speed.y - speed.y * 0.5f;
 
     field_0x63c = field_0x63c + speed.y;
-    field_0x638 = ((1.0f) - field_0x63c) * -24.0f;
-    field_0x638 = cLib_minMaxLimit(field_0x638, -24.f, 0.f);
+    field_0x638 = (1.0f - field_0x63c) * -24.0f;
+    field_0x638 = cLib_minMaxLimit(field_0x638, -24.0f, 0.0f);
 }
 
 /* 80BDE960-80BDEA1C 0010E0 00BC+00 1/1 0/0 0/0 .text mode_sw_proc_call__17daObjDmElevator_cFv */
@@ -439,13 +425,11 @@ void daObjDmElevator_c::mode_sw_proc_call() {
 /* 80BDEA1C-80BDEA44 00119C 0028+00 1/1 0/0 0/0 .text modeSwWaitLowerInit__17daObjDmElevator_cFv
  */
 void daObjDmElevator_c::modeSwWaitLowerInit() {
-    speed.y = 0.0;
-    field_0x63c = 1.0;
-    field_0x640 = 1.0;
+    speed.y = 0.0f;
+    field_0x63c = 1.0f;
+    field_0x640 = 1.0f;
     field_0x628 = 0;
 }
-/* 80BDF8E0-80BDF8E4 000070 0004+00 0/1 0/0 0/0 .rodata          @4142 */
-static f32 const lit_4142 = 4.0f / 5.0f;
 
 /* 80BDEA44-80BDEB88 0011C4 0144+00 1/0 0/0 0/0 .text modeSwWaitLower__17daObjDmElevator_cFv */
 void daObjDmElevator_c::modeSwWaitLower() {
@@ -454,18 +438,14 @@ void daObjDmElevator_c::modeSwWaitLower() {
             modeSwLowerInit();
         } else {
             if (field_0x640 == 1.0f) {
-                s8 reverb = dComIfGp_getReverb(fopAcM_GetRoomNo(this));
-                Z2AudioMgr::mAudioMgrPtr->seStart(Z2SE_OBJ_HEAVY_FUMISW_RIDE, (Vec*)&eyePos, 0,
-                                                  reverb, 1.0, 1.0, -1.0, -1.0, 0);
+                fopAcM_seStart(this, Z2SE_OBJ_HEAVY_FUMISW_RIDE, 0);
             }
             field_0x640 = 0.8f;  // 9c
         }
     } else {
         if (field_0x640 != 1.0f)  // a8
         {
-            s8 reverb = dComIfGp_getReverb(fopAcM_GetRoomNo(this));
-            Z2AudioMgr::mAudioMgrPtr->seStart(Z2SE_OBJ_HEAVY_FUMISW_DROP, (Vec*)&eyePos, 0, reverb,
-                                              1.0, 1.0, -1.0, -1.0, 0);
+            fopAcM_seStart(this, Z2SE_OBJ_HEAVY_FUMISW_DROP, 0);
         }
         field_0x640 = 1.0f;
     }
@@ -477,8 +457,7 @@ void daObjDmElevator_c::modeSwWaitLower() {
 
 /* 80BDEA1c-80BDEA40 001308 0088+00 1/1 0/0 0/0 .text modeSwLowerInit__17daObjDmElevator_cFv */
 void daObjDmElevator_c::modeSwLowerInit() {
-    Z2AudioMgr::mAudioMgrPtr->seStart(Z2SE_OBJ_HEAVY_FUMISW_ON, (Vec*)&mXyz, 0, 0, 1.0, 1.0, -1.0,
-                                      -1.0, 0);
+    mDoAud_seStart(Z2SE_OBJ_HEAVY_FUMISW_ON, &mXyz, 0, 0);
 
     field_0x640 = 0;
     field_0x628 = 1;
@@ -499,9 +478,9 @@ void daObjDmElevator_c::modeSwLower() {
 /* 80BDEC94-80BDECB4 001414 0020+00 2/2 0/0 0/0 .text modeSwWaitUpperInit__17daObjDmElevator_cFv
  */
 void daObjDmElevator_c::modeSwWaitUpperInit() {
-    speed.y = 0.0;
-    field_0x63c = 0.0;
-    field_0x640 = 0.0;
+    speed.y = 0.0f;
+    field_0x63c = 0.0f;
+    field_0x640 = 0.0f;
     field_0x628 = 2;
 }
 
@@ -514,10 +493,9 @@ void daObjDmElevator_c::modeSwWaitUpper() {
 
 /* 80BDECE0-80BDED64 001460 0084+00 1/1 0/0 0/0 .text modeSwUpperInit__17daObjDmElevator_cFv */
 void daObjDmElevator_c::modeSwUpperInit() {
-    Z2AudioMgr::mAudioMgrPtr->seStart(Z2SE_OBJ_HEAVY_FUMISW_OFF, (Vec*)&mXyz, 0, 0, 1.0, 1.0, -1.0,
-                                      -1.0, 0);
+    mDoAud_seStart(Z2SE_OBJ_HEAVY_FUMISW_OFF, &mXyz, 0, 0);
 
-    field_0x640 = 1.0;
+    field_0x640 = 1.0f;
     field_0x628 = 3;
 }
 
@@ -548,7 +526,7 @@ void daObjDmElevator_c::actionWait() {
     if (field_0x5e0 == 1) {
         mAction = 4;
         moveInit();
-    } else if ((g_dComIfG_gameInfo.play.getEvent().mEventStatus == 0) && (field_0x62d != 0)) {
+    } else if (!dComIfGp_event_runCheck() && (field_0x62d != 0)) {
         mAction = 1;
 
         fopAcM_orderOtherEventId(this, mEventIndex, 0xff, 0xffff, 0, 1);
@@ -560,7 +538,7 @@ void daObjDmElevator_c::actionWait() {
 void daObjDmElevator_c::actionOrderEvent() {
     if (eventInfo.mCommand == 2) {
         mAction = 2;
-        field_0x5dc = dComIfGp_getEventManager().getMyStaffId(l_staffName, NULL, 0);
+        field_0x5dc =  dComIfGp_evmng_getMyStaffId(l_staffName, NULL, 0);
         demoProc();
         field_0x62d = 0;
     } else {
@@ -573,7 +551,7 @@ void daObjDmElevator_c::actionOrderEvent() {
  */
 void daObjDmElevator_c::actionEvent() {
     dEvent_manager_c& evt_manager = dComIfGp_getEventManager();
-    if (evt_manager.endCheck(mEventIndex) != 0) {
+    if (dComIfGp_evmng_endCheck(mEventIndex)) {
         setAction(0);
         dComIfGp_event_reset();
     } else {
@@ -583,7 +561,7 @@ void daObjDmElevator_c::actionEvent() {
 
 /* 80BDF068-80BDF0A0 0017E8 0038+00 1/0 0/0 0/0 .text actionStartEvent__17daObjDmElevator_cFv */
 void daObjDmElevator_c::actionStartEvent() {
-    if ((actor_status & 0x1000) != 0) {
+    if ( fopAcM_checkStatus(this, 0x1000) != 0) {
         demoProc();
     } else {
         mAction = 0;
@@ -598,8 +576,7 @@ void daObjDmElevator_c::actionMoveStart() {
         mAction = 0;
 
         s8 i_reverb = dComIfGp_getReverb(fopAcM_GetRoomNo(this));
-        Z2AudioMgr::mAudioMgrPtr->seStart(Z2SE_OBJ_ELEVATOR_STOP, (Vec*)&eyePos, 0, i_reverb, 1.0,
-                                          1.0, -1.0, -1.0, 0);
+        mDoAud_seStart(Z2SE_OBJ_ELEVATOR_STOP, &eyePos, 0, i_reverb);
     }
 }
 
@@ -754,20 +731,20 @@ static int daObjDmElevator_create1st(daObjDmElevator_c* i_this) {
 
 /* 80BDF7D8-80BDF7F8 001F58 0020+00 1/0 0/0 0/0 .text
  * daObjDmElevator_MoveBGDelete__FP17daObjDmElevator_c          */
-static void daObjDmElevator_MoveBGDelete(daObjDmElevator_c* i_this) {
-    i_this->MoveBGDelete();
+static int daObjDmElevator_MoveBGDelete(daObjDmElevator_c* i_this) {
+    return i_this->MoveBGDelete();
 }
 
 /* 80BDF7F8-80BDF818 001F78 0020+00 1/0 0/0 0/0 .text
  * daObjDmElevator_MoveBGExecute__FP17daObjDmElevator_c         */
-static void daObjDmElevator_MoveBGExecute(daObjDmElevator_c* i_this) {
-    i_this->MoveBGExecute();
+static int daObjDmElevator_MoveBGExecute(daObjDmElevator_c* i_this) {
+    return i_this->MoveBGExecute();
 }
 
 /* 80BDF818-80BDF844 001F98 002C+00 1/0 0/0 0/0 .text
  * daObjDmElevator_MoveBGDraw__FP17daObjDmElevator_c            */
-static void daObjDmElevator_MoveBGDraw(daObjDmElevator_c* i_this) {
-    i_this->MoveBGDraw();
+static int daObjDmElevator_MoveBGDraw(daObjDmElevator_c* i_this) {
+    return i_this->MoveBGDraw();
 }
 
 /* 80BDFAB8-80BDFAD8 -00001 0020+00 1/0 0/0 0/0 .data            daObjDmElevator_METHODS */

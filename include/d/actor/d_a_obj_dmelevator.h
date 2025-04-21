@@ -17,7 +17,7 @@ class daObjDmElevator_c : public dBgS_MoveBgActor {
 public:
     /* 80BDDD38 */ void initBaseMtx();
     /* 80BDDD90 */ void setBaseMtx();
-    /* 80BDDEFC */ virtual int Create() /*override*/;
+    /* 80BDDEFC */ virtual int Create();
     /* 80BDE0A4 */ int init();
     /* 80BDE2F8 */ int CreateHeap();
     /* 80BDE448 */ int create1st();
