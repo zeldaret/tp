@@ -41,7 +41,7 @@ static int simple_bg_check(e_tk_ball_class* i_this) {
 
     cXyz current_pos = actor->current.pos;
     current_pos.y += i_this->mArcHeight;
-    mDoMtx_YrotS(*calc_mtx, actor->current.angle.y);
+    cMtx_YrotS(*calc_mtx, actor->current.angle.y);
 
     cXyz start_pos;
     cXyz end_pos;
@@ -141,15 +141,13 @@ static void e_tk_ball_move(e_tk_ball_class* i_this) {
         dAttention_c* attention = &dComIfGp_getAttention();
         if (attention->Lockon() && parent_actor == attention->LockonTarget(0)) {
             actor_lockon = true;
-            (parent_actor->attention_info).flags = (parent_actor->attention_info).flags | 0x200000;
+            parent_actor->attention_info.flags |= 0x200000;
         }
     }
     if (i_this->mTgSph.ChkTgHit() || i_this->mAtSph.ChkAtShieldHit()) {
         impact_eff_set(i_this);
         actor->current.angle.x *= -1;
-        if (actor_lockon &&
-            daPy_getPlayerActorClass()->getCutType() != 0x00)
-        {
+        if (actor_lockon && daPy_getPlayerActorClass()->getCutType() != 0x00) {
             i_this->mAction = ACT_TK_BALL_RETURN;
             i_this->mMode = MODE_TK_BALL_INIT;
             actor->current.angle.y -= 0x8000;
@@ -237,7 +235,6 @@ static void e_tk_ball_drop(e_tk_ball_class* i_this) {
 static void action(e_tk_ball_class* i_this) {
     fopAc_ac_c* actor = i_this;
 
-    /* 807BD5D0-807BD5D8 000000 0006+02 1/1 0/0 0/0 .data            e_id$3988 */
     static u16 e_id[4] = {0x819D, 0x819E, 0x819A, 0x0000};
 
     s8 is_moving = true;
@@ -372,7 +369,6 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* 807BD1EC-807BD4D4 00126C 02E8+00 1/0 0/0 0/0 .text            daE_TK_BALL_Create__FP10fopAc_ac_c
  */
 static int daE_TK_BALL_Create(fopAc_ac_c* i_this) {
-    /* 807BD5D8-807BD618 000008 0040+00 1/1 0/0 0/0 .data            at_sph_src$4199 */
     static dCcD_SrcSph at_sph_src = {
         {
             {0x0, {{AT_TYPE_CSTATUE_SWING, 0x1, 0xd}, {0x0, 0x0}, 0x0}},  // mObj
@@ -385,7 +381,6 @@ static int daE_TK_BALL_Create(fopAc_ac_c* i_this) {
         }  // mSphAttr
     };
 
-    /* 807BD618-807BD658 000048 0040+00 1/1 0/0 0/0 .data            tg_sph_src$4200 */
     static dCcD_SrcSph tg_sph_src = {
         {
             {0x0, {{0x0, 0x0, 0x0}, {0xd8fbfdff, 0x3}, 0x0}},  // mObj
@@ -425,7 +420,7 @@ static int daE_TK_BALL_Create(fopAc_ac_c* i_this) {
         if (!fopAcM_entrySolidHeap(i_this, useHeapInit, size)) {
             return cPhs_ERROR_e;
         }
-        a_this->cullMtx = a_this->mpModel->mBaseTransformMtx;
+        fopAcM_SetMtx(a_this, a_this->mpModel->getBaseTRMtx());
         a_this->mStts.Init(0xff, 0, a_this);
         a_this->mAtSph.Set(at_sph_src);
         a_this->mAtSph.SetStts(&a_this->mStts);
