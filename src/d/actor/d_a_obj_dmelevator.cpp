@@ -4,79 +4,38 @@
  */
 
 #include "d/actor/d_a_obj_dmelevator.h"
-#include "cmath.h"
-#include "d/actor/d_a_alink.h"
+#include "Z2AudioLib/Z2Instances.h"
+#include "d/actor/d_a_player.h"
 #include "d/d_bg_w.h"
 #include "d/d_path.h"
 
+/* 80BDFB38-80BDFB70 000008 0001+03 1/1 0/0 0/0 .bss             @1109 */
+UNK_BSS(1109);
+UNK_BSS(1107);
+UNK_BSS(1105);
+UNK_BSS(1104);
+UNK_BSS(1099);
+UNK_BSS(1097);
+UNK_BSS(1095);
+UNK_BSS(1094);
+UNK_BSS(1057);
+UNK_BSS(1055);
+UNK_BSS(1053);
+UNK_BSS(1052);
+UNK_BSS(1014);
+UNK_BSS(1012);
+UNK_BSS(1010);
+UNK_BSS(1009);
 
-//
-// Forward References:
-//
-extern "C" extern char const* const d_a_obj_dmelevator__stringBase0;
+/* 80BDF950-80BDF964 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
+UNK_REL_DATA;
 
-/* 80BDF884-80BDF888 000014 0004+00 0/1 0/0 0/0 .rodata          @3720 */
-static f32 const lit_3720 = 50.0f;
-
-/* 80BDFB38-80BDFB3C 000008 0001+03 1/1 0/0 0/0 .bss             @1109 */
-static u8 lit_1109[1 + 3 /* padding */];
-
-/* 80BDFB3C-80BDFB40 00000C 0001+03 0/0 0/0 0/0 .bss             @1107 */
-static u8 lit_1107[1 + 3 /* padding */];
-
-/* 80BDFB40-80BDFB44 000010 0001+03 0/0 0/0 0/0 .bss             @1105 */
-static u8 lit_1105[1 + 3 /* padding */];
-
-/* 80BDFB44-80BDFB48 000014 0001+03 0/0 0/0 0/0 .bss             @1104 */
-static u8 lit_1104[1 + 3 /* padding */];
-
-/* 80BDFB48-80BDFB4C 000018 0001+03 0/0 0/0 0/0 .bss             @1099 */
-static u8 lit_1099[1 + 3 /* padding */];
-
-/* 80BDFB4C-80BDFB50 00001C 0001+03 0/0 0/0 0/0 .bss             @1097 */
-static u8 lit_1097[1 + 3 /* padding */];
-
-/* 80BDFB50-80BDFB54 000020 0001+03 0/0 0/0 0/0 .bss             @1095 */
-static u8 lit_1095[1 + 3 /* padding */];
-
-/* 80BDFB54-80BDFB58 000024 0001+03 0/0 0/0 0/0 .bss             @1094 */
-static u8 lit_1094[1 + 3 /* padding */];
-
-/* 80BDFB58-80BDFB5C 000028 0001+03 0/0 0/0 0/0 .bss             @1057 */
-static u8 lit_1057[1 + 3 /* padding */];
-
-/* 80BDFB5C-80BDFB60 00002C 0001+03 0/0 0/0 0/0 .bss             @1055 */
-static u8 lit_1055[1 + 3 /* padding */];
-
-/* 80BDFB60-80BDFB64 000030 0001+03 0/0 0/0 0/0 .bss             @1053 */
-static u8 lit_1053[1 + 3 /* padding */];
-
-/* 80BDFB64-80BDFB68 000034 0001+03 0/0 0/0 0/0 .bss             @1052 */
-static u8 lit_1052[1 + 3 /* padding */];
-
-/* 80BDFB68-80BDFB6C 000038 0001+03 0/0 0/0 0/0 .bss             @1014 */
-static u8 lit_1014[1 + 3 /* padding */];
-
-/* 80BDFB6C-80BDFB70 00003C 0001+03 0/0 0/0 0/0 .bss             @1012 */
-static u8 lit_1012[1 + 3 /* padding */];
-
-/* 80BDFB70-80BDFB74 000040 0001+03 0/0 0/0 0/0 .bss             @1010 */
-static u8 lit_1010[1 + 3 /* padding */];
-
-/* 80BDFB74-80BDFB78 000044 0001+03 0/0 0/0 0/0 .bss             @1009 */
-static u8 lit_1009[1 + 3 /* padding */];
-
-/* 80BDFB78-80BDFB88 000048 000C+04 0/1 0/0 0/0 .bss             @3654 */
-static u8 lit_3654[12 + 4 /* padding */];
-
-/* 80BDFB88-80BDFB94 000058 000C+00 0/1 0/0 0/0 .bss             @3657 */
-static u8 lit_3657[12];
-
-/* 80BDFB94-80BDFBA0 000064 000C+00 0/1 0/0 0/0 .bss             @3658 */
-static u8 lit_3658[12];
-
-/* 80BDFBA0-80BDFBAC 000070 000C+00 0/1 0/0 0/0 .bss             @3659 */
-static u8 lit_3659[12];
+/* 80BDF870-80BDF87C 000000 000C+00 11/11 0/0 0/0 .rodata          l_swOffset */
+static const Vec l_swOffset = {
+    0.0f,
+    162.0f,
+    -77.0f,
+};
 
 /* 80BDD96C-80BDDBB4 0000EC 0248+00 1/1 0/0 0/0 .text
  * rideCallBack__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c              */
@@ -92,14 +51,14 @@ static void rideCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2
             cXyz(-50.f, 0.f, 50.f),
         };
 
-        cXyz local_2c = param_2->current.pos - param_1->current.pos;
+        cXyz local_2c = param_2->current.pos - pthis->mXyz;
         mDoMtx_YrotS(mDoMtx_stack_c::now, -param_1->current.angle.y);
         PSMTXMultVec(mDoMtx_stack_c::now, &local_2c, &local_2c);
 
         if (l_push_check_pos0[0].x <= local_2c.x) {
-            if (local_2c.x <= l_push_check_pos0[1].x) {
+            if (l_push_check_pos0[2].x >= local_2c.x) {
                 if (l_push_check_pos0[0].z <= local_2c.z) {
-                    if (local_2c.z <= l_push_check_pos0[2].z) {
+                    if (l_push_check_pos0[2].z >= local_2c.z) {
                         if ((pdVar1->checkEquipHeavyBoots()) != 0) {
                             pthis->field_0x632 = 1;
                             pthis->field_0x634 = 1;
@@ -183,11 +142,6 @@ void daObjDmElevator_c::setBaseMtx() {
     PSMTXCopy(mDoMtx_stack_c::now, mpElevatorModel->mBaseTransformMtx);
     PSMTXCopy(mDoMtx_stack_c::now, mBgMtx);
     mDoMtx_YrotS(mDoMtx_stack_c::now, shape_angle.y);
-    static const Vec l_swOffset = {
-        0.0f,
-        162.0f,
-        -77.0f,
-    };
     PSMTXMultVec(mDoMtx_stack_c::now, &l_swOffset, &VStack_18);
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::transM(VStack_18);
@@ -220,12 +174,11 @@ static const char* l_eventName = "ELEVATOR_MOVE";
 /* 80BDF970-80BDF974 -00001 0004+00 0/1 0/0 0/0 .data            l_eventName2 */
 static const char* l_eventName2 = "ELEVATOR_MOVE2";
 
+/* 80BDF8EC-80BDF8EC 00007C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 static const char* l_staffName = "dmele";
 
 /* 80BDDEFC-80BDE0A4 00067C 01A8+00 1/0 0/0 0/0 .text            Create__17daObjDmElevator_cFv */
 int daObjDmElevator_c::Create() {
-    // lis rA = rA | (iX << 16)
-    // addi rA = rB + iX
     int iVar1;
     s16 uVar2;
     s16 sVar2;
@@ -475,13 +428,13 @@ void daObjDmElevator_c::calc_top_pos() {
 /* 80BDE960-80BDEA1C 0010E0 00BC+00 1/1 0/0 0/0 .text mode_sw_proc_call__17daObjDmElevator_cFv */
 void daObjDmElevator_c::mode_sw_proc_call() {
     typedef void (daObjDmElevator_c::*actionFunc)();
-    static actionFunc l_func[] = {
+    static actionFunc l_mode_func[] = {
         &daObjDmElevator_c::modeSwWaitLower,
         &daObjDmElevator_c::modeSwLower,
         &daObjDmElevator_c::modeSwWaitUpper,
         &daObjDmElevator_c::modeSwUpper,
     };
-    (this->*l_func[field_0x628])();
+    (this->*l_mode_func[field_0x628])();
 }
 
 /* 80BDEA1C-80BDEA44 00119C 0028+00 1/1 0/0 0/0 .text modeSwWaitLowerInit__17daObjDmElevator_cFv
@@ -503,19 +456,19 @@ void daObjDmElevator_c::modeSwWaitLower() {
         } else {
             if (field_0x640 == 1.0f) {
                 s8 reverb = dComIfGp_getReverb(fopAcM_GetRoomNo(this));
-                Z2AudioMgr::mAudioMgrPtr->seStart(Z2SE_OBJ_HEAVY_FUMISW_DROP, (Vec*)&eyePos, 0,
+                Z2AudioMgr::mAudioMgrPtr->seStart(Z2SE_OBJ_HEAVY_FUMISW_RIDE, (Vec*)&eyePos, 0,
                                                   reverb, 1.0, 1.0, -1.0, -1.0, 0);
             }
-            field_0x640 = 1.0f;  // 9c
+            field_0x640 = 0.8f;  // 9c
         }
     } else {
-        if (field_0x640 != 4.0f / 5.0f)  // a8
+        if (field_0x640 != 1.0f)  // a8
         {
             s8 reverb = dComIfGp_getReverb(fopAcM_GetRoomNo(this));
-            Z2AudioMgr::mAudioMgrPtr->seStart(Z2SE_OBJ_HEAVY_FUMISW_RIDE, (Vec*)&eyePos, 0, reverb,
+            Z2AudioMgr::mAudioMgrPtr->seStart(Z2SE_OBJ_HEAVY_FUMISW_DROP, (Vec*)&eyePos, 0, reverb,
                                               1.0, 1.0, -1.0, -1.0, 0);
         }
-        field_0x640 = 0.8f;
+        field_0x640 = 1.0f;
     }
     if (field_0x62f != 0 && field_0x630 == 0)  //: 10c
     {
@@ -645,7 +598,7 @@ void daObjDmElevator_c::actionMoveStart() {
 
         mAction = 0;
 
-        s8 i_reverb = dComIfGp_getReverb(current.roomNo);
+        s8 i_reverb = dComIfGp_getReverb(fopAcM_GetRoomNo(this));
         Z2AudioMgr::mAudioMgrPtr->seStart(Z2SE_OBJ_ELEVATOR_STOP, (Vec*)&eyePos, 0, i_reverb, 1.0,
                                           1.0, -1.0, -1.0, 0);
     }
@@ -721,7 +674,7 @@ int daObjDmElevator_c::demoProc() {
 void daObjDmElevator_c::moveInit() {
     speedF = 0.0f;
     if (field_0x5e0 == 0) {
-        s8 i_reverb = dComIfGp_getReverb(current.roomNo);
+        s8 i_reverb = dComIfGp_getReverb(fopAcM_GetRoomNo(this));
 
         Z2AudioMgr::mAudioMgrPtr->seStart(Z2SE_OBJ_ELEVATOR_START, (Vec*)&eyePos, 0, i_reverb, 1.0,
                                           1.0, -1.0, -1.0, 0);
@@ -735,9 +688,9 @@ int daObjDmElevator_c::moveProc() {
 
     cXyz path_point(pdVar3->m_position);
     if (path_point.y > current.pos.y) {
-        cLib_chaseF(&speedF, -10.0f, 1.0f);
-    } else {
         cLib_chaseF(&speedF, 10.0f, 1.0f);
+    } else {
+        cLib_chaseF(&speedF, -10.0f, 1.0f);
     }
 
     int uVar1 = cLib_chasePos(&current.pos, path_point, fabsf(speedF));
@@ -749,8 +702,8 @@ int daObjDmElevator_c::moveProc() {
 
     int ret;
     if (uVar1 != 0) {
-        if (field_0x5e0 + (int)(char)field_0x5e1 != 1) {
-            field_0x5e0 = field_0x5e0 + field_0x5e1;
+        if (field_0x5e0 + field_0x5e1 != 1) {
+            field_0x5e0 += field_0x5e1;
             if (field_0x5e0 == 0) {
                 field_0x5e1 = 1;
             } else {
@@ -760,7 +713,7 @@ int daObjDmElevator_c::moveProc() {
         speedF = 0.0f;
         ret = 1;
     } else {
-        mSoundObj.startLevelSound(Z2SE_OBJ_ELEVATOR_MOVE, 0, 0xffffffff);
+        mSoundObj.startLevelSound(Z2SE_OBJ_ELEVATOR_MOVE, 0, -1);
         ret = 0;
     }
     return ret;
@@ -818,99 +771,32 @@ static void daObjDmElevator_MoveBGDraw(daObjDmElevator_c* i_this) {
     i_this->MoveBGDraw();
 }
 
-/* ############################################################################################## */
-/* 80BDFBE0-80BDFBE4 0000B0 0004+00 0/0 0/0 0/0 .bss
- * sInstance__40JASGlobalInstance<19JASDefaultBankTable>        */
-static u8 data_80BDFBE0[4];
+/* 80BDFAB8-80BDFAD8 -00001 0020+00 1/0 0/0 0/0 .data            daObjDmElevator_METHODS */
+static actor_method_class daObjDmElevator_METHODS = {
+    (process_method_func)daObjDmElevator_create1st,
+    (process_method_func)daObjDmElevator_MoveBGDelete,
+    (process_method_func)daObjDmElevator_MoveBGExecute,
+    0,
+    (process_method_func)daObjDmElevator_MoveBGDraw,
+};
 
-/* 80BDFBE4-80BDFBE8 0000B4 0004+00 0/0 0/0 0/0 .bss
- * sInstance__35JASGlobalInstance<14JASAudioThread>             */
-static u8 data_80BDFBE4[4];
+/* 80BDFAD8-80BDFB08 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Elevator */
+extern actor_process_profile_definition g_profile_Obj_Elevator = {
+    fpcLy_CURRENT_e,            // mLayerID
+    3,                          // mListID
+    fpcPi_CURRENT_e,            // mListPrio
+    PROC_Obj_Elevator,          // mProcName
+    &g_fpcLf_Method.base,       // sub_method
+    sizeof(daObjDmElevator_c),  // mSize
+    0,                          // mSizeOther
+    0,                          // mParameters
+    &g_fopAc_Method.base,       // sub_method
+    542,                        // mPriority
+    &daObjDmElevator_METHODS,   // sub_method
+    0x00044100,                 // mStatus
+    fopAc_ACTOR_e,              // mActorType
+    fopAc_CULLBOX_CUSTOM_e,     // cullType
+};
 
-/* 80BDFBE8-80BDFBEC 0000B8 0004+00 0/0 0/0 0/0 .bss sInstance__27JASGlobalInstance<7Z2SeMgr> */
-static u8 data_80BDFBE8[4];
-
-/* 80BDFBEC-80BDFBF0 0000BC 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8Z2SeqMgr> */
-static u8 data_80BDFBEC[4];
-
-/* 80BDFBF0-80BDFBF4 0000C0 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SceneMgr>
- */
-static u8 data_80BDFBF0[4];
-
-/* 80BDFBF4-80BDFBF8 0000C4 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2StatusMgr>
- */
-static u8 data_80BDFBF4[4];
-
-/* 80BDFBF8-80BDFBFC 0000C8 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2DebugSys>
- */
-static u8 data_80BDFBF8[4];
-
-/* 80BDFBFC-80BDFC00 0000CC 0004+00 0/0 0/0 0/0 .bss
- * sInstance__36JASGlobalInstance<15JAISoundStarter>            */
-static u8 data_80BDFBFC[4];
-
-/* 80BDFC00-80BDFC04 0000D0 0004+00 0/0 0/0 0/0 .bss
- * sInstance__35JASGlobalInstance<14Z2SoundStarter>             */
-static u8 data_80BDFC00[4];
-
-/* 80BDFC04-80BDFC08 0000D4 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12Z2SpeechMgr2>               */
-static u8 data_80BDFC04[4];
-
-/* 80BDFC08-80BDFC0C 0000D8 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8JAISeMgr> */
-static u8 data_80BDFC08[4];
-
-/* 80BDFC0C-80BDFC10 0000DC 0004+00 0/0 0/0 0/0 .bss sInstance__29JASGlobalInstance<9JAISeqMgr> */
-static u8 data_80BDFC0C[4];
-
-/* 80BDFC10-80BDFC14 0000E0 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAIStreamMgr>               */
-static u8 data_80BDFC10[4];
-
-/* 80BDFC14-80BDFC18 0000E4 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SoundMgr>
- */
-static u8 data_80BDFC14[4];
-
-/* 80BDFC18-80BDFC1C 0000E8 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAISoundInfo>               */
-static u8 data_80BDFC18[4];
-
-/* 80BDFC1C-80BDFC20 0000EC 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13JAUSoundTable>              */
-static u8 data_80BDFC1C[4];
-
-/* 80BDFC20-80BDFC24 0000F0 0004+00 0/0 0/0 0/0 .bss
- * sInstance__38JASGlobalInstance<17JAUSoundNameTable>          */
-static u8 data_80BDFC20[4];
-
-/* 80BDFC24-80BDFC28 0000F4 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAUSoundInfo>               */
-static u8 data_80BDFC24[4];
-
-/* 80BDFC28-80BDFC2C 0000F8 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SoundInfo>
- */
-static u8 data_80BDFC28[4];
-
-/* 80BDFC2C-80BDFC30 0000FC 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13Z2SoundObjMgr>              */
-static u8 data_80BDFC2C[4];
-
-/* 80BDFC30-80BDFC34 000100 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2Audience>
- */
-static u8 data_80BDFC30[4];
-
-/* 80BDFC34-80BDFC38 000104 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2FxLineMgr>
- */
-static u8 data_80BDFC34[4];
-
-/* 80BDFC38-80BDFC3C 000108 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2EnvSeMgr>
- */
-static u8 data_80BDFC38[4];
-
-/* 80BDFC3C-80BDFC40 00010C 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SpeechMgr>
- */
-static u8 data_80BDFC3C[4];
-
-/* 80BDFC40-80BDFC44 000110 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13Z2WolfHowlMgr>              */
-static u8 data_80BDFC40[4];
+/* 80BDFBF0-80BDFBF4 0000C0 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SceneMgr> */
+AUDIO_INSTANCES;

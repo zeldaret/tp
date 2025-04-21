@@ -1,8 +1,9 @@
 #ifndef D_A_OBJ_DMELEVATOR_H
 #define D_A_OBJ_DMELEVATOR_H
 
+#include "SSystem/SComponent/c_phase.h"
 #include "d/d_bg_s_movebg_actor.h"
-#include "d/d_com_inf_game.h"
+#include "f_op/f_op_actor_mng.h"
 
 /**
  * @ingroup actors-objects
