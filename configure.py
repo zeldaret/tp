@@ -1874,7 +1874,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_dan"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_digholl"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_digsnow"),
-    ActorRel(Equivalent, "d_a_obj_dmelevator"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_dmelevator"),
     ActorRel(NonMatching, "d_a_obj_drop"),
     ActorRel(NonMatching, "d_a_obj_dust"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_enemy_create"),
