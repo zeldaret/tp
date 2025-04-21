@@ -32,7 +32,7 @@ public:
     /* 8061FFE0 */ void calcOtherPartMove(int);
     /* 8062070C */ void calcPartMove();
     /* 806208C8 */ void setBck(int, u8, f32, f32);
-    /* 8062096C */ int checkBck(int);
+    /* 8062096C */ bool checkBck(int);
     /* 806209C8 */ void setActionMode(int, int);
     /* 806209E0 */ void setSwordAtBit(int);
     /* 80620AE4 */ void setSwordAtBreak(int);
@@ -43,7 +43,7 @@ public:
     /* 8062138C */ void setShieldEffect(dCcD_Sph*);
     /* 806213FC */ void damage_check();
     /* 806227D0 */ int checkMoveArea();
-    /* 80622B60 */ int checkMoveAngle();
+    /* 80622B60 */ bool checkMoveAngle();
     /* 80622BE0 */ void setAttackBlurEffect(int);
     /* 80622CE4 */ void setArmorBreakEffect(int);
     /* 80622F64 */ void demo_skip(int);
@@ -62,8 +62,8 @@ public:
     /* 80627100 */ void executeZakoChangeDemo();
     /* 80627790 */ void setWalkDir();
     /* 8062799C */ void initChaseL(int);
-    /* 80627CBC */ void checkAttackAble();
-    /* 80627D3C */ void checkNextMove();
+    /* 80627CBC */ bool checkAttackAble();
+    /* 80627D3C */ int checkNextMove();
     /* 8062868C */ void executeChaseL();
     /* 806292F8 */ void executeAttackL();
     /* 80629D20 */ void executeAttackShieldL();
@@ -121,9 +121,9 @@ private:
     /* 0x0A78 */ int field_0xa78;
     /* 0x0A7C */ int field_0xa7c;
     /* 0x0A80 */ int field_0xa80;
-    /* 0x0A84 */ u8 field_0xa84[0xa88 - 0xa84];
+    /* 0x0A84 */ int field_0xa84;
     /* 0x0A88 */ int field_0xa88;
-    /* 0x0A8C */ int field_0xa8c;
+    /* 0x0A8C */ int mWalkDir;
     /* 0x0A90 */ u8 field_0xa90;
     /* 0x0A91 */ u8 field_0xa91;
     /* 0x0A92 */ u8 field_0xa92;
@@ -133,7 +133,8 @@ private:
     /* 0x0A96 */ s16 field_0xa96;
     /* 0x0A98 */ s16 field_0xa98;
     /* 0x0A9A */ u8 field_0xa9a;
-    /* 0x0A9B */ u8 field_0xa9b[0xa9e - 0xa9b];
+    /* 0x0A9B */ u8 field_0xa9b[0xa9d - 0xa9b];
+    /* 0x0A9D */ u8 field_0xa9d;
     /* 0x0A9E */ u8 field_0xa9e;
     /* 0x0A9F */ u8 field_0xa9f;
     /* 0x0AA0 */ u8 field_0xaa0;

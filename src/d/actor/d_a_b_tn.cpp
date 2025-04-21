@@ -4,12 +4,13 @@
 */
 
 #include "d/actor/d_a_b_tn.h"
+#include "d/actor/d_a_boomerang.h"
 #include "d/actor/d_a_nbomb.h"
-#include "d/d_bomb.h"
 #include "d/d_cc_uty.h"
 #include "dol2asm.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/d_camera.h"
+#include <cmath.h>
 UNK_REL_DATA;
 #include "f_op/f_op_actor_enemy.h"
 
@@ -1448,7 +1449,7 @@ void daB_TN_c::setBck(int param_1, u8 param_2, f32 param_3, f32 param_4) {
 }
 
 /* 8062096C-806209C8 001E6C 005C+00 3/3 0/0 0/0 .text            checkBck__8daB_TN_cFi */
-int daB_TN_c::checkBck(int param_1) {
+bool daB_TN_c::checkBck(int param_1) {
     return mpModelMorf2->getAnm() == dComIfG_getObjectRes("B_tn", param_1);
 }
 
@@ -1847,7 +1848,7 @@ int daB_TN_c::checkMoveArea() {
 }
 
 /* 80622B60-80622BE0 004060 0080+00 1/1 0/0 0/0 .text            checkMoveAngle__8daB_TN_cFv */
-int daB_TN_c::checkMoveAngle() {
+bool daB_TN_c::checkMoveAngle() {
     s16 sVar1 = cM_atan2s(-current.pos.x, -current.pos.z);
     return abs((s16)(fopAcM_searchPlayerAngleY(this) - sVar1)) < 0x4000;
 }
@@ -2358,41 +2359,35 @@ void daB_TN_c::executeChaseH() {
     // NONMATCHING
     f32 mPlayerDistance = fopAcM_searchPlayerDistance(this);
     s16 sVar4 = fopAcM_searchPlayerAngleY(this);
-    s16 sVar5 = sVar4 - cM_atan2s(-current.pos.x, -current.pos.z);
-    int iVar2 = checkMoveArea();
+    s16 sVar5 = fopAcM_searchPlayerAngleY(this) - cM_atan2s(-current.pos.x, -current.pos.z);
+    int mMoveArea = checkMoveArea();
 
     switch (mActionMode2) {
-
-        case 101:
-            break;
-
-        case 0:
-        case 70:
-            if (iVar2 == 3) {
-                if (checkMoveAngle() != 0) {
+        case 1:
+        case 11:
+            if (mMoveArea == 3) {
+                if (checkMoveAngle()) {
                     mActionMode2 = 100;
                 } else {
                     mActionMode2 = 103;
                 }
             } else {
-                if (iVar2 != 0 && mPlayerDistance > 800.0f) {
+                if (mMoveArea != 0 && mPlayerDistance > 800.0f) {
                     mPlayerDistance = 400.0f;
                 }
 
                 if (mPlayerDistance < 200.0f) {
                     mActionMode2 = 3;
-                } else {
-                    if (mPlayerDistance >= 800.0f) {
-                        if (mActionMode2 == 0) {
-                            mActionMode2 = 10;
-                        } else {
-                            mActionMode2 = 8;
-                        }
-                    } else if (mPlayerDistance >= 400.0f) {
-                        mActionMode2 = 1;
+                } else if (mPlayerDistance >= 800.0f) {
+                    if (mActionMode2 == 0) {
+                        mActionMode2 = 10;
                     } else {
-                        mActionMode2 = 5;
+                        mActionMode2 = 8;
                     }
+                } else if (mPlayerDistance >= 400.0f) {
+                    mActionMode2 = 1;
+                } else {
+                    mActionMode2 = 5;
                 }
             }
 
@@ -2400,30 +2395,7 @@ void daB_TN_c::executeChaseH() {
             field_0xa91 = 1;
             break;
 
-        case 11:
-            break;
-            
-        case 1:
-        case 2:
-        case 3:
-            setBck(16, 2, 3.0f, -1.0f);
-            mActionMode2 = 4;
-            current.angle.y = shape_angle.y + -0x8000;
-            field_0xa8c = 11;
-
-            if (mActionMode2 == 1) {
-                setBck(16, 2, 3.0f, 1.0f);
-            } else {
-                setBck(16, 2, 10.0f, 1.0f);
-            }
-
-            mActionMode2 = 2;
-            speedF = 2.3f;
-            current.angle.y = shape_angle.y;
-            break;
-
         case 8:
-        case 9:
         case 10:
             if (mActionMode2 == 8) {
                 setBck(19, 2, 3.0f, 1.0f);
@@ -2433,16 +2405,66 @@ void daB_TN_c::executeChaseH() {
 
             mActionMode2 = 9;
             speedF = 4.3f;
+            // fallthrough
+        default:
+            if (mpModelMorf2->checkFrame(23.0f)) {
+                mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M1, 0, -1);
+            }
+            
+            if (mpModelMorf2->checkFrame(0.0f)) {
+                mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M2, 0, -1);
+            }
+            
+            cLib_addCalcAngleS(&shape_angle.y, sVar4, 4, 0x400, 16);
+            current.angle.y = shape_angle.y;
+            
+            if (mPlayerDistance < 700.0f) {
+                mActionMode2 = 11;
+            }
+            break;
+            
+        case 0:
+        case 2:
+            if (mActionMode2 == 1) {
+                setBck(16, 2, 3.0f, 1.0f);
+            } else {
+                setBck(16, 2, 10.0f, 1.0f);
+            }
+
+            mActionMode2 = 2;
+            speedF = 2.3f;
+            current.angle.y = shape_angle.y;
+            
+
+            setAwaitSound();
+            cLib_addCalcAngleS(&shape_angle.y, sVar4, 4, 0x400, 16);
+            current.angle.y = shape_angle.y;
+
+            if (mPlayerDistance > 800.0f) {
+                if (mMoveArea == 0) {
+                    mActionMode2 = 10;
+                }
+            } else if (mPlayerDistance < 300.0f) {
+                speedF = 0.0f;
+                mActionMode2 = 5;
+            }
             break;
 
+        case 3:
+            setBck(16, 2, 3.0f, -1.0f);
+            mActionMode2 = 4;
+            current.angle.y = shape_angle.y + 0x8000;
+            mWalkDir = 0;
+            // fallthrough
         case 4:
             setAwaitSound();
             speedF = 2.3f;
             cLib_addCalcAngleS(&shape_angle.y, sVar4, 4, 0x400, 16);
-            current.angle.y = shape_angle.y + -0x8000;
+            current.angle.y = shape_angle.y + 0x8000;
+
             if (mPlayerDistance < 200.0f && field_0xa70 == 0) {
-                field_0xa8c++;
-                if (field_0xa8c > 60) {
+                mWalkDir++;
+                if (mWalkDir > 60) {
                     if (field_0xaa5 == 1) {
                         field_0xa70 = l_HIO.field_0x1c;
                     } else {
@@ -2452,7 +2474,7 @@ void daB_TN_c::executeChaseH() {
                     setActionMode(4, 0);
                 }
             } else {
-                field_0xa8c = 0;
+                mWalkDir = 0;
             }
 
             if (mPlayerDistance > 300.0f) {
@@ -2471,44 +2493,20 @@ void daB_TN_c::executeChaseH() {
                 setBck(17, 2, 3.0f, -1.0f);
                 current.angle.y = shape_angle.y + -0x4000;
             }
-
+    
             field_0xa6c = cM_rndFX(20.0f) + 60.0f;
             speedF = 2.3f;
             break;
 
-        case 7:
+        case 6:
             setAwaitSound();
             cLib_addCalcAngleS(&shape_angle.y, sVar4, 4, 0x400, 16);
             current.angle.y = shape_angle.y + 0x4000;
 
             if (field_0xa6c == 0) {
                 if (cM_rnd() < 0.5f) {
-                    setBck(17, 2, 3.0f, 1.0f);
-                    current.angle.y = shape_angle.y + -0x4000;
-                    mActionMode2 = 6;
-                }
-
-                field_0xa6c = cM_rndFX(20.0f) + 90.0f;
-            }
-
-            if (mPlayerDistance < 200.0f) {
-                mActionMode2 = 3;
-            }
-
-            if (mPlayerDistance > 400.0f) {
-                mActionMode2 = 1;
-            }
-            break;
-
-        case 6:
-            setAwaitSound();
-            cLib_addCalcAngleS(&shape_angle.y, sVar4, 4, 0x400, 16);
-            current.angle.y = shape_angle.y + -0x4000;
-            
-            if (field_0xa6c == 0) {
-                if (cM_rnd() < 0.5f) {
                     setBck(17, 2, 3.0f, -1.0f);
-                    current.angle.y = shape_angle.y + 0x4000;
+                    current.angle.y = shape_angle.y + -0x4000;
                     mActionMode2 = 7;
                 }
 
@@ -2524,19 +2522,64 @@ void daB_TN_c::executeChaseH() {
             }
             break;
 
+        case 7:
+            setAwaitSound();
+            cLib_addCalcAngleS(&shape_angle.y, sVar4, 4, 0x400, 16);
+            current.angle.y = shape_angle.y + -0x4000;
+
+            if (field_0xa6c == 0) {
+                if (cM_rnd() < 0.5f) {
+                    setBck(17, 2, 3.0f, 1.0f);
+                    current.angle.y = shape_angle.y + 0x4000;
+                    mActionMode2 = 6;
+                }
+                field_0xa6c = cM_rndFX(20.0f) + 90.0f;
+            }
+
+            if (mPlayerDistance < 200.0f) {
+                mActionMode2 = 3;
+            } 
+            
+            if (mPlayerDistance > 400.0f) {
+                mActionMode2 = 1;
+            }
+            break;
+
+        case 70:
+        case 100:
+            setBck(16, 2, 10.0f, 1.0f);
+            mActionMode2 = 102;
+            speedF = 2.3f;
+            current.angle.y = shape_angle.y;
+            // fallthrough
+        case 101:
+            setAwaitSound();
+            cLib_addCalcAngleS(&shape_angle.y, sVar4, 4, 0x400, 16);
+            cLib_addCalcAngleS(&current.angle.y, cM_atan2s(-current.pos.x, -current.pos.z), 4, 0x400, 16);
+            
+            if (!checkMoveAngle()) {
+                mActionMode2 = 103;
+            }
+
+            if (mMoveArea <= 1) {
+                mActionMode2 = 70;
+            }
+            break;
+
         case 103:
             mPlayerDistance = 3.0f;
+
             if (checkBck(19)) {
                 mPlayerDistance = 10.0f;
             }
 
             if (abs(sVar5) < 0x2000) {
-                if (cM_rnd() >= 0.5f) {
-                    mActionMode2 = 107;
-                    setBck(17, 2, mPlayerDistance, -1.0f);
-                } else {
+                if (cM_rnd() < 0.5f) {
                     mActionMode2 = 106;
                     setBck(17, 2, mPlayerDistance, 1.0f);
+                } else {
+                    mActionMode2 = 107;
+                    setBck(17, 2, mPlayerDistance, -1.0f);
                 }
             } else if (sVar5 < 0) {
                 mActionMode2 = 106;
@@ -2545,11 +2588,9 @@ void daB_TN_c::executeChaseH() {
                 mActionMode2 = 107;
                 setBck(17, 2, mPlayerDistance, -1.0f);
             }
-
+            
             field_0xa6c = cM_rndFX(20.0f) + 60.0f;
-            break;
-
-        case 105:
+            // fallthrough
         case 106:
         case 107:
             setAwaitSound();
@@ -2557,16 +2598,16 @@ void daB_TN_c::executeChaseH() {
             cLib_addCalcAngleS(&shape_angle.y, sVar4, 4, 0x400, 16);
 
             if (mActionMode2 == 106) {
-                if (iVar2 == 3) {
+                if (mMoveArea == 3) {
                     current.angle.y = shape_angle.y + 0x6000;
-                } else if (iVar2 == 2) {
+                } else if (mMoveArea == 2) {
                     current.angle.y = shape_angle.y + 0x4000;
                 } else {
                     current.angle.y = shape_angle.y + 0x3000;
                 }
-            } else if (iVar2 == 3) {
+            } else if (mMoveArea == 3) {
                 current.angle.y = shape_angle.y + -0x6000;
-            } else if (iVar2 == 2) {
+            } else if (mMoveArea == 2) {
                 current.angle.y = shape_angle.y + -0x4000;
             } else {
                 current.angle.y = shape_angle.y + -0x3000;
@@ -2599,34 +2640,19 @@ void daB_TN_c::executeChaseH() {
                 }
             }
 
-            if (checkMoveAngle() != 0) {
+            if (checkMoveAngle()) {
                 mActionMode2 = 100;
             }
 
-            if (iVar2 < 1) {
+            if (mMoveArea < 1) {
                 mActionMode2 = 70;
             }
-
-        // default:
-            // if (mpModelMorf2->checkFrame(23.0f)) {
-            //     mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M1, 0, -1);
-            // }
-
-            // if (mpModelMorf2->checkFrame(0.0f)) {
-            //     mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M2, 0, -1);
-            // }
-
-            cLib_addCalcAngleS(&shape_angle.y, sVar4, 4, 0x400, 16);
-            current.angle.y = shape_angle.y;
-
-            // if (mPlayerDistance < 700.0f) {
-            //     mActionMode2 = 11;
-            // }
+            break;
     }
 
     if (mActionMode2 < 100) {
         checkStartAttackH();
-        if (iVar2 == 3) {
+        if (mMoveArea == 3) {
             if (checkMoveAngle() != 0) {
                 mActionMode2 = 100;
             } else {
@@ -2691,7 +2717,6 @@ void daB_TN_c::checkStartAttackH() {
 
 /* 806255F0-80625C74 006AF0 0684+00 1/1 0/0 0/0 .text            executeAttackH__8daB_TN_cFv */
 void daB_TN_c::executeAttackH() {
-    // NONMATCHING
     f32 frame;
     s16 playerAngleY = fopAcM_searchPlayerAngleY(this);
     f32 playerDistance = fopAcM_searchPlayerDistance(this);
@@ -2810,148 +2835,688 @@ void daB_TN_c::executeAttackH() {
     }
 }
 
-/* ############################################################################################## */
-/* 8062E7F8-8062E7FC 0001C4 0004+00 0/4 0/0 0/0 .rodata          @7293 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7293 = 4.0f;
-COMPILER_STRIP_GATE(0x8062E7F8, &lit_7293);
-#pragma pop
-
-/* 8062E7FC-8062E800 0001C8 0004+00 0/1 0/0 0/0 .rodata          @7294 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7294 = 21.0f;
-COMPILER_STRIP_GATE(0x8062E7FC, &lit_7294);
-#pragma pop
-
-/* 8062E800-8062E804 0001CC 0004+00 0/3 0/0 0/0 .rodata          @7295 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7295 = 9.0f;
-COMPILER_STRIP_GATE(0x8062E800, &lit_7295);
-#pragma pop
-
-/* 80625C74-80625E40 007174 01CC+00 1/1 0/0 0/0 .text            executeAttackShieldH__8daB_TN_cFv
- */
+/* 80625C74-80625E40 007174 01CC+00 1/1 0/0 0/0 .text            executeAttackShieldH__8daB_TN_cFv */
 void daB_TN_c::executeAttackShieldH() {
-    // NONMATCHING
+    switch (mActionMode2) {
+        case 0:
+            speedF = 0.0f;
+            setBck(8, 0, 3.0f, 1.0f);
+            mActionMode2 = 1;
+            break;
+
+        case 1:
+            if (mpModelMorf2->checkFrame(4.0f)) {
+                mSound.startCreatureVoice(Z2SE_EN_TN_V_ATK_SLD, -1);
+            }
+
+            if (mpModelMorf2->checkFrame(8.0f)) {
+                mSound.startCreatureSound(Z2SE_EN_TN_FOOT_L, 0, -1);
+            }
+
+            if (mpModelMorf2->checkFrame(21.0f)) {
+                mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M1, 0, -1);
+            }
+
+            if (mpModelMorf2->checkFrame(5.0f)) {
+                field_0x3618.OnAtSetBit();
+            }
+
+            if (mpModelMorf2->checkFrame(9.0f)) {
+                field_0x3618.OffAtSetBit();
+            }
+
+            if (mpModelMorf2->isStop()) {
+                setActionMode(4, 0);
+            }
+    }
 }
 
 /* 80625E40-80626034 007340 01F4+00 1/1 0/0 0/0 .text            executeGuardH__8daB_TN_cFv */
 void daB_TN_c::executeGuardH() {
-    // NONMATCHING
+    cXyz sp18;
+    switch (mActionMode2) {
+        case 0:
+            setSwordAtBit(0);
+            field_0x3618.OffAtSetBit();
+            field_0xa91 = 1;
+
+            mDoMtx_stack_c::copy(mpModelMorf2->getModel()->getAnmMtx(18));
+            mDoMtx_stack_c::multVecZero(&sp18);
+            current.pos.set(sp18.x, current.pos.y, sp18.z);
+
+            mActionMode2 = 1;
+            speedF = 0.0f;
+
+            if (field_0xaa8 != 0) {
+                shape_angle.y = fopAcM_searchPlayerAngleY(this);
+                setBck(13, 0, 0.0f, 1.0f);
+            } else {
+                cLib_chaseAngleS(&shape_angle.y, fopAcM_searchPlayerAngleY(this), 0x2000);
+                setBck(12, 0, 0.0f, 1.0f);
+            }
+            break;
+
+        case 1:
+            if (field_0xaa8 != 0) {
+                onHeadLockFlg();
+            } else {
+                // Obtained 4 secret techinques
+                if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[341])) {
+                    attention_info.flags |= 0x200000;
+                }
+            }
+
+            if (mpModelMorf2->isStop()) {
+                if (daPy_getPlayerActorClass()->getCutType() != daPy_py_c::CUT_TYPE_HEAD_JUMP) {
+                    setActionMode(3, 0);
+                }
+            }
+    }
 }
 
 /* 80626034-80626320 007534 02EC+00 1/1 0/0 0/0 .text            executeDamageH__8daB_TN_cFv */
 void daB_TN_c::executeDamageH() {
-    // NONMATCHING
+    s16 mPlayerAngleY = fopAcM_searchPlayerAngleY(this);
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    field_0xa91 = 0;
+
+    if (field_0xa80 == 0) {
+        field_0xa91 = 1;
+        field_0xaa7 = 30;
+    }
+
+    if (field_0xaa5 == 0) {
+        if (player->getCutCount() >= 3) {
+            field_0xa91 = 1;
+        }
+    } else if (field_0xaa7 != 0) {
+        field_0xa91 = 1;
+    }
+
+    int iVar1;
+    switch (mActionMode2) {
+        case 0:
+        case 1:
+            setSwordAtBit(0);
+            iVar1 = field_0xa78;
+            if (iVar1 >= 12) {
+                setActionMode(8, 0);
+            } else {
+                if (player->getCutType() != daPy_py_c::CUT_TYPE_HEAD_JUMP) {
+                    setBreakPart(iVar1);
+                } else {
+                    setBreakHeadPart(iVar1);
+                }
+
+                mDoMtx_stack_c::copy(mpModelMorf2->getModel()->getAnmMtx(18));
+                cXyz sp1c;
+                mDoMtx_stack_c::multVecZero(&sp1c);
+                current.pos.set(sp1c.x, current.pos.y, sp1c.z);
+
+                if (mActionMode2 == 0) {
+                    setBck(9, 0, 0.0f, 1.0f);
+                } else {
+                    setBck(11, 0, 0.0f, 1.0f);
+                }
+
+                mSound.startCreatureVoice(Z2SE_EN_TN_V_DMG, -1);
+                speedF = 0.0f;
+                mActionMode2 = 2;
+
+                cLib_chaseAngleS(&shape_angle.y, mPlayerAngleY, 0x1800);
+
+                if (field_0xaa5 == 1 && field_0xa78 < 11 && field_0xa9f != 0) {
+                    field_0xa91 = 1;
+                    field_0xaa7 = 40;
+                }
+            }
+            break;
+
+        case 2:
+            if (mpModelMorf2->checkFrame(3.0f)) {
+                mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M1, 0, -1);
+            }
+
+            if (mpModelMorf2->checkFrame(35.0f)) {
+                mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M2, 0, -1);
+            }
+
+            if (mpModelMorf2->isStop()) {
+                setActionMode(3, 0);
+                field_0xa91 = 1;
+            }
+    }
 }
-
-/* ############################################################################################## */
-/* 8062E804-8062E808 0001D0 0004+00 0/1 0/0 0/0 .rodata          @7807 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7807 = -179.0f;
-COMPILER_STRIP_GATE(0x8062E804, &lit_7807);
-#pragma pop
-
-/* 8062E808-8062E80C 0001D4 0004+00 0/1 0/0 0/0 .rodata          @7808 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7808 = -342.0f;
-COMPILER_STRIP_GATE(0x8062E808, &lit_7808);
-#pragma pop
-
-/* 8062E80C-8062E810 0001D8 0004+00 0/3 0/0 0/0 .rodata          @7809 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7809 = 37.0f;
-COMPILER_STRIP_GATE(0x8062E80C, &lit_7809);
-#pragma pop
-
-/* 8062E810-8062E814 0001DC 0004+00 0/3 0/0 0/0 .rodata          @7810 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7810 = 6.0f;
-COMPILER_STRIP_GATE(0x8062E810, &lit_7810);
-#pragma pop
-
-/* 8062E814-8062E818 0001E0 0004+00 0/1 0/0 0/0 .rodata          @7811 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7811 = -330.0f;
-COMPILER_STRIP_GATE(0x8062E814, &lit_7811);
-#pragma pop
-
-/* 8062E818-8062E81C 0001E4 0004+00 0/1 0/0 0/0 .rodata          @7812 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7812 = 1250.0f;
-COMPILER_STRIP_GATE(0x8062E818, &lit_7812);
-#pragma pop
-
-/* 8062E81C-8062E820 0001E8 0004+00 0/1 0/0 0/0 .rodata          @7813 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7813 = -380.0f;
-COMPILER_STRIP_GATE(0x8062E81C, &lit_7813);
-#pragma pop
-
-/* 8062E820-8062E824 0001EC 0004+00 0/1 0/0 0/0 .rodata          @7814 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7814 = -270.0f;
-COMPILER_STRIP_GATE(0x8062E820, &lit_7814);
-#pragma pop
-
-/* 8062E824-8062E828 0001F0 0004+00 0/2 0/0 0/0 .rodata          @7815 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7815 = -100.0f;
-COMPILER_STRIP_GATE(0x8062E824, &lit_7815);
-#pragma pop
 
 /* 80626320-80627100 007820 0DE0+00 1/1 0/0 0/0 .text            executeChangeDemo__8daB_TN_cFv */
 void daB_TN_c::executeChangeDemo() {
     // NONMATCHING
+    cXyz sp28, sp34, sp40;
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+
+    switch (mActionMode2) {
+        case 0:
+            if (!eventInfo.checkCommandDemoAccrpt()) {
+                fopAcM_orderPotentialEvent(this, 2, 0xffff, 0);
+                eventInfo.onCondition(2);
+                return;
+            }
+
+            Z2GetAudioMgr()->changeSubBgmStatus(1);
+
+            camera->mCamera.Stop();
+            camera->mCamera.SetTrimSize(3);
+
+            field_0xa6c = 30;
+            mCamFovY = 55.0f;
+            field_0x724 = 380.0f;
+            field_0x720 = 0x1000;
+            mCamCenter.set(0.0f, -179.0f, -342.0f);
+            mCamEye.set(0.0f, -300.0f, 350.0f);
+
+            player->changeOriginalDemo();
+            sp28.set(100.0f, -400.0f, 1000.0f);
+            player->setPlayerPosAndAngle(&sp28, (s16)0xffff8000, 0);
+            player->changeDemoMode(4, 1, 0, 0);
+
+            speedF = 0.0f;
+            setBck(10, 0, 3.0f, 1.0f);
+
+            mSound.startCreatureVoice(Z2SE_EN_TN_V_DMG_2, -1);
+
+            mActionMode2 = 100;
+
+            for (int i = 0; i < 16; i++) {
+                if (field_0x9fc[i] >= 3 && field_0x9fc[i] <= 5 && std::abs(field_0x75c[i].x) < 200.0f) {
+                    if (field_0x75c[i].x < 0.0f) {
+                        field_0x75c[i].x -= 200.0f;
+                    } else {
+                        field_0x75c[i].x += 200.0f;
+                    }
+                }
+            }
+
+            return;
+
+        case 100:
+            current.pos.set(0.0f, -400.0f, -350.0f);
+            shape_angle.y = 0;
+            mActionMode2 = 101;
+            // fallthrough
+        case 101:
+            if (mActionMode2 == 101) {
+                setBreakPart(field_0xa78);
+                mActionMode2 = 1;
+            }
+
+            mDoMtx_stack_c::copy(mpModelMorf2->getModel()->getAnmMtx(4));
+            mDoMtx_stack_c::multVecZero(&mCamCenter);
+            // fallthrough
+        default:
+            mCamEye.set(0.0f, -300.0f, 0.0f);
+
+            if (mpModelMorf2->checkFrame(3.0f) || mpModelMorf2->checkFrame(26.0f)) {
+                mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M1, 0, -1);
+            }
+
+            if (mpModelMorf2->checkFrame(15.0f) || mpModelMorf2->checkFrame(37.0f)) {
+                mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M2, 0, -1);
+            }
+
+            if (mpModelMorf2->isStop()) {
+                setBck(30, 0, 3.0f, 1.0f);
+                current.angle.y = shape_angle.y + -0x8000;
+                mActionMode2 = 2;
+            }
+            break;
+
+        case 2:
+            mDoMtx_stack_c::copy(mpModelMorf2->getModel()->getAnmMtx(4));
+            mDoMtx_stack_c::multVecZero(&mCamCenter);
+            mCamEye.set(0.0f, -300.0f, 0.0f);
+
+            if (mpModelMorf2->checkFrame(4.0f)) {
+                speedF = 35.0f;
+                speed.y = 4.0f;
+                gravity = -1.0f;
+            }
+
+            if (mpModelMorf2->checkFrame(6.0f)) {
+                mSound.startCreatureVoice(Z2SE_EN_TN_V_JUMP, -1);
+            }
+
+            if (mpModelMorf2->isStop() && mAcch.ChkGroundHit()) {
+                setBck(31, 0, 5.0f, 1.0f);
+                mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M1, 0, -1);
+                mActionMode2 = 3;
+            }
+            break;
+            
+        case 3:
+            mDoMtx_stack_c::copy(mpModelMorf2->getModel()->getAnmMtx(4));
+            mDoMtx_stack_c::multVecZero(&mCamCenter);
+            mCamEye.set(0.0f, -300.0f, 0.0f);
+            cLib_chaseF(&speedF, 0.0f, 7.0f);
+            if (mpModelMorf2->checkFrame(4.0f)) {
+                mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M2, 0, -1);
+            }
+
+            if (mpModelMorf2->isStop()) {
+                speedF = 0.0f;
+                setBck(41, 0, 3.0f, 1.0f);
+                mActionMode2 = 4;
+            }
+            break;
+
+        case 4:
+            if (mpModelMorf2->checkFrame(11.0f)) {
+                mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M1, 0, -1);
+            }
+
+            if (mpModelMorf2->checkFrame(19.0f)) {
+                mSound.startCreatureVoice(Z2SE_EN_TN_V_THROW, -1);
+            }
+
+            if (mpModelMorf2->checkFrame(22.0f)) {
+                mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M2, 0, -1);
+            }
+
+            mDoMtx_stack_c::copy(mpModelMorf2->getModel()->getAnmMtx(4));
+            mDoMtx_stack_c::multVecZero(&mCamCenter);
+            mCamEye.set(0.0f, -300.0f, 0.0f);
+
+            if (mpModelMorf2->checkFrame(23.0f)) {
+                field_0x9fc[13] = 2;
+            }
+
+            if (mpModelMorf2->checkFrame(33.0f)) {
+                mActionMode2 = 10;
+                field_0x75c[13].z = -200.0f;
+                mCamEye.set(250.0f, -330.0f, 1250.0f);
+                mCamCenter = field_0x75c[13];
+            }
+            break;
+
+        case 10:
+            mCamCenter = field_0x75c[13];
+            
+            if (mpModelMorf2->isStop()) {
+                player->changeDemoMode(16, 2, 0, 0);
+                setBck(42, 2, 3.0f, 1.0f);
+                field_0xa6c = 60;
+                mActionMode2 = 11;
+            }
+            break;
+
+        case 11:
+            sp40 = mCamEye;
+            sp34.set(100.0f, -330.0f, 1250.0f);
+            cLib_addCalcPos2(&mCamEye, sp34, 0.5f, 10.0f);
+            mCamCenter += mCamEye - sp40;
+            sp28 = player->current.pos;
+            sp28.y += 150.0f;
+            cLib_addCalcPos2(&mCamCenter, sp28, 0.5f, 30.0f);
+
+            if (field_0xa6c == 45) {
+                player->changeDemoMode(25, 0, 0, 0);
+            }
+
+            if (field_0xa6c == 15) {
+                field_0xa6c = 30;
+                mActionMode2 = 12;
+            }
+            break;
+
+        case 12:
+            mDoMtx_stack_c::copy(mpModelMorf2->getModel()->getAnmMtx(4));
+            mDoMtx_stack_c::multVecZero(&sp34);
+            cLib_addCalcPos2(&mCamCenter, sp34, 0.1f, 60.0f);
+
+            if (field_0xa6c == 0) {
+                field_0xa6c = 40;
+                mActionMode2 = 13;
+            }
+            break;
+
+        case 13:
+            mDoMtx_stack_c::copy(mpModelMorf2->getModel()->getAnmMtx(4));
+            mDoMtx_stack_c::multVecZero(&sp34);
+            sp34.y -= 100.0f;
+            cLib_addCalcPos2(&mCamCenter, sp34, 0.1f, 30.0f);
+            sp34.set(0.0f, -380.0f, -270.0f);
+            cLib_addCalcPos2(&mCamEye, sp34, 0.1f, 70.0f);
+
+            if (field_0xa6c == 0) {
+                setBck(38, 0, 3.0f, 1.0f);
+                mSound.startCreatureVoice(Z2SE_EN_TN_V_PULL_OUT, -1);
+                mActionMode2 = 15;
+                sp28.set(-100.0f, -400.0f, 300.0f);
+                player->setPlayerPosAndAngle(&sp28, 0x7000, 0);
+            }
+            break;
+
+        case 15:
+            mDoMtx_stack_c::copy(mpModelMorf2->getModel()->getAnmMtx(4));
+            mDoMtx_stack_c::multVecZero(&sp34);
+            sp34.y -= 100.0f;
+            cLib_addCalcPos2(&mCamCenter, sp34, 0.1f, 30.0f);
+            sp34.set(0.0f, -380.0f, -270.0f);
+            cLib_addCalcPos2(&mCamEye, sp34, 0.1f, 70.0f);
+
+            if (mpModelMorf2->checkFrame(10.0f)) {
+                mSound.startCreatureSound(Z2SE_EN_TN_PULL_OUT, 0, -1);
+                field_0x9fc[15] = 1;
+                field_0x9fc[14] = 2;
+                mpModelMorf1->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("B_tn", 40), 0, 0.0f, 1.0f, 0.0f, -1.0f);
+            }
+
+            if (mpModelMorf2->isStop()) {
+                for (int i = 0; i < 4; i++) {
+                    field_0x3750[i].OffCoSetBit();
+                }
+                field_0x3c30.OffCoSetBit();
+                setBck(42, 2, 3.0f, 1.0f);
+                field_0xa6c = 30;
+                mActionMode2 = 16;
+                return;
+            }
+            break;
+
+        case 16:
+            if (field_0xa6c == 0) {
+                camera->mCamera.Reset(mCamCenter, mCamEye);
+                camera->mCamera.Start();
+                camera->mCamera.SetTrimSize(0);
+                dComIfGp_event_reset();
+                setActionMode(9, 0);
+                initChaseL(16);
+                field_0x3618.OffAtSetBit();
+            }
+            break;
+
+    }
+
+    camera->mCamera.Set(mCamCenter, mCamEye, mCamFovY, 0);
 }
 
-/* ############################################################################################## */
-/* 8062E828-8062E82C 0001F4 0004+00 0/2 0/0 0/0 .rodata          @7949 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7949 = 45.0f;
-COMPILER_STRIP_GATE(0x8062E828, &lit_7949);
-#pragma pop
-
-/* 80627100-80627790 008600 0690+00 1/1 0/0 0/0 .text            executeZakoChangeDemo__8daB_TN_cFv
- */
+/* 80627100-80627790 008600 0690+00 1/1 0/0 0/0 .text            executeZakoChangeDemo__8daB_TN_cFv */
 void daB_TN_c::executeZakoChangeDemo() {
-    // NONMATCHING
-}
+    s16 mPlayerAngleY = fopAcM_searchPlayerAngleY(this);
 
-/* ############################################################################################## */
-/* 8062E82C-8062E830 0001F8 0004+00 0/2 0/0 0/0 .rodata          @8010 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_8010 = 550.0f;
-COMPILER_STRIP_GATE(0x8062E82C, &lit_8010);
-#pragma pop
+    switch (mActionMode2) {
+        case 0:
+            if (field_0xaad != 0) {
+                Z2GetAudioMgr()->changeSubBgmStatus(1);
+            }
+
+            field_0xa6c = 30;
+            speedF = 0.0f;
+            setBck(10, 0, 3.0f, 1.0f);
+
+            mSound.startCreatureVoice(Z2SE_EN_TN_V_DMG_2, -1);
+
+            setBreakPart(field_0xa78);
+            mActionMode2 = 1;
+            // fallthrough
+        case 1:
+            if (mpModelMorf2->checkFrame(3.0f) || mpModelMorf2->checkFrame(26.0f)) {
+                mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M1, 0, -1);
+            }
+
+            if (mpModelMorf2->checkFrame(15.0f) || mpModelMorf2->checkFrame(37.0f)) {
+                mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M2, 0, -1);
+            }
+
+            cLib_addCalcAngleS(&shape_angle.y, mPlayerAngleY, 8, 0x100, 16);
+
+            if (mpModelMorf2->isStop()) {
+                setBck(30, 0, 3.0f, 1.0f);
+                current.angle.y = shape_angle.y + 0x8000;
+                mActionMode2 = 2;
+            }
+            break;
+
+        case 2:
+            if (mpModelMorf2->checkFrame(4.0f)) {
+                speedF = 45.0f;
+                speed.y = 5.0f;
+                gravity = -1.0f;
+            }
+
+            if (mpModelMorf2->checkFrame(6.0f)) {
+                mSound.startCreatureVoice(Z2SE_EN_TN_V_JUMP, -1);
+            }
+
+            if (!mpModelMorf2->isStop()) {
+                return;
+            }
+
+            if (!mAcch.ChkGroundHit()) {
+                return;
+            }
+
+            setBck(31, 0, 5.0f, 1.0f);
+
+            mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M1, 0, -1);
+            mActionMode2 = 3;
+            return;
+
+        case 3:
+            cLib_addCalcAngleS(&shape_angle.y, mPlayerAngleY, 8, 0x800, 16);
+            cLib_chaseF(&speedF, 0.0f, 9.0f);
+            
+            if (mpModelMorf2->checkFrame(4.0f)) {
+                mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M2, 0, -1);
+            }
+
+            if (mpModelMorf2->isStop()) {
+                speedF = 0.0f;
+                setBck(41, 0, 3.0f, 1.0f);
+                mActionMode2 = 4;
+            }
+            break;
+
+        case 4:
+            if (mpModelMorf2->checkFrame(11.0f)) {
+                mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M1, 0, -1);
+            }
+
+            if (mpModelMorf2->checkFrame(19.0f)) {
+                mSound.startCreatureVoice(Z2SE_EN_TN_V_THROW, -1);
+            }
+
+            if (mpModelMorf2->checkFrame(22.0f)) {
+                mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M2, 0, -1);
+            }
+
+            if (mpModelMorf2->getFrame() < 23.0f) {
+                cLib_addCalcAngleS(&shape_angle.y, mPlayerAngleY, 8, 0x800, 16);
+            }
+
+            if (mpModelMorf2->checkFrame(23.0f)) {
+                field_0x9fc[13] = 2;
+                setSwordAtBit(1);
+            }
+
+            if (mpModelMorf2->isStop()) {
+                setBck(38, 0, 3.0f, 1.0f);
+                mSound.startCreatureVoice(Z2SE_EN_TN_V_PULL_OUT, -1);
+                mActionMode2 = 5;
+            }
+            break;
+
+        case 5:
+            if (mpModelMorf2->checkFrame(10.0f)) {
+                mSound.startCreatureSound(Z2SE_EN_TN_PULL_OUT, 0, -1);
+                field_0x9fc[15] = 1;
+                field_0x9fc[14] = 2;
+                mpModelMorf1->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("B_tn", 40), 0, 0.0f, 1.0f, 0.0f, -1.0f);
+            }
+
+            if (mpModelMorf2->isStop()) {
+                setActionMode(9, 0);
+                initChaseL(3);
+                field_0x3618.OffAtSetBit();
+            }
+    }
+}
 
 /* 80627790-8062799C 008C90 020C+00 1/1 0/0 0/0 .text            setWalkDir__8daB_TN_cFv */
 void daB_TN_c::setWalkDir() {
-    // NONMATCHING
+    f32 mPlayerDistance = fopAcM_searchPlayerDistance(this);
+
+    if (checkMoveArea() != 0) {
+        s16 sVar1 = cM_atan2s(-current.pos.x, -current.pos.z);
+        s16 mPlayerAngleY = fopAcM_searchPlayerAngleY(this) - sVar1;
+        if (abs(mPlayerAngleY) < 0x2000) {
+            mWalkDir = 0;
+        } else {
+            if (abs(mPlayerAngleY) > 0x6000) {
+                mWalkDir = 1;
+            } else {
+                if (abs(mPlayerAngleY) < 0x4000) {
+                    mWalkDir = 0;
+                } else {
+                    mWalkDir = 1;
+                }
+
+                if (mPlayerAngleY < 0) {
+                    if (mActionMode2 == 5 && field_0xa6c > 30) {
+                        field_0xa6c = 30;
+                    }
+                } else if (mActionMode2 == 4 && field_0xa6c > 30) {
+                    field_0xa6c = 30;
+                }
+            }
+        }
+    } else {
+        if (mPlayerDistance > 800.0f) {
+            field_0xa6c = 0;
+        }
+
+        if (mWalkDir == 0) {
+            if (field_0xa70 != 0) {
+                if (mPlayerDistance < 500.0f) {
+                    mWalkDir = 1;
+                }
+            } else if (mPlayerDistance < 300.0f) {
+                mWalkDir = 1;
+            }
+        } else if (mWalkDir == 1) {
+            if (field_0xa70 != 0) {
+                if (mPlayerDistance > 550.0f) {
+                    mWalkDir = 0;
+                }
+            } else if (mPlayerDistance > 350.0f) {
+                mWalkDir = 0;
+            }
+
+            if (mPlayerDistance < 200.0f) {
+                mWalkDir = 2;
+            }
+        } else if (mPlayerDistance > 250.0f) {
+            mWalkDir = 1;
+        }
+    }
 }
 
 /* 8062799C-80627CBC 008E9C 0320+00 6/5 0/0 0/0 .text            initChaseL__8daB_TN_cFi */
-void daB_TN_c::initChaseL(int param_0) {
+void daB_TN_c::initChaseL(int param_1) {
     // NONMATCHING
+    mActionMode2 = param_1;
+    speedF = 0.0f;
+
+    switch (mActionMode2) {
+        case 2:
+            setBck(42, 2, 10.0f, 1.0f);
+            field_0xa6c = 30;
+            break;
+        
+        case 3:
+            setBck(45, 2, 10.0f, 1.0f);
+            speedF = 4.7f;
+            break;
+
+        case 4:
+            if (!checkBck(43)) {
+                setBck(43, 2, 10.0f, 1.0f);
+            }
+
+            current.angle.y = shape_angle.y + 0x4000;
+            field_0xa6c = cM_rndFX(20.0f) + 90.0f;
+            speedF = 4.8f;
+            mWalkDir = 1;
+            break;
+        
+        case 5:
+            if (!checkBck(44)) {
+                setBck(44, 2, 10.0f, 1.0f);
+            }
+
+            current.angle.y = shape_angle.y + -0x4000;
+            field_0xa6c = cM_rndFX(20.0f) + 90.0f;
+            speedF = 4.8f;
+            mWalkDir = 1;
+            break;
+
+        case 6:
+            setBck(30, 0, 3.0f, 1.0f);
+            break;
+
+        case 7:
+            mpModelMorf2->setPlaySpeed(1.0f);
+            mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M1, 0, -1);
+            break;
+
+        case 8:
+        case 17:
+            setBck(32, 0, 3.0f, 1.0f);
+            break;
+
+        case 9:
+            setBck(33, 0, 5.0f, 1.0f);
+            mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M1, 0, -1);
+            break;
+
+        case 10:
+        case 11:
+            setBck(36, 0, 3.0f, 1.0f);
+            break;
+
+        case 12:
+            setBck(37, 0, 3.0f, 1.0f);
+            mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M1, 0, -1);
+            speedF = 15.0f;
+            break;
+
+        case 13:
+        case 14:
+            setBck(34, 0, 3.0f, 1.0f);
+            break;
+
+        case 15:
+            setBck(35, 0, 3.0f, 1.0f);
+            mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M1, 0, -1);
+            speedF = 15.0f;
+            break;
+
+        case 16:
+            setBck(45, 2, 10.0f, 1.0f);
+            speedF = 4.7;
+            field_0xa6c = 30;
+    }
 }
 
 /* 80627CBC-80627D3C 0091BC 0080+00 4/4 0/0 0/0 .text            checkAttackAble__8daB_TN_cFv */
-void daB_TN_c::checkAttackAble() {
-    // NONMATCHING
+bool daB_TN_c::checkAttackAble() {
+    if (fopAcM_searchPlayerDistance(this) < 500.0f) {
+        if (abs((s16)(fopAcM_searchPlayerAngleY(this) - shape_angle.y)) < 0x3000) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 /* ############################################################################################## */
@@ -2991,8 +3556,158 @@ COMPILER_STRIP_GATE(0x8062E840, &lit_8304);
 #pragma pop
 
 /* 80627D3C-8062868C 00923C 0950+00 1/1 0/0 0/0 .text            checkNextMove__8daB_TN_cFv */
-void daB_TN_c::checkNextMove() {
+int daB_TN_c::checkNextMove() {
     // NONMATCHING
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    f32 mPlayerDistance = fopAcM_searchPlayerDistance(this);
+    s16 mPlayerAngleY = fopAcM_searchPlayerAngleY(this) - shape_angle.y;
+    bool isAttackAble = checkAttackAble();
+    s16 sVar7 = current.angle.y;
+
+    fopAc_ac_c* mActor = (fopAc_ac_c*)fpcM_Search(s_obj_sub, this);
+    bool bVar1 = mActor != NULL;
+    if (bVar1) {
+        sVar7 = fopAcM_searchActorAngleY(this, mActor);
+    }
+
+    if (dComIfGp_checkPlayerStatus0(0, 0x4000) && player->getHookshotTopPos()) {
+        if (player->getHookshotTopPos()->absXZ(current.pos) < 300.0f) {
+            sVar7 = cLib_targetAngleY(current.pos, *player->getHookshotTopPos());
+            bVar1 = true;
+        }
+    }
+
+    if (player->getIronBallCenterPos() && !player->checkIronBallGroundStop()) {
+        if (player->getIronBallCenterPos()->absXZ(current.pos) < 300.0f) {
+            sVar7 = cLib_targetAngleY(current.pos, *player->getIronBallCenterPos());
+            bVar1 = true;
+        }
+    }
+
+    if (daPy_py_c::getThrowBoomerangActor()) {
+        if (daPy_py_c::getThrowBoomerangActor()->current.pos.absXZ(current.pos) < 300.0f) {
+            sVar7 = cLib_targetAngleY(current.pos, daPy_py_c::getThrowBoomerangActor()->current.pos);
+            bVar1 = true;
+        }
+    }
+
+    if (bVar1) {
+        if (sVar7 - shape_angle.y < 0) {
+            initChaseL(13);
+        } else {
+            initChaseL(10);
+        }
+
+        field_0xa84 = 10;
+        return 1;
+    }
+
+    if (isAttackAble) {
+        if (player->checkFrontRoll() && mPlayerDistance < 250.0f) {
+            setActionMode(11, 10);
+            return 1;
+        }
+
+        if (player->getCutType() != daPy_py_c::CUT_TYPE_JUMP && mPlayerDistance < 200.0f) {
+            setActionMode(11, 0);
+            return 1;
+        }
+    }
+
+    if ((player->getCutType() != daPy_py_c::CUT_TYPE_JUMP || player->checkCutJumpCancelTurn()) || mPlayerDistance >= 350.0f) {
+        field_0xa9d &= 254;
+    } else if ((field_0xa9d & 1) == 0) {
+        field_0xa9d |= 1;
+        if (player->speedF >= 28.0f) {
+            if (mPlayerAngleY < 0) {
+                initChaseL(14);
+            } else {
+                initChaseL(11);
+            }
+
+            field_0xa84 = 10;
+        } else {
+            initChaseL(6);
+        }
+
+        return 1;
+    }
+
+    if (checkMoveArea() == 3) {
+        return 0;
+    }
+
+    if (!player->checkCutCharge() || !isAttackAble) {
+        field_0xa9d &= 253;
+    } else if ((field_0xa9d & 2) == 0) {
+        field_0xa9d |= 2;
+        setActionMode(10, 10);
+        return 1;
+    }
+
+    if (field_0xa70 == 0 && abs(mPlayerAngleY) < 0x3000 && mPlayerDistance > 450.0f && mPlayerAngleY < 700.0f) {
+        if (cM_rnd() < 0.5f) {
+            initChaseL(8);
+            return 1;
+        }
+
+        if (field_0xaa5 == 1) {
+            field_0xa70 = cM_rndF(30.0f) + 10.0f;
+        } else {
+            field_0xa70 = 10;
+        }
+    }
+
+    if (player->getCutCount() == 0) {
+        field_0xa9d &= 251;
+    } else if (isAttackAble && (field_0xa9d & 4) == 0) {
+        field_0xa9d |= 4;
+        if (cM_rnd() < 0.4f && mPlayerDistance < 450.0f && mPlayerDistance > 200.0f) {
+            if (cM_rnd() >= 0.5f) {
+                initChaseL(11);
+            } else {
+                initChaseL(14);
+            }
+
+            field_0xa84 = 10;
+            return 1;
+        }
+    }
+
+    if (isAttackAble && mPlayerDistance < 350.0f) {
+        if (mPlayerDistance < 250.0f) {
+            if (field_0xaa5 == 1) {
+                if (field_0xa70 > 90) {
+                    field_0xa70 = cM_rndF(30.0f) + 60.0f;
+                }
+            } else if (field_0xa70 > 30) {
+                field_0xa70 = 30;
+            }
+        }
+
+        if (field_0xa70 == 0 && checkNormalAttackAble()) {
+            setActionMode(10, 0);
+            return 1;
+        }
+    }
+
+    if (mPlayerDistance < 100.0f) {
+        if (!isAttackAble) {
+            initChaseL(6);
+            return 1;
+        }
+
+        if (field_0xa70 > 5) {
+            field_0xa70 = 5;
+        }
+
+        if (field_0xa70 == 0 && checkNormalAttackAble()) {
+            setActionMode(10, 0);
+            return 1;
+        }
+    }
+
+    return 0;
 }
 
 /* 8062868C-806292F8 009B8C 0C6C+00 2/1 0/0 0/0 .text            executeChaseL__8daB_TN_cFv */
