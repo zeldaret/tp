@@ -162,10 +162,9 @@ static fopAc_ac_c* search_dokuro(e_ms_class* i_this) {
                 }
             }
         }
-        goto end; // TODO Fakematch
-            }
-    return NULL;
-end:
+    } else {
+        return NULL;
+    }
     return NULL;
 }
 
