@@ -63,7 +63,6 @@ static void rideCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2
                             pthis->field_0x632 = 1;
                             pthis->field_0x634 = 1;
                         }
-
                         else
                         {
                             pthis->field_0x632 = 0;
@@ -106,10 +105,13 @@ static int nodeCallBack(J3DJoint* param_0, int param_1) {
         int jnt_no = param_0->getJntNo();
         J3DModel* pmodel = j3dSys.getModel();
         daObjDmElevator_c* puser_area = (daObjDmElevator_c*)pmodel->mUserArea;
+       
         PSMTXCopy(j3dSys.getModel()->mMtxBuffer->getAnmMtx(jnt_no), mDoMtx_stack_c::now);
+       
         if (jnt_no == 2) {
             mDoMtx_XrotM(mDoMtx_stack_c::now, puser_area->field_0x5e4);
         }
+       
         PSMTXCopy(mDoMtx_stack_c::now, pmodel->mMtxBuffer->getAnmMtx(jnt_no));
     }
     return 1;
@@ -118,40 +120,35 @@ static int nodeCallBack(J3DJoint* param_0, int param_1) {
 /* 80BDDD38-80BDDD90 0004B8 0058+00 1/1 0/0 0/0 .text            initBaseMtx__17daObjDmElevator_cFv
  */
 void daObjDmElevator_c::initBaseMtx() {
-    J3DModel* pJVar1;
+    mpElevatorModel->mBaseScale = scale;
+    mpSwitchModel->mBaseScale = scale;
 
-    pJVar1 = mpElevatorModel;
-    (pJVar1->mBaseScale).x = scale.x;
-    (pJVar1->mBaseScale).y = scale.y;
-    (pJVar1->mBaseScale).z = scale.z;
-    pJVar1 = mpSwitchModel;
-    (pJVar1->mBaseScale).x = scale.x;
-    (pJVar1->mBaseScale).y = scale.y;
-    (pJVar1->mBaseScale).z = scale.z;
     setBaseMtx();
 }
 
 /* 80BDDD90-80BDDEFC 000510 016C+00 2/2 0/0 0/0 .text            setBaseMtx__17daObjDmElevator_cFv
  */
 void daObjDmElevator_c::setBaseMtx() {
-    float fVar1;
-    cXyz VStack_18;
-
+    
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_YrotM(mDoMtx_stack_c::now, shape_angle.y);
     PSMTXCopy(mDoMtx_stack_c::now, mpElevatorModel->mBaseTransformMtx);
     PSMTXCopy(mDoMtx_stack_c::now, mBgMtx);
     mDoMtx_YrotS(mDoMtx_stack_c::now, shape_angle.y);
+   
+    cXyz VStack_18;
     PSMTXMultVec(mDoMtx_stack_c::now, &l_swOffset, &VStack_18);
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::transM(VStack_18);
     mDoMtx_YrotM(mDoMtx_stack_c::now, shape_angle.y);
     PSMTXCopy(mDoMtx_stack_c::now, mpSwitchModel->mBaseTransformMtx);
     PSMTXCopy(mDoMtx_stack_c::now, mMtx);
-    fVar1 = field_0x638;
+   
+    float fVar1 = field_0x638;
     if (fVar1 < -17.f) {
         fVar1 = -17.f;
     }
+   
     PSMTXTrans(mDoMtx_stack_c::now, current.pos.x, current.pos.y + fVar1, current.pos.z);
     mDoMtx_stack_c::transM(VStack_18);
     mDoMtx_YrotM(mDoMtx_stack_c::now, shape_angle.y);
@@ -179,9 +176,6 @@ static const char* l_staffName = "dmele";
 
 /* 80BDDEFC-80BDE0A4 00067C 01A8+00 1/0 0/0 0/0 .text            Create__17daObjDmElevator_cFv */
 int daObjDmElevator_c::Create() {
-    int iVar1;
-    s16 uVar2;
-    s16 sVar2;
     if (field_0x5e0 == 1) {
         field_0x637 = 0xe;
         field_0x636 = 1;
@@ -189,36 +183,41 @@ int daObjDmElevator_c::Create() {
         field_0x62b = 1;
         modeSwWaitUpperInit();
     }
-    iVar1 = dComIfG_Bgsp().Regist((dBgW_Base*)mpBgW, this);
-    if (iVar1 != 0) {
-        iVar1 = 0;
+    int success = dComIfG_Bgsp().Regist((dBgW_Base*)mpBgW, this);
+    if (success != 0) {
+        success = 0;
     } else {
         initBaseMtx();
+        
         cullMtx = mpElevatorModel->mBaseTransformMtx;
         fopAcM_setCullSizeBox(this, -250.0, -50.0, -350.0, 250.0, 450.0, 400.0);
+        
         mpElevatorModel->mModelData->getJointTree().getJointNodePointer(2)->setCallBack(
             nodeCallBack);
         mpElevatorModel->mUserArea = (u32)this;
+        
         mpSwitchModel->mModelData->getJointTree().getJointNodePointer(1)->setCallBack(
             nodeCallBackForSw);
         mpSwitchModel->mUserArea = (u32)this;
+        
         mpBgW->SetRideCallback(rideCallBack);
         mpBgW->Move();
+        
         eventInfo.setArchiveName((char*)l_el_arcName);
-        iVar1 = strcmp(dComIfGp_getStartStageName(), "F_SP110");
-        if (iVar1 == 0) {
+        
+        success = strcmp(dComIfGp_getStartStageName(), "F_SP110");
+        if (success == 0) {
             mEventIndex = dComIfGp_getEventManager().getEventIdx(this, l_eventName, 0xff);
         } else {
-            iVar1 = strcmp(dComIfGp_getStartStageName(), "R_SP110");
-            if (iVar1 == 0) {
-                sVar2 = dComIfGp_getEventManager().getEventIdx(this, l_eventName2, 0xff);
-                mEventIndex = sVar2;
+            success = strcmp(dComIfGp_getStartStageName(), "R_SP110");
+            if (success == 0) {
+                mEventIndex = dComIfGp_getEventManager().getEventIdx(this, l_eventName2, 0xff);
             }
         }
-        iVar1 = 1;
+        success = 1;
     }
 
-    return iVar1;
+    return success;
 }
 
 /* 80BDE0A4-80BDE2F8 000824 0254+00 1/1 0/0 0/0 .text            init__17daObjDmElevator_cFv */
