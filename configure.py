@@ -316,7 +316,7 @@ cflags_rel = [
     "-sdata2 0",
 ]
 
-def MWVersion(cfg_version: str):
+def MWVersion(cfg_version: str) -> str:
     match cfg_version:
         case "GZ2E01":
             return "GC/2.7"
@@ -375,7 +375,7 @@ Equivalent = config.non_matching  # Object should be linked when configured with
 
 
 # Object is only matching for specific versions
-def MatchingFor(*versions):
+def MatchingFor(*versions) -> bool:
     return config.version in versions
 
 
@@ -1556,7 +1556,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_scene_exit2"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_shop_item"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_sq"),
-    ActorRel(NonMatching, "d_a_swc00"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_swc00"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_tag_CstaSw"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_tag_ajnot"),
     ActorRel(NonMatching, "d_a_tag_attack_item"),
@@ -1650,7 +1650,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_e_mk_bo"),
     ActorRel(NonMatching, "d_a_e_mm"),
     ActorRel(NonMatching, "d_a_e_mm_mt"),
-    ActorRel(NonMatching, "d_a_e_ms"),
+    ActorRel(Equivalent, "d_a_e_ms"), # weak func order
     ActorRel(NonMatching, "d_a_e_nz"),
     ActorRel(Equivalent, "d_a_e_oc"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_oct_bg"),
@@ -1675,8 +1675,8 @@ config.libs = [
     ActorRel(Equivalent, "d_a_e_th"), # weak func order
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_th_ball"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_tk"),
-    ActorRel(NonMatching, "d_a_e_tk2"),
-    ActorRel(NonMatching, "d_a_e_tk_ball"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_e_tk2"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_e_tk_ball"),
     ActorRel(NonMatching, "d_a_e_tt"),
     ActorRel(NonMatching, "d_a_e_vt"),
     ActorRel(NonMatching, "d_a_e_warpappear"),
@@ -1897,7 +1897,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_geyser"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_glowSphere"),
     ActorRel(NonMatching, "d_a_obj_gm"),
-    ActorRel(NonMatching, "d_a_obj_goGate"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_goGate"),
     ActorRel(NonMatching, "d_a_obj_gomikabe"),
     ActorRel(NonMatching, "d_a_obj_gra2"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_graWall"),
@@ -2213,7 +2213,7 @@ out_dir = config.build_dir / version
 
 
 # This generates the build steps needed for preprocessing
-def emit_build_rule(asset):
+def emit_build_rule(asset: Dict[str, Any]) -> None:
     steps = config.custom_build_steps.setdefault("pre-compile", [])
     custom_data = asset.get("custom_data") or {}
 

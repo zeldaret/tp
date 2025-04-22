@@ -297,6 +297,8 @@ public:
     void setCurrentWindow(dDlst_window_c* i_window) { mCurrentWindow = i_window; }
     void setCurrentView(view_class* i_view) { mCurrentView = i_view; }
     void setCurrentViewport(view_port_class* i_viewport) { mCurrentViewport = i_viewport; }
+    void setBaseAnimeID(u8 id) { mItemInfo.mBaseAnimeID = id; }
+    void setFaceAnimeID(u8 id) { mItemInfo.mFaceAnimeID = id; }
 
     void setSelectItem(int idx, u8 i_itemNo) { mItemInfo.mSelectItem[idx] = i_itemNo; }
     u8 getSelectItem(int idx) { return mItemInfo.mSelectItem[idx]; }
@@ -717,6 +719,7 @@ public:
     u8 checkMesgCancelButton() { return mItemInfo.mMesgCancelButton; }
     void setMesgCancelButton(u8 button) { mItemInfo.mMesgCancelButton = button; }
     void setMesgBgm(u8 param_0) { mItemInfo.mMesgBgm = param_0; }
+    u8 checkMesgBgm() { return mItemInfo.mMesgBgm; }
     int getMessageCountNumber() { return mItemInfo.mMessageCountNum; }
     void setMessageCountNumber(u32 number) { mItemInfo.mMessageCountNum = number; }
 
@@ -1658,7 +1661,7 @@ inline bool dComIfGs_isCollectCrystal(u8 i_item) {
     return g_dComIfG_gameInfo.info.getPlayer().getCollect().isCollectCrystal(i_item);
 }
 
-inline bool dComIfGs_isCollectShield(u8 i_item) {
+inline BOOL dComIfGs_isCollectShield(u8 i_item) {
     return g_dComIfG_gameInfo.info.getPlayer().getCollect().isCollect(2, i_item);
 }
 
@@ -1934,6 +1937,10 @@ inline void dComIfGs_setOptCameraControl(u8 i_cameraControl) {
 
 inline void dComIfGs_setOptPointer(u8 i_pointer) {
     g_dComIfG_gameInfo.info.getPlayer().getConfig().setPointer(i_pointer);
+}
+
+inline u8 dComIfGs_getOptPointer() {
+    return g_dComIfG_gameInfo.info.getPlayer().getConfig().getPointer();
 }
 
 inline u8 dComIfGs_getNewFile() {
@@ -3038,6 +3045,13 @@ inline void dComIfGp_setMesgBgmOn() {
     g_dComIfG_gameInfo.play.setMesgBgm(1);
 }
 
+inline void dComIfGp_setMesgBgmOff() {
+    g_dComIfG_gameInfo.play.setMesgBgm(0);
+}
+
+inline bool dComIfGp_checkMesgBgm() { 
+    return g_dComIfG_gameInfo.play.checkMesgBgm(); }
+
 inline void dComIfGp_setMessageCountNumber(u32 number) {
     g_dComIfG_gameInfo.play.setMessageCountNumber(number);
 }
@@ -3166,8 +3180,16 @@ inline int dComIfGp_getMessageCountNumber() {
     return g_dComIfG_gameInfo.play.getMessageCountNumber();
 }
 
+inline void dComIfGp_setMesgFaceAnimeAttrInfo(u8 id) {
+    g_dComIfG_gameInfo.play.setFaceAnimeID(id);
+}
+
 inline u8 dComIfGp_getMesgFaceAnimeAttrInfo() {
     return g_dComIfG_gameInfo.play.getFaceAnimeID();
+}
+
+inline void dComIfGp_setMesgAnimeAttrInfo(u8 param_1) {
+    g_dComIfG_gameInfo.play.setBaseAnimeID(param_1);
 }
 
 inline u8 dComIfGp_getMesgAnimeAttrInfo() {

@@ -90,12 +90,18 @@ dScnPly_env_otherHIO_c::dScnPly_env_otherHIO_c() {
     mDispTransCylinder = false;
 }
 
+void dScnPly_env_otherHIO_c::genMessage(JORMContext* ctx) {
+}
+
 /* 80259468-802594AC 253DA8 0044+00 1/1 0/0 0/0 .text            __ct__22dScnPly_env_debugHIO_cFv */
 dScnPly_env_debugHIO_c::dScnPly_env_debugHIO_c() {
     mBoxCullMinSize.set(-100.0f, -100.0f, -100.0f);
     mBoxCullMaxSize.set(100.0f, 100.0f, 100.0f);
     mSphereCullCenter.set(0.0f, 0.0f, 0.0f);
     mSphereCullRadius = 100.0f;
+}
+
+void dScnPly_env_debugHIO_c::genMessage(JORMContext* ctx) {
 }
 
 /* 802594AC-802597B8 253DEC 030C+00 1/0 0/0 0/0 .text            dScnPly_Draw__FP9dScnPly_c */

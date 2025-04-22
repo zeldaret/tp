@@ -267,7 +267,7 @@ void daNpcT_Path_c::reverse() {
 
 /* 80145DD0-80145E38 140710 0068+00 2/2 0/0 8/8 .text            setNextIdx__13daNpcT_Path_cFi */
 int daNpcT_Path_c::setNextIdx(int param_0) {
-    u16 numPnts = getNumPnts();
+    int numPnts = getNumPnts();
 
     if (chkClose() != 0 && numPnts == param_0) {
         return daNpcT_incIdx(param_0, mIdx, 1, mDirection);

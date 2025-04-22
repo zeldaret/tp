@@ -180,6 +180,10 @@ public:
         return ret;
     }
 
+    u32 checkPlayingSubBgmFlag() {
+        return getSubBgmID();
+    }
+
     JAISoundHandle* getMainBgmHandle() { return &mMainBgmHandle; }
     JAISoundHandle* getSubBgmHandle() { return &mSubBgmHandle; }
 
