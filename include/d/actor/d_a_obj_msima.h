@@ -11,7 +11,7 @@ struct ms_chain_s {
     /* 0x8C */ f32 field_0x8c;
     /* 0x90 */ s16 field_0x90;
     /* 0x92 */ u8 field_0x92;
-    /* 0x94 */ Vec field_0x94;
+    /* 0x94 */ cXyz field_0x94;
 };
 
 /**
