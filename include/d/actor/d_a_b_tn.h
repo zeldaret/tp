@@ -16,10 +16,8 @@
  */
 class daB_TN_c : public fopEn_enemy_c {
 public:
-    // typedef void (daB_TN_c::*actionFunc)(int);
-
     /* 8061EC58 */ int ctrlJoint(J3DJoint*, J3DModel*);
-    /* 8061ED10 */ int JointCallBack(J3DJoint*, int);
+    /* 8061ED10 */ static int JointCallBack(J3DJoint*, int);
     /* 8061ED5C */ void calcNeckAngle();
     /* 8061EE14 */ void calcWaistAngle();
     /* 8061EEC8 */ int draw();
@@ -32,7 +30,7 @@ public:
     /* 8061FFE0 */ void calcOtherPartMove(int);
     /* 8062070C */ void calcPartMove();
     /* 806208C8 */ void setBck(int, u8, f32, f32);
-    /* 8062096C */ bool checkBck(int);
+    /* 8062096C */ int checkBck(int);
     /* 806209C8 */ void setActionMode(int, int);
     /* 806209E0 */ void setSwordAtBit(int);
     /* 80620AE4 */ void setSwordAtBreak(int);
@@ -63,7 +61,7 @@ public:
     /* 80627790 */ void setWalkDir();
     /* 8062799C */ void initChaseL(int);
     /* 80627CBC */ bool checkAttackAble();
-    /* 80627D3C */ int checkNextMove();
+    /* 80627D3C */ bool checkNextMove();
     /* 8062868C */ void executeChaseL();
     /* 806292F8 */ void executeAttackL();
     /* 80629D20 */ void executeAttackShieldL();
@@ -75,11 +73,11 @@ public:
     /* 8062B6A8 */ void action();
     /* 8062BA5C */ void mtx_set();
     /* 8062BDCC */ void cc_set();
-    /* 8062C5B4 */ void execute();
-    /* 8062C7C8 */ void _delete();
-    /* 8062C868 */ void CreateHeap();
+    /* 8062C5B4 */ int execute();
+    /* 8062C7C8 */ int _delete();
+    /* 8062C868 */ int CreateHeap();
     /* 8062CD78 */ int create();
-    /* 8062D2F0 */ daB_TN_c();
+    /* 8062D2F0 */ daB_TN_c() {};
 
 private:
     /* 0x05AC */ request_of_phase_process_class mPhase1;
@@ -112,12 +110,15 @@ private:
     /* 0x0A1C */ u16 field_0xa1c[16];
     /* 0x0A3C */ s16 field_0xa3c[16];
     /* 0x0A5C */ s16 field_0xa5c;
-    /* 0x0A5E */ u8 field_0xa5e[0xa68 - 0xa5e];
+    /* 0x0A5E */ u8 field_0xa5e[0xa60 - 0xa5e];
+    /* 0x0A60 */ int field_0xa60;
+    /* 0x0A64 */ s16 field_0xa64;
+    /* 0x0A66 */ u8 field_0xa66[0xa68 - 0xa66];
     /* 0x0A68 */ s16 field_0xa68;
     /* 0x0A6A */ u8 field_0xa6a[0xa6c - 0xa6a];
     /* 0x0A6C */ int field_0xa6c;
     /* 0x0A70 */ int field_0xa70;
-    /* 0x0A74 */ u8 field_0xa74[0xa78 - 0xa74];
+    /* 0x0A74 */ int field_0xa74;
     /* 0x0A78 */ int field_0xa78;
     /* 0x0A7C */ int field_0xa7c;
     /* 0x0A80 */ int field_0xa80;
@@ -133,7 +134,8 @@ private:
     /* 0x0A96 */ s16 field_0xa96;
     /* 0x0A98 */ s16 field_0xa98;
     /* 0x0A9A */ u8 field_0xa9a;
-    /* 0x0A9B */ u8 field_0xa9b[0xa9d - 0xa9b];
+    /* 0x0A9B */ u8 field_0xa9b;
+    /* 0x0A9C */ u8 field_0xa9c;
     /* 0x0A9D */ u8 field_0xa9d;
     /* 0x0A9E */ u8 field_0xa9e;
     /* 0x0A9F */ u8 field_0xa9f;
@@ -153,20 +155,24 @@ private:
     /* 0x0AAD */ u8 field_0xaad;
     /* 0x0AAE */ u8 field_0xaae;
     /* 0x0AAF */ u8 field_0xaaf;
-    /* 0x0AB0 */ f32 field_0xab0;
+    /* 0x0AB0 */ f32 mBlend;
     /* 0x0AB4 */ char* field_0xab4;
     /* 0x0AB8 */ dBgS_AcchCir mAcchCir;
     /* 0x0AF8 */ dBgS_ObjAcch mAcch;
-    /* 0x0CD0 */ u8 field_0xcd0[0x10fc - 0xcd0];
-    /* 0x10FC */ dBgS_Acch field_0x10fc[16];
-    /* 0x2E7C */ u8 field_0x2e7c[0x2f64 - 0x2e7c];
-    /* 0x2F64 */ dCcD_Sph field_0x2f64[3];
-    /* 0x330C */ u8 field_0x330c[0x3618 - 0x330c];
+    /* 0x0CD0 */ u8 field_0xcd0[0x10d0 - 0xcd0];
+    /* 0x10D0 */ dBgS_Acch field_0x10d0[16];
+    /* 0x2E50 */ cXyz field_0x2e50;
+    /* 0x2E5C */ u8 field_0x2e5c[0x2e6c - 0x2e5c];
+    /* 0x2E6C */ dCcD_GStts mGStts;
+    /* 0x2E8C */ dCcD_Stts field_0x2e8c;
+    /* 0x2EC8 */ dCcD_Sph field_0x2ec8[3];
+    /* 0x3270 */ dCcD_Sph field_0x3270[3];
     /* 0x3618 */ dCcD_Sph field_0x3618;
-    /* 0x3750 */ dCcD_Sph field_0x3750[4];
-    /* 0x3C30 */ dCcD_Sph field_0x3c30;
-    /* 0x3D68 */ u8 field_0x3d68[0x3eb8 - 0x3d68];
-    /* 0x3EB8 */ dCcU_AtInfo field_0x3eb8;
+    /* 0x3750 */ dCcD_Sph mSwordSphs[4];
+    /* 0x3C30 */ dCcD_Cps mCps;
+    /* 0x3D74 */ dCcD_Sph field_0x3d74;
+    /* 0x3EAC */ cXyz field_0x3eac;
+    /* 0x3EB8 */ dCcU_AtInfo mAtInfo;
     /* 0x3EDC */ dCcD_Stts field_0x3edc[16];
     /* 0x429C */ dCcD_Sph field_0x429c[16];
     /* 0x561C */ u32 field_0x561c[4];
@@ -182,7 +188,7 @@ public:
     /* 8062D98C */ virtual ~daB_TN_HIO_c() {};
 
     /* 0x04 */ s8 field_0x4;
-    /* 0x08 */ f32 field_0x8;
+    /* 0x08 */ f32 mScale;
     /* 0x0C */ f32 field_0xc;
     /* 0x10 */ f32 field_0x10;
     /* 0x14 */ f32 field_0x14;
@@ -195,6 +201,5 @@ public:
 
 
 };
-
 
 #endif /* D_A_B_TN_H */
