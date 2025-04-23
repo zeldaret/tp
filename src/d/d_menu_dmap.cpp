@@ -11,6 +11,7 @@
 #include "d/d_meter_HIO.h"
 #include "d/d_meter2_info.h"
 #include "d/d_lib.h"
+#include "d/d_menu_dmap_map.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"

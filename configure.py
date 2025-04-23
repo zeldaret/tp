@@ -595,7 +595,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01"), "d/d_menu_calibration.cpp"),
             Object(NonMatching, "d/d_menu_collect.cpp"),
             Object(NonMatching, "d/d_menu_dmap.cpp"),
-            Object(NonMatching, "d/d_menu_dmap_map.cpp"),
+            Object(Equivalent, "d/d_menu_dmap_map.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_menu_map_common.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_menu_fishing.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_menu_fmap.cpp", extra_cflags=['-pragma "nosyminline on"']),
