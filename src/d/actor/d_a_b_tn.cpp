@@ -134,7 +134,7 @@ int daB_TN_c::ctrlJoint(J3DJoint* i_joint, J3DModel* model) {
     }
 
     model->setAnmMtx(mJntNo, mDoMtx_stack_c::get());
-    PSMTXCopy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
+    MTXCopy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
     return 1;
 }
 
@@ -199,9 +199,6 @@ UNK_REL_BSS
 
 /* 8062F01D 0003+00 data_8062F01D None */
 static u8 struct_8062F01C;
-
-/* 8062F020-8062F02C 000048 000C+00 0/1 0/0 0/0 .bss             @3936 */
-static u8 lit_3936[12];
 
 /* 8062F02C-8062F05C 000054 0030+00 9/11 0/0 0/0 .bss             l_HIO */
 static daB_TN_HIO_c l_HIO;
@@ -1269,19 +1266,274 @@ void daB_TN_c::setShieldEffect(dCcD_Sph* i_sph) {
 /* 806213FC-806223A0 0028FC 0FA4+00 1/1 0/0 0/0 .text            damage_check__8daB_TN_cFv */
 void daB_TN_c::damage_check() {
     // NONMATCHING
+    mGStts.Move();
 
-}
+    for (int i = 0; i < 4; i++) {
+        if (mSwordSphs[i].ChkAtHit()) {
+            field_0xa9a = 1;
+            if (mSwordSphs[i].ChkAtShieldHit() && mSwordSphs[i].GetAtSpl() == 10) {
+                setSwordAtBit(0);
+                m_attack_tn = this;
+                break;
+            }
+        }
+    }
 
-/* 806223A0-8062242C 0038A0 008C+00 1/1 0/0 0/0 .text            __as__8dCcD_SphFRC8dCcD_Sph */
-// void dCcD_Sph::operator=(dCcD_Sph const& param_0) {
-extern "C" void __as__8dCcD_SphFRC8dCcD_Sph() {
-    // NONMATCHING
-}
+    if (mCps.ChkAtHit()) {
+        field_0xa9a = 1;
+        if (mCps.ChkAtShieldHit() && mCps.GetAtSpl() == 10) {
+            setSwordAtBit(0);
+            m_attack_tn = this;
+        }
+    }
 
-/* 8062242C-80622674 00392C 0248+00 1/1 0/0 0/0 .text __as__12dCcD_GObjInfFRC12dCcD_GObjInf */
-// void dCcD_GObjInf::operator=(dCcD_GObjInf const& param_0) {
-extern "C" void __as__12dCcD_GObjInfFRC12dCcD_GObjInf() {
-    // NONMATCHING
+    if (field_0x3618.ChkAtHit() && !field_0x3618.ChkAtShieldHit()) {
+        field_0xa9a = 1;
+        mSound.startCreatureSound(Z2SE_EN_TN_ATK_NO_DMG, 0, -1);
+        field_0x3618.ClrAtHit();
+        m_attack_tn = this;
+    }
+
+    if (field_0xa68 != 0) {
+        return;
+    }
+
+    if (mActionMode1 == 8) {
+        return;
+    }
+
+    if (mActionMode1 == 14) {
+        return;
+    }
+
+    dCcD_Sph dStack_160;
+    
+    if (mActionMode1 <= 1) {
+        mAtInfo.mpCollider = NULL;
+        if (field_0x3618.ChkTgHit()) {
+            mAtInfo.mpCollider = field_0x3618.GetTgHitObj();
+            dStack_160 = field_0x3618;
+        }
+
+        for (int i = 0; i < 3; i++) {
+            if (field_0x2ec8[i].ChkTgHit()) {
+                mAtInfo.mpCollider = field_0x2ec8[i].GetTgHitObj();
+                dStack_160 = field_0x2ec8[i];
+                break;
+            }
+        }
+
+        
+
+        for (int i = 0; i < 3; i++) {
+            if (field_0x3270[i].ChkTgHit()) {
+                mAtInfo.mpCollider = field_0x3270[i].GetTgHitObj();
+                dStack_160 = field_0x3270[i];
+                break;
+            }
+        }
+
+        if (mAtInfo.mpCollider) {
+            setShieldEffect(&dStack_160);
+            setActionMode(1, 2);
+
+            if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_BOOMERANG) || mAtInfo.mpCollider->ChkAtType(AT_TYPE_40) || mAtInfo.mpCollider->ChkAtType(AT_TYPE_HOOKSHOT)) {
+                field_0xa60 = 15;
+            }
+
+            return;
+        }
+
+        int mCutType = daPy_getPlayerActorClass()->getCutType();
+        if (mActionMode1 < 8 && field_0x3618.ChkTgHit()) {
+            if (field_0x3618.GetTgHitObj()->ChkAtType(18) && mCutType != 5 && mCutType != 31 && mCutType != 26) {
+                def_se_set(&mSound, field_0x3618.GetTgHitObj(), 42, this);
+                field_0xaa8 = 0;
+                if (field_0x3618.GetTgHitObj()->ChkAtType(AT_TYPE_SHIELD_ATTACK)) {
+                    if (mActionMode1 != 6) {
+                        return;
+                    }
+
+                    if (mActionMode1 == 6 && field_0xaa8 != 0) {
+                        return;
+                    }
+
+                    field_0xaa8 = 1;
+                }
+
+                setActionMode(6, 0);
+                return;
+            }
+        }
+
+        mAtInfo.mpCollider = NULL;
+        for (int i = 0; i < 3; i++) {
+            if (field_0x2ec8[i].ChkTgHit()) {
+                mAtInfo.mpCollider = field_0x2ec8[i].GetTgHitObj();
+                dStack_160 = field_0x2ec8[i];
+                break;
+            }
+        }
+
+        if (mActionMode1 < 8) {
+            if ((mCutType == 37 || mCutType == 38) || mAtInfo.mpCollider->ChkAtType(AT_TYPE_UNK)) {
+                setShieldEffect(&dStack_160);
+                field_0xa60 = 15;
+                return;
+            }
+
+            if (dStack_160.ChkTgShield()) {
+                if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_SHIELD_ATTACK)) {
+                    if (mActionMode1 == 6 && field_0xaa8 != 0) {
+                        return;
+                    }
+
+                    field_0xaa8 = 1;
+                    def_se_set(&mSound, dStack_160.GetTgHitObj(), 42, this);
+                } else {
+                    field_0xaa8 = 0;
+                    setShieldEffect(&dStack_160);
+                }
+
+                setActionMode(6, 0);
+                return;
+            }
+
+            if (mCutType == 5 || mCutType == 31 || mCutType == 26) {
+                field_0xaa9 = 60;
+            }
+        } else {
+            if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_SHIELD_ATTACK)) {
+                field_0xaa8 = 1;
+                def_se_set(&mSound, dStack_160.GetTgHitObj(), 42, this);
+                setActionMode(12, 0);
+                return;
+            }
+
+            if (field_0xa91 != 0) {
+                if (field_0xa9f != 0 || (getCutType() & 4) != 0) {
+                    setShieldEffect(&dStack_160);
+                    if (field_0xa9f != 0) {
+                        setActionMode(12, 11);
+                    } else {
+                        setActionMode(15, 0);
+                    }
+
+                    return;
+                }
+
+                if (field_0xaa7 == 0) {
+                    if (abs((s16)(fopAcM_searchPlayerAngleY(this) - shape_angle.y)) >= 0x3000 || mCutType == 37 && mCutType == 38) {
+                        field_0xaa8 = 0;
+                        setShieldEffect(&dStack_160);
+                        setActionMode(12, 0);
+                        return;
+                    }
+
+                    setDamage(&dStack_160, 1);
+                    return;
+                }
+            }
+        }
+        
+        mAtInfo.mpCollider = NULL;
+        for (int i = 0; i < 3; i++) {
+            if (field_0x3270[i].ChkTgHit()) {
+                mAtInfo.mpCollider = field_0x3270[i].GetTgHitObj();
+                dStack_160 = field_0x3270[i];
+                break;
+            }
+        }
+
+        bool bVar1 = abs((s16)(fopAcM_searchPlayerAngleY(this) - shape_angle.y)) > 0x3000;
+        if (mActionMode1 < 8) {
+            if (!dStack_160.ChkTgShield() || field_0xa78 >= 11) {
+                bVar1 = true;
+            }
+        } else if (field_0xa91 == 0) {
+            bVar1 = true;
+        }
+
+        if (mActionMode1 < 8 && field_0x3618.ChkTgHit()) {
+            mAtInfo.mpCollider = field_0x3618.GetTgHitObj();
+            dStack_160 = field_0x3618;
+            bVar1 = false;
+        }
+
+        if (mAtInfo.mpCollider) {
+            field_0xaa8 = 0;
+            if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_BOOMERANG) || mAtInfo.mpCollider->ChkAtType(AT_TYPE_40)) {
+                if (mActionMode1 < 8) {
+                    field_0xa60 = 15;
+                } else {
+                    setActionMode(12, 10);
+                }
+            } else if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_BOMB)) {
+                if (mActionMode1 < 8 && field_0xa78 < 11) {
+                    if (abs(cLib_targetAngleY(&current.pos, &dCc_GetAc(mAtInfo.mpCollider->GetAc())->current.pos) - shape_angle.y) > 0x4000) {
+                        setDamage(&dStack_160, 2);
+                    } else {
+                        setActionMode(6, 0);
+                    }
+                } else if (abs(cLib_targetAngleY(&current.pos, &dCc_GetAc(mAtInfo.mpCollider->GetAc())->current.pos) - shape_angle.y) > 0x4000) {
+                        setDamage(&dStack_160, 2);
+                }
+            } else if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_SPINNER)) {
+                setShieldEffect(&dStack_160);
+                if (mActionMode1 < 8) {
+                    setActionMode(6, 0);
+                } else {
+                    setActionMode(12, 10);
+                }
+            } else if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_HOOKSHOT)) {
+                if (mActionMode1 < 8) {
+                    field_0xa60 = 15;
+                    setShieldEffect(&dStack_160);
+                } else if (!bVar1 || field_0xaa7 != 0) {
+                    setShieldEffect(&dStack_160);
+                    setActionMode(12, 0);
+                } else {
+                    health = 100;
+                    cc_at_check(this, &mAtInfo);
+                    field_0xa92 = 0;
+                    if (cM_rnd() < 0.5f) {
+                        field_0xa92 = 1;
+                    }
+
+                    if (mActionMode1 != 13 && field_0xa80 == 0) {
+                        field_0xa80 = 90;
+                    }
+
+                    setActionMode(13, field_0xa92);
+                }
+            } else if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_IRON_BALL)) {
+                if (!bVar1) {
+                    setShieldEffect(&dStack_160);
+                    if (mActionMode1 < 8) {
+                        setActionMode(6, 0);
+                    } else {
+                        setActionMode(12, 10);
+                    }
+                } else {
+                    setDamage(&dStack_160, 2);
+                }
+            } else if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_ARROW)) {
+                if (mActionMode1 < 8) {
+                    setShieldEffect(&dStack_160);
+                } else if (bVar1 && field_0xaa7 == 0) {
+                    setShieldEffect(&dStack_160);
+                    setActionMode(12, 0);
+                } else {
+                    setDamage(&dStack_160, 1);
+                }
+            }
+        }
+
+        if (mCutType == 20) {
+            return;
+        }
+
+    }
 }
 
 /* 806227D0-80622B60 003CD0 0390+00 4/4 0/0 0/0 .text            checkMoveArea__8daB_TN_cFv */
@@ -1409,7 +1661,7 @@ void daB_TN_c::demo_skip(int param_1) {
         mCamCenter.set(0.0f, -239.0f, 1874.0f);
         mCamEye.set(0.0f, -202.0f, 2251.0f);
         cXyz sp28(0.0f, -350.0f, 2200.0f);
-        player->setPlayerPosAndAngle(&sp28, (s16)0xffff8000, 0);
+        player->setPlayerPosAndAngle(&sp28, -0x8000, 0);
 
         cameraClass->mCamera.Reset(mCamCenter, mCamEye);
         cameraClass->mCamera.Start();
@@ -1494,7 +1746,7 @@ void daB_TN_c::executeRoomDemo() {
                 player->changeDemoPos0(&sp24);
                 player->changeDemoMode(2, 0, 0, 0);
                 sp24.z += 500.0f;
-                player->setPlayerPosAndAngle(&sp24, (s16)0xffff8000, 0);
+                player->setPlayerPosAndAngle(&sp24, -0x8000, 0);
 
                 field_0xa6c = 30;
                 mActionMode2 = 10;
@@ -1712,22 +1964,20 @@ void daB_TN_c::executeOpening() {
                 cLib_addCalcPos2(&mCamCenter, sp34, 0.5f, 5.0f);
                 sp34.set(0.0f, -350.0f, 400.0f);
                 cLib_addCalcPos2(&mCamEye, sp34, 0.5f, 5.0f);
+            } else if (mpModelMorf2->getFrame() < 57.0f) {
+                mDoMtx_stack_c::copy(mpModelMorf2->getModel()->getAnmMtx(14));
+                mDoMtx_stack_c::multVecZero(&sp34);
+                sp34.y -= 50.0f;
+                cLib_addCalcPos2(&mCamCenter, sp34, 0.5f, 3.0f);
+                sp34.set(0.0f, -350.0f, 400.0f);
+                cLib_addCalcPos2(&mCamEye, sp34, 0.5f, 5.0f);
             } else {
-                if (mpModelMorf2->getFrame() < 57.0f) {
-                    mDoMtx_stack_c::copy(mpModelMorf2->getModel()->getAnmMtx(14));
-                    mDoMtx_stack_c::multVecZero(&sp34);
-                    sp34.y -= 50.0f;
-                    cLib_addCalcPos2(&mCamCenter, sp34, 0.5f, 3.0f);
-                    sp34.set(0.0f, -350.0f, 400.0f);
-                    cLib_addCalcPos2(&mCamEye, sp34, 0.5f, 5.0f);
-                } else {
-                    mDoMtx_stack_c::copy(mpModelMorf2->getModel()->getAnmMtx(14));
-                    mDoMtx_stack_c::multVecZero(&sp34);
-                    sp34.y -= 50.0f;
-                    cLib_addCalcPos2(&mCamCenter, sp34, 1.0f, 30.0f);
-                    sp34.set(0.0f, -350.0f, 500.0f);
-                    cLib_addCalcPos2(&mCamEye, sp34, 0.5f, 3.0f);
-                }
+                mDoMtx_stack_c::copy(mpModelMorf2->getModel()->getAnmMtx(14));
+                mDoMtx_stack_c::multVecZero(&sp34);
+                sp34.y -= 50.0f;
+                cLib_addCalcPos2(&mCamCenter, sp34, 1.0f, 30.0f);
+                sp34.set(0.0f, -350.0f, 500.0f);
+                cLib_addCalcPos2(&mCamEye, sp34, 0.5f, 3.0f);
             }
 
             if (mpModelMorf2->checkFrame(58.0f) || mpModelMorf2->checkFrame(98.0f)) {
@@ -2083,17 +2333,15 @@ void daB_TN_c::executeChaseH() {
                             mActionMode2 = 106;
                         }
                     }
-                } else {
-                    if (abs(sVar5) < 0x7000) {
-                        if (mActionMode2 == 106) {
-                            if (sVar5 > 0) {
-                                setBck(17, 2, 3.0f, -1.0f);
-                                mActionMode2 = 107;
-                            }
-                        } else if (sVar5 < 0) {
-                            setBck(17, 2, 3.0f, 1.0f);
-                            mActionMode2 = 106;
+                } else if (abs(sVar5) < 0x7000) {
+                    if (mActionMode2 == 106) {
+                        if (sVar5 > 0) {
+                            setBck(17, 2, 3.0f, -1.0f);
+                            mActionMode2 = 107;
                         }
+                    } else if (sVar5 < 0) {
+                        setBck(17, 2, 3.0f, 1.0f);
+                        mActionMode2 = 106;
                     }
                 }
             }
@@ -2475,7 +2723,7 @@ void daB_TN_c::executeChangeDemo() {
 
             player->changeOriginalDemo();
             sp28.set(100.0f, -400.0f, 1000.0f);
-            player->setPlayerPosAndAngle(&sp28, (s16)0xffff8000, 0);
+            player->setPlayerPosAndAngle(&sp28, -0x8000, 0);
             player->changeDemoMode(4, 1, 0, 0);
 
             speedF = 0.0f;
@@ -4723,8 +4971,8 @@ static void daB_TN_Delete(daB_TN_c* i_this) {
 /* 8062C868-8062CD10 00DD68 04A8+00 1/1 0/0 0/0 .text            CreateHeap__8daB_TN_cFv */
 int daB_TN_c::CreateHeap() {
     // NONMATCHING
-    static u8 tn2_brk_index[12] = {
-        0x00, 0x00, 0x00, 0x19, 0x00, 0x00, 0x00, 0x1A, 0x00, 0x00, 0x00, 0x1B,
+    static int tn2_brk_index[3] = {
+        25, 26, 27
     };
 
     J3DModelData* modelData;
@@ -4755,7 +5003,6 @@ int daB_TN_c::CreateHeap() {
 
     J3DModel* model = mpModelMorf2->getModel();
     model->setUserArea((u32)this);
-    // J3DJoint* mNodePtr = model->getModelData()->getJointNodePointer(5);
     model->getModelData()->getJointNodePointer(5)->setCallBack(JointCallBack);
     model->getModelData()->getJointNodePointer(1)->setCallBack(JointCallBack);
 
@@ -4785,27 +5032,25 @@ int daB_TN_c::CreateHeap() {
 
         if (iVar4 > 14) {
             modelData = (J3DModelData*)dComIfG_getObjectRes(field_0xab4, 19);
-            if (modelData == NULL) {
-
-            }
+            if (modelData == NULL) { /* Debug Stuff */ }
 
             mpModelMorf1 = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("B_tn", 39),
                 0, 1.0f, 0, -1, &mSound, 0x80000, 0x11000084);
             if (mpModelMorf1 == NULL || mpModelMorf1->getModel() == NULL) {
                 return 0;
-            } else {
-                modelData = (J3DModelData*)dComIfG_getObjectRes("B_tn", 48);
-                if (modelData == NULL) {
-                }
-                model = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
-
-                mModels[iVar4] = model;
-                if (mModels[iVar4] == NULL) {
-                    return 0;
-                } else {
-                    return 1;
-                }
             }
+            
+            modelData = (J3DModelData*)dComIfG_getObjectRes("B_tn", 48);
+            if (modelData == NULL) { /* Debug Stuff */ }
+
+            model = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+
+            mModels[iVar4] = model;
+            if (mModels[iVar4] == NULL) {
+                return 0;
+            }
+                
+            return 1;
         }
 
         iVar4++;
@@ -4903,8 +5148,8 @@ extern "C" void __ct__12dBgS_ObjAcchFv() {
 }
 
 /* 8062D924-8062D944 00EE24 0020+00 1/0 0/0 0/0 .text            daB_TN_Create__FP8daB_TN_c */
-static void daB_TN_Create(daB_TN_c* i_this) {
-    i_this->create();
+static int daB_TN_Create(daB_TN_c* i_this) {
+    return i_this->create();
 }
 
 /* ############################################################################################## */

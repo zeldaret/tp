@@ -177,7 +177,6 @@ private:
     /* 0x429C */ dCcD_Sph field_0x429c[16];
     /* 0x561C */ u32 field_0x561c[4];
     /* 0x562C */ u8 field_0x562c;
-    /* 0x562D */ u8 field_0x562d[0x5630 - 0x562d];
 };
 
 STATIC_ASSERT(sizeof(daB_TN_c) == 0x5630);
