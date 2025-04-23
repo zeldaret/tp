@@ -22,7 +22,12 @@ float acosf(float);
 double asin(double);
 double atan(double);
 double atan2(double, double);
+
 double ceil(double);
+inline float ceilf(float num) {
+    return ceil(num);
+}
+
 double copysign(double, double);
 double cos(double);
 float cosf(float);
@@ -44,6 +49,10 @@ inline float fabsf(float f) {
 }
 
 double floor(double);
+inline float floorf(float num) {
+    return floor(num);
+}
+
 double fmod(double, double);
 inline float fmodf(float f1, float f2) {
     return fmod(f1, f2);

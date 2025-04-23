@@ -118,9 +118,6 @@ m_Do/m_Do_machine_exception.cpp:
 	.rodata     start:0x80374460 end:0x80374640
 	.sbss       start:0x80450C90 end:0x80450C98
 
-dolphin/os/__start.c:
-	.init       start:0x80003100 end:0x80003458
-
 c/c_damagereaction.cpp:
 	.text       start:0x8001817C end:0x800183DC
 	.ctors      start:0x803737E0 end:0x803737E4
@@ -1434,9 +1431,6 @@ d/d_k_wpillar.cpp:
 	.text       start:0x80261B54 end:0x802621CC
 	.data       start:0x803C3470 end:0x803C34B0
 	.sdata2     start:0x80454FF0 end:0x80455008
-
-PowerPC_EABI_Support/Runtime/Src/__mem.c:
-	.init       start:0x80003458 end:0x80003590
 
 DynamicLink.cpp:
 	.text       start:0x802621CC end:0x802631D4
@@ -3600,6 +3594,12 @@ TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/notify.c:
 
 TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Generic/flush_cache.c:
 	.text       start:0x8036F548 end:0x8036F580
+
+dolphin/os/__start.c:
+	.init       start:0x80003100 end:0x80003458
+
+PowerPC_EABI_Support/Runtime/Src/__mem.c:
+	.init       start:0x80003458 end:0x80003590
 
 TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/mem_TRK.c:
 	.init       start:0x80003590 end:0x800035E4

@@ -11,6 +11,6 @@ daGuardMng_Create__FP10fopAc_ac_c = .text:0x000002DC; // type:function size:0x60
 _ctors = .ctors:0x00000000; // type:label scope:global
 _dtors = .dtors:0x00000000; // type:label scope:global
 mGuardDataTbl$localstatic3$getGuardParam__12daGuardMng_cFv = .rodata:0x00000000; // type:object size:0x8 scope:local
-@3663 = .rodata:0x00000008; // type:object size:0x4 scope:local data:float
+@3663 = .rodata:0x00000008; // type:object size:0x4 scope:local align:4 data:float
 l_daGuardMng_Method = .data:0x00000000; // type:object size:0x20 scope:global
 g_profile_GUARD_MNG = .data:0x00000020; // type:object size:0x30 scope:global
