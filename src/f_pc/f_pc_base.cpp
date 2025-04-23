@@ -7,6 +7,7 @@
 #include "SSystem/SComponent/c_malloc.h"
 #include "SSystem/SComponent/c_phase.h"
 #include "SSystem/SStandard/s_basic.h"
+#include "d/d_stage.h"
 #include "f_pc/f_pc_layer.h"
 #include "f_pc/f_pc_method.h"
 #include "f_pc/f_pc_pause.h"
@@ -93,13 +94,33 @@ int fpcBs_IsDelete(base_process_class* i_proc) {
 
 /* 800207BC-80020820 0064+00 s=0 e=2 z=0  None .text      fpcBs_Delete__FP18base_process_class */
 int fpcBs_Delete(base_process_class* i_proc) {
-    int result = fpcMtd_Delete(i_proc->methods, i_proc);
-    if (result == 1) {
-        fpcBs_DeleteAppend(i_proc);
-        i_proc->type = 0;
-        cMl::free(i_proc);
-    }
+    BOOL result = TRUE;
+    if (result == TRUE) {
+        result = fpcMtd_Delete(i_proc->methods, i_proc);
+        if (result == 1) {
+            s16 profname = i_proc->profname;
+            fpcBs_DeleteAppend(i_proc);
+            i_proc->type = 0;
+            cMl::free(i_proc);
 
+            #if VERSION == VERSION_SHIELD_DEBUG
+            // JSUList<Z2SoundObjBase>* allList = Z2GetAudioMgr()->getAllList();
+            
+            // for (JSUListIterator<Z2SoundObjBase> it(allList->getFirst()); it != allList->getEnd(); it++) {
+            //     static JSULink<Z2SoundObjBase>* DUMMY_FILL_IT = NULL;
+            //     static Z2SoundObjBase* DUMMY_FILL_P = NULL;
+            //     if (it == DUMMY_FILL_IT || it.getObject() == DUMMY_FILL_P) {
+            //         const char* stageName = dStage_getName2(profname, 0);
+            //         if (stageName == NULL) {
+            //             JUT_PANIC_F(341, "Sound Object Not Delete !! <%d>\n", profname);
+            //         } else {
+            //             JUT_PANIC_F(345, "Sound Object Not Delete !! <%s>\n", stageName);
+            //         }
+            //     }
+            // }
+            #endif
+        }
+    }
     return result;
 }
 

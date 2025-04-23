@@ -3376,7 +3376,7 @@ inline BOOL dComIfGp_roomControl_checkRoomDisp(int i_roomNo) {
     return g_dComIfG_gameInfo.play.getRoomControl()->checkRoomDisp(i_roomNo);
 }
 
-inline BOOL dComIfGp_roomControl_checkStatusFlag(int i_roomNo, u8 flag) {
+inline u8 dComIfGp_roomControl_checkStatusFlag(int i_roomNo, u8 flag) {
     return g_dComIfG_gameInfo.play.getRoomControl()->checkStatusFlag(i_roomNo, flag);
 }
 

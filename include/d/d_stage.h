@@ -1114,7 +1114,7 @@ public:
         mStatus[param_0].mpBgW = i_bgw;
     }
 
-    BOOL checkStatusFlag(int i_roomNo, u8 flag) const {
+    u8 checkStatusFlag(int i_roomNo, u8 flag) const {
         return cLib_checkBit(mStatus[i_roomNo].mFlag, flag);
     }
 
