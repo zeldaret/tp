@@ -77,6 +77,7 @@ PIECE_SCALE_BASE$4100 = .rodata:0x00000148; // type:object size:0x8 scope:local
 ...data.0 = .data:0x00000000; // type:label scope:local
 cNullVec__6Z2Calc = .data:0x00000000; // type:object size:0xC scope:local
 @1787 = .data:0x0000000C; // type:object size:0x4 scope:local
+lbl_409_data_10 = .data:0x00000010; // type:object size:0x10
 l_arcName = .data:0x00000020; // type:object size:0x4 scope:local data:4byte
 @3933 = .data:0x00000024; // type:object size:0xC scope:local
 @3934 = .data:0x00000030; // type:object size:0xC scope:local
