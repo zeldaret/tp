@@ -603,7 +603,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01"), "d/d_menu_fmap2D.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_menu_insect.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_menu_item_explain.cpp"),
-            Object(NonMatching, "d/d_menu_letter.cpp", extra_cflags=['-pragma "nosyminline on"']),
+            Object(Equivalent, "d/d_menu_letter.cpp", extra_cflags=['-pragma "nosyminline on"']), # weak function order
             Object(MatchingFor("GZ2E01"), "d/d_menu_option.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_menu_ring.cpp"),
             Object(Equivalent, "d/d_menu_save.cpp"), # missing 0x30 bytes of padding between vtables, likely some abstract base class vtable that gets stripped out
