@@ -764,8 +764,6 @@ bool dCamera_c::fixedFrameEvCamera() {
             mWork.event.field_0x10 = sp38;
         }
         
-        
-
         if (mWork.event.field_0x24 && mWork.event.field_0x29 == 111) {
             mWork.talk.field_0x4 = relationalPos(mWork.event.field_0x24, &sp44);
 
@@ -814,10 +812,11 @@ bool dCamera_c::fixedFrameEvCamera() {
             if (fVar3 > fVar4) {
                 sp44.x = -sp44.x;
             }
-
             mWork.talk.field_0x4 = relationalPos(mWork.event.field_0x24, &sp44);
+
         } else if (mWork.event.field_0x29 != 116) {
             mWork.talk.field_0x4 = attentionPos(mWork.event.field_0x24) + sp44;
+            
         } else {
             mWork.talk.field_0x4 = sp44;
         }
@@ -844,26 +843,75 @@ bool dCamera_c::fixedFrameEvCamera() {
     
 }
 
-/* ############################################################################################## */
-/* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8037AB33 = "EyeGap";
-SECTION_DEAD static char const* const stringBase_8037AB3A = "CtrGap";
-SECTION_DEAD static char const* const stringBase_8037AB41 = "EyeCus";
-SECTION_DEAD static char const* const stringBase_8037AB48 = "CtrCus";
-SECTION_DEAD static char const* const stringBase_8037AB4F = "Stoker";
-SECTION_DEAD static char const* const stringBase_8037AB56 = "@STARTER";
-SECTION_DEAD static char const* const stringBase_8037AB5F = "Target";
-SECTION_DEAD static char const* const stringBase_8037AB66 = "@PLAYER";
-#pragma pop
-
-/* 804528DC-804528E0 000EDC 0004+00 10/10 0/0 0/0 .sdata2          @5346 */
-SECTION_SDATA2 static f32 lit_5346 = 1.0f;
-
 /* 8008A510-8008A974 084E50 0464+00 0/0 1/0 0/0 .text            stokerEvCamera__9dCamera_cFv */
 bool dCamera_c::stokerEvCamera() {
     // NONMATCHING
+    if (mCurCamStyleTimer == 0) {
+        getEvXyzData(&mWork.talk.field_0x4, "EyeGap", cXyz::Zero);
+        getEvXyzData(&mWork.talk.field_0x10, "CtrGap", cXyz::Zero);
+        getEvFloatData(&mWork.event.field_0x20, "EyeCus", 1.0f);
+        getEvFloatData(&mWork.event.field_0x1c, "CtrCus", 1.0f);
+        getEvFloatData(&mWork.chase.field_0x24, "Fovy", mFovy);
+        getEvFloatData(&mWork.chase.field_0x28, "Bank", 0.0f);
+
+        mWork.event.field_0x0 = getEvIntData(&mWork.talk.field_0x40, "Timer", -1);
+        mWork.chase.field_0x2c = *(f32*)getEvActor("Stoker", "@STARTER");
+        mWork.event.field_0x30 = getEvActor("Target", "@PLAYER");
+
+        if (mWork.lockon.field_0x2c == 0 || mWork.event.field_0x30 == NULL) {
+            OS_REPORT("camera: event: error: stoker or target actor missing\n");
+            return 1;
+        }
+        
+        mWork.event.field_0x34.y = fopAcM_GetID(mWork.event.field_0x30);
+        field_0x158.field_0x0 = true;
+    }
+
+    cSGlobe cStack_d0;
+    if (mWork.event.field_0x30) {
+        if (!fopAcIt_Judge(fpcSch_JudgeByID, &mWork.event.field_0x34.y)) {
+            return 1;
+        }
+    
+        cStack_d0.Val(mWork.talk.field_0x10);
+        cStack_d0.V(cStack_d0.mInclination + mWork.event.field_0x30->shape_angle.x);
+        cSAngle acStack_dc;
+        cStack_d0.U(acStack_dc + cStack_d0.U());
+        // cXyz mAttPos = attentionPos(mWork.event.field_0x30);
+        // cXyz cStack_38 = mAttPos + cStack_d0.Xyz();
+        // cXyz cStack_80 = cStack_38 - field_0x5c.mCenter;
+        // cXyz cStack_8c = cStack_80 * mWork.event.field_0x1c;
+        field_0x5c.mCenter += (((attentionPos(mWork.event.field_0x30)) + cStack_d0.Xyz()) - field_0x5c.mCenter) * mWork.event.field_0x1c;
+    }
+
+    if (mWork.lockon.field_0x2c != 0) {
+        if (!fopAcIt_Judge(fpcSch_JudgeByID, &mWork.event.field_0x34.x)) {
+            return 1;
+        }
+
+        cStack_d0.Val(mWork.talk.field_0x4);
+        cSAngle acStack_e0;
+        cStack_d0.V(acStack_e0 + cStack_d0.V());
+        cSAngle acStack_e4;
+        cStack_d0.U(acStack_e4 + cStack_d0.U());
+        field_0x5c.mEye += (((attentionPos(mWork.event.field_0x30)) + cStack_d0.Xyz()) - field_0x5c.mEye) * mWork.event.field_0x20;
+    }
+
+    field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
+    field_0x5c.mFovy = mWork.chase.field_0x24;
+
+    if (mWork.event.field_0x1) {
+        cAngle this_00;
+        // cSAngle acStack_e8 = this_00.d2s(mWork.chase.field_0x28);
+        // field_0x5c.mBank = this_00.d2s(mWork.chase.field_0x28);
+        setFlag(0x400);
+    }
+
+    if (mWork.event.field_0x0 && mCurCamStyleTimer < mWork.event.field_0x40) {
+        return 0;
+    }
+
+    return 1;
 }
 
 /* ############################################################################################## */

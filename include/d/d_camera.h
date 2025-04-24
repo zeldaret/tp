@@ -746,18 +746,20 @@ public:
         } hookshot;
         struct {
             /* 0x00 */ bool field_0x0;
+            /* 0x01 */ bool field_0x1;
             /* 0x04 */ int field_0x4;
             /* 0x08 */ int field_0x8;
             /* 0x0C */ u8 field_0xc[0x10 - 0xc];
             /* 0x10 */ cXyz field_0x10;
-            /* 0x1C */ float field_0x1c;
-            /* 0x20 */ float field_0x20;
+            /* 0x1C */ f32 field_0x1c;
+            /* 0x20 */ f32 field_0x20;
             /* 0x24 */ fopAc_ac_c* field_0x24;
             /* 0x28 */ char field_0x28;
             /* 0x29 */ char field_0x29;
             /* 0x2C */ int field_0x2c;
-            /* 0x30 */ u32 field_0x30;
+            /* 0x30 */ fopAc_ac_c* field_0x30;
             /* 0x34 */ cXyz field_0x34;
+            /* 0x40 */ u32 field_0x40;
         } event;
         struct {
             u8 field_0x0[0x100];
