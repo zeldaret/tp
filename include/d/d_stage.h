@@ -1074,7 +1074,10 @@ public:
     static s8 getStayNo() { return mStayNo; }
     static u8 getRegionNo(int i_roomNo) { return mStatus[i_roomNo].mRegionNo; }
     static s8 getMemoryBlockID(int i_roomNo) { return mStatus[i_roomNo].mMemBlockID; }
-    dKy_tevstr_c* getTevStr(int i_roomNo) { return &mStatus[i_roomNo].mKyTevStr; }
+    dKy_tevstr_c* getTevStr(int i_roomNo) {
+        JUT_ASSERT(2675, 0 <= i_roomNo && i_roomNo < 64);
+        return &mStatus[i_roomNo].mKyTevStr;
+    }
     void setStatusFlag(int i_roomNo, u8 flag) {
         JUT_ASSERT(2679, 0 <= i_roomNo && i_roomNo < 64);
         mStatus[i_roomNo].mFlag = flag;

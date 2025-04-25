@@ -23,6 +23,7 @@ l_eff_id = .rodata:0x00000000; // type:object size:0x8 scope:global
 @114223 = .rodata:0x00000024; // type:object size:0x4 scope:local
 cNullVec__6Z2Calc = .rodata:0x00000028; // type:object size:0xC scope:global
 @46916 = .rodata:0x00000034; // type:object size:0x4 scope:local
+lbl_510_rodata_38 = .rodata:0x00000038; // type:object size:0x14
 @114147 = .data:0x00000000; // type:object size:0x42 scope:local
 l_daObjWaterEff_Method = .data:0x00000048; // type:object size:0x20 scope:global
 g_profile_Obj_WaterEff = .data:0x00000068; // type:object size:0x30 scope:global

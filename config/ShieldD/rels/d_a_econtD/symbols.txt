@@ -19,6 +19,7 @@ _dtors = .dtors:0x00000000; // type:label scope:global
 @120275 = .rodata:0x0000000C; // type:object size:0x4 scope:local
 cNullVec__6Z2Calc = .rodata:0x00000010; // type:object size:0xC scope:global
 @46916 = .rodata:0x0000001C; // type:object size:0x4 scope:local
+lbl_69_rodata_20 = .rodata:0x00000020; // type:object size:0x14
 l_daEcont_Method = .data:0x00000000; // type:object size:0x20 scope:global
 g_profile_ECONT = .data:0x00000020; // type:object size:0x30 scope:global
 lbl_69_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
