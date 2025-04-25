@@ -242,7 +242,7 @@ public:
     /* 8008BE2C */ bool uniformTransEvCamera();
     /* 8008BE50 */ bool uniformBrakeEvCamera();
     /* 8008BE74 */ bool uniformAcceleEvCamera();
-    /* 8008BE98 */ void transEvCamera(int);
+    /* 8008BE98 */ bool transEvCamera(int);
     /* 8008E938 */ bool watchActorEvCamera();
     /* 8008FAE8 */ bool restorePosEvCamera();
     /* 80090174 */ bool talktoEvCamera();
@@ -764,9 +764,12 @@ public:
             /* 0x42 */ u8 field_0x42[0x48 - 0x42];
             /* 0x48 */ char field_0x48;
             /* 0x49 */ u8 field_0x49[0x4c - 0x49];
-            /* 0x4C */ int mTimer;
-            // /* 0x44 */ u8 field_0x44[0x58 - 0x44];
-            // /* 0x58 */ f32 field_0x58;
+            /* 0x4C */ int field_0x4c;
+            /* 0x50 */ int field_0x50;
+            /* 0x54 */ u8 field_0x54[0x5c - 0x54];
+            /* 0x5C */ f32* field_0x5c;
+            /* 0x60 */ u8 field_0x60[0x6c - 0x60];
+            /* 0x6C */ int field_0x6c;
         } event;
         struct {
             /* 0x00 */ u8 field_0x0[0x10 - 0x0];
@@ -774,13 +777,17 @@ public:
             /* 0x1C */ u8 field_0x1c[0x28 - 0x1c];
             /* 0x28 */ cXyz field_0x28;
             /* 0x34 */ f32 field_0x34;
-            /* 0x38 */ f32 mRadius;
+            /* 0x38 */ f32 field_0x38;
             /* 0x3C */ fopAc_ac_c* field_0x3c;
             /* 0x40 */ fopAc_ac_c* field_0x40;
             /* 0x44 */ fpc_ProcID mTargetActorID;
             /* 0x48 */ u8 field_0x48[0x4c - 0x48];
             /* 0x4C */ u32 field_0x4c;
         } unk_d_ev_struct;
+        struct {
+            /* 0x20 */ cXyz field_0x20;
+            /* 0x2C */ cXyz field_0x2c;
+        } trans;
         struct {
             u8 field_0x0[0x100];
         } bytes;

@@ -755,12 +755,10 @@ bool dCamera_c::fixedFrameEvCamera() {
 
         } else if (mWork.event.field_0x28 == 112) {
             cXyz mRelPos = relationalPos(mWork.event.mRelActor, &sp38);
-            cXyz sp174 = mRelPos - positionOf(mpPlayerActor);
-            f32 fVar1 = sp174.abs();
+            f32 fVar1 = cXyz(mRelPos - positionOf(mpPlayerActor)).abs();
             sp38.x = -sp38.x;
             mRelPos = relationalPos(mWork.event.mRelActor, &sp38);
-            cXyz sp148 = mRelPos - positionOf(mpPlayerActor);
-            f32 fVar2 = sp148.abs();
+            f32 fVar2 = cXyz(mRelPos - positionOf(mpPlayerActor)).abs();
             if (fVar1 > fVar2) {
                 sp38.x = -sp38.x;
             }
@@ -813,12 +811,10 @@ bool dCamera_c::fixedFrameEvCamera() {
 
         } else if (mWork.event.field_0x29 == 112) {
             cXyz mRelPos2 = relationalPos(mWork.event.mRelActor, &sp44);
-            cXyz sp1e4 = mRelPos2 - positionOf(mpPlayerActor);
-            f32 fVar3 = sp1e4.abs();
+            f32 fVar3 = cXyz(mRelPos2 - positionOf(mpPlayerActor)).abs();
             sp44.x = -sp44.x;
             mRelPos2 = relationalPos(mWork.event.mRelActor, &sp44);
-            cXyz sp214 = mRelPos2 - positionOf(mpPlayerActor);
-            f32 fVar4 = sp214.abs();
+            f32 fVar4 = cXyz().abs(mRelPos2 - positionOf(mpPlayerActor));
             if (fVar3 > fVar4) {
                 sp44.x = -sp44.x;
             }
@@ -932,7 +928,7 @@ bool dCamera_c::rollingEvCamera() {
         getEvFloatData(&mWork.lockon.field_0x58, "CtrCus", 1.0f);
         getEvIntData(&mWork.talk.field_0x48, "TransType", 0);
         getEvFloatData(&mWork.chase.field_0x34, "Fovy", mFovy);
-        mWork.event.field_0x1 = getEvFloatData(&mWork.unk_d_ev_struct.mRadius, "Bank", 0.0f);
+        mWork.event.field_0x1 = getEvFloatData(&mWork.unk_d_ev_struct.field_0x38, "Bank", 0.0f);
         getEvFloatData(&mWork.chase.field_0x4c, "Roll", 2.0f);
         getEvFloatData(&mWork.chase.field_0x50, "RadiusAdd", 0.0f);
         cSGlobe cStack_2ac = mWork.talk.field_0x1c - mWork.unk_d_ev_struct.field_0x28;
@@ -954,60 +950,55 @@ bool dCamera_c::rollingEvCamera() {
                 mWork.unk_d_ev_struct.field_0x10 = relationalPos(mWork.unk_d_ev_struct.field_0x3c, &mWork.unk_d_ev_struct.field_0x28);
 
             } else if (mWork.event.field_0x40 == 112) {
-                cXyz cStack_90 = relationalPos(mWork.unk_d_ev_struct.field_0x3c, &mWork.unk_d_ev_struct.field_0x28);
-                cXyz cStack_114 = cStack_90 - positionOf(mpPlayerActor);
-                f32 fVar1 = cStack_114.abs();
+                cXyz sp2E0 = relationalPos(mWork.unk_d_ev_struct.field_0x3c, &mWork.unk_d_ev_struct.field_0x28);
+                f32 fVar1 = cXyz(sp2E0 - positionOf(mpPlayerActor)).abs();
                 mWork.chase.field_0x28 = -mWork.chase.field_0x28;
-                cXyz cStack_12c = relationalPos(mWork.unk_d_ev_struct.field_0x3c, &mWork.unk_d_ev_struct.field_0x28);
-                cXyz cStack_144 = cStack_12c - positionOf(mpPlayerActor);
-                f32 fVar2 = cStack_144.abs();
+                sp2E0 = relationalPos(mWork.unk_d_ev_struct.field_0x3c, &mWork.unk_d_ev_struct.field_0x28);
+                f32 fVar2 = cXyz(sp2E0 - positionOf(mpPlayerActor)).abs();
                 if (fVar1 > fVar2) {
                     mWork.chase.field_0x28 = -mWork.chase.field_0x28;
                 }
                 mWork.unk_d_ev_struct.field_0x10 = relationalPos(mWork.unk_d_ev_struct.field_0x3c, &mWork.unk_d_ev_struct.field_0x28);
 
-            }  else {
-                mWork.unk_d_ev_struct.field_0x10 = mWork.unk_d_ev_struct.field_0x28;
-            }
+            }  
+        } else {
+            mWork.unk_d_ev_struct.field_0x10 = mWork.unk_d_ev_struct.field_0x28;
+        }
 
-            if (mWork.unk_d_ev_struct.field_0x3c && mWork.event.field_0x41 == 111) {
-                mWork.talk.field_0x4 = relationalPos(mWork.unk_d_ev_struct.field_0x3c, &mWork.talk.field_0x1c);
+        if (mWork.unk_d_ev_struct.field_0x3c && mWork.event.field_0x41 == 111) {
+            mWork.talk.field_0x4 = relationalPos(mWork.unk_d_ev_struct.field_0x3c, &mWork.talk.field_0x1c);
 
-            } else if (mWork.unk_d_ev_struct.field_0x3c && mWork.event.field_0x41 == 114) {
-                if ((field_0xac & 1) != 0) {
-                    mWork.talk.field_0x1c.x = -mWork.talk.field_0x1c.x;
-                }
-                mWork.talk.field_0x4 = relationalPos(mWork.unk_d_ev_struct.field_0x3c, &mWork.talk.field_0x1c);
-                if (lineBGCheck(&mWork.talk.field_0x10, &mWork.talk.field_0x4, 0x4007)) {
-                    mWork.talk.field_0x1c.x = -mWork.talk.field_0x1c.x;
-                }
-                mWork.talk.field_0x4 = relationalPos(mWork.unk_d_ev_struct.field_0x3c, &mWork.talk.field_0x1c);
-
-            } else if (mWork.event.field_0x41 == 110) {
-                cSGlobe cStack_2e8 = mEye - positionOf(mWork.unk_d_ev_struct.field_0x3c);
-                cSAngle acStack_2f8 = cStack_2e8.U() - directionOf(mWork.unk_d_ev_struct.field_0x3c);;
-                if (acStack_2f8 < cSAngle::_0) {
-                    mWork.talk.field_0x1c.x = -mWork.talk.field_0x1c.x;
-                }
-                mWork.talk.field_0x1c = relationalPos(mWork.unk_d_ev_struct.field_0x3c, &mWork.talk.field_0x1c);
-
-            } else if (mWork.event.field_0x41 == 112) {
-                cXyz cStack_9c = relationalPos(mWork.unk_d_ev_struct.field_0x3c, &mWork.talk.field_0x1c);
-                cXyz cStack_1bc = cStack_9c - positionOf(mpPlayerActor);
-                f32 fVar3 = cStack_1bc.abs();
+        } else if (mWork.unk_d_ev_struct.field_0x3c && mWork.event.field_0x41 == 114) {
+            if ((field_0xac & 1) != 0) {
                 mWork.talk.field_0x1c.x = -mWork.talk.field_0x1c.x;
-                cXyz cStack_1d4 = relationalPos(mWork.unk_d_ev_struct.field_0x3c, &mWork.talk.field_0x1c);
-                cXyz cStack_1ec = cStack_1d4 - positionOf(mpPlayerActor);;
-                f32 fVar4 = cStack_1ec.abs();
-                if (fVar4 < fVar3) {
-                    mWork.talk.field_0x1c.x = -mWork.talk.field_0x1c.x;
-                }
-                mWork.talk.field_0x4 = relationalPos(mWork.unk_d_ev_struct.field_0x3c, &mWork.talk.field_0x1c);
-
-            } else {
-                mWork.talk.field_0x4 = mWork.talk.field_0x1c;
             }
+            mWork.talk.field_0x4 = relationalPos(mWork.unk_d_ev_struct.field_0x3c, &mWork.talk.field_0x1c);
+            if (lineBGCheck(&mWork.talk.field_0x10, &mWork.talk.field_0x4, 0x4007)) {
+                mWork.talk.field_0x1c.x = -mWork.talk.field_0x1c.x;
+            }
+            mWork.talk.field_0x4 = relationalPos(mWork.unk_d_ev_struct.field_0x3c, &mWork.talk.field_0x1c);
 
+        } else if (mWork.event.field_0x41 == 110) {
+            cSGlobe cStack_2e8 = mEye - positionOf(mWork.unk_d_ev_struct.field_0x3c);
+            cSAngle acStack_2f8 = cStack_2e8.U() - directionOf(mWork.unk_d_ev_struct.field_0x3c);;
+            if (acStack_2f8 < cSAngle::_0) {
+                mWork.talk.field_0x1c.x = -mWork.talk.field_0x1c.x;
+            }
+            mWork.talk.field_0x4 = relationalPos(mWork.unk_d_ev_struct.field_0x3c, &mWork.talk.field_0x1c);
+
+        } else if (mWork.event.field_0x41 == 112) {
+            cXyz sp2D4 = relationalPos(mWork.unk_d_ev_struct.field_0x3c, &mWork.talk.field_0x1c);
+            f32 fVar3 = cXyz(sp2D4 - positionOf(mpPlayerActor)).abs();
+            mWork.talk.field_0x1c.x = -mWork.talk.field_0x1c.x;
+            sp2D4 = relationalPos(mWork.unk_d_ev_struct.field_0x3c, &mWork.talk.field_0x1c);
+            f32 fVar4 = cXyz(sp2D4 - positionOf(mpPlayerActor)).abs();
+            if (fVar3 > fVar4) {
+                mWork.talk.field_0x1c.x = -mWork.talk.field_0x1c.x;
+            }
+            mWork.talk.field_0x4 = relationalPos(mWork.unk_d_ev_struct.field_0x3c, &mWork.talk.field_0x1c);
+
+        } else {
+            mWork.talk.field_0x4 = mWork.talk.field_0x1c;
         }
 
         field_0x158.field_0x0 = true;
@@ -1026,13 +1017,11 @@ bool dCamera_c::rollingEvCamera() {
             mWork.unk_d_ev_struct.field_0x10 = relationalPos(mWork.unk_d_ev_struct.field_0x3c, &mWork.unk_d_ev_struct.field_0x28);
 
         } else if (mWork.event.field_0x40 == 112) {
-            cXyz cStack_a8 = relationalPos(mWork.unk_d_ev_struct.field_0x3c, &mWork.unk_d_ev_struct.field_0x28);
-            cXyz cStack_24c = cStack_a8 - positionOf(mpPlayerActor);
-            f32 fVar5 = cStack_24c.abs();
+            cXyz sp2C8 = relationalPos(mWork.unk_d_ev_struct.field_0x3c, &mWork.unk_d_ev_struct.field_0x28);
+            f32 fVar5 = cXyz(sp2C8 - positionOf(mpPlayerActor)).abs();
             mWork.unk_d_ev_struct.field_0x28.x = -mWork.unk_d_ev_struct.field_0x28.x;
-            cXyz cStack_264 = relationalPos(mWork.unk_d_ev_struct.field_0x3c, &mWork.unk_d_ev_struct.field_0x28);
-            cXyz cStack_27c = cStack_264 - positionOf(mpPlayerActor);;
-            f32 fVar6 = cStack_27c.abs();
+            sp2C8 = relationalPos(mWork.unk_d_ev_struct.field_0x3c, &mWork.unk_d_ev_struct.field_0x28);
+            f32 fVar6 = cXyz(sp2C8 - positionOf(mpPlayerActor)).abs();
             if (fVar5 > fVar6) {
                 mWork.unk_d_ev_struct.field_0x28.x = -mWork.unk_d_ev_struct.field_0x28.x;
             }
@@ -1045,8 +1034,7 @@ bool dCamera_c::rollingEvCamera() {
     field_0x5c.mDirection.Val(mWork.talk.field_0x4 - mWork.talk.field_0x10);
 
     if (mWork.talk.field_0x48 == 2) {
-        cSAngle acStack_30c = mWork.chase.field_0x54;
-        field_0x5c.mDirection.V(acStack_30c);
+        field_0x5c.mDirection.V(mWork.chase.field_0x54);
     }
 
     field_0x5c.mDirection.U(field_0x5c.mDirection.U() + (cSAngle)(mCurCamStyleTimer * mWork.chase.field_0x4c));
@@ -1057,8 +1045,7 @@ bool dCamera_c::rollingEvCamera() {
 
     if (mWork.event.field_0x1) {
         cAngle this_00;
-        cSAngle acStack_318 = this_00.d2s(mWork.unk_d_ev_struct.mRadius);
-        field_0x5c.mBank = acStack_318;
+        field_0x5c.mBank = this_00.d2s(mWork.unk_d_ev_struct.field_0x38);
         setFlag(0x400);
     }
 
@@ -1118,11 +1105,11 @@ bool dCamera_c::fixedPositionEvCamera() {
         getEvXyzData(&sp24, "Eye", mEye);
         getEvFloatData(&mWork.chase.field_0x28, "Fovy", mFovy);
         getEvFloatData(&mWork.chase.field_0x30, "CtrCus", 1.0f);
-        getEvFloatData(&mWork.unk_d_ev_struct.mRadius, "Radius", 100000.0f);
-        getEvFloatData(&mWork.chase.field_0x34, "StartRadius", mWork.unk_d_ev_struct.mRadius);
+        getEvFloatData(&mWork.unk_d_ev_struct.field_0x38, "Radius", 100000.0f);
+        getEvFloatData(&mWork.chase.field_0x34, "StartRadius", mWork.unk_d_ev_struct.field_0x38);
         mWork.event.field_0x1 = getEvFloatData(&mWork.chase.field_0x2c, "Bank", 0.0f);
         getEvStringData(&mWork.event.field_0x48, "RelUseMask", "o");
-        mWork.event.field_0x0 = getEvIntData(&mWork.event.mTimer, "Timer", -1);
+        mWork.event.field_0x0 = getEvIntData(&mWork.event.field_0x4c, "Timer", -1);
 
         mWork.unk_d_ev_struct.field_0x40 = getEvActor("Target", "@PLAYER");
         if (mWork.unk_d_ev_struct.field_0x40 == NULL) {
@@ -1153,9 +1140,9 @@ bool dCamera_c::fixedPositionEvCamera() {
         field_0x5c.mEye = mWork.talk.field_0x4;
         field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
 
-        f32 fVar1 = mWork.unk_d_ev_struct.mRadius;
-        if (mWork.event.field_0x0 && mCurCamStyleTimer < mWork.event.mTimer) {
-            fVar1 = mWork.unk_d_ev_struct.field_0x34 + (mWork.unk_d_ev_struct.mRadius - mWork.unk_d_ev_struct.field_0x34) * mCurCamStyleTimer / mWork.unk_d_ev_struct.field_0x4c;
+        f32 fVar1 = mWork.unk_d_ev_struct.field_0x38;
+        if (mWork.event.field_0x0 && mCurCamStyleTimer < mWork.event.field_0x4c) {
+            fVar1 = mWork.unk_d_ev_struct.field_0x34 + (mWork.unk_d_ev_struct.field_0x38 - mWork.unk_d_ev_struct.field_0x34) * mCurCamStyleTimer / mWork.unk_d_ev_struct.field_0x4c;
             rv = 0;
         }
 
@@ -1166,7 +1153,8 @@ bool dCamera_c::fixedPositionEvCamera() {
 
         field_0x5c.mFovy = mWork.chase.field_0x28;
         if (mWork.event.field_0x1) {
-            field_0x5c.mBank = (s16)(int)(mWork.chase.field_0x2c * 182.04445);
+            cAngle this_00;
+            field_0x5c.mBank = this_00.d2s(mWork.chase.field_0x2c);
             setFlag(0x400);
         }
 
@@ -1231,8 +1219,44 @@ SECTION_SDATA2 static f32 lit_6682 = 360.0f;
 SECTION_SDATA2 static f32 lit_6683 = -360.0f;
 
 /* 8008BE98-8008E750 0867D8 28B8+00 3/3 0/0 0/0 .text            transEvCamera__9dCamera_cFi */
-void dCamera_c::transEvCamera(int param_0) {
+bool dCamera_c::transEvCamera(int param_1) {
     // NONMATCHING
+    s32 local_d0[5];
+    local_d0[0] = 0;
+    local_d0[1] = 4;
+    local_d0[2] = 7;
+    local_d0[3] = 7;
+    local_d0[4] = 0;
+
+    if (mCurCamStyleTimer == 0) {
+        if (!getEvIntData(&mWork.event.field_0x50, "Timer")) {
+            OS_REPORT("camera: event: error: UNITRANS no Timer\n");
+            return 1;
+        }
+
+        if (!getEvIntData(&mWork.event.field_0x6c, "BSpCurve", param_1)) {
+            int iVar1 = getEvFloatListData(&mWork.event.field_0x5c, "BSpPoints");
+            if (iVar1 != 0) {
+                mEventData.field_0xf0.Init(iVar1, mWork.event.field_0x50 + 1);
+                mEventData.field_0xf0.Step();
+                mWork.event.field_0x6c = -1;
+            }
+        } else {
+            mEventData.field_0xf0.Init(local_d0[mWork.event.field_0x6c], mWork.event.field_0x50 + 1);
+            mEventData.field_0xf0.Step();
+        }
+
+        int local_868 = getEvIntData(&local_868, "EndSlot");
+        if (local_868 == 0) {
+            getEvXyzData(&mWork.trans.field_0x20, "Eye", mEye);
+            getEvXyzData(&mWork.trans.field_0x2c, "Center", mCenter);
+            getEvFloatData(&mWork.unk_d_ev_struct.field_0x38, "Fovy", mFovy);
+            mWork.tower.field_0x68 = getEvFloatData(&mWork.tower.field_0x3c, "Bank", mBank.Degree());
+
+        } else {
+
+        }
+    }
 }
 
 /* 8008E750-8008E774 089090 0024+00 1/1 0/0 0/0 .text isRelChar__25@unnamed@d_ev_camera_cpp@Fc */
