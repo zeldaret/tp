@@ -31,5 +31,6 @@ _dtors = .dtors:0x00000000; // type:label scope:global
 @118434 = .rodata:0x00000030; // type:object size:0x8 scope:local
 cNullVec__6Z2Calc = .rodata:0x00000038; // type:object size:0xC scope:global
 @46916 = .rodata:0x00000044; // type:object size:0x4 scope:local
+lbl_30_rodata_48 = .rodata:0x00000048; // type:object size:0x14
 l_daTag_Chk_Method = .data:0x00000000; // type:object size:0x20 scope:global
 g_profile_TAG_CHKPOINT = .data:0x00000020; // type:object size:0x30 scope:global

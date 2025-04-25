@@ -25,6 +25,7 @@ _dtors = .dtors:0x00000000; // type:label scope:global
 @116939 = .rodata:0x00000010; // type:object size:0x8 scope:local
 cNullVec__6Z2Calc = .rodata:0x00000018; // type:object size:0xC scope:global
 @46916 = .rodata:0x00000024; // type:object size:0x4 scope:local
+lbl_429_rodata_28 = .rodata:0x00000028; // type:object size:0x14
 @117075 = .data:0x00000000; // type:object size:0x34 scope:local
 l_daObjE_CREATE_Method = .data:0x00000038; // type:object size:0x20 scope:global
 g_profile_Obj_E_CREATE = .data:0x00000058; // type:object size:0x30 scope:global

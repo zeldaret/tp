@@ -26,6 +26,7 @@ _dtors = .dtors:0x00000000; // type:label scope:global
 @118494 = .rodata:0x00000018; // type:object size:0x8 scope:local
 cNullVec__6Z2Calc = .rodata:0x00000020; // type:object size:0xC scope:global
 @46916 = .rodata:0x0000002C; // type:object size:0x4 scope:local
+lbl_73_rodata_30 = .rodata:0x00000030; // type:object size:0x14
 @118388 = .data:0x00000000; // type:object size:0x11 scope:local
 @118432 = .data:0x00000014; // type:object size:0xE scope:local data:string
 @118433 = .data:0x00000024; // type:object size:0xE scope:local data:string

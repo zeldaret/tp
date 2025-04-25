@@ -34,3 +34,4 @@ __RTTI__16daObjToaruMaki_c = .data:0x000000D8; // type:object size:0x8 scope:glo
 @114309 = .data:0x000000E0; // type:object size:0xB scope:local data:string
 @114310 = .data:0x000000F8; // type:object size:0x1F scope:local data:string
 __RTTI__30request_of_phase_process_class = .data:0x00000118; // type:object size:0x8 scope:global
+lbl_651_data_120 = .data:0x00000120; // type:object size:0x70
