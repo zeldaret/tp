@@ -5,9 +5,11 @@
 
 #include "d/actor/d_a_obj_laundry_rope.h"
 #include "d/d_cc_d.h"
+#include "d/d_path.h"
 #include "dol2asm.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_com_inf_game.h"
+#include "SSystem/SComponent/c_lib.h"
 #include "d/d_kankyo_wether.h"
 
 
@@ -88,141 +90,83 @@ extern "C" extern void* __vt__9cCcD_Stts[8];
 
 /* ############################################################################################## */
 /* 80C53304-80C53318 000000 0014+00 3/3 0/0 0/0 .rodata          M_attr__14daObjLndRope_c */
-SECTION_RODATA u8 const daObjLndRope_c::M_attr[20] = {
-    0xC0, 0xA0, 0x00, 0x00, 0x3E, 0x4C, 0xCC, 0xCD, 0x3F, 0x00,
-    0x00, 0x00, 0x3F, 0x4C, 0xCC, 0xCD, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80C53304, &daObjLndRope_c::M_attr);
+daObjLndRope_Attr_c const daObjLndRope_c::mAttr = {-5.0f, 0.2f, 0.5f, 0.8f, 0.0f};
 
 /* 80C53318-80C53328 000014 000D+03 0/1 0/0 0/0 .rodata          l_laundryList */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const l_laundryList[13 + 3 /* padding */] = {
-    0xFF,
-    0xFF,
-    0x03,
-    0x00,
-    0xFF,
-    0x01,
-    0x01,
-    0xFF,
-    0x02,
-    0x02,
-    0xFF,
-    0x02,
-    0xFF,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80C53318, &l_laundryList);
-#pragma pop
+static const s8 l_laundryList[13] = {-1, -1, 3, 0, -1, 1, 1, -1, 2, 2, -1, 2, -1};
 
-/* 80C53328-80C5332C 000024 0004+00 0/1 0/0 0/0 .rodata          @3791 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3791 = 0.5f;
-COMPILER_STRIP_GATE(0x80C53328, &lit_3791);
-#pragma pop
-
-/* 80C5332C-80C53330 000028 0004+00 0/1 0/0 0/0 .rodata          @3792 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3792 = 1.0f;
-COMPILER_STRIP_GATE(0x80C5332C, &lit_3792);
-#pragma pop
-
-/* 80C53330-80C53334 00002C 0004+00 0/2 0/0 0/0 .rodata          @3793 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3793[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80C53330, &lit_3793);
-#pragma pop
-
-/* 80C53334-80C5333C 000030 0008+00 0/1 0/0 0/0 .rodata          @3794 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3794[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80C53334, &lit_3794);
-#pragma pop
-
-/* 80C5333C-80C53344 000038 0008+00 0/1 0/0 0/0 .rodata          @3795 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3795[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80C5333C, &lit_3795);
-#pragma pop
-
-/* 80C53344-80C5334C 000040 0008+00 0/1 0/0 0/0 .rodata          @3796 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3796[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80C53344, &lit_3796);
-#pragma pop
-
-/* 80C5334C-80C53350 000048 0004+00 0/1 0/0 0/0 .rodata          @3797 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3797 = 3.0f;
-COMPILER_STRIP_GATE(0x80C5334C, &lit_3797);
-#pragma pop
-
-/* 80C53350-80C53354 00004C 0004+00 0/1 0/0 0/0 .rodata          @3798 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3798 = -75.0f;
-COMPILER_STRIP_GATE(0x80C53350, &lit_3798);
-#pragma pop
-
-/* 80C53354-80C53358 000050 0004+00 0/1 0/0 0/0 .rodata          @3799 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3799 = -200.0f;
-COMPILER_STRIP_GATE(0x80C53354, &lit_3799);
-#pragma pop
-
-/* 80C53358-80C5335C 000054 0004+00 0/1 0/0 0/0 .rodata          @3800 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3800 = 75.0f;
-COMPILER_STRIP_GATE(0x80C53358, &lit_3800);
-#pragma pop
-
-/* 80C5335C-80C53360 000058 0004+00 0/1 0/0 0/0 .rodata          @3801 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3801 = 50.0f;
-COMPILER_STRIP_GATE(0x80C5335C, &lit_3801);
-#pragma pop
-
-/* 80C53360-80C53364 00005C 0004+00 0/1 0/0 0/0 .rodata          @3802 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3802 = 1.0f / 14.0f;
-COMPILER_STRIP_GATE(0x80C53360, &lit_3802);
-#pragma pop
+u8 daObjLndRope_c::getPathId() {
+    return fopAcM_GetParamBit(this, 8, 8);;
+}
 
 /* 80C521F8-80C52820 000078 0628+00 1/1 0/0 0/0 .text            create_init__14daObjLndRope_cFv */
 void daObjLndRope_c::create_init() {
-    // NONMATCHING
-}
+    gravity = mAttr.mGravity;
+    dPath* roomPath = dPath_GetRoomPath(getPathId(), fopAcM_GetRoomNo(this));
 
-/* 80C52820-80C5285C 0006A0 003C+00 2/2 0/0 0/0 .text            __dt__4cXyzFv */
-// cXyz::~cXyz() {
-extern "C" void __dt__4cXyzFv() {
-    // NONMATCHING
+    dPnt* pathPoints = roomPath->m_points;
+    cXyz startPoint = pathPoints[0].m_position;
+    cXyz endPoint = pathPoints[1].m_position;
+    current.pos = (startPoint + endPoint) * 0.5f;
+    mPos = endPoint - startPoint;
+
+    if (fabsf(mPos.x) > fabsf(mPos.z)){
+        mScale = 1.0f / mPos.x;
+        mFlag = 1;
+    }
+    else{
+        mScale = 1.0f / mPos.z;
+        mFlag = 0;
+    }
+
+    shape_angle.y = cM_atan2s(mPos.x, mPos.z);
+    shape_angle.x = cM_atan2s(-mPos.y, mPos.absXZ());
+    f32 cullSizeBoxZ = mPos.absXZ() * 0.5f + 3.0f;
+    fopAcM_setCullSizeBox(this, -75.0f, -200.0f, -cullSizeBoxZ, 75.0f, 50.0f, cullSizeBoxZ);
+    
+    f32 totalLength = mPos.abs();
+    const f32 segmentFraction = 1.0f / 14.0f;
+    mSegmentLength = totalLength * segmentFraction;
+    cXyz segmentOffset = mPos * (mSegmentLength / totalLength);    
+
+    cXyz* ropePosition = mRopeMat.getPos(0);
+    cXyz* loopPos = &mPositions2[0];
+    *ropePosition = startPoint;    
+    ropePosition++;
+    
+    for (int i = 1; i < 14; i++){
+        *ropePosition = *(ropePosition - 1) + segmentOffset;
+        *loopPos = *ropePosition;
+        ropePosition++;
+        loopPos++;
+    }
+
+    *ropePosition = endPoint;
+    setNormalRopePos();
+    initBaseMtx();
+    
+    fpc_ProcID* procId = &mProcIds[0];
+    ropePosition = mRopeMat.getPos(0) + 1;
+    const s8* laundryEntry = &l_laundryList[0];
+    
+    for (int i = 1; i < 14; i++){
+        if (*laundryEntry == -1){
+            *procId = -1;
+        }
+        else{
+            *procId = fopAcM_createChild(
+                PROC_Obj_Laundry,
+                fopAcM_GetID(this),
+                *laundryEntry,
+                ropePosition,
+                fopAcM_GetRoomNo(this), &csXyz(0, cLib_targetAngleY(ropePosition, ropePosition+1) + 0x4000, -cLib_targetAngleX(ropePosition, ropePosition+1)),
+                NULL, -1, 0);
+        }
+
+        ropePosition++;
+        procId++;
+        laundryEntry++;
+    }
 }
 
 /* 80C5285C-80C52890 0006DC 0034+00 1/1 0/0 0/0 .text            initBaseMtx__14daObjLndRope_cFv */

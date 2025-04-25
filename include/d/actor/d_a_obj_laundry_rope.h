@@ -4,6 +4,14 @@
 #include "d/d_cc_d.h"
 #include "f_op/f_op_actor.h"
 
+struct daObjLndRope_Attr_c {
+    f32 mGravity;
+    f32 field_0x4;
+    f32 field_0x8;
+    f32 field_0xc;
+    f32 field_0x10;
+};
+
 /**
  * @ingroup actors-objects
  * @class daObjLndRope_c
@@ -20,8 +28,9 @@ public:
     /* 80C528E0 */ void setNormalRopePos();
 
     inline int create();
+    inline u8 getPathId();
 
-    static u8 const M_attr[20];
+    static const daObjLndRope_Attr_c mAttr;
 
 private:
     /* 0x568 */ mDoExt_3DlineMat1_c mRopeMat;
@@ -31,9 +40,11 @@ private:
     /* 0x618 */ dCcD_Sph mSphs[13];
     /* 0x15f0 */ cXyz mPositions1[13];
     /* 0x168c */ cXyz mPositions2[13];
-    /* 0x1728 */ u8 field_0x1728[0x175c - 0x1728];
+    /* 0x1728 */ fpc_ProcID mProcIds[13];
     /* 0x175c */ cXyz mPos;
-    /* 0x1768 */ u8 field_0x1768[0x1774 - 0x1768];
+    /* 0x1768 */ f32 mScale;
+    /* 0x176c */ f32 mSegmentLength;
+    /* 0x1770 */ s8 mFlag;
 };
 
 STATIC_ASSERT(sizeof(daObjLndRope_c) == 0x1774);
