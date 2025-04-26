@@ -144,9 +144,25 @@ char* daNpc_Bou_c::mCutNameList[9] = {
     "MEETING_AGAIN"
 };
 
+/* 809731A8-80973214 000718 006C+00 1/2 0/0 0/0 .data            mCutList__11daNpc_Bou_c */
+daNpc_Bou_c::cutFunc daNpc_Bou_c::mCutList[9] = {
+    NULL,
+    &daNpc_Bou_c::cutWildGoat,
+    &daNpc_Bou_c::cutWildGoatSuccess,
+    &daNpc_Bou_c::cutWildGoatFailure,
+    &daNpc_Bou_c::cutSpeakTo,
+    &daNpc_Bou_c::cutConversationWithBou,
+    &daNpc_Bou_c::cutConfidentialConversation,
+    &daNpc_Bou_c::cutFindWolf,
+    &daNpc_Bou_c::cutMeetingAgain
+};
+
 /* 8096CF8C-8096D0D8 0000EC 014C+00 1/0 0/0 0/0 .text            __dt__11daNpc_Bou_cFv */
 daNpc_Bou_c::~daNpc_Bou_c() {
-    // NONMATCHING
+    if (mpMorf[0] != 0) {
+        mpMorf[0]->stopZelAnime();
+    }
+    deleteRes(l_loadResPtrnList[mType], (char const**)l_resNameList);
 }
 
 /* ############################################################################################## */
@@ -158,196 +174,164 @@ daNpc_Bou_Param_c::Data const daNpc_Bou_Param_c::m= {
     60, 8, 0.0f, 0.0f, 4.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
     0.0f, 0.0f, 16.0f, 1000.0f, 500.0f, -500.0f,
 };
-COMPILER_STRIP_GATE(0x80972860, &daNpc_Bou_Param_c::m);
-
-/* 809728FC-80972914 00009C 0018+00 0/1 0/0 0/0 .rodata          heapSize$4096 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const heapSize[24] = {
-    0x00, 0x00, 0x3D, 0x50, 0x00, 0x00, 0x3D, 0x50, 0x00, 0x00, 0x3D, 0x50,
-    0x00, 0x00, 0x3D, 0x50, 0x00, 0x00, 0x3D, 0x50, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x809728FC, &heapSize);
-#pragma pop
-
-/* 80972914-80972918 0000B4 0004+00 0/1 0/0 0/0 .rodata          @4162 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4162 = -200.0f;
-COMPILER_STRIP_GATE(0x80972914, &lit_4162);
-#pragma pop
-
-/* 80972918-8097291C 0000B8 0004+00 0/1 0/0 0/0 .rodata          @4163 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4163 = -100.0f;
-COMPILER_STRIP_GATE(0x80972918, &lit_4163);
-#pragma pop
-
-/* 8097291C-80972920 0000BC 0004+00 0/1 0/0 0/0 .rodata          @4164 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4164 = 200.0f;
-COMPILER_STRIP_GATE(0x8097291C, &lit_4164);
-#pragma pop
-
-/* 80972920-80972924 0000C0 0004+00 0/2 0/0 0/0 .rodata          @4165 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4165 = 300.0f;
-COMPILER_STRIP_GATE(0x80972920, &lit_4165);
-#pragma pop
-
-/* 80972924-80972928 0000C4 0004+00 0/1 0/0 0/0 .rodata          @4166 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4166 = -1000000000.0f;
-COMPILER_STRIP_GATE(0x80972924, &lit_4166);
-#pragma pop
 
 /* 8096D0D8-8096D38C 000238 02B4+00 1/1 0/0 0/0 .text            create__11daNpc_Bou_cFv */
-void daNpc_Bou_c::create() {
-    // NONMATCHING
+int daNpc_Bou_c::create() {
+    static int const heapSize[6] = {15696, 15696, 15696, 15696, 15696, 0};
+    fopAcM_SetupActor2(this, daNpc_Bou_c, l_faceMotionAnmData, l_motionAnmData,
+                       l_faceMotionSequenceData, 4, l_motionSequenceData, 4,
+                       l_evtList, l_resNameList
+    );
+    mType = getType();
+    mFlowNodeNo = getFlowNodeNo();
+    mTwilight = 0;
+    int rv = loadRes(l_loadResPtrnList[mType], (const char**)l_resNameList);
+    if (rv == cPhs_COMPLEATE_e) {
+        if (isDelete()) {
+            return cPhs_ERROR_e;
+        }
+
+        if (!fopAcM_entrySolidHeap(this, createHeapCallBack, heapSize[mType])) {
+            return cPhs_ERROR_e;
+        }
+
+        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
+        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        fopAcM_setCullSizeBox(this, -200.0f, -100.0f, -200.0f, 200.0f, 300.0f, 200.0f);
+        mSound.init(&current.pos, &eyePos, 3, 1);
+        reset();
+        mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1,
+                        &mAcchCir, fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this),
+                        fopAcM_GetShapeAngle_p(this));
+        mCcStts.Init(daNpc_Bou_Param_c::m.field_0x10, 0, this);
+        mCyl1.Set(mCcDCyl);
+        mCyl1.SetStts(&mCcStts);
+        mCyl1.SetTgHitCallback(tgHitCallBack);
+        mAcch.CrrPos(dComIfG_Bgsp());
+        mGndChk = mAcch.m_gnd;
+        mGroundH = mAcch.GetGroundH();
+        if (mGroundH != -1000000000.0f) {
+            setEnvTevColor();
+            setRoomNo();
+        }
+
+        mCreating = 1;
+        Execute();
+        mCreating = 0;
+    }
+
+    return rv;
 }
 
-/* ############################################################################################## */
-/* 80972928-8097292C 0000C8 0004+00 7/18 0/0 0/0 .rodata          @4328 */
-SECTION_RODATA static u8 const lit_4328[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80972928, &lit_4328);
-
-/* 8097292C-80972930 0000CC 0004+00 0/2 0/0 0/0 .rodata          @4329 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4329 = 65536.0f;
-COMPILER_STRIP_GATE(0x8097292C, &lit_4329);
-#pragma pop
-
-/* 80972930-80972934 0000D0 0004+00 0/3 0/0 0/0 .rodata          @4330 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4330 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(0x80972930, &lit_4330);
-#pragma pop
-
-/* 80972934-80972938 0000D4 0004+00 2/4 0/0 0/0 .rodata          @4472 */
-SECTION_RODATA static f32 const lit_4472 = 1.0f;
-COMPILER_STRIP_GATE(0x80972934, &lit_4472);
+static f32 dummy(u8 i_dummy) {
+    if (i_dummy == 0) {
+        return 0.0f;
+    } else if (i_dummy == 1) {
+        return 65536.0f;
+    } else {
+        return 0.2f;
+    }
+}
 
 /* 8096D38C-8096D5FC 0004EC 0270+00 1/1 0/0 0/0 .text            CreateHeap__11daNpc_Bou_cFv */
-void daNpc_Bou_c::CreateHeap() {
-    // NONMATCHING
-}
+int daNpc_Bou_c::CreateHeap() {
+    J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(
+        l_resNameList[l_bmdData[0][1]], l_bmdData[0][0]));
+    if (modelData == NULL) {
+        return 0;
+    }
 
-/* 8096D5FC-8096D638 00075C 003C+00 1/1 0/0 0/0 .text            __dt__15J3DTevKColorAnmFv */
-// J3DTevKColorAnm::~J3DTevKColorAnm() {
-extern "C" void __dt__15J3DTevKColorAnmFv() {
-    // NONMATCHING
-}
+    mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound,
+        0x80000, 0x11020284);
+    if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
+        return 0;
+    }
 
-/* 8096D638-8096D650 000798 0018+00 1/1 0/0 0/0 .text            __ct__15J3DTevKColorAnmFv */
-// J3DTevKColorAnm::J3DTevKColorAnm() {
-extern "C" void __ct__15J3DTevKColorAnmFv() {
-    // NONMATCHING
-}
+    J3DModel* model = mpMorf[0]->getModel();
+    for (u16 i = 0; i < modelData->getJointNum(); i++) {
+        modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
+    }
 
-/* 8096D650-8096D68C 0007B0 003C+00 1/1 0/0 0/0 .text            __dt__14J3DTevColorAnmFv */
-// J3DTevColorAnm::~J3DTevColorAnm() {
-extern "C" void __dt__14J3DTevColorAnmFv() {
-    // NONMATCHING
-}
+    model->setUserArea((u32)this);
+    mpMatAnm[0] = new daNpcT_MatAnm_c();
+    if (mpMatAnm[0] == NULL) {
+        return 0;
+    }
 
-/* 8096D68C-8096D6A4 0007EC 0018+00 1/1 0/0 0/0 .text            __ct__14J3DTevColorAnmFv */
-// J3DTevColorAnm::J3DTevColorAnm() {
-extern "C" void __ct__14J3DTevColorAnmFv() {
-    // NONMATCHING
-}
+    if (setFaceMotionAnm(1, false) && setMotionAnm(0, 0.0f, 0)) {
+        return 1;
+    }
 
-/* 8096D6A4-8096D6EC 000804 0048+00 1/1 0/0 0/0 .text            __dt__11J3DTexNoAnmFv */
-// J3DTexNoAnm::~J3DTexNoAnm() {
-extern "C" void __dt__11J3DTexNoAnmFv() {
-    // NONMATCHING
-}
-
-/* 8096D6EC-8096D710 00084C 0024+00 1/1 0/0 0/0 .text            __ct__11J3DTexNoAnmFv */
-// J3DTexNoAnm::J3DTexNoAnm() {
-extern "C" void __ct__11J3DTexNoAnmFv() {
-    // NONMATCHING
-}
-
-/* 8096D710-8096D74C 000870 003C+00 1/1 0/0 0/0 .text            __dt__12J3DTexMtxAnmFv */
-// J3DTexMtxAnm::~J3DTexMtxAnm() {
-extern "C" void __dt__12J3DTexMtxAnmFv() {
-    // NONMATCHING
-}
-
-/* 8096D74C-8096D764 0008AC 0018+00 1/1 0/0 0/0 .text            __ct__12J3DTexMtxAnmFv */
-// J3DTexMtxAnm::J3DTexMtxAnm() {
-extern "C" void __ct__12J3DTexMtxAnmFv() {
-    // NONMATCHING
-}
-
-/* 8096D764-8096D7A0 0008C4 003C+00 1/1 0/0 0/0 .text            __dt__14J3DMatColorAnmFv */
-// J3DMatColorAnm::~J3DMatColorAnm() {
-extern "C" void __dt__14J3DMatColorAnmFv() {
-    // NONMATCHING
-}
-
-/* 8096D7A0-8096D7B8 000900 0018+00 1/1 0/0 0/0 .text            __ct__14J3DMatColorAnmFv */
-// J3DMatColorAnm::J3DMatColorAnm() {
-extern "C" void __ct__14J3DMatColorAnmFv() {
-    // NONMATCHING
+    return 0;
 }
 
 /* 8096D7B8-8096D7EC 000918 0034+00 1/1 0/0 0/0 .text            Delete__11daNpc_Bou_cFv */
-void daNpc_Bou_c::Delete() {
-    // NONMATCHING
+int daNpc_Bou_c::Delete() {
+    fopAcM_GetID(this);
+    this->~daNpc_Bou_c();
+    return 1;
 }
 
 /* 8096D7EC-8096D80C 00094C 0020+00 2/2 0/0 0/0 .text            Execute__11daNpc_Bou_cFv */
-void daNpc_Bou_c::Execute() {
-    // NONMATCHING
+int daNpc_Bou_c::Execute() {
+    return daNpcT_c::execute();
 }
 
-/* ############################################################################################## */
-/* 80972938-8097293C 0000D8 0004+00 1/1 0/0 0/0 .rodata          @4521 */
-SECTION_RODATA static f32 const lit_4521 = 100.0f;
-COMPILER_STRIP_GATE(0x80972938, &lit_4521);
-
 /* 8096D80C-8096D8A0 00096C 0094+00 1/1 0/0 0/0 .text            Draw__11daNpc_Bou_cFv */
-void daNpc_Bou_c::Draw() {
-    // NONMATCHING
+int daNpc_Bou_c::Draw() {
+    if (mpMatAnm[0] != NULL) {
+        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
+        modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
+    }
+    return daNpcT_c::draw(0, 0, field_0xde8, NULL, 100.0f, 0, 0, 0);
 }
 
 /* 8096D8A0-8096D8C0 000A00 0020+00 1/1 0/0 0/0 .text
  * createHeapCallBack__11daNpc_Bou_cFP10fopAc_ac_c              */
-void daNpc_Bou_c::createHeapCallBack(fopAc_ac_c* param_0) {
-    // NONMATCHING
+int daNpc_Bou_c::createHeapCallBack(fopAc_ac_c* i_this) {
+    return static_cast<daNpc_Bou_c*>(i_this)->CreateHeap();
 }
 
 /* 8096D8C0-8096D918 000A20 0058+00 1/1 0/0 0/0 .text ctrlJointCallBack__11daNpc_Bou_cFP8J3DJointi
  */
-void daNpc_Bou_c::ctrlJointCallBack(J3DJoint* param_0, int param_1) {
-    // NONMATCHING
+int daNpc_Bou_c::ctrlJointCallBack(J3DJoint* param_0, int param_1) {
+    if (param_1 == 0) {
+        J3DModel* model = j3dSys.getModel();
+        daNpc_Bou_c* i_this = reinterpret_cast<daNpc_Bou_c*>(model->getUserArea());
+        if (i_this != 0) {
+            i_this->ctrlJoint(param_0, model);
+        }
+    }
+
+    return 1;
 }
 
 /* 8096D918-8096D9B4 000A78 009C+00 1/1 0/0 0/0 .text            srchCow__11daNpc_Bou_cFPvPv */
-void daNpc_Bou_c::srchCow(void* param_0, void* param_1) {
-    // NONMATCHING
+void* daNpc_Bou_c::srchCow(void* arg0, void* arg1) {
+    if (mFindCount < 50 && arg0 != NULL && arg0 != arg1) {
+        if (fopAcM_IsExecuting(fopAcM_GetID(arg0)) && fopAcM_GetName(arg0) == PROC_COW) {
+            mFindActorPtrs[mFindCount] = (fopAc_ac_c*)arg0;
+            mFindCount++;
+        }
+    }
+    return NULL;
 }
 
-/* ############################################################################################## */
-/* 8097293C-80972940 0000DC 0004+00 1/1 0/0 0/0 .rodata          @4568 */
-SECTION_RODATA static f32 const lit_4568 = 1000000000.0f;
-COMPILER_STRIP_GATE(0x8097293C, &lit_4568);
-
 /* 8096D9B4-8096DA78 000B14 00C4+00 1/1 0/0 0/0 .text            getCowP__11daNpc_Bou_cFv */
-void daNpc_Bou_c::getCowP() {
-    // NONMATCHING
+fopAc_ac_c* daNpc_Bou_c::getCowP() {
+    fopAc_ac_c* pActor = NULL;
+    f32 minDist = 1e9f;
+    mFindCount = 0;
+    fopAcM_Search(srchCow, this);
+    for (int i = 0; i < mFindCount; i++) {
+        if (fopAcM_searchActorDistance(this, mFindActorPtrs[i]) < minDist)
+        {
+            minDist = fopAcM_searchActorDistance(this, mFindActorPtrs[i]);
+            pActor = mFindActorPtrs[i];
+        }
+    }
+
+    return pActor;
 }
 
 /* 8096DA78-8096DADC 000BD8 0064+00 1/1 0/0 2/2 .text            getType__11daNpc_Bou_cFv */
@@ -369,18 +353,74 @@ u8 daNpc_Bou_c::getType() {
 }
 
 /* 8096DADC-8096DBBC 000C3C 00E0+00 1/1 0/0 0/0 .text            isDelete__11daNpc_Bou_cFv */
-void daNpc_Bou_c::isDelete() {
-    // NONMATCHING
+int daNpc_Bou_c::isDelete() {
+    switch (mType) {
+        case TYPE_0: {
+            return FALSE;
+        }
+
+        case TYPE_1: {
+            bool rv = true;
+            if (!daNpcT_chkEvtBit(0xd3) && !dComIfGs_isCollectShield(0)) {
+                rv = false;
+            }
+
+            return rv;
+        }
+
+        case TYPE_2: {
+            bool rv = false;
+            if (!daNpcT_chkEvtBit(0xa4) || daNpcT_chkEvtBit(0x3b)) {
+                rv = true;
+            }
+
+            return rv;
+        }
+
+        case TYPE_3: {
+            return FALSE;
+        }
+
+        case TYPE_4: {
+            return FALSE;
+        }
+
+        default: {
+            return FALSE;
+        }
+    }
 }
 
 /* 8096DBBC-8096DD44 000D1C 0188+00 1/1 0/0 0/0 .text            reset__11daNpc_Bou_cFv */
 void daNpc_Bou_c::reset() {
-    // NONMATCHING
+    csXyz acStack_20;
+    int iVar1 = (u8*)&field_0xff8 - (u8*)&field_0xfc4;
+    if (mpMatAnm[0] != NULL) {
+        mpMatAnm[0]->initialize();
+    }
+
+    initialize();
+    for (int i = 0; i < 3; i++) {
+        mActorMngr[i].initialize();
+    }
+    
+    memset(&field_0xfc4, 0, iVar1);
+    acStack_20.setall(0);
+    acStack_20.y = home.angle.y;
+    daNpcT_offTmpBit(0x1C);
+    daNpcT_offTmpBit(0x59);
+    setAngle(acStack_20);
 }
 
 /* 8096DD44-8096DDC8 000EA4 0084+00 1/0 0/0 0/0 .text            afterJntAnm__11daNpc_Bou_cFi */
-void daNpc_Bou_c::afterJntAnm(int param_0) {
-    // NONMATCHING
+void daNpc_Bou_c::afterJntAnm(int param_1) {
+    if (param_1 == 1) {
+        mDoMtx_stack_c::YrotM(mStagger.getAngleZ(1));
+        mDoMtx_stack_c::ZrotM(-mStagger.getAngleX(1));
+    } else if (param_1 == 4) {
+        mDoMtx_stack_c::YrotM(mStagger.getAngleZ(0));
+        mDoMtx_stack_c::ZrotM(mStagger.getAngleX(0));
+    }
 }
 
 /* 8096DDC8-8096DF9C 000F28 01D4+00 1/0 0/0 0/0 .text            setParam__11daNpc_Bou_cFv */
@@ -535,105 +575,6 @@ void daNpc_Bou_c::setAction(int (daNpc_Bou_c::*param_0)(void*)) {
     // NONMATCHING
 }
 
-extern "C" void cutWildGoat__11daNpc_Bou_cFi();
-/* 80973148-80973154 -00001 000C+00 0/1 0/0 0/0 .data            @3934 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3934[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)cutWildGoat__11daNpc_Bou_cFi,
-};
-#pragma pop
-
-extern "C" void cutWildGoatSuccess__11daNpc_Bou_cFi();
-/* 80973154-80973160 -00001 000C+00 0/1 0/0 0/0 .data            @3935 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3935[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)cutWildGoatSuccess__11daNpc_Bou_cFi,
-};
-#pragma pop
-
-extern "C" void cutWildGoatFailure__11daNpc_Bou_cFi();
-/* 80973160-8097316C -00001 000C+00 0/1 0/0 0/0 .data            @3936 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3936[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)cutWildGoatFailure__11daNpc_Bou_cFi,
-};
-#pragma pop
-
-extern "C" void cutSpeakTo__11daNpc_Bou_cFi();
-/* 8097316C-80973178 -00001 000C+00 0/1 0/0 0/0 .data            @3937 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3937[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)cutSpeakTo__11daNpc_Bou_cFi,
-};
-#pragma pop
-
-extern "C" void cutConversationWithBou__11daNpc_Bou_cFi();
-/* 80973178-80973184 -00001 000C+00 0/1 0/0 0/0 .data            @3938 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3938[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)cutConversationWithBou__11daNpc_Bou_cFi,
-};
-#pragma pop
-
-extern "C" void cutConfidentialConversation__11daNpc_Bou_cFi();
-/* 80973184-80973190 -00001 000C+00 0/1 0/0 0/0 .data            @3939 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3939[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)cutConfidentialConversation__11daNpc_Bou_cFi,
-};
-#pragma pop
-
-extern "C" void cutFindWolf__11daNpc_Bou_cFi();
-/* 80973190-8097319C -00001 000C+00 0/1 0/0 0/0 .data            @3940 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3940[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)cutFindWolf__11daNpc_Bou_cFi,
-};
-#pragma pop
-
-extern "C" void cutMeetingAgain__11daNpc_Bou_cFi();
-/* 8097319C-809731A8 -00001 000C+00 0/1 0/0 0/0 .data            @3941 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3941[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)cutMeetingAgain__11daNpc_Bou_cFi,
-};
-#pragma pop
-
-/* 809731A8-80973214 000718 006C+00 1/2 0/0 0/0 .data            mCutList__11daNpc_Bou_c */
-SECTION_DATA u8 daNpc_Bou_c::mCutList[108] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
 extern "C" void talk__11daNpc_Bou_cFPv();
 /* 80973214-80973220 -00001 000C+00 1/1 0/0 0/0 .data            @4712 */
 SECTION_DATA static void* lit_4712[3] = {
@@ -687,6 +628,7 @@ SECTION_DEAD static char const* const stringBase_80972A7A = "msgNo";
 SECTION_DEAD static char const* const stringBase_80972A80 = "msgNo2";
 #pragma pop
 
+extern "C" void cutWildGoat__11daNpc_Bou_cFi();
 /* 80973250-80973274 -00001 0024+00 1/1 0/0 0/0 .data            @5286 */
 SECTION_DATA static void* lit_5286[9] = {
     (void*)(((char*)cutWildGoat__11daNpc_Bou_cFi) + 0xE0),
@@ -701,24 +643,24 @@ SECTION_DATA static void* lit_5286[9] = {
 };
 
 /* 8096EE10-8096F2E4 001F70 04D4+00 2/0 0/0 0/0 .text            cutWildGoat__11daNpc_Bou_cFi */
-void daNpc_Bou_c::cutWildGoat(int param_0) {
+int daNpc_Bou_c::cutWildGoat(int param_0) {
     // NONMATCHING
 }
 
 /* 8096F2E4-8096F510 002444 022C+00 1/0 0/0 0/0 .text            cutWildGoatSuccess__11daNpc_Bou_cFi
  */
-void daNpc_Bou_c::cutWildGoatSuccess(int param_0) {
+int daNpc_Bou_c::cutWildGoatSuccess(int param_0) {
     // NONMATCHING
 }
 
 /* 8096F510-8096F758 002670 0248+00 1/0 0/0 0/0 .text            cutWildGoatFailure__11daNpc_Bou_cFi
  */
-void daNpc_Bou_c::cutWildGoatFailure(int param_0) {
+int daNpc_Bou_c::cutWildGoatFailure(int param_0) {
     // NONMATCHING
 }
 
 /* 8096F758-8096F9A4 0028B8 024C+00 1/0 0/0 0/0 .text            cutSpeakTo__11daNpc_Bou_cFi */
-void daNpc_Bou_c::cutSpeakTo(int param_0) {
+int daNpc_Bou_c::cutSpeakTo(int param_0) {
     // NONMATCHING
 }
 
@@ -731,13 +673,13 @@ COMPILER_STRIP_GATE(0x80972984, &lit_5515);
 #pragma pop
 
 /* 8096F9A4-8096FB78 002B04 01D4+00 1/0 0/0 0/0 .text cutConversationWithBou__11daNpc_Bou_cFi */
-void daNpc_Bou_c::cutConversationWithBou(int param_0) {
+int daNpc_Bou_c::cutConversationWithBou(int param_0) {
     // NONMATCHING
 }
 
 /* 8096FB78-8096FE40 002CD8 02C8+00 1/0 0/0 0/0 .text cutConfidentialConversation__11daNpc_Bou_cFi
  */
-void daNpc_Bou_c::cutConfidentialConversation(int param_0) {
+int daNpc_Bou_c::cutConfidentialConversation(int param_0) {
     // NONMATCHING
 }
 
@@ -756,7 +698,7 @@ SECTION_DEAD static char const* const stringBase_80972A87 = "timer";
 #pragma pop
 
 /* 8096FE40-80970278 002FA0 0438+00 1/0 0/0 0/0 .text            cutFindWolf__11daNpc_Bou_cFi */
-void daNpc_Bou_c::cutFindWolf(int param_0) {
+int daNpc_Bou_c::cutFindWolf(int param_0) {
     // NONMATCHING
 }
 
@@ -783,7 +725,7 @@ COMPILER_STRIP_GATE(0x80972994, &lit_5899);
 #pragma pop
 
 /* 80970278-809709EC 0033D8 0774+00 1/0 0/0 0/0 .text            cutMeetingAgain__11daNpc_Bou_cFi */
-void daNpc_Bou_c::cutMeetingAgain(int param_0) {
+int daNpc_Bou_c::cutMeetingAgain(int param_0) {
     // NONMATCHING
 }
 
