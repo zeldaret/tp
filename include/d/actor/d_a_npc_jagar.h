@@ -166,6 +166,12 @@ public:
         return false;
     }
 
+    void setSurpriseMotion() {
+        mFaceMotionSeqMngr.setNo(1, -1.0f, 0, 0);
+        mMotionSeqMngr.setNo(7, -1.0f, 0, 0);
+        field_0xff8 = 0;
+    }
+
     u8 getPathID() { return (fopAcM_GetParam(this) & 0xff00) >> 8; }
 
     static char* mCutNameList[7];
