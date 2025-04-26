@@ -789,6 +789,25 @@ public:
             /* 0x2C */ cXyz field_0x2c;
         } trans;
         struct {
+            /* 0x00 */ cXyz field_0x0;
+            /* 0x0C */ cXyz field_0xc;
+            /* 0x18 */ f32 field_0x18;
+            /* 0x1C */ int field_0x1c;
+            /* 0x20 */ f32 field_0x20;
+            /* 0x24 */ int field_0x24;
+            /* 0x28 */ f32 field_0x28;
+            /* 0x2C */ f32 field_0x2c;
+            /* 0x30 */ f32 field_0x30;
+            /* 0x34 */ fopAc_ac_c* field_0x34;
+            /* 0x38 */ fpc_ProcID field_0x38;
+            /* 0x3C */ cSGlobe field_0x3c;
+            /* 0x4C */ cSGlobe field_0x4c;
+            /* 0x54 */ int field_0x54;
+            /* 0x58 */ int field_0x58;
+            /* 0x5C */ f32 field_0x5c;
+            /* 0x60 */ f32 field_0x60;
+        } actor;
+        struct {
             u8 field_0x0[0x100];
         } bytes;
     } mWork;
