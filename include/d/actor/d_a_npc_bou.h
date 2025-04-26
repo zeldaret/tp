@@ -13,7 +13,7 @@
  */
  class daNpc_Bou_Param_c {
     public:
-        /* 809727F4 */ ~daNpc_Bou_Param_c();
+        /* 809727F4 */ virtual ~daNpc_Bou_Param_c() {}
     
         struct Data {
             /* 0x00 */ f32 field_0x00; // 255.0f
@@ -128,7 +128,7 @@ public:
     /* 8096EC6C */ virtual int drawDbgInfo();
     /* 8096EC74 */ virtual void changeAnm(int*, int*);
 
-    static void* mCutNameList[9];
+    static char* mCutNameList[9];
     static u8 mCutList[108];
 
     BOOL chkFindWolf() {
