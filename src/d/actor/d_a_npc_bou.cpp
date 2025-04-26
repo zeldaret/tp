@@ -4,6 +4,7 @@
 */
 
 #include "d/actor/d_a_npc_bou.h"
+#include "d/actor/d_a_cow.h"
 #include "d/actor/d_a_npc_jagar.h"
 #include "d/actor/d_a_tag_push.h"
 #include "d/d_meter2_info.h"
@@ -801,38 +802,141 @@ int daNpc_Bou_c::setAction(actionFunc param_0) {
     return 1;
 }
 
-/* ############################################################################################## */
-/* 80972978-80972984 000118 000C+00 1/1 0/0 0/0 .rodata          @5178 */
-SECTION_RODATA static u8 const lit_5178[12] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-};
-COMPILER_STRIP_GATE(0x80972978, &lit_5178);
-
-/* 8097299C-8097299C 00013C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80972A76 = "prm";
-SECTION_DEAD static char const* const stringBase_80972A7A = "msgNo";
-SECTION_DEAD static char const* const stringBase_80972A80 = "msgNo2";
-#pragma pop
-
-extern "C" void cutWildGoat__11daNpc_Bou_cFi();
-/* 80973250-80973274 -00001 0024+00 1/1 0/0 0/0 .data            @5286 */
-SECTION_DATA static void* lit_5286[9] = {
-    (void*)(((char*)cutWildGoat__11daNpc_Bou_cFi) + 0xE0),
-    (void*)(((char*)cutWildGoat__11daNpc_Bou_cFi) + 0x1EC),
-    (void*)(((char*)cutWildGoat__11daNpc_Bou_cFi) + 0x110),
-    (void*)(((char*)cutWildGoat__11daNpc_Bou_cFi) + 0x1EC),
-    (void*)(((char*)cutWildGoat__11daNpc_Bou_cFi) + 0x1EC),
-    (void*)(((char*)cutWildGoat__11daNpc_Bou_cFi) + 0x144),
-    (void*)(((char*)cutWildGoat__11daNpc_Bou_cFi) + 0x15C),
-    (void*)(((char*)cutWildGoat__11daNpc_Bou_cFi) + 0x1D8),
-    (void*)(((char*)cutWildGoat__11daNpc_Bou_cFi) + 0x1EC),
-};
-
 /* 8096EE10-8096F2E4 001F70 04D4+00 2/0 0/0 0/0 .text            cutWildGoat__11daNpc_Bou_cFi */
-int daNpc_Bou_c::cutWildGoat(int param_0) {
-    // NONMATCHING
+int daNpc_Bou_c::cutWildGoat(int arg) {
+    cXyz my_vec_0;
+    csXyz my_svec;
+    int ret_val = 0;
+    int prm_val = -1;
+    int msgNo_val = 0;
+    int msgNo2_val = 0;
+    int* pVal = dComIfGp_evmng_getMyIntegerP(arg, "prm");
+    if (pVal) {
+        prm_val = *pVal;
+    }
+
+    pVal = dComIfGp_evmng_getMyIntegerP(arg, "msgNo");
+    if (pVal) {
+        msgNo_val = *pVal;
+    }
+
+    pVal = dComIfGp_evmng_getMyIntegerP(arg, "msgNo2");
+    if (pVal) {
+        msgNo2_val = *pVal;
+    }
+
+    fopAc_ac_c* actor_p;
+    if (dComIfGp_getEventManager().getIsAddvance(arg)) {
+        switch (prm_val) {
+            case 0: {
+                actor_p = mActorMngr[0].getActorP();
+                JUT_ASSERT(0x803, 0 != actor_p);
+                ((daCow_c *)actor_p)->setCrazyReady();
+                daNpcT_offTmpBit(0x1C);
+                initTalk(mFlowNodeNo, NULL);
+                break;
+            }
+
+            case 2: {
+                actor_p = mActorMngr[0].getActorP();
+                JUT_ASSERT(0x811, 0 != actor_p);
+                dComIfGp_getEvent().setPt2(actor_p);
+                Z2GetAudioMgr()->subBgmStart(0x1000011);
+                break;
+            }
+
+            case 5: {
+                actor_p = mActorMngr[0].getActorP();
+                JUT_ASSERT(0x820, 0 != actor_p);
+                ((daCow_c *)actor_p)->setCrazyGo();
+                break;
+            }
+
+            case 6: {
+                if (daNpcT_getPlayerInfoFromPlayerList(0xD, fopAcM_GetRoomNo(this), &my_vec_0, &my_svec)) {
+                    daPy_getPlayerActorClass()->setPlayerPosAndAngle(&my_vec_0, my_svec.y, 0);
+                }
+
+                setPos(home.pos);
+                setAngle(home.angle.y);
+                break;
+            }
+
+            case 7: {
+                daPy_getPlayerActorClass()->onGoatStopGame();
+                break;
+            }
+
+            case 3:
+            case 4:
+            case 8:
+            case 1: {
+                break;
+            }
+        }
+    }
+
+    int int_vec[3] = {-1, -1, -1};
+    switch (prm_val) {
+        case 0: {
+            mJntAnm.lookPlayer(0);
+            if (mPlayerAngle == mCurAngle.y) {
+                ret_val = 1;
+            } else {
+                step(mPlayerAngle, 10, 18, 15, 0);
+            }
+
+            break;
+        }
+
+        case 1:
+        case 2:
+        case 3: {
+            mJntAnm.lookPlayer(0);
+            if (prm_val == 2 || prm_val == 3) {
+                if (prm_val == 3) {
+                    actor_p = mActorMngr[0].getActorP();
+                    JUT_ASSERT(0x853, 0 != actor_p);
+                    mJntAnm.lookActor(actor_p, 0.0f, 0);
+                }
+
+                field_0xe26 = 0;
+            }
+
+            int_vec[0] = msgNo_val;
+            int_vec[1] = msgNo2_val;
+            if (talkProc(int_vec, 0, NULL, 0)) {
+                if (msgNo_val == 0 && msgNo2_val == 0) {
+                    if (mFlow.checkEndFlow()) {
+                        ret_val = 1;
+                    }
+                } else {
+                    ret_val = 1;
+                }
+            }
+
+            if (prm_val == 3 && ret_val != 0) {
+                actor_p = mActorMngr[0].getActorP();
+                JUT_ASSERT(0x86A, 0 != actor_p);
+                ((daCow_c *)actor_p)->setCrazyReadyDrawOn();
+            }
+
+            break;
+        }
+
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+        case 8: {
+            actor_p = mActorMngr[0].getActorP();
+            JUT_ASSERT(0x875, 0 != actor_p);
+            mJntAnm.lookActor(actor_p, 0.0f, 0);
+            ret_val = 1;
+        }
+    }
+
+    return ret_val;
 }
 
 /* 8096F2E4-8096F510 002444 022C+00 1/0 0/0 0/0 .text            cutWildGoatSuccess__11daNpc_Bou_cFi
@@ -941,28 +1045,28 @@ int daNpc_Bou_c::talk(void* param_0) {
 }
 
 /* 8097146C-8097148C 0045CC 0020+00 1/0 0/0 0/0 .text            daNpc_Bou_Create__FPv */
-static void daNpc_Bou_Create(void* param_0) {
-    // NONMATCHING
+static int daNpc_Bou_Create(void* i_this) {
+    return static_cast<daNpc_Bou_c*>(i_this)->create();
 }
 
 /* 8097148C-809714AC 0045EC 0020+00 1/0 0/0 0/0 .text            daNpc_Bou_Delete__FPv */
-static void daNpc_Bou_Delete(void* param_0) {
-    // NONMATCHING
+static int daNpc_Bou_Delete(void* i_this) {
+    return static_cast<daNpc_Bou_c*>(i_this)->Delete();
 }
 
 /* 809714AC-809714CC 00460C 0020+00 1/0 0/0 0/0 .text            daNpc_Bou_Execute__FPv */
-static void daNpc_Bou_Execute(void* param_0) {
-    // NONMATCHING
+static int daNpc_Bou_Execute(void* i_this) {
+    return static_cast<daNpc_Bou_c*>(i_this)->Execute();
 }
 
 /* 809714CC-809714EC 00462C 0020+00 1/0 0/0 0/0 .text            daNpc_Bou_Draw__FPv */
-static void daNpc_Bou_Draw(void* param_0) {
-    // NONMATCHING
+static int daNpc_Bou_Draw(void* i_this) {
+    return static_cast<daNpc_Bou_c*>(i_this)->Draw();
 }
 
 /* 809714EC-809714F4 00464C 0008+00 1/0 0/0 0/0 .text            daNpc_Bou_IsDelete__FPv */
-static bool daNpc_Bou_IsDelete(void* param_0) {
-    return true;
+static int daNpc_Bou_IsDelete(void* i_this) {
+    return 1;
 }
 
 /* 80973274-80973294 -00001 0020+00 1/0 0/0 0/0 .data            daNpc_Bou_MethodTable */

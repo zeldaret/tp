@@ -899,6 +899,7 @@ public:
     bool getGrabUpStart() const { return checkResetFlg0(RFLG0_UNK_8000); }
     bool checkCanoeSlider() const { return mSpecialMode == 0x2D; }
     bool checkGoatStopGame() const { return mSpecialMode == 0x2A; }
+    bool onGoatStopGame() { return mSpecialMode = 0x2A; }
     u8 getCutType() const { return mCutType; }
     u16 getSwordAtUpTime() const { return mSwordUpTimer; }
     s16 getDamageWaitTimer() const { return mDamageTimer; }
