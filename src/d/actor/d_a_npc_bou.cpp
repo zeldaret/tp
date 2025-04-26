@@ -804,13 +804,15 @@ int daNpc_Bou_c::setAction(actionFunc param_0) {
 
 /* 8096EE10-8096F2E4 001F70 04D4+00 2/0 0/0 0/0 .text            cutWildGoat__11daNpc_Bou_cFi */
 int daNpc_Bou_c::cutWildGoat(int arg) {
+    fopAc_ac_c* actor_p = NULL;
     cXyz my_vec_0;
     csXyz my_svec;
     int ret_val = 0;
+    int* pVal = NULL;
     int prm_val = -1;
     int msgNo_val = 0;
     int msgNo2_val = 0;
-    int* pVal = dComIfGp_evmng_getMyIntegerP(arg, "prm");
+    pVal = dComIfGp_evmng_getMyIntegerP(arg, "prm");
     if (pVal) {
         prm_val = *pVal;
     }
@@ -825,7 +827,6 @@ int daNpc_Bou_c::cutWildGoat(int arg) {
         msgNo2_val = *pVal;
     }
 
-    fopAc_ac_c* actor_p;
     if (dComIfGp_getEventManager().getIsAddvance(arg)) {
         switch (prm_val) {
             case 0: {
@@ -941,57 +942,360 @@ int daNpc_Bou_c::cutWildGoat(int arg) {
 
 /* 8096F2E4-8096F510 002444 022C+00 1/0 0/0 0/0 .text            cutWildGoatSuccess__11daNpc_Bou_cFi
  */
-int daNpc_Bou_c::cutWildGoatSuccess(int param_0) {
-    // NONMATCHING
+int daNpc_Bou_c::cutWildGoatSuccess(int arg) {
+    int ret_val = 0;
+    int prm_val = -1;
+    int* pVal = dComIfGp_evmng_getMyIntegerP(arg, "prm");
+    if (pVal) {
+        prm_val = *pVal;
+    }
+
+    if (dComIfGp_getEventManager().getIsAddvance(arg)) {
+        switch (prm_val) {
+            case 0: {
+                mFaceMotionSeqMngr.setNo(10, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+                initTalk(mFlowNodeNo, NULL);
+                field_0xff4 = 0;
+                Z2GetAudioMgr()->subBgmStop();
+                daNpcT_onTmpBit(0x1C);
+                break;
+            }
+
+            case 1: {
+                break;
+            }
+        }
+    }
+
+    switch (prm_val) {
+        case 0: {
+            mJntAnm.lookPlayer(0);
+            if (mPlayerAngle == mCurAngle.y) {
+                ret_val = 1;
+            } else {
+                step(mPlayerAngle, 10, 18, 15, 0);
+            }
+
+            break;
+        }
+
+        case 1: {
+            mJntAnm.lookPlayer(0);
+            if (talkProc(NULL, 0, NULL, 0) && mFlow.checkEndFlow()) {
+                daNpcT_offTmpBit(0x1C);
+                ret_val = 1;
+            }
+        }
+    }
+
+    return ret_val;
 }
 
 /* 8096F510-8096F758 002670 0248+00 1/0 0/0 0/0 .text            cutWildGoatFailure__11daNpc_Bou_cFi
  */
-int daNpc_Bou_c::cutWildGoatFailure(int param_0) {
-    // NONMATCHING
+int daNpc_Bou_c::cutWildGoatFailure(int arg) {
+    int ret_val = 0;
+    int prm_val = -1;
+    int* pVal = dComIfGp_evmng_getMyIntegerP(arg, "prm");
+    if (pVal) {
+        prm_val = *pVal;
+    }
+
+    if (dComIfGp_getEventManager().getIsAddvance(arg)) {
+        switch (prm_val) {
+            case 0: {
+                Z2GetAudioMgr()->subBgmStop();
+                daNpcT_onTmpBit(0x1C);
+                break;
+            }
+
+            case 1: {
+                mFaceMotionSeqMngr.setNo(10, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+                initTalk(mFlowNodeNo, NULL);
+                field_0xff4 = 0;
+                break;
+            }
+
+            case 2: {
+                break;
+            }
+        }
+    }
+
+    switch (prm_val) {
+        case 0: {
+            ret_val = 1;
+            break;
+        }
+
+        case 1: {
+            mJntAnm.lookPlayer(0);
+            if (mPlayerAngle == mCurAngle.y) {
+                ret_val = 1;
+            } else {
+                step(mPlayerAngle, 10, 18, 15, 0);
+            }
+
+            break;
+        }
+
+        case 2: {
+            mJntAnm.lookPlayer(0);
+            if (talkProc(NULL, 0, NULL, 0) && mFlow.checkEndFlow()) {
+                daNpcT_offTmpBit(0x1C);
+                ret_val = 1;
+            }
+        }
+    }
+
+    return ret_val;
 }
 
 /* 8096F758-8096F9A4 0028B8 024C+00 1/0 0/0 0/0 .text            cutSpeakTo__11daNpc_Bou_cFi */
-int daNpc_Bou_c::cutSpeakTo(int param_0) {
-    // NONMATCHING
+int daNpc_Bou_c::cutSpeakTo(int arg) {
+    int ret_val = 0;
+    int* pVal = NULL;
+    int prm_val = -1;
+    pVal = dComIfGp_evmng_getMyIntegerP(arg, "prm");
+    if (pVal) {
+        prm_val = *pVal;
+    }
+
+    if (dComIfGp_getEventManager().getIsAddvance(arg)) {
+        switch (prm_val) {
+            case 0: {
+                mFaceMotionSeqMngr.setNo(10, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+                initTalk(0x190, NULL);
+                break;
+            }
+
+            case 1:
+            case 2: {
+                break;
+            }
+        }
+    }
+
+    switch (prm_val) {
+        case 0: {
+            mJntAnm.lookPlayer(0);
+            if (mPlayerAngle == mCurAngle.y) {
+                ret_val = 1;
+            } else {
+                shape_angle.y = mPlayerAngle;
+                step(mPlayerAngle, 10, 18, 15, 0);
+            }
+
+            break;
+        }
+
+        case 1: {
+            mJntAnm.lookPlayer(0);
+            if (talkProc(NULL, 0, NULL, 0) && mFlow.checkEndFlow()) {
+                ret_val = 1;
+            }
+
+            break;
+        }
+
+        case 2: {
+            mJntAnm.lookNone(0);
+            ret_val = 1;
+        }
+    }
+
+    return ret_val;
 }
 
-/* ############################################################################################## */
-/* 80972984-80972988 000124 0004+00 0/4 0/0 0/0 .rodata          @5515 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5515 = -40.0f;
-COMPILER_STRIP_GATE(0x80972984, &lit_5515);
-#pragma pop
-
 /* 8096F9A4-8096FB78 002B04 01D4+00 1/0 0/0 0/0 .text cutConversationWithBou__11daNpc_Bou_cFi */
-int daNpc_Bou_c::cutConversationWithBou(int param_0) {
-    // NONMATCHING
+int daNpc_Bou_c::cutConversationWithBou(int arg) {
+    fopAc_ac_c* actor = NULL;
+    int ret_val = 0;
+    int* pVal = NULL;
+    int prm_val = -1;
+    pVal = dComIfGp_evmng_getMyIntegerP(arg, "prm");
+    if (pVal) {
+        prm_val = *pVal;
+    }
+
+    if (dComIfGp_getEventManager().getIsAddvance(arg)) {
+        switch (prm_val) {
+            case 0: {
+                mFaceMotionSeqMngr.setNo(10, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(1, -1.0f, 0, 0);
+                break;
+            }
+        }
+    }
+
+    switch (prm_val) {
+        case 0: {
+            actor = mActorMngr[1].getActorP();
+            if (actor != NULL) {
+                mJntAnm.lookActor(actor, -40.0f, 0);
+            } else {
+                mJntAnm.lookNone(0);
+            }
+
+            ret_val = 1;
+            break;
+        }
+    }
+
+    return ret_val;
 }
 
 /* 8096FB78-8096FE40 002CD8 02C8+00 1/0 0/0 0/0 .text cutConfidentialConversation__11daNpc_Bou_cFi
  */
-int daNpc_Bou_c::cutConfidentialConversation(int param_0) {
-    // NONMATCHING
+int daNpc_Bou_c::cutConfidentialConversation(int arg) {
+    fopAc_ac_c* actor = NULL;
+    int ret_val = 0;
+    int* pVal = NULL;
+    int prm_val = -1;
+    pVal = dComIfGp_evmng_getMyIntegerP(arg, "prm");
+    if (pVal) {
+        prm_val = *pVal;
+    }
+
+    if (dComIfGp_getEventManager().getIsAddvance(arg)) {
+        switch (prm_val) {
+            case 0: {
+                mFaceMotionSeqMngr.setNo(10, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(1, -1.0f, 0, 0);
+                break;
+            }
+
+            case 1:
+            case 2: {
+                break;
+            }
+        }
+    }
+
+    switch (prm_val) {
+        case 0:
+        case 2: {
+            actor = mActorMngr[1].getActorP();
+            if (actor != NULL) {
+                mJntAnm.lookActor(actor, -40.0f, 0);
+            } else {
+                mJntAnm.lookNone(0);
+            }
+
+            ret_val = 1;
+            break;
+        }
+
+        case 1: {
+            actor = mActorMngr[2].getActorP();
+            if (actor != NULL) {
+                mJntAnm.lookActor(actor, 0.0f, 0);
+            } else {
+                mJntAnm.lookNone(0);
+            }
+
+            ret_val = 1;
+            break;
+        }
+    }
+
+    return ret_val;
 }
 
-/* ############################################################################################## */
-/* 80972988-8097298C 000128 0004+00 0/2 0/0 0/0 .rodata          @5708 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5708 = 0.5f;
-COMPILER_STRIP_GATE(0x80972988, &lit_5708);
-#pragma pop
-
-/* 8097299C-8097299C 00013C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80972A87 = "timer";
-#pragma pop
-
 /* 8096FE40-80970278 002FA0 0438+00 1/0 0/0 0/0 .text            cutFindWolf__11daNpc_Bou_cFi */
-int daNpc_Bou_c::cutFindWolf(int param_0) {
-    // NONMATCHING
+int daNpc_Bou_c::cutFindWolf(int arg) {
+    int ret_val = 0;
+    int* pVal = NULL;
+    int prm_val = -1;
+    int timer_val = 0;
+    pVal = dComIfGp_evmng_getMyIntegerP(arg, "prm");
+    if (pVal) {
+        prm_val = *pVal;
+    }
+
+    pVal = dComIfGp_evmng_getMyIntegerP(arg, "timer");
+    if (pVal) {
+        timer_val = *pVal;
+    }
+
+    if (dComIfGp_getEventManager().getIsAddvance(arg)) {
+        switch (prm_val) {
+            case 0: {
+                mFaceMotionSeqMngr.setNo(1, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(3, -1.0f, 0, 0);
+                dComIfGp_getEvent().setPtT(this);
+                initTalk(0xD4, NULL);
+                break;
+            }
+
+            case 2: {
+                mFaceMotionSeqMngr.setNo(10, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(20, -1.0f, 0, 0);
+                current.angle.y = mPlayerAngle + -0x8000;
+                mEventTimer = timer_val;
+                break;
+            }
+
+            case 3: {
+                mFaceMotionSeqMngr.setNo(10, 0.0f, 0, 0);
+                mMotionSeqMngr.setNo(1, 0.0f, 0, 0);
+                setPos(home.pos);
+                setAngle(home.angle.y);
+                speedF = 0.0f;
+                speed.setall(0.0f);
+                mAcch.ClrWallNone();
+                mHide = true;
+                break;
+            }
+        }
+    }
+
+    switch (prm_val) {
+        case 0: {
+            mJntAnm.lookPlayer(0);
+            if (mPlayerAngle == mCurAngle.y) {
+                ret_val = 1;
+            } else {
+                step(mPlayerAngle, -1, -1, 15, 0);
+            }
+
+            break;
+        }
+
+        case 1: {
+            mJntAnm.lookPlayer(0);
+            if (talkProc(NULL, 0, NULL, 0) && mFlow.checkEndFlow()) {
+                ret_val = 1;
+            }
+
+            break;
+        }
+
+        case 2: {
+            mJntAnm.lookPlayer(0);
+            cLib_chaseS(&shape_angle.y, current.angle.y, 0x800);
+            mCurAngle.y = shape_angle.y;
+            field_0xd7e.y = mCurAngle.y;
+            cLib_chaseF(&speedF, daNpc_Bou_Param_c::m.field_0x8c, 0.5f);
+            mAcch.SetWallNone();
+            if (!cLib_calcTimer(&mEventTimer)) {
+                ret_val = 1;
+            }
+
+            break;
+        }
+
+        case 3: {
+            mJntAnm.lookNone(0);
+            ret_val = 1;
+            break;
+        }
+    }
+
+    return ret_val;
 }
 
 /* ############################################################################################## */
