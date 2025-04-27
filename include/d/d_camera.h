@@ -553,7 +553,7 @@ public:
     /* 0x2C4 */ int field_0x2c4;
     /* 0x2C8 */ f32 field_0x2c8;
     /* 0x2CC */ BG mBG;
-    /* 0x3E8 */ union {
+    /* 0x3E8 */ union mWork {
         struct {
             /* 0x00 */ int field_0x0;
             /* 0x04 */ int field_0x4;
@@ -772,22 +772,52 @@ public:
             /* 0x6C */ int field_0x6c;
         } event;
         struct {
+            /* 0x00 */ u8 field_0x0[0x4 - 0x0];
+            /* 0x04 */ cXyz field_0x4;
+            /* 0x10 */ cXyz field_0x10;
+            /* 0x1C */ f32 field_0x1c;
+            /* 0x20 */ f32 field_0x20;
+            /* 0x24 */ f32 field_0x24;
+            /* 0x28 */ f32 field_0x28;
+            /* 0x2C */ fopAc_ac_c* field_0x2c;
+            /* 0x30 */ fopAc_ac_c* field_0x30;
+            /* 0x34 */ fpc_ProcID field_0x34;
+            /* 0x38 */ fpc_ProcID field_0x38;
+            /* 0x3C */ u8 field_0x3c[0x40 - 0x3c];
+            /* 0x40 */ u32 field_0x40;
+        } stoker;
+        struct {
             /* 0x00 */ u8 field_0x0[0x10 - 0x0];
             /* 0x10 */ cXyz field_0x10;
-            /* 0x1C */ u8 field_0x1c[0x28 - 0x1c];
+            /* 0x1C */ cXyz field_0x1c;
             /* 0x28 */ cXyz field_0x28;
             /* 0x34 */ f32 field_0x34;
             /* 0x38 */ f32 field_0x38;
             /* 0x3C */ fopAc_ac_c* field_0x3c;
             /* 0x40 */ fopAc_ac_c* field_0x40;
-            /* 0x44 */ fpc_ProcID mTargetActorID;
+            /* 0x44 */ int field_0x44;
+            /* 0x48 */ int field_0x48;
+            /* 0x4C */ f32 field_0x4c;
+            /* 0x50 */ f32 field_0x50;
+            /* 0x54 */ f32 field_0x54;
+            /* 0x58 */ f32 field_0x58;
+        } rolling;
+        struct {
+            /* 0x00 */ u8 field_0x0[0x4 - 0x0];
+            /* 0x04 */ cXyz field_0x4;
+            /* 0x10 */ u8 field_0x10[0x1c - 0x10];
+            /* 0x1C */ cXyz field_0x1c;
+            /* 0x28 */ f32 field_0x28;
+            /* 0x2C */ f32 field_0x2c;
+            /* 0x30 */ f32 field_0x30;
+            /* 0x34 */ f32 field_0x34;
+            /* 0x38 */ f32 field_0x38;
+            /* 0x3C */ fopAc_ac_c* field_0x3c;
+            /* 0x40 */ fopAc_ac_c* field_0x40;
+            /* 0x44 */ fpc_ProcID field_0x44;
             /* 0x48 */ u8 field_0x48[0x4c - 0x48];
             /* 0x4C */ u32 field_0x4c;
-        } unk_d_ev_struct;
-        struct {
-            /* 0x20 */ cXyz field_0x20;
-            /* 0x2C */ cXyz field_0x2c;
-        } trans;
+        } fixedPos;
         struct {
             /* 0x00 */ cXyz field_0x0;
             /* 0x0C */ cXyz field_0xc;
@@ -801,12 +831,41 @@ public:
             /* 0x34 */ fopAc_ac_c* field_0x34;
             /* 0x38 */ fpc_ProcID field_0x38;
             /* 0x3C */ cSGlobe field_0x3c;
+            /* 0x44 */ int field_0x44;
             /* 0x4C */ cSGlobe field_0x4c;
             /* 0x54 */ int field_0x54;
             /* 0x58 */ int field_0x58;
             /* 0x5C */ f32 field_0x5c;
             /* 0x60 */ f32 field_0x60;
+            /* 0x64 */ u8 field_0x64[0x68 - 0x64];
+            /* 0x68 */ int field_0x68;
         } actor;
+        struct {
+            /* 0x000 */ cXyz field_0x0;
+            /* 0x00C */ cXyz field_0xc;
+            /* 0x018 */ f32 field_0x18;
+            /* 0x01C */ int field_0x1c;
+            /* 0x020 */ f32 field_0x20;
+            /* 0x024 */ int field_0x24;
+            /* 0x028 */ f32 field_0x28;
+            /* 0x034 */ fopAc_ac_c* field_0x34;
+            /* 0x038 */ cSGlobe field_0x38;
+            /* 0x040 */ int field_0x40;
+            /* 0x044 */ int field_0x44;
+            /* 0x048 */ dCamInfo_c field_0x48;
+            /* 0x068 */ int field_0x68;
+            /* 0x06C */ u8 field_0x6c[0x100 - 0x6c];
+            /* 0x100 */ cSAngle field_0x100;
+        } restorePos;
+        struct {
+            /* 0x00 */ int field_0x0;
+            /* 0x04 */ int field_0x4;
+            /* 0x08 */ int field_0x8;
+            /* 0x0C */ int field_0xc;
+            /* 0x10 */ cXyz field_0x10;
+            /* 0x1C */ cSGlobe field_0x1c;
+            /* 0x3C */ u8 field_0x3c; 
+        } gameOver;
         struct {
             u8 field_0x0[0x100];
         } bytes;
