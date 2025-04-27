@@ -262,6 +262,7 @@ public:
     bool checkCutTurnCancel() const { return checkEndResetStateFlg0(ERFLG0_CUT_TURN_CANCEL); }
     bool checkTurnCancelKeep() const { return checkStateFlg0(FLG0_TURN_CANCEL_KEEP); }
     BOOL checkRodeoLeft() const { return checkStateFlg0(FLG0_RODEO_LEFT); }
+    BOOL checkHorseCallWait() const { return checkStateFlg0(FLG0_NO_DRAW_WAIT); }
     BOOL checkTurn() const { return m_procID == PROC_TURN_e && field_0x1720 == 0; }
     BOOL checkStop() const { return m_procID == PROC_STOP_e; }
     bool checkJump() const { return m_procID == PROC_JUMP_e; }
