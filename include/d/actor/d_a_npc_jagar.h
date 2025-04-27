@@ -166,6 +166,24 @@ public:
         return false;
     }
 
+    void setSurpriseMotion() {
+        mFaceMotionSeqMngr.setNo(1, -1.0f, 0, 0);
+        mMotionSeqMngr.setNo(7, -1.0f, 0, 0);
+        field_0xff8 = 0;
+    }
+
+    void setListenMotion(f32 arg) {
+        mFaceMotionSeqMngr.setNo(8, -1.0f, 0, 0);
+        if (0.0f < arg + (cM_rnd() - 0.5f)) {
+            mMotionSeqMngr.setNo(8, -1.0f, 0, 0);
+        } else {
+            mMotionSeqMngr.setNo(5, -1.0f, 0, 0);
+        }
+    }
+
+    void onListen() { mListen = 1; }
+    void offListen() { mListen = 0; }
+
     u8 getPathID() { return (fopAcM_GetParam(this) & 0xff00) >> 8; }
 
     static char* mCutNameList[7];
@@ -188,7 +206,7 @@ private:
     /* 0x1002 */ u8 field_0x1002;
     /* 0x1003 */ u8 field_0x1003;
     /* 0x1004 */ u8 field_0x1004;
-    /* 0x1005 */ u8 field_0x1005;
+    /* 0x1005 */ u8 mListen;
     /* 0x1008 */ int field_0x1008;
 };
 

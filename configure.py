@@ -1751,7 +1751,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_ashB"),
     ActorRel(NonMatching, "d_a_npc_bans"),
     ActorRel(NonMatching, "d_a_npc_blue_ns"),
-    ActorRel(NonMatching, "d_a_npc_bou"),
+    ActorRel(Equivalent, "d_a_npc_bou"),
     ActorRel(NonMatching, "d_a_npc_bouS"),
     ActorRel(NonMatching, "d_a_npc_cdn3"),
     ActorRel(NonMatching, "d_a_npc_chat"),
