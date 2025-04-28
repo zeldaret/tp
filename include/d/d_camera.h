@@ -898,6 +898,19 @@ public:
             /* 0x44 */ f32 field_0x44;
             /* 0x48 */ f32 field_0x48;
         } load;
+        struct item0 {
+            /* 0x00 */ int field_0x0;
+            /* 0x04 */ int field_0x4;
+            /* 0x08 */ int field_0x8;
+            /* 0x0C */ cXyz field_0xc;
+            /* 0x18 */ f32 field_0x18;
+            /* 0x1C */ int field_0x1c;
+            /* 0x20 */ int field_0x20;
+            /* 0x24 */ cSGlobe field_0x24;
+            /* 0x44 */ cXyz field_0x44;
+            /* 0x50 */ cXyz field_0x50;
+            /* 0x5C */ f32 field_0x5c;
+        } item0;
         struct {
             u8 field_0x0[0x100];
         } bytes;
