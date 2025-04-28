@@ -14,22 +14,23 @@
  */
 class daNpc_Maro_c : public daNpcT_c {
 public:
-    typedef void (daNpc_Maro_c::*actionFunc)(void*);
+    typedef int (daNpc_Maro_c::*actionFunc)(void*);
+    typedef int (daNpc_Maro_c::*cutFunc)(int);
 
     /* 8055B58C */ ~daNpc_Maro_c();
-    /* 8055B6E0 */ void create();
-    /* 8055B9A8 */ void CreateHeap();
-    /* 8055BDE8 */ void Delete();
-    /* 8055BE1C */ void Execute();
-    /* 8055BF0C */ void Draw();
-    /* 8055BFA0 */ void createHeapCallBack(fopAc_ac_c*);
-    /* 8055BFC0 */ void ctrlJointCallBack(J3DJoint*, int);
+    /* 8055B6E0 */ int create();
+    /* 8055B9A8 */ int CreateHeap();
+    /* 8055BDE8 */ int Delete();
+    /* 8055BE1C */ int Execute();
+    /* 8055BF0C */ int Draw();
+    /* 8055BFA0 */ static int createHeapCallBack(fopAc_ac_c*);
+    /* 8055BFC0 */ static int ctrlJointCallBack(J3DJoint*, int);
     /* 8055C018 */ void srchArrow(void*, void*);
     /* 8055C0B4 */ void getArrowP();
     /* 8055C1AC */ void srchItaMato(void*, void*);
     /* 8055C248 */ void getItaMatoP(int);
-    /* 8055C330 */ void getType();
-    /* 8055C3E0 */ void isDelete();
+    /* 8055C330 */ u8 getType();
+    /* 8055C3E0 */ int isDelete();
     /* 8055C614 */ void reset();
     /* 8055C834 */ void afterJntAnm(int);
     /* 8055C8B0 */ void setParam();
@@ -47,33 +48,33 @@ public:
     /* 8055DA78 */ void drawOtherMdl();
     /* 8055DAD8 */ daNpcT_faceMotionAnmData_c getFaceMotionAnm(daNpcT_faceMotionAnmData_c);
     /* 8055DB64 */ daNpcT_motionAnmData_c getMotionAnm(daNpcT_motionAnmData_c);
-    /* 8055DBF0 */ void selectAction();
-    /* 8055DD08 */ void chkAction(int (daNpc_Maro_c::*)(void*));
-    /* 8055DD34 */ void setAction(int (daNpc_Maro_c::*)(void*));
-    /* 8055DDDC */ void cutConversationAboutPachinko(int);
-    /* 8055DF7C */ void cutConversationAboutWoodSwd(int);
-    /* 8055E124 */ void cutSwdTutorial(int);
-    /* 8055E414 */ void cutHail(int);
-    /* 8055E578 */ void cutFindMonkey(int);
-    /* 8055E968 */ void cutGiveMeWoodSwd(int);
-    /* 8055ECF4 */ void cutGetWoodSwd(int);
-    /* 8055F508 */ void cutConversationWithMaro(int);
-    /* 8055F634 */ void cutCacaricoConversation(int);
-    /* 8055F82C */ void cutSurprise(int);
-    /* 8055FAF0 */ void cutArrowTutorial(int);
-    /* 805611E0 */ void cutBokinTalk(int);
-    /* 80561328 */ void cutMarosWhisper(int);
-    /* 80561614 */ void cutTagPush1(int);
-    /* 8056178C */ void cutNotGonnaLet(int);
-    /* 80561E70 */ void cutTalkToKakashi(int);
-    /* 80562174 */ void wait(void*);
-    /* 805629A4 */ void swdTutorial(void*);
-    /* 80562B14 */ void talk_withTaro(void*);
-    /* 80562CA4 */ void choccai(void*);
-    /* 80562EC8 */ void tend(void*);
-    /* 8056319C */ void arrowTutorial(void*);
-    /* 8056342C */ void talk(void*);
-    /* 80563660 */ void shop(void*);
+    /* 8055DBF0 */ int selectAction();
+    /* 8055DD08 */ int chkAction(int (daNpc_Maro_c::*)(void*));
+    /* 8055DD34 */ int setAction(int (daNpc_Maro_c::*)(void*));
+    /* 8055DDDC */ int cutConversationAboutPachinko(int);
+    /* 8055DF7C */ int cutConversationAboutWoodSwd(int);
+    /* 8055E124 */ int cutSwdTutorial(int);
+    /* 8055E414 */ int cutHail(int);
+    /* 8055E578 */ int cutFindMonkey(int);
+    /* 8055E968 */ int cutGiveMeWoodSwd(int);
+    /* 8055ECF4 */ int cutGetWoodSwd(int);
+    /* 8055F508 */ int cutConversationWithMaro(int);
+    /* 8055F634 */ int cutCacaricoConversation(int);
+    /* 8055F82C */ int cutSurprise(int);
+    /* 8055FAF0 */ int cutArrowTutorial(int);
+    /* 805611E0 */ int cutBokinTalk(int);
+    /* 80561328 */ int cutMarosWhisper(int);
+    /* 80561614 */ int cutTagPush1(int);
+    /* 8056178C */ int cutNotGonnaLet(int);
+    /* 80561E70 */ int cutTalkToKakashi(int);
+    /* 80562174 */ int wait(void*);
+    /* 805629A4 */ int swdTutorial(void*);
+    /* 80562B14 */ int talk_withTaro(void*);
+    /* 80562CA4 */ int choccai(void*);
+    /* 80562EC8 */ int tend(void*);
+    /* 8056319C */ int arrowTutorial(void*);
+    /* 8056342C */ int talk(void*);
+    /* 80563660 */ int shop(void*);
     /* 805648A4 */ daNpc_Maro_c(
         daNpcT_faceMotionAnmData_c const* i_faceMotionAnmData,
         daNpcT_motionAnmData_c const* i_motionAnmData,
@@ -113,8 +114,8 @@ public:
     void startChoccai() { field_0x1134 = 1; }
     void endChoccai() { field_0x1134 = 0; }
 
-    static void* mCutNameList[17];
-    static u8 mCutList[204];
+    static char* mCutNameList[17];
+    static cutFunc mCutList[17];
 
 private:
     /* 0x0E40 */ u8 field_0xe40[0x1134 - 0xe40];
@@ -126,9 +127,48 @@ STATIC_ASSERT(sizeof(daNpc_Maro_c) == 0x1140);
 
 class daNpc_Maro_Param_c {
 public:
-    /* 805649B0 */ ~daNpc_Maro_Param_c();
+    /* 805649B0 */ virtual ~daNpc_Maro_Param_c() {}
 
-    static u8 const m[144];
+    struct Data {
+        /* 0x00 */ f32 field_0x00;
+        /* 0x04 */ u32 field_0x04;
+        /* 0x08 */ u32 field_0x08;
+        /* 0x0C */ u32 field_0x0c;
+        /* 0x10 */ u32 field_0x10;
+        /* 0x14 */ u32 field_0x14;
+        /* 0x18 */ u32 field_0x18;
+        /* 0x1C */ u32 field_0x1c;
+        /* 0x20 */ u32 field_0x20;
+        /* 0x24 */ u32 field_0x24;
+        /* 0x28 */ u32 field_0x28;
+        /* 0x2C */ u32 field_0x2c;
+        /* 0x30 */ u32 field_0x30;
+        /* 0x34 */ u32 field_0x34;
+        /* 0x38 */ u32 field_0x38;
+        /* 0x3C */ u32 field_0x3c;
+        /* 0x40 */ u32 field_0x40;
+        /* 0x44 */ u32 field_0x44;
+        /* 0x48 */ u32 field_0x48;
+        /* 0x4C */ u32 field_0x4c;
+        /* 0x50 */ u32 field_0x50;
+        /* 0x54 */ u32 field_0x54;
+        /* 0x58 */ u32 field_0x58;
+        /* 0x5C */ u32 field_0x5c;
+        /* 0x60 */ u32 field_0x60;
+        /* 0x64 */ u32 field_0x64;
+        /* 0x68 */ u32 field_0x68;
+        /* 0x6C */ u32 field_0x6c;
+        /* 0x70 */ u32 field_0x70;
+        /* 0x74 */ u32 field_0x74;
+        /* 0x78 */ u32 field_0x78;
+        /* 0x7C */ u32 field_0x7c;
+        /* 0x80 */ u32 field_0x80;
+        /* 0x84 */ u32 field_0x84;
+        /* 0x88 */ u32 field_0x88;
+        /* 0x8C */ u32 field_0x8c;
+    };
+
+    static const Data m;
 };
 
 
