@@ -3059,6 +3059,69 @@ bool dCamera_c::fixedFramesEvCamera() {
 /* 8009544C-800956E4 08FD8C 0298+00 0/0 1/0 0/0 .text            bSplineEvCamera__9dCamera_cFv */
 bool dCamera_c::bSplineEvCamera() {
     // NONMATCHING
+    struct mWork::bSpline* bSpline = &mWork.bSpline;
+    if (mCurCamStyleTimer == 0) {
+        bSpline->field_0x1c = 0;
+        bSpline->field_0x10 = 9999;
+        int iVar1 = getEvXyzListData(&bSpline->field_0x0, "Centers");
+        if (iVar1 != 0) {
+            if (iVar1 > bSpline->field_0x10) {
+                bSpline->field_0x10 = iVar1;
+            }
+        } else {
+            return 1;
+        }
+
+        iVar1 = getEvXyzListData(&bSpline->field_0x4, "Eyes");
+        if (iVar1 != 0) {
+            if (iVar1 > bSpline->field_0x10) {
+                bSpline->field_0x10 = iVar1;
+            }
+        } else {
+            return 1;
+        }
+
+        iVar1 = getEvFloatListData(&bSpline->field_0x8, "Fovys");
+        if (iVar1 != 0) {
+            if (iVar1 > bSpline->field_0x10) {
+                bSpline->field_0x10 = iVar1;
+            }
+        } else {
+            return 1;
+        }
+
+        iVar1 = getEvIntData(&bSpline->mTimer, "Timer");
+        if (iVar1 == 0) {
+            OS_REPORT("camera: event: error: NO Timer\n");
+            return 1;
+        }
+
+        bSpline->field_0x14 = getEvActor("RelActor");
+        mEventData.field_0xf0.Init(bSpline->field_0x10, bSpline->mTimer);
+        field_0x158.field_0x0 = true;
+    }
+
+    if (bSpline->field_0x1c == 0 && mEventData.field_0xf0.Step()) {
+        cXyz cStack_28, cStack_34;
+        mEventData.field_0xf0.Calc(&cStack_28);
+        mEventData.field_0xf0.Calc(&cStack_34);
+
+        if (bSpline->field_0x14 == NULL) {
+            field_0x5c.mCenter = relationalPos(bSpline->field_0x14, &cStack_28);
+            field_0x5c.mEye = relationalPos(bSpline->field_0x14, &cStack_34);
+        } else {
+            field_0x5c.mCenter = cStack_28;
+            field_0x5c.mEye = cStack_34;
+        }
+
+        field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
+        field_0x5c.mFovy = mEventData.field_0xf0.Calc(bSpline->field_0x8);
+        if (mEventData.field_0xf0.field_0x08 == 3) {
+            bSpline->field_0x1c = 1;
+        }
+    }
+
+    return bSpline->field_0x1c;
 }
 
 /* ############################################################################################## */

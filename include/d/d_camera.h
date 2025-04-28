@@ -911,6 +911,16 @@ public:
             /* 0x50 */ cXyz field_0x50;
             /* 0x5C */ f32 field_0x5c;
         } item0;
+        struct bSpline {
+            /* 0x00 */ cXyz* field_0x0;
+            /* 0x04 */ cXyz* field_0x4;
+            /* 0x08 */ f32* field_0x8;
+            /* 0x0C */ int mTimer;
+            /* 0x10 */ int field_0x10;
+            /* 0x14 */ fopAc_ac_c* field_0x14;
+            /* 0x18 */ u8 field_0x18[4];
+            /* 0x1c */ bool field_0x1c;
+        } bSpline;
         struct {
             u8 field_0x0[0x100];
         } bytes;
