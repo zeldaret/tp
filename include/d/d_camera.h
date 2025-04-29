@@ -818,6 +818,29 @@ public:
             /* 0x48 */ u8 field_0x48[0x4c - 0x48];
             /* 0x4C */ u32 field_0x4c;
         } fixedPos;
+        struct trans {
+            /* 0x00 */ cXyz mStartEye;
+            /* 0x0C */ cXyz mStartCenter;
+            /* 0x18 */ f32 mStartFovy;
+            /* 0x1C */ f32 field_0x1c;
+            /* 0x20 */ cXyz mEye;
+            /* 0x2C */ cXyz mCenter;
+            /* 0x38 */ f32 mFovy;
+            /* 0x3C */ f32 field_0x3c;
+            /* 0x40 */ fopAc_ac_c* mRelActor;
+            /* 0x44 */ fpc_ProcID mRelActorID;
+            /* 0x48 */ char mRelUseMask;
+            /* 0x49 */ char field_0x49;
+            /* 0x4A */ char field_0x4a;
+            /* 0x4B */ char field_0x4b;
+            /* 0x50 */ int mTimer;
+            /* 0x54 */ int mTransType;
+            /* 0x58 */ f32 mCushion;
+            /* 0x5C */ f32* mBSpPoints;
+            /* 0x60 */ cSGlobe field_0x60;
+            /* 0x68 */ bool field_0x68;
+            /* 0x6C */ int mBSpCurve;
+        } trans;
         struct actor {
             /* 0x00 */ cXyz field_0x0;
             /* 0x0C */ cXyz field_0xc;
