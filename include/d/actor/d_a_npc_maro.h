@@ -3,6 +3,7 @@
 
 #include "SSystem/SComponent/c_counter.h"
 #include "d/actor/d_a_npc.h"
+#include "d/d_shop_system.h"
 
 /**
  * @ingroup actors-npcs
@@ -12,7 +13,7 @@
  * @details
  *
  */
-class daNpc_Maro_c : public daNpcT_c {
+class daNpc_Maro_c : public dShopSystem_c {
 public:
     typedef int (daNpc_Maro_c::*actionFunc)(void*);
     typedef int (daNpc_Maro_c::*cutFunc)(int);
@@ -25,8 +26,8 @@ public:
     /* 8055BF0C */ int Draw();
     /* 8055BFA0 */ static int createHeapCallBack(fopAc_ac_c*);
     /* 8055BFC0 */ static int ctrlJointCallBack(J3DJoint*, int);
-    /* 8055C018 */ void srchArrow(void*, void*);
-    /* 8055C0B4 */ void getArrowP();
+    /* 8055C018 */ static void* srchArrow(void*, void*);
+    /* 8055C0B4 */ fopAc_ac_c* getArrowP();
     /* 8055C1AC */ void srchItaMato(void*, void*);
     /* 8055C248 */ void getItaMatoP(int);
     /* 8055C330 */ u8 getType();
@@ -82,7 +83,7 @@ public:
         int i_faceMotionStepNum,
         daNpcT_MotionSeqMngr_c::sequenceStepData_c const* i_motionSequenceData, int i_motionStepNum,
         daNpcT_evtData_c const* i_evtData, char** i_arcNames)
-        : daNpcT_c(i_faceMotionAnmData, i_motionAnmData, i_faceMotionSequenceData,
+        : dShopSystem_c(i_faceMotionAnmData, i_motionAnmData, i_faceMotionSequenceData,
                    i_faceMotionStepNum, i_motionSequenceData, i_motionStepNum, i_evtData,
                    i_arcNames) {
         OS_REPORT("|%06d:%x|daNpc_Maro_c -> コンストラクト\n", g_Counter.mCounter0, this);
@@ -117,8 +118,28 @@ public:
     static char* mCutNameList[17];
     static cutFunc mCutList[17];
 
+    int getFlowNodeNo() {
+        u16 nodeNo = home.angle.x;
+        if (nodeNo == 0xffff) {
+            return -1;
+        }
+        return nodeNo;
+    }
+
+    u8 getMaxNumItem() {
+        return (fopAcM_GetParam(this) & 0xf000000) >> 0x18;
+    }
+
 private:
-    /* 0x0E40 */ u8 field_0xe40[0x1134 - 0xe40];
+    /* 0x0F7C */ int field_0xf7c;
+    /* 0x0F80 */ dCcD_Cyl mCyl1;
+    /* 0x10BC */ int field_0x10bc;
+    /* 0x10C0 */ u8 mType;
+    /* 0x10C4 */ daNpcT_ActorMngr_c mActorMngr[9];
+    /* 0x110C */ u8 field_0x110c[0x1130 - 0x110C];
+    /* 0x1130 */ u8 field_0x1130;
+    /* 0x1131 */ u8 field_0x1131;
+    /* 0x1132 */ u8 field_0x1132[0x1134 - 0x1132];
     /* 0x1134 */ u8 field_0x1134;
     /* 0x1135 */ u8 field_0x1135[0x1140 - 0x1135];
 };
@@ -133,8 +154,8 @@ public:
         /* 0x00 */ f32 field_0x00;
         /* 0x04 */ u32 field_0x04;
         /* 0x08 */ u32 field_0x08;
-        /* 0x0C */ u32 field_0x0c;
-        /* 0x10 */ u32 field_0x10;
+        /* 0x0C */ f32 field_0x0c;
+        /* 0x10 */ f32 field_0x10;
         /* 0x14 */ u32 field_0x14;
         /* 0x18 */ u32 field_0x18;
         /* 0x1C */ u32 field_0x1c;
