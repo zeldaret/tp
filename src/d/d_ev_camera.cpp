@@ -11,195 +11,10 @@
 #include "d/d_camera.h"
 #include "d/actor/d_a_midna.h"
 
-//
-// Forward References:
-//
-
-extern "C" static bool func_800889F8(int);
-extern "C" void StartEventCamera__9dCamera_cFiie();
-extern "C" void EndEventCamera__9dCamera_cFi();
-extern "C" void searchEventArgData__9dCamera_cFPc();
-extern "C" void getEvIntData__9dCamera_cFPiPc();
-extern "C" void getEvFloatData__9dCamera_cFPfPc();
-extern "C" void getEvFloatListData__9dCamera_cFPPfPc();
-extern "C" void getEvXyzListData__9dCamera_cFPP4cXyzPc();
-extern "C" void getEvStringPntData__9dCamera_cFPc();
-extern "C" void getEvIntData__9dCamera_cFPiPci();
-extern "C" void getEvFloatData__9dCamera_cFPfPcf();
-extern "C" void getEvXyzData__9dCamera_cFP4cXyzPc4cXyz();
-extern "C" void getEvStringData__9dCamera_cFPcPcPc();
-extern "C" void getEvStringPntData__9dCamera_cFPcPc();
-extern "C" void getEvActor__9dCamera_cFPc();
-extern "C" void getEvActor__9dCamera_cFPcPc();
-extern "C" void pauseEvCamera__9dCamera_cFv();
-extern "C" void fixedFrameEvCamera__9dCamera_cFv();
-extern "C" void stokerEvCamera__9dCamera_cFv();
-extern "C" void rollingEvCamera__9dCamera_cFv();
-extern "C" void fixedPositionEvCamera__9dCamera_cFv();
-extern "C" void uniformTransEvCamera__9dCamera_cFv();
-extern "C" void uniformBrakeEvCamera__9dCamera_cFv();
-extern "C" void uniformAcceleEvCamera__9dCamera_cFv();
-extern "C" void transEvCamera__9dCamera_cFi();
-extern "C" static bool func_8008E750(char);
-extern "C" void __as__7cSGlobeFRC7cSGlobe();
-extern "C" void abs__4cXyzCFv();
-extern "C" void U__7cSGlobeFRC7cSAngle();
-extern "C" void __ami__4cXyzFRC3Vec();
-extern "C" void __apl__4cXyzFRC3Vec();
-extern "C" void watchActorEvCamera__9dCamera_cFv();
-extern "C" void V__7cSGlobeFRC7cSAngle();
-extern "C" static void func_8008FA94();
-extern "C" void restorePosEvCamera__9dCamera_cFv();
-extern "C" void talktoEvCamera__9dCamera_cFv();
-extern "C" void maptoolIdEvCamera__9dCamera_cFv();
-extern "C" void styleEvCamera__9dCamera_cFv();
-extern "C" void gameOverEvCamera__9dCamera_cFv();
-extern "C" void tactEvCamera__9dCamera_cFv();
-extern "C" static void dComIfGp_saveCameraPosition__FiP4cXyzP4cXyzfs();
-extern "C" bool turnToActorEvCamera__9dCamera_cFv();
-extern "C" void stbWaitEvCamera__9dCamera_cFv();
-extern "C" void saveEvCamera__9dCamera_cFv();
-extern "C" void loadEvCamera__9dCamera_cFv();
-extern "C" void useItem0EvCamera__9dCamera_cFv();
-extern "C" void useItem1EvCamera__9dCamera_cFv();
-extern "C" void getItemEvCamera__9dCamera_cFv();
-extern "C" void possessedEvCamera__9dCamera_cFv();
-extern "C" void fixedFramesEvCamera__9dCamera_cFv();
-extern "C" void bSplineEvCamera__9dCamera_cFv();
-extern "C" void twoActor0EvCamera__9dCamera_cFv();
-extern "C" void peepHoleEvCamera__9dCamera_cFv();
-extern "C" void digHoleEvCamera__9dCamera_cFv();
-extern "C" void hintTalkEvCamera__9dCamera_cFv();
-extern "C" void bspTransEvCamera__9dCamera_cFv();
-extern "C" bool portalWarpEvCamera__9dCamera_cFv();
-extern "C" void __sinit_d_ev_camera_cpp();
-extern "C" void attentionPos__9dCamera_cFP10fopAc_ac_c();
-extern "C" void directionOf__9dCamera_cFP10fopAc_ac_c();
-extern "C" void positionOf__9dCamera_cFP10fopAc_ac_c();
-extern "C" void setFlag__9dCamera_cFUl();
-extern "C" void eyePos__9dCamera_cFP10fopAc_ac_c();
-extern "C" void checkNoDraw__9daMidna_cCFv();
-extern "C" void checkMidnaRide__9daPy_py_cCFv();
-extern "C" void fopAcM_GetID__FPCv();
-extern "C" void __as__4cXyzFRC4cXyz();
-extern "C" void __ct__4cXyzFRC4cXyz();
-extern "C" void func_80097810();
-extern "C" void func_8009784C();
-extern "C" bool checkCanoeRide__9daPy_py_cCFv();
-extern "C" bool checkBoardRide__9daPy_py_cCFv();
-extern "C" bool checkSpinnerRide__9daPy_py_cCFv();
-extern "C" bool checkBoarRide__9daPy_py_cCFv();
-extern "C" void getShadowTalkAtnPos__9daAlink_cFv();
-extern "C" extern char const* const d_d_ev_camera__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void __dt__4cXyzFv();
-extern "C" void mDoLib_project__FP3VecP3Vec();
-extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
-extern "C" void fopAcM_searchFromName4Event__FPCcs();
-extern "C" void __dt__8cM3dGPlaFv();
-extern "C" void fopCamM_GetParam__FP12camera_class();
-extern "C" void fpcSch_JudgeForPName__FPvPv();
-extern "C" void fpcSch_JudgeByID__FPvPv();
-extern "C" void __dt__7cSAngleFv();
-extern "C" void __dt__8cM3dGLinFv();
-extern "C" void getActiveCamera__14dDemo_object_cFv();
-extern "C" void convPId__14dEvt_control_cFUi();
-extern "C" void searchMapEventData__14dEvt_control_cFUc();
-extern "C" void getMySubstanceP__16dEvent_manager_cFiPCci();
-extern "C" void getMySubstanceNum__16dEvent_manager_cFiPCc();
-extern "C" void setGoal__16dEvent_manager_cFP4cXyz();
-extern "C" void __dt__7cSGlobeFv();
-extern "C" void GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla();
-extern "C" void ChkCamera__4dCcSFR4cXyzR4cXyzfP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_c();
-extern "C" void rationalBezierRatio__8dCamMathFff();
-extern "C" void xyzRotateY__8dCamMathFR4cXyz7cSAngle();
-extern "C" void xyzHorizontalDistance__8dCamMathFR4cXyzR4cXyz();
-extern "C" void SearchStyle__11dCamParam_cFUl();
-extern "C" void Init__14d2DBSplinePathFll();
-extern "C" void Step__14d2DBSplinePathFv();
-extern "C" void Calc__14d2DBSplinePathFP4cXyz();
-extern "C" void Calc__14d2DBSplinePathFPf();
-extern "C" void GetCameraTypeFromMapToolID__9dCamera_cFll();
-extern "C" void pushInfo__9dCamera_cFPQ29dCamera_c10dCamInfo_cs();
-extern "C" void relationalPos__9dCamera_cFP10fopAc_ac_cP4cXyz();
-extern "C" void relationalPos__9dCamera_cFP10fopAc_ac_cP10fopAc_ac_cP4cXyzf();
-extern "C" void pointInSight__9dCamera_cFP4cXyz();
-extern "C" void lineBGCheck__9dCamera_cFP4cXyzP4cXyzP4cXyzUl();
-extern "C" void lineBGCheck__9dCamera_cFP4cXyzP4cXyzUl();
-extern "C" void Reset__9dCamera_cFv();
-extern "C" void StartBlure__9dCamera_cFiP10fopAc_ac_cff();
-extern "C" void SetBlureAlpha__9dCamera_cFf();
-extern "C" void SetBlureScale__9dCamera_cFfff();
-extern "C" void SetBlurePosition__9dCamera_cFfff();
-extern "C" void __pl__4cXyzCFRC3Vec();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void __ml__4cXyzCFf();
-extern "C" void norm__4cXyzCFv();
-extern "C" void normalize__4cXyzFv();
-extern "C" void cM_atan2s__Fff();
-extern "C" void cM_rndFX__Ff();
-extern "C" void cM3d_Len3dSqPntAndSegLine__FPC8cM3dGLinPC3VecP3VecPf();
-extern "C" void __ct__8cM3dGLinFRC4cXyzRC4cXyz();
-extern "C" void __ct__7cSAngleFRC7cSAngle();
-extern "C" void __ct__7cSAngleFs();
-extern "C" void __ct__7cSAngleFf();
-extern "C" void Val__7cSAngleFf();
-extern "C" void Degree__7cSAngleCFv();
-extern "C" void Abs__7cSAngleCFv();
-extern "C" void Inv__7cSAngleCFv();
-extern "C" void Cos__7cSAngleCFv();
-extern "C" void __mi__7cSAngleCFv();
-extern "C" void __pl__7cSAngleCFRC7cSAngle();
-extern "C" void __mi__7cSAngleCFRC7cSAngle();
-extern "C" void __apl__7cSAngleFRC7cSAngle();
-extern "C" void __pl__7cSAngleCFs();
-extern "C" void __ml__7cSAngleCFf();
-extern "C" void __amu__7cSAngleFf();
-extern "C" void __pl__FsRC7cSAngle();
-extern "C" void __ct__7cSGlobeFRC7cSGlobe();
-extern "C" void __ct__7cSGlobeFfRC7cSAngleRC7cSAngle();
-extern "C" void __ct__7cSGlobeFRC4cXyz();
-extern "C" void Val__7cSGlobeFfRC7cSAngleRC7cSAngle();
-extern "C" void Val__7cSGlobeFRC4cXyz();
-extern "C" void Xyz__7cSGlobeCFv();
-extern "C" void Norm__7cSGlobeCFv();
-extern "C" void Invert__7cSGlobeFv();
-extern "C" void __dl__FPv();
-extern "C" void __register_global_object();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__8cM3dGPla[3];
-extern "C" u8 engine_tbl__9dCamera_c[240];
-extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" f32 Zero__4cXyz[3];
-extern "C" u8 m_object__7dDemo_c[4];
 extern "C" extern u8 struct_80450F88[8];
-extern "C" u8 m_midnaActor__9daPy_py_c[4];
-extern "C" u8 _0__7cSAngle[2 + 2 /* padding */];
-extern "C" u8 _90__7cSAngle[2 + 2 /* padding */];
 
-//
-// Declarations:
-//
-
-/* 800889F8-80088A7C 083338 0084+00 1/1 0/0 0/0 .text isStageEvent__25@unnamed@d_ev_camera_cpp@Fi
- */
-static bool func_800889F8(int param_0) {
+/* 800889F8-80088A7C 083338 0084+00 1/1 0/0 0/0 .text isStageEvent__25@unnamed@d_ev_camera_cpp@Fi */
+static bool isStageEvent(int param_0) {
     dStage_MapEventInfo_c* info = dComIfGp_getStage()->getMapEventInfo();
     if (info != NULL) {
         for (int i = 0; i < info->num; i++) {
@@ -212,8 +27,7 @@ static bool func_800889F8(int param_0) {
     return false;
 }
 
-/* 80088A7C-80088BBC 0833BC 0140+00 0/0 15/15 2/2 .text            StartEventCamera__9dCamera_cFiie
- */
+/* 80088A7C-80088BBC 0833BC 0140+00 0/0 15/15 2/2 .text            StartEventCamera__9dCamera_cFiie */
 int dCamera_c::StartEventCamera(int param_0, int param_1, ...) {
     if (chkFlag(0x20000000)) {
         return 0;
@@ -244,12 +58,12 @@ int dCamera_c::StartEventCamera(int param_0, int param_1, ...) {
 }
 
 /* 80088BBC-80088C24 0834FC 0068+00 0/0 3/3 4/4 .text            EndEventCamera__9dCamera_cFi */
-int dCamera_c::EndEventCamera(int param_0) {
+int dCamera_c::EndEventCamera(int param_1) {
     if (!chkFlag(0x20000000)) {
         return 0;
     }
 
-    if (mEventData.field_0x14 == -1 || mEventData.field_0x14 == param_0) {
+    if (mEventData.field_0x14 == -1 || mEventData.field_0x14 == param_1) {
         clrFlag(0x20000000);
         mEventData.field_0x0 = 1;
 
@@ -263,8 +77,7 @@ int dCamera_c::EndEventCamera(int param_0) {
     return 0;
 }
 
-/* 80088C24-80088CB0 083564 008C+00 10/10 0/0 0/0 .text            searchEventArgData__9dCamera_cFPc
- */
+/* 80088C24-80088CB0 083564 008C+00 10/10 0/0 0/0 .text            searchEventArgData__9dCamera_cFPc */
 int dCamera_c::searchEventArgData(char* i_eventName) {
     int i;
     bool found_event = false;
@@ -359,7 +172,7 @@ int dCamera_c::getEvFloatListData(f32** i_data, char* i_event) {
 
         *i_data = (f32*)mEventData.mEventParams[index].value;
         num = mEventData.mEventParams[index].field_0x10;
-    } else if (num = dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, i_event)) {
+    } else if ((num = dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, i_event))) {
         *i_data = dComIfGp_evmng_getMyFloatP(mEventData.field_0x4, i_event);
     } else {
 #if DEBUG
@@ -392,7 +205,7 @@ int dCamera_c::getEvXyzListData(cXyz** i_data, char* i_event) {
 
         *i_data = (cXyz*)mEventData.mEventParams[index].value;
         return mEventData.mEventParams[index].field_0x10;
-    } else if (num = dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, i_event)) {
+    } else if ((num = dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, i_event))) {
         *i_data = dComIfGp_evmng_getMyXyzP(mEventData.field_0x4, i_event);
     } else {
 #if DEBUG
@@ -413,8 +226,7 @@ int dCamera_c::getEvXyzListData(cXyz** i_data, char* i_event) {
     return num;
 }
 
-/* 80088FE0-8008908C 083920 00AC+00 1/1 0/0 0/0 .text            getEvStringPntData__9dCamera_cFPc
- */
+/* 80088FE0-8008908C 083920 00AC+00 1/1 0/0 0/0 .text            getEvStringPntData__9dCamera_cFPc */
 char* dCamera_c::getEvStringPntData(char* i_event) {
     char* string = NULL;
 
@@ -476,8 +288,7 @@ bool dCamera_c::getEvIntData(int* i_data, char* i_event, int param_2) {
     return 1;
 }
 
-/* 80089154-8008922C 083A94 00D8+00 11/11 1/1 0/0 .text            getEvFloatData__9dCamera_cFPfPcf
- */
+/* 80089154-8008922C 083A94 00D8+00 11/11 1/1 0/0 .text            getEvFloatData__9dCamera_cFPfPcf */
 bool dCamera_c::getEvFloatData(f32* i_data, char* i_event, f32 param_2) {
     if (chkFlag(0x20000000)) {
         int index = searchEventArgData(i_event);
@@ -535,8 +346,7 @@ bool dCamera_c::getEvXyzData(cXyz* i_data, char* i_event, cXyz param_2) {
     return 1;
 }
 
-/* 8008933C-8008941C 083C7C 00E0+00 7/7 1/1 0/0 .text            getEvStringData__9dCamera_cFPcPcPc
- */
+/* 8008933C-8008941C 083C7C 00E0+00 7/7 1/1 0/0 .text            getEvStringData__9dCamera_cFPcPcPc */
 bool dCamera_c::getEvStringData(char* i_data, char* i_event, char* param_2) {
     if (chkFlag(0x20000000)) {
         int index = searchEventArgData(i_event);
@@ -565,8 +375,7 @@ bool dCamera_c::getEvStringData(char* i_data, char* i_event, char* param_2) {
     return 1;
 }
 
-/* 8008941C-800894C4 083D5C 00A8+00 1/1 0/0 0/0 .text            getEvStringPntData__9dCamera_cFPcPc
- */
+/* 8008941C-800894C4 083D5C 00A8+00 1/1 0/0 0/0 .text            getEvStringPntData__9dCamera_cFPcPc */
 char* dCamera_c::getEvStringPntData(char* i_event, char* param_1) {
     char* string = NULL;
 
@@ -1056,8 +865,10 @@ bool dCamera_c::rollingEvCamera() {
     return 1;
 }
 
-/* 804253CC-804253D8 0520EC 000C+00 1/2 0/0 0/0 .bss MidnaAdditionVec__25@unnamed@d_ev_camera_cpp@ */
-static u8 data_804253CC[12];
+namespace {
+    /* 804253CC-804253D8 0520EC 000C+00 1/2 0/0 0/0 .bss MidnaAdditionVec__25@unnamed@d_ev_camera_cpp@ */
+    static cXyz MidnaAdditionVec;
+} // namesoace
 
 /* 804528F0-804528F8 000EF0 0004+04 1/1 0/0 0/0 .sdata2          @5959 */
 SECTION_SDATA2 static f32 lit_5959[1 + 1 /* padding */] = {
@@ -1204,8 +1015,8 @@ bool dCamera_c::transEvCamera(int param_1) {
 }
 
 /* 8008E750-8008E774 089090 0024+00 1/1 0/0 0/0 .text isRelChar__25@unnamed@d_ev_camera_cpp@Fc */
-static bool isRelChar(char param_0) {
-    return param_0 != '-' && param_0 != 'x';
+static bool isRelChar(char param_1) {
+    return param_1 != '-' && param_1 != 'x';
 }
 
 namespace {
@@ -1725,7 +1536,7 @@ bool dCamera_c::maptoolIdEvCamera() {
     }
 
     int room_no = dComIfGp_roomControl_getStayNo();
-    if (func_800889F8(mEventData.field_0xec->field_0x4)) {
+    if (isStageEvent(mEventData.field_0xec->field_0x4)) {
         room_no = -1;
     }
 
@@ -1949,8 +1760,8 @@ bool dCamera_c::gameOverEvCamera() {
 
     switch (mWork.gameOver.field_0x0) {
         case 51:
-            getEvIntData(&mWork.gameOver.field_0xc, "Type", 0);
-            if (mWork.gameOver.field_0xc == 1) {
+            getEvIntData(&mWork.gameOver.mType, "Type", 0);
+            if (mWork.gameOver.mType == 1) {
                 cM3dGPla cStack_1dc;
                 dComIfG_Bgsp().GetTriPla(mBG.field_0x0.field_0x4, &cStack_1dc);
 
@@ -2169,40 +1980,6 @@ SECTION_RODATA static u8 const lit_8236[24] = {
     0x3F, 0x4C, 0xCC, 0xCD, 0x3F, 0x4C, 0xCC, 0xCD, 0x3F, 0x4C, 0xCC, 0xCD,
 };
 COMPILER_STRIP_GATE(0x8037A86C, &lit_8236);
-
-/* 803AC528-803AC5A0 -00001 0078+00 1/1 0/0 0/0 .data            @8754 */
-SECTION_DATA static void* lit_8754[30] = {
-    (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xC68),
-    (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xC68),
-    (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xC68),
-    (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xC68),
-    (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xC68),
-    (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xC68),
-    (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xC68),
-    (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xC68),
-    (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xC68),
-    (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xE68),
-    (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xC68),
-    (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xC68),
-    (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xC68),
-    (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xC68),
-    (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xC68),
-    (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xC68),
-    (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xC68),
-    (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xC68),
-    (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xC68),
-    (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xC68),
-    (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0x808),
-    (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0x8E4),
-    (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xA20),
-    (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xEC0),
-    (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xC68),
-    (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xC68),
-    (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xC68),
-    (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xC68),
-    (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xC68),
-    (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xE68),
-};
 
 /* 80091468-8009236C 08BDA8 0F04+00 1/0 1/0 0/0 .text            tactEvCamera__9dCamera_cFv */
 bool dCamera_c::tactEvCamera() {
@@ -2460,8 +2237,7 @@ bool dCamera_c::tactEvCamera() {
     return 1;
 }
 
-/* 800923B8-800923C0 08CCF8 0008+00 0/0 1/0 0/0 .text            turnToActorEvCamera__9dCamera_cFv
- */
+/* 800923B8-800923C0 08CCF8 0008+00 0/0 1/0 0/0 .text            turnToActorEvCamera__9dCamera_cFv */
 bool dCamera_c::turnToActorEvCamera() {
     return true;
 }
@@ -2543,8 +2319,8 @@ bool dCamera_c::loadEvCamera() {
     f32 local_58[6] = { 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f };
     if (mCurCamStyleTimer == 0) {
         getEvIntData(&load->mSlot, "Slot", 0);
-        getEvIntData(&load->field_0x0, "Timer", 1);
-        getEvIntData(&load->mType, "Type", load->field_0x0 > 9);
+        getEvIntData(&load->mTimer, "Timer", 1);
+        getEvIntData(&load->mType, "Type", load->mTimer > 9);
 
         if (load->mType > 1) {
             OS_REPORT("camera: event: LOAD: warning!! type %d unknown\n", load->mType);
@@ -2552,7 +2328,7 @@ bool dCamera_c::loadEvCamera() {
         }
 
         if (load->mType != 0) {
-            mEventData.field_0xf0.Init(4, load->field_0x0 + 1);
+            mEventData.field_0xf0.Init(4, load->mTimer + 1);
             mEventData.field_0xf0.Step();
         }
 
@@ -2580,13 +2356,13 @@ bool dCamera_c::loadEvCamera() {
         load->field_0x40 = field_0x5c.mBank;
     }
 
-    if (mCurCamStyleTimer < load->field_0x0) {
+    if (mCurCamStyleTimer < load->mTimer) {
         f32 fVar5;
         if (load->mType != 0) {
             mEventData.field_0xf0.Step();
             mEventData.field_0xf0.Calc(local_58);
         } else {
-            fVar5 = (mCurCamStyleTimer + 1) / load->field_0x0;
+            fVar5 = (mCurCamStyleTimer + 1) / load->mTimer;
         }
 
         field_0x5c.mCenter = load->field_0x1c + ((load->field_0x28 - load->field_0x1c) * fVar5);
@@ -3050,8 +2826,7 @@ SECTION_DEAD static char const* const stringBase_8037ACA2 = "Choice";
 /* 80452B94-80452B98 001194 0004+00 1/1 0/0 0/0 .sdata2          @10437 */
 SECTION_SDATA2 static f32 lit_10437 = 1.0f / 100.0f;
 
-/* 80095010-8009544C 08F950 043C+00 0/0 1/0 0/0 .text            fixedFramesEvCamera__9dCamera_cFv
- */
+/* 80095010-8009544C 08F950 043C+00 0/0 1/0 0/0 .text            fixedFramesEvCamera__9dCamera_cFv */
 bool dCamera_c::fixedFramesEvCamera() {
     // NONMATCHING
 }
@@ -3063,7 +2838,7 @@ bool dCamera_c::bSplineEvCamera() {
     if (mCurCamStyleTimer == 0) {
         bSpline->field_0x1c = 0;
         bSpline->field_0x10 = 9999;
-        int iVar1 = getEvXyzListData(&bSpline->field_0x0, "Centers");
+        int iVar1 = getEvXyzListData(&bSpline->mCenters, "Centers");
         if (iVar1 != 0) {
             if (iVar1 > bSpline->field_0x10) {
                 bSpline->field_0x10 = iVar1;
@@ -3072,7 +2847,7 @@ bool dCamera_c::bSplineEvCamera() {
             return 1;
         }
 
-        iVar1 = getEvXyzListData(&bSpline->field_0x4, "Eyes");
+        iVar1 = getEvXyzListData(&bSpline->mEyes, "Eyes");
         if (iVar1 != 0) {
             if (iVar1 > bSpline->field_0x10) {
                 bSpline->field_0x10 = iVar1;
@@ -3081,7 +2856,7 @@ bool dCamera_c::bSplineEvCamera() {
             return 1;
         }
 
-        iVar1 = getEvFloatListData(&bSpline->field_0x8, "Fovys");
+        iVar1 = getEvFloatListData(&bSpline->mFovys, "Fovys");
         if (iVar1 != 0) {
             if (iVar1 > bSpline->field_0x10) {
                 bSpline->field_0x10 = iVar1;
@@ -3096,7 +2871,7 @@ bool dCamera_c::bSplineEvCamera() {
             return 1;
         }
 
-        bSpline->field_0x14 = getEvActor("RelActor");
+        bSpline->mRelActor = getEvActor("RelActor");
         mEventData.field_0xf0.Init(bSpline->field_0x10, bSpline->mTimer);
         field_0x158.field_0x0 = true;
     }
@@ -3106,16 +2881,16 @@ bool dCamera_c::bSplineEvCamera() {
         mEventData.field_0xf0.Calc(&cStack_28);
         mEventData.field_0xf0.Calc(&cStack_34);
 
-        if (bSpline->field_0x14 == NULL) {
-            field_0x5c.mCenter = relationalPos(bSpline->field_0x14, &cStack_28);
-            field_0x5c.mEye = relationalPos(bSpline->field_0x14, &cStack_34);
+        if (bSpline->mRelActor == NULL) {
+            field_0x5c.mCenter = relationalPos(bSpline->mRelActor, &cStack_28);
+            field_0x5c.mEye = relationalPos(bSpline->mRelActor, &cStack_34);
         } else {
             field_0x5c.mCenter = cStack_28;
             field_0x5c.mEye = cStack_34;
         }
 
         field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
-        field_0x5c.mFovy = mEventData.field_0xf0.Calc(bSpline->field_0x8);
+        field_0x5c.mFovy = mEventData.field_0xf0.Calc(bSpline->mFovys);
         if (mEventData.field_0xf0.field_0x08 == 3) {
             bSpline->field_0x1c = 1;
         }
@@ -3124,45 +2899,160 @@ bool dCamera_c::bSplineEvCamera() {
     return bSpline->field_0x1c;
 }
 
-/* ############################################################################################## */
-/* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8037ACA9 = "Actor1";
-SECTION_DEAD static char const* const stringBase_8037ACB0 = "Actor2";
-SECTION_DEAD static char const* const stringBase_8037ACB7 = "CtrRatio";
-SECTION_DEAD static char const* const stringBase_8037ACC0 = "RadiusMin";
-SECTION_DEAD static char const* const stringBase_8037ACCA = "RadiusMax";
-SECTION_DEAD static char const* const stringBase_8037ACD4 = "LatitudeMin";
-SECTION_DEAD static char const* const stringBase_8037ACE0 = "LatitudeMax";
-SECTION_DEAD static char const* const stringBase_8037ACEC = "LongitudeMin";
-SECTION_DEAD static char const* const stringBase_8037ACF9 = "LongitudeMax";
-SECTION_DEAD static char const* const stringBase_8037AD06 = "LongitudeType";
-#pragma pop
-
-/* 80425420-8042542C 052140 000C+00 1/1 0/0 0/0 .bss             @10516 */
-static u8 lit_10516[12];
-
-/* 8042542C-80425438 05214C 000C+00 1/1 0/0 0/0 .bss             DefaultGap$10515 */
-static f32 DefaultGap_10515[3];
-
-/* 80452B98-80452B9C 001198 0004+00 1/1 0/0 0/0 .sdata2          @10780 */
-SECTION_SDATA2 static f32 lit_10780 = -1.0f / 10.0f;
-
-/* 80452B9C-80452BA0 00119C 0004+00 1/1 0/0 0/0 .sdata2          @10781 */
-SECTION_SDATA2 static f32 lit_10781 = 10000.0f;
-
-/* 80452BA0-80452BA4 0011A0 0004+00 1/1 0/0 0/0 .sdata2          @10782 */
-SECTION_SDATA2 static f32 lit_10782 = 0.25f;
-
 /* 800956E4-80095E7C 090024 0798+00 0/0 1/0 0/0 .text            twoActor0EvCamera__9dCamera_cFv */
 bool dCamera_c::twoActor0EvCamera() {
     // NONMATCHING
+    static cXyz DefaultGap_10515;
+
+    // if (struct_80450F88[2] == 0) {   - ???
+    //     DefaultGap_10515.set(0.0f, 0.0f, 0.0f);
+    // }
+
+    if (mCurCamStyleTimer == 0) {
+        mWork.twoActor0.mActor1 = getEvActor("Actor1", "@PLAYER");
+        mWork.twoActor0.mActor2 = getEvActor("Actor2", "@STARTER");
+
+        if (mWork.twoActor0.mActor1 == NULL || mWork.twoActor0.mActor2 == NULL) {
+            OS_REPORT("camera: event: error: actor 1 or 2 missing\n");
+            return 1;
+        }
+
+        mWork.twoActor0.mActor1ID = fopAcM_GetID(mWork.twoActor0.mActor1);
+        mWork.twoActor0.mActor2ID = fopAcM_GetID(mWork.twoActor0.mActor2);
+
+        getEvXyzData(&mWork.twoActor0.mCtrGap, "CtrGap", DefaultGap_10515);
+        getEvFloatData(&mWork.twoActor0.mCtrRatio, "CtrRatio", -0.1f);
+        getEvFloatData(&mWork.twoActor0.mCtrCus, "CtrCus", 1.0f);
+        getEvFloatData(&mWork.twoActor0.mEyeCus, "EyeCus", 1.0f);
+        getEvFloatData(&mWork.twoActor0.mRadiusMin, "RadiusMin", 100.0f);
+        getEvFloatData(&mWork.twoActor0.mRadiusMax, "RadiusMax", 10000.0f);
+        getEvFloatData(&mWork.twoActor0.mLatitudeMin, "LatitudeMin", -60.0f);
+        getEvFloatData(&mWork.twoActor0.mLatitudeMax, "LatitudeMax", 60.0f);
+        getEvFloatData(&mWork.twoActor0.mLongitudeMin, "LongitudeMin", 20.0f);
+        getEvFloatData(&mWork.twoActor0.mLongitudeMax, "LongitudeMax", 160.0f);
+
+        getEvIntData(&mWork.twoActor0.mLongitudeType, "LongitudeType", -1);
+        getEvFloatData(&mWork.twoActor0.mFovy, "Fovy", 60.0f);
+        mWork.twoActor0.field_0x4c = field_0x5c.mDirection.R();
+        mWork.twoActor0.field_0x54 = cSAngle(field_0x5c.mDirection.V().Degree());
+        mWork.twoActor0.field_0x56 = cSAngle(field_0x5c.mDirection.U().Degree());
+    }
+
+    cSGlobe cStack_d8(attentionPos(mWork.twoActor0.mActor1) - attentionPos(mWork.twoActor0.mActor2));
+
+    cXyz cStack_34;
+    if (fopAcM_SearchByID(mWork.twoActor0.mActor1ID) == NULL) {
+        OS_REPORT("camera: event: error: actor1 dead\n");
+        return 1;
+
+    } else if (fopAcM_SearchByID(mWork.twoActor0.mActor2ID) == NULL) {
+        OS_REPORT("camera: event: error: actor2 dead\n");
+        return 1;
+
+    } else if (mWork.twoActor0.mCtrRatio >= 0.0f || mWork.twoActor0.mCtrRatio <= 1.0f) {
+        cStack_34 = relationalPos(mWork.twoActor0.mActor1, mWork.twoActor0.mActor2, &mWork.twoActor0.mCtrGap, 0.25f);
+
+    } else {
+        cStack_34 = (attentionPos(mWork.twoActor0.mActor1) + 
+                    attentionPos(mWork.twoActor0.mActor2)) * mWork.twoActor0.mCtrRatio;
+    }
+
+        field_0x5c.mCenter += (cStack_34 - field_0x5c.mCenter) * mWork.twoActor0.mCtrCus;
+
+        if (mCurCamStyleTimer == 0) {
+            cSAngle acStack_e0;
+            switch (mWork.twoActor0.mLongitudeType) {
+                case 1:
+                    acStack_e0 = cSAngle(directionOf(mpPlayerActor).Inv());
+                    break;
+
+                case 2:
+                    acStack_e0 = directionOf(mpPlayerActor);
+                    break;
+
+                default:
+                    acStack_e0 = field_0x5c.mDirection.U();
+            }
+
+            cSAngle acStack_e4 = cStack_d8.U() - acStack_e0;
+            s16 sVar1 = cSAngle(mWork.twoActor0.mLongitudeMin).Val();
+            s16 sVar2 = acStack_e4.Abs();
+            if (((sVar1 ^ sVar2) >> 1) - ((sVar1 ^ sVar2) & sVar1) != 0) {
+                if (acStack_e4 < cSAngle::_0) {
+                    mWork.twoActor0.field_0x5a = cStack_d8.U() + cSAngle(mWork.twoActor0.mLongitudeMin);
+                } else {
+                    mWork.twoActor0.field_0x5a = cStack_d8.U() - cSAngle(mWork.twoActor0.mLongitudeMin);
+                }
+            } else {
+                sVar1 = cSAngle(mWork.twoActor0.mLongitudeMax).Val();
+                sVar2 = acStack_e4.Abs();
+                if (((sVar2 ^ sVar1) >> 1) - ((sVar2 ^ sVar1) & sVar2) != 0) {
+                    if (acStack_e4 < cSAngle::_0) {
+                        mWork.twoActor0.field_0x5a = cStack_d8.U() + cSAngle(mWork.twoActor0.mLongitudeMax);
+                    } else {
+                        mWork.twoActor0.field_0x5a = cStack_d8.U() - cSAngle(mWork.twoActor0.mLongitudeMax);
+                    }
+                } else {
+                    mWork.twoActor0.field_0x5a = acStack_e0;
+                }
+            }
+
+            cSAngle acStack_e8(field_0x5c.mDirection.V());
+            if (acStack_e8 < cSAngle(mWork.twoActor0.mLatitudeMin)) {
+                mWork.twoActor0.field_0x58 = cSAngle(mWork.twoActor0.mLatitudeMin);
+            } else {
+                if (acStack_e8 > cSAngle(mWork.twoActor0.mLatitudeMax)) {
+                    mWork.twoActor0.field_0x58 = cSAngle(mWork.twoActor0.mLatitudeMax);
+                } else {
+                    mWork.twoActor0.field_0x58 = field_0x5c.mDirection.V();
+                }
+            }
+
+            f32 fVar1 = field_0x5c.mDirection.R();
+            if (fVar1 < mWork.twoActor0.mRadiusMin) {
+                mWork.twoActor0.field_0x50 = mWork.twoActor0.mRadiusMin;
+            } else if (fVar1 > mWork.twoActor0.mRadiusMax) {
+                mWork.twoActor0.field_0x50 = mWork.twoActor0.mRadiusMax;
+            } else {
+                mWork.twoActor0.field_0x50 = field_0x5c.mDirection.R();
+            }
+        }
+
+        mWork.twoActor0.field_0x56 += (mWork.twoActor0.field_0x5a - mWork.twoActor0.field_0x56) * mWork.twoActor0.mEyeCus;
+        mWork.twoActor0.field_0x54 += (mWork.twoActor0.field_0x58 - mWork.twoActor0.field_0x54) * mWork.twoActor0.mEyeCus;
+        mWork.twoActor0.field_0x4c += mWork.twoActor0.mEyeCus * (mWork.twoActor0.field_0x50 - mWork.twoActor0.field_0x4c);
+        field_0x5c.mDirection.Val(mWork.twoActor0.field_0x4c, mWork.twoActor0.field_0x54, mWork.twoActor0.field_0x56);
+        field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
+        field_0x5c.mFovy += mWork.twoActor0.mCtrCus * (mWork.twoActor0.mFovy - field_0x5c.mFovy);
+    
+
+    return 1;
 }
 
 /* 80095E7C-80095FD0 0907BC 0154+00 0/0 1/0 0/0 .text            peepHoleEvCamera__9dCamera_cFv */
 bool dCamera_c::peepHoleEvCamera() {
     // NONMATCHING
+    if (mCurCamStyleTimer == 0) {
+        fopAc_ac_c* mPlayer = dComIfGp_getLinkPlayer();
+        cXyz sp20 = positionOf(mPlayer);
+        cXyz sp2c(sp20);
+        mPlayer = dComIfGp_event_getPt2();
+        if (mPlayer == NULL) {
+            OS_REPORT("camera: event: error: partner actor not found\n");
+        } else {
+            cXyz sp38 = positionOf(mPlayer);
+            if (dCamMath().xyzHorizontalDistance(sp20, sp38) > 50.0f) {
+                sp38.y = sp20.y;
+                cXyz cStack_2c = sp20 - sp38;
+                cStack_2c .normalize();
+                sp2c = sp38 + (cStack_2c * 50.0f);
+            }
+        }
+
+        dComIfGp_getEventManager().setGoal(&sp2c);
+    }
+
+    return 1;
 }
 
 /* ############################################################################################## */
@@ -3257,17 +3147,7 @@ bool dCamera_c::portalWarpEvCamera() {
     return true;
 }
 
-/* 8009769C-8009771C 091FDC 0080+00 0/0 1/0 0/0 .text            __sinit_d_ev_camera_cpp */
-void __sinit_d_ev_camera_cpp(){// NONMATCHING
-}
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x8009769C, __sinit_d_ev_camera_cpp);
-#pragma pop
-
-/* 8009771C-80097738 09205C 001C+00 11/11 22/22 0/0 .text attentionPos__9dCamera_cFP10fopAc_ac_c
- */
+/* 8009771C-80097738 09205C 001C+00 11/11 22/22 0/0 .text attentionPos__9dCamera_cFP10fopAc_ac_c */
 cXyz dCamera_c::attentionPos(fopAc_ac_c* param_0) {
     // NONMATCHING
 }
@@ -3361,11 +3241,8 @@ extern "C" bool checkBoarRide__9daPy_py_cCFv() {
     return false;
 }
 
-/* 80097870-80097878 0921B0 0008+00 0/0 1/0 0/0 .text            getShadowTalkAtnPos__9daAlink_cFv
- */
+/* 80097870-80097878 0921B0 0008+00 0/0 1/0 0/0 .text            getShadowTalkAtnPos__9daAlink_cFv */
 // void daAlink_c::getShadowTalkAtnPos() {
 extern "C" void getShadowTalkAtnPos__9daAlink_cFv() {
     // NONMATCHING
 }
-
-/* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

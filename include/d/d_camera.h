@@ -862,7 +862,7 @@ public:
             /* 0x00 */ int field_0x0;
             /* 0x04 */ int field_0x4;
             /* 0x08 */ int field_0x8;
-            /* 0x0C */ int field_0xc;
+            /* 0x0C */ int mType;
             /* 0x10 */ cXyz field_0x10;
             /* 0x1C */ cSGlobe field_0x1c;
             /* 0x24 */ u8 field_0x24[0x3c - 0x24];
@@ -885,7 +885,7 @@ public:
             /* 0x3C */ cXyz field_0x3c;
         } tact;
         struct load {
-            /* 0x00 */ int field_0x0;
+            /* 0x00 */ int mTimer;
             /* 0x04 */ int mSlot;
             /* 0x08 */ int mType;
             /* 0x0C */ cSGlobe field_0xc;
@@ -912,15 +912,40 @@ public:
             /* 0x5C */ f32 field_0x5c;
         } item0;
         struct bSpline {
-            /* 0x00 */ cXyz* field_0x0;
-            /* 0x04 */ cXyz* field_0x4;
-            /* 0x08 */ f32* field_0x8;
+            /* 0x00 */ cXyz* mCenters;
+            /* 0x04 */ cXyz* mEyes;
+            /* 0x08 */ f32* mFovys;
             /* 0x0C */ int mTimer;
             /* 0x10 */ int field_0x10;
-            /* 0x14 */ fopAc_ac_c* field_0x14;
+            /* 0x14 */ fopAc_ac_c* mRelActor;
             /* 0x18 */ u8 field_0x18[4];
             /* 0x1c */ bool field_0x1c;
         } bSpline;
+        struct {
+            /* 0x00 */ fopAc_ac_c* mActor1;
+            /* 0x04 */ fopAc_ac_c* mActor2;
+            /* 0x08 */ u8 field_0x8[4];
+            /* 0x0C */ fpc_ProcID mActor1ID;
+            /* 0x10 */ fpc_ProcID mActor2ID;
+            /* 0x14 */ f32 mCtrCus;
+            /* 0x18 */ f32 mEyeCus;
+            /* 0x1C */ f32 mRadiusMin;
+            /* 0x20 */ f32 mRadiusMax;
+            /* 0x24 */ f32 mLatitudeMin;
+            /* 0x28 */ f32 mLatitudeMax;
+            /* 0x2C */ f32 mLongitudeMin;
+            /* 0x30 */ f32 mLongitudeMax;
+            /* 0x34 */ int mLongitudeType;
+            /* 0x38 */ f32 mFovy;
+            /* 0x3C */ f32 mCtrRatio;
+            /* 0x40 */ cXyz mCtrGap;
+            /* 0x4C */ f32 field_0x4c;
+            /* 0x50 */ f32 field_0x50;
+            /* 0x54 */ cSAngle field_0x54;
+            /* 0x56 */ cSAngle field_0x56;
+            /* 0x58 */ cSAngle field_0x58;
+            /* 0x5A */ cSAngle field_0x5a;
+        } twoActor0;
         struct {
             u8 field_0x0[0x100];
         } bytes;
