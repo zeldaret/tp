@@ -26,6 +26,9 @@ public:
     /* 80601960 */ b_gnd_class();
 
     bool checkAttackChance() { return field_0x2740 != 0; }
+    bool checkPiyo() { return field_0x1e08 != 0; }
+    bool checkRide() { return mDrawHorse != 0; }
+    BOOL checkZeldaEndDemoCut() { return FALSE; }
 
     /* 0x05AC */ request_of_phase_process_class mPhaseReq;
     /* 0x05B4 */ request_of_phase_process_class mHorsePhaseReq;

@@ -255,6 +255,7 @@ public:
     int callHorse(const cXyz* param_0) { return (this->*m_callHorse)(param_0); }
 
     daHoZelda_c* getZeldaActor() { return (daHoZelda_c*)m_zeldaActorKeep.getActor(); }
+    void setZeldaActor(fopAc_ac_c* i_actor) { m_zeldaActorKeep.setData(i_actor); }
 
     bool checkTurnStandCamera() const { return checkResetStateFlg0(RFLG0_TURN_STAND_CAMERA); }
     bool checkTurnStand() const { return checkResetStateFlg0(RFLG0_TURN_STAND); }
@@ -324,6 +325,14 @@ public:
     u32 getShadowID() const { return m_shadowID; }
 
     bool checkInputOnR() const { return m_padStickValue > 0.05f; }
+
+    void onBagMaterial() {
+        m_modelData->getMaterialNodePointer(5)->getShape()->show();
+    }
+
+    void offBagMaterial() {
+        m_modelData->getMaterialNodePointer(5)->getShape()->hide();
+    }
 
     static u16 const m_footJointTable[];
     static f32 const m_callLimitDistance2;
