@@ -816,7 +816,7 @@ public:
             /* 0x40 */ fopAc_ac_c* field_0x40;
             /* 0x44 */ fpc_ProcID field_0x44;
             /* 0x48 */ u8 field_0x48[0x4c - 0x48];
-            /* 0x4C */ u32 field_0x4c;
+            /* 0x4C */ s32 field_0x4c;
         } fixedPos;
         struct trans {
             /* 0x00 */ cXyz mStartEye;
