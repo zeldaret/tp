@@ -512,9 +512,6 @@ bool dCamera_c::pauseEvCamera() {
     return true;
 }
 
-/* 804253A8-804253B4 0520C8 000C+00 1/1 0/0 0/0 .bss             @4202 */
-static u8 lit_4202[12];
-
 namespace {
     /* 804253B4-804253C0 0520D4 000C+00 2/3 0/0 0/0 .bss WolfAdditionVec__25@unnamed@d_ev_camera_cpp@*/
     static cXyz WolfAdditionVec;
@@ -522,7 +519,6 @@ namespace {
 
 /* 800897E8-8008A510 084128 0D28+00 0/0 1/0 0/0 .text            fixedFrameEvCamera__9dCamera_cFv */
 bool dCamera_c::fixedFrameEvCamera() {
-    // NONMATCHING
     if (mCurCamStyleTimer == 0) {
         cXyz sp38, sp44;
         getEvXyzData(&sp44, "Eye", mEye);
@@ -534,9 +530,9 @@ bool dCamera_c::fixedFrameEvCamera() {
         getEvStringData(&mWork.event.field_0x28, "RelUseMask", "oo");
 
         #ifdef DEBUG
-        if (strlen(mWork.event.field_0x28) != 2) {
+        if (strlen(&mWork.event.field_0x28) != 2) {
             OSReport("camera: event:                   bad length -> xx\n");
-            strcpy(mWork.event.field_0x28, "xx");
+            strcpy(&mWork.event.field_0x28, "xx");
             JUTAssertion::showAssert(JUTAssertion::getSDevice(), "d_ev_camera.cpp", 0x32e, "0");
             OSPanic("d_ev_camera.cpp", 0x32e, "Halt");
         }
@@ -627,7 +623,7 @@ bool dCamera_c::fixedFrameEvCamera() {
             f32 fVar3 = cXyz(mRelPos2 - positionOf(mpPlayerActor)).abs();
             sp44.x = -sp44.x;
             mRelPos2 = relationalPos(mWork.event.mRelActor, &sp44);
-            f32 fVar4 = cXyz().abs(mRelPos2 - positionOf(mpPlayerActor));
+            f32 fVar4 = cXyz(mRelPos2 - positionOf(mpPlayerActor)).abs();
             if (fVar3 > fVar4) {
                 sp44.x = -sp44.x;
             }
@@ -649,7 +645,7 @@ bool dCamera_c::fixedFrameEvCamera() {
     field_0x5c.mFovy = mWork.event.mFovy;
 
     if (mWork.event.field_0x30) {
-        field_0x5c.mBank = (s16)(int)(mWork.event.field_0x20 * 182.04445f);
+        field_0x5c.mBank = cAngle::d2s(mWork.event.field_0x20);
         setFlag(0x400);
     }
 
@@ -663,8 +659,8 @@ bool dCamera_c::fixedFrameEvCamera() {
 
 /* 8008A510-8008A974 084E50 0464+00 0/0 1/0 0/0 .text            stokerEvCamera__9dCamera_cFv */
 bool dCamera_c::stokerEvCamera() {
-    // NONMATCHING
     if (mCurCamStyleTimer == 0) {
+        cXyz unused_0, unused_1;
         getEvXyzData(&mWork.stoker.field_0x4, "EyeGap", cXyz::Zero);
         getEvXyzData(&mWork.stoker.field_0x10, "CtrGap", cXyz::Zero);
         getEvFloatData(&mWork.stoker.field_0x20, "EyeCus", 1.0f);
@@ -698,7 +694,7 @@ bool dCamera_c::stokerEvCamera() {
         cStack_d0.U(cStack_d0.U() + mWork.stoker.field_0x30->shape_angle.y);
 
         cXyz cStack_38 = attentionPos(mWork.stoker.field_0x30) + cStack_d0.Xyz();
-        field_0x5c.mCenter += (cStack_38 - field_0x5c.mCenter) * mWork.stoker.field_0x20;
+        field_0x5c.mCenter += (cStack_38 - field_0x5c.mCenter) * mWork.stoker.field_0x1c;
     }
 
     if (mWork.stoker.field_0x2c) {
@@ -708,11 +704,11 @@ bool dCamera_c::stokerEvCamera() {
         }
 
         cStack_d0.Val(mWork.talk.field_0x4);
-        cSAngle acStack_e0;
-        cStack_d0.V(acStack_e0 + cStack_d0.V());
-        cSAngle acStack_e4;
-        cStack_d0.U(acStack_e4 + cStack_d0.U());
-        field_0x5c.mEye += (((attentionPos(mWork.stoker.field_0x30)) + cStack_d0.Xyz()) - field_0x5c.mEye) * mWork.stoker.field_0x20;
+        //cSAngle acStack_e0;
+        cStack_d0.V(cStack_d0.V() + mWork.stoker.field_0x2c->shape_angle.x);
+        cStack_d0.U(cStack_d0.U() + mWork.stoker.field_0x2c->shape_angle.y);
+        cXyz tmp_vec = attentionPos(mWork.stoker.field_0x2c) + cStack_d0.Xyz();
+        field_0x5c.mEye += (tmp_vec - field_0x5c.mEye) * mWork.stoker.field_0x20;
     }
 
     field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
@@ -720,7 +716,7 @@ bool dCamera_c::stokerEvCamera() {
 
     if (mWork.event.field_0x1) {
         cAngle this_00;
-        field_0x5c.mBank = this_00.d2s(mWork.chase.field_0x2c);
+        field_0x5c.mBank = this_00.d2s(mWork.chase.field_0x28);
         setFlag(0x400);
     }
 
@@ -871,30 +867,22 @@ bool dCamera_c::rollingEvCamera() {
 namespace {
     /* 804253CC-804253D8 0520EC 000C+00 1/2 0/0 0/0 .bss MidnaAdditionVec__25@unnamed@d_ev_camera_cpp@ */
     static cXyz MidnaAdditionVec;
-} // namesoace
 
-/* 804528F0-804528F8 000EF0 0004+04 1/1 0/0 0/0 .sdata2          @5959 */
-SECTION_SDATA2 static f32 lit_5959[1 + 1 /* padding */] = {
-    100000.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 804528F8-80452900 000EF8 0008+00 10/10 0/0 0/0 .sdata2          @5962 */
-SECTION_SDATA2 static f64 lit_5962 = 4503601774854144.0 /* cast s32 to float */;
+    /* 8008E750-8008E774 089090 0024+00 1/1 0/0 0/0 .text isRelChar__25@unnamed@d_ev_camera_cpp@Fc */
+    static inline bool isRelChar(char param_1) {
+        return param_1 != '-' && param_1 != 'x';
+    }
+} // namespace
 
 /* 8008B9B0-8008BE2C 0862F0 047C+00 0/0 1/0 0/0 .text            fixedPositionEvCamera__9dCamera_cFv */
 bool dCamera_c::fixedPositionEvCamera() {
     // NONMATCHING
-    static cXyz DefaultGap_5851;
-    if (struct_80450F88[0] == 0) {
-        DefaultGap_5851 = cXyz::Zero;
-        struct_80450F88[0] = 1;
-    }
+    static cXyz DefaultGap(cXyz::Zero);
+    bool rv = true;
 
     if (mCurCamStyleTimer == 0) {
-        getEvXyzData(&mWork.event.field_0x10, "CtrGap", DefaultGap_5851);
         cXyz sp24;
+        getEvXyzData(&mWork.event.field_0x10, "CtrGap", DefaultGap);
         getEvXyzData(&sp24, "Eye", mEye);
         getEvFloatData(&mWork.fixedPos.field_0x28, "Fovy", mFovy);
         getEvFloatData(&mWork.fixedPos.field_0x30, "CtrCus", 1.0f);
@@ -904,8 +892,8 @@ bool dCamera_c::fixedPositionEvCamera() {
         getEvStringData(&mWork.event.field_0x48, "RelUseMask", "o");
         mWork.event.field_0x0 = getEvIntData(&mWork.event.field_0x4c, "Timer", -1);
 
-        mWork.fixedPos.field_0x40 = getEvActor("Target", "@PLAYER");
-        if (mWork.fixedPos.field_0x40 == NULL) {
+        //mWork.fixedPos.field_0x40 = getEvActor("Target", "@PLAYER");
+        if ((mWork.fixedPos.field_0x40 = getEvActor("Target", "@PLAYER")) == NULL) {
             OS_REPORT("camera: event: error: target actor missing\n");
             return 1;
         }
@@ -913,7 +901,7 @@ bool dCamera_c::fixedPositionEvCamera() {
         mWork.fixedPos.field_0x44 = fopAcM_GetID(mWork.fixedPos.field_0x40);
         mWork.fixedPos.field_0x3c = getEvActor("RelActor");
 
-        if (mWork.fixedPos.field_0x3c && (mWork.event.field_0x48 != '-' && mWork.event.field_0x48 != 'x')) {
+        if (mWork.fixedPos.field_0x3c && isRelChar(mWork.event.field_0x48)) {
             mWork.fixedPos.field_0x4 = relationalPos(mWork.fixedPos.field_0x3c, &sp24);
         } else {
             mWork.fixedPos.field_0x4 = sp24;        
@@ -923,10 +911,9 @@ bool dCamera_c::fixedPositionEvCamera() {
         field_0x158.field_0x0 = true;
     }
 
-    bool rv;
     if (fopAcM_SearchByID(mWork.fixedPos.field_0x44) == NULL) {
         OS_REPORT("camera: event: error: target actor dead\n");
-        rv = 1;
+        return 1;
     }
 
     mWork.fixedPos.field_0x1c = relationalPos(mWork.rolling.field_0x40, &mWork.talk.field_0x10);
@@ -936,8 +923,8 @@ bool dCamera_c::fixedPositionEvCamera() {
 
     f32 fVar1 = mWork.rolling.field_0x38;
     if (mWork.event.field_0x0 && mCurCamStyleTimer < mWork.fixedPos.field_0x4c) {
-        fVar1 = mWork.rolling.field_0x34 + (mWork.rolling.field_0x38 - mWork.rolling.field_0x34) * (mCurCamStyleTimer / mWork.rolling.field_0x4c);
-        rv = 0;
+        fVar1 = mWork.rolling.field_0x34 + (mWork.rolling.field_0x38 - mWork.rolling.field_0x34) * (mCurCamStyleTimer / f32(mWork.fixedPos.field_0x4c));
+        rv = false;
     }
 
     if (field_0x5c.mDirection.R() > fVar1) {
@@ -973,13 +960,6 @@ bool dCamera_c::uniformBrakeEvCamera() {
 bool dCamera_c::uniformAcceleEvCamera() {
     transEvCamera(3);
 }
-
-namespace {
-    /* 8008E750-8008E774 089090 0024+00 1/1 0/0 0/0 .text isRelChar__25@unnamed@d_ev_camera_cpp@Fc */
-    static bool isRelChar(char param_1) {
-        return param_1 != '-' && param_1 != 'x';
-    }
-} // namespace
 
 /* 8008BE98-8008E750 0867D8 28B8+00 3/3 0/0 0/0 .text            transEvCamera__9dCamera_cFi */
 bool dCamera_c::transEvCamera(int param_1) {
