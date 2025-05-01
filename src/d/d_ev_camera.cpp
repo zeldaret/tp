@@ -3498,22 +3498,111 @@ bool dCamera_c::possessedEvCamera() {
     return rv;
 }
 
-/* ############################################################################################## */
-/* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8037AC8F = "Centers";
-SECTION_DEAD static char const* const stringBase_8037AC97 = "Eyes";
-SECTION_DEAD static char const* const stringBase_8037AC9C = "Fovys";
-SECTION_DEAD static char const* const stringBase_8037ACA2 = "Choice";
-#pragma pop
-
-/* 80452B94-80452B98 001194 0004+00 1/1 0/0 0/0 .sdata2          @10437 */
-SECTION_SDATA2 static f32 lit_10437 = 1.0f / 100.0f;
-
 /* 80095010-8009544C 08F950 043C+00 0/0 1/0 0/0 .text            fixedFramesEvCamera__9dCamera_cFv */
 bool dCamera_c::fixedFramesEvCamera() {
     // NONMATCHING
+    if (mCurCamStyleTimer == 0) {
+        cXyz sp30, sp3c;
+        mWork.fixedFrames.field_0x38 = 9999;
+
+        int substanceNum = dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, "Centers");
+        if (substanceNum != 0) {
+            mWork.fixedFrames.field_0x1c[1] = dComIfGp_evmng_getMyXyzP(mEventData.field_0x4, "Centers");
+            if (mWork.fixedFrames.field_0x38 > substanceNum) {
+                mWork.fixedFrames.field_0x38 = substanceNum;
+            }
+        } else {
+            OS_REPORT("camera: event: error: %s (xyz*) not found\n", "Centers");
+            return 1;
+        }
+
+
+        substanceNum = dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, "Eyes");
+        if (substanceNum != 0) {
+            mWork.fixedFrames.field_0x1c[0] = dComIfGp_evmng_getMyXyzP(mEventData.field_0x4, "Eyes");
+            if (mWork.fixedFrames.field_0x38 > substanceNum) {
+                mWork.fixedFrames.field_0x38 = substanceNum;
+            }
+        } else {
+            OS_REPORT("camera: event: error: %s (xyz*) not found\n", "Eyes");
+            return 1;
+        }
+
+
+        substanceNum = dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, "Fovys");
+        if (substanceNum != 0) {
+            mWork.fixedFrames.field_0x24[0] = dComIfGp_evmng_getMyFloatP(mEventData.field_0x4, "Fovys");
+            if (mWork.fixedFrames.field_0x38 > substanceNum) {
+                mWork.fixedFrames.field_0x38 = substanceNum;
+            }
+        } else {
+            OS_REPORT("camera: event: error: %s (float*) not found\n", "Fovys");
+            return 1;
+        }
+
+
+        mWork.fixedFrames.field_0x0 = getEvIntData(&mWork.fixedFrames.mTimer, "Timer", 1);
+        getEvStringData(&mWork.fixedFrames.mRelUseMask, "RelUseMask", "oo");
+        #ifdef DEBUG
+        if (strlen(&mWork.fixedFrames.mRelUseMask) != 2) {
+            OSReport("camera: event:                   bad length -> xx\n");
+            strcpy(&mWork.fixedFrames.mRelUseMask, "xx");
+            JUTAssertion::showAssert(JUTAssertion::getSDevice(), "d_ev_camera.cpp", 0x129c, "Halt");
+            OSPanic("d_ev_camera.cpp", 0x129c, "Halt");
+        }
+        #endif
+
+        mWork.fixedFrames.mRelActor = getEvActor("RelActor");
+
+        int iVar1 = 0;
+        getEvIntData(&mWork.fixedFrames.mChoice, "Choice", 0);
+        if (mWork.fixedFrames.mChoice == 1) {
+            iVar1 = fabsf(cM_rndFX(mWork.fixedFrames.field_0x38 - 0.01f));
+        }
+
+        for (int i = 0; i < mWork.fixedFrames.field_0x38; i++) {
+            sp30 = *mWork.fixedFrames.field_0x1c[iVar1 * 12];
+            sp3c = *mWork.fixedFrames.field_0x1c[iVar1 * 12];
+
+            if (mWork.fixedFrames.mRelActor && mWork.fixedFrames.mRelUseMask == 111) {
+                mWork.fixedFrames.field_0x4 = relationalPos(mWork.fixedFrames.mRelActor, &sp30);
+            } else {
+                mWork.fixedFrames.field_0x4 = sp30;
+            }
+
+            if (mWork.fixedFrames.mRelActor && mWork.fixedFrames.field_0x31 == 111) {
+                mWork.fixedFrames.field_0x10 = relationalPos(mWork.fixedFrames.mRelActor, &sp3c);
+            } else {
+                mWork.fixedFrames.field_0x10 = sp3c;
+            }
+
+            mWork.fixedFrames.field_0x24[1] = mWork.fixedFrames.field_0x24[iVar1];
+
+            if (!lineBGCheck(&mWork.fixedFrames.field_0x4, &mWork.fixedFrames.field_0x10, 0x4007)) {
+                if (!lineCollisionCheck(mWork.fixedFrames.field_0x4, mWork.fixedFrames.field_0x10, mpPlayerActor, mWork.fixedFrames.mRelActor, NULL)) {
+                    break;
+                }
+            }
+
+            iVar1++;
+
+            if (iVar1 >= mWork.fixedFrames.field_0x38) {
+                iVar1 = 0;
+            }
+        }
+
+        field_0x158.field_0x0 = true;
+    }
+
+    field_0x5c.mCenter = mWork.fixedFrames.field_0x4;
+    field_0x5c.mEye = mWork.fixedFrames.field_0x10;
+    field_0x5c.mFovy = *mWork.fixedFrames.field_0x24[1];
+    field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
+    if (mWork.fixedFrames.field_0x0 && mWork.fixedFrames.mTimer < mCurCamStyleTimer) {
+        return 0;
+    }
+
+    return 1;
 }
 
 /* 8009544C-800956E4 08FD8C 0298+00 0/0 1/0 0/0 .text            bSplineEvCamera__9dCamera_cFv */
@@ -3753,6 +3842,60 @@ SECTION_SDATA2 static f32 lit_11068 = 245.0f;
 /* 80095FD0-800965AC 090910 05DC+00 0/0 1/0 0/0 .text            digHoleEvCamera__9dCamera_cFv */
 bool dCamera_c::digHoleEvCamera() {
     // NONMATCHING
+    struct mWork::digHole* digHole = &mWork.digHole;
+    if (mCurCamStyleTimer == 0) {
+        digHole->field_0x0 = 0;
+        getEvIntData(&digHole->mType, "Type", 3);
+        if (digHole->mType == 1) {
+            mEventData.field_0x20 = 0;
+        }
+
+        digHole->field_0x8 = 60;
+        digHole->field_0xc = 0.05f;
+        digHole->field_0x10 = 1;
+        if ((digHole->mType & 1) != 0) {
+            cSAngle acStack_158(field_0x5c.mDirection.U() - directionOf(mpPlayerActor));
+            s16 sVar1 = cSAngle::_90.Val();
+            s16 sVar2 = acStack_158.Abs();
+            if (sVar2 < sVar1) {
+                cXyz sp70, sp7c;
+                cSGlobe cStack_138;
+                sp70 = relationalPos(mpPlayerActor, &cXyz(0.0f, -70.0f, -10.0f));
+                cStack_138.R(350.0f);
+                cStack_138.V(cSAngle(30.0f));
+
+                cSAngle acStack_164 = directionOf(mpPlayerActor);
+                f32 fVar1;
+                if (acStack_164 < cSAngle::_0) {
+                    fVar1 = 10.0f;
+                } else {
+                    fVar1 = -10.0f;
+                }
+
+                cStack_138.U(acStack_164.Inv() + cSAngle(fVar1));
+
+                sp7c = sp70 + cStack_138.Xyz();
+
+                if (!lineBGCheck(&sp70, &sp7c, 0x4007)) {
+                    field_0x5c.mFovy = 60.0f;
+                    field_0x5c.mCenter = sp70;
+                    field_0x5c.mDirection = cStack_138;
+                    field_0x5c.mEye = sp7c;
+                } else {
+                    digHole->field_0x10 = 0;
+                }
+            }
+        }
+
+        if ((digHole->mType & 2) != 0) {
+            digHole->field_0x14 = relationalPos(mpPlayerActor, &cXyz(0.0f, 0.0f, 245.0f));
+
+            cXyz spa0;
+            for (int i = 0; i < 3; i++) {
+
+            }
+        }
+    }
 }
 
 /* ############################################################################################## */

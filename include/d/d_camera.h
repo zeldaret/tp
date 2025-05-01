@@ -966,6 +966,19 @@ public:
             /* 0x24 */ fopAc_ac_c* mTargetActor;
             /* 0x28 */ cSGlobe field_0x28;
         } possessed;
+        struct {
+            /* 0x00 */ bool field_0x0;
+            /* 0x04 */ cXyz field_0x4;
+            /* 0x10 */ cXyz field_0x10;
+            /* 0x1C */ cXyz* field_0x1c[2];
+            /* 0x24 */ f32* field_0x24[2];
+            /* 0x2C */ fopAc_ac_c* mRelActor;
+            /* 0x30 */ char mRelUseMask;
+            /* 0x31 */ char field_0x31;
+            /* 0x34 */ int mTimer;
+            /* 0x38 */ int field_0x38;
+            /* 0x3C */ int mChoice;
+        } fixedFrames;
         struct bSpline {
             /* 0x00 */ cXyz* mCenters;
             /* 0x04 */ cXyz* mEyes;
@@ -1001,6 +1014,14 @@ public:
             /* 0x58 */ cSAngle field_0x58;
             /* 0x5A */ cSAngle field_0x5a;
         } twoActor0;
+        struct digHole {
+            /* 0x00 */ int field_0x0;
+            /* 0x04 */ int mType;
+            /* 0x08 */ int field_0x8;
+            /* 0x0C */ f32 field_0xc;
+            /* 0x10 */ int field_0x10;
+            /* 0x14 */ cXyz field_0x14;
+        } digHole;
         struct {
             u8 field_0x0[0x100];
         } bytes;
