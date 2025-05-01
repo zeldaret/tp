@@ -1598,9 +1598,9 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_tag_spring"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_tag_statue_evt"),
     ActorRel(NonMatching, "d_a_ykgr"),
-    ActorRel(NonMatching, "d_a_L7demo_dr"),
-    ActorRel(NonMatching, "d_a_L7low_dr"),
-    ActorRel(NonMatching, "d_a_L7op_demo_dr"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_L7demo_dr"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_L7low_dr"),
+    ActorRel(Equivalent, "d_a_L7op_demo_dr"), # weak func order
     ActorRel(MatchingFor("GZ2E01"), "d_a_b_bh"),
     ActorRel(NonMatching, "d_a_b_bq"),
     ActorRel(Equivalent, "d_a_b_dr"), # weak func order

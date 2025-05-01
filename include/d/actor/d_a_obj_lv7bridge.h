@@ -27,8 +27,13 @@ public:
     /* 80C87304 */ void Draw();
     /* 80C87458 */ void Delete();
 
+    void setDestroyAnmA() { field_0xa94 = 0; }
+    void setDestroyAnmB() { field_0xa94 = 1; }
+
 private:
-    /* 0x568 */ u8 field_0x568[0xaa4 - 0x568];
+    /* 0x568 */ u8 field_0x568[0xa94 - 0x568];
+    /* 0xA94 */ u8 field_0xa94;
+    /* 0xA95 */ u8 field_0xa95[0xaa4 - 0xA95];
 };
 
 STATIC_ASSERT(sizeof(daObjLv7Brg_c) == 0xaa4);
