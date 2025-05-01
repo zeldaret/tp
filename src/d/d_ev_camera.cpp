@@ -11,6 +11,8 @@
 #include "d/d_camera.h"
 #include "d/actor/d_a_midna.h"
 #include "d/actor/d_a_player.h"
+#include "m_Do/m_Do_lib.h"
+#include "d/d_drawlist.h"
 
 extern "C" extern u8 struct_80450F88[8];
 
@@ -3035,16 +3037,16 @@ bool dCamera_c::useItem0EvCamera() {
     int local_1a8[5];
     local_1a8[0] = 4;
 
-    struct mWork::item0* item0 = &mWork.item0;
+    struct mWork::item* item = &mWork.item;
     if (mCurCamStyleTimer == 0) {
-        item0->field_0x0 = 0;
-        item0->field_0x44 = mCenter;
-        item0->field_0x50 = mEye;
-        item0->field_0x5c = mFovy;
+        item->field_0x0 = 0;
+        item->field_0x44 = mCenter;
+        item->field_0x50 = mEye;
+        item->field_0x5c = mFovy;
     }
 
     cXyz sp424(attentionPos(mpPlayerActor));
-    switch (item0->field_0x0) {
+    switch (item->field_0x0) {
         case 3:
         case 4:
         case 5:
@@ -3053,194 +3055,447 @@ bool dCamera_c::useItem0EvCamera() {
         case 8:
         case 9:
         case 0:
-            getEvIntData(&item0->field_0x8, "Type", 0);
-            item0->field_0x1c = 0;
-            item0->field_0x20 = 0;
+            getEvIntData(&item->mType, "Type", 0);
+            item->field_0x1c = 0;
+            item->field_0x20 = 0;
             break;
 
         case 11:
-            item0->field_0x0 = 10;
-            int iVar1 = item0->field_0x20 + 1;
-            item0->field_0x20 = iVar1;;
-            if (local_1a8[item0->field_0x8] <= iVar1) {
-                item0->field_0x20 = 0;
-                if ((field_0xa8 & local_1a8[item0->field_0x8]) == 0) {
+            item->field_0x0 = 10;
+            int iVar1 = item->field_0x20 + 1;
+            item->field_0x20 = iVar1;;
+            if (local_1a8[item->mType] <= iVar1) {
+                item->field_0x20 = 0;
+                if ((field_0xa8 & local_1a8[item->mType]) == 0) {
 
                 }
             }
             break;
 
         case 1:
-            f32 fVar1 = item0->field_0x20 / item0->field_0x4;
-            field_0x5c.mFovy += fVar1 * (item0->field_0x18 - field_0x5c.mFovy);
-            field_0x5c.mCenter += (item0->field_0xc - field_0x5c.mCenter) * fVar1;
+            f32 fVar1 = item->field_0x20 / item->field_0x4;
+            field_0x5c.mFovy += fVar1 * (item->field_0x18 - field_0x5c.mFovy);
+            field_0x5c.mCenter += (item->field_0xc - field_0x5c.mCenter) * fVar1;
 
             f32 fVar2 = field_0x5c.mDirection.R();
             cSAngle acStack_540 = field_0x5c.mDirection.V();
             cSAngle acStack_53c = field_0x5c.mDirection.U();
-            fVar2 = fVar2 + (fVar1 * (item0->field_0x24.R() - fVar2));
-            acStack_540 += (item0->field_0x24.V() - acStack_540) * fVar1;
-            acStack_53c += (item0->field_0x24.U() - acStack_53c) * fVar1;
+            fVar2 = fVar2 + (fVar1 * (item->field_0x24.R() - fVar2));
+            acStack_540 += (item->field_0x24.V() - acStack_540) * fVar1;
+            acStack_53c += (item->field_0x24.U() - acStack_53c) * fVar1;
 
             field_0x5c.mDirection.Val(fVar2, acStack_540, acStack_53c);
             field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
 
-            if (item0->field_0x20 < item0->field_0x4) break;
+            if (item->field_0x20 < item->field_0x4) break;
 
-            item0->field_0x0 = 2;
+            item->field_0x0 = 2;
             // fallthrough
         case 2:
-            field_0x5c.mCenter = item0->field_0xc;
+            field_0x5c.mCenter = item->field_0xc;
             field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
 
-            item0->field_0x1c++;
-            if (item0->field_0x1c == 1) {
-                if (item0->field_0x8 == 0) {
-                    item0->field_0x0 = 11;
-                    item0->field_0x8 = 4;
+            item->field_0x1c++;
+            if (item->field_0x1c == 1) {
+                if (item->mType == 0) {
+                    item->field_0x0 = 11;
+                    item->mType = 4;
                     break;
                 }
 
-                if (item0->field_0x8 == 7) {
-                    item0->field_0x0 = 11;
-                    item0->field_0x8 = 8;
+                if (item->mType == 7) {
+                    item->field_0x0 = 11;
+                    item->mType = 8;
                     break;
                 }
 
-                if (item0->field_0x8 == 11) {
-                    item0->field_0x0 = 999;
+                if (item->mType == 11) {
+                    item->field_0x0 = 999;
                     break;
                 }
             }
 
-            item0->field_0x0 = 99;
+            item->field_0x0 = 99;
             // fallthrough
         default:
             field_0x158.field_0x0 = true;
-            field_0x5c.mCenter = item0->field_0xc;
+            field_0x5c.mCenter = item->field_0xc;
             field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
     }
 
-    item0->field_0x20++;
+    item->field_0x20++;
     return 1;
 }
-
-/* ############################################################################################## */
-/* 8037AA08-8037AA40 007068 0038+00 1/1 0/0 0/0 .rodata          @9468 */
-SECTION_RODATA static u8 const lit_9468[56] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x82,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x07,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x41, 0xF0,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x50, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF,
-};
-COMPILER_STRIP_GATE(0x8037AA08, &lit_9468);
-
-/* 80452B44-80452B48 001144 0004+00 2/2 0/0 0/0 .sdata2          @9798 */
-SECTION_SDATA2 static f32 lit_9798 = 1.0f / 20.0f;
-
-/* 80452B48-80452B4C 001148 0004+00 1/1 0/0 0/0 .sdata2          @9799 */
-SECTION_SDATA2 static f32 lit_9799 = 90.0f;
-
-/* 80452B4C-80452B50 00114C 0004+00 1/1 0/0 0/0 .sdata2          @9800 */
-SECTION_SDATA2 static f32 lit_9800 = -180.0f;
-
-/* 80452B50-80452B54 001150 0004+00 1/1 0/0 0/0 .sdata2          @9801 */
-SECTION_SDATA2 static f32 lit_9801 = 170.0f;
 
 /* 800937AC-80094240 08E0EC 0A94+00 0/0 1/0 0/0 .text            useItem1EvCamera__9dCamera_cFv */
 bool dCamera_c::useItem1EvCamera() {
     // NONMATCHING
+    if (mCurCamStyleTimer == 0 && getEvIntData(&mWork.item.mType, "Type", 0), mWork.item.mType == 0) {
+        mWork.item.field_0x2c = field_0x5c.mCenter - attentionPos(mpPlayerActor);
+        mWork.item.field_0x38 = field_0x5c.mEye - attentionPos(mpPlayerActor);
+    }
+
+    if (mWork.item.mType == 0) {
+        mWork.item.field_0x2c.y += (20.0f - mWork.item.field_0x2c.y) * 0.05f;
+        mWork.item.field_0x2c.x += -mWork.item.field_0x2c.x * 0.05f;
+        mWork.item.field_0x2c.z += -mWork.item.field_0x2c.z * 0.05f;
+        
+        field_0x5c.mCenter = attentionPos(mpPlayerActor) + mWork.item.field_0x2c;
+        field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
+        field_0x5c.mDirection.R(field_0x5c.mDirection.R());
+
+        if (field_0x5c.mDirection.V() > cSAngle(70.0f)) {
+            field_0x5c.mDirection.V(cSAngle(70.0f));
+        }
+
+        if (field_0x5c.mDirection.V() < cSAngle(0.0f)) {
+            field_0x5c.mDirection.V(cSAngle(0.0f));
+        }
+
+        field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
+        field_0x5c.mFovy += (20.0f - field_0x5c.mFovy) * 0.05f;
+        return 1;
+    }
+
+    cXyz spec(0.0f, 0.0f, 0.0f);
+    cXyz spf8(0.0f, -70.0f, 70.0f);
+    cXyz sp104(0.0f, -30.0f, 70.0f);
+
+    daPy_py_c* mPlayer = daPy_getPlayerActorClass();
+    daMidna_c* mMidna = (daMidna_c*)daPy_py_c::getMidnaActor();
+    cXyz* sp264;
+    if (mIsWolf == 1) {
+        if (mPlayer->checkMidnaRide() && mMidna->checkNoDraw()) {
+            sp264 = &sp104;
+        } else {
+            sp264 = &spf8;
+        }
+    }
+
+    cXyz sp11c(10.0f, -60.0f, 0.0f);
+    cXyz spa8(90.0f, 20.0f, 180.0f);
+    cXyz sp9c(-100.0f, 50.0f, -180.0f);
+    cXyz sp90(60.0f, 150.0f, 165.0f);
+    cXyz sp84(-150.0f, 30.0f, 170.0f);
+    cXyz sp78(0.0f, -20.0f, 165.0f);
+    cXyz sp6c(40.0f, 150.0f, -85.0f);
+    int local_d8[12] = { 6, 65, 1, 1, 7, 0, 0, -1, 30, 80, 0, -1 };
+    cXyz* local_e0[2] = { &sp11c, &spa8 };
+    bool rv = false;
+
+    if (mCurCamStyleTimer == 0) {
+        mWork.item.field_0x0 = 0;
+        mWork.item.field_0x44 = mCenter;
+        mWork.item.field_0x50 = mEye;
+        mWork.item.field_0x5c = mFovy;
+    }
+
+    cXyz sp134 = attentionPos(mpPlayerActor);
+    cXyz sp140;
+    switch (mWork.item.field_0x0) {
+        case 0:
+            mWork.item.field_0x1c = 0;
+            mWork.item.field_0x0 = 1;
+            // fallthrough
+        case 1:
+            mWork.item.field_0x18 = local_d8[mWork.item.field_0x1c + mWork.item.mType];
+            mWork.item.field_0xc = field_0x5c.mCenter;
+            if (local_e0[mWork.item.field_0x1c + mWork.item.mType] != NULL) {
+                mWork.item.field_0xc = relationalPos(mpPlayerActor, &(*local_e0[mWork.item.mType + mWork.item.field_0x1c] + *sp264));
+
+                if ((field_0xa8 & local_d8[mWork.item.mType * 56 + mWork.item.field_0x1c * 28]) == 0) {
+                    cXyz cStack_14c = *local_e0[mWork.item.field_0x1c + mWork.item.mType];
+                    local_e0[mWork.item.field_0x1c + mWork.item.mType] += 12;
+                    local_e0[mWork.item.field_0x1c + mWork.item.mType] = &cStack_14c;
+                }
+
+                if (lineBGCheck(&sp134, &mWork.item.field_0xc, &sp140, 0x40b7)) {
+                    mWork.item.field_0xc = sp140 + cSGlobe().Norm();
+                }
+            }
+
+            cXyz sp128 = field_0x5c.mEye;
+            if (local_d8[mWork.item.field_0x1c + mWork.item.mType] != 0) {
+                int i;
+                for (i = 0; i < local_d8[mWork.item.field_0x1c + mWork.item.mType]; i++) {
+                    sp128 = relationalPos(mpPlayerActor, local_e0[mWork.item.field_0x1c]);
+                    fopAc_ac_c* mHorseActor = (fopAc_ac_c*)dComIfGp_getHorseActor();
+                    if (!lineBGCheck(&mWork.item.field_0xc, &sp128, 0x4007) && !lineBGCheck(&sp134, &sp128, 0x4007)) {
+                        if (!lineCollisionCheck(mWork.item.field_0xc, sp128, mpPlayerActor, mHorseActor, NULL)) {
+                            break;
+                        }
+                    }
+                }
+
+                if (local_d8[mWork.item.field_0x1c] <= i) {
+                    sp128 = field_0x5c.mEye;
+                }
+            }
+
+            mWork.item.field_0x24.Val(sp128 - mWork.item.field_0xc);
+            mWork.item.field_0x0 = 2;
+            mWork.item.field_0x4 = local_d8[mWork.item.field_0x1c];
+            mWork.item.field_0x20 = 1;
+            break;
+
+        case 2:
+            if (mWork.item.field_0x4 > 1) {
+                f32 fVar1 = mWork.item.field_0x20 / mWork.item.field_0x4;
+                field_0x5c.mFovy += fVar1 * (mWork.item.field_0x18 - field_0x5c.mFovy);
+                field_0x5c.mCenter += (mWork.item.field_0xc - field_0x5c.mCenter) * fVar1;
+
+                f32 fVar2 = field_0x5c.mDirection.R();
+                cSAngle acStack_28c = field_0x5c.mDirection.V();
+                cSAngle acStack_288 = field_0x5c.mDirection.U();
+                fVar2 = fVar2 + (fVar1 * (mWork.item.field_0x24.R() - fVar2));
+                acStack_28c += (mWork.item.field_0x24.V() - acStack_28c) * fVar1;
+                acStack_288 += (mWork.item.field_0x24.U() - acStack_288) * fVar1;
+                field_0x5c.mDirection.Val(fVar2, acStack_28c, acStack_288);
+                field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
+
+                if (mWork.item.field_0x20 < mWork.item.field_0x4) break;
+            }
+
+            mWork.item.field_0x0 = 3;
+            mWork.item.field_0x4 = local_d8[mWork.item.field_0x1c * 28 + mWork.item.mType];
+            mWork.item.field_0x20 = 1;
+            // fallthrough
+        case 3:
+            field_0x5c.mCenter = mWork.item.field_0xc;
+            field_0x5c.mEye = field_0x5c.mCenter + mWork.item.field_0x24.Xyz();
+            field_0x5c.mDirection = mWork.item.field_0x24;
+            field_0x5c.mFovy = mWork.item.field_0x18;
+
+            if (mWork.item.field_0x20 < mWork.item.field_0x4) break;
+
+            if (local_d8[mWork.item.mType * 14 + 7] != 0 && mWork.item.field_0x1c == 0) {
+                mWork.item.field_0x1c = 1;
+                mWork.item.field_0x0 = 1;
+                break;
+            }
+
+            mWork.item.field_0x0 = 99;
+            // fallthrough
+        default:
+            field_0x158.field_0x0 = true;
+            rv = true;
+    }
+
+    mWork.item.field_0x20++;
+    return rv;
 }
-
-/* ############################################################################################## */
-/* 8037AA40-8037AAA4 0070A0 0064+00 1/1 0/0 0/0 .rodata          @9811 */
-SECTION_RODATA static u8 const lit_9811[100] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x0C, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x48,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x00, 0x00, 0x00, 0x11, 0xFF, 0xFF, 0xFF, 0xFF,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x11, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x48,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8037AA40, &lit_9811);
-
-/* 8037AAA4-8037AABC 007104 0018+00 1/1 0/0 0/0 .rodata          @9812 */
-SECTION_RODATA static u8 const lit_9812[24] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3D, 0xCC, 0xCC, 0xCD,
-    0x3F, 0x33, 0x33, 0x33, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8037AAA4, &lit_9812);
-
-/* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8037AC79 = "CurvePoints";
-#pragma pop
-
-/* 80452B54-80452B58 001154 0004+00 1/1 0/0 0/0 .sdata2          @10118 */
-SECTION_SDATA2 static f32 lit_10118 = 32.0f;
-
-/* 80452B58-80452B5C 001158 0004+00 1/1 0/0 0/0 .sdata2          @10119 */
-SECTION_SDATA2 static f32 lit_10119 = 84.0f;
-
-/* 80452B5C-80452B60 00115C 0004+00 1/1 0/0 0/0 .sdata2          @10120 */
-SECTION_SDATA2 static f32 lit_10120 = 134.0f;
-
-/* 80452B60-80452B64 001160 0004+00 1/1 0/0 0/0 .sdata2          @10121 */
-SECTION_SDATA2 static f32 lit_10121 = 17.0f;
-
-/* 80452B64-80452B68 001164 0004+00 1/1 0/0 0/0 .sdata2          @10122 */
-SECTION_SDATA2 static f32 lit_10122 = 128.0f;
-
-/* 80452B68-80452B6C 001168 0004+00 1/1 0/0 0/0 .sdata2          @10123 */
-SECTION_SDATA2 static f32 lit_10123 = -62.0f;
-
-/* 80452B6C-80452B70 00116C 0004+00 1/1 0/0 0/0 .sdata2          @10124 */
-SECTION_SDATA2 static f32 lit_10124 = -84.0f;
-
-/* 80452B70-80452B74 001170 0004+00 1/1 0/0 0/0 .sdata2          @10125 */
-SECTION_SDATA2 static f32 lit_10125 = -164.0f;
-
-/* 80452B74-80452B78 001174 0004+00 1/1 0/0 0/0 .sdata2          @10126 */
-SECTION_SDATA2 static f32 lit_10126 = -220.0f;
 
 /* 80094240-80094A70 08EB80 0830+00 0/0 1/0 0/0 .text            getItemEvCamera__9dCamera_cFv */
 bool dCamera_c::getItemEvCamera() {
     // NONMATCHING
+    cXyz cStack_90[8] = {
+        cXyz(0.0f, -27.0f, 32.0f),
+        cXyz(84.0f, -18.0f, 134.0f),
+        cXyz(17.0f, 10.0f, -45.0f),
+        cXyz(-45.0f, 128.0f, 45.0f),
+        cXyz(0.0f, -27.0f, -62.0f),
+        cXyz(-84.0f, -18.0f, -164.0f),
+        cXyz(-12.0f, 10.0f, -130.0f),
+        cXyz(50.0f, 128.0f, -220.0f),
+    };
+
+    int local_fc[25] = {
+        0x00000000, 0x00000000, 0x42480000, 0x0000000C, 0x00000001, 
+        0x00000000, 0x00000000, 0x42480000, 0x0000000C, 0x00000000, 
+        0x00000000, 0x00000000, 0x42480000, 0x00000011, 0xFFFFFFFF, 
+        0x00000000, 0x00000000, 0x42480000, 0x00000011, 0xFFFFFFFF,
+        0x00000000, 0x00000000, 0x42480000, 0x00000011, 0x00000000,
+    };
+
+    cXyz* local_f8[8];
+    *local_f8 = cStack_90;
+
+    f32 fStack_ec[6] = { 0x00000000, 0x00000000, 0x3DCCCCCD, 0x3F333333, 0x3F800000, 0x3F800000 };
+
+    if (mCurCamStyleTimer == 0) {
+        getEvIntData(&mWork.getItem.field_0x8, "Type", mIsWolf == 1);
+
+        if (mWork.getItem.field_0x8 == 2) {
+            if (mIsWolf != 1) {
+                mWork.getItem.field_0x8 = 3;
+            } else {
+                mWork.getItem.field_0x8 = 4;
+            }
+
+            OS_REPORT("camera: event:                   => %d\n", mWork.getItem.field_0x8);
+        }
+
+        getEvIntData(&mWork.getItem.mTimer, "Timer", local_fc[mWork.getItem.field_0x8 * 5]);
+        int iVar1 = getEvFloatListData(&mWork.getItem.mCurvePoints, "CurvePoints");
+        mWork.getItem.field_0x18 = iVar1;
+        if (iVar1 == 0) {
+            mWork.getItem.mCurvePoints = fStack_ec;
+            mWork.getItem.field_0x18 = 6;
+        }
+
+        getEvXyzData(&mWork.getItem.mStartCenter, "StartCenter", mCenter);
+        getEvXyzData(&mWork.getItem.mStartEye, "StartEye", mEye);
+
+        mWork.getItem.mRelActor = getEvActor("RelActor", "@PLAYER");
+        mWork.getItem.mRelActorID = fopAcM_GetID(mWork.getItem.mRelActor);
+
+        cXyz mCenter;
+        getEvXyzData(&mCenter, "Center", *local_f8[mWork.getItem.field_0x8 * 5]);
+        mWork.getItem.field_0x44 = relationalPos(mWork.getItem.mRelActor, &mCenter);
+
+        if (local_fc[mWork.getItem.field_0x8 * 5] == 1) {
+            cSGlobe cStack_208(mEye - positionOf(mWork.getItem.mRelActor));
+            cSAngle acStack_224(cStack_208.U() - directionOf(mWork.getItem.mRelActor));
+            if (acStack_224 < cSAngle::_0) {
+                local_f8[mWork.getItem.field_0x8 * 5 + 1]->x = -local_f8[mWork.getItem.field_0x8 * 5 + 1]->x;
+            }
+
+            mCenter = relationalPos(mWork.getItem.mRelActor, local_f8[mWork.getItem.field_0x8 * 5 + 1]);
+            if (lineBGCheck(&mWork.getItem.field_0x44, &mCenter, 0x4007)) {
+                local_f8[mWork.getItem.field_0x8 * 5 + 1]->x = -local_f8[mWork.getItem.field_0x8 * 5 + 1]->x;
+            }
+        } else if (local_fc[mWork.getItem.field_0x8 * 5] == -1) {
+            cSGlobe cStack_210(mEye - positionOf(mWork.getItem.mRelActor));
+            cSAngle acStack_228(cStack_210.U() - directionOf(mWork.getItem.mRelActor));
+            if (acStack_228 > cSAngle::_0) {
+                local_f8[mWork.getItem.field_0x8 * 5 + 1]->x = -local_f8[mWork.getItem.field_0x8 * 5 + 1]->x;
+            }
+
+            mCenter = relationalPos(mWork.getItem.mRelActor, local_f8[mWork.getItem.field_0x8 * 5 + 1]);
+            if (lineBGCheck(&mWork.getItem.field_0x44, &mCenter, 0x4007)) {
+                local_f8[mWork.getItem.field_0x8 * 5 + 1]->x = -local_f8[mWork.getItem.field_0x8 * 5 + 1]->x;
+            }
+        }
+
+        getEvXyzData(&mCenter, "Eye", *local_f8[mWork.getItem.field_0x8 * 5 + 1]);
+        mWork.getItem.field_0x50 = relationalPos(mWork.getItem.mRelActor, &mCenter);
+        mWork.getItem.field_0x3c.Val(mWork.getItem.mStartEye - mWork.getItem.mStartCenter);
+        mWork.getItem.field_0x100.Val(mWork.getItem.field_0x50 - mWork.getItem.field_0x44);
+
+        mEventData.field_0xf0.Init(mWork.getItem.field_0x18, mWork.getItem.mTimer + 1);
+        mEventData.field_0xf0.Step();
+    }
+
+    if (mWork.getItem.mRelActor && fopAcM_SearchByID(mWork.getItem.mRelActorID) == NULL) {
+        OS_REPORT("camera: event: error: relational base actor dead\n");
+        return 1;
+    }
+        
+    if (mCurCamStyleTimer < mWork.getItem.mTimer) {
+        mEventData.field_0xf0.Step();
+        f32 fVar1 = mEventData.field_0xf0.Calc(mWork.getItem.mCurvePoints);
+
+        field_0x5c.mCenter = mWork.getItem.mStartCenter + ((mWork.getItem.field_0x44 - mWork.getItem.mStartCenter) * fVar1);
+        field_0x5c.mDirection.R(mWork.getItem.field_0x3c.R() + (fVar1 * (mWork.getItem.field_0x100.R() - mWork.getItem.field_0x3c.R())));
+        field_0x5c.mDirection.V(mWork.getItem.field_0x3c.V() + ((mWork.getItem.field_0x100.V() - mWork.getItem.field_0x3c.V()) * fVar1));
+        field_0x5c.mDirection.U(mWork.getItem.field_0x3c.U() + ((mWork.getItem.field_0x100.U() - mWork.getItem.field_0x3c.U()) * fVar1));
+        field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
+        field_0x5c.mFovy += fVar1 * (fStack_ec[mWork.getItem.field_0x8 * 5 + -1] - field_0x5c.mFovy);
+
+        return 0;
+    }
+
+    return 1;
 }
 
-/* ############################################################################################## */
-/* 8037AAF4-8037AAF4 007154 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8037AC85 = "Longitude";
-#pragma pop
+namespace {
+    inline static int get_camera_id(camera_class* i_camera) {
+        return fopCamM_GetParam(i_camera);
+    }
 
-/* 80452B78-80452B7C 001178 0004+00 1/1 0/0 0/0 .sdata2          @10278 */
-SECTION_SDATA2 static f32 lit_10278 = 0.5f;
-
-/* 80452B7C-80452B80 00117C 0004+00 1/1 0/0 0/0 .sdata2          @10279 */
-SECTION_SDATA2 static f32 lit_10279 = 99.0f / 100.0f;
-
-/* 80452B80-80452B84 001180 0004+00 1/1 0/0 0/0 .sdata2          @10280 */
-SECTION_SDATA2 static f32 lit_10280 = 63.0f / 100.0f;
-
-/* 80452B84-80452B88 001184 0004+00 1/1 0/0 0/0 .sdata2          @10281 */
-SECTION_SDATA2 static f32 lit_10281 = 7.0f / 10.0f;
-
-/* 80452B88-80452B8C 001188 0004+00 1/1 0/0 0/0 .sdata2          @10282 */
-SECTION_SDATA2 static f32 lit_10282 = 11.0f / 10.0f;
-
-/* 80452B8C-80452B90 00118C 0004+00 1/1 0/0 0/0 .sdata2          @10283 */
-SECTION_SDATA2 static f32 lit_10283 = 9.0f / 100.0f;
-
-/* 80452B90-80452B94 001190 0004+00 1/1 0/0 0/0 .sdata2          @10284 */
-SECTION_SDATA2 static f32 lit_10284 = 9.0f / 50.0f;
+    inline static dDlst_window_c* get_window(camera_class* i_camera) {
+        return dComIfGp_getWindow(dComIfGp_getCameraWinID(get_camera_id(i_camera)));
+    }
+}
 
 /* 80094A70-80095010 08F3B0 05A0+00 0/0 1/0 0/0 .text            possessedEvCamera__9dCamera_cFv */
 bool dCamera_c::possessedEvCamera() {
     // NONMATCHING
+    fopAc_ac_c* a_this = (fopAc_ac_c*)this;
+    struct mWork::possessed* possessed = &mWork.possessed;
+
+    bool rv = 0;
+    if (mCurCamStyleTimer == 0) {
+        possessed->field_0x0 = 0;
+    }
+
+    switch (possessed->field_0x0) {
+        default:
+            if (!(possessed->mTargetActor = getEvActor("Target", "@PLAYER"))) {
+                rv = 1;
+            } else {
+                getEvIntData(&possessed->mType, "Type", 0);
+                getEvIntData(&possessed->mTimer, "Timer", 10);
+                getEvFloatData(&possessed->mRadius, "Radius", 60.0f);
+                getEvFloatData(&possessed->mCushion, "Cushion", 1.0f);
+
+                f32 fVar1;
+                getEvFloatData(&fVar1, "Latitude", -5.0f);
+                possessed->mLatitude.Val(fVar1);
+                getEvFloatData(&fVar1, "Longitude", 0.0f);
+                possessed->mLongitude.Val(fVar1);
+
+                getEvFloatData(&possessed->mFovy, "Fovy", 45.0f);
+                getEvIntData(&possessed->mBlure, "Blure", 0);
+
+                if (possessed->mType == 0) {
+                    possessed->field_0x28.Val(possessed->mRadius, possessed->mLatitude, possessed->mLongitude + directionOf(possessed->mTargetActor));
+                    pushInfo(&field_0xd0[1], 2);
+                    field_0xd0[1].field_0x1e = 2;
+                } else {
+                    field_0x5c.mCenter = eyePos(a_this);
+                    possessed->field_0x28.Val(field_0xd0[1].mEye - field_0xd0[1].mCenter);
+                    field_0x5c.mDirection.Val(possessed->mRadius, possessed->mLatitude, possessed->mLongitude + directionOf(possessed->mTargetActor));
+                    field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
+                    field_0x5c.mFovy = possessed->mFovy;
+                }
+
+                possessed->field_0x0 = 1;
+                possessed->field_0xc = possessed->mTimer;
+                switch (possessed->mBlure) {
+                    case 1:
+                        StartBlure(possessed->mTimer, possessed->mTargetActor, 0.5f, 0.99f);
+                        break;
+
+                    case 2:
+                        StartBlure(possessed->mTimer, possessed->mTargetActor, 0.63f, 0.99f);
+                }
+            }
+            break;
+
+        case 1:
+            f32 fVar1 = 1.0f / possessed->field_0xc;
+            field_0x5c.mCenter += ((eyePos(a_this) - field_0x5c.mCenter) * fVar1);
+            field_0x5c.mDirection.R(field_0x5c.mDirection.R() + (fVar1 * (possessed->field_0x28.R() - field_0x5c.mDirection.R())));
+            field_0x5c.mDirection.V(field_0x5c.mDirection.V() + ((possessed->field_0x28.V() - field_0x5c.mDirection.V()) * fVar1));
+            field_0x5c.mDirection.U(field_0x5c.mDirection.U() + ((possessed->field_0x28.U() - field_0x5c.mDirection.U()) * fVar1));
+            field_0x5c.mEye += ((field_0x5c.mCenter + field_0x5c.mDirection.Xyz()) - field_0x5c.mEye) * possessed->mCushion;
+            field_0x5c.mFovy += fVar1 * (possessed->mFovy - field_0x5c.mFovy);
+
+            if (possessed->mBlure != 1) {
+                camera_class* mCamera;
+                dDlst_window_c* window = get_window(mCamera);
+                scissor_class* scissor = window->getScissor();
+                cXyz sp60;
+                cXyz mEyePos = eyePos(a_this);
+                mDoLib_project(&mEyePos, &sp60);
+                SetBlurePosition(sp60.x / scissor->width, sp60.y / scissor->height, 0.0f);
+                SetBlureAlpha((fVar1 * 0.699999988079071f) + 0.5f);
+                SetBlureScale((fVar1 * 0.09000000357627869f) + 1.1f, 0.98f - (fVar1 * 0.18000000715255737f), 0.0f);
+            }
+
+            possessed->field_0xc--;
+            if (possessed->field_0xc <= 0) {
+                possessed->field_0x0 = 99;
+            }
+            break;
+
+        case 99:
+            rv = 1;
+            field_0x158.field_0x0 = true;
+    }
+
+    return rv;
 }
 
 /* ############################################################################################## */

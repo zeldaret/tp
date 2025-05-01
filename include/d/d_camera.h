@@ -921,19 +921,51 @@ public:
             /* 0x44 */ f32 field_0x44;
             /* 0x48 */ f32 field_0x48;
         } load;
-        struct item0 {
+        struct item {
             /* 0x00 */ int field_0x0;
             /* 0x04 */ int field_0x4;
-            /* 0x08 */ int field_0x8;
+            /* 0x08 */ int mType;
             /* 0x0C */ cXyz field_0xc;
             /* 0x18 */ f32 field_0x18;
             /* 0x1C */ int field_0x1c;
             /* 0x20 */ int field_0x20;
             /* 0x24 */ cSGlobe field_0x24;
+            /* 0x2C */ cXyz field_0x2c;
+            /* 0x38 */ cXyz field_0x38;
             /* 0x44 */ cXyz field_0x44;
             /* 0x50 */ cXyz field_0x50;
             /* 0x5C */ f32 field_0x5c;
-        } item0;
+        } item;
+        struct getItem {
+            /* 0x000 */ u8 field_0x0[4];
+            /* 0x004 */ int mTimer;
+            /* 0x008 */ int field_0x8;
+            /* 0x00C */ fopAc_ac_c* mRelActor;
+            /* 0x010 */ fpc_ProcID mRelActorID;
+            /* 0x014 */ f32* mCurvePoints;
+            /* 0x018 */ int field_0x18;
+            /* 0x01C */ cXyz mStartCenter;
+            /* 0x028 */ cXyz mStartEye;
+            /* 0x034 */ u8 field_0x34[8];
+            /* 0x03C */ cSGlobe field_0x3c;
+            /* 0x044 */ cXyz field_0x44;
+            /* 0x050 */ cXyz field_0x50;
+            /* 0x100 */ cSGlobe field_0x100;
+        } getItem;
+        struct possessed {
+            /* 0x00 */ int field_0x0;
+            /* 0x04 */ int mType;
+            /* 0x08 */ int mTimer;
+            /* 0x0C */ int field_0xc;
+            /* 0x10 */ f32 mRadius;
+            /* 0x14 */ cSAngle mLatitude;
+            /* 0x16 */ cSAngle mLongitude;
+            /* 0x18 */ f32 mFovy;
+            /* 0x1C */ f32 mCushion;
+            /* 0x20 */ int mBlure;
+            /* 0x24 */ fopAc_ac_c* mTargetActor;
+            /* 0x28 */ cSGlobe field_0x28;
+        } possessed;
         struct bSpline {
             /* 0x00 */ cXyz* mCenters;
             /* 0x04 */ cXyz* mEyes;
