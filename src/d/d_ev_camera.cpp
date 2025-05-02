@@ -9,6 +9,7 @@
 #include "d/d_demo.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "d/d_camera.h"
+#include "d/d_camera.h"
 #include "d/actor/d_a_midna.h"
 #include "d/actor/d_a_player.h"
 #include "m_Do/m_Do_lib.h"
@@ -27,11 +28,26 @@ namespace {
                 }
             }
         }
+/* 800889F8-80088A7C 083338 0084+00 1/1 0/0 0/0 .text isStageEvent__25@unnamed@d_ev_camera_cpp@Fi */
+namespace {
+    static bool isStageEvent(int param_0) {
+        dStage_MapEventInfo_c* info = dComIfGp_getStage()->getMapEventInfo();
+        if (info != NULL) {
+            for (int i = 0; i < info->num; i++) {
+                if (param_0 == info->m_entries[i].field_0x4) {
+                    return true;
+                }
+            }
+        }
 
         return false;
     }
 } // namespace
+        return false;
+    }
+} // namespace
 
+/* 80088A7C-80088BBC 0833BC 0140+00 0/0 15/15 2/2 .text            StartEventCamera__9dCamera_cFiie */
 /* 80088A7C-80088BBC 0833BC 0140+00 0/0 15/15 2/2 .text            StartEventCamera__9dCamera_cFiie */
 int dCamera_c::StartEventCamera(int param_0, int param_1, ...) {
     if (chkFlag(0x20000000)) {
@@ -64,10 +80,12 @@ int dCamera_c::StartEventCamera(int param_0, int param_1, ...) {
 
 /* 80088BBC-80088C24 0834FC 0068+00 0/0 3/3 4/4 .text            EndEventCamera__9dCamera_cFi */
 int dCamera_c::EndEventCamera(int param_1) {
+int dCamera_c::EndEventCamera(int param_1) {
     if (!chkFlag(0x20000000)) {
         return 0;
     }
 
+    if (mEventData.field_0x14 == -1 || mEventData.field_0x14 == param_1) {
     if (mEventData.field_0x14 == -1 || mEventData.field_0x14 == param_1) {
         clrFlag(0x20000000);
         mEventData.field_0x0 = 1;
@@ -82,6 +100,7 @@ int dCamera_c::EndEventCamera(int param_1) {
     return 0;
 }
 
+/* 80088C24-80088CB0 083564 008C+00 10/10 0/0 0/0 .text            searchEventArgData__9dCamera_cFPc */
 /* 80088C24-80088CB0 083564 008C+00 10/10 0/0 0/0 .text            searchEventArgData__9dCamera_cFPc */
 int dCamera_c::searchEventArgData(char* i_eventName) {
     int i;
@@ -178,6 +197,7 @@ int dCamera_c::getEvFloatListData(f32** i_data, char* i_event) {
         *i_data = (f32*)mEventData.mEventParams[index].value;
         num = mEventData.mEventParams[index].field_0x10;
     } else if ((num = dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, i_event))) {
+    } else if ((num = dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, i_event))) {
         *i_data = dComIfGp_evmng_getMyFloatP(mEventData.field_0x4, i_event);
     } else {
 #if DEBUG
@@ -211,6 +231,7 @@ int dCamera_c::getEvXyzListData(cXyz** i_data, char* i_event) {
         *i_data = (cXyz*)mEventData.mEventParams[index].value;
         return mEventData.mEventParams[index].field_0x10;
     } else if ((num = dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, i_event))) {
+    } else if ((num = dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, i_event))) {
         *i_data = dComIfGp_evmng_getMyXyzP(mEventData.field_0x4, i_event);
     } else {
 #if DEBUG
@@ -231,6 +252,7 @@ int dCamera_c::getEvXyzListData(cXyz** i_data, char* i_event) {
     return num;
 }
 
+/* 80088FE0-8008908C 083920 00AC+00 1/1 0/0 0/0 .text            getEvStringPntData__9dCamera_cFPc */
 /* 80088FE0-8008908C 083920 00AC+00 1/1 0/0 0/0 .text            getEvStringPntData__9dCamera_cFPc */
 char* dCamera_c::getEvStringPntData(char* i_event) {
     char* string = NULL;
@@ -294,6 +316,7 @@ bool dCamera_c::getEvIntData(int* i_data, char* i_event, int param_2) {
 }
 
 /* 80089154-8008922C 083A94 00D8+00 11/11 1/1 0/0 .text            getEvFloatData__9dCamera_cFPfPcf */
+/* 80089154-8008922C 083A94 00D8+00 11/11 1/1 0/0 .text            getEvFloatData__9dCamera_cFPfPcf */
 bool dCamera_c::getEvFloatData(f32* i_data, char* i_event, f32 param_2) {
     if (chkFlag(0x20000000)) {
         int index = searchEventArgData(i_event);
@@ -352,6 +375,7 @@ bool dCamera_c::getEvXyzData(cXyz* i_data, char* i_event, cXyz param_2) {
 }
 
 /* 8008933C-8008941C 083C7C 00E0+00 7/7 1/1 0/0 .text            getEvStringData__9dCamera_cFPcPcPc */
+/* 8008933C-8008941C 083C7C 00E0+00 7/7 1/1 0/0 .text            getEvStringData__9dCamera_cFPcPcPc */
 bool dCamera_c::getEvStringData(char* i_data, char* i_event, char* param_2) {
     if (chkFlag(0x20000000)) {
         int index = searchEventArgData(i_event);
@@ -380,6 +404,7 @@ bool dCamera_c::getEvStringData(char* i_data, char* i_event, char* param_2) {
     return 1;
 }
 
+/* 8008941C-800894C4 083D5C 00A8+00 1/1 0/0 0/0 .text            getEvStringPntData__9dCamera_cFPcPc */
 /* 8008941C-800894C4 083D5C 00A8+00 1/1 0/0 0/0 .text            getEvStringPntData__9dCamera_cFPcPc */
 char* dCamera_c::getEvStringPntData(char* i_event, char* param_1) {
     char* string = NULL;
@@ -514,9 +539,6 @@ bool dCamera_c::pauseEvCamera() {
     return true;
 }
 
-/* 804253A8-804253B4 0520C8 000C+00 1/1 0/0 0/0 .bss             @4202 */
-static u8 lit_4202[12];
-
 namespace {
     /* 804253B4-804253C0 0520D4 000C+00 2/3 0/0 0/0 .bss WolfAdditionVec__25@unnamed@d_ev_camera_cpp@*/
     static cXyz WolfAdditionVec;
@@ -524,7 +546,6 @@ namespace {
 
 /* 800897E8-8008A510 084128 0D28+00 0/0 1/0 0/0 .text            fixedFrameEvCamera__9dCamera_cFv */
 bool dCamera_c::fixedFrameEvCamera() {
-    // NONMATCHING
     if (mCurCamStyleTimer == 0) {
         cXyz sp38, sp44;
         getEvXyzData(&sp44, "Eye", mEye);
@@ -536,9 +557,9 @@ bool dCamera_c::fixedFrameEvCamera() {
         getEvStringData(&mWork.event.field_0x28, "RelUseMask", "oo");
 
         #ifdef DEBUG
-        if (strlen(mWork.event.field_0x28) != 2) {
+        if (strlen(&mWork.event.field_0x28) != 2) {
             OSReport("camera: event:                   bad length -> xx\n");
-            strcpy(mWork.event.field_0x28, "xx");
+            strcpy(&mWork.event.field_0x28, "xx");
             JUTAssertion::showAssert(JUTAssertion::getSDevice(), "d_ev_camera.cpp", 0x32e, "0");
             OSPanic("d_ev_camera.cpp", 0x32e, "Halt");
         }
@@ -629,7 +650,7 @@ bool dCamera_c::fixedFrameEvCamera() {
             f32 fVar3 = cXyz(mRelPos2 - positionOf(mpPlayerActor)).abs();
             sp44.x = -sp44.x;
             mRelPos2 = relationalPos(mWork.event.mRelActor, &sp44);
-            f32 fVar4 = cXyz().abs(mRelPos2 - positionOf(mpPlayerActor));
+            f32 fVar4 = cXyz(mRelPos2 - positionOf(mpPlayerActor)).abs();
             if (fVar3 > fVar4) {
                 sp44.x = -sp44.x;
             }
@@ -651,7 +672,7 @@ bool dCamera_c::fixedFrameEvCamera() {
     field_0x5c.mFovy = mWork.event.mFovy;
 
     if (mWork.event.field_0x30) {
-        field_0x5c.mBank = (s16)(int)(mWork.event.field_0x20 * 182.04445f);
+        field_0x5c.mBank = cAngle::d2s(mWork.event.field_0x20);
         setFlag(0x400);
     }
 
@@ -665,8 +686,8 @@ bool dCamera_c::fixedFrameEvCamera() {
 
 /* 8008A510-8008A974 084E50 0464+00 0/0 1/0 0/0 .text            stokerEvCamera__9dCamera_cFv */
 bool dCamera_c::stokerEvCamera() {
-    // NONMATCHING
     if (mCurCamStyleTimer == 0) {
+        cXyz unused_0, unused_1;
         getEvXyzData(&mWork.stoker.field_0x4, "EyeGap", cXyz::Zero);
         getEvXyzData(&mWork.stoker.field_0x10, "CtrGap", cXyz::Zero);
         getEvFloatData(&mWork.stoker.field_0x20, "EyeCus", 1.0f);
@@ -700,7 +721,7 @@ bool dCamera_c::stokerEvCamera() {
         cStack_d0.U(cStack_d0.U() + mWork.stoker.field_0x30->shape_angle.y);
 
         cXyz cStack_38 = attentionPos(mWork.stoker.field_0x30) + cStack_d0.Xyz();
-        field_0x5c.mCenter += (cStack_38 - field_0x5c.mCenter) * mWork.stoker.field_0x20;
+        field_0x5c.mCenter += (cStack_38 - field_0x5c.mCenter) * mWork.stoker.field_0x1c;
     }
 
     if (mWork.stoker.field_0x2c) {
@@ -710,11 +731,11 @@ bool dCamera_c::stokerEvCamera() {
         }
 
         cStack_d0.Val(mWork.talk.field_0x4);
-        cSAngle acStack_e0;
-        cStack_d0.V(acStack_e0 + cStack_d0.V());
-        cSAngle acStack_e4;
-        cStack_d0.U(acStack_e4 + cStack_d0.U());
-        field_0x5c.mEye += (((attentionPos(mWork.stoker.field_0x30)) + cStack_d0.Xyz()) - field_0x5c.mEye) * mWork.stoker.field_0x20;
+        //cSAngle acStack_e0;
+        cStack_d0.V(cStack_d0.V() + mWork.stoker.field_0x2c->shape_angle.x);
+        cStack_d0.U(cStack_d0.U() + mWork.stoker.field_0x2c->shape_angle.y);
+        cXyz tmp_vec = attentionPos(mWork.stoker.field_0x2c) + cStack_d0.Xyz();
+        field_0x5c.mEye += (tmp_vec - field_0x5c.mEye) * mWork.stoker.field_0x20;
     }
 
     field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
@@ -722,7 +743,7 @@ bool dCamera_c::stokerEvCamera() {
 
     if (mWork.event.field_0x1) {
         cAngle this_00;
-        field_0x5c.mBank = this_00.d2s(mWork.chase.field_0x2c);
+        field_0x5c.mBank = this_00.d2s(mWork.chase.field_0x28);
         setFlag(0x400);
     }
 
@@ -873,30 +894,22 @@ bool dCamera_c::rollingEvCamera() {
 namespace {
     /* 804253CC-804253D8 0520EC 000C+00 1/2 0/0 0/0 .bss MidnaAdditionVec__25@unnamed@d_ev_camera_cpp@ */
     static cXyz MidnaAdditionVec;
-} // namesoace
 
-/* 804528F0-804528F8 000EF0 0004+04 1/1 0/0 0/0 .sdata2          @5959 */
-SECTION_SDATA2 static f32 lit_5959[1 + 1 /* padding */] = {
-    100000.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 804528F8-80452900 000EF8 0008+00 10/10 0/0 0/0 .sdata2          @5962 */
-SECTION_SDATA2 static f64 lit_5962 = 4503601774854144.0 /* cast s32 to float */;
+    /* 8008E750-8008E774 089090 0024+00 1/1 0/0 0/0 .text isRelChar__25@unnamed@d_ev_camera_cpp@Fc */
+    static inline bool isRelChar(char param_1) {
+        return param_1 != '-' && param_1 != 'x';
+    }
+} // namespace
 
 /* 8008B9B0-8008BE2C 0862F0 047C+00 0/0 1/0 0/0 .text            fixedPositionEvCamera__9dCamera_cFv */
 bool dCamera_c::fixedPositionEvCamera() {
     // NONMATCHING
-    static cXyz DefaultGap_5851;
-    if (struct_80450F88[0] == 0) {
-        DefaultGap_5851 = cXyz::Zero;
-        struct_80450F88[0] = 1;
-    }
+    static cXyz DefaultGap(cXyz::Zero);
+    bool rv = true;
 
     if (mCurCamStyleTimer == 0) {
-        getEvXyzData(&mWork.event.field_0x10, "CtrGap", DefaultGap_5851);
         cXyz sp24;
+        getEvXyzData(&mWork.event.field_0x10, "CtrGap", DefaultGap);
         getEvXyzData(&sp24, "Eye", mEye);
         getEvFloatData(&mWork.fixedPos.field_0x28, "Fovy", mFovy);
         getEvFloatData(&mWork.fixedPos.field_0x30, "CtrCus", 1.0f);
@@ -906,8 +919,8 @@ bool dCamera_c::fixedPositionEvCamera() {
         getEvStringData(&mWork.event.field_0x48, "RelUseMask", "o");
         mWork.event.field_0x0 = getEvIntData(&mWork.event.field_0x4c, "Timer", -1);
 
-        mWork.fixedPos.field_0x40 = getEvActor("Target", "@PLAYER");
-        if (mWork.fixedPos.field_0x40 == NULL) {
+        //mWork.fixedPos.field_0x40 = getEvActor("Target", "@PLAYER");
+        if ((mWork.fixedPos.field_0x40 = getEvActor("Target", "@PLAYER")) == NULL) {
             OS_REPORT("camera: event: error: target actor missing\n");
             return 1;
         }
@@ -915,7 +928,7 @@ bool dCamera_c::fixedPositionEvCamera() {
         mWork.fixedPos.field_0x44 = fopAcM_GetID(mWork.fixedPos.field_0x40);
         mWork.fixedPos.field_0x3c = getEvActor("RelActor");
 
-        if (mWork.fixedPos.field_0x3c && (mWork.event.field_0x48 != '-' && mWork.event.field_0x48 != 'x')) {
+        if (mWork.fixedPos.field_0x3c && isRelChar(mWork.event.field_0x48)) {
             mWork.fixedPos.field_0x4 = relationalPos(mWork.fixedPos.field_0x3c, &sp24);
         } else {
             mWork.fixedPos.field_0x4 = sp24;        
@@ -925,10 +938,9 @@ bool dCamera_c::fixedPositionEvCamera() {
         field_0x158.field_0x0 = true;
     }
 
-    bool rv;
     if (fopAcM_SearchByID(mWork.fixedPos.field_0x44) == NULL) {
         OS_REPORT("camera: event: error: target actor dead\n");
-        rv = 1;
+        return 1;
     }
 
     mWork.fixedPos.field_0x1c = relationalPos(mWork.rolling.field_0x40, &mWork.talk.field_0x10);
@@ -938,8 +950,8 @@ bool dCamera_c::fixedPositionEvCamera() {
 
     f32 fVar1 = mWork.rolling.field_0x38;
     if (mWork.event.field_0x0 && mCurCamStyleTimer < mWork.fixedPos.field_0x4c) {
-        fVar1 = mWork.rolling.field_0x34 + (mWork.rolling.field_0x38 - mWork.rolling.field_0x34) * (mCurCamStyleTimer / mWork.rolling.field_0x4c);
-        rv = 0;
+        fVar1 = mWork.rolling.field_0x34 + (mWork.rolling.field_0x38 - mWork.rolling.field_0x34) * (mCurCamStyleTimer / f32(mWork.fixedPos.field_0x4c));
+        rv = false;
     }
 
     if (field_0x5c.mDirection.R() > fVar1) {
@@ -983,6 +995,491 @@ namespace {
     }
 } // namespace
 
+/* 8008BE98-8008E750 0867D8 28B8+00 3/3 0/0 0/0 .text            transEvCamera__9dCamera_cFi */
+bool dCamera_c::transEvCamera(int param_1) {
+    // NONMATCHING
+    struct mWork::trans* trans = &mWork.trans;
+    
+    struct {
+        cXyz sp58;
+    } pos;
+
+    struct {
+        cXyz sp70;
+    } pos2;
+
+    char cVar13;
+    f32 fVar15;
+    bool rv = 0;
+    f32 local_d0[5] = { 0, 4, 7, 7, 0 };
+    cXyz spf0, spfc;
+
+    if (mCurCamStyleTimer == 0) {
+        if (!getEvIntData(&trans->mTimer, "Timer")) {
+            OS_REPORT("camera: event: error: UNITRANS no Timer\n");
+            return 1;
+        }
+
+        getEvIntData(&trans->mBSpCurve, "BSpCurve", param_1);
+        if (trans->mBSpCurve != 0) {
+            mEventData.field_0xf0.Init(local_d0[trans->mBSpCurve], trans->mTimer++);
+            mEventData.field_0xf0.Step();
+        } else {
+            int iVar1 = getEvFloatListData(&trans->mBSpPoints, "BSpPoints");
+            if (iVar1 != 0) {
+                mEventData.field_0xf0.Init(iVar1, trans->mTimer++);
+                mEventData.field_0xf0.Step();
+                trans->mBSpCurve = -1;
+            }
+        }
+
+        int slot;
+        if (!getEvIntData(&slot, "EndSlot")) {
+            getEvXyzData(&trans->mEye, "Eye", mEye);
+            getEvXyzData(&trans->mCenter, "Center", mCenter);
+            getEvFloatData(&trans->mFovy, "Fovy", mFovy);
+            trans->field_0x68 = getEvFloatData(&trans->field_0x3c, "Bank", mBank.Degree());
+        } else {
+            trans->mCenter = field_0xd0[slot].mCenter;
+            trans->mEye = field_0xd0[slot].mEye;
+            trans->mFovy = field_0xd0[slot].mFovy;
+            s16 sVar1 = field_0xd0[slot].mBank.Val();
+            trans->field_0x3c = sVar1;
+            if (sVar1 != 0.0f) {
+                trans->field_0x68 = true;
+            }
+        }
+
+        if (!getEvIntData(&slot, "StartSlot")) {
+            getEvXyzData(&trans->mStartEye, "StartEye", mEye);
+            getEvXyzData(&trans->mStartCenter, "StartCenter", mCenter);
+            getEvFloatData(&trans->mStartFovy, "StartFovy", mFovy);
+            trans->field_0x68 |= getEvFloatData(&trans->field_0x1c, "StartBank", mBank.Degree());
+        } else {
+            trans->mStartCenter = field_0xd0[slot].mCenter;
+            trans->mStartEye = field_0xd0[slot].mEye;
+            trans->mStartFovy = field_0xd0[slot].mFovy;
+            s16 sVar2 = field_0xd0[slot].mBank.Val();
+            trans->field_0x1c = sVar2;
+            if (sVar2 != 0.0f) {
+                trans->field_0x68 = true;
+            }
+        }
+
+        getEvIntData(&trans->mTransType, "TransType", 0);
+        trans->mRelActor = getEvActor("RelActor");
+        getEvStringData(&trans->mRelUseMask, "RelUseMask", "--oo");
+        getEvFloatData(&trans->mCushion, "Cushion", 1.0f);
+
+        if (trans->mRelActor) {
+            trans->mRelActorID = fopAcM_GetID(trans->mRelActor);
+            if (mIsWolf == 1 && trans->mRelActor == mpPlayerActor) {
+                daPy_py_c* mPlayer = (daPy_py_c*)mpPlayerActor;
+                daMidna_c* mMidna =  daPy_py_c::getMidnaActor();
+                cXyz mAdditionVec = WolfAdditionVec;
+                if (mPlayer->checkMidnaRide() != 0 && !mMidna->checkNoDraw()) {
+                    mAdditionVec = MidnaAdditionVec;
+                }
+
+                if (trans->mRelUseMask == 119) {
+                    trans->mStartCenter += mAdditionVec;
+                }
+                if (trans->mRelUseMask == 87) {
+                    trans->mStartCenter -= mAdditionVec;
+                }
+
+                if (trans->field_0x49 == 119) {
+                    trans->mStartEye += mAdditionVec;
+                }
+                if (trans->field_0x49 == 87) {
+                    trans->mStartEye -= mAdditionVec;
+                }
+
+                if (trans->field_0x4a == 119) {
+                    trans->mCenter += mAdditionVec;
+                }
+                if (trans->field_0x4a == 87) {
+                    trans->mCenter -= mAdditionVec;
+                }
+
+                if (trans->field_0x4b == 119) {
+                    trans->mEye += mAdditionVec;
+                }
+                if (trans->field_0x4b == 87) {
+                    trans->mEye -= mAdditionVec;
+                }
+            }
+
+            if (trans->field_0x49 == 114) {
+                spf0 = relationalPos(trans->mRelActor, &trans->mStartCenter);
+                if ((field_0xac & 1) != 0) {
+                    trans->mStartEye.x = -trans->mStartEye.x;
+                }
+
+                spfc = relationalPos(trans->mRelActor, &trans->mStartEye);
+                if (lineBGCheck(&spf0, &spfc, 0x4007)) {
+                    trans->mStartEye.x = -trans->mStartEye.x;
+                }
+            }
+
+            if (trans->mRelUseMask == 110 || trans->field_0x49 == 110) {
+                cSGlobe cStack_7b8(mEye - positionOf(trans->mRelActor));
+                cSAngle acStack_898 = cStack_7b8.U() - directionOf(trans->mRelActor);
+                if (acStack_898 < cSAngle::_0) {
+                    if (trans->mRelUseMask == 110) {
+                        trans->mStartCenter.x = -trans->mStartCenter.x;
+                    }
+                    if (trans->field_0x49 == 110) {
+                        trans->mStartEye.x = -trans->mStartEye.x;
+                    }
+                }
+
+                spf0 = relationalPos(trans->mRelActor, &trans->mCenter);
+                spfc = relationalPos(trans->mRelActor, &trans->mEye);
+                if (lineBGCheck(&spf0, &spfc, 0x4007)) {
+                    trans->mStartEye.x = -trans->mStartEye.x;
+                }
+            }
+
+            if (trans->field_0x4a == 110 || trans->field_0x4b == 110) {
+                cSGlobe cStack_7c0(mEye - positionOf(trans->mRelActor));
+                cSAngle acStack_89c = cStack_7c0.U() - directionOf(trans->mRelActor);
+                if (acStack_89c < cSAngle::_0) {
+                    if (trans->field_0x4a == 110) {
+                        trans->mCenter.x = -trans->mCenter.x;
+                    }
+
+                    if (trans->field_0x4b == 110) {
+                        trans->mEye.x = -trans->mEye.x;
+                    }
+                }
+
+                spf0 = relationalPos(trans->mRelActor, &trans->mCenter);
+                spfc = relationalPos(trans->mRelActor, &trans->mEye);
+                if (lineBGCheck(&spf0, &spfc, 0x4007)) {
+                    trans->mEye.x = -trans->mEye.x;
+                }
+            }
+
+            if (trans->mRelUseMask == 78 || trans->field_0x49 == 78) {
+                cSGlobe cStack_7c8(mEye - positionOf(trans->mRelActor));
+                cSAngle acStack_8a0 = cStack_7c8.U() - directionOf(trans->mRelActor);
+                if (acStack_8a0 > cSAngle::_0) {
+                    if (trans->mRelUseMask == 78) {
+                        trans->mStartCenter.x = -trans->mStartCenter.x;
+                    }
+
+                    if (trans->field_0x49 == 78) {
+                        trans->mStartEye.x = -trans->mStartEye.x;
+                    }
+                }
+
+                spf0 = relationalPos(trans->mRelActor, &trans->mStartCenter);
+                spfc = relationalPos(trans->mRelActor, &trans->mStartEye);
+                if (lineBGCheck(&spf0, &spfc, 0x4007)) {
+                    trans->mStartEye.x = -trans->mStartEye.x;
+                }
+            }
+
+            if (trans->field_0x4a == 78 || trans->field_0x4b == 78) {
+                cSGlobe cStack_7d0(mEye - positionOf(trans->mRelActor));
+                cSAngle acStack_8a4 = cStack_7d0.U() - directionOf(trans->mRelActor);
+                if (acStack_8a4 > cSAngle::_0) {
+                    if (trans->field_0x4a == 78) {
+                        trans->mCenter.x = -trans->mCenter.x;
+                    }
+
+                    if (trans->field_0x4b == 78) {
+                        trans->mEye.x = -trans->mEye.x;
+                    }
+                }
+
+                spf0 = relationalPos(trans->mRelActor, &trans->mCenter);
+                spfc = relationalPos(trans->mRelActor, &trans->mEye);
+                if (lineBGCheck(&spf0, &spfc, 0x4007)) {
+                    trans->mEye.x = -trans->mEye.x;
+                }
+            }
+
+            if (trans->mRelUseMask == 102) {
+                cSGlobe cStack_7d8(trans->mStartCenter);
+                cStack_7d8.U(cStack_7d8.U() + directionOf(trans->mRelActor));
+                trans->mStartCenter = attentionPos(trans->mRelActor) + cStack_7d8.Xyz();
+                trans->mRelUseMask = 120;
+            }
+
+            if (trans->field_0x49 == 102) {
+                cSGlobe cStack_7e0(trans->mStartEye);
+                cStack_7e0.U(cStack_7e0.U() + directionOf(trans->mRelActor));
+                trans->mStartEye = attentionPos(trans->mRelActor) + cStack_7e0.Xyz();
+                trans->field_0x49 = 120;
+            }
+
+            if (trans->field_0x4a == 112) {
+                cXyz sp114(trans->mCenter);
+                f32 fVar1 = cXyz((relationalPos(trans->mRelActor, &sp114) - positionOf(mpPlayerActor))).abs();
+                sp114.x = -sp114.x;
+                cXyz cStack_30c;
+                cStack_30c = relationalPos(trans->mRelActor, &sp114);
+                f32 fVar2 = cXyz((cStack_30c - positionOf(mpPlayerActor))).abs();
+                if (fVar1 < fVar2) {
+                    trans->mCenter.x -trans->mCenter.x;
+                }
+            } else if (trans->field_0x4a == 102) {
+                cSGlobe cStack_7e8(trans->mCenter);
+                cStack_7e8.U(cStack_7e8.U() + directionOf(trans->mRelActor));
+                trans->mCenter = attentionPos(trans->mRelActor) + cStack_7e8.Xyz();
+                trans->field_0x4a = 120;
+            }
+
+            if (trans->field_0x4b == 112) {
+                cXyz sp12c = trans->mEye;
+                // cXyz cStack_314(relationalPos(trans->mRelActor, &sp12c));
+                f32 fVar3 = cXyz(relationalPos(trans->mRelActor, &sp12c) - positionOf(mpPlayerActor)).abs();
+                sp12c.x = -sp12c.x;
+                cXyz cStack_314;
+                cStack_314 = relationalPos(trans->mRelActor, &sp12c);
+                f32 fVar4 = cXyz(cStack_314 - positionOf(mpPlayerActor)).abs();
+                if (fVar3 < fVar4) {
+                    trans->mEye.x = -trans->mEye.x;
+                }
+            } else if (trans->field_0x4b == 114) {
+                spf0 = relationalPos(trans->mRelActor, &trans->mCenter);
+                if ((field_0xac & 1) != 0) {
+                    trans->mEye.x = -trans->mEye.x;
+                }
+
+                spfc = relationalPos(trans->mRelActor, &trans->mEye);
+                if (lineBGCheck(&spf0, &spfc, 0x4007)) {
+                    trans->mEye.x = -trans->mEye.x;
+                }
+            } else if (trans->field_0x4b == 102) {
+                cSGlobe cStack_7f0(trans->mEye);
+                cStack_7f0.U(cStack_7f0.U() + directionOf(trans->mRelActor));
+                trans->mEye = attentionPos(trans->mRelActor) + cStack_7f0.Xyz();
+                trans->field_0x4b = 120;
+            }
+        } else {
+            if (trans->field_0x4a == 97) {
+                cXyz cStack_320 = dCamMath::xyzRotateY(trans->mCenter, cSAngle(field_0x5c.mDirection.U().Inv()));
+                trans->mCenter = field_0x5c.mCenter + cStack_320;
+            }
+
+            if (trans->field_0x4b == 97) {
+                cXyz cStack_32c = dCamMath::xyzRotateY(trans->mEye, cSAngle(field_0x5c.mDirection.U().Inv()));
+                trans->mEye = field_0x5c.mEye + cStack_32c;
+            }
+        }
+
+        trans->field_0x60 = mDirection.Invert();
+        field_0x158.field_0x0 = true;
+    }
+
+    if (trans->mRelActor && fopAcM_SearchByID(trans->mRelActorID) == NULL) {
+        OS_REPORT("camera: event: error: relational base actor dead\n");
+        return 1;
+
+    } else {
+        if (mCurCamStyleTimer >= trans->mTimer) {
+            rv = 1;
+            fVar15 = 1.0f;
+        } else {
+            if (trans->mBSpCurve == -1) {
+                mEventData.field_0xf0.Step();
+                mEventData.field_0xf0.Calc(trans->mBSpPoints);
+            } else {
+                mEventData.field_0xf0.Step();
+                mEventData.field_0xf0.Calc(&local_d0[trans->mBSpCurve]);
+            }
+        }
+
+        cXyz sp4c, sp64;
+        if (trans->mRelActor) {
+            if (trans->mRelUseMask == 116) {
+                sp4c = attentionPos(trans->mRelActor) + trans->mStartCenter;
+                cVar13 = -1;
+            } else if (trans->mRelUseMask == 99) {
+                cSGlobe cStack_7f8(trans->mStartCenter);
+                cStack_7f8.U(trans->field_0x60.U() + cStack_7f8.U());
+                sp4c = attentionPos(trans->mRelActor) + cStack_7f8.Xyz();
+                cVar13 = -1;
+            } else if (trans->mRelUseMask == 119 || trans->mRelUseMask == 87) {
+                sp4c = relationalPos(trans->mRelActor, &trans->mStartCenter);
+                cVar13 = -1;
+            } else {
+                if (isRelChar(trans->mRelUseMask)) {
+                    sp4c = relationalPos(trans->mRelActor, &trans->mStartCenter);
+                    cVar13 = -1;
+                } else {
+                    sp4c = trans->mStartCenter;
+                }
+            }
+
+            if (trans->field_0x49 == 116) {
+                pos.sp58 = attentionPos(trans->mRelActor) + trans->mStartEye;
+                cVar13 = -1;
+            } else if (trans->field_0x49 == 99) {
+                cSGlobe cStack_800(trans->mStartEye);
+                cStack_800.U(cStack_800.U() + trans->field_0x60.U());
+                pos.sp58 = attentionPos(trans->mRelActor) + cStack_800.Xyz();
+                cVar13 = -1;
+            } else if (trans->field_0x49 == 119 || trans->field_0x49 == 87) {
+                pos.sp58 = relationalPos(trans->mRelActor, &trans->mStartEye);
+                cVar13 = -1;
+            } else {
+                if (isRelChar(trans->field_0x49)) {
+                    pos.sp58 = relationalPos(trans->mRelActor, &trans->mStartEye);
+                    cVar13 = -1;
+                } else {
+                    pos.sp58 = trans->mStartEye;
+                }
+            }
+
+            if (trans->field_0x4a == 116) {
+                sp64 = attentionPos(trans->mRelActor) + trans->mCenter;
+            } else if (trans->field_0x4a == 99) {
+                cSGlobe cStack_808(trans->mCenter);
+                cStack_808.U(cStack_808.U() + trans->field_0x60.U());
+                sp64 = attentionPos(trans->mRelActor) + cStack_808.Xyz();
+            } else if (trans->field_0x4a == 119 || trans->field_0x4a == 87) {
+                sp64 = relationalPos(trans->mRelActor, &trans->mCenter);
+            } else if (isRelChar(trans->field_0x4a)) {
+                sp64 = relationalPos(trans->mRelActor, &trans->mCenter);
+            } else if (trans->mTransType == 2) {
+                sp64 = dCamMath::xyzRotateY(trans->mCenter, directionOf(trans->mRelActor));
+            } else {
+                sp64 = trans->mCenter;
+            }
+
+            if (trans->field_0x4b == 116) {
+                pos2.sp70 = attentionPos(trans->mRelActor) + trans->mEye;
+            } else if (trans->field_0x4b == 99) {
+                cSGlobe cStack_810(trans->mEye);
+                cStack_810.U(cStack_810.U() + trans->field_0x60.U());
+                pos2.sp70 = attentionPos(trans->mRelActor) + cStack_810.Xyz();
+            } else {
+                cVar13 = trans->field_0x4b;
+                if (cVar13 == 119 || trans->field_0x4b == 87) {
+                    pos2.sp70 = relationalPos(trans->mRelActor, &trans->mEye);
+                } else if (isRelChar(trans->field_0x4b)) {
+                    pos2.sp70 = relationalPos(trans->mRelActor, &trans->mEye);
+                } else if (trans->mTransType == 2) {
+                    pos2.sp70 = dCamMath::xyzRotateY(trans->mEye, directionOf(trans->mRelActor));
+                } else {
+                    pos2.sp70 = trans->mEye;
+                }
+            }
+        } else {
+            sp4c = trans->mStartCenter;
+            pos.sp58 = trans->mStartEye;
+            sp64 = trans->mCenter;
+            pos2.sp70 = trans->mEye;
+        }
+
+        cXyz sp15c;
+        cXyz sp168;
+        if (trans->mTransType == 1) {
+            sp15c = sp4c + ((sp64 - sp4c) * fVar15);
+            field_0x5c.mCenter += (sp15c - field_0x5c.mCenter) * trans->mCushion;
+
+            cSGlobe cStack_818(pos.sp58 - sp4c);
+            cSGlobe cStack_820(pos2.sp70 - sp64);
+
+            cSGlobe cStack_828(cStack_818.R() + (fVar15 * (cStack_820.R() - cStack_818.R())), 
+                               cStack_818.V() + ((cStack_820.V() - cStack_818.V()) * fVar15), 
+                               cStack_818.U() + ((cStack_820.U() - cStack_818.U()) * fVar15));
+
+            sp168 = field_0x5c.mCenter + cStack_828.Xyz();
+
+            field_0x5c.mEye += (sp168 - field_0x5c.mEye) * trans->mCushion;
+
+        } else if (trans->mTransType == 3) {
+            sp15c = sp4c + ((sp64 - sp4c) * fVar15);
+            field_0x5c.mCenter += (sp15c - field_0x5c.mCenter) * trans->mCushion;
+
+            cSGlobe cStack_830(pos.sp58 - sp4c);
+            cSGlobe cStack_838(pos2.sp70 - sp64);
+
+            cSAngle acStack_8a8(cStack_838.U() - cStack_830.U());
+            if (acStack_8a8 == cSAngle::_0) {
+                acStack_8a8.Val(fVar15 * 360.0f);
+            } else {
+                if (acStack_8a8 > cSAngle::_0) {
+                    acStack_8a8 *= fVar15;
+                } else {
+                    acStack_8a8.Val(fVar15 * (acStack_8a8.Degree() + 360.0f));
+                }
+            }
+
+            cSAngle acStack_91c(fVar15 * (cStack_838.V() - cStack_830.V()));
+            cSGlobe cStack_840(cStack_830.R() + (fVar15 * (cStack_838.R() - cStack_830.R())),
+                              (cStack_830.V() + acStack_91c), 
+                              (cStack_830.U() + acStack_91c));
+
+            sp168 = field_0x5c.mCenter + cStack_840.Xyz();
+
+            field_0x5c.mEye += (sp168 - field_0x5c.mEye) * trans->mCushion;
+
+        } else if (trans->mTransType == 4) {
+            sp15c = sp4c + ((sp64 - sp4c) * fVar15);
+            field_0x5c.mCenter += (sp15c - field_0x5c.mCenter) * trans->mCushion;
+
+            cSGlobe cStack_848(pos.sp58 - sp4c);
+            cSGlobe cStack_850(pos2.sp70 - sp64);
+
+            cSAngle acStack_8ac(cStack_850.U() - cStack_848.U());
+            if (acStack_8ac == cSAngle::_0) {
+                acStack_8ac.Val(fVar15 * -360.0f);
+            } else if (acStack_8ac < cSAngle::_0) {
+                acStack_8ac *= fVar15;
+            } else {
+                acStack_8ac.Val(fVar15 * (acStack_8ac.Degree() + -360.0f));
+            }
+
+            cSAngle acStack_92c = fVar15 * (cStack_850.V() - cStack_848.V());
+
+            cSGlobe cStack_858(cStack_848.R() + (fVar15 * (cStack_850.R() - cStack_848.R())), 
+                               cStack_848.V() + acStack_92c, 
+                               cStack_848.U() + acStack_92c);
+
+            sp168 = field_0x5c.mCenter + cStack_858.Xyz();
+
+            field_0x5c.mEye += (sp168 - field_0x5c.mEye) * trans->mCushion;
+
+        } else if (trans->mTransType == 2) {
+            sp15c = sp4c + (sp64 * fVar15);
+            field_0x5c.mCenter += (sp15c - field_0x5c.mCenter) * trans->mCushion;
+            sp168 = pos.sp58 + (pos2.sp70 * fVar15);
+            field_0x5c.mEye += (sp168 - field_0x5c.mEye) * trans->mCushion;
+            
+        } else {
+            sp15c = sp4c + ((sp64 - sp4c) * fVar15);
+            field_0x5c.mCenter += (sp15c - field_0x5c.mCenter) * trans->mCushion;
+            sp168 = pos.sp58 + ((pos2.sp70 - pos.sp58) * fVar15);
+            field_0x5c.mEye += (sp168 - field_0x5c.mEye) * trans->mCushion;
+        }
+
+        f32 fVar16 = trans->mStartFovy + (fVar15 * (trans->mFovy - trans->mStartFovy));
+        field_0x5c.mFovy += trans->mCushion * (fVar16 - field_0x5c.mFovy);
+
+        if (trans->field_0x68) {
+            cSAngle acStack_938(trans->field_0x1c + (trans->field_0x3c - trans->field_0x1c));
+            field_0x5c.mBank += trans->mCushion * (acStack_938 - field_0x5c.mBank);
+            setFlag(0x400);
+        }
+
+        field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
+    }
+
+    return rv;
+}
+
+namespace {
+    inline static bool lineCollisionCheck(cXyz param_0, cXyz param_1, fopAc_ac_c* param_2,
+                                          fopAc_ac_c* param_3, fopAc_ac_c* param_4) {
+        return dComIfG_Ccsp()->ChkCamera(param_0, param_1, 15.0f, param_2, param_3, param_4);
+    }
+} // namespace
 /* 8008BE98-8008E750 0867D8 28B8+00 3/3 0/0 0/0 .text            transEvCamera__9dCamera_cFi */
 bool dCamera_c::transEvCamera(int param_1) {
     // NONMATCHING

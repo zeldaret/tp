@@ -27,5 +27,6 @@ _dtors = .dtors:0x00000000; // type:label scope:global
 @116856 = .rodata:0x00000028; // type:object size:0x4 scope:local
 cNullVec__6Z2Calc = .rodata:0x0000002C; // type:object size:0xC scope:global
 @46916 = .rodata:0x00000038; // type:object size:0x4 scope:local
+lbl_424_rodata_3C = .rodata:0x0000003C; // type:object size:0x18
 l_daObjDigholl_Method = .data:0x00000000; // type:object size:0x20 scope:global
 g_profile_Obj_Digholl = .data:0x00000020; // type:object size:0x30 scope:global

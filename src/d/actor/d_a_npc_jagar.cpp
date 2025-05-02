@@ -1416,7 +1416,7 @@ int daNpc_Jagar_c::talkwithBou(void* param_0) {
                     mEvtNo = 7;
                 }
                 if (bo) {
-                    if (field_0x1005 == 0) {
+                    if (mListen == 0) {
                         if (cLib_calcTimer(&field_0xff8) == 0) {
                             if (chkCondition(0) && bo->chkCondition(0)) {
                                 field_0xff8 = cLib_getRndValue(45.0f, 135.0f);

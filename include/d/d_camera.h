@@ -243,6 +243,7 @@ public:
     /* 8008BE50 */ bool uniformBrakeEvCamera();
     /* 8008BE74 */ bool uniformAcceleEvCamera();
     /* 8008BE98 */ bool transEvCamera(int);
+    /* 8008BE98 */ bool transEvCamera(int);
     /* 8008E938 */ bool watchActorEvCamera();
     /* 8008FAE8 */ bool restorePosEvCamera();
     /* 80090174 */ bool talktoEvCamera();
@@ -554,6 +555,7 @@ public:
     /* 0x2C8 */ f32 field_0x2c8;
     /* 0x2CC */ BG mBG;
     /* 0x3E8 */ union mWork {
+    /* 0x3E8 */ union mWork {
         struct {
             /* 0x00 */ int field_0x0;
             /* 0x04 */ int field_0x4;
@@ -747,8 +749,30 @@ public:
         struct {
             /* 0x00 */ bool field_0x0;
             /* 0x01 */ bool field_0x1;
+            /* 0x01 */ bool field_0x1;
             /* 0x04 */ int field_0x4;
             /* 0x08 */ int field_0x8;
+            /* 0x0C */ u8 field_0xc[0x10 - 0xc];
+            /* 0x10 */ cXyz field_0x10;
+            /* 0x1C */ f32 mFovy;
+            /* 0x20 */ f32 field_0x20;
+            /* 0x24 */ fopAc_ac_c* mRelActor;
+            /* 0x28 */ char field_0x28;
+            /* 0x29 */ char field_0x29;
+            /* 0x2C */ int field_0x2c;
+            /* 0x30 */ bool field_0x30;
+            /* 0x34 */ cXyz mBasePos;
+            /* 0x40 */ char field_0x40;
+            /* 0x41 */ char field_0x41;
+            /* 0x42 */ u8 field_0x42[0x48 - 0x42];
+            /* 0x48 */ char field_0x48;
+            /* 0x49 */ u8 field_0x49[0x4c - 0x49];
+            /* 0x4C */ int field_0x4c;
+            /* 0x50 */ int field_0x50;
+            /* 0x54 */ u8 field_0x54[0x5c - 0x54];
+            /* 0x5C */ f32* field_0x5c;
+            /* 0x60 */ u8 field_0x60[0x6c - 0x60];
+            /* 0x6C */ int field_0x6c;
             /* 0x0C */ u8 field_0xc[0x10 - 0xc];
             /* 0x10 */ cXyz field_0x10;
             /* 0x1C */ f32 mFovy;

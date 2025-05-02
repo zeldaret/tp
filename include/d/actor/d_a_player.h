@@ -757,7 +757,7 @@ public:
     virtual BOOL checkGrassWhistle() const { return FALSE; }
     virtual BOOL checkBoarRun() const { return FALSE; }
     virtual bool checkFmChainPut() const { return FALSE; }
-    virtual bool checkHorseElecDamage() const { return FALSE; }
+    virtual BOOL checkHorseElecDamage() const { return FALSE; }
     virtual f32 getBaseAnimeFrameRate() const { return 1.0f; }
     virtual f32 getBaseAnimeFrame() const { return 0.0f; }
     virtual void setAnimeFrame(f32) {}
@@ -890,6 +890,8 @@ public:
         mDemo.setDemoMode(1);
     }
 
+    u32 getDemoMode() const { return mDemo.getDemoMode(); }
+
     u8 getCutCount() const { return mComboCutCount; }
 
     bool checkStatusWindowDraw() { return checkNoResetFlg2(FLG2_STATUS_WINDOW_DRAW); }
@@ -899,6 +901,7 @@ public:
     bool getGrabUpStart() const { return checkResetFlg0(RFLG0_UNK_8000); }
     bool checkCanoeSlider() const { return mSpecialMode == 0x2D; }
     bool checkGoatStopGame() const { return mSpecialMode == 0x2A; }
+    bool onGoatStopGame() { return mSpecialMode = 0x2A; }
     u8 getCutType() const { return mCutType; }
     u16 getSwordAtUpTime() const { return mSwordUpTimer; }
     s16 getDamageWaitTimer() const { return mDamageTimer; }
@@ -936,6 +939,9 @@ public:
 
     void offWolfEnemyHangBite() { offNoResetFlg2(FLG2_WOLF_ENEMY_HANG_BITE); }
     bool onWolfEnemyHangBite(fopAc_ac_c* param_0) { return onWolfEnemyBiteAll(param_0, FLG2_WOLF_ENEMY_HANG_BITE); }
+
+    void offHorseZelda() { offNoResetFlg2(FLG2_HORSE_ZELDA); }
+    void onHorseZelda() { onNoResetFlg2(FLG2_HORSE_ZELDA); }
 
     u32 checkItemSightBgHit() const { return checkResetFlg0(RFLG0_UNK_2000000); }
 

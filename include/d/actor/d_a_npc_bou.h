@@ -13,7 +13,7 @@
  */
  class daNpc_Bou_Param_c {
     public:
-        /* 809727F4 */ ~daNpc_Bou_Param_c();
+        /* 809727F4 */ virtual ~daNpc_Bou_Param_c() {}
     
         struct Data {
             /* 0x00 */ f32 field_0x00; // 255.0f
@@ -65,6 +65,8 @@
 
 class daNpc_Bou_c : public daNpcT_c {
 public:
+    typedef int (daNpc_Bou_c::*cutFunc)(int);
+    typedef int (daNpc_Bou_c::*actionFunc)(void*);
 
     enum Type {
     TYPE_0,
@@ -76,37 +78,39 @@ public:
     };
 
     /* 8096CF8C */ ~daNpc_Bou_c();
-    /* 8096D0D8 */ void create();
-    /* 8096D38C */ void CreateHeap();
-    /* 8096D7B8 */ void Delete();
-    /* 8096D7EC */ void Execute();
-    /* 8096D80C */ void Draw();
-    /* 8096D8A0 */ void createHeapCallBack(fopAc_ac_c*);
-    /* 8096D8C0 */ void ctrlJointCallBack(J3DJoint*, int);
-    /* 8096D918 */ void srchCow(void*, void*);
-    /* 8096D9B4 */ void getCowP();
+    /* 8096D0D8 */ int create();
+    /* 8096D38C */ int CreateHeap();
+    /* 8096D7B8 */ int Delete();
+    /* 8096D7EC */ int Execute();
+    /* 8096D80C */ int Draw();
+    /* 8096D8A0 */ static int createHeapCallBack(fopAc_ac_c*);
+    /* 8096D8C0 */ static int ctrlJointCallBack(J3DJoint*, int);
+    /* 8096D918 */ static void* srchCow(void*, void*);
+    /* 8096D9B4 */ fopAc_ac_c* getCowP();
     /* 8096DA78 */ u8 getType();
-    /* 8096DADC */ void isDelete();
+    /* 8096DADC */ int isDelete();
     /* 8096DBBC */ void reset();
     /* 8096E18C */ void srchActors();
-    /* 8096ECC0 */ void selectAction();
-    /* 8096ED3C */ void chkAction(int (daNpc_Bou_c::*)(void*));
-    /* 8096ED68 */ void setAction(int (daNpc_Bou_c::*)(void*));
-    /* 8096EE10 */ void cutWildGoat(int);
-    /* 8096F2E4 */ void cutWildGoatSuccess(int);
-    /* 8096F510 */ void cutWildGoatFailure(int);
-    /* 8096F758 */ void cutSpeakTo(int);
-    /* 8096F9A4 */ void cutConversationWithBou(int);
-    /* 8096FB78 */ void cutConfidentialConversation(int);
-    /* 8096FE40 */ void cutFindWolf(int);
-    /* 80970278 */ void cutMeetingAgain(int);
-    /* 809709EC */ void wait(void*);
-    /* 80970DFC */ void talkwithJagar(void*);
-    /* 80970F9C */ void talk(void*);
-    /* 809726D4 */ daNpc_Bou_c(daNpcT_faceMotionAnmData_c const*, daNpcT_motionAnmData_c const*,
-                               daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
-                               daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
-                               daNpcT_evtData_c const*, char**);
+    /* 8096ECC0 */ int selectAction();
+    /* 8096ED3C */ int chkAction(int (daNpc_Bou_c::*)(void*));
+    /* 8096ED68 */ int setAction(int (daNpc_Bou_c::*)(void*));
+    /* 8096EE10 */ int cutWildGoat(int);
+    /* 8096F2E4 */ int cutWildGoatSuccess(int);
+    /* 8096F510 */ int cutWildGoatFailure(int);
+    /* 8096F758 */ int cutSpeakTo(int);
+    /* 8096F9A4 */ int cutConversationWithBou(int);
+    /* 8096FB78 */ int cutConfidentialConversation(int);
+    /* 8096FE40 */ int cutFindWolf(int);
+    /* 80970278 */ int cutMeetingAgain(int);
+    /* 809709EC */ int wait(void*);
+    /* 80970DFC */ int talkwithJagar(void*);
+    /* 80970F9C */ int talk(void*);
+    /* 809726D4 */ daNpc_Bou_c(daNpcT_faceMotionAnmData_c const* param_1, daNpcT_motionAnmData_c const* param_2,
+                               daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_3, int param_4,
+                               daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_5, int param_6,
+                               daNpcT_evtData_c const* param_7, char** param_8) :
+                               daNpcT_c(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8)
+                                {}
 
     /* 809727D4 */ virtual int checkChangeJoint(int);
     /* 809727E4 */ virtual int checkRemoveJoint(int);
@@ -128,8 +132,16 @@ public:
     /* 8096EC6C */ virtual int drawDbgInfo();
     /* 8096EC74 */ virtual void changeAnm(int*, int*);
 
-    static void* mCutNameList[9];
-    static u8 mCutList[108];
+    static char* mCutNameList[9];
+    static cutFunc mCutList[9];
+
+    int getFlowNodeNo() {
+        u16 nodeNo = home.angle.x;
+        if (nodeNo == 0xffff) {
+            return -1;
+        }
+        return nodeNo;
+    }
 
     BOOL chkFindWolf() {
         int iVar1 = daNpcT_getDistTableIdx(field_0xfe0, field_0xfe4);
@@ -157,7 +169,7 @@ public:
     }
 
     BOOL speakTo() {
-        if (field_0xf80 == 4) {
+        if (mType == 4) {
             if (current.pos.absXZ(daPy_getPlayerActorClass()->current.pos) < 1100.0f && strlen(mpEvtData[5].eventName) != 0) {
                 u32 len = strlen(mpArcNames[mpEvtData[5].num]);
                 if (len != 0) {
@@ -176,18 +188,55 @@ public:
 
 private:
     /* 0xE40 */ int field_0xe40;
-    /* 0xE44 */ dCcD_Cyl field_0xe44;
-    /* 0xF80 */ u8 field_0xf80;
-    /* 0xF84 */ daNpcT_ActorMngr_c field_0xf84[3];
+    /* 0xE44 */ dCcD_Cyl mCyl1;
+    /* 0xF80 */ u8 mType;
+    /* 0xF84 */ daNpcT_ActorMngr_c mActorMngr[3];
     /* 0xF9C */ daNpcT_Path_c field_0xf9c;
-    /* 0xFC4 */ u8 field_0xfc4[0xFDC - 0xFC4];
+    /* 0xFC4 */ actionFunc field_0xfc4;
+    /* 0xFD0 */ actionFunc field_0xfd0;
     /* 0xFDC */ int field_0xfdc;
     /* 0xFE0 */ int field_0xfe0;
     /* 0xFE4 */ int field_0xfe4;
-    /* 0xFE8 */ u8 field_0xfe8[0xFFC - 0xFE8];
+    /* 0xFE8 */ u8 field_0xfe8[0xFF4 - 0xFE8];
+    /* 0xFF4 */ u8 field_0xff4;
+    /* 0xFF5 */ u8 field_0xff5[0xFF8 - 0xFF5];
+    /* 0xFF8 */ u8 field_0xff8;
 };
 
 STATIC_ASSERT(sizeof(daNpc_Bou_c) == 0xffc);
+
+/* 809727B4-809727BC 005914 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__11daNpc_Bou_cFv */
+s32 daNpc_Bou_c::getEyeballMaterialNo() {
+    return 1;
+}
+
+/* 809727BC-809727C4 00591C 0008+00 1/0 0/0 0/0 .text            getHeadJointNo__11daNpc_Bou_cFv */
+s32 daNpc_Bou_c::getHeadJointNo() {
+    return 4;
+}
+
+/* 809727C4-809727CC 005924 0008+00 1/0 0/0 0/0 .text            getNeckJointNo__11daNpc_Bou_cFv */
+s32 daNpc_Bou_c::getNeckJointNo() {
+    return 3;
+}
+
+/* 809727CC-809727D4 00592C 0008+00 1/0 0/0 0/0 .text            getBackboneJointNo__11daNpc_Bou_cFv
+ */
+s32 daNpc_Bou_c::getBackboneJointNo() {
+    return 1;
+}
+
+/* 809727D4-809727E4 005934 0010+00 1/0 0/0 0/0 .text            checkChangeJoint__11daNpc_Bou_cFi
+ */
+int daNpc_Bou_c::checkChangeJoint(int param_0) {
+    return param_0 == 4;
+}
+
+/* 809727E4-809727F4 005944 0010+00 1/0 0/0 0/0 .text            checkRemoveJoint__11daNpc_Bou_cFi
+ */
+int daNpc_Bou_c::checkRemoveJoint(int param_0) {
+    return param_0 == 8;
+}
 
 
 #endif /* D_A_NPC_BOU_H */

@@ -30,10 +30,32 @@ from tools.project import (
 # Game versions
 DEFAULT_VERSION = 0
 VERSIONS = [
-    "GZ2E01",  # GCN USA
-    "GZ2P01",  # GCN PAL
-    "GZ2J01",  # GCN JPN
-    "ShieldD",  # Shield Debug
+    "GZ2E01",    # GCN USA
+    "GZ2P01",    # GCN PAL
+    "GZ2J01",    # GCN JPN
+    "RZDE01_00", # Wii USA Rev 0
+    "RZDE01_02", # Wii USA Rev 2
+    "RZDP01",    # Wii PAL
+    "RZDJ01",    # Wii JPN
+    "RZDK01",    # Wii KOR
+    "DZDE01",    # Wii USA Kiosk Demo
+    "DZDP01",    # Wii PAL Kiosk Demo
+    "Shield",    # Shield
+    "ShieldP",   # Shield Production
+    "ShieldD",   # Shield Debug
+]
+
+# Versions to disable until properly configured
+DISABLED_VERSIONS = [
+    3,  # Wii USA Rev 0
+    4,  # Wii USA Rev 2
+    5,  # Wii PAL
+    6,  # Wii JPN
+    7,  # Wii KOR
+    8,  # Wii USA Kiosk Demo
+    9,  # Wii PAL Kiosk Demo
+    10, # Shield
+    11, # Shield Production
 ]
 
 parser = argparse.ArgumentParser()
@@ -135,6 +157,11 @@ args = parser.parse_args()
 config = ProjectConfig()
 config.version = str(args.version)
 version_num = VERSIONS.index(config.version)
+
+if version_num in DISABLED_VERSIONS:
+    print(f"Version {VERSIONS[version_num]} is disabled. Using default")
+    version_num = DEFAULT_VERSION
+    config.version = VERSIONS[DEFAULT_VERSION]
 
 # Apply arguments
 config.build_dir = args.build_dir
@@ -1571,9 +1598,9 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_tag_spring"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_tag_statue_evt"),
     ActorRel(NonMatching, "d_a_ykgr"),
-    ActorRel(NonMatching, "d_a_L7demo_dr"),
-    ActorRel(NonMatching, "d_a_L7low_dr"),
-    ActorRel(NonMatching, "d_a_L7op_demo_dr"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_L7demo_dr"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_L7low_dr"),
+    ActorRel(Equivalent, "d_a_L7op_demo_dr"), # weak func order
     ActorRel(MatchingFor("GZ2E01"), "d_a_b_bh"),
     ActorRel(NonMatching, "d_a_b_bq"),
     ActorRel(Equivalent, "d_a_b_dr"), # weak func order
@@ -1724,7 +1751,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_ashB"),
     ActorRel(NonMatching, "d_a_npc_bans"),
     ActorRel(NonMatching, "d_a_npc_blue_ns"),
-    ActorRel(NonMatching, "d_a_npc_bou"),
+    ActorRel(Equivalent, "d_a_npc_bou"),
     ActorRel(NonMatching, "d_a_npc_bouS"),
     ActorRel(NonMatching, "d_a_npc_cdn3"),
     ActorRel(NonMatching, "d_a_npc_chat"),
