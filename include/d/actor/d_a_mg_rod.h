@@ -1,12 +1,12 @@
 #ifndef D_A_MG_ROD_H
 #define D_A_MG_ROD_H
 
-#include "f_op/f_op_actor_mng.h"
 #include "Z2AudioLib/Z2Creature.h"
+#include "d/actor/d_a_mg_fish.h"
 #include "d/d_bg_s_acch.h"
 #include "d/d_cc_d.h"
 #include "d/d_msg_flow.h"
-#include "d/actor/d_a_mg_fish.h"
+#include "f_op/f_op_actor_mng.h"
 
 struct mg_rod_s {
     /* 0x0 */ cXyz field_0x0[16];
@@ -43,7 +43,9 @@ public:
     bool checkRodEquipPermission() { return field_0x1514 == 0; }
     bool checkReelSpin() { return field_0x14f0 != 0; }
 
-    /* 0x0568 */ u8 field_0x568[0x5A4 - 0x568];
+    /* 0x0568 */ u8 field_0x568[0x590 - 0x568];
+    /* 0x0590 */ float field_0x590;
+    /* 0x0594 */ u8 field_0x594[0x5A4 - 0x594];
     /* 0x05A4 */ mg_rod_s field_0x5a4;
     /* 0x0664 */ u8 field_0x664[0x6AC - 0x664];
     /* 0x06AC */ cXyz field_0x6ac;
@@ -66,7 +68,9 @@ public:
     /* 0x0F7E */ s16 field_0xf7e;
     /* 0x0F80 */ u8 field_0xf80[0xFAC - 0xF80];
     /* 0x0FAC */ mg_hook_s field_0xfac[2];
-    /* 0x0FEC */ u8 field_0xfec[0x1060 - 0xFEC];
+    /* 0x0FEC */ u8 field_0xfec[0x100D - 0xFEC];
+    /* 0x100D */ s8 field_0x100d;
+    /* 0x100E */ u8 field_0x100e[0x1060 - 0x100E];
     /* 0x1060 */ cXyz mHookPosition;
     /* 0x106C */ cXyz field_0x106c;
     /* 0x1078 */ cXyz field_0x1078;

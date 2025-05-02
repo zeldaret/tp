@@ -1,5 +1,12 @@
 CompileFlags:
-  Add: [-Wno-c++11-compat-deprecated-writable-strings, -Wno-extern-initializer, -Wno-multichar, "-fdeclspec"]
+  Add:
+    [
+      -Wno-c++11-compat-deprecated-writable-strings,
+      -Wno-extern-initializer,
+      -Wno-multichar,
+      "-fdeclspec",
+      "-ferror-limit=100"
+    ]
 Diagnostics:
   Suppress:
     - "warn_char_constant_too_large"
