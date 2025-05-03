@@ -3281,6 +3281,14 @@ public:
     virtual bool checkCopyRodEquip() const { return mEquipItem == fpcNm_ITEM_COPY_ROD; }
     virtual BOOL checkCutJumpMode() const { return mProcID == PROC_CUT_JUMP; }
 
+    static BOOL checkDebugMoveInput() {
+        if (mDoCPd_c::isConnect(PAD_3)) {
+            return mDoCPd_c::getHoldB(PAD_1) && mDoCPd_c::getAnalogR(PAD_1) > 0.8f && mDoCPd_c::getTrigA(PAD_1);
+        }
+
+        return FALSE;
+    }
+
     u32 checkModeFlg(u32 pFlag) const { return mModeFlg & pFlag; }
     BOOL checkSmallUpperGuardAnime() const { return checkUpperAnime(0x16); }
     BOOL checkFmChainGrabAnime() const { return checkUpperAnime(0x62) || checkUpperAnime(0x2A0); }
@@ -3538,6 +3546,8 @@ public:
         return mProcID == PROC_SPINNER_WAIT && mProcVar2.field_0x300c == 0;
     }
     bool checkRoofSwitchHang() const { return mProcID == PROC_ROOF_SWITCH_HANG; }
+    bool checkCanoeWait() const { return mProcID == PROC_CANOE_WAIT; }
+    bool checkCanoeSubjectivity() const { return mProcID == PROC_CANOE_SUBJECTIVITY; }
 
     fopAc_ac_c* getCopyRodActor() { return mCopyRodAcKeep.getActor(); }
     fopAc_ac_c* getHookshotRoofWaitActor() { return mCargoCarryAcKeep.getActor(); }
@@ -3555,6 +3565,7 @@ public:
 
     void seStartSystem(u32 i_seID) { mDoAud_seStart(i_seID, NULL, 0, 0); }
     bool checkIronBallEquip() const { return mEquipItem == fpcNm_ITEM_IRONBALL; }
+    BOOL checkFishingRodEquip() const { return checkFishingRodItem(mEquipItem); }
 
     f32 getAnmSpeedStickRate(f32 param_0, f32 param_1) const {
         return param_0 + (field_0x33a8 * (param_1 - param_0));

@@ -1524,7 +1524,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_alldie"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_andsw2"),
     ActorRel(NonMatching, "d_a_bd"),
-    ActorRel(NonMatching, "d_a_canoe"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_canoe"),
     ActorRel(NonMatching, "d_a_cstaF"),
     ActorRel(NonMatching, "d_a_demo_item"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_door_bossL1"),

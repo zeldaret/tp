@@ -1688,8 +1688,7 @@ bool jmessage_tMeasureProcessor::do_tag(u32 i_tag, void const* i_data, u32 i_siz
             dMsgUnit_setTag(0x10001, (u32)dComIfGp_getMessageCountNumber(), buffer_0);
             break;
         case 7:
-            u8 now_count = dMeter2Info_getNowCount();
-            dMsgUnit_setTag(8, now_count, buffer_0);
+            dMsgUnit_setTag(8, dMeter2Info_getNowCount(), buffer_0);
             break;
         default:
             return false;
