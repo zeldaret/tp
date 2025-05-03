@@ -364,7 +364,7 @@ int daDr_c::create() {
     if (dComIfG_play_c::getLayerNo(0) == 3) {
         phase_state = dComIfG_resLoad(&mPhase, "B_dr");
         if (phase_state == cPhs_COMPLEATE_e) {
-            OS_REPORT("dr PARAM %x\n", fopAcM_GetParam());
+            OS_REPORT("dr PARAM %x\n", fopAcM_GetParam(this));
             OS_REPORT("dr//////////////DR SET 1 !!\n");
 
             if (!fopAcM_entrySolidHeap(this, useHeapInit, 0x68C0)) {
