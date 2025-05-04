@@ -1624,7 +1624,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_b_zant_sima"),
     ActorRel(NonMatching, "d_a_balloon_2D"),
     ActorRel(NonMatching, "d_a_bullet"),
-    ActorRel(NonMatching, "d_a_coach_2D"),
+    ActorRel(Equivalent, "d_a_coach_2D"), # weak func order
     ActorRel(MatchingFor("GZ2E01"), "d_a_coach_fire"),
     ActorRel(Equivalent, "d_a_cow"),
     ActorRel(NonMatching, "d_a_cstatue"),
@@ -1671,7 +1671,7 @@ config.libs = [
     ActorRel(Equivalent, "d_a_e_kk"), # weak func order
     ActorRel(NonMatching, "d_a_e_kr"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_mb"),
-    ActorRel(NonMatching, "d_a_e_md"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_e_md"),
     ActorRel(NonMatching, "d_a_e_mf"),
     ActorRel(NonMatching, "d_a_e_mk"),
     ActorRel(NonMatching, "d_a_e_mk_bo"),
