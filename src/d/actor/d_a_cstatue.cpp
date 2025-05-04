@@ -111,7 +111,6 @@ int daCstatue_c::createHeap() {
         resource_index = data->modelIndex;
     }
 
-    // todo: fix mType != 2 ? 0x80000 : 0
     mpMorf = new mDoExt_McaMorfSO(
         static_cast<J3DModelData*>(dComIfG_getObjectRes(mResName, (u16)resource_index)), NULL, NULL,
         animation, 0, 0.0f, animation->getFrameMax(), -1, &mSound,
@@ -162,7 +161,6 @@ static int daCstatue_createHeap(fopAc_ac_c* actor) {
     return static_cast<daCstatue_c*>(actor)->createHeap();
 }
 
-/* ############################################################################################## */
 /* 80667740-80667764 0000A8 0024+00 0/1 0/0 0/0 .rodata          bossSphR$4389 */
 static f32 const bossSphR[9] = {450.0f, 200.0f, 250.0f, 220.0f, 280.0f,
                                 200.0f, 250.0f, 220.0f, 280.0f};
@@ -281,7 +279,7 @@ int daCstatue_c::create() {
         }
         attention_info.distances[4] = 8;
         fopAcM_SetMtx(this, mModel->getBaseTRMtx());
-        int iVar11;
+        int acchTblSize;
         if (mType == 0 || mType == 2) {
             mAcchCir[0].SetWall(30.01f, 88.0f);
             mAcchCir[1].SetWall(208.0f, 88.0f);
@@ -297,7 +295,7 @@ int daCstatue_c::create() {
             mSomePos2.x = 1440.0f;
             gravity = -8.0f;
             maxFallSpeed = -100.0f;
-            iVar11 = 4;
+            acchTblSize = 4;
             mSomeFloat = JMAFastSqrt(mCyl1.GetR() * mCyl1.GetR() +
                                      mCyl1.GetH() * mCyl1.GetH() * 0.6f * 0.6f);
             mTargetFrame = 35.0f;
@@ -312,7 +310,7 @@ int daCstatue_c::create() {
             gravity = -5.0f;
             maxFallSpeed = -100.0f;
             fopAcM_OnCarryType(this, fopAcM_CARRY_HEAVY);
-            iVar11 = 1;
+            acchTblSize = 1;
             mSomeFloat = JMAFastSqrt(4825.0f);
             mTargetFrame = 21.0f;
         } else {
@@ -324,7 +322,7 @@ int daCstatue_c::create() {
             mSomePos2.x = 5500.0f;
             gravity = -8.0f;
             maxFallSpeed = -100.0f;
-            iVar11 = 1;
+            acchTblSize = 1;
             dCcD_Sph* obj = mSph;
             for (int iSph = 0; iSph < 9; iSph++, obj++) {
                 obj->Set(l_sphSrc);
@@ -340,7 +338,7 @@ int daCstatue_c::create() {
         }
         mSomeFloat += 100.0f;
         mSomePos2.y = current.pos.y;
-        mStatueAcch.Set(this, iVar11, mAcchCir);
+        mStatueAcch.Set(this, acchTblSize, mAcchCir);
         model = mModel;
         initStopBrkBtk();
         mAnim2.setFrame(mAnim2.getEndFrame());
@@ -386,7 +384,6 @@ static int daCstatue_Delete(void* actor) {
 void daCstatue_c::setRoomInfo() {
     int roomId;
     if (mStatueAcch.GetGroundH() != -1000000000.0f) {
-        // todo
         roomId = dComIfG_Bgsp().GetRoomId(mStatueAcch.m_gnd);
         tevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(mStatueAcch.m_gnd);
     } else {
@@ -559,7 +556,7 @@ void daCstatue_c::posMove() {
             }
         }
         if (!groundHit && mStatueAcch.ChkGroundHit() && mSomePos2.y - current.pos.y >= 100.0f) {
-            int index = daCstatue_c::m_bckIdxTable[mType][3];
+            int index = m_bckIdxTable[mType][3];
             J3DAnmTransform* animation =
                 static_cast<J3DAnmTransform*>(dComIfG_getObjectRes(mResName, index));
             mpMorf->setAnm(animation, -1, 0.0f, 1.0f, 0.0f, -1.0f);
@@ -690,14 +687,16 @@ void daCstatue_c::setCollision() {
                     mCyl2->ResetAtHit();
                 }
             }
-        } else if (mParam3 == 2 && mCyl2->ChkAtSet() && mpMorf->getFrame() < 30.0f) {
-            dComIfG_Ccsp()->Set(mCyl2);
         } else {
-            mCps1->ResetAtHit();
-            mCps2->ResetAtHit();
-            mCyl2->OffAtSetBit();
-            mCyl2->ResetAtHit();
-            offStateFlg0(daCstatue_FLG0_10);
+            if (mParam3 == 2 && mCyl2->ChkAtSet() && mpMorf->getFrame() < 30.0f) {
+                dComIfG_Ccsp()->Set(mCyl2);
+            } else {
+                mCps1->ResetAtHit();
+                mCps2->ResetAtHit();
+                mCyl2->OffAtSetBit();
+                mCyl2->ResetAtHit();
+                offStateFlg0(daCstatue_FLG0_10);
+            }
         }
     }
     static cXyz effScale(2.0f, 2.0f, 2.0f);
@@ -1069,7 +1068,7 @@ int daCstatue_c::execute() {
         }
     }
     setAnime();
-    BOOL bossType = checkBossType();
+    int bossType = checkBossType();
     if (bossType != 0) {
         mStatueAcch.CrrPos(dComIfG_Bgsp());
     } else {
