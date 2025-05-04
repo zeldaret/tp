@@ -22,9 +22,53 @@ static char const l_arcName[8] = "Cstatue";
 /* 806676AC-806676B4 000014 0007+01 0/1 0/0 0/0 .rodata          l_arcNameBS */
 static char const l_arcNameBS[7] = "CstaBS";
 
-u16 const daCstatue_c::m_bckIdxTable[daCstatue_TYPE_N][7] = {
-    {14, 16, 14, 10, 13, 11, 15}, {8, 9, 8, 7, 9, 9, 8},      {14, 16, 14, 10, 13, 11, 15},
-    {11, 9, 7, 11, 11, 11, 11},   {10, 8, 6, 10, 10, 10, 10},
+enum CStatueAnim {
+    cs_b_fall = 7,       //	Copy Statue - B - Fall
+    cs_b_jump = 8,       //	Copy Statue - B - Jump
+    cs_b_walk = 9,       //	Copy Statue - B - Walk
+    cs_fall = 10,        //	Copy Statue - Fall
+    cs_start = 11,       //	Copy Statue - Start
+    cs_start_demo = 12,  //	Copy Statue - Start - Demo
+    cs_stop = 13,        //	Copy Statue - Stop
+    cs_swing = 14,       //	Copy Statue - Swing
+    cs_swingre = 15,     //	Copy Statue - Swing Re
+    cs_walk = 16,        //	Copy Statue - Walk
+};
+
+enum CStatueBossAnim {
+    cs_boss_attack_l = 6,           //	Copy Statue - Boss - Attack - Left
+    cs_boss_attack_r = 7,           //	Copy Statue - Boss - Attack - Right
+    cs_boss_return_wait_hit_l = 8,  //	Copy Statue - Boss - Return - Wait - Hit - Left
+    cs_boss_return_wait_hit_r = 9,  //	Copy Statue - Boss - Return - Wait - Hit - Right
+    cs_boss_return_wait_l = 10,     //	Copy Statue - Boss - Return - Wait - Left
+    cs_boss_return_wait_r = 11,     //	Copy Statue - Boss - Return - Wait - Right
+};
+
+// this enum may need to be split for boss/non boss types
+enum CStatueAnimIndex {
+    CStatueAnimIndex_0,
+    CStatueAnimIndex_1,
+    CStatueAnimIndex_2,
+    CStatueAnimIndex_3,
+    CStatueAnimIndex_4,
+    CStatueAnimIndex_5,
+    CStatueAnimIndex_6,
+    CStatueAnimIndex_N,
+};
+
+u16 const daCstatue_c::m_bckIdxTable[daCstatueType_N][CStatueAnimIndex_N] = {
+    // daCstatueType_NORMAL
+    {cs_swing, cs_walk, cs_swing, cs_fall, cs_stop, cs_start, cs_swingre},
+    // daCstatueType_SMALL
+    {cs_b_jump, cs_b_walk, cs_b_jump, cs_b_fall, cs_b_walk, cs_b_walk, cs_b_jump},
+    // daCstatueType_NORMAL_2
+    {cs_swing, cs_walk, cs_swing, cs_fall, cs_stop, cs_start, cs_swingre},
+    // daCstatueType_BOSS_RIGHT
+    {cs_boss_return_wait_r, cs_boss_return_wait_hit_r, cs_boss_attack_r, cs_boss_return_wait_r,
+     cs_boss_return_wait_r, cs_boss_return_wait_r, cs_boss_return_wait_r},
+    // daCstatueType_BOSS_LEFT
+    {cs_boss_return_wait_l, cs_boss_return_wait_hit_l, cs_boss_attack_l, cs_boss_return_wait_l,
+     cs_boss_return_wait_l, cs_boss_return_wait_l, cs_boss_return_wait_l},
 };
 
 struct CStatueTblData {
@@ -36,9 +80,17 @@ struct CStatueTblData {
 };
 
 /* 806676FC-80667738 000064 003C+00 0/1 0/0 0/0 .rodata          dataTbl$4169 */
-static struct CStatueTblData const dataTbl[daCstatue_TYPE_N] = {
-    {19, 13, 31, 35, 0x11000284}, {20, 8, 28, 0, 0x11000084},   {24, 13, 29, 34, 0x11000284},
-    {14, 11, 18, 21, 0x11000284}, {14, 10, 18, 21, 0x11000284},
+static struct CStatueTblData const dataTbl[daCstatueType_N] = {
+    // daCstatueType_NORMAL
+    {19, 13, 31, 35, 0x11000284},
+    // daCstatueType_SMALL
+    {20, 8, 28, 0, 0x11000084},
+    // daCstatueType_NORMAL_2
+    {24, 13, 29, 34, 0x11000284},
+    // daCstatueType_BOSS_RIGHT
+    {14, 11, 18, 21, 0x11000284},
+    // daCstatueType_BOSS_LEFT
+    {14, 10, 18, 21, 0x11000284},
 };
 
 /* 806679D0-80667A1C 000020 004C+00 0/1 0/0 0/0 .data            l_atCpsSrc */
@@ -113,7 +165,7 @@ int daCstatue_c::createHeap() {
     mpMorf = new mDoExt_McaMorfSO(
         static_cast<J3DModelData*>(dComIfG_getObjectRes(mResName, (u16)resource_index)), NULL, NULL,
         animation, 0, 0.0f, animation->getFrameMax(), -1, &mSound,
-        mType == daCstatue_TYPE_2 ? J3DMdlFlag_None : J3DMdlFlag_Unk80000, data->morfIndex);
+        mType == daCstatueType_Normal2 ? J3DMdlFlag_None : J3DMdlFlag_Unk80000, data->morfIndex);
 
     if (mpMorf == NULL || mpMorf->mpModel == NULL) {
         return cPhs_INIT_e;
@@ -136,7 +188,7 @@ int daCstatue_c::createHeap() {
         if (!mSph) {
             return cPhs_INIT_e;
         }
-    } else if (mType == daCstatue_TYPE_0) {
+    } else if (mType == daCstatueType_Normal) {
         mCps1 = new dCcD_Cps();
         if (!mCps1) {
             return cPhs_INIT_e;
@@ -149,7 +201,7 @@ int daCstatue_c::createHeap() {
         if (!mCyl2) {
             return cPhs_INIT_e;
         }
-    } else if (mType == daCstatue_TYPE_2 && !mInvisible.create(mpMorf->getModel(), 1)) {
+    } else if (mType == daCstatueType_Normal2 && !mInvisible.create(mpMorf->getModel(), 1)) {
         return cPhs_INIT_e;
     }
     return cPhs_LOADING_e;
@@ -165,7 +217,7 @@ static f32 const bossSphR[9] = {450.0f, 200.0f, 250.0f, 220.0f, 280.0f,
                                 200.0f, 250.0f, 220.0f, 280.0f};
 
 /* 80667764-80667778 0000CC 0014+00 0/1 0/0 0/0 .rodata          heapSize$4390 */
-static int const heapSize[daCstatue_TYPE_N] = {4368, 2208, 4688, 6240, 6240};
+static int const heapSize[daCstatueType_N] = {4368, 2208, 4688, 6240, 6240};
 
 /* 80663D28-8066469C 000768 0974+00 1/1 0/0 0/0 .text            create__11daCstatue_cFv */
 int daCstatue_c::create() {
@@ -174,16 +226,18 @@ int daCstatue_c::create() {
         fopAcM_OnCondition(this, 8);
     }
     mType = (fopAcM_GetParam(this) >> 8) & 0xf;
-    if (mType == daCstatue_TYPE_2) {
-        mType = daCstatue_TYPE_1;
+    if (mType == daCstatueType_Normal2) {
+        mType = daCstatueType_Small;
         onStateFlg0(daCstatue_FLG0_8);
-    } else if (mType == daCstatue_TYPE_3) {
-        mType = daCstatue_TYPE_0;
+    } else if (mType == daCstatueType_BossRight) {
+        mType = daCstatueType_Normal;
         onStateFlg0(daCstatue_FLG0_400);
-    } else if (mType > daCstatue_TYPE_2) {
-        mType -= daCstatue_TYPE_2;
-        if (mType >= daCstatue_TYPE_N) {
-            mType = daCstatue_TYPE_0;
+    } else if (mType > daCstatueType_Normal2) {
+        // if the type is a boss type, try to map it to a non-boss type
+        mType -= daCstatueType_Normal2;
+        // or, if it is completely out-of-bounds make a normal type
+        if (mType >= daCstatueType_N) {
+            mType = daCstatueType_Normal;
         }
     }
     if (checkBossType()) {
@@ -193,16 +247,16 @@ int daCstatue_c::create() {
     }
     int result = dComIfG_resLoad(&mPhaseReq, mResName);
     if (result == cPhs_COMPLEATE_e) {
-        mParam0 = fopAcM_GetParam(this);
-        mParam1 = fopAcM_GetParam(this) >> 12;
+        mParam0 = fopAcM_GetParam(this) & 0xff;
+        mParam1 = (fopAcM_GetParam(this) >> 12) & 0xff;
         mParam2 = (fopAcM_GetParam(this) >> 20) & 0x3f;
 
-        if (mType == daCstatue_TYPE_0 && !checkStateFlg0(daCstatue_FLG0_400)) {
+        if (mType == daCstatueType_Normal && !checkStateFlg0(daCstatue_FLG0_400)) {
             if (mParam0 != 0xff && !fopAcM_isSwitch(this, mParam0)) {
                 return cPhs_ERROR_e;
             }
             int minSwitch;
-            if (mParam0 == (u8)-1) {
+            if (mParam0 == 0xff) {
                 minSwitch = 0;
             } else {
                 minSwitch = mParam0 + 1;
@@ -212,7 +266,7 @@ int daCstatue_c::create() {
                     return cPhs_ERROR_e;
                 }
             }
-        } else if (mType == daCstatue_TYPE_2 && mParam0 != (u8)-1 &&
+        } else if (mType == daCstatueType_Normal2 && mParam0 != 0xff &&
                    fopAcM_isSwitch(this, this->mParam0))
         {
             return cPhs_ERROR_e;
@@ -223,12 +277,12 @@ int daCstatue_c::create() {
         }
 
         mpMorf->setMorf(1.0f);
-        if (mType == daCstatue_TYPE_0) {
-            mParam3 = 4;
+        if (mType == daCstatueType_Normal) {
+            mCurrentAnim = CStatueAnimIndex_4;
         } else {
-            mParam3 = 0;
+            mCurrentAnim = CStatueAnimIndex_0;
         }
-        if (mType == daCstatue_TYPE_0 || mType == daCstatue_TYPE_2) {
+        if (mType == daCstatueType_Normal || mType == daCstatueType_Normal2) {
             scale.set(1.6f, 1.6f, 1.6f);
         }
         mModel->setBaseScale(scale);
@@ -239,7 +293,7 @@ int daCstatue_c::create() {
         if (checkStateFlg0(daCstatue_FLG0_400)) {
             mCyl1.SetTgType(mCyl1.GetTgType() & ~0x01000000);
         }
-        if (mType == daCstatue_TYPE_0) {
+        if (mType == daCstatueType_Normal) {
             mCps1->Set(l_atCpsSrc);
             mCps1->SetStts(&mStts);
             mCps2->Set(l_atCpsSrc);
@@ -259,7 +313,7 @@ int daCstatue_c::create() {
                 dComIfGs_onTbox(mParam2);
                 dComIfGs_offTbox(mParam2 - 1);
             }
-        } else if (mType == daCstatue_TYPE_2) {
+        } else if (mType == daCstatueType_Normal2) {
             int anyTbox = false;
             for (int iBox = 21; iBox <= 31; iBox += 2) {
                 if (dComIfGs_isTbox(iBox)) {
@@ -281,38 +335,38 @@ int daCstatue_c::create() {
         attention_info.distances[4] = 8;
         fopAcM_SetMtx(this, mModel->getBaseTRMtx());
         int acchTblSize;
-        if (mType == daCstatue_TYPE_0 || mType == daCstatue_TYPE_2) {
+        if (mType == daCstatueType_Normal || mType == daCstatueType_Normal2) {
             mAcchCir[0].SetWall(30.01f, 88.0f);
             mAcchCir[1].SetWall(208.0f, 88.0f);
             mAcchCir[2].SetWall(288.0f, 88.0f);
             mAcchCir[3].SetWall(392.0f, 88.0f);
             if (checkStateFlg0(daCstatue_FLG0_400)) {
-                mStts.Init((u8)-1, 0, this);
+                mStts.Init(0xff, 0, this);
             } else {
                 mStts.Init((u8)-2, 0, this);
             }
             fopAcM_SetMax(this, 425.6f, 528.0f, 425.6f);
             fopAcM_SetMin(this, -425.6f, 0.0f, -425.6f);
-            mSomePos2.x = 1440.0f;
+            mSomePos.x = 1440.0f;
             gravity = -8.0f;
             maxFallSpeed = -100.0f;
             acchTblSize = 4;
-            mSomeFloat = JMAFastSqrt(mCyl1.GetR() * mCyl1.GetR() +
-                                     mCyl1.GetH() * mCyl1.GetH() * 0.6f * 0.6f);
+            mControlDistanceOffset = JMAFastSqrt(mCyl1.GetR() * mCyl1.GetR() +
+                                                 mCyl1.GetH() * mCyl1.GetH() * 0.6f * 0.6f);
             mTargetFrame = 35.0f;
-        } else if (mType == daCstatue_TYPE_1) {
+        } else if (mType == daCstatueType_Small) {
             mAcchCir[0].SetWall(30.01f, 35.0f);
             mCyl1.SetR(35.0f);
             mCyl1.SetH(100.0f);
             mStts.Init((u8)-76, 0, this);
             fopAcM_SetMax(this, 145.0f, 250.0f, 145.0f);
             fopAcM_SetMin(this, -145.0f, 0.0f, -145.0f);
-            mSomePos2.x = 300.0f;
+            mSomePos.x = 300.0f;
             gravity = -5.0f;
             maxFallSpeed = -100.0f;
             fopAcM_OnCarryType(this, fopAcM_CARRY_HEAVY);
             acchTblSize = 1;
-            mSomeFloat = JMAFastSqrt(4825.0f);
+            mControlDistanceOffset = JMAFastSqrt(4825.0f);
             mTargetFrame = 21.0f;
         } else {
             fopAcM_OffStatus(this, 0x100);
@@ -320,7 +374,7 @@ int daCstatue_c::create() {
             mCyl1.SetH(600.0f);
             mAcchCir[0].SetWall(30.01f, 300.0f);
             mStts.Init((u8)-2, 0, this);
-            mSomePos2.x = 5500.0f;
+            mSomePos.x = 5500.0f;
             gravity = -8.0f;
             maxFallSpeed = -100.0f;
             acchTblSize = 1;
@@ -332,13 +386,13 @@ int daCstatue_c::create() {
                 obj->SetAtHitCallback(daCstatue_atHitCallback);
             }
             mSph->SetTgType(0xd97afddf);
-            mSomeFloat = JMAFastSqrt(650000.0f);
+            mControlDistanceOffset = JMAFastSqrt(650000.0f);
             attention_info.distances[0] = 92;
             cLib_onBit<u32>(attention_info.flags, 1);
             mTargetFrame = 35.0f;
         }
-        mSomeFloat += 100.0f;
-        mSomePos2.y = current.pos.y;
+        mControlDistanceOffset += 100.0f;
+        mSomePos.y = current.pos.y;
         mStatueAcch.Set(this, acchTblSize, mAcchCir);
         model = mModel;
         initStopBrkBtk();
@@ -346,7 +400,7 @@ int daCstatue_c::create() {
         mStatueAcch.CrrPos(dComIfG_Bgsp());
         setMatrix();
         setRoomInfo();
-        mSomePos = daPy_getLinkPlayerActorClass()->current.pos;
+        mLinkPos = daPy_getLinkPlayerActorClass()->current.pos;
 
         mPaPo.init(&mStatueAcch, 30.0f, mCyl1.GetH());
         mSound.init(&current.pos, &eyePos, 4, 1);
@@ -410,13 +464,13 @@ void daCstatue_c::setMatrix() {
     // todo: there is an additional block here in the debug rom
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
-    mDoMtx_stack_c::transM(0.0f, mSomePos2.z, 0.0f);
+    mDoMtx_stack_c::transM(0.0f, mSomePos.z, 0.0f);
     mModel->setBaseTRMtx(mDoMtx_stack_c::get());
     mpMorf->modelCalc();
-    if (mType == daCstatue_TYPE_0 || mType == daCstatue_TYPE_2) {
+    if (mType == daCstatueType_Normal || mType == daCstatueType_Normal2) {
         attention_info.position.set(current.pos.x, current.pos.y + scale.y * 140.0f, current.pos.z);
         mDoMtx_multVec(mModel->getAnmMtx(1), &normalLocalBallPos, &mBallPos);
-    } else if (mType == daCstatue_TYPE_1) {
+    } else if (mType == daCstatueType_Small) {
         attention_info.position.set(current.pos.x, current.pos.y + mCyl1.GetH(), current.pos.z);
         mDoMtx_multVec(mModel->getAnmMtx(0), &smallLocalBallPos, &mBallPos);
     } else {
@@ -437,7 +491,7 @@ void daCstatue_c::posMove() {
         if (dComIfG_Bgsp().ChkMoveBG_NoDABg(mStatueAcch.m_gnd)) {
             offStateFlg0(daCstatue_FLG0_8);
             current.pos.y = mStatueAcch.GetGroundH();
-            mSomePos2.y = current.pos.y;
+            mSomePos.y = current.pos.y;
         } else {
             return;
         }
@@ -452,17 +506,19 @@ void daCstatue_c::posMove() {
         current.pos.y += speed.y;
     }
     daAlink_c* link = daAlink_getAlinkActorClass();
-    if (!checkStateFlg0(daCstatue_FLG0_40) && !mFlag1 && link->getCopyRodControllActor() == this) {
+    if (!checkStateFlg0(daCstatue_FLG0_Demo) && !mWarpMode &&
+        link->getCopyRodControllActor() == this)
+    {
         if (!checkStateFlg0(daCstatue_FLG0_800)) {
             shape_angle.y = link->shape_angle.y;
         }
-        if (mParam3 == 6) {
+        if (mCurrentAnim == CStatueAnimIndex_6) {
             speedF = 0.0f;
-        } else if (mStatueAcch.ChkGroundHit() && mParam3 != 3) {
+        } else if (mStatueAcch.ChkGroundHit() && mCurrentAnim != CStatueAnimIndex_3) {
             current.pos.x = current.pos.x + speed.x;
             current.pos.z = current.pos.z + speed.z;
             speedF = JMAFastSqrt(speed.x * speed.x + speed.z * speed.z);
-            if (mParam3 == 1) {
+            if (mCurrentAnim == CStatueAnimIndex_1) {
                 f32 playSpeed = mpMorf->getPlaySpeed();
                 f32 targetSpeed;
                 if (speedF >= 1.0f) {
@@ -472,7 +528,7 @@ void daCstatue_c::posMove() {
                         targetSpeed = 1.0f;
                     }
 
-                    if (mType != daCstatue_TYPE_1) {
+                    if (mType != daCstatueType_Small) {
                         targetSpeed = 0.5f + targetSpeed;
                     } else {
                         targetSpeed = 0.5f + targetSpeed;
@@ -486,12 +542,12 @@ void daCstatue_c::posMove() {
             }
         }
     } else {
-        if (!fopAcM_checkCarryNow(this) && mFlag0) {
+        if (!fopAcM_checkCarryNow(this) && mMoveMode != daCstatue_MoveMode_0) {
             if (mStatueAcch.ChkGroundHit()) {
-                if (mFlag0 != 3) {
+                if (mMoveMode != daCstatue_MoveMode_3) {
                     mpMorf->setAnm(static_cast<J3DAnmTransform*>(dComIfG_getObjectRes(mResName, 7)),
                                    -1, 0.0f, 1.0f, 0.0f, -1.0f);
-                    mParam3 = 3;
+                    mCurrentAnim = CStatueAnimIndex_3;
                     if (speedF > 1.0f) {
                         speedF = 6.0f;
                         onStateFlg0(daCstatue_FLG0_200);
@@ -501,7 +557,7 @@ void daCstatue_c::posMove() {
                 } else {
                     speedF = 0.0f;
                 }
-                mFlag0 = 0;
+                mMoveMode = daCstatue_MoveMode_0;
             } else {
                 if (mStatueAcch.ChkWallHit()) {
                     speedF *= 0.25f;
@@ -510,18 +566,18 @@ void daCstatue_c::posMove() {
                 }
                 current.pos.x += speedF * cM_ssin(current.angle.y);
                 current.pos.z += speedF * cM_scos(current.angle.y);
-                if (mFlag0 == 1) {
-                    mFlag0 = 2;
+                if (mMoveMode == daCstatue_MoveMode_1) {
+                    mMoveMode = daCstatue_MoveMode_2;
                     mStatueAcch.OnLineCheck();
                 }
             }
         }
-        if (!mParam3) {
+        if (mCurrentAnim == CStatueAnimIndex_0) {
             mpMorf->setPlaySpeed(0.0f);
-            if (!mFlag0) {
+            if (mMoveMode == daCstatue_MoveMode_0) {
                 speedF = 0.0f;
             }
-        } else if (mParam3 == 3 && checkStateFlg0(daCstatue_FLG0_200)) {
+        } else if (mCurrentAnim == CStatueAnimIndex_3 && checkStateFlg0(daCstatue_FLG0_200)) {
             if (mpMorf->checkFrame(7.0f)) {
                 speedF = 3.0f;
             } else if (mpMorf->getFrame() > 12.0f) {
@@ -533,7 +589,7 @@ void daCstatue_c::posMove() {
             current.pos.z = current.pos.z + speedF * cM_scos(current.angle.y);
         }
     }
-    mSomePos = link->current.pos;
+    mLinkPos = link->current.pos;
     if (!fopAcM_checkCarryNow(this)) {
         current.pos += *mStts.GetCCMoveP();
         mStts.ClrCcMove();
@@ -553,27 +609,26 @@ void daCstatue_c::posMove() {
                 mStatueAcch.SetGroundHit();
                 speed.y = 0.0f;
             } else {
-                mSomePos2.y = old.pos.y;
+                mSomePos.y = old.pos.y;
             }
         }
-        if (!groundHit && mStatueAcch.ChkGroundHit() && mSomePos2.y - current.pos.y >= 100.0f) {
-            int index = m_bckIdxTable[mType][3];
-            J3DAnmTransform* animation =
-                static_cast<J3DAnmTransform*>(dComIfG_getObjectRes(mResName, index));
+        if (!groundHit && mStatueAcch.ChkGroundHit() && mSomePos.y - current.pos.y >= 100.0f) {
+            J3DAnmTransform* animation = static_cast<J3DAnmTransform*>(
+                dComIfG_getObjectRes(mResName, m_bckIdxTable[mType][CStatueAnimIndex_3]));
             mpMorf->setAnm(animation, -1, 0.0f, 1.0f, 0.0f, -1.0f);
-            mParam3 = 3;
+            mCurrentAnim = CStatueAnimIndex_3;
             offStateFlg0(daCstatue_FLG0_200);
         }
         offStateFlg0(daCstatue_FLG0_80);
-        mSomePos2.z = 0.0f;
+        mSomePos.z = 0.0f;
     } else {
         speed.y = 0.0f;
-        mFlag0 = 1;
+        mMoveMode = daCstatue_MoveMode_1;
         cXyz pos(current.pos);
         mStatueAcch.CrrPos(dComIfG_Bgsp());
         (link->setGrabCollisionOffset)(current.pos.x - pos.x, current.pos.z - pos.z, 0);
         current.pos = pos;
-        mSomePos2.y = current.pos.y;
+        mSomePos.y = current.pos.y;
         if (link->getGrabUpStart()) {
             onStateFlg0(daCstatue_FLG0_80);
         } else if (link->getGrabPutStart()) {
@@ -585,7 +640,7 @@ void daCstatue_c::posMove() {
         } else {
             targetZ = 0.0f;
         }
-        cLib_chaseF(&mSomePos2.z, targetZ, 0.75f);
+        cLib_chaseF(&mSomePos.z, targetZ, 0.75f);
     }
 }
 
@@ -612,8 +667,8 @@ static Vec const bossLocalOffset[9] = {
 /* 8066555C-80665E14 001F9C 08B8+00 1/1 0/0 0/0 .text            setCollision__11daCstatue_cFv */
 void daCstatue_c::setCollision() {
     mStts.Move();
-    if (!fopAcM_checkCarryNow(this) && mType != daCstatue_TYPE_2) {
-        if (mFlag0 == 2 && speedF > 1.0f) {
+    if (!fopAcM_checkCarryNow(this) && mType != daCstatueType_Normal2) {
+        if (mMoveMode == daCstatue_MoveMode_2 && speedF > 1.0f) {
             mCyl1.OnAtSetBit();
         } else {
             mCyl1.OffAtSetBit();
@@ -625,14 +680,16 @@ void daCstatue_c::setCollision() {
         mCyl1.ResetAtHit();
         mCyl1.ResetCoHit();
     }
-    if (mType == daCstatue_TYPE_0) {
+    if (mType == daCstatueType_Normal) {
         if (mCyl2->ChkAtSet()) {
             f32 radius = mCyl2->GetR();
             cLib_chaseF(&radius, 384.0f, 36.0f);
             mCyl2->SetR(radius);
         }
 
-        if (mParam3 == 2 && mpMorf->getFrame() >= 13.0f && mpMorf->getFrame() < 21.0f) {
+        if (mCurrentAnim == CStatueAnimIndex_2 && mpMorf->getFrame() >= 13.0f &&
+            mpMorf->getFrame() < 21.0f)
+        {
             cXyz direction(cM_ssin(shape_angle.y) * 10.0f, 0.0f, cM_scos(shape_angle.y) * 10.0f);
             cXyz startPos;
             cXyz endPos;
@@ -675,7 +732,6 @@ void daCstatue_c::setCollision() {
                     csXyz rotation(cM_atan2s(plane.mNormal.absXZ(), plane.mNormal.y),
                                    plane.mNormal.atan2sX_Z(), 0);
                     center.y = fopAcM_gc_c::getGroundY();
-                    // todo: regalloc of iEffect
                     for (int iEffect = 0; iEffect < 4; iEffect++) {
                         dComIfGp_particle_set(effName[iEffect], &center, &tevStr, &rotation, 0);
                     }
@@ -689,7 +745,9 @@ void daCstatue_c::setCollision() {
                 }
             }
         } else {
-            if (mParam3 == 2 && mCyl2->ChkAtSet() && mpMorf->getFrame() < 30.0f) {
+            if (mCurrentAnim == CStatueAnimIndex_2 && mCyl2->ChkAtSet() &&
+                mpMorf->getFrame() < 30.0f)
+            {
                 dComIfG_Ccsp()->Set(mCyl2);
             } else {
                 mCps1->ResetAtHit();
@@ -706,13 +764,13 @@ void daCstatue_c::setCollision() {
     }
     cXyz spherePos;
     dCcD_Sph* sphere;
-    if (mType == daCstatue_TYPE_4) {
+    if (mType == daCstatueType_BossLeft) {
         sphere = &mSph[7];
     } else {
         sphere = &mSph[3];
     }
     for (int iSphere = 0; iSphere < 2; iSphere++) {
-        if (mParam3 == 2) {
+        if (mCurrentAnim == CStatueAnimIndex_2) {
             sphere->OnAtSetBit();
         } else {
             sphere->OffAtSetBit();
@@ -723,13 +781,13 @@ void daCstatue_c::setCollision() {
     sphere = &mSph[0];
     int index;
     for (index = 0; index < 9; index++, sphere++) {
-        MtxP pMVar3 = mModel->getAnmMtx(bossJntIdx[index]);
-        mDoMtx_multVec(pMVar3, &bossLocalOffset[index], &spherePos);
+        MtxP mtx = mModel->getAnmMtx(bossJntIdx[index]);
+        mDoMtx_multVec(mtx, &bossLocalOffset[index], &spherePos);
         sphere->MoveCAt(spherePos);
         dComIfG_Ccsp()->Set(sphere);
     }
     if (mBossAtGndHit) {
-        if (mType == daCstatue_TYPE_4) {
+        if (mType == daCstatueType_BossLeft) {
             sphere = &mSph[8];
         } else {
             sphere = &mSph[4];
@@ -778,30 +836,30 @@ static Vec const startAnimeEye = {170.996f, 272.64398f, 654.18896f};
 
 /* 80665F80-80666390 0029C0 0410+00 1/1 0/0 0/0 .text            setDemo__11daCstatue_cFv */
 void daCstatue_c::setDemo() {
-    onStateFlg0(daCstatue_FLG0_40);
+    onStateFlg0(daCstatue_FLG0_Demo);
     cXyz eyePos;
     cXyz centerPos;
     if (eventInfo.checkCommandDemoAccrpt()) {
         camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
         fopAcM_onSwitch(this, mParam1);
-        if (!mParam4) {
+        if (mDemoMode == daCstatue_DemoMode_0) {
             camera->mCamera.Stop();
             camera->mCamera.SetTrimSize(3);
             mDoMtx_multVec(mModel->getBaseTRMtx(), &hitEffectCenter, &centerPos);
             mDoMtx_multVec(mModel->getBaseTRMtx(), &hitEffectEye, &eyePos);
             camera->mCamera.Set(centerPos, eyePos);
-            mParam4 = 1;
-            mParam5 = 100;
-        } else if (mParam4 == 1) {
-            if (mParam5 != 0) {
-                mParam5--;
+            mDemoMode = daCstatue_DemoMode_1;
+            mDemoTimer = 100;
+        } else if (mDemoMode == daCstatue_DemoMode_1) {
+            if (mDemoTimer != 0) {
+                mDemoTimer--;
             } else {
                 mDoMtx_multVec(mModel->getBaseTRMtx(), &behindCenter, &centerPos);
                 mDoMtx_multVec(mModel->getBaseTRMtx(), &behindEye, &eyePos);
                 camera->mCamera.Set(centerPos, eyePos);
                 initStartBrkBtk();
-                mParam4 = 2;
-                mParam5 = 30;
+                mDemoMode = daCstatue_DemoMode_2;
+                mDemoTimer = 30;
             }
         } else {
             if (mAnim2.checkFrame(mTargetFrame)) {
@@ -809,13 +867,13 @@ void daCstatue_c::setDemo() {
             } else if (mAnim2.getFrame() >= mTargetFrame) {
                 mSound.startCreatureVoiceLevel(Z2SE_CSTATUE_ACTIVE_LOOP, mReverb);
             }
-            if (mParam4 == 2) {
+            if (mDemoMode == daCstatue_DemoMode_2) {
                 mAnim1.play();
                 mAnim2.play();
 
                 if (mAnim1.isStop() && mAnim2.isStop()) {
-                    if (mParam5) {
-                        mParam5--;
+                    if (mDemoTimer) {
+                        mDemoTimer--;
                     } else {
                         mDoMtx_multVec(mModel->getBaseTRMtx(), &startAnimeCenter, &centerPos);
                         mDoMtx_multVec(mModel->getBaseTRMtx(), &startAnimeEye, &eyePos);
@@ -823,14 +881,15 @@ void daCstatue_c::setDemo() {
                         J3DAnmTransform* animation =
                             static_cast<J3DAnmTransform*>(dComIfG_getObjectRes(mResName, 12));
                         mpMorf->mDoExt_McaMorfSO::setAnm(animation, -1, 3.0f, 1.0f, 0.0f, -1.0f);
-                        mParam3 = 7;
-                        mParam5 = 30;
-                        mParam4 = 3;
+                        // this is out-of-bounds of the animation table
+                        mCurrentAnim = CStatueAnimIndex_N;
+                        mDemoTimer = 30;
+                        mDemoMode = daCstatue_DemoMode_3;
                     }
                 }
             } else if (mpMorf->isStop()) {
-                if (mParam5) {
-                    mParam5--;
+                if (mDemoTimer) {
+                    mDemoTimer--;
                 } else {
                     camera->mCamera.Start();
                     dComIfGp_event_reset();
@@ -849,15 +908,15 @@ void daCstatue_c::setAnime() {
     daAlink_c* link = daAlink_getAlinkActorClass();
     daCstatue_c* controlledActor = static_cast<daCstatue_c*>(link->getCopyRodControllActor());
     if (eventInfo.checkCommandDemoAccrpt() ||
-        (mParam1 != (u8)-1 && !fopAcM_isSwitch(this, mParam1) && controlledActor == this))
+        (mParam1 != 0xff && !fopAcM_isSwitch(this, mParam1) && controlledActor == this))
     {
         setDemo();
         return;
     }
 
     if (controlledActor == this) {
-        f32 fVar10 = mSomeFloat + link->getCopyRodBallDisMax();
-        if (link->getCopyRodActor()->current.pos.abs2(link->current.pos) > SQUARE(fVar10)) {
+        f32 maxDistance = mControlDistanceOffset + link->getCopyRodBallDisMax();
+        if (link->getCopyRodActor()->current.pos.abs2(link->current.pos) > SQUARE(maxDistance)) {
             static_cast<daCrod_c*>(link->getCopyRodActor())->offControll();
             controlledActor = NULL;
         }
@@ -865,31 +924,33 @@ void daCstatue_c::setAnime() {
     if (link->checkCopyRodSwingModeInit()) {
         offStateFlg0(daCstatue_FLG0_20);
     }
-    int newParam3;
+    int mNewAnim;
     if (checkBossType()) {
-        if ((mParam3 == 6 || mParam3 == 1) && !mpMorf->isStop()) {
-            newParam3 = mParam3;
-        } else if (mParam3 == 2) {
+        if ((mCurrentAnim == CStatueAnimIndex_6 || mCurrentAnim == CStatueAnimIndex_1) &&
+            !mpMorf->isStop())
+        {
+            mNewAnim = mCurrentAnim;
+        } else if (mCurrentAnim == CStatueAnimIndex_2) {
             if (mpMorf->isStop()) {
-                newParam3 = 6;
+                mNewAnim = CStatueAnimIndex_6;
                 dComIfGp_getVibration().StartShock(VIBMODE_S_POWER8, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
                 mBossAtGndHit = true;
             } else if (checkStateFlg0(daCstatue_FLG0_100)) {
-                mParam6 = 15;
-                newParam3 = 1;
+                mTimer1 = 15;
+                mNewAnim = CStatueAnimIndex_1;
                 dComIfGp_getVibration().StartShock(VIBMODE_S_POWER8, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
                 static_cast<daCrod_c*>(link->getCopyRodActor())->offControll();
                 mSound.startCreatureSound(Z2SE_CSTATUE_GM_HIT_GROUND, 0, mReverb);
             } else {
-                newParam3 = 2;
+                mNewAnim = CStatueAnimIndex_2;
             }
         } else if (link->checkCopyRodSwingMode() && controlledActor == this) {
-            newParam3 = 2;
+            mNewAnim = CStatueAnimIndex_2;
             fopAcM_onSwitch(this, 0xe2);
         } else {
-            newParam3 = 0;
+            mNewAnim = CStatueAnimIndex_0;
         }
-    } else if (!mFlag1 && controlledActor == this) {
+    } else if (!mWarpMode && controlledActor == this) {
         if (dComIfGp_event_runCheck()) {
             speed.x = 0.0f;
             speed.z = 0.0f;
@@ -897,70 +958,73 @@ void daCstatue_c::setAnime() {
             speed.x = link->speed.x + (f32)link->transAnimeMoveX();
             speed.z = link->speed.z + (f32)link->transAnimeMoveZ();
         }
-        if (mParam3 == 6 && !mpMorf->isStop()) {
+        if (mCurrentAnim == CStatueAnimIndex_6 && !mpMorf->isStop()) {
             offStateFlg0(daCstatue_FLG0_800);
             if (link->checkCopyRodSwingModeInit()) {
-                newParam3 = 2;
+                mNewAnim = CStatueAnimIndex_2;
             } else {
-                newParam3 = 6;
+                mNewAnim = CStatueAnimIndex_6;
             }
         } else if (link->checkCopyRodSwingMode()) {
             offStateFlg0(daCstatue_FLG0_800);
             if (checkStateFlg0(daCstatue_FLG0_20)) {
-                newParam3 = 0;
+                mNewAnim = CStatueAnimIndex_0;
             } else {
                 if (checkHammerReverse()) {
-                    newParam3 = 6;
+                    mNewAnim = CStatueAnimIndex_6;
                 } else {
-                    newParam3 = 2;
+                    mNewAnim = CStatueAnimIndex_2;
                 }
             }
-        } else if (mParam3 == 3 && !mpMorf->isStop()) {
+        } else if (mCurrentAnim == CStatueAnimIndex_3 && !mpMorf->isStop()) {
             offStateFlg0(daCstatue_FLG0_800);
-            newParam3 = 3;
+            mNewAnim = CStatueAnimIndex_3;
         } else if (fabsf(speed.x) + fabsf(speed.z) > 0.1f && mStatueAcch.ChkGroundHit()) {
             offStateFlg0(daCstatue_FLG0_800);
-            newParam3 = 1;
+            mNewAnim = CStatueAnimIndex_1;
         } else {
-            if (mParam3 == 4 || (mParam3 == 5 && !mpMorf->isStop())) {
-                newParam3 = 5;
+            if (mCurrentAnim == CStatueAnimIndex_4 ||
+                (mCurrentAnim == CStatueAnimIndex_5 && !mpMorf->isStop()))
+            {
+                mNewAnim = CStatueAnimIndex_5;
             } else {
-                newParam3 = 0;
+                mNewAnim = CStatueAnimIndex_0;
             }
         }
-    } else if (mType == daCstatue_TYPE_0) {
-        newParam3 = 4;
-    } else if (mParam3 == 3 && !mpMorf->isStop()) {
-        newParam3 = 3;
+    } else if (mType == daCstatueType_Normal) {
+        mNewAnim = CStatueAnimIndex_4;
+    } else if (mCurrentAnim == CStatueAnimIndex_3 && !mpMorf->isStop()) {
+        mNewAnim = CStatueAnimIndex_3;
     } else {
-        newParam3 = 0;
+        mNewAnim = CStatueAnimIndex_0;
     }
-    if (newParam3 != mParam3 ||
-        (newParam3 == 2 && mpMorf->isStop() && link->checkCopyRodSwingModeInit()))
+    if (mNewAnim != mCurrentAnim ||
+        (mNewAnim == CStatueAnimIndex_2 && mpMorf->isStop() && link->checkCopyRodSwingModeInit()))
     {
         J3DAnmTransform* animation = static_cast<J3DAnmTransform*>(
-            dComIfG_getObjectRes(mResName, m_bckIdxTable[mType][newParam3]));
+            dComIfG_getObjectRes(mResName, m_bckIdxTable[mType][mNewAnim]));
 
-        f32 animStartFrame = !newParam3 ? animation->getFrameMax() - 0.001f : 0.0f;
+        f32 animStartFrame =
+            mNewAnim == CStatueAnimIndex_0 ? animation->getFrameMax() - 0.001f : 0.0f;
         f32 animSpeed = 1.0f;
         if (mSph) {
-            if (newParam3 == 2) {
+            if (mNewAnim == CStatueAnimIndex_2) {
                 animSpeed = 5.0f;
-            } else if (newParam3 == 6 || newParam3 == 1) {
+            } else if (mNewAnim == CStatueAnimIndex_6 || mNewAnim == CStatueAnimIndex_1) {
                 animSpeed = 3.0f;
             }
         }
         mpMorf->setAnm(animation, -1, 3.0f, animSpeed, animStartFrame, -1.0f);
         mpMorf->setFrameF(animStartFrame);
-        mParam3 = newParam3;
+        mCurrentAnim = mNewAnim;
     }
     if (controlledActor == this) {
         if (checkStateFlg0(daCstatue_FLG0_4)) {
             u32 creatureSoundId;
             u32 creatureVoiceId = Z2SE_CSTATUE_ACTIVE_LOOP;
-            if (mType != daCstatue_TYPE_1) {
+            if (mType != daCstatueType_Small) {
                 mAnim1.play();
-                if (mType == daCstatue_TYPE_0) {
+                if (mType == daCstatueType_Normal) {
                     creatureSoundId = Z2SE_CSTATUE_L_START;
                 } else {
                     creatureSoundId = Z2SE_CSTATUE_GM_START;
@@ -983,14 +1047,14 @@ void daCstatue_c::setAnime() {
         u32 soundId;
         if (checkBossType()) {
             soundId = Z2SE_CSTATUE_GM_STOP;
-        } else if (mType == daCstatue_TYPE_1) {
+        } else if (mType == daCstatueType_Small) {
             soundId = Z2SE_CSTATUE_S_STOP;
         } else {
             soundId = Z2SE_CSTATUE_L_STOP;
         }
         mSound.startCreatureSound(soundId, 0, mReverb);
     }
-    if (mType == daCstatue_TYPE_2) {
+    if (mType == daCstatueType_Normal2) {
         mAnim1.play();
     }
     mAnim2.play();
@@ -998,14 +1062,14 @@ void daCstatue_c::setAnime() {
 
 /* 80666B80-80666BF8 0035C0 0078+00 3/3 0/0 0/0 .text            initBrk__11daCstatue_cFUs */
 int daCstatue_c::initBrk(u16 i_index) {
-    J3DAnmTevRegKey* pJVar1 = (J3DAnmTevRegKey*)::dComIfG_getObjectRes(mResName, i_index);
+    J3DAnmTevRegKey* key = (J3DAnmTevRegKey*)::dComIfG_getObjectRes(mResName, i_index);
     J3DModelData* ctx = mModel->getModelData();
-    return mAnim2.init(ctx, pJVar1, 1, -1, 1.0f, 0, -1);
+    return mAnim2.init(ctx, key, 1, -1, 1.0f, 0, -1);
 }
 
 /* 80666BF8-80666C38 003638 0040+00 2/2 0/0 0/0 .text            initStopBrkBtk__11daCstatue_cFv */
 void daCstatue_c::initStopBrkBtk() {
-    static const u16 brkIdx[daCstatue_TYPE_N] = {0x1F, 0x1C, 0x1D, 0x12, 0x12};
+    static const u16 brkIdx[daCstatueType_N] = {0x1F, 0x1C, 0x1D, 0x12, 0x12};
 
     mAnim1.setFrame(0.0f);
     initBrk(brkIdx[mType]);
@@ -1013,7 +1077,7 @@ void daCstatue_c::initStopBrkBtk() {
 
 /* 80666C38-80666DE8 003678 01B0+00 2/2 0/0 0/0 .text            initStartBrkBtk__11daCstatue_cFv */
 void daCstatue_c::initStartBrkBtk() {
-    static const u16 brkIdx[daCstatue_TYPE_N] = {0x1E, 0x1B, 0x1D, 0x11, 0x11};
+    static const u16 brkIdx[daCstatueType_N] = {0x1E, 0x1B, 0x1D, 0x11, 0x11};
 
     int soundId = checkBossType() ? Z2SE_CSTATUE_GM_HIT_BALL : Z2SE_CSTATUE_HIT_BALL;
     mSound.startCreatureSound(soundId, 0, mReverb);
@@ -1039,13 +1103,13 @@ int daCstatue_c::execute() {
             speedF = 30.0f;
             speed.y = 50.0f;
         } else {
-            mFlag0 = 3;
+            mMoveMode = daCstatue_MoveMode_3;
             if (mStatueAcch.ChkGroundHit() || mStatueAcch.GetGroundH() - current.pos.y > -30.0f) {
                 mSound.startCreatureSound(Z2SE_CSTATUE_S_WALK_A, 0, mReverb);
             }
         }
     }
-    if (mFlag1) {
+    if (mWarpMode) {
         if (checkStateFlg0(daCstatue_FLG0_1)) {
             fopAcM_delete(this);
             if (checkStateFlg0(daCstatue_FLG0_1000)) {
@@ -1055,17 +1119,17 @@ int daCstatue_c::execute() {
             }
             return 1;
         }
-        if (mFlag1 == 3) {
+        if (mWarpMode == (daCstatueWarpMode_Active | daCstatueWarpMode_Ground)) {
             daCstatue_c* controlledActor =
                 static_cast<daCstatue_c*>(link->getCopyRodControllActor());
             if (controlledActor == this && link->getCopyRodActor()) {
                 static_cast<daCrod_c*>(link->getCopyRodActor())->offControll();
             }
-            cLib_addCalcPosXZ(&current.pos, mSomePos3, 0.5f, 5.0f, 1.0f);
-        } else if (mFlag1 == 1) {
-            current.pos = mSomePos3;
-            old.pos = mSomePos3;
-            mFlag1 = 0;
+            cLib_addCalcPosXZ(&current.pos, mWarpTarget, 0.5f, 5.0f, 1.0f);
+        } else if (mWarpMode == daCstatueWarpMode_Active) {
+            current.pos = mWarpTarget;
+            old.pos = mWarpTarget;
+            mWarpMode = 0;
         }
     }
     setAnime();
@@ -1073,8 +1137,8 @@ int daCstatue_c::execute() {
     if (bossType != 0) {
         mStatueAcch.CrrPos(dComIfG_Bgsp());
     } else {
-        if (mType == daCstatue_TYPE_2) {
-            if (mParam0 != (u8)-1 && fopAcM_isSwitch(this, mParam0)) {
+        if (mType == daCstatueType_Normal2) {
+            if (mParam0 != 0xff && fopAcM_isSwitch(this, mParam0)) {
                 fopAcM_delete(this);
                 return 1;
             }
@@ -1086,7 +1150,7 @@ int daCstatue_c::execute() {
                 }
             }
         } else {
-            if (mType == daCstatue_TYPE_0 && fopAcM_isSwitch(this, 6)) {
+            if (mType == daCstatueType_Normal && fopAcM_isSwitch(this, 6)) {
                 mCyl1.SetTgType(0xd87afddf);
                 if (checkStateFlg0(daCstatue_FLG0_1000)) {
                     offStateFlg0(daCstatue_FLG0_1000);
@@ -1099,14 +1163,14 @@ int daCstatue_c::execute() {
     u32 morf =
         mStatueAcch.GetGroundH() != -1000000000.0f ? dKy_pol_sound_get(&mStatueAcch.m_gnd) : 0;
     mpMorf->play(morf, mReverb);
-    if (!bossType && mParam3 == 2 && link->checkCopyRodSwingMode()) {
+    if (!bossType && mCurrentAnim == CStatueAnimIndex_2 && link->checkCopyRodSwingMode()) {
         if (mpMorf->getEndFrame() > link->getBaseAnimeFrame()) {
             mpMorf->setFrame(link->getBaseAnimeFrame());
         } else {
             mpMorf->setFrame(mpMorf->getEndFrame());
         }
-    } else if (mParam6) {
-        mParam6--;
+    } else if (mTimer1) {
+        mTimer1--;
         mpMorf->setFrame(0.0f);
     }
     setRoomInfo();
@@ -1118,7 +1182,7 @@ int daCstatue_c::execute() {
         }
     }
     setCollision();
-    if (mType == daCstatue_TYPE_1) {
+    if (mType == daCstatueType_Small) {
         if (mStatueAcch.ChkGroundHit() && !fopAcM_checkCarryNow(this)) {
             cLib_onBit<u32>(attention_info.flags, 0x10);  // this is 0x80 in the debug rom
         } else {
@@ -1128,7 +1192,8 @@ int daCstatue_c::execute() {
 
     u32 effect = 0;
     if (mStatueAcch.ChkGroundLanding() ||
-        (mType == daCstatue_TYPE_1 && mParam3 == 2 && mpMorf->checkFrame(7.0f)))
+        (mType == daCstatueType_Small && mCurrentAnim == CStatueAnimIndex_2 &&
+         mpMorf->checkFrame(7.0f)))
     {
         effect = 7;
     }
@@ -1145,7 +1210,7 @@ int daCstatue_c::execute() {
     if (mParam2 != 0x3f) {
         dTres_c::setIconPositionOfCstatue(mParam2, &current.pos);
     }
-    offStateFlg0((daCstatue_FLG0)(daCstatue_FLG0_40 | daCstatue_FLG0_100));
+    offStateFlg0((daCstatue_FLG0)(daCstatue_FLG0_Demo | daCstatue_FLG0_100));
     return 1;
 }
 
@@ -1157,14 +1222,14 @@ static int daCstatue_Execute(void* actor) {
 
 /* 80667438-80667610 003E78 01D8+00 1/1 0/0 0/0 .text            draw__11daCstatue_cFv */
 int daCstatue_c::draw() {
-    int iVar1 = checkBossType() ? 16 : 8;
-    g_env_light.settingTevStruct(iVar1, &current.pos, &tevStr);
+    int tevstrType = checkBossType() ? 0x10 : 8;
+    g_env_light.settingTevStruct(tevstrType, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(mModel, &tevStr);
     mAnim2.entry(mModel->getModelData());
-    if (mType != daCstatue_TYPE_1) {
+    if (mType != daCstatueType_Small) {
         mAnim1.entry(mModel->getModelData());
     }
-    if (mType == daCstatue_TYPE_2) {
+    if (mType == daCstatueType_Normal2) {
         if (dComIfGs_wolfeye_effect_check()) {
             MtxP mtx = mModel->getAnmMtx(0);
             cXyz position(mtx[0][3], mtx[1][3], mtx[2][3]);
@@ -1178,7 +1243,7 @@ int daCstatue_c::draw() {
         if (!fopAcM_checkCarryNow(this)) {
             cXyz shadowPos(current.pos.x, mModel->getAnmMtx(0)[1][3] + 30.0f, current.pos.z);
             mShadowKey =
-                dComIfGd_setShadow(mShadowKey, 1, mModel, &shadowPos, mSomePos2.x, 0.0f,
+                dComIfGd_setShadow(mShadowKey, 1, mModel, &shadowPos, mSomePos.x, 0.0f,
                                    current.pos.y, mStatueAcch.GetGroundH(), mStatueAcch.m_gnd,
                                    &tevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
         }
