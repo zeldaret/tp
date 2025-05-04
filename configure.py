@@ -1692,7 +1692,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_e_s1"),
     ActorRel(NonMatching, "d_a_e_sb"),
     ActorRel(NonMatching, "d_a_e_sf"),
-    ActorRel(NonMatching, "d_a_e_sg"),
+    ActorRel(Equivalent, "d_a_e_sg"),
     ActorRel(NonMatching, "d_a_e_sh"),
     ActorRel(NonMatching, "d_a_e_sm"),
     ActorRel(NonMatching, "d_a_e_sm2"),

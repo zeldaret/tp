@@ -196,68 +196,17 @@ static int stick_bit[32] = {1 << 0,  1 << 1,  1 << 2,  1 << 3,  1 << 4,  1 << 5,
                             1 << 24, 1 << 25, 1 << 26, 1 << 27, 1 << 28, 1 << 29, 1 << 30, 1 << 31};
 
 /* 8078DF34-8078DF70 000080 0039+03 2/2 0/0 0/0 .data            stick_d */
-static u8 stick_d[57 + 3 /* padding */] = {
-    0x22,
-    0x00,
-    0x14,
-    0x01,
-    0x14,
-    0x00,
-    0x12,
-    0x00,
-    0x0A,
-    0x07,
-    0x00,
-    0xF6,
-    0x1C,
-    0x00,
-    0x00,
-    0x09,
-    0x00,
-    0xF6,
-    0x0C,
-    0x00,
-    0x0A,
-    0x1D,
-    0x00,
-    0x0A,
-    0x18,
-    0x00,
-    0x0A,
-    0x08,
-    0x00,
-    0xF6,
-    0x13,
-    0x00,
-    0x0A,
-    0x0D,
-    0x00,
-    0x0A,
-    0x02,
-    0x14,
-    0x00,
-    0x17,
-    0x00,
-    0x0A,
-    0x03,
-    0x14,
-    0x00,
-    0x19,
-    0x00,
-    0x0A,
-    0x0E,
-    0x00,
-    0x0A,
-    0x20,
-    0x00,
-    0x00,
-    0x14,
-    0x00,
-    0x0A,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
+typedef struct {
+    s8 a;
+    s8 b;
+    s8 c;
+} stick;
+
+static stick stick_d[] = {
+    0x22, 0x00, 0x14, 0x01, 0x14, 0x00, 0x12, 0x00, 0x0A, 0x07, 0x00, 0xF6, 0x1C, 0x00, 0x00,
+    0x09, 0x00, 0xF6, 0x0C, 0x00, 0x0A, 0x1D, 0x00, 0x0A, 0x18, 0x00, 0x0A, 0x08, 0x00, 0xF6,
+    0x13, 0x00, 0x0A, 0x0D, 0x00, 0x0A, 0x02, 0x14, 0x00, 0x17, 0x00, 0x0A, 0x03, 0x14, 0x00,
+    0x19, 0x00, 0x0A, 0x0E, 0x00, 0x0A, 0x20, 0x00, 0x00, 0x14, 0x00, 0x0A,
 };
 
 /* 8078DF70-8078DF9C -00001 002C+00 1/1 0/0 0/0 .data            @4810  JUMPTABLE*/
@@ -274,39 +223,6 @@ static u8 stick_d[57 + 3 /* padding */] = {
 //     (void*)(((char*)action__FP10e_sg_class) + 0xA0),
 //     (void*)(((char*)action__FP10e_sg_class) + 0x94),
 // };
-
-/* 8078DF9C-8078DFA4 0000E8 0008+00 1/1 0/0 0/0 .data            w_eff_id$4852 */
-static u16 w_eff_id[8] = {
-    0x01B8,
-    0x01B9,
-    0x01BA,
-    0x01BB,
-};
-
-/* 8078DFA4-8078DFB0 0000F0 000C+00 1/0 0/0 0/0 .data            jv_offset */
-static u8 jv_offset[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 8078DFB0-8078DFBC -00001 000C+00 1/1 0/0 0/0 .data            jc_data */
-static void* jc_data[3] = {
-    (void*)0x00010001,
-    (void*)0x41200000,
-    (void*)&jv_offset,
-};
-
-/* 8078DFBC-8078DFFC 000108 0040+00 1/1 0/0 0/0 .data            cc_sph_src$5023 */
-static dCcD_SrcSph cc_sph_src = {
-    {
-        {0x0, {{AT_TYPE_CSTATUE_SWING, 0x1, 0xd}, {0xd8fbfdff, 0x3}, 0x75}},  // mObj
-        {dCcD_SE_HARD_BODY, 0x0, 0xc, 0x0, 0x0},                              // mGObjAt
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2},                                   // mGObjTg
-        {0x0},                                                                // mGObjCo
-    },                                                                        // mObjInf
-    {
-        {{0.0f, 0.0f, 0.0f}, 40.0f}  // mSph
-    }  // mSphAttr
-};
 
 /* 8078E04C-8078E058 000198 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGSph */
 // SECTION_DATA extern void* __vt__8cM3dGSph[3] = {
@@ -360,7 +276,7 @@ static int nodeCallBack(J3DJoint* i_joint, int i_stop) {
         MTXCopy(model->getAnmMtx(jnt_no), *calc_mtx);
 
         if (jnt_no >= 1 && jnt_no <= 3) {
-            cMtx_YrotM(*calc_mtx, _this->mJointList[jnt_no] + (short)_this->mCurrent);
+            cMtx_YrotM(*calc_mtx, _this->mJointList[jnt_no] + (s16)_this->mCurrent);
         }
         if (jnt_no == 5) {
             cMtx_ZrotM(*calc_mtx, _this->mAngle);
@@ -371,8 +287,8 @@ static int nodeCallBack(J3DJoint* i_joint, int i_stop) {
         MTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
         if (jnt_no == 0) {
             MTXCopy(model->getAnmMtx(jnt_no), *calc_mtx);
-            cMtx_XrotM(*calc_mtx, 0);
             cMtx_YrotM(*calc_mtx, 0);
+            cMtx_XrotM(*calc_mtx, 0);
             cMtx_ZrotM(*calc_mtx, 0);
             model->setAnmMtx(jnt_no, *calc_mtx);
             MTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
@@ -548,18 +464,20 @@ static bool hio_init;
 static daE_SG_HIO_c l_HIO;
 
 /* 8078E104-8078E108 00006C 0004+00 4/4 0/0 0/0 .bss             stick_pt */
-static int* stick_pt;
+static int stick_pt;
 
 /* 8078A518-8078A588 0003D8 0070+00 1/1 0/0 0/0 .text            pl_joint_search__FP10e_sg_class */
 static void pl_joint_search(e_sg_class* i_this) {
-    if (*stick_pt != 0x7ffff) {
-        for (int i = 0; i < 0x13; i++) {
-            if ((*stick_pt & stick_bit[i]) == 0) {
-                *stick_pt = *stick_pt | stick_bit[i];
+    if (stick_pt != 0x7ffff) {
+        for (int i = 0; i < 19; i++) {
+            if ((stick_pt & stick_bit[i]) == 0) {
+                stick_pt |= stick_bit[i];
+
                 i_this->mStickPtInit = i + 1;
                 return;
             }
         }
+
     } else {
         i_this->mStickPtInit = -1;
     }
@@ -710,13 +628,13 @@ static obj_kbox_class* search_box(e_sg_class* i_this) {
 static dmg_rod_class* search_esa(e_sg_class* i_this) {
     dmg_rod_class* rod_ac = (dmg_rod_class*)fopAcM_SearchByName(PROC_MG_ROD);
 
-    if (rod_ac == NULL || rod_ac->field_0xf7c != 1 || rod_ac->field_0xf7e == 5 ||
-        rod_ac->field_0x100d == 0 || rod_ac->field_0x590 - 20.0f <= rod_ac->current.pos.y)
+    if (rod_ac != NULL && rod_ac->field_0xf7c == 1 && rod_ac->field_0xf7e != 5 &&
+        rod_ac->field_0x100d != 0 && rod_ac->current.pos.y < rod_ac->field_0x590 - 20.0f)
     {
-        return NULL;
+        return rod_ac;
     }
 
-    return rod_ac;
+    return NULL;
 }
 
 /* ############################################################################################## */
@@ -820,13 +738,15 @@ static dmg_rod_class* search_esa(e_sg_class* i_this) {
 /* 8078AA3C-8078B114 0008FC 06D8+00 1/1 0/0 0/0 .text            e_sg_move__FP10e_sg_class */
 static void e_sg_move(e_sg_class* i_this) {
     fopAc_ac_c* actor = (fopAc_ac_c*)i_this;
-    fopAc_ac_c* player = dComIfGp_getPlayer(0);
-    short local_86 = 0;
-    float unaff_f30;
-    float fVar6;
-    short local_84;
+    fopAc_ac_c* player = (fopAc_ac_c*)dComIfGp_getPlayer(0);
+
+    s16 max_angle_step;
+    f32 max_step;
+    f32 fVar6;
     cXyz local_54;
     fopAc_ac_c* kbox_ac;
+    
+    s16 target_angle = 0;
 
     switch (i_this->mStateB) {
     case 0:
@@ -835,10 +755,10 @@ static void e_sg_move(e_sg_class* i_this) {
                 (i_this->mPos0).x = i_this->home.pos.x + cM_rndFX(i_this->mRndUpper);
                 (i_this->mPos0).y = i_this->home.pos.y + cM_rndFX(50.0f);
                 (i_this->mPos0).z = i_this->home.pos.z + cM_rndFX(i_this->mRndUpper);
+
                 local_54 = i_this->mPos0 - i_this->current.pos;
                 local_54.y = 0.0f;
-                fVar6 = local_54.abs();
-                if (fVar6 > i_this->mRndUpper * 0.5f) {
+                if (local_54.abs() > i_this->mRndUpper * 0.5f) {
                     i_this->mStateB = 1;
                     i_this->mArr[0] = cM_rndF(30.0f) + 30.0f;
                     break;
@@ -846,8 +766,8 @@ static void e_sg_move(e_sg_class* i_this) {
             }
         }
         i_this->mStepSpeed = 0.1f;
-        local_84 = 0x0;
-        unaff_f30 = 0.05f;
+        max_angle_step = 0x0;
+        max_step = 0.05f;
         break;
 
     case 1:
@@ -856,17 +776,17 @@ static void e_sg_move(e_sg_class* i_this) {
             i_this->mArr[0] = cM_rndF(30.0f) + 30.0f;
         }
         i_this->mStepSpeed = 0.5f;
-        local_84 = 0x400;
-        unaff_f30 = 0.3f;
+        max_angle_step = 0x400;
+        max_step = 0.3f;
         break;
 
     case 0xA:
         i_this->mPos0 = player->current.pos;
         (i_this->mPos0).y = i_this->mHomeLimit - 20.0f;
         i_this->mStepSpeed = 0.3f;
-        local_84 = 0x200;
-        unaff_f30 = 0.2f;
-        local_86 = cM_ssin(i_this->mLifetime * 700) * 12000.0f;
+        max_angle_step = 0x200;
+        max_step = 0.2f;
+        target_angle = cM_ssin(i_this->mLifetime * 700) * 12000.0f;
         if (i_this->mArr[0] == 0) {
             i_this->mStateB = 0;
         }
@@ -880,9 +800,9 @@ static void e_sg_move(e_sg_class* i_this) {
             (i_this->mPos0).y = i_this->mHomeLimit - 20.0f;
         }
         i_this->mStepSpeed = 0.3f;
-        local_84 = 0x200;
-        unaff_f30 = 0.2f;
-        local_86 = cM_ssin(i_this->mLifetime * 700) * 12000.0f;
+        max_angle_step = 0x200;
+        max_step = 0.2f;
+        target_angle = cM_ssin(i_this->mLifetime * 700) * 12000.0f;
         if (i_this->mArr[0] == 0) {
             i_this->mStateB = 0;
         }
@@ -895,28 +815,28 @@ static void e_sg_move(e_sg_class* i_this) {
     }
     local_54 = i_this->mPos0 - i_this->current.pos;
 
-    short sVar1 = i_this->current.angle.y;
-    cLib_addCalcAngleS2(&i_this->current.angle.y, local_86 + cM_atan2s(local_54.x, local_54.z), 4,
-                        local_84);
+    s16 sVar1 = actor->current.angle.y;
+    cLib_addCalcAngleS2(&actor->current.angle.y, target_angle + cM_atan2s(local_54.x, local_54.z), 4,
+                        max_angle_step);
 
     cLib_addCalcAngleS2(
-        &i_this->current.angle.x,
+        &actor->current.angle.x,
         -cM_atan2s(local_54.y, JMAFastSqrt(local_54.x * local_54.x + local_54.z * local_54.z)), 0x4,
-        local_84);
+        max_angle_step);
 
-    int iVar2 = sVar1 - i_this->current.angle.y;
-    int local_48 = iVar2;
-    fVar6 = (short)iVar2 * 5.0f;
+    sVar1 -= actor->current.angle.y;
+    fVar6 = 5.0f * sVar1;
     if (fVar6 > 4000.0f) {
         fVar6 = 4000.0f;
     } else if (fVar6 < -4000.0f) {
         fVar6 = -4000.0f;
     }
-    cLib_addCalc2(&i_this->mCurrent, fVar6, 0.5f, 1000.0f);
-    cLib_addCalc2(&i_this->speedF, i_this->mTargetSpeed * l_HIO.mUnk2, 1.0f, (float)unaff_f30);
-    int local_7c = fopAcM_otherBgCheck(i_this, player);
 
-    if ((i_this->mLifetime & 7U) == (fopAcM_GetID(actor) & 7)) {
+    cLib_addCalc2(&i_this->mCurrent, fVar6, 0.5f, 1000.0f);
+    cLib_addCalc2(&actor->speedF, i_this->mTargetSpeed * l_HIO.mUnk2, 1.0f, max_step);
+    BOOL bg_check = fopAcM_otherBgCheck(actor, player);
+
+    if ((i_this->mLifetime & 0x7) == (fopAcM_GetID(actor) & 0x7)) {
         kbox_ac = search_box(i_this);
 
         if (kbox_ac != NULL) {
@@ -927,7 +847,7 @@ static void e_sg_move(e_sg_class* i_this) {
             i_this->mArr[0] = cM_rndF(30.0f) + 30.0f;
 
         } else {
-            if (i_this->mArr[1] == 0 && local_7c == 0 &&
+            if (i_this->mArr[1] == 0 && bg_check == 0 &&
                 (player->current).pos.y - 5.0f < i_this->mHomeLimit &&
                 (player->current).pos.y > i_this->mHomeLimit - l_HIO.mUnk4 &&
                 i_this->mTargetDist < i_this->mTargetLoopLimit)
@@ -938,10 +858,11 @@ static void e_sg_move(e_sg_class* i_this) {
                 pl_joint_search(i_this);
 
             } else {
-                if ((i_this->mLifetime & 0x1fU) == (fopAcM_GetID(i_this) & 0x1f) &&
-                    cM_rndF(1.0f) < 0.3f && (player = search_esa(i_this), player != NULL))
+                dmg_rod_class* rod_ac;
+                if ((i_this->mLifetime & 0x1f) == (fopAcM_GetID(actor) & 0x1f) &&
+                    cM_rndF(1.0f) < 0.3f && (rod_ac = search_esa(i_this), rod_ac != NULL))
                 {
-                    i_this->mActorID = fopAcM_GetID(player);
+                    i_this->mActorID = fopAcM_GetID(rod_ac);
                     i_this->mStateA = 7;
                     i_this->mStateB = 0;
                     i_this->mLifetime = cM_rndF(65536.0f);
@@ -949,6 +870,7 @@ static void e_sg_move(e_sg_class* i_this) {
             }
         }
     }
+
     cLib_addCalcAngleS2(&i_this->mAngle, 0, 2, 1000);
     i_this->current.angle.z = 0;
     i_this->mLate2 = 0;
@@ -985,17 +907,11 @@ static void e_sg_move(e_sg_class* i_this) {
 
 /* 8078B114-8078B618 000FD4 0504+00 1/1 0/0 0/0 .text            e_sg_search__FP10e_sg_class */
 static void e_sg_search(e_sg_class* i_this) {
-    short sVar1;
-    int iVar2;
-    fopAc_ac_c* player;
-    float unaff_f29;
-    float fVar7;
-    float fVar8;
-    float fVar9;
-    short local_84;
-    cXyz local_74;
+    fopAc_ac_c* actor = (fopAc_ac_c*)i_this;
+    fopAc_ac_c* player = (fopAc_ac_c*)dComIfGp_getPlayer(0);
 
-    player = dComIfGp_getPlayer(0);
+    s16 local_84;
+    f32 unaff_f29;
     switch (i_this->mStateB) {
     case 0:
         i_this->mStepSpeed = 0.9f;
@@ -1003,67 +919,64 @@ static void e_sg_search(e_sg_class* i_this) {
         unaff_f29 = 0.5f;
         break;
     }
-    MTXCopy(
-        daPy_getLinkPlayerActorClass()->getModelJointMtx(stick_d[(i_this->mStickPtInit + -1) * 3]),
-        *calc_mtx);
-    local_74.set(0.0f, stick_bit[(i_this->mStickPtInit + -1) * 3],
-                 stick_bit[(i_this->mStickPtInit + -1) * 3]);
+
+    MtxP tmp =
+        daPy_getLinkPlayerActorClass()->getModelJointMtx(stick_d[i_this->mStickPtInit - 1].a);
+    MTXCopy(tmp, *calc_mtx);
+
+    cXyz local_74;
+    local_74.set(0.0f, stick_d[i_this->mStickPtInit - 1].b, stick_d[i_this->mStickPtInit - 1].c);
 
     MtxPosition(&local_74, &i_this->mPos0);
-    local_74 = i_this->mPos0 - i_this->current.pos;
+    local_74 = i_this->mPos0 - actor->current.pos;
 
-    sVar1 = i_this->current.angle.y;
-    fVar9 = i_this->mLimit * 10.0f;
+    s16 sVar1 = i_this->current.angle.y;
+    f32 fVar9 = i_this->mLimit * 10.0f;
     if (fVar9 > 7000.0f) {
         fVar9 = 7000.0f;
     }
-    fVar7 = cM_ssin(i_this->mLifetime * 0x4b0);
-    fVar8 = cM_ssin(i_this->mLifetime * 900);
-    iVar2 = (int)(fVar9 * fVar8 * 0.4f);
-    cLib_addCalcAngleS2(&i_this->current.angle.y,
-                        (short)(fVar9 * fVar7) + cM_atan2s(local_74.x, local_74.z), 4, local_84);
+    f32 fVar7 = cM_ssin(i_this->mLifetime * 0x4b0);
+    f32 fVar8 = cM_ssin(i_this->mLifetime * 900);
+    int iVar2 = (int)(fVar9 * fVar8 * 0.4f);
+    cLib_addCalcAngleS2(&actor->current.angle.y,
+                        (s16)(fVar9 * fVar7) + cM_atan2s(local_74.x, local_74.z), 4, local_84);
     fVar9 = JMAFastSqrt(local_74.x * local_74.x + local_74.z * local_74.z);
-    cLib_addCalcAngleS2(&i_this->current.angle.x, -(iVar2 + cM_atan2s(local_74.y, fVar9)), 4,
+    cLib_addCalcAngleS2(&actor->current.angle.x, -(iVar2 + cM_atan2s(local_74.y, fVar9)), 4,
                         local_84);
-    iVar2 = sVar1 - i_this->current.angle.y;
-    int local_58 = iVar2;
-    fVar9 = (short)iVar2 * 5.0f;
+
+    sVar1 -= i_this->current.angle.y;
+    fVar9 = sVar1 * 5.0f;
     if (fVar9 > 4000.0f) {
         fVar9 = 4000.0f;
-    } else {
-        if (fVar9 < -4000.0f) {
-            fVar9 = -4000.0f;
-        }
+    } else if (fVar9 < -4000.0f) {
+        fVar9 = -4000.0f;
     }
     cLib_addCalc2(&i_this->mCurrent, fVar9, 0.5f, 1000.0f);
-    cLib_addCalc2(&i_this->speedF, i_this->mTargetSpeed * l_HIO.mUnk3, 1.0f, (float)unaff_f29);
+    cLib_addCalc2(&i_this->speedF, i_this->mTargetSpeed * l_HIO.mUnk3, 1.0f, unaff_f29);
 
     if (player->current.pos.y - 5.0f > i_this->mHomeLimit ||
         player->current.pos.y < i_this->mHomeLimit - l_HIO.mUnk4 ||
-        dComIfGp_checkPlayerStatus0(0, 8) || fopAcM_otherBgCheck(i_this, dComIfGp_getPlayer(0)))
+        dComIfGp_checkPlayerStatus0(0, 8) || fopAcM_otherBgCheck(actor, dComIfGp_getPlayer(0)))
     {
         i_this->mStateA = 0;
         i_this->mStateB = 10;
-        fVar9 = cM_rndF(80.0f);
-        i_this->mArr[0] = (short)(int)(fVar9 + 80.0f);
-        fVar9 = cM_rndF(80.0f);
-        i_this->mArr[1] = (short)(int)(fVar9 + 80.0f);
-        if (i_this->mStickPtInit != '\0') {
-            stick_pt = (int*)((uint)stick_pt & ~stick_bit[(char)i_this->mStickPtInit + -1]);
-            i_this->mStickPtInit = '\0';
+        i_this->mArr[0] = cM_rndF(80.0f) + 80.0f;
+        i_this->mArr[1] = cM_rndF(80.0f) + 80.0f;
+        if (i_this->mStickPtInit != 0) {
+            stick_pt = stick_pt & ~stick_bit[i_this->mStickPtInit - 1];
+            i_this->mStickPtInit = 0;
         }
     } else {
-        player = dComIfGp_getPlayer(0);
-        fVar9 = local_74.abs();
-        if ((fVar9 < 50.0f) && ((char)i_this->mStickPtInit > '\0')) {
+        if (local_74.abs() < 50.0f && i_this->mStickPtInit > 0) {
             i_this->mStateA = 2;
             i_this->mStateB = 0;
             i_this->mSpeedF = i_this->speedF;
             i_this->mCntDown = 0;
         }
     }
+
     cLib_addCalcAngleS2(&i_this->mAngle, 5000, 2, 2000);
-    i_this->mHuh = '\x01';
+    i_this->mHuh = 0x1;
 }
 
 /* ##############################################################################################
@@ -1122,32 +1035,26 @@ static void e_sg_search(e_sg_class* i_this) {
 static void e_sg_b_search(e_sg_class* i_this) {
     fopAc_ac_c* actor = (fopAc_ac_c*)i_this;
 
-    short sVar1;
-    short uVar5;
-    short sVar3;
-    float unaff_f29;
-    float fVar7;
-    float fVar8;
-    short local_b2;
+    s16 sVar1;
+    f32 unaff_f29;
+    f32 fVar7;
+    s16 local_b2;
     cXyz local_78;
-    cXyz cStack_84;
+    cXyz cross_pos;
 
-    obj_kbox_class* pfVar2 = (obj_kbox_class*)fopAcM_SearchByID(i_this->mActorID);
-    if (pfVar2 == NULL) {
+    obj_kbox_class* kbox_ac = (obj_kbox_class*)fopAcM_SearchByID(i_this->mActorID);
+
+    if (kbox_ac == NULL) {
         i_this->mStateA = 0;
         i_this->mStateB = 0;
         i_this->speedF = 0.0f;
-        fVar7 = cM_rndF(60.0f);
-        i_this->mArr[0] = (short)(int)fVar7;
+        i_this->mArr[0] = cM_rndF(60.0f);
     } else {
-        if ((i_this->mArr[0] == 0) &&
-            (uVar5 = fopAcM_GetID(actor), (i_this->mLifetime & 7U) == (uVar5 & 7)))
-        {
-            if (otherBgCheck(actor, &pfVar2->field_0x5b4, &cStack_84) != 0) {
-                local_78 = cStack_84 - pfVar2->field_0x5b4;
+        if (i_this->mArr[0] == 0 && (i_this->mLifetime & 7U) == (fopAcM_GetID(actor) & 7)) {
+            if (otherBgCheck(actor, &kbox_ac->field_0x5b4, &cross_pos)) {
+                local_78 = cross_pos - kbox_ac->field_0x5b4;
 
-                fVar7 = local_78.abs();
-                if (fVar7 > 100.0f) {
+                if (local_78.abs() > 100.0f) {
                     i_this->mStateA = 0;
                     i_this->mStateB = 0;
                     return;
@@ -1163,26 +1070,27 @@ static void e_sg_b_search(e_sg_class* i_this) {
             break;
         }
 
-        i_this->mPos0 = pfVar2->field_0x5b4;
+        i_this->mPos0 = kbox_ac->field_0x5b4;
         i_this->mPos0.y += 30.0f;
-        local_78 = i_this->mPos0 - i_this->current.pos;
 
-        sVar1 = i_this->current.angle.y;
+        local_78 = i_this->mPos0 - actor->current.pos;
+        sVar1 = actor->current.angle.y;
         fVar7 = i_this->mLimit * 20.0f;
         if (fVar7 > 3000.0f) {
             fVar7 = 3000.0f;
         }
-        fVar8 = cM_ssin(i_this->mLifetime * 0x4b0);
-        int local_68 = (int)(fVar7 * fVar8);
-        cLib_addCalcAngleS2(&i_this->current.angle.y,
-                            ((short)(fVar7 * fVar8) + cM_atan2s(local_78.x, local_78.z)), 4,
-                            (int)local_b2);
-        fVar7 = JMAFastSqrt(local_78.x * local_78.x + local_78.z * local_78.z);
-        cLib_addCalcAngleS2(&i_this->current.angle.x, -cM_atan2s(local_78.y, fVar7), 4,
-                            (int)local_b2);
 
-        sVar3 = sVar1 - i_this->current.angle.y;
-        fVar7 = sVar3 * (5.0f);
+        cLib_addCalcAngleS2(&actor->current.angle.y,
+                            (s16)(fVar7 * cM_ssin(i_this->mLifetime * 0x4b0)) +
+                                cM_atan2s(local_78.x, local_78.z),
+                            4, local_b2);
+        cLib_addCalcAngleS2(
+            &actor->current.angle.x,
+            -cM_atan2s(local_78.y, JMAFastSqrt(local_78.x * local_78.x + local_78.z * local_78.z)),
+            4, local_b2);
+
+        sVar1 -= actor->current.angle.y;
+        fVar7 = sVar1 * 5.0f;
         if (fVar7 > 4000.0f) {
             fVar7 = 4000.0f;
         } else {
@@ -1190,27 +1098,26 @@ static void e_sg_b_search(e_sg_class* i_this) {
                 fVar7 = -4000.0f;
             }
         }
-        cLib_addCalc2(&i_this->mCurrent, fVar7, 0.5f, 1000.0f);
-        cLib_addCalc2(&i_this->speedF, i_this->mTargetSpeed * l_HIO.mUnk3, 1.0f, (float)unaff_f29);
-        s16 local_b8 = 5000;
-        local_78 = pfVar2->field_0x5b4 - i_this->current.pos;
 
-        fVar7 = local_78.abs();
-        if (fVar7 < 200.0f) {
-            fVar7 = cM_ssin(i_this->mLifetime * 0x3100);
-            sVar3 = fVar7 * 2000.0f + 3000.0f;
-            local_b8 = sVar3;
+        cLib_addCalc2(&i_this->mCurrent, fVar7, 0.5f, 1000.0f);
+        cLib_addCalc2(&actor->speedF, i_this->mTargetSpeed * l_HIO.mUnk3, 1.0f, unaff_f29);
+
+        s16 local_b8 = 5000;
+        local_78 = kbox_ac->field_0x5b4 - actor->current.pos;
+
+        if (local_78.abs() < 200.0f) {
+            local_b8 = cM_ssin(i_this->mLifetime * 0x3100) * 2000.0f + 3000.0f;
+
             if ((i_this->mArr[1] == 0) && (i_this->mAcch.ChkWallHit() != 0)) {
-                fVar7 = cM_rndF(30.0f);
-                i_this->mArr[1] = (short)(int)(fVar7 + 10.0f);
-                sVar3 = cM_rndF(700.0f) + 300.0f;
-                pfVar2->field_0x598 = (float)sVar3;
+                i_this->mArr[1] = cM_rndF(30.0f) + 10.0f;
+                kbox_ac->field_0x598 = (s16)(cM_rndF(700.0f) + 300.0f);
             }
-            cLib_addCalc2(&pfVar2->field_0x5a8.y, -100.0f, 1.0f, 0.05f);
+            cLib_addCalc2(&kbox_ac->field_0x5a8.y, -100.0f, 1.0f, 0.05f);
             if ((i_this->mLifetime & 0xfU) == 0) {
                 i_this->mSound.startCreatureSound(Z2SE_EN_SG_BITE, 0, -1);
             }
         }
+
         cLib_addCalcAngleS2(&i_this->mAngle, local_b8, 1, 0x4000);
     }
 }
@@ -1234,14 +1141,14 @@ static void e_sg_b_search(e_sg_class* i_this) {
 /* 8078BC24-8078C068 001AE4 0444+00 1/1 0/0 0/0 .text            e_sg_esa_search__FP10e_sg_class
  */
 static void e_sg_esa_search(e_sg_class* i_this) {
-    short sVar1;
-    short uVar4;
+    s16 sVar1;
+    s16 uVar4;
     s16 sVar5;
-    float unaff_f29;
-    float fVar6;
-    float fVar7;
-    short local_98;
-    short local_92;
+    f32 unaff_f29;
+    f32 fVar6;
+    f32 fVar7;
+    s16 local_98;
+    s16 local_92;
     cXyz local_78;
     cXyz cStack_84;
     cXyz cStack_90;
@@ -1252,7 +1159,7 @@ static void e_sg_esa_search(e_sg_class* i_this) {
         i_this->mStateB = 0;
         i_this->speedF = 0.0f;
         fVar6 = cM_rndF(20.0f);
-        i_this->mArr[0] = (short)(int)fVar6;
+        i_this->mArr[0] = (s16)(int)fVar6;
     } else {
         if ((i_this->mArr[0] == 0) &&
             (uVar4 = fopAcM_GetID((fopAc_ac_c*)i_this), (i_this->mLifetime & 7U) == (uVar4 & 7)))
@@ -1266,7 +1173,7 @@ static void e_sg_esa_search(e_sg_class* i_this) {
                 i_this->mStateB = 0;
                 i_this->speedF = 0.0f;
                 fVar6 = cM_rndF(20.0f);
-                i_this->mArr[0] = (short)(int)fVar6;
+                i_this->mArr[0] = (s16)(int)fVar6;
                 return;
             }
         }
@@ -1286,26 +1193,23 @@ static void e_sg_esa_search(e_sg_class* i_this) {
             fVar6 = 3000.0f;
         }
         fVar7 = cM_ssin(i_this->mLifetime * 0x4b0);
-        int local_68 = (int)(fVar6 * fVar7);
         cLib_addCalcAngleS2(&i_this->current.angle.y,
-                            ((short)(fVar6 * fVar7) + cM_atan2s(local_78.x, local_78.z)), 4,
+                            ((s16)(fVar6 * fVar7) + cM_atan2s(local_78.x, local_78.z)), 4,
                             local_92);
         fVar6 = JMAFastSqrt(local_78.x * local_78.x + local_78.z * local_78.z);
         cLib_addCalcAngleS2(&i_this->current.angle.x, -cM_atan2s(local_78.y, fVar6), 4, local_92);
 
-        int tmp = (sVar1 - i_this->current.angle.y);
-        int tmp2 = tmp;
-        fVar6 = (short)tmp * 5.0f;
+        sVar1 -= i_this->current.angle.y;
+        fVar6 = sVar1 * 5.0f;
 
         if (fVar6 > 4000.0f) {
             fVar6 = 4000.0f;
-        } else {
-            if (fVar6 < -4000.0f) {
-                fVar6 = -4000.0f;
-            }
+        } else if (fVar6 < -4000.0f) {
+            fVar6 = -4000.0f;
         }
+
         cLib_addCalc2(&i_this->mCurrent, fVar6, 0.5f, 1000.0f);
-        cLib_addCalc2(&i_this->speedF, i_this->mTargetSpeed * l_HIO.mUnk3, 1.0f, (float)unaff_f29);
+        cLib_addCalc2(&i_this->speedF, i_this->mTargetSpeed * l_HIO.mUnk3, 1.0f, (f32)unaff_f29);
         local_98 = 5000;
         fVar6 = local_78.abs();
         if (fVar6 < 200.0f) {
@@ -1344,7 +1248,7 @@ static void e_sg_kamu(e_sg_class* i_this) {
         if (mDoCPd_c::getTrigA(0) != 0) {
             i_this->mCntDown++;
         }
-        if (i_this->mHomeLimit + 10.0f > player->current.pos.y || player->speedF >= 10.0f) {
+        if (player->current.pos.y > i_this->mHomeLimit + 10.0f || player->speedF >= 10.0f) {
             i_this->mStateB = 1;
             i_this->mArr[0] = (cM_rndF(30.0f) + 10.0f);
         }
@@ -1364,36 +1268,36 @@ static void e_sg_kamu(e_sg_class* i_this) {
             } else {
                 i_this->current.angle.z = -0x4000;
             }
-            if (i_this->mStickPtInit == '\0') {
+            if (i_this->mStickPtInit == 0) {
                 return;
             }
-            stick_pt = (int*)((uint)stick_pt & ~stick_bit[(char)i_this->mStickPtInit + -1]);
-            i_this->mStickPtInit = '\0';
+            stick_pt = stick_pt & ~stick_bit[i_this->mStickPtInit - 1];
+            i_this->mStickPtInit = 0;
             return;
         }
         break;
     }
 
     i_this->mStepSpeed = 0.9f;
-    MTXCopy(
-        daPy_getLinkPlayerActorClass()->getModelJointMtx(stick_d[(i_this->mStickPtInit + -1) * 3]),
-        *calc_mtx);
-    uStack_2c = stick_bit[(i_this->mStickPtInit + -1) * 3];
-    local_48.set(0.0f, stick_bit[(i_this->mStickPtInit + -1) * 3],
-                 stick_bit[(i_this->mStickPtInit + -1) * 3]);
+
+    MTXCopy(daPy_getLinkPlayerActorClass()->getModelJointMtx(stick_d[i_this->mStickPtInit - 1].a),
+            *calc_mtx);
+    local_48.set(0.0f, stick_d[i_this->mStickPtInit - 1].b, stick_d[i_this->mStickPtInit - 1].c);
+
     MtxPosition(&local_48, &i_this->mPos0);
-    cLib_addCalc2((float*)&i_this->current, (i_this->mPos0).x, 1.0f, i_this->mSpeedF);
+
+    cLib_addCalc2((f32*)&i_this->current, (i_this->mPos0).x, 1.0f, i_this->mSpeedF);
     cLib_addCalc2(&i_this->current.pos.y, (i_this->mPos0).y, 1.0f, i_this->mSpeedF);
     cLib_addCalc2(&i_this->current.pos.z, (i_this->mPos0).z, 1.0f, i_this->mSpeedF);
     cLib_addCalc2(&i_this->mSpeedF, 1000.0f, 1.0f, 10.0f);
-    local_48 = (player->current).pos;
 
+    local_48 = (player->current).pos;
     local_48 += player->speed * 20.0f;
     local_48 -= i_this->current.pos;
 
     cLib_addCalcAngleS2(&i_this->current.angle.y,
                         cM_atan2s(local_48.x, local_48.z) +
-                            (short)(cM_ssin(i_this->mLifetime * 0xaf0) * 8000.0f),
+                            (s16)(cM_ssin(i_this->mLifetime * 0xaf0) * 8000.0f),
                         8, 0x800);
     cLib_addCalcAngleS2(&i_this->current.angle.x, 0, 8, 0x800);
     cLib_addCalcAngleS2(&i_this->mAngle, cM_ssin(i_this->mLifetime * 0x1500) * 2000.0f + 3000.0f, 1,
@@ -1419,7 +1323,7 @@ static void e_sg_kamu(e_sg_class* i_this) {
 /* 8078C470-8078C77C 002330 030C+00 1/1 0/0 0/0 .text            e_sg_drop__FP10e_sg_class */
 static void e_sg_drop(e_sg_class* i_this) {
     s16 sVar4;
-    float fVar5;
+    f32 fVar5;
     cXyz local_3c;
     cXyz local_48;
 
@@ -1446,7 +1350,7 @@ static void e_sg_drop(e_sg_class* i_this) {
             } else {
                 i_this->mLate2 = -0x8000;
             }
-            i_this->current.angle.y += (short)cM_rndFX(15000.0f);
+            i_this->current.angle.y += (s16)cM_rndFX(15000.0f);
             i_this->mSound.startCreatureSound(Z2SE_EN_SG_BOUND, 0, -1);
         }
         i_this->current.pos += i_this->speed;
@@ -1464,9 +1368,9 @@ static void e_sg_drop(e_sg_class* i_this) {
             i_this->mStateA = 0;
             i_this->mStateB = 10;
             fVar5 = cM_rndF(60.0f);
-            i_this->mArr[0] = (short)(int)(fVar5 + 50.0f);
+            i_this->mArr[0] = (s16)(int)(fVar5 + 50.0f);
             fVar5 = cM_rndF(80.0f);
-            i_this->mArr[1] = (short)(int)(fVar5 + 80.0f);
+            i_this->mArr[1] = (s16)(int)(fVar5 + 80.0f);
             i_this->mAlive2 = 1;
             if (i_this->field_0x567 != '\0') {
                 i_this->field_0x567 = 0;
@@ -1496,7 +1400,7 @@ static void e_sg_drop(e_sg_class* i_this) {
 
 /* 8078C77C-8078CA1C 00263C 02A0+00 1/1 0/0 0/0 .text            e_sg_damage__FP10e_sg_class */
 static void e_sg_damage(e_sg_class* i_this) {
-    float fVar6;
+    f32 fVar6;
     cXyz local_2c;
     cXyz cStack_38;
 
@@ -1522,7 +1426,7 @@ static void e_sg_damage(e_sg_class* i_this) {
             i_this->speedF = fVar6 + 40.0f;
         }
         fVar6 = cM_rndF(65536.0f);
-        i_this->mLate2 = (short)(int)fVar6;
+        i_this->mLate2 = (s16)(int)fVar6;
         i_this->speed.y = 0.0f;
         break;
     case 1:
@@ -1590,11 +1494,6 @@ static void damage_check(e_sg_class* i_this) {
 /* 8078DE68-8078DE74 0000C4 000C+00 0/0 0/0 0/0 .rodata          @4743  UNIDENTIFIED*/
 // #pragma push
 // #pragma force_active on
-static float const lit_4743[3] = {
-    1.0f,
-    2.0f,
-    3.5f,
-};
 // COMPILER_STRIP_GATE(0x8078DE68, &lit_4743);
 // #pragma pop
 
@@ -1633,19 +1532,10 @@ static float const lit_4743[3] = {
 // COMPILER_STRIP_GATE(0x8078DE84, &lit_4809);
 // #pragma pop
 
-/* 8078CB14-8078CF34 0029D4 0420+00 2/1 0/0 0/0 .text            action__FP10e_sg_class */
 static void action(e_sg_class* i_this) {
-    int iVar1;
-    short sVar2;
-    float fVar8;
-    cXyz* local_54;
-    cXyz cStack_4c;
-    cXyz cStack_40;
-    cXyz local_28;
-
     s8 bVar5 = false;
-    s8 link_search_flag = false;
     s8 att_flag = true;
+    s8 link_search_flag = false;
     switch (i_this->mStateA) {
     case 0:
         e_sg_move(i_this);
@@ -1684,34 +1574,41 @@ static void action(e_sg_class* i_this) {
         fopAcM_OffStatus(i_this, 0);
         i_this->attention_info.flags = 0;
     }
+
     if (link_search_flag) {
         i_this->mSound.setLinkSearch(true);
     } else {
         i_this->mSound.setLinkSearch(false);
     }
+
     cLib_addCalc2(&i_this->mTargetSpeed, i_this->mStepSpeed, 1.0f, 0.2f);
     cLib_addCalc2(&i_this->mSpeed, 2000.0f + i_this->mTargetSpeed * (2000.0f), 0.5f, 200.0f);
     i_this->mS2 = i_this->mTargetSpeed * 13000.0f + 2000.0f;
 
-    sVar2 = i_this->mS1;
+    s16 sVar2 = i_this->mS1;
     i_this->mS1 += i_this->mS2;
 
     if (i_this->current.pos.y < i_this->mHomeLimit && sVar2 < 0 && i_this->mS1 >= 0) {
         i_this->mSound.startCreatureSound(Z2SE_EN_SG_SWIM, 0, -1);
     }
 
-    float local_34[3];
-    local_34[0] = lit_4743[0];
-    local_34[1] = lit_4743[1];
-    local_34[2] = lit_4743[2];
-    for (int i = 0; i < 3; i++) {
-        // param_3 = (Vec*)(int)sVar2;
-        i_this->mJointList[i] = local_34[i] * i_this->mSpeed * cM_ssin(i_this->mS1 + i * -15000);
-    }
-    i_this->mJointList[0] = -0.3f * i_this->mSpeed * cM_ssin(i_this->mS1 + -7000);
+    cXyz local_28;
+    f32 local_34[3] = {
+        1.0f,
+        2.0f,
+        3.5f,
+    };
+    cXyz cStack_40;
 
-    if (i_this->mHuh2 && i_this->mStts.GetCCMoveP() != NULL) {
-        i_this->current.pos += cStack_4c * 0.75f;
+    for (int i = 0; i < 3; i++) {
+        i_this->mJointList[i + 1] =
+            i_this->mSpeed * cM_ssin(i_this->mS1 + i * -15000) * local_34[i];
+    }
+    i_this->mJointList[0] = i_this->mSpeed * cM_ssin(i_this->mS1 - 7000) * -0.3f;
+
+    cXyz* cc_move;
+    if (i_this->mHuh2 && (cc_move = i_this->mStts.GetCCMoveP())) {
+        i_this->current.pos += *cc_move * 0.75f;
     }
 
     if (!bVar5) {
@@ -1741,16 +1638,14 @@ static void action(e_sg_class* i_this) {
             i_this->current.pos -= cStack_40;
             i_this->old.pos -= cStack_40;
 
-            float tmp = 15.0f + local_58->field_0x5b4.y;
-            if (i_this->current.pos.y > tmp) {
-                i_this->current.pos.y = tmp;
+            if (i_this->current.pos.y > 15.0f + local_58->field_0x5b4.y) {
+                i_this->current.pos.y = 15.0f + local_58->field_0x5b4.y;
             }
         } else {
             i_this->mAcch.CrrPos(dComIfG_Bgsp());
 
-            float tmp = i_this->mHomeLimit - 10.0f;
-            if (i_this->current.pos.y > tmp) {
-                i_this->current.pos.y = tmp;
+            if (i_this->current.pos.y > i_this->mHomeLimit - 10.0f) {
+                i_this->current.pos.y = i_this->mHomeLimit - 10.0f;
             }
         }
     }
@@ -1800,9 +1695,9 @@ static void action(e_sg_class* i_this) {
 /* 8078CF34-8078D5F4 002DF4 06C0+00 2/1 0/0 0/0 .text            daE_SG_Execute__FP10e_sg_class
  */
 static int daE_SG_Execute(e_sg_class* i_this) {
-    float fVar71;
-    float fVar8;
-    short local_168;
+    f32 fVar71;
+    f32 fVar8;
+    s16 local_168;
     cXyz local_138;
     cXyz cStack_144;
 
@@ -1810,7 +1705,7 @@ static int daE_SG_Execute(e_sg_class* i_this) {
         return 1;
     }
 
-    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+    fopAc_ac_c* player = (fopAc_ac_c*)dComIfGp_getPlayer(0);
 
     i_this->mLifetime++;
     if (i_this->mCooldown3) {
@@ -1869,8 +1764,8 @@ static int daE_SG_Execute(e_sg_class* i_this) {
         local_168 = 0x4000;
     }
 
-    cLib_addCalcAngleS2(&i_this->shape_angle.z, (int)(short)(i_this->current.angle.z + local_168),
-                        2, 0x1000);
+    cLib_addCalcAngleS2(&i_this->shape_angle.z, (int)(s16)(i_this->current.angle.z + local_168), 2,
+                        0x1000);
     cLib_addCalcAngleS2(&i_this->mLate1, (int)i_this->mLate2, 2, 0x1800);
 
     mDoMtx_stack_c::transS(i_this->current.pos.x, i_this->current.pos.y, i_this->current.pos.z);
@@ -1919,6 +1814,13 @@ static int daE_SG_Execute(e_sg_class* i_this) {
         fVar8 = l_HIO.mUnk1 * 0.5f * i_this->scale.x;
         static cXyz sc(fVar8, fVar8, fVar8);
 
+        static u16 w_eff_id[8] = {
+            0x01B8,
+            0x01B9,
+            0x01BA,
+            0x01BB,
+        };
+
         for (int k = 0; k < 4; k++) {
             i_this->mParticleKey[k] = dComIfGp_particle_set(
                 i_this->mParticleKey[k], w_eff_id[k], &cStack_144, &i_this->tevStr,
@@ -1958,11 +1860,26 @@ static int daE_SG_Delete(e_sg_class* i_this) {
         i_this->mSound.deleteObject();
     }
     if (i_this->mStickPtInit != NULL) {
-        stick_pt = (int*)((uint)stick_pt & ~stick_bit[i_this->mStickPtInit - 1]);
+        stick_pt = stick_pt & ~stick_bit[i_this->mStickPtInit - 1];
         i_this->mStickPtInit = NULL;
     }
     return 1;
 }
+
+/* 8078DFA4-8078DFB0 0000F0 000C+00 1/0 0/0 0/0 .data            jv_offset */
+static u8 jv_offset[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+
+/* 8078DFB0-8078DFBC -00001 000C+00 1/1 0/0 0/0 .data            jc_data */
+static void* jc_data[3] = {
+    (void*)0x00010001,
+    (void*)0x41200000,
+    (void*)&jv_offset,
+};
 
 /* 8078D6B0-8078D780 003570 00D0+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 static int useHeapInit(fopAc_ac_c* i_this) {
@@ -2015,23 +1932,26 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* 8078D780-8078DB84 003640 0404+00 1/0 0/0 0/0 .text            daE_SG_Create__FP10fopAc_ac_c
  */
 static int daE_SG_Create(fopAc_ac_c* i_this) {
-    int iVar2;
-    u32 uVar5;
-    uint child_count;
-    csXyz child_angle;
-    cXyz child_pos;
-    uint uStack_2c;
+    static dCcD_SrcSph cc_sph_src = {
+        {
+            {0x0, {{AT_TYPE_CSTATUE_SWING, 0x1, 0xd}, {0xd8fbfdff, 0x3}, 0x75}},  // mObj
+            {dCcD_SE_HARD_BODY, 0x0, 0xc, 0x0, 0x0},                              // mGObjAt
+            {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2},                                   // mGObjTg
+            {0x0},                                                                // mGObjCo
+        },                                                                        // mObjInf
+        {
+            {{0.0f, 0.0f, 0.0f}, 40.0f}  // mSph
+        }  // mSphAttr
+    };
 
+    
     e_sg_class* const a_this = static_cast<e_sg_class*>(i_this);
     fopAcM_SetupActor(i_this, e_sg_class);
-
+    
     cPhs__Step rv = (cPhs__Step)dComIfG_resLoad(&a_this->mPhaseReq, "E_sg");
 
     if (rv == cPhs_COMPLEATE_e) {
-        iVar2 = fopAcM_GetParam((fopAc_ac_c*)a_this);
-        iVar2 = fopAcM_entrySolidHeap(a_this, useHeapInit, 4000);
-
-        if (iVar2 == 0) {
+        if (fopAcM_entrySolidHeap(i_this, useHeapInit, 4000) == 0) {
             return cPhs_ERROR_e;
         } else {
             if (hio_init == false) {
@@ -2045,58 +1965,51 @@ static int daE_SG_Create(fopAc_ac_c* i_this) {
 
             a_this->health = 0x14;
             a_this->field_0x560 = 0x14;
-            a_this->mStts.Init(100, 0, (fopAc_ac_c*)a_this);
+            a_this->mStts.Init(100, 0, i_this);
             a_this->mSph.Set(cc_sph_src);
             a_this->mSph.SetStts(&a_this->mStts);
-            a_this->mAcch.Set(fopAcM_GetPosition_p((fopAc_ac_c*)a_this),
-                              fopAcM_GetOldPosition_p(a_this), (fopAc_ac_c*)a_this, 1,
-                              &a_this->mAcchCir, fopAcM_GetSpeed_p((fopAc_ac_c*)a_this), NULL,
-                              NULL);
+            a_this->mAcch.Set(fopAcM_GetPosition_p(i_this), fopAcM_GetOldPosition_p(a_this), i_this,
+                              1, &a_this->mAcchCir, fopAcM_GetSpeed_p(i_this), NULL, NULL);
             a_this->mAcchCir.SetWall(15.0f, 30.0f);
-            a_this->mSound.init(&a_this->current.pos, &a_this->eyePos, 0x3, 0x1);
+            a_this->mSound.init(&i_this->current.pos, &a_this->eyePos, 0x3, 0x1);
             a_this->mSound.setEnemyName("E_sg");
 
             a_this->mAtInfo.mpSound = &a_this->mSound;
             a_this->mLifetime = cM_rndF(65536.0f);
 
-            child_count = fopAcM_GetParam((fopAc_ac_c*)a_this);
-            child_count = child_count & 0xff;
-
-            uVar5 = fopAcM_GetParam((fopAc_ac_c*)a_this);
-            uStack_2c = (uVar5 & 0xff00) >> 8;
-            a_this->mRndUpper = (float)uStack_2c * 100.0f;
-
-            uVar5 = fopAcM_GetParam((fopAc_ac_c*)a_this);
-            uVar5 = (uVar5 & 0xff0000) >> 0x10;
-            a_this->mTargetLoopLimit = (float)uVar5 * 100.0f;
+            int child_count = fopAcM_GetParamBit(i_this, 0, 8);
+            a_this->mRndUpper = (fopAcM_GetParam(i_this) >> 8 & ((1 << 8) - 1)) * 100.0f;
+            a_this->mTargetLoopLimit = fopAcM_GetParamBit(i_this, 16, 8) * 100.0f;
 
             if (child_count == 0xff) {
                 child_count = 10;
             }
 
             if (child_count < 32) {
-                csXyz cStack_4(0.0f, 0.0f, 0.0f);
 
+                csXyz child_angle(0, 0, 0);
+                u32 parameters;
+                
                 for (int i = 0; i < child_count; i++) {
-                    uVar5 = fopAcM_GetParam((fopAc_ac_c*)a_this);
+                    parameters = 0x64 + i | fopAcM_GetParam(i_this) & 0xffffff00;
 
-                    child_pos.x = cM_rndFX(a_this->mRndUpper);
-                    child_pos.x = a_this->current.pos.x + child_pos.x;
-                    a_this->current.pos.x = child_pos.x;
+                    cXyz child_pos;
+                    f32 res_x = i_this->current.pos.x + cM_rndFX(a_this->mRndUpper);
+                    i_this->current.pos.x = res_x;
+                    child_pos.x = res_x;
 
-                    child_pos.y = cM_rndFX(100.0f);
-                    child_pos.y = a_this->current.pos.y + child_pos.y;
-                    a_this->current.pos.y = child_pos.y;
+                    f32 res_y = i_this->current.pos.y + cM_rndFX(100.0f);
+                    i_this->current.pos.y = res_y;
+                    child_pos.y = res_y;
 
-                    child_pos.z = cM_rndFX(a_this->mRndUpper);
-                    child_pos.z = a_this->current.pos.z + child_pos.z;
-                    a_this->current.pos.z = child_pos.z;
+                    f32 res_z = i_this->current.pos.z + cM_rndFX(a_this->mRndUpper);
+                    i_this->current.pos.z = res_z;
+                    child_pos.z = res_z;
 
                     child_angle.y = cM_rndF(65536.0f);
 
-                    fopAcM_createChild(
-                        0x1b6, fopAcM_GetID((fopAc_ac_c*)a_this), i + 100U | uVar5 & 0xffffff00,
-                        &child_pos, fopAcM_GetRoomNo((fopAc_ac_c*)a_this), &child_angle, 0, -1, 0);
+                    fopAcM_createChild(PROC_E_SG, fopAcM_GetID(i_this), parameters, &child_pos,
+                                       fopAcM_GetRoomNo(i_this), &child_angle, 0, -1, 0);
                 }
                 a_this->mArg0 = false;
 
@@ -2107,7 +2020,7 @@ static int daE_SG_Create(fopAc_ac_c* i_this) {
 
             a_this->mUseless = cM_rndFX(50.0f) + -150.0f;
             a_this->mHomeLimit = -100000.0f;
-            a_this->mCooldown3 = 28;
+            a_this->mCooldown3 = 40;
 
             daE_SG_Execute(a_this);
         }
