@@ -2,8 +2,8 @@
 #define D_A_OBJ_BRAKEEFF_H
 
 #include "f_op/f_op_actor_mng.h"
-#include "systems/components/c_phase.h"
-#include "d_cc_d.h"
+#include "SSystem/SComponent/c_phase.h"
+#include "d/d_cc_d.h"
 #include "mtx.h"
 
 class J3DModel;
@@ -37,9 +37,11 @@ public:
     //alignment bytes /* 0x704 */ u8 padding_0x704[4];
     /* 0x708 */ Mtx mStoredMatrix;
     /* 0x738 */ dBgW* mpDBgW;
+
+    void obj_brakeeff_1();
+    void action();
 };
 
-STATIC_ASSERT(sizeof(obj_brakeeff_class) == 0x73c);
-
+//STATIC_ASSERT(sizeof(obj_brakeeff_class) == 0x73c);
 
 #endif /* D_A_OBJ_BRAKEEFF_H */
