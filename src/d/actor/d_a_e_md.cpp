@@ -66,7 +66,6 @@ int daE_MD_c::CreateHeap() {
 
     JUT_ASSERT(180, modelData != 0);
 
-
     mpModelMorf = new mDoExt_McaMorfSO((J3DModelData*)modelData, NULL, NULL, NULL, 2, 1.0f, 0, -1, &mSound, 0x80000, 0x11000084);
     if (mpModelMorf == NULL || mpModelMorf->getModel() == NULL) {
         return 0;
