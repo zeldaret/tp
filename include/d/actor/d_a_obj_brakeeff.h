@@ -37,9 +37,6 @@ public:
     //alignment bytes /* 0x704 */ u8 padding_0x704[4];
     /* 0x708 */ Mtx mStoredMatrix;
     /* 0x738 */ dBgW* mpDBgW;
-
-    void obj_brakeeff_1();
-    void action();
 };
 
 //STATIC_ASSERT(sizeof(obj_brakeeff_class) == 0x73c);

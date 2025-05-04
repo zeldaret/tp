@@ -134,13 +134,16 @@ SECTION_DATA static u8 e_name[10 + 2 /* padding */] = {
 };
 
 /* 8046DD38-8046DF80 0000F8 0248+00 1/1 0/0 0/0 .text obj_brakeeff_1__FP18obj_brakeeff_class */
-void obj_brakeeff_class::obj_brakeeff_1() {
+void obj_brakeeff_1(obj_brakeeff_class* i_this) {
     // NONMATCHING
 }
 
 /* 8046DF80-8046DFB0 000340 0030+00 1/1 0/0 0/0 .text            action__FP18obj_brakeeff_class */
-void obj_brakeeff_class::action() {
-    // NONMATCHING
+void action(obj_brakeeff_class* i_this) {
+    if(i_this->mMiscTimer2 == 0){
+        obj_brakeeff_1(i_this);
+    }
+
 }
 
 /* 8046DFB0-8046E098 000370 00E8+00 2/1 0/0 0/0 .text
