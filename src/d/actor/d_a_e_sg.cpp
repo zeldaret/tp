@@ -745,7 +745,7 @@ static void e_sg_move(e_sg_class* i_this) {
     f32 fVar6;
     cXyz local_54;
     fopAc_ac_c* kbox_ac;
-    
+
     s16 target_angle = 0;
 
     switch (i_this->mStateB) {
@@ -816,8 +816,8 @@ static void e_sg_move(e_sg_class* i_this) {
     local_54 = i_this->mPos0 - i_this->current.pos;
 
     s16 sVar1 = actor->current.angle.y;
-    cLib_addCalcAngleS2(&actor->current.angle.y, target_angle + cM_atan2s(local_54.x, local_54.z), 4,
-                        max_angle_step);
+    cLib_addCalcAngleS2(&actor->current.angle.y, target_angle + cM_atan2s(local_54.x, local_54.z),
+                        4, max_angle_step);
 
     cLib_addCalcAngleS2(
         &actor->current.angle.x,
@@ -1814,7 +1814,7 @@ static int daE_SG_Execute(e_sg_class* i_this) {
         fVar8 = l_HIO.mUnk1 * 0.5f * i_this->scale.x;
         static cXyz sc(fVar8, fVar8, fVar8);
 
-        static u16 w_eff_id[8] = {
+        static u16 w_eff_id[] = {
             0x01B8,
             0x01B9,
             0x01BA,
@@ -1867,11 +1867,8 @@ static int daE_SG_Delete(e_sg_class* i_this) {
 }
 
 /* 8078DFA4-8078DFB0 0000F0 000C+00 1/0 0/0 0/0 .data            jv_offset */
-static u8 jv_offset[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+static u8 jv_offset[12] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 8078DFB0-8078DFBC -00001 000C+00 1/1 0/0 0/0 .data            jc_data */
@@ -1944,10 +1941,9 @@ static int daE_SG_Create(fopAc_ac_c* i_this) {
         }  // mSphAttr
     };
 
-    
     e_sg_class* const a_this = static_cast<e_sg_class*>(i_this);
     fopAcM_SetupActor(i_this, e_sg_class);
-    
+
     cPhs__Step rv = (cPhs__Step)dComIfG_resLoad(&a_this->mPhaseReq, "E_sg");
 
     if (rv == cPhs_COMPLEATE_e) {
@@ -1986,10 +1982,9 @@ static int daE_SG_Create(fopAc_ac_c* i_this) {
             }
 
             if (child_count < 32) {
-
                 csXyz child_angle(0, 0, 0);
                 u32 parameters;
-                
+
                 for (int i = 0; i < child_count; i++) {
                     parameters = 0x64 + i | fopAcM_GetParam(i_this) & 0xffffff00;
 
