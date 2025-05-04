@@ -7,6 +7,7 @@
 #include "d/d_event_manager.h"
 #include "d/d_particle.h"
 #include "d/d_resorce.h"
+#include "d/d_save.h"
 #include "d/d_vibration.h"
 #include "f_op/f_op_camera_mng.h"
 #include "global.h"
