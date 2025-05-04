@@ -5,31 +5,6 @@
 #include "d/d_particle_copoly.h"
 #include "f_op/f_op_actor.h"
 
-/*
-cs_boss_attack_l	Copy Statue - Boss - Attack - Left
-cs_boss_attack_r	Copy Statue - Boss - Attack - Right
-cs_boss_return_wait_hit_l	Copy Statue - Boss - Return - Wait - Hit - Left
-cs_boss_return_wait_hit_r	Copy Statue - Boss - Return - Wait - Hit - Right
-cs_boss_return_wait_l	Copy Statue - Boss - Return - Wait - Left
-cs_boss_return_wait_r	Copy Statue - Boss - Return - Wait - Right
-cs_f_a_fall	Copy Statue - Face - A - Fall
-cs_f_a_swing_reaction	Copy Statue - Face - A - Swing - Reaction
-cs_f_a_walk	Copy Statue - Face - A - Walk
-cs_f_b_fall	Copy Statue - Face - B - Fall
-cs_f_b_swing_reaction	Copy Statue - Face - B - Swing - Reaction
-cs_f_b_walk	Copy Statue - Face - B - Walk
-cs_b_fall	Copy Statue - B - Fall
-cs_b_jump	Copy Statue - B - Jump
-cs_b_walk	Copy Statue - B - Walk
-cs_fall	Copy Statue - Fall
-cs_start	Copy Statue - Start
-cs_start_demo	Copy Statue - Start - Demo
-cs_stop	Copy Statue - Stop
-cs_swing	Copy Statue - Swing
-cs_swingre	Copy Statue - Swing Re
-cs_walk	Copy Statue - Walk
-*/
-
 enum daCstatue_FLG0 {
     daCstatue_FLG0_1 = 0x1,
     daCstatue_FLG0_2 = 0x2,
@@ -44,6 +19,15 @@ enum daCstatue_FLG0 {
     daCstatue_FLG0_400 = 0x400,
     daCstatue_FLG0_800 = 0x800,
     daCstatue_FLG0_1000 = 0x1000,
+};
+
+enum daCstatue_TYPE {
+    daCstatue_TYPE_0,
+    daCstatue_TYPE_1,
+    daCstatue_TYPE_2,
+    daCstatue_TYPE_3,
+    daCstatue_TYPE_4,
+    daCstatue_TYPE_N,
 };
 
 /**

@@ -22,10 +22,9 @@ static char const l_arcName[8] = "Cstatue";
 /* 806676AC-806676B4 000014 0007+01 0/1 0/0 0/0 .rodata          l_arcNameBS */
 static char const l_arcNameBS[7] = "CstaBS";
 
-u16 const daCstatue_c::m_bckIdxTable[5][7] = {
-    0x000E, 0x0010, 0x000E, 0x000A, 0x000D, 0x000B, 0x000F, 0x0008, 0x0009, 0x0008, 0x0007, 0x0009,
-    0x0009, 0x0008, 0x000E, 0x0010, 0x000E, 0x000A, 0x000D, 0x000B, 0x000F, 0x000B, 0x0009, 0x0007,
-    0x000B, 0x000B, 0x000B, 0x000B, 0x000A, 0x0008, 0x0006, 0x000A, 0x000A, 0x000A, 0x000A,
+u16 const daCstatue_c::m_bckIdxTable[daCstatue_TYPE_N][7] = {
+    {14, 16, 14, 10, 13, 11, 15}, {8, 9, 8, 7, 9, 9, 8},      {14, 16, 14, 10, 13, 11, 15},
+    {11, 9, 7, 11, 11, 11, 11},   {10, 8, 6, 10, 10, 10, 10},
 };
 
 struct CStatueTblData {
@@ -37,7 +36,7 @@ struct CStatueTblData {
 };
 
 /* 806676FC-80667738 000064 003C+00 0/1 0/0 0/0 .rodata          dataTbl$4169 */
-static struct CStatueTblData const dataTbl[5] = {
+static struct CStatueTblData const dataTbl[daCstatue_TYPE_N] = {
     {19, 13, 31, 35, 0x11000284}, {20, 8, 28, 0, 0x11000084},   {24, 13, 29, 34, 0x11000284},
     {14, 11, 18, 21, 0x11000284}, {14, 10, 18, 21, 0x11000284},
 };
@@ -114,7 +113,7 @@ int daCstatue_c::createHeap() {
     mpMorf = new mDoExt_McaMorfSO(
         static_cast<J3DModelData*>(dComIfG_getObjectRes(mResName, (u16)resource_index)), NULL, NULL,
         animation, 0, 0.0f, animation->getFrameMax(), -1, &mSound,
-        mType == 2 ? J3DMdlFlag_None : J3DMdlFlag_Unk80000, data->morfIndex);
+        mType == daCstatue_TYPE_2 ? J3DMdlFlag_None : J3DMdlFlag_Unk80000, data->morfIndex);
 
     if (mpMorf == NULL || mpMorf->mpModel == NULL) {
         return cPhs_INIT_e;
@@ -137,7 +136,7 @@ int daCstatue_c::createHeap() {
         if (!mSph) {
             return cPhs_INIT_e;
         }
-    } else if (mType == 0) {
+    } else if (mType == daCstatue_TYPE_0) {
         mCps1 = new dCcD_Cps();
         if (!mCps1) {
             return cPhs_INIT_e;
@@ -150,7 +149,7 @@ int daCstatue_c::createHeap() {
         if (!mCyl2) {
             return cPhs_INIT_e;
         }
-    } else if (mType == 2 && !mInvisible.create(mpMorf->getModel(), 1)) {
+    } else if (mType == daCstatue_TYPE_2 && !mInvisible.create(mpMorf->getModel(), 1)) {
         return cPhs_INIT_e;
     }
     return cPhs_LOADING_e;
@@ -166,7 +165,7 @@ static f32 const bossSphR[9] = {450.0f, 200.0f, 250.0f, 220.0f, 280.0f,
                                 200.0f, 250.0f, 220.0f, 280.0f};
 
 /* 80667764-80667778 0000CC 0014+00 0/1 0/0 0/0 .rodata          heapSize$4390 */
-static int const heapSize[5] = {4368, 2208, 4688, 6240, 6240};
+static int const heapSize[daCstatue_TYPE_N] = {4368, 2208, 4688, 6240, 6240};
 
 /* 80663D28-8066469C 000768 0974+00 1/1 0/0 0/0 .text            create__11daCstatue_cFv */
 int daCstatue_c::create() {
@@ -175,16 +174,16 @@ int daCstatue_c::create() {
         fopAcM_OnCondition(this, 8);
     }
     mType = (fopAcM_GetParam(this) >> 8) & 0xf;
-    if (mType == 2) {
-        mType = 1;
+    if (mType == daCstatue_TYPE_2) {
+        mType = daCstatue_TYPE_1;
         onStateFlg0(daCstatue_FLG0_8);
-    } else if (mType == 3) {
-        mType = 0;
+    } else if (mType == daCstatue_TYPE_3) {
+        mType = daCstatue_TYPE_0;
         onStateFlg0(daCstatue_FLG0_400);
-    } else if (mType > 2) {
-        mType -= 2;
-        if (mType >= 5) {
-            mType = 0;
+    } else if (mType > daCstatue_TYPE_2) {
+        mType -= daCstatue_TYPE_2;
+        if (mType >= daCstatue_TYPE_N) {
+            mType = daCstatue_TYPE_0;
         }
     }
     if (checkBossType()) {
@@ -198,7 +197,7 @@ int daCstatue_c::create() {
         mParam1 = fopAcM_GetParam(this) >> 12;
         mParam2 = (fopAcM_GetParam(this) >> 20) & 0x3f;
 
-        if (mType == 0 && !checkStateFlg0(daCstatue_FLG0_400)) {
+        if (mType == daCstatue_TYPE_0 && !checkStateFlg0(daCstatue_FLG0_400)) {
             if (mParam0 != 0xff && !fopAcM_isSwitch(this, mParam0)) {
                 return cPhs_ERROR_e;
             }
@@ -213,7 +212,9 @@ int daCstatue_c::create() {
                     return cPhs_ERROR_e;
                 }
             }
-        } else if (mType == 2 && mParam0 != (u8)-1 && fopAcM_isSwitch(this, this->mParam0)) {
+        } else if (mType == daCstatue_TYPE_2 && mParam0 != (u8)-1 &&
+                   fopAcM_isSwitch(this, this->mParam0))
+        {
             return cPhs_ERROR_e;
         }
 
@@ -222,12 +223,12 @@ int daCstatue_c::create() {
         }
 
         mpMorf->setMorf(1.0f);
-        if (mType == 0) {
+        if (mType == daCstatue_TYPE_0) {
             mParam3 = 4;
         } else {
             mParam3 = 0;
         }
-        if (mType == 0 || mType == 2) {
+        if (mType == daCstatue_TYPE_0 || mType == daCstatue_TYPE_2) {
             scale.set(1.6f, 1.6f, 1.6f);
         }
         mModel->setBaseScale(scale);
@@ -238,7 +239,7 @@ int daCstatue_c::create() {
         if (checkStateFlg0(daCstatue_FLG0_400)) {
             mCyl1.SetTgType(mCyl1.GetTgType() & ~0x01000000);
         }
-        if (!mType) {
+        if (mType == daCstatue_TYPE_0) {
             mCps1->Set(l_atCpsSrc);
             mCps1->SetStts(&mStts);
             mCps2->Set(l_atCpsSrc);
@@ -258,7 +259,7 @@ int daCstatue_c::create() {
                 dComIfGs_onTbox(mParam2);
                 dComIfGs_offTbox(mParam2 - 1);
             }
-        } else if (mType == 2) {
+        } else if (mType == daCstatue_TYPE_2) {
             int anyTbox = false;
             for (int iBox = 21; iBox <= 31; iBox += 2) {
                 if (dComIfGs_isTbox(iBox)) {
@@ -280,7 +281,7 @@ int daCstatue_c::create() {
         attention_info.distances[4] = 8;
         fopAcM_SetMtx(this, mModel->getBaseTRMtx());
         int acchTblSize;
-        if (mType == 0 || mType == 2) {
+        if (mType == daCstatue_TYPE_0 || mType == daCstatue_TYPE_2) {
             mAcchCir[0].SetWall(30.01f, 88.0f);
             mAcchCir[1].SetWall(208.0f, 88.0f);
             mAcchCir[2].SetWall(288.0f, 88.0f);
@@ -299,7 +300,7 @@ int daCstatue_c::create() {
             mSomeFloat = JMAFastSqrt(mCyl1.GetR() * mCyl1.GetR() +
                                      mCyl1.GetH() * mCyl1.GetH() * 0.6f * 0.6f);
             mTargetFrame = 35.0f;
-        } else if (mType == 1) {
+        } else if (mType == daCstatue_TYPE_1) {
             mAcchCir[0].SetWall(30.01f, 35.0f);
             mCyl1.SetR(35.0f);
             mCyl1.SetH(100.0f);
@@ -412,10 +413,10 @@ void daCstatue_c::setMatrix() {
     mDoMtx_stack_c::transM(0.0f, mSomePos2.z, 0.0f);
     mModel->setBaseTRMtx(mDoMtx_stack_c::get());
     mpMorf->modelCalc();
-    if (mType == 0 || mType == 2) {
+    if (mType == daCstatue_TYPE_0 || mType == daCstatue_TYPE_2) {
         attention_info.position.set(current.pos.x, current.pos.y + scale.y * 140.0f, current.pos.z);
         mDoMtx_multVec(mModel->getAnmMtx(1), &normalLocalBallPos, &mBallPos);
-    } else if (mType == 1) {
+    } else if (mType == daCstatue_TYPE_1) {
         attention_info.position.set(current.pos.x, current.pos.y + mCyl1.GetH(), current.pos.z);
         mDoMtx_multVec(mModel->getAnmMtx(0), &smallLocalBallPos, &mBallPos);
     } else {
@@ -471,7 +472,7 @@ void daCstatue_c::posMove() {
                         targetSpeed = 1.0f;
                     }
 
-                    if (mType != 1) {
+                    if (mType != daCstatue_TYPE_1) {
                         targetSpeed = 0.5f + targetSpeed;
                     } else {
                         targetSpeed = 0.5f + targetSpeed;
@@ -611,7 +612,7 @@ static Vec const bossLocalOffset[9] = {
 /* 8066555C-80665E14 001F9C 08B8+00 1/1 0/0 0/0 .text            setCollision__11daCstatue_cFv */
 void daCstatue_c::setCollision() {
     mStts.Move();
-    if (!fopAcM_checkCarryNow(this) && mType != 2) {
+    if (!fopAcM_checkCarryNow(this) && mType != daCstatue_TYPE_2) {
         if (mFlag0 == 2 && speedF > 1.0f) {
             mCyl1.OnAtSetBit();
         } else {
@@ -624,7 +625,7 @@ void daCstatue_c::setCollision() {
         mCyl1.ResetAtHit();
         mCyl1.ResetCoHit();
     }
-    if (mType == 0) {
+    if (mType == daCstatue_TYPE_0) {
         if (mCyl2->ChkAtSet()) {
             f32 radius = mCyl2->GetR();
             cLib_chaseF(&radius, 384.0f, 36.0f);
@@ -705,7 +706,7 @@ void daCstatue_c::setCollision() {
     }
     cXyz spherePos;
     dCcD_Sph* sphere;
-    if (mType == 4) {
+    if (mType == daCstatue_TYPE_4) {
         sphere = &mSph[7];
     } else {
         sphere = &mSph[3];
@@ -728,7 +729,7 @@ void daCstatue_c::setCollision() {
         dComIfG_Ccsp()->Set(sphere);
     }
     if (mBossAtGndHit) {
-        if (mType == 4) {
+        if (mType == daCstatue_TYPE_4) {
             sphere = &mSph[8];
         } else {
             sphere = &mSph[4];
@@ -927,7 +928,7 @@ void daCstatue_c::setAnime() {
                 newParam3 = 0;
             }
         }
-    } else if (mType == 0) {
+    } else if (mType == daCstatue_TYPE_0) {
         newParam3 = 4;
     } else if (mParam3 == 3 && !mpMorf->isStop()) {
         newParam3 = 3;
@@ -957,9 +958,9 @@ void daCstatue_c::setAnime() {
         if (checkStateFlg0(daCstatue_FLG0_4)) {
             u32 creatureSoundId;
             u32 creatureVoiceId = Z2SE_CSTATUE_ACTIVE_LOOP;
-            if (mType != 1) {
+            if (mType != daCstatue_TYPE_1) {
                 mAnim1.play();
-                if (mType == 0) {
+                if (mType == daCstatue_TYPE_0) {
                     creatureSoundId = Z2SE_CSTATUE_L_START;
                 } else {
                     creatureSoundId = Z2SE_CSTATUE_GM_START;
@@ -982,14 +983,14 @@ void daCstatue_c::setAnime() {
         u32 soundId;
         if (checkBossType()) {
             soundId = Z2SE_CSTATUE_GM_STOP;
-        } else if (mType == 1) {
+        } else if (mType == daCstatue_TYPE_1) {
             soundId = Z2SE_CSTATUE_S_STOP;
         } else {
             soundId = Z2SE_CSTATUE_L_STOP;
         }
         mSound.startCreatureSound(soundId, 0, mReverb);
     }
-    if (mType == 2) {
+    if (mType == daCstatue_TYPE_2) {
         mAnim1.play();
     }
     mAnim2.play();
@@ -1004,7 +1005,7 @@ int daCstatue_c::initBrk(u16 i_index) {
 
 /* 80666BF8-80666C38 003638 0040+00 2/2 0/0 0/0 .text            initStopBrkBtk__11daCstatue_cFv */
 void daCstatue_c::initStopBrkBtk() {
-    static const u16 brkIdx[5] = {0x1F, 0x1C, 0x1D, 0x12, 0x12};
+    static const u16 brkIdx[daCstatue_TYPE_N] = {0x1F, 0x1C, 0x1D, 0x12, 0x12};
 
     mAnim1.setFrame(0.0f);
     initBrk(brkIdx[mType]);
@@ -1012,7 +1013,7 @@ void daCstatue_c::initStopBrkBtk() {
 
 /* 80666C38-80666DE8 003678 01B0+00 2/2 0/0 0/0 .text            initStartBrkBtk__11daCstatue_cFv */
 void daCstatue_c::initStartBrkBtk() {
-    static const u16 brkIdx[5] = {0x1E, 0x1B, 0x1D, 0x11, 0x11};
+    static const u16 brkIdx[daCstatue_TYPE_N] = {0x1E, 0x1B, 0x1D, 0x11, 0x11};
 
     int soundId = checkBossType() ? Z2SE_CSTATUE_GM_HIT_BALL : Z2SE_CSTATUE_HIT_BALL;
     mSound.startCreatureSound(soundId, 0, mReverb);
@@ -1072,7 +1073,7 @@ int daCstatue_c::execute() {
     if (bossType != 0) {
         mStatueAcch.CrrPos(dComIfG_Bgsp());
     } else {
-        if (mType == 2) {
+        if (mType == daCstatue_TYPE_2) {
             if (mParam0 != (u8)-1 && fopAcM_isSwitch(this, mParam0)) {
                 fopAcM_delete(this);
                 return 1;
@@ -1085,7 +1086,7 @@ int daCstatue_c::execute() {
                 }
             }
         } else {
-            if (mType == 0 && fopAcM_isSwitch(this, 6)) {
+            if (mType == daCstatue_TYPE_0 && fopAcM_isSwitch(this, 6)) {
                 mCyl1.SetTgType(0xd87afddf);
                 if (checkStateFlg0(daCstatue_FLG0_1000)) {
                     offStateFlg0(daCstatue_FLG0_1000);
@@ -1117,7 +1118,7 @@ int daCstatue_c::execute() {
         }
     }
     setCollision();
-    if (mType == 1) {
+    if (mType == daCstatue_TYPE_1) {
         if (mStatueAcch.ChkGroundHit() && !fopAcM_checkCarryNow(this)) {
             cLib_onBit<u32>(attention_info.flags, 0x10);  // this is 0x80 in the debug rom
         } else {
@@ -1126,7 +1127,8 @@ int daCstatue_c::execute() {
     }
 
     u32 effect = 0;
-    if (mStatueAcch.ChkGroundLanding() || (mType == 1 && mParam3 == 2 && mpMorf->checkFrame(7.0f)))
+    if (mStatueAcch.ChkGroundLanding() ||
+        (mType == daCstatue_TYPE_1 && mParam3 == 2 && mpMorf->checkFrame(7.0f)))
     {
         effect = 7;
     }
@@ -1159,10 +1161,10 @@ int daCstatue_c::draw() {
     g_env_light.settingTevStruct(iVar1, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(mModel, &tevStr);
     mAnim2.entry(mModel->getModelData());
-    if (mType != 1) {
+    if (mType != daCstatue_TYPE_1) {
         mAnim1.entry(mModel->getModelData());
     }
-    if (mType == 2) {
+    if (mType == daCstatue_TYPE_2) {
         if (dComIfGs_wolfeye_effect_check()) {
             MtxP mtx = mModel->getAnmMtx(0);
             cXyz position(mtx[0][3], mtx[1][3], mtx[2][3]);
