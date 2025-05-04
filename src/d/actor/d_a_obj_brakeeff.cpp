@@ -7,9 +7,11 @@
 #include "dol2asm.h"
 #include "d/d_kankyo.h"
 #include "m_Do/m_Do_ext.h"
+#include "m_Do/m_Do_mtx.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_bg_s.h"
-
+#include "d/d_bg_w.h"
+#include "dolphin/mtx.h"
 //
 // Forward References:
 //
@@ -149,8 +151,31 @@ void action(obj_brakeeff_class* i_this) {
 
 /* 8046DFB0-8046E098 000370 00E8+00 2/1 0/0 0/0 .text
  * daObj_Brakeeff_Execute__FP18obj_brakeeff_class               */
-void daObj_Brakeeff_Execute() {
-    // NONMATCHING
+int daObj_Brakeeff_Execute(obj_brakeeff_class* i_this) {
+    i_this->mMiscTimer1++;
+
+    for(int i = 0; i < 2; i++) {
+        //iterating through counter variables using pointer arithmetic
+        if(*(&i_this->mMiscTimer4 + i) != 0){
+            (*(&i_this->mMiscTimer4 + i))--;
+        }
+    }
+
+    action(i_this);
+
+    mDoMtx_stack_c::transS(i_this->current.pos.x, i_this->current.pos.y, i_this->current.pos.z);
+    mDoMtx_stack_c::YrotM(i_this->shape_angle.y);
+    mDoMtx_stack_c::XrotM(i_this->shape_angle.x);
+    mDoMtx_stack_c::ZrotM(i_this->shape_angle.z);
+
+    MtxP mtxP = mDoMtx_stack_c::get();
+    i_this->mpModel->setBaseTRMtx(mtxP);
+    mtxP = mDoMtx_stack_c::get();
+
+    PSMTXCopy(mtxP, i_this->mStoredMatrix);
+    i_this->mpDBgW->Move();
+    i_this->mpBrk->play();
+    return 1;
 }
 
 /* 8046E098-8046E0A0 000458 0008+00 1/0 0/0 0/0 .text
@@ -169,7 +194,6 @@ SECTION_DEAD static char const* const stringBase_8046E538 = "Obj_Bef";
 /* 8046E0A0-8046E0F0 000460 0050+00 1/0 0/0 0/0 .text
  * daObj_Brakeeff_Delete__FP18obj_brakeeff_class                */
 int daObj_Brakeeff_Delete(obj_brakeeff_class* i_this) {
-    // NONMATCHING
     dComIfG_resDelete(&i_this->mRequestOfPhase, "Obj_Bef");
     dComIfG_Bgsp().Release(i_this->mpDBgW);
 

@@ -36,7 +36,7 @@ public:
     /* 0x6FC */ u32 mParticleIds[2];
     /* 0x704 */ u8 padding_0x704[4];
     /* 0x708 */ Mtx mStoredMatrix;
-    /* 0x738 */ dBgW_Base* mpDBgW;
+    /* 0x738 */ dBgW* mpDBgW;
 };
 
 STATIC_ASSERT(sizeof(obj_brakeeff_class) == 0x73c);
