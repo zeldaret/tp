@@ -34,11 +34,11 @@ public:
     /* 0x588 */ dCcD_Stts mDCcD_Stts;
     /* 0x5C4 */ dCcD_Sph mDCcD_Sph;
     /* 0x6FC */ u32 mParticleIds[2];
-    //alignment bytes /* 0x704 */ u8 padding_0x704[4];
+    /* 0x704 */ u8 padding_0x704[4];
     /* 0x708 */ Mtx mStoredMatrix;
-    /* 0x738 */ dBgW* mpDBgW;
+    /* 0x738 */ dBgW_Base* mpDBgW;
 };
 
-//STATIC_ASSERT(sizeof(obj_brakeeff_class) == 0x73c);
+STATIC_ASSERT(sizeof(obj_brakeeff_class) == 0x73c);
 
 #endif /* D_A_OBJ_BRAKEEFF_H */

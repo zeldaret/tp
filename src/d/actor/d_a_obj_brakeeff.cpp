@@ -7,6 +7,9 @@
 #include "dol2asm.h"
 #include "d/d_kankyo.h"
 #include "m_Do/m_Do_ext.h"
+#include "d/d_com_inf_game.h"
+#include "d/d_bg_s.h"
+
 //
 // Forward References:
 //
@@ -32,7 +35,6 @@ extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void fopAcM_delete__FP10fopAc_ac_c();
 extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
 extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
 extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
 extern "C" void
 set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf();
@@ -70,7 +72,6 @@ extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 //
 // Declarations:
@@ -167,8 +168,12 @@ SECTION_DEAD static char const* const stringBase_8046E538 = "Obj_Bef";
 
 /* 8046E0A0-8046E0F0 000460 0050+00 1/0 0/0 0/0 .text
  * daObj_Brakeeff_Delete__FP18obj_brakeeff_class                */
-void daObj_Brakeeff_Delete() {
+int daObj_Brakeeff_Delete(obj_brakeeff_class* i_this) {
     // NONMATCHING
+    dComIfG_resDelete(&i_this->mRequestOfPhase, "Obj_Bef");
+    dComIfG_Bgsp().Release(i_this->mpDBgW);
+
+    return 1;
 }
 
 /* ############################################################################################## */
