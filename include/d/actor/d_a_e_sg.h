@@ -1,76 +1,74 @@
 #ifndef D_A_E_SG_H
 #define D_A_E_SG_H
+
+#include "f_op/f_op_actor.h"
 #include "d/d_bg_s_acch.h"
 #include "d/d_cc_d.h"
 #include "d/d_cc_uty.h"
 #include "d/d_jnt_col.h"
-#include "f_op/f_op_actor.h"
 
 /**
  * @ingroup actors-enemies
  * @class e_sg_class
  * @brief Skullfish
- * 
+ *
  * @details 
- * 
- */
+ * Skullfish are found in the Lakebed Temple and some caves. They attack by
+ * chasing and biting Link, often appearing in groups.
+ * Skullfish can also be caught with the Fishing Rod, leaving behind a Heart
+ * when released. It will then flop on land.
+ * */
 class e_sg_class : public fopEn_enemy_c {
 public:
-    request_of_phase_process_class mPhaseReq;
-    u8 mArg0;
-    u8 field3_0x5b5[3];
-    J3DModel* mpModel;
-    Z2CreatureEnemy mSound;
-    s16 mArr[3];
-    s16 mCooldown;
-    u8 mCooldown3;
-    u8 field9_0x669;
-    s16 mLifetime;
-    s16 mStateA;
-    s16 mStateB;
-    f32 mRndUpper;
-    f32 mTargetLoopLimit;
-    cXyz mPos0;
-    u8 field16_0x684[4];
-    s16 mIso;
-    u8 field18_0x68a;
-    u8 field19_0x68b;
-    f32 mLimit;
-    f32 mTargetDist;
-    f32 mTargetSpeed;
-    f32 mStepSpeed;
-    s16 mS1;
-    s16 mS2;
-    s16 mJointList[4];
-    f32 mCurrent;
-    f32 mSpeed;
-    s16 mAngle;
-    u8 field29_0x6b2[2];
-    f32 mUseless;
-    f32 mHomeLimit;
-    f32 mSpeedF;
-    s16 mLate1;
-    s16 mLate2;
-    s8 mStickPtInit;
-    u8 mCntDown;
-    s16 mCooldown2;
-    int mShadowKey;
-    int mActorID;
-    dJntCol_c mJoint;
-    dBgS_AcchCir mAcchCir;
-    dBgS_ObjAcch mAcch;
-    dCcD_Stts mStts;
-    dCcD_Sph mSph;
-    dCcU_AtInfo mAtInfo;
-    s8 mHuh;
-    s8 mHuh2;
-    u8 mAliveFlag;
-    s8 mAlive2;
-    int mParticleKey[4];
-    u32 mHamon;
-    u8 field51_0xaa8[4];
-    bool mHioInit;
-    u8 field53_0xaad[3];
+    /* 0x5AC */ request_of_phase_process_class mPhaseReq;
+    /* 0x5B4 */ u8 mArg0;
+    /* 0x5B8 */ J3DModel* mpModel;
+    /* 0x5BC */ Z2CreatureEnemy mSound;
+    /* 0x660 */ s16 mCooldowns[3];
+    /* 0x666 */ s16 mInvincibilityTimer;
+    /* 0x668 */ u8 mInitTimer;
+    /* 0x66A */ s16 mRandomSeed;
+    /* 0x66C */ s16 mAction;
+    /* 0x66E */ s16 mMode;
+    /* 0x670 */ f32 mIdleMoveBound;
+    /* 0x674 */ f32 mSearchBound;
+    /* 0x678 */ cXyz mTargetPos;
+    /* 0x684 */ u8 field_0x684[4];
+    /* 0x688 */ s16 mPlayerAngle;
+    /* 0x68C */ f32 mPlayerDist;
+    /* 0x690 */ f32 mTargetDist;
+    /* 0x694 */ f32 mTargetSpeed;
+    /* 0x698 */ f32 mStepSpeed;
+    /* 0x69C */ s16 mSwimAngle;
+    /* 0x69E */ s16 mSwimAngleSpeed;
+    /* 0x6A0 */ s16 mJoints[4];
+    /* 0x6A8 */ f32 mJointYRot;
+    /* 0x6AC */ f32 mJointSpeed;
+    /* 0x6B0 */ s16 mJointAngle;
+    /* 0x6B4 */ f32 field_0x6b4;
+    /* 0x6B8 */ f32 mGroundY;
+    /* 0x6BC */ f32 mKamuSpeed;
+    /* 0x6C0 */ s16 mRotation;
+    /* 0x6C2 */ s16 mRotationTarget;
+    /* 0x6C4 */ s8 mStickIdx;
+    /* 0x6C5 */ u8 mKamuTimer;
+    /* 0x6C6 */ s16 field_0x6C6;
+    /* 0x6C8 */ int mShadowKey;
+    /* 0x6CC */ fpc_ProcID mTargetActorID;
+    /* 0x6D0 */ dJntCol_c mJoint;
+    /* 0x6E0 */ dBgS_AcchCir mAcchCir;
+    /* 0x720 */ dBgS_ObjAcch mAcch;
+    /* 0x8F8 */ dCcD_Stts mStts;
+    /* 0x934 */ dCcD_Sph mSph;
+    /* 0xA6C */ dCcU_AtInfo mAtInfo;
+    /* 0xA90 */ s8 mAttackCollistion;
+    /* 0xA91 */ s8 mCollisionResponse;
+    /* 0xA92 */ u8 mInactive;
+    /* 0xA93 */ s8 mWaterSplash;
+    /* 0xA94 */ int mParticleKey[4];
+    /* 0xAA4 */ u32 mHamon;
+    /* 0xAA8 */ u8 field_0xaa8[4];
+    /* 0xAAC */ bool mHioInit;
 };
 
 STATIC_ASSERT(sizeof(e_sg_class) == 0xAB0);
@@ -79,12 +77,12 @@ class daE_SG_HIO_c {
 public:
     /* 8078A22C */ daE_SG_HIO_c();
     /* 8078DC84 */ virtual ~daE_SG_HIO_c() {};
-    
+
     s8 mUnk0;
-    f32 mUnk1;
-    f32 mUnk2;
-    f32 mUnk3;
-    f32 mUnk4;
+    f32 mScaleFactor;
+    f32 mMovementSpeed;
+    f32 mSearchSpeed;
+    f32 mPlayerHeightThreshold;
 };
 
 STATIC_ASSERT(sizeof(daE_SG_HIO_c) == 0x18);
