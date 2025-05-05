@@ -48,11 +48,11 @@ static stick_info stick_d[19] = {
 
 /* 8078A22C-8078A26C 0000EC 0040+00 1/1 0/0 0/0 .text            __ct__12daE_SG_HIO_cFv */
 daE_SG_HIO_c::daE_SG_HIO_c() {
-    this->mUnk0 = -1;
-    this->mScaleFactor = 1.2f;
-    this->mMovementSpeed = 10.0f;
-    this->mSearchSpeed = 13.0f;
-    this->mPlayerHeightThreshold = 500.0f;
+    mUnk0 = -1;
+    mScaleFactor = 1.2f;
+    mMovementSpeed = 10.0f;
+    mSearchSpeed = 13.0f;
+    mPlayerHeightThreshold = 500.0f;
 }
 
 /* 8078A26C-8078A400 00012C 0194+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
@@ -257,7 +257,7 @@ static void e_sg_move(e_sg_class* i_this) {
 
     switch (i_this->mMode) {
     case MODE_IDLE:
-        if (i_this->mCooldowns[0] == 0) {
+        if (i_this->mTimers[0] == 0) {
             for (int i = 0; i < 0x14; i++) {
                 i_this->mTargetPos.x = i_this->home.pos.x + cM_rndFX(i_this->mIdleMoveBound);
                 i_this->mTargetPos.y = i_this->home.pos.y + cM_rndFX(50.0f);
@@ -267,7 +267,7 @@ static void e_sg_move(e_sg_class* i_this) {
                 local_54.y = 0.0f;
                 if (local_54.abs() > i_this->mIdleMoveBound * 0.5f) {
                     i_this->mMode = MODE_ACTIVE;
-                    i_this->mCooldowns[0] = cM_rndF(30.0f) + 30.0f;
+                    i_this->mTimers[0] = cM_rndF(30.0f) + 30.0f;
                     break;
                 }
             }
@@ -278,9 +278,9 @@ static void e_sg_move(e_sg_class* i_this) {
         break;
 
     case MODE_ACTIVE:
-        if (i_this->mCooldowns[0] == 0) {
+        if (i_this->mTimers[0] == 0) {
             i_this->mMode = MODE_IDLE;
-            i_this->mCooldowns[0] = cM_rndF(30.0f) + 30.0f;
+            i_this->mTimers[0] = cM_rndF(30.0f) + 30.0f;
         }
         i_this->mStepSpeed = 0.5f;
         max_angle_step = 0x400;
@@ -294,7 +294,7 @@ static void e_sg_move(e_sg_class* i_this) {
         max_angle_step = 0x200;
         max_step = 0.2f;
         target_angle = cM_ssin(i_this->mRandomSeed * 700) * 12000.0f;
-        if (i_this->mCooldowns[0] == 0) {
+        if (i_this->mTimers[0] == 0) {
             i_this->mMode = MODE_IDLE;
         }
         i_this->mCollisionResponse = true;
@@ -310,7 +310,7 @@ static void e_sg_move(e_sg_class* i_this) {
         max_angle_step = 0x200;
         max_step = 0.2f;
         target_angle = cM_ssin(i_this->mRandomSeed * 700) * 12000.0f;
-        if (i_this->mCooldowns[0] == 0) {
+        if (i_this->mTimers[0] == 0) {
             i_this->mMode = MODE_IDLE;
         }
         i_this->mCollisionResponse = true;
@@ -351,29 +351,25 @@ static void e_sg_move(e_sg_class* i_this) {
             i_this->mAction = ACT_B_SEARCH;
             i_this->mMode = MODE_IDLE;
             i_this->mRandomSeed = cM_rndF(65536.0f);
-            i_this->mCooldowns[0] = cM_rndF(30.0f) + 30.0f;
+            i_this->mTimers[0] = cM_rndF(30.0f) + 30.0f;
 
-        } else {
-            if (i_this->mCooldowns[1] == 0 && bg_check == 0 &&
-                player->current.pos.y - 5.0f < i_this->mGroundY &&
-                player->current.pos.y > i_this->mGroundY - l_HIO.mPlayerHeightThreshold &&
-                i_this->mTargetDist < i_this->mSearchBound)
-            {
-                i_this->mAction = ACT_SEARCH;
-                i_this->mMode = MODE_IDLE;
-                i_this->mRandomSeed = cM_rndF(65536.0f);
-                pl_joint_search(i_this);
+        } else if (i_this->mTimers[1] == 0 && bg_check == 0 &&
+                   player->current.pos.y - 5.0f < i_this->mGroundY &&
+                   player->current.pos.y > i_this->mGroundY - l_HIO.mPlayerHeightThreshold &&
+                   i_this->mTargetDist < i_this->mSearchBound)
+        {
+            i_this->mAction = ACT_SEARCH;
+            i_this->mMode = MODE_IDLE;
+            i_this->mRandomSeed = cM_rndF(65536.0f);
+            pl_joint_search(i_this);
 
-            } else {
-                if ((i_this->mRandomSeed & 0x1f) == (fopAcM_GetID(actor) & 0x1f) &&
-                    cM_rndF(1.0f) < 0.3f && (rod = search_esa(i_this), rod != NULL))
-                {
-                    i_this->mTargetActorID = fopAcM_GetID(rod);
-                    i_this->mAction = ACT_ESA_SEARCH;
-                    i_this->mMode = MODE_IDLE;
-                    i_this->mRandomSeed = cM_rndF(65536.0f);
-                }
-            }
+        } else if ((i_this->mRandomSeed & 0x1f) == (fopAcM_GetID(actor) & 0x1f) &&
+                   cM_rndF(1.0f) < 0.3f && (rod = search_esa(i_this), rod != NULL))
+        {
+            i_this->mTargetActorID = fopAcM_GetID(rod);
+            i_this->mAction = ACT_ESA_SEARCH;
+            i_this->mMode = MODE_IDLE;
+            i_this->mRandomSeed = cM_rndF(65536.0f);
         }
     }
 
@@ -429,6 +425,7 @@ static void e_sg_search(e_sg_class* i_this) {
     } else if (fVar9 < -4000.0f) {
         fVar9 = -4000.0f;
     }
+
     cLib_addCalc2(&i_this->mJointYRot, fVar9, 0.5f, 1000.0f);
     cLib_addCalc2(&i_this->speedF, i_this->mTargetSpeed * l_HIO.mSearchSpeed, 1.0f, max_speed_step);
 
@@ -438,8 +435,8 @@ static void e_sg_search(e_sg_class* i_this) {
     {
         i_this->mAction = ACT_MOVE;
         i_this->mMode = MODE_FOLLOW;
-        i_this->mCooldowns[0] = cM_rndF(80.0f) + 80.0f;
-        i_this->mCooldowns[1] = cM_rndF(80.0f) + 80.0f;
+        i_this->mTimers[0] = cM_rndF(80.0f) + 80.0f;
+        i_this->mTimers[1] = cM_rndF(80.0f) + 80.0f;
         if (i_this->mStickIdx != 0) {
             stick_pt &= ~stick_bit[i_this->mStickIdx - 1];
             i_this->mStickIdx = 0;
@@ -468,13 +465,12 @@ static void e_sg_b_search(e_sg_class* i_this) {
         i_this->mAction = ACT_MOVE;
         i_this->mMode = MODE_IDLE;
         i_this->speedF = 0.0f;
-        i_this->mCooldowns[0] = cM_rndF(60.0f);
+        i_this->mTimers[0] = cM_rndF(60.0f);
 
     } else {
         cXyz local_78;
-        if (i_this->mCooldowns[0] == 0 &&
-            (i_this->mRandomSeed & 0x7) == (fopAcM_GetID(actor) & 0x7))
-        {
+
+        if (i_this->mTimers[0] == 0 && (i_this->mRandomSeed & 0x7) == (fopAcM_GetID(actor) & 0x7)) {
             cXyz cross_pos;
             if (otherBgCheck(actor, &kbox_ac->field_0x5b4, &cross_pos)) {
                 local_78 = cross_pos - kbox_ac->field_0x5b4;
@@ -523,10 +519,8 @@ static void e_sg_b_search(e_sg_class* i_this) {
         fVar1 = sVar1 * 5.0f;
         if (fVar1 > 4000.0f) {
             fVar1 = 4000.0f;
-        } else {
-            if (fVar1 < -4000.0f) {
-                fVar1 = -4000.0f;
-            }
+        } else if (fVar1 < -4000.0f) {
+            fVar1 = -4000.0f;
         }
 
         cLib_addCalc2(&i_this->mJointYRot, fVar1, 0.5f, 1000.0f);
@@ -539,8 +533,8 @@ static void e_sg_b_search(e_sg_class* i_this) {
         if (local_78.abs() < 200.0f) {
             target_angle = cM_ssin(i_this->mRandomSeed * 0x3100) * 2000.0f + 3000.0f;
 
-            if (i_this->mCooldowns[1] == 0 && i_this->mAcch.ChkWallHit()) {
-                i_this->mCooldowns[1] = cM_rndF(30.0f) + 10.0f;
+            if (i_this->mTimers[1] == 0 && i_this->mAcch.ChkWallHit()) {
+                i_this->mTimers[1] = cM_rndF(30.0f) + 10.0f;
                 kbox_ac->field_0x598 = (s16)(cM_rndF(700.0f) + 300.0f);
             }
             cLib_addCalc2(&kbox_ac->field_0x5a8.y, -100.0f, 1.0f, 0.05f);
@@ -565,10 +559,9 @@ static void e_sg_esa_search(e_sg_class* i_this) {
         i_this->mAction = ACT_MOVE;
         i_this->mMode = MODE_IDLE;
         i_this->speedF = 0.0f;
-        i_this->mCooldowns[0] = cM_rndF(20.0f);
+        i_this->mTimers[0] = cM_rndF(20.0f);
     } else {
-        if (i_this->mCooldowns[0] == 0 &&
-            (i_this->mRandomSeed & 0x7) == (fopAcM_GetID(i_this) & 0x7))
+        if (i_this->mTimers[0] == 0 && (i_this->mRandomSeed & 0x7) == (fopAcM_GetID(i_this) & 0x7))
         {
             cStack_84 = target->current.pos;
             cStack_84.y = cStack_84.y - 40.0f;
@@ -576,7 +569,7 @@ static void e_sg_esa_search(e_sg_class* i_this) {
                 i_this->mAction = ACT_MOVE;
                 i_this->mMode = MODE_IDLE;
                 i_this->speedF = 0.0f;
-                i_this->mCooldowns[0] = cM_rndF(20.0f);
+                i_this->mTimers[0] = cM_rndF(20.0f);
                 return;
             }
         }
@@ -601,7 +594,7 @@ static void e_sg_esa_search(e_sg_class* i_this) {
         }
         cLib_addCalcAngleS2(&i_this->current.angle.y,
                             (s16)(fVar6 * cM_ssin(i_this->mRandomSeed * 0x4b0)) +
-                             cM_atan2s(local_78.x, local_78.z),
+                                cM_atan2s(local_78.x, local_78.z),
                             4, max_angle_step);
         cLib_addCalcAngleS2(
             &i_this->current.angle.x,
@@ -650,17 +643,17 @@ static void e_sg_kamu(e_sg_class* i_this) {
 
         if (player->current.pos.y > i_this->mGroundY + 10.0f || player->speedF >= 10.0f) {
             i_this->mMode = MODE_ACTIVE;
-            i_this->mCooldowns[0] = (cM_rndF(30.0f) + 10.0f);
+            i_this->mTimers[0] = (cM_rndF(30.0f) + 10.0f);
         }
 
         if (i_this->mKamuTimer >= 10 || dComIfGp_checkPlayerStatus0(0, 8)) {
             i_this->mMode = MODE_ACTIVE;
-            i_this->mCooldowns[0] = 0;
+            i_this->mTimers[0] = 0;
         }
         break;
 
     case MODE_ACTIVE:
-        if (i_this->mCooldowns[0] == 0) {
+        if (i_this->mTimers[0] == 0) {
             i_this->mAction = ACT_DROP;
             i_this->mMode = MODE_IDLE;
             i_this->speed.setall(0.0f);
@@ -753,8 +746,8 @@ static void e_sg_drop(e_sg_class* i_this) {
             i_this->speedF = 0.0f;
             i_this->mAction = ACT_MOVE;
             i_this->mMode = MODE_FOLLOW;
-            i_this->mCooldowns[0] = cM_rndF(60.0f) + 50.0f;
-            i_this->mCooldowns[1] = cM_rndF(80.0f) + 80.0f;
+            i_this->mTimers[0] = cM_rndF(60.0f) + 50.0f;
+            i_this->mTimers[1] = cM_rndF(80.0f) + 80.0f;
             i_this->mWaterSplash = true;
 
             if (i_this->field_0x567) {
@@ -1041,8 +1034,8 @@ static int daE_SG_Execute(e_sg_class* i_this) {
     i_this->mTargetDist = (i_this->home.pos - player->current.pos).abs();
 
     for (int i = 0; i < 3; i++) {
-        if (i_this->mCooldowns[i] != 0) {
-            i_this->mCooldowns[i]--;
+        if (i_this->mTimers[i] != 0) {
+            i_this->mTimers[i]--;
         }
     }
     if (i_this->mInvincibilityTimer != 0) {
@@ -1215,77 +1208,77 @@ static int daE_SG_Create(fopAc_ac_c* i_this) {
     if (step == cPhs_COMPLEATE_e) {
         if (!fopAcM_entrySolidHeap(i_this, useHeapInit, 4000)) {
             return cPhs_ERROR_e;
-        } else {
-            if (hio_init == false) {
-                a_this->mHioInit = true;
-                hio_init = true;
-                l_HIO.mUnk0 = -1;
-            }
-
-            a_this->attention_info.flags = 4;
-
-            fopAcM_SetMtx(a_this, a_this->mpModel->getBaseTRMtx());
-
-            a_this->health = 0x14;
-            a_this->field_0x560 = 0x14;
-            a_this->mStts.Init(100, 0, i_this);
-            a_this->mSph.Set(cc_sph_src);
-            a_this->mSph.SetStts(&a_this->mStts);
-            a_this->mAcch.Set(fopAcM_GetPosition_p(i_this), fopAcM_GetOldPosition_p(a_this), i_this,
-                              1, &a_this->mAcchCir, fopAcM_GetSpeed_p(i_this), NULL, NULL);
-            a_this->mAcchCir.SetWall(15.0f, 30.0f);
-            a_this->mSound.init(&i_this->current.pos, &a_this->eyePos, 0x3, 0x1);
-            a_this->mSound.setEnemyName("E_sg");
-
-            a_this->mAtInfo.mpSound = &a_this->mSound;
-            a_this->mRandomSeed = cM_rndF(65536.0f);
-
-            int child_count = fopAcM_GetParamBit(i_this, 0, 8);
-            a_this->mIdleMoveBound = fopAcM_GetParamBit(i_this, 8, 8) * 100.0f;
-            a_this->mSearchBound = fopAcM_GetParamBit(i_this, 16, 8) * 100.0f;
-
-            if (child_count == 0xff) {
-                child_count = 10;
-            }
-
-            if (child_count < 32) {
-                csXyz child_angle(0, 0, 0);
-                u32 parameters;
-
-                for (int i = 0; i < child_count; i++) {
-                    parameters = 0x64 + i | fopAcM_GetParam(i_this) >> 8 << 8;
-
-                    cXyz child_pos;
-                    f32 res_x = i_this->current.pos.x + cM_rndFX(a_this->mIdleMoveBound);
-                    i_this->current.pos.x = res_x;
-                    child_pos.x = res_x;
-
-                    f32 res_y = i_this->current.pos.y + cM_rndFX(100.0f);
-                    i_this->current.pos.y = res_y;
-                    child_pos.y = res_y;
-
-                    f32 res_z = i_this->current.pos.z + cM_rndFX(a_this->mIdleMoveBound);
-                    i_this->current.pos.z = res_z;
-                    child_pos.z = res_z;
-
-                    child_angle.y = cM_rndF(65536.0f);
-
-                    fopAcM_createChild(PROC_E_SG, fopAcM_GetID(i_this), parameters, &child_pos,
-                                       fopAcM_GetRoomNo(i_this), &child_angle, 0, -1, 0);
-                }
-                a_this->mArg0 = false;
-
-            } else {
-                a_this->mArg0 = (child_count & 0x1f) + 1;
-                a_this->scale.x = cM_rndFX(0.1f) + 1.0f;
-            }
-
-            a_this->field_0x6b4 = cM_rndFX(50.0f) + -150.0f;
-            a_this->mGroundY = -100000.0f;
-            a_this->mInitTimer = 40;
-
-            daE_SG_Execute(a_this);
         }
+
+        if (hio_init == false) {
+            a_this->mHioInit = true;
+            hio_init = true;
+            l_HIO.mUnk0 = -1;
+        }
+
+        a_this->attention_info.flags = 4;
+
+        fopAcM_SetMtx(a_this, a_this->mpModel->getBaseTRMtx());
+
+        a_this->health = 0x14;
+        a_this->field_0x560 = 0x14;
+        a_this->mStts.Init(100, 0, i_this);
+        a_this->mSph.Set(cc_sph_src);
+        a_this->mSph.SetStts(&a_this->mStts);
+        a_this->mAcch.Set(fopAcM_GetPosition_p(i_this), fopAcM_GetOldPosition_p(a_this), i_this, 1,
+                          &a_this->mAcchCir, fopAcM_GetSpeed_p(i_this), NULL, NULL);
+        a_this->mAcchCir.SetWall(15.0f, 30.0f);
+        a_this->mSound.init(&i_this->current.pos, &a_this->eyePos, 0x3, 0x1);
+        a_this->mSound.setEnemyName("E_sg");
+
+        a_this->mAtInfo.mpSound = &a_this->mSound;
+        a_this->mRandomSeed = cM_rndF(65536.0f);
+
+        int child_count = fopAcM_GetParamBit(i_this, 0, 8);
+        a_this->mIdleMoveBound = fopAcM_GetParamBit(i_this, 8, 8) * 100.0f;
+        a_this->mSearchBound = fopAcM_GetParamBit(i_this, 16, 8) * 100.0f;
+
+        if (child_count == 0xff) {
+            child_count = 10;
+        }
+
+        if (child_count < 32) {
+            csXyz child_angle(0, 0, 0);
+            u32 parameters;
+
+            for (int i = 0; i < child_count; i++) {
+                parameters = 0x64 + i | fopAcM_GetParam(i_this) >> 8 << 8;
+
+                cXyz child_pos;
+                f32 res_x = i_this->current.pos.x + cM_rndFX(a_this->mIdleMoveBound);
+                i_this->current.pos.x = res_x;
+                child_pos.x = res_x;
+
+                f32 res_y = i_this->current.pos.y + cM_rndFX(100.0f);
+                i_this->current.pos.y = res_y;
+                child_pos.y = res_y;
+
+                f32 res_z = i_this->current.pos.z + cM_rndFX(a_this->mIdleMoveBound);
+                i_this->current.pos.z = res_z;
+                child_pos.z = res_z;
+
+                child_angle.y = cM_rndF(65536.0f);
+
+                fopAcM_createChild(PROC_E_SG, fopAcM_GetID(i_this), parameters, &child_pos,
+                                   fopAcM_GetRoomNo(i_this), &child_angle, 0, -1, 0);
+            }
+            a_this->mArg0 = false;
+
+        } else {
+            a_this->mArg0 = (child_count & 0x1f) + 1;
+            a_this->scale.x = cM_rndFX(0.1f) + 1.0f;
+        }
+
+        a_this->field_0x6b4 = cM_rndFX(50.0f) + -150.0f;
+        a_this->mGroundY = -100000.0f;
+        a_this->mInitTimer = 40;
+
+        daE_SG_Execute(a_this);
     }
 
     return step;

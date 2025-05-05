@@ -24,7 +24,7 @@ public:
     /* 0x5B4 */ u8 mArg0;
     /* 0x5B8 */ J3DModel* mpModel;
     /* 0x5BC */ Z2CreatureEnemy mSound;
-    /* 0x660 */ s16 mCooldowns[3];
+    /* 0x660 */ s16 mTimers[3];
     /* 0x666 */ s16 mInvincibilityTimer;
     /* 0x668 */ u8 mInitTimer;
     /* 0x66A */ s16 mRandomSeed;
