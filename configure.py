@@ -2011,7 +2011,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_lv6FurikoTrap"),
     ActorRel(NonMatching, "d_a_obj_lv6Lblock"),
     ActorRel(NonMatching, "d_a_obj_lv6SwGate"),
-    ActorRel(NonMatching, "d_a_obj_lv6SzGate"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv6SzGate"),
     ActorRel(NonMatching, "d_a_obj_lv6Tenbin"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv6TogeRoll"),
     ActorRel(NonMatching, "d_a_obj_lv6TogeTrap"),
