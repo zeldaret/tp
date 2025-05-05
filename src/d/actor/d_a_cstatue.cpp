@@ -23,25 +23,25 @@ static char const l_arcName[8] = "Cstatue";
 static char const l_arcNameBS[7] = "CstaBS";
 
 enum CStatueAnim {
-    cs_b_fall = 7,       //	Copy Statue - B - Fall
-    cs_b_jump = 8,       //	Copy Statue - B - Jump
-    cs_b_walk = 9,       //	Copy Statue - B - Walk
-    cs_fall = 10,        //	Copy Statue - Fall
-    cs_start = 11,       //	Copy Statue - Start
-    cs_start_demo = 12,  //	Copy Statue - Start - Demo
-    cs_stop = 13,        //	Copy Statue - Stop
-    cs_swing = 14,       //	Copy Statue - Swing
-    cs_swingre = 15,     //	Copy Statue - Swing Re
-    cs_walk = 16,        //	Copy Statue - Walk
+    CStatueAnimBFall = 7,   //	Copy Statue - B - Fall
+    CStatueAnimBJump,       //	Copy Statue - B - Jump
+    CStatueAnimBWalk,       //	Copy Statue - B - Walk
+    CStatueAnimFall,        //	Copy Statue - Fall
+    CStatueAnimStart,       //	Copy Statue - Start
+    CStatueAnimStart_demo,  //	Copy Statue - Start - Demo
+    CStatueAnimStop,        //	Copy Statue - Stop
+    CStatueAnimSwing,       //	Copy Statue - Swing
+    CStatueAnimSwingre,     //	Copy Statue - Swing Re
+    CStatueAnimWalk,        //	Copy Statue - Walk
 };
 
 enum CStatueBossAnim {
-    cs_boss_attack_l = 6,           //	Copy Statue - Boss - Attack - Left
-    cs_boss_attack_r = 7,           //	Copy Statue - Boss - Attack - Right
-    cs_boss_return_wait_hit_l = 8,  //	Copy Statue - Boss - Return - Wait - Hit - Left
-    cs_boss_return_wait_hit_r = 9,  //	Copy Statue - Boss - Return - Wait - Hit - Right
-    cs_boss_return_wait_l = 10,     //	Copy Statue - Boss - Return - Wait - Left
-    cs_boss_return_wait_r = 11,     //	Copy Statue - Boss - Return - Wait - Right
+    CStatueBossAnimAttackL = 6,     //	Copy Statue - Boss - Attack - Left
+    CStatueBossAnimAttackR,         //	Copy Statue - Boss - Attack - Right
+    CStatueBossAnimReturnWaitHitL,  //	Copy Statue - Boss - Return - Wait - Hit - Left
+    CStatueBossAnimReturnWaitHitR,  //	Copy Statue - Boss - Return - Wait - Hit - Right
+    CStatueBossAnimReturnWaitL,     //	Copy Statue - Boss - Return - Wait - Left
+    CStatueBossAnimReturnWaitR,     //	Copy Statue - Boss - Return - Wait - Right
 };
 
 // this enum may need to be split for boss/non boss types
@@ -58,17 +58,22 @@ enum CStatueAnimIndex {
 
 u16 const daCstatue_c::m_bckIdxTable[daCstatueType_N][CStatueAnimIndex_N] = {
     // daCstatueType_NORMAL
-    {cs_swing, cs_walk, cs_swing, cs_fall, cs_stop, cs_start, cs_swingre},
+    {CStatueAnimSwing, CStatueAnimWalk, CStatueAnimSwing, CStatueAnimFall, CStatueAnimStop,
+     CStatueAnimStart, CStatueAnimSwingre},
     // daCstatueType_SMALL
-    {cs_b_jump, cs_b_walk, cs_b_jump, cs_b_fall, cs_b_walk, cs_b_walk, cs_b_jump},
+    {CStatueAnimBJump, CStatueAnimBWalk, CStatueAnimBJump, CStatueAnimBFall, CStatueAnimBWalk,
+     CStatueAnimBWalk, CStatueAnimBJump},
     // daCstatueType_NORMAL_2
-    {cs_swing, cs_walk, cs_swing, cs_fall, cs_stop, cs_start, cs_swingre},
+    {CStatueAnimSwing, CStatueAnimWalk, CStatueAnimSwing, CStatueAnimFall, CStatueAnimStop,
+     CStatueAnimStart, CStatueAnimSwingre},
     // daCstatueType_BOSS_RIGHT
-    {cs_boss_return_wait_r, cs_boss_return_wait_hit_r, cs_boss_attack_r, cs_boss_return_wait_r,
-     cs_boss_return_wait_r, cs_boss_return_wait_r, cs_boss_return_wait_r},
+    {CStatueBossAnimReturnWaitR, CStatueBossAnimReturnWaitHitR, CStatueBossAnimAttackR,
+     CStatueBossAnimReturnWaitR, CStatueBossAnimReturnWaitR, CStatueBossAnimReturnWaitR,
+     CStatueBossAnimReturnWaitR},
     // daCstatueType_BOSS_LEFT
-    {cs_boss_return_wait_l, cs_boss_return_wait_hit_l, cs_boss_attack_l, cs_boss_return_wait_l,
-     cs_boss_return_wait_l, cs_boss_return_wait_l, cs_boss_return_wait_l},
+    {CStatueBossAnimReturnWaitL, CStatueBossAnimReturnWaitHitL, CStatueBossAnimAttackL,
+     CStatueBossAnimReturnWaitL, CStatueBossAnimReturnWaitL, CStatueBossAnimReturnWaitL,
+     CStatueBossAnimReturnWaitL},
 };
 
 struct CStatueTblData {
@@ -79,21 +84,6 @@ struct CStatueTblData {
     u32 morfIndex;
 };
 
-/* 806676FC-80667738 000064 003C+00 0/1 0/0 0/0 .rodata          dataTbl$4169 */
-static struct CStatueTblData const dataTbl[daCstatueType_N] = {
-    // daCstatueType_NORMAL
-    {19, 13, 31, 35, 0x11000284},
-    // daCstatueType_SMALL
-    {20, 8, 28, 0, 0x11000084},
-    // daCstatueType_NORMAL_2
-    {24, 13, 29, 34, 0x11000284},
-    // daCstatueType_BOSS_RIGHT
-    {14, 11, 18, 21, 0x11000284},
-    // daCstatueType_BOSS_LEFT
-    {14, 10, 18, 21, 0x11000284},
-};
-
-/* 806679D0-80667A1C 000020 004C+00 0/1 0/0 0/0 .data            l_atCpsSrc */
 static dCcD_SrcCps l_atCpsSrc = {
     {
         {0x0, {{AT_TYPE_CSTATUE_SWING, 0x4, 0x1f}, {0x0, 0x0}, 0x0}},  // mObj
@@ -106,7 +96,6 @@ static dCcD_SrcCps l_atCpsSrc = {
     }  // mCpsAttr
 };
 
-/* 80667A1C-80667A60 00006C 0044+00 0/1 0/0 0/0 .data            l_cylSrc */
 static dCcD_SrcCyl l_cylSrc = {
     {
         {0x0, {{AT_TYPE_THROW_OBJ, 0x2, 0x12}, {0xd97afddf, 0x11}, 0x79}},  // mObj
@@ -121,7 +110,6 @@ static dCcD_SrcCyl l_cylSrc = {
     }  // mCyl
 };
 
-/* 80667A60-80667AA0 0000B0 0040+00 0/1 0/0 0/0 .data            l_sphSrc */
 static dCcD_SrcSph l_sphSrc = {
     {
         {0x0, {{AT_TYPE_CSTATUE_BOSS_SWING, 0x4, 0x1e}, {0xd8fafddf, 0x11}, 0x79}},  // mObj
@@ -150,6 +138,19 @@ static void daCstatue_atHitCallback(fopAc_ac_c* statue, dCcD_GObjInf* _objInfA, 
 
 /* 806636EC-80663AA4 00012C 03B8+00 1/1 0/0 0/0 .text            createHeap__11daCstatue_cFv */
 int daCstatue_c::createHeap() {
+    static struct CStatueTblData const dataTbl[daCstatueType_N] = {
+        // daCstatueType_NORMAL
+        {19, 13, 31, 35, 0x11000284},
+        // daCstatueType_SMALL
+        {20, 8, 28, 0, 0x11000084},
+        // daCstatueType_NORMAL_2
+        {24, 13, 29, 34, 0x11000284},
+        // daCstatueType_BOSS_RIGHT
+        {14, 11, 18, 21, 0x11000284},
+        // daCstatueType_BOSS_LEFT
+        {14, 10, 18, 21, 0x11000284},
+    };
+
     const struct CStatueTblData* data = &dataTbl[mType];
 
     J3DAnmTransform* animation =
@@ -212,19 +213,14 @@ static int daCstatue_createHeap(fopAc_ac_c* actor) {
     return static_cast<daCstatue_c*>(actor)->createHeap();
 }
 
-/* 80667740-80667764 0000A8 0024+00 0/1 0/0 0/0 .rodata          bossSphR$4389 */
-static f32 const bossSphR[9] = {450.0f, 200.0f, 250.0f, 220.0f, 280.0f,
-                                200.0f, 250.0f, 220.0f, 280.0f};
-
-/* 80667764-80667778 0000CC 0014+00 0/1 0/0 0/0 .rodata          heapSize$4390 */
-static int const heapSize[daCstatueType_N] = {4368, 2208, 4688, 6240, 6240};
-
 /* 80663D28-8066469C 000768 0974+00 1/1 0/0 0/0 .text            create__11daCstatue_cFv */
 int daCstatue_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daCstatue_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    static f32 const bossSphR[9] = {450.0f, 200.0f, 250.0f, 220.0f, 280.0f,
+                                    200.0f, 250.0f, 220.0f, 280.0f};
+
+    static int const heapSize[daCstatueType_N] = {4368, 2208, 4688, 6240, 6240};
+
+    fopAcM_SetupActor(this, daCstatue_c);
     mType = (fopAcM_GetParam(this) >> 8) & 0xf;
     if (mType == daCstatueType_Normal2) {
         mType = daCstatueType_Small;
@@ -450,17 +446,12 @@ void daCstatue_c::setRoomInfo() {
     fopAcM_SetRoomNo(this, roomId);
 }
 
-/* 806677F4-80667800 00015C 000C+00 0/1 0/0 0/0 .rodata          normalLocalBallPos$4911 */
-static Vec const normalLocalBallPos = {70.0f, 0.0f, 0.0f};
-
-/* 80667800-8066780C 000168 000C+00 0/1 0/0 0/0 .rodata          smallLocalBallPos$4912 */
-static Vec const smallLocalBallPos = {0.0f, 35.0f, 0.0f};
-
-/* 8066780C-80667818 000174 000C+00 0/1 0/0 0/0 .rodata          bossLocalBallPos$4913 */
-static Vec const bossLocalBallPos = {420.0f, 0.0f, 0.0f};
-
 /* 80664B38-80664C9C 001578 0164+00 2/2 0/0 0/0 .text            setMatrix__11daCstatue_cFv */
 void daCstatue_c::setMatrix() {
+    static Vec const normalLocalBallPos = {70.0f, 0.0f, 0.0f};
+    static Vec const smallLocalBallPos = {0.0f, 35.0f, 0.0f};
+    static Vec const bossLocalBallPos = {420.0f, 0.0f, 0.0f};
+
     // todo: there is an additional block here in the debug rom
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
@@ -644,28 +635,21 @@ void daCstatue_c::posMove() {
     }
 }
 
-/* 8066786C-80667878 0001D4 000C+00 0/1 0/0 0/0 .rodata          localTop$5304 */
-static Vec const localTop = {0.0f, 90.0f, 0.0f};
-/* 80667878-80667884 0001E0 000C+00 0/1 0/0 0/0 .rodata          localRoot$5305 */
-static Vec const localRoot = {0.0f, -30.0f, 0.0f};
-/* 80667884-80667890 0001EC 000C+00 0/1 0/0 0/0 .rodata          hammerSide0$5306 */
-static Vec const hammerSide0 = {-40.0f, 120.0f, 0.0f};
-/* 80667890-8066789C 0001F8 000C+00 0/1 0/0 0/0 .rodata          hammerSide1$5307 */
-static Vec const hammerSide1 = {40.0f, 120.0f, 0.0f};
-/* 8066789C-806678A4 000204 0008+00 0/1 0/0 0/0 .rodata          effName$5309 */
-static u16 const effName[4] = {0x09D0, 0x09D1, 0x09D2, 0x09D5};
-/* 806678A4-806678B8 00020C 0012+02 0/1 0/0 0/0 .rodata          bossJntIdx$5353 */
-static u16 const bossJntIdx[9] = {2, 6, 7, 7, 8, 3, 4, 4, 5};
-
-/* 806678B8-80667924 000220 006C+00 0/1 0/0 0/0 .rodata          bossLocalOffset$5354 */
-static Vec const bossLocalOffset[9] = {
-    {0.0f, 0.0f, 0.0f},   {200.0f, 0.0f, 0.0f},   {50.0f, 0.0f, 0.0f},
-    {380.0f, 0.0f, 0.0f}, {200.0f, 0.0f, -20.0f}, {200.0f, 0.0f, 0.0f},
-    {50.0f, 0.0f, 0.0f},  {380.0f, 0.0f, 0.0f},   {200.0f, 0.0f, -20.0f},
-};
-
 /* 8066555C-80665E14 001F9C 08B8+00 1/1 0/0 0/0 .text            setCollision__11daCstatue_cFv */
 void daCstatue_c::setCollision() {
+    static Vec const localTop = {0.0f, 90.0f, 0.0f};
+    static Vec const localRoot = {0.0f, -30.0f, 0.0f};
+    static Vec const hammerSide0 = {-40.0f, 120.0f, 0.0f};
+    static Vec const hammerSide1 = {40.0f, 120.0f, 0.0f};
+    static u16 const effName[4] = {0x09D0, 0x09D1, 0x09D2, 0x09D5};
+    static u16 const bossJntIdx[9] = {2, 6, 7, 7, 8, 3, 4, 4, 5};
+
+    static Vec const bossLocalOffset[9] = {
+        {0.0f, 0.0f, 0.0f},   {200.0f, 0.0f, 0.0f},   {50.0f, 0.0f, 0.0f},
+        {380.0f, 0.0f, 0.0f}, {200.0f, 0.0f, -20.0f}, {200.0f, 0.0f, 0.0f},
+        {50.0f, 0.0f, 0.0f},  {380.0f, 0.0f, 0.0f},   {200.0f, 0.0f, -20.0f},
+    };
+
     mStts.Move();
     if (!fopAcM_checkCarryNow(this) && mType != daCstatueType_Normal2) {
         if (mMoveMode == daCstatue_MoveMode_2 && speedF > 1.0f) {
@@ -820,22 +804,15 @@ BOOL daCstatue_c::checkHammerReverse() {
     return false;
 }
 
-/* ############################################################################################## */
-/* 80667940-8066794C 0002A8 000C+00 0/1 0/0 0/0 .rodata          hitEffectCenter$5688 */
-static Vec const hitEffectCenter = {-2.031f, 120.438995f, 320.46704f};
-/* 8066794C-80667958 0002B4 000C+00 0/1 0/0 0/0 .rodata          hitEffectEye$5689 */
-static Vec const hitEffectEye = {-2.031f, -80.761f, 642.828f};
-/* 80667958-80667964 0002C0 000C+00 0/1 0/0 0/0 .rodata          behindCenter$5690 */
-static Vec const behindCenter = {24.497f, 203.11401f, -95.48901f};
-/* 80667964-80667970 0002CC 000C+00 0/1 0/0 0/0 .rodata          behindEye$5691 */
-static Vec const behindEye = {124.399f, 198.268f, -462.0869f};
-/* 80667970-8066797C 0002D8 000C+00 0/1 0/0 0/0 .rodata          startAnimeCenter$5692 */
-static Vec const startAnimeCenter = {80.604f, 269.01398f, 294.203f};
-/* 8066797C-80667988 0002E4 000C+00 0/1 0/0 0/0 .rodata          startAnimeEye$5693 */
-static Vec const startAnimeEye = {170.996f, 272.64398f, 654.18896f};
-
 /* 80665F80-80666390 0029C0 0410+00 1/1 0/0 0/0 .text            setDemo__11daCstatue_cFv */
 void daCstatue_c::setDemo() {
+    static Vec const hitEffectCenter = {-2.031f, 120.438995f, 320.46704f};
+    static Vec const hitEffectEye = {-2.031f, -80.761f, 642.828f};
+    static Vec const behindCenter = {24.497f, 203.11401f, -95.48901f};
+    static Vec const behindEye = {124.399f, 198.268f, -462.0869f};
+    static Vec const startAnimeCenter = {80.604f, 269.01398f, 294.203f};
+    static Vec const startAnimeEye = {170.996f, 272.64398f, 654.18896f};
+
     onStateFlg0(daCstatue_FLG0_Demo);
     cXyz eyePos;
     cXyz centerPos;
@@ -899,7 +876,6 @@ void daCstatue_c::setDemo() {
     } else {
         fopAcM_orderPotentialEvent(this, 2, (u16)-1, 0);
         eventInfo.onCondition(2);
-        return;
     }
 }
 

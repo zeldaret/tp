@@ -3619,8 +3619,8 @@ public:
     bool checkCopyRodSwingModeInit() {
         return mProcID == PROC_COPY_ROD_SWING && mProcVar2.field_0x300c != 0;
     }
-    double transAnimeMoveX() { return field_0x3464; }
-    double transAnimeMoveZ() { return field_0x3468; }
+    float transAnimeMoveX() { return field_0x3464; }
+    float transAnimeMoveZ() { return field_0x3468; }
     bool checkRoofSwitchHang() const { return mProcID == PROC_ROOF_SWITCH_HANG; }
     bool checkCanoeWait() const { return mProcID == PROC_CANOE_WAIT; }
     bool checkCanoeSubjectivity() const { return mProcID == PROC_CANOE_SUBJECTIVITY; }
