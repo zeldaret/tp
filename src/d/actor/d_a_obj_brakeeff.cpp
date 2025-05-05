@@ -12,6 +12,8 @@
 #include "d/d_bg_s.h"
 #include "d/d_bg_w.h"
 #include "dolphin/mtx.h"
+#include "d/d_com_inf_game.h"
+#include "include/d/d_cc_uty.h"
 //
 // Forward References:
 //
@@ -139,6 +141,56 @@ SECTION_DATA static u8 e_name[10 + 2 /* padding */] = {
 /* 8046DD38-8046DF80 0000F8 0248+00 1/1 0/0 0/0 .text obj_brakeeff_1__FP18obj_brakeeff_class */
 void obj_brakeeff_1(obj_brakeeff_class* i_this) {
     // NONMATCHING
+
+    cXyz pos (i_this->current.pos);
+    cXyz misc_vector(1.0f, 1.0f, 1.0f);
+
+
+    if(i_this->mEffectType == '\0'){
+        pos.y += 75.0f;
+    }
+    else if(i_this->mEffectType == 1){
+        pos.y += 50.0f;
+        misc_vector.set(0.56f, 0.56f, 0.56f);
+    }
+    if(i_this->mMiscTimer3 != 1){
+        if(i_this->mMiscTimer3 > 0){
+            return;
+        }
+        if(i_this->mMiscTimer3 < 0)
+        {
+            return;
+        }
+
+        i_this->mMiscTimer3 = 1;
+        i_this->mMiscTimer4 = 60;
+    }
+
+    for(int i = 0; i < 2; i++){
+        i_this->mRuntimeParticleIds[i] = dComIfGp_particle_set(i_this->mRuntimeParticleIds[i], e_name[i],&pos, &i_this->current.angle, &misc_vector);
+    }
+
+    if(i_this->mMiscTimer4 == 0){
+        i_this->mDCcD_Sph.SetC(pos);
+        dComIfG_Ccsp()->Set(&i_this->mDCcD_Sph);
+
+        if(i_this->mDCcD_Sph.ChkTgHit()){
+            i_this->mMiscTimer3 = 2;
+
+            dCcU_AtInfo atInfo;
+
+            atInfo.mpCollider = i_this->mDCcD_Sph.GetTgHitObj();
+            at_power_check(&atInfo);
+
+            cXyz result = i_this->current.pos - atInfo.mpActor->current.pos;
+            i_this->current.angle.y = cM_atan2s(result.x, result.z);
+
+            for(int i = 2; i < 5; i++){
+                dComIfGp_particle_set(e_name[i], &pos, &i_this->current.angle, &misc_vector);
+            }
+            fopAcM_delete(i_this);
+        }
+    }
 }
 
 /* 8046DF80-8046DFB0 000340 0030+00 1/1 0/0 0/0 .text            action__FP18obj_brakeeff_class */

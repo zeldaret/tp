@@ -33,7 +33,7 @@ public:
     /* 0x586 */ short mMiscShort2;
     /* 0x588 */ dCcD_Stts mDCcD_Stts;
     /* 0x5C4 */ dCcD_Sph mDCcD_Sph;
-    /* 0x6FC */ u32 mParticleIds[2];
+    /* 0x6FC */ u32 mRuntimeParticleIds[2];
     /* 0x704 */ u8 padding_0x704[4];
     /* 0x708 */ Mtx mStoredMatrix;
     /* 0x738 */ dBgW* mpDBgW;
