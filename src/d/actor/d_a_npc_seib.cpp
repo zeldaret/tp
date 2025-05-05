@@ -221,83 +221,56 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 #pragma pop
 
 /* 80AC7118-80AC7120 000020 0008+00 1/1 0/0 0/0 .data            l_bmdData */
-SECTION_DATA static u8 l_bmdData[8] = {
-    0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x01,
+static daNpcT_evtData_c l_bmdData = {
+    (char*)12, 1
 };
 
 /* 80AC7120-80AC7138 -00001 0018+00 0/1 0/0 0/0 .data            l_evtList */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtList[6] = {
-    (void*)&d_a_npc_seib__stringBase0,
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_seib__stringBase0) + 0x1),
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_seib__stringBase0) + 0x11),
-    (void*)NULL,
+static daNpcT_evtData_c l_evtList[3] = {
+    {"", 0},
+    {"DEFAULT_GETITEM", 0},
+    {"NO_RESPONSE", 0},
 };
-#pragma pop
 
 /* 80AC7138-80AC7140 -00001 0008+00 2/4 0/0 0/0 .data            l_resNameList */
-SECTION_DATA static void* l_resNameList[2] = {
-    (void*)&d_a_npc_seib__stringBase0,
-    (void*)(((char*)&d_a_npc_seib__stringBase0) + 0x1D),
+static char* l_resNameList = {
+    ""
 };
 
 /* 80AC7140-80AC7144 000048 0002+02 1/0 0/0 0/0 .data            l_loadResPtrn0 */
-SECTION_DATA static u16 l_loadResPtrn0[1 + 1 /* padding */] = {
-    0x01FF,
-    /* padding */
-    0x0000,
+static s8 l_loadResPtrn0[2] = {
+    1, 0xFF
 };
 
 /* 80AC7144-80AC714C -00001 0008+00 1/2 0/0 0/0 .data            l_loadResPtrnList */
-SECTION_DATA static void* l_loadResPtrnList[2] = {
-    (void*)&l_loadResPtrn0,
-    (void*)&l_loadResPtrn0,
+static s8* l_loadResPtrnList[2] = {
+    l_loadResPtrn0,
+    l_loadResPtrn0,
 };
 
 /* 80AC714C-80AC7168 000054 001C+00 0/1 0/0 0/0 .data            l_faceMotionAnmData */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_faceMotionAnmData[28] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF,
-    0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+static daNpcT_faceMotionAnmData_c l_faceMotionAnmData = {
+    -1, 0, 0, -1, 0, 0, 0
 };
-#pragma pop
 
 /* 80AC7168-80AC71D8 000070 0070+00 0/1 0/0 0/0 .data            l_motionAnmData */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_motionAnmData[112] = {
-    0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x07,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x02,
-    0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-    0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+static daNpcT_motionAnmData_c l_motionAnmData[4] = {
+    {9, 2, 1, -1, 0, 0, 0, 0},
+    {7, 0, 1, -1, 0, 0, 0, 0},
+    {6, 2, 1, -1, 0, 0, 0, 0},
+    {8, 0, 1, -1, 0, 0, 0, 0},
 };
-#pragma pop
 
 /* 80AC71D8-80AC71E8 0000E0 0010+00 0/1 0/0 0/0 .data            l_faceMotionSequenceData */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_faceMotionSequenceData[16] = {
-    0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
+static daNpcT_MotionSeqMngr_c::sequenceStepData_c l_faceMotionSequenceData[4] = {
+    {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
 };
-#pragma pop
 
 /* 80AC71E8-80AC7228 0000F0 0040+00 0/1 0/0 0/0 .data            l_motionSequenceData */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_motionSequenceData[64] = {
-    0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x01, 0x00, 0x01, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x02, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
-    0x00, 0x03, 0x00, 0x01, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
+static daNpcT_MotionSeqMngr_c::sequenceStepData_c l_motionSequenceData[16] = {
+    {0, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {1, 0, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {2, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {3, 0, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
 };
-#pragma pop
 
 /* 80AC7228-80AC722C -00001 0004+00 1/1 0/0 0/0 .data            mCutNameList__12daNpc_seiB_c */
 SECTION_DATA void* daNpc_seiB_c::mCutNameList = (void*)&d_a_npc_seib__stringBase0;
@@ -495,23 +468,92 @@ daNpc_seiB_c::~daNpc_seiB_c() {
 
 /* ############################################################################################## */
 /* 80AC7024-80AC70B8 000000 0094+00 4/4 0/0 0/0 .rodata          m__18daNpc_seiB_Param_c */
-SECTION_RODATA u8 const daNpc_seiB_Param_c::m[148] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x45, 0x7A, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x44, 0x96, 0x00, 0x00,
+daNpc_seiB_Param_c::Data const daNpc_seiB_Param_c::m = {
+    0x00000000,
+    0x00000000,
+    0x3F800000,
+    0x457A0000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x44960000,
 };
-COMPILER_STRIP_GATE(0x80AC7024, &daNpc_seiB_Param_c::m);
 
 /* 80AC5188-80AC53C8 000188 0240+00 1/1 0/0 0/0 .text            create__12daNpc_seiB_cFv */
-void daNpc_seiB_c::create() {
+int daNpc_seiB_c::create() {
     // NONMATCHING
+    fopAcM_SetupActor2(this, daNpc_seiB_c, &l_faceMotionAnmData, l_motionAnmData, 
+                       l_faceMotionSequenceData, 4, l_motionSequenceData, 4, l_evtList, &l_resNameList);
+
+    mType = getType();
+    mFlowNodeNo = getFlowNodeNo();
+    mTwilight = false;
+
+    int rv = loadRes(l_loadResPtrnList[mType], (const char**)l_resNameList);
+    if (rv == cPhs_COMPLEATE_e) {
+        if (!fopAcM_entrySolidHeap(this, createHeapCallBack, 0)) {
+            return cPhs_ERROR_e;
+        }
+
+        OS_REPORT("\t(%s:%d) flowNo:%d<%08x> ", fopAcM_getProcNameString(this), mType, mFlowNodeNo, fopAcM_GetParam(this));
+
+        if (isDelete()) {
+            OS_REPORT("===>isDelete:TRUE\n");
+            return cPhs_ERROR_e;
+        }
+
+        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        mSound.init(&current.pos, &eyePos, 3, 1);
+        mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, 
+                    fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
+        mAcch.CrrPos(dComIfG_Bgsp());
+        mGroundH = mAcch.GetGroundH();
+        setEnvTevColor();
+        setRoomNo();
+        mCcStts.Init(0, 0, this);
+
+        reset();
+        mCreating = true;
+        Execute();
+        mCreating = false;
+    }
+
+    return rv;
 }
 
 /* ############################################################################################## */
@@ -569,17 +611,17 @@ void daNpc_seiB_c::Draw() {
 
 /* 80AC5608-80AC5628 000608 0020+00 1/1 0/0 0/0 .text
  * createHeapCallBack__12daNpc_seiB_cFP10fopAc_ac_c             */
-void daNpc_seiB_c::createHeapCallBack(fopAc_ac_c* param_0) {
+int daNpc_seiB_c::createHeapCallBack(fopAc_ac_c* param_0) {
     // NONMATCHING
 }
 
 /* 80AC5628-80AC5648 000628 0020+00 1/1 0/0 0/0 .text            getType__12daNpc_seiB_cFv */
-void daNpc_seiB_c::getType() {
+u8 daNpc_seiB_c::getType() {
     // NONMATCHING
 }
 
 /* 80AC5648-80AC5664 000648 001C+00 1/1 0/0 0/0 .text            getFlowNodeNo__12daNpc_seiB_cFv */
-void daNpc_seiB_c::getFlowNodeNo() {
+u32 daNpc_seiB_c::getFlowNodeNo() {
     // NONMATCHING
 }
 
@@ -615,7 +657,7 @@ void daNpc_seiB_c::srchActors() {
 }
 
 /* 80AC58F4-80AC59F4 0008F4 0100+00 1/0 0/0 0/0 .text            evtTalk__12daNpc_seiB_cFv */
-void daNpc_seiB_c::evtTalk() {
+BOOL daNpc_seiB_c::evtTalk() {
     // NONMATCHING
 }
 
@@ -627,7 +669,7 @@ SECTION_DEAD static char const* const stringBase_80AC70F2 = "Seib";
 #pragma pop
 
 /* 80AC59F4-80AC5ABC 0009F4 00C8+00 1/0 0/0 0/0 .text            evtCutProc__12daNpc_seiB_cFv */
-void daNpc_seiB_c::evtCutProc() {
+BOOL daNpc_seiB_c::evtCutProc() {
     // NONMATCHING
 }
 
@@ -647,12 +689,12 @@ void daNpc_seiB_c::setAttnPos() {
 }
 
 /* 80AC5C20-80AC5C28 000C20 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__12daNpc_seiB_cFv */
-bool daNpc_seiB_c::drawDbgInfo() {
+int daNpc_seiB_c::drawDbgInfo() {
     return false;
 }
 
 /* 80AC5C28-80AC5DC0 000C28 0198+00 1/0 0/0 0/0 .text afterSetMotionAnm__12daNpc_seiB_cFiifi */
-void daNpc_seiB_c::afterSetMotionAnm(int param_0, int param_1, f32 param_2, int param_3) {
+bool daNpc_seiB_c::afterSetMotionAnm(int param_0, int param_1, f32 param_2, int param_3) {
     // NONMATCHING
 }
 
@@ -909,7 +951,7 @@ SECTION_DATA extern void* __vt__18daNpc_seiB_Param_c[3] = {
 static u8 lit_3814[12];
 
 /* 80AC744C-80AC7450 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[4];
+static daNpc_seiB_Param_c l_HIO;
 
 /* 80AC6F0C-80AC6F74 001F0C 0068+00 0/0 1/0 0/0 .text            __sinit_d_a_npc_seib_cpp */
 void __sinit_d_a_npc_seib_cpp() {
@@ -924,14 +966,14 @@ REGISTER_CTORS(0x80AC6F0C, __sinit_d_a_npc_seib_cpp);
 /* 80AC6F74-80AC6FB8 001F74 0044+00 1/1 0/0 0/0 .text
  * __ct__12daNpc_seiB_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc
  */
-daNpc_seiB_c::daNpc_seiB_c(daNpcT_faceMotionAnmData_c const* param_0,
-                               daNpcT_motionAnmData_c const* param_1,
-                               daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_2,
-                               int param_3,
-                               daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_4,
-                               int param_5, daNpcT_evtData_c const* param_6, char** param_7) {
-    // NONMATCHING
-}
+// daNpc_seiB_c::daNpc_seiB_c(daNpcT_faceMotionAnmData_c const* param_0,
+//                                daNpcT_motionAnmData_c const* param_1,
+//                                daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_2,
+//                                int param_3,
+//                                daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_4,
+//                                int param_5, daNpcT_evtData_c const* param_6, char** param_7) {
+//     // NONMATCHING
+// }
 
 /* 80AC6FB8-80AC7000 001FB8 0048+00 2/1 0/0 0/0 .text            __dt__18daNpc_seiB_Param_cFv */
 daNpc_seiB_Param_c::~daNpc_seiB_Param_c() {
