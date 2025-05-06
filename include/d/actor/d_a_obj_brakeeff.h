@@ -21,7 +21,7 @@ class dBgW;
 class obj_brakeeff_class : public fopAc_ac_c {
 public:
     /* 0x568 */ request_of_phase_process_class mRequestOfPhase;
-    /* 0x570 */ char mEffectType;
+    /* 0x570 */ unsigned char mEffectType;
     //alignment bytes /* 0x571 */ u8 padding_0x571[3];
     /* 0x574 */ J3DModel* mpModel;
     /* 0x578 */ mDoExt_brkAnm* mpBrk;
@@ -37,6 +37,7 @@ public:
     /* 0x704 */ u8 padding_0x704[4];
     /* 0x708 */ Mtx mStoredMatrix;
     /* 0x738 */ dBgW* mpDBgW;
+
 };
 
 STATIC_ASSERT(sizeof(obj_brakeeff_class) == 0x73c);

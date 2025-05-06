@@ -13,7 +13,7 @@
 #include "d/d_bg_w.h"
 #include "dolphin/mtx.h"
 #include "d/d_com_inf_game.h"
-#include "include/d/d_cc_uty.h"
+#include "d/d_cc_uty.h"
 //
 // Forward References:
 //
@@ -121,49 +121,34 @@ SECTION_RODATA static f32 const lit_3882 = 14.0f / 25.0f;
 COMPILER_STRIP_GATE(0x8046E534, &lit_3882);
 #pragma pop
 
-/* 8046E540-8046E54C 000000 000A+02 1/1 0/0 0/0 .data            e_name */
-SECTION_DATA static u8 e_name[10 + 2 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
+unsigned short e_name[12] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
+
+
 
 /* 8046DD38-8046DF80 0000F8 0248+00 1/1 0/0 0/0 .text obj_brakeeff_1__FP18obj_brakeeff_class */
 void obj_brakeeff_1(obj_brakeeff_class* i_this) {
-    // NONMATCHING
-
     cXyz pos (i_this->current.pos);
     cXyz misc_vector(1.0f, 1.0f, 1.0f);
 
 
-    if(i_this->mEffectType == '\0'){
+    if(i_this->mEffectType == 0){
         pos.y += 75.0f;
     }
     else if(i_this->mEffectType == 1){
         pos.y += 50.0f;
         misc_vector.set(0.56f, 0.56f, 0.56f);
     }
-    if(i_this->mMiscTimer3 != 1){
-        if(i_this->mMiscTimer3 > 0){
+    switch (i_this->mMiscTimer3) {
+        default:
             return;
-        }
-        if(i_this->mMiscTimer3 < 0)
-        {
-            return;
-        }
-
-        i_this->mMiscTimer3 = 1;
-        i_this->mMiscTimer4 = 60;
+        case 0:
+            i_this->mMiscTimer3 = 1;
+            i_this->mMiscTimer4 = 60;
+            break;
+        case 1:
+            break;
     }
 
     for(int i = 0; i < 2; i++){
@@ -195,10 +180,11 @@ void obj_brakeeff_1(obj_brakeeff_class* i_this) {
 
 /* 8046DF80-8046DFB0 000340 0030+00 1/1 0/0 0/0 .text            action__FP18obj_brakeeff_class */
 void action(obj_brakeeff_class* i_this) {
-    if(i_this->mMiscTimer2 == 0){
+    switch (i_this->mMiscTimer2){
+    case 0:
         obj_brakeeff_1(i_this);
+        break;
     }
-
 }
 
 /* 8046DFB0-8046E098 000370 00E8+00 2/1 0/0 0/0 .text
@@ -309,8 +295,10 @@ extern "C" void __dt__12J3DFrameCtrlFv() {
 }
 
 /* 8046E2F8-8046E490 0006B8 0198+00 1/0 0/0 0/0 .text daObj_Brakeeff_Create__FP10fopAc_ac_c */
-void daObj_Brakeeff_Create() {
+void daObj_Brakeeff_Create(obj_brakeeff_class* i_this) {
     // NONMATCHING
+
+
 }
 
 /* 8046E490-8046E4D8 000850 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGSphFv */
