@@ -142,7 +142,12 @@ public:
     /* 802FD964 */ virtual const ResTIMG* changeTexture(char const*, u8);
     /* 802FD9BC */ virtual const ResTIMG* changeTexture(ResTIMG const*, u8, JUTPalette*);
     /* 802FDAC8 */ virtual const ResTIMG* changeTexture(char const*, u8, JUTPalette*);
-    /* 800539DC */ virtual JUTTexture* getTexture(u8) const;
+    /* 800539DC */ virtual JUTTexture* getTexture(u8 param_0) const {
+        if (param_0 < 2) {
+            return mTexture[param_0];
+        }
+        return NULL;
+    }
     /* 802FF634 */ virtual u8 getTextureCount() const { return mTextureNum; }
     /* 80053C6C */ virtual bool setBlack(JUtility::TColor i_black) {
         mBlack = i_black;

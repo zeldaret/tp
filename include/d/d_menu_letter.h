@@ -55,7 +55,7 @@ public:
     /* 801E1678 */ u8 getLetterNum();
     /* 801E1748 */ void setHIO(bool);
 
-    /* 801E1D5C */ virtual void draw();
+    /* 801E1D5C */ virtual void draw() { _draw(); }
     /* 801DCF34 */ virtual ~dMenu_Letter_c();
 
     u8 getStatus() { return mStatus; }

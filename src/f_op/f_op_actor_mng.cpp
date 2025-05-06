@@ -2023,16 +2023,16 @@ void fpoAcM_relativePos(fopAc_ac_c const* i_actor, cXyz const* i_pos, cXyz* o_po
 
 /* 8001D9A8-8001DAE4 0182E8 013C+00 0/0 1/1 9/9 .text
  * fopAcM_getWaterStream__FPC4cXyzRC13cBgS_PolyInfoP4cXyzPii    */
-s32 fopAcM_getWaterStream(cXyz const* param_0, cBgS_PolyInfo const& param_1, cXyz* speed,
-                          int* param_3, int param_4) {
+s32 fopAcM_getWaterStream(cXyz const* pos, cBgS_PolyInfo const& polyinfo, cXyz* speed,
+                          int* power, BOOL param_4) {
     daTagStream_c* stream = daTagStream_c::getTop();
     if (stream != NULL) {
         for (stream = daTagStream_c::getTop(); stream != NULL; stream = stream->getNext()) {
-            if (stream->checkStreamOn() && (param_4 == 0 || stream->checkCanoeOn()) &&
-                stream->checkArea(param_0))
+            if (stream->checkStreamOn() && (!param_4 || stream->checkCanoeOn()) &&
+                stream->checkArea(pos))
             {
                 *speed = stream->speed;
-                *param_3 = stream->getPower() & 0xff;
+                *power = stream->getPower() & 0xff;
                 return 1;
             }
         }
@@ -2042,14 +2042,14 @@ s32 fopAcM_getWaterStream(cXyz const* param_0, cBgS_PolyInfo const& param_1, cXy
         return 0;
     }
 
-    if (dComIfG_Bgsp().ChkPolySafe(param_1)) {
-        if (dPath_GetPolyRoomPathVec(param_1, speed, param_3)) {
+    if (dComIfG_Bgsp().ChkPolySafe(polyinfo)) {
+        if (dPath_GetPolyRoomPathVec(polyinfo, speed, power)) {
             speed->normalizeZP();
             return 1;
         }
     } else {
         *speed = cXyz::Zero;
-        *param_3 = 0;
+        *power = 0;
     }
 
     return 0;

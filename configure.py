@@ -30,10 +30,32 @@ from tools.project import (
 # Game versions
 DEFAULT_VERSION = 0
 VERSIONS = [
-    "GZ2E01",  # GCN USA
-    "GZ2P01",  # GCN PAL
-    "GZ2J01",  # GCN JPN
-    "ShieldD",  # Shield Debug
+    "GZ2E01",    # GCN USA
+    "GZ2P01",    # GCN PAL
+    "GZ2J01",    # GCN JPN
+    "RZDE01_00", # Wii USA Rev 0
+    "RZDE01_02", # Wii USA Rev 2
+    "RZDP01",    # Wii PAL
+    "RZDJ01",    # Wii JPN
+    "RZDK01",    # Wii KOR
+    "DZDE01",    # Wii USA Kiosk Demo
+    "DZDP01",    # Wii PAL Kiosk Demo
+    "Shield",    # Shield
+    "ShieldP",   # Shield Production
+    "ShieldD",   # Shield Debug
+]
+
+# Versions to disable until properly configured
+DISABLED_VERSIONS = [
+    3,  # Wii USA Rev 0
+    4,  # Wii USA Rev 2
+    5,  # Wii PAL
+    6,  # Wii JPN
+    7,  # Wii KOR
+    8,  # Wii USA Kiosk Demo
+    9,  # Wii PAL Kiosk Demo
+    10, # Shield
+    11, # Shield Production
 ]
 
 parser = argparse.ArgumentParser()
@@ -135,6 +157,11 @@ args = parser.parse_args()
 config = ProjectConfig()
 config.version = str(args.version)
 version_num = VERSIONS.index(config.version)
+
+if version_num in DISABLED_VERSIONS:
+    print(f"Version {VERSIONS[version_num]} is disabled. Using default")
+    version_num = DEFAULT_VERSION
+    config.version = VERSIONS[DEFAULT_VERSION]
 
 # Apply arguments
 config.build_dir = args.build_dir
@@ -603,7 +630,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01"), "d/d_menu_fmap2D.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_menu_insect.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_menu_item_explain.cpp"),
-            Object(NonMatching, "d/d_menu_letter.cpp", extra_cflags=['-pragma "nosyminline on"']),
+            Object(Equivalent, "d/d_menu_letter.cpp", extra_cflags=['-pragma "nosyminline on"']), # weak function order
             Object(MatchingFor("GZ2E01"), "d/d_menu_option.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_menu_ring.cpp"),
             Object(Equivalent, "d/d_menu_save.cpp"), # missing 0x30 bytes of padding between vtables, likely some abstract base class vtable that gets stripped out
@@ -1497,7 +1524,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_alldie"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_andsw2"),
     ActorRel(NonMatching, "d_a_bd"),
-    ActorRel(NonMatching, "d_a_canoe"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_canoe"),
     ActorRel(NonMatching, "d_a_cstaF"),
     ActorRel(NonMatching, "d_a_demo_item"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_door_bossL1"),
@@ -1571,9 +1598,9 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_tag_spring"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_tag_statue_evt"),
     ActorRel(NonMatching, "d_a_ykgr"),
-    ActorRel(NonMatching, "d_a_L7demo_dr"),
-    ActorRel(NonMatching, "d_a_L7low_dr"),
-    ActorRel(NonMatching, "d_a_L7op_demo_dr"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_L7demo_dr"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_L7low_dr"),
+    ActorRel(Equivalent, "d_a_L7op_demo_dr"), # weak func order
     ActorRel(MatchingFor("GZ2E01"), "d_a_b_bh"),
     ActorRel(NonMatching, "d_a_b_bq"),
     ActorRel(Equivalent, "d_a_b_dr"), # weak func order
@@ -1597,10 +1624,10 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_b_zant_sima"),
     ActorRel(NonMatching, "d_a_balloon_2D"),
     ActorRel(NonMatching, "d_a_bullet"),
-    ActorRel(NonMatching, "d_a_coach_2D"),
+    ActorRel(Equivalent, "d_a_coach_2D"), # weak func order
     ActorRel(MatchingFor("GZ2E01"), "d_a_coach_fire"),
     ActorRel(Equivalent, "d_a_cow"),
-    ActorRel(NonMatching, "d_a_cstatue"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_cstatue"),
     ActorRel(Equivalent, "d_a_do"), # Z2SoundObjSimple dtor
     ActorRel(MatchingFor("GZ2E01"), "d_a_door_boss"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_door_bossL5"),
@@ -1644,7 +1671,7 @@ config.libs = [
     ActorRel(Equivalent, "d_a_e_kk"), # weak func order
     ActorRel(NonMatching, "d_a_e_kr"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_mb"),
-    ActorRel(NonMatching, "d_a_e_md"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_e_md"),
     ActorRel(NonMatching, "d_a_e_mf"),
     ActorRel(NonMatching, "d_a_e_mk"),
     ActorRel(NonMatching, "d_a_e_mk_bo"),
@@ -1665,7 +1692,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_e_s1"),
     ActorRel(NonMatching, "d_a_e_sb"),
     ActorRel(NonMatching, "d_a_e_sf"),
-    ActorRel(NonMatching, "d_a_e_sg"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_e_sg"),
     ActorRel(NonMatching, "d_a_e_sh"),
     ActorRel(NonMatching, "d_a_e_sm"),
     ActorRel(NonMatching, "d_a_e_sm2"),
@@ -1724,7 +1751,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_ashB"),
     ActorRel(NonMatching, "d_a_npc_bans"),
     ActorRel(NonMatching, "d_a_npc_blue_ns"),
-    ActorRel(NonMatching, "d_a_npc_bou"),
+    ActorRel(Equivalent, "d_a_npc_bou"),
     ActorRel(NonMatching, "d_a_npc_bouS"),
     ActorRel(NonMatching, "d_a_npc_cdn3"),
     ActorRel(NonMatching, "d_a_npc_chat"),
@@ -1984,7 +2011,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_lv6FurikoTrap"),
     ActorRel(NonMatching, "d_a_obj_lv6Lblock"),
     ActorRel(NonMatching, "d_a_obj_lv6SwGate"),
-    ActorRel(NonMatching, "d_a_obj_lv6SzGate"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv6SzGate"),
     ActorRel(NonMatching, "d_a_obj_lv6Tenbin"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv6TogeRoll"),
     ActorRel(NonMatching, "d_a_obj_lv6TogeTrap"),

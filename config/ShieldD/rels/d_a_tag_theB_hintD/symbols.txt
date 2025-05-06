@@ -16,6 +16,6 @@ getSwitchNo__15daTagTheBHint_cFv = .text:0x00000430; // type:function size:0xC s
 _ctors = .ctors:0x00000000; // type:label scope:global
 _dtors = .dtors:0x00000000; // type:label scope:global
 @119624 = .rodata:0x00000000; // type:object size:0x4 scope:local
-@119625 = .rodata:0x00000004; // type:object size:0x4 scope:local data:float
+@119625 = .rodata:0x00000004; // type:object size:0x4 scope:local align:4 data:float
 l_daTagTheBHint_Method = .data:0x00000000; // type:object size:0x20 scope:global
 g_profile_Tag_TheBHint = .data:0x00000020; // type:object size:0x30 scope:global

@@ -20,6 +20,6 @@ _dtors = .dtors:0x00000000; // type:label scope:global
 @3690 = .rodata:0x00000008; // type:object size:0x8 scope:local
 @3691 = .rodata:0x00000010; // type:object size:0x8 scope:local
 @3692 = .rodata:0x00000018; // type:object size:0x8 scope:local
-@3715 = .rodata:0x00000020; // type:object size:0x4 scope:local data:float
+@3715 = .rodata:0x00000020; // type:object size:0x4 scope:local align:4 data:float
 l_daTagSpinner_Method = .data:0x00000000; // type:object size:0x20 scope:global
 g_profile_Tag_Spinner = .data:0x00000020; // type:object size:0x30 scope:global
