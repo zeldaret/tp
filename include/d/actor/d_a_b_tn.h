@@ -159,12 +159,10 @@ private:
     /* 0x0AB4 */ char* field_0xab4;
     /* 0x0AB8 */ dBgS_AcchCir mAcchCir;
     /* 0x0AF8 */ dBgS_ObjAcch mAcch;
-    /* 0x0CD0 */ u8 field_0xcd0[0x10d0 - 0xcd0];
-    /* 0x10D0 */ dBgS_Acch field_0x10d0[16];
-    /* 0x2E50 */ cXyz field_0x2e50;
-    /* 0x2E5C */ u8 field_0x2e5c[0x2e6c - 0x2e5c];
-    /* 0x2E6C */ dCcD_GStts mGStts;
-    /* 0x2E8C */ dCcD_Stts field_0x2e8c;
+    /* 0x0CD0 */ dBgS_AcchCir mAcchCirArr[16];
+    /* 0x10D0 */ dBgS_ObjAcch mAcchArr[16];
+    /* 0x2E50 */ dCcD_Stts mGStts;
+    /* 0x2E8C */ dCcD_Stts mStts;
     /* 0x2EC8 */ dCcD_Sph field_0x2ec8[3];
     /* 0x3270 */ dCcD_Sph field_0x3270[3];
     /* 0x3618 */ dCcD_Sph field_0x3618;
@@ -173,8 +171,8 @@ private:
     /* 0x3D74 */ dCcD_Sph field_0x3d74;
     /* 0x3EAC */ cXyz field_0x3eac;
     /* 0x3EB8 */ dCcU_AtInfo mAtInfo;
-    /* 0x3EDC */ dCcD_Stts field_0x3edc[16];
-    /* 0x429C */ dCcD_Sph field_0x429c[16];
+    /* 0x3EDC */ dCcD_Stts mBigStts[16];
+    /* 0x429C */ dCcD_Sph mBigSph[16];
     /* 0x561C */ u32 field_0x561c[4];
     /* 0x562C */ u8 field_0x562c;
 };
