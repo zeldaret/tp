@@ -346,30 +346,81 @@ SECTION_RODATA u8 const daNpcCd_c::m_cylDat[68] = {
 COMPILER_STRIP_GATE(0x80392E18, &daNpcCd_c::m_cylDat);
 
 /* 80392E5C-80392FC4 01F4BC 0168+00 1/1 0/0 0/0 .rodata          a_transScaleTbl$3984 */
-static Vec const a_transScaleTbl[30] = {
-    {1.0f, 1.0f, 1.0f},        {1.0f, 1.1983438f, 2.173357f},
-    {1.0f, 0.5581154f, 1.0f},  {1.0f, 0.95f, 1.0f},
-    {1.0f, 1.1642542f, 1.0f},  {1.0f, 1.0820773f, 1.0f},
-    {1.0f, 0.78816104f, 1.0f}, {1.0f, 0.91999996f, 1.0f},
-    {1.0f, 1.0f, 1.0f},        {1.0f, 1.1983438f, 2.173357f},
-    {1.0f, 0.5581154f, 1.0f},  {1.0f, 0.95f, 1.0f},
-    {1.0f, 1.1642542f, 1.0f},  {1.0f, 1.0820773f, 1.0f},
-    {1.0f, 0.78816104f, 1.0f}, {1.0f, 0.91999996f, 1.0f},
-    {1.0f, 1.0f, 1.0f},        {1.0f, 0.95f, 1.0f},
-    {1.0f, 1.0999999f, 1.0f},  {1.0f, 0.5656486f, 1.0f},
-    {1.0f, 0.9f, 1.0f},        {1.0f, 0.8630768f, 1.0f},
-    {1.0f, 1.0529536f, 1.0f},  {1.0f, 1.0f, 1.0f},
-    {1.0f, 0.95f, 1.0f},       {1.0f, 1.0999999f, 1.0f},
-    {1.0f, 0.5656486f, 1.0f},  {1.0f, 0.9f, 1.0f},
-    {1.0f, 0.8630768f, 1.0f},  {1.0f, 1.0529536f, 1.0f},
-};
+// static Vec const a_transScaleTbl[30] = {
+//     {1.0f, 1.0f, 1.0f},        {1.0f, 1.1983438f, 2.173357f},
+//     {1.0f, 0.5581154f, 1.0f},  {1.0f, 0.95f, 1.0f},
+//     {1.0f, 1.1642542f, 1.0f},  {1.0f, 1.0820773f, 1.0f},
+//     {1.0f, 0.78816104f, 1.0f}, {1.0f, 0.91999996f, 1.0f},
+//     {1.0f, 1.0f, 1.0f},        {1.0f, 1.1983438f, 2.173357f},
+//     {1.0f, 0.5581154f, 1.0f},  {1.0f, 0.95f, 1.0f},
+//     {1.0f, 1.1642542f, 1.0f},  {1.0f, 1.0820773f, 1.0f},
+//     {1.0f, 0.78816104f, 1.0f}, {1.0f, 0.91999996f, 1.0f},
+//     {1.0f, 1.0f, 1.0f},        {1.0f, 0.95f, 1.0f},
+//     {1.0f, 1.0999999f, 1.0f},  {1.0f, 0.5656486f, 1.0f},
+//     {1.0f, 0.9f, 1.0f},        {1.0f, 0.8630768f, 1.0f},
+//     {1.0f, 1.0529536f, 1.0f},  {1.0f, 1.0f, 1.0f},
+//     {1.0f, 0.95f, 1.0f},       {1.0f, 1.0999999f, 1.0f},
+//     {1.0f, 0.5656486f, 1.0f},  {1.0f, 0.9f, 1.0f},
+//     {1.0f, 0.8630768f, 1.0f},  {1.0f, 1.0529536f, 1.0f},
+// };
 
 /* 804534B8-804534BC 001AB8 0004+00 2/2 0/0 0/0 .sdata2          @4021 */
 SECTION_SDATA2 static f32 lit_4021 = 1.0f;
 
 /* 8015605C-801561E8 15099C 018C+00 0/0 0/0 1/1 .text            NpcCreate__9daNpcCd_cFi */
-int daNpcCd_c::NpcCreate(int param_0) {
+int daNpcCd_c::NpcCreate(int param_1) {
     // NONMATCHING
+    static Vec const a_transScaleTbl[30] = {
+        {1.0f, 1.0f, 1.0f},        {1.0f, 1.1983438f, 2.173357f},
+        {1.0f, 0.5581154f, 1.0f},  {1.0f, 0.95f, 1.0f},
+        {1.0f, 1.1642542f, 1.0f},  {1.0f, 1.0820773f, 1.0f},
+        {1.0f, 0.78816104f, 1.0f}, {1.0f, 0.91999996f, 1.0f},
+        {1.0f, 1.0f, 1.0f},        {1.0f, 1.1983438f, 2.173357f},
+        {1.0f, 0.5581154f, 1.0f},  {1.0f, 0.95f, 1.0f},
+        {1.0f, 1.1642542f, 1.0f},  {1.0f, 1.0820773f, 1.0f},
+        {1.0f, 0.78816104f, 1.0f}, {1.0f, 0.91999996f, 1.0f},
+        {1.0f, 1.0f, 1.0f},        {1.0f, 0.95f, 1.0f},
+        {1.0f, 1.0999999f, 1.0f},  {1.0f, 0.5656486f, 1.0f},
+        {1.0f, 0.9f, 1.0f},        {1.0f, 0.8630768f, 1.0f},
+        {1.0f, 1.0529536f, 1.0f},  {1.0f, 1.0f, 1.0f},
+        {1.0f, 0.95f, 1.0f},       {1.0f, 1.0999999f, 1.0f},
+        {1.0f, 0.5656486f, 1.0f},  {1.0f, 0.9f, 1.0f},
+        {1.0f, 0.8630768f, 1.0f},  {1.0f, 1.0529536f, 1.0f},
+    };
+
+    J3DModelData* a_mdlData_p = getNpcMdlDataP(param_1);
+    #ifdef DEBUG
+    if (a_mdlData_p == NULL) {
+        JUTAssertion::showAssert(JUTAssertion::getSDevice(), "d_a_npc_cd.cpp", "0 != a_mdlData_p");
+        OSPanic("d_a_npc_cd", 0x1d6, "Halt");
+    }
+    #endif
+
+    mDoExt_McaMorfSO* mpModelMorf = new mDoExt_McaMorfSO(a_mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mCreature, 0x80000, 0x11000084);
+    mpMorf = mpModelMorf;
+    if (mpMorf != NULL && mpMorf->getModel() == NULL) {
+        mpMorf->stopZelAnime();
+        mpMorf = NULL;
+    }
+
+    if (mpMorf == NULL) {
+        return 0;
+    }
+
+    mCreature.init(&current.pos, &eyePos, 3, 1);
+    mCreature.setMdlType(param_1, true, field_0x9e8);
+    // mpMorf->offTranslate();
+    mpMorf->setTranslateScale(a_transScaleTbl[param_1]);
+
+    for (u16 i = 0; i < a_mdlData_p->getJointNum(); i++) {
+        a_mdlData_p->getJointNodePointer(i)->setCallBack(jntNodeCallBack);
+    }
+
+    mpMorf->getModel()->setUserArea((u32)this);
+
+    OS_REPORT("   [ |   X   l     Type=%d  ", param_1);
+
+    return 1;
 }
 
 /* 801561E8-80156228 150B28 0040+00 0/0 0/0 1/1 .text   ObjCreate__9daNpcCd_cFi */
