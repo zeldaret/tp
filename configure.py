@@ -1517,7 +1517,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_midna"),
     ActorRel(Equivalent, "d_a_nbomb"), # weak func order
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_life_container"),
-    ActorRel(NonMatching, "d_a_obj_yousei"),
+    ActorRel(Equivalent, "d_a_obj_yousei"), # weak func order
     ActorRel(MatchingFor("GZ2E01"), "d_a_spinner"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_suspend"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_tag_attention"),
