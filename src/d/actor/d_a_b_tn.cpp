@@ -458,79 +458,84 @@ void daB_TN_c::calcShieldMove() {
 
 /* 8061F9F4-8061FD7C 000EF4 0388+00 1/1 0/0 0/0 .text            calcSwordMoveA__8daB_TN_cFv */
 void daB_TN_c::calcSwordMoveA() {
-    // NONMATCHING
-    cXyz* ptr;
-
-    switch (field_0x9fc[13]) {
+    int idx = 13;
+    switch (field_0x9fc[idx]) {
     case 0:
-    case 1:
+    case 1: {
         break;
+    }
 
-    case 2:
-        mDoMtx_stack_c::copy(mModels[13]->getBaseTRMtx());
-        mDoMtx_stack_c::multVecZero((ptr = &field_0x75c[13]));
-        field_0x81c[13] = field_0x75c[13];
-        mDoMtx_MtxToRot(mDoMtx_stack_c::get(), &field_0x99c[13]);
+    case 2: {
+        mDoMtx_stack_c::copy(mModels[idx]->getBaseTRMtx());
+        mDoMtx_stack_c::multVecZero(&field_0x75c[idx]);
+        field_0x81c[idx] = field_0x75c[idx];
+        mDoMtx_MtxToRot(mDoMtx_stack_c::get(), &field_0x99c[idx]);
 
         if (field_0xaa5 == 0) {
-            field_0x8dc[13].set(0.0f, 0.0f, 70.0f);
+            field_0x8dc[idx].set(0.0f, 0.0f, 70.0f);
         } else {
             cXyz sp20 = daPy_getPlayerActorClass()->current.pos;
             sp20.y += 200.0f;
-            s16 sVar5 = cLib_targetAngleY(ptr, &sp20);
-            s16 sVar6 = cLib_targetAngleX(ptr, &sp20);
-            f32 fVar1 = fabs(cM_scos(sVar6) * 80.0f);
-            field_0x8dc[13].set(fVar1 * cM_ssin(sVar5), cM_ssin(sVar6) * 80.0f,
-                                fVar1 * cM_scos(sVar5));
+            s16 sVar5 = cLib_targetAngleY(&field_0x75c[idx], &sp20);
+            s16 sVar6 = cLib_targetAngleX(&field_0x75c[idx], &sp20);
+            f32 fVar1 = fabsf(cM_scos(sVar6) * 80.0f);
+            field_0x8dc[idx].set(fVar1 * cM_ssin(sVar5), cM_ssin(sVar6) * 80.0f,
+                                 fVar1 * cM_scos(sVar5));
         }
 
-        field_0x9fc[13] = 3;
+        field_0x9fc[idx] = 3;
         break;
+    }
 
-    case 3:
-        Z2GetAudioMgr()->seStartLevel(Z2SE_EN_TN_WEAPON_FLY, (ptr = &field_0x75c[13]), 0, 0, 1.0f,
-                                      1.0f, -1.0f, -1.0f, 0);
+    case 3: {
+        Z2GetAudioMgr()->seStartLevel(Z2SE_EN_TN_WEAPON_FLY, &field_0x75c[idx], 0, 0, 1.0f, 1.0f,
+                                      -1.0f, -1.0f, 0);
 
-        cLib_chaseF(&field_0x8dc[13].y, -70.0f, 0.3f);
-        cLib_chaseAngleS(&field_0x99c[13].x, ground_angle_part[13].x, 0x800);
-        field_0x99c[13].y += -0x1800;
-        cLib_chaseAngleS(&field_0x99c[13].z, ground_angle_part[13].z, 0x800);
+        cLib_chaseF(&field_0x8dc[idx].y, -70.0f, 0.3f);
+        cLib_chaseAngleS(&field_0x99c[idx].x, ground_angle_part[idx].x, 0x800);
+        field_0x99c[idx].y += (s16)-0x1800;
+        cLib_chaseAngleS(&field_0x99c[idx].z, ground_angle_part[idx].z, 0x800);
 
-        if (mAcchArr[13].ChkGroundHit() || mAcchArr[13].ChkWallHit()) {
-            Z2GetAudioMgr()->seStart(Z2SE_EN_TN_WEAPON_STOP, ptr, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
-                                     0);
-            setPartLandEffect(13, 0);
+        if (mAcchArr[idx].ChkGroundHit() || mAcchArr[idx].ChkWallHit()) {
+            Z2GetAudioMgr()->seStart(Z2SE_EN_TN_WEAPON_STOP, &field_0x75c[idx], 0, 0, 1.0f, 1.0f,
+                                     -1.0f, -1.0f, 0);
+            setPartLandEffect(idx, 0);
 
             if (field_0xaa5 == 1) {
-                field_0x99c[13].y = 0x1800;
-                fopAcM_createDisappear(this, ptr, 3, 0, 0xff);
-                field_0x9fc[13] = 7;
+                field_0x99c[idx].y = 0x1800;
+                fopAcM_createDisappear(this, &field_0x75c[idx], 3, 0, 0xff);
+                field_0x9fc[idx] = 7;
             } else {
-                field_0x8dc[13].set(0.0f, 18.0f, 25.0f);
-                field_0x9fc[13] = 4;
+                field_0x8dc[idx].set(0.0f, 18.0f, 25.0f);
+                field_0x9fc[idx] = 4;
             }
         }
+
         break;
+    }
 
-    case 4:
-        cLib_chaseF(&field_0x8dc[13].y, -70.0f, 5.0f);
-        cLib_chaseAngleS(&field_0x99c[13].x, ground_angle_part[13].x, 0x800);
-        field_0x99c[13].y += -0x1000;
-        cLib_chaseAngleS(&field_0x99c[13].z, ground_angle_part[13].z, 0x800);
+    case 4: {
+        cLib_chaseF(&field_0x8dc[idx].y, -70.0f, 5.0f);
+        cLib_chaseAngleS(&field_0x99c[idx].x, ground_angle_part[idx].x, 0x800);
+        field_0x99c[idx].y += (s16)-0x1000;
+        cLib_chaseAngleS(&field_0x99c[idx].z, ground_angle_part[idx].z, 0x800);
 
-        if (mAcchArr[13].ChkGroundHit() || mAcchArr[13].ChkWallHit()) {
-            field_0x99c[13] = ground_angle_part[13];
-            field_0x8dc[13].set(0.0f, 0.0f, 0.0f);
-            field_0xa3c[13] = -0x1800;
-            setPartLandEffect(13, 1);
-            field_0x9fc[13] = 7;
+        if (mAcchArr[idx].ChkGroundHit() || mAcchArr[idx].ChkWallHit()) {
+            field_0x99c[idx] = ground_angle_part[idx];
+            field_0x8dc[idx].set(0.0f, 0.0f, 0.0f);
+            field_0xa3c[idx] = -0x1800;
+            setPartLandEffect(idx, 1);
+            field_0x9fc[idx] = 7;
         }
+
         break;
+    }
 
     case 5:
     case 6:
-    case 7:
+    case 7: {
         return;
+    }
     }
 }
 
@@ -588,19 +593,19 @@ void daB_TN_c::calcSwordMoveB() {
 
 /* 8061FFE0-8062070C 0014E0 072C+00 2/1 0/0 0/0 .text            calcOtherPartMove__8daB_TN_cFi */
 void daB_TN_c::calcOtherPartMove(int i_idx) {
-    // NONMATCHING
-    s16 sVar1;
-    s16 sVar4;
     cXyz sp7c;
+    s16 sVar1;
 
     switch (field_0x9fc[i_idx]) {
     case 0:
+    case 1: {
+        break;
+    }
+
+    case 2: {
         if (i_idx != 14) {
             setArmorBreakEffect(i_idx);
         }
-        // [[fallthrough]]
-
-    case 2:
         mDoMtx_stack_c::copy(mModels[i_idx]->getBaseTRMtx());
         mDoMtx_stack_c::multVecZero(&field_0x75c[i_idx]);
         field_0x81c[i_idx] = field_0x75c[i_idx];
@@ -615,13 +620,11 @@ void daB_TN_c::calcOtherPartMove(int i_idx) {
         } else if (i_idx == 3) {
             sVar1 = shape_angle.y + 0x2000;
         } else {
-            s16 sVar2 = cLib_targetAngleY(&field_0x75c[i_idx], &sp7c);
+            sVar1 = cLib_targetAngleY(&field_0x75c[i_idx], &sp7c);
             if (cM_rnd() < 0.5f) {
-                f32 fVar1 = cM_rndFX(4096.0f);
-                sVar1 = sVar2 + 0x2000 + fVar1;
+                sVar1 = sVar1 + 0x2000 + cM_rndFX(4096.0f);
             } else {
-                f32 fVar2 = cM_rndFX(4096.0f);
-                sVar1 = sVar2 - 0x2000 + fVar2;
+                sVar1 = sVar1 - 0x2000 + cM_rndFX(4096.0f);
             }
         }
 
@@ -629,21 +632,22 @@ void daB_TN_c::calcOtherPartMove(int i_idx) {
                                (cM_rndF(5.0f) + 10.0f) * cM_scos(sVar1));
         field_0x9fc[i_idx] = 3;
         break;
+    }
 
     case 3:
         cLib_chaseF(&field_0x8dc[i_idx].y, -70.0f, 5.0f);
 
         if (i_idx == 14) {
             if (field_0x8dc[i_idx].y > 0.0f) {
-                field_0x99c[i_idx].y += 0x800;
-                field_0x99c[i_idx].z += 0x800;
+                field_0x99c[i_idx].y += (s16)0x800;
+                field_0x99c[i_idx].z += (s16)0x800;
             } else {
                 cLib_chaseAngleS(&field_0x99c[i_idx].x, ground_angle_part[i_idx].x, 0x800);
                 cLib_chaseAngleS(&field_0x99c[i_idx].z, ground_angle_part[i_idx].z, 0x800);
             }
         } else if (field_0x8dc[i_idx].y > 0.0f) {
-            field_0x99c[i_idx].y += 0x1000;
-            field_0x99c[i_idx].z += 0x1000;
+            field_0x99c[i_idx].y += (s16)0x1000;
+            field_0x99c[i_idx].z += (s16)0x1000;
         } else {
             cLib_chaseAngleS(&field_0x99c[i_idx].x, ground_angle_part[i_idx].x, 0x400);
             cLib_chaseAngleS(&field_0x99c[i_idx].z, ground_angle_part[i_idx].z, 0x400);
@@ -651,16 +655,16 @@ void daB_TN_c::calcOtherPartMove(int i_idx) {
 
         if ((field_0xaa5 != 1 || i_idx != 5) && mAcchArr[i_idx].ChkGroundHit()) {
             if (i_idx == 14) {
-                Z2GetAudioMgr()->seStart(Z2SE_EN_TN_SAYA_BND_1, field_0x75c, 0, 0, 1.0f, 1.0f,
-                                         -1.0f, -1.0f, 0);
+                Z2GetAudioMgr()->seStart(Z2SE_EN_TN_SAYA_BND_1, &field_0x75c[i_idx], 0, 0, 1.0f,
+                                         1.0f, -1.0f, -1.0f, 0);
             } else {
                 Z2GetAudioMgr()->seStart(Z2SE_EN_TN_ARMOR_BND, &field_0x75c[i_idx], 0, 0, 1.0f,
                                          1.0f, -1.0f, -1.0f, 0);
             }
 
-            s16 sVar3 = cM_rndFX(32768.0f);
-            field_0x8dc[i_idx].set((cM_rndF(2.0f) + 5.0f) * cM_ssin(sVar3), cM_rndF(5.0f) + 18.0f,
-                                   (cM_rndF(2.0f) + 5.0f) * cM_scos(sVar3));
+            sVar1 = cM_rndFX(32768.0f);
+            field_0x8dc[i_idx].set((cM_rndF(2.0f) + 5.0f) * cM_ssin(sVar1), cM_rndF(5.0f) + 18.0f,
+                                   (cM_rndF(2.0f) + 5.0f) * cM_scos(sVar1));
             field_0x9fc[i_idx] = 4;
             setPartLandEffect(i_idx, 0);
         }
@@ -669,20 +673,20 @@ void daB_TN_c::calcOtherPartMove(int i_idx) {
     case 4:
         cLib_chaseF(&field_0x8dc[i_idx].y, -70.0f, 5.0f);
         cLib_chaseAngleS(&field_0x99c[i_idx].x, ground_angle_part[i_idx].x, 0x800);
-        field_0x99c[i_idx].y += 0x400;
+        field_0x99c[i_idx].y += (s16)0x400;
         cLib_chaseAngleS(&field_0x99c[i_idx].z, ground_angle_part[i_idx].z, 0x800);
 
         if (mAcchArr[i_idx].ChkGroundHit()) {
             if (field_0xaa5 == 0) {
                 if (i_idx == 14) {
-                    Z2GetAudioMgr()->seStart(Z2SE_EN_TN_SAYA_BND_2, &field_0x75c[0], 0, 0, 1.0f,
+                    Z2GetAudioMgr()->seStart(Z2SE_EN_TN_SAYA_BND_2, &field_0x75c[i_idx], 0, 0, 1.0f,
                                              1.0f, -1.0f, -1.0f, 0);
                 }
 
                 field_0x9fc[i_idx] = 5;
                 field_0x99c[i_idx].x = ground_angle_part[i_idx].x;
                 field_0x99c[i_idx].z = ground_angle_part[i_idx].z;
-                field_0x9fc[i_idx + 0x20] = 0x400;
+                field_0xa3c[i_idx] = 0x400;
                 setPartLandEffect(i_idx, 1);
             } else {
                 fopAcM_createDisappear(this, &field_0x75c[i_idx], 3, 0, 0xff);
@@ -703,15 +707,16 @@ void daB_TN_c::calcOtherPartMove(int i_idx) {
         break;
 
     case 6:
-        sVar4 = shape_angle.y + cM_rndFX(16384.0f);
-        field_0x8dc[i_idx].set((cM_rndF(5.0f) + 50.0f) * cM_ssin(sVar4), 0.0f,
-                               (cM_rndF(5.0f) + 50.0f) * cM_scos(sVar4));
-        field_0x9fc[i_idx + 0x20] = 0x800;
+        sVar1 = shape_angle.y + cM_rndFX(16384.0f);
+        field_0x8dc[i_idx].set((cM_rndF(5.0f) + 50.0f) * cM_ssin(sVar1), 0.0f,
+                               (cM_rndF(5.0f) + 50.0f) * cM_scos(sVar1));
+        field_0xa3c[i_idx] = 0x800;
         field_0x9fc[i_idx] = 5;
         break;
 
-    case 7:
+    case 7: {
         break;
+    }
     }
 }
 
