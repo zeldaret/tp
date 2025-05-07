@@ -1,9 +1,9 @@
 #ifndef D_A_B_TN_H
 #define D_A_B_TN_H
 
+#include "f_op/f_op_actor.h"
 #include "d/d_bg_s_acch.h"
 #include "d/d_cc_uty.h"
-#include "f_op/f_op_actor_mng.h"
 #include "d/d_cc_d.h"
 
 /**
@@ -86,8 +86,8 @@ private:
     /* 0x05FC */ mDoExt_McaMorfSO* mpModelMorf1;
     /* 0x0600 */ mDoExt_McaMorfSO* mpModelMorf2;
     /* 0x0604 */ mDoExt_brkAnm* mBrkAnms[16];
-    /* 0x0644 */ mDoExt_brkAnm* mBrkAnm;
-    /* 0x0648 */ J3DModel* field_0x648;
+    /* 0x0644 */ mDoExt_brkAnm* mpBrkAnm;
+    /* 0x0648 */ J3DModel* mpModel;
     /* 0x064C */ Z2CreatureEnemy mSound;
     /* 0x06F0 */ int mActionMode1;
     /* 0x06F4 */ int mActionMode2;
@@ -156,25 +156,25 @@ private:
     /* 0x0AAE */ u8 field_0xaae;
     /* 0x0AAF */ u8 field_0xaaf;
     /* 0x0AB0 */ f32 mBlend;
-    /* 0x0AB4 */ char* field_0xab4;
+    /* 0x0AB4 */ char* mResName;
     /* 0x0AB8 */ dBgS_AcchCir mAcchCir;
     /* 0x0AF8 */ dBgS_ObjAcch mAcch;
     /* 0x0CD0 */ dBgS_AcchCir mAcchCirArr[16];
     /* 0x10D0 */ dBgS_ObjAcch mAcchArr[16];
-    /* 0x2E50 */ dCcD_Stts mGStts;
-    /* 0x2E8C */ dCcD_Stts mStts;
-    /* 0x2EC8 */ dCcD_Sph field_0x2ec8[3];
-    /* 0x3270 */ dCcD_Sph field_0x3270[3];
-    /* 0x3618 */ dCcD_Sph field_0x3618;
+    /* 0x2E50 */ dCcD_Stts mStts1;
+    /* 0x2E8C */ dCcD_Stts mStts2;
+    /* 0x2EC8 */ dCcD_Sph mSphA[3];
+    /* 0x3270 */ dCcD_Sph mSphB[3];
+    /* 0x3618 */ dCcD_Sph mSphC;
     /* 0x3750 */ dCcD_Sph mSwordSphs[4];
     /* 0x3C30 */ dCcD_Cps mCps;
-    /* 0x3D74 */ dCcD_Sph field_0x3d74;
-    /* 0x3EAC */ cXyz field_0x3eac;
+    /* 0x3D74 */ dCcD_Sph mSphD;
+    /* 0x3EAC */ cXyz mCpsPos;
     /* 0x3EB8 */ dCcU_AtInfo mAtInfo;
-    /* 0x3EDC */ dCcD_Stts mBigStts[16];
-    /* 0x429C */ dCcD_Sph mBigSph[16];
-    /* 0x561C */ u32 field_0x561c[4];
-    /* 0x562C */ u8 field_0x562c;
+    /* 0x3EDC */ dCcD_Stts mSttsArr[16];
+    /* 0x429C */ dCcD_Sph mSphArr[16];
+    /* 0x561C */ u32 mParticleKeys[4];
+    /* 0x562C */ u8 mHioInit;
 };
 
 STATIC_ASSERT(sizeof(daB_TN_c) == 0x5630);
