@@ -180,6 +180,7 @@ void obj_brakeeff_1(obj_brakeeff_class* i_this) {
 
 /* 8046DF80-8046DFB0 000340 0030+00 1/1 0/0 0/0 .text            action__FP18obj_brakeeff_class */
 void action(obj_brakeeff_class* i_this) {
+
     switch (i_this->mMiscTimer2){
     case 0:
         obj_brakeeff_1(i_this);
@@ -244,10 +245,6 @@ SECTION_DATA static u8 bef_bmd[8] = {
     0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x06,
 };
 
-/* 8046E554-8046E55C 000014 0008+00 1/1 0/0 0/0 .data            bef_brk */
-SECTION_DATA static u8 bef_brk[8] = {
-    0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x0A,
-};
 
 /* 8046E55C-8046E59C 00001C 0040+00 1/1 0/0 0/0 .data            cc_sph_src$4003 */
 static dCcD_SrcSph cc_sph_src = {
@@ -284,7 +281,7 @@ SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
 };
 
 /* 8046E0F0-8046E2B0 0004B0 01C0+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
-static void useHeapInit(fopAc_ac_c* param_0) {
+static int useHeapInit(fopAc_ac_c* param_0) {
     // NONMATCHING
 }
 
@@ -295,10 +292,43 @@ extern "C" void __dt__12J3DFrameCtrlFv() {
 }
 
 /* 8046E2F8-8046E490 0006B8 0198+00 1/0 0/0 0/0 .text daObj_Brakeeff_Create__FP10fopAc_ac_c */
-void daObj_Brakeeff_Create(obj_brakeeff_class* i_this) {
+int daObj_Brakeeff_Create(fopAc_ac_c* i_this) {
+	obj_brakeeff_class* a_this = static_cast<obj_brakeeff_class*>(i_this);
+
+    static dCcD_SrcSph cc_sph_src = {
+    	0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x0A,
+	};
+
     // NONMATCHING
+    if (!fopAcM_CheckCondition(i_this, fopAcCnd_INIT_e)) {
+        new (i_this) obj_brakeeff_class();
+        fopAcM_OnCondition(i_this, fopAcCnd_INIT_e);
+    }
+
+    int res_load_result = dComIfG_resLoad(&a_this->mRequestOfPhase, "Obj_Bef");
+
+    if(res_load_result == cPhs_COMPLEATE_e){
+        a_this->mEffectType = fopAcM_GetParam(i_this);
+    bool is_heap_set = fopAcM_entrySolidHeap(i_this, useHeapInit,0x4b000);
 
 
+    if(!is_heap_set){
+        return cPhs_ERROR_e;
+    }
+
+    if(dComIfG_Bgsp().Regist(a_this->mpDBgW, i_this)){
+        return cPhs_ERROR_e;
+    }
+
+
+    fopAcM_SetMtx(i_this, a_this->mpModel->getBaseTRMtx());
+    a_this->mDCcD_Stts.Init(255, 0, i_this);
+    a_this->mDCcD_Sph.Set(cc_sph_src);
+    a_this->mDCcD_Sph.SetStts(&a_this->mDCcD_Stts);
+
+    daObj_Brakeeff_Execute(a_this);
+    }
+    return res_load_result;
 }
 
 /* 8046E490-8046E4D8 000850 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGSphFv */
