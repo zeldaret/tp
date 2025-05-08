@@ -804,7 +804,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/jstudio-control.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/jstudio-data.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/jstudio-math.cpp"),
-            Object(NonMatching, "JSystem/JStudio/JStudio/jstudio-object.cpp"),
+            Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/jstudio-object.cpp", extra_cflags=['-pragma "sym off"']),
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/object-id.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/stb.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JStudio/JStudio/stb-data-parse.cpp"),

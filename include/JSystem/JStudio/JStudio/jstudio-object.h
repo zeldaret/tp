@@ -180,13 +180,7 @@ struct TAdaptor {
     /* 80286648 */ static void adaptor_setVariableValue_FVR_INDEX_(JStudio::TAdaptor*, JStudio::TControl*,
                                                             u32, void const*, u32);
 
-    const char* adaptor_getID_string() const {
-        if (pObject_ != NULL) {
-            return (char*)pObject_->getID();
-        } else {
-            return "(unnamed)";
-        }
-    }
+    const char* adaptor_getID_string() const;
 
     void adaptor_setObject_(const TObject* pObject) {
         pObject_ = pObject;

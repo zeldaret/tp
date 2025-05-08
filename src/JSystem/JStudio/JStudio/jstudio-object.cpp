@@ -88,9 +88,7 @@ TOutputVariableValue_BOOL_<JStudio::TAdaptor_sound>
 
 /* 80285E0C-80285E54 28074C 0048+00 6/6 11/11 0/0 .text __dt__Q37JStudio14TVariableValue7TOutputFv
  */
-JStudio::TVariableValue::TOutput::~TOutput() {
-    // NONMATCHING
-}
+JStudio::TVariableValue::TOutput::~TOutput() {}
 
 /* 80285E54-80285EB8 280794 0064+00 1/1 0/0 0/0 .text
  * update__Q27JStudio14TVariableValueFdPQ27JStudio8TAdaptor     */
@@ -124,9 +122,7 @@ void JStudio::TVariableValue::update_functionValue_(JStudio::TVariableValue* par
 
 /* 80285F6C-80285FCC 2808AC 0060+00 2/1 0/0 0/0 .text
  * __dt__Q37JStudio14TVariableValue13TOutput_none_Fv            */
-JStudio::TVariableValue::TOutput_none_::~TOutput_none_() {
-    // NONMATCHING
-}
+JStudio::TVariableValue::TOutput_none_::~TOutput_none_() {}
 
 /* 80285FCC-80285FD0 28090C 0004+00 1/0 0/0 0/0 .text
  * __cl__Q37JStudio14TVariableValue13TOutput_none_CFfPQ27JStudio8TAdaptor */
@@ -137,6 +133,10 @@ void JStudio::TVariableValue::TOutput_none_::operator()(f32 param_0,
 
 /* 80285FD0-80286018 280910 0048+00 8/8 0/0 0/0 .text            __dt__Q27JStudio8TAdaptorFv */
 JStudio::TAdaptor::~TAdaptor() {}
+
+const char *JStudio::TAdaptor::adaptor_getID_string() const {
+    return pObject_ != NULL ? (const char*)pObject_->getID() : "(unnamed)";
+}
 
 /* 80286018-8028601C 280958 0004+00 8/0 2/0 0/0 .text adaptor_do_prepare__Q27JStudio8TAdaptorFv */
 // void JStudio::TAdaptor::adaptor_do_prepare() {
@@ -364,7 +364,6 @@ void JStudio::TObject::forward_value(u32 param_0) {
 }
 
 /* 8028679C-802867D4 2810DC 0038+00 9/0 0/0 0/0 .text            do_begin__Q27JStudio7TObjectFv */
-// NONMATCHING
 void JStudio::TObject::do_begin() {
     TAdaptor* adaptor = getAdaptor();
     if (adaptor != NULL) {
@@ -402,7 +401,6 @@ JStudio::TObject::TObject(JStudio::stb::data::TParse_TBlock_object const& param_
 
 /* 802868B0-80286910 2811F0 0060+00 0/0 1/1 0/0 .text            __dt__Q27JStudio14TAdaptor_actorFv
  */
-// NONMATCHING
 JStudio::TAdaptor_actor::~TAdaptor_actor() {
 }
 
@@ -573,7 +571,6 @@ fun:
 }
 
 /* 80286C9C-80286CFC 2815DC 0060+00 0/0 1/1 0/0 .text __dt__Q27JStudio21TAdaptor_ambientLightFv */
-// NONMATCHING
 JStudio::TAdaptor_ambientLight::~TAdaptor_ambientLight() {}
 
 /* 80286CFC-80286D38 28163C 003C+00 0/0 1/1 0/0 .text
@@ -647,7 +644,6 @@ value_n:
 
 /* 80286E1C-80286E7C 28175C 0060+00 0/0 1/1 0/0 .text            __dt__Q27JStudio15TAdaptor_cameraFv
  */
-// NONMATCHING
 JStudio::TAdaptor_camera::~TAdaptor_camera() {}
 
 /* 80286E7C-80286EB8 2817BC 003C+00 0/0 1/1 0/0 .text
@@ -793,7 +789,6 @@ fun:
 }
 
 /* 8028717C-802871DC 281ABC 0060+00 0/0 1/1 0/0 .text            __dt__Q27JStudio12TAdaptor_fogFv */
-// NONMATCHING
 JStudio::TAdaptor_fog::~TAdaptor_fog() {}
 
 /* 802871DC-80287218 281B1C 003C+00 0/0 1/1 0/0 .text
@@ -881,7 +876,6 @@ value_n:
 
 /* 80287308-80287368 281C48 0060+00 0/0 1/1 0/0 .text            __dt__Q27JStudio14TAdaptor_lightFv
  */
-// NONMATCHING
 JStudio::TAdaptor_light::~TAdaptor_light() {}
 
 /* 80287368-802873A4 281CA8 003C+00 0/0 1/1 0/0 .text
@@ -1067,7 +1061,6 @@ void JStudio::TObject_message::do_paragraph(u32 param_1, void const* param_2, u3
 }
 
 /* 8028770C-8028776C 28204C 0060+00 0/0 1/1 0/0 .text __dt__Q27JStudio17TAdaptor_particleFv */
-// NONMATCHING
 JStudio::TAdaptor_particle::~TAdaptor_particle() {}
 
 /* 8028776C-802877A8 2820AC 003C+00 0/0 1/1 0/0 .text
@@ -1287,7 +1280,6 @@ fun:
 
 /* 80287B3C-80287B9C 28247C 0060+00 0/0 1/1 0/0 .text            __dt__Q27JStudio14TAdaptor_soundFv
  */
-// NONMATCHING
 JStudio::TAdaptor_sound::~TAdaptor_sound() {}
 
 /* 80287B9C-80287BD8 2824DC 003C+00 0/0 1/1 0/0 .text
@@ -1305,7 +1297,6 @@ u32 const JStudio::TAdaptor_sound::sauVariableValue_3_POSITION_XYZ[3] = {
 /* 80287BD8-80287F04 282518 032C+00 2/0 0/0 0/0 .text
  * do_paragraph__Q27JStudio13TObject_soundFUlPCvUl              */
 void JStudio::TObject_sound::do_paragraph(u32 param_1, void const* param_2, u32 param_3) {
-    // NONMATCHING
     TAdaptor* adaptor = getAdaptor();
     TControl* control;
     if (adaptor == NULL) {
