@@ -14,8 +14,61 @@
  * @details Temple of Time dungeon mini-boss.
  *
  */
+ 
 class daB_TN_c : public fopEn_enemy_c {
 public:
+    enum daB_TN_ACTION1 {
+        /* 0x0 */ ACT_ROOMDEMO,
+        /* 0x1 */ ACT_OPENING,
+        /* 0x2 */ ACT_WAITH,
+        /* 0x3 */ ACT_CHASEH,
+        /* 0x4 */ ACT_ATTACKH,
+        /* 0x5 */ ACT_ATTACKSHIELDH,
+        /* 0x6 */ ACT_GUARDH,
+        /* 0x7 */ ACT_DAMAGEH,
+        /* 0x8 */ ACT_CHANGEDEMO,
+        /* 0x9 */ ACT_CHASEL,
+        /* 0xA */ ACT_ATTACKL,
+        /* 0xB */ ACT_ATTACKSHIELDL,
+        /* 0xC */ ACT_GUARDL,
+        /* 0xD */ ACT_DAMAGEL,
+        /* 0xE */ ACT_ENDING,
+        /* 0xF */ ACT_YOROKE,
+    };
+
+    enum daB_TN_ACTION2 {
+        /* 0x0 */ ACTION2_0_e,
+        /* 0x1 */ ACTION2_1_e,
+        /* 0x2 */ ACTION2_2_e,
+        /* 0x3 */ ACTION2_3_e,
+        /* 0x4 */ ACTION2_4_e,
+        /* 0x5 */ ACTION2_5_e,
+        /* 0x6 */ ACTION2_6_e,
+        /* 0x7 */ ACTION2_7_e,
+        /* 0x8 */ ACTION2_8_e,
+        /* 0x9 */ ACTION2_9_e,
+        /* 0xA */ ACTION2_10_e,
+        /* 0xB */ ACTION2_11_e,
+        /* 0xC */ ACTION2_12_e,
+        /* 0xD */ ACTION2_13_e,
+        /* 0xE */ ACTION2_14_e,
+        /* 0xF */ ACTION2_15_e,
+        /* 0x10 */ ACTION2_16_e,
+        /* 0x11 */ ACTION2_17_e,
+        
+        /* 0x14 */ ACTION2_20_e = 0x14,
+        /* 0x40 */ ACTION2_70_e = 0x40,
+        /* 0x46 */ ACTION2_76_e = 0x46,
+        /* 0x64 */ ACTION2_100_e = 100,
+        /* 0x65 */ ACTION2_101_e,
+        /* 0x66 */ ACTION2_102_e,
+        /* 0x67 */ ACTION2_103_e,
+        /* 0x68 */ ACTION2_104_e,
+        /* 0x69 */ ACTION2_105_e,
+        /* 0x6A */ ACTION2_106_e,
+        /* 0x6B */ ACTION2_107_e,
+    };
+
     /* 8061EC58 */ int ctrlJoint(J3DJoint*, J3DModel*);
     /* 8061ED10 */ static int JointCallBack(J3DJoint*, int);
     /* 8061ED5C */ void calcNeckAngle();
@@ -80,12 +133,12 @@ public:
     /* 8062D2F0 */ daB_TN_c() {};
 
 private:
-    /* 0x05AC */ request_of_phase_process_class mPhase1;
-    /* 0x05B4 */ request_of_phase_process_class mPhase2;
-    /* 0x05BC */ J3DModel* mModels[16];
+    /* 0x05AC */ request_of_phase_process_class mPhaseReq1;
+    /* 0x05B4 */ request_of_phase_process_class mPhaseReq2;
+    /* 0x05BC */ J3DModel* mpModels[16];
     /* 0x05FC */ mDoExt_McaMorfSO* mpModelMorf1;
     /* 0x0600 */ mDoExt_McaMorfSO* mpModelMorf2;
-    /* 0x0604 */ mDoExt_brkAnm* mBrkAnms[16];
+    /* 0x0604 */ mDoExt_brkAnm* mpBrkAnms[16];
     /* 0x0644 */ mDoExt_brkAnm* mpBrkAnm;
     /* 0x0648 */ J3DModel* mpModel;
     /* 0x064C */ Z2CreatureEnemy mSound;
@@ -98,65 +151,60 @@ private:
     /* 0x0710 */ cXyz mCamCenter;
     /* 0x071C */ f32 mCamFovY;
     /* 0x0720 */ s16 field_0x720;
-    /* 0x0722 */ u8 field_0x722[0x724 - 0x722];
     /* 0x0724 */ f32 field_0x724;
-    /* 0x0728 */ f32 field_0x728;
-    /* 0x072C */ Mtx field_0x72c;
-    /* 0x075C */ cXyz field_0x75c[16];
-    /* 0x081C */ cXyz field_0x81c[16];
+    /* 0x0728 */ f32 mMaterialColor;
+    /* 0x072C */ Mtx mNewTRMtx;
+    /* 0x075C */ cXyz mPositions[16];
+    /* 0x081C */ cXyz mPositionsCopy[16];
     /* 0x08DC */ cXyz field_0x8dc[16];
     /* 0x099C */ csXyz field_0x99c[16];
-    /* 0x09FC */ u16 field_0x9fc[16];
+    /* 0x09FC */ u16 mStates[16];
     /* 0x0A1C */ u16 field_0xa1c[16];
     /* 0x0A3C */ s16 field_0xa3c[16];
     /* 0x0A5C */ s16 field_0xa5c;
-    /* 0x0A5E */ u8 field_0xa5e[0xa60 - 0xa5e];
-    /* 0x0A60 */ int field_0xa60;
+    /* 0x0A60 */ int mTimer9;
     /* 0x0A64 */ s16 field_0xa64;
-    /* 0x0A66 */ u8 field_0xa66[0xa68 - 0xa66];
-    /* 0x0A68 */ s16 field_0xa68;
-    /* 0x0A6A */ u8 field_0xa6a[0xa6c - 0xa6a];
-    /* 0x0A6C */ int field_0xa6c;
-    /* 0x0A70 */ int field_0xa70;
-    /* 0x0A74 */ int field_0xa74;
-    /* 0x0A78 */ int field_0xa78;
-    /* 0x0A7C */ int field_0xa7c;
-    /* 0x0A80 */ int field_0xa80;
-    /* 0x0A84 */ int field_0xa84;
-    /* 0x0A88 */ int field_0xa88;
+    /* 0x0A66 */ s16 field_0xa66;
+    /* 0x0A68 */ s16 mInvincibilityTimer;
+    /* 0x0A6C */ int mTimer1;
+    /* 0x0A70 */ int mTimer3;
+    /* 0x0A74 */ int mTimer6;
+    /* 0x0A78 */ int mNextBreakPart;
+    /* 0x0A7C */ int mTimer4;
+    /* 0x0A80 */ int mTimer5;
+    /* 0x0A84 */ int mTimer7;
+    /* 0x0A88 */ int mVibrationTimer;
     /* 0x0A8C */ int mWalkDir;
-    /* 0x0A90 */ u8 field_0xa90;
-    /* 0x0A91 */ u8 field_0xa91;
-    /* 0x0A92 */ u8 field_0xa92;
-    /* 0x0A93 */ u8 field_0xa93;
-    /* 0x0A94 */ u8 field_0xa94;
-    /* 0x0A95 */ u8 field_0xa95;
-    /* 0x0A96 */ s16 field_0xa96;
-    /* 0x0A98 */ s16 field_0xa98;
-    /* 0x0A9A */ u8 field_0xa9a;
-    /* 0x0A9B */ u8 field_0xa9b;
+    /* 0x0A90 */ u8 mUpdateModelTimer;
+    /* 0x0A91 */ bool field_0xa91;
+    /* 0x0A92 */ u8 mNextActionMode2;
+    /* 0x0A93 */ bool mUpdateNeckAngle;
+    /* 0x0A94 */ bool mUpdateWaistAngle;
+    /* 0x0A96 */ s16 mNeckAngle;
+    /* 0x0A98 */ s16 mWaistAngle;
+    /* 0x0A9A */ bool field_0xa9a;
+    /* 0x0A9B */ u8 mActionMode2Copy;
     /* 0x0A9C */ u8 field_0xa9c;
     /* 0x0A9D */ u8 field_0xa9d;
-    /* 0x0A9E */ u8 field_0xa9e;
-    /* 0x0A9F */ u8 field_0xa9f;
-    /* 0x0AA0 */ u8 field_0xaa0;
-    /* 0x0AA1 */ u8 field_0xaa1;
+    /* 0x0A9E */ bool mDisappear;
+    /* 0x0A9F */ bool mCutFlag;
+    /* 0x0AA0 */ bool mSphCSmallFlag;
+    /* 0x0AA1 */ bool mChkCoHitOK;
     /* 0x0AA2 */ u8 field_0xaa2;
-    /* 0x0AA3 */ u8 field_0xaa3;
-    /* 0x0AA4 */ u8 field_0xaa4;
-    /* 0x0AA5 */ u8 field_0xaa5;
-    /* 0x0AA6 */ u8 field_0xaa6;
-    /* 0x0AA7 */ u8 field_0xaa7;
-    /* 0x0AA8 */ u8 field_0xaa8;
-    /* 0x0AA9 */ u8 field_0xaa9;
-    /* 0x0AAA */ u8 field_0xaaa;
-    /* 0x0AAB */ u8 field_0xaab;
-    /* 0x0AAC */ u8 field_0xaac;
-    /* 0x0AAD */ u8 field_0xaad;
-    /* 0x0AAE */ u8 field_0xaae;
-    /* 0x0AAF */ u8 field_0xaaf;
+    /* 0x0AA3 */ u8 mBrkAnmFrame;
+    /* 0x0AA4 */ u8 mSwitchNo;
+    /* 0x0AA5 */ u8 mType;
+    /* 0x0AA6 */ u8 mType2;
+    /* 0x0AA7 */ u8 mTimer10;
+    /* 0x0AA8 */ bool field_0xaa8;
+    /* 0x0AA9 */ u8 mTimer12;
+    /* 0x0AAA */ u8 mTimer13;
+    /* 0x0AAB */ u8 mCutJumpStatus;
+    /* 0x0AAC */ bool mInactive;
+    /* 0x0AAD */ bool mStayNo2Flag;
+    /* 0x0AAE */ u8 mBlendStatus;
     /* 0x0AB0 */ f32 mBlend;
-    /* 0x0AB4 */ char* mResName;
+    /* 0x0AB4 */ char* mArcName;
     /* 0x0AB8 */ dBgS_AcchCir mAcchCir;
     /* 0x0AF8 */ dBgS_ObjAcch mAcch;
     /* 0x0CD0 */ dBgS_AcchCir mAcchCirArr[16];
@@ -184,19 +232,19 @@ public:
     /* 8061EBEC */ daB_TN_HIO_c();
     /* 8062D98C */ virtual ~daB_TN_HIO_c() {};
 
-    /* 0x04 */ s8 field_0x4;
+    /* 0x04 */ s8 mUnk1;
     /* 0x08 */ f32 mScale;
-    /* 0x0C */ f32 field_0xc;
-    /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1c;
-    /* 0x20 */ f32 field_0x20;
+    /* 0x0C */ f32 mKColorA;
+    /* 0x10 */ f32 mTimer3Wolf;
+    /* 0x14 */ f32 mTimer3HumanType0;
+    /* 0x18 */ f32 mTimer3HumanType1;
+    /* 0x1C */ f32 mTimer3NormalType0;
+    /* 0x20 */ f32 mTimer3NormalType1;
     /* 0x24 */ f32 field_0x24;
-    /* 0x28 */ f32 field_0x28;
-    /* 0x2C */ f32 field_0x2c;
-
-
+    /* 0x28 */ f32 mTimer1Action1;
+    /* 0x2C */ f32 mTimer1Action2;
 };
+
+STATIC_ASSERT(sizeof(daB_TN_HIO_c) == 0x30);
 
 #endif /* D_A_B_TN_H */
