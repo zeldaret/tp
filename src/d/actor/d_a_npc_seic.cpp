@@ -225,22 +225,16 @@ SECTION_DATA static u8 l_bmdData[8] = {
 };
 
 /* 80AC9318-80AC9330 -00001 0018+00 0/1 0/0 0/0 .data            l_evtList */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtList[6] = {
-    (void*)&d_a_npc_seic__stringBase0,
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_seic__stringBase0) + 0x1),
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_seic__stringBase0) + 0x11),
-    (void*)NULL,
+static daNpcT_evtData_c l_evtList[3] = {
+    {"", 0},
+    {"DEFAULT_GETITEM", 0},
+    {"NO_RESPONSE",0 }
 };
-#pragma pop
 
 /* 80AC9330-80AC9338 -00001 0008+00 2/4 0/0 0/0 .data            l_resNameList */
-SECTION_DATA static void* l_resNameList[2] = {
-    (void*)&d_a_npc_seic__stringBase0,
-    (void*)(((char*)&d_a_npc_seic__stringBase0) + 0x1D),
+static char* l_resNameList[2] = {
+    "",
+    "seiC"
 };
 
 /* 80AC9338-80AC933C 000048 0002+02 1/0 0/0 0/0 .data            l_loadResPtrn0 */
@@ -257,38 +251,24 @@ SECTION_DATA static void* l_loadResPtrnList[2] = {
 };
 
 /* 80AC9344-80AC9360 000054 001C+00 0/1 0/0 0/0 .data            l_faceMotionAnmData */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_faceMotionAnmData[28] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF,
-    0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+static daNpcT_faceMotionAnmData_c l_faceMotionAnmData = {
+    -1, 0, 0, -1, 0, 0, 0
 };
-#pragma pop
 
 /* 80AC9360-80AC937C 000070 001C+00 0/1 0/0 0/0 .data            l_motionAnmData */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_motionAnmData[28] = {
-    0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF,
-    0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+static daNpcT_motionAnmData_c l_motionAnmData = {
+    6, 2, 1, -1, 0, 0, 0, 0
 };
-#pragma pop
 
 /* 80AC937C-80AC938C 00008C 0010+00 0/1 0/0 0/0 .data            l_faceMotionSequenceData */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_faceMotionSequenceData[16] = {
-    0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
+static daNpcT_MotionSeqMngr_c::sequenceStepData_c l_faceMotionSequenceData[4] = {
+    {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
 };
-#pragma pop
 
 /* 80AC938C-80AC939C 00009C 0010+00 0/1 0/0 0/0 .data            l_motionSequenceData */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_motionSequenceData[16] = {
-    0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00, 0xFF, 0xFF, 0x00, 0x00,
+static daNpcT_MotionSeqMngr_c::sequenceStepData_c l_motionSequenceData[4] = {
+    {0, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
 };
-#pragma pop
 
 /* 80AC939C-80AC93A0 -00001 0004+00 1/1 0/0 0/0 .data            mCutNameList__12daNpc_seiC_c */
 SECTION_DATA void* daNpc_seiC_c::mCutNameList = (void*)&d_a_npc_seic__stringBase0;
@@ -333,33 +313,6 @@ SECTION_DATA static void* lit_4467[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)wait__12daNpc_seiC_cFPv,
-};
-
-/* 80AC93E0-80AC9400 -00001 0020+00 1/0 0/0 0/0 .data            daNpc_seiC_MethodTable */
-static actor_method_class daNpc_seiC_MethodTable = {
-    (process_method_func)daNpc_seiC_Create__FPv,
-    (process_method_func)daNpc_seiC_Delete__FPv,
-    (process_method_func)daNpc_seiC_Execute__FPv,
-    (process_method_func)daNpc_seiC_IsDelete__FPv,
-    (process_method_func)daNpc_seiC_Draw__FPv,
-};
-
-/* 80AC9400-80AC9430 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_SEIC */
-extern actor_process_profile_definition g_profile_NPC_SEIC = {
-  fpcLy_CURRENT_e,         // mLayerID
-  7,                       // mListID
-  fpcPi_CURRENT_e,         // mListPrio
-  PROC_NPC_SEIC,           // mProcName
-  &g_fpcLf_Method.base,   // sub_method
-  sizeof(daNpc_seiC_c),    // mSize
-  0,                       // mSizeOther
-  0,                       // mParameters
-  &g_fopAc_Method.base,    // sub_method
-  359,                     // mPriority
-  &daNpc_seiC_MethodTable, // sub_method
-  0x00044000,              // mStatus
-  fopAc_ACTOR_e,           // mActorType
-  fopAc_CULLBOX_CUSTOM_e,  // cullType
 };
 
 /* 80AC9430-80AC943C 000140 000C+00 3/3 0/0 0/0 .data            __vt__12J3DFrameCtrl */
@@ -484,26 +437,53 @@ daNpc_seiC_c::~daNpc_seiC_c() {
 
 /* ############################################################################################## */
 /* 80AC921C-80AC92B0 000000 0094+00 4/4 0/0 0/0 .rodata          m__18daNpc_seiC_Param_c */
-SECTION_RODATA u8 const daNpc_seiC_Param_c::m[148] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x45, 0x7A, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x44, 0x96, 0x00, 0x00,
+daNpc_seiC_Param_c::Data const daNpc_seiC_Param_c::m = {
+    0x00000000,
+    0x00000000,
+    0x3F800000,
+    0x457A0000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x00000000,
+    0x44960000,
 };
-COMPILER_STRIP_GATE(0x80AC921C, &daNpc_seiC_Param_c::m);
 
 /* 80AC75E8-80AC7828 000188 0240+00 1/1 0/0 0/0 .text            create__12daNpc_seiC_cFv */
 void daNpc_seiC_c::create() {
     // NONMATCHING
+    fopAcM_SetupActor2(this, daNpc_seiC_c, &l_faceMotionAnmData, &l_motionAnmData, 
+                       l_faceMotionSequenceData, 4, l_motionSequenceData, 4, l_evtList, l_resNameList);
 }
 
-/* ############################################################################################## */
 /* 80AC92B0-80AC92B4 000094 0004+00 1/3 0/0 0/0 .rodata          @4089 */
 SECTION_RODATA static u8 const lit_4089[4] = {
     0x00,
@@ -607,7 +587,7 @@ void daNpc_seiC_c::srchActors() {
 }
 
 /* 80AC7D4C-80AC7E4C 0008EC 0100+00 1/0 0/0 0/0 .text            evtTalk__12daNpc_seiC_cFv */
-void daNpc_seiC_c::evtTalk() {
+BOOL daNpc_seiC_c::evtTalk() {
     // NONMATCHING
 }
 
@@ -619,7 +599,7 @@ SECTION_DEAD static char const* const stringBase_80AC92EA = "Seic";
 #pragma pop
 
 /* 80AC7E4C-80AC7F14 0009EC 00C8+00 1/0 0/0 0/0 .text            evtCutProc__12daNpc_seiC_cFv */
-void daNpc_seiC_c::evtCutProc() {
+BOOL daNpc_seiC_c::evtCutProc() {
     // NONMATCHING
 }
 
@@ -639,12 +619,12 @@ void daNpc_seiC_c::setAttnPos() {
 }
 
 /* 80AC8078-80AC8080 000C18 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__12daNpc_seiC_cFv */
-bool daNpc_seiC_c::drawDbgInfo() {
-    return false;
+int daNpc_seiC_c::drawDbgInfo() {
+    return 0;
 }
 
 /* 80AC8080-80AC8218 000C20 0198+00 1/0 0/0 0/0 .text afterSetMotionAnm__12daNpc_seiC_cFiifi */
-void daNpc_seiC_c::afterSetMotionAnm(int param_0, int param_1, f32 param_2, int param_3) {
+bool daNpc_seiC_c::afterSetMotionAnm(int param_0, int param_1, f32 param_2, int param_3) {
     // NONMATCHING
 }
 
@@ -903,41 +883,37 @@ static u8 lit_3814[12];
 /* 80AC958C-80AC9590 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
 static u8 l_HIO[4];
 
-/* 80AC9104-80AC916C 001CA4 0068+00 0/0 1/0 0/0 .text            __sinit_d_a_npc_seic_cpp */
-void __sinit_d_a_npc_seic_cpp() {
-    // NONMATCHING
-}
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80AC9104, __sinit_d_a_npc_seic_cpp);
-#pragma pop
-
-/* 80AC916C-80AC91B0 001D0C 0044+00 1/1 0/0 0/0 .text
- * __ct__12daNpc_seiC_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc
- */
-daNpc_seiC_c::daNpc_seiC_c(daNpcT_faceMotionAnmData_c const* param_0,
-                               daNpcT_motionAnmData_c const* param_1,
-                               daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_2,
-                               int param_3,
-                               daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_4,
-                               int param_5, daNpcT_evtData_c const* param_6, char** param_7) {
-    // NONMATCHING
-}
 
 /* 80AC91B0-80AC91F8 001D50 0048+00 2/1 0/0 0/0 .text            __dt__18daNpc_seiC_Param_cFv */
 daNpc_seiC_Param_c::~daNpc_seiC_Param_c() {
     // NONMATCHING
 }
 
-/* 80AC91F8-80AC9200 001D98 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
-static void func_80AC91F8() {
-    // NONMATCHING
-}
+/* 80AC93E0-80AC9400 -00001 0020+00 1/0 0/0 0/0 .data            daNpc_seiC_MethodTable */
+static actor_method_class daNpc_seiC_MethodTable = {
+    (process_method_func)daNpc_seiC_Create,
+    (process_method_func)daNpc_seiC_Delete,
+    (process_method_func)daNpc_seiC_Execute,
+    (process_method_func)daNpc_seiC_IsDelete,
+    (process_method_func)daNpc_seiC_Draw,
+};
 
-/* 80AC9200-80AC9208 001DA0 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
-static void func_80AC9200() {
-    // NONMATCHING
-}
+/* 80AC9400-80AC9430 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_SEIC */
+extern actor_process_profile_definition g_profile_NPC_SEIC = {
+  fpcLy_CURRENT_e,         // mLayerID
+  7,                       // mListID
+  fpcPi_CURRENT_e,         // mListPrio
+  PROC_NPC_SEIC,           // mProcName
+  &g_fpcLf_Method.base,   // sub_method
+  sizeof(daNpc_seiC_c),    // mSize
+  0,                       // mSizeOther
+  0,                       // mParameters
+  &g_fopAc_Method.base,    // sub_method
+  359,                     // mPriority
+  &daNpc_seiC_MethodTable, // sub_method
+  0x00044000,              // mStatus
+  fopAc_ACTOR_e,           // mActorType
+  fopAc_CULLBOX_CUSTOM_e,  // cullType
+};
 
 /* 80AC92C8-80AC92C8 0000AC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
