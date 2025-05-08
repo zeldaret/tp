@@ -920,6 +920,7 @@ public:
     bool checkGrabThrow() const { return checkResetFlg0(RFLG0_GRAB_THROW); }
     bool checkMidnaAtnPos() const { return checkNoResetFlg1(FLG1_MIDNA_ATN_POS); }
     bool checkMidnaHairAtnPos() const { return checkNoResetFlg1(FLG1_MIDNA_HAIR_ATN_POS); }
+    bool checkAttentionLock() const { return checkResetFlg0(RFLG0_UNK_10000); }
 
     void onBossRoomWait() { onEndResetFlg0(ERFLG0_BOSS_ROOM_WAIT); }
     void onBeeFollow() { onEndResetFlg0(ERFLG0_BEE_FOLLOW); }
