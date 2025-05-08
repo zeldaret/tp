@@ -265,7 +265,6 @@ void daNpc_seiB_c::setParam() {
     mDistEntry = &dComIfGp_getAttention().getDistTable(0x27);
     mDistEntry->mDistMaxRelease = fVar1;
 
-
     attention_info.distances[0] = 39;
     attention_info.distances[1] = 39;
     attention_info.distances[3] = 39;
