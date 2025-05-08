@@ -38,6 +38,7 @@ public:
     /* 0x708 */ Mtx mStoredMatrix;
     /* 0x738 */ dBgW* mpDBgW;
 
+
 };
 
 STATIC_ASSERT(sizeof(obj_brakeeff_class) == 0x73c);

@@ -14,72 +14,23 @@
 #include "dolphin/mtx.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_cc_uty.h"
-//
-// Forward References:
-//
 
-extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" void __dt__8cM3dGSphFv();
-extern "C" void __dt__8cM3dGAabFv();
-extern "C" extern char const* const d_a_obj_brakeeff__stringBase0;
+//Particle IDS
+u16 e_name[5] = {
+    0x00, 0x00, 0x00, 0x00, 0x00
+};
 
-//
-// External References:
-//
+//model data per effect type
+u32 bef_bmd[2] = {
+	5, 6,
+};
 
-extern "C" void mDoMtx_XrotM__FPA4_fs();
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void mDoMtx_ZrotM__FPA4_fs();
-extern "C" void play__14mDoExt_baseAnmFv();
-extern "C" void init__13mDoExt_brkAnmFP16J3DMaterialTableP15J3DAnmTevRegKeyiifss();
-extern "C" void entry__13mDoExt_brkAnmFP16J3DMaterialTablef();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void fopAcM_delete__FP10fopAc_ac_c();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void
-set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf();
-extern "C" void
-set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf();
-extern "C" void Release__4cBgSFP9dBgW_Base();
-extern "C" void Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c();
-extern "C" void dBgS_MoveBGProc_Typical__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz();
-extern "C" void Set__4cBgWFP6cBgD_tUlPA3_A4_f();
-extern "C" void __ct__4dBgWFv();
-extern "C" void Move__4dBgWFv();
-extern "C" void __ct__10dCcD_GSttsFv();
-extern "C" void Init__9dCcD_SttsFiiP10fopAc_ac_c();
-extern "C" void __ct__12dCcD_GObjInfFv();
-extern "C" void ChkTgHit__12dCcD_GObjInfFv();
-extern "C" void GetTgHitObj__12dCcD_GObjInfFv();
-extern "C" void Set__8dCcD_SphFRC11dCcD_SrcSph();
-extern "C" void at_power_check__FP11dCcU_AtInfo();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void Set__4cCcSFP8cCcD_Obj();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void cM_atan2s__Fff();
-extern "C" void SetC__8cM3dGSphFRC4cXyz();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" u8 now__14mDoMtx_stack_c[48];
+//J3DAnmTevRegKey per effect type
+u32 bef_brk[2] = {
+    9, 10,
+};
 
-//
-// Declarations:
-//
+
 
 /* 8046DCB8-8046DD38 000078 0080+00 1/0 0/0 0/0 .text daObj_Brakeeff_Draw__FP18obj_brakeeff_class
  */
@@ -93,39 +44,6 @@ int daObj_Brakeeff_Draw(obj_brakeeff_class* i_this) {
     mDoExt_modelUpdateDL(model);
     return 1;
 }
-
-
-/* ############################################################################################## */
-/* 8046E528-8046E52C 000000 0004+00 2/2 0/0 0/0 .rodata          @3879 */
-SECTION_RODATA static f32 const lit_3879 = 1.0f;
-COMPILER_STRIP_GATE(0x8046E528, &lit_3879);
-
-/* 8046E52C-8046E530 000004 0004+00 0/1 0/0 0/0 .rodata          @3880 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3880 = 75.0f;
-COMPILER_STRIP_GATE(0x8046E52C, &lit_3880);
-#pragma pop
-
-/* 8046E530-8046E534 000008 0004+00 0/1 0/0 0/0 .rodata          @3881 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3881 = 50.0f;
-COMPILER_STRIP_GATE(0x8046E530, &lit_3881);
-#pragma pop
-
-/* 8046E534-8046E538 00000C 0004+00 0/1 0/0 0/0 .rodata          @3882 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3882 = 14.0f / 25.0f;
-COMPILER_STRIP_GATE(0x8046E534, &lit_3882);
-#pragma pop
-
-unsigned short e_name[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
-};
-
-
 
 /* 8046DD38-8046DF80 0000F8 0248+00 1/1 0/0 0/0 .text obj_brakeeff_1__FP18obj_brakeeff_class */
 void obj_brakeeff_1(obj_brakeeff_class* i_this) {
@@ -219,16 +137,9 @@ int daObj_Brakeeff_Execute(obj_brakeeff_class* i_this) {
 
 /* 8046E098-8046E0A0 000458 0008+00 1/0 0/0 0/0 .text
  * daObj_Brakeeff_IsDelete__FP18obj_brakeeff_class              */
-bool daObj_Brakeeff_IsDelete() {
+bool daObj_Brakeeff_IsDelete(obj_brakeeff_class* i_this) {
     return true;
 }
-
-/* ############################################################################################## */
-/* 8046E538-8046E538 000010 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8046E538 = "Obj_Bef";
-#pragma pop
 
 /* 8046E0A0-8046E0F0 000460 0050+00 1/0 0/0 0/0 .text
  * daObj_Brakeeff_Delete__FP18obj_brakeeff_class                */
@@ -239,65 +150,67 @@ int daObj_Brakeeff_Delete(obj_brakeeff_class* i_this) {
     return 1;
 }
 
-/* ############################################################################################## */
-/* 8046E54C-8046E554 00000C 0008+00 1/1 0/0 0/0 .data            bef_bmd */
-SECTION_DATA static u8 bef_bmd[8] = {
-    0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x06,
-};
-
-
-/* 8046E55C-8046E59C 00001C 0040+00 1/1 0/0 0/0 .data            cc_sph_src$4003 */
-static dCcD_SrcSph cc_sph_src = {
-    {
-        {0x0, {{0x0, 0x0, 0x0}, {0x20, 0x11}, 0x0}}, // mObj
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2}, // mGObjTg
-        {0x0}, // mGObjCo
-    }, // mObjInf
-    {
-        {{0.0f, 0.0f, 0.0f}, 40.0f} // mSph
-    } // mSphAttr
-};
-
-/* 8046E5EC-8046E5F8 0000AC 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGSph */
-SECTION_DATA extern void* __vt__8cM3dGSph[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGSphFv,
-};
-
-/* 8046E5F8-8046E604 0000B8 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGAab */
-SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGAabFv,
-};
-
-/* 8046E604-8046E610 0000C4 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */
-SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12J3DFrameCtrlFv,
-};
-
 /* 8046E0F0-8046E2B0 0004B0 01C0+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
-static int useHeapInit(fopAc_ac_c* param_0) {
-    // NONMATCHING
-}
+int useHeapInit(fopAc_ac_c* i_this) {
 
-/* 8046E2B0-8046E2F8 000670 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
-// J3DFrameCtrl::~J3DFrameCtrl() {
-extern "C" void __dt__12J3DFrameCtrlFv() {
-    // NONMATCHING
+	obj_brakeeff_class* a_this = static_cast<obj_brakeeff_class*>(i_this);
+
+    J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("Obj_Bef", bef_bmd[a_this->mEffectType]));
+
+	a_this->mpModel = mDoExt_J3DModel__create(modelData, 0x80000,0x11000084);
+
+    if (a_this->mpModel == NULL) {
+        return 0;
+    }
+
+ 	a_this->mpBrk = new mDoExt_brkAnm();
+
+	if(!a_this->mpBrk){
+        return 0;
+    }
+
+    J3DAnmTevRegKey* tev_anm = static_cast<J3DAnmTevRegKey*>(dComIfG_getObjectRes("Obj_Bef", bef_brk[a_this->mEffectType]));
+
+    if (!a_this->mpBrk->init(a_this->mpModel->getModelData(), tev_anm, 1,0,1.0,0,-1)) {
+        return 0;
+    }
+
+
+	a_this->mpDBgW = new dBgW();
+
+    if(!a_this->mpDBgW){
+        return 0;
+    }
+
+	cBgD_t* cbgd = (cBgD_t *)dComIfG_getObjectRes("Obj_Bef", 13);
+
+    uint res = a_this->mpDBgW->Set(cbgd, 1, &a_this->mStoredMatrix);
+    if(res == 1){
+        return 0;
+    }
+
+    a_this->mpDBgW->SetCrrFunc(dBgS_MoveBGProc_Typical);
+
+	return 1;
 }
 
 /* 8046E2F8-8046E490 0006B8 0198+00 1/0 0/0 0/0 .text daObj_Brakeeff_Create__FP10fopAc_ac_c */
 int daObj_Brakeeff_Create(fopAc_ac_c* i_this) {
-	obj_brakeeff_class* a_this = static_cast<obj_brakeeff_class*>(i_this);
-
-    static dCcD_SrcSph cc_sph_src = {
-    	0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x0A,
+	    /* 8046E55C-8046E59C 00001C 0040+00 1/1 0/0 0/0 .data            cc_sph_src$4003 */
+	static dCcD_SrcSph cc_sph_src = {
+    	{
+     	   {0x0, {{0x0, 0x0, 0x0}, {0x20, 0x11}, 0x0}}, // mObj
+    	    {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+    	    {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2}, // mGObjTg
+    	    {0x0}, // mGObjCo
+    	}, // mObjInf
+    	{
+    	    {{0.0f, 0.0f, 0.0f}, 40.0f} // mSph
+    	} // mSphAttr
 	};
+
+
+    obj_brakeeff_class* a_this = static_cast<obj_brakeeff_class*>(i_this);
 
     // NONMATCHING
     if (!fopAcM_CheckCondition(i_this, fopAcCnd_INIT_e)) {
@@ -309,48 +222,34 @@ int daObj_Brakeeff_Create(fopAc_ac_c* i_this) {
 
     if(res_load_result == cPhs_COMPLEATE_e){
         a_this->mEffectType = fopAcM_GetParam(i_this);
-    bool is_heap_set = fopAcM_entrySolidHeap(i_this, useHeapInit,0x4b000);
+    	bool is_heap_set = fopAcM_entrySolidHeap(i_this, useHeapInit,0x4b000);
 
 
-    if(!is_heap_set){
-        return cPhs_ERROR_e;
-    }
+    	if(!is_heap_set){
+        	return cPhs_ERROR_e;
+    	}
 
-    if(dComIfG_Bgsp().Regist(a_this->mpDBgW, i_this)){
-        return cPhs_ERROR_e;
-    }
+    	if(dComIfG_Bgsp().Regist(a_this->mpDBgW, i_this)){
+   		    return cPhs_ERROR_e;
+    	}
 
 
-    fopAcM_SetMtx(i_this, a_this->mpModel->getBaseTRMtx());
-    a_this->mDCcD_Stts.Init(255, 0, i_this);
-    a_this->mDCcD_Sph.Set(cc_sph_src);
-    a_this->mDCcD_Sph.SetStts(&a_this->mDCcD_Stts);
+    	fopAcM_SetMtx(i_this, a_this->mpModel->getBaseTRMtx());
+    	a_this->mDCcD_Stts.Init(255, 0, i_this);
+    	a_this->mDCcD_Sph.Set(cc_sph_src);
+    	a_this->mDCcD_Sph.SetStts(&a_this->mDCcD_Stts);
 
-    daObj_Brakeeff_Execute(a_this);
+    	daObj_Brakeeff_Execute(a_this);
     }
     return res_load_result;
 }
 
-/* 8046E490-8046E4D8 000850 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGSphFv */
-// cM3dGSph::~cM3dGSph() {
-extern "C" void __dt__8cM3dGSphFv() {
-    // NONMATCHING
-}
-
-/* 8046E4D8-8046E520 000898 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
-// cM3dGAab::~cM3dGAab() {
-extern "C" void __dt__8cM3dGAabFv() {
-    // NONMATCHING
-}
-
-/* 8046E538-8046E538 000010 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-
 
 /* 8046E59C-8046E5BC -00001 0020+00 1/0 0/0 0/0 .data            l_daObj_Brakeeff_Method */
-static actor_method_class l_daObj_Brakeeff_Method = {
+actor_method_class l_daObj_Brakeeff_Method = {
     (process_method_func)daObj_Brakeeff_Create,
-    (process_method_func)daObj_Brakeeff_Delete,//__FP18obj_brakeeff_class,
-    (process_method_func)daObj_Brakeeff_Execute,//__FP18obj_brakeeff_class,
+    (process_method_func)daObj_Brakeeff_Delete,
+    (process_method_func)daObj_Brakeeff_Execute,
     (process_method_func)daObj_Brakeeff_IsDelete,
     (process_method_func)daObj_Brakeeff_Draw,
 };
