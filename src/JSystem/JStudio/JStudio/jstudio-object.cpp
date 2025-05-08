@@ -240,11 +240,12 @@ void JStudio::TAdaptor::adaptor_setVariableValue_n(JStudio::TControl* pControl,
  * adaptor_setVariableValue_immediate__Q27JStudio8TAdaptorFPCQ37JStudio8TAdaptor27TSetVariableValue_immediate
  */
 void JStudio::TAdaptor::adaptor_setVariableValue_immediate(
-    JStudio::TAdaptor::TSetVariableValue_immediate const* param_0) {
+    JStudio::TAdaptor::TSetVariableValue_immediate const* p) {
+    JUT_ASSERT(388, p!=NULL);
     u32 uVar1;
-    while ((uVar1 = param_0->field_0x0) != 0xffffffff) {
-        adaptor_setVariableValue_immediate(uVar1, param_0->field_0x4);
-        param_0++;
+    while ((uVar1 = p->field_0x0) != 0xffffffff) {
+        adaptor_setVariableValue_immediate(uVar1, p->field_0x4);
+        p++;
     }
 }
 
@@ -291,7 +292,7 @@ void JStudio::TAdaptor::adaptor_getVariableValue_GXColor(GXColor* param_1,
 void JStudio::TAdaptor::adaptor_updateVariableValue(JStudio::TControl* pControl, u32 param_2) {
     JUT_ASSERT(479, pControl!=0);
     f64 dVar3 = pControl->getSecondPerFrame();
-    JGadget::TEnumerator<JStudio::TVariableValue*> enumerator(pValue_, pValue_ + u);
+    JGadget::TEnumerator<JStudio::TVariableValue*> enumerator(pValue_, pValue_ + uvv_);
     while (enumerator) {
         JStudio::TVariableValue* value = *enumerator;
         value->forward(param_2);

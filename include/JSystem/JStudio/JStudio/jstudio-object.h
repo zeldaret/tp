@@ -47,6 +47,9 @@ struct TVariableValue {
     }
 
      void setValue_none() {
+#ifdef DEBUG
+        field_0xc.fv = NULL;
+#endif
         field_0x8 = NULL;
     }
 
@@ -66,19 +69,21 @@ struct TVariableValue {
 
     template<typename T>
     T getValue_clamp() const {
-        f32 val = mValue;
-        if (val <= std::numeric_limits<T>::min()) {
-            return std::numeric_limits<T>::min();
-        } else if (val >= std::numeric_limits<T>::max()) {
-            return std::numeric_limits<T>::max();
+        u8 min = std::numeric_limits<T>::min();
+        u8 max = std::numeric_limits<T>::max();
+        if (mValue <= min) {
+            return (T)min;
+        } else if (mValue >= max) {
+            return (T)max;
         }
-        return val;
+        return mValue;
     }
     u8 getValue_uint8() const { return getValue_clamp<u8>(); }
 
     void forward(u32 param_0) {
-        if (std::numeric_limits<u32>::max() - field_0x4 <= param_0) {
-            field_0x4 = std::numeric_limits<u32>::max();
+        u32 max = std::numeric_limits<u32>::max();
+        if (max - field_0x4 <= param_0) {
+            field_0x4 = max;
         } else {
             field_0x4 += param_0;
         }
@@ -148,7 +153,7 @@ struct TAdaptor {
     TAdaptor(TVariableValue *param_1, u32 param_2) {
         pObject_ = NULL;
         pValue_ = param_1;
-        u = param_2;
+        uvv_ = param_2;
     }
     /* 80285FD0 */ virtual ~TAdaptor() = 0;
     /* 80286018 */ virtual void adaptor_do_prepare();
@@ -194,15 +199,16 @@ struct TAdaptor {
         adaptor_referVariableValue(param_0)->setValue_immediate(param_1);
     }
 
-     const TVariableValue* adaptor_getVariableValue(u32 param_0) const {
-        return &pValue_[param_0];
+     const TVariableValue* adaptor_getVariableValue(u32 u) const {
+        JUT_ASSERT(293, u<uvv_);
+        return &pValue_[u];
     }
 
     const TObject* adaptor_getObject() const { return pObject_; }
 
     /* 0x4 */ const TObject* pObject_;
     /* 0x8 */ TVariableValue* pValue_;
-    /* 0xC */ u32 u;
+    /* 0xC */ u32 uvv_;
 };
 
 inline void TObject::prepareAdaptor() {
