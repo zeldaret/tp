@@ -162,13 +162,8 @@ int daNpc_seiB_c::create() {
 
 /* 80AC53C8-80AC5520 0003C8 0158+00 1/1 0/0 0/0 .text            CreateHeap__12daNpc_seiB_cFv */
 int daNpc_seiB_c::CreateHeap() {
-    // NONMATCHING
     J3DModelData* mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[0][1]], l_bmdData[0][0]);
-    #ifdef DEBUG
-    if (mdlData_p == NULL) {
-        JUTAssertion::showAssert(JUTAssertion::getSDevice(), "d_a_npc_seib.cpp", 0x1d2, "0 != mdlData_p");
-    }
-    #endif
+    JUT_ASSERT(466, 0 != mdlData_p);
 
     mpMorf[0] = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0, 0x11020284);
     if (mpMorf[0] && mpMorf[0]->getModel() == NULL) {
@@ -219,7 +214,7 @@ int daNpc_seiB_c::createHeapCallBack(fopAc_ac_c* a_this) {
 
 /* 80AC5628-80AC5648 000628 0020+00 1/1 0/0 0/0 .text            getType__12daNpc_seiB_cFv */
 u8 daNpc_seiB_c::getType() {
-    switch ((u8)fopAcM_GetParam(this)) {
+    switch (fopAcM_GetParam(this) & 0xFF) {
         case 0:
             return TYPE_0;
     }
@@ -508,10 +503,7 @@ void daNpc_seiB_c::ctrlWaitAnm() {
             return;
     }
 
-    #ifdef DEBUG
-    JUTAssertion::showAssert(JUTAssertion::getSDevice(), "d_a_npc_seib.cpp", 0x42c, "0");
-    OSPanic("d_a_npc_seib.cpp", 0x42c, "Halt");
-    #endif
+    JUT_ASSERT(1068, 0);
 }
 
 /* 80AC6140-80AC616C 001140 002C+00 1/0 0/0 0/0 .text            wait__12daNpc_seiB_cFPv */
@@ -553,31 +545,31 @@ int daNpc_seiB_c::talk(void* param_0) {
 }
 
 /* 80AC620C-80AC622C 00120C 0020+00 1/0 0/0 0/0 .text            daNpc_seiB_Create__FPv */
-static int daNpc_seiB_Create(void* param_0) {
-    daNpc_seiB_c* i_this;
+static int daNpc_seiB_Create(void* param_1) {
+    daNpc_seiB_c* i_this = (daNpc_seiB_c*)param_1;
     return i_this->create();
 }
 
 /* 80AC622C-80AC624C 00122C 0020+00 1/0 0/0 0/0 .text            daNpc_seiB_Delete__FPv */
-static int daNpc_seiB_Delete(void* param_0) {
-    daNpc_seiB_c* i_this;
+static int daNpc_seiB_Delete(void* param_1) {
+    daNpc_seiB_c* i_this = (daNpc_seiB_c*)param_1;
     return i_this->Delete();
 }
 
 /* 80AC624C-80AC626C 00124C 0020+00 1/0 0/0 0/0 .text            daNpc_seiB_Execute__FPv */
-static int daNpc_seiB_Execute(void* param_0) {
-    daNpc_seiB_c* i_this;
+static int daNpc_seiB_Execute(void* param_1) {
+    daNpc_seiB_c* i_this = (daNpc_seiB_c*)param_1;
     return i_this->Execute();
 }
 
 /* 80AC626C-80AC628C 00126C 0020+00 1/0 0/0 0/0 .text            daNpc_seiB_Draw__FPv */
-static int daNpc_seiB_Draw(void* param_0) {
-    daNpc_seiB_c* i_this;
+static int daNpc_seiB_Draw(void* param_1) {
+    daNpc_seiB_c* i_this = (daNpc_seiB_c*)param_1;
     return i_this->Draw();
 }
 
 /* 80AC628C-80AC6294 00128C 0008+00 1/0 0/0 0/0 .text            daNpc_seiB_IsDelete__FPv */
-static int daNpc_seiB_IsDelete(void* param_0) {
+static int daNpc_seiB_IsDelete(void* param_1) {
     return 1;
 }
 
