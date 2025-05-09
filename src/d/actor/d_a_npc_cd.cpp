@@ -239,12 +239,8 @@ int daNpcCd_c::NpcCreate(int param_1) {
     };
 
     J3DModelData* a_mdlData_p = getNpcMdlDataP(param_1);
-    #ifdef DEBUG
-    if (a_mdlData_p == NULL) {
-        JUTAssertion::showAssert(JUTAssertion::getSDevice(), "d_a_npc_cd.cpp", "0 != a_mdlData_p");
-        OSPanic("d_a_npc_cd", 0x1d6, "Halt");
-    }
-    #endif
+
+    JUT_ASSERT(470, 0 != a_mdlData_p);
 
     mDoExt_McaMorfSO* mpModelMorf = new mDoExt_McaMorfSO(a_mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mCreature, 0x80000, 0x11000084);
     mpMorf = mpModelMorf;
@@ -259,7 +255,11 @@ int daNpcCd_c::NpcCreate(int param_1) {
 
     mCreature.init(&current.pos, &eyePos, 3, 1);
     mCreature.setMdlType(param_1, true, mIsDarkWorld);
-    // mpMorf->offTranslate();
+
+    #if VERSION == VERSION_SHIELD_DEBUG
+    mpMorf->offTranslate();
+    #endif
+
     mpMorf->setTranslateScale(a_transScaleTbl[param_1]);
 
     for (u16 i = 0; i < a_mdlData_p->getJointNum(); i++) {
@@ -286,13 +286,10 @@ J3DModel* daNpcCd_c::ObjCreate(int param_0) {
 }
 
 /* 80156228-80156248 150B68 0020+00 1/1 0/0 0/0 .text   isM___9daNpcCd_cFv */
-u32 daNpcCd_c::isM_() {
-    // NONMATCHING
+BOOL daNpcCd_c::isM_() {
     JUT_ASSERT(574, m_type < MdlNUM_e);
-    
-    u32 rv = field_0x9c4 ^ 16;
-    return (((int)rv >> 1) - (rv & 16)) >> 31;
 
+    return field_0x9c4 < 16;
 }
 
 /* 80156248-801563C8 150B88 0180+00 0/0 0/0 1/1 .text            getAnmP__9daNpcCd_cFii */
@@ -694,7 +691,7 @@ int daNpcCd_c::drawObj(int idx, J3DModel* i_model, f32 i_scale) {
         3, 0, 0,
     };
 
-    if ((mIsDarkWorld && daPy_py_c::checkNowWolfEyeUp() == 0)) {
+    if (mIsDarkWorld && !daPy_py_c::checkNowWolfEyeUp()) {
         return 1;
     }
 
@@ -712,7 +709,7 @@ int daNpcCd_c::drawObj(int idx, J3DModel* i_model, f32 i_scale) {
 
 /* 80156F74-80157084 1518B4 0110+00 0/0 0/0 1/1 .text            drawNpc__9daNpcCd_cFv */
 int daNpcCd_c::drawNpc() {
-    if (mIsDarkWorld && daPy_py_c::checkNowWolfEyeUp() == 0) {
+    if (mIsDarkWorld && !daPy_py_c::checkNowWolfEyeUp()) {
         setHitodamaParticle();
         return 1;
     }

@@ -108,7 +108,7 @@ class daNpcCd_c : public fopAc_ac_c {
 public:
     /* 8015605C */ int NpcCreate(int);
     /* 801561E8 */ J3DModel* ObjCreate(int);
-    /* 80156228 */ u32 isM_();
+    /* 80156228 */ BOOL isM_();
     /* 80156248 */ J3DAnmTransform* getAnmP(int, int);
     /* 801563C8 */ int setAttention(int);
     /* 80156B4C */ int loadResrc(int, int);
@@ -137,7 +137,7 @@ public:
     /* 0x80C */ dBgS_AcchCir mAcchCir;
     /* 0x84C */ dCcD_Stts mStts;
     /* 0x888 */ dCcD_Cyl mCyl;
-    /* 0x9C4 */ u32 field_0x9c4;
+    /* 0x9C4 */ int field_0x9c4;
     /* 0x9C8 */ int field_0x9c8;
     /* 0x9CC */ int mHitodamaEmitters[2];
     /* 0x9D4 */ int field_0x9d4;
