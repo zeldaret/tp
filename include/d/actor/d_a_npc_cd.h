@@ -5,8 +5,8 @@
 #include "d/d_com_inf_game.h"
 
 struct daNpcCd_HIO_Jnt_c : public JORReflexible {
-    /* 80157810 */ virtual ~daNpcCd_HIO_Jnt_c() {};
-    /* 801578B0 */ daNpcCd_HIO_Jnt_c() {};
+    /* 80157810 */ virtual ~daNpcCd_HIO_Jnt_c() {}
+    /* 801578B0 */ daNpcCd_HIO_Jnt_c() {}
 
     void genMessage(JORMContext*);
 
@@ -15,8 +15,8 @@ struct daNpcCd_HIO_Jnt_c : public JORReflexible {
 };
 
 struct daNpcCd_HIO_Child_c {
-    /* 801577A0 */ virtual ~daNpcCd_HIO_Child_c() {};
-    /* 80157858 */ daNpcCd_HIO_Child_c() {};
+    /* 801577A0 */ virtual ~daNpcCd_HIO_Child_c() {}
+    /* 80157858 */ daNpcCd_HIO_Child_c() {}
 
     /* 0x004 */ daNpcCd_HIO_Jnt_c field_0x4[12];
     /* 0x128 */ s16 mAtn;
@@ -24,7 +24,7 @@ struct daNpcCd_HIO_Child_c {
 
 struct daNpcCd_HIO_c : public fOpAcm_HIO_entry_c {
     /* 80157600 */ daNpcCd_HIO_c();
-    /* 801577A0 */ virtual ~daNpcCd_HIO_c() {};
+    /* 801577A0 */ virtual ~daNpcCd_HIO_c() {}
 
     void genMessage(JORMContext*);
 
