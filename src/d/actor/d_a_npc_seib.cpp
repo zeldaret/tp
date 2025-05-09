@@ -73,9 +73,8 @@ daNpc_seiB_c::~daNpc_seiB_c() {
 
 /* 80AC7024-80AC70B8 000000 0094+00 4/4 0/0 0/0 .rodata          m__18daNpc_seiB_Param_c */
 daNpc_seiB_Param_c::Data const daNpc_seiB_Param_c::m = {
-    0, 0, 1.0f, 4000.0f, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,       0,
-    0, 0, 0,    0,       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1200.0f,
-};
+    0, 0, 1.0f, 4000.0f, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,      0,
+    0, 0, 0,    0,       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1200.0f};
 
 /* 80AC5188-80AC53C8 000188 0240+00 1/1 0/0 0/0 .text            create__12daNpc_seiB_cFv */
 int daNpc_seiB_c::create() {
@@ -111,7 +110,7 @@ int daNpc_seiB_c::create() {
         setEnvTevColor();
         setRoomNo();
 
-        mCcStts.Init(daNpc_seiB_Param_c::m.mWeight, 0, this);
+        mCcStts.Init(mpParam->m.mWeight, 0, this);
         reset();
         mCreating = true;
         Execute();
@@ -148,7 +147,7 @@ int daNpc_seiB_c::CreateHeap() {
 
 /* 80AC5520-80AC5554 000520 0034+00 1/1 0/0 0/0 .text            Delete__12daNpc_seiB_cFv */
 int daNpc_seiB_c::Delete() {
-    OS_REPORT("|%06d:%x|daNpc_seiB_c -> Delete\n", g_Counter.mCounter0, this);
+    // OS_REPORT("|%06d:%x|daNpc_seiB_c -> Delete\n", g_Counter.mCounter0, this);
     fopAcM_GetID(this);
     this->~daNpc_seiB_c();
     return 1;
@@ -203,48 +202,41 @@ int daNpc_seiB_c::isDelete() {
 /* 80AC566C-80AC57C4 00066C 0158+00 1/1 0/0 0/0 .text            reset__12daNpc_seiB_cFv */
 void daNpc_seiB_c::reset() {
     initialize();
-    memset(&field_0xe48, 0, (u8*)&field_0xe64 - (u8*)&field_0xe48);
+    memset(&mActionFunc1, 0, (u8*)&field_0xe64 - (u8*)&mActionFunc1);
     if (mpMatAnm[0] != NULL) {
         mpMatAnm[0]->initialize();
     }
     setAngle(home.angle.y);
     mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
-    field_0xe60 = 0;
+    mAnim = 0;
 }
 
 /* 80AC57C4-80AC58DC 0007C4 0118+00 1/0 0/0 0/0 .text            setParam__12daNpc_seiB_cFv */
 void daNpc_seiB_c::setParam() {
-    // NONMATCHING
     selectAction();
     srchActors();
 
-    f32 fVar1 = daNpc_seiB_Param_c::m.field_0x90;
-    dist_entry* mDistEntry = &dComIfGp_getAttention().getDistTable(0x28);
-    mDistEntry->mDistMax = fVar1;
-    mDistEntry = &dComIfGp_getAttention().getDistTable(0x28);
-    mDistEntry->mDistMaxRelease = fVar1;
-
-    mDistEntry = &dComIfGp_getAttention().getDistTable(0x27);
-    mDistEntry->mDistMax = fVar1;
-    mDistEntry = &dComIfGp_getAttention().getDistTable(0x27);
-    mDistEntry->mDistMaxRelease = fVar1;
+    dComIfGp_getAttention().getDistTable(0x28).mDistMax = mpParam->m.mDist;
+    dComIfGp_getAttention().getDistTable(0x28).mDistMaxRelease = mpParam->m.mDist;
+    dComIfGp_getAttention().getDistTable(0x27).mDistMax = mpParam->m.mDist;
+    dComIfGp_getAttention().getDistTable(0x27).mDistMaxRelease = mpParam->m.mDist;
 
     attention_info.distances[0] = 39;
     attention_info.distances[1] = 39;
     attention_info.distances[3] = 39;
     attention_info.flags = 0;
-    scale.set(daNpc_seiB_Param_c::m.mScale, daNpc_seiB_Param_c::m.mScale,
-              daNpc_seiB_Param_c::m.mScale);
-    mCcStts.SetWeight(daNpc_seiB_Param_c::m.mWeight);
 
-    mCylH = daNpc_seiB_Param_c::m.mCylH;
-    mWallR = daNpc_seiB_Param_c::m.mWallR;
+    scale.set(mpParam->m.mScale, mpParam->m.mScale, mpParam->m.mScale);
+    mCcStts.SetWeight(mpParam->m.mWeight);
+    mCylH = mpParam->m.mCylH;
+    mWallR = mpParam->m.mWallR;
     mAcchCir.SetWallR(mWallR);
-    mAcchCir.SetWallH(daNpc_seiB_Param_c::m.mWallH);
-    field_0xde8 = daNpc_seiB_Param_c::m.field_0xc;
-    gravity = daNpc_seiB_Param_c::m.mGravity;
-    field_0xa80 = daNpc_seiB_Param_c::m.field_0x6c;
-    mMorfFrames = daNpc_seiB_Param_c::m.mMorfFrames;
+    mAcchCir.SetWallH(mpParam->m.mWallH);
+
+    field_0xde8 = mpParam->m.field_0xc;
+    gravity = mpParam->m.mGravity;
+    field_0xa80 = mpParam->m.field_0x6c;
+    mMorfFrames = mpParam->m.mMorfFrames;
 }
 
 /* 80AC58F0-80AC58F4 0008F0 0004+00 1/1 0/0 0/0 .text            srchActors__12daNpc_seiB_cFv */
@@ -255,7 +247,7 @@ void daNpc_seiB_c::srchActors() {
 /* 80AC58F4-80AC59F4 0008F4 0100+00 1/0 0/0 0/0 .text            evtTalk__12daNpc_seiB_cFv */
 BOOL daNpc_seiB_c::evtTalk() {
     if (chkAction(&daNpc_seiB_c::talk)) {
-        (this->*field_0xe54)(NULL);
+        (this->*mActionFunc2)(NULL);
     } else {
         mPreItemNo = 0;
         if (dComIfGp_event_chkTalkXY()) {
@@ -291,11 +283,11 @@ BOOL daNpc_seiB_c::evtCutProc() {
 
 /* 80AC5ABC-80AC5B44 000ABC 0088+00 1/0 0/0 0/0 .text            action__12daNpc_seiB_cFv */
 void daNpc_seiB_c::action() {
-    if (field_0xe48) {
-        if (field_0xe54 == field_0xe48) {
-            (this->*field_0xe54)(NULL);
+    if (mActionFunc1) {
+        if (mActionFunc2 == mActionFunc1) {
+            (this->*mActionFunc2)(NULL);
         } else {
-            setAction(field_0xe48);
+            setAction(mActionFunc1);
         }
     }
 }
@@ -383,29 +375,29 @@ bool daNpc_seiB_c::afterSetMotionAnm(int param_1, int param_2, f32 param_3, int 
 
 /* 80AC5DC0-80AC5E08 000DC0 0048+00 1/1 0/0 0/0 .text            selectAction__12daNpc_seiB_cFv */
 int daNpc_seiB_c::selectAction() {
-    field_0xe48 = NULL;
-    field_0xe48 = &daNpc_seiB_c::wait;
+    mActionFunc1 = NULL;
+    mActionFunc1 = &daNpc_seiB_c::wait;
     return 1;
 }
 
 /* 80AC5E08-80AC5E34 000E08 002C+00 1/1 0/0 0/0 .text
  * chkAction__12daNpc_seiB_cFM12daNpc_seiB_cFPCvPvPv_i */
 int daNpc_seiB_c::chkAction(int (daNpc_seiB_c::*action)(void*)) {
-    return field_0xe54 == action;
+    return mActionFunc2 == action;
 }
 
 /* 80AC5E34-80AC5EDC 000E34 00A8+00 2/2 0/0 0/0 .text
  * setAction__12daNpc_seiB_cFM12daNpc_seiB_cFPCvPvPv_i */
 int daNpc_seiB_c::setAction(int (daNpc_seiB_c::*action)(void*)) {
     mMode = 3;
-    if (field_0xe54) {
-        (this->*field_0xe54)(NULL);
+    if (mActionFunc2) {
+        (this->*mActionFunc2)(NULL);
     }
 
     mMode = 0;
-    field_0xe54 = action;
-    if (field_0xe54) {
-        (this->*field_0xe54)(NULL);
+    mActionFunc2 = action;
+    if (mActionFunc2) {
+        (this->*mActionFunc2)(NULL);
     }
 
     return 1;
@@ -413,7 +405,7 @@ int daNpc_seiB_c::setAction(int (daNpc_seiB_c::*action)(void*)) {
 
 /* 80AC5EDC-80AC6140 000EDC 0264+00 1/1 0/0 0/0 .text            ctrlWaitAnm__12daNpc_seiB_cFv */
 void daNpc_seiB_c::ctrlWaitAnm() {
-    switch (field_0xe60) {
+    switch (mAnim) {
     case 0:
         if (mMotionSeqMngr.getNo() == 0) {
             if (mMorfLoops < 3) {
@@ -421,7 +413,7 @@ void daNpc_seiB_c::ctrlWaitAnm() {
             }
 
             mMotionSeqMngr.setNo(1, -1.0f, 0, 0);
-            field_0xe60++;
+            mAnim++;
             return;
         }
 
@@ -435,7 +427,7 @@ void daNpc_seiB_c::ctrlWaitAnm() {
             }
 
             mMotionSeqMngr.setNo(2, -1.0f, 0, 0);
-            field_0xe60++;
+            mAnim++;
             return;
         }
 
@@ -449,7 +441,7 @@ void daNpc_seiB_c::ctrlWaitAnm() {
             }
 
             mMotionSeqMngr.setNo(3, -1.0f, 0, 0);
-            field_0xe60++;
+            mAnim++;
             return;
         }
 
@@ -463,7 +455,7 @@ void daNpc_seiB_c::ctrlWaitAnm() {
             }
 
             mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
-            field_0xe60 = 0;
+            mAnim = 0;
             return;
         }
 
