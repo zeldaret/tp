@@ -257,7 +257,7 @@ public:
         SetStatue();
     }
 
-    /* 806646F8 */ virtual ~dBgS_StatueAcch();
+    /* 806646F8 */ virtual ~dBgS_StatueAcch() {}
 };
 
 class dBgS_BombAcch : public dBgS_Acch {

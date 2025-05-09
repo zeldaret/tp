@@ -2,18 +2,18 @@
 #define D_A_D_A_ALINK_H
 
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
-#include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/J3DGraphBase/J3DMatBlock.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "Z2AudioLib/Z2Creature.h"
 #include "Z2AudioLib/Z2WolfHowlMgr.h"
 #include "d/actor/d_a_player.h"
+#include "d/actor/d_a_tag_mmsg.h"
 #include "d/d_eye_hl.h"
 #include "d/d_jnt_col.h"
 #include "d/d_msg_flow.h"
 #include "d/d_particle_copoly.h"
 #include "d/d_save.h"
 #include "f_op/f_op_actor_mng.h"
-#include "d/actor/d_a_tag_mmsg.h"
 
 class J2DAnmColorKey;
 class J2DAnmTransformKey;
@@ -147,9 +147,7 @@ public:
     daAlink_matAnm_c() { init(); }
 
     /* 8009D8E4 */ void init();
-    /* 800D0180 */ void offSetFlg() {
-        mSetFlag = FALSE;
-    }
+    /* 800D0180 */ void offSetFlg() { mSetFlag = FALSE; }
 
     /* 800D0B8C */ virtual ~daAlink_matAnm_c() {}
     /* 8009D90C */ virtual void calc(J3DMaterial*) const;
@@ -157,7 +155,7 @@ public:
     static void decMorfFrame() { cLib_calcTimer<u8>(&m_morf_frame); }
     static void setMorfFrame(u8 i_frame) { m_morf_frame = i_frame; }
     static u8 getMorfFrame() { return m_morf_frame; }
-    
+
     static void onEyeMoveFlg() { m_eye_move_flg = true; }
     static void offEyeMoveFlg() { m_eye_move_flg = false; }
     static bool getEyeMoveFlg() { return m_eye_move_flg; }
@@ -895,7 +893,8 @@ public:
         /* 0x00000100 */ MODE_UNK_100 = 0x100,
         /* 0x00000400 */ MODE_RIDING = 0x400,
         /* 0x00000800 */ MODE_UNK_800 = 0x800,
-        /* 0x00001000 */ MODE_UNK_1000 = 0x1000,  // affects things like anim set when controlling rod statue
+        /* 0x00001000 */ MODE_UNK_1000 =
+            0x1000,  // affects things like anim set when controlling rod statue
         /* 0x00002000 */ MODE_UNK_2000 = 0x2000,
         /* 0x00004000 */ MODE_UNK_4000 = 0x4000,
         /* 0x00008000 */ MODE_UNK_8000 = 0x8000,
@@ -1408,8 +1407,8 @@ public:
     /* 800AC738 */ void setDoubleAnimeBlendRatio(f32);
     /* 800AC754 */ void commonDoubleAnime(J3DAnmTransform*, J3DAnmTransform*, J3DAnmTransform*,
                                           J3DAnmTransform*, f32, f32, f32, int);
-    /* 800ACA14 */ int setDoubleAnime(f32, f32, f32, daAlink_c::daAlink_ANM,
-                                       daAlink_c::daAlink_ANM, int, f32);
+    /* 800ACA14 */ int setDoubleAnime(f32, f32, f32, daAlink_c::daAlink_ANM, daAlink_c::daAlink_ANM,
+                                      int, f32);
     /* 800ACD40 */ void commonSingleAnime(J3DAnmTransform*, J3DAnmTransform*, f32, f32, s16);
     /* 800ACF80 */ void setSingleAnimeBase(daAlink_c::daAlink_ANM anmID);
     /* 800ACFB0 */ void setSingleAnimeBaseMorf(daAlink_c::daAlink_ANM anmID, f32);
@@ -1725,10 +1724,10 @@ public:
     /* 800D0110 */ BOOL checkWolfEnemyThrowAnime() const {
         return checkUpperAnime(0x2BD) || checkUpperAnime(0x2BE);
     }
-    /* 800D014C */ void setMidnaTalkStatus(u8 status) {
-        dComIfGp_setZStatus(status, 0);
+    /* 800D014C */ void setMidnaTalkStatus(u8 status) { dComIfGp_setZStatus(status, 0); }
+    /* 800D0164 */ void set3DStatus(u8 status, u8 direction) {
+        dComIfGp_set3DStatus(status, direction, 0);
     }
-    /* 800D0164 */ void set3DStatus(u8 status, u8 direction) { dComIfGp_set3DStatus(status, direction, 0); }
     /* 800D2684 */ void checkCutTurnCharge();
     /* 800D0E08 */ void checkLightSwordMtrl();
     /* 800D0E98 */ BOOL checkSwordEquipAnime() const;
@@ -1748,8 +1747,8 @@ public:
     /* 800D1454 */ void checkComboCnt();
     /* 800D152C */ void setCutType(u8);
     /* 800D1540 */ void setCylAtParam(u32, dCcG_At_Spl, u8, u8, int, f32, f32);
-    /* 800D1688 */ void setSwordAtParam(dCcG_At_Spl i_spl, u8 i_hitMark, u8 i_AtSe, int i_atp, f32 param_4,
-                                        f32 i_radius);
+    /* 800D1688 */ void setSwordAtParam(dCcG_At_Spl i_spl, u8 i_hitMark, u8 i_AtSe, int i_atp,
+                                        f32 param_4, f32 i_radius);
     /* 800D1788 */ static BOOL notSwordHitVibActor(fopAc_ac_c*);
     /* 800D17EC */ BOOL setSwordHitVibration(dCcD_GObjInf*);
     /* 800D1920 */ BOOL checkAtShieldHit(dCcD_GObjInf&);
@@ -2717,7 +2716,8 @@ public:
     /* 80120500 */ int commonLargeDamageUpInit(int, int, s16, s16);
     /* 80120534 */ int commonFallInit(int);
     /* 80120580 */ JPABaseEmitter* setEmitter(u32*, u16, cXyz const*, csXyz const*);
-    /* 80120634 */ JPABaseEmitter* setEmitterPolyColor(u32*, u16, cBgS_PolyInfo&, cXyz const*, csXyz const*);
+    /* 80120634 */ JPABaseEmitter* setEmitterPolyColor(u32*, u16, cBgS_PolyInfo&, cXyz const*,
+                                                       csXyz const*);
     /* 801206C4 */ JPABaseEmitter* setEmitterColor(u32*, u16, cXyz const*, csXyz const*);
     /* 80120778 */ void stopDrawParticle(u32);
     /* 801207BC */ void setEffectFrontRollParam();
@@ -2788,7 +2788,7 @@ public:
     /* 80129114 */ void setBlendWolfAtnMoveAnime(f32);
     /* 8012933C */ void setBlendWolfAtnBackMoveAnime(f32);
     /* 8012948C */ int setDoubleAnimeWolf(f32, f32, f32, daAlink_c::daAlink_WANM,
-                                           daAlink_c::daAlink_WANM, int, f32);
+                                          daAlink_c::daAlink_WANM, int, f32);
     /* 80129678 */ void setSingleAnimeWolfBase(daAlink_c::daAlink_WANM);
     /* 801296A8 */ void setSingleAnimeWolfBaseMorf(daAlink_c::daAlink_WANM, f32);
     /* 801296D8 */ void setSingleAnimeWolfBaseSpeed(daAlink_c::daAlink_WANM, f32, f32);
@@ -3022,8 +3022,13 @@ public:
     /* 80140984 */ void statusWindowDraw();
     /* 80140AC8 */ void resetStatusWindow();
     /* 8018280C */ fopAc_ac_c* getChainGrabActor() { return field_0x2844.getActor(); }
-    /* 80182814 */ bool checkCokkoGlide() const { return mProcID == PROC_AUTO_JUMP && mProcVar2.field_0x300c != 0; }
-    /* 8018283C */ BOOL checkCameraLargeDamage() const { return mProcID == PROC_LARGE_DAMAGE || mProcID == PROC_LARGE_DAMAGE_WALL || mProcID == PROC_LARGE_DAMAGE_UP || mProcID == PROC_WOLF_LARGE_DAMAGE_UP; }
+    /* 80182814 */ bool checkCokkoGlide() const {
+        return mProcID == PROC_AUTO_JUMP && mProcVar2.field_0x300c != 0;
+    }
+    /* 8018283C */ BOOL checkCameraLargeDamage() const {
+        return mProcID == PROC_LARGE_DAMAGE || mProcID == PROC_LARGE_DAMAGE_WALL ||
+               mProcID == PROC_LARGE_DAMAGE_UP || mProcID == PROC_WOLF_LARGE_DAMAGE_UP;
+    }
     /* 80182870 */ const cXyz& getHsSubChainTopPos() const { return mIronBallBgChkPos; }
     /* 80182888 */ BOOL checkCutHeadProc() const { return mProcID == PROC_CUT_HEAD; }
     /* 8018289C */ fopAc_ac_c* getRideActor() { return mRideAcKeep.getActor(); }
@@ -3048,29 +3053,47 @@ public:
         if (mHeldItemModel != NULL && checkBottleItem(mEquipItem)) {
             return mHeldItemModel->getBaseTRMtx();
         }
-    
+
         return NULL;
     }
     virtual BOOL checkPlayerGuard() const;
     virtual u32 checkPlayerFly() const {
-        return checkModeFlg(MODE_SWIMMING | MODE_ROPE_WALK | MODE_VINE_CLIMB | MODE_UNK_800 | MODE_NO_COLLISION | MODE_CLIMB | MODE_JUMP);
+        return checkModeFlg(MODE_SWIMMING | MODE_ROPE_WALK | MODE_VINE_CLIMB | MODE_UNK_800 |
+                            MODE_NO_COLLISION | MODE_CLIMB | MODE_JUMP);
     }
     virtual BOOL checkFrontRoll() const { return mProcID == PROC_FRONT_ROLL; }
     virtual BOOL checkWolfDash() const { return mProcID == PROC_WOLF_DASH; }
-    virtual BOOL checkAutoJump() const { return mProcID == PROC_AUTO_JUMP || mProcID == PROC_WOLF_AUTO_JUMP; }
-    virtual bool checkSideStep() const { return (mProcID == PROC_SIDESTEP || mProcID == PROC_WOLF_SIDESTEP) && mProcVar1.field_0x300a != 0; }
-    virtual bool checkWolfTriggerJump() const { return mProcID == PROC_WOLF_SIDESTEP || mProcID == PROC_WOLF_JUMP_ATTACK; }
+    virtual BOOL checkAutoJump() const {
+        return mProcID == PROC_AUTO_JUMP || mProcID == PROC_WOLF_AUTO_JUMP;
+    }
+    virtual bool checkSideStep() const {
+        return (mProcID == PROC_SIDESTEP || mProcID == PROC_WOLF_SIDESTEP) &&
+               mProcVar1.field_0x300a != 0;
+    }
+    virtual bool checkWolfTriggerJump() const {
+        return mProcID == PROC_WOLF_SIDESTEP || mProcID == PROC_WOLF_JUMP_ATTACK;
+    }
     virtual BOOL checkGuardBreakMode() const { return mProcID == PROC_GUARD_BREAK; }
-    virtual bool checkLv3Slide() const { return mProcID == PROC_SLIDE && mProcVar3.field_0x300e != 0; }
+    virtual bool checkLv3Slide() const {
+        return mProcID == PROC_SLIDE && mProcVar3.field_0x300e != 0;
+    }
     virtual bool checkWolfHowlDemoMode() const { return mProcID == PROC_WOLF_HOWL_DEMO; }
     virtual bool checkChainBlockPushPull();
     virtual BOOL checkElecDamage() const { return mProcID == PROC_ELEC_DAMAGE; }
-    virtual BOOL checkEmptyBottleSwing() const { return mEquipItem == fpcNm_ITEM_EMPTY_BOTTLE && mProcID == PROC_BOTTLE_SWING; }
+    virtual BOOL checkEmptyBottleSwing() const {
+        return mEquipItem == fpcNm_ITEM_EMPTY_BOTTLE && mProcID == PROC_BOTTLE_SWING;
+    }
     virtual BOOL checkBottleSwingMode() const { return mProcID == PROC_BOTTLE_SWING; }
     virtual BOOL checkHawkWait() const { return mProcID == PROC_HAWK_SUBJECT; }
-    virtual BOOL checkGoatThrow() const { return mProcID == PROC_GOAT_CATCH && mProcVar2.field_0x300c != 0; }
-    virtual BOOL checkGoatThrowAfter() const { return mProcID == PROC_GOAT_CATCH && field_0x3478 > 0.0f; }
-    virtual BOOL checkWolfTagLockJump() const { return mProcID == PROC_WOLF_TAG_JUMP && field_0x3198 == 0; }
+    virtual BOOL checkGoatThrow() const {
+        return mProcID == PROC_GOAT_CATCH && mProcVar2.field_0x300c != 0;
+    }
+    virtual BOOL checkGoatThrowAfter() const {
+        return mProcID == PROC_GOAT_CATCH && field_0x3478 > 0.0f;
+    }
+    virtual BOOL checkWolfTagLockJump() const {
+        return mProcID == PROC_WOLF_TAG_JUMP && field_0x3198 == 0;
+    }
     virtual BOOL checkWolfTagLockJumpLand() const { return mProcID == PROC_WOLF_TAG_JUMP_LAND; }
     virtual BOOL checkWolfRope();
     virtual BOOL checkWolfRopeHang() const { return mProcID == PROC_WOLF_ROPE_HANG; }
@@ -3080,13 +3103,24 @@ public:
     virtual BOOL checkWolfWait() const { return mProcID == PROC_WOLF_WAIT; }
     virtual BOOL checkWolfJumpAttack() const { return mProcID == PROC_WOLF_JUMP_ATTACK; }
     virtual BOOL checkWolfRSit() const { return mProcID == PROC_WOLF_SIT; }
-    virtual BOOL checkBottleDrinkEnd() const { return mProcID == PROC_BOTTLE_DRINK && mProcVar3.field_0x300e != 0; }
+    virtual BOOL checkBottleDrinkEnd() const {
+        return mProcID == PROC_BOTTLE_DRINK && mProcVar3.field_0x300e != 0;
+    }
     virtual BOOL checkWolfDig() const { return mProcID == PROC_WOLF_DIG; }
     virtual BOOL checkCutCharge() const { return mProcID == PROC_CUT_TURN_MOVE; }
-    virtual BOOL checkCutTurnCharge() const { return mProcID == PROC_CUT_TURN_MOVE && mProcVar2.field_0x300c == 0; }
-    virtual BOOL checkCutLargeJumpCharge() const { return mProcID == PROC_CUT_TURN_MOVE && mProcVar2.field_0x300c != 0; }
-    virtual BOOL checkComboCutTurn() const { return mProcID == PROC_CUT_TURN && mComboCutCount != 0; }
-    virtual BOOL checkClimbMove() const { return mProcID == PROC_CLIMB_MOVE_UPDOWN || mProcID == PROC_LADDER_MOVE || mProcID == PROC_CLIMB_MOVE_SIDE; }
+    virtual BOOL checkCutTurnCharge() const {
+        return mProcID == PROC_CUT_TURN_MOVE && mProcVar2.field_0x300c == 0;
+    }
+    virtual BOOL checkCutLargeJumpCharge() const {
+        return mProcID == PROC_CUT_TURN_MOVE && mProcVar2.field_0x300c != 0;
+    }
+    virtual BOOL checkComboCutTurn() const {
+        return mProcID == PROC_CUT_TURN && mComboCutCount != 0;
+    }
+    virtual BOOL checkClimbMove() const {
+        return mProcID == PROC_CLIMB_MOVE_UPDOWN || mProcID == PROC_LADDER_MOVE ||
+               mProcID == PROC_CLIMB_MOVE_SIDE;
+    }
     virtual BOOL checkGrassWhistle() const { return mProcID == PROC_GRASS_WHISTLE_WAIT; }
     virtual BOOL checkBoarRun() const { return mProcID == PROC_BOAR_RUN; }
     virtual f32 getBaseAnimeFrameRate() const { return mUnderFrameCtrl[0].getRate(); }
@@ -3118,13 +3152,18 @@ public:
     virtual void onFrollCrashFlg(u8, int);
     virtual MtxP getModelJointMtx(u16);
     virtual MtxP getHeadMtx() {
-        return mpLinkModel->getAnmMtx(field_0x30b4);;
+        return mpLinkModel->getAnmMtx(field_0x30b4);
+        ;
     }
     virtual bool setHookshotCarryOffset(fpc_ProcID, cXyz const*);
-    virtual BOOL checkCutJumpCancelTurn() const { return (mProcID == PROC_CUT_JUMP || mProcID == PROC_CUT_JUMP_LAND) && field_0x3198 != 2; }
+    virtual BOOL checkCutJumpCancelTurn() const {
+        return (mProcID == PROC_CUT_JUMP || mProcID == PROC_CUT_JUMP_LAND) && field_0x3198 != 2;
+    }
     virtual bool checkIronBallReturn() const;
     virtual bool checkIronBallGroundStop() const;
-    virtual BOOL checkSingleBoarBattleSecondBowReady() const { return mProcID == PROC_HORSE_BOW_SUBJECT && mProcVar2.field_0x300c != 0; }
+    virtual BOOL checkSingleBoarBattleSecondBowReady() const {
+        return mProcID == PROC_HORSE_BOW_SUBJECT && mProcVar2.field_0x300c != 0;
+    }
     virtual void setClothesChange(int);
     virtual void setPlayerPosAndAngle(cXyz const*, short, int);
     virtual void setPlayerPosAndAngle(cXyz const*, csXyz const*);
@@ -3132,7 +3171,9 @@ public:
     virtual bool setThrowDamage(short, f32, f32, int, int, int);
     virtual bool checkSetNpcTks(cXyz*, int, int);
     virtual int setRollJump(f32, f32, short);
-    virtual void playerStartCollisionSE(u32 param_0, u32 param_1) { mZ2Link.startCollisionSE(param_0, param_1); }
+    virtual void playerStartCollisionSE(u32 param_0, u32 param_1) {
+        mZ2Link.startCollisionSE(param_0, param_1);
+    }
     virtual void cancelDungeonWarpReadyNeck() {
         if (mProcID != PROC_DUNGEON_WARP_READY) {
             return;
@@ -3166,7 +3207,9 @@ public:
         }
         return (daSpinner_c*)spinnerActor;
     }
-    virtual BOOL checkHorseRideNotReady() const { return checkHorseRide() && mProcID != PROC_HORSE_RIDE && mProcID != PROC_HORSE_GETOFF; }
+    virtual BOOL checkHorseRideNotReady() const {
+        return checkHorseRide() && mProcID != PROC_HORSE_RIDE && mProcID != PROC_HORSE_GETOFF;
+    }
     virtual bool checkArrowChargeEnd() const;
     virtual f32 getSearchBallScale() const { return mSearchBallScale; }
     virtual int checkFastShotTime() { return mFastShotTime; }
@@ -3183,9 +3226,13 @@ public:
     virtual bool checkUseKandelaar(int);
     virtual void setDkCaught(fopAc_ac_c*);
     virtual void onPressedDamage(cXyz const&, short);
-    virtual bool checkPriActorOwn(fopAc_ac_c const* p_actor) const { return field_0x27f4 == p_actor; }
+    virtual bool checkPriActorOwn(fopAc_ac_c const* p_actor) const {
+        return field_0x27f4 == p_actor;
+    }
     virtual bool onWolfEnemyBiteAll(fopAc_ac_c*, daPy_FLG2);
-    virtual bool checkWolfEnemyBiteAllOwn(fopAc_ac_c const* p_actor) const { return field_0x281c.getActorConst() == p_actor; }
+    virtual bool checkWolfEnemyBiteAllOwn(fopAc_ac_c const* p_actor) const {
+        return field_0x281c.getActorConst() == p_actor;
+    }
     virtual void setWolfEnemyHangBiteAngle(short angle) {
         if (mProcID != PROC_WOLF_ENEMY_HANG_BITE) {
             return;
@@ -3199,8 +3246,12 @@ public:
     virtual void onSpinnerPathForceRemove();
     virtual int getIronBallBgHit() const;
     virtual cXyz* getIronBallCenterPos();
-    virtual bool checkCanoeFishingGetLeft() const { return mProcID == PROC_CANOE_FISHING_GET && mProcVar3.field_0x300e == 0; }
-    virtual bool checkCanoeFishingGetRight() const { return mProcID == PROC_CANOE_FISHING_GET && mProcVar3.field_0x300e == 1; }
+    virtual bool checkCanoeFishingGetLeft() const {
+        return mProcID == PROC_CANOE_FISHING_GET && mProcVar3.field_0x300e == 0;
+    }
+    virtual bool checkCanoeFishingGetRight() const {
+        return mProcID == PROC_CANOE_FISHING_GET && mProcVar3.field_0x300e == 1;
+    }
     virtual u8 checkBeeChildDrink() const { return field_0x2fd3; }
     virtual void skipPortalObjWarp();
     virtual BOOL checkTreasureRupeeReturn(int) const;
@@ -3243,7 +3294,9 @@ public:
     virtual cXyz* getHookshotTopPos();
     virtual bool checkHookshotReturnMode() const;
     virtual bool checkHookshotShootReturnMode() const;
-    virtual bool checkOctaIealHang() const { return mProcID == PROC_BOSS_BODY_HANG && field_0x32cc == 0; }
+    virtual bool checkOctaIealHang() const {
+        return mProcID == PROC_BOSS_BODY_HANG && field_0x32cc == 0;
+    }
     virtual void cancelOctaIealHang() {
         if (mProcID != PROC_BOSS_BODY_HANG) {
             return;
@@ -3262,12 +3315,16 @@ public:
         }
         mProcVar0.field_0x3008 = 1;
     }
-    virtual bool checkDragonHangRide() const { return mProcID == PROC_BOSS_BODY_HANG && field_0x32cc != 0; }
+    virtual bool checkDragonHangRide() const {
+        return mProcID == PROC_BOSS_BODY_HANG && field_0x32cc != 0;
+    }
     virtual void changeDragonActor(fopAc_ac_c*);
     virtual u8 getClothesChangeWaitTimer() const { return mClothesChangeWaitTimer; }
     virtual u8 getShieldChangeWaitTimer() const { return mShieldChangeWaitTimer; }
     virtual u8 getSwordChangeWaitTimer() const { return mSwordChangeWaitTimer; }
-    virtual BOOL checkMetamorphose() const { return mProcID == PROC_METAMORPHOSE && mProcVar1.field_0x300a == 0; }
+    virtual BOOL checkMetamorphose() const {
+        return mProcID == PROC_METAMORPHOSE && mProcVar1.field_0x300a == 0;
+    }
     virtual BOOL checkWolfDownAttackPullOut() const { return mProcID == PROC_WOLF_DOWN_AT_LAND; }
     virtual BOOL checkBootsOrArmorHeavy() const;
     virtual s32 getBottleOpenAppearItem() const;
@@ -3276,15 +3333,25 @@ public:
     virtual BOOL checkSinkDead() const { return field_0x2fbd == 0xFF; }
     virtual BOOL checkHorseStart() { return checkHorseStart(getLastSceneMode(), getStartMode()); }
     virtual Z2WolfHowlMgr* getWolfHowlMgrP() { return &mZ2WolfHowlMgr; }
-    virtual BOOL checkWolfHowlSuccessAnime() const { return checkUnderMove0BckNoArcWolf(WANM_HOWL_SUCCESS); }
+    virtual BOOL checkWolfHowlSuccessAnime() const {
+        return checkUnderMove0BckNoArcWolf(WANM_HOWL_SUCCESS);
+    }
     virtual BOOL checkCopyRodTopUse();
     virtual bool checkCopyRodEquip() const { return mEquipItem == fpcNm_ITEM_COPY_ROD; }
     virtual BOOL checkCutJumpMode() const { return mProcID == PROC_CUT_JUMP; }
 
+    static BOOL checkDebugMoveInput() {
+        if (mDoCPd_c::isConnect(PAD_3)) {
+            return mDoCPd_c::getHoldB(PAD_1) && mDoCPd_c::getAnalogR(PAD_1) > 0.8f &&
+                   mDoCPd_c::getTrigA(PAD_1);
+        }
+
+        return FALSE;
+    }
+
     u32 checkModeFlg(u32 pFlag) const { return mModeFlg & pFlag; }
     BOOL checkSmallUpperGuardAnime() const { return checkUpperAnime(0x16); }
     BOOL checkFmChainGrabAnime() const { return checkUpperAnime(0x62) || checkUpperAnime(0x2A0); }
-    
 
     // this might be a fake match, but helps fix usage in many functions
 #pragma push
@@ -3311,7 +3378,9 @@ public:
         return (mEquipItem == fpcNm_ITEM_BOOMERANG || mEquipItem == 0x102) && checkUpperAnime(0x54);
     }
     bool checkDkCaught2Anime() const { return checkUpperAnime(0x262); }
-    BOOL checkCopyRodThrowAnime() const { return mEquipItem == fpcNm_ITEM_COPY_ROD && checkUpperAnime(0x53); }
+    BOOL checkCopyRodThrowAnime() const {
+        return mEquipItem == fpcNm_ITEM_COPY_ROD && checkUpperAnime(0x53);
+    }
     BOOL checkCutDashChargeAnime() const { return checkUpperAnime(0x83); }
     BOOL checkBoomerangAnimeAndReturnWait() const { return checkBoomerangAnime(); }
     BOOL checkTwoHandItemEquipAnime() const { return checkUpperAnime(0x245); }
@@ -3326,7 +3395,9 @@ public:
     bool checkBowShootAnime() const { return checkUpperAnime(0xC); }
     bool checkBowWaitAnime() const { return checkUpperAnime(0xD); }
     BOOL checkGrabUpThrowAnime() const { return checkUpperAnime(0x170); }
-    BOOL checkGrabSideThrowAnime() const { return checkUpperAnime(0x51) || mUpperAnmHeap[0].getIdx() == 0x51; }
+    BOOL checkGrabSideThrowAnime() const {
+        return checkUpperAnime(0x51) || mUpperAnmHeap[0].getIdx() == 0x51;
+    }
     BOOL checkGrabHeavyThrowAnime() const { return checkUpperAnime(0x17B); }
     BOOL checkGrabAnimeUp() const { return checkUpperAnime(0x16C); }
     BOOL checkGrabAnimeSide() const { return checkUpperAnime(0x50); }
@@ -3342,8 +3413,12 @@ public:
     bool checkIronBallSwingAnime() const { return checkUpperAnime(0x19B); }
     bool checkDashDamageAnime() const { return checkUpperAnime(0xAD); }
     bool checkBoomerangCatchAnime() const { return checkUpperAnime(0x52); }
-    BOOL checkCopyRodReadyAnime() const { return mEquipItem == fpcNm_ITEM_COPY_ROD && checkUpperAnime(0x54); }
-    BOOL checkCanoeFishingWaitAnime() const { return checkUpperAnime(0x5D) || checkUpperAnime(0x260); }
+    BOOL checkCopyRodReadyAnime() const {
+        return mEquipItem == fpcNm_ITEM_COPY_ROD && checkUpperAnime(0x54);
+    }
+    BOOL checkCanoeFishingWaitAnime() const {
+        return checkUpperAnime(0x5D) || checkUpperAnime(0x260);
+    }
     BOOL checkCopyRodControllAnime() const { return checkUpperAnime(0x202); }
     BOOL checkWolfHeadDamageAnime() const { return checkUpperAnime(0x2A7); }
     BOOL checkExchangeRodAnime() const { return checkUpperAnime(0x68); }
@@ -3436,7 +3511,9 @@ public:
     cXyz* getMidnaHairAtnPos() { return &mMidnaHairAtnPos; }
 
     const daAlink_AnmData* getAnmData(daAlink_ANM anmID) const { return &m_anmDataTable[anmID]; }
-    const daAlink_FaceTexData* getFaceTexData(daAlink_FTANM i_anmID) const { return &m_faceTexDataTable[i_anmID]; }
+    const daAlink_FaceTexData* getFaceTexData(daAlink_FTANM i_anmID) const {
+        return &m_faceTexDataTable[i_anmID];
+    }
 
     s16 getCameraAngleX() const { return field_0x310a; }
     s16 getCameraAngleY() const { return field_0x310c; }
@@ -3458,7 +3535,8 @@ public:
             var_r5 = 0;
 
             if (mItemAcKeep.getActor() != NULL &&
-                mItemAcKeep.getActor()->eventInfo.checkCommandDemoAccrpt() != 0) {
+                mItemAcKeep.getActor()->eventInfo.checkCommandDemoAccrpt() != 0)
+            {
                 var_r5 = 1;
             }
 
@@ -3482,10 +3560,8 @@ public:
     }
 
     BOOL checkSlideMode() {
-        return mProcID == PROC_SLIDE ||
-               mProcID == PROC_SLIDE_LAND ||
-               mProcID == PROC_WOLF_SLIDE_READY ||
-               mProcID == PROC_WOLF_SLIDE_LAND ||
+        return mProcID == PROC_SLIDE || mProcID == PROC_SLIDE_LAND ||
+               mProcID == PROC_WOLF_SLIDE_READY || mProcID == PROC_WOLF_SLIDE_LAND ||
                mProcID == PROC_WOLF_SLIDE;
     }
 
@@ -3509,7 +3585,9 @@ public:
     f32 getCopyRodBallDisFlyMax() const { return mSearchBallScale; }
 
     void clearIronBallActor() { field_0x173c.SetActor(this); }
-    BOOL checkCanoeRideOwn(const fopAc_ac_c* param_0) const { return checkCanoeRide() && mRideAcKeep.getActorConst() == param_0; }
+    BOOL checkCanoeRideOwn(const fopAc_ac_c* param_0) const {
+        return checkCanoeRide() && mRideAcKeep.getActorConst() == param_0;
+    }
     bool checkWolfDashMode() const { return checkNoResetFlg1(FLG1_DASH_MODE); }
     bool checkWolfLieWaterIn() const { return mWaterY > current.pos.y + 20.5f; }
 
@@ -3537,7 +3615,15 @@ public:
     bool checkSpinnerRideWait() const {
         return mProcID == PROC_SPINNER_WAIT && mProcVar2.field_0x300c == 0;
     }
+    bool checkCopyRodSwingMode() { return mProcID == PROC_COPY_ROD_SWING; }
+    bool checkCopyRodSwingModeInit() {
+        return mProcID == PROC_COPY_ROD_SWING && mProcVar2.field_0x300c != 0;
+    }
+    float transAnimeMoveX() { return field_0x3464; }
+    float transAnimeMoveZ() { return field_0x3468; }
     bool checkRoofSwitchHang() const { return mProcID == PROC_ROOF_SWITCH_HANG; }
+    bool checkCanoeWait() const { return mProcID == PROC_CANOE_WAIT; }
+    bool checkCanoeSubjectivity() const { return mProcID == PROC_CANOE_SUBJECTIVITY; }
 
     fopAc_ac_c* getCopyRodActor() { return mCopyRodAcKeep.getActor(); }
     fopAc_ac_c* getHookshotRoofWaitActor() { return mCargoCarryAcKeep.getActor(); }
@@ -3555,6 +3641,7 @@ public:
 
     void seStartSystem(u32 i_seID) { mDoAud_seStart(i_seID, NULL, 0, 0); }
     bool checkIronBallEquip() const { return mEquipItem == fpcNm_ITEM_IRONBALL; }
+    BOOL checkFishingRodEquip() const { return checkFishingRodItem(mEquipItem); }
 
     f32 getAnmSpeedStickRate(f32 param_0, f32 param_1) const {
         return param_0 + (field_0x33a8 * (param_1 - param_0));
@@ -3567,9 +3654,7 @@ public:
 
     void clearComboReserb() { offNoResetFlg2(FLG2_UNK_2); }
 
-    void setDamageColorTime() {
-        mDamageColorTime = 32 - (mDamageTimer % 16); 
-    }
+    void setDamageColorTime() { mDamageColorTime = 32 - (mDamageTimer % 16); }
 
     BOOL setEnemyBomb(fopAc_ac_c* i_actor) { return exchangeGrabActor(i_actor); }
 
@@ -3595,9 +3680,7 @@ public:
         return getDirectionFromAngle(field_0x2fe2 - current.angle.y);
     }
 
-    bool checkAnmEnd(daPy_frameCtrl_c* i_frameCtrl) {
-        return i_frameCtrl->checkAnmEnd();
-    }
+    bool checkAnmEnd(daPy_frameCtrl_c* i_frameCtrl) { return i_frameCtrl->checkAnmEnd(); }
 
     BOOL checkCrawlWaterIn() { return mWaterY > current.pos.y + 15.5f; }
 
@@ -3621,7 +3704,7 @@ public:
     bool checkRootTransXClearMode() { return field_0x2f99 & 1; }
     bool checkRootTransYClearMode() { return field_0x2f99 & 2; }
     bool checkRootTransClearContinueMode() { return field_0x2f99 & 8; }
-    s16 checkWindStoneHowl() {return mProcVar4.field_0x3010; }
+    s16 checkWindStoneHowl() { return mProcVar4.field_0x3010; }
     u8 getCorrectCurveID() { return mZ2WolfHowlMgr.getCorrectCurveID(); }
     u8 getCorrectLineNum() { return mZ2WolfHowlMgr.getCorrectLineNum(); }
     u32 getWolfHowlTimer() { return mZ2WolfHowlMgr.getTimer(); }
@@ -3637,7 +3720,9 @@ public:
 
     fopAc_ac_c* getAtnActor() { return mTargetedActor; }
 
-    void itemHitSE(u32 param_1, u32 param_2, Z2SoundObjBase* param_3) { mZ2Link.startHitItemSE(param_1, param_2, param_3, -1.0f); }
+    void itemHitSE(u32 param_1, u32 param_2, Z2SoundObjBase* param_3) {
+        mZ2Link.startHitItemSE(param_1, param_2, param_3, -1.0f);
+    }
 
     BOOL checkStartFall() { return getStartMode() == 3; }
 
@@ -3656,21 +3741,13 @@ public:
         mDoMtx_multVec(getRightHandMatrix(), &m_handRightInSidePos, o_pos);
     }
 
-    cXyz* getLineTopPosP() {
-        return mSight.getPosP();
-    }
+    cXyz* getLineTopPosP() { return mSight.getPosP(); }
 
-    cXyz* getBoomerangLockPosP() {
-        return &mHeldItemRootPos;
-    }
+    cXyz* getBoomerangLockPosP() { return &mHeldItemRootPos; }
 
-    BOOL boomerangLockTrigger() {
-        return itemActionTrigger();
-    }
+    BOOL boomerangLockTrigger() { return itemActionTrigger(); }
 
-    BOOL checkBoomerangLockTrigger() {
-        return boomerangLockTrigger();
-    }
+    BOOL checkBoomerangLockTrigger() { return boomerangLockTrigger(); }
 
     BOOL checkDemoSpinnerKeep() const {
         return mDemo.getDemoMode() == 14 && mDemo.getParam0() == 1;
@@ -3694,9 +3771,7 @@ public:
 
     inline void startRestartRoomFromOut(int, u32, int);
 
-    u16 getReadyItem() {
-        return dComIfGp_getSelectItem(mSelectItemId);
-    }
+    u16 getReadyItem() { return dComIfGp_getSelectItem(mSelectItemId); }
 
     static daAlink_BckData const m_mainBckShield[20];
     static daAlink_BckData const m_mainBckSword[5];
@@ -3708,7 +3783,6 @@ public:
     static Vec const m_handRightOutSidePos;
     static Vec const m_handLeftInSidePos;
     static Vec const m_handRightInSidePos;
-
 
     static daAlink_procInitTable m_procInitTable[];
     static daAlink_procFunc m_demoInitTable[];
@@ -3769,8 +3843,8 @@ public:
     /* 0x00704 */ J3DAnmTextureSRTKey* mpKanteraGlowBtk;
     /* 0x00708 */ J3DModel* mHeldItemModel;
     /* 0x0070C */ J3DModel* mpHookTipModel;  // related to held item
-    /* 0x00710 */ J3DModel* field_0x0710;  // related to held item
-    /* 0x00714 */ J3DModel* field_0x0714;  // related to held item
+    /* 0x00710 */ J3DModel* field_0x0710;    // related to held item
+    /* 0x00714 */ J3DModel* field_0x0714;    // related to held item
     /* 0x00718 */ J3DAnmTextureSRTKey* field_0x0718;
     /* 0x0071C */ J3DAnmTextureSRTKey* field_0x071c;
     /* 0x00720 */ J3DAnmTextureSRTKey* field_0x0720;
@@ -4366,7 +4440,7 @@ struct daAlinkHIO_anm_c {
     /* 0x08 */ f32 mStartFrame;
     /* 0x0C */ f32 mInterpolation;
     /* 0x10 */ f32 mCancelFrame;
-}; // size: 0x14
+};  // size: 0x14
 
 struct daAlinkHIO_basic_c1 {
     /* 0x00 */ bool mOneHitKill;
@@ -4822,7 +4896,7 @@ public:
     /* 0x54 */ s16 mGuardBodyInterpolation;
     /* 0x56 */ s16 mSmallGuardLRAngleMax;
     /* 0x58 */ s16 mSmallGuardFBAngleMax;
-    /* 0x5C */ f32 mCrouchGuardAnmSpeed;  // Unused
+    /* 0x5C */ f32 mCrouchGuardAnmSpeed;       // Unused
     /* 0x60 */ f32 mCrouchGuardInterpolation;  // Unused
     /* 0x64 */ f32 mGuardSpeedNormal;
     /* 0x68 */ f32 mGuardSpeedLarge;

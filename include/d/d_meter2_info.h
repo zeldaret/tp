@@ -156,7 +156,7 @@ public:
     void setMsgTimeMs(u32 msgTime) { mMsgTimeMs = msgTime; }
     void setTimeMs(s32 i_time) { mTimeMs = i_time; }
     u32 getTimeMs() { return mTimeMs; }
-    int getNowCount() { return mNowCount; }
+    u8 getNowCount() { return mNowCount; }
     int getMaxCount() { return mMaxCount; }
     void setScopeZoomPointer(u8 param_0) { mScopeZoomPointer = param_0; }
     u8 getItemExplainWindowStatus() { return mItemExplainWindowStatus; }
@@ -635,7 +635,7 @@ inline void dMeter2Info_setTimeMs(s32 i_time) {
     g_meter2_info.setTimeMs(i_time);
 }
 
-inline int dMeter2Info_getNowCount() {
+inline u8 dMeter2Info_getNowCount() {
     return g_meter2_info.getNowCount();
 }
 
@@ -814,6 +814,10 @@ inline bool dMeter2Info_isNextStage(const char*, s16, s16, s16) {
 
 inline void dMeter2Info_setFloatingMessage(u16 pMessageID, s16 pMessageTimer, bool pWakuVisible) {
     g_meter2_info.setFloatingMessage(pMessageID, pMessageTimer, pWakuVisible);
+}
+
+inline void dMeter2Info_setMiniGameCount(s8 i_count) {
+    g_meter2_info.setMiniGameCount(i_count);
 }
 
 const char* dMeter2Info_getPlusTextureName();

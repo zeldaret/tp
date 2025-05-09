@@ -1164,7 +1164,7 @@ void daB_MGN_c::executeDash() {
 
     switch (mMoveMode) {
     case 10:
-    case 11:
+    case 11: {
         cXyz gate_offset(0.0f, 0.0f, -800.0f);
         cXyz player_pos(player->current.pos);
 
@@ -1218,6 +1218,7 @@ void daB_MGN_c::executeDash() {
             }
         }
         break;
+    }
     case 12:
         if (field_0xa9c == 0) {
             if (field_0xaff >= 5) {
@@ -1246,9 +1247,7 @@ void daB_MGN_c::executeDash() {
             field_0xaac = 20;
             field_0xa9c = 21;
             mJewelColorMode = 1;
-            gravity = 0.0f;
-            speed.y = 0.0f;
-            speedF = 0.0f;
+            speedF = speed.y = gravity = 0.0f;
 
             if (field_0xb10 != -1) {
                 current.angle.y = shape_angle.y = mGdgateAngle[field_0xb10];
@@ -1393,9 +1392,9 @@ void daB_MGN_c::executeDash() {
                         }
     
                         if ((s16)(mAcchCir.GetWallAngleY() - shape_angle.y) < 0) {
-                            shape_angle.y += 0x100;
+                            shape_angle.y += (s16) 0x100;
                         } else {
-                            shape_angle.y += -0x100;
+                            shape_angle.y += (s16) -0x100;
                         }
     
                         current.angle.y = shape_angle.y;
@@ -1406,6 +1405,7 @@ void daB_MGN_c::executeDash() {
                     field_0x20f4[0].OffTgSetBit();
                     mAtSph.OffAtSetBit();
                     setActionMode(ACTION_CIRCLE_e, field_0xb03);
+                    break;
                 }
             }
         }
@@ -1417,7 +1417,7 @@ void daB_MGN_c::executeDash() {
             cXyz sp30;
             mDoMtx_stack_c::transS(current.pos);
             mDoMtx_stack_c::YrotM(shape_angle.y);
-            mDoMtx_stack_c::transM(0.0f, 0.0f, 1000.0f);
+            mDoMtx_stack_c::transM(0.0f, 0.0f, 1000.0f + nREG_F(10));
             mDoMtx_stack_c::multVecZero(&sp30);
 
             dComIfGp_particle_set(0x8c1c, &sp30, &tevStr, &shape_angle, 0);
@@ -1445,7 +1445,7 @@ void daB_MGN_c::executeDash() {
         mAtSph.SetAtAtp(2);
         current.angle.y = shape_angle.y;
         speedF = l_HIO.dash_speed;
-    case 6:
+    case 6: {
         if (mpMgnBtk->isStop()) {
             setBloodEffect();
         }
@@ -1466,6 +1466,17 @@ void daB_MGN_c::executeDash() {
             setExitMode(0);
             field_0xaac = 3;
         }
+        break;
+    }
+    case 8:
+    case 9:
+    case 14:
+    case 15:
+    case 16:
+    case 17:
+    case 18:
+    case 19:
+    case 7:
         break;
     }
 }

@@ -920,6 +920,7 @@ public:
     bool checkGrabThrow() const { return checkResetFlg0(RFLG0_GRAB_THROW); }
     bool checkMidnaAtnPos() const { return checkNoResetFlg1(FLG1_MIDNA_ATN_POS); }
     bool checkMidnaHairAtnPos() const { return checkNoResetFlg1(FLG1_MIDNA_HAIR_ATN_POS); }
+    bool checkAttentionLock() const { return checkResetFlg0(RFLG0_UNK_10000); }
 
     void onBossRoomWait() { onEndResetFlg0(ERFLG0_BOSS_ROOM_WAIT); }
     void onBeeFollow() { onEndResetFlg0(ERFLG0_BEE_FOLLOW); }
@@ -1046,6 +1047,8 @@ public:
     void onForceSubjectCancel() { onEndResetFlg0(ERFLG0_FORCE_SUBJECT_CANCEL); }
     void onEnemyDead() { onEndResetFlg0(ERFLG0_ENEMY_DEAD); }
     void offDkCaught2() { offNoResetFlg0(FLG0_UNK_20000); }
+    void onWaterFallFrontHit() { onEndResetFlg1(ERFLG1_UNK_800); }
+    void onCanoeItemCancel() { onEndResetFlg1(ERFLG1_UNK_20000000); }
 
     u32 checkBoarSingleBattle() const { return checkNoResetFlg2(daPy_FLG2(FLG2_UNK_1000000 | FLG2_BOAR_SINGLE_BATTLE)); }
     u32 checkWolfDashAutoJump() const { return checkNoResetFlg2(FLG2_WOLF_DASH_AUTO_JUMP); }

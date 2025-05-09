@@ -2236,15 +2236,18 @@ BOOL daNpc_zrA_c::swimGoalRiverDescend(void* param_0) {
         if (player->current.pos.y < -14100.0f) {
             if (!daNpcF_chkEvtBit(0x60)) {
                 mOrderEvtNo = EVT_THANKS_BLAST;
-            } else if (dMeter2Info_getNowCount() >= 30) {
-                dComIfGs_onSwitch(mSwitch1, fopAcM_GetRoomNo(this));
-                dComIfGs_onSwitch(mSwitch2, fopAcM_GetRoomNo(this));
-                mOrderEvtNo = EVT_THANKS_BLAST;
-            } else if (dMeter2Info_getNowCount() >= 25) {
-                dComIfGs_onSwitch(mSwitch1, fopAcM_GetRoomNo(this));
-                mOrderEvtNo = EVT_THANKS_BLAST;
             } else {
-                mOrderEvtNo = EVT_RESULT_ANNOUNCE;
+                int count = dMeter2Info_getNowCount();
+                if (count >= 30) {
+                    dComIfGs_onSwitch(mSwitch1, fopAcM_GetRoomNo(this));
+                    dComIfGs_onSwitch(mSwitch2, fopAcM_GetRoomNo(this));
+                    mOrderEvtNo = EVT_THANKS_BLAST;
+                } else if (count >= 25) {
+                    dComIfGs_onSwitch(mSwitch1, fopAcM_GetRoomNo(this));
+                    mOrderEvtNo = EVT_THANKS_BLAST;
+                } else {
+                    mOrderEvtNo = EVT_RESULT_ANNOUNCE;
+                }
             }
         } else {
             mPath.getDstPos(current.pos, pos);
