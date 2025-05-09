@@ -13,43 +13,43 @@
  */
 
  struct daNpc_seiC_HIOParam {
-    /* 0x00 */ u32 field_0x00;
-    /* 0x04 */ u32 field_0x04;
-    /* 0x08 */ u32 field_0x08;
-    /* 0x0C */ u32 field_0x0c;
+    /* 0x00 */ f32 field_0x00;
+    /* 0x04 */ f32 mGravity;
+    /* 0x08 */ f32 mScale;
+    /* 0x0C */ f32 field_0x0c;
     /* 0x10 */ f32 mSttsWeight;
-    /* 0x14 */ u32 field_0x14;
-    /* 0x18 */ u32 field_0x18;
-    /* 0x1C */ u32 field_0x1c;
-    /* 0x20 */ u32 field_0x20;
-    /* 0x24 */ u32 field_0x24;
-    /* 0x28 */ u32 field_0x28;
-    /* 0x2C */ u32 field_0x2c;
-    /* 0x30 */ u32 field_0x30;
-    /* 0x34 */ u32 field_0x34;
-    /* 0x38 */ u32 field_0x38;
-    /* 0x3C */ u32 field_0x3c;
-    /* 0x40 */ u32 field_0x40;
-    /* 0x44 */ u32 field_0x44;
-    /* 0x48 */ u32 field_0x48;
-    /* 0x4C */ u32 field_0x4c;
-    /* 0x50 */ u32 field_0x50;
-    /* 0x54 */ u32 field_0x54;
-    /* 0x58 */ u32 field_0x58;
-    /* 0x5C */ u32 field_0x5c;
-    /* 0x60 */ u32 field_0x60;
-    /* 0x64 */ u32 field_0x64;
-    /* 0x68 */ u32 field_0x68;
-    /* 0x6C */ u32 field_0x6c;
-    /* 0x70 */ u32 field_0x70;
-    /* 0x74 */ u32 field_0x74;
-    /* 0x78 */ u32 field_0x78;
-    /* 0x7C */ u32 field_0x7c;
-    /* 0x80 */ u32 field_0x80;
-    /* 0x84 */ u32 field_0x84;
-    /* 0x88 */ u32 field_0x88;
-    /* 0x8C */ u32 field_0x8c;
-    /* 0x90 */ u32 field_0x90;
+    /* 0x14 */ f32 mCylH;
+    /* 0x18 */ f32 mWallH;
+    /* 0x1C */ f32 mWallR;
+    /* 0x20 */ f32 field_0x20;
+    /* 0x24 */ f32 field_0x24;
+    /* 0x28 */ f32 field_0x28;
+    /* 0x2C */ f32 field_0x2c;
+    /* 0x30 */ f32 field_0x30;
+    /* 0x34 */ f32 field_0x34;
+    /* 0x38 */ f32 field_0x38;
+    /* 0x3C */ f32 field_0x3c;
+    /* 0x40 */ f32 field_0x40;
+    /* 0x44 */ f32 mMorfFrames;
+    /* 0x48 */ f32 field_0x48;
+    /* 0x4C */ f32 field_0x4c;
+    /* 0x50 */ f32 field_0x50;
+    /* 0x54 */ f32 field_0x54;
+    /* 0x58 */ f32 field_0x58;
+    /* 0x5C */ f32 field_0x5c;
+    /* 0x60 */ f32 field_0x60;
+    /* 0x64 */ f32 field_0x64;
+    /* 0x68 */ f32 field_0x68;
+    /* 0x6C */ f32 field_0x6c;
+    /* 0x70 */ f32 field_0x70;
+    /* 0x74 */ f32 field_0x74;
+    /* 0x78 */ f32 field_0x78;
+    /* 0x7C */ f32 field_0x7c;
+    /* 0x80 */ f32 field_0x80;
+    /* 0x84 */ f32 field_0x84;
+    /* 0x88 */ f32 field_0x88;
+    /* 0x8C */ f32 field_0x8c;
+    /* 0x90 */ f32 field_0x90;
 };
 
 class daNpc_seiC_Param_c {
@@ -76,7 +76,9 @@ public:
 
 class daNpc_seiC_c : public daNpcT_c {
 public:
+    typedef int (daNpc_seiC_c::*cutFunc)(int);
     typedef int (daNpc_seiC_c::*actionFunc)(void*);
+    
 
     enum Type {
         TYPE_0,
@@ -103,12 +105,12 @@ public:
     /* 80AC801C */ void setAttnPos();
     /* 80AC8078 */ int drawDbgInfo();
     /* 80AC8080 */ bool afterSetMotionAnm(int, int, f32, int);
-    /* 80AC8218 */ void selectAction();
-    /* 80AC8260 */ void chkAction(int (daNpc_seiC_c::*)(void*));
-    /* 80AC828C */ void setAction(int (daNpc_seiC_c::*)(void*));
+    /* 80AC8218 */ int selectAction();
+    /* 80AC8260 */ int chkAction(int (daNpc_seiC_c::*)(void*));
+    /* 80AC828C */ int setAction(int (daNpc_seiC_c::*)(void*));
     /* 80AC8334 */ void ctrlWaitAnm();
-    /* 80AC8338 */ void wait(void*);
-    /* 80AC8364 */ void talk(void*);
+    /* 80AC8338 */ int wait(void*);
+    /* 80AC8364 */ int talk(void*);
     /* 80AC916C */ daNpc_seiC_c(daNpcT_faceMotionAnmData_c const* i_faceMotionAnmData, daNpcT_motionAnmData_c const* i_motionAnmData,
                                 daNpcT_MotionSeqMngr_c::sequenceStepData_c const* i_faceMotionSequenceData, int i_faceMotionStepNum,
                                 daNpcT_MotionSeqMngr_c::sequenceStepData_c const* i_motionSequenceData, int i_motionStepNum,
@@ -117,15 +119,15 @@ public:
                                            i_faceMotionStepNum, i_motionSequenceData, i_motionStepNum, i_evtData,
                                            i_arcNames) {};
 
-    static void* mCutNameList;
-    static u8 mCutList[12];
+    static char* mCutNameList;
+    static cutFunc mCutList[1];
 
 private:
     /* 0xE40 */ daNpc_seiC_HIO_c* field_0xe40;
     /* 0xE44 */ u8 mType;
     /* 0xE45 */ u8 field_0xe45[0xe48 - 0xe45];
     /* 0xE48 */ actionFunc mAction;
-    /* 0xE54 */ u8 field_0xe54[0xe60 - 0xe54];
+    /* 0xE54 */ actionFunc mAction2;
     /* 0xE60 */ int field_0xe60;
 };
 
