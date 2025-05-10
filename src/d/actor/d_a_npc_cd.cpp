@@ -360,186 +360,6 @@ J3DAnmTransform* daNpcCd_c::getAnmP(int param_1, int param_2) {
     return (J3DAnmTransform*)dComIfG_getObjectRes(anmTbl.arc_name, anmTbl.resource_index);
 }
 
-/* 80428340-8042834C 055060 000C+00 0/1 0/0 0/0 .bss             @4080 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_4080[12];
-// #pragma pop
-
-// /* 8042834C-80428358 05506C 000C+00 0/1 0/0 0/0 .bss             @4083 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_4083[12];
-// #pragma pop
-
-// /* 80428358-80428364 055078 000C+00 0/1 0/0 0/0 .bss             @4084 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_4084[12];
-// #pragma pop
-
-// /* 80428364-80428370 055084 000C+00 0/1 0/0 0/0 .bss             @4085 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_4085[12];
-// #pragma pop
-
-// /* 80428370-8042837C 055090 000C+00 0/1 0/0 0/0 .bss             @4086 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_4086[12];
-// #pragma pop
-
-// /* 8042837C-80428388 05509C 000C+00 0/1 0/0 0/0 .bss             @4087 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_4087[12];
-// #pragma pop
-
-// /* 80428388-80428394 0550A8 000C+00 0/1 0/0 0/0 .bss             @4088 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_4088[12];
-// #pragma pop
-
-// /* 80428394-804283A0 0550B4 000C+00 0/1 0/0 0/0 .bss             @4089 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_4089[12];
-// #pragma pop
-
-// /* 804283A0-804283AC 0550C0 000C+00 0/1 0/0 0/0 .bss             @4090 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_4090[12];
-// #pragma pop
-
-// /* 804283AC-804283B8 0550CC 000C+00 0/1 0/0 0/0 .bss             @4091 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_4091[12];
-// #pragma pop
-
-// /* 804283B8-804283C4 0550D8 000C+00 0/1 0/0 0/0 .bss             @4092 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_4092[12];
-// #pragma pop
-
-// /* 804283C4-804283D0 0550E4 000C+00 0/1 0/0 0/0 .bss             @4093 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_4093[12];
-// #pragma pop
-
-// /* 804283D0-804283DC 0550F0 000C+00 0/1 0/0 0/0 .bss             @4094 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_4094[12];
-// #pragma pop
-
-// /* 804283DC-804283E8 0550FC 000C+00 0/1 0/0 0/0 .bss             @4095 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_4095[12];
-// #pragma pop
-
-// /* 804283E8-804283F4 055108 000C+00 0/1 0/0 0/0 .bss             @4096 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_4096[12];
-// #pragma pop
-
-// /* 804283F4-80428400 055114 000C+00 0/1 0/0 0/0 .bss             @4097 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_4097[12];
-// #pragma pop
-
-// /* 80428400-8042840C 055120 000C+00 0/1 0/0 0/0 .bss             @4098 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_4098[12];
-// #pragma pop
-
-// /* 8042840C-80428418 05512C 000C+00 0/1 0/0 0/0 .bss             @4099 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_4099[12];
-// #pragma pop
-
-// /* 80428418-80428424 055138 000C+00 0/1 0/0 0/0 .bss             @4100 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_4100[12];
-// #pragma pop
-
-// /* 80428424-80428430 055144 000C+00 0/1 0/0 0/0 .bss             @4101 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_4101[12];
-// #pragma pop
-
-// /* 80428430-8042843C 055150 000C+00 0/1 0/0 0/0 .bss             @4102 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_4102[12];
-// #pragma pop
-
-// /* 8042843C-80428448 05515C 000C+00 0/1 0/0 0/0 .bss             @4103 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_4103[12];
-// #pragma pop
-
-// /* 80428448-80428454 055168 000C+00 0/1 0/0 0/0 .bss             @4104 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_4104[12];
-// #pragma pop
-
-// /* 80428454-80428460 055174 000C+00 0/1 0/0 0/0 .bss             @4105 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_4105[12];
-// #pragma pop
-
-// /* 80428460-8042846C 055180 000C+00 0/1 0/0 0/0 .bss             @4106 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_4106[12];
-// #pragma pop
-
-// /* 8042846C-80428478 05518C 000C+00 0/1 0/0 0/0 .bss             @4107 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_4107[12];
-// #pragma pop
-
-// /* 80428478-80428484 055198 000C+00 0/1 0/0 0/0 .bss             @4108 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_4108[12];
-// #pragma pop
-
-// /* 80428484-80428490 0551A4 000C+00 0/1 0/0 0/0 .bss             @4109 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_4109[12];
-// #pragma pop
-
-// /* 80428490-8042849C 0551B0 000C+00 0/1 0/0 0/0 .bss             @4110 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_4110[12];
-// #pragma pop
-
-// /* 8042849C-804284A8 0551BC 000C+00 0/1 0/0 0/0 .bss             @4111 */
-// #pragma push
-// #pragma force_active on
-// static u8 lit_4111[12];
-// #pragma pop
-
 /* 803B3C04-803B3CF4 010D24 00F0+00 2/2 0/0 0/0 .data            l_bmdTbl */
 static anmTblPrm const l_bmdTbl[30] = {
     {l_resMANa[0], 3},  {l_resMADa[0], 3},  {l_resMCNa[0], 3},  {l_resMONa[0], 3},
@@ -589,7 +409,7 @@ int daNpcCd_c::setAttention(int i_idx) {
     return 1;
 }
 
-/* 803B3B80-803B3B8C 010CA0 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
+/* 803B3B80-803B3B8C 010CA0 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc   UNK */
 static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -1440,13 +1260,13 @@ daNpcCd_HIO_c::daNpcCd_HIO_c() {
 
     for (int i = 0; i < 16; i++) {
         for (int j = 0; j < 12; j++) {
-            memcpy((void*)&field_0x0004[i].field_0x4[j].jntTx, a_jntTbl_M[i][j], 20);
+            memcpy((void*)&field_0x0004[i].field_0x4[j].jntT, a_jntTbl_M[i][j], 20);
         }
         memcpy(&field_0x0004[i].field_0x128, a_prmTbl_M + i * 0x40, 0x40);
     }
     for (int i = 0; i < 14; i++) {
         for (int j = 0; j < 12; j++) {
-            memcpy((void*)&field_0x1648[i].field_0x4[j].jntTx, a_jntTbl_W[i][j], 20);
+            memcpy((void*)&field_0x1648[i].field_0x4[j].jntT, a_jntTbl_W[i][j], 20);
         }
         memcpy(&field_0x1648[i].field_0x128, a_prmTbl_W + i * 0x40, 0x40);
     }

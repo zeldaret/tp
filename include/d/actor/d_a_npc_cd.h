@@ -58,12 +58,8 @@ struct daNpcCd_HIO_Jnt_c : public JORReflexible {
     void genMessage(JORMContext*);
 #endif
 
-    /* 0x04 */ f32 jntTx;
-    /* 0x08 */ f32 jntTy;
-    /* 0x0C */ f32 jntTz;
-    /* 0x10 */ s16 jntRx;
-    /* 0x12 */ s16 jntRy;
-    /* 0x14 */ s16 jntRz;
+    /* 0x04 */ Vec jntT;
+    /* 0x10 */ SVec jntR;
 };
 
 struct daNpcCd_HIO_Child_c : public JORReflexible {
@@ -111,9 +107,9 @@ inline f32 HIO_atnOfs(int param_1) {
 inline s16 HIO_jntRX(int param_1, int param_2) {
     s16 rv;
     if (param_1 < 16) {
-        rv = l_Cd_HIO.field_0x0004[param_1].field_0x4[param_2].jntRx;
+        rv = l_Cd_HIO.field_0x0004[param_1].field_0x4[param_2].jntR.x;
     } else {
-        rv = l_Cd_HIO.field_0x1648[param_1 - 16].field_0x4[param_2].jntRx;
+        rv = l_Cd_HIO.field_0x1648[param_1 - 16].field_0x4[param_2].jntR.x;
     }
     return 182.04444885253906f * rv;
 }
@@ -121,9 +117,9 @@ inline s16 HIO_jntRX(int param_1, int param_2) {
 inline s16 HIO_jntRY(int param_1, int param_2) {
     s16 rv;
     if (param_1 < 16) {
-        rv = l_Cd_HIO.field_0x0004[param_1].field_0x4[param_2].jntRy;
+        rv = l_Cd_HIO.field_0x0004[param_1].field_0x4[param_2].jntR.y;
     } else {
-        rv = l_Cd_HIO.field_0x1648[param_1 - 16].field_0x4[param_2].jntRy;
+        rv = l_Cd_HIO.field_0x1648[param_1 - 16].field_0x4[param_2].jntR.y;
     }
     return 182.04444885253906f * rv;
 }
@@ -131,9 +127,9 @@ inline s16 HIO_jntRY(int param_1, int param_2) {
 inline s16 HIO_jntRZ(int param_1, int param_2) {
     s16 rv;
     if (param_1 < 16) {
-        rv = l_Cd_HIO.field_0x0004[param_1].field_0x4[param_2].jntRz;
+        rv = l_Cd_HIO.field_0x0004[param_1].field_0x4[param_2].jntR.z;
     } else {
-        rv = l_Cd_HIO.field_0x1648[param_1 - 16].field_0x4[param_2].jntRz;
+        rv = l_Cd_HIO.field_0x1648[param_1 - 16].field_0x4[param_2].jntR.z;
     }
     return 182.04444885253906f * rv;
 }
@@ -141,9 +137,9 @@ inline s16 HIO_jntRZ(int param_1, int param_2) {
 static inline f32 HIO_jntTX(int param_1, int param_2) {
     f32 rv;
     if (param_1 < 16) {
-        rv = l_Cd_HIO.field_0x0004[param_1].field_0x4[param_2].jntTx;
+        rv = l_Cd_HIO.field_0x0004[param_1].field_0x4[param_2].jntT.x;
     } else {
-        rv = l_Cd_HIO.field_0x1648[param_1 - 16].field_0x4[param_2].jntTx;
+        rv = l_Cd_HIO.field_0x1648[param_1 - 16].field_0x4[param_2].jntT.x;
     }
     return 10.0f * rv;
 }
@@ -151,9 +147,9 @@ static inline f32 HIO_jntTX(int param_1, int param_2) {
 static inline f32 HIO_jntTY(int param_1, int param_2) {
     f32 rv;
     if (param_1 < 16) {
-        rv = l_Cd_HIO.field_0x0004[param_1].field_0x4[param_2].jntTy;
+        rv = l_Cd_HIO.field_0x0004[param_1].field_0x4[param_2].jntT.y;
     } else {
-        rv = l_Cd_HIO.field_0x1648[param_1 - 16].field_0x4[param_2].jntTy;
+        rv = l_Cd_HIO.field_0x1648[param_1 - 16].field_0x4[param_2].jntT.y;
     }
     return 10.0f * rv;
 }
@@ -161,9 +157,9 @@ static inline f32 HIO_jntTY(int param_1, int param_2) {
 static inline f32 HIO_jntTZ(int param_1, int param_2) {
     f32 rv;
     if (param_1 < 16) {
-        rv = l_Cd_HIO.field_0x0004[param_1].field_0x4[param_2].jntTz;
+        rv = l_Cd_HIO.field_0x0004[param_1].field_0x4[param_2].jntT.z;
     } else {
-        rv = l_Cd_HIO.field_0x1648[param_1 - 16].field_0x4[param_2].jntTz;
+        rv = l_Cd_HIO.field_0x1648[param_1 - 16].field_0x4[param_2].jntT.z;
     }
     return 10.0f * rv;
 }
