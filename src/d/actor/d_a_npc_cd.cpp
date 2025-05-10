@@ -5,7 +5,6 @@
 
 #include "d/actor/d_a_npc_cd.h"
 #include "d/actor/d_a_player.h"
-#include "dol2asm.h"
 
 /* 80156010-8015605C 150950 004C+00 1/1 0/0 0/0 .text            jntNodeCallBack__FP8J3DJointi */
 static int jntNodeCallBack(J3DJoint* i_jnt, int param_1) {
@@ -174,47 +173,40 @@ struct anmTblPrm {
 
 /* 80392CE8-80392D30 -00001 0048+00 1/1 0/0 0/0 .rodata          l_objTbl */
 static anmTblPrm const l_objTbl[9] = {
-    {"object_l", 6}, {"object_l", 6}, {"object_l", 5},
-    {"object_l", 3}, {"object_l", 7}, {"object_l", 8},
-    {"object_l", -1}, {"object_l", -1}, {"object_l", 4},
+    {"object_l", 6}, {"object_l", 6},  {"object_l", 5},  {"object_l", 3}, {"object_l", 7},
+    {"object_l", 8}, {"object_l", -1}, {"object_l", -1}, {"object_l", 4},
 };
 
 /* 80392D30-80392D78 -00001 0048+00 1/1 0/0 0/0 .rodata          l_objTWTbl */
 static anmTblPrm const l_objTWTbl[9] = {
-    {"objectLTW", 6}, {"objectLTW", 6}, {"objectLTW", 5},
-    {"objectLTW", 3}, {"objectLTW", 7}, {"objectLTW", 8},
-    {"objectLTW", -1}, {"objectLTW", -1}, {"objectLTW", 4},
+    {"objectLTW", 6}, {"objectLTW", 6},  {"objectLTW", 5},  {"objectLTW", 3}, {"objectLTW", 7},
+    {"objectLTW", 8}, {"objectLTW", -1}, {"objectLTW", -1}, {"objectLTW", 4},
 };
 
 /* 80392D78-80392DC8 -00001 0050+00 1/1 0/0 0/0 .rodata          l_bckTbl_M */
 static anmTblPrm const l_bckTbl_M[10] = {
-    {"Mgeneral_l", 5}, {"Mgeneral_l", 6}, {"Mgeneral_l", 3},
-    {"Mgeneral_l", 4}, {"Mspecial_l", 6}, {"Mspecial_l", 7},
-    {"Mspecial_l", 8}, {"Mspecial_l", 3}, {"Mspecial_l", 4},
-    {"Mspecial_l", 5}
-};
+    {"Mgeneral_l", 5}, {"Mgeneral_l", 6}, {"Mgeneral_l", 3}, {"Mgeneral_l", 4}, {"Mspecial_l", 6},
+    {"Mspecial_l", 7}, {"Mspecial_l", 8}, {"Mspecial_l", 3}, {"Mspecial_l", 4}, {"Mspecial_l", 5}};
 
 /* 80392DC8-80392E18 -00001 0050+00 1/1 0/0 0/0 .rodata          l_bckTbl_W */
 static anmTblPrm const l_bckTbl_W[10] = {
-    {"Wgeneral_l", 5}, {"Wgeneral_l", 6}, {"Wgeneral_l", 3}, 
-    {"Wgeneral_l", 4}, {"Wgeneral_l", 6}, {"Wspecial_l", 7}, 
-    {"Wspecial_l", 8}, {"Wspecial_l", 3}, {"Wspecial_l", 4}, 
-    {"Wspecial_l", 5},
+    {"Wgeneral_l", 5}, {"Wgeneral_l", 6}, {"Wgeneral_l", 3}, {"Wgeneral_l", 4}, {"Wgeneral_l", 6},
+    {"Wspecial_l", 7}, {"Wspecial_l", 8}, {"Wspecial_l", 3}, {"Wspecial_l", 4}, {"Wspecial_l", 5},
 };
 
 /* 80392E18-80392E5C 01F478 0044+00 0/0 0/0 1/1 .rodata          m_cylDat__9daNpcCd_c */
 dCcD_SrcCyl const daNpcCd_c::m_cylDat = {
     {
-        {0x0, {{0x0, 0x0, 0x0}, {0, 0}, 0x79}}, // mObj
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0}, // mGObjTg
-        {0x0}, // mGObjCo
-    }, // mObjInf
+        {0x0, {{0x0, 0x0, 0x0}, {0, 0}, 0x79}},  // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},      // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0},        // mGObjTg
+        {0x0},                                   // mGObjCo
+    },                                           // mObjInf
     {
-        {0.0f, 0.0f, 0.0f}, // mCenter
-        0.0f, // mRadius
-        0.0f // mHeight
-    } // mCyl
+        {0.0f, 0.0f, 0.0f},  // mCenter
+        0.0f,                // mRadius
+        0.0f                 // mHeight
+    }  // mCyl
 };
 
 /* 8015605C-801561E8 15099C 018C+00 0/0 0/0 1/1 .text            NpcCreate__9daNpcCd_cFi */
@@ -242,7 +234,8 @@ int daNpcCd_c::NpcCreate(int param_1) {
 
     JUT_ASSERT(470, 0 != a_mdlData_p);
 
-    mDoExt_McaMorfSO* mpModelMorf = new mDoExt_McaMorfSO(a_mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mCreature, 0x80000, 0x11000084);
+    mDoExt_McaMorfSO* mpModelMorf = new mDoExt_McaMorfSO(a_mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0,
+                                                         -1, &mCreature, 0x80000, 0x11000084);
     mpMorf = mpModelMorf;
     if (mpMorf != NULL && mpMorf->getModel() == NULL) {
         mpMorf->stopZelAnime();
@@ -256,9 +249,9 @@ int daNpcCd_c::NpcCreate(int param_1) {
     mCreature.init(&current.pos, &eyePos, 3, 1);
     mCreature.setMdlType(param_1, true, mIsDarkWorld);
 
-    #if VERSION == VERSION_SHIELD_DEBUG
+#if VERSION == VERSION_SHIELD_DEBUG
     mpMorf->offTranslate();
-    #endif
+#endif
 
     mpMorf->setTranslateScale(a_transScaleTbl[param_1]);
 
@@ -296,66 +289,66 @@ BOOL daNpcCd_c::isM_() {
 J3DAnmTransform* daNpcCd_c::getAnmP(int param_1, int param_2) {
     int a_anmNum = param_1;
     switch (a_anmNum) {
-        case 0:
-        case 4:
-        case 5:
-        case 6:
-            switch (param_2) {
-                case 1:
-                case 8:
-                    a_anmNum = 6;
-                    break;
-
-                case 2:
-                case 3:
-                    a_anmNum = 5;
-                    break;
-
-                case 4:
-                case 5:
-                    a_anmNum = 4;
-            }
-            break;
-            
+    case 0:
+    case 4:
+    case 5:
+    case 6:
+        switch (param_2) {
         case 1:
-            switch (param_2) {
-                case 1:
-                case 8:
-                    a_anmNum = 6;
-                    break;
-
-                case 2:
-                case 3:
-                    a_anmNum = 5;
-                    break;
-                
-                case 4:
-                case 5:
-                    a_anmNum = 4;
-            }
+        case 8:
+            a_anmNum = 6;
             break;
 
         case 2:
         case 3:
-            switch (param_2) {
-                case 1:
-                case 8:
-                    a_anmNum = 9;
-                    break;
-
-                case 2:
-                case 3:
-                    a_anmNum = 8;
-                    break;
-
-                case 4:
-                case 5:
-                    a_anmNum = 7;
-            }
+            a_anmNum = 5;
             break;
 
-        default:
-            return NULL;
+        case 4:
+        case 5:
+            a_anmNum = 4;
+        }
+        break;
+
+    case 1:
+        switch (param_2) {
+        case 1:
+        case 8:
+            a_anmNum = 6;
+            break;
+
+        case 2:
+        case 3:
+            a_anmNum = 5;
+            break;
+
+        case 4:
+        case 5:
+            a_anmNum = 4;
+        }
+        break;
+
+    case 2:
+    case 3:
+        switch (param_2) {
+        case 1:
+        case 8:
+            a_anmNum = 9;
+            break;
+
+        case 2:
+        case 3:
+            a_anmNum = 8;
+            break;
+
+        case 4:
+        case 5:
+            a_anmNum = 7;
+        }
+        break;
+
+    default:
+        return NULL;
     }
 
     anmTblPrm anmTbl;
@@ -555,36 +548,16 @@ static u8 lit_4111[12];
 int daNpcCd_c::setAttention(int param_1) {
     // NONMATCHING
     static cXyz a_eyeOfsTbl[30] = {
-        cXyz(0.0f, 10.0f, 0.0f),
-        cXyz(0.0f, 10.0f, 0.0f),
-        cXyz(0.0f, 10.0f, 0.0f),
-        cXyz(0.0f, 10.0f, 0.0f),
-        cXyz(0.0f, 10.0f, 0.0f),
-        cXyz(0.0f, 10.0f, 0.0f),
-        cXyz(0.0f, 10.0f, 0.0f),
-        cXyz(0.0f, 10.0f, 0.0f),
-        cXyz(0.0f, 10.0f, 0.0f),
-        cXyz(0.0f, 10.0f, 0.0f),
-        cXyz(0.0f, 10.0f, 0.0f),
-        cXyz(0.0f, 10.0f, 0.0f),
-        cXyz(0.0f, 10.0f, 0.0f),
-        cXyz(0.0f, 10.0f, 0.0f),
-        cXyz(0.0f, 10.0f, 0.0f),
-        cXyz(0.0f, 10.0f, 0.0f),
-        cXyz(0.0f, 10.0f, 0.0f),
-        cXyz(0.0f, 10.0f, 0.0f),
-        cXyz(0.0f, 10.0f, 0.0f),
-        cXyz(0.0f, 10.0f, 0.0f),
-        cXyz(0.0f, 10.0f, 0.0f),
-        cXyz(0.0f, 10.0f, 0.0f),
-        cXyz(0.0f, 10.0f, 0.0f),
-        cXyz(0.0f, 10.0f, 0.0f),
-        cXyz(0.0f, 10.0f, 0.0f),
-        cXyz(0.0f, 10.0f, 0.0f),
-        cXyz(0.0f, 10.0f, 0.0f),
-        cXyz(0.0f, 10.0f, 0.0f),
-        cXyz(0.0f, 10.0f, 0.0f),
-        cXyz(0.0f, 10.0f, 0.0f),
+        cXyz(0.0f, 10.0f, 0.0f), cXyz(0.0f, 10.0f, 0.0f), cXyz(0.0f, 10.0f, 0.0f),
+        cXyz(0.0f, 10.0f, 0.0f), cXyz(0.0f, 10.0f, 0.0f), cXyz(0.0f, 10.0f, 0.0f),
+        cXyz(0.0f, 10.0f, 0.0f), cXyz(0.0f, 10.0f, 0.0f), cXyz(0.0f, 10.0f, 0.0f),
+        cXyz(0.0f, 10.0f, 0.0f), cXyz(0.0f, 10.0f, 0.0f), cXyz(0.0f, 10.0f, 0.0f),
+        cXyz(0.0f, 10.0f, 0.0f), cXyz(0.0f, 10.0f, 0.0f), cXyz(0.0f, 10.0f, 0.0f),
+        cXyz(0.0f, 10.0f, 0.0f), cXyz(0.0f, 10.0f, 0.0f), cXyz(0.0f, 10.0f, 0.0f),
+        cXyz(0.0f, 10.0f, 0.0f), cXyz(0.0f, 10.0f, 0.0f), cXyz(0.0f, 10.0f, 0.0f),
+        cXyz(0.0f, 10.0f, 0.0f), cXyz(0.0f, 10.0f, 0.0f), cXyz(0.0f, 10.0f, 0.0f),
+        cXyz(0.0f, 10.0f, 0.0f), cXyz(0.0f, 10.0f, 0.0f), cXyz(0.0f, 10.0f, 0.0f),
+        cXyz(0.0f, 10.0f, 0.0f), cXyz(0.0f, 10.0f, 0.0f), cXyz(0.0f, 10.0f, 0.0f),
     };
 
     mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(6));
@@ -594,9 +567,9 @@ int daNpcCd_c::setAttention(int param_1) {
 }
 
 /* 803B3B80-803B3B8C 010CA0 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+// SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
+//     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+// };
 
 /* 803B3B8C-803B3C04 -00001 0078+00 2/2 0/0 0/0 .data            l_resNameTbl */
 static char* const* l_resNameTbl[30] = {
@@ -675,9 +648,10 @@ void daNpcCd_c::animation() {
     }
 }
 
-/* 80156E20-80156E8C 151760 006C+00 0/0 0/0 1/1 .text            setAnm__9daNpcCd_cFP18J3DAnmTransformKeyffiii */
-void daNpcCd_c::setAnm(J3DAnmTransformKey* i_anm, f32 i_rate, f32 i_morf, int i_attr,
-                       int i_start, int i_end) {
+/* 80156E20-80156E8C 151760 006C+00 0/0 0/0 1/1 .text setAnm__9daNpcCd_cFP18J3DAnmTransformKeyffiii
+ */
+void daNpcCd_c::setAnm(J3DAnmTransformKey* i_anm, f32 i_rate, f32 i_morf, int i_attr, int i_start,
+                       int i_end) {
     if (i_anm != (J3DAnmTransformKey*)mpMorf->getAnm()) {
         mpMorf->setAnm(i_anm, i_attr, i_morf, i_rate, i_start, i_end);
     }
@@ -686,9 +660,7 @@ void daNpcCd_c::setAnm(J3DAnmTransformKey* i_anm, f32 i_rate, f32 i_morf, int i_
 /* 80156E8C-80156F74 1517CC 00E8+00 0/0 0/0 1/1 .text            drawObj__9daNpcCd_cFiP8J3DModelf */
 int daNpcCd_c::drawObj(int idx, J3DModel* i_model, f32 i_scale) {
     static s32 const a_jntNumTbl[9] = {
-        -1, 3, 5,
-        5, 3, 5,
-        3, 0, 0,
+        -1, 3, 5, 5, 3, 5, 3, 0, 0,
     };
 
     if (mIsDarkWorld && !daPy_py_c::checkNowWolfEyeUp()) {
@@ -739,17 +711,21 @@ int daNpcCd_c::jntNodeCB(J3DJoint* i_jnt, J3DModel* i_model) {
     // NONMATCHING
     u16 jntNo = i_jnt->getJntNo();
     mDoMtx_stack_c::copy(i_model->getAnmMtx(jntNo));
-    mDoMtx_stack_c::ZXYrotM(HIO_jntRX(field_0x9c4, jntNo), HIO_jntRY(field_0x9c4, jntNo), HIO_jntRZ(field_0x9c4, jntNo));
-    mDoMtx_stack_c::transM(HIO_jntTX(field_0x9c4, jntNo), HIO_jntTY(field_0x9c4, jntNo), HIO_jntTZ(field_0x9c4, jntNo));
+    mDoMtx_stack_c::ZXYrotM(HIO_jntRX(field_0x9c4, jntNo), HIO_jntRY(field_0x9c4, jntNo),
+                            HIO_jntRZ(field_0x9c4, jntNo));
+    mDoMtx_stack_c::transM(HIO_jntTX(field_0x9c4, jntNo), HIO_jntTY(field_0x9c4, jntNo),
+                           HIO_jntTZ(field_0x9c4, jntNo));
     i_model->setAnmMtx(jntNo, mDoMtx_stack_c::get());
     cMtx_copy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
     return 1;
 }
 
-/* 8015736C-80157524 151CAC 01B8+00 1/1 0/0 0/0 .text            setHitodamaParticle__9daNpcCd_cFv */
+/* 8015736C-80157524 151CAC 01B8+00 1/1 0/0 0/0 .text            setHitodamaParticle__9daNpcCd_cFv
+ */
 void daNpcCd_c::setHitodamaParticle() {
     static const u16 id[2] = {
-        0x8497, 0x8498,
+        0x8497,
+        0x8498,
     };
 
     field_0x9e4 = (u16)(field_0x9e6 * 2);
@@ -761,7 +737,8 @@ void daNpcCd_c::setHitodamaParticle() {
 
     cXyz sp28(eyePos.x + field_0x9d8.x, eyePos.y + field_0x9d8.y, eyePos.z + field_0x9d8.z);
     for (int i = 0; i < 2; i++) {
-        mHitodamaEmitters[i] = dComIfGp_particle_set(mHitodamaEmitters[i], id[i], &sp28, &shape_angle, 0);
+        mHitodamaEmitters[i] =
+            dComIfGp_particle_set(mHitodamaEmitters[i], id[i], &sp28, &shape_angle, 0);
         JPABaseEmitter* pEmitter = dComIfGp_particle_getEmitter(mHitodamaEmitters[i]);
         if (pEmitter != NULL) {
             u8 alpha;
@@ -779,24 +756,24 @@ void daNpcCd_c::setHitodamaParticle() {
 
 /* 803B3C04-803B3CF4 010D24 00F0+00 2/2 0/0 0/0 .data            l_bmdTbl */
 static anmTblPrm const l_bmdTbl[30] = {
-    {l_resMANa[0], 3}, {l_resMADa[0], 3}, {l_resMCNa[0], 3}, {l_resMONa[0], 3},
-    {l_resMANb[0], 3}, {l_resMANc[0], 3}, {l_resMASa[0], 3}, {l_resMBNa[0], 3},
+    {l_resMANa[0], 3},  {l_resMADa[0], 3},  {l_resMCNa[0], 3},  {l_resMONa[0], 3},
+    {l_resMANb[0], 3},  {l_resMANc[0], 3},  {l_resMASa[0], 3},  {l_resMBNa[0], 3},
     {l_resMANa2[0], 3}, {l_resMADa2[0], 3}, {l_resMCNa2[0], 3}, {l_resMONa2[0], 3},
     {l_resMANb2[0], 3}, {l_resMANc2[0], 3}, {l_resMASa2[0], 3}, {l_resMBNa2[0], 3},
-    {l_resWANa[0], 3}, {l_resWADa[0], 3}, {l_resMATa[0], 3}, {l_resWCNa[0], 3},
-    {l_resWONa[0], 3}, {l_resWGNa[0], 3}, {l_resWANb[0], 3}, {l_resWANa2[0], 3},
+    {l_resWANa[0], 3},  {l_resWADa[0], 3},  {l_resMATa[0], 3},  {l_resWCNa[0], 3},
+    {l_resWONa[0], 3},  {l_resWGNa[0], 3},  {l_resWANb[0], 3},  {l_resWANa2[0], 3},
     {l_resWADa2[0], 3}, {l_resMATa2[0], 3}, {l_resWCNa2[0], 3}, {l_resWONa2[0], 3},
     {l_resWGNa2[0], 3}, {l_resWANb2[0], 3},
 };
 
 /* 803B3CF4-803B3DE4 010E14 00F0+00 2/2 0/0 0/0 .data            l_bmdTWTbl */
 static anmTblPrm const l_bmdTWTbl[30] = {
-    {l_resMANa[1], 3}, {l_resMADa[1], 3}, {l_resMCNa[1], 3}, {l_resMONa[1], 3},
-    {l_resMANb[1], 3}, {l_resMANc[1], 3}, {l_resMASa[1], 3}, {l_resMBNa[1], 3},
+    {l_resMANa[1], 3},  {l_resMADa[1], 3},  {l_resMCNa[1], 3},  {l_resMONa[1], 3},
+    {l_resMANb[1], 3},  {l_resMANc[1], 3},  {l_resMASa[1], 3},  {l_resMBNa[1], 3},
     {l_resMANa2[1], 3}, {l_resMADa2[1], 3}, {l_resMCNa2[1], 3}, {l_resMONa2[1], 3},
     {l_resMANb2[1], 3}, {l_resMANc2[1], 3}, {l_resMASa2[1], 3}, {l_resMBNa2[1], 3},
-    {l_resWANa[1], 3}, {l_resWADa[1], 3}, {l_resMATa[1], 3}, {l_resWCNa[1], 3},
-    {l_resWONa[1], 3}, {l_resWGNa[1], 3}, {l_resWANb[1], 3}, {l_resWANa2[1], 3},
+    {l_resWANa[1], 3},  {l_resWADa[1], 3},  {l_resMATa[1], 3},  {l_resWCNa[1], 3},
+    {l_resWONa[1], 3},  {l_resWGNa[1], 3},  {l_resWANb[1], 3},  {l_resWANa2[1], 3},
     {l_resWADa2[1], 3}, {l_resMATa2[1], 3}, {l_resWCNa2[1], 3}, {l_resWONa2[1], 3},
     {l_resWGNa2[1], 3}, {l_resWANb2[1], 3},
 };
@@ -809,7 +786,7 @@ J3DModelData* daNpcCd_c::getNpcMdlDataP(int param_1) {
     } else {
         l_bmd = &l_bmdTWTbl[param_1];
     }
-    
+
     return (J3DModelData*)dComIfG_getObjectRes(l_bmd->arc_name, l_bmd->resource_index);
 }
 
@@ -825,7 +802,7 @@ J3DModelData* daNpcCd_c::getObjMdlDataP(int param_1) {
     if (def->resource_index > 0) {
         model_data = (J3DModelData*)dComIfG_getObjectRes(def->arc_name, def->resource_index);
     }
-     return model_data;
+    return model_data;
 }
 
 /* 803B3DE4-803B4CE4 010F04 0F00+00 0/1 0/0 0/0 .data            a_jntTbl_M$3905 */
@@ -1419,13 +1396,13 @@ daNpcCd_HIO_c::daNpcCd_HIO_c() {
     // NONMATCHING
     for (int i = 0; i < 16; i++) {
         for (int j = 0; j < 12; j++) {
-            memcpy(&field_0x0004[i].field_0x4[j].jntT, a_jntTbl_M[i][j], 20);
+            memcpy((void*)&field_0x0004[i].field_0x4[j].jntT, a_jntTbl_M[i][j], 20);
         }
         // memcpy(&field_0x0004[i].mAtn, a_prmTbl_M + i * 0x40, 0x40);
     }
     for (int i = 0; i < 14; i++) {
         for (int j = 0; j < 12; j++) {
-            memcpy(&field_0x1648[i].field_0x4[j].jntT, a_jntTbl_W[i][j], 20);
+            memcpy((void*)&field_0x1648[i].field_0x4[j].jntT, a_jntTbl_W[i][j], 20);
         }
         // memcpy(&field_0x1648[i].mAtn, a_prmTbl_W + i * 0x40, 0x40);
     }

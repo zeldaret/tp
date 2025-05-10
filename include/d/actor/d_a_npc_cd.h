@@ -2,7 +2,7 @@
 #define A_NPC_D_A_NPC_CD_H
 
 #include "Z2AudioLib/Z2Creature.h"
-#include "d/d_com_inf_game.h"
+#include "d/actor/d_a_npc.h"
 
 struct daNpcCd_HIO_Jnt_c : public JORReflexible {
     /* 80157810 */ virtual ~daNpcCd_HIO_Jnt_c() {}
