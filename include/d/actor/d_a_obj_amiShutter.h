@@ -14,11 +14,8 @@
  * @details
  *
  */
-struct fakeAmiShutterPadding {
-    u8 padding[8];
-};
 
-class daAmiShutter_c : public dBgS_MoveBgActor, public fakeAmiShutterPadding, public dEvLib_callback_c {
+class daAmiShutter_c : public dBgS_MoveBgActor, public request_of_phase_process_class, public dEvLib_callback_c {
 public:
     typedef void (daAmiShutter_c::*modeProc)();
 
